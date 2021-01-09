@@ -9,71 +9,104 @@ import argparse
 
 en_suffix = "_en.rst"
 cn_suffix = "_cn.rst"
+
 file_path_dict = {}
+
+# key = id(api), value = list of all apis with the same id.
 same_api_map = {}
+
+# read from file './alias_api_mapping'
+# key = column 1 (as the real api), value = column 2
 alias_api_map = {}
-not_display_doc_map = {}
-display_doc_map = {}
-api_set = set()
+
+# id
+# key = id(api), value = the real api
 id_real_api_map = {}
 
+# read from file './not_display_doc_list'
+# key = line, value = 1
+not_display_doc_map = {}
 
+# read from file './display_doc_list'
+# key = line, value = 1
+display_doc_map = {}
+
+# the set of all apis
+api_set = set()
+
+
+# walkthrough the paddle package to collect all the apis in api_set
 def get_all_api(root_path='paddle'):
+    global api_set
     for filefinder, name, ispkg in pkgutil.walk_packages(
             path=paddle.__path__, prefix=paddle.__name__ + '.'):
-        # not show paddle.reader APIs
+        # skip the paddle.reader APIs
         if name.startswith("paddle.reader"):
             continue
+
         try:
             m = eval(name)
         except AttributeError:
             pass
         else:
-            if hasattr(eval(name), "__all__"):
-                #may have duplication of api
-                for api in set(eval(name).__all__):
-                    api_all = name + "." + api
+            if hasattr(m, "__all__"):
+                # may have duplication of api
+                for api in set(m.__all__):
                     if "," in api:
+                        # ?
                         continue
 
+                    # api's fullname
+                    api_all = name + "." + api
                     try:
                         fc_id = id(eval(api_all))
                     except AttributeError:
                         pass
                     else:
                         api_set.add(api_all)
+    print('collect {} apis.'.format(len(api_set)))
 
 
 def get_all_same_api():
+    global same_api_map, api_set
     for api in api_set:
         fc_id = id(eval(api))
         if fc_id in same_api_map:
             same_api_map[fc_id].append(api)
         else:
             same_api_map[fc_id] = [api]
+    print('same_api_map has {} items'.format(len(same_api_map)))
 
 
 def get_not_display_doc_list(file="./not_display_doc_list"):
+    global not_display_doc_map
     with open(file, 'r') as f:
         for line in f.readlines():
             line = line.strip()
             not_display_doc_map[line] = 1
+    print('not_display_doc_map has {} items'.format(len(not_display_doc_map)))
 
 
 def get_display_doc_map(file="./display_doc_list"):
+    global display_doc_map
     with open(file, 'r') as f:
         for line in f.readlines():
             line = line.strip()
             display_doc_map[line] = 1
+    print('display_doc_map has {} items'.format(len(display_doc_map)))
 
 
 def get_alias_mapping(file="./alias_api_mapping"):
+    global alias_api_map, id_real_api_map
     with open(file, 'r') as f:
         for line in f.readlines():
             if "\t" in line:
                 t = line.strip().split('\t')
             else:
                 t = line.strip().split('    ')
+            if len(t) < 2:
+                print('line "', line, '" splited to ', t)
+                continue
             real_api = t[0].strip()
             alias_apis = t[1].strip().split(',')
             alias_api_map[real_api] = alias_apis
@@ -86,9 +119,13 @@ def get_alias_mapping(file="./alias_api_mapping"):
             else:
                 id_real_api_map[id(eval(real_api))] = real_api
 
+    print('id_real_api_map has {} items'.format(len(id_real_api_map)))
+    print('alias_api_map has {} items'.format(len(alias_api_map)))
 
+
+# filter the same_api_map by display list and not display list
 def filter_same_api():
-    # filter same_apis by display list and not display list
+    global same_api_map
     for k in list(same_api_map.keys()):
         same_apis = same_api_map[k]
         if is_display_apis(same_apis):
@@ -96,55 +133,51 @@ def filter_same_api():
 
         if is_not_display_apis(same_apis):
             del same_api_map[k]
-
-
-def find_real_api(api_list):
-    # find the real_api
-    if len(api_list) == 1:
-        return api_list[0]
-    else:
-        return choose_real_api(api_list)
+    print('filtered same_api_map has {} items'.format(len(same_api_map)))
 
 
 def choose_real_api(api_list):
-    api = api_list[0]
+    global id_real_api_map
+    if len(api_list) == 1:
+        return api_list[0]
+
+    id_api = id(eval(api_list[0]))
     # the api in id_real_api_map, return real_api
-    if id(eval(api)) in id_real_api_map:
-        return id_real_api_map[id(eval(api))]
+    if id_api in id_real_api_map:
+        return id_real_api_map[id_api]
     else:
         # in case of alias_mapping not contain the apis
         # try to find shortest path of api as the real api
-        shortest = len(api_list[0].split("."))
-        shorttest_api = api_list[0]
-        for x in api_list:
-            if len(x.split(".")) < shortest:
-                shortest = len(x.split("."))
-                shorttest_api = x
+        shortest_len = len(api_list[0].split("."))
+        shortest_api = api_list[0]
+        for x in api_list[1:]:
+            len_x = len(x.split("."))
+            if len_x < shortest_len:
+                shortest_len = len_x
+                shortest_api = x
 
-        return shorttest_api
+        return shortest_api
 
 
 # check if any of the same apis in display list
 def is_display_apis(api_list):
+    global display_doc_map
     for api in api_list:
         if api in display_doc_map:
             return True
     return False
 
 
+# check api in not_display_list
 def is_not_display_apis(api_list):
+    global not_display_doc_map
     for api in api_list:
-        #check api in not_display_list
         for key in not_display_doc_map:
-            #find the api
             if key == api:
                 return True
-            #find the module
-            if api.startswith(key):
-                k_segs = key.split(".")
-                a_segs = api.split(".")
-                if k_segs[len(k_segs) - 1] == a_segs[len(k_segs) - 1]:
-                    return True
+            # filter all the the module
+            if api.startswith(key) and api[len(key)] == '.':
+                return True
     return False
 
 
@@ -152,7 +185,7 @@ def gen_en_files(root_path='paddle', api_label_file="api_label"):
     api_f = open(api_label_file, 'w')
 
     for api_list in same_api_map.values():
-        real_api = find_real_api(api_list)
+        real_api = choose_real_api(api_list)
 
         module_name = ".".join(real_api.split(".")[0:-1])
         doc_file = real_api.split(".")[-1]
@@ -166,7 +199,8 @@ def gen_en_files(root_path='paddle', api_label_file="api_label"):
         f = real_api.replace(".", "/") + en_suffix
         if os.path.exists(f):
             continue
-        os.mknod(f)
+
+        # os.mknod(f) # gen.guard will open it
         gen = EnDocGenerator()
         with gen.guard(f):
             gen.module_name = module_name
@@ -258,27 +292,46 @@ class EnDocGenerator(object):
     def print_class(self):
         self._print_ref_()
         self._print_header_(self.api, dot='-', is_title=False)
-        if "fluid.dygraph" in self.module_name:
-            self.stream.write('''..  autoclass:: {0}.{1}
+
+        cls_templates = {
+            'default':
+            '''..  autoclass:: {0}
+    :members:
+    :inherited-members:
+    :noindex:
+
+''',
+            'no-inherited':
+            '''..  autoclass:: {0}
     :members:
     :noindex:
 
-'''.format(self.module_name, self.api))
-        elif "fluid.optimizer" in self.module_name:
-            self.stream.write('''..  autoclass:: {0}.{1}
+''',
+            'fluid.optimizer':
+            '''..  autoclass:: {0}
     :members:
     :inherited-members:
     :exclude-members: apply_gradients, apply_optimize, backward, load
     :noindex:
 
-'''.format(self.module_name, self.api))
+'''
+        }
+        tmpl = 'default'
+        if 'fluid.dygraph' in self.module_name or \
+           'paddle.vision' in self.module_name or \
+           'paddle.callbacks' in self.module_name or \
+           'paddle.hapi.callbacks' in self.module_name or \
+           'paddle.io' in self.module_name or \
+           'paddle.nn' in self.module_name:
+            tmpl = 'no-inherited'
+        elif "paddle.optimizer" in self.module_name or \
+             "fluid.optimizer" in self.module_name:
+            tmpl = 'fluid.optimizer'
         else:
-            self.stream.write('''..  autoclass:: {0}.{1}
-    :members:
-    :inherited-members:
-    :noindex:
+            tmpl = 'default'
 
-'''.format(self.module_name, self.api))
+        api_full_name = "{}.{}".format(self.module_name, self.api)
+        self.stream.write(cls_templates[tmpl].format(api_full_name))
 
     def print_function(self):
         self._print_ref_()
