@@ -15,7 +15,8 @@ Model
     - **labels** (InputSpec|list|None, 可选): ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list`` ,或者为 ``None``. 默认值为 ``None`` .
       
 .. note::
-在动态图中， ``inputs`` 和 ``labels`` 都可以设置为 ``None``. 但是，在静态图中， ``input`` 不能为 ``None`` . 如果计算 loss 时需要 ``label`` ，那么 ``labels`` 参数也不能设置为 ``None`` .
+
+    在动态图中， ``inputs`` 和 ``labels`` 都可以设置为 ``None``. 但是，在静态图中， ``input`` 不能为 ``None`` . 如果计算 loss 时需要 ``label`` ，那么 ``labels`` 参数也不能设置为 ``None`` .
 
 代码示例
 :::::::::
