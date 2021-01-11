@@ -172,7 +172,7 @@ Please follow the steps below to install:
 
 8. Execute cmake:
 
-    > For details on the compilation options, see the [compilation options table](../Tables.html/#Compile).
+    > For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
     > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.5` means the version of python is 3.5.x
 
     * For users who need to compile the **CPU version PaddlePaddle**:
@@ -456,7 +456,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
 10. Execute cmake:
 
-    > For details on the compilation options, see the [compilation options table](../Tables.html/#Compile).
+    > For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 
