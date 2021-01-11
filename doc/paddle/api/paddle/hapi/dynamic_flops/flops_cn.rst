@@ -7,17 +7,20 @@ flops
 
  ``flops`` 函数能够打印网络的基础结构和参数信息。
 
-参数：
-  - **net** (paddle.nn.Layer||paddle.static.Program) - 网络实例，必须是 paddle.nn.Layer
-                        的子类或者静态图下的 paddle.static.Program。
+参数
+:::::::::
+  - **net** (paddle.nn.Layer||paddle.static.Program) - 网络实例，必须是 paddle.nn.Layer 的子类或者静态图下的 paddle.static.Program。
   - **input_size** (list) - 输入张量的大小。注意：仅支持batch_size=1。
-  - **custom_ops** (dict，可选) - 字典，用于实现对自定义网络层的统计。字典的key为自定义网络
-                        层的class，value为统计网络层flops的函数，函数实现方法见示例代码。
-                        此参数仅在 'net' 为paddle.nn.Layer时生效。默认值：None。
+  - **custom_ops** (dict，可选) - 字典，用于实现对自定义网络层的统计。字典的key为自定义网络层的class，value为统计网络层flops的函数，函数实现方法见示例代码。此参数仅在 'net' 为paddle.nn.Layer时生效。默认值：None。
   - **print_detail (bool, 可选) - bool值，用于控制是否打印每个网络层的细节。默认值：False
-返回：整型，网络模型的计算量。
 
-**代码示例**：
+返回
+:::::::::
+整型，网络模型的计算量。
+
+代码示例
+:::::::::
+
     .. code-block:: python
 
         import paddle
