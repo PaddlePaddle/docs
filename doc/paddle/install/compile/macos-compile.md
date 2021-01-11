@@ -99,7 +99,7 @@
 
 9. 执行cmake：
 
-    >具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
+    >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
     >请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.5`表示python版本为3.5.x
 
     *  对于需要编译**CPU版本PaddlePaddle**的用户：
@@ -260,7 +260,7 @@
 
 9. 执行cmake：
 
-    >具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
+    >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
     *  对于需要编译**CPU版本PaddlePaddle**的用户：
 
