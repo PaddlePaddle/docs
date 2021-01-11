@@ -85,7 +85,7 @@
 
 5. 执行cmake：
 
-    > 具体编译选项含义请参见[编译选项表](../Tables.html#Compile)
+    > 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
     *  编译**CPU版本PaddlePaddle**：
 
