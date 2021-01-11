@@ -17,6 +17,7 @@ to_grayscale
 :::::::::
 
     ``PIL.Image 或 numpy.ndarray``，输入图像的灰度版本。
+
     - 如果 output_channels == 1 : 返回一个单通道图像。
     - 如果 output_channels == 3 : 返回一个RBG格式的3通道图像。
     
