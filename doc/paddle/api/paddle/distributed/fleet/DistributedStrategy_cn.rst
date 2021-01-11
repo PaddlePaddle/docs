@@ -409,7 +409,9 @@ DistributedStrategy
 设置sharding策略的参数。
 
 **fuse_broadcast_MB(float):** sharding 广播通信中参数融合的阈值。 该参数会影响sharding 训练中的通信速度，是一个需要根据具体模型大小和网络拓扑设定的经验值。 默认值是 32. 
+
 **hybrid_dp(bool):** 是否开启sharding hybrid数据并行策略，在sharding 并行的基础上再增加一层数据并行逻辑。该策略的目的是通过限制sharding 通信的节点数和增加多路数据并行 来提高训练吞吐。该策略需要成倍增加在普通sharding 训练时的所需GPU 卡数。
+
 **sharding_group_size(int):** 仅在hybrid_dp开启时需要设置，指定 hybrid 数据并行策略中每一个 sharding 组的大小。该参数一般等于普通sharding 训练时的所需（最小）GPU 卡数。 number of hybrid data parallelism ways = (global_size / sharding_group_size)。
 
 .. code-block:: python
