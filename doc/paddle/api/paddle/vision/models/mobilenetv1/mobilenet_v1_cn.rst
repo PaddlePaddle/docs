@@ -5,7 +5,7 @@ mobilenet_v1
 
 .. py:function:: paddle.vision.models.mobilenet_v1(pretrained=False, scale=1.0, **kwargs)
 
- MobileNetV1模型，来自论文`"MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications" <https://arxiv.org/abs/1704.04861>`_。
+ MobileNetV1模型，来自论文 `"MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications" <https://arxiv.org/abs/1704.04861>`_ 。
 
 参数：
   - **pretrained** (bool，可选) - 是否加载在imagenet数据集上的预训练权重。默认值：False。

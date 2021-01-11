@@ -5,7 +5,7 @@ vgg16
 
 .. py:function:: paddle.vision.models.vgg16(pretrained=False, batch_norm=False, **kwargs)
 
- vgg16模型，来自论文`"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv.org/pdf/1409.1556.pdf>`_。
+ vgg16模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv.org/pdf/1409.1556.pdf>`_ 。
 
 参数：
   - **pretrained** (bool，可选) - 是否加载在imagenet数据集上的预训练权重。默认值：False。

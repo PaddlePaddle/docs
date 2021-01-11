@@ -5,7 +5,7 @@ resnet152
 
 .. py:function:: paddle.vision.models.resnet152(pretrained=False, **kwargs)
 
- 152层的resnet模型，来自论文`"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_。
+ 152层的resnet模型，来自论文 `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_ 。
 
 参数：
   - **pretrained** (bool，可选) - 是否加载在imagenet数据集上的预训练权重。默认值：False。

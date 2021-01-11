@@ -5,7 +5,7 @@ MobileNetV1
 
 .. py:class:: paddle.vision.models.MobileNetV1(scale=1.0, num_classes=1000, with_pool=True)
 
- MobileNetV1模型，来自论文`"MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications" <https://arxiv.org/abs/1704.04861>`_。
+ MobileNetV1模型，来自论文 `"MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications" <https://arxiv.org/abs/1704.04861>`_ 。
 
 参数：
   - **scale** (float，可选) - 模型通道数的缩放比例。默认值：1.0。

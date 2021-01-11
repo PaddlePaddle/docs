@@ -5,7 +5,7 @@ VGG
 
 .. py:class:: paddle.vision.models.VGG(features, num_classes=1000)
 
- VGG模型，来自论文`"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv.org/pdf/1409.1556.pdf>`_。
+ VGG模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv.org/pdf/1409.1556.pdf>`_ 。
 
 参数：
   - **features** (Layer) - vgg模型的特征层。由函数make_layers产生。

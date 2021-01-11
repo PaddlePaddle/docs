@@ -5,7 +5,7 @@ MobileNetV2
 
 .. py:class:: paddle.vision.models.MobileNetV2(scale=1.0, num_classes=1000, with_pool=True)
 
- MobileNetV2模型，来自论文`"MobileNetV2: Inverted Residuals and Linear Bottlenecks" <https://arxiv.org/abs/1801.04381>`_。
+ MobileNetV2模型，来自论文 `"MobileNetV2: Inverted Residuals and Linear Bottlenecks" <https://arxiv.org/abs/1801.04381>`_ 。
 
 参数：
   - **scale** (float，可选) - 模型通道数的缩放比例。默认值：1.0。
