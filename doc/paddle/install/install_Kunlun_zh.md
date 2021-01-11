@@ -123,9 +123,8 @@ o  ```python mnist_example.py --use_device=xpu --num_epochs=5```
 7. 链接过程中打开文件数较多，可能超过系统默认限制导致编译出错，设置进程允许打开的最大文件数：
 
    ```ulimit -n 4096```
-
 8. 执行cmake：
-9. 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/install/quick/Tables.html#Compile)
+9. 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
 For Python2: ```cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release ```
 

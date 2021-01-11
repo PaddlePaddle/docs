@@ -254,7 +254,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
 9. Execute cmake:
 
-    > For details on the compilation options, see the [compilation options table](../Tables.html/#Compile).
+    > For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 

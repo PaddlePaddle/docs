@@ -83,7 +83,7 @@ There is one compilation methods in Windows system:
 
 5. Execute cmake:
 
-    > For details on the compilation options, see [the compilation options list](../Tables.html/#Compile).
+    > For details on the compilation options, see [the compilation options list](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
     * For users who need to compile **the CPU version PaddlePaddle**:
 
         ```
