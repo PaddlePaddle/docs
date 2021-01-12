@@ -221,7 +221,7 @@ Note that **different devices (CPU, CUDA)share one Op definition; whether or not
 
 `MulOp`'s CPU and CUDA share the same `Kernel`. A non-sharing  `OpKernel` example can be seen in [`OnehotCrossEntropyOpKernel`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/cross_entropy_op.cc).
 
-To ease the writing of `OpKernel` compute, and for reusing code cross-device, [`Eigen-unsupported Tensor`](https://bitbucket.org/eigen/eigen/src/default/unsupported/Eigen/CXX11/src/Tensor/README.md?fileviewer=file-view-default) module is used to implement `Compute` interface. To learn about how the Eigen library is used in PaddlePaddle, please see [usage document](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/use_eigen_cn.md).
+To ease the writing of `OpKernel` compute, and for reusing code cross-device, [`Eigen-unsupported Tensor`](https://bitbucket.org) module is used to implement `Compute` interface. To learn about how the Eigen library is used in PaddlePaddle, please see [usage document](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/use_eigen_cn.md).
 
 
 This concludes the forward implementation of an operator. Next its operation and kernel need to be registered in a `.cc` file.
