@@ -15,9 +15,9 @@ pad
             如果提供的是单个int值，则该值用于填充图像所有边。
             如果提供的是长度为2的元组/列表，则分别为图像左/右和顶部/底部进行填充。
             如果提供的是长度为4的元组/列表，则按照左，上，右和下的顺序为图像填充。
-    - fill (int|tuple) - 用于填充的像素值。仅当padding_mode为constant时参数值有效; 默认值：0。
+    - fill (int|tuple) - 用于填充的像素值。仅当padding_mode为constant时参数值有效。 默认值：0。
             如果参数值是一个长度为3的元组，则会分别用于填充R，G，B通道。
-    - padding_mode (string) - 填充模式。支持: constant, edge, reflect 或 symmetric; 默认值：constant。
+    - padding_mode (string) - 填充模式。支持: constant, edge, reflect 或 symmetric。 默认值：constant。
             ``constant`` 表示使用常量值进行填充，该值由fill参数指定。
             ``edge`` 表示使用图像边缘像素值进行填充。
             ``reflect`` 表示使用原图像的镜像值进行填充（不使用边缘上的值）。比如：使用该模式对 ``[1, 2, 3, 4]`` 的两端分别填充2个值，结果是 ``[3, 2, 1, 2, 3, 4, 3, 2]``。
