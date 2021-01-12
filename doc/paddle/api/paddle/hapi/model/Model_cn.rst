@@ -16,7 +16,7 @@ Model
       
 .. note::
 
-    在动态图中， ``inputs`` 和 ``labels`` 都可以设置为 ``None``. 但是，在静态图中， ``input`` 不能为 ``None`` . 如果计算 loss 时需要 ``label`` ，那么 ``labels`` 参数也不能设置为 ``None`` .
+    在动态图中， ``inputs`` 和 ``labels`` 都可以设置为 ``None``. 但是，在静态图中， ``input`` 不能设置为 ``None`` . 而如果损失函数需要标签(label)作为输入，则必须设置 ``labels`` ，否则，可以为 ``None`` 。
 
 代码示例
 :::::::::
