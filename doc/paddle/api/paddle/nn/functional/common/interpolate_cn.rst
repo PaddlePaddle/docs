@@ -1,9 +1,9 @@
 .. _cn_api_paddle_nn_functional_interpolate:
 
-Interpolate
+interpolate
 -------------------------------
 
-.. py:function:: paddle.nn.functioanl.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
+.. py:function:: paddle.nn.functional.interpolate(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
 
 
 
