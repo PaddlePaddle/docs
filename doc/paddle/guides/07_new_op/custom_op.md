@@ -317,8 +317,8 @@ paddle.enable_static()
 data = paddle.static.data(name='data', shape=[None, 32], dtype='float32')
 relu = relu2(data)
 use_gpu = True  # or False
-place = paddle.CUDAPlace(0) if use_gpu else paddle.CPUPlace()
-exe = paddle.static.Executor(place)
+paddle.set_device('gpu' if use_gpu else 'cpu')
+exe = paddle.static.Executor()
 
 x = np.random.uniform(-1, 1, [4, 32]).astype('float32')
 out, = exe.run(feed={'data': x}, fetch_list=[relu])
@@ -332,8 +332,7 @@ import paddle
 from custom_op import relu2
 
 use_gpu = True  # or False
-place = paddle.CUDAPlace(0) if use_gpu else paddle.CPUPlace()
-paddle.disable_static(place)
+paddle.set_device('gpu' if use_gpu else 'cpu')
 
 x = np.random.uniform(-1, 1, [4, 32]).astype('float32')
 t = paddle.to_tensor(x)
