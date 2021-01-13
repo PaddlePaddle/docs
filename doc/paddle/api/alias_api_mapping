@@ -73,7 +73,7 @@ paddle.nn.layer.activation.Hardswish	paddle.nn.Hardswish
 paddle.nn.layer.activation.Hardtanh	paddle.nn.Hardtanh
 paddle.nn.layer.activation.LogSigmoid	paddle.nn.LogSigmoid
 paddle.nn.layer.activation.Maxout	paddle.nn.Maxout
-paddle.nn.layer.activation.PRelu	paddle.nn.PReLU
+paddle.nn.layer.activation.PReLU	paddle.nn.PReLU
 paddle.nn.layer.activation.Tanh	paddle.nn.Tanh
 paddle.nn.layer.activation.SELU	paddle.nn.SELU
 paddle.nn.layer.activation.Swish	paddle.nn.Swish
