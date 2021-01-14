@@ -355,12 +355,16 @@ First row and second column: [1]
 ```
 
 The first element of index or slice is corresponds to axis 0, the second is corresponds to axis 1, and so on. If no index is specified on an axis, the default is `:` . For example:
-```
+```python
 ndim_2_tensor[1]
 ndim_2_tensor[1, :]
-ndim_2_tensor[:, 1]
 ```
-These three are exactly the same.
+The result of these two operations are exactly the same.
+
+```text
+Tensor(shape=[4], dtype=int64, place=CPUPlace, stop_gradient=True,
+       [4, 5, 6, 7])
+```
 
 #### Modify Tensor
 
