@@ -6,11 +6,11 @@
 
 切换到所建分支，然后点击 `New pull request`。
 
-<img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/08_contribution/img/new_pull_request.png?raw=true">
+<img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/08_contribution/img/new_pull_request.png?raw=true"  style="zoom:60%">
 
 选择目标分支：
 
-<img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/08_contribution/img/change_base.png?raw=true">
+<img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/08_contribution/img/change_base.png?raw=true"  style="zoom:80%" >
 
 在 PR 的描述说明中，填写 `resolve #Issue编号` 可以在这个 PR 被 merge 后，自动关闭对应的 Issue，具体请见[这里](https://help.github.com/articles/closing-issues-via-commit-messages/)。
 
