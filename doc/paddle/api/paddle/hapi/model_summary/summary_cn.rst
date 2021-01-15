@@ -54,4 +54,4 @@ summary
 
     params_info = paddle.summary(lenet, (1, 1, 28, 28))
     print(params_info)
-
+    # {'total_params': 61610, 'trainable_params': 61610}

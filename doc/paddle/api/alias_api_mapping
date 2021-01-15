@@ -491,6 +491,7 @@ paddle.vision.transforms.functional.normalize	paddle.vision.transforms.normalize
 paddle.vision.datasets.folder.DatasetFolder	paddle.vision.datasets.DatasetFolder,paddle.vision.DatasetFolder
 paddle.vision.datasets.folder.ImageFolder	paddle.vision.datasets.ImageFolder,paddle.vision.ImageFolder
 paddle.vision.datasets.mnist.MNIST	paddle.vision.datasets.MNIST,paddle.vision.MNIST
+paddle.vision.datasets.mnist.FashionMNIST	paddle.vision.datasets.FashionMNIST,paddle.vision.FashionMNIST
 paddle.vision.datasets.flowers.Flowers	paddle.vision.datasets.Flowers,paddle.vision.Flowers
 paddle.vision.datasets.cifar.Cifar10	paddle.vision.datasets.Cifar10,paddle.vision.Cifar10
 paddle.vision.datasets.cifar.Cifar100	paddle.vision.datasets.Cifar100,paddle.vision.Cifar100
