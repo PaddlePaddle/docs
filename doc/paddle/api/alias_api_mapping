@@ -211,6 +211,7 @@ paddle.fluid.executor.global_scope	paddle.static.global_scope
 paddle.fluid.param_attr.WeightNormParamAttr	paddle.static.WeightNormParamAttr
 paddle.tensor.math.addmm	paddle.addmm,paddle.tensor.addmm
 paddle.fluid.framework.Program	paddle.static.Program
+paddle.fluid.framework.Variable paddle.static.Variable
 paddle.fluid.layers.round	paddle.round,paddle.tensor.round,paddle.tensor.math.round
 paddle.tensor.creation.ones	paddle.ones,paddle.tensor.ones
 paddle.tensor.random.randint	paddle.randint,paddle.tensor.randint
