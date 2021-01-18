@@ -68,11 +68,11 @@ func(np.ones([3, 2]))
 您可以打印转换后的静态图代码，有2种方法：
 
 1. 使用被装饰后的函数的 `code` 属性
-   如下代码中，装饰器 `paddle.jit.to_static` 会将函数 `func` 转化为一个类对象 `StaticLayer`，可以使用 StaticLayer 的 `code` 属性来获得转化后的代码。
+   如下代码中，装饰器 `paddle.jit.to_static` 会将函数 `func` 转化为一个类对象 `StaticFunction`，可以使用 StaticFunction 的 `code` 属性来获得转化后的代码。
     ```Python
     @paddle.jit.to_static
     def func(x):
-    x = paddle.to_tensor(x)
+        x = paddle.to_tensor(x)
         if x > 3:
             x = x - 1
         return x
