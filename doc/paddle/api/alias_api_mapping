@@ -1,4 +1,5 @@
 paddle.tensor.math.conj	paddle.conj,paddle.tensor.conj
+paddle.fluid.framework.Variable	paddle.static.Variable
 paddle.tensor.math.divide	paddle.divide,paddle.tensor.divide
 paddle.fluid.layers.gather_tree	paddle.nn.functional.gather_tree
 paddle.fluid.layers.temporal_shift	paddle.nn.functional.temporal_shift
