@@ -50,6 +50,10 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
     adadelta.clear_grad()
 
 
+.. py:method:: tes
+
+just test for method
+
 .. py:method:: step()
 
 **注意：**
