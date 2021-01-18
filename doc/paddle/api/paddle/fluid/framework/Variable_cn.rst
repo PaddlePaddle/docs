@@ -287,6 +287,23 @@ Variable
         print(new_variable.to_string(True, True))
 
 
+.. py:method:: clone(self)
+
+返回一个新的 ``Variable`` , 其复制原 ``Variable`` 并且新的 ``Variable`` 也被保留在计算图中，即复制的新 ``Variable`` 也参与反向计算。调用 ``out = tensor.clone()`` 与 ``out = assign(tensor)`` 效果一样。
+
+**示例代码**
+  .. code-block:: python
+
+      import paddle
+
+      paddle.enable_static()
+
+      # create a static Variable
+      x = paddle.static.data(name='x', shape=[3, 2, 1])
+      # create a cloned Variable
+      y = x.clone()
+
+
 .. py:method:: astype(self, dtype)
 
 将该 :ref:`api_guide_Variable` 中的数据转换成目标 ``Dtype``
