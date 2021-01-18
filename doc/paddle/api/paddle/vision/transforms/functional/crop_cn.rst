@@ -3,9 +3,9 @@
 crop
 -------------------------------
 
-.. py:function:: paddle.vision.transforms.crop(img)
+.. py:function:: paddle.vision.transforms.crop(img, top, left, height, width)
 
-对输入图像进行水平翻转。
+对输入图像进行裁剪。
 
 参数
 :::::::::
