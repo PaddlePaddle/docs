@@ -1,3 +1,5 @@
+.. _cn_paddle_nn_functional_loss_smooth_l1:
+
 smooth_l1_loss
 -------------------------------
 
