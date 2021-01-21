@@ -88,6 +88,7 @@ paddle.device.set_device	paddle.set_device
 paddle.device.get_cudnn_version	paddle.get_cudnn_version
 paddle.device.XPUPlace	paddle.XPUPlace
 paddle.device.is_compiled_with_xpu	paddle.is_compiled_with_xpu
+paddle.fluid.framework.device_guard	paddle.static.device_guard
 paddle.fluid.framework.is_compiled_with_cuda	paddle.is_compiled_with_cuda,paddle.device.is_compiled_with_cuda
 paddle.fluid.layers.log_loss	paddle.nn.functional.log_loss,paddle.nn.functional.loss.log_loss
 paddle.fluid.layers.softmax_with_cross_entropy	paddle.nn.functional.softmax_with_cross_entropy,paddle.nn.functional.loss.softmax_with_cross_entropy
