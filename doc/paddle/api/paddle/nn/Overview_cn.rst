@@ -41,7 +41,7 @@ paddle.nn 目录下包含飞桨框架支持的神经网络层和相关函数的�
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.Layer <cn_api_fluid_dygraph_Layer>` ", "基于OOD实现的动态图Layer"
     "2", " :ref:`paddle.nn.LayerList <cn_api_fluid_dygraph_LayerList>` ", "用于保存子层列表"
@@ -54,7 +54,7 @@ paddle.nn 目录下包含飞桨框架支持的神经网络层和相关函数的�
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.Conv1D <cn_api_paddle_nn_Conv1D>` ", "一维卷积层"
     "2", " :ref:`paddle.nn.Conv1DTranspose <cn_api_paddle_nn_Conv1DTranspose>` ", "一维转置卷积层"
@@ -69,7 +69,7 @@ pooling层
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.AdaptiveAvgPool1D <cn_api_nn_AdaptiveAvgPool1D>` ", "一维自适应平均池化层"
     "2", " :ref:`paddle.nn.AdaptiveAvgPool2D <cn_api_nn_AdaptiveAvgPool2D>` ", "二维自适应平均池化层"
@@ -90,7 +90,7 @@ Padding层
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.Pad1D <cn_api_nn_Pad1D>` ", "一维填充层"
     "2", " :ref:`paddle.nn.Pad2D <cn_api_nn_Pad2D>` ", "二维填充层"
@@ -102,7 +102,7 @@ Padding层
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.ELU <cn_api_nn_ELU>` ", "ELU激活层"
     "2", " :ref:`paddle.nn.GELU <cn_api_nn_GELU>` ", "GELU激活层"
@@ -134,7 +134,7 @@ Normalization层
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.BatchNorm <cn_api_fluid_dygraph_BatchNorm>` ", "Batch Normalization层"
     "2", " :ref:`paddle.nn.BatchNorm1D <cn_api_nn_BatchNorm1D>` ", "一维Batch Normalization层"
@@ -155,7 +155,7 @@ Normalization层
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.BiRNN <cn_api_paddle_nn_layer_rnn_BiRNN>` ", "双向循环神经网络"
     "2", " :ref:`paddle.nn.GRU <cn_api_paddle_nn_layer_rnn_GRU>` ", "门控循环单元网络"
@@ -173,7 +173,7 @@ Transformer相关
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.MultiHeadAttention <cn_api_nn_MultiHeadAttention>` ", "多头注意力机制"
     "2", " :ref:`paddle.nn.Transformer <cn_api_nn_Transformer>` ", "Transformer模型"
@@ -188,7 +188,7 @@ Transformer相关
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.Bilinear <cn_api_nn_Bilinear>` ", "对两个输入执行双线性张量积"
     "2", " :ref:`paddle.nn.Linear <cn_api_paddle_nn_layer_common_Linear>` ", "线性变换层"
@@ -199,7 +199,7 @@ Dropout层
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.AlphaDropout <cn_api_nn_AlphaDropout>` ", "具有自归一化性质的dropout"
     "2", " :ref:`paddle.nn.Dropout <cn_api_nn_Dropout>` ", "Dropout"
@@ -212,7 +212,7 @@ Embedding层
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.Embedding <cn_api_nn_Embedding>` ", "嵌入层(Embedding Layer)"
     
@@ -222,7 +222,7 @@ Loss层
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.BCELoss <cn_api_paddle_nn_BCELoss>` ", "BCELoss层"
     "2", " :ref:`paddle.nn.BCEWithLogitsLoss <cn_api_paddle_nn_BCEWithLogitsLoss>` ", "BCEWithLogitsLoss层"
@@ -242,7 +242,7 @@ Vision层
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.PixelShuffle <cn_api_nn_PixelShuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor重新排列成形为 [N, C/r**2, H*r, W*r]或 [N, H*r, W*r, C/r**2] 的Tensor"
     "2", " :ref:`paddle.nn.Upsample <cn_api_paddle_nn_Upsample>` ", "用于调整一个batch中图片的大小"
@@ -255,7 +255,7 @@ Clip相关
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` ", "将一个 Tensor列表 t_list 中所有Tensor的L2范数之和，限定在 clip_norm 范围内"
     "2", " :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` ", "将输入的多维Tensor X 的L2范数限制在 clip_norm 范围之内"
@@ -267,7 +267,7 @@ Clip相关
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.BeamSearchDecoder <cn_api_fluid_layers_BeamSearchDecoder>` ", "带beam search解码策略的解码器"
     "2", " :ref:`paddle.nn.CosineSimilarity <cn_api_nn_CosineSimilarity>` ", "余弦相似度计算"
@@ -281,7 +281,7 @@ Clip相关
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.functional.conv1d <cn_api_nn_functional_conv1d>` ", "一维卷积函数"
     "2", " :ref:`paddle.nn.functional.conv1d_transpose <cn_api_nn_functional_conv1d_transpose>` ", "一维转置卷积函数"
@@ -296,7 +296,7 @@ Pooling相关函数
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.functional.adaptive_avg_pool1d <cn_api_nn_functional_adaptive_avg_pool1d>` ", "一维自适应平均池化"
     "2", " :ref:`paddle.nn.functional.adaptive_avg_pool2d <cn_api_nn_functional_adaptive_avg_pool2d>` ", "二维自适应平均池化"
@@ -315,7 +315,7 @@ Padding相关函数
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.functional.pad <cn_api_nn_cn_pad>` ", "依照 pad 和 mode 属性对input进行填充"
     
@@ -325,7 +325,7 @@ Padding相关函数
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.functional.elu <cn_api_nn_cn_elu>` ", "elu激活函数"
     "2", " :ref:`paddle.nn.functional.gelu <cn_api_nn_cn_gelu>` ", "gelu激活函数"
@@ -356,7 +356,7 @@ Normalization方法
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.functional.batch_norm <cn_api_nn_functional_batch_norm>` ", "Batch Normalization方法"
     "2", " :ref:`paddle.nn.functional.instance_norm <cn_api_nn_functional_instance_norm>` ", "Instance Normalization方法"
@@ -372,7 +372,7 @@ Normalization方法
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.functional.bilinear <cn_api_nn_functional_bilinear>` ", "对两个输入执行双线性张量积"
     "2", " :ref:`paddle.nn.functional.linear <cn_api_paddle_nn_functional_common_linear>` ", "线性变换"
@@ -384,7 +384,7 @@ Dropout方法
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.functional.alpha_dropout <cn_api_nn_functional_alpha_dropout>` ", "一种具有自归一化性质的dropout"
     "2", " :ref:`paddle.nn.functional.dropout <cn_api_nn_functional_dropout>` ", "Dropout"
@@ -397,7 +397,7 @@ Embedding相关函数
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.functional.diag_embed <cn_api_functional_diag_embed>` ", "对角线Embedding 方法"
     "2", " :ref:`paddle.nn.functional.embedding <cn_api_nn_functional_embedding>` ", "Embedding 方法"
@@ -408,7 +408,7 @@ Embedding相关函数
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.functional.binary_cross_entropy <cn_api_nn_functional_binary_cross_entropy>` ", "二值交叉熵损失值"
     "2", " :ref:`paddle.nn.functional.binary_cross_entropy_with_logits <cn_api_paddle_nn_functional_binary_cross_entropy_with_logits>` ", "logits二值交叉熵损失值"
@@ -434,7 +434,7 @@ Embedding相关函数
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.functional.add_position_encoding <cn_api_fluid_layers_add_position_encoding>` ", "将输入inpu中每个位置（序列中的位置）的特征与对应的位置编码加权求和"
     "2", " :ref:`paddle.nn.functional.affine_channel <cn_api_fluid_layers_affine_channel>` ", "对输入的每个 channel 应用单独的仿射变换"
@@ -460,7 +460,7 @@ Embedding相关函数
 
 .. csv-table::
     :header: "序号", "API名称", "API功能"
-    :width: 10px,30px,40px
+    :widths: 10,10,30
 
     "1", " :ref:`paddle.nn.initializer.Assign <cn_api_nn_initializer_Assign>` ", "使用Numpy数组、Python列表、Tensor来初始化参数"
     "2", " :ref:`paddle.nn.initializer.Bilinear <cn_api_nn_Bilinear>` ", "该接口为参数初始化函数，用于转置卷积函数中"
