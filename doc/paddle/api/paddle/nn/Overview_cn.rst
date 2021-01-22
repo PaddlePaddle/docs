@@ -40,13 +40,13 @@ paddle.nn 目录下包含飞桨框架支持的神经网络层和相关函数的�
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "序号", "API名称", "API功能"
+    :header: "API名称", "API功能"
     
 
-    "1", " :ref:`paddle.nn.Layer <cn_api_fluid_dygraph_Layer>` ", "基于OOD实现的动态图Layer"
-    "2", " :ref:`paddle.nn.LayerList <cn_api_fluid_dygraph_LayerList>` ", "用于保存子层列表"
-    "3", " :ref:`paddle.nn.ParameterList <cn_api_fluid_dygraph_ParameterList>` ", "参数列表容器"
-    "4", " :ref:`paddle.nn.Sequential <cn_api_fluid_dygraph_Sequential>` ", "顺序容器；子Layer将按构造函数参数的顺序添加到此容器中"
+    " :ref:`paddle.nn.Layer <cn_api_fluid_dygraph_Layer>` ", "基于OOD实现的动态图Layer"
+    " :ref:`paddle.nn.LayerList <cn_api_fluid_dygraph_LayerList>` ", "用于保存子层列表"
+    " :ref:`paddle.nn.ParameterList <cn_api_fluid_dygraph_ParameterList>` ", "参数列表容器"
+    " :ref:`paddle.nn.Sequential <cn_api_fluid_dygraph_Sequential>` ", "顺序容器；子Layer将按构造函数参数的顺序添加到此容器中"
     
 .. _convolution_layers:
 卷积层
@@ -56,12 +56,12 @@ paddle.nn 目录下包含飞桨框架支持的神经网络层和相关函数的�
     :header: "序号", "API名称", "API功能"
     
 
-    "1", " :ref:`paddle.nn.Conv1D <cn_api_paddle_nn_Conv1D>` ", "一维卷积层"
-    "2", " :ref:`paddle.nn.Conv1DTranspose <cn_api_paddle_nn_Conv1DTranspose>` ", "一维转置卷积层"
-    "3", " :ref:`paddle.nn.Conv2D <cn_api_paddle_nn_Conv2D>` ", "二维卷积层"
-    "4", " :ref:`paddle.nn.Conv2DTranspose <cn_api_paddle_nn_Conv2DTranspose>` ", "二维转置卷积层"
-    "5", " :ref:`paddle.nn.Conv3D <cn_api_paddle_nn_Conv3D>` ", "三维卷积层"
-    "6", " :ref:`paddle.nn.Conv3DTranspose <cn_api_paddle_nn_Conv3DTranspose>` ", "三维转置卷积层"
+    " :ref:`paddle.nn.Conv1D <cn_api_paddle_nn_Conv1D>` ", "一维卷积层"
+    " :ref:`paddle.nn.Conv1DTranspose <cn_api_paddle_nn_Conv1DTranspose>` ", "一维转置卷积层"
+    " :ref:`paddle.nn.Conv2D <cn_api_paddle_nn_Conv2D>` ", "二维卷积层"
+    " :ref:`paddle.nn.Conv2DTranspose <cn_api_paddle_nn_Conv2DTranspose>` ", "二维转置卷积层"
+    " :ref:`paddle.nn.Conv3D <cn_api_paddle_nn_Conv3D>` ", "三维卷积层"
+    " :ref:`paddle.nn.Conv3DTranspose <cn_api_paddle_nn_Conv3DTranspose>` ", "三维转置卷积层"
     
 .. _pooling_layers:
 pooling层
@@ -71,18 +71,18 @@ pooling层
     :header: "序号", "API名称", "API功能"
     
 
-    "1", " :ref:`paddle.nn.AdaptiveAvgPool1D <cn_api_nn_AdaptiveAvgPool1D>` ", "一维自适应平均池化层"
-    "2", " :ref:`paddle.nn.AdaptiveAvgPool2D <cn_api_nn_AdaptiveAvgPool2D>` ", "二维自适应平均池化层"
-    "3", " :ref:`paddle.nn.AdaptiveAvgPool3D <cn_api_nn_AdaptiveAvgPool3D>` ", "三维自适应平均池化层"
-    "4", " :ref:`paddle.nn.AdaptiveMaxPool1D <cn_api_nn_AdaptiveMaxPool1D>` ", "一维自适应最大池化层"
-    "5", " :ref:`paddle.nn.AdaptiveMaxPool2D <cn_api_nn_AdaptiveMaxPool2D>` ", "二维自适应最大池化层"
-    "6", " :ref:`paddle.nn.AdaptiveMaxPool3D <cn_api_nn_AdaptiveMaxPool3D>` ", "三维自适应最大池化层"
-    "7", " :ref:`paddle.nn.AvgPool1D <cn_api_nn_AvgPool1D>` ", "一维平均池化层"
-    "8", " :ref:`paddle.nn.AvgPool2D <cn_api_nn_AvgPool2D>` ", "二维平均池化层"
-    "9", " :ref:`paddle.nn.AvgPool3D <cn_api_nn_AvgPool3D>` ", "三维平均池化层"
-    "10", " :ref:`paddle.nn.MaxPool1D <cn_api_nn_MaxPool1D>` ", "一维最大池化层"
-    "11", " :ref:`paddle.nn.MaxPool2D <cn_api_nn_MaxPool2D>` ", "二维最大池化层"
-    "12", " :ref:`paddle.nn.MaxPool3D <cn_api_nn_MaxPool3D>` ", "三维最大池化层"
+    " :ref:`paddle.nn.AdaptiveAvgPool1D <cn_api_nn_AdaptiveAvgPool1D>` ", "一维自适应平均池化层"
+    " :ref:`paddle.nn.AdaptiveAvgPool2D <cn_api_nn_AdaptiveAvgPool2D>` ", "二维自适应平均池化层"
+    " :ref:`paddle.nn.AdaptiveAvgPool3D <cn_api_nn_AdaptiveAvgPool3D>` ", "三维自适应平均池化层"
+    " :ref:`paddle.nn.AdaptiveMaxPool1D <cn_api_nn_AdaptiveMaxPool1D>` ", "一维自适应最大池化层"
+    " :ref:`paddle.nn.AdaptiveMaxPool2D <cn_api_nn_AdaptiveMaxPool2D>` ", "二维自适应最大池化层"
+    " :ref:`paddle.nn.AdaptiveMaxPool3D <cn_api_nn_AdaptiveMaxPool3D>` ", "三维自适应最大池化层"
+    " :ref:`paddle.nn.AvgPool1D <cn_api_nn_AvgPool1D>` ", "一维平均池化层"
+    " :ref:`paddle.nn.AvgPool2D <cn_api_nn_AvgPool2D>` ", "二维平均池化层"
+    " :ref:`paddle.nn.AvgPool3D <cn_api_nn_AvgPool3D>` ", "三维平均池化层"
+    " :ref:`paddle.nn.MaxPool1D <cn_api_nn_MaxPool1D>` ", "一维最大池化层"
+    " :ref:`paddle.nn.MaxPool2D <cn_api_nn_MaxPool2D>` ", "二维最大池化层"
+    " :ref:`paddle.nn.MaxPool3D <cn_api_nn_MaxPool3D>` ", "三维最大池化层"
     
 .. _padding_layers:
 Padding层
@@ -92,9 +92,9 @@ Padding层
     :header: "序号", "API名称", "API功能"
     
 
-    "1", " :ref:`paddle.nn.Pad1D <cn_api_nn_Pad1D>` ", "一维填充层"
-    "2", " :ref:`paddle.nn.Pad2D <cn_api_nn_Pad2D>` ", "二维填充层"
-    "3", " :ref:`paddle.nn.Pad3D <cn_api_nn_Pad3D>` ", "三维填充层"
+    " :ref:`paddle.nn.Pad1D <cn_api_nn_Pad1D>` ", "一维填充层"
+    " :ref:`paddle.nn.Pad2D <cn_api_nn_Pad2D>` ", "二维填充层"
+    " :ref:`paddle.nn.Pad3D <cn_api_nn_Pad3D>` ", "三维填充层"
     
 .. _activation_layers:
 激活层
@@ -104,29 +104,29 @@ Padding层
     :header: "序号", "API名称", "API功能"
     
 
-    "1", " :ref:`paddle.nn.ELU <cn_api_nn_ELU>` ", "ELU激活层"
-    "2", " :ref:`paddle.nn.GELU <cn_api_nn_GELU>` ", "GELU激活层"
-    "3", " :ref:`paddle.nn.Hardshrink <cn_api_nn_Hardshrink>` ", "Hardshrink激活层"
-    "4", " :ref:`paddle.nn.Hardsigmoid <cn_api_nn_Hardsigmoid>` ", "Hardsigmoid激活层"
-    "5", " :ref:`paddle.nn.Hardswish <cn_api_nn_Hardswish>` ", "Hardswish激活层"
-    "6", " :ref:`paddle.nn.Hardtanh <cn_api_nn_Hardtanh>` ", "Hardtanh激活层"
-    "7", " :ref:`paddle.nn.LeakyReLU <cn_api_nn_LeakyReLU>` ", "LeakyReLU 激活层"
-    "8", " :ref:`paddle.nn.LogSigmoid <cn_api_nn_LogSigmoid>` ", "LogSigmoid激活层"
-    "9", " :ref:`paddle.nn.LogSoftmax <cn_api_nn_LogSoftmax>` ", "LogSoftmax激活层"
-    "10", " :ref:`paddle.nn.Maxout <cn_api_nn_Maxout>` ", "Maxout激活层"
-    "11", " :ref:`paddle.nn.PReLU <cn_api_nn_PReLU>` ", "PReLU激活层"
-    "12", " :ref:`paddle.nn.ReLU <cn_api_nn_ReLU>` ", "ReLU激活层"
-    "13", " :ref:`paddle.nn.ReLU6 <cn_api_nn_ReLU6>` ", "ReLU6激活层"
-    "14", " :ref:`paddle.nn.SELU <cn_api_nn_SELU>` ", "SELU激活层"
-    "15", " :ref:`paddle.nn.Sigmoid <cn_api_nn_layer_Sigmoid>` ", "Sigmoid激活层"
-    "16", " :ref:`paddle.nn.Softmax <cn_api_nn_Softmax>` ", "Softmax激活层"
-    "17", " :ref:`paddle.nn.Softplus <cn_api_nn_Softplus>` ", "Softplus激活层"
-    "18", " :ref:`paddle.nn.Softshrink <cn_api_nn_Softshrink>` ", "Softshrink激活层"
-    "19", " :ref:`paddle.nn.Softsign <cn_api_nn_Softsign>` ", "Softsign激活层"
-    "20", " :ref:`paddle.nn.Swish <cn_api_nn_Swish>` ", "Swish激活层"
-    "21", " :ref:`paddle.nn.Tanh <cn_api_nn_Tanh>` ", "Tanh激活层"
-    "22", " :ref:`paddle.nn.Tanhshrink <cn_api_nn_Tanhshrink>` ", "Tanhshrink激活层"
-    "23", " :ref:`paddle.nn.ThresholdedReLU <cn_api_nn_ThresholdedReLU>` ", "Thresholded ReLU激活层"
+    " :ref:`paddle.nn.ELU <cn_api_nn_ELU>` ", "ELU激活层"
+    " :ref:`paddle.nn.GELU <cn_api_nn_GELU>` ", "GELU激活层"
+    " :ref:`paddle.nn.Hardshrink <cn_api_nn_Hardshrink>` ", "Hardshrink激活层"
+    " :ref:`paddle.nn.Hardsigmoid <cn_api_nn_Hardsigmoid>` ", "Hardsigmoid激活层"
+    " :ref:`paddle.nn.Hardswish <cn_api_nn_Hardswish>` ", "Hardswish激活层"
+    " :ref:`paddle.nn.Hardtanh <cn_api_nn_Hardtanh>` ", "Hardtanh激活层"
+    " :ref:`paddle.nn.LeakyReLU <cn_api_nn_LeakyReLU>` ", "LeakyReLU 激活层"
+    " :ref:`paddle.nn.LogSigmoid <cn_api_nn_LogSigmoid>` ", "LogSigmoid激活层"
+    " :ref:`paddle.nn.LogSoftmax <cn_api_nn_LogSoftmax>` ", "LogSoftmax激活层"
+    " :ref:`paddle.nn.Maxout <cn_api_nn_Maxout>` ", "Maxout激活层"
+    " :ref:`paddle.nn.PReLU <cn_api_nn_PReLU>` ", "PReLU激活层"
+    " :ref:`paddle.nn.ReLU <cn_api_nn_ReLU>` ", "ReLU激活层"
+    " :ref:`paddle.nn.ReLU6 <cn_api_nn_ReLU6>` ", "ReLU6激活层"
+    " :ref:`paddle.nn.SELU <cn_api_nn_SELU>` ", "SELU激活层"
+    " :ref:`paddle.nn.Sigmoid <cn_api_nn_layer_Sigmoid>` ", "Sigmoid激活层"
+    " :ref:`paddle.nn.Softmax <cn_api_nn_Softmax>` ", "Softmax激活层"
+    " :ref:`paddle.nn.Softplus <cn_api_nn_Softplus>` ", "Softplus激活层"
+    " :ref:`paddle.nn.Softshrink <cn_api_nn_Softshrink>` ", "Softshrink激活层"
+    " :ref:`paddle.nn.Softsign <cn_api_nn_Softsign>` ", "Softsign激活层"
+    " :ref:`paddle.nn.Swish <cn_api_nn_Swish>` ", "Swish激活层"
+    " :ref:`paddle.nn.Tanh <cn_api_nn_Tanh>` ", "Tanh激活层"
+    " :ref:`paddle.nn.Tanhshrink <cn_api_nn_Tanhshrink>` ", "Tanhshrink激活层"
+    " :ref:`paddle.nn.ThresholdedReLU <cn_api_nn_ThresholdedReLU>` ", "Thresholded ReLU激活层"
     
 .. _normalization_layers:
 Normalization层
