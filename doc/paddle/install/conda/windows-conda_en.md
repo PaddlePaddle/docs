@@ -174,7 +174,7 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.1 <span id="cpu">CPU version of PaddlePaddle</span>
 
 ```
-conda install paddlepaddle==2.0.0rc1 -c paddle
+conda install paddlepaddle==2.0.0 -c paddle
 ```
 
 
@@ -185,31 +185,31 @@ conda install paddlepaddle==2.0.0rc1 -c paddle
 *  <span id="cuda9">If you are using CUDA 9，cuDNN 7.6+:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=9.0 -c paddle
+  conda install paddlepaddle-gpu==2.0.0 cudatoolkit=9.0 -c paddle
   ```
 
 * <span id="cuda10">If you are using CUDA 10.0，cuDNN 7.6+</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=10.0 -c paddle
+  conda install paddlepaddle-gpu==2.0.0 cudatoolkit=10.0 -c paddle
   ```
 
 *  <span id="cuda10.1">If you are using CUDA 10.1，cuDNN 7.6+</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=10.1 -c paddle
+  conda install paddlepaddle-gpu==2.0.0 cudatoolkit=10.1 -c paddle
   ```
 
 *  <span id="cuda10.2">If you are usingCUDA 10.2，cuDNN 7.6+:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=10.2 -c paddle
+  conda install paddlepaddle-gpu==2.0.0 cudatoolkit=10.2 -c paddle
   ```
 
 *  <span id="cuda11">If you are using CUDA 11，cuDNN 8.0.4+:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=11.0 -c paddle
+  conda install paddlepaddle-gpu==2.0.0 cudatoolkit=11.0 -c paddle
   ```
 
 

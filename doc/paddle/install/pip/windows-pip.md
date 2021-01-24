@@ -135,13 +135,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle==2.0.0 -i https://mirror.baidu.com/pypi/simple
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install paddlepaddle==2.0.0rc1 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle==2.0.0 -i https://mirror.baidu.com/pypi/simple
   ```
 
 #### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
@@ -151,13 +151,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0rc1.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
 2.2.2 <span id="cuda10">CUDA10.0的PaddlePaddle</span>
@@ -165,13 +165,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0rc1.post100 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post100 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
 2.2.3 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
@@ -179,13 +179,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0rc1.post101 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post101 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
 2.2.4 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
@@ -193,25 +193,25 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0rc1 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.0.0rc1 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
 2.2.5 <span id="cuda11">CUDA11的PaddlePaddle</span>
 
 * 如果您是使用 Python 2
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0rc1.post110 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.0.0rc1.post110 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
 * 注：

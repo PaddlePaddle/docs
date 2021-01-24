@@ -152,7 +152,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 * 请参考如下命令安装:
 
   ```
-  conda install paddlepaddle==2.0.0rc1 -c paddle
+  conda install paddlepaddle==2.0.0 -c paddle
   ```
 
 ## **三、验证安装**
