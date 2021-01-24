@@ -19,7 +19,7 @@ paddle1.8中推荐使用两个异步数据加载的API：
 
 该API提供了多进程的异步加载支持，也是paddle后续主推的数据读取方式。用户可通过配置num_workers指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
 
-具体使用方法及示例请参考API文档：[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)
+具体使用方法及示例请参考API文档：[fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)
 
 ----------
 
@@ -27,7 +27,7 @@ paddle1.8中推荐使用两个异步数据加载的API：
 
 + 答复：paddle1.8中多卡训练时设置异步读取和单卡场景并无太大差别，动态图模式下，由于目前仅支持多进程多卡，每个进程将仅使用一个设备，比如一张GPU卡，这种情况下，与单卡训练无异，只需要确保每个进程使用的是正确的卡即可。
 
-具体示例请参考飞桨API [fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/DataLoader_cn.html#id1) 和 [fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader) 中的示例。
+具体示例请参考飞桨API [fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/DataLoader_cn.html#id1) 和 [fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader) 中的示例。
 
 ----------
 
@@ -92,6 +92,12 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 ----------
 
+##### 问题：在模型组网时，inplace参数的设置会影响梯度回传吗？经过不带参数的op之后，梯度是否会保留下来？
+
++ 答复：inplace 参数不会影响梯度回传。只要用户没有手动设置stop_gradient=True，梯度都会保留下来。
+
+----------
+
 
 
 ## 模型训练&评估
@@ -100,7 +106,7 @@ with fluid.dygraph.guard(fluid.CPUPlace()):
 
 + 答复：在1.8版本的动态图模式下，CPU训练加速可以从以下两点进行配置：
 
-1. 使用多进程DataLoader加速数据读取：训练数据较多时，数据处理往往会成为训练速度的瓶颈，paddle提供了异步数据读取接口DataLoader，可以使用多进程进行数据加载，充分利用多处理的优势，具体使用方法及示例请参考API文档：[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)。
+1. 使用多进程DataLoader加速数据读取：训练数据较多时，数据处理往往会成为训练速度的瓶颈，paddle提供了异步数据读取接口DataLoader，可以使用多进程进行数据加载，充分利用多处理的优势，具体使用方法及示例请参考API文档：[fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)。
 
 2. 推荐使用支持MKL（英特尔数学核心函数库）的paddle安装包，MKL相比Openblas等通用计算库在计算速度上有显著的优势，能够提升您的训练效率。
 
@@ -151,7 +157,7 @@ export FLAGS_fraction_of_gpu_memory_to_use=0`
 
 + 答复：有如下两点建议：
 
-  1. 如果数据预处理耗时较长，可使用DataLoader加速数据读取过程，具体请参考API文档：[fluid.io.DataLLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)。
+  1. 如果数据预处理耗时较长，可使用DataLoader加速数据读取过程，具体请参考API文档：[fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)。
 
   2. 如果提高GPU计算量，可以增大`batch_size`，但是注意同时调节其他超参数以确保训练配置的正确性。
 

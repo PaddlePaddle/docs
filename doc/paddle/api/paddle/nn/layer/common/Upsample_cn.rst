@@ -182,7 +182,6 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
     upsample_op = paddle.nn.Upsample(out_shape=[12,12])
     input_data = paddle.rand(shape=(2,3,6,10))
 
-    #imperative mode
     output = upsample_op(input_data)
     print(output.shape)
     # [2L, 3L, 12L, 12L]

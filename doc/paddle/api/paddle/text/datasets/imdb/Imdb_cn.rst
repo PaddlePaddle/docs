@@ -35,7 +35,6 @@ Imdb
         def forward(self, doc, label):
             return paddle.sum(doc), label
 
-    paddle.disable_static()
 
     imdb = Imdb(mode='train')
 

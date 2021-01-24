@@ -15,11 +15,12 @@
 .. code:: ipython3
 
     import paddle
+    from paddle.vision.transforms import ToTensor
 
     # 加载数据集
-    train_dataset = paddle.vision.datasets.MNIST(mode='train')
-    test_dataset = paddle.vision.datasets.MNIST(mode='test')
-    
+    train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
+    test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
+
     # 定义网络结构
     mnist = paddle.nn.Sequential(
         paddle.nn.Flatten(1, -1),
@@ -61,24 +62,24 @@
 
     # 启动模型训练，指定训练数据集，设置训练轮次，设置每次数据集计算的批次大小，设置日志格式
     model.fit(train_dataset, 
-              epochs=10, 
-              batch_size=32,
+              epochs=5, 
+              batch_size=64,
               verbose=1)
 
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/5
-    step 1875/1875 [==============================] - loss: 0.1171 - acc: 0.8737 - 7ms/step              
+    step 938/938 [==============================] - loss: 0.1785 - acc: 0.9281 - 19ms/step          
     Epoch 2/5
-    step 1875/1875 [==============================] - loss: 0.2732 - acc: 0.9082 - 10ms/step           
+    step 938/938 [==============================] - loss: 0.0365 - acc: 0.9688 - 19ms/step          
     Epoch 3/5
-    step 1875/1875 [==============================] - loss: 0.1402 - acc: 0.9111 - 10ms/step           
+    step 938/938 [==============================] - loss: 0.0757 - acc: 0.9781 - 19ms/step          
     Epoch 4/5
-    step 1875/1875 [==============================] - loss: 0.0791 - acc: 0.9170 - 12ms/step              
+    step 938/938 [==============================] - loss: 0.0054 - acc: 0.9824 - 19ms/step          
     Epoch 5/5
-    step 1875/1875 [==============================] - loss: 0.3515 - acc: 0.9231 - 11ms/step           
-
+    step 938/938 [==============================] - loss: 0.0640 - acc: 0.9858 - 19ms/step  
 
 1.3 用\ ``Model.evaluate()``\ 评估模型
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -98,9 +99,9 @@
 .. parsed-literal::
 
     Eval begin...
-    step 10000/10000 [==============================] - loss: 0.0000e+00 - acc: 0.9427 - 2ms/step
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 10000/10000 [==============================] - loss: 3.5763e-07 - acc: 0.9809 - 2ms/step
     Eval samples: 10000
-
 
 1.4 用\ ``Model.predict()``\ 预测模型
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -123,7 +124,7 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
 .. parsed-literal::
 
     Predict begin...
-    step 10000/10000 [==============================] - 1ms/step           
+    step 10000/10000 [==============================] - 2ms/step           
     Predict samples: 10000
 
 
@@ -142,7 +143,7 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
     # dataset与mnist的定义与第一部分内容一致
 
     # 用 DataLoader 实现数据加载
-    train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), batch_size=32, shuffle=True)
+    train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
     
     mnist.train()
     
@@ -150,7 +151,7 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
     epochs = 5
     
     # 设置优化器
-    optim = paddle.optimizer.Adam(parameters=model.parameters())
+    optim = paddle.optimizer.Adam(parameters=mnist.parameters())
     # 设置损失函数
     loss_fn = paddle.nn.CrossEntropyLoss()
 
@@ -172,8 +173,8 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
             # 反向传播 
             loss.backward()
             
-            if (batch_id+1) % 1800 == 0:
-                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id, loss.numpy(), acc.numpy()))
+            if (batch_id+1) % 900 == 0:
+                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(epoch, batch_id+1, loss.numpy(), acc.numpy()))
 
             # 更新参数 
             optim.step()
@@ -184,12 +185,11 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
 
 .. parsed-literal::
 
-    epoch: 0, batch_id: 1799, loss is: [0.1566943], acc is: [0.96875]
-    epoch: 1, batch_id: 1799, loss is: [0.9046197], acc is: [0.9375]
-    epoch: 2, batch_id: 1799, loss is: [0.5993278], acc is: [0.96875]
-    epoch: 3, batch_id: 1799, loss is: [0.13339292], acc is: [0.96875]
-    epoch: 4, batch_id: 1799, loss is: [0.8168528], acc is: [0.9375]
-
+    epoch: 0, batch_id: 900, loss is: [0.29550618], acc is: [0.90625]
+    epoch: 1, batch_id: 900, loss is: [0.05875912], acc is: [0.984375]
+    epoch: 2, batch_id: 900, loss is: [0.05824642], acc is: [0.96875]
+    epoch: 3, batch_id: 900, loss is: [0.02940615], acc is: [1.]
+    epoch: 4, batch_id: 900, loss is: [0.05713747], acc is: [0.984375]
 
 2.2 拆解\ ``Model.evaluate()``\ -- 用基础API验证模型
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -199,7 +199,7 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
 .. code:: ipython3
 
     # 加载测试数据集
-    test_loader = paddle.io.DataLoader(test_dataset, places=paddle.CPUPlace(), batch_size=32, drop_last=True)
+    test_loader = paddle.io.DataLoader(test_dataset, batch_size=64, drop_last=True)
     loss_fn = paddle.nn.CrossEntropyLoss()
 
     mnist.eval()
@@ -215,12 +215,16 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
         acc = paddle.metric.accuracy(predicts, y_data)
         
         # 打印信息
-        if (batch_id+1) % 300 == 0:
-            print("batch_id: {}, loss is: {}, acc is: {}".format(batch_id, loss.numpy(), acc.numpy()))
+        if (batch_id+1) % 30 == 0:
+            print("batch_id: {}, loss is: {}, acc is: {}".format(batch_id+1, loss.numpy(), acc.numpy()))
 
 .. parsed-literal::
 
-    batch_id: 299, loss is: [0.12025189], acc is: [0.9375]
+    batch_id: 30, loss is: [0.15860887], acc is: [0.953125]
+    batch_id: 60, loss is: [0.21005578], acc is: [0.921875]
+    batch_id: 90, loss is: [0.0889321], acc is: [0.953125]
+    batch_id: 120, loss is: [0.00115552], acc is: [1.]
+    batch_id: 150, loss is: [0.12016675], acc is: [0.984375]
 
 
 2.3 拆解\ ``Model.predict()``\ -- 用基础API测试模型
@@ -231,7 +235,7 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
 .. code:: ipython3
 
     # 加载测试数据集
-    test_loader = paddle.io.DataLoader(test_dataset, places=paddle.CPUPlace(), batch_size=32, drop_last=True)
+    test_loader = paddle.io.DataLoader(test_dataset, batch_size=64, drop_last=True)
 
     mnist.eval()
     for batch_id, data in enumerate(test_loader()):
