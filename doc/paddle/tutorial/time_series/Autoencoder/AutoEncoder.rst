@@ -5,12 +5,12 @@
 
 日期：2020.11
 
-本示例教程将会演示如何使用飞桨PaddlePaddle2.0来完成时序异常检测任务。这是一个较为简单的示例，将会搭建一个AutoEncoder网络完成任务。
+本示例教程将会演示如何使用飞桨PaddlePaddle2.0rc1来完成时序异常检测任务。这是一个较为简单的示例，将会搭建一个AutoEncoder网络完成任务。
 
 环境配置
 --------
 
-本教程基于paddle-2.0-rc编写，如果您的环境不是本版本，请先安装paddle-2.0-rc版本。
+本教程基于paddle-2.0-rc1编写，如果您的环境不是本版本，请先安装paddle-2.0-rc1版本。
 
 .. code:: ipython3
 
@@ -18,6 +18,9 @@
     import numpy as np
     import pandas as pd
     from matplotlib import pyplot as plt
+    
+    import warnings
+    warnings.filterwarnings("ignore")
 
 .. code:: ipython3
 
@@ -28,7 +31,7 @@
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0-rc1
 
 
 加载数据集
@@ -46,26 +49,19 @@
 .. code:: ipython3
 
     #解压数据集
-    %cd ~/
-    !unzip data/data55385/artificialNoAnomaly.zip && unzip data/data55385/artificialWithAnomaly.zip
-
-
-.. parsed-literal::
-
-    /home/aistudio
-    unzip:  cannot find or open data/data55385/artificialNoAnomaly.zip, data/data55385/artificialNoAnomaly.zip.zip or data/data55385/artificialNoAnomaly.zip.ZIP.
-
+    # %cd ./
+    # !unzip ./archive.zip
 
 .. code:: ipython3
 
     #正常数据预览
-    df_small_noise_path = 'artificialNoAnomaly/art_daily_small_noise.csv'
+    df_small_noise_path = 'artificialNoAnomaly/artificialNoAnomaly/art_daily_small_noise.csv'
     df_small_noise = pd.read_csv(
         df_small_noise_path, parse_dates=True, index_col="timestamp"
     )
     
     #异常数据预览
-    df_daily_jumpsup_path = 'artificialWithAnomaly/art_daily_jumpsup.csv'
+    df_daily_jumpsup_path = 'artificialWithAnomaly/artificialWithAnomaly/art_daily_jumpsup.csv'
     df_daily_jumpsup = pd.read_csv(
         df_daily_jumpsup_path, parse_dates=True, index_col="timestamp"
     )
@@ -102,7 +98,9 @@
     df_small_noise.plot(legend=False, ax=ax)
     plt.show()
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_01.png?raw=true
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_8_0.png?raw=true
 
 
 **带有异常的时序数据如下：**
@@ -117,8 +115,8 @@
     plt.show()
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_02.png?raw=true
 
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_10_0.png?raw=true
 
 
 训练数据预处理
@@ -143,7 +141,7 @@
 
 
 创建序列
--------------
+------------
 
 从训练数据中创建组合时间步骤为288的连续数据值的序列。
 
@@ -199,7 +197,6 @@
 
 .. code:: ipython3
 
-    
     class AutoEncoder(paddle.nn.Layer):
         def __init__(self):
             super(AutoEncoder, self).__init__()
@@ -283,16 +280,20 @@
 
 .. parsed-literal::
 
+      0%|          | 0/200 [00:00<?, ?it/s]
+
+.. parsed-literal::
+
     训练开始
 
 
 .. parsed-literal::
 
-    100%|██████████| 200/200 [00:49<00:00,  4.03it/s]
+    100%|██████████| 200/200 [08:01<00:00,  2.41s/it]
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_03.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_18_3.png?raw=true
 
 
 探测异常时序
@@ -342,12 +343,12 @@
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_04.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_20_0.png?raw=true
 
 
 .. parsed-literal::
 
-    阀值: 0.03150589
+    阀值: 0.03617291
 
 
 AutoEncoder 对异常数据的重构
@@ -378,16 +379,37 @@ AutoEncoder 对异常数据的重构
         sys.exit
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_05.png?raw=true
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_22_0.png?raw=true
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_06.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_22_4.png?raw=true
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_07.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_22_8.png?raw=true
 
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_22_12.png?raw=true
+
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_22_16.png?raw=true
+
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_22_20.png?raw=true
+
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_22_24.png?raw=true
+
+
+
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_22_28.png?raw=true
 
 
 -  可以看出对正常数据的重构效果十分不错
@@ -403,7 +425,7 @@ AutoEncoder 对异常数据的重构
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_08.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_24_0.png?raw=true
 
 
 .. code:: ipython3
@@ -448,8 +470,8 @@ AutoEncoder 对异常数据的重构
 
 .. parsed-literal::
 
-    141
-    [2990, 2991, 2992, 2993, 2994, 2996, 2997, 2998, 2999, 3000, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013, 3014, 3015, 3016, 3017, 3018, 3019, 3020, 3021, 3022, 3023, 3024, 3025, 3026, 3027, 3028, 3029, 3030, 3031, 3032, 3033, 3034, 3035, 3036, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3044, 3045, 3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055, 3056, 3057, 3058, 3059, 3060, 3061, 3062, 3063, 3064, 3065, 3066, 3067, 3068, 3069, 3070, 3071, 3072, 3073, 3074, 3075, 3076, 3077, 3078, 3079, 3080, 3081, 3082, 3083, 3084, 3085, 3086, 3087, 3088, 3089, 3090, 3091, 3092, 3093, 3094, 3095, 3096, 3097, 3098, 3099, 3100, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 3122, 3123, 3124, 3125, 3126, 3127, 3128, 3129, 3130, 3131]
+    142
+    [2990, 2991, 2992, 2994, 2996, 2998, 3000, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013, 3014, 3015, 3016, 3017, 3018, 3019, 3020, 3021, 3022, 3023, 3024, 3025, 3026, 3027, 3028, 3029, 3030, 3031, 3032, 3033, 3034, 3035, 3036, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3044, 3045, 3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055, 3056, 3057, 3058, 3059, 3060, 3061, 3062, 3063, 3064, 3065, 3066, 3067, 3068, 3069, 3070, 3071, 3072, 3073, 3074, 3075, 3076, 3077, 3078, 3079, 3080, 3081, 3082, 3083, 3084, 3085, 3086, 3087, 3088, 3089, 3090, 3091, 3092, 3093, 3094, 3095, 3096, 3097, 3098, 3099, 3100, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 3122, 3123, 3124, 3125, 3126, 3127, 3128, 3129, 3130, 3131, 3132, 3133, 3134, 3135]
 
 
 .. code:: ipython3
@@ -463,5 +485,5 @@ AutoEncoder 对异常数据的重构
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_09.png?raw=true
+.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_26_0.png?raw=true
 

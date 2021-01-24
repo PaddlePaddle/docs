@@ -35,7 +35,7 @@ Paddle-Lite 的架构设计着重考虑了对多硬件和平台的支持，并�
 
 
 ## Paddle-Mobile升级为Paddle-Lite的说明
-原Paddle-Mobile作为一个致力于嵌入式平台的PaddlePaddle预测引擎，已支持多种硬件平台，包括ARM CPU、 Mali GPU、Adreno GPU，以及支持苹果设备的GPU Metal实现、ZU5、ZU9等FPGA开发板、树莓派等arm-linux开发板。在百度内已经过广泛业务场景应用验证。对应设计文档可参考: [mobile/README](https://github.com/PaddlePaddle/Paddle-Lite/blob/develop/mobile/README.md)
+原Paddle-Mobile作为一个致力于嵌入式平台的PaddlePaddle预测引擎，已支持多种硬件平台，包括ARM CPU、 Mali GPU、Adreno GPU，以及支持苹果设备的GPU Metal实现、ZU5、ZU9等FPGA开发板、树莓派等arm-linux开发板。在百度内已经过广泛业务场景应用验证。对应设计文档可参考: [mobile/README](https://github.com/PaddlePaddle/Paddle-Lite/blob/develop/README.md)
 
 Paddle-Mobile 整体升级重构并更名为Paddle-Lite后，原paddle-mobile 的底层能力大部分已集成到[新架构 ](https://github.com/PaddlePaddle/Paddle-Lite/tree/develop/lite)下。作为过渡，暂时保留原Paddle-mobile代码。 主体代码位于 `mobile/` 目录中，后续一段时间会继续维护，并完成全部迁移。新功能会统一到[新架构 ](https://github.com/PaddlePaddle/Paddle-Lite/tree/develop/lite)下开发。
 

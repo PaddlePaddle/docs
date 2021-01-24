@@ -22,7 +22,7 @@
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0-rc1
 
 
 3. 实践一个手写数字识别任务
@@ -38,9 +38,11 @@
 加载我们框架为您准备好的一个手写数字识别数据集。这里我们使用两个数据集，一个用来做模型的训练，一个用来做模型的评估。
 
 .. code:: ipython3
-
-    train_dataset = paddle.vision.datasets.MNIST(mode='train')
-    val_dataset =  paddle.vision.datasets.MNIST(mode='test')
+    
+    from paddle.vision.transforms import ToTensor
+    
+    train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
+    val_dataset =  paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
 
 3.2 模型搭建
 ~~~~~~~~~~~~
@@ -75,23 +77,23 @@
     # 开始模型训练
     model.fit(train_dataset,
               epochs=5, 
-              batch_size=32,
+              batch_size=64,
               verbose=1)
 
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/5
-    step 1875/1875 [==============================] - loss: 0.2250 - acc: 0.9025 - 9ms/step          
+    step 938/938 [==============================] - loss: 0.1358 - acc: 0.9284 - 18ms/step          
     Epoch 2/5
-    step 1875/1875 [==============================] - loss: 0.0969 - acc: 0.9462 - 13ms/step          
+    step 938/938 [==============================] - loss: 0.0370 - acc: 0.9680 - 18ms/step          
     Epoch 3/5
-    step 1875/1875 [==============================] - loss: 0.1035 - acc: 0.9550 - 12ms/step          
+    step 938/938 [==============================] - loss: 0.0284 - acc: 0.9780 - 18ms/step          
     Epoch 4/5
-    step 1875/1875 [==============================] - loss: 0.0316 - acc: 0.9603 - 12ms/step          
+    step 938/938 [==============================] - loss: 0.0062 - acc: 0.9823 - 18ms/step          
     Epoch 5/5
-    step 1875/1875 [==============================] - loss: 0.1771 - acc: 0.9637 - 12ms/step          
-
+    step 938/938 [==============================] - loss: 0.0924 - acc: 0.9859 - 18ms/step
 
 3.4 模型评估
 ~~~~~~~~~~~~
@@ -105,9 +107,9 @@
 
 .. parsed-literal::
 
-    {'loss': [3.576278e-07], 'acc': 0.9666}
+    {'loss': [0.0], 'acc': 0.9804}
 
 
-那么初步训练得到的模型效果在97%附近，我们可以进一步通过调整其中的训练参数来提升我们的模型精度。
+那么初步训练得到的模型效果在98%附近，我们可以进一步通过调整其中的训练参数来提升我们的模型精度。
 
 至此我们可以知道如何通过飞桨的几个简单API来快速完成一个深度学习任务，大家可以针对自己的需求来更换其中的代码，如果需要使用自己的数据集，那么可以更换数据集加载部分程序，如果需要替换模型，那么可以更改模型代码实现等等。后文会具体描述深度学习每个环节。

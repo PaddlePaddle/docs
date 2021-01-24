@@ -26,7 +26,6 @@ norm
 
     import paddle
     import numpy as np
-    paddle.disable_static()
     shape=[2, 3, 4]
     np_input = np.arange(24).astype('float32') - 12
     np_input = np_input.reshape(shape)

@@ -8,8 +8,8 @@
 ## Test Targets
 **PaddlePaddle, Pytorch, Tensorflow**  
 
-- In test, PaddlePaddle adopts subgraph optimization to integrate TensorRT [model](https://github.com/PaddlePaddle/models/tree/develop/fluid/PaddleCV/image_classification/models) .
-- Native implementation is used in Pytorch. Model [address 1](https://github.com/pytorch/vision/tree/master/torchvision/models) , [address 2](https://github.com/marvis/pytorch-mobilenet) .
+- In test, PaddlePaddle adopts subgraph optimization to integrate TensorRT [model](https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models) .
+- Native implementation is used in Pytorch. Model [address](https://github.com/pytorch/vision/tree/master/torchvision/models).
 - Test for TensorFlow contains test for native TF and TF—TRT. **Test for TF—TRT hasn't reached expectation wihch will be complemented later**. Model [address](https://github.com/tensorflow/models) .
 
 

@@ -22,7 +22,7 @@ The six components (scalar, histogram, image, text, audio and high dimensional) 
 
 ### LogWriter
 
-LogWriter is a Python wrapper to write data to log file with the data format defined as in protobuf file [storage.proto](https://github.com/PaddlePaddle/VisualDL/blob/develop/visualdl/storage/storage.proto).
+LogWriter is a Python wrapper to write data to log file with the data format defined as in protobuf file [record.proto](https://github.com/PaddlePaddle/VisualDL/blob/develop/visualdl/proto/record.proto).
 
 The definition of LogWriter :
 
@@ -87,7 +87,7 @@ def add_record(step, value)
 > :param step : Step number.  
 > :param value : Input data.  
 
-Demo 3. scalar demo program[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/scalar-demo.py)
+Demo 3. scalar demo program[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/scalar_test.py)
 
 ```python
 # coding=utf-8
@@ -160,7 +160,7 @@ def add_record(step, value)
 > :param step : Step number.  
 > :param value : Input data, type is list[].  
 
-Demo 4. histogram demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/histogram-demo.py)
+Demo 4. histogram demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/histogram_test.py)
 
 ```python
 # coding=utf-8
@@ -243,7 +243,7 @@ def set_sample(index, image_shape, image_data)
 def finish_sample()  
 ```
 
-Demo 5. image demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/image-demo.py)
+Demo 5. image demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/image_test.py)
 
 ```python
 # coding=utf-8
@@ -334,7 +334,7 @@ def add_record(step, str)
 > :param step : Step number.  
 > :param value : Input data, type is string.  
 
-Demo 6. text demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/text-demo.py)
+Demo 6. text demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/pr_curve_test.py)
 
 ```python
 # coding=utf-8
@@ -413,7 +413,7 @@ def set_sample(index, audio_params, audio_data)
 def finish_sample()  
 ```
 
-Demo 7. audio demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/audio-demo.py)
+Demo 7. audio demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/audio_test.py)
 
 ```python
 # coding=utf-8
@@ -518,7 +518,7 @@ def add_embeddings_with_word_dict(data, Dict)
 > :param data : input data , type List[List(float)].  
 > :param Dict : dictionary， type Dict[str, int].  
 
-Demo 8. high dimensional demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/embedding-demo.py)
+Demo 8. high dimensional demo program [Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/high_dimensional_test.py)
 
 ```python
 # coding=utf-8
@@ -570,7 +570,7 @@ Paddle format or [ONNX](https://onnx.ai) format. The graph component can help us
 
 Unlike other components that need to record data, the only one prerequisite for using graph component is specifying the storage path of the model file. That is, adding the option --model_pb to the command ``visualdl`` to specify the storage path of the model file, then you can see the corresponding neural network in the frontend webpage.
 
-Demo 9. graph demo program（How to save a Lenet-5 model by Paddle）[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/component/graph-demo.py)
+Demo 9. graph demo program（How to save a Lenet-5 model by Paddle）[Github](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/roc_curve_test.py)
 
 ```python
 # coding=utf-8

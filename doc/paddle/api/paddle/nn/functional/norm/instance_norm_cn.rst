@@ -1,4 +1,4 @@
-.. cn_api_nn_functional_instance_norm:
+.. _cn_api_nn_functional_instance_norm:
 
 instance_norm
 -------------------------------

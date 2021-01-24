@@ -283,11 +283,11 @@ g++ relu_op.cc relu_op.cu.o -o relu2_op.so -shared -fPIC -std=c++11 -O3 -DPADDLE
 
 ```
 # custom_op.py
-import paddle.fluid as fluid
+import paddle.incubate as incubate
 # 调用load_op_library加载动态库
-fluid.load_op_library('relu2_op.so')
+incubate.load_op_library('relu2_op.so')
 
-from paddle.fluid.layer_helper import LayerHelper
+from paddle.incubate import LayerHelper
 
 def relu2(x, name=None):
     # relu2的type和在OP中定义的type相同
@@ -307,20 +307,37 @@ def relu2(x, name=None):
 
  可以写个简单的Python程序测试计算的正确性:
 
+ 静态图模式
 ```
 import numpy as np
-import paddle.fluid as fluid
+import paddle
 from custom_op import relu2
 
-data = fluid.layers.data(name='data', shape=[32], dtype='float32')
+paddle.enable_static()
+data = paddle.static.data(name='data', shape=[None, 32], dtype='float32')
 relu = relu2(data)
-use_gpu = True # or False
-place = fluid.CUDAPlace(0) if use_gpu else fluid.CPUPlace()
-exe = fluid.Executor(place)
+use_gpu = True  # or False
+paddle.set_device('gpu' if use_gpu else 'cpu')
+exe = paddle.static.Executor()
 
 x = np.random.uniform(-1, 1, [4, 32]).astype('float32')
 out, = exe.run(feed={'data': x}, fetch_list=[relu])
-np.allclose(out, np.maximum(x,0.))
+np.allclose(out, np.maximum(x, 0.))
+```
+
+ 动态图模式
+```
+import numpy as np
+import paddle
+from custom_op import relu2
+
+use_gpu = True  # or False
+paddle.set_device('gpu' if use_gpu else 'cpu')
+
+x = np.random.uniform(-1, 1, [4, 32]).astype('float32')
+t = paddle.to_tensor(x)
+out = relu2(t)
+np.allclose(out.numpy(), np.maximum(x, 0.))
 ```
 
 接下来可以在模型中使用您自定义的OP了!

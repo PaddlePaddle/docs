@@ -7,8 +7,7 @@
 环境
 ----
 
-本教程基于paddle-2.0rc版编写，如果您的环境不是此版本，请先安装paddle-2.0rc版本，使用命令：pip3
-install paddlepaddle==2.0.0-rc0
+本教程基于paddle-2.0rc1版编写，如果您的环境不是此版本，请先安装paddle-2.0rc1版本
 
 .. code:: ipython3
 
@@ -19,13 +18,14 @@ install paddlepaddle==2.0.0-rc0
     from paddle.metric import Accuracy
     from paddle.nn import Conv2D,MaxPool2D,Linear
     from paddle.static import InputSpec
+    from paddle.vision.transforms import ToTensor
     
     print(paddle.__version__)
 
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0-rc1
 
 
 数据集
@@ -37,8 +37,8 @@ import MNIST 引入即可。
 
 .. code:: ipython3
 
-    train_dataset = MNIST(mode='train')
-    test_dataset = MNIST(mode='test')
+    train_dataset = MNIST(mode='train', transform=ToTensor())
+    test_dataset = MNIST(mode='test', transform=ToTensor())
 
 模型搭建
 --------
@@ -87,7 +87,7 @@ import MNIST 引入即可。
     model.prepare(
         optim,
         paddle.nn.CrossEntropyLoss(),
-        Accuracy(topk=(1, 2))
+        Accuracy()
         )
     model.fit(train_dataset,
             test_dataset,
@@ -100,25 +100,29 @@ import MNIST 引入即可。
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/3
-    step 938/938 [==============================] - loss: 0.1555 - acc_top1: 0.8947 - acc_top2: 0.9496 - 16ms/step          
-    save checkpoint at /Users/dingjiawei/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/0
+    step 938/938 [==============================] - loss: 0.0568 - acc: 0.9394 - 31ms/step          
+    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/0
     Eval begin...
-    step 157/157 [==============================] - loss: 0.0105 - acc_top1: 0.9535 - acc_top2: 0.9807 - 6ms/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 157/157 [==============================] - loss: 0.0047 - acc: 0.9773 - 26ms/step          
     Eval samples: 10000
     Epoch 2/3
-    step 938/938 [==============================] - loss: 0.0143 - acc_top1: 0.9689 - acc_top2: 0.9909 - 16ms/step          
-    save checkpoint at /Users/dingjiawei/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/1
+    step 938/938 [==============================] - loss: 0.0070 - acc: 0.9802 - 31ms/step          
+    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/1
     Eval begin...
-    step 157/157 [==============================] - loss: 0.0101 - acc_top1: 0.9733 - acc_top2: 0.9934 - 6ms/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 157/157 [==============================] - loss: 0.0014 - acc: 0.9857 - 26ms/step          
     Eval samples: 10000
     Epoch 3/3
-    step 938/938 [==============================] - loss: 0.0083 - acc_top1: 0.9796 - acc_top2: 0.9951 - 16ms/step          
-    save checkpoint at /Users/dingjiawei/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/2
+    step 938/938 [==============================] - loss: 0.0178 - acc: 0.9862 - 31ms/step          
+    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/2
     Eval begin...
-    step 157/157 [==============================] - loss: 0.0276 - acc_top1: 0.9761 - acc_top2: 0.9934 - 6ms/step             
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 157/157 [==============================] - loss: 0.0064 - acc: 0.9867 - 25ms/step          
     Eval samples: 10000
-    save checkpoint at /Users/dingjiawei/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/final
+    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/final
 
 
 保存模型参数
@@ -154,8 +158,30 @@ paddle.io.save_inference_model
             test_dataset,
             epochs=2,
             batch_size=64,
-            save_dir='mnist_checkpoint'
+            save_dir='mnist_checkpoint',
+            verbose=1
             )
+
+
+.. parsed-literal::
+
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    Epoch 1/2
+    step 938/938 [==============================] - loss: 0.0049 - acc: 0.9904 - 32ms/step          
+    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/0
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 157/157 [==============================] - loss: 0.0051 - acc: 0.9794 - 24ms/step            
+    Eval samples: 10000
+    Epoch 2/2
+    step 938/938 [==============================] - loss: 4.3276e-04 - acc: 0.9919 - 32ms/step      
+    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/1
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 157/157 [==============================] - loss: 1.9492e-05 - acc: 0.9876 - 26ms/step        
+    Eval samples: 10000
+    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/final
+
 
 .. code:: ipython3
 
@@ -201,22 +227,19 @@ model.load能够同时加载模型和优化器参数。通过reset_optimizer参�
     from paddle.vision.datasets import MNIST
     from paddle.metric import Accuracy
     from paddle.static import InputSpec
-    #
-    #
-    train_dataset = MNIST(mode='train')
-    test_dataset = MNIST(mode='test')
     
-    paddle.disable_static()
+    train_dataset = MNIST(mode='train', transform=ToTensor())
+    test_dataset = MNIST(mode='test', transform=ToTensor())
     
-    inputs = InputSpec([None, 784], 'float32', 'x')
-    labels = InputSpec([None, 10], 'float32', 'x')
+    inputs = InputSpec([None, 784], 'float32', 'inputs')
+    labels = InputSpec([None, 10], 'float32', 'labels')
     model = paddle.Model(MyModel(), inputs, labels)
     optim = paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters())
     model.load("./mnist_checkpoint/final")
     model.prepare( 
           optim,
           paddle.nn.loss.CrossEntropyLoss(),
-          Accuracy(topk=(1, 2))
+          Accuracy()
           )
     model.fit(train_data=train_dataset,
             eval_data=test_dataset,
@@ -228,15 +251,18 @@ model.load能够同时加载模型和优化器参数。通过reset_optimizer参�
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/2
-    step 938/938 [==============================] - loss: 0.0046 - acc_top1: 0.9768 - acc_top2: 0.9943 - 18ms/step          
+    step 938/938 [==============================] - loss: 8.1781e-04 - acc: 0.9929 - 31ms/step      
     Eval begin...
-    step 157/157 [==============================] - loss: 0.0012 - acc_top1: 0.9789 - acc_top2: 0.9934 - 6ms/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 157/157 [==============================] - loss: 6.0796e-04 - acc: 0.9853 - 26ms/step        
     Eval samples: 10000
     Epoch 2/2
-    step 938/938 [==============================] - loss: 0.0063 - acc_top1: 0.9845 - acc_top2: 0.9965 - 18ms/step          
+    step 938/938 [==============================] - loss: 2.7120e-04 - acc: 0.9946 - 27ms/step        
     Eval begin...
-    step 157/157 [==============================] - loss: 0.0014 - acc_top1: 0.9848 - acc_top2: 0.9964 - 6ms/step             
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 157/157 [==============================] - loss: 2.1006e-05 - acc: 0.9876 - 22ms/step        
     Eval samples: 10000
 
 
@@ -244,4 +270,3 @@ model.load能够同时加载模型和优化器参数。通过reset_optimizer参�
 ----
 
 以上就是用Mnist手写数字识别的例子对保存模型、加载模型、恢复训练进行讲解，Paddle提供了很多保存和加载的API方法，您可以根据自己的需求进行选择。
-

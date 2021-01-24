@@ -8,19 +8,21 @@
 
 ## Tensor的创建
 
-首先，让我们开始创建一个 **Tensor** :
+首先，让我们开始创建一个 **Tensor** , 并用 **ndim** 表示 **Tensor** 维度的数量:
 
-### 1. 创建类似于vector的**1-D Tensor**，其rank为1
+### 1. 创建类似于vector的**1-D Tensor**，其 ndim 为1
+
 ```python
 # 可通过dtype来指定Tensor数据类型，否则会创建float32类型的Tensor
-rank_1_tensor = paddle.to_tensor([2.0, 3.0, 4.0], dtype='float64')
-print(rank_1_tensor)
+ndim_1_tensor = paddle.to_tensor([2.0, 3.0, 4.0], dtype='float64')
+print(ndim_1_tensor)
 ```
 
 ```text
 Tensor(shape=[3], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
        [2., 3., 4.])
 ```
+
 特殊地，如果仅输入单个scalar类型数据（例如float/int/bool类型的单个元素），则会创建shape为[1]的**Tensor**
 ```python
 paddle.to_tensor(2)
@@ -32,11 +34,11 @@ Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
        [2])
 ```
 
-### 2. 创建类似于matrix的**2-D Tensor**，其rank为2
+### 2. 创建类似于matrix的**2-D Tensor**，其 ndim 为2
 ```python
-rank_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
+ndim_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
                                   [4.0, 5.0, 6.0]])
-print(rank_2_tensor)
+print(ndim_2_tensor)
 ```
 ```text
 Tensor(shape=[2, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
@@ -44,14 +46,14 @@ Tensor(shape=[2, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
         [4., 5., 6.]])
 ```
 
-### 3. 同样地，还可以创建rank为3、4...N等更复杂的多维Tensor
+### 3. 同样地，还可以创建 ndim 为3、4...N等更复杂的多维Tensor
 ```
 # Tensor可以有任意数量的轴（也称为维度）
-rank_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
+ndim_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
                                    [6, 7, 8, 9, 10]],
                                   [[11, 12, 13, 14, 15],
                                    [16, 17, 18, 19, 20]]])
-print(rank_3_tensor)
+print(ndim_3_tensor)
 ```
 ```text
 Tensor(shape=[2, 2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
@@ -61,49 +63,38 @@ Tensor(shape=[2, 2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
         [[11, 12, 13, 14, 15],
          [16, 17, 18, 19, 20]]])
 ```
-上述不同rank的**Tensor**可以可视化的表示为：
+上述不同ndim的**Tensor**可以可视化的表示为：
 
 <center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="800"></center>
-<br><center>图1 不同rank的Tensor可视化表示</center>
+<br><center>图1 不同ndim的Tensor可视化表示</center>
 
 
 你可以通过 Tensor.numpy() 方法方便地将 **Tensor** 转化为 **Numpy array**：
 ```python
-rank_2_tensor.numpy()
+ndim_2_tensor.numpy()
 ```
 ```text
 array([[1., 2., 3.],
        [4., 5., 6.]], dtype=float32)
 ```
 
-**Tensor**不仅支持 floats、ints 类型数据，也支持 complex numbers 数据：
+**Tensor**不仅支持 floats、ints 类型数据，也支持 complex numbers数据：
+
 ```python
-rank_2_complex_tensor = paddle.to_tensor([[1+1j, 2+2j],
+ndim_2_complex_tensor = paddle.to_tensor([[1+1j, 2+2j],
                                           [3+3j, 4+4j]])
 ```
-```text
-CompleTensor[real]: generated_tensor_0.real
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [1 2 3 4]
-CompleTensor[imag]: generated_tensor_0.real
-  - place: CUDAPlace(0)
-  - shape: [2, 2]
-  - layout: NCHW
-  - dtype: float
-  - data: [1 2 3 4]
-```
-如果检测到输入数据包含complex numbers，则会自动创建一个**ComplexTensor**，**ComplexTensor**是Paddle中一种特殊的数据结构，
-其包含实部（real）与虚部（imag）两个形状与数据类型相同的**Tensor**，其结构可视化表示为：
 
-<center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/ComplexTensor_2.0.png?raw=true" width="800" ></center>
-<br><center>图2 ComplexTensor的可视化表示</center>
+如果输入为复数数据，则**Tensor**的dtype为 ``complex64`` 或 ``complex128`` ，其每个元素均为1个复数：
+```text
+Tensor(shape=[2, 2], dtype=complex64, place=CUDAPlace(0), stop_gradient=True,
+       [[(1+1j), (2+2j)],
+        [(3+3j), (4+4j)]])
+```
 
 **Tensor**必须形状规则，类似于“矩形”的概念，也就是，沿任何一个轴（也称作维度）上，元素的数量都是相等的，如果为以下情况：
 ```
-rank_2_tensor = paddle.to_tensor([[1.0, 2.0],
+ndim_2_tensor = paddle.to_tensor([[1.0, 2.0],
                                   [4.0, 5.0, 6.0]])
 ```
 该情况下将会抛出异常：
@@ -115,12 +106,12 @@ ValueError:
 
 上面介绍了通过Python数据来创建**Tensor**的方法，我们也可以通过 **Numpy array** 来创建**Tensor**：
 ```python
-rank_1_tensor = paddle.to_tensor(numpy.array([1.0, 2.0]))
+ndim_1_tensor = paddle.to_tensor(numpy.array([1.0, 2.0]))
 
-rank_2_tensor = paddle.to_tensor(numpy.array([[1.0, 2.0],
+ndim_2_tensor = paddle.to_tensor(numpy.array([[1.0, 2.0],
                                               [3.0, 4.0]]))
 
-rank_3_tensor = paddle.to_tensor(numpy.random.rand(3, 2))
+ndim_3_tensor = paddle.to_tensor(numpy.random.rand(3, 2))
 ```
 创建的 **Tensor** 与原 **Numpy array** 具有相同的 shape 与 dtype。
 
@@ -129,7 +120,7 @@ rank_3_tensor = paddle.to_tensor(numpy.random.rand(3, 2))
 paddle.zeros([m, n])             # 创建数据全为0，shape为[m, n]的Tensor
 paddle.ones([m, n])              # 创建数据全为1，shape为[m, n]的Tensor
 paddle.full([m, n], 10)          # 创建数据全为10，shape为[m, n]的Tensor
-paddle.arrange(start, end, step) # 创建从start到end，步长为step的Tensor
+paddle.arange(start, end, step)  # 创建从start到end，步长为step的Tensor
 paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为num的Tensor
 ```
 
@@ -138,25 +129,25 @@ paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为
 ### 基本概念
 查看一个**Tensor**的形状可以通过 **Tensor.shape**，shape是 **Tensor** 的一个重要属性，以下为相关概念：
 
-1. shape：描述了tensor的每个维度上的元素数量
-2. rank： tensor的维度的数量，例如vector的rank为1，matrix的rank为2.
+1. shape：描述了tensor的每个维度上元素的数量
+2. ndim： tensor的维度数量，例如vector的 ndim 为1，matrix的 ndim 为2.
 3. axis或者dimension：指tensor某个特定的维度
 4. size：指tensor中全部元素的个数
 
 让我们来创建1个4-D **Tensor**，并通过图形来直观表达以上几个概念之间的关系；
 ```python
-rank_4_tensor = paddle.ones([2, 3, 4, 5])
+ndim_4_tensor = paddle.ones([2, 3, 4, 5])
 ```
 
 <center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Axis_2.0.png?raw=true" width="800" ></center>
-<br><center>图3 Tensor的shape、axis、dimension、rank之间的关系</center>
+<br><center>图2 Tensor的shape、axis、dimension、ndim之间的关系</center>
 
 ```python
-print("Data Type of every element:", rank_4_tensor.dtype)
-print("Number of dimensions:", rank_4_tensor.ndim)
-print("Shape of tensor:", rank_4_tensor.shape)
-print("Elements number along axis 0 of tensor:", rank_4_tensor.shape[0])
-print("Elements number along the last axis of tensor:", rank_4_tensor.shape[-1])
+print("Data Type of every element:", ndim_4_tensor.dtype)
+print("Number of dimensions:", ndim_4_tensor.ndim)
+print("Shape of tensor:", ndim_4_tensor.shape)
+print("Elements number along axis 0 of tensor:", ndim_4_tensor.shape[0])
+print("Elements number along the last axis of tensor:", ndim_4_tensor.shape[-1])
 ```
 ```text
 Data Type of every element: VarType.FP32
@@ -171,22 +162,22 @@ Elements number along the last axis of tensor: 5
 
 重新定义**Tensor**的shape在实际编程中具有重要意义。
 ```python
-rank_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
+ndim_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
                                    [6, 7, 8, 9, 10]],
                                   [[11, 12, 13, 14, 15],
                                    [16, 17, 18, 19, 20]],
                                   [[21, 22, 23, 24, 25],
                                    [26, 27, 28, 29, 30]]])
-print("the shape of rank_3_tensor:", rank_3_tensor.shape)
+print("the shape of ndim_3_tensor:", ndim_3_tensor.shape)
 ```
 ```text
-the shape of rank_3_tensor: [3, 2, 5]
+the shape of ndim_3_tensor: [3, 2, 5]
 ```
 
 Paddle提供了reshape接口来改变Tensor的shape：
 ```python
-rank_3_tensor = paddle.reshape(rank_3_tensor, [2, 5, 3])
-print("After reshape:", rank_3_tensor.shape)
+ndim_3_tensor = paddle.reshape(ndim_3_tensor, [2, 5, 3])
+print("After reshape:", ndim_3_tensor.shape)
 ```
 ```text
 After reshape: [2, 5, 3]
@@ -199,14 +190,14 @@ After reshape: [2, 5, 3]
 
 有一些例子可以很好解释这些技巧：
 ```text
-origin:[3, 2, 5] reshape:[3, 10]     actual: [3, 10]
+origin:[3, 2, 5] reshape:[3, 10]      actual: [3, 10]
 origin:[3, 2, 5] reshape:[-1]         actual: [30]
-origin:[3, 2, 5] reshape:[0, 5, -1] actual: [3, 5, 2]
+origin:[3, 2, 5] reshape:[0, 5, -1]   actual: [3, 5, 2]
 ```
 
 可以发现，reshape为[-1]时，会将tensor按其在计算机上的内存分布展平为1-D Tensor。
 ```python
-print("Tensor flattened to Vector:", paddle.reshape(rank_3_tensor, [-1]).numpy())
+print("Tensor flattened to Vector:", paddle.reshape(ndim_3_tensor, [-1]).numpy())
 ```
 ```text
 Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
@@ -305,17 +296,17 @@ Tensor name: generated_tensor_0
 #### 访问 Tensor
 * 针对1-D **Tensor**，则仅有单个轴上的索引或切片：
 ```python
-rank_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
-print("Origin Tensor:", rank_1_tensor.numpy())
+ndim_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
+print("Origin Tensor:", ndim_1_tensor.numpy())
 
-print("First element:", rank_1_tensor[0].numpy())
-print("Last element:", rank_1_tensor[-1].numpy())
-print("All element:", rank_1_tensor[:].numpy())
-print("Before 3:", rank_1_tensor[:3].numpy())
-print("From 6 to the end:", rank_1_tensor[6:].numpy())
-print("From 3 to 6:", rank_1_tensor[3:6].numpy())
-print("Interval of 3:", rank_1_tensor[::3].numpy())
-print("Reverse:", rank_1_tensor[::-1].numpy())
+print("First element:", ndim_1_tensor[0].numpy())
+print("Last element:", ndim_1_tensor[-1].numpy())
+print("All element:", ndim_1_tensor[:].numpy())
+print("Before 3:", ndim_1_tensor[:3].numpy())
+print("From 6 to the end:", ndim_1_tensor[6:].numpy())
+print("From 3 to 6:", ndim_1_tensor[3:6].numpy())
+print("Interval of 3:", ndim_1_tensor[::3].numpy())
+print("Reverse:", ndim_1_tensor[::-1].numpy())
 ```
 ```text
 Origin Tensor: [0 1 2 3 4 5 6 7 8])
@@ -331,16 +322,16 @@ Reverse: [8 7 6 5 4 3 2 1 0]
 
 * 针对2-D及以上的 **Tensor**，则会有多个轴上的索引或切片：
 ```python
-rank_2_tensor = paddle.to_tensor([[0, 1, 2, 3],
+ndim_2_tensor = paddle.to_tensor([[0, 1, 2, 3],
                                   [4, 5, 6, 7],
                                   [8, 9, 10, 11]])
-print("Origin Tensor:", rank_2_tensor.numpy())
-print("First row:", rank_2_tensor[0].numpy())
-print("First row:", rank_2_tensor[0, :].numpy())
-print("First column:", rank_2_tensor[:, 0].numpy())
-print("Last column:", rank_2_tensor[:, -1].numpy())
-print("All element:", rank_2_tensor[:].numpy())
-print("First row and second column:", rank_2_tensor[0, 1].numpy())
+print("Origin Tensor:", ndim_2_tensor.numpy())
+print("First row:", ndim_2_tensor[0].numpy())
+print("First row:", ndim_2_tensor[0, :].numpy())
+print("First column:", ndim_2_tensor[:, 0].numpy())
+print("Last column:", ndim_2_tensor[:, -1].numpy())
+print("All element:", ndim_2_tensor[:].numpy())
+print("First row and second column:", ndim_2_tensor[0, 1].numpy())
 ```
 ```text
 Origin Tensor: [[ 0  1  2  3]
@@ -357,12 +348,16 @@ First row and second column: [1]
 ```
 
 索引或切片的第一个值对应 axis 0，第二个值对应 axis 1，以此类推，如果某个 axis 上未指定索引，则默认为 ``:`` 。例如：
+```python
+ndim_2_tensor[1]
+ndim_2_tensor[1, :]
 ```
-rank_3_tensor[1]
-rank_3_tensor[1, :]
-rank_3_tensor[1, :, :]
+这两种操作的结果是完全相同的。
+
+```text
+Tensor(shape=[4], dtype=int64, place=CPUPlace, stop_gradient=True,
+       [4, 5, 6, 7])
 ```
-以上三种操作的结果是完全相同的。
 
 #### 修改 Tensor
 
@@ -376,14 +371,15 @@ rank_3_tensor[1, :, :]
 import paddle
 import numpy as np
 
-x = paddle.to_tensor(np.ones((2, 3)).astype(np.float32)) # [[1,1,1], [1,1,1]]
+x = paddle.to_tensor(np.ones((2, 3)).astype(np.float32)) # [[1., 1., 1.], [1., 1., 1.]]
 
-x[0] = 0                      # x : [[0, 0, 0], [1 ,1, 1]]        id(x) = 4433705584
-x[0:1] = 2.1                  # x : [[2.1, 2.1, 2.1], [1 ,1, 1]]  id(x) = 4433705584
-x[...] = 3                    # x : [[3, 3, 3], [3, 3, 3]]        id(x) = 4433705584
+x[0] = 0                      # x : [[0., 0., 0.], [1., 1., 1.]]        id(x) = 4433705584
+x[0:1] = 2.1                  # x : [[2.1, 2.1, 2.1], [1., 1., 1.]]     id(x) = 4433705584
+x[...] = 3                    # x : [[3., 3., 3.], [3., 3., 3.]]        id(x) = 4433705584
 
-x[0:1] = np.array([1,2,3])    # x : [[1, 2, 3], [3, 3, 3]]        id(x) = 4433705584
-x[1] = paddle.ones([3])       # x : [[1, 2, 3], [1,1,1]]          id(x) = 4433705584
+x[0:1] = np.array([1,2,3])    # x : [[1., 2., 3.], [3., 3., 3.]]        id(x) = 4433705584
+
+x[1] = paddle.ones([3])       # x : [[1., 2., 3.], [1., 1., 1.]]        id(x) = 4433705584
 ```
 
 ---
@@ -411,56 +407,55 @@ Tensor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
 
 ### 数学运算符
 ```python
-x.abs()                       #绝对值
-x.ceil()                      #向上取整
-x.floor()                     #向下取整
+x.abs()                       #逐元素取绝对值
+x.ceil()                      #逐元素向上取整
+x.floor()                     #逐元素向下取整
+x.round()                     #逐元素四舍五入
 x.exp()                       #逐元素计算自然常数为底的指数
 x.log()                       #逐元素计算x的自然对数
-x.reciprocal()                #求倒数
+x.reciprocal()                #逐元素求倒数
 x.square()                    #逐元素计算平方
 x.sqrt()                      #逐元素计算平方根
-x.sum()                       #计算所有元素的和
-x.asin()                      #逐元素计算反正弦函数
+x.sin()                       #逐元素计算正弦
+x.cos()                       #逐元素计算余弦
 x.add(y)                      #逐元素相加
-x.add(-y)                     #逐元素相减
+x.subtract(y)                 #逐元素相减
 x.multiply(y)                 #逐元素相乘
 x.divide(y)                   #逐元素相除
-x.floor_divide(y)             #逐元素相除并取整
-x.remainder(y)                #逐元素相除并取余
+x.mod(y)                      #逐元素相除并取余
 x.pow(y)                      #逐元素幂运算
-x.reduce_max()                #所有元素最大值，可以指定维度
-x.reduce_min()                #所有元素最小值，可以指定维度
-x.reduce_prod()               #所有元素累乘，可以指定维度
-x.reduce_sum()                #所有元素的和，可以指定维度
+x.max()                       #指定维度上元素最大值，默认为全部维度
+x.min()                       #指定维度上元素最小值，默认为全部维度
+x.prod()                      #指定维度上元素累乘，默认为全部维度
+x.sum()                       #指定维度上元素的和，默认为全部维度
 ```
 
 Paddle对python数学运算相关的魔法函数进行了重写，以下操作与上述结果相同。
 ```text
 x + y  -> x.add(y)            #逐元素相加
-x - y  -> x.add(-y)           #逐元素相减
+x - y  -> x.subtract(y)       #逐元素相减
 x * y  -> x.multiply(y)       #逐元素相乘
 x / y  -> x.divide(y)         #逐元素相除
-x // y -> x.floor_divide(y)   #逐元素相除并取整
-x % y  -> x.remainder(y)      #逐元素相除并取余
+x % y  -> x.mod(y)            #逐元素相除并取余
 x ** y -> x.pow(y)            #逐元素幂运算
 ```
 
 ### 逻辑运算符
 ```python
-x.is_empty()                  #判断tensor是否为空
 x.isfinite()                  #判断tensor中元素是否是有限的数字，即不包括inf与nan
-x.euqal_all(y)                #判断两个tensor的所有元素是否相等
-x.euqal(y)                    #判断两个tensor的每个元素是否相等
+x.equal_all(y)                #判断两个tensor的全部元素是否相等，并返回shape为[1]的bool Tensor
+x.equal(y)                    #判断两个tensor的每个元素是否相等，并返回shape相同的bool Tensor
 x.not_equal(y)                #判断两个tensor的每个元素是否不相等
 x.less_than(y)                #判断tensor x的元素是否小于tensor y的对应元素
 x.less_equal(y)               #判断tensor x的元素是否小于或等于tensor y的对应元素
 x.greater_than(y)             #判断tensor x的元素是否大于tensor y的对应元素
 x.greater_equal(y)            #判断tensor x的元素是否大于或等于tensor y的对应元素
+x.allclose(y)                 #判断tensor x的全部元素是否与tensor y的全部元素接近，并返回shape为[1]的bool Tensor
 ```
 
 同样地，Paddle对python逻辑比较相关的魔法函数进行了重写，以下操作与上述结果相同。
 ```text
-x == y  -> x.euqal(y)         #判断两个tensor的每个元素是否相等
+x == y  -> x.equal(y)         #判断两个tensor的每个元素是否相等
 x != y  -> x.not_equal(y)     #判断两个tensor的每个元素是否不相等
 x < y   -> x.less_than(y)     #判断tensor x的元素是否小于tensor y的对应元素
 x <= y  -> x.less_equal(y)    #判断tensor x的元素是否小于或等于tensor y的对应元素
@@ -470,8 +465,6 @@ x >= y  -> x.greater_equal(y) #判断tensor x的元素是否大于或等于tenso
 
 以下操作仅针对bool型Tensor：
 ```python
-x.reduce_all()                #判断一个bool型tensor是否所有元素为True
-x.reduce_any()                #判断一个bool型tensor是否存在至少1个元素为True
 x.logical_and(y)              #对两个bool型tensor逐元素进行逻辑与操作
 x.logical_or(y)               #对两个bool型tensor逐元素进行逻辑或操作
 x.logical_xor(y)              #对两个bool型tensor逐元素进行逻辑亦或操作
@@ -483,7 +476,7 @@ x.logical_not(y)              #对两个bool型tensor逐元素进行逻辑非操
 x.cholesky()                  #矩阵的cholesky分解
 x.t()                         #矩阵转置
 x.transpose([1, 0])           #交换axis 0 与axis 1的顺序
-x.norm('pro')                 #矩阵的Frobenius 范数
+x.norm('fro')                 #矩阵的Frobenius 范数
 x.dist(y, p=2)                #矩阵（x-y）的2范数
 x.matmul(y)                   #矩阵乘法
 ```

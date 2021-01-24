@@ -35,7 +35,6 @@ UCIHousing
         def forward(self, feature, target):
             return paddle.sum(feature), target
 
-    paddle.disable_static()
 
     uci_housing = UCIHousing(mode='train')
 
