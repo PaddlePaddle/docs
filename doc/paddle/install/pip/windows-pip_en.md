@@ -133,13 +133,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle==2.1.0.dev0 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install --pre paddlepaddle==2.1.0.dev0 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -153,13 +153,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post90 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post90 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -169,13 +169,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post100 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post100 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -185,13 +185,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post101 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post101 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -201,13 +201,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post102 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post102 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -217,22 +217,15 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post110 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post110 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
-* Note：
-
-If you want to install PaddlePaddle which support CUDA10.2 with cuDNN v7.4+,you can use the following command:
-
-  ```
-  python -m pip install paddlepaddle_gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
 
 
 
