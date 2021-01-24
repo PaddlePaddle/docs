@@ -274,7 +274,11 @@
    python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
+* 如果你想安装联编`tensorrt`的Paddle包，可以通过以下命令
 
+  ```
+  python3 -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
+  ```
 
 
 

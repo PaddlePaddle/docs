@@ -277,6 +277,11 @@ Note：
    python3 -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
+* If you want to install the Paddle package built with `tensorrt`, you can use the following command:
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
+  ```
 
 
 ## Verify installation

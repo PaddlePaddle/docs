@@ -216,7 +216,19 @@
 
 * 注：
 
-`python -m pip install paddlepaddle_gpu==2.0.0b0 -f https://paddlepaddle.org.cn/whl/stable.html`此命令将安装支持CUDA 10.2(配合cuDNN v7.4+)的PaddlePaddle。
+`python -m pip install paddlepaddle_gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable.html`此命令将安装支持CUDA 10.2(配合cuDNN v7.4+)的PaddlePaddle。
+
+上述命令默认安装`avx`的包，如果希望安装`noavx`的包，请使用 `-f https://paddlepaddle.org.cn/whl/stable/noavx.html`。
+例如安装支持CUDA 10.2的noavx的PaddlePaddle，请使用
+  ```
+  python -m pip install paddlepaddle_gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable/noavx.html
+  ```
+
+如果你想安装联编`tensorrt`的Paddle包，请使用
+
+  ```
+  python -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
+  ```
 
 ## **三、验证安装**
 
