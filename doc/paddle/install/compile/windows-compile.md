@@ -60,10 +60,16 @@
     cd Paddle
     ```
 
-3. 切换到`develop`分支下进行编译：
+3. 切换到较稳定release分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/1.8
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持

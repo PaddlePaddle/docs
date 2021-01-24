@@ -233,6 +233,8 @@
 	:hidden:
 
 	pip/frompip.rst
+	conda/fromconda.rst
+	docker/fromdocker.rst
 	compile/fromsource.rst
 	install_Kunlun_zh.md
 	Tables.md
