@@ -3,7 +3,7 @@
 isinf
 -----------------------------
 
-.. py:function:: paddle.tensor.isinf(x, name=None)
+.. py:function:: paddle.isinf(x, name=None)
 
 返回输入tensor的每一个值是否为 `+/-INF` 。
 

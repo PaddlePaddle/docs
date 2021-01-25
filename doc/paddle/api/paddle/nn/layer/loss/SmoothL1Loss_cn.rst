@@ -1,3 +1,5 @@
+.. _cn_api_paddle_nn_SmoothL1Loss:
+
 SmoothL1Loss
 -------------------------------
 

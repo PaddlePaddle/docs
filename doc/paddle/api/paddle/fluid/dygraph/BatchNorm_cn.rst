@@ -3,7 +3,7 @@
 BatchNorm
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.BatchNorm(num_channels, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, dtype='float32', data_layout='NCHW', in_place=False, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, use_global_stats=False, trainable_statistics=False)
+.. py:class:: paddle.nn.BatchNorm(num_channels, act=None, is_test=False, momentum=0.9, epsilon=1e-05, param_attr=None, bias_attr=None, dtype='float32', data_layout='NCHW', in_place=False, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, use_global_stats=False, trainable_statistics=False)
 
 
 
@@ -60,14 +60,13 @@ BatchNorm
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
-    from paddle.fluid.dygraph.base import to_variable
+    import paddle
     import numpy as np
 
-    x = np.random.random(size=(3, 10, 3, 7)).astype('float32')
-    with fluid.dygraph.guard():
-        x = to_variable(x)
-        batch_norm = fluid.BatchNorm(10)
-        hidden1 = batch_norm(x)
+    x_data = np.random.random(size=(3, 10, 3, 7)).astype('float32')
+    x = paddle.to_tensor(x_data)
+    batch_norm = paddle.nn.BatchNorm(10)
+    batch_norm_out = batch_norm(x)
 
-
+    print(batch_norm_out.shape)
+    # [3, 10, 3, 7]

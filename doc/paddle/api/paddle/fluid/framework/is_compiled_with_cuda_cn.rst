@@ -3,7 +3,7 @@
 is_compiled_with_cuda
 -------------------------------
 
-.. py:function:: paddle.fluid.is_compiled_with_cuda()
+.. py:function:: paddle.is_compiled_with_cuda()
 
 
 
