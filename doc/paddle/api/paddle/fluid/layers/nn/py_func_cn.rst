@@ -4,7 +4,7 @@ py_func
 -------------------------------
 
 
-.. py:function:: paddle.static.py_func(func, x, out, backward_func=None, skip_vars_in_backward_input=None)
+.. py:function:: paddle.fluid.layers.py_func(func, x, out, backward_func=None, skip_vars_in_backward_input=None)
 
 
 
