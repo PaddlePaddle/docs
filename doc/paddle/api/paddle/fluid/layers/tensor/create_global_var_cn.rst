@@ -3,7 +3,7 @@
 create_global_var
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
+.. py:function:: paddle.static.create_global_var(shape,value,dtype,persistable=False,force_cpu=False,name=None)
 
 
 

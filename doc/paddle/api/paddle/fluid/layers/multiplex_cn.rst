@@ -3,7 +3,7 @@
 multiplex
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.multiplex(inputs, index)
+.. py:function:: paddle.multiplex(inputs, index, name)
 
 
 
@@ -35,39 +35,22 @@ multiplex
 
 参数：
   - **inputs** （list） - 为输入Tensor列表，列表元素为数据类型为float32，float64，int32，int64的多维Tensor。所有输入Tensor的shape应相同，秩必须至少为2。
-  - **index** （Variable）- 用来选择输入Tensor中的某些行构建输出Tensor的索引，为数据类型为int32或int64、shape为[M, 1]的2-D Tensor，其中M为输入Tensor个数。
+  - **index** （Tensor）- 用来选择输入Tensor中的某些行构建输出Tensor的索引，为数据类型为int32或int64、shape为[M, 1]的2-D Tensor，其中M为输入Tensor个数。
+  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：进行Multiplex运算后的输出Tensor。
-
-返回类型：Variable(Tensor)。
+返回：Tensor, 进行Multiplex运算后的输出Tensor。
 
 **代码示例**
 
 ..  code-block:: python
 
-     import paddle.fluid as fluid
-     import numpy as np
-
-     x1 = fluid.layers.data(name='x1', shape=[4], dtype='float32')
-     x2 = fluid.layers.data(name='x2', shape=[4], dtype='float32')
-     index = fluid.layers.data(name='index', shape=[1], dtype='int32')
-     out = fluid.layers.multiplex(inputs=[x1, x2], index=index)
-
-     exe = fluid.Executor(fluid.CPUPlace())
-     exe.run(fluid.default_startup_program())
-
-     img1 = np.array([[1, 2], [3, 4]]).astype(np.float32)
-     img2 = np.array([[5, 6], [7, 8]]).astype(np.float32)
-     index = np.array([[1], [0]]).astype(np.int32)
-
-     res = exe.run(fluid.default_main_program(), feed={'x1':img1, 'x2':img2, 'index':index}, fetch_list=[out])
-     print(res) # [array([[5., 6.], [3., 4.]], dtype=float32)]
-
-
-
-
-
-
-
-
-
+    import paddle
+    import numpy as np
+    img1 = np.array([[1, 2], [3, 4]]).astype(np.float32)
+    img2 = np.array([[5, 6], [7, 8]]).astype(np.float32)
+    inputs = [paddle.to_tensor(img1), paddle.to_tensor(img2)]
+    index = paddle.to_tensor(np.array([[1], [0]]).astype(np.int32))
+    res = paddle.multiplex(inputs, index)
+    print(res) 
+    # [[5. , 6.],
+    #  [3. , 4.]]
