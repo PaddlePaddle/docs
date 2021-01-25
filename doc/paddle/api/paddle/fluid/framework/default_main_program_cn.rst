@@ -3,7 +3,7 @@
 default_main_program
 -------------------------------
 
-.. py:function:: paddle.fluid.default_main_program()
+.. py:function:: paddle.static.default_main_program()
 
 
 
@@ -15,10 +15,14 @@ default_main_program
 
 可以使用 :ref:`cn_api_fluid_program_guard` 来切换 ``default main program``。 
 
-返回： :ref:`cn_api_fluid_Program` ，当前默认用于存储OP和Tensor描述的Program。
+返回
+:::::::::
+
+ :ref:`cn_api_fluid_Program` ，当前默认用于存储OP和Tensor描述的Program。
 
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 

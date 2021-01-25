@@ -2,7 +2,7 @@
 
 
 
-通常，如果PaddlePaddle的Operator(OP)库中没有您所需要的操作，建议先尝试使用已有的OP组合，如果无法组合出您需要的操作，可以尝试使用`fluid.layers.py_func`，也可以按照这篇教程自定义C++ OP。当然，如果用若干OP组合出来的OP性能无法满足您的要求，也可以自定义C++ OP。
+通常，如果PaddlePaddle的Operator(OP)库中没有您所需要的操作，建议先尝试使用已有的OP组合，如果无法组合出您需要的操作，可以尝试使用`paddle.static.py_func`，也可以按照这篇教程自定义C++ OP。当然，如果用若干OP组合出来的OP性能无法满足您的要求，也可以自定义C++ OP。
 
 自定义OP需要以下几个步骤:
 
@@ -279,7 +279,7 @@ g++ relu_op.cc relu_op.cu.o -o relu2_op.so -shared -fPIC -std=c++11 -O3 -DPADDLE
 
 ## 封装Python Layer接口
 
-需要使用  `fluid.load_op_library`  接口调用加载动态库，使得PaddlePaddle的主进程中可以使用用户自定义的OP。
+需要使用  `paddle.incubate.load_op_library`  接口调用加载动态库，使得PaddlePaddle的主进程中可以使用用户自定义的OP。
 
 ```
 # custom_op.py
@@ -300,7 +300,7 @@ def relu2(x, name=None):
 
 注意点:
 
-1. 一个动态库只需使用`fluid.load_op_library`在`paddle.fluid` import之后加载一次即可。
+1. 一个动态库只需使用`paddle.incubate.load_op_library`在`paddle` import之后加载一次即可。
 2. Python接口的封装和PaddlePaddle框架内部的封装相同，更多的示例也可以阅读源码中 `python/paddle/fluid/layers/nn.py`的代码示例。
 
 ## 单测测试
