@@ -49,6 +49,7 @@
 
 .. code:: ipython3
 
+    import paddle
     # Sequential形式组网
     mnist = paddle.nn.Sequential(
         paddle.nn.Flatten(),
