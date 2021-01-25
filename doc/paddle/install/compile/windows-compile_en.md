@@ -64,10 +64,16 @@ There is one compilation methods in Windows system:
     cd Paddle
     ```
 
-3. Switch to `develop` branch for compilation:
+3. Switch to a more stable release branch for compilation:
 
     ```
-    git checkout develop
+    git checkout [name of the branch]
+    ```
+
+    For example：
+
+    ```
+    git checkout release/2.0
     ```
 
     Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8

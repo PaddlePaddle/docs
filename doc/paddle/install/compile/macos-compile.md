@@ -56,10 +56,16 @@
     cd paddle
     ```
 
-6. 切换到`develop`版本进行编译：
+6. 切换到较稳定版本下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.0
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
@@ -232,10 +238,16 @@
     cd Paddle
     ```
 
-7. 切换到`develop`分支下进行编译：
+7. 切换到较稳定release分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.0
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持

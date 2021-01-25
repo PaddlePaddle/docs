@@ -26,10 +26,16 @@
     cd Paddle
     ```
 
-2. 切换到`develop`分支下进行编译：
+2. 切换到较稳定release分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支/标签名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.0
     ```
 
 3. Paddle依赖cmake进行编译构建，需要cmake版本>=3.10，检查操作系统源提供cmake的版本，使用源的方式直接安装cmake, `apt install cmake`, 检查cmake版本, `cmake --version`, 如果cmake >= 3.10则不需要额外的操作，否则请修改Paddle主目录的`CMakeLists.txt`, `cmake_minimum_required(VERSION 3.10)` 修改为 `cmake_minimum_required(VERSION 3.0)`.

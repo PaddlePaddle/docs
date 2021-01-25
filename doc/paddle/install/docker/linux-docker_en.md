@@ -21,7 +21,7 @@
 
     * GPU version of PaddlePaddle：
         ```
-        docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]-gpu-cuda9.0-cudnn7
+        docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]-gpu-cuda10.2-cudnn7
         ```
 
     If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -33,10 +33,10 @@
 
     * GPU version of PaddlePaddle：
         ```
-        docker pull paddlepaddle/paddle:[version number]-gpu-cuda9.0-cudnn7
+        docker pull paddlepaddle/paddle:[version number]-gpu-cuda10.2-cudnn7
         ```
 
-    After `:', please fill in the PaddlePaddle version number, such as the current version. For more details, please refer to [image profile](#dockers), in the above example, `cuda9.0-cudnn7` is only for illustration. you can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
+    After `:', please fill in the PaddlePaddle version number, such as the current version. For more details, please refer to [image profile](#dockers), in the above example, `cuda10.2-cudnn7` is only for illustration. you can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
 
 2. Build and enter Docker container
 

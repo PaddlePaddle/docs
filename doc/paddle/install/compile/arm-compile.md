@@ -64,10 +64,16 @@
     cd Paddle
     ```
 
-5. 切换到`develop`分支下进行编译：
+5. 切换到较稳定release分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.0
     ```
 
 6. 并且请创建并进入一个叫build的目录下：
