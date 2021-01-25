@@ -3,7 +3,7 @@
 shape
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.shape(input)
+.. py:function:: paddle.shape(input)
 
 
 
@@ -33,9 +33,8 @@ shape层。
         - **input** （Tensor）-  输入的多维Tensor或SelectedRows，数据类型为float16，float32，float64，int32，int64。如果输入是SelectedRows类型，则返回其内部持有Tensor的shape。
 
 
-返回： 一个Tensor，表示输入Tensor或SelectedRows的shape。
+返回： Tensor, 表示输入Tensor或SelectedRows的shape。
 
-返回类型：Tensor。
 
 **代码示例：**
 
