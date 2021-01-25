@@ -4,7 +4,7 @@ instance_norm
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.instance_norm(input, epsilon=1e-05, param_attr=None, bias_attr=None, name=None)
+.. py:function:: paddle.static.nn.instance_norm(input, epsilon=1e-05, param_attr=None, bias_attr=None, name=None)
 
 
 

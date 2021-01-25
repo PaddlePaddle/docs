@@ -3,7 +3,7 @@
 CUDAPinnedPlace
 -------------------------------
 
-.. py:class:: paddle.fluid.CUDAPinnedPlace
+.. py:class:: paddle.CUDAPinnedPlace
 
 
 
