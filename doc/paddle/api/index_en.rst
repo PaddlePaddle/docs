@@ -33,7 +33,7 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 |                               | ProgBarLogger, etc.                                   |
 +-------------------------------+-------------------------------------------------------+
 | paddle.nn                     | Networking-related APIs such as Linear, Conv2D,       |
-|                               | CrossEntropyLoss, LSTM，and ReLU                      |
+|                               | CrossEntropyLoss, RNN，and ReLU                       |
 +-------------------------------+-------------------------------------------------------+
 | paddle.static                 | Basic framework related APIs under static graph,      | 
 |                               | such as Variable, Program, Executor, etc.             |

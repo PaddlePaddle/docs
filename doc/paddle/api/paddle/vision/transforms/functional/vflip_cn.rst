@@ -1,9 +1,9 @@
-.. _cn_api_vision_transforms_hflip:
+.. _cn_api_vision_transforms_vflip:
 
-hflip
+vflip
 -------------------------------
 
-.. py:function:: paddle.vision.transforms.hflip(img)
+.. py:function:: paddle.vision.transforms.vflip(img)
 
 对输入图像进行垂直方向翻转。
 

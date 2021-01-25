@@ -3,7 +3,7 @@
 max
 -------------------------------
 
-.. py:function:: paddle.tensor.max(x, axis=None, keepdim=False, name=None)
+.. py:function:: paddle.max(x, axis=None, keepdim=False, name=None)
 
 
 该OP是对指定维度上的Tensor元素求最大值运算，并输出相应的计算结果。
