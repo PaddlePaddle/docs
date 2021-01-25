@@ -169,6 +169,16 @@
         export LD_LIBRARY_PATH=[libpython2.7.dylib的路径] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]
         ```
 
+    - 设置C_INCLUDE_PATH:
+        首先使用
+        ```
+        find /usr/local/Cellar/ -name Python.h
+        ```
+        找到`Python.h`的路径[python_h_path]，例如返回`/usr/local/Cellar//python/2.7.6/Frameworks/Python.framework/Versions/2.7/include/python2.7/Python.h`。然后设置C_INCLUDE_PATH：
+        ```
+        export C_INCLUDE_PATH=[python_h_path]
+        ```
+
 4. (Only For Python3)设置Python相关的环境变量：
 
     - a. 首先使用
@@ -204,7 +214,17 @@
         ```
         （这里[python-ld-path]为[python-bin-path]的上一级目录)
 
-    - g. (可选）如果您是在MacOS 10.14上编译PaddlePaddle，请保证您已经安装了[对应版本](http://developer.apple.com/download)的Xcode。
+    - g. 设置C_INCLUDE_PATH:
+        首先使用
+        ```
+        find /usr/local/Cellar/ -name Python.h
+        ```
+        找到`Python.h`的路径[python_h_path]，例如返回`/usr/local/Cellar//python/2.7.6/Frameworks/Python.framework/Versions/2.7/include/python2.7/Python.h`。然后C_INCLUDE_PATH：
+        ```
+        export C_INCLUDE_PATH=[python_h_path]
+        ```
+
+    - h. (可选）如果您是在MacOS 10.14上编译PaddlePaddle，请保证您已经安装了[对应版本](http://developer.apple.com/download)的Xcode。
 
 5. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
 

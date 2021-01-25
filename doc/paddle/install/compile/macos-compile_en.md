@@ -171,6 +171,16 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
         export LD_LIBRARY_PATH=[libpython2.7.dylib path] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib  to the top two directories of the directory]
         ```
 
+    - Set C_INCLUDE_PATH:
+        First use
+        ```
+        find /usr/local/Cellar/ -name Python.h
+        ```
+        to find the path [python_h_path] of `Python.h`. For example, return `/usr/local/Cellar//python/2.7.6/Frameworks/Python.framework/Versions/2.7/include/python2.7/Python.h`. Then set C_INCLUDE_PATH:
+        ```
+        export C_INCLUDE_PATH=[python_h_path]
+        ```
+
 4. (Only For Python3) Set Python-related environment variables:
 
     - a. First use
@@ -207,7 +217,17 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
         ```
         (here [python-ld-path] is the [python-bin-path]'s parent directory )
 
-    - g. (Optional) If you are compiling PaddlePaddle on MacOS 10.14, make sure you have the [appropriate version](http://developer.apple.com/download) of Xcode installed.
+    - g. Set C_INCLUDE_PATH:
+        First use
+        ```
+        find /usr/local/Cellar/ -name Python.h
+        ```
+        to find the path [python_h_path] of `Python.h`. For example, return `/usr/local/Cellar//python/2.7.6/Frameworks/Python.framework/Versions/2.7/include/python2.7/Python.h`. Then set C_INCLUDE_PATH:
+        ```
+        export C_INCLUDE_PATH=[python_h_path]
+        ```
+
+    - h. (Optional) If you are compiling PaddlePaddle on MacOS 10.14, make sure you have the [appropriate version](http://developer.apple.com/download) of Xcode installed.
 
 
 5. Before **compilation**, please confirm that the relevant dependencies mentioned in the [compilation dependency table](h../Tables.html/#third_party) are installed in your environment, otherwise we strongly recommend using `Homebrew` to install related dependencies.
