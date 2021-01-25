@@ -5,10 +5,10 @@
 
 飞桨框架2.0增加\ ``paddle.distributed.spawn``\ 函数来启动单机多卡训练，同时原有的\ ``paddle.distributed.launch``\ 的方式依然保留。
 
-1. 方式1、launch启动
+一、launch启动
 ---------------------
 
-高层API场景
+1.1 高层API场景
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 当调用\ ``paddle.Model``\高层API来实现训练时，想要启动单机多卡训练非常简单，代码不需要做任何修改，只需要在启动时增加一下参数\ ``-m paddle.distributed.launch``\ 。
@@ -28,7 +28,7 @@
     $ export CUDA_VISIBLE_DEVICES=0,1
     $ python -m paddle.distributed.launch train.py
 
-基础API场景
+1.2 基础API场景
 ~~~~~~~~~~~~~~~~~~
 
 如果使用基础API实现训练，想要启动单机多卡训练，需要对单机单卡的代码进行3处修改，具体如下：
@@ -110,7 +110,7 @@
     $ export CUDA_VISIBLE_DEVICES=0,1
     $ python -m paddle.distributed.launch train.py
 
-2. 方式2、spawn启动
+二、spawn启动
 -------------------------------
 launch方式启动训练，以文件为单位启动多进程，需要用户在启动时调用\ ``paddle.distributed.launch``\，对于进程的管理要求较高。飞桨框架2.0版本增加了\ ``spawn``\ 启动方式，可以更好地控制进程，在日志打印、训练退出时更友好。使用示例如下：
 
