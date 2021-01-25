@@ -1,4 +1,4 @@
-.. _cn_api_fluid_clip_ClipGradByValue
+.. _cn_api_fluid_clip_ClipGradByValue:
 
 ClipGradByValue
 -------------------------------

@@ -41,7 +41,7 @@ DistributedStrategy
 
 `Post Local SGD <https://arxiv.org/abs/1808.07217>`__
 
-配置DistributedStrategy中的`ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`__
+配置DistributedStrategy中的 `ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`_
 
 **示例代码**
 
@@ -59,7 +59,7 @@ DistributedStrategy
 
 .. py:attribute:: build_strategy
 
-配置DistributedStrategy中的`BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`__
+配置DistributedStrategy中的 `BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`_
 
 **示例代码**
 
@@ -113,7 +113,11 @@ DistributedStrategy
   strategy = fleet.DistributedStrategy()
   strategy.recompute = True
   # suppose x and y are names of checkpoint tensors for recomputation
-  strategy.recompute_configs = {"checkpoints": ["x", "y"]}
+  strategy.recompute_configs = {
+    "checkpoints": ["x", "y"],
+    "enable_offload": True,
+    "checkpoint_shape": [100, 512, 1024]
+    }
 
 
 .. py:attribute:: recompute_configs
@@ -121,6 +125,11 @@ DistributedStrategy
 设置Recompute策略的配置。目前来讲，用户使用Recompute策略时，必须配置 checkpoints 参数。
 
 **checkpoints(int):** Recompute策略的检查点，默认为空列表，也即不启用Recompute。
+
+**enable_offload(bool):** 是否开启recompute-offload 策略。 该策略会在recompute的基础上，将原本驻留在显存中的checkpoints 卸载到Host 端的内存中， 进一步更大的batch size。 因为checkpoint 在内存和显存间的拷贝较慢，该策略是通过牺牲速度换取更大的batch size。 默认值：False。
+
+**checkpoint_shape(list):** 该参数仅在 offload 开启时需要设置，用来指定 checkpoints 的各维度大小。目前offload 需要所有checkpoints 具有相同的 shape，并且各维度是确定的（不支持 -1 维度）。
+
 
 .. py:attribute:: pipeline
 
@@ -401,10 +410,18 @@ DistributedStrategy
 
 **fuse_broadcast_MB(float):** sharding 广播通信中参数融合的阈值。 该参数会影响sharding 训练中的通信速度，是一个需要根据具体模型大小和网络拓扑设定的经验值。 默认值是 32. 
 
+**hybrid_dp(bool):** 是否开启sharding hybrid数据并行策略，在sharding 并行的基础上再增加一层数据并行逻辑。该策略的目的是通过限制sharding 通信的节点数和增加多路数据并行 来提高训练吞吐。该策略需要成倍增加在普通sharding 训练时的所需GPU 卡数。 默认值是 False。
+
+**sharding_group_size(int):** 仅在hybrid_dp开启时需要设置，指定 hybrid 数据并行策略中每一个 sharding 组的大小。该参数一般等于普通sharding 训练时的所需（最小）GPU 卡数。 number of hybrid data parallelism ways = (global_size / sharding_group_size)。
+
 .. code-block:: python
 
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.sharding = True
-  strategy.sharding_configs = {"fuse_broadcast_MB": 32}
+  strategy.sharding_configs = {
+    "fuse_broadcast_MB": 32,
+    "hybrid_dp": True,
+    "sharding_group_size": 8
+  }
 

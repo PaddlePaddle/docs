@@ -250,7 +250,7 @@
     paddle.jit.save(layer, path)
 
 
-通过动转静训练后保存模型&参数，有以下两项注意点：
+通过动转静训练后保存模型&参数，有以下三项注意点：
 
 (1) Layer对象的forward方法需要经由 ``paddle.jit.to_static`` 装饰
 
@@ -344,10 +344,51 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
             return self._linear(x)
 
 
+(3) 如果你需要存储多个方法，需要用 ``paddle.jit.to_static`` 装饰每一个需要被存储的方法。
+
+.. note::
+    只有在forward之外还需要存储其他方法时才用这个特性，如果仅装饰非forward的方法，而forward没有被装饰，是不符合规范的。此时 ``paddle.jit.save`` 的 ``input_spec`` 参数必须为None。
+
+示例代码如下：
+
+.. code-block:: python
+
+    import paddle
+    import paddle.nn as nn
+    from paddle.static import InputSpec
+
+    IMAGE_SIZE = 784
+    CLASS_NUM = 10
+
+    class LinearNet(nn.Layer):
+        def __init__(self):
+            super(LinearNet, self).__init__()
+            self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
+            self._linear_2 = nn.Linear(IMAGE_SIZE, CLASS_NUM)
+
+        @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, IMAGE_SIZE], dtype='float32')])
+        def forward(self, x):
+            return self._linear(x)
+
+        @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, IMAGE_SIZE], dtype='float32')])
+        def another_forward(self, x):
+            return self._linear_2(x)
+
+    inps = paddle.randn([1, IMAGE_SIZE])
+    layer = LinearNet()
+    before_0 = layer.another_forward(inps)
+    before_1 = layer(inps)
+    # save and load
+    path = "example.model/linear"
+    paddle.jit.save(layer, path)
+
+存储的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生5个文件：
+``linear.another_forward.pdiparams、 linear.pdiparams、 linear.pdmodel、 linear.another_forward.pdmodel、 linear.pdiparams.info``
+
 3.1.2 动态图训练 + 模型&参数存储
 ``````````````````````````````
 
-动态图模式相比动转静模式更加便于调试，如果您仍需要使用动态图直接训练，也可以在动态图训练完成后调用 ``paddle.jit.save`` 直接存储模型和参数。
+动态图模式相比动转静模式更加便于调试，如果你仍需要使用动态图直接训练，也可以在动态图训练完成后调用 ``paddle.jit.save`` 直接存储模型和参数。
 
 同样是一个简单的网络训练示例：
 
@@ -461,6 +502,9 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个Layer的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有Layer具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。
 
+.. note::
+    为了规避变量名字冲突，载入之后会重命名变量。
+
 载入模型及参数，示例如下：
 
 .. code-block:: python
@@ -529,9 +573,11 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     loss_fn = nn.CrossEntropyLoss()
     adam = opt.Adam(learning_rate=0.001, parameters=loaded_layer.parameters())
     train(loaded_layer, loader, loss_fn, adam)
+    # save after fine-tuning
+    paddle.jit.save(loaded_layer, "fine-tune.model/linear", input_spec=[x])
 
 
-此外， ``paddle.jit.save`` 同时保存了模型和参数，如果您只需要从存储结果中载入模型的参数，可以使用 ``paddle.load`` 接口载入，返回所存储模型的state_dict，示例如下：
+此外， ``paddle.jit.save`` 同时保存了模型和参数，如果你只需要从存储结果中载入模型的参数，可以使用 ``paddle.load`` 接口载入，返回所存储模型的state_dict，示例如下：
 
 .. code-block:: python
 
@@ -567,7 +613,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 四、旧存储格式兼容载入
 ###################
 
-如果您是从飞桨框架1.x切换到2.x，曾经使用飞桨框架1.x的fluid相关接口存储模型或者参数，飞桨框架2.x也对这种情况进行了兼容性支持，包括以下几种情况。
+如果你是从飞桨框架1.x切换到2.x，曾经使用飞桨框架1.x的fluid相关接口存储模型或者参数，飞桨框架2.x也对这种情况进行了兼容性支持，包括以下几种情况。
 
 飞桨1.x模型准备及训练示例，该示例为后续所有示例的前序逻辑：
 
@@ -640,7 +686,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 使用 ``paddle.jit.load`` 配合 ``**configs`` 载入模型和参数。
 
-如果您是按照 ``paddle.fluid.io.save_inference_model`` 的默认格式存储的，可以按照如下方式载入（接前述示例）：
+如果你是按照 ``paddle.fluid.io.save_inference_model`` 的默认格式存储的，可以按照如下方式载入（接前述示例）：
 
 .. code-block:: python
 
@@ -660,7 +706,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     x = paddle.randn([1, IMAGE_SIZE], 'float32')
     pred = fc(x)
 
-如果您指定了存储的模型文件名，可以按照以下方式载入（接前述示例）：
+如果你指定了存储的模型文件名，可以按照以下方式载入（接前述示例）：
 
 .. code-block:: python
 
@@ -680,7 +726,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     x = paddle.randn([1, IMAGE_SIZE], 'float32')
     pred = fc(x)
 
-如果您指定了存储的参数文件名，可以按照以下方式载入（接前述示例）：
+如果你指定了存储的参数文件名，可以按照以下方式载入（接前述示例）：
 
 .. code-block:: python
 
@@ -702,9 +748,9 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 (2) 仅载入参数
 
-如果您仅需要从 ``paddle.fluid.io.save_inference_model`` 的存储结果中载入参数，以state_dict的形式配置到已有代码的模型中，可以使用 ``paddle.load`` 配合 ``**configs`` 载入。
+如果你仅需要从 ``paddle.fluid.io.save_inference_model`` 的存储结果中载入参数，以state_dict的形式配置到已有代码的模型中，可以使用 ``paddle.load`` 配合 ``**configs`` 载入。
 
-如果您是按照 ``paddle.fluid.io.save_inference_model`` 的默认格式存储的，可以按照如下方式载入（接前述示例）：
+如果你是按照 ``paddle.fluid.io.save_inference_model`` 的默认格式存储的，可以按照如下方式载入（接前述示例）：
 
 .. code-block:: python
 
@@ -712,7 +758,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
     load_param_dict = paddle.load(model_path)
 
-如果您指定了存储的模型文件名，可以按照以下方式载入（接前述示例）：
+如果你指定了存储的模型文件名，可以按照以下方式载入（接前述示例）：
 
 .. code-block:: python
 
@@ -720,7 +766,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
     load_param_dict = paddle.load(model_path, model_filename="__simplenet__")
 
-如果您指定了存储的参数文件名，可以按照以下方式载入（接前述示例）：
+如果你指定了存储的参数文件名，可以按照以下方式载入（接前述示例）：
 
 .. code-block:: python
 
@@ -780,9 +826,9 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 (2) 指定了参数存储的文件，将所有参数存储至单个文件中
 
-将所有参数存储至单个文件中会导致存储结果中丢失Tensor名和Tensor数据之间的映射关系，因此这部分丢失的信息需要用户传入进行补足。为了确保正确性，这里不仅要传入Tensor的name列表，同时要传入Tensor的shape和dtype等描述信息，通过检查和存储数据的匹配性确保严格的正确性，这导致载入数据的恢复过程变得比较复杂，仍然需要一些飞桨1.x的概念支持。后续如果此项需求较为普遍，我们将会考虑将该项功能兼容支持到 ``paddle.load`` 中，但由于信息丢失而导致的使用复杂性仍然是存在的，因此建议您避免仅使用这两个接口存储参数。
+将所有参数存储至单个文件中会导致存储结果中丢失Tensor名和Tensor数据之间的映射关系，因此这部分丢失的信息需要用户传入进行补足。为了确保正确性，这里不仅要传入Tensor的name列表，同时要传入Tensor的shape和dtype等描述信息，通过检查和存储数据的匹配性确保严格的正确性，这导致载入数据的恢复过程变得比较复杂，仍然需要一些飞桨1.x的概念支持。后续如果此项需求较为普遍，飞桨将会考虑将该项功能兼容支持到 ``paddle.load`` 中，但由于信息丢失而导致的使用复杂性仍然是存在的，因此建议你避免仅使用这两个接口存储参数。
 
-目前暂时推荐您使用 ``paddle.static.load_program_state`` 接口解决此处的载入问题，需要获取原Program中的参数列表传入该方法，使用示例如下（接前述示例）：
+目前暂时推荐你使用 ``paddle.static.load_program_state`` 接口解决此处的载入问题，需要获取原Program中的参数列表传入该方法，使用示例如下（接前述示例）：
 
 .. code-block:: python
 

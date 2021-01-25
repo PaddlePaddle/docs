@@ -14,14 +14,13 @@ Accuracy
 
 **代码示例**：
 
-    # 独立使用示例:
+    独立使用示例:
         
         .. code-block:: python
 
             import numpy as np
             import paddle
 
-            paddle.disable_static()
             x = paddle.to_tensor(np.array([
                 [0.1, 0.2, 0.3, 0.4],
                 [0.1, 0.4, 0.3, 0.2],
@@ -36,24 +35,30 @@ Accuracy
             print(res) # 0.75
 
 
-    # 在Model API中的示例:
+    在Model API中的示例:
         
         .. code-block:: python
 
             import paddle
-
-            paddle.disable_static()
-            train_dataset = paddle.vision.datasets.MNIST(mode='train')
-
-            model = paddle.Model(paddle.vision.LeNet(classifier_activation=None))
+            from paddle.static import InputSpec
+            import paddle.vision.transforms as T
+            from paddle.vision.datasets import MNIST
+               
+            input = InputSpec([None, 1, 28, 28], 'float32', 'image')
+            label = InputSpec([None, 1], 'int64', 'label')
+            transform = T.Compose([T.Transpose(), T.Normalize([127.5], [127.5])])
+            train_dataset = MNIST(mode='train', transform=transform)
+  
+            model = paddle.Model(paddle.vision.LeNet(), input, label)
             optim = paddle.optimizer.Adam(
                 learning_rate=0.001, parameters=model.parameters())
             model.prepare(
                 optim,
                 loss=paddle.nn.CrossEntropyLoss(),
                 metrics=paddle.metric.Accuracy())
-
+  
             model.fit(train_dataset, batch_size=64)
+
 
 
 .. py:function:: compute(pred, label, *args)
@@ -62,10 +67,10 @@ Accuracy
 
 参数：
 :::::::::
-    - **pred**  (Tensor) - 预测结果为是float64或float32类型的Tensor。
-    - **label**  (Tensor) - 真实的标签值是一个2D的Tensor，shape为[batch_size, 1], 数据类型为int64。
+    - **pred**  (Tensor) - 预测结果为是float64或float32类型的Tensor。shape为[batch_size, d0, ..., dN].
+    - **label**  (Tensor) - 真实的标签值是一个int64类型的Tensor，shape为[batch_size, d0, ..., 1] 或one hot表示的形状[batch_size, d0, ..., num_classes].
 
-返回: 一个Tensor，shape是[batch_size, topk], 值为0或1，1表示预测正确.
+返回: 一个Tensor，shape是[batch_size, d0, ..., topk], 值为0或1，1表示预测正确.
 
 
 .. py:function:: update(pred, label, *args)
@@ -74,7 +79,7 @@ Accuracy
 
 参数:
 :::::::::
-    - **correct** (numpy.array | Tensor): 一个值为0或1的Tensor，shape是[batch_size, topk]。
+    - **correct** (numpy.array | Tensor): 一个值为0或1的Tensor，shape是[batch_size, d0, ..., topk]。
 
 返回: 当前step的准确率。
 

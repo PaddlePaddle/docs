@@ -5,25 +5,38 @@ Model
 
 .. py:class:: paddle.Model()
 
- ``Model`` 对象是一个具备训练、测试、推理的神经网络。该对象同时支持静态图和动态图模式，通过 ``paddle.disable_static()`` 来切换。需要注意的是，该开关需要在实例化 ``Model`` 对象之前使用。输入需要使用 ``paddle.static.InputSpec`` 来定义。
+``Model`` 对象是一个具备训练、测试、推理的神经网络。该对象同时支持静态图和动态图模式，飞桨框架默认为动态图模式，通过 ``paddle.enable_static()`` 来切换到静态图模式。需要注意的是，需要在实例化 ``Model`` 对象之前完成切换。
 
-**代码示例**：
+参数
+:::::::::
+
+    - **network** (paddle.nn.Layer): 是 ``paddle.nn.Layer`` 的一个实例
+    - **inputs** (InputSpec|list|dict|None, 可选):  ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list`` ,或者是格式为 ``{name: InputSpec}`` 的 ``dict`` ，或者为 ``None`` . 默认值为 ``None`` .
+    - **labels** (InputSpec|list|None, 可选): ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list`` ,或者为 ``None``. 默认值为 ``None`` .
+      
+.. note::
+
+    在动态图中， ``inputs`` 和 ``labels`` 都可以设置为 ``None``. 但是，在静态图中， ``input`` 不能设置为 ``None`` . 而如果损失函数需要标签(label)作为输入，则必须设置 ``labels`` ，否则，可以为 ``None`` 。
+
+代码示例
+:::::::::
 
 .. code-block:: python
 
     import paddle
     import paddle.nn as nn
+    import paddle.vision.transforms as T
     from paddle.static import InputSpec
 
     device = paddle.set_device('cpu') # or 'gpu'
-    # if use static graph, do not set
-    paddle.disable_static(device)
 
     net = nn.Sequential(
+        nn.Flatten(1),
         nn.Linear(784, 200),
         nn.Tanh(),
         nn.Linear(200, 10))
 
+    # inputs and labels are not required for dynamic graph.
     input = InputSpec([None, 784], 'float32', 'x')
     label = InputSpec([None, 1], 'int64', 'label')
     
@@ -31,14 +44,21 @@ Model
     optim = paddle.optimizer.SGD(learning_rate=1e-3,
         parameters=model.parameters())
     model.prepare(optim,
-                    paddle.nn.CrossEntropyLoss(),
-                    paddle.metric.Accuracy())
+                  paddle.nn.CrossEntropyLoss(),
+                  paddle.metric.Accuracy())
     
-    data = paddle.vision.datasets.MNIST(mode='train', chw_format=False)
+    transform = T.Compose([
+        T.Transpose(),
+        T.Normalize([127.5], [127.5])
+    ])
+    data = paddle.vision.datasets.MNIST(mode='train', transform=transform)
     model.fit(data, epochs=2, batch_size=32, verbose=1)
 
+方法
+:::::::::
 
-.. py:function:: train_batch(inputs, labels=None)
+train_batch(inputs, labels=None)
+'''''''''
 
 在一个批次的数据上进行训练。
 
@@ -59,7 +79,6 @@ Model
     from paddle.static import InputSpec
 
     device = paddle.set_device('cpu') # or 'gpu'
-    paddle.disable_static(device)
 
     net = nn.Sequential(
         nn.Linear(784, 200),
@@ -77,7 +96,8 @@ Model
     loss = model.train_batch([data], [label])
     print(loss)
 
-.. py:function:: eval_batch(inputs, labels=None)
+eval_batch(inputs, labels=None)
+'''''''''
 
 在一个批次的数据上进行评估。
 
@@ -99,7 +119,6 @@ Model
     from paddle.static import InputSpec
 
     device = paddle.set_device('cpu') # or 'gpu'
-    paddle.disable_static(device)
 
     net = nn.Sequential(
         nn.Linear(784, 200),
@@ -118,7 +137,8 @@ Model
     loss = model.eval_batch([data], [label])
     print(loss)
 
-.. py:function:: test_batch(inputs)
+predict_batch(inputs)
+'''''''''
 
 在一个批次的数据上进行测试。
 
@@ -139,7 +159,9 @@ Model
     from paddle.static import InputSpec
 
     device = paddle.set_device('cpu') # or 'gpu'
-    paddle.disable_static(device)
+    
+    input = InputSpec([None, 784], 'float32', 'x')
+    label = InputSpec([None, 1], 'int64', 'label')
 
     net = nn.Sequential(
         nn.Linear(784, 200),
@@ -147,15 +169,15 @@ Model
         nn.Linear(200, 10),
         nn.Softmax())
 
-    input = InputSpec([None, 784], 'float32', 'x')
-    label = InputSpec([None, 1], 'int64', 'label')
     model = paddle.Model(net, input, label)
     model.prepare()
     data = np.random.random(size=(4,784)).astype(np.float32)
-    out = model.test_batch([data])
+    out = model.predict_batch([data])
     print(out)
 
-.. py:function:: save(path, training=True):
+
+save(path, training=True)
+'''''''''
 
 将模型的参数和训练过程中优化器的信息保存到指定的路径，以及推理所需的参数与文件。如果training=True，所有的模型参数都会保存到一个后缀为 ``.pdparams`` 的文件中。
 所有的优化器信息和相关参数，比如 ``Adam`` 优化器中的 ``beta1`` ， ``beta2`` ，``momentum`` 等，都会被保存到后缀为 ``.pdopt``。如果优化器比如SGD没有参数，则该不会产生该文件。如果training=False，则不会保存上述说的文件。只会保存推理需要的参数文件和模型文件。
@@ -172,12 +194,14 @@ Model
 
     import paddle
     import paddle.nn as nn
+    import paddle.vision.transforms as T
     from paddle.static import InputSpec
 
     class Mnist(nn.Layer):
         def __init__(self):
             super(Mnist, self).__init__()
             self.net = nn.Sequential(
+                nn.Flatten(1),
                 nn.Linear(784, 200),
                 nn.Tanh(),
                 nn.Linear(200, 10),
@@ -187,9 +211,9 @@ Model
             return self.net(x)
 
     dynamic = True  # False
-    device = paddle.set_device('cpu')
     # if use static graph, do not set
-    paddle.disable_static(device) if dynamic else None
+    if not dynamic:
+        paddle.enable_static()
 
     input = InputSpec([None, 784], 'float32', 'x')
     label = InputSpec([None, 1], 'int64', 'label')
@@ -197,12 +221,20 @@ Model
     optim = paddle.optimizer.SGD(learning_rate=1e-3,
         parameters=model.parameters())
     model.prepare(optim, paddle.nn.CrossEntropyLoss())
-    data = paddle.vision.datasets.MNIST(mode='train', chw_format=False)
+    
+    transform = T.Compose([
+        T.Transpose(),
+        T.Normalize([127.5], [127.5])
+    ])
+    data = paddle.vision.datasets.MNIST(mode='train', transform=transform)
+    
     model.fit(data, epochs=1, batch_size=32, verbose=0)
     model.save('checkpoint/test')  # save for training
     model.save('inference_model', False)  # save for inference
 
-.. py:function:: load(path, skip_mismatch=False, reset_optimizer=False):
+
+load(path, skip_mismatch=False, reset_optimizer=False)
+'''''''''
 
 从指定的文件中载入模型参数和优化器参数，如果不想恢复优化器参数信息，优化器信息文件可以不存在。需要注意的是：参数名称的检索是根据保存模型时结构化的名字，当想要载入参数进行迁移学习时要保证预训练模型和当前的模型的参数有一样结构化的名字。
 
@@ -222,7 +254,6 @@ Model
     from paddle.static import InputSpec
     
     device = paddle.set_device('cpu')
-    paddle.disable_static(device)
 
     input = InputSpec([None, 784], 'float32', 'x')
     label = InputSpec([None, 1], 'int64', 'label')
@@ -236,7 +267,8 @@ Model
     model.save('checkpoint/test')
     model.load('checkpoint/test')
 
-.. py:function:: parameters(*args, **kwargs):
+parameters(*args, **kwargs)
+'''''''''
 
 返回一个包含模型所有参数的列表。
     
@@ -245,24 +277,21 @@ Model
 **代码示例**：
 
 .. code-block:: python
+
     import paddle
     import paddle.nn as nn
     from paddle.static import InputSpec
 
-    paddle.disable_static()
-
-    input = InputSpec([None, 784], 'float32', 'x')
-    label = InputSpec([None, 1], 'int64', 'label')
     model = paddle.Model(nn.Sequential(
         nn.Linear(784, 200),
         nn.Tanh(),
-        nn.Linear(200, 10)),
-        input,
-        label)
+        nn.Linear(200, 10)))
+
     params = model.parameters()
 
 
-.. py:function:: prepare(optimizer=None, loss_function=None, metrics=None):
+prepare(optimizer=None, loss_function=None, metrics=None)
+'''''''''
 
 配置模型所需的部件，比如优化器、损失函数和评价指标。
 
@@ -272,7 +301,8 @@ Model
     - **metrics** (Metric|list[Metric]) - 当该参数被设定时，所有给定的评估方法会在训练和测试时被运行，并返回对应的指标。默认值：None。
 
 
-.. py:function:: fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_freq=10, save_dir=None, save_freq=1, verbose=2, drop_last=False, shuffle=True, num_workers=0, callbacks=None):
+fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_freq=10, save_dir=None, save_freq=1, verbose=2, drop_last=False, shuffle=True, num_workers=0, callbacks=None)
+'''''''''
 
 训练模型。当 ``eval_data`` 给定时，会在 ``eval_freq`` 个 ``epoch`` 后进行一次评估。
 
@@ -295,71 +325,87 @@ Model
 
 **代码示例**：
 
-.. code-block:: python
+    1. 使用Dataset训练，并设置batch_size的例子。
 
-    # 1. 使用Dataset训练，并设置batch_size的例子。
-    import paddle
-    from paddle.static import InputSpec
+    .. code-block:: python
 
-    dynamic = True
-    device = paddle.set_device('cpu') # or 'gpu'
-    paddle.disable_static(device) if dynamic else None
+        import paddle
+        import paddle.vision.transforms as T
+        from paddle.vision.datasets import MNIST
+        from paddle.static import InputSpec
 
-    train_dataset = paddle.vision.datasets.MNIST(mode='train')
-    val_dataset = paddle.vision.datasets.MNIST(mode='test')
+        dynamic = True
+        if not dynamic:
+            paddle.enable_static()
 
-    input = InputSpec([None, 1, 28, 28], 'float32', 'image')
-    label = InputSpec([None, 1], 'int64', 'label')
-
-    model = paddle.Model(
-        paddle.vision.models.LeNet(classifier_activation=None),
-        input, label)
-    optim = paddle.optimizer.Adam(
-        learning_rate=0.001, parameters=model.parameters())
-    model.prepare(
-        optim,
-        paddle.nn.CrossEntropyLoss(),
-        paddle.metric.Accuracy(topk=(1, 2)))
-    model.fit(train_dataset,
-            val_dataset,
-            epochs=2,
-            batch_size=64,
-            save_dir='mnist_checkpoint')
-
-    # 2. 使用Dataloader训练的例子.
-
-    import paddle
-    from paddle.static import InputSpec
-
-    dynamic = True
-    device = paddle.set_device('cpu') # or 'gpu'
-    paddle.disable_static(device) if dynamic else None
-
-    train_dataset = paddle.vision.datasets.MNIST(mode='train')
-    train_loader = paddle.io.DataLoader(train_dataset,
-        places=device, batch_size=64)
-    val_dataset = paddle.vision.datasets.MNIST(mode='test')
-    val_loader = paddle.io.DataLoader(val_dataset,
-        places=device, batch_size=64)
-
-    input = InputSpec([None, 1, 28, 28], 'float32', 'image')
-    label = InputSpec([None, 1], 'int64', 'label')
-
-    model = paddle.Model(
-        paddle.vision.models.LeNet(classifier_activation=None), input, label)
-    optim = paddle.optimizer.Adam(
-        learning_rate=0.001, parameters=model.parameters())
-    model.prepare(
-        optim,
-        paddle.nn.CrossEntropyLoss(),
-        paddle.metric.Accuracy(topk=(1, 2)))
-    model.fit(train_loader,
-            val_loader,
-            epochs=2,
-            save_dir='mnist_checkpoint')
+        transform = T.Compose([
+            T.Transpose(),
+            T.Normalize([127.5], [127.5])
+        ])
+        train_dataset = MNIST(mode='train', transform=transform)
+        val_dataset = MNIST(mode='test', transform=transform)
+        
+        input = InputSpec([None, 1, 28, 28], 'float32', 'image')
+        label = InputSpec([None, 1], 'int64', 'label')
+        
+        model = paddle.Model(
+            paddle.vision.models.LeNet(),
+            input, label)
+        optim = paddle.optimizer.Adam(
+            learning_rate=0.001, parameters=model.parameters())
+        model.prepare(
+            optim,
+            paddle.nn.CrossEntropyLoss(),
+            paddle.metric.Accuracy(topk=(1, 2)))
+        model.fit(train_dataset,
+                  val_dataset,
+                  epochs=2,
+                  batch_size=64,
+                  save_dir='mnist_checkpoint')
 
 
-.. py:function:: evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbacks=None):
+    2. 使用Dataloader训练的例子.
+
+    .. code-block:: python
+
+        import paddle
+        import paddle.vision.transforms as T
+        from paddle.vision.datasets import MNIST
+        from paddle.static import InputSpec
+
+        dynamic = True
+        if not dynamic:
+            paddle.enable_static()
+        
+        transform = T.Compose([
+              T.Transpose(),
+              T.Normalize([127.5], [127.5])
+          ])
+        train_dataset = MNIST(mode='train', transform=transform)
+        train_loader = paddle.io.DataLoader(train_dataset,
+            batch_size=64)
+        val_dataset = MNIST(mode='test', transform=transform)
+        val_loader = paddle.io.DataLoader(val_dataset,
+            batch_size=64)
+        
+        input = InputSpec([None, 1, 28, 28], 'float32', 'image')
+        label = InputSpec([None, 1], 'int64', 'label')
+        
+        model = paddle.Model(
+            paddle.vision.models.LeNet(), input, label)
+        optim = paddle.optimizer.Adam(
+            learning_rate=0.001, parameters=model.parameters())
+        model.prepare(
+            optim,
+            paddle.nn.CrossEntropyLoss(),
+            paddle.metric.Accuracy(topk=(1, 2)))
+        model.fit(train_loader,
+                  val_loader,
+                  epochs=2,
+                  save_dir='mnist_checkpoint')
+
+evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbacks=None)
+'''''''''
 
 在输入数据上，评估模型的损失函数值和评估指标。
 
@@ -377,12 +423,16 @@ Model
 
 .. code-block:: python
 
-    # declarative mode
     import paddle
+    import paddle.vision.transforms as T
     from paddle.static import InputSpec
 
     # declarative mode
-    val_dataset = paddle.vision.datasets.MNIST(mode='test')
+    transform = T.Compose([
+            T.Transpose(),
+            T.Normalize([127.5], [127.5])
+        ])
+    val_dataset = paddle.vision.datasets.MNIST(mode='test', transform=transform)
 
     input = InputSpec([-1, 1, 28, 28], 'float32', 'image')
     label = InputSpec([None, 1], 'int64', 'label')
@@ -391,15 +441,8 @@ Model
     result = model.evaluate(val_dataset, batch_size=64)
     print(result)
 
-    # imperative mode
-    paddle.disable_static()
-    model = paddle.Model(paddle.vision.models.LeNet(), input, label)
-    model.prepare(metrics=paddle.metric.Accuracy())
-    result = model.evaluate(val_dataset, batch_size=64)
-    print(result)
-
-
-.. py:function:: predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=None):
+predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=None)
+'''''''''
 
 在输入数据上，预测模型的输出。
 
@@ -416,7 +459,6 @@ Model
 
 .. code-block:: python
 
-    # declarative mode
     import numpy as np
     import paddle
     from paddle.static import InputSpec
@@ -437,7 +479,16 @@ Model
 
     test_dataset = MnistDataset(mode='test', return_label=False)
 
+    # imperative mode
+    input = InputSpec([-1, 1, 28, 28], 'float32', 'image')
+    model = paddle.Model(paddle.vision.models.LeNet(), input)
+    model.prepare()
+    result = model.predict(test_dataset, batch_size=64)
+    print(len(result[0]), result[0][0].shape)
+
     # declarative mode
+    device = paddle.set_device('cpu')
+    paddle.enable_static()
     input = InputSpec([-1, 1, 28, 28], 'float32', 'image')
     model = paddle.Model(paddle.vision.models.LeNet(), input)
     model.prepare()
@@ -445,16 +496,8 @@ Model
     result = model.predict(test_dataset, batch_size=64)
     print(len(result[0]), result[0][0].shape)
 
-    # imperative mode
-    device = paddle.set_device('cpu')
-    paddle.disable_static(device)
-    model = paddle.Model(paddle.vision.models.LeNet(), input)
-    model.prepare()
-    result = model.predict(test_dataset, batch_size=64)
-    print(len(result[0]), result[0][0].shape)
-
-
-.. py:function:: summary(input_size=None, batch_size=None, dtype=None):
+summary(input_size=None, batch_size=None, dtype=None)
+'''''''''
 
 打印网络的基础结构和参数信息。
 
@@ -471,15 +514,11 @@ Model
 
     import paddle
     from paddle.static import InputSpec
-
-    dynamic = True
-    device = paddle.set_device('cpu')
-    paddle.disable_static(device) if dynamic else None
-
+    
     input = InputSpec([None, 1, 28, 28], 'float32', 'image')
     label = InputSpec([None, 1], 'int64', 'label')
-
-    model = paddle.Model(paddle.vision.LeNet(classifier_activation=None),
+    
+    model = paddle.Model(paddle.vision.LeNet(),
         input, label)
     optim = paddle.optimizer.Adam(
         learning_rate=0.001, parameters=model.parameters())
@@ -489,3 +528,4 @@ Model
 
     params_info = model.summary()
     print(params_info)
+

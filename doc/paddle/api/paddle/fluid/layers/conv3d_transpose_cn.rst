@@ -13,7 +13,7 @@ conv3d_transpose
 
 该层根据输入（input）、滤波器（filter）和卷积核膨胀比例（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW或者NDHWC格式。其中N为批尺寸，C为通道数（channel），D为特征深度，H为特征层高度，W为特征层宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
 
-.. _参考文献: http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf
+.. _参考文献: https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
 
@@ -77,7 +77,7 @@ conv3d_transpose
 如果指定了output_size， ``conv3d_transpose`` 可以自动计算滤波器的大小。
 
 参数:
-  - **input** （Variable）- 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型：float32或float64。
+  - **input** （Tensor）- 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型：float32或float64。
   - **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数相同。
   - **output_size** (int|tuple，可选) - 输出图片的大小。如果output_size是一个元组，则必须包含三个整型数，（output_size_depth，output_size_height，output_size_width）。如果output_size=None，则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。默认：None。output_size和filter_size不能同时为None。
   - **filter_size** (int|tuple，可选) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，（filter_size_depth，filter_size_height, filter_size_width）。否则，filter_size_depth = filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， ``conv2d_transpose`` 内部会根据output_size、padding和stride计算出滤波器大小。默认：None。output_size和filter_size不能同时为None。
@@ -94,30 +94,20 @@ conv3d_transpose
 
 返回：5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
-返回类型：Variable
-
-抛出异常:
-    - ``ValueError`` - 如果输入的shape、filter_size、stride、padding和groups不匹配。
-    - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
-    - ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
-    - ``ValueError`` - 如果 ``padding`` 含有5个二元组，与批尺寸对应维度的值不为0或者与通道对应维度的值不为0。
-    - ``ValueError`` - 如果 ``output_size`` 和 ``filter_size`` 同时为None。
-    - ``ShapeError`` - 如果输入不是5-D Tensor。
-    - ``ShapeError`` - 如果输入和滤波器的维度大小不相同。
-    - ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
-
 **代码示例**
 
 ..  code-block:: python
 
-    import paddle.fluid as fluid
+    import paddle
     import numpy as np
-    data = fluid.layers.data(name='data', shape=[3, 12, 32, 32], dtype='float32')
-    param_attr = fluid.ParamAttr(name='conv3d.weight', initializer=fluid.initializer.Xavier(uniform=False), learning_rate=0.001)
-    res = fluid.layers.conv3d_transpose(input=data, num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
+
+    paddle.enable_static()
+    data = paddle.static.data(name='data', shape=[None, 3, 12, 32, 32], dtype='float32')
+    param_attr = paddle.framework.ParamAttr(name='conv3d.weight', initializer=paddle.nn.initializer.XavierNormal(), learning_rate=0.001)
+    res = paddle.static.nn.conv3d_transpose(input=data, num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
+    place = paddle.CPUPlace()
+    exe = paddle.static.Executor(place)
+    exe.run(paddle.static.default_startup_program())
     x = np.random.rand(1, 3, 12, 32, 32).astype("float32")
     output = exe.run(feed={"data": x}, fetch_list=[res])
     print(output)

@@ -28,7 +28,6 @@ Optimizer
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
@@ -57,7 +56,7 @@ Optimizer
 
     import paddle
     import numpy as np
-    paddle.disable_static()
+
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)
@@ -89,7 +88,6 @@ Optimizer
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
@@ -122,7 +120,6 @@ Optimizer
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     value = np.arange(26).reshape(2, 13).astype("float32")
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)
@@ -151,7 +148,7 @@ Optimizer
 .. code-block:: python
 
     import paddle
-    paddle.disable_static()
+
     linear = paddle.nn.Linear(10, 10)
 
     adam = paddle.optimizer.Adam(0.1, parameters=linear.parameters())
@@ -187,14 +184,12 @@ Optimizer
     import numpy as np
     import paddle
     # example1: _LRScheduler is not used, return value is all the same
-    paddle.disable_static()
     emb = paddle.nn.Embedding(10, 10, sparse=False)
     adam = paddle.optimizer.Adam(0.001, parameters = emb.parameters())
     lr = adam.get_lr()
     print(lr) # 0.001
 
-    # example2: PiecewiseLR is used, return the step learning rate
-    paddle.disable_static()
+    # example2: StepDecay is used, return the step learning rate
     inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
@@ -203,7 +198,7 @@ Optimizer
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.PiecewiseLR(bd, value, 0)
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=2, gamma=0.1)
     adam = paddle.optimizer.Adam(scheduler,
                            parameters=linear.parameters())
 

@@ -1,3 +1,5 @@
+.. _cn_api_nn_functional_conv3d_transpose:
+
 conv3d_transpose
 -------------------------------
 
@@ -11,7 +13,7 @@ conv3d_transpose
 
 该层根据输入（input）、卷积核（kernel）和卷积核空洞大小（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW或者NDHWC格式。其中N为批尺寸，C为通道数（channel），D为特征深度，H为特征层高度，W为特征层宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。
 
-.. _参考文献: http://www.matthewzeiler.com/wp-content/uploads/2017/07/cvpr2010.pdf
+.. _参考文献: https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
 

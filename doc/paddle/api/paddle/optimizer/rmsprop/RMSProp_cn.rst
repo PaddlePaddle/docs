@@ -205,7 +205,7 @@ RMSProp
     lr = rmsprop.get_lr()
     print(lr) # 0.001
 
-    # example2: PiecewiseDecay is used, return the step learning rate
+    # example2: StepDecay is used, return the step learning rate
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.rand([10,10], dtype="float32")
     out = linear(inp)
@@ -213,7 +213,7 @@ RMSProp
 
     bd = [2, 4, 6, 8]
     value = [0.2, 0.4, 0.6, 0.8, 1.0]
-    scheduler = paddle.optimizer.PiecewiseLR(bd, value, 0)
+    scheduler = paddle.optimizer.lr.StepDecay(learning_rate=0.5, step_size=2, gamma=0.1)
     rmsprop = paddle.optimizer.RMSProp(scheduler,
                            parameters=linear.parameters())
 

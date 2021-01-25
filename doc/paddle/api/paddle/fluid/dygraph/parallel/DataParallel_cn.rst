@@ -3,7 +3,7 @@
 DataParallel
 ------------
 
-.. py:class:: paddle.DataParallel(layers, strategy)
+.. py:class:: paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer_size=1)
 
 
 通过数据并行模式执行动态图模型。
@@ -25,6 +25,8 @@ DataParallel
 参数：
     - **Layer** (Layer) - 需要通过数据并行方式执行的模型。
     - **strategy** (ParallelStrategy，可选) - (deprecated) 数据并行的策略，包括并行执行的环境配置。默认为None。
+    - **comm_buffer_size** (int，可选) - 它是通信调用（如NCCLAllReduce）时，参数梯度聚合为一组的内存大小（MB）。默认值：25。
+    - **last_comm_buffer_size** （float，可选）它限制通信调用中最后一个缓冲区的内存大小（MB）。减小最后一个通信缓冲区的大小有助于提高性能。默认值：1。默认值：1    
 
 返回：支持数据并行的 ``Layer``
 
