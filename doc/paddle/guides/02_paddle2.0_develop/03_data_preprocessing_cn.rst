@@ -28,7 +28,7 @@
     from paddle.vision.transforms import Compose, Resize, ColorJitter
 
     # 定义想要使用的数据增强方式，这里包括随机调整亮度、对比度和饱和度，改变图片大小
-    transform = Compose([ColorJitter(), Resize(size=100)])
+    transform = Compose([ColorJitter(), Resize(size=32)])
 
     # 通过transform参数传递定义好的数据增强方法即可完成对自带数据集的增强
     train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=transform)
@@ -37,44 +37,52 @@
 二、自定义数据集
 -----------------------
 
-针对自定义数据集使用数据增强有两种方式，一种是在数据集的构造函数中进行数据增强方法的定义，之后对 ``__getitem__`` 中返回的数据进行应用。另外一种方式也可以给自定义的数据集类暴漏一个构造参数，在实例化类的时候将数据增强方法传递进去。
+对于自定义的数据集，你可以在数据集的构造函数中进行数据增强方法的定义，之后对 ``__getitem__`` 中返回的数据进行应用，就可以完成自定义数据增强。
 
 .. code:: ipython3
 
     import paddle
     from paddle.io import Dataset
+    from paddle.vision.transforms import Compose, Resize
+
+    BATCH_SIZE = 64
+    BATCH_NUM = 20
+
+    IMAGE_SIZE = (28, 28)
+    CLASS_NUM = 10
 
     class MyDataset(Dataset):
-        def __init__(self, mode='train'):
+        def __init__(self, num_samples):
             super(MyDataset, self).__init__()
-
-            if mode == 'train':
-                self.data = [
-                    ['traindata1', 'label1'],
-                    ['traindata2', 'label2'],
-                    ['traindata3', 'label3'],
-                    ['traindata4', 'label4'],
-                ]
-            else:
-                self.data = [
-                    ['testdata1', 'label1'],
-                    ['testdata2', 'label2'],
-                    ['testdata3', 'label3'],
-                    ['testdata4', 'label4'],
-                ]
-
-            # 定义要使用的数据预处理方法，针对图片的操作
-            self.transform = Compose([ColorJitter(), Resize(size=100)])
-
+            self.num_samples = num_samples
+            # 在 `__init__` 中定义数据增强方法，此处为调整图像大小
+            self.transform = Compose([Resize(size=32)])
+        
         def __getitem__(self, index):
-            data = self.data[index][0]
+            data = paddle.uniform(IMAGE_SIZE, dtype='float32')
+            # 在 `__getitem__` 中对数据集使用数据增强方法
+            data = self.transform(data.numpy())
 
-            # 在这里对训练数据进行应用
-            # 这里只是一个示例，测试时需要将数据集更换为图片数据进行测试
-            data = self.transform(data)
-            label = self.data[index][1]
+            label = paddle.randint(0, CLASS_NUM-1, dtype='int64')
 
             return data, label
 
         def __len__(self):
-            return len(self.data)
+            return self.num_samples
+
+    # 测试定义的数据集
+    custom_dataset = MyDataset(BATCH_SIZE * BATCH_NUM)
+
+    print('=============custom dataset=============')
+    for data, label in custom_dataset:
+        print(data.shape, label.shape)
+        break
+
+
+.. parsed-literal::
+
+    =============custom dataset=============
+    [32, 32] [1]
+
+
+可以看出，输出的形状从 ``[28, 28, 1]`` 变为了 ``[32, 32, 1]``，证明完成了图像的大小调整。

@@ -44,40 +44,33 @@
 
 .. code:: ipython3
 
+    import paddle
     from paddle.io import Dataset
+
+    BATCH_SIZE = 64
+    BATCH_NUM = 20
+
+    IMAGE_SIZE = (28, 28)
+    CLASS_NUM = 10
 
 
     class MyDataset(Dataset):
         """
         步骤一：继承paddle.io.Dataset类
         """
-        def __init__(self, mode='train'):
+        def __init__(self, num_samples):
             """
-            步骤二：实现构造函数，定义数据读取方式，划分训练和测试数据集
+            步骤二：实现构造函数，定义数据集大小
             """
             super(MyDataset, self).__init__()
-
-            if mode == 'train':
-                self.data = [
-                    ['traindata1', 'label1'],
-                    ['traindata2', 'label2'],
-                    ['traindata3', 'label3'],
-                    ['traindata4', 'label4'],
-                ]
-            else:
-                self.data = [
-                    ['testdata1', 'label1'],
-                    ['testdata2', 'label2'],
-                    ['testdata3', 'label3'],
-                    ['testdata4', 'label4'],
-                ]
-
+            self.num_samples = num_samples
+        
         def __getitem__(self, index):
             """
             步骤三：实现__getitem__方法，定义指定index时如何获取数据，并返回单条数据（训练数据，对应的标签）
             """
-            data = self.data[index][0]
-            label = self.data[index][1]
+            data = paddle.uniform(IMAGE_SIZE, dtype='float32')
+            label = paddle.randint(0, CLASS_NUM-1, dtype='int64')
 
             return data, label
 
@@ -85,33 +78,21 @@
             """
             步骤四：实现__len__方法，返回数据集总数目
             """
-            return len(self.data)
+            return self.num_samples
 
     # 测试定义的数据集
-    train_dataset2 = MyDataset(mode='train')
-    val_dataset2 = MyDataset(mode='test')
+    custom_dataset = MyDataset(BATCH_SIZE * BATCH_NUM)
 
-    print('=============train dataset=============')
-    for data, label in train_dataset2:
-        print(data, label)
-
-    print('=============evaluation dataset=============')
-    for data, label in val_dataset2:
-        print(data, label)
+    print('=============custom dataset=============')
+    for data, label in custom_dataset:
+        print(data.shape, label.shape)
+        break
 
 
 .. parsed-literal::
 
-    =============train dataset=============
-    traindata1 label1
-    traindata2 label2
-    traindata3 label3
-    traindata4 label4
-    =============evaluation dataset=============
-    testdata1 label1
-    testdata2 label2
-    testdata3 label3
-    testdata4 label4
+    =============custom dataset=============
+    [28, 28] [1]
 
 通过以上的方式，你就可以根据实际场景，构造自己的数据集。
 
@@ -123,21 +104,20 @@
 
 .. code:: ipython3
 
-
-    train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
-    # train_dataset 取自第一段代码框架自带数据集中定义的数据集
-    # 如果要加载自定义数据集，将train_dataset 换为 train_dataset2即可
+    train_loader = paddle.io.DataLoader(custom_dataset, batch_size=BATCH_SIZE, shuffle=True)
+    # 如果要加载内置数据集，将 custom_dataset 换为 train_dataset 即可
     for batch_id, data in enumerate(train_loader()):
         x_data = data[0]
         y_data = data[1]
 
-        print(x_data.numpy().shape)
-        print(y_data.numpy().shape)
+        print(x_data.shape)
+        print(y_data.shape)
+        break
 
 .. parsed-literal::
 
-    (64, 1, 28, 28)
-    (64, 1)
+    [64, 28, 28]
+    [64, 1]
 
 通过上述的方法，你就定义了一个数据迭代器\ ``train_loader``\ , 用于加载训练数据。通过\ ``batch_size=64``\ 设置了数据集的批大小为64，通过\ ``shuffle=True``\ ，在取数据前会打乱数据。此外，你还可以通过设置\ ``num_workers``\ 来开启多进程数据加载，提升加载速度。
 

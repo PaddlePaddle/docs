@@ -4,7 +4,7 @@ Quick start for distributed training
 Distributed training with Fleet API
 -----------------------------------
 
-Since Paddle Fluid `Release
+Since PaddlePaddle `Release
 1.5.1 <https://github.com/PaddlePaddle/Paddle/releases/tag/v1.5.1>`__,
 it is officially recommended to use the Fleet API for distributed
 training. 
@@ -12,7 +12,7 @@ training.
 Preparation
 ~~~~~~~~~~~
 
--  [x] Install Paddle Fluid. If not already installed, please refer to
+-  [x] Install PaddlePaddle. If not already installed, please refer to
    `Beginner’s
    Guide <https://www.paddlepaddle.org.cn/documentation/docs/en/install/index_en.html>`__.
 -  [x] Master the most basic single node training method. Please refer
