@@ -66,6 +66,5 @@ For example:
 
     x = paddle.ones((2, 1, 4))
     y = paddle.ones((3, 2))
-    z = x + y
-    print(z.shape)
-    # InvalidArgumentError: Broadcast dimension mismatch.
+    # z = x + y
+    # ValueError: (InvalidArgument) Broadcast dimension mismatch.

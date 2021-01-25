@@ -117,7 +117,7 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 本方法创建的DataLoader对象提供了3个方法设置数据源，分别是 :code:`set_sample_generator` , :code:`set_sample_list_generator` 和
 :code:`set_batch_generator` 。请查阅下述示例代码了解它们的使用方法。
 
-如果iterable = True，本方法创建的DataLoader对象时一个Python生成器，可以for-range的方法循环迭代。
+如果iterable = True，本方法创建的DataLoader对象是一个Python生成器，可以for-range的方法循环迭代。
 
 如果iterable = False，本方法创建的DataLoader对象提供 :code:`start()` 和 :code:`reset()` 方法控制数据读取过程。
 
@@ -283,7 +283,7 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
     EPOCH_NUM = 4
 
     IMAGE_SIZE = 784
-    CLASS_NUM = 10
+    CLASS_NUM = 1
 
     USE_GPU = False # whether to use GPU
 

@@ -1,3 +1,4 @@
+.. _cn_model_to_onnx:
 
 #############
 模型导出ONNX协议
@@ -49,7 +50,7 @@ Paddle动态图模型转换为ONNX协议，首先会将Paddle的动态图 ``padd
 2.2 静态图导出ONNX协议
 ------------
 
-Paddle 2.0以后我们将主推动态图组网方式，如果您的模型来自于旧版本的Paddle，使用静态图组网，请参考paddle2onnx的 `使用文档 <https://github.com/PaddlePaddle/paddle2onnx/blob/develop/README.md>`_ 和 `示例 <https://github.com/paddlepaddle/paddle2onnx/blob/develop/examples/tutorial.ipynb>`_ 。
+Paddle 2.0以后将主推动态图组网方式，如果您的模型来自于旧版本的Paddle，使用静态图组网，请参考paddle2onnx的 `使用文档 <https://github.com/PaddlePaddle/paddle2onnx/blob/develop/README.md>`_ 和 `示例 <https://github.com/paddlepaddle/paddle2onnx/blob/develop/examples/tutorial.ipynb>`_ 。
 
 三、ONNX模型的验证
 ##################

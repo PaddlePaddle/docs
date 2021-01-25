@@ -4,9 +4,9 @@
 
 飞桨开源框架(PaddlePaddle)是一个易用、高效、灵活、可扩展的深度学习框架。
 
-您可参考飞桨框架的 `Github <https://github.com/PaddlePaddle/Paddle>`_ 了解详情，也可阅读 `版本说明 <../release_note_cn.html>`_ 了解2.0rc版本的特性。
+你可参考飞桨框架的 `Github <https://github.com/PaddlePaddle/Paddle>`_ 了解详情，也可阅读 `版本说明 <../release_note_cn.html>`_ 了解2.0版本的特性。
 
-让我们从学习飞桨的基本概念这里开始：
+使用教程分为如下的模块：
 
 - `整体介绍 <./01_paddle2.0_introduction/index_cn.html>`_ : 飞桨框架2.0新特性的介绍与飞桨框架2.0升级指南的说明。
 - `模型开发 <./02_paddle2.0_develop/index_cn.html>`_ : 飞桨框架2.0模型开发全流程说明。
