@@ -69,7 +69,7 @@ Please follow the steps below to install:
     For example：
 
     ```
-    git checkout release/1.8
+    git checkout release/2.0
     ```
 
     Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch
@@ -253,7 +253,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
     For example：
 
     ```
-    git checkout release/1.8
+    git checkout release/2.0
     ```
 
     Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch

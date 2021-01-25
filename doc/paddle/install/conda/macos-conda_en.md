@@ -152,7 +152,7 @@ You can choose the following version of PaddlePaddle to start installation:
 * Please use the following command to install PaddlePaddle：
 
   ```
-  conda install paddlepaddle==2.0.0 -c paddle
+  conda install paddlepaddle -c paddle
   ```
 
 

@@ -73,7 +73,7 @@
     例如：
 
     ```
-    git checkout release/2.0-rc1
+    git checkout release/2.0
     ```
 
 6. 并且请创建并进入一个叫build的目录下：

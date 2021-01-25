@@ -71,7 +71,7 @@
     例如：
 
     ```
-    git checkout release/2.0-rc1
+    git checkout release/2.0
     ```
 
 5. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库。

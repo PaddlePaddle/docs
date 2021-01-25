@@ -65,7 +65,7 @@
     例如：
 
     ```
-    git checkout release/1.8
+    git checkout release/2.0
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
@@ -247,7 +247,7 @@
     例如：
 
     ```
-    git checkout release/1.8
+    git checkout release/2.0
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持

@@ -169,13 +169,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle==2.0.0 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install paddlepaddle==2.0.0 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
   ```
 
 
@@ -237,13 +237,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.0.0 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
   ```
 
 

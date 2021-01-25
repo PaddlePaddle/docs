@@ -175,11 +175,11 @@
         如果您是使用 Python 2，安装CPU版本的命令为：
         ::
     
-            python -m pip install paddlepaddle==2.0.0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
 
             或
 
-            python -m pip install paddlepaddle==2.0.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         如果您是使用Windows系统请使用以下指令:
 
@@ -196,11 +196,11 @@
         如果您是使用 Python2，请注意用以下指令安装的PaddlePaddle在Windows、Ubuntu、CentOS下只支持CUDA10.2：
         ::
 
-            python -m pip install paddlepaddle-gpu==2.0.0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
 
             或
 
-            python -m pip install paddlepaddle-gpu==2.0.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         如果您是使用Windows系统请使用以下指令:
 

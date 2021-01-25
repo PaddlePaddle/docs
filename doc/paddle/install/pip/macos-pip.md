@@ -113,13 +113,13 @@
 * 对于Python 2,您可以执行:
 
   ```
-  python -m pip install paddlepaddle==2.0.0 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
   ```
 
 * 对于Python 3，您可以执行:
 
   ```
-  python3 -m pip install paddlepaddle==2.0.0 -i https://mirror.baidu.com/pypi/simple
+  python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
   ```
 
 * 注:
