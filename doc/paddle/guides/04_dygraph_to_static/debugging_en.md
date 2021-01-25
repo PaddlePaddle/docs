@@ -72,11 +72,11 @@ There are two ways to print the transformed static graph code:
 
 1. Use the attribute `code` of the decorated function
 
-   In the following code, the decorator `paddle.jit.to_static` transforms `func` into a class object `StaticLayer`. You can use the `code` attribute of `StaticLayer` to get the transformed code.
+   In the following code, the decorator `paddle.jit.to_static` transforms `func` into a class object `StaticFunction`. You can use the `code` attribute of `StaticFunction` to get the transformed code.
     ```Python
     @paddle.jit.to_static
     def func(x):
-    x = paddle.to_tensor(x)
+        x = paddle.to_tensor(x)
         if x > 3:
             x = x - 1
         return x

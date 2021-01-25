@@ -37,7 +37,6 @@ Movielens
         def forward(self, category, title, rating):
             return paddle.sum(category), paddle.sum(title), paddle.sum(rating)
 
-    paddle.disable_static()
 
     movielens = Movielens(mode='train')
 

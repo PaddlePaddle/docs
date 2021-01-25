@@ -151,3 +151,11 @@ CUDA安装错误导致。
 + 答复：
 
 pip install paddlepaddle-gpu==需要安装的版本号+'.post'+CUDA主版本+CUDNN主版本 例：pip install paddlepaddle-gpu==1.8.4.post97表示需要在CUDA9.0、cuDNN7.0进行安装。更多安装信息请见官网：https://www.paddlepaddle.org.cn/start
+
+------
+
+##### 问题： import paddle报错, dlopen: cannot load any more object with static TLS, 如何解决？
+
++ 答复：
+
+glibc版本过低，建议使用官方提供的docker镜像或者将glibc升级到2.23+。

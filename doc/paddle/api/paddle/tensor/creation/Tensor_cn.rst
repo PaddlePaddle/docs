@@ -384,15 +384,19 @@ Tensor
 
 对该Tensor中的每个元素求双曲余弦。
 
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_cosh`
+
 **代码示例**
     .. code-block:: python
 
         import paddle
+
         x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-        out = x.cosh()
+        out = paddle.cosh(x)
         print(out)
-        # Tensor(shape=[4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-        #        [1.08107233, 1.02006674, 1.00500417, 1.04533851])
+        # [1.08107237 1.02006674 1.00500417 1.04533851]
 
 .. py:method:: cpu()
 
@@ -1139,7 +1143,6 @@ Tensor
     .. code-block:: python
 
         import paddle
-        paddle.disable_static()
 
         x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
         out = x.sinh()

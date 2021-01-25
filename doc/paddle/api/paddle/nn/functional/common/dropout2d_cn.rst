@@ -29,7 +29,6 @@ dropout2d
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     x = np.random.random(size=(2, 3, 4, 5)).astype('float32')
     x = paddle.to_tensor(x)
     y_train = paddle.nn.functional.dropout2d(x)  #train

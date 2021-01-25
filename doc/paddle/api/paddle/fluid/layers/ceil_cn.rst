@@ -3,7 +3,7 @@
 ceil
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.ceil(x, name=None)
+.. py:function:: paddle.ceil(x, name=None)
 
 
 

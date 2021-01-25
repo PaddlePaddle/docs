@@ -1,9 +1,9 @@
-.. _cn_api_nn_initializer_XavierUnifrom:
+.. _cn_api_nn_initializer_XavierUniform:
 
-XavierUnifrom
+XavierUniform
 -------------------------------
 
-.. py:class:: paddle.nn.initializer.XavierUnifrom(fan_in=None, fan_out=None, name=None)
+.. py:class:: paddle.nn.initializer.XavierUniform(fan_in=None, fan_out=None, name=None)
 
 
 该类实现Xavier权重初始化方法（ Xavier weight initializer），Xavier权重初始化方法出自Xavier Glorot和Yoshua Bengio的论文 `Understanding the difficulty of training deep feedforward neural networks <http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf>`_

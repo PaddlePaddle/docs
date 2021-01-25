@@ -5,8 +5,9 @@
 ..	toctree::
 	:maxdepth: 1
 
-	compile_Ubuntu.md
-	compile_CentOS.md
-	compile_MacOS.md
-	compile_Windows.md
-	compile_FT.md
+	linux-compile.md
+	macos-compile.md
+	windows-compile.md
+	arm-compile.md
+	sw-compile.md
+	zhaoxin-compile.md
