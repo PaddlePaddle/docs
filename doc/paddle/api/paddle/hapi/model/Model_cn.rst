@@ -417,7 +417,7 @@ evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbac
     - **num_workers** (int) - 启动子进程用于读取数据的数量。当 ``eval_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：True。
     - **callbacks** (Callback|list[Callback]|None) -  ``Callback`` 的一个实例或实例列表。该参数不给定时，默认会插入 ``ProgBarLogger`` 和 ``ModelCheckpoint`` 这两个实例。默认值：None。
 
-返回：None
+返回：dict, key是 ``prepare`` 时Metric的的名称，value是该Metric的值。
 
 **代码示例**：
 
@@ -453,7 +453,7 @@ predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=N
     - **stack_outputs** (bool) - 是否将输出进行堆叠。默认值：False。
     - **callbacks** (Callback|list[Callback]|None) -  ``Callback`` 的一个实例或实例列表。默认值：None。
 
-返回：None
+返回：模型的输出。
 
 **代码示例**：
 

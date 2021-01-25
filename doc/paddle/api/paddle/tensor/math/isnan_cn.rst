@@ -3,7 +3,7 @@
 isnan
 -----------------------------
 
-.. py:function:: paddle.tensor.isnan(x, name=None)
+.. py:function:: paddle.isnan(x, name=None)
 
 返回输入tensor的每一个值是否为 `+/-NaN` 。
 

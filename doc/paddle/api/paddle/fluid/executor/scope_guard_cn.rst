@@ -4,7 +4,7 @@ scope_guard
 -------------------------------
 
 
-.. py:function:: paddle.fluid.executor.scope_guard (scope)
+.. py:function:: paddle.static.scope_guard (scope)
 
 
 
