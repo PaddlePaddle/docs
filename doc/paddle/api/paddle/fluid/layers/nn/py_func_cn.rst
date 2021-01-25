@@ -76,14 +76,14 @@ PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Pad
         ce_loss = paddle.nn.loss.CrossEntropyLoss()
         return ce_loss(prediction, label)
 
-    x = paddle.static.data(name='x', shape=[1,4], dtype='float32')
-    y = paddle.static.data(name='y', shape=[1,10], dtype='int64')
+    x = paddle.static.data(name='x', shape=[None, 4], dtype='float32')
+    y = paddle.static.data(name='y', shape=[10], dtype='int64')
     res = simple_net(x, y)
 
     exe = paddle.static.Executor(paddle.CPUPlace())
     exe.run(paddle.static.default_startup_program())
-    input1 = np.random.random(size=[1,4]).astype('float32')
-    input2 = np.random.randint(1, 10, size=[1,10], dtype='int64')
+    input1 = np.random.random(size=[10, 4]).astype('float32')
+    input2 = np.random.randint(1, 10, size=[10], dtype='int64')
     out = exe.run(paddle.static.default_main_program(),
                   feed={'x':input1, 'y':input2},
                   fetch_list=[res.name])
