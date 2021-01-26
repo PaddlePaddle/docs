@@ -595,11 +595,11 @@ platform tag: 类似 'linux_x86_64', 'any'
     <tr>
         <td> win-cuda10.2-cudnn7-mkl </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-mkl/paddlepaddle_gpu-2.1.0_dev0-cp27-cp27m-win_amd64.whl"> paddlepaddle_gpu-2.1.0_dev0-cp27-cp27m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-mkl/paddlepaddle_gpu-2.1.0_dev0-cp35-cp35m-win_amd64.whl"> paddlepaddle_gpu-2.1.0_dev0-cp35-cp35m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-mkl/paddlepaddle_gpu-2.1.0_dev0-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.1.0_dev0-cp36-cp36m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-mkl/paddlepaddle_gpu-2.1.0_dev0-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.1.0_dev0-cp37-cp37m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-mkl/paddlepaddle_gpu-2.1.0_dev0-cp38-cp38m-win_amd64.whl"> paddlepaddle_gpu-2.1.0_dev0-cp38-cp38m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-mkl/paddlepaddle_gpu-2.1.0_dev0.post102-cp27-cp27m-win_amd64.whl"> paddlepaddle_gpu-2.1.0_dev0.post102-cp27-cp27m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-mkl/paddlepaddle_gpu-2.1.0_dev0.post102-cp35-cp35m-win_amd64.whl"> paddlepaddle_gpu-2.1.0_dev0.post102-cp35-cp35m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-mkl/paddlepaddle_gpu-2.1.0_dev0.post102-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.1.0_dev0.post102-cp36-cp36m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-mkl/paddlepaddle_gpu-2.1.0_dev0.post102-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.1.0_dev0.post102-cp37-cp37m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-mkl/paddlepaddle_gpu-2.1.0_dev0.post102-cp38-cp38m-win_amd64.whl"> paddlepaddle_gpu-2.1.0_dev0.post102-cp38-cp38m-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cuda11.0-cudnn8-mkl </td>
