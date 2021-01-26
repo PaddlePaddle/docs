@@ -134,7 +134,7 @@ or not. But the output only shares the LoD information with input $X$.
 上面的代码在`MulOp`中添加两个输入`X`和`Y`，添加了一个输出`Out`，以及`use_mkldnn`等属性，并解释了各自含义，命名请遵守[命名规范](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
 
 ### 定义GradOpMaker类
-通常情况下，大部分Op只有一个对应的反向Op，每个Op的会有一个对应的`GradOpMaker`。为方便代码编写，fluid为只有提供了一个模板类[`SingleGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L188)。`MulOp`的`GradOpMaker`需要继承这个模板类，并在`Apply()`方法中设置反向Op的输入、输出和属性。此外，fluid还提供了一个默认的`GradOpMaker`，
+通常情况下，大部分Op只有一个对应的反向Op，每个Op的会有一个对应的`GradOpMaker`。为方便代码编写，paddle为只有提供了一个模板类[`SingleGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L188)。`MulOp`的`GradOpMaker`需要继承这个模板类，并在`Apply()`方法中设置反向Op的输入、输出和属性。此外，paddle还提供了一个默认的`GradOpMaker`，
 [`DefaultGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L227)，该模板类会使用前向Op的全部输入(`Input`)输出(`Output`)以及输出变量所对应的梯度（`Output@Grad`）作为反向Op的输入，将前向Op的输入变量所对应的的梯度（`Input@Grad`）作为输出。
 
 **注意:**
@@ -423,7 +423,7 @@ y_dim[i] = x_dim[i] + z_dim[i]
 
 Op的输入和输出可分别通过`ExecutionContext::Input<T>()`和`ExecutionContext::Output<T>()`获得。
 
-**注意：** 若op的输入/输出的变量类型是`LoDTensor`（fluid默认所有的`Tensor`默认都是`LoDTensor`类型），请写成`ExecutionContext::Input<LoDTensor>()`和`ExecutionContext::Output<LoDTensor>()`，不要写`ExecutionContext::Input<Tensor>()`和`ExecutionContext::Output<Tensor>()`。因为若实际的变量类型为`SelectedRows`，`Input<Tensor>()`和`Output<Tensor>()`方法会将`SelectedRows`类型特化为`Tensor`，导致潜在的错误。
+**注意：** 若op的输入/输出的变量类型是`LoDTensor`（paddle默认所有的`Tensor`默认都是`LoDTensor`类型），请写成`ExecutionContext::Input<LoDTensor>()`和`ExecutionContext::Output<LoDTensor>()`，不要写`ExecutionContext::Input<Tensor>()`和`ExecutionContext::Output<Tensor>()`。因为若实际的变量类型为`SelectedRows`，`Input<Tensor>()`和`Output<Tensor>()`方法会将`SelectedRows`类型特化为`Tensor`，导致潜在的错误。
 
 下面是 `MulKernel` `Compute`的实现：
 
@@ -518,11 +518,26 @@ class MulKernel : public framework::OpKernel<T> {
 
 ### 编译
 
-在`build/paddle/fluid/operators`目录下，运行下面命令可以进行编译：
+详细的编译环境准备和执行流程可参考[从源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/fromsource.html)，下面简单介绍几个主要步骤。
+在`Paddle`代码目录下创建并切换到build目录：
 
 ```
-make mul_op
+mkdir build && cd build
 ```
+
+执行`cmake`命令，具体选项可参考[从源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/fromsource.html)中的介绍，下面的命令为编译Python3.5，GPU版本，带测试，Release版本的Paddle。
+
+```
+cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release
+```
+
+在`build`目录下，运行下面命令可以进行编译整个paddle：
+
+```
+make -j$(nproc)
+```
+**注意：**
+新增op后请重新执行`cmake`命令，然后再执行`make`命令编译paddle。
 
 ## 绑定Python
 
@@ -611,13 +626,15 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestMulOp`里�
 
 `python/paddle/fluid/tests/unittests/` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
 
-请注意，**运行单元测试测时需要编译整个工程**，并且编译时需要打开`WITH_TESTING`, 即`cmake -DWITH_TESTING=ON ..`。编译成功后，执行下面的命令来运行单元测试：
+请注意，**运行单元测试测时需要编译整个工程**，并且编译时需要打开`WITH_TESTING`。
+
+参考上述[编译](#编译)过程，编译成功后，在`build`目录下执行下面的命令来运行单元测试：
 
 ```bash
 make test ARGS="-R test_mul_op -V"
 ```
 
-或者:
+或者执行:
 
 ```bash
 ctest -R test_mul_op
