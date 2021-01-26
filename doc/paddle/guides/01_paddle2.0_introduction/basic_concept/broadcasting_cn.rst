@@ -47,7 +47,7 @@
 
 现在我们知道什么情况下两个张量是可以广播的，两个张量进行广播语义后的结果张量的形状计算规则如下：
 
-1. 如果两个张量的形状的长度不一致，那么需要在较小形状长度的矩阵像前添加1，只到两个张量的形状长度相等。
+1. 如果两个张量的形状的长度不一致，那么需要在较小形状长度的矩阵向前添加1，直到两个张量的形状长度相等。
 2. 保证两个张量形状相等之后，每个维度上的结果维度就是当前维度上较大的那个。
 
 例如:
@@ -64,6 +64,5 @@
 
     x = paddle.ones((2, 1, 4))
     y = paddle.ones((3, 2))
-    z = x + y
-    print(z.shape)
-    # InvalidArgumentError: Broadcast dimension mismatch.
+    # z = x + y
+    # ValueError: (InvalidArgument) Broadcast dimension mismatch.

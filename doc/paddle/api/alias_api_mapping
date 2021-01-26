@@ -17,7 +17,6 @@ paddle.fluid.executor.Executor	paddle.static.Executor
 paddle.nn.functional.pooling.avg_pool2d	paddle.nn.functional.avg_pool2d
 paddle.framework.io.load	paddle.load,paddle.framework.load
 paddle.fluid.dygraph.container.Sequential	paddle.nn.Sequential
-paddle.fluid.dygraph.BilinearTensorProduct	paddle.nn.BilinearTensorProduct,paddle.nn.layer.BilinearTensorProduct,paddle.nn.layer.common.BilinearTensorProduct
 paddle.fluid.layers.stanh	paddle.stanh,paddle.tensor.stanh,paddle.tensor.math.stanh
 paddle.fluid.dygraph.base.enable_dygraph	paddle.disable_static
 paddle.tensor.math.kron	paddle.kron,paddle.tensor.kron
@@ -92,7 +91,6 @@ paddle.fluid.framework.device_guard	paddle.static.device_guard
 paddle.fluid.framework.is_compiled_with_cuda	paddle.is_compiled_with_cuda,paddle.device.is_compiled_with_cuda
 paddle.fluid.layers.log_loss	paddle.nn.functional.log_loss,paddle.nn.functional.loss.log_loss
 paddle.fluid.layers.softmax_with_cross_entropy	paddle.nn.functional.softmax_with_cross_entropy,paddle.nn.functional.loss.softmax_with_cross_entropy
-paddle.fluid.layers.sampled_softmax_with_cross_entropy	paddle.nn.functional.loss.sampled_softmax_with_cross_entropy
 paddle.nn.functional.pooling.adaptive_max_pool1d	paddle.nn.functional.adaptive_max_pool1d
 paddle.tensor.creation.zeros_like	paddle.zeros_like,paddle.tensor.zeros_like
 paddle.tensor.creation.zeros	paddle.zeros,paddle.tensor.zeros
@@ -105,7 +103,6 @@ paddle.tensor.linalg.histogram	paddle.histogram,paddle.tensor.histogram
 paddle.fluid.dygraph.jit.declarative	paddle.jit.to_static
 paddle.tensor.logic.equal_all	paddle.equal_all,paddle.tensor.equal_all
 paddle.nn.functional.activation.softsign	paddle.nn.functional.softsign
-paddle.fluid.layers.ssd_loss	paddle.nn.functional.ssd_loss,paddle.nn.functional.loss.ssd_loss
 paddle.fluid.backward.append_backward	paddle.static.append_backward
 paddle.nn.functional.pooling.adaptive_max_pool2d	paddle.nn.functional.adaptive_max_pool2d
 paddle.tensor.math.prod	paddle.prod,paddle.tensor.prod
@@ -126,7 +123,6 @@ paddle.fluid.core.CPUPlace	paddle.CPUPlace,paddle.framework.CPUPlace
 paddle.nn.functional.activation.softmax	paddle.nn.functional.softmax
 paddle.nn.functional.pooling.adaptive_max_pool3d	paddle.nn.functional.adaptive_max_pool3d
 paddle.nn.functional.activation.hardtanh	paddle.nn.functional.hardtanh
-paddle.fluid.layers.distribute_fpn_proposals	paddle.nn.functional.distribute_fpn_proposals,paddle.nn.functional.vision.distribute_fpn_proposals
 paddle.tensor.math.max	paddle.max,paddle.tensor.max
 paddle.tensor.math.minimum	paddle.minimum,paddle.tensor.minimum
 paddle.fluid.layers.linspace	paddle.linspace,paddle.tensor.linspace,paddle.tensor.creation.linspace
@@ -316,12 +312,9 @@ paddle.tensor.math.any	paddle.any,paddle.tensor.any
 paddle.static.input.InputSpec	paddle.static.InputSpec
 paddle.fluid.layers.acos	paddle.acos,paddle.tensor.acos,paddle.tensor.math.acos
 paddle.tensor.search.topk	paddle.topk,paddle.tensor.topk
-paddle.fluid.dygraph.Pool2D	paddle.nn.layer.Pool2D,paddle.nn.layer.common.Pool2D
 paddle.tensor.math.isfinite	paddle.isfinite,paddle.tensor.isfinite
 paddle.fluid.framework.program_guard	paddle.static.program_guard
-paddle.fluid.layers.space_to_depth	paddle.nn.functional.space_to_depth,paddle.nn.functional.vision.space_to_depth
 paddle.nn.layer.common.CosineSimilarity	paddle.nn.CosineSimilarity,paddle.nn.layer.CosineSimilarity
-paddle.nn.layer.extension.RowConv	paddle.nn.RowConv,paddle.nn.layer.RowConv
 paddle.nn.layer.loss.MSELoss	paddle.nn.MSELoss,paddle.nn.layer.MSELoss
 paddle.nn.functional.vision.pixel_shuffle	paddle.nn.functional.pixel_shuffle
 paddle.tensor.math.tanh	paddle.tanh,paddle.tensor.tanh,paddle.nn.functional.tanh,paddle.nn.functional.activation.tanh
@@ -331,7 +324,6 @@ paddle.fluid.layers.cosh	paddle.cosh,paddle.tensor.cosh,paddle.tensor.math.cosh
 paddle.nn.layer.common.Upsample	paddle.nn.Upsample,paddle.nn.layer.Upsample
 paddle.fluid.layers.instance_norm	paddle.static.nn.instance_norm
 paddle.nn.functional.activation.hardshrink	paddle.nn.functional.hardshrink
-paddle.fluid.layers.clip	paddle.nn.clip,paddle.nn.clip.clip
 paddle.tensor.search.argmin	paddle.argmin,paddle.tensor.argmin
 paddle.nn.layer.common.Dropout2D	paddle.nn.Dropout2D,paddle.nn.layer.Dropout2D
 paddle.tensor.math.add_n	paddle.add_n,paddle.tensor.add_n,paddle.tensor.math.add_n
@@ -342,9 +334,7 @@ paddle.nn.functional.loss.binary_cross_entropy	paddle.nn.functional.binary_cross
 paddle.nn.layer.common.Linear	paddle.nn.Linear,paddle.nn.layer.Linear,paddle.nn.layer.common.Linear
 paddle.nn.layer.activation.ReLU6	paddle.nn.ReLU6
 paddle.static.input.data	paddle.static.data
-paddle.fluid.layers.edit_distance	paddle.nn.functional.loss.edit_distance
 paddle.tensor.math.maximum	paddle.maximum,paddle.tensor.maximum
-paddle.fluid.layers.add_position_encoding	paddle.nn.functional.add_position_encoding,paddle.nn.functional.extension.add_position_encoding
 paddle.nn.functional.common.cosine_similarity	paddle.nn.functional.cosine_similarity
 paddle.fluid.layers.floor	paddle.floor,paddle.tensor.floor,paddle.tensor.math.floor
 paddle.tensor.math.log2	paddle.log2,paddle.tensor.log2
@@ -365,12 +355,10 @@ paddle.nn.functional.common.linear	paddle.nn.functional.linear
 paddle.nn.layer.activation.LogSoftmax	paddle.nn.LogSoftmax,paddle.nn.layer.LogSoftmax
 paddle.nn.layer.loss.KLDivLoss	paddle.nn.KLDivLoss,paddle.nn.layer.KLDivLoss
 paddle.tensor.math.sign	paddle.sign,paddle.tensor.sign
-paddle.fluid.layers.iou_similarity	paddle.nn.functional.iou_similarity,paddle.nn.functional.loss.iou_similarity
 paddle.fluid.layers.transpose	paddle.transpose,paddle.tensor.transpose,paddle.tensor.linalg.transpose,paddle.tensor.manipulation.transpose
 paddle.nn.functional.activation.elu	paddle.nn.functional.elu
 paddle.tensor.manipulation.broadcast_to	paddle.broadcast_to,paddle.tensor.broadcast_to
 paddle.fluid.layers.tensor.create_global_var	paddle.static.create_global_var,paddle.framework.create_global_var
-paddle.fluid.layers.affine_channel	paddle.nn.functional.affine_channel,paddle.nn.functional.vision.affine_channel
 paddle.tensor.creation.full_like	paddle.full_like,paddle.tensor.full_like
 paddle.fluid.parallel_executor.ParallelExecutor	paddle.static.ParallelExecutor
 paddle.tensor.logic.not_equal	paddle.not_equal,paddle.tensor.not_equal
@@ -385,7 +373,6 @@ paddle.nn.layer.activation.Softplus	paddle.nn.Softplus
 paddle.fluid.dygraph.parallel.DataParallel	paddle.DataParallel,paddle.framework.DataParallel
 paddle.fluid.layers.exp	paddle.exp,paddle.tensor.exp,paddle.tensor.math.exp
 paddle.tensor.manipulation.scatter	paddle.scatter,paddle.tensor.scatter
-paddle.fluid.layers.detection_output	paddle.nn.functional.detection_output,paddle.nn.functional.vision.detection_output
 paddle.fluid.layers.conv3d_transpose	paddle.static.nn.conv3d_transpose
 paddle.tensor.stat.numel	paddle.numel,paddle.tensor.numel
 paddle.tensor.stat.median	paddle.median,paddle.tensor.median
@@ -396,11 +383,9 @@ paddle.fluid.layers.scale	paddle.scale,paddle.tensor.scale,paddle.tensor.math.sc
 paddle.fluid.framework.default_startup_program	paddle.static.default_startup_program
 paddle.tensor.linalg.cross	paddle.cross,paddle.tensor.cross
 paddle.nn.layer.norm.InstanceNorm2D	paddle.nn.InstanceNorm2D
-paddle.fluid.layers.assign	paddle.nn.functional.assign,paddle.nn.functional.common.assign
 paddle.fluid.layers.case	paddle.static.nn.case
 paddle.fluid.core.CUDAPlace	paddle.CUDAPlace,paddle.framework.CUDAPlace
 paddle.nn.functional.pooling.max_pool2d	paddle.nn.functional.max_pool2d
-paddle.fluid.layers.clip_by_norm	paddle.nn.clip_by_norm,paddle.nn.clip.clip_by_norm
 paddle.nn.functional.loss.binary_cross_entropy_with_logits	paddle.nn.functional.binary_cross_entropy_with_logits
 paddle.nn.layer.pooling.AdaptiveAvgPool1D	paddle.nn.AdaptiveAvgPool1D,paddle.nn.layer.AdaptiveAvgPool1D
 paddle.fluid.layers.cast	paddle.cast,paddle.tensor.cast,paddle.tensor.manipulation.cast
@@ -411,7 +396,6 @@ paddle.tensor.manipulation.unsqueeze	paddle.unsqueeze,paddle.tensor.unsqueeze
 paddle.tensor.math.add	paddle.add,paddle.tensor.add
 paddle.tensor.math.subtract	paddle.subtract,paddle.tensor.subtract
 paddle.nn.layer.common.Bilinear	paddle.nn.Bilinear,paddle.nn.layer.Bilinear
-paddle.nn.functional.extension.row_conv	paddle.nn.functional.row_conv
 paddle.nn.layer.loss.BCEWithLogitsLoss	paddle.nn.BCEWithLogitsLoss,paddle.nn.layer.BCEWithLogitsLoss
 paddle.nn.layer.norm.InstanceNorm3D	paddle.nn.InstanceNorm3D
 paddle.tensor.manipulation.tile	paddle.tile,paddle.tensor.tile
@@ -424,7 +408,6 @@ paddle.fluid.layers.multi_box_head	paddle.static.nn.multi_box_head
 paddle.fluid.layers.unfold	paddle.nn.functional.unfold,paddle.nn.functional.common.unfold
 paddle.nn.layer.pooling.AdaptiveAvgPool2D	paddle.nn.AdaptiveAvgPool2D,paddle.nn.layer.AdaptiveAvgPool2D
 paddle.fluid.layers.logical_and	paddle.logical_and,paddle.tensor.logical_and,paddle.tensor.logic.logical_and
-paddle.fluid.layers.linear_lr_warmup	paddle.nn.functional.linear_lr_warmup,paddle.nn.functional.learning_rate.linear_lr_warmup
 paddle.nn.functional.vision.affine_grid	paddle.nn.functional.affine_grid
 paddle.fluid.dygraph.Flatten	paddle.nn.Flatten,paddle.nn.layer.Flatten,paddle.nn.layer.common.Flatten
 paddle.nn.functional.pooling.avg_pool1d	paddle.nn.functional.avg_pool1d
@@ -534,7 +517,7 @@ paddle.optimizer.adadelta.Adadelta	paddle.optimizer.Adadelta
 paddle.optimizer.adagrad.Adagrad	paddle.optimizer.Adagrad
 paddle.optimizer.adam.Adam	paddle.optimizer.Adam
 paddle.optimizer.adamax.Adamax	paddle.optimizer.Adamax
-paddle.optimizer.adamw.Adamw	paddle.optimizer.Adamw
+paddle.optimizer.adamw.AdamW	paddle.optimizer.AdamW
 paddle.optimizer.momentum.Momentum	paddle.optimizer.Momentum
 paddle.optimizer.optimizer.Optimizer	paddle.optimizer.Optimizer
 paddle.optimizer.rmsprop.RMSProp	paddle.optimizer.RMSProp
@@ -543,8 +526,7 @@ paddle.nn.layer.common.Pad1D	paddle.nn.Pad1D,paddle.nn.common.Pad1D
 paddle.nn.layer.common.Pad2D	paddle.nn.Pad2D,paddle.nn.common.Pad2D
 paddle.nn.layer.common.Pad3D	paddle.nn.Pad3D,paddle.nn.common.Pad3D
 paddle.nn.functional.interpolate	paddle.nn.functional.interpolate,paddle.nn.functional.common.interpolate
-paddle.nn.functional.upsample	paddle.nn.functional.upsample,paddle.nn.functional.common.upsample
-paddle.nn.Upsample	paddle.nn.layer.Upsample,paddle.nn.layer.common.Upsample
+paddle.nn.functional.common.upsample	paddle.nn.functional.upsample
 paddle.nn.layer.common.UpsamplingBilinear2D	paddle.nn.UpsamplingBilinear2D,paddle.nn.layer.UpsamplingBilinear2D
 paddle.nn.layer.common.UpsamplingNearest2D	paddle.nn.UpsamplingNearest2D,paddle.nn.layer.UpsamplingNearest2D
 paddle.fluid.initializer.set_global_initializer	paddle.nn.initializer.set_global_initializer

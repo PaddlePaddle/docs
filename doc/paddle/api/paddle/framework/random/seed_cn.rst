@@ -3,7 +3,7 @@
 seed
 -------------------------------
 
-.. py:function:: paddle.framework.seed(seed)
+.. py:function:: paddle.seed(seed)
 
 
 设置全局默认generator的随机种子。
