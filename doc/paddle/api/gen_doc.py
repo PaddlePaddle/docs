@@ -32,7 +32,7 @@ api_info_dict = {}
 
 
 # walkthrough the paddle package to collect all the apis in api_set
-def get_all_api(root_path='paddle'):
+def get_all_api(root_path='paddle', attr="__all__"):
     """
     walk through the paddle package to collect all the apis.
     """
@@ -50,33 +50,43 @@ def get_all_api(root_path='paddle'):
             print("AttributeError occurred when `eval({})`".format(name))
             pass
         else:
-            if hasattr(m, "__all__"):
-                # may have duplication of api
-                for api in set(m.__all__):
-                    if "," in api:
-                        # ? WTF
-                        continue
+            api_counter += process_module(m, attr)
 
-                    # api's fullname
-                    full_name = name + "." + api
-                    try:
-                        fc_id = id(eval(full_name))
-                    except AttributeError:
-                        print("AttributeError occurred when `id(eval({}))`".
-                              format(full_name))
-                        pass
-                    else:
-                        api_counter += 1
-                        if fc_id in api_info_dict:
-                            api_info_dict[fc_id]["all_names"].append(full_name)
-                        else:
-                            api_info_dict[fc_id] = {
-                                "all_names": [full_name],
-                                "id": fc_id
-                            }
-
+    api_counter += process_module(paddle, attr)
     print('collected {} apis, {} distinct apis.'.format(api_counter,
                                                         len(api_info_dict)))
+
+
+def process_module(m, attr="__all__"):
+    api_counter = 0
+    if hasattr(m, attr):
+        # may have duplication of api
+        for api in set(getattr(m, attr)):
+            if api[0] == '_': continue
+            # Exception occurred when `id(eval(paddle.dataset.conll05.test, get_dict))`
+            if ',' in api: continue
+
+            # api's fullname
+            full_name = m.__name__ + "." + api
+            try:
+                fc_id = id(eval(full_name))
+            except AttributeError:
+                print("AttributeError occurred when `id(eval({}))`".format(
+                    full_name))
+                pass
+            except:
+                print(
+                    "Exception occurred when `id(eval({}))`".format(full_name))
+            else:
+                api_counter += 1
+                if fc_id in api_info_dict:
+                    api_info_dict[fc_id]["all_names"].append(full_name)
+                else:
+                    api_info_dict[fc_id] = {
+                        "all_names": [full_name],
+                        "id": fc_id
+                    }
+    return api_counter
 
 
 def set_source_code_attrs():
@@ -94,12 +104,16 @@ def set_source_code_attrs():
             if hasattr(cur_class, api_info['short_name']):
                 # print('processing ', api_info['full_name'])
                 api = getattr(cur_class, api_info['short_name'])
+                #if not (hasattr(api, '__file__') and hasattr(api, '__module__')):
+                #    continue
                 line_no_found = False
                 str_args_list = []
-                if type(api).__name__ == 'module':
+                if type(api).__name__ == 'module' and hasattr(
+                        api, '__file__') and api.__file__ is not None:
                     module = os.path.splitext(api.__file__)[0] + '.py'
-                elif hasattr(api, '__module__') and hasattr(
-                        sys.modules[api.__module__], '__file__'):
+                elif hasattr(api, '__module__'
+                             ) and api.__module__ in sys.modules and hasattr(
+                                 sys.modules[api.__module__], '__file__'):
                     module = os.path.splitext(sys.modules[api.__module__]
                                               .__file__)[0] + '.py'
                     if os.path.isfile(module):
@@ -164,17 +178,17 @@ def set_source_code_attrs():
                                                 '*' + node.args.vararg.arg)
                                         if len(node.args.kwonlyargs) > 0:
                                             if node.args.vararg is None:
-                                                str_arg_list.append('*')
+                                                str_args_list.append('*')
                                             for kwoarg, d in zip(
                                                     node.args.kwonlyargs,
                                                     node.args.kw_defaults):
                                                 if isinstance(d, ast.Constant):
-                                                    str_arg_list.append(
+                                                    str_args_list.append(
                                                         "{}={}".format(
                                                             kwoarg.arg,
                                                             d.value))
                                                 elif isinstance(d, ast.Name):
-                                                    str_arg_list.append(
+                                                    str_args_list.append(
                                                         "{}={}".format(
                                                             kwoarg.arg, d.id))
                                         if node.args.kwarg is not None:
@@ -475,10 +489,20 @@ class EnDocGenerator(object):
 
 
 if __name__ == "__main__":
-    get_all_api()
+    # for api manager
+    api_info_dict = {}
+    get_all_api(attr="__dict__")
     set_display_attr_of_apis()
     set_real_api_alias_attr()
     set_source_code_attrs()
     json.dump(api_info_dict, open("api_info_dict.json", "w"), indent=4)
+
+    # for api rst files
+    api_info_dict = {}
+    get_all_api(attr="__all__")
+    set_display_attr_of_apis()
+    set_real_api_alias_attr()
+    set_source_code_attrs()
+    json.dump(api_info_dict, open("api_info_all.json", "w"), indent=4)
     gen_en_files()
     check_cn_en_match()
