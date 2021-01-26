@@ -1,6 +1,6 @@
 .. _cn_api_paddle_tensor_reshape_:
 
-reshape_
+reshape\_
 -------------------------------
 
 .. py:function::  paddle.reshape_(x, shape, name=None)

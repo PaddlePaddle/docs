@@ -1,6 +1,6 @@
 .. _cn_api_nn_cn_relu_:
 
-relu_
+relu\_
 -------------------------------
 
 .. py:function:: paddle.nn.functional.relu_(x, name=None)

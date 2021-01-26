@@ -1,6 +1,6 @@
 .. _cn_api_tensor_tanh_:
 
-tanh_
+tanh\_
 -------------------------------
 
 .. py:function:: paddle.tanh_(x, name=None)

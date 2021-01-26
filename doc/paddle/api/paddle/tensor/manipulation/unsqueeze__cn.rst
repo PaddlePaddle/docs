@@ -1,5 +1,6 @@
 .. _cn_api_paddle_tensor_unsqueeze_
-unsqueeze_
+
+unsqueeze\_
 -------------------------------
 
 .. py:function:: paddle.unsqueeze_(x, axis, name=None)

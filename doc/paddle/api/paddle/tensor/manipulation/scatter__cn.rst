@@ -1,6 +1,6 @@
 .. _cn_api_paddle_cn_scatter_:
 
-scatter_
+scatter\_
 -------------------------------
 .. py:function:: paddle.scatter_(x, index, updates, overwrite=True, name=None)
 

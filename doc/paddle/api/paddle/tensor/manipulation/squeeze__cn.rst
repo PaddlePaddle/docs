@@ -1,5 +1,6 @@
 .. _cn_api_paddle_tensor_squeeze_
-squeeze_
+
+squeeze\_
 -------------------------------
 
 .. py:function:: paddle.squeeze_(x, axis=None, name=None)

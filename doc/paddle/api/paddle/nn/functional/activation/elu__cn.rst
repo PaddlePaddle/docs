@@ -1,6 +1,6 @@
 .. _cn_api_nn_cn_elu_:
 
-elu_
+elu\_
 -------------------------------
 
 .. py:function:: paddle.nn.functional.elu_(x, alpha=1.0, name=None)

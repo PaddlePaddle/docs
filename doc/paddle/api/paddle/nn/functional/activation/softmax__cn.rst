@@ -1,6 +1,6 @@
 .. _cn_api_nn_cn_softmax_:
 
-softmax_
+softmax\_
 -------------------------------
 .. py:function:: paddle.nn.functional.softmax_(x, axis=-1, dtype=None, name=None)
 
