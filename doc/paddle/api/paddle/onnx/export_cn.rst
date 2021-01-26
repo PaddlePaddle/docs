@@ -8,7 +8,8 @@ export
 将输入的 ``Layer`` 存储为 ``ONNX`` 格式的模型，可使用onnxruntime或其他框架进行推理。
 
 .. note::
-具体使用案例请参考 :ref: `cn_model_to_onnx` , 更多信息请参考:  `paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx>`_ 。
+
+    具体使用案例请参考 :ref:`cn_model_to_onnx` , 更多信息请参考:  `paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx>`_ 。
 
 参数
 :::::::::
