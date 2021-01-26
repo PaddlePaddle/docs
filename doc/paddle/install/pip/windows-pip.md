@@ -146,7 +146,49 @@
 
 #### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
 
-Windows系统的develop包只支持cuda10.2版本：
+2.2.1 <span id="cuda9">CUDA9.0的PaddlePaddle</span>
+
+* 如果您是使用 Python 2
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post90 -f https://paddlepaddle.org.cn/whl/develop.html
+  ```
+
+* 如果您是使用 Python 3
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post90 -f https://paddlepaddle.org.cn/whl/develop.html
+  ```
+
+2.2.2 <span id="cuda10">CUDA10.0的PaddlePaddle</span>
+
+* 如果您是使用 Python 2
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post100 -f https://paddlepaddle.org.cn/whl/develop.html
+  ```
+
+* 如果您是使用 Python 3
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post100 -f https://paddlepaddle.org.cn/whl/develop.html
+  ```
+
+2.2.3 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
+
+* 如果您是使用 Python 2
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post101 -f https://paddlepaddle.org.cn/whl/develop.html
+  ```
+
+* 如果您是使用 Python 3
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post101 -f https://paddlepaddle.org.cn/whl/develop.html
+  ```
+
+2.2.4 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
 
 * 如果您是使用 Python 2
 
@@ -160,6 +202,17 @@ Windows系统的develop包只支持cuda10.2版本：
   python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f https://paddlepaddle.org.cn/whl/develop.html
   ```
 
+2.2.5 <span id="cuda11">CUDA11的PaddlePaddle</span>
+
+* 如果您是使用 Python 2
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post110 -f https://paddlepaddle.org.cn/whl/develop.html
+  ```
+* 如果您是使用 Python 3
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post110 -f https://paddlepaddle.org.cn/whl/develop.html
+  ```
 
 
 ## **三、验证安装**
