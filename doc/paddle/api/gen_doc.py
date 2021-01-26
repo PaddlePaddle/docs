@@ -41,15 +41,20 @@ def get_all_api(root_path='paddle'):
     for filefinder, name, ispkg in pkgutil.walk_packages(
             path=paddle.__path__, prefix=paddle.__name__ + '.'):
         try:
-            m = eval(name)
+            #m = eval(name)
+            if name in sys.modules:
+                m = sys.modules[name]
+            else:
+                continue
         except AttributeError:
+            print("AttributeError occurred when `eval({})`".format(name))
             pass
         else:
             if hasattr(m, "__all__"):
                 # may have duplication of api
                 for api in set(m.__all__):
                     if "," in api:
-                        # ?
+                        # ? WTF
                         continue
 
                     # api's fullname
@@ -57,6 +62,8 @@ def get_all_api(root_path='paddle'):
                     try:
                         fc_id = id(eval(full_name))
                     except AttributeError:
+                        print("AttributeError occurred when `id(eval({}))`".
+                              format(full_name))
                         pass
                     else:
                         api_counter += 1
@@ -114,15 +121,24 @@ def set_source_code_attrs():
                                               if hasattr(target, 'id')
                                           ]):
                                     line_no = node.lineno
-                                    print(module, line_no,
-                                          api_info['short_name'])
+                                    # print(module, line_no, api_info['short_name'])
                                     line_no_found = True
                                     if has_end_lineno:
                                         end_line_no = node.end_lineno
+
+                                    # assemble the args, using __init__ if it's a classDef
+                                    if isinstance(node, ast.ClassDef):
+                                        for n in node.body:
+                                            if hasattr(
+                                                    n, 'name'
+                                            ) and n.name == '__init__':
+                                                node = n
+                                                break
                                     if isinstance(node, ast.FunctionDef):
                                         # 'args', 'defaults', 'kw_defaults', 'kwarg', 'kwonlyargs', 'posonlyargs', 'vararg'
                                         for arg in node.args.args:
-                                            str_args_list.append(arg.arg)
+                                            if not arg.arg == 'self':
+                                                str_args_list.append(arg.arg)
 
                                         defarg_ind_start = len(
                                             str_args_list) - len(
@@ -149,8 +165,18 @@ def set_source_code_attrs():
                                         if len(node.args.kwonlyargs) > 0:
                                             if node.args.vararg is None:
                                                 str_arg_list.append('*')
-                                            for kwoarg in node.args.kwonlyargs:
-                                                str_arg_list.append(kwoarg.arg)
+                                            for kwoarg, d in zip(
+                                                    node.args.kwonlyargs,
+                                                    node.args.kw_defaults):
+                                                if isinstance(d, ast.Constant):
+                                                    str_arg_list.append(
+                                                        "{}={}".format(
+                                                            kwoarg.arg,
+                                                            d.value))
+                                                elif isinstance(d, ast.Name):
+                                                    str_arg_list.append(
+                                                        "{}={}".format(
+                                                            kwoarg.arg, d.id))
                                         if node.args.kwarg is not None:
                                             str_args_list.append(
                                                 '**' + node.args.kwarg.arg)
@@ -167,6 +193,8 @@ def set_source_code_attrs():
                     api_info_dict[id_api]["src_file"] = module
                 if len(str_args_list) > 0:
                     api_info_dict[id_api]["args"] = ', '.join(str_args_list)
+
+                api_info_dict[id_api]["type"] = type(api).__name__
 
 
 def set_display_attr_of_apis():
@@ -346,7 +374,8 @@ class EnDocGenerator(object):
         try:
             m = eval(self.module_name + "." + self.api)
         except AttributeError:
-            #print("attribute error: module_name=" + self.module_name  + ", api=" + self.api)
+            print("attribute error: module_name=" + self.module_name + ", api="
+                  + self.api)
             pass
         else:
             if isinstance(eval(self.module_name + "." + self.api), type):
