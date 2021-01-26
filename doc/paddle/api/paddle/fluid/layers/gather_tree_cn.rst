@@ -46,21 +46,18 @@ gather_tree
     
 返回：和 ``ids`` 具有相同形状和数据类型的 Tensor。包含了根据 parent 回溯而收集产生的完整 id 序列。
 
-返回类型：Tensor
-
 **代码示例**：
 
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    ids = paddle.to_tensor(np.asarray([[[2, 2], [6, 1]], [[3, 9], [6, 1]], [[0, 1], [9, 0]]]))
+    ids = paddle.to_tensor([[[2, 2], [6, 1]], [[3, 9], [6, 1]], [[0, 1], [9, 0]]])
 
-    parents = paddle.to_tensor(np.asarray([[[0, 0], [1, 1]], [[1, 0], [1, 0]], [[0, 0], [0, 1]]]))
-    
-    # [[[2, 2], [1, 6]], [[3, 3], [6, 1]], [[0, 1], [9, 0]]]
+    parents = paddle.to_tensor([[[0, 0], [1, 1]], [[1, 0], [1, 0]], [[0, 0], [0, 1]]])
+
     final_sequences = paddle.nn.functional.gather_tree(ids, parents)
+    # [[[2, 2], [1, 6]], [[3, 3], [6, 1]], [[0, 1], [9, 0]]]
 
 
 
