@@ -8,15 +8,15 @@ Install the pre-built wheel package that supports Kunlun XPU. At present, this w
 
 Python3.7
 
-o  ```wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0-cp37-cp37m-linux_x86_64.whl```
+o  ```wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0rc1-cp37-cp37m-linux_x86_64.whl```
 
-o  ```python3.7 -m pip install -U paddlepaddle-2.0.0-cp37-cp37m-linux_x86_64.whl ```
+o  ```python3.7 -m pip install -U paddlepaddle-2.0.0rc1-cp37-cp37m-linux_x86_64.whl ```
 
 Python2.7
 
-o  ```wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0-cp27-cp27mu-linux_x86_64.whl```
+o  ```wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0rc1-cp27-cp27mu-linux_x86_64.whl```
 
-o  ```python2.7 -m pip install -U paddlepaddle-2.0.0-cp27-cp27mu-linux_x86_64.whl```
+o  ```python2.7 -m pip install -U paddlepaddle-2.0.0rc1-cp27-cp27mu-linux_x86_64.whl```
 
 
 

@@ -169,13 +169,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install --pre paddlepaddle==2.1.0.dev0 -f http://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install --pre paddlepaddle -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install --pre paddlepaddle==2.1.0.dev0 -f http://paddlepaddle.org.cn/whl/develop.html
+  python3 -m pip install --pre paddlepaddle -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -189,13 +189,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post90 -f http://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post90 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post90 -f http://paddlepaddle.org.cn/whl/develop.html
+  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post90 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -205,13 +205,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post100 -f http://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post100 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post100 -f http://paddlepaddle.org.cn/whl/develop.html
+  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post100 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -221,13 +221,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post101 -f http://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post101 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post101 -f http://paddlepaddle.org.cn/whl/develop.html
+  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post101 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -237,13 +237,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post102 -f http://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post102 -f http://paddlepaddle.org.cn/whl/develop.html
+  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -253,13 +253,13 @@
 * 如果您是使用 Python 2
 
   ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post110 -f http://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post110 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * 如果您是使用 Python 3
 
   ```
-  python3 -m pip install --pre paddlepaddle-gpu==2.1.0_dev0.post110 -f http://paddlepaddle.org.cn/whl/develop.html
+  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post110 -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 

@@ -113,13 +113,13 @@
 * 对于Python 2,您可以执行:
 
   ```
-  python -m pip install --pre paddlepaddle==2.1.0.dev0 -f http://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install --pre paddlepaddle -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * 对于Python 3，您可以执行:
 
   ```
-  python3 -m pip install --pre paddlepaddle==2.1.0.dev0 -f http://paddlepaddle.org.cn/whl/develop.html
+  python3 -m pip install --pre paddlepaddle -f http://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * 注:
