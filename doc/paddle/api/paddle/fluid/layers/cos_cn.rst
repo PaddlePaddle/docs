@@ -22,8 +22,6 @@ cos
 
 返回：输出Tensor，与 ``x`` 维度相同、数据类型相同。
 
-返回类型：Tensor
-
 **代码示例**：
 
 .. code-block:: python
