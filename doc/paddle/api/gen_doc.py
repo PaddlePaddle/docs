@@ -88,6 +88,7 @@ def set_source_code_attrs():
                 # print('processing ', api_info['full_name'])
                 api = getattr(cur_class, api_info['short_name'])
                 line_no_found = False
+                str_args_list = []
                 if type(api).__name__ == 'module':
                     module = os.path.splitext(api.__file__)[0] + '.py'
                 elif hasattr(api, '__module__') and hasattr(
@@ -98,32 +99,63 @@ def set_source_code_attrs():
                         with open(module) as module_file:
                             module_ast = ast.parse(module_file.read())
 
+                            # ClassDef, FunctionDef, Import, ImportFrom, Assign and so on
+                            # but we only focus on the ClassDef, FunctionDef and Assign.
                             node_definition = ast.ClassDef if inspect.isclass(
                                 api) else ast.FunctionDef
                             for node in module_ast.body:
-                                if isinstance(
-                                        node, node_definition
-                                ) and node.name == api_info['short_name']:
+                                if ((isinstance(node, ast.ClassDef) or
+                                     isinstance(node, ast.FunctionDef)) and
+                                        node.name == api_info['short_name']
+                                    ) or (isinstance(node, ast.Assign) and
+                                          api_info['short_name'] in [
+                                              target.id
+                                              for target in node.targets
+                                              if hasattr(target, 'id')
+                                          ]):
                                     line_no = node.lineno
+                                    print(module, line_no,
+                                          api_info['short_name'])
                                     line_no_found = True
                                     if has_end_lineno:
                                         end_line_no = node.end_lineno
+                                    if isinstance(node, ast.FunctionDef):
+                                        # 'args', 'defaults', 'kw_defaults', 'kwarg', 'kwonlyargs', 'posonlyargs', 'vararg'
+                                        for arg in node.args.args:
+                                            str_args_list.append(arg.arg)
+
+                                        defarg_ind_start = len(
+                                            str_args_list) - len(
+                                                node.args.defaults)
+                                        for defarg_ind in range(
+                                                len(node.args.defaults)):
+                                            if isinstance(node.args.defaults[
+                                                    defarg_ind], ast.Name):
+                                                str_args_list[
+                                                    defarg_ind_start +
+                                                    defarg_ind] += '=' + str(
+                                                        node.args.defaults[
+                                                            defarg_ind].id)
+                                            elif isinstance(node.args.defaults[
+                                                    defarg_ind], ast.Constant):
+                                                str_args_list[
+                                                    defarg_ind_start +
+                                                    defarg_ind] += '=' + str(
+                                                        node.args.defaults[
+                                                            defarg_ind].value)
+                                        if node.args.vararg is not None:
+                                            str_args_list.append(
+                                                '*' + node.args.vararg.arg)
+                                        if len(node.args.kwonlyargs) > 0:
+                                            if node.args.vararg is None:
+                                                str_arg_list.append('*')
+                                            for kwoarg in node.args.kwonlyargs:
+                                                str_arg_list.append(kwoarg.arg)
+                                        if node.args.kwarg is not None:
+                                            str_args_list.append(
+                                                '**' + node.args.kwarg.arg)
                                     break
 
-                            # If we could not find it, we look at assigned objects.
-                            if not line_no_found:
-                                for node in module_ast.body:
-                                    if isinstance(
-                                            node, ast.Assign) and api_info[
-                                                'short_name'] in [
-                                                    target.id
-                                                    for target in node.targets
-                                                ]:
-                                        line_no = node.lineno
-                                        line_no_found = True
-                                        if has_end_lineno:
-                                            end_line_no = node.end_lineno
-                                        break
                 if line_no_found:
                     api_info_dict[id_api]["lineno"] = line_no
                     if has_end_lineno:
@@ -133,6 +165,8 @@ def set_source_code_attrs():
                         src_file_start_ind:]
                 else:
                     api_info_dict[id_api]["src_file"] = module
+                if len(str_args_list) > 0:
+                    api_info_dict[id_api]["args"] = ', '.join(str_args_list)
 
 
 def set_display_attr_of_apis():
