@@ -175,7 +175,7 @@
         如果您是使用 Python 2，安装CPU版本的命令为：
         ::
     
-            python -m pip install --pre paddlepaddle -f http://paddlepaddle.org.cn/whl/develop.html
+            python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/develop.html
 
         如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装 
 
@@ -188,7 +188,7 @@
         如果您是使用 Python2，请注意用以下指令安装的PaddlePaddle在Windows、Ubuntu、CentOS下只支持CUDA10.2：
         ::
 
-            python -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f http://paddlepaddle.org.cn/whl/develop.html
+            python -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f https://paddlepaddle.org.cn/whl/develop.html
         
         如果您是使用 Python 3，请将上述命令中的 **python** 更换为 **python3** 进行安装。
 

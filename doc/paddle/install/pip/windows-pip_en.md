@@ -133,13 +133,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install --pre paddlepaddle -f http://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install --pre paddlepaddle -f http://paddlepaddle.org.cn/whl/develop.html
+  python3 -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -151,13 +151,13 @@ The `develop` package of `Windows` system only supports `cuda10.2` version:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f http://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f https://paddlepaddle.org.cn/whl/develop.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f http://paddlepaddle.org.cn/whl/develop.html
+  python3 -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f https://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
