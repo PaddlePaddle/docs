@@ -1,20 +1,20 @@
-.. _cn_api_fluid_layers_cosh:
+.. _cn_api_fluid_layers_sinh:
 
-cosh
+sinh
 -------------------------------
 
-.. py:function:: paddle.cosh(x, name=None)
+.. py:function:: paddle.sinh(x, name=None)
 
 
 
 
-双曲余弦函数。
+双曲正弦函数。
 
-输入范围是 `(-inf, inf)` ， 输出范围是 `[1,inf]`。
+输入范围是 `(-inf, inf)` ， 输出范围是 `(-inf, inf)`。
 
 .. math::
 
-    out = \frac{exp(x)+exp(-x)}{2}
+    out = \frac{exp(x)-exp(-x)}{2}
 
 参数:
     - x (Tensor) - 输入的Tensor，数据类型为：float32、float64 、float16。
@@ -28,7 +28,7 @@ cosh
 
         import paddle
 
-        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-        out = paddle.cosh(x)
+        x = paddle.to_tensor([-2.0, -1.0, 1.0, 2.0])
+        out = paddle.sinh(x)
         print(out)
-        # [1.08107237 1.02006674 1.00500417 1.04533851]
+        # [-3.62686038, -1.17520118,  1.17520118,  3.62686038]
