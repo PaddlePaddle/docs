@@ -6,6 +6,9 @@ squeeze
 
 该OP会删除输入Tensor的Shape中尺寸为1的维度。如果指定了axis，则会删除axis中指定的尺寸为1的维度。如果没有指定axis，那么所有等于1的维度都会被删除。
 
+请注意，在动态图模式下，输出Tensor将与输入Tensor共享数据，并且没有Tensor数据拷贝的过程。
+如果不希望输入与输出共享数据，请使用 `Tensor.clone` ，例如 `squeeze_clone_x = x.squeeze().clone()` 。
+
 .. code-block:: text
 
     Case 1:
@@ -55,4 +58,10 @@ squeeze
 
     x = paddle.rand([5, 1, 10])
     output = paddle.squeeze(x, axis=1)
+
+    print(x.shape)  # [5, 1, 10]
     print(output.shape)  # [5, 10]
+
+    # 在动态图模式下，输出output与输入x共享数据
+    x[0, 0, 0] = 10.
+    print(output[0, 0]) # [10.]
