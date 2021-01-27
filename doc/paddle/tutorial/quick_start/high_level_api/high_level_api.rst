@@ -1,8 +1,12 @@
 飞桨高层API使用指南
 ===================
 
-1. 简介
--------
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ **日期:**
+2021.01 **摘要:**
+本示例教程是对飞桨高层API的详细说明，会介绍如何使用高层API，快速完成深度学习任务。
+
+一、简介
+--------
 
 飞桨框架2.0全新推出高层API，是对飞桨API的进一步封装与升级，提供了更加简洁易用的API，进一步提升了飞桨的易学易用性，并增强飞桨的功能。
 
@@ -26,10 +30,13 @@
 -  提供常用的神经网络模型可供调用:
    高层API中集成了计算机视觉领域和自然语言处理领域常用模型，包括但不限于mobilenet、resnet、yolov3、cyclegan、bert、transformer、seq2seq等等。同时发布了对应模型的预训练模型，用户可以直接使用这些模型或者在此基础上完成二次开发。
 
-2. 安装并使用飞桨高层API
-------------------------
+二、安装并使用飞桨高层API
+-------------------------
 
-飞桨高层API无需独立安装，只需要安装好paddlepaddle即可，安装完成后import
+飞桨高层API无需独立安装，只需要安装好paddlepaddle即可。如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
+
+安装完成后import
 paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.vision、NLP领域paddle.text。
 
 .. code:: ipython3
@@ -45,12 +52,12 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 .. parsed-literal::
 
-    '2.0.0-rc1'
+    '2.0.0'
 
 
 
-2. 目录
--------
+三、目录
+--------
 
 本指南教学内容覆盖
 
@@ -62,12 +69,12 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 -  如何在fit接口满足需求的时候进行自定义，使用基础API来完成训练。
 -  如何使用多卡来加速训练。
 
-3. 数据集定义、加载和数据预处理
--------------------------------
+四、数据集定义、加载和数据预处理
+--------------------------------
 
 对于深度学习任务，均是框架针对各种类型数字的计算，是无法直接使用原始图片和文本等文件来完成。那么就是涉及到了一项动作，就是将原始的各种数据文件进行处理加工，转换成深度学习任务可以使用的数据。
 
-3.1 框架自带数据集使用
+4.1 框架自带数据集使用
 ~~~~~~~~~~~~~~~~~~~~~~
 
 高层API将一些我们常用到的数据集作为领域API对用户进行开放，对应API所在目录为\ ``paddle.vision.datasets``\ ，那么我们先看下提供了哪些数据集。
@@ -95,7 +102,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     # 验证数据集
     val_dataset = vision.datasets.MNIST(mode='test', transform=ToTensor())
 
-3.2 自定义数据集
+4.2 自定义数据集
 ~~~~~~~~~~~~~~~~
 
 更多的时候我们是需要自己使用已有的相关数据来定义数据集，那么这里我们通过一个案例来了解如何进行数据集的定义，飞桨为用户提供了\ ``paddle.io.Dataset``\ 基类，让用户通过类的集成来快速实现数据集定义。
@@ -172,12 +179,12 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     testdata4 label4
 
 
-3.3 数据增强
+4.3 数据增强
 ~~~~~~~~~~~~
 
-训练过程中有时会遇到过拟合的问题，其中一个解决方法就是对训练数据做增强，对数据进行处理得到不同的图像，从而泛化数据集。数据增强API是定义在领域目录的transforms下，这里我们介绍两种使用方式，一种是基于框架自带数据集，一种是基于自己定义的数据集。
+训练过程中有时会遇到过拟合的问题，其中一个解决方法就是对训练数据做增强，对数据进行处理得到不同的图像，从而泛化数据集。数据增强API是定义在领域目录的transofrms下，这里我们介绍两种使用方式，一种是基于框架自带数据集，一种是基于自己定义的数据集。
 
-3.3.1 框架自带数据集
+4.3.1 框架自带数据集
 ^^^^^^^^^^^^^^^^^^^^
 
 .. code:: ipython3
@@ -191,7 +198,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     # 通过transform参数传递定义好的数据增项方法即可完成对自带数据集的应用
     train_dataset_3 = vision.datasets.MNIST(mode='train', transform=transform)
 
-3.3.2 自定义数据集
+4.3.2 自定义数据集
 ^^^^^^^^^^^^^^^^^^
 
 针对自定义数据集使用数据增强有两种方式，一种是在数据集的构造函数中进行数据增强方法的定义，之后对__getitem__中返回的数据进行应用。另外一种方式也可以给自定义的数据集类暴漏一个构造参数，在实例化类的时候将数据增强方法传递进去。
@@ -237,12 +244,12 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
         def __len__(self):
             return len(self.data)
 
-4. 模型组网
------------
+五、模型组网
+------------
 
 针对高层API在模型组网上和基础API是统一的一套，无需投入额外的学习使用成本。那么这里我举几个简单的例子来做示例。
 
-4.1 Sequential组网
+5.1 Sequential组网
 ~~~~~~~~~~~~~~~~~~
 
 针对顺序的线性网络结构我们可以直接使用Sequential来快速完成组网，可以减少类的定义等代码编写。
@@ -258,7 +265,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
         paddle.nn.Linear(512, 10)
     )
 
-4.2 SubClass组网
+5.2 SubClass组网
 ~~~~~~~~~~~~~~~~
 
 针对一些比较复杂的网络结构，就可以使用Layer子类定义的方式来进行模型代码编写，在\ ``__init__``\ 构造函数中进行组网Layer的声明，在\ ``forward``\ 中使用声明的Layer变量进行前向计算。子类组网方式也可以实现sublayer的复用，针对相同的layer可以在构造函数中一次性定义，在forward中多次调用。
@@ -287,7 +294,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     
     mnist_2 = Mnist()
 
-4.3 模型封装
+5.3 模型封装
 ~~~~~~~~~~~~
 
 定义好网络结构之后我们来使用\ ``paddle.Model``\ 完成模型的封装，将网络结构组合成一个可快速使用高层API进行训练、评估和预测的类。
@@ -319,7 +326,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
     # label = paddle.static.InputSpec([None, 1], dtype='int8')
     # model = paddle.Model(mnist, input, label)
 
-4.4 模型可视化
+5.4 模型可视化
 ~~~~~~~~~~~~~~
 
 在组建好我们的网络结构后，一般我们会想去对我们的网络结构进行一下可视化，逐层的去对齐一下我们的网络结构参数，看看是否符合我们的预期。这里可以通过\ ``Model.summary``\ 接口进行可视化展示。
@@ -400,8 +407,8 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 这里面有一个注意的点，有的用户可能会疑惑为什么要传递\ ``(1, 28, 28)``\ 这个input_size参数，因为在动态图中，网络定义阶段是还没有得到输入数据的形状信息，我们想要做网络结构的呈现就无从下手，那么我们通过告知接口网络结构的输入数据形状，这样网络可以通过逐层的计算推导得到完整的网络结构信息进行呈现。如果是动态图运行模式，那么就不需要给summary接口传递输入数据形状这个值了，因为在Model封装的时候我们已经定义好了InputSpec，其中包含了输入数据的形状格式。
 
-5. 模型训练
------------
+六、模型训练
+------------
 
 网络结构通过\ ``paddle.Model``\ 接口封装成模型类后进行执行操作非常的简洁方便，可以直接通过调用\ ``Model.fit``\ 就可以完成训练过程。
 
@@ -429,15 +436,15 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
     The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/5
-    step 938/938 [==============================] - loss: 0.1019 - acc: 0.9488 - 18ms/step          
+    step 938/938 [==============================] - loss: 0.1108 - acc: 0.9353 - 16ms/step          
     Epoch 2/5
-    step 938/938 [==============================] - loss: 0.0193 - acc: 0.9757 - 18ms/step          
+    step 938/938 [==============================] - loss: 0.1086 - acc: 0.9716 - 16ms/step          
     Epoch 3/5
-    step 938/938 [==============================] - loss: 0.0277 - acc: 0.9810 - 19ms/step          
+    step 938/938 [==============================] - loss: 0.0225 - acc: 0.9790 - 16ms/step          
     Epoch 4/5
-    step 938/938 [==============================] - loss: 0.0045 - acc: 0.9849 - 18ms/step          
+    step 938/938 [==============================] - loss: 0.0064 - acc: 0.9826 - 16ms/step          
     Epoch 5/5
-    step 938/938 [==============================] - loss: 0.0816 - acc: 0.9877 - 18ms/step          
+    step 938/938 [==============================] - loss: 0.0418 - acc: 0.9865 - 16ms/step          
 
 
 注：
@@ -451,7 +458,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
    ...
    model.fit(train_dataloader, ...)
 
-5.1 单机单卡
+6.1 单机单卡
 ~~~~~~~~~~~~
 
 我们把刚才单步教学的训练代码做一个整合，这个完整的代码示例就是我们的单机单卡训练程序。
@@ -480,18 +487,18 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
     The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/5
-    step 938/938 [==============================] - loss: 0.0305 - acc: 0.9880 - 19ms/step          
+    step 938/938 [==============================] - loss: 0.0261 - acc: 0.9879 - 16ms/step          
     Epoch 2/5
-    step 938/938 [==============================] - loss: 0.0021 - acc: 0.9918 - 18ms/step          
+    step 938/938 [==============================] - loss: 0.0502 - acc: 0.9907 - 16ms/step          
     Epoch 3/5
-    step 938/938 [==============================] - loss: 0.0022 - acc: 0.9926 - 18ms/step          
+    step 938/938 [==============================] - loss: 0.0486 - acc: 0.9924 - 16ms/step          
     Epoch 4/5
-    step 938/938 [==============================] - loss: 0.0124 - acc: 0.9932 - 18ms/step          
+    step 938/938 [==============================] - loss: 0.0040 - acc: 0.9928 - 17ms/step          
     Epoch 5/5
-    step 938/938 [==============================] - loss: 0.0434 - acc: 0.9942 - 18ms/step          
+    step 938/938 [==============================] - loss: 0.0941 - acc: 0.9941 - 18ms/step          
 
 
-5.2 单机多卡
+6.2 单机多卡
 ~~~~~~~~~~~~
 
 对于高层API来实现单机多卡非常简单，整个训练代码和单机单卡没有差异。直接使用\ ``paddle.distributed.launch``\ 启动单机单卡的程序即可。
@@ -502,7 +509,7 @@ paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.visi
 
 train.py里面包含的就是单机单卡代码
 
-5.3 自定义Loss
+6.3 自定义Loss
 ~~~~~~~~~~~~~~
 
 有时我们会遇到特定任务的Loss计算方式在框架既有的Loss接口中不存在，或算法不符合自己的需求，那么期望能够自己来进行Loss的自定义，我们这里就会讲解介绍一下如何进行Loss的自定义操作，首先来看下面的代码：
@@ -546,7 +553,7 @@ train.py里面包含的就是单机单卡代码
                                                axis=1)
            return paddle.mean(loss)
 
-5.4 自定义Metric
+6.4 自定义Metric
 ~~~~~~~~~~~~~~~~
 
 和Loss一样，如果遇到一些想要做个性化实现的操作时，我们也可以来通过框架完成自定义的评估计算方法，具体的实现方式如下：
@@ -697,16 +704,16 @@ train.py里面包含的就是单机单卡代码
            def on_train_end(self, logs=None)                   训练结束后，`Model.fit`接口中调用
            def on_eval_begin(self, logs=None)                  评估开始前，`Model.evaluate`接口调用
            def on_eval_end(self, logs=None)                    评估结束后，`Model.evaluate`接口调用
-           def on_predict_begin(self, logs=None)               预测测试开始前，`Model.predict`接口中调用
-           def on_predict_end(self, logs=None)                 预测测试结束后，`Model.predict`接口中调用 
+           def on_test_begin(self, logs=None)                  预测测试开始前，`Model.predict`接口中调用
+           def on_test_end(self, logs=None)                    预测测试结束后，`Model.predict`接口中调用 
            def on_epoch_begin(self, epoch, logs=None)          每轮训练开始前，`Model.fit`接口中调用 
            def on_epoch_end(self, epoch, logs=None)            每轮训练结束后，`Model.fit`接口中调用 
            def on_train_batch_begin(self, step, logs=None)     单个Batch训练开始前，`Model.fit`和`Model.train_batch`接口中调用
            def on_train_batch_end(self, step, logs=None)       单个Batch训练结束后，`Model.fit`和`Model.train_batch`接口中调用
            def on_eval_batch_begin(self, step, logs=None)      单个Batch评估开始前，`Model.evalute`和`Model.eval_batch`接口中调用
            def on_eval_batch_end(self, step, logs=None)        单个Batch评估结束后，`Model.evalute`和`Model.eval_batch`接口中调用
-           def on_predict_batch_begin(self, step, logs=None)   单个Batch预测测试开始前，`Model.predict`和`Model.test_batch`接口中调用
-           def on_predict_batch_end(self, step, logs=None)     单个Batch预测测试结束后，`Model.predict`和`Model.test_batch`接口中调用
+           def on_test_batch_begin(self, step, logs=None)      单个Batch预测测试开始前，`Model.predict`和`Model.test_batch`接口中调用
+           def on_test_batch_end(self, step, logs=None)        单个Batch预测测试结束后，`Model.predict`和`Model.test_batch`接口中调用
        """
        def __init__(self):
            super(SelfDefineCallback, self).__init__()
@@ -740,8 +747,8 @@ train.py里面包含的就是单机单卡代码
                print('save checkpoint at {}'.format(os.path.abspath(path)))
                self.model.save(path)
 
-6. 模型评估
------------
+七、模型评估
+------------
 
 对于训练好的模型进行评估操作可以使用\ ``evaluate``\ 接口来实现，事先定义好用于评估使用的数据集后，可以简单的调用\ ``evaluate``\ 接口即可完成模型评估操作，结束后根据prepare中loss和metric的定义来进行相关评估结果计算返回。
 
@@ -758,10 +765,12 @@ train.py里面包含的就是单机单卡代码
 
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step  5150/10000 [==============>...............] - loss: 3.5763e-07 - acc: 0.9742 - ETA: 6s - 1ms/step
+    step 10000/10000 [==============================] - loss: 0.0000e+00 - acc: 0.9818 - 1ms/step          
+    Eval samples: 10000
 
-7. 模型预测
------------
+
+八、模型预测
+------------
 
 高层API中提供了\ ``predict``\ 接口来方便用户对训练好的模型进行预测验证，只需要基于训练好的模型将需要进行预测测试的数据放到接口中进行计算即可，接口会将经过模型计算得到的预测结果进行返回。
 
@@ -785,7 +794,7 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
     Predict samples: 10000
 
 
-7.1 使用多卡进行预测
+8.1 使用多卡进行预测
 ~~~~~~~~~~~~~~~~~~~~
 
 有时我们需要进行预测验证的数据较多，单卡无法满足我们的时间诉求，那么\ ``predict``\ 接口也为用户支持实现了使用多卡模式来运行。
@@ -798,10 +807,10 @@ numpy_ndarray_n是对应原始数据经过模型计算后得到的预测数据�
 
 infer.py里面就是包含model.predict的代码程序。
 
-8. 模型部署
------------
+九、模型部署
+------------
 
-8.1 模型存储
+9.1 模型存储
 ~~~~~~~~~~~~
 
 模型训练和验证达到我们的预期后，可以使用\ ``save``\ 接口来将我们的模型保存下来，用于后续模型的Fine-tuning（接口参数training=True）或推理部署（接口参数training=False）。
@@ -834,7 +843,7 @@ infer.py里面就是包含model.predict的代码程序。
 
     model.save('~/model/mnist')
 
-8.2 预测部署
+9.2 预测部署
 ~~~~~~~~~~~~
 
 有了用于推理部署的模型，就可以使用推理部署框架来完成预测服务部署，具体可以参见：\ `预测部署 <https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/inference_deployment/index_cn.html>`__\ ，
