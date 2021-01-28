@@ -16,3 +16,17 @@
 | Bert-Base          | NLP      | [模型链接](https://github.com/PaddlePaddle/models/blob/6bb6834cf399254d59d67cf9f9d4c92b41eb6678/PaddleNLP/examples/language_model/bert/README.md)    | 静态图/动态图 | X86（Intel）            | 支持（静态图） |
 | Ernie-Base         | NLP      |    | 静态图/动态图 | X86（Intel）            | 支持（静态图） |
 | DQN                | 强化学习 | [模型链接](https://github.com/PaddlePaddle/PARL/blob/develop/examples/DQN/README.md)    | 静态图        | X86（Intel）            | 支持           |
+
+模型放置在飞桨模型套件中，各领域套件是 github.com/PaddlePaddle 下的独立repo，clone下载即可获取所需的模型文件：
+
+| 领域     | 套件名称        | 分支/版本        |
+| -------- | --------------- | ---------------- |
+| 图像分类 | PaddleClas      | release/2.0      |
+| 目标检测 | PaddleDetection | release/2.0-beta |
+| 图像分割 | PaddleSeg       | release/2.0-beta |
+| NLP      | models          | develop          |
+| 强化学习 | PARL            | r1.4             |
+
+随着ARM架构的高性能、低功耗、低成本的优势日益突显，ARM CPU更多地进入PC和服务器领域，众多新锐国产CPU也纷纷采用ARM架构。在这一趋势下，我们开始尝试在飞腾CPU和昆仑XPU上运行飞桨，当前已验证ResNet50的训练效果。
+
+更多的常用模型以及动态图组网将在后续版本增加。高性能预测库PaddleInference、PaddleLite、PaddleServing将在近期发布的新版本中支持昆仑XPU。敬请期待。
