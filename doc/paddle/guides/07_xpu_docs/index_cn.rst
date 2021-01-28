@@ -17,3 +17,7 @@
     paddle_2.0_xpu_cn.md
     paddle_install_cn.md
     train_example_cn.md
+
+
+FPGA的支持
+ 
