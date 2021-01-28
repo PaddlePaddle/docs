@@ -1,12 +1,12 @@
 # C++ OP相关注意事项
 
-## Fluid中Op的构建逻辑
-### 1.Fluid中Op的构建逻辑
-Fluid中所有的Op都继承自`OperatorBase`，且所有的Op都是无状态的，每个Op包含的成员变量只有四个：type、inputs、outputs、attribute。
+## Paddle中Op的构建逻辑
+### 1.Paddle中Op的构建逻辑
+Paddle中所有的Op都继承自`OperatorBase`，且所有的Op都是无状态的，每个Op包含的成员变量只有四个：type、inputs、outputs、attribute。
 
 Op的核心方法是Run，Run方法需要两方面的资源：数据资源和计算资源，这两个资源分别通过`Scope`和`Place`获取。框架内部有一个全局的`DeviceContextPool`，用来记录`Place`和`DeviceContext`之间的对应的关系，即每个`Place`有且仅有一个`DeviceContext`与之对应，`DeviceContext`中存放了当前设备的计算资源。比如对于GPU，这些资源包括`cudnn_handle`、`cublas_handle`、`stream`等，**Op内部所有的计算（数据拷贝和CUDA Kernel等）都必须在`DeviceContext`中进行**。
 
-Fluid框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同。为此，Fluid引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv_op，conv_op的OpKernel有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
+Paddle框架的设计理念是可以在多种设备及第三方库上运行，有些Op的实现可能会因为设备或者第三方库的不同而不同。为此，Paddle引入了OpKernel的方式，即一个Op可以有多个OpKernel，这类Op继承自`OperatorWithKernel`，这类Op的代表是conv_op，conv_op的OpKernel有：`GemmConvKernel`、`CUDNNConvOpKernel`、`ConvMKLDNNOpKernel`，且每个OpKernel都有double和float两种数据类型。不需要OpKernel的代表有`WhileOp`等。
 
 Operator继承关系图：
 ![op_inheritance_relation_diagram](./op_inheritance_relation_diagram.png)
@@ -97,7 +97,7 @@ Operator继承关系图：
 
 ## 写Op注意事项
 ### 1.Op可以支持输入输出类型
-Fluid的Op的输入输出都是`Variable`，从设计上讲，`Variable`中可以存放任意类型，Op的输入输出`Variable`可能是是任意类型，通常情况下`Variable`中存放的是`LoDTensor`、`SelectedRows`。
+Paddle的Op的输入输出都是`Variable`，从设计上讲，`Variable`中可以存放任意类型，Op的输入输出`Variable`可能是是任意类型，通常情况下`Variable`中存放的是`LoDTensor`、`SelectedRows`。
 
 **注意：**
 
@@ -159,9 +159,9 @@ ShareDataWith的功能是使两个Tensor共享底层buffer，在调用这个操�
 ### 8.显存优化
 
 #### 8.1 为可原位计算的Op注册Inplace
-有些Op的计算逻辑中，输出可以复用输入的显存空间，也可称为原位计算。例如[`reshape_op`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/reshape_op.cc)中，输出`Out`可以复用输入`X`的显存空间，因为该Op的计算逻辑不会改变`X`的实际数据，只是修改它的shape，输出和输入复用同一块显存空间不影响结果。对于这类OP，可以注册`Inlace`，从而让框架在运行时自动地进行显存优化。
+有些Op的计算逻辑中，输出可以复用输入的显存空间，也可称为原位计算。例如[reshape_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/reshape_op.cc)中，输出`Out`可以复用输入`X`的显存空间，因为该Op的计算逻辑不会改变`X`的实际数据，只是修改它的shape，输出和输入复用同一块显存空间不影响结果。对于这类OP，可以注册`Inlace`，从而让框架在运行时自动地进行显存优化。
 
-fluid提供了`DECLARE_INPLACE_OP_INFERER`宏用于注册`Inplace`，该宏第一个参数是一个类名，如`ReshapeOpInplaceInToOut`；第二个参数是一对复用的输入输出，以`{"X", "Out"}`的形式给出。在`REGISTER_OPERATOR`时，
+Paddle提供了`DECLARE_INPLACE_OP_INFERER`宏用于注册`Inplace`，该宏第一个参数是一个类名，如`ReshapeOpInplaceInToOut`；第二个参数是一对复用的输入输出，以`{"X", "Out"}`的形式给出。在`REGISTER_OPERATOR`时，
 可以将类名传传入，从而为该Op注册`Inplace`。
 
 ```
@@ -179,7 +179,7 @@ REGISTER_OPERATOR(
 
 所以在写注册反向Op时需要注意以下几点：
 
-- Fluid提供的`DefaultGradOpMaker`，默认会将前向op的所有输入(`Input`）、输出(`Output`)以及输出变量所对应的梯度(`Output@Grad`)作为反向Op的输入，将前向Op输入所对应的梯度(`Input@Grad`)作为反向Op的输出。所以在使用`DefaultGradOpMaker`时需要考虑是否有些变量在计算中不被用到。
+- Paddle提供的`DefaultGradOpMaker`，默认会将前向op的所有输入(`Input`）、输出(`Output`)以及输出变量所对应的梯度(`Output@Grad`)作为反向Op的输入，将前向Op输入所对应的梯度(`Input@Grad`)作为反向Op的输出。所以在使用`DefaultGradOpMaker`时需要考虑是否有些变量在计算中不被用到。
 - 如果`DefaultGradOpMaker`不能够满足需求，需要用户自己手动构建`GradOpMaker`，具体实现请参考[相关文档](new_op.html#gradopmaker);
 - 如果有些反向Op需要依赖前向Op的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的Buffer，且不能根据其他变量推断出该Shape和LoD，则可以通过`DECLARE_NO_NEED_BUFFER_VARS_INFERER`接口对该变量（以下称该变量为`X`）在反向Op中进行注册`NoNeedBufferVars`。**一旦注册了`NoNeedBufferVars`，反向op中就不能读写该变量对应的Tensor中的buffer，只能调用Tensor的dims()和lod()方法，同时，反向Op中的`GetExpectedKernelType()`必须要重写，并且`GetExpectedKernelType()`中不能访问`X`变量中Tensor的type()方法**。比如在`SliceOpGrad`中只会用到`Input`中变量的Shape信息，所以需要为对`Input`在`SliceOpGrad`上进行注册：
 ```
@@ -266,7 +266,7 @@ The following device operations are asynchronous with respect to the host:
 
 ### 10. LoD 在 Op 内部的传导规范
 
-[LoD](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/lod_tensor.md) 是 Paddle Fluid 框架用来表示变长序列数据的属性，除了仅支持输入是 padding  data 的 Op 外，所有 Op 的实现都要考虑 LoD 的传导问题。
+[LoD](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/lod_tensor.md) 是 Paddle 框架用来表示变长序列数据的属性，除了仅支持输入是 padding  data 的 Op 外，所有 Op 的实现都要考虑 LoD 的传导问题。
 
 根据 OP 的计算过程中是否用到 LoD，我们可以将涉及到 LoD 传导问题的 OP 分为两类: LoD-Transparent 与 LoD-Based。
 
@@ -333,7 +333,7 @@ Op的计算速度与输入的数据量有关，对于某些Op可以根据输入�
 
 目前发现cudnn中的卷积操作、cudnn中的MaxPooling、CUDA中CudaAtomicXX、ParallelExecutor的Reduce模式下参数梯度的聚合等操作运行结果是非确定的。
 
-为此Fluid中添加了一些FLAGS，比如使用FLAGS_cudnn_deterministic来强制cudnn使用确定性算法、FLAGS_cpu_deterministic强制CPU端的计算使用确定性方法。
+为此Paddle中添加了一些FLAGS，比如使用FLAGS_cudnn_deterministic来强制cudnn使用确定性算法、FLAGS_cpu_deterministic强制CPU端的计算使用确定性方法。
 
 ### 2.WITH_FAST_MATH的开与关
 如果WITH_FAST_MATH是ON，NVCC在编译Paddle和Egien的时候会使用--use_fast_math，这样可能会使CUDA中的一些操作在损失一定精度的情况下变快，比如log、exp、tanh等，但也会使一些操作的计算结果是错的，比如pow操作，具体原因请查看[torch/DEPRECEATED-torch7-distro#132](https://github.com/torch/DEPRECEATED-torch7-distro/issues/132)。
@@ -348,7 +348,7 @@ Enforce提示信息不能为空，并且需要写明，因为报错信息可以�
 **注意：**在merge到develop分支之前一定进行公式预览。可参考[dynamic_lstmp](../../../api_cn/layers_cn/nn_cn.html#dynamic-lstmp)。
 
 ### 3.Op变量名的命名要规范
-在定义Op时，Op的输入输出以及属性的命名需要符合规范，具体命名规则请参考：[`name_convention`](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
+在定义Op时，Op的输入输出以及属性的命名需要符合规范，具体命名规则请参考：[name_convention](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
 
 ### 4.Python端Op接口中参数的顺序
 Python API中参数的顺序一般按照重要性来排，以fc为例：
