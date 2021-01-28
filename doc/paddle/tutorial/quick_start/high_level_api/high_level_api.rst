@@ -1,9 +1,11 @@
 飞桨高层API使用指南
 ===================
 
-**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ **日期:**
-2021.01 **摘要:**
-本示例教程是对飞桨高层API的详细说明，会介绍如何使用高层API，快速完成深度学习任务。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
+
+**日期:** 2021.01 
+
+**摘要:** 本示例教程是对飞桨高层API的详细说明，会介绍如何使用高层API，快速完成深度学习任务。
 
 一、简介
 --------
@@ -689,7 +691,7 @@ train.py里面包含的就是单机单卡代码
            """
            return self._name
 
-5.5 自定义Callback
+6.5 自定义Callback
 ~~~~~~~~~~~~~~~~~~
 
 ``fit``\ 接口的callback参数支持我们传一个Callback类实例，用来在每轮训练和每个batch训练前后进行调用，可以通过callback收集到训练过程中的一些数据和参数，或者实现一些自定义操作。
