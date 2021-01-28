@@ -88,21 +88,21 @@ paddle.utils.run_check()
 
 **英特尔CPU+昆仑XPU+Ubuntu系统**
 
-- **处理器：****Intel(R) Xeon(R) Gold 6148 CPU @     2.40GHz**
-- **操作系统：****Ubuntu 16.04.6 LTS**
-- **Python** **版本** **2.7/\**3.6/3.7 (64 bit)\****
-- **pip** **或** **pip3** **版本** **9.0.1+ (64 bit)**
-- **cmake** **版本** **3.10+**
-- **gcc/g++** **版本** **8.2+**
+- **处理器：Intel(R) Xeon(R) Gold 6148 CPU @2.40GHz**
+- **操作系统：Ubuntu 16.04.6 LTS**
+- **Python版本： 2.7/3.6/3.7 (64 bit)** 
+- **pip或pip3版本：9.0.1+ (64 bit)**
+- **cmake版本：3.10+**
+- **gcc/g++版本：8.2+**
 
 **飞腾CPU+昆仑XPU+麒麟V10系统**
 
-- **处理器：** **Phytium,FT-2000+/64**
-- **操作系统：** **Kylin** **release V10 (SP1)     /(Tercel)-aarch64-Build04/20200711**
-- **Python** **版本** **3.6/3.7 (64 bit)** 
-- **pip** **或** **pip3** **版本** **9.0.1+ (64 bit)**
-- **cmake** **版本** **3.10+**
-- **gcc/g++** **版本** **8.2+**
+- **处理器：Phytium,FT-2000+/64**
+- **操作系统：Kylin release V10 (SP1)/(Tercel)-aarch64-Build04/20200711**
+- **Python版本：3.6/3.7 (64 bit)** 
+- **pip或pip3版本： 9.0.1+ (64 bit)**
+- **cmake版本：3.10+**
+- **gcc/g++版本：8.2+**
 
 ### 源码编译安装步骤：
 
