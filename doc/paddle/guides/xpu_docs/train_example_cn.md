@@ -19,3 +19,5 @@ export FLAGS_selected_xpus=0,1
 #启动训练
 Python3.7 tools/train_multi_platform.py -c configs/kunlun/ResNet50.yaml -o use_gpu=False -o use_xpu=True
 ```
+
+注意：飞腾CPU+昆仑XPU的环境下暂未支持多卡训练。
