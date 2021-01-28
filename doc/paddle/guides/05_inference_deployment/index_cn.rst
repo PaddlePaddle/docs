@@ -23,7 +23,7 @@
 
 各产品在推理生态中的关系如下
 
-![](./images/inference_ecosystem.png)
+.. image:: images/inference_ecosystem.png
 
 **用户使用飞桨推理产品的工作流** 如下
 

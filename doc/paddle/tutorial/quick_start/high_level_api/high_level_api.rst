@@ -689,7 +689,7 @@ train.py里面包含的就是单机单卡代码
            """
            return self._name
 
-5.5 自定义Callback
+6.5 自定义Callback
 ~~~~~~~~~~~~~~~~~~
 
 ``fit``\ 接口的callback参数支持我们传一个Callback类实例，用来在每轮训练和每个batch训练前后进行调用，可以通过callback收集到训练过程中的一些数据和参数，或者实现一些自定义操作。
