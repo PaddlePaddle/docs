@@ -1,15 +1,18 @@
 IMDB 数据集使用BOW网络的文本分类
 ================================
 
-本示例教程演示如何在IMDB数据集上用简单的BOW网络完成文本分类的任务。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
 
-IMDB数据集是一个对电影评论标注为正向评论与负向评论的数据集，共有25000条文本数据作为训练集，25000条文本数据作为测试集。
-该数据集的官方地址为： http://ai.stanford.edu/~amaas/data/sentiment/
+**日期:** 2021.01 
 
-1. 环境设置
------------
+**摘要:** 本示例教程演示如何在IMDB数据集上用简单的BOW网络完成文本分类的任务。
 
-本示例基于飞桨开源框架2.0rc1版本。
+一、环境配置
+------------
+
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
 .. code:: ipython3
 
@@ -20,11 +23,14 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
 
 .. parsed-literal::
 
-    2.0.0-rc1
+    2.0.0
 
 
-2. 加载数据
------------
+二、加载数据
+------------
+
+IMDB数据集是一个对电影评论标注为正向评论与负向评论的数据集，共有25000条文本数据作为训练集，25000条文本数据作为测试集。
+该数据集的官方地址为： http://ai.stanford.edu/~amaas/data/sentiment/
 
 由于IMDB是NLP领域中常见的数据集，飞桨框架将其内置，路径为
 ``paddle.text.datasets.Imdb``\ 。通过 ``mode``
@@ -202,8 +208,8 @@ DataLoader封装后，完成数据的加载。
     test_loader = paddle.io.DataLoader(test_dataset, return_list=True, shuffle=True, 
                                        batch_size=batch_size, drop_last=True)
 
-3. 组建网络
------------
+三、组建网络
+------------
 
 本示例中，我们将会使用一个不考虑词的顺序的BOW的网络，在查找到每个词对应的embedding后，简单的取平均，作为一个句子的表示。然后用\ ``Linear``\ 进行线性变换。为了防止过拟合，我们还使用了\ ``Dropout``\ 。
 
@@ -223,7 +229,7 @@ DataLoader封装后，完成数据的加载。
             x = self.fc(x)
             return x
 
-4. 方式一：用高层API训练与验证
+四、方式1：用高层API训练与验证
 ------------------------------
 
 用 ``Model`` 封装模型，调用 ``fit、prepare`` 完成模型的训练与验证
@@ -261,8 +267,8 @@ DataLoader封装后，完成数据的加载。
     Eval samples: 24992
 
 
-5. 方式二： 用底层API训练与验证
--------------------------------
+五、方式2： 用底层API训练与验证
+--------------------------------
 
 .. code:: ipython3
 
@@ -323,7 +329,7 @@ DataLoader封装后，完成数据的加载。
     [validation] accuracy/loss: 0.8570342659950256/0.3353509306907654
 
 
-6. The End
-----------
+The End
+-------
 
 可以看到，在这个数据集上，经过两轮的迭代可以得到86%左右的准确率。你也可以通过调整网络结构和超参数，来获得更好的效果。
