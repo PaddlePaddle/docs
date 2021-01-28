@@ -1,9 +1,11 @@
 使用卷积神经网络进行图像分类
 ============================
 
-**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ **日期:**
-2021.01 **摘要:**
-本示例教程将会演示如何使用飞桨的卷积神经网络来完成图像分类任务。这是一个较为简单的示例，将会使用一个由三个卷积层组成的网络完成\ `cifar10 <https://www.cs.toronto.edu/~kriz/cifar.html>`__\ 数据集的图像分类任务。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
+
+**日期:** 2021.01 
+
+**摘要:** 本示例教程将会演示如何使用飞桨的卷积神经网络来完成图像分类任务。这是一个较为简单的示例，将会使用一个由三个卷积层组成的网络完成\ `cifar10 <https://www.cs.toronto.edu/~kriz/cifar.html>`__\ 数据集的图像分类任务。
 
 一、环境配置
 ------------

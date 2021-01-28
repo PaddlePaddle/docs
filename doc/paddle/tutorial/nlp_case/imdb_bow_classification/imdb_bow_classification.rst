@@ -1,9 +1,11 @@
 IMDB 数据集使用BOW网络的文本分类
 ================================
 
-**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ **日期:**
-2021.01 **摘要:**
-本示例教程演示如何在IMDB数据集上用简单的BOW网络完成文本分类的任务。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
+
+**日期:** 2021.01 
+
+**摘要:** 本示例教程演示如何在IMDB数据集上用简单的BOW网络完成文本分类的任务。
 
 一、环境配置
 ------------
