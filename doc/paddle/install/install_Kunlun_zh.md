@@ -1,12 +1,13 @@
 
-# 昆仑XPU芯片环境上安装及运行飞桨
+# 昆仑XPU芯片安装及运行飞桨
 
-百度昆仑AI计算处理器（Baidu KUNLUN AI Computing Processor）是百度集十年AI产业技术实践于2019年推出的全功能AI芯片。基于自主研发的先进XPU架构，为云端和边缘端的人工智能业务而设计。 百度昆仑与飞桨及其他国产软硬件强强组合，打造一个全面领先的国产化AI技术生态，部署和应用于诸多 “人工智能+“的行业领域，包括智能云和高性能计算，智慧制造、智慧城市和安防等。更多昆仑XPU芯片详情及技术指标请 `点击这里 <https://cloud.baidu.com/product/kunlun.html>`_ 。
+百度昆仑AI计算处理器（Baidu KUNLUN AI Computing Processor）是百度集十年AI产业技术实践于2019年推出的全功能AI芯片。基于自主研发的先进XPU架构，为云端和边缘端的人工智能业务而设计。 百度昆仑与飞桨及其他国产软硬件强强组合，打造一个全面领先的国产化AI技术生态，部署和应用于诸多 “人工智能+“的行业领域，包括智能云和高性能计算，智慧制造、智慧城市和安防等。更多昆仑XPU芯片详情及技术指标请 [点击这里](https://cloud.baidu.com/product/kunlun.html) 。
 参考以下内容可快速了解和体验昆仑XPU芯片上运行飞桨：
 
-- [飞桨对昆仑XPU芯片的支持] ()飞桨支持昆仑XPU芯片运行
-- `飞桨框架昆仑xpu版安装说明 <./paddle_install_cn.html>`_ : 飞桨框架昆仑xpu版安装说明
-- `飞桨框架昆仑XPU版训练示例 <./train_example_cn.html>`_ : 飞桨框架昆仑XPU版训练示例
+- [飞桨对昆仑XPU芯片的支持](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/07_xpu_docs/paddle_2.0_xpu_cn.rst)
+- [飞桨框架昆仑xpu版安装说明](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/07_xpu_docs/paddle_install_cn.rst)
+- [飞桨框架昆仑XPU版训练示例](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/07_xpu_docs/train_example_cn.rst)
+
 
 ..  toctree::
     :hidden:
