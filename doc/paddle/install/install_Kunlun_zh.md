@@ -5,5 +5,5 @@
 参考以下内容可快速了解和体验昆仑XPU芯片上运行飞桨：
 
 - [飞桨对昆仑XPU芯片的支持](../guides/xpu_docs/paddle_2.0_xpu_cn.html)
-- [飞桨框架昆仑xpu版安装说明](../guides/xpu_docs/paddle_install_cn.html)
+- [飞桨框架昆仑XPU版安装说明](../guides/xpu_docs/paddle_install_cn.html)
 - [飞桨框架昆仑XPU版训练示例](../guides/xpu_docs/train_example_cn.html)
