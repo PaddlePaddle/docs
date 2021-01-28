@@ -36,3 +36,8 @@
 
 3. 将模型部署到具体的推理产品上
 
+
+..  toctree::
+    :hidden:
+
+    http://paddlelite.paddlepaddle.org.cn/introduction/tech_highlights.html
