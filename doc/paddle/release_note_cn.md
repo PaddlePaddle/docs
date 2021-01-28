@@ -5,7 +5,7 @@
 飞桨框架2.0.0版本有如下重要更新：
 
 - 编程范式：默认开启动态图模式进行模型开发和训练，通过动转静的方式进行模型部署和训练加速。如果需要使用静态图编程范式，可以通过paddle.enable_static()来切换到静态图模式。
-- API体系：对API进行了补充，对目录结构进行了调整，使得更加易用，详情请见：[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/index_cn.html)，同时，提供高层API简化使用流程；详情请见： [飞桨高层API使用指南](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/quick_start/high_level_api/high_level_api.html)。
+- API体系：对API进行了补充，对目录结构进行了调整，使得更加易用，详情请见：[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html)，同时，提供高层API简化使用流程；详情请见： [飞桨高层API使用指南](https://www.paddlepaddle.org.cn/documentation/docs/zh/tutorial/quick_start/high_level_api/high_level_api.html)。
 - 框架功能：对数据加载、动态图执行，OP性能，混合精度训练，分布式训练，动静转换，等进行了功能增强和性能优化。
 - 环境适配： 提供了对ARM架构CPU的支持，增加了对Python 3.8、CUDA 10.1/10.2的支持，发布支持CUDA11的安装包（experimental），发布支持[百度昆仑芯片](https://cloud.baidu.com/product/kunlun.html)的安装包（experimental），详情请见：[开始使用](https://www.paddlepaddle.org.cn/install/quick)。
 - 模型库及开发套件：飞桨的官方模型库和套件已经完成绝大部分模型升级至飞桨框架2.0.0版本。
@@ -32,22 +32,22 @@
 
 - 编程范式：飞桨2.0.0默认开启了命令式编程范式（动态图），但仍然保留对静态图的支持，静态图代码（包括1.8版本的静态图代码），可以通过添加`paddle.enable_static()`后来运行。
 - API：飞桨框架2.0.0版本推荐用户使用位于paddle根目录下的API，同时在paddle.fluid目录下保留了所有的1.x版本的API，保留对之前版本API体系的支持。因此，1.x版本的静态图训练代码，添加`paddle.enable_static()`即可在2.0.0版本上正常运行；1.x版本训练保存的模型，可以使用2.0.0版本进行推理。
-- 我们整理了1.8版本API到2.0版本API的[对应关系表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/09_others_information/api_mapping_cn.html)。
-- 我们提供了迁移工具，来方便您将基于旧版本的代码迁移为2.0.0版本的代码，详情请见：[版本迁移工具](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/01_paddle2.0_introduction/migration_cn.html)。
+- 我们整理了1.8版本API到2.0版本API的[对应关系表](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_others_information/api_mapping_cn.html)。
+- 我们提供了迁移工具，来方便您将基于旧版本的代码迁移为2.0.0版本的代码，详情请见：[版本迁移工具](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/migration_cn.html)。
 
 ### 动态图模式
 
-默认开启动态图模式进行模型开发和训练，通过动转静的方式进行模型部署和训练加速。详情，请参看：[动态图](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/quick_start/dynamic_graph/dynamic_graph.html)，[动态图转静态图](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/04_dygraph_to_static/index_cn.html)。
+默认开启动态图模式进行模型开发和训练，通过动转静的方式进行模型部署和训练加速。详情，请参看：[动态图](https://www.paddlepaddle.org.cn/documentation/docs/zh/tutorial/quick_start/dynamic_graph/dynamic_graph.html)，[动态图转静态图](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/index_cn.html)。
 
 ### API体系
 
 - 基础API
-  - API目录结构调整，1.x 版本的API主要位于paddle.fluid目录，本版本对API目录结构进行调整，使得分类更为合理，具体调整后的目录说明请参见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/index_cn.html)。
-  - 新增API共186个，修复和完善API共260个：详情请参考2.0.0 pre release版本的release notes，以及[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/index_cn.html)。
+  - API目录结构调整，1.x 版本的API主要位于paddle.fluid目录，本版本对API目录结构进行调整，使得分类更为合理，具体调整后的目录说明请参见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html)。
+  - 新增API共186个，修复和完善API共260个：详情请参考2.0.0 pre release版本的release notes，以及[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html)。
   - 新增分布式基础通信类API到paddle.distributed: broadcast, all_reduce, reduce, all_gather, scatter, barrier；动态图多卡训练启动API spawn, init_parallel_env，动静统一启动方式fleetrun
   -  组网类API实现动静统一，支持在动态图模式和静态图模式两种模式下运行。
 - 高层API
-  - 新增飞桨高层API，对模型开发过程中常见的组网、训练、评估、预测、存取等操作进行封装，实现低代码开发，请参见[飞桨高层API使用指南](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/quick_start/high_level_api/high_level_api.html)。
+  - 新增飞桨高层API，对模型开发过程中常见的组网、训练、评估、预测、存取等操作进行封装，实现低代码开发，请参见[飞桨高层API使用指南](https://www.paddlepaddle.org.cn/documentation/docs/zh/tutorial/quick_start/high_level_api/high_level_api.html)。
   - 新增分布式高层API paddle.distributed.fleet，支持通过配置DistributedStrategy来支持多种优化策略组合和自动并行、分布式指标计算、InMemoryDataset
 
 ### 功能优化（含分布式）
