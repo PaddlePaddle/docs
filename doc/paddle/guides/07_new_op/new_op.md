@@ -134,7 +134,7 @@ or not. But the output only shares the LoD information with input $X$.
 上面的代码在`MulOp`中添加两个输入`X`和`Y`，添加了一个输出`Out`，以及`use_mkldnn`等属性，并解释了各自含义，命名请遵守[命名规范](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
 
 ### 定义GradOpMaker类
-通常情况下，大部分Op只有一个对应的反向Op，每个Op的会有一个对应的`GradOpMaker`。为方便代码编写，paddle为只有提供了一个模板类[`SingleGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L188)。`MulOp`的`GradOpMaker`需要继承这个模板类，并在`Apply()`方法中设置反向Op的输入、输出和属性。此外，paddle还提供了一个默认的`GradOpMaker`，
+通常情况下，大部分Op只有一个对应的反向Op，每个Op的会有一个对应的`GradOpMaker`。为方便代码编写，paddle为只有一个反向的Op提供了一个模板类[`SingleGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L188)。`MulOp`的`GradOpMaker`需要继承这个模板类，并在`Apply()`方法中设置反向Op的输入、输出和属性。此外，paddle还提供了一个默认的`GradOpMaker`，
 [`DefaultGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L227)，该模板类会使用前向Op的全部输入(`Input`)输出(`Output`)以及输出变量所对应的梯度（`Output@Grad`）作为反向Op的输入，将前向Op的输入变量所对应的的梯度（`Input@Grad`）作为输出。
 
 **注意:**

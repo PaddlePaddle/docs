@@ -107,7 +107,7 @@ paddle.enable_static()
 def create_tmp_var(program, name, dtype, shape):
     return program.current_block().create_var(name=name, dtype=dtype, shape=shape)
 
-in_var = fluid.layers.data(name='input', dtype='float32', shape=[-1, 28, 28])
+in_var = paddle.static.data(name='input', dtype='float32', shape=[-1, 28, 28])
 
 # 手动创建前向输出变量
 out_var = create_tmp_var(paddle.static.default_main_program(), name='output', dtype='float32', shape=[-1, 28, 28])
@@ -133,8 +133,7 @@ paddle.static.nn.py_func(func=tanh, x=in_var, out=out_var, backward_func=tanh_gr
 
 ## 注意事项
 
-- `py_func` 的前向函数和反向函数内部不应调用 `fluid.layers.xxx` ，因为前向函数和反向函数是在网络运行时调用的，且输入参数均为C++端的 `Tensor` ；
-  而 `fluid.layers.xxx` 是在组建网络的阶段调用的，且输入参数为Python端的 `Variable` 。
+- `py_func` 的前向函数和反向函数内部不应调用 `paddle.xx`组网接口 ，因为前向函数和反向函数是在网络运行时调用的，而 `paddle.xx` 是在组建网络的阶段调用 。
 
 - `skip_vars_in_backward_input` 只能跳过前向输入变量和前向输出变量，不能跳过前向输出的梯度。
 
