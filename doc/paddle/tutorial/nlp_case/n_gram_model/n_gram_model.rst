@@ -1,9 +1,11 @@
 用N-Gram模型在莎士比亚文集中训练word embedding
 ==============================================
 
-**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ **日期:**
-2021.01 **摘要:** N-gram
-是计算机语言学和概率论范畴内的概念，是指给定的一段文本中N个项目的序列。N=1
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
+
+**日期:** 2021.01 
+
+**摘要:** N-gram是计算机语言学和概率论范畴内的概念，是指给定的一段文本中N个项目的序列。N=1
 时 N-gram 又称为 unigram，N=2 称为 bigram，N=3 称为
 trigram，以此类推。实际应用通常采用 bigram 和 trigram
 进行计算。本示例在莎士比亚文集上实现了trigram。

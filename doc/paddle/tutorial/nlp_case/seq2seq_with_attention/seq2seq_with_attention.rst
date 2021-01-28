@@ -1,9 +1,11 @@
 使用注意力机制的LSTM的机器翻译
 ==============================
 
-**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ **日期:**
-2021.01 **摘要:**
-本示例教程介绍如何使用飞桨完成一个机器翻译任务。我们将会使用飞桨提供的LSTM的API，组建一个\ ``sequence to sequence with attention``\ 的机器翻译的模型，并在示例的数据集上完成从英文翻译成中文的机器翻译。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
+
+**日期:** 2021.01 
+
+**摘要:** 本示例教程介绍如何使用飞桨完成一个机器翻译任务。我们将会使用飞桨提供的LSTM的API，组建一个\ ``sequence to sequence with attention``\ 的机器翻译的模型，并在示例的数据集上完成从英文翻译成中文的机器翻译。
 
 一、环境配置
 ------------

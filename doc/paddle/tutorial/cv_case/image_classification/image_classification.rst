@@ -1,8 +1,11 @@
 使用LeNet在MNIST数据集实现图像分类
 ==================================
 
-**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ **日期:**
-2021.01 **摘要:** 本示例教程演示如何在MNIST数据集上用LeNet进行图像分类。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
+
+**日期:** 2021.01 
+
+**摘要:** 本示例教程演示如何在MNIST数据集上用LeNet进行图像分类。
 
 一、环境配置
 ------------
