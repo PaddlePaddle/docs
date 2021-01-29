@@ -490,31 +490,7 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
     Predict begin...
     step 1/1 [==============================] - 6ms/step
     Predict samples: 3
-
-
-::
-
-
-    ---------------------------------------------------------------------------
-
-    ValueError                                Traceback (most recent call last)
-
-    <ipython-input-23-846dc812f06a> in <module>
-         30 for text_batch in results[0]:
-         31     for prob in text_batch:
-    ---> 32         out = ctc_decode(prob, blank=10)
-         33         print(f"文件名：{img_names[index]}，推理结果为：{out}")
-         34         index += 1
-
-
-    <ipython-input-23-846dc812f06a> in ctc_decode(text, blank)
-         10     cache_idx = -1
-         11     for char in text:
-    ---> 12         if char != blank and char != cache_idx:
-         13             result.append(char)
-         14         cache_idx = char
-
-
-    ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
-
+    文件名：9450.jpg，推理结果为：[8, 2, 0, 5]
+    文件名：9452.jpg，推理结果为：[0, 3, 0, 0]
+    文件名：9451.jpg，推理结果为：[3, 4, 6, 3]
 
