@@ -544,5 +544,5 @@ paddle.tensor.attribute.real	paddle.real,paddle.tensor.real
 paddle.tensor.attribute.imag	paddle.imag,paddle.tensor.imag
 paddle.fluid.layers.BeamSearchDecoder	paddle.nn.BeamSearchDecoder
 paddle.fluid.layers.dynamic_decode	paddle.nn.dynamic_decode
-paddle.fluid.layers.accuracy    paddle.static.accuracy
-paddle.fluid.layers.auc paddle.static.auc
+paddle.fluid.layers.accuracy	paddle.static.accuracy
+paddle.fluid.layers.auc	paddle.static.auc
