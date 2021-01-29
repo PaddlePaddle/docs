@@ -20,7 +20,7 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器 L
 .. math::
     r_t=\frac{m_t}{\sqrt{v_t}+\epsilon}
 .. math::
-    w_t=w_{t_1}-\eta_t*\frac{\left \ w_{t-1}\right \}{\left \ r_t+\lambda*w_{t-1}\right \}*(r_t+\lambda*w_{t-1}) \\
+    w_t=w_{t_1}-\eta_t*\frac{\left \| w_{t-1}\right \|}{\left \| r_t+\lambda*w_{t-1}\right \|}*(r_t+\lambda*w_{t-1}) \\
 
 其中 :math:`m` 表示第一个动量，:math:`v` 代表第二个动量，:math:`\eta` 代表学习率，:math:`\lambda` 代表LAMB的权重学习率。
 
