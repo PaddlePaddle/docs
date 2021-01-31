@@ -8,7 +8,7 @@
  - 数据处理、组网方式、模型训练、多卡启动、模型保存和推理等开发流程都有了对应优化，请对应查看说明；
 
 以上变化请仔细阅读本指南。对于已有模型的升级，我们还提供了2.0转换工具（见附录）提供更自动化的辅助。
-其他一些功能增加方面诸如动态图对量化训练、混合精度的支持、动静转换等方面不在本指南列出，具体可查看[Release Note](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/release_note_cn.html)或对应文档。
+其他一些功能增加方面诸如动态图对量化训练、混合精度的支持、动静转换等方面不在本指南列出，具体可查看[Release Note](https://www.paddlepaddle.org.cn/documentation/docs/zh/release_note_cn.html)或对应文档。
 
 ## 一、动态图
 
@@ -556,5 +556,5 @@ https://github.com/PaddlePaddle/paddle_upgrade_tool
 ### 2.0文档教程
 以下提供了2.0版本的一些示例教程：
 
-您可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码:
+您可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/tutorial/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码:
 https://github.com/PaddlePaddle/book/tree/develop/paddle2.0_docs

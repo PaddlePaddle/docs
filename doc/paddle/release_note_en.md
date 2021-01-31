@@ -5,7 +5,7 @@
 The PaddlePaddle framework V2.0.0 has the following updates:
 
 - Programming Paradigm: Enable dynamic graph mode for model development and training by default, and perform the model deployment and training acceleration through the dynamic to static mode.If you need to use static graph programming paradigm, you can switch to static graph mode by running paddle.enable_static().
-- API system: The API has been supplemented and the directory structure has been adjusted to make it easier to use, please see [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/index_en.html) for more details. A high-level API is provided to simplify the process. See [PaddlePaddle High-Level API Usage Guide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/quick_start/high_level_api/high_level_api.html) for more details.
+- API system: The API has been supplemented and the directory structure has been adjusted to make it easier to use, please see [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/api/index_en.html) for more details. A high-level API is provided to simplify the process. See [PaddlePaddle High-Level API Usage Guide](https://www.paddlepaddle.org.cn/documentation/docs/zh/tutorial/quick_start/high_level_api/high_level_api.html) for more details.
 - Framework features: Data loading, dynamic graph execution, OP performance, mixed precision training, distributed training, dynamic-static conversion, etc. have been enhanced and optimized.
 - Environment adaptation: Supported ARM-based CPU. Added support for Python 3.8, CUDA 10.1/10.2. Released the installation package (experimental) supporting CUDA11, and released the installation package (experimental) supporting [Baidu Kunlun](https://cloud.baidu.com/product/kunlun.html) chip. For details, see [Start](https://www.paddlepaddle.org.cn/install/quick).
 - Model zoo and development kits: The official model zoo and kits for PaddlePaddle have been upgraded to PaddlePaddle framework V2.0.0.
@@ -32,22 +32,22 @@ The PaddlePaddle framework V2.0.0 has the following updates:
 
 - Programming paradigm: PaddlePaddle 2.0.0 has the imperative programming paradigm (dynamic graphs) enabled by default, but still retains support for static graphs. static graph code (including static graph code from version 1.8) can be executed by running paddle. enable_static().
 - API: The PaddlePaddle Framework Version 2.0.0 recommends users to use the API located in the paddle root directory, while all the APIs from version 1.x are retained in the paddle.fluid directory, retaining support for the API system of earlier versions. Therefore, the static graph training code version 1.x can run normally on version 2.0.0 by running paddle.enable_static(). The model saved by training of version 1.x can be used for inference in version 2.0.0.
-- A [table](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/09_others_information/api_mapping_cn.html) of correspondence from version 1.8 API to version 2.0 API is prepared.
+- A [table](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_others_information/api_mapping_cn.html) of correspondence from version 1.8 API to version 2.0 API is prepared.
 - We provide a migration tool to facilitate the migration of codes based on earlier version to codes of version 2.0.0. See Version Migration Tool.
 
 ### **dynamic graph mode**
 
-By default, the dynamic graph mode is enabled for model development and training, which allows you to perform model deployment and training acceleration in the dynamic-to-static mode.For details, please see [dynamic graph](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/quick_start/dynamic_graph/dynamic_graph.html), [Dynamic-to-static graph](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/04_dygraph_to_static/index_cn.html).
+By default, the dynamic graph mode is enabled for model development and training, which allows you to perform model deployment and training acceleration in the dynamic-to-static mode.For details, please see [dynamic graph](https://www.paddlepaddle.org.cn/documentation/docs/zh/tutorial/quick_start/dynamic_graph/dynamic_graph.html), [Dynamic-to-static graph](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/index_cn.html).
 
 ###  **API system**
 
 - Basic APIs
-  - API directory structure adjustment: The API V1.x is mainly located in the paddle.fluid directory. In this version, the API directory structure is adjusted so that the classification can be more reasonable. For the specific adjusted directory, see the [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/index_en.html).  
-  - Added 186 new APIs. Fixed and revised 260 APIs. See Release Notes of 2.0.0 pre release version and [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/index_en.html).
+  - API directory structure adjustment: The API V1.x is mainly located in the paddle.fluid directory. In this version, the API directory structure is adjusted so that the classification can be more reasonable. For the specific adjusted directory, see the [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/api/index_en.html).  
+  - Added 186 new APIs. Fixed and revised 260 APIs. See Release Notes of 2.0.0 pre release version and [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/api/index_en.html).
   - Added the distributed basic communication class API to paddle.distributed:broadcast, all_reduce, reduce, all_gather, scatter, barrier; dynamic graph multi-card training startup API spawn, init_parallel_ env, dynamic-static unified startup method fleetrun
   -  Networking class API for dynamic and static unification: supports running in both dynamic graph mode and static graph mode.
 - High-level API
-  - Added PaddlePaddle high-level API, and encapsulated the common operations such as networking, training, evaluation, prediction, access, etc. in the process of model development, to achieve low code development. See [PaddlePaddle high level API instructions](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/quick_start/high_level_api/high_level_api.html).
+  - Added PaddlePaddle high-level API, and encapsulated the common operations such as networking, training, evaluation, prediction, access, etc. in the process of model development, to achieve low code development. See [PaddlePaddle high level API instructions](https://www.paddlepaddle.org.cn/documentation/docs/zh/tutorial/quick_start/high_level_api/high_level_api.html).
   - Added distributed high-level API paddle.distributed.fleet. Supported multiple optimization strategy combinations and automatic parallelism, distributed metrics calculation, InMemoryDataset by configuring the DistributedStrategy.
 
 ### **Function optimization (including distributed)**
