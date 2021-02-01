@@ -3,7 +3,7 @@
 accuracy
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.accuracy(input, label, k=1, correct=None, total=None)
+.. py:function:: paddle.static.accuracy(input, label, k=1, correct=None, total=None)
 
 
 
