@@ -28,7 +28,7 @@ auc
     - **topk** (int) -  取topk的输出值用于计算。
     - **slide_steps** (int) - 当计算batch auc时，不仅用当前步也用于先前步。slide_steps=1，表示用当前步；slide_steps = 3表示用当前步和前两步；slide_steps = 0，则用所有步。
 
-返回：代表当前AUC的一个元组。
+返回：元组，当前计算出的AUC。数据类型是tensor，支持float32和float64。
 返回的元组为auc_out, batch_auc_out, [batch_stat_pos, batch_stat_neg, stat_pos, stat_neg]。
 auc_out为准确率的结果。
 batch_auc_out为batch准确率的结果。

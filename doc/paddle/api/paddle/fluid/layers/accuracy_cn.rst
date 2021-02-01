@@ -19,9 +19,8 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
     - **correct** (int64|int32)-正确预测值的个数。
     - **total** (int64|int32)-总共的预测值。
 
-返回: 计算出来的正确率。
+返回: Tensor，计算出来的正确率，数据类型为float32。
 
-返回类型: Variable（Tensor），数据类型为float32的Tensor
 
 **代码示例**
 
