@@ -19,6 +19,6 @@ is_compiled_with_xpu
 .. code-block:: python
 
     import paddle
-    support_gpu = paddle.is_compiled_with_xpu()
+    support_xpu = paddle.is_compiled_with_xpu()
 
 
