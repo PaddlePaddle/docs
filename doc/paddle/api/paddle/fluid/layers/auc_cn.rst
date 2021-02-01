@@ -37,8 +37,6 @@ batch_stat_neg为batch计算时label=0的统计值
 stat_pos计算时label=1的统计值
 stat_neg为计算时label=0的统计值
 
-返回类型： Variable（Tensor），数据类型为float32或float64的Tensor。
-
 **代码示例**：
 
 .. code-block:: python
