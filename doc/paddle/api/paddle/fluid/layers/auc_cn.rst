@@ -3,7 +3,7 @@
 auc
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.auc(input, label, curve='ROC', num_thresholds=200, topk=1, slide_steps=1)
+.. py:function:: paddle.static.auc(input, label, curve='ROC', num_thresholds=200, topk=1, slide_steps=1)
 
 
 
@@ -28,7 +28,7 @@ auc
     - **topk** (int) -  取topk的输出值用于计算。
     - **slide_steps** (int) - 当计算batch auc时，不仅用当前步也用于先前步。slide_steps=1，表示用当前步；slide_steps = 3表示用当前步和前两步；slide_steps = 0，则用所有步。
 
-返回：代表当前AUC的一个元组。
+返回：元组，当前计算出的AUC。数据类型是tensor，支持float32和float64。
 返回的元组为auc_out, batch_auc_out, [batch_stat_pos, batch_stat_neg, stat_pos, stat_neg]。
 auc_out为准确率的结果。
 batch_auc_out为batch准确率的结果。
@@ -37,33 +37,30 @@ batch_stat_neg为batch计算时label=0的统计值
 stat_pos计算时label=1的统计值
 stat_neg为计算时label=0的统计值
 
-返回类型： Variable（Tensor），数据类型为float32或float64的Tensor。
-
 **代码示例**：
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
     import numpy as np
 
-    data = fluid.layers.data(name="input", shape=[-1, 32,32], dtype="float32")
-    label = fluid.layers.data(name="label", shape=[1], dtype="int")
-    fc_out = fluid.layers.fc(input=data, size=2)
-    predict = fluid.layers.softmax(input=fc_out)
-    result=fluid.layers.auc(input=predict, label=label)
+    import paddle
+    import paddle.static as static
+    import paddle.nn.functional as F
 
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
+    paddle.enable_static()
+    data = static.data(name="input", shape=[-1, 32,32], dtype="float32")
+    label = static.data(name="label", shape=[-1], dtype="int")
+    fc_out = static.nn.fc(x=data, size=2)
+    predict = F.softmax(x=fc_out)
+    result = static.auc(input=predict, label=label)
 
-    exe.run(fluid.default_startup_program())
+    place = paddle.CPUPlace()
+    exe = static.Executor(place)
+
+    exe.run(static.default_startup_program())
     x = np.random.rand(3,32,32).astype("float32")
     y = np.array([1,0,1])
     output= exe.run(feed={"input": x,"label": y},
-                     fetch_list=[result[0]])
+                fetch_list=[result[0]])
     print(output)
-    """
-    output:
-    [array([0.5])]
-    """
-
-
+    #[array([0.])]
