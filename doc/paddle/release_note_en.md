@@ -19,7 +19,7 @@ The PaddlePaddle framework V2.0.0 has the following updates:
   - [PaddleNLP](https://github.com/PaddlePaddle/models/PaddleNLP)：Support dynamic graph V2.0. Provide 25+ pre-training models and easy-to-use API way to enhance the efficiency of text modeling.
   - [Parakeet](https://github.com/PaddlePaddle/Parakeet)：Support dynamic graph 2.0. The released acoustic models and vocoder well support dynamic graph version.
   - [PaddleVideo](https://github.com/PaddlePaddle/PaddleVideo)：Support dynamic graph V2.0. The video classification and video motion positioning direction models are included, such as TSN, TSM, SlowFast, AttentionLSTM, BMN models and featured application pre-training models VideoTag and FootballAction.
-
+  - [AmazonDJL](https://github.com/awslabs/djl): Easy-to-use Java inference interface, supports various operating system platforms (Mac / Windows / Linux), and supports Paddle pre-training model loading.
 
 ## **Forward-looking Preview**
 
