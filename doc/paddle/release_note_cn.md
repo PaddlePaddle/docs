@@ -19,6 +19,7 @@
   - [PaddleNLP](https://github.com/PaddlePaddle/models/PaddleNLP)：支持2.0动态图，提供25+预训练模型和易用的API方式提升文本建模效率。
   - [Parakeet](https://github.com/PaddlePaddle/Parakeet)：支持2.0动态图，已发布的声学模型及声码器均良好支持动态图版本。
   - [PaddleVideo](https://github.com/PaddlePaddle/PaddleVideo)：支持2.0动态图，包含了视频分类和视频动作定位方向模型，包括: TSN、TSM、SlowFast、AttentionLSTM、BMN模型以及特色应用预训练模型VideoTag和FootballAction。
+  - [AmazonDJL](https://github.com/awslabs/djl)：易用流畅的 Java 推理接口，支持各操作系统平台（Mac / Windows / Linux），支持 Paddle 预训练模型读取。
 
 
 ## 前瞻性预告
