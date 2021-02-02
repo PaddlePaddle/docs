@@ -4,7 +4,7 @@ set -x
 function install_paddle() {
     # try to download paddle, and install
     rm -rf paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
-    wget https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
+    wget -q https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
     pip install -U paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
     # if failed, build paddle
     if [ $? -ne 0 ];then
