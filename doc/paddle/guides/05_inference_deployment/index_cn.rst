@@ -15,15 +15,15 @@
     :header: "名称", "英文表示", "适用场景"
     :widths: 10, 10, 30
 
-    "飞桨原生推理库", "Paddle Inference", "高性能服务器端、云端推理"
+    "飞桨原生推理库", "`Paddle Inference <http://paddleinference.paddlepaddle.org.cn/introduction/summary.html>`_ ", "高性能服务器端、云端推理"
     "飞桨服务化推理框架", "Paddle Serving", "自动服务、模型管理等高阶功能"
-    "飞桨轻量化推理引擎", "Paddle Lite", "移动端、物联网等"
+    "飞桨轻量化推理引擎", "`Paddle Lite <http://paddlelite.paddlepaddle.org.cn/introduction/tech_highlights.html>`_ ", "移动端、物联网等"
     "飞桨前端推理引擎", "Paddle.js", "浏览器中推理、小程序等"
 
 
 各产品在推理生态中的关系如下
 
-![](./images/inference_ecosystem.png)
+.. image:: images/inference_ecosystem.png
 
 **用户使用飞桨推理产品的工作流** 如下
 
@@ -36,3 +36,9 @@
 
 3. 将模型部署到具体的推理产品上
 
+..  toctree::
+    :hidden:
+
+    inference/index_cn.rst
+    mobile/index_cn.rst
+    paddleslim/paddle_slim.md

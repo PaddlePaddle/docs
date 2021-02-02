@@ -8,6 +8,9 @@ reshape
 
 该OP在保持输入 ``x`` 数据不变的情况下，改变 ``x`` 的形状。
 
+请注意，在动态图模式下，输出Tensor将与输入Tensor共享数据，并且没有Tensor数据拷贝的过程。
+如果不希望输入与输出共享数据，请使用 `Tensor.clone` ，例如 `reshape_clone_x = x.reshape([-1]).clone()` 。
+
 在指定目标shape时存在一些技巧：
 
 .. code-block:: text
@@ -43,17 +46,23 @@ reshape
 
   x = paddle.rand([2, 4, 6], dtype="float32")
   positive_four = paddle.full([1], 4, "int32")
+
   out = paddle.reshape(x, [-1, 0, 3, 2])
   print(out)
   # the shape is [2,4,3,2].
+
   out = paddle.reshape(x, shape=[positive_four, 12])
   print(out)
   # the shape of out_2 is [4, 12].
+
   shape_tensor = paddle.to_tensor(np.array([8, 6]).astype("int32"))
   out = paddle.reshape(x, shape=shape_tensor)
   print(out)
   # the shape is [8, 6].
-
+  # 在动态图模式下，输出out与输入x共享数据
+  x[0, 0, 0] = 10.
+  print(out[0, 0])
+  # the value is [10.]
 
 
 

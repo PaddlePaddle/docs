@@ -189,7 +189,7 @@ auto predictor = pool.Retrive(thread_id);
 ## <a name="C++预测样例编译测试"> C++预测样例编译测试</a>
 
 1. 下载或编译paddle预测库，参考[安装与编译C++预测库](./build_and_install_lib_cn.html)。
-2. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.7.tar.gz)并解压，进入`sample/inference`目录下。  
+2. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/samples/sample.tgz)并解压，进入`sample/inference`目录下。  
 
     `inference` 文件夹目录结构如下：
 

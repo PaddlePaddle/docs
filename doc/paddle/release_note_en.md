@@ -1,304 +1,278 @@
-# Release Note
-
-## Release note
-
-The Paddle framework 2.0-RC1 version has the following updates:
-
-- **Installation environment** Official release of the binary package supporting CUDA11(experimental) ; Official release of the binary package supporting [Baidu Kunlun chip](https://cloud.baidu.com/product/kunlun.html) (experimental)
-- **API function** Support numpy-compatible `paddle.Tensor` indexing and slicing operations(basic indexing); removes the axis parameter in some APIs, support numpy-compatible broadcast semantics; add some new APIs, improve some APIs' functions, and fix some API bugs
-- **Dynamic to static conversion** Support more python syntax for dynamic to static graphs, and support for marking functions that do not perform dynamic to static conversion by running `paddle.jit.not_to_static`
-- **Framework function** Support multiple executions of `paddle.Tensor.backward()` to accumulate the gradient. The effect is equivalent to the gradient calculated after increasing the batch size. By default, the C++ error stack is hidden, and the error reporting format is optimized. The distributed training supports the heterbox training
-- **Framework performance** The mixed precision training supports pure FP16 mode. The ResNet50 model V100 single card training performance reaches up to 1400+ samples/sec. The performance of the distributed training is optimized
-
-## Forward-looking preview
-- The Paddle Framework plans to drop the support for python2 and python3.5 from a certain version in the future. It is recommended that you upgrade python to V3.8 for Paddle
-- The Paddle Framework plans to drop the support for CUDA 9.0 from a certain version in the future. It is recommended that you upgrade the CUDA for Paddle
-
-##  Training framework
-
-### Basic API (including the distributed)
-
-#### New APIs
-- Add the paddle.log2
-- Add the paddle.log10
-- Add the paddle.nn.initializer.set_global_initializer
-- Add the paddle.median
-- Add the paddle.broadcast_shape. You can calculate the shape of two tensor shapes after broadcast calculation
-- Add the paddle.vision.ops.deform_conv2d, paddle.vision.ops.DeformConv2d
-- Add the paddle.subtract
-- Add the paddle.optimizer.lamb
-- Add the Tensor related APIs, Tensor.cpu, Tensor.cuda(idx), Tensor.pin_memory, Tensor.is_leaf, Tensor.clone
-
-
-#### Fix and improve APIs
-- In the paddle.multiply, remove the axis
-- In the paddle.pow, remove the type promotion
-- The paddle.add, paddle.subtract, paddle.multiply, paddle.divide, paddle.matmul, paddle.reshape, paddle.transpose, paddle.kron, paddle.trace, and paddle.sum support complex64 and complex128 data types
-- Remove the axis parameter from the paddle.maximum and paddle.minimum
-- In the multiplex, support the dynamic graphs
-- In the CrossEntropyLoss, add the soft_label and axis, modify shape and improve performance
-- The paddle.nn.functional.interpolate size parameter supports the input in the Tensor format
-- In the paddle.nn.functional.pad, add the padding for N and C dimensions in constant mode
-- In the paddle.optimizer.momentum, support the resume training
-- Fix the error when converting a BatchNorm to a SyncBatchNorm using paddle.nn.SyncBatchNorm.convert_sync_batchnorm after specifying the weight_param name before conversion
-- paddle.to_tensor supports direct input of other Tensor's place when selecting devices
-- Optimize the performance of Tensor.detach, share memory with the original Tensor, reduce one memory copy, without keeping in the original computational graph
-- In static graph mode, add the acquisition of the learning rate by paddle.optimizer.get_lr()
-- Fix the exceeding-range ID error exception in the use of GPU in the paddle.Embedding
-
-
-####  Remove API (including aliases)
-- Remove the api under complex module: paddle.complex.matmul, paddle.complex.reshape, paddle.complex.transpose, paddle.complex.kron, paddle.complex.trace, paddle.complex.sum, paddle.complex.elementwise_add, paddle.complex.elementwise_sub, paddle.complex.elementwise_mul, paddle.complex.elementwise_div
-- Remove the sigmoid_cross_entropy_with_logits in the paddle.nn.functional
-
-
-### High-level API
-- Add api paddle.callbacks.ReduceLROnPlateau
-- Add api paddle.callbacks.LRScheduler
-- Add api paddle.vision.datasets.FashionMnist
-- In the paddle.io.DataLoader, change the places parameter to an optional parameter. When the default value is None, paddle.CPUPlace() or paddle.CUDAPlace(0) is automatically selected, and the places parameter will be deleted in later versions
-- paddle.io.DataLoader supports disabling the DataLoader automatic group batch function by setting batch_size=None
-- Add the api paddle.io. ComposeDataset for stitching multiple datasets into one dataset by field
-- Add the api paddle.io. ChainDataset to integrate multiple datasets into one dataset by sample
-- Add the api paddle.io. WeightedRadnomSampler for random sampling with the specified weights
-- Add the api paddle.vison.ops.yolo_loss and paddle.vision.ops.yolo_box
-- Add the api paddle.flops
-- Add the api paddle.callbacks.EarlyStopping
-- Update the api model.save. The saved file format is consistent with the bottom
-- Fix the bug of saving prediction model when input dtype in the api dynamic graph is non-float32 and inputs are not provided in the Model initialization
-- The paddle. metric. Accuracy supports input multi-dimensional Tensor, supports the label whose rank is 1 and the label represented by one-hot
-
-
-### Function optimization (including distributed)
-#### Dynamic graph basic functions
-- Support Tensor and Scalar for correct type improvement when using operators for operations
-- Fix the bug of the interference with each other in the switching between multiple model train/eval models.Dynamic graph Layer.eval() is decoupled from no_grad, Tracer will not automatically record the reverse after calling Layer.eval() before the change, but will still automatically record the reverse after calling Layer.eval() after the change. If the reverse is needed, you can use paddle.no_grad
-- Support the change of Tensor data by index or slice
-- Add inplace reverse detection module to detect whether the forward inplace operation will affect the correctness of the gradient calculation
-- Add that in the Tensor.backward() automatic derivation, the gradient will be added to the previous gradient. This can increase the "batch_size"
-- Enabled SE-ResNext oneDNN dygraph training
-
-
-#### Dynamic graph to static graph
-
-**New syntax**
-
-- Add the support for using the isinstance syntax in the dynamic to static loop
-- Add the support for dynamic to static syntax for assigning shape to tuples, such as a, b, c, d = tensor.shape
-- Python's and/or statements have sequential execution of the left and right operands. If the result of the left operation can determine the logical value, the right operand will not be executed.In the past, logical_and/logical_or in dynamic to static graphs had problems in handling this case.This support is added
-- Add the support for the case where the function signature contains **kwargs
-- Support the use of jit.not_to_static decorative function. The function is not converted in the dynamic to static process
-- Support python dictionary syntax dict.pop()
-
-**Bug fixing**
-
-- Fix the bug of model storage failure when a variable representing drop_state is not initialized in the dynamic to static storage lstm interface
-- Fix the bug of nested loops in the variable analysis
-- Fix the bug of return in some special cases
-- Fix the bug of if-else in the handling of list generation and variable analysis
-- Fix the bug of iterative variables in some special cases
-- Fix the bug of inconsistent behavior of transpose API in dynamic and static graphs, and make it support dynamic to static
-- Fix the bug of inconsistent behavior of concat API in dynamic and static graphs, and make it support dynamic to static
-- Optimize some dynamic to static error messages, so that the error location is more accurate
-- Fix the bug that convert_call will be repeatedly called recursively under special circumstances
-- Fix the dynamic to static bug caused by different judgments of out.dtype in 2.0 API
-- Fix the bug that x.shape == y.shape is judged to be equal to list in the dynamic graph and returns True/False, but will be re-loaded to elementwise in the static graph, and the elementwise result will be reduced after such conversion to static graph
-- Fix the bug that param_guard does not cover hook
-- Fix the bug of having some parameter variables in the init running in the static graph can not be assigned because the type is not static graph variables
-- Fix the bug of the value of non-parameter type variables being defined by users in \__init__ function cannot be modified and updated correctly
-- Fix the bug of wrongly converting third-party library logging in the dynamic to static process
-- Fix the bug of incorrect transcription of AST in the for-enumerate syntax
-- Fix the bug that some warning information is displayed multiple times in a loop
-
-#### Mixed precision training
-- Support more aggressive FP16 training mode (i.e., pure FP16 training).To ensure the convergence of the model in Momentum optimizer, add the new `multi_precision` and `rescale_grad` attributes. The `multi_precision` mainly indicates that the optimizer needs to maintain a copy of master weights
-- Use the pure FP16 training. The ResNet50 model can reach 1400+ samples/sec on a single card with 16GB video memory on V100
-
-####  Model quantization
-- Dynamic graph quantization supports skip to specify the Layer
-- Dynamic graph quantization supports 2.0 API Conv and Linear
-
-####  Distributed training optimization
-
-- Support the distributed low-order APIs such as `all_gather` using `paddle.distibuted.spawn` interface
-- Support the heterbox heterogeneous training
-- Pipeline supports Executor.run interface in parallel to improve the usability
-- Launch interface is upgraded, support for specifying the number of processes of a single node
-- Sharding supports multi-card training for 10 billion parameter models
-
-
-#### Model saving and loading
-
-- Support multiple methods declaring that Layers overridden by `paddle.jit.to_static` can still be loaded by `paddle.jit.load` after being stored by `paddle.jit.save`, and multiple methods overridden by `paddle.jit.to_static` can still be used
-- Support that Layers loaded by `paddle.jit.load` can still be stored correctly by `paddle.jit.save` after fine-tune or used as sub-Layers of other Layers
-- Expand `paddle.jit.save` to support storing the `paddle.DataParallel` model
-- Optimize `paddle.static.load_program_state` interface experience. In the scenarios that do not specify to load `var_list`, only a warning is given when loading a directory with interfering files and no error is reported
-- Support `paddle.jit.save` to handle InputSpec of dict type
-- Support `paddle.onnx.export` to export dynamic model to ONNX file type
-
-
-#### Performance optimization (including the distributed)
-- Improve the performance of RNN class OP on CPU (LSTM, GRU, SimpleRNN). Compared with version 2.0-rc, the forward performance and backward performance of the LSTM, GRU, SimpleRNN have been significantly improved
-- Optimize the FastThreadedSSAGraphExecutor scheduling. Fix the performance of the 4-engine 32-card resnet50 that is improved by about 0.3% in the communication synchronization scenario without the overlapping of the communication calculation
-- Optimize the paddle. fleet amp distributed performance. Fix the performance of the 4-engine 32-card fp16 that is improved by about 0.5% in the case that the last communication and calculation are not overlapping
-- Optimize the performance of the distributed communication component Communicator. In the GEO-400 mode, the W2V model throughput rate, Simnet-Bow model performance have been significantly improved. In the Async mode, compared to the Paddle Framework 1.8, the throughput rate of W2V model is improved by 11% and the performance of CTR-DNN model is improved by 14%
-- Optimize the performance when the Worker is a GPU device in parameter server mode, reduce the copy time of Embedding table query. Significantly improve the training throughput rate in the CTR-DNN model
-- The distributed GPU dynamic graph realizes the computation and communication overlap, and support the user fine-grained configuration of gradient fuse group size and other options. On the two models ResNet152 and Bert, the multi-node performance improvement is more than 5%.The performance of the ResNet50 is also improved by more than 3%
-- Improve the performance of cumsum on GPU
-- mproved performance of Resnet50 oneDNN dygraph training. Currently Resnet50 oneDNN drgraph training is 6.4X faster than Native CPU training
-- Add the support of cudnn on the GRU and SimpleRNN
-
-
-#### Debug analysis
-
-- Optimize the alignment of the error exception type on the Paddle Python side with Python native error type
-- Hide the C++ error stack by default, optimize the error reporting format after hiding the C++ stack, remove the demarcation flag `Error Message Summary`, and align with the native Python error reporting format
-- Optimize some static module APIs in non-static graph mode, including 9 APIs such as static.append_backward, static.gradients, static.scope_guard, static. Print, static.nn.embedding, static.nn.data_norm, static.nn.multi_box_head, static.nn.nce, and static.nn.py_func
-- Optimize the error message when the pass-in Tensor is None under the dynamic graph model
-- Further optimize the print tensor format of the dynamic graph
-
-
-### Compile and install
-
-#### New support
-- (experimental) Release the binary package supporting cuda11
-- Mirror the Paddle of cuda10.1 or later and NCCL to version 2.7.8 in the CI system images
-- Release the binary package supporting xpu
-- Release the binary package supporting jetpack and C++ prediction library supporting nv_jetson
-
-#### Experience optimization
-- Fix the build strategy, separately release the gpu package containing tensorrt, to avoid the error of no tensorrt when users install other GPU versions of the package
-- Remove installation dependencies: scipy, rarfile, prettytable, pathlib
-- Installation documentation optimization
-
-
-### Bug fixing
-
-- Fix the bug that GPU card 0 occupies more video memory than other cards during multi-card training
-- Fix the bug of wrong shape derivation in the tile op calculation
-- Fix the bug of the large number of warning messages of invalid escape sequence in the use of paddle
-- Fix the bug when paddle. full is set to INF, NAN, NINF, etc.
-- Fix the bug that multiple-nccl comm settings of paddle. fleet do not take effect, and add the non-overlapping warning of multi-nccl comm communication in synchronous mode
-- Fix the bug that the paddle. framework.seed in TruncatedNormal initialization does not meet the expectation
-- Fix the inconsistent behavior of AvgPool related API dynamic to static exclusive parameters; fix the MaxPool related API ceil_mode transmission parameter problem
-- Fix the bug that paddle. topk result is incorrect under GPU
-- option in the fluid.layers.nn.gather dynamic graph API
-- Fix the bug that the Window-based terminal does not recognize CUDA_VISIBLE_DEVICES as null character, and the frame can be executed in CPU mode by setting the null string
-- Fix the bug that the recursive saving and loading of optimizer.state_dict/set_dict fails when LinearLrWarmup recursively contains Learning Rate Scheduler
-- Fixed the ptb lm training performance decrease issue
-- Fix the bug of gradient calculation when softmax_with_cross_entropy uses ignore_index
-- Fix the bug that the parameter to be decayed is empty in the second acquisition after the first execution of AdamW
-
-
-## Inference
-
-###  Paddle Inference
-
-
-#### Function upgrade
-- In Paddle V2.0, add or upgrade some operators. Starting from this version, the forward operator versioning rules are defined by compatibility constraints. Through the alignment of operator versions between frameworks, ensure consistent definition and behavior of the same operator version in different frameworks, thus enhancing the overall robustness of the framework
-- Add the TryShrinkMemory interface to reduce the application display/memory consumption by releasing temporary tensor. For the demo example, refer to [Paddle-Inference-Demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c%2B%2B/test/shrink_memory)
-- Paddle-TRT supports clip op. Support the classification model GhostNet running under Paddle-TRT
-- Paddle-TRT int8 prediction support models containing channelwise quantization of mul op. Support the PaddleOCR detection and recognition of PaddleSlim quantization model running under Paddle-TRT int8
-- `load_inference_model` and `save_inference_model` APIs are migrated to `paddle.static` to improve ease of use and compatibility with old interfaces
-- Add six APIs such as `serialize_program`, `deserialize_program`, `serialize_persistables`, `deserialize_persistables`, `save_to_file`, `load_from_ file` six APIs for users to perform serialize/deserialize program, serialize/deserialize params, and save models/parameters to file, or load models/parameters from files
-- Enabled BF16 inference for models: resnet50, googlenet, mobilenetv1 and mobilenetv2
-- Added oneDNN operators version compatibility support
-
-#### Performance optimization
-- When TenorRT is enabled, ERNIE models add the support for variable-length inputs, resulting in the performance improving by 147%.In software versions cuda10.1, cudnn 7.6, tensorrt 6.0, [OSS 7.2.1](https://github.com/NVIDIA/TensorRT/tree/7.2.1), model ernie-base-2.0, dataset QNLI, the performance on Nvidia Telsa T4 improves from 905 sentences/s to 2237 sentences/s when input BatchSize = 32.Example code: [Paddle-Inference-Demo/c++](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c++)
-- Improved oneDNN INT8 GRU performance. The GRU INT8 model has 1.65X speed-up compared with NativeConfig inference. (with thread=1, batch_size=50)
-- Added oneDNN batchnorm + activation fuse, hence improved pvanet_ocr model performance by 2.8%
-
-
-#### Bug fixing
-- Fix the bug that models with avg pooling or global pooling have wrong computation results, error popups or hang
-- Fix the bug that the shape of TensorRT subgraph output Tensor ended with x1 will be deleted incorrectly when using the TensorRT dynamic shape inference
-- Fix the bug that config.pass_builder()->DeletePass() is not effective when the TensorRT inference is used
-- Fix the issue that some models performance depends on the matmul ops' weights
-- Fix the issue that CPU oneDNN predictin many models will report error or cause performance regression
-
-## Model upgrade
-
-### PaddleDetection
-- Upgrade dynamic graph models:
-  - Faster RCNN, Faster FPN, Mask RCNN, Mask FPN, Cascade RCNN, Cascade Mask, YOLOv3 model accuracy flattening static graphs
-    - Support the dynamic to static function. Enable the Paddle Inference. The precision speed flattens the static graphs
-- Release the SOLOv2, a real-time instance segmentation model. Compared to competing models, it is improved by 2.4% in accuracy and 31.2% in prediction speed. The training speed is as fast as 2.4 times of the competing models
-- Add the Android mobile detection demos, including SSD and YOLO series models
-- Add the PACT new quantification strategy. Compared to the ordinary quantification, YOLOv3-Mobilenetv3 on COCO dataset is improved by 0.7%
-
-### PaddleSlim
-
-- Support the dynamic graph compression function
-  - Add the dynamic graph cropping and quantization training function
-  - Add the cropping of the channel quantity alignment function, so that the output model is more easily accelerated by the prediction library
-  - PACT quantization training method is changed to built-in method. It is convenient for users to call directly
-- Add the OFA model compression technology. The TinyERNIE is accelerated by 40% after compression, with no loss of accuracy
-
-### PaddleSeg
-
--  Newly release 1.0-rc version, fully upgraded to dynamic graph. It supports 13 segmentation models, 4 backbone networks, and 3 datasets:
-  - Segmentation models: ANN, BiSeNetV2, DANet, DeeplabV3, DeeplabV3+, FCN, FastSCNN, Gated-scnn, GCNet, OCRNet, PSPNet, UNet, and U^2Net
-  - Backbone networks: ResNet, HRNet, MobileNetV3, and Xception
-  - Datasets: Cityscapes, ADE20K, and Pascal VOC
-  - Loss: CrossEntropy Loss、BootstrappedCrossEntropy Loss、Dice Loss、BCE Loss
-- Provide 40+ high quality pre-trained models based on Cityscapes and Pascal Voc datasets
-- Support multi-card GPU parallel evaluation. This provides the efficient index calculation function. Support multiple evaluation methods such as multi-scale evaluation/flip evaluation/sliding window evaluation
-
-### PaddleClas
-
-- Newly released 2.0-rc1, fully upgraded to dynamic graph. It supports 23 series of classification network structures and 135 image classification pre-training models. Among them, 14 practical SSLD distillation models are included, and the effect is generally improved by more than 3% compared with the benchmark model. Three new series of ResNeSt, RegNet and GhostNet models are added
-- Based on dynamic graph, provide the mixed precision training method and DALI-based training method
-- Provide the off-line predictive deployment, service-oriented deployment and end-side deployment based on the dynamic graphs
-
-### PaddleOCR
-
-- Newly released 2.0-rc1. PP-OCR series models are upgraded to dynamic graphs. Provide 8.1M ultra-lightweight Chinese and English OCR models, universal Chinese and English OCR models and better multilingual recognition models (pure English numbers, French, German, Japanese, Korean). Support the offline predictive deployment and service-oriented deployment
-- Release the Style-Text universal text data synthesis tool
-- Release the PPOCRLabel text data annotation tool
-
-### PaddleRec
-
-- Release models: gru4rec, deepfm, mmoe, dnn, LR supporting dynamic graph
-
-### PaddleGAN
-
-- Release models: Pixel2Pixel, CycleGAN, PSGAN, UGATIT, ESRGAN, CGAN, DCGAN
-- Provide 10 pre-trained models for style migration, makeup migration, coloring, super score, character and scene animation, etc.
-
-### PaddleNLP
-
-- Release 2.0-beta version: support all-around dynamic graph models; provide the PaddleNLP core library, with deeply integrating with higher-order APIs; support the pip installation; provide developers with best practices in the text domain of PaddlePaddle 2.0.
-- Add the text graph learning model ERNIESage, generative pre-training model ERNIE-Gen, open domain dialogue generation model PLATO-2, semantic matching model SentenceTransformer, time sequence prediction model TCN, and so on.
-- Enrich the pre-training language models further, including a total of 22 pre-training models such as ERNIE, BERT, RoBERTa, and ELECTRA (containing 11 Chinese pre-training models).
-- Add 8 common text task evaluation metrics such as Perplexity, BLEU, Rouge-L, and so on, adapted to the PaddlePaddle 2.0 Metrics API system to improve ease of use.
-- Add 25 new datasets for text classification, sequence annotation, machine translation, reading comprehension, and so on, adapted to the PaddlePaddle 2.0 Dataset API system, with fast loading by pressing one key.
-- Add the Embedding API function, including 38 Chinese word vectors, supporting fast loading and word granularity semantic distance calculation.
-
-### Parakeet
-
-- Release 2.0-alpha version: provide Parakeet core library; improve Chinese documentation; support pip installation.
-- Upgrade the text-to-speech model framework to unify the text front-end interface. The model is fully upgraded to Paddle 2.0 API, including TransformerTTS, Waveflow, Wavenet model, and new Tacotron2 model.
-- Provide more reusable networking modules. This facilitates the combination of model flexibly. Optimize the data processing and loading process. This improves the training speed.
-- Add the experiment module to standardize the experiment process. This facilitates the experiment management and secondary development. The sample codes for experiments are provided for existing models.
-
-## Utility Component
-
-### PaddleHub
-- Release 2.0-rc version: fully migrate the dynamic graph programming mode. It is more convenient for model development and debugging. The finetune interface is more flexible and easy to use.
-- Upgrade the visual class task migration learning capability fully, supporting a variety of tasks such as image classification, image coloring, and style migration.
-- Upgrade Transformer class models such as BERT, ERNIE and RoBERTa to dynamic graph. Support the Fine-Tune capability for text classification.
-- Optimize the Serving capability for service-oriented deployment, supporting multi-card prediction and automatic load balancing. The performance is improved greatly.
-- Add the Auto Augment (automatic data augment capability). This allows the efficient search for the proper combination of data augment policies for the datasets.
-
-### X2Paddle
-- Release version 1.0.0-rc0: It fully supports PaddlePaddle dynamic graph API.
-- Add the PyTorch model conversion: supports the conversion between Tracing and Scripting.
-- Add the support of conversion from Caffe/ONNX/Tensorflow to Paddle2.0 dynamic graph.
-- Add the Optimizer module, mainly including op fusions and op elimination functions, to improve the readability of the converted model code and the prediction performance of the model.
-
-## [Kunlun hardware](https://cloud.baidu.com/product/kunlun.html)
-
-###  Models adapted to Kunlun hardware
-- Resnet50, mobilenetv3, deeplabv3, bertbase, DQN static graphs model adapted to Kunlun hardware  
+# 2.0.0 Release Note
+
+## **Update**
+
+The PaddlePaddle framework V2.0.0 has the following updates:
+
+- Programming Paradigm: Enable dynamic graph mode for model development and training by default, and perform the model deployment and training acceleration through the dynamic to static mode.If you need to use static graph programming paradigm, you can switch to static graph mode by running paddle.enable_static().
+- API system: The API has been supplemented and the directory structure has been adjusted to make it easier to use, please see [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/index_en.html) for more details. A high-level API is provided to simplify the process. See [PaddlePaddle High-Level API Usage Guide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/quick_start/high_level_api/high_level_api.html) for more details.
+- Framework features: Data loading, dynamic graph execution, OP performance, mixed precision training, distributed training, dynamic-static conversion, etc. have been enhanced and optimized.
+- Environment adaptation: Supported ARM-based CPU. Added support for Python 3.8, CUDA 10.1/10.2. Released the installation package (experimental) supporting CUDA11, and released the installation package (experimental) supporting [Baidu Kunlun](https://cloud.baidu.com/product/kunlun.html) chip. For details, see [Start](https://www.paddlepaddle.org.cn/install/quick).
+- Model zoo and development kits: The official model zoo and kits for PaddlePaddle have been upgraded to PaddlePaddle framework V2.0.0.
+  - [PaddleHub](https://github.com/PaddlePaddle/PaddleHub)： Support dynamic graph V2.0. Fully migrate the dynamic graph programming mode, make model development and debugging more convenient. The finetune interface is more flexible and easy to use.
+  - [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection): Support dynamic graph V2.0. Cover the mainstream algorithm of detection direction (PP-YOLO, Faster-RCNN, SOLOv2), support dynamic-static conversion, hit the inference deployment, and provide a more modular way of networking.
+  - [PaddleClas](https://github.com/PaddlePaddle/PaddleClas): Support dynamic graph V2.0. Provide 29 series of classification algorithms and 134 pre-training models, provide an optimization scheme based on SSLD knowledge distillation, and generally improve the precision of classification models by more than 3%.
+  - [PaddleSeg](https://github.com/PaddlePaddle/PaddleSeg): Support dynamic graph V2.0. Provide 50+ high quality pre-training models, support 15+ mainstream segmentation networks, and provide the industry's SOTA model OCRNet, which well enhances the usability of the product.
+   - [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR):  Support dynamic graph V2.0. PPOCR system, text detection models (DB, EAST, SAST) and text recognition models (Rosetta, CRNN, StarNet) , and complete the adaptation of dynamic graph V2.0.
+  - [PaddleGAN](https://github.com/PaddlePaddle/PaddleGAN)：Support dynamic graph V2.0. Nine models, including style migration, video enhancement, lip migration, face animation and others are developed based on dynamic graph.
+  - [PaddleRec](https://github.com/PaddlePaddle/PaddleRec)： Support dynamic graph V2.0. The installation-free and unified dynamic and static networking are provided, convenient for user's research and going online. Release the classic dataset of the recommendation system.
+  - [PaddleNLP](https://github.com/PaddlePaddle/models/PaddleNLP)：Support dynamic graph V2.0. Provide 25+ pre-training models and easy-to-use API way to enhance the efficiency of text modeling.
+  - [Parakeet](https://github.com/PaddlePaddle/Parakeet)：Support dynamic graph 2.0. The released acoustic models and vocoder well support dynamic graph version.
+  - [PaddleVideo](https://github.com/PaddlePaddle/PaddleVideo)：Support dynamic graph V2.0. The video classification and video motion positioning direction models are included, such as TSN, TSM, SlowFast, AttentionLSTM, BMN models and featured application pre-training models VideoTag and FootballAction.
+
+
+## **Forward-looking Preview**
+
+- The PaddlePaddle Framework plans to drop the support for python2 and python3.5 from a certain version in the future. It is recommended that you upgrade python to V3.8 for PaddlePaddle.
+- The PaddlePaddle Framework plans to drop the support for CUDA 9.0 from a certain version in the future. It is recommended that you upgrade the CUDA for PaddlePaddle.
+
+## **Training Framework**
+
+### **Compatibility instructions**
+
+- Programming paradigm: PaddlePaddle 2.0.0 has the imperative programming paradigm (dynamic graphs) enabled by default, but still retains support for static graphs. static graph code (including static graph code from version 1.8) can be executed by running paddle. enable_static().
+- API: The PaddlePaddle Framework Version 2.0.0 recommends users to use the API located in the paddle root directory, while all the APIs from version 1.x are retained in the paddle.fluid directory, retaining support for the API system of earlier versions. Therefore, the static graph training code version 1.x can run normally on version 2.0.0 by running paddle.enable_static(). The model saved by training of version 1.x can be used for inference in version 2.0.0.
+- A [table](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/09_others_information/api_mapping_cn.html) of correspondence from version 1.8 API to version 2.0 API is prepared.
+- We provide a migration tool to facilitate the migration of codes based on earlier version to codes of version 2.0.0. See Version Migration Tool.
+
+### **dynamic graph mode**
+
+By default, the dynamic graph mode is enabled for model development and training, which allows you to perform model deployment and training acceleration in the dynamic-to-static mode.For details, please see [dynamic graph](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/quick_start/dynamic_graph/dynamic_graph.html), [Dynamic-to-static graph](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/04_dygraph_to_static/index_cn.html).
+
+###  **API system**
+
+- Basic APIs
+  - API directory structure adjustment: The API V1.x is mainly located in the paddle.fluid directory. In this version, the API directory structure is adjusted so that the classification can be more reasonable. For the specific adjusted directory, see the [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/index_en.html).  
+  - Added 186 new APIs. Fixed and revised 260 APIs. See Release Notes of 2.0.0 pre release version and [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/index_en.html).
+  - Added the distributed basic communication class API to paddle.distributed:broadcast, all_reduce, reduce, all_gather, scatter, barrier; dynamic graph multi-card training startup API spawn, init_parallel_ env, dynamic-static unified startup method fleetrun
+  -  Networking class API for dynamic and static unification: supports running in both dynamic graph mode and static graph mode.
+- High-level API
+  - Added PaddlePaddle high-level API, and encapsulated the common operations such as networking, training, evaluation, prediction, access, etc. in the process of model development, to achieve low code development. See [PaddlePaddle high level API instructions](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/quick_start/high_level_api/high_level_api.html).
+  - Added distributed high-level API paddle.distributed.fleet. Supported multiple optimization strategy combinations and automatic parallelism, distributed metrics calculation, InMemoryDataset by configuring the DistributedStrategy.
+
+### **Function optimization (including distributed)**
+#### **dynamic graph basic functions**
+
+- Usability optimization:
+  - Tensor function enhancements: Added Tensor copy interface Tensor.clone(), and more than 120 Tensor computation interfaces (e.g. Tensor.cos(), etc.). Added the new function to modify the Tensor function by using index or slice. Added the new function of automatic type boost in case of Tensor and Scalar operation. Optimized the printing information of dynamic graph Tensor. The display form remains the same as Numpy.
+  - Layer function enhancement: Added the new Layer deep copy interface Layer.deepcopy(). Added the new Layer property and function to view interface Layer.dir(). From this version, the Trace function still records reverse operation automatically after the invoking of Layer.eval(). If you don't need to record reverse, you need to explicitly call paddle. no_grad().
+  - Added a set_lr() interface for Optimizer so that users can flexibly adjust a learning rate in dynamic graph mode.
+  - Added a new set_global_initializer() interface to define global parameter initialization methods.
+ - Simplified the code for multi-card operation without needing to explicitly call scale_loss and apply_collective_grads.
+- Performance optimization:
+  - Supported the function of gradient updating by using sparse parameters for APIs (for example, embedding) in case of multi-card training.
+  - For dynamic graph training and inference, added the support for Intel acceleration library oneDNN (former MKL-DNN). The speed of Resnet50 model in CPU training scenario can improve by 6 times.
+  - New dynamic graph Inplace calculation function: The Tensor storage space can be reused, reducing the occupation of video memory. Added the new View method. You can change the Tensor description in case of shared underlying storage.
+  - [Incompatible upgrade] new dynamic graph gradient accumulation function, with disguised "expand BatchSize" role. By default, the gradient of backward() interface is not clear, with needing to explicitly call optimizer.clear_grad() to clear the gradient.
+- Fixing bugs:
+  - Fixed the bug of train and eval interference with each other when switching between them in multiple models.
+
+#### **Dynamic-to-static graph**
+
+- **Added the grammar support for dynamic-to-static conversion**
+  - Added the support for the return grammar. In the if-elif-else or loop conditions, the loop can return earlier, with return different types of tensor or None.
+  - Added support for the **kwargs parameter contained in the signature function.
+  - Added the grammar support of “for”, “for enumerate” traversing Tensor and TensorList, more flexible operation for traversing Tensor.
+  - Added the support for more python grammars, such as print, assert, cast, isinstance, tuple, dict.pop(), etc.
+- **Optimized the usability of dynamic-static conversion**
+  - Changed the return type of dynamic-to-static from callable function to Class. The code and main_program interfaces invoking the Class can obtain the converted static graph information more easily.
+  - The dynamic-to-static decorator to_static is added with the directly decorating model instances, such as to_static (model, input_spec).
+  - Added the jit.not_to_static decorator. The function is not converted in the dynamic-to-static process.
+  - Added set_verbosity() and set_code_level() interfaces. You can set different levels to view the log or intermediate state code of the dynamic to static process.
+  - Added InputSpec. You can specify the shape and data type of input Tensor variables in the dynamic to static process.
+  - Error message optimization: Locate the specific wrong line of code in the original dynamic graph and hide the user-unrelated error message.
+  - Support break point debugging by using pdb.set_trace().
+- **Optimized deployment of model storage and loading APIs**
+  - Added paddle.jit.save interface for storing dynamic-to-static models: The interface is compatible with and used to store both the Layer object not transcribed by paddle.jit.to_static and paddle.DataParallel models. Remove the old interface ProgramTranslator. save_ inference_model.
+  - Added the paddle.jit.load interface for loading prediction models stored in static graph format, including models saved by paddle.jit.save and paddle.io.save_inference_model. This can be used for model inference or model training optimization under dynamic graph after loading.
+  - Added the program method for opaddle.jit. TransLatedLayer for obtaining the program of the paddle.jit.load loading model. It is for understanding of the model structure.
+  - [Incompatible upgrade] changed the meaning of the interface parameter model_path of paddle.jit.save and paddle.jit.load: That is, changed to the prefix of storage files instead of that of directory.
+
+#### **Mixed precision training**
+- Mixed precision policy upgrade: In addition to the black and white list policy (hereinafter referred to as "O1 policy"), "Almost FP16 (hereinafter referred to as O2 policy)" is added. That is, use FP16 for calculation as much as possible.
+  - Added the FP16 Guard function (`paddle.static.amp.fp16_guard`): Support users to freely control whether a single Op in the model chooses FP16 calculation type.
+  - User can customize `custom_black_list` to control a certain type of Op to keep FP32 computation.
+  - Using the O2 policy: Resnet50 and Bert base can be trained at 1400 images/s and 590 sequences/s, respectively, on a single card V100.
+- Usability optimization:  
+  - Use the `paddle.static.amp` package to manage the interfaces related to static graph mixed precision training in a unified manner.  
+  - Provide the simplified name `CustomOpLists` for `AutoMixedPrecisionLists`: That is, users can customize the AMP black and white list Op list by using `CustomOpLists`.
+
+#### **Optimization of the distributed training**
+
+- Integrated communication All Reduce
+  - Support mixed parallel training of 100 billion language models: support pipeline parallel training based on the executor interface, with sharding-DP strategy, GradientMerge+AMP strategy, Recompute+Offload strategy, and megatron strategy.
+  - Support dynamic graph: support multi-stream communication strategy, automatic rebuild group strategy, high performance sparse parameter communication, and multi-card gradient sequential consistency strategy.
+- Parameter server PS
+  - Upgraded the large-scale sparse function: Upgrade large-scale sparse PS-API, and abstract communication component/parameter table/optimizer base class. It is convenient for users to carry out secondary development in a subclass derivation mode. Meanwhile, it also supports 100 billion features streaming training, including feature access, exit, incremental training, distributed metrics prediction, etc. The communication mode switches from GRPC to BRPC.
+  - Open source heterogeneous parameter server: Support both traditional pure CPU machine PS, and pure GPU machine PS based on three levels of storage (SSD/memory/video memory). It also supports CPU machine + GPU machine/Kunlun machine mixing distributed PS, with completing the minute-level training of trillions of parameter hit rate prediction models
+- Support of new training mechanism:
+  - Support control flow-based multitasking distributed training: The performance is improved by more than 50% compared to the Intag-based multitasking.
+- Optimization of the distributed startup method
+  - Supported distributed low-order APIs such as all_gather using the `paddle.distibuted.spawn` interface
+  - Upgraded the `paddle.distributed.launch` interface: Support specifying the number of processes in a single node with simplifying as `fleetrun`.
+  - Optimized `gen_nccl_id`: Removed the grpc dependency, added some fault tolerance, and improved the stability of starting distributed tasks.
+  - Supported the startup of multi-CPU in the integrated communication in the Gloo method
+
+#### **Model saving and loading**
+- Standardized the set_dict method name of APIs such as Layer and Optimzier: That is, changed to set_state_dict in a unified manner.
+- Enhanced paddle.load compatibility: support the loading of Layer's state_dict from storage results of interfaces such as fluid.io.save_inference_model and fluid.io.save_params/persistables.
+- Modified the paddle. save/load interface behavior: For the paddle.save, A suffix is not added to the storage results. In each loading, paddle.load returns only one result. Standardize the interface semantics.
+- Removed paddle.SaveLoadConfig: For the interface compatibility loading scenarios of paddle.jit.save, paddle.jit.load, and paddle.load, use **kwargs to pass in additional configuration to simplify the use of the interface.
+- Moved the original static graph APIs such as paddle.io.save, paddle.io.load, paddle.io.save_inference_model, and paddle.io.load_inference_model to the paddle.static module.
+- Optimized the paddle.static.load_program_state interface experience. In the scenarios without specifying the loading var_list, only a warning (instead of error report) is given when there is an interference file in the loading of a directory.
+
+#### **Plural computation**
+
+- Extended the dynamic static graph execution engine: Support the plural neural network training and plural gradient accumulation.
+-  Added Op such as mul, div, matmul, kron, and abs for supporting the plural computation.
+
+#### **ONNX function upgrade**
+
+- Added API: `paddle.onnx.export` for supporting the conversion from Paddle2.0 dynamic graph to ONNX protocol.
+- Added PPOCR, PPYOLO, FasterRCNN, and ERNIE for model conversion.
+- Richer Paddle op coverage: Support 88 Paddle OP operators. Support the export as different versions of ONNX 1~12 operator sets.
+
+#### **Performance optimization (including the distributed)**
+
+- dynamic graph performance optimization:
+  - Optimized the data read performance: Simplify the DataLoader underlying implementation logic in dynamic graph mode, reduce the thread reading overhead, and further improve the data reading efficiency and the overall model training speed. The overall training speed of MobileNetV1 in a scenario of single card V100 and BatchSize = 128 is improved by 34%.
+  - Upgraded and performance optimization of dynamic graph networking API: A large number of dynamic graph APIs directly call an automatically generated Pybind API. As a result, the performance is improved significantly.
+  - Improved the training performance of Resnet50 oneDNN dynamic graph. The dynamic graph training speed of the current CPU scenario Resnet50 oneDNN is improved by 6.4 times.
+- OP performance optimization:
+  - argsort: The number of elements of the input Tensor is optimized as the number equal to its `axis` dimensional length. In this way, the forward speed is improved by 34 times, and the reverse speed is improved by 10 times.
+  - dropout: Optimized GPU performance. The FP32 performance is improved by 20%. The FP16 performance is improved by 50%.
+  - cast: Optimized GPU performance. The performance is improved by 10% to 20%.
+  - softmax: Optimized GPU performance in case of axis=-1. The performance is improved by 3 times to 96 times for different shapes.
+  - Performance optimization of other OPs: Significantly improved the performance of other OPs such as cumsum, reshape, Flatten, IndexSelect, Roll, elementwise_add, AdamW and RNN class (LSTM, GRU, SimpleRNN).
+- Optimization strategy:
+  - Added fused_bn_add_act fusion strategy: Performed the automatic fusion acceleration for the combined pattern of batch_norm+elementwise_add+activation.
+  - Added inplace addto strategy for gradient aggregation: Support in-situ gradient accumulation. Improve the performance by 6.3% in ResNet-50 mixed precision training.
+
+- Optimized FastThreadedSSAGraphExecutor scheduling: Fixed the bug that the communication calculation does not overlap in the communication synchronization scenario. The performance of 4 machines and 32 cards resnet50 is improved by about 0.3%.
+
+- Distributed performance optimization:
+  - Optimized lars strategy: The time2train index of 16k batch size in the ResNet50 distributed multi-card training is smaller than 10 minutes.
+  - Optimized the paddle.fleet amp distributed performance: Fixed the bug that the last communication and calculation are not overlapping. The performance of the 4-machine 32-card FP16 is improved by about 0.5%.
+  - Optimized paddle. fleet.gradient_merge distributed performance: Aggregate gradients before communication. The multi-machine performance can be improved by 20%-40% to achieve linear acceleration ratio.
+  - Optimized the performance of the parameter server communication component Communicator. In case of GEO-400batch communication once, the W2V model throughput rate and Simnet-Bow model performance are significantly improved. In the Async mode, compared to the PaddlePaddle Framework 1.8, the throughput rate of W2V model is improved by 11% and the performance of CTR-DNN model is improved by 14%
+
+#### **Debugging analysis**
+
+- Uniformly changed the wording of LOG(FATAL) throw exception at just 100 points to PADDLE_THROW: Optimize the error format and content caused by non-support of a framework behavior.
+- Improved the Signal Handler implementation within the framework. Optimized the error format and content when system signal error occurs during the execution.
+- Optimized the framework error stack format: In the compiling, the python error stack is moved below the native error stack to improve error message reading experience.
+- An accumulative total of about 1500 error type and prompt copywritings of check errors within the framework. This enhances the overall debugging usability of the framework.
+- Enhanced dynamic graph error messages: Error messages on the Pybind layer under a dynamic graph are systematically enhanced to improve user experience.
+- Optimized exception types of Paddle Python side error report: Align with Python native error report types.
+- Hide the C++ error stack by default: Optimized the error format after hiding the C++ stack, removed the demarcation flag `Error Message Summary`, and aligned with the native Python error format.
+- Optimized the error prompts of APIs in non-static graph mode in some static modules, including 9 APIs such as static. append_backward, static.gradients, static.scope_guard, static.Print, static.nn.embedding, static.nn. data_norm, static.nn.multi_box_head, static.nn.nce, and static.nn.py_func.
+- Optimized the error message when passing in Tensor as None under dynamic graph model.
+- Optimized the printing information of Layers, and supported printing the relationship of each hierarchy in Layers.
+
+## **Inference Deployment**
+
+#### **Model quantification**
+
+- Enhanced the quantification function in case of the training of dynamic graphs: Added the quantification function of dynamic graphs for the `ImperativeQuantAware` class in the unified manner. Currently, it supports quantification of weighted layers such as Conv2D, Linear, etc. Support the obtaining the channel-based quantification parameters of weighted layers, quantification of weightless layers such as ReLU, Tanh, and Layer quantification specified by skip.
+- Added the function to obtain the output scale parameter for the model layer during the training of dynamic graph quantification, for the deployment of quantification inference on the Server side.
+- dynamic graph quantitative model supports inference deployment using Paddle-Lite.
+- For the offline quantification function, support the advance fusion of conv+bn and output LSTM quantitative models. Remove the function of saving sampled data to temporary files.
+- For the static graph quantification, support Conv2d_tranpose quantification. Support Linear quantification in the form of per-channel.
+
+### Paddle Inference
+
+The default naming of inference library is changed from fluid_inference to paddle_inference.
+
+#### API
+
+- The inference C++ API is upgraded fully. The new APIs are recommended. The old APIs remain temporarily. There is warning reported in the use of old APIs. The old APIs are planned to be deleted in the future. The new APIs include changes of naming standardization and simplification of usage method, including:
+  - A new `paddle_infer` namespace for the C++ interface, containing inference-related interfaces.
+  - Renamed `ZeroCopyTensor` to `Tensor` as the default input/output representation of the inference interface.
+  - Simplify `CreatePaddlePredictor` to `CreatePredictor`, with keeping the support for only `AnalysisConfig`. Other multiple Configs are not supported.
+  - Added service-related utility classes such as `PredictorPool`, which can be used when multiple predictors are created.
+
+#### **Function upgrade**
+-  Operator-related version information
+  - Some operators are newly added or upgraded in Paddle V2.0. Starting from this version, the forward operator version is defined with compatibility constraints. Through the alignment of operator versions between frameworks, ensure consistent definition and behavior of the same operator, thus enhancing the overall robustness of the framework.
+  - Added the registration mechanism for inference forward operator versions and included the incompatible upgrade behavior of operators for the statistics.
+  - Added the operator version information for the prediction models. Through the model file, the inference library is able to identify the definition of the operator corresponding to this model, so as to avoid calculation errors caused by different definitions.
+- Model interface
+  - The `load_inference_model` and `save_inference_model` APIs are migrated to `paddle.static` to improve the usability, with compatibility with the old interfaces.
+  - Added six APIs such as `serialize_program`, `deserialize_program`, `serialize_persistables`, `deserialize_persistables`, `save_to_file`, and `load_from_file` for users to perform serialize/deserialize programs, serialize/deserialize params, and saved models/parameters to file, or loaded models/parameters from files.
+
+- Inference-related NV GPU
+  - Added the adaptive support for TRT 7.1.
+  - Added the adaptive support for Jetson Nx hardware.
+  - Paddle-TensorRT enhances the support for the PaddleSlim quantitative model. Cover multiple tasks such as detection, classification, and segmentation on CV.
+  - Paddle-TRT supports clip op, and supports the classification model GhostNet running on the Paddle-TRT.
+  - Paddle-TRT supports mul op models with channelwise quantification, and supports the PaddleOCR detection. Identified the quantitative models running in the Paddle-TRT int8.
+  - Paddle-TRT dynamic shape function supports PaddleSlim quantification Int8 models.
+- X86 CPU-related inference
+  - Added the support for oneDNN BF16: support the computation of conv2d and gru bf16. It currently supports BF16 prediction for resnet50, googlenet, mobilenetv1 and mobilenetv2 models.
+  - Added support for quantification and inverse quantification of scales with bias in oneDNN INT8 quantification strategy.
+  - Added version compatibility support for some oneDNN operators.
+  - Added the kernel support for `elementwise_add` and `elementwise_mul` INT8 oneDNN on the CPU side.
+  - Improved the usability of CPU-side test quantification models. Supported the comparative test of original models and quantitative models at the same time.
+
+- Custom OP
+  - Added the support for user-defined Ops on Python-side inference.
+-  Memory/GPU memory correlation
+  - Added the TryShrinkMemory interface. Reduced the occupation of application's memory/video memory by releasing temporary tensors. For the demo, see [Paddle-Inference-Demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c%2B%2B/test/shrink_memory).
+- dynamic graph quantitative model support
+  - X86 inference supports dynamic graph quantitative models.
+  - NVIDIA GPU inference supports dynamic graph quantitative model.
+- Error message:
+  - In the Compiling, when enabling ON_INFER, FLAGS_call_stack_level is on by default. The error message indicates that the stack is invoked.
+
+#### **Performance optimization**
+- Improved the transformation and optimization of quantitative models.
+- NV GPU correlation
+  - Optimized the ArgMin and ArgMax OP of CUDA so that the binary system size of the OP is decreased from 60 M to 1.3 M.
+  - For the ERNIE model on T4 with using the Paddle-TRT FP16 inference, the performance is improved by 15%.
+  - The ERNIE model adds the support for variable-length inputs when TenorRT is enabled. The performance is improved by 147%.In software versions cuda10.1, cudnn 7.6, tensorrt 6.0, [OSS 7.2.1](https://github.com/NVIDIA/TensorRT/tree/7.2.1), model ernie- base-2.0, dataset QNLI, the performance on Nvidia Telsa T4 improves from 905 sentences/s to 2237 sentences/s when input BatchSize = 32.Sample code: [Paddle-Inference-Demo/c++](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c++).
+- X86 CPU related
+  - Added the conv + affine_op pass. The MASK-RCNN fp32 single-threaded performance is improved by 26% on machine 6248.
+  - Added the fc + gru pass and enable oneDNN (former MKL-DNN) GRU fp32 kernel, speeding up GRU fp32 model inference on 4 CRU threads by 20% on machine Intel Xeon 6248.
+  - By supporting oneDNN INT8 GRU, the GRU INT8 model is about 1.65 times faster compared to NativeConfig inference (threads = 1, batch_size = 50).
+  - Added the fuse support for oneDNN batchnorm + activation. The pvanet_ocr model performance is improved by 2.8% as a result.
+  - Added the oneDNN FC + Gelu, FC + Sigmoid and FC + tanh operator fusion. The BERT inference model is improved by 4.5%.
+  - Added oneDNN inplace support for partial Op
+  - Optimized oneDNN LRN op (speedup 1% for the GoogleNet fp32 model).
+  - With oneDNN upgraded to 1.6, Ernie Large oneDNN inference on Skylake (Intel Core 6148) is about 2.7x faster (i.e. unit test test_analyzer_ernie_large).
+  - Added the interpolate oneDNN forward operator support. Now ocr_det model inference performance improved by 2.04x compared to CPU Native inference alone.
+
+## Paddle Lite
+End-side inference engine Paddle Lite v2.8 is adapted to the main framework v2.0
+
+## **Environment Adaptation**
+
+### **Compile and install**
+
+#### **Training Framework Paddle**
+- Released the installation package supporting the use of x86 CPUs and the use of Kunlun chips under the FT CPU.
+- Added the support for python3.8 in the installation package.
+- Added the installation package for cuda10.1 and cuda 10.2.
+- (experimental) Released the installation package for cuda11.
+- Upgraded the Paddle image of cuda 10.1 and later, and the NCCL version in the CI system image to V2.7.8
+- Upgraded oneDNN (former MKL-DNN) from V1.3 to V1.5.
+- Added the pre-installed openssl-dev dependencies to the image.
+- Removed installed dependencies: nltk, opencv, scipy, rarfile, prettytable, pathlib, matplotlib, graphviz, objgraph.
+- Paddle's avx and no_avx are released separately. whl package is reduced by 40%. avx version is installed by default. Optimized installation error message. The system checks the user's CPU type and Paddle version, automatically prompting the corresponding installation error.
+- Improved the pypi installation user experience for the Paddle develop version. Reduced the user installation path. You can run pip --pre for installation.
+
+#### **Paddle inference engine**
+- The inference library supports cuda10.2-cudnn8-trt7.1 version.
+- Release the installation package supporting jetpack and C++ inference library supporting nv_jetson.
+- Newly release the joint compilation of two wheel packages for tensorrt, that is, cuda10.0-cudnn7.6-trt6.0.1.5-python36 and cuda10.0-cudnn7.6-trt6.0.1.5-python36.
+- Fixed the joint compilation strategy, released the gpu package containing tensorrt separately to avoid the error of no tensorrt when users install the packages of other GPU versions.
+- Fixed a bug of duplicate in the inference library packages.
+
+
+### **Support of new hardware training**
+- Kunlun chip: support single card training, static graph multi-card training. Release 10+ models.
+- Centerm 910 chip: support single card training.
+
+## **Known Issues**
+
+- Due to cuDNN 8.0.x's own limitations, when using cuDNN 8.0.x to compile inference library and not using TensorRT acceleration, there is performance degradation on many models. This bug is to be fixed in cuDNN's subsequent versions. You can try to use TensorRT acceleration or use cuDNN 7.6.
+- Due to cuDNN 8.0.x’s own limitation, memory leak occurs in some models when using cuDNN 8.0.x for inference. Currently, it is found that the problem occurs when the convolutionBiasActivationForward of cuDNN is used. You can try to disable conv_elementwise_add_act_fuse_pass and conv_elementwise_add_act_fuse_pass by using the inference config file config. pass_builder()->DeletePass().If there is still leakage, you can try cuDNN7.6 and send us the model where you found the problem by issue for analysis.
