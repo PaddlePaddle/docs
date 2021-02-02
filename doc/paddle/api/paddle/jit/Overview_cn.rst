@@ -34,5 +34,5 @@ Debug动态图转静态图相关
     :widths: 10, 30
 
     " :ref:`set_code_level <cn_api_fluid_dygraph_jit_set_code_level>` ", "设置代码级别，打印该级别动转静转化后的代码"
-    " :ref:`set_code_level <cn_api_fluid_dygraph_jit_set_verbosity>` ", "设置动态图转静态图的日志详细级别"
+    " :ref:`set_verbosity <cn_api_fluid_dygraph_jit_set_verbosity>` ", "设置动态图转静态图的日志详细级别"
 
