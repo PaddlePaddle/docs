@@ -9,7 +9,7 @@ XPUPlace
 
 
 
-``XPUPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 或 ``LoDTensor`` 的 Baidu Kunlun XPU 设备。
+``XPUPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 的 Baidu Kunlun XPU 设备。
 每个 ``XPUPlace`` 有一个 ``dev_id`` （设备id）来表明当前的 ``XPUPlace`` 所代表的显卡编号，编号从 0 开始。
 ``dev_id`` 不同的 ``XPUPlace`` 所对应的内存不可相互访问。
 
