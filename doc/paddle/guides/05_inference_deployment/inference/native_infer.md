@@ -49,7 +49,7 @@ void CreateConfig(Config* config, const std::string& model_dirname) {
 }
 
 void RunAnalysis(int batch_size, std::string model_dirname) {
-  // 1. 创建AnalysisConfig
+  // 1. 创建Config
   Config config;
   CreateConfig(&config, model_dirname);
 
@@ -137,7 +137,7 @@ config->GpuDeviceId();        // 返回正在使用的GPU ID
 config->EnableTensorRtEngine(1 << 20             /*workspace_size*/,
                              batch_size        /*max_batch_size*/,
                              3                 /*min_subgraph_size*/,
-                                AnalysisConfig::Precision::kFloat32 /*precision*/,
+                             PrecisionType::kFloat32 /*precision*/,
                              false             /*use_static*/,
                              false             /*use_calib_mode*/);
 ```
