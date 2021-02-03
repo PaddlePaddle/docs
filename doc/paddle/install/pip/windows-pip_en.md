@@ -13,28 +13,16 @@
 
 ### 1.2 How to check your environment
 
-* You can use the following commands to view the local operating system and bit information
-
-  ```
-  uname -m && cat /ect/*release
-  ```
-
+* Confirm that your local operating system and bit information is proper.
 
 
 * Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
-  * If you are using Python 2, use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
+  ```
+  where python
+  ```
 
-    ```
-    which python
-    ```
-
-  * If you are using Python 3, use the following command to output Python path. Depending on your environment, you may need to replace Python 3 in all command lines in the instructions with Python or specific Python path
-
-    ```
-    which python3
-    ```
-
+  
 
 
 * You need to confirm whether the version of Python meets the requirements

@@ -13,43 +13,24 @@
 
 ### 1.2如何查看您的环境
 
-* 可以使用以下命令查看本机的操作系统和位数信息：
-
-  ```
-  uname -m && cat /ect/*release
-  ```
-
+* 可以通过【控制面板】-【系统和安全】-【系统】查看本机的操作系统和位数信息
 
 
 * 确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
 
-  * 如果您是使用 Python 2，使用以下命令输出 Python 路径，根据的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
-
-    ```
-    which python
-    ```
-
-  * 如果您是使用 Python 3，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python3 替换为 python 或者替换为具体的 Python 路径
-
-    ```
-    which python3
-    ```
-
-
+  ```
+  where python
+  ```
 
 * 需要确认python的版本是否满足要求
 
   * 如果您是使用 Python 2，使用以下命令确认是 2.7.15+
 
-        ```
         python --version
-        ```
-
+    
   * 如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7/3.8
 
-        ```
         python3 --version
-        ```
 
 * 需要确认pip的版本是否满足要求，要求pip版本为20.2.2+
 
