@@ -1,4 +1,4 @@
-.. _cn_api_fluid_dygraph_ProgramTranslator
+.. _cn_api_fluid_dygraph_ProgramTranslator:
 
 ProgramTranslator
 -------------------------------
