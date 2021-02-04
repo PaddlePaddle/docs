@@ -1,16 +1,21 @@
 用N-Gram模型在莎士比亚文集中训练word embedding
 ==============================================
 
-N-gram
-是计算机语言学和概率论范畴内的概念，是指给定的一段文本中N个项目的序列。
-N=1 时 N-gram 又称为 unigram，N=2 称为 bigram，N=3 称为
-trigram，以此类推。实际应用通常采用 bigram 和 trigram 进行计算。
-本示例在莎士比亚文集上实现了trigram。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
 
-1、环境
--------
+**日期:** 2021.01 
 
-本教程基于paddle-2.0rc编写，如果您的环境不是本版本，请先安装paddle-2.0rc版本。
+**摘要:** N-gram是计算机语言学和概率论范畴内的概念，是指给定的一段文本中N个项目的序列。N=1
+时 N-gram 又称为 unigram，N=2 称为 bigram，N=3 称为
+trigram，以此类推。实际应用通常采用 bigram 和 trigram
+进行计算。本示例在莎士比亚文集上实现了trigram。
+
+一、环境配置
+------------
+
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
 .. code:: ipython3
 
@@ -22,12 +27,12 @@ trigram，以此类推。实际应用通常采用 bigram 和 trigram 进行计�
 
 .. parsed-literal::
 
-    '2.0.0-rc0'
+    '2.0.0'
 
 
 
-2、数据集&&相关参数
--------------------
+二、数据集&&相关参数
+--------------------
 
 2.1 数据集下载
 ~~~~~~~~~~~~~~
@@ -38,21 +43,6 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 .. code:: ipython3
 
     !wget https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt
-
-
-.. parsed-literal::
-
-    --2020-10-27 09:22:19--  https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt
-    正在连接 172.19.57.45:3128... 已连接。
-    已发出 Proxy 请求，正在等待回应... 200 OK
-    长度：5458199 (5.2M) [text/plain]
-    正在保存至: “t8.shakespeare.txt”
-    
-    t8.shakespeare.txt  100%[===================>]   5.21M   856KB/s  用时 13s       
-    
-    2020-10-27 09:22:33 (426 KB/s) - 已保存 “t8.shakespeare.txt” [5458199/5458199])
-    
-
 
 .. code:: ipython3
 
@@ -129,8 +119,8 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
     vocab_size = len(word_list) + 1  # 词表大小
     epochs = 2                       # 迭代轮数
 
-3、数据加载
------------
+三、数据加载
+------------
 
 3.1 数据格式
 ~~~~~~~~~~~~
@@ -182,11 +172,11 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
     train_dataset = TrainDataset(trigram)
     
     # 加载数据
-    train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), return_list=True,
-                                        shuffle=True, batch_size=batch_size, drop_last=True)
+    train_loader = paddle.io.DataLoader(train_dataset, return_list=True, shuffle=True, 
+                                        batch_size=batch_size, drop_last=True)
 
-4、模型组网
------------
+四、模型组网
+------------
 
 这里用paddle动态图的方式组网。为了构建Trigram模型，用一层 ``Embedding``
 与两层 ``Linear`` 完成构建。\ ``Embedding``
@@ -211,7 +201,7 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
             x = self.linear2(x)
             return x
 
-5、 方式一：基于高层API，完成模型的训练与预测
+五、 方式1：基于高层API，完成模型的训练与预测
 ---------------------------------------------
 
 5.1 自定义Callback
@@ -223,6 +213,9 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
     # 自定义Callback 需要继承基类 Callback
     class LossCallback(paddle.callbacks.Callback):
+    
+        def __init__(self):
+            self.losses = []
             
         def on_train_begin(self, logs={}):
             # 在fit前 初始化losses，用于保存每个batch的loss结果
@@ -259,10 +252,11 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/2
-    step 3519/3519 [==============================] - loss: 5.0840 - 499ms/step          
+    step 3519/3519 [==============================] - loss: 5.1085 - 135ms/step        
     Epoch 2/2
-    step 3519/3519 [==============================] - loss: 5.0217 - 488ms/step          
+    step 3519/3519 [==============================] - loss: 5.3717 - 166ms/step        
 
 
 5.3 loss可视化
@@ -285,15 +279,16 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
-    [<matplotlib.lines.Line2D at 0x14fe20ca0>]
+    [<matplotlib.lines.Line2D at 0x7fc2de249850>]
 
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/nlp_case/n_gram_model/n_gram_model_files/rc_n_gram_model_001.png?raw=true
+.. image:: n_gram_model_files/n_gram_model_23_1.png
 
-6、方式2：基于基础API，完成模型的训练与预测
--------------------------------------------
+
+六、方式2：基于基础API，完成模型的训练与预测
+--------------------------------------------
 
 6.1 自定义 ``train`` 函数
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -325,22 +320,22 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
-    epoch: 0, batch_id: 0, loss is: [7.82583]
-    epoch: 0, batch_id: 500, loss is: [5.209134]
-    epoch: 0, batch_id: 1000, loss is: [5.219675]
-    epoch: 0, batch_id: 1500, loss is: [5.7377477]
-    epoch: 0, batch_id: 2000, loss is: [5.3354797]
-    epoch: 0, batch_id: 2500, loss is: [5.4568267]
-    epoch: 0, batch_id: 3000, loss is: [5.0538363]
-    epoch: 0, batch_id: 3500, loss is: [5.10138]
-    epoch: 1, batch_id: 0, loss is: [5.4055595]
-    epoch: 1, batch_id: 500, loss is: [5.3116407]
-    epoch: 1, batch_id: 1000, loss is: [5.199607]
-    epoch: 1, batch_id: 1500, loss is: [5.484496]
-    epoch: 1, batch_id: 2000, loss is: [5.4431257]
-    epoch: 1, batch_id: 2500, loss is: [5.049994]
-    epoch: 1, batch_id: 3000, loss is: [5.169182]
-    epoch: 1, batch_id: 3500, loss is: [5.0565596]
+    epoch: 0, batch_id: 0, loss is: [7.8264003]
+    epoch: 0, batch_id: 500, loss is: [5.369318]
+    epoch: 0, batch_id: 1000, loss is: [5.41901]
+    epoch: 0, batch_id: 1500, loss is: [5.480854]
+    epoch: 0, batch_id: 2000, loss is: [5.333619]
+    epoch: 0, batch_id: 2500, loss is: [5.3956995]
+    epoch: 0, batch_id: 3000, loss is: [5.282076]
+    epoch: 0, batch_id: 3500, loss is: [5.426653]
+    epoch: 1, batch_id: 0, loss is: [5.4072175]
+    epoch: 1, batch_id: 500, loss is: [5.213806]
+    epoch: 1, batch_id: 1000, loss is: [5.37059]
+    epoch: 1, batch_id: 1500, loss is: [5.2062044]
+    epoch: 1, batch_id: 2000, loss is: [5.0453634]
+    epoch: 1, batch_id: 2500, loss is: [5.2034044]
+    epoch: 1, batch_id: 3000, loss is: [4.869763]
+    epoch: 1, batch_id: 3500, loss is: [5.6296024]
 
 
 6.2 loss可视化
@@ -362,12 +357,12 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 
 .. parsed-literal::
 
-    [<matplotlib.lines.Line2D at 0x13c582e80>]
+    [<matplotlib.lines.Line2D at 0x7fc2dc5c3710>]
 
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/nlp_case/n_gram_model/n_gram_model_files/rc_n_gram_model_002png?raw=true
+.. image:: n_gram_model_files/n_gram_model_27_1.png
 
 
 6.3 预测

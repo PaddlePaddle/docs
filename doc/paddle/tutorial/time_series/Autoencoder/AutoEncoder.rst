@@ -1,26 +1,22 @@
 通过AutoEncoder实现时序数据异常检测
 ===================================
 
-作者: `Reatris <https://github.com/Reatris>`__
+**作者:** `Reatris <https://github.com/Reatris>`__
 
-日期：2020.11
+**日期:** 2021.01 
 
-本示例教程将会演示如何使用飞桨PaddlePaddle2.0来完成时序异常检测任务。这是一个较为简单的示例，将会搭建一个AutoEncoder网络完成任务。
+**摘要:** 本示例将会演示如何使用飞桨2.0完成时序异常检测任务。这是一个较为简单的示例，将会构建一个AutoEncoder网络完成任务。
 
-环境配置
---------
+一、环境配置
+------------
 
-本教程基于paddle-2.0-rc编写，如果您的环境不是本版本，请先安装paddle-2.0-rc版本。
-
-.. code:: ipython3
-
-    #导入模块
-    import numpy as np
-    import pandas as pd
-    from matplotlib import pyplot as plt
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
 .. code:: ipython3
 
+    # 导入 paddle
     import paddle
     import paddle.nn.functional as F
     print(paddle.__version__)
@@ -28,11 +24,24 @@
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0
 
 
-加载数据集
-----------
+.. code:: ipython3
+
+    # 导入其他模块
+    import numpy as np
+    import pandas as pd
+    from matplotlib import pyplot as plt
+    
+    import warnings
+    warnings.filterwarnings("ignore")
+
+二、数据加载
+------------
+
+2.1 下载数据集
+~~~~~~~~~~~~~~
 
 -  我们将使用纽伦塔异常基准(NAB)数据集。它提供人工时间序列数据，包含标记的异常行为周期。
 
@@ -46,26 +55,19 @@
 .. code:: ipython3
 
     #解压数据集
-    %cd ~/
-    !unzip data/data55385/artificialNoAnomaly.zip && unzip data/data55385/artificialWithAnomaly.zip
-
-
-.. parsed-literal::
-
-    /home/aistudio
-    unzip:  cannot find or open data/data55385/artificialNoAnomaly.zip, data/data55385/artificialNoAnomaly.zip.zip or data/data55385/artificialNoAnomaly.zip.ZIP.
-
+    # %cd ./
+    # !unzip ./archive.zip
 
 .. code:: ipython3
 
     #正常数据预览
-    df_small_noise_path = 'artificialNoAnomaly/art_daily_small_noise.csv'
+    df_small_noise_path = 'artificialNoAnomaly/artificialNoAnomaly/art_daily_small_noise.csv'
     df_small_noise = pd.read_csv(
         df_small_noise_path, parse_dates=True, index_col="timestamp"
     )
     
     #异常数据预览
-    df_daily_jumpsup_path = 'artificialWithAnomaly/art_daily_jumpsup.csv'
+    df_daily_jumpsup_path = 'artificialWithAnomaly/artificialWithAnomaly/art_daily_jumpsup.csv'
     df_daily_jumpsup = pd.read_csv(
         df_daily_jumpsup_path, parse_dates=True, index_col="timestamp"
     )
@@ -92,8 +94,8 @@
     2014-04-01 00:20:00  20.187739
 
 
-数据可视化
-----------
+2.2 数据可视化
+~~~~~~~~~~~~~~
 
 .. code:: ipython3
 
@@ -102,12 +104,14 @@
     df_small_noise.plot(legend=False, ax=ax)
     plt.show()
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_01.png?raw=true
+
+
+.. image:: AutoEncoder_files/AutoEncoder_8_0.png
 
 
 **带有异常的时序数据如下：**
 
-训练好模型后，我们将使用以下数据进行测试，并查看数据中的突然跳升是否被检测为异常。
+异常时序数据的作用是待训练好模型后，我们将使用以下数据进行测试，并查看数据中的突然跳升是否被检测为异常。
 
 .. code:: ipython3
 
@@ -117,12 +121,12 @@
     plt.show()
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_02.png?raw=true
+
+.. image:: AutoEncoder_files/AutoEncoder_10_0.png
 
 
-
-训练数据预处理
--------------------
+2.3 数据预处理
+~~~~~~~~~~~~~~
 
 -  我们的训练数据包含了14天的采样，每天每隔5分钟采集一次数据，所以：
 -  每天包含 24 \* 60 / 5 = 288 个timestep
@@ -142,8 +146,8 @@
     训练数据总量: 4032
 
 
-创建序列
--------------
+2.4 创建 ``Dataset``
+~~~~~~~~~~~~~~~~~~~~
 
 从训练数据中创建组合时间步骤为288的连续数据值的序列。
 
@@ -192,14 +196,15 @@
     train_dataset = MyDataset(df_training_value.values,TIME_STEPS)
 
 
-模型组网
---------
+三、模型组网
+------------
 
-用paddle.nn下的API，Layer,Conv1d、rlue完成网络的搭建，SubClass模式。
+接下来是构建\ ``AutoEncoder``\ 模型，本示例使用 ``paddle.nn``
+下的API，\ ``Layer、Conv1D、Conv1DTranspose、relu``\ ，采用 ``SubClass``
+的方式完成网络的搭建。
 
 .. code:: ipython3
 
-    
     class AutoEncoder(paddle.nn.Layer):
         def __init__(self):
             super(AutoEncoder, self).__init__()
@@ -220,16 +225,16 @@
             x = self.convT1(x)
             return x
 
-模型训练
---------
+四、模型训练
+------------
 
 接下来，我们用一个循环来进行模型的训练，我们将会：
 
--  使用paddle.optimizer.Adam优化器来进行优化。
+-  使用 ``paddle.optimizer.Adam`` 优化器来进行优化。
 
--  使用paddle.nn.loss.MSELoss来计算损失值。
+-  使用 ``paddle.nn.MSELoss`` 来计算损失值。
 
--  使用paddle.io.DataLoader来加载数据并组建batch。
+-  使用 ``paddle.io.DataLoader`` 来实现数据加载。
 
 .. code:: ipython3
 
@@ -248,14 +253,12 @@
         #设置优化器，学习率，并且把模型参数给优化器
         opt = paddle.optimizer.Adam(learning_rate=learning_rate,parameters=model.parameters())
         #设置损失函数
-        mse_loss = paddle.nn.loss.MSELoss()
+        mse_loss = paddle.nn.MSELoss()
         #设置数据读取器
         data_reader = paddle.io.DataLoader(train_dataset,
-                            places=[paddle.CPUPlace()],
                             batch_size=batch_size,
                             shuffle=True,
-                            drop_last=True,
-                            num_workers=0)
+                            drop_last=True)
         history_loss = []
         iter_epoch = []
         for epoch in tqdm.tqdm(range(epoch_num)):
@@ -263,7 +266,7 @@
                 x = data[0]
                 y = data[1]
                 out = model(x)
-                avg_loss = mse_loss(out,(y[:,:,:-1]))   #输输入的数据进过卷积会丢掉最后一个数据所以只剩287
+                avg_loss = mse_loss(out,(y[:,:,:-1]))   # 输入的数据经过卷积会丢掉最后一个数据
                 avg_loss.backward()
                 opt.step()
                 opt.clear_grad()
@@ -288,15 +291,15 @@
 
 .. parsed-literal::
 
-    100%|██████████| 200/200 [00:49<00:00,  4.03it/s]
+    100%|██████████| 200/200 [00:53<00:00,  3.76it/s]
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_03.png?raw=true
+.. image:: AutoEncoder_files/AutoEncoder_18_2.png
 
 
-探测异常时序
-------------
+五、模型预测：探测异常时序
+--------------------------
 
 我们将用我们训练好的模型探测异常时序：
 
@@ -306,17 +309,17 @@
 
 .. code:: ipython3
 
-    #计算阀值
+    # 计算阀值
     
-    param_dict = paddle.load('model')   #读取保存的参数
+    param_dict = paddle.load('model')   # 读取保存的参数
     model = AutoEncoder()    
-    model.load_dict(param_dict)    #加载参数
-    model.eval()   #预测
+    model.load_dict(param_dict)    # 加载参数
+    model.eval()   # 预测
     total_loss = []
     datas = []
-    #预测所有正常时序
+    # 预测所有正常时序
     mse_loss = paddle.nn.loss.MSELoss()
-    #这里设置batch_size为1，单独求得每个数据的loss
+    # 这里设置batch_size为1，单独求得每个数据的loss
     data_reader = paddle.io.DataLoader(train_dataset,
                             places=[paddle.CPUPlace()],
                             batch_size=1,
@@ -336,22 +339,22 @@
     plt.xlabel("data samples")
     plt.show()
     
-    # 获取重建loss的阀值.
+    # 获取重建loss的阀值
     threshold = np.max(total_loss)
     print("阀值:", threshold)
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_04.png?raw=true
+.. image:: AutoEncoder_files/AutoEncoder_20_0.png
 
 
 .. parsed-literal::
 
-    阀值: 0.03150589
+    阀值: 0.030881321
 
 
-AutoEncoder 对异常数据的重构
-----------------------------
+六、AutoEncoder 对异常数据的重构
+--------------------------------
 
 为了好玩，让我们先看看我们的模型是如何重构第一个组数据。这是我们训练数据集第一天起的288步时间。
 
@@ -378,16 +381,125 @@ AutoEncoder 对异常数据的重构
         sys.exit
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_05.png?raw=true
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_0.png
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_06.png?raw=true
+.. image:: AutoEncoder_files/AutoEncoder_22_1.png
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_07.png?raw=true
+.. image:: AutoEncoder_files/AutoEncoder_22_2.png
 
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_3.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_4.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_5.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_6.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_7.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_8.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_9.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_10.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_11.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_12.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_13.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_14.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_15.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_16.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_17.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_18.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_19.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_20.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_21.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_22.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_23.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_24.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_25.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_26.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_27.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_28.png
+
+
+
+.. image:: AutoEncoder_files/AutoEncoder_22_29.png
 
 
 -  可以看出对正常数据的重构效果十分不错
@@ -403,7 +515,7 @@ AutoEncoder 对异常数据的重构
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_08.png?raw=true
+.. image:: AutoEncoder_files/AutoEncoder_24_0.png
 
 
 .. code:: ipython3
@@ -449,12 +561,12 @@ AutoEncoder 对异常数据的重构
 .. parsed-literal::
 
     141
-    [2990, 2991, 2992, 2993, 2994, 2996, 2997, 2998, 2999, 3000, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013, 3014, 3015, 3016, 3017, 3018, 3019, 3020, 3021, 3022, 3023, 3024, 3025, 3026, 3027, 3028, 3029, 3030, 3031, 3032, 3033, 3034, 3035, 3036, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3044, 3045, 3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055, 3056, 3057, 3058, 3059, 3060, 3061, 3062, 3063, 3064, 3065, 3066, 3067, 3068, 3069, 3070, 3071, 3072, 3073, 3074, 3075, 3076, 3077, 3078, 3079, 3080, 3081, 3082, 3083, 3084, 3085, 3086, 3087, 3088, 3089, 3090, 3091, 3092, 3093, 3094, 3095, 3096, 3097, 3098, 3099, 3100, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 3122, 3123, 3124, 3125, 3126, 3127, 3128, 3129, 3130, 3131]
+    [2990, 2992, 2993, 2994, 2995, 2998, 3000, 3001, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013, 3014, 3015, 3016, 3017, 3018, 3019, 3020, 3021, 3022, 3023, 3024, 3025, 3026, 3027, 3028, 3029, 3030, 3031, 3032, 3033, 3034, 3035, 3036, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3044, 3045, 3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055, 3056, 3057, 3058, 3059, 3060, 3061, 3062, 3063, 3064, 3065, 3066, 3067, 3068, 3069, 3070, 3071, 3072, 3073, 3074, 3075, 3076, 3077, 3078, 3079, 3080, 3081, 3082, 3083, 3084, 3085, 3086, 3087, 3088, 3089, 3090, 3091, 3092, 3093, 3094, 3095, 3096, 3097, 3098, 3099, 3100, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 3122, 3123, 3124, 3125, 3126, 3127, 3128, 3129, 3130, 3131, 3132, 3133, 3134, 3135]
 
 
 .. code:: ipython3
 
-    #异常检测结果可视化
+    # 异常检测结果可视化
     df_subset = df_daily_jumpsup.iloc[abnormal_index]
     fig, ax = plt.subplots()
     df_daily_jumpsup.plot(legend=False, ax=ax)
@@ -463,5 +575,5 @@ AutoEncoder 对异常数据的重构
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/time_series/Autoencoder/AutoEncoder_files/AutoEncoder_09.png?raw=true
+.. image:: AutoEncoder_files/AutoEncoder_26_0.png
 

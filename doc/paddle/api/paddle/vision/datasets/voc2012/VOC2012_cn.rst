@@ -29,6 +29,7 @@ VOC2012
 
             import paddle
             from paddle.vision.datasets import VOC2012
+            from paddle.vision.transforms import Normalize
 
             class SimpleNet(paddle.nn.Layer):
                 def __init__(self):
@@ -37,9 +38,10 @@ VOC2012
                 def forward(self, image, label):
                     return paddle.sum(image), label
 
-            paddle.disable_static()
-
-            voc2012 = VOC2012(mode='train')
+            normalize = Normalize(mean=[0.5, 0.5, 0.5],
+                                  std=[0.5, 0.5, 0.5],
+                                  data_format='HWC')
+            voc2012 = VOC2012(mode='train', transform=normalize, backend='cv2')
 
             for i in range(10):
                 image, label= voc2012[i]

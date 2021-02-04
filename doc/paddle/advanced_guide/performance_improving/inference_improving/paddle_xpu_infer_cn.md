@@ -39,6 +39,17 @@ config.enable_lite_engine(
 
 ### Python demo
 
+因目前Paddle-Inference目前未将xpu sdk打包到whl包内，所以需要用户下载xpu sdk，并加入到环境变量中，之后会考虑解决该问题。
+
+下载[xpu_tool_chain](https://paddle-inference-dist.bj.bcebos.com/inference_demo/xpu_tool_chain.tgz)，解压后将shlib加入到LD_LIBRARY_PATH
+
+```
+tar xzf xpu_tool_chain.tgz
+```
+```
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/output/XTDK/shlib/:$PWD/output/XTDK/runtime/shlib/
+```
+
 下载[resnet50](https://paddle-inference-dist.bj.bcebos.com/inference_demo/python/resnet50/ResNet50.tar.gz)模型，并解压，运行如下命令将会调用预测引擎
 
 ```bash

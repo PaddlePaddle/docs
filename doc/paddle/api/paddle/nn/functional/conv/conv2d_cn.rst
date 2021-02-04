@@ -1,3 +1,5 @@
+.. _cn_api_nn_functional_conv2d:
+
 conv2d
 -------------------------------
 

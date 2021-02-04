@@ -9,14 +9,15 @@ Fleet
 Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化后即可快速开始使用飞桨大规模分布式训练
 
 
-.. py:method:: init(role_maker=None, is_collective=False)
+.. py:method:: init(role_maker=None, is_collective=False, strategy=None)
 
 使用RoleMaker或其他配置初始化fleet。
 
 
 参数：
-    role_maker (RoleMakerBase) 已初始化好的PaddleCloudRoleMaker或UserDefineRoleMaker
-    is_collective (bool) 在未指定role_maker的情况下,可由init方法自行初始化RoleMaker, is_collective为True则按照collective模式进行创建， is_collective=False则按照ParameterServer模式进行创建
+    - **role_maker** (RoleMakerBase) 已初始化好的PaddleCloudRoleMaker或UserDefineRoleMaker
+    - **is_collective** (bool) 在未指定role_maker的情况下,可由init方法自行初始化RoleMaker, is_collective为True则按照collective模式进行创建， is_collective=False则按照ParameterServer模式进行创建
+    - **strategy** (DistributedStrategy): 分布式训练的额外属性。详情请参阅paddle.distributed.fleet.DistributedStrategy。默认值：None。 
 
 返回：None
 
@@ -42,6 +43,14 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     import paddle.distributed.fleet as fleet
     role = fleet.PaddleCloudRoleMaker()
     fleet.init(role)
+
+**代码示例4**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    strategy = fleet.DistributedStrategy()
+    fleet.init(strategy=strategy)
 
 
 .. py:method:: is_first_worker()
@@ -351,6 +360,10 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 .. py:method:: distributed_optimizer(optimizer, strategy=None)
 
 基于分布式布式并行策略进行模型的拆分及优化。
+
+参数:
+ - **optimizer**  (optimizer) – paddle定义的优化器。
+ - **strategy**  (DistributedStrategy) – 分布式优化器的额外属性。建议在fleet.init()创建。这里的仅仅是为了兼容性。如果这里的参数strategy不是None，则它将覆盖在fleet.init()创建的DistributedStrategy，并在后续的分布式训练中生效。
 
 **代码示例**
 

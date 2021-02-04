@@ -5,13 +5,13 @@
 直接下载安装
 -------------
 
-| 版本说明      |     预测库(1.8.4版本)  |预测库(2.0.0-beta0版本)   |     编译器     |    构建工具      |  cuDNN  |  CUDA  |
+| 版本说明      |     预测库(1.8.4版本)  |预测库(2.0.0)   |     编译器     |    构建工具      |  cuDNN  |  CUDA  |
 |:---------|:-------------------|:-------------------|:----------------|:--------|:-------|:-------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-beta0/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
-|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/cpu/fluid_inference_install_dir.zip) || MSVC 2015 update 3|  CMake v3.16.0  |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post97/fluid_inference_install_dir.zip) ||  MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0/win-infer/mkl/cpu/paddle_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
+|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/cpu/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0/win-infer/open/cpu/paddle_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
+|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post97/fluid_inference_install_dir.zip) |[paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0/win-infer/mkl/post90/paddle_inference_install_dir.zip)|  MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
 |    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/post97/fluid_inference_install_dir.zip) || MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.3/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.4.1  |   10.0    |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0/win-infer/mkl/post100/paddle_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.4.1  |   10.0    |
 
 ### 硬件环境
 
@@ -37,7 +37,7 @@
 |WITH_MKL |   是否使用Intel MKL(数学核心库)或者OPENBLAS     | ON/OFF     |
 |WITH_PYTHON | 是否编译Python包                | OFF(推荐)        |
 |MSVC_STATIC_CRT|是否使用/MT 模式进行编译，默认使用 /MT 模式进行编译 |ON/OFF|
-|CUDA_TOOKIT_ROOT_DIR|编译GPU预测库时，需设置CUDA的根目录|YOUR_CUDA_PATH|
+|CUDA_TOOLKIT_ROOT_DIR|编译GPU预测库时，需设置CUDA的根目录|YOUR_CUDA_PATH|
 
 请按照推荐值设置，以避免链接不必要的库。其它可选编译选项按需进行设定。
 
@@ -64,8 +64,8 @@ Windows下安装与编译预测库步骤：(在Windows命令提示符下执行�
    ```
    - 编译GPU预测库:
    ```bash
-   # -DCUDA_TOOKIT_ROOT_DIR为你所安装的cuda根目录，例如-DCUDA_TOOKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOKIT_ROOT_DIR=YOUR_CUDA_PATH
+   # -DCUDA_TOOLKIT_ROOT_DIR为你所安装的cuda根目录，例如-DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
+   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOLKIT_ROOT_DIR=YOUR_CUDA_PATH
    ```
 
 3. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为`x64`，配置为`Release`，编译inference_lib_dist项目。

@@ -11,12 +11,12 @@ to_variable
 
 
 
-该函数实现从tuple、list、numpy\.ndarray、Variable、ComplexVariable 对象创建一个 ``Variable`` 类型的对象。
+该函数实现从tuple、list、numpy\.ndarray、Variable 对象创建一个 ``Variable`` 类型的对象。
 
 
 参数：
-    - **value** (tuple|list|ndarray|Variable|Tensor|ComplexVariable) – 初始化的数据。可以是tuple、list、numpy\.ndarray、Variable、ComplexVariable。
-      维度可以为多维，数据类型为numpy\.{float16, float32, float64, int16, int32, int64, uint8, uint16}中的一种。
+    - **value** (tuple|list|ndarray|Variable|Tensor) – 初始化的数据。可以是tuple、list、numpy\.ndarray、Variable。
+      维度可以为多维，数据类型为numpy\.{float16, float32, float64, int16, int32, int64, uint8, uint16, complex64, complex128}中的一种。
     - **name**  (str, 可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     - **zero_copy**  (bool, 可选) – 是否与输入的numpy数组共享内存。此参数仅适用于CPUPlace，当它为None时将设置为True。默认值为None。
     - **dtype** (str, 可选) - 返回的 ``Variable`` 所需的数据类型。可以是 'bool'，'float16'，'float32'，'float64'，'int8'，'int16'，'int32'，'int64'，'uint8'。默认值: None。

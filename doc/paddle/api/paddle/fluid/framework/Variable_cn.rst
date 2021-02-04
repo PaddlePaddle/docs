@@ -264,9 +264,6 @@ Variable
 
 返回：用于静态描述该 :ref:`api_guide_Variable` 的字符串
 
-
-返回： 将Program转换为字符串
-
 返回类型： str
 
 抛出异常： ``ValueError`` - 当 ``throw_on_error == true`` ，当没有设置任何必需的字段时，抛出 ``ValueError`` 。
@@ -285,6 +282,27 @@ Variable
         print(new_variable.to_string(True))
         print("\n=============with detail===============\n")
         print(new_variable.to_string(True, True))
+
+
+.. py:method:: clone(self)
+
+返回一个新的 ``Variable`` , 其复制原 ``Variable`` 并且新的 ``Variable`` 也被保留在计算图中，即复制的新 ``Variable`` 也参与反向计算。调用 ``out = tensor.clone()`` 与 ``out = assign(tensor)`` 效果一样。
+
+返回：复制的新 ``Variable``
+
+返回类型： ``Variable``
+
+**示例代码**
+  .. code-block:: python
+
+      import paddle
+
+      paddle.enable_static()
+
+      # create a static Variable
+      x = paddle.static.data(name='x', shape=[3, 2, 1])
+      # create a cloned Variable
+      y = x.clone()
 
 
 .. py:method:: astype(self, dtype)

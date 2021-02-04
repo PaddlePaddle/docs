@@ -1,9 +1,14 @@
-.. _cn_guides_distributed_training:
-
-##########
+#############
 分布式训练
-##########
+#############
 
-您可以通过以下内容，了解更多分布式训练的特性和使用指南:
+您可以通过以下内容,了解飞桨分布式训练的特性和使用指南:
 
-- `fleetx文档 <https://fleet-x.readthedocs.io/en/latest/index.html>`_ : 包括快速开始入门、高阶的并行计算设置、云端训练实践。
+- `分布式训练快速开始 <./cluster_quick_start_cn.html>`_ : 使用飞桨框架快速开始分布式训练。
+- `使用FleetAPI进行分布式训练 <./fleet_api_howto_cn.html>`_ : 使用飞桨框架FleetAPI完成分布式训练。
+
+..  toctree::
+    :hidden:
+
+    cluster_quick_start_cn.rst
+    fleet_api_howto_cn.rst

@@ -56,10 +56,9 @@ BCELoss
 
     import paddle
 
-    paddle.disable_static()
     input = paddle.to_tensor([0.5, 0.6, 0.7], dtype='float32')
     label = paddle.to_tensor([1.0, 0.0, 1.0], dtype='float32')
-    bce_loss = paddle.nn.loss.BCELoss()
+    bce_loss = paddle.nn.BCELoss()
     output = bce_loss(input, label)
-    print(output.numpy())  # [0.65537095]
+    print(output)  # [0.65537095]
 

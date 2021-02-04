@@ -1,12 +1,18 @@
 使用注意力机制的LSTM的机器翻译
 ==============================
 
-本示例教程介绍如何使用飞桨完成一个机器翻译任务。我们将会使用飞桨提供的LSTM的API，组建一个\ ``sequence to sequence with attention``\ 的机器翻译的模型，并在示例的数据集上完成从英文翻译成中文的机器翻译。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
 
-环境设置
---------
+**日期:** 2021.01 
 
-本示例教程基于飞桨2.0RC版本。
+**摘要:** 本示例教程介绍如何使用飞桨完成一个机器翻译任务。我们将会使用飞桨提供的LSTM的API，组建一个\ ``sequence to sequence with attention``\ 的机器翻译的模型，并在示例的数据集上完成从英文翻译成中文的机器翻译。
+
+一、环境配置
+------------
+
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
 .. code:: ipython3
 
@@ -20,11 +26,14 @@
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0
 
 
-下载数据集
-----------
+二、数据加载
+------------
+
+2.1 数据集下载
+~~~~~~~~~~~~~~
 
 我们将使用 http://www.manythings.org/anki/
 提供的中英文的英汉句对作为数据集，来完成本任务。该数据集含有23610个中英文双语的句对。
@@ -33,25 +42,6 @@
 
     !wget -c https://www.manythings.org/anki/cmn-eng.zip && unzip cmn-eng.zip
 
-
-.. parsed-literal::
-
-    --2020-10-26 09:50:14--  https://www.manythings.org/anki/cmn-eng.zip
-    Resolving www.manythings.org (www.manythings.org)... 2606:4700:3033::6818:6dc4, 2606:4700:3036::ac43:adc6, 2606:4700:3037::6818:6cc4, ...
-    Connecting to www.manythings.org (www.manythings.org)|2606:4700:3033::6818:6dc4|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 1030722 (1007K) [application/zip]
-    Saving to: ‘cmn-eng.zip’
-    
-    cmn-eng.zip         100%[===================>]   1007K   138KB/s    in 7.3s    
-    
-    2020-10-26 09:50:23 (138 KB/s) - ‘cmn-eng.zip’ saved [1030722/1030722]
-    
-    Archive:  cmn-eng.zip
-      inflating: cmn.txt                 
-      inflating: _about.txt              
-
-
 .. code:: ipython3
 
     !wc -l cmn.txt
@@ -59,11 +49,11 @@
 
 .. parsed-literal::
 
-       23610 cmn.txt
+       24360 cmn.txt
 
 
-构建双语句对的数据结构
-----------------------
+2.2 构建双语句对的数据结构
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 接下来我们通过处理下载下来的双语句对的文本文件，将双语句对读入到python的数据结构中。这里做了如下的处理。
 
@@ -99,21 +89,21 @@
 
 .. parsed-literal::
 
-    5508
+    5687
     (['i', 'won'], ['我', '赢', '了', '。'])
     (['he', 'ran'], ['他', '跑', '了', '。'])
     (['i', 'quit'], ['我', '退', '出', '。'])
+    (['i', 'quit'], ['我', '不', '干', '了', '。'])
     (['i', 'm', 'ok'], ['我', '沒', '事', '。'])
     (['i', 'm', 'up'], ['我', '已', '经', '起', '来', '了', '。'])
     (['we', 'try'], ['我', '们', '来', '试', '试', '。'])
     (['he', 'came'], ['他', '来', '了', '。'])
     (['he', 'runs'], ['他', '跑', '。'])
     (['i', 'agree'], ['我', '同', '意', '。'])
-    (['i', 'm', 'ill'], ['我', '生', '病', '了', '。'])
 
 
-创建词表
---------
+2.3 创建词表
+~~~~~~~~~~~~
 
 接下来我们分别创建中英文的词表，这两份词表会用来将英文和中文的句子转换为词的ID构成的序列。词表中还加入了如下三个特殊的词：
 - ``<pad>``: 用来对较短的句子进行填充。 - ``<bos>``: “begin of
@@ -149,12 +139,12 @@ Note:
 
 .. parsed-literal::
 
-    2539
-    2039
+    2584
+    2055
 
 
-创建padding过的数据集
----------------------
+2.4 创建padding过的数据集
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 接下来根据词表，我们将会创建一份实际的用于训练的用numpy
 array组织起来的数据集。 -
@@ -189,13 +179,13 @@ array组织起来的数据集。 -
 
 .. parsed-literal::
 
-    (5508, 11)
-    (5508, 12)
-    (5508, 12)
+    (5687, 11)
+    (5687, 12)
+    (5687, 12)
 
 
-创建网络
---------
+三、网络构建
+------------
 
 我们将会创建一个Encoder-AttentionDecoder架构的模型结构用来完成机器翻译任务。
 首先我们将设置一些必要的网络结构中用到的参数。
@@ -210,8 +200,8 @@ array组织起来的数据集。 -
     epochs = 20
     batch_size = 16
 
-Encoder部分
------------
+3.1 Encoder部分
+~~~~~~~~~~~~~~~
 
 在编码器的部分，我们通过查找完Embedding之后接一个LSTM的方式构建一个对源语言编码的网络。飞桨的RNN系列的API，除了LSTM之外，还提供了SimleRNN,
 GRU供使用，同时，还可以使用反向RNN，双向RNN，多层RNN等形式。也可以通过\ ``dropout``\ 参数设置是否对多层RNN的中间层进行\ ``dropout``\ 处理，来防止过拟合。
@@ -235,8 +225,8 @@ LSTMCell等API更灵活的创建单步的RNN计算，甚至通过继承RNNCellBa
             x, (_, _) = self.lstm(x)
             return x
 
-AttentionDecoder部分
---------------------
+3.2 AttentionDecoder部分
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 在解码器部分，我们通过一个带有注意力机制的LSTM来完成解码。
 
@@ -300,8 +290,8 @@ AttentionDecoder部分
             output = paddle.squeeze(output)
             return output, (hidden, cell)
 
-训练模型
---------
+四、训练模型
+------------
 
 接下来我们开始训练模型。
 
@@ -361,69 +351,69 @@ AttentionDecoder部分
 .. parsed-literal::
 
     epoch:0
-    iter 0, loss:[7.6254287]
-    iter 200, loss:[2.7549095]
+    iter 0, loss:[7.6195517]
+    iter 200, loss:[2.9829617]
     epoch:1
-    iter 0, loss:[3.25681]
-    iter 200, loss:[3.1060884]
+    iter 0, loss:[3.3694496]
+    iter 200, loss:[2.7960358]
     epoch:2
-    iter 0, loss:[2.8566368]
-    iter 200, loss:[2.5701585]
+    iter 0, loss:[2.326734]
+    iter 200, loss:[2.619873]
     epoch:3
-    iter 0, loss:[2.5982018]
-    iter 200, loss:[2.498022]
+    iter 0, loss:[2.5270202]
+    iter 200, loss:[2.317038]
     epoch:4
-    iter 0, loss:[2.4150505]
-    iter 200, loss:[2.2246962]
+    iter 0, loss:[2.4560418]
+    iter 200, loss:[2.4410586]
     epoch:5
-    iter 0, loss:[2.2809484]
-    iter 200, loss:[2.0454435]
+    iter 0, loss:[2.356511]
+    iter 200, loss:[2.3720074]
     epoch:6
-    iter 0, loss:[1.9620974]
-    iter 200, loss:[1.9354618]
+    iter 0, loss:[2.0584815]
+    iter 200, loss:[2.0321233]
     epoch:7
-    iter 0, loss:[1.404521]
-    iter 200, loss:[1.6144934]
+    iter 0, loss:[1.8767532]
+    iter 200, loss:[1.9602191]
     epoch:8
-    iter 0, loss:[1.6302392]
-    iter 200, loss:[1.6218137]
+    iter 0, loss:[1.6901115]
+    iter 200, loss:[1.5295217]
     epoch:9
-    iter 0, loss:[1.6828392]
-    iter 200, loss:[1.7782025]
+    iter 0, loss:[1.3637413]
+    iter 200, loss:[1.6321315]
     epoch:10
-    iter 0, loss:[1.1777062]
-    iter 200, loss:[1.2404836]
+    iter 0, loss:[1.3491321]
+    iter 200, loss:[1.5754722]
     epoch:11
-    iter 0, loss:[1.2056196]
-    iter 200, loss:[1.322629]
+    iter 0, loss:[1.0872059]
+    iter 200, loss:[1.323177]
     epoch:12
-    iter 0, loss:[1.316817]
-    iter 200, loss:[1.021146]
+    iter 0, loss:[1.0185726]
+    iter 200, loss:[1.1437721]
     epoch:13
-    iter 0, loss:[1.2051158]
-    iter 200, loss:[1.227415]
+    iter 0, loss:[1.0399715]
+    iter 200, loss:[1.030262]
     epoch:14
-    iter 0, loss:[1.0421599]
-    iter 200, loss:[0.7064129]
+    iter 0, loss:[0.9651084]
+    iter 200, loss:[0.95293546]
     epoch:15
-    iter 0, loss:[0.7054539]
-    iter 200, loss:[1.1203959]
+    iter 0, loss:[0.7636842]
+    iter 200, loss:[0.70801795]
     epoch:16
-    iter 0, loss:[0.7972643]
-    iter 200, loss:[0.57451296]
+    iter 0, loss:[0.8478832]
+    iter 200, loss:[0.63975704]
     epoch:17
-    iter 0, loss:[0.5825621]
-    iter 200, loss:[0.66827786]
+    iter 0, loss:[0.6618248]
+    iter 200, loss:[0.7030245]
     epoch:18
-    iter 0, loss:[0.5396042]
-    iter 200, loss:[0.60596395]
+    iter 0, loss:[0.631694]
+    iter 200, loss:[0.809505]
     epoch:19
-    iter 0, loss:[0.41747904]
-    iter 200, loss:[0.58902776]
+    iter 0, loss:[0.5217632]
+    iter 200, loss:[0.61424005]
 
 
-使用模型进行机器翻译
---------------------
+五、使用模型进行机器翻译
+------------------------
 
 根据你所使用的计算设备的不同，上面的训练过程可能需要不等的时间。（在一台Mac笔记本上，大约耗时15~20分钟）
 完成上面的模型训练之后，我们可以得到一个能够从英文翻译成中文的机器翻译模型。接下来我们通过一个greedy
@@ -473,36 +463,36 @@ search算法来提升效果）
 
 .. parsed-literal::
 
-    he may have been ill
-    true: 他可能病了。
-    pred: 他可能生病了。
-    she kept working
-    true: 她继续工作。
-    pred: 她继续工作。
-    i don t think he ll come
-    true: 我不認為他會來的。
-    pred: 我不認為他會來的。
-    we all have secrets
-    true: 我們都有秘密。
-    pred: 我們都有秘密。
-    he s the same age as me
-    true: 他和我同岁。
-    pred: 他和我同岁。
-    he can speak russian as well
-    true: 他还会说俄语。
-    pred: 他也會說俄語。
-    he is a thief
-    true: 这是一个小偷。
-    pred: 他是義一個人人。
-    i forgot to ask him
-    true: 我忘了問他。
-    pred: 我忘了他。
-    i believe you
-    true: 我相信你。
-    pred: 我相信你。
-    i feel a whole lot better today
-    true: 我今天感觉好多了。
-    pred: 我今天感觉好多了。
+    i ll get you some coffee
+    true: 我會給你帶些咖啡。
+    pred: 我會給你一個問題。
+    you have to be patient
+    true: 你必須有耐心。
+    pred: 你必須有耐心。
+    she said she had a cold
+    true: 她說她感冒了。
+    pred: 她看起来很多柳橙。
+    i am familiar with this neighborhood
+    true: 我對這附近很熟悉。
+    pred: 我正在這裡结婚。
+    i must make up for the loss
+    true: 我必须弥补损失。
+    pred: 我必须弥补损失。
+    we ve got to get you out of here
+    true: 我們必須把你带走。
+    pred: 我們要你帮我。
+    i was kept waiting for nearly half an hour
+    true: 我等了接近半小时。
+    pred: 我在等給我一個問題。
+    he did not get up early
+    true: 他没有早起。
+    pred: 他没有学习。
+    he kicked the ball into the goal
+    true: 他把球踢進了球門。
+    pred: 他把球扔了她的丈夫。
+    i won
+    true: 我赢了。
+    pred: 我赢了。
 
 
 The End

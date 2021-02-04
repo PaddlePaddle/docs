@@ -1,9 +1,9 @@
 版本迁移工具
 ====================
 
-在飞桨框架2.0rc中，我们API的位置、命名、参数、行为，进行了系统性的调整和规范, 将API体系从1.X版本的 ``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。paddle.fluid目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
+在飞桨框架2.0中，我们API的位置、命名、参数、行为，进行了系统性的调整和规范, 将API体系从1.X版本的 ``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。paddle.fluid目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
 
-使用版本迁移工具自动迁移您的paddle1.x的代码到Paddle2.0rc的代码
+使用版本迁移工具自动迁移您的Paddle 1.x的代码到Paddle 2.0的代码
 ------------------------------------
 
 WARNING: 版本自动迁移工具并不能处理所有的情况，在使用本工具后，您仍然需要手工来进行检查并做相应的调整。
@@ -11,35 +11,35 @@ WARNING: 版本自动迁移工具并不能处理所有的情况，在使用本�
 安装
 ~~~~
 
-paddle1to2工具可以通过pip的方式安装，方式如下:
+版本迁移工具可以通过pip的方式安装，方式如下:
 
 .. code:: ipython3
 
-    $ pip install -U paddle1to2
+    $ pip install paddle_upgrade_tool
 
 基本用法
 ~~~~~~~~
 
-Paddle1to2 可以使用下面的方式，快速使用:
+paddle_upgrade_tool 可以使用下面的方式，快速使用:
 
 .. code:: ipython3
 
-    $ paddle1to2 --inpath /path/to/model.py
+    $ paddle_upgrade_tool --inpath /path/to/model.py
 
-这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle1.x转换为Paddle2.0rc的变化。如果您确认上述变化没有问题，只需要再执行：
+这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle 1.x转换为Paddle 2.0的变化。如果您确认上述变化没有问题，只需要再执行：
 
 .. code:: ipython3
 
-    $ paddle1to2 --inpath /path/to/model.py --write
+    $ paddle_upgrade_tool --inpath /path/to/model.py --write
 
 就会原地改写model.py，将上述变化改写到您的源文件中。
-注意：我们会默认备份源文件，到~/.paddle1to2/下。
+注意：我们会默认备份源文件，到~/.paddle_upgrade_tool/下。
 
 参数说明如下：
 
 -  –inpath 输入文件路径，可以为单个文件或文件夹。
 -  –write 是否原地修改输入的文件，默认值False，表示不修改。如果为True，表示对文件进行原地修改。添加此参数也表示对文件进行原地修改。
--  –backup 可选，是否备份源文件，默认值为\ ``~/.paddle1to2/``\ ，在此路径下备份源文件。
+-  –backup 可选，是否备份源文件，默认值为\ ``~/.paddle_upgrade_tool/``\ ，在此路径下备份源文件。
 -  –no-log-file 可选，是否需要输出日志文件，默认值为False，即输出日志文件。
 -  –log-filepath 可选，输出日志的路径，默认值为\ ``report.log``\ ，输出日志文件的路径。
 -  –no-confirm 可选，输入文件夹时，是否逐文件确认原地写入，只在\ ``--write``\ 为True时有效，默认值为False，表示需要逐文件确认。
@@ -54,7 +54,7 @@ Paddle1to2 可以使用下面的方式，快速使用:
 开始
 ^^^^
 
-在使用paddle1to2前，需要确保您已经安装了Paddle2.0rc版本。
+在使用paddle_upgrade_tool前，需要确保您已经安装了Paddle 2.0版本。
 
 .. code:: ipython3
 
@@ -63,7 +63,7 @@ Paddle1to2 可以使用下面的方式，快速使用:
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0
 
 
 克隆\ `paddlePaddle/models <https://github.com/PaddlePaddle/models>`__\ 来作为工具的测试。
@@ -90,16 +90,17 @@ Paddle1to2 可以使用下面的方式，快速使用:
 
 .. code:: ipython3
 
-    $ paddle1to2 -h
+    $ paddle_upgrade_tool -h
 
 
 .. parsed-literal::
 
-    usage: paddle1to2 [-h] [--log-level {DEBUG,INFO,WARNING,ERROR}]
-                      [--no-log-file] [--log-filepath LOG_FILEPATH] -i INPATH
-                      [-b [BACKUP]] [-w] [--no-confirm] [-p PARALLEL]
-                      [-r {refactor_import,norm_api_alias,args_to_kwargs,refactor_kwargs,api_rename,refactor_with,post_refactor}]
-                      [--print-match]
+    usage: paddle_upgrade_tool [-h] [--log-level {DEBUG,INFO,WARNING,ERROR}]
+                               [--no-log-file] [--log-filepath LOG_FILEPATH] -i
+                               INPATH [-b [BACKUP]] [-w] [--no-confirm]
+                               [-p PARALLEL]
+                               [-r {refactor_import,norm_api_alias,args_to_kwargs,refactor_kwargs,api_rename,refactor_with,post_refactor}]
+                               [--print-match]
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -111,7 +112,8 @@ Paddle1to2 可以使用下面的方式，快速使用:
       -i INPATH, --inpath INPATH
                             the file or directory path you want to upgrade.
       -b [BACKUP], --backup [BACKUP]
-                            backup directory, default is the "~/.paddle1to2/".
+                            backup directory, default is the
+                            "~/.paddle_upgrade_tool/".
       -w, --write           modify files in-place.
       --no-confirm          write files in-place without confirm, ignored without
                             --write.
@@ -122,12 +124,12 @@ Paddle1to2 可以使用下面的方式，快速使用:
                             this is a debug option. Specify refactor you want to
                             run. If none, all refactors will be run.
       --print-match         this is a debug option. Print matched code and node
-                            for each file.  
+                            for each file.
 
-paddle1.x的例子
+Paddle 1.x的例子
 ^^^^^^^^^^^^^^
 
-这里是一个基于paddle1.x实现的一个mnist分类，部分内容如下：
+这里是一个基于Paddle 1.x实现的一个mnist分类，部分内容如下：
 
 .. code:: ipython3
 
@@ -158,31 +160,31 @@ paddle1.x的例子
                     train_reader)
 
 
-使用paddle1to2进行转化
-^^^^^^^^^^^^^^^^^^^^^^
+使用paddle_upgrade_tool进行转化
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-paddle1to2支持单文件的转化，您可以通过下方的命令直接转化单独的文件。
+paddle_upgrade_tool支持单文件的转化，您可以通过下方的命令直接转化单独的文件。
 
 .. code:: ipython3
 
-    $ paddle1to2 --inpath models/dygraph/mnist/train.py
+    $ paddle_upgrade_tool --inpath models/dygraph/mnist/train.py
 
 注意，对于参数的删除及一些特殊情况，我们都会打印WARNING信息，需要您仔细核对相关内容。
 如果您觉得上述信息没有问题，可以直接对文件进行原地修改，方式如下：
 
 .. code:: ipython3
 
-    $ paddle1to2 --inpath models/dygraph/mnist/train.py --write 
+    $ paddle_upgrade_tool --inpath models/dygraph/mnist/train.py --write 
 
 此时，命令行会弹出下方的提示：
 
 .. code:: ipython3
 
-    "models/dygraph/mnist/train.py" will be modified in-place, and it has been backed up to "/Users/chenlong/.paddle1to2/train.py_backup_2020_09_09_20_35_15_037821". Do you want to continue? [Y/n]:
+    "models/dygraph/mnist/train.py" will be modified in-place, and it has been backed up to "~/.paddle_upgrade_tool/train.py_backup_2020_09_09_20_35_15_037821". Do you want to continue? [Y/n]:
 
 输入\ ``y``
 后即开始执行代码迁移。为了高效完成迁移，我们这里采用了原地写入的方式。此外，为了防止特殊情况，我们会备份转换前的代码到
-``~/.paddle1to2`` 目录下，如果需要，您可以在备份目录下找到转换前的代码。
+``~/.paddle_upgrade_tool`` 目录下，如果需要，您可以在备份目录下找到转换前的代码。
 
 代码迁移完成后，会生成一个report.log文件，记录了迁移的详情。内容如下：
 
@@ -195,7 +197,7 @@ paddle1to2支持单文件的转化，您可以通过下方的命令直接转化�
 
 -  本迁移工具不能完成所有API的迁移，有少量的API需要您手动完成迁移，具体信息可见WARNING。
 
-使用paddle 2
-~~~~~~~~~~~~
+使用Paddle 2.0
+~~~~~~~~~~~~~~~~
 
-完成迁移后，代码就从paddle1.x迁移到了paddle2.0rc，您就可以在paddle2.0rc下进行相关的开发。
+完成迁移后，代码就从Paddle 1.x迁移到了Paddle 2.0，您就可以在Paddle 2.0下进行相关的开发。

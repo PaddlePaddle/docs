@@ -1,15 +1,18 @@
 IMDB 数据集使用BOW网络的文本分类
 ================================
 
-本示例教程演示如何在IMDB数据集上用简单的BOW网络完成文本分类的任务。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
 
-IMDB数据集是一个对电影评论标注为正向评论与负向评论的数据集，共有25000条文本数据作为训练集，25000条文本数据作为测试集。
-该数据集的官方地址为： http://ai.stanford.edu/~amaas/data/sentiment/
+**日期:** 2021.01 
 
-1. 环境设置
------------
+**摘要:** 本示例教程演示如何在IMDB数据集上用简单的BOW网络完成文本分类的任务。
 
-本示例基于飞桨开源框架2.0版本。
+一、环境配置
+------------
+
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
 .. code:: ipython3
 
@@ -20,11 +23,14 @@ IMDB数据集是一个对电影评论标注为正向评论与负向评论的数�
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0
 
 
-2. 加载数据
------------
+二、加载数据
+------------
+
+IMDB数据集是一个对电影评论标注为正向评论与负向评论的数据集，共有25000条文本数据作为训练集，25000条文本数据作为测试集。
+该数据集的官方地址为： http://ai.stanford.edu/~amaas/data/sentiment/
 
 由于IMDB是NLP领域中常见的数据集，飞桨框架将其内置，路径为
 ``paddle.text.datasets.Imdb``\ 。通过 ``mode``
@@ -197,13 +203,13 @@ DataLoader封装后，完成数据的加载。
     train_dataset = IMDBDataset(train_sents, train_labels)
     test_dataset = IMDBDataset(test_sents, test_labels)
     
-    train_loader = paddle.io.DataLoader(train_dataset, places=paddle.CPUPlace(), return_list=True,
-                                        shuffle=True, batch_size=batch_size, drop_last=True)
-    test_loader = paddle.io.DataLoader(test_dataset, places=paddle.CPUPlace(), return_list=True,
-                                        shuffle=True, batch_size=batch_size, drop_last=True)
+    train_loader = paddle.io.DataLoader(train_dataset, return_list=True, shuffle=True, 
+                                        batch_size=batch_size, drop_last=True)
+    test_loader = paddle.io.DataLoader(test_dataset, return_list=True, shuffle=True, 
+                                       batch_size=batch_size, drop_last=True)
 
-3. 组建网络
------------
+三、组建网络
+------------
 
 本示例中，我们将会使用一个不考虑词的顺序的BOW的网络，在查找到每个词对应的embedding后，简单的取平均，作为一个句子的表示。然后用\ ``Linear``\ 进行线性变换。为了防止过拟合，我们还使用了\ ``Dropout``\ 。
 
@@ -223,7 +229,7 @@ DataLoader封装后，完成数据的加载。
             x = self.fc(x)
             return x
 
-4. 方式一：用高层API训练与验证
+四、方式1：用高层API训练与验证
 ------------------------------
 
 用 ``Model`` 封装模型，调用 ``fit、prepare`` 完成模型的训练与验证
@@ -246,20 +252,23 @@ DataLoader封装后，完成数据的加载。
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/2
-    step 781/781 [==============================] - loss: 0.3887 - 14ms/step          
+    step 781/781 [==============================] - loss: 0.3923 - 14ms/step          
     Eval begin...
-    step 781/781 [==============================] - loss: 0.4126 - 3ms/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 781/781 [==============================] - loss: 0.2972 - 3ms/step          
     Eval samples: 24992
     Epoch 2/2
-    step 781/781 [==============================] - loss: 0.2067 - 14ms/step          
+    step 781/781 [==============================] - loss: 0.2996 - 14ms/step          
     Eval begin...
-    step 781/781 [==============================] - loss: 0.3580 - 3ms/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 781/781 [==============================] - loss: 0.2048 - 3ms/step          
     Eval samples: 24992
 
 
-5. 方式二： 用底层API训练与验证
--------------------------------
+五、方式2： 用底层API训练与验证
+--------------------------------
 
 .. code:: ipython3
 
@@ -312,15 +321,15 @@ DataLoader封装后，完成数据的加载。
 
 .. parsed-literal::
 
-    epoch: 0, batch_id: 0, loss is: [0.6930327]
-    epoch: 0, batch_id: 500, loss is: [0.31035018]
-    [validation] accuracy/loss: 0.851072371006012/0.3619750440120697
-    epoch: 1, batch_id: 0, loss is: [0.39157593]
-    epoch: 1, batch_id: 500, loss is: [0.43316245]
-    [validation] accuracy/loss: 0.8644766211509705/0.3269137144088745
+    epoch: 0, batch_id: 0, loss is: [0.69251275]
+    epoch: 0, batch_id: 500, loss is: [0.33841172]
+    [validation] accuracy/loss: 0.8510323166847229/0.36114799976348877
+    epoch: 1, batch_id: 0, loss is: [0.18500623]
+    epoch: 1, batch_id: 500, loss is: [0.21162835]
+    [validation] accuracy/loss: 0.8570342659950256/0.3353509306907654
 
 
-6. The End
-----------
+The End
+-------
 
 可以看到，在这个数据集上，经过两轮的迭代可以得到86%左右的准确率。你也可以通过调整网络结构和超参数，来获得更好的效果。

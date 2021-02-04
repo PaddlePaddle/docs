@@ -1,25 +1,37 @@
 使用卷积神经网络进行图像分类
 ============================
 
-本示例教程将会演示如何使用飞桨的卷积神经网络来完成图像分类任务。这是一个较为简单的示例，将会使用一个由三个卷积层组成的网络完成\ `cifar10 <https://www.cs.toronto.edu/~kriz/cifar.html>`__\ 数据集的图像分类任务。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
 
-设置环境
---------
+**日期:** 2021.01 
 
-我们将使用飞桨2.0rc版本。
+**摘要:** 本示例教程将会演示如何使用飞桨的卷积神经网络来完成图像分类任务。这是一个较为简单的示例，将会使用一个由三个卷积层组成的网络完成\ `cifar10 <https://www.cs.toronto.edu/~kriz/cifar.html>`__\ 数据集的图像分类任务。
+
+一、环境配置
+------------
+
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
 .. code:: ipython3
 
     import paddle
     import paddle.nn.functional as F
-    from paddle.vision.transforms import Normalize
+    from paddle.vision.transforms import ToTensor
     import numpy as np
     import matplotlib.pyplot as plt
     
     print(paddle.__version__)
 
-加载并浏览数据集
-----------------
+
+.. parsed-literal::
+
+    2.0.0
+
+
+二、加载数据集
+--------------
 
 我们将会使用飞桨提供的API完成数据集的下载并为后续的训练任务准备好数据迭代器。cifar10数据集由60000张大小为32
 \*
@@ -27,44 +39,19 @@
 
 .. code:: ipython3
 
-    cifar10_train = paddle.vision.datasets.cifar.Cifar10(mode='train', transform=None)
-    
-    train_images = np.zeros((50000, 32, 32, 3), dtype='float32')
-    train_labels = np.zeros((50000, 1), dtype='int32')
-    for i, data in enumerate(cifar10_train):
-        train_image, train_label = data
-        train_image = train_image.reshape((3, 32, 32 )).astype('float32') / 255.
-        train_image = train_image.transpose(1, 2, 0)
-        train_images[i, :, :, :] = train_image
-        train_labels[i, 0] = train_label
+    transform = ToTensor()
+    cifar10_train = paddle.vision.datasets.Cifar10(mode='train',
+                                                   transform=transform)
+    cifar10_test = paddle.vision.datasets.Cifar10(mode='test',
+                                                  transform=transform)
 
-浏览数据集
-----------
+三、组建网络
+------------
 
-接下来我们从数据集中随机挑选一些图片并显示，从而对数据集有一个直观的了解。
-
-.. code:: ipython3
-
-    class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
-    
-    plt.figure(figsize=(10,10))
-    sample_idxs = np.random.choice(50000, size=25, replace=False)
-    
-    for i in range(25):
-        plt.subplot(5, 5, i+1)
-        plt.xticks([])
-        plt.yticks([])
-        plt.imshow(train_images[sample_idxs[i]], cmap=plt.cm.binary)
-        plt.xlabel(class_names[train_labels[sample_idxs[i]][0]])
-    plt.show()
-
-
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/rc_convnet_image_classification_001.png?raw=true
-
-组建网络
---------
-
-接下来我们使用飞桨定义一个使用了三个二维卷积（\ ``Conv2d``)且每次卷积之后使用\ ``relu``\ 激活函数，两个二维池化层（\ ``MaxPool2d``\ ），和两个线性变换层组成的分类网络，来把一个\ ``(32, 32, 3)``\ 形状的图片通过卷积神经网络映射为10个输出，这对应着10个分类的类别。
+接下来我们使用飞桨定义一个使用了三个二维卷积（ ``Conv2D`` )
+且每次卷积之后使用 ``relu`` 激活函数，两个二维池化层（ ``MaxPool2D``
+），和两个线性变换层组成的分类网络，来把一个(32, 32,
+3)形状的图片通过卷积神经网络映射为10个输出，这对应着10个分类的类别。
 
 .. code:: ipython3
 
@@ -74,26 +61,26 @@
     
             self.conv1 = paddle.nn.Conv2D(in_channels=3, out_channels=32, kernel_size=(3, 3))
             self.pool1 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)
-            
+    
             self.conv2 = paddle.nn.Conv2D(in_channels=32, out_channels=64, kernel_size=(3,3))
-            self.pool2 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)    
-            
+            self.pool2 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)
+    
             self.conv3 = paddle.nn.Conv2D(in_channels=64, out_channels=64, kernel_size=(3,3))
     
             self.flatten = paddle.nn.Flatten()
-            
+    
             self.linear1 = paddle.nn.Linear(in_features=1024, out_features=64)
             self.linear2 = paddle.nn.Linear(in_features=64, out_features=num_classes)
-            
+    
         def forward(self, x):
             x = self.conv1(x)
             x = F.relu(x)
             x = self.pool1(x)
-            
+    
             x = self.conv2(x)
             x = F.relu(x)
             x = self.pool2(x)
-            
+    
             x = self.conv3(x)
             x = F.relu(x)
     
@@ -103,13 +90,12 @@
             x = self.linear2(x)
             return x
 
-模型训练
---------
+四、模型训练&预测
+-----------------
 
-接下来，我们用一个循环来进行模型的训练，我们将会： -
-使用\ ``paddle.optimizer.Adam``\ 优化器来进行优化。 -
-使用\ ``F.softmax_with_cross_entropy``\ 来计算损失值。 -
-使用\ ``paddle.io.DataLoader``\ 来加载数据并组建batch。
+接下来，我们用一个循环来进行模型的训练，我们将会: - 使用
+``paddle.optimizer.Adam`` 优化器来进行优化。 - 使用 ``F.cross_entropy``
+来计算损失值。 - 使用 ``paddle.io.DataLoader`` 来加载数据并组建batch。
 
 .. code:: ipython3
 
@@ -127,28 +113,24 @@
         # turn into training mode
         model.train()
     
-        opt = paddle.optimizer.Adam(learning_rate=learning_rate, 
+        opt = paddle.optimizer.Adam(learning_rate=learning_rate,
                                     parameters=model.parameters())
     
         train_loader = paddle.io.DataLoader(cifar10_train,
-                                            places=paddle.CPUPlace(), 
-                                            shuffle=True, 
+                                            shuffle=True,
                                             batch_size=batch_size)
-        
-        cifar10_test = paddle.vision.datasets.cifar.Cifar10(mode='test', transform=None)
-        valid_loader = paddle.io.DataLoader(cifar10_test, places=paddle.CPUPlace(), batch_size=batch_size)
+    
+        valid_loader = paddle.io.DataLoader(cifar10_test, batch_size=batch_size)
     
         for epoch in range(epoch_num):
             for batch_id, data in enumerate(train_loader()):
-                x_data = paddle.cast(data[0], 'float32')
-                x_data = paddle.reshape(x_data, (-1, 3, 32, 32)) / 255.0
-                
-                y_data = paddle.cast(data[1], 'int64')
-                y_data = paddle.reshape(y_data, (-1, 1))
-                            
+                x_data = data[0]
+                y_data = paddle.to_tensor(data[1])
+                y_data = paddle.unsqueeze(y_data, 1)
+    
                 logits = model(x_data)
                 loss = F.cross_entropy(logits, y_data)
-                
+    
                 if batch_id % 1000 == 0:
                     print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, loss.numpy()))
                 loss.backward()
@@ -159,19 +141,17 @@
             model.eval()
             accuracies = []
             losses = []
-            for batch_id, data in enumerate(valid_loader()): 
-                x_data = paddle.cast(data[0], 'float32')
-                x_data = paddle.reshape(x_data, (-1, 3, 32, 32)) / 255.0
-                
-                y_data = paddle.cast(data[1], 'int64')
-                y_data = paddle.reshape(y_data, (-1, 1))           
-                
-                logits = model(x_data)            
+            for batch_id, data in enumerate(valid_loader()):
+                x_data = data[0]
+                y_data = paddle.to_tensor(data[1])
+                y_data = paddle.unsqueeze(y_data, 1)
+    
+                logits = model(x_data)
                 loss = F.cross_entropy(logits, y_data)
                 acc = paddle.metric.accuracy(logits, y_data)
-                accuracies.append(np.mean(acc.numpy()))
-                losses.append(np.mean(loss.numpy()))
-            
+                accuracies.append(acc.numpy())
+                losses.append(loss.numpy())
+    
             avg_acc, avg_loss = np.mean(accuracies), np.mean(losses)
             print("[validation] accuracy/loss: {}/{}".format(avg_acc, avg_loss))
             val_acc_history.append(avg_acc)
@@ -185,36 +165,36 @@
 .. parsed-literal::
 
     start training ... 
-    epoch: 0, batch_id: 0, loss is: [2.2965763]
-    epoch: 0, batch_id: 1000, loss is: [1.0031449]
-    [validation] accuracy/loss: 0.5404353141784668/1.2701575756072998
-    epoch: 1, batch_id: 0, loss is: [1.174142]
-    epoch: 1, batch_id: 1000, loss is: [1.0762234]
-    [validation] accuracy/loss: 0.6140175461769104/1.0952659845352173
-    epoch: 2, batch_id: 0, loss is: [1.1910104]
-    epoch: 2, batch_id: 1000, loss is: [1.0185118]
-    [validation] accuracy/loss: 0.6521565318107605/0.9856007695198059
-    epoch: 3, batch_id: 0, loss is: [0.9634655]
-    epoch: 3, batch_id: 1000, loss is: [0.7929425]
-    [validation] accuracy/loss: 0.6713258624076843/0.9420197010040283
-    epoch: 4, batch_id: 0, loss is: [0.7008929]
-    epoch: 4, batch_id: 1000, loss is: [0.7753452]
-    [validation] accuracy/loss: 0.6847044825553894/0.8882610201835632
-    epoch: 5, batch_id: 0, loss is: [0.82852745]
-    epoch: 5, batch_id: 1000, loss is: [0.6828017]
-    [validation] accuracy/loss: 0.6798123121261597/0.9283958077430725
-    epoch: 6, batch_id: 0, loss is: [0.66858184]
-    epoch: 6, batch_id: 1000, loss is: [0.6745519]
-    [validation] accuracy/loss: 0.700579047203064/0.8796287178993225
-    epoch: 7, batch_id: 0, loss is: [0.53450656]
-    epoch: 7, batch_id: 1000, loss is: [0.76947826]
-    [validation] accuracy/loss: 0.705670952796936/0.8611085414886475
-    epoch: 8, batch_id: 0, loss is: [0.812968]
-    epoch: 8, batch_id: 1000, loss is: [0.909574]
-    [validation] accuracy/loss: 0.7171525359153748/0.8313455581665039
-    epoch: 9, batch_id: 0, loss is: [0.68075883]
-    epoch: 9, batch_id: 1000, loss is: [0.27960974]
-    [validation] accuracy/loss: 0.7102635502815247/0.8689636588096619
+    epoch: 0, batch_id: 0, loss is: [2.2362428]
+    epoch: 0, batch_id: 1000, loss is: [1.206327]
+    [validation] accuracy/loss: 0.5383386611938477/1.2577064037322998
+    epoch: 1, batch_id: 0, loss is: [1.370784]
+    epoch: 1, batch_id: 1000, loss is: [1.0781252]
+    [validation] accuracy/loss: 0.6376796960830688/1.0298848152160645
+    epoch: 2, batch_id: 0, loss is: [0.9192907]
+    epoch: 2, batch_id: 1000, loss is: [0.7311921]
+    [validation] accuracy/loss: 0.6576477885246277/0.9908456802368164
+    epoch: 3, batch_id: 0, loss is: [0.61424184]
+    epoch: 3, batch_id: 1000, loss is: [0.8268999]
+    [validation] accuracy/loss: 0.6778154969215393/0.9368402361869812
+    epoch: 4, batch_id: 0, loss is: [0.8788361]
+    epoch: 4, batch_id: 1000, loss is: [1.139102]
+    [validation] accuracy/loss: 0.7055711150169373/0.8624006509780884
+    epoch: 5, batch_id: 0, loss is: [0.4790781]
+    epoch: 5, batch_id: 1000, loss is: [0.46481135]
+    [validation] accuracy/loss: 0.7040734887123108/0.8620880246162415
+    epoch: 6, batch_id: 0, loss is: [0.8061414]
+    epoch: 6, batch_id: 1000, loss is: [0.8912587]
+    [validation] accuracy/loss: 0.7112619876861572/0.8590201139450073
+    epoch: 7, batch_id: 0, loss is: [0.5126707]
+    epoch: 7, batch_id: 1000, loss is: [0.70433134]
+    [validation] accuracy/loss: 0.7098641991615295/0.8762255907058716
+    epoch: 8, batch_id: 0, loss is: [0.70113385]
+    epoch: 8, batch_id: 1000, loss is: [0.58052105]
+    [validation] accuracy/loss: 0.7064696550369263/0.9035584330558777
+    epoch: 9, batch_id: 0, loss is: [0.34707433]
+    epoch: 9, batch_id: 1000, loss is: [0.59680617]
+    [validation] accuracy/loss: 0.7041733264923096/0.945155143737793
 
 
 .. code:: ipython3
@@ -231,13 +211,15 @@
 
 .. parsed-literal::
 
-    <matplotlib.legend.Legend at 0x12bcd62b0>
+    <matplotlib.legend.Legend at 0x12c3686d0>
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/convnet_image_classification/convnet_image_classification_files/rc_convnet_image_classification_002.png?raw=true
+
+
+.. image:: convnet_image_classification_files/convnet_image_classification_10_1.png
 
 
 The End
 -------
 
-从上面的示例可以看到，在cifar10数据集上，使用简单的卷积神经网络，用飞桨可以达到71%以上的准确率。你也可以通过调整网络结构和参数，达到更好的效果。
+从上面的示例可以看到，在cifar10数据集上，使用简单的卷积神经网络，用飞桨可以达到70%以上的准确率。你也可以通过调整网络结构和参数，达到更好的效果。

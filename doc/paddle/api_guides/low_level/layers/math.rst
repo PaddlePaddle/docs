@@ -66,6 +66,13 @@ cos
 
 API Reference 请参考 :ref:`cn_api_fluid_layers_cos`
 
+cosh
+------------------
+
+对输入 :code:`Tensor` 逐元素取双曲余弦。
+
+API Reference 请参考 :ref:`cn_api_fluid_layers_cosh`
+
 round
 ------------------
 

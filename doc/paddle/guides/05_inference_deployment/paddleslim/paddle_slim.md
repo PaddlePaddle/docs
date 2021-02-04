@@ -48,7 +48,7 @@ pip install paddleslim -i https://pypi.org/simple
 - [模型库](https://paddlepaddle.github.io/PaddleSlim/model_zoo.html)：各个压缩策略在图像分类、目标检测和图像语义分割模型上的实验结论，包括模型精度、预测速度和可供下载的预训练模型。
 - [API文档](https://paddlepaddle.github.io/PaddleSlim/api_cn/index.html)
 - [Paddle检测库](https://github.com/PaddlePaddle/PaddleDetection/tree/master/slim)：介绍如何在检测库中使用PaddleSlim。
-- [Paddle分割库](https://github.com/PaddlePaddle/PaddleSeg/tree/develop/slim)：介绍如何在分割库中使用PaddleSlim。
+- [Paddle分割库](https://github.com/PaddlePaddle/PaddleSlim/tree/develop)：介绍如何在分割库中使用PaddleSlim。
 - [PaddleLite](https://paddlepaddle.github.io/Paddle-Lite/)：介绍如何使用预测库PaddleLite部署PaddleSlim产出的模型。
 
 ## 部分压缩策略效果

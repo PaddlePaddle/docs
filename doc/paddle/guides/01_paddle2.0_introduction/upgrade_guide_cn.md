@@ -1,7 +1,7 @@
 # 升级指南
 
 ## 升级概要
-本版本是2.0版的候选发布版本，相对1.8版本有重大升级，涉及开发方面的重要变化如下：
+飞桨2.0版本，相对1.8版本有重大升级，涉及开发方面的重要变化如下：
 
  - 动态图功能完善，动态图模下数据表示概念为Tensor，推荐使用动态图模式；
  - API目录体系调整，API的命名和别名进行了统一规范化，虽然兼容老版API，但请使用新API体系开发；
@@ -13,7 +13,7 @@
 ## 一、动态图
 
 ### 推荐优先使用动态图模式
-飞桨2.0rc版本将会把动态图作为默认模式。（如果还想使用静态图，可通过调用`paddle.enable_static`切换）。
+飞桨2.0版本将会把动态图作为默认模式（如果还想使用静态图，可通过调用`paddle.enable_static`切换）。
 
 ```python
 import paddle
@@ -42,7 +42,7 @@ paddle.to_tensor(np.random.randn(3, 4))
 为了API组织更加简洁和清晰，将原来padddle.fluid.xxx的目录体系全新升级为paddle.xxx，并对子目录的组织进行了系统的条理化优化。同时还增加了高层API，可以高低搭配使用。paddle.fluid目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
 **基于2.0的开发任务，请使用paddle目录下的API，不要再使用paddle.fluid目录下的API。** 如果发现Paddle目录下有API缺失的情况，推荐使用基础API进行组合实现；您也可以通过在 [github](https://github.com/paddlepaddle/paddle) 上提issue的方式向我们反馈。
 
-**2.0-rc版本的API 整体目录结构如下**：
+**2.0版本的API 整体目录结构如下**：
 
 | 目录 | 功能和包含的API |
 | :--- | --------------- |
@@ -84,9 +84,10 @@ paddle.to_tensor(np.random.randn(3, 4))
 - 对于按照某一轴操作，不加reduce前缀
 - Conv, Pool, Dropout, BatchNorm, Pad组网类API根据输入数据类型增加1D, 2D, 3D后缀
 
-  | Paddle 1.8  API名称  | Paddle 2.0-rc 对应的名称|
+  | Paddle 1.8  API名称  | Paddle 2.0对应的名称|
   | --------------- | ------------------------ |
   | paddle.fluid.layers.elementwise_add | paddle.add               |
+  | paddle.fluid.layers.elementwise_sub | paddle.subtract          |
   | paddle.fluid.layers.elementwise_mul | paddle.multiply          |
   | paddle.fluid.layers.elementwise_div | paddle.divide |
   | paddle.fluid.layers.elementwise_max | paddle.maximum             |
@@ -217,9 +218,10 @@ mnist = Mnist()
 
 ```python
 import paddle
+from paddle.vision.transforms import ToTensor
 
-train_dataset = paddle.vision.datasets.MNIST(mode='train')
-test_dataset = paddle.vision.datasets.MNIST(mode='test')
+train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
+test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
 lenet = paddle.vision.models.LeNet()
 
 # Mnist继承paddle.nn.Layer属于Net，model包含了训练功能
@@ -243,9 +245,10 @@ model.evaluate(test_dataset, log_freq=20, batch_size=64)
 
 ```python
 import paddle
+from paddle.vision.transforms import ToTensor
 
-train_dataset = paddle.vision.datasets.MNIST(mode='train')
-test_dataset = paddle.vision.datasets.MNIST(mode='test')
+train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
+test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
 lenet = paddle.vision.models.LeNet()
 loss_fn = paddle.nn.CrossEntropyLoss()
 
@@ -293,7 +296,7 @@ $ python -m paddle.distributed.launch train.py
 $ python -m paddle.distributed.launch --selected_gpus='0,1' train.py
 
 # 单机多卡启动，设置当前使用第0号和第1号卡
-$ export CUDA_VISIABLE_DEVICES='0,1'
+$ export CUDA_VISIBLE_DEVICES=0,1
 $ python -m paddle.distributed.launch train.py
 ```
 
@@ -353,7 +356,7 @@ $ python -m paddle.distributed.launch train.py
 $ python -m paddle.distributed.launch --selected_gpus '0,1' train.py
 
 # 单机多卡启动，设置当前使用第0号和第1号卡
-$ export CUDA_VISIABLE_DEVICES='0,1'
+$ export CUDA_VISIBLE_DEVICES=0,1
 $ python -m paddle.distributed.launch train.py
 ```
 
@@ -539,14 +542,14 @@ for (...) {
 
 #### Python API
 
-Python API 的变更与 C++ 基本对应，会在2.0RC版发布。
+Python API 的变更与 C++ 基本对应，会在2.0版发布。
 
 
 ## 附录
 ### 2.0转换工具
-为了降级代码升级的成本，我们提供了转换工具，可以帮助将Paddle 1.8版本开发的代码，升级为2.0-rc的API。由于相比于Paddle 1.8版本，2.0-rc版本的API进行了大量的升级，包括API名称，参数名称，行为等。转换工具当前还不能覆盖所有的API升级；对于无法转换的API，转换工具会报错，提示用户手动升级。
+为了降级代码升级的成本，我们提供了转换工具，可以帮助将Paddle 1.8版本开发的代码，升级为2.0的API。由于相比于Paddle 1.8版本，2.0版本的API进行了大量的升级，包括API名称，参数名称，行为等。转换工具当前还不能覆盖所有的API升级；对于无法转换的API，转换工具会报错，提示用户手动升级。
 
-https://github.com/PaddlePaddle/paddle1to2
+https://github.com/PaddlePaddle/paddle_upgrade_tool
 
 对于转换工具没有覆盖的API，请查看官网的API文档，手动升级代码的API。
 

@@ -1,49 +1,45 @@
 使用序列到序列模型完成数字加法
 ==============================
 
--  作者：\ `jm12138 <https://github.com/jm12138>`__
--  日期：2020.10.21
+**作者:** `jm12138 <https://github.com/jm12138>`__ 
 
-简要介绍
---------
+**日期:** 2021.01
 
--  本示例教程介绍如何使用飞桨完成一个数字加法任务
--  我们将会使用飞桨提供的LSTM的API，组建一个序列到序列模型
--  并在随机生成的数据集上完成数字加法任务的模型训练与预测
+**摘要:** 本示例教程介绍如何使用飞桨完成一个数字加法任务，我们将会使用飞桨提供的LSTM的API，组建一个序列到序列模型，并在随机生成的数据集上完成数字加法任务的模型训练与预测。
 
-环境设置
---------
+一、环境配置
+------------
 
--  本示例教程基于飞桨2.0-rc版本
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
 .. code:: ipython3
 
     # 导入项目运行所需的包
-    import random
-    import numpy as np
     
     import paddle
     import paddle.nn as nn
+    
+    import random
+    import numpy as np
     
     from visualdl import LogWriter
     
     # 打印Paddle版本
     print('paddle version: %s' % paddle.__version__)
-    
-    # 设置CPU为运行位置
-    place = paddle.CPUPlace()
 
 
 .. parsed-literal::
 
-    paddle version: 2.0.0-rc0
+    paddle version: 2.0.0
 
 
-构建数据集
-----------
+二、构建数据集
+--------------
 
 -  随机生成数据，并使用生成的数据构造数据集
--  通过继承paddle.io.Dataset来完成数据集的构造
+-  通过继承 ``paddle.io.Dataset`` 来完成数据集的构造
 
 .. code:: ipython3
 
@@ -144,19 +140,15 @@
     # 实例化数据读取器
     train_reader = paddle.io.DataLoader(
         train_dataset,
-        places=place,
         batch_size=batch_size,
         shuffle=True,
-        drop_last=False,
-        num_workers=num_workers
+        drop_last=True
     )
     dev_reader = paddle.io.DataLoader(
         dev_dataset,
-        places=place,
         batch_size=batch_size,
         shuffle=False,
-        drop_last=False,
-        num_workers=num_workers
+        drop_last=True
     )
     
     print('finish')
@@ -169,19 +161,19 @@
     finish
 
 
-模型组网
---------
+三、模型组网
+------------
 
--  通过继承paddle.nn.Layer类来搭建模型
+-  通过继承 ``paddle.nn.Layer`` 类来搭建模型
 
--  本次介绍的模型是一个简单的基于LSTM的Seq2Seq模型
+-  本次介绍的模型是一个简单的基于 ``LSTM`` 的 ``Seq2Seq`` 模型
 
 -  一共有如下四个主要的网络层：
 
-   1. 嵌入层(Embedding)：将输入的文本序列转为嵌入向量
-   2. 编码层(LSTM)：将嵌入向量进行编码
-   3. 解码层(LSTM)：将编码向量进行解码
-   4. 全连接层(Linear)：对解码完成的向量进行线性映射
+   1. 嵌入层(``Embedding``)：将输入的文本序列转为嵌入向量
+   2. 编码层(``LSTM``)：将嵌入向量进行编码
+   3. 解码层(``LSTM``)：将编码向量进行解码
+   4. 全连接层(``Linear``)：对解码完成的向量进行线性映射
 
 -  损失函数为交叉熵损失函数
 
@@ -252,7 +244,7 @@
                 tmp = paddle.transpose(out, [0, 2, 1])
     
                 # 计算交叉熵损失
-                loss = nn.functional.cross_entropy(tmp, labels)
+                loss = nn.functional.cross_entropy(tmp, labels, axis=1)
     
                 # 计算准确率
                 acc = paddle.metric.accuracy(paddle.reshape(out, [-1, self.char_len]), paddle.reshape(labels, [-1, 1]))
@@ -263,12 +255,12 @@
             # 返回输出
             return out
 
-模型训练与评估
---------------
+四、模型训练与评估
+------------------
 
--  使用Adam作为优化器进行模型训练
+-  使用 ``Adam`` 作为优化器进行模型训练
 -  以模型准确率作为评价指标
--  使用VisualDL对训练数据进行可视化
+-  使用 ``VisualDL`` 对训练数据进行可视化
 -  训练过程中会同时进行模型评估和最佳模型的保存
 
 .. code:: ipython3
@@ -282,9 +274,9 @@
     num_layers=1
     
     # 训练参数设置
-    epoch_num = 200
+    epoch_num = 50
     learning_rate = 0.001
-    log_iter = 20
+    log_iter = 2000
     eval_iter = 500
     
     # 定义一些所需变量
@@ -366,28 +358,19 @@
 
 .. parsed-literal::
 
-    train epoch:0 step: 0 loss:2.485033 acc:0.093750
-    eval epoch:0 step: 0 loss:2.485033 acc:0.093750
+    train epoch:0 step: 0 loss:2.468403 acc:0.177083
+    eval epoch:0 step: 0 loss:2.468403 acc:0.177083
     saving the best_model...
-    train epoch:0 step: 20 loss:2.408553 acc:0.145833
-    train epoch:0 step: 40 loss:2.235319 acc:0.395833
-    train epoch:0 step: 60 loss:2.215429 acc:0.406250
-    train epoch:0 step: 80 loss:2.252749 acc:0.354167
-    train epoch:0 step: 100 loss:2.244046 acc:0.375000
-    train epoch:0 step: 120 loss:2.253286 acc:0.364583
-    train epoch:0 step: 140 loss:2.224211 acc:0.395833
-    ...
-    train epoch:199 step: 31260 loss:1.715477 acc:0.906250
-    train epoch:199 step: 31280 loss:1.683247 acc:0.937500
-    train epoch:199 step: 31300 loss:1.709645 acc:0.906250
-    train epoch:199 step: 31320 loss:1.662523 acc:0.958333
-    train epoch:199 step: 31340 loss:1.646050 acc:0.979167
-    train epoch:199 step: 31360 loss:1.681068 acc:0.947917
-    train epoch:199 step: 31380 loss:1.668127 acc:0.947917
+    eval epoch:3 step: 500 loss:1.204414 acc:0.552083
+    saving the best_model...
+    eval epoch:6 step: 1000 loss:0.900309 acc:0.687500
+    saving the best_model...
+    eval epoch:9 step: 1500 loss:0.882398 acc:0.729167
+    saving the best_model...
 
 
-模型测试
---------
+五、模型测试
+------------
 
 -  使用保存的最佳模型进行测试
 
@@ -423,15 +406,8 @@
     print('the model answer: %s=%s' % (input_text, result))
     print('the true answer: %s=%s' % (input_text, eval(input_text)))
 
-
-.. parsed-literal::
-
-    the model answer: 12+40=52 
-    the true answer: 12+40=52
-
-
-总结
-----
+六、总结
+--------
 
 -  你还可以通过变换网络结构，调整数据集，尝试不同的参数的方式来进一步提升本示例当中的数字加法的效果
 -  同时，也可以尝试在其他的类似的任务中用飞桨来完成实际的实践

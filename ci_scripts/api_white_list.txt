@@ -16,6 +16,7 @@ paddle/distributed/all_reduce_cn.rst
 paddle/distributed/reduce_cn.rst
 paddle/distributed/barrier_cn.rst
 paddle/distributed/broadcast_cn.rst
+paddle/distributed/split_cn.rst
 paddle/distributed/fleet/Fleet_cn.rst
 paddle/distributed/fleet/utils/fs/ExecuteError_cn.rst
 paddle/distributed/fleet/utils/fs/FSFileExistsError_cn.rst
@@ -27,4 +28,7 @@ paddle/distributed/fleet/utils/fs/HDFSClient_cn.rst
 paddle/distributed/fleet/utils/fs/LocalFS_cn.rst
 paddle/fluid/dygraph/parallel/DataParallel_cn.rst
 paddle/fluid/dygraph/parallel/ParallelEnv_cn.rst
+paddle/fluid/framework/is_compiled_with_xpu_cn.rst
+paddle/fluid/framework/xpu_places_cn.rst
+paddle/fluid/core/XPUPlace_cn.rst
 upgrade_guide_cn.md

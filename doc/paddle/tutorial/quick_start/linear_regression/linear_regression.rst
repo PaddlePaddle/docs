@@ -1,31 +1,24 @@
-线性回归
-========
+使用线性回归预测波士顿房价
+==========================
 
-NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
 
-简要介绍
---------
+**日期:** 2021.01 
+
+**摘要:** 本示例教程将会演示如何使用线性回归完成波士顿房价预测。
+
+一、简要介绍
+------------
 
 经典的线性回归模型主要用来预测一些存在着线性关系的数据集。回归模型可以理解为：存在一个点集，用一条曲线去拟合它分布的过程。如果拟合曲线是一条直线，则称为线性回归。如果是一条二次曲线，则被称为二次回归。线性回归是回归模型中最简单的一种。
 本示例简要介绍如何用飞桨开源框架，实现波士顿房价预测。其思路是，假设uci-housing数据集中的房子属性和房价之间的关系可以被属性间的线性组合描述。在模型训练阶段，让假设的预测结果和真实值之间的误差越来越小。在模型预测阶段，预测器会读取训练好的模型，对从未遇见过的房子属性进行房价预测。
 
-数据集介绍
-----------
+二、环境配置
+------------
 
-本示例采用uci-housing数据集，这是经典线性回归的数据集。数据集共7084条数据，可以拆分成506行,每行14列。前13列用来描述房屋的各种信息，最后一列为该类房屋价格中位数。
-
-前13列用来描述房屋的各种信息
-
-.. figure:: https://ai-studio-static-online.cdn.bcebos.com/c19602ce74284e3b9a50422f8dc37c0c1c79cf5cd8424994b6a6b073dcb7c057
-   :alt: avatar
-
-   avatar
-
-训练方式一
-----------
-
-环境设置
-~~~~~~~~
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
 .. code:: ipython3
 
@@ -42,11 +35,23 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0
 
 
-数据处理
-~~~~~~~~
+三、数据集介绍
+--------------
+
+本示例采用uci-housing数据集，这是经典线性回归的数据集。数据集共7084条数据，可以拆分成506行,每行14列。前13列用来描述房屋的各种信息，最后一列为该类房屋价格中位数。
+
+前13列用来描述房屋的各种信息
+
+.. figure:: https://ai-studio-static-online.cdn.bcebos.com/c19602ce74284e3b9a50422f8dc37c0c1c79cf5cd8424994b6a6b073dcb7c057
+   :alt: avatar
+
+   avatar
+
+3.1 数据处理
+~~~~~~~~~~~~
 
 .. code:: ipython3
 
@@ -56,15 +61,16 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 .. parsed-literal::
 
-    --2020-10-28 20:47:47--  https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data
-    正在连接 172.19.57.45:3128... 已连接。
-    已发出 Proxy 请求，正在等待回应... 200 OK
+    --2021-01-27 18:04:47--  https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data
+    正在解析主机 archive.ics.uci.edu (archive.ics.uci.edu)... 128.195.10.252
+    正在连接 archive.ics.uci.edu (archive.ics.uci.edu)|128.195.10.252|:443... 已连接。
+    已发出 HTTP 请求，正在等待回应... 200 OK
     长度：49082 (48K) [application/x-httpd-php]
     正在保存至: “housing.data”
     
-    housing.data        100%[===================>]  47.93K  95.8KB/s  用时 0.5s      
+    housing.data        100%[===================>]  47.93K   157KB/s  用时 0.3s      
     
-    2020-10-28 20:47:49 (95.8 KB/s) - 已保存 “housing.data” [49082/49082])
+    2021-01-27 18:04:48 (157 KB/s) - 已保存 “housing.data” [49082/49082])
     
 
 
@@ -73,7 +79,6 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
     # 从文件导入数据
     datafile = './housing.data'
     housing_data = np.fromfile(datafile, sep=' ')
-    
     feature_names = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE','DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT', 'MEDV']
     feature_num = len(feature_names)
     # 将原始数据进行Reshape，变成[N, 14]这样的形状
@@ -84,16 +89,17 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
     # 画图看特征间的关系,主要是变量两两之间的关系（线性或非线性，有无明显较为相关关系）
     features_np = np.array([x[:13] for x in housing_data], np.float32)
     labels_np = np.array([x[-1] for x in housing_data], np.float32)
-    data_np = np.c_[features_np, labels_np]
-    df = pd.DataFrame(data_np, columns=feature_names)
+    # data_np = np.c_[features_np, labels_np]
+    df = pd.DataFrame(housing_data, columns=feature_names)
     matplotlib.use('TkAgg')
     %matplotlib inline
-    sns.pairplot(df.dropna(), y_vars=feature_names[-1], x_vars=feature_names[:])
+    sns.pairplot(df.dropna(), y_vars=feature_names[-1], x_vars=feature_names[::-1], diag_kind='kde')
     plt.show()
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc_linear_regression_001.png?raw=true
+.. image:: linear_regression_files/linear_regression_9_0.png
+
 
 .. code:: ipython3
 
@@ -105,11 +111,20 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
     plt.show()
 
 
+.. parsed-literal::
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc_linear_regression_002.png?raw=true
+    /Library/Python/3.8/site-packages/ipykernel/ipkernel.py:287: DeprecationWarning: `should_run_async` will not call `transform_cell` automatically in the future. Please pass the result to `transformed_cell` argument and any exception that happen during thetransform in `preprocessing_exc_tuple` in IPython 7.17 and above.
+      and should_run_async(code)
 
 
-**数据归一化处理**\  下图为大家展示各属性的取值范围分布：
+
+.. image:: linear_regression_files/linear_regression_10_1.png
+
+
+3.2 数据归一化处理
+~~~~~~~~~~~~~~~~~~
+
+下图为大家展示各属性的取值范围分布：
 
 .. code:: ipython3
 
@@ -120,12 +135,12 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 .. parsed-literal::
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x10d0dc5e0>
+    <AxesSubplot:>
 
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc_linear_regression_003.png?raw=true
+.. image:: linear_regression_files/linear_regression_12_1.png
 
 
 从上图看出，我们各属性的数值范围差异太大，甚至不能够在一个画布上充分的展示各属性具体的最大、最小值以及异常值等。下面我们进行归一化。
@@ -174,12 +189,12 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 .. parsed-literal::
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x134c75460>
+    <AxesSubplot:>
 
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc_linear_regression_004.png?raw=true
+.. image:: linear_regression_files/linear_regression_18_1.png
 
 
 .. code:: ipython3
@@ -190,8 +205,8 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
     train_data = housing_data[:offset]
     test_data = housing_data[offset:]
 
-模型配置
-~~~~~~~~
+四、模型组网
+------------
 
 线性回归就是一个从输入到输出的简单的全连接层。
 
@@ -222,12 +237,17 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
         plt.plot(iters, train_costs, color='red', label='training cost')
         plt.show()
 
-模型训练
-~~~~~~~~
+五、方式1：使用基础API完成模型训练&预测
+---------------------------------------
+
+5.1 模型训练
+~~~~~~~~~~~~
 
 下面为大家展示模型训练的代码。
+
 这里用到的是线性回归模型最常用的损失函数–均方误差（MSE），用来衡量模型预测的房价和真实房价的差异。
-对损失函数进行优化所采用的方法是梯度下降法
+
+对损失函数进行优化所采用的方法是梯度下降法.
 
 .. code:: ipython3
 
@@ -277,16 +297,16 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 .. parsed-literal::
 
     start training ... 
-    Pass:0,Cost:849.63049
-    Pass:50,Cost:17.27243
-    Pass:100,Cost:28.23683
-    Pass:150,Cost:24.01741
-    Pass:200,Cost:22.79668
-    Pass:250,Cost:11.14902
-    Pass:300,Cost:47.42613
-    Pass:350,Cost:57.36282
-    Pass:400,Cost:19.96343
-    Pass:450,Cost:20.38827
+    Pass:0,Cost:724.19617
+    Pass:50,Cost:62.97696
+    Pass:100,Cost:96.54344
+    Pass:150,Cost:49.87206
+    Pass:200,Cost:32.18977
+    Pass:250,Cost:30.61844
+    Pass:300,Cost:42.43702
+    Pass:350,Cost:63.68068
+    Pass:400,Cost:31.93441
+    Pass:450,Cost:18.98611
 
 
 .. code:: ipython3
@@ -297,13 +317,13 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc_linear_regression_005.png?raw=true
+.. image:: linear_regression_files/linear_regression_26_0.png
 
 
 可以从上图看出，随着训练轮次的增加，损失在呈降低趋势。但由于每次仅基于少量样本更新参数和计算损失，所以损失下降曲线会出现震荡。
 
-模型预测
-~~~~~~~~
+5.2 模型预测
+~~~~~~~~~~~~
 
 .. code:: ipython3
 
@@ -331,17 +351,17 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 .. parsed-literal::
 
-    No.0: infer result is 11.96,ground truth is 8.50
-    No.10: infer result is 5.40,ground truth is 7.00
-    No.20: infer result is 14.73,ground truth is 11.70
-    No.30: infer result is 16.35,ground truth is 11.70
-    No.40: infer result is 13.48,ground truth is 10.80
-    No.50: infer result is 15.82,ground truth is 14.90
-    No.60: infer result is 18.69,ground truth is 21.40
-    No.70: infer result is 15.39,ground truth is 13.80
-    No.80: infer result is 18.14,ground truth is 20.60
-    No.90: infer result is 21.38,ground truth is 24.50
-    Mean loss is: [12.4613495]
+    No.0: infer result is 12.00,ground truth is 8.50
+    No.10: infer result is 5.56,ground truth is 7.00
+    No.20: infer result is 15.01,ground truth is 11.70
+    No.30: infer result is 16.49,ground truth is 11.70
+    No.40: infer result is 13.58,ground truth is 10.80
+    No.50: infer result is 15.98,ground truth is 14.90
+    No.60: infer result is 18.70,ground truth is 21.40
+    No.70: infer result is 15.55,ground truth is 13.80
+    No.80: infer result is 18.15,ground truth is 20.60
+    No.90: infer result is 21.36,ground truth is 24.50
+    Mean loss is: [12.574625]
 
 
 .. code:: ipython3
@@ -361,13 +381,13 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/quick_start/linear_regression/linear_regression_files/rc_linear_regression_006.png?raw=true
+.. image:: linear_regression_files/linear_regression_31_0.png
 
 
 上图可以看出，我们训练出来的模型的预测结果与真实结果是较为接近的。
 
-训练方式二
-----------
+六、方式2：使用高层API完成模型训练&预测
+---------------------------------------
 
 我们也可以用我们的高层API来做线性回归训练，高层API相较于底层API更加的简洁方便。
 
@@ -399,29 +419,35 @@ NOTE: 本示例教程是基于飞桨框架2.0-rc版本开发
 
 .. parsed-literal::
 
+    The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/5
-    step 51/51 [==============================] - loss: 600.1409 - 1ms/step          
+    step 51/51 [==============================] - loss: 628.4189 - 2ms/step          
     Eval begin...
-    step 13/13 [==============================] - loss: 403.3546 - 853us/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 13/13 [==============================] - loss: 385.1105 - 990us/step        
     Eval samples: 102
     Epoch 2/5
-    step 51/51 [==============================] - loss: 409.8211 - 1ms/step          
+    step 51/51 [==============================] - loss: 416.6072 - 2ms/step          
     Eval begin...
-    step 13/13 [==============================] - loss: 400.7605 - 833us/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 13/13 [==============================] - loss: 382.5877 - 1ms/step          
     Eval samples: 102
     Epoch 3/5
-    step 51/51 [==============================] - loss: 416.0571 - 1ms/step          
+    step 51/51 [==============================] - loss: 417.1789 - 1ms/step          
     Eval begin...
-    step 13/13 [==============================] - loss: 398.2093 - 781us/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 13/13 [==============================] - loss: 380.1073 - 1ms/step          
     Eval samples: 102
     Epoch 4/5
-    step 51/51 [==============================] - loss: 436.1567 - 1ms/step          
+    step 51/51 [==============================] - loss: 424.5966 - 1ms/step          
     Eval begin...
-    step 13/13 [==============================] - loss: 395.6739 - 973us/step        
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 13/13 [==============================] - loss: 377.6421 - 972us/step        
     Eval samples: 102
     Epoch 5/5
-    step 51/51 [==============================] - loss: 445.6322 - 1ms/step          
+    step 51/51 [==============================] - loss: 466.6127 - 1ms/step          
     Eval begin...
-    step 13/13 [==============================] - loss: 393.1199 - 798us/step          
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 13/13 [==============================] - loss: 375.1613 - 925us/step          
     Eval samples: 102
 
