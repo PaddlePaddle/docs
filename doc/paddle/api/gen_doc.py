@@ -31,7 +31,7 @@ cn_suffix = "_cn.rst"
 api_info_dict = {}
 
 
-# walkthrough the paddle package to collect all the apis in api_set
+# step 1: walkthrough the paddle package to collect all the apis in api_set
 def get_all_api(root_path='paddle', attr="__all__"):
     """
     walk through the paddle package to collect all the apis.
@@ -57,6 +57,7 @@ def get_all_api(root_path='paddle', attr="__all__"):
                                                         len(api_info_dict)))
 
 
+# step 1 fill field : `id` & `all_names`
 def process_module(m, attr="__all__"):
     api_counter = 0
     if hasattr(m, attr):
@@ -89,6 +90,7 @@ def process_module(m, attr="__all__"):
     return api_counter
 
 
+# step 4 fill field : type, args, src_file, lineno, end_lineno
 def set_source_code_attrs():
     """
     should has 'full_name' first.
@@ -212,6 +214,7 @@ def set_source_code_attrs():
                 api_info_dict[id_api]["type"] = type(api).__name__
 
 
+# step 2 fill field : `display`
 def set_display_attr_of_apis():
     """
     set the display attr
@@ -245,6 +248,7 @@ def set_display_attr_of_apis():
                 api_info_dict[id_api]["display"] = False
 
 
+# step 3 fill field : alias_name, full_name, short_name, doc_filename, module_name
 def set_real_api_alias_attr():
     """
     set the full_name,alias attr and so on.
@@ -308,6 +312,7 @@ def remove_all_en_files(path="./paddle"):
                 os.remove(os.path.join(root, file))
 
 
+# using `doc_filename`
 def gen_en_files(api_label_file="api_label"):
     """
     generate all the en doc files.
