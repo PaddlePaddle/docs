@@ -482,6 +482,9 @@ paddle.vision.transforms.functional.rotate	paddle.vision.transforms.rotate,paddl
 paddle.vision.transforms.functional.to_grayscale	paddle.vision.transforms.to_grayscale,paddle.vision.to_grayscale
 paddle.vision.transforms.functional.to_tensor	paddle.vision.transforms.to_tensor,paddle.vision.to_tensor
 paddle.vision.transforms.functional.normalize	paddle.vision.transforms.normalize,paddle.vision.normalize
+paddle.vision.image.get_image_backend	paddle.vision.get_image_backend
+paddle.vision.image.image_load	paddle.vision.image_load
+paddle.vision.image.set_image_backend	paddle.vision.set_image_backend
 paddle.vision.datasets.folder.DatasetFolder	paddle.vision.datasets.DatasetFolder,paddle.vision.DatasetFolder
 paddle.vision.datasets.folder.ImageFolder	paddle.vision.datasets.ImageFolder,paddle.vision.ImageFolder
 paddle.vision.datasets.mnist.MNIST	paddle.vision.datasets.MNIST,paddle.vision.MNIST
