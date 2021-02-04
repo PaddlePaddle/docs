@@ -108,6 +108,7 @@ def set_source_code_attrs():
                 #    continue
                 line_no_found = False
                 str_args_list = []
+                module = ''
                 if type(api).__name__ == 'module' and hasattr(
                         api, '__file__') and api.__file__ is not None:
                     module = os.path.splitext(api.__file__)[0] + '.py'
