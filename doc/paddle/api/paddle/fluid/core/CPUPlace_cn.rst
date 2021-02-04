@@ -3,7 +3,7 @@
 CPUPlace
 -------------------------------
 
-.. py:class:: paddle.fluid.CPUPlace
+.. py:class:: paddle.CPUPlace
 
 
 

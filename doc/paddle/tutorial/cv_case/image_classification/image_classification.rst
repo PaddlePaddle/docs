@@ -1,13 +1,18 @@
-MNIST数据集使用LeNet进行图像分类
-================================
+使用LeNet在MNIST数据集实现图像分类
+==================================
 
-本示例教程演示如何在MNIST数据集上用LeNet进行图像分类。
-手写数字的MNIST数据集，包含60,000个用于训练的示例和10,000个用于测试的示例。这些数字已经过尺寸标准化并位于图像中心，图像是固定大小(28x28像素)，其值为0到1。该数据集的官方地址为：http://yann.lecun.com/exdb/mnist/
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
 
-1、环境
--------
+**日期:** 2021.01 
 
-本教程基于paddle-2.0rc1编写，如果您的环境不是本版本，请先安装paddle-2.0rc1版本。
+**摘要:** 本示例教程演示如何在MNIST数据集上用LeNet进行图像分类。
+
+一、环境配置
+------------
+
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
 .. code:: ipython3
 
@@ -17,13 +22,17 @@ MNIST数据集使用LeNet进行图像分类
 
 .. parsed-literal::
 
-    2.0.0-rc1
+    2.0.0
 
 
-2、加载数据集
--------------
+二、数据加载
+------------
 
-我们使用飞桨自带的paddle.dataset完成mnist数据集的加载。
+手写数字的MNIST数据集，包含60,000个用于训练的示例和10,000个用于测试的示例。这些数字已经过尺寸标准化并位于图像中心，图像是固定大小(28x28像素)，其值为0到1。该数据集的官方地址为：http://yann.lecun.com/exdb/mnist
+。
+
+我们使用飞桨框架自带的 ``paddle.vision.datasets.MNIST``
+完成mnist数据集的加载。
 
 .. code:: ipython3
 
@@ -64,11 +73,11 @@ MNIST数据集使用LeNet进行图像分类
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_classification/image_classification_files/image_classification_6_1.png?raw=true
+.. image:: image_classification_files/image_classification_6_1.png
 
 
-3、组网
--------
+三、组网
+--------
 
 用paddle.nn下的API，如\ ``Conv2D``\ 、\ ``MaxPool2D``\ 、\ ``Linear``\ 完成LeNet的构建。
 
@@ -103,14 +112,14 @@ MNIST数据集使用LeNet进行图像分类
             x = self.linear3(x)
             return x
 
-4、方式一：基于高层API，完成模型的训练与预测
+四、方式1：基于高层API，完成模型的训练与预测
 --------------------------------------------
 
 通过paddle提供的\ ``Model``
 构建实例，使用封装好的训练与测试接口，快速完成模型训练与测试。
 
-4.1、使用 ``Model.fit``\ 来训练模型
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.1 使用 ``Model.fit``\ 来训练模型
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: ipython3
 
@@ -139,13 +148,13 @@ MNIST数据集使用LeNet进行图像分类
 
     The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/2
-    step 938/938 [==============================] - loss: 0.0466 - acc: 0.9509 - 21ms/step          
+    step 938/938 [==============================] - loss: 0.0159 - acc: 0.9521 - 19ms/step          
     Epoch 2/2
-    step 938/938 [==============================] - loss: 0.0038 - acc: 0.9828 - 21ms/step          
+    step 938/938 [==============================] - loss: 0.0029 - acc: 0.9834 - 19ms/step          
 
 
-4.2、使用 ``Model.evaluate`` 来预测模型
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+4.2 使用 ``Model.evaluate`` 来预测模型
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: ipython3
 
@@ -173,11 +182,11 @@ MNIST数据集使用LeNet进行图像分类
 
 以上就是方式一，可以快速、高效的完成网络模型训练与预测。
 
-5、方式二：基于基础API，完成模型的训练与预测
+五、方式2：基于基础API，完成模型的训练与预测
 --------------------------------------------
 
-5.1、 模型训练
-~~~~~~~~~~~~~~
+5.1 模型训练
+~~~~~~~~~~~~
 
 组网后，开始对模型进行训练，先构建\ ``train_loader``\ ，加载训练数据，然后定义\ ``train``\ 函数，设置好损失函数后，按batch加载数据，完成模型的训练。
 
@@ -210,18 +219,18 @@ MNIST数据集使用LeNet进行图像分类
 
 .. parsed-literal::
 
-    epoch: 0, batch_id: 0, loss is: [2.9329956], acc is: [0.09375]
-    epoch: 0, batch_id: 300, loss is: [0.1275514], acc is: [0.953125]
-    epoch: 0, batch_id: 600, loss is: [0.11902139], acc is: [0.9375]
-    epoch: 0, batch_id: 900, loss is: [0.05746497], acc is: [0.96875]
-    epoch: 1, batch_id: 0, loss is: [0.07559228], acc is: [0.96875]
-    epoch: 1, batch_id: 300, loss is: [0.02273748], acc is: [1.]
-    epoch: 1, batch_id: 600, loss is: [0.17519505], acc is: [0.953125]
-    epoch: 1, batch_id: 900, loss is: [0.0435793], acc is: [0.96875]
+    epoch: 0, batch_id: 0, loss is: [3.292166], acc is: [0.046875]
+    epoch: 0, batch_id: 300, loss is: [0.05979356], acc is: [0.984375]
+    epoch: 0, batch_id: 600, loss is: [0.04557724], acc is: [0.984375]
+    epoch: 0, batch_id: 900, loss is: [0.09153229], acc is: [0.96875]
+    epoch: 1, batch_id: 0, loss is: [0.01268834], acc is: [1.]
+    epoch: 1, batch_id: 300, loss is: [0.22756869], acc is: [0.921875]
+    epoch: 1, batch_id: 600, loss is: [0.00377245], acc is: [1.]
+    epoch: 1, batch_id: 900, loss is: [0.00929211], acc is: [1.]
 
 
-5.2、模型验证
-~~~~~~~~~~~~~
+5.2 模型验证
+~~~~~~~~~~~~
 
 训练完成后，需要验证模型的效果，此时，加载测试数据集，然后用训练好的模对测试集进行预测，计算损失与精度。
 
@@ -246,14 +255,14 @@ MNIST数据集使用LeNet进行图像分类
 
 .. parsed-literal::
 
-    batch_id: 0, loss is: [0.00826053], acc is: [1.]
-    batch_id: 20, loss is: [0.15725465], acc is: [0.96875]
-    batch_id: 40, loss is: [0.11518502], acc is: [0.96875]
-    batch_id: 60, loss is: [0.07907856], acc is: [0.96875]
-    batch_id: 80, loss is: [0.00329849], acc is: [1.]
-    batch_id: 100, loss is: [0.00080635], acc is: [1.]
-    batch_id: 120, loss is: [0.01714545], acc is: [1.]
-    batch_id: 140, loss is: [0.17275977], acc is: [0.953125]
+    batch_id: 0, loss is: [0.01291558], acc is: [1.]
+    batch_id: 20, loss is: [0.07833393], acc is: [0.96875]
+    batch_id: 40, loss is: [0.04836973], acc is: [0.984375]
+    batch_id: 60, loss is: [0.11191542], acc is: [0.984375]
+    batch_id: 80, loss is: [0.04298809], acc is: [0.984375]
+    batch_id: 100, loss is: [0.00484229], acc is: [1.]
+    batch_id: 120, loss is: [0.00393359], acc is: [1.]
+    batch_id: 140, loss is: [0.02711521], acc is: [0.984375]
 
 
 方式二结束
@@ -261,7 +270,7 @@ MNIST数据集使用LeNet进行图像分类
 
 以上就是方式二，通过底层API，可以清楚的看到训练和测试中的每一步过程。但是，这种方式比较复杂。因此，我们提供了训练方式一，使用高层API来完成模型的训练与预测。对比底层API，高层API能够更加快速、高效的完成模型的训练与测试。
 
-6、总结
--------
+六、总结
+--------
 
 以上就是用LeNet对手写数字数据及MNIST进行分类。本示例提供了两种训练模型的方式，一种可以快速完成模型的组建与预测，非常适合新手用户上手。另一种则需要多个步骤来完成模型的训练，适合进阶用户使用。
