@@ -309,6 +309,14 @@ def set_real_api_alias_attr():
             api_id = id(m)
             if api_id in api_info_dict:
                 api_info_dict[api_id]["alias_name"] = lineparts[1]
+                if "doc_filename" not in api_info_dict[api_id]:
+                    api_info_dict[api_id]["doc_filename"] = lineparts[
+                        0].replace('.', '/')
+                if "module_name" not in api_info_dict[
+                        api_id] or "short_name" not in api_info_dict[api_id]:
+                    mod_name, short_name = split_name(lineparts[0])
+                    api_info_dict[api_id]["module_name"] = mod_name
+                    api_info_dict[api_id]["short_name"] = short_name
 
 
 def get_shortest_api(api_list):
@@ -544,6 +552,7 @@ def reset_api_info_dict():
 
 
 if __name__ == "__main__":
+
     # for api manager
     reset_api_info_dict()
     get_all_api(attr="__dict__")
