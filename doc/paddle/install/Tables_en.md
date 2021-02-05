@@ -385,6 +385,39 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.0.0 </code> will i
         <td> - </td>
     </tr>
     <tr>
+        <td> 2.0.0-nv-jetson-jetpack4.3-nano </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-nano/paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-nano/paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+    </tr>
+    <tr>
+        <td> 2.0.0-nv-jetson-jetpack4.3-tx2 </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-tx2/paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-tx2/paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+    </tr>
+    <tr>
+        <td> 2.0.0-nv-jetson-jetpack4.3-xavier </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-xavier/paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-xavier/paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl">
+        paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
+    </tr>
+    <tr>
         <td> win-cpu-mkl-avx </td>
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.0.0/avx/paddlepaddle-2.0.0-cp27-cp27m-win_amd64.whl">
