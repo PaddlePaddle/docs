@@ -403,6 +403,7 @@ paddle.tensor.manipulation.stack	paddle.stack,paddle.tensor.stack
 paddle.tensor.manipulation.unsqueeze	paddle.unsqueeze,paddle.tensor.unsqueeze
 paddle.tensor.manipulation.unsqueeze_	paddle.unsqueeze_,paddle.tensor.unsqueeze_
 paddle.tensor.math.add	paddle.add,paddle.tensor.add
+paddle.tensor.math.broadcast_shape	paddle.broadcast_shape,paddle.tensor.broadcast_shape
 paddle.tensor.math.subtract	paddle.subtract,paddle.tensor.subtract
 paddle.nn.layer.common.Bilinear	paddle.nn.Bilinear,paddle.nn.layer.Bilinear
 paddle.nn.layer.loss.BCEWithLogitsLoss	paddle.nn.BCEWithLogitsLoss,paddle.nn.layer.BCEWithLogitsLoss
