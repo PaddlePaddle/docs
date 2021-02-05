@@ -30,12 +30,13 @@ cn_suffix = "_cn.rst"
 #   "doc_filename"  # document filename without suffix
 # }
 api_info_dict = {}
+parsed_mods = {}
 
 logging.basicConfig(
     format="%(asctime)s - %(lineno)d - %(levelname)s - %(message)s")
 logger = logging.getLogger()
 
-#logger.setLevel(logging.DEBUG)
+# logger.setLevel(logging.DEBUG)
 
 
 # step 1: walkthrough the paddle package to collect all the apis in api_set
@@ -100,7 +101,7 @@ def process_module(m, attr="__all__"):
     return api_counter
 
 
-# step 3 fill field : args, src_file, lineno, end_lineno, short_name, full_name, module_name, doc_file
+# step 3 fill field : args, src_file, lineno, end_lineno, short_name, full_name, module_name, doc_filename
 def set_source_code_attrs():
     """
     should has 'full_name' first.
@@ -155,9 +156,6 @@ def split_name(name):
         return ['', name]
 
 
-parsed_mods = {}
-
-
 def parse_module_file(mod):
     if mod in parsed_mods:
         return
@@ -204,7 +202,7 @@ def parse_module_file(mod):
                         api_info_dict[obj_id]["src_file"] = src_file[
                             src_file_start_ind:]
                         api_info_dict[obj_id][
-                            "doc_file"] = obj_full_name.replace('.', '/')
+                            "doc_filename"] = obj_full_name.replace('.', '/')
                         api_info_dict[obj_id]["full_name"] = obj_full_name
                         api_info_dict[obj_id]["short_name"] = short_name
                         api_info_dict[obj_id]["module_name"] = mod_name
@@ -291,15 +289,6 @@ def set_display_attr_of_apis():
                 logger.info("set {} display to False".format(id_api))
 
 
-def remove_object():
-    for id_api in api_info_dict:
-        if "all_names" in api_info_dict[id_api]:
-            api_info_dict[id_api]["all_names"] = list(
-                api_info_dict[id_api]["all_names"])
-        if "object" in api_info_dict[id_api]:
-            del api_info_dict[id_api]["object"]
-
-
 # step 4 fill field : alias_name
 def set_real_api_alias_attr():
     """
@@ -361,6 +350,12 @@ def gen_en_files(api_label_file="api_label"):
             if "display" in api_info and not api_info["display"]:
                 logger.debug("{} display False".format(id_api))
                 continue
+            if "doc_filename" not in api_info:
+                logger.debug(
+                    "{} does not have doc_filename field.".format(id_api))
+                continue
+            else:
+                logger.debug(api_info["doc_filename"])
             path = os.path.dirname(api_info["doc_filename"])
             if not os.path.exists(path):
                 os.makedirs(path)
@@ -533,23 +528,38 @@ class EnDocGenerator(object):
 '''.format(self.module_name, self.api))
 
 
+def filter_api_info_dict():
+    for id_api in api_info_dict:
+        if "all_names" in api_info_dict[id_api]:
+            api_info_dict[id_api]["all_names"] = list(
+                api_info_dict[id_api]["all_names"])
+        if "object" in api_info_dict[id_api]:
+            del api_info_dict[id_api]["object"]
+
+
+def reset_api_info_dict():
+    global api_info_dict, parsed_mods
+    api_info_dict = {}
+    parsed_mods = {}
+
+
 if __name__ == "__main__":
     # for api manager
-    api_info_dict = {}
+    reset_api_info_dict()
     get_all_api(attr="__dict__")
     set_display_attr_of_apis()
     set_source_code_attrs()
     set_real_api_alias_attr()
-    remove_object()
+    filter_api_info_dict()
     json.dump(api_info_dict, open("api_info_dict.json", "w"), indent=4)
 
     # for api rst files
-    api_info_dict = {}
+    reset_api_info_dict()
     get_all_api(attr="__all__")
     set_display_attr_of_apis()
     set_source_code_attrs()
     set_real_api_alias_attr()
-    remove_object()
+    filter_api_info_dict()
     json.dump(api_info_dict, open("api_info_all.json", "w"), indent=4)
     gen_en_files()
     check_cn_en_match()
