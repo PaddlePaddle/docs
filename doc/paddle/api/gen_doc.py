@@ -35,6 +35,8 @@ logging.basicConfig(
     format="%(asctime)s - %(lineno)d - %(levelname)s - %(message)s")
 logger = logging.getLogger()
 
+#logger.setLevel(logging.DEBUG)
+
 
 # step 1: walkthrough the paddle package to collect all the apis in api_set
 def get_all_api(root_path='paddle', attr="__all__"):
@@ -286,6 +288,7 @@ def set_display_attr_of_apis():
                     break
             if not display_yes:
                 api_info_dict[id_api]["display"] = False
+                logger.info("set {} display to False".format(id_api))
 
 
 def remove_object():
@@ -356,6 +359,7 @@ def gen_en_files(api_label_file="api_label"):
         for id_api, api_info in api_info_dict.items():
             # api_info = api_info_dict[id_api]
             if "display" in api_info and not api_info["display"]:
+                logger.debug("{} display False".format(id_api))
                 continue
             path = os.path.dirname(api_info["doc_filename"])
             if not os.path.exists(path):
@@ -539,7 +543,6 @@ if __name__ == "__main__":
     remove_object()
     json.dump(api_info_dict, open("api_info_dict.json", "w"), indent=4)
 
-    exit()
     # for api rst files
     api_info_dict = {}
     get_all_api(attr="__all__")
