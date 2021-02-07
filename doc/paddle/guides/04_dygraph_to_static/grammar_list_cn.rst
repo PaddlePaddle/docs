@@ -96,11 +96,11 @@ Python基本容器
 动转静无法正确运行的情况
 --------------------------
 
-1. Reshape后的变量调用其shape作为PaddlePaddle API参数。
+1. 改变变量的shape后调用其shape作为PaddlePaddle API参数。
 
-具体表现比如 ``x = reshape(x, shape=shape_tensor)`` ，再使用 ``x.shape[0]`` 的值进行其他操作。这种情况会由于动态图和静态图的本质不同而使得动态图能够运行，但静态图运行失败。其原因是动态图情况下，API是直接返回运行结果，因此 ``x.shape`` 在经过reshape运算后是确定的。但是在转化为静态图后，因为静态图API只是组网，``shape_tensor`` 的值在组网时是不知道的，所以 ``reshape`` 接口组网完，静态图并不知道 ``x.shape`` 的值。PaddlePaddle静态图用-1表示未知的shape值，此时 ``x`` 的shape每个维度会被设为-1，而不是期望的值。
+具体表现比如 ``x = reshape(x, shape=shape_tensor)`` ，再使用 ``x.shape[0]`` 的值进行其他操作。这种情况会由于动态图和静态图的本质不同而使得动态图能够运行，但静态图运行失败。其原因是动态图情况下，API是直接返回运行结果，因此 ``x.shape`` 在经过reshape运算后是确定的。但是在转化为静态图后，因为静态图API只是组网，``shape_tensor`` 的值在组网时是不知道的，所以 ``reshape`` 接口组网完，静态图并不知道 ``x.shape`` 的值。PaddlePaddle静态图用-1表示未知的shape值，此时 ``x`` 的shape每个维度会被设为-1，而不是期望的值。同理，类似expand等更改shape的API，其输出Tensor再调用shape也难以进行动转静。
 
-遇到这类情况我们建议尽量固定shape值，减少reshape操作。
+遇到这类情况我们建议尽量固定shape值，减少变化shape操作。
 
 2. 多重list嵌套读写Tensor
 
@@ -114,9 +114,9 @@ Python基本容器
 
 遇到这种情况我们建议在动转静的函数中尽量使用PaddlePaddle接口替代numpy接口进行运算。
 
-4. 一个函数递归调用自己
+4. 一个函数递归调用本身
 
-ProgramTranslator还无法支持一个函数递归调用自己，原因是递归常常会用 ``if-else`` 构造停止递归的条件。然而这样的停止条件在静态图下只是一个 ``cond`` 组网，组网并不能在编译阶段决定自己组多少次，会导致函数运行时一直组网递归直至栈溢出，因此ProgramTranslator还无法支持一个函数递归调用自己。
+ProgramTranslator还无法支持一个函数递归调用本身，原因是递归常常会用 ``if-else`` 构造停止递归的条件。然而这样的停止条件在静态图下只是一个 ``cond`` 组网，组网并不能在编译阶段得到递归条件决定本身组多少次，会导致函数运行时一直组网递归直至栈溢出，因此ProgramTranslator还无法支持一个函数递归调用自己本身。
 
 遇到这种情况我们建议将代码改为非递归写法。
 

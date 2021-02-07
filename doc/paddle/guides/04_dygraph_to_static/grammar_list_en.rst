@@ -99,11 +99,11 @@ Python containers
 Unsupported grammars
 --------------------
 
-1. Use the shape of output tensor of ``reshape``
+1. Use the shape of a tensor whose shape has been changed. 
 
-For example, ``x = reshape(x, shape=shape_tensor)`` , then use ``x.shape[0]`` to do other operation. Due to the difference between dygraph and static graph, it is okay in dygraph but it will fail in static graph. The reason is that APIs return computation result in dygraph mode, so ``x.shape`` has deterministic value after calling ``reshape`` . However, static graph doesn't have the value ``shape_tensor`` during building network, so PaddlePaddle doesn't know the value of ``x.shape`` after calling ``reshape``. PaddlePaddle static graph will set -1 to represent unknown shape value for each dimension of ``x.shape`` in this case, not the expected value.
+For example, ``x = reshape(x, shape=shape_tensor)`` , then use ``x.shape[0]`` to do other operation. Due to the difference between dygraph and static graph, it is okay in dygraph but it will fail in static graph. The reason is that APIs return computation result in dygraph mode, so ``x.shape`` has deterministic value after calling ``reshape`` . However, static graph doesn't have the value ``shape_tensor`` during building network, so PaddlePaddle doesn't know the value of ``x.shape`` after calling ``reshape``. PaddlePaddle static graph will set -1 to represent unknown shape value for each dimension of ``x.shape`` in this case, not the expected value. Similarily, the ``shape`` of output tensor of those APIs which change the shape, such as ``expend``, cannot be converted into static graph properly.
 
-We suggest to set fixed shape value as much as possible, reduce the reshape operation.
+We suggest to set fixed shape value as much as possible, reduce the operations that change tensor shape.
 
 2. List of list of Tensor
 
