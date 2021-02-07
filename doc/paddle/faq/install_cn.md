@@ -4,13 +4,13 @@
 
 + 问题描述:
 
-```TensorRT dynamic library (libnvinfer.so) that Paddle depends on is not configured correctly. (error code is libnvinfer.so: cannot open shared object file: No such file or directory)
+TensorRT dynamic library (libnvinfer.so) that Paddle depends on is not configured correctly. (error code is libnvinfer.so: cannot open shared object file: No such file or directory)
 Suggestions:
 
 Check if TensorRT is installed correctly and its version is matched with paddlepaddle you installed.
 Configure TensorRT dynamic library environment variables as follows:
 Linux: set LD_LIBRARY_PATH by export LD_LIBRARY_PATH=...
-Windows: set PATH by `set PATH=XXX;```
+Windows: set PATH by `set PATH=XXX;
 
 + 问题分析：
 
