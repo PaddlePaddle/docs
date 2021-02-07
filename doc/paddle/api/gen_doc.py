@@ -89,6 +89,7 @@ def process_module(m, attr="__all__"):
                                full_name)
             else:
                 api_counter += 1
+                logger.debug("adding %s to api_info_dict.", full_name)
                 if fc_id in api_info_dict:
                     api_info_dict[fc_id]["all_names"].add(full_name)
                 else:
@@ -113,6 +114,8 @@ def set_source_code_attrs():
         item = api_info_dict[id_api]
         obj = item["object"]
         obj_type_name = item["type"]
+        logger.debug("processing %s:%s:%s", obj_type_name, item["id"],
+                     str(obj))
         if obj_type_name == "module":
             if hasattr(obj, '__file__') and obj.__file__ is not None and len(
                     obj.__file__) > src_file_start_ind:
@@ -157,85 +160,100 @@ def split_name(name):
 
 
 def parse_module_file(mod):
+    skip_this_mod = False
     if mod in parsed_mods:
+        skip_this_mod = True
+    if skip_this_mod:
         return
     else:
         parsed_mods[mod] = True
+
     src_file_start_ind = len(paddle.__path__[0]) - len('paddle/')
     has_end_lineno = sys.version_info > (3, 8)
     if hasattr(mod, '__name__') and hasattr(mod, '__file__'):
         src_file = mod.__file__
         mod_name = mod.__name__
-        if len(mod_name) > 6 and mod_name[:6] == 'paddle' and os.path.splitext(
-                src_file)[1].lower() == '.py':
-            mod_ast = ast.parse(open(src_file, "r").read())
-            for node in mod_ast.body:
-                short_names = []
-                if ((isinstance(node, ast.ClassDef) or
-                     isinstance(node, ast.FunctionDef)) and
-                        hasattr(node, 'name') and
-                        hasattr(sys.modules[mod_name],
-                                node.name) and node.name[0] != '_'):
-                    short_names.append(node.name)
-                elif isinstance(node, ast.Assign):
-                    for target in node.targets:
-                        if hasattr(target, 'id') and target.id[0] != '_':
-                            short_names.append(target.id)
-                else:
-                    pass
-                for short_name in short_names:
-                    obj_full_name = mod_name + '.' + short_name
-                    try:
-                        obj_this = eval(obj_full_name)
-                        obj_id = id(obj_this)
-                    except:
-                        logger.warning("%s maybe %s.%s", obj_full_name,
-                                       mod.__package__, short_name)
-                        obj_full_name = mod.__package__ + '.' + short_name
+        logger.debug("parsing %s:%s", mod_name, src_file)
+        if len(mod_name) >= 6 and mod_name[:6] == 'paddle':
+            if os.path.splitext(src_file)[1].lower() == '.py':
+                mod_ast = ast.parse(open(src_file, "r").read())
+                for node in mod_ast.body:
+                    short_names = []
+                    if ((isinstance(node, ast.ClassDef) or
+                         isinstance(node, ast.FunctionDef)) and
+                            hasattr(node, 'name') and
+                            hasattr(sys.modules[mod_name],
+                                    node.name) and node.name[0] != '_'):
+                        short_names.append(node.name)
+                    elif isinstance(node, ast.Assign):
+                        for target in node.targets:
+                            if hasattr(target, 'id') and target.id[0] != '_':
+                                short_names.append(target.id)
+                    else:
+                        pass
+                    for short_name in short_names:
+                        obj_full_name = mod_name + '.' + short_name
+                        logger.debug("processing %s", obj_full_name)
                         try:
                             obj_this = eval(obj_full_name)
                             obj_id = id(obj_this)
                         except:
+                            logger.warning("%s maybe %s.%s", obj_full_name,
+                                           mod.__package__, short_name)
+                            obj_full_name = mod.__package__ + '.' + short_name
+                            try:
+                                obj_this = eval(obj_full_name)
+                                obj_id = id(obj_this)
+                            except:
+                                continue
+                        if obj_id in api_info_dict and "lineno" not in api_info_dict[
+                                obj_id]:
+                            api_info_dict[obj_id]["src_file"] = src_file[
+                                src_file_start_ind:]
+                            api_info_dict[obj_id][
+                                "doc_filename"] = obj_full_name.replace('.',
+                                                                        '/')
+                            api_info_dict[obj_id]["full_name"] = obj_full_name
+                            api_info_dict[obj_id]["short_name"] = short_name
+                            api_info_dict[obj_id]["module_name"] = mod_name
+                            api_info_dict[obj_id]["lineno"] = node.lineno
+                            if has_end_lineno:
+                                api_info_dict[obj_id][
+                                    "end_lineno"] = node.end_lineno
+                            if isinstance(node, ast.FunctionDef):
+                                api_info_dict[obj_id][
+                                    "args"] = gen_functions_args_str(node)
+                            elif isinstance(node, ast.ClassDef):
+                                for n in node.body:
+                                    if hasattr(
+                                            n,
+                                            'name') and n.name == '__init__':
+                                        api_info_dict[obj_id][
+                                            "args"] = gen_functions_args_str(
+                                                node)
+                                        break
+                        else:
+                            logger.debug("%s omitted", obj_full_name)
+            else:  # pybind11 ...
+                for short_name in mod.__dict__:
+                    if short_name[0] != '_':
+                        obj_full_name = mod_name + '.' + short_name
+                        logger.debug("processing %s", obj_full_name)
+                        try:
+                            obj_this = eval(obj_full_name)
+                            obj_id = id(obj_this)
+                        except:
+                            logger.warning("%s eval error", obj_full_name)
                             continue
-                    if obj_id in api_info_dict and "src_file" not in api_info_dict[
-                            obj_id]:
-                        api_info_dict[obj_id]["src_file"] = src_file[
-                            src_file_start_ind:]
-                        api_info_dict[obj_id][
-                            "doc_filename"] = obj_full_name.replace('.', '/')
-                        api_info_dict[obj_id]["full_name"] = obj_full_name
-                        api_info_dict[obj_id]["short_name"] = short_name
-                        api_info_dict[obj_id]["module_name"] = mod_name
-                        api_info_dict[obj_id]["lineno"] = node.lineno
-                        if has_end_lineno:
-                            api_info_dict[obj_id][
-                                "end_lineno"] = node.end_lineno
-                        if isinstance(node, ast.FunctionDef):
-                            api_info_dict[obj_id][
-                                "args"] = gen_functions_args_str(node)
-                        elif isinstance(node, ast.ClassDef):
-                            for n in node.body:
-                                if hasattr(n, 'name') and n.name == '__init__':
-                                    api_info_dict[obj_id][
-                                        "args"] = gen_functions_args_str(node)
-                                    break
-        else:  # pybind11 ...
-            for short_name in mod.__dict__:
-                if short_name[0] != '_':
-                    obj_full_name = mod_name + '.' + short_name
-                    try:
-                        obj_this = eval(obj_full_name)
-                        obj_id = id(obj_this)
-                    except:
-                        logger.warning("%s eval error", obj_full_name)
-                        continue
-                    if obj_id in api_info_dict and "src_file" not in api_info_dict[
-                            obj_id]:
-                        api_info_dict[obj_id]["src_file"] = src_file[
-                            src_file_start_ind:]
-                        api_info_dict[obj_id]["full_name"] = obj_full_name
-                        api_info_dict[obj_id]["short_name"] = short_name
-                        api_info_dict[obj_id]["module_name"] = mod_name
+                        if obj_id in api_info_dict and "lineno" not in api_info_dict[
+                                obj_id]:
+                            api_info_dict[obj_id]["src_file"] = src_file[
+                                src_file_start_ind:]
+                            api_info_dict[obj_id]["full_name"] = obj_full_name
+                            api_info_dict[obj_id]["short_name"] = short_name
+                            api_info_dict[obj_id]["module_name"] = mod_name
+                        else:
+                            logger.debug("%s omitted", obj_full_name)
 
 
 def gen_functions_args_str(node):
