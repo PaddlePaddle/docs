@@ -20,6 +20,8 @@ Windows: set PATH by `set PATH=XXX;```
 
 根据提示信息，在环境变量中加入TensorRT的库路径。
 
+------
+
 ##### 问题：Windows环境下，使用pip install时速度慢，如何解决？
 
 + 解决方案：
