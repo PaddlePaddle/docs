@@ -219,6 +219,23 @@ def parse_module_file(mod):
                                     api_info_dict[obj_id][
                                         "args"] = gen_functions_args_str(node)
                                     break
+        else:  # pybind11 ...
+            for short_name in mod.__dict__:
+                if short_name[0] != '_':
+                    obj_full_name = mod_name + '.' + short_name
+                    try:
+                        obj_this = eval(obj_full_name)
+                        obj_id = id(obj_this)
+                    except:
+                        logger.warning("%s eval error", obj_full_name)
+                        continue
+                    if obj_id in api_info_dict and "src_file" not in api_info_dict[
+                            obj_id]:
+                        api_info_dict[obj_id]["src_file"] = src_file[
+                            src_file_start_ind:]
+                        api_info_dict[obj_id]["full_name"] = obj_full_name
+                        api_info_dict[obj_id]["short_name"] = short_name
+                        api_info_dict[obj_id]["module_name"] = mod_name
 
 
 def gen_functions_args_str(node):
@@ -436,8 +453,8 @@ class EnDocGenerator(object):
         try:
             m = eval(self.module_name + "." + self.api)
         except AttributeError:
-            print("attribute error: module_name=" + self.module_name + ", api="
-                  + self.api)
+            logger.warning("attribute error: module_name=" + self.module_name +
+                           ", api=" + self.api)
             pass
         else:
             if isinstance(eval(self.module_name + "." + self.api), type):
