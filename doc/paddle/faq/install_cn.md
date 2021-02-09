@@ -1,5 +1,31 @@
 # 安装类FAQ
 
+##### 问题：使用过程中报找不到tensorrt库的日志
+
++ 问题描述:
+
+TensorRT dynamic library (libnvinfer.so) that Paddle depends on is not configured correctly. (error code is libnvinfer.so: cannot open shared object file: No such file or directory)
+
+Suggestions:
+
+Check if TensorRT is installed correctly and its version is matched with paddlepaddle you installed.
+
+Configure TensorRT dynamic library environment variables as follows:
+
+Linux: set LD_LIBRARY_PATH by export LD_LIBRARY_PATH=...
+
+Windows: set PATH by `set PATH=XXX;
+
++ 问题分析：
+
+遇到该问题是因为使用的paddle默认开始了TensorRT，但是本地环境中没有找到TensorRT的库，该问题只影响使用[Paddle Inference](https://paddleinference.paddlepaddle.org.cn/master/product_introduction/inference_intro.html)开启TensorRT预测的场景，对其它方面均不造成影响。
+
++ 解决办法：
+
+根据提示信息，在环境变量中加入TensorRT的库路径。
+
+------
+
 ##### 问题：Windows环境下，使用pip install时速度慢，如何解决？
 
 + 解决方案：

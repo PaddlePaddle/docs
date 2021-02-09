@@ -3,7 +3,7 @@
 accuracy
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.accuracy(input, label, k=1, correct=None, total=None)
+.. py:function:: paddle.static.accuracy(input, label, k=1, correct=None, total=None)
 
 
 
@@ -19,34 +19,34 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
     - **correct** (int64|int32)-正确预测值的个数。
     - **total** (int64|int32)-总共的预测值。
 
-返回: 计算出来的正确率。
+返回: Tensor，计算出来的正确率，数据类型为float32。
 
-返回类型: Variable（Tensor），数据类型为float32的Tensor
 
 **代码示例**
 
 .. code-block:: python
 
-    import paddle.fluid as fluid
     import numpy as np
 
-    data = fluid.layers.data(name="input", shape=[-1, 32, 32], dtype="float32")
-    label = fluid.layers.data(name="label", shape=[-1,1], dtype="int")
-    fc_out = fluid.layers.fc(input=data, size=10)
-    predict = fluid.layers.softmax(input=fc_out)
-    result = fluid.layers.accuracy(input=predict, label=label, k=5)
+    import paddle
+    import paddle.static as static
+    import paddle.nn.functional as F
 
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
+    paddle.enable_static()
+    data = static.data(name="input", shape=[-1, 32, 32], dtype="float32")
+    label = static.data(name="label", shape=[-1,1], dtype="int")
+    fc_out = static.nn.fc(x=data, size=10)
+    predict = F.softmax(x=fc_out)
+    result = static.accuracy(input=predict, label=label, k=5)
 
-    exe.run(fluid.default_startup_program())
+    place = paddle.CPUPlace()
+    exe = static.Executor(place)
+
+    exe.run(static.default_startup_program())
     x = np.random.rand(3, 32, 32).astype("float32")
     y = np.array([[1],[0],[1]])
     output= exe.run(feed={"input": x,"label": y},
-                     fetch_list=[result[0]])
+                fetch_list=[result[0]])
     print(output)
-    
-    """
-    Output:
-    [array([0.6666667], dtype=float32)]
-    """
+
+    #[array([0.], dtype=float32)]
