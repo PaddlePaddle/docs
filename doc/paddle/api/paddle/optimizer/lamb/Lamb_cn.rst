@@ -7,7 +7,7 @@ Lamb
 
 
 
-LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器 LAMB的优化器旨在不降低精度的前提下增大训练的批量大小，其支持自适应的逐元素更新和精确的分层校正。更多信息请参考 `Large Batch Optimization for Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf>` 。 参数更新如下：
+LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器旨在不降低精度的前提下增大训练的批量大小，其支持自适应的逐元素更新和精确的分层校正。更多信息请参考 `Large Batch Optimization for Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf>` 。 参数更新如下：
 
 .. math::
     m_t=\beta_1*m_{t-1} + (1-\beta_1)*g_t
@@ -26,7 +26,7 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器 L
 
 参数：
   - **learning_rate** (float|Tensor, 可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个Tensor，默认值为0.001
-  - **lamb_weight_decay** (float，可选) – LAMB权重衰减率。默认值为0.01。注意 ``weight_decay`` 应设为None。
+  - **lamb_weight_decay** (float，可选) – LAMB权重衰减率。默认值为0.01。
   - **beta1** (float, 可选) - 第一个动量估计的指数衰减率。默认值为0.9。
   - **beta2** (float, 可选) - 第二个动量估计的指数衰减率。默认值为0.999。
   - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-06
@@ -43,9 +43,8 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器 L
 .. code-block:: python
 
      import paddle
-     import numpy as np
 
-     inp = paddle.uniform(min=-0.1, max=0.1, shape=[10, 10], dtype='float32')
+     inp = paddle.uniform(shape=[10, 10], dtype='float32', min=-0.1, max=0.1)
      linear = paddle.nn.Linear(10, 10)
      out = linear(inp)
      loss = paddle.mean(out)
@@ -72,9 +71,9 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器 L
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    value = np.arange(26).reshape(2, 13).astype("float32")
+    value = paddle.arange(26, dtype='float32')
+    value = paddle.reshape(value, [2, 13])
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)
     lamb = paddle.optimizer.Lamb(learning_rate = 0.01,
@@ -101,9 +100,8 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器 L
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+    inp = paddle.uniform(shape=[10, 10], dtype="float32", min=-0.1, max=0.1)
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
     out = linear(inp)
@@ -134,9 +132,9 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器 L
 .. code-block:: python
 
     import paddle
-    import numpy as np
 
-    value = np.arange(26).reshape(2, 13).astype("float32")
+    value = paddle.arange(26, dtype="float32")
+    value = paddle.reshape(value, [2, 13])
     a = paddle.to_tensor(value)
     linear = paddle.nn.Linear(13, 5)
     optimizer = paddle.optimizer.Lamb(learning_rate=0.02,
@@ -198,8 +196,9 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器 L
 .. code-block:: python
 
 
-    import numpy as np
     import paddle
+    import numpy as np
+
     # example1: _LRScheduler is not used, return value is all the same
     emb = paddle.nn.Embedding(10, 10, sparse=False)
     lamb = paddle.optimizer.Lamb(0.001, parameters = emb.parameters())
@@ -207,7 +206,7 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器 L
     print(lr) # 0.001
 
     # example2: StepDecay is used, return the step learning rate
-    inp = np.random.uniform(-0.1, 0.1, [10, 10]).astype("float32")
+    inp = paddle.uniform(shape=[10, 10], dtype="float32", min=-0.1, max=0.1)
     linear = paddle.nn.Linear(10, 10)
     inp = paddle.to_tensor(inp)
     out = linear(inp)
