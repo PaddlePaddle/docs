@@ -16,7 +16,7 @@
   - [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR):  支持2.0动态图，PPOCR系统、文字检测模型（DB，EAST，SAST）与文字识别模型（Rosetta，CRNN，StarNet）完成2.0动态图适配。
   - [PaddleGAN](https://github.com/PaddlePaddle/PaddleGAN)：支持2.0动态图，所有模型，包括风格迁移、视频增强、唇形迁移、人脸动漫化等九种模型均基于动态图开发。
   - [PaddleRec](https://github.com/PaddlePaddle/PaddleRec)：支持2.0动态图，免安装，动静组网统一，方便用户的调研和上线，同时整理发布了推荐系统经典数据集。
-  - [PaddleNLP](https://github.com/PaddlePaddle/models/PaddleNLP)：支持2.0动态图，提供25+预训练模型和易用的API方式提升文本建模效率。
+  - [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)：支持2.0动态图，提供25+预训练模型和易用的API方式提升文本建模效率。
   - [Parakeet](https://github.com/PaddlePaddle/Parakeet)：支持2.0动态图，已发布的声学模型及声码器均良好支持动态图版本。
   - [PaddleVideo](https://github.com/PaddlePaddle/PaddleVideo)：支持2.0动态图，包含了视频分类和视频动作定位方向模型，包括: TSN、TSM、SlowFast、AttentionLSTM、BMN模型以及特色应用预训练模型VideoTag和FootballAction。
   - [AmazonDJL](https://github.com/awslabs/djl)：易用流畅的 Java 推理接口，支持各操作系统平台（Mac / Windows / Linux），支持 Paddle 预训练模型读取。
