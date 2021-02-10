@@ -268,12 +268,9 @@ framework相关
     " :ref:`paddle.DataParallel <cn_api_fluid_dygraph_DataParallel>` ", "通过数据并行模式执行动态图模型"
     " :ref:`paddle.disable_static <cn_api_paddle_disable_static>` ", "关闭静态图模式"
     " :ref:`paddle.enable_static <cn_api_paddle_enable_static>` ", "开启静态图模式"
-    " :ref:`paddle.flops <cn_api_paddle_flops>` ", "打印网络的基础结构和参数信息"
     " :ref:`paddle.get_default_dtype <cn_api_paddle_framework_get_default_dtype>` ", "得到当前全局的dtype"
     " :ref:`paddle.grad <cn_api_paddle_grad>` ", "对于每个 inputs ，计算所有 outputs 相对于其的梯度和"
     " :ref:`paddle.in_dynamic_mode <cn_api_paddle_in_dynamic_mode>` ", "查看paddle当前是否在动态图模式中运行"
-    " :ref:`paddle.is_compiled_with_cuda <cn_api_fluid_is_compiled_with_cuda>` ", "检查 whl 包是否可以被用来在GPU上运行模型"  
-    " :ref:`paddle.is_compiled_with_xpu <cn_api_fluid_is_compiled_with_xpu>` ", "检查 whl 包是否可以被用来在Baidu Kunlun XPU上运行模型"
     " :ref:`paddle.load <cn_api_paddle_framework_io_load>` ", "从指定路径载入可以在paddle中使用的对象实例"
     " :ref:`paddle.no_grad <cn_api_fluid_dygraph_no_grad>` ", "创建一个上下文来禁用动态图梯度计算"
     " :ref:`paddle.ParamAttr <cn_api_fluid_ParamAttr>` ", "创建一个参数属性对象"
@@ -289,6 +286,8 @@ device相关
     :widths: 10, 30
 
     " :ref:`paddle.get_cudnn_version <cn_api_get_cudnn_version>` ", "此函数返回cudnn的版本"
+    " :ref:`paddle.is_compiled_with_cuda <cn_api_fluid_is_compiled_with_cuda>` ", "检查 whl 包是否可以被用来在GPU上运行模型"  
+    " :ref:`paddle.is_compiled_with_xpu <cn_api_fluid_is_compiled_with_xpu>` ", "检查 whl 包是否可以被用来在Baidu Kunlun XPU上运行模型"
     " :ref:`paddle.get_device <cn_api_get_device>` ", "该功能返回当前程序运行的全局设备"
     " :ref:`paddle.set_device <cn_api_set_device>` ", "Paddle支持包括CPU和GPU在内的多种设备运行，设备可以通过字符串标识符表示，此功能可以指定OP运行的全局设备"
     " :ref:`paddle.XPUPlace <cn_api_fluid_XPUPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 的 Baidu Kunlun XPU 设备"
@@ -303,3 +302,4 @@ device相关
 
     " :ref:`paddle.Model <cn_api_paddle_Model>` ", "一个具备训练、测试、推理的神经网络"
     " :ref:`paddle.summary <cn_api_paddle_summary>` ", "打印网络的基础结构和参数信息"
+    " :ref:`paddle.flops <cn_api_paddle_flops>` ", "打印网络的基础结构和参数信息"
