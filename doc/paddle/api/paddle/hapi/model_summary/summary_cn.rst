@@ -3,7 +3,7 @@
 summary
 -------------------------------
 
-.. py:function:: paddle.summary(self, input_size=None, dtype=None)
+.. py:function:: paddle.summary(self, input_size=None, dtypes=None)
 
  ``summary`` 函数能够打印网络的基础结构和参数信息。
 
