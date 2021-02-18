@@ -3,7 +3,7 @@
 cross_entropy
 -------------------------------
 
-.. py:function:: paddle.nn.functional.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_lable=False, axis=-1, name=None)
+.. py:function:: paddle.nn.functional.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_label=False, axis=-1, name=None)
 
 
 该OP计算输入input和标签label间的交叉熵，可用于计算硬标签或软标签的交叉熵。

@@ -21,7 +21,7 @@ Tensor
 
         import paddle
         x = paddle.to_tensor([1.0, 2.0, 3.0])
-        print("tensor's grad is: {}".format(x.dtype))
+        print("tensor's type is: {}".format(x.dtype))
 
 .. py:attribute:: grad
 
