@@ -23,6 +23,7 @@ paddle.optimizer 目录下包含飞桨框架支持的优化器算法相关的API
     " :ref:`Adam <cn_api_paddle_optimizer_Adam>` ", "Adam优化器"
     " :ref:`Adamax <cn_api_paddle_optimizer_Adamax>` ", "Adamax优化器"
     " :ref:`AdamW <cn_api_paddle_optimizer_AdamW>` ", "AdamW优化器"
+    " :ref:`Lamb <cn_api_paddle_optimizer_Lamb>` ", "Lamb优化器"
     " :ref:`Momentum <cn_api_paddle_optimizer_Momentum>` ", "Momentum优化器"
     " :ref:`Optimizer <cn_api_paddle_optimizer_Optimizer>` ", "飞桨框架优化器基类"
     " :ref:`RMSProp <cn_api_paddle_optimizer_RMSProp>` ", "RMSProp优化器"
