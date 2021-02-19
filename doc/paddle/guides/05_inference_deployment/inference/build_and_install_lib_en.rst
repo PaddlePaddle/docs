@@ -54,8 +54,8 @@ Firstly we pull the latest code from github.
 
   git clone https://github.com/paddlepaddle/Paddle
   cd Paddle
-  # Use git checkout to switch to stable versions such as v2.0.0
-  git checkout v2.0.0
+  # Use git checkout to switch to stable versions such as release/2.0
+  git checkout release/2.0
 
 
 **note**: If your environment is a multi-card machine, it is recommended to install nccl; otherwise, you can skip this step by specifying WITH_NCCL = OFF during compilation. Note that if WITH_NCCL = ON, and NCCL is not installed, the compiler will report an error.
