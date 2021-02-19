@@ -1050,3 +1050,4 @@ Decoder	.. _api_paddle_fluid_layers_Decoder:
 DetectionMAP	.. _api_paddle_fluid_metrics_DetectionMAP:
 ModelAverage	.. _api_paddle_fluid_optimizer_ModelAverage:
 lstm	.. _api_paddle_fluid_layers_lstm:
+Lamb    .. _api_paddle_optimizer_lamb_Lamb:
