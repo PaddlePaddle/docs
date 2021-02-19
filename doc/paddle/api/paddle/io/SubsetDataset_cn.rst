@@ -13,7 +13,7 @@ SubsetDataset
     - **datasets** 原数据集。
     - **indices** 用于提取子集的原数据集合指标数组。
 
-返回：（list), 原数据集合的子集列表。
+返回：list[Dataset], 原数据集合的子集列表。
 
 **代码示例**
 
