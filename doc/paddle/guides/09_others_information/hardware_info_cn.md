@@ -4,7 +4,7 @@
 
 ## PaddlePaddle
 
-|  硬件分类  | 硬件架构 | 公司 | 型号 | 官方安装 | 源码编译 |  完全支持训练 | 支持部分模型 |
+|  硬件分类  | 架构 | 公司 | 型号 | 安装 | 源码编译 |  完全支持训练 | 支持部分模型 |
 |  ----  | ----  | ---- | ---- |---- | ---- |---- | ---- |
 | 服务端CPU | x86 | Intel | 全系列CPU | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/linux-compile.html) | ✔️ |  |
 | 服务端GPU |  | NVIDIA | 全系列GPU | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/linux-compile.html) | ✔️ |  |
@@ -15,7 +15,7 @@
 
 ## Paddle Lite
 
-|  硬件分类  | 硬件架构 | 公司 | 型号 | 官方预编译库 | 源码编译 |  完全支持训练 | 支持部分模型 |
+|  硬件分类  | 架构 | 公司 | 型号 | 预编译库 | 源码编译 |  完全支持推理 | 支持部分模型 |
 |  ----  | ----  | ---- | ---- |---- | ---- |---- | ---- |
 | 移动端CPU | ARM | ARM | Cortex-A系列 | [预编译库](https://paddlelite.paddlepaddle.org.cn/quick_start/release_lib.html) | [源码编译](https://paddlelite.paddlepaddle.org.cn/source_compile/compile_env.html) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/introduction/support_model_list.html) |
 | 移动端GPU |  | ARM | Mali系列 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/source_compile/compile_env.html) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/introduction/support_model_list.html) |
@@ -30,7 +30,7 @@
 
 ## Paddle Inference
 
-|  硬件分类  | 硬件架构 | 公司 | 型号 | 官方预编译库 | 源码编译 |  完全支持推理 | 支持部分模型推理 |
+|  硬件分类  | 架构 | 公司 | 型号 | 预编译库 | 源码编译 |  完全支持推理 | 支持部分模型推理 |
 |  ----  | ----  | ---- | ---- |---- | ---- |---- | ---- |
 | 移动端GPU |  | NVIDIA | Jetson系列 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   | 
 | 服务端CPU | MIPS | 龙芯 | 龙芯3A4000 |  |[源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/linux-compile.html) |  | [支持模型]() |
