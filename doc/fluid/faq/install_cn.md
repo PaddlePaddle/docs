@@ -1,4 +1,31 @@
-# 安装类FAQ
+# 安装类常见问题
+
+
+##### 问题：使用过程中报找不到tensorrt库的日志
+
++ 问题描述:
+
+TensorRT dynamic library (libnvinfer.so) that Paddle depends on is not configured correctly. (error code is libnvinfer.so: cannot open shared object file: No such file or directory)
+
+Suggestions:
+
+Check if TensorRT is installed correctly and its version is matched with paddlepaddle you installed.
+
+Configure TensorRT dynamic library environment variables as follows:
+
+Linux: set LD_LIBRARY_PATH by export LD_LIBRARY_PATH=...
+
+Windows: set PATH by `set PATH=XXX;
+
++ 问题分析：
+
+遇到该问题是因为使用的paddle默认开始了TensorRT，但是本地环境中没有找到TensorRT的库，该问题只影响使用[Paddle Inference](https://paddleinference.paddlepaddle.org.cn/master/product_introduction/inference_intro.html)开启TensorRT预测的场景，对其它方面均不造成影响。
+
++ 解决办法：
+
+根据提示信息，在环境变量中加入TensorRT的库路径。
+
+------
 
 ##### 问题：Windows环境下，使用pip install时速度慢，如何解决？
 
@@ -49,7 +76,8 @@ https://pypi.douban.com/simple/
 使用pip install时报错，`ERROR: Could not find a version that satisfies the requirement paddlepaddle (from versions: none)`
 
 ``ERROR: No matching distribution found for paddlepaddle`
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-febb18fb78004dc17f18d60a009dc6a8bd907251)
+
+![图片](https://paddlepaddleimage.cdn.bcebos.com/faqimage%2Fbj-febb18fb78004dc17f18d60a009dc6a8bd907251.png)
 
 + 报错分析：
 
@@ -148,6 +176,10 @@ CUDA安装错误导致。
 
 ##### 问题： 在GPU上如何选择PaddlePaddle版本？
 
-+ 答复：
++ 答复：首先请确定您本机的CUDA、cuDNN版本，飞桨目前pip安装适配CUDA版本9.0/10.0/10.1/10.2/11.0，CUDA9.0/10.0/10.1/10.2 配合 cuDNN v7.6.5+，CUDA 工具包11.0配合cuDNN v8.0.4。请确定您安装的是适合的版本。更多安装信息见官网：https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/pip/windows-pip.html
 
-pip install paddlepaddle-gpu==需要安装的版本号+'.post'+CUDA主版本+CUDNN主版本 例：pip install paddlepaddle-gpu==1.8.4.post97表示需要在CUDA9.0、cuDNN7.0进行安装。更多安装信息请见官网：https://www.paddlepaddle.org.cn/start
+------
+
+##### 问题： import paddle报错, dlopen: cannot load any more object with static TLS, 如何解决？
+
++ 答复：glibc版本过低，建议使用官方提供的docker镜像或者将glibc升级到2.23+。
