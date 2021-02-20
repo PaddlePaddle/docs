@@ -26,7 +26,7 @@
 | AIPU |  | 华为 | Kirin 810/990/9000 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id1) |
 | AIPU |  | Imagination | PowerVR 2NX |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id5) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/huawei_kirin_npu.html#id1) |
 | AIPU |  | 百度 | 昆仑XPU |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id4) |  | [支持模型](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id1) |
-| FPGA |  | 百度 | 搭载Xilinx芯片的百度Edgeboard开发板 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id4) |  |  |
+| FPGA |  | 百度 | 搭载Xilinx芯片的百度Edgeboard开发板 |  | [源码编译](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html#id4) |  | [支持模型](https://ai.baidu.com/ai-doc/HWCE/Qkda68drw) |
 
 ## Paddle Inference
 
