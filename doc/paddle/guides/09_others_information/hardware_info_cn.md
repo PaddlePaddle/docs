@@ -43,7 +43,7 @@
 | AI加速芯片 | XPU | 百度 | 昆仑K100、K200等 | [安装](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_install_cn.html#wheel) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_install_cn.html#id2) |  | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_2.0_xpu_cn.html) |
 | 服务端CPU | ARM | 飞腾 | FT-2000+/64 |  |[源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/arm-compile.html#anchor-1) |  | [支持模型](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/arm-compile.html#anchor-6) |
 | 服务端CPU | MIPS | 龙芯 | 龙芯3A4000 |  |[源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/linux-compile.html) |  | [支持模型]() |
-| 服务器处理器/PC/嵌入式 | x86 | 兆芯 | 全系列CPU |  |[源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/zhaoxin-compile.html#anchor-1) |  | [支持模型](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/zhaoxin-compile.html#anchor-6) |
+| 服务端CPU | x86 | 兆芯 | 全系列CPU |  |[源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/zhaoxin-compile.html#anchor-1) |  | [支持模型](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/zhaoxin-compile.html#anchor-6) |
 
 .. note::
 如果你想了解更多芯片支持的情况，请联系我们，邮箱为 Paddle-better@baidu.com。
