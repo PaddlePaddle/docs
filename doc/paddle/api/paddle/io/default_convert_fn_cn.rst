@@ -3,7 +3,7 @@
 default_convert_fn
 -------------------------------
 
-.. py:class:: paddle.io.default_convert_fn
+.. py:function:: paddle.io.default_convert_fn
 
 ``paddle.io.DataLoader`` 中默认批次转换函数，输入 ``batch`` 为批次数据，将批次数据中的 ``numpy array`` 数据转换为 ``paddle.Tensor`` 。
 
@@ -17,4 +17,4 @@ default_convert_fn
 
 返回类型: list of paddle.Tensor
 
-用法见 ``paddle.io.DataLoader``
+用法见 :ref:`DataLoader <cn_api_fluid_io_DataLoader>`

@@ -3,7 +3,7 @@
 default_collate_fn
 -------------------------------
 
-.. py:class:: paddle.io.default_collate_fn
+.. py:function:: paddle.io.default_collate_fn
 
 ``paddle.io.DataLoader`` 中默认组批次函数，输入 ``batch`` 为样本列表，格式如下：
 
@@ -21,4 +21,4 @@ default_collate_fn
 
 返回类型: list of paddle.Tensor
 
-用法见 ``paddle.io.DataLoader``
+用法见 :ref:`DataLoader <cn_api_fluid_io_DataLoader>`
