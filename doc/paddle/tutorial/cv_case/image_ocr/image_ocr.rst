@@ -1,30 +1,54 @@
 通过OCR实现验证码识别
 =====================
 
-| 作者: `GT_老张 <https://github.com/GT-ZhangAcer>`__
-| 时间: 2020.11
+**作者:** `GT_老张 <https://github.com/GT-ZhangAcer>`__
 
-| 本篇将介绍如何通过飞桨实现简单的CRNN+CTC自定义数据集OCR识别模型，数据集采用\ `CaptchaDataset <https://github.com/GT-ZhangAcer/CaptchaDataset>`__\ 中OCR部分的9453张图像，其中前8453张图像在本案例中作为训练集，后1000张则作为测试集。
+**时间:** 2021.01
+
+| **摘要:**
+  本篇将介绍如何通过飞桨实现简单的CRNN+CTC自定义数据集OCR识别模型，数据集采用\ `CaptchaDataset <https://github.com/GT-ZhangAcer/CaptchaDataset>`__\ 中OCR部分的9453张图像，其中前8453张图像在本案例中作为训练集，后1000张则作为测试集。
 | 在更复杂的场景中推荐使用\ `PaddleOCR <https://github.com/PaddlePaddle/PaddleOCR>`__\ 产出工业级模型，模型轻量且精度大幅提升。
 | 同样也可以在\ `PaddleHub <https://www.paddlepaddle.org.cn/hubdetail?name=chinese_ocr_db_crnn_mobile&en_category=TextRecognition>`__\ 中快速使用PaddleOCR。
 
-**数据展示**
+一、环境配置
+------------
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_01.png?raw=true
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
-自定义数据集读取器
-------------------
+.. code:: ipython3
+
+    import paddle
+    print(paddle.__version__)
+
+
+.. parsed-literal::
+
+    2.0.0
+
+
+二、自定义数据集读取器
+----------------------
 
 常见的开发任务中，我们并不一定会拿到标准的数据格式，好在我们可以通过自定义Reader的形式来随心所欲读取自己想要数据。
 
 | 设计合理的Reader往往可以带来更好的性能，我们可以将读取标签文件列表、制作图像文件列表等必要操作在\ ``__init__``\ 特殊方法中实现。这样就可以在实例化\ ``Reader``\ 时装入内存，避免使用时频繁读取导致增加额外开销。同样我们可以在\ ``__getitem__``\ 特殊方法中实现如图像增强、归一化等个性操作，完成数据读取后即可释放该部分内存。
 | 需要我们注意的是，如果不能保证自己数据十分纯净，可以通过\ ``try``\ 和\ ``expect``\ 来捕获异常并指出该数据的位置。当然也可以制定一个策略，使其在发生数据读取异常后依旧可以正常进行训练。
 
+2.1 数据展示
+~~~~~~~~~~~~
+
+|image1|
+
+点此\ `快速获取本节数据集 <https://aistudio.baidu.com/aistudio/datasetdetail/57285>`__\ ，待数据集下载完毕后可使用\ ``!unzip OCR_Dataset.zip -d data/``\ 命令或熟悉的解压软件进行解压，待数据准备工作完成后修改本文“训练准备”中的\ ``DATA_PATH = 解压后数据集路径``\ 。
+
+.. |image1| image:: ./images/image1.png
+
 .. code:: ipython3
 
     # 解压数据集
     !unzip OCR_Dataset.zip -d data/
-
 
 .. code:: ipython3
 
@@ -83,11 +107,11 @@
             # 返回每个Epoch中图片数量
             return len(self.img_paths)
 
-模型配置
---------
+三、模型配置
+------------
 
-定义模型结构以及模型输入
-------------------------
+3.1 定义模型结构以及模型输入
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 模型方面使用的简单的CRNN-CTC结构，输入形为CHW的图像在经过CNN->Flatten->Linear->RNN->Linear后输出图像中每个位置所对应的字符概率。考虑到CTC解码器在面对图像中元素数量不一、相邻元素重复时会存在无法正确对齐等情况，故额外添加一个类别代表“分隔符”进行改善。
 
@@ -95,14 +119,20 @@ CTC相关论文：\ `Connectionist Temporal Classification: Labelling
 Unsegmented Sequence Data with Recurrent
 Neu <http://people.idsia.ch/~santiago/papers/icml2006.pdf>`__
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_02.png?raw=true
+|image1|
 
 网络部分，因本篇采用数据集较为简单且图像尺寸较小并不适合较深层次网络。若在对尺寸较大的图像进行模型构建，可以考虑使用更深层次网络/注意力机制来完成。当然也可以通过目标检测形式先检出文本位置，然后进行OCR部分模型构建。
 
-PaddleOCR 效果图如下：
+|image2|
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/OCR_files/OCR_03.png?raw=true
+PaddleOCR效果图
 
+.. raw:: html
+
+   </p>
+
+.. |image1| image:: ./images/image2.png
+.. |image2| image:: ./images/image3.png
 
 .. code:: ipython3
 
@@ -174,13 +204,15 @@ PaddleOCR 效果图如下：
             if self.is_infer:
                 # 输出层 - Shape = (Batch Size, Max label len, Prob) 
                 x = paddle.nn.functional.softmax(x)
+                # 转换为标签
+                x = paddle.argmax(x, axis=-1)
             return x
 
-训练准备
---------
+四、训练准备
+------------
 
-定义label输入以及超参数
-~~~~~~~~~~~~~~~~~~~~~~~
+4.1 定义label输入以及超参数
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 监督训练需要定义label，预测则不需要该步骤。
 
@@ -197,8 +229,8 @@ PaddleOCR 效果图如下：
                                         dtype="int32",
                                         name="label")
 
-定义CTC Loss
-~~~~~~~~~~~~
+4.2 定义CTC Loss
+~~~~~~~~~~~~~~~~
 
 了解CTC解码器效果后，我们需要在训练中让模型尽可能接近这种类型输出形式，那么我们需要定义一个CTC
 Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss，无需手动复现即可完成损失计算。
@@ -223,8 +255,8 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
             loss = paddle.nn.functional.ctc_loss(ipt, label, input_lengths, label_lengths, blank=10)
             return loss
 
-实例化模型并配置优化策略
-~~~~~~~~~~~~~~~~~~~~~~~~
+4.3 实例化模型并配置优化策略
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: ipython3
 
@@ -240,8 +272,8 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
     model.prepare(optimizer=optimizer,
                     loss=CTCLoss())
 
-开始训练
---------
+五、开始训练
+------------
 
 .. code:: ipython3
 
@@ -259,28 +291,83 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
 
     The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/10
-    step 529/529 [==============================] - loss: 0.1363 - 36ms/step          
-    save checkpoint at /Users/tclong/online_repo/paddle2.0_docs/image_ocr/output/0
+    step 529/529 [==============================] - loss: 0.1299 - 10ms/step        
+    save checkpoint at /home/aistudio/output/0
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 63/63 [==============================] - loss: 0.1189 - 13ms/step          
+    step 63/63 [==============================] - loss: 0.1584 - 6ms/step        
     Eval samples: 1000
     Epoch 2/10
-    Eval samples: 1000
-    ...
-    Epoch 8/10
-    step 529/529 [==============================] - loss: 0.0146 - 36ms/step          
-    save checkpoint at /Users/tclong/online_repo/paddle2.0_docs/image_ocr/output/7
+    step 529/529 [==============================] - loss: 0.0300 - 9ms/step         
+    save checkpoint at /home/aistudio/output/1
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 63/63 [==============================] - loss: 0.0172 - 12ms/step          
+    step 63/63 [==============================] - loss: 0.0663 - 6ms/step        
     Eval samples: 1000
+    Epoch 3/10
+    step 529/529 [==============================] - loss: 0.2056 - 9ms/step        
+    save checkpoint at /home/aistudio/output/2
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 63/63 [==============================] - loss: 0.0392 - 6ms/step        
+    Eval samples: 1000
+    Epoch 4/10
+    step 529/529 [==============================] - loss: 0.0115 - 9ms/step         
+    save checkpoint at /home/aistudio/output/3
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 63/63 [==============================] - loss: 0.0281 - 6ms/step        
+    Eval samples: 1000
+    Epoch 5/10
+    step 529/529 [==============================] - loss: 0.0121 - 10ms/step        
+    save checkpoint at /home/aistudio/output/4
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 63/63 [==============================] - loss: 0.0251 - 6ms/step        
+    Eval samples: 1000
+    Epoch 6/10
+    step 529/529 [==============================] - loss: 0.0090 - 9ms/step        
+    save checkpoint at /home/aistudio/output/5
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 63/63 [==============================] - loss: 0.0170 - 6ms/step        
+    Eval samples: 1000
+    Epoch 7/10
+    step 529/529 [==============================] - loss: 0.0049 - 9ms/step         
+    save checkpoint at /home/aistudio/output/6
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 63/63 [==============================] - loss: 0.0149 - 6ms/step        
+    Eval samples: 1000
+    Epoch 8/10
+    step 529/529 [==============================] - loss: 0.0081 - 9ms/step         
+    save checkpoint at /home/aistudio/output/7
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 63/63 [==============================] - loss: 0.0113 - 6ms/step        
+    Eval samples: 1000
+    Epoch 9/10
+    step 529/529 [==============================] - loss: 0.0051 - 9ms/step         
+    save checkpoint at /home/aistudio/output/8
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 63/63 [==============================] - loss: 0.0221 - 6ms/step        
+    Eval samples: 1000
+    Epoch 10/10
+    step 529/529 [==============================] - loss: 0.0135 - 9ms/step        
+    save checkpoint at /home/aistudio/output/9
+    Eval begin...
+    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
+    step 63/63 [==============================] - loss: 0.0111 - 6ms/step        
+    Eval samples: 1000
+    save checkpoint at /home/aistudio/output/final
 
-预测前准备
-----------
 
-像定义训练Reader一样定义预测Reader
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+六、预测前准备
+--------------
+
+6.1 像定义训练Reader一样定义预测Reader
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: ipython3
 
@@ -320,20 +407,20 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
         def __len__(self):
             return len(self.img_paths)
 
-参数设置
-~~~~~~~~
+6.2 参数设置
+~~~~~~~~~~~~
 
 .. code:: ipython3
 
-    # 待预测目录
+    # 待预测目录 - 可在测试数据集中挑出\b3张图像放在该目录中进行推理
     INFER_DATA_PATH = "./sample_img"
     # 训练后存档点路径 - final 代表最终训练所得模型
     CHECKPOINT_PATH = "./output/final.pdparams"
     # 每批次处理数量
     BATCH_SIZE = 32
 
-展示待预测数据
-~~~~~~~~~~~~~~
+6.3 展示待预测数据
+~~~~~~~~~~~~~~~~~~
 
 .. code:: ipython3
 
@@ -352,20 +439,34 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/image_ocr/image_ocr_files/image_ocr_24_0.png?raw=true
+.. image:: image_ocr_files/image_ocr_26_0.png
 
 
-开始预测
---------
+七、开始预测
+------------
 
-   飞桨2.0 CTC Decoder
-   相关API正在迁移中，暂时使用\ `第三方解码器 <https://github.com/awni/speech/blob/072bcf9ff510d814fbfcaad43b2883ecf8f60806/speech/models/ctc_decoder.py>`__\ 进行解码。
+   飞桨2.0 CTC Decoder 相关API正在迁移中，本节暂时使用简易版解码器。
 
 .. code:: ipython3
 
-    from ctc import decode
+    # 编写简易版解码器
+    def ctc_decode(text, blank=10):
+        """
+        简易CTC解码器
+        :param text: 待解码数据
+        :param blank: 分隔符索引值
+        :return: 解码后数据
+        """
+        result = []
+        cache_idx = -1
+        for char in text:
+            if char != blank and char != cache_idx:
+                result.append(char)
+            cache_idx = char
+        return result
     
-    # 实例化预测模型
+    
+    # 实例化推理模型
     model = paddle.Model(Net(is_infer=True), inputs=input_define)
     # 加载训练好的参数模型
     model.load(CHECKPOINT_PATH)
@@ -377,19 +478,19 @@ Loss来计算模型损失。不必担心，在飞桨框架中内置了多种Loss
     img_names = infer_reader.get_names()
     results = model.predict(infer_reader, batch_size=BATCH_SIZE)
     index = 0
-    for result in results[0]:
-        for prob in result:
-            out, _ = decode(prob, blank=10)
-            print(f"文件名：{img_names[index]}，预测结果为：{out}")
+    for text_batch in results[0]:
+        for prob in text_batch:
+            out = ctc_decode(prob, blank=10)
+            print(f"文件名：{img_names[index]}，推理结果为：{out}")
             index += 1
 
 
 .. parsed-literal::
 
     Predict begin...
-    step 1/1 [==============================] - 12ms/step
+    step 1/1 [==============================] - 6ms/step
     Predict samples: 3
-    文件名：9451.jpg，预测结果为：(3, 4, 6, 3)
-    文件名：9450.jpg，预测结果为：(8, 2, 0, 5)
-    文件名：9452.jpg，预测结果为：(0, 3, 0, 0)
+    文件名：9450.jpg，推理结果为：[8, 2, 0, 5]
+    文件名：9452.jpg，推理结果为：[0, 3, 0, 0]
+    文件名：9451.jpg，推理结果为：[3, 4, 6, 3]
 

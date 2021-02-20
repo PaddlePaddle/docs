@@ -3,7 +3,7 @@
 min
 -------------------------------
 
-.. py:function:: paddle.tensor.min(x, axis=None, keepdim=False, name=None)
+.. py:function:: paddle.min(x, axis=None, keepdim=False, name=None)
 
 
 该OP是对指定维度上的Tensor元素求最小值运算，并输出相应的计算结果。

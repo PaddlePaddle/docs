@@ -1,9 +1,9 @@
 版本迁移工具
 ====================
 
-在飞桨框架2.0rc中，我们API的位置、命名、参数、行为，进行了系统性的调整和规范, 将API体系从1.X版本的 ``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。paddle.fluid目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
+在飞桨框架2.0中，我们API的位置、命名、参数、行为，进行了系统性的调整和规范, 将API体系从1.X版本的 ``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。paddle.fluid目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
 
-使用版本迁移工具自动迁移您的paddle1.x的代码到Paddle2.0rc的代码
+使用版本迁移工具自动迁移您的Paddle 1.x的代码到Paddle 2.0的代码
 ------------------------------------
 
 WARNING: 版本自动迁移工具并不能处理所有的情况，在使用本工具后，您仍然需要手工来进行检查并做相应的调整。
@@ -26,7 +26,7 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 
     $ paddle_upgrade_tool --inpath /path/to/model.py
 
-这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle1.x转换为Paddle2.0rc的变化。如果您确认上述变化没有问题，只需要再执行：
+这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle 1.x转换为Paddle 2.0的变化。如果您确认上述变化没有问题，只需要再执行：
 
 .. code:: ipython3
 
@@ -54,7 +54,7 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 开始
 ^^^^
 
-在使用paddle_upgrade_tool前，需要确保您已经安装了Paddle2.0rc版本。
+在使用paddle_upgrade_tool前，需要确保您已经安装了Paddle 2.0版本。
 
 .. code:: ipython3
 
@@ -63,7 +63,7 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 
 .. parsed-literal::
 
-    2.0.0-rc0
+    2.0.0
 
 
 克隆\ `paddlePaddle/models <https://github.com/PaddlePaddle/models>`__\ 来作为工具的测试。
@@ -126,10 +126,10 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
       --print-match         this is a debug option. Print matched code and node
                             for each file.
 
-paddle1.x的例子
+Paddle 1.x的例子
 ^^^^^^^^^^^^^^
 
-这里是一个基于paddle1.x实现的一个mnist分类，部分内容如下：
+这里是一个基于Paddle 1.x实现的一个mnist分类，部分内容如下：
 
 .. code:: ipython3
 
@@ -197,7 +197,7 @@ paddle_upgrade_tool支持单文件的转化，您可以通过下方的命令直�
 
 -  本迁移工具不能完成所有API的迁移，有少量的API需要您手动完成迁移，具体信息可见WARNING。
 
-使用paddle 2
-~~~~~~~~~~~~
+使用Paddle 2.0
+~~~~~~~~~~~~~~~~
 
-完成迁移后，代码就从paddle1.x迁移到了paddle2.0rc，您就可以在paddle2.0rc下进行相关的开发。
+完成迁移后，代码就从Paddle 1.x迁移到了Paddle 2.0，您就可以在Paddle 2.0下进行相关的开发。

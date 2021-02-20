@@ -1,13 +1,24 @@
 模型保存及加载
 ==============
 
-本教程将基于Paddle高阶API对模型参数的保存和加载进行讲解。在日常训练模型过程中我们会遇到一些突发情况，导致训练过程主动或被动的中断，因此在模型没有完全训练好的情况下，我们需要高频的保存下模型参数，在发生意外时可以快速载入保存的参数继续训练；抑或是模型已经训练好了，我们需要使用训练好的参数进行预测或部署模型上线。面对上述情况，Paddle中提供了保存模型和提取模型的方法，支持从上一次保存状态开始训练，只要我们随时保存训练过程中的模型状态，就不用从初始状态重新训练。
+**作者:** `PaddlePaddle <https://github.com/PaddlePaddle>`__ 
+
+**日期:** 2021.01 
+
+**摘要:** 本教程将基于Paddle高阶API对模型参数的保存和加载进行讲解。
+
+一、简介
+--------
+
+在日常训练模型过程中我们会遇到一些突发情况，导致训练过程主动或被动的中断，因此在模型没有完全训练好的情况下，我们需要高频的保存下模型参数，在发生意外时可以快速载入保存的参数继续训练；抑或是模型已经训练好了，我们需要使用训练好的参数进行预测或部署模型上线。面对上述情况，Paddle中提供了保存模型和提取模型的方法，支持从上一次保存状态开始训练，只要我们随时保存训练过程中的模型状态，就不用从初始状态重新训练。
 下面将基于手写数字识别的模型讲解paddle如何保存及加载模型，并恢复训练，网络结构部分的讲解省略。
 
-环境
-----
+二、环境配置
+------------
 
-本教程基于paddle-2.0rc1版编写，如果您的环境不是此版本，请先安装paddle-2.0rc1版本
+本教程基于Paddle 2.0
+编写，如果您的环境不是本版本，请先参考官网\ `安装 <https://www.paddlepaddle.org.cn/install/quick>`__
+Paddle 2.0 。
 
 .. code:: ipython3
 
@@ -25,11 +36,11 @@
 
 .. parsed-literal::
 
-    2.0.0-rc1
+    2.0.0
 
 
-数据集
-------
+三、数据集
+----------
 
 手写数字的MNIST数据集，包含60,000个用于训练的示例和10,000个用于测试的示例。这些数字已经过尺寸标准化并位于图像中心，图像是固定大小(28x28像素)，其值为0到1。该数据集的官方地址为：http://yann.lecun.com/exdb/mnist/
 本例中我们使用飞桨自带的mnist数据集。使用from paddle.vision.datasets
@@ -40,8 +51,8 @@ import MNIST 引入即可。
     train_dataset = MNIST(mode='train', transform=ToTensor())
     test_dataset = MNIST(mode='test', transform=ToTensor())
 
-模型搭建
---------
+四、模型组建
+------------
 
 .. code:: ipython3
 
@@ -71,8 +82,8 @@ import MNIST 引入即可。
             x = self.linear3(x)
             return x
 
-模型训练
---------
+五、模型训练
+------------
 
 通过\ ``Model`` 构建实例，快速完成模型训练
 
@@ -102,37 +113,37 @@ import MNIST 引入即可。
 
     The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/3
-    step 938/938 [==============================] - loss: 0.0568 - acc: 0.9394 - 31ms/step          
-    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/0
+    step 938/938 [==============================] - loss: 0.0398 - acc: 0.9435 - 20ms/step          
+    save checkpoint at /Users/tclong/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/0
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 0.0047 - acc: 0.9773 - 26ms/step          
+    step 157/157 [==============================] - loss: 0.0043 - acc: 0.9782 - 18ms/step            
     Eval samples: 10000
     Epoch 2/3
-    step 938/938 [==============================] - loss: 0.0070 - acc: 0.9802 - 31ms/step          
-    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/1
+    step 938/938 [==============================] - loss: 0.0340 - acc: 0.9818 - 22ms/step           loss: 0.0559 - acc: 0.9
+    save checkpoint at /Users/tclong/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/1
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 0.0014 - acc: 0.9857 - 26ms/step          
+    step 157/157 [==============================] - loss: 5.2083e-04 - acc: 0.9853 - 19ms/step      
     Eval samples: 10000
     Epoch 3/3
-    step 938/938 [==============================] - loss: 0.0178 - acc: 0.9862 - 31ms/step          
-    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/2
+    step 938/938 [==============================] - loss: 0.0706 - acc: 0.9868 - 27ms/step          
+    save checkpoint at /Users/tclong/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/2
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 0.0064 - acc: 0.9867 - 25ms/step          
+    step 157/157 [==============================] - loss: 5.4219e-04 - acc: 0.9882 - 19ms/step      
     Eval samples: 10000
-    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/final
+    save checkpoint at /Users/tclong/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/final
 
 
-保存模型参数
-------------
+六、保存模型参数
+----------------
 
 目前Paddle框架有三种保存模型参数的体系，分别是： #### paddle
 高阶API-模型参数保存 \* paddle.Model.fit \* paddle.Model.save ####
 paddle 基础框架-动态图-模型参数保存 \* paddle.save #### paddle
-基础框架-静态图-模型参数保存 \* paddle.io.save \*
-paddle.io.save_inference_model
+基础框架-静态图-模型参数保存 \* paddle.static.save \*
+paddle.static.save_inference_model
 
 下面将基于高阶API对模型保存与加载的方法进行讲解。
 
@@ -167,20 +178,20 @@ paddle.io.save_inference_model
 
     The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/2
-    step 938/938 [==============================] - loss: 0.0049 - acc: 0.9904 - 32ms/step          
-    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/0
+    step 938/938 [==============================] - loss: 0.0023 - acc: 0.9898 - 21ms/step          
+    save checkpoint at /Users/tclong/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/0
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 0.0051 - acc: 0.9794 - 24ms/step            
+    step 157/157 [==============================] - loss: 7.4614e-05 - acc: 0.9869 - 19ms/step        
     Eval samples: 10000
     Epoch 2/2
-    step 938/938 [==============================] - loss: 4.3276e-04 - acc: 0.9919 - 32ms/step      
-    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/1
+    step 938/938 [==============================] - loss: 0.0014 - acc: 0.9917 - 20ms/step          
+    save checkpoint at /Users/tclong/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/1
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 1.9492e-05 - acc: 0.9876 - 26ms/step        
+    step 157/157 [==============================] - loss: 5.2536e-05 - acc: 0.9878 - 18ms/step      
     Eval samples: 10000
-    save checkpoint at /Users/chenlong21/online_repo/paddle2.0_docs/save_model/mnist_checkpoint/final
+    save checkpoint at /Users/tclong/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/final
 
 
 .. code:: ipython3
@@ -188,8 +199,8 @@ paddle.io.save_inference_model
     # 方法二：model.save()保存模型和优化器参数信息
     model.save('mnist_checkpoint/test')
 
-加载模型参数
-------------
+七、加载模型参数
+----------------
 
 当恢复训练状态时，需要加载模型数据，此时我们可以使用加载函数从存储模型状态和优化器状态的文件中载入模型参数和优化器参数，如果不需要恢复优化器，则不必使用优化器状态文件。
 #### 高阶API-模型参数加载 \* paddle.Model.load #### paddle
@@ -206,8 +217,8 @@ model.load能够同时加载模型和优化器参数。通过reset_optimizer参�
     # 高阶API加载模型
     model.load('mnist_checkpoint/test')
 
-恢复训练
---------
+八、恢复训练
+------------
 
 理想的恢复训练是模型状态回到训练中断的时刻，恢复训练之后的梯度更新走向是和恢复训练前的梯度走向完全相同的。基于此，我们可以通过恢复训练后的损失变化，判断上述方法是否能准确的恢复训练。即从epoch
 0结束时保存的模型参数和优化器状态恢复训练，校验其后训练的损失变化（epoch
@@ -253,20 +264,20 @@ model.load能够同时加载模型和优化器参数。通过reset_optimizer参�
 
     The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/2
-    step 938/938 [==============================] - loss: 8.1781e-04 - acc: 0.9929 - 31ms/step      
+    step 938/938 [==============================] - loss: 0.0118 - acc: 0.9922 - 20ms/step          
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 6.0796e-04 - acc: 0.9853 - 26ms/step        
+    step 157/157 [==============================] - loss: 2.4631e-05 - acc: 0.9872 - 17ms/step        
     Eval samples: 10000
     Epoch 2/2
-    step 938/938 [==============================] - loss: 2.7120e-04 - acc: 0.9946 - 27ms/step        
+    step 938/938 [==============================] - loss: 1.2774e-04 - acc: 0.9942 - 19ms/step      
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 2.1006e-05 - acc: 0.9876 - 22ms/step        
+    step 157/157 [==============================] - loss: 1.3047e-05 - acc: 0.9882 - 18ms/step        
     Eval samples: 10000
 
 
-总结
-----
+九、总结
+--------
 
 以上就是用Mnist手写数字识别的例子对保存模型、加载模型、恢复训练进行讲解，Paddle提供了很多保存和加载的API方法，您可以根据自己的需求进行选择。

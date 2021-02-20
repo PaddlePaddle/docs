@@ -249,6 +249,25 @@ with fluid.dygraph.guard():
 ----------
 
 
+## 模型保存与加载
+
+#### 问题：静态图的save接口与save_inference_model接口存储的结果有什么区别？
+
++ 答复：主要差别在于保存结果的应用场景：
+
+  1. save接口（2.0的`paddle.static.save`或者1.8的`fluid.io.save`）
+
+      该接口用于保存训练过程中的模型和参数，一般包括`*.pdmodel`，`*.pdparams`，`*.pdopt`三个文件。其中`*.pdmodel`是训练使用的完整模型program描述，区别于推理模型，训练模型program包含完整的网络，包括前向网络，反向网络和优化器，而推理模型program仅包含前向网络，`*.pdparams`是训练网络的参数dict，key为变量名，value为Tensor array数值，`*.pdopt`是训练优化器的参数，结构与*.pdparams一致。
+
+  2. save_inference_model接口（2.0的`paddle.static.save_inference_model`或者1.8的`fluid.io.save_inference_model`）
+
+      该接口用于保存推理模型和参数，2.0的`paddle.static.save_inference_model`保存结果为`*.pdmodel`和`*.pdiparams`两个文件，其中`*.pdmodel`为推理使用的模型program描述，`*.pdiparams`为推理用的参数，这里存储格式与`*.pdparams`不同（注意两者后缀差个`i`），`*.pdiparams`为二进制Tensor存储格式，不含变量名。1.8的`fluid.io.save_inference_model`默认保存结果为`__model__`文件，和以参数名为文件名的多个分散参数文件，格式与2.0一致。
+
+  3. 关于更多2.0动态图模型保存和加载的介绍可以参考教程：[模型存储与载入](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/02_paddle2.0_develop/08_model_save_load_cn.html)
+
+----------
+
+
 ## 参数调整
 
 ##### 问题：如何将本地数据传入`fluid.dygraph.Embedding`的参数矩阵中？
@@ -332,4 +351,19 @@ for epoch in range(epochs):
 
 + 答复：目前`load_inference_model`加载进行的模型还不支持py_reader输入。
 
+##### 问题：预测时如何打印模型中每一步的耗时？
+
++ 答复：可以在设置config时使用`config.enable_profile()`统计预测时每个算子和数据搬运的耗时。对于推理api的使用，可以参考官网文档[Python预测API介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/05_inference_deployment/inference/python_infer_cn.html)。示例代码：
+```python
+# 设置config:
+def set_config(args):
+    config = Config(args.model_file, args.params_file)
+    config.disable_gpu()
+    # enable_profile()打开后会统计每一步耗时
+    config.enable_profile()
+    config.switch_use_feed_fetch_ops(False)
+    config.switch_specify_input_names(True)
+    config.switch_ir_optim(False)
+    return config
+```
 ----------

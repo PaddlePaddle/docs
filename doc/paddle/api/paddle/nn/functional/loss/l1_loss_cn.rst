@@ -1,3 +1,5 @@
+.. _cn_paddle_nn_functional_loss_l1:
+
 l1_loss
 -------------------------------
 

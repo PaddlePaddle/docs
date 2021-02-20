@@ -49,7 +49,7 @@ void CreateConfig(Config* config, const std::string& model_dirname) {
 }
 
 void RunAnalysis(int batch_size, std::string model_dirname) {
-  // 1. 创建AnalysisConfig
+  // 1. 创建Config
   Config config;
   CreateConfig(&config, model_dirname);
 
@@ -137,7 +137,7 @@ config->GpuDeviceId();        // 返回正在使用的GPU ID
 config->EnableTensorRtEngine(1 << 20             /*workspace_size*/,
                              batch_size        /*max_batch_size*/,
                              3                 /*min_subgraph_size*/,
-                                AnalysisConfig::Precision::kFloat32 /*precision*/,
+                             PrecisionType::kFloat32 /*precision*/,
                              false             /*use_static*/,
                              false             /*use_calib_mode*/);
 ```
@@ -189,7 +189,7 @@ auto predictor = pool.Retrive(thread_id);
 ## <a name="C++预测样例编译测试"> C++预测样例编译测试</a>
 
 1. 下载或编译paddle预测库，参考[安装与编译C++预测库](./build_and_install_lib_cn.html)。
-2. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.7.tar.gz)并解压，进入`sample/inference`目录下。  
+2. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/samples/sample.tgz)并解压，进入`sample/inference`目录下。  
 
     `inference` 文件夹目录结构如下：
 
@@ -1143,7 +1143,7 @@ config->EnableMemoryOptim();     // 开启内存/显存复用
 
 返回类型：`void`
 
-###### EnableLiteEngine(AnalysisConfig::Precision precision_mode = Precsion::kFloat32, bool zero_copy = false, const std::vector<std::string>& passes_filter = {}, const std::vector<std::string>& ops_filter = {})
+###### EnableLiteEngine(PrecisionType precision_mode = Precsion::kFloat32, bool zero_copy = false, const std::vector<std::string>& passes_filter = {}, const std::vector<std::string>& ops_filter = {})
 
 启用lite子图。
 
