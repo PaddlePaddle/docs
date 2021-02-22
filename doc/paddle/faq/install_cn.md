@@ -1,4 +1,5 @@
-# 安装类FAQ
+# 安装常见问题
+
 
 ##### 问题：使用过程中报找不到tensorrt库的日志
 
@@ -24,7 +25,7 @@ Windows: set PATH by `set PATH=XXX;
 
 根据提示信息，在环境变量中加入TensorRT的库路径。
 
-------
+-----
 
 ##### 问题：Windows环境下，使用pip install时速度慢，如何解决？
 
@@ -42,7 +43,7 @@ Windows: set PATH by `set PATH=XXX;
 
    `pip3 install paddlepaddle -i https://mirror.baidu.com/pypi/simple/`
 
-您还可以通过如下三个地址获取pip安装包，只需修改 `-i` 后网址即可：
+你还可以通过如下三个地址获取pip安装包，只需修改 `-i` 后网址即可：
 
 https://pypi.tuna.tsinghua.edu.cn/simple
 https://mirrors.aliyun.com/pypi/simple/
@@ -84,24 +85,6 @@ Python版本不匹配导致。用户使用的是32位Python，但是对应的32�
 + 解决方法：
 
 请用户使用64位的Python进行PaddlePaddle安装。
-
-------
-
-##### 问题： 在GPU上执行程序报错，`Error：Segmentation fault`，如何解决？
-
-+ 问题描述：
-
-在GPU版本为`paddlepaddle_gpu-1.8.4.post87-cp27-cp27mu-manylinux1_x86_64.whl`的环境上执行一个程序，出现`Error：Segmentation fault`。如果将`place`修改“cpu”，则程序可正常运行。
-
-+ 报错分析：
-
-造成该报错的原因通常是环境不匹配导致的。安装时，GPU版本为`paddlepaddle_gpu-1.8.4.post87-cp27-cp27mu-manylinux1_x86_64.whl`，`post87`表示需要在CUDA8.0、cuDNN7.0进行编译。如果机器上没有安装对应版本的CUDA和cuDNN，会导致执行程序时报错。
-
-此外值得注意的是，配置PaddlePaddle的GPU版本，不仅需要CUDA和cuDNN版本匹配，还需要与PaddlePaddle版本匹配。出现类似错误时请检查这三个程序的版本是否匹配。
-
-+ 解决方法：
-
-CUDA的安装可参考：https://docs.nvidia.com/cuda/archive/10.0/index.html；cuDNN的安装可参考：https://docs.nvidia.com/deeplearning/cudnn/install-guide/#install-windows。
 
 ------
 
@@ -155,7 +138,6 @@ CUDA安装错误导致。
 
 1. GPU环境：
 
-
  `pip install -U paddlepaddle-gpu`
 
 或者
@@ -176,7 +158,7 @@ CUDA安装错误导致。
 
 + 答复：
 
-pip install paddlepaddle-gpu==需要安装的版本号+'.post'+CUDA主版本+CUDNN主版本 例：pip install paddlepaddle-gpu==1.8.4.post97表示需要在CUDA9.0、cuDNN7.0进行安装。更多安装信息请见官网：https://www.paddlepaddle.org.cn/start
+首先请确定你本机的CUDA、cuDNN版本，飞桨目前pip安装适配CUDA版本9.0/10.0/10.1/10.2/11.0，CUDA9.0/10.0/10.1/10.2 配合 cuDNN v7.6.5+，CUDA 工具包11.0配合cuDNN v8.0.4。请确定你安装的是适合的版本。更多安装信息见[官网安装文档]（https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/pip/windows-pip.html）
 
 ------
 
