@@ -10,11 +10,11 @@ MNIST
 
 参数
 :::::::::
-        - image_path (str) - 图像文件路径，如果 ``download`` 设置为 ``True`` ，此参数可以设置为None。默认值为None。
-        - label_path (str) - 标签文件路径，如果 ``download`` 设置为 ``True`` ，此参数可以设置为None。默认值为None。
-        - chw_format (bool) - 若为 ``True`` 输出形状为[1, 28, 28], 否则为 [1, 784]。默认值为 ``True`` 。
+        - image_path (str) - 图像文件路径，如果 ``download`` 参数设置为 ``True`` ， ``image_path`` 参数可以设置为 ``None`` 。默认值为 ``None`` 。
+        - label_path (str) - 标签文件路径，如果 ``download`` 参数设置为 ``True`` ， ``label_path`` 参数可以设置为 ``None`` 。默认值为 ``None`` 。
+        - chw_format (bool) - 若为 ``True`` 输出形状为 ``[1, 28, 28]`` , 否则为 ``[1, 784]`` 。默认值为 ``True`` 。
         - mode (str) - ``'train'`` 或 ``'test'`` 模式，默认为 ``'train'`` 。
-        - download (bool) - 是否自定下载数据集文件。默认为 ``True`` 。
+        - download (bool) - 当 ``data_file`` 是 ``None`` 时，该参数决定是否自动下载数据集文件。默认为 ``True`` 。
 
 返回
 :::::::::
