@@ -552,4 +552,5 @@ paddle.fluid.layers.dynamic_decode	paddle.nn.dynamic_decode
 paddle.fluid.layers.accuracy	paddle.static.accuracy
 paddle.fluid.layers.auc	paddle.static.auc
 paddle.tensor.Overview	paddle.Overview
+paddle.hapi.callbacks.Overview	paddle.callbacks.Overview
 paddle.optimizer.lamb.Lamb	paddle.optimizer.Lamb
