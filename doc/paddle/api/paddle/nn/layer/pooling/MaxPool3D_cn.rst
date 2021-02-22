@@ -4,7 +4,7 @@ MaxPool3D
 -------------------------------
 
 .. py:function:: paddle.nn.MaxPool3D(kernel_size, stride=None, padding=0, ceil_mode=False, return_mask=False, data_format="NCDHW", name=None)
-该接口用于构建 `MaxPool3D` 类的一个可调用对象，其将构建一个二维平均池化层，根据输入参数 `kernel_size`, `stride`,
+该接口用于构建 `MaxPool3D` 类的一个可调用对象，其将构建一个二维最大池化层，根据输入参数 `kernel_size`, `stride`,
 `padding` 等参数对输入做最大池化操作。
 
 例如：
