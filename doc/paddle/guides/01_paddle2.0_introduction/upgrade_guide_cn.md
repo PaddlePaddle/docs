@@ -214,7 +214,7 @@ mnist = Mnist()
 
 #### 使用高层API
 
-增加了paddle.Model高层API，大部分任务可以使用此API用于简化训练、评估、预测类代码开发。注意区别Model和Net概念，Net是指继承paddle.nn.Layer的网络结构；而Model是指持有一个Net实例，同时指定损失函数、优化算法、评估指标的可训练、评估、预测的实例。具体参考高层API的代码示例。
+增加了paddle.Model高层API，大部分任务可以使用此API用于简化训练、评估、预测类代码开发。注意区别Model和Net概念，Net是指继承paddle.nn.Layer的网络结构；而Model是指持有一个Net对象，同时指定损失函数、优化算法、评估指标的可训练、评估、预测的实例。具体参考高层API的代码示例。
 
 ```python
 import paddle
