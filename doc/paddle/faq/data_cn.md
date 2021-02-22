@@ -7,7 +7,7 @@
 
 paddle中推荐使用 DataLoader，这是一种灵活的异步加载方式。
 
-该API提供了多进程的异步加载支持，用户可通过配置num_workers指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
+该API提供了多进程的异步加载支持，可以配置num_workers指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
 
 具体使用方法及示例请参考API文档：[paddle.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/DataLoader_cn.html#dataloader)
 
@@ -44,6 +44,7 @@ paddle中推荐使用 DataLoader，这是一种灵活的异步加载方式。
 
 ```
 import paddle
+import numpy as np
 
 x = np.ones([2, 2], np.float32)
 y = paddle.to_tensor(x)

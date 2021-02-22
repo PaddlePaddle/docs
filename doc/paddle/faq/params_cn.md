@@ -22,9 +22,9 @@
 ##### 问题：如何导出指定层的权重，如导出最后一层的*weights*和*bias*？
 
 + 答复：
-1. 在静态图中，使用`paddle.static.save_vars`保存指定的vars，然后使用`paddle.static.load_vars`加载对应层的参数值。具体示例请见API文档：[load_vars](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/io/load_vars_cn.html) 和 [save_vars](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/io/save_vars_cn.html) 。
 
-2. 在动态图中，使用`paddle.save` API， 并将最后一层的layer.state_dict() 传入至save方法的obj 参数即可， 然后使用`paddle.load` 方法加载对应层的参数值。详细可参考API文档[save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/framework/io/save_cn.html#save) 和[load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/framework/io/load_cn.html#load)。
+1. 在动态图中，使用`paddle.save` API， 并将最后一层的layer.state_dict() 传入至save方法的obj 参数即可， 然后>    使用`paddle.load` 方法加载对应层的参数值。详细可参考API文档[save](https://www.paddlepaddle.org.cn/documentat    ion/docs/zh/api/paddle/framework/io/save_cn.html#save) 和[load](https://www.paddlepaddle.org.cn/documentatio    n/docs/zh/api/paddle/framework/io/load_cn.html#load)。
+2. 在静态图中，使用`paddle.static.save_vars`保存指定的vars，然后使用`paddle.static.load_vars`加载对应层的参数值。具体示例请见API文档：[load_vars](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/io/load_vars_cn.html) 和 [save_vars](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/io/save_vars_cn.html) 。
 
 ----------
 
@@ -32,7 +32,7 @@
 
 + 答复：
 
-1. 对于固定BN：设置 `use_global_stats=True`，使用已加载的全局均值和方差：`global mean/variance`，具体内容可查看官网API文档[batch_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/layers_cn/batch_norm_cn.html)。
+1. 对于固定BN：设置 `use_global_stats=True`，使用已加载的全局均值和方差：`global mean/variance`，具体内容可查看官网API文档[batch_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/layers/batch_norm_cn.html#batch-norm)。
 
 2. 对于固定网络层：如： stage1→ stage2 → stage3 ，设置stage2的输出，假设为*y*，设置 `y.stop_gradient=True`，那么， stage1→ stage2整体都固定了，不再更新。
 
