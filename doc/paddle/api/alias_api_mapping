@@ -478,7 +478,6 @@ paddle.vision.transforms.functional.center_crop	paddle.vision.transforms.center_
 paddle.vision.transforms.functional.adjust_brightness	paddle.vision.transforms.adjust_brightness,paddle.vision.adjust_brightness
 paddle.vision.transforms.functional.adjust_contrast	paddle.vision.transforms.adjust_contrast,paddle.vision.adjust_contrast
 paddle.vision.transforms.functional.adjust_hue	paddle.vision.transforms.adjust_hue,paddle.vision.adjust_hue
-paddle.vision.transforms.functional.adjust_saturation	paddle.vision.transforms.adjust_saturation,paddle.vision.adjust_saturation
 paddle.vision.transforms.functional.rotate	paddle.vision.transforms.rotate,paddle.vision.rotate
 paddle.vision.transforms.functional.to_grayscale	paddle.vision.transforms.to_grayscale,paddle.vision.to_grayscale
 paddle.vision.transforms.functional.to_tensor	paddle.vision.transforms.to_tensor,paddle.vision.to_tensor
