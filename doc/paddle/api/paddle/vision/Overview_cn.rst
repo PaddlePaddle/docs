@@ -56,33 +56,6 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
     " :ref:`vgg19 <cn_api_paddle_vision_models_vgg19>` ", "19层的VGG模型"
 
 
-.. _about_models:
-
-内置模型相关API
-::::::::::::::::::::
-
-.. csv-table::
-    :header: "API名称", "API功能"
-    :widths: 10, 30
-
-    " :ref:`LeNet <cn_api_paddle_vision_models_LeNet>` ", "LeNet模型"
-    " :ref:`MobileNetV1 <cn_api_paddle_vision_models_MobileNetV1>` ", "MobileNetV1模型"
-    " :ref:`MobileNetV2 <cn_api_paddle_vision_models_MobileNetV2>` ", "MobileNetV2模型"
-    " :ref:`mobilenet_v1 <cn_api_paddle_vision_models_mobilenet_v1>` ", "MobileNetV1模型"
-    " :ref:`mobilenet_v2 <cn_api_paddle_vision_models_mobilenet_v2>` ", "MobileNetV2模型"
-    " :ref:`ResNet <cn_api_paddle_vision_models_ResNet>` ", "ResNet模型"
-    " :ref:`resnet18 <cn_api_paddle_vision_models_resnet18>` ", "18层的ResNet模型"
-    " :ref:`resnet34 <cn_api_paddle_vision_models_resnet34>` ", "34层的ResNet模型"
-    " :ref:`resnet50 <cn_api_paddle_vision_models_resnet50>` ", "50层的ResNet模型"
-    " :ref:`resnet101 <cn_api_paddle_vision_models_resnet101>` ", "101层的ResNet模型"
-    " :ref:`resnet152 <cn_api_paddle_vision_models_resnet152>` ", "152层的ResNet模型"
-    " :ref:`VGG <cn_api_paddle_vision_models_VGG>` ", "VGG模型"
-    " :ref:`vgg11 <cn_api_paddle_vision_models_vgg11>` ", "11层的VGG模型"
-    " :ref:`vgg13 <cn_api_paddle_vision_models_vgg13>` ", "13层的VGG模型"
-    " :ref:`vgg16 <cn_api_paddle_vision_models_vgg16>` ", "16层的VGG模型"
-    " :ref:`vgg19 <cn_api_paddle_vision_models_vgg19>` ", "19层的VGG模型".. _about_models:
-
-
 .. _about_ops:
 
 视觉操作相关API
