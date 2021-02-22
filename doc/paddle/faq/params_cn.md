@@ -61,5 +61,3 @@ for epoch in range(epochs):
 ##### 问题：如何修改全连接层参数，比如weight，bias？  
 
 + 答复：可以通过`param_attr`设置参数的属性，`paddle.ParamAttr(initializer=paddle.nn.initializer.Normal(0.0, 0.02), learning_rate=2.0)`，如果`learning_rate`设置为0，该层就不参与训练。也可以构造一个numpy数据，使用`paddle.nn.initializer.Assign`来给权重设置想要的值。
-
-----------

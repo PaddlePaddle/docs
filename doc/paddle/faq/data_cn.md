@@ -1,11 +1,11 @@
 # 数据及其加载常见问题
 
 
-##### 问题：如何在训练过程中高效读取数量很大的数据集？
+##### 问题：如何在训练过程中高效读取数据量很大的数据集？
 
 + 答复：当训练时使用的数据集数据量较大或者预处理逻辑复杂时，如果串行地进行数据读取，数据读取往往会成为训练效率的瓶颈。这种情况下通常需要利用多线程或者多进程的方法异步地进行数据载入，从而提高数据读取和整体训练效率。
 
-paddle中推荐使用 DataLoader，灵活的异步加载
+paddle中推荐使用 DataLoader，这是一种灵活的异步加载方式。
 
 该API提供了多进程的异步加载支持，用户可通过配置num_workers指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
 
@@ -57,4 +57,4 @@ z = paddle.ones([2, 2], 'float32')
 ##### 问题：如何初始化一个随机数的Tensor？
 
 + 答复：使用`paddle.rand` 或 `paddle.randn` 等API。具体请参考：
-[paddle.rand](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/random/rand_cn.html#rand) ,[paddle.randn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/random/randn_cn.html#randn)
+[paddle.rand](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/random/rand_cn.html#rand) 和[paddle.randn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/random/randn_cn.html#randn)

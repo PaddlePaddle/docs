@@ -158,7 +158,7 @@ CUDA安装错误导致。
 
 + 答复：
 
-首先请确定你本机的CUDA、cuDNN版本，飞桨目前pip安装适配CUDA版本9.0/10.0/10.1/10.2/11.0，CUDA9.0/10.0/10.1/10.2 配合 cuDNN v7.6.5+，CUDA 工具包11.0配合cuDNN v8.0.4。请确定你安装的是适合的版本。更多安装信息见[官网安装文档]（https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/pip/windows-pip.html）
+首先请确定你本机的CUDA、cuDNN版本，飞桨目前pip安装适配CUDA版本9.0/10.0/10.1/10.2/11.0，CUDA9.0/10.0/10.1/10.2 配合 cuDNN v7.6.5+，CUDA 工具包11.0配合cuDNN v8.0.4。请确定你安装的是适合的版本。更多安装信息见[官网安装文档](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/pip/windows-pip.html)
 
 ------
 
