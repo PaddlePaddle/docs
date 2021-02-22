@@ -1,4 +1,4 @@
-# 数据及加载常见问题
+# 数据及其加载常见问题
 
 
 ##### 问题：如何在训练过程中高效读取数量很大的数据集？
@@ -11,13 +11,13 @@ paddle1.8中推荐使用两个异步数据加载的API：
 
 该API提供了单线程和单进程的异步加载支持。但由于线程和进程数目不可配置，所以异步加速能力是有限的，适用于数据读取负载适中的场景。
 
-具体使用方法及示例请参考API文档：[fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/DataLoader_cn.html#id1)。
+具体使用方法及示例请参考API文档：[fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/io_cn/DataLoader_cn.html#from-generator-feed-list-none-capacity-none-use-double-buffer-true-iterable-true-return-list-false-use-multiprocess-false-drop-last-true)。
 
 2. DataLoader，灵活的异步加载
 
 该API提供了多进程的异步加载支持，也是paddle后续主推的数据读取方式。用户可通过配置num_workers指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
 
-具体使用方法及示例请参考API文档：[fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader)
+具体使用方法及示例请参考API文档：[fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/io_cn/DataLoader_cn.html#paddle.fluid.io.DataLoader)
 
 ----------
 
@@ -25,14 +25,14 @@ paddle1.8中推荐使用两个异步数据加载的API：
 
 + 答复：paddle1.8中多卡训练时设置异步读取和单卡场景并无太大差别，动态图模式下，由于目前仅支持多进程多卡，每个进程将仅使用一个设备，比如一张GPU卡，这种情况下，与单卡训练无异，只需要确保每个进程使用的是正确的卡即可。
 
-具体示例请参考飞桨API [fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/io_cn/DataLoader_cn.html#id1) 和 [fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/en/api/io/DataLoader.html#dataloader) 中的示例。
+具体示例请参考飞桨API [fluid.io.DataLoader.from_generator](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/io_cn/DataLoader_cn.html#from-generator-feed-list-none-capacity-none-use-double-buffer-true-iterable-true-return-list-false-use-multiprocess-false-drop-last-true) 和 [fluid.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/io_cn/DataLoader_cn.html#paddle.fluid.io.DataLoader) 中的示例。
 
 ----------
 
 
 ##### 问题：有拓展Tensor维度的Op吗？
 
-+ 答复：请参考API [paddle.fluid.layers.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/unsqueeze_cn.html)。
++ 答复：请参考API [paddle.fluid.layers.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/layers_cn/unsqueeze_cn.html#paddle.fluid.layers.unsqueeze)。
 
 ----------
 
@@ -41,7 +41,7 @@ paddle1.8中推荐使用两个异步数据加载的API：
 
 + 答复：如果是在进入paddle计算流程之前，数据仍然是numpy.array的形式，使用numpy接口`numpy.expand_dims`为图片数据增加维度后，再通过`numpy.reshape`进行操作即可，具体使用方法可查阅numpy的官方文档。
 
-如果是希望在模型训练或预测流程中完成通道的操作，可以使用paddle对应的API [paddle.fluid.layers.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/unsqueeze_cn.html#unsqueeze) 和 [paddle.fluid.layers.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/reshape_cn.html#reshape)。
+如果是希望在模型训练或预测流程中完成通道的操作，可以使用paddle对应的API [paddle.fluid.layers.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/layers_cn/unsqueeze_cn.html#paddle.fluid.layers.unsqueeze) 和 [paddle.fluid.layers.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/layers_cn/reshape_cn.html#reshape)。
 
 ----------
 
