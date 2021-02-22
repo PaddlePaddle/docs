@@ -290,14 +290,14 @@ parameters(*args, **kwargs)
     params = model.parameters()
 
 
-prepare(optimizer=None, loss_function=None, metrics=None)
+prepare(optimizer=None, loss=None, metrics=None)
 '''''''''
 
 配置模型所需的部件，比如优化器、损失函数和评价指标。
 
 参数：
     - **optimizer** (Optimizer) - 当训练模型的，该参数必须被设定。当评估或测试的时候，该参数可以不设定。默认值：None。
-    - **loss_function** (Loss) - 当训练模型的，该参数必须被设定。默认值：None。
+    - **loss** (Loss) - 当训练模型的，该参数必须被设定。默认值：None。
     - **metrics** (Metric|list[Metric]) - 当该参数被设定时，所有给定的评估方法会在训练和测试时被运行，并返回对应的指标。默认值：None。
 
 
