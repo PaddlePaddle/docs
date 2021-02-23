@@ -12,6 +12,7 @@ paddle.amp 目录下包含飞桨框架支持的动态图自动混合精度(AMP)�
 
 
 .. _about_amp:
+
 AMP相关API
 ::::::::::::::::::::
 
@@ -23,6 +24,7 @@ AMP相关API
     " :ref:`GradScaler <cn_api_amp_GradScaler>` ", "控制loss的缩放比例"
     
 .. _about_amp_white_list_ops:
+
 开启AMP后默认转化为float16计算的相关OP
 :::::::::::::::::::::::
 
@@ -36,6 +38,7 @@ AMP相关API
     "mul", "矩阵乘法"
 
 .. _about_amp_black_list_ops:
+
 开启AMP后默认使用float32计算的相关OP
 :::::::::::::::::::::::
 
