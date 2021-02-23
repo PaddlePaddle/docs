@@ -22,6 +22,7 @@ paddle 目录下包含tensor、device、framework相关API以及某些高层API�
 
 
 .. _tensor_math:
+
 tensor数学操作
 ::::::::::::::::::::
 
@@ -99,6 +100,7 @@ tensor数学操作
     " :ref:`paddle.var <cn_api_tensor_cn_var>` ", "沿给定的轴 axis 计算 x 中元素的方差"
 
 .. _tensor_logic:
+
 tensor逻辑操作
 ::::::::::::::::::::
 
@@ -113,6 +115,7 @@ tensor逻辑操作
     " :ref:`paddle.isnan <cn_api_tensor_isnan>` ", "返回输入tensor的每一个值是否为 +/-NaN"
 
 .. _tensor_attribute:
+
 tensor属性相关
 ::::::::::::::::::::
 
@@ -125,6 +128,7 @@ tensor属性相关
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入Tensor或SelectedRows的shape"
 
 .. _tensor_creation:
+
 tensor创建相关
 ::::::::::::::::::::
 
@@ -150,6 +154,7 @@ tensor创建相关
     " :ref:`paddle.zeros_like <cn_api_fluid_layers_zeros_like>` ", "该OP返回一个和 x 具有相同的形状的全零Tensor，数据类型为 dtype 或者和 x 相同"
 
 .. _tensor_search:
+
 tensor元素查找相关
 ::::::::::::::::::::
 
@@ -169,6 +174,7 @@ tensor元素查找相关
     " :ref:`paddle.where <cn_api_fluid_layers_where>` ", "该OP返回一个根据输入 condition, 选择 x 或 y 的元素组成的多维 Tensor"
 
 .. _tensor_initializer:
+
 tensor初始化相关
 ::::::::::::::::::::
 
@@ -179,6 +185,7 @@ tensor初始化相关
     " :ref:`paddle.assign <cn_api_fluid_layers_assign>` ", "将输入Tensor或numpy数组拷贝至输出Tensor"
 
 .. _tensor_random:
+
 tensor random相关
 ::::::::::::::::::::
 
@@ -197,6 +204,7 @@ tensor random相关
     " :ref:`paddle.uniform <cn_api_tensor_uniform>` ", "返回数值服从范围[min, max)内均匀分布的随机Tensor"
 
 .. _tensor_linalg:
+
 tensor线性代数相关
 ::::::::::::::::::::
 
@@ -219,6 +227,7 @@ tensor线性代数相关
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为0"
 
 .. _tensor_manipulation:
+
 tensor元素操作相关（如：转置，reshape等）
 ::::::::::::::::::::
 
@@ -255,6 +264,7 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.unstack <cn_api_fluid_layers_unstack>` ", "该OP将单个dim为 D 的Tensor沿 axis 轴unpack为 num 个dim为 (D-1) 的Tensor"
 
 .. _about_framework:
+
 framework相关
 ::::::::::::::::::::
 
@@ -293,6 +303,7 @@ device相关
     " :ref:`paddle.XPUPlace <cn_api_fluid_XPUPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 的 Baidu Kunlun XPU 设备"
 
 .. _about_hapi:
+
 高层API相关
 ::::::::::::::::::::
 

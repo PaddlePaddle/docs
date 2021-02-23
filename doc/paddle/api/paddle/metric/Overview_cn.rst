@@ -10,6 +10,7 @@ paddle.metric 目录下包含飞桨框架支持的评估器API。具体如下：
 
 
 .. _about_metric_class:
+
 评估器类相关API
 ::::::::::::::::::::
 
@@ -24,6 +25,7 @@ paddle.metric 目录下包含飞桨框架支持的评估器API。具体如下：
     " :ref:`Recall <cn_api_metric_Recall>` ", "召回率评估器类"
 
 .. _about_metric_method:
+
 评估器函数相关API
 ::::::::::::::::::::
 

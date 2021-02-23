@@ -11,6 +11,7 @@ paddle.optimizer 目录下包含飞桨框架支持的优化器算法相关的API
 
 
 .. _about_optimizer:
+
 优化器算法相关API
 ::::::::::::::::::::
 
@@ -30,6 +31,7 @@ paddle.optimizer 目录下包含飞桨框架支持的优化器算法相关的API
     " :ref:`SGD <cn_api_paddle_optimizer_SGD>` ", "SGD优化器"
     
 .. _about_lr:
+
 学习率衰减相关API
 :::::::::::::::::::::::
 
