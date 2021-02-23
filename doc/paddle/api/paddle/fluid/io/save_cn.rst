@@ -3,7 +3,7 @@
 save
 -------------------------------
 
-.. py:function:: paddle.static.save(program, model_path)
+.. py:function:: paddle.static.save(program, model_path, pickle_protocol=2)
 
 :api_attr: 声明式编程模式（静态图)
 
@@ -19,6 +19,7 @@ save
 参数:
  - **program**  ( :ref:`cn_api_fluid_Program` ) – 要保存的Program。
  - **model_path**  (str) – 保存program的文件前缀。格式为 ``目录名称/文件前缀``。如果文件前缀为空字符串，会引发异常。
+ - **pickle_protocol**  (int, 可选) – pickle模块的协议版本，默认值为2，取值范围是[2,4]。
 
 返回: 无
 
