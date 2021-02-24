@@ -17,6 +17,7 @@ load
 
     1. 编译器的 ABI 兼容性是向前兼容的，Linux 下推荐使用 GCC 8.2 高版本作为 ``/usr/bin/cc`` 命令的软链对象。
     2. Linux 下可通过 ``which cc`` 查看 ``cc`` 命令的位置；使用 ``cc --version`` 查看对应的 GCC 版本。
+    3. 目前支持 Linux 和 Windows 平台， MacOS 平台正在支持中。
 
 
 **使用样例如下：**
