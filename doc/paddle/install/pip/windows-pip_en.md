@@ -22,7 +22,7 @@
   where python
   ```
 
-  
+
 
 
 * You need to confirm whether the version of Python meets the requirements
@@ -219,13 +219,13 @@ You can choose the following version of PaddlePaddle to start installation:
 If you want to install PaddlePaddle which support CUDA10.2 with cuDNN v7.4+,you can use the following command:
 
   ```
-  python -m pip install paddlepaddle_gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
   ```
 
 The above commands install the `avx` package by default. If you want to install the `noavx` package, please use `-f https://paddlepaddle.org.cn/whl/stable/noavx.html`.
 For example, to install PaddlePaddle that supports CUDA 10.2 with noavx, please use the following command:
   ```
-  python -m pip install paddlepaddle_gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable/noavx.html
+  python -m pip install paddlepaddle-gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable/noavx.html
   ```
 
 If you want to install the Paddle package built with `tensorrt`, please use the following command:
