@@ -108,17 +108,15 @@ You can choose the following version of PaddlePaddle to start installation:
 
 * Please use the following command to install PaddlePaddle：
 
-* If you are using Python 2:
 
 ```
 python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
 ```
 
-* If you are using Python 3:
+Note：
 
-```
-python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
-```
+
+* Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
 
 
 
