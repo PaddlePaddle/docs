@@ -62,8 +62,8 @@ setup
 参数：
   - **name** (string) - 用于指定生成的动态链接库的名称，以及安装到 site-packages 的 ``Module`` 名字
   - **ext_modules** (Extension): 用于指定包含自定义 OP 必要源文件、编译选项等信息的 ``Extension`` 。若只编译运行在 CPU 设备上的 OP，请使用 :ref:`cn_api_paddle_utils_cpp_extension_CppExtension` ; 若编译同时支持 GPU 设备上的 OP， 请使用 :ref:`cn_api_paddle_utils_cpp_extension_CUDAExtension` 。
-  - **include_dirs** (list[str]): 用于指定编译自定义 OP 时额外的头文件搜索目录。此接口默认会自动添加 ``site-packages/paddle/include`` 目录。若自定义 OP 源码引用了其他三方库文件，可以通过此参数指定三方库的搜索目录。
-  - **extra_compile_args** (list[str] | dict): 用于指定编译自定义 OP 时额外的编译选项，如 ``-O3`` 等。若为 ``list[str]`` 类型，则表示这些编译选项会同时应用到 ``cc`` 和 ``nvcc`` 编译过程；可以通过 ``{'cxx': [...], 'nvcc': [...]}`` 字典的形式单独指定额外的 ``cc`` 或 ``nvcc`` 的编译选项。
-  - **\*\*attr** (dict) - 其他参数与 ``setuptools.setup`` 一致。
+  - **include_dirs** (list[str], 可选): 用于指定编译自定义 OP 时额外的头文件搜索目录。此接口默认会自动添加 ``site-packages/paddle/include`` 目录。若自定义 OP 源码引用了其他三方库文件，可以通过此参数指定三方库的搜索目录。
+  - **extra_compile_args** (list[str] | dict, 可选): 用于指定编译自定义 OP 时额外的编译选项，如 ``-O3`` 等。若为 ``list[str]`` 类型，则表示这些编译选项会同时应用到 ``cc`` 和 ``nvcc`` 编译过程；可以通过 ``{'cxx': [...], 'nvcc': [...]}`` 字典的形式单独指定额外的 ``cc`` 或 ``nvcc`` 的编译选项。
+  - **\*\*attr** (dict, 可选) - 其他参数与 ``setuptools.setup`` 一致。
 
 返回：None
