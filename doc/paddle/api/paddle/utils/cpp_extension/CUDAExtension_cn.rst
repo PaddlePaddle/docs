@@ -21,7 +21,7 @@ CUDAExtension
     setup(
         name='custom_op',
         ext_modules=CUDAExtension(
-            sources=['relu_op.cc', 'relu_op.cu',
+            sources=['relu_op.cc', 'relu_op.cu']
         )
     )
 

@@ -40,7 +40,7 @@ load
 
 
 参数：
-  - **name** (str): 用于指定斌自定义 OP 编译后，生成的动态链接库的名字，不包括后缀如 .so 或者 .dll
+  - **name** (str): 用于指定编译自定义 OP 时，生成的动态链接库的名字，不包括后缀如 .so 或者 .dll
   - **sources** (list[str]): 用于指定自定义 OP 对应的源码文件。cpp 源文件支持 .cc、.cpp 等后缀；cuda 源文件以 .cu 为后缀。
   - **extra_cxx_cflags** (list[str]): 用于指定编译 cpp 源文件时额外的编译选项。默认情况下，Paddle 框架相关的必要选项均已被隐式地包含；若预装的 Paddle 是支持 MKLDNN 的，则需要在此参数中额外指定 ``-DPADDLE_WITH_MKLDNN`` 。
   - **extra_cuda_cflags** (list[str]): 用于指定编译 cuda 源文件时额外的编译选项。默认情况下，Paddle 框架相关的必要选项均已被隐式地包含；若预装的 Paddle 是支持 MKLDNN 的，则需要在此参数中额外指定 ``-DPADDLE_WITH_MKLDNN`` 。 ``nvcc`` 相关的编译选项请参考：https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html
