@@ -20,7 +20,7 @@ paddle.utils 目录下包含飞桨框架工具类的API。具体如下：
     :widths: 10, 30
 
     " :ref:`load <cn_api_paddle_utils_cpp_extension_load>` ", "飞桨框架一键编译自定义OP、自动生成和返回Python API的接口"
-    " :ref:`setup <cn_api_paddle_utils_cpp_extension_setup>` ", "飞桨框架编译自定义OP、并install到Python site-package目录的接口"
+    " :ref:`setup <cn_api_paddle_utils_cpp_extension_setup>` ", "飞桨框架编译自定义OP、并安装到site-package目录的接口"
     " :ref:`CppExtension <cn_api_paddle_utils_cpp_extension_CppExtension>` ", "飞桨框架编译仅支持CPU的自定义OP扩展类"
     " :ref:`CUDAExtension <cn_api_paddle_utils_cpp_extension_CUDAExtension>` ", "飞桨框架编译支持GPU的自定义OP扩展类"
     " :ref:`get_build_directory <cn_api_paddle_utils_cpp_extension_get_build_directory>` ", "返回一键编译自定义OP的build目录"
