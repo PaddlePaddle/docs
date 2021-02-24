@@ -229,8 +229,7 @@ def parse_module_file(mod):
                                             n,
                                             'name') and n.name == '__init__':
                                         api_info_dict[obj_id][
-                                            "args"] = gen_functions_args_str(
-                                                node)
+                                            "args"] = gen_functions_args_str(n)
                                         break
                         else:
                             logger.debug("%s omitted", obj_full_name)
