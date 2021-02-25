@@ -83,6 +83,6 @@ paddle.distributed.fleet是分布式训练的统一入口API，用于配置分�
     " :ref:`all_reduce <cn_api_distributed_all_reduce>` ", "组规约，规约进程组内的tensor，结果广播至每个进程"
     " :ref:`all_gather <cn_api_distributed_all_gather>` ", "组聚合，聚合进程组内的tensor，结果广播至每个进程"
     " :ref:`broadcast <cn_api_distributed_broadcast>` ", "广播一个tensor到每个进程"
-    " :ref:`scatter <cn_api_distributed_scatter` ", "分发tensor到每个进程"
+    " :ref:`scatter <cn_api_distributed_scatter>` ", "分发tensor到每个进程"
     " :ref:`split <cn_api_distributed_split>` ", "切分参数到多个设备"
     " :ref:`barrier <cn_api_distributed_barrier>` ", "同步路障，进行阻塞操作，实现组内所有进程的同步"
