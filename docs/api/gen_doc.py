@@ -383,7 +383,7 @@ def set_display_attr_of_apis():
                 logger.info("set {} display to False".format(id_api))
 
 
-# step 4 fill field : alias_name
+# step 4 fill field : alias_name, use the first name in alias_name as suggested name and doc_filename
 def set_real_api_alias_attr():
     """
     set the full_name,alias attr and so on.
@@ -401,6 +401,8 @@ def set_real_api_alias_attr():
             continue
         real_api = lineparts[0].strip()
         docpath_from_real_api = real_api.replace('.', '/')
+        sn = get_suggested_name(lineparts[1])
+        doc_filename = sn.replace('.', '/') if sn else docpath_from_real_api
         if real_api == 'paddle.tensor.creation.Tensor':
             real_api = 'paddle.Tensor'
         if real_api.endswith('Overview'):
@@ -428,16 +430,16 @@ def set_real_api_alias_attr():
                             'paddle.tensor.creation.Tensor')
                     if "doc_filename" not in api_info_dict[api_id]:
                         api_info_dict[api_id][
-                            "doc_filename"] = docpath_from_real_api
+                            "doc_filename"] = doc_filename
                     else:
                         if api_info_dict[api_id][
-                                "doc_filename"] != docpath_from_real_api:
+                                "doc_filename"] != doc_filename:
                             logger.warning(
                                 "doc_filename changes from %s to %s",
                                 api_info_dict[api_id]["doc_filename"],
-                                docpath_from_real_api)
+                                doc_filename)
                             api_info_dict[api_id][
-                                "doc_filename"] = docpath_from_real_api
+                                "doc_filename"] = doc_filename
                     if "module_name" not in api_info_dict[
                             api_id] or "short_name" not in api_info_dict[
                                 api_id]:
@@ -497,6 +499,14 @@ def collect_referenced_from_infos(docdirs):
     global referenced_from_apis_dict, referenced_from_file_titles
     referenced_from_apis_dict, referenced_from_file_titles = extract_api_from_docs.extract_all_infos(
         docdirs)
+
+
+def get_suggested_name(apis_str):
+    """
+    use the first name in the list as the suggested_name.
+    """
+    apis = apis_str.split(",")
+    return apis[0].strip() if len(apis) > 0 else None
 
 
 def get_shortest_api(api_list):
