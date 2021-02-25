@@ -37,15 +37,15 @@
     > 需要安装`numpy, protobuf, wheel` 。 请使用`pip`命令;
 
     * 安装 numpy 包可以通过命令
-        ```
+        ```bash
         pip install numpy
         ```
     * 安装 protobuf 包可以通过命令
-        ```
+        ```bash
         pip install protobuf
         ```
     * 安装 wheel 包可以通过命令
-        ```
+        ```bash
         pip install wheel
         ```
 
@@ -53,16 +53,16 @@
 
 2. 将PaddlePaddle的源码clone在当前目录下的Paddle的文件夹中，并进入Padde目录下：
 
-    ```
+    ```bash
     git clone https://github.com/PaddlePaddle/Paddle.git
     ```
-    ```
+    ```bash
     cd Paddle
     ```
 
 3. 切换到`develop`分支下进行编译：
 
-    ```
+    ```bash
     git checkout develop
     ```
 
@@ -70,10 +70,10 @@
 
 4. 创建名为build的目录并进入：
 
-    ```
+    ```bash
     mkdir build
     ```
-    ```
+    ```bash
     cd build
     ```
 
@@ -83,13 +83,13 @@
 
     *  编译**CPU版本PaddlePaddle**：
 
-        ```
+        ```bash
         cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     *  编译**GPU版本PaddlePaddle**：
 
-        ```
+        ```bash
         cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
@@ -105,7 +105,7 @@
 
     例如：（仅作示例，请根据你的设备路径信息进行设置）
 
-    ```
+    ```bash
     cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\v10.0"
     ```
 
@@ -113,13 +113,13 @@
 
 7. 编译成功后进入 `\Paddle\build\python\dist` 目录下找到生成的 `.whl` 包：
 
-    ```
+    ```bash
     cd \Paddle\build\python\dist
     ```
 
 8. 安装编译好的 `.whl` 包：
 
-    ```
+    ```bash
     pip install -U（whl包的名字）
     ```
 
@@ -127,11 +127,11 @@
 
 ## **验证安装**
 安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入
-```
+```python3
 import paddle
 ```
 再输入
-```
+```python3
 paddle.utils.run_check()
 ```
 
@@ -141,11 +141,11 @@ paddle.utils.run_check()
 请使用以下命令卸载PaddlePaddle：
 
 * **CPU版本的PaddlePaddle**:
-    ```
+    ```bash
     python -m pip uninstall paddlepaddle
     ```
 
 * **GPU版本的PaddlePaddle**:
-    ```
+    ```bash
     python -m pip uninstall paddlepaddle-gpu
     ```
