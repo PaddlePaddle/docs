@@ -48,12 +48,12 @@ def get_all_api(root_path='paddle', attr="__all__"):
     api_counter = 0
     for filefinder, name, ispkg in pkgutil.walk_packages(
             path=paddle.__path__, prefix=paddle.__name__ + '.'):
-        # skip the paddle.reader APIs
-        if name.startswith("paddle.reader"):
-            continue
-
         try:
-            m = eval(name)
+            #m = eval(name)
+            if name in sys.modules:
+                m = sys.modules[name]
+            else:
+                continue
         except AttributeError:
             logger.warning("AttributeError occurred when `eval(%s)`", name)
             pass
@@ -75,6 +75,8 @@ def process_module(m, attr="__all__"):
             # Exception occurred when `id(eval(paddle.dataset.conll05.test, get_dict))`
             if ',' in api: continue
 
+            # api's fullname
+            full_name = m.__name__ + "." + api
             try:
                 obj = eval(full_name)
                 fc_id = id(obj)
@@ -350,88 +352,29 @@ def set_real_api_alias_attr():
                     api_info_dict[api_id]["module_name"] = mod_name
                     api_info_dict[api_id]["short_name"] = short_name
 
-        if is_not_display_apis(same_apis):
-            del same_api_map[k]
-    print('filtered same_api_map has {} items'.format(len(same_api_map)))
 
-
-def choose_real_api(api_list):
-    global id_real_api_map
+def get_shortest_api(api_list):
+    """
+    find the shortest api in list.
+    """
     if len(api_list) == 1:
         return api_list[0]
+    # try to find shortest path of api as the real api
+    shortest_len = len(api_list[0].split("."))
+    shortest_api = api_list[0]
+    for x in api_list[1:]:
+        len_x = len(x.split("."))
+        if len_x < shortest_len:
+            shortest_len = len_x
+            shortest_api = x
 
-    id_api = id(eval(api_list[0]))
-    # the api in id_real_api_map, return real_api
-    if id_api in id_real_api_map:
-        return id_real_api_map[id_api]
-    else:
-        # in case of alias_mapping not contain the apis
-        # try to find shortest path of api as the real api
-        shortest_len = len(api_list[0].split("."))
-        shortest_api = api_list[0]
-        for x in api_list[1:]:
-            len_x = len(x.split("."))
-            if len_x < shortest_len:
-                shortest_len = len_x
-                shortest_api = x
-
-        return shortest_api
+    return shortest_api
 
 
-# check if any of the same apis in display list
-def is_display_apis(api_list):
-    global display_doc_map
-    for api in api_list:
-        if api in display_doc_map:
-            return True
-    return False
-
-
-# check api in not_display_list
-def is_not_display_apis(api_list):
-    global not_display_doc_map
-    for api in api_list:
-        for key in not_display_doc_map:
-            if key == api:
-                return True
-            # filter all the the module
-            if api.startswith(key) and api[len(key)] == '.':
-                return True
-    return False
-
-
-def gen_en_files(root_path='paddle', api_label_file="api_label"):
-    api_f = open(api_label_file, 'w')
-
-    for api_list in same_api_map.values():
-        real_api = choose_real_api(api_list)
-
-        module_name = ".".join(real_api.split(".")[0:-1])
-        doc_file = real_api.split(".")[-1]
-
-        if isinstance(eval(real_api), types.ModuleType):
-            continue
-
-        path = "/".join(real_api.split(".")[0:-1])
-        if not os.path.exists(path):
-            os.makedirs(path)
-        f = real_api.replace(".", "/") + en_suffix
-        if os.path.exists(f):
-            continue
-
-        # os.mknod(f) # gen.guard will open it
-        gen = EnDocGenerator()
-        with gen.guard(f):
-            gen.module_name = module_name
-            gen.api = doc_file
-            gen.print_header_reminder()
-            gen.print_item()
-            api_f.write(doc_file + "\t" + ".. _api_{0}_{1}:\n".format("_".join(
-                gen.module_name.split(".")), gen.api))
-    api_f.close()
-
-
-def clean_en_files(path="./paddle"):
+def remove_all_en_files(path="./paddle"):
+    """
+    remove all the existed en doc files
+    """
     for root, dirs, files in os.walk(path):
         for file in files:
             if file.endswith(en_suffix):
@@ -472,34 +415,48 @@ def gen_en_files(api_label_file="api_label"):
 
 
 def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
-    fo = open(diff_file, 'w')
-    fo.write("exist\tnot_exits\n")
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            if file.endswith(en_suffix):
-                cf = file.replace(en_suffix, cn_suffix)
-                if not os.path.exists(root + "/" + cf):
-                    fo.write(
-                        os.path.join(root, file) + "\t" + os.path.join(
-                            root, cf) + "\n")
-
-            elif file.endswith(cn_suffix):
-                ef = file.replace(cn_suffix, en_suffix)
-                if not os.path.exists(root + "/" + ef):
-                    fo.write(
-                        os.path.join(root, file) + "\t" + os.path.join(
-                            root, ef) + "\n")
-    fo.close()
+    """
+    skip
+    """
+    osp_join = os.path.join
+    osp_exists = os.path.exists
+    with open(diff_file, 'w') as fo:
+        tmpl = "{}\t{}\n"
+        fo.write(tmpl.format("exist", "not_exits"))
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                if file.endswith(en_suffix):
+                    cf = file.replace(en_suffix, cn_suffix)
+                    if not osp_exists(osp_join(root, cf)):
+                        fo.write(
+                            tmpl.format(
+                                osp_join(root, file), osp_join(root, cf)))
+                elif file.endswith(cn_suffix):
+                    ef = file.replace(cn_suffix, en_suffix)
+                    if not osp_exists(osp_join(root, ef)):
+                        fo.write(
+                            tmpl.format(
+                                osp_join(root, file), osp_join(root, ef)))
 
 
 class EnDocGenerator(object):
+    """
+    skip
+    """
+
     def __init__(self, name=None, api=None):
+        """
+        init
+        """
         self.module_name = name
         self.api = api
         self.stream = None
 
     @contextlib.contextmanager
     def guard(self, filename):
+        """
+        open the file
+        """
         assert self.stream is None, "stream must be None"
         self.stream = open(filename, 'w')
         yield
@@ -507,6 +464,9 @@ class EnDocGenerator(object):
         self.stream = None
 
     def print_item(self):
+        """
+        as name
+        """
         try:
             m = eval(self.module_name + "." + self.api)
         except AttributeError:
@@ -522,16 +482,25 @@ class EnDocGenerator(object):
                 self.print_function()
 
     def print_header_reminder(self):
+        """
+        as name
+        """
         self.stream.write('''..  THIS FILE IS GENERATED BY `gen_doc.{py|sh}`
     !DO NOT EDIT THIS FILE MANUALLY!
 
 ''')
 
     def _print_ref_(self):
+        """
+        as name
+        """
         self.stream.write(".. _api_{0}_{1}:\n\n".format("_".join(
             self.module_name.split(".")), self.api))
 
     def _print_header_(self, name, dot, is_title):
+        """
+        as name
+        """
         dot_line = dot * len(name)
         if is_title:
             self.stream.write(dot_line)
@@ -543,6 +512,9 @@ class EnDocGenerator(object):
         self.stream.write('\n')
 
     def print_class(self):
+        """
+        as name
+        """
         self._print_ref_()
         self._print_header_(self.api, dot='-', is_title=False)
 
@@ -587,6 +559,9 @@ class EnDocGenerator(object):
         self.stream.write(cls_templates[tmpl].format(api_full_name))
 
     def print_function(self):
+        """
+        as name
+        """
         self._print_ref_()
         self._print_header_(self.api, dot='-', is_title=False)
         self.stream.write('''..  autofunction:: {0}.{1}
