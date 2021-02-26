@@ -21,7 +21,7 @@ paddle.distributed.fleet是分布式训练的统一入口API，用于配置分�
     :header: "API名称", "API功能"
     :widths: 20, 50
 
-    " :ref:`UserDefinedRoleMaker <cn_api_distributed_fleet_UserDefinedRoleMaker>` ", "设置和获取用户自定义的集群信息，支持集合通信"
+    " :ref:`UserDefinedRoleMaker <cn_api_distributed_fleet_UserDefinedRoleMaker>` ", "设置和获取用户自定义的集群信息，支持集合通信（Collective）及参数服务器（ParameterServer）两种训练架构的初始化"
     " :ref:`PaddleCloudRoleMaker <cn_api_distributed_fleet_PaddleCloudRoleMaker>` ", "设置和获取paddlecloud集群信息（百度内部集群使用），支持集合通信（Collective）及参数服务器（ParameterServer）两种训练架构的初始化"
     " :ref:`DistributedStrategy <cn_api_distributed_fleet_DistributedStrategy>` ", "配置分布式通信、计算和内存优化等策略"
     " :ref:`fleet.init <cn_api_distributed_fleet_Fleet>` ", "进行分布式训练配置并初始化 "
