@@ -5,7 +5,7 @@ BilinearInitializer
 
 .. py:class:: paddle.fluid.initializer.BilinearInitializer())
 
-该接口为参数初始化函数，用于转置卷积函数中，对输入进行上采样。用户通过任意整型因子放大shape为(B，C，H，W)的特征图。
+test ci 该接口为参数初始化函数，用于转置卷积函数中，对输入进行上采样。用户通过任意整型因子放大shape为(B，C，H，W)的特征图。
 
 返回
 ::::::::::::
