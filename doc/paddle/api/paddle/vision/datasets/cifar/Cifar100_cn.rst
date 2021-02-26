@@ -14,7 +14,7 @@ Cifar100
         - mode (str) - ``'train'`` 或 ``'test'`` 模式，默认为 ``'train'`` 。
         - transform (callable) - 图片数据的预处理，若为 ``None`` 即为不做预处理。默认值为 ``None``。
         - download (bool) - 当 ``data_file`` 是 ``None`` 时，该参数决定是否自动下载数据集文件。默认为 ``True`` 。
-
+        - backend (str, optional) - 指定要返回的图像类型：PIL.Image或numpy.ndarray。必须是{'pil'，'cv2'}中的值。如果未设置此选项，将从paddle.vsion.get_image_backend获得这个值。 默认值： ``None`` 。
 返回
 :::::::::
 
