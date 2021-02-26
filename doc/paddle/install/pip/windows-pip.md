@@ -29,11 +29,15 @@
 
   * 如果您是使用 Python 2，使用以下命令确认是 2.7.15+
 
-        python --version
+    ```
+    python --version
+    ```
 
   * 如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7/3.8
 
-        python3 --version
+    ```
+    python3 --version
+    ```
 
 * 需要确认pip的版本是否满足要求，要求pip版本为20.2.2+
 

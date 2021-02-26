@@ -318,7 +318,7 @@ fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_fr
     - **verbose** (int) - 可视化的模型，必须为0，1，2。当设定为0时，不打印日志，设定为1时，使用进度条的方式打印日志，设定为2时，一行一行地打印日志。默认值：2。
     - **drop_last** (bool) - 是否丢弃训练数据中最后几个不足设定的批次大小的数据。默认值：False。
     - **shuffle** (bool) - 是否对训练数据进行洗牌。当 ``train_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：True。
-    - **num_workers** (int) - 启动子进程用于读取数据的数量。当 ``train_data`` 和 ``eval_data`` 都为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：True。
+    - **num_workers** (int) - 启动子进程用于读取数据的数量。当 ``train_data`` 和 ``eval_data`` 都为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：0。
     - **callbacks** (Callback|list[Callback]|None) -  ``Callback`` 的一个实例或实例列表。该参数不给定时，默认会插入 ``ProgBarLogger`` 和 ``ModelCheckpoint`` 这两个实例。默认值：None。
 
 返回：None
