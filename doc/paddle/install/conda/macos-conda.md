@@ -51,7 +51,7 @@ conda create -n paddle_env python=3.8
 for Windows
 
 ```
-activate paddle_env
+conda activate paddle_env
 ```
 
 for MacOS/Linux
