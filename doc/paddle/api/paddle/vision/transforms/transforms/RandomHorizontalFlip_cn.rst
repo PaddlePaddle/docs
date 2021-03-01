@@ -10,7 +10,7 @@ RandomHorizontalFlip
 参数
 :::::::::
 
-    - prob (float) - 图片执行水平翻转的概率，默认值为0.5。
+    - prob (float) - 图片执行水平翻转的概率，取值范围为[0, 1], 默认值为0.5。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
 返回
@@ -27,7 +27,7 @@ RandomHorizontalFlip
     from PIL import Image
     from paddle.vision.transforms import RandomHorizontalFlip
 
-    transform = RandomHorizontalFlip(224)
+    transform = RandomHorizontalFlip(0.5)
 
     fake_img = Image.fromarray((np.random.rand(300, 320, 3) * 255.).astype(np.uint8))
 
