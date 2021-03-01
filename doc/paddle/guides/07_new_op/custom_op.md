@@ -1,6 +1,6 @@
-# 如何在框架外部自定义C++ OP
+# 自定义外部算子（旧）
 
-
+> WARNING：这种自定义Op的方式在2.1版本将被废弃，推荐使用新自定义Op方案[《自定义外部算子（新）》](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/new_custom_op.html)
 
 通常，如果PaddlePaddle的Operator(OP)库中没有您所需要的操作，建议先尝试使用已有的OP组合，如果无法组合出您需要的操作，可以尝试使用`paddle.static.py_func`，也可以按照这篇教程自定义C++ OP。当然，如果用若干OP组合出来的OP性能无法满足您的要求，也可以自定义C++ OP。
 
