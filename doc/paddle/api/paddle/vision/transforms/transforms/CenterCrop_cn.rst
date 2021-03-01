@@ -33,4 +33,4 @@ CenterCrop
 
     fake_img = transform(fake_img)
     print(fake_img.size)
-    # out: (100, 150) width,height
+    # out: (224, 224) width,height
