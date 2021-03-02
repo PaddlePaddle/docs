@@ -1,4 +1,3 @@
-
 <h1 align="center">FluidDoc</h1>
 
 [English](./README.md) | 简体中文
