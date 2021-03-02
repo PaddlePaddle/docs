@@ -96,7 +96,7 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, .
         - 用于获取当前Tensor所处的CUDA Stream（仅在GPU编译版本中生效）
         - 仅能够获取函数输入Tensor的stream
 
-> 注：后续会继续扩展其他API，API的声明详见 `paddle/paddle/fluid/extension/include/` 目录下的头文件
+> 注：后续会继续扩展其他API，API的声明详见 [Paddle Extension Headers in 2.0](https://github.com/PaddlePaddle/Paddle/tree/release/2.0/paddle/fluid/extension/include) 。
 
 对函数签名以及基础API的定义有了初步认识后，下面结合具体的示例进行介绍。
 
@@ -643,7 +643,6 @@ Finished processing dependencies for custom-setup-ops==0.0.0
 `custom_setup_ops-0.0.0-py3.7-linux-x86_64.egg` 目录中内容如下：
 
 ```
-_ops-0.0.0-py3.7-linux-x86_64.egg
 custom_setup_ops_pd_.so  EGG-INFO/     relu_cpu.o      relu_cuda.o
 custom_setup_ops.py      __pycache__/  relu_cuda.cu.o  version.txt
 ```
@@ -740,12 +739,12 @@ out = custom_ops.custom_relu(x)
 
 `load` 返回一个包含自定义算子API的 `Module` 对象，可以直接使用自定义算子name调用API。
 
-以Linux平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，会默认在 `/root/.cache/paddle_extensions` 目录下先生成一个 `{name}_setup.py`，然后通过subprocess执行 `python {name}_setup.py build`，后续过程与前述 setuptools 编译安装过程一致。
+以Linux平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，会默认在 `~/.cache/paddle_extensions` 目录下先生成一个 `{name}_setup.py`，然后通过subprocess执行 `python {name}_setup.py build`，后续过程与前述 setuptools 编译安装过程一致。
 
 对于本示例，默认生成路径内容如下：
 
 ```
-λ ls /root/.cache/paddle_extensions/
+λ ls ~/.cache/paddle_extensions/
 custom_jit_ops/  custom_jit_ops_setup.py
 ```
 
@@ -967,7 +966,7 @@ static.save_inference_model(path, [image], [out], exe)
 
 ### 源码改动
 
-由于接口管理上存在一些差别，自定义算子源码中的引入的头文件需要替换一下：
+由于接口管理上存在一些差别，自定义算子 `relu_cuda.cc` 源码中的引入的头文件需要替换一下：
 
 `#include "paddle/extension.h"`
 
@@ -977,9 +976,26 @@ static.save_inference_model(path, [image], [out], exe)
 
 其他地方不需要做改动。
 
-### 自定义算子与推理库联合编译
+### 算子与推理库联合编译
 
-编写推理的测试程序，其中需要使用前述验证过程中存储的inference model，目录为 `custom_relu_dynamic/net` 或者 `custom_relu_static/net` ，具体示例如下：
+编写推理的测试程序，其中需要使用前述验证过程中存储的inference model，目录为 `custom_relu_dynamic/net` 或者 `custom_relu_static/net` ，下面通过示例介绍使用流程，该示例的目录结构为：
+
+```
+- cmake
+  - external
+    - boost.cmake
+- CMakeLists.txt
+- custom_op_test.cc
+- relu_cuda.cc
+- relu_cuda.cu
+- run.sh
+```
+
+下面依次对各新增文件进行介绍。
+
+#### 编写推理程序
+
+下面是一个简单的推理Demo，导入前述 `custom_relu_dynamic/net` 中存储的模型和参数：
 
 ```c++
 #include <numeric>
@@ -1028,8 +1044,65 @@ int main() {
 }
 ```
 
+#### 编写CMake文件
+
 编写 `CMakeList` 编译构建文件，示例如下：
 
+由于目前自定义算子仍然依赖于boost库，所以需要编写boost的编译文件，在当前目录下创建文件夹 `cmake/external` ，在其中创建文件 `boost.cmake` ，文件内容如下：
+
+- cmake/external/boost.cmake
+```cmake
+include(ExternalProject)
+
+set(BOOST_PROJECT       "extern_boost")
+# To release PaddlePaddle as a pip package, we have to follow the
+# manylinux1 standard, which features as old Linux kernels and
+# compilers as possible and recommends CentOS 5. Indeed, the earliest
+# CentOS version that works with NVIDIA CUDA is CentOS 6.  And a new
+# version of boost, say, 1.66.0, doesn't build on CentOS 6.  We
+# checked that the devtools package of CentOS 6 installs boost 1.41.0.
+# So we use 1.41.0 here.
+set(BOOST_VER           "1.41.0")
+set(BOOST_TAR "boost_1_41_0" CACHE STRING "" FORCE)
+set(BOOST_URL "http://paddlepaddledeps.bj.bcebos.com/${BOOST_TAR}.tar.gz" CACHE STRING "" FORCE)
+
+MESSAGE(STATUS "BOOST_TAR: ${BOOST_TAR}, BOOST_URL: ${BOOST_URL}")
+
+set(BOOST_SOURCES_DIR ${THIRD_PARTY_PATH}/boost)
+set(BOOST_DOWNLOAD_DIR  "${BOOST_SOURCES_DIR}/src/${BOOST_PROJECT}")
+
+set(BOOST_INCLUDE_DIR "${BOOST_DOWNLOAD_DIR}" CACHE PATH "boost include directory." FORCE)
+set_directory_properties(PROPERTIES CLEAN_NO_CUSTOM 1)
+include_directories(${BOOST_INCLUDE_DIR})
+
+ExternalProject_Add(
+    ${BOOST_PROJECT}
+    ${EXTERNAL_PROJECT_LOG_ARGS}
+    DOWNLOAD_DIR          ${BOOST_DOWNLOAD_DIR}
+    URL      ${BOOST_URL}
+    DOWNLOAD_NO_PROGRESS  1
+    PREFIX                ${BOOST_SOURCES_DIR}
+    CONFIGURE_COMMAND     ""
+    BUILD_COMMAND         ""
+    INSTALL_COMMAND       ""
+    UPDATE_COMMAND        ""
+    )
+
+if (${CMAKE_VERSION} VERSION_LESS "3.3.0" OR NOT WIN32)
+    set(dummyfile ${CMAKE_CURRENT_BINARY_DIR}/boost_dummy.c)
+    file(WRITE ${dummyfile} "const char *dummy = \"${dummyfile}\";")
+    add_library(boost STATIC ${dummyfile})
+else()
+    add_library(boost INTERFACE)
+endif()
+
+add_dependencies(boost ${BOOST_PROJECT})
+set(Boost_INCLUDE_DIR ${BOOST_INCLUDE_DIR})
+```
+
+然后在当前目录创建文件 `CMakeLists.txt` ，其内容为：
+
+- CMakeLists.txt
 ```cmake
 cmake_minimum_required(VERSION 3.0)
 project(cpp_inference_demo CXX C)
@@ -1237,9 +1310,12 @@ endif()
 target_link_libraries(${DEMO_NAME} ${DEPS})
 ```
 
-编写执行执行脚本 `run.sh` ，示例如下：
+#### 编写编译执行脚本
 
-```cmake
+编写编译执行脚本 `run.sh` ，示例如下：
+
+- run.sh
+```sh
 mkdir -p build
 cd build
 rm -rf *
@@ -1250,7 +1326,7 @@ WITH_MKL=ON
 WITH_GPU=ON
 USE_TENSORRT=OFF
 
-LIB_DIR=/shixiaowei02/Paddle-custom-op-src/Paddle/build/paddle_inference_install_dir
+LIB_DIR=${YOUR_LIB_DIR}/paddle_inference_install_dir
 CUDNN_LIB=/usr/local/cudnn/lib64
 CUDA_LIB=/usr/local/cuda/lib64
 TENSORRT_ROOT=/root/work/nvidia/TensorRT-6.0.1.5.cuda-10.1.cudnn7.6-OSS7.2.1
@@ -1271,9 +1347,9 @@ cmake .. -DPADDLE_LIB=${LIB_DIR} \
 make -j
 ```
 
-注意要根据实际情况对执行脚本中的几处配置进行调整：
+此处要根据实际情况对执行脚本中的几处配置进行调整：
 
-```cmake
+```sh
 # 根据预编译库中的version.txt信息判断是否将以下三个标记打开
 WITH_MKL=ON  
 WITH_GPU=ON  
