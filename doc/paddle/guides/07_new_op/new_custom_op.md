@@ -105,6 +105,40 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, .
 
 > 注：后续会继续扩展其他API，API的声明详见 [Paddle Extension Headers in 2.0](https://github.com/PaddlePaddle/Paddle/tree/release/2.0/paddle/fluid/extension/include) 。
 
+#### Exception API
+
+- `PD_CHECK(COND, ...)`：输入bool条件表达式进行检查，如果值为 `false` ，则抛出异常，支持变长参数输入，伪代码示例如下：
+
+```c++
+// case 1: No error message specified
+PD_CHECK(a > b)
+// The key error message like:
+// Expected a > b, but it is not satisfied.
+//   [/User/custom_op/custom_relu_op.cc:82]
+
+// case 2: Error message specified
+PD_CHECK(a > b, "PD_CHECK returns ", false, ", because a > b.")
+// The key error message like:
+// PD_CHECK returns returns false, because a > b.
+//   [/User/custom_op/custom_relu_op.cc:82]
+```
+
+- `PD_THROW`：用于直接抛出异常，支持变长参数输入
+
+```c++
+// case 1: No error message specified
+PD_THROW()
+// The key error message like:
+// An error occurred.
+//   [/User/custom_op/custom_relu_op.cc:82]
+
+// case 2: Error message specified
+PD_THROW("PD_THROW returns ", false)
+// The key error message like:
+// PD_THROW returns false
+//   [/User/custom_op/custom_relu_op.cc:82]
+```
+
 对函数写法以及基础API的定义有了初步认识后，下面结合具体的示例进行介绍。
 
 #### CPU实现
@@ -606,7 +640,7 @@ setup(
 )
 ```
 
-其中 `paddle.utils.cpp_extension.setup` 能够自动搜索和检查本地的 `cc` 和 `nvcc` 编译命令和版本环境，根据用户指定的 `Extension` 类型，完成CPU或CPU设备的算子编译安装。
+其中 `paddle.utils.cpp_extension.setup` 能够自动搜索和检查本地的 `cc(Linux)` 、 `cl.exe(Windows)` 和 `nvcc` 编译命令和版本环境，根据用户指定的 `Extension` 类型，完成CPU或CPU设备的算子编译安装。
 
 执行 `python setup_cpu.py install` 或者 `python setup_cuda.py install` 即可一键完成自定义算子的编译和安装。
 
@@ -738,7 +772,7 @@ relu_out = custom_relu(x)
 
 ### 即时编译（`JIT Compile`）
 
-即时编译将 `setuptools.setup` 编译方式做了进一步的封装，通过将自定义算子对应的 `.cc` 和 `.cu` 文件传入API `paddle.utils.cpp_extension.load`，在后台生成 `setup.py` 文件，并通过子进程的方式，隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境，如 Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ；若编译支持 GPU 设备的算子，则需要预装 `nvcc` 编译环境。
+即时编译将 `setuptools.setup` 编译方式做了进一步的封装，通过将自定义算子对应的 `.cc` 和 `.cu` 文件传入API `paddle.utils.cpp_extension.load`，在后台生成 `setup.py` 文件，并通过子进程的方式，隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境。 Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc`  ->  Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ，Windows下需安装版本不低于2015 Update3的Visual Studio；若编译支持 GPU 设备的算子，则需要提前安装CUDA，其中自带 `nvcc` 编译环境。
 
 对于前述 `relu` 示例，使用方式如下：
 
@@ -757,7 +791,7 @@ out = custom_ops.custom_relu(x)
 
 `load` 返回一个包含自定义算子API的 `Module` 对象，可以直接使用自定义算子name调用API。
 
-以Linux平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，会默认在 `~/.cache/paddle_extensions` 目录下先生成一个 `{name}_setup.py`，然后通过subprocess执行 `python {name}_setup.py install`，后续过程与前述 setuptools 编译安装过程一致。
+以Linux平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，Linux 会默认在 `~/.cache/paddle_extensions` 目录下生成一个 `{name}_setup.py`（Windows 默认目录为 `C:\\Users\\xxx\\.cache\\paddle_extensions` 用户目录），然后通过subprocess执行 `python {name}_setup.py install`，后续过程与前述 setuptools 编译安装过程一致。
 
 对于本示例，默认生成路径内容如下：
 
@@ -814,9 +848,7 @@ tanh_out = custom_ops.custom_tanh(x)
 
 ### ABI兼容性检查
 
-以上两种方式，编译前均会执行 ABI 兼容性检查 ，即检查 cc 命令对应的 GCC 版本是否与编译本地安装的 `PaddlePaddle` 时的 GCC 版本一致。如对于 CUDA 10.1 以上的 `PaddlePaddle` 默认使用 GCC 8.2 编译，则本地 cc 对应的编译器版本也需为 8.2 ，否则可能由于 ABI 兼容性原因引发自定义 OP 执行时报错。
-
-> 注：编译器的 ABI 兼容性是向前兼容的，Linux 下推荐使用 GCC 8.2 高版本作为 `/usr/bin/cc` 命令的软链对象
+以上两种方式，编译前均会执行 ABI 兼容性检查 。对于 Linux，会检查 cc 命令对应的 GCC 版本是否与所安装的 `PaddlePaddle` 的 GCC 版本一致。例如对于 CUDA 10.1 以上的 `PaddlePaddle` 默认使用 GCC 8.2 编译，则本地 cc 对应的编译器版本也需为 8.2。对于 Windows，则会检查本地的 Visual Studio 版本是否与所安装的 `PaddlePaddle` 的 Visual Studio 版本一致（>=2015 update3）。如果上述版本不致，则会打印出相应 warning，且可能由于引发自定义 OP 编译执行报错。
 
 ## 在模型中使用自定义算子
 
