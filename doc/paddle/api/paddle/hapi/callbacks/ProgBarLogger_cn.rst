@@ -5,7 +5,7 @@ ProgBarLogger
 
 .. py:class:: paddle.callbacks.ProgBarLogger(log_freq=1, verbose=2)
 
- ``ProgBarLogger`` 是一个日志回调类。
+ ``ProgBarLogger`` 是一个日志回调类，用来打印损失函数和评估指标。支持静默模式、进度条模式、每次打印一行三种模式，详细的参考下面参数注释。
 
 参数：
   - **log_freq** (int，可选) - 损失值和指标打印的频率。默认值：1。
