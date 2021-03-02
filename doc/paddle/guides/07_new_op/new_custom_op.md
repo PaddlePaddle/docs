@@ -766,9 +766,9 @@ relu_out = custom_relu(x)
 
 如果需要详细了解相关接口，或需要配置其他编译选项，请参考以下API文档：
 
-- [paddle.utils.cpp_extension.setup](https://www.paddlepaddle.org.cn/documentation/docs/zh/api//paddle/utils/cpp_extension/setup_cn.html)
-- [paddle.utils.cpp_extension.setupCppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api//paddle/utils/cpp_extension/CppExtension_cn.html)
-- [paddle.utils.cpp_extension.CUDAExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api//paddle/utils/cpp_extension/CUDAExtension_cn.html)
+- [paddle.utils.cpp_extension.setup](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/setup_cn.html)
+- [paddle.utils.cpp_extension.setupCppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/CppExtension_cn.html)
+- [paddle.utils.cpp_extension.CUDAExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/CUDAExtension_cn.html)
 
 ### 即时编译（`JIT Compile`）
 
@@ -802,7 +802,7 @@ custom_jit_ops/  custom_jit_ops_setup.py
 
 其中，`custom_jit_ops_setup.py` 是生成的setup编译文件，`custom_jit_ops` 目录是编译生成的内容。
 
-如果需要详细了解load接口，或需要配置其他编译选项，请参考API文档 [paddle.utils.cpp_extension.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api//paddle/utils/cpp_extension/load_cn.html) 。
+如果需要详细了解load接口，或需要配置其他编译选项，请参考API文档 [paddle.utils.cpp_extension.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/load_cn.html) 。
 
 ### 同时编译多个算子
 
@@ -1444,8 +1444,7 @@ cd build
 
 运行结束后，程序会将模型结果打印到屏幕，说明运行成功。
 
-### 更多推理参考文档
+### 更多推理使用文档
 
-- [Paddle Inference使用Quick Start！](https://paddle-inference.readthedocs.io/en/latest/introduction/quick_start.html)
-- [Paddle Inference C++ Api使用](https://paddle-inference.readthedocs.io/en/latest/api_reference/cxx_api_index.html)
-- [Paddle Inference Python Api使用](https://paddle-inference.readthedocs.io/en/latest/api_reference/python_api_index.html)
+- [Paddle Inference 快速开始](https://paddleinference.paddlepaddle.org.cn/quick_start/workflow.html)
+- [Paddle Inference API文档](https://paddleinference.paddlepaddle.org.cn/api_reference/cxx_api_index.html)
