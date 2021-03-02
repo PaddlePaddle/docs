@@ -1,4 +1,4 @@
-# 如何写新的Python OP
+# 自定义Python算子（静态图）
 
 Paddle 通过 `py_func` 接口支持在Python端自定义OP。 py_func的设计原理在于Paddle中的Tensor可以与numpy数组可以方便的互相转换，从而可以使用Python中的numpy API来自定义一个Python OP。
 
