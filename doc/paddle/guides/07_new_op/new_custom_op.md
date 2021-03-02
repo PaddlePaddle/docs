@@ -11,8 +11,8 @@
 
 使用自定义算子机制，仅需要以下两个步骤：
 
-1. 实现算子的C++运算逻辑
-2. 调用相关接口完成算子编译与注册
+1. 实现算子的C++运算逻辑，完成算子构建
+2. 调用 `python` 接口完成算子编译与注册
 
 随后即可在模型中使用，下面通过实现一个 `relu` 运算，介绍具体的实现、编译与应用流程。
 
@@ -20,17 +20,19 @@
 > - 在使用本机制实现自定义算子之前，请确保已经正确安装了 `PaddlePaddle 2.0.1` 及以上版本
 > - 该机制目前仅支持 `Linux` 与 `Windows` 平台，`Mac` 平台会在后续版本支持
 
-## 算子C++实现
+## 自定义算子C++实现
 
-自定义算子需要实现编写以下组件的C++实现，包括：
+使用自定义算子机制，需要编写以下组件的C++实现，包括：
 
-1. 算子的运算函数：算子核心的计算逻辑实现，主要是对输入Tensor进行处理，得到输出Tensor的过程
-2. 算子的维度与类型推导函数：用于在组网编译和运行时，正确推导出输出Tensor的shape和data type
-3. 算子描述：描述算子的输入输出信息、并关联前述运算、维度推导与类型推导函数
+1. **算子的运算函数**：算子核心的计算逻辑实现，主要是对输入 `Tensor` 进行处理，得到输出 `Tensor` 的过程
+2. **算子的维度与类型推导函数**：用于在组网编译和运行时，正确推导出输出 `Tensor` 的 `shape` 和 `data type`
+3. **算子构建**：描述算子的输入输出信息、并关联前述运算、维度推导与类型推导函数
 
 下面结合示例进行介绍。
 
 ### 运算函数与基础API
+
+#### 基本写法要求
 
 在编写运算函数之前，需要引入 `PaddlePaddle` 扩展头文件，示例如下：
 
@@ -46,9 +48,9 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, .
 }
 ```
 
-- 函数输入参数可以是Tensor或者一些基础类型的Attribute，具体地：
-    - Tensor必须以 `const paddle::Tensor& ` 的形式作为输入，可以有一个或多个
-    - Attribute目前仅支持如下数据类型，可以有一个或多个：
+- 函数输入参数可以是 `Tensor` 或者一些基础类型的 `Attribute` ，具体地：
+    - `Tensor` 必须以 `const paddle::Tensor& ` 的形式作为输入，可以有一个或多个
+    - `Attribute` 目前仅支持如下数据类型，可以有一个或多个：
         - `bool`
         - `int`
         - `float`
@@ -58,10 +60,13 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, .
         - `std::vector<float>`
         - `std::vector<int64_t>`
         - `std::vector<std::string>`
-    - Attribute参数必须在所有Tensor参数之后
+    - > 注1： `Attribute` 参数必须在所有 `Tensor` 参数之后
+    - > 注2：目前暂不支持 `std::vector<Tensor>` 类型的输入，会在后续版本支持
 - 函数返回值只能是 `std::vector<paddle::Tensor>`
 
 > 注：其他类型的数值作为函数输入参数或者返回值将无法编译通过
+
+#### 设备与数据类型支持
 
 对于基础的设备和数据类型支持情况，我们定义了两个简单的枚举类：
 
@@ -70,35 +75,37 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, .
 
 > 注：目前仅支持以上设备与数据类型，其他类型会在后续版本支持
 
+#### Tensor API
+
 对于 `paddle::Tensor` ，我们目前提供了一些基础的API，包括：
 
 - 构造API：
-    - `Tensor(const PlaceType& place)`：输入参数place，返回一个Tensor对象
+    - `Tensor(const PlaceType& place)`：输入参数 `place` ，返回一个 `Tensor` 对象
 - 设备相关API：
-    - `const PlaceType& place() const`：获取Tensor所在的设备
+    - `const PlaceType& place() const`：获取 `Tensor` 所在的设备
 - 数据类型相关API：
-    - `DataType type() const`：获取Tensor的数据类型
+    - `DataType type() const`：获取 `Tensor` 的数据类型
 - 长度与维度相关API：
-    - `int64_t size() const`：获取Tensor的数据长度
-    - `std::vector<int64_t> shape() const`：获取Tensor的维度信息
-    - `void reshape(const std::vector<int64_t>& shape)`：输入参数shape，修改Tensor的维度信息
+    - `int64_t size() const`：获取 `Tensor` 的数据长度
+    - `std::vector<int64_t> shape() const`：获取 `Tensor` 的维度信息
+    - `void reshape(const std::vector<int64_t>& shape)`：输入参数 `shape` ，修改 `Tensor` 的维度信息
 - 数据访问API：
     - `template <typename T> T* data() const`：
         - 模板类方法，获取数据内存的起始地址（只读访问）
     - `template <typename T> T* mutable_data(const PlaceType& place)`：
-        - 模板类方法，输入参数place，根据Tensor.shape在指定设备上申请内存，并返回内存的起始地址
+        - 模板类方法，输入参数 `place` ，根据 `Tensor.shape` 在指定设备上申请内存，并返回内存的起始地址
 - 工具类API：
     - `template <typename T> Tensor copy_to(const PlaceType& place) const`：
-        - 模板类方法，输入参数place，将当前Tensor拷贝到指定设备上并返回
+        - 模板类方法，输入参数 `place`，将当前 `Tensor` 拷贝到指定设备上并返回
     - `Tensor cast(const DataType& target_type) const`：
-        - 输入参数target_type，将当前Tensor转换为指定数据类型的Tensor并返回
+        - 输入参数 `target_type` ，将当前 `Tensor` 转换为指定数据类型的 `Tensor` 并返回
     - `cudaStream_t stream() const`：
-        - 用于获取当前Tensor所处的CUDA Stream（仅在GPU编译版本中生效）
-        - 仅能够获取函数输入Tensor的stream
+        - 用于获取当前 `Tensor` 所处的CUDA Stream（仅在GPU编译版本中生效）
+        - 仅能够获取函数输入 `Tensor` 的stream
 
 > 注：后续会继续扩展其他API，API的声明详见 [Paddle Extension Headers in 2.0](https://github.com/PaddlePaddle/Paddle/tree/release/2.0/paddle/fluid/extension/include) 。
 
-对函数签名以及基础API的定义有了初步认识后，下面结合具体的示例进行介绍。
+对函数写法以及基础API的定义有了初步认识后，下面结合具体的示例进行介绍。
 
 #### CPU实现
 
@@ -156,11 +163,11 @@ std::vector<paddle::Tensor> ReluCPUBackward(const paddle::Tensor& x,
 
 主要逻辑包括：
 
-1. 创建输出的Tensor，设定其shape
-2. 获取输入Tensor的数据区起始地址，为输出Tensor申请内存并返回数据区起始地址
-3. 计算得到输出Tensor的数值，返回结果
+1. 创建输出的 `Tensor` ，设定其 `shape`
+2. 获取输入 `Tensor` 的数据区起始地址，为输出 `Tensor` 申请内存并返回数据区起始地址
+3. 计算得到输出 `Tensor` 的数值，返回结果
 
-> 注：目前尚不支持输入Tensor的inplace改动，将会在后续版本支持
+> 注：目前尚不支持输入 `Tensor` 的 `inplace` 改动，将会在后续版本支持
 
 前述 `relu` 示例实现仅支持 `float32` 类型的计算，如果仅有一种数据类型的支持需求，用以上写法即可。
 
@@ -232,7 +239,7 @@ std::vector<paddle::Tensor> ReluCPUBackward(const paddle::Tensor& x,
 }
 ```
 
-> 注：编写模板计算函数时，模板参数名 `data_t` 用于适配不同的数据类型，不可更改为其他命名
+> 注：编写模板计算函数时，模板参数名 `data_t` 用于适配不同的数据类型，不可更改为其他命名，否则会编译失败
 
 示例中的 `PD_DISPATCH_FLOATING_TYPES` 会展开得到 `float32` 与 `float64` 的switch-case实现，从而在运行时根据输入的数据类型，选择实际需要执行的分支。
 
@@ -257,15 +264,15 @@ switch(x.type()) {
 
 目前定义的dispatch宏包括：
 
-- `PD_DISPATCH_FLOATING_TYPES` ：dispatch生成float32和float64对应的实现
-- `PD_DISPATCH_INTEGRAL_TYPES` ：dispatch生成int8_t, uint8_t, int16_t, int的int64_t对应的实现
+- `PD_DISPATCH_FLOATING_TYPES` ：dispatch 生成 `float32` 和 `float64` 对应的实现
+- `PD_DISPATCH_INTEGRAL_TYPES` ：dispatch生成 `int8_t`, `uint8_t`, `int16_t`, `int`的`int64_t` 对应的实现
 - `PD_DISPATCH_FLOATING_AND_INTEGRAL_TYPES` ：dispatch生成前述两个宏全部数据类型对应的实现
 
 当然，如果这几个宏无法满足您实际使用的需求，您可以直接通过switch-case语句实现，将来视需求我们也会添加更多的宏。
 
 #### CPU&CUDA混合实现
 
-通常只有CPU的算子实现是不够的，实际生产环境中一般使用GPU算子。此处将前述 `relu_cpu.cc` 中算子的CPU实现改为GPU示例如下：
+通常只有CPU的算子实现是不够的，实际生产环境中一般需要使用GPU算子。此处将前述 `relu_cpu.cc` 中算子的CPU实现改为GPU示例如下：
 
 - relu_cuda.cu
 ```c++
@@ -294,8 +301,8 @@ __global__ void relu_cuda_backward_kernel(const data_t* dy,
 
 std::vector<paddle::Tensor> relu_cuda_forward(const paddle::Tensor& x) {
   auto out = paddle::Tensor(paddle::PlaceType::kGPU);
-
   out.reshape(x.shape());
+
   int numel = x.size();
   int block = 512;
   int grid = (numel + block - 1) / block;
@@ -362,7 +369,7 @@ std::vector<paddle::Tensor> ReluCUDABackward(const paddle::Tensor& x,
 
 在 `.cu` 文件中实现对应的CUDA kernel和计算函数，在 `.cc` 文件中声明调用即可。
 
-注意这里的 `CHECK_INPUT` 也改为检查输入Tensor是否在GPU上，如果后续仍然在CPU上执行，报错如下：
+注意这里的 `CHECK_INPUT` 也改为检查输入 `Tensor` 是否在GPU上，如果后续仍然在CPU上执行，将会报错如下，可以看到报错提示与 `CHECK_INPUT` 缩写提示一致。至于错误类型，`PaddlePaddle` 将外部扩展自定义算子视为第三方模块，错误类型统一为 `OSError: (External)` ，与其他第三方库报错类型一致。
 
 ```
 Traceback (most recent call last):
@@ -387,7 +394,7 @@ OSError: (External) x must be a GPU Tensor.
 
 ### 维度与类型推导函数
 
-`PaddlePaddle` 框架同时支持动态图与静态图的执行模式，在静态图模式下，组网阶段需要完成Tensor shape和dtype的推导，从而生成正确的模型描述，用于后续Graph优化与执行。因此，除了算子的运算函数之外，还需要实现前向运算的维度和类型的推导函数。
+`PaddlePaddle` 框架同时支持动态图与静态图的执行模式，在静态图模式下，组网阶段需要完成 `Tensor shape` 和 `dtype` 的推导，从而生成正确的模型描述，用于后续Graph优化与执行。因此，除了算子的运算函数之外，还需要实现前向运算的维度和类型的推导函数。
 
 维度推导（InferShape）和类型推导（InferDtype）的函数写法也是有要求的，形式如下：
 
@@ -401,10 +408,10 @@ std::vector<paddle::DataType> OpInferDtype(paddle::DataType x_dtype, ...) {
 }
 ```
 
-函数的输入参数与返回值类型固定，如上述代码片段所示，其他要求如下：
-- 函数输入参数与前述运算函数的输入Tensor按顺序一一对应，依次为输入参数的shape和dtype
-- 函数返回值vector中的shape或dtype信息也需要与返回Tensor按顺序一一对应
-- 维度与类型推导函数不支持Attribute的输入
+函数的输入参数与返回值类型固定，具体类型如上述代码片段所示，其他要求如下：
+- 函数输入参数与前述运算函数的输入 `Tensor` 按顺序一一对应，依次为输入参数的 `shape` 和 `dtype`
+- 函数返回值vector中的 `shape` 或 `dtype` 信息也需要与返回 `Tensor` 按顺序一一对应
+- 维度与类型推导函数不支持 `Attribute` 的输入
 
 
 以 `relu` 为例，其维度与类型推导函数如下：
@@ -421,13 +428,13 @@ std::vector<paddle::DataType> ReluInferDtype(paddle::DataType x_dtype) {
 }
 ```
 
-对于仅有一个输入Tensor和一个输出Tensor的自定义算子，如果输出Tensor和输入Tensor的shape和dtype一致，可以省略InferShape和InferDtype函数的实现，其他场景下均需要实现这两个函数。因此，对于这里的 `relu` 算子来说，这两个函数可以不写。
+对于仅有一个输入 `Tensor` 和一个输出 `Tensor` 的自定义算子，如果输出 `Tensor` 和输入 `Tensor` 的 `shape` 和 `dtype` 一致，可以省略 `InferShape` 和 `InferDtype` 函数的实现，其他场景下均需要实现这两个函数。因此，对于这里的 `relu` 算子来说，这两个函数可以不写。
 
 ### 构建算子
 
-最后，需要调用 `PD_BUILD_OP` 系列宏，添加算子的描述信息，并关联前述算子运算函数和维度、类型推导函数。
+最后，需要调用 `PD_BUILD_OP` 系列宏，构建算子的描述信息，并关联前述算子运算函数和维度、类型推导函数。
 
-我们提供了3个Build算子的宏：
+我们提供了3个构建算子的宏：
 
 - `PD_BUILD_OP` ：用于构建前向算子
 - `PD_BUILD_GRAD_OP` ：用于构建前向算子对应的反向算子
@@ -452,13 +459,16 @@ PD_BUILD_GRAD_OP(custom_relu)
 ```
 
 这里写法上需要注意以下几点：
-- PD_BUILD_OP系列宏后面的括号内为算子名，也是后面在python端使用的接口名，注意前后不需要引号，注意该算子名不能与 `PaddlePaddle` 内已有算子名重名，比如 `relu` 为 `PaddlePaddle` 内已有算子，如果直接使用relu作为算子名将无法注册成功，所以此处增加了前缀 `custom_`
-- Inputs与Outputs的输入参数为 `std::vector<std::string>` ，依次是前面算子运算函数的输入输出Tensor的name，需要按顺序一一对应
-- 在声明反向算子的Inputs与Outputs时，前向Tensor对应的梯度Tensor名需要由 `paddle::Grad` 处理前向Tensor名得到，不能够随意声明，例如这里 `"X"` 对应的梯度Tensor名为 `paddle::Grad("X")`
-- 此处SetKernelFn、SetInferShapeFn与SetInferDtypeFn中的 `PD_KERNEL` 、`PD_INFER_SHAPE` 、`PD_INFER_DTYPE` 宏用于自动转换并统一函数的签名，不可以省略
-- 目前构建反向算子不需要SetInferShapeFn和SetInferDtypeFn
+- `PD_BUILD_OP` 系列宏后面的括号内为算子名，也是后面在python端使用的接口名，注意前后不需要引号，注意该算子名不能与 `PaddlePaddle` 内已有算子名重名，比如 `relu` 为 `PaddlePaddle` 内已有算子，如果直接使用relu作为算子名将无法注册成功，所以此处增加了前缀 `custom_`
+- `PD_BUILD_OP`、 `PD_BUILD_GRAD_OP` 和 `PD_BUILD_DOUBLE_GRAD_OP` 构建同一个算子的前向、反向、二次反向实现，宏后面使用的算子名需要保持一致，比如该示例中均使用 `custom_relu`
+- `PD_BUILD_OP`、 `PD_BUILD_GRAD_OP` 和 `PD_BUILD_DOUBLE_GRAD_OP` 必须顺次调用，不允许在未调用 `PD_BUILD_OP` 构建前向算子的情况下，直接调用 `PD_BUILD_GRAD_OP` 构建反向算子
+- Inputs与Outputs的输入参数为 `std::vector<std::string>` ，依次是前面算子运算函数的输入输出 `Tensor` 的name，需要按顺序一一对应，此处的name与函数输入参数的变量名没有强关联，比如函数输入参数是 `const paddle::Tensor& x` ，Inputs中的name可以是 `Input, x, X, In` 等等
+- `PD_BUILD_OP` 与 `PD_BUILD_GRAD_OP` 中的Inputs与Outputs的name有强关联，对于前向算子的某个输入，如果反向算子仍然要复用，那么其name一定要保持一致，因为内部执行时，会以name作为key去查找对应的变量，比如这里前向算子的 `X, Out` 与反向算子的 `X, Out` 指代同一个 `Tensor`
+- 在声明反向算子的Inputs与Outputs时，前向 `Tensor` 对应的梯度 `Tensor` 名需要由 `paddle::Grad` 处理前向 `Tensor` 名得到，不能够随意声明，例如这里 `"X"` 对应的梯度 `Tensor` 名为 `paddle::Grad("X")`
+- 此处 `SetKernelFn` 、`SetInferShapeFn` 与 `SetInferDtypeFn` 中的 `PD_KERNEL` 、`PD_INFER_SHAPE` 、`PD_INFER_DTYPE` 宏用于自动转换并统一函数的签名，不可以省略
+- 反向算子构建暂时不支持调用 `SetInferShapeFn` 和 `SetInferDtypeFn` 自定义维度与类型推导函数，框架会根据前向 `Tensor` 的 `shape` 和 `dtype` ，设定其对应梯度 `Tensor` 的 `shape` 和 `dtype`
 
-如前述介绍，此处 `relu` 可以省略InferShape和InferDtype函数的实现，因此也可以省略写为：
+如前述介绍，此处 `relu` 也可以省略 `InferShape` 和 `InferDtype` 函数的实现，因此也可以写为：
 
 ```c++
 PD_BUILD_OP(custom_relu)
@@ -472,7 +482,7 @@ PD_BUILD_GRAD_OP(custom_relu)
     .SetKernelFn(PD_KERNEL(ReluCPUBackward));
 ```
 
-类似地，GPU示例构建算子描述如下：
+类似地，GPU示例构建算子描述如下，替换 `KernelFn` 即可：
 
 - relu_cuda.cc
 
@@ -488,13 +498,13 @@ PD_BUILD_GRAD_OP(custom_relu)
     .SetKernelFn(PD_KERNEL(ReluCUDABackward));
 ```
 
-#### Attribute声明
+#### Attribute 声明
 
-对于Attribute的声明，和Inputs、Outputs的声明有所不同，需要按照如下格式声明字符串：
+对于 `Attribute` 的声明，和Inputs、Outputs的声明有所不同，需要按照如下格式声明字符串：
 
 `<name>: <attr-type-expr>`
 
-其中，`name` 为Attribute变量的name，`<attr-type-expr>` 为Attribute变量的类型，类型字符串需要与C++类型严格一致。通过如下示例说明：
+其中，`name` 为 `Attribute` 变量的name，`<attr-type-expr>` 为 `Attribute` 变量的类型，类型字符串需要与C++类型严格一致。通过如下示例说明：
 
 假如有前向运算函数形式如下：
 
@@ -530,7 +540,7 @@ PD_BUILD_OP(attr_test)
     .SetKernelFn(PD_KERNEL(AttrTestForward));
 ```
 
-如果该算子需要反向实现，反向算子的Attribute输入参数需要是前向算子Attribute输入参数的子集，不能新增前向算子没有的Attribute，示例如下：
+如果该算子需要反向实现，反向算子的 `Attribute` 输入参数需要是前向算子 `Attribute` 输入参数的子集，不能新增前向算子没有的 `Attribute` ，示例如下：
 
 ```c++
 std::vector<paddle::Tensor> AttrTestBackward(
@@ -548,15 +558,23 @@ PD_BUILD_GRAD_OP(attr_test)
     .SetKernelFn(PD_KERNEL(AttrTestBackward));
 ```
 
-这里的 `int_attr`、`float_vec_attr`、`str_vec_attr` 均是前向算子声明中出现过的参数。
+这里的 `int_attr`、`float_vec_attr`、`str_vec_attr` 均是前向算子声明中出现过的参数，这里仅限定 `Attrs` 方法中字符串的命名，函数的输入参数命名没有限制，只需要确保数据类型一致即可，例如这里 `AttrTestBackward` 也可以改为如下写法：
 
-## 算子编译与使用
+```c++
+std::vector<paddle::Tensor> AttrTestBackward(
+    const paddle::Tensor& grad_out,
+    int a,
+    std::vector<float> b,
+    std::vector<std::string> c) {...}
+```
 
-本机制提供了两种编译自定义算子的方式，分别为**使用 `setuptools` 编译**与**即时编译**，下面依次通过示例介绍。
+## 自定义算子编译与使用
+
+本机制提供了两种编译自定义算子的方式，分别为 **使用 `setuptools` 编译** 与 **即时编译** ，下面依次通过示例介绍。
 
 ### 使用 `setuptools` 编译
 
-该方式是对python 内建库中的 `setuptools.setup` 接口的进一步封装，能够自动地生成 Python API 并以 Module 的形式安装到 site-packages 目录。编译完成后，支持通过 import 语句导入使用。
+该方式是对 `python` 内建库中的 `setuptools.setup` 接口的进一步封装，能够自动地生成 Python API 并以 Module 的形式安装到 site-packages 目录。编译完成后，支持通过 import 语句导入使用。
 
 您需要编写 `setup.py` 文件， 配置自定义算子的编译规则。
 
@@ -590,7 +608,7 @@ setup(
 
 其中 `paddle.utils.cpp_extension.setup` 能够自动搜索和检查本地的 `cc` 和 `nvcc` 编译命令和版本环境，根据用户指定的 `Extension` 类型，完成CPU或CPU设备的算子编译安装。
 
-执行 `python setup_cpu/cuda.py install` 即可一键完成自定义算子的编译和安装。
+执行 `python setup_cpu.py install` 或者 `python setup_cuda.py install` 即可一键完成自定义算子的编译和安装。
 
 以 `python setup_cuda.py install` 为例，执行日志如下：
 
@@ -647,7 +665,7 @@ custom_setup_ops_pd_.so  EGG-INFO/     relu_cpu.o      relu_cuda.o
 custom_setup_ops.py      __pycache__/  relu_cuda.cu.o  version.txt
 ```
 
-其中 `custom_setup_ops.py` 为根据 `PaddlePaddle` 接口定义规则，自动生成的自定义算子 python 模块源码，其示例内容为（自动生成的代码后续可能会更新）：
+其中 `custom_setup_ops_pd_.so` 为自定义算子编译生成的动态库， `custom_setup_ops.py` 为根据 `PaddlePaddle` 接口的定义规则，自动生成的自定义算子 python 模块源码，其示例内容为（自动生成的代码后续可能会更新）：
 
 ```python
 import os
@@ -720,7 +738,7 @@ relu_out = custom_relu(x)
 
 ### 即时编译（`JIT Compile`）
 
-即时编译将 `setuptools` 编译方式做了进一步的封装，通过将自定义算子对应的 `.cc` 和 `.cu` 文件传入API `paddle.utils.cpp_extension.load`，在后台生成 `setup.py` 文件，并通过子进程的方式，隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境，如 Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ；若编译支持 GPU 设备的算子，则需要预装 `nvcc` 编译环境。
+即时编译将 `setuptools.setup` 编译方式做了进一步的封装，通过将自定义算子对应的 `.cc` 和 `.cu` 文件传入API `paddle.utils.cpp_extension.load`，在后台生成 `setup.py` 文件，并通过子进程的方式，隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境，如 Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ；若编译支持 GPU 设备的算子，则需要预装 `nvcc` 编译环境。
 
 对于前述 `relu` 示例，使用方式如下：
 
@@ -739,7 +757,7 @@ out = custom_ops.custom_relu(x)
 
 `load` 返回一个包含自定义算子API的 `Module` 对象，可以直接使用自定义算子name调用API。
 
-以Linux平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，会默认在 `~/.cache/paddle_extensions` 目录下先生成一个 `{name}_setup.py`，然后通过subprocess执行 `python {name}_setup.py build`，后续过程与前述 setuptools 编译安装过程一致。
+以Linux平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，会默认在 `~/.cache/paddle_extensions` 目录下先生成一个 `{name}_setup.py`，然后通过subprocess执行 `python {name}_setup.py install`，后续过程与前述 setuptools 编译安装过程一致。
 
 对于本示例，默认生成路径内容如下：
 
@@ -768,6 +786,18 @@ setup(
 )
 ```
 
+调用方式：
+
+```python
+import paddle
+# Suppose the op names are `custom_relu` and `custom_tanh`
+from custom_ops import custom_relu, custom_tanh
+
+x = paddle.randn([4, 10], dtype='float32')
+relu_out = custom_relu(x)
+tanh_out = custom_tanh(x)
+```
+
 - JIT compile
 ```python
 from paddle.utils.cpp_extension import load
@@ -775,6 +805,11 @@ from paddle.utils.cpp_extension import load
 custom_ops = load(
     name='custom_jit_ops',
     sources=['relu_op.cc', 'relu_op.cu', 'tanh_op.cc', 'tanh_op.cu'])
+
+x = paddle.randn([4, 10], dtype='float32')
+# Suppose the op names are `custom_relu` and `custom_tanh`
+relu_out = custom_ops.custom_relu(x)
+tanh_out = custom_ops.custom_tanh(x)
 ```
 
 ### ABI兼容性检查
@@ -783,15 +818,15 @@ custom_ops = load(
 
 > 注：编译器的 ABI 兼容性是向前兼容的，Linux 下推荐使用 GCC 8.2 高版本作为 `/usr/bin/cc` 命令的软链对象
 
-## 算子验证
+## 在模型中使用自定义算子
 
-经过前述过程，自定义算子的编写、编译安装及API生成均已完成，接下来需要对自定义算子在动态图和静态图模式下进行可用性验证。
+经过前述过程，自定义算子的编写、编译安装及API生成均已完成，现在您可以在网络模型中使用您自定义生成的算子了，本方案生成的自定义算子在动态图和静态图模式下均能够使用。
 
 以下验证用例均基于前述源文件 `relu_cuda.cc` 和 `relu_cuda.cu` 测试 `custom_relu` 在GPU环境中的使用，均采用JIT Compile的方式编译自定义算子。
 
-通过定义一个简单的网络模型，完成训练和存储推理模型的基本过程。
+通过定义一个简单的网络模型，完成训练迭代和存储推理模型的基本过程。
 
-### 动态图模式验证
+### 动态图模式
 
 动态图模式的使用示例如下：
 
@@ -879,7 +914,7 @@ paddle.jit.save(net, path,
     input_spec=[paddle.static.InputSpec(shape=[None, 784], dtype='float32')])
 ```
 
-### 静态图模式验证
+### 静态图模式
 
 静态图模式的使用示例如下：
 
@@ -962,11 +997,11 @@ static.save_inference_model(path, [image], [out], exe)
 
 ## 算子在推理场景中的使用
 
-基于本机制编写的自定义算子，能够在推理场景中使用，仍然基于前述示例介绍使用流程，这里基于 `relu_cuda.cc` 和 `relu_cuda.cu` 介绍。
+基于本机制编写的自定义算子，也能够在 `PaddlePaddle` 推理场景中使用，仍然基于前述示例介绍使用流程，这里基于 `relu_cuda.cc` 和 `relu_cuda.cu` 介绍。
 
 ### 源码改动
 
-由于接口管理上存在一些差别，自定义算子 `relu_cuda.cc` 源码中的引入的头文件需要替换一下：
+由于训练和推理接口管理上存在一些差别，自定义算子 `relu_cuda.cc` 源码中的引入的头文件需要替换一下：
 
 `#include "paddle/extension.h"`
 
@@ -978,7 +1013,7 @@ static.save_inference_model(path, [image], [out], exe)
 
 ### 算子与推理库联合编译
 
-编写推理的测试程序，其中需要使用前述验证过程中存储的inference model，目录为 `custom_relu_dynamic/net` 或者 `custom_relu_static/net` ，下面通过示例介绍使用流程，该示例的目录结构为：
+编写推理的测试程序，其中需要使用前述验证过程中存储的inference model，目录为 `custom_relu_dynamic/net` 或者 `custom_relu_static/net` ，下面通过示例介绍使用流程，该示例需要准备的文件包括：
 
 ```
 - cmake
@@ -995,7 +1030,7 @@ static.save_inference_model(path, [image], [out], exe)
 
 #### 编写推理程序
 
-下面是一个简单的推理Demo，导入前述 `custom_relu_dynamic/net` 中存储的模型和参数：
+下面是一个简单的推理Demo，导入前述 `custom_relu_dynamic/net` 中存储的模型和参数，进行预测：
 
 ```c++
 #include <numeric>
@@ -1048,7 +1083,7 @@ int main() {
 
 编写 `CMakeList` 编译构建文件，示例如下：
 
-由于目前自定义算子仍然依赖于boost库，所以需要编写boost的编译文件，在当前目录下创建文件夹 `cmake/external` ，在其中创建文件 `boost.cmake` ，文件内容如下：
+由于目前自定义算子仍然依赖于 `boost` 库，所以需要编写 `boost` 的编译文件，在当前目录下创建文件夹 `cmake/external` ，在其中创建文件 `boost.cmake` ，文件内容如下：
 
 - cmake/external/boost.cmake
 ```cmake
@@ -1312,7 +1347,7 @@ target_link_libraries(${DEMO_NAME} ${DEPS})
 
 #### 编写编译执行脚本
 
-编写编译执行脚本 `run.sh` ，示例如下：
+编写编译执行脚本 `run.sh` ，脚本内容如下：
 
 - run.sh
 ```sh
