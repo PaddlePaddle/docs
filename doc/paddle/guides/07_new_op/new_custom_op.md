@@ -117,9 +117,9 @@ PD_CHECK(a > b)
 //   [/User/custom_op/custom_relu_op.cc:82]
 
 // case 2: Error message specified
-PD_CHECK(a > b, "PD_CHECK returns ", false, ", because a > b.")
+PD_CHECK(a > b, "PD_CHECK returns ", false, ", expected a > b.")
 // The key error message like:
-// PD_CHECK returns returns false, because a > b.
+// PD_CHECK returns returns false, expected a > b.
 //   [/User/custom_op/custom_relu_op.cc:82]
 ```
 
@@ -772,7 +772,7 @@ relu_out = custom_relu(x)
 
 ### 即时编译（`JIT Compile`）
 
-即时编译将 `setuptools.setup` 编译方式做了进一步的封装，通过将自定义算子对应的 `.cc` 和 `.cu` 文件传入API `paddle.utils.cpp_extension.load`，在后台生成 `setup.py` 文件，并通过子进程的方式，隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境。 Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc`  ->  Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ，Windows下需安装版本不低于2015 Update3的Visual Studio；若编译支持 GPU 设备的算子，则需要提前安装CUDA，其中自带 `nvcc` 编译环境。
+即时编译将 `setuptools.setup` 编译方式做了进一步的封装，通过将自定义算子对应的 `.cc` 和 `.cu` 文件传入API `paddle.utils.cpp_extension.load`，在后台生成 `setup.py` 文件，并通过子进程的方式，隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境。 Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ，Windows下需安装版本不低于2015 Update3的Visual Studio；若编译支持 GPU 设备的算子，则需要提前安装CUDA，其中自带 `nvcc` 编译环境。
 
 对于前述 `relu` 示例，使用方式如下：
 
@@ -791,7 +791,7 @@ out = custom_ops.custom_relu(x)
 
 `load` 返回一个包含自定义算子API的 `Module` 对象，可以直接使用自定义算子name调用API。
 
-以Linux平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，Linux 会默认在 `~/.cache/paddle_extensions` 目录下生成一个 `{name}_setup.py`（Windows 默认目录为 `C:\\Users\\xxx\\.cache\\paddle_extensions` 用户目录），然后通过subprocess执行 `python {name}_setup.py install`，后续过程与前述 setuptools 编译安装过程一致。
+以Linux平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，Linux 会默认在 `~/.cache/paddle_extensions` 目录下生成一个 `{name}_setup.py`（Windows 默认目录为 `C:\\Users\\xxx\\.cache\\paddle_extensions` 用户目录），然后通过subprocess执行 `python {name}_setup.py build`，然后载入动态库，生成 Python API 之后返回。
 
 对于本示例，默认生成路径内容如下：
 
@@ -848,7 +848,7 @@ tanh_out = custom_ops.custom_tanh(x)
 
 ### ABI兼容性检查
 
-以上两种方式，编译前均会执行 ABI 兼容性检查 。对于 Linux，会检查 cc 命令对应的 GCC 版本是否与所安装的 `PaddlePaddle` 的 GCC 版本一致。例如对于 CUDA 10.1 以上的 `PaddlePaddle` 默认使用 GCC 8.2 编译，则本地 cc 对应的编译器版本也需为 8.2。对于 Windows，则会检查本地的 Visual Studio 版本是否与所安装的 `PaddlePaddle` 的 Visual Studio 版本一致（>=2015 update3）。如果上述版本不致，则会打印出相应 warning，且可能由于引发自定义 OP 编译执行报错。
+以上两种方式，编译前均会执行 ABI 兼容性检查 。对于 Linux，会检查 cc 命令对应的 GCC 版本是否与所安装的 `PaddlePaddle` 的 GCC 版本一致。例如对于 CUDA 10.1 以上的 `PaddlePaddle` 默认使用 GCC 8.2 编译，则本地 cc 对应的编译器版本也需为 8.2。对于 Windows，则会检查本地的 Visual Studio 版本是否与所安装的 `PaddlePaddle` 的 Visual Studio 版本一致（>=2015 update3）。如果上述版本不一致，则会打印出相应 warning，且可能由于引发自定义 OP 编译执行报错。
 
 ## 在模型中使用自定义算子
 
