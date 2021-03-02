@@ -5,7 +5,7 @@ RandomRotate
 
 .. py:class:: paddle.vision.transforms.RandomRotation(degrees, interpolation='nearest', expand=False, center=None, fill=0, keys=None)
 
-按指定角度范围随机旋转图像。
+依据degrees参数指定的角度范围，按照均匀分布随机产生一个角度对图像进行旋转。
 
 参数
 :::::::::
