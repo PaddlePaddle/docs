@@ -13,3 +13,4 @@
 
     tensor_introduction_cn.md
     broadcasting_cn.rst
+    autograd_cn.rst
