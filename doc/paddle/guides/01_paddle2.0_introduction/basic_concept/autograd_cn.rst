@@ -11,6 +11,7 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 为了让神经网络的判断更加准确，首先需要有衡量效果的工具，于是损失函数应运而生。如果你想要神经网络的效果好，那么就要让损失函数尽可能的小，于是深度学习引入了能够有效计算函数最小值的算法–梯度下降等优化算法，以及参数优化更新过程–反向传播。
 
 -  前向传播是输入通过每一层节点计算后得到每层输出，上层输出又作为下一层的输入，最终达到输出层。然后通过损失函数计算得到loss值。
+
 -  反向传播是通过loss值来指导前向节点中的函数参数如何改变，并更新每层中每个节点的参数，来让整个神经网络达到更小的loss值。
 
 自动微分机制就是让你只关注组网中的前向传播过程，然后飞桨框架来自动完成反向传播过程，从而来让你从繁琐的求导、求梯度的过程中解放出来。
@@ -28,7 +29,7 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
     from paddle.vision.models import vgg11
     import paddle.nn.functional as F
     import numpy as np
-    
+
     print(paddle.__version__)
 
 
@@ -44,7 +45,7 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 .. code:: ipython3
 
     model = vgg11()
-    
+
     x = paddle.rand([1,3,224,224])
     label = paddle.randint(0,1000)
 
@@ -91,15 +92,15 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 此章主要介绍飞桨中所有自动微分过程中会使用到的方法、属性等。属于第二部分的扩展阅读。
 
 1、飞桨中的\ ``Tensor``\ 有\ ``stop_gradient``\ 属性，这个属性可以查看一个\ ``Tensor``\ 是否计算并传播梯度。
--
-如果为\ ``True``\ ，则该\ ``Tensor``\ 不会计算梯度，并会阻绝Autograd的梯度传播。
--
-反之，则会计算梯度并传播梯度。用户自行创建的的\ ``Tensor``\ ，默认\ ``stop_gradient``\ 为\ ``True``\ ，即默认不计算梯度；模型参数的\ ``stop_gradient``\ 默认都为\ ``False``\ ，即默认计算梯度。
+
+- 如果为\ ``True``\ ，则该\ ``Tensor``\ 不会计算梯度，并会阻绝Autograd的梯度传播。
+
+- 反之，则会计算梯度并传播梯度。用户自行创建的的\ ``Tensor``\ ，默认\ ``stop_gradient``\ 为\ ``True``\ ，即默认不计算梯度；模型参数的\ ``stop_gradient``\ 默认都为\ ``False``\ ，即默认计算梯度。
 
 .. code:: ipython3
 
     import paddle
-    
+
     a = paddle.to_tensor([1.0, 2.0, 3.0])
     b = paddle.to_tensor([1.0, 2.0, 3.0], stop_gradient=False) # 将b设置为需要计算梯度的属性
     print(a.stop_gradient)
@@ -128,7 +129,7 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 .. code:: ipython3
 
     import paddle
-    
+
     x = paddle.to_tensor([1.0, 2.0, 3.0], stop_gradient=False)
     y = paddle.to_tensor([4.0, 5.0, 6.0], stop_gradient=False)
     z = x ** 2 + 4 * y
@@ -162,7 +163,7 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 .. code:: ipython3
 
     import paddle
-    
+
     x = paddle.to_tensor([1.0, 2.0, 3.0], stop_gradient=False)
     y = x + 3
     y.backward(retain_graph=True) # 设置retain_graph为True，保留反向计算图
@@ -180,21 +181,21 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 
     import paddle
     import numpy as np
-    
+
     x = np.ones([2, 2], np.float32)
     inputs2 = []
-    
+
     for _ in range(10):
         tmp = paddle.to_tensor(x)
         tmp.stop_gradient = False
         inputs2.append(tmp)
-    
+
     ret2 = paddle.add_n(inputs2)
     loss2 = paddle.sum(ret2)
-    
+
     loss2.backward()
     print("Before clear {}".format(loss2.gradient()))
-    
+
     loss2.clear_grad()
     print("After clear {}".format(loss2.gradient()))
 
@@ -225,7 +226,7 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 .. code:: ipython3
 
     import paddle
-    
+
     a = paddle.to_tensor(2.0, stop_gradient=False)
     b = paddle.to_tensor(5.0, stop_gradient=True)
     c = a * b
@@ -250,12 +251,12 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 当创建\ ``Tensor``\ ，\ ``Tensor``\ 的\ ``stop_grad=False``\ 时，会自动为此\ ``Tensor``\ 创建一个\ ``反向Tensor``\ 。在此例子中，a的反向Tensor就是\ ``a_grad``\ 。在\ ``a_grad``\ 中，会记录他的反向OP，因为a没有作为任何反向op的输入，所以它的\ ``grad_op``\ 为\ ``None``\ 。
 
 当执行OP时，会自动创建反向OP，不同的OP创建反向OP的方法不同，传的内容也不同。本文以这个乘法OP为例：
--
-乘法OP的反向OP，即\ ``MulBackward``\ 的输入是，正向OP的两个输入，以及正向OP的输出Tensor的反向Tensor。在此例子中就是，\ ``a``\ 、\ ``b``\ 、\ ``c_grad``
--
-乘法OP的反向OP，即\ ``MulBackward``\ 的输出是，正向OP的两个输入的反向Tensor（如果输入是stop_gradient=True，则即为None）。在此例子中就是，\ ``a_grad``\ 、\ ``None（b_grad）``
--
-乘法OP的反向OP，即\ ``MulBackward``\ 的\ ``grad_pending_ops``\ 是自动构建反向网络的时候，让这个反向op知道它下一个可以执行的反向op是哪一个，可以理解为反向网络中，一个反向op指向下一个反向op的边。
+
+-乘法OP的反向OP，即\ ``MulBackward``\ 的输入是，正向OP的两个输入，以及正向OP的输出Tensor的反向Tensor。在此例子中就是，\ ``a``\ 、\ ``b``\ 、\ ``c_grad``
+
+-乘法OP的反向OP，即\ ``MulBackward``\ 的输出是，正向OP的两个输入的反向Tensor（如果输入是stop_gradient=True，则即为None）。在此例子中就是，\ ``a_grad``\ 、\ ``None（b_grad）``
+
+-乘法OP的反向OP，即\ ``MulBackward``\ 的\ ``grad_pending_ops``\ 是自动构建反向网络的时候，让这个反向op知道它下一个可以执行的反向op是哪一个，可以理解为反向网络中，一个反向op指向下一个反向op的边。
 
 当c通过乘法OP被创建后，c会创建一个反向Tensor：\ ``c_grad``,他的\ ``grad_op``\ 为该乘法OP的反向OP，即\ ``MulBackward``\ 。
 
@@ -271,7 +272,7 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 .. code:: ipython3
 
     import paddle
-    
+
     a = paddle.to_tensor(2.0, stop_gradient=False)
     b = paddle.to_tensor(5.0, stop_gradient=False)
     c = a * b
@@ -294,6 +295,6 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 
 该例子的正向和反向图构建过程即：
 
-|4-4.png| - 左侧部分为正向过程，右侧蓝色部分为反向过程。
+|4-4.png|
 
 .. |4-4.png| image:: attachment:4-4.png
