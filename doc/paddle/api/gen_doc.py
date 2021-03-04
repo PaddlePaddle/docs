@@ -50,10 +50,11 @@ def get_all_api(root_path='paddle', attr="__all__"):
     for filefinder, name, ispkg in pkgutil.walk_packages(
             path=paddle.__path__, prefix=paddle.__name__ + '.'):
         try:
-            importlib.import_module(name)
             if name in sys.modules:
                 m = sys.modules[name]
             else:
+                # importlib.import_module(name)
+                m = eval(name)
                 continue
         except AttributeError:
             logger.warning("AttributeError occurred when `eval(%s)`", name)
