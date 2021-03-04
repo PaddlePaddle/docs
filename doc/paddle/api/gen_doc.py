@@ -11,6 +11,7 @@ import sys
 import inspect
 import ast
 import logging
+import importlib
 """
 generate api_info_dict.json to describe all info about the apis.
 """
@@ -49,10 +50,11 @@ def get_all_api(root_path='paddle', attr="__all__"):
     for filefinder, name, ispkg in pkgutil.walk_packages(
             path=paddle.__path__, prefix=paddle.__name__ + '.'):
         try:
-            #m = eval(name)
             if name in sys.modules:
                 m = sys.modules[name]
             else:
+                # importlib.import_module(name)
+                m = eval(name)
                 continue
         except AttributeError:
             logger.warning("AttributeError occurred when `eval(%s)`", name)
