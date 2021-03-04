@@ -110,21 +110,15 @@
 
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
 
-* 对于Python 2,您可以执行:
 
   ```
   python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
   ```
 
-* 对于Python 3，您可以执行:
-
-  ```
-  python3 -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
-  ```
 
 * 注:
 * MacOS上您需要安装unrar以支持PaddlePaddle，可以使用命令`brew install unrar`
-* 如果是python2.7, 建议使用`python`命令;如果是python3.x, 则建议使用`python3`命令
+* 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为 python3 或者替换为具体的 Python 路径。
 * 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](https://www.paddlepaddle.org.cn/install/quick/zh/1.8.5-windows-pip)
 * 使用MacOS中自带Python可能会导致安装失败。对于Python2，建议您使用[Homebrew](https://brew.sh)或[Python.org](https://www.paddlepaddle.org.cn/install/quick/zh/2.0rc-macos-pip)提供的python2.7.15；对于Python3，请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的python3.5.x、python3.6.x、python3.7.x或python3.8.x。
 
