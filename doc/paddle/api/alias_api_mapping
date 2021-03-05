@@ -536,3 +536,4 @@ paddle.tensor.attribute.real	paddle.real,paddle.tensor.real
 paddle.tensor.attribute.imag	paddle.imag,paddle.tensor.imag
 paddle.fluid.layers.BeamSearchDecoder	paddle.nn.BeamSearchDecoder
 paddle.fluid.layers.dynamic_decode	paddle.nn.dynamic_decode
+paddle.tensor.to_string.set_printoptions	paddle.set_printoptions,paddle.tensor.set_printoptions
