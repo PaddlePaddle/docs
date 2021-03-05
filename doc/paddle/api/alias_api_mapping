@@ -553,3 +553,4 @@ paddle.fluid.layers.auc	paddle.static.auc
 paddle.tensor.Overview	paddle.Overview
 paddle.hapi.callbacks.Overview	paddle.callbacks.Overview
 paddle.optimizer.lamb.Lamb	paddle.optimizer.Lamb
+paddle.tensor.to_string.set_printoptions	paddle.set_printoptions,paddle.tensor.set_printoptions
