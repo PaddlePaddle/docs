@@ -179,7 +179,7 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
     import paddle
     import numpy as np
 
-    upsample_op = paddle.nn.Upsample(out_shape=[12,12])
+    upsample_op = paddle.nn.Upsample(size=[12,12])
     input_data = paddle.rand(shape=(2,3,6,10))
 
     output = upsample_op(input_data)
