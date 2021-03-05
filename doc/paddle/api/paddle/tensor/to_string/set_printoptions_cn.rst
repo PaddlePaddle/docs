@@ -7,7 +7,7 @@ set_printoptions
 
 
 
-设置``paddle``中``Tensor``的打印配置选项。 注： 该函数与 ``numpy.set_printoptions()`` 类似。
+设置 ``paddle`` 中 ``Tensor`` 的打印配置选项。 注： 该函数与 ``numpy.set_printoptions()`` 类似。
 
 参数
 :::::::::
