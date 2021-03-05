@@ -1,7 +1,13 @@
 通过Sub-Pixel实现图像超分辨率
 =============================
 
-1.简要介绍
+**作者:** `Ralph LU <https://github.com/ralph0813>`__
+
+**日期:** 2021.01
+
+**摘要:** 本示例教程使用U-Net实现图像分割。
+
+一、简要介绍
 ------------
 
 在计算机视觉中，图像超分辨率（Image Super
@@ -14,8 +20,8 @@ Efficient Sub-Pixel Convolutional Neural Network》
 
 论文链接：https://arxiv.org/abs/1609.05158
 
-2.环境设置
----------------
+二、环境设置
+------------
 
 导入一些比较基础常用的模块，确认自己的飞桨版本。
 
@@ -40,11 +46,11 @@ Efficient Sub-Pixel Convolutional Neural Network》
 
 .. parsed-literal::
 
-    2.0.0-rc1
+    2.0.0
 
 
-3.数据集
--------------
+三、数据集
+----------
 
 3.1 数据集下载
 ~~~~~~~~~~~~~~
@@ -57,8 +63,50 @@ Efficient Sub-Pixel Convolutional Neural Network》
     !tar -zxvf BSR_bsds500.tgz
 
 
+.. parsed-literal::
+
+    --2021-01-29 00:11:52--  http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz
+    Resolving www.eecs.berkeley.edu (www.eecs.berkeley.edu)... 23.185.0.1, 2620:12a:8001::1, 2620:12a:8000::1
+    Connecting to www.eecs.berkeley.edu (www.eecs.berkeley.edu)|23.185.0.1|:80... connected.
+    HTTP request sent, awaiting response... 301 Moved Permanently
+    Location: https://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz [following]
+    --2021-01-29 00:11:53--  https://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz
+    Connecting to www.eecs.berkeley.edu (www.eecs.berkeley.edu)|23.185.0.1|:443... connected.
+    HTTP request sent, awaiting response... 301 Moved Permanently
+    Location: https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz [following]
+    --2021-01-29 00:11:53--  https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz
+    Resolving www2.eecs.berkeley.edu (www2.eecs.berkeley.edu)... 128.32.244.190
+    Connecting to www2.eecs.berkeley.edu (www2.eecs.berkeley.edu)|128.32.244.190|:443... connected.
+    ^C
+    tar (child): BSR_bsds500.tgz: Cannot open: No such file or directory
+    tar (child): Error is not recoverable: exiting now
+    tar: Child returned status 2
+    tar: Error is not recoverable: exiting now
+
+
 3.2 数据集概览
 ~~~~~~~~~~~~~~
+
+::
+
+   BSR
+   ├── BSDS500
+   │   └── data
+   │       ├── groundTruth
+   │       │   ├── test
+   │       │   ├── train
+   │       │   └── val
+   │       └── images
+   │           ├── test
+   │           ├── train
+   │           └── val
+   ├── bench
+   │   ├── benchmarks
+   │   ├── data
+   │   │   ├── ...
+   │   │   └── ...
+   │   └── source
+   └── documentation
 
 可以看到我们需要的图片文件在BSR/BSDS500/images文件夹下，train、test各200张，val为100张。
 
@@ -224,7 +272,7 @@ DataLoader（多进程数据集加载）。
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_files/super_resolution_sub_pixel_10_1.png?raw=true
+.. image:: super_resolution_sub_pixel_files/super_resolution_sub_pixel_10_1.png
 
 
 
@@ -234,7 +282,7 @@ DataLoader（多进程数据集加载）。
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_files/super_resolution_sub_pixel_10_3.png?raw=true
+.. image:: super_resolution_sub_pixel_files/super_resolution_sub_pixel_10_3.png
 
 
 
@@ -243,8 +291,8 @@ DataLoader（多进程数据集加载）。
     (300, 300)
 
 
-4.模型组网
----------------
+四、模型组网
+------------
 
 Sub_Pixel_CNN是一个全卷积网络，网络结构比较简单，这里采用Layer类继承方式组网。
 
@@ -291,10 +339,10 @@ Sub_Pixel_CNN是一个全卷积网络，网络结构比较简单，这里采用L
     ---------------------------------------------------------------------------
      Layer (type)       Input Shape          Output Shape         Param #    
     ===========================================================================
-       Conv2D-5      [[1, 1, 100, 100]]   [1, 64, 100, 100]        1,664     
-       Conv2D-6     [[1, 64, 100, 100]]   [1, 64, 100, 100]       36,928     
-       Conv2D-7     [[1, 64, 100, 100]]   [1, 32, 100, 100]       18,464     
-       Conv2D-8     [[1, 32, 100, 100]]    [1, 9, 100, 100]        2,601     
+       Conv2D-1      [[1, 1, 100, 100]]   [1, 64, 100, 100]        1,664     
+       Conv2D-2     [[1, 64, 100, 100]]   [1, 64, 100, 100]       36,928     
+       Conv2D-3     [[1, 64, 100, 100]]   [1, 32, 100, 100]       18,464     
+       Conv2D-4     [[1, 32, 100, 100]]    [1, 9, 100, 100]        2,601     
     ===========================================================================
     Total params: 59,657
     Trainable params: 59,657
@@ -316,8 +364,8 @@ Sub_Pixel_CNN是一个全卷积网络，网络结构比较简单，这里采用L
 
 
 
-5.模型训练
-----------
+五、模型训练
+------------
 
 5.1 启动模型训练
 ~~~~~~~~~~~~~~~~
@@ -347,22 +395,49 @@ Sub_Pixel_CNN是一个全卷积网络，网络结构比较简单，这里采用L
 
     The loss value printed in the log is the current step, and the metric is the average value of previous step.
     Epoch 1/20
-    step 13/13 [==============================] - loss: 0.0423 - 2s/step          
+    step 13/13 [==============================] - loss: 0.2466 - 2s/step        
     Epoch 2/20
-    step 13/13 [==============================] - loss: 0.0146 - 1s/step          
+    step 13/13 [==============================] - loss: 0.0802 - 2s/step        
     Epoch 3/20
-    step 13/13 [==============================] - loss: 0.0069 - 1s/step          
-    ...
+    step 13/13 [==============================] - loss: 0.0474 - 2s/step        
+    Epoch 4/20
+    step 13/13 [==============================] - loss: 0.0340 - 2s/step        
+    Epoch 5/20
+    step 13/13 [==============================] - loss: 0.0267 - 2s/step        
+    Epoch 6/20
+    step 13/13 [==============================] - loss: 0.0179 - 2s/step        
+    Epoch 7/20
+    step 13/13 [==============================] - loss: 0.0215 - 2s/step        
+    Epoch 8/20
+    step 13/13 [==============================] - loss: 0.0162 - 2s/step        
+    Epoch 9/20
+    step 13/13 [==============================] - loss: 0.0137 - 2s/step        
+    Epoch 10/20
+    step 13/13 [==============================] - loss: 0.0099 - 2s/step        
+    Epoch 11/20
+    step 13/13 [==============================] - loss: 0.0074 - 2s/step        
+    Epoch 12/20
+    step 13/13 [==============================] - loss: 0.0117 - 2s/step        
+    Epoch 13/20
+    step 13/13 [==============================] - loss: 0.0065 - 2s/step        
+    Epoch 14/20
+    step 13/13 [==============================] - loss: 0.0086 - 2s/step        
+    Epoch 15/20
+    step 13/13 [==============================] - loss: 0.0085 - 2s/step        
+    Epoch 16/20
+    step 13/13 [==============================] - loss: 0.0067 - 2s/step        
+    Epoch 17/20
+    step 13/13 [==============================] - loss: 0.0068 - 2s/step        
     Epoch 18/20
-    step 13/13 [==============================] - loss: 0.0019 - 2s/step          
+    step 13/13 [==============================] - loss: 0.0044 - 2s/step        
     Epoch 19/20
-    step 13/13 [==============================] - loss: 0.0033 - 2s/step          
+    step 13/13 [==============================] - loss: 0.0069 - 2s/step        
     Epoch 20/20
-    step 13/13 [==============================] - loss: 0.0043 - 1s/step          
+    step 13/13 [==============================] - loss: 0.0087 - 2s/step        
 
 
-6.模型预测
----------------
+六、模型预测
+------------
 
 6.1 预测
 ~~~~~~~~
@@ -377,7 +452,7 @@ Sub_Pixel_CNN是一个全卷积网络，网络结构比较简单，这里采用L
 .. parsed-literal::
 
     Predict begin...
-    step 100/100 [==============================] - 31ms/step          
+    step 100/100 [==============================] - 38ms/step         
     Predict samples: 100
 
 
@@ -503,15 +578,15 @@ Sub_Pixel_CNN是一个全卷积网络，网络结构比较简单，这里采用L
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_files/super_resolution_sub_pixel_26_1.png?raw=true
+.. image:: super_resolution_sub_pixel_files/super_resolution_sub_pixel_26_1.png
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_files/super_resolution_sub_pixel_26_2.png?raw=true
+.. image:: super_resolution_sub_pixel_files/super_resolution_sub_pixel_26_2.png
 
 
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/tutorial/cv_case/super_resolution_sub_pixel/super_resolution_sub_pixel_files/super_resolution_sub_pixel_26_3.png?raw=true
+.. image:: super_resolution_sub_pixel_files/super_resolution_sub_pixel_26_3.png
 
 
 .. parsed-literal::
@@ -520,7 +595,7 @@ Sub_Pixel_CNN是一个全卷积网络，网络结构比较简单，这里采用L
 
 
 7.模型保存
------------------
+==========
 
 将模型保存到 checkpoint/model_final ，并保留训练参数
 

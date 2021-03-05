@@ -6,248 +6,459 @@ import pkgutil
 import types
 import contextlib
 import argparse
+import json
+import sys
+import inspect
+import ast
+import logging
+import importlib
+"""
+generate api_info_dict.json to describe all info about the apis.
+"""
 
 en_suffix = "_en.rst"
 cn_suffix = "_cn.rst"
 
-file_path_dict = {}
+# key = id(api), value = dict of api_info{
+#   "id":id,
+#   "all_names":[],  # all full_names
+#   "full_name":"",  # the real name, and the others are the alias name
+#   "short_name":"",  # without module name
+#   "alias_name":"",  # without module name
+#   "module_name":"",  # the module of the real api belongs to
+#   "display":True/Flase, # consider the not_display_doc_list and the display_doc_list
+#   "has_overwrited_doc":True/False  #
+#   "doc_filename"  # document filename without suffix
+# }
+api_info_dict = {}
+parsed_mods = {}
 
-# key = id(api), value = list of all apis with the same id.
-same_api_map = {}
+logging.basicConfig(
+    format="%(asctime)s - %(lineno)d - %(levelname)s - %(message)s")
+logger = logging.getLogger()
 
-# read from file './alias_api_mapping'
-# key = column 1 (as the real api), value = column 2
-alias_api_map = {}
-
-# id
-# key = id(api), value = the real api
-id_real_api_map = {}
-
-# read from file './not_display_doc_list'
-# key = line, value = 1
-not_display_doc_map = {}
-
-# read from file './display_doc_list'
-# key = line, value = 1
-display_doc_map = {}
-
-# the set of all apis
-api_set = set()
+# logger.setLevel(logging.DEBUG)
 
 
-# walkthrough the paddle package to collect all the apis in api_set
-def get_all_api(root_path='paddle'):
-    global api_set
+# step 1: walkthrough the paddle package to collect all the apis in api_set
+def get_all_api(root_path='paddle', attr="__all__"):
+    """
+    walk through the paddle package to collect all the apis.
+    """
+    global api_info_dict
+    api_counter = 0
     for filefinder, name, ispkg in pkgutil.walk_packages(
             path=paddle.__path__, prefix=paddle.__name__ + '.'):
-        # skip the paddle.reader APIs
-        if name.startswith("paddle.reader"):
-            continue
-
         try:
-            m = eval(name)
+            if name in sys.modules:
+                m = sys.modules[name]
+            else:
+                # importlib.import_module(name)
+                m = eval(name)
+                continue
         except AttributeError:
+            logger.warning("AttributeError occurred when `eval(%s)`", name)
             pass
         else:
-            if hasattr(m, "__all__"):
-                # may have duplication of api
-                for api in set(m.__all__):
-                    if "," in api:
-                        # ?
-                        continue
+            api_counter += process_module(m, attr)
 
-                    # api's fullname
-                    api_all = name + "." + api
-                    try:
-                        fc_id = id(eval(api_all))
-                    except AttributeError:
-                        pass
-                    else:
-                        api_set.add(api_all)
-    print('collect {} apis.'.format(len(api_set)))
+    api_counter += process_module(paddle, attr)
+    logger.info('collected %d apis, %d distinct apis.', api_counter,
+                len(api_info_dict))
 
 
-def get_all_same_api():
-    global same_api_map, api_set
-    for api in api_set:
-        fc_id = id(eval(api))
-        if fc_id in same_api_map:
-            same_api_map[fc_id].append(api)
-        else:
-            same_api_map[fc_id] = [api]
-    print('same_api_map has {} items'.format(len(same_api_map)))
+# step 1 fill field : `id` & `all_names`, type
+def process_module(m, attr="__all__"):
+    api_counter = 0
+    if hasattr(m, attr):
+        # may have duplication of api
+        for api in set(getattr(m, attr)):
+            if api[0] == '_': continue
+            # Exception occurred when `id(eval(paddle.dataset.conll05.test, get_dict))`
+            if ',' in api: continue
 
-
-def get_not_display_doc_list(file="./not_display_doc_list"):
-    global not_display_doc_map
-    with open(file, 'r') as f:
-        for line in f.readlines():
-            line = line.strip()
-            not_display_doc_map[line] = 1
-    print('not_display_doc_map has {} items'.format(len(not_display_doc_map)))
-
-
-def get_display_doc_map(file="./display_doc_list"):
-    global display_doc_map
-    with open(file, 'r') as f:
-        for line in f.readlines():
-            line = line.strip()
-            display_doc_map[line] = 1
-    print('display_doc_map has {} items'.format(len(display_doc_map)))
-
-
-def get_alias_mapping(file="./alias_api_mapping"):
-    global alias_api_map, id_real_api_map
-    with open(file, 'r') as f:
-        for line in f.readlines():
-            if "\t" in line:
-                t = line.strip().split('\t')
-            else:
-                t = line.strip().split('    ')
-            if len(t) < 2:
-                print('line "', line, '" splited to ', t)
-                continue
-            real_api = t[0].strip()
-            alias_apis = t[1].strip().split(',')
-            alias_api_map[real_api] = alias_apis
-
+            # api's fullname
+            full_name = m.__name__ + "." + api
             try:
-                m = eval(real_api)
+                obj = eval(full_name)
+                fc_id = id(obj)
             except AttributeError:
-                print("AttributeError:", real_api)
+                logger.warning("AttributeError occurred when `id(eval(%s))`",
+                               full_name)
                 pass
+            except:
+                logger.warning("Exception occurred when `id(eval(%s))`",
+                               full_name)
             else:
-                id_real_api_map[id(eval(real_api))] = real_api
+                api_counter += 1
+                logger.debug("adding %s to api_info_dict.", full_name)
+                if fc_id in api_info_dict:
+                    api_info_dict[fc_id]["all_names"].add(full_name)
+                else:
+                    api_info_dict[fc_id] = {
+                        "all_names": set([full_name]),
+                        "id": fc_id,
+                        "object": obj,
+                        "type": type(obj).__name__,
+                    }
+    return api_counter
 
-    print('id_real_api_map has {} items'.format(len(id_real_api_map)))
-    print('alias_api_map has {} items'.format(len(alias_api_map)))
+
+# step 3 fill field : args, src_file, lineno, end_lineno, short_name, full_name, module_name, doc_filename
+def set_source_code_attrs():
+    """
+    should has 'full_name' first.
+    """
+    src_file_start_ind = len(paddle.__path__[0]) - len('paddle/')
+    # ast module has end_lineno attr after py 3.8
+
+    for id_api in api_info_dict:
+        item = api_info_dict[id_api]
+        obj = item["object"]
+        obj_type_name = item["type"]
+        logger.debug("processing %s:%s:%s", obj_type_name, item["id"],
+                     str(obj))
+        if obj_type_name == "module":
+            if hasattr(obj, '__file__') and obj.__file__ is not None and len(
+                    obj.__file__) > src_file_start_ind:
+                api_info_dict[id_api]["src_file"] = obj.__file__[
+                    src_file_start_ind:]
+            parse_module_file(obj)
+            api_info_dict[id_api]["full_name"] = obj.__name__
+            api_info_dict[id_api]["package"] = obj.__package__
+            api_info_dict[id_api]["short_name"] = split_name(obj.__name__)[1]
+        elif hasattr(obj, '__module__') and obj.__module__ in sys.modules:
+            mod_name = obj.__module__
+            mod = sys.modules[mod_name]
+            parse_module_file(mod)
+        else:
+            if hasattr(obj, '__name__'):
+                mod_name, short_name = split_name(obj.__name__)
+                if mod_name in sys.modules:
+                    mod = sys.modules[mod_name]
+                    parse_module_file(mod)
+                else:
+                    logger.debug("{}, {}, {}".format(item["id"], item["type"],
+                                                     item["all_names"]))
+            else:
+                found = False
+                for name in item["all_names"]:
+                    mod_name, short_name = split_name(name)
+                    if mod_name in sys.modules:
+                        mod = sys.modules[mod_name]
+                        parse_module_file(mod)
+                        found = True
+                if not found:
+                    logger.debug("{}, {}, {}".format(item["id"], item["type"],
+                                                     item["all_names"]))
 
 
-# filter the same_api_map by display list and not display list
-def filter_same_api():
-    global same_api_map
-    for k in list(same_api_map.keys()):
-        same_apis = same_api_map[k]
-        if is_display_apis(same_apis):
+def split_name(name):
+    try:
+        r = name.rindex('.')
+        return [name[:r], name[r + 1:]]
+    except:
+        return ['', name]
+
+
+def parse_module_file(mod):
+    skip_this_mod = False
+    if mod in parsed_mods:
+        skip_this_mod = True
+    if skip_this_mod:
+        return
+    else:
+        parsed_mods[mod] = True
+
+    src_file_start_ind = len(paddle.__path__[0]) - len('paddle/')
+    has_end_lineno = sys.version_info > (3, 8)
+    if hasattr(mod, '__name__') and hasattr(mod, '__file__'):
+        src_file = mod.__file__
+        mod_name = mod.__name__
+        logger.debug("parsing %s:%s", mod_name, src_file)
+        if len(mod_name) >= 6 and mod_name[:6] == 'paddle':
+            if os.path.splitext(src_file)[1].lower() == '.py':
+                mod_ast = ast.parse(open(src_file, "r").read())
+                for node in mod_ast.body:
+                    short_names = []
+                    if ((isinstance(node, ast.ClassDef) or
+                         isinstance(node, ast.FunctionDef)) and
+                            hasattr(node, 'name') and
+                            hasattr(sys.modules[mod_name],
+                                    node.name) and node.name[0] != '_'):
+                        short_names.append(node.name)
+                    elif isinstance(node, ast.Assign):
+                        for target in node.targets:
+                            if hasattr(target, 'id') and target.id[0] != '_':
+                                short_names.append(target.id)
+                    else:
+                        pass
+                    for short_name in short_names:
+                        obj_full_name = mod_name + '.' + short_name
+                        logger.debug("processing %s", obj_full_name)
+                        try:
+                            obj_this = eval(obj_full_name)
+                            obj_id = id(obj_this)
+                        except:
+                            logger.warning("%s maybe %s.%s", obj_full_name,
+                                           mod.__package__, short_name)
+                            obj_full_name = mod.__package__ + '.' + short_name
+                            try:
+                                obj_this = eval(obj_full_name)
+                                obj_id = id(obj_this)
+                            except:
+                                continue
+                        if obj_id in api_info_dict and "lineno" not in api_info_dict[
+                                obj_id]:
+                            api_info_dict[obj_id]["src_file"] = src_file[
+                                src_file_start_ind:]
+                            api_info_dict[obj_id][
+                                "doc_filename"] = obj_full_name.replace('.',
+                                                                        '/')
+                            api_info_dict[obj_id]["full_name"] = obj_full_name
+                            api_info_dict[obj_id]["short_name"] = short_name
+                            api_info_dict[obj_id]["module_name"] = mod_name
+                            api_info_dict[obj_id]["lineno"] = node.lineno
+                            if has_end_lineno:
+                                api_info_dict[obj_id][
+                                    "end_lineno"] = node.end_lineno
+                            if isinstance(node, ast.FunctionDef):
+                                api_info_dict[obj_id][
+                                    "args"] = gen_functions_args_str(node)
+                            elif isinstance(node, ast.ClassDef):
+                                for n in node.body:
+                                    if hasattr(
+                                            n,
+                                            'name') and n.name == '__init__':
+                                        api_info_dict[obj_id][
+                                            "args"] = gen_functions_args_str(n)
+                                        break
+                        else:
+                            logger.debug("%s omitted", obj_full_name)
+            else:  # pybind11 ...
+                for short_name in mod.__dict__:
+                    if short_name[0] != '_':
+                        obj_full_name = mod_name + '.' + short_name
+                        logger.debug("processing %s", obj_full_name)
+                        try:
+                            obj_this = eval(obj_full_name)
+                            obj_id = id(obj_this)
+                        except:
+                            logger.warning("%s eval error", obj_full_name)
+                            continue
+                        if obj_id in api_info_dict and "lineno" not in api_info_dict[
+                                obj_id]:
+                            api_info_dict[obj_id]["src_file"] = src_file[
+                                src_file_start_ind:]
+                            api_info_dict[obj_id]["full_name"] = obj_full_name
+                            api_info_dict[obj_id]["short_name"] = short_name
+                            api_info_dict[obj_id]["module_name"] = mod_name
+                        else:
+                            logger.debug("%s omitted", obj_full_name)
+
+
+def gen_functions_args_str(node):
+    str_args_list = []
+    if isinstance(node, ast.FunctionDef):
+        # 'args', 'defaults', 'kw_defaults', 'kwarg', 'kwonlyargs', 'posonlyargs', 'vararg'
+        for arg in node.args.args:
+            if not arg.arg == 'self':
+                str_args_list.append(arg.arg)
+
+        defarg_ind_start = len(str_args_list) - len(node.args.defaults)
+        for defarg_ind in range(len(node.args.defaults)):
+            if isinstance(node.args.defaults[defarg_ind], ast.Name):
+                str_args_list[defarg_ind_start + defarg_ind] += '=' + str(
+                    node.args.defaults[defarg_ind].id)
+            elif isinstance(node.args.defaults[defarg_ind], ast.Constant):
+                str_args_list[defarg_ind_start + defarg_ind] += '=' + str(
+                    node.args.defaults[defarg_ind].value)
+        if node.args.vararg is not None:
+            str_args_list.append('*' + node.args.vararg.arg)
+        if len(node.args.kwonlyargs) > 0:
+            if node.args.vararg is None:
+                str_args_list.append('*')
+            for kwoarg, d in zip(node.args.kwonlyargs, node.args.kw_defaults):
+                if isinstance(d, ast.Constant):
+                    str_args_list.append("{}={}".format(kwoarg.arg, d.value))
+                elif isinstance(d, ast.Name):
+                    str_args_list.append("{}={}".format(kwoarg.arg, d.id))
+        if node.args.kwarg is not None:
+            str_args_list.append('**' + node.args.kwarg.arg)
+
+    return ', '.join(str_args_list)
+
+
+# step 2 fill field : `display`
+def set_display_attr_of_apis():
+    """
+    set the display attr
+    """
+    display_none_apis = set(
+        [line.strip() for line in open("./not_display_doc_list", "r")])
+    display_yes_apis = set(
+        [line.strip() for line in open("./display_doc_list", "r")])
+    logger.info(
+        'display_none_apis has %d items, display_yes_apis has %d items',
+        len(display_none_apis), len(display_yes_apis))
+    # file the same apis
+    for id_api in api_info_dict:
+        all_names = api_info_dict[id_api]["all_names"]
+        display_yes = False
+        for n in all_names:
+            if n in display_yes_apis:
+                display_yes = True
+                break
+        if display_yes:
+            api_info_dict[id_api]["display"] = True
+        else:
+            display_yes = True
+            for n in all_names:
+                for dn in display_none_apis:
+                    if n.startswith(dn):
+                        display_yes = False
+                        break
+                if not display_yes:
+                    break
+            if not display_yes:
+                api_info_dict[id_api]["display"] = False
+                logger.info("set {} display to False".format(id_api))
+
+
+# step 4 fill field : alias_name
+def set_real_api_alias_attr():
+    """
+    set the full_name,alias attr and so on.
+    """
+    for line in open("./alias_api_mapping", "r"):
+        linecont = line.strip()
+        lineparts = linecont.split()
+        if len(lineparts) < 2:
+            logger.warning('line "{}" splited to {}'.format(line, lineparts))
             continue
+        try:
+            real_api = lineparts[0]
+            m = eval(real_api)
+        except AttributeError:
+            logger.warning("AttributeError: %s", real_api)
+        else:
+            api_id = id(m)
+            if api_id in api_info_dict:
+                api_info_dict[api_id]["alias_name"] = lineparts[1]
+                if "doc_filename" not in api_info_dict[api_id]:
+                    api_info_dict[api_id]["doc_filename"] = lineparts[
+                        0].replace('.', '/')
+                if "module_name" not in api_info_dict[
+                        api_id] or "short_name" not in api_info_dict[api_id]:
+                    mod_name, short_name = split_name(lineparts[0])
+                    api_info_dict[api_id]["module_name"] = mod_name
+                    api_info_dict[api_id]["short_name"] = short_name
 
-        if is_not_display_apis(same_apis):
-            del same_api_map[k]
-    print('filtered same_api_map has {} items'.format(len(same_api_map)))
 
-
-def choose_real_api(api_list):
-    global id_real_api_map
+def get_shortest_api(api_list):
+    """
+    find the shortest api in list.
+    """
     if len(api_list) == 1:
         return api_list[0]
+    # try to find shortest path of api as the real api
+    shortest_len = len(api_list[0].split("."))
+    shortest_api = api_list[0]
+    for x in api_list[1:]:
+        len_x = len(x.split("."))
+        if len_x < shortest_len:
+            shortest_len = len_x
+            shortest_api = x
 
-    id_api = id(eval(api_list[0]))
-    # the api in id_real_api_map, return real_api
-    if id_api in id_real_api_map:
-        return id_real_api_map[id_api]
-    else:
-        # in case of alias_mapping not contain the apis
-        # try to find shortest path of api as the real api
-        shortest_len = len(api_list[0].split("."))
-        shortest_api = api_list[0]
-        for x in api_list[1:]:
-            len_x = len(x.split("."))
-            if len_x < shortest_len:
-                shortest_len = len_x
-                shortest_api = x
-
-        return shortest_api
+    return shortest_api
 
 
-# check if any of the same apis in display list
-def is_display_apis(api_list):
-    global display_doc_map
-    for api in api_list:
-        if api in display_doc_map:
-            return True
-    return False
-
-
-# check api in not_display_list
-def is_not_display_apis(api_list):
-    global not_display_doc_map
-    for api in api_list:
-        for key in not_display_doc_map:
-            if key == api:
-                return True
-            # filter all the the module
-            if api.startswith(key) and api[len(key)] == '.':
-                return True
-    return False
-
-
-def gen_en_files(root_path='paddle', api_label_file="api_label"):
-    api_f = open(api_label_file, 'w')
-
-    for api_list in same_api_map.values():
-        real_api = choose_real_api(api_list)
-
-        module_name = ".".join(real_api.split(".")[0:-1])
-        doc_file = real_api.split(".")[-1]
-
-        if isinstance(eval(real_api), types.ModuleType):
-            continue
-
-        path = "/".join(real_api.split(".")[0:-1])
-        if not os.path.exists(path):
-            os.makedirs(path)
-        f = real_api.replace(".", "/") + en_suffix
-        if os.path.exists(f):
-            continue
-
-        # os.mknod(f) # gen.guard will open it
-        gen = EnDocGenerator()
-        with gen.guard(f):
-            gen.module_name = module_name
-            gen.api = doc_file
-            gen.print_header_reminder()
-            gen.print_item()
-            api_f.write(doc_file + "\t" + ".. _api_{0}_{1}:\n".format("_".join(
-                gen.module_name.split(".")), gen.api))
-    api_f.close()
-
-
-def clean_en_files(path="./paddle"):
+def remove_all_en_files(path="./paddle"):
+    """
+    remove all the existed en doc files
+    """
     for root, dirs, files in os.walk(path):
         for file in files:
             if file.endswith(en_suffix):
                 os.remove(os.path.join(root, file))
 
 
-def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
-    fo = open(diff_file, 'w')
-    fo.write("exist\tnot_exits\n")
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            if file.endswith(en_suffix):
-                cf = file.replace(en_suffix, cn_suffix)
-                if not os.path.exists(root + "/" + cf):
-                    fo.write(
-                        os.path.join(root, file) + "\t" + os.path.join(
-                            root, cf) + "\n")
+# using `doc_filename`
+def gen_en_files(api_label_file="api_label"):
+    """
+    generate all the en doc files.
+    """
+    with open(api_label_file, 'w') as api_label:
+        for id_api, api_info in api_info_dict.items():
+            # api_info = api_info_dict[id_api]
+            if "display" in api_info and not api_info["display"]:
+                logger.debug("{} display False".format(id_api))
+                continue
+            if "doc_filename" not in api_info:
+                logger.debug(
+                    "{} does not have doc_filename field.".format(id_api))
+                continue
+            else:
+                logger.debug(api_info["doc_filename"])
+            path = os.path.dirname(api_info["doc_filename"])
+            if not os.path.exists(path):
+                os.makedirs(path)
+            f = api_info["doc_filename"] + en_suffix
+            if os.path.exists(f):
+                continue
+            gen = EnDocGenerator()
+            with gen.guard(f):
+                gen.module_name = api_info["module_name"]
+                gen.api = api_info["short_name"]
+                gen.print_header_reminder()
+                gen.print_item()
+                api_label.write("{1}\t.. _api_{0}_{1}:\n".format("_".join(
+                    gen.module_name.split(".")), gen.api))
 
-            elif file.endswith(cn_suffix):
-                ef = file.replace(cn_suffix, en_suffix)
-                if not os.path.exists(root + "/" + ef):
-                    fo.write(
-                        os.path.join(root, file) + "\t" + os.path.join(
-                            root, ef) + "\n")
-    fo.close()
+
+def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
+    """
+    skip
+    """
+    osp_join = os.path.join
+    osp_exists = os.path.exists
+    with open(diff_file, 'w') as fo:
+        tmpl = "{}\t{}\n"
+        fo.write(tmpl.format("exist", "not_exits"))
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                if file.endswith(en_suffix):
+                    cf = file.replace(en_suffix, cn_suffix)
+                    if not osp_exists(osp_join(root, cf)):
+                        fo.write(
+                            tmpl.format(
+                                osp_join(root, file), osp_join(root, cf)))
+                elif file.endswith(cn_suffix):
+                    ef = file.replace(cn_suffix, en_suffix)
+                    if not osp_exists(osp_join(root, ef)):
+                        fo.write(
+                            tmpl.format(
+                                osp_join(root, file), osp_join(root, ef)))
 
 
 class EnDocGenerator(object):
+    """
+    skip
+    """
+
     def __init__(self, name=None, api=None):
+        """
+        init
+        """
         self.module_name = name
         self.api = api
         self.stream = None
 
     @contextlib.contextmanager
     def guard(self, filename):
+        """
+        open the file
+        """
         assert self.stream is None, "stream must be None"
         self.stream = open(filename, 'w')
         yield
@@ -255,10 +466,14 @@ class EnDocGenerator(object):
         self.stream = None
 
     def print_item(self):
+        """
+        as name
+        """
         try:
             m = eval(self.module_name + "." + self.api)
         except AttributeError:
-            #print("attribute error: module_name=" + self.module_name  + ", api=" + self.api)
+            logger.warning("attribute error: module_name=" + self.module_name +
+                           ", api=" + self.api)
             pass
         else:
             if isinstance(eval(self.module_name + "." + self.api), type):
@@ -269,16 +484,25 @@ class EnDocGenerator(object):
                 self.print_function()
 
     def print_header_reminder(self):
+        """
+        as name
+        """
         self.stream.write('''..  THIS FILE IS GENERATED BY `gen_doc.{py|sh}`
     !DO NOT EDIT THIS FILE MANUALLY!
 
 ''')
 
     def _print_ref_(self):
+        """
+        as name
+        """
         self.stream.write(".. _api_{0}_{1}:\n\n".format("_".join(
             self.module_name.split(".")), self.api))
 
     def _print_header_(self, name, dot, is_title):
+        """
+        as name
+        """
         dot_line = dot * len(name)
         if is_title:
             self.stream.write(dot_line)
@@ -290,6 +514,9 @@ class EnDocGenerator(object):
         self.stream.write('\n')
 
     def print_class(self):
+        """
+        as name
+        """
         self._print_ref_()
         self._print_header_(self.api, dot='-', is_title=False)
 
@@ -334,6 +561,9 @@ class EnDocGenerator(object):
         self.stream.write(cls_templates[tmpl].format(api_full_name))
 
     def print_function(self):
+        """
+        as name
+        """
         self._print_ref_()
         self._print_header_(self.api, dot='-', is_title=False)
         self.stream.write('''..  autofunction:: {0}.{1}
@@ -342,14 +572,39 @@ class EnDocGenerator(object):
 '''.format(self.module_name, self.api))
 
 
-if __name__ == "__main__":
-    get_all_api()
-    get_not_display_doc_list()
-    get_display_doc_map()
-    get_all_same_api()
-    get_alias_mapping()
-    filter_same_api()
+def filter_api_info_dict():
+    for id_api in api_info_dict:
+        if "all_names" in api_info_dict[id_api]:
+            api_info_dict[id_api]["all_names"] = list(
+                api_info_dict[id_api]["all_names"])
+        if "object" in api_info_dict[id_api]:
+            del api_info_dict[id_api]["object"]
 
-    clean_en_files()
+
+def reset_api_info_dict():
+    global api_info_dict, parsed_mods
+    api_info_dict = {}
+    parsed_mods = {}
+
+
+if __name__ == "__main__":
+
+    # for api manager
+    reset_api_info_dict()
+    get_all_api(attr="__dict__")
+    set_display_attr_of_apis()
+    set_source_code_attrs()
+    set_real_api_alias_attr()
+    filter_api_info_dict()
+    json.dump(api_info_dict, open("api_info_dict.json", "w"), indent=4)
+
+    # for api rst files
+    reset_api_info_dict()
+    get_all_api(attr="__all__")
+    set_display_attr_of_apis()
+    set_source_code_attrs()
+    set_real_api_alias_attr()
+    filter_api_info_dict()
+    json.dump(api_info_dict, open("api_info_all.json", "w"), indent=4)
     gen_en_files()
     check_cn_en_match()

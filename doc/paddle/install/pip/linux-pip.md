@@ -29,7 +29,7 @@
 
 * 确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
 
-  * 如果您是使用 Python 2，使用以下命令输出 Python 路径，根据的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
+  * 如果您是使用 Python 2，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
 
     ```
     which python
@@ -166,16 +166,9 @@
 
 #### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
-* 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* 如果您是使用 Python 3
-
-  ```
-  python3 -m pip install paddlepaddle==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
@@ -186,93 +179,51 @@
 
 2.2.1 <span id="cuda9">CUDA9.0的PaddlePaddle</span>
 
-* 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* 如果您是使用 Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post90 -f https://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
 
 2.2.2 <span id="cuda10">CUDA10.0的PaddlePaddle</span>
 
-* 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post100 -f https://paddlepaddle.org.cn/whl/develop.html
   ```
-
-* 如果您是使用 Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
 
 
 2.2.3 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
 
-* 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* 如果您是使用 Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post101 -f https://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
 
 2.2.4 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
 
-* 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* 如果您是使用 Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f https://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
 
 2.2.5 <span id="cuda11">CUDA11.0的PaddlePaddle</span>
 
-* 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* 如果您是使用 Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post110 -f https://paddlepaddle.org.cn/whl/develop.html
   ```
 
 
 
 注：
 
-* 如果是python2.7, 建议使用`python`命令; 如果是python3.x, 则建议使用`python3`命令
-
-* 如果您需要使用清华源，可以通过以下命令
-
-  ```
-   python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple
-  ```
+* 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为 python3 或者替换为具体的 Python 路径。
 
 
 

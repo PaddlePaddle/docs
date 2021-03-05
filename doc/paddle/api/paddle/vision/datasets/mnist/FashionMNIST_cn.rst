@@ -10,11 +10,11 @@ FashionMNIST
 
 参数
 :::::::::
-        - image_path (str) - 图像文件路径，如果 ``download`` 设置为 ``True`` ，此参数可以设置为None。默认值为None。
-        - label_path (str) - 标签文件路径，如果 ``download`` 设置为 ``True`` ，此参数可以设置为None。默认值为None。
+        - image_path (str) - 图像文件路径，如果 ``download`` 参数设置为 ``True`` ， ``image_path`` 参数可以设置为 ``None`` 。默认值为 ``None`` 。
+        - label_path (str) - 标签文件路径，如果 ``download`` 参数设置为 ``True`` ， ``label_path`` 参数可以设置为 ``None`` 。默认值为 ``None`` 。
         - mode (str) - ``'train'`` 或 ``'test'`` 模式，默认为 ``'train'`` 。
-        - download (bool) - 是否自定下载数据集文件。默认为 ``True`` 。
-        - backend (str, optional) - 指定要返回的图像类型：PIL.Image或numpy.ndarray。必须是{'pil'，'cv2'}中的值。如果未设置此选项，将从paddle.vsion.get_image_backend获得这个值。 默认值：None 。
+        - download (bool) - 当 ``data_file`` 是 ``None`` 时，该参数决定是否自动下载数据集文件。默认为 ``True`` 。
+        - backend (str, optional) - 指定要返回的图像类型：PIL.Image或numpy.ndarray。必须是{'pil'，'cv2'}中的值。如果未设置此选项，将从paddle.vsion.get_image_backend获得这个值。 默认值： ``None`` 。
 
 返回
 :::::::::

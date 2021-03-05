@@ -3,10 +3,10 @@
 cross_entropy
 -------------------------------
 
-.. py:function:: paddle.nn.functional.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_lable=False, axis=-1, name=None)
+.. py:function:: paddle.nn.functional.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_label=False, axis=-1, name=None)
 
 
-该OP计算输入input和标签label间的交叉熵，可用于计算硬标签或软标签的交叉熵。
+该OP计算输入input和标签label间的交叉熵，可用于计算硬标签或软标签的交叉熵。其中，硬标签是指实际label值，例如：0, 1, 2...，软标签是指实际label的概率，例如：0.6, 0,8, 0,2...
 
 1. 硬标签交叉熵算法：若soft_label = False, :math:`label[i_1, i_2, ..., i_k]` 表示每个样本的硬标签值:
 
@@ -27,7 +27,7 @@ cross_entropy
     - **reduction** (str, optional) – 指示如何按批次大小平均损失，可选值为"none","mean","sum"，如果选择是"mean"，则返回减少后的平均损失；如果选择是"sum"，则返回减少后的总损失。如果选择是"none"，则返回没有减少的损失。默认值是“mean”。
     - **soft_label** (bool, optional) – 指明label是否为软标签。默认为False，表示label为硬标签；若soft_label=True则表示软标签。
     - **axis** (int, optional) - 进行softmax计算的维度索引。 它应该在 :math:`[-1，dim-1]` 范围内，而 ``dim`` 是输入logits的维度。 默认值：-1。
-    - name (str，optional） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，optional） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::
