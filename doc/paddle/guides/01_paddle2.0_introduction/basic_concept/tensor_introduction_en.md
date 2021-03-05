@@ -9,7 +9,7 @@ The dtypes of all elements in the same Tensor are the same. If you are familiar 
 
 ## Creation of Tensor
 
-Firstly, let we create a **Tensor**:
+Firstly, create a **Tensor**:
 
 ### 1. create **1-D Tensor** like vector, whose ndim is 1
 ```python
@@ -103,7 +103,7 @@ ValueError:
      - Usually this means the input data contains nested lists with different lengths.
 ```
 
-The way to create **Tensor** from Python data is described above. We can also create **Tensor**
+The way to create **Tensor** from Python data is described above. You can also create **Tensor**
 from numpy array:
 ```python
 ndim_1_tensor = paddle.to_tensor(numpy.array([1.0, 2.0]))
@@ -136,7 +136,7 @@ The shape of **Tensor** can be get by **Tensor.shape**. shape is an important at
 3. axis or dimension: A particular dimension of a tensor.
 4. size: The number of all elements in the tensor.
 
-Let we create a 4-D **Tensor**, and visualize it to represents the relationship between the above concepts.
+Create a 4-D **Tensor**, and visualize it to represents the relationship between the above concepts.
 ```python
 ndim_4_tensor = paddle.ones([2, 3, 4, 5])
 ```

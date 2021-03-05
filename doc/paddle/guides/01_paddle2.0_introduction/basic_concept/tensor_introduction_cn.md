@@ -8,7 +8,7 @@
 
 ## Tensor的创建
 
-首先，让我们开始创建一个 **Tensor** , 并用 **ndim** 表示 **Tensor** 维度的数量:
+首先，创建一个 **Tensor** , 并用 **ndim** 表示 **Tensor** 维度的数量:
 
 ### 1. 创建类似于vector的**1-D Tensor**，其 ndim 为1
 
@@ -104,7 +104,7 @@ ValueError:
      - Usually this means the input data contains nested lists with different lengths.
 ```
 
-上面介绍了通过Python数据来创建**Tensor**的方法，我们也可以通过 **Numpy array** 来创建**Tensor**：
+上面介绍了通过Python数据来创建**Tensor**的方法，你也可以通过 **Numpy array** 来创建**Tensor**：
 ```python
 ndim_1_tensor = paddle.to_tensor(numpy.array([1.0, 2.0]))
 
@@ -134,7 +134,7 @@ paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为
 3. axis或者dimension：指tensor某个特定的维度
 4. size：指tensor中全部元素的个数
 
-让我们来创建1个4-D **Tensor**，并通过图形来直观表达以上几个概念之间的关系；
+创建1个4-D **Tensor**，并通过图形来直观表达以上几个概念之间的关系；
 ```python
 ndim_4_tensor = paddle.ones([2, 3, 4, 5])
 ```
