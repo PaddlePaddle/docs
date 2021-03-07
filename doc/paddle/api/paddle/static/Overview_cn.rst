@@ -40,7 +40,7 @@ Executor相关API
     :widths: 10, 30
 
     " :ref:`BuildStrategy <cn_api_fluid_BuildStrategy>` ", "控制 ParallelExecutor 中计算图的建造方法"
-    " :ref:`CompiledProgram <cn_api_fluid_CompiledProgra>` ", "转化和优化Program或Graph"
+    " :ref:`CompiledProgram <cn_api_fluid_CompiledProgram>` ", "转化和优化Program或Graph"
     " :ref:`ExecutionStrategy <cn_api_fluid_ExecutionStrategy>` ", "调整Executor执行配置"
     " :ref:`Executor <cn_api_fluid_executor>` ", "执行器"
     " :ref:`ParallelExecutor <cn_api_fluid_ParallelExecutor>` ", "支持基于数据并行的多节点模型训练和测试的执行器"
@@ -95,7 +95,7 @@ io相关API
     " :ref:`save_inference_model <cn_api_static_save_inference_model>` ", "保存预测模型"
     " :ref:`save_to_file <cn_api_fluid_io_save_to_file>` ", "将内容写入指定的文件"
     " :ref:`serialize_persistables <cn_api_fluid_io_serialize_persistables>` ", "序列化模型参数"
-    " :ref:`serialize_program <cn_api_text_dcn_api_fluid_io_serialize_programatasets_Conll05st>` ", "序列化program"
+    " :ref:`serialize_program <cn_api_fluid_io_serialize_program>` ", "序列化program"
 
 .. _about_variable:
 
