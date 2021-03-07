@@ -4,7 +4,7 @@ global_scope
 -------------------------------
 
 
-.. py:function:: paddle.fluid.global_scope()
+.. py:function:: paddle.static.global_scope()
 
 
 
