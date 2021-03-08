@@ -111,7 +111,7 @@
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
 
   ```
-  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/cpu/openblas/develop.html
   ```
 
 * 注:
