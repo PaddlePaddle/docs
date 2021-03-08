@@ -5,7 +5,7 @@ conv3d
 
 .. py:function:: paddle.nn.functional.conv3d(x, weight, bias=None, stride=1, padding=0, dilation=1, groups=1, data_format="NCHW", name=None)
 
-该OP是三维卷积层（convolution3D layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算得到输出特征层大小。输入和输出是NCDHW或NDWHC格式，其中N是批尺寸，C是通道数，D是特征层深度，H是特征层高度，W是特征层宽度。三维卷积（Convlution3D）和二维卷积（Convlution2D）相似，但多了一维深度信息（depth）。如果bias_attr不为False，卷积计算会添加偏置项。
+该OP是三维卷积层（convolution3D layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算得到输出特征层大小。输入和输出是NCDHW或NDHWC格式，其中N是批尺寸，C是通道数，D是特征层深度，H是特征层高度，W是特征层宽度。三维卷积（Convlution3D）和二维卷积（Convlution2D）相似，但多了一维深度信息（depth）。如果bias_attr不为False，卷积计算会添加偏置项。
 
 对每个输入X，有等式：
 
