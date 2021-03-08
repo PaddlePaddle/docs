@@ -11,6 +11,10 @@ DataLoader支持单进程和多进程的数据加载方式，当 ``num_workers``
 
 DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``map-style`` 的数据集可通过下标索引样本，请参考 ``paddle.io.Dataset`` ； ``iterable-style`` 数据集只能迭代式地获取样本，类似Python迭代器，请参考 ``paddle.io.IterableDataset`` 。
 
+.. note::
+
+    当前还不支持在子进程中进行GPU Tensor的操作，请不要在子进程流程中使用GPU Tensor，例如 ``dataset`` 中的预处理， ``collate_fn`` 等， ``numpy array`` 和CPU Tensor操作已支持。
+
 ``batch_sampler`` 请参考 ``paddle.io.BatchSampler``
 
 **禁用自动组batch**
