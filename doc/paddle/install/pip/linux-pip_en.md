@@ -192,13 +192,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post90 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.0.1.post90 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -208,13 +208,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post100 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.0.1.post100 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -224,13 +224,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.0.1.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -256,13 +256,13 @@ You can choose the following version of PaddlePaddle to start installation:
 * If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 * If you are using Python 3
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.0.1.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -281,6 +281,13 @@ Note：
 
   ```
   python3 -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
+  ```
+
+
+* If you want to install the Paddle package with `openblas`, you can use the following command:
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/openblas/stable.html
   ```
 
 
