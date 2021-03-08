@@ -172,7 +172,7 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
     Tensor x's grad is: [1. 1. 1.]
 
 
-3、飞桨还提供了\ ``clear_grad()``\ 函数来清除当前\ ``Tensor``\ 的梯度。
+3、因为\ ``backward()``\ 会累积梯度，所以飞桨还提供了\ ``clear_grad()``\ 函数来清除当前\ ``Tensor``\ 的梯度。
 
 .. code:: ipython3
 
@@ -251,11 +251,11 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 
 当c通过乘法OP被创建后，c会创建一个反向Tensor：\ ``c_grad``,他的\ ``grad_op``\ 为该乘法OP的反向OP，即\ ``MulBackward``\ 。
 
-调用backward（）后，正式开始进行反向传播过程，开始自动计算微分。
+调用\ ``backward()``\ 后，正式开始进行反向传播过程，开始自动计算微分。
 
 .. image:: autograd_image/autograd_image_4-3.png
 
-例子二：用一个稍微复杂疑点的例子让你深入了解这个过程。
+例子二：用一个稍微复杂一点的例子让你深入了解这个过程。
 
 .. code:: ipython3
 
@@ -285,3 +285,10 @@ PaddlePaddle的神经网络核心是自动微分，本篇文章主要为你介�
 
 
 .. image:: autograd_image/autograd_image_4-4.png
+
+
+
+五、总结
+------------------------
+
+本文章主要介绍了如何使用飞桨的自动微分，以及飞桨的自动微分机制。如果想进阶，了解更多OP的反向传播机制，可以阅读飞桨源码。
