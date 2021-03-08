@@ -120,16 +120,6 @@
 ### 根据版本进行安装
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
 
-* [CPU版的PaddlePaddle](#cpu)
-
-* [GPU版的PaddlePaddle](#gpu)
-  * [CUDA9.0的PaddlePaddle](#cuda9)
-  * [CUDA10.0的PaddlePaddle](#cuda10)
-  * [CUDA10.1的PaddlePaddle](#cuda10.1)
-  * [CUDA10.2的PaddlePaddle](#cuda10.2)
-  * [CUDA11的PaddlePaddle](#cuda11)
-
-
 #### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
 
@@ -141,49 +131,13 @@
 
 #### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
 
-
-
-2.2.1 <span id="cuda9">CUDA9.0的PaddlePaddle</span>
-
-
-  ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post90 -f https://paddlepaddle.org.cn/whl/cu90/mkl/develop.html
-  ```
-
-
-
-2.2.2 <span id="cuda10">CUDA10.0的PaddlePaddle</span>
-
-
-  ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post100 -f https://paddlepaddle.org.cn/whl/cu100/mkl/develop.html
-  ```
-
-
-2.2.3 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
-
-
-  ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post101 -f https://paddlepaddle.org.cn/whl/cu101/mkl/develop.html
-  ```
-
-
-
-2.2.4 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
-
+Windows的develop版本安装只支持CUDA10.2
 
   ```
   python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post102 -f https://paddlepaddle.org.cn/whl/cu102/mkl/develop.html
   ```
 
 
-
-2.2.5 <span id="cuda11">CUDA11.0的PaddlePaddle</span>
-
-
-  ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post110 -f https://paddlepaddle.org.cn/whl/cu110/mkl/develop.html
-  ```
 
 
 注：
