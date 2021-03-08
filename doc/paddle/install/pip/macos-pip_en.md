@@ -108,9 +108,9 @@ You can choose the following version of PaddlePaddle to start installation:
 
 * Please use the following command to install PaddlePaddle：
 
-```
-python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/develop.html
-```
+  ```
+  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/cpu/openblas/develop.html
+  ```
 
 Note：
 

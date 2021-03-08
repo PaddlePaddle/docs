@@ -126,25 +126,24 @@ You can choose the following version of PaddlePaddle to start installation:
   * [CUDA10.2 PaddlePaddle](#cuda10.2)
   * [CUDA11.0 PaddlePaddle](#cuda11)
 
-
+  
 
 #### 2.1 <span id="cpu">CPU Versoion of PaddlePaddle</span>
 
-
   ```
-  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/cpu/mkl/develop.html
   ```
-
 
 
 #### 2.2<span id="gpu"> GPU Version of PaddlePaddle</span>
+
 
 
 2.2.1 <span id="cuda9">CUDA9.0 PaddlePaddle</span>
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post90 -f https://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post90 -f https://paddlepaddle.org.cn/whl/cu90/mkl/develop.html
   ```
 
 
@@ -153,7 +152,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post100 -f https://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post100 -f https://paddlepaddle.org.cn/whl/cu100/mkl/develop.html
   ```
 
 
@@ -162,7 +161,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post101 -f https://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post101 -f https://paddlepaddle.org.cn/whl/cu101/mkl/develop.html
   ```
 
 
@@ -171,16 +170,20 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post102 -f https://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post102 -f https://paddlepaddle.org.cn/whl/cu102/mkl/develop.html
   ```
+
 
 
 2.2.5 <span id="cuda11">CUDA11.0 PaddlePaddle</span>
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0-dev0.post110 -f https://paddlepaddle.org.cn/whl/develop.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post110 -f https://paddlepaddle.org.cn/whl/cu110/mkl/develop.html
   ```
+
+
+
 
 Note：
 
