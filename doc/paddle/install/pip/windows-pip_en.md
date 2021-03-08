@@ -133,7 +133,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post90 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -142,7 +142,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post100 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -151,7 +151,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -160,7 +160,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -169,7 +169,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 Note：
@@ -179,14 +179,44 @@ Note：
 * If you want to install PaddlePaddle which support CUDA10.2 with cuDNN v7.4+,you can use the following command:
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
-* The above commands install the `avx` package by default. If you want to install the `noavx` package, please use `-f https://paddlepaddle.org.cn/whl/stable/noavx.html`.
-For example, to install PaddlePaddle that supports CUDA 10.2 with noavx, please use the following command:
+* The above commands install the `avx` and `mkl` package by default.
+
+To install PaddlePaddle package with `noavx` and `mkl`, please use the following command:
+  cpu support python27 and python38:
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0 -f https://paddlepaddle.org.cn/whl/stable/noavx.html
+  python -m pip install paddlepaddle==2.0.1 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
   ```
+  cuda10.2 support python27 and python38:
+  ```
+  python -m pip install paddlepaddle-gpu==2.0.1 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  ```
+  CUDA9.0 10.0 10.1 and 11.0 only support python27:
+  ```
+  python -m pip install paddlepaddle-gpu==2.0.1.post90 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  ```
+  ```
+  python -m pip install paddlepaddle-gpu==2.0.1.post100 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  ```
+  ```
+  python -m pip install paddlepaddle-gpu==2.0.1.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  ```
+  ```
+  python -m pip install paddlepaddle-gpu==2.0.1.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  ```
+
+To install PaddlePaddle that supports CUDA 9.0 with `noavx` and `openblas`, please use the following command:
+  ```
+  python -m pip install paddlepaddle-gpu==2.0.1 -f https://paddlepaddle.org.cn/whl/openblas/stable/noavx.html
+  ```
+
+To install PaddlePaddle that supports CUDA 9.0 with `avx` and `openblas`, please use the following command:
+  ```
+  python -m pip install paddlepaddle-gpu==2.0.1 -f https://paddlepaddle.org.cn/whl/openblas/stable.html
+  ```
+
 
 * If you want to install the Paddle package built with `tensorrt`, please use the following command:
 
