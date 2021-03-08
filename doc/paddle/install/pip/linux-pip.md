@@ -181,7 +181,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post90 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -190,7 +190,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post100 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -199,7 +199,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -217,7 +217,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install paddlepaddle-gpu==2.0.1.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -238,6 +238,11 @@
   python3 -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
   ```
 
+* 如果你想安装`openblas`的Paddle包，可以通过以下命令
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/openblas/stable.html
+  ```
 
 
 
