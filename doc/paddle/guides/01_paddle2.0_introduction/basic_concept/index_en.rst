@@ -11,4 +11,4 @@ You can start with studying basic concept of PaddlePaddle:
     :hidden:
 
     tensor_introduction_en.md
-    broadcasting_en.md
+    broadcasting_en.rst
