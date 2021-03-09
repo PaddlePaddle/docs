@@ -1,4 +1,6 @@
-# 2.0.1 Release Note
+# Release Note
+
+## 2.0.1 Release Note
 
 ## Important Updates
 
@@ -111,7 +113,7 @@ This version fixed some function and performance issues of PaddlePaddle 2.0.0, a
 - Fixed the problem that develop docker image cannot compile with TensorRT, and replace TensorRT7 of powerpc architecture with TensorRT6 of x86-64 architecture.
 - Upgrade the name of Paddle Inference library: the name of dynamic link library changes from `libpaddle_fluid.so` to `libpaddle_inference.so`.
 
-# 2.0.0 Release Note
+## 2.0.0 Release Note
 
 ## **Update**
 

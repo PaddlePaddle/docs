@@ -1,4 +1,6 @@
-# 2.0.1 Release Note
+# Release Note
+
+## 2.0.1 Release Note
 
 ## 重要更新
 本版本主要对2.0.0中一些功能和性能问题的修复，并对部分功能点做了增强，重点如下：
@@ -34,7 +36,7 @@
 - 新增参数服务器模式下稀疏参数的淘汰策略。
 
 #### 模型保存与载入
-- ``paddle.save`、`paddle.static.save` 支持用户选择pickle版本，默认pickle 版本为2。Python 3下，选择Pickle 4+版本，可以提升保存速度，突破单文件4G大小限制，但注意此时保存的模型也需要在Python3加载使用。
+- `paddle.save`、`paddle.static.save` 支持用户选择pickle版本，默认pickle 版本为2。Python 3下，选择Pickle 4+版本，可以提升保存速度，突破单文件4G大小限制，但注意此时保存的模型也需要在Python3加载使用。
 - 为满足部分用户直接获取经裁剪后的推理计算图需求，正式化接口 ``paddle.static.normalize_program``。
 
 #### 复数计算
@@ -112,7 +114,7 @@
 - 修复cuda10.2开发镜像无法编译带TensorRT的Paddle的问题，将原来powerpc架构的TensorRT7替换成x86-64架构的TensorRT6。
 -  飞桨推理库名称升级：Paddle Inference动态链接库由 libpaddle_fluid.so 更名为libpaddle_inference.so。
 
-# 2.0.0 Release Note
+## 2.0.0 Release Note
 
 ## 重要更新
 
