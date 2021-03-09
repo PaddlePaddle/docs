@@ -1,12 +1,24 @@
+.. _cn_guides_migration:
+
 版本迁移工具
 ====================
 
-在飞桨框架2.0中，我们API的位置、命名、参数、行为，进行了系统性的调整和规范, 将API体系从1.X版本的 ``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。paddle.fluid目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
+在飞桨框架2.0中，Paddle API的位置、命名、参数、行为，进行了系统性的调整和规范, 将API体系从1.X版本的 ``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。``paddle.fluid`` 目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
 
-使用版本迁移工具自动迁移您的Paddle 1.x的代码到Paddle 2.0的代码
+使用版本迁移工具自动迁移Paddle 1.X的代码到Paddle 2.0
 ------------------------------------
 
-WARNING: 版本自动迁移工具并不能处理所有的情况，在使用本工具后，您仍然需要手工来进行检查并做相应的调整。
+飞桨提供了版本迁移工具，该工具按 Paddle 2.0 对于 Paddle 1.X的变化，能够自动实现以下功能：
+
+- 按照 :ref:`API映射表 <cn_guides_api_mapping>` ，将转换工具能否转换这列为True的API由Paddle 1.X 转为 Paddle 2.0，为False的API打印WARNING，提示手动升级。
+- 因为Paddle 2.0.0 默认开启动态图，所以删除用于开启动态图上下文的 ``with paddle.fluid.dygraph.guard(place)`` ，并修改该上下文的代码缩进；
+- 删除组网API中的 ``act`` 参数，并自动添加相关的激活函数；
+
+目前，版本迁移工具能够处理的API数量为X个，如果你有代码迁移的需求，使用转换工具能够节省你部分时间，帮助你快速完成代码迁移。
+
+.. warning::
+
+    版本迁移工具并不能处理所有的情况，对于API的处理只能按照 :ref:`API映射表 <cn_guides_api_mapping>` 中的关系完成API的变化。如代码中包含有转换工具能否转换这列为False的API或不在此表中的API，在使用本工具后，仍然需要手工来进行检查并做相应的调整。
 
 安装
 ~~~~
@@ -26,14 +38,14 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 
     $ paddle_upgrade_tool --inpath /path/to/model.py
 
-这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle 1.x转换为Paddle 2.0的变化。如果您确认上述变化没有问题，只需要再执行：
+这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle 1.x转换为Paddle 2.0的变化。如果你确认上述变化没有问题，只需要再执行：
 
 .. code:: ipython3
 
     $ paddle_upgrade_tool --inpath /path/to/model.py --write
 
-就会原地改写model.py，将上述变化改写到您的源文件中。
-注意：我们会默认备份源文件，到~/.paddle_upgrade_tool/下。
+就会原地改写model.py，将上述变化改写到你的源文件中。
+注意：版本转换工具会默认备份源文件，到~/.paddle_upgrade_tool/下。
 
 参数说明如下：
 
@@ -54,7 +66,7 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 开始
 ^^^^
 
-在使用paddle_upgrade_tool前，需要确保您已经安装了Paddle 2.0版本。
+在使用paddle_upgrade_tool前，需要确保已经安装了Paddle 2.0.0版本。
 
 .. code:: ipython3
 
@@ -86,7 +98,7 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 查看帮助文档
 ^^^^^^^^^^^^
 
-您可以直接通过下面的方式，查看帮助文档。
+你可以直接通过下面的方式，查看帮助文档。
 
 .. code:: ipython3
 
@@ -163,14 +175,14 @@ Paddle 1.x的例子
 使用paddle_upgrade_tool进行转化
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-paddle_upgrade_tool支持单文件的转化，您可以通过下方的命令直接转化单独的文件。
+paddle_upgrade_tool支持单文件的转化，你可以通过下方的命令直接转化单独的文件。
 
 .. code:: ipython3
 
     $ paddle_upgrade_tool --inpath models/dygraph/mnist/train.py
 
-注意，对于参数的删除及一些特殊情况，我们都会打印WARNING信息，需要您仔细核对相关内容。
-如果您觉得上述信息没有问题，可以直接对文件进行原地修改，方式如下：
+注意，对于参数的删除及一些特殊情况，迁移工具都会打印WARNING信息，需要你仔细核对相关内容。
+如果你觉得上述信息没有问题，可以直接对文件进行原地修改，方式如下：
 
 .. code:: ipython3
 
@@ -183,8 +195,8 @@ paddle_upgrade_tool支持单文件的转化，您可以通过下方的命令直�
     "models/dygraph/mnist/train.py" will be modified in-place, and it has been backed up to "~/.paddle_upgrade_tool/train.py_backup_2020_09_09_20_35_15_037821". Do you want to continue? [Y/n]:
 
 输入\ ``y``
-后即开始执行代码迁移。为了高效完成迁移，我们这里采用了原地写入的方式。此外，为了防止特殊情况，我们会备份转换前的代码到
-``~/.paddle_upgrade_tool`` 目录下，如果需要，您可以在备份目录下找到转换前的代码。
+后即开始执行代码迁移。为了高效完成迁移，工具这里采用了原地写入的方式。此外，为了防止特殊情况，工具会备份转换前的代码到
+``~/.paddle_upgrade_tool`` 目录下，如果需要，你可以在备份目录下找到转换前的代码。
 
 代码迁移完成后，会生成一个report.log文件，记录了迁移的详情。内容如下：
 
@@ -195,9 +207,9 @@ paddle_upgrade_tool支持单文件的转化，您可以通过下方的命令直�
 注意事项
 ~~~~~~~~
 
--  本迁移工具不能完成所有API的迁移，有少量的API需要您手动完成迁移，具体信息可见WARNING。
+-  本迁移工具不能完成所有API的迁移，有少量的API需要你手动完成迁移，具体信息可见WARNING。
 
 使用Paddle 2.0
 ~~~~~~~~~~~~~~~~
 
-完成迁移后，代码就从Paddle 1.x迁移到了Paddle 2.0，您就可以在Paddle 2.0下进行相关的开发。
+完成迁移后，代码就从Paddle 1.x迁移到了Paddle 2.0，你就可以在Paddle 2.0下进行相关的开发。

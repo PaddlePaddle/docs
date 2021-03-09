@@ -3,11 +3,11 @@
 ## 升级概要
 飞桨2.0版本，相对1.8版本有重大升级，涉及开发方面的重要变化如下：
 
- - 动态图功能完善，动态图模下数据表示概念为Tensor，推荐使用动态图模式；
+ - 动态图功能完善，动态图模下数据表示概念为`Tensor`，推荐使用动态图模式；
  - API目录体系调整，API的命名和别名进行了统一规范化，虽然兼容老版API，但请使用新API体系开发；
  - 数据处理、组网方式、模型训练、多卡启动、模型保存和推理等开发流程都有了对应优化，请对应查看说明；
 
-以上变化请仔细阅读本指南。对于已有模型的升级，我们还提供了2.0转换工具（见附录）提供更自动化的辅助。
+以上变化请仔细阅读本指南。对于已有模型的升级，飞桨还提供了2.0转换工具（见附录）提供更自动化的辅助。
 其他一些功能增加方面诸如动态图对量化训练、混合精度的支持、动静转换等方面不在本指南列出，具体可查看[Release Note](https://www.paddlepaddle.org.cn/documentation/docs/zh/release_note_cn.html)或对应文档。
 
 ## 一、动态图
@@ -20,10 +20,10 @@ import paddle
 ```
 
 ### 使用Tensor概念表示数据
-静态图模式下，由于组网时使用的数据不能实时访问，Paddle用Variable来表示数据。
-动态图下，从直观性等角度考虑，将数据表示概念统一为Tensor。动态图下Tensor的创建主要有两种方法：
+静态图模式下，由于组网时使用的数据不能实时访问，Paddle用`Variable`来表示数据。
+动态图下，从直观性等角度考虑，将数据表示概念统一为`Tensor`。动态图下`Tensor`的创建主要有两种方法：
 
-1. 通过调用paddle.to_tensor函数，将python scalar/list，或者numpy.ndarray数据转换为Paddle的Tensor。具体使用方法，请查看官网的API文档。
+1. 通过调用`paddle.to_tensor`函数，将`python scalar/list`，或者`numpy.ndarray`数据转换为Paddle的`Tensor`。具体使用方法，请查看官网的API文档。
 
 ```python
 import paddle
@@ -40,7 +40,7 @@ paddle.to_tensor(np.random.randn(3, 4))
 ### API目录结构
 
 为了API组织更加简洁和清晰，将原来padddle.fluid.xxx的目录体系全新升级为paddle.xxx，并对子目录的组织进行了系统的条理化优化。同时还增加了高层API，可以高低搭配使用。paddle.fluid目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
-**基于2.0的开发任务，请使用paddle目录下的API，不要再使用paddle.fluid目录下的API。** 如果发现Paddle目录下有API缺失的情况，推荐使用基础API进行组合实现；您也可以通过在 [github](https://github.com/paddlepaddle/paddle) 上提issue的方式向我们反馈。
+**基于2.0的开发任务，请使用paddle目录下的API，不要再使用paddle.fluid目录下的API。** 如果发现Paddle目录下有API缺失的情况，推荐使用基础API进行组合实现；你也可以通过在 [github](https://github.com/paddlepaddle/paddle) 上提issue的方式反馈。
 
 **2.0版本的API 整体目录结构如下**：
 
@@ -66,10 +66,10 @@ paddle.to_tensor(np.random.randn(3, 4))
 
 ### API别名规则
 
-- 为了方便用户使用，API会在不同的路径下建立别名：
+- 为了方便使用，API会在不同的路径下建立别名：
     - 所有device, framework, tensor目录下的API，均在paddle根目录建立别名；除少数特殊API外，其他API在paddle根目录下均没有别名。
     - paddle.nn目录下除functional目录以外的所有API，在paddle.nn目录下均有别名；functional目录中的API，在paddle.nn目录下均没有别名。
-- **推荐用户优先使用较短的路径的别名**，比如`paddle.add -> paddle.tensor.add`，推荐优先使用`paddle.add`
+- **推荐优先使用较短的路径的别名**，比如`paddle.add -> paddle.tensor.add`，推荐优先使用`paddle.add`
 - 以下为一些特殊的别名关系，推荐使用左边的API名称：
   - paddle.tanh -> paddle.tensor.tanh -> paddle.nn.functional.tanh
   - paddle.remainder -> paddle.mod -> paddle.floor_mod
@@ -165,7 +165,7 @@ for data, label in val_dataset:
 ### 组网方式
 #### Sequential 组网
 
-针对顺序的线性网络结构我们可以直接使用Sequential来快速完成组网，可以减少类的定义等代码编写。
+针对顺序的线性网络结构可以直接使用Sequential来快速完成组网，可以减少类的定义等代码编写。
 
 ```python
 import paddle
@@ -182,7 +182,7 @@ mnist = paddle.nn.Sequential(
 
 #### SubClass组网
 
- 针对一些比较复杂的网络结构，就可以使用Layer子类定义的方式来进行模型代码编写，在`__init__`构造函数中进行组网Layer的声明，在`forward`中使用声明的Layer变量进行前向计算。子类组网方式也可以实现sublayer的复用，针对相同的layer可以在构造函数中一次性定义，在forward中多次调用。
+ 针对一些比较复杂的网络结构，就可以使用Layer子类定义的方式来进行模型代码编写，在`__init__`构造函数中进行组网Layer的声明，在`forward`中使用声明的Layer变量进行前向计算。子类组网方式也可以实现sublayer的复用，针对相同的layer可以在构造函数中一次性定义，在`forward中多次调用。
 
 ```python
 import paddle
@@ -214,7 +214,7 @@ mnist = Mnist()
 
 #### 使用高层API
 
-增加了paddle.Model高层API，大部分任务可以使用此API用于简化训练、评估、预测类代码开发。注意区别Model和Net概念，Net是指继承paddle.nn.Layer的网络结构；而Model是指持有一个Net对象，同时指定损失函数、优化算法、评估指标的可训练、评估、预测的实例。具体参考高层API的代码示例。
+增加了`paddle.Model`高层API，大部分任务可以使用此API用于简化训练、评估、预测类代码开发。注意区别Model和Net概念，Net是指继承paddle.nn.Layer的网络结构；而Model是指持有一个Net对象，同时指定损失函数、优化算法、评估指标的可训练、评估、预测的实例。具体参考高层API的代码示例。
 
 ```python
 import paddle
@@ -231,7 +231,7 @@ model = paddle.Model(lenet)
 model.prepare(
     paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters()),
     paddle.nn.CrossEntropyLoss(),
-    paddle.metric.Accuracy(topk=(1, 2))
+    paddle.metric.Accuracy()
     )
 
 # 启动训练
@@ -277,13 +277,13 @@ train()
 ```
 
 ### 单机多卡启动
-2.0增加paddle.distributed.spawn函数来启动单机多卡训练，同时原有的paddle.distributed.launch的方式依然保留。
+2.0增加`paddle.distributed.spawn`函数来启动单机多卡训练，同时原有的`paddle.distributed.launch`的方式依然保留。
 
 #### 方式1、launch启动
 
 ##### 高层API场景
 
-当调用paddle.Model高层来实现训练时，想要启动单机多卡训练非常简单，代码不需要做任何修改，只需要在启动时增加一下参数`-m paddle.distributed.launch`。
+当调用`paddle.Model`高层来实现训练时，想要启动单机多卡训练非常简单，代码不需要做任何修改，只需要在启动时增加一下参数`-m paddle.distributed.launch`。
 
 ```bash
 # 单机单卡启动，默认使用第0号卡
@@ -362,7 +362,7 @@ $ python -m paddle.distributed.launch train.py
 
 #### 方式2、spawn启动
 
-launch方式启动训练，以文件为单位启动多进程，需要用户在启动时调用 ``paddle.distributed.launch`` ，对于进程的管理要求较高。飞桨框架2.0版本增加了 ``spawn`` 启动方式，可以更好地控制进程，在日志打印、训练退出时更友好。使用示例如下：
+launch方式启动训练，以文件为单位启动多进程，需要在启动时调用 ``paddle.distributed.launch`` ，对于进程的管理要求较高。飞桨框架2.0版本增加了 ``spawn`` 启动方式，可以更好地控制进程，在日志打印、训练退出时更友好。使用示例如下：
 
 ```python
 from __future__ import print_function
@@ -547,7 +547,7 @@ Python API 的变更与 C++ 基本对应，会在2.0版发布。
 
 ## 附录
 ### 2.0转换工具
-为了降级代码升级的成本，我们提供了转换工具，可以帮助将Paddle 1.8版本开发的代码，升级为2.0的API。由于相比于Paddle 1.8版本，2.0版本的API进行了大量的升级，包括API名称，参数名称，行为等。转换工具当前还不能覆盖所有的API升级；对于无法转换的API，转换工具会报错，提示用户手动升级。
+为了降级代码升级的成本，飞桨提供了转换工具，可以帮助将Paddle 1.8版本开发的代码，升级为2.0的API。由于相比于Paddle 1.8版本，2.0版本的API进行了大量的升级，包括API名称，参数名称，行为等。转换工具当前还不能覆盖所有的API升级；对于无法转换的API，转换工具会报错，提示手动升级。
 
 https://github.com/PaddlePaddle/paddle_upgrade_tool
 
