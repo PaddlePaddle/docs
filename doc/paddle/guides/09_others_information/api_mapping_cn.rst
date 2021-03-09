@@ -377,3 +377,4 @@
     "361",  "`paddle.fluid.optimizer.RMSProp <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/optimizer_cn/RMSPropOptimizer_cn.html>`_ ",  "`paddle.optimizer.RMSProp <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/rmsprop/RMSProp_cn.html>`_", "True"
     "362",  "`paddle.fluid.layers.gru_unit <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/layers_cn/gru_unit_cn.html>`_ ",  "`paddle.nn.GRUCell <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/layer/rnn/GRUCell_cn.html>`_", "False"
     "363",  "`paddle.fluid.dygraph.GRUUnit <https://www.paddlepaddle.org.cn/documentation/docs/zh/1.8/api_cn/dygraph_cn/GRUUnit_cn.html>`_ ",  "`paddle.nn.GRUCell <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/layer/rnn/GRUCell_cn.html>`_, "True"
+    
