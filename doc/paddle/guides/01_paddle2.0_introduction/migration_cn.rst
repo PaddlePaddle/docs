@@ -1,12 +1,24 @@
+.. _cn_guides_migration:
+
 版本迁移工具
 ====================
 
-在飞桨框架2.0中，Paddle API的位置、命名、参数、行为，进行了系统性的调整和规范, 将API体系从1.X版本的 ``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。paddle.fluid目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
+在飞桨框架2.0中，Paddle API的位置、命名、参数、行为，进行了系统性的调整和规范, 将API体系从1.X版本的 ``paddle.fluid.*`` 迁移到了 ``paddle.*`` 下。``paddle.fluid`` 目录下暂时保留了1.8版本API，主要是兼容性考虑，未来会被删除。
 
-使用版本迁移工具自动迁移您的Paddle 1.x的代码到Paddle 2.0的代码
+使用版本迁移工具自动迁移Paddle 1.X的代码到Paddle 2.0
 ------------------------------------
 
-WARNING: 版本自动迁移工具并不能处理所有的情况，在使用本工具后，您仍然需要手工来进行检查并做相应的调整。
+飞桨提供了版本迁移工具，该工具按 Paddle 2.0 对于 Paddle 1.X的变化，能够自动实现以下功能：
+
+- 按照 :ref:`API映射表 <cn_guides_api_mapping>` ，将转换工具能否转换这列为True的API由Paddle 1.X 转为 Paddle 2.0，为False的API打印WARNING，提示手动升级。
+- 因为Paddle 2.0.0 默认开启动态图，所以删除用于开启动态图上下文的 ``with paddle.fluid.dygraph.guard(place)`` ，并修改该上下文的代码缩进；
+- 删除组网API中的 ``act`` 参数，并自动添加相关的激活函数；
+
+目前，版本迁移工具能够处理的API数量为X个，如果你有代码迁移的需求，使用转换工具能够节省你部分时间，帮助你快速完成代码迁移。
+
+.. warning::
+
+    版本迁移工具并不能处理所有的情况，对于API的处理只能按照 :ref:`API映射表 <cn_guides_api_mapping>` 中的关系完成API的变化。如代码中包含有转换工具能否转换这列为False的API或不在此表中的API，在使用本工具后，仍然需要手工来进行检查并做相应的调整。
 
 安装
 ~~~~
@@ -26,14 +38,14 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 
     $ paddle_upgrade_tool --inpath /path/to/model.py
 
-这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle 1.x转换为Paddle 2.0的变化。如果您确认上述变化没有问题，只需要再执行：
+这将在命令行中，以\ ``diff``\ 的形式，展示model.py从Paddle 1.x转换为Paddle 2.0的变化。如果你确认上述变化没有问题，只需要再执行：
 
 .. code:: ipython3
 
     $ paddle_upgrade_tool --inpath /path/to/model.py --write
 
-就会原地改写model.py，将上述变化改写到您的源文件中。
-注意：我们会默认备份源文件，到~/.paddle_upgrade_tool/下。
+就会原地改写model.py，将上述变化改写到你的源文件中。
+注意：版本转换工具会默认备份源文件，到~/.paddle_upgrade_tool/下。
 
 参数说明如下：
 
@@ -54,7 +66,7 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 开始
 ^^^^
 
-在使用paddle_upgrade_tool前，需要确保您已经安装了Paddle 2.0版本。
+在使用paddle_upgrade_tool前，需要确保已经安装了Paddle 2.0.0版本。
 
 .. code:: ipython3
 
