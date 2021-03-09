@@ -98,7 +98,7 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 查看帮助文档
 ^^^^^^^^^^^^
 
-您可以直接通过下面的方式，查看帮助文档。
+你可以直接通过下面的方式，查看帮助文档。
 
 .. code:: ipython3
 
@@ -175,14 +175,14 @@ Paddle 1.x的例子
 使用paddle_upgrade_tool进行转化
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-paddle_upgrade_tool支持单文件的转化，您可以通过下方的命令直接转化单独的文件。
+paddle_upgrade_tool支持单文件的转化，你可以通过下方的命令直接转化单独的文件。
 
 .. code:: ipython3
 
     $ paddle_upgrade_tool --inpath models/dygraph/mnist/train.py
 
-注意，对于参数的删除及一些特殊情况，我们都会打印WARNING信息，需要您仔细核对相关内容。
-如果您觉得上述信息没有问题，可以直接对文件进行原地修改，方式如下：
+注意，对于参数的删除及一些特殊情况，迁移工具都会打印WARNING信息，需要你仔细核对相关内容。
+如果你觉得上述信息没有问题，可以直接对文件进行原地修改，方式如下：
 
 .. code:: ipython3
 
@@ -195,8 +195,8 @@ paddle_upgrade_tool支持单文件的转化，您可以通过下方的命令直�
     "models/dygraph/mnist/train.py" will be modified in-place, and it has been backed up to "~/.paddle_upgrade_tool/train.py_backup_2020_09_09_20_35_15_037821". Do you want to continue? [Y/n]:
 
 输入\ ``y``
-后即开始执行代码迁移。为了高效完成迁移，我们这里采用了原地写入的方式。此外，为了防止特殊情况，我们会备份转换前的代码到
-``~/.paddle_upgrade_tool`` 目录下，如果需要，您可以在备份目录下找到转换前的代码。
+后即开始执行代码迁移。为了高效完成迁移，工具这里采用了原地写入的方式。此外，为了防止特殊情况，工具会备份转换前的代码到
+``~/.paddle_upgrade_tool`` 目录下，如果需要，你可以在备份目录下找到转换前的代码。
 
 代码迁移完成后，会生成一个report.log文件，记录了迁移的详情。内容如下：
 
@@ -207,9 +207,9 @@ paddle_upgrade_tool支持单文件的转化，您可以通过下方的命令直�
 注意事项
 ~~~~~~~~
 
--  本迁移工具不能完成所有API的迁移，有少量的API需要您手动完成迁移，具体信息可见WARNING。
+-  本迁移工具不能完成所有API的迁移，有少量的API需要你手动完成迁移，具体信息可见WARNING。
 
 使用Paddle 2.0
 ~~~~~~~~~~~~~~~~
 
-完成迁移后，代码就从Paddle 1.x迁移到了Paddle 2.0，您就可以在Paddle 2.0下进行相关的开发。
+完成迁移后，代码就从Paddle 1.x迁移到了Paddle 2.0，你就可以在Paddle 2.0下进行相关的开发。
