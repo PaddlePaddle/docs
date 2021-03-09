@@ -1,4 +1,118 @@
-# Release Note
+# 2.0.1 Release Note
+
+## 重要更新
+本版本主要对2.0.0中一些功能和性能问题的修复，并对部分功能点做了增强，重点如下：
+
+- 提供了在框架外部自定义算子的新方案，简化了自定义算子写法与训练推理部署流程。
+- `paddle.save/paddle.static.save` 支持用户选择pickle版本，在Python 3下提升模型保存效率。
+- 推理阶段支持在开启TensorRT的基础上使用NVIDIA的深度学习加速器[DLA](http://nvdla.org/)。
+- Paddle Inference的C++ 和 Python 推理接口提供对昆仑 XPU的原生支持，与飞桨对XPU的训练支持能力相统一。
+
+## 训练框架
+
+### 功能优化
+
+#### API
+- 为提高性能，`roi_align` 新增 `aligned` 参数，`generate_proposals、distribute_fpn_proposals` 中新增 `pixel_offset` 参数。
+- `paddle.nn.functional.cross_entropy` 支持昆仑设备下的float类型label。
+- `paddle.nn.functional.softmax_with_cross_entropy` 新增label错误检查和报错信息优化。
+-  `paddle.nn.LayerList` 支持 `paddle.nn.LayerList([None])` 。
+
+#### 动态图转静态图
+ - 增加了对for循环中含`tuple`作为循环变量的支持。
+ - 增加对`Tensor`索引变量诸如`x[:]，x[2:]`, 这种不定起始或终点的支持。
+ - 补齐静态图下`Tensor` slice左值功能，动态图使用slice后可正确动静转换。支持通过索引或切片修改 `Tensor`数据：支持索引类型是 `Python.int`、`Tensor`、 `Python.slice`；支持步长是1、大于1或者是负数；支持赋值数据类型是 `Numpy.array`、 `Tensor`。
+
+#### 混合精度训练
+- 动态图混合精度训练支持 `paddle.nn.LayerNorm`，减少`cast`的次数，提升训练效率。
+
+#### 分布式训练优化
+- `paddle.distributed.fleet.DistributedStrategy` amp 添加pure fp16策略。
+- 新增 `paddle.distributed.ProbabilityEntry` 和 `paddle.distributed.CountFilterEntry` 用于稀疏参数训练。
+- 优化流水线并行通信次数。
+- 新增参数服务器模式下模型保存count/unseen_day等字段。
+- 新增参数服务器模式下稀疏参数的淘汰策略。
+
+#### 模型保存与载入
+- ``paddle.save`、`paddle.static.save` 支持用户选择pickle版本，默认pickle 版本为2。Python 3下，选择Pickle 4+版本，可以提升保存速度，突破单文件4G大小限制，但注意此时保存的模型也需要在Python3加载使用。
+- 为满足部分用户直接获取经裁剪后的推理计算图需求，正式化接口 ``paddle.static.normalize_program``。
+
+#### 复数计算
+ - ``paddle.abs`` 算子新增支持Complex64和 Complex128类型功能。
+
+#### 自定义算子
+
+- 实现在框架外部自定义算子的新方案，简化了自定义算子写法与使用流程，支持两种编译安装与调用方式，同时支持Linux和Window；使用新方案自定义的算子能够在动态图、静态图、动转静和推理场景中使用；具体说明请参考[自定义外部算子（新）](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/new_custom_op.html)
+
+### 问题修复
+
+#### API
+
+- 修复`paddle.optimizer.AdamW`的multi_precision功能，确保正则处理作用对象为FP32类型的master weights，防止收敛异常。
+- 修复激活函数ELU在输入为nan时输出也为nan的问题。
+- 修复`Tensor.backward()`进行梯度累加时，动态图多卡启动时的梯度计算错误。
+- 修复 `paddle.nn.functional.softmax_with_cross_entropy` 在处理元素个数超过2^31的 `Tensor`时，存在的整数溢出问题。
+- 修复 `paddle.nn.Sequential` 进行for遍历会发生溢出崩溃的Bug。
+- 修复动态图slice的报错信息有误的bug。
+- 修复 `paddle.nn.functional.local_response_norm` 在静态图及动转静中，无法使用batch_size=-1的问题。
+- 修复 `paddle.nn.LayerNorm` 在float64时计算错误。
+
+#### 分布式
+
+- 修复参数服务器模式下准入配置不生效的问题。
+- 修复参数服务器模式下保存的模型参数无法加载的问题。
+- 修复参数服务器模式下profiler异常的问题。
+- 修复参数服务器模式在使用超过INT32类型数据时训练异常的问题。
+- 修复参数服务器模式下无法绑定长stringIP的问题。
+- 修复分布式训练过程中LOG级别配置较低导致日志输出多的问题。
+- 修复动态图分布式中对if else控制流导致各卡参数不一致的问题。
+- 修复分布式训练FLAGS设置和单机不统一的问题。
+
+#### 其他
+
+- 修复PaddlePaddle/models仓下，`metric_learning finetune` 报错的问题。
+- 修复昆仑静态图多卡调度op时缺失导致的权重不同步问题。
+
+## 推理部署
+
+### 模型量化
+- 增加了对采用per-layer方式量化的模型trt量化预测的支持。
+
+### Paddle Inference
+#### API
+- 新增API paddle_infer::Config::EnableTensorRtDLA()，支持在开启TensorRT的基础上使用Nvidia的硬件加速器[DLA](http://nvdla.org/)。
+- paddle-trt增加对模型输入的检查，如果输入是变长，优化相关报错信息，提示用户开启dynamic_shape。
+
+#### 功能升级
+ - 支持运行带有用户自定义算子的预测部署模型，并提供了[用户文档](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c++/custom-operator)。
+ - C++ 和 Python 推理接口新增对昆仑 XPU 的原生支持，用户可因此获得更完备的算子种类支持。
+
+#### 性能优化
+ - Paddle-TRT新增group_norm op支持，为solov2_r50_fpn_1x模型提供如下加速：在T4，cuda11， cudnn8.1，trt7.1.3上，相比2.0.0版本，TRT FP32推理性能由87.019ms -> 75.13ms，提升13%；TRT FP16推理性能由72.9253ms -> 44.149ms，提升65%。
+
+#### 问题修复
+- 修复某些OP在TensorRT 7.1+版本下运行失败的问题（例如ERNIE模型的TensorRT推理）。
+- 修复Python pass_builder API 使用过程可能出错的问题。
+- jetson下由于内存资源有限，将显/内存分配策略默认设为auto_growth，解决由于资源问题导致部分模型跑不通的问题。
+- 对cudnn8.0的内存泄露问题进行了规避，保证可用性，该改动不影响到其它cudnn版本。
+- 修复预测库动态库中MakeCipher符号缺失的问题。
+- 修复mask_rcnn_r50_1x_coco动转静模型mask预测结果错误的问题。
+- 修复adaptive pooling不被oneDNN 完全支持导致的segmentation模型预测失败的问题。
+- 修复当batch_size> 1时，oneDNN下OCR模型预测得到不正确的结果的问题。
+- 修复由于relu的CPU实现错误导致 freeze_model 预测失败的问题。
+- 修复BF16中图片转二进制脚本对python3不兼容问题。
+
+## 环境适配
+
+### 训练框架
+- 将cuda9.0与cuda10.0相关镜像中的gcc4.8.2升级成gcc5.4。
+- 支持Windows用户从官网安装最新的develop版本Paddle，每天实时发包。
+
+### 推理库Paddle Inference
+- 修复cuda10.2开发镜像无法编译带TensorRT的Paddle的问题，将原来powerpc架构的TensorRT7替换成x86-64架构的TensorRT6。
+-  飞桨推理库名称升级：Paddle Inference动态链接库由 libpaddle_fluid.so 更名为libpaddle_inference.so。
+
+# 2.0.0 Release Note
 
 ## 重要更新
 
