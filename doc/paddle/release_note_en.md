@@ -1,4 +1,119 @@
-# 2.0.0 Release Note
+# Release Note
+
+## 2.0.1 Release Note
+
+## Important Updates
+
+This version fixed some function and performance issues of PaddlePaddle 2.0.0, and optimized some function. The important updates are as following:
+
+- The new scheme that operators can be customized outside the framework. The process of customized operators’ writing and inference deployment, is simplified.
+- `paddle.save/paddle.static.save` supports users to choose the pickle version, which can improve the efficiency of saving models under Python 3.
+- At the stage of inference, users can apply [DLA](http://nvdla.org/) of NVIDIA while using TensorRT.
+- PaddlePaddle inference APIs of C++ and Python support XPU, which is aligned with training supported by PaddlePaddle to XPU.
+
+
+## Training Framework
+
+### Function Optimization
+
+#### API
+- Add `aligned` in `roi_align`, and  `pixel_offset` in `generate_proposals、distribute_fpn_proposals` to improve performance.
+- `paddle.nn.functional.cross_entropy` supports float type label in XPU accelerator.
+- Add label error checks and optimized error message of `paddle.nn.functional.softmax_with_cross_entropy`.
+- `paddle.nn.LayerList` supports `paddle.nn.LayerList([None])` .
+
+#### Dynamic Graph to Static Graph
+- Add the support of `tuple` as loop variable in for-loop.
+- Add `Tensor` support to be indexed by unspecific start and stop variables,  such as `x[:], x[2:]`.
+- Now `Tensor` supports slicing with lvalue in static graph. In dynamic graph, `Tensor` uses slicing can correctly turn into static graph. `Tensor` can be modified by indexing or slicing. `Python.Int`、`Tensor`、`Python.slice` can be used for indexing. The stride could be 1, greater than 1 or negative. `NumPy.array`, `Tensor` types could be used as rvalue.
+
+#### Mixed Precision Training
+- Mixed precision training of dynamic graph supports `paddle.nn.LayerNorm` , improving efficiency by reducing the number of `cast`.
+
+#### Distributed Training Optimization
+- `paddle.distributed.fleet.DistributedStrategy` amp adds pure fp16 strategy.
+- `paddle.distributed.ProbabilityEntry` and `paddle.distributed.CountFilterEntry` are added for sparse parameters training.
+- Optimized the number of communications in parallel pipeline.
+- In parameter server mode, fields like `count/unseen_day` could be saved into model.
+- Add the elimination strategy of sparse parameters in parameter server mode.
+
+#### Model Saving and Loading
+- `paddle.save` and `paddle.static.save` allow users to select the pickle version, and the default version is 2. For Python 3, users can choose Pickle version 4+. In this way,  saving speed could be increased and single file could over 4G. But, please notice that models saved this way must be loaded and used under Python 3.
+- Add `paddle.static.normalize_program` to obtain the pruned computation graph.
+
+#### Complex Number Operation
+- `paddle.abs` supports  Complex64 and Complex128 types.
+
+#### Customized Operator
+- Offered the new scheme of custom operators outside the framework, simplify the writing and using process of custom operators, support two installation and calling methods, and support Linux and Window at the same time; custom operators by using the new scheme can be used in dynamic graphs, static graphs, dynamic-to-static and inference scenarios; for specific instructions, please refer to the file: [Customizing External Operators](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/new_custom_op.html).
+
+#### Distributed Training
+- Fixed Entry Config has no effect issue in parameter server mode.
+- Fixed the saved parameters could not be loaded issue in parameter server mode.
+- Fixed Profiler abnormal issue in parameter server mode.
+- Fixed training abnormal issue when data type category is higher than INT32 in parameter server mode.
+- Fixed long stringIP cannot be bounded issue in parameter server mode.
+- Fixed the issue of too much log outputs issue, in distributed training caused by lower level LOG config.
+- Fixed the issue of inconsistent parameters of each devices, when if else control flow is used in dynamic graph distributed training.
+- Fixed the issue that FLAGS setting of multi-host distributed training is not consistent with single host distributed training.
+
+### Bug Fixes
+#### API
+- Fixed the `muti_precision` function of `paddle.optimizer.AdamW` to ensure the master weights in FP32 type, which are regularized, in order to prevent possible diverge.
+- Fixed the issue when the input of `paddle.nn.ELU` is nan, the output is nan.
+- Fixed gradient calculation error of using `Tensor.backward()` for gradient accumulation, in dynamic graph mulit-card training.
+- Fixed the integer overflow issue when `paddle.nn.functional.softmax_with_cross_entropy` processes a `Tensor` with over 2^31 elements.
+- Fixed crash bug during the for-loop traversal of `paddle.nn.Sequential`.
+- Fixed Wrong error message of dynamic graph slicing.
+- Fixed the issue that batch_size=-1 cannot be used, when `paddle.nn.functional.local_response_norm` is used in static graph or dynamic graph to static graph converting.
+- Fixed `paddle.nn.LayerNorm` computation error when data type is float64.
+
+#### Others
+
+- Fixed the error message of `metric_learning finetune` under PaddlePaddle/models.
+- Fixed weight asynchrony issue caused by lack of operators, when XPU's static graph multi-card is used.
+
+## Inference Deployment
+
+### Model Quantification
+- Support the quantification inference of TRT, which uses per-layer to quantize.
+
+### Paddle Inference
+#### API
+- Add API— `paddle_infer::Config::EnableTensorRtDLA()`.  At the stage of inference, users can apply [DLA](http://nvdla.org/) of NVIDIA while using TensorRT.
+- Paddle-TRT will check inputs of model, If input shape is variant, the error messages are optimized and Paddle-TRT will hint users to use dynamic_shape.
+
+#### Function Upgrades
+- Support inference and deployment models that have the operators customized by users, and provide [User Documentation](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c++/custom-operator).
+- PaddlePaddle inference APIs of C++ and Python support XPU, which is aligned with training supported by PaddlePaddle to XPU.
+
+#### Performance Optimization
+- Paddle-TRT supports `group_norm` op, and speed up `solov2_r50_fpn_1x` as following: compared with TRT v2.0.0, on T4, CUDA11, cuDNN8.1 and TRT7.1.3, the performance of TRT FP32 improves by 13%, from 87.019ms to 75.13ms, and the performance of TRT FP16 improves by 65%, from 72.9253ms to 44.149ms.
+
+#### Bug Fixes
+- Fix some operator problems in TensorRT v7.1+, like TensorRT’s inference of ERNIE.
+- Fix some issues of using Python pass_builder API.
+- Due to limited memory of Jetson, `auto_growth` is regarded as default distribution policy of memory,  tackling problems that some models cannot run with limited memory.
+- Avoid the problem of cuDNN8.0’s memory leaks to ensure the availability, and this will not influence other versions of cuDNN.
+- Fixed MakeCipher’s symbol absence issue in inference dynamic library.
+- Fixed wrong predicting results issue of `mask_rcnn_r50_1x_coco` model when this static graph model is converted from dynamic graph.
+- Fixed the inference failure of the segmentation models, caused by adaptive pooling is not fully supported by oneDNN,
+- Fixed the issue that oneDNN’s OCR model inference will be incorrect when batch_size>1.
+- Fixed freeze_model inference failure due to ReLU CPU’s implementation error.
+- Fixed the incompatibility issue that BF16’s images cannot change into binary script for Python3.
+
+
+## Environment Adaptation
+### Training Framework
+
+- Upgrade the GCC from V4.8.2 to V5.4 in Paddle docker images of CUDA9.0 and CUDA10.0
+- Add the Windows Paddle develop version wheel package. Windows users now can run `pip --pre` for installation.
+
+### Paddle Inference
+- Fixed the problem that develop docker image cannot compile with TensorRT, and replace TensorRT7 of powerpc architecture with TensorRT6 of x86-64 architecture.
+- Upgrade the name of Paddle Inference library: the name of dynamic link library changes from `libpaddle_fluid.so` to `libpaddle_inference.so`.
+
+## 2.0.0 Release Note
 
 ## **Update**
 
@@ -42,7 +157,7 @@ By default, the dynamic graph mode is enabled for model development and training
 ###  **API system**
 
 - Basic APIs
-  - API directory structure adjustment: The API V1.x is mainly located in the paddle.fluid directory. In this version, the API directory structure is adjusted so that the classification can be more reasonable. For the specific adjusted directory, see the [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/index_en.html).  
+  - API directory structure adjustment: The API V1.x is mainly located in the paddle.fluid directory. In this version, the API directory structure is adjusted so that the classification can be more reasonable. For the specific adjusted directory, see the [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/index_en.html).
   - Added 186 new APIs. Fixed and revised 260 APIs. See Release Notes of 2.0.0 pre release version and [API documentation](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/api/index_en.html).
   - Added the distributed basic communication class API to paddle.distributed:broadcast, all_reduce, reduce, all_gather, scatter, barrier; dynamic graph multi-card training startup API spawn, init_parallel_ env, dynamic-static unified startup method fleetrun
   -  Networking class API for dynamic and static unification: supports running in both dynamic graph mode and static graph mode.
@@ -93,8 +208,8 @@ By default, the dynamic graph mode is enabled for model development and training
   - Added the FP16 Guard function (`paddle.static.amp.fp16_guard`): Support users to freely control whether a single Op in the model chooses FP16 calculation type.
   - User can customize `custom_black_list` to control a certain type of Op to keep FP32 computation.
   - Using the O2 policy: Resnet50 and Bert base can be trained at 1400 images/s and 590 sequences/s, respectively, on a single card V100.
-- Usability optimization:  
-  - Use the `paddle.static.amp` package to manage the interfaces related to static graph mixed precision training in a unified manner.  
+- Usability optimization:
+  - Use the `paddle.static.amp` package to manage the interfaces related to static graph mixed precision training in a unified manner.
   - Provide the simplified name `CustomOpLists` for `AutoMixedPrecisionLists`: That is, users can customize the AMP black and white list Op list by using `CustomOpLists`.
 
 #### **Optimization of the distributed training**
