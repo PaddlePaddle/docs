@@ -20,4 +20,4 @@
     dynamic_graph/dynamic_graph.rst
     high_level_api/high_level_api.rst
     save_model/save_model.rst
-    linear_regression/linear_regression.rst
+    linear_regression/linear_regression.md
