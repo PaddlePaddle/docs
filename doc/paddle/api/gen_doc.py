@@ -33,10 +33,14 @@ cn_suffix = "_cn.rst"
 api_info_dict = {}
 parsed_mods = {}
 
-logging.basicConfig(
-    format="%(asctime)s - %(lineno)d - %(levelname)s - %(message)s")
+fmt = logging.Formatter(
+    "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s")
 logger = logging.getLogger()
+console = logging.StreamHandler()
+console.setFormatter(fmt)
+logger.addHandler(console)
 
+# console.setLevel(level)
 # logger.setLevel(logging.DEBUG)
 
 
@@ -337,7 +341,7 @@ def set_real_api_alias_attr():
             logger.warning('line "{}" splited to {}'.format(line, lineparts))
             continue
         try:
-            real_api = lineparts[0]
+            real_api = lineparts[0].strip()
             m = eval(real_api)
         except AttributeError:
             logger.warning("AttributeError: %s", real_api)
@@ -346,13 +350,15 @@ def set_real_api_alias_attr():
             if api_id in api_info_dict:
                 api_info_dict[api_id]["alias_name"] = lineparts[1]
                 if "doc_filename" not in api_info_dict[api_id]:
-                    api_info_dict[api_id]["doc_filename"] = lineparts[
-                        0].replace('.', '/')
+                    api_info_dict[api_id]["doc_filename"] = real_api.replace(
+                        '.', '/')
                 if "module_name" not in api_info_dict[
                         api_id] or "short_name" not in api_info_dict[api_id]:
-                    mod_name, short_name = split_name(lineparts[0])
+                    mod_name, short_name = split_name(real_api)
                     api_info_dict[api_id]["module_name"] = mod_name
                     api_info_dict[api_id]["short_name"] = short_name
+                    if 'full_name' not in api_info_dict[api_id]:
+                        api_info_dict[api_id]["full_name"] = real_api
 
 
 def get_shortest_api(api_list):
@@ -408,12 +414,20 @@ def gen_en_files(api_label_file="api_label"):
                 continue
             gen = EnDocGenerator()
             with gen.guard(f):
-                gen.module_name = api_info["module_name"]
-                gen.api = api_info["short_name"]
+                if 'full_name' in api_info:
+                    mod_name, _, short_name = api_info['full_name'].rpartition(
+                        '.')
+                else:
+                    mod_name = api_info['module_name']
+                    short_name = api_info['short_name']
+                    logger.warning("full_name not in api_info: %s.%s",
+                                   mod_name, short_name)
+                gen.module_name = mod_name
+                gen.api = short_name
                 gen.print_header_reminder()
                 gen.print_item()
                 api_label.write("{1}\t.. _api_{0}_{1}:\n".format("_".join(
-                    gen.module_name.split(".")), gen.api))
+                    mod_name.split(".")), short_name))
 
 
 def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
