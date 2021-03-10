@@ -1,4 +1,4 @@
-# **点云处理：基于Paddle2.0实现PointNet点云分类**
+# **点云处理：实现PointNet点云分类**
 **作者**：[Zhihao Cao](https://github.com/WhiteFireFox)<br>
 **日期**：2021.03<br>
 **摘要**：本示例在于演示如何基于Paddle2.0实现PointNet在ShapeNet数据集上进行点云分类处理。
@@ -397,7 +397,7 @@ if __name__ == '__main__':
     train: epoch: 0, batch_id: 0, loss is: [7.7336], accuracy is: [0.046875]
 
 
-# **评估与测试**
+## 五、评估与测试
 说明：通过`model.load_dict`的方式加载训练好的模型对测试集上的数据进行评估与测试。
 
 

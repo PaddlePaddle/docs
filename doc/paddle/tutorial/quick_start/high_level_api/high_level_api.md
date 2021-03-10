@@ -426,7 +426,7 @@ model.fit(train_dataset,
     step 938/938 [==============================] - loss: 0.0539 - acc: 0.9861 - 23ms/step         
 
 
-#### 注：
+**注：**
 
 `fit()`的第一个参数不仅可以传递数据集`paddle.io.Dataset`，还可以传递DataLoader，如果想要实现某个自定义的数据集抽样等逻辑，可以在fit外自定义DataLoader，然后传递给fit函数。
 
