@@ -426,8 +426,3 @@ model.fit(train_dataset, eval_dataset, epochs=5, batch_size=8, verbose=1)
     step 13/13 [==============================] - loss: 375.0100 - 969us/step         
     Eval samples: 102
 
-
-
-```python
-
-```
