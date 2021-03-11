@@ -14,13 +14,13 @@
 
 ##### 问题：在模型组网时，inplace参数的设置会影响梯度回传吗？经过不带参数的op之后，梯度是否会保留下来？
 
-+ 答复：inplace 参数不会影响梯度回传。只要用户没有手动设置stop_gradient=True，梯度都会保留下来。
++ 答复：inplace 参数不会影响梯度回传。只要用户没有手动设置`stop_gradient=True`，梯度都会保留下来。
 
 ----------
 
 ##### 问题：如何不训练某层的权重？
 
-+ 答复：在`ParamAttr`里设置learning_rate=0或trainable设置为False。具体请参考文档：https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/param_attr/ParamAttr_cn.html
++ 答复：在`ParamAttr`里设置`learning_rate=0`或`trainable`设置为`False`。具体请[参考文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/param_attr/ParamAttr_cn.html)
 
 ----------
 
@@ -30,7 +30,7 @@
 
 1. 使用多进程DataLoader加速数据读取：训练数据较多时，数据处理往往会成为训练速度的瓶颈，paddle提供了异步数据读取接口DataLoader，可以使用多进程进行数据加载，充分利用多处理的优势，具体使用方法及示例请参考API文档：[paddle.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/DataLoader_cn.html#dataloader)。
 
-2. 推荐使用支持MKL（英特尔数学核心函数库）的paddle安装包，MKL相比Openblas等通用计算库在计算速度上有显著的优势，能够提升您的训练效率。
+2. 推荐使用支持[MKL（英特尔数学核心函数库）](https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onemkl.html)的paddle安装包，MKL相比Openblas等通用计算库在计算速度上有显著的优势，能够提升您的训练效率。
 
 ----------
 
@@ -60,7 +60,7 @@
 
 2. 开启以下三个选项：
 
-```
+```bash
 #一旦不再使用即释放内存垃圾，=1.0 垃圾占用内存大小达到10G时，释放内存垃圾`
 export FLAGS_eager_delete_tensor_gb=0.0`
 #启用快速垃圾回收策略，不等待cuda kernel 结束，直接释放显存`
@@ -123,9 +123,9 @@ export FLAGS_fraction_of_gpu_memory_to_use=0`
 
 ----------
 
-##### 问题：load_inference_model在加载预测模型时能否用py_reader读取？
+##### 问题：`load_inference_model`在加载预测模型时能否用`py_reader`读取？
 
-+ 答复：目前`load_inference_model`加载进行的模型还不支持py_reader输入。
++ 答复：目前`load_inference_model`加载进行的模型还不支持`py_reader`输入。
 
 ----------
 
