@@ -23,7 +23,7 @@
 
 + 答复：
 
-1. 在动态图中，使用`paddle.save` API， 并将最后一层的layer.state_dict() 传入至save方法的obj 参数即可， 然后>    使用`paddle.load` 方法加载对应层的参数值。详细可参考API文档[save](https://www.paddlepaddle.org.cn/documentat    ion/docs/zh/api/paddle/framework/io/save_cn.html#save) 和[load](https://www.paddlepaddle.org.cn/documentatio    n/docs/zh/api/paddle/framework/io/load_cn.html#load)。
+1. 在动态图中，使用`paddle.save` API， 并将最后一层的`layer.state_dict()` 传入至save方法的obj 参数即可， 然后使用`paddle.load` 方法加载对应层的参数值。详细可参考API文档[save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/framework/io/save_cn.html#save) 和[load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/framework/io/load_cn.html#load)。
 2. 在静态图中，使用`paddle.static.save_vars`保存指定的vars，然后使用`paddle.static.load_vars`加载对应层的参数值。具体示例请见API文档：[load_vars](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/io/load_vars_cn.html) 和 [save_vars](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/io/save_vars_cn.html) 。
 
 ----------
@@ -46,7 +46,7 @@
 
   `step`表示的是经历了多少组mini_batch，其统计方法为`exe.run`(对应Program)运行的当前次数，即每运行一次`exe.run`，step加1。举例代码如下：
 
-```text
+```python
 # 执行下方代码后相当于step增加了N x Epoch总数
 for epoch in range(epochs):
     # 执行下方代码后step相当于自增了N
