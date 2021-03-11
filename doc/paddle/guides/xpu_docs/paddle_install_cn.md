@@ -1,6 +1,6 @@
 # 飞桨框架昆仑XPU版安装说明
 
-飞桨提供两种安装方式：
+飞桨框架支持基于python的训练和原生预测，当前最新版本为2.0.1，提供两种安装方式：
 
 **1. 预编译的支持昆仑XPU的wheel包**
 
@@ -21,45 +21,48 @@
 **环境1：英特尔CPU+昆仑XPU+Ubuntu系统**
 
 Python3.7
+
 ```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0-cp37-cp37m-linux_x86_64.whl
+wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp37-cp37m-linux_x86_64.whl
 ```
+
 ```
-python3.7 -m pip install -U paddlepaddle-2.0.0-cp37-cp37m-linux_x86_64.whl
+python3.7 -m pip install -U paddlepaddle-2.0.1-cp37-cp37m-linux_x86_64.whl
 ```
+
 Python3.6
+
 ```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0-cp36-cp36m-linux_x86_64.whl
+wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp36-cp36m-linux_x86_64.whl
 ```
+
 ```
-python3.6 -m pip install -U ``paddlepaddle-2.0.0-cp36-cp36m-linux_x86_64.whl
+python3.6 -m pip install -U ``paddlepaddle-2.0.1-cp36-cp36m-linux_x86_64.whl
 ```
-Python2.7
-```
-Wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0-cp27-cp27mu-linux_x86_64.whl
-```
-```
-python2.7 -m pip install -U ``paddlepaddle-2.0.0-cp27-cp27m-linux_x86_64.whl
-```
+
 
 **环境2：飞腾CPU+昆仑XPU+麒麟V10系统**
 
 Python3.7
+
 ```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0-cp37-cp37m-linux_aarch64.whl
+wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp37-cp37m-linux_aarch64.whl
 ```
 
 ```
-python3.7 -m pip install -U paddlepaddle-2.0.0-cp37-cp37m-linux_aarch64.whl
+python3.7 -m pip install -U paddlepaddle-2.0.1-cp37-cp37m-linux_aarch64.whl
 ```
+
 Python3.6
+
 ```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0-cp36-cp36m-linux_aarch64.whl
+wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp36-cp36m-linux_aarch64.whl
 ```
 
 ```
-python3.6 -m pip install -U paddlepaddle-2.0.0-cp36-cp36m-linux_aarch64.whl
+python3.6 -m pip install -U paddlepaddle-2.0.1-cp36-cp36m-linux_aarch64.whl
 ```
+
 如果使用预编译的支持昆仑XPU的wheel包出现环境问题，推荐使用源码自行编译支持昆仑XPU的包。
 
 ###验证安装
@@ -68,10 +71,13 @@ python3.6 -m pip install -U paddlepaddle-2.0.0-cp36-cp36m-linux_aarch64.whl
 ```
 import paddle
 ```
+
 再输入
+
 ```
 paddle.utils.run_check()
 ```
+
 如果出现PaddlePaddle is installed successfully!，说明您已成功安装。
 
 ## 安装方式二：从源码编译支持昆仑XPU的包
@@ -147,6 +153,7 @@ mkdir build && cd build
 ```
 ulimit -n 4096
 ```
+
 8. 执行cmake
 
 9. 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
@@ -155,11 +162,13 @@ ulimit -n 4096
 
 
 Python3
+
 ```
 cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DWITH_XPU_BKCL=ON
 ```
 
 Python2
+
 ```
 cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DWITH_XPU_BKCL=ON
 ```
@@ -167,9 +176,11 @@ cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=OFF -DWIT
 **飞腾CPU+昆仑XPU+麒麟V10系统**
 
 Python3
+
 ```
 cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_ARM=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_XBYAK=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_LITE=ON -DLITE_GIT_TAG=develop -DWITH_AARCH64=ON
 ```
+
 10. 使用以下命令来编译
 
 ```
@@ -207,6 +218,12 @@ pip uninstall paddlepaddle
 ```
 
 或
+
+```
+pip3 uninstall paddlepaddle
+```
+
+
 
 ```
 pip3 uninstall paddlepaddle
