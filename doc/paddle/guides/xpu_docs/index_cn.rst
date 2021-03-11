@@ -10,6 +10,7 @@
 - `飞桨对昆仑XPU芯片的支持 <./paddle_2.0_xpu_cn.html>`_ : 飞桨支持昆仑XPU芯片运行
 - `飞桨框架昆仑xpu版安装说明 <./paddle_install_cn.html>`_ : 飞桨框架昆仑xpu版安装说明
 - `飞桨框架昆仑XPU版训练示例 <./train_example_cn.html>`_ : 飞桨框架昆仑XPU版训练示例
+- `飞桨预测库昆仑XPU版安装及使用 <./inference_install_example_cn.html>`_ : 飞桨预测库昆仑XPU版安装及使用示例
 
 ..  toctree::
     :hidden:
@@ -17,3 +18,4 @@
     paddle_2.0_xpu_cn.md
     paddle_install_cn.md
     train_example_cn.md
+    inference_install_example_cn.md
