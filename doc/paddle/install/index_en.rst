@@ -236,7 +236,7 @@ The second way to install: compile and install with source code
 ===============================================================
 
 - If you use PaddlePaddle only, we suggest you installation methods **pip** to install.
-- If you need to develop PaddlePaddle, please refer to `compile from source code <compile/fromsource.html>`_
+- If you need to develop PaddlePaddle, please refer to `compile from source code <compile/fromsource_en.html>`_
 
 ..	toctree::
 	:hidden:

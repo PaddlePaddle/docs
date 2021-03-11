@@ -5,18 +5,12 @@
 
 + 问题描述:
 
-TensorRT dynamic library (libnvinfer.so) that Paddle depends on is not configured correctly. (error code is libnvinfer.so: cannot open shared object file: No such file or directory)
-
-Suggestions:
-
-Check if TensorRT is installed correctly and its version is matched with paddlepaddle you installed.
-
-Configure TensorRT dynamic library environment variables as follows:
-
-Linux: set LD_LIBRARY_PATH by export LD_LIBRARY_PATH=...
-
-Windows: set PATH by `set PATH=XXX;
-
+> TensorRT dynamic library (libnvinfer.so) that Paddle depends on is not configured correctly. (error code is libnvinfer.so: cannot open shared object file: No such file or directory)  
+> Suggestions:  
+> Check if TensorRT is installed correctly and its version is matched with paddlepaddle you installed.  
+> Configure TensorRT dynamic library environment variables as follows:  
+> Linux: set LD_LIBRARY_PATH by export LD_LIBRARY_PATH=...  
+> Windows: set PATH by `set PATH=XXX;  
 + 问题分析：
 
 遇到该问题是因为使用的paddle默认开始了TensorRT，但是本地环境中没有找到TensorRT的库，该问题只影响使用[Paddle Inference](https://paddleinference.paddlepaddle.org.cn/master/product_introduction/inference_intro.html)开启TensorRT预测的场景，对其它方面均不造成影响。
@@ -37,17 +31,21 @@ Windows: set PATH by `set PATH=XXX;
 
 1. Python2情况下，使用如下命令安装PaddlePaddle。
 
-   `pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple/`
+   ```bash
+   pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple/`
+   ```
 
 2. Python3情况下，使用如下命令安装PaddlePaddle。
 
-   `pip3 install paddlepaddle -i https://mirror.baidu.com/pypi/simple/`
+   ```bash
+   pip3 install paddlepaddle -i https://mirror.baidu.com/pypi/simple/`
+   ```
 
 你还可以通过如下三个地址获取pip安装包，只需修改 `-i` 后网址即可：
 
-https://pypi.tuna.tsinghua.edu.cn/simple
-https://mirrors.aliyun.com/pypi/simple/
-https://pypi.douban.com/simple/
+1. https://pypi.tuna.tsinghua.edu.cn/simple
+2. https://mirrors.aliyun.com/pypi/simple/
+3. https://pypi.douban.com/simple/
 
 ------
 
@@ -57,15 +55,15 @@ https://pypi.douban.com/simple/
 
 使用pip install时报错，`PermissionError: [WinError 5]` ，
 
-`C:\\program fiels\\python35\\Lib\\site-packages\\graphviz`。
+`C:\\Program Files\\python35\\Lib\\site-packages\\graphviz`。
 
 + 报错分析：
 
-用户权限问题导致，由于用户的Python安装到系统文件内（如”Program Files/“），任何的操作都需要管理员权限。
+用户权限问题导致，由于用户的Python安装到系统文件内（如`Program Files/`），任何的操作都需要管理员权限。
 
 + 解决方法：
 
-选择“以管理员身份运行”运行CMD，重新执行安装过程, 使用命令sudo pip install paddlepaddle
+选择“以管理员身份运行”运行CMD，重新执行安装过程, 使用命令`pip install paddlepaddle`。
 
 ------
 
@@ -75,8 +73,9 @@ https://pypi.douban.com/simple/
 
 使用pip install时报错，`ERROR: Could not find a version that satisfies the requirement paddlepaddle (from versions: none)`
 
-``ERROR: No matching distribution found for paddlepaddle`
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-febb18fb78004dc17f18d60a009dc6a8bd907251)
+`ERROR: No matching distribution found for paddlepaddle`
+
+<img src="https://agroup-bos-bj.cdn.bcebos.com/bj-febb18fb78004dc17f18d60a009dc6a8bd907251" alt="图片" />
 
 + 报错分析：
 
@@ -92,11 +91,11 @@ Python版本不匹配导致。用户使用的是32位Python，但是对应的32�
 
 + 报错分析：
 
-原因在于用户的计算机上可能安装了多个版本的Python，而安装PaddlePaddle时的Python和import paddle时的Python版本不一致导致报错。如果用户熟悉PyCharm等常见的IDE配置包安装的方法，配置运行的方法，则可以避免此类问题。
+原因在于用户的计算机上可能安装了多个版本的Python，而安装PaddlePaddle时的Python和`import paddle`时的Python版本不一致导致报错。如果用户熟悉PyCharm等常见的IDE配置包安装的方法，配置运行的方法，则可以避免此类问题。
 
 + 解决方法：
 
-用户明确安装Paddle的python位置，并切换到该python进行安装。可能需要使用python -m pip install paddlepaddle命令确保paddle是安装到该python中。
+用户明确安装Paddle的python位置，并切换到该python进行安装。可能需要使用`python -m pip install paddlepaddle`命令确保paddle是安装到该python中。
 
 ------
 
@@ -124,11 +123,13 @@ CUDA安装错误导致。
 
 + 解决方法：
 
-查找“libcudart.so”所在目录，并将其添加到“LD_LIBRARY_PATH”中。
+查找“libcudart.so”所在目录，并将其添加到`LD_LIBRARY_PATH`中。
 
-例如：执行`find / -name libcudart.so`, 发现libcudart.so在“/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.so”路径下， 使用如下命令添加即可。
+例如：执行`find / -name libcudart.so`, 发现libcudart.so在`/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.so`路径下， 使用如下命令添加即可。
 
-`export LD_LIBRARY_PATH=/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.so$LD_LIBRARY_PATH`
+```bash
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.so:${LD_LIBRARY_PATH}
+```
 
 ------
 
@@ -138,19 +139,26 @@ CUDA安装错误导致。
 
 1. GPU环境：
 
- `pip install -U paddlepaddle-gpu`
+  ```bash
+  pip install -U paddlepaddle-gpu`
+  ```
 
 或者
 
-`pip install paddlepaddle-gpu == 需要安装的版本号（如2.0）`
+  ```bash
+  pip install paddlepaddle-gpu == 需要安装的版本号（如2.0）`
+  ```
 
 2. CPU环境：
 
-`pip install -U paddlepaddle`
-
+  ```bash
+  pip install -U paddlepaddle`
+  ```
 或者
 
-`pip install paddlepaddle == 需要安装的版本号（如2.0）`
+  ```bash
+  pip install paddlepaddle == 需要安装的版本号（如2.0）`
+  ```
 
 ------
 

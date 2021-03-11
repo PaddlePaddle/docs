@@ -5,9 +5,9 @@
 
 + 答复：当训练时使用的数据集数据量较大或者预处理逻辑复杂时，如果串行地进行数据读取，数据读取往往会成为训练效率的瓶颈。这种情况下通常需要利用多线程或者多进程的方法异步地进行数据载入，从而提高数据读取和整体训练效率。
 
-paddle中推荐使用 DataLoader，这是一种灵活的异步加载方式。
+paddle中推荐使用 `DataLoader`，这是一种灵活的异步加载方式。
 
-该API提供了多进程的异步加载支持，可以配置num_workers指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
+该API提供了多进程的异步加载支持，可以配置`num_workers`指定异步加载数据的进程数目从而满足不同规模数据集的读取需求。
 
 具体使用方法及示例请参考API文档：[paddle.io.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/DataLoader_cn.html#dataloader)
 
@@ -42,7 +42,7 @@ paddle中推荐使用 DataLoader，这是一种灵活的异步加载方式。
 
 + 答复：在动态图模式下，可以参考如下示例：
 
-```
+```python
 import paddle
 import numpy as np
 
