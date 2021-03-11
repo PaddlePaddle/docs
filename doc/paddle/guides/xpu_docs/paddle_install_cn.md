@@ -104,7 +104,7 @@ paddle.utils.run_check()
 
 ### 源码编译安装步骤：
 
-1.  Paddle依赖cmake进行编译构建，需要cmake版本>=3.10，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要
+（1）Paddle依赖cmake进行编译构建，需要cmake版本>=3.10，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要
 
 ```
 wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
@@ -112,7 +112,7 @@ tar -xzf cmake-3.16.8.tar.gz && cd cmake-3.16.8
 ./bootstrap && make && sudo make install
 ```
 
-2. Paddle内部使用patchelf来修改动态库的rpath，如果操作系统提供的源包括了patchelf，直接安装即可，否则需要源码安装，请参考
+（2）Paddle内部使用patchelf来修改动态库的rpath，如果操作系统提供的源包括了patchelf，直接安装即可，否则需要源码安装，请参考
 
 ```
 ./bootstrap.sh
@@ -122,15 +122,16 @@ make check
 sudo make install
 ```
 
-3. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库
-4. 将Paddle的源代码克隆到当下目录下的Paddle文件夹中，并进入Paddle目录
+（3）根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库
+
+（4）将Paddle的源代码克隆到当下目录下的Paddle文件夹中，并进入Paddle目录
 
 ```
 git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-5. 建议切换到release2.0分支下进行编译：
+（5）建议切换到release2.0分支下进行编译：
 
 ```
 git checkout [``分支名``]
@@ -142,21 +143,21 @@ git checkout [``分支名``]
 git checkout release/2.0
 ```
 
-6. 并且请创建并进入一个叫build的目录下
+（6）并且请创建并进入一个叫build的目录下
 
 ```
 mkdir build && cd build
 ```
 
-7. 链接过程中打开文件数较多，可能超过系统默认限制导致编译出错，设置进程允许打开的最大文件数：
+（7）链接过程中打开文件数较多，可能超过系统默认限制导致编译出错，设置进程允许打开的最大文件数：
 
 ```
 ulimit -n 4096
 ```
 
-8. 执行cmake
+（8）执行cmake
 
-9. 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
+（9）具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
 **英特尔CPU+昆仑XPU+Ubuntu系统**
 
@@ -181,17 +182,17 @@ Python3
 cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_ARM=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_XBYAK=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_LITE=ON -DLITE_GIT_TAG=develop -DWITH_AARCH64=ON
 ```
 
-10. 使用以下命令来编译
+（10）使用以下命令来编译
 
 ```
 make -j$(nproc)
 ```
 
-11. 编译成功后进入Paddle/build/python/dist目录下找到生成的.whl包 。
+（11）编译成功后进入Paddle/build/python/dist目录下找到生成的.whl包 。
 
-12. 将生成的.whl包copy至带有昆仑XPU的目标机器上，并在目标机器上根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库。（如果编译机器同时为带有昆仑XPU的目标机器，略过此步）
+（12）将生成的.whl包copy至带有昆仑XPU的目标机器上，并在目标机器上根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库。（如果编译机器同时为带有昆仑XPU的目标机器，略过此步）
 
-13. 在带有昆仑XPU的目标机器安装编译好的.whl包：pip install -U（whl包的名字）或pip3 install -U（whl包的名字）。恭喜，至此您已完成昆仑XPU机器上PaddlePaddle的编译安装。
+（13）在带有昆仑XPU的目标机器安装编译好的.whl包：pip install -U（whl包的名字）或pip3 install -U（whl包的名字）。恭喜，至此您已完成昆仑XPU机器上PaddlePaddle的编译安装。
 
 **验证安装**
 
