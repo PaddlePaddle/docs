@@ -32,13 +32,13 @@
 1. Python2情况下，使用如下命令安装PaddlePaddle。
 
    ```bash
-   pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple/`
+   pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple/
    ```
 
 2. Python3情况下，使用如下命令安装PaddlePaddle。
 
    ```bash
-   pip3 install paddlepaddle -i https://mirror.baidu.com/pypi/simple/`
+   pip3 install paddlepaddle -i https://mirror.baidu.com/pypi/simple/
    ```
 
 你还可以通过如下三个地址获取pip安装包，只需修改 `-i` 后网址即可：
@@ -109,7 +109,7 @@ Python版本不匹配导致。用户使用的是32位Python，但是对应的32�
 
 需要升级CUDA驱动解决。
 
-1. Ubuntu和CentOS环境，需要把相关的驱动和库映射到容器内部。如果使用GPU的docker环境，需要用nvidia-docker来运行，更多请参考nvidia-docker。
+1. Ubuntu和CentOS环境，需要把相关的驱动和库映射到容器内部。如果使用GPU的docker环境，需要用nvidia-docker来运行，更多请参考[nvidia-docker](https://github.com/NVIDIA/nvidia-docker)。
 
 2. Windows环境，需要升级CUDA驱动。
 
@@ -140,24 +140,24 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.s
 1. GPU环境：
 
   ```bash
-  pip install -U paddlepaddle-gpu`
+  pip install -U paddlepaddle-gpu
   ```
 
 或者
 
   ```bash
-  pip install paddlepaddle-gpu == 需要安装的版本号（如2.0）`
+  pip install paddlepaddle-gpu == 需要安装的版本号（如2.0）
   ```
 
 2. CPU环境：
 
   ```bash
-  pip install -U paddlepaddle`
+  pip install -U paddlepaddle
   ```
 或者
 
   ```bash
-  pip install paddlepaddle == 需要安装的版本号（如2.0）`
+  pip install paddlepaddle == 需要安装的版本号（如2.0）
   ```
 
 ------
