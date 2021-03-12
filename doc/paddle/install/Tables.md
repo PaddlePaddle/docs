@@ -822,7 +822,6 @@ docker run -p 8888:8888 hub.baidubce.com/paddlepaddle/book
 http://localhost:8888/
 ```
 
-就这么简单，享受您的旅程！如有其他问题请参见[FAQ](#FAQ)
 
 </br></br>
 ## 使用Docker执行GPU训练

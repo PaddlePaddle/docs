@@ -825,7 +825,6 @@ Then enter the following URL in your browser:
 http://localhost:8888/
 ```
 
-It's that simple and bon voyage! For further questions, please refer to the [FAQ](#FAQ).
 
 
 </br></br>

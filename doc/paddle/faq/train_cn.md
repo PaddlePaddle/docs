@@ -8,7 +8,7 @@
 
 ##### 问题：请问`paddle.matmul`和`paddle.multiply`有什么区别？
 
-+ 答复：`matmul`支持的两个tensor的矩阵乘操作。`mul`是支持两个tensor进行逐元素相乘。
++ 答复：`matmul`支持的两个tensor的矩阵乘操作。`muliply`是支持两个tensor进行逐元素相乘。
 
 ----------
 
@@ -61,12 +61,12 @@
 2. 开启以下三个选项：
 
 ```bash
-#一旦不再使用即释放内存垃圾，=1.0 垃圾占用内存大小达到10G时，释放内存垃圾`
-export FLAGS_eager_delete_tensor_gb=0.0`
-#启用快速垃圾回收策略，不等待cuda kernel 结束，直接释放显存`
-export FLAGS_fast_eager_deletion_mode=1`
-#该环境变量设置只占用0%的显存`
-export FLAGS_fraction_of_gpu_memory_to_use=0`
+#一旦不再使用即释放内存垃圾，=1.0 垃圾占用内存大小达到10G时，释放内存垃圾
+export FLAGS_eager_delete_tensor_gb=0.0
+#启用快速垃圾回收策略，不等待cuda kernel 结束，直接释放显存
+export FLAGS_fast_eager_deletion_mode=1
+#该环境变量设置只占用0%的显存
+export FLAGS_fraction_of_gpu_memory_to_use=0
 ```
 
 详细请参考官方文档[存储分配与优化](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/performance_improving/singlenode_training_improving/memory_optimize.html) 调整相关配置。
