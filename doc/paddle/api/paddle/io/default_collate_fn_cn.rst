@@ -4,7 +4,6 @@ default_collate_fn
 -------------------------------
 
 .. py:function:: paddle.io.default_collate_fn
-
 ``paddle.io.DataLoader`` 中默认组批次函数，输入 ``batch`` 为样本列表，格式如下：
 
   ``[[filed1，filed2，...]，[filed1，filed2，...]，...]``

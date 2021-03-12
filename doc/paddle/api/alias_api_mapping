@@ -554,3 +554,17 @@ paddle.tensor.Overview	paddle.Overview
 paddle.hapi.callbacks.Overview	paddle.callbacks.Overview
 paddle.optimizer.lamb.Lamb	paddle.optimizer.Lamb
 paddle.tensor.to_string.set_printoptions	paddle.set_printoptions,paddle.tensor.set_printoptions
+paddle.fluid.dataloader.batch_sampler.BatchSampler	paddle.io.BatchSampler
+paddle.fluid.dataloader.dataset.ChainDataset	paddle.io.ChainDataset
+paddle.fluid.dataloader.dataset.ComposeDataset	paddle.io.ComposeDataset
+paddle.fluid.reader.DataLoader	paddle.io.DataLoader
+paddle.fluid.dataloader.dataset.Dataset	paddle.io.Dataset
+paddle.fluid.dataloader.batch_sampler.DistributedBatchSampler	paddle.io.DistributedBatchSampler
+paddle.fluid.dataloader.dataloader_iter.get_worker_info	paddle.io.get_worker_info
+paddle.fluid.dataloader.dataset.IterableDataset	paddle.io.IterableDataset
+paddle.fluid.dataloader.dataset.random_split	paddle.io.random_split
+paddle.fluid.dataloader.sampler.RandomSampler	paddle.io.RandomSampler
+paddle.fluid.dataloader.sampler.Sampler	paddle.io.Sampler
+paddle.fluid.dataloader.sampler.SequenceSampler	paddle.io.SequenceSampler
+paddle.fluid.dataloader.dataset.TensorDataset	paddle.io.TensorDataset
+paddle.fluid.dataloader.sampler.WeightedRandomSampler	paddle.io.WeightedRandomSampler
