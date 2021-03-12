@@ -146,7 +146,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.s
 或者
 
   ```bash
-  pip install paddlepaddle-gpu == 需要安装的版本号（如2.0）
+  pip install paddlepaddle-gpu==需要安装的版本号（如2.0）
   ```
 
 2. CPU环境：
@@ -157,7 +157,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.s
 或者
 
   ```bash
-  pip install paddlepaddle == 需要安装的版本号（如2.0）
+  pip install paddlepaddle==需要安装的版本号（如2.0）
   ```
 
 ------
