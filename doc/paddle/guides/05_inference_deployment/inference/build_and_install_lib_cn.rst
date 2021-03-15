@@ -22,10 +22,10 @@
     "nv_jetson_cuda10_cudnn7.6_trt6_nano(jetpack4.3)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.3-nano/paddle_inference.tgz>`__",
     "nv_jetson_cuda10_cudnn7.6_trt6_tx2(jetpack4.3)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.3-tx2/paddle_inference.tgz>`__",
     "nv_jetson_cuda10_cudnn7.6_trt6_xavier(jetpack4.3)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.3-xavier/paddle_inference_install_dir.tgz>`__",
-    "nv_jetson_cuda10.2_cudnn8_trt7_all(jetpack4.4/4.5)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-all/paddle_inference.tgz>`__",
-    "nv_jetson_cuda10.2_cudnn8_trt7_nano(jetpack4.4/4.5)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-nano/paddle_inference.tgz>`__",
-    "nv_jetson_cuda10.2_cudnn8_trt7_tx2(jetpack4.4/4.5)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-tx2/paddle_inference.tgz>`__",
-    "nv_jetson_cuda10.2_cudnn8_trt7_xavier(jetpack4.4/4.5)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-xavier/paddle_inference.tgz>`__",
+    "nv_jetson_cuda10.2_cudnn8_trt7_all(jetpack4.4)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-all/paddle_inference.tgz>`__",
+    "nv_jetson_cuda10.2_cudnn8_trt7_nano(jetpack4.4)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-nano/paddle_inference.tgz>`__",
+    "nv_jetson_cuda10.2_cudnn8_trt7_tx2(jetpack4.4)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-tx2/paddle_inference.tgz>`__",
+    "nv_jetson_cuda10.2_cudnn8_trt7_xavier(jetpack4.4)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-xavier/paddle_inference.tgz>`__",
 
 
 从源码编译
