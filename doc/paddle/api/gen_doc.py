@@ -71,7 +71,7 @@ def get_all_api(root_path='paddle', attr="__all__"):
                 len(api_info_dict))
 
 
-# step 1 fill field : `id` & `all_names`, type
+# step 1 fill field : `id` & `all_names`, type, docstring
 def process_module(m, attr="__all__"):
     api_counter = 0
     if hasattr(m, attr):
@@ -105,6 +105,9 @@ def process_module(m, attr="__all__"):
                         "object": obj,
                         "type": type(obj).__name__,
                     }
+                    if hasattr(obj, '__doc__'):
+                        api_info_dict[fc_id]["docstring"] = getattr(obj,
+                                                                    '__doc__')
     return api_counter
 
 
