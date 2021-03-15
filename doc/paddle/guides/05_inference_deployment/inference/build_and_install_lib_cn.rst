@@ -6,6 +6,7 @@
 直接下载安装
 -------------
 
+
 ..  csv-table:: 
     :header: "版本说明", "预测库(1.8.5版本)", "预测库(2.0.1版本)", "预测库(develop版本)"
     :widths: 3, 2, 2, 2
@@ -26,6 +27,7 @@
     "nv_jetson_cuda10.2_cudnn8_trt7_nano(jetpack4.4)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-nano/paddle_inference.tgz>`__",
     "nv_jetson_cuda10.2_cudnn8_trt7_tx2(jetpack4.4)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-tx2/paddle_inference.tgz>`__",
     "nv_jetson_cuda10.2_cudnn8_trt7_xavier(jetpack4.4)", , "`paddle_inference.tar.gz <https://paddle-inference-lib.bj.bcebos.com/2.0.1-nv-jetson-jetpack4.4-xavier/paddle_inference.tgz>`__",
+
 
 
 从源码编译
