@@ -355,9 +355,18 @@ def set_real_api_alias_attr():
             api_id = id(m)
             if api_id in api_info_dict:
                 api_info_dict[api_id]["alias_name"] = lineparts[1]
+                docpath_from_real_api = real_api.replace('.', '/')
                 if "doc_filename" not in api_info_dict[api_id]:
-                    api_info_dict[api_id]["doc_filename"] = real_api.replace(
-                        '.', '/')
+                    api_info_dict[api_id][
+                        "doc_filename"] = docpath_from_real_api
+                else:
+                    if api_info_dict[api_id][
+                            "doc_filename"] != docpath_from_real_api:
+                        logger.warning("doc_filename changes from %s to %s",
+                                       api_info_dict[api_id]["doc_filename"],
+                                       docpath_from_real_api)
+                        api_info_dict[api_id][
+                            "doc_filename"] = docpath_from_real_api
                 if "module_name" not in api_info_dict[
                         api_id] or "short_name" not in api_info_dict[api_id]:
                     mod_name, short_name = split_name(real_api)
