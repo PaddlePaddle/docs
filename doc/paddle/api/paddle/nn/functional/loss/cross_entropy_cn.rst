@@ -6,7 +6,7 @@ cross_entropy
 .. py:function:: paddle.nn.functional.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_label=False, axis=-1, name=None)
 
 
-该OP计算输入input和标签label间的交叉熵，可用于计算硬标签或软标签的交叉熵。其中，硬标签是指实际label值，例如：0, 1, 2...，软标签是指实际label的概率，例如：0.6, 0,8, 0,2...
+该OP计算输入input和标签label间的交叉熵，它结合了 ``log_softmax`` 和 ``nll_loss`` 的OP计算，可用于计算硬标签或软标签的交叉熵。其中，硬标签是指实际label值，例如：0, 1, 2...，软标签是指实际label的概率，例如：0.6, 0,8, 0,2... 更多信息请参考 :ref:`CrossEntropyLoss <cn_api_nn_loss_CrossEntropyLoss>` 。
 
 1. 硬标签交叉熵算法：若soft_label = False, :math:`label[i_1, i_2, ..., i_k]` 表示每个样本的硬标签值:
 
