@@ -62,7 +62,6 @@ paddle.tensor.manipulation.squeeze_	paddle.squeeze_,paddle.tensor.squeeze_
 paddle.nn.functional.common.interpolate	paddle.nn.functional.interpolate
 paddle.fluid.layers.cos	paddle.cos,paddle.tensor.cos,paddle.tensor.math.cos
 paddle.fluid.layers.cosh	paddle.cosh,paddle.tensor.cosh,paddle.tensor.math.cosh
-paddle.fluid.layers.tan	paddle.tan,paddle.tensor.tan,paddle.tensor.math.tan
 paddle.nn.functional.activation.tanhshrink	paddle.nn.functional.tanhshrink
 paddle.fluid.dygraph.base.grad	paddle.grad,paddle.framework.grad
 paddle.tensor.linalg.bmm	paddle.bmm,paddle.tensor.bmm
