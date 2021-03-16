@@ -33,14 +33,17 @@ cn_suffix = "_cn.rst"
 api_info_dict = {}
 parsed_mods = {}
 
-fmt = logging.Formatter(
-    "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s")
 logger = logging.getLogger()
-console = logging.StreamHandler()
-console.setFormatter(fmt)
-logger.addHandler(console)
+if logger.handlers:
+    # we assume the first handler is the one we want to configure
+    console = logger.handlers[0]
+else:
+    console = logging.StreamHandler()
+    logger.addHandler(console)
+console.setFormatter(
+    logging.Formatter(
+        "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"))
 
-# console.setLevel(level)
 # logger.setLevel(logging.DEBUG)
 
 
@@ -71,7 +74,7 @@ def get_all_api(root_path='paddle', attr="__all__"):
                 len(api_info_dict))
 
 
-# step 1 fill field : `id` & `all_names`, type
+# step 1 fill field : `id` & `all_names`, type, docstring
 def process_module(m, attr="__all__"):
     api_counter = 0
     if hasattr(m, attr):
@@ -105,6 +108,9 @@ def process_module(m, attr="__all__"):
                         "object": obj,
                         "type": type(obj).__name__,
                     }
+                    if hasattr(obj, '__doc__'):
+                        api_info_dict[fc_id]["docstring"] = getattr(obj,
+                                                                    '__doc__')
     return api_counter
 
 
@@ -349,9 +355,18 @@ def set_real_api_alias_attr():
             api_id = id(m)
             if api_id in api_info_dict:
                 api_info_dict[api_id]["alias_name"] = lineparts[1]
+                docpath_from_real_api = real_api.replace('.', '/')
                 if "doc_filename" not in api_info_dict[api_id]:
-                    api_info_dict[api_id]["doc_filename"] = real_api.replace(
-                        '.', '/')
+                    api_info_dict[api_id][
+                        "doc_filename"] = docpath_from_real_api
+                else:
+                    if api_info_dict[api_id][
+                            "doc_filename"] != docpath_from_real_api:
+                        logger.warning("doc_filename changes from %s to %s",
+                                       api_info_dict[api_id]["doc_filename"],
+                                       docpath_from_real_api)
+                        api_info_dict[api_id][
+                            "doc_filename"] = docpath_from_real_api
                 if "module_name" not in api_info_dict[
                         api_id] or "short_name" not in api_info_dict[api_id]:
                     mod_name, short_name = split_name(real_api)
