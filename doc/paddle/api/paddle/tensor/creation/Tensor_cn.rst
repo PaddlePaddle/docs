@@ -223,11 +223,15 @@ Tensor
 
 请参考 :ref:`cn_api_fluid_layers_atan`
 
-.. py:method:: backward(retain_graph=False)
+.. py:method:: backward(grad_tensor=None, retain_graph=False)
 
 从当前Tensor开始计算反向的神经网络，传导并计算计算图中Tensor的梯度。
 
 参数：
+    - **grad_tensor** (Tensor, optional) - 当前Tensor 的初始梯度值。
+    如果`grad_tensor` 是None， 当前Tensor 的初始梯度值将会是值全为1.0的Tensor；
+    如果`grad_tensor` 不是None，必须和当前Tensor有相同的长度。默认值：None。
+
     - **retain_graph** (bool, optional) - 如果为False，反向计算图将被释放。如果在backward()之后继续添加OP，
       需要设置为True，此时之前的反向计算图会保留。将其设置为False会更加节省内存。默认值：False。
 
@@ -235,21 +239,31 @@ Tensor
 
 **代码示例**
     .. code-block:: python
-
         import paddle
-        import numpy as np
+        x = paddle.to_tensor(5., stop_gradient=False)
+        for i in range(5):
+            y = paddle.pow(x, 4.0)
+            y.backward()
+            print("{}: {}".format(i, x.grad))
+        # 0: [500.]
+        # 1: [1000.]
+        # 2: [1500.]
+        # 3: [2000.]
+        # 4: [2500.]
+        x.clear_grad()
+        print("{}".format(x.grad))
+        # 0.
+        grad_tensor=paddle.to_tensor(2.)
+        for i in range(5):
+            y = paddle.pow(x, 4.0)
+            y.backward(grad_tensor)
+            print("{}: {}".format(i, x.grad))
+        # 0: [1000.]
+        # 1: [2000.]
+        # 2: [3000.]
+        # 3: [4000.]
+        # 4: [5000.]
 
-        x = np.ones([2, 2], np.float32)
-        inputs = []
-        for _ in range(10):
-            tmp = paddle.to_tensor(x)
-            # if we don't set tmp's stop_gradient as False then, all path to loss will has no gradient since
-            # there is no one need gradient on it.
-            tmp.stop_gradient=False
-            inputs.append(tmp)
-        ret = paddle.add_n(inputs)
-        loss = paddle.sum(ret)
-        loss.backward()
 
 .. py:method:: bmm(y, name=None)
 
