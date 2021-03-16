@@ -33,14 +33,17 @@ cn_suffix = "_cn.rst"
 api_info_dict = {}
 parsed_mods = {}
 
-fmt = logging.Formatter(
-    "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s")
 logger = logging.getLogger()
-console = logging.StreamHandler()
-console.setFormatter(fmt)
-logger.addHandler(console)
+if logger.handlers:
+    # we assume the first handler is the one we want to configure
+    console = logger.handlers[0]
+else:
+    console = logging.StreamHandler()
+    logger.addHandler(console)
+console.setFormatter(
+    logging.Formatter(
+        "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"))
 
-# console.setLevel(level)
 # logger.setLevel(logging.DEBUG)
 
 
