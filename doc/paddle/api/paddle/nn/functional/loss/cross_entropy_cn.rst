@@ -47,37 +47,37 @@ cross_entropy
 
 2. reduction情况
 
-(2.1) 如果 ``reduction`` 参数为 ``none``  
+   (2.1) 如果 ``reduction`` 参数为 ``none``  
 
      则直接返回上一步结果
 
-(2.2) 如果 ``reduction`` 参数为 ``sum``  
+   (2.2) 如果 ``reduction`` 参数为 ``sum``  
 
      则返回上一步结果的和
 
      .. math::
-        loss=\sum_{j}loss_j
+        \\loss=\sum_{j}loss_j
 
-(2.3) 如果 ``reduction`` 参数为 ``mean``, 则根据``weight`` 参数情况进行处理:  
+   (2.3) 如果 ``reduction`` 参数为 ``mean``, 则根据``weight`` 参数情况进行处理:  
 
 2.3.1. 如果 ``weight`` 参数为 ``None`` 
 
      则返回上一步结果的平均值
 
      .. math::
-        loss=\sum_{j}loss_j/N, N为样本数
+        \\loss=\sum_{j}loss_j/N, N为样本数
 
 2.3.2. 如果 ``weight`` 参数不为 ``None`` , 则返回上一步结果的加权平均值
 
     (1) 硬标签情况(soft_label = False)
 
      .. math::
-        loss=\sum_{j}loss_j/\sum_{j}weight[label_j] 
+        \\loss=\sum_{j}loss_j/\sum_{j}weight[label_j] 
 
     (2)  软标签情况(soft_label = True)
 
      .. math::
-        loss=\sum_{j}loss_j/\sum_{j}\left(\sum_{i}weight[label_i]\right)
+        \\loss=\sum_{j}loss_j/\sum_{j}\left(\sum_{i}weight[label_i]\right)
  
 参数
 :::::::::
