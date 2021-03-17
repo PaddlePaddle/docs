@@ -291,6 +291,9 @@ def parse_module_file(mod):
                             api_info_dict[obj_id]["full_name"] = obj_full_name
                             api_info_dict[obj_id]["short_name"] = short_name
                             api_info_dict[obj_id]["module_name"] = mod_name
+                            api_info_dict[obj_id][
+                                "doc_filename"] = obj_full_name.replace('.',
+                                                                        '/')
                         else:
                             logger.debug("%s omitted", obj_full_name)
 
