@@ -17,12 +17,16 @@ cross_entropy
 
 1. 硬标签（每个样本仅可分到一个类别）
    .. math::
+
       \\loss_j=-\text{logits}_{label_j}+\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right) 
+
         j = 1,..., N为样本数, C为类别数
 
 2. 软标签（每个样本以一定的概率被分配至多个类别中，概率和为1）
    .. math::
+
       \\loss_j=-\sum_{i=0}^{C}\text{label}_i\left(\text{logits}_i-\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right)\right)
+
         j = 1,...,N为样本数, C为类别数
 
 - **二. weight及reduction处理**
