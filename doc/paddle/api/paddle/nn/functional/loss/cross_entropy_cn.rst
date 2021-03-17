@@ -6,22 +6,28 @@ cross_entropy
 .. py:function:: paddle.nn.functional.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_label=False, axis=-1, name=None)
 
 该OP实现了softmax交叉熵损失函数。该函数会将softmax操作、交叉熵损失函数的计算过程进行合并，从而提供了数值上更稳定的计算。
+
 该OP默认会对结果进行求mean计算, 您也可以影响该默认行为， 具体参考reduction参数说明。
-可用于计算硬标签或软标签的交叉熵。其中，硬标签是指实际label值，例如：0, 1, 2...，软标签是指实际label的概率，例如：0.6, 0,8, 0,2... 
+
+该OP可用于计算硬标签或软标签的交叉熵。其中，硬标签是指实际label值，例如：0, 1, 2...，软标签是指实际label的概率，例如：0.6, 0,8, 0,2... 
 
 该OP的计算包括以下两个步骤：
+
 一. softmax交叉熵
+
 1. 硬标签（每个样本仅可分到一个类别）
-.. math::
+   .. math::
    loss_j =  -\text{logits}_{label_j} +\log\left(\sum_{i=0}^{K}\exp(\text{logits}_i)\right), j = 1,..., K
 
 2. 软标签（每个样本以一定的概率被分配至多个类别中，概率和为1）
-.. math::
+   .. math::
    loss_j =  -\sum_{i=0}^{K}\text{label}_i\left(\text{logits}_i - \log\left(\sum_{i=0}^{K}\exp(\text{logits}_i)\right)\right), j = 1,...,K
 
 
 二.weight及reduction处理
+
 1.  如果``weight``参数不为``None``, 则对每个样本的交叉熵进行weight加权:
+
 1.1. 硬标签情况(soft_label = False)
      .. math::
         \\loss_j=loss_j*weight[label_j] 
@@ -31,6 +37,7 @@ cross_entropy
         \\loss_j=loss_j*\sum_{i}\left(weight[label_i]*logits_i\right)
 
 2. reduction情况
+
 2.1. 如果``reduction``参数为``none``,  则直接返回上一步结果:
      .. math::
         loss_j
@@ -40,18 +47,19 @@ cross_entropy
         loss=\sum_{j}loss_j
 
 2.3. 如果``reduction``参数为``mean``:
+
 2.3.1. 如果``weight``参数为``None``, 则返回上一步结果的平均值
      .. math::
-        loss=\sum_{j}loss_j\/K
+        loss=\sum_{j}loss_j/K
 
 2.3.2. 如果``weight``参数不为``None``, 则返回上一步结果的加权平均值
     (1) 硬标签情况(soft_label = False)
      .. math::
-        loss=\sum_{j}loss_j\/\sum_{j}weight[label_j] 
+        loss=\sum_{j}loss_j/\sum_{j}weight[label_j] 
 
     (2)  软标签情况(soft_label = True)
      .. math::
-        loss=\sum_{j}loss_j\/\sum_{j}\left(sum_{i}weight[label_i]\right)
+        loss=\sum_{j}loss_j/\sum_{j}\left(\sum_{i}weight[label_i]\right)
  
 参数
 :::::::::
