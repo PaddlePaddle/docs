@@ -13,21 +13,19 @@ cross_entropy
 
 该OP的计算包括以下两个步骤：
 
-
-    - **一. softmax交叉熵**
+- **一. softmax交叉熵**
 
 1. 硬标签（每个样本仅可分到一个类别）
    .. math::
-     loss_j =  -\text{logits}_{label_j} +\log\left(\sum_{i=0}^{K}\exp(\text{logits}_i)\right), j = 1,..., K
+      loss_j =  -\text{logits}_{label_j} +\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right), j = 1,..., N为样本数, C为类别数
 
 2. 软标签（每个样本以一定的概率被分配至多个类别中，概率和为1）
    .. math::
-     loss_j =  -\sum_{i=0}^{K}\text{label}_i\left(\text{logits}_i - \log\left(\sum_{i=0}^{K}\exp(\text{logits}_i)\right)\right), j = 1,...,K
+      loss_j =  -\sum_{i=0}^{C}\text{label}_i\left(\text{logits}_i - \log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right)\right), j = 1,...,N为样本数, C为类别数
 
+- **二. weight及reduction处理**
 
-    - **二.weight及reduction处理**
-
-1.  如果``weight``参数不为``None``, 则对每个样本的交叉熵进行weight加权:
+1.  如果 ``weight`` 参数不为 ``None`` , 则对每个样本的交叉熵进行weight加权:
 
 1.1. 硬标签情况(soft_label = False)
      .. math::
@@ -49,7 +47,7 @@ cross_entropy
 
 2.3.1. 如果 ``weight`` 参数为 ``None`` , 则返回上一步结果的平均值
      .. math::
-        loss=\sum_{j}loss_j/K
+        loss=\sum_{j}loss_j/N, N为样本数
 
 2.3.2. 如果 ``weight`` 参数不为 ``None`` , 则返回上一步结果的加权平均值
 
