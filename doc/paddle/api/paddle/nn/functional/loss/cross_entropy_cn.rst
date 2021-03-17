@@ -47,18 +47,18 @@ cross_entropy
 
 2. reduction情况
 
-   (2.1) 如果 ``reduction`` 参数为 ``none``  
+2.1 如果 ``reduction`` 参数为 ``none``  
 
      则直接返回上一步结果
 
-   (2.2) 如果 ``reduction`` 参数为 ``sum``  
+2.2 如果 ``reduction`` 参数为 ``sum``  
 
      则返回上一步结果的和
 
      .. math::
         \\loss=\sum_{j}loss_j
 
-   (2.3) 如果 ``reduction`` 参数为 ``mean``, 则根据``weight`` 参数情况进行处理:  
+2.3 如果 ``reduction`` 参数为 ``mean``, 则根据 ``weight``  参数情况进行处理:  
 
 2.3.1. 如果 ``weight`` 参数为 ``None`` 
 
