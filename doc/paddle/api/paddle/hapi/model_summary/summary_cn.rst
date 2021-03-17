@@ -3,7 +3,7 @@
 summary
 -------------------------------
 
-.. py:function:: paddle.summary(self, input_size=None, dtypes=None)
+.. py:function:: paddle.summary(net, input_size, dtypes=None)
 
  ``summary`` 函数能够打印网络的基础结构和参数信息。
 
@@ -54,4 +54,27 @@ summary
 
     params_info = paddle.summary(lenet, (1, 1, 28, 28))
     print(params_info)
+    # ---------------------------------------------------------------------------
+    # Layer (type)       Input Shape          Output Shape         Param #    
+    # ===========================================================================
+    # Conv2D-11      [[1, 1, 28, 28]]      [1, 6, 28, 28]          60       
+    #     ReLU-11       [[1, 6, 28, 28]]      [1, 6, 28, 28]           0       
+    # MaxPool2D-11     [[1, 6, 28, 28]]      [1, 6, 14, 14]           0       
+    # Conv2D-12      [[1, 6, 14, 14]]     [1, 16, 10, 10]         2,416     
+    #     ReLU-12      [[1, 16, 10, 10]]     [1, 16, 10, 10]           0       
+    # MaxPool2D-12    [[1, 16, 10, 10]]      [1, 16, 5, 5]            0       
+    # Linear-16         [[1, 400]]            [1, 120]           48,120     
+    # Linear-17         [[1, 120]]            [1, 84]            10,164     
+    # Linear-18         [[1, 84]]             [1, 10]              850      
+    # ===========================================================================
+    # Total params: 61,610
+    # Trainable params: 61,610
+    # Non-trainable params: 0
+    # ---------------------------------------------------------------------------
+    # Input size (MB): 0.00
+    # Forward/backward pass size (MB): 0.11
+    # Params size (MB): 0.24
+    # Estimated Total Size (MB): 0.35
+    # ---------------------------------------------------------------------------
     # {'total_params': 61610, 'trainable_params': 61610}
+
