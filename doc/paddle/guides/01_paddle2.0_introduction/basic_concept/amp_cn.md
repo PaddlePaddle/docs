@@ -41,7 +41,7 @@ def end_timer_and_print(msg):
     print("共计耗时 = {:.3f} sec".format(end_time - start_time))
 ```
 
-## 3.2 构建一个简单的网络
+### 3.2 构建一个简单的网络
 
 构建一个简单的网络，用于对比使用普通方法进行训练与使用混合精度训练的训练速度。该网络由三层 ``Linear`` 组成，其中前两层 ``Linear`` 后接 ``ReLU`` 激活函数。
 
