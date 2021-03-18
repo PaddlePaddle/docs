@@ -115,7 +115,7 @@ end_timer_and_print("默认耗时:") # 获取结束时间并打印相关信息
 
 
     默认耗时:
-    共计耗时 = 2.773 sec
+    共计耗时 = 2.650 sec
 
 
 ### 3.4 使用AMP训练模型
@@ -151,14 +151,18 @@ for epoch in range(epochs):
 
         # 训练模型
         scaler.minimize(optimizer, scaled)
+        optimizer.clear_grad()
 
+print(loss)
 end_timer_and_print("使用AMP模式耗时:")
 ```
 
+    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+           [1.24434137])
 
     使用AMP模式耗时:
-    共计耗时 = 1.472 sec
+    共计耗时 = 1.291 sec
 
 
 ## 四、总结
-从上面的示例中可以看出，使用自动混合精度训练，共计耗时约 1.472s，而普通的训练方式则耗时 2.773s，训练速度提升约为 1.88倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
+从上面的示例中可以看出，使用自动混合精度训练，共计耗时约 1.291s，而普通的训练方式则耗时 2.650s，训练速度提升约为 1.88倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
