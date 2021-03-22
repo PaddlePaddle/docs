@@ -185,4 +185,4 @@ or
 | MobileNetv3  | [Model Link](https://github.com/PaddlePaddle/PaddleClas/tree/dygraph/docs/zh_CN/extension/train_on_xpu.md) |
 | Deeplabv3  | [Model Link](https://github.com/PaddlePaddle/PaddleSeg/blob/develop/legacy/docs/train_on_xpu.md) |
 | DQN  | [Model Link](https://github.com/PaddlePaddle/PARL/blob/develop/examples/DQN/README.md) |
-| Bertbase  | [Model Link](https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/legacy/pretrain_language_models/BERT/README.md) |
+| Bertbase  | [Model Link](https://github.com/PaddlePaddle/PaddleNLP/blob/release/2.0-rc/legacy/pretrain_language_models/BERT/README.md) |
