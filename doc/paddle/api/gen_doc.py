@@ -18,6 +18,9 @@ generate api_info_dict.json to describe all info about the apis.
 
 en_suffix = "_en.rst"
 cn_suffix = "_cn.rst"
+NOT_DISPLAY_DOC_LIST_FILENAME = "./not_display_doc_list"
+DISPLAY_DOC_LIST_FILENAME = "./display_doc_list"
+ALIAS_MAPPING_LIST_FILENAME = "./alias_api_mapping"
 
 # key = id(api), value = dict of api_info{
 #   "id":id,
@@ -303,13 +306,23 @@ def set_display_attr_of_apis():
     """
     set the display attr
     """
-    display_none_apis = set(
-        [line.strip() for line in open("./not_display_doc_list", "r")])
-    display_yes_apis = set(
-        [line.strip() for line in open("./display_doc_list", "r")])
+    if os.path.exists(NOT_DISPLAY_DOC_LIST_FILENAME):
+        display_none_apis = set([
+            line.strip() for line in open(NOT_DISPLAY_DOC_LIST_FILENAME, "r")
+        ])
+    else:
+        logger.warning("file not exists: %s", NOT_DISPLAY_DOC_LIST_FILENAME)
+        display_none_apis = set()
+    if os.path.exists(DISPLAY_DOC_LIST_FILENAME):
+        display_yes_apis = set(
+            [line.strip() for line in open(DISPLAY_DOC_LIST_FILENAME, "r")])
+    else:
+        logger.warning("file not exists: %s", DISPLAY_DOC_LIST_FILENAME)
+        display_yes_apis = set()
     logger.info(
         'display_none_apis has %d items, display_yes_apis has %d items',
         len(display_none_apis), len(display_yes_apis))
+
     # file the same apis
     for id_api in api_info_dict:
         all_names = api_info_dict[id_api]["all_names"]
@@ -339,7 +352,10 @@ def set_real_api_alias_attr():
     """
     set the full_name,alias attr and so on.
     """
-    for line in open("./alias_api_mapping", "r"):
+    if not os.path.exists(ALIAS_MAPPING_LIST_FILENAME):
+        logger.warning("file not exists: %s", ALIAS_MAPPING_LIST_FILENAME)
+        return
+    for line in open(ALIAS_MAPPING_LIST_FILENAME, "r"):
         linecont = line.strip()
         lineparts = linecont.split()
         if len(lineparts) < 2:
