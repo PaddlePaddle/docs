@@ -13,6 +13,9 @@ import ast
 import logging
 import importlib
 import re
+import subprocess
+import multiprocessing
+import platform
 """
 generate api_info_dict.json to describe all info about the apis.
 """
@@ -726,6 +729,57 @@ def extract_sample_codes_into_dir():
                         format(fn))
 
 
+def run_a_sample_code(sc_filename):
+    succ = True
+    cmd = None
+    retstr = None
+    if platform.python_version()[0] == "2":
+        cmd = ["python", sc_filename]
+    elif platform.python_version()[0] == "3":
+        cmd = ["python3", sc_filename]
+    else:
+        retstr = 'Error: fail to parse python version!'
+        logger.warning(retstr)
+        succ = False
+    subprc = subprocess.Popen(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output, error = subprc.communicate()
+    msg = "".join(output.decode(encoding='utf-8'))
+    err = "".join(error.decode(encoding='utf-8'))
+    if subprc.returncode != 0:
+        retstr = """{} return code number {}.
+stderr:
+{}
+stdout:
+{}
+""".format(sc_filename, subprc.returncode, err, msg)
+    return succ, retstr
+
+
+def run_all_sample_codes(threads=1):
+    po = multiprocessing.Pool(threads)
+    sc_files = os.listdir(SAMPLECODE_TEMPDIR)
+    mpresults = po.map_async(
+        run_a_sample_code,
+        [os.path.join(SAMPLECODE_TEMPDIR, fn) for fn in sc_files])
+    po.close()
+    po.join()
+    results = mpresults.get()
+
+    err_files = []
+    for i, fn in enumerate(sc_files):
+        if not results[i][0]:
+            err_files.append(fn)
+            logger.warning(results[i][1])
+    if len(err_files):
+        logger.info('there are %d samplecodes run error.\n%s',
+                    len(err_files), "\n".join(err_files))
+        return False
+    else:
+        logger.info('all sample codes run successfully')
+    return True
+
+
 def reset_api_info_dict():
     global api_info_dict, parsed_mods
     api_info_dict = {}
@@ -749,6 +803,10 @@ arguments = [
     ],
     ['--gpu_id', 'gpu_id', int, 0, 'GPU device id to use [0]'],
     ['--run-on-device', 'run_on_device', str, 'cpu', 'run on device'],
+    [
+        '--threads', 'threads', int, 1,
+        'subprocesses\' number for running the all sample codes.'
+    ],
 ]
 
 
@@ -761,6 +819,11 @@ def parse_args():
         description='generate the api_info json and generate the English api_doc reST files.'
     )
     parser.add_argument('--debug', dest='debug', action="store_true")
+    parser.add_argument(
+        '--run-sample-codes',
+        dest='run_sample_codes',
+        action="store_true",
+        help='run all the smaple codes')
     for item in arguments:
         parser.add_argument(
             item[0], dest=item[1], help=item[4], type=item[2], default=item[3])
@@ -780,11 +843,15 @@ if __name__ == "__main__":
                 "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"
             ))
         logger.addHandler(logfHandler)
-    if args.sample_codes_dir:
-        SAMPLECODE_TEMPDIR = args.sample_codes_dir
     if args.run_on_device.lower() == 'gpu':
         RUN_ON_DEVICE = 'gpu'
         GPU_ID = args.gpu_id
+    if args.run_sample_codes or (
+            'RUN_SAMPLE_CODES' in os.environ and
+            os.environ['RUN_SAMPLE_CODES'].lower() in ['yes', '1', 'on']):
+        need_run_sample_codes = True
+    if args.sample_codes_dir:
+        SAMPLECODE_TEMPDIR = args.sample_codes_dir
 
     realattrs = []  # only __all__ or __dict__
     for attr in args.travelled_attr.split(','):
@@ -819,6 +886,9 @@ if __name__ == "__main__":
             if args.gen_rst:
                 gen_en_files()
                 check_cn_en_match()
-            if args.sample_codes_dir:
+            if need_run_sample_codes:
                 extract_sample_codes_into_dir()
+
+    if need_run_sample_codes:
+        run_all_sample_codes(args.threads)
     logger.info("done")
