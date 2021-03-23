@@ -670,7 +670,7 @@ def extract_code_blocks_from_docstr(docstr):
             if cb_started:
                 if lineno == lastlineindex:
                     mo = re.search(r"\S", linecont)
-                    if mo is not None:
+                    if mo is not None and cb_cur_indent <= mo.start():
                         cb_cur.append(linecont)
                     if len(cb_cur):
                         code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
