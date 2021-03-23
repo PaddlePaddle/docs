@@ -12,6 +12,7 @@ import inspect
 import ast
 import logging
 import importlib
+import re
 """
 generate api_info_dict.json to describe all info about the apis.
 """
@@ -21,6 +22,9 @@ cn_suffix = "_cn.rst"
 NOT_DISPLAY_DOC_LIST_FILENAME = "./not_display_doc_list"
 DISPLAY_DOC_LIST_FILENAME = "./display_doc_list"
 ALIAS_MAPPING_LIST_FILENAME = "./alias_api_mapping"
+SAMPLECODE_TEMPDIR = './sample-codes'
+RUN_ON_DEVICE = "cpu"
+GPU_ID = 0
 
 # key = id(api), value = dict of api_info{
 #   "id":id,
@@ -692,6 +696,36 @@ def extract_code_blocks_from_docstr(docstr):
     return code_blocks
 
 
+def extract_sample_codes_into_dir():
+    if os.path.exists(SAMPLECODE_TEMPDIR):
+        if not os.path.isdir(SAMPLECODE_TEMPDIR):
+            os.remove(SAMPLECODE_TEMPDIR)
+            os.mkdir(SAMPLECODE_TEMPDIR)
+    else:
+        os.mkdir(SAMPLECODE_TEMPDIR)
+    header = None
+    if RUN_ON_DEVICE == "cpu":
+        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = ""\n\n'
+    elif RUN_ON_DEVICE == "gpu":
+        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = "{}"\n\n'.format(
+            GPU_ID)
+    for id_api in api_info_dict:
+        if 'docstring' in api_info_dict[
+                id_api] and 'full_name' in api_info_dict[id_api]:
+            code_blocks = extract_code_blocks_from_docstr(
+                api_info_dict[id_api]['docstring'])
+            for cb_ind, cb in enumerate(code_blocks):
+                fn = os.path.join(
+                    SAMPLECODE_TEMPDIR, '{}.sample-code-{}.py'.format(
+                        api_info_dict[id_api]['full_name'], cb_ind))
+                with open(fn, 'w') as f:
+                    f.write(header)
+                    f.write(cb)
+                    f.write(
+                        '\nprint("{} sample code is executed successfully!")'.
+                        format(fn))
+
+
 def reset_api_info_dict():
     global api_info_dict, parsed_mods
     api_info_dict = {}
@@ -709,6 +743,12 @@ arguments = [
         '--gen-rst', 'gen_rst', bool, True,
         'genrate English api_cod reST files. If "all" in attr, only for "all".'
     ],
+    [
+        '--extract-sample-codes-dir', 'sample_codes_dir', str, None,
+        'if setted, the sample-codes will be extracted into the dir. If "all" in attr, only for "all".'
+    ],
+    ['--gpu_id', 'gpu_id', int, 0, 'GPU device id to use [0]'],
+    ['--run-on-device', 'run_on_device', str, 'cpu', 'run on device'],
 ]
 
 
@@ -740,18 +780,30 @@ if __name__ == "__main__":
                 "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"
             ))
         logger.addHandler(logfHandler)
+    if args.sample_codes_dir:
+        SAMPLECODE_TEMPDIR = args.sample_codes_dir
+    if args.run_on_device.lower() == 'gpu':
+        RUN_ON_DEVICE = 'gpu'
+        GPU_ID = args.gpu_id
 
+    realattrs = []  # only __all__ or __dict__
     for attr in args.travelled_attr.split(','):
         realattr = attr.strip()
-        jsonfn = None
         if realattr in ['all', '__all__']:
             realattr = '__all__'
-            jsonfn = 'api_info_all.json'
         elif realattr in ['dict', '__dict__']:
             realattr = '__dict__'
-            jsonfn = 'api_info_dict.json'
         else:
             logger.warning("unknown value in attr: %s", attr)
+            continue
+        realattrs.append(realattr)
+    for realattr in realattrs:
+        jsonfn = None
+        if realattr == '__all__':
+            jsonfn = 'api_info_all.json'
+        elif realattr == '__dict__':
+            jsonfn = 'api_info_dict.json'
+        else:
             continue
 
         logger.info("travelling attr: %s", realattr)
@@ -762,7 +814,11 @@ if __name__ == "__main__":
         set_real_api_alias_attr()
         filter_api_info_dict()
         json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
-        if realattr == '__all__':
-            gen_en_files()
-            check_cn_en_match()
+        if ('__all__' not in realattrs) or ('__all__' in realattrs and
+                                            realattr == '__all__'):
+            if args.gen_rst:
+                gen_en_files()
+                check_cn_en_match()
+            if args.sample_codes_dir:
+                extract_sample_codes_into_dir()
     logger.info("done")
