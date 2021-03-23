@@ -669,19 +669,19 @@ def extract_code_blocks_from_docstr(docstr):
             # check indent for cur block ends.
             if cb_started:
                 if lineno == lastlineindex:
-                    mo = re.search(r"\w", linecont)
+                    mo = re.search(r"\S", linecont)
                     if mo is not None:
                         cb_cur.append(linecont)
                     if len(cb_cur):
                         code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
                     break
                 if cb_cur_indent < 0:
-                    mo = re.search(r"\w", linecont)
+                    mo = re.search(r"\S", linecont)
                     if mo is None: continue
                     cb_cur_indent = mo.start()
                     cb_cur.append(linecont)
                 else:
-                    mo = re.search(r"\w", linecont)
+                    mo = re.search(r"\S", linecont)
                     if mo is None: continue
                     if cb_cur_indent <= mo.start():
                         cb_cur.append(linecont)
