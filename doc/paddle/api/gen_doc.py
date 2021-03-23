@@ -108,9 +108,10 @@ def process_module(m, attr="__all__"):
                         "object": obj,
                         "type": type(obj).__name__,
                     }
-                    if hasattr(obj, '__doc__'):
-                        api_info_dict[fc_id]["docstring"] = getattr(obj,
-                                                                    '__doc__')
+                    docstr = inspect.getdoc(obj)
+                    if docstr:
+                        api_info_dict[fc_id]["docstring"] = inspect.cleandoc(
+                            docstr)
     return api_counter
 
 
