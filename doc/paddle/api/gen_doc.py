@@ -625,6 +625,73 @@ def filter_api_info_dict():
             del api_info_dict[id_api]["object"]
 
 
+def extract_code_blocks_from_docstr(docstr):
+    """
+    extract code-blocks from the given docstring.
+
+    DON'T include the multiline-string definition in code-blocks.
+
+    Args:
+        docstr - docstring
+    Return:
+        A list of code-blocks, indent removed.
+    """
+    code_blocks = []
+    mo = re.search(r"Examples:", docstr)
+    if mo is None:
+        return code_blocks
+    ds_list = docstr[mo.start():].replace("\t", '    ').split("\n")
+    lastlineindex = len(ds_list) - 1
+    cb_started = False
+    cb_start_pat = re.compile(r"code-block::\s*python")
+    cb_cur = []
+    cb_cur_indent = -1
+    for lineno, linecont in enumerate(ds_list):
+        if re.search(cb_start_pat, linecont):
+            if not cb_started:
+                cb_started = True
+                continue
+            else:
+                # cur block end
+                if len(cb_cur):
+                    code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
+                cb_started = True  # another block started
+                cb_cur_indent = -1
+                cb_cur = []
+        else:
+            # check indent for cur block ends.
+            if cb_started:
+                if lineno == lastlineindex:
+                    mo = re.search(r"\w", linecont)
+                    if mo is not None:
+                        cb_cur.append(linecont)
+                    if len(cb_cur):
+                        code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
+                    break
+                if cb_cur_indent < 0:
+                    mo = re.search(r"\w", linecont)
+                    if mo is None: continue
+                    cb_cur_indent = mo.start()
+                    cb_cur.append(linecont)
+                else:
+                    mo = re.search(r"\w", linecont)
+                    if mo is None: continue
+                    if cb_cur_indent <= mo.start():
+                        cb_cur.append(linecont)
+                    else:
+                        if linecont[mo.start()] == '#':
+                            continue
+                        else:
+                            # block end
+                            if len(cb_cur):
+                                code_blocks.append(
+                                    inspect.cleandoc("\n".join(cb_cur)))
+                            cb_started = False
+                            cb_cur_indent = -1
+                            cb_cur = []
+    return code_blocks
+
+
 def reset_api_info_dict():
     global api_info_dict, parsed_mods
     api_info_dict = {}
