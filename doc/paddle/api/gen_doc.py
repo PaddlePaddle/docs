@@ -753,6 +753,7 @@ stderr:
 stdout:
 {}
 """.format(sc_filename, subprc.returncode, err, msg)
+        succ = False
     return succ, retstr
 
 
@@ -850,6 +851,9 @@ if __name__ == "__main__":
             'RUN_SAMPLE_CODES' in os.environ and
             os.environ['RUN_SAMPLE_CODES'].lower() in ['yes', '1', 'on']):
         need_run_sample_codes = True
+    if args.threads == 1 and ('RUN_SAMPLE_CODES_THREADS' in os.environ and
+                              int(os.environ['RUN_SAMPLE_CODES_THREADS']) > 1):
+        args.threads = int(os.environ['RUN_SAMPLE_CODES_THREADS'])
     if args.sample_codes_dir:
         SAMPLECODE_TEMPDIR = args.sample_codes_dir
 
