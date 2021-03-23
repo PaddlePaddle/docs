@@ -44,8 +44,6 @@ console.setFormatter(
     logging.Formatter(
         "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"))
 
-# logger.setLevel(logging.DEBUG)
-
 
 # step 1: walkthrough the paddle package to collect all the apis in api_set
 def get_all_api(root_path='paddle', attr="__all__"):
@@ -70,7 +68,7 @@ def get_all_api(root_path='paddle', attr="__all__"):
             api_counter += process_module(m, attr)
 
     api_counter += process_module(paddle, attr)
-    logger.info('collected %d apis, %d distinct apis.', api_counter,
+    logger.info('%s: collected %d apis, %d distinct apis.', attr, api_counter,
                 len(api_info_dict))
 
 
@@ -617,24 +615,71 @@ def reset_api_info_dict():
     parsed_mods = {}
 
 
+arguments = [
+    # flags, dest, type, default, help
+    ['--logf', 'logf', str, None, 'file for logging'],
+    [
+        '--attr', 'travelled_attr', str, 'all,dict',
+        'the attribute for travelling, must be subset of [all,dict], such as "all" or "dict" or "all,dict".'
+    ],
+    [
+        '--gen-rst', 'gen_rst', bool, True,
+        'genrate English api_cod reST files. If "all" in attr, only for "all".'
+    ],
+]
+
+
+def parse_args():
+    """
+    Parse input arguments
+    """
+    global arguments
+    parser = argparse.ArgumentParser(
+        description='generate the api_info json and generate the English api_doc reST files.'
+    )
+    parser.add_argument('--debug', dest='debug', action="store_true")
+    for item in arguments:
+        parser.add_argument(
+            item[0], dest=item[1], help=item[4], type=item[2], default=item[3])
+
+    args = parser.parse_args()
+    return args
+
+
 if __name__ == "__main__":
+    args = parse_args()
+    if args.debug:
+        logger.setLevel(logging.DEBUG)
+    if args.logf:
+        logfHandler = logging.FileHandler(args.logf)
+        logfHandler.setFormatter(
+            logging.Formatter(
+                "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"
+            ))
+        logger.addHandler(logfHandler)
 
-    # for api manager
-    reset_api_info_dict()
-    get_all_api(attr="__dict__")
-    set_display_attr_of_apis()
-    set_source_code_attrs()
-    set_real_api_alias_attr()
-    filter_api_info_dict()
-    json.dump(api_info_dict, open("api_info_dict.json", "w"), indent=4)
+    for attr in args.travelled_attr.split(','):
+        realattr = attr.strip()
+        jsonfn = None
+        if realattr in ['all', '__all__']:
+            realattr = '__all__'
+            jsonfn = 'api_info_all.json'
+        elif realattr in ['dict', '__dict__']:
+            realattr = '__dict__'
+            jsonfn = 'api_info_dict.json'
+        else:
+            logger.warning("unknown value in attr: %s", attr)
+            continue
 
-    # for api rst files
-    reset_api_info_dict()
-    get_all_api(attr="__all__")
-    set_display_attr_of_apis()
-    set_source_code_attrs()
-    set_real_api_alias_attr()
-    filter_api_info_dict()
-    json.dump(api_info_dict, open("api_info_all.json", "w"), indent=4)
-    gen_en_files()
-    check_cn_en_match()
+        logger.info("travelling attr: %s", realattr)
+        reset_api_info_dict()
+        get_all_api(attr=realattr)
+        set_display_attr_of_apis()
+        set_source_code_attrs()
+        set_real_api_alias_attr()
+        filter_api_info_dict()
+        json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
+        if realattr == '__all__':
+            gen_en_files()
+            check_cn_en_match()
+    logger.info("done")
