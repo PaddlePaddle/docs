@@ -28,7 +28,7 @@
 
 1. 安装必要的工具 cmake，git 以及 python：
 
-    > cmake我们支持3.10以上版本,但GPU编译时3.12/3.13/3.14版本存在官方[Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html),我们建议您使用CMake3.16版本, 可在官网[下载](https://cmake.org/download/)，并添加到环境变量中。
+    > cmake我们支持3.15以上版本,我们建议您使用CMake3.16版本, 可在官网[下载](https://cmake.org/download/)，并添加到环境变量中。
 
     > python 需要 2.7 及以上版本, 可在官网[下载](https://www.python.org/download/releases/2.7/)。
 

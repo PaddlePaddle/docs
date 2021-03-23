@@ -258,7 +258,7 @@
         yum install -y make
         ```
 
-        cmake 需要3.10以上，建议使用3.16.0:
+        cmake 需要3.15以上，建议使用3.16.0:
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
@@ -301,7 +301,7 @@
         apt install -y make
         ```
 
-        cmake 需要3.10以上，建议使用3.16.0:
+        cmake 需要3.15以上，建议使用3.16.0:
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
