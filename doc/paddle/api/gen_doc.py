@@ -760,6 +760,7 @@ stdout:
 def run_all_sample_codes(threads=1):
     po = multiprocessing.Pool(threads)
     sc_files = os.listdir(SAMPLECODE_TEMPDIR)
+    logger.info('there are %d sample codes to run', len(sc_files))
     mpresults = po.map_async(
         run_a_sample_code,
         [os.path.join(SAMPLECODE_TEMPDIR, fn) for fn in sc_files])
