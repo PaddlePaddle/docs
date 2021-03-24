@@ -972,5 +972,9 @@ if __name__ == "__main__":
                 extract_sample_codes_into_dir()
 
     if need_run_sample_codes:
+        for package in ['scipy', 'paddle2onnx']:
+            subprocess.check_call(
+                [sys.executable, "-m", "pip", "install", package])
         run_all_sample_codes(args.threads)
+
     logger.info("done")
