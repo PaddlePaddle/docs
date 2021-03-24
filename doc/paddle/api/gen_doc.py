@@ -27,6 +27,7 @@ DISPLAY_DOC_LIST_FILENAME = "./display_doc_list"
 ALIAS_MAPPING_LIST_FILENAME = "./alias_api_mapping"
 SAMPLECODE_TEMPDIR = './sample-codes'
 RUN_ON_DEVICE = "cpu"
+EQUIPPED_DEVICES = set('cpu')
 GPU_ID = 0
 
 # key = id(api), value = dict of api_info{
@@ -721,12 +722,6 @@ def extract_sample_codes_into_dir():
             os.mkdir(SAMPLECODE_TEMPDIR)
     else:
         os.mkdir(SAMPLECODE_TEMPDIR)
-    header = None
-    if RUN_ON_DEVICE == "cpu":
-        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = ""\n\n'
-    elif RUN_ON_DEVICE == "gpu":
-        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = "{}"\n\n'.format(
-            GPU_ID)
     for id_api in api_info_dict:
         if 'docstring' in api_info_dict[
                 id_api] and 'full_name' in api_info_dict[id_api]:
@@ -736,9 +731,18 @@ def extract_sample_codes_into_dir():
                 fn = os.path.join(
                     SAMPLECODE_TEMPDIR, '{}.sample-code-{}.py'.format(
                         api_info_dict[id_api]['full_name'], cb_ind))
-                if not is_required_match(cb, fn):
+                requires = get_requires_of_code_block(cb)
+                requires.add(RUN_ON_DEVICE)
+                if not is_required_match(requires, fn):
                     continue
                 with open(fn, 'w') as f:
+                    header = None
+                    # TODO: xpu, distribted
+                    if 'gpu' in requires:
+                        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = "{}"\n\n'.format(
+                            GPU_ID)
+                    else:
+                        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = ""\n\n'
                     last_future_line_end = find_last_future_line_end(cb)
                     if last_future_line_end:
                         f.write(cb[:last_future_line_end])
@@ -752,45 +756,51 @@ def extract_sample_codes_into_dir():
                         format(fn))
 
 
-def is_required_match(cbstr, cbtitle=''):
+def is_required_match(requires, cbtitle=''):
     """
     search the required instruction in the code-block, and check it match the current running environment.
     
     environment values of equipped: cpu, gpu, xpu, distributed, skip
     the 'skip' is the special flag to skip the test, so is_required_match will return False directly.
     """
-    pat = re.compile(r'#\s*require[s|d]\s*:\s*(.*)')
-    mo = re.search(pat, cbstr)
-    if mo is None:
-        # treat is as required: cpu
-        return True
-
-    requires = set()
-    for r in mo.group(1).split(','):
-        rr = r.strip().lower()
-        if rr:
-            requires.add(rr)
-    if len(requires) == 0:
-        return True
     if 'skip' in requires:
         logger.info('%s: skipped', cbtitle)
         return False
 
-    cur_equipped = set()
+    if all([k in EQUIPPED_DEVICES for k in requires]):
+        return True
+
+    logger.info('%s: the equipments [%s] not match the required [%s].',
+                cbtitle, ','.join(EQUIPPED_DEVICES), ','.join(requires))
+    return False
+
+
+def get_requires_of_code_block(cbstr):
+    requires = set('cpu')
+    pat = re.compile(r'#\s*require[s|d]\s*:\s*(.*)')
+    mo = re.search(pat, cbstr)
+    if mo is None:
+        # treat is as required: cpu
+        return requires
+
+    for r in mo.group(1).split(','):
+        rr = r.strip().lower()
+        if rr:
+            requires.add(rr)
+    return requires
+
+
+def get_all_equippted_devices():
     ENV_KEY = 'TEST_ENVIRONMENT_EQUIPEMNT'
     if ENV_KEY in os.environ:
         for r in os.environ[ENV_KEY].split(','):
             rr = r.strip().lower()
             if r:
-                cur_equipped.add(rr)
-    if 'cpu' not in cur_equipped:
-        cur_equipped.add('cpu')
-    if all([k in cur_equipped for k in requires]):
-        return True
+                EQUIPPED_DEVICES.add(rr)
+    if 'cpu' not in EQUIPPED_DEVICES:
+        EQUIPPED_DEVICES.add('cpu')
 
-    logger.info('%s: the equipments [%s] not match the required [%s].',
-                cbtitle, ','.join(cur_equipped), ','.join(requires))
-    return False
+    EQUIPPED_DEVICES.add(RUN_ON_DEVICE)
 
 
 def run_a_sample_code(sc_filename):
@@ -912,6 +922,9 @@ if __name__ == "__main__":
     if args.run_on_device.lower() == 'gpu':
         RUN_ON_DEVICE = 'gpu'
         GPU_ID = args.gpu_id
+
+    get_all_equippted_devices()
+    need_run_sample_codes = False
     if args.run_sample_codes or (
             'RUN_SAMPLE_CODES' in os.environ and
             os.environ['RUN_SAMPLE_CODES'].lower() in ['yes', '1', 'on']):
