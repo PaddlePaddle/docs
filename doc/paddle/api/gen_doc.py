@@ -699,6 +699,21 @@ def extract_code_blocks_from_docstr(docstr):
     return code_blocks
 
 
+def find_last_future_line_end(cbstr):
+    pat = re.compile('__future__.*\n')
+    lastmo = None
+    it = re.finditer(pat, cbstr)
+    while True:
+        try:
+            lastmo = next(it)
+        except StopIteration:
+            break
+    if lastmo:
+        return lastmo.end()
+    else:
+        return None
+
+
 def extract_sample_codes_into_dir():
     if os.path.exists(SAMPLECODE_TEMPDIR):
         if not os.path.isdir(SAMPLECODE_TEMPDIR):
@@ -722,8 +737,14 @@ def extract_sample_codes_into_dir():
                     SAMPLECODE_TEMPDIR, '{}.sample-code-{}.py'.format(
                         api_info_dict[id_api]['full_name'], cb_ind))
                 with open(fn, 'w') as f:
-                    f.write(header)
-                    f.write(cb)
+                    last_future_line_end = find_last_future_line_end(cb)
+                    if last_future_line_end:
+                        f.write(cb[:last_future_line_end])
+                        f.write(header)
+                        f.write(cb[last_future_line_end:])
+                    else:
+                        f.write(header)
+                        f.write(cb)
                     f.write(
                         '\nprint("{} sample code is executed successfully!")'.
                         format(fn))
