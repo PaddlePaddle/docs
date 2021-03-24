@@ -37,15 +37,15 @@ Python3:
 
 1. 编辑hosts 文件
 
-	Linux/Mac：`vim/etc/hosts`
+    Linux/Mac：`vim/etc/hosts`
 
-	Windows：双击 `C:\Windows\System32\drivers\etc\hosts`
+    Windows：双击 `C:\Windows\System32\drivers\etc\hosts`
 
 2. 添加下面两行内容到hosts文件中
 
-	`151.101.72.249 github.global.ssl.fastly.net`
+    `151.101.72.249 github.global.ssl.fastly.net`
 
-	`192.30.253.112 github.com`
+    `192.30.253.112 github.com`
 
 
 ## 环境问题
