@@ -27,7 +27,7 @@ DISPLAY_DOC_LIST_FILENAME = "./display_doc_list"
 ALIAS_MAPPING_LIST_FILENAME = "./alias_api_mapping"
 SAMPLECODE_TEMPDIR = './sample-codes'
 RUN_ON_DEVICE = "cpu"
-EQUIPPED_DEVICES = set('cpu')
+EQUIPPED_DEVICES = set(['cpu'])
 GPU_ID = 0
 
 # key = id(api), value = dict of api_info{
@@ -776,7 +776,7 @@ def is_required_match(requires, cbtitle=''):
 
 
 def get_requires_of_code_block(cbstr):
-    requires = set('cpu')
+    requires = set(['cpu'])
     pat = re.compile(r'#\s*require[s|d]\s*:\s*(.*)')
     mo = re.search(pat, cbstr)
     if mo is None:
