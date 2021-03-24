@@ -736,6 +736,8 @@ def extract_sample_codes_into_dir():
                 fn = os.path.join(
                     SAMPLECODE_TEMPDIR, '{}.sample-code-{}.py'.format(
                         api_info_dict[id_api]['full_name'], cb_ind))
+                if not is_required_match(cb, fn):
+                    continue
                 with open(fn, 'w') as f:
                     last_future_line_end = find_last_future_line_end(cb)
                     if last_future_line_end:
@@ -748,6 +750,47 @@ def extract_sample_codes_into_dir():
                     f.write(
                         '\nprint("{} sample code is executed successfully!")'.
                         format(fn))
+
+
+def is_required_match(cbstr, cbtitle=''):
+    """
+    search the required instruction in the code-block, and check it match the current running environment.
+    
+    environment values of equipped: cpu, gpu, xpu, distributed, skip
+    the 'skip' is the special flag to skip the test, so is_required_match will return False directly.
+    """
+    pat = re.compile(r'#\s*require[s|d]\s*:\s*(.*)')
+    mo = re.search(pat, cbstr)
+    if mo is None:
+        # treat is as required: cpu
+        return True
+
+    requires = set()
+    for r in mo.group(1).split(','):
+        rr = r.strip().lower()
+        if rr:
+            requires.add(rr)
+    if len(requires) == 0:
+        return True
+    if 'skip' in requires:
+        logger.info('%s: skipped', cbtitle)
+        return False
+
+    cur_equipped = set()
+    ENV_KEY = 'TEST_ENVIRONMENT_EQUIPEMNT'
+    if ENV_KEY in os.environ:
+        for r in os.environ[ENV_KEY].split(','):
+            rr = r.strip().lower()
+            if r:
+                cur_equipped.add(rr)
+    if 'cpu' not in cur_equipped:
+        cur_equipped.add('cpu')
+    if all([k in cur_equipped for k in requires]):
+        return True
+
+    logger.info('%s: the equipments [%s] not match the required [%s].',
+                cbtitle, ','.join(cur_equipped), ','.join(requires))
+    return False
 
 
 def run_a_sample_code(sc_filename):
