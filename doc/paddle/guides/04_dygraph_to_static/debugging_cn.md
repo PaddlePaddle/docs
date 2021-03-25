@@ -132,7 +132,7 @@ func(np.ones([3, 2]))
     `set_code_level` 函数可以设置查看不同的 AST Transformer 转化后的代码，详情请见 [set_code_level](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_cn.html)。
 
 ## 使用 `print`
-`print` 函数可以用来查看变量，该函数在动转静中会被转化。当仅打印 Paddle Tensor 时，实际运行时会被转换为 Paddle 算子 [Print](../../api_cn/layers_cn/Print_cn.html)，否则仍然运行 `print`。
+`print` 函数可以用来查看变量，该函数在动转静中会被转化。当仅打印 Paddle Tensor 时，实际运行时会被转换为 Paddle 算子 [Print](../../api/paddle/fluid/layers/control_flow/Print_cn.html)，否则仍然运行 `print`。
 ```python
 @paddle.jit.to_static
 def func(x):
