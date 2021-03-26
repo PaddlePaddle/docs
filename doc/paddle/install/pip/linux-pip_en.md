@@ -21,7 +21,7 @@
 * You can use the following commands to view the local operating system and bit information
 
   ```
-  uname -m && cat /ect/*release
+  uname -m && cat /etc/*release
   ```
 
 
