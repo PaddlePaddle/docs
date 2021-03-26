@@ -22,7 +22,7 @@
 * 可以使用以下命令查看本机的操作系统和位数信息：
 
   ```
-  uname -m && cat /ect/*release
+  uname -m && cat /etc/*release
   ```
 
 
