@@ -9,7 +9,8 @@ Pad1D
 按照 padding、mode 和 value 属性对输入进行填充。
 
 参数：
-  - **padding** (Tensor | List[int32]) - 填充大小。pad的格式为[pad_left, pad_right]。
+  - **padding** (Tensor | List[int] | int) - 填充大小。如果是int，则在所有待填充边界边界使用相同的填充，
+    否则填充的格式为[pad_left, pad_right]。
   - **mode** (str) - padding的四种模式，分别为 `'constant'`, `'reflect'`, `'replicate'` 和`'circular'`。
     `'constant'` 表示填充常数 `value`；`'reflect'` 表示填充以input边界值为轴的映射；`'replicate'` 表示
     填充input边界值；`'circular'`为循环填充input。默认值为 `'constant'` 。
