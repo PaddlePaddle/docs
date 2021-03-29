@@ -1008,8 +1008,7 @@ Tensor
 
 请参考 :ref:`cn_api_fluid_layers_reciprocal`
 
-
-.. py::method:: register_hook(hook)
+.. py:method:: register_hook(hook)
 
 为当前 Tensor 注册一个反向的 hook 函数。
 
