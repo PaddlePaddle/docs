@@ -1009,6 +1009,64 @@ Tensor
 请参考 :ref:`cn_api_fluid_layers_reciprocal`
 
 
+.. py::method:: register_hook(hook)
+
+为当前 Tensor 注册一个反向的 hook 函数。
+
+该被注册的 hook 函数将会在每次当前 Tensor 的梯度 Tensor 计算完成时被调用。
+
+被注册的 hook 函数不会修改输入的梯度 Tensor ，但是 hook 可以返回一个新的临时梯度 Tensor 代替当前 Tensor 的梯度继续进行反向传播。
+
+输入的 hook 函数写法如下：
+
+    hook(grad) -> Tensor or None
+
+参数：
+    - **hook** (function) - 一个需要注册到 Tensor.grad 上的 hook 函数
+
+返回：一个能够通过调用其 ``remove()`` 方法移除所注册 hook 的对象
+
+返回类型：TensorHookRemoveHelper
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        # hook function return None
+        def print_hook_fn(grad):
+            print(grad)
+
+        # hook function return Tensor
+        def double_hook_fn(grad):
+            grad = grad * 2
+            return grad
+
+        x = paddle.to_tensor([0., 1., 2., 3.], stop_gradient=False)
+        y = paddle.to_tensor([4., 5., 6., 7.], stop_gradient=False)
+        z = paddle.to_tensor([1., 2., 3., 4.])
+
+        # one Tensor can register multiple hooks
+        h = x.register_hook(print_hook_fn)
+        x.register_hook(double_hook_fn)
+
+        w = x + y
+        # register hook by lambda function
+        w.register_hook(lambda grad: grad * 2)
+
+        o = z.matmul(w)
+        o.backward()
+        # print_hook_fn print content in backward
+        # Tensor(shape=[4], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+        #        [2., 4., 6., 8.])
+
+        print("w.grad:", w.grad) # w.grad: [1. 2. 3. 4.]
+        print("x.grad:", x.grad) # x.grad: [ 4.  8. 12. 16.]
+        print("y.grad:", y.grad) # y.grad: [2. 4. 6. 8.]
+
+        # remove hook
+        h.remove()
+
 .. py:method:: remainder(y, name=None)
 
 返回：计算后的Tensor
