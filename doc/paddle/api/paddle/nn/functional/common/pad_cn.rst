@@ -5,7 +5,9 @@ pad
 
 .. py:function:: paddle.nn.functional.pad(x, pad, mode="constant", value=0.0, data_format="NCHW", name=None)
 
-该OP依照 pad 和 mode 属性对input进行 ``pad`` 。
+该OP依照``pad``和``mode``属性对``input``进行 ``pad``。如果``mode``为``constant``，并且``pad``的长度为``x``维度的2倍时，则会根据``pad``和``value``对``x``从前面的维度向后依次补齐；否则只会对``x``在除``batch size``和``channel``之外的所有维度进行补齐。如果``mode``为``reflect``，则x对应维度上的长度必须大于对应的``pad``值。
+
+
 
 参数：
   - **x** (Tensor) - Tensor，format可以为 `'NCL'`, `'NLC'`, `'NCHW'`, `'NHWC'`, `'NCDHW'`
