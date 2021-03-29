@@ -150,7 +150,7 @@
 	- a. 这里特别说明一下**CMake**的安装：
 
                 
-		CMake我们支持3.10以上版本,推荐使用CMake3.16,请根据以下步骤安装：
+		CMake我们支持3.15以上版本,推荐使用CMake3.16,请根据以下步骤安装：
 
 		1. 从CMake[官方网站](https://cmake.org/files/v3.16/cmake-3.16.0-Darwin-x86_64.dmg)下载CMake镜像并安装
 		2. 在控制台输入`sudo "/Applications/CMake.app/Contents/bin/cmake-gui" –install`
