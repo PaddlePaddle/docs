@@ -17,7 +17,7 @@
 随后即可在模型中使用，下面通过实现一个 `relu` 运算，介绍具体的实现、编译与应用流程。
 
 > 注意事项：
-> - 在使用本机制实现自定义算子之前，请确保已经正确安装了 `PaddlePaddle 2.0.1` 及以上版本
+> - 在使用本机制实现自定义算子之前，请确保已经正确安装了 `PaddlePaddle 2.1` 及以上版本
 > - 该机制目前仅支持 `Linux` 与 `Windows` 平台，`Mac` 平台会在后续版本支持
 
 ## 自定义算子C++实现
@@ -43,25 +43,24 @@
 算子运算函数有特定的函数写法要求，在编码过程中需要遵守，基本形式如下：
 
 ```c++
-std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, ...) {
+std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., const int& attr, ...) {
   ...
 }
 ```
 
-- 函数输入参数可以是 `Tensor` 或者一些基础类型的 `Attribute` ，具体地：
-    - `Tensor` 必须以 `const paddle::Tensor& ` 的形式作为输入，可以有一个或多个
-    - `Attribute` 目前仅支持如下数据类型，可以有一个或多个：
-        - `bool`
-        - `int`
-        - `float`
-        - `int64_t`
-        - `std::string`
-        - `std::vector<int>`
-        - `std::vector<float>`
-        - `std::vector<int64_t>`
-        - `std::vector<std::string>`
-    - > 注1： `Attribute` 参数必须在所有 `Tensor` 参数之后
-    - > 注2：目前暂不支持 `std::vector<Tensor>` 类型的输入，会在后续版本支持
+- 函数输入参数可以是 `paddle::Tensor` , `std::vector<paddle::Tensor>` 或者一些基础类型的 `Attribute` ，具体地：
+    - `paddle::Tensor` 需要以 `const paddle::Tensor& ` 的形式作为输入，可以有一个或多个
+    - `std::vector<paddle::Tensor>` 需要以 `const std::vector<paddle::Tensor>& ` 的形式作为输入，可以有一个或多个
+    - `Attribute` 目前仅支持如下数据类型，建议以const引用的形式作为输入，可以有一个或多个：
+        - `const bool&`
+        - `const int&`
+        - `const float&`
+        - `const int64_t&`
+        - `const std::string&`
+        - `const std::vector<int>&`
+        - `const std::vector<float>&`
+        - `const std::vector<int64_t>&`
+        - `const std::vector<std::string>&`
 - 函数返回值只能是 `std::vector<paddle::Tensor>`
 
 > 注：其他类型的数值作为函数输入参数或者返回值将无法编译通过
@@ -71,16 +70,17 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, .
 对于基础的设备和数据类型支持情况，我们定义了两个简单的枚举类：
 
 - 设备表示：`enum class PlaceType { kUNK = -1, kCPU, kGPU };`
-- 数据类型表示：`enum class DataType {BOOL, INT8, UINT8, INT16, INT32, INT64, FLOAT32, FLOAT64};`
+- 数据类型表示：`enum class DataType {BOOL, INT8, UINT8, INT16, INT32, INT64, FLOAT16, FLOAT32, FLOAT64, COMPLEX64, COMPLEX128};`
 
-> 注：目前仅支持以上设备与数据类型，其他类型会在后续版本支持
+> 注：目前仅支持以上设备与数据类型，其他类型会视需求在后续版本支持
 
 #### Tensor API
 
 对于 `paddle::Tensor` ，我们目前提供了一些基础的API，包括：
 
 - 构造API：
-    - `Tensor(const PlaceType& place)`：输入参数 `place` ，返回一个 `Tensor` 对象
+    - `Tensor(const PlaceType& place, const std::vector<int64_t>& shape)`
+        - 输入参数 `place` 和 `shape` ，返回一个 `Tensor` 对象
 - 设备相关API：
     - `const PlaceType& place() const`：获取 `Tensor` 所在的设备
 - 数据类型相关API：
@@ -103,7 +103,7 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, .
         - 用于获取当前 `Tensor` 所处的CUDA Stream（仅在GPU编译版本中生效）
         - 仅能够获取函数输入 `Tensor` 的stream
 
-> 注：后续会继续扩展其他API，API的声明详见 [Paddle Extension Headers in 2.0](https://github.com/PaddlePaddle/Paddle/tree/release/2.0/paddle/fluid/extension/include) 。
+> 注：后续会继续扩展其他API，API的声明详见 [Paddle Extension Headers in 2.1](https://github.com/PaddlePaddle/Paddle/tree/release/2.1/paddle/fluid/extension/include) 。
 
 #### Exception API
 
@@ -157,8 +157,7 @@ PD_THROW("PD_THROW returns ", false)
 std::vector<paddle::Tensor> ReluCPUForward(const paddle::Tensor& x) {
   CHECK_INPUT(x);
 
-  auto out = paddle::Tensor(paddle::PlaceType::kCPU);
-  out.reshape(x.shape());
+  auto out = paddle::Tensor(paddle::PlaceType::kCPU, x.shape());
 
   auto x_numel = x.size();
   auto* x_data = x.data<float>();
@@ -178,8 +177,7 @@ std::vector<paddle::Tensor> ReluCPUBackward(const paddle::Tensor& x,
   CHECK_INPUT(out);
   CHECK_INPUT(grad_out);
 
-  auto grad_x = paddle::Tensor(paddle::PlaceType::kCPU);
-  grad_x.reshape(x.shape());
+  auto grad_x = paddle::Tensor(paddle::PlaceType::kCPU, x.shape());
 
   auto out_numel = out.size();
   auto* out_data = out.data<float>();
@@ -197,7 +195,7 @@ std::vector<paddle::Tensor> ReluCPUBackward(const paddle::Tensor& x,
 
 主要逻辑包括：
 
-1. 创建输出的 `Tensor` ，设定其 `shape`
+1. 创建指定 `place` 和 `shape` 的输出 `Tensor`
 2. 获取输入 `Tensor` 的数据区起始地址，为输出 `Tensor` 申请内存并返回数据区起始地址
 3. 计算得到输出 `Tensor` 的数值，返回结果
 
@@ -239,8 +237,7 @@ void relu_cpu_backward_kernel(const data_t* grad_out_data,
 std::vector<paddle::Tensor> ReluCPUForward(const paddle::Tensor& x) {
   CHECK_INPUT(x);
 
-  auto out = paddle::Tensor(paddle::PlaceType::kCPU);
-  out.reshape(x.shape());
+  auto out = paddle::Tensor(paddle::PlaceType::kCPU, x.shape());
 
   PD_DISPATCH_FLOATING_TYPES(
       x.type(), "relu_cpu_forward_kernel", ([&] {
@@ -258,8 +255,7 @@ std::vector<paddle::Tensor> ReluCPUBackward(const paddle::Tensor& x,
   CHECK_INPUT(out);
   CHECK_INPUT(grad_out);
 
-  auto grad_x = paddle::Tensor(paddle::PlaceType::kCPU);
-  grad_x.reshape(x.shape());
+  auto grad_x = paddle::Tensor(paddle::PlaceType::kCPU, x.shape());
 
   PD_DISPATCH_FLOATING_TYPES(out.type(), "relu_cpu_backward_kernel", ([&] {
                                relu_cpu_backward_kernel<data_t>(
@@ -298,11 +294,15 @@ switch(x.type()) {
 
 目前定义的dispatch宏包括：
 
-- `PD_DISPATCH_FLOATING_TYPES` ：dispatch 生成 `float32` 和 `float64` 对应的实现
+- `PD_DISPATCH_FLOATING_TYPES` ：dispatch 生成 `float` 和 `double` 对应的实现
+- `PD_DISPATCH_FLOATING_AND_HALF_TYPES` ：dispatch 生成 `float` , `double` 和 `paddle::float16` 对应的实现
 - `PD_DISPATCH_INTEGRAL_TYPES` ：dispatch生成 `int8_t`, `uint8_t`, `int16_t`, `int`的`int64_t` 对应的实现
-- `PD_DISPATCH_FLOATING_AND_INTEGRAL_TYPES` ：dispatch生成前述两个宏全部数据类型对应的实现
+- `PD_DISPATCH_COMPLEX_TYPES`：dispatch生成 `paddle::complex64` 和 `paddle::complex128` 对应的实现
+- `PD_DISPATCH_FLOATING_AND_INTEGRAL_TYPES` ：dispatch生成前述 `PD_DISPATCH_FLOATING_TYPES` 和 `PD_DISPATCH_INTEGRAL_TYPES` 两个宏全部数据类型对应的实现
+- `PD_DISPATCH_FLOATING_AND_COMPLEX_TYPES`：dispatch生成前述 `PD_DISPATCH_FLOATING_TYPES` 和 `PD_DISPATCH_COMPLEX_TYPES` 两个宏全部数据类型对应的实现
+- `PD_DISPATCH_FLOATING_AND_INTEGRAL_AND_COMPLEX_TYPES`：dispatch生成前述 `PD_DISPATCH_FLOATING_TYPES` , `PD_DISPATCH_INTEGRAL_TYPES` 和 `PD_DISPATCH_COMPLEX_TYPES` 三个宏全部数据类型对应的实现
 
-当然，如果这几个宏无法满足您实际使用的需求，您可以直接通过switch-case语句实现，将来视需求我们也会添加更多的宏。
+当然，如果这几个宏无法满足您实际使用的需求，您可以直接通过 `switch-case` 语句实现，将来视需求我们也会添加更多的宏。
 
 #### CPU&CUDA混合实现
 
@@ -334,8 +334,7 @@ __global__ void relu_cuda_backward_kernel(const data_t* dy,
 }
 
 std::vector<paddle::Tensor> relu_cuda_forward(const paddle::Tensor& x) {
-  auto out = paddle::Tensor(paddle::PlaceType::kGPU);
-  out.reshape(x.shape());
+  auto out = paddle::Tensor(paddle::PlaceType::kGPU, x.shape());
 
   int numel = x.size();
   int block = 512;
@@ -352,8 +351,7 @@ std::vector<paddle::Tensor> relu_cuda_forward(const paddle::Tensor& x) {
 std::vector<paddle::Tensor> relu_cuda_backward(const paddle::Tensor& x,
                                                const paddle::Tensor& out,
                                                const paddle::Tensor& grad_out) {
-  auto grad_x = paddle::Tensor(paddle::PlaceType::kGPU);
-  grad_x.reshape(x.shape());
+  auto grad_x = paddle::Tensor(paddle::PlaceType::kGPU, x.shape());
 
   int numel = out.size();
   int block = 512;
@@ -426,6 +424,167 @@ OSError: (External) x must be a GPU Tensor.
   [operator < custom_relu > error]
 ```
 
+实际使用时，一般您只需要根据您实际使用的设备，编写对应设备的算子实现即可，例如您使用GPU训练，仅需要实现算子的CUDA版本即可使用，如果您需要您的自定义算子同时支持多种设备，例如同时支持CPU与GPU，只需要将CPU和GPU的实现整合到一起，并在前反向函数中实现对应的分支即可，示例如下：
+
+- relu.cc
+```c++
+#include "paddle/extension.h"
+
+#include <vector>
+
+#define CHECK_CPU_INPUT(x) PD_CHECK(x.place() == paddle::PlaceType::kCPU, #x " must be a CPU Tensor.")
+
+template <typename data_t>
+void relu_cpu_forward_kernel(const data_t* x_data,
+                             data_t* out_data,
+                             int64_t x_numel) {
+  for (int i = 0; i < x_numel; ++i) {
+    out_data[i] = std::max(static_cast<data_t>(0.), x_data[i]);
+  }
+}
+
+template <typename data_t>
+void relu_cpu_backward_kernel(const data_t* grad_out_data,
+                              const data_t* out_data,
+                              data_t* grad_x_data,
+                              int64_t out_numel) {
+  for (int i = 0; i < out_numel; ++i) {
+    grad_x_data[i] =
+        grad_out_data[i] * (out_data[i] > static_cast<data_t>(0) ? 1. : 0.);
+  }
+}
+
+std::vector<paddle::Tensor> relu_cpu_forward(const paddle::Tensor& x) {
+  CHECK_CPU_INPUT(x);
+
+  auto out = paddle::Tensor(paddle::PlaceType::kCPU, x.shape());
+
+  PD_DISPATCH_FLOATING_TYPES(
+      x.type(), "relu_cpu_forward_kernel", ([&] {
+        relu_cpu_forward_kernel<data_t>(
+            x.data<data_t>(), out.mutable_data<data_t>(x.place()), x.size());
+      }));
+
+  return {out};
+}
+
+std::vector<paddle::Tensor> relu_cpu_backward(const paddle::Tensor& x,
+                                            const paddle::Tensor& out,
+                                            const paddle::Tensor& grad_out) {
+  CHECK_CPU_INPUT(x);
+  CHECK_CPU_INPUT(out);
+  CHECK_CPU_INPUT(grad_out);
+
+  auto grad_x = paddle::Tensor(paddle::PlaceType::kCPU, x.shape());
+
+  PD_DISPATCH_FLOATING_TYPES(out.type(), "relu_cpu_backward_kernel", ([&] {
+                               relu_cpu_backward_kernel<data_t>(
+                                   grad_out.data<data_t>(),
+                                   out.data<data_t>(),
+                                   grad_x.mutable_data<data_t>(x.place()),
+                                   out.size());
+                             }));
+
+  return {grad_x};
+}
+
+std::vector<paddle::Tensor> relu_cuda_forward(const paddle::Tensor& x);
+std::vector<paddle::Tensor> relu_cuda_backward(const paddle::Tensor& x,
+                                               const paddle::Tensor& out,
+                                               const paddle::Tensor& grad_out);
+
+std::vector<paddle::Tensor> ReluForward(const paddle::Tensor& x) {
+  if (x.place() == paddle::PlaceType::kCPU) {
+    return relu_cpu_forward(x);
+  } else if (x.place() == paddle::PlaceType::kGPU) {
+    return relu_cuda_forward(x);
+  } else {
+    PD_THROW("Unsupported device type for forward function of custom relu operator.");
+  }
+}
+
+std::vector<paddle::Tensor> ReluBackward(const paddle::Tensor& x,
+                                             const paddle::Tensor& out,
+                                             const paddle::Tensor& grad_out) {
+  if (x.place() == paddle::PlaceType::kCPU) {
+    return relu_cpu_backward(x, out, grad_out);
+  } else if (x.place() == paddle::PlaceType::kGPU) {
+    return relu_cuda_backward(x, out, grad_out);
+  } else {
+    PD_THROW("Unsupported device type for backward function of custom relu operator.");
+  }
+}
+```
+
+- relu.cu
+```c++
+#include "paddle/extension.h"
+
+#define CHECK_CUDA_INPUT(x) PD_CHECK(x.place() == paddle::PlaceType::kGPU, #x " must be a GPU Tensor.")
+
+template <typename data_t>
+__global__ void relu_cuda_forward_kernel(const data_t* x,
+                                         data_t* y,
+                                         const int num) {
+  int gid = blockIdx.x * blockDim.x + threadIdx.x;
+  for (int i = gid; i < num; i += blockDim.x * gridDim.x) {
+    y[i] = max(x[i], static_cast<data_t>(0.));
+  }
+}
+
+template <typename data_t>
+__global__ void relu_cuda_backward_kernel(const data_t* dy,
+                                          const data_t* y,
+                                          data_t* dx,
+                                          const int num) {
+  int gid = blockIdx.x * blockDim.x + threadIdx.x;
+  for (int i = gid; i < num; i += blockDim.x * gridDim.x) {
+    dx[i] = dy[i] * (y[i] > 0 ? 1. : 0.);
+  }
+}
+
+std::vector<paddle::Tensor> relu_cuda_forward(const paddle::Tensor& x) {
+  CHECK_CUDA_INPUT(x);
+
+  auto out = paddle::Tensor(paddle::PlaceType::kGPU, x.shape());
+
+  int numel = x.size();
+  int block = 512;
+  int grid = (numel + block - 1) / block;
+  PD_DISPATCH_FLOATING_TYPES(
+      x.type(), "relu_cuda_forward_kernel", ([&] {
+        relu_cuda_forward_kernel<data_t><<<grid, block, 0, x.stream()>>>(
+            x.data<data_t>(), out.mutable_data<data_t>(x.place()), numel);
+      }));
+
+  return {out};
+}
+
+std::vector<paddle::Tensor> relu_cuda_backward(const paddle::Tensor& x,
+                                               const paddle::Tensor& out,
+                                               const paddle::Tensor& grad_out) {
+  CHECK_CUDA_INPUT(x);
+  CHECK_CUDA_INPUT(out);
+  CHECK_CUDA_INPUT(grad_out);
+
+  auto grad_x = paddle::Tensor(paddle::PlaceType::kGPU, x.shape());
+
+  int numel = out.size();
+  int block = 512;
+  int grid = (numel + block - 1) / block;
+  PD_DISPATCH_FLOATING_TYPES(
+      out.type(), "relu_cuda_backward_kernel", ([&] {
+        relu_cuda_backward_kernel<data_t><<<grid, block, 0, x.stream()>>>(
+            grad_out.data<data_t>(),
+            out.data<data_t>(),
+            grad_x.mutable_data<data_t>(x.place()),
+            numel);
+      }));
+
+  return {grad_x};
+}
+```
+
 ### 维度与类型推导函数
 
 `PaddlePaddle` 框架同时支持动态图与静态图的执行模式，在静态图模式下，组网阶段需要完成 `Tensor shape` 和 `dtype` 的推导，从而生成正确的模型描述，用于后续Graph优化与执行。因此，除了算子的运算函数之外，还需要实现前向运算的维度和类型的推导函数。
@@ -443,26 +602,50 @@ std::vector<paddle::DataType> OpInferDtype(paddle::DataType x_dtype, ...) {
 ```
 
 函数的输入参数与返回值类型固定，具体类型如上述代码片段所示，其他要求如下：
-- 函数输入参数与前述运算函数的输入 `Tensor` 按顺序一一对应，依次为输入参数的 `shape` 和 `dtype`
-- 函数返回值vector中的 `shape` 或 `dtype` 信息也需要与返回 `Tensor` 按顺序一一对应
-- 维度与类型推导函数不支持 `Attribute` 的输入
 
+- 函数输入参数与前述运算函数的输入 `Tensor` 按顺序一一对应，依次为输入参数的 `shape` 和 `dtype`，这里的对应规则为：
+    - `paddle::Tensor` -> `std::vector<int64_t>`
+    - `std::vector<paddle::Tensor>` -> `std::vector<std::vector<int64_t>>`
+- 函数返回值vector中的 `shape` 或 `dtype` 信息也需要与返回 `Tensor` 按顺序一一对应
+- 维度推导函数支持 `Attribute` 的输入，在实现维度推导函数时，可以不使用 `Attribute` 的输入参数，也可以使用，但如果要使用的话，需要和Forward函数的 `Attribute` 参数保持一致
+- 类型推导函数不支持 `Attribute` 的输入
 
 以 `relu` 为例，其维度与类型推导函数如下：
 
-- relu_cpu_fp32.cc / relu_cpu.cc / relu_cuda.cc
+- relu_cpu_fp32.cc / relu_cpu.cc / relu_cuda.cc / relu.cc （在这些文件中实现）
 
 ```c++
+// 维度推导
 std::vector<std::vector<int64_t>> ReluInferShape(std::vector<int64_t> x_shape) {
   return {x_shape};
 }
 
+// 类型推导
 std::vector<paddle::DataType> ReluInferDtype(paddle::DataType x_dtype) {
   return {x_dtype};
 }
 ```
 
+> 注：如果是CUDA算子，ReluInferShape和ReluInferDtype仅需要在.cc文件中实现，不需要在.cu中重复实现
+
 对于仅有一个输入 `Tensor` 和一个输出 `Tensor` 的自定义算子，如果输出 `Tensor` 和输入 `Tensor` 的 `shape` 和 `dtype` 一致，可以省略 `InferShape` 和 `InferDtype` 函数的实现，其他场景下均需要实现这两个函数。因此，对于这里的 `relu` 算子来说，这两个函数可以不写。
+
+此外，以 `concat` 为例，如果其将 `axis` 参数作为前向函数的 `Attribute` 输入，其维度与类型推导函数如下：
+
+```c++
+// 前向函数
+std::vector<paddle::Tensor> ConcatForwardStaticAxis(
+    const std::vector<paddle::Tensor>& inputs, const int64_t& axis) { ... }
+
+// 维度推导
+std::vector<std::vector<int64_t>> ConcatInferShapeStaticAxis(
+    const std::vector<std::vector<int64_t>>& input_shapes,
+    const int64_t& axis) { ... }
+
+// 类型推导
+std::vector<paddle::DataType> ConcatInferDtypeStaticAxis(
+    const std::vector<paddle::DataType>& input_dtypes) { ... }
+```
 
 ### 构建算子
 
@@ -499,6 +682,7 @@ PD_BUILD_GRAD_OP(custom_relu)
 - Inputs与Outputs的输入参数为 `std::vector<std::string>` ，依次是前面算子运算函数的输入输出 `Tensor` 的name，需要按顺序一一对应，此处的name与函数输入参数的变量名没有强关联，比如函数输入参数是 `const paddle::Tensor& x` ，Inputs中的name可以是 `Input, x, X, In` 等等
 - `PD_BUILD_OP` 与 `PD_BUILD_GRAD_OP` 中的Inputs与Outputs的name有强关联，对于前向算子的某个输入，如果反向算子仍然要复用，那么其name一定要保持一致，因为内部执行时，会以name作为key去查找对应的变量，比如这里前向算子的 `X, Out` 与反向算子的 `X, Out` 指代同一个 `Tensor`
 - 在声明反向算子的Inputs与Outputs时，前向 `Tensor` 对应的梯度 `Tensor` 名需要由 `paddle::Grad` 处理前向 `Tensor` 名得到，不能够随意声明，例如这里 `"X"` 对应的梯度 `Tensor` 名为 `paddle::Grad("X")`
+- 如果算子的Inputs与Outputs中包含变长的 `Tensor` 输入和输出，其 `Tensor` 名需要由 `paddle::Vec` 方法处理得到，例如对于前述 `concat` 算子的前向输入 `const std::vector<paddle::Tensor>& inputs` ，其 `Tensor` 名可以为 `paddle::Vec("X")` ，对应的梯度 `Tensor` 名为 `paddle::Grad(paddle::Vec("X"))` ，此处 `paddle::Grad` 需要在 `paddle::Vec` 的外面
 - 此处 `SetKernelFn` 、`SetInferShapeFn` 与 `SetInferDtypeFn` 中的 `PD_KERNEL` 、`PD_INFER_SHAPE` 、`PD_INFER_DTYPE` 宏用于自动转换并统一函数的签名，不可以省略
 - 反向算子构建暂时不支持调用 `SetInferShapeFn` 和 `SetInferDtypeFn` 自定义维度与类型推导函数，框架会根据前向 `Tensor` 的 `shape` 和 `dtype` ，设定其对应梯度 `Tensor` 的 `shape` 和 `dtype`
 
@@ -532,6 +716,23 @@ PD_BUILD_GRAD_OP(custom_relu)
     .SetKernelFn(PD_KERNEL(ReluCUDABackward));
 ```
 
+对于 `concat` 算子，其包含变长的输入输出，因此 `PD_BUILD_OP` 声明时需要用到 `paddle::Vec` 方法，示例如下：
+```c++
+PD_BUILD_OP(custom_concat_with_attr)
+    .Inputs({paddle::Vec("X")})
+    .Outputs({"Out"})
+    .Attrs({"axis: int64_t"})
+    .SetKernelFn(PD_KERNEL(ConcatForwardStaticAxis))
+    .SetInferShapeFn(PD_INFER_SHAPE(ConcatInferShapeStaticAxis))
+    .SetInferDtypeFn(PD_INFER_DTYPE(ConcatInferDtypeStaticAxis));
+
+PD_BUILD_GRAD_OP(custom_concat_with_attr)
+    .Inputs({paddle::Vec("X"), paddle::Grad("Out")})
+    .Outputs({paddle::Grad(paddle::Vec("X"))})
+    .Attrs({"axis: int64_t"})
+    .SetKernelFn(PD_KERNEL(ConcatBackwardStaticAxis));
+```
+
 #### Attribute 声明
 
 对于 `Attribute` 的声明，和Inputs、Outputs的声明有所不同，需要按照如下格式声明字符串：
@@ -545,15 +746,15 @@ PD_BUILD_GRAD_OP(custom_relu)
 ```c++
 std::vector<paddle::Tensor> AttrTestForward(
     const paddle::Tensor& x,
-    bool bool_attr,
-    int int_attr,
-    float float_attr,
-    int64_t int64_attr,
-    std::string str_attr,
-    std::vector<int> int_vec_attr,
-    std::vector<float> float_vec_attr,
-    std::vector<int64_t> int64_vec_attr,
-    std::vector<std::string> str_vec_attr) {...}
+    const bool& bool_attr,
+    const int& int_attr,
+    const float& float_attr,
+    const int64_t& int64_attr,
+    const std::string& str_attr,
+    const std::vector<int>& int_vec_attr,
+    const std::vector<float>& float_vec_attr,
+    const std::vector<int64_t>& int64_vec_attr,
+    const std::vector<std::string>& str_vec_attr) {...}
 ```
 
 对应的 BUILD_OP 写法为：
@@ -579,9 +780,9 @@ PD_BUILD_OP(attr_test)
 ```c++
 std::vector<paddle::Tensor> AttrTestBackward(
     const paddle::Tensor& grad_out,
-    int int_attr,
-    std::vector<float> float_vec_attr,
-    std::vector<std::string> str_vec_attr) {...}
+    const int& int_attr,
+    const std::vector<float>& float_vec_attr,
+    const std::vector<std::string>& str_vec_attr) {...}
 
 PD_BUILD_GRAD_OP(attr_test)
     .Inputs({paddle::Grad("Out")})
@@ -597,9 +798,9 @@ PD_BUILD_GRAD_OP(attr_test)
 ```c++
 std::vector<paddle::Tensor> AttrTestBackward(
     const paddle::Tensor& grad_out,
-    int a,
-    std::vector<float> b,
-    std::vector<std::string> c) {...}
+    const int& a,
+    const std::vector<float>& b,
+    const std::vector<std::string>& c) {...}
 ```
 
 ## 自定义算子编译与使用
@@ -819,6 +1020,8 @@ setup(
     )
 )
 ```
+
+> 注：此处需要是多个不同算子的实现，而不能是同一个算子的不同版本实现，例如这里不能将前述的 `relu_cpu.cc` 和 `relu_cuda.cc/cu` 一起编译，因为他们的算子名是相同的，都是 `custom_relu` ， 如果需要同一个算子在不同设备上的实现，建议将不同设备上的实现整合到一起，例如前述的 `relu.cc/cu`
 
 调用方式：
 
