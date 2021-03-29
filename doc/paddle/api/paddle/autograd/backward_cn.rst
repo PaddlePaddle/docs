@@ -1,4 +1,4 @@
-.. _cn_api_autograd_backward_mode_backward:
+.. _cn_api_autograd_backward:
 
 backward
 -------------------------------
