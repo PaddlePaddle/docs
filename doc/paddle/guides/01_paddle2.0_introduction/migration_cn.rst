@@ -87,10 +87,10 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 .. parsed-literal::
 
     Cloning into 'models'...
-    remote: Enumerating objects: 8, done.[K
-    remote: Counting objects: 100% (8/8), done.[K
-    remote: Compressing objects: 100% (8/8), done.[K
-    remote: Total 35011 (delta 1), reused 0 (delta 0), pack-reused 35003[K
+    remote: Enumerating objects: 8, done.
+    remote: Counting objects: 100% (8/8), done.
+    remote: Compressing objects: 100% (8/8), done.
+    remote: Total 35011 (delta 1), reused 0 (delta 0), pack-reused 35003
     Receiving objects: 100% (35011/35011), 356.97 MiB | 1.53 MiB/s, done.
     Resolving deltas: 100% (23291/23291), done.
 

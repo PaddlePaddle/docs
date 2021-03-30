@@ -120,8 +120,8 @@ ndim_3_tensor = paddle.to_tensor(numpy.random.rand(3, 2))
 paddle.zeros([m, n])             # 创建数据全为0，shape为[m, n]的Tensor
 paddle.ones([m, n])              # 创建数据全为1，shape为[m, n]的Tensor
 paddle.full([m, n], 10)          # 创建数据全为10，shape为[m, n]的Tensor
-paddle.arange(start, end, step)  # 创建从start到end，步长为step的Tensor
-paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为num的Tensor
+paddle.arange(start, end, step)  # 创建从start到end，步长为step的Tensor
+paddle.linspace(start, end, num) # 创建从start到end，元素个数固定为num的Tensor
 ```
 
 ## Tensor的shape
