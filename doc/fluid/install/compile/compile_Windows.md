@@ -6,7 +6,7 @@
 * **GPU版本支持CUDA 9.0/10.0/10.1/10.2，且仅支持单卡**
 * **Python 版本 2.7.15+/3.5.1+/3.6+/3.7+/3.8+ (64 bit)**
 * **pip 版本 20.2.2+ (64 bit)**
-* **Visual Studio 2015 Update3**
+* **Visual Studio 2017**
 
 ## 选择CPU/GPU
 
@@ -67,11 +67,11 @@
 
     *  编译**CPU版本PaddlePaddle**：
 
-    `cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+    `cmake .. -G "Visual Studio 15 2017 Win64" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
     *  编译**GPU版本PaddlePaddle**：
 
-    `cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+    `cmake .. -G "Visual Studio 15 2017 Win64" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
     默认为Python2，Python3请添加：
 
@@ -85,9 +85,9 @@
 
     例如：（仅作示例，请根据你的设备路径信息进行设置）
 
-    `cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\Python37\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0"`
+    `cmake .. -G "Visual Studio 15 2017 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\Python37\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0"`
 
-6. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，开始编译。
+6. 使用Blend for Visual Studio 2017 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，开始编译。
 
 7. 编译成功后进入 `\Paddle\build\python\dist` 目录下找到生成的 `.whl` 包：
 
