@@ -337,12 +337,12 @@ hook(Layer, input, output) -> None or modified output
         # ('0', <paddle.nn.layer.common.Linear object at 0x7fb61ed85830>)
         # ('1', <paddle.nn.layer.common.Linear object at 0x7fb61ed85950>)
 
-.. py:method:: sublayers(include_sublayers=True)
+.. py:method:: sublayers(include_self=False)
 
 返回一个由所有子层组成的列表。
 
 参数：
-    - **include_sublayers** (bool, 可选) - 是否返回子层中各个子层。如果为True，则包括子层中的各个子层。默认值：True。
+    - **include_self** (bool, 可选) - 是否包含本层。如果为True，则包括本层。默认值：False
 
 返回： list， 一个由所有子层组成的列表，列表中的元素类型为Layer。
 
@@ -411,13 +411,12 @@ hook(Layer, input, output) -> None or modified output
     for name, param in model.named_parameters():
         print(name, param)
 
-.. py:method:: named_sublayers(prefix='', include_sublayers=True, include_self=False, layers_set=None)
+.. py:method:: named_sublayers(prefix='', include_self=False, layers_set=None)
 
 返回层中所有子层上的迭代器，生成名称和子层的元组。重复的子层只产生一次。
 
 参数：
     - **prefix** (str, 可选) - 在所有参数名称前加的前缀。默认值：''。
-    - **include_sublayers** (bool, 可选) - 是否返回子层中各个子层。如果为True，则包括子层中的各个子层。默认值：True。
     - **include_self** (bool, 可选) - 是否包含该层自身。默认值：False。
     - **layers_set** (set, 可选): 记录重复子层的集合。默认值：None。
 
@@ -621,13 +620,12 @@ buffer是一个不可训练的变量，不会被优化器更新，但在评估�
     state_dict = emb.state_dict()
     paddle.save( state_dict, "paddle_dy.pdparams")
 
-.. py:method:: set_state_dict(state_dict, include_sublayers=True, use_structured_name=True)
+.. py:method:: set_state_dict(state_dict, use_structured_name=True)
 
 根据传入的 ``state_dict`` 设置参数和可持久性buffers。 所有参数和buffers将由 ``state_dict`` 中的 ``Tensor`` 设置。
 
 参数：
     - **state_dict** (dict) - 包含所有参数和可持久性buffers的dict。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数和buffers。 默认值：True。
     - **use_structured_name** (bool, 可选) - 如果设置为True，将使用Layer的结构性变量名作为dict的key，否则将使用Parameter或者Buffer的变量名作为key。默认值：True。
 
 返回：无
