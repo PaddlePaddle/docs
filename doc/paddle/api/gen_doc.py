@@ -848,7 +848,7 @@ def run_all_sample_codes(threads=1):
             err_files.append(fn)
             logger.warning(results[i][1])
     if len(err_files):
-        logger.info('there are %d samplecodes run error.\n%s',
+        logger.info('there are %d sample codes run error.\n%s',
                     len(err_files), "\n".join(err_files))
         return False
     else:
@@ -871,7 +871,7 @@ arguments = [
     ],
     [
         '--gen-rst', 'gen_rst', bool, True,
-        'genrate English api_cod reST files. If "all" in attr, only for "all".'
+        'generate English api reST files. If "all" in attr, only for "all".'
     ],
     [
         '--extract-sample-codes-dir', 'sample_codes_dir', str, None,
@@ -881,7 +881,7 @@ arguments = [
     ['--run-on-device', 'run_on_device', str, 'cpu', 'run on device'],
     [
         '--threads', 'threads', int, 1,
-        'subprocesses\' number for running the all sample codes.'
+        'number of subprocesseses for running the all sample codes.'
     ],
 ]
 
