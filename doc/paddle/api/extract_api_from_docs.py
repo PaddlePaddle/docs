@@ -200,7 +200,8 @@ def parse_args():
         'dir',
         type=str,
         help='travel all the files include this directory',
-        default='.')
+        default='.',
+        nargs='+')
     for item in arguments:
         parser.add_argument(
             item[0], dest=item[1], help=item[4], type=item[2], default=item[3])
@@ -213,12 +214,13 @@ if __name__ == "__main__":
     args = parse_args()
     print('{}'.format(args))
     logger.setLevel(logging.DEBUG)
-    filelist = get_all_files(args.dir)
     apis_dict = {}
-    for fn in filelist:
-        apis = extract_api_from_file(fn)
-        if len(apis):
-            apis_dict[fn] = list(apis)
+    for p in args.dir:
+        filelist = get_all_files(p)
+        for fn in filelist:
+            apis = extract_api_from_file(fn)
+            if len(apis):
+                apis_dict[fn] = list(apis)
     with open(args.output, 'w') as f:
         import json
         json.dump(apis_dict, f, indent=4)
