@@ -1134,7 +1134,7 @@ int main() {
 
 编写 `CMakeList` 编译构建文件，示例如下：
 
-由于目前自定义算子仍然依赖于 `boost` 库，所以需要编写 `boost` 的编译文件，在当前目录下创建文件夹 `cmake/external` ，在其中创建文件 `boost.cmake` ，文件内容如下：
+由于目前自定义算子仍然依赖于 `boost` 库，所以需要编写 `boost` 的编译文件，在当前目录下创建文件夹 `cmake/external` ，在其中创建文件 `boost.cmake` ，文件内容如下：
 
 - cmake/external/boost.cmake
 ```cmake
