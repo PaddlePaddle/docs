@@ -7,10 +7,10 @@ load
 
 此接口将即时编译（Just-In-Time）传入的自定义 OP 对应的 cpp 和 cuda 源码文件，返回一个包含自定义算子 API 的 ``Module`` 对象。
 
-其通过子进程的方式，在后台隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境，Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ，Windows下需安装版本不低于2015 Update3的Visual Studio；若编译支持 GPU 设备的算子，则需要提前安装CUDA，其中自带 `nvcc` 编译环境。
+其通过子进程的方式，在后台隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境，Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ，Windows下需安装版本不低于2017的Visual Studio；若编译支持 GPU 设备的算子，则需要提前安装CUDA，其中自带 `nvcc` 编译环境。
 
-在编译前会执行 `ABI 兼容性检查 <https://gcc.gnu.org/onlinedocs/libstdc++/manual/abi.html>`_ ，即检查编译器版本是否与本地安装的 Paddle 一致。如在Linux下，对于 CUDA 10.1 以上的 Paddle 默认使用 GCC 8.2 编译，则本地 ``cc`` 对应的编译器版本也需为 8.2 ，在Windows下， Paddle 使用Visualt Studio 2015 Update3编译，则本地也需安装
-大于2015 Update3的Visual Studio，如果不满足，则可能由于 ABI 兼容性原因引发自定义 OP 编译或执行报错。
+在编译前会执行 `ABI 兼容性检查 <https://gcc.gnu.org/onlinedocs/libstdc++/manual/abi.html>`_ ，即检查编译器版本是否与本地安装的 Paddle 一致。如在Linux下，对于 CUDA 10.1 以上的 Paddle 默认使用 GCC 8.2 编译，则本地 ``cc`` 对应的编译器版本也需为 8.2 ，在Windows下， Paddle 使用Visualt Studio 2017编译，则本地也需安装
+大于2017的Visual Studio，如果不满足，则可能由于 ABI 兼容性原因引发自定义 OP 编译或执行报错。
 
 相对于 :ref:`cn_api_paddle_utils_cpp_extension_setup` 的方式，此接口不需要额外的 ``setup.py`` 文件和  ``python setup.py install`` 命令，``load``  接口包含了一键执行自定义 OP 的编译和加载的全部流程。
 
@@ -18,7 +18,7 @@ load
 
     1. 目前支持 Linux 和 Windows 平台， MacOS 平台正在支持中。
     2. 编译器的 ABI 兼容性是向前兼容的，Linux 下推荐使用 GCC 8.2 高版本作为 ``/usr/bin/cc`` 命令的软链对象，可通过 ``which cc`` 查看 ``cc`` 命令的位置，使用 ``cc --version`` 查看对应的 GCC 版本。
-    3. Windows下需要安装Visual Studio 2015 update3及以上版本。
+    3. Windows下需要安装Visual Studio 2017及以上版本。
 
 
 **使用样例如下：**
