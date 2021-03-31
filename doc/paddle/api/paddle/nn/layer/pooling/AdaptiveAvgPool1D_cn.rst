@@ -17,7 +17,7 @@ AdaptiveAvgPool1D
 
     lend &= ceil((i + 1) * L_{in} / L_{out})
 
-    Output(i) &= \frac{sum(Input[lstart:lend])}{(lstart - lend)}
+    Output(i) &= \frac{\sum(Input[lstart:lend])}{lend - lstart}
 
 
 参数
