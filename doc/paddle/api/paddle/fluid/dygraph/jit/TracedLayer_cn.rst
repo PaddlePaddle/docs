@@ -53,7 +53,7 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
     print(out_static_graph[0].shape) # (2, 10)
 
     # 将静态图模型保存为预测模型
-    static_layer.save_inference_model(dirname='./saved_infer_model')
+    static_layer.save_inference_model(path='./saved_infer_model')
 
 .. py:method:: set_strategy(build_strategy=None, exec_strategy=None)
 
@@ -93,12 +93,14 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
     static_layer.set_strategy(build_strategy=build_strategy, exec_strategy=exec_strategy)
     out_static_graph = static_layer([in_var])
 
-.. py:method:: save_inference_model(dirname, feed=None, fetch=None)
+.. py:method:: save_inference_model(path, feed=None, fetch=None)
 
 将TracedLayer保存为用于预测部署的模型。保存的预测模型可被C++预测接口加载。
 
+``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``.pdmodel``,存储的持久参数变量文件的后缀为 ``.pdiparams``.
+
 参数:
-    - **dirname** (str) - 预测模型的保存目录。
+    - **path** (str) - 存储模型的路径前缀。格式为 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
     - **feed** (list(int), 可选) - 预测模型输入变量的索引。若为None，则TracedLayer的所有输入变量均会作为预测模型的输入。默认值为None。
     - **fetch** (list(int), 可选) - 预测模型输出变量的索引。若为None，则TracedLayer的所有输出变量均会作为预测模型的输出。默认值为None。
 
