@@ -10,9 +10,7 @@
 
 - `自定义Python算子（静态图） <./new_python_op.html>`_
 
-- `自定义外部算子（新） <./new_custom_op.html>`_
-
-- `自定义外部算子（旧） <./custom_op.html>`_
+- `自定义外部算子 <./new_custom_op.html>`_
 
 
 .. toctree::
@@ -22,4 +20,3 @@
    op_notes.md
    new_python_op.md
    new_custom_op.md
-   custom_op.md

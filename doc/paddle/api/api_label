@@ -49,7 +49,6 @@ target_assign	.. _api_paddle_fluid_layers_target_assign:
 adaptive_max_pool1d	.. _api_paddle_nn_functional_pooling_adaptive_max_pool1d:
 crop_tensor	.. _api_paddle_fluid_layers_crop_tensor:
 bilinear	.. _api_paddle_nn_functional_common_bilinear:
-load_op_library	.. _api_paddle_fluid_load_op_library:
 full_like	.. _api_paddle_tensor_creation_full_like:
 L1Loss	.. _api_paddle_nn_layer_loss_L1Loss:
 pool2d	.. _api_paddle_fluid_layers_pool2d:
