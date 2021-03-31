@@ -1,3 +1,4 @@
+paddle.autograd.backward_mode.backward  paddle.autograd.backward
 paddle.tensor.math.conj	paddle.conj,paddle.tensor.conj
 paddle.tensor.math.divide	paddle.divide,paddle.tensor.divide
 paddle.fluid.layers.gather_tree	paddle.nn.functional.gather_tree
