@@ -162,7 +162,7 @@ vcvarsall_dir=path\vc\vcvarsall.bat  # Set the path of visual studio command pro
    ```
    - compile inference demo with GPU inference library
    ```dos
-   cmake .. -G "Visual Studio 16 2017" -A x64 -T host=x64 -DWITH_GPU=ON -DWITH_MKL=ON -DWITH_STATIC_LIB=ON ^
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=ON -DWITH_MKL=ON -DWITH_STATIC_LIB=ON ^
    -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib -DMSVC_STATIC_CRT=ON -DCUDA_LIB=YOUR_CUDA_LIB
    ```
 3. Open the `cpp_inference_demo.sln` using VisualStudio 2017, choose the`x64` for Slution Platforms, and `Release` for Solution Configurations, then build the `simple_on_word2vec` project in the Solution Explorer(Rigth click the project and click Build).
