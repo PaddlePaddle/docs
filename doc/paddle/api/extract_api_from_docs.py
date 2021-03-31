@@ -180,6 +180,21 @@ def extract_api_from_file(filename):
     return api_set
 
 
+def format_filename(filename):
+    """
+    Format the filename
+
+    filename may be "/FluidDoc/doc/paddle/guides/xxx" or "../guides/xxx", format it as "guides/xxx".
+    function get_all_files does not format it.
+    """
+    rp = os.path.realpath(filename)
+    pat_str = 'doc/paddle/'  # if the structure changed, update this pattern
+    ind = rp.index(pat_str)
+    if ind >= 0:
+        return rp[ind + len(pat_str):]
+    return filename
+
+
 arguments = [
     # flags, dest, type, default, help
     [
@@ -220,7 +235,7 @@ if __name__ == "__main__":
         for fn in filelist:
             apis = extract_api_from_file(fn)
             if len(apis):
-                apis_dict[fn] = list(apis)
+                apis_dict[format_filename(fn)] = list(apis)
     with open(args.output, 'w') as f:
         import json
         json.dump(apis_dict, f, indent=4)
