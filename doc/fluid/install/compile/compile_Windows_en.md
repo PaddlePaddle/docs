@@ -70,11 +70,11 @@ There is one compilation methods in Windows system:
     > For details on the compilation options, see [the compilation options list](../Tables.html/#Compile).
     * For users who need to compile **the CPU version PaddlePaddle**:
 
-    `cmake .. -G "Visual Studio 15 2017 Win64" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+    `cmake .. -G "Visual Studio 15 2017 Win64" -T host=x64 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
     * For users who need to compile **the GPU version PaddlePaddle**:
 
-    `cmake .. -G "Visual Studio 15 2017 Win64" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
+    `cmake .. -G "Visual Studio 15 2017 Win64" -T host=x64 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release`
 
     Python2 by default，Python3 please add：
 
@@ -88,7 +88,7 @@ There is one compilation methods in Windows system:
 
     For example: (for instance only, please set it according to your actual installation path)
 
-    `cmake .. -G "Visual Studio 15 2017 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\Python37\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0"`
+    `cmake .. -G "Visual Studio 15 2017 Win64" -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\Python37\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0"`
 
 6. Use Blend for Visual Studio 2017 to open `paddle.sln` file, select the platform `x64`, configure with `Release`, then begin to compile
 
