@@ -29,7 +29,7 @@ There is one compilation methods in Windows system:
 
 1. Install the necessary tools i.e. cmake, git and python:
 
-    > CMake requires version 3.10 and above, but there are official [Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html) versions of 3.12/3.13/3.14 when the GPU is compiled, we recommend that you use CMake3. 16 version, available on the official website [download] (https://cmake.org/download/), and add to the ring Environment variables.
+    > CMake requires version 3.15 and above,  we recommend that you use CMake3. 16 version, available on the official website [download] (https://cmake.org/download/), and add to the ring Environment variables.
 
     > Python requires version 2.7 and above,  which can be downloaded from the [official website](https://www.python.org/download/releases/2.7/).
 

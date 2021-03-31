@@ -67,7 +67,7 @@ In addition, if there are environmental problems with the pre-built wheel packag
 - **OS version：Ubuntu 16.04.6 LTS**
 - **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
 - **pip or pip3 version 9.0.1+ (64 bit)**
-- **cmake version 3.10+**
+- **cmake version 3.15+**
 - **gcc/g++ version 8.2+**
 
 #### install steps
@@ -76,7 +76,7 @@ For running Paddle on Kunlun XPU machine, we must first install the Paddle packa
 
 ##### **source code compilation**
 
-1. Paddle relies on cmake(version>=3.10) to manage compilation and build. If the source provided by the operating system includes the appropriate version of cmake, you can install it directly, otherwise refer to:
+1. Paddle relies on cmake(version>=3.15) to manage compilation and build. If the source provided by the operating system includes the appropriate version of cmake, you can install it directly, otherwise refer to:
 
    o  ```wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz```
 
