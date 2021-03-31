@@ -210,7 +210,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域
   - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num, thread)，如果thread > 0，默认为0
   - **debug** (bool) – 是否开启debug模式，默认为False
-  - **fetch_list** (Variable List) – 返回变量列表，每个变量都会在训练过程中被打印出来，默认为None
+  - **fetch_list** (Variable List) – 返回变量列表，每个变量都会在预测过程中被打印出来，默认为None
   - **fetch_info** (String List) – 每个变量的打印信息，默认为None
   - **print_period** (int) – 每两次打印之间间隔的mini-batches的数量，默认为100
 
