@@ -18,8 +18,8 @@ AvgPool1D
 参数
 :::::::::
     - **kernel_size** (int|list|tuple): 池化核的尺寸大小. 如果kernel_size为list或tuple类型, 其必须包含一个整数, 最终池化核的大小为该数值。
-    - **stride** (int|list|tuple，可选): 池化操作步长. 如果stride为list或tuple类型, 其必须包含一个整数，最终池化操作的步长为该数值。
-    - **padding** (str|int|list|tuple，可选): 池化补零的方式. 如果padding是一个字符串，则必须为 `SAME` 或者 `VALID` 。如果是turple或者list类型， 则应是 `[pad_left, pad_right]` 形式。如果padding是一个非0值，那么表示会在输入的两端都padding上同样长度的0。
+    - **stride** (int|list|tuple，可选): 池化操作步长. 如果stride为list或tuple类型, 其必须包含一个整数，最终池化操作的步长为该数值。默认值为None, 这时会使用kernel_size作为stride.
+    - **padding** (str|int|list|tuple，可选): 池化补零的方式. 如果padding是一个字符串，则必须为 `SAME` 或者 `VALID` 。如果是turple或者list类型， 则应是 `[pad_left, pad_right]` 形式。如果padding是一个非0值，那么表示会在输入的两端都padding上同样长度的0。默认值为0。
     - **exclusive** (bool，可选): 是否用额外padding的值计算平均池化结果，默认为True。
     - **ceil_mode** (bool，可选): 是否用ceil函数计算输出的height和width，如果设置为False, 则使用floor函数来计算，默认为False。
     - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
