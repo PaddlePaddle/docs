@@ -17,7 +17,7 @@ AdaptiveAvgPool1D
 
     lend &= ceil((i + 1) * L_{in} / L_{out})
 
-    Output(i) &= \frac{sum(Input[lstart:lend])}{(lstart - lend)}
+    Output(i) &= \frac{\sum Input[lstart:lend]}{lend - lstart}
 
 
 参数
@@ -53,7 +53,7 @@ AdaptiveAvgPool1D
         #     for i in range(m):
         #         lstart = floor(i * L / m)
         #         lend = ceil((i + 1) * L / m)
-        #         output[:, :, i] = sum(input[:, :, lstart: lend])/(lstart - lend)
+        #         output[:, :, i] = sum(input[:, :, lstart: lend])/lend - lstart)
         #
         import paddle
         import paddle.nn as nn
