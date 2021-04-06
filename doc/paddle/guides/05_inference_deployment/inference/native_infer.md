@@ -18,7 +18,7 @@
 
 ## <a name="使用Predictor进行高性能预测"> 使用Predictor进行高性能预测</a>
 
-Paddle Inference采用 Predictor 进行预测。Predictor 是一个高性能预测引擎，该引擎通过对计算图的分析，完成对计算图的一系列的优化（如OP的融合、内存/显存的优化、 MKLDNN，TensorRT 等底层加速库的支持等），能够大大提升预测性能。
+Paddle Inference采用 Predictor(非线程安全) 进行预测。Predictor 是一个高性能预测引擎，该引擎通过对计算图的分析，完成对计算图的一系列的优化（如OP的融合、内存/显存的优化、 MKLDNN，TensorRT 等底层加速库的支持等），能够大大提升预测性能。
 
 为了展示完整的预测流程，下面是一个使用 Predictor 进行预测的完整示例，其中涉及到的具体概念和配置会在后续部分展开详细介绍。
 
@@ -247,9 +247,9 @@ auto predictor = pool.Retrive(thread_id);
 1. 可以尝试打开 TensorRT 子图加速引擎, 通过计算图分析，Paddle可以自动将计算图中部分子图融合，并调用NVIDIA的 TensorRT 来进行加速，详细内容可以参考 [使用Paddle-TensorRT库预测](../../performance_improving/inference_improving/paddle_tensorrt_infer.html)。
 
 ### 多线程预测
-Paddle Inference支持通过在不同线程运行多个Predictor的方式来优化预测性能，支持CPU和GPU环境。
+Paddle Inference支持通过在不同线程运行多个Predictor的方式来优化预测性能，支持CPU和GPU环境。注意，Predictor为非线程安全，使用时需注意。
 
-使用多线程预测的样例详见[C++预测样例编译测试](#C++预测样例编译测试)中下载的[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.7.tar.gz)中的
+使用多线程预测的样例详见[C++预测样例编译测试](#C++预测样例编译测试)中下载的[预测样例](https://paddle-inference-dist.bj.bcebos.com/samples/sample.tgz)中的
 `thread_mobilenet_test.cc`文件。可以将`run.sh`中`mobilenet_test`替换成`thread_mobilenet_test`再执行
 
 ```
