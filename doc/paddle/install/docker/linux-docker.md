@@ -36,7 +36,11 @@
         docker pull paddlepaddle/paddle:[版本号]-gpu-cuda10.2-cudnn7
         ```
 
-    在`:`后请您填写PaddlePaddle版本号，例如当前版本，更多请见[镜像简介](#dockers)，上例中，`cuda10.2-cudnn7` 也仅作示意用，您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
+    在`:`后请您填写PaddlePaddle版本号，例如当前版本`2.0.1`，更多请见[镜像简介](#dockers)。
+
+    上例中，`cuda10.2-cudnn7` 也仅作示意用，表示安装GPU版的镜像。如果您还想安装其他cuda/cudnn版本的镜像，可以将其替换成`cuda9.0-cudnn7`，`cuda10.0-cudnn7`，`cuda10.1-cudnn7`，`cuda11.0-cudnn8`。
+
+    您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
 2. 构建、进入Docker容器
 
