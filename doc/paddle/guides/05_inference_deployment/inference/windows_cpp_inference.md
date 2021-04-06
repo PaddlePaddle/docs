@@ -195,7 +195,7 @@ vcvarsall_dir=path\vc\vcvarsall.bat  #设置visual studio #本机工具命令提
    从磁盘加载模型时，根据模型和参数文件存储方式不同，设置AnalysisConfig加载模型和参数的路径有两种形式，此处使用combined形式：
    - 非combined形式：模型文件夹`model_dir`下存在一个模型文件和多个参数文件时，传入模型文件夹路径，模型文件名默认为`__model__`。
    ``` c++
-   config->SetModel("path\\model_dir\\__model__")
+   config->SetModel("path\\model_dir")
    ```
    - combined形式：模型文件夹`model_dir`下只有一个模型文件`__model__`和一个参数文件`__params__`时，传入模型文件和参数文件路径。
    ```C++
