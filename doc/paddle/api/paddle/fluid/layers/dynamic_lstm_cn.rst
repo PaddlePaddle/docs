@@ -9,7 +9,7 @@ dynamic_lstm
 
 
 
-该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S., & Schmidhuber, J. (1997) <http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf>`_。
+该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S., & Schmidhuber, J. (1997) <https://www.scirp.org/pdf/JMF_2018013014134167.pdf>`_。
 
 .. note::
     - 该OP仅支持 LoDTensor 作为输入，如果您需要处理的是Tensor，请使用 :ref:`cn_api_fluid_layers_lstm` 。

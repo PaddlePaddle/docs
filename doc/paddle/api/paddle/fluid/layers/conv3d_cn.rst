@@ -4,12 +4,12 @@ conv3d
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.conv3d(input, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format="NCDHW")
+.. py:function:: paddle.static.nn.conv3d(input, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format="NCDHW")
 
 
 
 
-该OP是三维卷积层（convolution3D layer），根据输入、滤波器、步长（stride）、填充（padding）、膨胀比例（dilations）一组参数计算得到输出特征层大小。输入和输出是NCDHW或NDWHC格式，其中N是批尺寸，C是通道数，D是特征层深度，H是特征层高度，W是特征层宽度。三维卷积（Convlution3D）和二维卷积（Convlution2D）相似，但多了一维深度信息（depth）。如果bias_attr不为False，卷积计算会添加偏置项。如果指定了激活函数类型，相应的激活函数会作用在最终结果上。
+该OP是三维卷积层（convolution3D layer），根据输入、滤波器、步长（stride）、填充（padding）、膨胀比例（dilations）一组参数计算得到输出特征层大小。输入和输出是NCDHW或NDHWC格式，其中N是批尺寸，C是通道数，D是特征层深度，H是特征层高度，W是特征层宽度。三维卷积（Convlution3D）和二维卷积（Convlution2D）相似，但多了一维深度信息（depth）。如果bias_attr不为False，卷积计算会添加偏置项。如果指定了激活函数类型，相应的激活函数会作用在最终结果上。
 
 对每个输入X，有等式：
 
@@ -66,7 +66,7 @@ conv3d
     W_{out} = \frac{\left ( W_{in} -\left ( dilation[2]*\left ( W_{f}-1 \right )+1 \right ) \right )}{stride[2]}+1
 
 参数：
-    - **input** (Variable) - 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型为float16, float32或float64。
+    - **input** (Tensor) - 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型为float16, float32或float64。
     - **num_fliters** (int) - 滤波器（卷积核）的个数。和输出图像通道相同。
     - **filter_size** (int|list|tuple) - 滤波器大小。如果它是一个列表或元组，则必须包含三个整数值：（filter_size_depth, filter_size_height，filter_size_width）。若为一个整数，则filter_size_depth = filter_size_height = filter_size_width = filter_size。
     - **stride** (int|list|tuple，可选) - 步长大小。滤波器和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含三个整型数：（stride_depth, stride_height, stride_width）。若为一个整数，stride_depth = stride_height = stride_width = stride。默认值：1。
@@ -82,32 +82,21 @@ conv3d
 
 返回：5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回卷积计算的结果，如果指定激活层，则返回卷积和激活计算之后的最终结果。
 
-返回类型：Variable。
-
-抛出异常：
-    - ``ValueError`` - 如果 ``use_cudnn`` 不是bool值。
-    - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
-    - ``ValueError`` - 如果 ``input`` 的通道数未被明确定义。
-    - ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
-    - ``ValueError`` - 如果 ``padding`` 含有5个二元组，与批尺寸对应维度的值不为0或者与通道对应维度的值不为0。
-    - ``ShapeError`` - 如果输入不是5-D Tensor。
-    - ``ShapeError`` - 如果输入和滤波器的维度大小不相同。
-    - ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
-    - ``ShapeError`` - 如果输出的通道数不能被 ``groups`` 整除。
-
 
 **代码示例**：
 
 .. code-block:: python
-
-    import paddle.fluid as fluid
+    
+    import paddle
     import numpy as np
-    data = fluid.layers.data(name='data', shape=[3, 12, 32, 32], dtype='float32')
-    param_attr = fluid.ParamAttr(name='conv3d.weight', initializer=fluid.initializer.Xavier(uniform=False), learning_rate=0.001)
-    res = fluid.layers.conv3d(input=data, num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
+
+    paddle.enable_static()
+    data = paddle.static.data(name='data', shape=[None, 3, 12, 32, 32], dtype='float32')
+    param_attr = paddle.framework.ParamAttr(name='conv3d.weight', initializer=paddle.nn.initializer.XavierNormal(), learning_rate=0.001)
+    res = paddle.static.nn.conv3d(input=data, num_filters=2, filter_size=3, act="relu", param_attr=param_attr)
+    place = paddle.CPUPlace()
+    exe = paddle.static.Executor(place)
+    exe.run(paddle.static.default_startup_program())
     x = np.random.rand(1, 3, 12, 32, 32).astype("float32")
     output = exe.run(feed={"data": x}, fetch_list=[res])
     print(output)

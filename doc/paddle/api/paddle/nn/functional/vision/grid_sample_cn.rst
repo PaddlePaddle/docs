@@ -54,7 +54,7 @@ step 2：
 
 参数：
   - **x** (Tensor): 输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
-  - **grid** (Variable): 输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
+  - **grid** (Tensor): 输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的4-D Tensor，N为批尺寸，H是特征高度，W是特征宽度, 数据类型为float32或float64。
   - **mode** (str, optional): 插值方式，可以为 'bilinear' 或者 'nearest'. 默认值：'bilinear'。
   - **padding_mode** (str, optional) 当原来的索引超过输入的图像大小时的填充方式。可以为 'zeros', 'reflection' 和 'border'. 默认值：'zeros'。
   - **align_corners** (bool, optional): 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值：True。
@@ -101,7 +101,7 @@ step 2：
         mode='bilinear',
         padding_mode='border',
         align_corners=True)
-    print(y_t.numpy())
+    print(y_t)
     
     # output shape = [1, 1, 3, 4]
     # [[[[ 0.34   0.016  0.086 -0.448]

@@ -1,8 +1,8 @@
 ########################
-Paddle 2.0 Basic Concept
+Basic Concept
 ########################
 
-Let's start with studying basic concept of PaddlePaddle:
+You can start with studying basic concept of PaddlePaddle:
 
 - `Introduction to Tensor <tensor_introduction_en.html>`_ : Introduction of Tensor, which is the representation of data in Paddle.
 - `broadcasting <./broadcasting_en.html>`_ : Introduction of broadcasting.
@@ -11,4 +11,4 @@ Let's start with studying basic concept of PaddlePaddle:
     :hidden:
 
     tensor_introduction_en.md
-    broadcasting_en.md
+    broadcasting_en.rst

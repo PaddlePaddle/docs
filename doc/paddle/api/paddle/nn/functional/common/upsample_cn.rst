@@ -1,9 +1,9 @@
-.. _cn_api_paddle_nn_functioanl_upsample:
+.. _cn_api_paddle_nn_functional_upsample:
 
 upsample
 -------------------------------
 
-.. py:function:: paddle.nn.functioanl.upsample(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
+.. py:function:: paddle.nn.functional.upsample(x, size=None, scale_factor=None, mode='nearest', align_corners=False, align_mode=0, data_format='NCHW', name=None)
 
 
 该OP用于调整一个batch中图片的大小。

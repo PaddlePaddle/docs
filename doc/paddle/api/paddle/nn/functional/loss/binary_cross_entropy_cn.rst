@@ -3,7 +3,7 @@
 binary_cross_entropy
 -------------------------------
 
-.. py:functional:: paddle.nn.functional.binary_cross_entropy(input, label, weight=None, reduction='mean', name=None)
+.. py:function:: paddle.nn.functional.binary_cross_entropy(input, label, weight=None, reduction='mean', name=None)
 
 该函数用于计算输入 ``input`` 和标签 ``label`` 之间的二值交叉熵损失值。二值交叉熵损失函数公式如下：
 
@@ -53,9 +53,8 @@ binary_cross_entropy
     import paddle
     import paddle.nn.functional as F
 
-    paddle.disable_static()
     input = paddle.to_tensor([0.5, 0.6, 0.7], dtype='float32')
     label = paddle.to_tensor([1.0, 0.0, 1.0], dtype='float32')
     output = F.binary_cross_entropy(input, label)
-    print(output.numpy())  # [0.65537095]
+    print(output)  # [0.65537095]
 

@@ -3,7 +3,7 @@
 cos
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.cos(x, name=None)
+.. py:function:: paddle.cos(x, name=None)
 
 
 
@@ -22,17 +22,15 @@ cos
 
 返回：输出Tensor，与 ``x`` 维度相同、数据类型相同。
 
-返回类型：Tensor
-
 **代码示例**：
 
 .. code-block:: python
 
         import paddle
         import numpy as np
-        paddle.disable_static()
+
         x = paddle.to_tensor([[-1, np.pi], [1, 15.6]], dtype='float32')
         res = paddle.cos(x)
-        print(res.numpy())
+        print(res)
         # [[ 0.54030231 -1.        ]
         # [ 0.54030231 -0.99417763]]

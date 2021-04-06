@@ -49,7 +49,7 @@ void CreateConfig(Config* config, const std::string& model_dirname) {
 }
 
 void RunAnalysis(int batch_size, std::string model_dirname) {
-  // 1. 创建AnalysisConfig
+  // 1. 创建Config
   Config config;
   CreateConfig(&config, model_dirname);
 
@@ -121,6 +121,14 @@ config->DisableGpu();          // 禁用GPU
 config->EnableMKLDNN();            // 开启MKLDNN，可加速CPU预测
 config->SetCpuMathLibraryNumThreads(10);        // 设置CPU Math库线程数，CPU核心数支持情况下可加速预测
 ```
+
+**note**
+
+如果在输入shape为变长时开启MKLDNN加速预测，需要通过`SetMkldnnCacheCapacity`接口设置MKLDNN缓存的不同输入shape的数目，否则可能会出现内存泄漏。使用方法如下：
+```c++
+config->SetMkldnnCacheCapacity(100); // 缓存100个不同的输入shape
+```
+
 #### 配置GPU预测
 ``` c++
 config->EnableUseGpu(100, 0); // 初始化100M显存，使用GPU ID为0
@@ -129,7 +137,7 @@ config->GpuDeviceId();        // 返回正在使用的GPU ID
 config->EnableTensorRtEngine(1 << 20             /*workspace_size*/,
                              batch_size        /*max_batch_size*/,
                              3                 /*min_subgraph_size*/,
-                                AnalysisConfig::Precision::kFloat32 /*precision*/,
+                             PrecisionType::kFloat32 /*precision*/,
                              false             /*use_static*/,
                              false             /*use_calib_mode*/);
 ```
@@ -181,7 +189,7 @@ auto predictor = pool.Retrive(thread_id);
 ## <a name="C++预测样例编译测试"> C++预测样例编译测试</a>
 
 1. 下载或编译paddle预测库，参考[安装与编译C++预测库](./build_and_install_lib_cn.html)。
-2. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.7.tar.gz)并解压，进入`sample/inference`目录下。  
+2. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/samples/sample.tgz)并解压，进入`sample/inference`目录下。  
 
     `inference` 文件夹目录结构如下：
 
@@ -500,7 +508,19 @@ for (...) {
 
 ###### ClearIntermediateTensor()
 
-释放中间tensor。
+释放临时tensor，将其所占空间归还显/内存池。
+
+参数：
+
+- `None`
+
+返回：`None`
+
+返回类型：`void`
+
+###### TryShrinkMemory()
+
+释放临时tensor，并检查显/内存池中是否有可以释放的chunk，若有则释放chunk，降低显/内存占用（显/内存池可认为是`list<chunk>`组成，如果chunk空闲，则可通过释放chunk来降低显/内存占用），demo示例可参考[Paddle-Inference-Demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c%2B%2B/test/shrink_memory)。
 
 参数：
 
@@ -1123,7 +1143,7 @@ config->EnableMemoryOptim();     // 开启内存/显存复用
 
 返回类型：`void`
 
-###### EnableLiteEngine(AnalysisConfig::Precision precision_mode = Precsion::kFloat32, bool zero_copy = false, const std::vector<std::string>& passes_filter = {}, const std::vector<std::string>& ops_filter = {})
+###### EnableLiteEngine(PrecisionType precision_mode = Precsion::kFloat32, bool zero_copy = false, const std::vector<std::string>& passes_filter = {}, const std::vector<std::string>& ops_filter = {})
 
 启用lite子图。
 

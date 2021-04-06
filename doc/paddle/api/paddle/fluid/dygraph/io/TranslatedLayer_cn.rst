@@ -3,13 +3,13 @@
 TranslatedLayer
 -------------------------------
 
-.. py:class:: paddle.fluid.dygraph.TranslatedLayer(programs, persistable_vars)
+.. py:class:: paddle.jit.TranslatedLayer(programs, persistable_vars)
 
 ``TranslatedLayer`` 是一个命令式编程模式 :ref:`cn_api_fluid_dygraph_Layer` 的继承类，
-通过 :ref:`cn_api_fluid_dygraph_jit_load` 载入构建。能够像一般 ``Layer`` 一样在train或者eval模式下使用。
+通过 :ref:`cn_api_paddle_jit_load` 载入构建。能够像一般 ``Layer`` 一样在train或者eval模式下使用。
 
 .. note::
-  ``TranslatedLayer`` 对象不能够通过构造函数创建，仅能够通过 :ref:`cn_api_fluid_dygraph_jit_load` 接口载入构建。
+  ``TranslatedLayer`` 对象不能够通过构造函数创建，仅能够通过 :ref:`cn_api_paddle_jit_load` 接口载入构建。
 
 **示例代码：**
     .. code-block:: python
@@ -59,10 +59,6 @@ TranslatedLayer
                     print("Epoch {} batch {}: loss = {}".format(
                         epoch_id, batch_id, np.mean(loss.numpy())))
 
-        # enable dygraph mode
-        place = paddle.CPUPlace()
-        paddle.disable_static(place) 
-
         # 1. train & save model.
 
         # create network
@@ -73,7 +69,6 @@ TranslatedLayer
         # create data loader
         dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
         loader = paddle.io.DataLoader(dataset,
-            places=place,
             batch_size=BATCH_SIZE,
             shuffle=True,
             drop_last=True,
@@ -161,10 +156,6 @@ TranslatedLayer
                     print("Epoch {} batch {}: loss = {}".format(
                         epoch_id, batch_id, np.mean(loss.numpy())))
 
-        # enable dygraph mode
-        place = paddle.CPUPlace()
-        paddle.disable_static(place) 
-
         # create network
         layer = LinearNet()
         loss_fn = nn.CrossEntropyLoss()
@@ -173,7 +164,6 @@ TranslatedLayer
         # create data loader
         dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
         loader = paddle.io.DataLoader(dataset,
-            places=place,
             batch_size=BATCH_SIZE,
             shuffle=True,
             drop_last=True,

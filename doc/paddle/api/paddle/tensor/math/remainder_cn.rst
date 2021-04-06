@@ -11,17 +11,20 @@ mod
         out = x \% y
 
 **注意**:
-        ``paddle.mod`` 支持广播。关于广播规则，请参考 :ref:`use_guide_broadcasting`
+        ``paddle.mod`` 支持广播。关于广播规则，请参考 :ref:`cn_user_guide_broadcasting`
 
-参数：
+参数
+:::::::::
         - x（Tensor）- 多维Tensor。数据类型为float32 、float64、int32或int64。
         - y（Tensor）- 多维Tensor。数据类型为float32 、float64、int32或int64。
         - name（str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回：
-        多维Tensor。存储计算的结果，数据类型与 ``x`` 相同，维度为广播后的形状。
+返回
+:::::::::
+``Tensor`` ，存储运算后的结果。如果x和y有不同的shape且是可以广播的，返回Tensor的shape是x和y经过广播后的shape。如果x和y有相同的shape，返回Tensor的shape与x，y相同。
 
-**代码示例**
+代码示例
+:::::::::
 
 ..  code-block:: python
 

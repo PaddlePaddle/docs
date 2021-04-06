@@ -3,7 +3,7 @@
 isnan
 -----------------------------
 
-.. py:function:: paddle.tensor.isnan(x, name=None)
+.. py:function:: paddle.isnan(x, name=None)
 
 返回输入tensor的每一个值是否为 `+/-NaN` 。
 
@@ -23,8 +23,8 @@ isnan
 
     import paddle
     import numpy as np
-    paddle.disable_static()
+
     x_np = np.array([float('-inf'), -2, 3.6, float('inf'), 0, float('-nan'), float('nan')])
     x = paddle.to_tensor(x_np)
-    out = paddle.tensor.isnan(x)
-    print(out.numpy())  # [False False False False False  True  True]
+    out = paddle.isnan(x)
+    print(out)  # [False, False, False, False, False, True, True]

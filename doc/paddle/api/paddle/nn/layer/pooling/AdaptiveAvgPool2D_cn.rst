@@ -1,3 +1,5 @@
+.. _cn_api_nn_AdaptiveAvgPool2D:
+
 AdaptiveAvgPool2D
 -------------------------------
 
@@ -18,13 +20,13 @@ AdaptiveAvgPool2D
 
     wend &= ceil((j + 1) * W_{in} / W_{out})
 
-    Output(i ,j) &= \frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
+    Output(i ,j) &= \frac{\sum Input[hstart:hend, wstart:wend]}{(hend - hstart) * (wend - wstart)}
 
 
 参数
 :::::::::
-    - **output_size** (int|list|turple): 算子输出特征图的尺寸，如果其是list或turple类型的数值，必须包含两个元素，H和W。H和W既可以是int类型值也可以是None，None表示与输入特征尺寸相同。
-    - **data_format** (str): 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
+    - **output_size** (int|list|tuple): 算子输出特征图的尺寸，如果其是list或turple类型的数值，必须包含两个元素，H和W。H和W既可以是int类型值也可以是None，None表示与输入特征尺寸相同。
+    - **data_format** (str，可选): 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
     - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 形状
@@ -63,7 +65,6 @@ AdaptiveAvgPool2D
         #
         import paddle
         import numpy as np
-        paddle.disable_static()
         input_data = np.random.rand(2, 3, 32, 32)
         x = paddle.to_tensor(input_data)
         # x.shape is [2, 3, 32, 32]

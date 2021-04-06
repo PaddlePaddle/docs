@@ -9,14 +9,15 @@ Fleet
 Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化后即可快速开始使用飞桨大规模分布式训练
 
 
-.. py:method:: init(role_maker=None, is_collective=False)
+.. py:method:: init(role_maker=None, is_collective=False, strategy=None)
 
 使用RoleMaker或其他配置初始化fleet。
 
 
 参数：
-    role_maker (RoleMakerBase) 已初始化好的PaddleCloudRoleMaker或UserDefineRoleMaker
-    is_collective (bool) 在未指定role_maker的情况下,可由init方法自行初始化RoleMaker, is_collective为True则按照collective模式进行创建， is_collective=False则按照ParameterServer模式进行创建
+    - **role_maker** (RoleMakerBase) 已初始化好的PaddleCloudRoleMaker或UserDefineRoleMaker
+    - **is_collective** (bool) 在未指定role_maker的情况下,可由init方法自行初始化RoleMaker, is_collective为True则按照collective模式进行创建， is_collective=False则按照ParameterServer模式进行创建
+    - **strategy** (DistributedStrategy): 分布式训练的额外属性。详情请参阅paddle.distributed.fleet.DistributedStrategy。默认值：None。 
 
 返回：None
 
@@ -42,6 +43,14 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     import paddle.distributed.fleet as fleet
     role = fleet.PaddleCloudRoleMaker()
     fleet.init(role)
+
+**代码示例4**
+
+.. code-block:: python
+
+    import paddle.distributed.fleet as fleet
+    strategy = fleet.DistributedStrategy()
+    fleet.init(strategy=strategy)
 
 
 .. py:method:: is_first_worker()
@@ -293,7 +302,7 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
   - **executor** (Executor) –  用于保存预测模型的 ``executor`` ，详见 :ref:`api_guide_executor` 。
   - **dirname** (str) – 指定保存预测模型结构和参数的文件目录。
   - **feeded_var_names** (list[str]) – 字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
-  - **target_vars** (list[Variable]) – ``Variable`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
+  - **target_vars** (list[Tensor]) – ``Tensor`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
   - **main_program** (Program，可选) – 通过该参数指定的 ``main_program`` 可构建一个专门用于预测的 ``Inference Program`` 。 若为None, 则使用全局默认的  ``_main_program_`` 。>默认值为None。
   - **export_for_deployment** (bool，可选) – 若为True，则 ``main_program`` 指定的Program将被修改为只支持直接预测部署的Program。否则，将存储更多的信息，方便优化和再训练。目前
 只支持设置为True，且默认值为True。
@@ -303,18 +312,20 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
+    import paddle
+    paddle.enable_static()
     import paddle.distributed.fleet as fleet
-    import paddle.fluid as fluid
 
     fleet.init()
 
     # build net
+    # loss = Net()
     # fleet.distributed_optimizer(...)
 
-    exe = fluid.Executor(fluid.CPUPlace())
-    fleet.save_inference_model(exe, "dirname", ["feednames1"], [acc, loss], fluid.default_main_program())
+    exe = paddle.static.Executor(paddle.CPUPlace())
+    fleet.save_inference_model(exe, "dirname", ["feed_varname"], [loss], paddle.static.default_main_program())
 
 
 .. py:method:: save_persistables(executor, dirname, main_program=None)
@@ -331,30 +342,37 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
 **代码示例**
 
-.. code-block:: python
+.. code-block:: text
 
+    import paddle
+    paddle.enable_static()
     import paddle.distributed.fleet as fleet
-    import paddle.fluid as fluid
 
     fleet.init()
 
     # build net
     # fleet.distributed_optimizer(...)
 
-    exe = fluid.Executor(fluid.CPUPlace())
-    fleet.save_persistables(exe, "dirname", fluid.default_main_program())
+    exe = paddle.static.Executor(paddle.CPUPlace())
+    fleet.save_persistables(exe, "dirname", paddle.static.default_main_program())
 
 
 .. py:method:: distributed_optimizer(optimizer, strategy=None)
 
 基于分布式布式并行策略进行模型的拆分及优化。
 
+参数:
+ - **optimizer**  (optimizer) – paddle定义的优化器。
+ - **strategy**  (DistributedStrategy) – 分布式优化器的额外属性。建议在fleet.init()创建。这里的仅仅是为了兼容性。如果这里的参数strategy不是None，则它将覆盖在fleet.init()创建的DistributedStrategy，并在后续的分布式训练中生效。
+
 **代码示例**
 
 .. code-block:: python
+
+    import paddle
+    paddle.enable_static()
     import paddle.distributed.fleet as fleet
-    role = fleet.role_maker.PaddleCloudRoleMaker(is_collective=True)
-    fleet.init(role)
+    fleet.init(is_collective=True)
     strategy = fleet.DistributedStrategy()
     optimizer = paddle.optimizer.SGD(learning_rate=0.001)
     optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
@@ -396,23 +414,20 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
         def forward(self, x):
             return self._linear2(self._linear1(x))
 
-    # 1. enable dynamic mode
-    paddle.disable_static()
-
-    # 2. initialize fleet environment
+    # 1. initialize fleet environment
     fleet.init(is_collective=True)
 
-    # 3. create layer & optimizer
+    # 2. create layer & optimizer
     layer = LinearNet()
     loss_fn = nn.MSELoss()
     adam = paddle.optimizer.Adam(
         learning_rate=0.001, parameters=layer.parameters())
 
-    # 4. get data_parallel model using fleet
+    # 3. get data_parallel model using fleet
     adam = fleet.distributed_optimizer(adam)
     dp_layer = fleet.distributed_model(layer)
 
-    # 5. run layer
+    # 4. run layer
     inputs = paddle.randn([10, 10], 'float32')
     outputs = dp_layer(inputs)
     labels = paddle.randn([10, 1], 'float32')
@@ -448,11 +463,10 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     import paddle
     from paddle.distributed import fleet
 
-    paddle.disable_static()
     fleet.init(is_collective=True)
 
     value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.fluid.dygraph.to_variable(value)
+    a = paddle.to_tensor(value)
 
     layer = paddle.nn.Linear(13, 5)
     adam = paddle.optimizer.Adam(learning_rate=0.01, parameters=layer.parameters())
@@ -485,11 +499,10 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     import paddle
     from paddle.distributed import fleet
 
-    paddle.disable_static()
     fleet.init(is_collective=True)
 
     value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.fluid.dygraph.to_variable(value)
+    a = paddle.to_tensor(value)
 
     layer = paddle.nn.Linear(13, 5)
     adam = paddle.optimizer.Adam(learning_rate=0.01, parameters=layer.parameters())
@@ -497,9 +510,9 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     adam = fleet.distributed_optimizer(adam)
     dp_layer = fleet.distributed_model(layer)
     state_dict = adam.state_dict()
-    paddle.framework.save(state_dict, "paddle_dy")
-    para_state_dict, opti_state_dict = paddle.framework.load( "paddle_dy")
-    adam.set_state_dict(opti_state_dict)
+    paddle.save(state_dict, "paddle_dy")
+    para_state_dict = paddle.load( "paddle_dy")
+    adam.set_state_dict(para_state_dict)
 
 
 .. py:method:: set_lr(value)
@@ -528,11 +541,10 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     import paddle
     from paddle.distributed import fleet
 
-    paddle.disable_static()
     fleet.init(is_collective=True)
 
     value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.fluid.dygraph.to_variable(value)
+    a = paddle.to_tensor(value)
 
     layer = paddle.nn.Linear(13, 5)
     adam = paddle.optimizer.Adam(learning_rate=0.01, parameters=layer.parameters())
@@ -577,11 +589,10 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     import paddle
     from paddle.distributed import fleet
 
-    paddle.disable_static()
     fleet.init(is_collective=True)
 
     value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.fluid.dygraph.to_variable(value)
+    a = paddle.to_tensor(value)
 
     layer = paddle.nn.Linear(13, 5)
     adam = paddle.optimizer.Adam(learning_rate=0.01, parameters=layer.parameters())
@@ -625,23 +636,20 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
         def forward(self, x):
             return self._linear2(self._linear1(x))
 
-    # 1. enable dynamic mode
-    paddle.disable_static()
-
-    # 2. initialize fleet environment
+    # 1. initialize fleet environment
     fleet.init(is_collective=True)
 
-    # 3. create layer & optimizer
+    # 2. create layer & optimizer
     layer = LinearNet()
     loss_fn = nn.MSELoss()
     adam = paddle.optimizer.Adam(
         learning_rate=0.001, parameters=layer.parameters())
 
-    # 4. get data_parallel model using fleet
+    # 3. get data_parallel model using fleet
     adam = fleet.distributed_optimizer(adam)
     dp_layer = fleet.distributed_model(layer)
 
-    # 5. run layer
+    # 4. run layer
     inputs = paddle.randn([10, 10], 'float32')
     outputs = dp_layer(inputs)
     labels = paddle.randn([10, 1], 'float32')
@@ -688,23 +696,20 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
         def forward(self, x):
             return self._linear2(self._linear1(x))
 
-    # 1. enable dynamic mode
-    paddle.disable_static()
-
-    # 2. initialize fleet environment
+    # 1. initialize fleet environment
     fleet.init(is_collective=True)
 
-    # 3. create layer & optimizer
+    # 2. create layer & optimizer
     layer = LinearNet()
     loss_fn = nn.MSELoss()
     adam = paddle.optimizer.Adam(
         learning_rate=0.001, parameters=layer.parameters())
 
-    # 4. get data_parallel model using fleet
+    # 3. get data_parallel model using fleet
     adam = fleet.distributed_optimizer(adam)
     dp_layer = fleet.distributed_model(layer)
 
-    # 5. run layer
+    # 4. run layer
     inputs = paddle.randn([10, 10], 'float32')
     outputs = dp_layer(inputs)
     labels = paddle.randn([10, 1], 'float32')

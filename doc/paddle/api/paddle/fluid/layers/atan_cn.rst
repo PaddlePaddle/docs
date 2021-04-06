@@ -3,7 +3,7 @@
 atan
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.atan(x, name=None)
+.. py:function:: paddle.atan(x, name=None)
 
 
 
@@ -26,8 +26,8 @@ arctangent函数。
 .. code-block:: python
 
         import paddle
-        paddle.disable_static()
+
         x = paddle.to_tensor([-0.8183,  0.4912, -0.6444,  0.0371])
         res = paddle.atan(x)
-        print(res.numpy())
+        print(res)
         # [-0.6858,  0.4566, -0.5724,  0.0371]

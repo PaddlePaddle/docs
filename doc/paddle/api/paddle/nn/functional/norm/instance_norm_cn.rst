@@ -1,4 +1,4 @@
-.. cn_api_nn_functional_instance_norm:
+.. _cn_api_nn_functional_instance_norm:
 
 instance_norm
 -------------------------------
@@ -31,7 +31,6 @@ instance_norm
     import paddle
     import numpy as np
 
-    paddle.disable_static()
     x = np.random.seed(123)
     x = np.random.random(size=(2, 1, 2, 3)).astype('float32')
     running_mean = np.random.random(size=1).astype('float32')
@@ -44,4 +43,4 @@ instance_norm
     w = paddle.to_tensor(weight_data)
     b = paddle.to_tensor(bias_data)
     instance_norm_out = paddle.nn.functional.instance_norm(x, rm, rv, w, b)
-    print(instance_norm_out.numpy())
+    print(instance_norm_out)

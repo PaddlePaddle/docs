@@ -5,9 +5,6 @@ erf
 
 .. py:function:: paddle.fluid.layers.erf(x)
 
-:alias_main: paddle.erf
-:alias: paddle.erf,paddle.tensor.erf,paddle.tensor.math.erf,paddle.nn.functional.erf,paddle.nn.functional.activation.erf
-:old_api: paddle.fluid.layers.erf
 
 
 
@@ -18,13 +15,11 @@ erf
     out = \frac{2}{\sqrt{\pi}} \int_{0}^{x}e^{- \eta^{2}}d\eta
 
 参数：
-  - **x** (Variable) - Erf Op 的输入，多维 Tensor 或 LoDTensor，数据类型为 float16, float32 或 float64。
+  - **x** (Tensor) - Erf Op 的输入，多维 Tensor 或 LoDTensor，数据类型为 float16, float32 或 float64。
 
 返回：
   - 多维 Tensor 或 LoDTensor, 数据类型为 float16, float32 或 float64， 和输入 x 的数据类型相同，形状和输入 x 相同。
 
-返回类型：
-  - Variable
 
 **代码示例**：
 

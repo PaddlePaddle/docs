@@ -1,7 +1,9 @@
+.. _cn_api_paddle_nn_MSELoss:
+
 MSELoss
 -------------------------------
 
-.. py:function:: paddle.nn.loss.MSELoss(reduction='mean')
+.. py:function:: paddle.nn.MSELoss(reduction='mean')
 
 该OP用于计算预测值和目标值的均方差误差。
 
@@ -43,9 +45,9 @@ MSELoss
     input_data = np.array([1.5]).astype("float32")
     label_data = np.array([1.7]).astype("float32")
 
-    mse_loss = paddle.nn.loss.MSELoss()
+    mse_loss = paddle.nn.MSELoss()
     input = paddle.to_tensor(input_data)
     label = paddle.to_tensor(label_data)
     output = mse_loss(input, label)
-    print(output.numpy())
+    print(output)
     # [0.04000002]

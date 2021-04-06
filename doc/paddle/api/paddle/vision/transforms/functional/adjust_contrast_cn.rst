@@ -11,12 +11,12 @@ adjust_contrast
 :::::::::
 
     - img (PIL.Image|np.array) - 输入的图像。
-    - contrast_factor (float): 调节图像对比度的多少. 可以是任何非负数。参数等于1时输出原始图像。
+    - contrast_factor (float): 调节图像对比度的多少，可以是任何非负数。参数等于0时输出纯灰色图像，参数等于1时输出原始图像，参数大于1时图像对比度增强，如参数等于2时图像对比度增强两倍。
 
 返回
 :::::::::
 
-    ``PIL.Image 或 numpy.ndarray``，裁剪后的图像。
+    ``PIL.Image 或 numpy.ndarray``，调整后的图像。
 
 代码示例
 :::::::::

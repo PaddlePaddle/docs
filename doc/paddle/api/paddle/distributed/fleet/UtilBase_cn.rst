@@ -22,36 +22,37 @@ UtilBase
 .. code-block:: python
 
     # Save the following code in `train.py` , and then execute the command `fleetrun --server_num 2 --worker_num 2 train.py` .
-    from paddle.distributed.fleet.base.util_factory import fleet_util
     import paddle.distributed.fleet as fleet
     from paddle.distributed.fleet import PaddleCloudRoleMaker
     import sys
     import numpy as np
-
+    import os
+    
+    os.environ["PADDLE_WITH_GLOO"] = "2"
+    
     def train():
         role = PaddleCloudRoleMaker(
             is_collective=False,
             init_gloo=True,
             path="./tmp_gloo")
         fleet.init(role)
-        fleet_util._set_role_maker(role)
-
+    
         if fleet.is_server():
             input = [1, 2]
-            output = fleet_util.all_reduce(input, "sum", "server")
+            output = fleet.util.all_reduce(input, "sum", "server")
             print(output)
             # [2, 4]
         elif fleet.is_worker():
             input = np.array([3, 4])
-            output = fleet_util.all_reduce(input, "sum", "worker")
+            output = fleet.util.all_reduce(input, "sum", "worker")
             print(output)
             # [6, 8]
-        output = fleet_util.all_reduce(input, "sum", "all")
+        output = fleet.util.all_reduce(input, "sum", "all")
         print(output)
         # [8, 12]
     if __name__ == "__main__":
         train()
-
+    
 .. py:method:: barrier(comm_world="worker")
 在指定的通信集合间进行阻塞操作，以实现集合间进度同步。
 
@@ -64,26 +65,27 @@ UtilBase
 
     # Save the following code in `train.py` , and then execute the command `fleetrun --server_num 2 --worker_num 2 train.py` .
 
-    from paddle.distributed.fleet.base.util_factory import fleet_util
     import paddle.distributed.fleet as fleet
     from paddle.distributed.fleet import PaddleCloudRoleMaker
     import sys
+    import os
 
+    os.environ["PADDLE_WITH_GLOO"] = "2"
+    
     def train():
         role = PaddleCloudRoleMaker(
             is_collective=False,
             init_gloo=True,
             path="./tmp_gloo")
         fleet.init(role)
-        fleet_util._set_role_maker(role)
 
         if fleet.is_server():
-            fleet_util.barrier("server")
+            fleet.util.barrier("server")
             print("all server arrive here")
         elif fleet.is_worker():
-            fleet_util.barrier("worker")
+            fleet.util.barrier("worker")
             print("all server arrive here")
-        fleet_util.barrier("all")
+        fleet.util.barrier("all")
         print("all servers and workers arrive here")
 
     if __name__ == "__main__":
@@ -104,10 +106,12 @@ UtilBase
 .. code-block:: python
 
     # Save the following code in `train.py` , and then execute the command `fleetrun --server_num 2 --worker_num 2 train.py` .
-    from paddle.distributed.fleet.base.util_factory import fleet_util
     import paddle.distributed.fleet as fleet
     from paddle.distributed.fleet import PaddleCloudRoleMaker
     import sys
+    import os
+
+    os.environ["PADDLE_WITH_GLOO"] = "2"
 
     def train():
         role = PaddleCloudRoleMaker(
@@ -115,19 +119,18 @@ UtilBase
             init_gloo=True,
             path="./tmp_gloo")
         fleet.init(role)
-        fleet_util._set_role_maker(role)
 
         if fleet.is_server():
             input = fleet.server_index()
-            output = fleet_util.all_gather(input, "server")
+            output = fleet.util.all_gather(input, "server")
             print(output)
             # output = [0, 1]
         elif fleet.is_worker():
             input = fleet.worker_index()
-            output = fleet_util.all_gather(input, "worker")
+            output = fleet.util.all_gather(input, "worker")
             # output = [0, 1]
             print(output)
-        output = fleet_util.all_gather(input, "all")
+        output = fleet.util.all_gather(input, "all")
         print(output)
         # output = [0, 1, 0, 1]
 
@@ -152,7 +155,7 @@ UtilBase
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.base.util_factory import fleet_util
+    import paddle.distributed.fleet as fleet
     import paddle.distributed.fleet.base.role_maker as role_maker
 
     role = role_maker.UserDefinedRoleMaker(
@@ -162,8 +165,10 @@ UtilBase
         role=role_maker.Role.WORKER,
         worker_endpoints=["127.0.0.1:6003", "127.0.0.1:6004"],
         server_endpoints=["127.0.0.1:6001", "127.0.0.1:6002"])
-    fleet_util._set_role_maker(role)
-    files = fleet_util.get_file_shard(["file1", "file2", "file3"])
+    fleet.init(role)
+
+    files = fleet.util.get_file_shard(["file1", "file2", "file3"])
+    print(files)
     # files = ["file1", "file2"]
 
 .. py:method:: print_on_rank(message, rank_id)
@@ -178,7 +183,7 @@ UtilBase
 
 .. code-block:: python
 
-    from paddle.distributed.fleet.base.util_factory import fleet_util
+    import paddle.distributed.fleet as fleet
     import paddle.distributed.fleet.base.role_maker as role_maker
 
     role = role_maker.UserDefinedRoleMaker(
@@ -188,5 +193,6 @@ UtilBase
         role=role_maker.Role.WORKER,
         worker_endpoints=["127.0.0.1:6003", "127.0.0.1:6004"],
         server_endpoints=["127.0.0.1:6001", "127.0.0.1:6002"])
-    fleet_util._set_role_maker(role)
-    fleet_util.print_on_rank("I'm worker 0", 0)
+    fleet.init(role)
+
+    fleet.util.print_on_rank("I'm worker 0", 0)

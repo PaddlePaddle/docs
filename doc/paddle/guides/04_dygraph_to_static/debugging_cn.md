@@ -68,11 +68,12 @@ func(np.ones([3, 2]))
 您可以打印转换后的静态图代码，有2种方法：
 
 1. 使用被装饰后的函数的 `code` 属性
-   如下代码中，装饰器 `paddle.jit.to_static` 会将函数 `func` 转化为一个类对象 `StaticLayer`，可以使用 StaticLayer 的 `code` 属性来获得转化后的代码。
+
+   如下代码中，装饰器 `paddle.jit.to_static` 会将函数 `func` 转化为一个类对象 `StaticFunction`，可以使用 StaticFunction 的 `code` 属性来获得转化后的代码。
     ```Python
     @paddle.jit.to_static
     def func(x):
-    x = paddle.to_tensor(x)
+        x = paddle.to_tensor(x)
         if x > 3:
             x = x - 1
         return x
@@ -131,7 +132,7 @@ func(np.ones([3, 2]))
     `set_code_level` 函数可以设置查看不同的 AST Transformer 转化后的代码，详情请见 [set_code_level](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_cn.html)。
 
 ## 使用 `print`
-`print` 函数可以用来查看变量，该函数在动转静中会被转化。当仅打印 Paddle Tensor 时，实际运行时会被转换为 Paddle 算子 [Print](../../api_cn/layers_cn/Print_cn.html)，否则仍然运行 `print`。
+`print` 函数可以用来查看变量，该函数在动转静中会被转化。当仅打印 Paddle Tensor 时，实际运行时会被转换为 Paddle 算子 [Print](../../api/paddle/fluid/layers/control_flow/Print_cn.html)，否则仍然运行 `print`。
 ```python
 @paddle.jit.to_static
 def func(x):

@@ -3,7 +3,7 @@
 transpose
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.transpose(x,perm,name=None)
+.. py:function:: paddle.transpose(x,perm,name=None)
 
 
 
@@ -11,17 +11,17 @@ transpose
 该OP根据perm对输入的多维Tensor进行数据重排。返回多维Tensor的第i维对应输入Tensor的perm[i]维。
 
 参数：
-    - **x** (Variable) - 输入：x:[N_1, N_2, ..., N_k, D]多维Tensor，可选的数据类型为float16, float32, float64, int32, int64。
-    - **perm** (list) - perm长度必须和X的维度相同，并依照perm中数据进行重排。
+    - **x** (Tensor) - 输入：x:[N_1, N_2, ..., N_k, D]多维Tensor，可选的数据类型为float16, float32, float64, int32, int64。
+    - **perm** (list|tuple) - perm长度必须和X的维度相同，并依照perm中数据进行重排。
     - **name** (str) - 该层名称（可选）。
 
 返回： 多维Tensor
 
-返回类型：Variable
+返回类型：Tensor
 
 **示例**:
 
-.. code-block:: python
+.. code-block:: text
 
          x = [[[ 1  2  3  4] [ 5  6  7  8] [ 9 10 11 12]]        
              [[13 14 15 16] [17 18 19 20] [21 22 23 24]]]
@@ -47,14 +47,10 @@ transpose
 
 .. code-block:: python
 
-    # 请使用 append_batch_size=False 来避免
-    # 在数据张量中添加多余的batch大小维度
-    import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[2, 3, 4],
-                    dtype='float32', append_batch_size=False)
-    x_transposed = fluid.layers.transpose(x, perm=[1, 0, 2])
+    import paddle
+
+    x = paddle.randn([2, 3, 4])
+    x_transposed = paddle.transpose(x, perm=[1, 0, 2])
     print(x_transposed.shape)
-    #(3L, 2L, 4L)
-
-
+    # [3L, 2L, 4L]
 

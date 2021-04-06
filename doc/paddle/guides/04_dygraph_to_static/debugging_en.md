@@ -72,11 +72,11 @@ There are two ways to print the transformed static graph code:
 
 1. Use the attribute `code` of the decorated function
 
-   In the following code, the decorator `paddle.jit.to_static` transforms `func` into a class object `StaticLayer`. You can use the `code` attribute of `StaticLayer` to get the transformed code.
+   In the following code, the decorator `paddle.jit.to_static` transforms `func` into a class object `StaticFunction`. You can use the `code` attribute of `StaticFunction` to get the transformed code.
     ```Python
     @paddle.jit.to_static
     def func(x):
-    x = paddle.to_tensor(x)
+        x = paddle.to_tensor(x)
         if x > 3:
             x = x - 1
         return x
@@ -131,7 +131,7 @@ There are two ways to print the transformed static graph code:
     `set_code_level` can set different levels to view the code transformed by different ast transformers. For details, please refer to [set_code_level](../../../paddle/api/paddle/fluid/dygraph/jit/set_code_level_en.html).
 
 ## `print`
-You can call `print` to view variables. `print` will be transformed when using Dynamic-to-Static. When only Paddle Tensor is printed, `print` will be transformed and call Paddle operator [Print](../../api/layers/Print.html) in runtime. Otherwise, call python `print`.
+You can call `print` to view variables. `print` will be transformed when using Dynamic-to-Static. When only Paddle Tensor is printed, `print` will be transformed and call Paddle operator [Print](../../api/paddle/fluid/layers/control_flow/Print_en.html) in runtime. Otherwise, call python `print`.
 
 ```python
 @paddle.jit.to_static
