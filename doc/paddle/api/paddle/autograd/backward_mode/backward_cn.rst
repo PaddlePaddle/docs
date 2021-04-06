@@ -14,7 +14,7 @@ backward
   - **retain_graph** (bool，可选) – 如果为False，反向计算图将被释放。如果在backward()之后继续添加OP， 需要设置为True，此时之前的反向计算图会保留。将其设置为False会更加节省内存。默认值：False。
 
 
-返回类型：(None)
+返回：None
 
 **示例代码**
 
