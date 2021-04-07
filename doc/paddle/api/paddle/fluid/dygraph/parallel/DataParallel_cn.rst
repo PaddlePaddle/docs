@@ -3,7 +3,7 @@
 DataParallel
 ------------
 
-.. py:class:: paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer_size=1)
+.. py:class:: paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer_size=1, find_unused_parameters=True)
 
 
 通过数据并行模式执行动态图模型。
