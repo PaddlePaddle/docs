@@ -16,6 +16,7 @@ import re
 import subprocess
 import multiprocessing
 import platform
+import extract_api_from_docs
 """
 generate api_info_dict.json to describe all info about the apis.
 """
@@ -44,6 +45,8 @@ GPU_ID = 0
 # }
 api_info_dict = {}
 parsed_mods = {}
+referenced_from_apis_dict = {}
+referenced_from_file_titles = {}
 
 logger = logging.getLogger()
 if logger.handlers:
@@ -408,10 +411,10 @@ def set_referenced_from_attr():
     values are the guides and tutorial documents.
     """
     global api_info_dict
-    if not os.path.exists(CALLED_APIS_IN_THE_DOCS):
-        return
-    with open(CALLED_APIS_IN_THE_DOCS, 'r') as fp:
-        apis_refers = json.load(fp)
+    global referenced_from_apis_dict, referenced_from_file_titles
+    if len(referenced_from_apis_dict) > 0 and len(
+            referenced_from_file_titles) > 0:
+        apis_refers = referenced_from_apis_dict
         rev_apis_refers = {}
         for docfn in apis_refers:
             for api in apis_refers[docfn]:
@@ -427,11 +430,24 @@ def set_referenced_from_attr():
             else:
                 api_id = id(m)
                 if api_id in api_info_dict:
-                    api_info_dict[api_id]["referenced_from"] = rev_apis_refers[
-                        api]
+                    ref_from = {}
+                    ref_from['file'] = rev_apis_refers[api]
+                    ref_from['title'] = referenced_from_file_titles[
+                        rev_apis_refers[api]] if rev_apis_refers[
+                            api] in referenced_from_file_titles else ''
+                    api_info_dict[api_id]["referenced_from"] = ref_from
                 else:
                     logger.warning("%s (id:%d) not in the api_info_dict.", api,
                                    api_id)
+
+
+def collect_referenced_from_infos(docdirs):
+    """
+    collect all the referenced_from infos from ../guides and ../tutorial
+    """
+    global referenced_from_apis_dict, referenced_from_file_titles
+    referenced_from_apis_dict, referenced_from_file_titles = extract_api_from_docs.extract_all_infos(
+        docdirs)
 
 
 def get_shortest_api(api_list):
@@ -969,6 +985,13 @@ if __name__ == "__main__":
         args.threads = int(os.environ['RUN_SAMPLE_CODES_THREADS'])
     if args.sample_codes_dir:
         SAMPLECODE_TEMPDIR = args.sample_codes_dir
+
+    if 'VERSIONSTR' in os.environ and os.environ['VERSIONSTR'] == '1.8':
+        # 1.8 not used
+        docdirs = ['../beginners_guide', '../advanced_guide', '../user_guides']
+    else:
+        docdirs = ['../guides', '../tutorial']
+    collect_referenced_from_infos(docdirs)
 
     realattrs = []  # only __all__ or __dict__
     for attr in args.travelled_attr.split(','):
