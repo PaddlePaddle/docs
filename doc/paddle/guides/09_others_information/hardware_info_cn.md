@@ -9,7 +9,7 @@
 | 服务端CPU | x86 | Intel | 常见CPU型号如Xeon、Core全系列 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/linux-compile.html) | ✔️ |  |
 | 服务端GPU |  | NVIDIA | 常见GPU型号如V100、T4等| [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/linux-compile.html) | ✔️ |  |
 | AI加速芯片 | 达芬奇 | 华为 | 昇腾910 | 即将提供 | | | |
-| AI加速芯片 |  | 曙光 | 海光DCU | 即将提供 | | | |
+| AI加速芯片 |  | 海光 | 海光DCU | [安装](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_install_cn.html) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_install_cn.html) | ✔️ | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_rocm_cn.html) |
 | AI加速芯片 | XPU | 百度 | 昆仑K100、K200等 | [安装](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_install_cn.html#wheel) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_install_cn.html#id2) |  | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_2.0_xpu_cn.html) |
 
 ## Paddle Inference
@@ -20,7 +20,7 @@
 | 服务端GPU |  | NVIDIA | 常见GPU型号如V100、T4等 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | 移动端GPU |  | NVIDIA | Jetson系列 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | AI加速芯片 | 达芬奇 | 华为 | 昇腾910 | 即将提供 | | | |
-| AI加速芯片 |  | 曙光 | 海光DCU | 即将提供 | | | |
+| AI加速芯片 |  | 海光 | 海光DCU | [预编译库](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_install_cn.html) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_install_cn.html) | ✔️ | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_rocm_cn.html) |
 | AI加速芯片 | XPU | 百度 | 昆仑K100、K200等 | [预编译库](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_install_cn.html#wheel) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_install_cn.html#id2) |  | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_2.0_xpu_cn.html) |
 | 服务端CPU | ARM | 飞腾 | FT-2000+/64 |  |[源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/arm-compile.html#anchor-1) |  | [支持模型](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/arm-compile.html#anchor-6) |
 | 服务端CPU | ARM | 华为 | 鲲鹏 920 2426SK |  |[源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/arm-compile.html#anchor-1) |  | [支持模型](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/arm-compile.html#anchor-6) |
