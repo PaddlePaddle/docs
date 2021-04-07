@@ -56,6 +56,9 @@ python create_list.py
 ```bash
 # 修改 dygraph/configs/yolov3/_base_/optimizer_270e.yml
 base_lr: 0.0005
+
+# 修改 dygraph/configs/yolov3/_base_/yolov3_reader.yml
+worker_num: 1
 ```
 
 **第四步**：运行训练
