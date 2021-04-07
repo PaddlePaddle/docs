@@ -10,14 +10,14 @@ setup
 此接口是对 Python 内建库中的 ``setuptools.setup`` 接口的进一步封装，支持的参数类型，以及使用方式均与原生接口保持一致。接口隐藏了 Paddle 框架内部概念，如默认需要指定的编译选项，头文件搜索目录，链接选项等；此接口会自动搜索和检查本地的 ``cc`` 和 ``nvcc`` 编译命令和版本环境，根据用户指定的 ``Extension`` 类型，完成支持 CPU 或 GPU 设备的算子编译。 
 
 同时，编译前会执行 `ABI 兼容性检查 <https://gcc.gnu.org/onlinedocs/libstdc++/manual/abi.html>`_ ，即检查编译器版本是否与本地安装的 Paddle 一致。如在Linux下，对于 CUDA 10.1 以上的 Paddle 默认使用 GCC 8.2 编译，则本地 ``cc`` 对应的编译器版本也需为 8.2 ，在Windows下， Paddle 使用Visualt Studio 2017编译，则本地也需安装
-大于2017的Visual Studio，如果不满足，则可能由于 ABI 兼容性原因引发自定义 OP 编译或执行报错。
+大于2017的Visual Studio，如果不满足，则可能由于 ABI 兼容性原因引发自定义 OP 编译或执行报错。 Mac 下默认使用 clang 进行编译，无 ABI 兼容性问题。
 
 相对于即时编译的 :ref:`cn_api_paddle_utils_cpp_extension_load` 接口，此接口仅需执行一次 ``python setup.py install`` 命令，即可像其他 python 库一样 import 导入使用。如下是一个 ``setup.py`` 文件的简单样例:
 
 
 .. note::
 
-    1. 目前支持 Linux 和 Windows 平台， MacOS 平台正在支持中。
+    1. 目前已支持 Linux ，MacOS 和 Windows 平台。
     2. 编译器的 ABI 兼容性是向前兼容的，Linux 下推荐使用 GCC 8.2 高版本作为 ``/usr/bin/cc`` 命令的软链对象，可通过 ``which cc`` 查看 ``cc`` 命令的位置，使用 ``cc --version`` 查看对应的 GCC 版本。
     3. Windows下需要安装Visual Studio 2017及以上版本。
 
