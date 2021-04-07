@@ -430,11 +430,15 @@ def set_referenced_from_attr():
             else:
                 api_id = id(m)
                 if api_id in api_info_dict:
-                    ref_from = {}
-                    ref_from['file'] = rev_apis_refers[api]
-                    ref_from['title'] = referenced_from_file_titles[
-                        rev_apis_refers[api]] if rev_apis_refers[
-                            api] in referenced_from_file_titles else ''
+                    ref_from = []
+                    for a in rev_apis_refers[api]:
+                        ref_from.append({
+                            'file':
+                            a,
+                            'title':
+                            referenced_from_file_titles[a]
+                            if a in referenced_from_file_titles else ''
+                        })
                     api_info_dict[api_id]["referenced_from"] = ref_from
                 else:
                     logger.warning("%s (id:%d) not in the api_info_dict.", api,
