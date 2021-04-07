@@ -20,6 +20,11 @@ import inspect
 import os
 import argparse
 import logging
+from contextlib import contextmanager
+import docutils
+import docutils.core
+import docutils.nodes
+import markdown
 
 logger = logging.getLogger()
 if logger.handlers:
@@ -180,6 +185,55 @@ def extract_api_from_file(filename):
     return api_set
 
 
+def extract_doc_title_from_file(filename):
+    r = os.path.splitext(filename)
+    if len(r) != 2:
+        return None
+    if r[1].lower() == '.md':
+        return extract_md_title(filename)
+    elif r[1].lower() == '.rst':
+        return extract_rst_title(filename)
+    return None
+
+
+@contextmanager
+def find_node_by_class(doctree, node_class, remove):
+    """Find the first node of the specified class."""
+    index = doctree.first_child_matching_class(node_class)
+    if index is not None:
+        yield doctree[index]
+        if remove:
+            del doctree[index]
+    else:
+        yield
+
+
+def extract_rst_title(filename):
+    overrides = {
+        # Disable the promotion of a lone top-level section title to document
+        # title (and subsequent section title to document subtitle promotion).
+        'docinfo_xform': 0,
+        'initial_header_level': 2,
+    }
+    with open(filename, 'r') as fileobj:
+        doctree = docutils.core.publish_doctree(
+            fileobj.read(), settings_overrides=overrides)
+        with find_node_by_class(
+                doctree, docutils.nodes.title, remove=True) as node:
+            if node is not None:
+                return node.astext()
+    return None
+
+
+def extract_md_title(filename):
+    with open(filename, 'r') as fileobj:
+        html = markdown.markdown(fileobj.read())
+        mo = re.search(r'<h1>(.*?)</h1>', html)
+        if mo:
+            return mo.group(1)
+    return None
+
+
 def format_filename(filename):
     """
     Format the filename
@@ -193,6 +247,20 @@ def format_filename(filename):
     if ind >= 0:
         return rp[ind + len(pat_str):]
     return filename
+
+
+def extract_all_infos(docdirs):
+    apis_dict = {}
+    file_titles = {}
+    for p in docdirs:
+        filelist = get_all_files(p)
+        for fn in filelist:
+            ffn = format_filename(fn)
+            file_titles[ffn] = extract_doc_title_from_file(fn)
+            apis = extract_api_from_file(fn)
+            if len(apis):
+                apis_dict[ffn] = list(apis)
+    return apis_dict, file_titles
 
 
 arguments = [
@@ -229,15 +297,12 @@ if __name__ == "__main__":
     args = parse_args()
     print('{}'.format(args))
     logger.setLevel(logging.DEBUG)
-    apis_dict = {}
-    for p in args.dir:
-        filelist = get_all_files(p)
-        for fn in filelist:
-            apis = extract_api_from_file(fn)
-            if len(apis):
-                apis_dict[format_filename(fn)] = list(apis)
+    apis_dict, file_titles = extract_all_infos(args.dir)
+    import json
     with open(args.output, 'w') as f:
-        import json
         json.dump(apis_dict, f, indent=4)
+    r = os.path.splitext(args.output)
+    with open('{}-titles{}'.format(r[0], r[1]), 'w') as f:
+        json.dump(file_titles, f, indent=4)
 
     print('Done')
