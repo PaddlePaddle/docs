@@ -125,7 +125,12 @@
     <tbody>
     <tr>
         <td> WITH_GPU </td>
-        <td> 是否支持GPU </td>
+        <td> 是否支持CUDA </td>
+        <td> ON </td>
+    </tr>
+    <tr>
+        <td> WITH_ROCM </td>
+        <td> 是否支持ROCM </td>
         <td> ON </td>
     </tr>
     <tr>
