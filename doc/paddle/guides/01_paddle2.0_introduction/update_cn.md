@@ -306,23 +306,25 @@ $ python -m paddle.distributed.launch train.py
 
 ```python
 import paddle
+from paddle.vision.transforms import ToTensor
+
 # 第1处改动，导入分布式训练所需要的包
 import paddle.distributed as dist
 
-train_dataset = paddle.vision.datasets.MNIST(mode='train')
-test_dataset = paddle.vision.datasets.MNIST(mode='test')
+train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
+test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
 lenet = paddle.vision.models.LeNet()
 loss_fn = paddle.nn.CrossEntropyLoss()
 
 # 加载训练集 batch_size 设为 64
 train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
 
-def train():
+def train(model):
     # 第2处改动，初始化并行环境
     dist.init_parallel_env()
 
     # 第3处改动，增加paddle.DataParallel封装
-    lenet = paddle.DataParallel(lenet)
+    lenet = paddle.DataParallel(model)
     epochs = 2
     adam = paddle.optimizer.Adam(learning_rate=0.001, parameters=lenet.parameters())
     # 用Adam作为优化函数
@@ -340,7 +342,7 @@ def train():
             adam.clear_grad()
 
 # 启动训练
-train()
+train(lenet)
 ```
 
 修改完后保存文件，然后使用跟高层API相同的启动方式即可
