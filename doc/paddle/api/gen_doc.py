@@ -16,6 +16,7 @@ import re
 import subprocess
 import multiprocessing
 import platform
+import extract_api_from_docs
 """
 generate api_info_dict.json to describe all info about the apis.
 """
@@ -25,6 +26,7 @@ cn_suffix = "_cn.rst"
 NOT_DISPLAY_DOC_LIST_FILENAME = "./not_display_doc_list"
 DISPLAY_DOC_LIST_FILENAME = "./display_doc_list"
 ALIAS_MAPPING_LIST_FILENAME = "./alias_api_mapping"
+CALLED_APIS_IN_THE_DOCS = './called_apis_from_docs.json'  # in the guides and tutorials documents
 SAMPLECODE_TEMPDIR = './sample-codes'
 RUN_ON_DEVICE = "cpu"
 EQUIPPED_DEVICES = set(['cpu'])
@@ -43,6 +45,8 @@ GPU_ID = 0
 # }
 api_info_dict = {}
 parsed_mods = {}
+referenced_from_apis_dict = {}
+referenced_from_file_titles = {}
 
 logger = logging.getLogger()
 if logger.handlers:
@@ -397,6 +401,57 @@ def set_real_api_alias_attr():
                     api_info_dict[api_id]["short_name"] = short_name
                     if 'full_name' not in api_info_dict[api_id]:
                         api_info_dict[api_id]["full_name"] = real_api
+
+
+# step fill field: referenced_from
+def set_referenced_from_attr():
+    """
+    set the referenced_from field.
+
+    values are the guides and tutorial documents.
+    """
+    global api_info_dict
+    global referenced_from_apis_dict, referenced_from_file_titles
+    if len(referenced_from_apis_dict) > 0 and len(
+            referenced_from_file_titles) > 0:
+        apis_refers = referenced_from_apis_dict
+        rev_apis_refers = {}
+        for docfn in apis_refers:
+            for api in apis_refers[docfn]:
+                if api in rev_apis_refers:
+                    rev_apis_refers[api].append(docfn)
+                else:
+                    rev_apis_refers[api] = [docfn]
+        for api in rev_apis_refers:
+            try:
+                m = eval(api)
+            except AttributeError:
+                logger.warning("AttributeError: %s", api)
+            else:
+                api_id = id(m)
+                if api_id in api_info_dict:
+                    ref_from = []
+                    for a in rev_apis_refers[api]:
+                        ref_from.append({
+                            'file':
+                            a,
+                            'title':
+                            referenced_from_file_titles[a]
+                            if a in referenced_from_file_titles else ''
+                        })
+                    api_info_dict[api_id]["referenced_from"] = ref_from
+                else:
+                    logger.warning("%s (id:%d) not in the api_info_dict.", api,
+                                   api_id)
+
+
+def collect_referenced_from_infos(docdirs):
+    """
+    collect all the referenced_from infos from ../guides and ../tutorial
+    """
+    global referenced_from_apis_dict, referenced_from_file_titles
+    referenced_from_apis_dict, referenced_from_file_titles = extract_api_from_docs.extract_all_infos(
+        docdirs)
 
 
 def get_shortest_api(api_list):
@@ -935,6 +990,13 @@ if __name__ == "__main__":
     if args.sample_codes_dir:
         SAMPLECODE_TEMPDIR = args.sample_codes_dir
 
+    if 'VERSIONSTR' in os.environ and os.environ['VERSIONSTR'] == '1.8':
+        # 1.8 not used
+        docdirs = ['../beginners_guide', '../advanced_guide', '../user_guides']
+    else:
+        docdirs = ['../guides', '../tutorial']
+    collect_referenced_from_infos(docdirs)
+
     realattrs = []  # only __all__ or __dict__
     for attr in args.travelled_attr.split(','):
         realattr = attr.strip()
@@ -961,6 +1023,7 @@ if __name__ == "__main__":
         set_display_attr_of_apis()
         set_source_code_attrs()
         set_real_api_alias_attr()
+        set_referenced_from_attr()
         filter_api_info_dict()
         json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
         if ('__all__' not in realattrs) or ('__all__' in realattrs and
