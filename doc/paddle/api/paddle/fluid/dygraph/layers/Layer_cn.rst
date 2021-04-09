@@ -645,12 +645,12 @@ buffer是一个不可训练的变量，不会被优化器更新，但在评估�
     para_state_dict = paddle.load("paddle_dy.pdparams")
     emb.set_state_dict(para_state_dict)
 
-.. py:method:: to(place=None, dtype=None, blocking=None)
+.. py:method:: to(device=None, dtype=None, blocking=None)
 
-根据给定的palce、dtype和blocking 转换 Layer中的parameters 和 buffers。
+根据给定的device、dtype和blocking 转换 Layer中的parameters 和 buffers。
 
 参数：
-    - **palce** （str|paddle.CPUPlace|paddle.CUDAPlace()|paddle.CUDAPinnedPlace()|None, 可选) - 希望存储Layer 的设备位置。如果为None， 设备位置和原始的Tensor 的设备位置一致。如果设备位置是string 类型，取值可为 ``cpu``, ``gpu:x`` and ``xpu:x`` ，这里的 ``x`` 是 GPUs 或者 XPUs的编号。默认值：None。
+    - **device** （str|paddle.CPUPlace()|paddle.CUDAPlace()|paddle.CUDAPinnedPlace()|None, 可选) - 希望存储Layer 的设备位置。如果为None， 设备位置和原始的Tensor 的设备位置一致。如果设备位置是string 类型，取值可为 ``cpu``, ``gpu:x`` and ``xpu:x`` ，这里的 ``x`` 是 GPUs 或者 XPUs的编号。默认值：None。
     - **dtype** （str|core.VarDesc.VarType|None, 可选) - 数据的类型。如果为None， 数据类型和原始的Tensor 一致。默认值：None。
     - **blocking** （bool|None, 可选）- 如果为False并且当前Tensor处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。如果为None，blocking 会被设置为True。默认为False。
 
@@ -673,12 +673,12 @@ buffer是一个不可训练的变量，不会被优化器更新，但在评估�
     #       [[-0.32770029,  0.38653070],
     #        [ 0.46030545,  0.08158520]])
     
-    linear.to(place='cpu')
+    linear.to(device='cpu')
     linear.weight
     #Tensor(shape=[2, 2], dtype=float64, place=CPUPlace, stop_gradient=False,
     #       [[-0.32770029,  0.38653070],
     #        [ 0.46030545,  0.08158520]])
-    linear.to(place=paddle.CUDAPinnedPlace(), blocking=False)
+    linear.to(device=paddle.CUDAPinnedPlace(), blocking=False)
     linear.weight
     #Tensor(shape=[2, 2], dtype=float64, place=CUDAPinnedPlace, stop_gradient=False,
     #       [[-0.04989364, -0.56889004],
