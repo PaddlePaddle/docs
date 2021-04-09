@@ -12,12 +12,25 @@ import inspect
 import ast
 import logging
 import importlib
+import re
+import subprocess
+import multiprocessing
+import platform
+import extract_api_from_docs
 """
 generate api_info_dict.json to describe all info about the apis.
 """
 
 en_suffix = "_en.rst"
 cn_suffix = "_cn.rst"
+NOT_DISPLAY_DOC_LIST_FILENAME = "./not_display_doc_list"
+DISPLAY_DOC_LIST_FILENAME = "./display_doc_list"
+ALIAS_MAPPING_LIST_FILENAME = "./alias_api_mapping"
+CALLED_APIS_IN_THE_DOCS = './called_apis_from_docs.json'  # in the guides and tutorials documents
+SAMPLECODE_TEMPDIR = './sample-codes'
+RUN_ON_DEVICE = "cpu"
+EQUIPPED_DEVICES = set(['cpu'])
+GPU_ID = 0
 
 # key = id(api), value = dict of api_info{
 #   "id":id,
@@ -32,6 +45,8 @@ cn_suffix = "_cn.rst"
 # }
 api_info_dict = {}
 parsed_mods = {}
+referenced_from_apis_dict = {}
+referenced_from_file_titles = {}
 
 logger = logging.getLogger()
 if logger.handlers:
@@ -43,8 +58,6 @@ else:
 console.setFormatter(
     logging.Formatter(
         "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"))
-
-# logger.setLevel(logging.DEBUG)
 
 
 # step 1: walkthrough the paddle package to collect all the apis in api_set
@@ -70,7 +83,7 @@ def get_all_api(root_path='paddle', attr="__all__"):
             api_counter += process_module(m, attr)
 
     api_counter += process_module(paddle, attr)
-    logger.info('collected %d apis, %d distinct apis.', api_counter,
+    logger.info('%s: collected %d apis, %d distinct apis.', attr, api_counter,
                 len(api_info_dict))
 
 
@@ -108,9 +121,10 @@ def process_module(m, attr="__all__"):
                         "object": obj,
                         "type": type(obj).__name__,
                     }
-                    if hasattr(obj, '__doc__'):
-                        api_info_dict[fc_id]["docstring"] = getattr(obj,
-                                                                    '__doc__')
+                    docstr = inspect.getdoc(obj)
+                    if docstr:
+                        api_info_dict[fc_id]["docstring"] = inspect.cleandoc(
+                            docstr)
     return api_counter
 
 
@@ -304,13 +318,23 @@ def set_display_attr_of_apis():
     """
     set the display attr
     """
-    display_none_apis = set(
-        [line.strip() for line in open("./not_display_doc_list", "r")])
-    display_yes_apis = set(
-        [line.strip() for line in open("./display_doc_list", "r")])
+    if os.path.exists(NOT_DISPLAY_DOC_LIST_FILENAME):
+        display_none_apis = set([
+            line.strip() for line in open(NOT_DISPLAY_DOC_LIST_FILENAME, "r")
+        ])
+    else:
+        logger.warning("file not exists: %s", NOT_DISPLAY_DOC_LIST_FILENAME)
+        display_none_apis = set()
+    if os.path.exists(DISPLAY_DOC_LIST_FILENAME):
+        display_yes_apis = set(
+            [line.strip() for line in open(DISPLAY_DOC_LIST_FILENAME, "r")])
+    else:
+        logger.warning("file not exists: %s", DISPLAY_DOC_LIST_FILENAME)
+        display_yes_apis = set()
     logger.info(
         'display_none_apis has %d items, display_yes_apis has %d items',
         len(display_none_apis), len(display_yes_apis))
+
     # file the same apis
     for id_api in api_info_dict:
         all_names = api_info_dict[id_api]["all_names"]
@@ -340,7 +364,10 @@ def set_real_api_alias_attr():
     """
     set the full_name,alias attr and so on.
     """
-    for line in open("./alias_api_mapping", "r"):
+    if not os.path.exists(ALIAS_MAPPING_LIST_FILENAME):
+        logger.warning("file not exists: %s", ALIAS_MAPPING_LIST_FILENAME)
+        return
+    for line in open(ALIAS_MAPPING_LIST_FILENAME, "r"):
         linecont = line.strip()
         lineparts = linecont.split()
         if len(lineparts) < 2:
@@ -374,6 +401,57 @@ def set_real_api_alias_attr():
                     api_info_dict[api_id]["short_name"] = short_name
                     if 'full_name' not in api_info_dict[api_id]:
                         api_info_dict[api_id]["full_name"] = real_api
+
+
+# step fill field: referenced_from
+def set_referenced_from_attr():
+    """
+    set the referenced_from field.
+
+    values are the guides and tutorial documents.
+    """
+    global api_info_dict
+    global referenced_from_apis_dict, referenced_from_file_titles
+    if len(referenced_from_apis_dict) > 0 and len(
+            referenced_from_file_titles) > 0:
+        apis_refers = referenced_from_apis_dict
+        rev_apis_refers = {}
+        for docfn in apis_refers:
+            for api in apis_refers[docfn]:
+                if api in rev_apis_refers:
+                    rev_apis_refers[api].append(docfn)
+                else:
+                    rev_apis_refers[api] = [docfn]
+        for api in rev_apis_refers:
+            try:
+                m = eval(api)
+            except AttributeError:
+                logger.warning("AttributeError: %s", api)
+            else:
+                api_id = id(m)
+                if api_id in api_info_dict:
+                    ref_from = []
+                    for a in rev_apis_refers[api]:
+                        ref_from.append({
+                            'file':
+                            a,
+                            'title':
+                            referenced_from_file_titles[a]
+                            if a in referenced_from_file_titles else ''
+                        })
+                    api_info_dict[api_id]["referenced_from"] = ref_from
+                else:
+                    logger.warning("%s (id:%d) not in the api_info_dict.", api,
+                                   api_id)
+
+
+def collect_referenced_from_infos(docdirs):
+    """
+    collect all the referenced_from infos from ../guides and ../tutorial
+    """
+    global referenced_from_apis_dict, referenced_from_file_titles
+    referenced_from_apis_dict, referenced_from_file_titles = extract_api_from_docs.extract_all_infos(
+        docdirs)
 
 
 def get_shortest_api(api_list):
@@ -610,30 +688,356 @@ def filter_api_info_dict():
             del api_info_dict[id_api]["object"]
 
 
+def extract_code_blocks_from_docstr(docstr):
+    """
+    extract code-blocks from the given docstring.
+
+    DON'T include the multiline-string definition in code-blocks.
+
+    Args:
+        docstr - docstring
+    Return:
+        A list of code-blocks, indent removed.
+    """
+    code_blocks = []
+    mo = re.search(r"Examples:", docstr)
+    if mo is None:
+        return code_blocks
+    ds_list = docstr[mo.start():].replace("\t", '    ').split("\n")
+    lastlineindex = len(ds_list) - 1
+    cb_started = False
+    cb_start_pat = re.compile(r"code-block::\s*python")
+    cb_cur = []
+    cb_cur_indent = -1
+    for lineno, linecont in enumerate(ds_list):
+        if re.search(cb_start_pat, linecont):
+            if not cb_started:
+                cb_started = True
+                continue
+            else:
+                # cur block end
+                if len(cb_cur):
+                    code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
+                cb_started = True  # another block started
+                cb_cur_indent = -1
+                cb_cur = []
+        else:
+            # check indent for cur block ends.
+            if cb_started:
+                if lineno == lastlineindex:
+                    mo = re.search(r"\S", linecont)
+                    if mo is not None and cb_cur_indent <= mo.start():
+                        cb_cur.append(linecont)
+                    if len(cb_cur):
+                        code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
+                    break
+                if cb_cur_indent < 0:
+                    mo = re.search(r"\S", linecont)
+                    if mo is None: continue
+                    cb_cur_indent = mo.start()
+                    cb_cur.append(linecont)
+                else:
+                    mo = re.search(r"\S", linecont)
+                    if mo is None: continue
+                    if cb_cur_indent <= mo.start():
+                        cb_cur.append(linecont)
+                    else:
+                        if linecont[mo.start()] == '#':
+                            continue
+                        else:
+                            # block end
+                            if len(cb_cur):
+                                code_blocks.append(
+                                    inspect.cleandoc("\n".join(cb_cur)))
+                            cb_started = False
+                            cb_cur_indent = -1
+                            cb_cur = []
+    return code_blocks
+
+
+def find_last_future_line_end(cbstr):
+    pat = re.compile('__future__.*\n')
+    lastmo = None
+    it = re.finditer(pat, cbstr)
+    while True:
+        try:
+            lastmo = next(it)
+        except StopIteration:
+            break
+    if lastmo:
+        return lastmo.end()
+    else:
+        return None
+
+
+def extract_sample_codes_into_dir():
+    if os.path.exists(SAMPLECODE_TEMPDIR):
+        if not os.path.isdir(SAMPLECODE_TEMPDIR):
+            os.remove(SAMPLECODE_TEMPDIR)
+            os.mkdir(SAMPLECODE_TEMPDIR)
+    else:
+        os.mkdir(SAMPLECODE_TEMPDIR)
+    for id_api in api_info_dict:
+        if 'docstring' in api_info_dict[
+                id_api] and 'full_name' in api_info_dict[id_api]:
+            code_blocks = extract_code_blocks_from_docstr(
+                api_info_dict[id_api]['docstring'])
+            for cb_ind, cb in enumerate(code_blocks):
+                fn = os.path.join(
+                    SAMPLECODE_TEMPDIR, '{}.sample-code-{}.py'.format(
+                        api_info_dict[id_api]['full_name'], cb_ind))
+                requires = get_requires_of_code_block(cb)
+                requires.add(RUN_ON_DEVICE)
+                if not is_required_match(requires, fn):
+                    continue
+                with open(fn, 'w') as f:
+                    header = None
+                    # TODO: xpu, distribted
+                    if 'gpu' in requires:
+                        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = "{}"\n\n'.format(
+                            GPU_ID)
+                    else:
+                        header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = ""\n\n'
+                    last_future_line_end = find_last_future_line_end(cb)
+                    if last_future_line_end:
+                        f.write(cb[:last_future_line_end])
+                        f.write(header)
+                        f.write(cb[last_future_line_end:])
+                    else:
+                        f.write(header)
+                        f.write(cb)
+                    f.write(
+                        '\nprint("{} sample code is executed successfully!")'.
+                        format(fn))
+
+
+def is_required_match(requires, cbtitle=''):
+    """
+    search the required instruction in the code-block, and check it match the current running environment.
+    
+    environment values of equipped: cpu, gpu, xpu, distributed, skip
+    the 'skip' is the special flag to skip the test, so is_required_match will return False directly.
+    """
+    if 'skip' in requires:
+        logger.info('%s: skipped', cbtitle)
+        return False
+
+    if all([k in EQUIPPED_DEVICES for k in requires]):
+        return True
+
+    logger.info('%s: the equipments [%s] not match the required [%s].',
+                cbtitle, ','.join(EQUIPPED_DEVICES), ','.join(requires))
+    return False
+
+
+def get_requires_of_code_block(cbstr):
+    requires = set(['cpu'])
+    pat = re.compile(r'#\s*require[s|d]\s*:\s*(.*)')
+    mo = re.search(pat, cbstr)
+    if mo is None:
+        # treat is as required: cpu
+        return requires
+
+    for r in mo.group(1).split(','):
+        rr = r.strip().lower()
+        if rr:
+            requires.add(rr)
+    return requires
+
+
+def get_all_equippted_devices():
+    ENV_KEY = 'TEST_ENVIRONMENT_EQUIPEMNT'
+    if ENV_KEY in os.environ:
+        for r in os.environ[ENV_KEY].split(','):
+            rr = r.strip().lower()
+            if r:
+                EQUIPPED_DEVICES.add(rr)
+    if 'cpu' not in EQUIPPED_DEVICES:
+        EQUIPPED_DEVICES.add('cpu')
+
+    EQUIPPED_DEVICES.add(RUN_ON_DEVICE)
+
+
+def run_a_sample_code(sc_filename):
+    succ = True
+    cmd = None
+    retstr = None
+    if platform.python_version()[0] == "2":
+        cmd = ["python", sc_filename]
+    elif platform.python_version()[0] == "3":
+        cmd = ["python3", sc_filename]
+    else:
+        retstr = 'Error: fail to parse python version!'
+        logger.warning(retstr)
+        succ = False
+    subprc = subprocess.Popen(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output, error = subprc.communicate()
+    msg = "".join(output.decode(encoding='utf-8'))
+    err = "".join(error.decode(encoding='utf-8'))
+    if subprc.returncode != 0:
+        retstr = """{} return code number {}.
+stderr:
+{}
+stdout:
+{}
+""".format(sc_filename, subprc.returncode, err, msg)
+        succ = False
+    return succ, retstr
+
+
+def run_all_sample_codes(threads=1):
+    po = multiprocessing.Pool(threads)
+    sc_files = os.listdir(SAMPLECODE_TEMPDIR)
+    logger.info('there are %d sample codes to run', len(sc_files))
+    mpresults = po.map_async(
+        run_a_sample_code,
+        [os.path.join(SAMPLECODE_TEMPDIR, fn) for fn in sc_files])
+    po.close()
+    po.join()
+    results = mpresults.get()
+
+    err_files = []
+    for i, fn in enumerate(sc_files):
+        if not results[i][0]:
+            err_files.append(fn)
+            logger.warning(results[i][1])
+    if len(err_files):
+        logger.info('there are %d sample codes run error.\n%s',
+                    len(err_files), "\n".join(err_files))
+        return False
+    else:
+        logger.info('all sample codes run successfully')
+    return True
+
+
 def reset_api_info_dict():
     global api_info_dict, parsed_mods
     api_info_dict = {}
     parsed_mods = {}
 
 
+arguments = [
+    # flags, dest, type, default, help
+    ['--logf', 'logf', str, None, 'file for logging'],
+    [
+        '--attr', 'travelled_attr', str, 'all,dict',
+        'the attribute for travelling, must be subset of [all,dict], such as "all" or "dict" or "all,dict".'
+    ],
+    [
+        '--gen-rst', 'gen_rst', bool, True,
+        'generate English api reST files. If "all" in attr, only for "all".'
+    ],
+    [
+        '--extract-sample-codes-dir', 'sample_codes_dir', str, None,
+        'if setted, the sample-codes will be extracted into the dir. If "all" in attr, only for "all".'
+    ],
+    ['--gpu_id', 'gpu_id', int, 0, 'GPU device id to use [0]'],
+    ['--run-on-device', 'run_on_device', str, 'cpu', 'run on device'],
+    [
+        '--threads', 'threads', int, 1,
+        'number of subprocesseses for running the all sample codes.'
+    ],
+]
+
+
+def parse_args():
+    """
+    Parse input arguments
+    """
+    global arguments
+    parser = argparse.ArgumentParser(
+        description='generate the api_info json and generate the English api_doc reST files.'
+    )
+    parser.add_argument('--debug', dest='debug', action="store_true")
+    parser.add_argument(
+        '--run-sample-codes',
+        dest='run_sample_codes',
+        action="store_true",
+        help='run all the smaple codes')
+    for item in arguments:
+        parser.add_argument(
+            item[0], dest=item[1], help=item[4], type=item[2], default=item[3])
+
+    args = parser.parse_args()
+    return args
+
+
 if __name__ == "__main__":
+    args = parse_args()
+    if args.debug:
+        logger.setLevel(logging.DEBUG)
+    if args.logf:
+        logfHandler = logging.FileHandler(args.logf)
+        logfHandler.setFormatter(
+            logging.Formatter(
+                "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"
+            ))
+        logger.addHandler(logfHandler)
+    if args.run_on_device.lower() == 'gpu':
+        RUN_ON_DEVICE = 'gpu'
+        GPU_ID = args.gpu_id
 
-    # for api manager
-    reset_api_info_dict()
-    get_all_api(attr="__dict__")
-    set_display_attr_of_apis()
-    set_source_code_attrs()
-    set_real_api_alias_attr()
-    filter_api_info_dict()
-    json.dump(api_info_dict, open("api_info_dict.json", "w"), indent=4)
+    get_all_equippted_devices()
+    need_run_sample_codes = False
+    if args.run_sample_codes or (
+            'RUN_SAMPLE_CODES' in os.environ and
+            os.environ['RUN_SAMPLE_CODES'].lower() in ['yes', '1', 'on']):
+        need_run_sample_codes = True
+    if args.threads == 1 and ('RUN_SAMPLE_CODES_THREADS' in os.environ and
+                              int(os.environ['RUN_SAMPLE_CODES_THREADS']) > 1):
+        args.threads = int(os.environ['RUN_SAMPLE_CODES_THREADS'])
+    if args.sample_codes_dir:
+        SAMPLECODE_TEMPDIR = args.sample_codes_dir
 
-    # for api rst files
-    reset_api_info_dict()
-    get_all_api(attr="__all__")
-    set_display_attr_of_apis()
-    set_source_code_attrs()
-    set_real_api_alias_attr()
-    filter_api_info_dict()
-    json.dump(api_info_dict, open("api_info_all.json", "w"), indent=4)
-    gen_en_files()
-    check_cn_en_match()
+    if 'VERSIONSTR' in os.environ and os.environ['VERSIONSTR'] == '1.8':
+        # 1.8 not used
+        docdirs = ['../beginners_guide', '../advanced_guide', '../user_guides']
+    else:
+        docdirs = ['../guides', '../tutorial']
+    collect_referenced_from_infos(docdirs)
+
+    realattrs = []  # only __all__ or __dict__
+    for attr in args.travelled_attr.split(','):
+        realattr = attr.strip()
+        if realattr in ['all', '__all__']:
+            realattr = '__all__'
+        elif realattr in ['dict', '__dict__']:
+            realattr = '__dict__'
+        else:
+            logger.warning("unknown value in attr: %s", attr)
+            continue
+        realattrs.append(realattr)
+    for realattr in realattrs:
+        jsonfn = None
+        if realattr == '__all__':
+            jsonfn = 'api_info_all.json'
+        elif realattr == '__dict__':
+            jsonfn = 'api_info_dict.json'
+        else:
+            continue
+
+        logger.info("travelling attr: %s", realattr)
+        reset_api_info_dict()
+        get_all_api(attr=realattr)
+        set_display_attr_of_apis()
+        set_source_code_attrs()
+        set_real_api_alias_attr()
+        set_referenced_from_attr()
+        filter_api_info_dict()
+        json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
+        if ('__all__' not in realattrs) or ('__all__' in realattrs and
+                                            realattr == '__all__'):
+            if args.gen_rst:
+                gen_en_files()
+                check_cn_en_match()
+            if need_run_sample_codes:
+                extract_sample_codes_into_dir()
+
+    if need_run_sample_codes:
+        for package in ['scipy', 'paddle2onnx']:
+            subprocess.check_call(
+                [sys.executable, "-m", "pip", "install", package])
+        run_all_sample_codes(args.threads)
+
+    logger.info("done")
