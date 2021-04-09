@@ -42,7 +42,7 @@
 
 ## 更多分类
 
-支持更多其他分类模型共计20个，如下图所示：
+支持更多其他分类模型共计18个，如下图所示：
 
 | 模型               | 领域     | 模型readme                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
@@ -52,8 +52,6 @@
 | Transformer | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/blob/release/2.0-rc/examples/machine_translation/transformer/README.md) |  动态图  | 支持 | 不支持 | 支持 |
 | Seq2Seq | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/blob/release/2.0-rc/examples/machine_translation/seq2seq/README.md) |  动态图  | 支持 | 不支持 | 支持 |
 | Bi-LSTM | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/examples/text_classification/rnn/README.md) |  动态图  | 支持 | 不支持 | 支持 |
-| OCR-DB | OCR | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.0/doc/doc_ch/models_list.md) |  动态图  | 支持 | 不支持 | 支持 |
-| CRNN-CTC| OCR | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.0/doc/doc_ch/models_list.md) |  动态图  | 支持 | 不支持 | 支持 |
 | DeepFM | 推荐系统 | [模型链接](https://github.com/PaddlePaddle/PaddleRec/blob/master/models/rank/deepfm/readme.md) |  动态图  | 支持 | 不支持 | 支持 |
 | Wide&Deep | 推荐系统 | [模型链接](https://github.com/PaddlePaddle/PaddleRec/blob/master/models/rank/wide_deep/README.md) |  动态图  | 支持 | 不支持 | 支持 |
 | Word2Vec | 推荐系统 | [模型链接](https://github.com/PaddlePaddle/PaddleRec/blob/master/models/recall/word2vec/README.md) |  动态图  | 支持 | 不支持 | 支持 |

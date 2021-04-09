@@ -102,12 +102,9 @@ export PATH=/opt/conda/bin:${PATH}
 **第二步**：下载Paddle源码并编译，CMAKE编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
 ```bash
-# 下载源码
-git clone https://github.com/PaddlePaddle/Paddle.git
+# 下载源码，建议切换到 develop 分支
+git clone -b develop https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
-
-# 切换分支，建议切换到2.0.2-rocm-post分支
-git checkout 2.0.2-rocm-post
 
 # 创建编译目录
 mkdir build && cd build
