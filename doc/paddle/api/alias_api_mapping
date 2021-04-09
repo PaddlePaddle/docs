@@ -568,3 +568,4 @@ paddle.fluid.dataloader.sampler.Sampler	paddle.io.Sampler
 paddle.fluid.dataloader.sampler.SequenceSampler	paddle.io.SequenceSampler
 paddle.fluid.dataloader.dataset.TensorDataset	paddle.io.TensorDataset
 paddle.fluid.dataloader.sampler.WeightedRandomSampler	paddle.io.WeightedRandomSampler
+paddle.nn.layer.container.LayerDict	paddle.nn.LayerDict
