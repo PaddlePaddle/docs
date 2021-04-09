@@ -656,6 +656,8 @@ buffer是一个不可训练的变量，不会被优化器更新，但在评估�
 
 **代码示例**
 
+.. code-block:: python
+
     import paddle
     
     linear=paddle.nn.Linear(2, 2)
