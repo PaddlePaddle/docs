@@ -107,11 +107,9 @@ def extract_code_blocks_from_md(docstr):
     """
     code_blocks = []
     pat = re.compile(r"```i?python[23]?(.*?)```", re.MULTILINE + re.DOTALL)
-    res = pat.search(docstr)
-    if res:
-        for cb in res.groups():
-            code_blocks.append(inspect.cleandoc(cb))
-    logger.info('extracted %d code blocks.', len(code_blocks))
+    for cbit in pat.finditer(docstr):
+        code_blocks.append(inspect.cleandoc(cbit.group()))
+    # logger.info('extracted %d code blocks.', len(code_blocks))
     return code_blocks
 
 
@@ -179,6 +177,7 @@ def find_all_paddle_api_from_code_block(cbstr):
 def extract_api_from_file(filename):
     api_set = set()
     codeblocks = extract_code_blocks_from_file(filename)
+    logger.info('find %d code-blocks from %s.', len(codeblocks), filename)
     for cb in codeblocks:
         api_set.update(find_all_paddle_api_from_code_block(cb))
     logger.info('find %d apis from %s.', len(api_set), filename)
