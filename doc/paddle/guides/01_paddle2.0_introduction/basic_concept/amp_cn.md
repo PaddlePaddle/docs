@@ -103,10 +103,10 @@ for epoch in range(epochs):
 
         output = model(data)
         loss = mse(output, label)
-        
+
         # 反向传播
         loss.backward()
-        
+
         # 训练模型
         optimizer.step()
         optimizer.clear_grad()
@@ -117,7 +117,7 @@ end_timer_and_print("默认耗时:") # 获取结束时间并打印相关信息
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
            [1.25010288])
-    
+
     默认耗时:
     共计耗时 = 2.943 sec
 
@@ -137,23 +137,23 @@ model = SimpleNet(input_size, output_size)  # 定义模型
 optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义优化器
 
 # Step1：定义 GradScaler，用于缩放loss比例，避免浮点数溢出
-scaler = paddle.amp.GradScaler(init_loss_scaling=1024)  
+scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 
 start_timer() # 获取训练开始时间
 
 for epoch in range(epochs):
     datas = zip(train_data, labels)
     for i, (data, label) in enumerate(datas):
-        
+
         # Step2：创建AMP上下文环境，开启自动混合精度训练
-        with paddle.amp.auto_cast(): 
+        with paddle.amp.auto_cast():
             output = model(data)
             loss = mse(output, label)
-        
+
         # Step3：使用 Step1中定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
-        scaled = scaler.scale(loss) 
+        scaled = scaler.scale(loss)
         scaled.backward()
-        
+
         # 训练模型
         scaler.minimize(optimizer, scaled)
         optimizer.clear_grad()
@@ -164,7 +164,7 @@ end_timer_and_print("使用AMP模式耗时:")
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
            [1.23644269])
-    
+
     使用AMP模式耗时:
     共计耗时 = 1.222 sec
 
@@ -184,23 +184,23 @@ optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.paramete
 accumulate_batchs_num = 10 # 梯度累加中 batch 的数量
 
 # 定义 GradScaler
-scaler = paddle.amp.GradScaler(init_loss_scaling=1024)  
+scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 
 start_timer() # 获取训练开始时间
 
 for epoch in range(epochs):
     datas = zip(train_data, labels)
     for i, (data, label) in enumerate(datas):
-        
+
         # 创建AMP上下文环境，开启自动混合精度训练
-        with paddle.amp.auto_cast(): 
+        with paddle.amp.auto_cast():
             output = model(data)
             loss = mse(output, label)
-        
+
         # 使用 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
-        scaled = scaler.scale(loss) 
+        scaled = scaler.scale(loss)
         scaled.backward()
-        
+
         # 当累计的 batch 为 accumulate_batchs_num 时，更新模型参数
         if (i + 1) % accumulate_batchs_num == 0:
 
@@ -214,10 +214,9 @@ end_timer_and_print("使用AMP模式耗时:")
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
            [1.25127280])
-    
+
     使用AMP模式耗时:
     共计耗时 = 1.006 sec
-
 
 ## 五、总结
 从上面的示例中可以看出，使用自动混合精度训练，共计耗时约 1.222s，而普通的训练方式则耗时 2.943s，训练速度提升约为 2.4倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
