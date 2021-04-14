@@ -1,5 +1,56 @@
 # Release Note
 
+## 2.0.2 Release Note
+
+## 重要更新
+本版本主要是对2.0.1中一些功能和性能问题的修复，并对部分功能点做了增强，重点如下：
+
+- `paddle.nn.functional.cross_entropy` 新增了 `use_softmax` 参数，控制是否在计算交叉熵前先进行softmax运算；并给`paddle.nn.functional.softmax_with_cross_entropy` 添加了 deprecated 标志，该API将在未来的版本中废弃。
+- 修复了分布式训练中参数服务器模式下的多个问题。
+- 升级Paddle的oneDNN版本至2.2版本，提升了多个模型的预测性能。
+
+## 训练框架
+
+### 功能优化
+
+#### API
+- 新增 `paddle.io.random_split` 与 `paddle.io.Subset`。([#32090](https://github.com/PaddlePaddle/Paddle/pull/32090))
+
+### 问题修复
+
+#### API
+- 修复 `paddle.nn.MaxPool3D`和 `paddle.nn.AvgPool3D` 的`stride` 和 `padding` 没有默认值的问题。([#32014](https://github.com/PaddlePaddle/Paddle/pull/32014))
+- 修复支持cudnn的 RNN 创建参数时报告重复创建的问题。([#31916](https://github.com/PaddlePaddle/Paddle/pull/31916))
+- 修复  `paddle.nn.functional.cross_entropy` 的 `soft_label` 为 True，并指定 `weight` 参数时报错的问题；新增参数 `use_softmax`，用于控制是否在计算交叉熵前先进行softmax运算；同时，给 `paddle.nn.functional.softmax_with_cross_entropy` 添加 deprecated 说明，该API将会在未来的版本中废弃。([#31953](https://github.com/PaddlePaddle/Paddle/pull/31953)、[#32105](https://github.com/PaddlePaddle/Paddle/pull/32105)、[#32035](https://github.com/PaddlePaddle/Paddle/pull/32035))
+- 修复`paddle.nn.ClipByNorm`在梯度全部为零时产生NaN数值的问题，该问题会导致使用混合精度训练时不收敛。([#32038](https://github.com/PaddlePaddle/Paddle/pull/32038))
+- 修复 `paddle.stack` 内存越界访问的问题。([#32005](https://github.com/PaddlePaddle/Paddle/pull/32005))
+
+#### 分布式
+
+- 修复参数服务器模式下计算图切分支持GradClip策略的问题。([#31945](https://github.com/PaddlePaddle/Paddle/pull/31945))
+- 修复参数服务器模式下截断高斯分布初始化的问题。([#31945](https://github.com/PaddlePaddle/Paddle/pull/31945))
+- 修复参数服务器模式下Profiler多线程信息打印不准确的问题。([#31945](https://github.com/PaddlePaddle/Paddle/pull/31945))
+- 修复在Python3环境下使用Dataset读取数据时，使用zip输出数据时的兼容性问题。([#31945](https://github.com/PaddlePaddle/Paddle/pull/31945))
+- 清理多余日志信息， 优化`exe.train_from_dataset`输出格式。([#32009](https://github.com/PaddlePaddle/Paddle/pull/32009))
+
+## 推理部署
+
+### Paddle Inference
+
+#### 功能升级
+- Paddle-TRT适配由Paddle 2.0 训练保存的ERNIE/BERT模型。([#31959](https://github.com/PaddlePaddle/Paddle/pull/31959))
+
+#### 性能优化
+- 升级Paddle的oneDNN版本到oneDNN 2.2,多个模型预测性能有提升。([#31270](https://github.com/PaddlePaddle/Paddle/pull/31270))
+- 添加hard_swish oneDNN算子支持，增加 conv + hard_swish 算子融合, 使得ocr_det模型性能在SkyLake上提升18%。([#31870](https://github.com/PaddlePaddle/Paddle/pull/31870))
+
+#### 问题修复
+- 修复rnn模型动态图转静态图导出保存后，运行时崩溃问题。([#31846](https://github.com/PaddlePaddle/Paddle/pull/31846))
+- 修复了开启oneDNN预测连续多个图像时报错的问题。([#31837](https://github.com/PaddlePaddle/Paddle/pull/31837))
+- 修复了部署在CPU上的部分oneDNN int8 模型与原量化模型存在精度差的问题。([#31810](https://github.com/PaddlePaddle/Paddle/pull/31810))
+- 去除了SkipLayerNorm融合的多余限制条件。 ([#32082](https://github.com/PaddlePaddle/Paddle/pull/32082)、[#32119](https://github.com/PaddlePaddle/Paddle/pull/32119))
+
+
 ## 2.0.1 Release Note
 
 ## 重要更新
