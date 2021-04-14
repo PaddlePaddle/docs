@@ -242,7 +242,7 @@ paddle.tensor.random.rand	paddle.rand,paddle.tensor.rand
 paddle.tensor.random.bernoulli	paddle.bernoulli,paddle.tensor.bernoulli
 paddle.tensor.random.multinomial	paddle.multinomial,paddle.tensor.multinomial
 paddle.tensor.random.normal	paddle.normal,paddle.tensor.normal
-paddle.tensor.random.standard_normal	paddle.tensor.standard_normal
+paddle.tensor.random.standard_normal	paddle.standard_normal
 paddle.fluid.layers.square_error_cost	paddle.nn.functional.square_error_cost,paddle.nn.functional.loss.square_error_cost
 paddle.nn.layer.pooling.MaxPool2D	paddle.nn.MaxPool2D,paddle.nn.layer.MaxPool2D
 paddle.fluid.layers.multiplex	paddle.multiplex,paddle.tensor.multiplex,paddle.tensor.math.multiplex

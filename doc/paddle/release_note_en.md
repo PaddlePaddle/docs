@@ -1,5 +1,49 @@
 # Release Note
 
+## 2.0.2 Release Note
+
+## Important Updates
+This version fixed some function and performance issues of PaddlePaddle 2.0.1, and optimized some function. The important updates are as following:
+
+- Add the `use_softmax` parameter to `paddle.nn.functional.cross_entropy`, which controls whether to perform softmax operation before calculating the cross entropy; add the deprecated mark to `paddle.nn.functional.softmax_with_cross_entropy`, for this API will be deprecated in the future version.
+- Fix multiple issues of distributed training in parameter server mode。
+- Upgrade Paddle's oneDNN version to 2.2, which improves the inference performance of multiple models.
+
+## Training Framework
+
+### Function Optimization
+
+#### API
+- Add `paddle.io.random_split` and `paddle.io.Subset`. ([#32090](https://github.com/PaddlePaddle/Paddle/pull/32090))
+
+### Bug Fixes
+
+#### API
+- Fix the issue that the `stride` and `padding` of `paddle.nn.MaxPool3D` and `paddle.nn.AvgPool3D` do not have default values. ([#32014](https://github.com/PaddlePaddle/Paddle/pull/32014))
+- Fix the issue that when RNN supporting cudnn creates parameters, repeated creations are reported. ([#31916](https://github.com/PaddlePaddle/Paddle/pull/31916))
+- Fix the issue that when the `soft_label` of `paddle.nn.functional.cross_entropy` is True, and the `weight` parameter is specified, an error will be reported; add the `use_softmax` parameter to `paddle.nn.functional.cross_entropy`, which controls whether to perform softmax operation before calculating the cross entropy; add the deprecated mark to `paddle.nn.functional.softmax_with_cross_entropy`, for this API will be deprecated in the future version. ([#31953](https://github.com/PaddlePaddle/Paddle/pull/31953), [#32105](https://github.com/PaddlePaddle/Paddle/pull/32105), [#32035]( https://github.com/PaddlePaddle/Paddle/pull/32035))
+- Fix the issue of `paddle.nn.ClipByNorm` generating NaN values as the gradients are all zero, which will lead to non-convergence when using mixed precision training. ([#32038](https://github.com/PaddlePaddle/Paddle/pull/32038))
+- Fix the issue of accessing array out of bounds in `paddle.stack`. ([#32005](https://github.com/PaddlePaddle/Paddle/pull/32005))
+
+#### Distributed Training
+
+- Fix the issue that in parameter server mode the calculation graph segmentation supports GradClip strategy.([#31945](https://github.com/PaddlePaddle/Paddle/pull/31945))
+- Fix the initialization of truncated gaussian distribution in parameter server mode.([#31945](https://github.com/PaddlePaddle/Paddle/pull/31945))
+- Fix the issue of incorrectly printing the Profiler's multi-threaded information in parameter server mode.([#31945](https://github.com/PaddlePaddle/Paddle/pull/31945))
+- Fix the Python3 incompatibility issue when data are read by Dataset and output by zip.([#31945](https://github.com/PaddlePaddle/Paddle/pull/31945))
+- Clean up redundant log information and optimize the output format of `exe.train_from_dataset`.([#32009](https://github.com/PaddlePaddle/Paddle/pull/32009))
+
+## Inference Deployment
+
+### Paddle Inference
+
+#### Function Upgrades
+- Paddle-TRT adapts to the ERNIE/BERT model trained and saved by PaddlePaddle 2.0.([#31959](https://github.com/PaddlePaddle/Paddle/pull/31959))
+
+#### Performance Optimization
+- Upgrade onednn to version 2.2, which has improved many models inference performance. ([#31270](https://github.com/PaddlePaddle/Paddle/pull/31270))
+- Add hard_swish oneDNN support and conv + hard_swish fusion, which has improved ocr_det model inference performance by 18% on SkyLake. ([#31870](https://github.com/PaddlePaddle/Paddle/pull/31870))
+
 ## 2.0.1 Release Note
 
 ## Important Updates
