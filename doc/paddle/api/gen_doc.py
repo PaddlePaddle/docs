@@ -83,8 +83,45 @@ def get_all_api(root_path='paddle', attr="__all__"):
             api_counter += process_module(m, attr)
 
     api_counter += process_module(paddle, attr)
+
+    if attr == '__all__' and insert_api_into_dict('paddle.Tensor'):
+        api_counter += 1
     logger.info('%s: collected %d apis, %d distinct apis.', attr, api_counter,
                 len(api_info_dict))
+
+
+def insert_api_into_dict(full_name):
+    """
+    insert add api into the api_info_dict
+
+    Return:
+        success or failed
+    """
+    try:
+        obj = eval(full_name)
+        fc_id = id(obj)
+    except AttributeError:
+        logger.warning("AttributeError occurred when `id(eval(%s))`",
+                       full_name)
+        return False
+    except:
+        logger.warning("Exception occurred when `id(eval(%s))`", full_name)
+        return False
+    else:
+        logger.debug("adding %s to api_info_dict.", full_name)
+        if fc_id in api_info_dict:
+            api_info_dict[fc_id]["all_names"].add(full_name)
+        else:
+            api_info_dict[fc_id] = {
+                "all_names": set([full_name]),
+                "id": fc_id,
+                "object": obj,
+                "type": type(obj).__name__,
+            }
+            docstr = inspect.getdoc(obj)
+            if docstr:
+                api_info_dict[fc_id]["docstring"] = inspect.cleandoc(docstr)
+        return True
 
 
 # step 1 fill field : `id` & `all_names`, type, docstring
@@ -99,32 +136,8 @@ def process_module(m, attr="__all__"):
 
             # api's fullname
             full_name = m.__name__ + "." + api
-            try:
-                obj = eval(full_name)
-                fc_id = id(obj)
-            except AttributeError:
-                logger.warning("AttributeError occurred when `id(eval(%s))`",
-                               full_name)
-                pass
-            except:
-                logger.warning("Exception occurred when `id(eval(%s))`",
-                               full_name)
-            else:
+            if insert_api_into_dict(full_name):
                 api_counter += 1
-                logger.debug("adding %s to api_info_dict.", full_name)
-                if fc_id in api_info_dict:
-                    api_info_dict[fc_id]["all_names"].add(full_name)
-                else:
-                    api_info_dict[fc_id] = {
-                        "all_names": set([full_name]),
-                        "id": fc_id,
-                        "object": obj,
-                        "type": type(obj).__name__,
-                    }
-                    docstr = inspect.getdoc(obj)
-                    if docstr:
-                        api_info_dict[fc_id]["docstring"] = inspect.cleandoc(
-                            docstr)
     return api_counter
 
 
