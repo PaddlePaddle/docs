@@ -346,73 +346,51 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.0.0 </code> will i
         <td> - </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.0.0-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-2.0.0.post100-cp36-cp36m-linux_x86_64.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.0.2-gpu-cuda10-cudnn7-mkl/paddlepaddle_gpu-2.0.2.post100-cp36-cp36m-linux_x86_64.whl">
         paddlepaddle_gpu-2.0.0.post100-cp36-cp36m-linux_x86_64.whl</a></td>
         <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> cuda10.1-cudnn7.6-trt6.0.1.5 </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.0.0-gpu-cuda10.1-cudnn7-mkl/paddlepaddle_gpu-2.0.0.post101-cp27-cp27mu-linux_x86_64.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.0.2-gpu-cuda10.1-cudnn7-mkl/paddlepaddle_gpu-2.0.2.post101-cp27-cp27mu-linux_x86_64.whl">
         paddlepaddle_gpu-2.0.0.post101-cp27-cp27mu-linux_x86_64.whl</a></td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.0.0-gpu-cuda10.1-cudnn7-mkl/paddlepaddle_gpu-2.0.0.post101-cp36-cp36m-linux_x86_64.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.0.2-gpu-cuda10.1-cudnn7-mkl/paddlepaddle_gpu-2.0.2.post101-cp36-cp36m-linux_x86_64.whl">
         paddlepaddle_gpu-2.0.0.post101-cp36-cp36m-linux_x86_64.whl</a></td>
         <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> cuda10.2-cudnn8.0-trt7.1.3 </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.0.0-gpu-cuda10.2-cudnn8-mkl/paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_x86_64.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.0.2-gpu-cuda10.2-cudnn8-mkl/paddlepaddle_gpu-2.0.2-cp27-cp27mu-linux_x86_64.whl">
         paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_x86_64.whl</a></td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.0.0-gpu-cuda10.2-cudnn8-mkl/paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_x86_64.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.0.2-gpu-cuda10.2-cudnn8-mkl/paddlepaddle_gpu-2.0.2-cp36-cp36m-linux_x86_64.whl">
         paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_x86_64.whl</a></td>
         <td> - </td>
         <td> - </td>
     </tr>
     <tr>
-        <td> 2.0.0-nv-jetson-jetpack4.3-all </td>
-        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-all/paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl">
+        <td> nv-jetson-jetpack4.3-all </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.2-nv-jetson-jetpack4.3-all/paddlepaddle_gpu-2.0.2-cp27-cp27mu-linux_aarch64.whl">
         paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl</a></td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-all/paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl">
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.2-nv-jetson-jetpack4.3-all/paddlepaddle_gpu-2.0.2-cp36-cp36m-linux_aarch64.whl">
         paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl</a></td>
         <td> - </td>
         <td> - </td>
     </tr>
     <tr>
-        <td> 2.0.0-nv-jetson-jetpack4.3-nano </td>
-        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-nano/paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl">
+        <td> nv-jetson-jetpack4.4/4.5-all </td>
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.2-nv-jetson-jetpack4.4-all/paddlepaddle_gpu-2.0.2-cp27-cp27mu-linux_aarch64.whl">
         paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl</a></td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-nano/paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl">
-        paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl</a></td>
-        <td> - </td>
-        <td> - </td>
-    </tr>
-    <tr>
-        <td> 2.0.0-nv-jetson-jetpack4.3-tx2 </td>
-        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-tx2/paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl">
-        paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl</a></td>
-        <td> - </td>
-        <td> - </td>
-        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-tx2/paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl">
-        paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl</a></td>
-        <td> - </td>
-        <td> - </td>
-    </tr>
-    <tr>
-        <td> 2.0.0-nv-jetson-jetpack4.3-xavier </td>
-        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-xavier/paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl">
-        paddlepaddle_gpu-2.0.0-cp27-cp27mu-linux_aarch64.whl</a></td>
-        <td> - </td>
-        <td> - </td>
-        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.0-nv-jetson-jetpack4.3-xavier/paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl">
+        <td> <a href="https://paddle-inference-lib.bj.bcebos.com/2.0.2-nv-jetson-jetpack4.4-all/paddlepaddle_gpu-2.0.2-cp36-cp36m-linux_aarch64.whl">
         paddlepaddle_gpu-2.0.0-cp36-cp36m-linux_aarch64.whl</a></td>
         <td> - </td>
         <td> - </td>
