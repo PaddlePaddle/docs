@@ -90,6 +90,7 @@ def get_all_api(root_path='paddle', attr="__all__"):
 # step 1 fill field : `id` & `all_names`, type, docstring
 def process_module(m, attr="__all__"):
     api_counter = 0
+    pat = re.compile(r'paddle\.fluid\.core_[\w\d]+\.(.*)$')
     if hasattr(m, attr):
         # may have duplication of api
         for api in set(getattr(m, attr)):
@@ -125,6 +126,11 @@ def process_module(m, attr="__all__"):
                     if docstr:
                         api_info_dict[fc_id]["docstring"] = inspect.cleandoc(
                             docstr)
+                    # paddle.fluid.core_avx.* -> paddle.fluid.core.*
+                    mo = pat.match(full_name)
+                    if mo:
+                        api_info_dict[fc_id]["all_names"].add(
+                            'paddle.fluid.core.' + mo.group(1))
     return api_counter
 
 
