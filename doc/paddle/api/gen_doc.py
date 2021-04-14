@@ -375,6 +375,9 @@ def set_real_api_alias_attr():
             continue
         try:
             real_api = lineparts[0].strip()
+            docpath_from_real_api = real_api.replace('.', '/')
+            if real_api == 'paddle.tensor.creation.Tensor':
+                real_api = 'paddle.Tensor'
             m = eval(real_api)
         except AttributeError:
             logger.warning("AttributeError: %s", real_api)
@@ -382,7 +385,10 @@ def set_real_api_alias_attr():
             api_id = id(m)
             if api_id in api_info_dict:
                 api_info_dict[api_id]["alias_name"] = lineparts[1]
-                docpath_from_real_api = real_api.replace('.', '/')
+                if real_api == 'paddle.Tensor' and "all_names" in api_info_dict[
+                        api_id]:
+                    api_info_dict[api_id]["all_names"].add(
+                        'paddle.tensor.creation.Tensor')
                 if "doc_filename" not in api_info_dict[api_id]:
                     api_info_dict[api_id][
                         "doc_filename"] = docpath_from_real_api
