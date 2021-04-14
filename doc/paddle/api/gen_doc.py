@@ -84,7 +84,8 @@ def get_all_api(root_path='paddle', attr="__all__"):
 
     api_counter += process_module(paddle, attr)
 
-    if attr == '__all__' and insert_api_into_dict('paddle.Tensor'):
+    if attr == '__all__' and insert_api_into_dict(
+            'paddle.fluid.core_avx.VarBase'):
         api_counter += 1
     logger.info('%s: collected %d apis, %d distinct apis.', attr, api_counter,
                 len(api_info_dict))
