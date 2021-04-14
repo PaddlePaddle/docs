@@ -229,7 +229,8 @@ def extract_md_title(filename):
         html = markdown.markdown(fileobj.read())
         mo = re.search(r'<h1>(.*?)</h1>', html)
         if mo:
-            return mo.group(1)
+            mos = re.search(r'<strong>(.*?)</strong>', mo.group(1))
+            return mos.group(1) if mos else mo.group(1)
     return None
 
 
