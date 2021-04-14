@@ -131,7 +131,7 @@
     <tr>
         <td> WITH_ROCM </td>
         <td> 是否支持ROCM </td>
-        <td> ON </td>
+        <td> OFF </td>
     </tr>
     <tr>
         <td> WITH_AVX </td>

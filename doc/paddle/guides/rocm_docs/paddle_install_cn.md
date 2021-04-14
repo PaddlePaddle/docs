@@ -110,8 +110,7 @@ cd Paddle
 mkdir build && cd build
 
 # 执行cmake
-export PADDLE_VERSION=2.0.2-rocm-post
-cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_ROCM=ON -DWITH_RCCL=ON -DWITH_TESTING=ON -DWITH_DISTRIBUTE=ON \
+cmake .. -DPY_VERSION=3.7 -DWITH_ROCM=ON -DWITH_TESTING=ON -DWITH_DISTRIBUTE=ON \
          -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 # 使用以下命令来编译
@@ -124,7 +123,7 @@ make -j$(nproc)
 
 ```bash
 # 安装命令
-python -m pip install -U paddlepaddle_rocm-2.0.2_rocm_post-cp37-cp37m-linux_x86_64.whl
+python -m pip install -U paddlepaddle_rocm-0.0.0-cp37-cp37m-linux_x86_64.whl
 
 # 验证命令
 python -c "import paddle; paddle.utils.run_check()"
