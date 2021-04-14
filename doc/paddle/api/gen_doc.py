@@ -535,8 +535,12 @@ def gen_en_files(api_label_file="api_label"):
                     short_name = api_info['short_name']
                     logger.warning("full_name not in api_info: %s.%s",
                                    mod_name, short_name)
-                gen.module_name = mod_name
-                gen.api = short_name
+                if mod_name == 'paddle.fluid.core_avx' and short_name == 'VarBase':
+                    gen.module_name = 'paddle'
+                    gen.api = 'Tensor'
+                else:
+                    gen.module_name = mod_name
+                    gen.api = short_name
                 gen.print_header_reminder()
                 gen.print_item()
                 api_label.write("{1}\t.. _api_{0}_{1}:\n".format("_".join(
