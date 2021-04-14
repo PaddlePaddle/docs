@@ -17,7 +17,7 @@
 - FP16可以充分利用英伟达Volta及Turing架构GPU提供的Tensor Cores技术。在相同的GPU硬件上，Tensor Cores的FP16计算吞吐量是FP32的8倍。
 
 ## 三、使用飞桨框架实现自动混合精度
-使用飞桨框架提供的API，``paddle.amp.auto_cast`` 和 ``paddle.amp.GradScaler`` 能够实现自动混合精度训练（Automatic Mixed Precision，AMP），即在相关OP的计算中，自动选择FP16或FP32计算。开启AMP模式后，使用FP16与FP32进行计算的OP列表可见该[文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html)。下面来看一个具体的例子，来了解混合精度训练。
+使用飞桨框架提供的API，``paddle.amp.auto_cast`` 和 ``paddle.amp.GradScaler`` 能够实现自动混合精度训练（Automatic Mixed Precision，AMP），即在相关OP的计算中，自动选择FP16或FP32计算。开启AMP模式后，使用FP16与FP32进行计算的OP列表可见该[文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html)。下面来看一个具体的例子，来了解如果使用飞桨框架实现混合精度训练。
 
 ### 3.1 辅助函数
 首先定义辅助函数，用来计算训练时间。
@@ -84,7 +84,7 @@ nums_batch = 50
 train_data = [paddle.randn((batch_size, input_size)) for _ in range(nums_batch)]
 labels = [paddle.randn((batch_size, output_size)) for _ in range(nums_batch)]
 
-loss_fc = nn.MSELoss()
+mse = paddle.nn.MSELoss()
 ```
 
 ### 3.3 使用默认的训练方式进行训练
@@ -98,10 +98,11 @@ optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.paramete
 start_timer() # 获取训练开始时间
 
 for epoch in range(epochs):
-    for data, label in zip(train_data, labels):
+    datas = zip(train_data, labels)
+    for i, (data, label) in enumerate(datas):
 
         output = model(data)
-        loss = loss_fc(output, label)
+        loss = mse(output, label)
 
         # 反向传播
         loss.backward()
@@ -110,23 +111,22 @@ for epoch in range(epochs):
         optimizer.step()
         optimizer.clear_grad()
 
-
 print(loss)
 end_timer_and_print("默认耗时:") # 获取结束时间并打印相关信息
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.25205684])
+           [1.25010288])
 
     默认耗时:
-    共计耗时 = 2.892 sec
+    共计耗时 = 2.943 sec
 
 
 ### 3.4 使用AMP训练模型
 
 在飞桨框架中，使用自动混合精度训练，需要进行三个步骤：
 
-- Step1： 定义 ``GradScaler`` ，用于缩放 ``loss`` 比例，避免浮点数溢出
+- Step1： 定义 ``GradScaler`` ，用于缩放 ``loss`` 比例，避免浮点数下溢
 - Step2： 使用 ``auto_cast`` 用于创建AMP上下文环境，该上下文中自动会确定每个OP的输入数据类型（FP16或FP32）
 - Step3： 使用 Step1中定义的 ``GradScaler`` 完成 ``loss`` 的缩放，用缩放后的 ``loss`` 进行反向传播，完成训练
 
@@ -142,12 +142,13 @@ scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 start_timer() # 获取训练开始时间
 
 for epoch in range(epochs):
-    for data, label in zip(train_data, labels):
+    datas = zip(train_data, labels)
+    for i, (data, label) in enumerate(datas):
 
         # Step2：创建AMP上下文环境，开启自动混合精度训练
         with paddle.amp.auto_cast():
             output = model(data)
-            loss = loss_fc(output, label)
+            loss = mse(output, label)
 
         # Step3：使用 Step1中定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
         scaled = scaler.scale(loss)
@@ -162,11 +163,60 @@ end_timer_and_print("使用AMP模式耗时:")
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.24290705])
+           [1.23644269])
 
     使用AMP模式耗时:
-    共计耗时 = 1.251 sec
+    共计耗时 = 1.222 sec
 
 
-## 四、总结
-从上面的示例中可以看出，使用自动混合精度训练，共计耗时约 1.251s，而普通的训练方式则耗时 2.892s，训练速度提升约为 2.05倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
+## 四、进阶用法
+### 4.1 使用梯度累加
+梯度累加是指在模型训练过程中，训练一个batch的数据得到梯度后，不立即用该梯度更新模型参数，而是继续下一个batch数据的训练，得到梯度后继续循环，多次循环后梯度不断累加，直至达到一定次数后，用累加的梯度更新参数，这样可以起到变相扩大 batch_size 的作用。
+
+在自动混合精度训练中，也支持梯度累加，使用方式如下：
+
+
+```python
+model = SimpleNet(input_size, output_size)  # 定义模型
+
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义优化器
+
+accumulate_batchs_num = 10 # 梯度累加中 batch 的数量
+
+# 定义 GradScaler
+scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
+
+start_timer() # 获取训练开始时间
+
+for epoch in range(epochs):
+    datas = zip(train_data, labels)
+    for i, (data, label) in enumerate(datas):
+
+        # 创建AMP上下文环境，开启自动混合精度训练
+        with paddle.amp.auto_cast():
+            output = model(data)
+            loss = mse(output, label)
+
+        # 使用 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
+        scaled = scaler.scale(loss)
+        scaled.backward()
+
+        # 当累计的 batch 为 accumulate_batchs_num 时，更新模型参数
+        if (i + 1) % accumulate_batchs_num == 0:
+
+            # 训练模型
+            scaler.minimize(optimizer, scaled)
+            optimizer.clear_grad()
+
+print(loss)
+end_timer_and_print("使用AMP模式耗时:")
+```
+
+    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+           [1.25127280])
+
+    使用AMP模式耗时:
+    共计耗时 = 1.006 sec
+
+## 五、总结
+从上面的示例中可以看出，使用自动混合精度训练，共计耗时约 1.222s，而普通的训练方式则耗时 2.943s，训练速度提升约为 2.4倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
