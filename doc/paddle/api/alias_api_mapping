@@ -64,7 +64,7 @@ paddle.nn.functional.common.interpolate	paddle.nn.functional.interpolate
 paddle.fluid.layers.cos	paddle.cos,paddle.tensor.cos,paddle.tensor.math.cos
 paddle.fluid.layers.cosh	paddle.cosh,paddle.tensor.cosh,paddle.tensor.math.cosh
 paddle.nn.functional.activation.tanhshrink	paddle.nn.functional.tanhshrink
-paddle.fluid.dygraph.base.grad	paddle.grad,paddle.framework.grad
+paddle.fluid.dygraph.base.grad	paddle.autograd.grad,paddle.framework.grad
 paddle.tensor.linalg.bmm	paddle.bmm,paddle.tensor.bmm
 paddle.nn.layer.activation.ELU	paddle.nn.ELU
 paddle.nn.layer.activation.GELU	paddle.nn.GELU
