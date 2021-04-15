@@ -384,7 +384,9 @@ def set_real_api_alias_attr():
     if not os.path.exists(ALIAS_MAPPING_LIST_FILENAME):
         logger.warning("file not exists: %s", ALIAS_MAPPING_LIST_FILENAME)
         return
+    lineno = 0
     for line in open(ALIAS_MAPPING_LIST_FILENAME, "r"):
+        lineno += 1
         linecont = line.strip()
         lineparts = linecont.split()
         if len(lineparts) < 2:
@@ -397,7 +399,7 @@ def set_real_api_alias_attr():
         if real_api.endswith('Overview'):
             api_info_dict[real_api] = {
                 "all_names": set([real_api]),
-                "id": real_api,
+                "id": lineno,
                 "full_name": real_api,
                 "object": None,
                 "type": 'Overview',
