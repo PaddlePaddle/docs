@@ -291,6 +291,9 @@ def parse_module_file(mod):
                             api_info_dict[obj_id]["full_name"] = obj_full_name
                             api_info_dict[obj_id]["short_name"] = short_name
                             api_info_dict[obj_id]["module_name"] = mod_name
+                            api_info_dict[obj_id][
+                                "doc_filename"] = obj_full_name.replace('.',
+                                                                        '/')
                         else:
                             logger.debug("%s omitted", obj_full_name)
 
@@ -381,46 +384,61 @@ def set_real_api_alias_attr():
     if not os.path.exists(ALIAS_MAPPING_LIST_FILENAME):
         logger.warning("file not exists: %s", ALIAS_MAPPING_LIST_FILENAME)
         return
+    lineno = 0
     for line in open(ALIAS_MAPPING_LIST_FILENAME, "r"):
+        lineno += 1
         linecont = line.strip()
         lineparts = linecont.split()
         if len(lineparts) < 2:
             logger.warning('line "{}" splited to {}'.format(line, lineparts))
             continue
-        try:
-            real_api = lineparts[0].strip()
-            docpath_from_real_api = real_api.replace('.', '/')
-            if real_api == 'paddle.tensor.creation.Tensor':
-                real_api = 'paddle.Tensor'
-            m = eval(real_api)
-        except AttributeError:
-            logger.warning("AttributeError: %s", real_api)
+        real_api = lineparts[0].strip()
+        docpath_from_real_api = real_api.replace('.', '/')
+        if real_api == 'paddle.tensor.creation.Tensor':
+            real_api = 'paddle.Tensor'
+        if real_api.endswith('Overview'):
+            api_info_dict[real_api] = {
+                "all_names": set([real_api]),
+                "id": lineno,
+                "full_name": real_api,
+                "object": None,
+                "type": 'Overview',
+                "alias_name": lineparts[1],
+                "doc_filename": docpath_from_real_api
+            }
         else:
-            api_id = id(m)
-            if api_id in api_info_dict:
-                api_info_dict[api_id]["alias_name"] = lineparts[1]
-                if real_api == 'paddle.Tensor' and "all_names" in api_info_dict[
-                        api_id]:
-                    api_info_dict[api_id]["all_names"].add(
-                        'paddle.tensor.creation.Tensor')
-                if "doc_filename" not in api_info_dict[api_id]:
-                    api_info_dict[api_id][
-                        "doc_filename"] = docpath_from_real_api
-                else:
-                    if api_info_dict[api_id][
-                            "doc_filename"] != docpath_from_real_api:
-                        logger.warning("doc_filename changes from %s to %s",
-                                       api_info_dict[api_id]["doc_filename"],
-                                       docpath_from_real_api)
+            try:
+                m = eval(real_api)
+            except AttributeError:
+                logger.warning("AttributeError: %s", real_api)
+            else:
+                api_id = id(m)
+                if api_id in api_info_dict:
+                    api_info_dict[api_id]["alias_name"] = lineparts[1]
+                    if real_api == 'paddle.Tensor' and "all_names" in api_info_dict[
+                            api_id]:
+                        api_info_dict[api_id]["all_names"].add(
+                            'paddle.tensor.creation.Tensor')
+                    if "doc_filename" not in api_info_dict[api_id]:
                         api_info_dict[api_id][
                             "doc_filename"] = docpath_from_real_api
-                if "module_name" not in api_info_dict[
-                        api_id] or "short_name" not in api_info_dict[api_id]:
-                    mod_name, short_name = split_name(real_api)
-                    api_info_dict[api_id]["module_name"] = mod_name
-                    api_info_dict[api_id]["short_name"] = short_name
-                    if 'full_name' not in api_info_dict[api_id]:
-                        api_info_dict[api_id]["full_name"] = real_api
+                    else:
+                        if api_info_dict[api_id][
+                                "doc_filename"] != docpath_from_real_api:
+                            logger.warning(
+                                "doc_filename changes from %s to %s",
+                                api_info_dict[api_id]["doc_filename"],
+                                docpath_from_real_api)
+                            api_info_dict[api_id][
+                                "doc_filename"] = docpath_from_real_api
+                    if "module_name" not in api_info_dict[
+                            api_id] or "short_name" not in api_info_dict[
+                                api_id]:
+                        mod_name, short_name = split_name(real_api)
+                        api_info_dict[api_id]["module_name"] = mod_name
+                        api_info_dict[api_id]["short_name"] = short_name
+                        if 'full_name' not in api_info_dict[api_id]:
+                            api_info_dict[api_id]["full_name"] = real_api
 
 
 # step fill field: referenced_from
@@ -510,6 +528,9 @@ def gen_en_files(api_label_file="api_label"):
     with open(api_label_file, 'w') as api_label:
         for id_api, api_info in api_info_dict.items():
             # api_info = api_info_dict[id_api]
+            if 'full_name' in api_info and api_info['full_name'].endswith(
+                    'Overview'):
+                continue
             if "display" in api_info and not api_info["display"]:
                 logger.debug("{} display False".format(id_api))
                 continue
