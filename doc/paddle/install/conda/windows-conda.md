@@ -179,7 +179,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 #### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
 ```
-conda install paddlepaddle==2.0.0rc1 -c paddle
+conda install paddlepaddle==2.0.2 -c paddle
 ```
 
 
@@ -189,32 +189,32 @@ conda install paddlepaddle==2.0.0rc1 -c paddle
 *  <span id="cuda9">如果您是使用 CUDA 9，cuDNN 7.6+，安装GPU版本的命令为:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=9.0 -c paddle
+  conda install paddlepaddle-gpu==2.0.2 cudatoolkit=9.0 -c paddle
   ```
 
 *  <span id="cuda10">如果您是使用 CUDA 10.0，cuDNN 7.6+，安装GPU版本的命令为:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=10.0 -c paddle
+  conda install paddlepaddle-gpu==2.0.2 cudatoolkit=10.0 -c paddle
   ```
 
 
 *  <span id="cuda10.1">如果您是使用 CUDA 10.1，cuDNN 7.6+，安装GPU版本的命令为:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=10.1 -c paddle
+  conda install paddlepaddle-gpu==2.0.2 cudatoolkit=10.1 -c paddle
   ```
 
 *  <span id="cuda10.2">如果您是使用 CUDA 10.2，cuDNN 7.6+，安装GPU版本的命令为:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=10.2 -c paddle
+  conda install paddlepaddle-gpu==2.0.2 cudatoolkit=10.2 -c paddle
   ```
 
 *  <span id="cuda11">如果您是使用 CUDA 11，cuDNN 8.0.4+，安装GPU版本的命令为:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=11.0 -c paddle
+  conda install paddlepaddle-gpu==2.0.2 cudatoolkit=11.0 -c paddle
   ```
 
 
@@ -242,9 +242,9 @@ conda config --set show_channel_urls yes
 ```
 cpu：
 ```
-conda install paddlepaddle==2.0.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+conda install paddlepaddle==2.0.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```
 gpu：
 ```
-conda install paddlepaddle-gpu==2.0.0 cudatoolkit=[cuda版本号] --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+conda install paddlepaddle-gpu==2.0.2 cudatoolkit=[cuda版本号] --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```

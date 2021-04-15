@@ -152,7 +152,7 @@ You can choose the following version of PaddlePaddle to start installation:
 * Please use the following command to install PaddlePaddle：
 
   ```
-  conda install paddlepaddle==2.0.0rc1 -c paddle
+  conda install paddlepaddle==2.0.2 -c paddle
   ```
 
 
@@ -180,9 +180,9 @@ conda config --set show_channel_urls yes
 ```
 cpu：
 ```
-conda install paddlepaddle==2.0.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+conda install paddlepaddle==2.0.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```
 gpu：
 ```
-conda install paddlepaddle-gpu==2.0.0 cudatoolkit=[cuda版本号] --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+conda install paddlepaddle-gpu==2.0.2 cudatoolkit=[cuda版本号] --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```
