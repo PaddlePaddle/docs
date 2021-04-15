@@ -105,13 +105,12 @@ DataParallel
     state_dict = emb.state_dict()
     paddle.save(state_dict, "paddle_dy.pdparams")
 
-.. py:method:: set_state_dict(state_dict, include_sublayers=True, use_structured_name=True)
+.. py:method:: set_state_dict(state_dict, use_structured_name=True)
 
 根据传入的 ``state_dict`` 设置parameters和持久的buffers。 所有parameters和buffers将由 ``state_dict`` 中的 ``Tensor`` 设置。
 
 参数：
     - **state_dict** (dict) - 包含所有parameters和可持久性buffers的dict。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子Layer的parameters和buffers。 默认值：True。
     - **use_structured_name** (bool, 可选) - 如果设置为True，将使用Layer的结构性变量名作为dict的key，否则将使用Parameter或者Buffer的变量名作为key。默认值：True。
 
 返回：无
