@@ -148,7 +148,7 @@ DistributedStrategy
 
 设置Pipeline策略的配置。Pipeline策略下，神经网络的不同层在不同的GPU设备。相邻的GPU设备间有用于同步隐层Tensor的队列。Pipeline并行包含多种生产者-消费者形式的硬件对，如GPU-CPU、CPU-GPU、GPU-XPU。加速PIpeline并行的最佳方式是减少Tensor队列中的Tensor大小，这样生产者可以更快的为下游消费者提供数据。
 
-**micro_batch (int):** 每个用户定义的mini-batch中包含的更小的micro-batch的数量。
+**micro_batch_size (int):** 每个用户定义的mini-batch中包含的更小的micro-batch的数量。
 
 **示例代码**
 
@@ -157,7 +157,7 @@ DistributedStrategy
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.pipeline = True
-  strategy.pipeline_configs = {"micro_batch": 12}
+  strategy.pipeline_configs = {"micro_batch_size": 12}
 
 
 .. py:attribute:: gradient_merge
@@ -394,6 +394,9 @@ DistributedStrategy
 
 是否开启sharding 策略。sharding 实现了[ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv.org/abs/1910.02054)
 中 ZeRO-DP 类似的功能，其通过将模型的参数和优化器状态在ranks 间分片来支持更大模型的训练。 
+
+目前在混合并行(Hybrid parallelism) 模式下, sharding config 作为混合并行设置的统一入口来设置混合并行相关参数。
+
 默认值：False
 
 **示例代码**
@@ -408,20 +411,38 @@ DistributedStrategy
 
 设置sharding策略的参数。
 
-**fuse_broadcast_MB(float):** sharding 广播通信中参数融合的阈值。 该参数会影响sharding 训练中的通信速度，是一个需要根据具体模型大小和网络拓扑设定的经验值。 默认值是 32. 
+**sharding_segment_strategy(float, optional):** 选择sharding 中用来将前向反向program 切segments 的策略。目前可选策略有："segment_broadcast_MB" 和 "segment_anchors"。 segment 是sharding中引入的一个内部概念，目的是用来让通信和计算相互重叠掩盖（overlap）。默认值是 segment_broadcast_MB. 
 
-**hybrid_dp(bool):** 是否开启sharding hybrid数据并行策略，在sharding 并行的基础上再增加一层数据并行逻辑。该策略的目的是通过限制sharding 通信的节点数和增加多路数据并行 来提高训练吞吐。该策略需要成倍增加在普通sharding 训练时的所需GPU 卡数。 默认值是 False。
+**segment_broadcast_MB(float, optional):** 根据sharding 广播通信中的参数量来切segments，仅当 sharding_segment_strategy = segment_broadcast_MB时生效。sharding 会在前向和反向中引入参数广播，在该segment 策略下，每当参数广播量达到 “segment_broadcast_MB”时，在program 中切出一个segment。该参数是一个经验值，最优值会受模型大小和网咯拓扑的影响。 默认值是 32. 
 
-**sharding_group_size(int):** 仅在hybrid_dp开启时需要设置，指定 hybrid 数据并行策略中每一个 sharding 组的大小。该参数一般等于普通sharding 训练时的所需（最小）GPU 卡数。 number of hybrid data parallelism ways = (global_size / sharding_group_size)。
+**segment_anchors(list):** 根据用户选定的锚点切割 segments，仅当 sharding_segment_strategy = segment_anchors 生效。该策略可以让用户更精确的控制program 的切分，目前还在实验阶段。
+
+**sharding_degree(int, optional):** sharding并行数。 sharding_degree=1 时，sharding 策略会被关闭。 默认值是 8。
+
+**gradient_merge_acc_step(int, optional):** 梯度累积中的累积步数。 gradient_merge_acc_step=1 梯度累积会被关闭。 默认值是 1。
+
+**optimize_offload(bool, optional):** 优化器状态卸载开关。 开启后会将优化器中的状态(moment) 卸载到Host 的内存中，以到达节省GPU 显存、支持更大模型的目的。开启后，优化器状态会在训练的更新阶段经历：预取-计算-卸载（offload）三个阶段，更新阶段耗时会增加。 这个策略需要权衡显存节省量和训练速度，仅推荐在开启梯度累积并且累积步数较大时开启。 因为累积步数较大时，训练中更新阶段的比例将远小于前向&反向阶段， 卸载引入的耗时将不明显。
+
+**dp_degree(int, optional):** 数据并行的路数。 当dp_degree>=2 时，会在内层并行的基础上，再引入dp_degree路 数据并行。用户需要保证 global_world_size = mp_degree * sharding_degree * pp_degree * dp_degree。 默认值是 1。
+
+**mp_degree(int, optional):** [仅在混合并行中使用] megatron 并行数。 mp_degree=1 时，mp 策略会被关闭。 默认值是 1。
+
+**pp_degree(int, optional):** [仅在混合并行中使用] pipeline 并行数。 pp_degree=1 时，pipeline 策略会被关闭。 默认值是 1。
+
+**pp_allreduce_in_optimize(bool, optional):** [仅在混合并行中使用] 在开启pipeline 并行后，将allreduce 操作从反向阶段移动到更新阶段。根据不同的网络拓扑，该选项会影响训练速度，该策略目前还在实验阶段。 默认值是 False。
+
 
 .. code-block:: python
 
+  # sharding-DP, 2 nodes with 8 gpus per node
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.sharding = True
   strategy.sharding_configs = {
-    "fuse_broadcast_MB": 32,
-    "hybrid_dp": True,
-    "sharding_group_size": 8
-  }
+      "sharding_segment_strategy": "segment_broadcast_MB",
+      "segment_broadcast_MB": 32,
+      "sharding_degree": 8,
+      "sharding_degree": 2,
+      "gradient_merge_acc_step": 4,
+      }
 
