@@ -397,7 +397,17 @@ def set_real_api_alias_attr():
                 real_api = 'paddle.Tensor'
             m = eval(real_api)
         except AttributeError:
-            logger.warning("AttributeError: %s", real_api)
+            if real_api.endswith('Overview'):
+                api_info_dict[real_api] = {
+                    "all_names": set([real_api]),
+                    "id": real_api,
+                    "object": None,
+                    "type": 'Overview',
+                    "alias_name": lineparts[1],
+                    "doc_filename": docpath_from_real_api
+                }
+            else:
+                logger.warning("AttributeError: %s", real_api)
         else:
             api_id = id(m)
             if api_id in api_info_dict:
