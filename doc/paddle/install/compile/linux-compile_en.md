@@ -59,7 +59,7 @@
 
 There are two compilation methods under Linux system:
 
-* [Compile with Docker](#compile_from_docker)(GPU version only supports CentOS 7)
+* [Compile with Docker](#compile_from_docker)(GPU version doesn't support CentOS 6)
 * [Local compilation](#compile_from_host) (no official support for compilation problems under CentOS 6)
 
 <a name="ct_docker"></a>
