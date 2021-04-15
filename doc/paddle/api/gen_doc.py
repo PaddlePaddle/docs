@@ -83,8 +83,46 @@ def get_all_api(root_path='paddle', attr="__all__"):
             api_counter += process_module(m, attr)
 
     api_counter += process_module(paddle, attr)
+
+    if attr == '__all__' and insert_api_into_dict(
+            'paddle.fluid.core_avx.VarBase'):
+        api_counter += 1
     logger.info('%s: collected %d apis, %d distinct apis.', attr, api_counter,
                 len(api_info_dict))
+
+
+def insert_api_into_dict(full_name):
+    """
+    insert add api into the api_info_dict
+
+    Return:
+        success or failed
+    """
+    try:
+        obj = eval(full_name)
+        fc_id = id(obj)
+    except AttributeError:
+        logger.warning("AttributeError occurred when `id(eval(%s))`",
+                       full_name)
+        return False
+    except:
+        logger.warning("Exception occurred when `id(eval(%s))`", full_name)
+        return False
+    else:
+        logger.debug("adding %s to api_info_dict.", full_name)
+        if fc_id in api_info_dict:
+            api_info_dict[fc_id]["all_names"].add(full_name)
+        else:
+            api_info_dict[fc_id] = {
+                "all_names": set([full_name]),
+                "id": fc_id,
+                "object": obj,
+                "type": type(obj).__name__,
+            }
+            docstr = inspect.getdoc(obj)
+            if docstr:
+                api_info_dict[fc_id]["docstring"] = inspect.cleandoc(docstr)
+        return True
 
 
 # step 1 fill field : `id` & `all_names`, type, docstring
@@ -99,32 +137,8 @@ def process_module(m, attr="__all__"):
 
             # api's fullname
             full_name = m.__name__ + "." + api
-            try:
-                obj = eval(full_name)
-                fc_id = id(obj)
-            except AttributeError:
-                logger.warning("AttributeError occurred when `id(eval(%s))`",
-                               full_name)
-                pass
-            except:
-                logger.warning("Exception occurred when `id(eval(%s))`",
-                               full_name)
-            else:
+            if insert_api_into_dict(full_name):
                 api_counter += 1
-                logger.debug("adding %s to api_info_dict.", full_name)
-                if fc_id in api_info_dict:
-                    api_info_dict[fc_id]["all_names"].add(full_name)
-                else:
-                    api_info_dict[fc_id] = {
-                        "all_names": set([full_name]),
-                        "id": fc_id,
-                        "object": obj,
-                        "type": type(obj).__name__,
-                    }
-                    docstr = inspect.getdoc(obj)
-                    if docstr:
-                        api_info_dict[fc_id]["docstring"] = inspect.cleandoc(
-                            docstr)
     return api_counter
 
 
@@ -375,6 +389,9 @@ def set_real_api_alias_attr():
             continue
         try:
             real_api = lineparts[0].strip()
+            docpath_from_real_api = real_api.replace('.', '/')
+            if real_api == 'paddle.tensor.creation.Tensor':
+                real_api = 'paddle.Tensor'
             m = eval(real_api)
         except AttributeError:
             logger.warning("AttributeError: %s", real_api)
@@ -382,7 +399,10 @@ def set_real_api_alias_attr():
             api_id = id(m)
             if api_id in api_info_dict:
                 api_info_dict[api_id]["alias_name"] = lineparts[1]
-                docpath_from_real_api = real_api.replace('.', '/')
+                if real_api == 'paddle.Tensor' and "all_names" in api_info_dict[
+                        api_id]:
+                    api_info_dict[api_id]["all_names"].add(
+                        'paddle.tensor.creation.Tensor')
                 if "doc_filename" not in api_info_dict[api_id]:
                     api_info_dict[api_id][
                         "doc_filename"] = docpath_from_real_api
@@ -515,8 +535,12 @@ def gen_en_files(api_label_file="api_label"):
                     short_name = api_info['short_name']
                     logger.warning("full_name not in api_info: %s.%s",
                                    mod_name, short_name)
-                gen.module_name = mod_name
-                gen.api = short_name
+                if mod_name == 'paddle.fluid.core_avx' and short_name == 'VarBase':
+                    gen.module_name = 'paddle'
+                    gen.api = 'Tensor'
+                else:
+                    gen.module_name = mod_name
+                    gen.api = short_name
                 gen.print_header_reminder()
                 gen.print_item()
                 api_label.write("{1}\t.. _api_{0}_{1}:\n".format("_".join(
