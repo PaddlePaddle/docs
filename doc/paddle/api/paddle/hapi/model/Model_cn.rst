@@ -7,7 +7,7 @@ Model
 
 ``Model`` 对象是一个具备训练、测试、推理的神经网络。该对象同时支持静态图和动态图模式，飞桨框架默认为动态图模式，通过 ``paddle.enable_static()`` 来切换到静态图模式。需要注意的是，需要在实例化 ``Model`` 对象之前完成切换。
 
-在GPU上训练时，高层API支持自动混合精度（AMP）训练，并且在静态图下使用Adam、AdamW、Momentum优化器时还支持纯float16的训练。在使用纯float16训练之前，优化器初始化时 ``multi_precision`` 参数可以设置为True，这样可以避免性能变差或是收敛变慢的问题。用户还可能需要手动将dtype为float32的输入转成float16的输入。并且，用户在组网中可以使用 ``paddle.static.amp.fp16_guard`` 来限定使用纯float16训练的范围，否则，用户需要把 ``use_fp16_guard`` 手动设置为False以开启全局纯float16训练。然而，使用自动混合精度训练（AMP）时，不支持限定混合精度训练的范围。
+在GPU上训练时，高层API支持自动混合精度（AMP）训练，并且在静态图下使用Adam、AdamW、Momentum优化器时还支持纯float16的训练。在使用纯float16训练之前，优化器初始化时 ``multi_precision`` 参数可以设置为True，这样可以避免性能变差或是收敛变慢的问题。并且，在组网中可以使用 ``paddle.static.amp.fp16_guard`` 来限定使用纯float16训练的范围，否则需要把 ``use_fp16_guard`` 手动设置为False以开启全局纯float16训练。使用纯float16训练前，可能需要手动将dtype为float32的输入转成float16的输入。然而，使用自动混合精度训练（AMP）时，不支持限定混合精度训练的范围。
 
 参数
 :::::::::
@@ -336,7 +336,7 @@ prepare(optimizer=None, loss=None, metrics=None, amp_configs=None)
     - **optimizer** (Optimizer) - 当训练模型的，该参数必须被设定。当评估或测试的时候，该参数可以不设定。默认值：None。
     - **loss** (Loss) - 当训练模型的，该参数必须被设定。默认值：None。
     - **metrics** (Metric|list[Metric]) - 当该参数被设定时，所有给定的评估方法会在训练和测试时被运行，并返回对应的指标。默认值：None。
-    - **amp_configs** (str|dict|None) - 混合精度训练的配置，通常是个dict，也可以是str。当使用自动混合精度训练或者纯float16训练时，``amp_configs`` 的key ``level`` 需要被设置为O1或者O2，float32训练时则默认为O0。除了 ``level`` ，用户还可以传入更多的和混合精度API一致的参数，例如：``init_loss_scaling`` 、 ``incr_ratio`` 、 ``decr_ratio`` 、 ``incr_every_n_steps`` 、 ``decr_every_n_nan_or_inf`` 、 ``use_dynamic_loss_scaling`` 、 ``custom_white_list`` 、 ``custom_black_list`` ，在静态图下还支持传入 ``custom_black_varnames`` 和 ``use_fp16_guard`` 。详细使用方法用户可以参考参考混合精度API的文档 :ref:`auto_cast <cn_api_amp_auto_cast>`  和 :ref:`GradScaler <cn_api_amp_GradScaler>` 。为了方便起见，当不设置其他的配置参数时，用户也可以直接传入 ``'O1'`` 、``'O2'`` 。在使用float32训练时，该参数可以为None。默认值：None。
+    - **amp_configs** (str|dict|None) - 混合精度训练的配置，通常是个dict，也可以是str。当使用自动混合精度训练或者纯float16训练时，``amp_configs`` 的key ``level`` 需要被设置为O1或者O2，float32训练时则默认为O0。除了 ``level`` ，还可以传入更多的和混合精度API一致的参数，例如：``init_loss_scaling`` 、 ``incr_ratio`` 、 ``decr_ratio`` 、 ``incr_every_n_steps`` 、 ``decr_every_n_nan_or_inf`` 、 ``use_dynamic_loss_scaling`` 、 ``custom_white_list`` 、 ``custom_black_list`` ，在静态图下还支持传入 ``custom_black_varnames`` 和 ``use_fp16_guard`` 。详细使用方法可以参考参考混合精度API的文档 :ref:`auto_cast <cn_api_amp_auto_cast>`  和 :ref:`GradScaler <cn_api_amp_GradScaler>` 。为了方便起见，当不设置其他的配置参数时，也可以直接传入 ``'O1'`` 、``'O2'`` 。在使用float32训练时，该参数可以为None。默认值：None。
 
 
 fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_freq=10, save_dir=None, save_freq=1, verbose=2, drop_last=False, shuffle=True, num_workers=0, callbacks=None)
