@@ -80,10 +80,10 @@ test_y = imdb_test.labels
 def vectorizer(input, label=None, length=2000):
     if label is not None:
         for x, y in zip(input, label):
-            yield np.array((x + [0]*length)[:2000]).astype('int64'), np.array([y]).astype('int64')
+            yield np.array((x + [0]*length)[:length]).astype('int64'), np.array([y]).astype('int64')
     else:
         for x in input:
-            yield np.array((x + [0]*length)[:2000]).astype('int64')
+            yield np.array((x + [0]*length)[:length]).astype('int64')
 ```
 
 ### 3.2 载入预训练向量
