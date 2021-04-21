@@ -65,18 +65,16 @@ conv1d_transpose
 
 由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
-如果指定了output_size， ``conv1d_transpose`` 可以自动计算卷积核的大小。
-
 参数:
   - **x** (Tensor) - 输入是形状为 :math:`[N, C, L]` 或 :math:`[N, L, C]` 的3-D Tensor，N是批尺寸，C是通道数，L是特征长度，数据类型为float16, float32或float64。
   - **weight** (Tensor) - 形状为 :math:`[C, M/g, kL]` 的卷积核（卷积核）。 M是输出通道数， g是分组的个数，kL是卷积核的长度。
   - **bias** (int|list|tuple，可选) - 偏置项，形状为： :math:`[M,]` 。
   - **stride** (int|list|tuple，可选) - 步长大小。整数或包含一个整数的列表或元组。默认值：1。
-    - **padding** (int|list|tuple|str，可选) - 填充大小。可以是以下三种格式：（1）字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。（2）整数，表示在输入特征两侧各填充 ``padding`` 大小的0。（3）包含一个整数的列表或元组，表示在输入特征两侧各填充 ``padding[0]`` 大小的0. 默认值：0。
+  - **padding** (int|list|tuple|str，可选) - 填充大小。可以是以下三种格式：（1）字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。（2）整数，表示在输入特征两侧各填充 ``padding`` 大小的0。（3）包含一个整数的列表或元组，表示在输入特征两侧各填充 ``padding[0]`` 大小的0. 默认值：0。
   - **output_padding** (int|list|tuple, optional): 输出形状上尾部一侧额外添加的大小. 默认值: 0.
   - **groups** (int，可选) - 一维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=n，输入和卷积核分别根据通道数量平均分为n组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第n组卷积核和第n组输入进行卷积计算。默认值：1。
   - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。整数或包含一个整数的列表或元组。默认值：1。
-  - **output_size** (int|list|tuple，可选) - 输出特征的长度，整数或包含一个整数的列表或元组。如果为 ``None`` , 则会用 ``filter_size``, ``padding`` 和 ``stride`` 计算出输出特征的长度。如果 ``output_size`` 和 ``filter_size`` 同时被指定，则会遵循上述公式进行计算。``output_size`` 和 ``filter_size`` 不能同时被设置为 ``None`` 。默认值：None。
+  - **output_size** (int|list|tuple，可选) - 输出尺寸，整数或包含一个整数的列表或元组。如果为 ``None`` , 则会用 filter_size(``weight``的shape), ``padding`` 和 ``stride`` 计算出输出特征图的尺寸。默认值：None。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCL"和"NLC"。N是批尺寸，C是通道数，L是特征长度。默认值："NCL"。
   - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值：None。
 
