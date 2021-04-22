@@ -32,4 +32,5 @@ center_crop
     fake_img = Image.fromarray(fake_img)
 
     cropped_img = F.center_crop(fake_img, (150, 100))
-    print(cropped_img.size)    
+    print(cropped_img.size)
+    # out: (100, 150) width,height
