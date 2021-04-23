@@ -19,7 +19,7 @@ When the same hyperparameters are used, mixed precision training using FP16 and 
 
 ## 3. Automatic Mixed Precision Training with PaddlePaddle
 
-Using PaddlePaddle's API ``paddle.amp.auto_cast`` and ``paddle.amp.GradScaler`` can realize automatic mixed precision training (AMP), which can automatically choose FP16 or FP32 for different operators' calculation. After the AMP mode is turned on, the OP list calculated by FP16 and FP32 can be found in this [document](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html). This is a specific example to understand how to use PaddlePaddle to achieve mixed precision training.
+Using PaddlePaddle's API ``paddle.amp.auto_cast`` and ``paddle.amp.GradScaler`` can realize automatic mixed precision training (AMP), which can automatically choose FP16 or FP32 for different operators' calculation. After the AMP mode is turned on, the operator list calculated by FP16 and FP32 can be found in this [document](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html). This is a specific example to understand how to use PaddlePaddle to achieve mixed precision training.
 
 ### 3.1 Auxiliary Function
 First define the auxiliary function to calculate the training time.
@@ -128,8 +128,8 @@ end_timer_and_print("Default time:") # print massage and total time
 
 Using automatic mixed precision training with PaddlePaddle requires three steps:
 
-- Step1: Define ``GradScaler``, which is used to scale the ``loss`` to avoid underflow
-- Step2: Use ``auto_cast`` to create an AMP context, in which the input datatype(FP16 or FP32) of each OP  will be automatically determined
+- Step1: Define ``GradScaler``, which is used to scale the ``loss`` and ``gradients``to avoid underflow
+- Step2: Use ``auto_cast`` to create an AMP context, in which the input datatype(FP16 or FP32) of each oprator will be automatically determined
 - Step3: Use ``GradScaler`` defined in Step1 to complete the scaling of ``loss``, and use the scaled ``loss`` for backpropagation to complete the training
 
 
