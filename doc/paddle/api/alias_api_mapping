@@ -13,6 +13,7 @@ paddle.nn.functional.common.alpha_dropout	paddle.nn.functional.alpha_dropout
 paddle.nn.functional.activation.hardsigmoid	paddle.nn.functional.hardsigmoid
 paddle.nn.functional.activation.hardswish	paddle.nn.functional.hardswish
 paddle.nn.functional.activation.log_sigmoid	paddle.nn.functional.log_sigmoid
+paddle.nn.functional.activation.silu            paddle.nn.functional.silu
 paddle.nn.functional.activation.maxout	paddle.nn.functional.maxout
 paddle.fluid.executor.Executor	paddle.static.Executor
 paddle.nn.functional.pooling.avg_pool2d	paddle.nn.functional.avg_pool2d
@@ -73,6 +74,7 @@ paddle.nn.layer.activation.Hardsigmoid	paddle.nn.Hardsigmoid
 paddle.nn.layer.activation.Hardswish	paddle.nn.Hardswish
 paddle.nn.layer.activation.Hardtanh	paddle.nn.Hardtanh
 paddle.nn.layer.activation.LogSigmoid	paddle.nn.LogSigmoid
+paddle.nn.layer.activation.Silu         paddle.nn.Silu
 paddle.nn.layer.activation.Maxout	paddle.nn.Maxout
 paddle.nn.layer.activation.PReLU	paddle.nn.PReLU
 paddle.nn.layer.activation.Tanh	paddle.nn.Tanh
