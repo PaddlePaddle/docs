@@ -3,7 +3,7 @@
 DataLoader
 -------------------------------
 
-.. py:class:: paddle.io.DataLoader(dataset, feed_list=None, places=None, return_list=False, batch_sampler=None, batch_size=1, shuffle=False, drop_last=False, collate_fn=None, num_workers=0, use_buffer_reader=True, use_shared_memory=False, timeout=0, worker_init_fn=None)
+.. py:class:: paddle.io.DataLoader(dataset, feed_list=None, places=None, return_list=False, batch_sampler=None, batch_size=1, shuffle=False, drop_last=False, collate_fn=None, num_workers=0, use_buffer_reader=True, use_shared_memory=True, timeout=0, worker_init_fn=None)
 
 DataLoader返回一个迭代器，该迭代器根据 ``batch_sampler`` 给定的顺序迭代一次给定的 ``dataset``
 
@@ -37,7 +37,7 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
     - **collate_fn** (callable) - 通过此参数指定如果将样本列表组合为mini-batch数据，当 ``collate_fn`` 为None时，默认为将样本个字段在第0维上堆叠(同 ``np.stack(..., axis=0)`` )为mini-batch的数据。默认值为None。
     - **num_workers** (int) - 用于加载数据的子进程个数，若为0即为不开启子进程，在主进程中进行数据加载。默认值为0。
     - **use_buffer_reader** (bool) - 是否使用缓存读取器 。若 ``use_buffer_reader`` 为True，DataLoader会异步地预读取下一个mini-batch的数据，可加速数据读取过程，但同时会占用少量的CPU/GPU存储，即一个batch输入数据的存储空间。默认值为True。
-    - **use_shared_memory** (bool) - 是否使用共享内存来提升子进程将数据放入进程间队列的速度，该参数尽在多进程模式下有效(即 ``num_workers > 0`` )，请确认机器上有足够的共享内存空间(如Linux系统下 ``/dev/shm/`` 目录空间大小)再设置此参数。默认为False。
+    - **use_shared_memory** (bool) - 是否使用共享内存来提升子进程将数据放入进程间队列的速度，该参数尽在多进程模式下有效(即 ``num_workers > 0`` )，请确认机器上有足够的共享内存空间(如Linux系统下 ``/dev/shm/`` 目录空间大小)再设置此参数。默认为True。
     - **timeout** (int) - 从子进程输出队列获取mini-batch数据的超时时间。默认值为0。
     - **worker_init_fn** (callable) - 子进程初始化函数，此函数会被子进程初始化时被调用，并传递 ``worker id`` 作为参数。默认值为None。
 

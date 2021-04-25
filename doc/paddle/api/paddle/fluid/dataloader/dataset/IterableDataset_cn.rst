@@ -21,10 +21,10 @@ IterableDataset
 .. code-block:: python
 
     import numpy as np
-    from paddle.io import Dataset
+    from paddle.io import IterableDataset
     
     # define a random dataset
-    class RandomDataset(Dataset):
+    class RandomDataset(IterableDataset):
         def __init__(self, num_samples):
             self.num_samples = num_samples
     
