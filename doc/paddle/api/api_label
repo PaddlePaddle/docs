@@ -372,6 +372,7 @@ sequence_conv	.. _api_paddle_fluid_layers_sequence_conv:
 Sequential	.. _api_paddle_fluid_dygraph_container_Sequential:
 detection_output	.. _api_paddle_fluid_layers_detection_output:
 log_sigmoid	.. _api_paddle_nn_functional_activation_log_sigmoid:
+silu            .. _api_paddle_nn_functional_activation_silu:
 adjust_brightness	.. _api_paddle_vision_transforms_functional_adjust_brightness:
 Adagrad	.. _api_paddle_optimizer_adagrad_Adagrad:
 DistributedBatchSampler	.. _api_paddle_io_DistributedBatchSampler:
@@ -1032,6 +1033,7 @@ norm	.. _api_paddle_tensor_linalg_norm:
 Maxout	.. _api_paddle_nn_layer_activation_Maxout:
 ClipGradByValue	.. _api_paddle_fluid_clip_ClipGradByValue:
 LogSigmoid	.. _api_paddle_nn_layer_activation_LogSigmoid:
+Silu            .. _api_paddle_nn_layer_activation_Silu:
 Uniform	.. _api_paddle_distribution_Uniform:
 Hardshrink	.. _api_paddle_nn_layer_activation_Hardshrink:
 Adam	.. _api_paddle_optimizer_adam_Adam:
