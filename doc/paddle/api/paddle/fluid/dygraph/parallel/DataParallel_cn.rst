@@ -3,7 +3,7 @@
 DataParallel
 ------------
 
-.. py:class:: paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer_size=1)
+.. py:class:: paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer_size=1, find_unused_parameters=True)
 
 
 通过数据并行模式执行动态图模型。
@@ -27,7 +27,8 @@ DataParallel
     - **strategy** (ParallelStrategy，可选) - (deprecated) 数据并行的策略，包括并行执行的环境配置。默认为None。
     - **comm_buffer_size** (int，可选) - 它是通信调用（如NCCLAllReduce）时，参数梯度聚合为一组的内存大小（MB）。默认值：25。
     - **last_comm_buffer_size** （float，可选）它限制通信调用中最后一个缓冲区的内存大小（MB）。减小最后一个通信缓冲区的大小有助于提高性能。默认值：1。默认值：1    
-
+    - **find_unused_parameters** (bool， 可选) 是否在模型forward函数的返回值的所有张量中，遍历整个向后图。对于不包括在loss计算中的参数，其梯度将被预先标记为ready状态用于后续多卡间的规约操作。请注意，模型参数的所有正向输出必须参与loss的计算以及后续的梯度计算。 否则，将发生严重错误。请注意，将find_unused_parameters设置为True会影响计算性能， 因此，如果确定所有参数都参与了loss计算和自动反向图的构建，请将其设置为False。默认值：True。
+    
 返回：支持数据并行的 ``Layer``
 
 返回类型：Layer实例
@@ -104,13 +105,12 @@ DataParallel
     state_dict = emb.state_dict()
     paddle.save(state_dict, "paddle_dy.pdparams")
 
-.. py:method:: set_state_dict(state_dict, include_sublayers=True, use_structured_name=True)
+.. py:method:: set_state_dict(state_dict, use_structured_name=True)
 
 根据传入的 ``state_dict`` 设置parameters和持久的buffers。 所有parameters和buffers将由 ``state_dict`` 中的 ``Tensor`` 设置。
 
 参数：
     - **state_dict** (dict) - 包含所有parameters和可持久性buffers的dict。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子Layer的parameters和buffers。 默认值：True。
     - **use_structured_name** (bool, 可选) - 如果设置为True，将使用Layer的结构性变量名作为dict的key，否则将使用Parameter或者Buffer的变量名作为key。默认值：True。
 
 返回：无

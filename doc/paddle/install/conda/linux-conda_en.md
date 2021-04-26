@@ -52,7 +52,7 @@ conda create -n paddle_env python=3.8
 for Windows
 
 ```
-activate paddle_env
+conda activate paddle_env
 ```
 
 for MacOS/Linux
@@ -202,7 +202,7 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.1 <span id="cpu">CPU version of PaddlePaddle</span>
 
 ```
-conda install paddlepaddle==2.0.0rc1 -c paddle
+conda install paddlepaddle==2.0.2 -c paddle
 ```
 
 
@@ -212,31 +212,31 @@ conda install paddlepaddle==2.0.0rc1 -c paddle
 *  <span id="cuda9">If you are using CUDA 9，cuDNN 7.6+:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=9.0 -c paddle
+  conda install paddlepaddle-gpu==2.0.2 cudatoolkit=9.0 -c paddle
   ```
 
 * <span id="cuda10">If you are using CUDA 10.0，cuDNN 7.6+</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=10.0 -c paddle
+  conda install paddlepaddle-gpu==2.0.2 cudatoolkit=10.0 -c paddle
   ```
 
 *  <span id="cuda10.1">If you are using CUDA 10.1，cuDNN 7.6+</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=10.1 -c paddle
+  conda install paddlepaddle-gpu==2.0.2 cudatoolkit=10.1 -c paddle
   ```
 
 *  <span id="cuda10.2">If you are usingCUDA 10.2，cuDNN 7.6+:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=10.2 -c paddle
+  conda install paddlepaddle-gpu==2.0.2 cudatoolkit=10.2 -c paddle
   ```
 
 *  <span id="cuda11">If you are using CUDA 11，cuDNN 8.0.4+:</span>
 
   ```
-  conda install paddlepaddle-gpu==2.0.0rc1 cudatoolkit=11.0 -c paddle
+  conda install paddlepaddle-gpu==2.0.2 cudatoolkit=11.0 -c paddle
   ```
 
 
@@ -255,7 +255,18 @@ For domestic users who cannot connect to the Anaconda official source, you can a
 
 ```
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+```
+```
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+```
+```
 conda config --set show_channel_urls yes
+```
+cpu：
+```
+conda install paddlepaddle==2.0.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+```
+gpu：
+```
+conda install paddlepaddle-gpu==2.0.2 cudatoolkit=[cuda版本号] --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```

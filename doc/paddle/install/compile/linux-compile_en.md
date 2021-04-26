@@ -59,7 +59,7 @@
 
 There are two compilation methods under Linux system:
 
-* [Compile with Docker](#compile_from_docker)(GPU version only supports CentOS 7)
+* [Compile with Docker](#compile_from_docker)(GPU version doesn't support CentOS 6)
 * [Local compilation](#compile_from_host) (no official support for compilation problems under CentOS 6)
 
 <a name="ct_docker"></a>
@@ -254,7 +254,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
         yum install -y make
         ```
 
-        cmake requires version 3.10, we recommend that you use 3.16.0 version:
+        cmake requires version 3.15, we recommend that you use 3.16.0 version:
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
@@ -293,7 +293,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
         apt install -y make
         ```
 
-        cmake requires version 3.10, we recommend that you use 3.16.0 version:
+        cmake requires version 3.15, we recommend that you use 3.16.0 version:
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz

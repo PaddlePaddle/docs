@@ -11,6 +11,7 @@ PaddlePaddle主要的动转静方式是基于源代码级别转换的ProgramTran
 .. code-block:: python
 
     import paddle
+    import numpy as np
 
     @paddle.jit.to_static
     def func(input_var):
@@ -106,6 +107,7 @@ trace是指在模型运行时记录下其运行过哪些算子。TracedLayer就�
 
 .. code-block:: python
 
+    paddle.enable_static()
     place = paddle.CPUPlace()
     exe = paddle.Executor(place)
     program, feed_vars, fetch_vars = paddle.static.load_inference_model(save_dirname, exe)

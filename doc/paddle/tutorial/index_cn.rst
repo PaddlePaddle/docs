@@ -11,14 +11,19 @@
 
     - `快速上手 <./quick_start/index_cn.html>`_ ：快速了解Paddle 2的特性与功能。
     - `计算机视觉 <./cv_case/index_cn.html>`_ ：介绍使用 Paddle 解决计算机视觉领域的案例
-    - `生成对抗网络 <./gan/index_cn.html>`_ ：介绍使用 Paddle 在生成对抗网络中的应用
     - `自然语言处理 <./nlp_case/index_cn.html>`_ ：介绍使用 Paddle 解决自然语言处理领域的案例
     - `时序数据 <./time_series/index_cn.html>`_ ：介绍使用 Paddle 解决时序数据中的案例
+    - `生成对抗网络 <./gan/index_cn.html>`_ ： 介绍使用 Paddle 解决生成对抗网络中的案例
+    - `强化学习 <./reinforcement_learning/index_cn.html>`_ ：介绍使用 Paddle 解决强化学习中的案例
+    - `推荐 <./recommendations/index_cn.html>`_ ：介绍使用 Paddle 解决推荐场景中的案例
+
 ..  toctree::
     :hidden:
 
     quick_start/index_cn.rst
     cv_case/index_cn.rst
-    gan/index_cn.rst
     nlp_case/index_cn.rst
     time_series/index_cn.rst
+    gan/index_cn.rst
+    reinforcement_learning/index_cn.rst
+    recommendations/index_cn.rst

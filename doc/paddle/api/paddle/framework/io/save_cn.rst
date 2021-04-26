@@ -3,7 +3,7 @@
 save
 -----
 
-.. py:function:: paddle.save(obj, path)
+.. py:function:: paddle.save(obj, path, pickle_protocol=2)
 
 将对象实例obj保存到指定的路径中。
 
@@ -20,6 +20,7 @@ save
 :::::::::
  - **obj**  (Object) – 要保存的对象实例。
  - **path**  (str) – 保存对象实例的路径。如果存储到当前路径，输入的path字符串将会作为保存的文件名。
+ - **pickle_protocol**  (int, 可选) – pickle模块的协议版本，默认值为2，取值范围是[2,4]。
 
 返回
 :::::::::

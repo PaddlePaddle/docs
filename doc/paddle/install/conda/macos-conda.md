@@ -51,7 +51,7 @@ conda create -n paddle_env python=3.8
 for Windows
 
 ```
-activate paddle_env
+conda activate paddle_env
 ```
 
 for MacOS/Linux
@@ -152,7 +152,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 * 请参考如下命令安装:
 
   ```
-  conda install paddlepaddle==2.0.0rc1 -c paddle
+  conda install paddlepaddle==2.0.2 -c paddle
   ```
 
 ## **三、验证安装**
@@ -170,7 +170,18 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 
 ```
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+```
+```
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+```
+```
 conda config --set show_channel_urls yes
+```
+cpu：
+```
+conda install paddlepaddle==2.0.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+```
+gpu：
+```
+conda install paddlepaddle-gpu==2.0.2 cudatoolkit=[cuda版本号] --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```

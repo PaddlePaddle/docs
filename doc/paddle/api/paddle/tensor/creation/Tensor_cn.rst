@@ -21,7 +21,7 @@ Tensor
 
         import paddle
         x = paddle.to_tensor([1.0, 2.0, 3.0])
-        print("tensor's grad is: {}".format(x.dtype))
+        print("tensor's type is: {}".format(x.dtype))
 
 .. py:attribute:: grad
 
@@ -223,11 +223,13 @@ Tensor
 
 请参考 :ref:`cn_api_fluid_layers_atan`
 
-.. py:method:: backward(retain_graph=False)
+.. py:method:: backward(grad_tensor=None, retain_graph=False)
 
 从当前Tensor开始计算反向的神经网络，传导并计算计算图中Tensor的梯度。
 
 参数：
+    - **grad_tensor** (Tensor, optional) - 当前Tensor的初始梯度值。如果 ``grad_tensor`` 是None， 当前Tensor 的初始梯度值将会是值全为1.0的Tensor；如果 ``grad_tensor`` 不是None，必须和当前Tensor有相同的长度。默认值：None。
+
     - **retain_graph** (bool, optional) - 如果为False，反向计算图将被释放。如果在backward()之后继续添加OP，
       需要设置为True，此时之前的反向计算图会保留。将其设置为False会更加节省内存。默认值：False。
 
@@ -237,19 +239,30 @@ Tensor
     .. code-block:: python
 
         import paddle
-        import numpy as np
+        x = paddle.to_tensor(5., stop_gradient=False)
+        for i in range(5):
+            y = paddle.pow(x, 4.0)
+            y.backward()
+            print("{}: {}".format(i, x.grad))
+        # 0: [500.]
+        # 1: [1000.]
+        # 2: [1500.]
+        # 3: [2000.]
+        # 4: [2500.]
+        x.clear_grad()
+        print("{}".format(x.grad))
+        # 0.
+        grad_tensor=paddle.to_tensor(2.)
+        for i in range(5):
+            y = paddle.pow(x, 4.0)
+            y.backward(grad_tensor)
+            print("{}: {}".format(i, x.grad))
+        # 0: [1000.]
+        # 1: [2000.]
+        # 2: [3000.]
+        # 3: [4000.]
+        # 4: [5000.]
 
-        x = np.ones([2, 2], np.float32)
-        inputs = []
-        for _ in range(10):
-            tmp = paddle.to_tensor(x)
-            # if we don't set tmp's stop_gradient as False then, all path to loss will has no gradient since
-            # there is no one need gradient on it.
-            tmp.stop_gradient=False
-            inputs.append(tmp)
-        ret = paddle.add_n(inputs)
-        loss = paddle.sum(ret)
-        loss.backward()
 
 .. py:method:: bmm(y, name=None)
 
@@ -1008,6 +1021,63 @@ Tensor
 
 请参考 :ref:`cn_api_fluid_layers_reciprocal`
 
+.. py:method:: register_hook(hook)
+
+为当前 Tensor 注册一个反向的 hook 函数。
+
+该被注册的 hook 函数将会在每次当前 Tensor 的梯度 Tensor 计算完成时被调用。
+
+被注册的 hook 函数不会修改输入的梯度 Tensor ，但是 hook 可以返回一个新的临时梯度 Tensor 代替当前 Tensor 的梯度继续进行反向传播。
+
+输入的 hook 函数写法如下：
+
+    hook(grad) -> Tensor or None
+
+参数：
+    - **hook** (function) - 一个需要注册到 Tensor.grad 上的 hook 函数
+
+返回：一个能够通过调用其 ``remove()`` 方法移除所注册 hook 的对象
+
+返回类型：TensorHookRemoveHelper
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        # hook function return None
+        def print_hook_fn(grad):
+            print(grad)
+
+        # hook function return Tensor
+        def double_hook_fn(grad):
+            grad = grad * 2
+            return grad
+
+        x = paddle.to_tensor([0., 1., 2., 3.], stop_gradient=False)
+        y = paddle.to_tensor([4., 5., 6., 7.], stop_gradient=False)
+        z = paddle.to_tensor([1., 2., 3., 4.])
+
+        # one Tensor can register multiple hooks
+        h = x.register_hook(print_hook_fn)
+        x.register_hook(double_hook_fn)
+
+        w = x + y
+        # register hook by lambda function
+        w.register_hook(lambda grad: grad * 2)
+
+        o = z.matmul(w)
+        o.backward()
+        # print_hook_fn print content in backward
+        # Tensor(shape=[4], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+        #        [2., 4., 6., 8.])
+
+        print("w.grad:", w.grad) # w.grad: [1. 2. 3. 4.]
+        print("x.grad:", x.grad) # x.grad: [ 4.  8. 12. 16.]
+        print("y.grad:", y.grad) # y.grad: [2. 4. 6. 8.]
+
+        # remove hook
+        h.remove()
 
 .. py:method:: remainder(y, name=None)
 

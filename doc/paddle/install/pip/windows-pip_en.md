@@ -16,7 +16,7 @@
 * You can use the following commands to view the local operating system and bit information
 
   ```
-  uname -m && cat /ect/*release
+  uname -m && cat /etc/*release
   ```
 
 
@@ -117,122 +117,30 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 You can choose the following version of PaddlePaddle to start installation:
 
-* [CPU Version of PaddlePaddle](#cpu)
-
-* [GPU Version of PaddlePaddle](#gpu)
-  * [CUDA9.0 PaddlePaddle](#cuda9)
-  * [CUDA10.0 PaddlePaddle](#cuda10)
-  * [CUDA10.1 PaddlePaddle](#cuda10.1)
-  * [CUDA10.2 PaddlePaddle](#cuda10.2)
-  * [CUDA11.0 PaddlePaddle](#cuda11)
-
-
 
 #### 2.1 <span id="cpu">CPU Versoion of PaddlePaddle</span>
 
-* If you are using Python 2
-
   ```
-  python -m pip install paddlepaddle==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/cpu/mkl/develop.html
   ```
-
-* If you are using Python 3
-
-  ```
-  python3 -m pip install paddlepaddle==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
 
 
 #### 2.2<span id="gpu"> GPU Version of PaddlePaddle</span>
 
+GPU only support CUDA10.2
 
-
-2.2.1 <span id="cuda9">CUDA9.0 PaddlePaddle</span>
-
-* If you are using Python 2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* If you are using Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post102 -f https://paddlepaddle.org.cn/whl/cu102/mkl/develop.html
   ```
 
 
 
-2.2.2 <span id="cuda10">CUDA10.0 PaddlePaddle</span>
 
-* If you are using Python 2
+Note：
 
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
+* Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
 
-* If you are using Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-
-
-2.2.3 <span id="cuda10.1">CUDA10.1 PaddlePaddle</span>
-
-* If you are using Python 2
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* If you are using Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-
-
-2.2.4 <span id="cuda10.2">CUDA10.2 PaddlePaddle</span>
-
-* If you are using Python 2
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* If you are using Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-
-
-2.2.5 <span id="cuda11">CUDA11.0 PaddlePaddle</span>
-
-* If you are using Python 2
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* If you are using Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* Note：
-
-If you want to install PaddlePaddle which support CUDA10.2 with cuDNN v7.4+,you can use the following command:
-
-  ```
-  python -m pip install paddlepaddle_gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
 
 
 

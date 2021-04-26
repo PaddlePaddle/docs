@@ -1,23 +1,32 @@
 ##############
-常见问题
+常见问题与解答
 ##############
-如果您在使用Paddle框架开发过程中遇到了使用咨询类的问题，希望快速得到官方的答疑和指导，可以先来FAQ中查阅
 
-FAQ模块根据用户的常见问题给出经验性的指导意见以及一些开发tips，能让您快速解决棘手问题并快速验证自己的想法。
+本栏目以问答对的形式收录了用户开发过程中遇到的高频咨询类问题，包含了2.0版本的变化、安装、数据与数据处理、模型组网、训练、预测、模型保存与加载、参数调整、分布式等几类常见问题。
 
-FAQ以常见问答对的形式收录了用户在使用Paddle框架时的高频使用咨询类问题，包括 `安装类 <../faq/install_cn.html>`_ 、 `模型框架类 <../faq/train_cn.html>`_ 、 `其他常见问题 <../faq/others_cn.html>`_ 。 其中 `模型框架类 <../faq/train_cn.html>`_ 包含了 `数据处理 <../faq/train_cn.html#id1>`_ 、 `模型搭建 <../faq/train_cn.html#id4>`_、 `模型训练 <../faq/train_cn.html#id6>`_、 `应用预测 <../faq/train_cn.html#id14>`_、 `参数调整 <../faq/train_cn.html#id15>`_ 几类问题。
+除此之外，你也可以查看 `官网API文档 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html>`_ 、 `历史Issues <https://github.com/PaddlePaddle/Paddle/issues>`_ 、 `AI社区 <https://ai.baidu.com/forum/topic/list/168>`_ 来寻求解答。
 
-如果FAQ无法解决您的问题，您也可以在PaddlePaddle的 `Github Issue <https://github.com/PaddlePaddle/Paddle/issues>`_ 中进行提问，我们会有专门的技术人员为您解答。
+同时，你也可以在 `Github Issues <https://github.com/PaddlePaddle/Paddle/issues>`_ 中进行提问，飞桨会有专门的技术人员解答。
 
-FAQ问题集：
+本栏目收录的问题集：
 
 ..  toctree::
     :maxdepth: 1
  
 
+    2.0.md
+..  toctree::
+    :maxdepth: 1
+
+
     install_cn.md
 ..  toctree::
-    :maxdepth: 2
+    :maxdepth: 1
+
+
+    data_cn.md
+..  toctree::
+    :maxdepth: 1
 
 
     train_cn.md
@@ -25,5 +34,19 @@ FAQ问题集：
     :maxdepth: 1
 
 
-    others_cn.md
+    save_cn.md
+..  toctree::
+    :maxdepth: 1
 
+
+    params_cn.md
+..  toctree::
+    :maxdepth: 1
+
+
+    distributed_cn.md
+..  toctree::
+    :maxdepth: 1
+
+
+    others_cn.md

@@ -6,7 +6,8 @@
 在这里PaddlePaddle为大家提供了一些nlp的教程供大家学习：
     
      - `N-Gram <./n_gram_model/n_gram_model.html>`_ ：介绍使用 Paddle 实现N-Gram 模型。
-     - `文本分类 <./imdb_bow_classification/imdb_bow_classification.html>`_ ：介绍使用 Paddle 在IMDB数据集上完成文本分类。    
+     - `文本分类 <./imdb_bow_classification/imdb_bow_classification.html>`_ ：介绍使用 Paddle 在IMDB数据集上完成文本分类。
+     - `情感分类 <./pretrained_word_embeddings/pretrained_word_embeddings.html>`_ ：介绍使用预训练词向量完成情感分类。
      - `文本翻译 <./seq2seq_with_attention/seq2seq_with_attention.html>`_ ：介绍使用 Paddle 实现文本翻译。
      - `数字加法 <./addition_rnn/addition_rnn.html>`_ : 介绍使用 Paddle 实现数字加法。
 
@@ -14,7 +15,8 @@
     :hidden:
     :titlesonly:
 
-    n_gram_model/n_gram_model.rst
-    imdb_bow_classification/imdb_bow_classification.rst
-    seq2seq_with_attention/seq2seq_with_attention.rst
-    addition_rnn/addition_rnn.rst
+    n_gram_model/n_gram_model.md
+    imdb_bow_classification/imdb_bow_classification.md
+    pretrained_word_embeddings/pretrained_word_embeddings.md
+    seq2seq_with_attention/seq2seq_with_attention.md
+    addition_rnn/addition_rnn.md

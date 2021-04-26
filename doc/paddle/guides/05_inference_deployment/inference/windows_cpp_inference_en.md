@@ -5,13 +5,14 @@ Install and Compile C++ Inference Library on Windows
 Download and Install directly
 -------------
 
-| Version      |  Inference Libraries(v1.8.4)   |Inference Libraries(v2.0.0-rc1)| Compiler | Build tools | cuDNN | CUDA |
-|:---------|:-------------------|:-------------------|:----------------|:--------|:-------|:-------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc1/win-infer/mkl/cpu/paddle_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
-|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/cpu/fluid_inference_install_dir.zip) |[paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc1%2Fwin-infer%2Fopen%2F%20cpu%2Fpaddle_inference_install_dir.zip)| MSVC 2015 update 3|  CMake v3.16.0  |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post97/fluid_inference_install_dir.zip) |[paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc1/win-infer/mkl/post90/paddle_inference_install_dir.zip)|  MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/post97/fluid_inference_install_dir.zip) || MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc1%2Fwin-infer%2Fmkl%2F%20post100%2Fpaddle_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.4.1  |   10.0    |
+| Version      |  Inference Libraries(v1.8.4)  | Inference Libraries(v2.0.2)  |Inference Libraries(develop)   | Compiler     |   Build tools     |  cuDNN  |  CUDA  |
+|:---------|:-----------|:-------------|:----------------|:--------|:-------|:-------|:-------|
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/mkl/cpu/paddle_inference.zip)| [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/develop/win-infer/mkl/cpu/paddle_inference.zip) | Visual Studio 15 2017 |  CMake v3.17.0  | - | - |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/mkl/post100/paddle_inference.zip) | - | MSVC 2015 update 3 |  CMake v3.17.0  |  7.4.1  |   10.0    |
+|    cuda10.0_cudnn7_avx_mkl_trt6 | | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/trt_mkl/post100/paddle_inference.zip)| | MSVC 2015 update 3 |  CMake v3.17.0  |  7.4.1  |   10.0    |
+|    cuda10.1_cudnn7_avx_mkl_trt6 | | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/trt_mkl/post101/paddle_inference.zip)| | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6  |   10.1    |
+|    cuda10.2_cudnn7_avx_mkl_trt7 | | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/trt_mkl/post102/paddle_inference.zip)| | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6  |   10.2    |
+|    cuda11.0_cudnn8_avx_mkl_trt7 | | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/trt_mkl/post11/paddle_inference.zip)| | MSVC 2015 update 3 |  CMake v3.17.0  |  8.0  |   11.0    |
 
 ### Hardware Environment
 
@@ -55,20 +56,20 @@ For details on the compilation options, see [the compilation options list](../..
 
    - compile CPU inference library
    ```bash
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
    # use -DWITH_MKL to select math library: Intel MKL or OpenBLAS
 
    # By default on Windows we use /MT for C Runtime Library, If you want to use /MD, please use the below command
    # If you have no ideas the differences between the two, use the above one
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
    ```
    - compile GPU inference library
    ```bash
    # -DCUDA_TOOLKIT_ROOT_DIR is cuda root directory, such as -DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOLKIT_ROOT_DIR=YOUR_CUDA_PATH
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOLKIT_ROOT_DIR=YOUR_CUDA_PATH
    ```
 
-3. Open the `paddle.sln` using VisualStudio 2015, choose the`x64` for Slution Platforms, and `Release` for Solution Configurations, then build the `inference_lib_dist` project in the Solution Explorer(Rigth click the project and click Build).
+3. Open the `paddle.sln` using VisualStudio 2017, choose the`x64` for Slution Platforms, and `Release` for Solution Configurations, then build the `inference_lib_dist` project in the Solution Explorer(Rigth click the project and click Build).
 
 The inference library will be installed in `fluid_inference_install_dir`.
 
@@ -104,9 +105,9 @@ Hardware Configuration of the experimental environment:
 
 **Please strictly follow the subsequent steps to install, otherwise the installation may fail**
 
-**Install Visual Studio 2015 update3**
+**Install Visual Studio 2017**
 
-Install Visual Studio 2015. Please choose "customize" for the options of contents to be installed and choose to install all functions relevant to c, c++ and vc++.
+Install Visual Studio 2017. Please choose "customize" for the options of contents to be installed and choose to install all functions relevant to c, c++ and vc++.
 
 ### Other requirements
 
@@ -155,14 +156,14 @@ vcvarsall_dir=path\vc\vcvarsall.bat  # Set the path of visual studio command pro
    # -DDEMO_NAME is the file to be built
    # DPADDLE_LIB is the path of fluid_install_dir, for example: DPADDLE_LIB=D:\fluid_install_dir
 
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_MKL=OFF -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib -DMSVC_STATIC_CRT=ON
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_MKL=OFF -DWITH_STATIC_LIB=ON -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib -DMSVC_STATIC_CRT=ON
    ```
    - compile inference demo with GPU inference library
    ```dos
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=ON -DWITH_MKL=ON -DWITH_STATIC_LIB=ON ^
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=ON -DWITH_MKL=ON -DWITH_STATIC_LIB=ON ^
    -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib -DMSVC_STATIC_CRT=ON -DCUDA_LIB=YOUR_CUDA_LIB
    ```
-3. Open the `cpp_inference_demo.sln` using VisualStudio 2015, choose the`x64` for Slution Platforms, and `Release` for Solution Configurations, then build the `simple_on_word2vec` project in the Solution Explorer(Rigth click the project and click Build).
+3. Open the `cpp_inference_demo.sln` using VisualStudio 2017, choose the`x64` for Slution Platforms, and `Release` for Solution Configurations, then build the `simple_on_word2vec` project in the Solution Explorer(Rigth click the project and click Build).
 
    In the dependent packages provided, please copy openblas and model files under Release directory to the directory of Release built and generated.
 

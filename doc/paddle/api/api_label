@@ -49,7 +49,6 @@ target_assign	.. _api_paddle_fluid_layers_target_assign:
 adaptive_max_pool1d	.. _api_paddle_nn_functional_pooling_adaptive_max_pool1d:
 crop_tensor	.. _api_paddle_fluid_layers_crop_tensor:
 bilinear	.. _api_paddle_nn_functional_common_bilinear:
-load_op_library	.. _api_paddle_fluid_load_op_library:
 full_like	.. _api_paddle_tensor_creation_full_like:
 L1Loss	.. _api_paddle_nn_layer_loss_L1Loss:
 pool2d	.. _api_paddle_fluid_layers_pool2d:
@@ -373,6 +372,7 @@ sequence_conv	.. _api_paddle_fluid_layers_sequence_conv:
 Sequential	.. _api_paddle_fluid_dygraph_container_Sequential:
 detection_output	.. _api_paddle_fluid_layers_detection_output:
 log_sigmoid	.. _api_paddle_nn_functional_activation_log_sigmoid:
+silu            .. _api_paddle_nn_functional_activation_silu:
 adjust_brightness	.. _api_paddle_vision_transforms_functional_adjust_brightness:
 Adagrad	.. _api_paddle_optimizer_adagrad_Adagrad:
 DistributedBatchSampler	.. _api_paddle_io_DistributedBatchSampler:
@@ -1033,6 +1033,7 @@ norm	.. _api_paddle_tensor_linalg_norm:
 Maxout	.. _api_paddle_nn_layer_activation_Maxout:
 ClipGradByValue	.. _api_paddle_fluid_clip_ClipGradByValue:
 LogSigmoid	.. _api_paddle_nn_layer_activation_LogSigmoid:
+Silu            .. _api_paddle_nn_layer_activation_Silu:
 Uniform	.. _api_paddle_distribution_Uniform:
 Hardshrink	.. _api_paddle_nn_layer_activation_Hardshrink:
 Adam	.. _api_paddle_optimizer_adam_Adam:
@@ -1050,3 +1051,4 @@ Decoder	.. _api_paddle_fluid_layers_Decoder:
 DetectionMAP	.. _api_paddle_fluid_metrics_DetectionMAP:
 ModelAverage	.. _api_paddle_fluid_optimizer_ModelAverage:
 lstm	.. _api_paddle_fluid_layers_lstm:
+Lamb    .. _api_paddle_optimizer_lamb_Lamb:

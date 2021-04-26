@@ -5,13 +5,15 @@
 直接下载安装
 -------------
 
-| 版本说明      |     预测库(1.8.4版本)  |预测库(2.0.0-rc1)   |     编译器     |    构建工具      |  cuDNN  |  CUDA  |
-|:---------|:-------------------|:-------------------|:----------------|:--------|:-------|:-------|
-|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc1/win-infer/mkl/cpu/paddle_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
-|    cpu_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/cpu/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc1%2Fwin-infer%2Fopen%2F%20cpu%2Fpaddle_inference_install_dir.zip) | MSVC 2015 update 3|  CMake v3.16.0  |
-|    cuda9.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post97/fluid_inference_install_dir.zip) |[paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc1/win-infer/mkl/post90/paddle_inference_install_dir.zip)|  MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda9.0_cudnn7_avx_openblas | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/open/post97/fluid_inference_install_dir.zip) || MSVC 2015 update 3 |  CMake v3.16.0  |  7.3.1  |   9.0    |
-|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.0-rc1%2Fwin-infer%2Fmkl%2F%20post100%2Fpaddle_inference_install_dir.zip) | MSVC 2015 update 3 |  CMake v3.16.0  |  7.4.1  |   10.0    |
+| 版本说明      |     预测库(1.8.4版本)  |预测库(2.0.2)   |预测库(develop版本)   |     编译器     |    构建工具      |  cuDNN  |  CUDA  |
+|:---------|:---------------|:---------------|:-----------|:--------|:-------|:-------|:-------|
+|    cpu_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/cpu/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/mkl/cpu/paddle_inference.zip)| [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/develop/win-infer/mkl/cpu/paddle_inference.zip) | Visual Studio 15 2017 |  CMake v3.17.0  | - | - |
+|    cuda10.0_cudnn7_avx_mkl | [fluid_inference.zip](https://paddle-wheel.bj.bcebos.com/1.8.4/win-infer/mkl/post107/fluid_inference_install_dir.zip) | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/mkl/post100/paddle_inference.zip) | - | MSVC 2015 update 3 |  CMake v3.17.0  |  7.4.1  |   10.0    |
+|    cuda10.0_cudnn7_avx_mkl_trt6 | | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/trt_mkl/post100/paddle_inference.zip)| | MSVC 2015 update 3 |  CMake v3.17.0  |  7.4.1  |   10.0    |
+|    cuda10.1_cudnn7_avx_mkl_trt6 | | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/trt_mkl/post101/paddle_inference.zip)| | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6  |   10.1    |
+|    cuda10.2_cudnn7_avx_mkl_trt7 | | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/trt_mkl/post102/paddle_inference.zip)| | MSVC 2015 update 3 |  CMake v3.17.0  |  7.6  |   10.2    |
+|    cuda11.0_cudnn8_avx_mkl_trt7 | | [paddle_inference.zip](https://paddle-wheel.bj.bcebos.com/2.0.2/win-infer/trt_mkl/post11/paddle_inference.zip)| | MSVC 2015 update 3 |  CMake v3.17.0  |  8.0  |   11.0    |
+
 
 ### 硬件环境
 
@@ -57,18 +59,18 @@ Windows下安装与编译预测库步骤：(在Windows命令提示符下执行�
 2. 执行cmake：
    - 编译CPU预测库
    ```bash
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF
 
    # Windows默认使用 /MT 模式进行编译，如果想使用 /MD 模式，请使用以下命令。如不清楚两者的区别，请使用上面的命令
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=OFF -DON_INFER=ON -DWITH_PYTHON=OFF -DMSVC_STATIC_CRT=OFF
    ```
    - 编译GPU预测库:
    ```bash
    # -DCUDA_TOOLKIT_ROOT_DIR为你所安装的cuda根目录，例如-DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0"
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOLKIT_ROOT_DIR=YOUR_CUDA_PATH
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_MKL=ON -DWITH_GPU=ON -DON_INFER=ON -DWITH_PYTHON=OFF -DCUDA_TOOLKIT_ROOT_DIR=YOUR_CUDA_PATH
    ```
 
-3. 使用Blend for Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为`x64`，配置为`Release`，编译inference_lib_dist项目。
+3. 使用Visual Studio 2017 打开 `paddle.sln` 文件，选择平台为`x64`，配置为`Release`，编译inference_lib_dist项目。
    操作方法：在Visual Studio中选择相应模块，右键选择"生成"（或者"build"）
 
 编译成功后，使用C++预测库所需的依赖（包括：1. 编译出的PaddlePaddle预测库和头文件；2. 第三方链接库和头文件；3. 版本信息与编译选项信息）均会存放于`fluid_inference_install_dir`目录中。
@@ -103,9 +105,9 @@ CXX compiler version: 19.0.24215.1
 
 **请您严格按照以下步骤进行安装，否则可能会导致安装失败！**
 
-**安装Visual Studio 2015 update3**
+**安装Visual Studio 2017**
 
-安装Visual Studio 2015，安装选项中选择安装内容时勾选自定义，选择安装全部关于c，c++，vc++的功能。
+安装Visual Studio 2017，安装选项中选择安装内容时勾选自定义，选择安装全部关于c，c++，vc++的功能。
 
 ### 其他要求
 
@@ -152,16 +154,16 @@ vcvarsall_dir=path\vc\vcvarsall.bat  #设置visual studio #本机工具命令提
    ```dos
    # -DDEMO_NAME 是要编译的文件
    # -DDPADDLE_LIB是预测库目录，例如-DPADDLE_LIB=D:\fluid_inference_install_dir
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_MKL=ON -DWITH_STATIC_LIB=ON ^
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_MKL=ON -DWITH_STATIC_LIB=ON ^
    -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib -DMSVC_STATIC_CRT=ON
    ```
    - 使用GPU预测库编译demo
    ```dos
    # -DCUDA_LIB CUDA的库目录，例如-DCUDA_LIB=D:\cuda\lib\x64
-   cmake .. -G "Visual Studio 14 2015" -A x64 -T host=x64 -DWITH_GPU=ON -DWITH_MKL=ON -DWITH_STATIC_LIB=ON ^
+   cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=ON -DWITH_MKL=ON -DWITH_STATIC_LIB=ON ^
    -DCMAKE_BUILD_TYPE=Release -DDEMO_NAME=simple_on_word2vec -DPADDLE_LIB=path_to_the_paddle_lib -DMSVC_STATIC_CRT=ON -DCUDA_LIB=YOUR_CUDA_LIB
    ```
-3. 使用Blend for Visual Studio 2015 打开 `cpp_inference_demo.sln` 文件，选择平台为`x64`，配置为`Release`，编译simple_on_word2vec项目。
+3. 使用Visual Studio 2017 打开 `cpp_inference_demo.sln` 文件，选择平台为`x64`，配置为`Release`，编译simple_on_word2vec项目。
    操作方法: 在Visual Studio中选择相应模块，右键选择"生成"（或者"build"）
 
 4. [下载模型](http://paddle-inference-dist.bj.bcebos.com/word2vec.inference.model.tar.gz)并解压到当前目录，执行命令：
@@ -190,7 +192,7 @@ vcvarsall_dir=path\vc\vcvarsall.bat  #设置visual studio #本机工具命令提
    从磁盘加载模型时，根据模型和参数文件存储方式不同，设置AnalysisConfig加载模型和参数的路径有两种形式，此处使用combined形式：
    - 非combined形式：模型文件夹`model_dir`下存在一个模型文件和多个参数文件时，传入模型文件夹路径，模型文件名默认为`__model__`。
    ``` c++
-   config->SetModel("path\\model_dir\\__model__")
+   config->SetModel("path\\model_dir")
    ```
    - combined形式：模型文件夹`model_dir`下只有一个模型文件`__model__`和一个参数文件`__params__`时，传入模型文件和参数文件路径。
    ```C++

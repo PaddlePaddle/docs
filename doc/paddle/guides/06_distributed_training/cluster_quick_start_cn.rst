@@ -6,7 +6,7 @@
 使用Fleet API进行分布式训练
 ---------------------------
 
-从Paddle Fluid `Release 1.5.1 <https://github.com/PaddlePaddle/Paddle/releases/tag/v1.5.1>`_ 开始，官方推荐使用Fleet API进行分布式训练。
+从PaddlePaddle `Release 1.5.1 <https://github.com/PaddlePaddle/Paddle/releases/tag/v1.5.1>`_ 开始，官方推荐使用Fleet API进行分布式训练。
 
 
 准备条件
@@ -14,7 +14,7 @@
 
 
 * 
-  [x] 成功安装Paddle Fluid，如果尚未安装，请参考 `快速开始 <https://www.paddlepaddle.org.cn/documentation/docs/zh/install/index_cn.html>`_
+  [x] 成功安装PaddlePaddle，如果尚未安装，请参考 `快速开始 <https://www.paddlepaddle.org.cn/documentation/docs/zh/install/index_cn.html>`_
 
 * 
   [x] 学会最基本的单机训练方法，请参考 `单机训练 <https://www.paddlepaddle.org.cn/documentation/docs/zh/beginners_guide/coding_practice/single_node.html>`_ 中描述的单机训练，进行学习

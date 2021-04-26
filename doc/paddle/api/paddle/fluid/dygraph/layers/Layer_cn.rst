@@ -337,12 +337,12 @@ hook(Layer, input, output) -> None or modified output
         # ('0', <paddle.nn.layer.common.Linear object at 0x7fb61ed85830>)
         # ('1', <paddle.nn.layer.common.Linear object at 0x7fb61ed85950>)
 
-.. py:method:: sublayers(include_sublayers=True)
+.. py:method:: sublayers(include_self=False)
 
 返回一个由所有子层组成的列表。
 
 参数：
-    - **include_sublayers** (bool, 可选) - 是否返回子层中各个子层。如果为True，则包括子层中的各个子层。默认值：True。
+    - **include_self** (bool, 可选) - 是否包含本层。如果为True，则包括本层。默认值：False
 
 返回： list， 一个由所有子层组成的列表，列表中的元素类型为Layer。
 
@@ -411,13 +411,12 @@ hook(Layer, input, output) -> None or modified output
     for name, param in model.named_parameters():
         print(name, param)
 
-.. py:method:: named_sublayers(prefix='', include_sublayers=True, include_self=False, layers_set=None)
+.. py:method:: named_sublayers(prefix='', include_self=False, layers_set=None)
 
 返回层中所有子层上的迭代器，生成名称和子层的元组。重复的子层只产生一次。
 
 参数：
     - **prefix** (str, 可选) - 在所有参数名称前加的前缀。默认值：''。
-    - **include_sublayers** (bool, 可选) - 是否返回子层中各个子层。如果为True，则包括子层中的各个子层。默认值：True。
     - **include_self** (bool, 可选) - 是否包含该层自身。默认值：False。
     - **layers_set** (set, 可选): 记录重复子层的集合。默认值：None。
 
@@ -621,13 +620,12 @@ buffer是一个不可训练的变量，不会被优化器更新，但在评估�
     state_dict = emb.state_dict()
     paddle.save( state_dict, "paddle_dy.pdparams")
 
-.. py:method:: set_state_dict(state_dict, include_sublayers=True, use_structured_name=True)
+.. py:method:: set_state_dict(state_dict, use_structured_name=True)
 
 根据传入的 ``state_dict`` 设置参数和可持久性buffers。 所有参数和buffers将由 ``state_dict`` 中的 ``Tensor`` 设置。
 
 参数：
     - **state_dict** (dict) - 包含所有参数和可持久性buffers的dict。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数和buffers。 默认值：True。
     - **use_structured_name** (bool, 可选) - 如果设置为True，将使用Layer的结构性变量名作为dict的key，否则将使用Parameter或者Buffer的变量名作为key。默认值：True。
 
 返回：无
@@ -644,3 +642,43 @@ buffer是一个不可训练的变量，不会被优化器更新，但在评估�
     paddle.save(state_dict, "paddle_dy.pdparams")
     para_state_dict = paddle.load("paddle_dy.pdparams")
     emb.set_state_dict(para_state_dict)
+
+.. py:method:: to(device=None, dtype=None, blocking=None)
+
+根据给定的device、dtype和blocking 转换 Layer中的parameters 和 buffers。
+
+参数：
+    - **device** （str|paddle.CPUPlace()|paddle.CUDAPlace()|paddle.CUDAPinnedPlace()|paddle.XPUPlace()|None, 可选) - 希望存储Layer 的设备位置。如果为None， 设备位置和原始的Tensor 的设备位置一致。如果设备位置是string 类型，取值可为 ``cpu``, ``gpu:x`` and ``xpu:x`` ，这里的 ``x`` 是 GPUs 或者 XPUs的编号。默认值：None。
+    - **dtype** （str|core.VarDesc.VarType|None, 可选) - 数据的类型。如果为None， 数据类型和原始的Tensor 一致。默认值：None。
+    - **blocking** （bool|None, 可选）- 如果为False并且当前Tensor处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。如果为None，blocking 会被设置为True。默认为False。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+    
+    linear=paddle.nn.Linear(2, 2)
+    linear.weight
+    #Parameter containing:
+    #Tensor(shape=[2, 2], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+    #       [[-0.32770029,  0.38653070],
+    #        [ 0.46030545,  0.08158520]])
+    
+    linear.to(dtype='float64')
+    linear.weight
+    #Tenor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=False,
+    #       [[-0.32770029,  0.38653070],
+    #        [ 0.46030545,  0.08158520]])
+    
+    linear.to(device='cpu')
+    linear.weight
+    #Tensor(shape=[2, 2], dtype=float64, place=CPUPlace, stop_gradient=False,
+    #       [[-0.32770029,  0.38653070],
+    #        [ 0.46030545,  0.08158520]])
+    linear.to(device=paddle.CUDAPinnedPlace(), blocking=False)
+    linear.weight
+    #Tensor(shape=[2, 2], dtype=float64, place=CUDAPinnedPlace, stop_gradient=False,
+    #       [[-0.04989364, -0.56889004],
+    #        [ 0.33960250,  0.96878713]])
+    

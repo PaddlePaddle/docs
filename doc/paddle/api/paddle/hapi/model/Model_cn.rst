@@ -7,6 +7,8 @@ Model
 
 ``Model`` 对象是一个具备训练、测试、推理的神经网络。该对象同时支持静态图和动态图模式，飞桨框架默认为动态图模式，通过 ``paddle.enable_static()`` 来切换到静态图模式。需要注意的是，需要在实例化 ``Model`` 对象之前完成切换。
 
+在GPU上训练时，高层API支持自动混合精度（AMP）训练，并且在静态图下使用Adam、AdamW、Momentum优化器时还支持纯float16的训练。在使用纯float16训练之前，优化器初始化时 ``multi_precision`` 参数可以设置为True，这样可以避免性能变差或是收敛变慢的问题。并且，在组网中可以使用 ``paddle.static.amp.fp16_guard`` 来限定使用纯float16训练的范围，否则需要把 ``use_fp16_guard`` 手动设置为False以开启全局纯float16训练。使用纯float16训练前，可能需要手动将dtype为float32的输入转成float16的输入。然而，使用自动混合精度训练（AMP）时，不支持限定混合精度训练的范围。
+
 参数
 :::::::::
 
@@ -20,6 +22,8 @@ Model
 
 代码示例
 :::::::::
+
+1.一般示例
 
 .. code-block:: python
 
@@ -53,6 +57,39 @@ Model
     ])
     data = paddle.vision.datasets.MNIST(mode='train', transform=transform)
     model.fit(data, epochs=2, batch_size=32, verbose=1)
+
+
+2.使用混合精度训练的例子
+
+.. code-block:: python
+
+    import paddle
+    import paddle.nn as nn
+    import paddle.vision.transforms as T
+
+    def run_example_code():
+        device = paddle.set_device('gpu')
+        net = nn.Sequential(nn.Flatten(1), nn.Linear(784, 200), nn.Tanh(),
+                            nn.Linear(200, 10))
+        model = paddle.Model(net)
+        optim = paddle.optimizer.SGD(learning_rate=1e-3, parameters=model.parameters())
+        amp_configs = {
+            "level": "O1",
+            "custom_white_list": {'conv2d'},
+            "use_dynamic_loss_scaling": True
+        }
+        model.prepare(optim,
+            paddle.nn.CrossEntropyLoss(),
+            paddle.metric.Accuracy(),
+            amp_configs=amp_configs)
+        transform = T.Compose([T.Transpose(), T.Normalize([127.5], [127.5])])
+        data = paddle.vision.datasets.MNIST(mode='train', transform=transform)
+        model.fit(data, epochs=2, batch_size=32, verbose=1)
+
+    # mixed precision training is only support on GPU now.
+    if paddle.is_compiled_with_cuda():
+        run_example_code()
+
 
 方法
 :::::::::
@@ -290,15 +327,16 @@ parameters(*args, **kwargs)
     params = model.parameters()
 
 
-prepare(optimizer=None, loss_function=None, metrics=None)
+prepare(optimizer=None, loss=None, metrics=None, amp_configs=None)
 '''''''''
 
 配置模型所需的部件，比如优化器、损失函数和评价指标。
 
 参数：
     - **optimizer** (Optimizer) - 当训练模型的，该参数必须被设定。当评估或测试的时候，该参数可以不设定。默认值：None。
-    - **loss_function** (Loss) - 当训练模型的，该参数必须被设定。默认值：None。
+    - **loss** (Loss) - 当训练模型的，该参数必须被设定。默认值：None。
     - **metrics** (Metric|list[Metric]) - 当该参数被设定时，所有给定的评估方法会在训练和测试时被运行，并返回对应的指标。默认值：None。
+    - **amp_configs** (str|dict|None) - 混合精度训练的配置，通常是个dict，也可以是str。当使用自动混合精度训练或者纯float16训练时，``amp_configs`` 的key ``level`` 需要被设置为O1或者O2，float32训练时则默认为O0。除了 ``level`` ，还可以传入更多的和混合精度API一致的参数，例如：``init_loss_scaling`` 、 ``incr_ratio`` 、 ``decr_ratio`` 、 ``incr_every_n_steps`` 、 ``decr_every_n_nan_or_inf`` 、 ``use_dynamic_loss_scaling`` 、 ``custom_white_list`` 、 ``custom_black_list`` ，在静态图下还支持传入 ``custom_black_varnames`` 和 ``use_fp16_guard`` 。详细使用方法可以参考参考混合精度API的文档 :ref:`auto_cast <cn_api_amp_auto_cast>`  和 :ref:`GradScaler <cn_api_amp_GradScaler>` 。为了方便起见，当不设置其他的配置参数时，也可以直接传入 ``'O1'`` 、``'O2'`` 。在使用float32训练时，该参数可以为None。默认值：None。
 
 
 fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_freq=10, save_dir=None, save_freq=1, verbose=2, drop_last=False, shuffle=True, num_workers=0, callbacks=None)
@@ -318,7 +356,7 @@ fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_fr
     - **verbose** (int) - 可视化的模型，必须为0，1，2。当设定为0时，不打印日志，设定为1时，使用进度条的方式打印日志，设定为2时，一行一行地打印日志。默认值：2。
     - **drop_last** (bool) - 是否丢弃训练数据中最后几个不足设定的批次大小的数据。默认值：False。
     - **shuffle** (bool) - 是否对训练数据进行洗牌。当 ``train_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：True。
-    - **num_workers** (int) - 启动子进程用于读取数据的数量。当 ``train_data`` 和 ``eval_data`` 都为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：True。
+    - **num_workers** (int) - 启动子进程用于读取数据的数量。当 ``train_data`` 和 ``eval_data`` 都为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：0。
     - **callbacks** (Callback|list[Callback]|None) -  ``Callback`` 的一个实例或实例列表。该参数不给定时，默认会插入 ``ProgBarLogger`` 和 ``ModelCheckpoint`` 这两个实例。默认值：None。
 
 返回：None
@@ -417,7 +455,7 @@ evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbac
     - **num_workers** (int) - 启动子进程用于读取数据的数量。当 ``eval_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：True。
     - **callbacks** (Callback|list[Callback]|None) -  ``Callback`` 的一个实例或实例列表。该参数不给定时，默认会插入 ``ProgBarLogger`` 和 ``ModelCheckpoint`` 这两个实例。默认值：None。
 
-返回：None
+返回：dict, key是 ``prepare`` 时Metric的的名称，value是该Metric的值。
 
 **代码示例**：
 
@@ -453,7 +491,7 @@ predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=N
     - **stack_outputs** (bool) - 是否将输出进行堆叠。默认值：False。
     - **callbacks** (Callback|list[Callback]|None) -  ``Callback`` 的一个实例或实例列表。默认值：None。
 
-返回：None
+返回：模型的输出。
 
 **代码示例**：
 

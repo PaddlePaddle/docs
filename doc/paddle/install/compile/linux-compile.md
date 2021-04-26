@@ -63,7 +63,7 @@
 
 在Linux的系统下有2种编译方式：
 
-* [使用Docker编译](#compile_from_docker)（GPU版本只支持CentOS 7）
+* [使用Docker编译](#compile_from_docker)（GPU版本不支持CentOS 6）
 * [本机编译](#compile_from_host)（不提供在CentOS 6下编译中遇到问题的支持）
 
 <a name="ct_docker"></a>
@@ -258,7 +258,7 @@
         yum install -y make
         ```
 
-        cmake 需要3.10以上，建议使用3.16.0:
+        cmake 需要3.15以上，建议使用3.16.0:
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
@@ -301,7 +301,7 @@
         apt install -y make
         ```
 
-        cmake 需要3.10以上，建议使用3.16.0:
+        cmake 需要3.15以上，建议使用3.16.0:
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz

@@ -16,7 +16,7 @@
 * 可以使用以下命令查看本机的操作系统和位数信息：
 
   ```
-  uname -m && cat /ect/*release
+  uname -m && cat /etc/*release
   ```
 
 
@@ -41,15 +41,15 @@
 
   * 如果您是使用 Python 2，使用以下命令确认是 2.7.15+
 
-        ```
-        python --version
-        ```
+    ```
+    python --version
+    ```
 
   * 如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7/3.8
 
-        ```
-        python3 --version
-        ```
+    ```
+    python3 --version
+    ```
 
 * 需要确认pip的版本是否满足要求，要求pip版本为20.2.2+
 
@@ -120,103 +120,30 @@
 ### 根据版本进行安装
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
 
-* [CPU版的PaddlePaddle](#cpu)
-
-* [GPU版的PaddlePaddle](#gpu)
-  * [CUDA9.0的PaddlePaddle](#cuda9)
-  * [CUDA10.0的PaddlePaddle](#cuda10)
-  * [CUDA10.1的PaddlePaddle](#cuda10.1)
-  * [CUDA10.2的PaddlePaddle](#cuda10.2)
-  * [CUDA11的PaddlePaddle](#cuda11)
-
-
 #### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
-* 如果您是使用 Python 2
 
   ```
-  python -m pip install paddlepaddle==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/cpu/mkl/develop.html
   ```
 
-* 如果您是使用 Python 3
 
-  ```
-  python3 -m pip install paddlepaddle==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
 
 #### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
 
-2.2.1 <span id="cuda9">CUDA9.0的PaddlePaddle</span>
-
-* 如果您是使用 Python 2
+Windows的develop版本安装只支持CUDA10.2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
+  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post102 -f https://paddlepaddle.org.cn/whl/cu102/mkl/develop.html
   ```
 
-* 如果您是使用 Python 3
 
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post90 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
 
-2.2.2 <span id="cuda10">CUDA10.0的PaddlePaddle</span>
 
-* 如果您是使用 Python 2
+注：
 
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
+* 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为 python3 或者替换为具体的 Python 路径。
 
-* 如果您是使用 Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post100 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-2.2.3 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
-
-* 如果您是使用 Python 2
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* 如果您是使用 Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-2.2.4 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
-
-* 如果您是使用 Python 2
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* 如果您是使用 Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-2.2.5 <span id="cuda11">CUDA11的PaddlePaddle</span>
-
-* 如果您是使用 Python 2
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-* 如果您是使用 Python 3
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://paddlepaddle.org.cn/whl/stable.html
-  ```
-
-* 注：
-
-`python -m pip install paddlepaddle_gpu==0.0.0 -f https://paddlepaddle.org.cn/whl/stable.html`此命令将安装支持CUDA 10.2(配合cuDNN v7.4+)的PaddlePaddle。
 
 ## **三、验证安装**
 
