@@ -4,6 +4,7 @@ Tensor
 -------------------------------
 
 .. py:class:: paddle.Tensor
+:::::::::
 
 ``Tensor`` 是Paddle中最为基础的数据结构，有几种创建Tensor的不同方式：
 
