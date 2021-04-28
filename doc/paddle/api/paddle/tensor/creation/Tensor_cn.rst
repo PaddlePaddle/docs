@@ -4,7 +4,7 @@ Tensor
 -------------------------------
 
 .. py:class:: paddle.Tensor
-:::::::::
+
 
 ``Tensor`` 是Paddle中最为基础的数据结构，有几种创建Tensor的不同方式：
 
@@ -12,7 +12,8 @@ Tensor
 - 创建一个指定 ``shape`` 的Tensor，请参考 :ref:`cn_api_tensor_ones` 、 :ref:`cn_api_tensor_zeros`、 :ref:`cn_api_tensor_full`
 - 创建一个与其他Tensor具有相同 ``shape`` 与 ``dtype`` 的Tensor，请参考 :ref:`cn_api_tensor_ones_like` 、 :ref:`cn_api_tensor_zeros_like` 、 :ref:`cn_api_tensor_full_like`
 
-.. py:attribute:: dtype
+dtype()
+:::::::::
 
 查看一个Tensor的数据类型，支持：'bool'，'float16'，'float32'，'float64'，'uint8'，'int8'，'int16'，'int32'，'int64' 类型。
 
