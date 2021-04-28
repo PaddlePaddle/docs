@@ -29,5 +29,5 @@ list
 .. code-block:: python
 
     import paddle
-    models = paddle.hub.list('lyuwenyu/paddlehub_demo:main', source='github', force_reload=True)    
+    models = paddle.hub.list('PaddlePaddle/PaddleClas:develop', source='github', force_reload=True)    
     print(models)
