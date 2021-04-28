@@ -7,13 +7,13 @@ paddleClas
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "模型名字", "功能"
-    :widths: 10, 30
+    :header: "模型名字"
+    :widths: 10
 
-    " :ref:`alexnet <about_paddleclas_alexnet>` ", "alexnet模型"    
-    " :ref:`vgg13 <about_paddleclas_vgg13>` ", "vgg13模型"    
+    " :ref:`alexnet` "
+    " :ref:`vgg13` "
 
-    
+
 代码示例
 :::::::::
 
