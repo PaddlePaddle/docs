@@ -10,7 +10,7 @@ spectral_norm
 
 步骤1：生成形状为[H]的向量U,以及形状为[W]的向量V,其中H是输入权重张量的第 ``dim`` 个维度，W是剩余维度的乘积。
 
-步骤2： ``power_iters`` 是一个正整数，用U和V迭代计算 ``power_iters`` 轮，迭代步骤如下。
+步骤2： ``n_power_iterations`` 是一个正整数，用U和V迭代计算 ``n_power_iterations`` 轮，迭代步骤如下。
 
 .. math::
 
@@ -28,8 +28,8 @@ spectral_norm
 参数
     - **layer** (paddle.nn.Layer) - 要添加权重谱归一化的层。
     - **name** (str, 可选) - 权重参数的名字。默认：'weight'.
-    - **n_power_iterations** (int, 可选) - 将用于计算的 ``SpectralNorm`` 功率迭代次数，默认值：1。
-    - **eps** (float, 可选) -  ``eps`` 用于保证计算规范中的数值稳定性，分母会加上 ``eps`` 防止除零。默认值：1e-12。
+    - **n_power_iterations** (int, 可选) - 将用于计算的 ``SpectralNorm`` 幂迭代次数，默认值：1。
+    - **eps** (float, 可选) -  ``eps`` 用于保证计算中的数值稳定性，分母会加上 ``eps`` 防止除零。默认值：1e-12。
     - **dim** (int, 可选) - 将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果input（weight）是fc层的权重，则应设置为0；如果input（weight）是conv层的权重，则应设置为1。默认值：None。
 
 返回：
@@ -40,7 +40,7 @@ spectral_norm
 .. code-block:: python
 
     from paddle.nn import Conv2D
-    from paddle.nn.utils import Spectralnorm
+    from paddle.nn.utils import spectral_norm
 
     conv = Conv2D(3, 1, 3)
     sn_conv = spectral_norm(conv)

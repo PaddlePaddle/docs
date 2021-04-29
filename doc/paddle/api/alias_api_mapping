@@ -8,6 +8,7 @@ paddle.nn.functional.loss.l1_loss	paddle.nn.functional.l1_loss
 paddle.nn.functional.loss.margin_ranking_loss	paddle.nn.functional.margin_ranking_loss
 paddle.nn.utils.weight_norm_hook.weight_norm	paddle.nn.utils.weight_norm
 paddle.nn.utils.weight_norm_hook.remove_weight_norm	paddle.nn.utils.remove_weight_norm
+paddle.nn.utils.spectral_norm_hook.spectral_norm	paddle.nn.utils.spectral_norm
 paddle.nn.layer.pooling.AdaptiveAvgPool3D	paddle.nn.AdaptiveAvgPool3D,paddle.nn.layer.AdaptiveAvgPool3D
 paddle.nn.functional.common.alpha_dropout	paddle.nn.functional.alpha_dropout
 paddle.nn.functional.activation.hardsigmoid	paddle.nn.functional.hardsigmoid
