@@ -90,8 +90,17 @@ paddle.hub 目录下包含飞桨框架模型拓展相关的API以及支持的模
     import paddle
 
     # PaddleClas
-    model = paddle.hub.help('PaddlePaddle/PaddleClas:develop', source='alexnet', force_reload=True, pretrained=True)    
+    models = paddle.hub.list('PaddlePaddle/PaddleClas:develop', source='github', force_reload=True,)    
+    print(models)
 
+    docs = paddle.hub.help('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=Flase, pretrained=True)    
+    print(docs)
 
+    model = paddle.hub.load('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=Flase, pretrained=True)    
+   
     # PaddleNLP
+
+    docs = paddle.hub.help('PaddlePaddle/PaddleNLP:develop', model='bert', model_name_or_path='bert-base-cased')
+    print(docs)
+    
     model, tokenizer = paddle.hub.load('PaddlePaddle/PaddleNLP:develop', model='bert', model_name_or_path='bert-base-cased')
