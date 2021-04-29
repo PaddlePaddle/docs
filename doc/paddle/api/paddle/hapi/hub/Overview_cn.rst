@@ -89,7 +89,9 @@ paddle.hub 目录下包含飞桨框架模型拓展相关的API以及支持的模
 
     import paddle
 
+
     # PaddleClas
+
     models = paddle.hub.list('PaddlePaddle/PaddleClas:develop', source='github', force_reload=True,)    
     print(models)
 
@@ -97,7 +99,10 @@ paddle.hub 目录下包含飞桨框架模型拓展相关的API以及支持的模
     print(docs)
 
     model = paddle.hub.load('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=False, pretrained=True)    
-   
+    data = paddle.rand((1, 3, 224, 224))
+    out = model(data)
+    print(out.shape) # [1, 1000]
+
 
     # PaddleNLP
 
