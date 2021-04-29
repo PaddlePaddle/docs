@@ -79,7 +79,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ## Build and test
 
 Please refer to [Compile From Source Code](../../../install/compile/fromsource_en.html) about more information of building PaddlePaddle source codes.
-Please refer to [Op Unit Tests](../new_op/new_op_en.html#unit-tests) about more information of running unit tests.
+Please refer to [Op Unit Tests](../07_new_op/new_op_en.html#unit-tests) about more information of running unit tests.
 
 ## Commit
 

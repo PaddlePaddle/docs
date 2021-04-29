@@ -79,7 +79,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ## 编译和单元测试
 
 关于编译 PaddlePaddle 的源码，请参见[从源码编译](../../../install/compile/fromsource.html) 选择对应的操作系统。
-关于单元测试，可参考[Op单元测试](../new_op/new_op.html#id7) 的运行方法。
+关于单元测试，可参考[Op单元测试](../07_new_op/new_op.html#id7) 的运行方法。
 
 ## 提交（commit）
 
