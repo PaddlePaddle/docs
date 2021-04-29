@@ -25,13 +25,17 @@ paddle.hub 目录下包含飞桨框架模型拓展相关的API以及支持的模
 
 .. _about_hub_repos:
 
-支持模型库列表
+支持模型列表
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "模型库名称", "功能"
+    :header: "模型名字", "模型库"
     :widths: 10, 30
 
     " :ref:`paddleClas <cn_api_paddle_hub_repos_paddleClas>` ", "图像分类"
     " :ref:`paddleNLP <cn_api_paddle_hub_repos_paddleNLP>` ", "自然语言"
 
+
+
+代码示例
+:::::::::
