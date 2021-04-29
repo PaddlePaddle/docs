@@ -93,7 +93,7 @@ paddle.hub 目录下包含飞桨框架模型拓展相关的API以及支持的模
     models = paddle.hub.list('PaddlePaddle/PaddleClas:develop', source='github', force_reload=True,)    
     print(models)
 
-    docs = paddle.hub.help('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=False, pretrained=True)    
+    docs = paddle.hub.help('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=False,)    
     print(docs)
 
     model = paddle.hub.load('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=False, pretrained=True)    
@@ -101,7 +101,7 @@ paddle.hub 目录下包含飞桨框架模型拓展相关的API以及支持的模
 
     # PaddleNLP
 
-    docs = paddle.hub.help('PaddlePaddle/PaddleNLP:develop', model='bert', model_name_or_path='bert-base-cased')
+    docs = paddle.hub.help('PaddlePaddle/PaddleNLP:develop', model='bert',)
     print(docs)
 
     model, tokenizer = paddle.hub.load('PaddlePaddle/PaddleNLP:develop', model='bert', model_name_or_path='bert-base-cased')
