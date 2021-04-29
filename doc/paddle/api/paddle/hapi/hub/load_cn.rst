@@ -3,8 +3,7 @@
 load
 -------------------------------
 
-.. py:function:: paddle.hub.help(repo_dir, model, source='github', force_reload=False)
-
+.. py:function:: paddle.hub.load(repo_dir, model, source='github', force_reload=False, **kwargs)
 
 用于加载repo提供的功能/模型列表
 
@@ -16,6 +15,7 @@ load
     - **model** （str）: 模型的名字
     - **source** （str | 可选）: 指定repo托管的位置，默认值：github
     - **force_reload** （bool | 可选） : 指定是否强制拉取，默认值: False
+    - **kwargs** （any | 可选） : 模型参数
 
 返回
 :::::::::
