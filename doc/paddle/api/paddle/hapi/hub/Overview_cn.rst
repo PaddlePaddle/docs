@@ -32,10 +32,66 @@ paddle.hub 目录下包含飞桨框架模型拓展相关的API以及支持的模
     :header: "模型名字", "模型库"
     :widths: 10, 30
 
-    " :ref:`paddleClas <cn_api_paddle_hub_repos_paddleClas>` ", "图像分类"
-    " :ref:`paddleNLP <cn_api_paddle_hub_repos_paddleNLP>` ", "自然语言"
+    "alexnet", "PaddleClas"
+    "vgg11", "PaddleClas"
+    "vgg13", "PaddleClas"
+    "vgg16", "PaddleClas"
+    "vgg19", "PaddleClas"
+    "resnet18", "PaddleClas"
+    "resnet34", "PaddleClas"
+    "resnet50", "PaddleClas"
+    "resnet101", "PaddleClas"
+    "resnet152", "PaddleClas"
+    "squeezenet1_0", "PaddleClas"
+    "squeezenet1_1", "PaddleClas"
+    "densenet121", "PaddleClas"
+    "densenet161", "PaddleClas"
+    "densenet169", "PaddleClas"
+    "densenet201", "PaddleClas"
+    "densenet264", "PaddleClas"
+    "inceptionv3", "PaddleClas"
+    "inceptionv4", "PaddleClas"
+    "googlenet", "PaddleClas"
+    "shufflenetv2_x0_25", "PaddleClas"
+    "mobilenetv1", "PaddleClas"
+    "mobilenetv1_x0_25", "PaddleClas"
+    "mobilenetv1_x0_5", "PaddleClas"
+    "mobilenetv1_x0_75", "PaddleClas"
+    "mobilenetv2_x0_25", "PaddleClas"
+    "mobilenetv2_x0_5", "PaddleClas"
+    "mobilenetv2_x0_75", "PaddleClas"
+    "mobilenetv2_x1_5", "PaddleClas"
+    "mobilenetv2_x2_0", "PaddleClas"
+    "mobilenetv3_large_x0_35", "PaddleClas"
+    "mobilenetv3_large_x0_5", "PaddleClas"
+    "mobilenetv3_large_x0_75", "PaddleClas"
+    "mobilenetv3_large_x1_0", "PaddleClas"
+    "mobilenetv3_large_x1_25", "PaddleClas"
+    "mobilenetv3_small_x0_35", "PaddleClas"
+    "mobilenetv3_small_x0_5", "PaddleClas"
+    "mobilenetv3_small_x0_75", "PaddleClas"
+    "mobilenetv3_small_x1_0", "PaddleClas"
+    "mobilenetv3_small_x1_25", "PaddleClas"
+    "resnext101_32x4d", "PaddleClas"
+    "resnext101_64x4d", "PaddleClas"
+    "resnext152_32x4d", "PaddleClas"
+    "resnext152_64x4d", "PaddleClas"
+    "resnext50_32x4d", "PaddleClas"
+    "resnext50_64x4d", "PaddleClas"
+    "bert", "PaddleNLP"
 
 
 
 代码示例
 :::::::::
+
+.. code-block:: python
+
+    import paddle
+
+    # PaddleClas
+    model = paddle.hub.help('PaddlePaddle/PaddleClas:develop', source='alexnet', force_reload=True, pretrained=True)    
+
+
+    # PaddleNLP
+    model, tokenizer = paddle.hub.load('PaddlePaddle/PaddleNLP:develop', model='bert', model_name_or_path='bert-base-cased')
