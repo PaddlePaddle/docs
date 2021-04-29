@@ -29,5 +29,5 @@ load
 .. code-block:: python
 
     import paddle
-    model = paddle.hub.help('PaddlePaddle/PaddleClas:develop', source='alexnet', force_reload=True)    
+    model = paddle.hub.help('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=True)    
     print(model)
