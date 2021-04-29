@@ -655,7 +655,7 @@ class EnDocGenerator(object):
         """
         as name
         """
-        mo = re.match(r'^(.*?)(_+)', name)
+        mo = re.match(r'^(.*?)(_+)$', name)
         if mo:
             name = mo.group(1) + r'\_' * len(mo.group(2))
         dot_line = dot * len(name)
