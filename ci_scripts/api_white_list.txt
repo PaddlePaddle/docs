@@ -36,3 +36,7 @@ paddle/utils/cpp_extension/setup_cn.rst
 paddle/utils/cpp_extension/CppExtension_cn.rst
 paddle/utils/cpp_extension/CUDAExtension_cn.rst
 upgrade_guide_cn.md
+paddle/hapi/hub/Overview_cn.rst
+paddle/hapi/hub/help_cn.rst
+paddle/hapi/hub/list_cn.rst
+paddle/hapi/hub/load_cn.rst

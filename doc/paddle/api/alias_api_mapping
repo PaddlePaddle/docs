@@ -571,3 +571,7 @@ paddle.fluid.dataloader.sampler.SequenceSampler	paddle.io.SequenceSampler
 paddle.fluid.dataloader.dataset.TensorDataset	paddle.io.TensorDataset
 paddle.fluid.dataloader.sampler.WeightedRandomSampler	paddle.io.WeightedRandomSampler
 paddle.nn.layer.container.LayerDict	paddle.nn.LayerDict
+paddle.hapi.hub.Overview paddle.hub.Overview
+paddle.hapi.hub.list	paddle.hub.list
+paddle.hapi.hub.help	paddle.hub.help
+paddle.hapi.hub.load	paddle.hub.load
