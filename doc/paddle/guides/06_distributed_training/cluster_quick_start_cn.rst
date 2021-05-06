@@ -398,7 +398,6 @@ train_fleet_static.py的完整训练代码如下所示。
 
     import paddle
     import paddle.distributed.fleet as fleet
-    import paddle.distributed.fleet.base.role_maker as role_maker
 
 2.2.2 定义分布式模式并初始化分布式训练环境
 """"""""""""
@@ -502,7 +501,7 @@ train_fleet_static.py的完整训练代码如下所示。
 
 您将看到显示如下日志信息：
 
-    .. code-block:: bash
+.. code-block:: bash
     
     -----------  Configuration Arguments -----------
     gpus: 0,1
