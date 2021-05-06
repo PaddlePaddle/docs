@@ -369,7 +369,7 @@ train_fleet_static.py的完整训练代码如下所示。
 二、ParameterServer训练快速开始
 -------------------------
 
-本节将采用推荐领域非常经典的模型wide_and_deep为例，介绍如何使用Fleet API（paddle.distributed.fleet）完成参数服务器训练任务，本次快速开始的完整示例代码位于https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep。
+本节将采用推荐领域非常经典的模型wide_and_deep为例，介绍如何使用Fleet API（paddle.distributed.fleet）完成参数服务器训练任务，本次快速开始的完整示例代码位于 https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep。
 
 2.1 版本要求
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -402,11 +402,11 @@ train_fleet_static.py的完整训练代码如下所示。
 2.2.2 定义分布式模式并初始化分布式训练环境
 """"""""""""
 
-通过 :bash:`fleet.init()` 接口，用户可以定义训练相关的环境，注意此环境是用户预先在环境变量中配置好的，包括：训练节点个数，服务节点个数，当前节点的序号，服务节点完整的IP:PORT列表等。
+通过 ``fleet.init()`` 接口，用户可以定义训练相关的环境，注意此环境是用户预先在环境变量中配置好的，包括：训练节点个数，服务节点个数，当前节点的序号，服务节点完整的IP:PORT列表等。
 
 .. code-block:: python
 
-    # 当前参数服务器模式只支持静态图模式， 因此训练前必须指定 :bash:`paddle.enable_static()`
+    # 当前参数服务器模式只支持静态图模式， 因此训练前必须指定 ``paddle.enable_static()``
     paddle.enable_static()
     fleet.init(is_collective=False)
 
@@ -443,9 +443,9 @@ train_fleet_static.py的完整训练代码如下所示。
 2.2.4 定义同步训练 Strategy 及 Optimizer
 """"""""""""
 
-在Fleet API中，用户可以使用 :bash:`fleet.DistributedStrategy()` 接口定义自己想要使用的分布式策略。
+在Fleet API中，用户可以使用 ``fleet.DistributedStrategy()`` 接口定义自己想要使用的分布式策略。
 
-其中 :bash:`a_sync` 选项用于定义参数服务器相关的策略，当其被设定为 :bash:`False` 时，分布式训练将在同步的模式下进行。反之，当其被设定成 :bash:`True` 时，分布式训练将在异步的模式下进行。
+其中 ``a_sync`` 选项用于定义参数服务器相关的策略，当其被设定为 ``False`` 时，分布式训练将在同步的模式下进行。反之，当其被设定成 ``True`` 时，分布式训练将在异步的模式下进行。
 
 .. code-block:: python
 
@@ -471,9 +471,9 @@ train_fleet_static.py的完整训练代码如下所示。
 
 完成模型及训练策略以后，我们就可以开始训练模型了。因为在参数服务器模式下会有不同的角色，所以根据不同节点分配不同的任务。
 
-对于服务器节点，首先用 :bash:`init_server()` 接口对其进行初始化，然后启动服务并开始监听由训练节点传来的梯度。
+对于服务器节点，首先用 ``init_server()`` 接口对其进行初始化，然后启动服务并开始监听由训练节点传来的梯度。
 
-同样对于训练节点，用 :bash:`init_worker()` 接口进行初始化后， 开始执行训练任务。运行 :bash:`exe.run()` 接口开始训练，并得到训练中每一步的损失值。
+同样对于训练节点，用 ``init_worker()`` 接口进行初始化后， 开始执行训练任务。运行 ``exe.run()`` 接口开始训练，并得到训练中每一步的损失值。
 
 .. code-block:: python
 
@@ -493,7 +493,7 @@ train_fleet_static.py的完整训练代码如下所示。
 2.3 运行训练脚本
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-定义完训练脚本后，我们就可以用:bash:`python3 -m paddle.distributed.launch`指令运行分布式任务了。其中:bash:`server_num`, :bash:`worker_num`分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
+定义完训练脚本后，我们就可以用 ``python3 -m paddle.distributed.launch`` 指令运行分布式任务了。其中 ``server_num`` , ``worker_num`` 分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
 
 .. code-block:: bash
 
