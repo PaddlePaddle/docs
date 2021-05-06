@@ -429,8 +429,7 @@ def set_real_api_alias_attr():
                         api_info_dict[api_id]["all_names"].add(
                             'paddle.tensor.creation.Tensor')
                     if "doc_filename" not in api_info_dict[api_id]:
-                        api_info_dict[api_id][
-                            "doc_filename"] = doc_filename
+                        api_info_dict[api_id]["doc_filename"] = doc_filename
                     else:
                         if api_info_dict[api_id][
                                 "doc_filename"] != doc_filename:
@@ -512,19 +511,39 @@ def get_suggested_name(apis_str):
 def get_shortest_api(api_list):
     """
     find the shortest api in list.
+
+    Problems:
+    1. fuild - if there is any apis don't contain 'fluid' in name, use them.
+    2. core vs core_avx - using the 'core'.
     """
     if len(api_list) == 1:
         return api_list[0]
     # try to find shortest path of api as the real api
-    shortest_len = len(api_list[0].split("."))
-    shortest_api = api_list[0]
-    for x in api_list[1:]:
-        len_x = len(x.split("."))
-        if len_x < shortest_len:
-            shortest_len = len_x
-            shortest_api = x
+    api_info = [
+    ]  # {'name': name, 'fluid_in_name': True/False, 'core_avx_in_name': True/Flase', 'len': len}
+    for api in api_list:
+        fields = api.split('.')
+        api_info.append({
+            'name': api,
+            'fluid_in_name': 'fluid' in fields,
+            'core_avx_in_name': 'core_avx' in fields,
+            'len': len(fields),
+        })
 
-    return shortest_api
+    def shortest(api_info):
+        if not api_info:
+            return None
+        elif len(api_info) == 1:
+            return api_info[0].get('name')
+        api_info.sort(key=lambda ele: ele.get('len'))
+        return api_info[0].get('name')
+
+    if not all([api.get('fuild_in_name') for api in api_info]):
+        api_info = [api for api in api_info if not api.get('fluid_in_name')]
+    sn = shortest([api for api in api_info if not api.get('core_avx_in_name')])
+    if sn is None:
+        sn = shortest(api_info)
+    return sn
 
 
 def remove_all_en_files(path="./paddle"):
@@ -569,8 +588,13 @@ def gen_en_files(api_label_file="api_label"):
                     mod_name, _, short_name = api_info['full_name'].rpartition(
                         '.')
                 else:
-                    mod_name = api_info['module_name']
-                    short_name = api_info['short_name']
+                    if 'module_name' in api_info and 'short_name' in api_info:
+                        mod_name = api_info.get('module_name')
+                        short_name = api_info.get('short_name')
+                    else:
+                        sn = get_shortest_api(api_info['all_names'])
+                        mod_name, short_name = split_name(sn)
+
                     logger.warning("full_name not in api_info: %s.%s",
                                    mod_name, short_name)
                 if mod_name == 'paddle.fluid.core_avx' and short_name == 'VarBase':
@@ -758,6 +782,9 @@ def filter_api_info_dict():
                 api_info_dict[id_api]["all_names"])
         if "object" in api_info_dict[id_api]:
             del api_info_dict[id_api]["object"]
+        sn = get_shortest_api(api_info_dict[id_api]["all_names"])
+        if sn:
+            api_info_dict[id_api]["doc_filename"] = sn.replace('.', '/')
 
 
 def extract_code_blocks_from_docstr(docstr):
@@ -1136,7 +1163,7 @@ if __name__ == "__main__":
         get_all_api(attr=realattr)
         set_display_attr_of_apis()
         set_source_code_attrs()
-        set_real_api_alias_attr()
+        # set_real_api_alias_attr()
         set_referenced_from_attr()
         filter_api_info_dict()
         json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
