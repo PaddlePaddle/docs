@@ -493,7 +493,7 @@ train_fleet_static.py的完整训练代码如下所示。
 2.3 运行训练脚本
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-定义完训练脚本后，我们就可以用`python3 -m paddle.distributed.launch`指令运行分布式任务了。其中`server_num`, `worker_num`分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
+定义完训练脚本后，我们就可以用``python3 -m paddle.distributed.launch``指令运行分布式任务了。其中`server_num`, `worker_num`分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
 
 .. code-block:: bash
 
