@@ -3,6 +3,8 @@
 分布式训练快速开始
 ==================
 
+FleetX 是飞桨分布式训练扩展包，为了可以让用户更快速了解和使用飞桨分布式训练特性，提供了大量分布式训练例子，可以查阅 https://github.com/PaddlePaddle/FleetX/tree/develop/examples，以下章节的例子都可以在这找到，用户也可以直接将仓库下载到本地直接。
+
 一、Collective 训练快速开始
 -------------------------
 
@@ -203,6 +205,7 @@ train_fleet_static.py的完整训练代码如下所示。
         return train_loader
     # 设置训练函数
     def train_resnet():
+        print("Start collective training example:")
         paddle.enable_static() # 使能静态图功能
         paddle.vision.set_image_backend('cv2')
 
@@ -216,6 +219,7 @@ train_fleet_static.py的完整训练代码如下所示。
         acc_top5 = paddle.metric.accuracy(input=out, label=label, k=5)
         # 设置训练资源，本例使用GPU资源
         place = paddle.CUDAPlace(int(os.environ.get('FLAGS_selected_gpus', 0)))
+        print("Run on {}.".format(place))
 
         train_loader = get_train_loader([image, label], place)
         #初始化Fleet环境
@@ -228,6 +232,7 @@ train_fleet_static.py的完整训练代码如下所示。
         optimizer.minimize(avg_cost)
 
         exe = paddle.static.Executor(place)
+        print("Execute startup program.")
         exe.run(paddle.static.default_startup_program())
 
         epoch = 10
@@ -250,7 +255,7 @@ train_fleet_static.py的完整训练代码如下所示。
 
 .. code-block:: bash
 
-    python -m paddle.distributed.launch --gpus=0,1 train_fleet_dygraph.py
+    python3 -m paddle.distributed.launch --gpus=0,1 train_fleet_dygraph.py
 
 
 您将看到显示如下日志信息：
@@ -264,26 +269,34 @@ train_fleet_static.py的完整训练代码如下所示。
     http_port: None
     ips: 127.0.0.1
     log_dir: log
-    ...
+    nproc_per_node: None
+    server_num: None
+    servers:
+    training_script: train_fleet_dygraph.py
+    training_script_args: []
+    worker_num: None
+    workers:
     ------------------------------------------------
+    WARNING 2021-05-06 11:32:50,804 launch.py:316] Not found distinct arguments and compiled with cuda. Default use collective mode
     launch train in GPU mode
-    INFO 2021-03-23 14:11:38,107 launch_utils.py:481] Local start 2 processes. First process distributed environment info (Only For Debug):
+    INFO 2021-05-06 11:32:50,806 launch_utils.py:472] Local start 2 processes. First process distributed environment info (Only For Debug):
         +=======================================================================================+
         |                        Distributed Envs                      Value                    |
         +---------------------------------------------------------------------------------------+
-        |                 PADDLE_CURRENT_ENDPOINT                 127.0.0.1:59648               |
-        |                     PADDLE_TRAINERS_NUM                        2                      |
-        |                PADDLE_TRAINER_ENDPOINTS         127.0.0.1:59648,127.0.0.1:50871       |
+        |                PADDLE_TRAINER_ENDPOINTS         127.0.0.1:20923,127.0.0.1:10037       |
         |                     FLAGS_selected_gpus                        0                      |
         |                       PADDLE_TRAINER_ID                        0                      |
+        |                     PADDLE_TRAINERS_NUM                        2                      |
+        |                 PADDLE_CURRENT_ENDPOINT                 127.0.0.1:20923               |
         +=======================================================================================+
 
-    I0323 14:11:39.383992  3788 nccl_context.cc:66] init nccl context nranks: 2 local rank: 0 gpu id: 0 ring id: 0
-    W0323 14:11:39.872674  3788 device_context.cc:368] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.2, Runtime API Version: 9.2
-    W0323 14:11:39.877283  3788 device_context.cc:386] device: 0, cuDNN Version: 7.4.
-    [Epoch 0, batch 0] loss: 4.77086, acc1: 0.00000, acc5: 0.00000
-    [Epoch 0, batch 5] loss: 15.69098, acc1: 0.03125, acc5: 0.18750
-    [Epoch 0, batch 10] loss: 23.41379, acc1: 0.00000, acc5: 0.09375
+    INFO 2021-05-06 11:32:50,806 launch_utils.py:475] details abouts PADDLE_TRAINER_ENDPOINTS can be found in log/endpoints.log, and detail running logs maybe found in log/workerlog.0
+    grep: warning: GREP_OPTIONS is deprecated; please use an alias or script
+    I0506 11:32:51.828132  6427 nccl_context.cc:189] init nccl context nranks: 2 local rank: 0 gpu id: 0 ring id: 0
+    W0506 11:32:52.365190  6427 device_context.cc:362] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 11.0
+    W0506 11:32:52.368203  6427 device_context.cc:372] device: 0, cuDNN Version: 8.0.
+    [Epoch 0, batch 0] loss: 4.98047, acc1: 0.00000, acc5: 0.00000
+    [Epoch 0, batch 5] loss: 39.06348, acc1: 0.03125, acc5: 0.09375
     ...
 
 
@@ -291,7 +304,7 @@ train_fleet_static.py的完整训练代码如下所示。
 
 .. code-block:: bash
 
-    python -m paddle.distributed.launch --gpus=0,1 train_fleet_static.py
+    python3 -m paddle.distributed.launch --gpus=0,1 train_fleet_static.py
 
 
 您将看到显示如下日志信息：
@@ -305,27 +318,40 @@ train_fleet_static.py的完整训练代码如下所示。
     http_port: None
     ips: 127.0.0.1
     log_dir: log
-    ...
+    nproc_per_node: None
+    server_num: None
+    servers:
+    training_script: train_fleet_static.py
+    training_script_args: []
+    worker_num: None
+    workers:
     ------------------------------------------------
-    WARNING 2021-01-04 17:59:08,725 launch.py:314] Not found distinct arguments and compiled with cuda. Default use collective mode
+    WARNING 2021-05-06 11:36:30,019 launch.py:316] Not found distinct arguments and compiled with cuda. Default use collective mode
     launch train in GPU mode
-    INFO 2021-01-04 17:59:08,727 launch_utils.py:472] Local start 2 processes. First process distributed environment info (Only For Debug):
+    INFO 2021-05-06 11:36:30,021 launch_utils.py:472] Local start 2 processes. First process distributed environment info (Only For Debug):
         +=======================================================================================+
         |                        Distributed Envs                      Value                    |
         +---------------------------------------------------------------------------------------+
-        |                 PADDLE_CURRENT_ENDPOINT                 127.0.0.1:17901               |
-        |                     PADDLE_TRAINERS_NUM                        2                      |
-        |                PADDLE_TRAINER_ENDPOINTS         127.0.0.1:17901,127.0.0.1:18846       |
-        |                     FLAGS_selected_gpus                        0                      |
         |                       PADDLE_TRAINER_ID                        0                      |
+        |                 PADDLE_CURRENT_ENDPOINT                 127.0.0.1:10039               |
+        |                PADDLE_TRAINER_ENDPOINTS         127.0.0.1:10039,127.0.0.1:31719       |
+        |                     PADDLE_TRAINERS_NUM                        2                      |
+        |                     FLAGS_selected_gpus                        0                      |
         +=======================================================================================+
 
-    ...
-    W0104 17:59:19.018365 43338 device_context.cc:342] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.2, Runtime API Version: 9.2
-    W0104 17:59:19.022523 43338 device_context.cc:352] device: 0, cuDNN Version: 7.4.
-    W0104 17:59:23.193490 43338 fuse_all_reduce_op_pass.cc:78] Find all_reduce operators: 161. To make the speed faster, some all_reduce ops are fused during training, after fusion, the number of all_reduce ops is 5.
-    [Epoch 0, batch 0] loss: 0.12432, acc1: 0.00000, acc5: 0.06250
-    [Epoch 0, batch 5] loss: 1.01921, acc1: 0.00000, acc5: 0.00000
+    INFO 2021-05-06 11:36:30,021 launch_utils.py:475] details abouts PADDLE_TRAINER_ENDPOINTS can be found in log/endpoints.log, and detail running logs maybe found in log/workerlog.0
+    grep: warning: GREP_OPTIONS is deprecated; please use an alias or script
+    Start collective training example:
+    Run on CUDAPlace(0).
+    server not ready, wait 3 sec to retry...
+    not ready endpoints:['127.0.0.1:31719']
+    Execute startup program.
+    W0506 11:36:35.667778  6697 device_context.cc:362] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 11.0
+    W0506 11:36:35.671609  6697 device_context.cc:372] device: 0, cuDNN Version: 8.0.
+    Start training:
+    W0506 11:36:39.900507  6697 fuse_all_reduce_op_pass.cc:79] Find all_reduce operators: 161. To make the speed faster, some all_reduce ops are fused during training, after fusion, the number of all_reduce ops is 5.
+    [Epoch 0, batch 0] loss: 4.67622, acc1: 0.00000, acc5: 0.09375
+    [Epoch 0, batch 5] loss: 30.24010, acc1: 0.00000, acc5: 0.06250
     ...
 
 从单机多卡到多机多卡训练，在代码上不需要做任何改动，只需再额外指定ips参数即可。其内容为多机的ip列表，命令如下所示：
@@ -333,17 +359,17 @@ train_fleet_static.py的完整训练代码如下所示。
 .. code-block:: bash
 
     # 动态图
-    python -m paddle.distributed.launch --ips="xx.xx.xx.xx,yy.yy.yy.yy" --gpus 0,1,2,3,4,5,6,7 train_fleet_dygraph.py
+    python3 -m paddle.distributed.launch --ips="xx.xx.xx.xx,yy.yy.yy.yy" --gpus 0,1,2,3,4,5,6,7 train_fleet_dygraph.py
 
     # 静态图
-    python -m paddle.distributed.launch --ips="xx.xx.xx.xx,yy.yy.yy.yy" --gpus 0,1,2,3,4,5,6,7 train_fleet_static.py
+    python3 -m paddle.distributed.launch --ips="xx.xx.xx.xx,yy.yy.yy.yy" --gpus 0,1,2,3,4,5,6,7 train_fleet_static.py
 
 
 
-二、ParameterServer训练
+二、ParameterServer训练快速开始
 -------------------------
 
-本节将采用推荐领域非常经典的模型wide_and_deep为例，介绍如何使用Fleet API（paddle.distributed.fleet）完成参数服务器训练任务，本次快速开始的示例代码位于https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep。
+本节将采用推荐领域非常经典的模型wide_and_deep为例，介绍如何使用Fleet API（paddle.distributed.fleet）完成参数服务器训练任务，本次快速开始的完整示例代码位于https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep。
 
 2.1 版本要求
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -383,23 +409,38 @@ train_fleet_static.py的完整训练代码如下所示。
 
     # 当前参数服务器模式只支持静态图模式， 因此训练前必须指定`paddle.enable_static()`
     paddle.enable_static()
-    role = role_maker.PaddleCloudRoleMaker()
-    fleet.init(role)
+    fleet.init(is_collective=False)
 
 2.2.3 加载模型及数据
 """"""""""""
 
 .. code-block:: python
 
-    # 模型定义参考examples/wide_and_deep中model.py
-    from model import net
-    from reader import data_reader
+    # 模型定义参考 examples/wide_and_deep 中 model.py
+    from model import WideDeepModel
+    from reader import WideDeepDataset
 
-    feeds, predict, avg_cost = net()
+    model = WideDeepModel()
+    model.net(is_train=True)
 
-    train_reader = paddle.batch(data_reader(), batch_size=4)
-    reader.decorate_sample_list_generator(train_reader)
+    def distributed_training(exe, train_model, train_data_path="./data", batch_size=10, epoch_num=1):
+        train_data = WideDeepDataset(data_path=train_data_path)
+        reader = train_model.loader.set_sample_generator(
+            train_data, batch_size=batch_size, drop_last=True, places=paddle.CPUPlace())
 
+        for epoch_id in range(epoch_num):
+            reader.start()
+            try:
+                while True:
+                    loss_val = exe.run(program=paddle.static.default_main_program(),
+                                    fetch_list=[train_model.cost.name])
+                    loss_val = np.mean(loss_val)
+                    print("TRAIN ---> pass: {} loss: {}\n".format(epoch_id, loss_val))
+            except paddle.common_ops_import.core.EOFException:
+                reader.reset()
+
+    
+    
 2.2.4 定义同步训练 Strategy 及 Optimizer
 """"""""""""
 
@@ -446,25 +487,76 @@ train_fleet_static.py的完整训练代码如下所示。
 
         fleet.init_worker()
 
-        for epoch_id in range(1):
-            reader.start()
-            try:
-                while True:
-                    loss_val = exe.run(program=paddle.static.default_main_program(),
-                                    fetch_list=[avg_cost.name])
-                    loss_val = np.mean(loss_val)
-                    print("TRAIN ---> pass: {} loss: {}\n".format(epoch_id,
-                                                                loss_val))
-            except paddle.core.EOFException:
-                reader.reset()
+        distributed_training(exe, model)
 
         fleet.stop_worker()
 
 2.3 运行训练脚本
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-定义完训练脚本后，我们就可以用`python -m paddle.distributed.launch`指令运行分布式任务了。其中`server_num`, `worker_num`分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
+定义完训练脚本后，我们就可以用`python3 -m paddle.distributed.launch`指令运行分布式任务了。其中`server_num`, `worker_num`分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
 
 .. code-block:: bash
 
-    python -m paddle.distributed.launch --server_num=1 --worker_num=2 train.py
+    python3 -m paddle.distributed.launch --server_num=1 --worker_num=2 --gpus=0,1 train.py
+
+您将看到显示如下日志信息：
+
+    .. code-block:: bash
+    
+    -----------  Configuration Arguments -----------
+    gpus: 0,1
+    heter_worker_num: None
+    heter_workers:
+    http_port: None
+    ips: 127.0.0.1
+    log_dir: log
+    nproc_per_node: None
+    server_num: 1
+    servers:
+    training_script: train.py
+    training_script_args: []
+    worker_num: 2
+    workers:
+    ------------------------------------------------
+    INFO 2021-05-06 12:14:26,890 launch.py:298] Run parameter-sever mode. pserver arguments:['--worker_num', '--server_num'], cuda count:8
+    INFO 2021-05-06 12:14:26,892 launch_utils.py:973] Local server start 1 processes. First process distributed environment info (Only For Debug):
+        +=======================================================================================+
+        |                        Distributed Envs                      Value                    |
+        +---------------------------------------------------------------------------------------+
+        |                     PADDLE_TRAINERS_NUM                        2                      |
+        |                           TRAINING_ROLE                     PSERVER                   |
+        |                                  POD_IP                    127.0.0.1                  |
+        |                  PADDLE_GLOO_RENDEZVOUS                        3                      |
+        |            PADDLE_PSERVERS_IP_PORT_LIST                 127.0.0.1:34008               |
+        |                             PADDLE_PORT                      34008                    |
+        |                        PADDLE_WITH_GLOO                        0                      |
+        |       PADDLE_HETER_TRAINER_IP_PORT_LIST                                               |
+        |                PADDLE_TRAINER_ENDPOINTS         127.0.0.1:18913,127.0.0.1:10025       |
+        |               PADDLE_GLOO_HTTP_ENDPOINT                 127.0.0.1:23053               |
+        |                     PADDLE_GLOO_FS_PATH                /tmp/tmp8vqb8arq               |
+        +=======================================================================================+
+    
+    INFO 2021-05-06 12:14:26,902 launch_utils.py:1041] Local worker start 2 processes. First process distributed environment info (Only For Debug):
+        +=======================================================================================+
+        |                        Distributed Envs                      Value                    |
+        +---------------------------------------------------------------------------------------+
+        |               PADDLE_GLOO_HTTP_ENDPOINT                 127.0.0.1:23053               |
+        |                  PADDLE_GLOO_RENDEZVOUS                        3                      |
+        |            PADDLE_PSERVERS_IP_PORT_LIST                 127.0.0.1:34008               |
+        |                        PADDLE_WITH_GLOO                        0                      |
+        |                PADDLE_TRAINER_ENDPOINTS         127.0.0.1:18913,127.0.0.1:10025       |
+        |                     FLAGS_selected_gpus                        0                      |
+        |                     PADDLE_GLOO_FS_PATH                /tmp/tmp8vqb8arq               |
+        |                     PADDLE_TRAINERS_NUM                        2                      |
+        |                           TRAINING_ROLE                     TRAINER                   |
+        |                     XPU_VISIBLE_DEVICES                        0                      |
+        |       PADDLE_HETER_TRAINER_IP_PORT_LIST                                               |
+        |                       PADDLE_TRAINER_ID                        0                      |
+        |                    CUDA_VISIBLE_DEVICES                        0                      |
+        |                     FLAGS_selected_xpus                        0                      |
+        +=======================================================================================+
+    
+    INFO 2021-05-06 12:14:26,921 launch_utils.py:903] Please check servers, workers and heter_worker logs in log/workerlog.*, log/serverlog.* and log/heterlog.*
+    INFO 2021-05-06 12:14:33,446 launch_utils.py:914] all workers exit, going to finish parameter server and heter_worker.
+    INFO 2021-05-06 12:14:33,446 launch_utils.py:926] all parameter server are killed
