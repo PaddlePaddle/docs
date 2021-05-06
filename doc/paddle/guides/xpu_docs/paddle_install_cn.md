@@ -43,29 +43,10 @@ python3.6 -m pip install -U ``paddlepaddle-2.0.1-cp36-cp36m-linux_x86_64.whl
 
 **环境2：飞腾CPU+昆仑XPU+麒麟V10系统**
 
-Python3.7
+如果您想使用预编译的支持昆仑XPU的wheel包，请联系飞桨官方邮件组：Paddle-better@baidu.com
 
-```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp37-cp37m-linux_aarch64.whl
-```
+### 验证安装
 
-```
-python3.7 -m pip install -U paddlepaddle-2.0.1-cp37-cp37m-linux_aarch64.whl
-```
-
-Python3.6
-
-```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp36-cp36m-linux_aarch64.whl
-```
-
-```
-python3.6 -m pip install -U paddlepaddle-2.0.1-cp36-cp36m-linux_aarch64.whl
-```
-
-如果使用预编译的支持昆仑XPU的wheel包出现环境问题，推荐使用源码自行编译支持昆仑XPU的包。
-
-###验证安装
 安装完成后您可以使用 python 或 python3 进入python解释器，输入
 
 ```
