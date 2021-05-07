@@ -254,7 +254,7 @@ class PointNet(nn.Layer):
 ```
 
 ### 3.2 网络结构可视化
-说明：使用飞奖API：`paddle.summary`完成模型结构可视化
+说明：使用飞桨API：`paddle.summary`完成模型结构可视化
 
 
 ```python
