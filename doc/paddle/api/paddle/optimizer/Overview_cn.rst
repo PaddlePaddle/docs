@@ -20,7 +20,7 @@ paddle.optimizer 目录下包含飞桨框架支持的优化器算法相关的API
     :widths: 10, 30
 
     " :ref:`Adadelta <cn_api_paddle_optimizer_Adadelta>` ", "Adadelta优化器"
-    " :ref:`Adagrad <cn_api_fluid_optimizer_Adagrad>` ", "Adagrad优化器"
+    " :ref:`Adagrad <cn_api_paddle_optimizer_Adagrad>` ", "Adagrad优化器"
     " :ref:`Adam <cn_api_paddle_optimizer_Adam>` ", "Adam优化器"
     " :ref:`Adamax <cn_api_paddle_optimizer_Adamax>` ", "Adamax优化器"
     " :ref:`AdamW <cn_api_paddle_optimizer_AdamW>` ", "AdamW优化器"
