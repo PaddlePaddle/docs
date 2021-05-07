@@ -584,7 +584,10 @@ def gen_en_files(api_label_file="api_label"):
                 continue
             gen = EnDocGenerator()
             with gen.guard(f):
-                if 'full_name' in api_info:
+                if 'suggested_name' in api_info:
+                    mod_name, _, short_name = api_info[
+                        'suggested_name'].rpartition('.')
+                elif 'full_name' in api_info:
                     mod_name, _, short_name = api_info['full_name'].rpartition(
                         '.')
                 else:
@@ -784,7 +787,8 @@ def filter_api_info_dict():
             del api_info_dict[id_api]["object"]
         sn = get_shortest_api(api_info_dict[id_api]["all_names"])
         if sn:
-            api_info_dict[id_api]["alias_name"] = sn
+            # api_info_dict[id_api]["alias_name"] = sn
+            api_info_dict[id_api]["suggested_name"] = sn
             api_info_dict[id_api]["doc_filename"] = sn.replace('.', '/')
 
 
