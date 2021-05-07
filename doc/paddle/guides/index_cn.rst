@@ -16,7 +16,7 @@
 - `分布式训练 <./06_distributed_training/index_cn.html>`_ : 介绍如何使用分布式进行训练。
 - `昆仑XPU芯片运行飞桨 <./xpu_docs/index_cn.html>`_ : 介绍如何在昆仑XPU芯片环境上安装和使用飞桨。
 - `海光DCU芯片运行飞桨 <./rocm_docs/index_cn.html>`_ : 介绍如何在海光DCU芯片环境上安装和使用飞桨。
-- `华为NPU芯片运行飞桨 <./npu_docs/index_cn.html>`_ : 介绍如何在华为昇腾环境上安装和使用飞桨。
+- `昇腾NPU芯片运行飞桨 <./npu_docs/index_cn.html>`_ : 介绍如何在昇腾环境上安装和使用飞桨。
 - `自定义算子 <./07_new_op/index_cn.html>`_ : 介绍飞桨框架自定义算子的方法。
 - `参与开发 <./08_contribution/index_cn.html>`_ : 介绍如何参与飞桨框架的开发。
 - `其他说明 <./09_others_information/index_cn.html>`_ : 飞桨框架的其他说明文档。
