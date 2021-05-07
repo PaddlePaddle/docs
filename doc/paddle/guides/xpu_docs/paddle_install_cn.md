@@ -43,29 +43,10 @@ python3.6 -m pip install -U ``paddlepaddle-2.0.1-cp36-cp36m-linux_x86_64.whl
 
 **环境2：飞腾CPU+昆仑XPU+麒麟V10系统**
 
-Python3.7
+如果您想使用预编译的支持昆仑XPU的wheel包，请联系飞桨官方邮件组：Paddle-better@baidu.com
 
-```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp37-cp37m-linux_aarch64.whl
-```
+### 验证安装
 
-```
-python3.7 -m pip install -U paddlepaddle-2.0.1-cp37-cp37m-linux_aarch64.whl
-```
-
-Python3.6
-
-```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp36-cp36m-linux_aarch64.whl
-```
-
-```
-python3.6 -m pip install -U paddlepaddle-2.0.1-cp36-cp36m-linux_aarch64.whl
-```
-
-如果使用预编译的支持昆仑XPU的wheel包出现环境问题，推荐使用源码自行编译支持昆仑XPU的包。
-
-###验证安装
 安装完成后您可以使用 python 或 python3 进入python解释器，输入
 
 ```
@@ -90,7 +71,7 @@ paddle.utils.run_check()
 - **操作系统：Ubuntu 16.04.6 LTS**
 - **Python版本： 2.7/3.6/3.7 (64 bit)**
 - **pip或pip3版本：9.0.1+ (64 bit)**
-- **cmake版本：3.10+**
+- **cmake版本：3.15+**
 - **gcc/g++版本：8.2+**
 
 **飞腾CPU+昆仑XPU+麒麟V10系统**
@@ -99,12 +80,12 @@ paddle.utils.run_check()
 - **操作系统：Kylin release V10 (SP1)/(Tercel)-aarch64-Build04/20200711**
 - **Python版本：3.6/3.7 (64 bit)**
 - **pip或pip3版本： 9.0.1+ (64 bit)**
-- **cmake版本：3.10+**
+- **cmake版本：3.15+**
 - **gcc/g++版本：8.2+**
 
 ### 源码编译安装步骤：
 
-（1）Paddle依赖cmake进行编译构建，需要cmake版本>=3.10，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要
+（1）Paddle依赖cmake进行编译构建，需要cmake版本>=3.15，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要
 
 ```
 wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
