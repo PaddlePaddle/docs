@@ -784,6 +784,7 @@ def filter_api_info_dict():
             del api_info_dict[id_api]["object"]
         sn = get_shortest_api(api_info_dict[id_api]["all_names"])
         if sn:
+            api_info_dict[id_api]["alias_name"] = sn
             api_info_dict[id_api]["doc_filename"] = sn.replace('.', '/')
 
 
