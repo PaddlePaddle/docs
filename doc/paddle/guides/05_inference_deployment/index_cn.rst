@@ -41,4 +41,4 @@
 
     inference/index_cn.rst
     mobile/index_cn.rst
-    paddleslim/paddle_slim.md
+    paddleslim/paddle_slim_cn.md

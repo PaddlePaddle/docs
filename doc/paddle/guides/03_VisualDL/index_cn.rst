@@ -11,5 +11,5 @@ VisualDL 工具
     :maxdepth: 1
 
 
-    visualdl.md
-    visualdl_usage.md
+    visualdl_cn.md
+    visualdl_usage_cn.md
