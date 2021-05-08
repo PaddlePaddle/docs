@@ -570,8 +570,10 @@ def gen_en_files(api_label_file="api_label"):
             elif "display" in api_info and not api_info["display"]:
                 logger.debug("{} display False".format(id_api))
                 continue
-            elif 'type' in api_info and api_info[
-                    'type'] in ['module', 'method']:
+            elif 'type' in api_info and api_info['type'] in [
+                    'module', 'method', 'VarType',
+                    'builtin_function_or_method', 'dict', 'float', 'str'
+            ]:
                 continue
             elif "doc_filename" not in api_info:
                 logger.debug(
