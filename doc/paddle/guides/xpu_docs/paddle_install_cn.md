@@ -71,7 +71,7 @@ paddle.utils.run_check()
 - **操作系统：Ubuntu 16.04.6 LTS**
 - **Python版本： 2.7/3.6/3.7 (64 bit)**
 - **pip或pip3版本：9.0.1+ (64 bit)**
-- **cmake版本：3.15+**
+- **cmake版本：3.10+**
 - **gcc/g++版本：8.2+**
 
 **飞腾CPU+昆仑XPU+麒麟V10系统**
@@ -80,12 +80,12 @@ paddle.utils.run_check()
 - **操作系统：Kylin release V10 (SP1)/(Tercel)-aarch64-Build04/20200711**
 - **Python版本：3.6/3.7 (64 bit)**
 - **pip或pip3版本： 9.0.1+ (64 bit)**
-- **cmake版本：3.15+**
+- **cmake版本：3.10+**
 - **gcc/g++版本：8.2+**
 
 ### 源码编译安装步骤：
 
-（1）Paddle依赖cmake进行编译构建，需要cmake版本>=3.15，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要
+（1）Paddle依赖cmake进行编译构建，需要cmake版本>=3.10，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要
 
 ```
 wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
