@@ -88,8 +88,10 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., const int& 
 - 长度与维度相关API：
     - `int64_t size() const`：获取 `Tensor` 的数据长度
     - `std::vector<int64_t> shape() const`：获取 `Tensor` 的维度信息
-    - `void reshape(const std::vector<int64_t>& shape)`：输入参数 `shape` ，修改 `Tensor` 的维度信息
+    - `void reshape(const std::vector<int64_t>& shape)`：
+        - 输入参数 `shape` ，修改 `Tensor` 记录的维度信息，此处不会重新分配存储
 - 数据访问API：
+    - `is_initialized() const`: 确认 `Tensor` 是否已被初始化
     - `template <typename T> T* data() const`：
         - 模板类方法，获取数据内存的起始地址（只读访问）
     - `template <typename T> T* mutable_data(const PlaceType& place)`：
@@ -140,6 +142,8 @@ PD_THROW("PD_THROW returns ", false)
 ```
 
 对函数写法以及基础API的定义有了初步认识后，下面结合具体的示例进行介绍。
+
+### 运算函数实现
 
 #### CPU实现
 
@@ -585,7 +589,7 @@ std::vector<paddle::Tensor> relu_cuda_backward(const paddle::Tensor& x,
 }
 ```
 
-### 维度与类型推导函数
+### 维度与类型推导函数实现
 
 `PaddlePaddle` 框架同时支持动态图与静态图的执行模式，在静态图模式下，组网阶段需要完成 `Tensor shape` 和 `dtype` 的推导，从而生成正确的模型描述，用于后续Graph优化与执行。因此，除了算子的运算函数之外，还需要实现前向运算的维度和类型的推导函数。
 
@@ -612,7 +616,7 @@ std::vector<paddle::DataType> OpInferDtype(paddle::DataType x_dtype, ...) {
 
 以 `relu` 为例，其维度与类型推导函数如下：
 
-- relu_cpu_fp32.cc / relu_cpu.cc / relu_cuda.cc / relu.cc （在这些文件中实现）
+- relu_cpu_fp32.cc / relu_cpu.cc / relu_cuda.cc / relu.cc （需将以下代码追加到前述文件中）
 
 ```c++
 // 维度推导
@@ -659,7 +663,7 @@ std::vector<paddle::DataType> ConcatInferDtypeStaticAxis(
 
 对于 `relu` CPU示例来说，构建算子描述如下：
 
-- relu_cpu_fp32.cc / relu_cpu.cc
+- relu_cpu_fp32.cc / relu_cpu.cc （需将以下代码追加到前述文件中）
 
 ```c++
 PD_BUILD_OP(custom_relu)
@@ -702,7 +706,7 @@ PD_BUILD_GRAD_OP(custom_relu)
 
 类似地，GPU示例构建算子描述如下，替换 `KernelFn` 即可：
 
-- relu_cuda.cc
+- relu_cuda.cc （需将以下代码追加到前述文件中）
 
 ```c++
 PD_BUILD_OP(custom_relu)
@@ -717,6 +721,7 @@ PD_BUILD_GRAD_OP(custom_relu)
 ```
 
 对于 `concat` 算子，其包含变长的输入输出，因此 `PD_BUILD_OP` 声明时需要用到 `paddle::Vec` 方法，示例如下：
+
 ```c++
 PD_BUILD_OP(custom_concat_with_attr)
     .Inputs({paddle::Vec("X")})
@@ -806,6 +811,8 @@ std::vector<paddle::Tensor> AttrTestBackward(
 ## 自定义算子编译与使用
 
 本机制提供了两种编译自定义算子的方式，分别为 **使用 `setuptools` 编译** 与 **即时编译** ，下面依次通过示例介绍。
+
+> 注：在进行编译之前，需要根据实际需求，将前述 **运算函数实现** ，**维度与类型推导函数实现** ， **构建算子** 三节中的代码示例组合到一起，具体地，需要将 **维度与类型推导函数实现** ， **构建算子** 两节中的代码片段追加到  **运算函数实现** 小节中对应的 *.cc 文件中
 
 ### 使用 `setuptools` 编译
 
@@ -920,7 +927,7 @@ def inject_ext_module(module_name, api_names):
 
 def __bootstrap__():
     cur_dir = os.path.dirname(os.path.abspath(__file__))
-    so_path = os.path.join(cur_dir, "custom_setup_ops_pd_.so")
+    so_path = os.path.join(cur_dir, "custom_relu_module_setup_pd_.so")
 
     assert os.path.exists(so_path)
 
@@ -930,22 +937,29 @@ def __bootstrap__():
 
 __bootstrap__()
 
+from paddle.fluid.core import VarBase
+from paddle.fluid.framework import in_dygraph_mode, _dygraph_tracer
 from paddle.fluid.layer_helper import LayerHelper
 
 def custom_relu(x):
-    helper = LayerHelper("custom_relu", **locals())
-
     # prepare inputs and outputs
     ins = {'X' : x}
     attrs = {}
     outs = {}
     out_names = ['Out']
-    for out_name in out_names:
-        # Set 'float32' temporarily, and the actual dtype of output variable will be inferred
-        # in runtime.
-        outs[out_name] = helper.create_variable(dtype='float32')
 
-    helper.append_op(type="custom_relu", inputs=ins, outputs=outs, attrs=attrs)
+    # The output variable's dtype use default value 'float32',
+    # and the actual dtype of output variable will be inferred in runtime.
+    if in_dygraph_mode():
+        for out_name in out_names:
+            outs[out_name] = VarBase()
+        _dygraph_tracer().trace_op(type="custom_relu", inputs=ins, outputs=outs, attrs=attrs)
+    else:
+        helper = LayerHelper("custom_relu", **locals())
+        for out_name in out_names:
+            outs[out_name] = helper.create_variable(dtype='float32')
+
+        helper.append_op(type="custom_relu", inputs=ins, outputs=outs, attrs=attrs)
 
     res = [outs[out_name] for out_name in out_names]
 
@@ -961,7 +975,6 @@ from custom_setup_ops import custom_relu
 x = paddle.randn([4, 10], dtype='float32')
 relu_out = custom_relu(x)
 ```
-
 
 > 注：`setuptools` 的封装是为了简化自定义算子编译和使用流程，即使不依赖于 `setuptools` ，也可以自行编译生成动态库，并封装相应的python API，然后在基于 `PaddlePaddle` 实现的模型中使用
 
