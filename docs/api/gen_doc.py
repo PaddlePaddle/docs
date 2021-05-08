@@ -567,10 +567,13 @@ def gen_en_files(api_label_file="api_label"):
             if 'full_name' in api_info and api_info['full_name'].endswith(
                     'Overview'):
                 continue
-            if "display" in api_info and not api_info["display"]:
+            elif "display" in api_info and not api_info["display"]:
                 logger.debug("{} display False".format(id_api))
                 continue
-            if "doc_filename" not in api_info:
+            elif 'type' in api_info and api_info[
+                    'type'] in ['module', 'method']:
+                continue
+            elif "doc_filename" not in api_info:
                 logger.debug(
                     "{} does not have doc_filename field.".format(id_api))
                 continue
