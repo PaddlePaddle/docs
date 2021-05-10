@@ -647,12 +647,19 @@ class EnDocGenerator(object):
     skip
     """
 
-    def __init__(self, name=None, api=None):
+    def __init__(self, api_info):
         """
         init
         """
-        self.module_name = name
-        self.api = api
+        self.api_info = api_info
+        if 'suggested_name' in self.api_info:
+            self.api_name = self.api_info['suggested_name']
+        elif 'full_name' in self.api_info:
+            self.api_name = self.api_info['full_name']
+        else:
+            logger.warning("%s has no attr called full_name/suggested_name",
+                           str(self.api_info))
+            self.api_name = None
         self.stream = None
 
     @contextlib.contextmanager
@@ -671,18 +678,25 @@ class EnDocGenerator(object):
         as name
         """
         try:
-            m = eval(self.module_name + "." + self.api)
+            if 'object' in self.api_info:
+                m = self.api_info['object']
+            elif self.api_name is not None:
+                m = eval(self.api_name)
+            else:
+                logger.warning(
+                    "%s has no attr called object/full_name/suggested_name",
+                    str(self.api_info))
+                return
         except AttributeError:
-            logger.warning("attribute error: module_name=" + self.module_name +
-                           ", api=" + self.api)
-            pass
+            logger.warning("attribute error for %s ", str(self.api_info))
         else:
-            if isinstance(eval(self.module_name + "." + self.api), type):
+            if isinstance(m, type):
                 self.print_class()
-            elif isinstance(
-                    eval(self.module_name + "." + self.api),
-                    types.FunctionType):
+            elif isinstance(m, types.FunctionType):
                 self.print_function()
+            else:
+                logger.warning("%s: not supported type %s",
+                               str(self.api_info), type(m))
 
     def print_header_reminder(self):
         """
@@ -697,8 +711,9 @@ class EnDocGenerator(object):
         """
         as name
         """
-        self.stream.write(".. _api_{0}_{1}:\n\n".format("_".join(
-            self.module_name.split(".")), self.api))
+        if self.api_name is None:
+            return
+        self.stream.write(".. _api_{}:\n\n".format("_".join(self.api_name)))
 
     def _print_header_(self, name, dot, is_title):
         """
@@ -748,32 +763,40 @@ class EnDocGenerator(object):
 '''
         }
         tmpl = 'default'
-        if 'fluid.dygraph' in self.module_name or \
-           'paddle.vision' in self.module_name or \
-           'paddle.callbacks' in self.module_name or \
-           'paddle.hapi.callbacks' in self.module_name or \
-           'paddle.io' in self.module_name or \
-           'paddle.nn' in self.module_name:
-            tmpl = 'no-inherited'
-        elif "paddle.optimizer" in self.module_name or \
-             "fluid.optimizer" in self.module_name:
-            tmpl = 'fluid.optimizer'
-        else:
-            tmpl = 'default'
+        for m in [
+                'fluid.dygraph', 'paddle.vision', 'paddle.callbacks',
+                'paddle.hapi.callbacks', 'paddle.io', 'paddle.nn'
+        ]:
+            if self.api_name.startswith(m):
+                tmpl = 'no-inherited'
+        if tmpl == 'default':
+            for m in ["paddle.optimizer", "fluid.optimizer"]:
+                if self.api_name.startswith(m):
+                    tmpl = 'fluid.optimizer'
 
-        api_full_name = "{}.{}".format(self.module_name, self.api)
-        self.stream.write(cls_templates[tmpl].format(api_full_name))
+        self.stream.write(cls_templates[tmpl].format(self.api_name))
 
     def print_function(self):
         """
         as name
         """
         self._print_ref_()
-        self._print_header_(self.api, dot='-', is_title=False)
-        self.stream.write('''..  autofunction:: {0}.{1}
+        short_name = None
+        if 'short_name' in self.api_info['short_name']:
+            short_name = self.api_info['short_name']
+        else:
+            _, short_name = split_name(self.api_name)
+        self._print_header_(short_name, dot='-', is_title=False)
+        self.stream.write('''..  autofunction:: {}
     :noindex:
 
-'''.format(self.module_name, self.api))
+'''.format(self.api_name))
+
+    def __call__(self):
+        """
+        generate the rst file.
+        """
+        ...
 
 
 def filter_api_info_dict():
