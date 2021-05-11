@@ -1,37 +1,111 @@
-.. _cn_api_paddle_metric_accuracy:
+.. _cn_api_metric_Accuracy:
 
-accuracy
+Accuracy
 -------------------------------
 
-.. py:function:: paddle.metric.accuracy(input, label, k=1, correct=None, total=None, name=None)
+.. py:class:: paddle.metric.Accuracy()
 
-accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
+计算准确率(accuracy)。
 
-使用输入和标签计算准确率。 如果正确的标签在topk个预测值里，则计算结果加1。注意：输出正确率的类型由input类型决定，input和lable的类型可以不一样。
-
-参数
+参数：
 :::::::::
+    - **topk** (int|tuple(int)) - 计算准确率的top个数，默认是1。
+    - **name** (str, optional) - metric实例的名字，默认是'acc'。
 
-    - **input** (Tensor)-数据类型为float32,float64。输入为网络的预测值。shape为 ``[sample_number, class_dim]`` 。
-    - **label** (Tensor)-数据类型为int64，int32。输入为数据集的标签。shape为 ``[sample_number, 1]`` 。
-    - **k** (int64|int32，可选) - 取每个类别中k个预测值用于计算，默认值为1。
-    - **correct** (int64|int32, 可选)-正确预测值的个数，默认值为None。
-    - **total** (int64|int32，可选)-总共的预测值，默认值为None。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+**代码示例**：
+
+    独立使用示例:
+        
+        .. code-block:: python
+
+            import numpy as np
+            import paddle
+
+            x = paddle.to_tensor(np.array([
+                [0.1, 0.2, 0.3, 0.4],
+                [0.1, 0.4, 0.3, 0.2],
+                [0.1, 0.2, 0.4, 0.3],
+                [0.1, 0.2, 0.3, 0.4]]))
+            y = paddle.to_tensor(np.array([[0], [1], [2], [3]]))
+
+            m = paddle.metric.Accuracy()
+            correct = m.compute(x, y)
+            m.update(correct)
+            res = m.accumulate()
+            print(res) # 0.75
+
+
+    在Model API中的示例:
+        
+        .. code-block:: python
+
+            import paddle
+            from paddle.static import InputSpec
+            import paddle.vision.transforms as T
+            from paddle.vision.datasets import MNIST
+               
+            input = InputSpec([None, 1, 28, 28], 'float32', 'image')
+            label = InputSpec([None, 1], 'int64', 'label')
+            transform = T.Compose([T.Transpose(), T.Normalize([127.5], [127.5])])
+            train_dataset = MNIST(mode='train', transform=transform)
+  
+            model = paddle.Model(paddle.vision.LeNet(), input, label)
+            optim = paddle.optimizer.Adam(
+                learning_rate=0.001, parameters=model.parameters())
+            model.prepare(
+                optim,
+                loss=paddle.nn.CrossEntropyLoss(),
+                metrics=paddle.metric.Accuracy())
+  
+            model.fit(train_dataset, batch_size=64)
+
+
+
+.. py:function:: compute(pred, label, *args)
+
+计算top-k（topk中的最大值）的索引。
+
+参数：
+:::::::::
+    - **pred**  (Tensor) - 预测结果为是float64或float32类型的Tensor。shape为[batch_size, d0, ..., dN].
+    - **label**  (Tensor) - 真实的标签值是一个int64类型的Tensor，shape为[batch_size, d0, ..., 1] 或one hot表示的形状[batch_size, d0, ..., num_classes].
+
+返回: 一个Tensor，shape是[batch_size, d0, ..., topk], 值为0或1，1表示预测正确.
+
+
+.. py:function:: update(pred, label, *args)
+
+更新metric的状态（正确预测的个数和总个数），以便计算累积的准确率。返回当前step的准确率。
+
+参数:
+:::::::::
+    - **correct** (numpy.array | Tensor): 一个值为0或1的Tensor，shape是[batch_size, d0, ..., topk]。
+
+返回: 当前step的准确率。
+
+
+.. py:function:: reset()
+
+清空状态和计算结果。
 
 返回
 :::::::::
+  无
 
-    ``Tensor``，计算出来的正确率，数据类型为float32的Tensor。
 
-代码示例
+.. py:function:: accumulate()
+
+累积的统计指标，计算和返回准确率。
+
+返回
 :::::::::
+  准确率，一般是个标量 或 多个标量，和topk的个数一致。
 
-.. code-block:: python
 
-    import paddle
+.. py:function:: name()
 
-    predictions = paddle.to_tensor([[0.2, 0.1, 0.4, 0.1, 0.1], [0.2, 0.3, 0.1, 0.15, 0.25]], dtype='float32')
-    label = paddle.to_tensor([[2], [0]], dtype="int64")
-    result = paddle.metric.accuracy(input=predictions, label=label, k=1)
-    # [0.5]
+返回Metric实例的名字, 参考上述name，默认是'acc'。
+
+返回
+:::::::::
+  评估的名字，string类型。
