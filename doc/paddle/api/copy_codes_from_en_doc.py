@@ -104,6 +104,7 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
             continue
         cb_new = []
         indent = cf_info['indent']
+        cb_new.append('')  # insert a empty line in the frontend
         cb_new.append(' ' * indent + '.. code-block:: python')
         if cf_info['cb_name']:
             cb_new.append(' ' * (indent + 3) + ':name: ' + cf_info['cb_name'])
