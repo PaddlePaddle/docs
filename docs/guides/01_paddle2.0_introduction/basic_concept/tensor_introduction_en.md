@@ -1,11 +1,11 @@
 # Introduction to Tensor
 
-PaddlePaddle(Hereinafter referred to as Paddle) is the same as other Deep learning Framework, it use **Tensor** to
+PaddlePaddle(Hereinafter referred to as Paddle) is the same as other Deep Learning Framework, it use **Tensor** to
 representing data.
 
-**Tensor** can be regarded as multi-dimensional array, which can have as many diemensions as it want. Different **Tensor** can have different data types(dtype) and shape.
+**Tensor** can be regarded as multi-dimensional array, which can have as many diemensions as it want. Different **Tensor** may have different data types(dtype) and shapes.
 
-The dtypes of all elements in the same Tensor are the same. If you are familiar with [Numpy](https://www.paddlepaddle.org.cn/tutorials/projectdetail/590690), **Tensor** is similar to the **Numpy array**.
+The dtypes of all elements in the same Tensor are the same. If you are familiar with [Numpy](https://numpy.org/doc/stable/user/quickstart.html#the-basics), **Tensor** is similar to the **Numpy array**.
 
 ## Creation of Tensor
 

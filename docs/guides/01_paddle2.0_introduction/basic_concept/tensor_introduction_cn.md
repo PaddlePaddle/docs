@@ -4,7 +4,7 @@
 
 **Tensor**可以将其理解为多维数组，其可以具有任意多的维度，不同**Tensor**可以有不同的**数据类型** (dtype) 和**形状** (shape)。
 
-同一**Tensor**的中所有元素的dtype均相同。如果你对 [Numpy](https://www.paddlepaddle.org.cn/tutorials/projectdetail/590690) 熟悉，**Tensor**是类似于 **Numpy array** 的概念。
+同一**Tensor**的中所有元素的dtype均相同。如果你对 [Numpy](https://numpy.org/doc/stable/user/quickstart.html#the-basics) 熟悉，**Tensor**是类似于 **Numpy array** 的概念。
 
 ## Tensor的创建
 
