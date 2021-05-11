@@ -639,10 +639,8 @@ class EnDocGenerator(object):
             self.api_name = None
         self.api_ref_name = '_api_' + self.api_name.replace(
             '.', '_') if self.api_name else None
-        if 'short_name' in self.api_info:
-            self.short_name = self.api_info['short_name']
-        else:
-            _, self.short_name = split_name(self.api_name)
+        # disarding the api_info['short_name'], cause it may be different.
+        _, self.short_name = split_name(self.api_name)
         self.stream = None
 
     @contextlib.contextmanager
