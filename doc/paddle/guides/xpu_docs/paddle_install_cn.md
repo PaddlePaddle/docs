@@ -1,6 +1,6 @@
 # 飞桨框架昆仑XPU版安装说明
 
-飞桨框架支持基于python的训练和原生预测，当前最新版本为2.0.1，提供两种安装方式：
+飞桨框架支持基于python的训练和原生预测，当前最新版本为2.1，提供两种安装方式：
 
 **1. 预编译的支持昆仑XPU的wheel包**
 
@@ -18,52 +18,33 @@
 
 ### 下载安装包
 
-**环境1：英特尔CPU+昆仑XPU+Ubuntu系统**
+**环境1：英特尔CPU+昆仑XPU+CentOS系统**
+
+Linux发行版建议选择CentOS 7系统
 
 Python3.7
 
 ```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp37-cp37m-linux_x86_64.whl
+wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.1.0-cp37-cp37m-linux_x86_64.whl
 ```
 
 ```
-python3.7 -m pip install -U paddlepaddle-2.0.1-cp37-cp37m-linux_x86_64.whl
+python3.7 -m pip install -U paddlepaddle-2.1.0-cp37-cp37m-linux_x86_64.whl
 ```
 
 Python3.6
 
 ```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp36-cp36m-linux_x86_64.whl
+wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.1.0-cp36-cp36m-linux_x86_64.whl
 ```
 
 ```
-python3.6 -m pip install -U ``paddlepaddle-2.0.1-cp36-cp36m-linux_x86_64.whl
+python3.6 -m pip install -U ``paddlepaddle-2.1.0-cp36-cp36m-linux_x86_64.whl
 ```
-
 
 **环境2：飞腾CPU+昆仑XPU+麒麟V10系统**
 
-Python3.7
-
-```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp37-cp37m-linux_aarch64.whl
-```
-
-```
-python3.7 -m pip install -U paddlepaddle-2.0.1-cp37-cp37m-linux_aarch64.whl
-```
-
-Python3.6
-
-```
-wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.1-cp36-cp36m-linux_aarch64.whl
-```
-
-```
-python3.6 -m pip install -U paddlepaddle-2.0.1-cp36-cp36m-linux_aarch64.whl
-```
-
-如果使用预编译的支持昆仑XPU的wheel包出现环境问题，推荐使用源码自行编译支持昆仑XPU的包。
+如需该环境下的wheel包，请邮件联系Paddle-better@baidu.com获取。
 
 ###验证安装
 安装完成后您可以使用 python 或 python3 进入python解释器，输入
@@ -131,7 +112,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-（5）建议切换到release2.0分支下进行编译：
+（5）建议切换到release2.1分支下进行编译：
 
 ```
 git checkout [``分支名``]
@@ -140,7 +121,7 @@ git checkout [``分支名``]
 例如：
 
 ```
-git checkout release/2.0
+git checkout release/2.1
 ```
 
 （6）并且请创建并进入一个叫build的目录下

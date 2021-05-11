@@ -20,4 +20,4 @@ export FLAGS_selected_xpus=0,1
 Python3.7 tools/train_multi_platform.py -c configs/kunlun/ResNet50.yaml -o use_gpu=False -o use_xpu=True
 ```
 
-注意：飞腾CPU+昆仑XPU的环境下暂未支持多卡训练。
+其他模型的训练示例可在[飞桨对昆仑XPU芯片的支持](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_2.0_xpu_cn.html)中支持模型列表下的模型链接中找到。

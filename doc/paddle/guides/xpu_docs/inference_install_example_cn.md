@@ -8,8 +8,8 @@
 | 飞桨服务化推理框架 | Paddle Serving   | 自动服务、模型管理等高阶功能 | Python、C++ | 源码编译 |
 | 飞桨轻量化推理引擎 | Paddle Lite      | 移动端、物联网等             | Python、C++ | 源码编译 |
 
-Paddle Inference 2.0.1版本的安装及使用方式，请[点击查看](https://paddleinference.paddlepaddle.org.cn/demo_tutorial/paddle_xpu_infer_cn.html)。
+Paddle Inference 2.1版本的安装及使用方式，请[点击查看](https://paddleinference.paddlepaddle.org.cn/demo_tutorial/paddle_xpu_infer_cn.html)。
 
-Paddle Serving 0.5.0版本的安装及使用方式，请[点击查看](https://github.com/PaddlePaddle/Serving/blob/develop/doc/BAIDU_KUNLUN_XPU_SERVING_CN.md)。
+Paddle Serving 0.6.0版本的安装及使用方式，请[点击查看](https://github.com/PaddlePaddle/Serving/blob/develop/doc/BAIDU_KUNLUN_XPU_SERVING_CN.md)。
 
-Paddle Lite 2.8版本的安装及使用方式，请[点击查看](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html)。
+Paddle Lite 2.9版本的安装及使用方式，请[点击查看](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html)。
