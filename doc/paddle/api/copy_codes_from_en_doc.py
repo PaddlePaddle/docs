@@ -37,7 +37,7 @@ def load_api_info(api_info_json_filename):
 def read_rst_lines_and_copy_info(cnrstfilename):
     copy_from_info = []
     rst_lines = None
-    pat = re.compile(r"^(\s*)COPY-FROM\s*:\s*(.*)$")
+    pat = re.compile(r"^(\s*)COPY-FROM\s*:\s*(.*)$", flags=re.IGNORECASE)
     with open(cnrstfilename, 'r') as rstf:
         rst_lines = rstf.readlines()
         for lineno, line in enumerate(rst_lines):
