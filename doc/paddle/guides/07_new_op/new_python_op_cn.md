@@ -176,11 +176,9 @@ class PyLayer:
 
 ```Python
 class PyLayerContext:
-    @staticmethod
     def save_for_backward(self, *tensors):
         pass
 
-    @staticmethod
     def saved_tensor(self):
         pass
 ```
