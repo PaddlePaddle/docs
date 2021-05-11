@@ -577,3 +577,4 @@ paddle.hapi.hub.list	paddle.hub.list
 paddle.hapi.hub.help	paddle.hub.help
 paddle.hapi.hub.load	paddle.hub.load
 paddle.autograd.py_layer.PyLayer	paddle.autograd.PyLayer
+paddle.autograd.py_layer.PyLayerContext	paddle.autograd.PyLayerContext
