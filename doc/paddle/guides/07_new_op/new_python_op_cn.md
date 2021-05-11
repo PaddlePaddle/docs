@@ -1,9 +1,10 @@
-# 自定义Python算子（静态图）
+# 自定义Python算子
 
-Paddle 通过 `py_func` 接口支持在Python端自定义OP。 py_func的设计原理在于Paddle中的Tensor可以与numpy数组可以方便的互相转换，从而可以使用Python中的numpy API来自定义一个Python OP。
+## 静态图自定义Python算子
+Paddle 通过 `py_func` 接口支持静态图的Python端自定义OP。 py_func的设计原理在于Paddle中的Tensor可以与numpy数组可以方便的互相转换，从而可以使用Python中的numpy API来自定义一个Python OP。
 
 
-## py_func接口概述
+### py_func接口概述
 
 `py_func` 具体接口为：
 
@@ -22,7 +23,7 @@ def py_func(func, x, out, backward_func=None, skip_vars_in_backward_input=None):
 - `skip_vars_in_backward_input` 为反向函数 `backward_func` 中不需要的输入，可以是单个 `Tensor` | `tuple[Tensor]` | `list[Tensor]` 。
 
 
-## 如何使用py_func编写Python Op
+### 如何使用py_func编写Python Op
 
 以下以tanh为例，介绍如何利用 `py_func` 编写Python Op。
 
@@ -131,7 +132,7 @@ paddle.static.nn.py_func(func=tanh, x=in_var, out=out_var, backward_func=tanh_gr
 至此，使用 `py_func` 编写Python Op的步骤结束。我们可以与使用其他Op一样进行网路训练/预测。
 
 
-## 注意事项
+### 注意事项
 
 - `py_func` 的前向函数和反向函数内部不应调用 `paddle.xx`组网接口 ，因为前向函数和反向函数是在网络运行时调用的，而 `paddle.xx` 是在组建网络的阶段调用 。
 
@@ -139,3 +140,110 @@ paddle.static.nn.py_func(func=tanh, x=in_var, out=out_var, backward_func=tanh_gr
 
 - 若某个前向输出变量没有梯度，则 `backward_func` 将接收到 `None` 的输入。若某个前向输入变量没有梯度，则我们应在 `backward_func` 中主动返回
   `None`。
+
+
+## 动态图自定义Python算子
+Paddle 通过 `PyLayer` 接口和`PyLayerContext`接口支持动态图的Python端自定义OP。
+
+
+### 相关接口概述
+
+`PyLayer` 接口描述如下：
+
+```Python
+class PyLayer:
+    @staticmethod
+    def forward(ctx, *args, **kwargs):
+        pass
+
+    @staticmethod
+    def backward(ctx, *args, **kwargs):
+        pass
+
+    @classmethod
+    def apply(cls, *args, **kwargs):
+        pass
+```
+
+其中，
+
+- `forward` 是自定义Op的前向函数，必须被子类重写，它的第一个参数是 `PyLayerContext` 对象，其他输入参数的类型和数量任意。
+- `backward` 是自定义Op的反向函数，必须被子类重写，其第一个参数为 `PyLayerContext` 对象，其他输入参数为`forward`输出`Tensor`的梯度。它的输出``Tensor``为``forward``输入`Tensor`的梯度。
+- `apply` 构建完自定义算子后，通过`apply`运行它。
+
+
+`PyLayerContext` 接口描述如下：
+
+```Python
+class PyLayerContext:
+    @staticmethod
+    def save_for_backward(self, *tensors):
+        pass
+
+    @staticmethod
+    def saved_tensor(self):
+        pass
+```
+
+其中，
+
+- `save_for_backward` 用于暂存`backward`需要的`Tensor`，这个API只能被调用一次，且只能在``forward``中调用。
+- `saved_tensor` 获取被`save_for_backward`暂存的`Tensor`。
+
+
+### 如何编写动态图Python Op
+
+Paddle通过创建``PyLayer``子类的方式实现Python端自定义算子，这个子类必须遵守以下规则：
+1. 子类必须包含静态的``forward``和``backward``函数，它们的第一个参数必须是 :ref:`_cn_api_autograd_PyLayerContext` ，如果backward的某个返回值（梯度）对应的``Tensor``是需要梯度，这个返回值不能为``None``。
+2. ``backward``的第一个参数为 :ref:`_cn_api_autograd_PyLayerContext ，其他参数都是``forward``函数的输出``Tensor``的梯度，因此，``backward``输入的``Tensor``的数量必须等于``forward``输出``Tensor``的数量。如果您需``backward``中使用``forward``的输入``Tensor``，您可以将这些``Tensor``输入到 :ref:`_cn_api_autograd_PyLayerContext 的``save_for_backward``方法，之后在``backward``中使用这些``Tensor``。
+3. ``backward``的输出可以是``Tensor``或者``list/tuple(Tensor)``，这些``Tensor``是``forward``输出``Tensor``的梯度。因此，``backward``的输出``Tensor``的个数等于forward输入``Tensor``的个数。
+
+构建完自定义算子后，通过``apply``运行它。
+
+
+
+以下以tanh为例，介绍如何利用 `PyLayer` 编写Python Op。
+
+
+- 第一步：创建`PyLayer`子类并定义前向函数和反向函数
+
+前向函数和反向函数均由Python编写，可以方便地使用Paddle相关API来实现一个自定义的OP。需要遵守以下规则：
+  1. `forward`和`backward`都是静态函数，它们的第一个参数是`PyLayerContext`对象。
+  2. `backward` 除了第一个参数以外，其他参数都是`forward`函数的输出`Tensor`的梯度，因此，`backward`输入的`Tensor`的数量必须等于`forward`输出`Tensor`的数量。如果您需在`backward`中使用`forward`中的`Tensor`，您可以利用`save_for_backward`和`saved_tensor`这两个方法传递`Tensor`。
+  3. `backward`的输出可以是``Tensor``或者``list/tuple(Tensor)``，这些``Tensor``是``forward``输出``Tensor``的梯度。因此，``backward``的输出``Tensor``的个数等于forward输入``Tensor``的个数。如果`backward`的某个返回值（梯度）在`forward`中对应的`Tensor`是需要梯度，这个返回值必须是`Tensor`类型。
+
+```Python
+import paddle
+from paddle.autograd import PyLayer
+
+# 通过创建`PyLayer`子类的方式实现动态图Python Op
+class cus_tanh(PyLayer):
+    @staticmethod
+    def forward(ctx, x):
+        y = paddle.tanh(x)
+        # ctx 为PyLayerContext对象，可以把y从forward传递到backward。
+        ctx.save_for_backward(y)
+        return y
+
+    @staticmethod
+    # 因为forward只有一个输出，因此除了ctx外，backward只有一个输入。
+    def backward(ctx, dy):
+        # ctx 为PyLayerContext对象，saved_tensor获取在forward时暂存的y。
+        y, = ctx.saved_tensor()
+        # 调用Paddle API自定义反向计算
+        grad = dy * (1 - paddle.square(y))
+        # forward只有一个Tensor输入，因此，backward只有一个输出。
+        return grad
+```
+- 第二步：通过`apply`方法组建网络。
+`apply`的输入为`forward`中除了第一个参数(`ctx`)以外的输入，`apply`的输出即为`forward`的输出。
+```Python
+
+data = paddle.randn([2, 3], dtype="float32")
+data.stop_gradient = False
+# 通过 apply运行这个Python算子
+z = cus_tanh.apply(data)
+z.mean().backward()
+
+print(data.grad)
+```
