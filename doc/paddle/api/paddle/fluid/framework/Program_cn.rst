@@ -469,3 +469,75 @@ list[ :ref:`api_guide_parameter` ]，一个包含当前Program中所有参数的
     # Here print(param) will print out all the properties of a parameter,
     # including name, type and persistable, you can access to specific
     # property of a parameter, such as param.name, param.type
+
+.. py:method:: state_dict(mode='all', scope=None)
+
+获取当前层及其子层的所有参数和可持久性buffers。并将所有参数和buffers存放在dict结构中。
+
+参数
+:::::::::
+    - mode (str, 可选) - 获取何种参数和可持久性buffers。目前支持以下选项： (1) 'opt'：获得优化器的参数和可持久性buffers放在dict结构中； (2) 'param'：获得组网中的参数和可持久性buffers放在dict结构中，不包含优化器中的参数和可持久性buffers； (3) 'all'：获得组网和优化器中的参数和可持久性buffers放在dict结构中；默认值为'all'。
+    - scope (Scope, 可选) - 如果scope为``None``，通过 :ref:`api_guide_global_scope` 获取全局/默认作用域实例，并从中获取``state_dict``；否则从指定的``scope``获取``state_dict``。默认值为``None``。
+
+返回
+:::::::::
+dict， 包含所有参数和可持久行buffers的dict
+
+代码示例
+:::::::::
+
+.. code-block:: python
+
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    x = static.data(name="x", shape=[10, 10], dtype='float32')
+    y = static.nn.fc(x, 10)
+    z = static.nn.fc(y, 10)
+
+    place = paddle.CPUPlace()
+    exe = static.Executor(place)
+    exe.run(static.default_startup_program())
+    prog = static.default_main_program()
+
+    path = "./temp/model.pdparams"
+    paddle.save(prog.state_dict(), path)
+
+.. py:method:: set_state_dict(state_dict, scope=None)
+
+获取当前层及其子层的所有参数和可持久性buffers。并将所有参数和buffers存放在dict结构中。
+
+参数
+:::::::::
+    - state_dict (dict) - 包含参数和可持久性buffers的字典。键值是参数和可持久性buffers的名字，值为参数和可持久性buffers。
+    - scope (Scope, 可选) - 如果scope为``None``，通过 :ref:`api_guide_global_scope` 获取全局/默认作用域实例，并将``state_dict``中参数和可持久性buffers设置到这个作用域中；否则将``state_dict``设置到指定的``scope``中。默认值为``None``。
+
+返回
+:::::::::
+None
+
+代码示例
+:::::::::
+
+.. code-block:: python
+
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    x = static.data(name="x", shape=[10, 10], dtype='float32')
+    y = static.nn.fc(x, 10)
+    z = static.nn.fc(y, 10)
+
+    place = paddle.CPUPlace()
+    exe = static.Executor(place)
+    exe.run(static.default_startup_program())
+    prog = static.default_main_program()
+
+    path = "./temp/model.pdparams"
+    paddle.save(prog.state_dict(), path)
+    state_dict_load = paddle.load(path)
+    prog.set_state_dict(state_dict_load)

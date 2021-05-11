@@ -157,6 +157,23 @@
     adam.set_state_dict(opt_state_dict)
 
 
+2.3 ``paddle.save/load``功能及原理介绍
+------------
+
+2.3.1 :ref:`_cn_api_paddle_framework_io_save` 是如何保存``state_dict``，Layer对象，Tensor以及包含Tensor的嵌套list、tuple、dict的呢？
+（1）对于``state_dict``保存方式与paddle2.0完全相同，我们将``Tensor``转化为``numpy.ndarray``保存。
+（2）对于其他形式的包含``Tensor``的对象（``Layer``对象，单个``Tensor``以及包含``Tensor``的嵌套``list``、``tuple``、``dict``），在动态图中，将``Tensor``转化为``tuple(Tensor.name, Tensor.numpy())``;在静态图中，将``Tensor``直接转化为``numpy.ndarray``。之所以这样做，是因为当在静态图中使用动态保存的模型时，有时需要``Tensor``的名字因此将名字保存下来，同时，在``load``时区分这个``numpy.ndarray``是由Tenosr转化而来还是本来就是``numpy.ndarray``；保存静态图的``Tensor``时，通常通过``Variable.get_value``得到``Tensor``再使用``paddle.save``保存``Tensor``，此时，``Variable``是有名字的，这个``Tensor``是没有名字的，因此将静态图``Tensor``直接转化为``numpy.ndarray``保存。
+
+2.3.2 将``Tensor``转换为``numpy.ndarray``或者``tuple(Tensor.name, Tensor.numpy())``不是可逆编码，为什么还要做这样的转换呢？
+（1）我们希望``paddle.save``保存的模型能够不依赖paddle框架就能够被用户解析（pickle格式模型），这样用户可以方便的做调试，轻松的看到保存的参数的数值。其他框架的模型与paddle模型做转化也会容易很多。
+（2）我们希望保存的模型尽量小，只保留了能够满足大多场景的信息（动态图保存名字和数值，静态图只保存数值），如果需要``Tensor``的其他信息（例如``stop_gradient``）,可以向被保存的对象中添加这些信息，``load``之后再还原这些信息。
+
+2.3.3 什么情况下save与load的结果不一致呢，应该如何避免这种情况发生呢？
+以下情况会造成save与load的结果不一致:（1）被保存的对象包含动态图``Tensor``同时包含``tuple(string, numpy.ndarray)``；（2）被保存的对象包含静态图``Tensor``，同时包含``numpy.ndarray``或者``tuple(string, numpy.ndarray)``；（3）被保存的对象只包含``numpy.ndarray``，但是包含``tuple(string, numpy.ndarray)``。之所以这样做，是因为当在静态图中使用动态保存的模型时，有时需要
+针对这些情况我们有以下建议：（1）被保存的对象（包括``Layer``对象中的``ParamBase``）,避免包含形如``tuple(string, numpy.ndarray)``的对象；（2）如果被保存的对象包含``numpy.ndarray``，尽量在``load``时设置``return_numpy = True``。（3）只保存``Layer``对象中参数的值和名字，如果需要其他信息（例如``stop_gradient``），请将手动添加这些信息到保存对象中。
+
+
+
 三、模型&参数存储载入（训练部署）
 ############################
 
