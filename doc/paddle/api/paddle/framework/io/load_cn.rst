@@ -77,7 +77,7 @@ Object，一个可以在paddle中使用的对象实例
     prog = paddle.static.default_main_program()
     for var in prog.list_vars():
         if list(var.shape) == [224, 10]:
-            tensor = var.get_tensor()
+            tensor = var.get_value()
             break
 
     # save/load tensor
