@@ -44,9 +44,10 @@ python3.6 -m pip install -U ``paddlepaddle-2.1.0-cp36-cp36m-linux_x86_64.whl
 
 **环境2：飞腾CPU+昆仑XPU+麒麟V10系统**
 
-如需该环境下的wheel包，请邮件联系Paddle-better@baidu.com获取。
+如果您想使用预编译的支持昆仑XPU的wheel包，请联系飞桨官方邮件组：Paddle-better@baidu.com
 
-###验证安装
+### 验证安装
+
 安装完成后您可以使用 python 或 python3 进入python解释器，输入
 
 ```
