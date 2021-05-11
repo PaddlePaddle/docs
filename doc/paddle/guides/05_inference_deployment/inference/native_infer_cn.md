@@ -55,17 +55,17 @@ void RunAnalysis(int batch_size, std::string model_dirname) {
 
   // 2. 根据config 创建predictor，并准备输入数据，此处以全0数据为例
   auto predictor = CreatePredictor(config);
-  int channels = 3;
-  int height = 224;
-  int width = 224;
-  float input[batch_size * channels * height * width] = {0};
+  const channels = 3;
+  const height = 224;
+  const width = 224;
+  std::vector<float> input(batch_size * channels * height * width, 0.f);
 
   // 3. 创建输入
   // 使用了ZeroCopy接口，可以避免预测中多余的CPU copy，提升预测性能
   auto input_names = predictor->GetInputNames();
   auto input_t = predictor->GetInputHandle(input_names[0]);
   input_t->Reshape({batch_size, channels, height, width});
-  input_t->CopyFromCpu(input);
+  input_t->CopyFromCpu(input.data());
 
   // 4. 运行预测引擎
   CHECK(predictor->Run());
