@@ -45,17 +45,17 @@ void RunAnalysis(int batch_size, std::string model_dirname) {
 
   // 2. create predictor based on config, and prepare input data
   auto predictor = CreatePaddlePredictor(config);
-  int channels = 3;
-  int height = 224;
-  int width = 224;
-  float input[batch_size * channels * height * width] = {0};
+  const channels = 3;
+  const height = 224;
+  const width = 224;
+  std::vector<float> input(batch_size * channels * height * width, 0.f);
 
   // 3. build inputs
   // uses ZeroCopy API here to avoid extra copying from CPU, improving performance
   auto input_names = predictor->GetInputNames();
   auto input_t = predictor->GetInputTensor(input_names[0]);
   input_t->Reshape({batch_size, channels, height, width});
-  input_t->copy_from_cpu(input);
+  input_t->CopyFromCpu(input.data());
 
   // 4. run inference
   CHECK(predictor->ZeroCopyRun());
