@@ -746,67 +746,109 @@ def filter_api_info_dict():
 def extract_code_blocks_from_docstr(docstr):
     """
     extract code-blocks from the given docstring.
-
     DON'T include the multiline-string definition in code-blocks.
-
+    The *Examples* section must be the last.
     Args:
-        docstr - docstring
+        docstr(str): docstring
     Return:
-        A list of code-blocks, indent removed.
+        code_blocks: A list of code-blocks, indent removed. 
+                     element {'name': the code-block's name, 'id': sequence id.
+                              'codes': codes, 'required': 'gpu'}
     """
     code_blocks = []
+
     mo = re.search(r"Examples:", docstr)
     if mo is None:
         return code_blocks
     ds_list = docstr[mo.start():].replace("\t", '    ').split("\n")
     lastlineindex = len(ds_list) - 1
-    cb_started = False
+
     cb_start_pat = re.compile(r"code-block::\s*python")
-    cb_cur = []
-    cb_cur_indent = -1
+    cb_param_pat = re.compile(r"^\s*:(\w+):\s*(\S*)\s*$")
+    cb_required_pat = re.compile(r"^\s*#\s*require[s|d]\s*:\s*(\S+)\s*$")
+
+    cb_info = {}
+    cb_info['cb_started'] = False
+    cb_info['cb_cur'] = []
+    cb_info['cb_cur_indent'] = -1
+    cb_info['cb_cur_name'] = None
+    cb_info['cb_cur_seq_id'] = 0
+    cb_info['cb_required'] = None
+
+    def _cb_started():
+        # nonlocal cb_started, cb_cur_name, cb_required, cb_cur_seq_id
+        cb_info['cb_started'] = True
+        cb_info['cb_cur_seq_id'] += 1
+        cb_info['cb_cur_name'] = None
+        cb_info['cb_required'] = None
+
+    def _append_code_block():
+        # nonlocal code_blocks, cb_cur, cb_cur_name, cb_cur_seq_id, cb_required
+        code_blocks.append({
+            'codes':
+            inspect.cleandoc("\n".join(cb_info['cb_cur'])),
+            'name':
+            cb_info['cb_cur_name'],
+            'id':
+            cb_info['cb_cur_seq_id'],
+            'required':
+            cb_info['cb_required'],
+        })
+
     for lineno, linecont in enumerate(ds_list):
         if re.search(cb_start_pat, linecont):
-            if not cb_started:
-                cb_started = True
+            if not cb_info['cb_started']:
+                _cb_started()
                 continue
             else:
                 # cur block end
-                if len(cb_cur):
-                    code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
-                cb_started = True  # another block started
-                cb_cur_indent = -1
-                cb_cur = []
+                if len(cb_info['cb_cur']):
+                    _append_code_block()
+                _cb_started()  # another block started
+                cb_info['cb_cur_indent'] = -1
+                cb_info['cb_cur'] = []
         else:
-            # check indent for cur block ends.
-            if cb_started:
+            if cb_info['cb_started']:
+                # handle the code-block directive's options
+                mo_p = cb_param_pat.match(linecont)
+                if mo_p:
+                    if mo_p.group(1) == 'name':
+                        cb_info['cb_cur_name'] = mo_p.group(2)
+                    continue
+                # read the required directive
+                mo_r = cb_required_pat.match(linecont)
+                if mo_r:
+                    cb_info['cb_required'] = mo_r.group(1)
+                # docstring end
                 if lineno == lastlineindex:
                     mo = re.search(r"\S", linecont)
-                    if mo is not None and cb_cur_indent <= mo.start():
-                        cb_cur.append(linecont)
-                    if len(cb_cur):
-                        code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
+                    if mo is not None and cb_info[
+                            'cb_cur_indent'] <= mo.start():
+                        cb_info['cb_cur'].append(linecont)
+                    if len(cb_info['cb_cur']):
+                        _append_code_block()
                     break
-                if cb_cur_indent < 0:
-                    mo = re.search(r"\S", linecont)
-                    if mo is None: continue
-                    cb_cur_indent = mo.start()
-                    cb_cur.append(linecont)
+                # check indent for cur block start and end.
+                mo = re.search(r"\S", linecont)
+                if mo is None:
+                    continue
+                if cb_info['cb_cur_indent'] < 0:
+                    # find the first non empty line
+                    cb_info['cb_cur_indent'] = mo.start()
+                    cb_info['cb_cur'].append(linecont)
                 else:
-                    mo = re.search(r"\S", linecont)
-                    if mo is None: continue
-                    if cb_cur_indent <= mo.start():
-                        cb_cur.append(linecont)
+                    if cb_info['cb_cur_indent'] <= mo.start():
+                        cb_info['cb_cur'].append(linecont)
                     else:
                         if linecont[mo.start()] == '#':
                             continue
                         else:
                             # block end
-                            if len(cb_cur):
-                                code_blocks.append(
-                                    inspect.cleandoc("\n".join(cb_cur)))
-                            cb_started = False
-                            cb_cur_indent = -1
-                            cb_cur = []
+                            if len(cb_info['cb_cur']):
+                                _append_code_block()
+                            cb_info['cb_started'] = False
+                            cb_info['cb_cur_indent'] = -1
+                            cb_info['cb_cur'] = []
     return code_blocks
 
 
@@ -837,12 +879,11 @@ def extract_sample_codes_into_dir():
                 id_api] and 'full_name' in api_info_dict[id_api]:
             code_blocks = extract_code_blocks_from_docstr(
                 api_info_dict[id_api]['docstring'])
-            for cb_ind, cb in enumerate(code_blocks):
+            for cb_info in code_blocks:
                 fn = os.path.join(
                     SAMPLECODE_TEMPDIR, '{}.sample-code-{}.py'.format(
-                        api_info_dict[id_api]['full_name'], cb_ind))
-                requires = get_requires_of_code_block(cb)
-                requires.add(RUN_ON_DEVICE)
+                        api_info_dict[id_api]['full_name'], cb_info['id']))
+                requires = cb_info['required']
                 if not is_required_match(requires, fn):
                     continue
                 with open(fn, 'w') as f:
@@ -853,6 +894,7 @@ def extract_sample_codes_into_dir():
                             GPU_ID)
                     else:
                         header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = ""\n\n'
+                    cb = cb_info['codes']
                     last_future_line_end = find_last_future_line_end(cb)
                     if last_future_line_end:
                         f.write(cb[:last_future_line_end])
