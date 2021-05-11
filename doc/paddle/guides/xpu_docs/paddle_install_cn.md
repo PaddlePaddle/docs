@@ -6,7 +6,7 @@
 
 目前此wheel包只支持两种环境：
 
-英特尔CPU+昆仑XPU+Ubuntu系统
+英特尔CPU+昆仑XPU+CentOS系统
 
 飞腾CPU+昆仑XPU+麒麟V10系统
 
@@ -66,11 +66,11 @@ paddle.utils.run_check()
 
 ### 环境准备
 
-**英特尔CPU+昆仑XPU+Ubuntu系统**
+**英特尔CPU+昆仑XPU+CentOS系统**
 
 - **处理器：Intel(R) Xeon(R) Gold 6148 CPU @2.40GHz**
-- **操作系统：Ubuntu 16.04.6 LTS**
-- **Python版本： 2.7/3.6/3.7 (64 bit)**
+- **操作系统：CentOS 7.8.2003（建议使用CentOS 7）**
+- **Python版本： 3.6/3.7 (64 bit)**
 - **pip或pip3版本：9.0.1+ (64 bit)**
 - **cmake版本：3.15+**
 - **gcc/g++版本：8.2+**
@@ -141,7 +141,7 @@ ulimit -n 4096
 
 （9）具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
-**英特尔CPU+昆仑XPU+Ubuntu系统**
+**英特尔CPU+昆仑XPU+CentOS系统**
 
 
 Python3

@@ -18,7 +18,7 @@
 | Mask_RCNN          | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/blob/master/docs/tutorials/train_on_kunlun.md) | 静态图        | X86（Intel）            | 支持           |
 | Deeplab_v3         | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/blob/release/v2.0.0-rc/legacy/docs/train_on_xpu.md) | 静态图        | X86（Intel）            | 支持           |
 | Unet               | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/blob/release/v2.0.0-rc/legacy/docs/train_on_xpu.md) | 静态图        | X86（Intel）            | 支持           |
-| LSTM               | NLP      |                                                              | 静态图/动态图 | X86（Intel）            | 支持           |
+| LSTM               | NLP      | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/fd65164ea4ebbaf410ad616871400c8e1d5902c8/examples/text_classification/rnn) | 静态图/动态图 | X86（Intel）            | 支持           |
 | Bert-Base          | NLP      | [模型链接](https://github.com/PaddlePaddle/models/blob/6bb6834cf399254d59d67cf9f9d4c92b41eb6678/PaddleNLP/examples/language_model/bert/README.md) | 静态图/动态图 | X86（Intel）            | 支持（静态图） |
 | Ernie-Base         | NLP      |                                                              | 静态图/动态图 | X86（Intel）            | 支持（静态图） |
 | NAML               | 推荐     | [模型链接](https://github.com/PaddlePaddle/PaddleRec/blob/0163bc287c3af57c8dbb445c433ed04471e1a8f3/models/rank/naml/train_on_kunlun.md) | 静态图        | X86（Intel）            | 支持           |
