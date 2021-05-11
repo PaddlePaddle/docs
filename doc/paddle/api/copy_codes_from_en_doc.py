@@ -7,10 +7,22 @@ import sys
 import argparse
 import re
 import json
+import logging
 from gen_doc import extract_code_blocks_from_docstr
 
 api_info_dict = {}
 api_name_2_id_map = {}
+
+logger = logging.getLogger()
+if logger.handlers:
+    # we assume the first handler is the one we want to configure
+    console = logger.handlers[0]
+else:
+    console = logging.StreamHandler()
+    logger.addHandler(console)
+console.setFormatter(
+    logging.Formatter(
+        "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"))
 
 
 def load_api_info(api_info_json_filename):
@@ -64,6 +76,7 @@ def find_codeblock_needed_by_name(cb_name, codeblocks):
 
 
 def find_codeblock_needed(cf_info):
+    global api_name_2_id_map, api_info_dict  # readonly
     if cf_info['src_api'] in api_name_2_id_map:
         api_info = api_info_dict[api_name_2_id_map[cf_info['src_api']]]
         if 'docstring' in api_info:
@@ -82,6 +95,9 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
     """
     rst_lines, copy_from_info = read_rst_lines_and_copy_info(cnrstfilename)
     update_needed = False
+    if copy_from_info:
+        logger.info("found copy-from for %s: %s", cnrstfilename,
+                    str(copy_from_info))
     for cf_info in copy_from_info:
         cb_need = find_codeblock_needed(cf_info)
         if not cb_need:
@@ -89,14 +105,16 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
         cb_new = []
         indent = cf_info['indent']
         cb_new.append(' ' * indent + '.. code-block:: python')
-        cb_new.append(' ' * (indent + 3))
+        if cf_info['cb_name']:
+            cb_new.append(' ' * (indent + 3) + ':name: ' + cf_info['cb_name'])
         cb_new.append('')
         indent += 4
-        for line in cb_need:
+        for line in cb_need['codes'].splitlines():
             cb_new.append(' ' * indent + line)
         rst_lines[cf_info['lineno']] = "\n".join(cb_new)
         update_needed = True
     if update_needed:
+        logger.info('update ' + cnrstfilename)
         with open(cnrstfilename, 'w') as f:
             f.writelines(rst_lines)
 
@@ -121,6 +139,12 @@ def parse_args():
         description='copy code-blocks from en api doc-strings.')
     parser.add_argument('--debug', dest='debug', action="store_true")
     parser.add_argument(
+        '--api-info',
+        dest='api_info',
+        help='the api info json file.',
+        type=str,
+        default='api_info_all.json')
+    parser.add_argument(
         'dir', type=str, help='the file directory', default='.')
 
     if len(sys.argv) == 1:
@@ -133,4 +157,5 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
+    load_api_info(args.api_info)
     filter_all_files(args.dir)

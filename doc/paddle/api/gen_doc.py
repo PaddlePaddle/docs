@@ -829,10 +829,10 @@ def extract_code_blocks_from_docstr(docstr):
                         _append_code_block()
                     break
                 # check indent for cur block start and end.
-                mo = re.search(r"\S", linecont)
-                if mo is None:
-                    continue
                 if cb_info['cb_cur_indent'] < 0:
+                    mo = re.search(r"\S", linecont)
+                    if mo is None:
+                        continue
                     # find the first non empty line
                     cb_info['cb_cur_indent'] = mo.start()
                     cb_info['cb_cur'].append(linecont)
