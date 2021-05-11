@@ -193,15 +193,6 @@ class PyLayerContext:
 
 ### 如何编写动态图Python Op
 
-Paddle通过创建``PyLayer``子类的方式实现Python端自定义算子，这个子类必须遵守以下规则：
-1. 子类必须包含静态的``forward``和``backward``函数，它们的第一个参数必须是 :ref:`_cn_api_autograd_PyLayerContext` ，如果backward的某个返回值（梯度）对应的``Tensor``是需要梯度，这个返回值不能为``None``。
-2. ``backward``的第一个参数为 :ref:`_cn_api_autograd_PyLayerContext ，其他参数都是``forward``函数的输出``Tensor``的梯度，因此，``backward``输入的``Tensor``的数量必须等于``forward``输出``Tensor``的数量。如果您需``backward``中使用``forward``的输入``Tensor``，您可以将这些``Tensor``输入到 :ref:`_cn_api_autograd_PyLayerContext 的``save_for_backward``方法，之后在``backward``中使用这些``Tensor``。
-3. ``backward``的输出可以是``Tensor``或者``list/tuple(Tensor)``，这些``Tensor``是``forward``输出``Tensor``的梯度。因此，``backward``的输出``Tensor``的个数等于forward输入``Tensor``的个数。
-
-构建完自定义算子后，通过``apply``运行它。
-
-
-
 以下以tanh为例，介绍如何利用 `PyLayer` 编写Python Op。
 
 
@@ -210,7 +201,7 @@ Paddle通过创建``PyLayer``子类的方式实现Python端自定义算子，这
 前向函数和反向函数均由Python编写，可以方便地使用Paddle相关API来实现一个自定义的OP。需要遵守以下规则：
   1. `forward`和`backward`都是静态函数，它们的第一个参数是`PyLayerContext`对象。
   2. `backward` 除了第一个参数以外，其他参数都是`forward`函数的输出`Tensor`的梯度，因此，`backward`输入的`Tensor`的数量必须等于`forward`输出`Tensor`的数量。如果您需在`backward`中使用`forward`中的`Tensor`，您可以利用`save_for_backward`和`saved_tensor`这两个方法传递`Tensor`。
-  3. `backward`的输出可以是``Tensor``或者``list/tuple(Tensor)``，这些``Tensor``是``forward``输出``Tensor``的梯度。因此，``backward``的输出``Tensor``的个数等于forward输入``Tensor``的个数。如果`backward`的某个返回值（梯度）在`forward`中对应的`Tensor`是需要梯度，这个返回值必须是`Tensor`类型。
+  3. `backward`的输出可以是`Tensor`或者`list/tuple(Tensor)`，这些`Tensor`是`forward`输出`Tensor`的梯度。因此，`backward`的输出`Tensor`的个数等于forward输入`Tensor`的个数。如果`backward`的某个返回值（梯度）在`forward`中对应的`Tensor`是需要梯度，这个返回值必须是`Tensor`类型。
 
 ```Python
 import paddle
