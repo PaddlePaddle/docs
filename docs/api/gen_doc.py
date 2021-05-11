@@ -443,7 +443,8 @@ def set_real_api_alias_attr():
                             api_id] or "short_name" not in api_info_dict[
                                 api_id]:
                         mod_name, short_name = split_name(real_api)
-                        api_info_dict[api_id]["module_name"] = mod_name
+                        api_info_dict[api_id][
+                            "module_name"] = mod_name  # TODO: should let module_name be real module_name
                         api_info_dict[api_id]["short_name"] = short_name
                         if 'full_name' not in api_info_dict[api_id]:
                             api_info_dict[api_id]["full_name"] = real_api
@@ -587,34 +588,10 @@ def gen_en_files(api_label_file="api_label"):
             f = api_info["doc_filename"] + en_suffix
             if os.path.exists(f):
                 continue
-            gen = EnDocGenerator()
-            with gen.guard(f):
-                if 'suggested_name' in api_info:
-                    mod_name, _, short_name = api_info[
-                        'suggested_name'].rpartition('.')
-                elif 'full_name' in api_info:
-                    mod_name, _, short_name = api_info['full_name'].rpartition(
-                        '.')
-                else:
-                    if 'module_name' in api_info and 'short_name' in api_info:
-                        mod_name = api_info.get('module_name')
-                        short_name = api_info.get('short_name')
-                    else:
-                        sn = get_shortest_api(api_info['all_names'])
-                        mod_name, short_name = split_name(sn)
-
-                    logger.warning("full_name not in api_info: %s.%s",
-                                   mod_name, short_name)
-                if mod_name == 'paddle.fluid.core_avx' and short_name == 'VarBase':
-                    gen.module_name = 'paddle'
-                    gen.api = 'Tensor'
-                else:
-                    gen.module_name = mod_name
-                    gen.api = short_name
-                gen.print_header_reminder()
-                gen.print_item()
-                api_label.write("{1}\t.. _api_{0}_{1}:\n".format("_".join(
-                    mod_name.split(".")), short_name))
+            gen = EnDocGenerator(api_info)
+            api_name, api_ref_name = gen()
+            if api_name and api_ref_name:
+                api_label.write("{}\t.. {}:\n".format(api_name, api_ref_name))
 
 
 def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
@@ -660,6 +637,12 @@ class EnDocGenerator(object):
             logger.warning("%s has no attr called full_name/suggested_name",
                            str(self.api_info))
             self.api_name = None
+        self.api_ref_name = '_api_' + self.api_name.replace(
+            '.', '_') if self.api_name else None
+        if 'short_name' in self.api_info:
+            self.short_name = self.api_info['short_name']
+        else:
+            _, self.short_name = split_name(self.api_name)
         self.stream = None
 
     @contextlib.contextmanager
@@ -713,7 +696,7 @@ class EnDocGenerator(object):
         """
         if self.api_name is None:
             return
-        self.stream.write(".. _api_{}:\n\n".format("_".join(self.api_name)))
+        self.stream.write(".. {}:\n\n".format(self.api_ref_name))
 
     def _print_header_(self, name, dot, is_title):
         """
@@ -737,7 +720,7 @@ class EnDocGenerator(object):
         as name
         """
         self._print_ref_()
-        self._print_header_(self.api, dot='-', is_title=False)
+        self._print_header_(self.short_name, dot='-', is_title=False)
 
         cls_templates = {
             'default':
@@ -781,12 +764,7 @@ class EnDocGenerator(object):
         as name
         """
         self._print_ref_()
-        short_name = None
-        if 'short_name' in self.api_info['short_name']:
-            short_name = self.api_info['short_name']
-        else:
-            _, short_name = split_name(self.api_name)
-        self._print_header_(short_name, dot='-', is_title=False)
+        self._print_header_(self.short_name, dot='-', is_title=False)
         self.stream.write('''..  autofunction:: {}
     :noindex:
 
@@ -796,7 +774,12 @@ class EnDocGenerator(object):
         """
         generate the rst file.
         """
-        ...
+        if self.api_name:
+            filename = self.api_info['doc_filename'] + en_suffix
+            with self.guard(filename):
+                self.print_header_reminder()
+                self.print_item()
+        return self.api_name, self.api_ref_name
 
 
 def filter_api_info_dict():
@@ -837,7 +820,7 @@ def extract_code_blocks_from_docstr(docstr):
     mo = re.search(r"Examples?:", docstr)
     if mo is None:
         return code_blocks
-    ds_list = docstr[mo.start():].replace("\t", '    ').split("\n")
+    ds_list = docstr[mo.start():].replace("\t", '    ').plit("\n")
     lastlineindex = len(ds_list) - 1
 
     cb_start_pat = re.compile(r"code-block::\s*python")
