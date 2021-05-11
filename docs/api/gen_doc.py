@@ -794,7 +794,7 @@ def insert_suggested_names():
                 "full_name"] not in api_info_dict[id_api]["all_names"]:
             api_info_dict[id_api]["all_names"].add(
                 api_info_dict[id_api]["full_name"])
-        for n in api_info_dict[id_api]["all_names"]:
+        for n in list(api_info_dict[id_api]["all_names"]):
             # paddle.fluid.core_avx.* -> paddle.fluid.core.*
             mo = pat.match(n)
             if mo:
