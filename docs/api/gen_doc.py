@@ -782,25 +782,40 @@ class EnDocGenerator(object):
         return self.api_name, self.api_ref_name
 
 
-def filter_api_info_dict():
+def insert_suggested_names():
+    """
+    add suggeted_name field, updte the doc_filename.
+    """
     pat = re.compile(r'paddle\.fluid\.core_[\w\d]+\.(.*)$')
     for id_api in api_info_dict:
-        if "all_names" in api_info_dict[id_api]:
-            if "full_name" in api_info_dict[id_api]:
-                # paddle.fluid.core_avx.* -> paddle.fluid.core.*
-                mo = pat.match(api_info_dict[id_api]["full_name"])
-                if mo:
-                    api_info_dict[id_api]["all_names"].add('paddle.fluid.core.'
-                                                           + mo.group(1))
-            api_info_dict[id_api]["all_names"] = list(
-                api_info_dict[id_api]["all_names"])
-        if "object" in api_info_dict[id_api]:
-            del api_info_dict[id_api]["object"]
+        if "all_names" not in api_info_dict[id_api]:
+            api_info_dict[id_api]["all_names"] = set()
+        if "full_name" in api_info_dict[id_api] and api_info_dict[id_api][
+                "full_name"] not in api_info_dict[id_api]["all_names"]:
+            api_info_dict[id_api]["all_names"].add(
+                api_info_dict[id_api]["full_name"])
+        for n in api_info_dict[id_api]["all_names"]:
+            # paddle.fluid.core_avx.* -> paddle.fluid.core.*
+            mo = pat.match(n)
+            if mo:
+                api_info_dict[id_api]["all_names"].add('paddle.fluid.core.' +
+                                                       mo.group(1))
+        api_info_dict[id_api]["all_names"] = list(
+            api_info_dict[id_api]["all_names"])
         sn = get_shortest_api(api_info_dict[id_api]["all_names"])
         if sn:
-            # api_info_dict[id_api]["alias_name"] = sn
+            # Delete alias_name, api_info_dict[id_api]["alias_name"] = sn
             api_info_dict[id_api]["suggested_name"] = sn
             api_info_dict[id_api]["doc_filename"] = sn.replace('.', '/')
+
+
+def filter_out_object_of_api_info_dict():
+    """
+    filter out the object before dump json string.
+    """
+    for id_api in api_info_dict:
+        if 'object' in api_info_dict[id_api]:
+            del api_info_dict[id_api]['object']
 
 
 def extract_code_blocks_from_docstr(docstr):
@@ -1181,8 +1196,7 @@ if __name__ == "__main__":
         set_source_code_attrs()
         # set_real_api_alias_attr()
         set_referenced_from_attr()
-        filter_api_info_dict()
-        json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
+        insert_suggested_names()
         if ('__all__' not in realattrs) or ('__all__' in realattrs and
                                             realattr == '__all__'):
             if args.gen_rst:
@@ -1190,6 +1204,8 @@ if __name__ == "__main__":
                 check_cn_en_match()
             if need_run_sample_codes:
                 extract_sample_codes_into_dir()
+        filter_out_object_of_api_info_dict()
+        json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
 
     if need_run_sample_codes:
         for package in ['scipy', 'paddle2onnx']:
