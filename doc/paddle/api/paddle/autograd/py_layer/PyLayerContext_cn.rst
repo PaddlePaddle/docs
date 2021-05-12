@@ -5,7 +5,7 @@ PyLayerContext
 
 .. py:class:: paddle.autograd.PyLayerContext
 
- `` PyLayerContext ``  对象能够辅助 :ref:`_cn_api_autograd_PyLayer` 实现某些功能。
+`` PyLayerContext `` 对象能够辅助 :ref:`cn_api_autograd_PyLayer` 实现某些功能。
 
 
 **示例代码**
