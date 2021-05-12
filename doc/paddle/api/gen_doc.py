@@ -764,7 +764,7 @@ def extract_code_blocks_from_docstr(docstr):
     """
     code_blocks = []
 
-    mo = re.search(r"Examples:", docstr)
+    mo = re.search(r"Examples?:", docstr)
     if mo is None:
         return code_blocks
     ds_list = docstr[mo.start():].replace("\t", '    ').split("\n")
