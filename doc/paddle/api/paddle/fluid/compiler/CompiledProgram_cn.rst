@@ -50,4 +50,4 @@ CompiledProgram，配置之后的 ``CompiledProgram`` 对象
 代码示例
 :::::::::
 
-COPY-FROM: paddle.static.CompiledProgram
+COPY-FROM: paddle.static.CompiledProgram.with_data_parallel
