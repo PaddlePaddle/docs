@@ -84,9 +84,6 @@ def get_all_api(root_path='paddle', attr="__all__"):
 
     api_counter += process_module(paddle, attr)
 
-    if attr == '__all__' and insert_api_into_dict(
-            'paddle.fluid.core_avx.VarBase'):
-        api_counter += 1
     logger.info('%s: collected %d apis, %d distinct apis.', attr, api_counter,
                 len(api_info_dict))
 
@@ -96,7 +93,7 @@ def insert_api_into_dict(full_name):
     insert add api into the api_info_dict
 
     Return:
-        success or failed
+        api_info object or None
     """
     try:
         obj = eval(full_name)
@@ -104,10 +101,10 @@ def insert_api_into_dict(full_name):
     except AttributeError:
         logger.warning("AttributeError occurred when `id(eval(%s))`",
                        full_name)
-        return False
+        return None
     except:
         logger.warning("Exception occurred when `id(eval(%s))`", full_name)
-        return False
+        return None
     else:
         logger.debug("adding %s to api_info_dict.", full_name)
         if fc_id in api_info_dict:
@@ -122,7 +119,7 @@ def insert_api_into_dict(full_name):
             docstr = inspect.getdoc(obj)
             if docstr:
                 api_info_dict[fc_id]["docstring"] = inspect.cleandoc(docstr)
-        return True
+        return api_info_dict[fc_id]
 
 
 # step 1 fill field : `id` & `all_names`, type, docstring
@@ -137,8 +134,18 @@ def process_module(m, attr="__all__"):
 
             # api's fullname
             full_name = m.__name__ + "." + api
-            if insert_api_into_dict(full_name):
+            api_info = insert_api_into_dict(full_name)
+            if api_info is not None:
                 api_counter += 1
+                if inspect.isclass(api_info['object']):
+                    for name, value in inspect.getmembers(api_info['object']):
+                        if (not name.startswith("_")) and hasattr(value,
+                                                                  '__name__'):
+                            method_full_name = full_name + '.' + name  # value.__name__
+                            method_api_info = insert_api_into_dict(
+                                method_full_name)
+                            if method_api_info is not None:
+                                api_counter += 1
     return api_counter
 
 
