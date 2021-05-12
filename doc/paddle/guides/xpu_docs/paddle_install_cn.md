@@ -86,6 +86,7 @@ paddle.utils.run_check()
 
 ### 源码编译安装步骤：
 
+
 （1）Paddle依赖cmake进行编译构建，需要cmake版本>=3.15，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要
 
 ```
@@ -113,68 +114,107 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-（5）建议切换到release2.1分支下进行编译：
-
-```
-git checkout [``分支名``]
-```
-
-例如：
+使用较稳定的版本编译，建议切换到release2.1分支下：
 
 ```
 git checkout release/2.1
 ```
 
-（6）并且请创建并进入一个叫build的目录下
+（5）进行Wheel包的编译，请创建并进入一个叫build的目录下
 
 ```
 mkdir build && cd build
 ```
 
-（7）链接过程中打开文件数较多，可能超过系统默认限制导致编译出错，设置进程允许打开的最大文件数：
-
-```
-ulimit -n 4096
-```
-
-（8）执行cmake
-
-（9）具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
+具体编译选项含义可参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
 **英特尔CPU+昆仑XPU+CentOS系统**
 
+链接过程中打开文件数较多，可能超过系统默认限制导致编译出错，设置进程允许打开的最大文件数：
+
+```
+ulimit -n 2048
+```
+
+执行cmake，完成编译
 
 Python3
 
 ```
-cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DWITH_XPU_BKCL=ON
+cmake .. -DPY_VERSION=3.6 \
+         -DCMAKE_BUILD_TYPE=Release \
+         -DWITH_GPU=OFF \
+         -DWITH_XPU=ON \
+         -DON_INFER=ON \
+         -DWITH_PYTHON=ON \
+         -DWITH_AVX=ON \
+         -DWITH_MKL=ON \
+         -DWITH_MKLDNN=ON \
+         -DWITH_XPU_BKCL=ON \
+         -DWITH_DISTRIBUTE=ON \
+         -DWITH_NCCL=OFF
+
+make -j20
 ```
 
 Python2
 
 ```
-cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DWITH_XPU_BKCL=ON
+cmake .. -DPY_VERSION=2.7 \
+         -DCMAKE_BUILD_TYPE=Release \
+         -DWITH_GPU=OFF \
+         -DWITH_XPU=ON \
+         -DON_INFER=ON \
+         -DWITH_PYTHON=ON \
+         -DWITH_AVX=ON \
+         -DWITH_MKL=ON \
+         -DWITH_MKLDNN=ON \
+         -DWITH_XPU_BKCL=ON \
+         -DWITH_DISTRIBUTE=ON \
+         -DWITH_NCCL=OFF
+
+make -j20
 ```
 
 **飞腾CPU+昆仑XPU+麒麟V10系统**
 
-Python3
+在该环境下，编译前需要手动拉取XPU SDK，可使用以下命令：
 
 ```
-cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_ARM=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_XBYAK=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_LITE=ON -DLITE_GIT_TAG=develop -DWITH_AARCH64=ON
+wget https://paddle-wheel.bj.bcebos.com/kunlun/xpu_sdk_v2.0.0.61.tar.gz
+tar xvf xpu_sdk_v2.0.0.61.tar.gz
+mv output xpu_sdk_v2.0.0.61 xpu_sdk
 ```
 
-（10）使用以下命令来编译
+执行cmake，完成编译
 
 ```
-make -j$(nproc)
+ulimit -n 4096
+python_exe="/usr/bin/python3.7"
+export XPU_SDK_ROOT=$PWD/xpu_sdk
+
+cmake .. -DPY_VERSION=3.7 \
+         -DPYTHON_EXECUTABLE=$python_exe \
+         -DWITH_ARM=ON \
+         -DWITH_AARCH64=ON \
+         -DWITH_TESTING=OFF \
+         -DCMAKE_BUILD_TYPE=Release \
+         -DON_INFER=ON \
+         -DWITH_XBYAK=OFF \
+         -DWITH_XPU=ON \
+         -DWITH_GPU=OFF \
+         -DWITH_LITE=ON \
+         -DLITE_GIT_TAG=release/v2.9 \
+         -DXPU_SDK_ROOT=${XPU_SDK_ROOT}
+
+make VERBOSE=1 TARGET=ARMV8 -j32
 ```
 
-（11）编译成功后进入Paddle/build/python/dist目录下找到生成的.whl包 。
+（6）编译成功后进入Paddle/build/python/dist目录下找到生成的.whl包 。
 
-（12）将生成的.whl包copy至带有昆仑XPU的目标机器上，并在目标机器上根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库。（如果编译机器同时为带有昆仑XPU的目标机器，略过此步）
+（7）将生成的.whl包copy至带有昆仑XPU的目标机器上，并在目标机器上根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库。（如果编译机器同时为带有昆仑XPU的目标机器，略过此步）
 
-（13）在带有昆仑XPU的目标机器安装编译好的.whl包：pip install -U（whl包的名字）或pip3 install -U（whl包的名字）。恭喜，至此您已完成昆仑XPU机器上PaddlePaddle的编译安装。
+（8）在带有昆仑XPU的目标机器安装编译好的.whl包：pip install -U（whl包的名字）或pip3 install -U（whl包的名字）。恭喜，至此您已完成昆仑XPU机器上PaddlePaddle的编译安装。
 
 **验证安装**
 
@@ -201,12 +241,6 @@ pip uninstall paddlepaddle
 ```
 
 或
-
-```
-pip3 uninstall paddlepaddle
-```
-
-
 
 ```
 pip3 uninstall paddlepaddle
