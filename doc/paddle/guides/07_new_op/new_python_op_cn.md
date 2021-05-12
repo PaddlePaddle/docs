@@ -95,118 +95,118 @@ print(data.grad)
 ### 动态图自定义Python算子的注意事项
 - 为了从`forward`到`backward`传递信息，您可以在`forward`中给`PyLayerContext`添加临时属性，在`backward`中读取这个属性。如果传递`Tensor`推荐使用`save_for_backward`和`saved_tensor`，如果传递非`Tensor`推荐使用添加临时属性的方式。
 ```Python
-    import paddle
-    from paddle.autograd import PyLayer
-    import numpy as np
+import paddle
+from paddle.autograd import PyLayer
+import numpy as np
 
-    class tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x1, func1, func2=paddle.square):
-            # 添加临时属性的方式传递func2
-            ctx.func = func2
-            y1 = func1(x1)
-            # 使用save_for_backward传递y1
-            ctx.save_for_backward(y1)
-            return y1
+class tanh(PyLayer):
+    @staticmethod
+    def forward(ctx, x1, func1, func2=paddle.square):
+        # 添加临时属性的方式传递func2
+        ctx.func = func2
+        y1 = func1(x1)
+        # 使用save_for_backward传递y1
+        ctx.save_for_backward(y1)
+        return y1
 
-        @staticmethod
-        def backward(ctx, dy1):
-            y1, = ctx.saved_tensor()
-            # 获取func2
-            re1 = dy1 * (1 - ctx.func(y1))
-            return re1
+    @staticmethod
+    def backward(ctx, dy1):
+        y1, = ctx.saved_tensor()
+        # 获取func2
+        re1 = dy1 * (1 - ctx.func(y1))
+        return re1
 
-    input1 = paddle.randn([2, 3]).astype("float64")
-    input2 = input1.detach().clone()
-    input1.stop_gradient = False
-    input2.stop_gradient = False
-    z = tanh.apply(x1=input1, func1=paddle.tanh)
+input1 = paddle.randn([2, 3]).astype("float64")
+input2 = input1.detach().clone()
+input1.stop_gradient = False
+input2.stop_gradient = False
+z = tanh.apply(x1=input1, func1=paddle.tanh)
 ```
 
 - forward的输入和输出的类型任意，但是至少有一个输入和输出为`Tensor`类型。
 ```Python
-    # 错误示例
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x1, x2):
-            y = x1+x2
-            # y.shape: 列表类型，非Tensor,输出至少包含一个Tensor
-            return y.shape
+# 错误示例
+class cus_tanh(PyLayer):
+    @staticmethod
+    def forward(ctx, x1, x2):
+        y = x1+x2
+        # y.shape: 列表类型，非Tensor,输出至少包含一个Tensor
+        return y.shape
 
-        @staticmethod
-        def backward(ctx, dy):
-            return dy, dy
+    @staticmethod
+    def backward(ctx, dy):
+        return dy, dy
 
-    data = paddle.randn([2, 3], dtype="float32")
-    data.stop_gradient = False
-    # 由于forward输出没有Tensor引发报错
-    z, y_shape = cus_tanh.apply(data, data)
+data = paddle.randn([2, 3], dtype="float32")
+data.stop_gradient = False
+# 由于forward输出没有Tensor引发报错
+z, y_shape = cus_tanh.apply(data, data)
 
 
-    # 正确示例
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x1, x2):
-            y = x1+x2
-            # y.shape: 列表类型，非Tensor
-            return y, y.shape
+# 正确示例
+class cus_tanh(PyLayer):
+    @staticmethod
+    def forward(ctx, x1, x2):
+        y = x1+x2
+        # y.shape: 列表类型，非Tensor
+        return y, y.shape
 
-        @staticmethod
-        def backward(ctx, dy):
-            # forward两个Tensor输入，因此，backward有两个输出。
-            return dy, dy
+    @staticmethod
+    def backward(ctx, dy):
+        # forward两个Tensor输入，因此，backward有两个输出。
+        return dy, dy
 
-    data = paddle.randn([2, 3], dtype="float32")
-    data.stop_gradient = False
-    z, y_shape = cus_tanh.apply(data, data)
-    z.mean().backward()
+data = paddle.randn([2, 3], dtype="float32")
+data.stop_gradient = False
+z, y_shape = cus_tanh.apply(data, data)
+z.mean().backward()
 
-    print(data.grad)
+print(data.grad)
 ```
 
 - 如果forward的某个输入为`Tensor`且`stop_gredient = True`，则在`backward`中与其对应的返回值应为`None`。
 ```Python
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x1, x2):
-            y = x1+x2
-            return y
+class cus_tanh(PyLayer):
+    @staticmethod
+    def forward(ctx, x1, x2):
+        y = x1+x2
+        return y
 
-        @staticmethod
-        def backward(ctx, dy):
-            # x2.stop_gradient=True，其对应梯度需要返回None
-            return dy, None
+    @staticmethod
+    def backward(ctx, dy):
+        # x2.stop_gradient=True，其对应梯度需要返回None
+        return dy, None
 
 
-    data1 = paddle.randn([2, 3], dtype="float32")
-    data1.stop_gradient = False
-    data2 = paddle.randn([2, 3], dtype="float32")
-    z = cus_tanh.apply(data1, data2)
-    fake_loss = z.mean()
-    fake_loss.backward()
-    print(data1.grad)
+data1 = paddle.randn([2, 3], dtype="float32")
+data1.stop_gradient = False
+data2 = paddle.randn([2, 3], dtype="float32")
+z = cus_tanh.apply(data1, data2)
+fake_loss = z.mean()
+fake_loss.backward()
+print(data1.grad)
 ```
 
 - 如果forward的所有输入`Tensor`都是`stop_gredient = True`的，则`backward`不会被执行。
 ```Python
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x1, x2):
-            y = x1+x2
-            return y
+class cus_tanh(PyLayer):
+    @staticmethod
+    def forward(ctx, x1, x2):
+        y = x1+x2
+        return y
 
-        @staticmethod
-        def backward(ctx, dy):
-            return dy, None
+    @staticmethod
+    def backward(ctx, dy):
+        return dy, None
 
 
-    data1 = paddle.randn([2, 3], dtype="float32")
-    data2 = paddle.randn([2, 3], dtype="float32")
-    z = cus_tanh.apply(data1, data2)
-    fake_loss = z.mean()
-    fake_loss.backward()
-    # 因为data1.stop_gradient = True、data2.stop_gradient = True，所以backward不会被执行。
-    print(data1.grad is None)
+data1 = paddle.randn([2, 3], dtype="float32")
+data2 = paddle.randn([2, 3], dtype="float32")
+z = cus_tanh.apply(data1, data2)
+fake_loss = z.mean()
+fake_loss.backward()
+# 因为data1.stop_gradient = True、data2.stop_gradient = True，所以backward不会被执行。
+print(data1.grad is None)
 ```
 
 
