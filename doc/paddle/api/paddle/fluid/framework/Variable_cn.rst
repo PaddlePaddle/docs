@@ -120,7 +120,7 @@ Variable
 
 参数
 :::::::::
-  - scope ( Scope，可选 ) - 从指定的``scope``中获取 :ref:`api_guide_Variable` 的值。如果``scope``为``None``，通过 :ref:`api_guide_global_scope` 获取全局/默认作用域实例，并从中获取 :ref:`api_guide_Variable` 的值；否则，从指定的``scope``中获取 :ref:`api_guide_Variable` 的值。
+  - scope ( Scope，可选 ) - 从指定的 ``scope`` 中获取 :ref:`api_guide_Variable` 的值。如果 ``scope`` 为 ``None`` ，通过 :ref:`api_fluid_executor_global_scope` 获取全局/默认作用域实例，并从中获取 :ref:`api_guide_Variable` 的值；否则，从指定的 ``scope`` 中获取 :ref:`api_guide_Variable` 的值。
 
 返回
 :::::::::
@@ -160,12 +160,12 @@ Tensor， :ref:`api_guide_Variable` 的值
 
 .. py:method:: set_value(value, scope=None)
 
-将``value``设置为 :ref:`api_guide_Variable` 的值。
+将 ``value`` 设置为 :ref:`api_guide_Variable` 的值。
 
 参数
 :::::::::
   - value ( Tensor|ndarray ) - :ref:`api_guide_Variable` 的值。
-  - scope ( Scope，可选 ) - 将 :ref:`api_guide_Variable` 的值设置到指定的``scope``中。如果``scope``为``None``，通过 :ref:`api_guide_global_scope` 获取全局/默认作用域实例，并将 :ref:`api_guide_Variable` 的值设置到这个用域实例中；否则，将 :ref:`api_guide_Variable` 的值设置到指定的``scope``中。
+  - scope ( Scope，可选 ) - 将 :ref:`api_guide_Variable` 的值设置到指定的 ``scope`` 中。如果 ``scope`` 为 ``None`` ，通过 :ref:`api_fluid_executor_global_scope` 获取全局/默认作用域实例，并将 :ref:`api_guide_Variable` 的值设置到这个用域实例中；否则，将 :ref:`api_guide_Variable` 的值设置到指定的 ``scope`` 中。
 
 返回
 :::::::::

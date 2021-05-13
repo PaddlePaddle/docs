@@ -477,7 +477,7 @@ list[ :ref:`api_guide_parameter` ]，一个包含当前Program中所有参数的
 参数
 :::::::::
     - mode (str, 可选) - 获取何种参数和可持久性buffers。目前支持以下选项： (1) 'opt'：获得优化器的参数和可持久性buffers放在dict结构中； (2) 'param'：获得组网中的参数和可持久性buffers放在dict结构中，不包含优化器中的参数和可持久性buffers； (3) 'all'：获得组网和优化器中的参数和可持久性buffers放在dict结构中；默认值为'all'。
-    - scope (Scope, 可选) - 如果scope为``None``，通过 :ref:`api_guide_global_scope` 获取全局/默认作用域实例，并从中获取``state_dict``；否则从指定的``scope``获取``state_dict``。默认值为``None``。
+    - scope (Scope, 可选) - 如果scope为 ``None`` ，通过 :ref:`api_fluid_executor_global_scope` 获取全局/默认作用域实例，并从中获取 ``state_dict`` ；否则从指定的 ``scope`` 获取 ``state_dict`` 。默认值为 ``None`` 。
 
 返回
 :::::::::
@@ -512,7 +512,7 @@ dict， 包含所有参数和可持久行buffers的dict
 参数
 :::::::::
     - state_dict (dict) - 包含参数和可持久性buffers的字典。键值是参数和可持久性buffers的名字，值为参数和可持久性buffers。
-    - scope (Scope, 可选) - 如果scope为``None``，通过 :ref:`api_guide_global_scope` 获取全局/默认作用域实例，并将``state_dict``中参数和可持久性buffers设置到这个作用域中；否则将``state_dict``设置到指定的``scope``中。默认值为``None``。
+    - scope (Scope, 可选) - 如果scope为 ``None`` ，通过 :ref:`api_fluid_executor_global_scope` 获取全局/默认作用域实例，并将 ``state_dict`` 中参数和可持久性buffers设置到这个作用域中；否则将 ``state_dict`` 设置到指定的 ``scope`` 中。默认值为 ``None`` 。
 
 返回
 :::::::::
