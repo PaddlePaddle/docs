@@ -3,9 +3,7 @@ set -x
 
 function install_paddle() {
     # try to download paddle, and install
-    rm -rf paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
-    wget -q https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
-    pip install -U paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
+    pip install https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
     # if failed, build paddle
     if [ $? -ne 0 ];then
         build_paddle
@@ -13,14 +11,13 @@ function install_paddle() {
 }
 
 function build_paddle() {
-    git clone https://github.com/PaddlePaddle/Paddle.git
+    git clone --depth=1 https://github.com/PaddlePaddle/Paddle.git
     mkdir Paddle/build
     cd Paddle/build
 
-    cmake .. -DWITH_GPU=ON  -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DPY_VERSION=3.8 -DWITH_GPU=ON  -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
     make -j`nproc`
-    pip install -U python/dist/paddlepaddle_gpu-0.0.0-cp27-cp27mu-linux_x86_64.whl
-
+    pip install -U python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
     cd -
 }
 

@@ -29,7 +29,7 @@ echo ${BENCHMARK_ROOT}
 
 function prepare_env(){
     # Install tensorflow and other packages
-    pip install pre-commit==1.21 pylint==1.9.5 pytest==4.6.9
+    pip install pre-commit pylint pytest
 }
 
 function abort(){
