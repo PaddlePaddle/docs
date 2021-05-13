@@ -72,6 +72,6 @@ PaddleSlim是飞桨深度学习模型压缩工具，Paddle Inference可联动Pad
 - 微信公众号：飞桨PaddlePaddle 
 - 微信群: 部署交流群 
 
-![](./images/paddlepaddle.png){:height="50%" width="50%"}
+<img src="./images/paddlepaddle.png" width="200" height="">
+<img src="./images/wechat.png" width="200" height="">
 
-![](./images/wechat.png){:height="50%" width="50%"}
