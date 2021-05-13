@@ -84,9 +84,6 @@ def get_all_api(root_path='paddle', attr="__all__"):
 
     api_counter += process_module(paddle, attr)
 
-    if attr == '__all__' and insert_api_into_dict(
-            'paddle.fluid.core_avx.VarBase'):
-        api_counter += 1
     logger.info('%s: collected %d apis, %d distinct apis.', attr, api_counter,
                 len(api_info_dict))
 
@@ -96,7 +93,7 @@ def insert_api_into_dict(full_name):
     insert add api into the api_info_dict
 
     Return:
-        success or failed
+        api_info object or None
     """
     try:
         obj = eval(full_name)
@@ -104,10 +101,10 @@ def insert_api_into_dict(full_name):
     except AttributeError:
         logger.warning("AttributeError occurred when `id(eval(%s))`",
                        full_name)
-        return False
+        return None
     except:
         logger.warning("Exception occurred when `id(eval(%s))`", full_name)
-        return False
+        return None
     else:
         logger.debug("adding %s to api_info_dict.", full_name)
         if fc_id in api_info_dict:
@@ -122,7 +119,7 @@ def insert_api_into_dict(full_name):
             docstr = inspect.getdoc(obj)
             if docstr:
                 api_info_dict[fc_id]["docstring"] = inspect.cleandoc(docstr)
-        return True
+        return api_info_dict[fc_id]
 
 
 # step 1 fill field : `id` & `all_names`, type, docstring
@@ -137,8 +134,18 @@ def process_module(m, attr="__all__"):
 
             # api's fullname
             full_name = m.__name__ + "." + api
-            if insert_api_into_dict(full_name):
+            api_info = insert_api_into_dict(full_name)
+            if api_info is not None:
                 api_counter += 1
+                if inspect.isclass(api_info['object']):
+                    for name, value in inspect.getmembers(api_info['object']):
+                        if (not name.startswith("_")) and hasattr(value,
+                                                                  '__name__'):
+                            method_full_name = full_name + '.' + name  # value.__name__
+                            method_api_info = insert_api_into_dict(
+                                method_full_name)
+                            if method_api_info is not None:
+                                api_counter += 1
     return api_counter
 
 
@@ -746,67 +753,109 @@ def filter_api_info_dict():
 def extract_code_blocks_from_docstr(docstr):
     """
     extract code-blocks from the given docstring.
-
     DON'T include the multiline-string definition in code-blocks.
-
+    The *Examples* section must be the last.
     Args:
-        docstr - docstring
+        docstr(str): docstring
     Return:
-        A list of code-blocks, indent removed.
+        code_blocks: A list of code-blocks, indent removed. 
+                     element {'name': the code-block's name, 'id': sequence id.
+                              'codes': codes, 'required': 'gpu'}
     """
     code_blocks = []
-    mo = re.search(r"Examples:", docstr)
+
+    mo = re.search(r"Examples?:", docstr)
     if mo is None:
         return code_blocks
     ds_list = docstr[mo.start():].replace("\t", '    ').split("\n")
     lastlineindex = len(ds_list) - 1
-    cb_started = False
+
     cb_start_pat = re.compile(r"code-block::\s*python")
-    cb_cur = []
-    cb_cur_indent = -1
+    cb_param_pat = re.compile(r"^\s*:(\w+):\s*(\S*)\s*$")
+    cb_required_pat = re.compile(r"^\s*#\s*require[s|d]\s*:\s*(\S+)\s*$")
+
+    cb_info = {}
+    cb_info['cb_started'] = False
+    cb_info['cb_cur'] = []
+    cb_info['cb_cur_indent'] = -1
+    cb_info['cb_cur_name'] = None
+    cb_info['cb_cur_seq_id'] = 0
+    cb_info['cb_required'] = None
+
+    def _cb_started():
+        # nonlocal cb_started, cb_cur_name, cb_required, cb_cur_seq_id
+        cb_info['cb_started'] = True
+        cb_info['cb_cur_seq_id'] += 1
+        cb_info['cb_cur_name'] = None
+        cb_info['cb_required'] = None
+
+    def _append_code_block():
+        # nonlocal code_blocks, cb_cur, cb_cur_name, cb_cur_seq_id, cb_required
+        code_blocks.append({
+            'codes':
+            inspect.cleandoc("\n".join(cb_info['cb_cur'])),
+            'name':
+            cb_info['cb_cur_name'],
+            'id':
+            cb_info['cb_cur_seq_id'],
+            'required':
+            cb_info['cb_required'],
+        })
+
     for lineno, linecont in enumerate(ds_list):
         if re.search(cb_start_pat, linecont):
-            if not cb_started:
-                cb_started = True
+            if not cb_info['cb_started']:
+                _cb_started()
                 continue
             else:
                 # cur block end
-                if len(cb_cur):
-                    code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
-                cb_started = True  # another block started
-                cb_cur_indent = -1
-                cb_cur = []
+                if len(cb_info['cb_cur']):
+                    _append_code_block()
+                _cb_started()  # another block started
+                cb_info['cb_cur_indent'] = -1
+                cb_info['cb_cur'] = []
         else:
-            # check indent for cur block ends.
-            if cb_started:
+            if cb_info['cb_started']:
+                # handle the code-block directive's options
+                mo_p = cb_param_pat.match(linecont)
+                if mo_p:
+                    if mo_p.group(1) == 'name':
+                        cb_info['cb_cur_name'] = mo_p.group(2)
+                    continue
+                # read the required directive
+                mo_r = cb_required_pat.match(linecont)
+                if mo_r:
+                    cb_info['cb_required'] = mo_r.group(1)
+                # docstring end
                 if lineno == lastlineindex:
                     mo = re.search(r"\S", linecont)
-                    if mo is not None and cb_cur_indent <= mo.start():
-                        cb_cur.append(linecont)
-                    if len(cb_cur):
-                        code_blocks.append(inspect.cleandoc("\n".join(cb_cur)))
+                    if mo is not None and cb_info[
+                            'cb_cur_indent'] <= mo.start():
+                        cb_info['cb_cur'].append(linecont)
+                    if len(cb_info['cb_cur']):
+                        _append_code_block()
                     break
-                if cb_cur_indent < 0:
+                # check indent for cur block start and end.
+                if cb_info['cb_cur_indent'] < 0:
                     mo = re.search(r"\S", linecont)
-                    if mo is None: continue
-                    cb_cur_indent = mo.start()
-                    cb_cur.append(linecont)
+                    if mo is None:
+                        continue
+                    # find the first non empty line
+                    cb_info['cb_cur_indent'] = mo.start()
+                    cb_info['cb_cur'].append(linecont)
                 else:
-                    mo = re.search(r"\S", linecont)
-                    if mo is None: continue
-                    if cb_cur_indent <= mo.start():
-                        cb_cur.append(linecont)
+                    if cb_info['cb_cur_indent'] <= mo.start():
+                        cb_info['cb_cur'].append(linecont)
                     else:
                         if linecont[mo.start()] == '#':
                             continue
                         else:
                             # block end
-                            if len(cb_cur):
-                                code_blocks.append(
-                                    inspect.cleandoc("\n".join(cb_cur)))
-                            cb_started = False
-                            cb_cur_indent = -1
-                            cb_cur = []
+                            if len(cb_info['cb_cur']):
+                                _append_code_block()
+                            cb_info['cb_started'] = False
+                            cb_info['cb_cur_indent'] = -1
+                            cb_info['cb_cur'] = []
     return code_blocks
 
 
@@ -837,12 +886,11 @@ def extract_sample_codes_into_dir():
                 id_api] and 'full_name' in api_info_dict[id_api]:
             code_blocks = extract_code_blocks_from_docstr(
                 api_info_dict[id_api]['docstring'])
-            for cb_ind, cb in enumerate(code_blocks):
+            for cb_info in code_blocks:
                 fn = os.path.join(
                     SAMPLECODE_TEMPDIR, '{}.sample-code-{}.py'.format(
-                        api_info_dict[id_api]['full_name'], cb_ind))
-                requires = get_requires_of_code_block(cb)
-                requires.add(RUN_ON_DEVICE)
+                        api_info_dict[id_api]['full_name'], cb_info['id']))
+                requires = cb_info['required']
                 if not is_required_match(requires, fn):
                     continue
                 with open(fn, 'w') as f:
@@ -853,6 +901,7 @@ def extract_sample_codes_into_dir():
                             GPU_ID)
                     else:
                         header = 'import os\nos.environ["CUDA_VISIBLE_DEVICES"] = ""\n\n'
+                    cb = cb_info['codes']
                     last_future_line_end = find_last_future_line_end(cb)
                     if last_future_line_end:
                         f.write(cb[:last_future_line_end])
