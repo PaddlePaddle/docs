@@ -8,11 +8,7 @@ save
 将对象实例obj保存到指定的路径中。
 
 .. note::
-    目前支持保存：Layer 或者 Optimizer 的 ``state_dict``，Layer对象，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。如果您想进一步了解这个API，请参考：
-
-        save_cn.md
-    ..  toctree::
-        :maxdepth: 1
+    目前支持保存：Layer 或者 Optimizer 的 ``state_dict``，Layer对象，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。
 
 .. note::
     不同于 ``paddle.jit.save`` ，由于 ``paddle.save`` 的存储结果是单个文件，所以不需要通过添加后缀的方式区分多个存储文件，``paddle.save`` 的输入参数 ``path`` 将直接作为存储结果的文件名而非前缀。为了统一存储文件名的格式，我们推荐使用paddle标椎文件后缀：
@@ -20,12 +16,19 @@ save
     2. 对于 ``Optimizer.state_dict`` ，推荐使用后缀 ``.pdopt`` 。
     具体示例请参考API的代码示例。
 
+
+如果想进一步了解这个API，请参考：
+
+    ..  toctree::
+        :maxdepth: 1
+        
+        ../../../../faq/save_cn.md
 参数
 :::::::::
  - **obj**  (Object) – 要保存的对象实例。
  - **path**  (str) – 保存对象实例的路径。如果存储到当前路径，输入的path字符串将会作为保存的文件名。
  - **protocol**  (int, 可选) – pickle模块的协议版本，默认值为2，取值范围是[2,4]。
- - **configs**  (dict, 可选) – 其他配置选项，目前支持以下选项：（1）use_binary_format（bool）- 如果被保存的对象是静态图的Tensor，您可以指定这个参数。如果被指定为``True``，这个Tensor会被保存为由paddle定义的二进制格式的文件；否则这个Tensor被保存为pickle格式。默认为``False``。
+ - **configs**  (dict, 可选) – 其他配置选项，目前支持以下选项：（1）use_binary_format（bool）- 如果被保存的对象是静态图的Tensor，你可以指定这个参数。如果被指定为``True``，这个Tensor会被保存为由paddle定义的二进制格式的文件；否则这个Tensor被保存为pickle格式。默认为``False``。
 
 返回
 :::::::::

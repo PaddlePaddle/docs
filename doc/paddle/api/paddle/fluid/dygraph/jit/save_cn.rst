@@ -17,7 +17,7 @@ save
     - 其他预测库API
 
 .. note::
-    当使用 ``paddle.jit.save`` 保存 ``function`` 时， ``function`` 不能包含参数变量。如果您必须保存参数变量，请用Layer封装function，然后按照处理Layer的方式调用相应的API。
+    当使用 ``paddle.jit.save`` 保存 ``function`` 时， ``function`` 不能包含参数变量。如果必须保存参数变量，请用Layer封装function，然后按照处理Layer的方式调用相应的API。
 
 参数
 :::::::::
