@@ -6,9 +6,11 @@ Paddle Inference 是飞桨的原生推理库， 作用于服务器端和云端�
 
 Paddle Inference 功能特性丰富，性能优异，针对不同平台不同的应用场景进行了深度的适配优化，做到高吞吐、低时延，保证了飞桨模型在服务器端即训即用，快速部署。 
 
-完整使用文档位于：[Paddle Inference文档]()    代码示例位于[]()
-
-点此 [安装与编译Linux预测库]()                点此 [安装与编译Windows预测库]()
+一些常见的文档链接如下：
+- 完整使用文档位于：[Paddle Inference文档]()    
+- 代码示例位于[inference demo]()
+- 点此 [安装与编译Linux预测库]()                
+- 点此 [安装与编译Windows预测库]()
 
 ## 与主框架model.predict区别 
 
@@ -70,6 +72,6 @@ PaddleSlim是飞桨深度学习模型压缩工具，Paddle Inference可联动Pad
 - 微信公众号：飞桨PaddlePaddle 
 - 微信群: 部署交流群 
 
-![](./images/paddlepaddle.png)
+![](./images/paddlepaddle.png =100x100)
 
-![](./images/wechat.png)
+![](./images/wechat.png =100x100)
