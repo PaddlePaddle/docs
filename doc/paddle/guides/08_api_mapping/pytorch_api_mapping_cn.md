@@ -2,6 +2,7 @@
 
 ## 基础操作类
 
+
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1    | [torch.set\_default\_dtype](https://pytorch.org/docs/stable/generated/torch.set_default_dtype.html) | [paddle.set\_default\_dtype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/framework/set_default_dtype_cn.html) | 功能一致                                                     |
