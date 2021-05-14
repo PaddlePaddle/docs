@@ -8,16 +8,15 @@ load
 从指定路径载入可以在paddle中使用的对象实例。
 
 .. note::
-    目前支持载入：Layer 或者 Optimizer 的 ``state_dict``，Layer对象，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。详细功能及原理在文档 :ref:`_cn_doc_model_save_load` 2.3节。
+    目前支持载入：Layer 或者 Optimizer 的 ``state_dict``，Layer对象，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。
 
-.. note::
-    为了更高效地使用paddle存储的模型参数， ``paddle.load`` 支持从除 ``paddle.save`` 之外的其他save相关API的存储结果中载入 ``state_dict`` ，但是在不同场景中，参数 ``path`` 的形式有所不同：
-    1. 从 ``paddle.static.save`` 或者 ``paddle.Model().save(training=True)`` 的保存结果载入： ``path`` 需要是完整的文件名，例如 ``model.pdparams`` 或者 ``model.opt`` ； 
-    2. 从 ``paddle.jit.save`` 或者 ``paddle.static.save_inference_model`` 或者 ``paddle.Model().save(training=False)`` 的保存结果载入： ``path`` 需要是路径前缀， 例如 ``model/mnist`` ， ``paddle.load`` 会从 ``mnist.pdmodel`` 和 ``mnist.pdiparams`` 中解析 ``state_dict`` 的信息并返回。
-    3. 从paddle 1.x API ``paddle.fluid.io.save_inference_model`` 或者 ``paddle.fluid.io.save_params/save_persistables`` 的保存结果载入： ``path`` 需要是目录，例如 ``model`` ，此处model是一个文件夹路径。
 
-.. note::
-   如果从 ``paddle.static.save`` 或者 ``paddle.static.save_inference_model`` 等静态图API的存储结果中载入 ``state_dict`` ，动态图模式下参数的结构性变量名将无法被恢复。在将载入的 ``state_dict`` 配置到当前Layer中时，需要配置 ``Layer.set_state_dict`` 的参数 ``use_structured_name=False`` 。
+如果想进一步了解这个API，请参考：
+
+    ..  toctree::
+        :maxdepth: 1
+        
+        ../../../../faq/save_cn.md
 
 参数
 :::::::::
@@ -61,7 +60,39 @@ Object，一个可以在paddle中使用的对象实例
     load_weight = paddle.load("emb.weight.pdtensor")
 
 
-    # example 2: static graph
+    # example 2: Load multiple state_dict at the same time
+    from paddle import nn
+    from paddle.optimizer import Adam
+
+    layer = paddle.nn.Linear(3, 4)
+    adam = Adam(learning_rate=0.001, parameters=layer.parameters())
+    obj = {'model': layer.state_dict(), 'opt': adam.state_dict(), 'epoch': 100}
+    path = 'example/model.pdparams'
+    paddle.save(obj, path)
+    obj_load = paddle.load(path)
+
+
+    # example 3: Load layer
+    import paddle
+    from paddle import nn
+
+    class LinearNet(nn.Layer):
+        def __init__(self):
+            super(LinearNet, self).__init__()
+            self._linear = nn.Linear(224, 10)
+
+        def forward(self, x):
+            return self._linear(x)
+
+    inps = paddle.randn([1, 224], dtype='float32')
+    layer = LinearNet()
+    layer.eval()
+    path = "example/layer.pdmodel"
+    paddle.save(layer,path)
+    layer_load=paddle.load(path)
+
+    
+    # example 4: static graph
     import paddle
     import paddle.static as static
 
@@ -89,3 +120,18 @@ Object，一个可以在paddle中使用的对象实例
     path_state_dict = 'temp/model.pdparams'
     paddle.save(prog.state_dict("param"), path_tensor)
     load_state_dict = paddle.load(path_tensor)
+
+
+    # example 5: load program
+    import paddle
+
+    paddle.enable_static()
+
+    data = paddle.static.data(
+        name='x_static_save', shape=(None, 224), dtype='float32')
+    y_static = z = paddle.static.nn.fc(data, 10)
+    main_program = paddle.static.default_main_program()
+    path = "example/main_program.pdmodel"
+    paddle.save(main_program, path)
+    load_main = paddle.load(path)
+    print(load_main)

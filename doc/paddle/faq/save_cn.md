@@ -46,11 +46,26 @@ emb.set_state_dict(para_state_dict)
 adam.set_state_dict(opti_state_dict)
 ```
 
+##### 问题：paddle.load可以加载哪些API产生的模型？
++ 答复：
+
+    为了更高效地使用paddle存储的模型参数， ``paddle.load`` 支持从除 ``paddle.save`` 之外的其他save相关API的存储结果中载入 ``state_dict`` ，但是在不同场景中，参数 ``path`` 的形式有所不同：
+
+      1. 从 ``paddle.static.save`` 或者 ``paddle.Model().save(training=True)`` 的保存结果载入： ``path`` 需要是完整的文件名，例如 ``model.pdparams`` 或者 ``model.opt`` ；
+
+      2. 从 ``paddle.jit.save`` 或者 ``paddle.static.save_inference_model`` 或者 ``paddle.Model().save(training=False)`` 的保存结果载入： ``path`` 需要是路径前缀， 例如 ``model/mnist`` ， ``paddle.load`` 会从 ``mnist.pdmodel`` 和 ``mnist.pdiparams`` 中解析 ``state_dict`` 的信息并返回。
+
+      3. 从paddle 1.x API ``paddle.fluid.io.save_inference_model`` 或者 ``paddle.fluid.io.save_params/save_persistables`` 的保存结果载入： ``path`` 需要是目录，例如 ``model`` ，此处model是一个文件夹路径。
+
+
+   需要注意的是，如果从 ``paddle.static.save`` 或者 ``paddle.static.save_inference_model`` 等静态图API的存储结果中载入 ``state_dict`` ，动态图模式下参数的结构性变量名将无法被恢复。在将载入的 ``state_dict`` 配置到当前Layer中时，需要配置 ``Layer.set_state_dict`` 的参数 ``use_structured_name=False`` 。
+
 ##### 问题：paddle.save 是如何保存state_dict，Layer对象，Tensor以及包含Tensor的嵌套list、tuple、dict的呢？
 + 答复：
   1. 对于``state_dict``保存方式与paddle2.0完全相同，我们将``Tensor``转化为``numpy.ndarray``保存。
 
   2. 对于其他形式的包含``Tensor``的对象（``Layer``对象，单个``Tensor``以及包含``Tensor``的嵌套``list``、``tuple``、``dict``），在动态图中，将``Tensor``转化为``tuple(Tensor.name, Tensor.numpy())``;在静态图中，将``Tensor``直接转化为``numpy.ndarray``。之所以这样做，是因为当在静态图中使用动态保存的模型时，有时需要``Tensor``的名字因此将名字保存下来，同时，在``load``时区分这个``numpy.ndarray``是由Tenosr转化而来还是本来就是``numpy.ndarray``；保存静态图的``Tensor``时，通常通过``Variable.get_value``得到``Tensor``再使用``paddle.save``保存``Tensor``，此时，``Variable``是有名字的，这个``Tensor``是没有名字的，因此将静态图``Tensor``直接转化为``numpy.ndarray``保存。
+    > 此处动态图Tensor和静态图Tensor是不相同的，动态图Tensor有name、stop_gradient等属性；而静态图的Tensor是比动态图Tensor轻量级的，只包含place等基本信息，不包含名字等。
 
 ##### 问题：将Tensor转换为numpy.ndarray或者tuple(Tensor.name, Tensor.numpy())不是惟一可译编码，为什么还要做这样的转换呢？
 + 答复：

@@ -17,12 +17,13 @@ save
     具体示例请参考API的代码示例。
 
 
-如果想进一步了解这个API，请参考：
+遇到使用问题，请参考：
 
     ..  toctree::
         :maxdepth: 1
         
         ../../../../faq/save_cn.md
+
 参数
 :::::::::
  - **obj**  (Object) – 要保存的对象实例。
@@ -41,7 +42,6 @@ save
 
     # example 1: dynamic graph
     import paddle
-
     emb = paddle.nn.Embedding(10, 10)
     layer_state_dict = emb.state_dict()
 
@@ -60,7 +60,37 @@ save
     # save weight of emb
     paddle.save(emb.weight, "emb.weight.pdtensor")
 
-    # example 2: static graph
+    # example 2: Save multiple state_dict at the same time
+    from paddle import nn
+    from paddle.optimizer import Adam
+
+    layer = paddle.nn.Linear(3, 4)
+    adam = Adam(learning_rate=0.001, parameters=layer.parameters())
+    obj = {'model': layer.state_dict(), 'opt': adam.state_dict(), 'epoch': 100}
+    path = 'example/model.pdparams'
+    paddle.save(obj, path)
+
+
+    # example 3: Save layer
+    import paddle
+    from paddle import nn
+
+    class LinearNet(nn.Layer):
+        def __init__(self):
+            super(LinearNet, self).__init__()
+            self._linear = nn.Linear(224, 10)
+
+        def forward(self, x):
+            return self._linear(x)
+
+    inps = paddle.randn([1, 224], dtype='float32')
+    layer = LinearNet()
+    layer.eval()
+    path = "example/layer.pdmodel"
+    paddle.save(layer,path)
+
+
+    # example 4: static graph
     import paddle
     import paddle.static as static
 
@@ -86,3 +116,15 @@ save
     # save/load state_dict
     path_state_dict = 'temp/model.pdparams'
     paddle.save(prog.state_dict("param"), path_tensor)
+
+    # example 5: save program
+    import paddle
+
+    paddle.enable_static()
+
+    data = paddle.static.data(
+        name='x_static_save', shape=(None, 224), dtype='float32')
+    y_static = z = paddle.static.nn.fc(data, 10)
+    main_program = paddle.static.default_main_program()
+    path = "example/main_program.pdmodel"
+    paddle.save(main_program, path)

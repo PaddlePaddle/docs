@@ -472,16 +472,16 @@ list[ :ref:`api_guide_parameter` ]，一个包含当前Program中所有参数的
 
 .. py:method:: state_dict(mode='all', scope=None)
 
-获取当前层及其子层的所有参数和可持久性buffers。并将所有参数和buffers存放在dict结构中。
+获取当前 ``Program`` 持久性变量。并将所有持久性变量s存放在dict结构中。
 
 参数
 :::::::::
-    - mode (str, 可选) - 获取何种参数和可持久性buffers。目前支持以下选项： (1) 'opt'：获得优化器的参数和可持久性buffers放在dict结构中； (2) 'param'：获得组网中的参数和可持久性buffers放在dict结构中，不包含优化器中的参数和可持久性buffers； (3) 'all'：获得组网和优化器中的参数和可持久性buffers放在dict结构中；默认值为'all'。
+    - mode (str, 可选) - 获取何种持久性变量。目前支持以下选项： (1) 'opt'：获得优化器的持久性变量放在dict结构中； (2) 'param'：获得组网中的持久性变量放在dict结构中，不包含优化器中的持久性变量； (3) 'all'：获得组网和优化器中的持久性变量放在dict结构中；默认值为'all'。
     - scope (Scope, 可选) - 如果scope为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 ``state_dict`` ；否则从指定的 ``scope`` 获取 ``state_dict`` 。默认值为 ``None`` 。
 
 返回
 :::::::::
-dict， 包含所有参数和可持久行buffers的dict
+dict， 包含持久性变量的dict，键值是持久性变量的名字，值为持久性变量。
 
 代码示例
 :::::::::
@@ -507,11 +507,11 @@ dict， 包含所有参数和可持久行buffers的dict
 
 .. py:method:: set_state_dict(state_dict, scope=None)
 
-获取当前层及其子层的所有参数和可持久性buffers。并将所有参数和buffers存放在dict结构中。
+将 ``state_dict`` 中的持久性变量设置到 ``Program`` 中。
 
 参数
 :::::::::
-    - state_dict (dict) - 包含参数和可持久性buffers的字典。键值是参数和可持久性buffers的名字，值为参数和可持久性buffers。
+    - state_dict (dict) - 包含持久性变量的字典。键值是持久性变量的名字，值为持久性变量。
     - scope (Scope, 可选) - 如果scope为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并将 ``state_dict`` 中参数和可持久性buffers设置到这个作用域中；否则将 ``state_dict`` 设置到指定的 ``scope`` 中。默认值为 ``None`` 。
 
 返回
