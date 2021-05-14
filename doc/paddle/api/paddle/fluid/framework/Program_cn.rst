@@ -512,7 +512,7 @@ dict， 包含持久性变量的dict，键值是持久性变量的名字，值�
 参数
 :::::::::
     - state_dict (dict) - 包含持久性变量的字典。键值是持久性变量的名字，值为持久性变量。
-    - scope (Scope, 可选) - 如果scope为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并将 ``state_dict`` 中参数和可持久性buffers设置到这个作用域中；否则将 ``state_dict`` 设置到指定的 ``scope`` 中。默认值为 ``None`` 。
+    - scope (Scope, 可选) - 如果scope为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并将 ``state_dict`` 中久性变量设置到这个作用域中；否则将 ``state_dict`` 设置到指定的 ``scope`` 中。默认值为 ``None`` 。
 
 返回
 :::::::::
