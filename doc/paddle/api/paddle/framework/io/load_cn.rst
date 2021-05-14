@@ -59,6 +59,7 @@ Object，一个可以在paddle中使用的对象实例
     # load weight of emb
     load_weight = paddle.load("emb.weight.pdtensor")
 
+.. code-block:: python
 
     # example 2: Load multiple state_dict at the same time
     from paddle import nn
@@ -71,6 +72,7 @@ Object，一个可以在paddle中使用的对象实例
     paddle.save(obj, path)
     obj_load = paddle.load(path)
 
+.. code-block:: python
 
     # example 3: Load layer
     import paddle
@@ -91,7 +93,8 @@ Object，一个可以在paddle中使用的对象实例
     paddle.save(layer,path)
     layer_load=paddle.load(path)
 
-    
+.. code-block:: python
+
     # example 4: static graph
     import paddle
     import paddle.static as static
@@ -121,6 +124,7 @@ Object，一个可以在paddle中使用的对象实例
     paddle.save(prog.state_dict("param"), path_tensor)
     load_state_dict = paddle.load(path_tensor)
 
+.. code-block:: python
 
     # example 5: load program
     import paddle

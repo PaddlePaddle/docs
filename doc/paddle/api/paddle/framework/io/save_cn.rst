@@ -60,6 +60,9 @@ save
     # save weight of emb
     paddle.save(emb.weight, "emb.weight.pdtensor")
 
+
+.. code-block:: python
+
     # example 2: Save multiple state_dict at the same time
     from paddle import nn
     from paddle.optimizer import Adam
@@ -70,6 +73,8 @@ save
     path = 'example/model.pdparams'
     paddle.save(obj, path)
 
+
+.. code-block:: python
 
     # example 3: Save layer
     import paddle
@@ -89,6 +94,8 @@ save
     path = "example/layer.pdmodel"
     paddle.save(layer,path)
 
+
+.. code-block:: python
 
     # example 4: static graph
     import paddle
@@ -116,6 +123,9 @@ save
     # save/load state_dict
     path_state_dict = 'temp/model.pdparams'
     paddle.save(prog.state_dict("param"), path_tensor)
+
+
+.. code-block:: python
 
     # example 5: save program
     import paddle
