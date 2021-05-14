@@ -62,6 +62,7 @@ Object，一个可以在paddle中使用的对象实例
 .. code-block:: python
 
     # example 2: Load multiple state_dict at the same time
+    import paddle
     from paddle import nn
     from paddle.optimizer import Adam
 

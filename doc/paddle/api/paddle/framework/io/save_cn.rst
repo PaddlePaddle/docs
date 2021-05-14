@@ -64,6 +64,7 @@ save
 .. code-block:: python
 
     # example 2: Save multiple state_dict at the same time
+    import paddle
     from paddle import nn
     from paddle.optimizer import Adam
 
