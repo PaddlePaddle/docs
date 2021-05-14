@@ -1,9 +1,14 @@
 .. _cn_guides_api_mapping:
 
-飞桨框架API映射表
+Paddle 1.8 与 Paddle 2.0 API映射表
 =====================
 
-本文档基于PaddlePaddle v1.X 梳理了常用API与PaddlePaddle v2.0对应关系。可根据对应关系，快速熟悉PaddlePaddle 2.0的接口使用。
+本文档基于Paddle 1.8 梳理了常用API与Paddle 2.0对应关系。你可以根据对应关系，快速熟悉Paddle 2.0的接口使用。
+
+.. note::
+    
+    - 2.0版本将会是一个长期维护的版本，我们将会发布新增二位版本号版本进行功能增强、以及性能优化，通过发布新增三位版本号版本进行bugfix。
+    - 我们还会继续维护1.8版本，但仅限于严重的bugfix。
 
 .. note::
 
