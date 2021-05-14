@@ -40,5 +40,5 @@
     :hidden:
 
     inference/inference_cn.rst
-    mobile/mobile_index_cn.md.rst
+    mobile/mobile_index_cn.md
     paddleslim/paddle_slim_cn.md
