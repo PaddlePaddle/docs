@@ -46,7 +46,7 @@ emb.set_state_dict(para_state_dict)
 adam.set_state_dict(opti_state_dict)
 ```
 
-##### 问题：paddle.load可以加载哪些API产生的模型？
+##### 问题：paddle.load可以加载哪些API产生的结果呢？
 + 答复：
 
   为了更高效地使用paddle存储的模型参数，`paddle.load`支持从除`paddle.save`之外的其他save相关API的存储结果中载入`state_dict`，但是在不同场景中，参数`path`的形式有所不同：

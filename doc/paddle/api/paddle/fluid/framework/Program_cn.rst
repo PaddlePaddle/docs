@@ -472,7 +472,7 @@ list[ :ref:`api_guide_parameter` ]，一个包含当前Program中所有参数的
 
 .. py:method:: state_dict(mode='all', scope=None)
 
-获取当前 ``Program`` 持久性变量。并将所有持久性变量s存放在dict结构中。
+获取当前 ``Program`` 持久性变量。并将所有持久性变量存放在dict结构中。
 
 参数
 :::::::::
