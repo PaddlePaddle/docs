@@ -1,9 +1,9 @@
 .. _cn_guides_api_mapping:
 
-Paddle 1.X 与 Paddle 2.0 API映射表
+Paddle 1.8 与 Paddle 2.0 API映射表
 =====================
 
-本文档基于PaddlePaddle v1.X 梳理了常用API与PaddlePaddle v2.0对应关系。可根据对应关系，快速熟悉PaddlePaddle 2.0的接口使用。
+本文档基于Paddle 1.8 梳理了常用API与Paddle 2.0对应关系。你可以根据对应关系，快速熟悉Paddle 2.0的接口使用。
 
 .. note::
 
