@@ -18,3 +18,5 @@ distributed_cn/ReduceOp_cn.rst
 distributed_cn/scatter_cn.rst
 distributed_cn/init_parallel_env_cn.rst
 distributed_cn/spawn_cn.rst
+distributed_cn/send_cn.rst
+distributed_cn/recv_cn.rst
