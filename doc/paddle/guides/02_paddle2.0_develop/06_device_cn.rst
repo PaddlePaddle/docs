@@ -1,6 +1,6 @@
 .. _cn_doc_device:
 
-资源配置
+单机多卡训练
 ==================
 
 飞桨框架2.0增加\ ``paddle.distributed.spawn``\ 函数来启动单机多卡训练，同时原有的\ ``paddle.distributed.launch``\ 的方式依然保留。
