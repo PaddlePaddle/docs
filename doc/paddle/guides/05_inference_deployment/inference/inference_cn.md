@@ -72,5 +72,5 @@ PaddleSlim是飞桨深度学习模型压缩工具，Paddle Inference可联动Pad
 - 微信公众号：飞桨PaddlePaddle
 - 微信群: 部署交流群
 
-<p align="center"><img width="200" height="200"  src="https://user-images.githubusercontent.com/45189361/64117959-1969de80-cdc9-11e9-84f7-e1c2849a004c.jpeg"/>&#8194;&#8194;&#8194;&#8194;&#8194;<img width="200" height="200" margin="500" src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/05_inference_deployment/inference/images/wechat.png"/></p>
+<p align="center"><img width="200" height="200"  src="https://user-images.githubusercontent.com/45189361/64117959-1969de80-cdc9-11e9-84f7-e1c2849a004c.jpeg"/>&#8194;&#8194;&#8194;&#8194;&#8194;<img width="200" height="200" margin="500" src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/05_inference_deployment/inference/images/wechat.png?raw"/></p>
 <p align="center">  &#8194;&#8194;&#8194;微信公众号&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;&#8194;官方技术交流微信群</p>
