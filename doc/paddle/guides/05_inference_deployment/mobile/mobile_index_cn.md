@@ -1,4 +1,4 @@
-# Paddle-Lite
+# 移动端/嵌入式部署 — Paddle Lite
 
 Paddle-Lite为Paddle-Mobile的升级版，定位支持包括手机移动端在内更多场景的轻量化高效预测，支持更广泛的硬件和平台，是一个高性能、轻量级的深度学习预测引擎。在保持和PaddlePaddle无缝对接外，也兼容支持其他训练框架产出的模型。
 
