@@ -49,16 +49,13 @@ adam.set_state_dict(opti_state_dict)
 ##### 问题：paddle.load可以加载哪些API产生的模型？
 + 答复：
 
-    为了更高效地使用paddle存储的模型参数，`paddle.load`支持从除`paddle.save`之外的其他save相关API的存储结果中载入`state_dict`，但是在不同场景中，参数`path`的形式有所不同：
-
-      1. 从`paddle.static.save`或者`paddle.Model().save(training=True)`的保存结果载入：`path`需要是完整的文件名，例如`model.pdparams`或者`model.opt`；
-
-      2. 从`paddle.jit.save`或者`paddle.static.save_inference_model`或者`paddle.Model().save(training=False)`的保存结果载入：`path`需要是路径前缀， 例如`model/mnist`，`paddle.load`会从`mnist.pdmodel`和`mnist.pdiparams`中解析`state_dict`的信息并返回。
-
-      3. 从paddle 1.x API`paddle.fluid.io.save_inference_model`或者`paddle.fluid.io.save_params/save_persistables`的保存结果载入：`path`需要是目录，例如`model`，此处model是一个文件夹路径。
+  为了更高效地使用paddle存储的模型参数，`paddle.load`支持从除`paddle.save`之外的其他save相关API的存储结果中载入`state_dict`，但是在不同场景中，参数`path`的形式有所不同：
+    1. 从`paddle.static.save`或者`paddle.Model().save(training=True)`的保存结果载入：`path`需要是完整的文件名，例如`model.pdparams`或者`model.opt`；
+    2. 从`paddle.jit.save`或者`paddle.static.save_inference_model`或者`paddle.Model().save(training=False)`的保存结果载入：`path`需要是路径前缀， 例如`model/mnist`，`paddle.load`会从`mnist.pdmodel`和`mnist.pdiparams`中解析`state_dict`的信息并返回。
+    3. 从paddle 1.x API`paddle.fluid.io.save_inference_model`或者`paddle.fluid.io.save_params/save_persistables`的保存结果载入：`path`需要是目录，例如`model`，此处model是一个文件夹路径。
 
 
-   需要注意的是，如果从`paddle.static.save`或者`paddle.static.save_inference_model`等静态图API的存储结果中载入`state_dict`，动态图模式下参数的结构性变量名将无法被恢复。在将载入的`state_dict`配置到当前Layer中时，需要配置`Layer.set_state_dict`的参数`use_structured_name=False`。
+  需要注意的是，如果从`paddle.static.save`或者`paddle.static.save_inference_model`等静态图API的存储结果中载入`state_dict`，动态图模式下参数的结构性变量名将无法被恢复。在将载入的`state_dict`配置到当前Layer中时，需要配置`Layer.set_state_dict`的参数`use_structured_name=False`。
 
 ##### 问题：paddle.save 是如何保存state_dict，Layer对象，Tensor以及包含Tensor的嵌套list、tuple、dict的呢？
 + 答复：
