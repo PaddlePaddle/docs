@@ -11,7 +11,7 @@ load
     目前支持载入：Layer 或者 Optimizer 的 ``state_dict``，Layer对象，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。
 
 
-如果想进一步了解这个API，请参考：
+遇到使用问题，请参考：
 
     ..  toctree::
         :maxdepth: 1
