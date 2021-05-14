@@ -76,28 +76,7 @@ save
 
 .. code-block:: python
 
-    # example 3: Save layer
-    import paddle
-    from paddle import nn
-
-    class LinearNet(nn.Layer):
-        def __init__(self):
-            super(LinearNet, self).__init__()
-            self._linear = nn.Linear(224, 10)
-
-        def forward(self, x):
-            return self._linear(x)
-
-    inps = paddle.randn([1, 224], dtype='float32')
-    layer = LinearNet()
-    layer.eval()
-    path = "example/layer.pdmodel"
-    paddle.save(layer,path)
-
-
-.. code-block:: python
-
-    # example 4: static graph
+    # example 3: static graph
     import paddle
     import paddle.static as static
 
@@ -127,7 +106,7 @@ save
 
 .. code-block:: python
 
-    # example 5: save program
+    # example 4: save program
     import paddle
 
     paddle.enable_static()

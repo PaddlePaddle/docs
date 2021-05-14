@@ -72,30 +72,10 @@ Object，一个可以在paddle中使用的对象实例
     paddle.save(obj, path)
     obj_load = paddle.load(path)
 
-.. code-block:: python
-
-    # example 3: Load layer
-    import paddle
-    from paddle import nn
-
-    class LinearNet(nn.Layer):
-        def __init__(self):
-            super(LinearNet, self).__init__()
-            self._linear = nn.Linear(224, 10)
-
-        def forward(self, x):
-            return self._linear(x)
-
-    inps = paddle.randn([1, 224], dtype='float32')
-    layer = LinearNet()
-    layer.eval()
-    path = "example/layer.pdmodel"
-    paddle.save(layer,path)
-    layer_load=paddle.load(path)
 
 .. code-block:: python
 
-    # example 4: static graph
+    # example 3: static graph
     import paddle
     import paddle.static as static
 
@@ -126,7 +106,7 @@ Object，一个可以在paddle中使用的对象实例
 
 .. code-block:: python
 
-    # example 5: load program
+    # example 4: load program
     import paddle
 
     paddle.enable_static()
