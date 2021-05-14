@@ -114,6 +114,95 @@ Variable
           print("new var's dtype is: {}".format(new_variable.dtype))
 
 
+.. py:method:: get_value(scope=None)
+
+获取 :ref:`api_guide_Variable` 的值。
+
+参数
+:::::::::
+  - scope ( Scope，可选 ) - 从指定的 ``scope`` 中获取 :ref:`api_guide_Variable` 的值。如果 ``scope`` 为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 :ref:`api_guide_Variable` 的值；否则，从指定的 ``scope`` 中获取 :ref:`api_guide_Variable` 的值。
+
+返回
+:::::::::
+Tensor， :ref:`api_guide_Variable` 的值
+
+代码示例
+::::::::::
+
+.. code-block:: python
+
+      import paddle
+      import paddle.static as static 
+      import numpy as np
+
+      paddle.enable_static()
+
+      x = static.data(name="x", shape=[10, 10], dtype='float32')
+
+      y = static.nn.fc(x, 10, name='fc')
+      place = paddle.CPUPlace()
+      exe = static.Executor(place)
+      prog = paddle.static.default_main_program()
+      exe.run(static.default_startup_program())
+      inputs = np.ones((10, 10), dtype='float32')
+      exe.run(prog, feed={'x': inputs}, fetch_list=[y, ])
+      path = 'temp/tensor_'
+      for var in prog.list_vars():
+          if var.persistable:
+              t = var.get_value()
+              paddle.save(t, path+var.name+'.pdtensor')
+
+      for var in prog.list_vars():
+          if var.persistable:
+              t_load = paddle.load(path+var.name+'.pdtensor')
+              var.set_value(t_load)
+
+
+.. py:method:: set_value(value, scope=None)
+
+将 ``value`` 设置为 :ref:`api_guide_Variable` 的值。
+
+参数
+:::::::::
+  - value ( Tensor|ndarray ) - :ref:`api_guide_Variable` 的值。
+  - scope ( Scope，可选 ) - 将 :ref:`api_guide_Variable` 的值设置到指定的 ``scope`` 中。如果 ``scope`` 为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并将 :ref:`api_guide_Variable` 的值设置到这个用域实例中；否则，将 :ref:`api_guide_Variable` 的值设置到指定的 ``scope`` 中。
+
+返回
+:::::::::
+None
+
+代码示例
+::::::::::
+
+.. code-block:: python
+
+      import paddle
+      import paddle.static as static 
+      import numpy as np
+
+      paddle.enable_static()
+
+      x = static.data(name="x", shape=[10, 10], dtype='float32')
+
+      y = static.nn.fc(x, 10, name='fc')
+      place = paddle.CPUPlace()
+      exe = static.Executor(place)
+      prog = paddle.static.default_main_program()
+      exe.run(static.default_startup_program())
+      inputs = np.ones((10, 10), dtype='float32')
+      exe.run(prog, feed={'x': inputs}, fetch_list=[y, ])
+      path = 'temp/tensor_'
+      for var in prog.list_vars():
+          if var.persistable:
+              t = var.get_value()
+              paddle.save(t, path+var.name+'.pdtensor')
+
+      for var in prog.list_vars():
+          if var.persistable:
+              t_load = paddle.load(path+var.name+'.pdtensor')
+              var.set_value(t_load)
+
+
 属性
 ::::::::::::
 
