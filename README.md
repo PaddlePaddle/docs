@@ -9,7 +9,7 @@ docs contains all documents of [paddlepaddle.org.cn](https://www.paddlepaddle.or
 
 ## Contributing
 
-To contribute PaddlePaddle documents, please read [CONTRIBUTING_cn.md]((./CONTRIBUTING_cn.md)) 。After approved, [PaddlePaddle Documentation](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html) will display your changes.
+To contribute PaddlePaddle documents, please read [CONTRIBUTING.md]((./CONTRIBUTING.md)) 。After approved, [PaddlePaddle Documentation](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html) will display your changes.
 
 ## Open an issue 
 
