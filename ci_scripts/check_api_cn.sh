@@ -28,9 +28,9 @@ function find_need_check_files() {
     for file in `echo $git_files`;do
         grep "code-block" ../$file
         if [ $? -eq 0 ] ;then 
-            echo $file | grep "doc/paddle/api/paddle/.*_cn.rst"
+            echo $file | grep "docs/api/paddle/.*_cn.rst"
             if [ $? -eq 0 ];then
-                api_file=`echo $file | sed 's#doc/paddle/api/##g'`
+                api_file=`echo $file | sed 's#docs/api/##g'`
                 grep -w "${api_file}" ${DIR_PATH}/api_white_list.txt
                 if [ $? -ne 0 ];then
                     need_check_files="${need_check_files} $file"
@@ -41,7 +41,7 @@ function find_need_check_files() {
 }
 
 
-need_check_cn_doc_files=`git diff --numstat upstream/$BRANCH | awk '{print $NF}' | grep "doc/paddle/api/paddle/.*_cn.rst" | sed 's#doc/##g'` 
+need_check_cn_doc_files=`git diff --numstat upstream/$BRANCH | awk '{print $NF}' | grep "docs/api/paddle/.*_cn.rst" | sed 's#docs/##g'` 
 echo $need_check_cn_doc_files
 find_need_check_files
 if [ "$need_check_files" = "" -a "$need_check_cn_doc_files" = "" ]
@@ -71,7 +71,7 @@ else
         cd -
 
         for file in $need_check_cn_doc_files; do
-            cat ../doc/paddle/api/en_cn_files_diff | awk '{print $1}' | grep ${file}
+            cat ../docs/api/en_cn_files_diff | awk '{print $1}' | grep ${file}
             if [ $? -eq 0 ];then
                 echo "Chinese doc file exist, but the Englist doc does not exist, the Chinese file is ${file}"
             fi
