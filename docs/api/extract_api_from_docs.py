@@ -238,12 +238,12 @@ def format_filename(filename):
     """
     Format the filename
 
-    filename may be "/FluidDoc/doc/paddle/guides/xxx" or "../guides/xxx", format it as "guides/xxx".
+    filename may be "/FluidDoc/docs/guides/xxx" or "../guides/xxx", format it as "guides/xxx".
     function get_all_files does not format it.
     """
     rp = os.path.realpath(filename)
-    pat_str = 'doc/paddle/'  # if the structure changed, update this pattern
-    ind = rp.index(pat_str)
+    pat_str = 'docs/'  # if the structure changed, update this pattern
+    ind = rp.rindex(pat_str)
     if ind >= 0:
         return rp[ind + len(pat_str):]
     return filename

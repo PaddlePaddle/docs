@@ -88,7 +88,7 @@ def get_all_api(root_path='paddle', attr="__all__"):
                 len(api_info_dict))
 
 
-def insert_api_into_dict(full_name):
+def insert_api_into_dict(full_name, gen_doc_anno=None):
     """
     insert add api into the api_info_dict
 
@@ -119,6 +119,8 @@ def insert_api_into_dict(full_name):
             docstr = inspect.getdoc(obj)
             if docstr:
                 api_info_dict[fc_id]["docstring"] = inspect.cleandoc(docstr)
+            if gen_doc_anno:
+                api_info_dict[fc_id]["gen_doc_anno"] = gen_doc_anno
         return api_info_dict[fc_id]
 
 
@@ -143,7 +145,7 @@ def process_module(m, attr="__all__"):
                                                                   '__name__'):
                             method_full_name = full_name + '.' + name  # value.__name__
                             method_api_info = insert_api_into_dict(
-                                method_full_name)
+                                method_full_name, 'class_method')
                             if method_api_info is not None:
                                 api_counter += 1
     return api_counter
@@ -383,7 +385,7 @@ def set_display_attr_of_apis():
                 logger.info("set {} display to False".format(id_api))
 
 
-# step 4 fill field : alias_name
+# step 4 fill field : alias_name, use the first name in alias_name as suggested name and doc_filename
 def set_real_api_alias_attr():
     """
     set the full_name,alias attr and so on.
@@ -401,6 +403,8 @@ def set_real_api_alias_attr():
             continue
         real_api = lineparts[0].strip()
         docpath_from_real_api = real_api.replace('.', '/')
+        sn = get_suggested_name(lineparts[1])
+        doc_filename = sn.replace('.', '/') if sn else docpath_from_real_api
         if real_api == 'paddle.tensor.creation.Tensor':
             real_api = 'paddle.Tensor'
         if real_api.endswith('Overview'):
@@ -427,22 +431,22 @@ def set_real_api_alias_attr():
                         api_info_dict[api_id]["all_names"].add(
                             'paddle.tensor.creation.Tensor')
                     if "doc_filename" not in api_info_dict[api_id]:
-                        api_info_dict[api_id][
-                            "doc_filename"] = docpath_from_real_api
+                        api_info_dict[api_id]["doc_filename"] = doc_filename
                     else:
                         if api_info_dict[api_id][
-                                "doc_filename"] != docpath_from_real_api:
+                                "doc_filename"] != doc_filename:
                             logger.warning(
                                 "doc_filename changes from %s to %s",
                                 api_info_dict[api_id]["doc_filename"],
-                                docpath_from_real_api)
+                                doc_filename)
                             api_info_dict[api_id][
-                                "doc_filename"] = docpath_from_real_api
+                                "doc_filename"] = doc_filename
                     if "module_name" not in api_info_dict[
                             api_id] or "short_name" not in api_info_dict[
                                 api_id]:
                         mod_name, short_name = split_name(real_api)
-                        api_info_dict[api_id]["module_name"] = mod_name
+                        api_info_dict[api_id][
+                            "module_name"] = mod_name  # TODO: should let module_name be real module_name
                         api_info_dict[api_id]["short_name"] = short_name
                         if 'full_name' not in api_info_dict[api_id]:
                             api_info_dict[api_id]["full_name"] = real_api
@@ -499,22 +503,50 @@ def collect_referenced_from_infos(docdirs):
         docdirs)
 
 
+def get_suggested_name(apis_str):
+    """
+    use the first name in the list as the suggested_name.
+    """
+    apis = apis_str.split(",")
+    return apis[0].strip() if len(apis) > 0 else None
+
+
 def get_shortest_api(api_list):
     """
     find the shortest api in list.
+
+    Problems:
+    1. fuild - if there is any apis don't contain 'fluid' in name, use them.
+    2. core vs core_avx - using the 'core'.
     """
     if len(api_list) == 1:
         return api_list[0]
     # try to find shortest path of api as the real api
-    shortest_len = len(api_list[0].split("."))
-    shortest_api = api_list[0]
-    for x in api_list[1:]:
-        len_x = len(x.split("."))
-        if len_x < shortest_len:
-            shortest_len = len_x
-            shortest_api = x
+    api_info = [
+    ]  # {'name': name, 'fluid_in_name': True/False, 'core_avx_in_name': True/Flase', 'len': len}
+    for api in api_list:
+        fields = api.split('.')
+        api_info.append({
+            'name': api,
+            'fluid_in_name': 'fluid' in fields,
+            'core_avx_in_name': 'core_avx' in fields,
+            'len': len(fields),
+        })
 
-    return shortest_api
+    def shortest(api_info):
+        if not api_info:
+            return None
+        elif len(api_info) == 1:
+            return api_info[0].get('name')
+        api_info.sort(key=lambda ele: ele.get('len'))
+        return api_info[0].get('name')
+
+    if not all([api.get('fuild_in_name') for api in api_info]):
+        api_info = [api for api in api_info if not api.get('fluid_in_name')]
+    sn = shortest([api for api in api_info if not api.get('core_avx_in_name')])
+    if sn is None:
+        sn = shortest(api_info)
+    return sn
 
 
 def remove_all_en_files(path="./paddle"):
@@ -538,10 +570,18 @@ def gen_en_files(api_label_file="api_label"):
             if 'full_name' in api_info and api_info['full_name'].endswith(
                     'Overview'):
                 continue
-            if "display" in api_info and not api_info["display"]:
+            elif "display" in api_info and not api_info["display"]:
                 logger.debug("{} display False".format(id_api))
                 continue
-            if "doc_filename" not in api_info:
+            elif 'type' in api_info and api_info['type'] in [
+                    'module', 'method', 'VarType',
+                    'builtin_function_or_method', 'dict', 'float', 'str'
+            ]:
+                continue
+            elif 'gen_doc_anno' in api_info and api_info[
+                    'gen_doc_anno'] == 'class_method':
+                continue
+            elif "doc_filename" not in api_info:
                 logger.debug(
                     "{} does not have doc_filename field.".format(id_api))
                 continue
@@ -553,26 +593,10 @@ def gen_en_files(api_label_file="api_label"):
             f = api_info["doc_filename"] + en_suffix
             if os.path.exists(f):
                 continue
-            gen = EnDocGenerator()
-            with gen.guard(f):
-                if 'full_name' in api_info:
-                    mod_name, _, short_name = api_info['full_name'].rpartition(
-                        '.')
-                else:
-                    mod_name = api_info['module_name']
-                    short_name = api_info['short_name']
-                    logger.warning("full_name not in api_info: %s.%s",
-                                   mod_name, short_name)
-                if mod_name == 'paddle.fluid.core_avx' and short_name == 'VarBase':
-                    gen.module_name = 'paddle'
-                    gen.api = 'Tensor'
-                else:
-                    gen.module_name = mod_name
-                    gen.api = short_name
-                gen.print_header_reminder()
-                gen.print_item()
-                api_label.write("{1}\t.. _api_{0}_{1}:\n".format("_".join(
-                    mod_name.split(".")), short_name))
+            gen = EnDocGenerator(api_info)
+            api_name, api_ref_name = gen()
+            if api_name and api_ref_name:
+                api_label.write("{}\t.. {}:\n".format(api_name, api_ref_name))
 
 
 def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
@@ -605,12 +629,23 @@ class EnDocGenerator(object):
     skip
     """
 
-    def __init__(self, name=None, api=None):
+    def __init__(self, api_info):
         """
         init
         """
-        self.module_name = name
-        self.api = api
+        self.api_info = api_info
+        if 'suggested_name' in self.api_info:
+            self.api_name = self.api_info['suggested_name']
+        elif 'full_name' in self.api_info:
+            self.api_name = self.api_info['full_name']
+        else:
+            logger.warning("%s has no attr called full_name/suggested_name",
+                           str(self.api_info))
+            self.api_name = None
+        self.api_ref_name = '_api_' + self.api_name.replace(
+            '.', '_') if self.api_name else None
+        # disarding the api_info['short_name'], cause it may be different.
+        _, self.short_name = split_name(self.api_name)
         self.stream = None
 
     @contextlib.contextmanager
@@ -629,18 +664,25 @@ class EnDocGenerator(object):
         as name
         """
         try:
-            m = eval(self.module_name + "." + self.api)
+            if 'object' in self.api_info:
+                m = self.api_info['object']
+            elif self.api_name is not None:
+                m = eval(self.api_name)
+            else:
+                logger.warning(
+                    "%s has no attr called object/full_name/suggested_name",
+                    str(self.api_info))
+                return
         except AttributeError:
-            logger.warning("attribute error: module_name=" + self.module_name +
-                           ", api=" + self.api)
-            pass
+            logger.warning("attribute error for %s ", str(self.api_info))
         else:
-            if isinstance(eval(self.module_name + "." + self.api), type):
+            if isinstance(m, type):
                 self.print_class()
-            elif isinstance(
-                    eval(self.module_name + "." + self.api),
-                    types.FunctionType):
+            elif isinstance(m, types.FunctionType):
                 self.print_function()
+            else:
+                logger.warning("%s: not supported type %s",
+                               str(self.api_name), type(m))
 
     def print_header_reminder(self):
         """
@@ -655,8 +697,9 @@ class EnDocGenerator(object):
         """
         as name
         """
-        self.stream.write(".. _api_{0}_{1}:\n\n".format("_".join(
-            self.module_name.split(".")), self.api))
+        if self.api_name is None:
+            return
+        self.stream.write(".. {}:\n\n".format(self.api_ref_name))
 
     def _print_header_(self, name, dot, is_title):
         """
@@ -680,7 +723,7 @@ class EnDocGenerator(object):
         as name
         """
         self._print_ref_()
-        self._print_header_(self.api, dot='-', is_title=False)
+        self._print_header_(self.short_name, dot='-', is_title=False)
 
         cls_templates = {
             'default':
@@ -706,48 +749,76 @@ class EnDocGenerator(object):
 '''
         }
         tmpl = 'default'
-        if 'fluid.dygraph' in self.module_name or \
-           'paddle.vision' in self.module_name or \
-           'paddle.callbacks' in self.module_name or \
-           'paddle.hapi.callbacks' in self.module_name or \
-           'paddle.io' in self.module_name or \
-           'paddle.nn' in self.module_name:
-            tmpl = 'no-inherited'
-        elif "paddle.optimizer" in self.module_name or \
-             "fluid.optimizer" in self.module_name:
-            tmpl = 'fluid.optimizer'
-        else:
-            tmpl = 'default'
+        for m in [
+                'fluid.dygraph', 'paddle.vision', 'paddle.callbacks',
+                'paddle.hapi.callbacks', 'paddle.io', 'paddle.nn'
+        ]:
+            if self.api_name.startswith(m):
+                tmpl = 'no-inherited'
+        if tmpl == 'default':
+            for m in ["paddle.optimizer", "fluid.optimizer"]:
+                if self.api_name.startswith(m):
+                    tmpl = 'fluid.optimizer'
 
-        api_full_name = "{}.{}".format(self.module_name, self.api)
-        self.stream.write(cls_templates[tmpl].format(api_full_name))
+        self.stream.write(cls_templates[tmpl].format(self.api_name))
 
     def print_function(self):
         """
         as name
         """
         self._print_ref_()
-        self._print_header_(self.api, dot='-', is_title=False)
-        self.stream.write('''..  autofunction:: {0}.{1}
+        self._print_header_(self.short_name, dot='-', is_title=False)
+        self.stream.write('''..  autofunction:: {}
     :noindex:
 
-'''.format(self.module_name, self.api))
+'''.format(self.api_name))
+
+    def __call__(self):
+        """
+        generate the rst file.
+        """
+        if self.api_name:
+            filename = self.api_info['doc_filename'] + en_suffix
+            with self.guard(filename):
+                self.print_header_reminder()
+                self.print_item()
+        return self.api_name, self.api_ref_name
 
 
-def filter_api_info_dict():
+def insert_suggested_names():
+    """
+    add suggeted_name field, updte the doc_filename.
+    """
     pat = re.compile(r'paddle\.fluid\.core_[\w\d]+\.(.*)$')
     for id_api in api_info_dict:
-        if "all_names" in api_info_dict[id_api]:
-            if "full_name" in api_info_dict[id_api]:
-                # paddle.fluid.core_avx.* -> paddle.fluid.core.*
-                mo = pat.match(api_info_dict[id_api]["full_name"])
-                if mo:
-                    api_info_dict[id_api]["all_names"].add('paddle.fluid.core.'
-                                                           + mo.group(1))
-            api_info_dict[id_api]["all_names"] = list(
-                api_info_dict[id_api]["all_names"])
-        if "object" in api_info_dict[id_api]:
-            del api_info_dict[id_api]["object"]
+        if "all_names" not in api_info_dict[id_api]:
+            api_info_dict[id_api]["all_names"] = set()
+        if "full_name" in api_info_dict[id_api] and api_info_dict[id_api][
+                "full_name"] not in api_info_dict[id_api]["all_names"]:
+            api_info_dict[id_api]["all_names"].add(
+                api_info_dict[id_api]["full_name"])
+        for n in list(api_info_dict[id_api]["all_names"]):
+            # paddle.fluid.core_avx.* -> paddle.fluid.core.*
+            mo = pat.match(n)
+            if mo:
+                api_info_dict[id_api]["all_names"].add('paddle.fluid.core.' +
+                                                       mo.group(1))
+        api_info_dict[id_api]["all_names"] = list(
+            api_info_dict[id_api]["all_names"])
+        sn = get_shortest_api(api_info_dict[id_api]["all_names"])
+        if sn:
+            # Delete alias_name, api_info_dict[id_api]["alias_name"] = sn
+            api_info_dict[id_api]["suggested_name"] = sn
+            api_info_dict[id_api]["doc_filename"] = sn.replace('.', '/')
+
+
+def filter_out_object_of_api_info_dict():
+    """
+    filter out the object before dump json string.
+    """
+    for id_api in api_info_dict:
+        if 'object' in api_info_dict[id_api]:
+            del api_info_dict[id_api]['object']
 
 
 def extract_code_blocks_from_docstr(docstr):
@@ -1126,10 +1197,9 @@ if __name__ == "__main__":
         get_all_api(attr=realattr)
         set_display_attr_of_apis()
         set_source_code_attrs()
-        set_real_api_alias_attr()
+        # set_real_api_alias_attr()
         set_referenced_from_attr()
-        filter_api_info_dict()
-        json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
+        insert_suggested_names()
         if ('__all__' not in realattrs) or ('__all__' in realattrs and
                                             realattr == '__all__'):
             if args.gen_rst:
@@ -1137,6 +1207,8 @@ if __name__ == "__main__":
                 check_cn_en_match()
             if need_run_sample_codes:
                 extract_sample_codes_into_dir()
+        filter_out_object_of_api_info_dict()
+        json.dump(api_info_dict, open(jsonfn, "w"), indent=4)
 
     if need_run_sample_codes:
         for package in ['scipy', 'paddle2onnx']:

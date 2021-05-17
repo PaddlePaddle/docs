@@ -12,7 +12,7 @@ In Paddlepaddle, tensors are broadcastable when following rulrs hold(ref: `Numpy
 
 1. there should be at least one dimention in each tensor
 2. when comparing their shapes element-wise from backward to forward, two dimensions are compatible when 
-they are equal, or one of them is 1, or one of them does not exist.
+   they are equal, or one of them is 1, or one of them does not exist.
 
 For example:
 
