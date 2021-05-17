@@ -9,7 +9,7 @@ docs 中包含了所有 [paddlepaddle.org.cn](https://www.paddlepaddle.org.cn/do
 
 ## 贡献
 
-我们非常欢迎你贡献文档！你可以参考 [贡献指南]() 直接参与。当审核通过后，[飞桨官网文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html) 会上线你的改动。
+我们非常欢迎你贡献文档！你可以参考 [贡献指南](CONTRIBUTING_cn.md) 直接参与。当审核通过后，[飞桨官网文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html) 会上线你的改动。
 
 ## 提交ISSUE 
 
