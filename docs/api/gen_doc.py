@@ -677,7 +677,7 @@ class EnDocGenerator(object):
                 self.print_function()
             else:
                 logger.warning("%s: not supported type %s",
-                               str(self.api_info), type(m))
+                               str(self.api_name), type(m))
 
     def print_header_reminder(self):
         """
@@ -833,7 +833,7 @@ def extract_code_blocks_from_docstr(docstr):
     mo = re.search(r"Examples?:", docstr)
     if mo is None:
         return code_blocks
-    ds_list = docstr[mo.start():].replace("\t", '    ').plit("\n")
+    ds_list = docstr[mo.start():].replace("\t", '    ').split("\n")
     lastlineindex = len(ds_list) - 1
 
     cb_start_pat = re.compile(r"code-block::\s*python")
