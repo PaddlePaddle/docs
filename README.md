@@ -1,6 +1,6 @@
 <h1 align="center">PaddlePaddle Documentation</h1>
 <p align="center">
-<img align="center" src="https://github.com/PaddlePaddle/Paddle/doc/imgs/logo.png", width=1600>
+<img align="center" src="https://github.com/PaddlePaddle/Paddle/doc/imgs/logo.png?raw=true", width=1600>
 <p>
 
 English | [简体中文](./README_cn.md)
