@@ -88,7 +88,7 @@ def get_all_api(root_path='paddle', attr="__all__"):
                 len(api_info_dict))
 
 
-def insert_api_into_dict(full_name):
+def insert_api_into_dict(full_name, gen_doc_anno=None):
     """
     insert add api into the api_info_dict
 
@@ -119,6 +119,8 @@ def insert_api_into_dict(full_name):
             docstr = inspect.getdoc(obj)
             if docstr:
                 api_info_dict[fc_id]["docstring"] = inspect.cleandoc(docstr)
+            if gen_doc_anno:
+                api_info_dict[fc_id]["gen_doc_anno"] = gen_doc_anno
         return api_info_dict[fc_id]
 
 
@@ -143,7 +145,7 @@ def process_module(m, attr="__all__"):
                                                                   '__name__'):
                             method_full_name = full_name + '.' + name  # value.__name__
                             method_api_info = insert_api_into_dict(
-                                method_full_name)
+                                method_full_name, 'class_method')
                             if method_api_info is not None:
                                 api_counter += 1
     return api_counter
@@ -575,6 +577,9 @@ def gen_en_files(api_label_file="api_label"):
                     'module', 'method', 'VarType',
                     'builtin_function_or_method', 'dict', 'float', 'str'
             ]:
+                continue
+            elif 'gen_doc_anno' in api_info and api_info[
+                    'gen_doc_anno'] == 'class_method':
                 continue
             elif "doc_filename" not in api_info:
                 logger.debug(
