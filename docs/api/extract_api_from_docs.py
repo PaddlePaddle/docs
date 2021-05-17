@@ -243,7 +243,7 @@ def format_filename(filename):
     """
     rp = os.path.realpath(filename)
     pat_str = 'docs/'  # if the structure changed, update this pattern
-    ind = rp.index(pat_str)
+    ind = rp.rindex(pat_str)
     if ind >= 0:
         return rp[ind + len(pat_str):]
     return filename
