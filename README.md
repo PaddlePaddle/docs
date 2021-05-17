@@ -11,7 +11,7 @@ docs contains all documents of [paddlepaddle.org.cn](https://www.paddlepaddle.or
 
 To contribute PaddlePaddle documents, please read [CONTRIBUTING.md](./CONTRIBUTING.md) 。After approved, [PaddlePaddle Documentation](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html) will display your changes.
 
-## Open an issue 
+## Open an issue
 
 If you found a problem about paddlepaddle, you an open an issue using a [template](https://github.com/PaddlePaddle/Paddle/issues/new?assignees=&labels=&template=---document-issue-.md).
 
