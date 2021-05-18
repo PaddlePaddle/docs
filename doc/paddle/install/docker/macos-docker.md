@@ -17,11 +17,21 @@
         docker pull hub.baidubce.com/paddlepaddle/paddle:[版本号]
         ```
 
+    * CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
+        ```
+        docker pull hub.baidubce.com/paddlepaddle/paddle:[版本号]-jupyter
+        ```
+
     如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像：
 
     * CPU版的PaddlePaddle：
         ```
         docker pull paddlepaddle/paddle:[版本号]
+        ```
+
+    * CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
+        ```
+        docker pull paddlepaddle/paddle:[版本号]-jupyter
         ```
 
     在`:`后请您填写PaddlePaddle版本号，您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
@@ -45,6 +55,31 @@
         > -v $PWD:/paddle 指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 
         > `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
+
+    * 使用CPU版本的PaddlePaddle，且镜像中预装好了 jupyter：
+
+        ```
+        mkdir ./jupyter_docker
+        ```
+        ```
+        chmod 777 ./jupyter_docker
+        ```
+        ```
+        cd ./jupyter_docker
+        ```
+        ```
+        docker run -p 80:80 --rm --env USER_PASSWD=[password you set] -v $PWD:/home/paddle <imagename>
+        ```
+
+        > --rm 关闭容器后删除容器；
+
+
+        > --env USER_PASSWD=[password you set] 为 jupyter 设置登录密码，[password you set] 是自己设置的密码；
+
+
+        > -v $PWD:/home/paddle 指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /home/paddle 目录；
+
+        > `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看
 
 
 
