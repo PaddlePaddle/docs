@@ -110,7 +110,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 * 请参考如下命令安装:
 
   ```
-  conda install paddlepaddle -c paddle
+  conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 ## **三、验证安装**

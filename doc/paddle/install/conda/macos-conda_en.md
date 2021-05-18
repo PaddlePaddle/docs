@@ -115,7 +115,7 @@ You can choose the following version of PaddlePaddle to start installation:
 * Please use the following command to install PaddlePaddle：
 
   ```
-  conda install paddlepaddle -c paddle
+  conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 
