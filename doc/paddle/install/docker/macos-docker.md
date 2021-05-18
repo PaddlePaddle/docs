@@ -120,26 +120,6 @@
 
 您可以在 [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) 中找到PaddlePaddle的各个发行的版本的docker镜像。
 
-注：
-
-对于jupyter的CPU镜像，您可以指定jupyter的登录密码，可通过如下指令启动容器：
-
-1. 创建jupyter镜像的运行目录并指定文件夹权限：
-    ```
-    mkdir ./jupyter_docker
-    ```
-    ```
-    chmod 777 ./jupyter_docker
-    ```
-    ```
-    cd ./jupyter_docker
-    ```
-
-2. 使用如下命令启动docker，其中[password you set]是您用来登录jupyter的密码
-
-    ```
-    docker run -p 80:80 --rm --env USER_PASSWD=[password you set] -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:paddle:2.1.0-jupyter
-    ```
 
 ### 注意事项
 
