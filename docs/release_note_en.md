@@ -32,9 +32,39 @@ from paddle.nn.layer.conv import *
 
 - `Tensor.grad` Incompatible upgrade. The type of return value is changed from `numpy` to `Tensor`. ([#32142](https://github.com/PaddlePaddle/Paddle/pull/32142)) 
 
-| 2.0                                                          | 2.1                                                          |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| import paddle<br /> x = paddle.to_tensor(5., stop_gradient=False)<br /> y = paddle.pow(x, 4.0)<br /> y.backward()<br /> type(x.grad)<br /> < class 'numpy.ndarray' >| import paddle<br /> x = paddle.to_tensor(5., stop_gradient=False)<br /> y = paddle.pow(x, 4.0)<br /> y.backward()<br /> type(x.grad)<br />< class 'paddle.Tensor' > |
+<table>
+<tr>
+<td style="text-align:center"> 1.1.1 </td> <td style="text-align:center"> 1.2.0 </td>
+</tr>
+<tr>
+<td>
+
+```python
+>>> import paddle
+>>> x = paddle.to_tensor(5., stop_gradient=False)
+>>> y = paddle.pow(x, 4.0)
+>>> y.backward()
+>>> type(x.grad)
+<class 'numpy.ndarray'>
+```
+
+</td>
+
+<td>
+
+
+```python
+>>> import paddle
+>>> x = paddle.to_tensor(5., stop_gradient=False)
+>>> y = paddle.pow(x, 4.0)
+>>> y.backward()
+>>> type(x.grad)
+<class 'paddle.Tensor'>
+```
+
+</td>
+</tr>
+</table>
 
 
 - `paddle.jit.TraceLayer.save_inference_model` Interface incompatibility upgrade. Changed the original first parameter dirname to path, the name symbol is more generic and unified with interfaces such as paddle.save and load, indicating that the user specifies the prefix for saving the model path. ([#31989](https://github.com/PaddlePaddle/Paddle/pull/31989)) 

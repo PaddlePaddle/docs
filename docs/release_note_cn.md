@@ -29,9 +29,39 @@ from paddle.nn.layer.conv import *
 
 - `Tensor.grad`不兼容升级，返回值的类型由`numpy`变为`Tensor`。([#32142](https://github.com/PaddlePaddle/Paddle/pull/32142))
 
-| 2.0                                                          | 2.1                                                          |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| import paddle<br /> x = paddle.to_tensor(5., stop_gradient=False)<br /> y = paddle.pow(x, 4.0)<br /> y.backward()<br /> type(x.grad)<br /> < class 'numpy.ndarray' >| import paddle<br /> x = paddle.to_tensor(5., stop_gradient=False)<br /> y = paddle.pow(x, 4.0)<br /> y.backward()<br /> type(x.grad)<br />< class 'paddle.Tensor' > |
+<table>
+<tr>
+<td style="text-align:center"> 1.1.1 </td> <td style="text-align:center"> 1.2.0 </td>
+</tr>
+<tr>
+<td>
+
+```python
+>>> import paddle
+>>> x = paddle.to_tensor(5., stop_gradient=False)
+>>> y = paddle.pow(x, 4.0)
+>>> y.backward()
+>>> type(x.grad)
+<class 'numpy.ndarray'>
+```
+
+</td>
+
+<td>
+
+
+```python
+>>> import paddle
+>>> x = paddle.to_tensor(5., stop_gradient=False)
+>>> y = paddle.pow(x, 4.0)
+>>> y.backward()
+>>> type(x.grad)
+<class 'paddle.Tensor'>
+```
+
+</td>
+</tr>
+</table>
 
 
 - `paddle.jit.TraceLayer.save_inference_model` 接口不兼容升级。将原先的第一个参数dirname改为path，名字表意更通用并且与paddle.save和load等接口统一，表示由用户指定保存模型路径的前缀。([#31989](https://github.com/PaddlePaddle/Paddle/pull/31989))
