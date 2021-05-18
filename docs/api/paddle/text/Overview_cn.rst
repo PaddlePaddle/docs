@@ -27,17 +27,16 @@ paddle.text 目录是飞桨在文本领域的高层API。有Paddle内置以及Pa
 PaddleNLP提供的API
 ::::::::::::::::::::
 
-PaddleNLP 2.0 拥有覆盖多场景的模型库、简洁易用的全流程API与动静统一的高性能分布式训练能力，旨在为飞桨开发者提升文本领域建模效率，并提供基于PaddlePaddle 2.0的NLP领域最佳实践。
+PaddleNLP 2.0 提供了在文本任务上简洁易用的全流程API与动静统一的高性能分布式训练能力，旨在为飞桨开发者提升文本领域建模效率，并提供基于PaddlePaddle 2.0的NLP领域最佳实践。
 
+安装命令：
 
-可参考项目 `GitHub <https://github.com/PaddlePaddle/PaddleNLP>`_ 以及`文档 <https://paddlenlp.readthedocs.io/zh/latest/index.html>`_ 。
-
-
-安装命令
---------
 .. code-block::
 
     pip install paddlenlp2.0.0
+
+
+可参考项目 `GitHub <https://github.com/PaddlePaddle/PaddleNLP>`_ 以及 `文档 <https://paddlenlp.readthedocs.io/zh/latest/index.html>`_ 。
 
 .. csv-table::
     :header: "API模块", "功能简介", "API用法简单示例"
