@@ -132,7 +132,7 @@
 
 
   ```
-  python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
   ```
 
 
@@ -154,7 +154,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
   ```
 
 

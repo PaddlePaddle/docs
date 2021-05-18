@@ -160,7 +160,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
   ```
 
 

@@ -97,7 +97,7 @@
 
 
   ```
-  python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
   ```
 
 #### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
@@ -116,7 +116,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
   ```
 
 
