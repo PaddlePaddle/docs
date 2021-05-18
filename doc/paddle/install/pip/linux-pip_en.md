@@ -25,33 +25,22 @@
 
 * Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
-  * If you are using Python 2, use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
+  * Use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
 
     ```
     which python
-    ```
-
-  * If you are using Python 3, use the following command to output Python path. Depending on your environment, you may need to replace Python 3 in all command lines in the instructions with Python or specific Python path
-
-    ```
-    which python3
     ```
 
 
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * If you are using Python 2, use the following command to confirm that it is 2.7.15+
+  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9
 
         python --version
 
-  * If you are using Python 3, use the following command to confirm that it is 3.5.1+/3.6/3.7/3.8
-
-        python3 --version
-
 * It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2+
 
-  * If you are using Python 2
 
     ```
     python -m ensurepip
@@ -61,30 +50,12 @@
     python -m pip --version
     ```
 
-  * If you are using Python 3
-
-    ```
-    python3 -m ensurepip
-    ```
-
-    ```
-    python3 -m pip --version
-    ```
-
 
 
 * You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
 
-  * If you are using Python 2
-
     ```
     python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
-    ```
-
-  * If you are using Python 3
-
-    ```
-    python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
 
@@ -218,19 +189,19 @@ Note：
 * If you want to use the tsinghua pypi, you can use the following command:
 
   ```
-   python3 -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
+   python -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 * If you want to install the Paddle package built with `tensorrt`, you can use the following command:
 
   ```
-  python3 -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
+  python -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
   ```
 
 * If you want to install the Paddle package with `openblas`, you can use the following command:
 
   ```
-  python3 -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/openblas/stable.html
+  python -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/openblas/stable.html
   ```
 
 
@@ -245,5 +216,5 @@ If `PaddlePaddle is installed successfully!` appears, to verify that the install
 
 Please use the following command to uninstall PaddlePaddle:
 
-- ***CPU version of PaddlePaddle\***: `python -m pip uninstall paddlepaddle` or `python3 -m pip uninstall paddlepaddle`
-- ***GPU version of PaddlePaddle\***: `python -m pip uninstall paddlepaddle-gpu` or `python3 -m pip uninstall paddlepaddle-gpu`
+- ***CPU version of PaddlePaddle\***: `python -m pip uninstall paddlepaddle`
+- ***GPU version of PaddlePaddle\***: `python -m pip uninstall paddlepaddle-gpu`

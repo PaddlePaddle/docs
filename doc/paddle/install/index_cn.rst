@@ -8,8 +8,8 @@
 **1. 操作系统要求：**
 
 * Windows 7 / 8 / 10，专业版 / 企业版
-* Ubuntu 14.04 / 16.04 / 18.04
-* CentOS 6 / 7
+* Ubuntu 16.04 / 18.04
+* CentOS 7
 * MacOS 10.11 / 10.12 / 10.13 / 10.14
 * 操作系统要求是 64 位版本
 
@@ -20,8 +20,7 @@
 
 **3. Python 和 pip 版本要求：**
 
-* Python 2 的版本要求 2.7.15+
-* Python 3 的版本要求 3.5.1+/3.6/3.7/3.8
+* Python 的版本要求 3.6/3.7/3.8/3.9
 * Python 具有 pip, 且 pip 的版本要求 20.2.2+
 * Python 和 pip 要求是 64 位版本
 
@@ -92,7 +91,7 @@
 
 3. 确认您需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
 
-    如果您是使用 Python 2，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
+    使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
     
         在 Windows 环境下，输出 Python 路径的命令为：
         
@@ -106,57 +105,28 @@
 
             which python
 
-    如果您是使用 Python 3，使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python3 替换为 python 或者替换为具体的 Python 路径
-
-        在 Windows 环境下，输出 Python 路径的命令为：
-
-        ::
-
-            where python3
-
-        在 MacOS/Linux 环境下，输出 Python 路径的命令为：
-
-        ::
-
-            which python3
 
 4. 检查 Python 的版本
 
-    如果您是使用 Python 2，使用以下命令确认是 2.7.15+
+    使用以下命令确认是 3.6/3.7/3.8/3.9
     ::
     
         python --version
 
-    如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7/3.8
-    ::
-    
-        python3 --version
-    
 5. 检查 pip 的版本，确认是 20.2.2+  
 
-    如果您是使用 Python 2
     ::
     
         python -m ensurepip 
         python -m pip --version
 
-    如果您是使用 Python 3
-    ::
-    
-        python3 -m ensurepip
-        python3 -m pip --version
 
 6. 确认 Python 和 pip 是 64 bit，并且处理器架构是x86_64（或称作 x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是 "64bit" ，第二行输出的是 "x86_64" 、 "x64" 或 "AMD64" 即可：
 
-    如果您是使用 Python 2
     ::
 
         python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
-    如果您是使用 Python 3
-    ::
-    
-        python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
 7. 如果您希望使用 `pip <https://pypi.org/project/pip/>`_ 进行安装PaddlePaddle可以直接使用以下命令:
 
@@ -195,11 +165,11 @@
 
             python -m pip install paddlepaddle_gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/stable.html 
         
-    请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为 python3 或者替换为具体的 Python 路径。
+    请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
 8. 验证安装
 
-    使用 python 或 python3 进入python解释器，输入import paddle ，再输入 paddle.utils.run_check()。
+    使用 python 进入python解释器，输入import paddle ，再输入 paddle.utils.run_check()。
 
     如果出现 PaddlePaddle is installed successfully!，说明您已成功安装。
 

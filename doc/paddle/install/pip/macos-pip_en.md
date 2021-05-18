@@ -23,33 +23,21 @@
 
 * Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
-  * If you are using Python 2, use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
+  * Use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
 
     ```
     which python
-    ```
-
-  * If you are using Python 3, use the following command to output Python path. Depending on your environment, you may need to replace Python 3 in all command lines in the instructions with Python or specific Python path
-
-    ```
-    which python3
     ```
 
 
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * If you are using Python 2, use the following command to confirm that it is 2.7.15+
+  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9
 
         python --version
 
-  * If you are using Python 3, use the following command to confirm that it is 3.5.1+/3.6/3.7/3.8
-
-        python3 --version
-
 * It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2+
-
-  * If you are using Python 2
 
     ```
     python -m ensurepip
@@ -59,32 +47,13 @@
     python -m pip --version
     ```
 
-  * If you are using Python 3
-
-    ```
-    python3 -m ensurepip
-    ```
-
-    ```
-    python3 -m pip --version
-    ```
-
-
 
 * You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
 
-  * If you are using Python 2
 
     ```
     python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
-
-  * If you are using Python 3
-
-    ```
-    python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
-    ```
-
 
 
 * The installation package provided by default requires computer support for MKL
@@ -116,13 +85,13 @@ python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
 Note：
 
 
-* Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
+* Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
 
 
 
 ## Verify installation
 
-After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
+After the installation is complete, you can use `python` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
 
 If `PaddlePaddle is installed successfully!` appears, to verify that the installation was successful.
 
@@ -132,8 +101,4 @@ Please use the following command to uninstall PaddlePaddle:
 
 ```
 python -m pip uninstall paddlepaddle
-```
-
-```
-python3 -m pip uninstall paddlepaddle
 ```

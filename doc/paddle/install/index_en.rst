@@ -10,8 +10,8 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 =================================
 
 * Windows 7 / 8 / 10, Pro/Enterprise
-* Ubuntu 14.04 / 16.04 / 18.04
-* CentOS 6 / 7
+* Ubuntu 16.04 / 18.04
+* CentOS 7
 * MacOS 10.11 / 10.12 / 10.13 / 10.14
 * 64-bit operating system is required
 
@@ -24,8 +24,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 3. Version requirements of python and pip:
 ==========================================
 
-* Python 2 requires version 2.7.15+
-* Python 3 requires version 3.5.1+/3.6/3.7/3.8
+* Python requires version 3.6/3.7/3.8/3.9
 * Python needs pip, and pip requires version 20.2.2+
 * Python and pip requires 64-bit
 
@@ -99,7 +98,7 @@ This section describes how to use pip to install.
 
 3. Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
-    If you are using Python 2, use the following command to output Python path. Depending on your environment, you may need to replace Python in all command lines in the description with specific Python path
+    Use the following command to output Python path. Depending on your environment, you may need to replace Python in all command lines in the description with specific Python path
     
         In the Windows environment, the command to output Python path is:
         
@@ -113,57 +112,28 @@ This section describes how to use pip to install.
 
             which python
 
-    If you are using Python 3, use the following command to output Python path. Depending on your environment, you may need to replace Python in all command lines in the description with specific Python path
-
-        In the Windows environment, the command to output Python path is:
-
-        ::
-
-            where python3
-
-        In the MacOS/Linux environment, the command to output Python path is:
-
-        ::
-
-            which python3
 
 4. Check the version of Python
 
-    If you are using Python 2，confirm it is 2.7.15+ using command
+    Confirm the Python is 3.6/3.7/3.8/3.9 using command
     ::
     
         python --version
-
-    If you are using Python 3，confirm it is 3.5.1+/3.6/3.7/3.8 using command
-    ::
-    
-        python3 --version
     
 5. Check the version of pip and confirm it is 20.2.2+  
 
-    If you are using Python 2
     ::
     
         python -m ensurepip 
         python -m pip --version
 
-    If you are using Python 3
-    ::
-    
-        python3 -m ensurepip
-        python3 -m pip --version
 
 6. Confirm that Python and pip is 64 bit，and the processor architecture is x86_64(or called x64、Intel 64、AMD64)architecture. Currently, PaddlePaddle doesn't support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64" :
 
-    If you use Python 2
     ::
 
         python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
-    If you use Python 3
-    ::
-    
-        python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 
 7. If you want to use `pip <https://pypi.org/project/pip/>`_ to install PaddlePaddle, you can use the command below directly:
 
@@ -207,7 +177,7 @@ This section describes how to use pip to install.
 
 8. Verify installation
 
-    After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and then  `paddle.utils.run_check()` to verify that the installation was successful.
+    After the installation is complete, you can use `python` to enter the Python interpreter and then use `import paddle` and then  `paddle.utils.run_check()` to verify that the installation was successful.
 
     If `PaddlePaddle is installed successfully!` appears, it means the installation was successful.
 

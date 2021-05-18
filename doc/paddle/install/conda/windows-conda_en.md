@@ -20,17 +20,6 @@ Before performing PaddlePaddle installation, please make sure that your Anaconda
 
 Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports the following four Python installation environments.
 
-If you want to use python version 2.7:
-
-```
-conda create -n paddle_env python=2.7
-```
-
-If you want to use python version 3.5:
-
-```
-conda create -n paddle_env python=3.5
-```
 
 If you want to use python version 3.6:
 
@@ -48,6 +37,12 @@ If you want to use python version 3.8:
 
 ```
 conda create -n paddle_env python=3.8
+```
+
+If you want to use python version 3.9:
+
+```
+conda create -n paddle_env python=3.9
 ```
 
 
@@ -72,7 +67,7 @@ conda activate paddle_env
 
 Confirm that your conda virtual environment and the Python loaction which is preapared to install PaddlePaddle are where you expected them for your computer may have multiple Pythons environments. Enter Anaconda's command line terminal and enter the following command to confirm the Python location.
 
-1.2.1 If you are using Python 2, use the following command to get the Python path. Depending on your environment, you may need to replace python in all command lines in the instructions with specific Python path.
+1.2.1 Depending on your environment, you may need to replace python in all command lines in the instructions with specific Python path.
 
 In a Windows environment, the command to get the Python path is:
 
@@ -88,50 +83,21 @@ which python
 
 
 
-If you are using Python 3, use the following command to get the Python path. Depending on your environment, you may need to replace python in all command lines in the instructions with specific Python path.
-
-In a Windows environment, the command to get the Python path is:
-
-```
-where python3
-```
-
-In a MacOS/Linux environment, the command to get the Python path is:
-
-```
-which python3
-```
-
-
-
 1.2.2 Check the version of Python
 
-If you are using Python 2, use the following command to confirm it's version is 2.7.15+
+Use the following command to confirm it's version is 2.7.15+
 
 ```
 python --version
-```
-
-If you are using Python 3, use the following command to confirm it's version is 3.5.1+/3.6/3.7/3.8
-
-```
-python3 --version
 ```
 
 
 
 1.2.3 Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture. The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
 
-If you are using Python2:
 
 ```
 python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
-```
-
-If you are using Python3:
-
-```
-python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 ```
 
 

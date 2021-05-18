@@ -16,17 +16,6 @@
 
 首先根据具体的Python版本创建Anaconda虚拟环境，PaddlePaddle的Anaconda安装支持以下五种Python安装环境。
 
-如果您想使用的python版本为2.7:
-
-```
-conda create -n paddle_env python=2.7
-```
-
-如果您想使用的python版本为3.5:
-
-```
-conda create -n paddle_env python=3.5
-```
 
 如果您想使用的python版本为3.6:
 
@@ -46,6 +35,11 @@ conda create -n paddle_env python=3.7
 conda create -n paddle_env python=3.8
 ```
 
+如果您想使用的python版本为3.9:
+
+```
+conda create -n paddle_env python=3.9
+```
 
 
 #### 1.1.2进入Anaconda虚拟环境
@@ -76,69 +70,29 @@ where python
 
 在 MacOS/Linux 环境下，输出 Python 路径的命令为:
 
-如果您使用python2：
 
 ```
 which python
 ```
 
-如果您使用python3：
-
-```
-which python3
-```
-
-根据您的环境，您可能需要将说明中所有命令行中的 python3 替换为 python 或者替换为具体的 Python 路径
+根据您的环境，您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
 
 
 
 1.2.2 检查Python版本
 
-在 Windows 环境下，使用以下命令确认版本(Python2 应对应 2.7.15+，Python3 应对应 3.5.1+/3.6/3.7/3.8)
+使用以下命令确认版本(Python应对应 3.6/3.7/3.8/3.9)
 
 ```
 python --version
 ```
-
-在 MacOS/Linux 环境下
-
-如果您是使用 Python 2，使用以下命令确认是 2.7.15+:
-
-```
-python --version
-```
-
-如果您是使用 Python 3，使用以下命令确认是 3.5.1+/3.6/3.7/3.8:
-
-```
-python3 --version
-```
-
 
 
 1.2.3 确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64（或x64、AMD64）"即可：
 
-在 Windows 环境下
-
 ```
 python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 ```
-
-在 MacOS/Linux 环境下
-
-如果您使用Python2:
-
-```
-python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
-```
-
-如果您使用Python3:
-
-```
-python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
-```
-
-
 
 
 
