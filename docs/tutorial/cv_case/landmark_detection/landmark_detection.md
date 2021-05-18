@@ -9,7 +9,7 @@
 
 关键点检测方法总体上可以分成两个类型，一个种是用坐标回归的方式来解决，另一种是将关键点建模成热力图，通过像素分类任务，回归热力图分布得到关键点位置。这两个方法，都是一种手段或者是途径，解决的问题就是要找出这个点在图像当中的位置与关系。
 
-其中人脸关键点检测是关键点检测方法的一个成功实践，本示例简要介绍如何通过飞桨开源框架，实现人脸关键点检测的功能。这个案例用到的是第一种关键点检测方法——坐标回归。将使用到 Paddle 2.0的API，集成式的训练接口，能够很方便对模型进行训练和预测。
+其中人脸关键点检测是关键点检测方法的一个成功实践，本示例简要介绍如何通过飞桨开源框架，实现人脸关键点检测的功能。这个案例用到的是第一种关键点检测方法——坐标回归。将使用到 Paddle 2.1的API，集成式的训练接口，能够很方便对模型进行训练和预测。
 
 
 ## 二、环境设置
@@ -295,7 +295,7 @@ model.summary((1,3, 96, 96))
 
 
 ## 五、训练模型
-在这个任务是对坐标进行回归，使用均方误差（Mean Square error ）损失函数`paddle.nn.MSELoss()`来做计算，飞桨2.0中，在nn下将损失函数封装成可调用类。这里使用paddle.Model相关的API直接进行训练，只需要定义好数据集、网络模型和损失函数即可。
+在这个任务是对坐标进行回归，使用均方误差（Mean Square error ）损失函数`paddle.nn.MSELoss()`来做计算，飞桨2.1中，在nn下将损失函数封装成可调用类。这里使用paddle.Model相关的API直接进行训练，只需要定义好数据集、网络模型和损失函数即可。
 
 使用模型代码进行Model实例生成，使用prepare接口定义优化器、损失函数和评价指标等信息，用于后续训练使用。在所有初步配置完成后，调用fit接口开启训练执行过程，调用fit时只需要将前面定义好的训练数据集、测试数据集、训练轮次（Epoch）和批次大小（batch_size）配置好即可。
 
@@ -319,286 +319,9 @@ model.fit(train_dataset, val_dataset, epochs=60, batch_size=256)
     Eval begin...
     step 2/2 - loss: 0.0939 - 592ms/step
     Eval samples: 428
-    Epoch 3/60
-    step 7/7 - loss: 0.0288 - 636ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0298 - 539ms/step
-    Eval samples: 428
-    Epoch 4/60
-    step 7/7 - loss: 0.0225 - 671ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0109 - 659ms/step
-    Eval samples: 428
-    Epoch 5/60
-    step 7/7 - loss: 0.0171 - 668ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0040 - 557ms/step
-    Eval samples: 428
-    Epoch 6/60
-    step 7/7 - loss: 0.0152 - 647ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0033 - 544ms/step
-    Eval samples: 428
-    Epoch 7/60
-    step 7/7 - loss: 0.0112 - 636ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0022 - 537ms/step
-    Eval samples: 428
-    Epoch 8/60
-    step 7/7 - loss: 0.0103 - 640ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0013 - 539ms/step
-    Eval samples: 428
-    Epoch 9/60
-    step 7/7 - loss: 0.0104 - 643ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0018 - 530ms/step
-    Eval samples: 428
-    Epoch 10/60
-    step 7/7 - loss: 0.0092 - 631ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0015 - 550ms/step
-    Eval samples: 428
-    Epoch 11/60
-    step 7/7 - loss: 0.0082 - 636ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0013 - 567ms/step
-    Eval samples: 428
-    Epoch 12/60
-    step 7/7 - loss: 0.0076 - 656ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0010 - 548ms/step
-    Eval samples: 428
-    Epoch 13/60
-    step 7/7 - loss: 0.0085 - 652ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0017 - 557ms/step
-    Eval samples: 428
-    Epoch 14/60
-    step 7/7 - loss: 0.0069 - 682ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0028 - 556ms/step
-    Eval samples: 428
-    Epoch 15/60
-    step 7/7 - loss: 0.0077 - 663ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0015 - 548ms/step
-    Eval samples: 428
-    Epoch 16/60
-    step 7/7 - loss: 0.0074 - 721ms/step
-    Eval begin...
-    step 2/2 - loss: 9.8965e-04 - 567ms/step
-    Eval samples: 428
-    Epoch 17/60
-    step 7/7 - loss: 0.0067 - 661ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0010 - 529ms/step
-    Eval samples: 428
-    Epoch 18/60
-    step 7/7 - loss: 0.0072 - 635ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0018 - 531ms/step
-    Eval samples: 428
-    Epoch 19/60
-    step 7/7 - loss: 0.0086 - 641ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0034 - 541ms/step
-    Eval samples: 428
-    Epoch 20/60
-    step 7/7 - loss: 0.0113 - 635ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0033 - 567ms/step
-    Eval samples: 428
-    Epoch 21/60
-    step 7/7 - loss: 0.0060 - 1s/step
-    Eval begin...
-    step 2/2 - loss: 0.0030 - 547ms/step
-    Eval samples: 428
-    Epoch 22/60
-    step 7/7 - loss: 0.0078 - 633ms/step
-    Eval begin...
-    step 2/2 - loss: 9.7463e-04 - 547ms/step
-    Eval samples: 428
-    Epoch 23/60
-    step 7/7 - loss: 0.0073 - 616ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0019 - 528ms/step
-    Eval samples: 428
-    Epoch 24/60
-    step 7/7 - loss: 0.0054 - 615ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0010 - 547ms/step
-    Eval samples: 428
-    Epoch 25/60
-    step 7/7 - loss: 0.0062 - 682ms/step
-    Eval begin...
-    step 2/2 - loss: 9.3690e-04 - 575ms/step
-    Eval samples: 428
-    Epoch 26/60
-    step 7/7 - loss: 0.0055 - 676ms/step
-    Eval begin...
-    step 2/2 - loss: 9.3880e-04 - 1s/step
-    Eval samples: 428
-    Epoch 27/60
-    step 7/7 - loss: 0.0091 - 739ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0029 - 579ms/step
-    Eval samples: 428
-    Epoch 28/60
-    step 7/7 - loss: 0.0068 - 910ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0023 - 743ms/step
-    Eval samples: 428
-    Epoch 29/60
-    step 7/7 - loss: 0.0072 - 720ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0011 - 498ms/step
-    Eval samples: 428
-    Epoch 30/60
-    step 7/7 - loss: 0.0050 - 590ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0013 - 494ms/step
-    Eval samples: 428
-    Epoch 31/60
-    step 7/7 - loss: 0.0049 - 588ms/step
-    Eval begin...
-    step 2/2 - loss: 9.3926e-04 - 490ms/step
-    Eval samples: 428
-    Epoch 32/60
-    step 7/7 - loss: 0.0045 - 606ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0011 - 508ms/step
-    Eval samples: 428
-    Epoch 33/60
-    step 7/7 - loss: 0.0063 - 613ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0012 - 507ms/step
-    Eval samples: 428
-    Epoch 34/60
-    step 7/7 - loss: 0.0043 - 600ms/step
-    Eval begin...
-    step 2/2 - loss: 9.2067e-04 - 491ms/step
-    Eval samples: 428
-    Epoch 35/60
-    step 7/7 - loss: 0.0068 - 650ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0044 - 483ms/step
-    Eval samples: 428
-    Epoch 36/60
-    step 7/7 - loss: 0.0050 - 643ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0010 - 489ms/step
-    Eval samples: 428
-    Epoch 37/60
-    step 7/7 - loss: 0.0047 - 566ms/step
-    Eval begin...
-    step 2/2 - loss: 8.0848e-04 - 483ms/step
-    Eval samples: 428
-    Epoch 38/60
-    step 7/7 - loss: 0.0048 - 570ms/step
-    Eval begin...
-    step 2/2 - loss: 7.6766e-04 - 479ms/step
-    Eval samples: 428
-    Epoch 39/60
-    step 7/7 - loss: 0.0045 - 568ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0020 - 486ms/step
-    Eval samples: 428
-    Epoch 40/60
-    step 7/7 - loss: 0.0072 - 565ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0044 - 600ms/step
-    Eval samples: 428
-    Epoch 41/60
-    step 7/7 - loss: 0.0061 - 693ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0014 - 518ms/step
-    Eval samples: 428
-    Epoch 42/60
     step 7/7 - loss: 0.0056 - 789ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0020 - 482ms/step
     Eval samples: 428
-    Epoch 43/60
-    step 7/7 - loss: 0.0043 - 588ms/step
-    Eval begin...
-    step 2/2 - loss: 8.0763e-04 - 491ms/step
-    Eval samples: 428
-    Epoch 44/60
-    step 7/7 - loss: 0.0040 - 573ms/step
-    Eval begin...
-    step 2/2 - loss: 7.1525e-04 - 859ms/step
-    Eval samples: 428
-    Epoch 45/60
-    step 7/7 - loss: 0.0042 - 583ms/step
-    Eval begin...
-    step 2/2 - loss: 7.4608e-04 - 504ms/step
-    Eval samples: 428
-    Epoch 46/60
-    step 7/7 - loss: 0.0037 - 719ms/step
-    Eval begin...
-    step 2/2 - loss: 7.6588e-04 - 781ms/step
-    Eval samples: 428
-    Epoch 47/60
-    step 7/7 - loss: 0.0049 - 942ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0012 - 863ms/step
-    Eval samples: 428
-    Epoch 48/60
-    step 7/7 - loss: 0.0051 - 810ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0011 - 488ms/step
-    Eval samples: 428
-    Epoch 49/60
-    step 7/7 - loss: 0.0049 - 608ms/step
-    Eval begin...
-    step 2/2 - loss: 6.7772e-04 - 493ms/step
-    Eval samples: 428
-    Epoch 50/60
-    step 7/7 - loss: 0.0041 - 613ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0011 - 491ms/step
-    Eval samples: 428
-    Epoch 51/60
-    step 7/7 - loss: 0.0042 - 582ms/step
-    Eval begin...
-    step 2/2 - loss: 6.7449e-04 - 498ms/step
-    Eval samples: 428
-    Epoch 52/60
-    step 7/7 - loss: 0.0042 - 583ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0055 - 478ms/step
-    Eval samples: 428
-    Epoch 53/60
-    step 7/7 - loss: 0.0102 - 579ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0075 - 472ms/step
-    Eval samples: 428
-    Epoch 54/60
-    step 7/7 - loss: 0.0040 - 577ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0022 - 480ms/step
-    Eval samples: 428
-    Epoch 55/60
-    step 7/7 - loss: 0.0036 - 580ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0014 - 872ms/step
-    Eval samples: 428
-    Epoch 56/60
-    step 7/7 - loss: 0.0031 - 583ms/step
-    Eval begin...
-    step 2/2 - loss: 6.3564e-04 - 486ms/step
-    Eval samples: 428
-    Epoch 57/60
-    step 7/7 - loss: 0.0039 - 690ms/step
-    Eval begin...
-    step 2/2 - loss: 6.5945e-04 - 501ms/step
-    Eval samples: 428
-    Epoch 58/60
-    step 7/7 - loss: 0.0056 - 640ms/step
-    Eval begin...
-    step 2/2 - loss: 0.0011 - 492ms/step
-    Eval samples: 428
+    ...
     Epoch 59/60
     step 7/7 - loss: 0.0051 - 625ms/step
     Eval begin...
@@ -650,12 +373,6 @@ for i in range(16):
     plot_sample(img[0], label_pred, axis, gt_label)
 plt.show()
 ```
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/ipykernel_launcher.py:5: DeprecationWarning: elementwise comparison failed; this will raise an error in the future.
-      """
-
-
-
 ![png](output_18_1.png)
 
 

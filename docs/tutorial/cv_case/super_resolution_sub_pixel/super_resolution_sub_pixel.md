@@ -300,11 +300,6 @@ model.summary((1,1, 100, 100))
     Params size (MB): 0.23
     Estimated Total Size (MB): 13.16
     ---------------------------------------------------------------------------
-    
-
-
-
-
 
     {'total_params': 59657, 'trainable_params': 59657}
 

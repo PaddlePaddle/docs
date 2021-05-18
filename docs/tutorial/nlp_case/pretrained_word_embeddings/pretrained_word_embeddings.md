@@ -1,16 +1,24 @@
 # 使用预训练的词向量完成文本分类任务
 
 **作者**: [fiyen](https://github.com/fiyen)<br>
-**日期**: 2021.03<br>
+**日期**: 2021.05<br>
 **摘要**: 本示例教程将会演示如何使用飞桨内置的Imdb数据集，并使用预训练词向量进行文本分类。
+
+
+```python
+print('自然语言相关数据集：', paddle.text.__all__)
+```
+
+    自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
+
 
 ## 一、简介
 
-在这个示例中，将使用飞桨2.0完成针对Imdb数据集（电影评论情感二分类数据集）的分类训练和测试。Imdb将直接调用自飞桨2.0，同时，
+在这个示例中，将使用飞桨2.1完成针对Imdb数据集（电影评论情感二分类数据集）的分类训练和测试。Imdb将直接调用自飞桨2.1，同时，
 利用预训练的词向量（[GloVe embedding](http://nlp.stanford.edu/projects/glove/))完成任务。
 
 ## 二、环境设置
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -23,14 +31,14 @@ import random
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
-## 三、用飞桨2.0调用Imdb数据集
-由于飞桨2.0提供了经过处理的Imdb数据集，可以方便地调用所需要的数据实例，省去了数据预处理的麻烦。目前，飞桨2.0以及内置的高质量
+## 三、用飞桨2.1调用Imdb数据集
+由于飞桨2.1提供了经过处理的Imdb数据集，可以方便地调用所需要的数据实例，省去了数据预处理的麻烦。目前，飞桨2.1以及内置的高质量
 数据集包括Conll05st、Imdb、Imikolov、Movielens、HCIHousing、WMT14和WMT16等，未来还将提供更多常用数据集的调用接口。
 
-以下定义了调用imdb训练集合测试集的方法。其中，cutoff定义了构建词典的截止大小，即数据集中出现频率在cutoff以下的不予考虑；mode定义了返回的数据用于何种用途（test:
+以下定义了调用imdb训练集合测试集的方法。其中，cutoff定义了构建词典的截止大小，即数据集中出现频率在cutoff以下的不予考虑；mode定义了返回的数据用于何种用途（test: 
 测试集，train: 训练集）。
 
 ### 3.1 定义数据集
@@ -40,6 +48,12 @@ print(paddle.__version__)
 imdb_train = text.Imdb(mode='train', cutoff=150)
 imdb_test = text.Imdb(mode='test', cutoff=150)
 ```
+
+    Cache file /home/aistudio/.cache/paddle/dataset/imdb/imdb%2FaclImdb_v1.tar.gz not found, downloading https://dataset.bj.bcebos.com/imdb%2FaclImdb_v1.tar.gz 
+    Begin to download
+    
+    Download finished
+
 
 调用Imdb得到的是经过编码的数据集，每个term对应一个唯一id，映射关系可以通过imdb_train.word_idx查看。将每一个样本即一条电影评论，表示成id序列。可以检查一下以上生成的数据内容：
 
@@ -214,15 +228,15 @@ paddle.summary(sim_model, input_size=(-1, length), dtypes='int64')
 ```
 
     ---------------------------------------------------------------------------
-     Layer (type)       Input Shape          Output Shape         Param #
+     Layer (type)       Input Shape          Output Shape         Param #    
     ===========================================================================
-      Embedding-1       [[1, 2000]]         [1, 2000, 100]        514,700
-       Conv1D-2       [[1, 2000, 100]]       [1, 998, 10]          5,010
-        ReLU-2         [[1, 998, 10]]        [1, 998, 10]            0
-      MaxPool1D-2      [[1, 998, 10]]        [1, 998, 5]             0
-       Flatten-3       [[1, 998, 5]]          [1, 4990]              0
-       Linear-2         [[1, 4990]]             [1, 2]             9,982
-       Softmax-2          [[1, 2]]              [1, 2]               0
+      Embedding-1       [[1, 2000]]         [1, 2000, 100]        514,700    
+       Conv1D-1       [[1, 2000, 100]]       [1, 998, 10]          5,010     
+        ReLU-1         [[1, 998, 10]]        [1, 998, 10]            0       
+      MaxPool1D-1      [[1, 998, 10]]        [1, 998, 5]             0       
+       Flatten-1       [[1, 998, 5]]          [1, 4990]              0       
+       Linear-1         [[1, 4990]]             [1, 2]             9,982     
+       Softmax-1          [[1, 2]]              [1, 2]               0       
     ===========================================================================
     Total params: 529,692
     Trainable params: 14,992
@@ -233,7 +247,7 @@ paddle.summary(sim_model, input_size=(-1, length), dtypes='int64')
     Params size (MB): 2.02
     Estimated Total Size (MB): 3.78
     ---------------------------------------------------------------------------
-
+    
 
 
 
@@ -257,7 +271,7 @@ class DataReader(Dataset):
 
     def __len__(self):
         return len(self.data)
-
+        
 
 # 定义输入格式
 input_form = paddle.static.InputSpec(shape=[None, length], dtype='int64', name='input')
@@ -275,66 +289,56 @@ model.fit(train_data=DataReader(train_x[:-eval_length], train_y[:-eval_length], 
           batch_size=32, epochs=10, verbose=1)
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/10
-    step 586/586 [==============================] - loss: 0.4177 - acc: 0.8686 - 4ms/step
+    step 586/586 [==============================] - loss: 0.4641 - acc: 0.6480 - 415ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 196/196 [==============================] - loss: 0.7767 - acc: 0.8152 - 2ms/step
+    step 196/196 [==============================] - loss: 0.3703 - acc: 0.7694 - 209ms/step        
     Eval samples: 6250
     Epoch 2/10
-    step 586/586 [==============================] - loss: 0.4485 - acc: 0.8819 - 4ms/step
+    step 586/586 [==============================] - loss: 0.5839 - acc: 0.7744 - 416ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 196/196 [==============================] - loss: 0.7343 - acc: 0.8150 - 3ms/step
+    step 196/196 [==============================] - loss: 0.3651 - acc: 0.7939 - 206ms/step        
     Eval samples: 6250
     Epoch 3/10
-    step 586/586 [==============================] - loss: 0.4396 - acc: 0.8869 - 4ms/step
+    step 586/586 [==============================] - loss: 0.3980 - acc: 0.7953 - 419ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 196/196 [==============================] - loss: 0.7379 - acc: 0.8117 - 2ms/step
+    step 196/196 [==============================] - loss: 0.3801 - acc: 0.7982 - 214ms/step        
     Eval samples: 6250
     Epoch 4/10
-    step 586/586 [==============================] - loss: 0.4270 - acc: 0.8926 - 4ms/step
+    step 586/586 [==============================] - loss: 0.4552 - acc: 0.8184 - 415ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 196/196 [==============================] - loss: 0.6714 - acc: 0.8141 - 2ms/step
+    step 196/196 [==============================] - loss: 0.3370 - acc: 0.8077 - 210ms/step        
     Eval samples: 6250
     Epoch 5/10
-    step 586/586 [==============================] - loss: 0.3806 - acc: 0.8984 - 4ms/step
+    step 586/586 [==============================] - loss: 0.4108 - acc: 0.8361 - 421ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 196/196 [==============================] - loss: 0.7172 - acc: 0.8162 - 3ms/step
+    step 196/196 [==============================] - loss: 0.3369 - acc: 0.8179 - 210ms/step        
     Eval samples: 6250
     Epoch 6/10
-    step 586/586 [==============================] - loss: 0.4466 - acc: 0.9028 - 4ms/step
+    step 586/586 [==============================] - loss: 0.4215 - acc: 0.8486 - 415ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 196/196 [==============================] - loss: 0.6236 - acc: 0.8026 - 2ms/step
+    step 196/196 [==============================] - loss: 0.3419 - acc: 0.8062 - 213ms/step        
     Eval samples: 6250
     Epoch 7/10
-    step 586/586 [==============================] - loss: 0.4378 - acc: 0.9090 - 4ms/step
+    step 586/586 [==============================] - loss: 0.4092 - acc: 0.8586 - 424ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 196/196 [==============================] - loss: 0.7829 - acc: 0.8070 - 2ms/step
+    step 196/196 [==============================] - loss: 0.3312 - acc: 0.8200 - 208ms/step        
     Eval samples: 6250
     Epoch 8/10
-    step 586/586 [==============================] - loss: 0.4609 - acc: 0.9132 - 4ms/step
+    step 586/586 [==============================] - loss: 0.4488 - acc: 0.8694 - 419ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 196/196 [==============================] - loss: 0.7258 - acc: 0.8118 - 3ms/step
+    step 196/196 [==============================] - loss: 0.3328 - acc: 0.8186 - 205ms/step        
     Eval samples: 6250
     Epoch 9/10
-    step 586/586 [==============================] - loss: 0.4499 - acc: 0.9164 - 4ms/step
+    step 586/586 [==============================] - loss: 0.5302 - acc: 0.8770 - 412ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 196/196 [==============================] - loss: 0.8195 - acc: 0.8027 - 3ms/step
+    step 196/196 [==============================] - loss: 0.3961 - acc: 0.8152 - 201ms/step        
     Eval samples: 6250
     Epoch 10/10
-    step 586/586 [==============================] - loss: 0.4540 - acc: 0.9212 - 4ms/step
+    step 586/586 [==============================] - loss: 0.3728 - acc: 0.8807 - 420ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 196/196 [==============================] - loss: 0.7865 - acc: 0.8138 - 3ms/step
+    step 196/196 [==============================] - loss: 0.3353 - acc: 0.8210 - 202ms/step        
     Eval samples: 6250
 
 
@@ -385,3 +389,4 @@ for index, y in enumerate(pred_y[0]):
     预测的标签是：negative, 实际标签是：negative
     原文本：ive seen some bad things in my time a half dead trying to get out of high a head on between two cars a thousand on a kitchen floor human beings living like br but never in my life have i seen anything as bad as the cat in the br this film is worse than 911 worse than hitler worse than the worse than people who put in br it is the most disturbing film of all time br i used to think it was a joke some elaborate joke and that mike myers was maybe a high drug who lost a bet or br i
     预测的标签是：negative, 实际标签是：negative
+

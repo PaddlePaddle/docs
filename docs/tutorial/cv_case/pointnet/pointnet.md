@@ -1,11 +1,11 @@
 # **点云处理：实现PointNet点云分类**
 **作者**：[Zhihao Cao](https://github.com/WhiteFireFox)<br>
-**日期**：2021.03<br>
-**摘要**：本示例在于演示如何基于Paddle2.0实现PointNet在ShapeNet数据集上进行点云分类处理。
+**日期**：2021.05<br>
+**摘要**：本示例在于演示如何基于Paddle2.1实现PointNet在ShapeNet数据集上进行点云分类处理。
 
 ## 一、环境设置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -20,7 +20,7 @@ import paddle.nn.functional as F
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
 ## 二、数据集
@@ -41,15 +41,15 @@ ShapeNet数据集的储存格式是h5文件，该文件中key值分别为：
 
     Archive:  data/data70460/shapenet_part_seg_hdf5_data.zip
        creating: hdf5_data/
-      inflating: hdf5_data/ply_data_train5.h5
-      inflating: hdf5_data/ply_data_train1.h5
-      inflating: hdf5_data/ply_data_train3.h5
-      inflating: hdf5_data/ply_data_val0.h5
-      inflating: hdf5_data/ply_data_train0.h5
-      inflating: hdf5_data/ply_data_test1.h5
-      inflating: hdf5_data/ply_data_test0.h5
-      inflating: hdf5_data/ply_data_train4.h5
-      inflating: hdf5_data/ply_data_train2.h5
+      inflating: hdf5_data/ply_data_train5.h5  
+      inflating: hdf5_data/ply_data_train1.h5  
+      inflating: hdf5_data/ply_data_train3.h5  
+      inflating: hdf5_data/ply_data_val0.h5  
+      inflating: hdf5_data/ply_data_train0.h5  
+      inflating: hdf5_data/ply_data_test1.h5  
+      inflating: hdf5_data/ply_data_test0.h5  
+      inflating: hdf5_data/ply_data_train4.h5  
+      inflating: hdf5_data/ply_data_train2.h5  
 
 
 ### 2.3 数据列表
@@ -88,7 +88,7 @@ def make_data(mode='train', path='./dataset/', num_point=2048):
             datas.extend(f['data'][:, :num_point, :])
             labels.extend(f['label'])
             f.close()
-
+    
     return datas, labels
 ```
 
@@ -101,7 +101,7 @@ class PointDataset(paddle.io.Dataset):
         super(PointDataset, self).__init__()
         self.datas = datas
         self.labels = labels
-
+    
     def __getitem__(self, index):
         data = paddle.to_tensor(self.datas[index].T.astype('float32'))
         label = paddle.to_tensor(self.labels[index].astype('int64'))
@@ -263,60 +263,60 @@ paddle.summary(pointnet, (64, 3, 2048))
 ```
 
     ---------------------------------------------------------------------------
-     Layer (type)       Input Shape          Output Shape         Param #
+     Layer (type)       Input Shape          Output Shape         Param #    
     ===========================================================================
-       Conv1D-1       [[64, 3, 2048]]       [64, 64, 2048]          256
-      BatchNorm-1     [[64, 64, 2048]]      [64, 64, 2048]          256
-        ReLU-1        [[64, 64, 2048]]      [64, 64, 2048]           0
-       Conv1D-2       [[64, 64, 2048]]     [64, 128, 2048]         8,320
-      BatchNorm-2    [[64, 128, 2048]]     [64, 128, 2048]          512
-        ReLU-2       [[64, 128, 2048]]     [64, 128, 2048]           0
-       Conv1D-3      [[64, 128, 2048]]     [64, 1024, 2048]       132,096
-      BatchNorm-3    [[64, 1024, 2048]]    [64, 1024, 2048]        4,096
-        ReLU-3       [[64, 1024, 2048]]    [64, 1024, 2048]          0
-      MaxPool1D-1    [[64, 1024, 2048]]     [64, 1024, 1]            0
-       Linear-1         [[64, 1024]]          [64, 512]           524,800
-        ReLU-4          [[64, 512]]           [64, 512]              0
-       Linear-2         [[64, 512]]           [64, 256]           131,328
-        ReLU-5          [[64, 256]]           [64, 256]              0
-       Linear-3         [[64, 256]]            [64, 9]             2,313
-       Conv1D-4       [[64, 3, 2048]]       [64, 64, 2048]          256
-      BatchNorm-4     [[64, 64, 2048]]      [64, 64, 2048]          256
-        ReLU-6        [[64, 64, 2048]]      [64, 64, 2048]           0
-       Conv1D-5       [[64, 64, 2048]]      [64, 64, 2048]         4,160
-      BatchNorm-5     [[64, 64, 2048]]      [64, 64, 2048]          256
-        ReLU-7        [[64, 64, 2048]]      [64, 64, 2048]           0
-       Conv1D-6       [[64, 64, 2048]]      [64, 64, 2048]         4,160
-      BatchNorm-6     [[64, 64, 2048]]      [64, 64, 2048]          256
-        ReLU-8        [[64, 64, 2048]]      [64, 64, 2048]           0
-       Conv1D-7       [[64, 64, 2048]]     [64, 128, 2048]         8,320
-      BatchNorm-7    [[64, 128, 2048]]     [64, 128, 2048]          512
-        ReLU-9       [[64, 128, 2048]]     [64, 128, 2048]           0
-       Conv1D-8      [[64, 128, 2048]]     [64, 1024, 2048]       132,096
-      BatchNorm-8    [[64, 1024, 2048]]    [64, 1024, 2048]        4,096
-        ReLU-10      [[64, 1024, 2048]]    [64, 1024, 2048]          0
-      MaxPool1D-2    [[64, 1024, 2048]]     [64, 1024, 1]            0
-       Linear-4         [[64, 1024]]          [64, 512]           524,800
-        ReLU-11         [[64, 512]]           [64, 512]              0
-       Linear-5         [[64, 512]]           [64, 256]           131,328
-        ReLU-12         [[64, 256]]           [64, 256]              0
-       Linear-6         [[64, 256]]           [64, 4096]         1,052,672
-       Conv1D-9       [[64, 64, 2048]]      [64, 64, 2048]         4,160
-      BatchNorm-9     [[64, 64, 2048]]      [64, 64, 2048]          256
-        ReLU-13       [[64, 64, 2048]]      [64, 64, 2048]           0
-       Conv1D-10      [[64, 64, 2048]]     [64, 128, 2048]         8,320
-     BatchNorm-10    [[64, 128, 2048]]     [64, 128, 2048]          512
-        ReLU-14      [[64, 128, 2048]]     [64, 128, 2048]           0
-       Conv1D-11     [[64, 128, 2048]]     [64, 1024, 2048]       132,096
-     BatchNorm-11    [[64, 1024, 2048]]    [64, 1024, 2048]        4,096
-        ReLU-15      [[64, 1024, 2048]]    [64, 1024, 2048]          0
-       Linear-7         [[64, 1024]]          [64, 512]           524,800
-        ReLU-16         [[64, 512]]           [64, 512]              0
-       Linear-8         [[64, 512]]           [64, 256]           131,328
-        ReLU-17         [[64, 256]]           [64, 256]              0
-       Dropout-1        [[64, 256]]           [64, 256]              0
-       Linear-9         [[64, 256]]            [64, 16]            4,112
-     LogSoftmax-1        [[64, 16]]            [64, 16]              0
+       Conv1D-1       [[64, 3, 2048]]       [64, 64, 2048]          256      
+      BatchNorm-1     [[64, 64, 2048]]      [64, 64, 2048]          256      
+        ReLU-1        [[64, 64, 2048]]      [64, 64, 2048]           0       
+       Conv1D-2       [[64, 64, 2048]]     [64, 128, 2048]         8,320     
+      BatchNorm-2    [[64, 128, 2048]]     [64, 128, 2048]          512      
+        ReLU-2       [[64, 128, 2048]]     [64, 128, 2048]           0       
+       Conv1D-3      [[64, 128, 2048]]     [64, 1024, 2048]       132,096    
+      BatchNorm-3    [[64, 1024, 2048]]    [64, 1024, 2048]        4,096     
+        ReLU-3       [[64, 1024, 2048]]    [64, 1024, 2048]          0       
+      MaxPool1D-1    [[64, 1024, 2048]]     [64, 1024, 1]            0       
+       Linear-1         [[64, 1024]]          [64, 512]           524,800    
+        ReLU-4          [[64, 512]]           [64, 512]              0       
+       Linear-2         [[64, 512]]           [64, 256]           131,328    
+        ReLU-5          [[64, 256]]           [64, 256]              0       
+       Linear-3         [[64, 256]]            [64, 9]             2,313     
+       Conv1D-4       [[64, 3, 2048]]       [64, 64, 2048]          256      
+      BatchNorm-4     [[64, 64, 2048]]      [64, 64, 2048]          256      
+        ReLU-6        [[64, 64, 2048]]      [64, 64, 2048]           0       
+       Conv1D-5       [[64, 64, 2048]]      [64, 64, 2048]         4,160     
+      BatchNorm-5     [[64, 64, 2048]]      [64, 64, 2048]          256      
+        ReLU-7        [[64, 64, 2048]]      [64, 64, 2048]           0       
+       Conv1D-6       [[64, 64, 2048]]      [64, 64, 2048]         4,160     
+      BatchNorm-6     [[64, 64, 2048]]      [64, 64, 2048]          256      
+        ReLU-8        [[64, 64, 2048]]      [64, 64, 2048]           0       
+       Conv1D-7       [[64, 64, 2048]]     [64, 128, 2048]         8,320     
+      BatchNorm-7    [[64, 128, 2048]]     [64, 128, 2048]          512      
+        ReLU-9       [[64, 128, 2048]]     [64, 128, 2048]           0       
+       Conv1D-8      [[64, 128, 2048]]     [64, 1024, 2048]       132,096    
+      BatchNorm-8    [[64, 1024, 2048]]    [64, 1024, 2048]        4,096     
+        ReLU-10      [[64, 1024, 2048]]    [64, 1024, 2048]          0       
+      MaxPool1D-2    [[64, 1024, 2048]]     [64, 1024, 1]            0       
+       Linear-4         [[64, 1024]]          [64, 512]           524,800    
+        ReLU-11         [[64, 512]]           [64, 512]              0       
+       Linear-5         [[64, 512]]           [64, 256]           131,328    
+        ReLU-12         [[64, 256]]           [64, 256]              0       
+       Linear-6         [[64, 256]]           [64, 4096]         1,052,672   
+       Conv1D-9       [[64, 64, 2048]]      [64, 64, 2048]         4,160     
+      BatchNorm-9     [[64, 64, 2048]]      [64, 64, 2048]          256      
+        ReLU-13       [[64, 64, 2048]]      [64, 64, 2048]           0       
+       Conv1D-10      [[64, 64, 2048]]     [64, 128, 2048]         8,320     
+     BatchNorm-10    [[64, 128, 2048]]     [64, 128, 2048]          512      
+        ReLU-14      [[64, 128, 2048]]     [64, 128, 2048]           0       
+       Conv1D-11     [[64, 128, 2048]]     [64, 1024, 2048]       132,096    
+     BatchNorm-11    [[64, 1024, 2048]]    [64, 1024, 2048]        4,096     
+        ReLU-15      [[64, 1024, 2048]]    [64, 1024, 2048]          0       
+       Linear-7         [[64, 1024]]          [64, 512]           524,800    
+        ReLU-16         [[64, 512]]           [64, 512]              0       
+       Linear-8         [[64, 512]]           [64, 256]           131,328    
+        ReLU-17         [[64, 256]]           [64, 256]              0       
+       Dropout-1        [[64, 256]]           [64, 256]              0       
+       Linear-9         [[64, 256]]            [64, 16]            4,112     
+     LogSoftmax-1        [[64, 16]]            [64, 16]              0       
     ===========================================================================
     Total params: 3,476,825
     Trainable params: 3,461,721
@@ -327,7 +327,7 @@ paddle.summary(pointnet, (64, 3, 2048))
     Params size (MB): 13.26
     Estimated Total Size (MB): 11348.16
     ---------------------------------------------------------------------------
-
+    
 
 
 
@@ -356,11 +356,11 @@ def train():
 
             predicts = model(inputs)
             loss = F.nll_loss(predicts, labels)
-            acc = paddle.metric.accuracy(predicts, labels)
+            acc = paddle.metric.accuracy(predicts, labels)        
 
-            if batch_id % 20 == 0:
+            if batch_id % 20 == 0: 
                 print("train: epoch: {}, batch_id: {}, loss is: {}, accuracy is: {}".format(epoch, batch_id, loss.numpy(), acc.numpy()))
-
+            
             loss.backward()
             optim.step()
             optim.clear_grad()
@@ -368,7 +368,7 @@ def train():
         if epoch % 2 == 0:
             paddle.save(model.state_dict(), './model/PointNet.pdparams')
             paddle.save(optim.state_dict(), './model/PointNet.pdopt')
-
+        
         # validation
         print("===================================val===========================================")
         model.eval()
@@ -380,8 +380,8 @@ def train():
             predicts = model(inputs)
 
             loss = F.nll_loss(predicts, labels)
-            acc = paddle.metric.accuracy(predicts, labels)
-
+            acc = paddle.metric.accuracy(predicts, labels)    
+            
             losses.append(loss.numpy())
             accuracies.append(acc.numpy())
 
@@ -394,7 +394,85 @@ if __name__ == '__main__':
 ```
 
     ===================================train===========================================
-    train: epoch: 0, batch_id: 0, loss is: [7.7336], accuracy is: [0.046875]
+    train: epoch: 0, batch_id: 0, loss is: [4.9248095], accuracy is: [0.1484375]
+    train: epoch: 0, batch_id: 20, loss is: [1.2662703], accuracy is: [0.6875]
+    train: epoch: 0, batch_id: 40, loss is: [0.79613143], accuracy is: [0.7734375]
+    train: epoch: 0, batch_id: 60, loss is: [0.5991034], accuracy is: [0.8203125]
+    train: epoch: 0, batch_id: 80, loss is: [0.6732792], accuracy is: [0.8125]
+    ===================================val===========================================
+    validation: loss is: 0.41937708854675293, accuracy is: 0.8569915294647217
+    ===================================train===========================================
+    train: epoch: 1, batch_id: 0, loss is: [0.5992371], accuracy is: [0.8046875]
+    train: epoch: 1, batch_id: 20, loss is: [0.65309006], accuracy is: [0.84375]
+    train: epoch: 1, batch_id: 40, loss is: [0.4504382], accuracy is: [0.8671875]
+    train: epoch: 1, batch_id: 60, loss is: [0.5059966], accuracy is: [0.828125]
+    train: epoch: 1, batch_id: 80, loss is: [0.28158492], accuracy is: [0.875]
+    ===================================val===========================================
+    validation: loss is: 0.30018773674964905, accuracy is: 0.90625
+    ===================================train===========================================
+    train: epoch: 2, batch_id: 0, loss is: [0.27240375], accuracy is: [0.9375]
+    train: epoch: 2, batch_id: 20, loss is: [0.4211054], accuracy is: [0.9140625]
+    train: epoch: 2, batch_id: 40, loss is: [0.3876957], accuracy is: [0.890625]
+    train: epoch: 2, batch_id: 60, loss is: [0.27216607], accuracy is: [0.9140625]
+    train: epoch: 2, batch_id: 80, loss is: [0.29216224], accuracy is: [0.9296875]
+    ===================================val===========================================
+    validation: loss is: 6.236376762390137, accuracy is: 0.07642251998186111
+    ===================================train===========================================
+    train: epoch: 3, batch_id: 0, loss is: [2.7821736], accuracy is: [0.1015625]
+    train: epoch: 3, batch_id: 20, loss is: [2.5189795], accuracy is: [0.2109375]
+    train: epoch: 3, batch_id: 40, loss is: [2.2503586], accuracy is: [0.2109375]
+    train: epoch: 3, batch_id: 60, loss is: [2.1081736], accuracy is: [0.328125]
+    train: epoch: 3, batch_id: 80, loss is: [1.9944972], accuracy is: [0.375]
+    ===================================val===========================================
+    validation: loss is: 1505.8250732421875, accuracy is: 0.2111077606678009
+    ===================================train===========================================
+    train: epoch: 4, batch_id: 0, loss is: [2.041934], accuracy is: [0.3203125]
+    train: epoch: 4, batch_id: 20, loss is: [2.013423], accuracy is: [0.3203125]
+    train: epoch: 4, batch_id: 40, loss is: [2.1235168], accuracy is: [0.328125]
+    train: epoch: 4, batch_id: 60, loss is: [2.0412865], accuracy is: [0.2578125]
+    train: epoch: 4, batch_id: 80, loss is: [2.0814402], accuracy is: [0.328125]
+    ===================================val===========================================
+    validation: loss is: 2.312401533126831, accuracy is: 0.3141646683216095
+    ===================================train===========================================
+    train: epoch: 5, batch_id: 0, loss is: [2.343786], accuracy is: [0.21875]
+    train: epoch: 5, batch_id: 20, loss is: [2.121391], accuracy is: [0.296875]
+    train: epoch: 5, batch_id: 40, loss is: [1.9093541], accuracy is: [0.3828125]
+    train: epoch: 5, batch_id: 60, loss is: [2.181718], accuracy is: [0.296875]
+    train: epoch: 5, batch_id: 80, loss is: [1.9160612], accuracy is: [0.3359375]
+    ===================================val===========================================
+    validation: loss is: 2.033637046813965, accuracy is: 0.3141646683216095
+    ===================================train===========================================
+    train: epoch: 6, batch_id: 0, loss is: [2.0708382], accuracy is: [0.3203125]
+    train: epoch: 6, batch_id: 20, loss is: [1.8967582], accuracy is: [0.3515625]
+    train: epoch: 6, batch_id: 40, loss is: [1.9126657], accuracy is: [0.390625]
+    train: epoch: 6, batch_id: 60, loss is: [1.9337373], accuracy is: [0.3125]
+    train: epoch: 6, batch_id: 80, loss is: [1.9214094], accuracy is: [0.34375]
+    ===================================val===========================================
+    validation: loss is: 2.130458116531372, accuracy is: 0.3141646683216095
+    ===================================train===========================================
+    train: epoch: 7, batch_id: 0, loss is: [2.105646], accuracy is: [0.2734375]
+    train: epoch: 7, batch_id: 20, loss is: [2.063758], accuracy is: [0.28125]
+    train: epoch: 7, batch_id: 40, loss is: [2.0195878], accuracy is: [0.328125]
+    train: epoch: 7, batch_id: 60, loss is: [2.061315], accuracy is: [0.265625]
+    train: epoch: 7, batch_id: 80, loss is: [2.0420928], accuracy is: [0.2578125]
+    ===================================val===========================================
+    validation: loss is: 2.0498859882354736, accuracy is: 0.3141646683216095
+    ===================================train===========================================
+    train: epoch: 8, batch_id: 0, loss is: [1.9741396], accuracy is: [0.3515625]
+    train: epoch: 8, batch_id: 20, loss is: [2.0922964], accuracy is: [0.28125]
+    train: epoch: 8, batch_id: 40, loss is: [1.926232], accuracy is: [0.3125]
+    train: epoch: 8, batch_id: 60, loss is: [2.044017], accuracy is: [0.3828125]
+    train: epoch: 8, batch_id: 80, loss is: [2.0386844], accuracy is: [0.296875]
+    ===================================val===========================================
+    validation: loss is: 1.9772093296051025, accuracy is: 0.3141646683216095
+    ===================================train===========================================
+    train: epoch: 9, batch_id: 0, loss is: [2.0979326], accuracy is: [0.3125]
+    train: epoch: 9, batch_id: 20, loss is: [2.0070634], accuracy is: [0.2734375]
+    train: epoch: 9, batch_id: 40, loss is: [2.0131662], accuracy is: [0.3046875]
+    train: epoch: 9, batch_id: 60, loss is: [2.030023], accuracy is: [0.3046875]
+    train: epoch: 9, batch_id: 80, loss is: [2.210213], accuracy is: [0.2890625]
+    ===================================val===========================================
+    validation: loss is: 2.011220693588257, accuracy is: 0.3141646683216095
 
 
 ## 五、评估与测试
@@ -416,8 +494,8 @@ def evaluation():
         predicts = model(inputs)
 
         loss = F.nll_loss(predicts, labels)
-        acc = paddle.metric.accuracy(predicts, labels)
-
+        acc = paddle.metric.accuracy(predicts, labels)    
+        
         losses.append(loss.numpy())
         accuracies.append(acc.numpy())
 
@@ -427,5 +505,3 @@ def evaluation():
 if __name__ == '__main__':
     evaluation()
 ```
-
-    validation: loss is: 0.13836434483528137, accuracy is: 0.9623547196388245

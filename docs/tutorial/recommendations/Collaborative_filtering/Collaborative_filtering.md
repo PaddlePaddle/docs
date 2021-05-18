@@ -6,7 +6,7 @@
 
 ## 一、介绍
 
-此示例演示使用[Movielens 数据集](https://www.kaggle.com/c/movielens-100k)基于PaddlePaddle2.0向用户推荐电影的协作过滤算法。MovieLens 评级数据集列出了一组用户对一组电影的评分。目标是能够预测用户尚未观看的电影的收视率。然后，可以向用户推荐预测收视率最高的电影。
+此示例演示使用[Movielens 数据集](https://www.kaggle.com/c/movielens-100k)基于PaddlePaddle2.1向用户推荐电影的协作过滤算法。MovieLens 评级数据集列出了一组用户对一组电影的评分。目标是能够预测用户尚未观看的电影的收视率。然后，可以向用户推荐预测收视率最高的电影。
 
 模型中的步骤如下：
 
@@ -27,7 +27,7 @@
 
 ## 二、 环境设置
 
-本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python

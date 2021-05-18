@@ -161,10 +161,6 @@ model.evaluate(test_dataset, batch_size=64, verbose=1)
     step 157/157 [==============================] - loss: 1.2412e-04 - acc: 0.9872 - 8ms/step     
     Eval samples: 10000
 
-
-
-
-
     {'loss': [0.0001241174], 'acc': 0.9872}
 
 
@@ -206,6 +202,7 @@ train(model)
     epoch: 0, batch_id: 0, loss is: [3.0527446], acc is: [0.09375]
     epoch: 0, batch_id: 300, loss is: [0.05049332], acc is: [1.]
     epoch: 0, batch_id: 600, loss is: [0.109704], acc is: [0.953125]
+    ...
 
 
 ### 5.2 模型验证

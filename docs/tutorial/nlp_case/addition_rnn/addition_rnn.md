@@ -391,7 +391,7 @@ print('the model answer: %s=%s' % (input_text, result))
 print('the true answer: %s=%s' % (input_text, eval(input_text)))
 ```
 
-    the model answer: 12+40=51 
+    the model answer: 12+40=52 
     the true answer: 12+40=52
 
 

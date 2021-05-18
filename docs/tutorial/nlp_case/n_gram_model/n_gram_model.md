@@ -226,12 +226,6 @@ n_gram_model.fit(train_loader,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/layers/utils.py:77: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
-      return (isinstance(seq, collections.Sequence) and
-
-
     step 3519/3519 [==============================] - loss: 5.0316 - 79ms/step        
     Epoch 2/2
     step 3519/3519 [==============================] - loss: 5.1612 - 79ms/step        

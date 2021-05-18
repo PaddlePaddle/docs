@@ -68,11 +68,11 @@ paddle.__version__
 
 ```python
 print('视觉相关数据集：', paddle.vision.datasets.__all__)
-print('自然语言相关数据集：', paddle.text.datasets.__all__)
+print('自然语言相关数据集：', paddle.text.__all__)
 ```
 
     视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
-    自然语言相关数据集： []
+    自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
 
 
 这里加载一个手写数字识别的数据集，用`mode`来标识是训练数据还是测试数据集。数据集接口会自动从远端下载数据集到本机缓存目录`~/.cache/paddle/dataset`。
@@ -350,11 +350,6 @@ model.summary((1, 28, 28))
     Params size (MB): 1.55
     Estimated Total Size (MB): 1.57
     ---------------------------------------------------------------------------
-    
-
-
-
-
 
     {'total_params': 407050, 'trainable_params': 407050}
 
@@ -385,11 +380,6 @@ paddle.summary(mnist, (1, 28, 28))
     Params size (MB): 1.55
     Estimated Total Size (MB): 1.57
     ---------------------------------------------------------------------------
-    
-
-
-
-
 
     {'total_params': 407050, 'trainable_params': 407050}
 
@@ -424,13 +414,6 @@ model.fit(train_dataset,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step  20/938 [..............................] - loss: 0.6998 - acc: 0.6555 - ETA: 24s - 27ms/ste
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/layers/utils.py:77: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
-      return (isinstance(seq, collections.Sequence) and
-
-
-    step 800/938 [========================>.....] - loss: 0.1228 - acc: 0.9236 - ETA: 2s - 20ms/
     step 938/938 [==============================] - loss: 0.1334 - acc: 0.9288 - 20ms/step        
     Epoch 2/5
     step 938/938 [==============================] - loss: 0.0354 - acc: 0.9693 - 21ms/step         

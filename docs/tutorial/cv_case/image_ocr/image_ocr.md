@@ -274,54 +274,7 @@ model.fit(train_data=Reader(DATA_PATH),
     Eval begin...
     step 63/63 [==============================] - loss: 0.4257 - 7ms/step        
     Eval samples: 1000
-    Epoch 2/10
-    step 529/529 [==============================] - loss: 0.0692 - 11ms/step        
-    save checkpoint at /home/aistudio/output/1
-    Eval begin...
-    step 63/63 [==============================] - loss: 0.0667 - 7ms/step        
-    Eval samples: 1000
-    Epoch 3/10
-    step 529/529 [==============================] - loss: 0.1457 - 11ms/step        
-    save checkpoint at /home/aistudio/output/2
-    Eval begin...
-    step 63/63 [==============================] - loss: 0.0313 - 9ms/step        
-    Eval samples: 1000
-    Epoch 4/10
-    step 529/529 [==============================] - loss: 0.0142 - 13ms/step        
-    save checkpoint at /home/aistudio/output/3
-    Eval begin...
-    step 63/63 [==============================] - loss: 0.0177 - 9ms/step        
-    Eval samples: 1000
-    Epoch 5/10
-    step 529/529 [==============================] - loss: 0.0144 - 11ms/step        
-    save checkpoint at /home/aistudio/output/4
-    Eval begin...
-    step 63/63 [==============================] - loss: 0.0123 - 7ms/step        
-    Eval samples: 1000
-    Epoch 6/10
-    step 529/529 [==============================] - loss: 0.0094 - 11ms/step        
-    save checkpoint at /home/aistudio/output/5
-    Eval begin...
-    step 63/63 [==============================] - loss: 0.0095 - 7ms/step        
-    Eval samples: 1000
-    Epoch 7/10
-    step 529/529 [==============================] - loss: 0.0071 - 11ms/step        
-    save checkpoint at /home/aistudio/output/6
-    Eval begin...
-    step 63/63 [==============================] - loss: 0.0090 - 7ms/step        
-    Eval samples: 1000
-    Epoch 8/10
-    step 529/529 [==============================] - loss: 0.0073 - 11ms/step        
-    save checkpoint at /home/aistudio/output/7
-    Eval begin...
-    step 63/63 [==============================] - loss: 0.0066 - 7ms/step        
-    Eval samples: 1000
-    Epoch 9/10
-    step 529/529 [==============================] - loss: 0.0045 - 11ms/step        
-    save checkpoint at /home/aistudio/output/8
-    Eval begin...
-    step 63/63 [==============================] - loss: 0.0073 - 8ms/step        
-    Eval samples: 1000
+    ...
     Epoch 10/10
     step 529/529 [==============================] - loss: 0.0092 - 11ms/step        
     save checkpoint at /home/aistudio/output/9
@@ -409,7 +362,7 @@ plt.show()
 
 
 ## 七、开始预测
-> 飞桨2.0 CTC Decoder 相关API正在迁移中，本节暂时使用简易版解码器。
+> 飞桨2.1 CTC Decoder 相关API正在迁移中，本节暂时使用简易版解码器。
 
 
 ```python
