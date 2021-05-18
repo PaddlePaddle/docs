@@ -4,7 +4,7 @@
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
 * **GPU版本支持CUDA 10.1/10.2/11.0/11.2，且仅支持单卡**
-* **Python 版本 2.7.15+/3.5.1+/3.6+/3.7+/3.8+ (64 bit)**
+* **Python 版本 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 * **pip 版本 20.2.2+ (64 bit)**
 * **Visual Studio 2015 Update3**
 
@@ -31,7 +31,7 @@
 
     > cmake我们支持3.10以上版本,但GPU编译时3.12/3.13/3.14版本存在官方[Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html),我们建议您使用CMake3.16版本, 可在官网[下载](https://cmake.org/download/)，并添加到环境变量中。
 
-    > python 需要 2.7 及以上版本, 可在官网[下载](https://www.python.org/download/releases/2.7/)。
+    > python 需要 3.6 及以上版本, 可在官网[下载](https://www.python.org/download/releases/3.6/)。
 
     * 安装完python 后请通过 `python --version` 检查python版本是否是预期版本，因为您的计算机可能安装有多个python，您可通过修改环境变量的顺序来处理多个python时的冲突。
 
@@ -70,10 +70,10 @@
     例如：
 
     ```
-    git checkout release/2.0
+    git checkout release/2.1
     ```
 
-    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
+    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
 
 4. 创建名为build的目录并进入：
 
@@ -100,9 +100,9 @@
         cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
-    默认为Python2，Python3请添加：
+    Python3请添加：
 
-    > -DPY_VERSION=3（或3.5、3.6、3.7、3.8）
+    > -DPY_VERSION=3（或3.6、3.7、3.8、3.9）
 
     如果你的设备信息包含多个Python或CUDA版本，你也可以通过设置路径变量，来指定特定版本的Python或CUDA：
 

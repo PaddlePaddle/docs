@@ -141,10 +141,10 @@ Please follow the steps below to install:
     For example：
 
     ```
-    git checkout release/2.0
+    git checkout release/2.1
     ```
 
-    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch
+    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
 
 6. Create and enter the /paddle/build path:
 
@@ -155,16 +155,11 @@ Please follow the steps below to install:
 7. Use the following command to install the dependencies:
 
 
-    For Python2:
     ```
-    pip install protobuf
-    ```
-    For Python3:
-    ```
-    pip3.5 install protobuf
+    pip3.7 install protobuf
     ```
 
-    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
+    Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
 
     > Install protobuf 3.1.0
 
@@ -177,17 +172,17 @@ Please follow the steps below to install:
 8. Execute cmake:
 
     > For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
-    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.5` means the version of python is 3.5.x
+    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.7` means the version of python is 3.7
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 
         ```
-        cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     * For users who need to compile the **GPU version PaddlePaddle**:
         ```
-        cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     > We currently do not support the compilation of the GPU version PaddlePaddle under CentOS 6.
@@ -207,16 +202,12 @@ Please follow the steps below to install:
 
 11. Install the compiled `.whl` package on the current machine or target machine:
 
-    For Python2:
-    ```
-    pip install -U (whl package name)
-    ```
     For Python3:
     ```
-    pip3.5 install -U (whl package name)
+    pip3.7 install -U (whl package name)
     ```
 
-    Note: For the command involving Python 3, we use Python 3.5 as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
+    Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
 
 Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -330,31 +321,21 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     * a. Install Python-dev:
 
-        For Python2:
-        ```
-        yum install python-devel
-        ```
-        For Python3: (Please refer to the official Python installation process)
+        (Please refer to the official Python installation process)
 
 
     * b. Install pip:
 
 
-        For Python2:
-        ```
-        yum install python-pip
-        ```
-        (please have a pip version of 20.2.2 and above)
+        (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.6 and above, pip3 does not necessarily correspond to the python version, such as python3.7 default only Pip3.7)
 
-        For Python3: (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.6 and above, pip3 does not necessarily correspond to the python version, such as python3.7 default only Pip3.7)
-
-    * c. (Only For Python3) set Python3 related environment variables, here is python3.5 version example, please replace with the version you use (3.6, 3.7,3.8):
+    * c. (Only For Python3) set Python3 related environment variables, here is python3.7 version example, please replace with the version you use (3.6, 3.8, 3.9):
 
         1. First find the path to the Python lib using
             ```
             find `dirname $(dirname $(which python3))` -name "libpython3.so"
             ```
-            If it is 3.6,3.7,3.8, change `python3` to `python3.6`,`python3.7`,python3.8, then replace [python-lib-path] in the following steps with the file path found.
+            If it is 3.6,3.7,3.8,3.9, change `python3` to `python3.6`,`python3.7`, `python3.8`, `python3.9`, then replace [python-lib-path] in the following steps with the file path found.
 
         2. Set PYTHON_LIBRARIES:
             ```
@@ -363,7 +344,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
         3. Secondly, use
             ```
-            find `dirname $(dirname $(which python3))`/include -name "python3.5m"
+            find `dirname $(dirname $(which python3))`/include -name "python3.7m"
             ```
             to find the path to Python Include, please pay attention to the python version, then replace the following [python-include-path] to the file path found.
 
@@ -378,7 +359,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
             ```
             (here replace the last two levels content of [python-lib-path] with /bin/)
 
-    * d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.6, pip3.7, pip3.8)
+    * d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.6, pip3.7, pip3.8, pip3.9)
 
         1. Install `virtualenv`:
             ```
@@ -446,7 +427,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
     cd Paddle
     ```
 
-8. Switch to a more stable release branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch):
+8. Switch to a more stable release branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch, support for Python 3.9 is added from the 2.1 branch,):
 
     ```
     git checkout [name of target branch]
@@ -470,14 +451,8 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 
-
-        For Python2:
         ```
-        cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-        ```
-        For Python3:
-        ```
-        cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+        cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
         -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
@@ -504,18 +479,13 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
         2. If you have already installed `nccl2` correctly, you can start cmake: *(For Python3: Please configure the correct python version for the PY_VERSION parameter)*
 
-            For Python2:
-            ```
-            cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-            ```
 
-            For Python3:
             ```
             cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
             ```
 
 
-    Note: For the command involving Python 3, we use Python 3.5 as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
+    Note: For the command involving Python 3, we use Python 3.7 as an example above, if the version of your Python is 3.6/3.8/3.9, please change Python3.7 in the commands to Python3.6/Python3.8/Python3.9
 
 
 

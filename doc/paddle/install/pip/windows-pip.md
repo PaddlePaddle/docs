@@ -166,39 +166,6 @@
 * `python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/mkl/stable.html`此命令将安装支持CUDA 10.2(配合cuDNN v7.4+)的PaddlePaddle。
 
 * 上述命令默认安装`avx`和`mkl`的包
-如果你希望安装 `noavx` 、 `mkl` 的包, 请使用以下命令:
-  cpu 支持 python27 和 python38:
-  ```
-  python -m pip install paddlepaddle==2.1.0 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-  cuda10.2 支持 python27 和 python38:
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-  CUDA9.0 10.0 10.1 and 11.0 只支持 python27:
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post90 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post100 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-
-如果机器是 `noavx` 、 `openblas`,请用如下命令进行安装:
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/openblas/stable/noavx.html
-  ```
-
-如果机器是 `avx` 、 `openblas`,请用如下命令进行安装:
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/openblas/stable.html
-  ```
-
 
 * 如果你想安装联编`tensorrt`的Paddle包，请使用
 

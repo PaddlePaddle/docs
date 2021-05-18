@@ -33,7 +33,7 @@ There is one compilation methods in Windows system:
 
     > CMake requires version 3.10 and above, but there are official [Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html) versions of 3.12/3.13/3.14 when the GPU is compiled, we recommend that you use CMake3. 16 version, available on the official website [download] (https://cmake.org/download/), and add to the ring Environment variables.
 
-    > Python requires version 2.7 and above,  which can be downloaded from the [official website](https://www.python.org/download/releases/2.7/).
+    > Python requires version 3.6 and above,  which can be downloaded from the [official website](https://www.python.org/download/releases/3.6/).
 
     * After installing python, please check whether the python version is the expected version by `python-version`, because you may have more than one python installed on your computer. You can handle conflicts of multiple pythons by changing the order of the environment variables.
 
@@ -74,10 +74,10 @@ There is one compilation methods in Windows system:
     For example：
 
     ```
-    git checkout release/2.0
+    git checkout release/2.1
     ```
 
-    Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8
+    Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1
 
 4. Create a directory called build and enter it:
 
@@ -103,9 +103,9 @@ There is one compilation methods in Windows system:
         cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
-    Python2 by default，Python3 please add：
+    Python3 please add：
 
-    > -DPY_VERSION=3 (or 3.5、3.6、3.7、3.8)
+    > -DPY_VERSION=3 (or 3.6、3.7、3.8、3.9)
 
     If your device information contains multiple Python or CUDA, you can also specify a specific version of Python or CUDA by setting the corresponding compile options:
 

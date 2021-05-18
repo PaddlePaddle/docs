@@ -134,10 +134,10 @@
     例如：
 
     ```
-    git checkout release/2.0
+    git checkout release/2.1
     ```
 
-    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
+    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
 
 6. 创建并进入/paddle/build路径下：
 
@@ -147,17 +147,11 @@
 
 7. 使用以下命令安装相关依赖：
 
-    For Python2:
     ```
-    pip install protobuf
-    ```
-
-    For Python3:
-    ```
-    pip3.5 install protobuf
+    pip3.7 install protobuf
     ```
 
-    注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
+    注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
 
     > 安装protobuf。
 
@@ -170,16 +164,16 @@
 8. 执行cmake：
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
-    >请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.5`表示python版本为3.5.x
+    >请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.7`表示python版本为3.7
 
     * 对于需要编译**CPU版本PaddlePaddle**的用户：
         ```
-        cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     * 对于需要编译**GPU版本PaddlePaddle**的用户：
         ```
-        cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     > 我们目前不支持CentOS 6下使用Docker编译GPU版本的PaddlePaddle
@@ -200,17 +194,13 @@
 
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
-    For Python2:
-    ```
-    pip install -U（whl包的名字）
-    ```
 
     For Python3:  
     ```
-    pip3.5 install -U（whl包的名字）
+    pip3.7 install -U（whl包的名字）
     ```
 
-    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
+    注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
 
 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
@@ -343,33 +333,20 @@
 
     * a. 安装Python-dev:
 
-        For Python2:
-
-        ```
-        yum install python-devel
-        ```
-
-        For Python3: (请参照Python官方流程安装）
+        (请参照Python官方流程安装）
 
 
     * b. 安装pip:
 
-        For Python2:
+        (请参照Python官方流程安装, 并保证拥有20.2.2及以上的pip3版本，请注意，python3.6及以上版本环境下，pip3并不一定对应python版本，如python3.7下默认只有pip3.7）
 
-        ```
-        yum install python-pip
-        ```
-        (请保证拥有20.2.2及以上的pip版本)
-
-        For Python3: (请参照Python官方流程安装, 并保证拥有20.2.2及以上的pip3版本，请注意，python3.6及以上版本环境下，pip3并不一定对应python版本，如python3.7下默认只有pip3.7）
-
-    * c.（Only For Python3）设置Python3相关的环境变量，这里以python3.5版本示例，请替换成您使用的版本（3.6、3.7、3.8）：
+    * c.（Only For Python3）设置Python3相关的环境变量，这里以python3.7版本示例，请替换成您使用的版本（3.6、3.8、3.9）：
 
         1. 首先使用
             ```
             find `dirname $(dirname $(which python3))` -name "libpython3.so"
             ```
-            找到Python lib的路径，如果是3.6、3.7、3.8，请将`python3`改成`python3.6`、`python3.7`、`python3.8`，然后将下面[python-lib-path]替换为找到文件路径
+            找到Python lib的路径，如果是3.6、3.7、3.8、3.9，请将`python3`改成`python3.6`、`python3.7`、`python3.8`、`python3.9`，然后将下面[python-lib-path]替换为找到文件路径
 
         2. 设置PYTHON_LIBRARIES：
             ```
@@ -378,7 +355,7 @@
 
         3. 其次使用
             ```
-            find `dirname $(dirname $(which python3))`/include -name "python3.5m"
+            find `dirname $(dirname $(which python3))`/include -name "python3.7m"
             ```
             找到Python Include的路径，请注意python版本，然后将下面[python-include-path]替换为找到文件路径
 
@@ -393,7 +370,7 @@
             ```
             （这里将[python-lib-path]的最后两级目录替换为/bin/)
 
-    * d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应python版本的pip3的命令，如pip3.6、pip3.7、pip3.8)
+    * d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应python版本的pip3的命令，如pip3.6、pip3.7、pip3.8、pip3.9)
 
         1. 安装`virtualenv`
             ```
@@ -481,16 +458,9 @@
 
     *  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-        For Python2:
 
         ```
-        cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-        ```
-
-        For Python3:
-
-        ```
-        cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+        cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
         -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
@@ -532,19 +502,11 @@
 
         2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
 
-            For Python2:
-
-            ```
-            cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-            ```
-
-            For Python3:
-
             ```
             cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
             ```
 
-    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
+    注意：以上涉及Python3的命令，用Python3.7来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的Python3.7改成Python3.6/Python3.8/Python3.9
 
 
 
