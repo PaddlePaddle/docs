@@ -1,21 +1,31 @@
-<h1 align="center">PaddlePaddle Documentation</h1>
-<p align="center">
-<img align="center" src="https://github.com/PaddlePaddle/Paddle/blob/develop/doc/imgs/logo.png?raw=true", width=1600>
-<p>
+# PaddlePaddle docs
 
 English | [简体中文](./README_cn.md)
 
-docs contains all documents of [paddlepaddle.org.cn](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html).
 
-## Contributing
+Source files for contents presented at [PaddlePaddle documentation](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html).
 
-To contribute PaddlePaddle documents, please read [CONTRIBUTING.md](./CONTRIBUTING.md) 。After approved, [PaddlePaddle Documentation](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html) will display your changes.
+Note: English version API docs are generaly docstrings in [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle), documents for [other PaddlePaddle projects](https://www.paddlepaddle.org.cn/overview) are being managed in their respective ways.
 
-## Open an issue
+## Codebase structure
+- [doc](doc): please edit here
+- [docs](docs): please edit here
+- [docs/api](docs/api): please edit here
+- [docs/guide](docs/guide): please edit here
+- [docs/tutorial](docs/tutorial): please edit here
+- [ci_scripts](ci_scripts): please edit here
+- [external](external): please edit here
+- 
+## How to build
+Please edit here
+- pre-requirements (e.g.: pip install paddlepaddle, ...)
+- build instructions (e.g.: make docs ?)
+- preview docs (e.g.: howto browse the generated docs)
+## How to contribute
 
-If you found a problem about paddlepaddle, you an open an issue using a [template](https://github.com/PaddlePaddle/Paddle/issues/new?assignees=&labels=&template=---document-issue-.md).
-
+PaddlePaddle welcomes documentation contributions, please see [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
 ## License
 
 [Apache License 2.0](LICENSE)
+
