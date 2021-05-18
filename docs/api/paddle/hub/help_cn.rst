@@ -29,5 +29,5 @@ help
 .. code-block:: python
 
     import paddle
-    docs = paddle.hub.help('PaddlePaddle/PaddleClas:develop', source='alexnet', force_reload=True)    
+    docs = paddle.hub.help('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=True)    
     print(docs)
