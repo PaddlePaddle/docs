@@ -1,6 +1,6 @@
 # 飞桨框架ROCM版安装说明
 
-飞桨框架ROCM版支持基于海光CPU和DCU的Python的训练和原生预测，当前支持的ROCM版本为4.0.1, Paddle版本为2.0.2-post，提供两种安装方式：
+飞桨框架ROCM版支持基于海光CPU和DCU的Python的训练和原生预测，当前支持的ROCM版本为4.0.1, Paddle版本为2.1.0，提供两种安装方式：
 
 - 通过预编译的wheel包安装
 - 通过源代码编译安装
@@ -39,8 +39,7 @@ GPU  Temp   AvgPwr  SCLK     MCLK    Fan   Perf  PwrCap  VRAM%  GPU%
 **第二步**：下载Python3.7 wheel安装包
 
 ```bash
-wget https://paddle-wheel.bj.bcebos.com/rocm/paddlepaddle_rocm-2.0.2_rocm_post-cp37-cp37m-linux_x86_64.whl
-python -m pip install -U paddlepaddle_rocm-2.0.2_rocm_post-cp37-cp37m-linux_x86_64.whl
+pip install paddlepaddle-rocm==2.1.0.rocm401.miopen211 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
 ```
 
 **第三步**：验证安装包
@@ -102,8 +101,8 @@ export PATH=/opt/conda/bin:${PATH}
 **第二步**：下载Paddle源码并编译，CMAKE编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
 ```bash
-# 下载源码，建议切换到 develop 分支
-git clone -b develop https://github.com/PaddlePaddle/Paddle.git
+# 下载源码，切换到 release/2.1 分支
+git clone -b release/2.1 https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 
 # 创建编译目录
