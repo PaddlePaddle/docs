@@ -6,6 +6,7 @@ paddle.text
 paddle.text 目录是飞桨在文本领域的高层API。有Paddle内置以及PaddleNLP中提供的两种。具体如下：
 
 -  :ref:`内置数据集相关API <about_datasets>`
+-  :ref:`PaddleNLP提供的API <about_paddlenlp>`
 
 .. _about_datasets:
 
@@ -24,6 +25,8 @@ paddle.text 目录是飞桨在文本领域的高层API。有Paddle内置以及Pa
     " :ref:`WMT14 <cn_api_text_datasets_WMT14>` ", "WMT14数据集"
     " :ref:`WMT16 <cn_api_text_datasets_WMT16>` ", "WMT16数据集"
 
+.. _about_paddlenlp:
+
 PaddleNLP提供的API
 ::::::::::::::::::::
 
@@ -40,7 +43,7 @@ PaddleNLP 2.0 提供了在文本任务上简洁易用的全流程API与动静统
 
 .. csv-table::
     :header: "API模块", "功能简介", "API用法简单示例"
-    :widths: 20, 40，40
+    :widths: 20, 40, 40
 
     " `paddlenlp.datasets <https://paddlenlp.readthedocs.io/zh/latest/data_prepare/dataset_list.html>`_ ", "提供文本分类、阅读理解、序列标注、机器翻译、文本生成等任务的多个数据集", " ``train_ds, dev_ds = paddlenlp.datasets.load_dataset('ptb', splits=('train', 'dev'))`` "
     " `paddlenlp.data <https://paddlenlp.readthedocs.io/zh/latest/data_prepare/data_preprocess.html`_ ", "该模块提供了在NLP任务中构建有效的数据处理Pipeline的常用API", "见链接文档"
