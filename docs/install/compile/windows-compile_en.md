@@ -3,10 +3,10 @@
 ## Environment preparation
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-* **GPU Version support CUDA 9.0/10.0/10.1/10.2/11.0, and only support single GPU**
-* **Python version 2.7.15+/3.5.1+/3.6+/3.7+/3.8+(64bit)**
+* **GPU Version support CUDA 10.1/10.2/11.0/11.2, and only support single GPU**
+* **Python version 3.6+/3.7+/3.8+/3.9+(64bit)**
 * **pip version 20.2.2+ (64bit)**
-* **Visual Studio 2017**
+* **Visual Studio 2015 Update3**
 
 ## Choose CPU/GPU
 
@@ -15,6 +15,7 @@
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
     * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6.5+**
     * **CUDA toolkit 11.0 with cuDNN v8.0.4**
+    * **CUDA toolkit 11.2 with cuDNN v8.1.1**
     * **GPU's computing capability exceeds 3.0**
 
 ## Installation steps
@@ -30,9 +31,9 @@ There is one compilation methods in Windows system:
 
 1. Install the necessary tools i.e. cmake, git and python:
 
-    > CMake requires version 3.15 and above, we recommend that you use CMake3. 16 version, available on the official website [download] (https://cmake.org/download/), and add to the ring Environment variables.
+    > CMake requires version 3.10 and above, but there are official [Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html) versions of 3.12/3.13/3.14 when the GPU is compiled, we recommend that you use CMake3. 16 version, available on the official website [download] (https://cmake.org/download/), and add to the ring Environment variables.
 
-    > Python requires version 2.7 and above,  which can be downloaded from the [official website](https://www.python.org/download/releases/2.7/).
+    > Python requires version 3.6 and above,  which can be downloaded from the [official website](https://www.python.org/download/releases/3.6/).
 
     * After installing python, please check whether the python version is the expected version by `python-version`, because you may have more than one python installed on your computer. You can handle conflicts of multiple pythons by changing the order of the environment variables.
 
@@ -64,13 +65,19 @@ There is one compilation methods in Windows system:
     cd Paddle
     ```
 
-3. Switch to `develop` branch for compilation:
+3. Switch to a more stable release branch for compilation:
 
     ```
-    git checkout develop
+    git checkout [name of the branch]
     ```
 
-    Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8
+    For example：
+
+    ```
+    git checkout release/2.1
+    ```
+
+    Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1
 
 4. Create a directory called build and enter it:
 
@@ -87,18 +94,18 @@ There is one compilation methods in Windows system:
     * For users who need to compile **the CPU version PaddlePaddle**:
 
         ```
-        cmake .. -G "Visual Studio 15 2017 Win64" -T host=x64 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     * For users who need to compile **the GPU version PaddlePaddle**:
 
         ```
-        cmake .. -G "Visual Studio 15 2017 Win64" -T host=x64 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
-    Python2 by default，Python3 please add：
+    Python3 please add：
 
-    > -DPY_VERSION=3 (or 3.5、3.6、3.7、3.8)
+    > -DPY_VERSION=3 (or 3.6、3.7、3.8、3.9)
 
     If your device information contains multiple Python or CUDA, you can also specify a specific version of Python or CUDA by setting the corresponding compile options:
 
@@ -109,10 +116,10 @@ There is one compilation methods in Windows system:
     For example: (for instance only, please set it according to your actual installation path)
 
     ```
-    cmake .. -G "Visual Studio 15 2017 Win64" -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\v10.0"
+    cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\v10.0"
     ```
 
-6. Use Visual Studio 2017 to open `paddle.sln` file, select the platform `x64`, configure with `Release`, then begin to compile
+6. Use Visual Studio 2015 to open `paddle.sln` file, select the platform `x64`, configure with `Release`, then begin to compile
 
 7. After compilation successfully, go to the `\paddle\build\python\dist` directory and find the generated `.whl` package:
 
