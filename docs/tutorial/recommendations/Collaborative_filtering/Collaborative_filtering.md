@@ -276,20 +276,13 @@ model.fit(train_loader, epochs=5, save_dir='./checkpoints', verbose=1, callbacks
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step  60/709 [=>............................] - loss: 0.6889 - acc: 0.8664 - ETA: 2s - 4ms/ste
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/math_op_patch.py:239: UserWarning: The dtype of left and right variables are not the same, left dtype is paddle.int64, but right dtype is paddle.float32, the right dtype will convert to paddle.int64
-      format(lhs_dtype, rhs_dtype, lhs_dtype))
-
-
-    step 120/709 [====>.........................] - loss: 0.6896 - acc: 0.8658 - ETA: 2s - 4ms/stepstep 709/709 [==============================] - loss: 0.6729 - acc: 0.8687 - 3ms/step        
+    step 709/709 [==============================] - loss: 0.6729 - acc: 0.8687 - 3ms/step        
     save checkpoint at /home/aistudio/checkpoints/0
     Epoch 2/5
     step 709/709 [==============================] - loss: 0.6535 - acc: 0.8687 - 3ms/step        
     save checkpoint at /home/aistudio/checkpoints/1
-    Epoch 3/5
-    step 620/709 [=========================>....] - loss: 0.6345 - acc: 0.8684 - ETA: 0s - 3ms/ste
-
+    ...
+        
 ## 六、模型评估
 
 
@@ -301,13 +294,6 @@ model.evaluate(test_loader, batch_size=64, verbose=1)
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
     step 79/79 [==============================] - loss: 0.5982 - acc: 0.8713 - 3ms/step         
     Eval samples: 10084
-
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/math_op_patch.py:238: UserWarning: The dtype of left and right variables are not the same, left dtype is VarType.INT64, but right dtype is VarType.FP32, the right dtype will convert to VarType.INT64
-      format(lhs_dtype, rhs_dtype, lhs_dtype))
-
-
-
 
 
     {'loss': [0.5982282], 'acc': 0.8712812376041253}

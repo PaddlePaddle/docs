@@ -634,11 +634,6 @@ model.summary((-1, 3,) + IMAGE_SIZE)
     Params size (MB): 7.86
     Estimated Total Size (MB): 125.92
     -----------------------------------------------------------------------------
-    
-
-
-
-
 
     {'total_params': 2059268, 'trainable_params': 2051716}
 
@@ -818,9 +813,3 @@ plt.show()
 
 
 ![png](output_31_0.png)
-
-
-
-```python
-
-```

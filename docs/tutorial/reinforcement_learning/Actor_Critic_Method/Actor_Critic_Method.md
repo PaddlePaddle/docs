@@ -179,52 +179,7 @@ if __name__ == '__main__':
     Iteration: 10, Score: 43
     Iteration: 20, Score: 11
     Iteration: 30, Score: 18
-    Iteration: 40, Score: 39
-    Iteration: 50, Score: 18
-    Iteration: 60, Score: 104
-    Iteration: 70, Score: 82
-    Iteration: 80, Score: 199
-    Iteration: 90, Score: 199
-    Iteration: 100, Score: 199
-
-
-
-    ---------------------------------------------------------------------------
-
-    KeyboardInterrupt                         Traceback (most recent call last)
-
-    <ipython-input-3-c23b84fbafb3> in <module>
-         84     else:
-         85         critic = Critic(state_size, action_size)
-    ---> 86     trainIters(actor, critic, n_iters=201)
-    
-
-    <ipython-input-3-c23b84fbafb3> in trainIters(actor, critic, n_iters)
-         46         next_state = paddle.to_tensor(next_state, dtype="float32", place=device)
-         47         next_value = critic(next_state)
-    ---> 48         returns = compute_returns(next_value, rewards, masks)
-         49 
-         50         log_probs = paddle.concat(log_probs)
-
-
-    <ipython-input-3-c23b84fbafb3> in compute_returns(next_value, rewards, masks, gamma)
-          3     returns = []
-          4     for step in reversed(range(len(rewards))):
-    ----> 5         R = rewards[step] + gamma * R * masks[step]
-          6         returns.insert(0, R)
-          7     return returns
-
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/math_op_patch.py in __impl__(self, other_var)
-        248             axis = -1
-        249             math_op = getattr(core.ops, op_type)
-    --> 250             return math_op(self, other_var, 'axis', axis)
-        251 
-        252         comment = OpProtoHolder.instance().get_op_proto(op_type).comment
-
-
-    KeyboardInterrupt: 
-
+    ...
 
 ## **五、效果展示**
 在训练的早期：

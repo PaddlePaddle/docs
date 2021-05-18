@@ -248,11 +248,6 @@ paddle.summary(sim_model, input_size=(-1, length), dtypes='int64')
     Estimated Total Size (MB): 3.78
     ---------------------------------------------------------------------------
     
-
-
-
-
-
     {'total_params': 529692, 'trainable_params': 14992}
 
 

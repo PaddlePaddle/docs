@@ -327,11 +327,6 @@ paddle.summary(pointnet, (64, 3, 2048))
     Params size (MB): 13.26
     Estimated Total Size (MB): 11348.16
     ---------------------------------------------------------------------------
-    
-
-
-
-
 
     {'total_params': 3476825, 'trainable_params': 3461721}
 
