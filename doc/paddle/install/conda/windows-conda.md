@@ -187,18 +187,6 @@ conda install paddlepaddle -c paddle
 
 #### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
 
-*  <span id="cuda9">如果您是使用 CUDA 9，cuDNN 7.6+，安装GPU版本的命令为:</span>
-
-  ```
-  conda install paddlepaddle-gpu cudatoolkit=9.0 -c paddle
-  ```
-
-*  <span id="cuda10">如果您是使用 CUDA 10.0，cuDNN 7.6+，安装GPU版本的命令为:</span>
-
-  ```
-  conda install paddlepaddle-gpu cudatoolkit=10.0 -c paddle
-  ```
-
 
 *  <span id="cuda10.1">如果您是使用 CUDA 10.1，cuDNN 7.6+，安装GPU版本的命令为:</span>
 
@@ -216,6 +204,12 @@ conda install paddlepaddle -c paddle
 
   ```
   conda install paddlepaddle-gpu cudatoolkit=11.0 -c paddle
+  ```
+
+*  <span id="cuda11.2">如果您是使用 CUDA 11.2，cuDNN 8.1.1+，安装GPU版本的命令为:</span>
+
+  ```
+  conda install paddlepaddle-gpu cudatoolkit=11.2 -c paddle
   ```
 
 

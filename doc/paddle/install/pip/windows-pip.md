@@ -127,22 +127,9 @@
 
 #### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
 
-2.2.1 <span id="cuda9">CUDA9.0的PaddlePaddle</span>
 
 
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post90 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
-  ```
-
-2.2.2 <span id="cuda10">CUDA10.0的PaddlePaddle</span>
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post100 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
-  ```
-
-
-2.2.3 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
+2.2.1 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
 
 
   ```
@@ -150,7 +137,7 @@
   ```
 
 
-2.2.4 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
+2.2.2 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
 
 
   ```
@@ -158,10 +145,16 @@
   ```
 
 
-2.2.5 <span id="cuda11">CUDA11的PaddlePaddle</span>
+2.2.3 <span id="cuda11">CUDA11的PaddlePaddle</span>
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  ```
+
+2.2.4 <span id="cuda11">CUDA11的PaddlePaddle</span>
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.0.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 

@@ -209,17 +209,6 @@ conda install paddlepaddle -c paddle
 
 #### 2.2<span id="gpu"> GPU version of PaddlePaddle</span>
 
-*  <span id="cuda9">If you are using CUDA 9，cuDNN 7.6+:</span>
-
-  ```
-  conda install paddlepaddle-gpu cudatoolkit=9.0 -c paddle
-  ```
-
-* <span id="cuda10">If you are using CUDA 10.0，cuDNN 7.6+</span>
-
-  ```
-  conda install paddlepaddle-gpu cudatoolkit=10.0 -c paddle
-  ```
 
 *  <span id="cuda10.1">If you are using CUDA 10.1，cuDNN 7.6+</span>
 
@@ -237,6 +226,12 @@ conda install paddlepaddle -c paddle
 
   ```
   conda install paddlepaddle-gpu cudatoolkit=11.0 -c paddle
+  ```
+
+*  <span id="cuda11.2">If you are using CUDA 11.2，cuDNN 8.1.1+:</span>
+
+  ```
+  conda install paddlepaddle-gpu cudatoolkit=11.2 -c paddle
   ```
 
 
