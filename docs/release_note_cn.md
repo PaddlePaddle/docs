@@ -31,7 +31,7 @@ from paddle.nn.layer.conv import *
 
 <table>
 <tr>
-<td style="text-align:center"> 1.1.1 </td> <td style="text-align:center"> 1.2.0 </td>
+<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
 </tr>
 <tr>
 <td>
@@ -65,11 +65,101 @@ from paddle.nn.layer.conv import *
 
 
 - `paddle.jit.TraceLayer.save_inference_model` 接口不兼容升级。将原先的第一个参数dirname改为path，名字表意更通用并且与paddle.save和load等接口统一，表示由用户指定保存模型路径的前缀。([#31989](https://github.com/PaddlePaddle/Paddle/pull/31989))
+
+<table>
+<tr>
+<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+</tr>
+<tr>
+<td>
+
+```python
+>>> import os
+>>> import paddle
+>>> from paddle.vision.models import resnet18
+>>> model = resnet18()
+>>> x = paddle.rand([1, 3, 224, 224])
+>>> _, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])
+>>> save_path = './save_infer_model'
+>>> static_layer.save_inference_model(dirname=save_path)
+>>> print(os.path.isdir(save_path))
+True
+>>> print(len(os.listdir(save_path)))
+205
+```
+
+</td>
+
+<td>
+
+
+```python
+>>> import os
+>>> import paddle
+>>> from paddle.vision.models import resnet18
+>>> model = resnet18()
+>>> x = paddle.rand([1, 3, 224, 224])
+>>> _, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])
+>>> save_path = './save_infer_model'
+>>> static_layer.save_inference_model(dirname=save_path)
+>>> print(os.path.isdir(save_path))
+False
+>>> print([name for name in os.listdir('./') if name.startswith(save_path)])
+[save_infer_model.pdiparams]
+```
+
+</td>
+</tr>
+</table>
+
+
 - `paddle.io.DataLoader`当`Dataset`只包含一个字段时，`DataLoader`返回格式不兼容升级。当用户自定义数据集只包含一个字段并通过如`return image`或`yield image`返回数据时，2.0版本返回的数据格式是`[image_tensor]`，而2.1版本返回的数据格式为`image_tensor`，保持输入输出数据结构的一致性。
 
-  | 2.0                                                          | 2.1                                                          |
-  | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | import numpy as np<br />import paddle<br />from paddle.io import DataLoader, Dataset<br /><br />class RandomDataset(Dataset):<br />def \_\_getitem\_\_(self, idx):<br />return np.random.random((2, 3)).astype('float32')<br /><br />def \_\_len\_\_(self): <br />return 10<br /><br />dataset = RandomDataset()<br />loader = DataLoader(dataset, batch_size=1)<br /> data = next(loader())<br /># data: [Tensor(shape=(1, 2, 3), dtype=float32)]|import numpy as np<br />import paddle<br />from paddle.io import DataLoader, Dataset<br /><br />class RandomDataset(Dataset):<br />def \_\_getitem\_\_(self, idx):<br />return np.random.random((2, 3)).astype('float32')<br /><br />def \_\_len\_\_(self): <br />return 10<br /><br />dataset = RandomDataset()<br />loader = DataLoader(dataset, batch_size=1)<br /> data = next(loader())<br /># data: Tensor(shape=(1, 2, 3), dtype=float32)|
+<table>
+<tr>
+<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+</tr>
+<tr>
+<td>
+
+```python
+>>> import numpy as np
+>>> import paddle
+>>> from paddle.io import DataLoader, Dataset
+>>> class RandomDataset(Dataset):
+...     def __getitem__(self, idx):
+...         return np.random.random((2, 3)).astype(‘float32’)
+...     def __len__(self):
+...         return 10
+>>> dataset = RandomDataset()
+>>> loader = DataLoader(dataset, batch_size=1)
+>>> data = next(loader())
+data: [Tensor(shape=(1, 2, 3), dtype=float32)]
+```
+
+</td>
+
+<td>
+
+
+```python
+>>> import numpy as np
+>>> import paddle
+>>> from paddle.io import DataLoader, Dataset
+>>> class RandomDataset(Dataset):
+...     def __getitem__(self, idx):
+...         return np.random.random((2, 3)).astype(‘float32’)
+...     def __len__(self):
+...         return 10
+>>> dataset = RandomDataset()
+>>> loader = DataLoader(dataset, batch_size=1)
+>>> data = next(loader())
+data: Tensor(shape=(1, 2, 3), dtype=float32)
+```
+
+</td>
+</tr>
+</table>
 
 
 ## 训练框架
@@ -128,9 +218,39 @@ from paddle.nn.layer.conv import *
 - 修复`adaptive_avg_pool2d`在输入数据类型为float16时计算结果不正确的问题。([#31887](https://github.com/PaddlePaddle/Paddle/pull/31887))
 - `paddle.nn.Layer.sublayers` 和`paddle.nn.Layer.named_sublayers`：将原本`paddle.nn.Layer.sublayers`的`include_sublayers = True`参数修改为`include_self = False`， 从而修复从前`include_sublayers = False`时返回空的问题。现在不填写任何参数时默认行为和之前一致，即返回不包含自己的所有递归子层，当`include_self = True`时同字面意思，返回包含自己在内的所有递归子层。而`paddle.nn.Layer.named_sublayers`中`include_sublayers`的参数则直接删除了 其他行为不变。([#31824](https://github.com/PaddlePaddle/Paddle/pull/31824) )
 
-| 2.0                                                          | 2.1                                                          |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| from paddle.vision.models import resnet18<br/>model = resnet18()<br/><br/>print(len(model.sublayers(include_sublayers=True)))<br/>print(len(model.sublayers(include_sublayers=False)))<br/><br/>67<br/>0<br/> | from paddle.vision.models import resnet18<br/>model = resnet18()<br/><br/>print(len(model.sublayers(include_self=True)))<br/>print(len(model.sublayers(include_self=False)))<br/><br/>68<br/>67<br/> |
+<table>
+<tr>
+<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+</tr>
+<tr>
+<td>
+
+```python
+>>> from paddle.vision.models import resnet18
+>>> model = resnet18()
+>>> print(len(model.sublayers(include_sublayers=True)))
+67
+>>> print(len(model.sublayers(include_sublayers=False)))
+0
+```
+
+</td>
+
+<td>
+
+
+```python
+>>> from paddle.vision.models import resnet18
+>>> model = resnet18()
+>>> print(len(model.sublayers(include_sublayers=True)))
+68
+>>> print(len(model.sublayers(include_sublayers=False)))
+67
+```
+
+</td>
+</tr>
+</table>
  
 
 #### 高层API
