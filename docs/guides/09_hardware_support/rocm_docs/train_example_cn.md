@@ -8,7 +8,7 @@
 
 ```bash
 cd path_to_clone_PaddleClas
-git clone -b release/2.0 https://github.com/PaddlePaddle/PaddleClas.git
+git clone https://github.com/PaddlePaddle/PaddleClas.git
 ```
 也可以访问PaddleClas的 [Github Repo](https://github.com/PaddlePaddle/PaddleClas) 直接下载源码。请根据[数据说明](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.0/docs/zh_CN/tutorials/data.md)文档准备ImageNet1k数据集。
 
@@ -37,27 +37,27 @@ python -m paddle.distributed.launch --gpus="0,1,2,3" tools/train.py -c ./configs
 
 ```bash
 cd path_to_clone_PaddleDetection
-git clone -b release/2.0-rc https://github.com/PaddlePaddle/PaddleDetection.git
+git clone https://github.com/PaddlePaddle/PaddleDetection.git
 ```
 也可以访问PaddleDetection的 [Github Repo](https://github.com/PaddlePaddle/PaddleDetection) 直接下载源码。
 
 **第二步**：准备 VOC 数据集
 
 ```bash
-cd PaddleDetection/dygraph/dataset/voc
+cd PaddleDetection/dataset/voc
 python download_voc.py
 python create_list.py
 ```
 
 **第三步**：修改config文件的参数
 
-模型Config文件 `dygraph/configs/yolov3/yolov3_darknet53_270e_voc.yml` 中的默认参数为8卡设计，使用DCU单机4卡训练需要修改参数如下：
+模型Config文件 `configs/yolov3/yolov3_darknet53_270e_voc.yml` 中的默认参数为8卡设计，使用DCU单机4卡训练需要修改参数如下：
 
 ```bash
-# 修改 dygraph/configs/yolov3/_base_/optimizer_270e.yml
+# 修改 configs/yolov3/_base_/optimizer_270e.yml
 base_lr: 0.0005
 
-# 修改 dygraph/configs/yolov3/_base_/yolov3_reader.yml
+# 修改 configs/yolov3/_base_/yolov3_reader.yml
 worker_num: 1
 ```
 
@@ -66,7 +66,7 @@ worker_num: 1
 ```bash
 export HIP_VISIBLE_DEVICES=0,1,2,3
 
-cd PaddleDetection/dygraph/
+cd PaddleDetection/
 python -m paddle.distributed.launch --gpus 0,1,2,3 tools/train.py -c configs/yolov3/yolov3_darknet53_270e_voc.yml --eval
 ```
 
