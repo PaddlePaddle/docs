@@ -34,7 +34,7 @@ from paddle.nn.layer.conv import *
 
 <table>
 <tr>
-<td style="text-align:center"> 1.1.1 </td> <td style="text-align:center"> 1.2.0 </td>
+<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
 </tr>
 <tr>
 <td>
