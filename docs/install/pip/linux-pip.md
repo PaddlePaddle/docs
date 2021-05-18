@@ -163,7 +163,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html
   ```
 
 
