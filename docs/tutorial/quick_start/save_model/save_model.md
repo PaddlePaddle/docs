@@ -1,7 +1,7 @@
 # 模型保存及加载
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.05 <br>
 **摘要:** 本教程将基于Paddle高阶API对模型参数的保存和加载进行讲解。
 
 ## 一、简介
@@ -10,7 +10,7 @@
 
 ## 二、环境配置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -26,7 +26,7 @@ from paddle.vision.transforms import ToTensor
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
 ## 三、数据集
@@ -39,19 +39,19 @@ train_dataset = MNIST(mode='train', transform=ToTensor())
 test_dataset = MNIST(mode='test', transform=ToTensor())
 ```
 
-    Cache file /home/aistudio/.cache/paddle/dataset/mnist/train-images-idx3-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/train-images-idx3-ubyte.gz
+    Cache file /home/aistudio/.cache/paddle/dataset/mnist/train-images-idx3-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/train-images-idx3-ubyte.gz 
     Begin to download
-
+    
     Download finished
-    Cache file /home/aistudio/.cache/paddle/dataset/mnist/train-labels-idx1-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/train-labels-idx1-ubyte.gz
+    Cache file /home/aistudio/.cache/paddle/dataset/mnist/train-labels-idx1-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/train-labels-idx1-ubyte.gz 
     Begin to download
     ........
     Download finished
-    Cache file /home/aistudio/.cache/paddle/dataset/mnist/t10k-images-idx3-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/t10k-images-idx3-ubyte.gz
+    Cache file /home/aistudio/.cache/paddle/dataset/mnist/t10k-images-idx3-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/t10k-images-idx3-ubyte.gz 
     Begin to download
-
+    
     Download finished
-    Cache file /home/aistudio/.cache/paddle/dataset/mnist/t10k-labels-idx1-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/t10k-labels-idx1-ubyte.gz
+    Cache file /home/aistudio/.cache/paddle/dataset/mnist/t10k-labels-idx1-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/t10k-labels-idx1-ubyte.gz 
     Begin to download
     ..
     Download finished
@@ -113,27 +113,24 @@ model.fit(train_dataset,
         )
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/3
-    step 938/938 [==============================] - loss: 0.0192 - acc: 0.9415 - 24ms/step
+    step 938/938 [==============================] - loss: 0.0245 - acc: 0.9412 - 32ms/step         
     save checkpoint at /home/aistudio/mnist_checkpoint/0
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 0.0025 - acc: 0.9791 - 22ms/step
+    step 157/157 [==============================] - loss: 0.0044 - acc: 0.9775 - 27ms/step        
     Eval samples: 10000
     Epoch 2/3
-    step 938/938 [==============================] - loss: 0.0266 - acc: 0.9815 - 24ms/step
+    step 938/938 [==============================] - loss: 0.0058 - acc: 0.9798 - 31ms/step         
     save checkpoint at /home/aistudio/mnist_checkpoint/1
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 7.1155e-04 - acc: 0.9843 - 23ms/step
+    step 157/157 [==============================] - loss: 4.7741e-04 - acc: 0.9836 - 25ms/step    
     Eval samples: 10000
     Epoch 3/3
-    step 938/938 [==============================] - loss: 0.0936 - acc: 0.9871 - 24ms/step
+    step 938/938 [==============================] - loss: 0.0122 - acc: 0.9865 - 32ms/step         
     save checkpoint at /home/aistudio/mnist_checkpoint/2
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 0.0014 - acc: 0.9883 - 22ms/step
+    step 157/157 [==============================] - loss: 9.9224e-04 - acc: 0.9875 - 26ms/step      
     Eval samples: 10000
     save checkpoint at /home/aistudio/mnist_checkpoint/final
 
@@ -144,9 +141,9 @@ model.fit(train_dataset,
 #### paddle 高阶API-模型参数保存
     * paddle.Model.fit
     * paddle.Model.save
-#### paddle 基础框架-动态图-模型参数保存
+#### paddle 基础框架-动态图-模型参数保存 
     * paddle.save
-#### paddle 基础框架-静态图-模型参数保存
+#### paddle 基础框架-静态图-模型参数保存 
     * paddle.static.save
     * paddle.static.save_inference_model
 
@@ -155,7 +152,7 @@ model.fit(train_dataset,
 
 #### 方法一：
 * paddle.Model.fit(train_data, epochs, batch_size, save_dir, log_freq) <br><br>
-在使用model.fit函数进行网络循环训练时，在save_dir参数中指定保存模型的路径，save_freq指定写入频率，即可同时实现模型的训练和保存。mode.fit()只能保存模型参数，不能保存优化器参数，每个epoch结束只会生成一个.pdparams文件。可以边训练边保存，每次epoch结束会实时生成一个.pdparams文件。
+在使用model.fit函数进行网络循环训练时，在save_dir参数中指定保存模型的路径，save_freq指定写入频率，即可同时实现模型的训练和保存。mode.fit()只能保存模型参数，不能保存优化器参数，每个epoch结束只会生成一个.pdparams文件。可以边训练边保存，每次epoch结束会实时生成一个.pdparams文件。 
 
 #### 方法二：
 * paddle.Model.save(self, path, training=True) <br><br>
@@ -173,20 +170,18 @@ model.fit(train_dataset,
         )
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-    step 938/938 [==============================] - loss: 0.0067 - acc: 0.9892 - 23ms/step
+    step 938/938 [==============================] - loss: 0.0024 - acc: 0.9886 - 32ms/step         
     save checkpoint at /home/aistudio/mnist_checkpoint/0
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 8.6975e-04 - acc: 0.9829 - 22ms/step
+    step 157/157 [==============================] - loss: 2.9594e-04 - acc: 0.9876 - 27ms/step      
     Eval samples: 10000
     Epoch 2/2
-    step 938/938 [==============================] - loss: 0.0025 - acc: 0.9920 - 24ms/step
+    step 938/938 [==============================] - loss: 0.0013 - acc: 0.9915 - 31ms/step         
     save checkpoint at /home/aistudio/mnist_checkpoint/1
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 4.1780e-04 - acc: 0.9870 - 22ms/step
+    step 157/157 [==============================] - loss: 5.1616e-05 - acc: 0.9891 - 26ms/step        
     Eval samples: 10000
     save checkpoint at /home/aistudio/mnist_checkpoint/final
 
@@ -205,7 +200,7 @@ model.save('mnist_checkpoint/test')
 #### paddle 基础框架-动态图-模型参数加载
     * paddle.load
 #### paddle 基础框架-静态图-模型参数加载
-    * paddle.io.load
+    * paddle.io.load 
     * paddle.io.load_inference_model
 
 下面将对高阶API的模型参数加载方法进行讲解
@@ -245,7 +240,7 @@ labels = InputSpec([None, 10], 'float32', 'labels')
 model = paddle.Model(MyModel(), inputs, labels)
 optim = paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters())
 model.load("./mnist_checkpoint/final")
-model.prepare(
+model.prepare( 
       optim,
       paddle.nn.loss.CrossEntropyLoss(),
       Accuracy()
@@ -258,12 +253,9 @@ model.fit(train_data=train_dataset,
         )
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-    step 938/938 [==============================] - loss: 8.0640e-04 - acc: 0.9926 - 24ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step  40/157 [======>.......................] - loss: 0.0030 - acc: 0.9797 - ETA: 2s - 22ms/st
+    step 360/938 [==========>...................] - loss: 0.0124 - acc: 0.9915 - ETA: 19s - 33ms/ste
 
 ## 九、总结
 

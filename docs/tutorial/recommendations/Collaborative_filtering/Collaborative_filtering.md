@@ -1,12 +1,12 @@
 # 使用协同过滤实现电影推荐
 
 **作者：** [HUANGCHENGAI](https://github.com/HUANGCHENGAI) <br>
-**日期：** 2021.03 <br>
+**日期：** 2021.05 <br>
 **摘要：** 本案例使用飞桨框架实现推荐电影的协同过滤算法。
 
 ## 一、介绍
 
-此示例演示使用[Movielens 数据集](https://www.kaggle.com/c/movielens-100k)基于PaddlePaddle2.0向用户推荐电影的协作过滤算法。MovieLens 评级数据集列出了一组用户对一组电影的评分。目标是能够预测用户尚未观看的电影的收视率。然后，可以向用户推荐预测收视率最高的电影。
+此示例演示使用[Movielens 数据集](https://www.kaggle.com/c/movielens-100k)基于PaddlePaddle2.1向用户推荐电影的协作过滤算法。MovieLens 评级数据集列出了一组用户对一组电影的评分。目标是能够预测用户尚未观看的电影的收视率。然后，可以向用户推荐预测收视率最高的电影。
 
 模型中的步骤如下：
 
@@ -27,7 +27,7 @@
 
 ## 二、 环境设置
 
-本教程基于Paddle 2.0 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -40,7 +40,7 @@ from paddle.io import Dataset
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
 ## 三、数据集
@@ -86,11 +86,11 @@ userId，movieId，tag，timestamp
 
     Archive:  data/data71839/ml-latest-small.zip
        creating: ml-latest-small/
-      inflating: ml-latest-small/links.csv
-      inflating: ml-latest-small/tags.csv
-      inflating: ml-latest-small/ratings.csv
-      inflating: ml-latest-small/README.txt
-      inflating: ml-latest-small/movies.csv
+      inflating: ml-latest-small/links.csv  
+      inflating: ml-latest-small/tags.csv  
+      inflating: ml-latest-small/ratings.csv  
+      inflating: ml-latest-small/README.txt  
+      inflating: ml-latest-small/movies.csv  
 
 
 ### 3.1 数据处理
@@ -164,7 +164,7 @@ class SelfDefinedDataset(Dataset):
 
     def __len__(self):
         return len(self.data_x)
-
+        
 traindataset = SelfDefinedDataset(x_train, y_train)
 for data, label in traindataset:
     print(data.shape, label.shape)
@@ -180,7 +180,7 @@ for batch_id, data in enumerate(train_loader()):
     break
 
 testdataset = SelfDefinedDataset(x_val, y_val)
-test_loader = paddle.io.DataLoader(testdataset, batch_size = 128, shuffle = True)
+test_loader = paddle.io.DataLoader(testdataset, batch_size = 128, shuffle = True)        
 for batch_id, data in enumerate(test_loader()):
     x_data = data[0]
     y_data = data[1]
@@ -274,31 +274,15 @@ model.fit(train_loader, epochs=5, save_dir='./checkpoints', verbose=1, callbacks
 
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step  70/709 [=>............................] - loss: 0.6928 - acc: 0.8712 - ETA: 2s - 3ms/st
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/math_op_patch.py:238: UserWarning: The dtype of left and right variables are not the same, left dtype is VarType.INT64, but right dtype is VarType.FP32, the right dtype will convert to VarType.INT64
-      format(lhs_dtype, rhs_dtype, lhs_dtype))
-
-
-    step 120/709 [====>.........................] - loss: 0.6908 - acc: 0.8718 - ETA: 1s - 3ms/stepstep 709/709 [==============================] - loss: 0.6730 - acc: 0.8687 - 3ms/step
+    step 709/709 [==============================] - loss: 0.6729 - acc: 0.8687 - 3ms/step        
     save checkpoint at /home/aistudio/checkpoints/0
     Epoch 2/5
-    step 709/709 [==============================] - loss: 0.6548 - acc: 0.8687 - 3ms/step
+    step 709/709 [==============================] - loss: 0.6535 - acc: 0.8687 - 3ms/step        
     save checkpoint at /home/aistudio/checkpoints/1
-    Epoch 3/5
-    step 709/709 [==============================] - loss: 0.6267 - acc: 0.8687 - 3ms/step
-    save checkpoint at /home/aistudio/checkpoints/2
-    Epoch 4/5
-    step 709/709 [==============================] - loss: 0.6012 - acc: 0.8687 - 3ms/step
-    save checkpoint at /home/aistudio/checkpoints/3
-    Epoch 5/5
-    step 709/709 [==============================] - loss: 0.6231 - acc: 0.8687 - 3ms/step
-    save checkpoint at /home/aistudio/checkpoints/4
-    save checkpoint at /home/aistudio/checkpoints/final
-
-
+    ...
+        
 ## 六、模型评估
 
 
@@ -308,15 +292,8 @@ model.evaluate(test_loader, batch_size=64, verbose=1)
 
     Eval begin...
     The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 79/79 [==============================] - loss: 0.5982 - acc: 0.8713 - 3ms/step
+    step 79/79 [==============================] - loss: 0.5982 - acc: 0.8713 - 3ms/step         
     Eval samples: 10084
-
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/math_op_patch.py:238: UserWarning: The dtype of left and right variables are not the same, left dtype is VarType.INT64, but right dtype is VarType.FP32, the right dtype will convert to VarType.INT64
-      format(lhs_dtype, rhs_dtype, lhs_dtype))
-
-
-
 
 
     {'loss': [0.5982282], 'acc': 0.8712812376041253}
@@ -344,7 +321,7 @@ user_movie_array = np.hstack(
     ([[user_encoder]] * len(movies_not_watched), movies_not_watched)
 )
 testdataset = SelfDefinedDataset(user_movie_array, user_movie_array, mode = 'predict')
-test_loader = paddle.io.DataLoader(testdataset, batch_size = 9703, shuffle = False, return_list=True,)
+test_loader = paddle.io.DataLoader(testdataset, batch_size = 9703, shuffle = False, return_list=True,)   
 
 ratings = model.predict(test_loader)
 ratings = np.array(ratings)
@@ -405,7 +382,3 @@ for row in recommended_movies.itertuples():
     American History X (1998) : Crime|Drama
     Fight Club (1999) : Action|Crime|Drama|Thriller
     Dark Knight, The (2008) : Action|Crime|Drama|IMAX
-
-
-请点击[此处](https://ai.baidu.com/docs#/AIStudio_Project_Notebook/a38e5576)查看本环境基本用法.  <br>
-Please click [here ](https://ai.baidu.com/docs#/AIStudio_Project_Notebook/a38e5576) for more detailed instructions.
