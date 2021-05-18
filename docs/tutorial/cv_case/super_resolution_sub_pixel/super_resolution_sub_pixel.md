@@ -1,7 +1,7 @@
 # 通过Sub-Pixel实现图像超分辨率
 **作者:** [Ralph LU](https://github.com/ralph0813)<br>
-**日期:** 2021.03 <br>
-**摘要:** 本示例教程使用U-Net实现图像分割。
+**日期:** 2021.05 <br>
+**摘要:** 本示例通过Sub-Pixel实现图像超分辨率。
 
 ## 一、简要介绍
 
@@ -35,7 +35,7 @@ from paddle.vision.transforms import transforms
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
 ## 三、数据集
@@ -102,7 +102,7 @@ class BSD_data(Dataset):
         实现构造函数，定义数据读取方式，划分训练和测试数据集
         """
         super(BSD_data, self).__init__()
-
+        
         self.mode = mode.lower()
         if self.mode == 'train':
             self.image_path = os.path.join(image_path,'train')
@@ -110,7 +110,7 @@ class BSD_data(Dataset):
             self.image_path = os.path.join(image_path,'val')
         else:
             raise ValueError('mode must be "train" or "val"')
-
+            
         # 原始图像的缩放大小
         self.crop_size = 300
         # 缩放倍率
@@ -123,7 +123,7 @@ class BSD_data(Dataset):
         self.temp_images = []
         # 加载数据
         self._parse_dataset()
-
+    
     def transforms(self, img):
         """
         图像预处理工具，用于将升维(100, 100) => (100, 100,1)，
@@ -132,12 +132,12 @@ class BSD_data(Dataset):
         if len(img.shape) == 2:
             img = np.expand_dims(img, axis=2)
         return img.transpose((2, 0, 1))
-
+        
     def __getitem__(self, idx):
         """
         返回 缩小3倍后的图片 和 原始图片
         """
-
+        
         # 加载原始图像
         img = self._load_img(self.temp_images[idx])
         # 将原始图像缩放到（3, 300, 300）
@@ -171,7 +171,7 @@ class BSD_data(Dataset):
         实现__len__方法，返回数据集总数目
         """
         return len(self.temp_images)
-
+    
     def _sort_images(self, img_dir):
         """
         对文件夹内的图像进行按照文件名排序
@@ -183,14 +183,14 @@ class BSD_data(Dataset):
                 files.append(os.path.join(img_dir, item))
 
         return sorted(files)
-
+    
     def _parse_dataset(self):
         """
         处理数据集
         """
         self.temp_images = self._sort_images(self.image_path)
         random.Random(self.seed).shuffle(self.temp_images)
-
+        
     def _load_img(self, path):
         """
         从磁盘读取图片
@@ -252,7 +252,7 @@ class Sub_Pixel_CNN(paddle.nn.Layer):
 
     def __init__(self, upscale_factor=3, channels=1):
         super(Sub_Pixel_CNN, self).__init__()
-
+        
         self.conv1 = paddle.nn.Conv2D(channels,64,5,stride=1, padding=2)
         self.conv2 = paddle.nn.Conv2D(64,64,3,stride=1, padding=1)
         self.conv3 = paddle.nn.Conv2D(64,32,3,stride=1, padding=1)
@@ -284,12 +284,12 @@ model.summary((1,1, 100, 100))
 ```
 
     ---------------------------------------------------------------------------
-     Layer (type)       Input Shape          Output Shape         Param #
+     Layer (type)       Input Shape          Output Shape         Param #    
     ===========================================================================
-       Conv2D-1      [[1, 1, 100, 100]]   [1, 64, 100, 100]        1,664
-       Conv2D-2     [[1, 64, 100, 100]]   [1, 64, 100, 100]       36,928
-       Conv2D-3     [[1, 64, 100, 100]]   [1, 32, 100, 100]       18,464
-       Conv2D-4     [[1, 32, 100, 100]]    [1, 9, 100, 100]        2,601
+       Conv2D-1      [[1, 1, 100, 100]]   [1, 64, 100, 100]        1,664     
+       Conv2D-2     [[1, 64, 100, 100]]   [1, 64, 100, 100]       36,928     
+       Conv2D-3     [[1, 64, 100, 100]]   [1, 32, 100, 100]       18,464     
+       Conv2D-4     [[1, 32, 100, 100]]    [1, 9, 100, 100]        2,601     
     ===========================================================================
     Total params: 59,657
     Trainable params: 59,657
@@ -300,7 +300,7 @@ model.summary((1,1, 100, 100))
     Params size (MB): 0.23
     Estimated Total Size (MB): 13.16
     ---------------------------------------------------------------------------
-
+    
 
 
 
@@ -329,47 +329,47 @@ model.fit(train_dataset,
           verbose=1)
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/20
-    step 13/13 [==============================] - loss: 0.0652 - 118ms/step
+    step 13/13 [==============================] - loss: 0.0386 - 122ms/step         
     Epoch 2/20
-    step 13/13 [==============================] - loss: 0.0396 - 112ms/step
+    step 13/13 [==============================] - loss: 0.0304 - 115ms/step         
     Epoch 3/20
-    step 13/13 [==============================] - loss: 0.0221 - 112ms/step
+    step 13/13 [==============================] - loss: 0.0181 - 115ms/step         
     Epoch 4/20
-    step 13/13 [==============================] - loss: 0.0159 - 114ms/step
+    step 13/13 [==============================] - loss: 0.0125 - 122ms/step         
     Epoch 5/20
-    step 13/13 [==============================] - loss: 0.0130 - 114ms/step
+    step 13/13 [==============================] - loss: 0.0104 - 135ms/step         
     Epoch 6/20
-    step 13/13 [==============================] - loss: 0.0081 - 113ms/step
+    step 13/13 [==============================] - loss: 0.0061 - 114ms/step         
     Epoch 7/20
-    step 13/13 [==============================] - loss: 0.0099 - 116ms/step
+    step 13/13 [==============================] - loss: 0.0075 - 119ms/step         
     Epoch 8/20
-    step 13/13 [==============================] - loss: 0.0079 - 111ms/step
+    step 13/13 [==============================] - loss: 0.0062 - 117ms/step         
     Epoch 9/20
-    step 13/13 [==============================] - loss: 0.0063 - 110ms/step
+    step 13/13 [==============================] - loss: 0.0049 - 117ms/step         
     Epoch 10/20
-    step 13/13 [==============================] - loss: 0.0047 - 113ms/step
+    step 13/13 [==============================] - loss: 0.0037 - 125ms/step         
     Epoch 11/20
-    step 13/13 [==============================] - loss: 0.0037 - 114ms/step
+    step 13/13 [==============================] - loss: 0.0030 - 119ms/step         
     Epoch 12/20
-    step 13/13 [==============================] - loss: 0.0059 - 112ms/step
+    step 13/13 [==============================] - loss: 0.0047 - 115ms/step         
     Epoch 13/20
-    step 13/13 [==============================] - loss: 0.0034 - 114ms/step
+    step 13/13 [==============================] - loss: 0.0028 - 114ms/step         
     Epoch 14/20
-    step 13/13 [==============================] - loss: 0.0047 - 111ms/step
+    step 13/13 [==============================] - loss: 0.0040 - 113ms/step         
     Epoch 15/20
-    step 13/13 [==============================] - loss: 0.0048 - 112ms/step
+    step 13/13 [==============================] - loss: 0.0041 - 113ms/step         
     Epoch 16/20
-    step 13/13 [==============================] - loss: 0.0037 - 111ms/step
+    step 13/13 [==============================] - loss: 0.0031 - 115ms/step         
     Epoch 17/20
-    step 13/13 [==============================] - loss: 0.0040 - 113ms/step
+    step 13/13 [==============================] - loss: 0.0034 - 115ms/step         
     Epoch 18/20
-    step 13/13 [==============================] - loss: 0.0025 - 114ms/step
+    step 13/13 [==============================] - loss: 0.0021 - 114ms/step         
     Epoch 19/20
-    step 13/13 [==============================] - loss: 0.0042 - 112ms/step
+    step 13/13 [==============================] - loss: 0.0037 - 115ms/step         
     Epoch 20/20
-    step 13/13 [==============================] - loss: 0.0054 - 112ms/step
+    step 13/13 [==============================] - loss: 0.0047 - 114ms/step         
 
 
 ## 六、模型预测
@@ -383,7 +383,7 @@ predict_results = model.predict(val_dataset)
 ```
 
     Predict begin...
-    step 100/100 [==============================] - 7ms/step
+    step 100/100 [==============================] - 8ms/step        
     Predict samples: 100
 
 
@@ -430,7 +430,7 @@ def plot_results(img, title='results', prefix='out'):
     mark_inset(ax, axins, loc1=1, loc2=3, fc="none", ec="blue")
     plt.savefig(str(prefix) + "-" + title + ".png")
     plt.show()
-
+    
 def get_lowres_image(img, upscale_factor):
     """
     缩放图片
@@ -452,7 +452,7 @@ def upscale_image(model, img):
     img = np.expand_dims(y, axis=0) # 升维度到（1,w,h）一张image
     img = np.expand_dims(img, axis=0) # 升维度到（1,1,w,h）一个batch
     img = np.expand_dims(img, axis=0) # 升维度到（1,1,1,w,h）可迭代的batch
-
+    
     out = model.predict(img) # predict输入要求为可迭代的batch
 
     out_img_y = out[0][0][0] # 得到predict输出结果
@@ -477,7 +477,7 @@ def main(model, img, upscale_factor=3):
     w = lowres_input.size[0] * upscale_factor
     h = lowres_input.size[1] * upscale_factor
     # 将缩小后的图片再放大三倍
-    lowres_img = lowres_input.resize((w, h))
+    lowres_img = lowres_input.resize((w, h)) 
     # 确保未经缩放的图像和其他两张图片大小一致
     highres_img = img.resize((w, h))
     # 得到缩小后又经过 Efficient Sub-Pixel CNN放大的图片

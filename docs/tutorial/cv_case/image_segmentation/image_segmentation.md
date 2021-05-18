@@ -1,7 +1,7 @@
 # 基于U-Net卷积神经网络实现宠物图像分割
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle)<br>
-**日期:** 2021.03<br>
+**日期:** 2021.05<br>
 **摘要:** 本示例教程使用U-Net实现图像分割。
 
 ## 一、简要介绍
@@ -31,7 +31,7 @@ paddle.__version__
 
 
 
-    '2.0.1'
+    '2.1.0'
 
 
 
@@ -100,8 +100,8 @@ paddle.__version__
 IMAGE_SIZE = (160, 160)
 train_images_path = "images/"
 label_images_path = "annotations/trimaps/"
-image_count = len([os.path.join(train_images_path, image_name)
-          for image_name in os.listdir(train_images_path)
+image_count = len([os.path.join(train_images_path, image_name) 
+          for image_name in os.listdir(train_images_path) 
           if image_name.endswith('.jpg')])
 print("用于训练的图片样本数量:", image_count)
 
@@ -123,7 +123,7 @@ def write_file(mode, images, labels):
     with open('./{}.txt'.format(mode), 'w') as f:
         for i in range(len(images)):
             f.write('{}\t{}\n'.format(images[i], labels[i]))
-
+    
 """
 由于所有文件都是散落在文件夹中，在训练时需要使用的是数据集和标签对应的数据关系，
 所以第一步是对原始的数据集进行整理，得到数据集和标签两个数组，分别一一对应。
@@ -156,18 +156,18 @@ with open('./train.txt', 'r') as f:
         image_path, label_path = line.strip().split('\t')
         image = np.array(PilImage.open(image_path))
         label = np.array(PilImage.open(label_path))
-
+    
         if i > 2:
             break
         # 进行图片的展示
         plt.figure()
 
-        plt.subplot(1,2,1),
+        plt.subplot(1,2,1), 
         plt.title('Train Image')
         plt.imshow(image.astype('uint8'))
         plt.axis('off')
 
-        plt.subplot(1,2,2),
+        plt.subplot(1,2,2), 
         plt.title('Label')
         plt.imshow(label.astype('uint8'), cmap='gray')
         plt.axis('off')
@@ -198,7 +198,7 @@ with open('./train.txt', 'r') as f:
 class MyDataset(Dataset):
     def __init__(self):
         ...
-
+        
     # 每次迭代时返回数据和对应的标签
     def __getitem__(self, idx):
         return x, y
@@ -232,10 +232,10 @@ class PetDataset(Dataset):
         """
         self.image_size = IMAGE_SIZE
         self.mode = mode.lower()
-
+        
         assert self.mode in ['train', 'test', 'predict'], \
             "mode should be 'train' or 'test' or 'predict', but got {}".format(self.mode)
-
+        
         self.train_images = []
         self.label_images = []
 
@@ -244,7 +244,7 @@ class PetDataset(Dataset):
                 image, label = line.strip().split('\t')
                 self.train_images.append(image)
                 self.label_images.append(label)
-
+        
     def _load_img(self, path, color_mode='rgb', transforms=[]):
         """
         统一的图像处理接口封装，用于规整图像大小和通道
@@ -264,7 +264,7 @@ class PetDataset(Dataset):
                     img = img.convert('RGB')
             else:
                 raise ValueError('color_mode must be "grayscale", "rgb", or "rgba"')
-
+            
             return T.Compose([
                 T.Resize(self.image_size)
             ] + transforms)(img)
@@ -273,20 +273,20 @@ class PetDataset(Dataset):
         """
         返回 image, label
         """
-        train_image = self._load_img(self.train_images[idx],
+        train_image = self._load_img(self.train_images[idx], 
                                      transforms=[
-                                         T.Transpose(),
+                                         T.Transpose(), 
                                          T.Normalize(mean=127.5, std=127.5)
                                      ]) # 加载原始图像
-        label_image = self._load_img(self.label_images[idx],
+        label_image = self._load_img(self.label_images[idx], 
                                      color_mode='grayscale',
                                      transforms=[T.Grayscale()]) # 加载Label图像
-
+    
         # 返回image, label
         train_image = np.array(train_image, dtype='float32')
         label_image = np.array(label_image, dtype='int64')
         return train_image, label_image
-
+        
     def __len__(self):
         """
         返回数据集总数
@@ -307,16 +307,16 @@ U-Net是一个U型网络结构，可以看做两个大的阶段，图像先经�
 from paddle.nn import functional as F
 
 class SeparableConv2D(paddle.nn.Layer):
-    def __init__(self,
-                 in_channels,
-                 out_channels,
-                 kernel_size,
-                 stride=1,
-                 padding=0,
-                 dilation=1,
-                 groups=None,
-                 weight_attr=None,
-                 bias_attr=None,
+    def __init__(self, 
+                 in_channels, 
+                 out_channels, 
+                 kernel_size, 
+                 stride=1, 
+                 padding=0, 
+                 dilation=1, 
+                 groups=None, 
+                 weight_attr=None, 
+                 bias_attr=None, 
                  data_format="NCHW"):
         super(SeparableConv2D, self).__init__()
 
@@ -333,10 +333,10 @@ class SeparableConv2D(paddle.nn.Layer):
         # 第二次卷积参数
         filter_shape = [out_channels, in_channels] + self.convert_to_list(1, 2, 'kernel_size')
         self.weight_pointwise = self.create_parameter(shape=filter_shape, attr=weight_attr)
-        self.bias_pointwise = self.create_parameter(shape=[out_channels],
-                                                    attr=bias_attr,
+        self.bias_pointwise = self.create_parameter(shape=[out_channels], 
+                                                    attr=bias_attr, 
                                                     is_bias=True)
-
+    
     def convert_to_list(self, value, n, name, dtype=np.int):
         if isinstance(value, dtype):
             return [value, ] * n
@@ -361,16 +361,16 @@ class SeparableConv2D(paddle.nn.Layer):
                         "including element " + str(single_value) + " of type" + " "
                         + str(type(single_value)))
             return value_list
-
+    
     def forward(self, inputs):
-        conv_out = F.conv2d(inputs,
-                            self.weight_conv,
+        conv_out = F.conv2d(inputs, 
+                            self.weight_conv, 
                             padding=self._padding,
                             stride=self._stride,
                             dilation=self._dilation,
                             groups=self._in_channels,
                             data_format=self._data_format)
-
+        
         out = F.conv2d(conv_out,
                        self.weight_pointwise,
                        bias=self.bias_pointwise,
@@ -392,30 +392,30 @@ class SeparableConv2D(paddle.nn.Layer):
 class Encoder(paddle.nn.Layer):
     def __init__(self, in_channels, out_channels):
         super(Encoder, self).__init__()
-
+        
         self.relus = paddle.nn.LayerList(
             [paddle.nn.ReLU() for i in range(2)])
-        self.separable_conv_01 = SeparableConv2D(in_channels,
-                                                 out_channels,
-                                                 kernel_size=3,
+        self.separable_conv_01 = SeparableConv2D(in_channels, 
+                                                 out_channels, 
+                                                 kernel_size=3, 
                                                  padding='same')
         self.bns = paddle.nn.LayerList(
             [paddle.nn.BatchNorm2D(out_channels) for i in range(2)])
-
-        self.separable_conv_02 = SeparableConv2D(out_channels,
-                                                 out_channels,
-                                                 kernel_size=3,
+        
+        self.separable_conv_02 = SeparableConv2D(out_channels, 
+                                                 out_channels, 
+                                                 kernel_size=3, 
                                                  padding='same')
         self.pool = paddle.nn.MaxPool2D(kernel_size=3, stride=2, padding=1)
-        self.residual_conv = paddle.nn.Conv2D(in_channels,
-                                              out_channels,
-                                              kernel_size=1,
-                                              stride=2,
+        self.residual_conv = paddle.nn.Conv2D(in_channels, 
+                                              out_channels, 
+                                              kernel_size=1, 
+                                              stride=2, 
                                               padding='same')
 
     def forward(self, inputs):
         previous_block_activation = inputs
-
+        
         y = self.relus[0](inputs)
         y = self.separable_conv_01(y)
         y = self.bns[0](y)
@@ -423,7 +423,7 @@ class Encoder(paddle.nn.Layer):
         y = self.separable_conv_02(y)
         y = self.bns[1](y)
         y = self.pool(y)
-
+        
         residual = self.residual_conv(previous_block_activation)
         y = paddle.add(y, residual)
 
@@ -442,13 +442,13 @@ class Decoder(paddle.nn.Layer):
 
         self.relus = paddle.nn.LayerList(
             [paddle.nn.ReLU() for i in range(2)])
-        self.conv_transpose_01 = paddle.nn.Conv2DTranspose(in_channels,
-                                                           out_channels,
-                                                           kernel_size=3,
+        self.conv_transpose_01 = paddle.nn.Conv2DTranspose(in_channels, 
+                                                           out_channels, 
+                                                           kernel_size=3, 
                                                            padding=1)
-        self.conv_transpose_02 = paddle.nn.Conv2DTranspose(out_channels,
-                                                           out_channels,
-                                                           kernel_size=3,
+        self.conv_transpose_02 = paddle.nn.Conv2DTranspose(out_channels, 
+                                                           out_channels, 
+                                                           kernel_size=3, 
                                                            padding=1)
         self.bns = paddle.nn.LayerList(
             [paddle.nn.BatchNorm2D(out_channels) for i in range(2)]
@@ -456,9 +456,9 @@ class Decoder(paddle.nn.Layer):
         self.upsamples = paddle.nn.LayerList(
             [paddle.nn.Upsample(scale_factor=2.0) for i in range(2)]
         )
-        self.residual_conv = paddle.nn.Conv2D(in_channels,
-                                              out_channels,
-                                              kernel_size=1,
+        self.residual_conv = paddle.nn.Conv2D(in_channels, 
+                                              out_channels, 
+                                              kernel_size=1, 
                                               padding='same')
 
     def forward(self, inputs):
@@ -471,12 +471,12 @@ class Decoder(paddle.nn.Layer):
         y = self.conv_transpose_02(y)
         y = self.bns[1](y)
         y = self.upsamples[0](y)
-
+        
         residual = self.upsamples[1](previous_block_activation)
         residual = self.residual_conv(residual)
-
+        
         y = paddle.add(y, residual)
-
+        
         return y
 ```
 
@@ -490,7 +490,7 @@ class PetNet(paddle.nn.Layer):
     def __init__(self, num_classes):
         super(PetNet, self).__init__()
 
-        self.conv_1 = paddle.nn.Conv2D(3, 32,
+        self.conv_1 = paddle.nn.Conv2D(3, 32, 
                                        kernel_size=3,
                                        stride=2,
                                        padding='same')
@@ -513,27 +513,27 @@ class PetNet(paddle.nn.Layer):
 
         # 根据上采样个数和配置循环定义子Layer，避免重复写一样的程序
         for out_channels in self.decoder_list:
-            block = self.add_sublayer('decoder_{}'.format(out_channels),
+            block = self.add_sublayer('decoder_{}'.format(out_channels), 
                                       Decoder(in_channels, out_channels))
             self.decoders.append(block)
             in_channels = out_channels
 
-        self.output_conv = paddle.nn.Conv2D(in_channels,
-                                            num_classes,
-                                            kernel_size=3,
+        self.output_conv = paddle.nn.Conv2D(in_channels, 
+                                            num_classes, 
+                                            kernel_size=3, 
                                             padding='same')
-
+    
     def forward(self, inputs):
         y = self.conv_1(inputs)
         y = self.bn(y)
         y = self.relu(y)
-
+        
         for encoder in self.encoders:
             y = encoder(y)
 
         for decoder in self.decoders:
             y = decoder(y)
-
+        
         y = self.output_conv(y)
         return y
 ```
@@ -551,79 +551,79 @@ model.summary((-1, 3,) + IMAGE_SIZE)
 ```
 
     -----------------------------------------------------------------------------
-      Layer (type)        Input Shape          Output Shape         Param #
+      Layer (type)        Input Shape          Output Shape         Param #    
     =============================================================================
-        Conv2D-1       [[1, 3, 160, 160]]    [1, 32, 80, 80]          896
-      BatchNorm2D-1    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128
-         ReLU-1        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0
-         ReLU-2        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0
-    SeparableConv2D-1  [[1, 32, 80, 80]]     [1, 64, 80, 80]         2,400
-      BatchNorm2D-2    [[1, 64, 80, 80]]     [1, 64, 80, 80]          256
-         ReLU-3        [[1, 64, 80, 80]]     [1, 64, 80, 80]           0
-    SeparableConv2D-2  [[1, 64, 80, 80]]     [1, 64, 80, 80]         4,736
-      BatchNorm2D-3    [[1, 64, 80, 80]]     [1, 64, 80, 80]          256
-       MaxPool2D-1     [[1, 64, 80, 80]]     [1, 64, 40, 40]           0
-        Conv2D-2       [[1, 32, 80, 80]]     [1, 64, 40, 40]         2,112
-        Encoder-1      [[1, 32, 80, 80]]     [1, 64, 40, 40]           0
-         ReLU-4        [[1, 64, 40, 40]]     [1, 64, 40, 40]           0
-    SeparableConv2D-3  [[1, 64, 40, 40]]     [1, 128, 40, 40]        8,896
-      BatchNorm2D-4    [[1, 128, 40, 40]]    [1, 128, 40, 40]         512
-         ReLU-5        [[1, 128, 40, 40]]    [1, 128, 40, 40]          0
-    SeparableConv2D-4  [[1, 128, 40, 40]]    [1, 128, 40, 40]       17,664
-      BatchNorm2D-5    [[1, 128, 40, 40]]    [1, 128, 40, 40]         512
-       MaxPool2D-2     [[1, 128, 40, 40]]    [1, 128, 20, 20]          0
-        Conv2D-3       [[1, 64, 40, 40]]     [1, 128, 20, 20]        8,320
-        Encoder-2      [[1, 64, 40, 40]]     [1, 128, 20, 20]          0
-         ReLU-6        [[1, 128, 20, 20]]    [1, 128, 20, 20]          0
-    SeparableConv2D-5  [[1, 128, 20, 20]]    [1, 256, 20, 20]       34,176
-      BatchNorm2D-6    [[1, 256, 20, 20]]    [1, 256, 20, 20]        1,024
-         ReLU-7        [[1, 256, 20, 20]]    [1, 256, 20, 20]          0
-    SeparableConv2D-6  [[1, 256, 20, 20]]    [1, 256, 20, 20]       68,096
-      BatchNorm2D-7    [[1, 256, 20, 20]]    [1, 256, 20, 20]        1,024
-       MaxPool2D-3     [[1, 256, 20, 20]]    [1, 256, 10, 10]          0
-        Conv2D-4       [[1, 128, 20, 20]]    [1, 256, 10, 10]       33,024
-        Encoder-3      [[1, 128, 20, 20]]    [1, 256, 10, 10]          0
-         ReLU-8        [[1, 256, 10, 10]]    [1, 256, 10, 10]          0
-    Conv2DTranspose-1  [[1, 256, 10, 10]]    [1, 256, 10, 10]       590,080
-      BatchNorm2D-8    [[1, 256, 10, 10]]    [1, 256, 10, 10]        1,024
-         ReLU-9        [[1, 256, 10, 10]]    [1, 256, 10, 10]          0
-    Conv2DTranspose-2  [[1, 256, 10, 10]]    [1, 256, 10, 10]       590,080
-      BatchNorm2D-9    [[1, 256, 10, 10]]    [1, 256, 10, 10]        1,024
-       Upsample-1      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0
-       Upsample-2      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0
-        Conv2D-5       [[1, 256, 20, 20]]    [1, 256, 20, 20]       65,792
-        Decoder-1      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0
-         ReLU-10       [[1, 256, 20, 20]]    [1, 256, 20, 20]          0
-    Conv2DTranspose-3  [[1, 256, 20, 20]]    [1, 128, 20, 20]       295,040
-     BatchNorm2D-10    [[1, 128, 20, 20]]    [1, 128, 20, 20]         512
-         ReLU-11       [[1, 128, 20, 20]]    [1, 128, 20, 20]          0
-    Conv2DTranspose-4  [[1, 128, 20, 20]]    [1, 128, 20, 20]       147,584
-     BatchNorm2D-11    [[1, 128, 20, 20]]    [1, 128, 20, 20]         512
-       Upsample-3      [[1, 128, 20, 20]]    [1, 128, 40, 40]          0
-       Upsample-4      [[1, 256, 20, 20]]    [1, 256, 40, 40]          0
-        Conv2D-6       [[1, 256, 40, 40]]    [1, 128, 40, 40]       32,896
-        Decoder-2      [[1, 256, 20, 20]]    [1, 128, 40, 40]          0
-         ReLU-12       [[1, 128, 40, 40]]    [1, 128, 40, 40]          0
-    Conv2DTranspose-5  [[1, 128, 40, 40]]    [1, 64, 40, 40]        73,792
-     BatchNorm2D-12    [[1, 64, 40, 40]]     [1, 64, 40, 40]          256
-         ReLU-13       [[1, 64, 40, 40]]     [1, 64, 40, 40]           0
-    Conv2DTranspose-6  [[1, 64, 40, 40]]     [1, 64, 40, 40]        36,928
-     BatchNorm2D-13    [[1, 64, 40, 40]]     [1, 64, 40, 40]          256
-       Upsample-5      [[1, 64, 40, 40]]     [1, 64, 80, 80]           0
-       Upsample-6      [[1, 128, 40, 40]]    [1, 128, 80, 80]          0
-        Conv2D-7       [[1, 128, 80, 80]]    [1, 64, 80, 80]         8,256
-        Decoder-3      [[1, 128, 40, 40]]    [1, 64, 80, 80]           0
-         ReLU-14       [[1, 64, 80, 80]]     [1, 64, 80, 80]           0
-    Conv2DTranspose-7  [[1, 64, 80, 80]]     [1, 32, 80, 80]        18,464
-     BatchNorm2D-14    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128
-         ReLU-15       [[1, 32, 80, 80]]     [1, 32, 80, 80]           0
-    Conv2DTranspose-8  [[1, 32, 80, 80]]     [1, 32, 80, 80]         9,248
-     BatchNorm2D-15    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128
-       Upsample-7      [[1, 32, 80, 80]]    [1, 32, 160, 160]          0
-       Upsample-8      [[1, 64, 80, 80]]    [1, 64, 160, 160]          0
-        Conv2D-8      [[1, 64, 160, 160]]   [1, 32, 160, 160]        2,080
-        Decoder-4      [[1, 64, 80, 80]]    [1, 32, 160, 160]          0
-        Conv2D-9      [[1, 32, 160, 160]]    [1, 4, 160, 160]        1,156
+        Conv2D-1       [[1, 3, 160, 160]]    [1, 32, 80, 80]          896      
+      BatchNorm2D-1    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
+         ReLU-1        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
+         ReLU-2        [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
+    SeparableConv2D-1  [[1, 32, 80, 80]]     [1, 64, 80, 80]         2,400     
+      BatchNorm2D-2    [[1, 64, 80, 80]]     [1, 64, 80, 80]          256      
+         ReLU-3        [[1, 64, 80, 80]]     [1, 64, 80, 80]           0       
+    SeparableConv2D-2  [[1, 64, 80, 80]]     [1, 64, 80, 80]         4,736     
+      BatchNorm2D-3    [[1, 64, 80, 80]]     [1, 64, 80, 80]          256      
+       MaxPool2D-1     [[1, 64, 80, 80]]     [1, 64, 40, 40]           0       
+        Conv2D-2       [[1, 32, 80, 80]]     [1, 64, 40, 40]         2,112     
+        Encoder-1      [[1, 32, 80, 80]]     [1, 64, 40, 40]           0       
+         ReLU-4        [[1, 64, 40, 40]]     [1, 64, 40, 40]           0       
+    SeparableConv2D-3  [[1, 64, 40, 40]]     [1, 128, 40, 40]        8,896     
+      BatchNorm2D-4    [[1, 128, 40, 40]]    [1, 128, 40, 40]         512      
+         ReLU-5        [[1, 128, 40, 40]]    [1, 128, 40, 40]          0       
+    SeparableConv2D-4  [[1, 128, 40, 40]]    [1, 128, 40, 40]       17,664     
+      BatchNorm2D-5    [[1, 128, 40, 40]]    [1, 128, 40, 40]         512      
+       MaxPool2D-2     [[1, 128, 40, 40]]    [1, 128, 20, 20]          0       
+        Conv2D-3       [[1, 64, 40, 40]]     [1, 128, 20, 20]        8,320     
+        Encoder-2      [[1, 64, 40, 40]]     [1, 128, 20, 20]          0       
+         ReLU-6        [[1, 128, 20, 20]]    [1, 128, 20, 20]          0       
+    SeparableConv2D-5  [[1, 128, 20, 20]]    [1, 256, 20, 20]       34,176     
+      BatchNorm2D-6    [[1, 256, 20, 20]]    [1, 256, 20, 20]        1,024     
+         ReLU-7        [[1, 256, 20, 20]]    [1, 256, 20, 20]          0       
+    SeparableConv2D-6  [[1, 256, 20, 20]]    [1, 256, 20, 20]       68,096     
+      BatchNorm2D-7    [[1, 256, 20, 20]]    [1, 256, 20, 20]        1,024     
+       MaxPool2D-3     [[1, 256, 20, 20]]    [1, 256, 10, 10]          0       
+        Conv2D-4       [[1, 128, 20, 20]]    [1, 256, 10, 10]       33,024     
+        Encoder-3      [[1, 128, 20, 20]]    [1, 256, 10, 10]          0       
+         ReLU-8        [[1, 256, 10, 10]]    [1, 256, 10, 10]          0       
+    Conv2DTranspose-1  [[1, 256, 10, 10]]    [1, 256, 10, 10]       590,080    
+      BatchNorm2D-8    [[1, 256, 10, 10]]    [1, 256, 10, 10]        1,024     
+         ReLU-9        [[1, 256, 10, 10]]    [1, 256, 10, 10]          0       
+    Conv2DTranspose-2  [[1, 256, 10, 10]]    [1, 256, 10, 10]       590,080    
+      BatchNorm2D-9    [[1, 256, 10, 10]]    [1, 256, 10, 10]        1,024     
+       Upsample-1      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
+       Upsample-2      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
+        Conv2D-5       [[1, 256, 20, 20]]    [1, 256, 20, 20]       65,792     
+        Decoder-1      [[1, 256, 10, 10]]    [1, 256, 20, 20]          0       
+         ReLU-10       [[1, 256, 20, 20]]    [1, 256, 20, 20]          0       
+    Conv2DTranspose-3  [[1, 256, 20, 20]]    [1, 128, 20, 20]       295,040    
+     BatchNorm2D-10    [[1, 128, 20, 20]]    [1, 128, 20, 20]         512      
+         ReLU-11       [[1, 128, 20, 20]]    [1, 128, 20, 20]          0       
+    Conv2DTranspose-4  [[1, 128, 20, 20]]    [1, 128, 20, 20]       147,584    
+     BatchNorm2D-11    [[1, 128, 20, 20]]    [1, 128, 20, 20]         512      
+       Upsample-3      [[1, 128, 20, 20]]    [1, 128, 40, 40]          0       
+       Upsample-4      [[1, 256, 20, 20]]    [1, 256, 40, 40]          0       
+        Conv2D-6       [[1, 256, 40, 40]]    [1, 128, 40, 40]       32,896     
+        Decoder-2      [[1, 256, 20, 20]]    [1, 128, 40, 40]          0       
+         ReLU-12       [[1, 128, 40, 40]]    [1, 128, 40, 40]          0       
+    Conv2DTranspose-5  [[1, 128, 40, 40]]    [1, 64, 40, 40]        73,792     
+     BatchNorm2D-12    [[1, 64, 40, 40]]     [1, 64, 40, 40]          256      
+         ReLU-13       [[1, 64, 40, 40]]     [1, 64, 40, 40]           0       
+    Conv2DTranspose-6  [[1, 64, 40, 40]]     [1, 64, 40, 40]        36,928     
+     BatchNorm2D-13    [[1, 64, 40, 40]]     [1, 64, 40, 40]          256      
+       Upsample-5      [[1, 64, 40, 40]]     [1, 64, 80, 80]           0       
+       Upsample-6      [[1, 128, 40, 40]]    [1, 128, 80, 80]          0       
+        Conv2D-7       [[1, 128, 80, 80]]    [1, 64, 80, 80]         8,256     
+        Decoder-3      [[1, 128, 40, 40]]    [1, 64, 80, 80]           0       
+         ReLU-14       [[1, 64, 80, 80]]     [1, 64, 80, 80]           0       
+    Conv2DTranspose-7  [[1, 64, 80, 80]]     [1, 32, 80, 80]        18,464     
+     BatchNorm2D-14    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
+         ReLU-15       [[1, 32, 80, 80]]     [1, 32, 80, 80]           0       
+    Conv2DTranspose-8  [[1, 32, 80, 80]]     [1, 32, 80, 80]         9,248     
+     BatchNorm2D-15    [[1, 32, 80, 80]]     [1, 32, 80, 80]          128      
+       Upsample-7      [[1, 32, 80, 80]]    [1, 32, 160, 160]          0       
+       Upsample-8      [[1, 64, 80, 80]]    [1, 64, 160, 160]          0       
+        Conv2D-8      [[1, 64, 160, 160]]   [1, 32, 160, 160]        2,080     
+        Decoder-4      [[1, 64, 80, 80]]    [1, 32, 160, 160]          0       
+        Conv2D-9      [[1, 32, 160, 160]]    [1, 4, 160, 160]        1,156     
     =============================================================================
     Total params: 2,059,268
     Trainable params: 2,051,716
@@ -634,7 +634,7 @@ model.summary((-1, 3,) + IMAGE_SIZE)
     Params size (MB): 7.86
     Estimated Total Size (MB): 125.92
     -----------------------------------------------------------------------------
-
+    
 
 
 
@@ -655,110 +655,95 @@ model.summary((-1, 3,) + IMAGE_SIZE)
 train_dataset = PetDataset(mode='train') # 训练数据集
 val_dataset = PetDataset(mode='test') # 验证数据集
 
-optim = paddle.optimizer.RMSProp(learning_rate=0.001,
-                                 rho=0.9,
-                                 momentum=0.0,
-                                 epsilon=1e-07,
+optim = paddle.optimizer.RMSProp(learning_rate=0.001, 
+                                 rho=0.9, 
+                                 momentum=0.0, 
+                                 epsilon=1e-07, 
                                  centered=False,
                                  parameters=model.parameters())
 model.prepare(optim, paddle.nn.CrossEntropyLoss(axis=1))
-model.fit(train_dataset,
-          val_dataset,
-          epochs=15,
+model.fit(train_dataset, 
+          val_dataset, 
+          epochs=15, 
           batch_size=32,
           verbose=1)
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/15
-    step 197/197 [==============================] - loss: 0.7987 - 259ms/step
+    step 197/197 [==============================] - loss: 0.6836 - 307ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.6574 - 238ms/step
+    step 35/35 [==============================] - loss: 0.6266 - 296ms/step         
     Eval samples: 1108
     Epoch 2/15
-    step 197/197 [==============================] - loss: 0.4407 - 253ms/step
+    step 197/197 [==============================] - loss: 0.4854 - 320ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.5894 - 236ms/step
+    step 35/35 [==============================] - loss: 0.5801 - 302ms/step         
     Eval samples: 1108
     Epoch 3/15
-    step 197/197 [==============================] - loss: 0.4761 - 254ms/step
+    step 197/197 [==============================] - loss: 0.5068 - 308ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.6003 - 239ms/step
+    step 35/35 [==============================] - loss: 0.5692 - 298ms/step         
     Eval samples: 1108
     Epoch 4/15
-    step 197/197 [==============================] - loss: 0.5745 - 255ms/step
+    step 197/197 [==============================] - loss: 0.6027 - 307ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.5393 - 239ms/step
+    step 35/35 [==============================] - loss: 0.6156 - 299ms/step         
     Eval samples: 1108
     Epoch 5/15
-    step 197/197 [==============================] - loss: 0.5740 - 255ms/step
+    step 197/197 [==============================] - loss: 0.4864 - 309ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.4729 - 235ms/step
+    step 35/35 [==============================] - loss: 0.4617 - 298ms/step         
     Eval samples: 1108
     Epoch 6/15
-    step 197/197 [==============================] - loss: 0.4172 - 255ms/step
+    step 197/197 [==============================] - loss: 0.3963 - 322ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.4371 - 236ms/step
+    step 35/35 [==============================] - loss: 0.3973 - 293ms/step         
     Eval samples: 1108
     Epoch 7/15
-    step 197/197 [==============================] - loss: 0.2865 - 256ms/step
+    step 197/197 [==============================] - loss: 0.2579 - 309ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.4426 - 237ms/step
+    step 35/35 [==============================] - loss: 0.3995 - 304ms/step         
     Eval samples: 1108
     Epoch 8/15
-    step 197/197 [==============================] - loss: 0.2916 - 255ms/step
+    step 197/197 [==============================] - loss: 0.2860 - 310ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.4000 - 238ms/step
+    step 35/35 [==============================] - loss: 0.3608 - 293ms/step         
     Eval samples: 1108
     Epoch 9/15
-    step 197/197 [==============================] - loss: 0.4454 - 254ms/step
+    step 197/197 [==============================] - loss: 0.4822 - 314ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.4701 - 239ms/step
+    step 35/35 [==============================] - loss: 0.5186 - 303ms/step         
     Eval samples: 1108
     Epoch 10/15
-    step 197/197 [==============================] - loss: 0.3905 - 256ms/step
+    step 197/197 [==============================] - loss: 0.3802 - 314ms/step         
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.4632 - 237ms/step
+    step 35/35 [==============================] - loss: 0.4811 - 297ms/step         
     Eval samples: 1108
     Epoch 11/15
-    step 197/197 [==============================] - loss: 0.3227 - 254ms/step
+    step 197/197 [==============================] - loss: 0.2887 - 323ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.4522 - 236ms/step
+    step 35/35 [==============================] - loss: 0.4014 - 292ms/step         
     Eval samples: 1108
     Epoch 12/15
-    step 197/197 [==============================] - loss: 0.3093 - 255ms/step
+    step 197/197 [==============================] - loss: 0.2729 - 330ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.4541 - 235ms/step
+    step 35/35 [==============================] - loss: 0.4071 - 318ms/step         
     Eval samples: 1108
     Epoch 13/15
-    step 197/197 [==============================] - loss: 0.3452 - 256ms/step
+    step 197/197 [==============================] - loss: 0.3309 - 312ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.4722 - 236ms/step
+    step 35/35 [==============================] - loss: 0.4500 - 295ms/step         
     Eval samples: 1108
     Epoch 14/15
-    step 197/197 [==============================] - loss: 0.3925 - 254ms/step
+    step 197/197 [==============================] - loss: 0.3536 - 306ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.4808 - 234ms/step
+    step 35/35 [==============================] - loss: 0.3825 - 312ms/step         
     Eval samples: 1108
     Epoch 15/15
-    step 197/197 [==============================] - loss: 0.3241 - 256ms/step
+    step 197/197 [==============================] - loss: 0.4102 - 305ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 35/35 [==============================] - loss: 0.5109 - 236ms/step
+    step 35/35 [==============================] - loss: 0.5992 - 294ms/step         
     Eval samples: 1108
 
 
@@ -777,7 +762,9 @@ predict_results = model.predict(predict_dataset)
 ```
 
     Predict begin...
-    step  746/1108 [===================>..........] - ETA: 5s - 15ms/ste
+    step 1108/1108 [==============================] - 18ms/step         
+    Predict samples: 1108
+
 
 ### 6.2 预测结果可视化
 
@@ -802,7 +789,7 @@ with open('./predict.txt', 'r') as f:
         image = np.array(image).astype('uint8')
         label = np.array(label).astype('uint8')
 
-        if i > 8:
+        if i > 8: 
             break
         plt.subplot(3, 3, i + 1)
         plt.imshow(image)
@@ -813,7 +800,7 @@ with open('./predict.txt', 'r') as f:
         plt.imshow(label, cmap='gray')
         plt.title('Label')
         plt.axis("off")
-
+        
         # 模型只有一个输出，所以通过predict_results[0]来取出1000个预测的结果
         # 映射原始图片的index来取出预测结果，提取mask进行展示
         data = predict_results[0][mask_idx][0].transpose((1, 2, 0))
@@ -831,3 +818,9 @@ plt.show()
 
 
 ![png](output_31_0.png)
+
+
+
+```python
+
+```
