@@ -2,13 +2,13 @@
 
 ## Environment preparation
 
-* **CentOS version (64 bit)**
+* **Linux version (64 bit)**
     * **CentOS 6 (not recommended, no official support for compilation problems)**
-    * **CentOS 7 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0 CUDA 9.1, only support single-card mode)**
-    * **Ubuntu 14.04 (GPU version supports CUDA 10.0/10.1)**
-    * **Ubuntu 16.04 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
-    * **Ubuntu 18.04 (GPU version supports CUDA 10.0/10.1/10.2/11.0)**
-* **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+    * **CentOS 7 (GPU version supports CUDA 10.1/10.2/11.0/11.2**
+    * **Ubuntu 14.04 (not recommended, no official support for compilation problems)**
+    * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.0/11.2)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.0/11.2)**
+* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip or pip3 version 20.2.2+ (64 bit)**
 
 ## Choose CPU/GPU
@@ -17,9 +17,9 @@
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
 
-    * **CUDA toolkit 9.0/10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
     * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.7 or higher)**
-    * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.3.7 or higher)**
+    * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.7 or higher)**
+    * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
     * **Hardware devices with GPU computing power over 1.0**
 
         You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)

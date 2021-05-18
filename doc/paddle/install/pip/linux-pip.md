@@ -6,14 +6,11 @@
 
 * **Linux 版本 (64 bit)**
 
-  * **CentOS 6 (GPU版本支持CUDA 9.0/9.1/9.2/10.0/10.1/10.2, 仅支持单卡)**
+  * **CentOS 7 (GPU版本支持CUDA 10.1/10.2/11.0/11.2)**
+  * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
+  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
 
-  * **CentOS 7 (GPU版本支持CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0, 其中CUDA 9.1仅支持单卡)**
-  * **Ubuntu 14.04 (GPU 版本支持 CUDA 10.0/10.1)**
-  * **Ubuntu 16.04 (GPU 版本支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
-  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.0/10.1/10.2/11.0)**
-
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
@@ -111,11 +108,11 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件并且安装[GPU版PaddlePaddle](#gpu)
 
-  * **CUDA 工具包9.0/10.0配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
-
   * **CUDA 工具包10.1/10.2配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.7及更高)**
 
   * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
+
+  * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
 
   * **GPU运算能力超过1.0的硬件设备**
 
@@ -156,11 +153,10 @@
 * [CPU版的PaddlePaddle](#cpu)
 
 * [GPU版的PaddlePaddle](#gpu)
-  * [CUDA9.0的PaddlePaddle](#cuda9)
-  * [CUDA10.0的PaddlePaddle](#cuda10)
   * [CUDA10.1的PaddlePaddle](#cuda10.1)
   * [CUDA10.2的PaddlePaddle](#cuda10.2)
   * [CUDA11.0的PaddlePaddle](#cuda11)
+  * [CUDA11.2的PaddlePaddle](#cuda11.2)
 
 
 
@@ -203,7 +199,7 @@
   ```
 
 
-2.2.4 <span id="cuda11">CUDA11.2的PaddlePaddle</span>
+2.2.4 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
 
 
   ```

@@ -33,7 +33,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 ==================================
 
 * Currently, **PaddlePaddle** only supports **CUDA** driver of **NVIDIA** graphics card.
-* You need to install `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ , and version 7.6+ is required(For CUDA9/10) 
+* You need to install `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ , and version 7.6+ is required(For CUDA10.1/10.2) 
 * If you need GPU multi-card mode, you need to install `NCCL 2 <https://developer.nvidia.com/nccl/>`_
 
     * Only Ubuntu/CentOS support NCCL 2
@@ -41,25 +41,22 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 
     * Windows install GPU version
 
-        * Windows 7 / 8 / 10 support CUDA 9.0 / 10.0 single-card mode, but don't support CUDA 9.1/9.2/10.1		
+        * Windows 7 / 8 / 10 support CUDA 10.1/10.2/11.0/11.2 single-card mode, but don't support CUDA 9.1/9.2/10.1		
         * don't support install using **nvidia-docker** 
     * Ubuntu install GPU version
 
-        * Ubuntu 14.04 supports CUDA 10.0/10.1, but doesn't support CUDA 9.0/9.1/9.2
-        * Ubuntu 16.04 supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2
-        * Ubuntu 18.04 supports CUDA 10.0/10.1/10.2/11.0, but doesn't support CUDA 9.0/9.1/9.2
-        * If you install using **nvidia-docker** , it supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0
+        * Ubuntu 16.04 supports CUDA 10.1/10.2/11.0/11.2
+        * Ubuntu 18.04 supports CUDA 10.1/10.2/11.0/11.2
+        * If you install using **nvidia-docker** , it supports CUDA 10.2/11.2
     * CentOS install GPU version
 
         * If you install using native **pip** :
 
-            * CentOS 7 supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0, CUDA 9.1 supports single-card mode only
-            * CentOS 6 supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2 single-card mode
+            * CentOS 7 supports CUDA 10.1/10.2/11.0/11.2
         * If you compile and install using native source code:
 
-            * CentOS 7 supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0, CUDA 9.1 supports single-card mode only
-            * CentOS 6 is not recommended, we don't provide official support in case of compilation problems
-        * If you install using  **nvidia-docker** , CentOS 7 supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0
+            * CentOS 7 supports CUDA 10.1/10.2/11.0/11.2
+        * If you install using  **nvidia-docker** , CentOS 7 supports CUDA 10.2/11.2
     * MacOS isn't supported: PaddlePaddle has no GPU support in Mac OS platform
 
 Please make sure your environment meets the above conditions. If you have other requirements, please refer to `Appendix <Tables_en.html#ciwhls>`_ .
@@ -72,26 +69,18 @@ Please make sure your environment meets the above conditions. If you have other 
     * not support NCCL
 * Support for Ubuntu
 
-    * Ubuntu 14.04:
-
-        * support NCCL v2.4.2-v2.4.8 under CUDA10.1 
-        * support NCCL v2.3.7-v2.4.8 under CUDA10.0
     * Ubuntu 16.04:
 
         * support NCCL v2.4.2-v2.4.8 under CUDA10.1
-        * support NCCL v2.3.7-v2.4.8 under CUDA10.0/9.2/9.0        
-        * support NCCL v2.1.15 under CUDA9.1
     * Ubuntu 18.04:
 
         * support v2.4.2-v2.4.8 under CUDA10.1 
-        * support NCCL v2.3.7-v2.4.8 under CUDA10.0 
 * Support for CentOS
 
     * CentOS 6: not support NCCL
     * CentOS 7:
 
         * support NCCL v2.4.2-v2.4.8 under CUDA10.1 
-        * support NCCL v2.3.7-v2.4.8 under CUDA10.0/9.2/9.0 
 * Support for MacOS
 
     * not support NCCL

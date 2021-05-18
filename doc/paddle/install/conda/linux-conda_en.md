@@ -141,11 +141,11 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.7 or higher)**
 
-  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+  * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.7 or higher)**
 
-  * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.3.7 or higher)**
+  * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 
   * **Hardware devices with GPU computing power over 1.0**
 
@@ -191,11 +191,10 @@ You can choose the following version of PaddlePaddle to start installation:
 
 * [CPU Version of PaddlePaddle](#cpu)
 * [GPU Version of PaddlePaddle](#gpu)
-  * [CUDA9.0 PaddlePaddle](#cuda9)
-  * [CUDA10.0 PaddlePaddle](#cuda10)
   * [CUDA10.1 PaddlePaddle](#cuda10.1)
   * [CUDA10.2 PaddlePaddle](#cuda10.2)
-  * [CUDA11.0 PaddlePaddle](#cuda11)
+  * [CUDA11.0 PaddlePaddle](#cuda11.0)
+  * [CUDA11.2 PaddlePaddle](#cuda11.2)
 
 
 
@@ -222,7 +221,7 @@ conda install paddlepaddle -c paddle
   conda install paddlepaddle-gpu cudatoolkit=10.2 -c paddle
   ```
 
-*  <span id="cuda11">If you are using CUDA 11，cuDNN 8.0.4+:</span>
+*  <span id="cuda11.0">If you are using CUDA 11，cuDNN 8.0.4+:</span>
 
   ```
   conda install paddlepaddle-gpu cudatoolkit=11.0 -c paddle

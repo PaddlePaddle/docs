@@ -4,11 +4,11 @@
 
 * **Linux 版本 (64 bit)**
     * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
-    * **CentOS 7 (GPU 版本支持CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0 CUDA 9.1 仅支持单卡模式)**
-    * **Ubuntu 14.04 (GPU 版本支持 CUDA 10.0/10.1)**
-    * **Ubuntu 16.04 (GPU 版本支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
-    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.0/10.1/10.2/11.0)**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+    * **CentOS 7 (GPU 版本支持CUDA 10.1/10.2/11.0/11.2)**
+    * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
+* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
 ## 选择CPU/GPU
@@ -17,9 +17,9 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件以编译GPU版PaddlePaddle
 
-    * **CUDA 工具包9.0/10.0配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
     * **CUDA 工具包10.1/10.2配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
+    * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
     * **GPU运算能力超过1.0的硬件设备**
 
         您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
@@ -498,7 +498,7 @@
         > 请注意PY_VERSION参数更换为您需要的python版本
 
 
-    * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA10.2/CUDA10.1/CUDA10.0/CUDA9)**)
+    * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA11.2/CUDA11.0/CUDA10.2/CUDA10.1)**)
 
         1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 

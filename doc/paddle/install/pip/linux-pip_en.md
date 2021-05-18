@@ -5,14 +5,11 @@
 ### 1.1 PREQUISITES
 
 * **Linux Version (64 bit)**
-  * **CentOS 6 (GPU Version Supports CUDA 9.0/9.1/9.2/10.0/10.1, only supports single card**)**
+  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2**)**
+  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2)**
+  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2)**
 
-  * **CentOS 7 (GPUVersion Supports CUDA 9.0/9.1/9.2/10.0/10.1, CUDA 9.1 only supports single card**)**
-  * **Ubuntu 14.04 (GPUVersion Supports CUDA 10.0/10.1)**
-  * **Ubuntu 16.04 (GPUVersion Supports CUDA 9.0/9.1/9.2/10.0/10.1)**
-  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.0/10.1)**
-
-* **Python Version: 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **Python Version: 3.6/3.7/3.8/3.9 (64 bit)**
 
 * **pip or pip3 Version 20.2.2+ (64 bit)**
 
@@ -108,11 +105,11 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 9.0/10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.7 or higher)**
 
-  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+  * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.7 or higher)**
 
-  * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.3.7 or higher)**
+  * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 
   * **Hardware devices with GPU computing power over 1.0**
 
@@ -159,11 +156,10 @@ You can choose the following version of PaddlePaddle to start installation:
 * [CPU Version of PaddlePaddle](#cpu)
 
 * [GPU Version of PaddlePaddle](#gpu)
-  * [CUDA9.0 PaddlePaddle](#cuda9)
-  * [CUDA10.0 PaddlePaddle](#cuda10)
   * [CUDA10.1 PaddlePaddle](#cuda10.1)
   * [CUDA10.2 PaddlePaddle](#cuda10.2)
   * [CUDA11.0 PaddlePaddle](#cuda11)
+  * [CUDA11.2 PaddlePaddle](#cuda11.2)
 
 
 
@@ -206,7 +202,7 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.4 <span id="cuda11">CUDA11.2的PaddlePaddle</span>
+2.2.4 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
 
 
   ```

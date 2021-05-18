@@ -5,7 +5,7 @@
 ### 1.1 PREQUISITES
 
 * **Windows 7/8/10 Pro/Enterprise (64bit)**
-  * **GPU version support CUDA 9.0/10.0/10.1/10.2/11.0，only support single card**
+  * **GPU version support CUDA 10.1/10.2/11.0/11.2，only support single card**
 
 * **Python version 2.7.15+/3.5.1+/3.6+/3.7+/3.8+ (64 bit)**
 
@@ -92,9 +92,11 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6.5+**
+  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5+**
 
   * **CUDA toolkit 11.0 with cuDNN v8.0.4**
+
+  * **CUDA toolkit 11.2 with cuDNN v8.1.1**
 
   * **Hardware devices with GPU computing power over 3.0**
 
@@ -108,11 +110,10 @@ You can choose the following version of PaddlePaddle to start installation:
 * [CPU Version of PaddlePaddle](#cpu)
 
 * [GPU Version of PaddlePaddle](#gpu)
-  * [CUDA9.0 PaddlePaddle](#cuda9)
-  * [CUDA10.0 PaddlePaddle](#cuda10)
   * [CUDA10.1 PaddlePaddle](#cuda10.1)
   * [CUDA10.2 PaddlePaddle](#cuda10.2)
   * [CUDA11.0 PaddlePaddle](#cuda11)
+  * [CUDA11.2 PaddlePaddle](#cuda11.2)
 
 
 
@@ -151,7 +152,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
-2.2.4 <span id="cuda11">CUDA11的PaddlePaddle</span>
+2.2.4 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.0.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
@@ -168,39 +169,6 @@ Note：
   ```
 
 * The above commands install the `avx` and `mkl` package by default.
-
-To install PaddlePaddle package with `noavx` and `mkl`, please use the following command:
-  cpu support python27 and python38:
-  ```
-  python -m pip install paddlepaddle==2.1.0 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-  cuda10.2 support python27 and python38:
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-  CUDA9.0 10.0 10.1 and 11.0 only support python27:
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post90 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post100 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable/noavx.html
-  ```
-
-To install PaddlePaddle that supports CUDA 9.0 with `noavx` and `openblas`, please use the following command:
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/openblas/stable/noavx.html
-  ```
-
-To install PaddlePaddle that supports CUDA 9.0 with `avx` and `openblas`, please use the following command:
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/openblas/stable.html
-  ```
 
 
 * If you want to install the Paddle package built with `tensorrt`, please use the following command:

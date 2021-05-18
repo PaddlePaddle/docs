@@ -9,7 +9,7 @@
 Before performing PaddlePaddle installation, please make sure that your Anaconda software environment is properly installed. For software download and installation, see Anaconda's official website (https://www.anaconda.com/). If you have installed Anaconda correctly, follow these steps to install PaddlePaddle.
 
 * Windows 7/8/10 Pro/Enterprise (64bit)
-  * GPU Version supportCUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0，且仅支持单卡
+  * GPU Version supportCUDA 10.1/10.2/11.0/11.2，且仅支持单卡
 * conda version 4.8.3+ (64 bit)
 
 
@@ -148,9 +148,11 @@ We will introduce conda installation here.
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6+**
+  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+**
 
   * **CUDA toolkit 11.0 with cuDNN v8.0.4(**
+
+  * **CUDA toolkit 11.2 with cuDNN v8.1.1(**
 
   * **Hardware devices with GPU computing power over 1.0**
 
@@ -163,11 +165,10 @@ You can choose the following version of PaddlePaddle to start installation:
 
 * [CPU Version of PaddlePaddle](#cpu)
 * [GPU Version of PaddlePaddle](#gpu)
-  * [CUDA9.0 PaddlePaddle](#cuda9)
-  * [CUDA10.0 PaddlePaddle](#cuda10)
   * [CUDA10.1 PaddlePaddle](#cuda10.1)
   * [CUDA10.2 PaddlePaddle](#cuda10.2)
-  * [CUDA11.0 PaddlePaddle](#cuda11)
+  * [CUDA11.0 PaddlePaddle](#cuda11.0)
+  * [CUDA11.2 PaddlePaddle](#cuda11.2)
 
 
 
@@ -195,7 +196,7 @@ conda install paddlepaddle -c paddle
   conda install paddlepaddle-gpu cudatoolkit=10.2 -c paddle
   ```
 
-*  <span id="cuda11">If you are using CUDA 11，cuDNN 8.0.4+:</span>
+*  <span id="cuda11.0">If you are using CUDA 11，cuDNN 8.0.4+:</span>
 
   ```
   conda install paddlepaddle-gpu cudatoolkit=11.0 -c paddle

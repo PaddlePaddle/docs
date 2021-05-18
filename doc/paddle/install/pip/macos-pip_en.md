@@ -6,7 +6,7 @@
 
 * **MacOS version 10.11/10.12/10.13/10.14 (64 bit) (not support GPU version)**
 
-* **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
 
 * **pip or pip3 版本 20.2.2+ (64 bit)**
 
