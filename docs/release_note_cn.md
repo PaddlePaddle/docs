@@ -27,12 +27,14 @@ from paddle.nn.layer.conv import *
 ```
 
 - `Tensor.grad`不兼容升级，返回值的类型由`numpy`变为`Tensor`。([#32142](https://github.com/PaddlePaddle/Paddle/pull/32142))
+
 | 2.0                                                          | 2.1                                                          |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | import paddle<br /> x = paddle.to_tensor(5., stop_gradient=False)<br /> y = paddle.pow(x, 4.0)<br /> y.backward()<br /> type(x.grad)<br /> < class 'numpy.ndarray' >| import paddle<br /> x = paddle.to_tensor(5., stop_gradient=False)<br /> y = paddle.pow(x, 4.0)<br /> y.backward()<br /> type(x.grad)<br />< class 'paddle.Tensor' > |
 
 
 - `paddle.jit.TraceLayer.save_inference_model` 接口不兼容升级。将原先的第一个参数dirname改为path，名字表意更通用并且与paddle.save和load等接口统一，表示由用户指定保存模型路径的前缀。([#31989](https://github.com/PaddlePaddle/Paddle/pull/31989))
+  
   | 2.0                                                          | 2.1                                                          |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | import os<br />import paddle<br />from paddle.vision.models import resnet18<br /><br />model = resnet18()<br />x = paddle.rand([1, 3, 224, 224])<br />_, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])<br />save_path = './save_infer_model' <br />static_layer.save_inference_model(**dirname**=save_path) <br /><br />print(os.path.isdir(save_path))<br />print(len(os.listdir(save_path)))<br /><br /> True<br />205| import os<br />import paddle<br />from paddle.vision.models import resnet18<br /><br />model = resnet18()<br />x = paddle.rand([1, 3, 224, 224])<br />_, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])<br />save_path = './save_infer_model' <br />static_layer.save_inference_model(**path**=save_path) <br /><br />print(os.path.isdir(save_path))<br />print([name for name in os.listdir('./') if name.startswith(save_path)])<br /><br /> False <br />`[save_infer_model.pdiparams]`|
@@ -40,7 +42,7 @@ from paddle.nn.layer.conv import *
 
 - `paddle.io.DataLoader`当`Dataset`只包含一个字段时，`DataLoader`返回格式不兼容升级。当用户自定义数据集只包含一个字段并通过如`return image`或`yield image`返回数据时，2.0版本返回的数据格式是`[image_tensor]`，而2.1版本返回的数据格式为`image_tensor`，保持输入输出数据结构的一致性。
 
- | 2.0                                                          | 2.1                                                          |
+  | 2.0                                                          | 2.1                                                          |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | import numpy as np<br />import paddle<br />from paddle.io import DataLoader, Dataset<br /><br />class RandomDataset(Dataset):<br />def \_\_getitem\_\_(self, idx):<br />return np.random.random((2, 3)).astype('float32')<br /><br />def \_\_len\_\_(self): <br />return 10<br /><br />dataset = RandomDataset()<br />loader = DataLoader(dataset, batch_size=1)<br /> data = next(loader())<br /># data: [Tensor(shape=(1, 2, 3), dtype=float32)]|import numpy as np<br />import paddle<br />from paddle.io import DataLoader, Dataset<br /><br />class RandomDataset(Dataset):<br />def \_\_getitem\_\_(self, idx):<br />return np.random.random((2, 3)).astype('float32')<br /><br />def \_\_len\_\_(self): <br />return 10<br /><br />dataset = RandomDataset()<br />loader = DataLoader(dataset, batch_size=1)<br /> data = next(loader())<br /># data: Tensor(shape=(1, 2, 3), dtype=float32)|
 
@@ -100,6 +102,7 @@ from paddle.nn.layer.conv import *
 - `paddle.nn.functional.temporal_shift` API增加`data_format`属性，支持设置为NCHW或者NHWC。([#31642](https://github.com/PaddlePaddle/Paddle/pull/31642))
 - 修复`adaptive_avg_pool2d`在输入数据类型为float16时计算结果不正确的问题。([#31887](https://github.com/PaddlePaddle/Paddle/pull/31887))
 - `paddle.nn.Layer.sublayers` 和`paddle.nn.Layer.named_sublayers`：将原本`paddle.nn.Layer.sublayers`的`include_sublayers = True`参数修改为`include_self = False`， 从而修复从前`include_sublayers = False`时返回空的问题。现在不填写任何参数时默认行为和之前一致，即返回不包含自己的所有递归子层，当`include_self = True`时同字面意思，返回包含自己在内的所有递归子层。而`paddle.nn.Layer.named_sublayers`中`include_sublayers`的参数则直接删除了 其他行为不变。([#31824](https://github.com/PaddlePaddle/Paddle/pull/31824) )
+
 | 2.0                                                          | 2.1                                                          |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | from paddle.vision.models import resnet18<br/>model = resnet18()<br/><br/>print(len(model.sublayers(include_sublayers=True)))<br/>print(len(model.sublayers(include_sublayers=False)))<br/><br/>67<br/>0<br/> | from paddle.vision.models import resnet18<br/>model = resnet18()<br/><br/>print(len(model.sublayers(include_self=True)))<br/>print(len(model.sublayers(include_self=False)))<br/><br/>68<br/>67<br/> |

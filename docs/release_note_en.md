@@ -38,14 +38,14 @@ from paddle.nn.layer.conv import *
 
 - `paddle.jit.TraceLayer.save_inference_model` Interface incompatibility upgrade. Changed the original first parameter dirname to path, the name symbol is more generic and unified with interfaces such as paddle.save and load, indicating that the user specifies the prefix for saving the model path. ([#31989](https://github.com/PaddlePaddle/Paddle/pull/31989)) 
 
-| 2.0                                                          | 2.1                                                          |
+  | 2.0                                                          | 2.1                                                          |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | import os<br />import paddle<br />from paddle.vision.models import resnet18<br /><br />model = resnet18()<br />x = paddle.rand([1, 3, 224, 224])<br />_, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])<br />save_path = './save_infer_model' <br />static_layer.save_inference_model(**dirname**=save_path) <br /><br />print(os.path.isdir(save_path))<br />print(len(os.listdir(save_path)))<br /><br /> True<br />205| import os<br />import paddle<br />from paddle.vision.models import resnet18<br /><br />model = resnet18()<br />x = paddle.rand([1, 3, 224, 224])<br />_, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])<br />save_path = './save_infer_model' <br />static_layer.save_inference_model(**path**=save_path) <br /><br />print(os.path.isdir(save_path))<br />print([name for name in os.listdir('./') if name.startswith(save_path)])<br /><br /> False <br />`[save_infer_model.pdiparams]`|
   
   
 - `paddle.io.DataLoader`return format incompatibility upgrade when user-define dataset only contains single field。If user-define dataset only contains single field and output data with code like `return image` or `yield image`，output data format in Paddle 2.0 is `[image_tensor]`，and output data format in Paddle 2.1 is `image_tensor` to keep data structure same with input.
 
- | 2.0                                                          | 2.1                                                          |
+  | 2.0                                                          | 2.1                                                          |
   | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | import numpy as np<br />import paddle<br />from paddle.io import DataLoader, Dataset<br /><br />class RandomDataset(Dataset):<br />def \_\_getitem\_\_(self, idx):<br />return np.random.random((2, 3)).astype('float32')<br /><br />def \_\_len\_\_(self): <br />return 10<br /><br />dataset = RandomDataset()<br />loader = DataLoader(dataset, batch_size=1)<br /> data = next(loader())<br /># data: [Tensor(shape=(1, 2, 3), dtype=float32)]|import numpy as np<br />import paddle<br />from paddle.io import DataLoader, Dataset<br /><br />class RandomDataset(Dataset):<br />def \_\_getitem\_\_(self, idx):<br />return np.random.random((2, 3)).astype('float32')<br /><br />def \_\_len\_\_(self): <br />return 10<br /><br />dataset = RandomDataset()<br />loader = DataLoader(dataset, batch_size=1)<br /> data = next(loader())<br /># data: Tensor(shape=(1, 2, 3), dtype=float32)|
 
