@@ -4,7 +4,7 @@ deform_conv2d
 -------------------------------
 
 
-.. py:function:: paddle.stastic.nn.deform_conv2d(x, offset, mask, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=1, deformable_groups=1, im2col_step=1, weight_attr=None, bias_attr=None, name=None)
+.. py:function:: paddle.static.nn.deform_conv2d(x, offset, mask, num_filters, filter_size, stride=1, padding=0, dilation=1, groups=1, deformable_groups=1, im2col_step=1, weight_attr=None, bias_attr=None, name=None)
 
 
 **可变形卷积算子**

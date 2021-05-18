@@ -32,23 +32,137 @@ from paddle.nn.layer.conv import *
 
 - `Tensor.grad` Incompatible upgrade. The type of return value is changed from `numpy` to `Tensor`. ([#32142](https://github.com/PaddlePaddle/Paddle/pull/32142)) 
 
-| 2.0                                                          | 2.1                                                          |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| import paddle<br /> x = paddle.to_tensor(5., stop_gradient=False)<br /> y = paddle.pow(x, 4.0)<br /> y.backward()<br /> type(x.grad)<br /> < class 'numpy.ndarray' >| import paddle<br /> x = paddle.to_tensor(5., stop_gradient=False)<br /> y = paddle.pow(x, 4.0)<br /> y.backward()<br /> type(x.grad)<br />< class 'paddle.Tensor' > |
+<table>
+<tr>
+<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+</tr>
+<tr>
+<td>
+
+```python
+>>> import paddle
+>>> x = paddle.to_tensor(5., stop_gradient=False)
+>>> y = paddle.pow(x, 4.0)
+>>> y.backward()
+>>> type(x.grad)
+<class 'numpy.ndarray'>
+```
+
+</td>
+
+<td>
+
+
+```python
+>>> import paddle
+>>> x = paddle.to_tensor(5., stop_gradient=False)
+>>> y = paddle.pow(x, 4.0)
+>>> y.backward()
+>>> type(x.grad)
+<class 'paddle.Tensor'>
+```
+
+</td>
+</tr>
+</table>
 
 
 - `paddle.jit.TraceLayer.save_inference_model` Interface incompatibility upgrade. Changed the original first parameter dirname to path, the name symbol is more generic and unified with interfaces such as paddle.save and load, indicating that the user specifies the prefix for saving the model path. ([#31989](https://github.com/PaddlePaddle/Paddle/pull/31989)) 
 
-  | 2.0                                                          | 2.1                                                          |
-  | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | import os<br />import paddle<br />from paddle.vision.models import resnet18<br /><br />model = resnet18()<br />x = paddle.rand([1, 3, 224, 224])<br />_, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])<br />save_path = './save_infer_model' <br />static_layer.save_inference_model(**dirname**=save_path) <br /><br />print(os.path.isdir(save_path))<br />print(len(os.listdir(save_path)))<br /><br /> True<br />205| import os<br />import paddle<br />from paddle.vision.models import resnet18<br /><br />model = resnet18()<br />x = paddle.rand([1, 3, 224, 224])<br />_, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])<br />save_path = './save_infer_model' <br />static_layer.save_inference_model(**path**=save_path) <br /><br />print(os.path.isdir(save_path))<br />print([name for name in os.listdir('./') if name.startswith(save_path)])<br /><br /> False <br />`[save_infer_model.pdiparams]`|
+<table>
+<tr>
+<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+</tr>
+<tr>
+<td>
+
+```python
+>>> import os
+>>> import paddle
+>>> from paddle.vision.models import resnet18
+>>> model = resnet18()
+>>> x = paddle.rand([1, 3, 224, 224])
+>>> _, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])
+>>> save_path = './save_infer_model'
+>>> static_layer.save_inference_model(dirname=save_path)
+>>> print(os.path.isdir(save_path))
+True
+>>> print(len(os.listdir(save_path)))
+205
+```
+
+</td>
+
+<td>
+
+
+```python
+>>> import os
+>>> import paddle
+>>> from paddle.vision.models import resnet18
+>>> model = resnet18()
+>>> x = paddle.rand([1, 3, 224, 224])
+>>> _, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])
+>>> save_path = './save_infer_model'
+>>> static_layer.save_inference_model(dirname=save_path)
+>>> print(os.path.isdir(save_path))
+False
+>>> print([name for name in os.listdir('./') if name.startswith(save_path)])
+[save_infer_model.pdiparams]
+```
+
+</td>
+</tr>
+</table>
   
   
 - `paddle.io.DataLoader`return format incompatibility upgrade when user-define dataset only contains single field。If user-define dataset only contains single field and output data with code like `return image` or `yield image`，output data format in Paddle 2.0 is `[image_tensor]`，and output data format in Paddle 2.1 is `image_tensor` to keep data structure same with input.
 
-  | 2.0                                                          | 2.1                                                          |
-  | ------------------------------------------------------------ | ------------------------------------------------------------ |
-  | import numpy as np<br />import paddle<br />from paddle.io import DataLoader, Dataset<br /><br />class RandomDataset(Dataset):<br />def \_\_getitem\_\_(self, idx):<br />return np.random.random((2, 3)).astype('float32')<br /><br />def \_\_len\_\_(self): <br />return 10<br /><br />dataset = RandomDataset()<br />loader = DataLoader(dataset, batch_size=1)<br /> data = next(loader())<br /># data: [Tensor(shape=(1, 2, 3), dtype=float32)]|import numpy as np<br />import paddle<br />from paddle.io import DataLoader, Dataset<br /><br />class RandomDataset(Dataset):<br />def \_\_getitem\_\_(self, idx):<br />return np.random.random((2, 3)).astype('float32')<br /><br />def \_\_len\_\_(self): <br />return 10<br /><br />dataset = RandomDataset()<br />loader = DataLoader(dataset, batch_size=1)<br /> data = next(loader())<br /># data: Tensor(shape=(1, 2, 3), dtype=float32)|
+<table>
+<tr>
+<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+</tr>
+<tr>
+<td>
+
+```python
+>>> import numpy as np
+>>> import paddle
+>>> from paddle.io import DataLoader, Dataset
+>>> class RandomDataset(Dataset):
+...     def __getitem__(self, idx):
+...         return np.random.random((2, 3)).astype(‘float32’)
+...     def __len__(self):
+...         return 10
+>>> dataset = RandomDataset()
+>>> loader = DataLoader(dataset, batch_size=1)
+>>> data = next(loader())
+data: [Tensor(shape=(1, 2, 3), dtype=float32)]
+```
+
+</td>
+
+<td>
+
+
+```python
+>>> import numpy as np
+>>> import paddle
+>>> from paddle.io import DataLoader, Dataset
+>>> class RandomDataset(Dataset):
+...     def __getitem__(self, idx):
+...         return np.random.random((2, 3)).astype(‘float32’)
+...     def __len__(self):
+...         return 10
+>>> dataset = RandomDataset()
+>>> loader = DataLoader(dataset, batch_size=1)
+>>> data = next(loader())
+data: Tensor(shape=(1, 2, 3), dtype=float32)
+```
+
+</td>
+</tr>
+</table>
 
 ## Training Framework
 
@@ -106,9 +220,39 @@ from paddle.nn.layer.conv import *
 - Fix the problem of the calculation result being incorrect in `adaptive_avg_pool2d` when the input data type is float16. ([#31887](https://github.com/PaddlePaddle/Paddle/pull/31887))
 - `paddle.nn.Layer.sublayers` and `paddle.nn.Layer.named_sublayers`: Modify the `include_sublayers = True` parameter of original `paddle.nn.Layer.sublayers` to `include_self = False`, thus fixing the problem of returning null of the former `include_sublayers = False`. Now the default behavior is the same as that when no parameter is filled in, that is, return all recursive sublevels that don't contain themselves. When `include_self = True` is the same as the literal meaning, return all recursive sublevels that contain themselves. The `include_sublayers` parameter in `paddle.nn.Layer.named_sublayers` is directly removed. Other behaviors remain unchanged. ([#31824](https://github.com/PaddlePaddle/Paddle/pull/31824) )
 
-| 2.0                                                          | 2.1                                                          |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| from paddle.vision.models import resnet18<br/>model = resnet18()<br/><br/>print(len(model.sublayers(include_sublayers=True)))<br/>print(len(model.sublayers(include_sublayers=False)))<br/><br/>67<br/>0<br/> | from paddle.vision.models import resnet18<br/>model = resnet18()<br/><br/>print(len(model.sublayers(include_self=True)))<br/>print(len(model.sublayers(include_self=False)))<br/><br/>68<br/>67<br/> |
+<table>
+<tr>
+<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+</tr>
+<tr>
+<td>
+
+```python
+>>> from paddle.vision.models import resnet18
+>>> model = resnet18()
+>>> print(len(model.sublayers(include_sublayers=True)))
+67
+>>> print(len(model.sublayers(include_sublayers=False)))
+0
+```
+
+</td>
+
+<td>
+
+
+```python
+>>> from paddle.vision.models import resnet18
+>>> model = resnet18()
+>>> print(len(model.sublayers(include_sublayers=True)))
+68
+>>> print(len(model.sublayers(include_sublayers=False)))
+67
+```
+
+</td>
+</tr>
+</table>
 
 #### High-level API
 
