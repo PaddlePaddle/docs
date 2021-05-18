@@ -1,16 +1,16 @@
 # 使用线性回归预测波士顿房价
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.05 <br>
 **摘要:** 本示例教程将会演示如何使用线性回归完成波士顿房价预测。
 
 ## 一、简要介绍
-经典的线性回归模型主要用来预测一些存在着线性关系的数据集。回归模型可以理解为：存在一个点集，用一条曲线去拟合它分布的过程。如果拟合曲线是一条直线，则称为线性回归。如果是一条二次曲线，则被称为二次回归。线性回归是回归模型中最简单的一种。
+经典的线性回归模型主要用来预测一些存在着线性关系的数据集。回归模型可以理解为：存在一个点集，用一条曲线去拟合它分布的过程。如果拟合曲线是一条直线，则称为线性回归。如果是一条二次曲线，则被称为二次回归。线性回归是回归模型中最简单的一种。 
 本示例简要介绍如何用飞桨开源框架，实现波士顿房价预测。其思路是，假设uci-housing数据集中的房子属性和房价之间的关系可以被属性间的线性组合描述。在模型训练阶段，让假设的预测结果和真实值之间的误差越来越小。在模型预测阶段，预测器会读取训练好的模型，对从未遇见过的房子属性进行房价预测。
 
 ## 二、环境配置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -21,11 +21,13 @@ import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+import warnings
+warnings.filterwarnings("ignore")
 
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
 ## 三、数据集介绍
@@ -41,20 +43,20 @@ print(paddle.__version__)
 
 ```python
 #下载数据
-!wget https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data -O housing.data
+!wget https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data -O housing.data 
 ```
 
-    --2021-03-10 09:31:28--  https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data
+    --2021-05-18 16:20:29--  https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data
     Resolving archive.ics.uci.edu (archive.ics.uci.edu)... 128.195.10.252
     Connecting to archive.ics.uci.edu (archive.ics.uci.edu)|128.195.10.252|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 49082 (48K) [application/x-httpd-php]
     Saving to: ‘housing.data’
-
-    housing.data        100%[===================>]  47.93K  95.7KB/s    in 0.5s
-
-    2021-03-10 09:31:29 (95.7 KB/s) - ‘housing.data’ saved [49082/49082]
-
+    
+    housing.data        100%[===================>]  47.93K  94.2KB/s    in 0.5s    
+    
+    2021-05-18 16:20:31 (94.2 KB/s) - ‘housing.data’ saved [49082/49082]
+    
 
 
 
@@ -88,7 +90,7 @@ plt.show()
 
 ```python
 # 相关性分析
-fig, ax = plt.subplots(figsize=(15, 1))
+fig, ax = plt.subplots(figsize=(15, 1)) 
 corr_data = df.corr().iloc[-1]
 corr_data = np.asarray(corr_data).reshape(1, 14)
 ax = sns.heatmap(corr_data, cbar=True, annot=True)
@@ -111,7 +113,7 @@ sns.boxplot(data=df.iloc[:, 0:13])
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f08cedaff90>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f528b374890>
 
 
 
@@ -144,7 +146,7 @@ def feature_norm(input):
     for batch_id in range(f_size[0]):
         for index in range(13):
             output_features[batch_id][index] = (input[batch_id][index] - features_avg[index]) / (features_max[index] - features_min[index])
-    return output_features
+    return output_features 
 ```
 
 
@@ -169,7 +171,7 @@ sns.boxplot(data=df.iloc[:, 0:13])
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f0958ea8b10>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f528b576e50>
 
 
 
@@ -228,7 +230,7 @@ def draw_train_process(iters, train_costs):
 
 
 ```python
-import paddle.nn.functional as F
+import paddle.nn.functional as F 
 y_preds = []
 labels_list = []
 
@@ -259,29 +261,29 @@ def train(model):
             optimizer.step()
             # 清除梯度
             optimizer.clear_grad()
-
+            
             if batch_id%30 == 0 and epoch_id%50 == 0:
                 print("Pass:%d,Cost:%0.5f"%(epoch_id, train_cost))
 
             train_num = train_num + BATCH_SIZE
             train_nums.append(train_num)
             train_costs.append(train_cost)
-
+        
 model = Regressor()
 train(model)
 ```
 
-    start training ...
-    Pass:0,Cost:570.89703
-    Pass:50,Cost:143.70865
-    Pass:100,Cost:93.03889
-    Pass:150,Cost:39.65584
-    Pass:200,Cost:76.84325
-    Pass:250,Cost:99.62424
-    Pass:300,Cost:114.70258
-    Pass:350,Cost:49.41201
-    Pass:400,Cost:71.91311
-    Pass:450,Cost:81.75272
+    start training ... 
+    Pass:0,Cost:731.48828
+    Pass:50,Cost:77.37501
+    Pass:100,Cost:21.86424
+    Pass:150,Cost:23.56446
+    Pass:200,Cost:68.49669
+    Pass:250,Cost:13.10599
+    Pass:300,Cost:20.35128
+    Pass:350,Cost:34.87028
+    Pass:400,Cost:24.54537
+    Pass:450,Cost:20.29261
 
 
 
@@ -323,23 +325,23 @@ mean_loss = sum_cost / INFER_BATCH_SIZE
 print("Mean loss is:", mean_loss.numpy())
 ```
 
-    No.0: infer result is 19.06,ground truth is 8.50
-    No.10: infer result is 19.01,ground truth is 7.00
-    No.20: infer result is 22.08,ground truth is 11.70
-    No.30: infer result is 18.54,ground truth is 11.70
-    No.40: infer result is 17.78,ground truth is 10.80
-    No.50: infer result is 18.57,ground truth is 14.90
-    No.60: infer result is 20.14,ground truth is 21.40
-    No.70: infer result is 22.06,ground truth is 13.80
-    No.80: infer result is 22.10,ground truth is 20.60
-    No.90: infer result is 22.15,ground truth is 24.50
-    Mean loss is: [39.381454]
+    No.0: infer result is 12.17,ground truth is 8.50
+    No.10: infer result is 5.70,ground truth is 7.00
+    No.20: infer result is 14.81,ground truth is 11.70
+    No.30: infer result is 16.45,ground truth is 11.70
+    No.40: infer result is 13.50,ground truth is 10.80
+    No.50: infer result is 15.98,ground truth is 14.90
+    No.60: infer result is 18.55,ground truth is 21.40
+    No.70: infer result is 15.36,ground truth is 13.80
+    No.80: infer result is 17.89,ground truth is 20.60
+    No.90: infer result is 21.31,ground truth is 24.50
+    Mean loss is: [12.873257]
 
 
 
 ```python
 def plot_pred_ground(pred, ground):
-    plt.figure()
+    plt.figure()   
     plt.title("Predication v.s. Ground truth", fontsize=24)
     plt.xlabel("ground truth price(unit:$1000)", fontsize=14)
     plt.ylabel("predict price", fontsize=14)
@@ -388,40 +390,29 @@ model.prepare(paddle.optimizer.Adam(parameters=model.parameters()),
 model.fit(train_dataset, eval_dataset, epochs=5, batch_size=8, verbose=1)
 ```
 
-    Cache file /home/aistudio/.cache/paddle/dataset/uci_housing/housing.data not found, downloading http://paddlemodels.bj.bcebos.com/uci_housing/housing.data
-    Begin to download
-    ............
-    Download finished
-
-
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step 51/51 [==============================] - loss: 627.0492 - 4ms/step
+    step 51/51 [==============================] - loss: 624.0728 - 2ms/step         
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 13/13 [==============================] - loss: 384.9530 - 809us/step
+    step 13/13 [==============================] - loss: 397.2567 - 878us/step         
     Eval samples: 102
     Epoch 2/5
-    step 51/51 [==============================] - loss: 420.8036 - 1ms/step
+    step 51/51 [==============================] - loss: 422.2296 - 1ms/step        
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 13/13 [==============================] - loss: 382.4314 - 1ms/step
+    step 13/13 [==============================] - loss: 394.6901 - 750us/step         
     Eval samples: 102
     Epoch 3/5
-    step 20/51 [==========>...................] - loss: 826.0235 - ETA: 0s - 1ms/stepstep 51/51 [==============================] - loss: 418.3295 - 1ms/step
+    step 51/51 [==============================] - loss: 417.4614 - 1ms/step         
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 13/13 [==============================] - loss: 379.9529 - 873us/step
+    step 13/13 [==============================] - loss: 392.1667 - 810us/step         
     Eval samples: 102
     Epoch 4/5
-    step 51/51 [==============================] - loss: 428.0860 - 1ms/step
+    step 51/51 [==============================] - loss: 423.6764 - 1ms/step         
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 13/13 [==============================] - loss: 377.4894 - 1ms/step
+    step 13/13 [==============================] - loss: 389.6587 - 772us/step         
     Eval samples: 102
     Epoch 5/5
-    step 51/51 [==============================] - loss: 457.0428 - 1ms/step
+    step 51/51 [==============================] - loss: 461.0751 - 1ms/step         
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 13/13 [==============================] - loss: 375.0100 - 969us/step
+    step 13/13 [==============================] - loss: 387.1344 - 828us/step         
     Eval samples: 102

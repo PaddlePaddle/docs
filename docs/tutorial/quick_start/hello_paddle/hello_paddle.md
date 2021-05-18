@@ -1,7 +1,7 @@
 # hello paddle: 从普通程序走向机器学习程序
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.05 <br>
 **摘要:** 这篇示例向你介绍普通程序跟机器学习程序的区别，并带着你用飞桨框架，实现第一个机器学习程序。
 
 ## 一、普通程序跟机器学习程序的逻辑区别
@@ -53,7 +53,7 @@ total_fee = w * distance_travelled + b
 
 同时，为了能够更好的对数组进行计算和处理，还需要导入`numpy`。
 
-如果你是在本机运行这个notebook，而且还没有安装飞桨，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+如果你是在本机运行这个notebook，而且还没有安装飞桨，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -61,7 +61,7 @@ import paddle
 print("paddle " + paddle.__version__)
 ```
 
-    paddle 2.0.1
+    paddle 2.1.0
 
 
 ## 三、准备数据
@@ -144,10 +144,10 @@ for i in range(total_epoch):
     loss.backward()
     sgd_optimizer.step()
     sgd_optimizer.clear_grad()
-
+    
     if i%1000 == 0:
         print("epoch {} loss {}".format(i, loss.numpy()))
-
+        
 print("finished training， loss {}".format(loss.numpy()))
 ```
 

@@ -1,12 +1,12 @@
 # 使用注意力机制的LSTM的机器翻译
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.05 <br>
 **摘要:** 本示例教程介绍如何使用飞桨完成一个机器翻译任务。通过使用飞桨提供的LSTM的API，组建一个`sequence to sequence with attention`的机器翻译的模型，并在示例的数据集上完成从英文翻译成中文的机器翻译。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -18,7 +18,7 @@ import numpy as np
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
 ## 二、数据加载
@@ -32,20 +32,20 @@ print(paddle.__version__)
 !wget -c https://www.manythings.org/anki/cmn-eng.zip && unzip cmn-eng.zip
 ```
 
-    --2021-03-10 16:04:18--  https://www.manythings.org/anki/cmn-eng.zip
-    Resolving www.manythings.org (www.manythings.org)... 172.67.173.198, 104.21.55.222, 2606:4700:3036::ac43:adc6, ...
+    --2021-05-18 18:00:27--  https://www.manythings.org/anki/cmn-eng.zip
+    Resolving www.manythings.org (www.manythings.org)... 172.67.173.198, 104.21.55.222, 2606:4700:3031::6815:37de, ...
     Connecting to www.manythings.org (www.manythings.org)|172.67.173.198|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 1062383 (1.0M) [application/zip]
     Saving to: ‘cmn-eng.zip’
-
-    cmn-eng.zip         100%[===================>]   1.01M  29.5KB/s    in 28s
-
-    2021-03-10 16:04:48 (37.2 KB/s) - ‘cmn-eng.zip’ saved [1062383/1062383]
-
+    
+    cmn-eng.zip         100%[===================>]   1.01M   902KB/s    in 1.1s    
+    
+    2021-05-18 18:00:29 (902 KB/s) - ‘cmn-eng.zip’ saved [1062383/1062383]
+    
     Archive:  cmn-eng.zip
-      inflating: cmn.txt
-      inflating: _about.txt
+      inflating: cmn.txt                 
+      inflating: _about.txt              
 
 
 
@@ -86,9 +86,9 @@ for x in pairs:
     if len(x[0]) < MAX_LEN and len(x[1]) < MAX_LEN and \
     x[0][0] in ('i', 'you', 'he', 'she', 'we', 'they'):
         filtered_pairs.append(x)
-
+           
 print(len(filtered_pairs))
-for x in filtered_pairs[:10]: print(x)
+for x in filtered_pairs[:10]: print(x) 
 ```
 
     5687
@@ -124,12 +124,12 @@ cn_vocab['<pad>'], cn_vocab['<bos>'], cn_vocab['<eos>'] = 0, 1, 2
 
 en_idx, cn_idx = 3, 3
 for en, cn in filtered_pairs:
-    for w in en:
-        if w not in en_vocab:
+    for w in en: 
+        if w not in en_vocab: 
             en_vocab[w] = en_idx
             en_idx += 1
-    for w in cn:
-        if w not in cn_vocab:
+    for w in cn:  
+        if w not in cn_vocab: 
             cn_vocab[w] = cn_idx
             cn_idx += 1
 
@@ -159,7 +159,7 @@ for en, cn in filtered_pairs:
     padded_en_sent = en + ['<eos>'] + ['<pad>'] * (MAX_LEN - len(en))
     padded_en_sent.reverse()
     padded_cn_sent = ['<bos>'] + cn + ['<eos>'] + ['<pad>'] * (MAX_LEN - len(cn))
-    padded_cn_label_sent = cn + ['<eos>'] + ['<pad>'] * (MAX_LEN - len(cn) + 1)
+    padded_cn_label_sent = cn + ['<eos>'] + ['<pad>'] * (MAX_LEN - len(cn) + 1) 
 
     padded_en_sents.append([en_vocab[w] for w in padded_en_sent])
     padded_cn_sents.append([cn_vocab[w] for w in padded_cn_sent])
@@ -209,8 +209,8 @@ class Encoder(paddle.nn.Layer):
     def __init__(self):
         super(Encoder, self).__init__()
         self.emb = paddle.nn.Embedding(en_vocab_size, embedding_size,)
-        self.lstm = paddle.nn.LSTM(input_size=embedding_size,
-                                   hidden_size=hidden_size,
+        self.lstm = paddle.nn.LSTM(input_size=embedding_size, 
+                                   hidden_size=hidden_size, 
                                    num_layers=num_encoder_lstm_layers)
 
     def forward(self, x):
@@ -229,26 +229,26 @@ class Encoder(paddle.nn.Layer):
 
 
 ```python
-# only move one step of LSTM,
+# only move one step of LSTM, 
 # the recurrent loop is implemented inside training loop
 class AttentionDecoder(paddle.nn.Layer):
     def __init__(self):
         super(AttentionDecoder, self).__init__()
         self.emb = paddle.nn.Embedding(cn_vocab_size, embedding_size)
-        self.lstm = paddle.nn.LSTM(input_size=embedding_size + hidden_size,
+        self.lstm = paddle.nn.LSTM(input_size=embedding_size + hidden_size, 
                                    hidden_size=hidden_size)
 
         # for computing attention weights
         self.attention_linear1 = paddle.nn.Linear(hidden_size * 2, hidden_size)
         self.attention_linear2 = paddle.nn.Linear(hidden_size, 1)
-
+        
         # for computing output logits
         self.outlinear =paddle.nn.Linear(hidden_size, cn_vocab_size)
 
     def forward(self, x, previous_hidden, previous_cell, encoder_outputs):
         x = self.emb(x)
-
-        attention_inputs = paddle.concat((encoder_outputs,
+        
+        attention_inputs = paddle.concat((encoder_outputs, 
                                       paddle.tile(previous_hidden, repeat_times=[1, MAX_LEN+1, 1])),
                                       axis=-1
                                      )
@@ -258,23 +258,23 @@ class AttentionDecoder(paddle.nn.Layer):
         attention_logits = self.attention_linear2(attention_hidden)
         attention_logits = paddle.squeeze(attention_logits)
 
-        attention_weights = F.softmax(attention_logits)
-        attention_weights = paddle.expand_as(paddle.unsqueeze(attention_weights, -1),
+        attention_weights = F.softmax(attention_logits)        
+        attention_weights = paddle.expand_as(paddle.unsqueeze(attention_weights, -1), 
                                              encoder_outputs)
 
-        context_vector = paddle.multiply(encoder_outputs, attention_weights)
+        context_vector = paddle.multiply(encoder_outputs, attention_weights)               
         context_vector = paddle.sum(context_vector, 1)
         context_vector = paddle.unsqueeze(context_vector, 1)
-
+        
         lstm_input = paddle.concat((x, context_vector), axis=-1)
 
-        # LSTM requirement to previous hidden/state:
+        # LSTM requirement to previous hidden/state: 
         # (number_of_layers * direction, batch, hidden)
         previous_hidden = paddle.transpose(previous_hidden, [1, 0, 2])
         previous_cell = paddle.transpose(previous_cell, [1, 0, 2])
-
+        
         x, (hidden, cell) = self.lstm(lstm_input, (previous_hidden, previous_cell))
-
+        
         # change the return to (batch, number_of_layers * direction, hidden)
         hidden = paddle.transpose(hidden, [1, 0, 2])
         cell = paddle.transpose(cell, [1, 0, 2])
@@ -297,7 +297,7 @@ class AttentionDecoder(paddle.nn.Layer):
 encoder = Encoder()
 atten_decoder = AttentionDecoder()
 
-opt = paddle.optimizer.Adam(learning_rate=0.001,
+opt = paddle.optimizer.Adam(learning_rate=0.001, 
                             parameters=encoder.parameters()+atten_decoder.parameters())
 
 for epoch in range(epochs):
@@ -341,65 +341,65 @@ for epoch in range(epochs):
 ```
 
     epoch:0
-    iter 0, loss:[7.625041]
-    iter 200, loss:[3.374034]
+    iter 0, loss:[7.6239414]
+    iter 200, loss:[3.0424228]
     epoch:1
-    iter 0, loss:[3.0066612]
-    iter 200, loss:[3.1274078]
+    iter 0, loss:[3.3344]
+    iter 200, loss:[3.135097]
     epoch:2
-    iter 0, loss:[3.2506304]
-    iter 200, loss:[2.7595582]
+    iter 0, loss:[2.8372972]
+    iter 200, loss:[2.9874132]
     epoch:3
-    iter 0, loss:[2.7472925]
-    iter 200, loss:[2.7878397]
+    iter 0, loss:[2.4977226]
+    iter 200, loss:[2.347312]
     epoch:4
-    iter 0, loss:[2.5396585]
-    iter 200, loss:[2.4101303]
+    iter 0, loss:[2.1353514]
+    iter 200, loss:[2.1293092]
     epoch:5
-    iter 0, loss:[2.0541866]
-    iter 200, loss:[1.9192865]
+    iter 0, loss:[2.0924835]
+    iter 200, loss:[2.0193372]
     epoch:6
-    iter 0, loss:[1.983413]
-    iter 200, loss:[2.0252275]
+    iter 0, loss:[1.9638586]
+    iter 200, loss:[1.9775124]
     epoch:7
-    iter 0, loss:[1.9114503]
-    iter 200, loss:[1.623132]
+    iter 0, loss:[1.8319316]
+    iter 200, loss:[1.6078386]
     epoch:8
-    iter 0, loss:[1.7933029]
-    iter 200, loss:[1.7160401]
+    iter 0, loss:[1.5061388]
+    iter 200, loss:[1.4000171]
     epoch:9
-    iter 0, loss:[1.5510919]
-    iter 200, loss:[1.5564787]
+    iter 0, loss:[1.6096058]
+    iter 200, loss:[1.5511936]
     epoch:10
-    iter 0, loss:[1.275795]
-    iter 200, loss:[1.1727846]
+    iter 0, loss:[1.4739537]
+    iter 200, loss:[1.2266061]
     epoch:11
-    iter 0, loss:[1.259923]
-    iter 200, loss:[1.3619399]
+    iter 0, loss:[1.3779855]
+    iter 200, loss:[1.3114413]
     epoch:12
-    iter 0, loss:[0.973556]
-    iter 200, loss:[1.0510772]
+    iter 0, loss:[1.146878]
+    iter 200, loss:[1.2473543]
     epoch:13
-    iter 0, loss:[0.95874655]
-    iter 200, loss:[0.85563946]
+    iter 0, loss:[1.0685896]
+    iter 200, loss:[1.1657724]
     epoch:14
-    iter 0, loss:[0.9165008]
-    iter 200, loss:[0.9100946]
+    iter 0, loss:[0.87895143]
+    iter 200, loss:[0.8481859]
     epoch:15
-    iter 0, loss:[0.78065956]
-    iter 200, loss:[0.8632542]
+    iter 0, loss:[0.77661693]
+    iter 200, loss:[0.76900244]
     epoch:16
-    iter 0, loss:[0.7921164]
-    iter 200, loss:[0.7774471]
+    iter 0, loss:[0.8463232]
+    iter 200, loss:[0.8217341]
     epoch:17
-    iter 0, loss:[0.6324374]
-    iter 200, loss:[0.6139126]
+    iter 0, loss:[0.5898639]
+    iter 200, loss:[0.6576902]
     epoch:18
-    iter 0, loss:[0.58913887]
-    iter 200, loss:[0.8401911]
+    iter 0, loss:[0.51171196]
+    iter 200, loss:[0.53207105]
     epoch:19
-    iter 0, loss:[0.56158066]
-    iter 200, loss:[0.5583556]
+    iter 0, loss:[0.49052936]
+    iter 200, loss:[0.5290806]
 
 
 ## 五、使用模型进行机器翻译
@@ -434,7 +434,7 @@ for i in range(MAX_LEN + 2):
     word = paddle.argmax(logits, axis=1)
     decoded_sent.append(word.numpy())
     word = paddle.unsqueeze(word, axis=-1)
-
+    
 results = np.stack(decoded_sent, axis=1)
 for i in range(num_of_exampels_to_evaluate):
     en_input = " ".join(filtered_pairs[indices[i]][0])
@@ -449,36 +449,36 @@ for i in range(num_of_exampels_to_evaluate):
     print("pred: {}".format(model_translate))
 ```
 
-    i know you re going to say no
-    true: 我知道你要說不。
-    pred: 我知道你要在聽。
-    she asked him to mail that letter
-    true: 她請他寄那封信。
-    pred: 她给他寄了信。
-    he likes playing soccer
-    true: 他喜歡踢足球。
-    pred: 他喜歡踢足球。
-    he asked me to speak more slowly
-    true: 他要求我講慢一點。
-    pred: 他看起來看起來錢。
-    i have no friends to play with
-    true: 我没有朋友一起玩。
-    pred: 我没有任何朋友玩。
-    he s opposed to racial discrimination
-    true: 他反对种族歧视。
-    pred: 他反对种族歧视。
-    i have a pair of shoes
-    true: 我有一双鞋。
-    pred: 我有一双鞋。
-    i ve never underestimated tom
-    true: 我从没低估汤姆。
-    pred: 我从没低估汤姆。
-    she can swim further than i can
-    true: 她能遊得比我遠。
-    pred: 她會立刻能回來。
-    he plays very well
-    true: 他弹得很好。
-    pred: 他很好高。
+    she died of stomach cancer
+    true: 她死于胃癌。
+    pred: 她死于胃癌。
+    we know
+    true: 我们知道。
+    pred: 我们知道。
+    he applied for the scholarship
+    true: 他申請了獎學金。
+    pred: 他申請了獎學門。
+    he went bankrupt
+    true: 他破产了。
+    pred: 他破产了。
+    i ll try harder next time
+    true: 下次我會更加努力。
+    pred: 我會去学习几次。
+    he tires easily
+    true: 他很容易觉得累。
+    pred: 他很容易觉得累。
+    i ll do what i can to help you
+    true: 我會盡力幫你。
+    pred: 我會盡力幫你。
+    you ought to have come here earlier
+    true: 你應該早點來的。
+    pred: 你最好去睡觉。
+    i m going to change my shirt
+    true: 我要去換我的襯衫。
+    pred: 我要去換我的襯衫。
+    i almost didn t meet her
+    true: 我幾乎沒有遇見她。
+    pred: 我幾乎沒有信她。
 
 
 ## The End

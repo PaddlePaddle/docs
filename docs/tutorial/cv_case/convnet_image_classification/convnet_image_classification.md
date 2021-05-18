@@ -1,12 +1,12 @@
 # 使用卷积神经网络进行图像分类
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.05 <br>
 **摘要:** 本示例教程将会演示如何使用飞桨的卷积神经网络来完成图像分类任务。这是一个较为简单的示例，将会使用一个由三个卷积层组成的网络完成[cifar10](https://www.cs.toronto.edu/~kriz/cifar.html)数据集的图像分类任务。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
 ## 二、加载数据集
@@ -34,12 +34,6 @@ cifar10_train = paddle.vision.datasets.Cifar10(mode='train',
 cifar10_test = paddle.vision.datasets.Cifar10(mode='test',
                                               transform=transform)
 ```
-
-    Cache file /home/aistudio/.cache/paddle/dataset/cifar/cifar-10-python.tar.gz not found, downloading https://dataset.bj.bcebos.com/cifar/cifar-10-python.tar.gz
-    Begin to download
-
-    Download finished
-
 
 ## 三、组建网络
 接下来使用飞桨定义一个使用了三个二维卷积（ ``Conv2D`` ) 且每次卷积之后使用 ``relu`` 激活函数，两个二维池化层（ ``MaxPool2D`` ），和两个线性变换层组成的分类网络，来把一个(32, 32, 3)形状的图片通过卷积神经网络映射为10个输出，这对应着10个分类的类别。
@@ -84,9 +78,9 @@ class MyNet(paddle.nn.Layer):
 
 ## 四、模型训练&预测
 
-接下来，用一个循环来进行模型的训练，将会: <br>
-- 使用 ``paddle.optimizer.Adam`` 优化器来进行优化。
-- 使用 ``F.cross_entropy`` 来计算损失值。
+接下来，用一个循环来进行模型的训练，将会: <br> 
+- 使用 ``paddle.optimizer.Adam`` 优化器来进行优化。 
+- 使用 ``F.cross_entropy`` 来计算损失值。 
 - 使用 ``paddle.io.DataLoader`` 来加载数据并组建batch。
 
 
@@ -114,7 +108,7 @@ def train(model):
                                         batch_size=batch_size)
 
     valid_loader = paddle.io.DataLoader(cifar10_test, batch_size=batch_size)
-
+    
     for epoch in range(epoch_num):
         for batch_id, data in enumerate(train_loader()):
             x_data = data[0]
@@ -155,9 +149,8 @@ model = MyNet(num_classes=10)
 train(model)
 ```
 
-    start training ...
-    epoch: 0, batch_id: 0, loss is: [2.402275]
-    epoch: 0, batch_id: 1000, loss is: [1.4317133]
+    start training ... 
+    epoch: 0, batch_id: 0, loss is: [2.7625809]
 
 
 
