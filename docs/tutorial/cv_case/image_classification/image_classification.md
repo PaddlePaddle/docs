@@ -1,12 +1,12 @@
 # 使用LeNet在MNIST数据集实现图像分类
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.05 <br>
 **摘要:** 本示例教程演示如何在MNIST数据集上用LeNet进行图像分类。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.0 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -14,7 +14,7 @@ import paddle
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
 ## 二、数据加载
@@ -37,6 +37,26 @@ print('load finished')
 ```
 
     download training data and load training data
+
+
+    Cache file /home/aistudio/.cache/paddle/dataset/mnist/train-images-idx3-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/train-images-idx3-ubyte.gz 
+    Begin to download
+    
+    Download finished
+    Cache file /home/aistudio/.cache/paddle/dataset/mnist/train-labels-idx1-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/train-labels-idx1-ubyte.gz 
+    Begin to download
+    ........
+    Download finished
+    Cache file /home/aistudio/.cache/paddle/dataset/mnist/t10k-images-idx3-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/t10k-images-idx3-ubyte.gz 
+    Begin to download
+    
+    Download finished
+    Cache file /home/aistudio/.cache/paddle/dataset/mnist/t10k-labels-idx1-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/t10k-labels-idx1-ubyte.gz 
+    Begin to download
+    ..
+    Download finished
+
+
     load finished
 
 
@@ -123,11 +143,11 @@ model.fit(train_dataset,
         )
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-    step 938/938 [==============================] - loss: 0.0467 - acc: 0.9536 - 9ms/step
+    step 938/938 [==============================] - loss: 0.0025 - acc: 0.9564 - 9ms/step        
     Epoch 2/2
-    step 938/938 [==============================] - loss: 0.0047 - acc: 0.9854 - 11ms/step
+    step 938/938 [==============================] - loss: 0.0127 - acc: 0.9844 - 9ms/step        
 
 
 ### 4.2 使用 `Model.evaluate` 来预测模型
@@ -138,15 +158,10 @@ model.evaluate(test_dataset, batch_size=64, verbose=1)
 ```
 
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 4.2981e-04 - acc: 0.9850 - 7ms/step
+    step 157/157 [==============================] - loss: 1.2412e-04 - acc: 0.9872 - 8ms/step     
     Eval samples: 10000
 
-
-
-
-
-    {'loss': [0.00042981372], 'acc': 0.985}
+    {'loss': [0.0001241174], 'acc': 0.9872}
 
 
 
@@ -184,14 +199,10 @@ model = LeNet()
 train(model)
 ```
 
-    epoch: 0, batch_id: 0, loss is: [3.31986], acc is: [0.078125]
-    epoch: 0, batch_id: 300, loss is: [0.05698059], acc is: [0.984375]
-    epoch: 0, batch_id: 600, loss is: [0.03642814], acc is: [0.984375]
-    epoch: 0, batch_id: 900, loss is: [0.13067417], acc is: [0.953125]
-    epoch: 1, batch_id: 0, loss is: [0.03294292], acc is: [0.984375]
-    epoch: 1, batch_id: 300, loss is: [0.09340447], acc is: [0.96875]
-    epoch: 1, batch_id: 600, loss is: [0.12020883], acc is: [0.96875]
-    epoch: 1, batch_id: 900, loss is: [0.0349952], acc is: [0.984375]
+    epoch: 0, batch_id: 0, loss is: [3.0527446], acc is: [0.09375]
+    epoch: 0, batch_id: 300, loss is: [0.05049332], acc is: [1.]
+    epoch: 0, batch_id: 600, loss is: [0.109704], acc is: [0.953125]
+    ...
 
 
 ### 5.2 模型验证

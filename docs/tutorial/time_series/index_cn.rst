@@ -12,4 +12,4 @@
     :hidden:
     :titlesonly:
 
-    Autoencoder/AutoEncoder.rst
+    Autoencoder/AutoEncoder.md

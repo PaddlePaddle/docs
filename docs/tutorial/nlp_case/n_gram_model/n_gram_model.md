@@ -1,13 +1,13 @@
 # 用N-Gram模型在莎士比亚文集中训练word embedding
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
-**摘要:**
+**日期:** 2021.05 <br>
+**摘要:** 
 N-gram 是计算机语言学和概率论范畴内的概念，是指给定的一段文本中N个项目的序列。N=1 时 N-gram 又称为 unigram，N=2 称为 bigram，N=3 称为 trigram，以此类推。实际应用通常采用 bigram 和 trigram 进行计算。本示例在莎士比亚文集上实现了trigram。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -18,7 +18,7 @@ paddle.__version__
 
 
 
-    '2.0.1'
+    '2.1.0'
 
 
 
@@ -31,6 +31,19 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
 ```python
 !wget https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt
 ```
+
+    --2021-05-18 16:44:36--  https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt
+    Resolving ocw.mit.edu (ocw.mit.edu)... 151.101.110.133
+    Connecting to ocw.mit.edu (ocw.mit.edu)|151.101.110.133|:443... connected.
+    HTTP request sent, awaiting response... 200 OK
+    Length: 5458199 (5.2M) [text/plain]
+    Saving to: ‘t8.shakespeare.txt’
+    
+    t8.shakespeare.txt. 100%[===================>]   5.21M  47.6KB/s    in 1m 50s  
+    
+    2021-05-18 16:46:27 (48.5 KB/s) - ‘t8.shakespeare.txt’ saved [5458199/5458199]
+    
+
 
 
 ```python
@@ -134,14 +147,14 @@ class TrainDataset(paddle.io.Dataset):
         data = np.array(list(map(lambda word: word_to_idx.get(word, 0), data)))
         label = np.array(word_to_idx.get(label, 0))
         return data, label
-
+    
     def __len__(self):
         return len(self.tuple_data)
-
+    
 train_dataset = TrainDataset(trigram)
 
 # 加载数据
-train_loader = paddle.io.DataLoader(train_dataset, return_list=True, shuffle=True,
+train_loader = paddle.io.DataLoader(train_dataset, return_list=True, shuffle=True, 
                                     batch_size=batch_size, drop_last=True)
 ```
 
@@ -179,15 +192,15 @@ class LossCallback(paddle.callbacks.Callback):
 
     def __init__(self):
         self.losses = []
-
+        
     def on_train_begin(self, logs={}):
         # 在fit前 初始化losses，用于保存每个batch的loss结果
         self.losses = []
-
+    
     def on_train_batch_end(self, step, logs={}):
         # 每个batch训练完成后调用，把当前loss添加到losses中
         self.losses.append(logs.get('loss'))
-
+        
 loss_log = LossCallback()
 ```
 
@@ -199,23 +212,23 @@ loss_log = LossCallback()
 n_gram_model = paddle.Model(NGramModel(vocab_size, embedding_dim, context_size)) # 用 Model封装 NGramModel
 
 # 模型配置
-n_gram_model.prepare(optimizer=paddle.optimizer.Adam(learning_rate=0.01,
+n_gram_model.prepare(optimizer=paddle.optimizer.Adam(learning_rate=0.01, 
                      parameters=n_gram_model.parameters()),
                      loss=paddle.nn.CrossEntropyLoss())
 
 # 模型训练
-n_gram_model.fit(train_loader,
+n_gram_model.fit(train_loader, 
                  epochs=epochs,
                  batch_size=batch_size,
                  callbacks=[loss_log],
                  verbose=1)
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-    step 3519/3519 [==============================] - loss: 5.3338 - 4ms/step
+    step 3519/3519 [==============================] - loss: 5.0316 - 79ms/step        
     Epoch 2/2
-    step 3519/3519 [==============================] - loss: 5.3494 - 4ms/step
+    step 3519/3519 [==============================] - loss: 5.1612 - 79ms/step        
 
 
 ### 5.3 loss可视化
@@ -235,7 +248,7 @@ plt.plot(log_loss)
 
 
 
-    [<matplotlib.lines.Line2D at 0x7f0d2999b490>]
+    [<matplotlib.lines.Line2D at 0x7f2bd8598050>]
 
 
 
@@ -263,29 +276,29 @@ def train(model):
             loss.backward()
             if batch_id % 500 == 0:
                 losses.append(loss.numpy())
-                print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, loss.numpy()))
+                print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, loss.numpy())) 
             optim.step()
             optim.clear_grad()
 model = NGramModel(vocab_size, embedding_dim, context_size)
 train(model)
 ```
 
-    epoch: 0, batch_id: 0, loss is: [7.8259363]
-    epoch: 0, batch_id: 500, loss is: [5.4835773]
-    epoch: 0, batch_id: 1000, loss is: [5.3429565]
-    epoch: 0, batch_id: 1500, loss is: [5.266919]
-    epoch: 0, batch_id: 2000, loss is: [5.050239]
-    epoch: 0, batch_id: 2500, loss is: [5.2612667]
-    epoch: 0, batch_id: 3000, loss is: [5.381553]
-    epoch: 0, batch_id: 3500, loss is: [5.1958632]
-    epoch: 1, batch_id: 0, loss is: [5.328977]
-    epoch: 1, batch_id: 500, loss is: [5.3332663]
-    epoch: 1, batch_id: 1000, loss is: [5.0005713]
-    epoch: 1, batch_id: 1500, loss is: [5.041712]
-    epoch: 1, batch_id: 2000, loss is: [5.046738]
-    epoch: 1, batch_id: 2500, loss is: [5.0546956]
-    epoch: 1, batch_id: 3000, loss is: [5.256601]
-    epoch: 1, batch_id: 3500, loss is: [5.314804]
+    epoch: 0, batch_id: 0, loss is: [7.825837]
+    epoch: 0, batch_id: 500, loss is: [5.1986523]
+    epoch: 0, batch_id: 1000, loss is: [5.179163]
+    epoch: 0, batch_id: 1500, loss is: [5.160289]
+    epoch: 0, batch_id: 2000, loss is: [5.082153]
+    epoch: 0, batch_id: 2500, loss is: [5.36201]
+    epoch: 0, batch_id: 3000, loss is: [5.469225]
+    epoch: 0, batch_id: 3500, loss is: [5.142579]
+    epoch: 1, batch_id: 0, loss is: [5.016885]
+    epoch: 1, batch_id: 500, loss is: [5.217623]
+    epoch: 1, batch_id: 1000, loss is: [5.1326265]
+    epoch: 1, batch_id: 1500, loss is: [5.1721525]
+    epoch: 1, batch_id: 2000, loss is: [5.0461006]
+    epoch: 1, batch_id: 2500, loss is: [5.3661375]
+    epoch: 1, batch_id: 3000, loss is: [5.2548814]
+    epoch: 1, batch_id: 3500, loss is: [5.223076]
 
 
 ### 6.2 loss可视化
@@ -304,7 +317,7 @@ plt.plot(losses)
 
 
 
-    [<matplotlib.lines.Line2D at 0x7fc2dc5c3710>]
+    [<matplotlib.lines.Line2D at 0x7f2bd11d9a10>]
 
 
 

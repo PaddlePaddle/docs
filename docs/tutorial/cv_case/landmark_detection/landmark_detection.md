@@ -1,7 +1,7 @@
 # 人脸关键点检测
 
 **作者:** [ssz95](https://github.com/zzs95) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.05 <br>
 **摘要:** 本示例教程将会演示如何使用飞桨实现人脸关键点检测。
 
 ## 一、简介
@@ -9,12 +9,12 @@
 
 关键点检测方法总体上可以分成两个类型，一个种是用坐标回归的方式来解决，另一种是将关键点建模成热力图，通过像素分类任务，回归热力图分布得到关键点位置。这两个方法，都是一种手段或者是途径，解决的问题就是要找出这个点在图像当中的位置与关系。
 
-其中人脸关键点检测是关键点检测方法的一个成功实践，本示例简要介绍如何通过飞桨开源框架，实现人脸关键点检测的功能。这个案例用到的是第一种关键点检测方法——坐标回归。将使用到 Paddle 2.0的API，集成式的训练接口，能够很方便对模型进行训练和预测。
+其中人脸关键点检测是关键点检测方法的一个成功实践，本示例简要介绍如何通过飞桨开源框架，实现人脸关键点检测的功能。这个案例用到的是第一种关键点检测方法——坐标回归。将使用到 Paddle 2.1的API，集成式的训练接口，能够很方便对模型进行训练和预测。
 
 
 ## 二、环境设置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -31,7 +31,7 @@ from paddle.nn import functional as F
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
 ## 三、数据集
@@ -52,9 +52,9 @@ IdLookupTable.csv: 测试集关键点的位置的对应名称。<br>
 ```
 
     Archive:  ./test.zip
-      inflating: data/data60/test.csv
+      inflating: data/data60/test.csv    
     Archive:  ./training.zip
-      inflating: data/data60/training.csv
+      inflating: data/data60/training.csv  
 
 
 ### 3.2 数据集定义
@@ -94,9 +94,9 @@ class FaceDataset(Dataset):
         # 第一种, 将未标注的位置从上一个样本对应的关键点复制过来
         # self.data_source.fillna(method = 'ffill',inplace = True)
         # 第二种, 将包含有未标注的样本从数据集中移除
-        self.data_source.dropna(how="any", inplace=True)
+        self.data_source.dropna(how="any", inplace=True)  
         self.data_label_all = self.data_source.drop('Image', axis = 1)
-
+        
         # 划分训练集和验证集合
         if self.mode in ['train', 'val']:
             np.random.seed(43)
@@ -207,73 +207,73 @@ model.summary((1,3, 96, 96))
 ```
 
     -------------------------------------------------------------------------------
-       Layer (type)         Input Shape          Output Shape         Param #
+       Layer (type)         Input Shape          Output Shape         Param #    
     ===============================================================================
-         Conv2D-1         [[1, 3, 96, 96]]     [1, 64, 48, 48]         9,408
-       BatchNorm2D-1     [[1, 64, 48, 48]]     [1, 64, 48, 48]          256
-          ReLU-1         [[1, 64, 48, 48]]     [1, 64, 48, 48]           0
-        MaxPool2D-1      [[1, 64, 48, 48]]     [1, 64, 24, 24]           0
-         Conv2D-2        [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864
-       BatchNorm2D-2     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256
-          ReLU-2         [[1, 64, 24, 24]]     [1, 64, 24, 24]           0
-         Conv2D-3        [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864
-       BatchNorm2D-3     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256
-       BasicBlock-1      [[1, 64, 24, 24]]     [1, 64, 24, 24]           0
-         Conv2D-4        [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864
-       BatchNorm2D-4     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256
-          ReLU-3         [[1, 64, 24, 24]]     [1, 64, 24, 24]           0
-         Conv2D-5        [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864
-       BatchNorm2D-5     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256
-       BasicBlock-2      [[1, 64, 24, 24]]     [1, 64, 24, 24]           0
-         Conv2D-7        [[1, 64, 24, 24]]     [1, 128, 12, 12]       73,728
-       BatchNorm2D-7     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512
-          ReLU-4         [[1, 128, 12, 12]]    [1, 128, 12, 12]          0
-         Conv2D-8        [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456
-       BatchNorm2D-8     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512
-         Conv2D-6        [[1, 64, 24, 24]]     [1, 128, 12, 12]        8,192
-       BatchNorm2D-6     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512
-       BasicBlock-3      [[1, 64, 24, 24]]     [1, 128, 12, 12]          0
-         Conv2D-9        [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456
-       BatchNorm2D-9     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512
-          ReLU-5         [[1, 128, 12, 12]]    [1, 128, 12, 12]          0
-         Conv2D-10       [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456
-      BatchNorm2D-10     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512
-       BasicBlock-4      [[1, 128, 12, 12]]    [1, 128, 12, 12]          0
-         Conv2D-12       [[1, 128, 12, 12]]     [1, 256, 6, 6]        294,912
-      BatchNorm2D-12      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024
-          ReLU-6          [[1, 256, 6, 6]]      [1, 256, 6, 6]           0
-         Conv2D-13        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824
-      BatchNorm2D-13      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024
-         Conv2D-11       [[1, 128, 12, 12]]     [1, 256, 6, 6]        32,768
-      BatchNorm2D-11      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024
-       BasicBlock-5      [[1, 128, 12, 12]]     [1, 256, 6, 6]           0
-         Conv2D-14        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824
-      BatchNorm2D-14      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024
-          ReLU-7          [[1, 256, 6, 6]]      [1, 256, 6, 6]           0
-         Conv2D-15        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824
-      BatchNorm2D-15      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024
-       BasicBlock-6       [[1, 256, 6, 6]]      [1, 256, 6, 6]           0
-         Conv2D-17        [[1, 256, 6, 6]]      [1, 512, 3, 3]       1,179,648
-      BatchNorm2D-17      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048
-          ReLU-8          [[1, 512, 3, 3]]      [1, 512, 3, 3]           0
-         Conv2D-18        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296
-      BatchNorm2D-18      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048
-         Conv2D-16        [[1, 256, 6, 6]]      [1, 512, 3, 3]        131,072
-      BatchNorm2D-16      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048
-       BasicBlock-7       [[1, 256, 6, 6]]      [1, 512, 3, 3]           0
-         Conv2D-19        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296
-      BatchNorm2D-19      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048
-          ReLU-9          [[1, 512, 3, 3]]      [1, 512, 3, 3]           0
-         Conv2D-20        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296
-      BatchNorm2D-20      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048
-       BasicBlock-8       [[1, 512, 3, 3]]      [1, 512, 3, 3]           0
-    AdaptiveAvgPool2D-1   [[1, 512, 3, 3]]      [1, 512, 1, 1]           0
-         Linear-1            [[1, 512]]           [1, 1000]           513,000
-         ResNet-1         [[1, 3, 96, 96]]        [1, 1000]              0
-         Linear-2           [[1, 1000]]            [1, 512]           512,512
-          ReLU-10            [[1, 512]]            [1, 512]              0
-         Dropout-1           [[1, 512]]            [1, 512]              0
-         Linear-3            [[1, 512]]            [1, 30]            15,390
+         Conv2D-1         [[1, 3, 96, 96]]     [1, 64, 48, 48]         9,408     
+       BatchNorm2D-1     [[1, 64, 48, 48]]     [1, 64, 48, 48]          256      
+          ReLU-1         [[1, 64, 48, 48]]     [1, 64, 48, 48]           0       
+        MaxPool2D-1      [[1, 64, 48, 48]]     [1, 64, 24, 24]           0       
+         Conv2D-2        [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
+       BatchNorm2D-2     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
+          ReLU-2         [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
+         Conv2D-3        [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
+       BatchNorm2D-3     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
+       BasicBlock-1      [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
+         Conv2D-4        [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
+       BatchNorm2D-4     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
+          ReLU-3         [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
+         Conv2D-5        [[1, 64, 24, 24]]     [1, 64, 24, 24]        36,864     
+       BatchNorm2D-5     [[1, 64, 24, 24]]     [1, 64, 24, 24]          256      
+       BasicBlock-2      [[1, 64, 24, 24]]     [1, 64, 24, 24]           0       
+         Conv2D-7        [[1, 64, 24, 24]]     [1, 128, 12, 12]       73,728     
+       BatchNorm2D-7     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
+          ReLU-4         [[1, 128, 12, 12]]    [1, 128, 12, 12]          0       
+         Conv2D-8        [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456    
+       BatchNorm2D-8     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
+         Conv2D-6        [[1, 64, 24, 24]]     [1, 128, 12, 12]        8,192     
+       BatchNorm2D-6     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
+       BasicBlock-3      [[1, 64, 24, 24]]     [1, 128, 12, 12]          0       
+         Conv2D-9        [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456    
+       BatchNorm2D-9     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
+          ReLU-5         [[1, 128, 12, 12]]    [1, 128, 12, 12]          0       
+         Conv2D-10       [[1, 128, 12, 12]]    [1, 128, 12, 12]       147,456    
+      BatchNorm2D-10     [[1, 128, 12, 12]]    [1, 128, 12, 12]         512      
+       BasicBlock-4      [[1, 128, 12, 12]]    [1, 128, 12, 12]          0       
+         Conv2D-12       [[1, 128, 12, 12]]     [1, 256, 6, 6]        294,912    
+      BatchNorm2D-12      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
+          ReLU-6          [[1, 256, 6, 6]]      [1, 256, 6, 6]           0       
+         Conv2D-13        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824    
+      BatchNorm2D-13      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
+         Conv2D-11       [[1, 128, 12, 12]]     [1, 256, 6, 6]        32,768     
+      BatchNorm2D-11      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
+       BasicBlock-5      [[1, 128, 12, 12]]     [1, 256, 6, 6]           0       
+         Conv2D-14        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824    
+      BatchNorm2D-14      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
+          ReLU-7          [[1, 256, 6, 6]]      [1, 256, 6, 6]           0       
+         Conv2D-15        [[1, 256, 6, 6]]      [1, 256, 6, 6]        589,824    
+      BatchNorm2D-15      [[1, 256, 6, 6]]      [1, 256, 6, 6]         1,024     
+       BasicBlock-6       [[1, 256, 6, 6]]      [1, 256, 6, 6]           0       
+         Conv2D-17        [[1, 256, 6, 6]]      [1, 512, 3, 3]       1,179,648   
+      BatchNorm2D-17      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
+          ReLU-8          [[1, 512, 3, 3]]      [1, 512, 3, 3]           0       
+         Conv2D-18        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296   
+      BatchNorm2D-18      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
+         Conv2D-16        [[1, 256, 6, 6]]      [1, 512, 3, 3]        131,072    
+      BatchNorm2D-16      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
+       BasicBlock-7       [[1, 256, 6, 6]]      [1, 512, 3, 3]           0       
+         Conv2D-19        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296   
+      BatchNorm2D-19      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
+          ReLU-9          [[1, 512, 3, 3]]      [1, 512, 3, 3]           0       
+         Conv2D-20        [[1, 512, 3, 3]]      [1, 512, 3, 3]       2,359,296   
+      BatchNorm2D-20      [[1, 512, 3, 3]]      [1, 512, 3, 3]         2,048     
+       BasicBlock-8       [[1, 512, 3, 3]]      [1, 512, 3, 3]           0       
+    AdaptiveAvgPool2D-1   [[1, 512, 3, 3]]      [1, 512, 1, 1]           0       
+         Linear-1            [[1, 512]]           [1, 1000]           513,000    
+         ResNet-1         [[1, 3, 96, 96]]        [1, 1000]              0       
+         Linear-2           [[1, 1000]]            [1, 512]           512,512    
+          ReLU-10            [[1, 512]]            [1, 512]              0       
+         Dropout-1           [[1, 512]]            [1, 512]              0       
+         Linear-3            [[1, 512]]            [1, 30]            15,390     
     ===============================================================================
     Total params: 12,227,014
     Trainable params: 12,207,814
@@ -285,17 +285,12 @@ model.summary((1,3, 96, 96))
     Estimated Total Size (MB): 57.26
     -------------------------------------------------------------------------------
 
-
-
-
-
-
     {'total_params': 12227014, 'trainable_params': 12207814}
 
 
 
 ## 五、训练模型
-在这个任务是对坐标进行回归，使用均方误差（Mean Square error ）损失函数`paddle.nn.MSELoss()`来做计算，飞桨2.0中，在nn下将损失函数封装成可调用类。这里使用paddle.Model相关的API直接进行训练，只需要定义好数据集、网络模型和损失函数即可。
+在这个任务是对坐标进行回归，使用均方误差（Mean Square error ）损失函数`paddle.nn.MSELoss()`来做计算，飞桨2.1中，在nn下将损失函数封装成可调用类。这里使用paddle.Model相关的API直接进行训练，只需要定义好数据集、网络模型和损失函数即可。
 
 使用模型代码进行Model实例生成，使用prepare接口定义优化器、损失函数和评价指标等信息，用于后续训练使用。在所有初步配置完成后，调用fit接口开启训练执行过程，调用fit时只需要将前面定义好的训练数据集、测试数据集、训练轮次（Epoch）和批次大小（batch_size）配置好即可。
 
@@ -308,366 +303,29 @@ model.prepare(optim, paddle.nn.MSELoss())
 model.fit(train_dataset, val_dataset, epochs=60, batch_size=256)
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/60
-    step 7/7 - loss: 0.0998 - 559ms/step
+    step 7/7 - loss: 0.1080 - 680ms/step
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.4963 - 463ms/step
+    step 2/2 - loss: 0.3060 - 591ms/step
     Eval samples: 428
     Epoch 2/60
-    step 7/7 - loss: 0.0470 - 553ms/step
+    step 7/7 - loss: 0.0448 - 736ms/step
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.1316 - 456ms/step
+    step 2/2 - loss: 0.0939 - 592ms/step
     Eval samples: 428
-    Epoch 3/60
-    step 7/7 - loss: 0.0276 - 558ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0439 - 445ms/step
+    step 7/7 - loss: 0.0056 - 789ms/step
     Eval samples: 428
-    Epoch 4/60
-    step 7/7 - loss: 0.0218 - 545ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0137 - 450ms/step
-    Eval samples: 428
-    Epoch 5/60
-    step 7/7 - loss: 0.0180 - 559ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0053 - 452ms/step
-    Eval samples: 428
-    Epoch 6/60
-    step 7/7 - loss: 0.0137 - 545ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0032 - 457ms/step
-    Eval samples: 428
-    Epoch 7/60
-    step 7/7 - loss: 0.0119 - 544ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0022 - 463ms/step
-    Eval samples: 428
-    Epoch 8/60
-    step 7/7 - loss: 0.0119 - 551ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0020 - 456ms/step
-    Eval samples: 428
-    Epoch 9/60
-    step 7/7 - loss: 0.0105 - 557ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0016 - 459ms/step
-    Eval samples: 428
-    Epoch 10/60
-    step 7/7 - loss: 0.0098 - 539ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0027 - 450ms/step
-    Eval samples: 428
-    Epoch 11/60
-    step 7/7 - loss: 0.0115 - 540ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0033 - 447ms/step
-    Eval samples: 428
-    Epoch 12/60
-    step 7/7 - loss: 0.0091 - 551ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0029 - 444ms/step
-    Eval samples: 428
-    Epoch 13/60
-    step 7/7 - loss: 0.0085 - 539ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0020 - 460ms/step
-    Eval samples: 428
-    Epoch 14/60
-    step 7/7 - loss: 0.0092 - 540ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0011 - 463ms/step
-    Eval samples: 428
-    Epoch 15/60
-    step 7/7 - loss: 0.0079 - 541ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0012 - 452ms/step
-    Eval samples: 428
-    Epoch 16/60
-    step 7/7 - loss: 0.0081 - 541ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0044 - 447ms/step
-    Eval samples: 428
-    Epoch 17/60
-    step 7/7 - loss: 0.0093 - 546ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0057 - 453ms/step
-    Eval samples: 428
-    Epoch 18/60
-    step 7/7 - loss: 0.0085 - 548ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0024 - 445ms/step
-    Eval samples: 428
-    Epoch 19/60
-    step 7/7 - loss: 0.0080 - 535ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0027 - 465ms/step
-    Eval samples: 428
-    Epoch 20/60
-    step 7/7 - loss: 0.0088 - 547ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0039 - 447ms/step
-    Eval samples: 428
-    Epoch 21/60
-    step 7/7 - loss: 0.0093 - 544ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0034 - 449ms/step
-    Eval samples: 428
-    Epoch 22/60
-    step 7/7 - loss: 0.0061 - 537ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0010 - 441ms/step
-    Eval samples: 428
-    Epoch 23/60
-    step 7/7 - loss: 0.0063 - 541ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0015 - 442ms/step
-    Eval samples: 428
-    Epoch 24/60
-    step 7/7 - loss: 0.0093 - 527ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0037 - 444ms/step
-    Eval samples: 428
-    Epoch 25/60
-    step 7/7 - loss: 0.0066 - 540ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0015 - 456ms/step
-    Eval samples: 428
-    Epoch 26/60
-    step 7/7 - loss: 0.0057 - 554ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0016 - 453ms/step
-    Eval samples: 428
-    Epoch 27/60
-    step 7/7 - loss: 0.0056 - 543ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0021 - 458ms/step
-    Eval samples: 428
-    Epoch 28/60
-    step 7/7 - loss: 0.0059 - 542ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 7.7543e-04 - 452ms/step
-    Eval samples: 428
-    Epoch 29/60
-    step 7/7 - loss: 0.0050 - 538ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 9.6038e-04 - 455ms/step
-    Eval samples: 428
-    Epoch 30/60
-    step 7/7 - loss: 0.0061 - 538ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0029 - 483ms/step
-    Eval samples: 428
-    Epoch 31/60
-    step 7/7 - loss: 0.0057 - 536ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0011 - 451ms/step
-    Eval samples: 428
-    Epoch 32/60
-    step 7/7 - loss: 0.0052 - 541ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0013 - 448ms/step
-    Eval samples: 428
-    Epoch 33/60
-    step 7/7 - loss: 0.0058 - 538ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0022 - 447ms/step
-    Eval samples: 428
-    Epoch 34/60
-    step 7/7 - loss: 0.0052 - 540ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0011 - 454ms/step
-    Eval samples: 428
-    Epoch 35/60
-    step 7/7 - loss: 0.0045 - 536ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 9.0381e-04 - 476ms/step
-    Eval samples: 428
-    Epoch 36/60
-    step 7/7 - loss: 0.0048 - 546ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0012 - 446ms/step
-    Eval samples: 428
-    Epoch 37/60
-    step 7/7 - loss: 0.0061 - 538ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0017 - 446ms/step
-    Eval samples: 428
-    Epoch 38/60
-    step 7/7 - loss: 0.0053 - 539ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 8.7633e-04 - 488ms/step
-    Eval samples: 428
-    Epoch 39/60
-    step 7/7 - loss: 0.0046 - 546ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0010 - 460ms/step
-    Eval samples: 428
-    Epoch 40/60
-    step 7/7 - loss: 0.0084 - 542ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0011 - 453ms/step
-    Eval samples: 428
-    Epoch 41/60
-    step 7/7 - loss: 0.0047 - 555ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0020 - 455ms/step
-    Eval samples: 428
-    Epoch 42/60
-    step 7/7 - loss: 0.0050 - 540ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 7.6315e-04 - 456ms/step
-    Eval samples: 428
-    Epoch 43/60
-    step 7/7 - loss: 0.0054 - 540ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0011 - 447ms/step
-    Eval samples: 428
-    Epoch 44/60
-    step 7/7 - loss: 0.0051 - 540ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0035 - 468ms/step
-    Eval samples: 428
-    Epoch 45/60
-    step 7/7 - loss: 0.0046 - 546ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0011 - 460ms/step
-    Eval samples: 428
-    Epoch 46/60
-    step 7/7 - loss: 0.0047 - 545ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 9.8268e-04 - 445ms/step
-    Eval samples: 428
-    Epoch 47/60
-    step 7/7 - loss: 0.0064 - 548ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 7.5070e-04 - 454ms/step
-    Eval samples: 428
-    Epoch 48/60
-    step 7/7 - loss: 0.0081 - 536ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0016 - 454ms/step
-    Eval samples: 428
-    Epoch 49/60
-    step 7/7 - loss: 0.0057 - 543ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0016 - 446ms/step
-    Eval samples: 428
-    Epoch 50/60
-    step 7/7 - loss: 0.0034 - 544ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0016 - 456ms/step
-    Eval samples: 428
-    Epoch 51/60
-    step 7/7 - loss: 0.0033 - 551ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 6.7864e-04 - 449ms/step
-    Eval samples: 428
-    Epoch 52/60
-    step 7/7 - loss: 0.0046 - 547ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0022 - 453ms/step
-    Eval samples: 428
-    Epoch 53/60
-    step 7/7 - loss: 0.0045 - 537ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0023 - 456ms/step
-    Eval samples: 428
-    Epoch 54/60
-    step 7/7 - loss: 0.0060 - 540ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 7.1732e-04 - 458ms/step
-    Eval samples: 428
-    Epoch 55/60
-    step 7/7 - loss: 0.0055 - 544ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0051 - 451ms/step
-    Eval samples: 428
-    Epoch 56/60
-    step 7/7 - loss: 0.0035 - 537ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0014 - 457ms/step
-    Eval samples: 428
-    Epoch 57/60
-    step 7/7 - loss: 0.0036 - 540ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0011 - 459ms/step
-    Eval samples: 428
-    Epoch 58/60
-    step 7/7 - loss: 0.0041 - 533ms/step
-    Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0011 - 467ms/step
-    Eval samples: 428
+    ...
     Epoch 59/60
-    step 7/7 - loss: 0.0037 - 542ms/step
+    step 7/7 - loss: 0.0051 - 625ms/step
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 0.0019 - 452ms/step
+    step 2/2 - loss: 0.0031 - 485ms/step
     Eval samples: 428
     Epoch 60/60
-    step 7/7 - loss: 0.0030 - 551ms/step
+    step 7/7 - loss: 0.0042 - 576ms/step
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 2/2 - loss: 7.4458e-04 - 446ms/step
+    step 2/2 - loss: 0.0011 - 487ms/step
     Eval samples: 428
 
 
@@ -682,7 +340,7 @@ result = model.predict(val_dataset, batch_size=1)
 ```
 
     Predict begin...
-    step 428/428 [==============================] - 15ms/step
+    step 428/428 [==============================] - 15ms/step         
     Predict samples: 428
 
 
@@ -710,12 +368,6 @@ for i in range(16):
     plot_sample(img[0], label_pred, axis, gt_label)
 plt.show()
 ```
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/ipykernel_launcher.py:5: DeprecationWarning: elementwise comparison failed; this will raise an error in the future.
-      """
-
-
-
 ![png](output_18_1.png)
 
 
@@ -727,7 +379,7 @@ result = model.predict(test_dataset, batch_size=1)
 ```
 
     Predict begin...
-    step 1783/1783 [==============================] - 15ms/step
+    step 1783/1783 [==============================] - 15ms/step         
     Predict samples: 1783
 
 
