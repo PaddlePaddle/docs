@@ -36,7 +36,7 @@
         docker pull paddlepaddle/paddle:[version number]-gpu-cuda10.2-cudnn7
         ```
 
-    After `:`, please fill in the PaddlePaddle version number, such as the current version `2.0.2`. For more details, please refer to [image profile](#dockers).
+    After `:`, please fill in the PaddlePaddle version number, such as the current version `2.1.0`. For more details, please refer to [image profile](#dockers).
 
     In the above example, `cuda10.2-cudnn7` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `cuda11.2-cudnn8` etc.
 

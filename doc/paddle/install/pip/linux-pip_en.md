@@ -184,7 +184,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.2.post90 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.0.post90 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -193,7 +193,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.2.post100 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.0.post100 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -202,7 +202,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.2.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -220,7 +220,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.0.2.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 

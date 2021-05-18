@@ -191,7 +191,7 @@ This section describes how to use pip to install.
 
         If you are using Windows environment, please use the following instruction:
 
-            python -m pip install paddlepaddle==2.0.2 -f https://paddlepaddle.org.cn/whl/stable.html 
+            python -m pip install paddlepaddle==2.1.0 -f https://paddlepaddle.org.cn/whl/stable.html 
         
 
     (2). **GPU version** : If you only want to install GPU version, please refer to command below
@@ -212,7 +212,7 @@ This section describes how to use pip to install.
 
         If you are using Windows environment, please use the following instruction:
 
-            python -m pip install paddlepaddle_gpu==2.0.2 -f https://paddlepaddle.org.cn/whl/stable.html
+            python -m pip install paddlepaddle_gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/stable.html
         
     Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
 
