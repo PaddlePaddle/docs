@@ -223,6 +223,8 @@ if total_error_number > 0:
         print("Error type one sample number is:{}".format(type_one_number))
         print("Error raised from type one:no sample code.",
               str(status_groups[-1]))
+        # no sample code not considered as error now.
+        ci_pass = True
     if type_two_number > 0:
         print("Error type two sample number is:{}".format(type_two_number))
         print("Error raised from type two:running error sample code.",
