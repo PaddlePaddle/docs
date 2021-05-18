@@ -37,11 +37,11 @@ context_size设为2，意味着是trigram。embedding_dim设为256。
     Connecting to ocw.mit.edu (ocw.mit.edu)|151.101.110.133|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 5458199 (5.2M) [text/plain]
-    Saving to: ‘t8.shakespeare.txt.1’
+    Saving to: ‘t8.shakespeare.txt’
     
     t8.shakespeare.txt. 100%[===================>]   5.21M  47.6KB/s    in 1m 50s  
     
-    2021-05-18 16:46:27 (48.5 KB/s) - ‘t8.shakespeare.txt.1’ saved [5458199/5458199]
+    2021-05-18 16:46:27 (48.5 KB/s) - ‘t8.shakespeare.txt’ saved [5458199/5458199]
     
 
 
@@ -347,6 +347,6 @@ def test(model):
 test(model)
 ```
 
-    the input words is: this, etext
-    the predict words is: that
-    the true words is: of
+    the input words is: works, of
+    the predict words is: william
+    the true words is: william
