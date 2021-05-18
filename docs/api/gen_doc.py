@@ -559,6 +559,13 @@ def remove_all_en_files(path="./paddle"):
                 os.remove(os.path.join(root, file))
 
 
+def is_Tensor_method(api_info):
+    for n in api_info['all_names']:
+        if n.startswith('paddle.Tensor'):
+            return True
+    return False
+
+
 # using `doc_filename`
 def gen_en_files(api_label_file="api_label"):
     """
@@ -579,7 +586,8 @@ def gen_en_files(api_label_file="api_label"):
             ]:
                 continue
             elif 'gen_doc_anno' in api_info and api_info[
-                    'gen_doc_anno'] == 'class_method':
+                    'gen_doc_anno'] == 'class_method' and (
+                        not is_Tensor_method(api_info)):
                 continue
             elif "doc_filename" not in api_info:
                 logger.debug(

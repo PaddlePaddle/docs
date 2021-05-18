@@ -65,16 +65,16 @@ else
         done
     fi
 
-    if [ "${need_check_cn_doc_files}" != "" ];then
-        cd ../doc/paddle/api
-        python gen_doc.py
-        cd -
+    #if [ "${need_check_cn_doc_files}" != "" ];then
+    #    cd ../docs/paddle/api
+    #    python gen_doc.py
+    #    cd -
 
-        for file in $need_check_cn_doc_files; do
-            cat ../docs/api/en_cn_files_diff | awk '{print $1}' | grep ${file}
-            if [ $? -eq 0 ];then
-                echo "Chinese doc file exist, but the Englist doc does not exist, the Chinese file is ${file}"
-            fi
-        done
-    fi
+    #    for file in $need_check_cn_doc_files; do
+    #        cat ../docs/api/en_cn_files_diff | awk '{print $1}' | grep ${file}
+    #        if [ $? -eq 0 ];then
+    #            echo "Chinese doc file exist, but the Englist doc does not exist, the Chinese file is ${file}"
+    #        fi
+    #    done
+    #fi
 fi
