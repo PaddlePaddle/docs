@@ -3,7 +3,7 @@
 ## 环境准备
 
 * **MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
 ## 选择CPU/GPU
@@ -56,13 +56,19 @@
     cd paddle
     ```
 
-6. 切换到`develop`版本进行编译：
+6. 切换到较稳定版本下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
     ```
 
-    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
+    例如：
+
+    ```
+    git checkout release/2.1
+    ```
+
+    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
 
 7. 创建并进入/paddle/build路径下：
 
@@ -72,16 +78,11 @@
 
 8. 使用以下命令安装相关依赖：
 
-    For Python2:
     ```
-    pip install protobuf==3.1.0
-    ```
-    For Python3:
-    ```
-    pip3.5 install protobuf==3.1.0
+    pip3.7 install protobuf==3.1.0
     ```
 
-    注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
+    注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
 
     > 安装protobuf 3.1.0。
 
@@ -94,12 +95,12 @@
 9. 执行cmake：
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
-    >请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.5`表示python版本为3.5.x
+    >请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.7`表示python版本为3.7
 
     *  对于需要编译**CPU版本PaddlePaddle**的用户：
 
         ```
-        cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
         > 我们目前不支持MacOS下GPU版本PaddlePaddle的编译
@@ -119,16 +120,11 @@
 
 12. 在当前机器或目标机器安装编译好的`.whl`包：
 
-    For Python2:
     ```
-    pip install -U（whl包的名字）
-    ```
-    For Python3:
-    ```
-    pip3.5 install -U（whl包的名字)
+    pip3.7 install -U（whl包的名字)
     ```
 
-    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
+    注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
 
 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
@@ -148,28 +144,14 @@
 
 2. 安装Python以及pip：
 
-    > **请不要使用MacOS中自带Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.5.x、python3.6.x、python3.7.x、python3.8), pip以及其他的依赖，这将会使您高效编译。
+    > **请不要使用MacOS中自带Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.6.x、python3.7.x、python3.8、python3.9), pip以及其他的依赖，这将会使您高效编译。
 
-    For python2:
-    ```
-    brew install python@2
-    ```
-    For python3: 使用Python官网安装
+    使用Python官网安装
 
     > 请注意，当您的mac上安装有多个python时请保证您正在使用的python是您希望使用的python。
 
-3. (Only For Python2)设置Python相关的环境变量：
 
-    - 请使用
-        ```
-        find / -name libpython2.7.dylib
-        ```
-        找到您当前使用python的`libpython2.7.dylib`路径，并使用
-        ```
-        export LD_LIBRARY_PATH=[libpython2.7.dylib的路径] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib所在的目录的上两级目录]
-        ```
-
-4. (Only For Python3)设置Python相关的环境变量：
+3. (Only For Python3)设置Python相关的环境变量：
 
     - a. 首先使用
         ```
@@ -182,7 +164,7 @@
         export PYTHON_LIBRARY=[python-lib-path]
         ```
 
-    - c. 其次使用找到PythonInclude的路径（通常是找到[python-lib-path]的上一级目录为同级目录的include,然后找到该目录下python3.x或者python2.x的路径），然后（下面[python-include-path]替换为找到路径）
+    - c. 其次使用找到PythonInclude的路径（通常是找到[python-lib-path]的上一级目录为同级目录的include,然后找到该目录下python3.x的路径），然后（下面[python-include-path]替换为找到路径）
     - d. 设置PYTHON_INCLUDE_DIR:
         ```
         export PYTHON_INCLUDE_DIRS=[python-include-path]
@@ -206,13 +188,13 @@
 
     - g. (可选）如果您是在MacOS 10.14上编译PaddlePaddle，请保证您已经安装了[对应版本](http://developer.apple.com/download)的Xcode。
 
-5. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
+4. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
 
     > MacOS下如果您未自行修改或安装过“编译依赖表”中提到的依赖，则仅需要使用`pip`安装`numpy，protobuf，wheel`，使用`homebrew`安装`wget，swig, unrar`，另外安装`cmake`即可
 
     - a. 这里特别说明一下**CMake**的安装：
 
-        CMake我们支持3.15以上版本,推荐使用CMake3.16,请根据以下步骤安装：
+        CMake我们支持3.10以上版本,推荐使用CMake3.16,请根据以下步骤安装：
 
         1. 从CMake[官方网站](https://cmake.org/files/v3.16/cmake-3.16.0-Darwin-x86_64.dmg)下载CMake镜像并安装
         2. 在控制台输入
@@ -222,7 +204,7 @@
 
     - b. 如果您不想使用系统默认的blas而希望使用自己安装的OPENBLAS请参见[FAQ](../FAQ.html/#OPENBLAS)
 
-6. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
+5. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
 
     ```
     git clone https://github.com/PaddlePaddle/Paddle.git
@@ -232,50 +214,51 @@
     cd Paddle
     ```
 
-7. 切换到`develop`分支下进行编译：
+6. 切换到较稳定release分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
     ```
 
-    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
+    例如：
 
-8. 并且请创建并进入一个叫build的目录下：
+    ```
+    git checkout release/2.0
+    ```
+
+    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
+
+7. 并且请创建并进入一个叫build的目录下：
 
     ```
     mkdir build && cd build
     ```
 
-9. 执行cmake：
+8. 执行cmake：
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
     *  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-        For Python2:
         ```
-        cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release
-        ```
-        For Python3:
-        ```
-        cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+        cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
         -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release
         ```
 
-    >`-DPY_VERSION=3.5`请修改为安装环境的Python版本
+    >`-DPY_VERSION=3.7`请修改为安装环境的Python版本
 
-10. 使用以下命令来编译：
+9. 使用以下命令来编译：
 
     ```
     make -j4
     ```
 
-11. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
+10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
     ```
     cd /paddle/build/python/dist
     ```
 
-12. 在当前机器或目标机器安装编译好的`.whl`包：
+11. 在当前机器或目标机器安装编译好的`.whl`包：
 
     ```
     pip install -U（whl包的名字）

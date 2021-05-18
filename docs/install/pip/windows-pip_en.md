@@ -5,52 +5,33 @@
 ### 1.1 PREQUISITES
 
 * **Windows 7/8/10 Pro/Enterprise (64bit)**
-  * **GPU version support CUDA 9.0/10.0/10.1/10.2/11.0，only support single card**
+  * **GPU version support CUDA 10.1/10.2/11.0/11.2，only support single card**
 
-* **Python version 2.7.15+/3.5.1+/3.6+/3.7+/3.8+ (64 bit)**
+* **Python version 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 
 * **pip version 20.2.2+ (64 bit)**
 
 ### 1.2 How to check your environment
 
-* You can use the following commands to view the local operating system and bit information
-
-  ```
-  uname -m && cat /etc/*release
-  ```
-
+* Confirm the local operating system and bit information
 
 
 * Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
-  * If you are using Python 2, use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
-
-    ```
-    which python
-    ```
-
-  * If you are using Python 3, use the following command to output Python path. Depending on your environment, you may need to replace Python 3 in all command lines in the instructions with Python or specific Python path
-
-    ```
-    which python3
-    ```
+  ```
+  where python
+  ```
 
 
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * If you are using Python 2, use the following command to confirm that it is 2.7.15+
+  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9
 
         python --version
 
-  * If you are using Python 3, use the following command to confirm that it is 3.5.1+/3.6/3.7/3.8
-
-        python3 --version
-
 
 * It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2+
-
-  * If you are using Python 2
 
     ```
     python -m ensurepip
@@ -60,30 +41,12 @@
     python -m pip --version
     ```
 
-  * If you are using Python 3
-
-    ```
-    python3 -m ensurepip
-    ```
-
-    ```
-    python3 -m pip --version
-    ```
-
 
 
 * You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
 
-  * If you are using Python 2
-
     ```
     python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
-    ```
-
-  * If you are using Python 3
-
-    ```
-    python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
 
@@ -104,9 +67,11 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6.5+**
+  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5+**
 
   * **CUDA toolkit 11.0 with cuDNN v8.0.4**
+
+  * **CUDA toolkit 11.2 with cuDNN v8.1.1**
 
   * **Hardware devices with GPU computing power over 3.0**
 
@@ -117,36 +82,80 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 You can choose the following version of PaddlePaddle to start installation:
 
+* [CPU Version of PaddlePaddle](#cpu)
+
+* [GPU Version of PaddlePaddle](#gpu)
+  * [CUDA10.1 PaddlePaddle](#cuda10.1)
+  * [CUDA10.2 PaddlePaddle](#cuda10.2)
+  * [CUDA11.0 PaddlePaddle](#cuda11)
+  * [CUDA11.2 PaddlePaddle](#cuda11.2)
+
+
 
 #### 2.1 <span id="cpu">CPU Versoion of PaddlePaddle</span>
 
+
   ```
-  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/cpu/mkl/develop.html
+  python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
   ```
+
 
 
 #### 2.2<span id="gpu"> GPU Version of PaddlePaddle</span>
 
-GPU only support CUDA10.2
+
+
+2.2.1 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
 
 
   ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post102 -f https://paddlepaddle.org.cn/whl/cu102/mkl/develop.html
+  python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
+2.2.2 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
 
+
+  ```
+  python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
+  ```
+
+
+2.2.3 <span id="cuda11">CUDA11的PaddlePaddle</span>
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  ```
+
+2.2.4 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.0.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  ```
 
 Note：
 
-* Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
+* Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
+
+* If you want to install PaddlePaddle which support CUDA10.2 with cuDNN v7.4+,you can use the following command:
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  ```
+
+* The above commands install the `avx` and `mkl` package by default.
 
 
+* If you want to install the Paddle package built with `tensorrt`, please use the following command:
+
+  ```
+  python -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
+  ```
 
 
 ## Verify installation
 
-After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
+After the installation is complete, you can use `python` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
 
 If `PaddlePaddle is installed successfully!` appears, to verify that the installation was successful.
 

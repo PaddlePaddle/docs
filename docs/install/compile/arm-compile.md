@@ -16,7 +16,7 @@
 <a name="arm_source"></a>
 ### **源码编译**
 
-1. Paddle依赖cmake进行编译构建，需要cmake版本>=3.15，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要[源码安装](https://github.com/Kitware/CMake)
+1. Paddle依赖cmake进行编译构建，需要cmake版本>=3.10，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要[源码安装](https://github.com/Kitware/CMake)
 
     ```
     wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
@@ -64,10 +64,16 @@
     cd Paddle
     ```
 
-5. 切换到`develop`分支下进行编译：
+5. 切换到较稳定release分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.0
     ```
 
 6. 并且请创建并进入一个叫build的目录下：

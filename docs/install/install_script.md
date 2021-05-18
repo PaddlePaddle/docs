@@ -17,7 +17,7 @@
 
 	检测您的机器是否安装我们支持的CUDA，cuDNN，具体地：
 
-	1. 在`/usr/local/` 及其子目录下寻找 `cuda/cuda8/cuda9/cuda10` 目录下的`version.txt`文件（通常如果您以默认方式安装了CUDA）。 如果提示未找到CUDA请使用命令`find / -name version.txt`找到您所需要的CUDA目录下的“version.txt”路径，然后按照提示输入。
+	1. 在`/usr/local/` 及其子目录下寻找 `cuda10.1/cuda10.2/cuda11.0/cuda11.2` 目录下的`version.txt`文件（通常如果您以默认方式安装了CUDA）。 如果提示未找到CUDA请使用命令`find / -name version.txt`找到您所需要的CUDA目录下的“version.txt”路径，然后按照提示输入。
 	2.  在`/usr` 及其子目录下寻找文件 `cudnn.h`  , 如果您的cuDNN未安装在默认路径请使用命令`find / -name cudnn.h`寻找您希望使用的cuDNN版本的`cudnn.h`路径并按提示输入
 
    如果未找到相应文件，则会安装CPU版本的PaddlePaddle

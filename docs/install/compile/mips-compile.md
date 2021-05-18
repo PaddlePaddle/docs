@@ -57,7 +57,7 @@
     export LD_LIBRARY_PATH=$HOME/python37/lib:$LD_LIBRARY_PATH
     ```
 
-3. Paddle依赖cmake进行编译构建，需要cmake版本>=3.15，龙芯操作系统源提供cmake的版本是3.9，且尝试源码编译cmake失败，此处临时的处理方式是修改Paddle主目录的`CMakeLists.txt`, `cmake_minimum_required(VERSION 3.15)` 修改为 `cmake_minimum_required(VERSION 3.9)`。等到龙芯系统支持cmake >= 3.15后则不需要其它操作。
+3. Paddle依赖cmake进行编译构建，需要cmake版本>=3.10，龙芯操作系统源提供cmake的版本是3.9，且尝试源码编译cmake失败，此处临时的处理方式是修改Paddle主目录的`CMakeLists.txt`, `cmake_minimum_required(VERSION 3.10)` 修改为 `cmake_minimum_required(VERSION 3.9)`。等到龙芯系统支持cmake >= 3.10后则不需要其它操作。
 
 
 4. Paddle内部使用patchelf来修改动态库的rpath，操作系统提供的源包括了patchelf，直接安装即可，后续会考虑在MIPS上移出该依赖。

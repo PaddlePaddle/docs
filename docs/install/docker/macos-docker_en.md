@@ -17,12 +17,21 @@
         docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]
         ```
 
+    * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
+        ```
+        docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]-jupyter
+        ```
+
     If your machine is not in mainland China, you can pull the image directly from DockerHub:
 
     * CPU version of PaddlePaddle：
         ```
         docker pull paddlepaddle/paddle:[version number]
         ```
+
+    * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
+        ```
+        docker pull paddlepaddle/paddle:[version number]-jupyter
 
     After `:`please fill in the PaddlePaddle version number, you can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
 
@@ -46,6 +55,32 @@
 
         > `<imagename>` Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
 
+    * Use CPU version of PaddlePaddle：
+
+
+        ```
+        mkdir ./jupyter_docker
+        ```
+        ```
+        chmod 777 ./jupyter_docker
+        ```
+        ```
+        cd ./jupyter_docker
+        ```
+        ```
+        docker run -p 80:80 --rm --env USER_PASSWD=[password you set] -v $PWD:/home/paddle <imagename>
+        ```
+
+        > --rm Delete the container after closing it;
+
+
+        > --env USER_PASSWD=[password you set] Set the login password for jupyter, [password you set] is the password you set;
+
+
+        > -v $PWD:/home/paddle Specifies to mount the current path (the PWD variable will be expanded to the absolute path of the current path) to the /home/paddle directory inside the container;
+
+        > `<imagename>` Specify the name of the image to be used, you can view it through the `docker images` command
+
 
 
 Now you have successfully used Docker to install PaddlePaddle. For more information about using Docker, see[Docker official documents](https://docs.docker.com)
@@ -63,30 +98,31 @@ Now you have successfully used Docker to install PaddlePaddle. For more informat
     </thead>
     <tbody>
         <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:[Version] </td>
-        <td> Install pecified version of PaddlePaddle </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0 </td>
+        <td> CPU image with 2.1.0 version of paddle installed </td>
     </tr>
     <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest </td>
-        <td> Install development version of PaddlePaddle。Note: This release may contain features and unstable features that have not yet been released, so it is not recommended for regular users or production environments. </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-jupyter </td>
+        <td> CPU image of paddle version 2.1.0 is installed, and jupyter is pre-installed in the image. Start the docker to run the jupyter service </td>
     </tr>
     <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest-gpu </td>
-        <td> Install development of PaddlePaddle(support GPU). Note: This release may contain features and unstable features that have not yet been released, so it is not recommended for regular users or production environments. </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda11.2-cudnn8 </td>
+        <td> GPU image of paddle version 2.1.0 is installed, cuda version is 11.2, cudnn version is 8.1 </td>
     </tr>
         <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest-dev </td>
-        <td> Install the latest development environment of PaddlePaddle </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda10.2-cudnn7 </td>
+        <td> GPU image of paddle version 2.1.0 is installed, cuda version is 10.2, cudnn version is 7 </td>
     </tr>
    </tbody>
 </table>
 </p>
 
 You can find the docker mirroring of the published versions of PaddlePaddle in [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/).
+
+
 ### Note
 
-* Python version in the image is 2.7
-* In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
+* Python version in the image is 3.7
 
 ### 补充说明
 
