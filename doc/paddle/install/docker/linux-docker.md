@@ -38,7 +38,7 @@
 
     在`:`后请您填写PaddlePaddle版本号，例如当前版本`2.0.2`，更多请见[镜像简介](#dockers)。
 
-    上例中，`cuda10.2-cudnn7` 也仅作示意用，表示安装GPU版的镜像。如果您还想安装其他cuda/cudnn版本的镜像，可以将其替换成`cuda9.0-cudnn7`，`cuda10.0-cudnn7`，`cuda10.1-cudnn7`，`cuda11.0-cudnn8`。
+    上例中，`cuda10.2-cudnn7` 也仅作示意用，表示安装GPU版的镜像。如果您还想安装其他cuda/cudnn版本的镜像，可以将其替换成`cuda11.2-cudnn8`等。
 
     您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
@@ -99,20 +99,20 @@
     </thead>
     <tbody>
         <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:[Version] </td>
-        <td> 安装了指定版本PaddlePaddle </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0 </td>
+        <td> 安装了2.1.0版本paddle的CPU镜像 </td>
     </tr>
     <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest </td>
-        <td> 安装了开发版PaddlePaddle。注意：此版本可能包含尚未发布的特性和不稳定的功能，因此不推荐常规用户或在生产环境中使用。 </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-jupyter </td>
+        <td> 安装了2.1.0版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
     </tr>
     <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest-gpu </td>
-        <td> 安装了开发版PaddlePaddle（支持GPU）。注意：此版本可能包含尚未发布的特性和不稳定的功能，因此不推荐常规用户或在生产环境中使用。 </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda11.2-cudnn8 </td>
+        <td> 安装了2.1.0版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
     </tr>
         <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest-dev </td>
-        <td> 安装了PaddlePaddle最新的开发环境 </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda10.2-cudnn7 </td>
+        <td> 安装了2.1.0版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
     </tr>
    </tbody>
 </table>
@@ -120,10 +120,30 @@
 
 您可以在 [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) 中找到PaddlePaddle的各个发行的版本的docker镜像。
 
+注：
+
+对于jupyter的CPU镜像，您可以指定jupyter的登录密码，可通过如下指令启动容器：
+
+1. 创建jupyter镜像的运行目录并指定文件夹权限：
+    ```
+    mkdir ./jupyter_docker
+    ```
+    ```
+    chmod 777 ./jupyter_docker
+    ```
+    ```
+    cd ./jupyter_docker
+    ```
+
+2. 使用如下命令启动docker，其中[password you set]是您用来登录jupyter的密码
+
+    ```
+    docker run -p 80:80 --rm --env USER_PASSWD=[password you set] -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:paddle:2.1.0-jupyter
+    ```
+
 ### 注意事项
 
-* 镜像中Python版本为2.7
-* PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码
+* 镜像中Python版本为3.7
 
 ### 补充说明
 

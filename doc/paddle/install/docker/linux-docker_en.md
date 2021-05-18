@@ -38,7 +38,7 @@
 
     After `:`, please fill in the PaddlePaddle version number, such as the current version `2.0.2`. For more details, please refer to [image profile](#dockers).
 
-    In the above example, `cuda10.2-cudnn7` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `cuda9.0-cudnn7`, `cuda10.0-cudnn7`, `cuda10.1-cudnn7`, `cuda11.0-cudnn8`.
+    In the above example, `cuda10.2-cudnn7` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `cuda11.2-cudnn8` etc.
 
     You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
 
@@ -97,30 +97,52 @@ Now you have successfully used Docker to install PaddlePaddle. For more informat
     </thead>
     <tbody>
         <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:[Version] </td>
-        <td> Install pecified version of PaddlePaddle </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0 </td>
+        <td> CPU image with 2.1.0 version of paddle installed </td>
     </tr>
     <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest </td>
-        <td> Install development version of PaddlePaddle。Note: This release may contain features and unstable features that have not yet been released, so it is not recommended for regular users or production environments. </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-jupyter </td>
+        <td> CPU image of paddle version 2.1.0 is installed, and jupyter is pre-installed in the image. Start the docker to run the jupyter service </td>
     </tr>
     <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest-gpu </td>
-        <td> Install development of PaddlePaddle(support GPU). Note: This release may contain features and unstable features that have not yet been released, so it is not recommended for regular users or production environments. </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda11.2-cudnn8 </td>
+        <td> GPU image of paddle version 2.1.0 is installed, cuda version is 11.2, cudnn version is 8.1 </td>
     </tr>
         <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest-dev </td>
-        <td> Install the latest development environment of PaddlePaddle </td>
+        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda10.2-cudnn7 </td>
+        <td> GPU image of paddle version 2.1.0 is installed, cuda version is 10.2, cudnn version is 7 </td>
     </tr>
    </tbody>
 </table>
 </p>
 
 You can find the docker mirroring of the published versions of PaddlePaddle in [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/).
+
+
+NOTE:
+
+For jupyter's CPU image, you can specify the login password of jupyter, and the container can be started by the following command:
+
+1. Create the running directory of the jupyter mirror and specify the folder permissions:
+    ```
+    mkdir ./jupyter_docker
+    ```
+    ```
+    chmod 777 ./jupyter_docker
+    ```
+    ```
+    cd ./jupyter_docker
+    ```
+
+2. Use the following command to start docker, where [password you set] is the password you use to log in to jupyter
+
+    ```
+    docker run -p 80:80 --rm --env USER_PASSWD=[password you set] -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:paddle:2.1.0-jupyter
+    ```
+
 ### Note
 
-* Python version in the image is 2.7
-* In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
+* Python version in the image is 3.7
 
 ### 补充说明
 
