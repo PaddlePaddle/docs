@@ -1,23 +1,23 @@
 ﻿
 # Release Note
 
-## Important Updates
+## Highlights
 
 The PaddlePaddle Framework V2.1.0 has the following important updates:
 
 - Environment Adaptation: Add the support for Python 3.9, CUDA 11.2; Provide the support for [ROCm platform](https://rocmdocs.amd.com/en/latest/) (experimental); Provide the support for [Ascend AI processor](https://e.huawei.com/cn/products/cloud-computing-dc/atlas/ascend-910) (experimental); Add the number of models that can run on [Baidu Kunlun chip](https://cloud.baidu.com/product/kunlun.html) . For details, please see: [Getting Started](https://www.paddlepaddle.org.cn/install/quick).
 
-- Distributed training: Support training extremely large models with 4D parallelism, powered by data parallelism, model parallelism, pipeline parallelism and arbitrary sharding, in addition, they can combine with AMP and the new ReCompute strategy to achieve better efficiency. 
+- Distributed training: besides [multidimensional hybrid parallelism](https://mp.weixin.qq.com/s/BblzcVn0NQ-QIhywvmoOuA) in static graph mode,  implementation in dynamic graph  is added.
 
 - Framework function: Complete a number of enhancements and performance optimizations, in particular, including the following important new functions:
   
-  - Provide a new solution for customizing operators outside the framework, simplifying the process of writing custom operators and deploying training inference. For details see: [Customizing External Operators](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/07_new_op/new_custom_op_cn.html).
-  - Add the inplace operation to reduce the memory consumption and improve performance, including View strategy, and 12 inplace APIs.
-  - Add the high-level APIs to support mixed precision training; add `paddle.hub` to view, share, and load models.
-  - Automatic mixed precision training optimization. Optimize the computational performance of multiple OPs in mixed precision training such as slice, where, range, etc., and improve the acceleration effect on MaskRCNN, ERNIE and other models.
+  - Customized OP: Provide a new solution for customizing operators outside the framework, simplifying the process of writing custom operators and deploying training inference. For details see: [Customizing External Operators](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/07_new_op/new_custom_op_cn.html).
+  - Inplace Operation: Add the inplace operation to reduce the memory consumption and improve performance, including View strategy, and 12 inplace APIs.
+  - High-level API related: Add the high-level APIs to support mixed precision training; add `paddle.hub` to view, share, and load models.
+  - Automatic mixed precision training optimization: Optimized the computational performance of multiple OPs in mixed precision training such as slice, where, range, etc., and improved the acceleration effect on MaskRCNN, ERNIE and other models.
   - oneDNN BF16 training: Enabled AMP (AutoMixedPrecision) pure_BF16 mode. Enabled BF16 SGD and initializers for less memory consumption. Enabled most of FWD & BWD BF16 ops for BF16 word2vec training.
 
-- Paddle projects: For the latest updates to the official model libraries and suites of PaddlePaddle, please see: [Paddle projects notes along with PaddlePaddle2.1](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-projects-notes-along-with-PaddlePaddle2.1).
+For the latest updates to the official model libraries and suites of PaddlePaddle, please see: [Paddle projects notes along with PaddlePaddle2.1](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-projects-notes-along-with-PaddlePaddle2.1).
 
 ## Backwards Incompatible Changes
 
@@ -32,12 +32,20 @@ from paddle.nn.layer.conv import *
 
 - `Tensor.grad` Incompatible upgrade. The type of return value is changed from `numpy` to `Tensor`. ([#32142](https://github.com/PaddlePaddle/Paddle/pull/32142)) 
 
+
 <table>
 <tr>
-<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+<th>
+2.0
+</th>
+<th>
+2.1
+</th>
 </tr>
+
 <tr>
 <td>
+<pre>
 
 ```python
 >>> import paddle
@@ -45,13 +53,13 @@ from paddle.nn.layer.conv import *
 >>> y = paddle.pow(x, 4.0)
 >>> y.backward()
 >>> type(x.grad)
-<class 'numpy.ndarray'>
+< class ‘numpy.ndarray’ >
 ```
-
+</pre>
 </td>
 
 <td>
-
+<pre>
 
 ```python
 >>> import paddle
@@ -59,9 +67,9 @@ from paddle.nn.layer.conv import *
 >>> y = paddle.pow(x, 4.0)
 >>> y.backward()
 >>> type(x.grad)
-<class 'paddle.Tensor'>
+< class ‘paddle.Tensor’ >
 ```
-
+</pre>
 </td>
 </tr>
 </table>
@@ -71,98 +79,129 @@ from paddle.nn.layer.conv import *
 
 <table>
 <tr>
-<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+<th>
+2.0
+</th>
+<th>
+2.1
+</th>
 </tr>
+
 <tr>
 <td>
+<pre>
 
 ```python
 >>> import os
 >>> import paddle
 >>> from paddle.vision.models import resnet18
+
 >>> model = resnet18()
 >>> x = paddle.rand([1, 3, 224, 224])
->>> _, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])
+>>> _, static_layer = paddle.jit.TracedLayer.trace(model, inputs=[x])
 >>> save_path = './save_infer_model'
 >>> static_layer.save_inference_model(dirname=save_path)
->>> print(os.path.isdir(save_path))
-True
->>> print(len(os.listdir(save_path)))
-205
-```
 
+>>> print(os.path.isdir(save_path))
+>>> print(len(os.listdir(save_path)))
+True
+103
+```
+</pre>
 </td>
 
 <td>
-
+<pre>
 
 ```python
 >>> import os
 >>> import paddle
 >>> from paddle.vision.models import resnet18
+
 >>> model = resnet18()
 >>> x = paddle.rand([1, 3, 224, 224])
->>> _, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])
->>> save_path = './save_infer_model'
->>> static_layer.save_inference_model(dirname=save_path)
->>> print(os.path.isdir(save_path))
-False
->>> print([name for name in os.listdir('./') if name.startswith(save_path)])
-[save_infer_model.pdiparams]
-```
+>>> _, static_layer = paddle.jit.TracedLayer.trace(model, inputs=[x])
+>>> save_path = 'save_infer_model'
+>>> static_layer.save_inference_model(path=save_path)
 
+>>> print(os.path.isdir(save_path))
+>>> print([name for name in os.listdir('./') if name.startswith(save_path)])
+False
+['save_infer_model.pdmodel', 'save_infer_model.pdiparams']
+```
+</pre>
 </td>
 </tr>
 </table>
-  
-  
+
+
 - `paddle.io.DataLoader`return format incompatibility upgrade when user-define dataset only contains single field。If user-define dataset only contains single field and output data with code like `return image` or `yield image`，output data format in Paddle 2.0 is `[image_tensor]`，and output data format in Paddle 2.1 is `image_tensor` to keep data structure same with input.
 
 <table>
 <tr>
-<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+<th>
+2.0
+</th>
+<th>
+2.1
+</th>
 </tr>
+
 <tr>
 <td>
+<pre>
 
 ```python
 >>> import numpy as np
 >>> import paddle
 >>> from paddle.io import DataLoader, Dataset
+>>> 
 >>> class RandomDataset(Dataset):
-...     def __getitem__(self, idx):
-...         return np.random.random((2, 3)).astype(‘float32’)
-...     def __len__(self):
-...         return 10
+>>>     def __getitem__(self, idx):
+>>>         return np.random.random((2, 3)).astype('float32')
+>>> 
+>>>     def __len__(self):
+>>>         return 10
+>>> 
 >>> dataset = RandomDataset()
 >>> loader = DataLoader(dataset, batch_size=1)
 >>> data = next(loader())
-data: [Tensor(shape=(1, 2, 3), dtype=float32)]
+>>> print(data)
+[Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True,
+       [[[0.73782003, 0.62605530, 0.32727283],
+         [0.37154925, 0.63570684, 0.53859973]]])]
 ```
-
+</pre>
 </td>
 
 <td>
-
+<pre>
 
 ```python
 >>> import numpy as np
 >>> import paddle
 >>> from paddle.io import DataLoader, Dataset
+>>> 
 >>> class RandomDataset(Dataset):
-...     def __getitem__(self, idx):
-...         return np.random.random((2, 3)).astype(‘float32’)
-...     def __len__(self):
-...         return 10
+>>>     def __getitem__(self, idx):
+>>>         return np.random.random((2, 3)).astype('float32')
+>>> 
+>>>     def __len__(self):
+>>>         return 10
+>>> 
 >>> dataset = RandomDataset()
 >>> loader = DataLoader(dataset, batch_size=1)
 >>> data = next(loader())
-data: Tensor(shape=(1, 2, 3), dtype=float32)
+>>> print(data)
+Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True,
+       [[[0.73782003, 0.62605530, 0.32727283],
+         [0.37154925, 0.63570684, 0.53859973]]])
 ```
-
+</pre>
 </td>
 </tr>
 </table>
+
 
 ## Training Framework
 
@@ -193,14 +232,14 @@ data: Tensor(shape=(1, 2, 3), dtype=float32)
 - Optimize `paddle.norm` documentation description to clarify the functional differences between `paddle.norm` and `numpy.linalg.norm` API. ([#32530](https://github.com/PaddlePaddle/Paddle/pull/32530))
 - Optimize the printing form of data type (`datatype`) of Tensor, for example, the `dtype` of Tensor of `float32` type is changed from `VarType.FP32` to `paddle.float32`. ([#30682](https://github.com/PaddlePaddle/Paddle/pull/30682))
 - OneDNN Functional optimization
-  - Upgraded oneDNN to 2.2.1 ([#31067](https://github.com/PaddlePaddle/Paddle/pull/31067) [#31473](https://github.com/PaddlePaddle/Paddle/pull/31473) [#30295](https://github.com/PaddlePaddle/Paddle/pull/30295) [32227](https://github.com/PaddlePaddle/Paddle/pull/32227))
-  - Added more precise mkldnn kernel rules in GetExpectedKernelType based on kernel's data type. ([#29840](https://github.com/PaddlePaddle/Paddle/pull/29840))
-  - Fused `layer_norm` subgraphs to single `layer_norm` op. ([#32162](https://github.com/PaddlePaddle/Paddle/pull/32162), [#30891](https://github.com/PaddlePaddle/Paddle/pull/30891), [#30962](https://github.com/PaddlePaddle/Paddle/pull/30962))
-  - Reduced unnecessary memory allocation during creation of `elementwise_mul` operator ([#30203](https://github.com/PaddlePaddle/Paddle/pull/30203))
-  - Improved memory consumption used in cache per thread ([#30358](https://github.com/PaddlePaddle/Paddle/pull/30358))
-  - Added oneDNN FP32 and INT8 support for vanilla LSTM ([#30719](https://github.com/PaddlePaddle/Paddle/pull/30719) [#31894](https://github.com/PaddlePaddle/Paddle/pull/31894))
-  - Added OneDNN `hardswish` support ([#30211](https://github.com/PaddlePaddle/Paddle/pull/30211))
-  - Added `bilinear_interp_v2` and `nearest_interp_v2` oneDNN FP32 kernels ([#32312](https://github.com/PaddlePaddle/Paddle/pull/32312))
+    - Upgraded oneDNN to 2.2.1 ([#31067](https://github.com/PaddlePaddle/Paddle/pull/31067) [#31473](https://github.com/PaddlePaddle/Paddle/pull/31473) [#30295](https://github.com/PaddlePaddle/Paddle/pull/30295) [32227](https://github.com/PaddlePaddle/Paddle/pull/32227))
+    - Added more precise mkldnn kernel rules in GetExpectedKernelType based on kernel's data type. ([#29840](https://github.com/PaddlePaddle/Paddle/pull/29840))
+    - Fused `layer_norm` subgraphs to single `layer_norm` op. ([#32162](https://github.com/PaddlePaddle/Paddle/pull/32162), [#30891](https://github.com/PaddlePaddle/Paddle/pull/30891), [#30962](https://github.com/PaddlePaddle/Paddle/pull/30962))
+    - Reduced unnecessary memory allocation during creation of `elementwise_mul` operator ([#30203](https://github.com/PaddlePaddle/Paddle/pull/30203))
+    - Improved memory consumption used in cache per thread ([#30358](https://github.com/PaddlePaddle/Paddle/pull/30358))
+    - Added oneDNN FP32 and INT8 support for vanilla LSTM ([#30719](https://github.com/PaddlePaddle/Paddle/pull/30719) [#31894](https://github.com/PaddlePaddle/Paddle/pull/31894))
+    - Added OneDNN `hardswish` support ([#30211](https://github.com/PaddlePaddle/Paddle/pull/30211))
+    - Added `bilinear_interp_v2` and `nearest_interp_v2` oneDNN FP32 kernels ([#32312](https://github.com/PaddlePaddle/Paddle/pull/32312))
 - Updated Xbyak to v5.81 ([#30809](https://github.com/PaddlePaddle/Paddle/pull/30809))
 - Fix `paddle.io.DataLoader` to support data sets containing nested complex data formats such as list, dict and string, and fix the occasional error report and unreleased resources when the program exits during the iteration. ([#31481](https://github.com/PaddlePaddle/Paddle/pull/31481))
 - Fix the problem caused by modifying the root logger of logging library in paddle. ([#32706](https://github.com/PaddlePaddle/Paddle/pull/32706))
@@ -222,37 +261,47 @@ data: Tensor(shape=(1, 2, 3), dtype=float32)
 
 <table>
 <tr>
-<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+<th>
+2.0
+</th>
+<th>
+2.1
+</th>
 </tr>
+
 <tr>
 <td>
+<pre>
 
 ```python
 >>> from paddle.vision.models import resnet18
 >>> model = resnet18()
+>>> 
 >>> print(len(model.sublayers(include_sublayers=True)))
-67
 >>> print(len(model.sublayers(include_sublayers=False)))
+67
 0
 ```
-
+</pre>
 </td>
 
 <td>
-
+<pre>
 
 ```python
 >>> from paddle.vision.models import resnet18
 >>> model = resnet18()
->>> print(len(model.sublayers(include_sublayers=True)))
+>>> 
+>>> print(len(model.sublayers(include_self=True)))
+>>> print(len(model.sublayers(include_self=False)))
 68
->>> print(len(model.sublayers(include_sublayers=False)))
 67
 ```
-
+</pre>
 </td>
 </tr>
 </table>
+
 
 #### High-level API
 
@@ -309,18 +358,16 @@ Fix the bug of dynamic graphs converted to static graphs.
 
 - New graph-based retrieval engine for training distributed graph neural network over trillion edges([#31226](https://github.com/PaddlePaddle/Paddle/pull/31226)).
 - Added index-based data sampling class to support sampling from graph and TDM/OTM tree([#31696](https://github.com/PaddlePaddle/Paddle/pull/31696)).
-- Added `paddle.distributed.send, paddle.distributed.recv` to improve the distributed communication API. ([#32504](https://github.com/PaddlePaddle/Paddle/pull/32504))
-- Added `paddle.distributed.new_group` and `paddle.distributed.wait` for general communication API. ([#31682](https://github.com/PaddlePaddle/Paddle/pull/31682))
+- Added `paddle.distributed.send, paddle.distributed.recv, paddle.distributed.new_group, paddle.distributed.wait` to improve the distributed communication API. ([#32504](https://github.com/PaddlePaddle/Paddle/pull/32504),  [#31682](https://github.com/PaddlePaddle/Paddle/pull/31682))
 - Support to initialize the  `sync_parameters_buffer`in the distributed dynamic graph, which solved the issue that the buffer of the dynamic graph is not globally initialized. ([#31625](https://github.com/PaddlePaddle/Paddle/pull/31625))
-- \[Hybrid Parallel] Support 4D Hybrid Parallelism: Data Parallelism/Sharding/Pipeline Parallelism/Model Parallelism with Fleet static graph mode(([#32486](https://github.com/PaddlePaddle/Paddle/pull/32486) [#32485](https://github.com/PaddlePaddle/Paddle/pull/32485) [#31996](https://github.com/PaddlePaddle/Paddle/pull/31996) [#31939](https://github.com/PaddlePaddle/Paddle/pull/31939) [#31796](https://github.com/PaddlePaddle/Paddle/pull/31796)).
 - Pipeline Parallelism supports 1F1B scheduling method to optimize the memory usage of GPU. Theoretically, it is constant([#31786](https://github.com/PaddlePaddle/Paddle/pull/31786)).
-- \[Hybrid Parallel] Sharding strategy optimization: support Gradients aggregation, reducing the amount of parameter communication, and improving the speed of training. ([#31884](https://github.com/PaddlePaddle/Paddle/pull/31884))
+- \[Hybrid Parallel] Sharding strategy optimization: support Gradients aggregation, reducing the amount of parameter communication, and improving the speed of training; Could be used flexibly with other parallelism strategies. ([#31884](https://github.com/PaddlePaddle/Paddle/pull/31884) [#32486](https://github.com/PaddlePaddle/Paddle/pull/32486) [#32485](https://github.com/PaddlePaddle/Paddle/pull/32485) [#31996](https://github.com/PaddlePaddle/Paddle/pull/31996) [#31939](https://github.com/PaddlePaddle/Paddle/pull/31939) [#31796](https://github.com/PaddlePaddle/Paddle/pull/31796))
 - \[Hybrid Parallel] Added optimizer state offload in the Sharding strategy, to reduce the memory usage of GPU. ([#32134](https://github.com/PaddlePaddle/Paddle/pull/32134))
 - \[Hybrid Parallel] Support the persistence of the broadcast ID’s socket service, reduced the conflicts of ports in the hybrid parallelism. ([#31589](https://github.com/PaddlePaddle/Paddle/pull/31589))
 - \[Parameter Server] Optimize the output and printing of LOG, and remove invalid logs.
 - \[Parameter Server] Optimize the sparse parameter storage structure, with large memory reduction for small dimensions (below 64).
 - \[Parameter Server] Fix the bug of access policy taking effect in the distributed prediction.
-- HeterPs supports multiple machines.
+- HeterPs supports multiple machines. ([#31102](https://github.com/PaddlePaddle/Paddle/pull/31102))
 
 ##### Hybrid Parallelism with dynamic Graph
 
@@ -427,8 +474,8 @@ Support hybrid parallelism in the distributed dynamic graph mode, powered by dat
 
 ### New hardware training support
 
-- Add the support for Hygon chips:  PaddlePaddle, based on ROCM version 4.0.1, can train and infer models on Hygon CPU and DCU. A total of 36 models of 7 categories of image classification, target detection, image segmentation, natural language processing, recommendation systems, video classification and speech synthesis have been validated.
-- Add the support of Ascend chips: support for single hosting, multiple accelerators training on Ascend NPUs.
+- Add the support for Hygon chips:  PaddlePaddle, based on ROCM version 4.0.1, can train and infer models on Hygon CPU and DCU. A total of 36 models of 7 categories of image classification, target detection, image segmentation, natural language processing, recommendation systems, video classification and speech synthesis have been validated. ([#29342](https://github.com/PaddlePaddle/Paddle/pull/29342), [#30758](https://github.com/PaddlePaddle/Paddle/pull/30758), [#30639](https://github.com/PaddlePaddle/Paddle/pull/30639), [#31009](https://github.com/PaddlePaddle/Paddle/pull/31009), [#31077](https://github.com/PaddlePaddle/Paddle/pull/31077), and more)
+- Add the support of Ascend chips: support for single hosting, multiple accelerators training on Ascend NPUs.  ([#31957](https://github.com/PaddlePaddle/Paddle/pull/31957), [#32381](https://github.com/PaddlePaddle/Paddle/pull/32381),  [#32197](https://github.com/PaddlePaddle/Paddle/pull/32197),  and more)
 - Kunlun hardware training support
   - Kunlun XPU supports dynamic graph distributed training. ([#30455](https://github.com/PaddlePaddle/Paddle/pull/30455),  [#30671](https://github.com/PaddlePaddle/Paddle/pull/30671))
   - Kunlun XPU supports fleet distributed training. ([#30858](https://github.com/PaddlePaddle/Paddle/pull/30858))

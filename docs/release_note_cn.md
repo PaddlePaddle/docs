@@ -7,16 +7,17 @@
 
 - 环境适配： 增加了对Python 3.9、CUDA 11.2的支持；提供了对[ROCm平台](https://rocmdocs.amd.com/en/latest/)的支持（experimental）；提供了对[昇腾AI处理器](https://e.huawei.com/cn/products/cloud-computing-dc/atlas/ascend-910)的支持（experimental）；增加了可在[百度昆仑芯片](https://cloud.baidu.com/product/kunlun.html)上运行的模型数量；详情请见：[开始使用](https://www.paddlepaddle.org.cn/install/quick)。
 
-- 分布式训练：分布式支持多维混合并行功能，含数据并行，模型并行，流水线并行，分组参数切片策略，及与AMP混合精度策略，ReCompute策略的任意组合。
+- 分布式训练：在已有静态图的[多维混合并行](https://mp.weixin.qq.com/s/BblzcVn0NQ-QIhywvmoOuA)的基础上，新增动态图实现。
 
 - 框架功能：完成了多项功能增强和性能优化，特别的，新增了以下重要功能：
-    - 提供了在框架外部自定义算子的新方案，简化了自定义算子写法与训练推理部署流程，详情请见：[自定义外部算子](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/07_new_op/new_custom_op_cn.html)。
-    - 新增可降低显存占用与提升性能的inplace操作，包括View策略，与12个inplace API。
-    - 新增支持混合精度训练的高层API；新增通过`paddle.hub`来查看、共享、加载模型。
+    - 自定义算子：提供了在框架外部自定义算子的新方案，简化了自定义算子写法与训练推理部署流程，详情请见：[自定义外部算子](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/07_new_op/new_custom_op_cn.html)。
+    - 新增inplace操作：新增可降低显存占用与提升性能的inplace操作，包括View策略，与12个inplace API。
+    - 高层API相关：新增支持混合精度训练的高层API；新增通过`paddle.hub`来查看、共享、加载模型。
     - 自动混合精度训练优化： 优化了混合精度训练中slice、where、range等多个op的计算性能，提升了在MaskRCNN、ERNIE等模型上的加速效果。
     - oneDNN下BF16训练：新增支持了AMP(AutoMixedPrecision) pure_BF16模式; 新增支持了BF16类型的SGD和initializers初始值设定并减小了内存；新增支持了大部分word2vec BF16训练需要的前向和反向op。
-- 模型库及开发套件：飞桨的官方模型库和套件的最新更新请参见：[Paddle projects notes along with PaddlePaddle2.1](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-projects-notes-along-with-PaddlePaddle2.1)。
-  
+
+飞桨的官方模型库和套件的最新更新请参见：[Paddle projects notes along with PaddlePaddle2.1](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-projects-notes-along-with-PaddlePaddle2.1)。
+
 ## 不兼容升级
 - 飞桨框架2.1放弃了对python2和python3.5的支持，建议您升级python到3.8版本来使用飞桨。飞桨框架2.1不再提供支持CUDA9的预编译包，建议您升级CUDA版本来使用飞桨。
 - 对API可见性的优化，会导致无法使用`from deeply_nested_namespace import *`的方式导入被认为是实现细节的位于最底层的命名空间中的私有API。建议您通过查看飞桨官网的[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html)说明来使用飞桨。具体的，以下行为在飞桨框架2.1版本中不再被允许。
@@ -31,10 +32,17 @@ from paddle.nn.layer.conv import *
 
 <table>
 <tr>
-<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+<th>
+2.0
+</th>
+<th>
+2.1
+</th>
 </tr>
+
 <tr>
 <td>
+<pre>
 
 ```python
 >>> import paddle
@@ -42,13 +50,13 @@ from paddle.nn.layer.conv import *
 >>> y = paddle.pow(x, 4.0)
 >>> y.backward()
 >>> type(x.grad)
-<class 'numpy.ndarray'>
+< class ‘numpy.ndarray’ >
 ```
-
+</pre>
 </td>
 
 <td>
-
+<pre>
 
 ```python
 >>> import paddle
@@ -56,107 +64,135 @@ from paddle.nn.layer.conv import *
 >>> y = paddle.pow(x, 4.0)
 >>> y.backward()
 >>> type(x.grad)
-<class 'paddle.Tensor'>
+< class ‘paddle.Tensor’ >
 ```
-
+</pre>
 </td>
 </tr>
 </table>
-
 
 - `paddle.jit.TraceLayer.save_inference_model` 接口不兼容升级。将原先的第一个参数dirname改为path，名字表意更通用并且与paddle.save和load等接口统一，表示由用户指定保存模型路径的前缀。([#31989](https://github.com/PaddlePaddle/Paddle/pull/31989))
 
 <table>
 <tr>
-<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+<th>
+2.0
+</th>
+<th>
+2.1
+</th>
 </tr>
+
 <tr>
 <td>
+<pre>
 
 ```python
 >>> import os
 >>> import paddle
 >>> from paddle.vision.models import resnet18
+
 >>> model = resnet18()
 >>> x = paddle.rand([1, 3, 224, 224])
->>> _, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])
+>>> _, static_layer = paddle.jit.TracedLayer.trace(model, inputs=[x])
 >>> save_path = './save_infer_model'
 >>> static_layer.save_inference_model(dirname=save_path)
->>> print(os.path.isdir(save_path))
-True
->>> print(len(os.listdir(save_path)))
-205
-```
 
+>>> print(os.path.isdir(save_path))
+>>> print(len(os.listdir(save_path)))
+True
+103
+```
+</pre>
 </td>
 
 <td>
-
+<pre>
 
 ```python
 >>> import os
 >>> import paddle
 >>> from paddle.vision.models import resnet18
+
 >>> model = resnet18()
 >>> x = paddle.rand([1, 3, 224, 224])
->>> _, static_layer = paddle.jit.TracedLayer.trace(model, input=[x])
->>> save_path = './save_infer_model'
->>> static_layer.save_inference_model(dirname=save_path)
->>> print(os.path.isdir(save_path))
-False
->>> print([name for name in os.listdir('./') if name.startswith(save_path)])
-[save_infer_model.pdiparams]
-```
+>>> _, static_layer = paddle.jit.TracedLayer.trace(model, inputs=[x])
+>>> save_path = 'save_infer_model'
+>>> static_layer.save_inference_model(path=save_path)
 
+>>> print(os.path.isdir(save_path))
+>>> print([name for name in os.listdir('./') if name.startswith(save_path)])
+False
+['save_infer_model.pdmodel', 'save_infer_model.pdiparams']
+```
+</pre>
 </td>
 </tr>
 </table>
-
 
 - `paddle.io.DataLoader`当`Dataset`只包含一个字段时，`DataLoader`返回格式不兼容升级。当用户自定义数据集只包含一个字段并通过如`return image`或`yield image`返回数据时，2.0版本返回的数据格式是`[image_tensor]`，而2.1版本返回的数据格式为`image_tensor`，保持输入输出数据结构的一致性。
 
 <table>
 <tr>
-<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+<th>
+2.0
+</th>
+<th>
+2.1
+</th>
 </tr>
+
 <tr>
 <td>
+<pre>
 
 ```python
 >>> import numpy as np
 >>> import paddle
 >>> from paddle.io import DataLoader, Dataset
+>>> 
 >>> class RandomDataset(Dataset):
-...     def __getitem__(self, idx):
-...         return np.random.random((2, 3)).astype(‘float32’)
-...     def __len__(self):
-...         return 10
+>>>     def __getitem__(self, idx):
+>>>         return np.random.random((2, 3)).astype('float32')
+>>> 
+>>>     def __len__(self):
+>>>         return 10
+>>> 
 >>> dataset = RandomDataset()
 >>> loader = DataLoader(dataset, batch_size=1)
 >>> data = next(loader())
-data: [Tensor(shape=(1, 2, 3), dtype=float32)]
+>>> print(data)
+[Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True,
+       [[[0.73782003, 0.62605530, 0.32727283],
+         [0.37154925, 0.63570684, 0.53859973]]])]
 ```
-
+</pre>
 </td>
 
 <td>
-
+<pre>
 
 ```python
 >>> import numpy as np
 >>> import paddle
 >>> from paddle.io import DataLoader, Dataset
+>>> 
 >>> class RandomDataset(Dataset):
-...     def __getitem__(self, idx):
-...         return np.random.random((2, 3)).astype(‘float32’)
-...     def __len__(self):
-...         return 10
+>>>     def __getitem__(self, idx):
+>>>         return np.random.random((2, 3)).astype('float32')
+>>> 
+>>>     def __len__(self):
+>>>         return 10
+>>> 
 >>> dataset = RandomDataset()
 >>> loader = DataLoader(dataset, batch_size=1)
 >>> data = next(loader())
-data: Tensor(shape=(1, 2, 3), dtype=float32)
+>>> print(data)
+Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True,
+       [[[0.73782003, 0.62605530, 0.32727283],
+         [0.37154925, 0.63570684, 0.53859973]]])
 ```
-
+</pre>
 </td>
 </tr>
 </table>
@@ -191,14 +227,14 @@ data: Tensor(shape=(1, 2, 3), dtype=float32)
 - 优化`paddle.norm`文档说明，澄清`paddle.norm`与`numpy.linalg.norm`API 存在功能差异。([#32530](https://github.com/PaddlePaddle/Paddle/pull/32530)) 
 - 优化Tensor 的数据类型（`datatype`）的打印形式，例如，`float32`类型的Tensor的`dtype`从`VarType.FP32`变为 `paddle.float32`。([#30682](https://github.com/PaddlePaddle/Paddle/pull/30682))
 - oneDNN功能优化：
- - 升级 oneDNN 至 v2.2.1。([#31067](https://github.com/PaddlePaddle/Paddle/pull/31067) [#31473])(https://github.com/PaddlePaddle/Paddle/pull/31473), [#30295](https://github.com/PaddlePaddle/Paddle/pull/30295) [32227](https://github.com/PaddlePaddle/Paddle/pull/32227))
- - 增加了更加准确的，基于数据类型的 oneDNN kernel 选择策略。([#29840](https://github.com/PaddlePaddle/Paddle/pull/29840))
- - 融合oneDNN `layer_norm`子图为完整的单个`layer_norm` op。([#32162](https://github.com/PaddlePaddle/Paddle/pull/32162), [#30891](https://github.com/PaddlePaddle/Paddle/pull/30891), [#30962](https://github.com/PaddlePaddle/Paddle/pull/30962))
- - 减少oneDNN `elementwise_mul`创建中不必要的内存分配。([#30203](https://github.com/PaddlePaddle/Paddle/pull/30203))
- - 改进了缓存每个线程使用的内存消耗。([#30358](https://github.com/PaddlePaddle/Paddle/pull/30358))
- - 增加了LSTM oneDNN fp32 and int8 kernel支持。([#30719](https://github.com/PaddlePaddle/Paddle/pull/30719) [#31894](https://github.com/PaddlePaddle/Paddle/pull/31894))
- - 增加了 OneDNN hardswish 支持。([#30211](https://github.com/PaddlePaddle/Paddle/pull/30211))
- - 增加了 `bilinear_interp_v2` 和 `nearest_interp_v2` 的oneDNN支持。([#32312](https://github.com/PaddlePaddle/Paddle/pull/32312))
+    - 升级 oneDNN 至 v2.2.1。([#31067](https://github.com/PaddlePaddle/Paddle/pull/31067) [#31473])(https://github.com/PaddlePaddle/Paddle/pull/31473), [#30295](https://github.com/PaddlePaddle/Paddle/pull/30295) [32227](https://github.com/PaddlePaddle/Paddle/pull/32227))
+    - 增加了更加准确的，基于数据类型的 oneDNN kernel 选择策略。([#29840](https://github.com/PaddlePaddle/Paddle/pull/29840))
+    - 融合oneDNN `layer_norm`子图为完整的单个`layer_norm` op。([#32162](https://github.com/PaddlePaddle/Paddle/pull/32162), [#30891](https://github.com/PaddlePaddle/Paddle/pull/30891), [#30962](https://github.com/PaddlePaddle/Paddle/pull/30962))
+    - 减少oneDNN `elementwise_mul`创建中不必要的内存分配。([#30203](https://github.com/PaddlePaddle/Paddle/pull/30203))
+    - 改进了缓存每个线程使用的内存消耗。([#30358](https://github.com/PaddlePaddle/Paddle/pull/30358))
+    - 增加了LSTM oneDNN fp32 and int8 kernel支持。([#30719](https://github.com/PaddlePaddle/Paddle/pull/30719) [#31894](https://github.com/PaddlePaddle/Paddle/pull/31894))
+    - 增加了 OneDNN hardswish 支持。([#30211](https://github.com/PaddlePaddle/Paddle/pull/30211))
+    - 增加了 `bilinear_interp_v2` 和 `nearest_interp_v2` 的oneDNN支持。([#32312](https://github.com/PaddlePaddle/Paddle/pull/32312))
 - 升级 Xbyak 数学库 至 v5.81。([#30809](https://github.com/PaddlePaddle/Paddle/pull/30809))
 - 修复`paddle.io.DataLoader`支持数据集包含list，dict和string等嵌套的复杂数据格式，修复迭代中途程序退出偶现的报错、资源未释放等问题。([#31481](https://github.com/PaddlePaddle/Paddle/pull/31481))
 - 修复 paddle 中修改 logging 库的 root logger 导致的问题。([#32706](https://github.com/PaddlePaddle/Paddle/pull/32706))
@@ -220,38 +256,48 @@ data: Tensor(shape=(1, 2, 3), dtype=float32)
 
 <table>
 <tr>
-<td style="text-align:center"> 2.0 </td> <td style="text-align:center"> 2.1 </td>
+<th>
+2.0
+</th>
+<th>
+2.1
+</th>
 </tr>
 <tr>
 <td>
 
+<pre>
+
 ```python
 >>> from paddle.vision.models import resnet18
 >>> model = resnet18()
+>>> 
 >>> print(len(model.sublayers(include_sublayers=True)))
-67
 >>> print(len(model.sublayers(include_sublayers=False)))
+67
 0
 ```
-
+</pre>
 </td>
 
 <td>
 
+<pre>
 
 ```python
 >>> from paddle.vision.models import resnet18
 >>> model = resnet18()
->>> print(len(model.sublayers(include_sublayers=True)))
+>>> 
+>>> print(len(model.sublayers(include_self=True)))
+>>> print(len(model.sublayers(include_self=False)))
 68
->>> print(len(model.sublayers(include_sublayers=False)))
 67
 ```
-
+</pre>
 </td>
 </tr>
 </table>
- 
+
 
 #### 高层API
 - 新增`paddle.hub`功能，提供`help`、`list`和`load`函数用于查看和加载第三方模型，支持加载远程和本地repository。([#31873](https://github.com/PaddlePaddle/Paddle/pull/31873))
@@ -303,21 +349,19 @@ data: Tensor(shape=(1, 2, 3), dtype=float32)
 - 增加了oneDNN reduce_op grad 对于 fp32 和 bf16 的支持。([#32280](https://github.com/PaddlePaddle/Paddle/pull/32280)  [#32592](https://github.com/PaddlePaddle/Paddle/pull/32592))
 
 #### 分布式训练优化
- 
- - 加入图检索引擎，支持万亿边规模的分布式图神经网络训练([#31226](https://github.com/PaddlePaddle/Paddle/pull/31226))。
- - 加入基于索引的数据采样类，支持图、TDM/OTM树等模型的采样([#31696](https://github.com/PaddlePaddle/Paddle/pull/31696))。
- - 新增`paddle.distributed.send, paddle.distributed.recv`，完善分布式通信API。([#32504](https://github.com/PaddlePaddle/Paddle/pull/32504))
- - 新增`paddle.distributed.new_group` 和 `paddle.distributed.wait`。([#31682](https://github.com/PaddlePaddle/Paddle/pull/31682))
+
+ - 加入图检索引擎，支持万亿边规模的分布式图神经网络存储、采样、训练([#31226](https://github.com/PaddlePaddle/Paddle/pull/31226))。
+ - 加入基于索引的数据采样类，支持图、树深度匹配等模型的采样([#31696](https://github.com/PaddlePaddle/Paddle/pull/31696))。
+ - 新增`paddle.distributed.send, paddle.distributed.recv，paddle.distributed.new_group，paddle.distributed.wait`，完善分布式通信API。([#32504](https://github.com/PaddlePaddle/Paddle/pull/32504),  [#31682](https://github.com/PaddlePaddle/Paddle/pull/31682))
  - 动态图分布式初始化支持`sync_parameters_buffer`，解决动态图buffer未全局初始化的问题。([#31625](https://github.com/PaddlePaddle/Paddle/pull/31625))
- - [混合并行] Fleet静态图支持数据并行/Sharding/流水线并行/模型并行 4级混合并行。([#32486](https://github.com/PaddlePaddle/Paddle/pull/32486)，[#32485](https://github.com/PaddlePaddle/Paddle/pull/32485)，[#31996](https://github.com/PaddlePaddle/Paddle/pull/31996)，[#31939](https://github.com/PaddlePaddle/Paddle/pull/31939)，[#31796](https://github.com/PaddlePaddle/Paddle/pull/31796))
  - 流水线并行支持1F1B调度方式，优化显存占用量，理论上显存占用量为常量。（[#31786](https://github.com/PaddlePaddle/Paddle/pull/31786)）
- - [混合并行] 优化Sharding 策略：Gradient Merge支持、减少参数通信量等，提升训练速度。([#31884](https://github.com/PaddlePaddle/Paddle/pull/31884))
+ - [混合并行] 优化Sharding 策略：Gradient Merge支持、减少参数通信量等，提升训练速度；支持与其他并行策略的灵活组合。([#31884](https://github.com/PaddlePaddle/Paddle/pull/31884) [#32486](https://github.com/PaddlePaddle/Paddle/pull/32486) [#32485](https://github.com/PaddlePaddle/Paddle/pull/32485) [#31996](https://github.com/PaddlePaddle/Paddle/pull/31996) [#31939](https://github.com/PaddlePaddle/Paddle/pull/31939) [#31796](https://github.com/PaddlePaddle/Paddle/pull/31796))
  - [混合并行] Sharding策略中添加optimize offload支持，降低训练显存占用。([#32134](https://github.com/PaddlePaddle/Paddle/pull/32134)) 
  - [混合并行] 持久化广播通信ID的socket服务，减少混合并行端口冲突问题。([#31589](https://github.com/PaddlePaddle/Paddle/pull/31589)) 
  - [参数服务器] 优化日志输出和LOG打印，去除无效日志。
  - [参数服务器] 优化稀疏参数存储结构，维度较小(低于64)的情况下内存有较大降幅 。
  - [参数服务器] 修复在分布式预测时，准入策略生效的BUG。
- - HeterPs支持多机。
+ - [参数服务器] HeterPs支持多机GPU训练（[#31102](https://github.com/PaddlePaddle/Paddle/pull/31102)）。
 
 ##### 动态图混合并行
 动态图分布式支持混合并行功能，支持数据并行，模型并行以及流水线并行三种并行方式的任意组合。同时支持混合并行基础上添加AMP混合精度策略，ReCompute策略。
@@ -423,8 +467,8 @@ data: Tensor(shape=(1, 2, 3), dtype=float32)
 
 ### 新硬件训练支持
 
-- 新增支持海光芯片：飞桨基于 ROCM 4.0.1 版本可以在海光CPU与DCU上进行模型训练与推理。已经验证支持图像分类、目标检测、图像分割、自然语言处理、推荐系统、视频分类与语音合成共计7个分类的36个模型。
-- 新增支持昇腾芯片：支持在昇腾NPU上进行单机多卡训练。
+- 新增支持海光芯片：飞桨基于 ROCM 4.0.1 版本可以在海光CPU与DCU上进行模型训练与推理。已经验证支持图像分类、目标检测、图像分割、自然语言处理、推荐系统、视频分类与语音合成共计7个分类的36个模型。([#29342](https://github.com/PaddlePaddle/Paddle/pull/29342), [#30758](https://github.com/PaddlePaddle/Paddle/pull/30758), [#30639](https://github.com/PaddlePaddle/Paddle/pull/30639), [#31009](https://github.com/PaddlePaddle/Paddle/pull/31009), [#31077](https://github.com/PaddlePaddle/Paddle/pull/31077))
+- 新增支持昇腾芯片：支持在昇腾NPU上进行单机多卡训练。([#31957](https://github.com/PaddlePaddle/Paddle/pull/31957), [#32381](https://github.com/PaddlePaddle/Paddle/pull/32381),  [#32197](https://github.com/PaddlePaddle/Paddle/pull/32197), ...)
 - 昆仑硬件训练支持
 	- 昆仑XPU支持动态图分布式训练。([#30455](https://github.com/PaddlePaddle/Paddle/pull/30455),  [#30671](https://github.com/PaddlePaddle/Paddle/pull/30671))
 	- 昆仑XPU支持fleet分布式训练。([#30858](https://github.com/PaddlePaddle/Paddle/pull/30858))
