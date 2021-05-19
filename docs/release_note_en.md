@@ -35,10 +35,10 @@ from paddle.nn.layer.conv import *
 
 <table>
 <tr>
-<th>
+<th style="text-align:center">
 2.0
 </th>
-<th>
+<th style="text-align:center">
 2.1
 </th>
 </tr>
@@ -75,10 +75,10 @@ from paddle.nn.layer.conv import *
 
 <table>
 <tr>
-<th>
+<th style="text-align:center">
 2.0
 </th>
-<th>
+<th style="text-align:center">
 2.1
 </th>
 </tr>
@@ -131,10 +131,10 @@ False
 
 <table>
 <tr>
-<th>
+<th style="text-align:center">
 2.0
 </th>
-<th>
+<th style="text-align:center">
 2.1
 </th>
 </tr>
@@ -249,10 +249,10 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 
 <table>
 <tr>
-<th>
+<th style="text-align:center">
 2.0
 </th>
-<th>
+<th style="text-align:center">
 2.1
 </th>
 </tr>
