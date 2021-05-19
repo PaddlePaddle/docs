@@ -195,7 +195,7 @@ If `PaddlePaddle is installed successfully!` appears, to verify that the install
 
 ## Notice
 
-For domestic users who cannot connect to the Anaconda official source, you can add Tsinghua source to install it according to the following command.
+For domestic users who cannot connect to the Anaconda official source, you can add Tsinghua source according to the following command.
 
 
 ```
@@ -206,12 +206,4 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 ```
 ```
 conda config --set show_channel_urls yes
-```
-cpu：
-```
-conda install paddlepaddle==2.1.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
-```
-gpu：
-```
-conda install paddlepaddle-gpu==2.1.0 cudatoolkit=[cuda版本号] --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```
