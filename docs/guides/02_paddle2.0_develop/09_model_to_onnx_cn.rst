@@ -25,7 +25,7 @@ Paddle转ONNX协议由 `paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx
 
 Paddle动态图模型转换为ONNX协议，首先会将Paddle的动态图 ``paddle.nn.Layer`` 转换为静态图， 详细原理可以参考 `动态图转静态图 <../04_dygraph_to_static/index_cn.html>`_ 。然后依照ONNX的算子协议，将Paddle的算子一一映射为ONNX的算子。动态图转换ONNX调用 ``paddle.onnx.export()`` 接口即可实现，该接口通过 ``input_spec`` 参数为模型指定输入的形状和数据类型，支持 ``Tensor`` 或 ``InputSpec`` ，其中 ``InputSpec`` 支持动态的shape。
 
-关于 ``paddle.onnx.export`` 接口更详细的使用方法，请参考 `API <../../api/paddle/onnx/export_cn.rst>`_ 。
+关于 ``paddle.onnx.export`` 接口更详细的使用方法，请参考 `API <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/onnx/export_cn.html>`_ 。
 
 .. code-block:: python
 
