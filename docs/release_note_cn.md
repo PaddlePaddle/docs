@@ -263,9 +263,9 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 2.1
 </th>
 </tr>
+
 <tr>
 <td>
-
 <pre>
 
 ```python
@@ -281,7 +281,6 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 </td>
 
 <td>
-
 <pre>
 
 ```python
