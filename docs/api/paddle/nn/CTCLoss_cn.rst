@@ -3,7 +3,7 @@
 CTCLoss
 -------------------------------
 
-.. py:class:: paddle.nn.loss.CTCLoss(blank=0, reduction='mean')
+.. py:class:: paddle.nn.CTCLoss(blank=0, reduction='mean')
 
 该接口用于计算 CTC loss。该接口的底层调用了第三方 baidu-research::warp-ctc 的实现。
 也可以叫做 softmax with CTC，因为 Warp-CTC 库中插入了 softmax 激活函数来对输入的值进行归一化。
