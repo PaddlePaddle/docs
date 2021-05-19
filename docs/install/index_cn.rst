@@ -159,10 +159,6 @@
 
             python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-        如果您是使用Windows系统请使用以下指令:
-
-            python -m pip install paddlepaddle==2.1.0 -f https://paddlepaddle.org.cn/whl/stable.html
-
 
     (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装 
 
@@ -179,9 +175,6 @@
 
             python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-        如果您是使用Windows系统请使用以下指令:
-
-            python -m pip install paddlepaddle_gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/stable.html 
         
     请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
