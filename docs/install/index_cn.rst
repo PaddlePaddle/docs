@@ -44,7 +44,7 @@
 
 **4. PaddlePaddle 对 GPU 支持情况：**
 
-* 目前 **PaddlePaddle** 仅支持 **NVIDIA** 显卡的 **CUDA** 驱动
+* 目前 **PaddlePaddle** 支持 **NVIDIA** 显卡的 **CUDA** 驱动和 **AMD** 显卡的 **ROCm** 架构
 * 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.6+(For CUDA10.1/10.2)
 * 如果您需要 GPU 多卡模式，需要安装 `NCCL 2 <https://developer.nvidia.com/nccl/>`_
 
@@ -70,9 +70,9 @@
             * CentOS 7 支持 CUDA 10.1/10.2/11.2
             * CentOS 6 不推荐，不提供编译出现问题时的官方支持
         * 如果您是使用 **nvidia-docker** 安装，在CentOS 7 下支持 CUDA 10.2/11.2
-    * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
+    * MacOS 不支持：MacOS 平台不支持 GPU 安装
 
-请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本whl包安装列表 <Tables.html#ciwhls>`_ .
+请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本whl包安装列表 <Tables.html#ciwhls-release>`_ .
 
 **5. PaddlePaddle 对 NCCL 支持情况：**
 
