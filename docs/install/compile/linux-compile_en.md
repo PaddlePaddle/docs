@@ -58,7 +58,7 @@
 
 There are two compilation methods under Linux system:
 
-* [Compile with Docker](#compile_from_docker)(GPU version doesn't support CentOS 6)
+* [Compile with Docker](#compile_from_docker) (no official support for compilation problems under CentOS 6)
 * [Local compilation](#compile_from_host) (no official support for compilation problems under CentOS 6)
 
 <a name="ct_docker"></a>
@@ -105,12 +105,12 @@ Please follow the steps below to install:
 
 
 
-    * Compile GPU version of PaddlePaddle (only supports CentOS 7):
+    * Compile GPU version of PaddlePaddle:
 
 
 
         ```
-        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev /bin/bash
         ```
 
         > --name paddle-test names the Docker container you created as paddle-test;
@@ -120,10 +120,12 @@ Please follow the steps below to install:
 
 
 
-        > -it keeps interaction with the host，`registry.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+        > -it keeps interaction with the host，`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev` use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
-        > Note: registry.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 10.0.
+        > Note: In the above example, `latest-gpu-cuda10.2-cudnn7-dev` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `latest-dev-cuda11.2-cudnn8-gcc82`, `latest-gpu-cuda10.1-cudnn7-gcc82-dev`, `latest-gpu-cuda10.1-cudnn7-gcc54-dev` etc.
+
+        You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
 
 
 4. After entering Docker, go to the paddle directory:
