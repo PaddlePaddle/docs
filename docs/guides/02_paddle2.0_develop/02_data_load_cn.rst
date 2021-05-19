@@ -8,13 +8,13 @@
 一、框架自带数据集
 ---------------------
 
-飞桨框架将深度学习任务中常用到的数据集作为领域API开放，对应API所在目录为\ ``paddle.vision.datasets``\ 与\ ``paddle.text.datasets``\，你可以通过以下代码飞桨框架中提供了哪些数据集。
+飞桨框架将深度学习任务中常用到的数据集作为领域API开放，对应API所在目录为\ ``paddle.vision.datasets``\ 与\ ``paddle.text``\，你可以通过以下代码飞桨框架中提供了哪些数据集。
 
 .. code:: ipython3
     
     import paddle
     print('视觉相关数据集：', paddle.vision.datasets.__all__)
-    print('自然语言相关数据集：', paddle.text.datasets.__all__)
+    print('自然语言相关数据集：', paddle.text.__all__)
 
 
 .. parsed-literal::
@@ -23,7 +23,7 @@
     自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
 
 .. warning::
-    除\ ``paddle.vision.dataset``\ 与\ ``paddle.text.dataset``\ 外，飞桨框架还内置了另一套数据集，路径为\ ``paddle.dataset.*``\ ，但是该数据集的使用方式较老，会在未来的版本废弃，请尽量不要使用该目录下数据集的API。
+    除\ ``paddle.vision.dataset``\ 与\ ``paddle.text``\ 外，飞桨框架还内置了另一套数据集，路径为\ ``paddle.dataset.*``\ ，但是该数据集的使用方式较老，会在未来的版本废弃，请尽量不要使用该目录下数据集的API。
 
 这里你可以定义手写数字体的数据集，其他数据集的使用方式也都类似。用\ ``mode``\ 来标识训练集与测试集。数据集接口会自动从远端下载数据集到本机缓存目录\ ``~/.cache/paddle/dataset``\ 。
 
