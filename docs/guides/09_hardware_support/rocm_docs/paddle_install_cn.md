@@ -1,15 +1,17 @@
-# 飞桨框架ROCM版安装说明
+# 飞桨框架ROCm版安装说明
 
-飞桨框架ROCM版支持基于海光CPU和DCU的Python的训练和原生预测，当前支持的ROCM版本为4.0.1, Paddle版本为2.1.0，提供两种安装方式：
+飞桨框架ROCm版支持基于海光CPU和DCU的Python的训练和原生预测，当前支持的ROCm版本为4.0.1, Paddle版本为2.1.0，提供两种安装方式：
 
 - 通过预编译的wheel包安装
 - 通过源代码编译安装
 
 ## 安装方式一：通过wheel包安装
 
-**第一步**：准备 ROCM 4.0.1 运行环境 (推荐使用Paddle镜像)
+**注意**：当前仅提供基于 CentOS 7.8 & ROCm 4.0.1 的 docker 镜像，与 Paddle 2.1.0 & Python 3.7 的 wheel 安装包。
 
-可以直接从Paddle的官方镜像库拉取预先装有 ROCM 4.0.1的 docker 镜像，或者根据 [ROCM安装文档](https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#centos-rhel) 来准备相应的运行环境。
+**第一步**：准备 ROCm 4.0.1 运行环境 (推荐使用Paddle镜像)
+
+可以直接从Paddle的官方镜像库拉取预先装有 ROCm 4.0.1 的 docker 镜像，或者根据 [ROCm安装文档](https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#centos-rhel) 来准备相应的运行环境。
 
 ```bash
 # 拉取镜像
@@ -23,6 +25,7 @@ docker run -it --name paddle-rocm-dev --shm-size=128G \
 
 # 检查容器是否可以正确识别海光DCU设备
 rocm-smi
+
 # 预期得到以下结果：
 ======================= ROCm System Management Interface =======================
 ================================= Concise Info =================================
@@ -34,9 +37,8 @@ GPU  Temp   AvgPwr  SCLK     MCLK    Fan   Perf  PwrCap  VRAM%  GPU%
 ================================================================================
 ============================= End of ROCm SMI Log ==============================
 ```
-**注意**：当前Paddle只支持 CentOS & ROCM 4.0.1 运行环境。
 
-**第二步**：下载Python3.7 wheel安装包
+**第二步**：下载 Python3.7 wheel 安装包
 
 ```bash
 pip install paddlepaddle-rocm==2.1.0.rocm401.miopen211 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
@@ -50,12 +52,13 @@ pip install paddlepaddle-rocm==2.1.0.rocm401.miopen211 -f https://paddlepaddle.o
 python -c "import paddle; paddle.utils.run_check()"
 ```
 
-
 ## 安装方式二：通过源码编译安装
 
-**第一步**：准备 ROCM 4.0.1 编译环境 (推荐使用Paddle镜像)
+**注意**：当前 Paddle 只支持 CentOS 7.8 & ROCm 4.0.1 编译环境，且根据 ROCm 4.0.1 的需求，支持的编译器为 devtoolset-7。
 
-可以直接从Paddle的官方镜像库拉取预先装有 ROCM 4.0.1的 docker 镜像，或者根据 [ROCM安装文档](https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#centos-rhel) 来准备相应的运行环境。
+**第一步**：准备 ROCm 4.0.1 编译环境 (推荐使用Paddle镜像)
+
+可以直接从Paddle的官方镜像库拉取预先装有 ROCm 4.0.1 的 docker 镜像，或者根据 [ROCm安装文档](https://rocmdocs.amd.com/en/latest/Installation_Guide/Installation-Guide.html#centos-rhel) 来准备相应的运行环境。
 
 ```bash
 # 拉取镜像
@@ -69,6 +72,7 @@ docker run -it --name paddle-rocm-dev --shm-size=128G \
 
 # 检查容器是否可以正确识别海光DCU设备
 rocm-smi
+
 # 预期得到以下结果：
 ======================= ROCm System Management Interface =======================
 ================================= Concise Info =================================
@@ -80,7 +84,8 @@ GPU  Temp   AvgPwr  SCLK     MCLK    Fan   Perf  PwrCap  VRAM%  GPU%
 ================================================================================
 ============================= End of ROCm SMI Log ==============================
 ```
-**注意**：当前Paddle只支持 CentOS & ROCM 4.0.1 编译环境，且根据ROCM 4.0.1的需求，支持的编译器为 devtoolset-7。请在编译之前，检查如下的环境变量是否正确，如果没有则需要安装相应的依赖库，并导出相应的环境变量。以Paddle官方的镜像举例，环境变量如下：
+
+请在编译之前，检查如下的环境变量是否正确，如果没有则需要安装相应的依赖库，并导出相应的环境变量。以Paddle官方的镜像举例，环境变量如下：
 
 ```bash
 # PATH 与 LD_LIBRARY_PATH 中存在 devtoolset-7，如果没有运行以下命令
@@ -110,7 +115,7 @@ mkdir build && cd build
 
 # 执行cmake
 cmake .. -DPY_VERSION=3.7 -DWITH_ROCM=ON -DWITH_TESTING=ON -DWITH_DISTRIBUTE=ON \
-         -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+         -DWITH_MKL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
 # 使用以下命令来编译
 make -j$(nproc)
