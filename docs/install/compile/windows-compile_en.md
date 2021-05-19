@@ -3,7 +3,7 @@
 ## Environment preparation
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-* **GPU Version support CUDA 10.1/10.2/11.0/11.2, and only support single GPU**
+* **GPU Version support CUDA 10.1/10.2/11.2, and only support single GPU**
 * **Python version 3.6+/3.7+/3.8+/3.9+(64bit)**
 * **pip version 20.2.2+ (64bit)**
 * **Visual Studio 2015 Update3**
@@ -14,7 +14,6 @@
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
     * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6.5+**
-    * **CUDA toolkit 11.0 with cuDNN v8.0.4**
     * **CUDA toolkit 11.2 with cuDNN v8.1.1**
     * **GPU's computing capability exceeds 3.0**
 

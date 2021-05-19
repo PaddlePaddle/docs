@@ -125,7 +125,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 * [GPU版的PaddlePaddle](#gpu)
   * [CUDA10.1的PaddlePaddle](#cuda10.1)
   * [CUDA10.2的PaddlePaddle](#cuda10.2)
-  * [CUDA11.0的PaddlePaddle](#cuda11.2)
+  * [CUDA11.2的PaddlePaddle](#cuda11.2)
 
 #### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
