@@ -122,10 +122,24 @@ Note：
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
 
-* The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command to install:
+* The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command to install，noavx version paddle wheel only support python3.8：
+
+   * noavx machine install on cpu：
 
    ```
-   python -m pip install paddlepaddle-gpu==[Version] -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+   python -m pip install paddlepaddle==2.1.0 -f http://www.paddlepaddle.org.cn/whl/mkl/stable/noavx/html --no-index
+   ```
+
+   * noavx machine install on GPU cuda10.1：
+  
+   ```
+   python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+   ```
+
+   * noavx machine install on GPU cuda10.2：
+    
+   ```
+   python -m pip install paddlepaddle-gpu==2.1.0 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
    ```
 
    To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:

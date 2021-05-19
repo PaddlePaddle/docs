@@ -124,10 +124,24 @@
 
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
-* 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的Paddle包，可以通过以下命令安装：
+* 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的Paddle包，可以通过以下命令安装，仅支持python3.8：
+
+  * cpu版本noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  python -m pip install paddlepaddle==2.1.0 -f http://www.paddlepaddle.org.cn/whl/mkl/stable/noavx/html --no-index
+  ```
+
+  * gpu版本cuda10.1安装：
+  
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  ```
+
+  * gpu版本cuda10.2安装：
+   
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.0 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
   ```
 
   判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
