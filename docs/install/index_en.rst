@@ -1,15 +1,13 @@
 ..  _install_introduction_:
 
 ============================
- Installation Manuals
+ 2.1 Installation Manuals
 ============================
 
 
-  2.1.0 Paddle installation 
-------------------------------
-
+----------------------
   Important updates
->>>>>>>>>>>>>>>>>>>>>>
+----------------------
 
 * Add support for python3.9, and no longer supports python2.7 and python3.5
 * Add support for CUDA 11.2, and no longer supports CUDA 9.0, CUDA 10.0 and CUDA 11.0 (If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA10.2 is recommended for better performance)
@@ -20,6 +18,7 @@
 * Added support for Windows Visual Studio 2017 compilation, fully upgraded from VS2015 to VS2017 
 
 
+----------------------
   Installation Guide 
 ----------------------
 
