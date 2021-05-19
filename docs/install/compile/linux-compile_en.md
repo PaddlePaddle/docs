@@ -92,7 +92,7 @@ Please follow the steps below to install:
 
 
         ```
-        docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
         ```
 
         > --name paddle-test names the Docker container you created as paddle-test;
@@ -101,7 +101,7 @@ Please follow the steps below to install:
         > -v $PWD:/paddle mount the current directory to the /paddle directory in the docker container (PWD variable in Linux will be expanded to [absolute path](https://baike.baidu.com/item/绝对路径/481185) of the current path);
 
 
-        > -it keeps interaction with the host，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `hub.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+        > -it keeps interaction with the host，`registry.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
 
@@ -110,7 +110,7 @@ Please follow the steps below to install:
 
 
         ```
-        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
         ```
 
         > --name paddle-test names the Docker container you created as paddle-test;
@@ -120,10 +120,10 @@ Please follow the steps below to install:
 
 
 
-        > -it keeps interaction with the host，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `hub.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+        > -it keeps interaction with the host，`registry.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
-        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 10.0.
+        > Note: registry.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 10.0.
 
 
 4. After entering Docker, go to the paddle directory:

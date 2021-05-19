@@ -62,7 +62,7 @@
 
 在Linux的系统下有2种编译方式：
 
-* [使用Docker编译](#compile_from_docker)（GPU版本不支持CentOS 6）
+* [使用Docker编译](#compile_from_docker)（不提供在CentOS 6下编译中遇到问题的支持）
 * [本机编译](#compile_from_host)（不提供在CentOS 6下编译中遇到问题的支持）
 
 <a name="ct_docker"></a>
@@ -94,28 +94,28 @@
 
     * 编译CPU版本的PaddlePaddle：
         ```
-        docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
         ```
 
        > --name paddle-test为您创建的Docker容器命名为paddle-test;
 
        > -v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185));
 
-       > -it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+       > -it 与宿主机保持交互状态，`registry.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 
     * 编译GPU版本的PaddlePaddle（仅支持CentOS 7）：
         ```
-        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
         ```
 
         > --name paddle-test为您创建的Docker容器命名为paddle-test;
 
         > -v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185));
 
-        > -it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+        > -it 与宿主机保持交互状态，`registry.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
-        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 10.0。
+        > 注意：registry.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 10.0。
 
 
 4. 进入Docker后进入paddle目录下：
