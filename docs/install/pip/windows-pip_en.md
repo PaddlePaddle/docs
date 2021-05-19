@@ -122,7 +122,7 @@ Note：
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
 
-* The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command:
+* The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command to install:
 
    ```
    python -m pip install paddlepaddle-gpu==[Version] -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
