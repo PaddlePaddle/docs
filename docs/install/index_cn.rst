@@ -196,4 +196,5 @@
 	docker/fromdocker.rst
 	compile/fromsource.rst
 	install_Kunlun_zh.md
+	install_ROCM_zh.md
 	Tables.md
