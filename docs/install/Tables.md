@@ -507,8 +507,8 @@ platform tag: 类似 'linux_x86_64', 'any'
         <td> win-cuda10.2-cudnn7-mkl </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-whl/mkl/paddlepaddle_gpu-2.1.0.dev0.post102-cp35-cp35m-win_amd64.whl"> paddlepaddle_gpu-latest-cp35-cp35m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-whl/mkl/paddlepaddle_gpu-2.1.0.dev0.post102-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-latest-cp36-cp36m-win_amd64.whl</a></td>
+        <td> - </td>
+        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-whl/mkl/paddlepaddle_gpu-2.1.0.dev0.post102-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-latest-cp37-cp37m-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/win-whl/mkl/paddlepaddle_gpu-2.1.0.dev0.post102-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-latest-cp38-cp38-win_amd64.whl</a></td>
     </tr>
