@@ -584,17 +584,17 @@ platform tag: 类似 'linux_x86_64', 'any'
 cd /home/work
 ```
 ```
-docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle /work/train.py
+docker run -it -v $PWD:/work registry.baidubce.com/paddlepaddle/paddle /work/train.py
 ```
 
 上述命令中，`-it` 参数说明容器已交互式运行；`-v $PWD:/work`
 指定将当前路径（Linux中PWD变量会展开为当前路径的绝对路径）挂载到容器内部的:`/work`
-目录: `hub.baidubce.com/paddlepaddle/paddle` 指定需要使用的容器； 最后`/work/train.py`为容器内执行的命令，即运行训练程序。
+目录: `registry.baidubce.com/paddlepaddle/paddle` 指定需要使用的容器； 最后`/work/train.py`为容器内执行的命令，即运行训练程序。
 
 当然，您也可以进入到Docker容器中，以交互式的方式执行或调试您的代码：
 
 ```
-docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle /bin/bash
+docker run -it -v $PWD:/work registry.baidubce.com/paddlepaddle/paddle /bin/bash
 ```
 ```
 cd /work
@@ -618,13 +618,13 @@ PaddlePaddle Book是为用户和开发者制作的一个交互式的Jupyter Note
 我们提供可以直接运行PaddlePaddle Book的Docker镜像，直接运行：
 
 ```
-docker run -p 8888:8888 hub.baidubce.com/paddlepaddle/book
+docker run -p 8888:8888 registry.baidubce.com/paddlepaddle/book
 ```
 
 国内用户可以使用下面的镜像源来加速访问：
 
 ```
-docker run -p 8888:8888 hub.baidubce.com/paddlepaddle/book
+docker run -p 8888:8888 registry.baidubce.com/paddlepaddle/book
 ```
 
 然后在浏览器中输入以下网址：
@@ -643,7 +643,7 @@ http://localhost:8888/
 请不要忘记提前在物理机上安装GPU最新驱动。
 
 ```
-nvidia-docker run -it -v $PWD:/work hub.baidubce.com/paddlepaddle/paddle:latest-gpu /bin/bash
+nvidia-docker run -it -v $PWD:/work registry.baidubce.com/paddlepaddle/paddle:latest-gpu /bin/bash
 ```
 
 **注: 如果没有安装nvidia-docker，可以尝试以下的方法，将CUDA库和Linux设备挂载到Docker容器内：**
@@ -653,5 +653,5 @@ export CUDA_SO="$(\ls /usr/lib64/libcuda* | xargs -I{} echo '-v {}:{}') \
 $(\ls /usr/lib64/libnvidia* | xargs -I{} echo '-v {}:{}')"
 export DEVICES=$(\ls /dev/nvidia* | xargs -I{} echo '--device {}:{}')
 docker run ${CUDA_SO} \
-${DEVICES} -it hub.baidubce.com/paddlepaddle/paddle:latest-gpu
+${DEVICES} -it registry.baidubce.com/paddlepaddle/paddle:latest-gpu
 ```

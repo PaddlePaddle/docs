@@ -124,7 +124,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 ## 注意
 
-对于国内用户无法连接到Anaconda官方源的可以按照以下命令添加清华源进行安装。
+对于国内用户无法连接到Anaconda官方源的可以按照以下命令添加清华源。
 
 
 ```
@@ -135,12 +135,4 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 ```
 ```
 conda config --set show_channel_urls yes
-```
-cpu：
-```
-conda install paddlepaddle==2.1.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
-```
-gpu：
-```
-conda install paddlepaddle-gpu==2.1.0 cudatoolkit=[cuda版本号] --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```

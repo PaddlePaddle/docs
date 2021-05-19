@@ -45,14 +45,14 @@ Please follow the steps below to install:
 4. Create and enter a Docker container that meets the compilation environment:
 
     ```
-    docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
     ```
 
     > --name paddle-test name the Docker container you created as paddle-test,
 
     > -v $PWD:/paddle mount the current directory to the /paddle directory in the Docker container (the PWD variable in Linux will expand to the current path's [Absolute path](https://baike.baidu.com/item/绝对路径/481185)),
 
-    > -it keeps interacting with the host, `hub.baidubce.com/paddlepaddle/paddle:latest-dev` creates a Docker container with a mirror named `hub.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash starts the /bin/bash command after entering the container.
+    > -it keeps interacting with the host, `registry.baidubce.com/paddlepaddle/paddle:latest-dev` creates a Docker container with a mirror named `registry.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash starts the /bin/bash command after entering the container.
 
 5. After entering Docker, go to the paddle directory:
 

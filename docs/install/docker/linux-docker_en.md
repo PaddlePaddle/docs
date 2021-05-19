@@ -4,7 +4,7 @@
 
 ## Environment preparation
 
-- Currently supported system types, please see [Installation instruction](./index_cn.html), please note that Docker is not currently supported in CentOS 6
+- Currently supported system types, please see [Installation instruction](../index_en.html), please note that Docker is not currently supported in CentOS 6
 
 - On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
@@ -16,17 +16,17 @@
 
     * CPU version of PaddlePaddle：
         ```
-        docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]
+        docker pull registry.baidubce.com/paddlepaddle/paddle:[version number]
         ```
 
     * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
         ```
-        docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]-jupyter
+        docker pull registry.baidubce.com/paddlepaddle/paddle:[version number]-jupyter
         ```
 
     * GPU version of PaddlePaddle：
         ```
-        docker pull hub.baidubce.com/paddlepaddle/paddle:[version number]-gpu-cuda10.2-cudnn7
+        docker pull registry.baidubce.com/paddlepaddle/paddle:[version number]-gpu-cuda10.2-cudnn7
         ```
 
     If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -133,19 +133,19 @@ Now you have successfully used Docker to install PaddlePaddle. For more informat
     </thead>
     <tbody>
         <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0 </td>
         <td> CPU image with 2.1.0 version of paddle installed </td>
     </tr>
     <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-jupyter </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-jupyter </td>
         <td> CPU image of paddle version 2.1.0 is installed, and jupyter is pre-installed in the image. Start the docker to run the jupyter service </td>
     </tr>
     <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda11.2-cudnn8 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda11.2-cudnn8 </td>
         <td> GPU image of paddle version 2.1.0 is installed, cuda version is 11.2, cudnn version is 8.1 </td>
     </tr>
         <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda10.2-cudnn7 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda10.2-cudnn7 </td>
         <td> GPU image of paddle version 2.1.0 is installed, cuda version is 10.2, cudnn version is 7 </td>
     </tr>
    </tbody>

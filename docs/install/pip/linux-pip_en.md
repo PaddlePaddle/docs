@@ -122,16 +122,9 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 You can choose the following version of PaddlePaddle to start installation:
 
-* [CPU Version of PaddlePaddle](#cpu)
-
-* [GPU Version of PaddlePaddle](#gpu)
-  * [CUDA10.1 PaddlePaddle](#cuda10.1)
-  * [CUDA10.2 PaddlePaddle](#cuda10.2)
-  * [CUDA11.2 PaddlePaddle](#cuda11.2)
 
 
-
-#### 2.1 <span id="cpu">CPU Versoion of PaddlePaddle</span>
+#### 2.1 CPU Versoion of PaddlePaddle
 
 
   ```
@@ -140,11 +133,11 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.2<span id="gpu"> GPU Version of PaddlePaddle</span>
+#### 2.2 GPU Version of PaddlePaddle
 
 
 
-2.2.1 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
+2.2.1 CUDA10.1的PaddlePaddle
 
 
   ```
@@ -153,7 +146,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-2.2.2 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
+2.2.2 CUDA10.2的PaddlePaddle
 
 
   ```
@@ -161,7 +154,7 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.3 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
+2.2.3 CUDA11.2的PaddlePaddle
 
 
   ```
@@ -172,6 +165,8 @@ You can choose the following version of PaddlePaddle to start installation:
 
 Note：
 
+* If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance.
+
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
 
 * If you want to use the tsinghua pypi, you can use the following command:
@@ -180,16 +175,27 @@ Note：
    python -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
+* The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command:
+
+   ```
+   python -m pip install paddlepaddle-gpu==[Version] -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+   ```
+
+   To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
+   ```
+   cat /proc/cpuinfo | grep -i avx
+   ```
+
 * If you want to install the Paddle package built with `tensorrt`, you can use the following command:
 
   ```
-  python -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
+  python -m pip install paddlepaddle-gpu==[Version] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
   ```
 
 * If you want to install the Paddle package with `openblas`, you can use the following command:
 
   ```
-  python -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/openblas/stable.html
+  python -m pip install paddlepaddle-gpu==[Version] -f https://paddlepaddle.org.cn/whl/openblas/stable.html
   ```
 
 

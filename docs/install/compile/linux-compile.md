@@ -62,7 +62,7 @@
 
 在Linux的系统下有2种编译方式：
 
-* [使用Docker编译](#compile_from_docker)（GPU版本不支持CentOS 6）
+* [使用Docker编译](#compile_from_docker)（不提供在CentOS 6下编译中遇到问题的支持）
 * [本机编译](#compile_from_host)（不提供在CentOS 6下编译中遇到问题的支持）
 
 <a name="ct_docker"></a>
@@ -94,28 +94,29 @@
 
     * 编译CPU版本的PaddlePaddle：
         ```
-        docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
         ```
 
        > --name paddle-test为您创建的Docker容器命名为paddle-test;
 
        > -v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185));
 
-       > -it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+       > -it 与宿主机保持交互状态，`registry.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 
-    * 编译GPU版本的PaddlePaddle（仅支持CentOS 7）：
+    * 编译GPU版本的PaddlePaddle：
         ```
-        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev /bin/bash
         ```
 
         > --name paddle-test为您创建的Docker容器命名为paddle-test;
 
         > -v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185));
 
-        > -it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+        > -it 与宿主机保持交互状态，`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev` 使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
-        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 10.0。
+        > 注：上例中，`latest-gpu-cuda10.2-cudnn7-dev` 也仅作示意用，表示安装GPU版的镜像。如果您还想安装其他cuda/cudnn版本的镜像，可以将其替换成`latest-dev-cuda11.2-cudnn8-gcc82`、`latest-gpu-cuda10.1-cudnn7-gcc82-dev`、`latest-gpu-cuda10.1-cudnn7-gcc54-dev`等。
+        您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
 
 4. 进入Docker后进入paddle目录下：

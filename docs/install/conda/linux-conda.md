@@ -112,7 +112,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
   * **GPU运算能力超过1.0的硬件设备**
 
-    您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](
+    您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
 
@@ -120,14 +120,8 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
 
-* [CPU版的PaddlePaddle](#cpu)
 
-* [GPU版的PaddlePaddle](#gpu)
-  * [CUDA10.1的PaddlePaddle](#cuda10.1)
-  * [CUDA10.2的PaddlePaddle](#cuda10.2)
-  * [CUDA11.2的PaddlePaddle](#cuda11.2)
-
-#### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
+#### 2.1 CPU版的PaddlePaddle
 
 ```
 conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
@@ -135,23 +129,23 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 
 
 
-#### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
+#### 2.2 GPU版的PaddlePaddle
 
 
-*  <span id="cuda10.1">如果您是使用 CUDA 10.1，cuDNN 7.6+，安装GPU版本的命令为:</span>
+*  如果您是使用 CUDA 10.1，cuDNN 7.6+，安装GPU版本的命令为:
 
   ```
   conda install paddlepaddle-gpu==2.1.0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  <span id="cuda10.2">如果您是使用 CUDA 10.2，cuDNN 7.6+，安装GPU版本的命令为:</span>
+*  如果您是使用 CUDA 10.2，cuDNN 7.6+，安装GPU版本的命令为:
 
   ```
   conda install paddlepaddle-gpu==2.1.0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 
-*  <span id="cuda11.2">如果您是使用 CUDA 11.2，cuDNN 8.1.1+，安装GPU版本的命令为:</span>
+*  如果您是使用 CUDA 11.2，cuDNN 8.1.1+，安装GPU版本的命令为:
 
   ```
   conda install paddlepaddle-gpu==2.1.0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
@@ -170,7 +164,7 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 
 ## 注意
 
-对于国内用户无法连接到Anaconda官方源的可以按照以下命令添加清华源进行安装。
+对于国内用户无法连接到Anaconda官方源的可以按照以下命令添加清华源。
 
 
 ```
@@ -181,12 +175,4 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 ```
 ```
 conda config --set show_channel_urls yes
-```
-cpu：
-```
-conda install paddlepaddle==2.1.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
-```
-gpu：
-```
-conda install paddlepaddle-gpu==2.1.0 cudatoolkit=[cuda版本号] --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```

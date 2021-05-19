@@ -116,16 +116,8 @@
     sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
     ```
 
-* [CPU版的PaddlePaddle](#cpu)
 
-* [GPU版的PaddlePaddle](#gpu)
-  * [CUDA10.1的PaddlePaddle](#cuda10.1)
-  * [CUDA10.2的PaddlePaddle](#cuda10.2)
-  * [CUDA11.2的PaddlePaddle](#cuda11.2)
-
-
-
-#### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
+#### 2.1 CPU版的PaddlePaddle
 
 
   ```
@@ -134,12 +126,11 @@
 
 
 
-#### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
+#### 2.2 GPU版的PaddlePaddle
 
 
 
-2.2.1 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
-
+2.2.1 CUDA10.1的PaddlePaddle
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
@@ -147,7 +138,7 @@
 
 
 
-2.2.2 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
+2.2.2 CUDA10.2的PaddlePaddle
 
 
   ```
@@ -155,7 +146,7 @@
   ```
 
 
-2.2.3 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
+2.2.3 CUDA11.2的PaddlePaddle
 
 
   ```
@@ -166,12 +157,25 @@
 
 注：
 
+* 如果你使用的是安培架构的GPU，推荐使用CUDA11.2。如果你使用的是非安培架构的GPU，推荐使用CUDA10.2，性能更优。
+
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为 python3 或者替换为具体的 Python 路径。
 
 * 如果您需要使用清华源，可以通过以下命令
 
   ```
    python -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple
+  ```
+
+* 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的Paddle包，可以通过以下命令
+
+  ```
+  python -m pip install paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  ```
+
+  判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
+  ```
+  cat /proc/cpuinfo | grep -i avx
   ```
 
 * 如果你想安装联编`tensorrt`的Paddle包，可以通过以下命令

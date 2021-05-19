@@ -1,8 +1,26 @@
 ..  _install_introduction:
 
-#########
- 安装说明
-#########
+=========
+ 安装指南
+=========
+
+
+-----------
+  重要更新
+-----------
+
+* 新增对 python3.9 的支持，并不再支持 python2.7 和 python3.5
+* 新增对 CUDA 11.2 的支持，并不再支持 CUDA 9.0、CUDA 10.0 和 CUDA 11.0
+* 新增对 ROCm 平台的支持（2.1 中飞桨对 ROCm 平台的支持是 experimental 的）
+* Linux系统相关的包已被拆分为 avx 和 noavx 两种类型的包（大部分机器都使用 avx 指令集，可使用 `Linux下的PIP安装 <pip/linux-pip.html>`_ 页面中的命令查看您的机器是否支持）
+* 新增预装好 jupyter 的 CPU 镜像，启动镜像后即启动 jupyter 服务
+* 新增支持 Windows Visual Studio 2017 编译，由 VS2015 全面升级至 VS2017
+
+
+-----------
+  安装说明
+-----------
+
 本说明将指导您在64位操作系统编译和安装PaddlePaddle
 
 **1. 操作系统要求：**
@@ -26,7 +44,7 @@
 
 **4. PaddlePaddle 对 GPU 支持情况：**
 
-* 目前 **PaddlePaddle** 仅支持 **NVIDIA** 显卡的 **CUDA** 驱动
+* 目前 **PaddlePaddle** 支持 **NVIDIA** 显卡的 **CUDA** 驱动和 **AMD** 显卡的 **ROCm** 架构
 * 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.6+(For CUDA10.1/10.2)
 * 如果您需要 GPU 多卡模式，需要安装 `NCCL 2 <https://developer.nvidia.com/nccl/>`_
 
@@ -52,9 +70,9 @@
             * CentOS 7 支持 CUDA 10.1/10.2/11.2
             * CentOS 6 不推荐，不提供编译出现问题时的官方支持
         * 如果您是使用 **nvidia-docker** 安装，在CentOS 7 下支持 CUDA 10.2/11.2
-    * MacOS 不支持：PaddlePaddle 在 MacOS 平台没有 GPU 支持
+    * MacOS 不支持：MacOS 平台不支持 GPU 安装
 
-请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本whl包安装列表 <Tables.html#ciwhls>`_ .
+请确保您的环境满足以上条件。如您有其他需求，请参考 `多版本whl包安装列表 <Tables.html#ciwhls-release>`_ .
 
 **5. PaddlePaddle 对 NCCL 支持情况：**
 
@@ -141,10 +159,6 @@
 
             python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-        如果您是使用Windows系统请使用以下指令:
-
-            python -m pip install paddlepaddle==2.1.0 -f https://paddlepaddle.org.cn/whl/stable.html
-
 
     (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装 
 
@@ -161,9 +175,6 @@
 
             python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-        如果您是使用Windows系统请使用以下指令:
-
-            python -m pip install paddlepaddle_gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/stable.html 
         
     请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
