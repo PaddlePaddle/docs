@@ -5,7 +5,7 @@
 ### 1.1 PREQUISITES
 
 * **Windows 7/8/10 Pro/Enterprise (64bit)**
-  * **GPU version support CUDA 10.1/10.2/11.0/11.2，only support single card**
+  * **GPU version support CUDA 10.1/10.2/11.2，only support single card**
 
 * **Python version 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 
@@ -69,8 +69,6 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
   * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5+**
 
-  * **CUDA toolkit 11.0 with cuDNN v8.0.4**
-
   * **CUDA toolkit 11.2 with cuDNN v8.1.1**
 
   * **Hardware devices with GPU computing power over 3.0**
@@ -87,7 +85,6 @@ You can choose the following version of PaddlePaddle to start installation:
 * [GPU Version of PaddlePaddle](#gpu)
   * [CUDA10.1 PaddlePaddle](#cuda10.1)
   * [CUDA10.2 PaddlePaddle](#cuda10.2)
-  * [CUDA11.0 PaddlePaddle](#cuda11)
   * [CUDA11.2 PaddlePaddle](#cuda11.2)
 
 
@@ -121,13 +118,7 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.3 <span id="cuda11">CUDA11的PaddlePaddle</span>
-
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
-  ```
-
-2.2.4 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
+2.2.3 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.0.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html

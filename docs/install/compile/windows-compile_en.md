@@ -3,7 +3,7 @@
 ## Environment preparation
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-* **GPU Version support CUDA 10.1/10.2/11.0/11.2, and only support single GPU**
+* **GPU Version support CUDA 10.1/10.2/11.2, and only support single GPU**
 * **Python version 3.6+/3.7+/3.8+/3.9+(64bit)**
 * **pip version 20.2.2+ (64bit)**
 * **Visual Studio 2015 Update3**
@@ -14,7 +14,6 @@
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
     * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6.5+**
-    * **CUDA toolkit 11.0 with cuDNN v8.0.4**
     * **CUDA toolkit 11.2 with cuDNN v8.1.1**
     * **GPU's computing capability exceeds 3.0**
 
@@ -33,7 +32,7 @@ There is one compilation methods in Windows system:
 
     > CMake requires version 3.10 and above, but there are official [Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html) versions of 3.12/3.13/3.14 when the GPU is compiled, we recommend that you use CMake3. 16 version, available on the official website [download] (https://cmake.org/download/), and add to the ring Environment variables.
 
-    > Python requires version 3.6 and above,  which can be downloaded from the [official website](https://www.python.org/download/releases/3.6/).
+    > Python requires version 3.6 and above,  which can be downloaded from the [official website](https://www.python.org/downloads/release/python-3610/).
 
     * After installing python, please check whether the python version is the expected version by `python-version`, because you may have more than one python installed on your computer. You can handle conflicts of multiple pythons by changing the order of the environment variables.
 

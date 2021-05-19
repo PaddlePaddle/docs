@@ -3,7 +3,7 @@
 ## 环境准备
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
-* **GPU版本支持CUDA 10.1/10.2/11.0/11.2，且仅支持单卡**
+* **GPU版本支持CUDA 10.1/10.2/11.2，且仅支持单卡**
 * **Python 版本 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 * **pip 版本 20.2.2+ (64 bit)**
 * **Visual Studio 2015 Update3**
@@ -14,7 +14,6 @@
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
     * **CUDA 工具包 10.1/10.2 配合 cuDNN v7.6.5+**
-    * **CUDA 工具包 11.0 配合 cuDNN v8.0.4**
     * **CUDA 工具包 11.2 配合 cuDNN v8.1.1**
     * **GPU运算能力超过3.0的硬件设备**
 
@@ -31,7 +30,7 @@
 
     > cmake我们支持3.10以上版本,但GPU编译时3.12/3.13/3.14版本存在官方[Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html),我们建议您使用CMake3.16版本, 可在官网[下载](https://cmake.org/download/)，并添加到环境变量中。
 
-    > python 需要 3.6 及以上版本, 可在官网[下载](https://www.python.org/download/releases/3.6/)。
+    > python 需要 3.6 及以上版本, 可在官网[下载](https://www.python.org/downloads/release/python-3610/)。
 
     * 安装完python 后请通过 `python --version` 检查python版本是否是预期版本，因为您的计算机可能安装有多个python，您可通过修改环境变量的顺序来处理多个python时的冲突。
 
