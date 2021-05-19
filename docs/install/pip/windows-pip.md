@@ -120,11 +120,20 @@
 
 注：
 
+* 如果你使用的是安培架构的GPU，推荐使用CUDA11.2。如果你使用的是非安培架构的GPU，推荐使用CUDA10.2，性能更优。
+
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
-* `python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/mkl/stable.html`此命令将安装支持CUDA 10.2(配合cuDNN v7.4+)的PaddlePaddle。
+* 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的Paddle包，可以通过以下命令
 
-* 上述命令默认安装`avx`和`mkl`的包
+  ```
+  python -m pip install paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  ```
+
+  判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
+  ```
+  cat /proc/cpuinfo | grep -i avx
+  ```
 
 * 如果你想安装联编`tensorrt`的Paddle包，请使用
 

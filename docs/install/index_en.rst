@@ -1,7 +1,7 @@
 ..  _install_introduction_:
 
 =======================
- Installation Manuals
+ Installation Guide
 =======================
 
 
@@ -10,17 +10,16 @@
 ----------------------
 
 * Add support for python3.9, and no longer supports python2.7 and python3.5
-* Add support for CUDA 11.2, and no longer supports CUDA 9.0, CUDA 10.0 and CUDA 11.0 (If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA10.2 is recommended for better performance)
-* CUDA 10.1 related packages add support for gcc5.4
+* Add support for CUDA 11.2, and no longer supports CUDA 9.0, CUDA 10.0 and CUDA 11.0
 * Add support for ROCm platform (2.1 Paddle's support for ROCm platform is experimental)
 * Linux system-related packages have been split into two types of packages, avx and noavx (Most machines use the avx instruction set. You can check whether your machine supports it through commands on the `PIP installation under Linux <pip/linux-pip.html>`_ page )
 * Add a CPU image with jupyter pre-installed. Jupyter service will be started after starting the image
 * Added support for Windows Visual Studio 2017 compilation, fully upgraded from VS2015 to VS2017 
 
 
-----------------------
-  Installation Guide 
-----------------------
+------------------------
+  Installation Manuals
+------------------------
 
 
 The manuals will guide you to build and install PaddlePaddle on your 64-bit desktop or laptop.

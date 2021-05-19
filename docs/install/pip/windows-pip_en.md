@@ -118,15 +118,20 @@ You can choose the following version of PaddlePaddle to start installation:
 
 Note：
 
+* If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance.
+
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
 
-* If you want to install PaddlePaddle which support CUDA10.2 with cuDNN v7.4+,you can use the following command:
+* The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command:
 
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
-  ```
+   ```
+   python -m pip install paddlepaddle-gpu==[Version] -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+   ```
 
-* The above commands install the `avx` and `mkl` package by default.
+   To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
+   ```
+   cat /proc/cpuinfo | grep -i avx
+   ```
 
 
 * If you want to install the Paddle package built with `tensorrt`, please use the following command:
