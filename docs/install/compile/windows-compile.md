@@ -31,7 +31,7 @@
 
     > cmake我们支持3.10以上版本,但GPU编译时3.12/3.13/3.14版本存在官方[Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html),我们建议您使用CMake3.16版本, 可在官网[下载](https://cmake.org/download/)，并添加到环境变量中。
 
-    > python 需要 3.6 及以上版本, 可在官网[下载](https://www.python.org/download/releases/3.6/)。
+    > python 需要 3.6 及以上版本, 可在官网[下载](https://www.python.org/downloads/release/python-3610/)。
 
     * 安装完python 后请通过 `python --version` 检查python版本是否是预期版本，因为您的计算机可能安装有多个python，您可通过修改环境变量的顺序来处理多个python时的冲突。
 

@@ -33,7 +33,7 @@ There is one compilation methods in Windows system:
 
     > CMake requires version 3.10 and above, but there are official [Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html) versions of 3.12/3.13/3.14 when the GPU is compiled, we recommend that you use CMake3. 16 version, available on the official website [download] (https://cmake.org/download/), and add to the ring Environment variables.
 
-    > Python requires version 3.6 and above,  which can be downloaded from the [official website](https://www.python.org/download/releases/3.6/).
+    > Python requires version 3.6 and above,  which can be downloaded from the [official website](https://www.python.org/downloads/release/python-3610/).
 
     * After installing python, please check whether the python version is the expected version by `python-version`, because you may have more than one python installed on your computer. You can handle conflicts of multiple pythons by changing the order of the environment variables.
 

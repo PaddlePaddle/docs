@@ -6,9 +6,9 @@
 
 * **Linux 版本 (64 bit)**
 
-  * **CentOS 7 (GPU版本支持CUDA 10.1/10.2/11.0/11.2)**
-  * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
-  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
+  * **CentOS 7 (GPU版本支持CUDA 10.1/10.2/11.2)**
+  * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
+  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
 
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 
@@ -78,8 +78,6 @@
 
   * **CUDA 工具包10.1/10.2配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.7及更高)**
 
-  * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
-
   * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
 
   * **GPU运算能力超过1.0的硬件设备**
@@ -123,7 +121,6 @@
 * [GPU版的PaddlePaddle](#gpu)
   * [CUDA10.1的PaddlePaddle](#cuda10.1)
   * [CUDA10.2的PaddlePaddle](#cuda10.2)
-  * [CUDA11.0的PaddlePaddle](#cuda11)
   * [CUDA11.2的PaddlePaddle](#cuda11.2)
 
 
@@ -158,16 +155,7 @@
   ```
 
 
-
-2.2.3 <span id="cuda11">CUDA11.0的PaddlePaddle</span>
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html
-  ```
-
-
-2.2.4 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
+2.2.3 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
 
 
   ```

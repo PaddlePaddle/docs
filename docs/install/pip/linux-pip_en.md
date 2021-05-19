@@ -5,9 +5,9 @@
 ### 1.1 PREQUISITES
 
 * **Linux Version (64 bit)**
-  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2**)**
-  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2)**
-  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2)**
+  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.2**)**
+  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.2)**
+  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.2)**
 
 * **Python Version: 3.6/3.7/3.8/3.9 (64 bit)**
 
@@ -78,8 +78,6 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
   * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.7 or higher)**
 
-  * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.7 or higher)**
-
   * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 
   * **Hardware devices with GPU computing power over 1.0**
@@ -129,7 +127,6 @@ You can choose the following version of PaddlePaddle to start installation:
 * [GPU Version of PaddlePaddle](#gpu)
   * [CUDA10.1 PaddlePaddle](#cuda10.1)
   * [CUDA10.2 PaddlePaddle](#cuda10.2)
-  * [CUDA11.0 PaddlePaddle](#cuda11)
   * [CUDA11.2 PaddlePaddle](#cuda11.2)
 
 
@@ -164,16 +161,7 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-
-2.2.3 <span id="cuda11">CUDA11.0的PaddlePaddle</span>
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post110 -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html
-  ```
-
-
-2.2.4 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
+2.2.3 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
 
 
   ```
