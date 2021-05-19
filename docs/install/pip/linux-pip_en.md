@@ -175,7 +175,7 @@ Note：
    python -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
-* The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command:
+* The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command to install:
 
    ```
    python -m pip install paddlepaddle-gpu==[Version] -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
