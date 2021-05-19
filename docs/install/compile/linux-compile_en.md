@@ -124,7 +124,6 @@ Please follow the steps below to install:
 
 
         > Note: In the above example, `latest-gpu-cuda10.2-cudnn7-dev` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `latest-dev-cuda11.2-cudnn8-gcc82`, `latest-gpu-cuda10.1-cudnn7-gcc82-dev`, `latest-gpu-cuda10.1-cudnn7-gcc54-dev` etc.
-
         You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
 
 

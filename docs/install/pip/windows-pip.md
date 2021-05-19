@@ -82,26 +82,20 @@
 ### 根据版本进行安装
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
 
-* [CPU版的PaddlePaddle](#cpu)
-
-* [GPU版的PaddlePaddle](#gpu)
-  * [CUDA10.1的PaddlePaddle](#cuda10.1)
-  * [CUDA10.2的PaddlePaddle](#cuda10.2)
-  * [CUDA11.2的PaddlePaddle](#cuda11.2)
 
 
-#### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
+#### 2.1 CPU版的PaddlePaddle
 
 
   ```
   python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
   ```
 
-#### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
+#### 2.2 GPU版的PaddlePaddle
 
 
 
-2.2.1 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
+2.2.1 CUDA10.1的PaddlePaddle
 
 
   ```
@@ -109,7 +103,7 @@
   ```
 
 
-2.2.2 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
+2.2.2 CUDA10.2的PaddlePaddle
 
 
   ```
@@ -117,7 +111,7 @@
   ```
 
 
-2.2.3 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
+2.2.3 CUDA11.2的PaddlePaddle
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.0.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html

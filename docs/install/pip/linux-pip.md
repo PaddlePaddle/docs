@@ -116,16 +116,8 @@
     sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
     ```
 
-* [CPU版的PaddlePaddle](#cpu)
 
-* [GPU版的PaddlePaddle](#gpu)
-  * [CUDA10.1的PaddlePaddle](#cuda10.1)
-  * [CUDA10.2的PaddlePaddle](#cuda10.2)
-  * [CUDA11.2的PaddlePaddle](#cuda11.2)
-
-
-
-#### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
+#### 2.1 CPU版的PaddlePaddle
 
 
   ```
@@ -134,12 +126,11 @@
 
 
 
-#### 2.2<span id="gpu"> GPU版的PaddlePaddle</span>
+#### 2.2 GPU版的PaddlePaddle
 
 
 
-2.2.1 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
-
+2.2.1 CUDA10.1的PaddlePaddle
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
@@ -147,7 +138,7 @@
 
 
 
-2.2.2 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
+2.2.2 CUDA10.2的PaddlePaddle
 
 
   ```
@@ -155,7 +146,7 @@
   ```
 
 
-2.2.3 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
+2.2.3 CUDA11.2的PaddlePaddle
 
 
   ```

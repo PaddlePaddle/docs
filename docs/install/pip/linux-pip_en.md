@@ -122,16 +122,9 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 You can choose the following version of PaddlePaddle to start installation:
 
-* [CPU Version of PaddlePaddle](#cpu)
-
-* [GPU Version of PaddlePaddle](#gpu)
-  * [CUDA10.1 PaddlePaddle](#cuda10.1)
-  * [CUDA10.2 PaddlePaddle](#cuda10.2)
-  * [CUDA11.2 PaddlePaddle](#cuda11.2)
 
 
-
-#### 2.1 <span id="cpu">CPU Versoion of PaddlePaddle</span>
+#### 2.1 CPU Versoion of PaddlePaddle
 
 
   ```
@@ -140,11 +133,11 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.2<span id="gpu"> GPU Version of PaddlePaddle</span>
+#### 2.2 GPU Version of PaddlePaddle
 
 
 
-2.2.1 <span id="cuda10.1">CUDA10.1的PaddlePaddle</span>
+2.2.1 CUDA10.1的PaddlePaddle
 
 
   ```
@@ -153,7 +146,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-2.2.2 <span id="cuda10.2">CUDA10.2的PaddlePaddle</span>
+2.2.2 CUDA10.2的PaddlePaddle
 
 
   ```
@@ -161,7 +154,7 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.3 <span id="cuda11.2">CUDA11.2的PaddlePaddle</span>
+2.2.3 CUDA11.2的PaddlePaddle
 
 
   ```

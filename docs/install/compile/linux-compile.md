@@ -116,7 +116,6 @@
         > -it 与宿主机保持交互状态，`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev` 使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
         > 注：上例中，`latest-gpu-cuda10.2-cudnn7-dev` 也仅作示意用，表示安装GPU版的镜像。如果您还想安装其他cuda/cudnn版本的镜像，可以将其替换成`latest-dev-cuda11.2-cudnn8-gcc82`、`latest-gpu-cuda10.1-cudnn7-gcc82-dev`、`latest-gpu-cuda10.1-cudnn7-gcc54-dev`等。
-
         您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
 
