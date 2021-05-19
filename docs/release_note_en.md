@@ -45,7 +45,6 @@ from paddle.nn.layer.conv import *
 
 <tr>
 <td>
-<pre>
 
 ```python
 >>> import paddle
@@ -55,11 +54,9 @@ from paddle.nn.layer.conv import *
 >>> type(x.grad)
 < class ‘numpy.ndarray’ >
 ```
-</pre>
 </td>
 
 <td>
-<pre>
 
 ```python
 >>> import paddle
@@ -69,7 +66,6 @@ from paddle.nn.layer.conv import *
 >>> type(x.grad)
 < class ‘paddle.Tensor’ >
 ```
-</pre>
 </td>
 </tr>
 </table>
@@ -89,7 +85,6 @@ from paddle.nn.layer.conv import *
 
 <tr>
 <td>
-<pre>
 
 ```python
 >>> import os
@@ -107,11 +102,9 @@ from paddle.nn.layer.conv import *
 True
 103
 ```
-</pre>
 </td>
 
 <td>
-<pre>
 
 ```python
 >>> import os
@@ -129,7 +122,6 @@ True
 False
 ['save_infer_model.pdmodel', 'save_infer_model.pdiparams']
 ```
-</pre>
 </td>
 </tr>
 </table>
@@ -149,7 +141,6 @@ False
 
 <tr>
 <td>
-<pre>
 
 ```python
 >>> import numpy as np
@@ -171,11 +162,9 @@ False
        [[[0.73782003, 0.62605530, 0.32727283],
          [0.37154925, 0.63570684, 0.53859973]]])]
 ```
-</pre>
 </td>
 
 <td>
-<pre>
 
 ```python
 >>> import numpy as np
@@ -197,7 +186,6 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
        [[[0.73782003, 0.62605530, 0.32727283],
          [0.37154925, 0.63570684, 0.53859973]]])
 ```
-</pre>
 </td>
 </tr>
 </table>
@@ -271,7 +259,6 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 
 <tr>
 <td>
-<pre>
 
 ```python
 >>> from paddle.vision.models import resnet18
@@ -282,11 +269,9 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 67
 0
 ```
-</pre>
 </td>
 
 <td>
-<pre>
 
 ```python
 >>> from paddle.vision.models import resnet18
@@ -297,7 +282,6 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 68
 67
 ```
-</pre>
 </td>
 </tr>
 </table>
