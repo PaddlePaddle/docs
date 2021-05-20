@@ -742,8 +742,8 @@ def insert_suggested_names():
             if mo:
                 api_info_dict[id_api]["all_names"].add('paddle.fluid.core.' +
                                                        mo.group(1))
-        api_info_dict[id_api]["all_names"] = list(
-            api_info_dict[id_api]["all_names"]).sort()
+        api_info_dict[id_api]["all_names"] = sorted(
+            list(api_info_dict[id_api]["all_names"]))
         sn = get_shortest_api(api_info_dict[id_api]["all_names"])
         if sn:
             # Delete alias_name, api_info_dict[id_api]["alias_name"] = sn
