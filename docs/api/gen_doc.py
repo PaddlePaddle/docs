@@ -655,6 +655,7 @@ class EnDocGenerator(object):
         # disarding the api_info['short_name'], cause it may be different.
         _, self.short_name = split_name(self.api_name)
         self.stream = None
+        self.object = None
 
     @contextlib.contextmanager
     def guard(self, filename):
@@ -671,26 +672,13 @@ class EnDocGenerator(object):
         """
         as name
         """
-        try:
-            if 'object' in self.api_info:
-                m = self.api_info['object']
-            elif self.api_name is not None:
-                m = eval(self.api_name)
-            else:
-                logger.warning(
-                    "%s has no attr called object/full_name/suggested_name",
-                    str(self.api_info))
-                return
-        except AttributeError:
-            logger.warning("attribute error for %s ", str(self.api_info))
+        if isinstance(self.object, type):
+            self.print_class()
+        elif isinstance(self.object, types.FunctionType):
+            self.print_function()
         else:
-            if isinstance(m, type):
-                self.print_class()
-            elif isinstance(m, types.FunctionType):
-                self.print_function()
-            else:
-                logger.warning("%s: not supported type %s",
-                               str(self.api_name), type(m))
+            logger.warning("%s: not supported type %s",
+                           str(self.api_name), type(self.object))
 
     def print_header_reminder(self):
         """
@@ -785,6 +773,25 @@ class EnDocGenerator(object):
         """
         generate the rst file.
         """
+        try:
+            if 'object' in self.api_info:
+                self.object = self.api_info['object']
+            elif self.api_name is not None:
+                self.object = eval(self.api_name)
+            else:
+                logger.warning(
+                    "%s has no attr called object/full_name/suggested_name",
+                    str(self.api_info))
+                return None, None
+        except AttributeError:
+            logger.warning("attribute error for %s ", str(self.api_info))
+            return None, None
+        else:
+            if (not isinstance(self.object, type)) and (
+                    not isinstance(self.object, types.FunctionType)):
+                logger.warning("%s: not supported type %s",
+                               str(self.api_name), type(self.object))
+                return None, None
         if self.api_name:
             filename = self.api_info['doc_filename'] + en_suffix
             with self.guard(filename):
