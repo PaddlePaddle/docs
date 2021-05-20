@@ -40,7 +40,7 @@ GPU_ID = 0
 #   "display":True/Flase, # consider the not_display_doc_list and the display_doc_list
 #   "has_overwrited_doc":True/False  #
 #   "doc_filename"  # document filename without suffix
-#   "suggested_name":"",  # the shorttest name in all_names
+#   "suggested_name":"",  # the shortest name in all_names
 # }
 api_info_dict = {}
 parsed_mods = {}
@@ -437,7 +437,7 @@ def collect_referenced_from_infos(docdirs):
 
 def get_shortest_api(api_list):
     """
-    find the shortest api name (suggestted name) in list.
+    find the shortest api name (suggested name) in list.
 
     Problems:
     1. fuild - if there is any apis don't contain 'fluid' in name, use them.
@@ -726,7 +726,7 @@ class EnDocGenerator(object):
 
 def insert_suggested_names():
     """
-    add suggeted_name field, updte the doc_filename.
+    add suggested_name field, updte the doc_filename, and sort the all_names.
     """
     pat = re.compile(r'paddle\.fluid\.core_[\w\d]+\.(.*)$')
     for id_api in api_info_dict:
