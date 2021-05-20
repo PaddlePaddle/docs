@@ -25,7 +25,6 @@ en_suffix = "_en.rst"
 cn_suffix = "_cn.rst"
 NOT_DISPLAY_DOC_LIST_FILENAME = "./not_display_doc_list"
 DISPLAY_DOC_LIST_FILENAME = "./display_doc_list"
-ALIAS_MAPPING_LIST_FILENAME = "./alias_api_mapping"
 CALLED_APIS_IN_THE_DOCS = './called_apis_from_docs.json'  # in the guides and tutorials documents
 SAMPLECODE_TEMPDIR = './sample-codes'
 RUN_ON_DEVICE = "cpu"
@@ -37,11 +36,11 @@ GPU_ID = 0
 #   "all_names":[],  # all full_names
 #   "full_name":"",  # the real name, and the others are the alias name
 #   "short_name":"",  # without module name
-#   "alias_name":"",  # without module name
 #   "module_name":"",  # the module of the real api belongs to
 #   "display":True/Flase, # consider the not_display_doc_list and the display_doc_list
 #   "has_overwrited_doc":True/False  #
 #   "doc_filename"  # document filename without suffix
+#   "suggested_name":"",  # the shorttest name in all_names
 # }
 api_info_dict = {}
 parsed_mods = {}
@@ -385,73 +384,6 @@ def set_display_attr_of_apis():
                 logger.info("set {} display to False".format(id_api))
 
 
-# step 4 fill field : alias_name, use the first name in alias_name as suggested name and doc_filename
-def set_real_api_alias_attr():
-    """
-    set the full_name,alias attr and so on.
-    """
-    if not os.path.exists(ALIAS_MAPPING_LIST_FILENAME):
-        logger.warning("file not exists: %s", ALIAS_MAPPING_LIST_FILENAME)
-        return
-    lineno = 0
-    for line in open(ALIAS_MAPPING_LIST_FILENAME, "r"):
-        lineno += 1
-        linecont = line.strip()
-        lineparts = linecont.split()
-        if len(lineparts) < 2:
-            logger.warning('line "{}" splited to {}'.format(line, lineparts))
-            continue
-        real_api = lineparts[0].strip()
-        docpath_from_real_api = real_api.replace('.', '/')
-        sn = get_suggested_name(lineparts[1])
-        doc_filename = sn.replace('.', '/') if sn else docpath_from_real_api
-        if real_api == 'paddle.tensor.creation.Tensor':
-            real_api = 'paddle.Tensor'
-        if real_api.endswith('Overview'):
-            api_info_dict[real_api] = {
-                "all_names": set([real_api]),
-                "id": lineno,
-                "full_name": real_api,
-                "object": None,
-                "type": 'Overview',
-                "alias_name": lineparts[1],
-                "doc_filename": docpath_from_real_api
-            }
-        else:
-            try:
-                m = eval(real_api)
-            except AttributeError:
-                logger.warning("AttributeError: %s", real_api)
-            else:
-                api_id = id(m)
-                if api_id in api_info_dict:
-                    api_info_dict[api_id]["alias_name"] = lineparts[1]
-                    if real_api == 'paddle.Tensor' and "all_names" in api_info_dict[
-                            api_id]:
-                        api_info_dict[api_id]["all_names"].add(
-                            'paddle.tensor.creation.Tensor')
-                    if "doc_filename" not in api_info_dict[api_id]:
-                        api_info_dict[api_id]["doc_filename"] = doc_filename
-                    else:
-                        if api_info_dict[api_id][
-                                "doc_filename"] != doc_filename:
-                            logger.warning(
-                                "doc_filename changes from %s to %s",
-                                api_info_dict[api_id]["doc_filename"],
-                                doc_filename)
-                            api_info_dict[api_id][
-                                "doc_filename"] = doc_filename
-                    if "module_name" not in api_info_dict[
-                            api_id] or "short_name" not in api_info_dict[
-                                api_id]:
-                        mod_name, short_name = split_name(real_api)
-                        api_info_dict[api_id][
-                            "module_name"] = mod_name  # TODO: should let module_name be real module_name
-                        api_info_dict[api_id]["short_name"] = short_name
-                        if 'full_name' not in api_info_dict[api_id]:
-                            api_info_dict[api_id]["full_name"] = real_api
-
-
 # step fill field: referenced_from
 def set_referenced_from_attr():
     """
@@ -503,17 +435,9 @@ def collect_referenced_from_infos(docdirs):
         docdirs)
 
 
-def get_suggested_name(apis_str):
-    """
-    use the first name in the list as the suggested_name.
-    """
-    apis = apis_str.split(",")
-    return apis[0].strip() if len(apis) > 0 else None
-
-
 def get_shortest_api(api_list):
     """
-    find the shortest api in list.
+    find the shortest api name (suggestted name) in list.
 
     Problems:
     1. fuild - if there is any apis don't contain 'fluid' in name, use them.
@@ -819,7 +743,7 @@ def insert_suggested_names():
                 api_info_dict[id_api]["all_names"].add('paddle.fluid.core.' +
                                                        mo.group(1))
         api_info_dict[id_api]["all_names"] = list(
-            api_info_dict[id_api]["all_names"])
+            api_info_dict[id_api]["all_names"]).sort()
         sn = get_shortest_api(api_info_dict[id_api]["all_names"])
         if sn:
             # Delete alias_name, api_info_dict[id_api]["alias_name"] = sn
@@ -1212,7 +1136,6 @@ if __name__ == "__main__":
         get_all_api(attr=realattr)
         set_display_attr_of_apis()
         set_source_code_attrs()
-        # set_real_api_alias_attr()
         set_referenced_from_attr()
         insert_suggested_names()
         if ('__all__' not in realattrs) or ('__all__' in realattrs and
