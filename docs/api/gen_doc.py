@@ -1190,6 +1190,7 @@ if __name__ == "__main__":
         set_source_code_attrs()
         set_referenced_from_attr()
         insert_suggested_names()
+        set_api_sketch()
         if ('__all__' not in realattrs) or ('__all__' in realattrs and
                                             realattr == '__all__'):
             if args.gen_rst:
