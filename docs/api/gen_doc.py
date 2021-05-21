@@ -388,6 +388,7 @@ def set_api_sketch():
     """
     set the in_api_sktech attr. may replace the set_display_attr_of_apis.
     """
+    global api_info_dict
     modulelist = [
         paddle, paddle.amp, paddle.nn, paddle.nn.functional,
         paddle.nn.initializer, paddle.nn.utils, paddle.tensor, paddle.static,
@@ -425,10 +426,10 @@ def set_api_sketch():
 
     for api in all_api_found.keys():
         for id_api in api_info_dict.keys():
-            if 'all_names' in api_info_dict[id_api] and api in api_info_dict[
-                    id_api]['all_names']:
+            if ('all_names' in api_info_dict[id_api]) and (
+                    api in api_info_dict[id_api]['all_names']):
                 all_api_found[api] = True
-                api_info_dict[id_api]['all_names'] = True
+                api_info_dict[id_api]['in_api_sketch'] = True
 
     api_not_in_dict = [api for api in all_api_found if not all_api_found[api]]
     if api_not_in_dict:
