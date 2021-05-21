@@ -219,14 +219,17 @@ if total_error_number > 0:
     print("Error sample code number is:{}".format(total_error_number))
     type_one_number = len(status_groups[-1])
     type_two_number = len(status_groups[1])
-    if type_one_number > 0:
-        print("Error type one sample number is:{}".format(type_one_number))
-        print("Error raised from type one:no sample code.",
-              str(status_groups[-1]))
     if type_two_number > 0:
         print("Error type two sample number is:{}".format(type_two_number))
         print("Error raised from type two:running error sample code.",
               str(status_groups[1]))
+    if type_one_number > 0:
+        print("Error type one sample number is:{}".format(type_one_number))
+        print("Error raised from type one:no sample code.",
+              str(status_groups[-1]))
+        # no sample code not considered as error now.
+        if type_two_number == 0:
+            ci_pass = True
 if not ci_pass:
     print("Mistakes found in sample codes.")
     exit(1)
