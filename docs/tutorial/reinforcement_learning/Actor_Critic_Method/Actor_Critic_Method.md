@@ -1,6 +1,6 @@
 # **强化学习——Actor Critic Method**
 **作者：** [EastSmith](https://github.com/EastSmith)<br>
-**日期：** 2021.03 <br>
+**日期：** 2021.05 <br>
 **摘要：** 展示 `CartPole-V0` 环境中 `Actor-Critic` 方法的一个实现。
 
 ## **一、介绍**
@@ -17,7 +17,7 @@
 在无摩擦的轨道上，一根杆子系在一辆手推车上。agent（代理）必须施加力才能移动手推车。每走一步，杆子就保持直立，这是奖励。因此，agent（代理）必须学会防止杆子掉下来。
 
 ## **二、环境配置**
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -32,7 +32,7 @@ from paddle.distribution import Categorical
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.0
 
 
 ## **三、实施演员-评论家网络**
@@ -114,7 +114,7 @@ def trainIters(actor, critic, n_iters):
             dist, value = actor(state), critic(state)
 
             action = dist.sample([1])
-            next_state, reward, done, _ = env.step(action.cpu().squeeze(0).numpy())
+            next_state, reward, done, _ = env.step(action.cpu().squeeze(0).numpy()) 
 
             log_prob = dist.log_prob(action);
             # entropy += dist.entropy().mean()
@@ -175,28 +175,11 @@ if __name__ == '__main__':
     trainIters(actor, critic, n_iters=201)
 ```
 
-    Iteration: 0, Score: 15
-    Iteration: 10, Score: 22
-    Iteration: 20, Score: 23
-    Iteration: 30, Score: 30
-    Iteration: 40, Score: 28
-    Iteration: 50, Score: 11
-    Iteration: 60, Score: 18
-    Iteration: 70, Score: 15
-    Iteration: 80, Score: 66
-    Iteration: 90, Score: 64
-    Iteration: 100, Score: 102
-    Iteration: 110, Score: 196
-    Iteration: 120, Score: 199
-    Iteration: 130, Score: 199
-    Iteration: 140, Score: 199
-    Iteration: 150, Score: 199
-    Iteration: 160, Score: 166
-    Iteration: 170, Score: 136
-    Iteration: 180, Score: 199
-    Iteration: 190, Score: 199
-    Iteration: 200, Score: 199
-
+    Iteration: 0, Score: 32
+    Iteration: 10, Score: 43
+    Iteration: 20, Score: 11
+    Iteration: 30, Score: 18
+    ...
 
 ## **五、效果展示**
 在训练的早期：
