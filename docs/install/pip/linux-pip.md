@@ -169,20 +169,27 @@
 
 * 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的Paddle包，可以通过以下命令安装，仅支持python3.8：
 
-  * cpu版本noavx机器安装：
+  * cpu、mkl版本noavx机器安装：
 
   ```
   python -m pip install paddlepaddle==2.1.0 -f http://www.paddlepaddle.org.cn/whl/mkl/stable/noavx/html --no-index
   ```
 
+  * cpu、openblas版本noavx机器安装：
+
+  ```
+  python -m pip install paddlepaddle==2.1.0 -f https://www.paddlepaddle.org.cn/whl/openblas/stable/noavx.html --no-index
+  ```
+
+
   * gpu版本cuda10.1安装：
-  
+
   ```
   python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
   ```
 
   * gpu版本cuda10.2安装：
-   
+
   ```
   python -m pip install paddlepaddle-gpu==2.1.0 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
   ```
