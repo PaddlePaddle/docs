@@ -52,13 +52,7 @@ data_norm
 ..  code-block:: python
 
     import paddle
+    paddle.enable_static()
 
     x = paddle.randn(shape=[32,100])
     hidden2 = paddle.static.nn.data_norm(input=x)
-
-
-
-
-
-
-
