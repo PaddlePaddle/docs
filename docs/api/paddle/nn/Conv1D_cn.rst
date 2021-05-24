@@ -92,6 +92,6 @@ Conv1D
    conv = Conv1D(3, 2, 3)
    conv.weight.set_value(w)
    y_t = conv(x_t)
-   print(y_t)
+   # print(y_t)
    # [[[133. 238.]
    #   [160. 211.]]]
