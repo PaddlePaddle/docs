@@ -18,93 +18,98 @@ Auc
     - **num_thresholds** (int) - 离散化AUC曲线的整数阈值数，默认是4095。
     - **name** (str，可选) – metric实例的名字，默认是'auc'。
 
-**代码示例**：
+代码示例
+:::::::::
 
-    # 独立使用示例:
+**独立使用示例**
 
-        .. code-block:: python
+    .. code-block:: python
 
-            import numpy as np
-            import paddle
+        import numpy as np
+        import paddle
     
-            m = paddle.metric.Auc()
+        m = paddle.metric.Auc()
             
-            n = 8
-            class0_preds = np.random.random(size = (n, 1))
-            class1_preds = 1 - class0_preds
+        n = 8
+        class0_preds = np.random.random(size = (n, 1))
+        class1_preds = 1 - class0_preds
             
-            preds = np.concatenate((class0_preds, class1_preds), axis=1)
-            labels = np.random.randint(2, size = (n, 1))
+        preds = np.concatenate((class0_preds, class1_preds), axis=1)
+        labels = np.random.randint(2, size = (n, 1))
             
-            m.update(preds=preds, labels=labels)
-            res = m.accumulate()
+        m.update(preds=preds, labels=labels)
+        res = m.accumulate()
 
 
-    # 在Model API中的示例:
+**在Model API中的示例**
         
-        .. code-block:: python
+    .. code-block:: python
 
-            import numpy as np
-            import paddle
-            import paddle.nn as nn
+        import numpy as np
+        import paddle
+        import paddle.nn as nn
             
-            class Data(paddle.io.Dataset):
-                def __init__(self):
-                    super(Data, self).__init__()
-                    self.n = 1024
-                    self.x = np.random.randn(self.n, 10).astype('float32')
-                    self.y = np.random.randint(2, size=(self.n, 1)).astype('int64')
+        class Data(paddle.io.Dataset):
+            def __init__(self):
+                super(Data, self).__init__()
+                self.n = 1024
+                self.x = np.random.randn(self.n, 10).astype('float32')
+                self.y = np.random.randint(2, size=(self.n, 1)).astype('int64')
             
-                def __getitem__(self, idx):
-                    return self.x[idx], self.y[idx]
+            def __getitem__(self, idx):
+                return self.x[idx], self.y[idx]
             
-                def __len__(self):
-                    return self.n
+            def __len__(self):
+                return self.n
             
-            model = paddle.Model(nn.Sequential(
-                nn.Linear(10, 2), nn.Softmax())
-            )
-            optim = paddle.optimizer.Adam(
-                learning_rate=0.001, parameters=model.parameters())
+        model = paddle.Model(nn.Sequential(
+            nn.Linear(10, 2), nn.Softmax())
+        )
+        optim = paddle.optimizer.Adam(
+            learning_rate=0.001, parameters=model.parameters())
             
-            def loss(x, y):
-                return nn.functional.nll_loss(paddle.log(x), y)
+        def loss(x, y):
+            return nn.functional.nll_loss(paddle.log(x), y)
             
-            model.prepare(
-                optim,
-                loss=loss,
-                metrics=paddle.metric.Auc())
-            data = Data()
-            model.fit(data, batch_size=16)
+        model.prepare(
+            optim,
+            loss=loss,
+            metrics=paddle.metric.Auc())
+        data = Data()
+        model.fit(data, batch_size=16)
     
 
-.. py:function:: update(pred, label, *args)
+update(pred, label, *args)
+:::::::::
 
 更新AUC计算的状态。
 
-参数:
-:::::::::
+**参数**
+    
     - **preds** (numpy.array | Tensor): 一个shape为[batch_size, 2]的Numpy数组或Tensor，preds[i][j]表示第i个样本类别为j的概率。
     - **labels** (numpy.array | Tensor): 一个shape为[batch_size, 1]的Numpy数组或Tensor，labels[i]是0或1，表示第i个样本的类别。
 
-返回: 无。
+**返回:** 无。
 
 
-.. py:function:: reset()
+reset()
+:::::::::
 
 清空状态和计算结果。
 
 返回：无
 
 
-.. py:function:: accumulate()
+accumulate()
+:::::::::
 
 累积的统计指标，计算和返回AUC值。
 
 返回：AUC值，一个标量。
 
 
-.. py:function:: name()
+name()
+:::::::::
 
 返回Metric实例的名字, 参考上述的name，默认是'auc'。
 
