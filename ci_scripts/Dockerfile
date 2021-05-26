@@ -1,4 +1,4 @@
-ARG BASEIMAGE=registry.baidubce.com/paddleopen/paddle:build-gpu-cuda11.2.2-cudnn8-devel-ubuntu20.04-gcc8
+ARG BASEIMAGE=registry.baidubce.com/paddleopen/paddle:build-gpu-cuda10.2-cudnn8-devel-ubuntu18.04-gcc8
 FROM ${BASEIMAGE}
 
 RUN git config --global user.name "PaddleCI" \
