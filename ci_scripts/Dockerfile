@@ -16,6 +16,7 @@ RUN apt-get update \
 
 # ci's requirements
 RUN echo 'docutils\n\
+setuptools\n\
 scipy\n\
 prettytable\n\
 opencv-python==4.2.0.32\n\
