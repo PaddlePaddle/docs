@@ -66,7 +66,7 @@
     epochs = 5
 
     # 设置优化器
-    optim = paddle.optimizer.Adam(parameters=model.parameters())
+    optim = paddle.optimizer.Adam(parameters=mnist.parameters())
 
     for epoch in range(epochs):
         for batch_id, data in enumerate(train_loader()):

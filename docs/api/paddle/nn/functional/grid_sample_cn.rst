@@ -3,7 +3,7 @@
 grid_sample
 -------------------------------
 
-.. py:function::  paddle.nn.function.grid_sample(x, grid, mode='bilinear', padding_mode='zeros', align_corners=True, name=None):
+.. py:function::  paddle.nn.functional.grid_sample(x, grid, mode='bilinear', padding_mode='zeros', align_corners=True, name=None):
 
 
 
