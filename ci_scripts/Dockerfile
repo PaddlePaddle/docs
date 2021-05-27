@@ -1,11 +1,8 @@
-ARG BASEIMAGE=registry.baidubce.com/paddleopen/paddle:build-gpu-cuda11.2.2-cudnn8-devel-ubuntu20.04-gcc8
+ARG BASEIMAGE=registry.baidubce.com/paddleopen/paddle:build-gpu-cuda10.2-cudnn8-devel-ubuntu18.04-gcc8-py38
 FROM ${BASEIMAGE}
 
 RUN git config --global user.name "PaddleCI" \
  && git config --global user.email "paddle_ci@example.com"
-
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
- && update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 10
 
 RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
@@ -36,7 +33,7 @@ urllib3\n\
 certifi\n\
 chardet\n\
 requests\n\
-decorator\n\
+decorator==4.4.2\n\
 astor' >paddle.requirements && \
     pip3 install --no-cache-dir -i https://mirror.baidu.com/pypi/simple -r paddle.requirements && \
     rm paddle.requirements
