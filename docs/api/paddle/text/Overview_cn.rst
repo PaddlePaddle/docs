@@ -30,13 +30,13 @@ paddle.text 目录是飞桨在文本领域的高层API。有Paddle内置以及Pa
 PaddleNLP提供的API
 ::::::::::::::::::::
 
-PaddleNLP2.0.0 提供了在文本任务上简洁易用的全流程API，旨在为飞桨开发者提升文本领域建模效率，并提供基于PaddlePaddle2.0.0的NLP领域最佳实践。
+PaddleNLP 提供了在文本任务上简洁易用的全流程API，旨在为飞桨开发者提升文本领域建模效率。深度适配飞桨框架，提供基于最新版Paddle的NLP领域最佳实践。
 
 安装命令：
 
 .. code-block::
 
-    pip install paddlenlp2.0.0
+    pip install --upgrade paddlenlp -i https://pypi.org/simple
 
 
 可参考PaddleNLP `GitHub <https://github.com/PaddlePaddle/PaddleNLP>`_ 以及 `文档 <https://paddlenlp.readthedocs.io/zh/latest/index.html>`_ 
@@ -45,7 +45,7 @@ PaddleNLP2.0.0 提供了在文本任务上简洁易用的全流程API，旨在�
     :header: "API模块", "功能简介", "API用法简单示例"
     :widths: 10, 20, 20
 
-    " `paddlenlp.datasets <https://paddlenlp.readthedocs.io/zh/latest/data_prepare/dataset_list.html>`_ ", "数据集相关API，包含自定义数据集，数据集贡献与数据集快速加载等功能", " ``train_ds, dev_ds = paddlenlp.datasets.load_dataset('ptb', splits=('train', 'dev'))`` "
+    " `paddlenlp.datasets <https://paddlenlp.readthedocs.io/zh/latest/data_prepare/dataset_list.html>`_ ", "数据集相关API，包含自定义数据集，数据集贡献与数据集快速加载等功能", " ``train_ds = paddlenlp.datasets.load_dataset('ptb', splits='train')`` "
     " `paddlenlp.data <https://paddlenlp.readthedocs.io/zh/latest/data_prepare/data_preprocess.html>`_ ", "文本数据处理Pipeline的相关API", "见链接文档"
     " `paddlenlp.transformers <https://paddlenlp.readthedocs.io/zh/latest/model_zoo/transformers.html>`_ ", "基于Transformer结构相关的预训练模型API，包含ERNIE, BERT, RoBERTa, Electra等主流经典结构和下游任务", " ``model = paddlenlp.transformers.BertForSequenceClassification.from_pretrained('bert-wwm-chinese', num_classes=2)`` "
     " `paddlenlp.metrics <https://paddlenlp.readthedocs.io/zh/latest/metrics/metrics.html>`_", "提供了文本任务上的一些模型评价指标，例如Perplexity、GlLUE中用到的评估器、BLEU、Rouge等，与飞桨高层API兼容", " ``metric = paddlenlp.metrics.AccuracyAndF1()`` "
