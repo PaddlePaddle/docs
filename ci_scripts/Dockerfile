@@ -15,8 +15,8 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # ci's requirements
+RUN pip3 install --no-cache-dir -i https://mirror.baidu.com/pypi/simple setuptools
 RUN echo 'docutils\n\
-setuptools\n\
 scipy\n\
 prettytable\n\
 opencv-python==4.2.0.32\n\
