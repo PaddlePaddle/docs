@@ -22,7 +22,7 @@ Conv1DTranspose
     -  :math:`X` : 输入，具有NCL或NLC格式的3-D Tensor
     -  :math:`W` : 卷积核，具有NCL格式的3-D Tensor
     -  :math:`*` : 卷积计算（注意：转置卷积本质上的计算还是卷积）
-    -  :math:`b` : 偏置（bias），2-D Tensor，形状为 ``[M,1]``
+    -  :math:`b` : 偏置（bias），1-D Tensor，形状为 ``[M]``
     -  :math:`σ` : 激活函数
     -  :math:`Out` : 输出值，NCL或NLC格式的3-D Tensor， 和 ``X`` 的形状可能不同
 
@@ -45,6 +45,9 @@ Conv1DTranspose
 
     - 输入：:math:`（N，C_{in}， L_{in}）`
 
+    - 卷积核：:math:`（C_{in}，C_{out}， K）`
+
+    - 偏置：:math:`（C_{out}）`
 
     - 输出：:math:`（N，C_{out}， L_{out}）`
 
