@@ -21,7 +21,7 @@ Conv1D
     - :math:`X` ：输入值，NCL或NLC格式的3-D Tensor
     - :math:`W` ：卷积核值，MCL格式的3-D Tensor
     - :math:`*` ：卷积操作
-    - :math:`b` ：偏置值，2-D Tensor，形状为 ``[M,1]``
+    - :math:`b` ：偏置值，1-D Tensor，形状为 ``[M]``
     - :math:`\sigma` ：激活函数
     - :math:`Out` ：输出值，NCL或NLC格式的3-D Tensor， 和 ``X`` 的形状可能不同
 
@@ -50,6 +50,8 @@ Conv1D
     
 形状:
     - 输入: :math:`(N， C_{in}， L_{in})`
+    - 卷积核: :math:`(C_{out}， C_{in}， K)`
+    - 偏置: :math:`(C_{out})`
     - 输出: :math:`(N， C_{out}， L_{out})`
 
     其中:

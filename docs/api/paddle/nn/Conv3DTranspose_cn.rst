@@ -21,7 +21,7 @@ Conv3DTranspose
     -  :math:`X` : 输入，具有NCDHW或NDHWC格式的5-D Tensor
     -  :math:`W` : 卷积核，具有NCDHW格式的5-D Tensor
     -  :math:`*` : 卷积操作（注意：转置卷积本质上的计算还是卷积）
-    -  :math:`b` : 偏置（bias），2-D Tensor，形状为 ``[M,1]``
+    -  :math:`b` : 偏置（bias），1-D Tensor，形状为 ``[M]``
     -  :math:`σ` : 激活函数
     -  :math:`Out` : 输出值，NCDHW或NDHWC格式的5-D Tensor，和 ``X`` 的形状可能不同
 
@@ -51,6 +51,9 @@ Conv3DTranspose
 
     - 输入：:math:`（N，C_{in}， H_{in}， W_{in}）`
 
+    - 卷积核：:math:`(C_{in}, C_{out}, K_{d}, K_{h}, K_{w})`
+
+    - 偏置：:math:`(C_{out})`
 
     - 输出：:math:`（N，C_{out}, H_{out}, W_{out}）`
 
