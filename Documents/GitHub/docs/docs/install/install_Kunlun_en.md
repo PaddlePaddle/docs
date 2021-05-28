@@ -4,7 +4,7 @@ Paddle supports training and native inference on Kunlun XPU cards.  The latest v
 
 ## Installation Method 1：Pre-built Wheel Package
 
-Install the pre-built wheel package that supports Kunlun XPU. At present, this wheel package only supports a couple of environments as shown below. For other environments, please choose Installation Method 2 installation from source code compilation.
+Install the pre-built wheel package that supports Kunlun XPU. At present, Wheel packages are available in the following environments. For any other environment, please choose Installation Method 2 installation from source code compilation.
 
 #### Download the pre-built installation package
 
@@ -30,7 +30,7 @@ python3.6 -m pip install -U ``paddlepaddle-2.1.0-cp36-cp36m-linux_x86_64.whl
 
 **Phytium CPU+Kunlun XPU+Kylin release V10**
 
-To obtain the wheel package supporting this system environment, please contact with PaddlePaddle via official email: Paddle-better@baidu.com
+To obtain the wheel package supporting this system environment, please contact us via official email: Paddle-better@baidu.com
 
 #### Verify installation
 
@@ -78,7 +78,7 @@ or
 
 In addition, if there are environmental problems with the pre-built wheel package, it is recommended to use Installation Method 2 to compile a package.
 
-
+ 
 
 ## Installation Method 2：Paddle Source Code Compilation
 
