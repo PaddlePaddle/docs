@@ -3,7 +3,11 @@ set -x
 
 function install_paddle() {
     # try to download paddle, and install
-    pip install https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
+    if [ ${BRANCH} = 'release/2.1' ] ; then
+        pip install https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.1.0-cp38-cp38-linux_x86_64.whl
+    else
+        pip install https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
+    fi
     # if failed, build paddle
     if [ $? -ne 0 ];then
         build_paddle
