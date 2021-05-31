@@ -490,11 +490,14 @@ cuda(device_id=None, blocking=False)
     .. code-block:: python
 
         import paddle
-        x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
-        print(x.place)    # CUDAPlace(0)
+        x = paddle.to_tensor(1.0, place=paddle.CPUPlace())
+        print(x.place)        # CPUPlace
 
-        y = x.cpu()
-        print(y.place)    # CPUPlace
+        y = x.cuda()
+        print(y.place)        # CUDAPlace(0)
+
+        y = x.cuda(1)
+        print(y.place)        # CUDAPlace(1)
 
 cumsum(axis=None, dtype=None, name=None)
 :::::::::
