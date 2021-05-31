@@ -1,4 +1,4 @@
-# PyTorch-Paddle API映射表
+# PyTorch 1.8 与 Paddle 2.0 API映射表
 本文档基于[X2Paddle](https://github.com/PaddlePaddle/X2Paddle)研发过程梳理了PyTorch（v1.8.1)常用API与PaddlePaddle 2.0.0 API对应关系与差异分析。通过本文档，帮助开发者快速迁移PyTorch使用经验，完成模型的开发与调优。
 
 ## X2Paddle介绍
@@ -18,12 +18,12 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 | ---------- | ------------------------- |
 | [基础操作类](#id1) | 主要为`torch.XX`类API |
 | [组网类](#id2)    | 主要为`torch.nn.XX`类下组网相关的API |
-| [Loss类](#id3) |主要为`torch.nn.XX`类下loss相关的API    |
-| [工具类](#id4)   | 主要为`torch.nn.XX`类下分布式相关的API和`torch.utils.XX`类API|
-| [视觉类](#id5)  | 主要为`torchvision.XX`类API |
+| [Loss类](#lossapi) |主要为`torch.nn.XX`类下loss相关的API    |
+| [工具类](#id3)   | 主要为`torch.nn.XX`类下分布式相关的API和`torch.utils.XX`类API|
+| [视觉类](#id4)  | 主要为`torchvision.XX`类API |
 
 ## 基础操作类API映射列表
-该文档梳理了基础操作的PyTorch-PaddlePaddle API映射列表，主要包括了构造Tensor、数学计算、逻辑计算相关的API。
+梳理了基础操作的PyTorch-PaddlePaddle API映射列表，主要包括了构造Tensor、数学计算、逻辑计算相关的API。
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -119,7 +119,7 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 
 ## 组网类API映射列表
 
-该文档梳理了与构造网络相关的PyTorch-PaddlePaddle API映射列表。
+梳理了与构造网络相关的PyTorch-PaddlePaddle API映射列表。
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -174,7 +174,7 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 ***持续更新...***
 
 ## Loss类API映射列表
-该文档梳理了计算loss相关的PyTorch-PaddlePaddle API映射列表。
+梳理了计算loss相关的PyTorch-PaddlePaddle API映射列表。
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -190,7 +190,7 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 ***持续更新...***
 
 ## 工具类API映射列表
-该文档梳理了与数据处理、分布式处理等相关的PyTorch-PaddlePaddle API映射列表。
+梳理了与数据处理、分布式处理等相关的PyTorch-PaddlePaddle API映射列表。
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -203,5 +203,31 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 | 7    | [torch.utils.data.Dataset](https://pytorch.org/docs/stable/data.html?highlight=torch%20utils%20data%20dataset#torch.utils.data.Dataset) | [paddle.io.Dataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Dataset_cn.html#dataset) | 功能一致                                                     |
 | 8    | [torch.utils.data.BatchSampler](https://pytorch.org/docs/stable/data.html?highlight=batchsampler#torch.utils.data.BatchSampler) | [paddle.io.BatchSampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/BatchSampler_cn.html#batchsampler) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.utils.data.BatchSampler.md)           |
 | 9    | [torch.utils.data.Sampler](https://pytorch.org/docs/stable/data.html?highlight=sampler#torch.utils.data.Sampler) | [paddle.io.Sampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Sampler_cn.html#sampler) | 功能一致                                                     |
+
+***持续更新...***
+
+## 视觉类API映射列表
+
+梳理了与视觉处理相关的PyTorch-PaddlePaddle API映射列表。
+
+| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                    |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
+| 1    | [torchvision.transforms.Compose](https://pytorch.org/vision/stable/transforms.html?highlight=compose#torchvision.transforms.Compose) | [paddle.vision.transforms.Compose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/Compose_cn.html#compose) | 功能一致                                                |
+| 2    | [torchvision.transforms.ToPILImage](https://pytorch.org/vision/stable/transforms.html?highlight=topilimage#torchvision.transforms.ToPILImage) | 无对应实现                                                   | [组合实现](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.transforms.ToPILImage.md) |
+| 3    | [torchvision.transforms.Resize](https://pytorch.org/vision/stable/transforms.html?highlight=resize#torchvision.transforms.Resize) | [paddle.vision.transforms.Resize](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/Resize_cn.html#resize) | 功能一致                                                |
+| 4    | [torchvision.transforms.ToTensor](https://pytorch.org/vision/stable/transforms.html?highlight=totensor#torchvision.transforms.ToTensor) | [paddle.vision.transforms.ToTensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/ToTensor_cn.html#totensor) | 功能一致                                                |
+| 5    | [torchvision.transforms.RandomHorizontalFlip](https://pytorch.org/vision/stable/transforms.html?highlight=randomhorizontalflip#torchvision.transforms.RandomHorizontalFlip) | [paddle.vision.transforms.RandomHorizontalFlip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/RandomHorizontalFlip_cn.html#randomhorizontalflip) | 功能一致                                                |
+| 6    | [torchvision.transforms.CenterCrop](https://pytorch.org/vision/stable/transforms.html?highlight=centercrop#torchvision.transforms.CenterCrop) | [paddle.vision.transforms.CenterCrop](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/CenterCrop_cn.html#centercrop) | 功能一致                                                |
+| 7    | [torchvision.transforms.ColorJitter](https://pytorch.org/vision/stable/transforms.html?highlight=colorjitter#torchvision.transforms.ColorJitter) | [paddle.vision.transforms.ColorJitter](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/ColorJitter_cn.html#colorjitter) | 功能一致                                                |
+| 8    | [torchvision.transforms.Grayscale](https://pytorch.org/vision/stable/transforms.html?highlight=grayscale#torchvision.transforms.Grayscale) | [paddle.vision.transforms.Grayscale](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/Grayscale_cn.html#grayscale) | 功能一致                                                |
+| 9    | [torchvision.transforms.Normalize](https://pytorch.org/vision/stable/transforms.html?highlight=normalize#torchvision.transforms.Normalize) | [paddle.vision.transforms.Normalize](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/Normalize_cn.html#normalize) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.transforms.Normalize.md)  |
+| 10   | [torchvision.transforms.RandomResizedCrop](https://pytorch.org/vision/stable/transforms.html?highlight=randomresizedcrop#torchvision.transforms.RandomResizedCrop) | [paddle.vision.transforms.RandomResizedCrop](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/RandomResizedCrop_cn.html#randomresizedcrop) | 功能一致                                                |
+| 11   | [torchvision.transforms.Pad](https://pytorch.org/vision/stable/transforms.html?highlight=pad#torchvision.transforms.Pad) | [paddle.vision.transforms.Pad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/Pad_cn.html#pad) | 功能一致                                                |
+| 12   | [torchvision.transforms.RandomCrop](https://pytorch.org/vision/stable/transforms.html?highlight=randomcrop#torchvision.transforms.RandomCrop) | [paddle.vision.transforms.RandomCrop](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/transforms/RandomCrop_cn.html#randomcrop) | 功能一致                                                |
+| 13   | [torchvision.transforms.RandomRotation](https://pytorch.org/vision/stable/transforms.html?highlight=randomrotation#torchvision.transforms.RandomRotation) | [paddle.vision.transforms.RandomRotation](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/RandomCrop_cn.html#randomcrop) | 功能一致                                                |
+| 14   | [torchvision.transforms.RandomVerticalFlip](https://pytorch.org/vision/stable/transforms.html?highlight=randomverticalflip#torchvision.transforms.RandomVerticalFlip) | [paddle.vision.transforms.RandomVerticalFlip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/RandomVerticalFlip_cn.html#randomverticalflip) | 功能一致                                                |
+| 15   | [torchvision.transforms.Lambda](https://pytorch.org/vision/stable/transforms.html?highlight=lambda#torchvision.transforms.Lambda) | 无对应实现                                                   | [组合实现](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.transforms.Lambda.md)     |
+| 17   | [torchvision.utils.save_image](https://pytorch.org/vision/stable/utils.html?highlight=save_image#torchvision.utils.save_image) | 无对应实现                                                   | [组合实现](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.utils.save_image.md)      |
+| 18   | [torchvision.models 系列模型](https://pytorch.org/vision/stable/models.html?highlight=torchvision%20models) | X2Paddle提供                                                 | [使用方式](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.models.md)                                                |
 
 ***持续更新...***
