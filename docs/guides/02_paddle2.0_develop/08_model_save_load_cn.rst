@@ -24,7 +24,8 @@
 
 本文主要介绍飞桨框架2.0动态图存储载入体系，各接口关系如下图所示：
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/main_save_load_2.0.png?raw=true
+.. image:: images/main_save_load_2.0.png
+
 
 .. note::
     不推荐使用paddle.save保存Layer对象，原因如下：1. 加载Layer对象无法脱离模型代码。 2. Layer对象相交于state_dict包含大量冗余信息。
