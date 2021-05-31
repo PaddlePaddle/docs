@@ -1,4 +1,4 @@
-# PyTorch-PaddlePaddle API映射表
+# PyTorch-Paddle API映射表
 本文档基于[X2Paddle](https://github.com/PaddlePaddle/X2Paddle)研发过程梳理了PyTorch（v1.8.1)常用API与PaddlePaddle 2.0.0 API对应关系与差异分析。通过本文档，帮助开发者快速迁移PyTorch使用经验，完成模型的开发与调优。
 
 ## X2Paddle介绍
@@ -9,18 +9,18 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
   - 支持PyTorch项目Python代码（包括训练、预测）一键转为基于飞桨框架的项目代码，帮助开发者快速迁移项目，并可享受AIStudio平台对于飞桨框架提供的海量免费计算资源
 - API映射文档
   - 详细的API文档对比分析，帮助开发者快速从PyTorch框架的使用迁移至飞桨框架的使用，大大降低学习成本
- 
+
 详细的项目信息与使用方法参考X2Paddle在Github上的开源项目: https://github.com/PaddlePaddle/X2Paddle
 
 ## API映射表目录
 
 | 类别         | 简介 |
 | ---------- | ------------------------- |
-| [基础操作类](#api) | 主要为`torch.XX`类API |
-| [组网类](#组网类)    | 主要为`torch.nn.XX`类下组网相关的API |
-| [Loss类](#Loss类) |主要为`torch.nn.XX`类下loss相关的API    |
-| [工具类](#工具类)   | 主要为`torch.nn.XX`类下分布式相关的API和`torch.utils.XX`类API|
-| [视觉类](#视觉类)  | 主要为`torchvision.XX`类API |
+| [基础操作类](#id1) | 主要为`torch.XX`类API |
+| [组网类](#id2)    | 主要为`torch.nn.XX`类下组网相关的API |
+| [Loss类](#id3) |主要为`torch.nn.XX`类下loss相关的API    |
+| [工具类](#id4)   | 主要为`torch.nn.XX`类下分布式相关的API和`torch.utils.XX`类API|
+| [视觉类](#id5)  | 主要为`torchvision.XX`类API |
 
 ## 基础操作类API映射列表
 该文档梳理了基础操作的PyTorch-PaddlePaddle API映射列表，主要包括了构造Tensor、数学计算、逻辑计算相关的API。
@@ -175,6 +175,7 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 
 ## Loss类API映射列表
 该文档梳理了计算loss相关的PyTorch-PaddlePaddle API映射列表。
+
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1    | [torch.nn.L1Loss](https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html?highlight=l1loss#torch.nn.L1Loss) | [paddle.nn.L1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/loss/L1Loss_cn.html#l1loss) | 功能一致，PyTroch存在废弃参数`size_average`和`reduce`。      |
@@ -190,6 +191,7 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 
 ## 工具类API映射列表
 该文档梳理了与数据处理、分布式处理等相关的PyTorch-PaddlePaddle API映射列表。
+
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 1    | [torch.nn.DataParallel](https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html?highlight=dataparallel#torch.nn.DataParallel) | [paddle.DataParallel](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/DataParallel_cn.html#dataparallel) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.nn.DataParallel.md)                   |
@@ -203,4 +205,3 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 | 9    | [torch.utils.data.Sampler](https://pytorch.org/docs/stable/data.html?highlight=sampler#torch.utils.data.Sampler) | [paddle.io.Sampler](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Sampler_cn.html#sampler) | 功能一致                                                     |
 
 ***持续更新...***
-
