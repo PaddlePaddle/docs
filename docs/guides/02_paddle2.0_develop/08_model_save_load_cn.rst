@@ -26,10 +26,13 @@
 
 .. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/main_save_load_2.0.png?raw=true
 
+.. note::
+    不推荐使用paddle.save保存Layer对象，原因如下：1. 加载Layer对象无法脱离模型代码。 2. Layer对象相交于state_dict包含大量冗余信息。
+
 1.1.2 静态图存储载入体系
 ```````````````````````
 
-静态图存储载入相关接口为飞桨框架1.x版本的主要使用接口，出于兼容性的目的，这些接口仍然可以在飞桨框架2.x使用，但不再推荐。相关接口包括：
+paddle.save支持静态图Program、state_dict、Tensor的保存载入。出于兼容性的目的，飞桨框架1.x版本的静态图存储载入相关接口仍然可以在飞桨框架2.x使用，但不再推荐。相关接口包括：
 
 - paddle.static.save
 - paddle.static.load
@@ -384,6 +387,30 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 存储的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生5个文件：
 ``linear.another_forward.pdiparams、 linear.pdiparams、 linear.pdmodel、 linear.another_forward.pdmodel、 linear.pdiparams.info``
+
+(4) 当使用``jit.save``保存函数时，``jit.save``只保存这个函数对应的静态图`Program`，不会保存和这个函数相关的参数。如果你必须保存参数，请使用Layer封装这个函数。
+
+示例代码如下：
+
+.. code-block:: python
+
+    def fun(inputs):
+        return paddle.tanh(inputs)
+
+    path = 'func/model'
+    inps = paddle.rand([3, 6])
+    origin = fun(inps)
+
+    paddle.jit.save(
+        fun,
+        path,
+        input_spec=[
+            InputSpec(
+                shape=[None, 6], dtype='float32', name='x'),
+        ])
+    load_func = paddle.jit.load(path)
+    load_result = load_func(inps)
+
 
 3.1.2 动态图训练 + 模型&参数存储
 ``````````````````````````````
