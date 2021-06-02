@@ -26,7 +26,7 @@ cmake .. -DPY_VERSION=3.7 -DWITH_ROCM=ON -DWITH_TESTING=OFF -DON_INFER=ON \
 make -j$(nproc)
 ```
 
-编译完成之后，`build`目录下的 `paddle_inference_install_dir` 即为 C++ 预测库，目录结构如下：
+编译完成之后，`build` 目录下的 `paddle_inference_install_dir` 即为 C++ 预测库，目录结构如下：
 
 ```bash
 build/paddle_inference_install_dir
@@ -92,7 +92,9 @@ resnet50/
 
 **预先要求**：
 
-本章节 C++ 预测示例代码位于 [Paddle-Inference-Demo/c++/resnet50](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c++/resnet50)。请先将示例代码下载到本地，再将第一步中编译得到的 `paddle_inference_install_dir` 重命名为 `paddle_inference` 文件夹，移动到示例代码的 `Paddle-Inference-Demo/c++/lib` 目录下。使用到的文件如下所示：
+本章节 C++ 预测示例代码位于 [Paddle-Inference-Demo/c++/resnet50](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c++/resnet50)。
+
+请先将示例代码下载到本地，再将第一步中编译得到的 `paddle_inference_install_dir` 重命名为 `paddle_inference` 文件夹，移动到示例代码的 `Paddle-Inference-Demo/c++/lib` 目录下。使用到的文件如下所示：
 
 ```bash
 -rw-r--r-- 1 root root 3479 Jun  2 03:14 README.md                 README 说明
@@ -109,14 +111,14 @@ drwxr-xr-x 2 root root 4096 Mar  5 07:43 resnet50                  第二步中�
 ```bash
 # 根据预编译库中的 version.txt 信息判断是否将以下标记打开
 WITH_MKL=ON  
-WITH_GPU=OFF # 注意这里需要关掉WITH_GPU
+WITH_GPU=OFF # 注意这里需要关掉 WITH_GPU
 USE_TENSORRT=OFF
 
-WITH_ROCM=ON # 注意这里需要打开WITH_ROCM
+WITH_ROCM=ON # 注意这里需要打开 WITH_ROCM
 ROCM_LIB=/opt/rocm/lib
 ```
 
-运行`run.sh`脚本进行编译和运行，即可获取最后的预测结果如下：
+运行 `run.sh` 脚本进行编译和运行，即可获取最后的预测结果：
 
 ```bash
 bash run.sh
@@ -218,7 +220,9 @@ if __name__ == "__main__":
 
 ```bash
 # 参数输入为本章节第2步中下载的 ResNet50 模型
-python python_demo.py --model_file ./resnet50/inference.pdmodel --params_file ./resnet50/inference.pdiparams --batch_size 2
+python python_demo.py --model_file ./resnet50/inference.pdmodel \
+                      --params_file ./resnet50/inference.pdiparams \
+                      --batch_size 2
 
 # 成功执行之后，得到的预测输出结果如下：
 ... ...
