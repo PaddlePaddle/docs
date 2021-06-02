@@ -177,12 +177,23 @@ or
  ```pip3 uninstall paddlepaddle ```
 
 
-## Appendix: Current models supported by Kunlun XPU adaptation
+## Appendix: Current models supported by Kunlun XPU
 
-|  Model Name  | Model Link |
-|  ----  | ----  |
-| ResNet50  | [Model Link](https://github.com/PaddlePaddle/PaddleClas/tree/dygraph/docs/zh_CN/extension/train_on_xpu.md) |
-| MobileNetv3  | [Model Link](https://github.com/PaddlePaddle/PaddleClas/tree/dygraph/docs/zh_CN/extension/train_on_xpu.md) |
-| Deeplabv3  | [Model Link](https://github.com/PaddlePaddle/PaddleSeg/blob/develop/legacy/docs/train_on_xpu.md) |
-| DQN  | [Model Link](https://github.com/PaddlePaddle/PARL/blob/develop/examples/DQN/README.md) |
-| Bertbase  | [Model Link](https://github.com/PaddlePaddle/PaddleNLP/blob/release/2.0-rc/legacy/pretrain_language_models/BERT/README.md) |
+| 模型               | 模型readme                                                   |
+| ------------------ | ------------------------------------------------------------ |
+| VGG16/19           | [model link](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.1/docs/zh_CN/extension/train_on_xpu.md) |
+| ResNet50           | [model link](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.1/docs/zh_CN/extension/train_on_xpu.md) |
+| MobileNet_v3       | [model link](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.1/docs/zh_CN/extension/train_on_xpu.md) |
+| HRNet              | [model link](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.1/docs/zh_CN/extension/train_on_xpu.md) |
+| Yolov3-DarkNet53   | [model link](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/train_on_kunlun.md) |
+| Yolov3-MobileNetv1 | [model link](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/train_on_kunlun.md) |
+| PPYOLO             | [model link](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/train_on_kunlun.md) |
+| Mask_RCNN          | [model link](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/train_on_kunlun.md) |
+| Deeplab_v3         | [model link](https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.1/legacy/docs/train_on_xpu.md) |
+| Unet               | [model link](https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.1/legacy/docs/train_on_xpu.md) |
+| LSTM               | [model link](https://github.com/PaddlePaddle/PaddleSeg/blob/release/v2.0.0-rc/legacy/docs/train_on_xpu.md) |
+| Bert-Base          | [model link](https://github.com/PaddlePaddle/PaddleNLP/blob/release/2.0/examples/language_model/bert/README.md) |
+| Ernie-Base         |                                                              |
+| NAML               | [model link](https://github.com/PaddlePaddle/PaddleRec/blob/release/2.1.0/models/rank/naml/train_on_kunlun.md) |
+| DQN                | [model link](https://github.com/PaddlePaddle/PARL/blob/r1.4.3/examples/DQN/train_on_xpu.md) |
+
