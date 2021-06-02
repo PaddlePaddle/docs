@@ -4,7 +4,7 @@
 
 ## C++预测部署
 
-**注意**：更多C++预测API使用说明请参考 [Paddle Inference - C++ API](https://paddle-inference.readthedocs.io/en/latest/api_reference/cxx_api_index.html)
+**注意**：更多C++预测API使用说明请参考 [Paddle Inference - C++ API](https://paddleinference.paddlepaddle.org.cn/api_reference/cxx_api_index.html)
 
 **第一步**：源码编译C++预测库
 
@@ -145,7 +145,7 @@ I0602 04:12:04.106683 52627 resnet50_test.cc:88] 900 : 1.52391e-30
 
 ## Python预测部署示例
 
-**注意**：更多Python预测API使用说明请参考 [Paddle Inference - Python API](https://paddle-inference.readthedocs.io/en/latest/api_reference/python_api_index.html)
+**注意**：更多Python预测API使用说明请参考 [Paddle Inference - Python API](https://paddleinference.paddlepaddle.org.cn/api_reference/python_api_index.html)
 
 **第一步**：安装 Python 预测库
 
