@@ -4,7 +4,7 @@
 
 ## 训练支持
 
-可实现模型单机单卡/单机多卡的训练，如下图所示：
+可进行单机单卡/单机多卡训练的模型，如下所示：
 
 | 模型               | 领域     | 模型readme                                                   | 编程范式      | 可用的CPU类型           | 单机多卡支持   |
 | ------------------ | -------- | ------------------------------------------------------------ | ------------- | ----------------------- | -------------- |
@@ -18,7 +18,7 @@
 | Mask_RCNN          | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/train_on_kunlun.md) | 静态图        | X86（Intel）            | 支持           |
 | Deeplab_v3         | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.1/legacy/docs/train_on_xpu.md) | 静态图        | X86（Intel）            | 支持           |
 | Unet               | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/blob/release/2.1/legacy/docs/train_on_xpu.md) | 静态图        | X86（Intel）            | 支持           |
-| LSTM               | NLP      | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/blob/release/v2.0.0-rc/legacy/docs/train_on_xpu.md) | 静态图/动态图 | X86（Intel）            | 支持           |
+| LSTM               | NLP      | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/release/2.0/examples/text_classification/rnn) | 静态图/动态图 | X86（Intel）            | 支持           |
 | Bert-Base          | NLP      | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/blob/release/2.0/examples/language_model/bert/README.md) | 静态图/动态图 | X86（Intel）            | 支持（静态图） |
 | Ernie-Base         | NLP      |                                                              | 静态图/动态图 | X86（Intel）            | 支持（静态图） |
 | NAML               | 推荐     | [模型链接](https://github.com/PaddlePaddle/PaddleRec/blob/release/2.1.0/models/rank/naml/train_on_kunlun.md) | 静态图        | X86（Intel）            | 支持           |
