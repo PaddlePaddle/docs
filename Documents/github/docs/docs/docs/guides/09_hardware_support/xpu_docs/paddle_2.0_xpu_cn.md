@@ -12,10 +12,10 @@
 | ResNet50           | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/dygraph/docs/zh_CN/extension/train_on_xpu.md) | 静态图        | X86（Intel）ARM（飞腾） | 支持           |
 | MobileNet_v3       | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/dygraph/docs/zh_CN/extension/train_on_xpu.md) | 静态图        | X86（Intel）            | 支持           |
 | HRNet              | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/dygraph/docs/zh_CN/extension/train_on_xpu.md) | 静态图        | X86（Intel）            | 支持           |
-| Yolov3-DarkNet53   | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/blob/master/docs/tutorials/train_on_kunlun.md) | 静态图        | X86（Intel）ARM（飞腾） | 支持           |
-| Yolov3-MobileNetv1 | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/blob/master/docs/tutorials/train_on_kunlun.md) | 静态图        | X86（Intel）            | 支持           |
-| PPYOLO             | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/blob/master/docs/tutorials/train_on_kunlun.md) | 静态图        | X86（Intel）            | 支持           |
-| Mask_RCNN          | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/blob/master/docs/tutorials/train_on_kunlun.md) | 静态图        | X86（Intel）            | 支持           |
+| Yolov3-DarkNet53   | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/train_on_kunlun.md) | 静态图        | X86（Intel）ARM（飞腾） | 支持           |
+| Yolov3-MobileNetv1 | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/train_on_kunlun.md) | 静态图        | X86（Intel）            | 支持           |
+| PPYOLO             | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/train_on_kunlun.md) | 静态图        | X86（Intel）            | 支持           |
+| Mask_RCNN          | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.1/docs/tutorials/train_on_kunlun.md) | 静态图        | X86（Intel）            | 支持           |
 | Deeplab_v3         | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/blob/release/v2.0.0-rc/legacy/docs/train_on_xpu.md) | 静态图        | X86（Intel）            | 支持           |
 | Unet               | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/blob/release/v2.0.0-rc/legacy/docs/train_on_xpu.md) | 静态图        | X86（Intel）            | 支持           |
 | LSTM               | NLP      | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/fd65164ea4ebbaf410ad616871400c8e1d5902c8/examples/text_classification/rnn) | 静态图/动态图 | X86（Intel）            | 支持           |
