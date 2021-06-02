@@ -4,11 +4,11 @@
 
 ## C++预测部署
 
-**注意**：更多C++预测API使用说明请参考[Paddle Inference - C++ API](https://paddle-inference.readthedocs.io/en/latest/api_reference/cxx_api_index.html)
+**注意**：更多C++预测API使用说明请参考 [Paddle Inference - C++ API](https://paddle-inference.readthedocs.io/en/latest/api_reference/cxx_api_index.html)
 
 **第一步**：源码编译C++预测库
 
-当前 Paddle ROCm版只支持通过源码编译的方式提供C++预测库。编译环境准备请参考`飞桨框架ROCm版安装说明：通过源码编译安装 <./paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang>`_ 。
+当前 Paddle ROCm版只支持通过源码编译的方式提供C++预测库。编译环境准备请参考 [飞桨框架ROCm版安装说明：通过源码编译安装](./paddle_install_cn.html)。
 
 ```bash
 # 下载源码，切换到 release/2.1 分支
@@ -75,7 +75,7 @@ CXX compiler version: 7.3.1
 
 **第二步**：准备预测部署模型
 
-下载 [ResNet50](https://paddle-inference-dist.bj.bcebos.com/Paddle-Inference-Demo/resnet50.tgz) 模型后解压，得到 Paddle 预测格式的模型，位于文件夹 ResNet50 下。如需查看模型结构，可将 inference.pdmodel 文件通过模型可视化工具 Netron 打开。
+下载 [ResNet50](https://paddle-inference-dist.bj.bcebos.com/Paddle-Inference-Demo/resnet50.tgz) 模型后解压，得到 Paddle 预测格式的模型，位于文件夹 ResNet50 下。如需查看模型结构，可将 inference.pdmodel 文件通过模型可视化工具 [Netron](https://netron.app/) 打开。
 
 ```bash
 wget https://paddle-inference-dist.bj.bcebos.com/Paddle-Inference-Demo/resnet50.tgz
@@ -88,11 +88,11 @@ resnet50/
 └── inference.pdiparams
 ```
 
-**第三步**：获取预测示例代码并编译
+**第三步**：获取预测示例代码并编译运行
 
-本章节 C++ 预测示例代码位于 [Paddle-Inference-Demo/c++/resnet50](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c++/resnet50)。使用到的文件如下：
+**预先要求**：
 
-**预先要求**：将第一步中编译得到的 `paddle_inference_install_dir` 重命名为 `paddle_inference` 文件夹并移动到 `Paddle-Inference-Demo/c++/lib` 目录下
+本章节 C++ 预测示例代码位于 [Paddle-Inference-Demo/c++/resnet50](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c++/resnet50)。请先将示例代码下载到本地，再将第一步中编译得到的 `paddle_inference_install_dir` 重命名为 `paddle_inference` 文件夹，移动到示例代码的 `Paddle-Inference-Demo/c++/lib` 目录下。使用到的文件如下所示：
 
 ```bash
 -rw-r--r-- 1 root root 3479 Jun  2 03:14 README.md                 README 说明
@@ -101,7 +101,7 @@ drwxr-xr-x 2 root root 4096 Mar  5 07:43 resnet50                  第二步中�
 -rw-r--r-- 1 root root  387 Jun  2 03:14 run.sh                    运行脚本
 -rwxr-xr-x 1 root root 1077 Jun  2 03:14 compile.sh                编译脚本
 -rw-r--r-- 1 root root 9032 Jun  2 07:26 ../lib/CMakeLists.txt     CMAKE 文件
--rw-r--r-- 1 root root 9032 Jun  2 07:26 ../lib/paddle_inference   Paddle Infernece C++ 预测库文件夹
+-rw-r--r-- 1 root root 9032 Jun  2 07:26 ../lib/paddle_inference   第一步编译的到的 Paddle Infernece C++ 预测库文件夹
 ```
 
 编译运行预测样例之前，需要根据运行环境配置编译脚本 `compile.sh`。
@@ -116,7 +116,7 @@ WITH_ROCM=ON # 注意这里需要打开WITH_ROCM
 ROCM_LIB=/opt/rocm/lib
 ```
 
-运行脚本进行编译和运行，会在目录下产生build目录，并生成 build/resnet50_test 可执行文件
+运行`run.sh`脚本进行编译和运行，即可获取最后的预测结果如下：
 
 ```bash
 bash run.sh
@@ -143,15 +143,15 @@ I0602 04:12:04.106683 52627 resnet50_test.cc:88] 900 : 1.52391e-30
 
 ## Python预测部署示例
 
-**注意**：更多Python预测API使用说明请参考[Paddle Inference - Python API](https://paddle-inference.readthedocs.io/en/latest/api_reference/python_api_index.html)
+**注意**：更多Python预测API使用说明请参考 [Paddle Inference - Python API](https://paddle-inference.readthedocs.io/en/latest/api_reference/python_api_index.html)
 
 **第一步**：安装 Python 预测库
 
-Paddle ROCm版的Python预测库请参考`飞桨框架ROCm版安装说明 <./paddle_install_cn.html>`_ 进行安装或编译。
+Paddle ROCm 版的 Python 预测库请参考 [飞桨框架ROCm版安装说明](./paddle_install_cn.html) 进行安装或编译。
 
 **第二步**：准备预测部署模型
 
-下载 [ResNet50](https://paddle-inference-dist.bj.bcebos.com/Paddle-Inference-Demo/resnet50.tgz) 模型后解压，得到 Paddle 预测格式的模型，位于文件夹 ResNet50 下。如需查看模型结构，可将 inference.pdmodel 文件通过模型可视化工具 Netron 打开。
+下载 [ResNet50](https://paddle-inference-dist.bj.bcebos.com/Paddle-Inference-Demo/resnet50.tgz) 模型后解压，得到 Paddle 预测格式的模型，位于文件夹 ResNet50 下。如需查看模型结构，可将 inference.pdmodel 文件通过模型可视化工具 [Netron](https://netron.app/) 打开。
 
 ```bash
 wget https://paddle-inference-dist.bj.bcebos.com/Paddle-Inference-Demo/resnet50.tgz
