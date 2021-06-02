@@ -103,7 +103,7 @@ drwxr-xr-x 2 root root 4096 Mar  5 07:43 resnet50                  第二步中�
 -rw-r--r-- 1 root root  387 Jun  2 03:14 run.sh                    运行脚本
 -rwxr-xr-x 1 root root 1077 Jun  2 03:14 compile.sh                编译脚本
 -rw-r--r-- 1 root root 9032 Jun  2 07:26 ../lib/CMakeLists.txt     CMAKE 文件
--rw-r--r-- 1 root root 9032 Jun  2 07:26 ../lib/paddle_inference   第一步编译的到的 Paddle Infernece C++ 预测库文件夹
+drwxr-xr-x 1 root root 9032 Jun  2 07:26 ../lib/paddle_inference   第一步编译的到的 Paddle Infernece C++ 预测库文件夹
 ```
 
 编译运行预测样例之前，需要根据运行环境配置编译脚本 `compile.sh`。
