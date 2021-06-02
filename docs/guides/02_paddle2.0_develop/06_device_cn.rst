@@ -43,6 +43,9 @@
     train_dataset = paddle.vision.datasets.MNIST(mode='train')
     test_dataset = paddle.vision.datasets.MNIST(mode='test')
 
+    # 第2处改动，初始化并行环境
+    dist.init_parallel_env()
+    
     # 定义网络结构
     mnist = paddle.nn.Sequential(
         paddle.nn.Flatten(1, -1),
@@ -51,9 +54,6 @@
         paddle.nn.Dropout(0.2),
         paddle.nn.Linear(512, 10)
     )
-
-    # 第2处改动，初始化并行环境
-    dist.init_parallel_env()
 
     # 用 DataLoader 实现数据加载
     train_loader = paddle.io.DataLoader(train_dataset, batch_size=32, shuffle=True)
