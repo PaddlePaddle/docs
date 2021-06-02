@@ -203,7 +203,7 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 - 新增`paddle.autograd.backward` API,  用于自定义起始梯度。([#31540](https://github.com/PaddlePaddle/Paddle/pull/31540))
 - 新增`paddle.nn.LayerDict` 类。([#31951](https://github.com/PaddlePaddle/Paddle/pull/31951))
 - 新增`layer.to` API。([#32040](https://github.com/PaddlePaddle/Paddle/pull/32040))
-- 新增`paddle.autograd.PyLayer`API，用于支持动态图在Python端自定义反向计算。([#32130](	https://github.com/PaddlePaddle/Paddle/pull/32130))
+- 新增`paddle.autograd.PyLayer`API，用于支持动态图在Python端自定义反向计算。([#32130](https://github.com/PaddlePaddle/Paddle/pull/32130))
 - 新增支持`paddle.optimizer`在动态图中指定非参数的Tensor作为parameters进行优化。[#32362](https://github.com/PaddlePaddle/Paddle/pull/32362))
 - 在`paddle.static.nn`添加了若干 `sequence*` 系列功能，在 `paddle.nn.functional` 添加了`sequence_mask`。 ([#32089](https://github.com/PaddlePaddle/Paddle/pull/32089))
 - 在`paddle.nn.CTCLoss`中添加`norm_by_times`参数。([#32490](https://github.com/PaddlePaddle/Paddle/pull/32490))
