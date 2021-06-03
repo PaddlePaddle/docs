@@ -15,14 +15,14 @@ CTCLoss
 
 形状
 :::::::::
-    - **log_probs** (Tensor): - 经过 padding 的概率序列，其 shape 必须是 [max_logit_length, batch_size, num_classes + 1]。其中 max_logit_length 是最长输入序列的长度。该输入不需要经过 softmax 操作，因为该 OP 的内部对 input 做了 softmax 操作。数据类型仅支持float32。
+    - **logits** (Tensor): - 经过 padding 的概率序列，其 shape 必须是 [max_logit_length, batch_size, num_classes + 1]。其中 max_logit_length 是最长输入序列的长度。该输入不需要经过 softmax 操作，因为该 OP 的内部对 input 做了 softmax 操作。数据类型仅支持float32。
     - **labels** (Tensor): - 经过 padding 的标签序列，其 shape 为 [batch_size, max_label_length]，其中 max_label_length 是最长的 label 序列的长度。数据类型支持int32。
-    - **input_lengths** (Tensor): - 表示输入 ``log_probs`` 数据中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。
+    - **input_lengths** (Tensor): - 表示输入 ``logits`` 数据中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。
     - **label_lengths** (Tensor): - 表示 label 中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。
 
 返回
 :::::::::
-``Tensor``，输入 ``log_probs`` 和标签 ``labels`` 间的 `ctc loss`。如果 :attr:`reduction` 是 ``'none'``，则输出 loss 的维度为 [batch_size]。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出Loss的维度为 [1]。数据类型与输入 ``log_probs`` 一致。
+``Tensor``，输入 ``logits`` 和标签 ``labels`` 间的 `ctc loss`。如果 :attr:`reduction` 是 ``'none'``，则输出 loss 的维度为 [batch_size]。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出Loss的维度为 [1]。数据类型与输入 ``logits`` 一致。
 
 代码示例
 :::::::::
@@ -43,7 +43,7 @@ CTCLoss
         class_num = 3
 
         np.random.seed(1)
-        log_probs = np.array([[[4.17021990e-01, 7.20324516e-01, 1.14374816e-04],
+        logits = np.array([[[4.17021990e-01, 7.20324516e-01, 1.14374816e-04],
                                 [3.02332580e-01, 1.46755889e-01, 9.23385918e-02]],
 
                                 [[1.86260208e-01, 3.45560730e-01, 3.96767467e-01],
@@ -62,17 +62,17 @@ CTCLoss
         input_lengths = np.array([5, 5]).astype("int64")
         label_lengths = np.array([3, 3]).astype("int64")
 
-        log_probs = paddle.to_tensor(log_probs)
+        logits = paddle.to_tensor(logits)
         labels = paddle.to_tensor(labels)
         input_lengths = paddle.to_tensor(input_lengths)
         label_lengths = paddle.to_tensor(label_lengths)
 
-        loss = paddle.nn.CTCLoss(blank=0, reduction='none')(log_probs, labels, 
+        loss = paddle.nn.CTCLoss(blank=0, reduction='none')(logits, labels, 
             input_lengths, 
             label_lengths)
         print(loss)  #[3.9179852 2.9076521]
 
-        loss = paddle.nn.CTCLoss(blank=0, reduction='mean')(log_probs, labels, 
+        loss = paddle.nn.CTCLoss(blank=0, reduction='mean')(logits, labels, 
             input_lengths, 
             label_lengths)
         print(loss)  #[1.1376063]
