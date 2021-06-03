@@ -14,7 +14,7 @@
 
 - `自定义外部算子 <./new_custom_op_cn.html>`_
 
-- `自定义Python算子（静态图） <./new_python_op_cn.html>`_
+- `自定义Python算子 <./new_python_op_cn.html>`_
 
 
 .. toctree::
