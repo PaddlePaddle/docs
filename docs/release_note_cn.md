@@ -203,7 +203,7 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 - 新增`paddle.autograd.backward` API,  用于自定义起始梯度。([#31540](https://github.com/PaddlePaddle/Paddle/pull/31540))
 - 新增`paddle.nn.LayerDict` 类。([#31951](https://github.com/PaddlePaddle/Paddle/pull/31951))
 - 新增`layer.to` API。([#32040](https://github.com/PaddlePaddle/Paddle/pull/32040))
-- 新增`paddle.autograd.PyLayer`API，用于支持动态图在Python端自定义反向计算。([#32130](	https://github.com/PaddlePaddle/Paddle/pull/32130))
+- 新增`paddle.autograd.PyLayer`API，用于支持动态图在Python端自定义反向计算。([#32130](https://github.com/PaddlePaddle/Paddle/pull/32130))
 - 新增支持`paddle.optimizer`在动态图中指定非参数的Tensor作为parameters进行优化。[#32362](https://github.com/PaddlePaddle/Paddle/pull/32362))
 - 在`paddle.static.nn`添加了若干 `sequence*` 系列功能，在 `paddle.nn.functional` 添加了`sequence_mask`。 ([#32089](https://github.com/PaddlePaddle/Paddle/pull/32089))
 - 在`paddle.nn.CTCLoss`中添加`norm_by_times`参数。([#32490](https://github.com/PaddlePaddle/Paddle/pull/32490))
@@ -215,7 +215,7 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 - 优化`paddle.norm`文档说明，澄清`paddle.norm`与`numpy.linalg.norm`API 存在功能差异。([#32530](https://github.com/PaddlePaddle/Paddle/pull/32530)) 
 - 优化Tensor 的数据类型（`datatype`）的打印形式，例如，`float32`类型的Tensor的`dtype`从`VarType.FP32`变为 `paddle.float32`。([#30682](https://github.com/PaddlePaddle/Paddle/pull/30682))
 - oneDNN功能优化：
-    - 升级 oneDNN 至 v2.2.1。([#31067](https://github.com/PaddlePaddle/Paddle/pull/31067) [#31473])(https://github.com/PaddlePaddle/Paddle/pull/31473), [#30295](https://github.com/PaddlePaddle/Paddle/pull/30295) [32227](https://github.com/PaddlePaddle/Paddle/pull/32227))
+    - 升级 oneDNN 至 v2.2.1。([#31067](https://github.com/PaddlePaddle/Paddle/pull/31067) [#31473](https://github.com/PaddlePaddle/Paddle/pull/31473), [#30295](https://github.com/PaddlePaddle/Paddle/pull/30295) [32227](https://github.com/PaddlePaddle/Paddle/pull/32227))
     - 增加了更加准确的，基于数据类型的 oneDNN kernel 选择策略。([#29840](https://github.com/PaddlePaddle/Paddle/pull/29840))
     - 融合oneDNN `layer_norm`子图为完整的单个`layer_norm` op。([#32162](https://github.com/PaddlePaddle/Paddle/pull/32162), [#30891](https://github.com/PaddlePaddle/Paddle/pull/30891), [#30962](https://github.com/PaddlePaddle/Paddle/pull/30962))
     - 减少oneDNN `elementwise_mul`创建中不必要的内存分配。([#30203](https://github.com/PaddlePaddle/Paddle/pull/30203))
@@ -284,7 +284,7 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 
 #### 高层API
 - 新增`paddle.hub`功能，提供`help`、`list`和`load`函数用于查看和加载第三方模型，支持加载远程和本地repository。([#31873](https://github.com/PaddlePaddle/Paddle/pull/31873))
-- 支持混合精度训练，提供O0, O1, O2三种模式，分别对应FP32训练、自动混合精度训练、纯FP16训练。目前纯FP16训练仅支持静态图。([#31417](	https://github.com/PaddlePaddle/Paddle/pull/31417))
+- 支持混合精度训练，提供O0, O1, O2三种模式，分别对应FP32训练、自动混合精度训练、纯FP16训练。目前纯FP16训练仅支持静态图。([#31417](https://github.com/PaddlePaddle/Paddle/pull/31417))
 - 支持`paddle.Tensor`类型的图像变换，包括`normalize, to_grayscale, vflip, hflip, crop, center_crop, pad, rotate, resize`等算子 。([#32705](https://github.com/PaddlePaddle/Paddle/pull/32705))
 
 
@@ -377,9 +377,9 @@ Tensor(shape=[1, 2, 3], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True
 - `paddle.save, paddle.load`支持Tensor的保存加载。([#31756](https://github.com/PaddlePaddle/Paddle/pull/31756))
 - `paddle.save, paddle.load`支持`list[Tensor]、dict[Tensor]、tuple[Tensor]`以及`list、tuple、dict`嵌套的包含Tensor的结构的保存加载。([#32446](https://github.com/PaddlePaddle/Paddle/pull/32446))
 - `paddle.save, paddle.load`支持Layer的保存加载。([#32446](https://github.com/PaddlePaddle/Paddle/pull/32446))
-- `paddle.save, paddle.load`支持Program的保存加载。([#32336](	https://github.com/PaddlePaddle/Paddle/pull/32336))
+- `paddle.save, paddle.load`支持Program的保存加载。([#32336](https://github.com/PaddlePaddle/Paddle/pull/32336))
 - `paddle.save, paddle.load`支持C++二进制格式单个Tensor的保存加载。([#32211](https://github.com/PaddlePaddle/Paddle/pull/32211))
-- `paddle.jit.save, paddle.jit.load`支持无参数的Fucntion的保存加载。([#32430](	https://github.com/PaddlePaddle/Paddle/pull/32430))
+- `paddle.jit.save, paddle.jit.load`支持无参数的Fucntion的保存加载。([#32430](https://github.com/PaddlePaddle/Paddle/pull/32430))
 
 ### 性能优化（含分布式）
 - 优化重点算子，提升多个模型单GPU训练性能，Deeplabv3+单卡FP32和AMP性能分别提升11%、72%，TSM单卡AMP性能提升44.5%，HRNet单卡FP32、AMP分别提升46%、51%。
