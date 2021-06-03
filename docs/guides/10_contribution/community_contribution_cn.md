@@ -8,7 +8,8 @@
 
 飞桨官方组织了官方交流群，加入社群即可与其他开发者共同交流在深度学习中的所见所得。除此之外，飞桨还有各个垂直方向技术交流群，在这里你将能更快遇到志同道合的开发者，与他们一起交流学习。
 我们鼓励开发者们在社群中发挥所长，发表自己的技术见解，与社群开发者互帮互助，共同成长。
-link：
+
+[点击加入PaddlePaddle开发者技术交流群](https://www.paddlepaddle.org.cn/support/news?action=detail&id=2439)
 
 ## 开源协作
 
@@ -17,18 +18,19 @@ link：
 在这里，开发者可以在开源项目中以PR的形式贡献代码，也可以在遇到问题时提交issue与相对应的开源贡献者进行交流沟通，飞桨的开源项目都会在这里向大家展示。
 当然，你也可以选择自己喜欢的开源项目，并为它投上一颗宝贵的Star，让更多社区开发者感受到来自你的鼓励与支持。
 
-Link：https://github.com/PaddlePaddle
+GitHub: [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle)、Gitee：[PaddlePaddle/Paddle](https://gitee.com/paddlepaddle/Paddle)
 
 ### SIG特殊兴趣小组
 
 由飞桨社区开发者负责和领导的SIG ，是飞桨开源社区的重要组成部分。目前有 XX 个活跃的 SIG，围绕特定领域开展协作。还有更多SIG正在组建中，欢迎更多开发者们踊跃加入，参与飞桨生态共建。
 
-Link：
+[SIG特殊兴趣小组](https://www.paddlepaddle.org.cn/sig)
 
 ## 技术论坛
 
 论坛介绍：作为深度学习爱好者的交流平台，包含原创博客、精品问答、产品交流等内容，为开发者提供纯粹、高质的技术交流平台。
-Link：
+
+[前往论坛](https://aistudio.baidu.com/paddle/forum)
 
 ## 技术布道
 
@@ -50,24 +52,24 @@ Link：
 - 怎么做（How）
     - 做事情要有始有终，文章也一样需要有一个好的ending，结尾要包括项目的效果
 
-文章参考：https://mp.weixin.qq.com/mp/homepage?__biz=Mzg2OTEzODA5MA==&hid=16&sn=0561fc80d64fc079892454aafeb47bc4&scene=18
+[文章参考](https://mp.weixin.qq.com/mp/homepage?__biz=Mzg2OTEzODA5MA==&hid=16&sn=0561fc80d64fc079892454aafeb47bc4&scene=18)
 
 ### 飞桨开发者说Live直播
 
 通过飞桨开发者说直播的形式，分享在项目开发过程中的实践经验和踩坑破解的方法。我们相信，观看分享的观众也是你的同行者，会带给你无尽的力量。
 
-Link：https://space.bilibili.com/476867757/channel/detail?cid=176010
+[视频回放](https://space.bilibili.com/476867757/channel/detail?cid=176010)
 
 ### 成为Meetup/沙龙讲师
 
 以代码和项目为基础，在飞桨官方或开发者自组织的Meetup/沙龙中向开发者宣讲技术，让PaddlePaddle提供的各种技术工具，变得更容易被理解和应用，而每一场分享布道的Meetup，也会带给你更大的行业影响力。。
 
-请联系飞桨小助手咨询投稿和参与方式。
+请联系飞桨小助手（wxid_0xksppzk5p7f22）咨询投稿和参与方式。
 
-## 本地开源组织（Local open source organization）
+## 本地开源组织
 
 飞桨领航团是飞桨开发者的兴趣社区，在各个城市/高校领航团团长及成员的热情支持下，飞桨领航团已建立132个社群，覆盖28个省级行政区，108个高校，并且在持续增长中。开发者们可以参与丰富的本地技术沙龙、Meetup、及线上交流。
 
 飞桨领航团面向所有对人工智能及深度学习领域感兴趣的开发者开放，欢迎广大开发者们加入领航团，结识更多本地技术同好，共享开源成果与快乐。
 
-Link：https://www.paddlepaddle.org.cn/ppdenavigategroup
+[查看我所在的本地开源组织](https://www.paddlepaddle.org.cn/ppdenavigategroup)
