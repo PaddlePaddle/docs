@@ -26,10 +26,11 @@
 
 .. image:: images/paddle_save_load_2.1.png
 
-##################
-- 飞桨框架2.1对模型与参数的保存与载入相关接口进行了梳理：对于训练调优场景，我们推荐使用paddle.save/load保存和载入模型；对于推理部署（动态图转化为静态图）场景，我们推荐使用jit.save/load保存载入模型。
 
-- paddle.save/load支持动态图相关对象（state_dict、Tensor、包含Tensor的tuple/dict嵌套结构）和静态图相关对象（Program、state_dict、Tensor）的保存和载入；paddle.jit.save/load支持Layer和无参函数的保存和加载。更多介绍请参考相应API文档。
+
+飞桨框架2.1对模型与参数的保存与载入相关接口进行了梳理：对于训练调优场景，我们推荐使用paddle.save/load保存和载入模型；对于推理部署（动态图转化为静态图）场景，我们推荐使用jit.save/load保存载入模型。
+
+paddle.save/load支持动态图相关对象（state_dict、Tensor、包含Tensor的tuple/dict嵌套结构）和静态图相关对象（Program、state_dict、Tensor）的保存和载入；paddle.jit.save/load支持Layer和无参函数的保存和加载。更多介绍请参考相应API文档。
 
 .. note::
     不推荐使用paddle.save保存Layer对象，原因如下：1. 加载Layer对象无法脱离模型代码。 2. Layer对象相交于state_dict包含大量冗余信息。
@@ -194,18 +195,24 @@
 .. code-block:: python
     paddle.save(prog, "temp/model.pdmodel")
 
+
 2.2.2 静态图模型参数载入
 ---------------------
+
 如果只保存了state_dict，可以跳过此段代码，直接载入state_dict。如果模型文件中包含Program和state_dict，请先载入Program，示例如下（接前述示例）:
 
 .. code-block:: python
+
     prog = paddle.load("temp/model.pdmodel")
+
 
 参数载入时，先从磁盘载入保存的state_dict，然后通过set_state_dict方法配置到Program中，示例如下（接前述示例）：
 
 .. code-block:: python
+
     state_dict = paddle.load("temp/model.pdparams")
     prog.set_state_dict(state_dict)
+
 
 
 三、模型&参数保存载入（训练部署）
