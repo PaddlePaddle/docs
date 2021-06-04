@@ -9,7 +9,7 @@
 
 * **Python version 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 
-* **pip version 20.2.2+ (64 bit)**
+* **pip version 20.2.2 or above (64 bit)**
 
 ### 1.2 How to check your environment
 
@@ -31,7 +31,7 @@
         python --version
 
 
-* It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2+
+* It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2 or above
 
     ```
     python -m ensurepip
