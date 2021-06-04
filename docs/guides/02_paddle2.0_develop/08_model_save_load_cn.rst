@@ -1,75 +1,61 @@
 .. _cn_doc_model_save_load:
 
 #############
-模型存储与载入
+模型保存与载入
 #############
 
-一、存储载入体系简介
+一、保存载入体系简介
 ##################
 
-1.1 接口体系
-------------
+1.1 基础API保存载入体系
+--------------------
 
-飞桨框架2.x对模型与参数的存储与载入相关接口进行了梳理，根据接口使用的场景与模式，分为三套体系，分别是：
-
-1.1.1 动态图存储载入体系
-```````````````````````
-
-为提升框架使用体验，飞桨框架2.0将主推动态图模式，动态图模式下的存储载入接口包括：
+飞桨框架2.1模型与参数的保存与载入相关接口包括：
 
 - paddle.save
 - paddle.load
 - paddle.jit.save
 - paddle.jit.load
 
-本文主要介绍飞桨框架2.0动态图存储载入体系，各接口关系如下图所示：
+各接口关系如下图所示：
 
-.. image:: images/main_save_load_2.0.png
-
+.. image:: images/paddle_save_load_2.1.png
+飞桨框架2.1对模型与参数的保存与载入相关接口进行了梳理：对于动态图和静态图的训练调优场景，我们推荐使用paddle.save/load保存和载入模型；对于推理部署（动态图转化为静态图）场景，我们推荐使用jit.save/load保存载入模型。
 
 .. note::
     不推荐使用paddle.save保存Layer对象，原因如下：1. 加载Layer对象无法脱离模型代码。 2. Layer对象相交于state_dict包含大量冗余信息。
 
-1.1.2 静态图存储载入体系
-```````````````````````
 
-paddle.save支持静态图Program、state_dict、Tensor的保存载入。出于兼容性的目的，飞桨框架1.x版本的静态图存储载入相关接口仍然可以在飞桨框架2.x使用，但不再推荐。相关接口包括：
+1.2 高阶API保存载入体系
+--------------------
 
-- paddle.static.save
-- paddle.static.load
-- paddle.static.save_inference_model
-- paddle.static.load_inference_model
-- paddle.static.load_program_state
-- paddle.static.set_program_state
-
-由于飞桨框架2.0不再主推静态图模式，故本文不对以上主要用于飞桨框架1.x的相关接口展开介绍，如有需要，可以阅读对应API文档。
-
-1.1.3 高阶API存储载入体系
-````````````````````````
-
-- paddle.Model.fit (训练接口，同时带有参数存储的功能)
+- paddle.Model.fit (训练接口，同时带有参数保存的功能)
 - paddle.Model.save
 - paddle.Model.load
 
 飞桨框架2.0高阶API仅有一套Save/Load接口，表意直观，体系清晰，若有需要，建议直接阅读相关API文档，此处不再赘述。
 
 .. note::
-    本教程着重介绍飞桨框架2.x的各个存储载入接口的关系及各种使用场景，不对接口参数进行详细介绍，如果需要了解具体接口参数的含义，请直接阅读对应API文档。
-
-1.2 接口存储结果组织形式
-----------------------
-
-飞桨2.0统一了各存储接口对于同一种存储行为的处理方式，并且统一推荐或自动为存储的文件添加飞桨标准的文件后缀，详见下图：
-
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/save_result_format_2.0.png?raw=true
+    本教程着重介绍飞桨框架2.x的各个保存载入接口的关系及各种使用场景，不对接口参数进行详细介绍，如果需要了解具体接口参数的含义，请直接阅读对应API文档。
 
 
-二、参数存储载入（训练调优）
+遇到使用问题，请参考：
+
+    ..  toctree::
+        :maxdepth: 1
+        
+        ../../faq/save_cn.md
+    
+
+二、参数保存载入（训练调优）
 #######################
 
-若仅需要存储/载入模型的参数，可以使用 ``paddle.save/load`` 结合Layer和Optimizer的state_dict达成目的，此处state_dict是对象的持久参数的载体，dict的key为参数名，value为参数真实的numpy array值。
+2.1 动态图参数保存载入
+-------------------
 
-结合以下简单示例，介绍参数存储和载入的方法，以下示例完成了一个简单网络的训练过程：
+若仅需要保存/载入模型的参数，可以使用 ``paddle.save/load`` 结合Layer和Optimizer的state_dict达成目的，此处state_dict是对象的持久参数的载体，dict的key为参数名，value为参数真实的numpy array值。
+
+结合以下简单示例，介绍参数保存和载入的方法，以下示例完成了一个简单网络的训练过程：
 
 .. code-block:: python
 
@@ -134,10 +120,10 @@ paddle.save支持静态图Program、state_dict、Tensor的保存载入。出于�
     train(layer, loader, loss_fn, adam)
 
 
-2.1 参数存储
-------------
+2.1.1 参数保存
+-------------
 
-参数存储时，先获取目标对象（Layer或者Optimzier）的state_dict，然后将state_dict存储至磁盘，示例如下（接前述示例）:
+参数保存时，先获取目标对象（Layer或者Optimzier）的state_dict，然后将state_dict保存至磁盘，示例如下（接前述示例）:
 
 .. code-block:: python
 
@@ -146,8 +132,8 @@ paddle.save支持静态图Program、state_dict、Tensor的保存载入。出于�
     paddle.save(adam.state_dict(), "adam.pdopt")
 
 
-2.2 参数载入
-------------
+2.1.2 参数载入
+-------------
 
 参数载入时，先从磁盘载入保存的state_dict，然后通过set_state_dict方法配置到目标对象中，示例如下（接前述示例）：
 
@@ -161,23 +147,75 @@ paddle.save支持静态图Program、state_dict、Tensor的保存载入。出于�
     adam.set_state_dict(opt_state_dict)
 
 
-三、模型&参数存储载入（训练部署）
+2.2 静态图模型保存载入
+-------------------
+若仅需要保存/载入模型的参数，可以使用 ``paddle.save/load`` 结合Program的state_dict达成目的，此处state_dict与动态图state_dict概念类似，dict的key为参数名，value为参数真实的值。若想保存整个模型，需要使用``paddle.save``将Program和state_dict都保存下来。
+
+结合以下简单示例，介绍参数保存和载入的方法：
+
+.. code-block:: python
+
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    # create network
+    x = paddle.static.data(name="x", shape=[None, 224], dtype='float32')
+    z = paddle.static.nn.fc(x, 10)
+
+    place = paddle.CPUPlace()
+    exe = paddle.static.Executor(place)
+    exe.run(paddle.static.default_startup_program())
+    prog = paddle.static.default_main_program()
+
+
+2.2.1 静态图模型参数保存
+---------------------
+
+参数保存时，先获取Program的state_dict，然后将state_dict保存至磁盘，示例如下（接前述示例）:
+
+.. code-block:: python
+    
+    paddle.save(prog.state_dict(), "temp/model.pdparams")
+    
+
+如果想要保存整个静态图模型，除了state_dict还需要保存Program
+
+.. code-block:: python
+    paddle.save(prog, "temp/model.pdmodel")
+
+2.2.2 静态图模型参数载入
+---------------------
+如果只保存了state_dict，可以跳过此段代码，直接载入state_dict。如果模型文件中包含Program和state_dict，请先载入Program，示例如下（接前述示例）:
+
+.. code-block:: python
+    prog = paddle.load("temp/model.pdmodel")
+
+参数载入时，先从磁盘载入保存的state_dict，然后通过set_state_dict方法配置到Program中，示例如下（接前述示例）：
+
+.. code-block:: python
+    state_dict = paddle.load("temp/model.pdparams")
+    prog.set_state_dict(state_dict)
+
+
+三、模型&参数保存载入（训练部署）
 ############################
 
-若要同时存储/载入模型结构和参数，可以使用 ``paddle.jit.save/load`` 实现。
+若要同时保存/载入模型结构和参数，可以使用 ``paddle.jit.save/load`` 实现。
 
-3.1 模型&参数存储
+3.1 模型&参数保存
 ----------------
 
 模型&参数存储根据训练模式不同，有两种使用情况：
 
-(1) 动转静训练 + 模型&参数存储
-(2) 动态图训练 + 模型&参数存储
+(1) 动转静训练 + 模型&参数保存
+(2) 动态图训练 + 模型&参数保存
 
-3.1.1 动转静训练 + 模型&参数存储
+3.1.1 动转静训练 + 模型&参数保存
 ``````````````````````````````
 
-动转静训练相比直接使用动态图训练具有更好的执行性能，训练完成后，直接将目标Layer传入 ``paddle.jit.save`` 存储即可。：
+动转静训练相比直接使用动态图训练具有更好的执行性能，训练完成后，直接将目标Layer传入 ``paddle.jit.save`` 保存即可。：
 
 一个简单的网络训练示例如下：
 
@@ -348,10 +386,10 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
             return self._linear(x)
 
 
-(3) 如果你需要存储多个方法，需要用 ``paddle.jit.to_static`` 装饰每一个需要被存储的方法。
+(3) 如果你需要保存多个方法，需要用 ``paddle.jit.to_static`` 装饰每一个需要被保存的方法。
 
 .. note::
-    只有在forward之外还需要存储其他方法时才用这个特性，如果仅装饰非forward的方法，而forward没有被装饰，是不符合规范的。此时 ``paddle.jit.save`` 的 ``input_spec`` 参数必须为None。
+    只有在forward之外还需要保存其他方法时才用这个特性，如果仅装饰非forward的方法，而forward没有被装饰，是不符合规范的。此时 ``paddle.jit.save`` 的 ``input_spec`` 参数必须为None。
 
 示例代码如下：
 
@@ -386,7 +424,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     path = "example.model/linear"
     paddle.jit.save(layer, path)
 
-存储的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生5个文件：
+保存的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生5个文件：
 ``linear.another_forward.pdiparams、 linear.pdiparams、 linear.pdmodel、 linear.another_forward.pdmodel、 linear.pdiparams.info``
 
 (4) 当使用``jit.save``保存函数时，``jit.save``只保存这个函数对应的静态图`Program`，不会保存和这个函数相关的参数。如果你必须保存参数，请使用Layer封装这个函数。
@@ -413,10 +451,10 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     load_result = load_func(inps)
 
 
-3.1.2 动态图训练 + 模型&参数存储
+3.1.2 动态图训练 + 模型&参数保存
 ``````````````````````````````
 
-动态图模式相比动转静模式更加便于调试，如果你仍需要使用动态图直接训练，也可以在动态图训练完成后调用 ``paddle.jit.save`` 直接存储模型和参数。
+动态图模式相比动转静模式更加便于调试，如果你仍需要使用动态图直接训练，也可以在动态图训练完成后调用 ``paddle.jit.save`` 直接保存模型和参数。
 
 同样是一个简单的网络训练示例：
 
@@ -495,7 +533,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
         path=path,
         input_spec=[InputSpec(shape=[None, 784], dtype='float32')])
 
-动态图训练后使用 ``paddle.jit.save`` 存储模型和参数注意点如下：
+动态图训练后使用 ``paddle.jit.save`` 保存模型和参数注意点如下：
 
 (1) 相比动转静训练，Layer对象的forward方法不需要额外装饰，保持原实现即可
 
@@ -638,10 +676,10 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     pred = layer(x)
 
 
-四、旧存储格式兼容载入
+四、旧保存格式兼容载入
 ###################
 
-如果你是从飞桨框架1.x切换到2.x，曾经使用飞桨框架1.x的fluid相关接口存储模型或者参数，飞桨框架2.x也对这种情况进行了兼容性支持，包括以下几种情况。
+如果你是从飞桨框架1.x切换到2.x，曾经使用飞桨框架1.x的fluid相关接口保存模型或者参数，飞桨框架2.x也对这种情况进行了兼容性支持，包括以下几种情况。
 
 飞桨1.x模型准备及训练示例，该示例为后续所有示例的前序逻辑：
 
@@ -707,7 +745,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
             fetch_list=[avg_loss])
 
 
-4.1 从 ``paddle.fluid.io.save_inference_model`` 存储结果中载入模型&参数
+4.1 从 ``paddle.fluid.io.save_inference_model`` 保存结果中载入模型&参数
 ------------------------------------------------------------------
 
 (1) 同时载入模型和参数
@@ -831,7 +869,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     由于 ``paddle.fluid.save`` 接口原先在静态图模式下的定位是存储训练时参数，或者说存储Checkpoint，故尽管其同时存储了模型结构，目前也暂不支持从 ``paddle.fluid.save`` 的存储结果中同时载入模型和参数，后续如有需求再考虑支持。
 
 
-4.3 从 ``paddle.fluid.io.save_params/save_persistables`` 存储结果中载入参数
+4.3 从 ``paddle.fluid.io.save_params/save_persistables`` 保存结果中载入参数
 -------------------------------------------------------------------------
 
 这两个接口在飞桨1.x版本时，已经不再推荐作为存储模型参数的接口使用，故并未继承至飞桨2.x，之后也不会再推荐使用这两个接口存储参数。
