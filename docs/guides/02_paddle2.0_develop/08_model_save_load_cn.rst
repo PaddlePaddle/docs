@@ -12,15 +12,20 @@
 
 飞桨框架2.1模型与参数的保存与载入相关接口包括：
 
-- paddle.save
-- paddle.load
-- paddle.jit.save
-- paddle.jit.load
+
+" :ref:`paddle.save <cn_api_paddle_framework_io_save>` "
+" :ref:`paddle.load <cn_api_paddle_framework_io_load>` "
+" :ref:`paddle.jit.save <cn_api_paddle_jit_save>` "
+" :ref:`paddle.jit.load <cn_api_paddle_jit_save>` "
+
 
 各接口关系如下图所示：
 
 .. image:: images/paddle_save_load_2.1.png
-飞桨框架2.1对模型与参数的保存与载入相关接口进行了梳理：对于动态图和静态图的训练调优场景，我们推荐使用paddle.save/load保存和载入模型；对于推理部署（动态图转化为静态图）场景，我们推荐使用jit.save/load保存载入模型。
+
+
+飞桨框架2.1对模型与参数的保存与载入相关接口进行了梳理：对于训练调优场景，我们推荐使用paddle.save/load保存和载入模型；对于推理部署（动态图转化为静态图）场景，我们推荐使用jit.save/load保存载入模型。
+paddle.save/load支持动态图相关对象（state_dict、Tensor、包含Tensor的tuple/dict嵌套结构）和静态图相关对象（Program、state_dict、Tensor）的保存和载入；paddle.jit.save/load支持Layer和无参函数的保存和加载。更多介绍请参考相应API文档。
 
 .. note::
     不推荐使用paddle.save保存Layer对象，原因如下：1. 加载Layer对象无法脱离模型代码。 2. Layer对象相交于state_dict包含大量冗余信息。
