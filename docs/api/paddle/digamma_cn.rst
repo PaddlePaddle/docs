@@ -10,7 +10,7 @@ digamma
 digamma函数
 
 .. math::
-    \\Out = = \Psi(x) = \frac{ \Gamma^{'}(x) }{ \Gamma(x)\\
+    \\Out = \Psi(x) = \frac{ \Gamma^{'}(x) }{ \Gamma(x) }\\
 
 
 参数:
