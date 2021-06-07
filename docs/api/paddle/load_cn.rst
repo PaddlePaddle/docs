@@ -120,19 +120,3 @@ Object，一个可以在paddle中使用的对象实例
     paddle.save(main_program, path)
     load_main = paddle.load(path)
     print(load_main)
-
-.. code-block:: python
-
-    from io import BytesIO
-    import paddle
-    from paddle.nn import Linear
-
-    linear = Linear(5, 10)
-    state_dict = linear.state_dict()
-    byio = BytesIO()
-    paddle.save(state_dict, byio)
-    tensor = paddle.randn([2, 3], dtype='float32')
-    paddle.save(tensor, byio)
-    byio.seek(0)
-    # load state_dict
-    dict_load = paddle.load(byio, return_numpy=True)
