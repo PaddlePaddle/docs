@@ -443,7 +443,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 保存的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生5个文件：
 ``linear.another_forward.pdiparams、 linear.pdiparams、 linear.pdmodel、 linear.another_forward.pdmodel、 linear.pdiparams.info``
 
-(4) 当使用``jit.save``保存函数时，``jit.save``只保存这个函数对应的静态图`Program`，不会保存和这个函数相关的参数。如果你必须保存参数，请使用Layer封装这个函数。
+(4) 当使用 ``jit.save`` 保存函数时，``jit.save`` 只保存这个函数对应的静态图 `Program` ，不会保存和这个函数相关的参数。如果你必须保存参数，请使用Layer封装这个函数。
 
 示例代码如下：
 
