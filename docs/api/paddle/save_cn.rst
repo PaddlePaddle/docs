@@ -3,7 +3,7 @@
 save
 -----
 
-.. py:function:: paddle.save(obj, path, protocol=2)
+.. py:function:: paddle.save(obj, path, protocol=4)
 
 将对象实例obj保存到指定的路径中。
 
@@ -27,8 +27,8 @@ save
 参数
 :::::::::
  - **obj**  (Object) – 要保存的对象实例。
- - **path**  (str) – 保存对象实例的路径。如果存储到当前路径，输入的path字符串将会作为保存的文件名。
- - **protocol**  (int, 可选) – pickle模块的协议版本，默认值为2，取值范围是[2,4]。在Python3环境中，推荐使用 ``protocol=4``。
+ - **path**  (str|BytesIO) – 保存对象实例的路径/内存对象。如果存储到当前路径，输入的path字符串将会作为保存的文件名。
+ - **protocol**  (int, 可选) – pickle模块的协议版本，默认值为4，取值范围是[2,4]。
  - **configs**  (dict, 可选) – 其他配置选项，目前支持以下选项：（1）use_binary_format（bool）- 如果被保存的对象是静态图的Tensor，你可以指定这个参数。如果被指定为 ``True`` ，这个Tensor会被保存为由paddle定义的二进制格式的文件；否则这个Tensor被保存为pickle格式。默认为 ``False`` 。
 
 返回
@@ -118,3 +118,16 @@ save
     main_program = paddle.static.default_main_program()
     path = "example/main_program.pdmodel"
     paddle.save(main_program, path)
+
+.. code-block:: python
+
+    from io import BytesIO
+    import paddle
+    from paddle.nn import Linear
+
+    linear = Linear(5, 10)
+    state_dict = linear.state_dict()
+    byio = BytesIO()
+    paddle.save(state_dict, byio)
+    tensor = paddle.randn([2, 3], dtype='float32')
+    paddle.save(tensor, byio)
