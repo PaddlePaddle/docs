@@ -37,15 +37,15 @@ Python3:
 
 1. 编辑hosts 文件
 
-	Linux/Mac：`vim/etc/hosts`
+    Linux/Mac：`vim/etc/hosts`
 
-	Windows：双击 `C:\Windows\System32\drivers\etc\hosts`
+    Windows：双击 `C:\Windows\System32\drivers\etc\hosts`
 
 2. 添加下面两行内容到hosts文件中
 
-	`151.101.72.249 github.global.ssl.fastly.net`
+    `151.101.72.249 github.global.ssl.fastly.net`
 
-	`192.30.253.112 github.com`
+    `192.30.253.112 github.com`
 
 
 ## 环境问题
@@ -230,7 +230,7 @@ MacOS本机直接通过源码编译的方式安装PaddlePaddle出现`[paddle/flu
 
 + 问题解答
 
-CMake我们支持3.10以上版本,但GPU编译时3.12/3.13/3.14版本存在官方[Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html),我们建议您使用CMake3.16版本。自行编译建议GCC版本:4.8、5.4以及更高。
+CMake我们支持3.15以上版本,我们建议您使用CMake3.16版本。自行编译建议GCC版本:4.8、5.4以及更高。
 
 ##### Q: `wget: command not found`
 
@@ -692,7 +692,7 @@ PC: @ 0x0 (unknown)
 
 ```bash
 test@test:~$ nvidia-smi
-Tue Jul 24 08:24:22 2018       
+Tue Jul 24 08:24:22 2018
 +-----------------------------------------------------------------------------+
 | NVIDIA-SMI 384.130                Driver Version: 384.130                   |
 |-------------------------------+----------------------+----------------------+

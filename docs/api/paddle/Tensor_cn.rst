@@ -1,0 +1,1577 @@
+.. _cn_api_paddle_Tensor:
+
+Tensor
+-------------------------------
+
+.. py:class:: paddle.Tensor
+
+
+``Tensor`` 是Paddle中最为基础的数据结构，有几种创建Tensor的不同方式：
+
+- 用预先存在的 ``data`` 数据创建1个Tensor，请参考 :ref:`cn_api_paddle_to_tensor`
+- 创建一个指定 ``shape`` 的Tensor，请参考 :ref:`cn_api_tensor_ones` 、 :ref:`cn_api_tensor_zeros`、 :ref:`cn_api_tensor_full`
+- 创建一个与其他Tensor具有相同 ``shape`` 与 ``dtype`` 的Tensor，请参考 :ref:`cn_api_tensor_ones_like` 、 :ref:`cn_api_tensor_zeros_like` 、 :ref:`cn_api_tensor_full_like`
+
+dtype
+:::::::::
+
+查看一个Tensor的数据类型，支持：'bool'，'float16'，'float32'，'float64'，'uint8'，'int8'，'int16'，'int32'，'int64' 类型。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor([1.0, 2.0, 3.0])
+        print("tensor's type is: {}".format(x.dtype))
+
+grad
+:::::::::
+
+查看一个Tensor的梯度，数据类型为numpy\.ndarray。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor([1.0, 2.0, 3.0], stop_gradient=False)
+        y = paddle.to_tensor([4.0, 5.0, 6.0], stop_gradient=False)
+        z = x * y
+        z.backward()
+        print("tensor's grad is: {}".format(x.grad))
+
+name
+:::::::::
+
+查看一个Tensor的name，Tensor的name是其唯一标识符，为python的字符串类型。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        print("Tensor name: ", paddle.to_tensor(1).name)
+        # Tensor name: generated_tensor_0
+
+ndim
+:::::::::
+
+查看一个Tensor的维度，也称作rank。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        print("Tensor's number of dimensition: ", paddle.to_tensor([[1, 2], [3, 4]]).ndim)
+        # Tensor's number of dimensition: 2
+
+persistable
+:::::::::
+
+查看一个Tensor的persistable属性，该属性为True时表示持久性变量，持久性变量在每次迭代之后都不会删除。模型参数、学习率等Tensor，都是
+持久性变量。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        print("Whether Tensor is persistable: ", paddle.to_tensor(1).persistable)
+        # Whether Tensor is persistable: false
+
+
+place
+:::::::::
+
+查看一个Tensor的设备位置，Tensor可能的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，
+其与GPU之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，
+因为其减少了用于存储虚拟内存数据的可分页内存。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        cpu_tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
+        print(cpu_tensor.place)
+
+shape
+:::::::::
+
+查看一个Tensor的shape，shape是Tensor的一个重要的概念，其描述了tensor在每个维度上的元素数量。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        print("Tensor's shape: ", paddle.to_tensor([[1, 2], [3, 4]]).shape)
+        # Tensor's shape: [2, 2]
+
+stop_gradient
+:::::::::
+
+查看一个Tensor是否计算并传播梯度，如果stop_gradient为True，则该Tensor不会计算梯度，并会阻绝Autograd的梯度传播。
+反之，则会计算梯度并传播梯度。用户自行创建的的Tensor，默认是True，模型参数的stop_gradient都为False。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        print("Tensor's stop_gradient: ", paddle.to_tensor([[1, 2], [3, 4]]).stop_gradient)
+        # Tensor's stop_gradient: True
+
+abs(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_abs`
+
+acos(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_acos`
+
+add(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_add`
+
+add_n(inputs, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_add_n`
+
+addmm(x, y, beta=1.0, alpha=1.0, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_addmm`
+
+allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_allclose`
+
+argmax(axis=None, keepdim=False, dtype=int64, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_argmax`
+
+argmin(axis=None, keepdim=False, dtype=int64, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_argmin`
+
+argsort(axis=-1, descending=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_argsort`
+
+asin(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_asin`
+
+astype(dtype)
+:::::::::
+
+将Tensor的类型转换为 ``dtype`` ，并返回一个新的Tensor。
+
+参数：
+    - **dtype** (str) - 转换后的dtype，支持'bool'，'float16'，'float32'，'float64'，'int8'，'int16'，
+      'int32'，'int64'，'uint8'。
+
+返回：类型转换后的新的Tensor
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0)
+        print("original tensor's dtype is: {}".format(x.dtype))
+        print("new tensor's dtype is: {}".format(x.astype('float64').dtype))
+        
+atan(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_atan`
+
+backward(grad_tensor=None, retain_graph=False)
+:::::::::
+
+从当前Tensor开始计算反向的神经网络，传导并计算计算图中Tensor的梯度。
+
+参数：
+    - **grad_tensor** (Tensor, optional) - 当前Tensor的初始梯度值。如果 ``grad_tensor`` 是None， 当前Tensor 的初始梯度值将会是值全为1.0的Tensor；如果 ``grad_tensor`` 不是None，必须和当前Tensor有相同的长度。默认值：None。
+
+    - **retain_graph** (bool, optional) - 如果为False，反向计算图将被释放。如果在backward()之后继续添加OP，
+      需要设置为True，此时之前的反向计算图会保留。将其设置为False会更加节省内存。默认值：False。
+
+返回：无
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(5., stop_gradient=False)
+        for i in range(5):
+            y = paddle.pow(x, 4.0)
+            y.backward()
+            print("{}: {}".format(i, x.grad))
+        # 0: [500.]
+        # 1: [1000.]
+        # 2: [1500.]
+        # 3: [2000.]
+        # 4: [2500.]
+        x.clear_grad()
+        print("{}".format(x.grad))
+        # 0.
+        grad_tensor=paddle.to_tensor(2.)
+        for i in range(5):
+            y = paddle.pow(x, 4.0)
+            y.backward(grad_tensor)
+            print("{}: {}".format(i, x.grad))
+        # 0: [1000.]
+        # 1: [2000.]
+        # 2: [3000.]
+        # 3: [4000.]
+        # 4: [5000.]
+
+
+bmm(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_bmm`
+
+broadcast_to(shape, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_expand` ，API功能相同。
+
+cast(dtype)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_cast`
+
+ceil(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_ceil`
+
+cholesky(upper=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cholesky`
+
+chunk(chunks, axis=0, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_chunk`
+
+
+clear_gradient()
+:::::::::
+
+清除当前Tensor的梯度。
+
+返回：无
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        import numpy as np
+
+        x = np.ones([2, 2], np.float32)
+        inputs2 = []
+        for _ in range(10):
+            tmp = paddle.to_tensor(x)
+            tmp.stop_gradient=False
+            inputs2.append(tmp)
+        ret2 = paddle.add_n(inputs2)
+        loss2 = paddle.sum(ret2)
+        loss2.backward()
+        print(loss2.gradient())
+        loss2.clear_gradient()
+        print("After clear {}".format(loss2.gradient()))
+
+
+clip(min=None, max=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_clip`
+
+clone()
+:::::::::
+
+复制当前Tensor，并且保留在原计算图中进行梯度传导。
+
+返回：clone后的Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        x = paddle.to_tensor(1.0, stop_gradient=False)
+        clone_x = x.clone()
+        y = clone_x**2
+        y.backward()
+        print(clone_x.stop_gradient) # False
+        print(clone_x.grad)          # [2.0], support gradient propagation
+        print(x.stop_gradient)       # False
+        print(x.grad)                # [2.0], clone_x support gradient propagation for x
+
+        x = paddle.to_tensor(1.0)
+        clone_x = x.clone()
+        clone_x.stop_gradient = False
+        z = clone_x**3
+        z.backward()
+        print(clone_x.stop_gradient) # False
+        print(clone_x.grad)          # [3.0], support gradient propagation
+        print(x.stop_gradient)       # True
+        print(x.grad)                # None
+
+concat(axis=0, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_concat`
+
+cos(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_cos`
+
+cosh(name=None)
+:::::::::
+
+对该Tensor中的每个元素求双曲余弦。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_cosh`
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+        out = paddle.cosh(x)
+        print(out)
+        # [1.08107237 1.02006674 1.00500417 1.04533851]
+
+cpu()
+:::::::::
+
+将当前Tensor的拷贝到CPU上，且返回的Tensor不保留在原计算图中。
+
+如果当前Tensor已经在CPU上，则不会发生任何拷贝。
+
+返回：拷贝到CPU上的Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
+        print(x.place)    # CUDAPlace(0)
+
+        y = x.cpu()
+        print(y.place)    # CPUPlace
+
+cross(y, axis=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_linalg_cross`
+
+cuda(device_id=None, blocking=False)
+:::::::::
+
+将当前Tensor的拷贝到GPU上，且返回的Tensor不保留在原计算图中。
+
+如果当前Tensor已经在GPU上，且device_id为None，则不会发生任何拷贝。
+
+参数：
+    - **device_id** (int, optional) - 目标GPU的设备Id，默认为None，此时为当前Tensor的设备Id，如果当前Tensor不在GPU上，则为0。
+    - **blocking** (bool, optional) - 如果为False并且当前Tensor处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为False。
+
+返回：拷贝到GPU上的Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0, place=paddle.CPUPlace())
+        print(x.place)        # CPUPlace
+
+        y = x.cuda()
+        print(y.place)        # CUDAPlace(0)
+
+        y = x.cuda(1)
+        print(y.place)        # CUDAPlace(1)
+
+cumsum(axis=None, dtype=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_cumsum`
+
+detach()
+:::::::::
+
+返回一个新的Tensor，从当前计算图分离。
+
+返回：与当前计算图分离的Tensor。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        import numpy as np 
+
+        data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
+        linear = paddle.nn.Linear(32, 64)
+        data = paddle.to_tensor(data)
+        x = linear(data)
+        y = x.detach()
+
+dim()
+:::::::::
+
+查看一个Tensor的维度，也称作rank。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        print("Tensor's number of dimensition: ", paddle.to_tensor([[1, 2], [3, 4]]).dim())
+        # Tensor's number of dimensition: 2
+
+dist(y, p=2)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_linalg_dist`
+
+divide(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_divide`
+
+dot(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_linalg_dot`
+
+equal(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_equal`
+
+equal_all(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_equal_all`
+
+erf(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_erf`
+
+exp(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_exp`
+
+expand(shape, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_expand`
+
+expand_as(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_expand_as`
+
+flatten(start_axis=0, stop_axis=-1, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_flatten`
+
+flip(axis, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_flip`
+
+floor(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_floor`
+
+floor_divide(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_floor_divide`
+
+floor_mod(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_remainder`
+
+gather(index, axis=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_gather`
+
+gather_nd(index, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_gather_nd`
+
+gradient()
+:::::::::
+
+与 ``Tensor.grad`` 相同，查看一个Tensor的梯度，数据类型为numpy\.ndarray。
+
+返回：该Tensor的梯度
+返回类型：numpy\.ndarray
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor([1.0, 2.0, 3.0], stop_gradient=False)
+        y = paddle.to_tensor([4.0, 5.0, 6.0], stop_gradient=False)
+        z = x * y
+        z.backward()
+        print("tensor's grad is: {}".format(x.grad))
+
+greater_equal(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_greater_equal`
+
+greater_than(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_greater_than`
+
+
+histogram(bins=100, min=0, max=0)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_histogram`
+
+increment(value=1.0, in_place=True)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_increment`
+
+index_sample(index)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_search_index_sample`
+
+index_select(index, axis=0, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_search_index_select`
+
+inverse(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_inverse`
+
+is_empty(cond=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_is_empty`
+
+isfinite(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_isfinite`
+
+isinf(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_isinf`
+
+isnan(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_isnan`
+
+kron(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_kron`
+
+less_equal(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_less_equal`
+
+less_than(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_less_than`
+
+log(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_log`
+
+log1p(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_log1p`
+
+logical_and(y, out=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_logical_and`
+
+logical_not(out=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_logical_not`
+
+logical_or(y, out=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_logical_or`
+
+logical_xor(y, out=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_logical_xor`
+
+logsigmoid()
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_logsigmoid`
+
+logsumexp(axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_math_logsumexp`
+
+masked_select(mask, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_masked_select`
+
+matmul(y, transpose_x=False, transpose_y=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_matmul`
+
+max(axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_max`
+
+maximum(y, axis=-1, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_maximum`
+
+mean(axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_mean`
+
+min(axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_min`
+
+minimum(y, axis=-1, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_minimum`
+
+mm(mat2, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_mm`
+
+mod(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_remainder`
+
+multiplex(index)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_multiplex`
+
+multiply(y, axis=-1, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_multiply`
+
+ndimension()
+:::::::::
+
+查看一个Tensor的维度，也称作rank。
+
+**代码示例**
+
+    .. code-block:: python
+
+        import paddle
+        print("Tensor's number of dimensition: ", paddle.to_tensor([[1, 2], [3, 4]]).ndimension())
+        # Tensor's number of dimensition: 2
+
+nonzero(as_tuple=False)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_search_nonzero`
+
+norm(p=fro, axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_norm`
+
+not_equal(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_not_equal`
+
+numel(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_numel`
+
+numpy()
+:::::::::
+
+将当前Tensor转化为numpy\.ndarray。
+
+返回：Tensor转化成的numpy\.ndarray。
+返回类型：numpy\.ndarray
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        import numpy as np
+
+        data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
+        linear = paddle.nn.Linear(32, 64)
+        data = paddle.to_tensor(data)
+        x = linear(data)
+        print(x.numpy())
+
+pin_memory(y, name=None)
+:::::::::
+
+将当前Tensor的拷贝到固定内存上，且返回的Tensor不保留在原计算图中。
+
+如果当前Tensor已经在固定内存上，则不会发生任何拷贝。
+
+返回：拷贝到固定内存上的Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
+        print(x.place)      # CUDAPlace(0)
+
+        y = x.pin_memory()
+        print(y.place)      # CUDAPinnedPlace
+
+pow(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_pow`
+
+prod(axis=None, keepdim=False, dtype=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_prod`
+
+rank()
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_rank`
+
+reciprocal(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_reciprocal`
+
+register_hook(hook)
+:::::::::
+
+为当前 Tensor 注册一个反向的 hook 函数。
+
+该被注册的 hook 函数将会在每次当前 Tensor 的梯度 Tensor 计算完成时被调用。
+
+被注册的 hook 函数不会修改输入的梯度 Tensor ，但是 hook 可以返回一个新的临时梯度 Tensor 代替当前 Tensor 的梯度继续进行反向传播。
+
+输入的 hook 函数写法如下：
+
+    hook(grad) -> Tensor or None
+
+参数：
+    - **hook** (function) - 一个需要注册到 Tensor.grad 上的 hook 函数
+
+返回：一个能够通过调用其 ``remove()`` 方法移除所注册 hook 的对象
+
+返回类型：TensorHookRemoveHelper
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        # hook function return None
+        def print_hook_fn(grad):
+            print(grad)
+
+        # hook function return Tensor
+        def double_hook_fn(grad):
+            grad = grad * 2
+            return grad
+
+        x = paddle.to_tensor([0., 1., 2., 3.], stop_gradient=False)
+        y = paddle.to_tensor([4., 5., 6., 7.], stop_gradient=False)
+        z = paddle.to_tensor([1., 2., 3., 4.])
+
+        # one Tensor can register multiple hooks
+        h = x.register_hook(print_hook_fn)
+        x.register_hook(double_hook_fn)
+
+        w = x + y
+        # register hook by lambda function
+        w.register_hook(lambda grad: grad * 2)
+
+        o = z.matmul(w)
+        o.backward()
+        # print_hook_fn print content in backward
+        # Tensor(shape=[4], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+        #        [2., 4., 6., 8.])
+
+        print("w.grad:", w.grad) # w.grad: [1. 2. 3. 4.]
+        print("x.grad:", x.grad) # x.grad: [ 4.  8. 12. 16.]
+        print("y.grad:", y.grad) # y.grad: [2. 4. 6. 8.]
+
+        # remove hook
+        h.remove()
+
+remainder(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_remainder`
+
+reshape(shape, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_reshape`
+
+reverse(axis, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_reverse`
+
+roll(shifts, axis=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_manipulation_roll`
+
+round(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_round`
+
+rsqrt(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_rsqrt`
+
+scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_scale`
+
+scatter(index, updates, overwrite=True, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_scatter`
+
+scatter_nd(updates, shape, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_scatter_nd`
+
+scatter_nd_add(index, updates, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_scatter_nd_add`
+
+set_value(value)
+:::::::::
+
+设置当前Tensor的值。
+
+参数：
+    - **value** (Tensor|np.ndarray) - 需要被设置的值，类型为Tensor或者numpy\.array。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        import numpy as np
+
+        data = np.ones([3, 1024], dtype='float32')
+        linear = paddle.nn.Linear(1024, 4)
+        input = paddle.to_tensor(data)
+        linear(input)  # call with default weight
+        custom_weight = np.random.randn(1024, 4).astype("float32")
+        linear.weight.set_value(custom_weight)  # change existing weight
+        out = linear(input)  # call with different weight
+
+返回：计算后的Tensor
+
+shard_index(index_num, nshards, shard_id, ignore_value=-1)
+:::::::::
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_shard_index`
+
+
+sign(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_sign`
+
+sin(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_sin`
+
+sinh(name=None)
+:::::::::
+
+对该Tensor中逐个元素求双曲正弦。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+        out = x.sinh()
+        print(out)
+        # [-0.41075233 -0.201336    0.10016675  0.30452029]
+
+size()
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_size`
+
+slice(axes, starts, ends)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_slice`
+
+
+请参考 :ref:`cn_api_fluid_layers_softsign`
+
+sort(axis=-1, descending=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_sort`
+
+split(num_or_sections, axis=0, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_split`
+
+sqrt(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_sqrt`
+
+square(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_square`
+
+squeeze(axis=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_squeeze`
+
+stack(axis=0, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_stack`
+
+stanh(scale_a=0.67, scale_b=1.7159, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_stanh`
+
+std(axis=None, unbiased=True, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_std`
+
+strided_slice(axes, starts, ends, strides)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_strided_slice`
+
+sum(axis=None, dtype=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_sum`
+
+sums(out=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_sums`
+
+t(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_t`
+
+tanh(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_tanh`
+
+
+tile(repeat_times, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_tile`
+
+topk(k, axis=None, largest=True, sorted=True, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_topk`
+
+trace(offset=0, axis1=0, axis2=1, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_trace`
+
+transpose(perm, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_transpose`
+
+unbind(axis=0)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_unbind`
+
+unique(return_index=False, return_inverse=False, return_counts=False, axis=None, dtype=int64, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_unique`
+
+unique_with_counts(dtype=int32)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_unique_with_counts`
+
+unsqueeze(axis, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_unsqueeze`
+
+unstack(axis=0, num=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_fluid_layers_unstack`
+
+var(axis=None, unbiased=True, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_var`
+
+where(x, y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_where`

@@ -170,12 +170,12 @@ hook(Layer, input, output) -> None or modified output
 
 返回类型：list
 
-.. py:method:: sublayers(include_sublayers=True)
+.. py:method:: sublayers(include_self=True)
 
 返回一个由所有子层组成的列表。
 
 参数：
-    - **include_sublayers** (bool, 可选) - 是否返回子层中各个子层。如果为True，则包括子层中的各个子层。默认值：True。
+    - **include_self** (bool, 可选) - 是否包含本层。如果为True，则包括本层。默认值：False。
 
 返回： 一个由所有子层组成的列表，列表中的元素类型为Layer。
 
@@ -229,13 +229,12 @@ hook(Layer, input, output) -> None or modified output
         for name, param in model.named_parameters():
             print(name, param)
 
-.. py:method:: named_sublayers(prefix='', include_sublayers=True, include_self=False, layers_set=None)
+.. py:method:: named_sublayers(prefix='', include_self=False, layers_set=None)
 
 返回层中所有子层上的迭代器，生成名称和子层的元组。重复的子层只产生一次。
 
 参数：
     - **prefix** (str, 可选) - 在所有参数名称前加的前缀。默认值：''。
-    - **include_sublayers** (bool, 可选) - 是否返回子层中各个子层。如果为True，则包括子层中的各个子层。默认值：True。
     - **include_self** (bool, 可选) - 是否包含该层自身。默认值：False。
     - **layers_set** (set, 可选): 记录重复子层的集合。默认值：None。
 
@@ -391,13 +390,12 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
         state_dict = emb.state_dict()
         fluid.save_dygraph(state_dict, "paddle_dy")
 
-.. py:method:: set_dict(stat_dict, include_sublayers=True)
+.. py:method:: set_dict(stat_dict)
 
 根据传入的 ``stat_dict`` 设置参数和可持久性buffers。 所有参数和buffers将由 ``stat_dict`` 中的 ``Tensor`` 设置。
 
 参数：
     - **state_dict** (dict) - 包含所有参数和可持久性buffers的dict。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数和buffers。 默认值：True。
 
 返回：None
 
@@ -413,7 +411,7 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
         para_state_dict, _ = fluid.load_dygraph("paddle_dy")
         emb.set_dict(para_state_dict)
 
-.. py:method:: load_dict(stat_dict, include_sublayers=True)
+.. py:method:: load_dict(stat_dict)
 
 .. warning::
     该函数将被弃用。请使用set_dict函数。
@@ -422,7 +420,6 @@ buffer是一个非参数类型的变量，不会被优化器更新，但在评�
 
 参数：
     - **state_dict** (dict) - 包含所有参数和可持久性buffers的dict。
-    - **include_sublayers** (bool, 可选) - 如果设置为True，则还包括子层的参数和buffers。 默认值：True。
 
 返回：None
 
