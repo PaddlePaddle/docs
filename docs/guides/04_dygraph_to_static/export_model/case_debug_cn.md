@@ -138,7 +138,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 
 在执行动转静模型导出之前，请务必确保动态图下模型代码执行是没有问题的。
 
-如下是一个用户的代码样例：
+如下是一个代码样例：
 ```python
 import paddle
 import numpy as np
@@ -261,7 +261,7 @@ if __name__ == '__main__':
 	  }
 		```
 
-#### 4.3.3 解决方案
+#### 3.3 解决方案
 
 短期方案上，为了不耽误模型侧的后续工作，可以调整一些模型代码进行规避，等修复 PR 合入后，再使用之前的模型代码。
 ```python
