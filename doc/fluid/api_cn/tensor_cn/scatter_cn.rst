@@ -49,7 +49,6 @@ scatter
         
         import paddle
         import numpy as np
-        paddle.disable_static()
         x_data = np.array([[1, 1], [2, 2], [3, 3]]).astype(np.float32)
         index_data = np.array([2, 1, 0, 1]).astype(np.int64)
         updates_data = np.array([[1, 1], [2, 2], [3, 3], [4, 4]]).astype(np.float32)
