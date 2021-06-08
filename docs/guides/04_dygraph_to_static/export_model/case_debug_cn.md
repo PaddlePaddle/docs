@@ -74,7 +74,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 ```
 
 此类问题的原因一般是：
-> 模型代码中存在一些高阶的 Tensor slice 赋值操作。比如 `x[:, :3] += y`。一些静态图高阶的 slice 语法功能正在与动态图对齐和支持中。
+> 模型代码中存在一些高阶的 Tensor slice 赋值操作。一些静态图高阶的 slice 语法功能正在与动态图对齐和支持中。
 
 **如下是当前动、静态图对 slice 语法功能的汇总情况：**
 
@@ -177,7 +177,6 @@ class Test(nn.Layer):
         
         return idx_sequence
 
-
 if __name__ == '__main__':
     test = Test()
     test = paddle.jie.to_staic(test)
@@ -186,7 +185,7 @@ if __name__ == '__main__':
 
 报错信息：
 
-![图片](http://bos.bj.bce-internal.sdns.baidu.com/agroup-bos-bj/bj-771a17c53529aa962f068e731c4284f80391e9e4)
+![图片](./images/error.png)
 
 
 ### 3.1 报错栈分析
@@ -194,7 +193,7 @@ if __name__ == '__main__':
 
 + **出错的位置**：`paddle.stack([tmp1, tmp2]，axis=1)` 
 + **出错的原因**：两个变量的 shape 不满足 stack 的要求
-+ **已知的信息**：动态图下执行正常，且 tmp1 和 tmp2 的 shape 均为 [128]；但静态图下他们 shape 分别变成了 [16, -1] 和 [-1,  -1]  ?
++ **已知的信息**：动态图下执行正常，且 tmp1 和 tmp2 的 shape 均为 [128]；但静态图下他们 shape 分别变成了 [16, -1] 和 [-1,  -1] ？
 
 
 ### 3.2 交互式调试利器 pbd

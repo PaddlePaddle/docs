@@ -16,7 +16,7 @@
     ```
 
 
-+  方式一：在组网代码的 ``forward`` 函数处装饰
++  方式二：在组网代码的 ``forward`` 函数处装饰
 	```python
     class SimpleNet(paddle.nn.Layer):
         def __init__(self, ...):
@@ -107,19 +107,19 @@ def forward(self, x):
 
 上述样例需要将 ``forward`` 中的所有的 numpy 操作都转为 Paddle API：
 
-.. code-block:: python
+```python
+def forward(self, x):
+    out = self.linear(x)  # [bs, 3]
+    
+    weight = paddle.randn([10,3], 'float32')
+    mask = x * weight
+    
+    out = out * mask
+    return out
+```
 
-    def forward(self, x):
-        out = self.linear(x)  # [bs, 3]
-        
-        weight = paddle.randn([10,3], 'float32')
-        mask = x * weight
-        
-        out = out * mask
-        return out
 
-
-在之前排查的模型中，存在较多中间转为 numpy 的操作，会无法生成完整的 ``Program` ，并导致：
+在之前排查的模型中，存在较多中间转为 numpy 的操作，会无法生成完整的 `Program` ，并导致：
 
 + 模型动转静时报各种奇怪的错误
 + 可以转换成功，但加载模型预测时，可能会报 **Segment Fault** 等错误
@@ -199,7 +199,7 @@ class SimpleNet(paddle.nn.Layer):
 **举个例子：**
 
 ```python
-class SimpleNet(object):  					   # <---- 继承 Object
+class SimpleNet(object):                       # <---- 继承 Object
     def __init__(self, mask):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)  # <---- Linear 参数永远都不会被更新
