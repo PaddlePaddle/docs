@@ -6,7 +6,6 @@ digamma
 .. py:function:: paddle.digamma(x, name=None)
 
 
-
 逐元素计算输入Tensor的digamma函数值
 
 .. math::
