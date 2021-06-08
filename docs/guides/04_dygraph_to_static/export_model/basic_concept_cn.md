@@ -15,7 +15,7 @@ print(zeros)
 ```
 
 
-从框架层面上，上述的调用链是：
+**从框架层面上，上述的调用链是：**
 
 > 前端 zeros 接口 &rarr; core.ops.fill_constant (Pybind11)  &rarr; 后端 Kernel  &rarr; 前端 Tensor 输出
 
@@ -56,7 +56,7 @@ sgd = paddle.optimizer.SGD(learning_rate=0.1, parameters=net.parameters())
 
 ## 二、静态图
 
-静态图编程，总体上包含两个部分：
+**静态图编程，总体上包含两个部分：**
 
 + **编译期**：组合各个 ``Layer`` 接口，搭建网络结构，执行每个 Op 的 ``InferShape`` 逻辑，最终生成 ``Program`` 
 + **执行期**：构建执行器，输入数据，依次执行每个 ``OpKernel`` ，进行训练和评估
@@ -73,9 +73,9 @@ print(zeros)
 # var fill_constant_1.tmp_0 : LOD_TENSOR.shape(1, 2).dtype(float32).stop_gradient(True)
 ```
 
-从框架层面上，静态图的调用链：
+**从框架层面上，静态图的调用链：**
 
-> layer组网（前端） &rarr; InferShape 检查（编译期） &rarr;  Executor（执行期） &rarr; 逐个执行OP
+> layer 组网（前端） &rarr; InferShape 检查（编译期） &rarr;  Executor（执行期） &rarr; 逐个执行 OP
 
 
 如下是 ``SimpleNet`` 的静态图模式下的组网代码：
@@ -123,7 +123,8 @@ print(paddle.static.default_main_program())
 
 当训练完一个模型后，下一阶段就是保存导出，实现**模型**和**参数**的分发，进行多端部署。
 
-动态图下，**模型**指的是 Python 前端代码；参数指的是 ``model.state_dict()`` 中存放的权重数据。
+动态图下，**模型**指的是 Python 前端代码；**参数**指的是 ``model.state_dict()`` 中存放的权重数据。
+
 ```python
 net = SimpleNet()
 
@@ -173,5 +174,5 @@ paddle.save(main_program.state_dict(), para_path) # 导出为 .pdparams
 
 在处理逻辑上，动转静主要包含两个主要模块：
 
-+ **代码层面**：将所有的 Paddle ``layers`` 调用**转为 ``Op`` **，从而生成完整的静态 ``Program``
++ **代码层面**：将所有的 Paddle ``layers`` 调用**转为 ``Op`` ，从而生成完整的静态 ``Program``
 + **Tensor层面**：将所有的 ``Parameters`` 和 ``Buffers`` 转为**可导出的 ``Variable`` 参数**（ ``persistable=True`` ）

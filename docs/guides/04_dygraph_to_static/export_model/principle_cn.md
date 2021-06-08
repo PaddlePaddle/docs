@@ -3,10 +3,9 @@
 
 ## 一、 @to_static概览
 
-如下是一个 ``Model`` 示例：
+如下是一个使用 @to_static 装饰器的 ``Model`` 示例：
 
 ```python
-
 import paddle
 from paddle.jit import to_static
 
@@ -15,7 +14,7 @@ class SimpleNet(paddle.nn.Layer):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
     
-    # 方式一：
+    # 方式一：装饰 forward 函数
     @to_static
     def forward(self, x, y):
         out = self.linear(x)
@@ -241,9 +240,8 @@ def add_two(x, y):
 + **只有**控制流的判断条件**依赖了 ``Tensor`` **（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
 
 
-<div align='center'>
-<img alt="./images/convert_cond.png">
-</div>
+![image](./images/convert_cond.png)
+
 
 
 ### 4.1 IfElse
@@ -406,18 +404,18 @@ def depend_tensor_while(x):
 ```
 
 
-``convert_while_loop`` 的底层的逻辑同样会根据**判断条件是否为 ``Variable`` **来决定是否转为 ``while_op``
+``convert_while_loop`` 的底层的逻辑同样会根据**判断条件是否为``Variable``**来决定是否转为 ``while_op``
 
 ## 五、 Parameters 与 Buffers
 
-什么是 ``Buffers`` 变量？
+**什么是 ``Buffers`` 变量？**
 
-> **Parameters**：``persistable`` 为 ``True`` ，且每个 batch 都被 Optimizer 更新的变量 <br><br>
-> **Buffers**：``persistable`` 为 ``True`` ，``is_trainable = False`` ，不参与更新，但与预测相关；如 ``BatchNorm`` 层中的均值和方差
++ **Parameters**：``persistable`` 为 ``True`` ，且每个 batch 都被 Optimizer 更新的变量
++ **Buffers**：``persistable`` 为 ``True`` ，``is_trainable = False`` ，不参与更新，但与预测相关；如 ``BatchNorm`` 层中的均值和方差
 
 在动态图模型代码中，若一个 ``paddle.to_tensor`` 接口生成的 ``Tensor`` 参与了最终预测结果的的计算，则此 ``Tensor`` 需要在转换为静态图预测模型时，也需要作为一个 ``persistable`` 的变量保存到 ``.pdparam`` 文件中。
 
-举一个例子（错误写法）：
+**举一个例子（错误写法）：**
 
 ```python
 import paddle
@@ -459,7 +457,7 @@ class SimpleNet(paddle.nn.Layer):
 ```
 
 
-回顾一下 ``buffers`` 的用法：
+总结一下 ``buffers`` 的用法：
 
 +  若某个非 ``Tensor`` 数据需要当做 ``Persistable`` 的变量序列化到磁盘，则最好在 ``__init__`` 中调用 ``self.XX= paddle.to_tensor(xx)`` 接口转为 ``buffer`` 变量
 
@@ -469,6 +467,5 @@ class SimpleNet(paddle.nn.Layer):
 
 基本执行流程如下：
 
-<div align='center'>
-<img alt="./images/to_static_train.png">
-</div>
+
+![image](./images/to_static_train.png)
