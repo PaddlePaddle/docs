@@ -137,7 +137,7 @@ paddle.save(layer_state_dict, "net.pdparams") # 导出模型
 即意味着，动态图预测部署时，除了已经序列化的参数文件，还须提供**最初的模型组网代码**。
 
 <div align='center'>
-<img alt="./images/dygraph_export.png">
+![image](./images/dygraph_export.png)
 </div>
 
 
@@ -171,13 +171,12 @@ paddle.save(main_program.state_dict(), para_path) # 导出为 .pdparams
 
 动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。
 
+<div align='center'>
+<img alt="./images/to_static_export.png">
+</div>
+
 
 在处理逻辑上，动转静主要包含两个主要模块：
 
 + **代码层面**：将所有的 Paddle ``layers`` 调用**转为 ``Op`` **，从而生成完整的静态 ``Program``
 + **Tensor层面**：将所有的 ``Parameters`` 和 ``Buffers`` 转为**可导出的 ``Variable`` 参数**（ ``persistable=True`` ）
-
-
-<div align='center'>
-<img alt="./images/to_static_export.png">
-</div>
