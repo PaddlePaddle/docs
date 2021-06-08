@@ -26,7 +26,7 @@ Python执行开销较大，与C++有一定差距。因此在工业界的许多�
 
 - `调试方法 <debugging_cn.html>`_ ：介绍了动态图转静态图支持的调试方法
 
-- `预测模型导出 <./export_model/index_cn.html>` ：介绍了如何导出预测模型的详细教程
+- `预测模型导出 <./export_model/index_cn.html>`_ ：介绍了如何导出预测模型的详细教程
 
 
 ..  toctree::

@@ -12,7 +12,7 @@
 ..  toctree::
     :hidden:
 
-    basic_concept_cn.rst
+    basic_concept_cn.md
     principle_cn.rst
     case_analysis_cn.rst
     case_debug_cn.rst
