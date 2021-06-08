@@ -7,7 +7,7 @@ digamma
 
 
 
-digamma函数
+逐元素计算输入Tensor的digamma函数值
 
 .. math::
     \\Out = \Psi(x) = \frac{ \Gamma^{'}(x) }{ \Gamma(x) }\\
