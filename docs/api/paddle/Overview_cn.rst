@@ -45,7 +45,7 @@ tensor数学操作
     " :ref:`paddle.conj <cn_api_tensor_conj>` ", "逐元素计算Tensor的共轭运算"
     " :ref:`paddle.cos <cn_api_fluid_layers_cos>` ", "余弦函数"
     " :ref:`paddle.cosh <cn_api_fluid_layers_cosh>` ", "双曲余弦函数"
-    " :ref:`paddle.cumsum <cn_api_fluid_layers_cumsum>` ", "沿给定 axis 计算张量 x 的累加和"
+    " :ref:`paddle.cumsum <_cn_api_tensor_cn_cumsum>` ", "沿给定 axis 计算张量 x 的累加和"
     " :ref:`paddle.divide <cn_api_tensor_divide>` ", "逐元素相除算子"
     " :ref:`paddle.equal <cn_api_tensor_equal>` ", "该OP返回 x==y 逐元素比较x和y是否相等，相同位置的元素相同则返回True，否则返回False"
     " :ref:`paddle.equal_all <cn_api_tensor_equal_all>` ", "如果所有相同位置的元素相同返回True，否则返回False"
