@@ -10,7 +10,8 @@
 1.1 基础API保存载入体系
 --------------------
 
-飞桨框架2.1模型与参数的保存与载入相关接口包括：
+飞桨框架2.1对模型与参数的保存与载入相关接口进行了梳理：对于训练调优场景，我们推荐使用paddle.save/load保存和载入模型；对于推理部署场景，我们推荐使用paddle.jit.save/load（动态图）和paddle.static.save/load_inference_model（静态图）保存载入模型。
+更飞桨保存与载入相关接口包括：
 
 
 :ref:`paddle.save <cn_api_paddle_framework_io_save>`
@@ -21,20 +22,15 @@
 
 :ref:`paddle.jit.load <cn_api_paddle_jit_save>`
 
+:ref:`paddle.static.save_inference_model <cn_api_static_save_inference_model>`
+
+:ref:`paddle.static.load_inference_model <cn_api_fluid_io_load_inference_model>`
+
 
 各接口关系如下图所示：
 
 .. image:: images/paddle_save_load_2.1.png
-
-
-
-飞桨框架2.1对模型与参数的保存与载入相关接口进行了梳理：对于训练调优场景，我们推荐使用paddle.save/load保存和载入模型；对于推理部署（动态图转化为静态图）场景，我们推荐使用jit.save/load保存载入模型。
-
-paddle.save/load支持动态图相关对象（state_dict、Tensor、包含Tensor的tuple/dict嵌套结构）和静态图相关对象（Program、state_dict、Tensor）的保存和载入；paddle.jit.save/load支持Layer和无参函数的保存和加载。更多介绍请参考相应API文档。
-
-.. note::
-    不推荐使用paddle.save保存Layer对象，原因如下：1. 加载Layer对象无法脱离模型代码。 2. Layer对象相交于state_dict包含大量冗余信息。
-
+.. image:: images/paddle_jit_save_load_2.1.png
 
 1.2 高阶API保存载入体系
 --------------------
@@ -57,8 +53,8 @@ paddle.save/load支持动态图相关对象（state_dict、Tensor、包含Tensor
         ../../faq/save_cn.md
     
 
-二、参数保存载入（训练调优）
-#######################
+二、训练调优场景的模型&参数保存载入
+##############################
 
 2.1 动态图参数保存载入
 -------------------
@@ -157,8 +153,8 @@ paddle.save/load支持动态图相关对象（state_dict、Tensor、包含Tensor
     adam.set_state_dict(opt_state_dict)
 
 
-2.2 静态图模型保存载入
--------------------
+2.2 静态图模型&参数保存载入
+-----------------------
 若仅需要保存/载入模型的参数，可以使用 ``paddle.save/load`` 结合Program的state_dict达成目的，此处state_dict与动态图state_dict概念类似，dict的key为参数名，value为参数真实的值。若想保存整个模型，需要使用``paddle.save``将Program和state_dict都保存下来。
 
 结合以下简单示例，介绍参数保存和载入的方法：
@@ -180,7 +176,7 @@ paddle.save/load支持动态图相关对象（state_dict、Tensor、包含Tensor
     prog = paddle.static.default_main_program()
 
 
-2.2.1 静态图模型参数保存
+2.2.1 静态图模型&参数保存
 ---------------------
 
 参数保存时，先获取Program的state_dict，然后将state_dict保存至磁盘，示例如下（接前述示例）:
@@ -196,7 +192,7 @@ paddle.save/load支持动态图相关对象（state_dict、Tensor、包含Tensor
     paddle.save(prog, "temp/model.pdmodel")
 
 
-2.2.2 静态图模型参数载入
+2.2.2 静态图模型&参数载入
 ---------------------
 
 如果只保存了state_dict，可以跳过此段代码，直接载入state_dict。如果模型文件中包含Program和state_dict，请先载入Program，示例如下（接前述示例）:
@@ -215,20 +211,22 @@ paddle.save/load支持动态图相关对象（state_dict、Tensor、包含Tensor
 
 
 
-三、模型&参数保存载入（训练部署）
-############################
+三、训练部署场景的模型&参数保存载入
+##################################
 
-若要同时保存/载入模型结构和参数，可以使用 ``paddle.jit.save/load`` 实现。
+3.1 动态图模型&参数保存载入（训练推理）
+---------------------------
+若要同时保存/载入动态图模型结构和参数，可以使用 ``paddle.jit.save/load`` 实现。
 
-3.1 模型&参数保存
-----------------
+3.1.1 动态图模型&参数保存
+----------------------
 
 模型&参数存储根据训练模式不同，有两种使用情况：
 
 (1) 动转静训练 + 模型&参数保存
 (2) 动态图训练 + 模型&参数保存
 
-3.1.1 动转静训练 + 模型&参数保存
+3.1.1.1 动转静训练 + 模型&参数保存
 ``````````````````````````````
 
 动转静训练相比直接使用动态图训练具有更好的执行性能，训练完成后，直接将目标Layer传入 ``paddle.jit.save`` 保存即可。：
@@ -467,7 +465,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     load_result = load_func(inps)
 
 
-3.1.2 动态图训练 + 模型&参数保存
+3.1.1.2 动态图训练 + 模型&参数保存
 ``````````````````````````````
 
 动态图模式相比动转静模式更加便于调试，如果你仍需要使用动态图直接训练，也可以在动态图训练完成后调用 ``paddle.jit.save`` 直接保存模型和参数。
@@ -579,8 +577,8 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
         path=path,
         input_spec=[image])
 
-3.2 模型&参数载入
-----------------
+3.1.2 动态图模型&参数载入
+----------------------
 
 载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个Layer的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有Layer具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。
 
@@ -690,6 +688,55 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     layer.eval()
     x = paddle.randn([1, IMAGE_SIZE], 'float32')
     pred = layer(x)
+
+
+3.2 静态图模型&参数保存载入（推理部署）
+--------------------------------
+保存/载入静态图推理模型，可以通过 ``paddle.static.save/load_inference_model`` 实现。示例如下:
+
+.. code-block:: python
+
+    import paddle
+    import numpy as np
+
+    paddle.enable_static()
+
+    # Build the model
+    startup_prog = paddle.static.default_startup_program()
+    main_prog = paddle.static.default_main_program()
+    with paddle.static.program_guard(main_prog, startup_prog):
+        image = paddle.static.data(name="img", shape=[64, 784])
+        w = paddle.create_parameter(shape=[784, 200], dtype='float32')
+        b = paddle.create_parameter(shape=[200], dtype='float32')
+        hidden_w = paddle.matmul(x=image, y=w)
+        hidden_b = paddle.add(hidden_w, b)
+    exe = paddle.static.Executor(paddle.CPUPlace())
+    exe.run(startup_prog)
+
+
+3.2.1 静态图推理模型&参数保存
+-------------------------
+静态图导出推理模型需要指定导出路径、输入、输出变量以及执行器。 ``save_inference_model`` 会裁剪Program的冗余部分，并导出两个文件： ``path_prefix.pdmodel`` 、 ``path_prefix.pdiparams`` 。示例如下（接前述示例）：
+
+.. code-block:: python
+
+    # Save the inference model
+    path_prefix = "./infer_model"
+    paddle.static.save_inference_model(path_prefix, [image], [hidden_b], exe)
+
+
+3.2.1 静态图推理模型&参数载入
+-------------------------
+载入静态图推理模型时，输入给 ``load_inference_model`` 的路径必须与 ``save_inference_model`` 的一致。示例如下（接前述示例）：
+
+.. code-block:: python
+
+    [inference_program, feed_target_names, fetch_targets] = (
+        paddle.static.load_inference_model(path_prefix, exe))
+    tensor_img = np.array(np.random.random((64, 784)), dtype=np.float32)
+    results = exe.run(inference_program,
+                    feed={feed_target_names[0]: tensor_img},
+                    fetch_list=fetch_targets)
 
 
 四、旧保存格式兼容载入
