@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_dynamic_decode:
+.. _cn_api_paddle_nn_dynamic_decode:
 
 dynamic_decode
 -------------------------------

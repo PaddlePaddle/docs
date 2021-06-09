@@ -1,4 +1,4 @@
-.. _cn_api_tensor_remainder:
+.. _cn_api_tensor_mod:
 
 mod
 -------------------------------
