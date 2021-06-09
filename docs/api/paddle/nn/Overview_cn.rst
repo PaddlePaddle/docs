@@ -168,7 +168,7 @@ Normalization层
 
     " :ref:`paddle.nn.BiRNN <cn_api_paddle_nn_layer_rnn_BiRNN>` ", "双向循环神经网络"
     " :ref:`paddle.nn.GRU <cn_api_paddle_nn_layer_rnn_GRU>` ", "门控循环单元网络"
-    " :ref:`paddle.nn.GRUCell <cn_api_fluid_layers_GRUCell>` ", "门控循环单元"
+    " :ref:`paddle.nn.GRUCell <cn_api_paddle_nn_layer_rnn_GRUCell>` ", "门控循环单元"
     " :ref:`paddle.nn.LSTM <cn_api_paddle_nn_layer_rnn_LSTM>` ", "长短期记忆网络"
     " :ref:`paddle.nn.LSTMCell <cn_api_paddle_nn_layer_rnn_LSTMCell>` ", "长短期记忆网络单元"
     " :ref:`paddle.nn.RNN <cn_api_paddle_nn_layer_rnn_RNN>` ", "循环神经网络"
@@ -288,7 +288,7 @@ Clip相关
 
     " :ref:`paddle.nn.BeamSearchDecoder <cn_api_fluid_layers_BeamSearchDecoder>` ", "带beam search解码策略的解码器"
     " :ref:`paddle.nn.CosineSimilarity <cn_api_nn_CosineSimilarity>` ", "余弦相似度计算"
-    " :ref:`paddle.nn.dynamic_decode <cn_api_fluid_layers_dynamic_decode>` ", "循环解码"
+    " :ref:`paddle.nn.dynamic_decode <cn_api_paddle_nn_dynamic_decode>` ", "循环解码"
     " :ref:`paddle.nn.Flatten <cn_api_tensor_Flatten>` ", "将一个连续维度的Tensor展平成一维Tensor"
     " :ref:`paddle.nn.PairwiseDistance <cn_api_nn_PairwiseDistance>` ", "计算两个向量之间pairwise的距离"
     
@@ -400,7 +400,6 @@ Normalization方法
 
     " :ref:`paddle.nn.functional.bilinear <cn_api_nn_functional_bilinear>` ", "对两个输入执行双线性张量积"
     " :ref:`paddle.nn.functional.linear <cn_api_paddle_nn_functional_common_linear>` ", "线性变换"
-    " :ref:`paddle.nn.functional.linear_lr_warmup <cn_api_fluid_layers_linear_lr_warmup>` ", "线性学习率热身(warm up)"
     
 .. _dropout_functional:
 
@@ -453,7 +452,6 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.sigmoid_focal_loss <cn_api_nn_functional_sigmoid_focal_loss>` ", "用于计算分类任务中前景类-背景类数量不均衡问题的损失"
     " :ref:`paddle.nn.functional.smooth_l1_loss <cn_paddle_nn_functional_loss_smooth_l1>` ", "用于计算平滑L1损失"
     " :ref:`paddle.nn.functional.softmax_with_cross_entropy <cn_api_fluid_layers_softmax_with_cross_entropy>` ", "将softmax操作、交叉熵损失函数的计算过程进行合并"
-    " :ref:`paddle.nn.functional.ssd_loss <cn_api_fluid_layers_ssd_loss>` ", "用于SSD物体检测算法的多窗口损失计算"
     
 .. _common_functional:
 
@@ -464,21 +462,13 @@ Embedding相关函数
     :header: "API名称", "API功能"
     
 
-    " :ref:`paddle.nn.functional.add_position_encoding <cn_api_fluid_layers_add_position_encoding>` ", "将输入inpu中每个位置（序列中的位置）的特征与对应的位置编码加权求和"
-    " :ref:`paddle.nn.functional.affine_channel <cn_api_fluid_layers_affine_channel>` ", "对输入的每个 channel 应用单独的仿射变换"
     " :ref:`paddle.nn.functional.affine_grid <cn_api_nn_functional_affine_grid>` ", "用于生成仿射变换前后的feature maps的坐标映射关系"
-    " :ref:`paddle.nn.functional.assign <cn_api_fluid_layers_assign>` ", "将输入Tensor或numpy数组拷贝至输出Tensor"
     " :ref:`paddle.nn.functional.cosine_similarity <cn_api_paddle_nn_cosine_similarity>` ", "用于计算x1与x2沿axis维度的余弦相似度"
     " :ref:`paddle.nn.functional.cross_entropy <cn_api_paddle_functional_cross_entropy>` ", "计算输入input和标签label间的交叉熵"
-    " :ref:`paddle.nn.functional.detection_output <cn_api_fluid_layers_detection_output>` ", "给定回归位置偏移、置信度以及先验框信息计算检测的输出"
-    " :ref:`paddle.nn.functional.distribute_fpn_proposals <cn_api_fluid_layers_distribute_fpn_proposals>` ", "Feature Pyramid Networks（FPN）模型中依据proposal的尺度和参考尺度与级别将所有proposal分配到不同的FPN级别中"
     " :ref:`paddle.nn.functional.grid_sample <cn_api_nn_functional_grid_sample>` ", "用于调整一个batch中图片的大小"
-    " :ref:`paddle.nn.functional.iou_similarity <cn_api_fluid_layers_iou_similarity>` ", "计算两个框列表的intersection-over-union(IOU)"
     " :ref:`paddle.nn.functional.label_smooth <cn_api_paddle_nn_functional_common_label_smooth>` ", "标签平滑"
-    " :ref:`paddle.nn.functional.edit_distance <cn_api_fluid_layers_edit_distance>` ", "计算一批给定字符串及其参照字符串间的编辑距离"
     " :ref:`paddle.nn.functional.one_hot <cn_api_nn_functional_one_hot>` ", "将输入'x'中的每个id转换为一个one-hot向量"
     " :ref:`paddle.nn.functional.pixel_shuffle <cn_api_nn_functional_pixel_shuffle>` ", "将Tensor重新排列"
-    " :ref:`paddle.nn.functional.space_to_depth <cn_api_fluid_layers_space_to_depth>` ", "对成块的空间数据进行重组"
     " :ref:`paddle.nn.functional.square_error_cost <cn_api_fluid_layers_square_error_cost>` ", "用于计算预测值和目标值的方差估计"
     " :ref:`paddle.nn.functional.unfold <cn_api_fluid_layers_unfold>` ", "对每一个卷积核覆盖下的区域，将元素重新排成一列"
     
