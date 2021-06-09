@@ -725,7 +725,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     paddle.static.save_inference_model(path_prefix, [image], [hidden_b], exe)
 
 
-3.2.1 静态图推理模型&参数载入
+3.2.2 静态图推理模型&参数载入
 -------------------------
 载入静态图推理模型时，输入给 ``load_inference_model`` 的路径必须与 ``save_inference_model`` 的一致。示例如下（接前述示例）：
 
