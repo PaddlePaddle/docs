@@ -2,4 +2,4 @@
 
 trunc
 -------------------------------
-:doc_source: paddle.tensor.trunc
+:doc_source: paddle.trunc
