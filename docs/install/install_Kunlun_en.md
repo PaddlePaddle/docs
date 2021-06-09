@@ -157,13 +157,39 @@ Execute cmake ：
 For Python3
 
 ```
-cmake .. -DPY_VERSION=3.6 \         -DCMAKE_BUILD_TYPE=Release \         -DWITH_GPU=OFF \         -DWITH_XPU=ON \         -DON_INFER=ON \         -DWITH_PYTHON=ON \         -DWITH_AVX=ON \         -DWITH_MKL=ON \         -DWITH_MKLDNN=ON \         -DWITH_XPU_BKCL=ON \         -DWITH_DISTRIBUTE=ON \         -DWITH_NCCL=OFFmake -j20
+cmake .. -DPY_VERSION=3.6 \         
+         -DCMAKE_BUILD_TYPE=Release \         
+         -DWITH_GPU=OFF \         
+         -DWITH_XPU=ON \         
+         -DON_INFER=ON \         
+         -DWITH_PYTHON=ON \         
+         -DWITH_AVX=ON \         
+         -DWITH_MKL=ON \         
+         -DWITH_MKLDNN=ON \         
+         -DWITH_XPU_BKCL=ON \         
+         -DWITH_DISTRIBUTE=ON \         
+         -DWITH_NCCL=OFF
+         
+make -j20
 ```
 
 For Python2
 
 ```
-cmake .. -DPY_VERSION=2.7 \         -DCMAKE_BUILD_TYPE=Release \         -DWITH_GPU=OFF \         -DWITH_XPU=ON \         -DON_INFER=ON \         -DWITH_PYTHON=ON \         -DWITH_AVX=ON \         -DWITH_MKL=ON \         -DWITH_MKLDNN=ON \         -DWITH_XPU_BKCL=ON \         -DWITH_DISTRIBUTE=ON \         -DWITH_NCCL=OFFmake -j20
+cmake .. -DPY_VERSION=2.7 \         
+         -DCMAKE_BUILD_TYPE=Release \         
+         -DWITH_GPU=OFF \         
+         -DWITH_XPU=ON \         
+         -DON_INFER=ON \         
+         -DWITH_PYTHON=ON \         
+         -DWITH_AVX=ON \         
+         -DWITH_MKL=ON \         
+         -DWITH_MKLDNN=ON \         
+         -DWITH_XPU_BKCL=ON \         
+         -DWITH_DISTRIBUTE=ON \         
+         -DWITH_NCCL=OFF
+         
+make -j20
 ```
 
 **Phytium CPU+Kunlun XPU+Kylin release V10**
@@ -177,7 +203,25 @@ wget https://paddle-wheel.bj.bcebos.com/kunlun/xpu_sdk_v2.0.0.61.tar.gztar xvf x
 Execute cmake：
 
 ```
-ulimit -n 4096python_exe="/usr/bin/python3.7"export XPU_SDK_ROOT=$PWD/xpu_sdkcmake .. -DPY_VERSION=3.7 \         -DPYTHON_EXECUTABLE=$python_exe \         -DWITH_ARM=ON \         -DWITH_AARCH64=ON \         -DWITH_TESTING=OFF \         -DCMAKE_BUILD_TYPE=Release \         -DON_INFER=ON \         -DWITH_XBYAK=OFF \         -DWITH_XPU=ON \         -DWITH_GPU=OFF \         -DWITH_LITE=ON \         -DLITE_GIT_TAG=release/v2.9 \         -DXPU_SDK_ROOT=${XPU_SDK_ROOT}make VERBOSE=1 TARGET=ARMV8 -j32
+ulimit -n 4096
+python_exe="/usr/bin/python3.7"
+export XPU_SDK_ROOT=$PWD/xpu_sdk
+
+cmake .. -DPY_VERSION=3.7 \         
+         -DPYTHON_EXECUTABLE=$python_exe \         
+         -DWITH_ARM=ON \         
+         -DWITH_AARCH64=ON \         
+         -DWITH_TESTING=OFF \         
+         -DCMAKE_BUILD_TYPE=Release \         
+         -DON_INFER=ON \         
+         -DWITH_XBYAK=OFF \         
+         -DWITH_XPU=ON \         
+         -DWITH_GPU=OFF \         
+         -DWITH_LITE=ON \         
+         -DLITE_GIT_TAG=release/v2.9 \         
+         -DXPU_SDK_ROOT=${XPU_SDK_ROOT}
+         
+make VERBOSE=1 TARGET=ARMV8 -j32
 ```
 
 6. After successful compilation, enter the directory "Paddle/build/python/dist" and find the generated .whl package.
