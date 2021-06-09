@@ -8,7 +8,7 @@ lgamma
 
 
 
-计算输入x的gamma函数的自然对数并返回。
+计算输入 x 的 gamma 函数的自然对数并返回。
 
 .. math::
     out = log\Gamma(x)
