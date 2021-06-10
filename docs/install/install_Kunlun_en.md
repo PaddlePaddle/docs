@@ -1,24 +1,40 @@
 # Paddle installation for machines with Kunlun XPU card
 
-## Installation Method 1：pre-built Wheel package
+Paddle supports training and native inference on Kunlun XPU cards.  The latest version is 2.1. Installation methods are given below:
 
-Install the pre-built wheel package that supports Kunlun XPU. At present, this wheel package only supports the Ubuntu environment. For other environments, please choose Installation Method 2 to installing from source code compilation.
+## Installation Method 1：Pre-built Wheel Package
+
+Install the pre-built wheel package that supports Kunlun XPU. At present, Wheel packages are available in the following environments. For any other environment, please choose Installation Method 2 installation from source code compilation.
 
 #### Download the pre-built installation package
 
-Python3.7
+**Intel CPU+Kunlun XPU+CentOS 7**
 
-o  ```wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0rc1-cp37-cp37m-linux_x86_64.whl```
+The recommended Linux distribution is CentOS 7.
 
-o  ```python3.7 -m pip install -U paddlepaddle-2.0.0rc1-cp37-cp37m-linux_x86_64.whl ```
+For Python3.7
 
-Python2.7
+```
+wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.1.0-cp37-cp37m-linux_x86_64.whl
+```
 
-o  ```wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.0.0rc1-cp27-cp27mu-linux_x86_64.whl```
+```
+python3.7 -m pip install -U paddlepaddle-2.1.0-cp37-cp37m-linux_x86_64.whl
+```
 
-o  ```python2.7 -m pip install -U paddlepaddle-2.0.0rc1-cp27-cp27mu-linux_x86_64.whl```
+For Python3.6
 
+```
+wget https://paddle-wheel.bj.bcebos.com/kunlun/paddlepaddle-2.1.0-cp36-cp36m-linux_x86_64.whl
+```
 
+```
+python3.6 -m pip install -U ``paddlepaddle-2.1.0-cp36-cp36m-linux_x86_64.whl
+```
+
+**Phytium CPU+Kunlun XPU+Kylin release V10**
+
+To obtain the wheel package supporting this system environment, please contact us via official email: Paddle-better@baidu.com
 
 #### Verify installation
 
@@ -30,19 +46,31 @@ then input:
 
 ``` paddle.utils.run_check()```
 
-If "PaddlePaddle is installed successfully!" appears, it means you have successfully installed it.
-
+If "PaddlePaddle is installed successfully!" appears, you have successfully installed it.
 
 
 #### Training example
 
-Download and run the example:
 
-o  ```wget https://fleet.bj.bcebos.com/kunlun/mnist_example.py ```
+**Run a resnet50 training example**
 
-o  ```python mnist_example.py --use_device=xpu --num_epochs=5```
+Download the model :
 
-Note: There are three devices of cpu/gpu/xpu in the back end, which can be configured by yourself.
+```
+cd path_to_clone_PaddleClas
+git clone -b release/static https://github.com/PaddlePaddle/PaddleClas.git
+```
+
+Download from PaddleClas [github repo](https://github.com/PaddlePaddle/PaddleClas/tree/release/static) is also supported.
+
+Here is the command to start training task:
+
+```
+# FLAGS to set the number of Kunlun XPU. Two cards are selected here：
+export FLAGS_selected_xpus=0,1
+# start training
+python3.7 tools/static/train.py -c configs/quick_start/ResNet50_vd_finetune_kunlun.yaml -o use_gpu=False -o use_xpu=True -o is_distributed=False
+```
 
 
 #### How to uninstall
@@ -55,89 +83,154 @@ or
 
  ```pip3 uninstall paddlepaddle ```
 
-In addition, if there are environmental problems with the pre-built wheel package that supports Kunlun XPU card, it is recommended to use Installation Method 2 to compile the package that supports Kunlun XPU.
+In addition, if there are environmental problems with the pre-built wheel package, it is recommended to use Installation Method 2 to compile a package.
 
 
 
-## Installation Method 2：by compiling Paddle with Kunlun XPU support
+## Installation Method 2：Paddle Source Code Compilation
 
 #### Environment preparation
 
-- **CPU：Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz**
-- **OS version：Ubuntu 16.04.6 LTS**
-- **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
-- **pip or pip3 version 9.0.1+ (64 bit)**
-- **cmake version 3.10+**
-- **gcc/g++ version 8.2+**
+**Intel CPU+Kunlun XPU+CentOS 7**
 
-#### install steps
+- **CPU: Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz**
+- **OS version: CentOS 7.8.2003（ or other CentOS 7 versions）**
+- **Python version: 3.6/3.7 (64 bit)**
+- **pip or pip3 version: 9.0.1+ (64 bit)**
+- **cmake version: 3.15+**
+- **gcc/g++ version: 8.2+**
 
-For running Paddle on Kunlun XPU machine, we must first install the Paddle package compiled with Kunlun XPU support.
+**Phytium CPU+Kunlun XPU+Kylin release V10**
 
-##### **source code compilation**
+- **CPU: Phytium,FT-2000+/64**
+- **OS version: Kylin release V10 (SP1)/(Tercel)-aarch64-Build04/20200711**
+- **Python version: 3.6/3.7 (64 bit)**
+- **pip或pip3 version:  9.0.1+ (64 bit)**
+- **cmake version: 3.15+**
+- **gcc/g++ version: 8.2+**
 
-1. Paddle relies on cmake(version>=3.10) to manage compilation and build. If the source provided by the operating system includes the appropriate version of cmake, you can install it directly, otherwise refer to:
+#### Compilation and Installation Steps
 
-   o  ```wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz```
+1. Paddle relies on cmake(version>=3.15) to manage compilation and build. If the source provided by the operating system includes the appropriate version of cmake, you can move to next step, otherwise refer to:
 
-   o  ```tar -xzf cmake-3.16.8.tar.gz && cd cmake-3.16.8 ```
-
-   o  ```./bootstrap && make && sudo make install```
+```
+wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
+tar -xzf cmake-3.16.8.tar.gz && cd cmake-3.16.8
+./bootstrap && make && sudo make install
+```
 
 2. Paddle uses patchelf to modify the rpath of the dynamic library. If the source provided by the operating system includes patchelf, you can install it directly, otherwise source installation is required, please refer to:
 
-   o  ```./bootstrap.sh ```
-
-   o ``` ./configure ```
-
-   o ``` make ```
-
-   o ``` make check ```
-
-   o  ```sudo make install```
+```
+./bootstrap.sh
+./configure
+make
+make check
+sudo make install
+```
 
 3. Install Python dependency libraries according to [requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt).
 
-4. Clone the source code of Paddle to the Paddle folder in the current directory, and enter the Paddle directory
+4. Clone the source code of Paddle to folder "Paddle" in the current directory, and enter the directory.
 
-   o ``` git clone https://github.com/PaddlePaddle/Paddle.git```
+```
+git clone https://github.com/PaddlePaddle/Paddle.gitcd Paddle
+```
 
-   o  ```cd Paddle```
+Switch to a stable release branch for compilation, Paddle release/2.1 is suggtested：
 
-5. Switch to a stable release branch for compilation：
+```git checkout release/2.1```
 
-   ```git checkout [分支名]```
+5. Before compilation, create and enter a new directory called "build":
 
-   for example：
+```mkdir build && cd build```
 
-   ```git checkout release/2.0-rc1```
+For specific compilation options, please refer to [Compilation Options Table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile)
 
-   Currently only 2.0-rc1 and later branches support Kunlun XPU.
+**Intel CPU+Kunlun XPU+CentOS**
+During the linking process, too many files opened may exceed the system default limit and cause compilation errors. It is good to set the maximum number of opened files:
 
-6. Please create and enter a directory called build:
+```ulimit -n 2048```
 
-   ```mkdir build && cd build```
+Execute cmake ：
 
-7. There are many open files during the linking process, which may exceed the system default limit and cause compilation errors. Set the maximum number of open files in the process:
+For Python3
 
-   ```ulimit -n 4096```
+```
+cmake .. -DPY_VERSION=3.6 \         
+         -DCMAKE_BUILD_TYPE=Release \         
+         -DWITH_GPU=OFF \         
+         -DWITH_XPU=ON \         
+         -DON_INFER=ON \         
+         -DWITH_PYTHON=ON \         
+         -DWITH_AVX=ON \         
+         -DWITH_MKL=ON \         
+         -DWITH_MKLDNN=ON \         
+         -DWITH_XPU_BKCL=ON \         
+         -DWITH_DISTRIBUTE=ON \         
+         -DWITH_NCCL=OFF
+         
+make -j20
+```
 
-8. Execute cmake ：
-9. For the meaning of specific compilation options, please refer to [Compile Options Table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile)
+For Python2
 
-For Python2: ```cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release ```
+```
+cmake .. -DPY_VERSION=2.7 \         
+         -DCMAKE_BUILD_TYPE=Release \         
+         -DWITH_GPU=OFF \         
+         -DWITH_XPU=ON \         
+         -DON_INFER=ON \         
+         -DWITH_PYTHON=ON \         
+         -DWITH_AVX=ON \         
+         -DWITH_MKL=ON \         
+         -DWITH_MKLDNN=ON \         
+         -DWITH_XPU_BKCL=ON \         
+         -DWITH_DISTRIBUTE=ON \         
+         -DWITH_NCCL=OFF
+         
+make -j20
+```
 
-For Python3: ```cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=OFF -DWITH_XPU=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release ```
+**Phytium CPU+Kunlun XPU+Kylin release V10**
 
-10. Use the following command to compile：
+The XPU SDK shoud be downloaded first, please use the following command:
 
-    ```make -j$(nproc)```
+```
+wget https://paddle-wheel.bj.bcebos.com/kunlun/xpu_sdk_v2.0.0.61.tar.gztar xvf xpu_sdk_v2.0.0.61.tar.gzmv output xpu_sdk_v2.0.0.61 xpu_sdk
+```
 
-11. After successful compilation, enter the Paddle/build/python/dist directory and find the generated .whl package.
+Execute cmake：
 
-12. Copy the generated .whl package to the target machine with Kunlun XPU, and according to [requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt ) Install Python dependency libraries. (If the compiling machine is also a machine with Kunlun XPU card, skip this step)
+```
+ulimit -n 4096
+python_exe="/usr/bin/python3.7"
+export XPU_SDK_ROOT=$PWD/xpu_sdk
 
-13. Install the compiled .whl package on the machine with Kunlun XPU card: pip install -U (the name of the whl package) or pip3 install -U (the name of the whl package) Congratulations, so far you have completed the compilation of PaddlePaddle on the Kunlun XPU machine installation.
+cmake .. -DPY_VERSION=3.7 \         
+         -DPYTHON_EXECUTABLE=$python_exe \         
+         -DWITH_ARM=ON \         
+         -DWITH_AARCH64=ON \         
+         -DWITH_TESTING=OFF \         
+         -DCMAKE_BUILD_TYPE=Release \         
+         -DON_INFER=ON \         
+         -DWITH_XBYAK=OFF \         
+         -DWITH_XPU=ON \         
+         -DWITH_GPU=OFF \         
+         -DWITH_LITE=ON \         
+         -DLITE_GIT_TAG=release/v2.9 \         
+         -DXPU_SDK_ROOT=${XPU_SDK_ROOT}
+         
+make VERBOSE=1 TARGET=ARMV8 -j32
+```
+
+6. After successful compilation, enter the directory "Paddle/build/python/dist" and find the generated .whl package.
+
+7. Copy the generated .whl package to the target machine with Kunlun XPU, and install Python dependency libraries according to [requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt ).  Skip this step if on the target machine already.
+
+8. Install the compiled .whl package on the machine with Kunlun XPU card: pip install -U (the name of the whl package) or pip3 install -U (the name of the whl package).
+
+   Congratulations! So far you have completed the compilation of PaddlePaddle on the Kunlun XPU machine installation.
 
 
 
@@ -151,19 +244,27 @@ then input:
 
 ``` paddle.utils.run_check()```
 
-If "PaddlePaddle is installed successfully!" appears, it means you have successfully installed it.
+If "PaddlePaddle is installed successfully!" appears, you have successfully installed it.
 
 
 
 #### Training example
 
-Download and run the example:
+**Run a resnet50 training example**
 
-o  ```wget https://fleet.bj.bcebos.com/kunlun/mnist_example.py ```
+Download the model :
 
-o  ```python mnist_example.py --use_device=xpu --num_epochs=5```
+```
+cd path_to_clone_PaddleClasgit clone -b release/static https://github.com/PaddlePaddle/PaddleClas.git
+```
 
-Note: There are three devices of cpu/gpu/xpu in the back end, which can be configured by yourself.
+Download from PaddleClas [github repo](https://github.com/PaddlePaddle/PaddleClas/tree/release/static) is also supported.
+
+Here is the command to run the training task:
+
+```
+# FLAGS to set the number of Kunlun XPU. Two cards are selected here：export FLAGS_selected_xpus=0,1# start trainingpython3.7 tools/static/train.py -c configs/quick_start/ResNet50_vd_finetune_kunlun.yaml -o use_gpu=False -o use_xpu=True -o is_distributed=False
+```
 
 
 #### How to uninstall
@@ -175,14 +276,3 @@ Please use the following command to uninstall PaddlePaddle:
 or
 
  ```pip3 uninstall paddlepaddle ```
-
-
-## Appendix: Current models supported by Kunlun XPU adaptation
-
-|  Model Name  | Model Link |
-|  ----  | ----  |
-| ResNet50  | [Model Link](https://github.com/PaddlePaddle/PaddleClas/tree/dygraph/docs/zh_CN/extension/train_on_xpu.md) |
-| MobileNetv3  | [Model Link](https://github.com/PaddlePaddle/PaddleClas/tree/dygraph/docs/zh_CN/extension/train_on_xpu.md) |
-| Deeplabv3  | [Model Link](https://github.com/PaddlePaddle/PaddleSeg/blob/develop/legacy/docs/train_on_xpu.md) |
-| DQN  | [Model Link](https://github.com/PaddlePaddle/PARL/blob/develop/examples/DQN/README.md) |
-| Bertbase  | [Model Link](https://github.com/PaddlePaddle/models/blob/develop/PaddleNLP/legacy/pretrain_language_models/BERT/README.md) |
