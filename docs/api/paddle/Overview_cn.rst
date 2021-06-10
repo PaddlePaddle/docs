@@ -299,7 +299,7 @@ device相关
     " :ref:`paddle.get_cudnn_version <cn_api_get_cudnn_version>` ", "此函数返回cudnn的版本"
     " :ref:`paddle.is_compiled_with_cuda <cn_api_fluid_is_compiled_with_cuda>` ", "检查 whl 包是否可以被用来在GPU上运行模型"  
     " :ref:`paddle.is_compiled_with_xpu <cn_api_fluid_is_compiled_with_xpu>` ", "检查 whl 包是否可以被用来在Baidu Kunlun XPU上运行模型"
-    " :ref:`paddle.is_compiled_with_xpu <cn_api_fluid_is_compiled_with_xpu>` ", "检查 whl 包是否可以被用来在 NPU 上运行模型"
+    " :ref:`paddle.is_compiled_with_npu <cn_api_fluid_is_compiled_with_npu>` ", "检查 whl 包是否可以被用来在 NPU 上运行模型"
     " :ref:`paddle.get_device <cn_api_get_device>` ", "该功能返回当前程序运行的全局设备"
     " :ref:`paddle.set_device <cn_api_set_device>` ", "Paddle支持包括CPU和GPU在内的多种设备运行，设备可以通过字符串标识符表示，此功能可以指定OP运行的全局设备"
     " :ref:`paddle.XPUPlace <cn_api_fluid_XPUPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 的 Baidu Kunlun XPU 设备"

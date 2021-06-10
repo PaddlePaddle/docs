@@ -15,8 +15,4 @@ NPUPlace
 
 **代码示例**
 
-.. code-block:: python
-
-       import paddle
-
-       place = paddle.NPUPlace(0)
+COPY-FROM: paddle.NPUPlace
