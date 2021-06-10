@@ -15,11 +15,14 @@ TMP_FILE=/tmp/merge_pytorch_to_paddle_maptables.tmp
 
 echo -n > ${TARGET_FILE}
 for f in ${FILES_ARRAY[@]} ; do
+    echo -n > ${TMP_FILE}
     echo "downloading ${f} ..."
     if [ "${https_proxy}" != "" ] ; then
         curl -o ${TMP_FILE} -s -x ${https_proxy} ${f}
     else
         curl -o ${TMP_FILE} -s ${f}
     fi
+    echo >> ${TMP_FILE}
     cat ${TMP_FILE} >> $TARGET_FILE
 done
+
