@@ -31,6 +31,7 @@
 各接口关系如下图所示：
 
 .. image:: images/paddle_save_load_2.1.png
+
 .. image:: images/paddle_jit_save_load_2.1.png
 
 1.2 高阶API保存载入体系
