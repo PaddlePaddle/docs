@@ -12,7 +12,5 @@ is_compiled_with_npu
 
 **示例代码**
 
-.. code-block:: python
-    import paddle
-    support_npu  = paddle.is_compiled_with_npu()
+COPY-FROM: paddle.is_compiled_with_npu
 
