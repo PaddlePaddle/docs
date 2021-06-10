@@ -138,6 +138,7 @@ tensor创建相关
 
     " :ref:`paddle.arange <cn_api_paddle_tensor_arange>` ", "返回以步长 step 均匀分隔给定数值区间[start, end)的1-D Tensor，数据类型为 dtype"
     " :ref:`paddle.diag <cn_api_paddle_cn_diag>` ", "如果 x 是向量（1-D张量），则返回带有 x 元素作为对角线的2-D方阵;如果 x 是矩阵（2-D张量），则提取 x 的对角线元素，以1-D张量返回。"
+    " :ref:`paddle.diagflat <cn_api_paddle_diagflat>` ", "如果 x 是一维张量，则返回带有 x 元素作为对角线的二维方阵;如果 x 是大于等于二维的张量，则返回一个二维张量，其对角线元素为 x 在连续维度展开得到的一维张量的元素。"
     " :ref:`paddle.empty <cn_api_tensor_empty>` ", "创建形状大小为shape并且数据类型为dtype的Tensor"
     " :ref:`paddle.empty_like <cn_api_tensor_empty_like>` ", "根据 x 的shape和数据类型 dtype 创建未初始化的Tensor"
     " :ref:`paddle.eye <cn_api_paddle_tensor_eye>` ", "构建二维Tensor(主对角线元素为1，其他元素为0)"
