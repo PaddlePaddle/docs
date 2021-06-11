@@ -1,6 +1,23 @@
 # 框架概念
 
-## 一、动态图
+
+## 一、动转静
+
+动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。
+
+![image](./images/to_static_export.png)
+
+
+在处理逻辑上，动转静主要包含两个主要模块：
+
++ **代码层面**：将所有的 Paddle ``layers`` 调用**转为 ``Op`` ，从而生成完整的静态 ``Program``
++ **Tensor层面**：将所有的 ``Parameters`` 和 ``Buffers`` 转为**可导出的 ``Variable`` 参数**（ ``persistable=True`` ）
+
+关于动转静模块的具体原理，可以参考 [基本原理](./principle.md)；搭配 `paddle.jit.save` 接口导出预测模型的用法案例，可以参考 [案例解析](./case_analysis.md) 。
+
+如下两小节，将介绍动态图和静态图之间的差异性，以帮助理解动转静如何起到**桥梁作用**的。
+
+## 二、动态图
 
 2.0 版本后，Paddle 默认开启了动态图模式。动态图模式下编程组网更加灵活，也更 Pythonic 。在动态图下，模型代码是 **逐行被解释执行** 的。如：
 
@@ -54,7 +71,7 @@ sgd = paddle.optimizer.SGD(learning_rate=0.1, parameters=net.parameters())
                                                          所有待更新参数
 ```
 
-## 二、静态图
+## 三、静态图
 
 **静态图编程，总体上包含两个部分：**
 
@@ -162,17 +179,3 @@ paddle.save(main_program.state_dict(), para_path) # 导出为 .pdparams
 
 
 > 注：更多细节，请参考 [【官方文档】模型的存储与载入](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/02_paddle2.0_develop/08_model_save_load_cn.html)。
-
-
-
-## 四、动转静
-
-动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。
-
-![image](./images/to_static_export.png)
-
-
-在处理逻辑上，动转静主要包含两个主要模块：
-
-+ **代码层面**：将所有的 Paddle ``layers`` 调用**转为 ``Op`` ，从而生成完整的静态 ``Program``
-+ **Tensor层面**：将所有的 ``Parameters`` 和 ``Buffers`` 转为**可导出的 ``Variable`` 参数**（ ``persistable=True`` ）
