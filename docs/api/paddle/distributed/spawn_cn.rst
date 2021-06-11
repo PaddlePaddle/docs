@@ -8,7 +8,7 @@ spawn
 使用 ``spawn`` 方法启动多进程任务。
 
 .. note::
-    ``spawn`` 目前仅支持 GPU 和 XPU 的collective模式.
+    ``spawn`` 目前仅支持 GPU 和 XPU 的 collective 模式. GPU 和 XPU 的 collective 模式不能同时启动，因此 `gpus` 和 `xpus` 这两个参数不能同时配置。
 
 参数
 :::::::::
