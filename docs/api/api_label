@@ -179,6 +179,10 @@ paddle.logical_and	.. _api_paddle_logical_and:
 paddle.logical_not	.. _api_paddle_logical_not:
 paddle.logical_or	.. _api_paddle_logical_or:
 paddle.logical_xor	.. _api_paddle_logical_xor:
+paddle.bitwise_and	.. _api_paddle_bitwise_and:
+paddle.bitwise_not	.. _api_paddle_bitwise_not:
+paddle.bitwise_or	.. _api_paddle_bitwise_or:
+paddle.bitwise_xor	.. _api_paddle_bitwise_xor:
 paddle.logsumexp	.. _api_paddle_logsumexp:
 paddle.masked_select	.. _api_paddle_masked_select:
 paddle.matmul	.. _api_paddle_matmul:
