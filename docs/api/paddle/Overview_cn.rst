@@ -248,6 +248,7 @@ tensor元素操作相关（如：转置，reshape等）
     :widths: 10, 30
 
     " :ref:`paddle.broadcast_to <cn_api_tensor_broadcast_to>` ", "根据 shape 指定的形状广播 x ，广播后， x 的形状和 shape 指定的形状一致"
+    " :ref:`paddle.broadcast_tensors <cn_api_paddle_broadcast_tensors>` ", "对一组输入Tensor进行广播操作, 输入应符合广播规范"
     " :ref:`paddle.cast <cn_api_fluid_layers_cast>` ", "将输入的x的数据类型转换为 dtype 并输出"
     " :ref:`paddle.chunk <cn_api_tensor_cn_chunk>` ", "将输入Tensor分割成多个子Tensor"
     " :ref:`paddle.concat <cn_api_tensor_concat>` ", "对输入沿 axis 轴进行联结，返回一个新的Tensor"
