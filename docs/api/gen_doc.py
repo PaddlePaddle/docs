@@ -405,8 +405,6 @@ def set_api_sketch():
     for module in modulelist:
         if hasattr(module, '__all__'):
             old_all = module.__all__
-        elif hasattr(module, 'tensor_method_func'):
-            old_all = module.tensor_method_func
         else:
             old_all = []
             dirall = dir(module)
@@ -414,10 +412,15 @@ def set_api_sketch():
                 if item.startswith('__'):
                     continue
                 old_all.append(item)
-        if module.__name__ == 'paddle.tensor':
-            alldict.update({'paddle.Tensor': old_all})
-        else:
-            alldict.update({module.__name__: old_all})
+        alldict.update({module.__name__: old_all})
+
+    old_all = []
+    dirall = dir(paddle.Tensor)
+    for item in dirall:
+        if item.startswith('_'):
+            continue
+        old_all.append(item)
+    alldict.update({'paddle.Tensor': old_all})
 
     all_api_found = {}
     for m, apis in alldict.items():
