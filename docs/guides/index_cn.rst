@@ -15,6 +15,7 @@
 - `预测部署 <./05_inference_deployment/index_cn.html>`_ : 介绍如何使用训练好的模型进行预测。
 - `分布式训练 <./06_distributed_training/index_cn.html>`_ : 介绍如何使用分布式进行训练。
 - `自定义算子 <./07_new_op/index_cn.html>`_ : 介绍飞桨框架自定义算子的方法。
+- `性能调优 <./performance_improving/index_cn.html>`_ : 介绍飞桨框架性能调优的方法。
 - `算子映射 <./08_api_mapping/index_cn.html>`_ : 介绍飞桨框架API算子的映射信息。
 - `硬件支持 <./09_hardware_support/index_cn.html>`_ : 介绍飞桨框架硬件支持相关信息。
 - `参与开发 <./10_contribution/index_cn.html>`_ : 介绍如何参与飞桨框架的开发。
@@ -29,6 +30,7 @@
     05_inference_deployment/index_cn.rst
     06_distributed_training/index_cn.rst
     07_new_op/index_cn.rst
+    performance_improving/index_cn.rst
     08_api_mapping/index_cn.rst
     09_hardware_support/index_cn.rst
     10_contribution/index_cn.rst

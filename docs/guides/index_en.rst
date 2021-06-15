@@ -15,6 +15,7 @@ Let's start with studying basic concept of PaddlePaddle:
 - `Inference and Deployment <./05_inference_deployment/index_en.html>`_ : Introduce the method of using the trained model to inference.
 - `Distributed Training <./06_distributed_training/index_en.html>`_ : Introduce how the PaddlePaddle uses distributed training
 - `Customize OP <./07_new_op/index_en.html>`_ :  Introduce how to customize OP for PaddlePaddle.
+- `Performance Improving <./performance_improving/index_en.html>`_ : Introduce how to improve performance of PaddlePaddle.
 - `Contribution <./10_contribution/index_en.html>`_: Introduce how to contribute for PaddlePaddle.
 
 ..  toctree::
@@ -26,4 +27,5 @@ Let's start with studying basic concept of PaddlePaddle:
     05_inference_deployment/index_en.rst
     06_distributed_training/index_en.rst
     07_new_op/index_en.rst
+    performance_improving/index_en.rst
     10_contribution/index_en.rst
