@@ -384,6 +384,59 @@ def set_display_attr_of_apis():
                 logger.info("set {} display to False".format(id_api))
 
 
+def set_api_sketch():
+    """
+    set the in_api_sktech attr. may replace the set_display_attr_of_apis.
+    """
+    global api_info_dict
+    modulelist = [
+        paddle, paddle.amp, paddle.nn, paddle.nn.functional,
+        paddle.nn.initializer, paddle.nn.utils, paddle.tensor, paddle.static,
+        paddle.static.nn, paddle.io, paddle.jit, paddle.metric,
+        paddle.distribution, paddle.optimizer, paddle.optimizer.lr,
+        paddle.regularizer, paddle.text, paddle.utils, paddle.utils.download,
+        paddle.utils.profiler, paddle.sysconfig, paddle.vision,
+        paddle.distributed, paddle.distributed.fleet,
+        paddle.distributed.fleet.utils, paddle.distributed.parallel,
+        paddle.distributed.utils, paddle.callbacks, paddle.hub
+    ]
+
+    alldict = {}
+    for module in modulelist:
+        if hasattr(module, '__all__'):
+            old_all = module.__all__
+        elif hasattr(module, 'tensor_method_func'):
+            old_all = module.tensor_method_func
+        else:
+            old_all = []
+            dirall = dir(module)
+            for item in dirall:
+                if item.startswith('__'):
+                    continue
+                old_all.append(item)
+        if module.__name__ == 'paddle.tensor':
+            alldict.update({'paddle.Tensor': old_all})
+        else:
+            alldict.update({module.__name__: old_all})
+
+    all_api_found = {}
+    for m, apis in alldict.items():
+        for api in apis:
+            all_api_found['{}.{}'.format(m, api)] = False
+
+    for api in all_api_found.keys():
+        for id_api in api_info_dict.keys():
+            if ('all_names' in api_info_dict[id_api]) and (
+                    api in api_info_dict[id_api]['all_names']):
+                all_api_found[api] = True
+                api_info_dict[id_api]['in_api_sketch'] = True
+
+    api_not_in_dict = [api for api in all_api_found if not all_api_found[api]]
+    if api_not_in_dict:
+        logger.warning("some apis are not in api_info_dict: %s",
+                       str(api_not_in_dict))
+
+
 # step fill field: referenced_from
 def set_referenced_from_attr():
     """
@@ -1138,6 +1191,7 @@ if __name__ == "__main__":
         set_source_code_attrs()
         set_referenced_from_attr()
         insert_suggested_names()
+        set_api_sketch()
         if ('__all__' not in realattrs) or ('__all__' in realattrs and
                                             realattr == '__all__'):
             if args.gen_rst:

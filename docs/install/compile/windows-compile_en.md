@@ -5,7 +5,7 @@
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
 * **GPU Version support CUDA 10.1/10.2/11.2, and only support single GPU**
 * **Python version 3.6+/3.7+/3.8+/3.9+(64bit)**
-* **pip version 20.2.2+ (64bit)**
+* **pip version 20.2.2 or above (64bit)**
 * **Visual Studio 2015 Update3**
 
 ## Choose CPU/GPU

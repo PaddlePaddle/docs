@@ -43,7 +43,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 * Python requires version 3.6/3.7/3.8/3.9
-* Python needs pip, and pip requires version 20.2.2+
+* Python needs pip, and pip requires version 20.2.2 or above
 * Python and pip requires 64-bit
 
 4. PaddlePaddle's support for GPU:
@@ -138,7 +138,7 @@ This section describes how to use pip to install.
     
         python --version
     
-5. Check the version of pip and confirm it is 20.2.2+  
+5. Check the version of pip and confirm it is 20.2.2 or above  
 
     ::
     

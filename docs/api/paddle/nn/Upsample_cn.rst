@@ -146,7 +146,9 @@ https://en.wikipedia.org/wiki/Trilinear_interpolation
 有关双三次插值的详细信息，请参阅维基百科：
 https://en.wikipedia.org/wiki/Bicubic_interpolation
 
-参数:
+参数
+:::::::::
+
     - **size** (list|tuple|Variable|None) - 输出Tensor，输入为3D张量时，形状为为(out_w)的1-D Tensor。输入为4D张量时，形状为为(out_h, out_w)的2-D Tensor。输入为5-D Tensor时，形状为(out_d, out_h, out_w)的3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
     - **scale_factor** (float|Tensor|list|tuple|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。
 如果scale_factor是一个list或tuple，它必须与输入的shape匹配。
@@ -159,29 +161,20 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 返回：3-D Tensor，形状为 (num_batches, channels, out_w) ；4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)；或者5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
 
 
-抛出异常：
-    - :code:`TypeError` - out_shape应该是一个列表、元组或变量。
-    - :code:`TypeError` - actual_shape应该是变量或None。
-    - :code:`ValueError` - image_resize的"resample"只能是"LINEAR"或"BILINEAR"或"TRILINEAR"或"NEAREST"或"BICUBIC"。
-    - :code:`ValueError` - out_shape 和 scale 不可同时为 None。
-    - :code:`ValueError` - out_shape 的长度必须为2如果输入是4D张量。
-    - :code:`ValueError` - out_shape 的长度必须为3如果输入是5D张量。
-    - :code:`ValueError` - scale应大于0。
-    - :code:`TypeError`  - align_corners 应为bool型。
-    - :code:`ValueError` - align_mode 只能取 ‘0’ 或 ‘1’。
-    - :code:`ValueError` - data_format 只能取 ‘NCW’、 ‘NCHW’、‘NHWC’、‘NCDHW’ 或者 ‘NDHWC’。
-
-
-**代码示例**
+代码示例
+:::::::::
 
 ..  code-block:: python
 
+
     import paddle
+    import paddle.nn as nn
     import numpy as np
 
-    upsample_op = paddle.nn.Upsample(out_shape=[12,12])
-    input_data = paddle.rand(shape=(2,3,6,10))
+    input_data = np.random.rand(2,3,6,10).astype("float32")
+    upsample_out  = paddle.nn.Upsample(size=[12,12])
 
-    output = upsample_op(input_data)
+    input = paddle.to_tensor(input_data)
+    output = upsample_out(x=input)
     print(output.shape)
     # [2L, 3L, 12L, 12L]

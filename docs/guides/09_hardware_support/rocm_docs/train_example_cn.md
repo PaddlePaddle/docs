@@ -1,6 +1,6 @@
 # 飞桨框架ROCm版训练示例
 
-使用海光CPU与DCU进行训练与Nvidia GPU相同，当前Paddle ROCm版本完全兼容Paddle CUDA版本的API，直接使用原有的GPU训练命令和参数即可。
+使用海光CPU/DCU进行训练与使用Intel CPU/Nvidia GPU训练相同，当前Paddle ROCm版本完全兼容Paddle CUDA版本的API，直接使用原有的GPU训练命令和参数即可。
 
 #### ResNet50训练示例
 

@@ -5,7 +5,7 @@
 * **处理器：Loongson-3A R4 (Loongson-3A4000)**
 * **操作系统：Loongnix release 1.0**
 * **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
-* **pip 或 pip3 版本 20.2.2+ (64 bit)**
+* **pip 或 pip3 版本 20.2.2或更高版本 (64 bit)**
 
 本文以Loongson-3A4000为例，介绍Paddle在MIPS架构下的源码编译。
 
