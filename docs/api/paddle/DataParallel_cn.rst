@@ -100,7 +100,7 @@ DataParallel
 
     dist.init_parallel_env()
 
-    emb = paddle.nn.Embedding([10, 10])
+    emb = paddle.nn.Embedding(10, 10)
     emb = paddle.DataParallel(emb)
 
     state_dict = emb.state_dict()
