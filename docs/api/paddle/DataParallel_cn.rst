@@ -94,13 +94,14 @@ DataParallel
 
 .. code-block:: python
 
+    # required: distributed
     import paddle
     import paddle.distributed as dist
 
     dist.init_parallel_env()
 
-    emb = fluid.dygraph.Embedding([10, 10])
-    emb = fluid.dygraph.DataParallel(emb)
+    emb = paddle.nn.Embedding([10, 10])
+    emb = paddle.DataParallel(emb)
 
     state_dict = emb.state_dict()
     paddle.save(state_dict, "paddle_dy.pdparams")
@@ -119,13 +120,14 @@ DataParallel
 
 .. code-block:: python
 
+    # required: distributed
     import paddle
     import paddle.distributed as dist
 
     dist.init_parallel_env()
 
     emb = paddle.nn.Embedding(10, 10)
-    emb = fluid.dygraph.DataParallel(emb)
+    emb = paddle.DataParallel(emb)
 
     state_dict = emb.state_dict()
     paddle.save(state_dict, "paddle_dy.pdparams")
