@@ -32,7 +32,7 @@
 
 ```bash
 RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
-  [Hint: Expected ctx->HasInputs("Filter") == true, but received ctx->HasInputs("Filter"):0 != true:1.] 
+  [Hint: Expected ctx->HasInputs("Filter") == true, but received ctx->HasInputs("Filter"):0 != true:1.]
   [operator < conv2d > error]
 ```
 
@@ -52,7 +52,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 **报错信息大致如下：**
 
 ```bash
-[Hint: Expected input_dims[i] == input_dims[0], but received input_dims[i]:-1, -1 != input_dims[0]:16, -1.] 
+[Hint: Expected input_dims[i] == input_dims[0], but received input_dims[i]:-1, -1 != input_dims[0]:16, -1.]
   [operator < xxx_op > error]
 ```
 
@@ -70,7 +70,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 ### 2.3 desc->CheckGuards() == true
 
 ```bash
-[Hint: Expected desc->CheckGuards() == true, but received desc->CheckGuards():0 != true: 1.] 
+[Hint: Expected desc->CheckGuards() == true, but received desc->CheckGuards():0 != true: 1.]
 ```
 
 此类问题的原因一般是：
@@ -101,34 +101,35 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 动态图下，提供了如下几种 container 的容器类：
 
 + [ParameterList](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ParameterList_cn.html#parameterlist)
-	```python
-	class MyLayer(paddle.nn.Layer):
-	    def __init__(self, num_stacked_param):
-	        super(MyLayer, self).__init__()
-	        
-	        w1 = paddle.create_parameter(shape=[2, 2], dtype='float32')
-	        w2 = paddle.create_parameter(shape=[2], dtype='float32')
-	        
-	        # 此用法下，MyLayer.parameters() 返回为空
-	        self.params = [w1, w2]                            # <----- 错误用法
-	        
-	        self.params = paddle.nn.ParameterList([w1, w2])   # <----- 正确用法
-	```
-	
+    ```python
+    class MyLayer(paddle.nn.Layer):
+        def __init__(self, num_stacked_param):
+            super(MyLayer, self).__init__()
+
+            w1 = paddle.create_parameter(shape=[2, 2], dtype='float32')
+            w2 = paddle.create_parameter(shape=[2], dtype='float32')
+
+            # 此用法下，MyLayer.parameters() 返回为空
+            self.params = [w1, w2]                            # <----- 错误用法
+
+            self.params = paddle.nn.ParameterList([w1, w2])   # <----- 正确用法
+    ```
+
 + [LayerList](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LayerList_cn.html#layerlist)
-	```python
-	class MyLayer(paddle.nn.Layer):
-	    def __init__(self):
-	        super(MyLayer, self).__init__()
-	        
-	        layer1 = paddle.nn.Linear(10, 10)
-	        layer2 = paddle.nn.Linear(10, 16)
-	        
-	        # 此用法下，MyLayer.parameters() 返回为空
-	        self.linears = [layer1, layer2]                        # <----- 错误用法
-	        
-	        self.linears = paddle.nn.LayerList([layer1, layer2])   # <----- 正确用法
-	```
+    ```python
+    class MyLayer(paddle.nn.Layer):
+        def __init__(self):
+            super(MyLayer, self).__init__()
+
+            layer1 = paddle.nn.Linear(10, 10)
+            layer2 = paddle.nn.Linear(10, 16)
+
+            # 此用法下，MyLayer.parameters() 返回为空
+            self.linears = [layer1, layer2]                        # <----- 错误用法
+
+            self.linears = paddle.nn.LayerList([layer1, layer2])   # <----- 正确用法
+    ```
+
 
 + [Sequential](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Sequential_cn.html#sequential)
 

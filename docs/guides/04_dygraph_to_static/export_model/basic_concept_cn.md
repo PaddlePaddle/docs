@@ -10,6 +10,7 @@
 ![image](./images/to_static_export.png)
 
 
+
 在处理逻辑上，动转静主要包含两个主要模块：
 
 + **代码层面**：将所有的 Paddle ``layers`` 调用**转为 ``Op`` ，从而生成完整的静态 ``Program``
@@ -48,7 +49,7 @@ class SimpleNet(paddle.nn.Layer):
     def __init__(self):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
-        
+
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
@@ -61,8 +62,8 @@ net = SimpleNet()
 
 + 创建一个 ``Linear`` 对象，记录到 ``self._sub_layer`` 中（dict 类型）
 
-	+ 创建一个 ``ParamBase`` 类型的 ``weight`` ，记录到 ``self._parameters`` 中（dict类型）
-	+ 创建一个 ``ParamBase`` 类型的 ``bias`` ，记录到 ``self._parameters`` 中
+    + 创建一个 ``ParamBase`` 类型的 ``weight`` ，记录到 ``self._parameters`` 中（dict类型）
+    + 创建一个 ``ParamBase`` 类型的 ``bias`` ，记录到 ``self._parameters`` 中
 
 一个复杂模型可能包含很多子类，框架层就是通过 ``self._sub_layer`` 和 ``self._parameters`` 两个核心数据结构关联起来的，这也是后续动转静原理上操作的两个核心属性。
 
@@ -77,7 +78,7 @@ sgd = paddle.optimizer.SGD(learning_rate=0.1, parameters=net.parameters())
 
 **静态图编程，总体上包含两个部分：**
 
-+ **编译期**：组合各个 ``Layer`` 接口，搭建网络结构，执行每个 Op 的 ``InferShape`` 逻辑，最终生成 ``Program`` 
++ **编译期**：组合各个 ``Layer`` 接口，搭建网络结构，执行每个 Op 的 ``InferShape`` 逻辑，最终生成 ``Program``
 + **执行期**：构建执行器，输入数据，依次执行每个 ``OpKernel`` ，进行训练和评估
 
 在静态图编译期，变量 ``Variable`` 只是**一个符号化表示**，并不像动态图 ``Tensor`` 那样持有实际数据。
@@ -133,8 +134,8 @@ print(paddle.static.default_main_program())
 
 + **Program**：与 ``Model`` 对应，描述网络的整体结构，内含一个或多个 ``Block``
 + **Block**
-	+ **global_block**：全局 ``Block`` ，包含所有 ``Parameters`` 、全部 ``Ops`` 和 ``Variables``
-	+ **sub_block**：控制流，包含控制流分支内的所有 ``Ops`` 和必要的 ``Variables``
+    + **global_block**：全局 ``Block`` ，包含所有 ``Parameters`` 、全部 ``Ops`` 和 ``Variables``
+    + **sub_block**：控制流，包含控制流分支内的所有 ``Ops`` 和必要的 ``Variables``
 + **OpDesc**：对应每个前端 API 的计算逻辑描述
 + **Variable**：对应所有的数据变量，如 ``Parameter`` ，临时中间变量等，全局唯一 ``name`` 。
 

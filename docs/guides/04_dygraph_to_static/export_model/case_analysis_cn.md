@@ -5,23 +5,24 @@
 
 ## 一、 @to_static 放在哪里？
 
+
 ``@to_static`` 装饰器开启动转静功能的唯一接口，支持两种使用方式：
 
 + 方式一（推荐用法）：显式地通过 ``model = to_static(model)`` 调用
     ```python
     from paddle.jit import to_static
-    
+
     model = SimpleNet()
     model = to_static(model, input_spec=[x_spec, y_spec])
     ```
 
 
 +  方式二：在组网代码的 ``forward`` 函数处装饰
-	```python
+    ```python
     class SimpleNet(paddle.nn.Layer):
         def __init__(self, ...):
             # ....
-        
+
         @to_static
         def forward(self, x, y):
             # ....
@@ -39,8 +40,8 @@
 + 默认是将 ``model`` 的 ``forward`` 函数作为入口函数
 
 + 建议模型搭建时，尽量考虑将预测主逻辑放到 ``forward`` 函数中
-	+ 将训练独有的逻辑放到 子函数 中，通过 ``if self.training`` 来控制
-	+ 最大程度抽离 训练和预测 的逻辑为 **公共子函数**
+    + 将训练独有的逻辑放到 子函数 中，通过 ``if self.training`` 来控制
+    + 最大程度抽离 训练和预测 的逻辑为 **公共子函数**
 
 
 ## 二、何时指定 InputSpec?
@@ -50,30 +51,30 @@
 
 + **方式一（推荐）**：在 ``@to_static`` 接口中指定 ``input_spec`` 参数，显式地提供每个输入 ``Variable`` 的 ``Placeholder`` 信息
 
-	```python
+    ```python
     model = SimpleNet()
-    
+
     x_spec = InputSpec(shape=[None, 10], name='x')  # 动态 shape
     y_spec = InputSpec(shape=[3], name='y')
-    
+
     net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])
     ```
 
 + **方式二**：输入具体的 ``Tensor(s)`` 数据，显式地执行一次前向，以此 ``Tensor(s)`` 的 ``shape`` 和 ``dtype`` 作为 ``Placeholder`` 信息
-	```python
+    ```python
     # 假设：模型 forward 定义处已经被 @to_static 装饰了
     model = SimpleNet()
-    
+
     x = paddle.randn([4, 10], 'float32')
     y = paddle.randn([3], 'float32')
-    
+
     out = model(x, y)     # 执行一次前向，触发 Program 的转换
     paddle.jit.save(model, './simple_net')
     ```
-    
-	+ **优点**：直接用输入数据，简单方便
-	+ **缺点**：无法指定动态 shape，如 batch_size，seq_len 等。
-	
+
+    + **优点**：直接用输入数据，简单方便
+    + **缺点**：无法指定动态 shape，如 batch_size，seq_len 等。
+
 
 
 > 注：InputSpec 接口的高阶用法，请参看 [【官方文档】InputSpec 功能介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/04_dygraph_to_static/input_spec_cn.html)
@@ -94,12 +95,12 @@
 ```python
 def forward(self, x):
     out = self.linear(x)  # [bs, 3]
-    
+
     # 以下将 tensor 转为了 numpy 进行一系列操作
     x_data = x.numpy().astype('float32')  # [bs, 10]
     weight = np.random.randn([10,3])
     mask = paddle.to_tensor(x_data * weight)  # 此处又转回了 Tensor
-    
+
     out = out * mask
     return out
 ```
@@ -110,10 +111,10 @@ def forward(self, x):
 ```python
 def forward(self, x):
     out = self.linear(x)  # [bs, 3]
-    
+
     weight = paddle.randn([10,3], 'float32')
     mask = x * weight
-    
+
     out = out * mask
     return out
 ```
@@ -152,14 +153,14 @@ class SimpleNet(paddle.nn.Layer):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.mask = np.array(mask) # 假设为 [0, 1, 1]
-    
+
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
 
         mask = paddle.to_tensor(self.mask)  # <---- 每次都会调用 assign_op
-        out = out * mask   
-        
+        out = out * mask  
+
         return out
 ```
 
@@ -171,13 +172,13 @@ class SimpleNet(paddle.nn.Layer):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.mask = paddle.to_tensor(mask) # <---- 转为 buffers
-    
+
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
-        
+
         out = out * self.mask              # <--- 省去重复的assign_op，性能更佳
-        
+
         return out
 ```
 
@@ -204,11 +205,11 @@ class SimpleNet(object):                       # <---- 继承 Object
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)  # <---- Linear 参数永远都不会被更新
         self.mask = paddle.to_tensor(mask)     # <---- mask 可能未保存到 .pdparams 文件中
-    
+
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
-        out = out * self.mask    
+        out = out * self.mask  
         return out
 ```
 
@@ -227,17 +228,17 @@ class SimpleNet(object):                       # <---- 继承 Object
 模型的 ``forward`` 函数的入参可能除了 ``Tensor`` 类型之外，还有很多其他复杂的类型，如 str、float、bool 等非 Tensor 类型。
 
 ```python
-class SimpleNet(paddle.nn.Layer): 
+class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.mask = paddle.to_tensor(mask)
-    
+
     def forward(self, x, y， cmd='bn', rate=0.1, flag=False):  # <--- 默认参数
         out = self.linear(x)
         out = out + y
         # .... (略)
-        out = out * self.mask    
+        out = out * self.mask  
         return out
 ```
 
@@ -258,7 +259,7 @@ def forward(self, x):
         out = paddle.mean(x)
     else:
         out = paddle.sum(x)
-    
+
     return out
 
 model = SimpleNet()
@@ -283,7 +284,7 @@ def true_fn_0(out):
 
 def false_fn_0(out):
     # ....
-    return out 
+    return out
 
 out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (out,))
 ^          ^                   ^             ^           ^        ^      ^      ^
@@ -308,7 +309,7 @@ def forward(self, x)：
     outs = []                  # <------ list 类型
     for i in range(bs):        # <------ 依赖 Tensor 的 for
         outs.append(x)         # <------ list.append
-    
+
     return outs
 ```
 
@@ -326,13 +327,13 @@ def forward(x):
 
     def for_loop_body_0(outs, bs, i, x):
         paddle.tensor.array_write(x=x, i=paddle.tensor.array_length(outs),
-            array=outs)                                   # <---- list.append() 转为 array_write 
+            array=outs)                                   # <---- list.append() 转为 array_write
         i += 1
         return outs, bs, i, x
-    
+
     [outs, bs, i, x] = paddle.jit.dy2static.convert_while_loop(
         for_loop_condition_0, for_loop_body_0, [outs, bs, i, x])
-        
+
     return outs
 ```
 
@@ -344,14 +345,14 @@ def forward(x):
 
 + 暂不支持依赖 Tensor 的控制流中，使用多层嵌套的 ``list.append`` 操作
 
-	```python
+    ```python
     def forward(x):
         bs = paddle.shape(x)[0]
         outs = [[]]                # <---- 多层嵌套 list
-        
+
         for i in range(bs):
             outs[0].append(x)
-        
+
         return outs
     ```
 
@@ -374,7 +375,7 @@ def foward(self, x)：
     outs = []
     for i in range(bs):
         outs.append(x)
-    
+
     return outs
 ```
 

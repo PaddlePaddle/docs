@@ -13,7 +13,7 @@ class SimpleNet(paddle.nn.Layer):
     def __init__(self):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
-    
+
     # 方式一：装饰 forward 函数
     @to_static
     def forward(self, x, y):
@@ -38,7 +38,7 @@ class Linear(...):
         # ...(略)
 
     def forward(self, input):
-    
+
         if in_dygraph_mode():  # 动态图分支
             core.ops.matmul(input, self.weight, pre_bias, ...)
             return out
@@ -69,21 +69,21 @@ class Linear(...):
 技术实现上，我们选取了框架层面两个地方作为类型**转换的入口**：
 
 + ``Paddle.nn.Layer`` 基类的 ``__call__`` 函数
-	```python
+    ```python
     def __call__(self, *inputs, **kwargs):
         # param_guard 会对将 Tensor 类型的 Param 和 buffer 转为静态图 Variable
         with param_guard(self._parameters), param_guard(self._buffers):
             # ... forward_pre_hook 逻辑
-            
+
             outputs = self.forward(*inputs, **kwargs) # 此处为forward函数
 
             # ... forward_post_hook 逻辑
-        
+
             return outpus
     ```
 
 + ``Block.append_op`` 函数中，生成 ``Op`` 之前
-	```python
+    ```python
     def append_op(self, *args, **kwargs):
         if in_dygraph_mode():
             # ... (动态图分支)
@@ -137,7 +137,7 @@ class SimpleNet(paddle.nn.Layer):
     def __init__(self):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
-    
+
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
@@ -154,6 +154,7 @@ net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
 
 
 在导出模型时，需要显式地指定输入 ``Tensor`` 的**签名信息**，优势是：
+
 
 + 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度
 + 可以指定 Placeholder 的 ``name`` ，方面预测时根据 ``name`` 输入数据
@@ -175,13 +176,13 @@ class SimpleNet(paddle.nn.Layer):
     def __init__(self):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
-    
+
     @to_static
     def forward(self, x, y):
         out = self.my_fc(x)       # <---- self.other_func
         out = add_two(out, y)     # <---- other plain func
         return out
-    
+
     def my_fc(self, x):
         out = self.linear(x)
         return out
@@ -269,10 +270,10 @@ def not_depend_tensor_if(x, label=None):
 
     def false_fn_1(out):        # false 分支
         return out
-    
+
     out = paddle.jit.dy2static.convert_ifelse(label is not None, true_fn_1,
         false_fn_1, (label, out), (out,), (out,))
-        
+
     return out
 """
 ```
@@ -302,10 +303,10 @@ def depend_tensor_if(x):
     def false_fn_0(x):     # false 分支
         out = x + 1
         return out
-        
+
     out = paddle.jit.dy2static.convert_ifelse(paddle.mean(x) > 5.0,
         true_fn_0, false_fn_0, (x,), (x,), (out,))
-        
+
     return out
 """
 ```
@@ -349,7 +350,7 @@ def not_depend_tensor_while(x):
         a += 1
 
     return x
-    
+
 print(to_static(not_depend_tensor_while).code)
 """
 def not_depend_tensor_while(x):
@@ -362,10 +363,10 @@ def not_depend_tensor_while(x):
         x = x + 1
         a += 1
         return a, x
-        
+
     [a, x] = paddle.jit.dy2static.convert_while_loop(while_condition_0,
         while_body_0, [a, x])
-        
+
     return x
 """
 ```
@@ -396,7 +397,7 @@ def depend_tensor_while(x):
         x = x + 1
         i += 1
         return x, i, bs
-        
+
     [x, i, bs] = paddle.jit.dy2static.convert_while_loop(for_loop_condition_0,
         for_loop_body_0, [x, i, bs])
     return x
@@ -425,10 +426,10 @@ class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
-        
+
         # mask value，此处不会保存到预测模型文件中
         self.mask = mask # 假设为 [0, 1, 1]
-    
+
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
@@ -445,10 +446,10 @@ class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
-        
+
         # 此处的 mask 会当做一个 buffer Tensor，保存到 .pdparam 文件
         self.mask = paddle.to_tensor(mask) # 假设为 [0, 1, 1]
-    
+
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
