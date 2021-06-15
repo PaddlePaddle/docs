@@ -1071,7 +1071,7 @@ paddle.vision.pad	.. _api_paddle_vision_pad:
 paddle.vision.vflip	.. _api_paddle_vision_vflip:
 paddle.vision.RandomVerticalFlip	.. _api_paddle_vision_RandomVerticalFlip:
 paddle.vision.adjust_contrast	.. _api_paddle_vision_adjust_contrast:
-paddle.vision.LeNet	.. _api_paddle_vision_LeNet:
+paddle.vision.models.LeNet	.. _api_paddle_vision_models_LeNet:
 paddle.vision.Compose	.. _api_paddle_vision_Compose:
 paddle.vision.vgg13	.. _api_paddle_vision_vgg13:
 paddle.vision.BaseTransform	.. _api_paddle_vision_BaseTransform:

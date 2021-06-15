@@ -31,7 +31,7 @@ ModelCheckpoint
     ])
     train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=transform)
 
-    lenet = paddle.vision.LeNet()
+    lenet = paddle.vision.models.LeNet()
     model = paddle.Model(lenet,
         inputs, labels)
 
