@@ -108,39 +108,37 @@ no changes added to commit (use "git add" and/or "git commit -a")
    
 ```
 ➜  pre-commit
-CRLF end-lines remover...............................(no files to check)Skipped
-yapf.....................................................................Passed
-Check for added large files..............................................Passed
+yapf.................................................(no files to check)Skipped
 Check for merge conflicts................................................Passed
 Check for broken symlinks................................................Passed
 Detect Private Key...................................(no files to check)Skipped
-Fix End of Files.........................................................Passed
-clang-format.........................................(no files to check)Skipped
-cpplint..............................................(no files to check)Skipped
-pylint...................................................................Passed
-copyright_checker........................................................Passed
+Fix End of Files.....................................(no files to check)Skipped
+Trim Trailing Whitespace.............................(no files to check)Skipped
+CRLF end-lines checker...............................(no files to check)Skipped
+CRLF end-lines remover...............................(no files to check)Skipped
+No-tabs checker......................................(no files to check)Skipped
+Tabs remover.........................................(no files to check)Skipped
+convert jinja2 into html.............................(no files to check)Skipped
+convert-markdown-into-html...........................(no files to check)Skipped
 ```
   全部Passed 或 Skipped后，即可进入下一步。如果有 Failed 文件，则需要按照规范，修改出现Failed 的文件后，重新 ``git add -> pre-commit`` ，直至没有 Failed 文件。
 ```
 ➜  pre-commit
-CRLF end-lines remover...............................(no files to check)Skipped
-yapf.....................................................................Failed
-- hook id: yapf
-- files were modified by this hook
-Check for added large files..............................................Passed
+yapf.................................................(no files to check)Skipped
 Check for merge conflicts................................................Passed
 Check for broken symlinks................................................Passed
-Detect Private Key...................................(no files to check)Skipped
-Fix End of Files.........................................................Passed
-clang-format.........................................(no files to check)Skipped
-cpplint..............................................(no files to check)Skipped
-pylint...................................................................Failed
-- hook id: pylint-doc-string
-- exit code: 127
-
-./tools/codestyle/pylint_pre_commit.hook: line 11: pylint: command not found
-
-copyright_checker........................................................Passed
+Detect Private Key.......................................................Passed
+Fix End of Files.........................................................Failed
+- hook id: end-of-file-fixer
+- exit code: 1
+- files were modified by this hook
+Trim Trailing Whitespace.................................................Passed
+CRLF end-lines checker...................................................Passed
+CRLF end-lines remover...................................................Passed
+No-tabs checker..........................................................Passed
+Tabs remover.............................................................Passed
+convert jinja2 into html.................................................Passed
+convert-markdown-into-html...............................................Passed
 ```
 - 填写提交说明：Git 每次提交代码，都需要写提交说明，让其他人知道这次提交做了哪些改变，可以通过 ``git commit`` 完成：
 

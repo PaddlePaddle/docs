@@ -389,16 +389,45 @@ def set_api_sketch():
     set the in_api_sktech attr. may replace the set_display_attr_of_apis.
     """
     global api_info_dict
-    modulelist = [
-        paddle, paddle.amp, paddle.nn, paddle.nn.functional,
-        paddle.nn.initializer, paddle.nn.utils, paddle.tensor, paddle.static,
-        paddle.static.nn, paddle.io, paddle.jit, paddle.metric,
-        paddle.distribution, paddle.optimizer, paddle.optimizer.lr,
-        paddle.regularizer, paddle.text, paddle.utils, paddle.utils.download,
-        paddle.utils.profiler, paddle.sysconfig, paddle.vision,
-        paddle.distributed, paddle.distributed.fleet,
-        paddle.distributed.fleet.utils, paddle.distributed.parallel,
-        paddle.distributed.utils, paddle.callbacks, paddle.hub
+    modulelist = [  #noqa
+        paddle,
+        paddle.amp,
+        paddle.nn,
+        paddle.nn.functional,
+        paddle.nn.initializer,
+        paddle.nn.utils,
+        paddle.static,
+        paddle.static.nn,
+        paddle.io,
+        paddle.jit,
+        paddle.metric,
+        paddle.distribution,
+        paddle.optimizer,
+        paddle.optimizer.lr,
+        paddle.regularizer,
+        paddle.text,
+        paddle.utils,
+        paddle.utils.download,
+        paddle.utils.profiler,
+        paddle.utils.cpp_extension,
+        paddle.sysconfig,
+        paddle.vision,
+        paddle.vision.datasets,
+        paddle.vision.models,
+        paddle.vision.transforms,
+        paddle.vision.ops,
+        paddle.distributed,
+        paddle.distributed.fleet,
+        paddle.distributed.fleet.utils,
+        paddle.distributed.parallel,
+        paddle.distributed.utils,
+        paddle.callbacks,
+        paddle.hub,
+        paddle.autograd,
+        paddle.incubate,
+        paddle.inference,
+        paddle.onnx,
+        paddle.device
     ]
 
     alldict = {}
