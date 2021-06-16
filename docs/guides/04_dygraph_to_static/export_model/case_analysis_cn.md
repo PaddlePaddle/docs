@@ -141,7 +141,7 @@ import numpy as np
 x = paddle.to_tensor(np.array([2,3,4]))
 
 # 动转静后代码
-x = paddle.fluid.layers.assign(np.array([2,3,4]))
+x = paddle.assign(np.array([2,3,4]))
 ```
 
 
@@ -271,7 +271,7 @@ jit.save(mode, model_path)
 
 推荐使用 ``self.training`` 或其他非 Tensor 类型的 bool 值进行区分。
 
-此 flag 继承自 ``nn.Layer`` ，因此可通过 ``model.train()`` 和 `model.eval()`` 来全局切换所有 sublayers 的分支状态。
+此 flag 继承自 ``nn.Layer`` ，因此可通过 ``model.train()`` 和 ``model.eval()`` 来全局切换所有 sublayers 的分支状态。
 
 ## 七、再谈控制流
 

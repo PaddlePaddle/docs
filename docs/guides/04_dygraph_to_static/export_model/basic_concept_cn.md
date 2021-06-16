@@ -13,7 +13,7 @@
 
 在处理逻辑上，动转静主要包含两个主要模块：
 
-+ **代码层面**：将所有的 Paddle ``layers`` 调用**转为 ``Op`` ，从而生成完整的静态 ``Program``
++ **代码层面**：将所有的 Paddle ``layers`` 接口在静态图模式下执行以转为 ``Op`` ，从而生成完整的静态 ``Program``
 + **Tensor层面**：将所有的 ``Parameters`` 和 ``Buffers`` 转为**可导出的 ``Variable`` 参数**（ ``persistable=True`` ）
 
 > 关于动转静模块的具体原理，可以参考 [基本原理](./principle_cn.html)；搭配 `paddle.jit.save` 接口导出预测模型的用法案例，可以参考 [案例解析](./case_analysis_cn.html) 。

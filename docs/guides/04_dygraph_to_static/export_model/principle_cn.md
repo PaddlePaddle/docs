@@ -50,7 +50,7 @@ class Linear(...):
             return out
 ```
 
-动态图 ``layer`` 生成 ``Program`` ，其实是开启 ``paddle.enable_static()`` 时，在静态图下逐行执行用户定义的组网代码，依次 ``append_op`` 到 ``main_program`` 中。
+动态图 ``layer`` 生成 ``Program`` ，其实是开启 ``paddle.enable_static()`` 时，在静态图下逐行执行用户定义的组网代码，依次添加(对应 ``append_op`` 接口) 到默认的主 Program（即 ``main_program`` ） 中。
 
 ### 1.2 动态图 Tensor 转为静态图 Variable
 
@@ -127,7 +127,7 @@ out = paddle.add(out, y)
 ```
 
 
-动转静代码示例：
+动转静代码示例，通过 ``InputSpec`` 设置 ``Placeholder`` 信息：
 
 ```python
 import paddle
@@ -138,6 +138,8 @@ class SimpleNet(paddle.nn.Layer):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
+    # 方式一：在函数定义处装饰
+    @to_static
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
