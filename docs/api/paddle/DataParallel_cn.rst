@@ -34,51 +34,7 @@ DataParallel
 返回类型：Layer实例
 
 **代码示例**：
-
-.. code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    import paddle.optimizer as opt
-    import paddle.distributed as dist
-
-    class LinearNet(nn.Layer):
-        def __init__(self):
-            super(LinearNet, self).__init__()
-            self._linear1 = nn.Linear(10, 10)
-            self._linear2 = nn.Linear(10, 1)
-            
-        def forward(self, x):
-            return self._linear2(self._linear1(x))
-
-    def train():
-        # 1. initialize parallel environment
-        dist.init_parallel_env()
-
-        # 2. create data parallel layer & optimizer
-        layer = LinearNet()
-        dp_layer = paddle.DataParallel(layer)
-
-        loss_fn = nn.MSELoss()
-        adam = opt.Adam(
-            learning_rate=0.001, parameters=dp_layer.parameters())
-
-        # 3. run layer
-        inputs = paddle.randn([10, 10], 'float32')
-        outputs = dp_layer(inputs)
-        labels = paddle.randn([10, 1], 'float32')
-        loss = loss_fn(outputs, labels)
-        
-        loss.backward()
-
-        adam.step()
-        adam.clear_grad()
-
-    if __name__ == '__main__':
-        # 1. start by ``paddle.distributed.spawn`` (default)
-        dist.spawn(train, nprocs=2)
-        # 2. start by ``paddle.distributed.launch``
-        # train()
+COPY-FROM: paddle.DataParallel
 
 .. py:method:: state_dict(destination=None, include_sublayers=True)
 
@@ -91,20 +47,8 @@ DataParallel
 返回：dict， 包含所有parameters和持久的buffers的dict
 
 **代码示例**
+COPY-FROM: paddle.DataParallel.state_dict
 
-.. code-block:: python
-
-    # required: distributed
-    import paddle
-    import paddle.distributed as dist
-
-    dist.init_parallel_env()
-
-    emb = paddle.nn.Embedding(10, 10)
-    emb = paddle.DataParallel(emb)
-
-    state_dict = emb.state_dict()
-    paddle.save(state_dict, "paddle_dy.pdparams")
 
 .. py:method:: set_state_dict(state_dict, use_structured_name=True)
 
@@ -118,19 +62,4 @@ DataParallel
 
 **代码示例**
 
-.. code-block:: python
-
-    # required: distributed
-    import paddle
-    import paddle.distributed as dist
-
-    dist.init_parallel_env()
-
-    emb = paddle.nn.Embedding(10, 10)
-    emb = paddle.DataParallel(emb)
-
-    state_dict = emb.state_dict()
-    paddle.save(state_dict, "paddle_dy.pdparams")
-
-    para_state_dict = paddle.load("paddle_dy.pdparams")
-    emb.set_state_dict(para_state_dict)
+COPY-FROM: paddle.DataParallel.set_state_dict
