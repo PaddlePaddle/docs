@@ -1,4 +1,4 @@
-.. _cn_api_tensor_digamma:
+.. _cn_api_paddle_digamma:
 
 digamma
 ----------------
