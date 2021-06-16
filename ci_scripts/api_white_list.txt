@@ -40,3 +40,4 @@ paddle/hapi/hub/Overview_cn.rst
 paddle/hapi/hub/help_cn.rst
 paddle/hapi/hub/list_cn.rst
 paddle/hapi/hub/load_cn.rst
+paddle/DataParallel_cn.rst

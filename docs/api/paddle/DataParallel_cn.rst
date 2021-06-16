@@ -3,7 +3,7 @@
 DataParallel
 ------------
 
-.. py:class:: paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer_size=1, find_unused_parameters=True)
+.. py:class:: paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer_size=1, find_unused_parameters=False)
 
 
 通过数据并行模式执行动态图模型。
@@ -27,7 +27,7 @@ DataParallel
     - **strategy** (ParallelStrategy，可选) - (deprecated) 数据并行的策略，包括并行执行的环境配置。默认为None。
     - **comm_buffer_size** (int，可选) - 它是通信调用（如NCCLAllReduce）时，参数梯度聚合为一组的内存大小（MB）。默认值：25。
     - **last_comm_buffer_size** （float，可选）它限制通信调用中最后一个缓冲区的内存大小（MB）。减小最后一个通信缓冲区的大小有助于提高性能。默认值：1。默认值：1    
-    - **find_unused_parameters** (bool， 可选) 是否在模型forward函数的返回值的所有张量中，遍历整个向后图。对于不包括在loss计算中的参数，其梯度将被预先标记为ready状态用于后续多卡间的规约操作。请注意，模型参数的所有正向输出必须参与loss的计算以及后续的梯度计算。 否则，将发生严重错误。请注意，将find_unused_parameters设置为True会影响计算性能， 因此，如果确定所有参数都参与了loss计算和自动反向图的构建，请将其设置为False。默认值：True。
+    - **find_unused_parameters** (bool， 可选) 是否在模型forward函数的返回值的所有张量中，遍历整个向后图。对于不包括在loss计算中的参数，其梯度将被预先标记为ready状态用于后续多卡间的规约操作。请注意，模型参数的所有正向输出必须参与loss的计算以及后续的梯度计算。 否则，将发生严重错误。请注意，将find_unused_parameters设置为True会影响计算性能， 因此，如果确定所有参数都参与了loss计算和自动反向图的构建，请将其设置为False。默认值：False。
     
 返回：支持数据并行的 ``Layer``
 
@@ -94,13 +94,14 @@ DataParallel
 
 .. code-block:: python
 
+    # required: distributed
     import paddle
     import paddle.distributed as dist
 
     dist.init_parallel_env()
 
-    emb = fluid.dygraph.Embedding([10, 10])
-    emb = fluid.dygraph.DataParallel(emb)
+    emb = paddle.nn.Embedding(10, 10)
+    emb = paddle.DataParallel(emb)
 
     state_dict = emb.state_dict()
     paddle.save(state_dict, "paddle_dy.pdparams")
@@ -119,13 +120,14 @@ DataParallel
 
 .. code-block:: python
 
+    # required: distributed
     import paddle
     import paddle.distributed as dist
 
     dist.init_parallel_env()
 
     emb = paddle.nn.Embedding(10, 10)
-    emb = fluid.dygraph.DataParallel(emb)
+    emb = paddle.DataParallel(emb)
 
     state_dict = emb.state_dict()
     paddle.save(state_dict, "paddle_dy.pdparams")
