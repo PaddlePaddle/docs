@@ -46,6 +46,7 @@ tensor数学操作
     " :ref:`paddle.cos <cn_api_fluid_layers_cos>` ", "余弦函数"
     " :ref:`paddle.cosh <cn_api_fluid_layers_cosh>` ", "双曲余弦函数"
     " :ref:`paddle.cumsum <cn_api_tensor_cn_cumsum>` ", "沿给定 axis 计算张量 x 的累加和"
+    " :ref:`paddle.digamma <cn_api_paddle_digamma>` ", "逐元素计算输入x的digamma函数值"
     " :ref:`paddle.divide <cn_api_tensor_divide>` ", "逐元素相除算子"
     " :ref:`paddle.equal <cn_api_tensor_equal>` ", "该OP返回 x==y 逐元素比较x和y是否相等，相同位置的元素相同则返回True，否则返回False"
     " :ref:`paddle.equal_all <cn_api_tensor_equal_all>` ", "如果所有相同位置的元素相同返回True，否则返回False"
@@ -68,6 +69,10 @@ tensor数学操作
     " :ref:`paddle.logical_not <cn_api_fluid_layers_logical_not>` ", "逐元素的对 X Tensor进行逻辑非运算"
     " :ref:`paddle.logical_or <cn_api_fluid_layers_logical_or>` ", "逐元素的对 X 和 Y 进行逻辑或运算"
     " :ref:`paddle.logical_xor <cn_api_fluid_layers_logical_xor>` ", "逐元素的对 X 和 Y 进行逻辑异或运算"
+    " :ref:`paddle.bitwise_and <cn_api_tensor_bitwise_and>` ", "逐元素的对 x 和 y 进行按位与运算"
+    " :ref:`paddle.bitwise_not <cn_api_tensor_bitwise_not>` ", "逐元素的对 X Tensor进行按位取反运算"
+    " :ref:`paddle.bitwise_or <cn_api_tensor_bitwise_or>` ", "逐元素的对 X 和 Y 进行按位或运算"
+    " :ref:`paddle.bitwise_xor <cn_api_tensor_bitwise_xor>` ", "逐元素的对 X 和 Y 进行按位异或运算"
     " :ref:`paddle.logsumexp <cn_api_paddle_tensor_math_logsumexp>` ", "沿着 axis 计算 x 的以e为底的指数的和的自然对数"
     " :ref:`paddle.max <cn_api_paddle_tensor_max>` ", "对指定维度上的Tensor元素求最大值运算"
     " :ref:`paddle.maximum <cn_api_paddle_tensor_maximum>` ", "逐元素对比输入的两个Tensor，并且把各个位置更大的元素保存到返回结果中"
@@ -100,6 +105,7 @@ tensor数学操作
     " :ref:`paddle.tanh <cn_api_tensor_tanh>` ", "tanh激活函数"
     " :ref:`paddle.trace <cn_api_tensor_trace>` ", "计算输入 Tensor 在指定平面上的对角线元素之和"
     " :ref:`paddle.var <cn_api_tensor_cn_var>` ", "沿给定的轴 axis 计算 x 中元素的方差"
+    " :ref:`paddle.trunc <cn_api_tensor_trunc>` ", "对输入 Tensor 每个元素的小数部分进行截断"
 
 .. _tensor_logic:
 
