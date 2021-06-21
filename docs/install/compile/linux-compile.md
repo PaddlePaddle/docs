@@ -148,10 +148,8 @@
 
     For Python3:
     ```
-    pip3.5 install protobuf
+    pip3 install protobuf
     ```
-
-    注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
 
     > 安装protobuf。
 
@@ -201,10 +199,8 @@
 
     For Python3:  
     ```
-    pip3.5 install -U（whl包的名字）
+    pip3 install -U（whl包的名字）
     ```
-
-    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
 
 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
@@ -478,7 +474,7 @@
         For Python3:
 
         ```
-        cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+        cmake .. -DPY_VERSION=3.8 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
         -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
@@ -532,7 +528,7 @@
             cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
             ```
 
-    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
+    注意：以上涉及Python3的命令，用Python3.8来举例，如您的Python版本为3.6/3.7/3.8/3.9，请将上述命令中的Python3.8改成Python3.6/Python3.7/Python3.8/Python3.9
 
 
 
