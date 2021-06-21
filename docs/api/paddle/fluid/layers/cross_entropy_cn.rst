@@ -10,15 +10,15 @@ cross_entropy
 
 该OP计算输入input和标签label间的交叉熵，可用于计算硬标签或软标签的交叉熵。
 
-1. 硬标签交叉熵算法：若soft_label = False, :math:`label[i_1, i_2, ..., i_k]` 表示每个样本的硬标签值:
+1. 硬标签（每个样本仅可分到一个类别）
 
      .. math::
-        \\output[i_1, i_2, ..., i_k]=-log(input[i_1, i_2, ..., i_k, j]), label[i_1, i_2, ..., i_k] = j, j != ignore\_index\\
+        \\loss_j=-\text{logits}_{label_j}+\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right) , j = 1,...,N, N为样本数, C为类别数\\
 
-2. 软标签交叉熵算法：若soft_label = True, :math:`label[i_1, i_2, ..., i_k, j]` 表明每个样本对应类别j的软标签值:
+2. 软标签（每个样本以一定的概率被分配至多个类别中，概率和为1）
 
      .. math::
-        \\output[i_1, i_2, ..., i_k]= -\sum_{j}label[i_1,i_2,...,i_k,j]*log(input[i_1, i_2, ..., i_k,j])\\
+        \\loss_j=-\sum_{i=0}^{C}\text{label}_i\left(\text{logits}_i-\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right)\right), j = 1,...,N, N为样本数, C为类别数\\
 
 参数：
     - **input** (Tensor) – 维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
