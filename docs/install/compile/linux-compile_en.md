@@ -157,10 +157,8 @@ Please follow the steps below to install:
     ```
     For Python3:
     ```
-    pip3.5 install protobuf
+    pip3 install protobuf
     ```
-
-    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
 
     > Install protobuf 3.1.0
 
@@ -209,10 +207,8 @@ Please follow the steps below to install:
     ```
     For Python3:
     ```
-    pip3.5 install -U (whl package name)
+    pip3 install -U (whl package name)
     ```
-
-    Note: For the command involving Python 3, we use Python 3.5 as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
 
 Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
