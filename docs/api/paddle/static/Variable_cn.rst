@@ -95,7 +95,7 @@ Variable
 返回类型： ``Variable``
 
 **示例代码**
-COPY-FROM: <detach>:<code-example1>
+COPY-FROM: paddle.static.Variable.detach
 
 
 .. py:method:: astype(self, dtype)
@@ -224,7 +224,7 @@ None
 返回类型： ``Variable``
 
 **示例代码**
-COPY-FROM: <size>:<code-example1>
+COPY-FROM: paddle.static.Variable.size
 
 
 .. py:method:: ndimensition(self)
@@ -236,14 +236,13 @@ COPY-FROM: <size>:<code-example1>
 返回类型： ``Variable``
 
 **示例代码**
-.. code-block:: python
+  .. code-block:: python
 
       import paddle
-      import paddle.static as static 
 
       paddle.enable_static()
 
-      x = static.data(name="x", shape=[10, 10], dtype='float32')
+      x = paddle.static.data(name="x", shape=[10, 10], dtype='float32')
       print("Variable's number of dimensition: ", x.ndimensition())
       # Variable's number of dimensition: 2
 
@@ -257,14 +256,13 @@ COPY-FROM: <size>:<code-example1>
 返回类型： ``Variable``
 
 **示例代码**
-.. code-block:: python
+  .. code-block:: python
 
       import paddle
-      import paddle.static as static 
 
       paddle.enable_static()
 
-      x = static.data(name="x", shape=[10, 10], dtype='float32')
+      x = paddle.static.data(name="x", shape=[10, 10], dtype='float32')
       print("Variable's number of dim: ", x.dim())
       # Variable's number of dim: 2
 
