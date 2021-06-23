@@ -51,12 +51,7 @@ sequence_first_step
 
 **代码示例**：
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[7, 1], append_batch_size=False,
-                 dtype='float32', lod_level=1)
-    x_first_step = fluid.layers.sequence_first_step(input=x)
+COPY-FROM: paddle.static.nn.sequence_first_step
 
 
 

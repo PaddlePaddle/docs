@@ -76,24 +76,4 @@ sequence_pool
 
 **代码示例**:
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-
-    x = fluid.layers.data(name='x', shape=[7, 1], append_batch_size=False,
-                 dtype='float32', lod_level=1)
-    avg_x = fluid.layers.sequence_pool(input=x, pool_type='average')
-    sum_x = fluid.layers.sequence_pool(input=x, pool_type='sum')
-    sqrt_x = fluid.layers.sequence_pool(input=x, pool_type='sqrt')
-    max_x = fluid.layers.sequence_pool(input=x, pool_type='max')
-    last_x = fluid.layers.sequence_pool(input=x, pool_type='last')
-    first_x = fluid.layers.sequence_pool(input=x, pool_type='first')
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.static.nn.sequence_pool

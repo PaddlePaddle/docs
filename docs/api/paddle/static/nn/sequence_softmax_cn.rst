@@ -58,20 +58,5 @@ sequence_softmax
 
 **代码示例**：
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    x = fluid.data(name='x', shape=[7, 1],
-                 dtype='float32', lod_level=1)
-    x_sequence_softmax = fluid.layers.sequence_softmax(input=x)
-    
-    y = fluid.data(name='y', shape=[7],
-                 dtype='float32', lod_level=1)
-    y_sequence_softmax = fluid.layers.sequence_softmax(input=y)
-
-
-
-
-
-
+COPY-FROM: paddle.static.nn.sequence_softmax
 

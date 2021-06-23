@@ -41,11 +41,7 @@ sequence_enumerate
 
 **代码示例**
 
-..  code-block:: python
-
-      import paddle.fluid as fluid
-      x = fluid.layers.data(name='x',shape=[-1, 1], dtype='int32', lod_level=1)
-      out = fluid.layers.sequence_enumerate(input=x, win_size=3, pad_value=0)
+COPY-FROM: paddle.static.nn.sequence_enumerate
 
 
 

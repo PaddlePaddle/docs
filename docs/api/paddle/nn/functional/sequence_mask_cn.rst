@@ -45,20 +45,4 @@ sequence_mask
 
 **代码示例**：
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
-    
-    x = fluid.data(name='x', shape=[10], dtype='float32', lod_level=1)
-    mask = layers.sequence_mask(x=x)
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.nn.functional.sequence_mask
