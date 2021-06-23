@@ -41,7 +41,7 @@ embedding
     - **input** (Tensor) - 存储id信息的Tensor，数据类型必须为：int32/int64。input中的id必须满足 ``0 =< id < size[0]`` 。
     - **weight** (Tensor) - 存储词嵌入权重参数的Tensor，形状为(num_embeddings, embedding_dim)。
     - **sparse** (bool) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新能够获得更快的训练速度及更小的内存/显存占用。
-    - **padding_idx** (int|long|None) - padding_idx的配置区间为 ``[-weight.shape[0], weight.shape[0]``，如果配置了padding_idx，那么在训练过程中遇到此id时会被用0填充。
+    - **padding_idx** (int|long|None) - padding_idx的配置区间为 ``[-weight.shape[0], weight.shape[0]``，如果配置了padding_idx，那么在训练过程中遇到此id时，其参数及对应的梯度将会以0进行填充。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 

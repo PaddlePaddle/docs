@@ -107,7 +107,7 @@
 10. 执行编译：
 
     ```
-    make -j$(nproc)
+    make -j$(sysctl -n hw.logicalcpu)
     ```
 
     > 使用多核编译

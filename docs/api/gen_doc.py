@@ -389,24 +389,51 @@ def set_api_sketch():
     set the in_api_sktech attr. may replace the set_display_attr_of_apis.
     """
     global api_info_dict
-    modulelist = [
-        paddle, paddle.amp, paddle.nn, paddle.nn.functional,
-        paddle.nn.initializer, paddle.nn.utils, paddle.tensor, paddle.static,
-        paddle.static.nn, paddle.io, paddle.jit, paddle.metric,
-        paddle.distribution, paddle.optimizer, paddle.optimizer.lr,
-        paddle.regularizer, paddle.text, paddle.utils, paddle.utils.download,
-        paddle.utils.profiler, paddle.sysconfig, paddle.vision,
-        paddle.distributed, paddle.distributed.fleet,
-        paddle.distributed.fleet.utils, paddle.distributed.parallel,
-        paddle.distributed.utils, paddle.callbacks, paddle.hub
+    modulelist = [  #noqa
+        paddle,
+        paddle.amp,
+        paddle.nn,
+        paddle.nn.functional,
+        paddle.nn.initializer,
+        paddle.nn.utils,
+        paddle.static,
+        paddle.static.nn,
+        paddle.io,
+        paddle.jit,
+        paddle.metric,
+        paddle.distribution,
+        paddle.optimizer,
+        paddle.optimizer.lr,
+        paddle.regularizer,
+        paddle.text,
+        paddle.utils,
+        paddle.utils.download,
+        paddle.utils.profiler,
+        paddle.utils.cpp_extension,
+        paddle.sysconfig,
+        paddle.vision,
+        paddle.vision.datasets,
+        paddle.vision.models,
+        paddle.vision.transforms,
+        paddle.vision.ops,
+        paddle.distributed,
+        paddle.distributed.fleet,
+        paddle.distributed.fleet.utils,
+        paddle.distributed.parallel,
+        paddle.distributed.utils,
+        paddle.callbacks,
+        paddle.hub,
+        paddle.autograd,
+        paddle.incubate,
+        paddle.inference,
+        paddle.onnx,
+        paddle.device
     ]
 
     alldict = {}
     for module in modulelist:
         if hasattr(module, '__all__'):
             old_all = module.__all__
-        elif hasattr(module, 'tensor_method_func'):
-            old_all = module.tensor_method_func
         else:
             old_all = []
             dirall = dir(module)
@@ -414,10 +441,15 @@ def set_api_sketch():
                 if item.startswith('__'):
                     continue
                 old_all.append(item)
-        if module.__name__ == 'paddle.tensor':
-            alldict.update({'paddle.Tensor': old_all})
-        else:
-            alldict.update({module.__name__: old_all})
+        alldict.update({module.__name__: old_all})
+
+    old_all = []
+    dirall = dir(paddle.Tensor)
+    for item in dirall:
+        if item.startswith('_'):
+            continue
+        old_all.append(item)
+    alldict.update({'paddle.Tensor': old_all})
 
     all_api_found = {}
     for m, apis in alldict.items():
