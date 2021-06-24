@@ -227,7 +227,7 @@ None
 COPY-FROM: paddle.static.Variable.size
 
 
-.. py:method:: ndimensition(self)
+.. py:method:: ndimension(self)
 
 返回该 :ref:`api_guide_Variable` 的维度，也称作rank。
 
@@ -243,8 +243,8 @@ COPY-FROM: paddle.static.Variable.size
       paddle.enable_static()
 
       x = paddle.static.data(name="x", shape=[10, 10], dtype='float32')
-      print("Variable's number of dimensition: ", x.ndimensition())
-      # Variable's number of dimensition: 2
+      print("Variable's number of dimension: ", x.ndimension())
+      # Variable's number of dimension: 2
 
 
 .. py:method:: dim(self)
