@@ -4,12 +4,12 @@
 
 * **Linux 版本 (64 bit)**
     * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
-    * **CentOS 7 (GPU 版本支持CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0 CUDA 9.1 仅支持单卡模式)**
-    * **Ubuntu 14.04 (GPU 版本支持 CUDA 10.0/10.1)**
-    * **Ubuntu 16.04 (GPU 版本支持 CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
-    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.0/10.1/10.2/11.0)**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
-* **pip 或 pip3 版本 20.2.2+ (64 bit)**
+    * **CentOS 7 (GPU 版本支持CUDA 10.1/10.2/11.2)**
+    * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
+* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **pip 或 pip3 版本 20.2.2或更高版本 (64 bit)**
 
 ## 选择CPU/GPU
 
@@ -17,10 +17,9 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件以编译GPU版PaddlePaddle
 
-    * **CUDA 工具包9.0/10.0配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.3.7及更高)**
     * **CUDA 工具包10.1/10.2配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.7及更高)**
-    * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
-    * **GPU运算能力超过1.0的硬件设备**
+    * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
+    * **GPU运算能力超过3.5的硬件设备**
 
         您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
@@ -63,7 +62,7 @@
 
 在Linux的系统下有2种编译方式：
 
-* [使用Docker编译](#compile_from_docker)（GPU版本不支持CentOS 6）
+* [使用Docker编译](#compile_from_docker)（不提供在CentOS 6下编译中遇到问题的支持）
 * [本机编译](#compile_from_host)（不提供在CentOS 6下编译中遇到问题的支持）
 
 <a name="ct_docker"></a>
@@ -95,28 +94,29 @@
 
     * 编译CPU版本的PaddlePaddle：
         ```
-        docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
         ```
 
        > --name paddle-test为您创建的Docker容器命名为paddle-test;
 
        > -v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185));
 
-       > -it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+       > -it 与宿主机保持交互状态，`registry.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 
-    * 编译GPU版本的PaddlePaddle（仅支持CentOS 7）：
+    * 编译GPU版本的PaddlePaddle：
         ```
-        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev /bin/bash
         ```
 
         > --name paddle-test为您创建的Docker容器命名为paddle-test;
 
         > -v $PWD:/paddle 将当前目录挂载到Docker容器中的/paddle目录下（Linux中PWD变量会展开为当前路径的[绝对路径](https://baike.baidu.com/item/绝对路径/481185));
 
-        > -it 与宿主机保持交互状态，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` 使用名为`hub.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
+        > -it 与宿主机保持交互状态，`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev` 使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
-        > 注意：hub.baidubce.com/paddlepaddle/paddle:latest-dev内部安装CUDA 10.0。
+        > 注：上例中，`latest-gpu-cuda10.2-cudnn7-dev` 也仅作示意用，表示安装GPU版的镜像。如果您还想安装其他cuda/cudnn版本的镜像，可以将其替换成`latest-dev-cuda11.2-cudnn8-gcc82`、`latest-gpu-cuda10.1-cudnn7-gcc82-dev`、`latest-gpu-cuda10.1-cudnn7-gcc54-dev`等。
+        您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
 
 4. 进入Docker后进入paddle目录下：
@@ -125,13 +125,19 @@
     cd /paddle
     ```
 
-5. 切换到develop版本进行编译：
+5. 切换到较稳定版本下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
     ```
 
-    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持
+    例如：
+
+    ```
+    git checkout release/2.1
+    ```
+
+    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
 
 6. 创建并进入/paddle/build路径下：
 
@@ -141,17 +147,11 @@
 
 7. 使用以下命令安装相关依赖：
 
-    For Python2:
     ```
-    pip install protobuf
-    ```
-
-    For Python3:
-    ```
-    pip3.5 install protobuf
+    pip3.7 install protobuf
     ```
 
-    注意：以上用Python3.5命令来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
+    注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
 
     > 安装protobuf。
 
@@ -164,16 +164,16 @@
 8. 执行cmake：
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
-    >请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.5`表示python版本为3.5.x
+    >请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.7`表示python版本为3.7
 
     * 对于需要编译**CPU版本PaddlePaddle**的用户：
         ```
-        cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     * 对于需要编译**GPU版本PaddlePaddle**的用户：
         ```
-        cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     > 我们目前不支持CentOS 6下使用Docker编译GPU版本的PaddlePaddle
@@ -194,17 +194,13 @@
 
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
-    For Python2:
-    ```
-    pip install -U（whl包的名字）
-    ```
 
     For Python3:  
     ```
-    pip3.5 install -U（whl包的名字）
+    pip3.7 install -U（whl包的名字）
     ```
 
-    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
+    注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
 
 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
@@ -337,33 +333,20 @@
 
     * a. 安装Python-dev:
 
-        For Python2:
-
-        ```
-        yum install python-devel
-        ```
-
-        For Python3: (请参照Python官方流程安装）
+        (请参照Python官方流程安装）
 
 
     * b. 安装pip:
 
-        For Python2:
+        (请参照Python官方流程安装, 并保证拥有20.2.2及以上的pip3版本，请注意，python3.6及以上版本环境下，pip3并不一定对应python版本，如python3.7下默认只有pip3.7）
 
-        ```
-        yum install python-pip
-        ```
-        (请保证拥有20.2.2及以上的pip版本)
-
-        For Python3: (请参照Python官方流程安装, 并保证拥有20.2.2及以上的pip3版本，请注意，python3.6及以上版本环境下，pip3并不一定对应python版本，如python3.7下默认只有pip3.7）
-
-    * c.（Only For Python3）设置Python3相关的环境变量，这里以python3.5版本示例，请替换成您使用的版本（3.6、3.7、3.8）：
+    * c.（Only For Python3）设置Python3相关的环境变量，这里以python3.7版本示例，请替换成您使用的版本（3.6、3.8、3.9）：
 
         1. 首先使用
             ```
             find `dirname $(dirname $(which python3))` -name "libpython3.so"
             ```
-            找到Python lib的路径，如果是3.6、3.7、3.8，请将`python3`改成`python3.6`、`python3.7`、`python3.8`，然后将下面[python-lib-path]替换为找到文件路径
+            找到Python lib的路径，如果是3.6、3.7、3.8、3.9，请将`python3`改成`python3.6`、`python3.7`、`python3.8`、`python3.9`，然后将下面[python-lib-path]替换为找到文件路径
 
         2. 设置PYTHON_LIBRARIES：
             ```
@@ -372,7 +355,7 @@
 
         3. 其次使用
             ```
-            find `dirname $(dirname $(which python3))`/include -name "python3.5m"
+            find `dirname $(dirname $(which python3))`/include -name "python3.7m"
             ```
             找到Python Include的路径，请注意python版本，然后将下面[python-include-path]替换为找到文件路径
 
@@ -387,7 +370,7 @@
             ```
             （这里将[python-lib-path]的最后两级目录替换为/bin/)
 
-    * d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应python版本的pip3的命令，如pip3.6、pip3.7、pip3.8)
+    * d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应python版本的pip3的命令，如pip3.6、pip3.7、pip3.8、pip3.9)
 
         1. 安装`virtualenv`
             ```
@@ -469,16 +452,9 @@
 
     *  对于需要编译**CPU版本PaddlePaddle**的用户：
 
-        For Python2:
 
         ```
-        cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-        ```
-
-        For Python3:
-
-        ```
-        cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+        cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
         -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
@@ -486,7 +462,7 @@
         > 请注意PY_VERSION参数更换为您需要的python版本
 
 
-    * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA10.2/CUDA10.1/CUDA10.0/CUDA9)**)
+    * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA11.2/CUDA10.2/CUDA10.1)**)
 
         1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
@@ -520,19 +496,11 @@
 
         2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
 
-            For Python2:
-
-            ```
-            cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-            ```
-
-            For Python3:
-
             ```
             cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
             ```
 
-    注意：以上涉及Python3的命令，用Python3.5来举例，如您的Python版本为3.6/3.7/3.8，请将上述命令中的Python3.5改成Python3.6/Python3.7/Python3.8
+    注意：以上涉及Python3的命令，用Python3.7来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的Python3.7改成Python3.6/Python3.8/Python3.9
 
 
 
