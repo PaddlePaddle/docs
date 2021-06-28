@@ -5,7 +5,7 @@ EarlyStopping
 
 .. py:class:: paddle.callbacks.EarlyStopping(monitor='loss', mode='auto', patience=0, verbose=1, min_delta=0, baseline=None, save_best_model=True)
 
-在模型评估阶段，模型效果如果没有提升，``EarlyStopping`` 会让模型提前停止训练。
+在模型评估阶段，模型效果如果没有提升，``EarlyStopping`` 会通过设置 ``model.stop_training=True`` 让模型提前停止训练。
 
 参数：
   - **monitor** (str，可选) - 监控量。该量作为模型是否停止学习的监控指标。默认值：'loss'。
