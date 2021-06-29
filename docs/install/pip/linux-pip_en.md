@@ -5,16 +5,13 @@
 ### 1.1 PREQUISITES
 
 * **Linux Version (64 bit)**
-  * **CentOS 6 (GPU Version Supports CUDA 9.0/9.1/9.2/10.0/10.1, only supports single card**)**
+  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.2**)**
+  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.2)**
+  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.2)**
 
-  * **CentOS 7 (GPUVersion Supports CUDA 9.0/9.1/9.2/10.0/10.1, CUDA 9.1 only supports single card**)**
-  * **Ubuntu 14.04 (GPUVersion Supports CUDA 10.0/10.1)**
-  * **Ubuntu 16.04 (GPUVersion Supports CUDA 9.0/9.1/9.2/10.0/10.1)**
-  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.0/10.1)**
+* **Python Version: 3.6/3.7/3.8/3.9 (64 bit)**
 
-* **Python Version: 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
-
-* **pip or pip3 Version 20.2.2+ (64 bit)**
+* **pip or pip3 Version 20.2.2 or above (64 bit)**
 
 ### 1.2 How to check your environment
 
@@ -28,33 +25,22 @@
 
 * Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
-  * If you are using Python 2, use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
+  * Use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
 
     ```
     which python
-    ```
-
-  * If you are using Python 3, use the following command to output Python path. Depending on your environment, you may need to replace Python 3 in all command lines in the instructions with Python or specific Python path
-
-    ```
-    which python3
     ```
 
 
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * If you are using Python 2, use the following command to confirm that it is 2.7.15+
+  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9
 
         python --version
 
-  * If you are using Python 3, use the following command to confirm that it is 3.5.1+/3.6/3.7/3.8
+* It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2 or above
 
-        python3 --version
-
-* It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2+
-
-  * If you are using Python 2
 
     ```
     python -m ensurepip
@@ -64,30 +50,12 @@
     python -m pip --version
     ```
 
-  * If you are using Python 3
-
-    ```
-    python3 -m ensurepip
-    ```
-
-    ```
-    python3 -m pip --version
-    ```
-
 
 
 * You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
 
-  * If you are using Python 2
-
     ```
     python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
-    ```
-
-  * If you are using Python 3
-
-    ```
-    python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
 
@@ -108,13 +76,11 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 9.0/10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.7 or higher)**
 
-  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
+  * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 
-  * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.3.7 or higher)**
-
-  * **Hardware devices with GPU computing power over 1.0**
+  * **Hardware devices with GPU computing power over 3.5**
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
@@ -156,77 +122,52 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 You can choose the following version of PaddlePaddle to start installation:
 
-* [CPU Version of PaddlePaddle](#cpu)
-
-* [GPU Version of PaddlePaddle](#gpu)
-  * [CUDA9.0 PaddlePaddle](#cuda9)
-  * [CUDA10.0 PaddlePaddle](#cuda10)
-  * [CUDA10.1 PaddlePaddle](#cuda10.1)
-  * [CUDA10.2 PaddlePaddle](#cuda10.2)
-  * [CUDA11.0 PaddlePaddle](#cuda11)
 
 
-
-#### 2.1 <span id="cpu">CPU Versoion of PaddlePaddle</span>
-
-  ```
-  python -m pip install --pre paddlepaddle -f https://paddlepaddle.org.cn/whl/cpu/mkl/develop.html
-  ```
-
-
-#### 2.2<span id="gpu"> GPU Version of PaddlePaddle</span>
-
-
-
-2.2.1 <span id="cuda9">CUDA9.0 PaddlePaddle</span>
+#### 2.1 CPU Versoion of PaddlePaddle
 
 
   ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post90 -f https://paddlepaddle.org.cn/whl/cu90/mkl/develop.html
+  python -m pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/linux/cpu-mkl/develop.html
   ```
 
 
 
-2.2.2 <span id="cuda10">CUDA10.0 PaddlePaddle</span>
+#### 2.2 GPU Version of PaddlePaddle
+
+
+
+2.2.1 CUDA10.1的PaddlePaddle
 
 
   ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post100 -f https://paddlepaddle.org.cn/whl/cu100/mkl/develop.html
-  ```
-
-
-
-2.2.3 <span id="cuda10.1">CUDA10.1 PaddlePaddle</span>
-
-
-  ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post101 -f https://paddlepaddle.org.cn/whl/cu101/mkl/develop.html
+  python -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
   ```
 
 
 
-2.2.4 <span id="cuda10.2">CUDA10.2 PaddlePaddle</span>
+2.2.2 CUDA10.2的PaddlePaddle
 
 
   ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post102 -f https://paddlepaddle.org.cn/whl/cu102/mkl/develop.html
+  python -m pip install paddlepaddle-gpu==0.0.0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
   ```
 
 
-
-2.2.5 <span id="cuda11">CUDA11.0 PaddlePaddle</span>
+2.2.3 CUDA11.2的PaddlePaddle
 
 
   ```
-  python -m pip install --pre paddlepaddle-gpu==2.1.0.dev0.post110 -f https://paddlepaddle.org.cn/whl/cu110/mkl/develop.html
+  python -m pip install paddlepaddle-gpu==0.0.0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
   ```
 
 
 
 Note：
 
-* Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
+* If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance.
 
+* Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
 
 
 
@@ -240,5 +181,5 @@ If `PaddlePaddle is installed successfully!` appears, to verify that the install
 
 Please use the following command to uninstall PaddlePaddle:
 
-- ***CPU version of PaddlePaddle\***: `python -m pip uninstall paddlepaddle` or `python3 -m pip uninstall paddlepaddle`
-- ***GPU version of PaddlePaddle\***: `python -m pip uninstall paddlepaddle-gpu` or `python3 -m pip uninstall paddlepaddle-gpu`
+- ***CPU version of PaddlePaddle\***: `python -m pip uninstall paddlepaddle`
+- ***GPU version of PaddlePaddle\***: `python -m pip uninstall paddlepaddle-gpu`
