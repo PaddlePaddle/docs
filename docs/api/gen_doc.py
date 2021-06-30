@@ -79,6 +79,11 @@ def get_all_api(root_path='paddle', attr="__all__"):
             logger.warning("AttributeError occurred when `eval(%s)`", name)
             pass
         else:
+            if m.__name__ in [
+                    'paddle.fluid.contrib.slim.quantization.quantization_pass',
+                    'paddle.fluid.layers.rnn', 'paddle.fluid.data'
+            ]:
+                continue
             api_counter += process_module(m, attr)
 
     api_counter += process_module(paddle, attr)
