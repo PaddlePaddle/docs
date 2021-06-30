@@ -577,6 +577,10 @@ def gen_en_files(api_label_file="api_label"):
     with open(api_label_file, 'w') as api_label:
         for id_api, api_info in api_info_dict.items():
             # api_info = api_info_dict[id_api]
+            if 'in_api_sketch' not in api_info or not api_info[
+                    'in_api_sketch']:
+                logger.debug("{} not in_api_sketch".format(id_api))
+                continue
             if 'full_name' in api_info and api_info['full_name'].endswith(
                     'Overview'):
                 continue
