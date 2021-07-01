@@ -10,9 +10,7 @@
      - `以图搜图 <./image_search/image_search.html>`_ : 介绍使用Paddle 实现以图搜图。
      - `图像分割 <./image_segmentation/image_segmentation.html>`_ : 介绍使用 Paddle 实现U-Net模型完成图像分割。
      - `OCR <./image_ocr/image_ocr.html>`_ : 介绍使用 Paddle 实现 OCR。
-     - `人脸关键点检测 <./landmark_detection/landmark_detection.html>`_ : 介绍使用 Paddle 完成人脸关键点检测。
      - `图像超分 <./super_resolution_sub_pixel/super_resolution_sub_pixel.html>`_ : 介绍使用 Paddle 完成图像超分。
-     - `点云分类 <./pointnet/pointnet.html>`_ ：介绍使用 Paddle 完成点云分类。
 
 
 ..  toctree::
@@ -24,6 +22,4 @@
     image_search/image_search.md    
     image_segmentation/image_segmentation.md
     image_ocr/image_ocr.md
-    landmark_detection/landmark_detection.md
     super_resolution_sub_pixel/super_resolution_sub_pixel.md
-    pointnet/pointnet.md
