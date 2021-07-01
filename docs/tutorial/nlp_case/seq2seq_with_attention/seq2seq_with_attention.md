@@ -1,7 +1,7 @@
 # 使用注意力机制的LSTM的机器翻译
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.05 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例教程介绍如何使用飞桨完成一个机器翻译任务。通过使用飞桨提供的LSTM的API，组建一个`sequence to sequence with attention`的机器翻译的模型，并在示例的数据集上完成从英文翻译成中文的机器翻译。
 
 ## 一、环境配置
@@ -18,7 +18,7 @@ import numpy as np
 print(paddle.__version__)
 ```
 
-    2.1.0
+    2.1.1
 
 
 ## 二、数据加载
@@ -32,28 +32,12 @@ print(paddle.__version__)
 !wget -c https://www.manythings.org/anki/cmn-eng.zip && unzip cmn-eng.zip
 ```
 
-    --2021-05-18 18:00:27--  https://www.manythings.org/anki/cmn-eng.zip
-    Resolving www.manythings.org (www.manythings.org)... 172.67.173.198, 104.21.55.222, 2606:4700:3031::6815:37de, ...
-    Connecting to www.manythings.org (www.manythings.org)|172.67.173.198|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 1062383 (1.0M) [application/zip]
-    Saving to: ‘cmn-eng.zip’
-    
-    cmn-eng.zip         100%[===================>]   1.01M   902KB/s    in 1.1s    
-    
-    2021-05-18 18:00:29 (902 KB/s) - ‘cmn-eng.zip’ saved [1062383/1062383]
-    
-    Archive:  cmn-eng.zip
-      inflating: cmn.txt                 
-      inflating: _about.txt              
-
-
 
 ```python
 !wc -l cmn.txt
 ```
 
-    24360 cmn.txt
+    24949 cmn.txt
 
 
 ### 2.2 构建双语句对的数据结构
@@ -91,7 +75,7 @@ print(len(filtered_pairs))
 for x in filtered_pairs[:10]: print(x) 
 ```
 
-    5687
+    5800
     (['i', 'won'], ['我', '赢', '了', '。'])
     (['he', 'ran'], ['他', '跑', '了', '。'])
     (['i', 'quit'], ['我', '退', '出', '。'])
@@ -137,8 +121,8 @@ print(len(list(en_vocab)))
 print(len(list(cn_vocab)))
 ```
 
-    2584
-    2055
+    2617
+    2072
 
 
 ### 2.4 创建padding过的数据集
@@ -174,9 +158,9 @@ print(train_cn_sents.shape)
 print(train_cn_label_sents.shape)
 ```
 
-    (5687, 11)
-    (5687, 12)
-    (5687, 12)
+    (5800, 11)
+    (5800, 12)
+    (5800, 12)
 
 
 ## 三、网络构建
@@ -341,65 +325,65 @@ for epoch in range(epochs):
 ```
 
     epoch:0
-    iter 0, loss:[7.6239414]
-    iter 200, loss:[3.0424228]
+    iter 0, loss:[7.6333346]
+    iter 200, loss:[3.240852]
     epoch:1
-    iter 0, loss:[3.3344]
-    iter 200, loss:[3.135097]
+    iter 0, loss:[2.924156]
+    iter 200, loss:[2.963185]
     epoch:2
-    iter 0, loss:[2.8372972]
-    iter 200, loss:[2.9874132]
+    iter 0, loss:[2.7534227]
+    iter 200, loss:[2.9420087]
     epoch:3
-    iter 0, loss:[2.4977226]
-    iter 200, loss:[2.347312]
+    iter 0, loss:[2.6616998]
+    iter 200, loss:[2.213067]
     epoch:4
-    iter 0, loss:[2.1353514]
-    iter 200, loss:[2.1293092]
+    iter 0, loss:[2.379446]
+    iter 200, loss:[2.4059525]
     epoch:5
-    iter 0, loss:[2.0924835]
-    iter 200, loss:[2.0193372]
+    iter 0, loss:[1.9847918]
+    iter 200, loss:[1.9807642]
     epoch:6
-    iter 0, loss:[1.9638586]
-    iter 200, loss:[1.9775124]
+    iter 0, loss:[1.2768617]
+    iter 200, loss:[2.0598674]
     epoch:7
-    iter 0, loss:[1.8319316]
-    iter 200, loss:[1.6078386]
+    iter 0, loss:[1.725853]
+    iter 200, loss:[1.4866422]
     epoch:8
-    iter 0, loss:[1.5061388]
-    iter 200, loss:[1.4000171]
+    iter 0, loss:[1.8631328]
+    iter 200, loss:[1.3236341]
     epoch:9
-    iter 0, loss:[1.6096058]
-    iter 200, loss:[1.5511936]
+    iter 0, loss:[1.3999513]
+    iter 200, loss:[1.2560941]
     epoch:10
-    iter 0, loss:[1.4739537]
-    iter 200, loss:[1.2266061]
+    iter 0, loss:[1.0076692]
+    iter 200, loss:[1.3591841]
     epoch:11
-    iter 0, loss:[1.3779855]
-    iter 200, loss:[1.3114413]
+    iter 0, loss:[1.294372]
+    iter 200, loss:[1.261159]
     epoch:12
-    iter 0, loss:[1.146878]
-    iter 200, loss:[1.2473543]
+    iter 0, loss:[1.0107158]
+    iter 200, loss:[1.111909]
     epoch:13
-    iter 0, loss:[1.0685896]
-    iter 200, loss:[1.1657724]
+    iter 0, loss:[1.1720536]
+    iter 200, loss:[0.7236399]
     epoch:14
-    iter 0, loss:[0.87895143]
-    iter 200, loss:[0.8481859]
+    iter 0, loss:[0.7384793]
+    iter 200, loss:[0.8299181]
     epoch:15
-    iter 0, loss:[0.77661693]
-    iter 200, loss:[0.76900244]
+    iter 0, loss:[0.8409471]
+    iter 200, loss:[0.80650425]
     epoch:16
-    iter 0, loss:[0.8463232]
-    iter 200, loss:[0.8217341]
+    iter 0, loss:[0.7088227]
+    iter 200, loss:[0.6375085]
     epoch:17
-    iter 0, loss:[0.5898639]
-    iter 200, loss:[0.6576902]
+    iter 0, loss:[0.6446477]
+    iter 200, loss:[0.54760987]
     epoch:18
-    iter 0, loss:[0.51171196]
-    iter 200, loss:[0.53207105]
+    iter 0, loss:[0.44298655]
+    iter 200, loss:[0.5212886]
     epoch:19
-    iter 0, loss:[0.49052936]
-    iter 200, loss:[0.5290806]
+    iter 0, loss:[0.44400704]
+    iter 200, loss:[0.5764333]
 
 
 ## 五、使用模型进行机器翻译
@@ -449,36 +433,36 @@ for i in range(num_of_exampels_to_evaluate):
     print("pred: {}".format(model_translate))
 ```
 
-    she died of stomach cancer
-    true: 她死于胃癌。
-    pred: 她死于胃癌。
-    we know
-    true: 我们知道。
-    pred: 我们知道。
-    he applied for the scholarship
-    true: 他申請了獎學金。
-    pred: 他申請了獎學門。
-    he went bankrupt
-    true: 他破产了。
-    pred: 他破产了。
-    i ll try harder next time
-    true: 下次我會更加努力。
-    pred: 我會去学习几次。
-    he tires easily
-    true: 他很容易觉得累。
-    pred: 他很容易觉得累。
-    i ll do what i can to help you
-    true: 我會盡力幫你。
-    pred: 我會盡力幫你。
-    you ought to have come here earlier
-    true: 你應該早點來的。
-    pred: 你最好去睡觉。
-    i m going to change my shirt
-    true: 我要去換我的襯衫。
-    pred: 我要去換我的襯衫。
-    i almost didn t meet her
-    true: 我幾乎沒有遇見她。
-    pred: 我幾乎沒有信她。
+    he doesn t have any friends
+    true: 他没有任何朋友。
+    pred: 他没有朋友。
+    he acted as my guide
+    true: 他擔任我的嚮導。
+    pred: 他是我的嚮導。
+    i had fun last night
+    true: 昨晚我玩得开心。
+    pred: 我昨晚很累。
+    i got up early
+    true: 我起床早。
+    pred: 我起床了。
+    he is very afraid of his mother
+    true: 他非常怕他的母親。
+    pred: 他怕那只的表者。
+    he was elected president
+    true: 他被选为总统。
+    pred: 他被选为总统。
+    i am expecting a letter from her
+    true: 我期待她的來信。
+    pred: 我在找她一起來。
+    i ve got to go to the bank
+    true: 我必须到银行去。
+    pred: 我必須去银行了。
+    i like learning languages
+    true: 我喜欢学习外语。
+    pred: 我喜歡看他的视子。
+    he doesn t tell lies
+    true: 他不说谎。
+    pred: 他不说谎。
 
 
 ## The End

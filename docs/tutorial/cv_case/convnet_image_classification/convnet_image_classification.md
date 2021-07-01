@@ -1,7 +1,7 @@
 # 使用卷积神经网络进行图像分类
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.05 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例教程将会演示如何使用飞桨的卷积神经网络来完成图像分类任务。这是一个较为简单的示例，将会使用一个由三个卷积层组成的网络完成[cifar10](https://www.cs.toronto.edu/~kriz/cifar.html)数据集的图像分类任务。
 
 ## 一、环境配置
@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 print(paddle.__version__)
 ```
 
-    2.1.0
+    2.1.1
 
 
 ## 二、加载数据集
@@ -150,7 +150,36 @@ train(model)
 ```
 
     start training ... 
-    epoch: 0, batch_id: 0, loss is: [2.7625809]
+    epoch: 0, batch_id: 0, loss is: [2.4017987]
+    epoch: 0, batch_id: 1000, loss is: [1.421206]
+    [validation] accuracy/loss: 0.5428314805030823/1.2768508195877075
+    epoch: 1, batch_id: 0, loss is: [1.2016083]
+    epoch: 1, batch_id: 1000, loss is: [0.7724787]
+    [validation] accuracy/loss: 0.6318889856338501/1.0360924005508423
+    epoch: 2, batch_id: 0, loss is: [1.2047501]
+    epoch: 2, batch_id: 1000, loss is: [0.78543466]
+    [validation] accuracy/loss: 0.6518570184707642/1.0000320672988892
+    epoch: 3, batch_id: 0, loss is: [0.96870494]
+    epoch: 3, batch_id: 1000, loss is: [0.86926836]
+    [validation] accuracy/loss: 0.6769169569015503/0.9324128031730652
+    epoch: 4, batch_id: 0, loss is: [0.92741054]
+    epoch: 4, batch_id: 1000, loss is: [0.81739354]
+    [validation] accuracy/loss: 0.6799121499061584/0.9277793169021606
+    epoch: 5, batch_id: 0, loss is: [0.86126447]
+    epoch: 5, batch_id: 1000, loss is: [0.41321284]
+    [validation] accuracy/loss: 0.7067691683769226/0.8671298027038574
+    epoch: 6, batch_id: 0, loss is: [0.77947843]
+    epoch: 6, batch_id: 1000, loss is: [0.6672823]
+    [validation] accuracy/loss: 0.6952875256538391/0.8839674592018127
+    epoch: 7, batch_id: 0, loss is: [0.490317]
+    epoch: 7, batch_id: 1000, loss is: [0.49936914]
+    [validation] accuracy/loss: 0.697484016418457/0.886149525642395
+    epoch: 8, batch_id: 0, loss is: [0.76509976]
+    epoch: 8, batch_id: 1000, loss is: [0.5800188]
+    [validation] accuracy/loss: 0.6970846652984619/0.9085995554924011
+    epoch: 9, batch_id: 0, loss is: [0.87541854]
+    epoch: 9, batch_id: 1000, loss is: [0.69434047]
+    [validation] accuracy/loss: 0.7024760246276855/0.9389660954475403
 
 
 
@@ -166,12 +195,14 @@ plt.legend(loc='lower right')
 
 
 
-    <matplotlib.legend.Legend at 0x12c3686d0>
+    <matplotlib.legend.Legend at 0x7fbb0dbdbb80>
 
 
 
 
+    
 ![png](output_10_1.png)
+    
 
 
 ## The End
