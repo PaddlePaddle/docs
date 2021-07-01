@@ -1,7 +1,7 @@
 # 基于图片相似度的图片搜索
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.05 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例简要介绍如何通过飞桨开源框架，实现图片搜索的功能。
 
 ## 一、简要介绍
@@ -28,7 +28,7 @@ from collections import defaultdict
 print(paddle.__version__)
 ```
 
-    2.1.0
+    2.1.1
 
 
 ## 三、数据加载
@@ -58,12 +58,6 @@ y_train = np.squeeze(y_train)
 print(x_train.shape)
 print(y_train.shape)
 ```
-
-    Cache file /home/aistudio/.cache/paddle/dataset/cifar/cifar-10-python.tar.gz not found, downloading https://dataset.bj.bcebos.com/cifar/cifar-10-python.tar.gz 
-    Begin to download
-    
-    Download finished
-
 
     (50000, 3, 32, 32)
     (50000,)
@@ -128,7 +122,9 @@ show_collage(examples)
 
 
 
+    
 ![png](output_8_0.png)
+    
 
 
 
@@ -205,7 +201,9 @@ show_collage(examples)
 
 
 
+    
 ![png](output_15_1.png)
+    
 
 
 
@@ -304,46 +302,46 @@ train(model)
 ```
 
     start training ... 
-    epoch: 0, batch_id: 0, loss is: [2.212533]
-    epoch: 0, batch_id: 500, loss is: [1.9830303]
-    epoch: 1, batch_id: 0, loss is: [2.2995477]
-    epoch: 1, batch_id: 500, loss is: [1.844173]
-    epoch: 2, batch_id: 0, loss is: [1.935225]
-    epoch: 2, batch_id: 500, loss is: [2.0542817]
-    epoch: 3, batch_id: 0, loss is: [2.0018952]
-    epoch: 3, batch_id: 500, loss is: [1.7383611]
-    epoch: 4, batch_id: 0, loss is: [1.9902048]
-    epoch: 4, batch_id: 500, loss is: [2.3052988]
-    epoch: 5, batch_id: 0, loss is: [2.081217]
-    epoch: 5, batch_id: 500, loss is: [1.657432]
-    epoch: 6, batch_id: 0, loss is: [1.9710292]
-    epoch: 6, batch_id: 500, loss is: [2.0655243]
-    epoch: 7, batch_id: 0, loss is: [2.062724]
-    epoch: 7, batch_id: 500, loss is: [1.6551164]
-    epoch: 8, batch_id: 0, loss is: [1.9730281]
-    epoch: 8, batch_id: 500, loss is: [1.9111397]
-    epoch: 9, batch_id: 0, loss is: [1.9037035]
-    epoch: 9, batch_id: 500, loss is: [1.9555902]
-    epoch: 10, batch_id: 0, loss is: [1.9513714]
-    epoch: 10, batch_id: 500, loss is: [1.6400588]
-    epoch: 11, batch_id: 0, loss is: [2.355051]
-    epoch: 11, batch_id: 500, loss is: [1.9352077]
-    epoch: 12, batch_id: 0, loss is: [1.9292033]
-    epoch: 12, batch_id: 500, loss is: [1.821604]
-    epoch: 13, batch_id: 0, loss is: [1.7703432]
-    epoch: 13, batch_id: 500, loss is: [2.0686526]
-    epoch: 14, batch_id: 0, loss is: [1.9179215]
-    epoch: 14, batch_id: 500, loss is: [1.9337145]
-    epoch: 15, batch_id: 0, loss is: [1.6215979]
-    epoch: 15, batch_id: 500, loss is: [1.9859786]
-    epoch: 16, batch_id: 0, loss is: [1.8485798]
-    epoch: 16, batch_id: 500, loss is: [2.2238674]
-    epoch: 17, batch_id: 0, loss is: [2.058917]
-    epoch: 17, batch_id: 500, loss is: [1.8665109]
-    epoch: 18, batch_id: 0, loss is: [1.7729297]
-    epoch: 18, batch_id: 500, loss is: [1.593682]
-    epoch: 19, batch_id: 0, loss is: [1.3429767]
-    epoch: 19, batch_id: 500, loss is: [1.6607256]
+    epoch: 0, batch_id: 0, loss is: [2.2687693]
+    epoch: 0, batch_id: 500, loss is: [2.1315682]
+    epoch: 1, batch_id: 0, loss is: [2.035833]
+    epoch: 1, batch_id: 500, loss is: [2.4030607]
+    epoch: 2, batch_id: 0, loss is: [2.0938804]
+    epoch: 2, batch_id: 500, loss is: [1.987708]
+    epoch: 3, batch_id: 0, loss is: [2.0163271]
+    epoch: 3, batch_id: 500, loss is: [1.8376584]
+    epoch: 4, batch_id: 0, loss is: [2.0639582]
+    epoch: 4, batch_id: 500, loss is: [2.0450816]
+    epoch: 5, batch_id: 0, loss is: [2.0977197]
+    epoch: 5, batch_id: 500, loss is: [2.265034]
+    epoch: 6, batch_id: 0, loss is: [1.9975305]
+    epoch: 6, batch_id: 500, loss is: [1.6199682]
+    epoch: 7, batch_id: 0, loss is: [1.938558]
+    epoch: 7, batch_id: 500, loss is: [1.9956715]
+    epoch: 8, batch_id: 0, loss is: [1.9768231]
+    epoch: 8, batch_id: 500, loss is: [2.1569598]
+    epoch: 9, batch_id: 0, loss is: [1.9905119]
+    epoch: 9, batch_id: 500, loss is: [1.7150443]
+    epoch: 10, batch_id: 0, loss is: [1.550774]
+    epoch: 10, batch_id: 500, loss is: [2.5123065]
+    epoch: 11, batch_id: 0, loss is: [1.9810482]
+    epoch: 11, batch_id: 500, loss is: [1.9055626]
+    epoch: 12, batch_id: 0, loss is: [1.7130309]
+    epoch: 12, batch_id: 500, loss is: [1.6612748]
+    epoch: 13, batch_id: 0, loss is: [1.9763999]
+    epoch: 13, batch_id: 500, loss is: [2.2395937]
+    epoch: 14, batch_id: 0, loss is: [1.6492021]
+    epoch: 14, batch_id: 500, loss is: [1.7178599]
+    epoch: 15, batch_id: 0, loss is: [1.9918704]
+    epoch: 15, batch_id: 500, loss is: [1.6624906]
+    epoch: 16, batch_id: 0, loss is: [1.6837909]
+    epoch: 16, batch_id: 500, loss is: [1.8518999]
+    epoch: 17, batch_id: 0, loss is: [1.7270846]
+    epoch: 17, batch_id: 500, loss is: [1.6290606]
+    epoch: 18, batch_id: 0, loss is: [1.846984]
+    epoch: 18, batch_id: 500, loss is: [1.3399624]
+    epoch: 19, batch_id: 0, loss is: [1.8991164]
+    epoch: 19, batch_id: 500, loss is: [1.934908]
 
 
 ## 六、模型预测 
@@ -392,7 +390,9 @@ show_collage(examples)
 
 
 
+    
 ![png](output_22_0.png)
+    
 
 
 
