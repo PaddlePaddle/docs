@@ -1,7 +1,7 @@
 # 使用协同过滤实现电影推荐
 
 **作者：** [HUANGCHENGAI](https://github.com/HUANGCHENGAI) <br>
-**日期：** 2021.05 <br>
+**日期：** 2021.06 <br>
 **摘要：** 本案例使用飞桨框架实现推荐电影的协同过滤算法。
 
 ## 一、介绍
@@ -36,11 +36,13 @@ import numpy as np
 import paddle
 import paddle.nn as nn
 from paddle.io import Dataset
-
 print(paddle.__version__)
+
+import warnings
+warnings.filterwarnings('ignore')
 ```
 
-    2.1.0
+    2.1.1
 
 
 ## 三、数据集
@@ -81,10 +83,22 @@ userId，movieId，tag，timestamp
 
 
 ```python
-!unzip data/data71839/ml-latest-small.zip
+!wget -O ml-latest-small.zip https://bj.bcebos.com/v1/ai-studio-online/e1686458bb494866ab51d5e2738a68387d2aa14f31164735ae601eda5c7bc938\?responseContentDisposition\=attachment%3B%20filename%3Dml-latest-small.zip\&authorization\=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2021-03-01T12%3A21%3A46Z%2F-1%2F%2F6dddaaacf7aa37c7445d3100844c71f9dd09fe938627f3ac86d0621e3f420f92
+!unzip ./ml-latest-small.zip
 ```
 
-    Archive:  data/data71839/ml-latest-small.zip
+    --2021-06-28 15:44:44--  https://bj.bcebos.com/v1/ai-studio-online/e1686458bb494866ab51d5e2738a68387d2aa14f31164735ae601eda5c7bc938?responseContentDisposition=attachment%3B%20filename%3Dml-latest-small.zip&authorization=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2021-03-01T12%3A21%3A46Z%2F-1%2F%2F6dddaaacf7aa37c7445d3100844c71f9dd09fe938627f3ac86d0621e3f420f92
+    Resolving bj.bcebos.com (bj.bcebos.com)... 10.70.0.165
+    Connecting to bj.bcebos.com (bj.bcebos.com)|10.70.0.165|:443... connected.
+    HTTP request sent, awaiting response... 200 OK
+    Length: 978202 (955K) [application/octet-stream]
+    Saving to: ‘ml-latest-small.zip’
+    
+    100%[======================================>] 978,202     3.27MB/s   in 0.3s   
+    
+    2021-06-28 15:44:45 (3.27 MB/s) - ‘ml-latest-small.zip’ saved [978202/978202]
+    
+    Archive:  ./ml-latest-small.zip
        creating: ml-latest-small/
       inflating: ml-latest-small/links.csv  
       inflating: ml-latest-small/tags.csv  
@@ -276,13 +290,23 @@ model.fit(train_loader, epochs=5, save_dir='./checkpoints', verbose=1, callbacks
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step 709/709 [==============================] - loss: 0.6729 - acc: 0.8687 - 3ms/step        
-    save checkpoint at /home/aistudio/checkpoints/0
+    step 709/709 [==============================] - loss: 0.6713 - acc: 0.8687 - 6ms/step          
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/0
     Epoch 2/5
-    step 709/709 [==============================] - loss: 0.6535 - acc: 0.8687 - 3ms/step        
-    save checkpoint at /home/aistudio/checkpoints/1
-    ...
-        
+    step 709/709 [==============================] - loss: 0.6455 - acc: 0.8687 - 6ms/step          
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/1
+    Epoch 3/5
+    step 709/709 [==============================] - loss: 0.6038 - acc: 0.8687 - 6ms/step          
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/2
+    Epoch 4/5
+    step 709/709 [==============================] - loss: 0.6063 - acc: 0.8687 - 6ms/step          
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/3
+    Epoch 5/5
+    step 709/709 [==============================] - loss: 0.5917 - acc: 0.8687 - 6ms/step          
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/4
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/final
+
+
 ## 六、模型评估
 
 
@@ -291,12 +315,14 @@ model.evaluate(test_loader, batch_size=64, verbose=1)
 ```
 
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 79/79 [==============================] - loss: 0.5982 - acc: 0.8713 - 3ms/step         
+    step 79/79 [==============================] - loss: 0.6109 - acc: 0.8713 - 4ms/step          
     Eval samples: 10084
 
 
-    {'loss': [0.5982282], 'acc': 0.8712812376041253}
+
+
+
+    {'loss': [0.6108578], 'acc': 0.8712812376041253}
 
 
 
@@ -356,29 +382,30 @@ for row in recommended_movies.itertuples():
     print(row.title, ":", row.genres)
 ```
 
+
     Predict begin...
-    step 1/1 [==============================] - 17ms/step
-    Predict samples: 9492
-    [ 280  261  318   43  230  472 2393 8253  964 1874]
-    用户的ID为: 594
+    step 1/1 [==============================] - 30ms/step
+    Predict samples: 9464
+    [ 942 5574  979 1639  993  980  540  977  904  988]
+    用户的ID为: 432
     ================================
     用户评分较高的电影：
     --------------------------------
-    Demolition Man (1993) : Action|Adventure|Sci-Fi
-    Executive Decision (1996) : Action|Adventure|Thriller
-    Matrix, The (1999) : Action|Sci-Fi|Thriller
-    Bruce Almighty (2003) : Comedy|Drama|Fantasy|Romance
-    Chasing Liberty (2004) : Comedy|Romance
+    Lion King, The (1994) : Adventure|Animation|Children|Drama|Musical|IMAX
+    Misérables, Les (1998) : Crime|Drama|Romance|War
+    Exorcist, The (1973) : Horror|Mystery
+    [REC] (2007) : Drama|Horror|Thriller
+    Paranormal Activity (2009) : Horror|Thriller
     --------------------------------
     为用户推荐的10部电影：
     --------------------------------
-    Usual Suspects, The (1995) : Crime|Mystery|Thriller
-    Star Wars: Episode IV - A New Hope (1977) : Action|Adventure|Sci-Fi
-    Pulp Fiction (1994) : Comedy|Crime|Drama|Thriller
-    Shawshank Redemption, The (1994) : Crime|Drama
-    Forrest Gump (1994) : Comedy|Drama|Romance|War
-    Schindler's List (1993) : Drama|War
-    Star Wars: Episode V - The Empire Strikes Back (1980) : Action|Adventure|Sci-Fi
-    American History X (1998) : Crime|Drama
-    Fight Club (1999) : Action|Crime|Drama|Thriller
-    Dark Knight, The (2008) : Action|Crime|Drama|IMAX
+    Fargo (1996) : Comedy|Crime|Drama|Thriller
+    Reservoir Dogs (1992) : Crime|Mystery|Thriller
+    Monty Python and the Holy Grail (1975) : Adventure|Comedy|Fantasy
+    One Flew Over the Cuckoo's Nest (1975) : Drama
+    Princess Bride, The (1987) : Action|Adventure|Comedy|Fantasy|Romance
+    Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981) : Action|Adventure
+    Apocalypse Now (1979) : Action|Drama|War
+    Goodfellas (1990) : Crime|Drama
+    Saving Private Ryan (1998) : Action|Drama|War
+    Eternal Sunshine of the Spotless Mind (2004) : Drama|Romance|Sci-Fi

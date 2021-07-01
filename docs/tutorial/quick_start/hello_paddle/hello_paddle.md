@@ -1,7 +1,7 @@
 # hello paddle: 从普通程序走向机器学习程序
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.05 <br>
+**日期:** 2021.06 <br>
 **摘要:** 这篇示例向你介绍普通程序跟机器学习程序的区别，并带着你用飞桨框架，实现第一个机器学习程序。
 
 ## 一、普通程序跟机器学习程序的逻辑区别
@@ -61,7 +61,7 @@ import paddle
 print("paddle " + paddle.__version__)
 ```
 
-    paddle 2.1.0
+    paddle 2.1.1
 
 
 ## 三、准备数据
@@ -111,7 +111,7 @@ print("w before optimize: {}".format(w_before_opt))
 print("b before optimize: {}".format(b_before_opt))
 ```
 
-    w before optimize: -1.5051814317703247
+    w before optimize: 1.6463441848754883
     b before optimize: 0.0
 
 
@@ -151,12 +151,12 @@ for i in range(total_epoch):
 print("finished training， loss {}".format(loss.numpy()))
 ```
 
-    epoch 0 loss [1922.2222]
-    epoch 1000 loss [7.869284]
-    epoch 2000 loss [1.7595086]
-    epoch 3000 loss [0.39341962]
-    epoch 4000 loss [0.08796777]
-    finished training， loss [0.01969895]
+    epoch 0 loss [169.4257]
+    epoch 1000 loss [8.2731695]
+    epoch 2000 loss [1.8498101]
+    epoch 3000 loss [0.41360015]
+    epoch 4000 loss [0.09247836]
+    finished training， loss [0.02070835]
 
 
 ## 八、机器学习出来的参数
@@ -173,8 +173,8 @@ print("b after optimize: {}".format(b_after_opt))
 
 ```
 
-    w after optimize: 2.0178728103637695
-    b after optimize: 9.771472930908203
+    w after optimize: 2.018324613571167
+    b after optimize: 9.765690803527832
 
 
 ## 九、hello paddle
@@ -187,3 +187,4 @@ print("hello paddle")
 ```
 
     hello paddle
+

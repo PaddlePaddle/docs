@@ -77,14 +77,14 @@ array([[1., 2., 3.],
        [4., 5., 6.]], dtype=float32)
 ```
 
-**Tensor** supports not only floats and ints but also complex numbers data:
+**Tensor** supports not only floats and ints but also complex numbers data, If input complex number data, the dtype of **Tensor** is ``complex64`` or ``complex128`` : 
 
 ```python
-ndim_2_complex_tensor = paddle.to_tensor([[1+1j, 2+2j],
-                                          [3+3j, 4+4j]])
+ndim_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
+                                  [4.0, 5.0, 6.0]])
+print(ndim_2_tensor)
 ```
 
-If input complex number data, the dtype of **Tensor** is ``complex64`` or ``complex128`` .
 ```text
 Tensor(shape=[2, 2], dtype=complex64, place=CUDAPlace(0), stop_gradient=True,
        [[(1+1j), (2+2j)],
@@ -491,4 +491,4 @@ x.matmul(y)                   #Matrix multiplication
 ```
 It should be noted that the class method of Tensor are non-inplace operations. It means, ``x.add(y)`` will not operate directly on Tensor x, but return a new Tensor to represent the results.
 
-For more API related to Tensor operations, please refer to [class paddle.Tensor]((../../../api/paddle/tensor/creation/Tensor_cn.html))
+For more API related to Tensor operations, please refer to [class paddle.Tensor]((../../../api/paddle/Tensor_cn.html))
