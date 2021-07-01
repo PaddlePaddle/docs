@@ -141,7 +141,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.1.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -158,7 +158,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.1.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -180,26 +180,26 @@ Note：
    * cpu and mkl version installed on noavx machine：
 
    ```
-   python -m pip install paddlepaddle==2.1.0 -f http://www.paddlepaddle.org.cn/whl/mkl/stable/noavx/html --no-index
+   python -m pip install paddlepaddle==2.1.1 -f http://www.paddlepaddle.org.cn/whl/mkl/stable/noavx/html --no-index
    ```
 
    * cpu and openblas version installed on noavx machine：
 
    ```
-   python -m pip install paddlepaddle==2.1.0 -f https://www.paddlepaddle.org.cn/whl/openblas/stable/noavx.html --no-index
+   python -m pip install paddlepaddle==2.1.1 -f https://www.paddlepaddle.org.cn/whl/openblas/stable/noavx.html --no-index
    ```
 
 
    * GPU cuda10.1 version install on noavx machine：
 
    ```
-   python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+   python -m pip install paddlepaddle-gpu==2.1.1.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
    ```
 
    * GPU cuda10.2 version install on noavx machine：
 
    ```
-   python -m pip install paddlepaddle-gpu==2.1.0 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
+   python -m pip install paddlepaddle-gpu==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
    ```
 
    To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
