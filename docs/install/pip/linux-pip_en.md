@@ -76,7 +76,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.7 or higher)**
+  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6(for multi card support, NCCL2.7 or higher)**
 
   * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 

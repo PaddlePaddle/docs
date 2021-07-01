@@ -45,7 +45,7 @@
 **4. PaddlePaddle 对 GPU 支持情况：**
 
 * 目前 **PaddlePaddle** 支持 **NVIDIA** 显卡的 **CUDA** 驱动和 **AMD** 显卡的 **ROCm** 架构
-* 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.6+(For CUDA10.1/10.2)
+* 需要安装 `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ ，版本要求 7.6(For CUDA10.1/10.2)
 * 如果您需要 GPU 多卡模式，需要安装 `NCCL 2 <https://developer.nvidia.com/nccl/>`_
 
     * 仅 Ubuntu/CentOS 支持 NCCL 2 技术
