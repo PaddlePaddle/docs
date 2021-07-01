@@ -106,7 +106,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件并且安装[GPU版PaddlePaddle](#gpu)
 
-  * **CUDA 工具包10.1/10.2配合cuDNN v7.6.5(cuDNN版本>=7.6.5 <8, 如需多卡支持，需配合NCCL2.7及更高)**
+  * **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5, 如需多卡支持，需配合NCCL2.7及更高)**
 
   * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
 

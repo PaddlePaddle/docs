@@ -69,7 +69,7 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件并且安装GPU版PaddlePaddle
 
-  * **CUDA 工具包10.1/10.2 配合 cuDNN v7.6.5（cuDNN版本>=7.6.5 <8）**
+  * **CUDA 工具包10.1/10.2 配合 cuDNN 7 (cuDNN版本>=7.6.5）**
 
   * **CUDA 工具包11.2配合cuDNN v8.1.1**
 
