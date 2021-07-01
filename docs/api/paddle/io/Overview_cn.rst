@@ -24,8 +24,6 @@ paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的API�
 
     " :ref:`DataLoader <cn_api_fluid_io_DataLoader>` ", "多进程数据读取器"
     " :ref:`get_worker_info <cn_api_io_cn_get_worker_info>` ", "获取当前子进程相关信息"
-    " :ref:`default_collate_fn <cn_api_io_cn_default_collate_fn>` ", "多进程DataLoader中默认组batch函数"
-    " :ref:`default_convert_fn <cn_api_io_cn_default_convert_fn>` ", "多进程DataLoader中默认转换函数，在多进程DataLoader中不组batch时使用，只将数据转换为Tensor而不组batch"
     
 .. _about_dataset_define:
 

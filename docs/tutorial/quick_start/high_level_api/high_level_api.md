@@ -1,7 +1,7 @@
 # 飞桨高层API使用指南
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.05 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例教程是对飞桨高层API的详细说明，会介绍如何使用高层API，快速完成深度学习任务。
 
 ## 一、简介
@@ -41,7 +41,7 @@ paddle.__version__
 
 
 
-    '2.1.0'
+    '2.1.1'
 
 
 
@@ -71,7 +71,7 @@ print('视觉相关数据集：', paddle.vision.datasets.__all__)
 print('自然语言相关数据集：', paddle.text.__all__)
 ```
 
-    视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
+    视觉相关数据集： ['DatasetFolderImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
     自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
 
 
@@ -86,24 +86,6 @@ train_dataset = vision.datasets.MNIST(mode='train', transform=ToTensor())
 # 验证数据集
 val_dataset = vision.datasets.MNIST(mode='test', transform=ToTensor())
 ```
-
-    Cache file /home/aistudio/.cache/paddle/dataset/mnist/train-images-idx3-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/train-images-idx3-ubyte.gz 
-    Begin to download
-    
-    Download finished
-    Cache file /home/aistudio/.cache/paddle/dataset/mnist/train-labels-idx1-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/train-labels-idx1-ubyte.gz 
-    Begin to download
-    ........
-    Download finished
-    Cache file /home/aistudio/.cache/paddle/dataset/mnist/t10k-images-idx3-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/t10k-images-idx3-ubyte.gz 
-    Begin to download
-    
-    Download finished
-    Cache file /home/aistudio/.cache/paddle/dataset/mnist/t10k-labels-idx1-ubyte.gz not found, downloading https://dataset.bj.bcebos.com/mnist/t10k-labels-idx1-ubyte.gz 
-    Begin to download
-    ..
-    Download finished
-
 
 ### 4.2 自定义数据集
 
@@ -350,6 +332,11 @@ model.summary((1, 28, 28))
     Params size (MB): 1.55
     Estimated Total Size (MB): 1.57
     ---------------------------------------------------------------------------
+    
+
+
+
+
 
     {'total_params': 407050, 'trainable_params': 407050}
 
@@ -380,6 +367,11 @@ paddle.summary(mnist, (1, 28, 28))
     Params size (MB): 1.55
     Estimated Total Size (MB): 1.57
     ---------------------------------------------------------------------------
+    
+
+
+
+
 
     {'total_params': 407050, 'trainable_params': 407050}
 
@@ -414,15 +406,15 @@ model.fit(train_dataset,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step 938/938 [==============================] - loss: 0.1334 - acc: 0.9288 - 20ms/step        
+    step 938/938 [==============================] - loss: 0.0895 - acc: 0.9322 - 46ms/step          
     Epoch 2/5
-    step 938/938 [==============================] - loss: 0.0354 - acc: 0.9693 - 21ms/step         
+    step 938/938 [==============================] - loss: 0.0679 - acc: 0.9691 - 46ms/step          
     Epoch 3/5
-    step 938/938 [==============================] - loss: 0.0220 - acc: 0.9775 - 20ms/step         
+    step 938/938 [==============================] - loss: 0.0555 - acc: 0.9779 - 46ms/step          
     Epoch 4/5
-    step 938/938 [==============================] - loss: 0.0143 - acc: 0.9828 - 20ms/step        
+    step 938/938 [==============================] - loss: 0.0037 - acc: 0.9827 - 46ms/step          
     Epoch 5/5
-    step 938/938 [==============================] - loss: 0.0446 - acc: 0.9866 - 20ms/step        
+    step 938/938 [==============================] - loss: 0.0362 - acc: 0.9863 - 46ms/step          
 
 
 **注：**
@@ -459,17 +451,17 @@ model.fit(train_dataset,
           verbose=1)
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step 938/938 [==============================] - loss: 0.0433 - acc: 0.9871 - 23ms/step         
+    step 938/938 [==============================] - loss: 0.0539 - acc: 0.9873 - 46ms/step          
     Epoch 2/5
-    step 938/938 [==============================] - loss: 0.0040 - acc: 0.9900 - 23ms/step         
+    step 938/938 [==============================] - loss: 0.0556 - acc: 0.9907 - 46ms/step          
     Epoch 3/5
-    step 938/938 [==============================] - loss: 0.0015 - acc: 0.9917 - 23ms/step         
+    step 938/938 [==============================] - loss: 0.0043 - acc: 0.9909 - 46ms/step          
     Epoch 4/5
-    step 938/938 [==============================] - loss: 2.9539e-04 - acc: 0.9925 - 23ms/step    
+    step 938/938 [==============================] - loss: 0.0012 - acc: 0.9928 - 46ms/step          
     Epoch 5/5
-    step 938/938 [==============================] - loss: 0.0371 - acc: 0.9933 - 23ms/step        
+    step 938/938 [==============================] - loss: 0.0287 - acc: 0.9934 - 46ms/step          
 
 
 ### 6.2 单机多卡
@@ -733,7 +725,7 @@ result = model.evaluate(val_dataset, verbose=1)
 ```
 
     Eval begin...
-    step 10000/10000 [==============================] - loss: 1.1921e-07 - acc: 0.9814 - 2ms/step        
+    step 10000/10000 [==============================] - loss: 0.0000e+00 - acc: 0.9832 - 3ms/step          
     Eval samples: 10000
 
 
@@ -753,7 +745,7 @@ pred_result = model.predict(val_dataset)
 ```
 
     Predict begin...
-    step 10000/10000 [==============================] - 2ms/step        
+    step 10000/10000 [==============================] - 3ms/step          
     Predict samples: 10000
 
 

@@ -1,7 +1,7 @@
 # 通过AutoEncoder实现时序数据异常检测
 
 **作者:** [Reatris](https://github.com/Reatris)    
-**日期:** 2021.05 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例将会演示如何使用飞桨2.1完成时序异常检测任务。这是一个较为简单的示例，将会构建一个AutoEncoder网络完成任务。
 
 ## 一、环境配置
@@ -16,7 +16,7 @@ import paddle.nn.functional as F
 print(paddle.__version__)
 ```
 
-    2.1.0
+    2.1.1
 
 
 
@@ -44,10 +44,31 @@ warnings.filterwarnings("ignore")
 
 
 ```python
-# 解压数据集
-# %cd ./
-# !unzip ./archive.zip
+# 下载数据集
+!wget -O NAB.zip https://bj.bcebos.com/v1/ai-studio-online/f7743f2bb65848088bd74dea1608965e9d9596a028c4453f99c86b514d2d3de3?responseContentDisposition=attachment%3B%20filename%3DNAB.zip&authorization=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2020-10-15T12%3A41%3A41Z%2F-1%2F%2F7b1e4e42cf22cfa1460e3286ba2c6225d363ecadd9a9bf91570a23f1af81aec4
 ```
+
+
+```python
+# 解压数据集
+!unzip NAB.zip
+```
+
+    Archive:  NAB.zip
+       creating: artificialNoAnomaly/
+      inflating: artificialNoAnomaly/art_daily_no_noise.csv  
+      inflating: artificialNoAnomaly/art_daily_perfect_square_wave.csv  
+      inflating: artificialNoAnomaly/art_daily_small_noise.csv  
+      inflating: artificialNoAnomaly/art_flatline.csv  
+      inflating: artificialNoAnomaly/art_noisy.csv  
+       creating: artificialWithAnomaly/
+      inflating: artificialWithAnomaly/art_daily_flatmiddle.csv  
+      inflating: artificialWithAnomaly/art_daily_jumpsdown.csv  
+      inflating: artificialWithAnomaly/art_daily_jumpsup.csv  
+      inflating: artificialWithAnomaly/art_daily_nojump.csv  
+      inflating: artificialWithAnomaly/art_increase_spike_density.csv  
+      inflating: artificialWithAnomaly/art_load_balancer_spikes.csv  
+
 
 
 ```python
@@ -94,7 +115,9 @@ plt.show()
 ```
 
 
-![png](output_8_0.png)
+    
+![png](output_9_0.png)
+    
 
 
 **带有异常的时序数据如下：**
@@ -110,7 +133,9 @@ plt.show()
 ```
 
 
-![png](output_10_0.png)
+    
+![png](output_11_0.png)
+    
 
 
 ### 2.3 数据预处理
@@ -270,11 +295,13 @@ train()
     训练开始
 
 
-    100%|██████████| 200/200 [01:02<00:00,  3.19it/s]
+    100%|██████████| 200/200 [02:07<00:00,  1.56it/s]
 
 
 
-![png](output_18_2.png)
+    
+![png](output_19_2.png)
+    
 
 
 ## 五、模型预测：探测异常时序
@@ -325,10 +352,12 @@ print("阀值:", threshold)
 ```
 
 
-![png](output_20_0.png)
+    
+![png](output_21_0.png)
+    
 
 
-    阀值: 0.03447759
+    阀值: 0.03135495
 
 
 ## 六、AutoEncoder 对异常数据的重构
@@ -360,123 +389,183 @@ for batch_id, data in enumerate(data_reader()):
 ```
 
 
-![png](output_22_0.png)
+    
+![png](output_23_0.png)
+    
 
 
 
-![png](output_22_1.png)
+    
+![png](output_23_1.png)
+    
 
 
 
-![png](output_22_2.png)
+    
+![png](output_23_2.png)
+    
 
 
 
-![png](output_22_3.png)
+    
+![png](output_23_3.png)
+    
 
 
 
-![png](output_22_4.png)
+    
+![png](output_23_4.png)
+    
 
 
 
-![png](output_22_5.png)
+    
+![png](output_23_5.png)
+    
 
 
 
-![png](output_22_6.png)
+    
+![png](output_23_6.png)
+    
 
 
 
-![png](output_22_7.png)
+    
+![png](output_23_7.png)
+    
 
 
 
-![png](output_22_8.png)
+    
+![png](output_23_8.png)
+    
 
 
 
-![png](output_22_9.png)
+    
+![png](output_23_9.png)
+    
 
 
 
-![png](output_22_10.png)
+    
+![png](output_23_10.png)
+    
 
 
 
-![png](output_22_11.png)
+    
+![png](output_23_11.png)
+    
 
 
 
-![png](output_22_12.png)
+    
+![png](output_23_12.png)
+    
 
 
 
-![png](output_22_13.png)
+    
+![png](output_23_13.png)
+    
 
 
 
-![png](output_22_14.png)
+    
+![png](output_23_14.png)
+    
 
 
 
-![png](output_22_15.png)
+    
+![png](output_23_15.png)
+    
 
 
 
-![png](output_22_16.png)
+    
+![png](output_23_16.png)
+    
 
 
 
-![png](output_22_17.png)
+    
+![png](output_23_17.png)
+    
 
 
 
-![png](output_22_18.png)
+    
+![png](output_23_18.png)
+    
 
 
 
-![png](output_22_19.png)
+    
+![png](output_23_19.png)
+    
 
 
 
-![png](output_22_20.png)
+    
+![png](output_23_20.png)
+    
 
 
 
-![png](output_22_21.png)
+    
+![png](output_23_21.png)
+    
 
 
 
-![png](output_22_22.png)
+    
+![png](output_23_22.png)
+    
 
 
 
-![png](output_22_23.png)
+    
+![png](output_23_23.png)
+    
 
 
 
-![png](output_22_24.png)
+    
+![png](output_23_24.png)
+    
 
 
 
-![png](output_22_25.png)
+    
+![png](output_23_25.png)
+    
 
 
 
-![png](output_22_26.png)
+    
+![png](output_23_26.png)
+    
 
 
 
-![png](output_22_27.png)
+    
+![png](output_23_27.png)
+    
 
 
 
-![png](output_22_28.png)
+    
+![png](output_23_28.png)
+    
 
 
 
-![png](output_22_29.png)
+    
+![png](output_23_29.png)
+    
 
 
 * 可以看出对正常数据的重构效果十分不错
@@ -492,7 +581,9 @@ plt.show()
 ```
 
 
-![png](output_24_0.png)
+    
+![png](output_25_0.png)
+    
 
 
 
@@ -532,11 +623,10 @@ for i in range(len(x_test)):
 abnormal_index = abnormal_index[:(-288+40)]
 print(len(abnormal_index))
 print(abnormal_index)
-
 ```
 
-    147
-    [1372, 1659, 2990, 2991, 2992, 2993, 2994, 2996, 2997, 2998, 2999, 3000, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013, 3014, 3015, 3016, 3017, 3018, 3019, 3020, 3021, 3022, 3023, 3024, 3025, 3026, 3027, 3028, 3029, 3030, 3031, 3032, 3033, 3034, 3035, 3036, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3044, 3045, 3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055, 3056, 3057, 3058, 3059, 3060, 3061, 3062, 3063, 3064, 3065, 3066, 3067, 3068, 3069, 3070, 3071, 3072, 3073, 3074, 3075, 3076, 3077, 3078, 3079, 3080, 3081, 3082, 3083, 3084, 3085, 3086, 3087, 3088, 3089, 3090, 3091, 3092, 3093, 3094, 3095, 3096, 3097, 3098, 3099, 3100, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 3122, 3123, 3124, 3125, 3126, 3127, 3128, 3129, 3130, 3131, 3132, 3133, 3134, 3135]
+    146
+    [2990, 2991, 2992, 2993, 2994, 2995, 2996, 2997, 2998, 2999, 3000, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013, 3014, 3015, 3016, 3017, 3018, 3019, 3020, 3021, 3022, 3023, 3024, 3025, 3026, 3027, 3028, 3029, 3030, 3031, 3032, 3033, 3034, 3035, 3036, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3044, 3045, 3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055, 3056, 3057, 3058, 3059, 3060, 3061, 3062, 3063, 3064, 3065, 3066, 3067, 3068, 3069, 3070, 3071, 3072, 3073, 3074, 3075, 3076, 3077, 3078, 3079, 3080, 3081, 3082, 3083, 3084, 3085, 3086, 3087, 3088, 3089, 3090, 3091, 3092, 3093, 3094, 3095, 3096, 3097, 3098, 3099, 3100, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 3122, 3123, 3124, 3125, 3126, 3127, 3128, 3129, 3130, 3131, 3132, 3133, 3134, 3135]
 
 
 
@@ -550,4 +640,7 @@ plt.show()
 ```
 
 
-![png](output_26_0.png)
+    
+![png](output_27_0.png)
+    
+
