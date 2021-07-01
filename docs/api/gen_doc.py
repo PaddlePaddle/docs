@@ -410,6 +410,7 @@ def set_api_sketch():
         paddle.utils.download,
         paddle.utils.profiler,
         paddle.utils.cpp_extension,
+        paddle.utils.unique_name,
         paddle.sysconfig,
         paddle.vision,
         paddle.vision.datasets,
