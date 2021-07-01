@@ -67,11 +67,11 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5+**
+  * **CUDA toolkit 10.1/10.2 with cuDNN 7 (cuDNN version>=7.6.5）**
 
   * **CUDA toolkit 11.2 with cuDNN v8.1.1**
 
-  * **Hardware devices with GPU computing power over 3.0**
+  * **Hardware devices with GPU computing power over 3.5**
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
@@ -95,25 +95,32 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.2 GPU Version of PaddlePaddle
 
 
-2.2.1 CUDA10.1的PaddlePaddle
+2.2.1 If you are using CUDA 10.1
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.1.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
-2.2.2 CUDA10.2的PaddlePaddle
+2.2.2 If you are using CUDA 10.2
 
   ```
   python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
   ```
 
 
-2.2.3 CUDA11.2的PaddlePaddle
+2.2.3 If you are using CUDA 11.0
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.0.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.1.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  ```
+
+
+2.2.4 If you are using CUDA 11.2
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.1.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 Note：
@@ -127,31 +134,28 @@ Note：
    * cpu and mkl version installed on noavx machine：
 
    ```
-   python -m pip install paddlepaddle==2.1.0 -f http://www.paddlepaddle.org.cn/whl/mkl/stable/noavx/html --no-index
+   python -m pip install paddlepaddle==2.1.1 -f http://www.paddlepaddle.org.cn/whl/mkl/stable/noavx/html --no-index
    ```
 
    * cpu and openblas version installed on noavx machine：
 
    ```
-   python -m pip install paddlepaddle==2.1.0 -f https://www.paddlepaddle.org.cn/whl/openblas/stable/noavx.html --no-index
+   python -m pip install paddlepaddle==2.1.1 -f https://www.paddlepaddle.org.cn/whl/openblas/stable/noavx.html --no-index
    ```
 
    * GPU cuda10.1 version install on noavx machine：：
 
    ```
-   python -m pip install paddlepaddle-gpu==2.1.0.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+   python -m pip install paddlepaddle-gpu==2.1.1.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
    ```
 
    * GPU cuda10.2 version install on noavx machine：：
 
    ```
-   python -m pip install paddlepaddle-gpu==2.1.0 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
+   python -m pip install paddlepaddle-gpu==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
    ```
 
-   To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
-   ```
-   cat /proc/cpuinfo | grep -i avx
-   ```
+   To determine whether your machine supports `avx`, you can install the [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) tool to view the "processor-instruction set".
 
 
 * If you want to install the Paddle package built with `tensorrt`, please use the following command:
