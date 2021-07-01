@@ -1,5 +1,127 @@
-﻿
-# Release Note
+﻿# 2.1.1 Release Note
+
+## 重要更新
+
+本版本主要是对2.1.0中一些功能和性能问题的修复，并对部分功能点做了增强，重点如下：
+
+- 完成了 `paddle.distributed、paddle.device、paddle.vision` 目录API的可见性优化。
+- 动态图转静态图新增对 `paddle.nn.Sequential`容器内 sublayer 的用户代码的动静转换。
+- 动态图增加 `SyncBatchNorm` 对AMP的支持，提升动态图 `SyncBatchNorm` 层在AMP模式的性能。
+
+
+## 训练框架
+
+### 功能优化（含分布式）
+
+#### 基础API
+
+- `paddle.distributed、paddle.device、paddle.vision` 等层级新增推荐使用方式，推荐使用方式的具体说明请见下文2.1.0 Release Note。([#33420](https://github.com/PaddlePaddle/Paddle/pull/32990))
+- 新增 `paddle.is_compiled_with_rocm` 。([#33228](https://github.com/PaddlePaddle/Paddle/pull/33228))
+- 新增 `paddle.strided_slice` bool type输入的支持。（[#33373](https://github.com/PaddlePaddle/Paddle/pull/33373)）
+- 新增 `paddle.equal_all、paddle.equal、paddle.greater_equal、paddle.greater_than、paddle.less_equal、paddle.less_than、paddle.not_equal` bool type输入的支持。 （[#33551](https://github.com/PaddlePaddle/Paddle/pull/33551)）
+- 修复 `paddle.utils.download` 在ConnectionError异常时不进行Retry逻辑。（[#33454](https://github.com/PaddlePaddle/Paddle/pull/33454)）
+- 修复 `paddle.gather` 在axis不等于0下，infershape错误的问题。（[#33553](https://github.com/PaddlePaddle/Paddle/pull/33553)）
+- 修复 `paddle.io.DataLoader` 在 `num_workers=0` 且 `Dataset` 生成GPU `Tensor` 送入`DataLoader` 时导致的段错误。（[#33487](https://github.com/PaddlePaddle/Paddle/pull/33487), [#33249](https://github.com/PaddlePaddle/Paddle/pull/33249)）
+- 修复 `slice` 操作结果作为左值使用inplace操作时，反向运行报错提示与错误无关的问题。（[#32981](https://github.com/PaddlePaddle/Paddle/pull/32981)）
+- 修复 `paddle.concat` 动态图支持 uint8 出错的问题。([#33667](https://github.com/PaddlePaddle/Paddle/pull/33667))
+- 修复 `paddle.grid_sample` 显存溢出和输出结果异常的问题。（[#33100](https://github.com/PaddlePaddle/Paddle/pull/33100)、[#33232](https://github.com/PaddlePaddle/Paddle/pull/33232)）
+- 修复 `roi_align` 中align=True模式下输入为0时的问题。（[#33446](https://github.com/PaddlePaddle/Paddle/pull/33446)）
+- 修复了在特定情况下 `log_softmax` 会把输入改为nan的问题。（[#32937](https://github.com/PaddlePaddle/Paddle/pull/32937)）
+
+
+#### 动态图转静态图
+
+- 新增支持对 `paddle.nn.Sequential`容器内 sublayer 的用户代码的动静转换。（[#33065](https://github.com/PaddlePaddle/Paddle/pull/33065)）
+- 修复了在控制流 for 语句转换中，在变量静态类型分析阶段未正确处理 Subscript 语法的问题。（[#32969](https://github.com/PaddlePaddle/Paddle/pull/32969)）
+- 重构了动转静 `param_guard` 逻辑代码，全面解决动静态图 `Tensor` 类型互转问题。（[#32985](https://github.com/PaddlePaddle/Paddle/pull/32985)）
+
+#### 分布式训练
+
+- 修复 `paddle.distributed.spawn` 在使用默认 `nprocs` 参数时出错的问题。（[#33249](https://github.com/PaddlePaddle/Paddle/pull/33249)）
+- 修复流水线并行通信组创建不一致导致训练启动hang住的问题。（[#32890](https://github.com/PaddlePaddle/Paddle/pull/32890)、[#33473](https://github.com/PaddlePaddle/Paddle/pull/33473)）
+- 修复混合并行中保存参数失败的问题。（[#33595](https://github.com/PaddlePaddle/Paddle/pull/33595)、[#33588](https://github.com/PaddlePaddle/Paddle/pull/33588)）
+- 修复Fleet API无法直接运行 `Program` 的问题。（[#33511](https://github.com/PaddlePaddle/Paddle/pull/33511)）
+- 修复异构参数服务器纯GPU训练模式中样本分桶不均导致hang住的问题。（[#32957](https://github.com/PaddlePaddle/Paddle/pull/32957)）
+
+##### 动态图混合并行
+
+- 修复 `TensorParallel` 的精度问题。改变 `TensorParallel` 的参数初始化方式，保证参数切分后的随机性。（[#33087](https://github.com/PaddlePaddle/Paddle/pull/33087)）
+- 修复 `PipeLineParallel` 的精度问题。解决 `PipeLineParallel` 的 `microbatch` 使用不正确的问题。（[#33097](https://github.com/PaddlePaddle/Paddle/pull/33097)）
+- 修复 `new_group` API创建多个通信组，会hang的问题。（[#33553](https://github.com/PaddlePaddle/Paddle/pull/33553)）
+
+#### 混合精度训练
+
+- 动态图增加 `SyncBatchNorm` 对AMP的支持，提升动态图 `SyncBatchNorm` 层在AMP模式的性能，在[PaddleSeg](https://github.com/PaddlePaddle/PaddleSeg)的`DeepLabV3P`模型上8卡AMP模式加速比提升19%。([#33709](https://github.com/PaddlePaddle/Paddle/pull/33709)) 
+
+
+#### 自定义OP
+
+- 移除了自定义OP编译时对 PADDLE_WITH_MKLDNN 宏的依赖。（[#32903](https://github.com/PaddlePaddle/Paddle/pull/32903)）
+- 默认设置 `GLIBCXX_USE_CXX11_ABI=1` 以解决GCC版本过低导致编译时可能报错的问题。（[#33185](https://github.com/PaddlePaddle/Paddle/pull/33185)）
+- 新增支持c++14的语法特性，默认开启`-std=c++14`编译选项。 （[#33227](https://github.com/PaddlePaddle/Paddle/pull/33227)）
+
+#### 其他
+
+- 修复了多线程下 `LoDTensorArray` 作为Op输入时，训练会随机出段错误的问题。（[#32984](https://github.com/PaddlePaddle/Paddle/pull/32984)）
+- 修复 `paddle.ParamAttr` 的 regularizer 和 `paddle.optimizer.Momentum` 的 `weight_decay` 同时被指定为 `L2Decay` 时，参数正则化被执行2次的问题。（[#32881](https://github.com/PaddlePaddle/Paddle/pull/32881)）
+- 修复windows系统下warning信息可能显示乱码问题。（[#33689](https://github.com/PaddlePaddle/Paddle/pull/33689)）
+
+## 推理部署
+
+### 模型量化
+
+- 修复动态图量化训练功能中跳过OP量化的问题。（[#32879](https://github.com/PaddlePaddle/Paddle/pull/32879)）
+- 修复量化模型保存时 `layer_norm`不保存 `out_threahold` 属性的问题。（[#33610](https://github.com/PaddlePaddle/Paddle/pull/33707)）
+
+### Paddle Inference
+
+#### 功能升级
+
+- Paddle-TRT新增 `gather_nd` 和 `reduce_sum` 的converter/plugin。（[#33365](https://github.com/PaddlePaddle/Paddle/pull/33365)）
+- Paddle-TRT新增 `reshape` 。（[#33372](https://github.com/PaddlePaddle/Paddle/pull/33372)）
+
+#### 性能优化
+
+- 增加TensorRT的 `layer_norm` 动态shape plugin，提升模型动态shape推理性能。（[#33448](https://github.com/PaddlePaddle/Paddle/pull/33448)）
+
+
+#### 易用性优化
+
+- 新增 Paddle Inference ROCm 版的[预测示例文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_hardware_support/rocm_docs/infer_example_cn.html)以及增加C++预测库的version.txt中与ROCM相关版本信息  ([#33290](https://github.com/PaddlePaddle/Paddle/pull/33290))
+- 更新了XPU的编译选项，具体编译选项请参考 [#33581](https://github.com/PaddlePaddle/Paddle/pull/33581)。
+
+#### 问题修复
+
+- 修复 `fused_fc_elementwise_layernorm` 在海光DCU下的线程数过大导致的计算结果错误问题。 ([#33299](https://github.com/PaddlePaddle/Paddle/pull/33299))
+- 修复yolov3模型在Jetson Nano和Jetson TX2上开启gpu后运行失败的问题。([#33442](https://github.com/PaddlePaddle/Paddle/pull/33442))
+- Paddle-TensorRT plugin `multihead_matmul` 修复当seq_len > 1024的计算错误。（[#33365](https://github.com/PaddlePaddle/Paddle/pull/33365)）
+- 修复了ERNIE 模型变长情况下，输入的顺序不一致导致输出结果不对的问题。（[#33622](https://github.com/PaddlePaddle/Paddle/pull/33622)）
+- 修复OCR模型在GPU上预测报错问题。([#33431](https://github.com/PaddlePaddle/Paddle/pull/33431))
+- 修复 `paddle.static.io.normalize_program` 没有导出 `paddle.static.normalize_program` 的问题。（[#33408](https://github.com/PaddlePaddle/Paddle/pull/33408)）
+- 修复TensorRT6.0使用stride > 1的conv失败的问题。([#33198](https://github.com/PaddlePaddle/Paddle/pull/33198) )
+- 修复批量推理图片时的显存访问越界错误。([#33370](https://github.com/PaddlePaddle/Paddle/pull/33370) )([#33531](https://github.com/PaddlePaddle/Paddle/pull/33531) )
+- 修复X86 CPU上MKLDNN缓存大小设置失效的问题。 （[#33571](https://github.com/PaddlePaddle/Paddle/pull/33571)）
+- 修复TensorRT `conv2d_transpose op converter`维度错误设置问题。（[#33242](https://github.com/PaddlePaddle/Paddle/pull/33242)）
+- 修复Jetson 设备上分CUDA Arch编译出的预测库结果错误的问题，本版本将发布分Arch编译的Jetson预测库，供对预测库体积有需求的用户使用。（[#33269](https://github.com/PaddlePaddle/Paddle/pull/33269)）
+- 修复使用PaddleSlim量化模型从内存加载预测时，仍会因未设置校准表路径而报错的问题。（[#33629](https://github.com/PaddlePaddle/Paddle/pull/33629)）
+- 修复BERT/ERNIE在非0号卡上使用TensorRT预测时报错cuda error 400的问题。（[#33706](https://github.com/PaddlePaddle/Paddle/pull/33706)）
+- 修复在Linux下设置自定义编译参数时引发的cmake语法错误。（[#33621](https://github.com/PaddlePaddle/Paddle/pull/33621)）
+- 优化 `layer_norm` 计算精度，修复大数据输入时输出Nan的问题。([#33420](https://github.com/PaddlePaddle/Paddle/pull/33420))
+- 修复windows下，TensorRT推理传入左斜杠做分隔符的模型路径时，opt路径错误问题。([#33885](https://github.com/PaddlePaddle/Paddle/pull/33885))
+
+## 环境适配
+
+### 新硬件适配
+
+#### 昆仑硬件训练支持
+
+- 修复 `gather` op，新增支持 `logsumexp` 。 ([#32931](https://github.com/PaddlePaddle/Paddle/pull/32931))
+
+## Thanks to our Contributors
+
+This release contains contributions from:
+Aurelius84, cc, ceci3,  Chen Weihang, danleifeng, feng_shuai, houj04, jiangcheng, JZ-LIANG, Kaipeng Deng, lidanqing, LielinJiang, Lijunhui, lilong12, liuyuhui, liym27, Pei Yang, Peihan, Qi Li, Ren Wei (任卫), Roc, Shang Zhizhou, ShenLiang, Shibo Tao, TeslaZhao, tianshuo78520a, TTerror, wangguanzhong, Wangzheee, wawltor, WeiXin, wenbin, Wenyu, whs, Wilber, wuhuanzhou, Zhang Ting, zhiboniu, Zhou Wei, zhoujun, 李季, 王明冬
+# 2.1.0 Release Note
 
 ## 重要更新
 
