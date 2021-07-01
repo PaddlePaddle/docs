@@ -165,19 +165,19 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 #### 2.2 GPU version of PaddlePaddle
 
 
-*  If you are using CUDA 10.1，cuDNN 7.6
+*  If you are using CUDA 10.1，cuDNN 7.6.5 or above:
 
   ```
   conda install paddlepaddle-gpu==2.1.1 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  If you are usingCUDA 10.2，cuDNN 7.6:
+*  If you are usingCUDA 10.2，cuDNN 7.6.5 or above:
 
   ```
   conda install paddlepaddle-gpu==2.1.1 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  If you are using CUDA 11.2，cuDNN 8.1.1+:
+*  If you are using CUDA 11.2，cuDNN 8.1.1 or above:
 
   ```
   conda install paddlepaddle-gpu==2.1.1 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
