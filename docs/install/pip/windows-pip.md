@@ -69,7 +69,7 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件并且安装GPU版PaddlePaddle
 
-  * **CUDA 工具包10.1/10.2 配合 cuDNN v7.6.5**
+  * **CUDA 工具包10.1/10.2 配合 cuDNN v7.6.5（cuDNN版本>=7.6.5 <8）**
 
   * **CUDA 工具包11.2配合cuDNN v8.1.1**
 
@@ -110,8 +110,14 @@
   python -m pip install paddlepaddle-gpu -i https://mirror.baidu.com/pypi/simple
   ```
 
+2.2.3 CUDA11.0的PaddlePaddle
 
-2.2.3 CUDA11.2的PaddlePaddle
+  ```
+  python -m pip install paddlepaddle-gpu==2.1.1.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  ```
+
+
+2.2.4 CUDA11.2的PaddlePaddle
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.1.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html

@@ -17,7 +17,7 @@
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
 
-    * **CUDA toolkit 10.1/10.2 with cuDNN v7.6(for multi card support, NCCL2.7 or higher)**
+    * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5（cuDNN version>=7.6.5 <8, for multi card support, NCCL2.7 or higher)**
     * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
     * **Hardware devices with GPU computing power over 3.5**
 
