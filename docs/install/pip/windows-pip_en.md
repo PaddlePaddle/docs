@@ -155,10 +155,7 @@ Note：
    python -m pip install paddlepaddle-gpu==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
    ```
 
-   To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
-   ```
-   cat /proc/cpuinfo | grep -i avx
-   ```
+   To determine whether your machine supports `avx`, you can install the [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) tool to view the "processor-instruction set".
 
 
 * If you want to install the Paddle package built with `tensorrt`, please use the following command:
