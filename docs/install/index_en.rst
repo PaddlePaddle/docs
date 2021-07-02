@@ -50,7 +50,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 * Currently, **PaddlePaddle** supports **CUDA** driver of **NVIDIA** graphics card and **ROCm** driver of **AMD** card.
-* You need to install `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ , and version 7.6+ is required(For CUDA10.1/10.2) 
+* You need to install `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ , and version 7.6 is required(For CUDA10.1/10.2) 
 * If you need GPU multi-card mode, you need to install `NCCL 2 <https://developer.nvidia.com/nccl/>`_
 
     * Only Ubuntu/CentOS support NCCL 2
