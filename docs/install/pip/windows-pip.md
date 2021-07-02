@@ -146,13 +146,13 @@
   python -m pip install paddlepaddle==2.1.1 -f https://www.paddlepaddle.org.cn/whl/openblas/stable/noavx.html --no-index
   ```
 
-  * gpu版本cuda10.1安装：
+  * gpu版本cuda10.1 noavx机器安装：
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.1.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
   ```
 
-  * gpu版本cuda10.2安装：
+  * gpu版本cuda10.2 noavx机器安装：
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
