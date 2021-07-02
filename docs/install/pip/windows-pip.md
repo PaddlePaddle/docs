@@ -5,7 +5,7 @@
 ### 1.1目前飞桨支持的环境
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
-  * **GPU版本支持CUDA 10.1/10.2/11.2，且仅支持单卡**
+  * **GPU版本支持CUDA 10.1/10.2/11.0/11.2，且仅支持单卡**
 
 * **Python 版本 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 
@@ -71,11 +71,13 @@
 
   * **CUDA 工具包10.1/10.2 配合 cuDNN 7 (cuDNN版本>=7.6.5）**
 
+  * **CUDA 工具包11.0配合cuDNN v8.0.4**
+
   * **CUDA 工具包11.2配合cuDNN v8.1.1**
 
   * **GPU运算能力超过3.0的硬件设备**
 
-  * 注：目前官方发布的windows安装包仅包含 CUDA 10.1/10.2/11.2，如需使用其他cuda版本，请通过源码自行编译。您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+  * 注：目前官方发布的windows安装包仅包含 CUDA 10.1/10.2/11.0/11.2，如需使用其他cuda版本，请通过源码自行编译。您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
 
@@ -144,13 +146,13 @@
   python -m pip install paddlepaddle==2.1.1 -f https://www.paddlepaddle.org.cn/whl/openblas/stable/noavx.html --no-index
   ```
 
-  * gpu版本cuda10.1安装：
+  * gpu版本cuda10.1 noavx机器安装：
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.1.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
   ```
 
-  * gpu版本cuda10.2安装：
+  * gpu版本cuda10.2 noavx机器安装：
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index

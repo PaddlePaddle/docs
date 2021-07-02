@@ -10,7 +10,7 @@
 ----------------------
 
 * Add support for python3.9, and no longer supports python2.7 and python3.5
-* Add support for CUDA 11.2, and no longer supports CUDA 9.0, CUDA 10.0 and CUDA 11.0
+* Add support for CUDA 11.2, and no longer supports CUDA 9.0, CUDA 10.0
 * Add support for ROCm platform (2.1 Paddle's support for ROCm platform is experimental)
 * Linux system-related packages have been split into two types of packages, avx and noavx (Most machines use the avx instruction set. You can check whether your machine supports it through commands on the `PIP installation under Linux <pip/linux-pip.html>`_ page )
 * Add a CPU image with jupyter pre-installed. Jupyter service will be started after starting the image
@@ -58,21 +58,21 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 
     * Windows install GPU version
 
-        * Windows 7 / 8 / 10 support CUDA 10.1/10.2/11.2 single-card mode, but don't support CUDA 9.1/9.2/10.1		
+        * Windows 7 / 8 / 10 support CUDA 10.1/10.2/11.0/11.2 single-card mode, but don't support CUDA 9.1/9.2/10.1		
         * don't support install using **nvidia-docker** 
     * Ubuntu install GPU version
 
-        * Ubuntu 16.04 supports CUDA 10.1/10.2/11.2
-        * Ubuntu 18.04 supports CUDA 10.1/10.2/11.2
+        * Ubuntu 16.04 supports CUDA 10.1/10.2/11.0/11.2
+        * Ubuntu 18.04 supports CUDA 10.1/10.2/11.0/11.2
         * If you install using **nvidia-docker** , it supports CUDA 10.2/11.2
     * CentOS install GPU version
 
         * If you install using native **pip** :
 
-            * CentOS 7 supports CUDA 10.1/10.2/11.2
+            * CentOS 7 supports CUDA 10.1/10.2/11.0/11.2
         * If you compile and install using native source code:
 
-            * CentOS 7 supports CUDA 10.1/10.2/11.2
+            * CentOS 7 supports CUDA 10.1/10.2/11.0/11.2
         * If you install using  **nvidia-docker** , CentOS 7 supports CUDA 10.2/11.2
     * MacOS isn't supported: PaddlePaddle has no GPU support in Mac OS platform
 
@@ -212,8 +212,6 @@ The second way to install: compile and install with source code
 	:hidden:
 
 	pip/frompip_en.rst
-	conda/fromconda_en.rst
-	docker/fromdocker_en.rst
 	compile/fromsource_en.rst
 	install_Kunlun_en.md
 	Tables_en.md

@@ -6,9 +6,9 @@
 
 * **Linux 版本 (64 bit)**
 
-  * **CentOS 7 (GPU版本支持CUDA 10.1/10.2/11.2)**
-  * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
-  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
+  * **CentOS 7 (GPU版本支持CUDA 10.1/10.2/11.0/11.2)**
+  * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
+  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
 
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 
@@ -77,6 +77,8 @@
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件并且安装[GPU版PaddlePaddle](#gpu)
 
   * **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5, 如需多卡支持，需配合NCCL2.7及更高)**
+
+  * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
 
   * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
 
@@ -189,13 +191,13 @@
   ```
 
 
-  * gpu版本cuda10.1安装：
+  * gpu版本cuda10.1 noavx机器安装：
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.1.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
   ```
 
-  * gpu版本cuda10.2安装：
+  * gpu版本cuda10.2 noavx机器安装：
 
   ```
   python -m pip install paddlepaddle-gpu==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
