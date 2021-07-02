@@ -6,9 +6,9 @@
 
 * **Linux 版本 (64 bit)**
 
-  * **CentOS 7 (GPU版本支持CUDA 10.1/10.2/11.2)**
-  * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
-  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
+  * **CentOS 7 (GPU版本支持CUDA 10.1/10.2/11.0/11.2)**
+  * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
+  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
 
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 
@@ -62,7 +62,7 @@
 
 * 默认提供的安装包需要计算机支持MKL
 
-* 如果您对机器环境不了解，请下载使用<a href="https://fast-install.bj.bcebos.com/fast_install.sh" target="_blank">快速安装脚本</a>, [快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
+* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
 
 
 
@@ -77,6 +77,8 @@
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件并且安装[GPU版PaddlePaddle](#gpu)
 
   * **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5, 如需多卡支持，需配合NCCL2.7及更高)**
+
+  * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
 
   * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
 

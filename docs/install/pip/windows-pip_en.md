@@ -5,7 +5,7 @@
 ### 1.1 PREQUISITES
 
 * **Windows 7/8/10 Pro/Enterprise (64bit)**
-  * **GPU version support CUDA 10.1/10.2/11.2，only support single card**
+  * **GPU version support CUDA 10.1/10.2/11.0/11.2，only support single card**
 
 * **Python version 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 
@@ -68,6 +68,8 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
   * **CUDA toolkit 10.1/10.2 with cuDNN 7 (cuDNN version>=7.6.5）**
+
+  * **CUDA toolkit 11.0 with cuDNN v8.0.4**
 
   * **CUDA toolkit 11.2 with cuDNN v8.1.1**
 
