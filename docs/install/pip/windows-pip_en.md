@@ -5,7 +5,7 @@
 ### 1.1 PREQUISITES
 
 * **Windows 7/8/10 Pro/Enterprise (64bit)**
-  * **GPU version support CUDA 10.1/10.2/11.2，only support single card**
+  * **GPU version support CUDA 10.1/10.2/11.0/11.2，only support single card**
 
 * **Python version 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 

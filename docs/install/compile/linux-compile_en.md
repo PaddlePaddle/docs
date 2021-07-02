@@ -4,10 +4,10 @@
 
 * **Linux version (64 bit)**
     * **CentOS 6 (not recommended, no official support for compilation problems)**
-    * **CentOS 7 (GPU version supports CUDA 10.1/10.2/11.2**
+    * **CentOS 7 (GPU version supports CUDA 10.1/10.2/11.0/11.2**
     * **Ubuntu 14.04 (not recommended, no official support for compilation problems)**
-    * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.2)**
-    * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.2)**
+    * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.0/11.2)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.0/11.2)**
 * **Python version 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip or pip3 version 20.2.2 or above (64 bit)**
 
