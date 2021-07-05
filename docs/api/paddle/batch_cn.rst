@@ -8,7 +8,7 @@ batch
 该接口是一个reader的装饰器。返回的reader将输入reader的数据打包成指定的batch_size大小的批处理数据（batched data）。
 
 .. warning::
-    不推荐使用这个API，推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``
+    不推荐使用这个API，如有数据加载需求推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``
 
 参数
 ::::::::::::
