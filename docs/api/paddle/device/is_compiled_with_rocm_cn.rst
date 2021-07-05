@@ -17,6 +17,6 @@ is_compiled_with_rocm
 .. code-block:: python
 
     import paddle
-    support_gpu = paddle.is_compiled_with_rocm()
+    support_rocm = paddle.is_compiled_with_rocm()
 
 

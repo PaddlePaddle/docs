@@ -12,5 +12,5 @@ is_compiled_with_npu
 
 **示例代码**
 
-COPY-FROM: paddle.is_compiled_with_npu
+COPY-FROM: paddle.device.is_compiled_with_npu
 
