@@ -3,7 +3,7 @@
 set_device
 -------------------------------
 
-.. py:function:: paddle.set_device(device)
+.. py:function:: paddle.device.set_device(device)
 
 
 Paddle支持包括CPU和GPU在内的多种设备运行，设备可以通过字符串标识符表示，此功能可以指定OP运行的全局设备。
@@ -19,7 +19,7 @@ Paddle支持包括CPU和GPU在内的多种设备运行，设备可以通过字�
     
     import paddle
     
-    paddle.set_device("cpu")
+    paddle.device.set_device("cpu")
     x1 = paddle.ones(name='x1', shape=[1, 2], dtype='int32')
     x2 = paddle.zeros(name='x2', shape=[1, 2], dtype='int32')
     data = paddle.stack([x1,x2], axis=1)

@@ -3,7 +3,7 @@
 is_compiled_with_xpu
 -------------------------------
 
-.. py:function:: paddle.is_compiled_with_xpu()
+.. py:function:: paddle.device.is_compiled_with_xpu()
 
 
 
@@ -17,6 +17,6 @@ is_compiled_with_xpu
 .. code-block:: python
 
     import paddle
-    support_xpu = paddle.is_compiled_with_xpu()
+    support_xpu = paddle.device.is_compiled_with_xpu()
 
 

@@ -3,7 +3,7 @@
 XPUPlace
 -------------------------------
 
-.. py:class:: paddle.XPUPlace
+.. py:class:: paddle.device.XPUPlace
 
 
 
@@ -22,7 +22,7 @@ XPUPlace
 
        import paddle
 
-       place = paddle.XPUPlace(0)
+       place = paddle.device.XPUPlace(0)
 
 
 

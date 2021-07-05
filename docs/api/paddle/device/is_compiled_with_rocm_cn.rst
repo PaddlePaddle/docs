@@ -3,7 +3,7 @@
 is_compiled_with_rocm
 -------------------------------
 
-.. py:function:: paddle.is_compiled_with_rocm()
+.. py:function:: paddle.device.is_compiled_with_rocm()
 
 
 
@@ -17,6 +17,6 @@ is_compiled_with_rocm
 .. code-block:: python
 
     import paddle
-    support_rocm = paddle.is_compiled_with_rocm()
+    support_rocm = paddle.device.is_compiled_with_rocm()
 
 

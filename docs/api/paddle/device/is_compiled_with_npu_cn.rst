@@ -3,7 +3,8 @@
 is_compiled_with_npu
 -------------------------------
 
-.. py:function:: paddle.fluid.is_compiled_with_npu()
+.. py:function:: paddle.device.is_compiled_with_npu()
+
 检查 ``whl`` 包是否可以被用来在 NPU 上运行模型。
 
 返回：支持 NPU 则为True，否则为False。
