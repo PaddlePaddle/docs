@@ -137,7 +137,7 @@
   * cpu、mkl版本noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle==2.1.1 -f http://www.paddlepaddle.org.cn/whl/mkl/stable/noavx/html --no-index
+  python -m pip install paddlepaddle==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
   ```
 
   * cpu、openblas版本noavx机器安装：

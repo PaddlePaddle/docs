@@ -189,7 +189,7 @@ Note：
    * cpu and mkl version installed on noavx machine：
 
    ```
-   python -m pip install paddlepaddle==2.1.1 -f http://www.paddlepaddle.org.cn/whl/mkl/stable/noavx/html --no-index
+   python -m pip install paddlepaddle==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
    ```
 
    * cpu and openblas version installed on noavx machine：
