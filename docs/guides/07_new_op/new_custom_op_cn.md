@@ -19,6 +19,7 @@
 > 注意事项：
 > - 在使用本机制实现自定义算子之前，请确保已经正确安装了 `PaddlePaddle 2.1` 及以上版本
 > - 该机制已支持 `Linux` 、 `Mac`  和 `Windows` 平台。
+> - 本自定义外部算子机制仅保证源码级别的兼容，不保证二进制级别的兼容，例如，基于飞桨旧版本2.0编写的自定义算子源码实现，在飞桨2.1或者后续版本中编译链接使用没有问题，但基于飞桨旧版本2.0编译得到的自定义算子动态库文件（*.so, *.dylib, *.dll），在2.1或者后续发布的版本中可能会加载失败。
 
 ## 自定义算子C++实现
 
@@ -43,7 +44,7 @@
 算子运算函数有特定的函数写法要求，在编码过程中需要遵守，基本形式如下：
 
 ```c++
-std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., const int& attr, ...) {
+std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, ...) {
   ...
 }
 ```
@@ -51,11 +52,11 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., const int& 
 - 函数输入参数可以是 `paddle::Tensor` , `std::vector<paddle::Tensor>` 或者一些基础类型的 `Attribute` ，具体地：
     - `paddle::Tensor` 需要以 `const paddle::Tensor& ` 的形式作为输入，可以有一个或多个
     - `std::vector<paddle::Tensor>` 需要以 `const std::vector<paddle::Tensor>& ` 的形式作为输入，可以有一个或多个
-    - `Attribute` 目前仅支持如下数据类型，建议以const引用的形式作为输入，可以有一个或多个：
-        - `const bool&`
-        - `const int&`
-        - `const float&`
-        - `const int64_t&`
+    - `Attribute` 目前仅支持如下数据类型，建议按如下形式作为输入，可以有一个或多个：
+        - `bool`
+        - `int`
+        - `float`
+        - `int64_t`
         - `const std::string&`
         - `const std::vector<int>&`
         - `const std::vector<float>&`
@@ -319,7 +320,7 @@ switch(x.type()) {
 template <typename data_t>
 __global__ void relu_cuda_forward_kernel(const data_t* x,
                                          data_t* y,
-                                         const int num) {
+                                         int num) {
   int gid = blockIdx.x * blockDim.x + threadIdx.x;
   for (int i = gid; i < num; i += blockDim.x * gridDim.x) {
     y[i] = max(x[i], static_cast<data_t>(0.));
@@ -330,7 +331,7 @@ template <typename data_t>
 __global__ void relu_cuda_backward_kernel(const data_t* dy,
                                           const data_t* y,
                                           data_t* dx,
-                                          const int num) {
+                                          int num) {
   int gid = blockIdx.x * blockDim.x + threadIdx.x;
   for (int i = gid; i < num; i += blockDim.x * gridDim.x) {
     dx[i] = dy[i] * (y[i] > 0 ? 1. : 0.);
@@ -473,8 +474,8 @@ std::vector<paddle::Tensor> relu_cpu_forward(const paddle::Tensor& x) {
 }
 
 std::vector<paddle::Tensor> relu_cpu_backward(const paddle::Tensor& x,
-                                            const paddle::Tensor& out,
-                                            const paddle::Tensor& grad_out) {
+                                              const paddle::Tensor& out,
+                                              const paddle::Tensor& grad_out) {
   CHECK_CPU_INPUT(x);
   CHECK_CPU_INPUT(out);
   CHECK_CPU_INPUT(grad_out);
@@ -508,8 +509,8 @@ std::vector<paddle::Tensor> ReluForward(const paddle::Tensor& x) {
 }
 
 std::vector<paddle::Tensor> ReluBackward(const paddle::Tensor& x,
-                                             const paddle::Tensor& out,
-                                             const paddle::Tensor& grad_out) {
+                                         const paddle::Tensor& out,
+                                         const paddle::Tensor& grad_out) {
   if (x.place() == paddle::PlaceType::kCPU) {
     return relu_cpu_backward(x, out, grad_out);
   } else if (x.place() == paddle::PlaceType::kGPU) {
@@ -529,7 +530,7 @@ std::vector<paddle::Tensor> ReluBackward(const paddle::Tensor& x,
 template <typename data_t>
 __global__ void relu_cuda_forward_kernel(const data_t* x,
                                          data_t* y,
-                                         const int num) {
+                                         int num) {
   int gid = blockIdx.x * blockDim.x + threadIdx.x;
   for (int i = gid; i < num; i += blockDim.x * gridDim.x) {
     y[i] = max(x[i], static_cast<data_t>(0.));
@@ -540,7 +541,7 @@ template <typename data_t>
 __global__ void relu_cuda_backward_kernel(const data_t* dy,
                                           const data_t* y,
                                           data_t* dx,
-                                          const int num) {
+                                          int num) {
   int gid = blockIdx.x * blockDim.x + threadIdx.x;
   for (int i = gid; i < num; i += blockDim.x * gridDim.x) {
     dx[i] = dy[i] * (y[i] > 0 ? 1. : 0.);
@@ -639,12 +640,12 @@ std::vector<paddle::DataType> ReluInferDtype(paddle::DataType x_dtype) {
 ```c++
 // 前向函数
 std::vector<paddle::Tensor> ConcatForwardStaticAxis(
-    const std::vector<paddle::Tensor>& inputs, const int64_t& axis) { ... }
+    const std::vector<paddle::Tensor>& inputs, int64_t axis) { ... }
 
 // 维度推导
 std::vector<std::vector<int64_t>> ConcatInferShapeStaticAxis(
     const std::vector<std::vector<int64_t>>& input_shapes,
-    const int64_t& axis) { ... }
+    int64_t axis) { ... }
 
 // 类型推导
 std::vector<paddle::DataType> ConcatInferDtypeStaticAxis(
@@ -751,10 +752,10 @@ PD_BUILD_GRAD_OP(custom_concat_with_attr)
 ```c++
 std::vector<paddle::Tensor> AttrTestForward(
     const paddle::Tensor& x,
-    const bool& bool_attr,
-    const int& int_attr,
-    const float& float_attr,
-    const int64_t& int64_attr,
+    bool bool_attr,
+    int int_attr,
+    float float_attr,
+    int64_t int64_attr,
     const std::string& str_attr,
     const std::vector<int>& int_vec_attr,
     const std::vector<float>& float_vec_attr,
@@ -785,7 +786,7 @@ PD_BUILD_OP(attr_test)
 ```c++
 std::vector<paddle::Tensor> AttrTestBackward(
     const paddle::Tensor& grad_out,
-    const int& int_attr,
+    int int_attr,
     const std::vector<float>& float_vec_attr,
     const std::vector<std::string>& str_vec_attr) {...}
 
@@ -803,7 +804,7 @@ PD_BUILD_GRAD_OP(attr_test)
 ```c++
 std::vector<paddle::Tensor> AttrTestBackward(
     const paddle::Tensor& grad_out,
-    const int& a,
+    int a,
     const std::vector<float>& b,
     const std::vector<std::string>& c) {...}
 ```
