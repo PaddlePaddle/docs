@@ -3,7 +3,7 @@
 is_compiled_with_cuda
 -------------------------------
 
-.. py:function:: paddle.is_compiled_with_cuda()
+.. py:function:: paddle.device.is_compiled_with_cuda()
 
 
 
@@ -19,6 +19,6 @@ is_compiled_with_cuda
 .. code-block:: python
 
     import paddle
-    support_gpu = paddle.is_compiled_with_cuda()
+    support_gpu = paddle.device.is_compiled_with_cuda()
 
 

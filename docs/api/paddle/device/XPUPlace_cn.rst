@@ -3,7 +3,7 @@
 XPUPlace
 -------------------------------
 
-.. py:class:: paddle.XPUPlace
+.. py:class:: paddle.device.XPUPlace
 
 
 
@@ -18,12 +18,4 @@ XPUPlace
 
 **代码示例**
 
-.. code-block:: python
-
-       import paddle
-
-       place = paddle.XPUPlace(0)
-
-
-
-
+COPY-FROM: paddle.device.XPUPlace
