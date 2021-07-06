@@ -18,12 +18,4 @@ XPUPlace
 
 **代码示例**
 
-.. code-block:: python
-
-       import paddle
-
-       place = paddle.device.XPUPlace(0)
-
-
-
-
+COPY-FROM: paddle.device.XPUPlace
