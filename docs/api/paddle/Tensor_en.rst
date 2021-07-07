@@ -21,7 +21,6 @@ Tensor class reference
 .. class:: Tensor()
 
 .. autosummary::
-    :toctree: generated
     :nosignatures:
 
     Tensor.abs
