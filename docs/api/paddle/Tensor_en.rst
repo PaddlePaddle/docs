@@ -1,4 +1,3 @@
-.. currentmodule:: paddle
 
 .. _en_paddle_Tensor:
 
@@ -18,10 +17,12 @@ Data type                               dtype
 Tensor class reference
 ----------------------
 
-.. class:: Tensor()
+.. currentmodule:: paddle.Tensor
 
 .. autosummary::
     :nosignatures:
+    :toctree: Tensor
 
-    Tensor.abs
-    Tensor.is_empty
+    abs
+    is_empty
+    type
