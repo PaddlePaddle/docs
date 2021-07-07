@@ -7,16 +7,16 @@ Since the open source of PaddlePaddle, we have provided high-quality Chinese and
 We very much welcome you to participate in the construction of PaddlePaddle documentation and work with us to improve the quality of PaddlePaddle documentation. At present, PaddlePaddle document is divided into the following parts, you can choose any part of your interest to participate:
 
 - Guides
-- Application
+- Practice
 - API Documentation
 
 ### Guides
 
 This part of the content is mainly a guide to the use of PaddlePaddle. You can correct or improve the existing content, or you can add documents that you think are important. We very much welcome your suggestions and modifications regarding the use of the guides document.
 
-### Application
+### Practice
 
-The application is mainly to use PaddlePaddle for specific case implementation. At present, many developers have contributed very good cases, such as OCR recognition, face key-point detection, etc. We welcome you to submit your project to our repo, and finally show it on the official website of PaddlePaddle.
+The Practice is mainly to use PaddlePaddle for specific case implementation. At present, many developers have contributed very good cases, such as OCR recognition, face key-point detection, etc. We welcome you to submit your project to our repo, and finally show it on the official website of PaddlePaddle.
 
 ### API Documentation
 
@@ -28,7 +28,7 @@ PaddlePaddle's API documentation contains an introduction to the API. We welcome
 
 This part of the content is stored in the [docs/docs/guides](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides) directory, you can make your changes by submitting a PR. For more information, please refer to: [Document Contribution Guide](https://github.com/PaddlePaddle/docs/wiki/%E6%96%87%E6%A1%A3%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97) .
 
-### Application
+### Practice
 
 This part of the content is divided into two parts, the source code and the official website documentation. The source code is stored in the form of a notebook in [book/paddle2.0_docs](https://github.com/PaddlePaddle/book/tree/develop/paddle2.0_docs) directory; after your notebook file is merged, we will convert it into an md file and store it in [docs/docs/tutorial](https: //github.com/PaddlePaddle/docs/tree/develop/docs/tutorial), and then presented to the official website. For more information, please refer to: [[Call for Contribution] Tutorials for PaddlePaddle 2.0](https://github.com/PaddlePaddle/book/issues/905).
 
