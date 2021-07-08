@@ -5,7 +5,6 @@ paddle
 
 paddle 目录下包含tensor、device、framework相关API以及某些高层API。具体如下：
 
--  :ref:`tensor数学操作 <tensor_math>`
 -  :ref:`tensor逻辑操作 <tensor_logic>`
 -  :ref:`tensor属性相关 <tensor_attribute>`
 -  :ref:`tensor创建相关 <tensor_creation>`
