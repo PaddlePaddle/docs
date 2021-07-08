@@ -9,18 +9,18 @@ Note: English version API docs are generaly docstrings in [PaddlePaddle/Paddle](
 
 ## Codebase structure
 
-- [doc](doc): Paddle old version docs source file, will be deleled in the future
-- [docs](docs): Paddle 2.0 & above docs source file,
-- [docs/api](docs/api): Paddle API docs
-- [docs/guides](docs/guides): Paddle guides docs
-- [docs/tutorial](docs/tutorial): Paddle tutorial docs
+- [doc](doc): PaddlePaddle 1.8 & older versions docs source file, will be deleted in the future
+- [docs](docs): PaddlePaddle 2.0 & above docs source file,
+- [docs/api](docs/api): PaddlePaddle API docs
+- [docs/guides](docs/guides): PaddlePaddle guides docs
+- [docs/tutorial](docs/tutorial): PaddlePaddle tutorial docs
 - [ci_scripts](ci_scripts): docs CI scripts
 
 ## How to build
 
 - pre-requirements
   - docker
-- build instructions
+- Instructions
   - step1: clone docs
     ```
     git clone https://github.com/PaddlePaddle/docs
