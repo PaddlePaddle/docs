@@ -493,16 +493,24 @@ std::vector<paddle::Tensor> relu_cpu_backward(const paddle::Tensor& x,
   return {grad_x};
 }
 
+// NOTE: If your custom operator may be compiled in an environment with CUDA,
+// or it may be compiled in an environment without CUDA, in order to adapt the
+// compilation environment, you can use the PADDLE_WITH_CUDA macro control
+// the CUDA related code.
+#ifdef PADDLE_WITH_CUDA
 std::vector<paddle::Tensor> relu_cuda_forward(const paddle::Tensor& x);
 std::vector<paddle::Tensor> relu_cuda_backward(const paddle::Tensor& x,
                                                const paddle::Tensor& out,
                                                const paddle::Tensor& grad_out);
+#endif
 
 std::vector<paddle::Tensor> ReluForward(const paddle::Tensor& x) {
   if (x.place() == paddle::PlaceType::kCPU) {
     return relu_cpu_forward(x);
+#ifdef PADDLE_WITH_CUDA
   } else if (x.place() == paddle::PlaceType::kGPU) {
     return relu_cuda_forward(x);
+#endif
   } else {
     PD_THROW("Unsupported device type for forward function of custom relu operator.");
   }
@@ -513,8 +521,10 @@ std::vector<paddle::Tensor> ReluBackward(const paddle::Tensor& x,
                                          const paddle::Tensor& grad_out) {
   if (x.place() == paddle::PlaceType::kCPU) {
     return relu_cpu_backward(x, out, grad_out);
+#ifdef PADDLE_WITH_CUDA
   } else if (x.place() == paddle::PlaceType::kGPU) {
     return relu_cuda_backward(x, out, grad_out);
+#endif
   } else {
     PD_THROW("Unsupported device type for backward function of custom relu operator.");
   }
@@ -1480,7 +1490,7 @@ else()
   if(WITH_MKL)
     set(FLAG_OPENMP "-fopenmp")
   endif()
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 ${FLAG_OPENMP}")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 ${FLAG_OPENMP}")
 endif()
 
 if(WITH_GPU)
