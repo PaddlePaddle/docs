@@ -13,7 +13,15 @@ CUDA stream的句柄。
 
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.Stream
+
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s1 = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s2 = paddle.devices.cuda.Stream(0, 1)
+    s3 = paddle.devices.cuda.Stream()
+
 
 
 .. py:method:: wait_event(event)
@@ -24,7 +32,14 @@ COPY-FROM: paddle.devices.cuda.Stream
     - **event** (CUDAEvent) - 要等待的event。
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.Stream.wait_event
+
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
+    event = paddle.devices.cuda.Event()
+    s.wait_event(event)
 
 
 .. py:method:: wait_stream(stream)
@@ -36,7 +51,14 @@ COPY-FROM: paddle.devices.cuda.Stream.wait_event
 
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.Stream.wait_stream
+
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s1 = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s2 = paddle.devices.cuda.Stream(0, 1)
+    s1.wait_stream(s2)
 
 
 .. py:method:: query()
@@ -46,16 +68,26 @@ COPY-FROM: paddle.devices.cuda.Stream.wait_stream
 返回： 一个boolean 值。
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.Stream.query
+
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
+    is_done = s.query()
 
 .. py:method:: synchronize()
 
 等待所有的stream的任务完成。
 
-返回： 一个boolean 值。
-
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.Stream.synchronize
+
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s.synchronize()
 
 .. py:method:: record_event(event=None)
 
@@ -67,7 +99,11 @@ COPY-FROM: paddle.devices.cuda.Stream.synchronize
 返回： 被标记的event。
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.Stream.record_event
 
+.. code-block:: python
 
+    # required: gpu
+    import paddle
+    s = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
+    event = s.record_event()
 

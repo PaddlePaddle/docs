@@ -15,7 +15,12 @@ CUDA event的句柄。
 返回：None
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.Event
+
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    event = paddle.devices.cuda.Event()
 
 
 .. py:method:: record(CUDAStream=None)
@@ -26,8 +31,13 @@ COPY-FROM: paddle.devices.cuda.Event
     - **stream** (CUDAStream, 可选) - CUDA stream的句柄。如果为None，stream为当前的stream。默认值为False。
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.Event.record
 
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    event = paddle.devices.cuda.Event()
+    event.record()
 
 .. py:method:: query()
 
@@ -36,7 +46,13 @@ COPY-FROM: paddle.devices.cuda.Event.record
 返回: 一个boolean 变量，用于标识当前event 获取的所有任务是否被完成。
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.Event.query
+
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    event = paddle.devices.cuda.Event()
+    is_done = event.query()
 
 
 .. py:method:: synchronize()
@@ -44,8 +60,10 @@ COPY-FROM: paddle.devices.cuda.Event.query
 等待当前event 完成。
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.Event.synchronize
 
+.. code-block:: python
 
-
-
+    # required: gpu
+    import paddle
+    event = paddle.devices.cuda.Event()
+    event.synchronize()
