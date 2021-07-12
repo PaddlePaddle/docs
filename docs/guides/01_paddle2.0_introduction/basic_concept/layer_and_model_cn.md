@@ -23,7 +23,7 @@ class Model(paddle.nn.Layer):
         return y
 ```
 
-当前示例中，我们通过继承 ``paddle.nn.Layer`` 的方式构建了一个模型，模型中仅包含一个 ``paddle.nn.Flatten`` 层。模型执行时，输入变量**inputs**会被 ``paddle.nn.Flatten`` 层展平。
+当前示例中，我们通过继承 ``paddle.nn.Layer`` 的方式构建了一个模型类型 ``Model`` ，模型中仅包含一个 ``paddle.nn.Flatten`` 层。模型执行时，输入变量**inputs**会被 ``paddle.nn.Flatten`` 层展平。
 
 ## 子层接口
 如果想要访问或修改一个模型中定义的层，则可以调用**SubLayer**相关的接口。
