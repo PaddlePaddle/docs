@@ -1,31 +1,33 @@
 # Introduction to models and layers
 
-Model is one of the key concepts in the field of deep learning. Roughly speaking, a model represents a specific deep learning algorithm, which maps a group of input variables to their corresponding outputs. In Paddle, a model holds the following two contents:
+Model is one of the key concepts in the field of deep learning. Roughly speaking, a model represents a specific deep learning algorithm, which maps a group of input variables to another group of outputs. In Paddle, a model holds the following two contents:
 
 1. A series of layers to perform the variable mapping (forward pass).
-2. A group of parameters which will update repeatedly along the training process.
+2. A group of parameters updateid repeatedly along with the training process.
 
-In this guide, you will learn how to define and make use of models in Paddle. You will also learn the relationship between models and layers.
+In this guide, you will learn how to define and make use of models in Paddle, and further understand the relationship between models and layers.
 
 ## Defining models and layers in Paddle
 
-In Paddle, most models consist of a series of layers. Layer serves as the foundamental logical unit of a model, which holds two different contents: the variable that participates in the computation and the operator(s) that actually perform the execution.
+In Paddle, most models consist of a series of layers. Layer serves as the foundamental logical unit of a model, composed of two parts: the variable that participates in the computation and the operator(s) that actually perform the execution.
 
-Contructing a model from scratch could be a painful process with tons of nested codes to write and maintain. To make our life easier, Paddle provides a foundamental data structure ``paddle.nn.Layer`` to simplify the contruction of layer and model. Through inheriting from ``paddle.nn.Layer``, one may easily define a customized layer or model. Furthermore, since both model and layer are essentially inherited from ``paddle.nn.Layer``, model is nothing but a special layer in Paddle. 
+Contructing a model from scratch could be painful, with tons of nested codes to write and maintain. To make life easier, Paddle provides foundamental data structure ``paddle.nn.Layer`` to simplify the contruction of layer or model. One may easily inherit from ``paddle.nn.Layer`` to define thier custom layers or models. In addition, since both model and layer are essentially inherited from ``paddle.nn.Layer``, model is nothing but a special layer in Paddle. 
 
-Now let's construct a model making use of ``paddle.nn.Layer``:
+Now let us construct a model using ``paddle.nn.Layer``:
 
 ```python
 class Model(paddle.nn.Layer):
+
     def __init__(self):
         super(Model, self).__init__()
         self.flatten = paddle.nn.Flatten()
+
     def forward(self, inputs):
         y = self.flatten(inputs)
         return y
 ```
 
-Here we contructed a ``Model`` which inherites from ``paddle.nn.Layer``. This model only holds a single layer of ``paddle.nn.Flatten``, which flattens the input variables **inputs** upon execution.
+Here we contructed a ``Model`` which inherited from ``paddle.nn.Layer``. This model only holds a single layer of ``paddle.nn.Flatten``, which flattens the input variables **inputs** upon execution.
 
 ## Sublayers
 
@@ -36,18 +38,22 @@ Taking the model we just constructed as an example, let's say we would like to p
 ```python
 model = Model()
 print(model.sublayers())
+
+print("--------------------------")
+
 for item in model.named_sublayers():
     print(item) 
 ```
 
 ```text
 [Flatten()]
+--------------------------
 ('flatten', Flatten())
 ```
 
-As we can see, ``model.sublayers()`` allow us to access all the sublayers of a model (Remember there's only a single ``paddle.nn.Flatten`` layer in the model).
+As we can see, ``model.sublayers()`` allows us to access all the sublayers of a model (Remember there's only a single ``paddle.nn.Flatten`` layer in the model).
 
-We can also iterate the sublayers through calling ``model.named_sublayers()``, which returns a tuple of (sublayer_name('flatten'), sublayer_object(paddle.nn.Flatten))
+We can also iterate through the sublayers via ``model.named_sublayers()``, which returns a tuple of (sublayer_name('flatten'), sublayer_object(paddle.nn.Flatten))
 
 Now if we would like to further add a sublayer:
 
@@ -102,17 +108,19 @@ By calling ``model.children()``, we are able to get ``paddle.nn.Layer`` object t
 
 ### Add or modify a parameter to layer
 
-In certain scenario, we may need to add a parameter to a model. One example could be image style transfer task, where we use a parameter as input and update that input parameter along with the training process to finally obtain the style-transferred image.
+In certain scenario, we may need to add a parameter to a model. One example is image style transfer, where we use a parameter as input and update that input parameter along with the training process to finally obtain the style-transferred image.
 
 We can use the combination of ``create_parameter()`` and ``add_parameter()`` to create and add parameters to the model:
 
 ```python
 class Model(paddle.nn.Layer):
+
     def __init__(self):
         super(Model, self).__init__()
         img = self.create_parameter([1,3,256,256])
         self.add_parameter("img", img)
         self.flatten = paddle.nn.Flatten()
+
     def forward(self):
         y = self.flatten(self.img)
         return y
@@ -125,6 +133,9 @@ We can use  ``parameters()`` or ``named_parameters()`` to visit all the paramete
 ```python
 model = Model()
 model.parameters() 
+
+print('-----------------------------------------------------------------------------------')
+
 for item in model.named_parameters():
     print(item)
 ```
@@ -133,6 +144,7 @@ for item in model.named_parameters():
 [Parameter containing:
 Tensor(shape=[1, 3, 256, 256], dtype=float32, place=CPUPlace, stop_gradient=False,
        ...
+-----------------------------------------------------------------------------------
 ('img', Parameter containing:
 Tensor(shape=[1, 3, 256, 256], dtype=float32, place=CPUPlace, stop_gradient=False,
        ...
@@ -140,7 +152,7 @@ Tensor(shape=[1, 3, 256, 256], dtype=float32, place=CPUPlace, stop_gradient=Fals
 
 As we can see, ``model.parameters()`` returns all the parameters in a list.
 
-In a real-time training process, after calling the backward method, Paddle will compute the gradient value for each parameters in a model and further saves them in the corresponding parameter object. If the parameter already got updated or for some reason we would like to discard the gradient, then we can call ``clear_gradients()`` to clear all the gradients in a parameter.
+In a real-time training process, after calling the backward method, Paddle will compute the gradient value for each parameters in a model and further saves them in the corresponding parameter object. If the parameter already got updated, or for some reason we would like to discard the gradient, we can then seek ``clear_gradients()`` to clear all the gradients in a parameter.
 
 ```python
 model = Model()
@@ -151,15 +163,17 @@ model.clear_gradients()
 
 ### Add or modify non-parameter variable to layer
 
-Parameters actively participate in the training process and gets updated regularly. However, many times we only need a temporary variable or even a constant variable. For instance, if we want to temporarily save an intermediate variable during execution process for debug purpose, then we can make use of ``create_tensor()``:
+Parameters actively participate in the training process and gets updated regularly. However, many times we only need a temporary variable or even a constant variable. For instance, if we want to temporarily save an intermediate variable during execution simply for debugging purpose, we can then make use of ``create_tensor()``:
 
 ```python
 class Model(paddle.nn.Layer):
+
     def __init__(self):
         super(Model, self).__init__()
         self.saved_tensor = self.create_tensor(name="saved_tensor0")
         self.flatten = paddle.nn.Flatten()
         self.fc = paddle.nn.Linear(10, 100)
+
     def forward(self, input):
         y = self.flatten(input)
         # Save intermediate tensor
@@ -168,20 +182,22 @@ class Model(paddle.nn.Layer):
         return y
 ```
 
-Making use of ``create_tensor()``, we created a temporary variable and assigned it to ``self.saved_tensor`` in the model. During execution, we called ``paddle.assign`` to snapshot the value of variable **y**.
+By calling ``create_tensor()``, we created a temporary variable and assigned it to ``self.saved_tensor`` in the model. During execution, ``paddle.assign`` was called to snapshot the value of variable **y**.
 
 ### Add or modify **Buffer** variables to layer
 
-The concept of **Buffer** only influence the transformation from dynamic graph to static graph. The key difference between **Buffer** variable and a temporary variable introduced in the previous section, lies in the fact that the temporary variable will not show up in the transformed static graph. Therefore, to create a variable that could be captured by the static graph, we need to use ``register_buffers()`` to create a **Buffer** variable instead.
+The concept of **Buffer** only influence the transformation from dynamic graph to static graph. The key difference between **Buffer** variable and temporary variable (introduced in the previous section), lies in the fact that temporary variables will not show up in the transformed static graph. To create a variable that captureable by the static graph, we have to use ``register_buffers()`` to create a **Buffer** variable instead.
 
 ```python
 class Model(paddle.nn.Layer):
+
     def __init__(self):
         super(Model, self).__init__()
         saved_tensor = self.create_tensor(name="saved_tensor0")
         self.register_buffer("saved_tensor", saved_tensor, persistable=True)
         self.flatten = paddle.nn.Flatten()
         self.fc = paddle.nn.Linear(10, 100)
+
     def forward(self, input):
         y = self.flatten(input)
         # Save intermediate tensor
@@ -197,12 +213,16 @@ To visit or modify the buffers in a model, one may call ``buffers()`` or ``named
 ```python
 model = Model()
 print(model.buffers())
+
+print('-------------------------------------------')
+
 for item in model.named_buffers():
     print(item)
 ```
 
 ```text
 [Tensor(Not initialized)]
+-------------------------------------------
 ('saved_tensor', Tensor(Not initialized))
 ```
 
@@ -214,19 +234,21 @@ After all the configurations, let's say we finally settled down a model as follo
 
 ```python
 class Model(paddle.nn.Layer):
+
     def __init__(self):
         super(Model, self).__init__()
         self.flatten = paddle.nn.Flatten()
+
     def forward(self, inputs):
         y = self.flatten(inputs)
         return y
 ```
 
-Before going through the execution process, we have to configure the execution mode first.
+Before going through the execution process, we have to first configure the execution mode first.
 
 ### Configure execution mode
 
-There are two different execution modes in total, ``train()`` for training and ``eval()`` for inference.
+In Paddle, there are two different execution modes for a model, ``train()`` for training and ``eval()`` for inference.
 
 ```python
 x = paddle.randn([10, 1], 'float32')
@@ -242,11 +264,11 @@ Tensor(shape=[10, 1], dtype=float32, place=CPUPlace, stop_gradient=True,
        ...
 ```
 
-Here we first set the execution mode to **eval**, and soon after to **train**. The two execution modes are exlusive so the latter mode will override the former.
+Here we first set the execution mode to **eval**, and soon after to **train**. The two execution modes are exlusive therefore the latter mode will override the former.
 
 ### Perform an execution
 
-After setting the execution model, the model is ready to go. One may either call ``forward()`` or use ``__call__()`` to perform the forward logic defined in the model.
+After setting the execution model, the model is ready to go. One may either call ``forward()`` or use ``__call__()`` to perform the forward function defined in the model.
 
 ```python
 model = Model()
@@ -264,9 +286,9 @@ Here we performed the forward execution through calling ``__call__()`` method.
 
 ### Add extra execution logic
 
-There are times we would like to preprocess the inputs or postprocess the outputs before and after the layer execution, which can be realized making use of **hooks**. **hook** is a user-defined function taking one or more variables as argument, and get called during execution time. One may register **pre_hook** or **post_hook** or both to a layer. **pre_hook** preprocess the inputs of a layer, returning a set of new inputs to participate in the layer execution. **post_hook**, on the other hand, postprocess the outputs of a layer and returns the postprocessed outputs.
+There are times where we want to preprocess the inputs or postprocess the outputs before and after the layer execution, which can be realized using **hooks**. **hook** is a user-defined function taking one or more variables as argument, and get called during execution. One may register **pre_hook** or **post_hook** or both to a specific layer. **pre_hook** preprocess the inputs of a layer, returning a set of new inputs to participate in the layer execution. **post_hook**, on the other hand, postprocess the outputs of a layer.
 
-Let's register a **post_hook** through ``forward_post_hook()``
+Let's register a **post_hook** through ``register_forward_post_hook()``
 
 ```python
 def forward_post_hook(layer, input, output):
@@ -286,7 +308,7 @@ Tensor(shape=[10, 1], dtype=float32, place=CPUPlace, stop_gradient=True,
         ...
 ```
 
-Similarly, let's register a **pre_hook** through ``forward_pre_hook()``
+Similarly, we can also register a **pre_hook** through ``register_forward_pre_hook()``
 
 ```python
 def forward_pre_hook(layer, input, output):
@@ -307,7 +329,7 @@ Tensor(shape=[10, 1], dtype=float32, place=CPUPlace, stop_gradient=True,
 
 ## Save a model's data
 
-``state_dict()`` allows us to only save the data of the model without having to save the entire model itself. ``state_dict()`` fetches the parameters and persistent variables of a model and saves them into a **Python** dictionary. We can then save this dictionary to file.
+``state_dict()`` allows us to only save the data in a model without having to save the model itself. ``state_dict()`` fetches the parameters and persistent variables of a model and put them into a **Python** dictionary. We can then save this dictionary to file.
 
 ```python
 model = Model()
@@ -323,4 +345,4 @@ state_dict = paddle.load("paddle_dy.pdparams")
 model.set_state_dict(state_dict)
 ```
 
-To entirely save a model, please refer to [paddle.jit.save()](https://www.paddlepaddle.org.cn/documentation/docs/en/api/paddle/jit/save_en.html)
+To save a model, please refer to [paddle.jit.save()](https://www.paddlepaddle.org.cn/documentation/docs/en/api/paddle/jit/save_en.html)
