@@ -21,7 +21,6 @@ Tensor class reference
 
 .. autosummary::
     :nosignatures:
-    :toctree: Tensor
 
     abs
     acos
