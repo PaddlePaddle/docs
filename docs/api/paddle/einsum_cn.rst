@@ -68,12 +68,14 @@ Einsum 求和过程理论上等价于如下三步，但不同的实现会根据�
 参数
 :::
 
+
     **equation** (str): 求和标记
     
     **operands** (Tensor, [Tensor, ...]): 输入张量
 
 返回
 :::
+
 
     Tensor: 输出张量
 
