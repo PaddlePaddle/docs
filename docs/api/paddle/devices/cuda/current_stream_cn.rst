@@ -1,9 +1,9 @@
-.. _cn_api_devices_cuda_current_stream:
+.. _cn_api_device_cuda_current_stream:
 
 current_stream
 -------------------------------
 
-.. py:function:: paddle.devices.cuda.current_stream(device=None)
+.. py:function:: paddle.device.cuda.current_stream(device=None)
 
 通过device 返回当前的CUDA stream。
 
@@ -14,5 +14,5 @@ current_stream
 返回： CUDAStream, 设备的stream
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.current_stream
+COPY-FROM: paddle.device.cuda.current_stream
 

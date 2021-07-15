@@ -1,9 +1,9 @@
-.. _cn_api_devices_cuda_Event:
+.. _cn_api_device_cuda_Event:
 
 Event
 -------------------------------
 
-.. py:class:: paddle.devices.cuda.Event(enable_timing=False, blocking=False, interprocess=False)
+.. py:class:: paddle.device.cuda.Event(enable_timing=False, blocking=False, interprocess=False)
 
 CUDA event的句柄。
 
@@ -20,7 +20,7 @@ CUDA event的句柄。
 
     # required: gpu
     import paddle
-    event = paddle.devices.cuda.Event()
+    event = paddle.device.cuda.Event()
 
 
 .. py:method:: record(CUDAStream=None)
@@ -36,7 +36,7 @@ CUDA event的句柄。
 
     # required: gpu
     import paddle
-    event = paddle.devices.cuda.Event()
+    event = paddle.device.cuda.Event()
     event.record()
 
 .. py:method:: query()
@@ -51,7 +51,7 @@ CUDA event的句柄。
 
     # required: gpu
     import paddle
-    event = paddle.devices.cuda.Event()
+    event = paddle.device.cuda.Event()
     is_done = event.query()
 
 
@@ -65,5 +65,5 @@ CUDA event的句柄。
 
     # required: gpu
     import paddle
-    event = paddle.devices.cuda.Event()
+    event = paddle.device.cuda.Event()
     event.synchronize()

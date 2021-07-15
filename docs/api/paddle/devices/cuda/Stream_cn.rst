@@ -1,9 +1,9 @@
-.. _cn_api_devices_cuda_Stream:
+.. _cn_api_device_cuda_Stream:
 
 Stream
 -------------------------------
 
-.. py:class:: paddle.devices.cuda.Stream(device=None, priority=None)
+.. py:class:: paddle.device.cuda.Stream(device=None, priority=None)
 
 CUDA stream的句柄。
 
@@ -18,9 +18,9 @@ CUDA stream的句柄。
 
     # required: gpu
     import paddle
-    s1 = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
-    s2 = paddle.devices.cuda.Stream(0, 1)
-    s3 = paddle.devices.cuda.Stream()
+    s1 = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s2 = paddle.device.cuda.Stream(0, 1)
+    s3 = paddle.device.cuda.Stream()
 
 
 
@@ -37,8 +37,8 @@ CUDA stream的句柄。
 
     # required: gpu
     import paddle
-    s = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
-    event = paddle.devices.cuda.Event()
+    s = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
+    event = paddle.device.cuda.Event()
     s.wait_event(event)
 
 
@@ -56,8 +56,8 @@ CUDA stream的句柄。
 
     # required: gpu
     import paddle
-    s1 = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
-    s2 = paddle.devices.cuda.Stream(0, 1)
+    s1 = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s2 = paddle.device.cuda.Stream(0, 1)
     s1.wait_stream(s2)
 
 
@@ -73,7 +73,7 @@ CUDA stream的句柄。
 
     # required: gpu
     import paddle
-    s = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
     is_done = s.query()
 
 .. py:method:: synchronize()
@@ -86,7 +86,7 @@ CUDA stream的句柄。
 
     # required: gpu
     import paddle
-    s = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
     s.synchronize()
 
 .. py:method:: record_event(event=None)
@@ -104,6 +104,6 @@ CUDA stream的句柄。
 
     # required: gpu
     import paddle
-    s = paddle.devices.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
     event = s.record_event()
 

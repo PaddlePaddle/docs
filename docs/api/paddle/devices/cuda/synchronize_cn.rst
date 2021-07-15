@@ -1,9 +1,9 @@
-.. _cn_api_devices_cuda_synchronize:
+.. _cn_api_device_cuda_synchronize:
 
 synchronize
 -------------------------------
 
-.. py:function:: paddle.devices.cuda.synchronize(device=None)
+.. py:function:: paddle.device.cuda.synchronize(device=None)
 
 等待给定的CUDA 设备上的计算完成。
 
@@ -14,5 +14,5 @@ synchronize
 返回：None
 
 **代码示例**：
-COPY-FROM: paddle.devices.cuda.synchronize
+COPY-FROM: paddle.device.cuda.synchronize
 
