@@ -1,8 +1,10 @@
 # 飞桨模型量化
 
-深度学习技术飞速发展，在很多任务和领域都超越传统方法。但是，深度学习模型通常需要较大的存储空间和计算量，给部署应用带来了不小挑战。模型量化作为一种常见的模型压缩方法，使用整数替代浮点数进行存储和计算的方法，可以减少模型存储空间、加快推理速度、降低计算内存，助力深度学习应用落地。
+深度学习技术飞速发展，在很多任务和领域都超越传统方法。但是，深度学习模型通常需要较大的存储空间和计算量，给部署应用带来了不小挑战。
 
-飞桨提供了模型量化全流程解决方案，使用PaddleSlim产出量化模型，然后使用Paddle Inference或者Paddle Lite部署量化模型。
+模型量化作为一种常见的模型压缩方法，使用整数替代浮点数进行存储和计算，可以减少模型存储空间、加快推理速度、降低计算内存，助力深度学习应用的落地。
+
+飞桨提供了模型量化全流程解决方案，首先使用PaddleSlim产出量化模型，然后使用Paddle Inference和Paddle Lite部署量化模型。
 
 <p align="center">
  <img src="./images/quantization_framework.png" width="600">
@@ -10,9 +12,9 @@
 
 # 产出量化模型
 
-飞桨模型量化全流程解决方案中，PaddleSlim负责产出量化模型。PaddleSlim支持三种模型量化方法：动态离线量化方法、静态离线量化方法和量化训练方法。
+飞桨模型量化全流程解决方案中，PaddleSlim负责产出量化模型。
 
-首先概述三种量化方法的特点如下图，然后我们再展开说明。
+PaddleSlim支持三种模型量化方法：动态离线量化方法、静态离线量化方法和量化训练方法。这三种量化方法的特点如下图。
 
 <p align="center">
  <img src="./images/quantization_summary.png" width="600">
@@ -25,7 +27,7 @@
 量化训练方法要求有大量有标签样本数据，需要对模型进行较长时间的训练。在模型产出阶段，量化训练方法使用模拟量化的思想，在模型训练过程中会更新权重，实现拟合、减少量化误差的目的。在模型部署阶段，量化训练方法和静态离线量化方法一致，采用相同的预测推理方式，在存储空间、推理速度、计算内存三方面实现相同的收益。更重要的是，量化训练方法对模型精度只有极小的影响。 
 
 
-根据使用条件和压缩目的，大家可以参考下图使用不同的模型量化方法产出量化模型。 
+根据使用条件和压缩目的，大家可以参考下图选用不同的模型量化方法产出量化模型。 
 
 <p align="center">
  <img src="./images/quantization_methods.png" width="600">
@@ -40,7 +42,7 @@
 X86 CPU和Nvidia GPU上支持部署PaddleSlim静态离线量化方法和量化训练方法产出的量化模型。
 ARM CPU上支持部署PaddleSlim动态离线量化方法、静态离线量化方法和量化训练方法产出的量化模型。
 
-因为动态离线量化方法产出的量化模型主要是为了压缩模型体积，主要应用于移动端部署，所以在X86 CPU和Nvidia GPU上暂不支持。
+因为动态离线量化方法产出的量化模型主要是为了压缩模型体积，主要应用于移动端部署，所以在X86 CPU和Nvidia GPU上暂不支持这类量化模型。
 
 ## NV GPU上部署量化模型
 
@@ -59,21 +61,25 @@ config.enable_tensorrt_engine(
 ```
 
 Paddle Inference的详细说明，请参考[文档](https://paddle-inference.readthedocs.io/en/latest/#)。
+
 Nvidia GPU上部署量化模型的详细说明，请参考[文档](https://paddle-inference.readthedocs.io/en/latest/optimize/paddle_trt.html)。
 
 ## X86 CPU上部署量化模型
 
 使用PaddleSlim静态离线量化方法和量化训练方法产出量化模型后，可以使用Paddle Inference在X86 CPU上部署该量化模型。
 
-X86 CPU上部署量化模型，首先检查X86 CPU支持指令集，然后转换量化模型，最后在X86 CPU上部署量化模型。
+X86 CPU上部署量化模型，首先检查X86 CPU支持指令集，然后转换量化模型，最后在X86 CPU上执行预测。
 
 Paddle Inference的详细说明，请参考[文档](https://paddle-inference.readthedocs.io/en/latest/#)。
+
 X86 CPU上部署量化模型的详细说明，请参考[文档](https://paddle-inference.readthedocs.io/en/latest/optimize/paddle_x86_cpu_int8.html)。
 
 1）检查X86 CPU支持指令集
 
 大家可以在命令行中输入lscpu查看本机支持指令。
+
 在支持avx512、不支持avx512_vnni的X86 CPU上（如：SkyLake, Model name：Intel(R) Xeon(R) Gold X1XX），量化模型性能为原始模型性能的1.5倍左右。
+
 在支持avx512和avx512_vnni的X86 CPU上（如：Casecade Lake, Model name: Intel(R) Xeon(R) Gold X2XX），量化模型的精度和性能最高，量化模型性能为原始模型性能的3~3.7倍。
 
 2）转换量化模型
@@ -90,12 +96,11 @@ python save_quant_model.py \
     --int8_model_save_path=/PATH/TO/SAVE/CONVERTED/MODEL
 ```
 
-3）部署量化模型
+3）执行预测
 
 准备预测库，加载转换后的量化模型，创建Predictor，进行预测。
 
 注意，在X86 CPU预测端部署量化模型，必须开启MKLDNN，不要开启IrOptim（模型已经转换好）。
-
 
 4）数据展示
 
@@ -143,13 +148,16 @@ Paddle Lite可以在ARM CPU上部署PaddleSlim动态离线量化方法、静态�
 Paddle Lite部署量化模型的方法和常规非量化模型完全相同，主要包括使用opt工具进行模型优化、执行预测。
 
 Paddle Lite的详细说明，请参考[文档](https://paddle-lite.readthedocs.io/zh/latest/index.html)。
+
 Paddle Lite部署动态离线量化方法产出的量化模型，请参考[文档](https://paddle-lite.readthedocs.io/zh/latest/user_guides/quant_post_dynamic.html)。
+
 Paddle Lite部署静态离线量化方法产出的量化模型，请参考[文档](https://paddle-lite.readthedocs.io/zh/latest/user_guides/quant_post_static.html)。
+
 Paddle Lite部署量化训练方法产出的量化模型，请参考[文档](https://paddle-lite.readthedocs.io/zh/latest/user_guides/quant_aware.html)。
 
 如下是模型量化前后性能对比的结果。
 
-骁龙855|armv7 | armv7 |  armv7 |armv8 | armv8 |armv8 
+骁龙855|armv7(ms) | armv7(ms) |  armv7(ms) |armv8(ms) | armv8(ms) |armv8(ms)
 ----| ---- | ---- | ---- | ----  |----  |----
 threads num|1 |2 |4 |1 |2 |4 
 mobilenet_v1_fp32 |32.19 |18.75 |11.02 |29.50 |17.50 |9.58
