@@ -736,3 +736,9 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
                     feed={feed_target_names[0]: tensor_img},
                     fetch_list=fetch_targets)
 
+
+四、旧保存格式兼容载入
+###################
+
+如果你是从飞桨框架1.x切换到2.1，曾经使用飞桨框架1.x的fluid相关接口保存模型或者参数，飞桨框架2.1也对这种情况进行了兼容性支持，请参考 :ref:`版本迁移工具-旧保存格式兼容载入 <cn_guides_migration>
+
