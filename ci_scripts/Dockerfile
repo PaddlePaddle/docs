@@ -33,6 +33,7 @@ urllib3\n\
 certifi\n\
 chardet\n\
 requests\n\
+tqdm\n\
 decorator==4.4.2\n\
 astor' >paddle.requirements && \
     pip3 install --no-cache-dir -i https://mirror.baidu.com/pypi/simple -r paddle.requirements && \
