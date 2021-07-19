@@ -8,7 +8,7 @@ load
 从指定路径载入可以在paddle中使用的对象实例。
 
 .. note::
-    目前支持载入：Layer 或者 Optimizer 的 ``state_dict``，Layer对象，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。
+    目前支持载入：Layer 或者 Optimizer 的 ``state_dict``，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。对于Tensor对象，只保存了它的名字和数值，没有保存stop_gradient等属性，如果您需要这些没有保存的属性，请调用set_value接口将数值设置到原Tensor。
 
 
 遇到使用问题，请参考：
@@ -58,6 +58,7 @@ Object，一个可以在paddle中使用的对象实例
     load_opt_state_dict = paddle.load("adam.pdopt")
     # load weight of emb
     load_weight = paddle.load("emb.weight.pdtensor")
+    emb.weight.set_value(load_weight)
 
 .. code-block:: python
 
