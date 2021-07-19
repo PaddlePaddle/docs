@@ -156,3 +156,4 @@ io相关API
     " :ref:`name_scope <cn_api_fluid_layers_py_func>` ", "为OP生成命名空间"
     " :ref:`py_func <cn_api_fluid_layers_py_func>` ", "自定义算子"
     " :ref:`scope_guard <cn_api_fluid_executor_scope_guard>` ", "切换作用域"
+    " :ref:`while_loop <cn_api_fluid_layers_while_loop>` ", "while循环控制"
