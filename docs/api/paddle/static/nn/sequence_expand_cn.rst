@@ -4,7 +4,7 @@ sequence_expand
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.sequence_expand(x, y, ref_level=-1, name=None)
+.. py:function:: paddle.static.nn.sequence_expand(x, y, ref_level=-1, name=None)
 
 :api_attr: 声明式编程模式（静态图)
 
@@ -51,18 +51,20 @@ sequence_expand
       out.data = [[a], [a], [c], [c], [c]]
       out.dims = [5, 1]
 
-参数：
+参数
+:::::::::
+
     - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` ，lod level至多1的二维Tensor或LoDTensor。数据类型支持int32，int64，float32或float64。
     - **y** (Variable) - 输入变量，lod level至少为1的LoDTensor。数据类型不限。
     - **ref_level** (int，可选) - 扩展 ``x`` 所依据的 ``y`` 的lod层。默认值-1，表示lod的最后一层。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：扩展变量，维度为 :math:`[N, K]` 的LoDTensor，N由输入 ``x`` 和 ``y`` 的lod共同决定。数据类型与输入 ``x`` 一致。
+返回
+:::::::::
+扩展变量，维度为 :math:`[N, K]` 的LoDTensor，N由输入 ``x`` 和 ``y`` 的lod共同决定。数据类型与输入 ``x`` 一致。
 
-返回类型：Variable
-
-**代码示例**：
-
+代码示例
+:::::::::
 COPY-FROM: paddle.static.nn.sequence_expand
 
 
