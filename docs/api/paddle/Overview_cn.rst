@@ -300,6 +300,7 @@ framework相关
     " :ref:`paddle.ParamAttr <cn_api_fluid_ParamAttr>` ", "创建一个参数属性对象"
     " :ref:`paddle.save <cn_api_paddle_framework_io_save>` ", "将对象实例obj保存到指定的路径中"
     " :ref:`paddle.set_default_dtype <cn_api_paddle_framework_set_default_dtype>` ", "设置默认的全局dtype。"
+    " :ref:`paddle.set_grad_enabled <cn_api_paddle_framework_set_grad_enabled>` ", "创建启用或禁用动态图梯度计算的上下文"
 
 .. _about_device:
 device相关
