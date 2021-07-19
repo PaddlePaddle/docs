@@ -203,6 +203,8 @@
   python -m pip install paddlepaddle-gpu==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
   ```
 
+  如果安装过程中遇到依赖包报错的问题，可以自己手动安装依赖包，并在安装命令中加上`--no-deps`。
+
   判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
   ```
   cat /proc/cpuinfo | grep -i avx

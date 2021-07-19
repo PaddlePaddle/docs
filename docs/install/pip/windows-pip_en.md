@@ -157,6 +157,8 @@ Note：
    python -m pip install paddlepaddle-gpu==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
    ```
 
+   If you encounter a problem with the dependency package reporting errors during the installation process, you can manually install the dependency package yourself and add `--no-deps` to the installation command.
+
    To determine whether your machine supports `avx`, you can install the [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) tool to view the "processor-instruction set".
 
 

@@ -158,6 +158,8 @@
   python -m pip install paddlepaddle-gpu==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
   ```
 
+  如果安装过程中遇到依赖包报错的问题，可以自己手动安装依赖包，并在安装命令中加上`--no-deps`。
+
   判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。
 
 * 如果你想安装联编`tensorrt`的Paddle包，请使用
