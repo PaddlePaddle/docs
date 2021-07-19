@@ -4,14 +4,10 @@ sequence_softmax
 -------------------------------
 
 
-.. py:function:: paddle.fluid.layers.sequence_softmax(input, use_cudnn=False, name=None)
-
-:api_attr: 声明式编程模式（静态图)
-
-
+.. py:function:: paddle.static.nn.sequence_softmax(input, use_cudnn=False, name=None)
 
 .. note::
-    该OP的输入只能是LoDTensor，如果要处理的输入是Tensor类型，请使用 :ref:`cn_api_fluid_layers_softmax`
+    该OP的输入只能是LoDTensor，如果要处理的输入是Tensor类型，请使用  :ref:`paddle.nn.functional.softmax <cn_api_nn_cn_softmax>` .
 
 该OP根据LoD信息将输入的第0维度进行划分，在划分的每一个区间内部进行运算。
 
@@ -47,14 +43,17 @@ sequence_softmax
                    output.lod = [[0, 3, 5, 9, 10, 12, 15]] 
 
 
-参数：
-    - **input** (Variable) - 维度为 :math:`[N, 1]` 或者 :math:`[N]` 的LoDTensor，推荐使用 :math:`[N]` 。支持的数据类型：float32，float64。
+参数
+:::::::::
+
+    - **input** (Tensor) - 维度为 :math:`[N, 1]` 或者 :math:`[N]` 的LoDTensor，推荐使用 :math:`[N]` 。支持的数据类型：float32，float64。
     - **use_cudnn** (bool，可选) - 是否用cudnn核，仅当安装cudnn版本的paddle库且使用gpu训练或推理的时候生效。支持的数据类型：bool型。默认值为False。
     - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：根据区间计算softmax之后的LoDTensor，其维度与input的维度一致，数据类型与input的数据类型一致。
+返回
+:::::::::
+根据区间计算softmax之后的LoDTensor，其维度与input的维度一致，数据类型与input的数据类型一致。
 
-返回类型：Variable
 
 **代码示例**：
 
