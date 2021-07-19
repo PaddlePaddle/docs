@@ -15,11 +15,11 @@
 
 ```python
 class Model(paddle.nn.Layer):
-    
+
     def __init__(self):
         super(Model, self).__init__()
         self.flatten = paddle.nn.Flatten()
-    
+
     def forward(self, inputs):
         y = self.flatten(inputs)
         return y
@@ -39,7 +39,7 @@ print(model.sublayers())
 print("----------------------")
 
 for item in model.named_sublayers():
-    print(item) 
+    print(item)
 ```
 
 ```text
@@ -57,7 +57,7 @@ for item in model.named_sublayers():
 ```python
 fc = paddle.nn.Linear(10, 3)
 model.add_sublayer("fc", fc)
-print(model.sublayers()) 
+print(model.sublayers())
 ```
 
 ```text
@@ -79,6 +79,7 @@ model.apply(function)
 ```text
 Flatten()
 Linear(in_features=10, out_features=3, dtype=float32)
+
 Model(
   (flatten): Flatten()
   (fc): Linear(in_features=10, out_features=3, dtype=float32)
@@ -113,13 +114,13 @@ Linear(in_features=10, out_features=3, dtype=float32)
 
 ```python
 class Model(paddle.nn.Layer):
-    
+
     def __init__(self):
         super(Model, self).__init__()
         img = self.create_parameter([1,3,256,256])
         self.add_parameter("img", img)
         self.flatten = paddle.nn.Flatten()
-    
+
     def forward(self):
         y = self.flatten(self.img)
         return y
@@ -163,13 +164,13 @@ model.clear_gradients()
 
 ```python
 class Model(paddle.nn.Layer):
-    
+
     def __init__(self):
         super(Model, self).__init__()
         self.saved_tensor = self.create_tensor(name="saved_tensor0")
         self.flatten = paddle.nn.Flatten()
         self.fc = paddle.nn.Linear(10, 100)
-    
+
     def forward(self, input):
         y = self.flatten(input)
         # Save intermediate tensor
@@ -185,14 +186,14 @@ class Model(paddle.nn.Layer):
 
 ```python
 class Model(paddle.nn.Layer):
-    
+
     def __init__(self):
         super(Model, self).__init__()
         saved_tensor = self.create_tensor(name="saved_tensor0")
         self.register_buffer("saved_tensor", saved_tensor, persistable=True)
         self.flatten = paddle.nn.Flatten()
         self.fc = paddle.nn.Linear(10, 100)
-    
+
     def forward(self, input):
         y = self.flatten(input)
         # Save intermediate tensor
@@ -225,11 +226,11 @@ for item in model.named_buffers():
 
 ```python
 class Model(paddle.nn.Layer):
-    
+
     def __init__(self):
         super(Model, self).__init__()
         self.flatten = paddle.nn.Flatten()
-    
+
     def forward(self, inputs):
         y = self.flatten(inputs)
         return y
@@ -330,10 +331,9 @@ paddle.save( state_dict, "paddle_dy.pdparams")
 
 可以随时恢复：
 
-```text
+```python
 model = Model()
 state_dict = paddle.load("paddle_dy.pdparams")
 model.set_state_dict(state_dict)
 ```
 如果想要连同模型一起保存，则可以参考[paddle.jit.save()](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/jit/save_cn.html)
-

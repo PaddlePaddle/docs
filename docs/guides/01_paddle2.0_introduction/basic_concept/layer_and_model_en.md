@@ -11,7 +11,7 @@ In this guide, you will learn how to define and make use of models in Paddle, an
 
 In Paddle, most models consist of a series of layers. Layer serves as the foundamental logical unit of a model, composed of two parts: the variable that participates in the computation and the operator(s) that actually perform the execution.
 
-Contructing a model from scratch could be painful, with tons of nested codes to write and maintain. To make life easier, Paddle provides foundamental data structure ``paddle.nn.Layer`` to simplify the contruction of layer or model. One may easily inherit from ``paddle.nn.Layer`` to define thier custom layers or models. In addition, since both model and layer are essentially inherited from ``paddle.nn.Layer``, model is nothing but a special layer in Paddle. 
+Contructing a model from scratch could be painful, with tons of nested codes to write and maintain. To make life easier, Paddle provides foundamental data structure ``paddle.nn.Layer`` to simplify the contruction of layer or model. One may easily inherit from ``paddle.nn.Layer`` to define thier custom layers or models. In addition, since both model and layer are essentially inherited from ``paddle.nn.Layer``, model is nothing but a special layer in Paddle.
 
 Now let us construct a model using ``paddle.nn.Layer``:
 
@@ -42,7 +42,7 @@ print(model.sublayers())
 print("--------------------------")
 
 for item in model.named_sublayers():
-    print(item) 
+    print(item)
 ```
 
 ```text
@@ -60,7 +60,7 @@ Now if we would like to further add a sublayer:
 ```python
 fc = paddle.nn.Linear(10, 3)
 model.add_sublayer("fc", fc)
-print(model.sublayers()) 
+print(model.sublayers())
 ```
 
 ```text
@@ -132,7 +132,7 @@ We can use  ``parameters()`` or ``named_parameters()`` to visit all the paramete
 
 ```python
 model = Model()
-model.parameters() 
+model.parameters()
 
 print('-----------------------------------------------------------------------------------')
 
@@ -339,7 +339,7 @@ paddle.save( state_dict, "paddle_dy.pdparams")
 
 And recover the model anytime:
 
-```text
+```python
 model = Model()
 state_dict = paddle.load("paddle_dy.pdparams")
 model.set_state_dict(state_dict)
