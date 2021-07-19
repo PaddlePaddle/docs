@@ -217,7 +217,7 @@ paddle_upgrade_tool支持单文件的转化，你可以通过下方的命令直�
 
 
 旧保存格式兼容载入
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 如果你是从飞桨框架1.x切换到2.1，曾经使用飞桨框架1.x的fluid相关接口保存模型或者参数，飞桨框架2.1也对这种情况进行了兼容性支持，包括以下几种情况。
 
@@ -285,8 +285,8 @@ paddle_upgrade_tool支持单文件的转化，你可以通过下方的命令直�
             fetch_list=[avg_loss])
 
 
-1 从 ``paddle.fluid.io.save_inference_model`` 保存结果中载入模型&参数
-------------------------------------------------------------------
+1. 从 ``paddle.fluid.io.save_inference_model`` 保存结果中载入模型&参数
+~~~~~~~~~~~~~
 
 (1) 同时载入模型和参数
 
@@ -387,8 +387,8 @@ paddle_upgrade_tool支持单文件的转化，你可以通过下方的命令直�
     由于 ``structured_name`` 是动态图下独有的变量命名方式，因此从静态图存储结果载入的state_dict在配置到动态图的Layer中时，需要配置 ``Layer.set_state_dict(use_structured_name=False)`` 。
 
 
-2 从 ``paddle.fluid.save`` 存储结果中载入参数
-----------------------------------------------
+2. 从 ``paddle.fluid.save`` 存储结果中载入参数
+~~~~~~~~~~~~~
 
  ``paddle.fluid.save`` 的存储格式与2.x动态图接口 ``paddle.save`` 存储格式是类似的，同样存储了dict格式的参数，因此可以直接使用 ``paddle.load`` 载入state_dict，但需要注意不能仅传入保存的路径，而要传入保存参数的文件名，示例如下（接前述示例）：
 
@@ -409,8 +409,8 @@ paddle_upgrade_tool支持单文件的转化，你可以通过下方的命令直�
     由于 ``paddle.fluid.save`` 接口原先在静态图模式下的定位是存储训练时参数，或者说存储Checkpoint，故尽管其同时存储了模型结构，目前也暂不支持从 ``paddle.fluid.save`` 的存储结果中同时载入模型和参数，后续如有需求再考虑支持。
 
 
-3 从 ``paddle.fluid.io.save_params/save_persistables`` 保存结果中载入参数
--------------------------------------------------------------------------
+3. 从 ``paddle.fluid.io.save_params/save_persistables`` 保存结果中载入参数
+~~~~~~~~~~~~~
 
 这两个接口在飞桨1.x版本时，已经不再推荐作为存储模型参数的接口使用，故并未继承至飞桨2.x，之后也不会再推荐使用这两个接口存储参数。
 
@@ -449,8 +449,8 @@ paddle_upgrade_tool支持单文件的转化，你可以通过下方的命令直�
     state_dict = paddle.io.load_program_state(params_file_path, var_list)
 
 
-4 从 ``paddle.static.save`` 保存结果中载入参数
--------------------------------------------
+4. 从 ``paddle.static.save`` 保存结果中载入参数
+~~~~~~~~~~~~~
 ``paddle.static.save`` 接口生成三个文件： ``*.pdparams' 、``*.pdopt`` 、``*.pdmodel``，分别保存了组网的参数、优化器的参数、静态图的Program。推荐您使用 ``paddle.load`` 分别加载这三个文件，然后使用 ``set_state_dict`` 接口将参数设置到 ``Program`` 中 。如果您已经在代码中定义了 ``Program`` ，您可以不加载 ``*.pdmodel`` 文件；如果您不需要恢复优化器中的参数，您可以不加载 ``*.pdopt`` 文件。使用示例如下：
 
 
