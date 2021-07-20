@@ -8,7 +8,7 @@ save
 将对象实例obj保存到指定的路径中。
 
 .. note::
-    目前支持保存：Layer 或者 Optimizer 的 ``state_dict``，Layer对象，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。
+    目前支持保存：Layer 或者 Optimizer 的 ``state_dict``，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。对于Tensor对象，只保存了它的名字和数值，没有保存stop_gradient等属性，如果您需要这些没有保存的属性，请调用set_value接口将数值设置到带有这些属性的Tensor中。
 
 .. note::
     不同于 ``paddle.jit.save`` ，由于 ``paddle.save`` 的存储结果是单个文件，所以不需要通过添加后缀的方式区分多个存储文件，``paddle.save`` 的输入参数 ``path`` 将直接作为存储结果的文件名而非前缀。为了统一存储文件名的格式，我们推荐使用paddle标椎文件后缀：
