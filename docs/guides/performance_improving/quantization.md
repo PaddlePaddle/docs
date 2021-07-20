@@ -6,9 +6,10 @@
 
 飞桨提供了模型量化全流程解决方案，首先使用PaddleSlim产出量化模型，然后使用Paddle Inference和Paddle Lite部署量化模型。
 
-<p align="center">
- <img src="./images/quantization_framework.png" width="600">
-</p>
+<figure align="center">
+    <img src="https://paddleweb-static.bj.bcebos.com/images/quantization_framework.png" width="600" alt='missing'/>
+    <figcaption><center>图 1. 飞桨模型量化全流程解决方案</center></figcaption>
+</figure>
 
 # 产出量化模型
 
@@ -16,9 +17,10 @@
 
 PaddleSlim支持三种模型量化方法：动态离线量化方法、静态离线量化方法和量化训练方法。这三种量化方法的特点如下图。
 
-<p align="center">
- <img src="./images/quantization_summary.png" width="600">
-</p>
+<figure align="center">
+    <img src="https://paddleweb-static.bj.bcebos.com/images/quantization_summary.png" width="600" alt='missing'/>
+    <figcaption><center>图 2. 量化方法概述</center></figcaption>
+</figure>
 
 动态离线量化方法不需要使用样本数据，也不会对模型进行训练。在模型产出阶段，动态离线量化方法将模型权重从浮点数量化成整数。在模型部署阶段，将权重从整数反量化成浮点数，使用浮点数运算进行预测推理。这种方式主要减少模型存储空间，对权重读取费时的模型有一定加速作用，对模型精度影响较小。
 
@@ -29,9 +31,10 @@ PaddleSlim支持三种模型量化方法：动态离线量化方法、静态离�
 
 根据使用条件和压缩目的，大家可以参考下图选用不同的模型量化方法产出量化模型。
 
-<p align="center">
- <img src="./images/quantization_methods.png" width="600">
-</p>
+<figure align="center">
+    <img src="https://paddleweb-static.bj.bcebos.com/images/quantization_methods.png" width="600" alt='missing'/>
+    <figcaption><center>图 3. 选择量化方法</center></figcaption>
+</figure>
 
 产出量化模型的使用方法、Demo和API，请参考[PaddleSlim文档](https://paddleslim.readthedocs.io/zh_CN/latest/index.html)。
 
@@ -155,10 +158,10 @@ Paddle Lite部署静态离线量化方法产出的量化模型，请参考[文�
 
 Paddle Lite部署量化训练方法产出的量化模型，请参考[文档](https://paddle-lite.readthedocs.io/zh/latest/user_guides/quant_aware.html)。
 
-如下是模型量化前后性能对比的结果。
+**模型量化前后性能对比**
 
-| 骁龙855|armv7(ms) | armv7(ms) |  armv7(ms) |armv8(ms) | armv8(ms) |armv8(ms) |
-|:------------:|:---------------:|:---------------:|:-----------------:|
+| 骁龙855 | armv7(ms) | armv7(ms) |  armv7(ms) | armv8(ms) | armv8(ms) | armv8(ms) |
+|:------:|:---------:|:---------: | :-------: | :--------:| :--------:| :--------:|
 | threads num| 1 | 2 | 4 | 1 | 2 | 4 |
 | mobilenet_v1_fp32 | 32.19 | 18.75 | 11.02 | 29.50 | 17.50 | 9.58 |
 | mobilenet_v1_int8 | 19.00 | 10.93 | 5.97 | 13.08 | 7.68 | 3.98  |
