@@ -8,7 +8,7 @@ load
 从指定路径载入可以在paddle中使用的对象实例。
 
 .. note::
-    目前支持载入：Layer 或者 Optimizer 的 ``state_dict``，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。对于Tensor对象，只保存了它的名字和数值，没有保存stop_gradient等属性，如果您需要这些没有保存的属性，请调用set_value接口将数值设置到原Tensor。
+    目前支持载入：Layer 或者 Optimizer 的 ``state_dict``，Tensor以及包含Tensor的嵌套list、tuple、dict，Program。对于Tensor对象，只保存了它的名字和数值，没有保存stop_gradient等属性，如果您需要这些没有保存的属性，请调用set_value接口将数值设置到带有这些属性的Tensor中。
 
 
 遇到使用问题，请参考：
