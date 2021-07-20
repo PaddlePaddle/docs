@@ -11,7 +11,7 @@
     <figcaption><center>图 1. 飞桨模型量化全流程解决方案</center></figcaption>
 </figure>
 
-# 产出量化模型
+## 产出量化模型
 
 飞桨模型量化全流程解决方案中，PaddleSlim负责产出量化模型。
 
@@ -38,7 +38,7 @@ PaddleSlim支持三种模型量化方法：动态离线量化方法、静态离�
 
 产出量化模型的使用方法、Demo和API，请参考[PaddleSlim文档](https://paddleslim.readthedocs.io/zh_CN/latest/index.html)。
 
-# 部署量化模型
+## 部署量化模型
 
 飞桨模型量化全流程解决方案中，Paddle Inference负责在服务器端（X86 CPU和Nvidia GPU）部署量化模型，Paddle Lite负责在移动端（ARM CPU）上部署量化模型。
 
@@ -47,7 +47,7 @@ ARM CPU上支持部署PaddleSlim动态离线量化方法、静态离线量化方
 
 因为动态离线量化方法产出的量化模型主要是为了压缩模型体积，主要应用于移动端部署，所以在X86 CPU和Nvidia GPU上暂不支持这类量化模型。
 
-## NV GPU上部署量化模型
+### NV GPU上部署量化模型
 
 使用PaddleSlim静态离线量化方法和量化训练方法产出量化模型后，可以使用Paddle Inference在Nvidia GPU上部署该量化模型。
 
@@ -63,11 +63,11 @@ config.enable_tensorrt_engine(
   use_calib_mode=False)
 ```
 
-Paddle Inference的详细说明，请参考[文档](https://paddle-inference.readthedocs.io/en/latest/#)。
+Paddle Inference的详细说明，请参考[文档](https://paddleinference.paddlepaddle.org.cn/product_introduction/summary.html)。
 
 Nvidia GPU上部署量化模型的详细说明，请参考[文档](https://paddle-inference.readthedocs.io/en/latest/optimize/paddle_trt.html)。
 
-## X86 CPU上部署量化模型
+### X86 CPU上部署量化模型
 
 使用PaddleSlim静态离线量化方法和量化训练方法产出量化模型后，可以使用Paddle Inference在X86 CPU上部署该量化模型。
 
@@ -144,7 +144,7 @@ python save_quant_model.py \
 | 20 threads |       22.08       |       12.57       |       1.76X       |
 
 
-## ARM CPU上部署量化模型
+### ARM CPU上部署量化模型
 
 Paddle Lite可以在ARM CPU上部署PaddleSlim动态离线量化方法、静态离线量化方法和量化训练方法产出的量化模型。
 
