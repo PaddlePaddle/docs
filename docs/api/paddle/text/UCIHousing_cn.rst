@@ -6,7 +6,7 @@ UCIHousing
 .. py:class:: paddle.text.datasets.UCIHousing()
 
 
-该类是对`UCI housing <https://archive.ics.uci.edu/ml/datasets/Housing>`_
+该类是对 `UCI housing <https://archive.ics.uci.edu/ml/datasets/Housing>`_
 测试数据集的实现。
 
 参数

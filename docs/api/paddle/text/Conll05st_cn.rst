@@ -6,7 +6,7 @@ Conll05st
 .. py:class:: paddle.text.datasets.Conll05st()
 
 
-该类是对`Conll05st <https://www.cs.upc.edu/~srlconll/soft.html>`_
+该类是对 `Conll05st <https://www.cs.upc.edu/~srlconll/soft.html>`_
 测试数据集的实现.
 
 .. note::
