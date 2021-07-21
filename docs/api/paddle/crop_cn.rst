@@ -1,4 +1,4 @@
-.. _cn_api__paddle_crop:
+.. _cn_api_paddle_crop:
 
 crop
 -------------------------------
