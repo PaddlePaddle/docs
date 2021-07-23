@@ -6,7 +6,7 @@ Movielens
 .. py:class:: paddle.text.datasets.Movielens()
 
 
-该类是对`Movielens 1-M <https://grouplens.org/datasets/movielens/1m/>`_
+该类是对 `Movielens 1-M <https://grouplens.org/datasets/movielens/1m/>`_
 测试数据集的实现。
 
 参数
