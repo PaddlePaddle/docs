@@ -1,6 +1,6 @@
 .. _cn_api_distributed_recv:
 
-send
+recv
 -------------------------------
 
 
