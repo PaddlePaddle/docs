@@ -381,7 +381,7 @@ GradScaler用于动态图模式下的"自动混合精度"的训练。它控制lo
 
 以字典的形式存储GradScaler对象的状态参数，如果该对象的enable为False，则返回一个空的字典。
 
-返回：dict，字典存储的参数包括：init_loss_scaling、incr_ratio、decr_ratio、incr_every_n_steps、decr_every_n_nan_or_inf。
+返回：dict，字典存储的参数包括：init_loss_scaling(float):初始loss scaling因子、incr_ratio(float):增大loss scaling时使用的乘数、decr_ratio(float):减小loss scaling时使用的小于1的乘数、incr_every_n_steps(int):连续n个steps的梯度都是有限值时，增加loss scaling、decr_every_n_nan_or_inf(int):累计出现n个steps的梯度为nan或者inf时，减小loss scaling。
 
 代码示例：
 
