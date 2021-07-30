@@ -83,7 +83,6 @@ tensor数学操作
     " :ref:`paddle.min <cn_api_paddle_tensor_min>` ", "对指定维度上的Tensor元素求最小值运算"
     " :ref:`paddle.minimum <cn_api_paddle_tensor_minimum>` ", "逐元素对比输入的两个Tensor，并且把各个位置更小的元素保存到返回结果中"
     " :ref:`paddle.mm <cn_api_tensor_mm>` ", "用于两个输入矩阵的相乘"
-    " :ref:`paddle.mod <cn_api_tensor_mod>` ", "逐元素取模算子"
     " :ref:`paddle.multiplex <cn_api_fluid_layers_multiplex>` ", "从每个输入Tensor中选择特定行构造输出Tensor"   
     " :ref:`paddle.multiply <cn_api_fluid_layers_multiply>` ", "逐元素相乘算子"
     " :ref:`paddle.neg <cn_api_paddle_neg>` ", "计算输入 x 的相反数并返回"
@@ -137,6 +136,7 @@ tensor属性相关
     " :ref:`paddle.imag <cn_api_tensor_imag>` ", "返回一个包含输入复数Tensor的虚部数值的新Tensor"
     " :ref:`paddle.real <cn_api_tensor_real>` ", "返回一个包含输入复数Tensor的实部数值的新Tensor"
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入Tensor或SelectedRows的shape"
+    " :ref:`paddle.broadcast_shape <cn_api_fluid_layers_shape>` ", "返回对x_shape大小的张量和y_shape大小的张量做broadcast操作后得到的shape"
 
 .. _tensor_creation:
 
