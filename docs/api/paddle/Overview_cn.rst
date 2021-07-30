@@ -252,6 +252,7 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.cast <cn_api_fluid_layers_cast>` ", "将输入的x的数据类型转换为 dtype 并输出"
     " :ref:`paddle.chunk <cn_api_tensor_cn_chunk>` ", "将输入Tensor分割成多个子Tensor"
     " :ref:`paddle.concat <cn_api_tensor_concat>` ", "对输入沿 axis 轴进行联结，返回一个新的Tensor"
+    " :ref:`paddle.crop <cn_api_paddle_crop>` ", "根据偏移量（offsets）和形状（shape），裁剪输入（x）Tensor"
     " :ref:`paddle.expand <cn_api_tensor_expand>` ", "根据 shape 指定的形状扩展 x ，扩展后， x 的形状和 shape 指定的形状一致"
     " :ref:`paddle.expand_as <cn_api_tensor_expand_as>` ", "根据 y 的形状扩展 x ，扩展后， x 的形状和 y 的形状相同"
     " :ref:`paddle.flatten <cn_api_paddle_flatten>` ", "根据给定的start_axis 和 stop_axis 将连续的维度展平"
@@ -300,6 +301,7 @@ framework相关
     " :ref:`paddle.ParamAttr <cn_api_fluid_ParamAttr>` ", "创建一个参数属性对象"
     " :ref:`paddle.save <cn_api_paddle_framework_io_save>` ", "将对象实例obj保存到指定的路径中"
     " :ref:`paddle.set_default_dtype <cn_api_paddle_framework_set_default_dtype>` ", "设置默认的全局dtype。"
+    " :ref:`paddle.set_grad_enabled <cn_api_paddle_framework_set_grad_enabled>` ", "创建启用或禁用动态图梯度计算的上下文"
 
 .. _about_device:
 device相关

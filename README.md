@@ -40,4 +40,6 @@ PaddlePaddle welcomes documentation contributions, please see [CONTRIBUTING.md](
 
 ## License
 
+
+
 [Apache License 2.0](LICENSE)
