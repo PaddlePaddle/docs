@@ -46,12 +46,24 @@ NLP方向如下：
 
 
 
-..  toctree::
-    :hidden:
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :caption: 快速开始
 
-    quick_start/index_cn.rst
-    cv_case/index_cn.rst
-    nlp_case/index_cn.rst
-    time_series/index_cn.rst
-    reinforcement_learning/index_cn.rst
-    recommendations/index_cn.rst
+   hello_paddle/hello_paddle
+   dynamic_graph/dynamic_graph
+   high_level_api/high_level_api
+   save_model/save_model
+   linear_regression/linear_regression
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+   :caption: 计算机视觉
+
+   hello_paddle/hello_paddle.ipynb
+   dynamic_graph/dynamic_graph.ipynb
+   high_level_api/high_level_api.ipynb
+   save_model/save_model.ipynb
+   linear_regression/linear_regression.ipynb
