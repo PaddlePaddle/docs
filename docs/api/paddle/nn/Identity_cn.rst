@@ -6,7 +6,7 @@ Identity
 .. py:class:: paddle.nn.Identity(*args, **kwargs)
 
 
-**等效层** 。对于每个输入Tensor :math:`X` ，计算公式为：
+**等效层** 。对于输入Tensor :math:`X` ，计算公式为：
 
 .. math::
 
@@ -16,7 +16,8 @@ Identity
 参数
 :::::::::
 
-- 任意参数，均没有使用
+- **args** - 任意的参数（没有使用）
+- **kwargs** – 任意的关键字参数（没有使用）
 
 形状
 :::::::::
