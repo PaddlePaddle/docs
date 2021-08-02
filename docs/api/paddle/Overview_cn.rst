@@ -136,7 +136,7 @@ tensor属性相关
     " :ref:`paddle.imag <cn_api_tensor_imag>` ", "返回一个包含输入复数Tensor的虚部数值的新Tensor"
     " :ref:`paddle.real <cn_api_tensor_real>` ", "返回一个包含输入复数Tensor的实部数值的新Tensor"
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入Tensor或SelectedRows的shape"
-    " :ref:`paddle.broadcast_shape <cn_api_fluid_layers_shape>` ", "返回对x_shape大小的张量和y_shape大小的张量做broadcast操作后得到的shape"
+    " :ref:`paddle.broadcast_shape <cn_api_tensor_broadcast_shape>` ", "返回对x_shape大小的张量和y_shape大小的张量做broadcast操作后得到的shape"
 
 .. _tensor_creation:
 
