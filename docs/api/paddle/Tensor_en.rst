@@ -20,6 +20,9 @@ Tensor class reference
 .. currentmodule:: paddle.Tensor
 
 
+Properties
+~~~~~~~~~~~~~~~~~~~~~~
+
 .. autosummary::
     :nosignatures:
 
@@ -36,6 +39,9 @@ Tensor class reference
     size
     stop_gradient
     type
+
+Methods
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. autosummary::
     :nosignatures:
