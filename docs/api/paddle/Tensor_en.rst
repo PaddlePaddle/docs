@@ -19,6 +19,24 @@ Tensor class reference
 
 .. currentmodule:: paddle.Tensor
 
+
+.. autosummary::
+    :nosignatures:
+
+    block
+    dtype
+    grad
+    inplace_version
+    is_leaf
+    name
+    ndim
+    persistable
+    place
+    shape
+    size
+    stop_gradient
+    type
+
 .. autosummary::
     :nosignatures:
 
@@ -38,7 +56,6 @@ Tensor class reference
     astype
     atan
     backward
-    block
     bmm
     broadcast_shape
     broadcast_to
@@ -66,7 +83,6 @@ Tensor class reference
     dist
     divide
     dot
-    dtype
     equal
     equal_all
     erf
@@ -83,7 +99,6 @@ Tensor class reference
     floor_mod
     gather
     gather_nd
-    grad
     gradient
     greater_equal
     greater_than
@@ -92,10 +107,8 @@ Tensor class reference
     increment
     index_sample
     index_select
-    inplace_version
     inverse
     is_empty
-    is_leaf
     is_tensor
     isfinite
     isinf
@@ -126,17 +139,13 @@ Tensor class reference
     multiplex
     multiply
     mv
-    name
-    ndim
     ndimension
     nonzero
     norm
     not_equal
     numel
     numpy
-    persistable
     pin_memory
-    place
     pow
     prod
     rank
@@ -160,7 +169,6 @@ Tensor class reference
     scatter_nd
     scatter_nd_add
     set_value
-    shape
     shard_index
     sign
     sin
@@ -177,7 +185,6 @@ Tensor class reference
     stack
     stanh
     std
-    stop_gradient
     strided_slice
     subtract
     subtract_
@@ -190,7 +197,6 @@ Tensor class reference
     topk
     trace
     transpose
-    type
     unbind
     unique
     unsqueeze
