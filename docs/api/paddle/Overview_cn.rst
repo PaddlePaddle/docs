@@ -292,6 +292,7 @@ framework相关
     " :ref:`paddle.CUDAPlace <cn_api_fluid_CUDAPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 或 LoDTensor 的 GPU 设备"
     " :ref:`paddle.DataParallel <cn_api_fluid_dygraph_DataParallel>` ", "通过数据并行模式执行动态图模型"
     " :ref:`paddle.NPUPlace <cn_api_fluid_NPUPlace>` ", "一个设备描述符，指NCPUPlace则Tensor将被自动分配在该设备上，并且模型将会运行在该设备上"
+    " :ref:`paddle.disable_signal_handler <cn_api_fluid_disable_signal_handler>` ", "关闭Paddle系统信号处理方法"
     " :ref:`paddle.disable_static <cn_api_paddle_disable_static>` ", "关闭静态图模式"
     " :ref:`paddle.enable_static <cn_api_paddle_enable_static>` ", "开启静态图模式"
     " :ref:`paddle.get_default_dtype <cn_api_paddle_framework_get_default_dtype>` ", "得到当前全局的dtype"
