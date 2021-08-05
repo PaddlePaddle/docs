@@ -291,6 +291,7 @@ Clip相关
     " :ref:`paddle.nn.dynamic_decode <cn_api_paddle_nn_dynamic_decode>` ", "循环解码"
     " :ref:`paddle.nn.Flatten <cn_api_tensor_Flatten>` ", "将一个连续维度的Tensor展平成一维Tensor"
     " :ref:`paddle.nn.PairwiseDistance <cn_api_nn_PairwiseDistance>` ", "计算两个向量之间pairwise的距离"
+    " :ref:`paddle.nn.Identity <_cn_api_paddle_nn_layer_common_Identity>` ", "建立等效层，作为输入的 Placeholder"
     
 .. _convolution_functional:
 
