@@ -135,7 +135,7 @@
 2.2.1 CUDA10.1的PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.1.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.2.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -151,7 +151,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.1.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.2.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -159,7 +159,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.1.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.2.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
   ```
 
 
@@ -181,26 +181,26 @@
   * cpu、mkl版本noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
+  python -m pip install paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
   ```
 
   * cpu、openblas版本noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle==2.1.1 -f https://www.paddlepaddle.org.cn/whl/openblas/stable/noavx.html --no-index
+  python -m pip install paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/openblas/stable/noavx.html --no-index
   ```
 
 
   * gpu版本cuda10.1 noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.1.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  python -m pip install paddlepaddle-gpu==2.1.2.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
   ```
 
   * gpu版本cuda10.2 noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.1 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
+  python -m pip install paddlepaddle-gpu==2.1.2 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
   ```
 
   判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
