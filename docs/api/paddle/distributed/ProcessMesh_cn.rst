@@ -7,17 +7,11 @@ ProcessMesh
 .. py:class:: paddle.distributed.ProcessMesh(mesh, parent=None)
 
 
+类ProcessMesh描述逻辑进程的拓扑结构。mesh是表示逻辑进程组织结构的N-维数组。该数组的形状表示逻辑进程的拓扑结构，数组的元素值表示某个逻辑进程。例如，2-维数组numpy.array([[2, 4, 5], [0, 1, 3]])描述6个逻辑进程，这些进程的拓扑结构为[2, 3]，即2-维数组的形状。对于上述拓扑结构，存在2个并行组；第一个并行组的并行度为2，第二个并行组的并行度为3。此外，第一个逻辑进程的id是2。
 
-mesh是表示逻辑进程组织结构的N-维数组。该数组的形状表示逻辑进程的拓扑结构,
-数组的元素值表示某个逻辑进程。例如，下面的图例可以用N-维数组[[2, 4, 5], [0, 1, 3]]
-表示，第一个逻辑进程的id是2。
-
-| 2 | 4 | 5 |
-
-| 0 | 1 | 3 |
 
 参数：
-    - **mesh** (numpy.ndarray) - 表示进程的N-维数组，值类型为int。
+    - **mesh** (numpy.ndarray) - 表示进程逻辑拓扑的N-维数组，该数组的形状表示逻辑进程的拓扑结构，元素值表示某个逻辑进程。
     - **parent** (ProcessMesh, 可选) - 父ProcessMesh，None表示没有父ProcessMesh。默认值为None。
 
 返回值：
@@ -47,7 +41,7 @@ mesh是表示逻辑进程组织结构的N-维数组。该数组的形状表示�
 属性
 ::::::::::::
 .. py:attribute:: topology
-ProcessMesh表示的进程拓扑结构，类型为list。
+ProcessMesh表示的进程拓扑结构，即用于初始化该ProcessMesh结构的`mesh`参数的形状。
 
 .. py:attribute:: process_group
 ProcessMesh表示的所有进程，类型为list。
@@ -57,8 +51,8 @@ ProcessMesh的父ProcessMesh，类型为ProcessMesh。
 
 方法
 ::::::::::::
-.. py:method:: set_placement(order)
-设置物理进程的顺序。
+.. py:function:: set_placement(order)
+使用用户设置的order设置逻辑进程到物理进程的映射关系。
 
 参数：
     - **order** (list): 物理进程id的顺序
