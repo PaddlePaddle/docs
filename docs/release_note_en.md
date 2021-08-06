@@ -1,4 +1,77 @@
 ﻿
+# 2.1.2 Release Note
+
+
+## Important Updates
+
+This release mainly fixes some features and performance issues in 2.1.1.  See the following highlights:
+
+-  Fix several known problems with dynamic to static syntax transcriptions
+-  C++ version check upgrade from C++11 to C++14 during Custom OP compile
+
+## Training framework
+
+### Functional optimization (including distributed)
+
+#### Basic API
+
+- Restore the callability of the `paddle.vision.xxx` path module to enhance compatibility of the old versions; yet it is not recommended to use this path to call the API([#34489](https://github.com/PaddlePaddle/Paddle/pull/34489))
+- Fix `paddle.concat` overflow when applied to multiple Tensor with large `shape` ([#34396](https://github.com/PaddlePaddle/Paddle/pull/34396))
+- `paddle.flip` supports input axis as integer, and improves performance in dynamic graph mode ([#34477](https://github.com/PaddlePaddle/Paddle/pull/34477))
+- Fix `paddle.slice` out-of-bounds access problem when input and output addresses are the same([#34265](https://github.com/PaddlePaddle/Paddle/pull/34265))
+- Fix the problem of wrong order of input parameters of `paddle.nn.Unfold`([#34251](https://github.com/PaddlePaddle/Paddle/pull/34251))
+- Add several interfaces for `Tensor` under static graphs such as `size(), detach()`, etc. ([#33330](https://github.com/PaddlePaddle/Paddle/pull/33330))
+- Add incompatible upgrade note to the Warning content of `Tensor.grad`([#34262](https://github.com/PaddlePaddle/Paddle/pull/34264))
+- Downlink `paddle.save` to save the function of  `Layer`([#34039](https://github.com/PaddlePaddle/Paddle/pull/34039))
+- Fix `paddle.jit.save` for saving models on Mac systems that cannot be retrained on Linux platforms([#34154](https://github.com/PaddlePaddle/Paddle/pull/34154))
+- Fix `layer_norm` with wrong `cuda kernel` parameters for large `size` input ([#33893](https://github.com/PaddlePaddle/Paddle/pull/33893))
+- Fix `paddle.io.DataLoader` error reporting incompatible upgrade warning issue ([#34001](https://github.com/PaddlePaddle/Paddle/pull/34001))
+- Fix `paddle.io.DataLoader` memory leak problem([#34301](https://github.com/PaddlePaddle/Paddle/pull/34301))
+
+#### Dynamic to static map
+
+- Add syntax support for nested use of `Sequential` container classes ([#34246](https://github.com/PaddlePaddle/Paddle/pull/34262))
+- Add compatibility support for `Python3 type hint` syntax([#33745](https://github.com/PaddlePaddle/Paddle/pull/33745))
+- Add support for non-`Tensor` types including `int, float, string, bool` in the `input_spec` argument of `@to_static`([#33464](https://github.com/PaddlePaddle/Paddle/pull/33464))
+- Fix a number of known problems with the transcription of dynamic to static syntax ([#33963](https://github.com/PaddlePaddle/Paddle/pull/33963))
+
+#### Custom OP
+
+- C++ version check upgrade from C++11 to C++14 during Custom OP compile ([#30415](https://github.com/PaddlePaddle/Paddle/pull/34015)) 
+
+
+## Inference Deployment
+
+
+### Paddle Inference
+
+#### Issue fix
+
+- Fix wrong calculation result of  ERNIE model when `batch_size > 1` ([#33784](https://github.com/PaddlePaddle/Paddle/pull/33784))
+- Fix the crash caused by splitting `TensortRT` inference path with right slash under windows.([#33885](https://github.com/PaddlePaddle/Paddle/pull/33885))
+- Fix MKLDNN `elementwise` series OP's X does not support broadcast （[#33845](https://github.com/PaddlePaddle/Paddle/pull/33845)）
+
+## Environment adaptation
+
+### Compile and install
+
+- Restrict the version range of dependent Gast libraries ( `gast>=0.3.3, <=0.4.0`)([#33850](https://github.com/PaddlePaddle/Paddle/pull/33850)) 
+- Optimize `Avx/No-Avx` related installation error messages, reduce redundant Warning messages([#33885](https://github.com/PaddlePaddle/Paddle/pull/33905))
+
+### New Hardware Adaptation
+
+#### Kunlun hardware training support
+
+- Modify the  `cmake` file of Kunlun to unify and update its operator library（[#34000](https://github.com/PaddlePaddle/Paddle/pull/34000)）
+
+## Thanks to our Contributors
+
+This release contains contributions from:
+
+0x45f、Aurelius84、Chen Weihang、chentianyu03、HexToString、iducn、Jacek Czaja、Kaipeng Deng、Leo Chen、lzzyzlbb、Peihan、taixiurong、tianshuo78520a、WeiXin、wenbin、Wilber、wuhuachaocoding、xiongkun、Zhou Wei、 winter-wang .
+
+
+
 # 2.1.1 Release Note
 
 ## Important Updates
