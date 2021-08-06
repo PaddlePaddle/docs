@@ -99,20 +99,20 @@
     </thead>
     <tbody>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.1 </td>
-        <td> 安装了2.1.1版本paddle的CPU镜像 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.2 </td>
+        <td> 安装了2.1.2版本paddle的CPU镜像 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.1-jupyter </td>
-        <td> 安装了2.1.1版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.2-jupyter </td>
+        <td> 安装了2.1.2版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.1-gpu-cuda11.2-cudnn8 </td>
-        <td> 安装了2.1.1版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.2-gpu-cuda11.2-cudnn8 </td>
+        <td> 安装了2.1.2版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
     </tr>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.1-gpu-cuda10.2-cudnn7 </td>
-        <td> 安装了2.1.1版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.2-gpu-cuda10.2-cudnn7 </td>
+        <td> 安装了2.1.2版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
     </tr>
    </tbody>
 </table>
