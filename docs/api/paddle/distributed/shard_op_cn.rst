@@ -12,9 +12,7 @@ shard_op
 :::::::::
     - op_fn (callable) - 某个API的可调用对象。
     - mesh (ProcessMesh) - ProcessMesh实例，指定该函数调用添加的操作算子的逻辑进程拓扑信息。
-    - dims_mapping_dict (dict) - Tensor的名字和其对应的dims_mapping结构的映射表。其中，
-          dims_mapping是描述某个Tensor和`mesh`之间映射关系的列表，该Tensor的维度`i`沿mesh
-          的维度`dims_mapping[i]`切分，值-1表示不切分。
+    - dims_mapping_dict (dict) - Tensor的名字和其对应的dims_mapping结构的映射表。其中，dims_mapping是描述某个Tensor和`mesh`之间映射关系的列表，该Tensor的维度`i`沿mesh的维度`dims_mapping[i]`切分，值-1表示不切分。
     - kwargs (dict) - 传递给`op_fn`的参数字典。
 
 返回
