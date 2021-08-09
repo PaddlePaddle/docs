@@ -85,7 +85,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.1 CPU Versoion of PaddlePaddle
+#### 2.1 <span id="cpu">CPU Version of PaddlePaddle</span>
 
 
   ```
@@ -94,7 +94,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.2 GPU Version of PaddlePaddle
+#### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
 2.2.1 If you are using CUDA 10.1

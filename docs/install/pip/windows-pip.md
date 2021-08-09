@@ -63,7 +63,7 @@
 
 本文档为您介绍pip安装方式
 
-### 首先请您选择您的版本
+### 首先请选择您的版本
 
 * 如果您的计算机没有 NVIDIA® GPU，请安装[CPU版的PaddlePaddle](#cpu)
 
@@ -86,14 +86,14 @@
 
 
 
-#### 2.1 CPU版的PaddlePaddle
+#### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
 
   ```
   python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
   ```
 
-#### 2.2 GPU版的PaddlePaddle
+#### 2.2 <span id="gpu">GPU版的PaddlePaddle</span>
 
 
 

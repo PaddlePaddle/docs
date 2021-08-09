@@ -70,7 +70,7 @@
 
 本文档为您介绍pip安装方式
 
-### 首先请您选择您的版本
+### 首先请选择您的版本
 
 * 如果您的计算机没有 NVIDIA® GPU，请安装[CPU版的PaddlePaddle](#cpu)
 
@@ -86,7 +86,7 @@
 
     您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
+* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA10.2，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
   * **Centos 系统可以参考以下命令**
 
@@ -101,7 +101,7 @@
     ```
 
     ```
-    yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+    yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
     ```
 
   * **Ubuntu 系统可以参考以下命令**
@@ -115,11 +115,11 @@
     ```
 
     ```
-    sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+    sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
     ```
 
 
-#### 2.1 CPU版的PaddlePaddle
+#### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
 
   ```
@@ -128,7 +128,7 @@
 
 
 
-#### 2.2 GPU版的PaddlePaddle
+#### 2.2 <span id="gpu">GPU版的PaddlePaddle</span>
 
 
 

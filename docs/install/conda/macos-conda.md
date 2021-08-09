@@ -99,7 +99,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 本文档为您介绍conda安装方式
 
-### 首先请您选择您的版本
+### 首先请选择您的版本
 
 * 目前在MacOS环境仅支持CPU版PaddlePaddle
 

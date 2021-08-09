@@ -86,7 +86,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA9 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
+* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA10.2 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
 
   * **Centos system can refer to the following commands**
 
@@ -101,7 +101,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
     ```
 
     ```
-    yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+    yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
     ```
 
   * **Ubuntu system can refer to the following commands**
@@ -115,7 +115,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
     ```
 
     ```
-    sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+    sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
     ```
 
 
@@ -126,7 +126,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.1 CPU Versoion of PaddlePaddle
+#### 2.1 <span id="cpu">CPU Version of PaddlePaddle</span>
 
 
   ```
@@ -135,7 +135,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.2 GPU Version of PaddlePaddle
+#### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
 

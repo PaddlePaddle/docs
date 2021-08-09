@@ -24,7 +24,7 @@
 
         You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA9 and cuDNN7. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
+* * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA10.2 and cuDNN7. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
 
 
     * **Centos system can refer to the following commands**
@@ -39,7 +39,7 @@
         yum update -y
         ```
         ```
-        yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+        yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
         ```
 
     * **Ubuntu system can refer to the following commands**
@@ -51,7 +51,7 @@
         dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
         ```
         ```
-        sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+        sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
         ```
 
 
@@ -464,7 +464,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     * For users who need to compile the **GPU version PaddlePaddle**:
 
-        1. Please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is ubuntu 16.04, CUDA9, ncDNN7 nccl2 installation instructions, for more information on the installation information please refer to the [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download)):
+        1. Please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is ubuntu 16.04, CUDA10.2, cuDNN7 nccl2 installation instructions, for more information on the installation information please refer to the [NVIDIA official website](https://developer.nvidia.com/nccl/nccl-download)):
 
             ```
             wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
@@ -475,7 +475,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
             ```
 
             ```
-            yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+            yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
             ```
 
         2. If you have already installed `nccl2` correctly, you can start cmake: *(For Python3: Please configure the correct python version for the PY_VERSION parameter)*

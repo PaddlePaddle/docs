@@ -62,8 +62,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
         * don't support install using **nvidia-docker** 
     * Ubuntu install GPU version
 
-        * Ubuntu 16.04 supports CUDA 10.1/10.2/11.0/11.2
-        * Ubuntu 18.04 supports CUDA 10.1/10.2/11.0/11.2
+        * Ubuntu 16.04 / 18.04 supports CUDA 10.1/10.2/11.0/11.2
         * If you install using **nvidia-docker** , it supports CUDA 10.2/11.2
     * CentOS install GPU version
 
@@ -86,12 +85,9 @@ Please make sure your environment meets the above conditions. If you have other 
     * not support NCCL
 * Support for Ubuntu
 
-    * Ubuntu 16.04:
+    * Ubuntu 16.04 / 18.04:
 
         * support NCCL v2.4.2-v2.4.8 under CUDA10.1
-    * Ubuntu 18.04:
-
-        * support v2.4.2-v2.4.8 under CUDA10.1 
 * Support for CentOS
 
     * CentOS 6: not support NCCL
