@@ -129,7 +129,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.1 CPU version of PaddlePaddle
+#### 2.1 <span id="cpu">CPU Version of PaddlePaddle</span>
 
 ```
 conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
@@ -138,7 +138,7 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 
 
 
-#### 2.2 GPU version of PaddlePaddle
+#### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
 *  If you are using CUDA 10.1，cuDNN 7 (cuDNN version>=7.6.5):

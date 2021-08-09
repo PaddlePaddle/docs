@@ -57,8 +57,7 @@
         * 不支持 **nvidia-docker** 方式安装
     * Ubuntu 安装 GPU 版本
 
-        * Ubuntu 16.04 支持 CUDA 10.1/10.2/11.0/11.2
-        * Ubuntu 18.04 支持 CUDA 10.1/10.2/11.0/11.2
+        * Ubuntu 16.04/18.04 支持 CUDA 10.1/10.2/11.0/11.2
         * 如果您是使用 **nvidia-docker** 安装，支持 CUDA 10.2/11.2
     * CentOS 安装 GPU 版本
 
@@ -81,10 +80,7 @@
     * 不支持NCCL
 * Ubuntu 支持情况
 
-    * Ubuntu 16.04:
-
-        * CUDA10.1 下支持NCCL v2.4.2-v2.4.8
-    * Ubuntu 18.04：
+    * Ubuntu 16.04/18.04:
 
         * CUDA10.1 下支持NCCL v2.4.2-v2.4.8
 * CentOS 支持情况

@@ -70,7 +70,7 @@
 
 本文档为您介绍pip安装方式
 
-### 首先请您选择您的版本
+### 首先请选择您的版本
 
 * 如果您的计算机没有 NVIDIA® GPU，请安装[CPU版的PaddlePaddle](#cpu)
 
@@ -86,7 +86,7 @@
 
     您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
+* 如果您需要使用多卡环境请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA10.2，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
   * **Centos 系统可以参考以下命令**
 
@@ -101,7 +101,7 @@
     ```
 
     ```
-    yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+    yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
     ```
 
   * **Ubuntu 系统可以参考以下命令**
@@ -115,11 +115,11 @@
     ```
 
     ```
-    sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+    sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
     ```
 
 
-#### 2.1 CPU版的PaddlePaddle
+#### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
 
   ```
@@ -128,14 +128,14 @@
 
 
 
-#### 2.2 GPU版的PaddlePaddle
+#### 2.2 <span id="gpu">GPU版的PaddlePaddle</span>
 
 
 
 2.2.1 CUDA10.1的PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.2.post101 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.2.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -151,7 +151,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.2.post110 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.2.post110 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -159,7 +159,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.2.post112 -f https://paddlepaddle.org.cn/whl/mkl/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.2.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -178,29 +178,31 @@
 
 * 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的Paddle包，可以通过以下命令安装，仅支持python3.8：
 
+  首先使用如下命令将wheel包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为wheel包名称）：
+
   * cpu、mkl版本noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
+  python -m pip download paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * cpu、openblas版本noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/openblas/stable/noavx.html --no-index
+  python -m pip download paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/noavx/stable.html --no-index --no-deps
   ```
 
 
   * gpu版本cuda10.1 noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.2.post101 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html
+  python -m pip download paddlepaddle-gpu==2.1.2.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * gpu版本cuda10.2 noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.2 -f https://www.paddlepaddle.org.cn/whl/mkl/stable/noavx.html --no-index
+  python -m pip download paddlepaddle-gpu==2.1.2 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
@@ -211,13 +213,13 @@
 * 如果你想安装联编`tensorrt`的Paddle包，可以通过以下命令
 
   ```
-  python -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/stable/tensorrt.html
+  python -m pip install paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html
   ```
 
-* 如果你想安装`openblas`的Paddle包，可以通过以下命令
+* 如果你想安装`avx`、`openblas`的Paddle包，可以通过以下命令
 
   ```
-  python -m pip install paddlepaddle-gpu==[版本号] -f https://paddlepaddle.org.cn/whl/openblas/stable.html
+  python -m pip install paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html
   ```
 
 

@@ -100,7 +100,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 本文档为您介绍conda安装方式
 
-### 首先请您选择您的版本
+### 首先请选择您的版本
 
 * 如果您的计算机没有 NVIDIA® GPU，请安装[CPU版的PaddlePaddle](#cpu)
 
@@ -121,7 +121,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
 
 
-#### 2.1 CPU版的PaddlePaddle
+#### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
 ```
 conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
@@ -129,7 +129,7 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 
 
 
-#### 2.2 GPU版的PaddlePaddle
+#### 2.2 <span id="gpu">GPU版的PaddlePaddle</span>
 
 
 *  如果您是使用 CUDA 10.1，cuDNN 7 (cuDNN版本>=7.6.5)，安装GPU版本的命令为:
