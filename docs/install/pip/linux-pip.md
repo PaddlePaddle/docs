@@ -178,29 +178,31 @@
 
 * 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的Paddle包，可以通过以下命令安装，仅支持python3.8：
 
+  首先使用如下命令将wheel包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为wheel包名称）：
+
   * cpu、mkl版本noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index
+  python -m pip download paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * cpu、openblas版本noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/noavx/stable.html --no-index
+  python -m pip download paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/noavx/stable.html --no-index --no-deps
   ```
 
 
   * gpu版本cuda10.1 noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.2.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html
+  python -m pip download paddlepaddle-gpu==2.1.2.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * gpu版本cuda10.2 noavx机器安装：
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.2 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index
+  python -m pip download paddlepaddle-gpu==2.1.2 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`

@@ -134,28 +134,30 @@ Note：
 
 * The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command to install，noavx version paddle wheel only support python3.8：
 
+  First use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
+
    * cpu and mkl version installed on noavx machine：
 
    ```
-   python -m pip install paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index
+   python -m pip download paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
    ```
 
    * cpu and openblas version installed on noavx machine：
 
    ```
-   python -m pip install paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index
+   python -m pip download paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index --no-deps
    ```
 
    * GPU cuda10.1 version install on noavx machine：
 
    ```
-   python -m pip install paddlepaddle-gpu==2.1.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html
+   python -m pip download paddlepaddle-gpu==2.1.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
    ```
 
    * GPU cuda10.2 version install on noavx machine：
 
    ```
-   python -m pip install paddlepaddle-gpu==2.1.2 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index
+   python -m pip download paddlepaddle-gpu==2.1.2 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
    ```
 
    To determine whether your machine supports `avx`, you can install the [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) tool to view the "processor-instruction set".
