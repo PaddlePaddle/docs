@@ -385,7 +385,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
     <tr>
         <td> rocm4.0.1-miopen2.11-mkl </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.1.2-gpu-rocm4.0.1-miopen2.11-mkl/paddlepaddle_rocm-2.1.2.rocm401.miopen211-cp37-cp37m-linux_x86_64.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.1.2/rocm/paddlepaddle_rocm-2.1.2.rocm401.miopen211-cp37-cp37m-linux_x86_64.whl">
         paddlepaddle_rocm-2.1.2.rocm401.miopen211-cp37-cp37m-linux_x86_64.whl</a></td>
         <td> - </td>
         <td> - </td>
