@@ -7,18 +7,18 @@ ProcessMesh
 .. py:class:: paddle.distributed.ProcessMesh(mesh, parent=None)
 
 
-类ProcessMesh描述逻辑进程的拓扑结构。mesh是表示逻辑进程组织结构的N-维数组。该数组的形状表示逻辑进程的拓扑结构，数组的元素值表示某个逻辑进程。例如，2-维数组numpy.array([[2, 4, 5], [0, 1, 3]])描述6个逻辑进程，这些进程的拓扑结构为[2, 3]，即2-维数组的形状。对于上述拓扑结构，存在2个并行组；第一个并行组的并行度为2，第二个并行组的并行度为3。此外，第一个逻辑进程的id是2。
+类ProcessMesh描述逻辑进程的拓扑结构。mesh是表示逻辑进程组织结构的N-维数组。该数组的形状表示逻辑进程的拓扑结构，数组的元素值表示某个逻辑进程。例如，2-维数组[[2, 4, 5], [0, 1, 3]]描述6个逻辑进程，这些进程的拓扑结构为[2, 3]，即2-维数组的形状。对于上述拓扑结构，存在2个并行组；第一个并行组的并行度为2，第二个并行组的并行度为3。此外，第一个逻辑进程的id是2。
 
 
 参数：
-    - **mesh** (numpy.ndarray) - 表示进程逻辑拓扑的N-维数组，该数组的形状表示逻辑进程的拓扑结构，元素值表示某个逻辑进程。
+    - **mesh** (list) - 表示进程逻辑拓扑的N-维数组(嵌套链表)，该数组的形状表示逻辑进程的拓扑结构，元素值表示某个逻辑进程。
     - **parent** (ProcessMesh, 可选) - 父ProcessMesh，None表示没有父ProcessMesh。默认值为None。
 
 返回值：
     None。
 
 抛出异常：
-    ValueError: 如果mesh不是numpy.ndarray实例。
+    ValueError: 如果mesh不是list实例。
 
 **代码示例**:
 
@@ -30,7 +30,7 @@ ProcessMesh
     
     paddle.enable_static()
     
-    mesh = dist.ProcessMesh(np.array([[2, 4, 5], [0, 1, 3]]))
+    mesh = dist.ProcessMesh([[2, 4, 5], [0, 1, 3]])
     assert mesh.parent is None
     assert mesh.topology == [2, 3]
     assert mesh.process_group == [2, 4, 5, 0, 1, 3]
@@ -71,5 +71,5 @@ ProcessMesh的父ProcessMesh，类型为ProcessMesh。
 
    paddle.enable_static()
 
-   mesh = dist.ProcessMesh(np.array([[2, 4, 5], [0, 1, 3]]))
+   mesh = dist.ProcessMesh([[2, 4, 5], [0, 1, 3]])
    mesh.set_placement([0, 1, 2, 3, 4, 5])

@@ -11,7 +11,7 @@ shard_op
 参数
 :::::::::
     - x (Tensor) - 待操作的输入Tensor。
-    - device (str) - 放置输入Tensor的目标设备，如'cpu', 'gpu:0'等。
+    - device (str) - 放置输入Tensor的目标设备，如'cpu'。
 
 返回
 :::::::::
@@ -21,7 +21,6 @@ Tensor: 输入Tensor `x` 自身。
 :::::::::
 .. code-block:: python
 
-    import numpy as np
     import paddle
     import paddle.distributed as dist
 
