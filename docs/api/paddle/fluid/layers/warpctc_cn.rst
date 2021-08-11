@@ -3,7 +3,7 @@
 warpctc
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.warpctc(input, label, blank=0, norm_by_times=False, input_length=None, label_length=None, size_average=False, length_average=False)
+.. py:function:: paddle.fluid.layers.warpctc(input, label, blank=0, norm_by_times=False, input_length=None, label_length=None, norm_by_batchsize=False, norm_by_total_logits_len=False)
 
 
 
@@ -14,11 +14,11 @@ warpctc
     - **input** (Variable) - 可以是3-D Tensor或2-D LoDTensor。当输入类型是3-D Tensor时，则表示输入是经过padding的定长序列，其 shape 必须是 ``[seq_length, batch_size, num_classes + 1]`` 。当输入类型是2-D LoDTensor时，则表示输入为变长序列，其shape必须为 ``[Lp，num_classes+1]`` ， ``Lp`` 是所有输入序列长度之和。以上 shape 中的 ``num_classes`` 是实际类别数，不包括空白标签。该输入不需要经过 softmax 操作，因为该OP的内部对 ``input`` 做了 softmax 操作。数据类型仅支持float32。
     - **label** (Variable) - 可以是3-D Tensor或2-D LoDTensor，需要跟 ``input`` 保持一致。当输入类型为3-D Tensor时，表示输入是经过 padding 的定长序列，其 shape 为 ``[batch_size, label_length]`` ，其中， ``label_length`` 是最长的 label 序列的长度。当输入类型是2-D LoDTensor时，则表示输入为变长序列，其shape必须为 ``[Lp, 1]`` ， 其中 ``Lp`` 是所有 label 序列的长度和。 ``label`` 中的数值为字符ID。数据类型支持int32。 
     - **blank** (int，可选) - 空格标记的ID，其取值范围为 ``[0，num_classes+1)`` 。数据类型支持int32。缺省值为0。
-    - **norm_by_times** (bool，可选) - 是否根据序列长度对梯度进行正则化。数据类型支持 bool 。缺省值为False。 
+    - **norm_by_times** (bool，可选) - 是否根据序列长度对梯度进行正则化。数据类型支持 bool 。缺省值为False。 与其他 `norm_by_*` 互斥.
     - **input_length** (Variable) - 必须是1-D Tensor。仅在输入为定长序列时使用，表示输入数据中每个序列的长度，shape为 ``[batch_size]`` 。数据类型支持int64。默认为None。
     - **label_length** (Variable) - 必须是1-D Tensor。仅在label为定长序列时使用，表示 label 中每个序列的长度，shape为 ``[batch_size]`` 。数据类型支持int64。默认为None。
-    - **size_average** (bool)： -  当为 True 的时候，ctc grad 除以 batch_size。数据类型支持 bool。缺省值为False。 
-    - **length_average** (bool): - 当为 True 的时候，ctc grad 除以 sum(logits_lenth).数据类型支持 bool。缺省值为False。 
+    - **norm_by_batchsize** (bool)： -  当为 True 的时候，ctc grad 除以 batch_size。数据类型支持 bool。缺省值为False。与其他 `norm_by_*` 互斥.
+    - **norm_by_total_logits_len** (bool): - 当为 True 的时候，ctc grad 除以 sum(logits_lenth).数据类型支持 bool。缺省值为False。 与其他 `norm_by_*` 互斥.
 
 返回：Shape为[batch_size，1]的2-D Tensor，表示每一个序列的CTC loss。数据类型与 ``input`` 一致。
 

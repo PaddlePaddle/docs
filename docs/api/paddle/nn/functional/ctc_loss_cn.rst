@@ -3,7 +3,7 @@
 ctc_loss
 -------------------------------
 
-.. py:function:: paddle.nn.functional.ctc_loss(log_probs, labels, input_lengths, label_lengths, blank=0, reduction='mean', norm_by_times=False, size_average=False, length_average=False)
+.. py:function:: paddle.nn.functional.ctc_loss(log_probs, labels, input_lengths, label_lengths, blank=0, reduction='mean', norm_by_times=False, norm_by_batchsize=False, norm_by_total_logits_len=False)
 
 该接口用于计算 CTC loss。该接口的底层调用了第三方 baidu-research::warp-ctc 的实现。
 也可以叫做 softmax with CTC，因为 Warp-CTC 库中插入了 softmax 激活函数来对输入的值进行归一化。
@@ -17,8 +17,8 @@ ctc_loss
     - **blank** (int，可选): - 空格标记的 ID 值，其取值范围为 [0，num_classes+1) 。数据类型支持int32。默认值为0。
     - **reduction** (string，可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'``。设置为 ``'mean'`` 时，对 loss 值除以 label_lengths，并返回所得商的均值；设置为 ``'sum'`` 时，返回 loss 值的总和；设置为 ``'none'`` 时，则直接返回输出的 loss 值。默认值为 ``'mean'``。
     - **norm_by_times** (bool，可选) - 是否根据序列长度对梯度进行正则化。数据类型支持 bool 。缺省值为False。 
-    - **size_average** (bool)： -  当为 True 的时候，ctc grad 除以 batch_size。数据类型支持 bool。缺省值为False。 
-    - **length_average** (bool): - 当为 True 的时候，ctc grad 除以 sum(logits_lenth).数据类型支持 bool。缺省值为False。 
+    - **norm_by_batchsize** (bool)： -  当为 True 的时候，ctc grad 除以 batch_size。数据类型支持 bool。缺省值为False。 
+    - **norm_by_total_logits_len** (bool): - 当为 True 的时候，ctc grad 除以 sum(logits_lenth).数据类型支持 bool。缺省值为False。 与其他 `norm_by_*` 互斥.
 
 返回
 :::::::::
