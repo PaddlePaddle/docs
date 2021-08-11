@@ -19,6 +19,9 @@ CTCLoss
     - **labels** (Tensor): - 经过 padding 的标签序列，其 shape 为 [batch_size, max_label_length]，其中 max_label_length 是最长的 label 序列的长度。数据类型支持int32。
     - **input_lengths** (Tensor): - 表示输入 ``logits`` 数据中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。
     - **label_lengths** (Tensor): - 表示 label 中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。
+    - **norm_by_times** (bool): - 当为 True 的时候，ctc grad 除以对应样本的 logits_lenth ，即 ctc_grad[B] / logits_lenth[B].数据类型支持 bool。
+    - **size_average** (bool)： -  当为 True 的时候，ctc grad 除以 batch_size。数据类型支持 bool。
+    - **length_average** (bool): - 当为 True 的时候，ctc grad 除以 sum(logits_lenth).数据类型支持 bool。
 
 返回
 :::::::::

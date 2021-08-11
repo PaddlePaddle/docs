@@ -3,7 +3,7 @@
 warpctc
 -------------------------------
 
-.. py:function:: paddle.fluid.layers.warpctc(input, label, blank=0, norm_by_times=False, input_length=None, label_length=None)
+.. py:function:: paddle.fluid.layers.warpctc(input, label, blank=0, norm_by_times=False, input_length=None, label_length=None, size_average=False, length_average=False)
 
 
 
@@ -17,6 +17,8 @@ warpctc
     - **norm_by_times** (bool，可选) - 是否根据序列长度对梯度进行正则化。数据类型支持 bool 。缺省值为False。 
     - **input_length** (Variable) - 必须是1-D Tensor。仅在输入为定长序列时使用，表示输入数据中每个序列的长度，shape为 ``[batch_size]`` 。数据类型支持int64。默认为None。
     - **label_length** (Variable) - 必须是1-D Tensor。仅在label为定长序列时使用，表示 label 中每个序列的长度，shape为 ``[batch_size]`` 。数据类型支持int64。默认为None。
+    - **size_average** (bool)： -  当为 True 的时候，ctc grad 除以 batch_size。数据类型支持 bool。缺省值为False。 
+    - **length_average** (bool): - 当为 True 的时候，ctc grad 除以 sum(logits_lenth).数据类型支持 bool。缺省值为False。 
 
 返回：Shape为[batch_size，1]的2-D Tensor，表示每一个序列的CTC loss。数据类型与 ``input`` 一致。
 
