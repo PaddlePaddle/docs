@@ -20,7 +20,6 @@ shard_op
 :::::::::
 .. code-block:: python
 
-    import numpy as np
     import paddle
     import paddle.distributed as dist
 

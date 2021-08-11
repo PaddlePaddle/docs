@@ -41,7 +41,7 @@ ProcessMesh
 属性
 ::::::::::::
 .. py:attribute:: topology
-ProcessMesh表示的进程拓扑结构，即用于初始化该ProcessMesh结构的`mesh`参数的形状。
+ProcessMesh表示的进程拓扑结构，即用于初始化该ProcessMesh结构的mesh参数的形状。
 
 .. py:attribute:: process_group
 ProcessMesh表示的所有进程，类型为list。

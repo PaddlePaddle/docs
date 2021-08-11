@@ -12,11 +12,11 @@ shard_tensor
 :::::::::
     - x (Tensor) - 待处理的输入Tensor。
     - mesh (ProcessMesh) - 描述逻辑进程拓扑信息的ProcessMesh实例。
-    - dim_mapping (list) - 描述`x`和`mesh`之间映射关系的列表。`x`的第`i`维沿着`mesh`的第`dim_mapping[i]`维切分。值-1表示不沿着该维切分。
+    - dim_mapping (list) - 描述 `x` 和 `mesh` 之间映射关系的列表。 `x` 的第 `i` 维沿着 `mesh` 的第 `dim_mapping[i]` 维切分。值-1表示不沿着该维切分。
 
 返回
 :::::::::
-Tensor: 输入`x`自身。
+Tensor: 输入 `x` 自身。
 
 代码示例
 :::::::::
