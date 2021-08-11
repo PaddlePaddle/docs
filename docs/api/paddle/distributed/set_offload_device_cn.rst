@@ -1,6 +1,6 @@
 .. _cn_api_distributed_set_offload_device:
 
-shard_op
+shard_offload_device
 -------------------------------
 
 
