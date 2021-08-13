@@ -41,8 +41,8 @@ to_tensor
         type(paddle.to_tensor(1))
         # <class 'paddle.Tensor'>
 
-        paddle.to_tensor(1)
-        # Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True, # allocate on global default place CUDA:0
+        paddle.to_tensor(1)  # allocate on global default place CUDA:0
+        # Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
         #        [1])
 
         x = paddle.to_tensor(1)
