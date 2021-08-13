@@ -919,6 +919,15 @@ matmul(y, transpose_x=False, transpose_y=False, name=None)
 
 请参考 :ref:`cn_api_tensor_matmul`
 
+matrix_power(x, n, name=None)
+:::::::::
+
+返回：经过矩阵幂运算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_matrix_power`
+
 max(axis=None, keepdim=False, name=None)
 :::::::::
 
