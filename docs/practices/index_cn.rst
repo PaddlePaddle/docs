@@ -47,9 +47,7 @@ NLP方向如下：
 
 
 .. toctree::
-   :glob:
-   :maxdepth: 1
-   :caption: 快速开始
+   :caption: 快速开始:
 
    hello_paddle/hello_paddle
    dynamic_graph/dynamic_graph
