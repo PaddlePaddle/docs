@@ -56,14 +56,3 @@ NLP方向如下：
    high_level_api/high_level_api
    save_model/save_model
    linear_regression/linear_regression
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-   :caption: 计算机视觉
-
-   hello_paddle/hello_paddle.ipynb
-   dynamic_graph/dynamic_graph.ipynb
-   high_level_api/high_level_api.ipynb
-   save_model/save_model.ipynb
-   linear_regression/linear_regression.ipynb
