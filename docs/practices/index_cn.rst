@@ -45,7 +45,6 @@ NLP方向如下：
     - `异常数据检测 <./Autoencoder/AutoEncoder.html>`_ : 介绍使用 Paddle 完成时序数据异常点检测。
 
 
-
 .. toctree::
    :caption: 快速开始:
 
