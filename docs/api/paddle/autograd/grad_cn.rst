@@ -1,11 +1,11 @@
-.. _cn_api_paddle_grad:
+.. _cn_api_paddle_autograd_grad:
 
 grad
 -------------------------------
 
 **注意：该API仅支持【动态图】模式**
 
-.. py:method:: paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None)
+.. py:method:: paddle.autograd.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None)
 
 对于每个 `inputs` ，计算所有 `outputs` 相对于其的梯度和。
 
@@ -32,7 +32,7 @@ grad
             y = x * x
 
             # Since y = x * x, dx = 2 * x
-            dx = paddle.grad(
+            dx = paddle.autograd.grad(
                     outputs=[y],
                     inputs=[x],
                     create_graph=create_graph,
@@ -77,7 +77,7 @@ grad
             # Therefore, the final result would be:
             # dx = 2 * x * dy1 + 3 * dy2 = 4 * dy1 + 3 * dy2.
 
-            dx = paddle.grad(
+            dx = paddle.autograd.grad(
                 outputs=[y1, y2],
                 inputs=[x],
                 grad_outputs=grad_outputs)[0]

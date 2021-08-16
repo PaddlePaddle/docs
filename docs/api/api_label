@@ -2,7 +2,7 @@ paddle.amp.auto_cast	.. _api_paddle_amp_auto_cast:
 paddle.amp.GradScaler	.. _api_paddle_amp_GradScaler:
 paddle.autograd.PyLayerContext	.. _api_paddle_autograd_PyLayerContext:
 paddle.autograd.PyLayer	.. _api_paddle_autograd_PyLayer:
-paddle.grad	.. _api_paddle_grad:
+paddle.autograd.grad	.. _api_paddle_autograd_grad:
 paddle.autograd.backward	.. _api_paddle_autograd_backward:
 paddle.callbacks.LRScheduler	.. _api_paddle_callbacks_LRScheduler:
 paddle.callbacks.EarlyStopping	.. _api_paddle_callbacks_EarlyStopping:
