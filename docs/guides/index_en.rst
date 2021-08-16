@@ -17,6 +17,7 @@ Let's start with studying basic concept of PaddlePaddle:
 - `Customize OP <./07_new_op/index_en.html>`_ :  Introduce how to customize OP for PaddlePaddle.
 - `Performance Improving <./performance_improving/index_en.html>`_ : Introduce how to improve performance of PaddlePaddle.
 - `Contribution <./10_contribution/index_en.html>`_: Introduce how to contribute for PaddlePaddle.
+- `FLAGS <./flags/flags_en.html>`_ : Introduce the envirenment flags in paddle.
 
 ..  toctree::
     :hidden:
@@ -29,3 +30,4 @@ Let's start with studying basic concept of PaddlePaddle:
     07_new_op/index_en.rst
     performance_improving/index_en.rst
     10_contribution/index_en.rst
+    flags/flags_en.rst

@@ -8,6 +8,7 @@ RUN apt-get update \
  && apt-get install -yq --no-install-recommends \
     wget \
     curl \
+    libglib2.0-0 \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -33,6 +34,8 @@ urllib3\n\
 certifi\n\
 chardet\n\
 requests\n\
+tqdm\n\
+scikit-learn\n\
 decorator==4.4.2\n\
 astor' >paddle.requirements && \
     pip3 install --no-cache-dir -i https://mirror.baidu.com/pypi/simple -r paddle.requirements && \

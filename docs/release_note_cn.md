@@ -1,5 +1,75 @@
 ﻿
-# Release Note
+# 2.1.2 Release Note
+
+## 重要更新
+
+本版本主要是对2.1.1中一些功能和性能问题的修复，重点如下：
+
+-  修复了基础API中的已知问题。
+-  修复了动转静语法转写已知的若干问题。
+-  自定义OP编译时C++版本检查由C++11升级为C++14。
+
+## 训练框架
+
+### 功能优化（含分布式）
+
+#### 基础API
+
+- 修复 `paddle.vision` 路径下部分API无法访问的问题。([#34489](https://github.com/PaddlePaddle/Paddle/pull/34489))
+- 修复`paddle.concat`在应用到多个大`shape` 的Tensor时溢出的问题。([#34396](https://github.com/PaddlePaddle/Paddle/pull/34396))
+- `paddle.flip`支持输入axis为整型，并提升了动态图模式下的性能。([#34477](https://github.com/PaddlePaddle/Paddle/pull/34477))
+- 修复`paddle.slice` 输入输出地址相同时越界访问问题。([#34265](https://github.com/PaddlePaddle/Paddle/pull/34265))
+- 修复 `paddle.nn.Unfold` 的输入参数顺序错误的问题。([#34251](https://github.com/PaddlePaddle/Paddle/pull/34251))
+- 新增了静态图下 `Tensor` 的若干接口，如 `size()、detach()`等。 ([#33330](https://github.com/PaddlePaddle/Paddle/pull/33330))
+- `Tensor.grad` 的 Warning内容中增加了不兼容升级的说明。([#34262](https://github.com/PaddlePaddle/Paddle/pull/34264))
+- 下线 `paddle.save` 保存 `Layer` 的功能。([#34039](https://github.com/PaddlePaddle/Paddle/pull/34039))
+- 修复 `paddle.jit.save`在Mac系统上保存的模型，在Linux平台上无法对模型进行重训练的问题。([#34154](https://github.com/PaddlePaddle/Paddle/pull/34154))
+- 修复 `layer_norm` 在大 `size` 输入时 `cuda kernel` 参数错误的问题。([#33893](https://github.com/PaddlePaddle/Paddle/pull/33893))
+- 修复`paddle.io.DataLoader`误报不兼容升级warning问题。([#34001](https://github.com/PaddlePaddle/Paddle/pull/34001))
+- 修复`paddle.io.DataLoader`内存泄漏问题。([#34301](https://github.com/PaddlePaddle/Paddle/pull/34301))
+
+#### 动态图转静态图
+
+- 新增对 `Sequential` 容器类嵌套使用时的语法支持。([#34246](https://github.com/PaddlePaddle/Paddle/pull/34262))
+- 新增对 `Python3 type hint` 语法的兼容支持。([#33745](https://github.com/PaddlePaddle/Paddle/pull/33745))
+- `@to_static` 中 `input_spec `参数新增支持非 `Tensor` 类型，如 `int、float、string、bool`等。([#33464](https://github.com/PaddlePaddle/Paddle/pull/33464))
+- 修复了动转静语法转写已知的若干问题。([#33963](https://github.com/PaddlePaddle/Paddle/pull/33963))
+
+#### 自定义OP
+
+- 自定义OP编译时C++版本检查由C++11升级为C++14。 ([#30415](https://github.com/PaddlePaddle/Paddle/pull/34015)) 
+
+## 推理部署
+
+### Paddle Inference
+
+#### 问题修复
+
+- 修复`batch_size > 1`时ERNIE模型计算结果错误的问题。([#33784](https://github.com/PaddlePaddle/Paddle/pull/33784))
+- 修复windows下`TensortRT`推理路径用右斜杠分割导致的崩溃。([#33885](https://github.com/PaddlePaddle/Paddle/pull/33885))
+- 修复MKLDNN `elementwise`系列OP的X不支持广播的问题。（[#33845](https://github.com/PaddlePaddle/Paddle/pull/33845)）
+
+## 环境适配
+
+### 编译安装
+
+- 限定了依赖的 Gast 库的版本范围。( `gast>=0.3.3, <=0.4.0`)([#33850](https://github.com/PaddlePaddle/Paddle/pull/33850))
+- 优化了`Avx/No-Avx`相关的安装报错信息，减少了冗余的Warning信息。([#33885](https://github.com/PaddlePaddle/Paddle/pull/33905))
+
+### 新硬件适配
+
+#### 昆仑硬件训练支持
+
+- 修改昆仑的`cmake`文件，统一更新昆仑的算子库。（[#34000](https://github.com/PaddlePaddle/Paddle/pull/34000)）
+
+## Thanks to our Contributors
+
+This release contains contributions from:
+
+0x45f、Aurelius84、Chen Weihang、chentianyu03、HexToString、iducn、Jacek Czaja、Kaipeng Deng、Leo Chen、lzzyzlbb、Peihan、taixiurong、tianshuo78520a、WeiXin、wenbin、Wilber、wuhuachaocoding、xiongkun、Zhou Wei、 winter-wang .
+
+
+# 2.1.1 Release Note
 
 ## 重要更新
 

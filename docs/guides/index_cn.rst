@@ -19,6 +19,7 @@
 - `算子映射 <./08_api_mapping/index_cn.html>`_ : 介绍飞桨框架API算子的映射信息。
 - `硬件支持 <./09_hardware_support/index_cn.html>`_ : 介绍飞桨框架硬件支持相关信息。
 - `参与开发 <./10_contribution/index_cn.html>`_ : 介绍如何参与飞桨框架的开发。
+- `环境变量 <./flags/flags_cn.html>`_ : 介绍飞桨相关环境变量的使用。
 
 ..  toctree::
     :hidden:
@@ -34,3 +35,4 @@
     08_api_mapping/index_cn.rst
     09_hardware_support/index_cn.rst
     10_contribution/index_cn.rst
+    flags/flags_cn.rst
