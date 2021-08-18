@@ -12,7 +12,7 @@ pad
 参数：
   - **x** (Tensor) - Tensor，format可以为 ``'NCL'``, ``'NLC'``, ``'NCHW'``, ``'NHWC'``, ``'NCDHW'``
     或 ``'NDHWC'``，默认值为 ``'NCHW'``，数据类型支持float16, float32, float64, int32, int64。
-  - **pad** (Tensor | List[int]) - 填充大小。如果 ``mode`` 为 ``'constant'``，并且 ``pad`` 的长度为 ``x`` 维度的2倍时，
+  - **pad** (Tensor | List[int] | Tuple[int]) - 填充大小。如果 ``mode`` 为 ``'constant'``，并且 ``pad`` 的长度为 ``x`` 维度的2倍时，
     则会根据 ``pad`` 和 ``value`` 对 ``x`` 从前面的维度向后依次补齐；否则：1. 当输入维度为3时，pad的格式为[pad_left, pad_right]；
     2. 当输入维度为4时，pad的格式为[pad_left, pad_right, pad_top, pad_bottom]；
     3. 当输入维度为5时，pad的格式为[pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back]。
