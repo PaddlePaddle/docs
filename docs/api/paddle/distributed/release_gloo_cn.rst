@@ -1,9 +1,9 @@
-.. _cn_api_distributed_release_barrier:
+.. _cn_api_distributed_release_gloo:
 
-release_barrier
+release_gloo
 -------------------------------
 
-.. py:function:: paddle.distributed.release_barrier()
+.. py:function:: paddle.distributed.release_gloo()
 
 释放当前并行环境的 gloo 上下文。
 
