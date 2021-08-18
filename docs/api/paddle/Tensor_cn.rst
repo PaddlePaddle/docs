@@ -1522,6 +1522,36 @@ unbind(axis=0)
 
 请参考 :ref:`cn_api_paddle_tensor_unbind`
 
+uniform_(min=-1.0, max=1.0, seed=0, name=None)
+:::::::::
+
+Inplace版本的 :ref:`cn_api_tensor_uniform`, 返回一个从均匀分布采样的随机数填充的Tensor。输出Tensor将被置于输入x的位置。
+
+参数：
+    - **x** (Tensor) - 待被随机数填充的输入Tensor。
+    - **min** (float|int, optional) - 生成随机数的下界, min包含在该范围内。默认为-1.0。
+    - **max** (float|int, optional) - 生成随机数的上界，max不包含在该范围内。默认为1.0。
+    - **seed** (int, optional) - 用于生成随机数的随机种子。如果seed为0，将使用全局默认生成器的种子（可通过paddle.seed设置）。
+                                 注意如果seed不为0，该操作每次将生成同一个随机值。默认为0。
+    - **name** (str, optional) - 默认值为None。通常用户不需要设置这个属性。更多信息请参见 :ref:`api_guide_Name` 。
+
+返回：由服从范围在[min, max)的均匀分布的随机数所填充的输入Tensor x。
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.ones(shape=[3, 4])
+        x.uniform_()
+        print(x)       
+        # result is random
+        # Tensor(shape=[3, 4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+        #     [[ 0.97134161, -0.36784279, -0.13951409, -0.48410338],
+        #      [-0.15477282,  0.96190143, -0.05395842, -0.62789059],
+        #      [-0.90525085,  0.63603556,  0.06997657, -0.16352385]])
+
 unique(return_index=False, return_inverse=False, return_counts=False, axis=None, dtype=int64, name=None)
 :::::::::
 
