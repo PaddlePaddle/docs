@@ -26,9 +26,14 @@ clear_grad
         linear = paddle.nn.Linear(2, 3)
         out = linear(input)
         out.backward()
-        print("Before clear_gradient, linear.weight.grad: {}".format(linear.weight.grad))
-        linear.weight.clear_gradient()
-        print("After clear_gradient, linear.weight.grad: {}".format(linear.weight.grad)))
+        print("Before clear_grad, linear.weight.grad: {}".format(linear.weight.grad))
+        linear.weight.clear_grad()
+        print("After clear_grad, linear.weight.grad: {}".format(linear.weight.grad))
+
+clear_gradient
+:::::::::
+
+与clear_grad功能相同，请参考：clear_grad
 
 dtype
 :::::::::
@@ -62,7 +67,7 @@ grad
 is_leaf
 :::::::::
 
-Tensor是否是叶子Tensor。对于stop_gradient为True的Tensor，它将是叶子Tensor。对于stop_gradient为False的Tensor，
+判断Tensor是否为叶子Tensor。对于stop_gradient为True的Tensor，它将是叶子Tensor。对于stop_gradient为False的Tensor，
 如果它是由用户创建的，它也会是叶子Tensor。
 
 **代码示例**
@@ -84,10 +89,10 @@ Tensor是否是叶子Tensor。对于stop_gradient为True的Tensor，它将是叶
         print(x.is_leaf) # True
         print(y.is_leaf) # False
 
-item
+item(*args)
 :::::::::
 
-将单元素Tensor转化为Python标量。
+将Tensor中特定位置的元素转化为Python标量，如果未指定位置，则该Tensor必须为单元素Tensor。
 
 **代码示例**
 
@@ -385,10 +390,19 @@ backward(grad_tensor=None, retain_graph=False)
         # 3: [4000.]
         # 4: [5000.]
 
+bitwise_and(y, out=None, name=None)
+:::::::::
+
+返回：按位与运算后的结果
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_bitwise_and`
+
 bitwise_not(out=None, name=None)
 :::::::::
 
-返回：``按位取反`` 运算后的结果Tensor
+返回：按位取反运算后的结果
 
 返回类型：Tensor
 
@@ -397,7 +411,7 @@ bitwise_not(out=None, name=None)
 bitwise_or(y, out=None, name=None)
 :::::::::
 
-返回：``按位或`` 运算后的结果 ``Tensor``
+返回：按位或运算后的结果
 
 返回类型：Tensor
 
@@ -406,7 +420,7 @@ bitwise_or(y, out=None, name=None)
 bitwise_xor(y, out=None, name=None)
 :::::::::
 
-返回：``按位异或`` 运算后的结果 ``Tensor``
+返回：按位异或运算后的结果
 
 返回类型：Tensor
 
@@ -420,24 +434,6 @@ bmm(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_bmm`
-
-broadcast_shape(x_shape, y_shape)
-:::::::::
-
-返回：broadcast操作后的shape
-
-返回类型：list[int]
-
-请参考 :ref:`cn_api_tensor_broadcast_shape`
-
-broadcast_tensors(inputs, name=None)
-:::::::::
-
-返回：一组Broadcast后的 ``Tensor``，其顺序与 ``input`` 一一对应
-
-返回类型：list(Tensor)
-
-请参考 :ref:`cn_api_paddle_broadcast_tensors`
 
 broadcast_to(shape, name=None)
 :::::::::
@@ -489,7 +485,6 @@ chunk(chunks, axis=0, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_chunk`
 
-
 clear_gradient()
 :::::::::
 
@@ -515,7 +510,6 @@ clear_gradient()
         print(loss2.gradient())
         loss2.clear_gradient()
         print("After clear {}".format(loss2.gradient()))
-
 
 clip(min=None, max=None, name=None)
 :::::::::
@@ -690,6 +684,15 @@ detach()
         x = linear(data)
         y = x.detach()
 
+diagonal(offset=0, axis1=0, axis2=1, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_diagonal`
+
 digamma(name=None)
 :::::::::
 
@@ -798,7 +801,7 @@ expand_as(y, name=None)
 
 请参考 :ref:`cn_api_tensor_expand_as`
 
-flatten(x, start_axis=0, stop_axis=-1, name=None)
+flatten(start_axis=0, stop_axis=-1, name=None)
 :::::::::
 
 返回：计算后的Tensor
@@ -851,7 +854,7 @@ floor_mod(y, name=None)
 
 返回类型：Tensor
 
-remainder函数的别名，请参考 :ref:`cn_api_tensor_remainder`
+mod函数的别名，请参考 :ref:`cn_api_tensor_mod`
 
 gather(index, axis=None, name=None)
 :::::::::
@@ -971,15 +974,6 @@ is_empty(cond=None)
 
 请参考 :ref:`cn_api_fluid_layers_is_empty`
 
-is_tensor()
-:::::::::
-
-返回：如果x是paddle.Tensor的话返回True，否则返回False
-
-返回类型：布尔值
-
-请参考 :ref:`cn_api_tensor_is_tensor`
-
 isfinite(name=None)
 :::::::::
 
@@ -1055,7 +1049,7 @@ log(name=None)
 log10(name=None)
 :::::::::
 
-返回：Log10算子底为10对数输出
+返回：以10为底数，对当前Tensor逐元素计算对数。
 
 返回类型：Tensor
 
@@ -1064,7 +1058,7 @@ log10(name=None)
 log2(name=None)
 :::::::::
 
-返回：Log2算子底为2对数输出
+返回：以2为底数，对当前Tensor逐元素计算对数。
 
 返回类型：Tensor
 
@@ -1212,7 +1206,7 @@ mod(y, name=None)
 
 返回类型：Tensor
 
-remainder函数的别名，请参考 :ref:`cn_api_tensor_remainder`
+请参考 :ref:`cn_api_tensor_mod`
 
 multiplex(index)
 :::::::::
@@ -1454,7 +1448,7 @@ remainder(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_remainder`
+mod函数的别名，请参考 :ref:`cn_api_tensor_mod`
 
 reshape(shape, name=None)
 :::::::::
@@ -1826,6 +1820,15 @@ transpose(perm, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_fluid_layers_transpose`
+
+trunc(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_trunc`
 
 unbind(axis=0)
 :::::::::
