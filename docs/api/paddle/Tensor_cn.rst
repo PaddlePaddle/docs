@@ -120,9 +120,6 @@ item(*args)
         print(x.item(2))            #3.3
         print(x.item(0, 2))         #3.3
 
-        x = paddle.to_tensor([1, 2])
-        x.item()        #ValueError: only one element tensor can be converted to Python scalar when no input coordinates.
-
 name
 :::::::::
 
