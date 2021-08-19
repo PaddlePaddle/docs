@@ -3,7 +3,7 @@
 paddle.hub
 -------------------------------
 
-paddle.hub 目录下包含飞桨框架模型拓展相关的API以及支持的模型库列表。具体如下：
+paddle.hub 是预训练模型库的集合，用来复用社区生产力，方便加载发布在github、gitee以及本地的预训练模型。飞桨提供框架模型拓展相关的API以及支持的模型库列表。具体如下：
 
 -  :ref:`查看和加载API <about_hub_functions>`
 -  :ref:`支持模型库列表 <about_hub_repos>`

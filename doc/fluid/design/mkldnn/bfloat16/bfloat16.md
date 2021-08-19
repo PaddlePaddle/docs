@@ -59,19 +59,24 @@ In the best scenario, before one of the initial operators, it will insert one re
 Bfloat16 inference support has been added for the following operators:
 * concat,
 * conv2d,
+* conv2d_transpose,
 * elementwise_add,
 * elementwise_mul,
 * fc,
 * fusion_gru,
+* fusion_lstm,
 * gelu,
 * layer_norm,
 * matmul,
+* matmul_v2,
 * pool2d,
+* prelu,
+* relu,
 * reshape2,
 * softmax,
+* split,
 * sum,
 * transpose2
-
 
 #### Model results
 
@@ -88,3 +93,24 @@ batch_size=1  nr_threads=1
 |    googlenet   |                      1.61x                     |          0.705         |         0.7049         |    0.00014    |
 |   mobilenetV1  |                      1.71x                     |         0.7078         |         0.7071         |    0.00099    |
 |   mobilenetV2  |                      1.52x                     |          0.719         |         0.7171         |    0.00264    |
+
+
+
+###### GRU model
+```
+batch size = 50 iterations = 160
+```
+
+|  FPS       | Naive FP32  |   FP32   |   BF16   | (BF16/FP32) |
+|------------|:-----------:|:--------:|:--------:|:-----------:|
+| thread = 1 |  2794.97    |  2700.45 |  4210.27 |    1.56x    |
+| thread = 4 |  3076.66    |  4756.45 |  6186.94 |    1.30x    |
+
+
+###### Accuracy
+
+| GRU model  | FP32    | BF16    | diff     |
+|------------|---------|---------|----------|
+| Precision  | 0.89211 | 0.89225 | -0.00014 |
+|  Recall    | 0.89442 | 0.89457 | -0.00015 |
+| F1 score   | 0.89326 | 0.89341 | -0.00015 |
