@@ -9,10 +9,11 @@ device_count
 
 返回： 当前程序可用的GPU数量。
 
+
 **代码示例**：
+
 .. code-block:: python
            
     import paddle
     
     paddle.device.cuda.device_count()
-
