@@ -22,11 +22,5 @@ Group: 新建的通信组对象
 代码示例
 :::::::::
 .. code-block:: python
-
-        import paddle
-
-        paddle.distributed.init_parallel_env()
-        tindata = paddle.randn(shape=[2, 3])
-        gp = paddle.distributed.new_group([2,4,6])
-        paddle.distributed.all_reduce(tindata, group=gp, use_calc_stream=False)
+COPY-FROM: paddle.distributed.new_group
 
