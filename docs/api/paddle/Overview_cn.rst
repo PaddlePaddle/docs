@@ -14,7 +14,7 @@ paddle 目录下包含tensor、device、framework相关API以及某些高层API�
 -  :ref:`tensor random相关 <tensor_random>`
 -  :ref:`tensor线性代数相关 <tensor_linalg>`
 -  :ref:`tensor元素操作相关（如：转置，reshape等） <tensor_manipulation>`
--  :ref:`爱因斯坦求和 <einsum>`:
+-  :ref:`爱因斯坦求和 <einsum>`
 -  :ref:`framework相关 <about_framework>`
 -  :ref:`device相关 <about_device>`
 -  :ref:`高层API相关 <about_hapi>`
