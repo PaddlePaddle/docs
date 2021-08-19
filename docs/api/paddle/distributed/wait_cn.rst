@@ -19,8 +19,5 @@ wait
 :::::::::
 None
 
-代码示例
-:::::::::
-.. code-block:: python
+**代码示例**：
 COPY-FROM: paddle.distributed.wait
-
