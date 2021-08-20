@@ -1,10 +1,10 @@
-.. _cn_api_distributed_barrier_func:
+.. _cn_api_distributed_gloo_barrier:
 
-barrier_func
+gloo_barrier
 -------------------------------
 
 
-.. py:function:: paddle.distributed.barrier_func()
+.. py:function:: paddle.distributed.gloo_barrier()
 使用初始化的 gloo 上下文直接调用基于 gloo 封装的 barrier 函数；区别于使用组网方式调用。
 
 参数
@@ -38,17 +38,17 @@ barrier_func
                     port_set.add(port)
                     return port
 
-        def test_barrier_func(id, rank_num, server_endpoint):
-            paddle.distributed.init_gloo_parallel_env(
+        def test_gloo_barrier(id, rank_num, server_endpoint):
+            paddle.distributed.gloo_init_parallel_env(
                 id, rank_num, server_endpoint)
-            paddle.distributed.barrier_func()
+            paddle.distributed.gloo_barrier()
 
-        def test_barrier_with_multiprocess(num_of_ranks):
+        def test_gloo_barrier_with_multiprocess(num_of_ranks):
             jobs = []
             server_endpoint = "127.0.0.1:%s" % (find_free_port())
             for id in range(num_of_ranks):
                 p = multiprocessing.Process(
-                    target=test_barrier_func,
+                    target=test_gloo_barrier,
                     args=(id, num_of_ranks, server_endpoint))
                 jobs.append(p)
                 p.start()
@@ -57,4 +57,4 @@ barrier_func
 
         if __name__ == '__main__':
             # Arg: number of ranks (processes)
-            test_barrier_with_multiprocess(2)
+            test_gloo_barrier_with_multiprocess(2)
