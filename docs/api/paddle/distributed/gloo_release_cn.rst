@@ -1,9 +1,9 @@
-.. _cn_api_distributed_release_gloo:
+.. _cn_api_distributed_gloo_release:
 
-release_gloo
+gloo_release
 -------------------------------
 
-.. py:function:: paddle.distributed.release_gloo()
+.. py:function:: paddle.distributed.gloo_release()
 
 释放当前并行环境的 gloo 上下文。
 
@@ -38,18 +38,18 @@ release_gloo
                     port_set.add(port)
                     return port
 
-        def test_release_gloo(id, rank_num, server_endpoint):
-            paddle.distributed.init_gloo_parallel_env(
+        def test_gloo_release(id, rank_num, server_endpoint):
+            paddle.distributed.gloo_init_parallel_env(
                 id, rank_num, server_endpoint)
-            paddle.distributed.barrier_func()
-            paddle.distributed.release_gloo(id)
+            paddle.distributed.gloo_barrier()
+            paddle.distributed.gloo_release(id)
 
-        def test_release_gloo_with_multiprocess(num_of_ranks):
+        def test_gloo_release_with_multiprocess(num_of_ranks):
             jobs = []
             server_endpoint = "127.0.0.1:%s" % (find_free_port())
             for id in range(num_of_ranks):
                 p = multiprocessing.Process(
-                    target=test_release_gloo,
+                    target=test_gloo_release,
                     args=(id, num_of_ranks, server_endpoint))
                 jobs.append(p)
                 p.start()
@@ -58,4 +58,4 @@ release_gloo
 
         if __name__ == '__main__':
             # Arg: number of ranks (processes)
-            test_release_gloo_with_multiprocess(2)
+            test_gloo_release_with_multiprocess(2)
