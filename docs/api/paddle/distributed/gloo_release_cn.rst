@@ -42,7 +42,7 @@ gloo_release
             paddle.distributed.gloo_init_parallel_env(
                 id, rank_num, server_endpoint)
             paddle.distributed.gloo_barrier()
-            paddle.distributed.gloo_release(id)
+            paddle.distributed.gloo_release()
 
         def test_gloo_release_with_multiprocess(num_of_ranks):
             jobs = []
