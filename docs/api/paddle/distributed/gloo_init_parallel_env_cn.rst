@@ -1,9 +1,9 @@
-.. _cn_api_distributed_init_gloo_parallel_env:
+.. _cn_api_distributed_gloo_init_parallel_env:
 
-init_gloo_parallel_env
+gloo_init_parallel_env
 -----------------
 
-.. py:function:: paddle.distributed.init_gloo_parallel_env(rank_id, rank_num, server_endpoint)
+.. py:function:: paddle.distributed.gloo_init_parallel_env(rank_id, rank_num, server_endpoint)
 该函数仅初始化 ``GLOO`` 上下文用于 CPU 间的通信。
 
 参数
@@ -39,16 +39,16 @@ init_gloo_parallel_env
                     port_set.add(port)
                     return port
 
-        def test_init_gloo(id, rank_num, server_endpoint):
-            paddle.distributed.init_gloo_parallel_env(
+        def test_gloo_init(id, rank_num, server_endpoint):
+            paddle.distributed.gloo_init_parallel_env(
                 id, rank_num, server_endpoint)
 
-        def test_init_gloo_with_multiprocess(num_of_ranks):
+        def test_gloo_init_with_multiprocess(num_of_ranks):
             jobs = []
             server_endpoint = "127.0.0.1:%s" % (find_free_port())
             for id in range(num_of_ranks):
                 p = multiprocessing.Process(
-                    target=test_init_gloo,
+                    target=test_gloo_init,
                     args=(id, num_of_ranks, server_endpoint))
                 jobs.append(p)
                 p.start()
@@ -57,4 +57,4 @@ init_gloo_parallel_env
 
         if __name__ == '__main__':
             # Arg: number of ranks (processes)
-            test_init_gloo_with_multiprocess(2)
+            test_gloo_init_with_multiprocess(2)
