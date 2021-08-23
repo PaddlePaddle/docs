@@ -36,35 +36,13 @@ DataParallel
 **代码示例**：
 COPY-FROM: paddle.DataParallel
 
-.. py:function:: paddle.DataParallel.no_sync()
+.. py:function:: no_sync()
 
 用于暂停梯度同步的上下文管理器。在no_sync()中参数梯度只会在模型上累加；直到with之外的第一个forward-backward，梯度才会被同步。
 
 **代码示例**
 
-.. code-block:: python
-
-    # required: distributed
-    import paddle
-    import paddle.nn as nn
-    import paddle.distributed as dist
-    class SimpleNet(nn.Layer):
-        def __init__(self):
-            super(SimpleNet, self).__init__()
-            self._linear = nn.Linear(10, 1)
-            
-        def forward(self, x):
-            return self._linear(x)
-    dist.init_parallel_env()
-    model = SimpleNet()
-    dp_model = paddle.DataParallel(model)
-    inputs_1 = paddle.randn([10, 10], 'float32')
-    inputs_2 = paddle.ones([10, 10], 'float32')
-    with dp_model.no_sync():
-        # gradients will not be synchronized
-        dp_model(inputs_1).backward()
-    # synchronization happens here
-    dp_model(inputs_2).backward()
+COPY-FROM: paddle.DataParallel.no_sync
 
 .. py:method:: state_dict(destination=None, include_sublayers=True)
 
