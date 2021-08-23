@@ -13,10 +13,9 @@ from_dlpack
 返回：
   - **out** (Tensor) - 从DLPack中解码得到的Tensor。
 
+**代码示例**
 
-**代码示例**：
-
-.. code_block:: python
+.. code-block:: python
 
     import paddle 
     x = paddle.to_tensor([[0.2, 0.3, 0.5, 0.9],

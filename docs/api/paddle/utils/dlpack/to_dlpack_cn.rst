@@ -13,9 +13,9 @@ to_dlpack
 返回：带有dltensor的PyCapsule对象。
 
 
-**代码示例**：
+**代码示例**
 
-.. code_block:: python
+.. code-block:: python
     import paddle
     x = paddle.to_tensor([[0.2, 0.3, 0.5, 0.9],
                           [0.1, 0.2, 0.6, 0.7]])
