@@ -48,4 +48,4 @@ paddle.utils 目录下包含飞桨框架工具类的API。具体如下：
     " :ref:`stop_profiler <cn_api_fluid_profiler_stop_profiler>` ", "停止使用性能分析器"
     " :ref:`require_version <cn_api_fluid_require_version>` ", "用于检查已安装的飞桨版本是否介于[min_version, max_version]之间"
     " :ref:`to_dlpack <cn_api_paddle_utils_dlpack_to_dlpack>` ", "用于将Tensor对象转换为DLPack"
-    ": ref:`from_dlpack <_cn_api_paddle_utils_dlpack_from_dlpack>` ", "用于从DLPack中解码出Tensor对象"
+    " :ref:`from_dlpack <cn_api_paddle_utils_dlpack_from_dlpack>` ", "用于从DLPack中解码出Tensor对象"
