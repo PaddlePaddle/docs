@@ -79,15 +79,32 @@
 
 5. 执行cmake：
 
-    > 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
+    > 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。在Windows系统下支持Ninja 命令行方式（推荐）或Visual Studio 2015 IDE方式编译，需要在cmake命令中通过-G选项指定编译方式，
 
-    *  编译**CPU版本PaddlePaddle**：
+    若采用Ninja命令行方式，需要先通过如下命令安装ninja：
+    > pip install ninja
+
+    *  通过Ninja命令行方式编译（推荐）：
+        * **CPU版本PaddlePaddle**：
+
+        ```
+        cmake .. -G "Ninja" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        ```
+
+        * **GPU版本PaddlePaddle**：
+
+        ```
+        cmake .. -G "Ninja" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        ```
+
+    *  或者，通过Visual Studio IDE方式编译：
+        * **CPU版本PaddlePaddle**：
 
         ```
         cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
-    *  编译**GPU版本PaddlePaddle**：
+        * **GPU版本PaddlePaddle**：
 
         ```
         cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
@@ -109,7 +126,11 @@
     cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\v10.0"
     ```
 
-6. 使用Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，开始编译。
+6. 编译
+    * 若指定编译方式为"Ninja"，执行以下命令，开始编译（推荐）
+    > ninja third_party && ninja all
+
+    * 若指定编译方式为"Visual Studio 14 2015 Win64"，使用Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，开始编译。
 
 7. 编译成功后进入 `\Paddle\build\python\dist` 目录下找到生成的 `.whl` 包：
 
