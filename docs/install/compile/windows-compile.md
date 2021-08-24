@@ -6,7 +6,7 @@
 * **GPU版本支持CUDA 10.1/10.2/11.2，且仅支持单卡**
 * **Python 版本 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 * **pip 版本 20.2.2或更高版本 (64 bit)**
-* **Visual Studio 2017 Update3**
+* **Visual Studio 2017**
 
 ## 选择CPU/GPU
 
