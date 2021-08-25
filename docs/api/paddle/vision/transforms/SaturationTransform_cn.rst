@@ -13,10 +13,16 @@ SaturationTransform
     - value (float) - 饱和度的调整数值，非负数，当参数值为0时返回原始图像。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
+数据格式
+:::::::::
+
+    - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
+    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回调整饱和度后的图像数据。
+
 返回
 :::::::::
 
-    ``numpy ndarray``，调整饱和度后的图像。
+    ``SaturationTransform`` 可调用对象。
 
 代码示例
 :::::::::

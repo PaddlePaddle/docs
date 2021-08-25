@@ -13,10 +13,16 @@ CenterCrop
     - size (int|tuple) - 输出图像的形状大小。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
+数据格式
+:::::::::
+
+    - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
+    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回裁剪后的图像数据。
+
 返回
 :::::::::
 
-    ``PIL.Image, numpy ndarray``，裁剪后的图像。    
+    ``CenterCrop`` 可调用对象。    
 
 代码示例
 :::::::::

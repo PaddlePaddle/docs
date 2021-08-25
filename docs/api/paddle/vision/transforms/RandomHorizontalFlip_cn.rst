@@ -13,10 +13,16 @@ RandomHorizontalFlip
     - prob (float) - 图片执行水平翻转的概率，取值范围为[0, 1], 默认值为0.5。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
+数据格式
+:::::::::
+
+    - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
+    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回概率执行水平翻转后的图像数据。
+
 返回
 :::::::::
 
-    ``PIL.Image 或 numpy ndarray``，概率执行水平翻转后的图像。
+    ``RandomHorizontalFlip`` 可调用对象。
 
 代码示例
 :::::::::

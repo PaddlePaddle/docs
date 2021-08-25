@@ -18,10 +18,16 @@ RandomResizedCrop
     - interpolation (int|str, optional) - 插值的方法. 默认值: 'bilinear'. 当使用 ``pil`` 作为后端时, 支持的插值方法如下: - "nearest": Image.NEAREST, - "bilinear": Image.BILINEAR, - "bicubic": Image.BICUBIC, - "box": Image.BOX, - "lanczos": Image.LANCZOS, - "hamming": Image.HAMMING。当使用 ``cv2`` 作为后端时, 支持的插值方法如下: - "nearest": cv2.INTER_NEAREST, - "bilinear": cv2.INTER_LINEAR, - "area": cv2.INTER_AREA, - "bicubic": cv2.INTER_CUBIC, - "lanczos": cv2.INTER_LANCZOS4。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
+数据格式
+:::::::::
+
+    - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
+    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回裁剪后的图像数据。
+
 返回
 :::::::::
 
-    ``numpy ndarray``，随机裁剪和改变大小后的图像。
+    ``RandomResizedCrop`` 可调用对象。    
 
 代码示例
 :::::::::

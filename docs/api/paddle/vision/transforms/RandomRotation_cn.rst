@@ -28,10 +28,16 @@ RandomRotate
     - fill (int，可选) - 对图像扩展时填充的值。默认值：0。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
     
+数据格式
+:::::::::
+
+    - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
+    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回随机旋转一定角度后的图像数据。
+
 返回
 :::::::::
 
-    ``numpy ndarray``，随机旋转一定角度后的图像。
+    ``RandomRotation`` 可调用对象。
 
 代码示例
 :::::::::
