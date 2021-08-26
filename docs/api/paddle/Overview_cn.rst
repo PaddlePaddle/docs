@@ -237,6 +237,7 @@ tensor线性代数相关
     " :ref:`paddle.dot <cn_api_paddle_tensor_linalg_dot>` ", "计算向量的内积"
     " :ref:`paddle.histogram <cn_api_tensor_histogram>` ", "计算输入张量的直方图"
     " :ref:`paddle.matmul <cn_api_tensor_matmul>` ", "计算两个Tensor的乘积，遵循完整的广播规则"
+    " :ref:`paddle.matrix_power <cn_api_tensor_matrix_power>` ", "计算一个（或一批）方阵的 n 次幂"
     " :ref:`paddle.mv <cn_api_tensor_mv>` ", "计算矩阵 x 和向量 vec 的乘积"
     " :ref:`paddle.norm <cn_api_tensor_norm>` ", "计算给定Tensor的矩阵范数（Frobenius 范数）和向量范数（向量1范数、2范数、或者通常的p范数）"
     " :ref:`paddle.rank <cn_api_fluid_layers_rank>` ", "计算输入Tensor的维度（秩）"
