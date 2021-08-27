@@ -481,7 +481,8 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.interpolate <cn_api_paddle_nn_functional_interpolate>` ", "用于调整一个batch中图片的大小"
     " :ref:`paddle.nn.functional.sequence_mask <cn_api_fluid_layers_sequence_mask>` ", "根据输入 x 和 maxlen 输出一个掩码，数据类型为 dtype"
     " :ref:`paddle.nn.functional.temporal_shift <cn_api_fluid_layers_temporal_shift>` ", "用于对输入X做时序通道T上的位移操作，为TSM中使用的操作"
-    " :ref:`paddle.nn.functional.upsample <cn_api_paddle_nn_functional_upsampl>` ", "用于调整一个batch中图片的大小"
+    " :ref:`paddle.nn.functional.upsample <cn_api_paddle_nn_functional_upsample>` ", "用于调整一个batch中图片的大小"
+    " :ref:`paddle.nn.functional.class_center_sample <cn_api_paddle_nn_functional_class_center_sample>` ", "用于PartialFC类别中心采样"
 
 .. _about_initializer:
 
