@@ -14,6 +14,7 @@ paddle 目录下包含tensor、device、framework相关API以及某些高层API�
 -  :ref:`tensor random相关 <tensor_random>`
 -  :ref:`tensor线性代数相关 <tensor_linalg>`
 -  :ref:`tensor元素操作相关（如：转置，reshape等） <tensor_manipulation>`
+-  :ref:`爱因斯坦求和 <einsum>`
 -  :ref:`framework相关 <about_framework>`
 -  :ref:`device相关 <about_device>`
 -  :ref:`高层API相关 <about_hapi>`
@@ -289,6 +290,16 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.unsqueeze_ <cn_api_paddle_tensor_unsqueeze_>` ", "Inplace 版本的 unsqueeze API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.unstack <cn_api_fluid_layers_unstack>` ", "该OP将单个dim为 D 的Tensor沿 axis 轴unpack为 num 个dim为 (D-1) 的Tensor"
 
+.. einsum:
+
+爱因斯坦求和
+：：：：：：
+
+.. csv-table::
+    :header: "API名称", "API功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.einsum <cn_api_tensor_einsum>` ", "根据爱因斯坦标记对多个张量进行爱因斯坦求和"
 
 .. _about_framework:
 
