@@ -8,14 +8,14 @@ sum
 该OP是对指定维度上的Tensor元素进行求和运算，并输出相应的计算结果。
 
 参数：
-    - **x** （Tensor）- 输入变量为多维Tensor，支持数据类型为float32，float64，int32，int64。
+    - **x** （Tensor）- 输入变量为多维Tensor，支持数据类型为 bool, float16, float32, float64, int32 or int64。
     - **axis** （int | list | tuple ，可选）- 求和运算的维度。如果为None，则计算所有元素的和并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(x),rank(x)]` 范围内。如果 :math:`axis [i] <0` ，则维度将变为 :math:`rank+axis[i]` ，默认值为None。
     - **dtype** （str ， 可选）- 输出变量的数据类型。若参数为空，则输出变量的数据类型和输入变量相同，默认值为None。
     - **keepdim** （bool）- 是否在输出Tensor中保留减小的维度。如 keepdim 为true，否则结果张量的维度将比输入张量小，默认值为False。
     - **name** （str ， 可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回：
-  ``Tensor``，在指定维度上进行求和运算的Tensor，数据类型和输入数据类型一致。
+  ``Tensor``，在指定维度上进行求和运算的Tensor，如果指定了 ``dtype`` 则输出类型为 ``dtype``，否则需要根据输入类型进行推理输出类型。如果 ``x.dtype='bool'``, ``x.dtype='int32'`` 则输出类型为 ``int64``，否则跟输入类型保持一致。
 
 
 **代码示例**
@@ -44,3 +44,13 @@ sum
     y = paddle.to_tensor(y_data)
     out5 = paddle.sum(y, axis=[1, 2]) # [10, 26]
     out6 = paddle.sum(y, axis=[0, 1]) # [16, 20]
+
+    # x is a Tensor with following elements:
+    #    [[True, True, True, True]
+    #     [False, False, False, False]]
+    # Each example is followed by the corresponding output tensor.
+    x = paddle.to_tensor([[True, True, True, True],
+                          [False, False, False, False]])
+    out7 = paddle.sum(x)  # [4]
+    out8 = paddle.sum(x, axis=0)  # [1, 1, 1, 1]
+    out9 = paddle.sum(x, axis=1)  # [4, 0]
