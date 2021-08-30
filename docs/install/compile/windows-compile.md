@@ -88,6 +88,7 @@
         ```
         pip install ninja
         ```
+        然后在搜索栏中搜索 "x64 Native Tools Command Prompt for VS 2017" 或 "适用于VS 2017 的x64本机工具命令提示符"，以管理员身份运行，再输入以下cmake命令。
 
         * **CPU版本PaddlePaddle**：
 

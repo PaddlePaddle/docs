@@ -457,6 +457,7 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.sigmoid_focal_loss <cn_api_nn_functional_sigmoid_focal_loss>` ", "用于计算分类任务中前景类-背景类数量不均衡问题的损失"
     " :ref:`paddle.nn.functional.smooth_l1_loss <cn_paddle_nn_functional_loss_smooth_l1>` ", "用于计算平滑L1损失"
     " :ref:`paddle.nn.functional.softmax_with_cross_entropy <cn_api_fluid_layers_softmax_with_cross_entropy>` ", "将softmax操作、交叉熵损失函数的计算过程进行合并"
+    " :ref:`paddle.nn.functional.margin_cross_entropy <cn_api_paddle_nn_functional_margin_cross_entropy>` ", "支持 ``Arcface``，``Cosface``，``Sphereface`` 的结合 Margin 损失函数"
     
 .. _common_functional:
 
@@ -481,7 +482,8 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.interpolate <cn_api_paddle_nn_functional_interpolate>` ", "用于调整一个batch中图片的大小"
     " :ref:`paddle.nn.functional.sequence_mask <cn_api_fluid_layers_sequence_mask>` ", "根据输入 x 和 maxlen 输出一个掩码，数据类型为 dtype"
     " :ref:`paddle.nn.functional.temporal_shift <cn_api_fluid_layers_temporal_shift>` ", "用于对输入X做时序通道T上的位移操作，为TSM中使用的操作"
-    " :ref:`paddle.nn.functional.upsample <cn_api_paddle_nn_functional_upsampl>` ", "用于调整一个batch中图片的大小"
+    " :ref:`paddle.nn.functional.upsample <cn_api_paddle_nn_functional_upsample>` ", "用于调整一个batch中图片的大小"
+    " :ref:`paddle.nn.functional.class_center_sample <cn_api_paddle_nn_functional_class_center_sample>` ", "用于PartialFC类别中心采样"
 
 .. _about_initializer:
 
