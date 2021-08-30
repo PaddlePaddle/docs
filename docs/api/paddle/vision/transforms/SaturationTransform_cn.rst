@@ -13,7 +13,7 @@ SaturationTransform
     - value (float) - 饱和度的调整数值，非负数，当参数值为0时返回原始图像。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
-数据格式
+形状
 :::::::::
 
     - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
@@ -22,7 +22,7 @@ SaturationTransform
 返回
 :::::::::
 
-    ``SaturationTransform`` 可调用对象。
+    计算 ``SaturationTransform`` 的可调用对象。
 
 代码示例
 :::::::::

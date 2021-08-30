@@ -16,7 +16,7 @@ ColorJitter
     - hue(float) - 色调调整范围大小，，会从给定参数后的均匀分布[-hue, hue]中随机选择进行实际调整，参数值需要在0到0.5之间。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
-数据格式
+形状
 :::::::::
 
     - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
@@ -25,7 +25,7 @@ ColorJitter
 返回
 :::::::::
 
-    ``ColorJitter`` 可调用对象。
+    计算 ``ColorJitter`` 的可调用对象。
 
 代码示例
 :::::::::

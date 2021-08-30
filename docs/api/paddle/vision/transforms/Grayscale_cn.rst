@@ -13,7 +13,7 @@ Grayscale
     - num_output_channels (int，可选) - 输出图像的通道数，参数值为1或3。默认值：1。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
-数据格式
+形状
 :::::::::
 
     - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
@@ -22,7 +22,7 @@ Grayscale
 返回
 :::::::::
 
-    ``Grayscale`` 可调用对象。
+    计算 ``Grayscale`` 的可调用对象。
 
 代码示例
 :::::::::

@@ -28,7 +28,7 @@ RandomRotate
     - fill (int，可选) - 对图像扩展时填充的值。默认值：0。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
     
-数据格式
+形状
 :::::::::
 
     - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
@@ -37,7 +37,7 @@ RandomRotate
 返回
 :::::::::
 
-    ``RandomRotation`` 可调用对象。
+    计算 ``RandomRotation`` 的可调用对象。
 
 代码示例
 :::::::::

@@ -14,7 +14,7 @@ Transpose
     - order (list|tuple, optional) - 目标的维度顺序. Default: (2, 0, 1)。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform``. 默认值: None。
 
-数据格式
+形状
 :::::::::
 
     - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
@@ -23,7 +23,7 @@ Transpose
 返回
 :::::::::
 
-    ``Transpose`` 可调用对象。
+    计算 ``Transpose`` 的可调用对象。
 
 代码示例
 :::::::::

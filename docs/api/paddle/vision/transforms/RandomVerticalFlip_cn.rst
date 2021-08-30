@@ -13,7 +13,7 @@ RandomVerticalFlip
     - prob (float) - 执行图片垂直翻转的概率，默认值为0.5。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
-数据格式
+形状
 :::::::::
 
     - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
@@ -22,7 +22,7 @@ RandomVerticalFlip
 返回
 :::::::::
 
-    ``RandomVerticalFlip`` 可调用对象。
+    计算 ``RandomVerticalFlip`` 的可调用对象。
 
 代码示例
 :::::::::

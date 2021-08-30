@@ -21,7 +21,7 @@ ToTensor
     - data_format (str, optional): 返回张量的格式，必须为 'HWC' 或 'CHW'。 默认值: 'CHW'。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
-数据格式
+形状
 :::::::::
 
     - img (PIL.Image|numpy.ndarray) - 输入的图像数据，数据格式为'HWC'。
@@ -30,7 +30,7 @@ ToTensor
 返回
 :::::::::
 
-    ``ToTensor`` 可调用对象。
+    计算 ``ToTensor`` 的可调用对象。
 
 代码示例
 :::::::::
