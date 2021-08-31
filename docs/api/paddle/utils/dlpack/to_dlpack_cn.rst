@@ -10,7 +10,8 @@ to_dlpack
 参数：
   - **x** (Tensor) - Paddle Tensor，并且其数据类型为支持 bool，float32，float64，int32，int64。
 
-返回：带有dltensor的PyCapsule对象。
+返回：
+  - 带有dltensor的PyCapsule对象。
 
 
 **代码示例**
