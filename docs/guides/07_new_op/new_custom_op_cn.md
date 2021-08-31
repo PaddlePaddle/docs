@@ -97,6 +97,9 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, .
         - 模板类方法，获取数据内存的起始地址（只读访问）
     - `template <typename T> T* mutable_data(const PlaceType& place)`：
         - 模板类方法，输入参数 `place` ，根据 `Tensor.shape` 在指定设备上申请内存，并返回内存的起始地址
+    - `Tensor slice(const int64_t begin_idx, const int64_t end_idx) const`：
+        - 输入参数起始行 `begin_idx` 和终止行 `end_idx`，返回当前 `Tensor` 从起始行（含）到终止行（不含）的一个视图
+        > 注：本API仅支持对当前 `Tensor` 的第一个维度（即 axis = 0）进行切分
 - 工具类API：
     - `template <typename T> Tensor copy_to(const PlaceType& place) const`：
         - 模板类方法，输入参数 `place`，将当前 `Tensor` 拷贝到指定设备上并返回
