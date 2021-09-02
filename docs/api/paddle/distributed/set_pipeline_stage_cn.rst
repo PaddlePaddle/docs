@@ -1,6 +1,6 @@
 .. _cn_api_distributed_set_pipeline_stage:
 
-shard_set_pipeline_stage
+set_pipeline_stage
 -------------------------------
 
 
