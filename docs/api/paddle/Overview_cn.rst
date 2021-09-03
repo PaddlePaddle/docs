@@ -233,6 +233,7 @@ tensor线性代数相关
 
     " :ref:`paddle.bmm <cn_api_paddle_tensor_bmm>` ", "对输入x及输入y进行矩阵相乘"
     " :ref:`paddle.cholesky <cn_api_tensor_cholesky>` ", "计算一个对称正定矩阵或一批对称正定矩阵的Cholesky分解"
+    " :ref:`paddle.cond <cn_api_tensor_cond>` ", "根据范数种类计算一个（或一批）矩阵的条件数"
     " :ref:`paddle.cross <cn_api_tensor_linalg_cross>` ", "计算张量 x 和 y 在 axis 维度上的向量积（叉积）"
     " :ref:`paddle.dist <cn_api_tensor_linalg_dist>` ", "计算 (x-y) 的 p 范数（p-norm）"
     " :ref:`paddle.dot <cn_api_paddle_tensor_linalg_dot>` ", "计算向量的内积"
