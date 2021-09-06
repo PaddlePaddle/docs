@@ -12,7 +12,7 @@ flip
 
 参数：
     - **x** (Tensor) - 输入张量。维度为多维，数据类型为bool, int32, int64, float32或float64。
-    - **axis** (list) - 需要翻转的轴。当 ``axis[i] < 0`` 时，实际的计算维度为 ndim(x) + axis[i]，其中i为axis的索引。
+    - **axis** (list|tuple|int) - 需要翻转的轴。当axis是int型时， 且axis<0，实际的计算维度为 ndim(x) + axis；axis是list或tuple时，``axis[i] < 0`` 时，实际的计算维度为 ndim(x) + axis[i]，其中i为axis的索引。
     - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
 
 返回：在指定axis上翻转后的张量，与输入x数据类型相同。
@@ -35,5 +35,5 @@ flip
     x = x.astype('float32')
     img = paddle.to_tensor(x)
     out = paddle.flip(img, [0,1])
-    print(out) # [[[10,11][8, 9]],[[6, 7],[4, 5]] [[2, 3],[0, 1]]]
+    print(out) # [[[10,11], [8, 9]], [[6, 7], [4, 5]], [[2, 3],[0, 1]]]
 

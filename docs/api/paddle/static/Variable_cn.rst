@@ -86,6 +86,18 @@ Variable
       y = x.clone()
 
 
+.. py:method:: detach(self)
+
+返回一个新的 ``Variable`` , 并从当前计算图分离
+
+返回：与当前计算图分离的 ``Variable``。
+
+返回类型： ``Variable``
+
+**示例代码**
+COPY-FROM: paddle.static.Variable.detach
+
+
 .. py:method:: astype(self, dtype)
 
 将该 :ref:`api_guide_Variable` 中的数据转换成目标 ``Dtype``。
@@ -203,6 +215,58 @@ None
               var.set_value(t_load)
 
 
+.. py:method:: size(self)
+
+返回该 :ref:`api_guide_Variable` 中的数据元素数量, 结果是一个shape为[1]的int64的 ``Variable`` 。
+
+返回： 单元元素数量
+
+返回类型： ``Variable``
+
+**示例代码**
+COPY-FROM: paddle.static.Variable.size
+
+
+.. py:method:: ndimension(self)
+
+返回该 :ref:`api_guide_Variable` 的维度，也称作rank。
+
+返回： ``Variable`` 的维度
+
+返回类型： ``Variable``
+
+**示例代码**
+  .. code-block:: python
+
+      import paddle
+
+      paddle.enable_static()
+
+      x = paddle.static.data(name="x", shape=[10, 10], dtype='float32')
+      print("Variable's number of dimension: ", x.ndimension())
+      # Variable's number of dimension: 2
+
+
+.. py:method:: dim(self)
+
+返回该 :ref:`api_guide_Variable` 的维度，也称作rank。
+
+返回： ``Variable`` 的维度
+
+返回类型： ``Variable``
+
+**示例代码**
+  .. code-block:: python
+
+      import paddle
+
+      paddle.enable_static()
+
+      x = paddle.static.data(name="x", shape=[10, 10], dtype='float32')
+      print("Variable's number of dim: ", x.dim())
+      # Variable's number of dim: 2
+
+
 属性
 ::::::::::::
 
@@ -225,7 +289,7 @@ None
 
 **注意：该属性是只读属性。**
 
-此 :ref:`api_guide_Variable` 的维度。
+此 :ref:`api_guide_Variable` 在每个维度上的元素数量。
 
 .. py:attribute:: dtype
 
@@ -243,4 +307,10 @@ None
 
 **注意：该属性是只读属性。**
 
-此 :ref:`api_guide_Variable` 的内存模型，例如是：:ref:`api_fluid_LoDTensor`， 或者SelectedRows。
+此 :ref:`api_guide_Variable` 的内存模型，例如是：:ref:`api_fluid_LoDTensor` ，或者SelectedRows。
+
+.. py:attribute:: ndim
+
+**注意：该属性是只读属性。**
+
+此 :ref:`api_guide_Variable` 的维度，也称作rank。

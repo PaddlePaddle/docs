@@ -1,7 +1,7 @@
 # 基于图片相似度的图片搜索
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例简要介绍如何通过飞桨开源框架，实现图片搜索的功能。
 
 ## 一、简要介绍
@@ -13,7 +13,7 @@
 
 ## 二、环境配置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -28,7 +28,7 @@ from collections import defaultdict
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.1
 
 
 ## 三、数据加载
@@ -48,7 +48,7 @@ y_train = np.zeros((50000, 1), dtype='int32')
 
 for i in range(len(cifar10_train)):
     train_image, train_label = cifar10_train[i]
-
+    
     # normalize the data
     x_train[i,:, :, :] = train_image / 255.
     y_train[i, 0] = train_label
@@ -58,12 +58,6 @@ y_train = np.squeeze(y_train)
 print(x_train.shape)
 print(y_train.shape)
 ```
-
-    Cache file /home/aistudio/.cache/paddle/dataset/cifar/cifar-10-python.tar.gz not found, downloading https://dataset.bj.bcebos.com/cifar/cifar-10-python.tar.gz
-    Begin to download
-
-    Download finished
-
 
     (50000, 3, 32, 32)
     (50000,)
@@ -77,7 +71,7 @@ y_test = np.zeros((10000, 1), dtype='int64')
 
 for i in range(len(cifar10_test)):
     test_image, test_label = cifar10_test[i]
-
+   
     # normalize the data
     x_test[i,:, :, :] = test_image / 255.
     y_test[i, 0] = test_label
@@ -128,7 +122,9 @@ show_collage(examples)
 
 
 
+    
 ![png](output_8_0.png)
+    
 
 
 
@@ -205,7 +201,9 @@ show_collage(examples)
 
 
 
+    
 ![png](output_15_1.png)
+    
 
 
 
@@ -222,21 +220,21 @@ class MyNet(paddle.nn.Layer):
     def __init__(self):
         super(MyNet, self).__init__()
 
-        self.conv1 = paddle.nn.Conv2D(in_channels=3,
-                                      out_channels=32,
+        self.conv1 = paddle.nn.Conv2D(in_channels=3, 
+                                      out_channels=32, 
                                       kernel_size=(3, 3),
                                       stride=2)
-
-        self.conv2 = paddle.nn.Conv2D(in_channels=32,
-                                      out_channels=64,
+         
+        self.conv2 = paddle.nn.Conv2D(in_channels=32, 
+                                      out_channels=64, 
+                                      kernel_size=(3,3), 
+                                      stride=2)       
+        
+        self.conv3 = paddle.nn.Conv2D(in_channels=64, 
+                                      out_channels=128, 
                                       kernel_size=(3,3),
                                       stride=2)
-
-        self.conv3 = paddle.nn.Conv2D(in_channels=64,
-                                      out_channels=128,
-                                      kernel_size=(3,3),
-                                      stride=2)
-
+       
         self.gloabl_pool = paddle.nn.AdaptiveAvgPool2D((1,1))
 
         self.fc1 = paddle.nn.Linear(in_features=128, out_features=8)
@@ -272,27 +270,27 @@ def train(model):
     inverse_temperature = paddle.to_tensor(np.array([1.0/0.2], dtype='float32'))
 
     epoch_num = 20
-
+    
     opt = paddle.optimizer.Adam(learning_rate=0.0001,
                                 parameters=model.parameters())
-
+    
     for epoch in range(epoch_num):
         for batch_id, data in enumerate(pairs_train_reader()):
             anchors_data, positives_data = data[0], data[1]
 
             anchors = paddle.to_tensor(anchors_data)
             positives = paddle.to_tensor(positives_data)
-
+            
             anchor_embeddings = model(anchors)
             positive_embeddings = model(positives)
-
-            similarities = paddle.matmul(anchor_embeddings, positive_embeddings, transpose_y=True)
+            
+            similarities = paddle.matmul(anchor_embeddings, positive_embeddings, transpose_y=True) 
             similarities = paddle.multiply(similarities, inverse_temperature)
-
+            
             sparse_labels = paddle.arange(0, num_classes, dtype='int64')
 
             loss = F.cross_entropy(similarities, sparse_labels)
-
+            
             if batch_id % 500 == 0:
                 print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, loss.numpy()))
             loss.backward()
@@ -303,50 +301,50 @@ model = MyNet()
 train(model)
 ```
 
-    start training ...
-    epoch: 0, batch_id: 0, loss is: [2.2797065]
-    epoch: 0, batch_id: 500, loss is: [2.4461598]
-    epoch: 1, batch_id: 0, loss is: [2.070808]
-    epoch: 1, batch_id: 500, loss is: [2.3127527]
-    epoch: 2, batch_id: 0, loss is: [1.9150307]
-    epoch: 2, batch_id: 500, loss is: [2.299457]
-    epoch: 3, batch_id: 0, loss is: [1.8218645]
-    epoch: 3, batch_id: 500, loss is: [1.8945302]
-    epoch: 4, batch_id: 0, loss is: [2.0056992]
-    epoch: 4, batch_id: 500, loss is: [1.8842887]
-    epoch: 5, batch_id: 0, loss is: [1.8823686]
-    epoch: 5, batch_id: 500, loss is: [2.0621178]
-    epoch: 6, batch_id: 0, loss is: [2.9886317]
-    epoch: 6, batch_id: 500, loss is: [2.3141904]
-    epoch: 7, batch_id: 0, loss is: [1.8404986]
-    epoch: 7, batch_id: 500, loss is: [1.6835892]
-    epoch: 8, batch_id: 0, loss is: [1.9133624]
-    epoch: 8, batch_id: 500, loss is: [1.8012362]
-    epoch: 9, batch_id: 0, loss is: [2.2123387]
-    epoch: 9, batch_id: 500, loss is: [1.6002774]
-    epoch: 10, batch_id: 0, loss is: [1.7815833]
-    epoch: 10, batch_id: 500, loss is: [1.8376974]
-    epoch: 11, batch_id: 0, loss is: [1.9201221]
-    epoch: 11, batch_id: 500, loss is: [1.8542075]
-    epoch: 12, batch_id: 0, loss is: [1.8315802]
-    epoch: 12, batch_id: 500, loss is: [1.7933068]
-    epoch: 13, batch_id: 0, loss is: [1.7559664]
-    epoch: 13, batch_id: 500, loss is: [1.8337302]
-    epoch: 14, batch_id: 0, loss is: [1.9718484]
-    epoch: 14, batch_id: 500, loss is: [1.7921778]
-    epoch: 15, batch_id: 0, loss is: [2.0504231]
-    epoch: 15, batch_id: 500, loss is: [1.90394]
-    epoch: 16, batch_id: 0, loss is: [1.7306533]
-    epoch: 16, batch_id: 500, loss is: [2.3830707]
-    epoch: 17, batch_id: 0, loss is: [1.8273307]
-    epoch: 17, batch_id: 500, loss is: [1.8554094]
-    epoch: 18, batch_id: 0, loss is: [1.7879605]
-    epoch: 18, batch_id: 500, loss is: [1.6780965]
-    epoch: 19, batch_id: 0, loss is: [2.0583546]
-    epoch: 19, batch_id: 500, loss is: [2.0890448]
+    start training ... 
+    epoch: 0, batch_id: 0, loss is: [2.2687693]
+    epoch: 0, batch_id: 500, loss is: [2.1315682]
+    epoch: 1, batch_id: 0, loss is: [2.035833]
+    epoch: 1, batch_id: 500, loss is: [2.4030607]
+    epoch: 2, batch_id: 0, loss is: [2.0938804]
+    epoch: 2, batch_id: 500, loss is: [1.987708]
+    epoch: 3, batch_id: 0, loss is: [2.0163271]
+    epoch: 3, batch_id: 500, loss is: [1.8376584]
+    epoch: 4, batch_id: 0, loss is: [2.0639582]
+    epoch: 4, batch_id: 500, loss is: [2.0450816]
+    epoch: 5, batch_id: 0, loss is: [2.0977197]
+    epoch: 5, batch_id: 500, loss is: [2.265034]
+    epoch: 6, batch_id: 0, loss is: [1.9975305]
+    epoch: 6, batch_id: 500, loss is: [1.6199682]
+    epoch: 7, batch_id: 0, loss is: [1.938558]
+    epoch: 7, batch_id: 500, loss is: [1.9956715]
+    epoch: 8, batch_id: 0, loss is: [1.9768231]
+    epoch: 8, batch_id: 500, loss is: [2.1569598]
+    epoch: 9, batch_id: 0, loss is: [1.9905119]
+    epoch: 9, batch_id: 500, loss is: [1.7150443]
+    epoch: 10, batch_id: 0, loss is: [1.550774]
+    epoch: 10, batch_id: 500, loss is: [2.5123065]
+    epoch: 11, batch_id: 0, loss is: [1.9810482]
+    epoch: 11, batch_id: 500, loss is: [1.9055626]
+    epoch: 12, batch_id: 0, loss is: [1.7130309]
+    epoch: 12, batch_id: 500, loss is: [1.6612748]
+    epoch: 13, batch_id: 0, loss is: [1.9763999]
+    epoch: 13, batch_id: 500, loss is: [2.2395937]
+    epoch: 14, batch_id: 0, loss is: [1.6492021]
+    epoch: 14, batch_id: 500, loss is: [1.7178599]
+    epoch: 15, batch_id: 0, loss is: [1.9918704]
+    epoch: 15, batch_id: 500, loss is: [1.6624906]
+    epoch: 16, batch_id: 0, loss is: [1.6837909]
+    epoch: 16, batch_id: 500, loss is: [1.8518999]
+    epoch: 17, batch_id: 0, loss is: [1.7270846]
+    epoch: 17, batch_id: 500, loss is: [1.6290606]
+    epoch: 18, batch_id: 0, loss is: [1.846984]
+    epoch: 18, batch_id: 500, loss is: [1.3399624]
+    epoch: 19, batch_id: 0, loss is: [1.8991164]
+    epoch: 19, batch_id: 500, loss is: [1.934908]
 
 
-## 六、模型预测
+## 六、模型预测 
 
 前述的模型训练训练结束之后，就可以用该网络结构来计算出任意一张图片的高维向量表示（embedding)，通过计算该图片与图片库中其他图片的高维向量表示之间的相似度，就可以按照相似程度进行排序，排序越靠前，则相似程度越高。
 
@@ -358,7 +356,7 @@ near_neighbours_per_example = 10
 
 x_test_t = paddle.to_tensor(x_test)
 test_images_embeddings = model(x_test_t)
-similarities_matrix = paddle.matmul(test_images_embeddings, test_images_embeddings, transpose_y=True)
+similarities_matrix = paddle.matmul(test_images_embeddings, test_images_embeddings, transpose_y=True) 
 
 indicies = paddle.argsort(similarities_matrix, descending=True)
 indicies = indicies.numpy()
@@ -380,7 +378,7 @@ examples = np.empty(
 for row_idx in range(num_classes):
     examples_for_class = class_idx_to_test_idxs[row_idx]
     anchor_idx = random.choice(examples_for_class)
-
+    
     examples[row_idx, 0] = x_test[anchor_idx]
     anchor_near_neighbours = indicies[anchor_idx][1:near_neighbours_per_example+1]
     for col_idx, nn_idx in enumerate(anchor_near_neighbours):
@@ -392,15 +390,12 @@ show_collage(examples)
 
 
 
+    
 ![png](output_22_0.png)
+    
 
 
 
 ## The End
 
 上面展示的结果当中，每一行里其余的图片都是跟第一张图片按照相似度进行排序相似的图片。但是，你也可以发现，在某些类别上，比如汽车、青蛙、马，可以有不错的效果，但在另外一些类别上，比如飞机，轮船，效果并不是特别好。你可以试着分析这些错误，进一步调整网络结构和超参数，以获得更好的结果。
-
-
-```python
-
-```

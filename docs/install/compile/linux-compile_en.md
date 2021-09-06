@@ -2,14 +2,14 @@
 
 ## Environment preparation
 
-* **CentOS version (64 bit)**
+* **Linux version (64 bit)**
     * **CentOS 6 (not recommended, no official support for compilation problems)**
-    * **CentOS 7 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2/11.0 CUDA 9.1, only support single-card mode)**
-    * **Ubuntu 14.04 (GPU version supports CUDA 10.0/10.1)**
-    * **Ubuntu 16.04 (GPU version supports CUDA 9.0/9.1/9.2/10.0/10.1/10.2)**
-    * **Ubuntu 18.04 (GPU version supports CUDA 10.0/10.1/10.2/11.0)**
-* **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
-* **pip or pip3 version 20.2.2+ (64 bit)**
+    * **CentOS 7 (GPU version supports CUDA 10.1/10.2/11.2**
+    * **Ubuntu 14.04 (not recommended, no official support for compilation problems)**
+    * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.2)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.2)**
+* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
+* **pip or pip3 version 20.2.2 or above (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -17,10 +17,9 @@
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
 
-    * **CUDA toolkit 9.0/10.0 with cuDNN v7.6+(for multi card support, NCCL2.3.7 or higher)**
     * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.7 or higher)**
-    * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.3.7 or higher)**
-    * **Hardware devices with GPU computing power over 1.0**
+    * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
+    * **Hardware devices with GPU computing power over 3.5**
 
         You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
@@ -59,7 +58,7 @@
 
 There are two compilation methods under Linux system:
 
-* [Compile with Docker](#compile_from_docker)(GPU version doesn't support CentOS 6)
+* [Compile with Docker](#compile_from_docker) (no official support for compilation problems under CentOS 6)
 * [Local compilation](#compile_from_host) (no official support for compilation problems under CentOS 6)
 
 <a name="ct_docker"></a>
@@ -93,7 +92,7 @@ Please follow the steps below to install:
 
 
         ```
-        docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
         ```
 
         > --name paddle-test names the Docker container you created as paddle-test;
@@ -102,16 +101,16 @@ Please follow the steps below to install:
         > -v $PWD:/paddle mount the current directory to the /paddle directory in the docker container (PWD variable in Linux will be expanded to [absolute path](https://baike.baidu.com/item/绝对路径/481185) of the current path);
 
 
-        > -it keeps interaction with the host，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `hub.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+        > -it keeps interaction with the host，`registry.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
 
-    * Compile GPU version of PaddlePaddle (only supports CentOS 7):
+    * Compile GPU version of PaddlePaddle:
 
 
 
         ```
-        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+        nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev /bin/bash
         ```
 
         > --name paddle-test names the Docker container you created as paddle-test;
@@ -121,10 +120,11 @@ Please follow the steps below to install:
 
 
 
-        > -it keeps interaction with the host，`hub.baidubce.com/paddlepaddle/paddle:latest-dev` use the image named `hub.baidubce.com/paddlepaddle/paddle:latest-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
+        > -it keeps interaction with the host，`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev` use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
-        > Note: hub.baidubce.com/paddlepaddle/paddle:latest-dev internally install CUDA 10.0.
+        > Note: In the above example, `latest-gpu-cuda10.2-cudnn7-dev` is only for illustration, indicating that the GPU version of the image is installed. If you want to install another `cuda/cudnn` version of the image, you can replace it with `latest-dev-cuda11.2-cudnn8-gcc82`, `latest-gpu-cuda10.1-cudnn7-gcc82-dev`, `latest-gpu-cuda10.1-cudnn7-gcc54-dev` etc.
+        You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
 
 
 4. After entering Docker, go to the paddle directory:
@@ -140,7 +140,7 @@ Please follow the steps below to install:
     git checkout develop
     ```
 
-    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch
+    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
 
 6. Create and enter the /paddle/build path:
 
@@ -151,16 +151,11 @@ Please follow the steps below to install:
 7. Use the following command to install the dependencies:
 
 
-    For Python2:
     ```
-    pip install protobuf
-    ```
-    For Python3:
-    ```
-    pip3.5 install protobuf
+    pip3.7 install protobuf
     ```
 
-    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
+    Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
 
     > Install protobuf 3.1.0
 
@@ -173,17 +168,17 @@ Please follow the steps below to install:
 8. Execute cmake:
 
     > For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
-    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.5` means the version of python is 3.5.x
+    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.7` means the version of python is 3.7
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 
         ```
-        cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     * For users who need to compile the **GPU version PaddlePaddle**:
         ```
-        cmake .. -DPY_VERSION=3.5 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     > We currently do not support the compilation of the GPU version PaddlePaddle under CentOS 6.
@@ -203,16 +198,12 @@ Please follow the steps below to install:
 
 11. Install the compiled `.whl` package on the current machine or target machine:
 
-    For Python2:
-    ```
-    pip install -U (whl package name)
-    ```
     For Python3:
     ```
-    pip3.5 install -U (whl package name)
+    pip3.7 install -U (whl package name)
     ```
 
-    Note: For the command involving Python 3, we use Python 3.5 as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
+    Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
 
 Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -326,31 +317,21 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     * a. Install Python-dev:
 
-        For Python2:
-        ```
-        yum install python-devel
-        ```
-        For Python3: (Please refer to the official Python installation process)
+        (Please refer to the official Python installation process)
 
 
     * b. Install pip:
 
 
-        For Python2:
-        ```
-        yum install python-pip
-        ```
-        (please have a pip version of 20.2.2 and above)
+        (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.6 and above, pip3 does not necessarily correspond to the python version, such as python3.7 default only Pip3.7)
 
-        For Python3: (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.6 and above, pip3 does not necessarily correspond to the python version, such as python3.7 default only Pip3.7)
-
-    * c. (Only For Python3) set Python3 related environment variables, here is python3.5 version example, please replace with the version you use (3.6, 3.7,3.8):
+    * c. (Only For Python3) set Python3 related environment variables, here is python3.7 version example, please replace with the version you use (3.6, 3.8, 3.9):
 
         1. First find the path to the Python lib using
             ```
             find `dirname $(dirname $(which python3))` -name "libpython3.so"
             ```
-            If it is 3.6,3.7,3.8, change `python3` to `python3.6`,`python3.7`,python3.8, then replace [python-lib-path] in the following steps with the file path found.
+            If it is 3.6,3.7,3.8,3.9, change `python3` to `python3.6`,`python3.7`, `python3.8`, `python3.9`, then replace [python-lib-path] in the following steps with the file path found.
 
         2. Set PYTHON_LIBRARIES:
             ```
@@ -359,7 +340,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
         3. Secondly, use
             ```
-            find `dirname $(dirname $(which python3))`/include -name "python3.5m"
+            find `dirname $(dirname $(which python3))`/include -name "python3.7m"
             ```
             to find the path to Python Include, please pay attention to the python version, then replace the following [python-include-path] to the file path found.
 
@@ -374,7 +355,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
             ```
             (here replace the last two levels content of [python-lib-path] with /bin/)
 
-    * d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.6, pip3.7, pip3.8)
+    * d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.6, pip3.7, pip3.8, pip3.9)
 
         1. Install `virtualenv`:
             ```
@@ -442,7 +423,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
     cd Paddle
     ```
 
-8. Switch to `develop` branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch):
+8. Switch to `develop` branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch, support for Python 3.9 is added from the 2.1 branch):
 
     ```
     git checkout develop
@@ -460,14 +441,8 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 
-
-        For Python2:
         ```
-        cmake .. -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-        ```
-        For Python3:
-        ```
-        cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+        cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
         -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
@@ -494,18 +469,13 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
         2. If you have already installed `nccl2` correctly, you can start cmake: *(For Python3: Please configure the correct python version for the PY_VERSION parameter)*
 
-            For Python2:
-            ```
-            cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-            ```
 
-            For Python3:
             ```
             cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
             ```
 
 
-    Note: For the command involving Python 3, we use Python 3.5 as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
+    Note: For the command involving Python 3, we use Python 3.7 as an example above, if the version of your Python is 3.6/3.8/3.9, please change Python3.7 in the commands to Python3.6/Python3.8/Python3.9
 
 
 

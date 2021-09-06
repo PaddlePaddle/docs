@@ -1,7 +1,7 @@
 # 飞桨高层API使用指南
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例教程是对飞桨高层API的详细说明，会介绍如何使用高层API，快速完成深度学习任务。
 
 ## 一、简介
@@ -25,7 +25,7 @@
 
 ## 二、安装并使用飞桨高层API
 
-飞桨高层API无需独立安装，只需要安装好paddlepaddle即可。如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+飞桨高层API无需独立安装，只需要安装好paddlepaddle即可。如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 安装完成后import paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.vision、NLP领域paddle.text。
 
@@ -41,7 +41,7 @@ paddle.__version__
 
 
 
-    '2.0.1'
+    '2.1.1'
 
 
 
@@ -68,10 +68,10 @@ paddle.__version__
 
 ```python
 print('视觉相关数据集：', paddle.vision.datasets.__all__)
-print('自然语言相关数据集：', paddle.text.datasets.__all__)
+print('自然语言相关数据集：', paddle.text.__all__)
 ```
 
-    视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
+    视觉相关数据集： ['DatasetFolderImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
     自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
 
 
@@ -120,7 +120,7 @@ class MyDataset(Dataset):
                 ['testdata3', 'label3'],
                 ['testdata4', 'label4'],
             ]
-
+    
     def __getitem__(self, index):
         """
         步骤三：实现__getitem__方法，定义指定index时如何获取数据，并返回单条数据（训练数据，对应的标签）
@@ -208,7 +208,7 @@ class MyDataset(Dataset):
 
         # 定义要使用的数据预处理方法，针对图片的操作
         self.transform = Compose([ColorJitter(), Resize(size=100)])
-
+    
     def __getitem__(self, index):
         data = self.data[index][0]
 
@@ -315,13 +315,13 @@ model.summary((1, 28, 28))
 ```
 
     ---------------------------------------------------------------------------
-     Layer (type)       Input Shape          Output Shape         Param #
+     Layer (type)       Input Shape          Output Shape         Param #    
     ===========================================================================
-       Flatten-1       [[1, 28, 28]]           [1, 784]              0
-       Linear-1          [[1, 784]]            [1, 512]           401,920
-        ReLU-1           [[1, 512]]            [1, 512]              0
-       Dropout-1         [[1, 512]]            [1, 512]              0
-       Linear-2          [[1, 512]]            [1, 10]             5,130
+       Flatten-1       [[1, 28, 28]]           [1, 784]              0       
+       Linear-1          [[1, 784]]            [1, 512]           401,920    
+        ReLU-1           [[1, 512]]            [1, 512]              0       
+       Dropout-1         [[1, 512]]            [1, 512]              0       
+       Linear-2          [[1, 512]]            [1, 10]             5,130     
     ===========================================================================
     Total params: 407,050
     Trainable params: 407,050
@@ -332,7 +332,7 @@ model.summary((1, 28, 28))
     Params size (MB): 1.55
     Estimated Total Size (MB): 1.57
     ---------------------------------------------------------------------------
-
+    
 
 
 
@@ -350,13 +350,13 @@ paddle.summary(mnist, (1, 28, 28))
 ```
 
     ---------------------------------------------------------------------------
-     Layer (type)       Input Shape          Output Shape         Param #
+     Layer (type)       Input Shape          Output Shape         Param #    
     ===========================================================================
-       Flatten-1       [[1, 28, 28]]           [1, 784]              0
-       Linear-1          [[1, 784]]            [1, 512]           401,920
-        ReLU-1           [[1, 512]]            [1, 512]              0
-       Dropout-1         [[1, 512]]            [1, 512]              0
-       Linear-2          [[1, 512]]            [1, 10]             5,130
+       Flatten-1       [[1, 28, 28]]           [1, 784]              0       
+       Linear-1          [[1, 784]]            [1, 512]           401,920    
+        ReLU-1           [[1, 512]]            [1, 512]              0       
+       Dropout-1         [[1, 512]]            [1, 512]              0       
+       Linear-2          [[1, 512]]            [1, 10]             5,130     
     ===========================================================================
     Total params: 407,050
     Trainable params: 407,050
@@ -367,7 +367,7 @@ paddle.summary(mnist, (1, 28, 28))
     Params size (MB): 1.55
     Estimated Total Size (MB): 1.57
     ---------------------------------------------------------------------------
-
+    
 
 
 
@@ -388,7 +388,7 @@ paddle.summary(mnist, (1, 28, 28))
 
 ```python
 # 为模型训练做准备，设置优化器，损失函数和精度计算方式
-model.prepare(paddle.optimizer.Adam(parameters=model.parameters()),
+model.prepare(paddle.optimizer.Adam(parameters=model.parameters()), 
               paddle.nn.CrossEntropyLoss(),
               paddle.metric.Accuracy())
 ```
@@ -398,32 +398,23 @@ model.prepare(paddle.optimizer.Adam(parameters=model.parameters()),
 
 ```python
 # 启动模型训练，指定训练数据集，设置训练轮次，设置每次数据集计算的批次大小，设置日志格式
-model.fit(train_dataset,
-          epochs=5,
+model.fit(train_dataset, 
+          epochs=5, 
           batch_size=64,
           verbose=1)
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step  10/938 [..............................] - loss: 1.0593 - acc: 0.4688 - ETA: 34s - 37ms/step
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dataloader/dataloader_iter.py:89: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
-    Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
-      if isinstance(slot[0], (np.ndarray, np.bool, numbers.Number)):
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/layers/utils.py:77: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated, and in 3.8 it will stop working
-      return (isinstance(seq, collections.Sequence) and
-
-
-    step 938/938 [==============================] - loss: 0.1256 - acc: 0.9285 - 24ms/step
+    step 938/938 [==============================] - loss: 0.0895 - acc: 0.9322 - 46ms/step          
     Epoch 2/5
-    step 938/938 [==============================] - loss: 0.0549 - acc: 0.9683 - 24ms/step
+    step 938/938 [==============================] - loss: 0.0679 - acc: 0.9691 - 46ms/step          
     Epoch 3/5
-    step 938/938 [==============================] - loss: 0.0255 - acc: 0.9781 - 23ms/step
+    step 938/938 [==============================] - loss: 0.0555 - acc: 0.9779 - 46ms/step          
     Epoch 4/5
-    step 938/938 [==============================] - loss: 0.0101 - acc: 0.9829 - 23ms/step
+    step 938/938 [==============================] - loss: 0.0037 - acc: 0.9827 - 46ms/step          
     Epoch 5/5
-    step 938/938 [==============================] - loss: 0.0539 - acc: 0.9861 - 23ms/step
+    step 938/938 [==============================] - loss: 0.0362 - acc: 0.9863 - 46ms/step          
 
 
 **注：**
@@ -449,28 +440,28 @@ model.fit(train_dataloader, ...)
 model = paddle.Model(mnist)
 
 # 为模型训练做准备，设置优化器，损失函数和精度计算方式
-model.prepare(paddle.optimizer.Adam(parameters=model.parameters()),
+model.prepare(paddle.optimizer.Adam(parameters=model.parameters()), 
               paddle.nn.CrossEntropyLoss(),
               paddle.metric.Accuracy())
 
 # 启动模型训练，指定训练数据集，设置训练轮次，设置每次数据集计算的批次大小，设置日志格式
-model.fit(train_dataset,
-          epochs=5,
+model.fit(train_dataset, 
+          epochs=5, 
           batch_size=64,
           verbose=1)
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step 938/938 [==============================] - loss: 0.0433 - acc: 0.9871 - 23ms/step
+    step 938/938 [==============================] - loss: 0.0539 - acc: 0.9873 - 46ms/step          
     Epoch 2/5
-    step 938/938 [==============================] - loss: 0.0040 - acc: 0.9900 - 23ms/step
+    step 938/938 [==============================] - loss: 0.0556 - acc: 0.9907 - 46ms/step          
     Epoch 3/5
-    step 938/938 [==============================] - loss: 0.0015 - acc: 0.9917 - 23ms/step
+    step 938/938 [==============================] - loss: 0.0043 - acc: 0.9909 - 46ms/step          
     Epoch 4/5
-    step 938/938 [==============================] - loss: 2.9539e-04 - acc: 0.9925 - 23ms/step
+    step 938/938 [==============================] - loss: 0.0012 - acc: 0.9928 - 46ms/step          
     Epoch 5/5
-    step 938/938 [==============================] - loss: 0.0371 - acc: 0.9933 - 23ms/step
+    step 938/938 [==============================] - loss: 0.0287 - acc: 0.9934 - 46ms/step          
 
 
 ### 6.2 单机多卡
@@ -519,8 +510,8 @@ class SoftmaxWithCrossEntropy(paddle.nn.Layer):
         super(SoftmaxWithCrossEntropy, self).__init__()
 
     def forward(self, input, label):
-        loss = F.softmax_with_cross_entropy(input,
-                                            label,
+        loss = F.softmax_with_cross_entropy(input, 
+                                            label, 
                                             return_softmax=False,
                                             axis=1)
         return paddle.mean(loss)
@@ -561,7 +552,7 @@ class SelfDefineMetric(paddle.metric.Metric):
         - 当`compute`类函数做了实现时，会将compute的返回结果作为`update`的参数传入。
         """
         return acc value
-
+    
     def accumulate(self):
         """
         6. 实现accumulate方法，返回历史batch训练积累后计算得到的评价指标值。
@@ -592,7 +583,7 @@ class Precision(Metric):
 
     Noted that this class manages the precision score only for binary
     classification task.
-
+    
     ......
 
     """
@@ -675,9 +666,9 @@ class SelfDefineCallback(paddle.callbacks.Callback):
         def on_eval_begin(self, logs=None)                  评估开始前，`Model.evaluate`接口调用
         def on_eval_end(self, logs=None)                    评估结束后，`Model.evaluate`接口调用
         def on_test_begin(self, logs=None)                  预测测试开始前，`Model.predict`接口中调用
-        def on_test_end(self, logs=None)                    预测测试结束后，`Model.predict`接口中调用
-        def on_epoch_begin(self, epoch, logs=None)          每轮训练开始前，`Model.fit`接口中调用
-        def on_epoch_end(self, epoch, logs=None)            每轮训练结束后，`Model.fit`接口中调用
+        def on_test_end(self, logs=None)                    预测测试结束后，`Model.predict`接口中调用 
+        def on_epoch_begin(self, epoch, logs=None)          每轮训练开始前，`Model.fit`接口中调用 
+        def on_epoch_end(self, epoch, logs=None)            每轮训练结束后，`Model.fit`接口中调用 
         def on_train_batch_begin(self, step, logs=None)     单个Batch训练开始前，`Model.fit`和`Model.train_batch`接口中调用
         def on_train_batch_end(self, step, logs=None)       单个Batch训练结束后，`Model.fit`和`Model.train_batch`接口中调用
         def on_eval_batch_begin(self, step, logs=None)      单个Batch评估开始前，`Model.evalute`和`Model.eval_batch`接口中调用
@@ -734,8 +725,7 @@ result = model.evaluate(val_dataset, verbose=1)
 ```
 
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 10000/10000 [==============================] - loss: 0.0000e+00 - acc: 0.9831 - 2ms/step
+    step 10000/10000 [==============================] - loss: 0.0000e+00 - acc: 0.9832 - 3ms/step          
     Eval samples: 10000
 
 
@@ -755,7 +745,7 @@ pred_result = model.predict(val_dataset)
 ```
 
     Predict begin...
-    step 10000/10000 [==============================] - 2ms/step
+    step 10000/10000 [==============================] - 3ms/step          
     Predict samples: 10000
 
 
@@ -807,10 +797,4 @@ model.save('~/model/mnist')
 ```
 
 ### 9.2 预测部署
-
-有了用于推理部署的模型，就可以使用推理部署框架来完成预测服务部署，具体可以参见：[预测部署](https://www.paddlepaddle.org.cn/documentation/docs/zh/advanced_guide/inference_deployment/index_cn.html)， 包括服务端部署、移动端部署和模型压缩。
-
-
-```python
-
-```
+有了用于推理部署的模型，就可以使用推理部署框架来完成预测服务部署，具体可以参见：[预测部署](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/05_inference_deployment/index_cn.html)， 包括服务端部署、移动端部署和模型压缩。

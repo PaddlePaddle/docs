@@ -1,12 +1,12 @@
 # 使用协同过滤实现电影推荐
 
 **作者：** [HUANGCHENGAI](https://github.com/HUANGCHENGAI) <br>
-**日期：** 2021.03 <br>
+**日期：** 2021.06 <br>
 **摘要：** 本案例使用飞桨框架实现推荐电影的协同过滤算法。
 
 ## 一、介绍
 
-此示例演示使用[Movielens 数据集](https://www.kaggle.com/c/movielens-100k)基于PaddlePaddle2.0向用户推荐电影的协作过滤算法。MovieLens 评级数据集列出了一组用户对一组电影的评分。目标是能够预测用户尚未观看的电影的收视率。然后，可以向用户推荐预测收视率最高的电影。
+此示例演示使用[Movielens 数据集](https://www.kaggle.com/c/movielens-100k)基于PaddlePaddle2.1向用户推荐电影的协作过滤算法。MovieLens 评级数据集列出了一组用户对一组电影的评分。目标是能够预测用户尚未观看的电影的收视率。然后，可以向用户推荐预测收视率最高的电影。
 
 模型中的步骤如下：
 
@@ -27,7 +27,7 @@
 
 ## 二、 环境设置
 
-本教程基于Paddle 2.0 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -36,11 +36,13 @@ import numpy as np
 import paddle
 import paddle.nn as nn
 from paddle.io import Dataset
-
 print(paddle.__version__)
+
+import warnings
+warnings.filterwarnings('ignore')
 ```
 
-    2.0.1
+    2.1.1
 
 
 ## 三、数据集
@@ -81,16 +83,28 @@ userId，movieId，tag，timestamp
 
 
 ```python
-!unzip data/data71839/ml-latest-small.zip
+!wget -O ml-latest-small.zip https://bj.bcebos.com/v1/ai-studio-online/e1686458bb494866ab51d5e2738a68387d2aa14f31164735ae601eda5c7bc938\?responseContentDisposition\=attachment%3B%20filename%3Dml-latest-small.zip\&authorization\=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2021-03-01T12%3A21%3A46Z%2F-1%2F%2F6dddaaacf7aa37c7445d3100844c71f9dd09fe938627f3ac86d0621e3f420f92
+!unzip ./ml-latest-small.zip
 ```
 
-    Archive:  data/data71839/ml-latest-small.zip
+    --2021-06-28 15:44:44--  https://bj.bcebos.com/v1/ai-studio-online/e1686458bb494866ab51d5e2738a68387d2aa14f31164735ae601eda5c7bc938?responseContentDisposition=attachment%3B%20filename%3Dml-latest-small.zip&authorization=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2021-03-01T12%3A21%3A46Z%2F-1%2F%2F6dddaaacf7aa37c7445d3100844c71f9dd09fe938627f3ac86d0621e3f420f92
+    Resolving bj.bcebos.com (bj.bcebos.com)... 10.70.0.165
+    Connecting to bj.bcebos.com (bj.bcebos.com)|10.70.0.165|:443... connected.
+    HTTP request sent, awaiting response... 200 OK
+    Length: 978202 (955K) [application/octet-stream]
+    Saving to: ‘ml-latest-small.zip’
+    
+    100%[======================================>] 978,202     3.27MB/s   in 0.3s   
+    
+    2021-06-28 15:44:45 (3.27 MB/s) - ‘ml-latest-small.zip’ saved [978202/978202]
+    
+    Archive:  ./ml-latest-small.zip
        creating: ml-latest-small/
-      inflating: ml-latest-small/links.csv
-      inflating: ml-latest-small/tags.csv
-      inflating: ml-latest-small/ratings.csv
-      inflating: ml-latest-small/README.txt
-      inflating: ml-latest-small/movies.csv
+      inflating: ml-latest-small/links.csv  
+      inflating: ml-latest-small/tags.csv  
+      inflating: ml-latest-small/ratings.csv  
+      inflating: ml-latest-small/README.txt  
+      inflating: ml-latest-small/movies.csv  
 
 
 ### 3.1 数据处理
@@ -164,7 +178,7 @@ class SelfDefinedDataset(Dataset):
 
     def __len__(self):
         return len(self.data_x)
-
+        
 traindataset = SelfDefinedDataset(x_train, y_train)
 for data, label in traindataset:
     print(data.shape, label.shape)
@@ -180,7 +194,7 @@ for batch_id, data in enumerate(train_loader()):
     break
 
 testdataset = SelfDefinedDataset(x_val, y_val)
-test_loader = paddle.io.DataLoader(testdataset, batch_size = 128, shuffle = True)
+test_loader = paddle.io.DataLoader(testdataset, batch_size = 128, shuffle = True)        
 for batch_id, data in enumerate(test_loader()):
     x_data = data[0]
     y_data = data[1]
@@ -274,29 +288,23 @@ model.fit(train_loader, epochs=5, save_dir='./checkpoints', verbose=1, callbacks
 
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step  70/709 [=>............................] - loss: 0.6928 - acc: 0.8712 - ETA: 2s - 3ms/st
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/math_op_patch.py:238: UserWarning: The dtype of left and right variables are not the same, left dtype is VarType.INT64, but right dtype is VarType.FP32, the right dtype will convert to VarType.INT64
-      format(lhs_dtype, rhs_dtype, lhs_dtype))
-
-
-    step 120/709 [====>.........................] - loss: 0.6908 - acc: 0.8718 - ETA: 1s - 3ms/stepstep 709/709 [==============================] - loss: 0.6730 - acc: 0.8687 - 3ms/step
-    save checkpoint at /home/aistudio/checkpoints/0
+    step 709/709 [==============================] - loss: 0.6713 - acc: 0.8687 - 6ms/step          
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/0
     Epoch 2/5
-    step 709/709 [==============================] - loss: 0.6548 - acc: 0.8687 - 3ms/step
-    save checkpoint at /home/aistudio/checkpoints/1
+    step 709/709 [==============================] - loss: 0.6455 - acc: 0.8687 - 6ms/step          
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/1
     Epoch 3/5
-    step 709/709 [==============================] - loss: 0.6267 - acc: 0.8687 - 3ms/step
-    save checkpoint at /home/aistudio/checkpoints/2
+    step 709/709 [==============================] - loss: 0.6038 - acc: 0.8687 - 6ms/step          
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/2
     Epoch 4/5
-    step 709/709 [==============================] - loss: 0.6012 - acc: 0.8687 - 3ms/step
-    save checkpoint at /home/aistudio/checkpoints/3
+    step 709/709 [==============================] - loss: 0.6063 - acc: 0.8687 - 6ms/step          
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/3
     Epoch 5/5
-    step 709/709 [==============================] - loss: 0.6231 - acc: 0.8687 - 3ms/step
-    save checkpoint at /home/aistudio/checkpoints/4
-    save checkpoint at /home/aistudio/checkpoints/final
+    step 709/709 [==============================] - loss: 0.5917 - acc: 0.8687 - 6ms/step          
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/4
+    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/final
 
 
 ## 六、模型评估
@@ -307,19 +315,14 @@ model.evaluate(test_loader, batch_size=64, verbose=1)
 ```
 
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 79/79 [==============================] - loss: 0.5982 - acc: 0.8713 - 3ms/step
+    step 79/79 [==============================] - loss: 0.6109 - acc: 0.8713 - 4ms/step          
     Eval samples: 10084
 
 
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/math_op_patch.py:238: UserWarning: The dtype of left and right variables are not the same, left dtype is VarType.INT64, but right dtype is VarType.FP32, the right dtype will convert to VarType.INT64
-      format(lhs_dtype, rhs_dtype, lhs_dtype))
 
 
 
-
-
-    {'loss': [0.5982282], 'acc': 0.8712812376041253}
+    {'loss': [0.6108578], 'acc': 0.8712812376041253}
 
 
 
@@ -344,7 +347,7 @@ user_movie_array = np.hstack(
     ([[user_encoder]] * len(movies_not_watched), movies_not_watched)
 )
 testdataset = SelfDefinedDataset(user_movie_array, user_movie_array, mode = 'predict')
-test_loader = paddle.io.DataLoader(testdataset, batch_size = 9703, shuffle = False, return_list=True,)
+test_loader = paddle.io.DataLoader(testdataset, batch_size = 9703, shuffle = False, return_list=True,)   
 
 ratings = model.predict(test_loader)
 ratings = np.array(ratings)
@@ -379,33 +382,30 @@ for row in recommended_movies.itertuples():
     print(row.title, ":", row.genres)
 ```
 
+
     Predict begin...
-    step 1/1 [==============================] - 17ms/step
-    Predict samples: 9492
-    [ 280  261  318   43  230  472 2393 8253  964 1874]
-    用户的ID为: 594
+    step 1/1 [==============================] - 30ms/step
+    Predict samples: 9464
+    [ 942 5574  979 1639  993  980  540  977  904  988]
+    用户的ID为: 432
     ================================
     用户评分较高的电影：
     --------------------------------
-    Demolition Man (1993) : Action|Adventure|Sci-Fi
-    Executive Decision (1996) : Action|Adventure|Thriller
-    Matrix, The (1999) : Action|Sci-Fi|Thriller
-    Bruce Almighty (2003) : Comedy|Drama|Fantasy|Romance
-    Chasing Liberty (2004) : Comedy|Romance
+    Lion King, The (1994) : Adventure|Animation|Children|Drama|Musical|IMAX
+    Misérables, Les (1998) : Crime|Drama|Romance|War
+    Exorcist, The (1973) : Horror|Mystery
+    [REC] (2007) : Drama|Horror|Thriller
+    Paranormal Activity (2009) : Horror|Thriller
     --------------------------------
     为用户推荐的10部电影：
     --------------------------------
-    Usual Suspects, The (1995) : Crime|Mystery|Thriller
-    Star Wars: Episode IV - A New Hope (1977) : Action|Adventure|Sci-Fi
-    Pulp Fiction (1994) : Comedy|Crime|Drama|Thriller
-    Shawshank Redemption, The (1994) : Crime|Drama
-    Forrest Gump (1994) : Comedy|Drama|Romance|War
-    Schindler's List (1993) : Drama|War
-    Star Wars: Episode V - The Empire Strikes Back (1980) : Action|Adventure|Sci-Fi
-    American History X (1998) : Crime|Drama
-    Fight Club (1999) : Action|Crime|Drama|Thriller
-    Dark Knight, The (2008) : Action|Crime|Drama|IMAX
-
-
-请点击[此处](https://ai.baidu.com/docs#/AIStudio_Project_Notebook/a38e5576)查看本环境基本用法.  <br>
-Please click [here ](https://ai.baidu.com/docs#/AIStudio_Project_Notebook/a38e5576) for more detailed instructions.
+    Fargo (1996) : Comedy|Crime|Drama|Thriller
+    Reservoir Dogs (1992) : Crime|Mystery|Thriller
+    Monty Python and the Holy Grail (1975) : Adventure|Comedy|Fantasy
+    One Flew Over the Cuckoo's Nest (1975) : Drama
+    Princess Bride, The (1987) : Action|Adventure|Comedy|Fantasy|Romance
+    Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981) : Action|Adventure
+    Apocalypse Now (1979) : Action|Drama|War
+    Goodfellas (1990) : Crime|Drama
+    Saving Private Ryan (1998) : Action|Drama|War
+    Eternal Sunshine of the Spotless Mind (2004) : Drama|Romance|Sci-Fi

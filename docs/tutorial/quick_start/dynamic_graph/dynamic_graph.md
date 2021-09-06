@@ -1,13 +1,13 @@
 # 动态图
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.06 <br>
 **摘要:** 从飞桨框架2.0版本开始，飞桨默认为开启了动态图开发模式。在这种模式下，每次执行一个运算，可以立即得到结果（而不是事先定义好网络结构，然后再执行）。在动态图模式下，你可以更加方便的组织代码，更容易的调试程序，本示例教程将向你介绍飞桨的动态图的使用。
 
 
 ## 一、环境配置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -18,7 +18,7 @@ import numpy as np
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.1
 
 
 ## 二、基本用法
@@ -41,19 +41,19 @@ print(d)
 ```
 
     Tensor(shape=[4, 2], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-           [[-0.00381130, -1.25474954],
-            [-1.48189950,  0.14479242],
-            [-1.25596666, -0.22641718],
-            [-0.59596103,  0.04188892]])
+           [[ 1.43493819, -0.89648485],
+            [ 2.18795204,  1.75467765],
+            [ 0.54377782, -0.66941136],
+            [ 0.78080904, -1.20546782]])
     Tensor(shape=[2], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
            [1., 2.])
     Tensor(shape=[4, 2], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-           [[ 0.99618870,  0.74525046],
-            [-0.48189950,  2.14479232],
-            [-0.25596666,  1.77358282],
-            [ 0.40403897,  2.04188895]])
+           [[2.43493819, 1.10351515],
+            [3.18795204, 3.75467777],
+            [1.54377782, 1.33058858],
+            [1.78080904, 0.79453218]])
     Tensor(shape=[4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-           [-2.51331043, -1.19231462, -1.70880103, -0.51218319])
+           [-0.35803151,  5.69730759, -0.79504490, -1.63012660])
 
 
 ## 三、使用python的控制流
@@ -77,16 +77,16 @@ for i in range(10):
 
 ```
 
-    0 +> [5 6 7]
+    0 -> [-3 -4 -5]
     1 +> [5 7 9]
     2 +> [ 5  9 15]
-    3 +> [ 5 13 33]
+    3 -> [-3  3 21]
     4 -> [-3 11 75]
-    5 +> [  5  37 249]
+    5 -> [ -3  27 237]
     6 -> [ -3  59 723]
     7 +> [   5  133 2193]
     8 -> [  -3  251 6555]
-    9 -> [   -3   507 19677]
+    9 +> [    5   517 19689]
 
 
 ## 四、构建更加灵活的网络：控制流
@@ -108,13 +108,13 @@ class MyModel(paddle.nn.Layer):
         x = self.linear1(inputs)
         x = F.relu(x)
 
-        if paddle.rand([1,]) > 0.5:
+        if paddle.rand([1,]) > 0.5: 
             x = self.linear2(x)
             x = F.relu(x)
 
         x = self.linear3(x)
-
-        return x
+        
+        return x     
 ```
 
 
@@ -127,7 +127,7 @@ y_data = np.random.randn(total_data, 1).astype(np.float32)
 model = MyModel(input_size, hidden_size)
 
 loss_fn = paddle.nn.MSELoss(reduction='mean')
-optimizer = paddle.optimizer.SGD(learning_rate=0.01,
+optimizer = paddle.optimizer.SGD(learning_rate=0.01, 
                                  parameters=model.parameters())
 
 for t in range(200 * (total_data // batch_size)):
@@ -145,21 +145,21 @@ for t in range(200 * (total_data // batch_size)):
     optimizer.clear_grad()
 ```
 
-    0 [1.5161732]
-    200 [0.8172535]
-    400 [0.68919694]
-    600 [0.35915855]
-    800 [0.14847255]
-    1000 [0.16214202]
-    1200 [0.0560726]
-    1400 [0.00719137]
-    1600 [0.02093482]
-    1800 [0.01759753]
-    2000 [0.00256853]
-    2200 [0.00629074]
-    2400 [0.00135661]
-    2600 [0.00338244]
-    2800 [0.00040436]
+    0 [1.8148471]
+    200 [0.6851297]
+    400 [0.43411475]
+    600 [0.24649093]
+    800 [0.12463184]
+    1000 [0.05022897]
+    1200 [0.04995066]
+    1400 [0.01021191]
+    1600 [0.00406514]
+    1800 [0.02279436]
+    2000 [0.00227143]
+    2200 [0.00659983]
+    2400 [0.00343748]
+    2600 [0.00267512]
+    2800 [0.00236631]
 
 
 ## 五、构建更加灵活的网络：共享权重
@@ -178,7 +178,7 @@ optimizer = paddle.optimizer.Adam(0.01, parameters=linear.parameters())
 for i in range(10):
     hidden = linear(inputs)
     # weight from input to hidden is shared with the linear mapping from hidden to output
-    outputs = paddle.matmul(hidden, linear.weight, transpose_y=True)
+    outputs = paddle.matmul(hidden, linear.weight, transpose_y=True) 
     loss = loss_fn(outputs, inputs)
     loss.backward()
     print("step: {}, loss: {}".format(i, loss.numpy()))
@@ -186,16 +186,16 @@ for i in range(10):
     optimizer.clear_grad()
 ```
 
-    step: 0, loss: [0.33880937]
-    step: 1, loss: [0.31757307]
-    step: 2, loss: [0.29852206]
-    step: 3, loss: [0.2754482]
-    step: 4, loss: [0.24972412]
-    step: 5, loss: [0.22197227]
-    step: 6, loss: [0.19249752]
-    step: 7, loss: [0.16326244]
-    step: 8, loss: [0.13667026]
-    step: 9, loss: [0.11465043]
+    step: 0, loss: [0.30355746]
+    step: 1, loss: [0.26891]
+    step: 2, loss: [0.24085128]
+    step: 3, loss: [0.2103338]
+    step: 4, loss: [0.17770119]
+    step: 5, loss: [0.14731523]
+    step: 6, loss: [0.12328672]
+    step: 7, loss: [0.10760428]
+    step: 8, loss: [0.09914973]
+    step: 9, loss: [0.09503827]
 
 
 ## The End

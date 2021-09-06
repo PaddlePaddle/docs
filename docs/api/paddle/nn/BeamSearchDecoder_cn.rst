@@ -19,8 +19,10 @@ BeamSearchDecoder
   - **start_token** (int) - 起始标记id。
   - **end_token** (int) - 结束标记id。
   - **beam_size** (int) - 在beam search中使用的beam宽度。
-  - **embedding_fn** (可选) - 处理选中的候选id的接口。它通常是一个将词id转换为词嵌入的嵌入层，其返回值将作为 :code:`cell.call` 接口的 :code:`input` 参数。**注意** ，这里要使用 :ref:`cn_api_fluid_embedding` 而非 :ref:`cn_api_fluid_layers_embedding`，因为选中的id的形状是 :math:`[batch\_size, beam\_size]` ，如果使用后者则还需要在这里提供unsqueeze。如果 :code:`embedding_fn` 未提供，则必须在 :code:`cell.call` 中实现词嵌入转换。默认值None。
+  - **embedding_fn** (可选) - 处理选中的候选id的接口。它通常是一个将词id转换为词嵌入的嵌入层，其返回值将作为 :code:`cell.call` 接口的 :code:`input` 参数。**注意** ，这里要使用 :ref:`cn_api_nn_Embedding` 而非 :ref:`cn_api_fluid_layers_embedding`，因为选中的id的形状是 :math:`[batch\_size, beam\_size]` ，如果使用后者则还需要在这里提供unsqueeze。如果 :code:`embedding_fn` 未提供，则必须在 :code:`cell.call` 中实现词嵌入转换。默认值None。
   - **output_fn** (可选) - 处理cell输出的接口，在计算得分和选择候选标记id之前使用。默认值None。
+
+返回：BeamSearchDecoder 的一个实例，可以用于传入 `paddle.nn.dynamic\_decode` 以实现解码过程。
 
 **示例代码**
 

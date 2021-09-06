@@ -1,12 +1,12 @@
 # 使用卷积神经网络进行图像分类
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例教程将会演示如何使用飞桨的卷积神经网络来完成图像分类任务。这是一个较为简单的示例，将会使用一个由三个卷积层组成的网络完成[cifar10](https://www.cs.toronto.edu/~kriz/cifar.html)数据集的图像分类任务。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.1
 
 
 ## 二、加载数据集
@@ -34,12 +34,6 @@ cifar10_train = paddle.vision.datasets.Cifar10(mode='train',
 cifar10_test = paddle.vision.datasets.Cifar10(mode='test',
                                               transform=transform)
 ```
-
-    Cache file /home/aistudio/.cache/paddle/dataset/cifar/cifar-10-python.tar.gz not found, downloading https://dataset.bj.bcebos.com/cifar/cifar-10-python.tar.gz
-    Begin to download
-
-    Download finished
-
 
 ## 三、组建网络
 接下来使用飞桨定义一个使用了三个二维卷积（ ``Conv2D`` ) 且每次卷积之后使用 ``relu`` 激活函数，两个二维池化层（ ``MaxPool2D`` ），和两个线性变换层组成的分类网络，来把一个(32, 32, 3)形状的图片通过卷积神经网络映射为10个输出，这对应着10个分类的类别。
@@ -84,9 +78,9 @@ class MyNet(paddle.nn.Layer):
 
 ## 四、模型训练&预测
 
-接下来，用一个循环来进行模型的训练，将会: <br>
-- 使用 ``paddle.optimizer.Adam`` 优化器来进行优化。
-- 使用 ``F.cross_entropy`` 来计算损失值。
+接下来，用一个循环来进行模型的训练，将会: <br> 
+- 使用 ``paddle.optimizer.Adam`` 优化器来进行优化。 
+- 使用 ``F.cross_entropy`` 来计算损失值。 
 - 使用 ``paddle.io.DataLoader`` 来加载数据并组建batch。
 
 
@@ -114,7 +108,7 @@ def train(model):
                                         batch_size=batch_size)
 
     valid_loader = paddle.io.DataLoader(cifar10_test, batch_size=batch_size)
-
+    
     for epoch in range(epoch_num):
         for batch_id, data in enumerate(train_loader()):
             x_data = data[0]
@@ -155,9 +149,37 @@ model = MyNet(num_classes=10)
 train(model)
 ```
 
-    start training ...
-    epoch: 0, batch_id: 0, loss is: [2.402275]
-    epoch: 0, batch_id: 1000, loss is: [1.4317133]
+    start training ... 
+    epoch: 0, batch_id: 0, loss is: [2.4017987]
+    epoch: 0, batch_id: 1000, loss is: [1.421206]
+    [validation] accuracy/loss: 0.5428314805030823/1.2768508195877075
+    epoch: 1, batch_id: 0, loss is: [1.2016083]
+    epoch: 1, batch_id: 1000, loss is: [0.7724787]
+    [validation] accuracy/loss: 0.6318889856338501/1.0360924005508423
+    epoch: 2, batch_id: 0, loss is: [1.2047501]
+    epoch: 2, batch_id: 1000, loss is: [0.78543466]
+    [validation] accuracy/loss: 0.6518570184707642/1.0000320672988892
+    epoch: 3, batch_id: 0, loss is: [0.96870494]
+    epoch: 3, batch_id: 1000, loss is: [0.86926836]
+    [validation] accuracy/loss: 0.6769169569015503/0.9324128031730652
+    epoch: 4, batch_id: 0, loss is: [0.92741054]
+    epoch: 4, batch_id: 1000, loss is: [0.81739354]
+    [validation] accuracy/loss: 0.6799121499061584/0.9277793169021606
+    epoch: 5, batch_id: 0, loss is: [0.86126447]
+    epoch: 5, batch_id: 1000, loss is: [0.41321284]
+    [validation] accuracy/loss: 0.7067691683769226/0.8671298027038574
+    epoch: 6, batch_id: 0, loss is: [0.77947843]
+    epoch: 6, batch_id: 1000, loss is: [0.6672823]
+    [validation] accuracy/loss: 0.6952875256538391/0.8839674592018127
+    epoch: 7, batch_id: 0, loss is: [0.490317]
+    epoch: 7, batch_id: 1000, loss is: [0.49936914]
+    [validation] accuracy/loss: 0.697484016418457/0.886149525642395
+    epoch: 8, batch_id: 0, loss is: [0.76509976]
+    epoch: 8, batch_id: 1000, loss is: [0.5800188]
+    [validation] accuracy/loss: 0.6970846652984619/0.9085995554924011
+    epoch: 9, batch_id: 0, loss is: [0.87541854]
+    epoch: 9, batch_id: 1000, loss is: [0.69434047]
+    [validation] accuracy/loss: 0.7024760246276855/0.9389660954475403
 
 
 
@@ -173,12 +195,14 @@ plt.legend(loc='lower right')
 
 
 
-    <matplotlib.legend.Legend at 0x12c3686d0>
+    <matplotlib.legend.Legend at 0x7fbb0dbdbb80>
 
 
 
 
+    
 ![png](output_10_1.png)
+    
 
 
 ## The End

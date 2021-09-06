@@ -1,12 +1,12 @@
 # 通过AutoEncoder实现时序数据异常检测
 
-**作者:** [Reatris](https://github.com/Reatris)
-**日期:** 2021.03 <br>
-**摘要:** 本示例将会演示如何使用飞桨2.0完成时序异常检测任务。这是一个较为简单的示例，将会构建一个AutoEncoder网络完成任务。
+**作者:** [Reatris](https://github.com/Reatris)    
+**日期:** 2021.06 <br>
+**摘要:** 本示例将会演示如何使用飞桨2.1完成时序异常检测任务。这是一个较为简单的示例，将会构建一个AutoEncoder网络完成任务。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.0 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -16,7 +16,7 @@ import paddle.nn.functional as F
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.1
 
 
 
@@ -44,10 +44,31 @@ warnings.filterwarnings("ignore")
 
 
 ```python
-# 解压数据集
-# %cd ./
-# !unzip ./archive.zip
+# 下载数据集
+!wget -O NAB.zip https://bj.bcebos.com/v1/ai-studio-online/f7743f2bb65848088bd74dea1608965e9d9596a028c4453f99c86b514d2d3de3?responseContentDisposition=attachment%3B%20filename%3DNAB.zip&authorization=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2020-10-15T12%3A41%3A41Z%2F-1%2F%2F7b1e4e42cf22cfa1460e3286ba2c6225d363ecadd9a9bf91570a23f1af81aec4
 ```
+
+
+```python
+# 解压数据集
+!unzip NAB.zip
+```
+
+    Archive:  NAB.zip
+       creating: artificialNoAnomaly/
+      inflating: artificialNoAnomaly/art_daily_no_noise.csv  
+      inflating: artificialNoAnomaly/art_daily_perfect_square_wave.csv  
+      inflating: artificialNoAnomaly/art_daily_small_noise.csv  
+      inflating: artificialNoAnomaly/art_flatline.csv  
+      inflating: artificialNoAnomaly/art_noisy.csv  
+       creating: artificialWithAnomaly/
+      inflating: artificialWithAnomaly/art_daily_flatmiddle.csv  
+      inflating: artificialWithAnomaly/art_daily_jumpsdown.csv  
+      inflating: artificialWithAnomaly/art_daily_jumpsup.csv  
+      inflating: artificialWithAnomaly/art_daily_nojump.csv  
+      inflating: artificialWithAnomaly/art_increase_spike_density.csv  
+      inflating: artificialWithAnomaly/art_load_balancer_spikes.csv  
+
 
 
 ```python
@@ -68,14 +89,14 @@ print(df_daily_jumpsup.head())
 ```
 
                              value
-    timestamp
+    timestamp                     
     2014-04-01 00:00:00  18.324919
     2014-04-01 00:05:00  21.970327
     2014-04-01 00:10:00  18.624806
     2014-04-01 00:15:00  21.953684
     2014-04-01 00:20:00  21.909120
                              value
-    timestamp
+    timestamp                     
     2014-04-01 00:00:00  19.761252
     2014-04-01 00:05:00  20.500833
     2014-04-01 00:10:00  19.961641
@@ -94,7 +115,9 @@ plt.show()
 ```
 
 
-![png](output_8_0.png)
+    
+![png](output_9_0.png)
+    
 
 
 **带有异常的时序数据如下：**
@@ -110,13 +133,15 @@ plt.show()
 ```
 
 
-![png](output_10_0.png)
+    
+![png](output_11_0.png)
+    
 
 
 ### 2.3 数据预处理
 
 * 训练数据包含了14天的采样，每天每隔5分钟采集一次数据，所以：
-* 每天包含 24 * 60 / 5 = 288 个timestep
+* 每天包含 24 * 60 / 5 = 288 个timestep 
 * 总共14天 288 * 14 = 4032 个数据
 
 
@@ -139,7 +164,7 @@ print("训练数据总量:", len(df_training_value))
 
 ```python
 #时序步长
-TIME_STEPS = 288
+TIME_STEPS = 288    
 
 class MyDataset(paddle.io.Dataset):
     """
@@ -214,7 +239,7 @@ class AutoEncoder(paddle.nn.Layer):
 
 - 使用 ``paddle.optimizer.Adam`` 优化器来进行优化。
 
-- 使用 ``paddle.nn.MSELoss`` 来计算损失值。
+- 使用 ``paddle.nn.MSELoss`` 来计算损失值。 
 
 - 使用 ``paddle.io.DataLoader`` 来实现数据加载。
 
@@ -245,7 +270,7 @@ def train():
     history_loss = []
     iter_epoch = []
     for epoch in tqdm.tqdm(range(epoch_num)):
-        for batch_id, data in enumerate(data_reader()):
+        for batch_id, data in enumerate(data_reader()):             
             x = data[0]
             y = data[1]
             out = model(x)
@@ -267,16 +292,16 @@ def train():
 train()
 ```
 
-      0%|          | 0/200 [00:00<?, ?it/s]
-
     训练开始
 
 
-    100%|██████████| 200/200 [00:49<00:00,  4.05it/s]
+    100%|██████████| 200/200 [02:07<00:00,  1.56it/s]
 
 
 
-![png](output_18_3.png)
+    
+![png](output_19_2.png)
+    
 
 
 ## 五、模型预测：探测异常时序
@@ -285,7 +310,7 @@ train()
 
 1. 使用自编码器计算出无异常时序数据集里的所有重建损失
 
-2. 找出最大重建损失并且以这个为阀值，模型重建损失超出这个值则输入的数据为异常时序
+2. 找出最大重建损失并且以这个为阀值，模型重建损失超出这个值则输入的数据为异常时序 
 
 
 
@@ -294,7 +319,7 @@ train()
 # 计算阀值
 
 param_dict = paddle.load('model')   # 读取保存的参数
-model = AutoEncoder()
+model = AutoEncoder()    
 model.load_dict(param_dict)    # 加载参数
 model.eval()   # 预测
 total_loss = []
@@ -327,10 +352,12 @@ print("阀值:", threshold)
 ```
 
 
-![png](output_20_0.png)
+    
+![png](output_21_0.png)
+    
 
 
-    阀值: 0.027511919
+    阀值: 0.03135495
 
 
 ## 六、AutoEncoder 对异常数据的重构
@@ -341,7 +368,7 @@ print("阀值:", threshold)
 ```python
 import sys
 param_dict = paddle.load('model')   # 读取保存的参数
-model = AutoEncoder()
+model = AutoEncoder()    
 model.load_dict(param_dict)    # 加载参数
 model.eval()   # 预测
 data_reader = paddle.io.DataLoader(train_dataset,
@@ -362,123 +389,183 @@ for batch_id, data in enumerate(data_reader()):
 ```
 
 
-![png](output_22_0.png)
+    
+![png](output_23_0.png)
+    
 
 
 
-![png](output_22_1.png)
+    
+![png](output_23_1.png)
+    
 
 
 
-![png](output_22_2.png)
+    
+![png](output_23_2.png)
+    
 
 
 
-![png](output_22_3.png)
+    
+![png](output_23_3.png)
+    
 
 
 
-![png](output_22_4.png)
+    
+![png](output_23_4.png)
+    
 
 
 
-![png](output_22_5.png)
+    
+![png](output_23_5.png)
+    
 
 
 
-![png](output_22_6.png)
+    
+![png](output_23_6.png)
+    
 
 
 
-![png](output_22_7.png)
+    
+![png](output_23_7.png)
+    
 
 
 
-![png](output_22_8.png)
+    
+![png](output_23_8.png)
+    
 
 
 
-![png](output_22_9.png)
+    
+![png](output_23_9.png)
+    
 
 
 
-![png](output_22_10.png)
+    
+![png](output_23_10.png)
+    
 
 
 
-![png](output_22_11.png)
+    
+![png](output_23_11.png)
+    
 
 
 
-![png](output_22_12.png)
+    
+![png](output_23_12.png)
+    
 
 
 
-![png](output_22_13.png)
+    
+![png](output_23_13.png)
+    
 
 
 
-![png](output_22_14.png)
+    
+![png](output_23_14.png)
+    
 
 
 
-![png](output_22_15.png)
+    
+![png](output_23_15.png)
+    
 
 
 
-![png](output_22_16.png)
+    
+![png](output_23_16.png)
+    
 
 
 
-![png](output_22_17.png)
+    
+![png](output_23_17.png)
+    
 
 
 
-![png](output_22_18.png)
+    
+![png](output_23_18.png)
+    
 
 
 
-![png](output_22_19.png)
+    
+![png](output_23_19.png)
+    
 
 
 
-![png](output_22_20.png)
+    
+![png](output_23_20.png)
+    
 
 
 
-![png](output_22_21.png)
+    
+![png](output_23_21.png)
+    
 
 
 
-![png](output_22_22.png)
+    
+![png](output_23_22.png)
+    
 
 
 
-![png](output_22_23.png)
+    
+![png](output_23_23.png)
+    
 
 
 
-![png](output_22_24.png)
+    
+![png](output_23_24.png)
+    
 
 
 
-![png](output_22_25.png)
+    
+![png](output_23_25.png)
+    
 
 
 
-![png](output_22_26.png)
+    
+![png](output_23_26.png)
+    
 
 
 
-![png](output_22_27.png)
+    
+![png](output_23_27.png)
+    
 
 
 
-![png](output_22_28.png)
+    
+![png](output_23_28.png)
+    
 
 
 
-![png](output_22_29.png)
+    
+![png](output_23_29.png)
+    
 
 
 * 可以看出对正常数据的重构效果十分不错
@@ -494,7 +581,9 @@ plt.show()
 ```
 
 
-![png](output_24_0.png)
+    
+![png](output_25_0.png)
+    
 
 
 
@@ -502,7 +591,7 @@ plt.show()
 # 探测异常数据
 threshold = 0.033    # 阀值设定，即刚才求得的值
 param_dict = paddle.load('model')   # 读取保存的参数
-model = AutoEncoder()
+model = AutoEncoder()    
 model.load_dict(param_dict)    # 加载参数
 model.eval()   # 预测
 mse_loss = paddle.nn.loss.MSELoss()
@@ -534,11 +623,10 @@ for i in range(len(x_test)):
 abnormal_index = abnormal_index[:(-288+40)]
 print(len(abnormal_index))
 print(abnormal_index)
-
 ```
 
-    147
-    [1660, 2990, 2991, 2992, 2993, 2994, 2995, 2996, 2997, 2998, 2999, 3000, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013, 3014, 3015, 3016, 3017, 3018, 3019, 3020, 3021, 3022, 3023, 3024, 3025, 3026, 3027, 3028, 3029, 3030, 3031, 3032, 3033, 3034, 3035, 3036, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3044, 3045, 3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055, 3056, 3057, 3058, 3059, 3060, 3061, 3062, 3063, 3064, 3065, 3066, 3067, 3068, 3069, 3070, 3071, 3072, 3073, 3074, 3075, 3076, 3077, 3078, 3079, 3080, 3081, 3082, 3083, 3084, 3085, 3086, 3087, 3088, 3089, 3090, 3091, 3092, 3093, 3094, 3095, 3096, 3097, 3098, 3099, 3100, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 3122, 3123, 3124, 3125, 3126, 3127, 3128, 3129, 3130, 3131, 3132, 3133, 3134, 3135]
+    146
+    [2990, 2991, 2992, 2993, 2994, 2995, 2996, 2997, 2998, 2999, 3000, 3001, 3002, 3003, 3004, 3005, 3006, 3007, 3008, 3009, 3010, 3011, 3012, 3013, 3014, 3015, 3016, 3017, 3018, 3019, 3020, 3021, 3022, 3023, 3024, 3025, 3026, 3027, 3028, 3029, 3030, 3031, 3032, 3033, 3034, 3035, 3036, 3037, 3038, 3039, 3040, 3041, 3042, 3043, 3044, 3045, 3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055, 3056, 3057, 3058, 3059, 3060, 3061, 3062, 3063, 3064, 3065, 3066, 3067, 3068, 3069, 3070, 3071, 3072, 3073, 3074, 3075, 3076, 3077, 3078, 3079, 3080, 3081, 3082, 3083, 3084, 3085, 3086, 3087, 3088, 3089, 3090, 3091, 3092, 3093, 3094, 3095, 3096, 3097, 3098, 3099, 3100, 3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112, 3113, 3114, 3115, 3116, 3117, 3118, 3119, 3120, 3121, 3122, 3123, 3124, 3125, 3126, 3127, 3128, 3129, 3130, 3131, 3132, 3133, 3134, 3135]
 
 
 
@@ -552,10 +640,7 @@ plt.show()
 ```
 
 
-![png](output_26_0.png)
+    
+![png](output_27_0.png)
+    
 
-
-
-```python
-
-```

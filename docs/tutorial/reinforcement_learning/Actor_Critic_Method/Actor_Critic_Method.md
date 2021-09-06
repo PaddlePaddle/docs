@@ -1,6 +1,6 @@
 # **强化学习——Actor Critic Method**
 **作者：** [EastSmith](https://github.com/EastSmith)<br>
-**日期：** 2021.03 <br>
+**日期：** 2021.06 <br>
 **摘要：** 展示 `CartPole-V0` 环境中 `Actor-Critic` 方法的一个实现。
 
 ## **一、介绍**
@@ -17,7 +17,7 @@
 在无摩擦的轨道上，一根杆子系在一辆手推车上。agent（代理）必须施加力才能移动手推车。每走一步，杆子就保持直立，这是奖励。因此，agent（代理）必须学会防止杆子掉下来。
 
 ## **二、环境配置**
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -32,7 +32,7 @@ from paddle.distribution import Categorical
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.1
 
 
 ## **三、实施演员-评论家网络**
@@ -114,7 +114,7 @@ def trainIters(actor, critic, n_iters):
             dist, value = actor(state), critic(state)
 
             action = dist.sample([1])
-            next_state, reward, done, _ = env.step(action.cpu().squeeze(0).numpy())
+            next_state, reward, done, _ = env.step(action.cpu().squeeze(0).numpy()) 
 
             log_prob = dist.log_prob(action);
             # entropy += dist.entropy().mean()
@@ -175,27 +175,14 @@ if __name__ == '__main__':
     trainIters(actor, critic, n_iters=201)
 ```
 
-    Iteration: 0, Score: 15
-    Iteration: 10, Score: 22
-    Iteration: 20, Score: 23
-    Iteration: 30, Score: 30
-    Iteration: 40, Score: 28
-    Iteration: 50, Score: 11
-    Iteration: 60, Score: 18
-    Iteration: 70, Score: 15
-    Iteration: 80, Score: 66
-    Iteration: 90, Score: 64
-    Iteration: 100, Score: 102
-    Iteration: 110, Score: 196
-    Iteration: 120, Score: 199
-    Iteration: 130, Score: 199
-    Iteration: 140, Score: 199
-    Iteration: 150, Score: 199
-    Iteration: 160, Score: 166
-    Iteration: 170, Score: 136
-    Iteration: 180, Score: 199
-    Iteration: 190, Score: 199
-    Iteration: 200, Score: 199
+    Iteration: 0, Score: 30
+    Iteration: 10, Score: 30
+    Iteration: 20, Score: 42
+    Iteration: 30, Score: 87
+    Iteration: 40, Score: 64
+    Iteration: 50, Score: 35
+    Iteration: 60, Score: 69
+    Iteration: 70, Score: 117
 
 
 ## **五、效果展示**
@@ -212,3 +199,4 @@ if __name__ == '__main__':
 * Actor-Critic，其实是用了两个网络： 一个输出策略，负责选择动作，这个网络称为Actor；一个负责计算每个动作的分数，这个网络称为Critic。
 * 可以形象地想象为，Actor是舞台上的舞者，Critic是台下的评委，Actor在台上跳舞，一开始舞姿并不好看，Critic根据Actor的舞姿打分。Actor通过Critic给出的分数，去学习：如果Critic给的分数高，那么Actor会调整这个动作的输出概率；相反，如果Critic给的分数低，那么就减少这个动作输出的概率。
 * Actor-Critic方法结合了值函数逼近（Critic）和策略函数逼近（Actor），它从与环境的交互中学习到越来越精确的Critic（评估），能够实现单步更新，相对单纯的策略梯度，Actor-Critic能够更充分的利用数据。
+

@@ -1,12 +1,12 @@
 # 使用LeNet在MNIST数据集实现图像分类
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例教程演示如何在MNIST数据集上用LeNet进行图像分类。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.0 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -14,7 +14,7 @@ import paddle
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.1
 
 
 ## 二、数据加载
@@ -57,7 +57,9 @@ print('train_data0 label is: ' + str(train_label_0))
 
 
 
+    
 ![png](output_6_1.png)
+    
 
 
 ## 三、组网
@@ -123,11 +125,11 @@ model.fit(train_dataset,
         )
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-    step 938/938 [==============================] - loss: 0.0467 - acc: 0.9536 - 9ms/step
+    step 938/938 [==============================] - loss: 0.0987 - acc: 0.9400 - 16ms/step          
     Epoch 2/2
-    step 938/938 [==============================] - loss: 0.0047 - acc: 0.9854 - 11ms/step
+    step 938/938 [==============================] - loss: 0.0101 - acc: 0.9814 - 15ms/step          
 
 
 ### 4.2 使用 `Model.evaluate` 来预测模型
@@ -138,15 +140,14 @@ model.evaluate(test_dataset, batch_size=64, verbose=1)
 ```
 
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 157/157 [==============================] - loss: 4.2981e-04 - acc: 0.9850 - 7ms/step
+    step 157/157 [==============================] - loss: 1.2412e-04 - acc: 0.9872 - 8ms/step     
     Eval samples: 10000
 
 
 
 
 
-    {'loss': [0.00042981372], 'acc': 0.985}
+    {'loss': [0.0001241174], 'acc': 0.9872}
 
 
 
@@ -184,14 +185,14 @@ model = LeNet()
 train(model)
 ```
 
-    epoch: 0, batch_id: 0, loss is: [3.31986], acc is: [0.078125]
-    epoch: 0, batch_id: 300, loss is: [0.05698059], acc is: [0.984375]
-    epoch: 0, batch_id: 600, loss is: [0.03642814], acc is: [0.984375]
-    epoch: 0, batch_id: 900, loss is: [0.13067417], acc is: [0.953125]
-    epoch: 1, batch_id: 0, loss is: [0.03294292], acc is: [0.984375]
-    epoch: 1, batch_id: 300, loss is: [0.09340447], acc is: [0.96875]
-    epoch: 1, batch_id: 600, loss is: [0.12020883], acc is: [0.96875]
-    epoch: 1, batch_id: 900, loss is: [0.0349952], acc is: [0.984375]
+    epoch: 0, batch_id: 0, loss is: [3.4812493], acc is: [0.046875]
+    epoch: 0, batch_id: 300, loss is: [0.13665208], acc is: [0.9375]
+    epoch: 0, batch_id: 600, loss is: [0.03570018], acc is: [0.984375]
+    epoch: 0, batch_id: 900, loss is: [0.26020038], acc is: [0.953125]
+    epoch: 1, batch_id: 0, loss is: [0.02598252], acc is: [1.]
+    epoch: 1, batch_id: 300, loss is: [0.03858125], acc is: [0.984375]
+    epoch: 1, batch_id: 600, loss is: [0.02684611], acc is: [1.]
+    epoch: 1, batch_id: 900, loss is: [0.02523567], acc is: [1.]
 
 
 ### 5.2 模型验证
@@ -216,14 +217,14 @@ def test(model):
 test(model)
 ```
 
-    batch_id: 0, loss is: [0.01972857], acc is: [0.984375]
-    batch_id: 20, loss is: [0.19958115], acc is: [0.9375]
-    batch_id: 40, loss is: [0.23575728], acc is: [0.953125]
-    batch_id: 60, loss is: [0.07018849], acc is: [0.984375]
-    batch_id: 80, loss is: [0.02309197], acc is: [0.984375]
-    batch_id: 100, loss is: [0.00239462], acc is: [1.]
-    batch_id: 120, loss is: [0.01583934], acc is: [1.]
-    batch_id: 140, loss is: [0.00399609], acc is: [1.]
+    batch_id: 0, loss is: [0.01162419], acc is: [1.]
+    batch_id: 20, loss is: [0.07917802], acc is: [0.96875]
+    batch_id: 40, loss is: [0.08296058], acc is: [0.96875]
+    batch_id: 60, loss is: [0.074766], acc is: [0.984375]
+    batch_id: 80, loss is: [0.04619331], acc is: [0.984375]
+    batch_id: 100, loss is: [0.00216055], acc is: [1.]
+    batch_id: 120, loss is: [0.00714081], acc is: [1.]
+    batch_id: 140, loss is: [0.00492131], acc is: [1.]
 
 
 ### 方式二结束

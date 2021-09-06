@@ -1,12 +1,12 @@
 # IMDB 数据集使用BOW网络的文本分类
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例教程演示如何在IMDB数据集上用简单的BOW网络完成文本分类的任务。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -15,7 +15,7 @@ import numpy as np
 print(paddle.__version__)
 ```
 
-    2.0.1
+    2.1.1
 
 
 ## 二、加载数据
@@ -33,19 +33,7 @@ test_dataset = paddle.text.datasets.Imdb(mode='test')
 print('loading finished')
 ```
 
-    loading dataset...
-
-
-    Cache file /home/aistudio/.cache/paddle/dataset/imdb/imdb%2FaclImdb_v1.tar.gz not found, downloading https://dataset.bj.bcebos.com/imdb%2FaclImdb_v1.tar.gz
-    Begin to download
-
-    Download finished
-
-
-    loading finished
-
-
-构建了训练集与测试集后，可以通过 `word_idx` 获取数据集的词表。在飞桨框架2.0版本中，推荐使用padding的方式来对同一个batch中长度不一的数据进行补齐，所以在字典中，还会添加一个特殊的<pad>词，用来在后续对batch中较短的句子进行填充。
+构建了训练集与测试集后，可以通过 `word_idx` 获取数据集的词表。在飞桨框架2.1版本中，推荐使用padding的方式来对同一个batch中长度不一的数据进行补齐，所以在字典中，还会添加一个特殊的<pad>词，用来在后续对batch中较短的句子进行填充。
 
 
 ```python
@@ -171,7 +159,7 @@ class IMDBDataset(paddle.io.Dataset):
 
         self.sents = sents
         self.labels = labels
-
+    
     def __getitem__(self, index):
 
         data = self.sents[index]
@@ -180,15 +168,15 @@ class IMDBDataset(paddle.io.Dataset):
         return data, label
 
     def __len__(self):
-
+        
         return len(self.sents)
-
+    
 train_dataset = IMDBDataset(train_sents, train_labels)
 test_dataset = IMDBDataset(test_sents, test_labels)
 
-train_loader = paddle.io.DataLoader(train_dataset, return_list=True, shuffle=True,
+train_loader = paddle.io.DataLoader(train_dataset, return_list=True, shuffle=True, 
                                     batch_size=batch_size, drop_last=True)
-test_loader = paddle.io.DataLoader(test_dataset, return_list=True, shuffle=True,
+test_loader = paddle.io.DataLoader(test_dataset, return_list=True, shuffle=True, 
                                    batch_size=batch_size, drop_last=True)
 ```
 
@@ -232,42 +220,40 @@ model.fit(train_loader,
           verbose=1)
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-    step 781/781 [==============================] - loss: 0.3148 - 5ms/step
+    step 781/781 [==============================] - loss: 0.4183 - 13ms/step          
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 781/781 [==============================] - loss: 0.2516 - 3ms/step
+    step 781/781 [==============================] - loss: 0.3444 - 9ms/step          
     Eval samples: 24992
     Epoch 2/2
-    step 781/781 [==============================] - loss: 0.4492 - 4ms/step
+    step 781/781 [==============================] - loss: 0.3233 - 13ms/step          
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 781/781 [==============================] - loss: 0.2223 - 3ms/step
+    step 781/781 [==============================] - loss: 0.3606 - 9ms/step          
     Eval samples: 24992
 
 
-## 五、方式：2 用底层API训练与验证
+## 五、方式2：用底层API训练与验证
 
 
 ```python
 def train(model):
-
+    
     model.train()
     opt = paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters())
-
+    
     for epoch in range(epochs):
         for batch_id, data in enumerate(train_loader):
-
+            
             sent = data[0]
             label = data[1]
-
+            
             logits = model(sent)
             loss = paddle.nn.functional.cross_entropy(logits, label)
 
             if batch_id % 500 == 0:
                 print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, loss.numpy()))
-
+            
             loss.backward()
             opt.step()
             opt.clear_grad()
@@ -276,34 +262,34 @@ def train(model):
         model.eval()
         accuracies = []
         losses = []
-
+        
         for batch_id, data in enumerate(test_loader):
-
+            
             sent = data[0]
             label = data[1]
 
             logits = model(sent)
             loss = paddle.nn.functional.cross_entropy(logits, label)
             acc = paddle.metric.accuracy(logits, label)
-
+            
             accuracies.append(acc.numpy())
             losses.append(loss.numpy())
-
+        
         avg_acc, avg_loss = np.mean(accuracies), np.mean(losses)
         print("[validation] accuracy/loss: {}/{}".format(avg_acc, avg_loss))
-
+        
         model.train()
-
+        
 model = MyNet()
 train(model)
 ```
 
-    epoch: 0, batch_id: 0, loss is: [0.6925806]
-    epoch: 0, batch_id: 500, loss is: [0.2938326]
-    [validation] accuracy/loss: 0.8513924479484558/0.3604280650615692
-    epoch: 1, batch_id: 0, loss is: [0.31649047]
-    epoch: 1, batch_id: 500, loss is: [0.47300753]
-    [validation] accuracy/loss: 0.8644366264343262/0.32513079047203064
+    epoch: 0, batch_id: 0, loss is: [0.6918238]
+    epoch: 0, batch_id: 500, loss is: [0.3139313]
+    [validation] accuracy/loss: 0.8514324426651001/0.36131760478019714
+    epoch: 1, batch_id: 0, loss is: [0.38679352]
+    epoch: 1, batch_id: 500, loss is: [0.20429397]
+    [validation] accuracy/loss: 0.8641164898872375/0.3263395130634308
 
 
 ## The End

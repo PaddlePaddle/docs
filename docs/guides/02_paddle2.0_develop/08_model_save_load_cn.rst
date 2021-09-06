@@ -1,71 +1,64 @@
 .. _cn_doc_model_save_load:
 
 #############
-模型存储与载入
+模型保存与载入
 #############
 
-一、存储载入体系简介
+一、保存载入体系简介
 ##################
 
-1.1 接口体系
-------------
+1.1 基础API保存载入体系
+--------------------
 
-飞桨框架2.x对模型与参数的存储与载入相关接口进行了梳理，根据接口使用的场景与模式，分为三套体系，分别是：
+飞桨框架2.1对模型与参数的保存与载入相关接口进行了梳理：对于训练调优场景，我们推荐使用paddle.save/load保存和载入模型；对于推理部署场景，我们推荐使用paddle.jit.save/load（动态图）和paddle.static.save/load_inference_model（静态图）保存载入模型。
 
-1.1.1 动态图存储载入体系
-```````````````````````
+飞桨保存载入相关接口包括：
 
-为提升框架使用体验，飞桨框架2.0将主推动态图模式，动态图模式下的存储载入接口包括：
 
-- paddle.save
-- paddle.load
-- paddle.jit.save
-- paddle.jit.load
+:ref:`paddle.save <cn_api_paddle_framework_io_save>`
 
-本文主要介绍飞桨框架2.0动态图存储载入体系，各接口关系如下图所示：
+:ref:`paddle.load <cn_api_paddle_framework_io_load>`
 
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/main_save_load_2.0.png?raw=true
+:ref:`paddle.jit.save <cn_api_paddle_jit_save>`
 
-1.1.2 静态图存储载入体系
-```````````````````````
+:ref:`paddle.jit.load <cn_api_paddle_jit_save>`
 
-静态图存储载入相关接口为飞桨框架1.x版本的主要使用接口，出于兼容性的目的，这些接口仍然可以在飞桨框架2.x使用，但不再推荐。相关接口包括：
+:ref:`paddle.static.save_inference_model <cn_api_static_save_inference_model>`
 
-- paddle.static.save
-- paddle.static.load
-- paddle.static.save_inference_model
-- paddle.static.load_inference_model
-- paddle.static.load_program_state
-- paddle.static.set_program_state
+:ref:`paddle.static.load_inference_model <cn_api_fluid_io_load_inference_model>`
 
-由于飞桨框架2.0不再主推静态图模式，故本文不对以上主要用于飞桨框架1.x的相关接口展开介绍，如有需要，可以阅读对应API文档。
 
-1.1.3 高阶API存储载入体系
-````````````````````````
+各接口关系如下图所示：
 
-- paddle.Model.fit (训练接口，同时带有参数存储的功能)
+.. image:: images/paddle_save_load_2.1.png
+
+.. image:: images/paddle_jit_save_load_2.1.png
+
+1.2 高阶API保存载入体系
+--------------------
+
+- paddle.Model.fit (训练接口，同时带有参数保存的功能)
 - paddle.Model.save
 - paddle.Model.load
 
 飞桨框架2.0高阶API仅有一套Save/Load接口，表意直观，体系清晰，若有需要，建议直接阅读相关API文档，此处不再赘述。
 
 .. note::
-    本教程着重介绍飞桨框架2.x的各个存储载入接口的关系及各种使用场景，不对接口参数进行详细介绍，如果需要了解具体接口参数的含义，请直接阅读对应API文档。
-
-1.2 接口存储结果组织形式
-----------------------
-
-飞桨2.0统一了各存储接口对于同一种存储行为的处理方式，并且统一推荐或自动为存储的文件添加飞桨标准的文件后缀，详见下图：
-
-.. image:: https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/save_result_format_2.0.png?raw=true
+    本教程着重介绍飞桨框架2.1的各个保存载入接口的关系及各种使用场景，不对接口参数进行详细介绍，如果需要了解具体接口参数的含义，请直接阅读对应API文档。
 
 
-二、参数存储载入（训练调优）
-#######################
+`模型保存常见问题 <./../../faq/save_cn.html>`_ 
 
-若仅需要存储/载入模型的参数，可以使用 ``paddle.save/load`` 结合Layer和Optimizer的state_dict达成目的，此处state_dict是对象的持久参数的载体，dict的key为参数名，value为参数真实的numpy array值。
 
-结合以下简单示例，介绍参数存储和载入的方法，以下示例完成了一个简单网络的训练过程：
+二、训练调优场景的模型&参数保存载入
+##############################
+
+2.1 动态图参数保存载入
+-------------------
+
+若仅需要保存/载入模型的参数，可以使用 ``paddle.save/load`` 结合Layer和Optimizer的state_dict达成目的，此处state_dict是对象的持久参数的载体，dict的key为参数名，value为参数真实的numpy array值。
+
+结合以下简单示例，介绍参数保存和载入的方法，以下示例完成了一个简单网络的训练过程：
 
 .. code-block:: python
 
@@ -130,10 +123,10 @@
     train(layer, loader, loss_fn, adam)
 
 
-2.1 参数存储
-------------
+2.1.1 参数保存
+-------------
 
-参数存储时，先获取目标对象（Layer或者Optimzier）的state_dict，然后将state_dict存储至磁盘，示例如下（接前述示例）:
+参数保存时，先获取目标对象（Layer或者Optimzier）的state_dict，然后将state_dict保存至磁盘，示例如下（接前述示例）:
 
 .. code-block:: python
 
@@ -142,8 +135,8 @@
     paddle.save(adam.state_dict(), "adam.pdopt")
 
 
-2.2 参数载入
-------------
+2.1.2 参数载入
+-------------
 
 参数载入时，先从磁盘载入保存的state_dict，然后通过set_state_dict方法配置到目标对象中，示例如下（接前述示例）：
 
@@ -157,23 +150,84 @@
     adam.set_state_dict(opt_state_dict)
 
 
-三、模型&参数存储载入（训练部署）
-############################
+2.2 静态图模型&参数保存载入
+-----------------------
+若仅需要保存/载入模型的参数，可以使用 ``paddle.save/load`` 结合Program的state_dict达成目的，此处state_dict与动态图state_dict概念类似，dict的key为参数名，value为参数真实的值。若想保存整个模型，需要使用``paddle.save``将Program和state_dict都保存下来。
 
-若要同时存储/载入模型结构和参数，可以使用 ``paddle.jit.save/load`` 实现。
+结合以下简单示例，介绍参数保存和载入的方法：
 
-3.1 模型&参数存储
-----------------
+.. code-block:: python
+
+    import paddle
+    import paddle.static as static
+
+    paddle.enable_static()
+
+    # create network
+    x = paddle.static.data(name="x", shape=[None, 224], dtype='float32')
+    z = paddle.static.nn.fc(x, 10)
+
+    place = paddle.CPUPlace()
+    exe = paddle.static.Executor(place)
+    exe.run(paddle.static.default_startup_program())
+    prog = paddle.static.default_main_program()
+
+
+2.2.1 静态图模型&参数保存
+---------------------
+
+参数保存时，先获取Program的state_dict，然后将state_dict保存至磁盘，示例如下（接前述示例）:
+
+.. code-block:: python
+    
+    paddle.save(prog.state_dict(), "temp/model.pdparams")
+    
+
+如果想要保存整个静态图模型，除了state_dict还需要保存Program
+
+.. code-block:: python
+
+    paddle.save(prog, "temp/model.pdmodel")
+
+
+2.2.2 静态图模型&参数载入
+---------------------
+
+如果只保存了state_dict，可以跳过此段代码，直接载入state_dict。如果模型文件中包含Program和state_dict，请先载入Program，示例如下（接前述示例）:
+
+.. code-block:: python
+
+    prog = paddle.load("temp/model.pdmodel")
+
+
+参数载入时，先从磁盘载入保存的state_dict，然后通过set_state_dict方法配置到Program中，示例如下（接前述示例）：
+
+.. code-block:: python
+
+    state_dict = paddle.load("temp/model.pdparams")
+    prog.set_state_dict(state_dict)
+
+
+
+三、训练部署场景的模型&参数保存载入
+##################################
+
+3.1 动态图模型&参数保存载入（训练推理）
+---------------------------
+若要同时保存/载入动态图模型结构和参数，可以使用 ``paddle.jit.save/load`` 实现。
+
+3.1.1 动态图模型&参数保存
+----------------------
 
 模型&参数存储根据训练模式不同，有两种使用情况：
 
-(1) 动转静训练 + 模型&参数存储
-(2) 动态图训练 + 模型&参数存储
+(1) 动转静训练 + 模型&参数保存
+(2) 动态图训练 + 模型&参数保存
 
-3.1.1 动转静训练 + 模型&参数存储
+3.1.1.1 动转静训练 + 模型&参数保存
 ``````````````````````````````
 
-动转静训练相比直接使用动态图训练具有更好的执行性能，训练完成后，直接将目标Layer传入 ``paddle.jit.save`` 存储即可。：
+动转静训练相比直接使用动态图训练具有更好的执行性能，训练完成后，直接将目标Layer传入 ``paddle.jit.save`` 保存即可。：
 
 一个简单的网络训练示例如下：
 
@@ -344,10 +398,10 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
             return self._linear(x)
 
 
-(3) 如果你需要存储多个方法，需要用 ``paddle.jit.to_static`` 装饰每一个需要被存储的方法。
+(3) 如果你需要保存多个方法，需要用 ``paddle.jit.to_static`` 装饰每一个需要被保存的方法。
 
 .. note::
-    只有在forward之外还需要存储其他方法时才用这个特性，如果仅装饰非forward的方法，而forward没有被装饰，是不符合规范的。此时 ``paddle.jit.save`` 的 ``input_spec`` 参数必须为None。
+    只有在forward之外还需要保存其他方法时才用这个特性，如果仅装饰非forward的方法，而forward没有被装饰，是不符合规范的。此时 ``paddle.jit.save`` 的 ``input_spec`` 参数必须为None。
 
 示例代码如下：
 
@@ -382,13 +436,37 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     path = "example.model/linear"
     paddle.jit.save(layer, path)
 
-存储的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生5个文件：
+保存的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生5个文件：
 ``linear.another_forward.pdiparams、 linear.pdiparams、 linear.pdmodel、 linear.another_forward.pdmodel、 linear.pdiparams.info``
 
-3.1.2 动态图训练 + 模型&参数存储
+(4) 当使用 ``jit.save`` 保存函数时，``jit.save`` 只保存这个函数对应的静态图 `Program` ，不会保存和这个函数相关的参数。如果你必须保存参数，请使用Layer封装这个函数。
+
+示例代码如下：
+
+.. code-block:: python
+
+    def fun(inputs):
+        return paddle.tanh(inputs)
+
+    path = 'func/model'
+    inps = paddle.rand([3, 6])
+    origin = fun(inps)
+
+    paddle.jit.save(
+        fun,
+        path,
+        input_spec=[
+            InputSpec(
+                shape=[None, 6], dtype='float32', name='x'),
+        ])
+    load_func = paddle.jit.load(path)
+    load_result = load_func(inps)
+
+
+3.1.1.2 动态图训练 + 模型&参数保存
 ``````````````````````````````
 
-动态图模式相比动转静模式更加便于调试，如果你仍需要使用动态图直接训练，也可以在动态图训练完成后调用 ``paddle.jit.save`` 直接存储模型和参数。
+动态图模式相比动转静模式更加便于调试，如果你仍需要使用动态图直接训练，也可以在动态图训练完成后调用 ``paddle.jit.save`` 直接保存模型和参数。
 
 同样是一个简单的网络训练示例：
 
@@ -467,7 +545,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
         path=path,
         input_spec=[InputSpec(shape=[None, 784], dtype='float32')])
 
-动态图训练后使用 ``paddle.jit.save`` 存储模型和参数注意点如下：
+动态图训练后使用 ``paddle.jit.save`` 保存模型和参数注意点如下：
 
 (1) 相比动转静训练，Layer对象的forward方法不需要额外装饰，保持原实现即可
 
@@ -497,8 +575,8 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
         path=path,
         input_spec=[image])
 
-3.2 模型&参数载入
-----------------
+3.1.2 动态图模型&参数载入
+----------------------
 
 载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个Layer的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有Layer具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。
 
@@ -610,234 +688,57 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     pred = layer(x)
 
 
-四、旧存储格式兼容载入
-###################
-
-如果你是从飞桨框架1.x切换到2.x，曾经使用飞桨框架1.x的fluid相关接口存储模型或者参数，飞桨框架2.x也对这种情况进行了兼容性支持，包括以下几种情况。
-
-飞桨1.x模型准备及训练示例，该示例为后续所有示例的前序逻辑：
+3.2 静态图模型&参数保存载入（推理部署）
+--------------------------------
+保存/载入静态图推理模型，可以通过 ``paddle.static.save/load_inference_model`` 实现。示例如下:
 
 .. code-block:: python
 
-    import numpy as np
     import paddle
-    import paddle.fluid as fluid
-    import paddle.nn as nn
-    import paddle.optimizer as opt
+    import numpy as np
 
-    BATCH_SIZE = 16
-    BATCH_NUM = 4
-    EPOCH_NUM = 4
-
-    IMAGE_SIZE = 784
-    CLASS_NUM = 10
-
-    # enable static mode
     paddle.enable_static()
 
-    # define a random dataset
-    class RandomDataset(paddle.io.Dataset):
-        def __init__(self, num_samples):
-            self.num_samples = num_samples
-
-        def __getitem__(self, idx):
-            image = np.random.random([IMAGE_SIZE]).astype('float32')
-            label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
-            return image, label
-
-        def __len__(self):
-            return self.num_samples
-
-    image = fluid.data(name='image', shape=[None, 784], dtype='float32')
-    label = fluid.data(name='label', shape=[None, 1], dtype='int64')
-    pred = fluid.layers.fc(input=image, size=10, act='softmax')
-    loss = fluid.layers.cross_entropy(input=pred, label=label)
-    avg_loss = fluid.layers.mean(loss)
-
-    optimizer = fluid.optimizer.SGD(learning_rate=0.001)
-    optimizer.minimize(avg_loss)
-
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-
-    # create data loader
-    dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
-    loader = paddle.io.DataLoader(dataset,
-        feed_list=[image, label],
-        places=place,
-        batch_size=BATCH_SIZE, 
-        shuffle=True,
-        drop_last=True,
-        num_workers=2)
-
-    # train model
-    for data in loader():
-        exe.run(
-            fluid.default_main_program(),
-            feed=data, 
-            fetch_list=[avg_loss])
+    # Build the model
+    startup_prog = paddle.static.default_startup_program()
+    main_prog = paddle.static.default_main_program()
+    with paddle.static.program_guard(main_prog, startup_prog):
+        image = paddle.static.data(name="img", shape=[64, 784])
+        w = paddle.create_parameter(shape=[784, 200], dtype='float32')
+        b = paddle.create_parameter(shape=[200], dtype='float32')
+        hidden_w = paddle.matmul(x=image, y=w)
+        hidden_b = paddle.add(hidden_w, b)
+    exe = paddle.static.Executor(paddle.CPUPlace())
+    exe.run(startup_prog)
 
 
-4.1 从 ``paddle.fluid.io.save_inference_model`` 存储结果中载入模型&参数
-------------------------------------------------------------------
-
-(1) 同时载入模型和参数
-
-使用 ``paddle.jit.load`` 配合 ``**configs`` 载入模型和参数。
-
-如果你是按照 ``paddle.fluid.io.save_inference_model`` 的默认格式存储的，可以按照如下方式载入（接前述示例）：
+3.2.1 静态图推理模型&参数保存
+-------------------------
+静态图导出推理模型需要指定导出路径、输入、输出变量以及执行器。 ``save_inference_model`` 会裁剪Program的冗余部分，并导出两个文件： ``path_prefix.pdmodel`` 、 ``path_prefix.pdiparams`` 。示例如下（接前述示例）：
 
 .. code-block:: python
 
-    # save default
-    model_path = "fc.example.model"
-    fluid.io.save_inference_model(
-        model_path, ["image"], [pred], exe)
+    # Save the inference model
+    path_prefix = "./infer_model"
+    paddle.static.save_inference_model(path_prefix, [image], [hidden_b], exe)
 
-    # enable dynamic mode
-    paddle.disable_static(place)
 
-    # load
-    fc = paddle.jit.load(model_path)
-
-    # inference
-    fc.eval()
-    x = paddle.randn([1, IMAGE_SIZE], 'float32')
-    pred = fc(x)
-
-如果你指定了存储的模型文件名，可以按照以下方式载入（接前述示例）：
+3.2.2 静态图推理模型&参数载入
+-------------------------
+载入静态图推理模型时，输入给 ``load_inference_model`` 的路径必须与 ``save_inference_model`` 的一致。示例如下（接前述示例）：
 
 .. code-block:: python
 
-    # save with model_filename
-    model_path = "fc.example.model.with_model_filename"
-    fluid.io.save_inference_model(
-        model_path, ["image"], [pred], exe, model_filename="__simplenet__")
-
-    # enable dynamic mode
-    paddle.disable_static(place)
-
-    # load
-    fc = paddle.jit.load(model_path, model_filename="__simplenet__")
-
-    # inference
-    fc.eval()
-    x = paddle.randn([1, IMAGE_SIZE], 'float32')
-    pred = fc(x)
-
-如果你指定了存储的参数文件名，可以按照以下方式载入（接前述示例）：
-
-.. code-block:: python
-
-    # save with params_filename
-    model_path = "fc.example.model.with_params_filename"
-    fluid.io.save_inference_model(
-        model_path, ["image"], [pred], exe, params_filename="__params__")
-
-    # enable dynamic mode
-    paddle.disable_static(place)
-
-    # load
-    fc = paddle.jit.load(model_path, params_filename="__params__")
-
-    # inference
-    fc.eval()
-    x = paddle.randn([1, IMAGE_SIZE], 'float32')
-    pred = fc(x)
-
-(2) 仅载入参数
-
-如果你仅需要从 ``paddle.fluid.io.save_inference_model`` 的存储结果中载入参数，以state_dict的形式配置到已有代码的模型中，可以使用 ``paddle.load`` 配合 ``**configs`` 载入。
-
-如果你是按照 ``paddle.fluid.io.save_inference_model`` 的默认格式存储的，可以按照如下方式载入（接前述示例）：
-
-.. code-block:: python
-
-    model_path = "fc.example.model"
-
-    load_param_dict = paddle.load(model_path)
-
-如果你指定了存储的模型文件名，可以按照以下方式载入（接前述示例）：
-
-.. code-block:: python
-
-    model_path = "fc.example.model.with_model_filename"
-
-    load_param_dict = paddle.load(model_path, model_filename="__simplenet__")
-
-如果你指定了存储的参数文件名，可以按照以下方式载入（接前述示例）：
-
-.. code-block:: python
-
-    model_path = "fc.example.model.with_params_filename"
-
-    load_param_dict = paddle.load(model_path, params_filename="__params__")
-
-.. note::
-    一般预测模型不会存储优化器Optimizer的参数，因此此处载入的仅包括模型本身的参数。
-
-.. note::
-    由于 ``structured_name`` 是动态图下独有的变量命名方式，因此从静态图存储结果载入的state_dict在配置到动态图的Layer中时，需要配置 ``Layer.set_state_dict(use_structured_name=False)`` 。
+    [inference_program, feed_target_names, fetch_targets] = (
+        paddle.static.load_inference_model(path_prefix, exe))
+    tensor_img = np.array(np.random.random((64, 784)), dtype=np.float32)
+    results = exe.run(inference_program,
+                    feed={feed_target_names[0]: tensor_img},
+                    fetch_list=fetch_targets)
 
 
-4.2 从 ``paddle.fluid.save`` 存储结果中载入参数
-----------------------------------------------
+四、旧保存格式兼容载入
+###################
 
- ``paddle.fluid.save`` 的存储格式与2.x动态图接口 ``paddle.save`` 存储格式是类似的，同样存储了dict格式的参数，因此可以直接使用 ``paddle.load`` 载入state_dict，但需要注意不能仅传入保存的路径，而要传入保存参数的文件名，示例如下（接前述示例）：
+如果你是从飞桨框架1.x切换到2.1，曾经使用飞桨框架1.x的fluid相关接口保存模型或者参数，飞桨框架2.1也对这种情况进行了兼容性支持，请参考 :ref:`兼容载入旧格式模型 <cn_guides_load_old_format_model>`
 
-.. code-block:: python
-
-    # save by fluid.save
-    model_path = "fc.example.model.save"
-    program = fluid.default_main_program()
-    fluid.save(program, model_path)
-
-    # enable dynamic mode
-    paddle.disable_static(place)
-
-    load_param_dict = paddle.load("fc.example.model.save.pdparams")
-
-
-.. note::
-    由于 ``paddle.fluid.save`` 接口原先在静态图模式下的定位是存储训练时参数，或者说存储Checkpoint，故尽管其同时存储了模型结构，目前也暂不支持从 ``paddle.fluid.save`` 的存储结果中同时载入模型和参数，后续如有需求再考虑支持。
-
-
-4.3 从 ``paddle.fluid.io.save_params/save_persistables`` 存储结果中载入参数
--------------------------------------------------------------------------
-
-这两个接口在飞桨1.x版本时，已经不再推荐作为存储模型参数的接口使用，故并未继承至飞桨2.x，之后也不会再推荐使用这两个接口存储参数。
-
-对于使用这两个接口存储参数兼容载入的支持，分为两种情况，下面以 ``paddle.fluid.io.save_params`` 接口为例介绍相关使用方法：
-
-(1) 使用默认方式存储，各参数分散存储为单独的文件，文件名为参数名
-
-这种存储方式仍然可以使用 ``paddle.load`` 接口兼容载入，使用示例如下（接前述示例）：
-
-.. code-block:: python
-
-    # save by fluid.io.save_params
-    model_path = "fc.example.model.save_params"
-    fluid.io.save_params(exe, model_path)
-
-    # load 
-    state_dict = paddle.load(model_path)
-    print(state_dict)
-
-(2) 指定了参数存储的文件，将所有参数存储至单个文件中
-
-将所有参数存储至单个文件中会导致存储结果中丢失Tensor名和Tensor数据之间的映射关系，因此这部分丢失的信息需要用户传入进行补足。为了确保正确性，这里不仅要传入Tensor的name列表，同时要传入Tensor的shape和dtype等描述信息，通过检查和存储数据的匹配性确保严格的正确性，这导致载入数据的恢复过程变得比较复杂，仍然需要一些飞桨1.x的概念支持。后续如果此项需求较为普遍，飞桨将会考虑将该项功能兼容支持到 ``paddle.load`` 中，但由于信息丢失而导致的使用复杂性仍然是存在的，因此建议你避免仅使用这两个接口存储参数。
-
-目前暂时推荐你使用 ``paddle.static.load_program_state`` 接口解决此处的载入问题，需要获取原Program中的参数列表传入该方法，使用示例如下（接前述示例）：
-
-.. code-block:: python
-
-    # save by fluid.io.save_params
-    model_path = "fc.example.model.save_params_with_filename"
-    fluid.io.save_params(exe, model_path, filename="__params__")
-
-    # load 
-    import os
-    params_file_path = os.path.join(model_path, "__params__")
-    var_list = fluid.default_main_program().all_parameters()
-    state_dict = paddle.io.load_program_state(params_file_path, var_list)

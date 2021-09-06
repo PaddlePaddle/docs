@@ -21,7 +21,7 @@ GroupNorm
 返回：无
 
 形状：
-    - input: 形状为（批大小，通道数, 高度，宽度）的4-D Tensor。
+    - input: 形状为(批大小, 通道数, \*) 的Tensor。
     - output: 和输入形状一样。
 
 **代码示例**

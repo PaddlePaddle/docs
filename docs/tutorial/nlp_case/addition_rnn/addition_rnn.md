@@ -1,12 +1,12 @@
 # 使用序列到序列模型完成数字加法
 
 **作者:** [jm12138](https://github.com/jm12138) <br>
-**日期:** 2021.03 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例介绍如何使用飞桨完成一个数字加法任务，将会使用飞桨提供的`LSTM`，组建一个序列到序列模型，并在随机生成的数据集上完成数字加法任务的模型训练与预测。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.0 。
+本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -24,7 +24,7 @@ from visualdl import LogWriter
 print('paddle version: %s' % paddle.__version__)
 ```
 
-    paddle version: 2.0.1
+    paddle version: 2.1.1
 
 
 ## 二、构建数据集
@@ -71,7 +71,7 @@ class Addition_Dataset(paddle.io.Dataset):
     def __init__(self, datas):
         super(Addition_Dataset, self).__init__()
         self.datas = datas
-
+    
     # 重写生成样本的函数
     def __getitem__(self, index):
         data, label = [paddle.to_tensor(_) for _ in self.datas[index]]
@@ -109,15 +109,15 @@ MAX_NUM = 10**(DIGITS)-1
 
 # 生成数据
 train_datas = gen_datas(
-    train_num,
+    train_num, 
     MAX_NUM,
-    DIGITS,
+    DIGITS, 
     label_dict
-)
+) 
 dev_datas = gen_datas(
-    dev_num,
+    dev_num, 
     MAX_NUM,
-    DIGITS,
+    DIGITS, 
     label_dict
 )
 
@@ -176,30 +176,30 @@ class Addition_Model(nn.Layer):
 
         # 嵌入层
         self.emb = nn.Embedding(
-            char_len,
+            char_len, 
             embedding_size
         )
-
+        
         # 编码器
         self.encoder = nn.LSTM(
             input_size=embedding_size,
             hidden_size=hidden_size,
             num_layers=1
         )
-
+        
         # 解码器
         self.decoder = nn.LSTM(
             input_size=hidden_size,
             hidden_size=hidden_size,
             num_layers=num_layers
         )
-
+        
         # 全连接层
         self.fc = nn.Linear(
-            hidden_size,
+            hidden_size, 
             char_len
         )
-
+    
     # 重写模型前向计算函数
     # 参数：输入[None, MAXLEN]、标签[None, DIGITS + 1]
     def forward(self, inputs, labels=None):
@@ -268,10 +268,10 @@ max_acc = 0
 
 # 实例化模型
 model = Addition_Model(
-    char_len=len(label_dict),
-    embedding_size=embedding_size,
-    hidden_size=hidden_size,
-    num_layers=num_layers,
+    char_len=len(label_dict), 
+    embedding_size=embedding_size, 
+    hidden_size=hidden_size, 
+    num_layers=num_layers, 
     DIGITS=DIGITS)
 
 # 将模型设置为训练模式
@@ -306,9 +306,9 @@ for epoch in range(epoch_num):
             losses = []
             accs = []
             for data in dev_reader():
-                loss, acc = model(inputs, labels=labels)
-                losses.append(loss.numpy())
-                accs.append(acc.numpy())
+                loss_eval, acc_eval = model(inputs, labels=labels)
+                losses.append(loss_eval.numpy())
+                accs.append(acc_eval.numpy())
             avg_loss = np.concatenate(losses).mean()
             avg_acc = np.concatenate(accs).mean()
             print('eval epoch:%d step: %d loss:%f acc:%f' % (epoch, global_step, avg_loss, avg_acc))
@@ -338,19 +338,34 @@ for epoch in range(epoch_num):
 paddle.save(model.state_dict(),'final_model')
 ```
 
-    train epoch:0 step: 0 loss:2.487120 acc:0.093750
-    eval epoch:0 step: 0 loss:2.487120 acc:0.093750
+    train epoch:0 step: 0 loss:2.488960 acc:0.104167
+    eval epoch:0 step: 0 loss:2.488960 acc:0.104167
     saving the best_model...
-    eval epoch:3 step: 500 loss:1.909393 acc:0.364583
+    eval epoch:3 step: 500 loss:1.206262 acc:0.552083
     saving the best_model...
-    eval epoch:6 step: 1000 loss:1.707455 acc:0.416667
+    eval epoch:6 step: 1000 loss:1.024468 acc:0.645833
     saving the best_model...
-    eval epoch:9 step: 1500 loss:1.625502 acc:0.395833
-    train epoch:12 step: 2000 loss:1.585965 acc:0.427083
-    eval epoch:12 step: 2000 loss:1.585966 acc:0.427083
+    eval epoch:9 step: 1500 loss:0.905523 acc:0.666667
     saving the best_model...
-    eval epoch:16 step: 2500 loss:1.568596 acc:0.375000
-    eval epoch:19 step: 3000 loss:1.481644 acc:0.395833
+    train epoch:12 step: 2000 loss:0.658411 acc:0.781250
+    eval epoch:12 step: 2000 loss:0.658411 acc:0.781250
+    saving the best_model...
+    eval epoch:16 step: 2500 loss:0.256994 acc:0.968750
+    saving the best_model...
+    eval epoch:19 step: 3000 loss:0.189801 acc:0.947917
+    eval epoch:22 step: 3500 loss:0.093367 acc:0.989583
+    saving the best_model...
+    train epoch:25 step: 4000 loss:0.042138 acc:0.989583
+    eval epoch:25 step: 4000 loss:0.042138 acc:0.989583
+    eval epoch:28 step: 4500 loss:0.118681 acc:0.958333
+    eval epoch:32 step: 5000 loss:0.033001 acc:0.989583
+    eval epoch:35 step: 5500 loss:0.008753 acc:1.000000
+    saving the best_model...
+    train epoch:38 step: 6000 loss:0.102030 acc:0.958333
+    eval epoch:38 step: 6000 loss:0.102030 acc:0.958333
+    eval epoch:41 step: 6500 loss:0.005777 acc:1.000000
+    eval epoch:44 step: 7000 loss:0.004515 acc:1.000000
+    eval epoch:48 step: 7500 loss:0.003284 acc:1.000000
 
 
 ## 五、模型测试
@@ -389,7 +404,7 @@ print('the model answer: %s=%s' % (input_text, result))
 print('the true answer: %s=%s' % (input_text, eval(input_text)))
 ```
 
-    the model answer: 12+40=51
+    the model answer: 12+40=52 
     the true answer: 12+40=52
 
 

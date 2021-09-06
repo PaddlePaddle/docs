@@ -78,14 +78,14 @@ array([[1., 2., 3.],
        [4., 5., 6.]], dtype=float32)
 ```
 
-**Tensor**不仅支持 floats、ints 类型数据，也支持 complex numbers数据：
+**Tensor**不仅支持 floats、ints 类型数据，也支持 complex numbers数据，如果输入为复数数据，则**Tensor**的dtype为 ``complex64`` 或 ``complex128`` ，其每个元素均为1个复数：
 
 ```python
-ndim_2_complex_tensor = paddle.to_tensor([[1+1j, 2+2j],
-                                          [3+3j, 4+4j]])
+ndim_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
+                                  [4.0, 5.0, 6.0]])
+print(ndim_2_tensor)                                    
 ```
 
-如果输入为复数数据，则**Tensor**的dtype为 ``complex64`` 或 ``complex128`` ，其每个元素均为1个复数：
 ```text
 Tensor(shape=[2, 2], dtype=complex64, place=CUDAPlace(0), stop_gradient=True,
        [[(1+1j), (2+2j)],
@@ -482,4 +482,4 @@ x.matmul(y)                   #矩阵乘法
 ```
 需要注意，Paddle中Tensor的操作符均为非inplace操作，即 ``x.add(y)`` 不会在**tensor x**上直接进行操作，而会返回一个新的**Tensor**来表示运算结果。
 
-更多Tensor操作相关的API，请参考 [class paddle.Tensor](../../../api/paddle/tensor/creation/Tensor_cn.html)
+更多Tensor操作相关的API，请参考 [class paddle.Tensor](../../../api/paddle/Tensor_cn.html)

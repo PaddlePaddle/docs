@@ -3,7 +3,7 @@
 DataParallel
 ------------
 
-.. py:class:: paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer_size=1, find_unused_parameters=True)
+.. py:class:: paddle.DataParallel(layers, strategy=None, comm_buffer_size=25, last_comm_buffer_size=1, find_unused_parameters=False)
 
 
 通过数据并行模式执行动态图模型。
@@ -27,58 +27,22 @@ DataParallel
     - **strategy** (ParallelStrategy，可选) - (deprecated) 数据并行的策略，包括并行执行的环境配置。默认为None。
     - **comm_buffer_size** (int，可选) - 它是通信调用（如NCCLAllReduce）时，参数梯度聚合为一组的内存大小（MB）。默认值：25。
     - **last_comm_buffer_size** （float，可选）它限制通信调用中最后一个缓冲区的内存大小（MB）。减小最后一个通信缓冲区的大小有助于提高性能。默认值：1。默认值：1    
-    - **find_unused_parameters** (bool， 可选) 是否在模型forward函数的返回值的所有张量中，遍历整个向后图。对于不包括在loss计算中的参数，其梯度将被预先标记为ready状态用于后续多卡间的规约操作。请注意，模型参数的所有正向输出必须参与loss的计算以及后续的梯度计算。 否则，将发生严重错误。请注意，将find_unused_parameters设置为True会影响计算性能， 因此，如果确定所有参数都参与了loss计算和自动反向图的构建，请将其设置为False。默认值：True。
+    - **find_unused_parameters** (bool， 可选) 是否在模型forward函数的返回值的所有张量中，遍历整个向后图。对于不包括在loss计算中的参数，其梯度将被预先标记为ready状态用于后续多卡间的规约操作。请注意，模型参数的所有正向输出必须参与loss的计算以及后续的梯度计算。 否则，将发生严重错误。请注意，将find_unused_parameters设置为True会影响计算性能， 因此，如果确定所有参数都参与了loss计算和自动反向图的构建，请将其设置为False。默认值：False。
     
 返回：支持数据并行的 ``Layer``
 
 返回类型：Layer实例
 
 **代码示例**：
+COPY-FROM: paddle.DataParallel
 
-.. code-block:: python
+.. py:function:: no_sync()
 
-    import paddle
-    import paddle.nn as nn
-    import paddle.optimizer as opt
-    import paddle.distributed as dist
+用于暂停梯度同步的上下文管理器。在no_sync()中参数梯度只会在模型上累加；直到with之外的第一个forward-backward，梯度才会被同步。
 
-    class LinearNet(nn.Layer):
-        def __init__(self):
-            super(LinearNet, self).__init__()
-            self._linear1 = nn.Linear(10, 10)
-            self._linear2 = nn.Linear(10, 1)
-            
-        def forward(self, x):
-            return self._linear2(self._linear1(x))
+**代码示例**
 
-    def train():
-        # 1. initialize parallel environment
-        dist.init_parallel_env()
-
-        # 2. create data parallel layer & optimizer
-        layer = LinearNet()
-        dp_layer = paddle.DataParallel(layer)
-
-        loss_fn = nn.MSELoss()
-        adam = opt.Adam(
-            learning_rate=0.001, parameters=dp_layer.parameters())
-
-        # 3. run layer
-        inputs = paddle.randn([10, 10], 'float32')
-        outputs = dp_layer(inputs)
-        labels = paddle.randn([10, 1], 'float32')
-        loss = loss_fn(outputs, labels)
-        
-        loss.backward()
-
-        adam.step()
-        adam.clear_grad()
-
-    if __name__ == '__main__':
-        # 1. start by ``paddle.distributed.spawn`` (default)
-        dist.spawn(train, nprocs=2)
-        # 2. start by ``paddle.distributed.launch``
-        # train()
+COPY-FROM: paddle.DataParallel.no_sync
 
 .. py:method:: state_dict(destination=None, include_sublayers=True)
 
@@ -91,19 +55,8 @@ DataParallel
 返回：dict， 包含所有parameters和持久的buffers的dict
 
 **代码示例**
+COPY-FROM: paddle.DataParallel.state_dict
 
-.. code-block:: python
-
-    import paddle
-    import paddle.distributed as dist
-
-    dist.init_parallel_env()
-
-    emb = fluid.dygraph.Embedding([10, 10])
-    emb = fluid.dygraph.DataParallel(emb)
-
-    state_dict = emb.state_dict()
-    paddle.save(state_dict, "paddle_dy.pdparams")
 
 .. py:method:: set_state_dict(state_dict, use_structured_name=True)
 
@@ -117,18 +70,4 @@ DataParallel
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.distributed as dist
-
-    dist.init_parallel_env()
-
-    emb = paddle.nn.Embedding(10, 10)
-    emb = fluid.dygraph.DataParallel(emb)
-
-    state_dict = emb.state_dict()
-    paddle.save(state_dict, "paddle_dy.pdparams")
-
-    para_state_dict = paddle.load("paddle_dy.pdparams")
-    emb.set_state_dict(para_state_dict)
+COPY-FROM: paddle.DataParallel.set_state_dict
