@@ -14,6 +14,7 @@ paddle 目录下包含tensor、device、framework相关API以及某些高层API�
 -  :ref:`tensor random相关 <tensor_random>`
 -  :ref:`tensor线性代数相关 <tensor_linalg>`
 -  :ref:`tensor元素操作相关（如：转置，reshape等） <tensor_manipulation>`
+-  :ref:`爱因斯坦求和 <einsum>`
 -  :ref:`framework相关 <about_framework>`
 -  :ref:`device相关 <about_device>`
 -  :ref:`高层API相关 <about_hapi>`
@@ -237,6 +238,7 @@ tensor线性代数相关
     " :ref:`paddle.dot <cn_api_paddle_tensor_linalg_dot>` ", "计算向量的内积"
     " :ref:`paddle.histogram <cn_api_tensor_histogram>` ", "计算输入张量的直方图"
     " :ref:`paddle.matmul <cn_api_tensor_matmul>` ", "计算两个Tensor的乘积，遵循完整的广播规则"
+    " :ref:`paddle.matrix_power <cn_api_tensor_matrix_power>` ", "计算一个（或一批）方阵的 n 次幂"
     " :ref:`paddle.mv <cn_api_tensor_mv>` ", "计算矩阵 x 和向量 vec 的乘积"
     " :ref:`paddle.norm <cn_api_tensor_norm>` ", "计算给定Tensor的矩阵范数（Frobenius 范数）和向量范数（向量1范数、2范数、或者通常的p范数）"
     " :ref:`paddle.rank <cn_api_fluid_layers_rank>` ", "计算输入Tensor的维度（秩）"
@@ -288,6 +290,16 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.unsqueeze_ <cn_api_paddle_tensor_unsqueeze_>` ", "Inplace 版本的 unsqueeze API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.unstack <cn_api_fluid_layers_unstack>` ", "该OP将单个dim为 D 的Tensor沿 axis 轴unpack为 num 个dim为 (D-1) 的Tensor"
 
+.. einsum:
+
+爱因斯坦求和
+：：：：：：
+
+.. csv-table::
+    :header: "API名称", "API功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.einsum <cn_api_tensor_einsum>` ", "根据爱因斯坦标记对多个张量进行爱因斯坦求和"
 
 .. _about_framework:
 
@@ -303,6 +315,7 @@ framework相关
     " :ref:`paddle.CUDAPlace <cn_api_fluid_CUDAPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 或 LoDTensor 的 GPU 设备"
     " :ref:`paddle.DataParallel <cn_api_fluid_dygraph_DataParallel>` ", "通过数据并行模式执行动态图模型"
     " :ref:`paddle.NPUPlace <cn_api_fluid_NPUPlace>` ", "一个设备描述符，指NCPUPlace则Tensor将被自动分配在该设备上，并且模型将会运行在该设备上"
+    " :ref:`paddle.disable_signal_handler <cn_api_fluid_disable_signal_handler>` ", "关闭Paddle系统信号处理方法"
     " :ref:`paddle.disable_static <cn_api_paddle_disable_static>` ", "关闭静态图模式"
     " :ref:`paddle.enable_static <cn_api_paddle_enable_static>` ", "开启静态图模式"
     " :ref:`paddle.get_default_dtype <cn_api_paddle_framework_get_default_dtype>` ", "得到当前全局的dtype"

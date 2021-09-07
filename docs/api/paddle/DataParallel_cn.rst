@@ -36,6 +36,14 @@ DataParallel
 **代码示例**：
 COPY-FROM: paddle.DataParallel
 
+.. py:function:: no_sync()
+
+用于暂停梯度同步的上下文管理器。在no_sync()中参数梯度只会在模型上累加；直到with之外的第一个forward-backward，梯度才会被同步。
+
+**代码示例**
+
+COPY-FROM: paddle.DataParallel.no_sync
+
 .. py:method:: state_dict(destination=None, include_sublayers=True)
 
 获取当前层及其子层的所有parameters和持久的buffers。并将所有parameters和buffers存放在dict结构中。
