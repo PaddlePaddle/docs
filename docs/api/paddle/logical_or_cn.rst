@@ -14,8 +14,8 @@ logical_or
     ``paddle.logical_or`` 遵守broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
 
 参数：
-        - **x** （Tensor）- 输入的 `Tensor` ，支持的数据类型为bool，int8，int16，in32，in64，float32，float64。
-        - **y** （Tensor）- 输入的 `Tensor` ，支持的数据类型为bool，int8，int16，in32，in64，float32，float64。
+        - **x** （Tensor）- 输入的 `Tensor` ，支持的数据类型为bool, int8, int16, in32, in64, float32, float64。
+        - **y** （Tensor）- 输入的 `Tensor` ，支持的数据类型为bool, int8, int16, in32, in64, float32, float64。
         - **out** （Tensor，可选）- 指定算子输出结果的 `Tensor` ，可以是程序中已经创建的任何Tensor。默认值为None，此时将创建新的Tensor来保存输出结果。
         - **name** （str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
