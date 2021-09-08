@@ -19,7 +19,7 @@ matrix_rank
         请注意，如果 ``x`` 是一批矩阵，以这种方式为每批矩阵计算 ``tol`` 。
     - **hermitian** (Tensor): 表示 ``x`` 是否是Hermitian矩阵。 默认值：False。
         当hermitian=True时， ``x`` 被假定为Hermitian矩阵，但在函数内部不会对 ``x`` 进行检查。我们仅仅使用矩阵的下三角来进行计算。
-    - **name** (str, 可选): OP的名称，默认值：None。 更多信息请参考: ref:`api_guide_Name`.
+    - **name** (str, 可选): OP的名称，默认值：None。 更多信息请参考 :ref:`api_guide_Name`.
 
 
 返回：
