@@ -29,4 +29,5 @@ Tensor: 输入 `x` 自身。
     mesh = dist.ProcessMesh([[2, 4, 5], [0, 1, 3]])
     mask = [[1, 0, 1], [0, 1, 0]]
     x = paddle.ones([4, 6])
+    dist.shard_tensor(x, mesh, [-1, 1])
     dist.set_shard_mask(x, mask)
