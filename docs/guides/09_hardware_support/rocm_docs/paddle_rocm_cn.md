@@ -5,7 +5,7 @@
 
 ## 图像分类
 
-| 模型               | 领域     | 模型readme                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
+| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
 | ResNet50  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/ResNet_and_vd.md) |  动态图  | 支持 | 支持 | 支持 |
 | ResNet101  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/ResNet_and_vd.md) |  动态图  | 支持 | 支持 | 支持 |
@@ -20,7 +20,7 @@
 
 ## 目标检测
 
-| 模型               | 领域     | 模型readme                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
+| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
 | YOLOv3  | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/yolov3) |  动态图  | 支持 | 支持 | 支持 |
 | PP-YOLO | 目标检测 | [模型链接](hhttps://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/ppyolo) |  动态图  | 支持 | 支持 | 支持 |
@@ -41,7 +41,7 @@
 
 ## 图像分割
 
-| 模型               | 领域     | 模型readme                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
+| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
 | ANN | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/ann) |  动态图  | 支持 | 不支持 | 支持 |
 | BiSeNetV2 | 图像分割 | [模型链接](https://github.com/PaddlePaddle/PaddleSeg/tree/release/v2.0/configs/bisenet) |  动态图  | 支持 | 不支持 | 支持 |
@@ -61,7 +61,7 @@
 
 ## 自然语言处理
 
-| 模型               | 领域     | 模型readme                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
+| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
 | BERT | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/language_model/bert) |  动态图  | 支持 | 支持 | 支持 |
 | XLNet | NLP | [模型链接](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/language_model/xlnet) |  动态图  | 支持 | 支持 | 支持 |
@@ -74,7 +74,7 @@
 
 ## 字符识别
 
-| 模型               | 领域     | 模型readme                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
+| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
 | OCR-DB | 文本检测 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.3/doc/doc_ch/detection.md) |  动态图  | 支持 | 支持 | 支持 |
 | CRNN-CTC | 文本识别 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/release/2.3/doc/doc_ch/recognition.md) |  动态图  | 支持 | 支持 | 支持 |
@@ -83,7 +83,7 @@
 
 ## 推荐系统
 
-| 模型               | 领域     | 模型readme                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
+| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
 | DeepFM | 推荐系统 | [模型链接](https://github.com/PaddlePaddle/PaddleRec/tree/release/2.1.0/models/rank/deepfm) |  动态图  | 支持 | 不支持 | 支持 |
 | Wide&Deep | 推荐系统 | [模型链接](https://github.com/PaddlePaddle/PaddleRec/tree/release/2.1.0/models/rank/wide_deep) |  动态图  | 支持 | 不支持 | 支持 |
@@ -92,7 +92,7 @@
 
 ## 视频分类
 
-| 模型               | 领域     | 模型readme                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
+| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
 | SlowFast | 视频分类 | [模型链接](https://github.com/PaddlePaddle/PaddleVideo/blob/develop/docs/zh-CN/model_zoo/recognition/slowfast.md) |  动态图  | 支持 | 支持 | 支持 |
 | TSM | 视频分类 | [模型链接](https://github.com/PaddlePaddle/PaddleVideo/blob/develop/docs/zh-CN/model_zoo/recognition/tsm.md) |  动态图  | 支持 | 支持 | 支持 |
@@ -103,14 +103,14 @@
 
 ## 语音合成
 
-| 模型               | 领域     | 模型readme                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
+| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
 | Transformer TTS | 语音合成 | [模型链接](https://github.com/PaddlePaddle/Parakeet/tree/develop/examples/transformer_tts) |  动态图  | 支持 | 支持 | 支持 |
 | WaveFlow | 语音合成 | [模型链接](https://github.com/PaddlePaddle/Parakeet/tree/develop/examples/waveflow) |  动态图  | 支持 | 支持 | 支持 |
 
 ## 生成对抗网络
 
-| 模型               | 领域     | 模型readme                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
+| 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
 | Pix2Pix | 风格迁移 | [模型链接](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/zh_CN/tutorials/pix2pix_cyclegan.md) |  动态图  | 支持 | 支持 | 支持 |
 | CycleGAN | 风格迁移 | [模型链接](https://github.com/PaddlePaddle/PaddleGAN/blob/develop/docs/zh_CN/tutorials/pix2pix_cyclegan.md) |  动态图  | 支持 | 支持 | 支持 |
