@@ -52,3 +52,4 @@ cumprod
 
         print(y.dtype)
         # paddle.float64
+
