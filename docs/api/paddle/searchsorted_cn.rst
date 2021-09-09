@@ -8,7 +8,7 @@ searchsorted
 将根据给定的``values``在``sorted_sequence``的最后一个维度查找合适的索引。
 
 参数：
-    - **sorted_sequence** (Tensor) - 输入的多维 Tensor，支持的数据类型：float32、float64、int32、int64。该Tensor的数值在其最后一个维度递增。
+    - **sorted_sequence** (Tensor) - 输入的多维Tensor，支持的数据类型：float32、float64、int32、int64。该Tensor的数值在其最后一个维度递增。
     - **values** (Tensor) - 输入的多维Tensor，支持的数据类型：float32、float64、int32、int64。
     - **out_int32** (bool，可选) - 输出的数据类型支持int32、int64。默认值为False，表示默认的输出数据类型为int64。
     - **right** (bool，可选) - 根据给定``values``在``sorted_sequence``查找对应的上边界或下边界。默认值为False，表示在``sorted_sequence``的查找给定``values``的下边界。
