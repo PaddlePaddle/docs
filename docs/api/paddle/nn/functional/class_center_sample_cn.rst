@@ -3,7 +3,7 @@
 class_center_sample
 -------------------------------
 
-.. py:function:: paddle.nn.functional.class_center_sample(label, num_classes, num_samples, group=None, seed=None)
+.. py:function:: paddle.nn.functional.class_center_sample(label, num_classes, num_samples, group=None)
 
 
 类别中心采样方法是提出于 PartialFC 论文，目的是从全量的类别中心采样一个子集类别中心参与训练。采样过程也非常简单直观：
@@ -24,7 +24,6 @@ class_center_sample
     - **num_classes** (int) - 一个正整数，表示当前卡的类别数，注意每张卡的 ``num_classes`` 可以是不同的值。
     - **num_samples** (int) - 一个正整数，表示当前卡采样的类别中心数量。
     - **group** (Group, 可选) - 通信组的抽象描述，具体可以参考 ``paddle.distributed.collective.Group``。默认值为 ``None``。
-    - **seed** （int, 可选）- 随机数种子。默认值为 `None`。
 
 返回:
     ``Tensor`` 二元组 - (``remapped_label``, ``sampled_class_center``)，``remapped_label`` 是重新映射后的标签，``sampled_class_center`` 是所采样的类别中心。
