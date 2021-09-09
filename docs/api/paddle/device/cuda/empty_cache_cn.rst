@@ -17,9 +17,8 @@ empty_cache
 
     # required: gpu
     paddle.set_device("gpu")
-    # 查看nvidia-smi
+    # nvidia-smi
     tensor = paddle.randn([512, 512, 512], "float")
     del tensor
-    # 查看nvidia-smi
-    # 清理空闲显存
+    # nvidia-smi
     paddle.device.cuda.empty_cache()
