@@ -188,7 +188,7 @@ tensor元素查找相关
     " :ref:`paddle.masked_select <cn_api_tensor_masked_select>` ", "返回一个1-D 的Tensor, Tensor的值是根据 mask 对输入 x 进行选择的"
     " :ref:`paddle.nonzero <cn_api_tensor_search_nonzero>` ", "返回输入 x 中非零元素的坐标"
     " :ref:`paddle.sort <cn_api_tensor_sort>` ", "对输入变量沿给定轴进行排序，输出排序好的数据，其维度和输入相同"
-    " :ref:`paddle.searchsorted <cn_api_tensor_searchsorted>` ","将根据给定的 values 在 sorted_sequence 的最后一个维度查找合适的索引"
+    " :ref:`paddle.searchsorted <cn_api_tensor_searchsorted>` ", "将根据给定的 values 在 sorted_sequence 的最后一个维度查找合适的索引"
     " :ref:`paddle.topk <cn_api_tensor_cn_topk>` ", "沿着可选的 axis 查找topk最大或者最小的结果和结果所在的索引信息"
     " :ref:`paddle.where <cn_api_tensor_where>` ", "该OP返回一个根据输入 condition, 选择 x 或 y 的元素组成的多维 Tensor"
 
