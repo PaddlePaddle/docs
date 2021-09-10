@@ -14,7 +14,8 @@ searchsorted
     - **right** (bool，可选) - 根据给定 ``values`` 在 ``sorted_sequence`` 查找对应的上边界或下边界。默认值为False，表示在 ``sorted_sequence`` 的查找给定 ``values`` 的下边界。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
-返回：Tensor(与 ``values`` 维度相同)，如果参数 ``out_int32`` 为False，则返回数据类型为int32的Tensor，否则将返回int64的Tensor。
+返回：
+Tensor(与 ``values`` 维度相同)，如果参数 ``out_int32`` 为False，则返回数据类型为int32的Tensor，否则将返回int64的Tensor。
 
 
 
