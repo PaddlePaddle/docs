@@ -48,7 +48,7 @@ tensor数学操作
     " :ref:`paddle.cos <cn_api_fluid_layers_cos>` ", "余弦函数"
     " :ref:`paddle.cosh <cn_api_fluid_layers_cosh>` ", "双曲余弦函数"
     " :ref:`paddle.cumsum <cn_api_tensor_cn_cumsum>` ", "沿给定 axis 计算张量 x 的累加和"
-    " :ref:`paddle.cumsum <cn_api_tensor_cn_cumprod>` ", "沿给定 axis 计算张量 x 的累乘"
+    " :ref:`paddle.cumprod <cn_api_tensor_cn_cumprod>` ", "沿给定 dim 计算张量 x 的累乘"
     " :ref:`paddle.digamma <cn_api_paddle_digamma>` ", "逐元素计算输入x的digamma函数值"
     " :ref:`paddle.divide <cn_api_tensor_divide>` ", "逐元素相除算子"
     " :ref:`paddle.equal <cn_api_tensor_equal>` ", "该OP返回 x==y 逐元素比较x和y是否相等，相同位置的元素相同则返回True，否则返回False"
