@@ -1924,3 +1924,12 @@ where(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_where`
+
+eigvals(x, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_eigvals`
