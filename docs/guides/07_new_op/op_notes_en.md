@@ -160,9 +160,6 @@ At present, it is found that the result of the convolution operation in cudnn, M
 
 For this purpose, some FLAGS is added to the Fluid. For example, FLAGS_cudnn_deterministic is used to force cudnn to use the deterministic algorithm, and FLAGS_cpu_deterministic to force the CPU-side calculation to use the deterministic method.
 
-### 2.On/Off of WITH_FAST_MATH
-If WITH_FAST_MATH is ON, NVCC will use --use_fast_math when compiling Paddle and Egien. This may cause some operations in CUDA to get faster on the condition that they lose some precision, such as log, exp, tanh. But it may lead to wrong results of some operations, such as pow operation, please read [torch/DEPRECEATED-torch7-distro#132](https://github.com/torch/DEPRECEATED-torch7-distro/issues/132) for specific reasons.
-
 ## Other
 ### 1. Error message
 The Enforce prompt message cannot be empty and needs to be written, because the error message can analyze the cause of the error more quickly and conveniently.
