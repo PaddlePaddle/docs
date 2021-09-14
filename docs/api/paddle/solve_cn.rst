@@ -33,14 +33,19 @@ solve
 
 .. code-block:: python
 
-    import paddle
-    
+    # a square system of linear equations:
+    # 2*X0 + X1 = 9
+    # X0 + 2*X1 = 8
 
-    x = paddle.to_tensor([[1, 1, 1], [0, 2, 5], [2, 5, -1]], dtype="float64")
-    y = paddle.to_tensor([[6], [-4], [27]], dtype="float64")
-    
-    out = paddle.solve(x, y)
-    #  [[ 5.],
-    #   [ 3.],
-    #   [-2.]]
-    
+    import paddle
+    import numpy as np
+  
+    np_x = np.array([[3, 1],[1, 2]])
+    np_y = np.array([9, 8])
+    x = paddle.to_tensor(np_x, dtype="float64")
+    y = paddle.to_tensor(np_y, dtype="float64")
+    out = paddle.linalg.solve(x, y)  
+
+    print(out)
+    # [2., 3.])  
+
