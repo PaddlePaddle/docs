@@ -1,4 +1,3 @@
-get_device_capability_cn.rst
 .. _cn_api_device_cuda_get_device_capability:
 
 get_device_capability
