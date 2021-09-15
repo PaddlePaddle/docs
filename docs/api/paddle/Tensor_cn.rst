@@ -798,6 +798,46 @@ expand_as(y, name=None)
 
 请参考 :ref:`cn_api_tensor_expand_as`
 
+
+fill_(x, value, name=None)
+:::::::::
+以value值填充Tensor x中所有数据。对x的原地Inplace修改。
+
+参数：
+    - **x** (Tensor) - 需要修改的原始Tensor。
+    - **value** (float) - 以输入value值修改原始Tensor元素。
+    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+
+返回：修改原始Tensor x的所有元素为value以后的新的Tensor。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        tensor = paddle.to_tensor([0,1,2,3,4])
+        tensor.fill_(0)
+        print(tensor.tolist())   #[0, 0, 0, 0, 0]
+
+
+zero_(x, name=None)
+:::::::::
+以 0 值填充Tensor x中所有数据。对x的原地Inplace修改。
+
+参数：
+    - **x** (Tensor) - 需要修改的原始Tensor。
+    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+
+返回：修改原始Tensor x的所有元素为 0 以后的新的Tensor。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        tensor = paddle.to_tensor([0,1,2,3,4])
+        tensor.zero_()
+        print(tensor.tolist())   #[0, 0, 0, 0, 0]
+
+
 fill_diagonal_(x, value, offset=0, wrap=False, name=None)
 :::::::::
 以value值填充输入Tensor x的对角线元素值。对x的原地Inplace修改。
