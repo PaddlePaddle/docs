@@ -46,7 +46,7 @@ scatter_nd_add
 
 
 参数：
-    - **ref** (Variable) - 输入张量，数据类型可以是float32，float64。
+    - **ref** (Variable) - 输入张量，数据类型可以是int32，int64，float32，float64。
     - **index** (Variable) - 输入的索引张量，数据类型为非负int32或非负int64。它的维度 :code:`index.rank` 必须大于1，并且 :code:`index.shape[-1] <= ref.rank`
     - **updates** (Variable) - 输入的更新张量，它必须和 :code:`ref` 有相同的数据类型。形状必须是 :code:`index.shape[:-1] + ref.shape[index.shape[-1]:]` 。
     - **name** (string) - 该层的名字，默认值为None，表示会自动命名。
