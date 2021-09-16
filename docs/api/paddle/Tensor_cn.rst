@@ -569,7 +569,7 @@ cond(x, p=None, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cond`
+请参考 :ref:`cn_api_linalg_cond`
 
 conj(name=None)
 :::::::::
