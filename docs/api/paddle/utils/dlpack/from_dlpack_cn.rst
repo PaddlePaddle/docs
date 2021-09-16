@@ -5,10 +5,10 @@ from_dlpack
 
 .. py:function:: paddle.utils.dlpack.from_dlpack(dlpack)
 
-将DLPack解码为Tensor对象。注意一个dltensor只能被解码一次。
+将DLPack解码为Tensor对象。注意一个DLPack只能被解码一次。
 
 参数：
-  - **dlpack** (PyCapsule) - 带有dltensor的PyCapsule对象。
+  - **dlpack** (PyCapsule) - DLPack，即带有dltensor的PyCapsule对象。
 
 返回：
   - **out** (Tensor) - 从DLPack中解码得到的Tensor。
