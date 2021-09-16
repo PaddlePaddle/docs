@@ -807,6 +807,108 @@ expand_as(y, name=None)
 
 请参考 :ref:`cn_api_tensor_expand_as`
 
+
+fill_(x, value, name=None)
+:::::::::
+以value值填充Tensor x中所有数据。对x的原地Inplace修改。
+
+参数：
+    - **x** (Tensor) - 需要修改的原始Tensor。
+    - **value** (float) - 以输入value值修改原始Tensor元素。
+    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+
+返回：修改原始Tensor x的所有元素为value以后的新的Tensor。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        tensor = paddle.to_tensor([0,1,2,3,4])
+        tensor.fill_(0)
+        print(tensor.tolist())   #[0, 0, 0, 0, 0]
+
+
+zero_(x, name=None)
+:::::::::
+以 0 值填充Tensor x中所有数据。对x的原地Inplace修改。
+
+参数：
+    - **x** (Tensor) - 需要修改的原始Tensor。
+    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+
+返回：修改原始Tensor x的所有元素为 0 以后的新的Tensor。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        tensor = paddle.to_tensor([0,1,2,3,4])
+        tensor.zero_()
+        print(tensor.tolist())   #[0, 0, 0, 0, 0]
+
+
+fill_diagonal_(x, value, offset=0, wrap=False, name=None)
+:::::::::
+以value值填充输入Tensor x的对角线元素值。对x的原地Inplace修改。
+
+参数：
+    - **x** (Tensor) - 需要修改对角线元素值的原始Tensor。
+    - **value** (float) - 以输入value值修改原始Tensor对角线元素。
+    - **offset** (int, optional) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为0。
+    - **wrap** (bool, optional) - 对于2维Tensor，height>width时是否循环填充，默认为False。
+    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+
+返回：修改原始Tensor x的对角线元素为value以后的新的Tensor。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.ones((4, 3))
+        x.fill_diagonal_(2)
+        print(x.tolist())   #[[2.0, 1.0, 1.0], [1.0, 2.0, 1.0], [1.0, 1.0, 2.0], [1.0, 1.0, 1.0]]
+
+        x = paddle.ones((7, 3))
+        x.fill_diagonal_(2, wrap=True)
+        print(x)    #[[2.0, 1.0, 1.0], [1.0, 2.0, 1.0], [1.0, 1.0, 2.0], [1.0, 1.0, 1.0], [2.0, 1.0, 1.0], [1.0, 2.0, 1.0], [1.0, 1.0, 2.0]]
+
+fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
+:::::::::
+将输入Tensor y填充到Tensor x的以dim1、dim2所指定对角线维度作为最后一个维度的局部Tensor中，输入Tensor x其余纬度作为该局部Tensor的shape中的前几个维度。
+
+参数：
+    - **x** (Tensor) - 需要填充局部对角线区域的原始Tensor。
+    - **y** (Tensor) - 需要被填充到原始Tensor x对角线区域的输入Tensor。
+    - **offset** (int, optional) - 选取局部区域对角线位置相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为0。
+    - **dim1** (int, optional) - 指定对角线所参考第一个维度，默认为0。
+    - **dim2** (int, optional) - 指定对角线所参考第二个维度，默认为1。
+    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+
+返回：将y的值填充到输入Tensor x对角线区域以后所组合成的新Tensor。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.ones((4, 3)) * 2
+        y = paddle.ones((3,))
+        nx = x.fill_diagonal_tensor(y)
+        print(nx.tolist())   #[[1.0, 2.0, 2.0], [2.0, 1.0, 2.0], [2.0, 2.0, 1.0], [2.0, 2.0, 2.0]]
+
+fill_diagonal_tensor_(x, y, offset=0, dim1=0, dim2=1, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_fill_diagonal_tensor` API，对输入 `x` 采用 Inplace 策略 。
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.ones((4, 3)) * 2
+        y = paddle.ones((3,))
+        x.fill_diagonal_tensor_(y)
+        print(x.tolist())   #[[1.0, 2.0, 2.0], [2.0, 1.0, 2.0], [2.0, 2.0, 1.0], [2.0, 2.0, 2.0]]
+
 flatten(start_axis=0, stop_axis=-1, name=None)
 :::::::::
 
@@ -1853,6 +1955,36 @@ unbind(axis=0)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_unbind`
+
+uniform_(min=-1.0, max=1.0, seed=0, name=None)
+:::::::::
+
+Inplace版本的 :ref:`cn_api_tensor_uniform`, 返回一个从均匀分布采样的随机数填充的Tensor。输出Tensor将被置于输入x的位置。
+
+参数：
+    - **x** (Tensor) - 待被随机数填充的输入Tensor。
+    - **min** (float|int, optional) - 生成随机数的下界, min包含在该范围内。默认为-1.0。
+    - **max** (float|int, optional) - 生成随机数的上界，max不包含在该范围内。默认为1.0。
+    - **seed** (int, optional) - 用于生成随机数的随机种子。如果seed为0，将使用全局默认生成器的种子（可通过paddle.seed设置）。
+                                 注意如果seed不为0，该操作每次将生成同一个随机值。默认为0。
+    - **name** (str, optional) - 默认值为None。通常用户不需要设置这个属性。更多信息请参见 :ref:`api_guide_Name` 。
+
+返回：由服从范围在[min, max)的均匀分布的随机数所填充的输入Tensor x。
+
+返回类型：Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        x = paddle.ones(shape=[3, 4])
+        x.uniform_()
+        print(x)       
+        # result is random
+        # Tensor(shape=[3, 4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+        #     [[ 0.97134161, -0.36784279, -0.13951409, -0.48410338],
+        #      [-0.15477282,  0.96190143, -0.05395842, -0.62789059],
+        #      [-0.90525085,  0.63603556,  0.06997657, -0.16352385]])
 
 unique(return_index=False, return_inverse=False, return_counts=False, axis=None, dtype=int64, name=None)
 :::::::::

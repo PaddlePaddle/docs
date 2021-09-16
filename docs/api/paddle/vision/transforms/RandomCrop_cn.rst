@@ -15,10 +15,16 @@ RandomCrop
     - pad_if_needed (boolean，可选) - 如果裁剪后的图像小于期望的大小时，是否对裁剪后的图像进行填充，以避免引发异常，默认值：False，保持初次裁剪后的大小，不填充。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
+形状
+:::::::::
+
+    - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
+    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回随机裁剪后的图像数据。
+
 返回
 :::::::::
 
-    ``numpy ndarray``，随机裁剪后的图像。
+    计算 ``RandomCrop`` 的可调用对象。
 
 代码示例
 :::::::::
