@@ -102,7 +102,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.3.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
@@ -116,14 +116,14 @@
 2.2.3 CUDA11.0的PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.2.post110 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.3.post110 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
 2.2.4 CUDA11.2的PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.1.2.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.1.3.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
@@ -140,25 +140,25 @@
   * cpu、mkl版本noavx机器安装：
 
   ```
-  python -m pip download paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.1.3 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * cpu、openblas版本noavx机器安装：
 
   ```
-  python -m pip download paddlepaddle==2.1.2 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.1.3 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index --no-deps
   ```
 
   * gpu版本cuda10.1 noavx机器安装：
 
   ```
-  python -m pip download paddlepaddle-gpu==2.1.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle-gpu==2.1.3.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * gpu版本cuda10.2 noavx机器安装：
 
   ```
-  python -m pip download paddlepaddle-gpu==2.1.2 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle-gpu==2.1.3 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。
