@@ -2026,3 +2026,12 @@ where(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_where`
+
+multi_dot(x, name=None)
+:::::::::
+
+返回：多个矩阵相乘后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_multi_dot`
