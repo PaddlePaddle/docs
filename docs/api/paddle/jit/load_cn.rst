@@ -175,7 +175,7 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
         for data in loader():
             exe.run(
                 static.default_main_program(),
-                feed=data, 
+                feed={'image': data[0], 'label': data[1]}, 
                 fetch_list=[avg_loss])
 
         model_path = "fc.example.model"
