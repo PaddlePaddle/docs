@@ -9,7 +9,15 @@ launch
 
 使用方法
 :::::::::
-COPY-FROM: paddle.distributed.launch:code-block-bash1 
+.. code-block:: bash
+    :name: code-block-bash1
+
+    python -m paddle.distributed.launch [-h] [--log_dir LOG_DIR] [--nproc_per_node NPROC_PER_NODE] [--run_mode RUN_MODE] [--gpus GPUS]
+                     [--selected_gpus GPUS] [--ips IPS] [--servers SERVERS] [--workers WORKERS] [--heter_workers HETER_WORKERS]
+                     [--worker_num WORKER_NUM] [--server_num SERVER_NUM] [--heter_worker_num HETER_WORKER_NUM]
+                     [--http_port HTTP_PORT] [--elastic_server ELASTIC_SERVER] [--job_id JOB_ID] [--np NP] [--scale SCALE]
+                     [--host HOST] [--force FORCE]
+                     training_script ...    
     
 基础参数
 :::::::::
@@ -71,36 +79,108 @@ Elastic 参数
 
 代码示例一 (collective, 单机)
 :::::::::
-COPY-FROM: paddle.distributed.launch:code-block-example-bash1
+.. code-block:: bash
+    :name: code-block-example-bash1
+
+    # For single node training using 4 gpus
+
+    python -m paddle.distributed.launch --gpus=0,1,2,3 train.py --lr=0.01
 
 代码示例二 (collective, 多机)
 :::::::::
-COPY-FROM: paddle.distributed.launch:code-block-example-bash2
+.. code-block:: bash
+    :name: code-block-example-bash2
+
+    # For multiple node training such as two node:192.168.0.16, 192.168.0.17
+
+    # On 192.168.0.16:
+
+    python -m paddle.distributed.launch --gpus=0,1,2,3 --ips=192.168.0.16,192.168.0.17 train.py --lr=0.01
+
+    # On 192.168.0.17:
+    python -m paddle.distributed.launch --gpus=0,1,2,3 --ips=192.168.0.16,192.168.0.17 train.py --lr=0.01
 
 代码示例三 (ps, cpu, 单机)
 :::::::::
-COPY-FROM: paddle.distributed.launch:code-block-example-bash3
+.. code-block:: bash
+    :name: code-block-example-bash3
+
+    # The emulated distributed environment using single node, 2 server and 4 worker
+
+    python -m paddle.distributed.launch --server_num=2 --worker_num=4 train.py --lr=0.01
 
 代码示例四 (ps, cpu, 多机)
 :::::::::
-COPY-FROM: paddle.distributed.launch:code-block-example-bash4
+.. code-block:: bash
+    :name: code-block-example-bash4
+
+    # For multiple node training such as two node:192.168.0.16, 192.168.0.17 with 2 servers and total 4 workers
+
+    # On 192.168.0.16:
+
+    python -m paddle.distributed.launch --servers="192.168.0.16:6170,192.168.0.17:6170" --workers="192.168.0.16:6171,192.168.0.16:6172,192.168.0.17:6171,192.168.0.17:6172" train.py --lr=0.01
+
+    # On 192.168.0.17:
+
+    python -m paddle.distributed.launch --servers="192.168.0.16:6170,192.168.0.17:6170" --workers="192.168.0.16:6171,192.168.0.16:6172,192.168.0.17:6171,192.168.0.17:6172" train.py --lr=0.01
 
 代码示例五 (ps, gpu, 单机)
 :::::::::
-COPY-FROM: paddle.distributed.launch:code-block-example-bash5
+.. code-block:: bash
+    :name: code-block-example-bash5
+
+    # The emulated distributed environment using single node, 2 server and 4 worker, each worker use single gpu
+
+    export CUDA_VISIBLE_DEVICES=0,1,2,3
+    python -m paddle.distributed.launch --server_num=2 --worker_num=4 train.py --lr=0.01
 
 代码示例六 (ps, gpu, 多机)
 :::::::::
-COPY-FROM: paddle.distributed.launch:code-block-example-bash6
+.. code-block:: bash
+    :name: code-block-example-bash6
+
+    # For multiple node training such as two node:192.168.0.16, 192.168.0.17 with 2 servers and total 4 workers
+
+    # On 192.168.0.16:
+
+    export CUDA_VISIBLE_DEVICES=0,1
+    python -m paddle.distributed.launch --servers="192.168.0.16:6170,192.168.0.17:6170" --workers="192.168.0.16:6171,192.168.0.16:6172,192.168.0.17:6171,192.168.0.17:6172" train.py --lr=0.01
+
+    # On 192.168.0.17:
+
+    export CUDA_VISIBLE_DEVICES=0,1
+    python -m paddle.distributed.launch --servers="192.168.0.16:6170,192.168.0.17:6170" --workers="192.168.0.16:6171,192.168.0.16:6172,192.168.0.17:6171,192.168.0.17:6172" train.py --lr=0.01
 
 代码示例七 (ps-heter, cpu + gpu, 单机)
 :::::::::
-COPY-FROM: paddle.distributed.launch:code-block-example-bash7
+.. code-block:: bash
+    :name: code-block-example-bash7
+
+    # The emulated distributed environment using single node, 2 server and 4 worker, two worker use gpu, two worker use cpu
+
+    export CUDA_VISIBLE_DEVICES=0,1
+    python -m paddle.distributed.launch --server_num=2 --worker_num=2 --heter_worker_num=2 train.py --lr=0.01
 
 代码示例八 (ps-heter, cpu + gpu, 多机)
 :::::::::
-COPY-FROM: paddle.distributed.launch:code-block-example-bash8
+.. code-block:: bash
+    :name: code-block-example-bash8
+
+    # For multiple node training such as two node:192.168.0.16, 192.168.0.17 with 2 servers and total 4 workers
+
+    # On 192.168.0.16:
+
+    export CUDA_VISIBLE_DEVICES=0
+    python -m paddle.distributed.launch --servers="192.168.0.16:6170,192.168.0.17:6170" --workers="192.168.0.16:6171,192.168.0.17:6171" --heter_workers="192.168.0.16:6172,192.168.0.17:6172" train.py --lr=0.01
+
+    # On 192.168.0.17:
+
+    export CUDA_VISIBLE_DEVICES=0
+    python -m paddle.distributed.launch --servers="192.168.0.16:6170,192.168.0.17:6170" --workers="192.168.0.16:6171,192.168.0.17:6171" --heter_workers="192.168.0.16:6172,192.168.0.17:6172" train.py --lr=0.01
 
 代码示例九 (elastic)
 :::::::::
-COPY-FROM: paddle.distributed.launch:code-block-example-bash9
+.. code-block:: bash
+    :name: code-block-example-bash9
+
+    python -m paddle.distributed.launch --elastic_server=127.0.0.1:2379 --np=2 --job_id=job1  --gpus=0,1,2,3 train.py
