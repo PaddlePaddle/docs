@@ -26,7 +26,6 @@ paddle
 	paddle_cn/clip_cn.rst
 	paddle_cn/CompiledProgram_cn.rst
 	paddle_cn/concat_cn.rst
-	paddle_cn/cond_cn.rst
 	paddle_cn/cos_cn.rst
 	paddle_cn/CPUPlace_cn.rst
 	paddle_cn/create_global_var_cn.rst

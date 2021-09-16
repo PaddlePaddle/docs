@@ -28,7 +28,6 @@ paddle.tensor
     tensor_cn/clamp_cn.rst
     tensor_cn/clip_cn.rst
     tensor_cn/concat_cn.rst
-    tensor_cn/cond_cn.rst
     tensor_cn/cos_cn.rst
     tensor_cn/create_tensor_cn.rst
     tensor_cn/crop_tensor_cn.rst
