@@ -145,3 +145,9 @@ def set_config(args):
     return config
 ```
 ----------
+
+##### 问题：模型训练时如何进行梯度裁剪？
+
++ 答复：设置Optimizer中的`grad_clip`参数值。
+
+----------
