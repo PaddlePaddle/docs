@@ -562,15 +562,6 @@ concat(axis=0, name=None)
 
 请参考 :ref:`cn_api_fluid_layers_concat`
 
-cond(x, p=None, name=None)
-:::::::::
-
-返回：计算后的Tensor
-
-返回类型：Tensor
-
-请参考 :ref:`cn_api_linalg_cond`
-
 conj(name=None)
 :::::::::
 
