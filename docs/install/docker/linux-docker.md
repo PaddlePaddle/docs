@@ -46,7 +46,7 @@
         docker pull paddlepaddle/paddle:[版本号]-gpu-cuda10.2-cudnn7
         ```
 
-    在`:`后请您填写PaddlePaddle版本号，例如当前版本`2.1.2`，更多请见[镜像简介](#dockers)。
+    在`:`后请您填写PaddlePaddle版本号，例如当前版本`2.1.3`，更多请见[镜像简介](#dockers)。
 
     上例中，`cuda10.2-cudnn7` 也仅作示意用，表示安装GPU版的镜像。如果您还想安装其他cuda/cudnn版本的镜像，可以将其替换成`cuda11.2-cudnn8`等。
 
@@ -133,20 +133,20 @@
     </thead>
     <tbody>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.2 </td>
-        <td> 安装了2.1.2版本paddle的CPU镜像 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.3 </td>
+        <td> 安装了2.1.3版本paddle的CPU镜像 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.2-jupyter </td>
-        <td> 安装了2.1.2版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.3-jupyter </td>
+        <td> 安装了2.1.3版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.2-gpu-cuda11.2-cudnn8 </td>
-        <td> 安装了2.1.2版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.3-gpu-cuda11.2-cudnn8 </td>
+        <td> 安装了2.1.3版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
     </tr>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.2-gpu-cuda10.2-cudnn7 </td>
-        <td> 安装了2.1.2版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.3-gpu-cuda10.2-cudnn7 </td>
+        <td> 安装了2.1.3版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
     </tr>
    </tbody>
 </table>
