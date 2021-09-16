@@ -33,6 +33,7 @@ Multi_dot会选择计算量最小的乘法顺序进行计算。(a, b)和(b, c)�
 ::::::::::
 
 .. code-block:: python
+
     import paddle
     import numpy as np
     # A * B
