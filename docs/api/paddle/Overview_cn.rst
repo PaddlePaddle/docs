@@ -248,6 +248,7 @@ tensor线性代数相关
     " :ref:`paddle.tril <cn_api_tensor_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为0"
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为0"
     " :ref: `paddle.eigvals <cn_api_tensor_eigvals>` ", "计算一个（或一批）方阵的特征值"
+    " :ref:`paddle.multi_dot<cn_api_tensor_multi_dot>` ", "计算多个矩阵相乘"
 
 .. _tensor_manipulation:
 

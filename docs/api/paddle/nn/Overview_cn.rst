@@ -355,6 +355,7 @@ Padding相关函数
     " :ref:`paddle.nn.functional.elu <cn_api_nn_cn_elu>` ", "elu激活函数"
     " :ref:`paddle.nn.functional.elu_ <cn_api_nn_cn_elu_>` ", "Inplace 版本的 elu API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.gelu <cn_api_nn_cn_gelu>` ", "gelu激活函数"
+    " :ref:`paddle.nn.functional.gumbel_softmax <cn_api_nn_cn_gumbel_softmax>` ", "gumbel_softmax采样激活函数"
     " :ref:`paddle.nn.functional.hardshrink <cn_api_nn_cn_hard_shrink>` ", "hardshrink激活函数"
     " :ref:`paddle.nn.functional.hardsigmoid <cn_api_nn_cn_hardsigmoid>` ", "sigmoid的分段线性逼近激活函数"
     " :ref:`paddle.nn.functional.hardswish <cn_api_nn_cn_hardswish>` ", "hardswish激活函数"

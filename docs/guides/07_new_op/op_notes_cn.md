@@ -335,9 +335,6 @@ Op的计算速度与输入的数据量有关，对于某些Op可以根据输入�
 
 为此Paddle中添加了一些FLAGS，比如使用FLAGS_cudnn_deterministic来强制cudnn使用确定性算法、FLAGS_cpu_deterministic强制CPU端的计算使用确定性方法。
 
-### 2.WITH_FAST_MATH的开与关
-如果WITH_FAST_MATH是ON，NVCC在编译Paddle和Egien的时候会使用--use_fast_math，这样可能会使CUDA中的一些操作在损失一定精度的情况下变快，比如log、exp、tanh等，但也会使一些操作的计算结果是错的，比如pow操作，具体原因请查看[torch/DEPRECEATED-torch7-distro#132](https://github.com/torch/DEPRECEATED-torch7-distro/issues/132)。
-
 ## 其他
 ### 1.报错信息
 Enforce提示信息不能为空，并且需要写明，因为报错信息可以更快更方便地分析出错误的原因。
