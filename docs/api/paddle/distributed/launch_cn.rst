@@ -67,11 +67,7 @@ Elastic 参数
 
     - ``--np``: 任务 pod/node 编号，例如 ``--np=2``。
 
-    - ``--scale``: 暂时没用，不用管。
-
     - ``--host``: 绑定的主机，默认等于 ``POD_IP`` 环境变量。
-
-    - ``--force``: 暂时没用，不用管。
 
 返回
 :::::::::
@@ -90,6 +86,8 @@ Elastic 参数
 :::::::::
 .. code-block:: bash
     :name: code-block-example-bash2
+    
+    # It not support to set different --gpus on each node now.
 
     # For multiple node training such as two node:192.168.0.16, 192.168.0.17
 
@@ -98,6 +96,7 @@ Elastic 参数
     python -m paddle.distributed.launch --gpus=0,1,2,3 --ips=192.168.0.16,192.168.0.17 train.py --lr=0.01
 
     # On 192.168.0.17:
+    
     python -m paddle.distributed.launch --gpus=0,1,2,3 --ips=192.168.0.16,192.168.0.17 train.py --lr=0.01
 
 代码示例三 (ps, cpu, 单机)
