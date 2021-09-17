@@ -1,6 +1,6 @@
 .. _cn_api_linalg_pinv:
 
-linalg.pinv
+pinv
 -------------------------------
 
 .. py:function:: paddle.linalg.pinv(x, rcond=1e-15, hermitian=False, name=None)
