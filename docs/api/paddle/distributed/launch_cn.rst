@@ -23,7 +23,7 @@ launch
 :::::::::
     - ``--log_dir``: 日志输出目录。例如 ``--log_dir=output_dir``。默认值 ``--log_dir=log``。
 
-    - ``--nproc_per_node``: 每个节点启动的进程数，在 GPU 训练中，应该小于等于系统的 GPU 数量（或者也可以通过 --gpus 来设置）。每哥进程可以被绑定到一个或多个 GPU 上。例如 ``--nproc_per_node=8``
+    - ``--nproc_per_node``: 每个节点启动的进程数，在 GPU 训练中，应该小于等于系统的 GPU 数量（或者也可以通过 --gpus 来设置）。例如 ``--nproc_per_node=8``
 
     - ``--run_mode``: 启动任务的运行模式，可选有 collective/ps/ps-heter。例如 ``--run_mode=ps``。默认值 ``--run_mode=collective``。
 
@@ -78,7 +78,7 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash1
 
-    # For single node training using 4 gpus
+    # For training on single node using 4 gpus.
 
     python -m paddle.distributed.launch --gpus=0,1,2,3 train.py --lr=0.01
 
@@ -87,9 +87,9 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash2
     
-    # It not support to set different --gpus on each node now.
+    # The parameters of --gpus and --ips must be consistent in each node.
 
-    # For multiple node training such as two node:192.168.0.16, 192.168.0.17
+    # For training on multiple nodes, e.g., 192.168.0.16, 192.168.0.17 
 
     # On 192.168.0.16:
 
@@ -104,8 +104,8 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash3
 
-    # The emulated distributed environment using single node, 2 server and 4 worker
-
+    # To simulate distributed environment using single node, e.g., 2 servers and 4 workers.
+    
     python -m paddle.distributed.launch --server_num=2 --worker_num=4 train.py --lr=0.01
 
 代码示例四 (ps, cpu, 多机)
@@ -113,7 +113,7 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash4
 
-    # For multiple node training such as two node:192.168.0.16, 192.168.0.17 with 2 servers and total 4 workers
+    # For training on multiple nodes, e.g., 192.168.0.16, 192.168.0.17 where each node with 1 server and 2 workers.
 
     # On 192.168.0.16:
 
@@ -128,7 +128,7 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash5
 
-    # The emulated distributed environment using single node, 2 server and 4 worker, each worker use single gpu
+    # To simulate distributed environment using single node, e.g., 2 servers and 4 workers, each worker use single gpu.
 
     export CUDA_VISIBLE_DEVICES=0,1,2,3
     python -m paddle.distributed.launch --server_num=2 --worker_num=4 train.py --lr=0.01
@@ -138,7 +138,7 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash6
 
-    # For multiple node training such as two node:192.168.0.16, 192.168.0.17 with 2 servers and total 4 workers
+    # For training on multiple nodes, e.g., 192.168.0.16, 192.168.0.17 where each node with 1 server and 2 workers.
 
     # On 192.168.0.16:
 
@@ -155,7 +155,7 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash7
 
-    # The emulated distributed environment using single node, 2 server and 4 worker, two worker use gpu, two worker use cpu
+    # To simulate distributed environment using single node, e.g., 2 servers and 4 workers, two workers use gpu, two workers use cpu.
 
     export CUDA_VISIBLE_DEVICES=0,1
     python -m paddle.distributed.launch --server_num=2 --worker_num=2 --heter_worker_num=2 train.py --lr=0.01
@@ -165,8 +165,8 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash8
 
-    # For multiple node training such as two node:192.168.0.16, 192.168.0.17 with 2 servers and total 4 workers
-
+    # For training on multiple nodes, e.g., 192.168.0.16, 192.168.0.17 where each node with 1 server, 1 gpu worker, 1 cpu worker.
+    
     # On 192.168.0.16:
 
     export CUDA_VISIBLE_DEVICES=0
