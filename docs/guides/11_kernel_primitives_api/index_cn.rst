@@ -1,0 +1,48 @@
+#############
+Kernel Primitives API
+#############
+
+本部分主要提供Paddle高级开发人员在进行自定义算子开发时所需的通用CUDA kerenl primitive API, 该部分的API均是以block级进行封装的，能够降低用户开发难度，对于数据读写类的API进行了优化，能够提升数据读写效率从而提升kernel性能。
+
+当前API一共分为2类：IO 类， COMPUTE 类
+1. IO类 API：结GPU硬件特性封装高性能数据读写API。
+2. COMPUTE类：根据计算特性封装通用计算函数，如ELementwiseBinary， ElementwiseUnary等。
+
+API 列表
+############
++-------------------------------+
+|API名称|功能介绍| 
++===============================+
+|ReadData <./read_data_common_cn.html>|IO api 将当前block数据指针读取到寄存器中|
++-------------------------------+
+|ReadDataBc <./read_data_broadcast_cn.html>|IO api 针对broadcast op，根据输入数据的原始指针以及数据数据在block中的数据偏移计算对应的原始输入数据坐标，并将数据写入到寄存器中|
++-------------------------------+
+|ReadDataReduce <./read_data_reduce_cn.html>|IO api针对reduce op，根据reduce 配置计算当前数据是否需要参与计算将数据加载到寄存器中|
++-------------------------------+
+|WriteData <./write_data_cn.html>|IO api 将当前寄存器中的数据写到全局内存中|
++-------------------------------+
+|ElementwiseUnary <./elementwise_unary_cn.html> |compute api, 一元计算api，根据OpFunc计算规则完成一元函数运算|
++-------------------------------+
+|ELementwiseBinary <./elementwise_binary_cn.html>>|compute api, 相同shape二元计算，根据OpFunc计算规则完成二元函数运算|
++-------------------------------+
+|ELementwiseTernary <./elementwise_ternary_cn.html>|compute api,相同shape三元计算，根据OpFunc计算规则完成三元函数运算|
++-------------------------------+
+|ELementwiseAny <./elementwise_any_cn.html>|compute api,相同shape多元计算，根据OpFunc计算规则完成多元函数运算|
++-------------------------------+
+|CycleBinary <./cycle_binary_cn.html>|compute api,不同shape二元计算，根据OpFunc计算规则完成二元循环操作|
++-------------------------------+
+|Reduce <./reduce_cn.html>|compute api, 完成block内的数据规约操作|
++-------------------------------+
+.. toctree::
+   :hidden:
+
+   read_data_common_cn.md
+   read_data_broadcast_cn.md
+   read_data_reduce_cn.md
+   write_data_cn.md
+   elementwise_unary_cn.md
+   elementwise_binary_cn.md
+   elementwise_ternary_cn.md
+   elementwise_any_cn.md
+   cycle_binary_cn.md
+   reduce_cn.md
