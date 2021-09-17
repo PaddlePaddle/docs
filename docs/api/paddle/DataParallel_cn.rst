@@ -34,7 +34,13 @@ DataParallel
 返回类型：Layer实例
 
 **代码示例**：
-COPY-FROM: paddle.DataParallel
+COPY-FROM: paddle.DataParallel:dp-example
+
+.. Note::
+    目前数据并行不支持PyLayer自定义算子。如有此类需求，推荐先使用no_sync接口暂停多卡通信，然后在优化器前手动实现梯度同步；具体实现过程可参考下述示例。
+
+**代码示例**:
+COPY-FROM: paddle.DataParallel:dp-pylayer-example
 
 .. py:function:: no_sync()
 
