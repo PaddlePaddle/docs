@@ -11,7 +11,7 @@ get_device_properties
 参数
 ::::::::
 
-**device** (paddle.CUDAPlace() or int or str) - 设备、设备ID和类似于``gpu:x``的设备名称。如果``device``为空，则``device``为当前的设备。默认值为None。
+**device** (paddle.CUDAPlace() or int or str) - 设备、设备ID和类似于 ``gpu:x`` 的设备名称。如果 ``device`` 为空，则 ``device`` 为当前的设备。默认值为None。
 
 
 返回
