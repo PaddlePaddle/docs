@@ -790,6 +790,10 @@ paddle.jit.dy2static.convert_var_shape_simple	.. _api_paddle_jit_dy2static_conve
 paddle.jit.dy2static.convert_ifelse	.. _api_paddle_jit_dy2static_convert_ifelse:
 paddle.jit.dy2static.convert_print	.. _api_paddle_jit_dy2static_convert_print:
 paddle.jit.dy2static.eval_if_exist_else_none	.. _api_paddle_jit_dy2static_eval_if_exist_else_none:
+paddle.incubate.segemnt_mean  .. _api_paddle_incubate_segment_mean
+paddle.incubate.segemnt_sum   .. _api_paddle_incubate_segment_sum
+paddle.incubate.segemnt_max   .. _api_paddle_incubate_segment_max
+paddle.incubate.segemnt_min   .. _api_paddle_incubate_segment_min
 paddle.metric.Precision	.. _api_paddle_metric_Precision:
 paddle.metric.accuracy	.. _api_paddle_metric_accuracy:
 paddle.metric.Recall	.. _api_paddle_metric_Recall:
