@@ -26,17 +26,9 @@ _CudaDeviceProperties:设备属性，包括标识设备的ASCII字符串、设�
 
 ::::::::
 
-.. code-block:: python
+COPY-FROM: paddle.device.cuda.get_device_properties
 
-    import paddle
-    
-    # required: gpu
 
-    import paddle
-    paddle.device.cuda.get_device_properties()
-    paddle.device.cuda.get_device_properties(0)
-    paddle.device.cuda.get_device_properties('gpu:0')
-    paddle.device.cuda.get_device_properties(paddle.CUDAPlace(0))
 
 
     
