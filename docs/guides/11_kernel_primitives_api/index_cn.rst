@@ -43,11 +43,14 @@ API 列表
 | Reduce                               | compute api, 完成block内的数据规约操作                |
 +--------------------------------------+-------------------------------------------------------+
 
+API 详细介绍
+############
+
 - `IO API <./flags/flags_cn.html>`_
 - `COMPUTE API <./compute_api_cn.html>`_
 
 ..  toctree::
-    :hidden:
+    :maxdepth: 1
 
-   compute_api_cn.md
-   read_data_reduce_cn.md
+    compute_api_cn.md
+    read_data_reduce_cn.md
