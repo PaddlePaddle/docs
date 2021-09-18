@@ -167,8 +167,8 @@ GradScaler用于动态图模式下的"自动混合精度"的训练。它控制lo
 .. py:function:: unscale_(optimizer)
 
 将参数的梯度除去缩放比例。
-如果在 ``step()`` 调用前调用 ``unscale()``，则 ``step()`` 不会重复调用 ``unscale()``，否则 ``step()`` 将先执行 ``unscale()`` 再做参数更新。
-``minimize()`` 同上。
+如果在 ``step()`` 调用前调用 ``unscale_()``，则 ``step()`` 不会重复调用 ``unscale()``，否则 ``step()`` 将先执行 ``unscale_()`` 再做参数更新。
+``minimize()`` 用法同上。
 
 参数：
     - **optimizer** (Optimizer) - 用于更新参数的优化器。
