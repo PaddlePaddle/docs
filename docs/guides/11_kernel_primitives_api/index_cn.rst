@@ -46,25 +46,25 @@ API 列表
 API 详细介绍
 ############
 
-- `IO API <./compute_api_cn.html>`_ 
+- `IO API <./io_api_cn.html>`_ 
 - `COMPUTE API <./compute_api_cn.html>`_ 
 
 ..  toctree::
     :hidden:
 
-    read_data_reduce_cn.md
+    io_api_cn.md
     compute_api_cn.md
 
 API 应用实例
 ############
 
-- `elementwise <./compute_api_cn.html>`_ 
-- `softmax <./compute_api_cn.html>`_ 
+- `elementwise <./elementwise_cn.html>`_ 
+- `softmax <./softmax_cn.html>`_ 
 
 ..  toctree::
     :hidden:
 
-    read_data_reduce_cn.md
-    compute_api_cn.md
+    elementwise.md
+    softmax.md
 
 
