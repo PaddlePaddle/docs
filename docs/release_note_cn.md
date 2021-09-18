@@ -1,4 +1,14 @@
 ﻿
+# 2.1.3 Release Note
+
+## 重要更新
+
+本版本主要是对2.1.2中一些功能和性能问题的修复，重点如下：
+
+- 新增 `paddle.disable_signal_handler` 支持关闭 Paddle 中信号捕捉机制，从而支持同时使用Paddle与TVM([#35366](https://github.com/PaddlePaddle/Paddle/pull/35366))
+- 修复 `paddle.flatten` 在静态图使用下编译期计算维度错误的问题([#35398](https://github.com/PaddlePaddle/Paddle/pull/35398))
+
+ 
 # 2.1.2 Release Note
 
 ## 重要更新
