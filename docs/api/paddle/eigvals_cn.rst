@@ -1,14 +1,13 @@
-.. _cn_api_paddle_tensor_linalg_eigvals:
+.. _cn_api_paddle_linalg_eigvals:
 
 eigvals
 -------------------------------
 
 .. py:function:: paddle.linalg.eigvals(x, name=None)
-
 该OP计算一个（或一批）普通方阵的特征值。
 
-.. warning::
-   
+
+.. warning::   
 该OP的反向实现尚未完成，若您的代码需要对其进行反向传播，请使用paddle.linalg.eig。
 
 
