@@ -163,11 +163,6 @@
 
   判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。
 
-* 如果你想安装联编`tensorrt`的Paddle包，请使用
-
-  ```
-  python -m pip install paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html
-  ```
 
 ## **三、验证安装**
 

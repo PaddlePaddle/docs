@@ -163,12 +163,6 @@ Note：
    To determine whether your machine supports `avx`, you can install the [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) tool to view the "processor-instruction set".
 
 
-* If you want to install the Paddle package built with `tensorrt`, please use the following command:
-
-  ```
-  python -m pip install paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html
-  ```
-
 
 ## Verify installation
 

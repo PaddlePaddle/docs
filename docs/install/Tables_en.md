@@ -333,14 +333,14 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.1.3 </code> will i
         <td> - </td>
     </tr>
     <tr>
-        <td> cuda10.2-cudnn8.1-mkl-gcc8.2-trt6 </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.1.3/linux-gpu-cuda10.2-cudnn8.1-mkl-gcc8.2-trt6-avx/paddlepaddle_gpu-2.1.3-cp36-cp36m-linux_x86_64.whl">
+        <td> cuda10.2-cudnn8.1-mkl-gcc8.2-trt7.1.3.4 </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.1.3/linux-gpu-cuda10.2-cudnn8.1-mkl-gcc8.2-trt7-avx/paddlepaddle_gpu-2.1.3-cp36-cp36m-linux_x86_64.whl">
         paddlepaddle_gpu-2.1.3-cp36-cp36m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.1.3/linux-gpu-cuda10.2-cudnn8.1-mkl-gcc8.2-trt6-avx/paddlepaddle_gpu-2.1.3-cp37-cp37m-linux_x86_64.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.1.3/linux-gpu-cuda10.2-cudnn8.1-mkl-gcc8.2-trt7-avx/paddlepaddle_gpu-2.1.3-cp37-cp37m-linux_x86_64.whl">
         paddlepaddle_gpu-2.1.3-cp37-cp37m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.1.3/linux-gpu-cuda10.2-cudnn8.1-mkl-gcc8.2-trt6-avx/paddlepaddle_gpu-2.1.3-cp38-cp38-linux_x86_64.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.1.3/linux-gpu-cuda10.2-cudnn8.1-mkl-gcc8.2-trt7-avx/paddlepaddle_gpu-2.1.3-cp38-cp38-linux_x86_64.whl">
         paddlepaddle_gpu-2.1.3-cp38-cp38-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.1.3/linux-gpu-cuda10.2-cudnn8.1-mkl-gcc8.2-trt6-avx/paddlepaddle_gpu-2.1.3-cp39-cp39-linux_x86_64.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/with-trt/2.1.3/linux-gpu-cuda10.2-cudnn8.1-mkl-gcc8.2-trt7-avx/paddlepaddle_gpu-2.1.3-cp39-cp39-linux_x86_64.whl">
         paddlepaddle_gpu-2.1.3-cp39-cp39-linux_x86_64.whl</a></td>
     </tr>
     <tr>
@@ -375,14 +375,6 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.1.3 </code> will i
         paddlepaddle_gpu-2.1.3.post112-cp38-cp38-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.1.3/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.1.3.post112-cp39-cp39-linux_x86_64.whl">
         paddlepaddle_gpu-2.1.3.post112-cp39-cp39-linux_x86_64.whl</a></td>
-    </tr>
-    <tr>
-        <td> rocm4.0.1-miopen2.11-mkl </td>
-        <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.1.3/rocm/paddlepaddle_rocm-2.1.3.rocm401.miopen211-cp37-cp37m-linux_x86_64.whl">
-        paddlepaddle_rocm-2.1.3.rocm401.miopen211-cp37-cp37m-linux_x86_64.whl</a></td>
-        <td> - </td>
-        <td> - </td>
     </tr>
     </tbody>
 </table>

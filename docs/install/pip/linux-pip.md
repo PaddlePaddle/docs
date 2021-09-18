@@ -210,16 +210,16 @@
   cat /proc/cpuinfo | grep -i avx
   ```
 
-* 如果你想安装联编`tensorrt`的Paddle包，可以通过以下命令
+* 如果你想安装联编`tensorrt`的Paddle包，可以通过以下命令将wheel包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为wheel包名称）：
 
   ```
-  python -m pip install paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html
+  python -m pip download paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html --no-index --no-deps
   ```
 
-* 如果你想安装`avx`、`openblas`的Paddle包，可以通过以下命令
+* 如果你想安装`avx`、`openblas`的Paddle包，可以通过以下命令将wheel包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为wheel包名称）：
 
   ```
-  python -m pip install paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html
+  python -m pip download paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
 
 
