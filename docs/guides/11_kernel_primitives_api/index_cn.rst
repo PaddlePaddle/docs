@@ -10,29 +10,30 @@ Kernel Primitives API
 
 API 列表
 ############
-+-------------------------------+
-|API名称|功能介绍| 
-+===============================+
-|ReadData <./read_data_common_cn.html>|IO api 将当前block数据指针读取到寄存器中|
-+-------------------------------+
-|ReadDataBc <./read_data_broadcast_cn.html>|IO api 针对broadcast op，根据输入数据的原始指针以及数据数据在block中的数据偏移计算对应的原始输入数据坐标，并将数据写入到寄存器中|
-+-------------------------------+
-|ReadDataReduce <./read_data_reduce_cn.html>|IO api针对reduce op，根据reduce 配置计算当前数据是否需要参与计算将数据加载到寄存器中|
-+-------------------------------+
-|WriteData <./write_data_cn.html>|IO api 将当前寄存器中的数据写到全局内存中|
-+-------------------------------+
-|ElementwiseUnary <./elementwise_unary_cn.html> |compute api, 一元计算api，根据OpFunc计算规则完成一元函数运算|
-+-------------------------------+
-|ELementwiseBinary <./elementwise_binary_cn.html>>|compute api, 相同shape二元计算，根据OpFunc计算规则完成二元函数运算|
-+-------------------------------+
-|ELementwiseTernary <./elementwise_ternary_cn.html>|compute api,相同shape三元计算，根据OpFunc计算规则完成三元函数运算|
-+-------------------------------+
-|ELementwiseAny <./elementwise_any_cn.html>|compute api,相同shape多元计算，根据OpFunc计算规则完成多元函数运算|
-+-------------------------------+
-|CycleBinary <./cycle_binary_cn.html>|compute api,不同shape二元计算，根据OpFunc计算规则完成二元循环操作|
-+-------------------------------+
-|Reduce <./reduce_cn.html>|compute api, 完成block内的数据规约操作|
-+-------------------------------+
+
++--------------------------------------+-------------------------------------------------------+
+| API名称                              | 功能介绍                                              | 
++======================================+=======================================================+
+| ReadData <./read_data_common_cn.html>|IO api 将当前block数据指针读取到寄存器中               |
++--------------------------------------+-------------------------------------------------------+
+| ReadDataBc <./read_data_broadcast_cn.html>|IO api 针对broadcast op，根据输入数据的原始指针以及数据数据在block中的数据偏移计算对应的原始输入数据坐标，并将数据写入到寄存器中|
++--------------------------------------+-------------------------------------------------------+
+| ReadDataReduce <./read_data_reduce_cn.html>|IO api针对reduce op，根据reduce 配置计算当前数据是否需要参与计算将数据加载到寄存器中|
++--------------------------------------+-------------------------------------------------------+
+| WriteData <./write_data_cn.html>|IO api 将当前寄存器中的数据写到全局内存中|
++--------------------------------------+-------------------------------------------------------+
+| ElementwiseUnary <./elementwise_unary_cn.html> | compute api, 一元计算api，根据OpFunc计算规则完成一元函数运算|
++--------------------------------------+-------------------------------------------------------+
+| ELementwiseBinary <./elementwise_binary_cn.html>>|compute api, 相同shape二元计算，根据OpFunc计算规则完成二元函数运算|
++--------------------------------------+-------------------------------------------------------+
+| ELementwiseTernary <./elementwise_ternary_cn.html>|compute api,相同shape三元计算，根据OpFunc计算规则完成三元函数运算|
++--------------------------------------+-------------------------------------------------------+
+| ELementwiseAny <./elementwise_any_cn.html>|compute api,相同shape多元计算，根据OpFunc计算规则完成多元函数运算|
++--------------------------------------+-------------------------------------------------------+
+| CycleBinary <./cycle_binary_cn.html>|compute api,不同shape二元计算，根据OpFunc计算规则完成二元循环操作|
++--------------------------------------+-------------------------------------------------------+
+| Reduce <./reduce_cn.html>|compute api, 完成block内的数据规约操作|
++--------------------------------------+-------------------------------------------------------+
 .. toctree::
    :hidden:
 
