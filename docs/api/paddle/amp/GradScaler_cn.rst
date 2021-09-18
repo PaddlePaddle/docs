@@ -7,10 +7,13 @@ GradScaler
 
 
 
-GradScaler用于动态图模式下的"自动混合精度"的训练。它控制loss的缩放比例，有助于避免浮点数溢出的问题。这个类具有 ``scale()`` 和 ``minimize()`` 两个方法。
+GradScaler用于动态图模式下的"自动混合精度"的训练。它控制loss的缩放比例，有助于避免浮点数溢出的问题。这个类具有 ``scale()``、 ``unscale_()``、 ``step()``、 ``update()``、 ``minimize()``和参数的``get()/set()``等方法。
 
 ``scale()`` 用于让loss乘上一个缩放的比例。
-``minimize()`` 与 ``optimizer.minimize()`` 类似，执行参数的更新。
+``unscale_()`` 用于让loss除去一个缩放的比例。
+``step()`` 与 ``optimizer.step()`` 类似，执行参数的更新，不更新缩放比例loss_scaling。
+``update()`` 更新缩放比例。
+``minimize()`` 与 ``optimizer.minimize()`` 类似，执行参数的更新，同时更新缩放比例loss_scaling，等效与``step()``+``update()``。
 
 通常，GradScaler和 ``paddle.amp.auto_cast`` 一起使用，来实现动态图模式下的"自动混合精度"。
 
@@ -109,6 +112,86 @@ GradScaler用于动态图模式下的"自动混合精度"的训练。它控制lo
     scaled.backward()            # do backward
     scaler.minimize(optimizer, scaled)  # update parameters
     optimizer.clear_grad()
+
+.. py:function:: step(optimizer)
+
+这个函数与 ``optimizer.step()`` 类似，用于执行参数更新。
+如果参数缩放后的梯度包含NAN或者INF，则跳过参数更新。否则，首先让缩放过梯度的参数取消缩放，然后更新参数。
+该函数与 ``update()`` 函数一起使用，效果等同于 ``minimize()``。
+
+参数：
+    - **optimizer** (Optimizer) - 用于更新参数的优化器。
+
+代码示例：
+
+.. code-block:: python
+
+    import paddle
+
+    model = paddle.nn.Conv2D(3, 2, 3, bias_attr=True)
+    optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
+    scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
+    data = paddle.rand([10, 3, 32, 32])
+    with paddle.amp.auto_cast():
+        conv = model(data)
+        loss = paddle.mean(conv)
+    scaled = scaler.scale(loss)  # scale the loss 
+    scaled.backward()            # do backward
+    scaler.step(optimizer)       # update parameters
+    scaler.update()              # update the loss scaling ratio
+    optimizer.clear_grad()
+
+.. py:function:: update()
+
+更新缩放比例。
+
+代码示例：
+
+.. code-block:: python
+
+    import paddle
+
+    model = paddle.nn.Conv2D(3, 2, 3, bias_attr=True)
+    optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
+    scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
+    data = paddle.rand([10, 3, 32, 32])
+    with paddle.amp.auto_cast():
+        conv = model(data)
+        loss = paddle.mean(conv)
+    scaled = scaler.scale(loss)  # scale the loss 
+    scaled.backward()            # do backward
+    scaler.step(optimizer)       # update parameters
+    scaler.update()              # update the loss scaling ratio
+    optimizer.clear_grad()
+
+.. py:function:: unscale_(optimizer)
+
+将参数的梯度除去缩放比例。
+如果在 ``step()`` 调用前调用 ``unscale()``，则 ``step()`` 不会重复调用 ``unscale()``，否则 ``step()`` 将先执行 ``unscale()`` 再做参数更新。
+``minimize()`` 同上。
+
+参数：
+    - **optimizer** (Optimizer) - 用于更新参数的优化器。
+
+代码示例：
+
+.. code-block:: python
+
+    import paddle
+
+    model = paddle.nn.Conv2D(3, 2, 3, bias_attr=True)
+    optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
+    scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
+    data = paddle.rand([10, 3, 32, 32])
+    with paddle.amp.auto_cast():
+        conv = model(data)
+        loss = paddle.mean(conv)
+    scaled = scaler.scale(loss)  # scale the loss 
+    scaled.backward()            # do backward
+    scaler.unscale_(optimizer)    # unscale the parameter
+    scaler.step(optimizer)
+    scaler.update()  
+    optimizer.clear_grad() 
 
 .. py:function:: is_enable()
 
