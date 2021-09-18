@@ -13,7 +13,7 @@ segment_mean
 
 .. math::
 
-    out_i = \\mean_{j} data_{j}
+    out_i = \mathop{mean}_{j \in \{segment\_ids_j == i \} } data_{j}
 
 其中求均值的索引 ``j`` ，是符合 ``segment_ids[j] == i`` 的所有 ``j`` 。
 
