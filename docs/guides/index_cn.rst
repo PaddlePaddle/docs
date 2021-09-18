@@ -31,7 +31,7 @@
     04_dygraph_to_static/index_cn.rst
     05_inference_deployment/index_cn.rst
     06_distributed_training/index_cn.rst
-	11_kernel_primitives_api/index_cn.rst
+    11_kernel_primitives_api/index_cn.rst
     07_new_op/index_cn.rst
     performance_improving/index_cn.rst
     08_api_mapping/index_cn.rst
