@@ -42,20 +42,15 @@ row_conv
 
 ..  code-block:: python
 
-  import paddle
-  
-  paddle.enable_static()
-  # LoDTensor input
-  x = paddle.static.data(name='x', shape=[9, 16],
-                        dtype='float32', lod_level=3,
-                        append_batch_size=False)
-  out = paddle.static.nn.row_conv(input=x, future_context_size=2)
-
-  # Tensor input
-  y = paddle.static.data(name='y', shape=[9, 4, 16],
-                        dtype='float32',
-                        append_batch_size=False)
-  out = paddle.static.nn.row_conv(input=y, future_context_size=2)
+    # for LodTensor inputs
+    import paddle
+    paddle.enable_static()
+    x = paddle.static.data(name='x', shape=[9, 16],
+                       dtype='float32', lod_level=1)
+    out = paddle.static.nn.row_conv(input=x, future_context_size=2)
+    # for Tensor inputs
+    y = paddle.static.data(name='y', shape=[9, 4, 16], dtype='float32')
+    out = paddle.static.nn.row_conv(input=y, future_context_size=2)
 
 
 
