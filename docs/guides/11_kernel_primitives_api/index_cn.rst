@@ -46,11 +46,12 @@ API 列表
 API 详细介绍
 ############
 
-- `IO API <./flags/flags_cn.html>`_
-- `COMPUTE API <./compute_api_cn.html>`_
+- `IO API <./read_data_reduce_cn.html>`
+- `COMPUTE API <./compute_api_cn.html>`
 
 ..  toctree::
     :maxdepth: 1
 
-    compute_api_cn.md
+
     read_data_reduce_cn.md
+    compute_api_cn.md
