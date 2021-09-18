@@ -1,4 +1,13 @@
 ﻿
+# 2.1.3 Release Note
+
+## Important Updates
+
+This release mainly fixes some features in 2.1.2.  See the following highlights:
+
+- Add `paddle.disable_signal_handler` to support turning off the signal capture mechanism in Paddle, thus supporting the use of both Paddle and TVM.([#35366](https://github.com/PaddlePaddle/Paddle/pull/35366) )
+- Fix `paddle.flatten` compile-time dimension calculation error under static graph.([#35398](https://github.com/PaddlePaddle/Paddle/pull/35398))
+ 
 # 2.1.2 Release Note
 
 
