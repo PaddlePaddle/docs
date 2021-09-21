@@ -52,13 +52,6 @@
 
 即可从DockerHub.com下载和运行本书的Docker image。阅读和在线编辑本书请在浏览器里访问 http://localhost:8888
 
-如果您访问DockerHub.com很慢，可以试试我们的另一个镜像docker.paddlepaddlehub.com：
-
-::
-
-	docker run -d -p 8888:8888 docker.paddlepaddlehub.com/book
-
-
 使用GPU训练
 >>>>>>>>>>>>>
 
@@ -67,13 +60,6 @@
 ::
 
 	nvidia-docker run -d -p 8888:8888 paddlepaddle/book:latest-gpu
-
-
-或者使用国内的镜像请运行：
-
-::
-
-	nvidia-docker run -d -p 8888:8888 docker.paddlepaddlehub.com/book:latest-gpu
 
 
 还需要将以下代码
