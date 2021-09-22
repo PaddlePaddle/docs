@@ -46,8 +46,8 @@ API 列表
 API 详细介绍
 ############
 
-- `IO API <./io_api_cn.html>`_ 
-- `COMPUTE API <./compute_api_cn.html>`_ 
+- `IO API <./io_api_cn.html>`_ : 介绍封装的IO类Primitive API。
+- `COMPUTE API <./compute_api_cn.html>`_ : 介绍封装的COMPUTE类Primitive API。
 
 ..  toctree::
     :hidden:
