@@ -52,9 +52,8 @@ API 详细介绍
 API 应用实例
 ############
 
-- `elementwise <./elementwise_cn.html>`_ 
-- `softmax <./softmax_cn.html>`_ 
-
+- `elementwise_add <./elementwise_add_case_cn.html>`_ : 实现相同shape的两数相加。 
+- `reduce <./reduce_case_cn.html>`_ : 针对最高维进行规约操作。
 
 ..  toctree::
     :hidden:
@@ -62,5 +61,5 @@ API 应用实例
 
     io_api_cn.md
     compute_api_cn.md
-    elementwise.md
-    softmax.md
+    elementwise_add_case_cn.md
+    reduce_case_cn.md
