@@ -28,7 +28,7 @@ segment_sum
 返回
 :::::::::
 
-    Tensor，分段求求和的结果。空的segment_id对应的默认值为0。
+    Tensor，分段求和的结果。空的segment_id对应的默认值为0。
 
 代码示例
 :::::::::
