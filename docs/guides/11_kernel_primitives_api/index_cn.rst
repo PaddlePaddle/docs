@@ -44,16 +44,10 @@ API 列表
 +--------------------------------------+-------------------------------------------------------+
 
 API 详细介绍
-############
+##############
 
 - `IO API <./io_api_cn.html>`_ : 介绍封装的IO类Primitive API。
 - `COMPUTE API <./compute_api_cn.html>`_ : 介绍封装的COMPUTE类Primitive API。
-
-..  toctree::
-    :hidden:
-
-    io_api_cn.md
-    compute_api_cn.md
 
 API 应用实例
 ############
@@ -64,7 +58,7 @@ API 应用实例
 ..  toctree::
     :hidden:
 
+    io_api_cn.md
+    compute_api_cn.md
     elementwise.md
     softmax.md
-
-
