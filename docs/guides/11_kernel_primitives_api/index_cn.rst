@@ -2,11 +2,11 @@
 Kernel Primitives API
 #############
 
-本部分主要提供Paddle高级开发人员在进行自定义算子开发时所需的通用CUDA kerenl primitive API, 该部分的API均是以block级进行封装的，能够降低用户开发难度，对于数据读写类的API进行了优化，能够提升数据读写效率从而提升kernel性能。
+本部分主要为 Paddle 高级开发人员提供了 CUDA Kernel Primitive API，该类 API 能够帮助开发人员快速完成 kernel 开发，提升算子开发效率。当前 API 的封装均是block级别的，开发者可以直接传入对应的数据指针以及操作类型完成对应的计算，目前仅支持全局数据指针和寄存器指针。此外，为帮助用户开发出高性能算子，封装了具有高访存效率的 IO 类 API，能够帮助开发者在提升开发效率的同时收获高性能。
 
-当前API一共分为2类：IO 类， COMPUTE 类
-1. IO类 API：结GPU硬件特性封装高性能数据读写API。
-2. COMPUTE类：根据计算特性封装通用计算函数，如ELementwiseBinary， ElementwiseUnary等。
+当前 API 主要分为 IO 类、Compute 类:
+1. IO 类     ：结合 GPU 硬件特性封装高性能数据读写 API。
+2. Compute 类：根据计算特性封装通用计算函数，如 ELementwiseBinary， ElementwiseUnary 等。
 
 API 列表
 ############
@@ -14,45 +14,45 @@ API 列表
 +--------------------------------------+-------------------------------------------------------+
 | API名称                              | 功能介绍                                              |
 +======================================+=======================================================+
-| ReadData                             | IO api 将当前block数据指针读取到寄存器中              |
+| ReadData                             | IO，根据特定类型将数据从全局内存中读取到寄存器中。    |
 +--------------------------------------+-------------------------------------------------------+
-| ReadDataBc                           | IO api 针对broadcast op,根据输入数据的原始指针以及数据|
-|                                      | 数据在block中的数据偏移计算对应的原始输入数据坐标，并 |
-|                                      | 将数据写入到寄存器中                                  |
+| ReadDataBc                           | IO，针对 Broadcast op，根据输入数据的原始指针以及当前 |
+|                                      | block的数据偏移计算数据输出对应的原始输入数据坐标，并 |
+|                                      | 将输入数据写入到寄存器中。                            |
 +--------------------------------------+-------------------------------------------------------+
-| ReadDataReduce                       | IO api针对reduce op，根据reduce 配置计算当前数据是否需|
-|                                      | 要参与计算将数据加载到寄存器中                        |
+| ReadDataReduce                       | IO，针对 Reduce op，根据 Reduce 配置计算当前数据是否需|
+|                                      | 要参与计算将数据加载到寄存器中。                      |
 +--------------------------------------+-------------------------------------------------------+
-| WriteData                            | IO api 将当前寄存器中的数据写到全局内存中             |
+| WriteData                            | IO，按照特定类型将数据从寄存器写入全局内存中。        |
 +--------------------------------------+-------------------------------------------------------+
-| ElementwiseUnary                     | compute api, 一元计算api，根据OpFunc计算规则完成一元函|
-|                                      | 数运算                                                |
+| ElementwiseUnary                     | Compute API，一元计算 API，根据 OpFunc 计算规则完成一 |
+|                                      | 元函数运算。                                          |
 +--------------------------------------+-------------------------------------------------------+
-| ELementwiseBinary                    | compute api, 相同shape二元计算，根据OpFunc计算规则完成|
-|                                      | 二元函数运算                                          |
+| ELementwiseBinary                    | Compute API，相同 shape 二元计算，根据 OpFunc 计算规则|
+|                                      | 完成二元函数运算。                                    |
 +--------------------------------------+-------------------------------------------------------+
-| ELementwiseTernary                   | compute api,相同shape三元计算，根据OpFunc计算规则完成 |
-|                                      | 三元函数运算                                          |
+| ELementwiseTernary                   | Compute API，相同 shape 三元计算，根据 OpFunc 计算规则|
+|                                      | 完成三元函数运算。                                    |
 +--------------------------------------+-------------------------------------------------------+
-| ELementwiseAny                       | compute api,相同shape多元计算，根据OpFunc计算规则完成 |
-|                                      | 多元函数运算                                          |
+| ELementwiseAny                       | Compute API，相同 shape 多元计算，根据 OpFunc 计算规则|
+|                                      | 完成多元函数运算。                                    |
 +--------------------------------------+-------------------------------------------------------+
-| CycleBinary                          | compute api,不同shape二元计算，根据OpFunc计算规则完成 |
-|                                      | 二元循环操作                                          |
+| CycleBinary                          | Compute API，不同 shape 二元计算，根据 OpFunc 计算规则|
+|                                      | 完成二元循环操作。                                    |
 +--------------------------------------+-------------------------------------------------------+
-| Reduce                               | compute api, 完成block内的数据规约操作                |
+| Reduce                               | Compute API，完成block内的数据规约操作。              |
 +--------------------------------------+-------------------------------------------------------+
 
 API 详细介绍
 ##############
 
-- `IO API <./io_api_cn.html>`_ : 介绍封装的IO类Primitive API。
-- `COMPUTE API <./compute_api_cn.html>`_ : 介绍封装的COMPUTE类Primitive API。
+- `IO API <./io_api_cn.html>`_ : 介绍封装的 IO 类 Primitive API。
+- `Compute API <./compute_api_cn.html>`_ : 介绍封装的 Compute 类 Primitive API。
 
 API 应用实例
 ############
 
-- `elementwise_add <./elementwise_add_case_cn.html>`_ : 实现相同shape的两数相加。 
+- `elementwise_add <./elementwise_add_case_cn.html>`_ : 实现相同 shape 的两数相加。 
 - `reduce <./reduce_case_cn.html>`_ : 针对最高维进行规约操作。
 
 ..  toctree::

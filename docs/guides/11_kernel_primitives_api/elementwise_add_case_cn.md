@@ -1,5 +1,5 @@
-# API 应用实例 - ElementwiseAdd
-## ElementwiseAdd
+# API 应用实例 - Add
+## Add
 + 案例功能说明：完成相同shape的两数相加，输入为InT类型，输出为OutT类型，根据Functor完成对应的计算.
 
 ### Functor定义
@@ -15,7 +15,7 @@ struct AddFunctor {
 ```
 ### kernel 实现说明
 
-VecSize 表示每个线程连续读取VecSize个元素，根据剩余元素num与每个线程最大处理的元素个数VecSize x blockDim.x的关系，将数据处理分为2部分，第一部分，当VecSize * blockDim.x > num 表示当前数据处理需要进行边界处理，因此将IsBoundary设置为 true，避免访存越界，注意此处使用Init函数对寄存器arg0，arg1进行初始化，避免当arg0或者arg1作为分母时出现为0的情况。
+VecSize 表示每个线程连续读取VecSize个元素，根据剩余元素num与每个线程最大处理的元素个数VecSize x blockDim.x的关系，将数据处理分为2部分，第一部分，当VecSize * blockDim.x > num 表示当前数据处理需要进行边界处理，因此将IsBoundary设置为 true，避免访存越界，注意此处使用Init函数对寄存器arg0，arg1进行初始化，避免当arg0或者arg1作为分母时出现为0的情况。此处根据Functor完成两数求和操作，当需要进行两数相乘，可以直接修改对应的Functor即可，可以直接复用kernel 代码，提升开发效率。
 
 ### kernel 代码
 
