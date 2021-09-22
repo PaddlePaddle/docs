@@ -1,4 +1,4 @@
-# API 详细介绍 - COMPUTE
+# API 详细介绍 - Compute
 
 ## ElementwiseUnary
 

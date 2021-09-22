@@ -13,21 +13,21 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 
 ### 模板参数
 
-> Tx ：数据存储在全局内存中的数据类型。
-> Ty ：数据存储到寄存器上的类型。
-> NX ：每个线程读取 NX 列数据。
-> NY ：每个线程读取 NY 行数据。
-> BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，对于 XPU，core_id() 用作线程索引。
-> IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。
+> Tx ：数据存储在全局内存中的数据类型。</br>
+> Ty ：数据存储到寄存器上的类型。</br>
+> NX ：每个线程读取 NX 列数据。</br>
+> NY ：每个线程读取 NY 行数据。</br>
+> BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，对于 XPU，core_id() 用作线程索引。</br>
+> IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。</br>
 
 ### 函数参数
 
-> dst ：输出寄存器指针，数据类型为Ty, 大小为 NX x NY。
-> src ：当前 block 的输入数据指针，数据类型为 Tx，指针计算方式通常为 input + blockIdx.x x blockDim.x x NX。
-> size_nx ：block 需要读取 size_nx 列数据，参数仅在 IsBoundary=true 时使用。
-> size_ny ：block 需要读取 size_ny 行数据，参数仅在 IsBoundary=true 时使用。
-> stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。
-> stride_ny ：每读取 NX 列需要偏移 stride_nx 行。
+> dst ：输出寄存器指针，数据类型为Ty, 大小为 NX x NY。</br>
+> src ：当前 block 的输入数据指针，数据类型为 Tx，指针计算方式通常为 input + blockIdx.x x blockDim.x x NX。</br>
+> size_nx ：block 需要读取 size_nx 列数据，参数仅在 IsBoundary=true 时使用。</br>
+> size_ny ：block 需要读取 size_ny 行数据，参数仅在 IsBoundary=true 时使用。</br>
+> stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。</br>
+> stride_ny ：每读取 NX 列需要偏移 stride_nx 行。</br>
 
 ------------------
 
@@ -47,11 +47,11 @@ __device__ void ReadData(T* dst, const T* src, int num);
 
 ### 模板参数
 
-> T ：元素类型。
-> NX ：每个线程读取 NX 列数据。
-> NY ：每个线程读取 NY 行数据，当前仅支持为NY = 1。
-> BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，对于 XPU，core_id() 用作线程索引。
-> IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。
+> T ：元素类型。</br>
+> NX ：每个线程读取 NX 列数据。</br>
+> NY ：每个线程读取 NY 行数据，当前仅支持为NY = 1。</br>
+> BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，对于 XPU，core_id() 用作线程索引。</br>
+> IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。</br>
 
 ### 函数参数
 
@@ -82,10 +82,15 @@ __device__ void ReadDataBc(T* dst, const T* src,
 ### 模板参数
 
 T ：元素类型。
+
 NX ：每个线程读取 NX 列数据。
+
 NY ：每个线程读取 NY 行数据。
+
 BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，而对于XPU，core_id() 用作线程索引。
+
 Rank ：原始输出数据的维度。
+
 IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。
 
 ### 函数参数
