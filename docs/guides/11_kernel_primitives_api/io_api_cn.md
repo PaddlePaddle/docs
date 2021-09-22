@@ -81,27 +81,22 @@ __device__ void ReadDataBc(T* dst, const T* src,
 
 ### 模板参数
 
-T ：元素类型。
-
-NX ：每个线程读取 NX 列数据。
-
-NY ：每个线程读取 NY 行数据。
-
-BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，而对于XPU，core_id() 用作线程索引。
-
-Rank ：原始输出数据的维度。
-
-IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。
+> T ：元素类型。</br>
+> NX ：每个线程读取 NX 列数据。</br>
+> NY ：每个线程读取 NY 行数据。</br>
+> BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，而对于XPU，core_id() 用作线程索引。</br>
+> Rank ：原始输出数据的维度。</br>
+> IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。</br>
 
 ### 函数参数
 
-dst ：输出寄存器指针，大小为 NX x NY。
-src ：原始输入数据指针。
-block_offset ：当前block的数据偏移，通常为 blockIdx.x * blockDim.x * NX。
-config ：输入输出坐标映射函数，可通过 BroadcastConfig(const std::vector<int64_t>& out_dims, const std::vector<int64_t>& in_dims, int dim_size) 进行定义。
-total_num_output ：原始输出的总数据个数,避免访存越界，参数仅在 IsBoundary = true 时使用。
-stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。
-stride_ny ：每读取 NX 列需要偏移 stride_nx 行。
+> dst ：输出寄存器指针，大小为 NX x NY。</br>
+> src ：原始输入数据指针。</br>
+> block_offset ：当前block的数据偏移，通常为 blockIdx.x * blockDim.x * NX。</br>
+> config ：输入输出坐标映射函数，可通过 BroadcastConfig(const std::vector<int64_t>& out_dims, const std::vector<int64_t>& in_dims, int dim_size) 进行定义。</br>
+> total_num_output ：原始输出的总数据个数,避免访存越界，参数仅在 IsBoundary = true 时使用。</br>
+> stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。</br>
+> stride_ny ：每读取 NX 列需要偏移 stride_nx 行。</br>
 
 
 ------------------
@@ -129,31 +124,33 @@ __device__ void ReadDataReduce(T* dst,
 
 ### 模板参数
 
-T ：元素类型
-NX ：每个线程读取 NX 列数据。
-NY ：每个线程读取 NY 行数据。
-BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，而对于XPU，core_id() 用作线程索引。
-Rank ：原始输出数据的维度。
-IndexCal ：输入输出坐标映射规则。定义方式如下：
-  struct IndexCal {
+> T ：元素类型。</br>
+> NX ：每个线程读取 NX 列数据。</br>
+> NY ：每个线程读取 NY 行数据。</br>
+> BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，而对于XPU，core_id() 用作线程索引。</br>
+> Rank ：原始输出数据的维度。</br>
+> IndexCal ：输入输出坐标映射规则。定义方式如下：</br>
+```
+  struct IndexCal {  
     __device__ inline int operator()(int index) const {
-        return ...
+        return ... </br>
     }
   };
-IsBoundary :标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim 时，需要进行边界判断以避免访存越界。
+```
+IsBoundary :标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim 时，需要进行边界判断以避免访存越界。</br>
 
 
 ### 函数参数
 
-dst ：输出寄存器指针，大小为 NX x NY。
-src ：原始输入数据指针。
-block_offset : 当前block的数据偏移，通常为 blockIdx.x * blockDim.x * NX。
-config : 输入输出坐标映射函数，可以定义为IndexCal()。
-size_nx : block 需要读取 size_nx 列数据，参数仅在 IsBoundary = true 时使用。
-size_ny : block 需要读取 size_ny 行数据，参数仅在 IsBoundary = true 时使用。
-stride_nx : 每读取 1 列数据需要偏移 stride_nx 列。
-stride_ny : 每读取 NX 列需要偏移 stride_nx 行。
-reduce_last_dim：原始输入数据的最低维是否进行reduce，当reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。
+> dst ：输出寄存器指针，大小为 NX x NY。</br>
+> src ：原始输入数据指针。</br>
+> block_offset : 当前block的数据偏移，通常为 blockIdx.x * blockDim.x * NX。</br>
+> config : 输入输出坐标映射函数，可以定义为IndexCal()。</br>
+> size_nx : block 需要读取 size_nx 列数据，参数仅在 IsBoundary = true 时使用。</br>
+> size_ny : block 需要读取 size_ny 行数据，参数仅在 IsBoundary = true 时使用。</br>
+> stride_nx : 每读取 1 列数据需要偏移 stride_nx 列。</br>
+> stride_ny : 每读取 NX 列需要偏移 stride_nx 行。</br>
+> reduce_last_dim：原始输入数据的最低维是否进行reduce，当reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。</br>
 
 ------------------
 
@@ -173,14 +170,14 @@ __device__ void WriteData(T* dst, T* src, int num);
 
 ### 模板参数
 
-T ：元素类型。
-NX ：每个线程读取 NX 列数据。
-NY ：每个线程读取 NY 行数据， 当前仅支持为NY = 1。
-BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，而对于XPU，core_id() 用作线程索引。
-IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim 时，需要进行边界判断以避免访存越界。
+> T ：元素类型。</br>
+> NX ：每个线程读取 NX 列数据。</br>
+> NY ：每个线程读取 NY 行数据， 当前仅支持为NY = 1。</br>
+> BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，而对于XPU，core_id() 用作线程索引。</br>
+> IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim 时，需要进行边界判断以避免访存越界。</br>
 
 ### 函数参数
 
-dst : 当前 block 的输出数据指针，通常为 input + blockIdx.x x blockDim.x x NX。
-src : 寄存器指针，大小为 NX x NY。，通常为 input + blockIdx.x * blockDim.x * NX。
-num : 当前 block 对多读取 num 个元素，参数仅在 IsBoundary = true 时使用。
+> dst : 当前 block 的输出数据指针，通常为 input + blockIdx.x x blockDim.x x NX。</br>
+> src : 寄存器指针，大小为 NX x NY。，通常为 input + blockIdx.x * blockDim.x * NX。</br>
+> num : 当前 block 对多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
