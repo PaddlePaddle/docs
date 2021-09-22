@@ -1,5 +1,5 @@
-
-## Redcuce
+# API 应用实例 - Reduce
+## Reduce
 + 案例功能说明：完成单维Reduce操作，例如输入为x [N, H, W, C], axis 可以取值为，0 / 1/ 2。实现对非最低维的reduce操作。reduce类型可以为reduce sum / mean / any /prod 等，通过ReduceOp进行定义。
 
 ### ReduceOp定义
