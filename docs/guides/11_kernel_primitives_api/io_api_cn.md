@@ -6,8 +6,8 @@
 template <typename Tx, typename Ty, int NX, int NY, int BlockSize,
           bool IsBoundary = false>
 __device__ void ReadData(Ty* dst, const Tx* __restrict__ src,
-                                         int size_nx, int size_ny,
-                                         int stride_nx, int stride_ny);
+                         int size_nx, int size_ny,
+                         int stride_nx, int stride_ny);
 ```
 
 ###函数说明
@@ -81,11 +81,11 @@ num : 当前 block 对多读取 num 个元素，参数仅在 IsBoundary = true �
 ```
 template <typename T, int NX, int NY, int BlockSize, int Rank, bool IsBoundary = false>
 __device__ void ReadDataBc(T* dst, const T* __restrict__ src,
-                                           uint32_t block_offset,
-                                           details::BroadcastConfig<Rank> config,
-                                           int total_num_output,
-                                           int stride_nx,
-                                           int stride_ny);
+                           uint32_t block_offset,
+                           details::BroadcastConfig<Rank> config,
+                           int total_num_output,
+                           int stride_nx,
+                           int stride_ny);
 ```
 
 ###函数说明
@@ -125,13 +125,13 @@ stride_ny : 每读取 NX 列需要偏移 stride_nx 行。
 ```
 template <typename T, int NX, int NY, int BlockSize, int Rank, typename IndexCal, bool IsBoundary = false>
 __device__ void ReadDataReduce(T* dst, const T* __restrict__ src,
-                                               int block_offset,
-                                               const IndexCal& index_cal,
-                                               int size_nx,
-                                               int size_ny,
-                                               int stride_nx,
-                                               int stride_ny,
-                                               bool reduce_last_dim);
+                               int block_offset,
+                               const IndexCal& index_cal,
+                               int size_nx,
+                               int size_ny,
+                               int stride_nx,
+                               int stride_ny,
+                               bool reduce_last_dim);
 ```
 
 ###函数说明
