@@ -125,7 +125,7 @@ template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFu
 
 按照 compute 中的计算规则对 in1、in2、in3 进行计算，将计算结果按照OutT类型存储到寄存器out中。
 
-###模板参数
+### 模板参数
 
 > InT : 输入数据的类型。</br>
 > OutT : 存储到out寄存器中的类型。</br>
