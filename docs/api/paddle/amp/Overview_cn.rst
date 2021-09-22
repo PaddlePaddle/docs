@@ -21,7 +21,7 @@ AMP相关API
     :widths: 10, 30
 
     " :ref:`auto_cast <cn_api_amp_auto_cast>` ", "创建AMP上下文环境"
-    " :ref:`decorate <cn_api_amp_decorate>` ", "装饰神经网络参数数据类型"
+    " :ref:`decorate <cn_api_amp_decorate>` ", "根据选定混合精度训练模式，改写神经网络参数数据类型"
     " :ref:`GradScaler <cn_api_amp_GradScaler>` ", "控制loss的缩放比例"
     
 .. _about_amp_white_list_ops:
