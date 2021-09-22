@@ -13,25 +13,21 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 
 ### 模板参数
 
-```
-Tx ：数据存储在全局内存中的数据类型。
-Ty ：数据存储到寄存器上的类型。
-NX ：每个线程读取 NX 列数据。
-NY ：每个线程读取 NY 行数据。
-BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，对于 XPU，core_id() 用作线程索引。
-IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。
-```
+> Tx ：数据存储在全局内存中的数据类型。
+> Ty ：数据存储到寄存器上的类型。
+> NX ：每个线程读取 NX 列数据。
+> NY ：每个线程读取 NY 行数据。
+> BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，对于 XPU，core_id() 用作线程索引。
+> IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。
 
 ### 函数参数
 
-```
-dst ：输出寄存器指针，数据类型为Ty, 大小为 NX x NY。
-src ：当前 block 的输入数据指针，数据类型为 Tx，指针计算方式通常为 input + blockIdx.x x blockDim.x x NX。
-size_nx ：block 需要读取 size_nx 列数据，参数仅在 IsBoundary=true 时使用。
-size_ny ：block 需要读取 size_ny 行数据，参数仅在 IsBoundary=true 时使用。
-stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。
-stride_ny ：每读取 NX 列需要偏移 stride_nx 行。
-```
+> dst ：输出寄存器指针，数据类型为Ty, 大小为 NX x NY。
+> src ：当前 block 的输入数据指针，数据类型为 Tx，指针计算方式通常为 input + blockIdx.x x blockDim.x x NX。
+> size_nx ：block 需要读取 size_nx 列数据，参数仅在 IsBoundary=true 时使用。
+> size_ny ：block 需要读取 size_ny 行数据，参数仅在 IsBoundary=true 时使用。
+> stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。
+> stride_ny ：每读取 NX 列需要偏移 stride_nx 行。
 
 ------------------
 
@@ -51,21 +47,17 @@ __device__ void ReadData(T* dst, const T* src, int num);
 
 ### 模板参数
 
-```
-T ：元素类型。
-NX ：每个线程读取 NX 列数据。
-NY ：每个线程读取 NY 行数据，当前仅支持为NY = 1。
-BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，对于 XPU，core_id() 用作线程索引。
-IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。
-```
+> T ：元素类型。
+> NX ：每个线程读取 NX 列数据。
+> NY ：每个线程读取 NY 行数据，当前仅支持为NY = 1。
+> BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，对于 XPU，core_id() 用作线程索引。
+> IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。
 
 ### 函数参数
 
-```
-dst : 输出寄存器指针，大小为 NX x NY。
-src : 当前 block 的输入数据指针，通常为 input + blockIdx.x x blockDim.x x NX。
-num : 当前 block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。
-```
+> dst : 输出寄存器指针，大小为 NX x NY。
+> src : 当前 block 的输入数据指针，通常为 input + blockIdx.x x blockDim.x x NX。
+> num : 当前 block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。
 
 ------------------
 
@@ -89,18 +81,15 @@ __device__ void ReadDataBc(T* dst, const T* src,
 
 ### 模板参数
 
-```
 T ：元素类型。
 NX ：每个线程读取 NX 列数据。
 NY ：每个线程读取 NY 行数据。
 BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，而对于XPU，core_id() 用作线程索引。
 Rank ：原始输出数据的维度。
 IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim.x 时，需要进行边界判断以避免访存越界。
-```
 
 ### 函数参数
 
-```
 dst ：输出寄存器指针，大小为 NX x NY。
 src ：原始输入数据指针。
 block_offset ：当前block的数据偏移，通常为 blockIdx.x * blockDim.x * NX。
@@ -108,7 +97,6 @@ config ：输入输出坐标映射函数，可通过 BroadcastConfig(const std::
 total_num_output ：原始输出的总数据个数,避免访存越界，参数仅在 IsBoundary = true 时使用。
 stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。
 stride_ny ：每读取 NX 列需要偏移 stride_nx 行。
-```
 
 
 ------------------
@@ -136,7 +124,6 @@ __device__ void ReadDataReduce(T* dst,
 
 ### 模板参数
 
-```
 T ：元素类型
 NX ：每个线程读取 NX 列数据。
 NY ：每个线程读取 NY 行数据。
@@ -150,11 +137,9 @@ IndexCal ：输入输出坐标映射规则。定义方式如下：
   };
 IsBoundary :标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim 时，需要进行边界判断以避免访存越界。
 
-```
 
 ### 函数参数
 
-```
 dst ：输出寄存器指针，大小为 NX x NY。
 src ：原始输入数据指针。
 block_offset : 当前block的数据偏移，通常为 blockIdx.x * blockDim.x * NX。
@@ -164,7 +149,6 @@ size_ny : block 需要读取 size_ny 行数据，参数仅在 IsBoundary = true 
 stride_nx : 每读取 1 列数据需要偏移 stride_nx 列。
 stride_ny : 每读取 NX 列需要偏移 stride_nx 行。
 reduce_last_dim：原始输入数据的最低维是否进行reduce，当reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。
-```
 
 ------------------
 
@@ -184,18 +168,14 @@ __device__ void WriteData(T* dst, T* src, int num);
 
 ### 模板参数
 
-```
 T ：元素类型。
 NX ：每个线程读取 NX 列数据。
 NY ：每个线程读取 NY 行数据， 当前仅支持为NY = 1。
 BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，而对于XPU，core_id() 用作线程索引。
 IsBoundary ：标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim 时，需要进行边界判断以避免访存越界。
-```
 
 ### 函数参数
 
-```
 dst : 当前 block 的输出数据指针，通常为 input + blockIdx.x x blockDim.x x NX。
 src : 寄存器指针，大小为 NX x NY。，通常为 input + blockIdx.x * blockDim.x * NX。
 num : 当前 block 对多读取 num 个元素，参数仅在 IsBoundary = true 时使用。
-```
