@@ -41,7 +41,7 @@ Multi_dot会选择计算量最小的乘法顺序进行计算。(a, b)和(b, c)�
     B_data = np.random.random([4, 5]).astype(np.float32)
     A = paddle.to_tensor(A_data)
     B = paddle.to_tensor(B_data)
-    out = paddle.multi_dot([A, B])
+    out = paddle.linalg.multi_dot([A, B])
     print(out.numpy().shape)
     # [3, 5]
     # A * B * C
@@ -51,6 +51,6 @@ Multi_dot会选择计算量最小的乘法顺序进行计算。(a, b)和(b, c)�
     A = paddle.to_tensor(A_data)
     B = paddle.to_tensor(B_data)
     C = paddle.to_tensor(C_data)
-    out = paddle.multi_dot([A, B, C])
+    out = paddle.linalg.multi_dot([A, B, C])
     print(out.numpy().shape)
     # [10, 7]
