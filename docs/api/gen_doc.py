@@ -140,13 +140,18 @@ def process_module(m, attr="__all__"):
                 api_counter += 1
                 if inspect.isclass(api_info['object']):
                     for name, value in inspect.getmembers(api_info['object']):
-                        if (not name.startswith("_")) and hasattr(value,
-                                                                  '__name__'):
+                        if (not name.startswith("_")):
                             method_full_name = full_name + '.' + name  # value.__name__
-                            method_api_info = insert_api_into_dict(
-                                method_full_name, 'class_method')
-                            if method_api_info is not None:
-                                api_counter += 1
+                            if name and value and isinstance(value, property):
+                                method_api_info = insert_api_into_dict(
+                                    method_full_name, 'class_property')
+                                if method_api_info is not None:
+                                    api_counter += 1
+                            elif hasattr(value, '__name__'):
+                                method_api_info = insert_api_into_dict(
+                                    method_full_name, 'class_method')
+                                if method_api_info is not None:
+                                    api_counter += 1
     return api_counter
 
 
@@ -389,24 +394,52 @@ def set_api_sketch():
     set the in_api_sktech attr. may replace the set_display_attr_of_apis.
     """
     global api_info_dict
-    modulelist = [
-        paddle, paddle.amp, paddle.nn, paddle.nn.functional,
-        paddle.nn.initializer, paddle.nn.utils, paddle.tensor, paddle.static,
-        paddle.static.nn, paddle.io, paddle.jit, paddle.metric,
-        paddle.distribution, paddle.optimizer, paddle.optimizer.lr,
-        paddle.regularizer, paddle.text, paddle.utils, paddle.utils.download,
-        paddle.utils.profiler, paddle.sysconfig, paddle.vision,
-        paddle.distributed, paddle.distributed.fleet,
-        paddle.distributed.fleet.utils, paddle.distributed.parallel,
-        paddle.distributed.utils, paddle.callbacks, paddle.hub
+    modulelist = [  #noqa
+        paddle,
+        paddle.amp,
+        paddle.nn,
+        paddle.nn.functional,
+        paddle.nn.initializer,
+        paddle.nn.utils,
+        paddle.static,
+        paddle.static.nn,
+        paddle.io,
+        paddle.jit,
+        paddle.metric,
+        paddle.distribution,
+        paddle.optimizer,
+        paddle.optimizer.lr,
+        paddle.regularizer,
+        paddle.text,
+        paddle.utils,
+        paddle.utils.download,
+        paddle.utils.profiler,
+        paddle.utils.cpp_extension,
+        paddle.utils.unique_name,
+        paddle.sysconfig,
+        paddle.vision,
+        paddle.vision.datasets,
+        paddle.vision.models,
+        paddle.vision.transforms,
+        paddle.vision.ops,
+        paddle.distributed,
+        paddle.distributed.fleet,
+        paddle.distributed.fleet.utils,
+        paddle.distributed.parallel,
+        paddle.distributed.utils,
+        paddle.callbacks,
+        paddle.hub,
+        paddle.autograd,
+        paddle.incubate,
+        paddle.inference,
+        paddle.onnx,
+        paddle.device
     ]
 
     alldict = {}
     for module in modulelist:
         if hasattr(module, '__all__'):
             old_all = module.__all__
-        elif hasattr(module, 'tensor_method_func'):
-            old_all = module.tensor_method_func
         else:
             old_all = []
             dirall = dir(module)
@@ -414,10 +447,15 @@ def set_api_sketch():
                 if item.startswith('__'):
                     continue
                 old_all.append(item)
-        if module.__name__ == 'paddle.tensor':
-            alldict.update({'paddle.Tensor': old_all})
-        else:
-            alldict.update({module.__name__: old_all})
+        alldict.update({module.__name__: old_all})
+
+    old_all = []
+    dirall = dir(paddle.Tensor)
+    for item in dirall:
+        if item.startswith('_'):
+            continue
+        old_all.append(item)
+    alldict.update({'paddle.Tensor': old_all})
 
     all_api_found = {}
     for m, apis in alldict.items():
@@ -430,6 +468,10 @@ def set_api_sketch():
                     api in api_info_dict[id_api]['all_names']):
                 all_api_found[api] = True
                 api_info_dict[id_api]['in_api_sketch'] = True
+                if 'api_sketch_names' not in api_info_dict[id_api]:
+                    api_info_dict[id_api]['api_sketch_names'] = []
+                api_info_dict[id_api]['api_sketch_names'].append(api)
+                break
 
     api_not_in_dict = [api for api in all_api_found if not all_api_found[api]]
     if api_not_in_dict:
@@ -907,6 +949,10 @@ def extract_code_blocks_from_docstr(docstr):
                     cb_info['cb_cur_indent'] = mo.start()
                     cb_info['cb_cur'].append(linecont)
                 else:
+                    mo = re.search(r"\S", linecont)
+                    if mo is None:
+                        cb_info['cb_cur'].append(linecont)
+                        continue
                     if cb_info['cb_cur_indent'] <= mo.start():
                         cb_info['cb_cur'].append(linecont)
                     else:

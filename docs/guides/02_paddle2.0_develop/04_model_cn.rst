@@ -19,7 +19,7 @@
 |               | AdaptiveMaxPool1D、AdaptiveMaxPool2D、AdaptiveMaxPool3D、                 |
 |               | AvgPool1D、AvgPool2D、AvgPool3D、MaxPool1D、MaxPool2D、MaxPool3D          |
 +---------------+---------------------------------------------------------------------------+
-| Padding       | Pad1D、Pad2D、Pad3d                                                       |
+| Padding       | Pad1D、Pad2D、Pad3D                                                       |
 +---------------+---------------------------------------------------------------------------+
 | Activation    | ELU、GELU、Hardshrink、Hardtanh、HSigmoid、LeakyReLU、LogSigmoid、        |
 |               | LogSoftmax、PReLU、ReLU、ReLU6、SELU、Sigmoid、Softmax、Softplus、        |

@@ -1,7 +1,7 @@
 # 使用线性回归预测波士顿房价
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.05 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例教程将会演示如何使用线性回归完成波士顿房价预测。
 
 ## 一、简要介绍
@@ -27,7 +27,7 @@ warnings.filterwarnings("ignore")
 print(paddle.__version__)
 ```
 
-    2.1.0
+    2.1.1
 
 
 ## 三、数据集介绍
@@ -46,16 +46,16 @@ print(paddle.__version__)
 !wget https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data -O housing.data 
 ```
 
-    --2021-05-18 16:20:29--  https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data
+    --2021-06-30 20:33:58--  https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data
     Resolving archive.ics.uci.edu (archive.ics.uci.edu)... 128.195.10.252
     Connecting to archive.ics.uci.edu (archive.ics.uci.edu)|128.195.10.252|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 49082 (48K) [application/x-httpd-php]
     Saving to: ‘housing.data’
     
-    housing.data        100%[===================>]  47.93K  94.2KB/s    in 0.5s    
+    100%[======================================>] 49,082      45.8KB/s   in 1.0s   
     
-    2021-05-18 16:20:31 (94.2 KB/s) - ‘housing.data’ saved [49082/49082]
+    2021-06-30 20:34:01 (45.8 KB/s) - ‘housing.data’ saved [49082/49082]
     
 
 
@@ -77,14 +77,14 @@ features_np = np.array([x[:13] for x in housing_data], np.float32)
 labels_np = np.array([x[-1] for x in housing_data], np.float32)
 # data_np = np.c_[features_np, labels_np]
 df = pd.DataFrame(housing_data, columns=feature_names)
-matplotlib.use('TkAgg')
-%matplotlib inline
 sns.pairplot(df.dropna(), y_vars=feature_names[-1], x_vars=feature_names[::-1], diag_kind='kde')
 plt.show()
 ```
 
 
+    
 ![png](output_9_0.png)
+    
 
 
 
@@ -96,10 +96,6 @@ corr_data = np.asarray(corr_data).reshape(1, 14)
 ax = sns.heatmap(corr_data, cbar=True, annot=True)
 plt.show()
 ```
-
-
-![png](output_10_0.png)
-
 
 ### 3.2 数据归一化处理
 
@@ -118,7 +114,9 @@ sns.boxplot(data=df.iloc[:, 0:13])
 
 
 
+    
 ![png](output_12_1.png)
+    
 
 
 从上图看出，各属性的数值范围差异太大，甚至不能够在一个画布上充分的展示各属性具体的最大、最小值以及异常值等。下面进行归一化。
@@ -176,7 +174,9 @@ sns.boxplot(data=df.iloc[:, 0:13])
 
 
 
+    
 ![png](output_18_1.png)
+    
 
 
 
@@ -294,7 +294,9 @@ draw_train_process(train_nums, train_costs)
 ```
 
 
+    
 ![png](output_26_0.png)
+    
 
 
 可以从上图看出，随着训练轮次的增加，损失在呈降低趋势。但由于每次仅基于少量样本更新参数和计算损失，所以损失下降曲线会出现震荡。
@@ -356,7 +358,9 @@ plot_pred_ground(fetch_list, infer_labels_np)
 ```
 
 
+    
 ![png](output_31_0.png)
+    
 
 
 上图可以看出，训练出来的模型的预测结果与真实结果是较为接近的。
@@ -416,3 +420,4 @@ model.fit(train_dataset, eval_dataset, epochs=5, batch_size=8, verbose=1)
     Eval begin...
     step 13/13 [==============================] - loss: 387.1344 - 828us/step         
     Eval samples: 102
+

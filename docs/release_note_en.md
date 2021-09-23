@@ -1,5 +1,200 @@
 ﻿
-# Release Note
+# 2.1.2 Release Note
+
+
+## Important Updates
+
+This release mainly fixes some features and performance issues in 2.1.1.  See the following highlights:
+
+-  Fix several known issues in frontend APIs.
+-  Fix several known issues with dynamic to static syntax transcriptions.
+-  C++ version check upgrade from C++11 to C++14 during Custom OP compile.
+
+## Training framework
+
+### Functional optimization (including distributed)
+
+#### Basic API
+
+- Fix some APIs located in `paddle.vision` are not accessible issues. ([#34489](https://github.com/PaddlePaddle/Paddle/pull/34489))
+- Fix `paddle.concat` overflow when applied to multiple Tensor with large `shape`. ([#34396](https://github.com/PaddlePaddle/Paddle/pull/34396))
+- `paddle.flip` supports input axis as integer, and improves performance in dynamic graph mode. ([#34477](https://github.com/PaddlePaddle/Paddle/pull/34477))
+- Fix `paddle.slice` out-of-bounds access problem when input and output addresses are the same. ([#34265](https://github.com/PaddlePaddle/Paddle/pull/34265))
+- Fix the problem of wrong order of input parameters of `paddle.nn.Unfold`. ([#34251](https://github.com/PaddlePaddle/Paddle/pull/34251))
+- Add several interfaces for `Tensor` under static graphs such as `size(), detach()`, etc. ([#33330](https://github.com/PaddlePaddle/Paddle/pull/33330))
+- Add incompatible upgrade note to the Warning content of `Tensor.grad`.([#34262](https://github.com/PaddlePaddle/Paddle/pull/34264))
+- Downlink `paddle.save` to save the function of  `Layer`. ([#34039](https://github.com/PaddlePaddle/Paddle/pull/34039))
+- Fix `paddle.jit.save` for saving models on Mac systems that cannot be retrained on Linux platforms. ([#34154](https://github.com/PaddlePaddle/Paddle/pull/34154))
+- Fix `layer_norm` with wrong `cuda kernel` parameters for large `size` input. ([#33893](https://github.com/PaddlePaddle/Paddle/pull/33893))
+- Fix `paddle.io.DataLoader` error reporting incompatible upgrade warning issue. ([#34001](https://github.com/PaddlePaddle/Paddle/pull/34001))
+- Fix `paddle.io.DataLoader` memory leak problem. ([#34301](https://github.com/PaddlePaddle/Paddle/pull/34301))
+
+#### Dynamic to static map
+
+- Add syntax support for nested use of `Sequential` container classes. ([#34246](https://github.com/PaddlePaddle/Paddle/pull/34262))
+- Add compatibility support for `Python3 type hint` syntax. ([#33745](https://github.com/PaddlePaddle/Paddle/pull/33745))
+- Add support for non-`Tensor` types including `int, float, string, bool` in the `input_spec` argument of `@to_static`. ([#33464](https://github.com/PaddlePaddle/Paddle/pull/33464))
+- Fix a number of known problems with the transcription of dynamic to static syntax. ([#33963](https://github.com/PaddlePaddle/Paddle/pull/33963))
+
+#### Custom OP
+
+- C++ version check upgrade from C++11 to C++14 during Custom OP compile. ([#30415](https://github.com/PaddlePaddle/Paddle/pull/34015)) 
+
+
+## Inference Deployment
+
+### Paddle Inference
+
+#### bugfix
+
+- Fix wrong calculation result of  ERNIE model when `batch_size > 1`. ([#33784](https://github.com/PaddlePaddle/Paddle/pull/33784))
+- Fix the crash caused by splitting `TensortRT` inference path with right slash under windows.([#33885](https://github.com/PaddlePaddle/Paddle/pull/33885))
+- Fix MKLDNN `elementwise` series OP's X does not support broadcast .（[#33845](https://github.com/PaddlePaddle/Paddle/pull/33845)）
+
+## Environment adaptation
+
+### Compile and install
+
+- Restrict the version range of dependent Gast libraries ( `gast>=0.3.3, <=0.4.0`). ([#33850](https://github.com/PaddlePaddle/Paddle/pull/33850)) 
+- Optimize `Avx/No-Avx` related installation error messages, reduce redundant Warning messages. ([#33885](https://github.com/PaddlePaddle/Paddle/pull/33905))
+
+### New Hardware Adaptation
+
+#### Kunlun hardware training support
+
+- Modify the  `cmake` file of Kunlun to unify and update its operator library.（[#34000](https://github.com/PaddlePaddle/Paddle/pull/34000)）
+
+## Thanks to our Contributors
+
+This release contains contributions from:
+
+0x45f、Aurelius84、Chen Weihang、chentianyu03、HexToString、iducn、Jacek Czaja、Kaipeng Deng、Leo Chen、lzzyzlbb、Peihan、taixiurong、tianshuo78520a、WeiXin、wenbin、Wilber、wuhuachaocoding、xiongkun、Zhou Wei、 winter-wang .
+
+
+# 2.1.1 Release Note
+
+## Important Updates
+
+This version fixed some function and performance issues of PaddlePaddle 2.1.0, and optimized some function. The important updates are as following:
+
+- Optimize the API visibility of `paddle.distributed、paddle.device、paddle.vision` .
+- Add support for dynamic conversion of user code for sublayer in the `paddle.nn.Sequential`.
+- Add `SyncBatchNorm` support for AMP in dynamic graph, to improve the performance of dynamic graph `SyncBatchNorm` layer in AMP mode,
+
+## Training Framework
+
+### Functional optimization (including distributed)
+
+#### Basic API
+
+- Optimize the API visibility of `paddle.distributed、paddle.device、paddle.vision` , for more information, please see 2.1.0 Release Note. ([#33420](https://github.com/PaddlePaddle/Paddle/pull/32990))
+- Add `paddle.is_compiled_with_rocm`. ([#33228](https://github.com/PaddlePaddle/Paddle/pull/33228))
+- Add the `paddle.strided_slice` to  support bool type.（[#33373](https://github.com/PaddlePaddle/Paddle/pull/33373)）
+- Add `paddle.equal_all、paddle.equal、paddle.greater_equal、paddle.greater_than、paddle.less_equal、paddle.less_than、paddle.not_equal` to support bool type. （[#33551](https://github.com/PaddlePaddle/Paddle/pull/33551)）
+- Fix `paddle.utils.download` does not perform Retry when ConnectionError is abnormal.（[#33454](https://github.com/PaddlePaddle/Paddle/pull/33454)）
+- Fix the issue of infershape error when `paddle.gather` axis is not equal to 0.（[#33553](https://github.com/PaddlePaddle/Paddle/pull/33553)）
+- Fix segment fault caused by `paddle.io.DataLoader` when `num_workers=0` and `Dataset` returns GPU `Tensor` and sends it to `DataLoader` .（[#33487](https://github.com/PaddlePaddle/Paddle/pull/33487), [#33249](https://github.com/PaddlePaddle/Paddle/pull/33249)）
+- Fix the issue that when use `slice` result as an lvalue of inplace operation, the error message of backward is not related to the error. （[#32981](https://github.com/PaddlePaddle/Paddle/pull/32981)）
+- Fix the issue of `paddle.concat` support uint8 in dynamic graph.([#33667](https://github.com/PaddlePaddle/Paddle/pull/33667))
+- Fix the issue of `paddle.grid_sample` GPU memory overflow and abnormal output. （[#33100](https://github.com/PaddlePaddle/Paddle/pull/33100)、[#33232](https://github.com/PaddlePaddle/Paddle/pull/33232)）
+- Fix bug of roi_align, when the input width or height of rois is 0, the output feature should be 0 .（[#33446](https://github.com/PaddlePaddle/Paddle/pull/33446)）
+- Fixed in some corner cases, input was modified to 'nan' bug of log_softmax op. （[#32937](https://github.com/PaddlePaddle/Paddle/pull/32937)）
+
+#### Dynamic Graphs to Static Graphs
+
+- Add support for dynamic conversion of user code for sublayer in the `paddle.nn.Sequential` .（[#33065](https://github.com/PaddlePaddle/Paddle/pull/33065)）
+- Fix the issue of subscript syntax errors in the phase of static type analysis of variables in control flow for statement conversions. （[#32969](https://github.com/PaddlePaddle/Paddle/pull/32969)）
+- Refactor the dynamic to static `param_guard` logic code to comprehensively solve the dynamic to static graph `Tensor` type conversion problem.（[#32985](https://github.com/PaddlePaddle/Paddle/pull/32985)）
+
+#### Distributed Training
+
+- Fix the error in `paddle.distributed.spawn` when using the default `nprocs` argument.（[#33249](https://github.com/PaddlePaddle/Paddle/pull/33249)）
+- Fix the hang issue of training start caused by the inconsistent creation of pipeline parallel communication group.（[#32890](https://github.com/PaddlePaddle/Paddle/pull/32890)、[#33473](https://github.com/PaddlePaddle/Paddle/pull/33473)）
+- Fix the issue of failed to save parameters in mixed parallelism.（[#33595](https://github.com/PaddlePaddle/Paddle/pull/33595)、[#33588](https://github.com/PaddlePaddle/Paddle/pull/33588)）
+- Fix the issue that Fleet API cannot run `Program` directly.（[#33511](https://github.com/PaddlePaddle/Paddle/pull/33511)）
+- Fix the hang issue caused by the uneven sample bucketing in the pure GPU training mode of heterogeneous parameter server.（[#32957](https://github.com/PaddlePaddle/Paddle/pull/32957)）
+
+##### Hybrid Parallelism with Dynamic Graph
+
+- Fix the the accuracy error of`TensorParallel`. Change the parameter initialization method of `TensorParallel` to ensure the randomness of the parameter after slicing.（[#33087](https://github.com/PaddlePaddle/Paddle/pull/33087)）
+- Fix an accuracy error of `PipeLineParallel`. Fix the incorrect use of `microbatch` for `PipeLineParallel`.（[#33097](https://github.com/PaddlePaddle/Paddle/pull/33097)）
+- Fix the issue that `new_group` API will hang when creating multiple communication groups.（[#33553](https://github.com/PaddlePaddle/Paddle/pull/33553)）
+
+#### Mixed Precision Training
+
+- Add `SyncBatchNorm` support for AMP in Dynamic graph, to improve the performance of dynamic graph `SyncBatchNorm` layer in AMP mode, and improve the 8-card AMP mode speedup ratio by 19% on `DeepLabV3P` model of [PaddleSeg].([#33709](https://github.com/PaddlePaddle/Paddle/pull/33709))
+
+#### Custom OP
+
+- Remove the dependency on `PADDLE_WITH_MKLDNN` macro for custom OP compilation.（[#32903](https://github.com/PaddlePaddle/Paddle/pull/32903)）
+- Default setting `GLIBCXX_USE_CXX11_ABI=1` to resolve the issue of low GCC version that may cause compile-time errors.（[#33185](https://github.com/PaddlePaddle/Paddle/pull/33185)）
+- Add support for c++14 syntax feature, and enable `-std=c++14` compile option by default. （[#33227](https://github.com/PaddlePaddle/Paddle/pull/33227)）
+
+#### Others
+
+- Fix the random segment error of training when `LoDTensorArray` is input of Op under multi-threading.（[#32984](https://github.com/PaddlePaddle/Paddle/pull/32984)）
+- Fix an issue where parameter regularization is executed twice when both the regularizer of `paddle.ParamAttr` and the `weight_decay` of `paddle.optimize` are specified as `L2Decay`.（[#32881](https://github.com/PaddlePaddle/Paddle/pull/32881)）
+- Fix the issue of corrupted characters of warning information in windows system.（[#33689](https://github.com/PaddlePaddle/Paddle/pull/33689)）
+
+## Inference Deployment
+
+### Model Quantification
+
+- Fix the issue of skipping OP quantization in dynamic graph quantization training function.（[#32879](https://github.com/PaddlePaddle/Paddle/pull/32879)）
+- Fix the issue that `layer_norm` does not save `out_threahold` attribute when quantized model is saved.（[#33610](https://github.com/PaddlePaddle/Paddle/pull/33707)）
+
+### Paddle Inference
+
+#### Function Upgrades
+
+- Add converter/plugin of `gather_nd` 和 `reduce_sum` in Paddle-TRT.（[#33365](https://github.com/PaddlePaddle/Paddle/pull/33365)）
+- Add `reshape` in Paddle-TRT.（[#33372](https://github.com/PaddlePaddle/Paddle/pull/33372)）
+
+#### Performance Optimization
+
+- Add the dynamic shape plugin of TensorRT` layer_norm` to improve model dynamic shape inference performance.（[#33448](https://github.com/PaddlePaddle/Paddle/pull/33448)）
+
+
+#### 易用性优化
+
+- Add Paddle Inference ROCm version of [Prediction Example Document](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_hardware_support/rocm_docs/infer_example_cn.html),  so as to add C++ prediction library version.txt with ROCm related version information.   ([#33290](https://github.com/PaddlePaddle/Paddle/pull/33290))
+- Update XPU compilation options. Please refer to [#33581](https://github.com/PaddlePaddle/Paddle/pull/33581) for specific compilation options.
+
+#### Bug Fixes
+
+-  Fix the calculation error of `fused_fc_elementwise_layernorm` caused by too large number of threads under DCU. ([#33299](https://github.com/PaddlePaddle/Paddle/pull/33299))
+-  Fix the issue that yolov3 model fails to run after gpu is turned on on nano and TX2.([#33442](https://github.com/PaddlePaddle/Paddle/pull/33442))
+-  Fix the computation error when seq_len > 1024 in Paddle-TRT `multihead_matmul plugin` .（[#33365](https://github.com/PaddlePaddle/Paddle/pull/33365)）
+-  Fix the incorrect output error caused by inconsistent order of input when ERNIE model becomes longer.（[#33622](https://github.com/PaddlePaddle/Paddle/pull/33622)）
+-  Fix the reports error of OCR model in prediction on GPU.([#33431](https://github.com/PaddlePaddle/Paddle/pull/33431))
+-  Fix the issue that `paddle.static.io.normalize_program` failed to export `paddle.static.normalize_program`.（[#33408](https://github.com/PaddlePaddle/Paddle/pull/33408)）
+-  Fix the issue that conv with stride > 1 fails in TRT6.0 and below.([#33198](https://github.com/PaddlePaddle/Paddle/pull/33198) )
+-  Fix the out-of-bounds error of GPU memory access when batch predicting images. ([#33370](https://github.com/PaddlePaddle/Paddle/pull/33370) )([#33531](https://github.com/PaddlePaddle/Paddle/pull/33531) )
+-  Fix the issue of cache size setting failure on X86 CPU.  （[#33571](https://github.com/PaddlePaddle/Paddle/pull/33571)）
+-  Fix TRT `conv2d_transpose op converter` dimension error setting. Now the model of `conv2d_transpose` op can work normally on TRT.（[#33242](https://github.com/PaddlePaddle/Paddle/pull/33242)）
+-  Fix the error of prediction library compiled by sub-CUDA Arch on Jetson devices. This version will release the Jetson prediction library compiled by sub-Arch for users who have demand for shrinked prediction library binary size.（[#33269](https://github.com/PaddlePaddle/Paddle/pull/33269)）
+-  Fix the issue that when using PaddleSlim quantitative model to load prediction from memory,  it still reports an error because the calibration table path is not set.（[#33629](https://github.com/PaddlePaddle/Paddle/pull/33629)）
+-  Fix the issue that BERT/ERNIE gives wrong cuda error 400 when using TRT prediction on non-0 card.（[#33706](https://github.com/PaddlePaddle/Paddle/pull/33706)）
+-  Fix a cmake syntax error caused by setting custom compilation parameters under Linux.（[#33621](https://github.com/PaddlePaddle/Paddle/pull/33621)）
+-  Optimize the calculation accuracy of `layer_norm` and fix the problem of outputting Nan when input is large data. ([#33420](https://github.com/PaddlePaddle/Paddle/pull/33420))
+
+## Environment Adaptation
+
+### Compile and install
+
+### Support of new hardware training
+
+#### support of Kunlun chips
+
+- Fix the `gather` op, add support of logsumexp op. ([#32931](https://github.com/PaddlePaddle/Paddle/pull/32931))
+
+## Thanks to our Contributors
+
+This release contains contributions from:
+Aurelius84, cc, ceci3,  Chen Weihang, danleifeng, feng_shuai, houj04, jiangcheng, JZ-LIANG, Kaipeng Deng, lidanqing, LielinJiang, Lijunhui, lilong12, liuyuhui, liym27, Pei Yang, Peihan, Qi Li, Ren Wei (任卫), Roc, Shang Zhizhou, ShenLiang, Shibo Tao, TeslaZhao, tianshuo78520a, TTerror, wangguanzhong, Wangzheee, wawltor, WeiXin, wenbin, Wenyu, whs, Wilber, wuhuanzhou, Zhang Ting, zhiboniu, Zhou Wei, zhoujun, 李季, 王明冬
+
+
+# 2.1.0 Release Note
 
 ## Highlights
 

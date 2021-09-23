@@ -22,7 +22,7 @@
 
 .. parsed-literal::
 
-    2.1.0
+    2.1.1
 
 
 三、实践：手写数字识别任务
@@ -37,10 +37,12 @@
 
 .. code:: ipython3
     
-    from paddle.vision.transforms import ToTensor
-    
-    train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=ToTensor())
-    val_dataset =  paddle.vision.datasets.MNIST(mode='test', transform=ToTensor())
+    import paddle.vision.transforms as T
+    transform = T.Normalize(mean=[127.5], std=[127.5], data_format='CHW')  
+
+    # 下载数据集
+    train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=transform)
+    val_dataset =  paddle.vision.datasets.MNIST(mode='test', transform=transform)
 
 3.2 模型搭建
 ~~~~~~~~~~~~
@@ -66,32 +68,33 @@
     
     # 预计模型结构生成模型对象，便于进行后续的配置、训练和验证
     model = paddle.Model(mnist)  
-    
+
     # 模型训练相关配置，准备损失计算方法，优化器和精度计算方法
     model.prepare(paddle.optimizer.Adam(parameters=model.parameters()),
-                  paddle.nn.CrossEntropyLoss(),
-                  paddle.metric.Accuracy())
-    
+                    paddle.nn.CrossEntropyLoss(),
+                    paddle.metric.Accuracy())
+
     # 开始模型训练
     model.fit(train_dataset,
-              epochs=5, 
-              batch_size=64,
-              verbose=1)
+                epochs=5, 
+                batch_size=64,
+                verbose=1)
 
 
 .. parsed-literal::
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous step.
+
+    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step 938/938 [==============================] - loss: 0.1161 - acc: 0.9298 - 16ms/step          
+    step 938/938 [==============================] - loss: 0.1801 - acc: 0.9032 - 8ms/step        
     Epoch 2/5
-    step 938/938 [==============================] - loss: 0.0272 - acc: 0.9691 - 15ms/step          
+    step 938/938 [==============================] - loss: 0.0544 - acc: 0.9502 - 8ms/step         
     Epoch 3/5
-    step 938/938 [==============================] - loss: 0.0326 - acc: 0.9789 - 16ms/step          
+    step 938/938 [==============================] - loss: 0.0069 - acc: 0.9595 - 7ms/step         
     Epoch 4/5
-    step 938/938 [==============================] - loss: 0.0043 - acc: 0.9826 - 16ms/step          
+    step 938/938 [==============================] - loss: 0.0094 - acc: 0.9638 - 7ms/step         
     Epoch 5/5
-    step 938/938 [==============================] - loss: 0.0853 - acc: 0.9863 - 15ms/step          
+    step 938/938 [==============================] - loss: 0.1414 - acc: 0.9670 - 8ms/step           
 
 3.4 模型评估
 ~~~~~~~~~~~~
@@ -105,9 +108,9 @@
 
 .. parsed-literal::
 
-    {'loss': [1.0728842e-06], 'acc': 0.9822}
+    {'loss': [2.145765e-06], 'acc': 0.9751}
 
 
-可以看出，初步训练得到的模型效果在98%附近，在逐渐了解飞桨后，你可以通过调整其中的训练参数来提升模型的精度。
+可以看出，初步训练得到的模型效果在97.5%附近，在逐渐了解飞桨后，你可以通过调整其中的训练参数来提升模型的精度。
 
 至此你就通过飞桨几个简单的API完成了一个深度学习任务，你也可以针对自己的需求来更换其中的代码，比如对数据集进行增强、使用 ``CNN`` 模型等，飞桨官网提供了丰富的教程与案例可供参考。

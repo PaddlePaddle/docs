@@ -4,7 +4,7 @@
 
 ## 环境准备
 
-- 目前支持的系统类型，请见[安装说明](./index_cn.html)，请注意目前暂不支持在CentOS 6使用Docker
+- 目前支持的系统类型，请见[安装说明](../index_cn.html)，请注意目前暂不支持在CentOS 6使用Docker
 
 - 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
@@ -16,12 +16,17 @@
 
     * CPU版的PaddlePaddle：
         ```
-        docker pull hub.baidubce.com/paddlepaddle/paddle:[版本号]
+        docker pull registry.baidubce.com/paddlepaddle/paddle:[版本号]
+        ```
+
+    * CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
+        ```
+        docker pull registry.baidubce.com/paddlepaddle/paddle:[版本号]-jupyter
         ```
 
     * GPU版的PaddlePaddle：
         ```
-        docker pull hub.baidubce.com/paddlepaddle/paddle:[版本号]-gpu-cuda9.0-cudnn7
+        docker pull registry.baidubce.com/paddlepaddle/paddle:[版本号]-gpu-cuda10.2-cudnn7
         ```
 
     如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像：
@@ -31,12 +36,21 @@
         docker pull paddlepaddle/paddle:[版本号]
         ```
 
-    * GPU版的PaddlePaddle：
+    * CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
         ```
-        docker pull paddlepaddle/paddle:[版本号]-gpu-cuda9.0-cudnn7
+        docker pull paddlepaddle/paddle:[版本号]-jupyter
         ```
 
-    在`:`后请您填写PaddlePaddle版本号，例如当前版本，更多请见[镜像简介](#dockers)，上例中，`cuda9.0-cudnn7` 也仅作示意用，您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
+    * GPU版的PaddlePaddle：
+        ```
+        docker pull paddlepaddle/paddle:[版本号]-gpu-cuda10.2-cudnn7
+        ```
+
+    在`:`后请您填写PaddlePaddle版本号，例如当前版本`2.1.0`，更多请见[镜像简介](#dockers)。
+
+    上例中，`cuda10.2-cudnn7` 也仅作示意用，表示安装GPU版的镜像。如果您还想安装其他cuda/cudnn版本的镜像，可以将其替换成`cuda11.2-cudnn8`等。
+
+    您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
 2. 构建、进入Docker容器
 
@@ -59,6 +73,30 @@
         > `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
 
 
+    * 使用CPU版本的PaddlePaddle，且镜像中预装好了 jupyter：
+
+        ```
+        mkdir ./jupyter_docker
+        ```
+        ```
+        chmod 777 ./jupyter_docker
+        ```
+        ```
+        cd ./jupyter_docker
+        ```
+        ```
+        docker run -p 80:80 --rm --env USER_PASSWD=[password you set] -v $PWD:/home/paddle <imagename>
+        ```
+
+        > --rm 关闭容器后删除容器；
+
+
+        > --env USER_PASSWD=[password you set] 为 jupyter 设置登录密码，[password you set] 是自己设置的密码；
+
+
+        > -v $PWD:/home/paddle 指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /home/paddle 目录；
+
+        > `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看
 
     * 使用GPU版本的PaddlePaddle：
 
@@ -95,20 +133,20 @@
     </thead>
     <tbody>
         <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:[Version] </td>
-        <td> 安装了指定版本PaddlePaddle </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0 </td>
+        <td> 安装了2.1.0版本paddle的CPU镜像 </td>
     </tr>
     <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest </td>
-        <td> 安装了开发版PaddlePaddle。注意：此版本可能包含尚未发布的特性和不稳定的功能，因此不推荐常规用户或在生产环境中使用。 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-jupyter </td>
+        <td> 安装了2.1.0版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
     </tr>
     <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest-gpu </td>
-        <td> 安装了开发版PaddlePaddle（支持GPU）。注意：此版本可能包含尚未发布的特性和不稳定的功能，因此不推荐常规用户或在生产环境中使用。 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda11.2-cudnn8 </td>
+        <td> 安装了2.1.0版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
     </tr>
         <tr>
-        <td> hub.baidubce.com/paddlepaddle/paddle:latest-dev </td>
-        <td> 安装了PaddlePaddle最新的开发环境 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda10.2-cudnn7 </td>
+        <td> 安装了2.1.0版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
     </tr>
    </tbody>
 </table>
@@ -118,8 +156,7 @@
 
 ### 注意事项
 
-* 镜像中Python版本为2.7
-* PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt-get install -y vim` 安装后，在容器中编辑代码
+* 镜像中Python版本为3.7
 
 ### 补充说明
 

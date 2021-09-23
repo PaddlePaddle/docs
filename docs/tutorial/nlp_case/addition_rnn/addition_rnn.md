@@ -1,7 +1,7 @@
 # 使用序列到序列模型完成数字加法
 
 **作者:** [jm12138](https://github.com/jm12138) <br>
-**日期:** 2021.05 <br>
+**日期:** 2021.06 <br>
 **摘要:** 本示例介绍如何使用飞桨完成一个数字加法任务，将会使用飞桨提供的`LSTM`，组建一个序列到序列模型，并在随机生成的数据集上完成数字加法任务的模型训练与预测。
 
 ## 一、环境配置
@@ -24,7 +24,7 @@ from visualdl import LogWriter
 print('paddle version: %s' % paddle.__version__)
 ```
 
-    paddle version: 2.1.0
+    paddle version: 2.1.1
 
 
 ## 二、构建数据集
@@ -338,21 +338,34 @@ for epoch in range(epoch_num):
 paddle.save(model.state_dict(),'final_model')
 ```
 
-    train epoch:0 step: 0 loss:2.485989 acc:0.041667
-    eval epoch:0 step: 0 loss:2.485989 acc:0.041667
+    train epoch:0 step: 0 loss:2.488960 acc:0.104167
+    eval epoch:0 step: 0 loss:2.488960 acc:0.104167
     saving the best_model...
-    eval epoch:3 step: 500 loss:1.168023 acc:0.583333
+    eval epoch:3 step: 500 loss:1.206262 acc:0.552083
     saving the best_model...
-    eval epoch:6 step: 1000 loss:1.080799 acc:0.583333
-    eval epoch:9 step: 1500 loss:0.930121 acc:0.645833
+    eval epoch:6 step: 1000 loss:1.024468 acc:0.645833
     saving the best_model...
-    train epoch:12 step: 2000 loss:0.723319 acc:0.750000
-    eval epoch:12 step: 2000 loss:0.723319 acc:0.750000
+    eval epoch:9 step: 1500 loss:0.905523 acc:0.666667
     saving the best_model...
-    eval epoch:16 step: 2500 loss:0.385135 acc:0.875000
+    train epoch:12 step: 2000 loss:0.658411 acc:0.781250
+    eval epoch:12 step: 2000 loss:0.658411 acc:0.781250
     saving the best_model...
-    eval epoch:19 step: 3000 loss:0.200507 acc:0.968750
+    eval epoch:16 step: 2500 loss:0.256994 acc:0.968750
     saving the best_model...
+    eval epoch:19 step: 3000 loss:0.189801 acc:0.947917
+    eval epoch:22 step: 3500 loss:0.093367 acc:0.989583
+    saving the best_model...
+    train epoch:25 step: 4000 loss:0.042138 acc:0.989583
+    eval epoch:25 step: 4000 loss:0.042138 acc:0.989583
+    eval epoch:28 step: 4500 loss:0.118681 acc:0.958333
+    eval epoch:32 step: 5000 loss:0.033001 acc:0.989583
+    eval epoch:35 step: 5500 loss:0.008753 acc:1.000000
+    saving the best_model...
+    train epoch:38 step: 6000 loss:0.102030 acc:0.958333
+    eval epoch:38 step: 6000 loss:0.102030 acc:0.958333
+    eval epoch:41 step: 6500 loss:0.005777 acc:1.000000
+    eval epoch:44 step: 7000 loss:0.004515 acc:1.000000
+    eval epoch:48 step: 7500 loss:0.003284 acc:1.000000
 
 
 ## 五、模型测试

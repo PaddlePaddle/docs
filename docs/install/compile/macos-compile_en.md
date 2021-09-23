@@ -3,8 +3,8 @@
 ## Environment preparation
 
 * **MacOS version 10.11/10.12/10.13/10.14 (64 bit) (not support GPU version)**
-* **Python version 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
-* **pip or pip3 version 20.2.2+ (64 bit)**
+* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
+* **pip or pip3 version 20.2.2 or above (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -45,14 +45,14 @@ Please follow the steps below to install:
 4. Create and enter a Docker container that meets the compilation environment:
 
     ```
-    docker run --name paddle-test -v $PWD:/paddle --network=host -it hub.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+    docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
     ```
 
     > --name paddle-test name the Docker container you created as paddle-test,
 
     > -v $PWD:/paddle mount the current directory to the /paddle directory in the Docker container (the PWD variable in Linux will expand to the current path's [Absolute path](https://baike.baidu.com/item/绝对路径/481185)),
 
-    > -it keeps interacting with the host, `hub.baidubce.com/paddlepaddle/paddle:latest-dev` creates a Docker container with a mirror named `hub.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash starts the /bin/bash command after entering the container.
+    > -it keeps interacting with the host, `registry.baidubce.com/paddlepaddle/paddle:latest-dev` creates a Docker container with a mirror named `registry.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash starts the /bin/bash command after entering the container.
 
 5. After entering Docker, go to the paddle directory:
 
@@ -66,7 +66,7 @@ Please follow the steps below to install:
     git checkout develop
     ```
 
-    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch
+    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
 
 7. Create and enter the /paddle/build path:
 
@@ -76,16 +76,11 @@ Please follow the steps below to install:
 
 8. Use the following command to install the dependencies:
 
-    For Python2:
     ```
-    pip install protobuf==3.1.0
-    ```
-    For Python3:
-    ```
-    pip3.5 install protobuf==3.1.0
+    pip3.7 install protobuf==3.1.0
     ```
 
-    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
+    Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
 
     > Install protobuf 3.1.0.
 
@@ -98,12 +93,12 @@ Please follow the steps below to install:
 9. Execute cmake:
 
     > For details on the compilation options, see the [compilation options table](../Tables_en.html/#Compile).
-    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.5` means the version of python is 3.5.x
+    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.7` means the version of python is 3.7
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 
         ```
-        cmake .. -DPY_VERSION=3.5 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
         > We currently do not support the compilation of the GPU version PaddlePaddle under CentOS.
@@ -121,19 +116,15 @@ Please follow the steps below to install:
     cd /paddle/build/python/dist
     ```
 
-12. Install the compiled `.whl` package on the current machine or target machine: (For Python3: Please select the pip corresponding to the python version you wish to use, such as pip3.5, pip3.6)
+12. Install the compiled `.whl` package on the current machine or target machine: (For Python3: Please select the pip corresponding to the python version you wish to use, such as pip3.6)
 
 
-    For Python2:
-    ```
-    pip install -U (whl package name)
-    ```
     For Python3:
     ```
-    pip3.5 install -U (whl package name)
+    pip3.7 install -U (whl package name)
     ```
 
-    Note: We used Python3.5 command as an example above, if the version of your Python is 3.6/3.7/3.8, please change Python3.5 in the commands to Python3.6/Python3.7/Python3.8
+    Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
 
 Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -149,29 +140,15 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
 2. Install python and pip:
 
-    > **Please do not use the Python initially given by MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.5.x, python3.6.x, python3.7.x, python3.8), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
+    > **Please do not use the Python initially given by MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.6.x, python3.7.x, python3.8, python3.9), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
 
-    For python2:
-    ```
-    brew install python@2
-    ```
-    For python3: Install using Python official website
+    Install using Python official website
 
 
     > Please note that when you have multiple pythons installed on your mac, make sure that the python you are using is the python you wish to use.
 
-3. (Only For Python2) Set Python-related environment variables:
 
-    - Use
-        ```
-        find / -name libpython2.7.dylib
-        ```
-        to find your current python `libpython2.7.dylib` path and use
-        ```
-        export LD_LIBRARY_PATH=[libpython2.7.dylib path] && export DYLD_LIBRARY_PATH=[libpython2.7.dylib  to the top two directories of the directory]
-        ```
-
-4. (Only For Python3) Set Python-related environment variables:
+3. (Only For Python3) Set Python-related environment variables:
 
     - a. First use
         ```
@@ -184,7 +161,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
         export PYTHON_LIBRARY=[python-lib-path]
         ```
 
-    - c. Secondly use the path to find PythonInclude (usually find the above directory of [python-lib-path] as the include of the same directory, then find the path of python3.x or python2.x in the directory), then (the [python-include-path] in the following commands should be replaced by the path found here)
+    - c. Secondly use the path to find PythonInclude (usually find the above directory of [python-lib-path] as the include of the same directory, then find the path of python3.x in the directory), then (the [python-include-path] in the following commands should be replaced by the path found here)
 
     - d. Set PYTHON_INCLUDE_DIR:
         ```
@@ -210,7 +187,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
     - g. (Optional) If you are compiling PaddlePaddle on MacOS 10.14, make sure you have the [appropriate version](http://developer.apple.com/download) of Xcode installed.
 
 
-5. Before **compilation**, please confirm that the relevant dependencies mentioned in the [compilation dependency table](h../Tables.html/#third_party) are installed in your environment, otherwise we strongly recommend using `Homebrew` to install related dependencies.
+4. Before **compilation**, please confirm that the relevant dependencies mentioned in the [compilation dependency table](h../Tables.html/#third_party) are installed in your environment, otherwise we strongly recommend using `Homebrew` to install related dependencies.
 
     > Under MacOS, if you have not modified or installed the dependencies mentioned in the "Compile Dependency Table", you only need to use `pip` to install `numpy`, `protobuf`, `wheel`, use `homebrew` to install `wget`, `swig`,then install `cmake`.
 
@@ -228,7 +205,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     - b. If you do not want to use the system default blas and want to use your own installed OPENBLAS please read [FAQ](../FAQ.html/#OPENBLAS)
 
-6. Put the PaddlePaddle source cloned in the Paddle folder in the current directory and go to the Paddle directory:
+5. Put the PaddlePaddle source cloned in the Paddle folder in the current directory and go to the Paddle directory:
 
     ```
     git clone https://github.com/PaddlePaddle/Paddle.git
@@ -244,45 +221,37 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
     git checkout develop
     ```
 
-    Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch
-
-8. And please create and enter a directory called build:
+7. And please create and enter a directory called build:
 
     ```
     mkdir build && cd build
     ```
 
-9. Execute cmake:
+8. Execute cmake:
 
     > For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
 
     * For users who need to compile the **CPU version PaddlePaddle**:
 
-
-        For Python2:
         ```
-        cmake .. -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-        ```
-        For Python3:
-        ```
-        cmake .. -DPY_VERSION=3.5 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+        cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
         -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
-    > ``-DPY_VERSION=3.5`` Please change to the Python version of the installation environment.
+    > ``-DPY_VERSION=3.7`` Please change to the Python version of the installation environment.
 
-10. Compile with the following command:
+9. Compile with the following command:
 
     ```
     make -j4
     ```
 
-11. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package:
+10. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package:
     ```
     cd /paddle/build/python/dist
     ```
 
-12. Install the compiled `.whl` package on the current machine or target machine:
+11. Install the compiled `.whl` package on the current machine or target machine:
 
     ```
     pip install -U (whl package name)

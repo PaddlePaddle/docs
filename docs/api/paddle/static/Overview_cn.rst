@@ -29,6 +29,7 @@ Program相关API
     " :ref:`Program <cn_api_fluid_Program>` ", "飞桨用Program动态描述整个计算图"
     " :ref:`program_guard <cn_api_fluid_program_guard>` ", "配合with语句将算子和变量添加进指定的 `main program` 和 `startup program` "
     " :ref:`set_program_state <cn_api_fluid_io_set_program_state>` ", "设置 Program 的参数和优化器信息"
+    " :ref:`normalize_program <cn_api_fluid_io_normalize_program>` ", "根据指定的 feed_vars 和 fetch_vars，优化 program"
 
 .. _about_executor:
 
@@ -75,6 +76,19 @@ Executor相关API
     " :ref:`row_conv <cn_api_fluid_layers_row_conv>` ", "行卷积"
     " :ref:`spectral_norm <cn_api_fluid_layers_spectral_norm>` ", "Spectral Normalization方法"
     " :ref:`switch_case <cn_api_fluid_layers_switch_case>` ", "类似于c++的switch/case"
+    " :ref:`sequence_concat <cn_api_fluid_layers_sequence_concat>` ", "仅支持LoDTensor ，通过LoDTensor的LoD信息将输入的多个LoDTensor进行连接，输出连接后的LoDTensor"
+    " :ref:`sequence_conv <cn_api_fluid_layers_sequence_conv>` ", "仅支持LoDTensor ，在给定的卷积参数下，对输入的变长序列LoDTensor进行卷积操作"
+    " :ref:`sequence_enumerate <cn_api_fluid_layers_sequence_enumerate>` ", "仅支持LoDTensor ，枚举形状为 [d_1, 1] 的输入序列所有长度为 win_size 的子序列，生成一个形状为 [d_1, win_size] 的新序列，需要时以 pad_value 填充"
+    " :ref:`sequence_expand <cn_api_fluid_layers_sequence_expand>` ", "仅支持LoDTensor ，根据输入 y 的第 ref_level 层lod对输入 x 进行扩展"
+    " :ref:`sequence_expand_as <cn_api_fluid_layers_sequence_expand_as>` ", "仅支持LoDTensor ，根据输入 y 的第0级lod对输入 x 进行扩展"
+    " :ref:`sequence_first_step <cn_api_fluid_layers_sequence_first_step>` ", "仅支持LoDTensor ，对输入的LoDTensor，在最后一层lod_level上，选取其每个序列的第一个时间步的特征向量作为池化后的输出向量"
+    " :ref:`sequence_last_step <cn_api_fluid_layers_sequence_last_step>` ", "仅支持LoDTensor ，对输入的LoDTensor，在最后一层lod_level上，选取其每个序列的最后一个时间步的特征向量作为池化后的输出向量"
+    " :ref:`sequence_pad <cn_api_fluid_layers_sequence_pad>` ", "仅支持LoDTensor ，将同一batch中的序列填充到一个一致的长度（由 maxlen 指定）"
+    " :ref:`sequence_pool <cn_api_fluid_layers_sequence_pool>` ", "仅支持LoDTensor ，对输入的LoDTensor进行指定方式的池化操作"
+    " :ref:`sequence_reshape <cn_api_fluid_layers_sequence_reshape>` ", "仅支持LoDTensor ，对输入的LoDTensor进行指定方式的变形操作"
+    " :ref:`sequence_reverse <cn_api_fluid_layers_sequence_reverse>` ", "仅支持LoDTensor ，对输入的LoDTensor，在每个序列上进行反转"
+    " :ref:`sequence_slice <cn_api_fluid_layers_sequence_slice>` ", "仅支持LoDTensor ，对输入的LoDTensor，实现序列切片运算"
+    " :ref:`sequence_softmax <cn_api_fluid_layers_sequence_softmax>` ", "仅支持LoDTensor ，根据LoDTensor信息将输入的第0维度进行划分，在划分的每一个区间内部进行运算"
 
 .. _about_io:
 
@@ -107,13 +121,13 @@ io相关API
     :widths: 10, 30
 
     " :ref:`create_global_var <cn_api_fluid_layers_create_global_var>` ", "创建全局变量"
-    " :ref:`create_parameter <cn_api_fluid_layers_create_parameter>` ", "创建参数"
     " :ref:`data <cn_api_static_cn_data>` ", "在全局block中创建变量"
     " :ref:`gradients <cn_api_fluid_backward_gradients>` ", "将目标变量的梯度反向传播到输入变量"
     " :ref:`Print <cn_api_fluid_layers_Print>` ", "打印正在访问的变量内容"
     " :ref:`Variable <cn_api_fluid_Variable>` ", "创建参数"
     " :ref:`WeightNormParamAttr <cn_api_fluid_WeightNormParamAttr>` ", "权重归一化类"
-
+    " :ref:`sequence_scatter <cn_api_fluid_layers_sequence_scatter>` ", "仅支持LoDTensor,根据index提供的位置将updates中的信息更新到输出中"
+    " :ref:`sequence_unpad <cn_api_fluid_layers_sequence_unpad>` ", "仅支持LoDTensor ，根据length的信息，将input中padding元素移除，并且返回一个LoDTensor"
 .. _about_device:
 
 运行设备相关API
@@ -126,8 +140,6 @@ io相关API
     " :ref:`cpu_places <cn_api_fluid_cpu_places>` ", "创建 `paddle.CPUPlace` 对象"
     " :ref:`cuda_places <cn_api_fluid_cuda_places>` ", "创建 `paddle.CUDAPlace` 对象"
     " :ref:`device_guard <cn_api_device_guard>` ", "用于指定OP运行设备的上下文管理器"
-    " :ref:`xpu_places <cn_api_fluid_xpu_places>` ", "创建 `paddle.XPUPlace` 对象"
-
 
 .. _about_metrics:
 
@@ -156,3 +168,4 @@ io相关API
     " :ref:`name_scope <cn_api_fluid_layers_py_func>` ", "为OP生成命名空间"
     " :ref:`py_func <cn_api_fluid_layers_py_func>` ", "自定义算子"
     " :ref:`scope_guard <cn_api_fluid_executor_scope_guard>` ", "切换作用域"
+    " :ref:`while_loop <cn_api_fluid_layers_while_loop>` ", "while循环控制"

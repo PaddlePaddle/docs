@@ -29,21 +29,28 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 | paddle.amp                    | Paddle automatic mixed precision strategy, including  | 
 |                               | auto_cast, GradScaler, etc.                           |
 +-------------------------------+-------------------------------------------------------+
+| paddle.autograd               | Auto grad API, including backward, PyLayer, etc.      |
++-------------------------------+-------------------------------------------------------+
 | paddle.callbacks              | Paddle log callback APIs, including ModelCheckpoint,  |
 |                               | ProgBarLogger, etc.                                   |
 +-------------------------------+-------------------------------------------------------+
+| paddle.distributed            | Distributed related basic APIs.                       |
++-------------------------------+-------------------------------------------------------+
+| paddle.distributed.fleet      | Distributed related high-level APIs.                  |
++-------------------------------+-------------------------------------------------------+
+| paddle.hub                    | Model extension API, including list, load, help, etc. |
++-------------------------------+-------------------------------------------------------+
+| paddle.io                     | APIs related to data input and output such as         |
+|                               | Dataset, and DataLoader                               |
++-------------------------------+-------------------------------------------------------+
+| paddle.jit                    | Dynamic graph to static graph APIs, including         |
+|                               | to_static, ProgramTranslator, TracedLayer, etc.       |
++-------------------------------+-------------------------------------------------------+
+| paddle.metric                 | APIs related to evaluation computation such as        |
+|                               | Accuracy and Auc.                                     |
++-------------------------------+-------------------------------------------------------+
 | paddle.nn                     | Networking-related APIs such as Linear, Conv2D,       |
-|                               | CrossEntropyLoss, RNN，and ReLU                       |
-+-------------------------------+-------------------------------------------------------+
-| paddle.static                 | Basic framework related APIs under static graph,      | 
-|                               | such as Variable, Program, Executor, etc.             |
-+-------------------------------+-------------------------------------------------------+
-| paddle.static.nn              | Special APIs for networking under static graph such   |
-|                               | as full connect layer fc and control flow             |
-|                               | while_loop/cond                                       |
-+-------------------------------+-------------------------------------------------------+
-| paddle.framework              | Universal APIs and imprerative mode APIs such as      |
-|                               | to_variable and prepare_context                       |
+|                               | CrossEntropyLoss, RNN，and ReLU, etc.                 |
 +-------------------------------+-------------------------------------------------------+
 | paddle.onnx                   | APIs related to convert paddle model to ONNX，such as |
 |                               | export                                                |
@@ -54,22 +61,22 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 | paddle.optimizer.lr           | APIs related to learning rate decay, such as          | 
 |                               | NoamDecay, StepDecay, PiecewiseDecay, etc.            |
 +-------------------------------+-------------------------------------------------------+
-| paddle.metric                 | APIs related to evaluation computation such as        |
-|                               | Accuracy and Auc                                      |
+| paddle.regularizer            | Regularization APIs, including L1Decay, L2Decay, etc. |
 +-------------------------------+-------------------------------------------------------+
-| paddle.io                     | APIs related to data input and output such as         |
-|                               | Dataset, and DataLoader                               |
+| paddle.static                 | Basic framework related APIs under static graph,      | 
+|                               | such as Variable, Program, Executor, etc.             |
 +-------------------------------+-------------------------------------------------------+
-| paddle.distributed            | Distributed related basic APIs                        |
-|                               |                                                       |
+| paddle.static.nn              | Special APIs for networking under static graph such   |
+|                               | as full connect layer fc and control flow             |
+|                               | while_loop/cond                                       |
 +-------------------------------+-------------------------------------------------------+
-| paddle.distributed.fleet      | Distributed related high-level APIs                   |
-|                               |                                                       |
+| paddle.text                   | The NLP domain API currently includes data sets       |
+|                               | related to the NLP domain, such as Imdb and Movielens.|
++-------------------------------+-------------------------------------------------------+
+| paddle.utils                  | Utils APIs, including CppExtension, CUDAExtension.    |
 +-------------------------------+-------------------------------------------------------+
 | paddle.vision                 | Vision domain APIs such as datasets Cifar10,          |
 |                               | data processing ColorJitter, and commonly used models |
 |                               | like resnet                                           |
 +-------------------------------+-------------------------------------------------------+
-| paddle.text                   | The NLP domain API currently includes data sets       |
-|                               | related to the NLP domain, such as Imdb and Movielens.|
-+-------------------------------+-------------------------------------------------------+
+

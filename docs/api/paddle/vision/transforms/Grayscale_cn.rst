@@ -13,13 +13,16 @@ Grayscale
     - num_output_channels (int，可选) - 输出图像的通道数，参数值为1或3。默认值：1。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
+形状
+:::::::::
+
+    - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
+    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回输入图像的灰度版本。如果 output_channels == 1，返回一个单通道图像。如果 output_channels == 3，返回一个3通道图像，其中RGB三个通道值一样。
+
 返回
 :::::::::
 
-    ``PIL.Image 或 numpy.ndarray``，输入图像的灰度版本。
-
-    - 如果 output_channels == 1 : 返回一个单通道图像。
-    - 如果 output_channels == 3 : 返回一个3通道图像，其中RGB三个通道值一样。
+    计算 ``Grayscale`` 的可调用对象。
 
 代码示例
 :::::::::
