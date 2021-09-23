@@ -7,9 +7,9 @@ multi_dot
 
 Multi_dot是一个计算多个矩阵乘法的算子。
 
-算子支持float，double和float16三种类型。该算子不支持批量输入。
+算子支持float16，float32和float64三种类型。该算子不支持批量输入。
 
-输入[x]的每个tensor的shape必须是二维的，除了第一个和做后一个tensor可以是一维的。如果第一个tensor是shape为(n, )的一维向量，该tensor将被当作是shape为(1, n)的行向量处理，同样的，如果最后一个tensor的shape是(n, )，将被当作是shape为(n, 1)的列向量处理。
+输入[x]的每个tensor的shape必须是二维的，除了第一个和最后一个tensor可以是一维的。如果第一个tensor是shape为(n, )的一维向量，该tensor将被当作是shape为(1, n)的行向量处理，同样的，如果最后一个tensor的shape是(n, )，将被当作是shape为(n, 1)的列向量处理。
 
 如果第一个和最后一个tensor是二维矩阵，那么输出也是一个二维矩阵，否则输出是一维的向量。
 
@@ -18,7 +18,7 @@ Multi_dot会选择计算量最小的乘法顺序进行计算。(a, b)和(b, c)�
 - Cost((AB)C) = 20x5x100 + 20x100x10 = 30000
 - Cost(A(BC)) = 5x100x10 + 20x5x10 = 6000
 
-在这个例子中，先算B乘以C再乘A的计算量比按顺序乘少5被。
+在这个例子中，先算B乘以C再乘A的计算量比按顺序乘少5倍。
 
 参数
 :::::::::
