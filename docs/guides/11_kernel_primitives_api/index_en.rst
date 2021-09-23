@@ -10,7 +10,7 @@ API was divided into IO API and Compute API:
 
 2. Compute API: Design general calculation functions based on GPU computing characteristics, such as ELementwiseBinary, ElementwiseUnary, etc.
 
-API 列表
+API List
 ############
 
 +--------------------------------------+------------------------------------------------------------ +
@@ -51,13 +51,13 @@ API 列表
 |                                      | in the thread according to the reduce mode.                 |
 +--------------------------------------+-------------------------------------------------------------+
 
-API 详细介绍
+API Description
 ##############
 
 - `IO API <./io_api_cn.html>`_ : Describes the definition and functions of IO APIs.
 - `Compute API <./compute_api_cn.html>`_ : Describes the definition and functions of compute APIs.
 
-API 应用实例
+API Examples
 ############
 
 - `elementwise_add <./elementwise_add_case_cn.html>`_ : Addition operation, the input and output shapes are the same.

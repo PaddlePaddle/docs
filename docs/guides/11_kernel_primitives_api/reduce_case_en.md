@@ -1,8 +1,9 @@
-# API 应用实例 - Reduce
+# API Examples - Reduce
 ## Reduce
-+ 案例功能说明：对最高维度进行规约操作，例如输入为 x [N, H, W, C], axis 取值为0, 规约后为 out [1, H, W, C]。
++ 案例功能说明：
+Perform reduction operations on the highest dimension. For example, the input is x [N, H, W, C], the axis value is 0, and the reduction is out [1, H, W, C].
 
-### ReduceOp定义
+### ReduceOp Definition
 ```
 template <typename T>
 struct DivideFunctor {
@@ -27,11 +28,11 @@ struct CustomMean {
   }
 };
 ```
-### kernel 实现说明
+### Kernel Description
 
-对最高维进行规约操作，将不需要进行规约的维度进行合并，将blockIdx.x 映射到不需要进行规约的维度，保证访问存储效率最大。线程间数据没有依赖，只需要进行线程内规约操作。当size < blockDim.x时需要将IsBounary设置为true，表明需要进行访存边界判断，避免访问存储越界。
+Perform the reduction operation on the highest dimension, merge the dimensions that do not need to be reduced, and map blockIdx.x to the dimensions that do not need to be reduced to ensure maximum access and storage efficiency. There is no dependency on data between threads, only intra-thread protocol operations are required. When size < blockDim.x, IsBounary needs to be set to true, indicating that the memory access boundary judgment needs to be performed to avoid access to memory out of range.
 
-### kernel 代码
+### Code
 
 ```
 template <typename Tx, typename Ty, typename MPType, typename ReduceOp, typename TransformOp, bool IsBoundary = false>

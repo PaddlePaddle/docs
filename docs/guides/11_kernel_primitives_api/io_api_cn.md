@@ -55,9 +55,9 @@ __device__ void ReadData(T* dst, const T* src, int num);
 
 ### 函数参数
 
-> dst : 输出寄存器指针，大小为 NX x NY。
-> src : 当前 block 的输入数据指针，通常为 input + blockIdx.x x blockDim.x x NX。
-> num : 当前 block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。
+> dst : 输出寄存器指针，大小为 NX x NY。</br>
+> src : 当前 block 的输入数据指针，通常为 input + blockIdx.x x blockDim.x x NX。</br>
+> num : 当前 block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
 
 ------------------
 

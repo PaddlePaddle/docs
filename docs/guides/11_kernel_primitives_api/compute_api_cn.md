@@ -198,7 +198,7 @@ __device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_l
 
 ### 函数说明
 
-根据 reducer 对 in 中的数据进行数据规约，in 数据 shape 为 [NY, NX]，当 ReduceMode = kLocalMode 时，对 in 沿着 NX 方向进行规约，完成线程内规约，out为[NY, 1]；当 ReduceMode = kGlobalMode 时，使用共享内存完成 block 内线程间的规约操作，in 和 out 的size相同，均为[NY, NX]。
+根据 reducer 对 in 中的数据进行数据规约，输入 in 的 shape 为 [NY, NX]，当 ReduceMode = kLocalMode 时，对 in 沿着 NX 方向进行规约，完成线程内规约，out为[NY, 1]；当 ReduceMode = kGlobalMode 时，使用共享内存完成 block 内线程间的规约操作，in 和 out 的size相同，均为[NY, NX]。
 
 ### 模板参数
 

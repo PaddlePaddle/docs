@@ -1,8 +1,8 @@
-# API 应用实例 - Add
+# API Examples - Add
 ## Add
-+ 案例功能说明：完成相同shape的两数相加，输入为InT类型，输出为OutT类型，根据Functor完成对应的计算.
++ Description: To complete the addition of two numbers of the same shape, the input is InT type, and the output is OutT type, and the corresponding calculation is completed according to the Functor.
 
-### Functor 定义
+### Functor Definition
 
 ```
 AddFunctor:
@@ -13,11 +13,11 @@ struct AddFunctor {
 };
 
 ```
-### Kernel 实现说明
+### Kernel Description
 
-VecSize 表示每个线程连续读取VecSize个元素，根据剩余元素num与每个线程最大处理的元素个数VecSize x blockDim.x的关系，将数据处理分为2部分，第一部分，当VecSize * blockDim.x > num 表示当前数据处理需要进行边界处理，因此将IsBoundary设置为 true，避免访存越界，注意此处使用Init函数对寄存器arg0，arg1进行初始化，避免当arg0或者arg1作为分母时出现为0的情况。此处根据Functor完成两数求和操作，当需要进行两数相乘，可以直接修改对应的Functor即可，可以直接复用kernel 代码，提升开发效率。
+VecSize means that each thread continuously reads VecSize elements. According to the relationship between the remaining elements num and the maximum number of elements processed by each thread VecSize x blockDim.x, the data processing is divided into two parts. The first part is when VecSize * blockDim. x> num indicates that the current data processing requires boundary processing, so set IsBoundary to true to avoid fetching out of bounds. Note that the Init function is used to initialize the registers arg0 and arg1 to avoid the occurrence of 0 when arg0 or arg1 is used as the denominator. Condition. Here, the sum of two numbers is completed according to the Functor. When two numbers need to be multiplied, the corresponding Functor can be directly modified, and the kernel code can be reused directly to improve development efficiency.
 
-### Kernel 代码
+### Code
 
 ```
 
