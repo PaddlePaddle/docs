@@ -56,8 +56,8 @@ API 详细介绍
 API 应用实例
 ############
 
-- `elementwise_add <./elementwise_add_case_cn.html>`_ : 加法操作， 输入和输出具有相同shape。
-- `reduce <./reduce_case_cn.html>`_ : 针对最高维进行规约操作。
+- `Add <./elementwise_add_case_cn.html>`_ : 加法操作， 输入和输出具有相同shape。
+- `Reduce <./reduce_case_cn.html>`_ : 针对最高维进行规约操作。
 
 ..  toctree::
     :hidden:

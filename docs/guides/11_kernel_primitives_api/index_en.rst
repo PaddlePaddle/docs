@@ -60,8 +60,8 @@ API Description
 API Examples
 ############
 
-- `elementwise_add <./elementwise_add_case_en.html>`_ : Addition operation, the input and output shapes are the same.
-- `reduce <./reduce_case_en.html>`_ : Only the highest dimension is involved in reduce.
+- `Add <./elementwise_add_case_en.html>`_ : Addition operation, the input and output shapes are the same.
+- `Reduce <./reduce_case_en.html>`_ : Only the highest dimension is involved in reduce.
 
 ..  toctree::
     :hidden:

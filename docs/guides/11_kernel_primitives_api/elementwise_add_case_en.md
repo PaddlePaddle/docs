@@ -20,13 +20,12 @@ VecSize means that each thread continuously reads VecSize elements. According to
 ### Code
 
 ```
-
 #include "kernel_primitives/kernel_primitives.h"
 template<int VecSize, typename InT, typename OutT, typename Functor, bool IsBoundary>
-__device__ void elementwiseImpl(InT _global_ptr_ *in0, InT _global_ptr_* in1, OutT _global_ptr_ * out, Functor func, int num) {
-  __local__ InT arg0[VecSize];
-  __local__ InT arg1[VecSize];
-  __local__ OutT result[VecSize];
+__device__ void elementwiseImpl(InT *in0, InT * in1, OutT * out, Functor func, int num) {
+  InT arg0[VecSize];
+  InT arg1[VecSize];
+  OutT result[VecSize];
   Init<InT, VecSize>(arg0, static_cast<OutT>(1.0f));
   Init<InT, VecSize>(arg1, static_cast<OutT>(1.0f));
   ReadData<InT, VecSize, 1, 1, IsBoundary>(arg0, in0, num);
@@ -35,10 +34,8 @@ __device__ void elementwiseImpl(InT _global_ptr_ *in0, InT _global_ptr_* in1, Ou
   WriteData<OutT, VecSize, 1, 1, IsBoundary>(out, result, num);
 }
 
-template<int VecSize, typename InT, typename OutT, typename Functor >
-__global__ void elementwise(InT *in0,
-                            InT *in1, OutT *out,
-                            int size, Functor func) {
+template<int VecSize, typename InT, typename OutT, typename Functor>
+__global__ void elementwise(InT *in0, InT *in1, OutT *out, int size, Functor func) {
   int data_offset = VecSize * blockIdx.x * blockDim.x; // data offset of this block
   int stride = gridDim.x * blockDim.x * VecSize;
   for (int offset = data_offset; offset < size; offset += stride) {
