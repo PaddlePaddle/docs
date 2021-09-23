@@ -3,14 +3,14 @@
 roi_pool
 -------------------------------
 
-.. py:function:: paddle.vision.ops.roi_pool(input, boxes, boxes_num, output_size, spatial_scale=1.0, name=None)
+.. py:function:: paddle.vision.ops.roi_pool(x, boxes, boxes_num, output_size, spatial_scale=1.0, name=None)
 
 位置敏感的兴趣区域池化（也称为 ROIPooling），是在指定输入的感兴趣区域上执行位置敏感的平均池化，并获得固定大小的特征图。
 
 
 参数
 :::::::::
-    - input (Tensor) - 输入的特征图，形状为(N, C, H, W)。
+    - x (Tensor) - 输入的特征图，形状为(N, C, H, W)。
     - boxes (Tensor) - 待执行池化的ROIs(Regions of Interest, 感兴趣区域)的框坐标。它应当是一个形状为(num_rois, 4)的2-D Tensor，以[[x1, y1, x2, y2], ...]的形式给出。其中(x1, y1)是左上角的坐标值，(x2, y2)是右下角的坐标值。
     - boxes_num (Tensor) - 该batch中每一张图所包含的框数量。
     - output_size (int|Tuple(int, int)) - 池化后输出的尺寸(H, W), 数据类型为int32. 如果output_size是int类型，H和W都与其相等。
