@@ -54,20 +54,20 @@ API List
 API Description
 ##############
 
-- `IO API <./io_api_cn.html>`_ : Describes the definition and functions of IO APIs.
-- `Compute API <./compute_api_cn.html>`_ : Describes the definition and functions of compute APIs.
+- `IO API <./io_api_en.html>`_ : Describes the definition and functions of IO APIs.
+- `Compute API <./compute_api_en.html>`_ : Describes the definition and functions of compute APIs.
 
 API Examples
 ############
 
-- `elementwise_add <./elementwise_add_case_cn.html>`_ : Addition operation, the input and output shapes are the same.
-- `reduce <./reduce_case_cn.html>`_ : Only the highest dimension is involved in reduce.
+- `elementwise_add <./elementwise_add_case_en.html>`_ : Addition operation, the input and output shapes are the same.
+- `reduce <./reduce_case_en.html>`_ : Only the highest dimension is involved in reduce.
 
 ..  toctree::
     :hidden:
 
 
-    io_api_cn.md
-    compute_api_cn.md
-    elementwise_add_case_cn.md
-    reduce_case_cn.md
+    io_api_en.md
+    compute_api_en.md
+    elementwise_add_case_en.md
+    reduce_case_en.md
