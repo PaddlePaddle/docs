@@ -188,8 +188,11 @@ Describe
 正文：
 
 队伍名称：xxx
+
 任务序号：xxx
+
 任务题目：xxx
+
 PR 地址：xxx
 
 示例：
@@ -199,8 +202,11 @@ PR 地址：xxx
 飞桨团队你好，
 
 队伍名称：PaddlePaddle
+
 任务序号：22
+
 任务题目：在 Paddle 中实现1-bit Adam 优化器
+
 PR 地址：https://github.com/PaddlePaddle/Paddle/pull/66666
 
 
@@ -213,8 +219,11 @@ PR 地址：https://github.com/PaddlePaddle/Paddle/pull/66666
 正文：
 
 队伍名称：xxx
+
 任务序号：xxx
+
 任务题目：xxx
+
 PR 地址：xxx
 
 示例：
@@ -224,8 +233,11 @@ PR 地址：xxx
 飞桨团队你好，
 
 队伍名称：PaddlePaddle
+
 任务序号：22
+
 任务题目：在 Paddle 中实现1-bit Adam 优化器
+
 PR 地址：https://github.com/PaddlePaddle/Paddle/pull/66666
 
 
@@ -238,8 +250,11 @@ PR 地址：https://github.com/PaddlePaddle/Paddle/pull/66666
 正文：
 
 队伍名称：xxx
+
 任务序号：xxx
+
 任务题目：xxx
+
 PR 地址：xxx
 
 示例：
@@ -249,8 +264,11 @@ PR 地址：xxx
 飞桨团队你好，
 
 队伍名称：PaddlePaddle
+
 任务序号：22
+
 任务题目：在 Paddle 中实现1-bit Adam 优化器
+
 PR 地址：https://github.com/PaddlePaddle/Paddle/pull/66666
 
 
