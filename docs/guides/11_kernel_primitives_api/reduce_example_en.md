@@ -1,6 +1,6 @@
 # API Examples - Reduce
 ## Reduce
-+ 案例功能说明：
++ Description:
 Perform reduction operations on the highest dimension. For example, the input is x [N, H, W, C], the axis value is 0, and the reduction is out [1, H, W, C].
 
 ### ReduceOp Definition
