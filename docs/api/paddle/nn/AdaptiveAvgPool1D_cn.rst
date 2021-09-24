@@ -57,7 +57,7 @@ AdaptiveAvgPool1D
         #
         import paddle
         import paddle.nn as nn
-
+        import
         
         data = paddle.to_tensor(paddle.uniform(shape = [1, 3, 32], min = -1, max = 1, dtype = "float32"))
         AdaptiveAvgPool1D = nn.layer.AdaptiveAvgPool1D(output_size=16)
