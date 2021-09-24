@@ -14,30 +14,28 @@
 
 ### 1、本次活动整体流程，具体说明如下：
 
-- 1、活动报名：点击**此处**（问卷星链接）填写相关信息，完成活动报名；
-- 2、报名成功后，你可以进入百度飞桨黑客松QQ交流群（群号：343734965），所有活动相关信息都会在群中及时同步；
-- 3、**任务认领及开放性任务提交**
-    - **任务认领**：首先 fork 你想要认领的任务 ISSUE 所在 repo，然后在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/35940)** 按格式相应回复，**完成任务认领**；鼓励大家在 ISSUE 下自由组队，完成任务~
-    - **开放性任务提交**：如果你对飞桨框架以及飞桨家族相关项目有更好的功能建议，也可以通过在相应仓库下提交 ISSUE 的形式，提交开放性任务，并在 GitHub 的 **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/35940)**，按格式回复你的信息以及你提交的开放性任务，黑客松评审组将在提交后3个工作日内反馈该任务是否通过审核以及对应难度；
+### 1、活动整体流程
 
-- 4、完成任务认领或开放性任务通过审核后，
+1、本次活动整体流程如图，具体说明如下：
 
-    - **容易&中等任务**：按照任务要求进行开发即可；
+<img src="https://github.com/PaddlePaddle/docs/blob/release/2.1/docs/guides/10_contribution/img/process.png?raw=true"  style="zoom:60%">
 
-  - **困难任务**：
-    - 按照任务要求在认领任务时 fork 的代码仓库（repo）中新建 RFC（Request for Comments），并对任务进行技术方案设计；
-    - **10月20日** 前将 RFC 以 Pull Request(PR) 形式提交至任务代码仓库（repo），并按模板发送邮件至 paddle-hack@baidu.com 提交；
-    - 黑客松评审组将在每个任务提交的所有有效方案中选择一个最佳方案，确认为本任务的 Leading Developer，并在开发方向上进行一定的指导，完善后的技术方案将会共享给所有任务提交小组，推荐大家基于最佳方案进行相应开发；
+- 1、问卷星报名：你需要先填写 [报名问卷](https://www.wjx.top/vj/P1k7wE3.aspx)，填写相关信息，完成活动报名；
 
-  - **开放性任务**：按照任务要求进行开发即可；
+- 2、报名成功后，你可以加入百度飞桨黑客松QQ交流群（群号：343734965），所有活动相关信息都会在群中及时同步；
 
-- 5、**任务提交**：完成项目开发后，
+- 3、根据你想要认领的任务/自选的任务，fork 任务所在的代码仓库(repo)；
 
-    - 你需要在相应任务的代码仓库（repo）中提交 Pull Request（需包含任务说明中的提交内容）；
-    - 并在 GitHub 的 Pinned ISSUE 下按格式回复你任务的 Pull Request 地址，依据参考模板发送提交邮件，**正式完成任务提交**；
+- 4、**重要：** 在 GitHub 的 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/35940)，按格式回复你的信息，**正式完成任务认领**；
 
+- 5、简单/中等任务**直接进入任务开发**；困难任务需要**先以PR形式提交该任务的rfc**；然后按提交rfc的邮件模板，发送邮件至 paddle-hack@baidu.com，完成 rfc 的提交；
 
-- 6、在任务提交后 3 个工作日内，黑客松评审组将对作品进行验收并给出相应反馈。如果该作品符合要求，黑客松评审组将会及时宣布该任务已被完成并更新活动相关信息，**该任务后续不再验收其他提交**。
+- 6、**重要：** 提交PR：任务开发完成，提交PR(PR内容需按后文的参考格式进行描述)；之后在 GitHub 的 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/35940) ，按格式回复提交；然后按提交PR的邮件模板，发送邮件至 paddle-hack@baidu.com ，**正式完成结果提交**；
+
+- 7、提交后3个工作日内，我们会进行验收，如果功能符合要求，我们会宣布该任务提交成功（**提交成功后，其他提交将无效**）；
+
+- 8、**重要：** 待PR达到合入要求（通过全部CI时），按合入代码模板发邮件至 paddle-hack@baidu.com，完成代码合入。
+
 
 ### 2、活动日程安排
 
@@ -124,7 +122,7 @@ PS：
 
 **注意**：
 
-（1）活动评审会会**按日更新**所有任务的状态信息到 Pinned ISSUE 中；
+（1）活动评审会会**按日更新**所有任务的状态信息到 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/35940) 中；
 
 （2）如果发现有恶意提交或抄袭等不正当行为，将会取消参与活动资格。
 
@@ -134,7 +132,9 @@ PS：
 
 ## 四、重磅福利
 
-为了帮助大家更快更好的完成任务内容开发，本次活动预计会有10+系列直播同步推出，针对通用开发流程、PaddlePaddle框架、Paddle Lite、Paddle Inference、PaddleCV、PaddleNLP、Paddle2ONNX、Paddle Quantum、PaddleHelix、OpenVINO 等相关项目技术讲解、开源社区贡献等内容，都有来自百度以及Intel等深耕该方向的工程师深入讲解，系列直播时间安排，敬请期待。
+为了帮助大家更快更好的完成任务内容开发，本次活动预计会有10+系列直播同步推出，针对通用开发流程、PaddlePaddle框架、Paddle Lite、Paddle Inference、PaddleCV、PaddleNLP、Paddle2ONNX、Paddle Quantum、PaddleHelix、OpenVINO 等相关项目技术讲解、开源社区贡献等内容，都有来自百度以及Intel等深耕该方向的工程师深入讲解，系列直播时间如下。
+
+<img src="https://github.com/PaddlePaddle/docs/blob/release/2.1/docs/guides/10_contribution/img/course.png?raw=true"  style="zoom:60%">
 
 
 ## 五、反作弊声明
@@ -146,3 +146,112 @@ PS：
 ## 六、其他
 
 百度在法律法规许可范围内对本活动规则享有解释权。 
+
+
+## 邮件模板
+
+### 1、PR 的模板
+
+模板如下：
+
+标题：[PaddlePaddle hackathon] + PR标题()
+
+内容：在满足对应repo 的PR内容规范的前提下，在描述中给出任务所在的ISSUE如：
+
+- Task: [#35988](https://github.com/PaddlePaddle/Paddle/issues/35988)
+
+示例如下：
+
+[PaddlePaddle Hackathon] add DenseNet
+
+PR types
+
+New features
+
+PR changes
+
+APIs
+
+Describe
+
+- Task: [#35999](https://github.com/PaddlePaddle/Paddle/issues/35999)
+- Add DenseNet to Paddle Vision (include calling of higher-level api, test case and doc).
+
+
+
+### 2、提交rfc的邮件模板
+
+标题：
+
+【PaddlePaddle Hackathon - rfc 提交】任务题目
+
+正文：
+
+队伍名称：xxx
+任务序号：xxx
+任务题目：xxx
+PR 地址：xxx
+
+示例：
+
+【PaddlePaddle Hackathon - rfc 提交】在 Paddle 中实现1-bit Adam 优化器
+
+飞桨团队你好，
+
+队伍名称：PaddlePaddle
+任务序号：22
+任务题目：在 Paddle 中实现1-bit Adam 优化器
+PR 地址：https://github.com/PaddlePaddle/Paddle/pull/66666
+
+
+### 3、提交任务的邮件模板
+
+标题：
+
+【PaddlePaddle Hackathon - 提交】任务题目
+
+正文：
+
+队伍名称：xxx
+任务序号：xxx
+任务题目：xxx
+PR 地址：xxx
+
+示例：
+
+【PaddlePaddle Hackathon - 提交】在 Paddle 中实现1-bit Adam 优化器
+
+飞桨团队你好，
+
+队伍名称：PaddlePaddle
+任务序号：22
+任务题目：在 Paddle 中实现1-bit Adam 优化器
+PR 地址：https://github.com/PaddlePaddle/Paddle/pull/66666
+
+
+### 4、代码合入的邮件模板
+
+标题：
+
+【PaddlePaddle Hackathon - 合入】任务题目
+
+正文：
+
+队伍名称：xxx
+任务序号：xxx
+任务题目：xxx
+PR 地址：xxx
+
+示例：
+
+【PaddlePaddle Hackathon - 合入】在 Paddle 中实现1-bit Adam 优化器
+
+飞桨团队你好，
+
+队伍名称：PaddlePaddle
+任务序号：22
+任务题目：在 Paddle 中实现1-bit Adam 优化器
+PR 地址：https://github.com/PaddlePaddle/Paddle/pull/66666
+
+
+## 相关资料
