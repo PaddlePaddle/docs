@@ -1,7 +1,5 @@
 # API Description - Compute
-
 ## ElementwiseUnary
-
 ### Function Definition
 
 ```
