@@ -18,7 +18,7 @@ GradScaler用于动态图模式下的"自动混合精度"的训练。它控制lo
 通常，GradScaler和 ``paddle.amp.auto_cast`` 一起使用，来实现动态图模式下的"自动混合精度"。
 
 
-参数：
+参数
 :::::::::
     - **enable** (bool, 可选) - 是否使用loss scaling。默认值为True。
     - **init_loss_scaling** (float, 可选) - 初始loss scaling因子。默认值为32768.0。
@@ -28,7 +28,7 @@ GradScaler用于动态图模式下的"自动混合精度"的训练。它控制lo
     - **decr_every_n_nan_or_inf** (int, 可选) - 累计出现n个steps的梯度为nan或者inf时，减小loss scaling。默认值为2。
     - **use_dynamic_loss_scaling** (bool, 可选) - 是否使用动态的loss scaling。如果不使用，则使用固定的loss scaling；如果使用，则会动态更新loss scaling。默认值为True。
 
-返回：
+返回
 :::::::::
     一个GradScaler对象。
 
