@@ -4,7 +4,7 @@
 
 ## Environment preparation
 
-- Currently supported system types, please see [Installation instruction](/documentation/docs/zh/install/index_en.html), please note that Docker is not currently supported in CentOS 6
+- Currently supported system types, please see [Installation instruction](/documentation/docs/en/install/index_en.html), please note that Docker is not currently supported in CentOS 6
 
 - On the local host [Install Docker](https://docs.docker.com/engine/install/)
 
