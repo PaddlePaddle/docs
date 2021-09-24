@@ -1,6 +1,6 @@
-#############
+#####################
 Kernel Primitive API
-#############
+#####################
 
 This part provides advanced developers with CUDA Kernel Primitive API to accelerate kernel development. These APIs are provided to the block. Developers can directly pass in the corresponding data pointer and operation type to complete the corresponding calculation. Currently, only global data pointers and register pointers are supported. To help users develop high-performance operators, we provide IO APIs with high memory access efficiency, which can help developers gain better performance while improving development efficiency.
 
@@ -11,10 +11,10 @@ API was divided into IO API and Compute API:
 2. Compute API: Design general calculation functions based on GPU computing characteristics, such as ELementwiseBinary, ElementwiseUnary, etc.
 
 API List
-############
+#########
 
-+--------------------------------------+------------------------------------------------------------ +
-| API Name                             |  Functions                                                  |
++--------------------------------------+-------------------------------------------------------------+
+| API Name                             | Functions                                                   |
 +======================================+=============================================================+
 | ReadData                             | IO, Efficiently read data from global memory into registers.|
 +--------------------------------------+-------------------------------------------------------------+
@@ -28,7 +28,7 @@ API List
 |                                      | the data into the register.                                 |
 +--------------------------------------+-------------------------------------------------------------+
 | WriteData                            | IO. Efficiently write data from registers to global memory. |
-+--------------------------------------+------------------------------------------------------------ +
++--------------------------------------+-------------------------------------------------------------+
 | ElementwiseUnary                     | Compute API. Unary calculation API. Complete unary function |
 |                                      | operations according to OpFunc.                             |
 +--------------------------------------+-------------------------------------------------------------+
@@ -52,13 +52,13 @@ API List
 +--------------------------------------+-------------------------------------------------------------+
 
 API Description
-##############
+################
 
 - `IO API <./io_api_en.html>`_ : Describes the definition and functions of IO APIs.
 - `Compute API <./compute_api_en.html>`_ : Describes the definition and functions of compute APIs.
 
 API Examples
-############
+###############
 
 - `Add <./add_example_en.html>`_ : Addition operation, the input and output shapes are the same.
 - `Reduce <./reduce_example_en.html>`_ : Only the highest dimension is involved in reduce.
