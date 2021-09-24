@@ -73,7 +73,7 @@
 
 使用Docker编译PaddlePaddle，您需要：
 
-- 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- 在本地主机上[安装Docker](https://docs.docker.com/engine/install/)
 
 - 如需在Linux开启GPU支持，请[安装nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
 

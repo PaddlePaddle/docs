@@ -6,7 +6,7 @@
 
 - MacOS version 10.11/10.12/10.13/10.14 (64 bit)(not support GPU version)
 
-- On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- On the local host [Install Docker](https://docs.docker.com/engine/install/)
 
 ## Installation steps
 

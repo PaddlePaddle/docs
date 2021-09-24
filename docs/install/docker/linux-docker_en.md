@@ -4,9 +4,9 @@
 
 ## Environment preparation
 
-- Currently supported system types, please see [Installation instruction](../index_en.html), please note that Docker is not currently supported in CentOS 6
+- Currently supported system types, please see [Installation instruction](/documentation/docs/en/install/index_en.html), please note that Docker is not currently supported in CentOS 6
 
-- On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- On the local host [Install Docker](https://docs.docker.com/engine/install/)
 
 - To enable GPU support on Linux, please [Install nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
 

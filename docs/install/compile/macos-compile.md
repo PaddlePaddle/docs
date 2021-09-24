@@ -23,7 +23,7 @@
 
 使用Docker编译PaddlePaddle，您需要：
 
-- 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- 在本地主机上[安装Docker](https://docs.docker.com/engine/install/)
 
 - 使用Docker ID登陆Docker，以避免出现`Authenticate Failed`错误
 

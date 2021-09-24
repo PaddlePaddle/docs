@@ -23,7 +23,7 @@ There are two compilation methods in MacOS system:
 
 Compiling PaddlePaddle with Docker，you need:
 
-- On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- On the local host [Install Docker](https://docs.docker.com/engine/install/)
 
 - Log in to Docker with Docker ID to avoid `Authenticate Failed` error
 
