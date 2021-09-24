@@ -6,7 +6,7 @@
 
 - MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)
 
-- 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- 在本地主机上[安装Docker](https://docs.docker.com/engine/install/)
 
 ## 安装步骤
 

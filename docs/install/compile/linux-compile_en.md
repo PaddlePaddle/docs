@@ -69,7 +69,7 @@ There are two compilation methods under Linux system:
 
 Compiling PaddlePaddle with Docker，you need:
 
-- On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- On the local host [Install Docker](https://docs.docker.com/engine/install/)
 
 - To enable GPU support on Linux, please [Install nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
 
