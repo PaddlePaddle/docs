@@ -1,5 +1,5 @@
 #############
-Kernel Primitives API
+Kernel Primitive API
 #############
 
 本部分主要为 Paddle 高级开发人员提供了 CUDA Kernel Primitive API，该类 API 能够帮助开发人员快速完成 kernel 开发，提升算子开发效率。当前 API 的封装均是block级别的，开发者可以直接传入对应的数据指针以及操作类型完成相应的计算，目前仅支持全局数据指针和寄存器指针。此外，为帮助用户开发出高性能算子，封装了具有高访存效率的 IO 类 API，能够帮助开发者在提升开发效率的同时收获较好的性能。
@@ -56,14 +56,12 @@ API 详细介绍
 API 应用实例
 ############
 
-- `Add <./elementwise_add_case_cn.html>`_ : 加法操作， 输入和输出具有相同shape。
-- `Reduce <./reduce_case_cn.html>`_ : 针对最高维进行规约操作。
+- `Add <./add_example_cn.html>`_ : 加法操作， 输入和输出具有相同shape。
+- `Reduce <./reduce_example_cn.html>`_ : 针对最高维进行规约操作。
 
 ..  toctree::
     :hidden:
 
 
-    io_api_cn.md
-    compute_api_cn.md
-    elementwise_add_case_cn.md
-    reduce_case_cn.md
+    api_description_cn.rst
+    example_cn.rst

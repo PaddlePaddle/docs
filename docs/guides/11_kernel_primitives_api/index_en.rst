@@ -1,5 +1,5 @@
 #############
-Kernel Primitives API
+Kernel Primitive API
 #############
 
 This part provides advanced developers with CUDA Kernel Primitive API to accelerate kernel development. These APIs are provided to the block. Developers can directly pass in the corresponding data pointer and operation type to complete the corresponding calculation. Currently, only global data pointers and register pointers are supported. To help users develop high-performance operators, we provide IO APIs with high memory access efficiency, which can help developers gain better performance while improving development efficiency.
@@ -60,14 +60,12 @@ API Description
 API Examples
 ############
 
-- `Add <./elementwise_add_case_en.html>`_ : Addition operation, the input and output shapes are the same.
-- `Reduce <./reduce_case_en.html>`_ : Only the highest dimension is involved in reduce.
+- `Add <./add_example_en.html>`_ : Addition operation, the input and output shapes are the same.
+- `Reduce <./reduce_example_en.html>`_ : Only the highest dimension is involved in reduce.
 
 ..  toctree::
     :hidden:
 
 
-    io_api_en.md
-    compute_api_en.md
-    elementwise_add_case_en.md
-    reduce_case_en.md
+    api_description_en.rst
+    example_en.rst
