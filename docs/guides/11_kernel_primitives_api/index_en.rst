@@ -1,6 +1,6 @@
-#############
+#####################
 Kernel Primitive API
-#############
+#####################
 
 This part provides advanced developers with CUDA Kernel Primitive API to accelerate kernel development. These APIs are provided to the block. Developers can directly pass in the corresponding data pointer and operation type to complete the corresponding calculation. Currently, only global data pointers and register pointers are supported. To help users develop high-performance operators, we provide IO APIs with high memory access efficiency, which can help developers gain better performance while improving development efficiency.
 
@@ -52,7 +52,7 @@ API List
 +--------------------------------------+-------------------------------------------------------------+
 
 API Description
-##############
+################
 
 - `IO API <./io_api_en.html>`_ : Describes the definition and functions of IO APIs.
 - `Compute API <./compute_api_en.html>`_ : Describes the definition and functions of compute APIs.
