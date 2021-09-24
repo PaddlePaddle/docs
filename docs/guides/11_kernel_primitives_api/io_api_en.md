@@ -29,8 +29,6 @@ Read the Tx type 2D data from the global memory to the register, and store it in
 > stride_nx: Each column of data read needs to be offset by the stride_nx columns. </br>
 > stride_ny: Each read NX column needs to be offset by stride_nx rows. </br>
 
-------------------
-
 ## ReadData
 
 ### Function Definition
@@ -57,8 +55,6 @@ Read the 1D data of type T from the global memory src to the register dst. Conti
 > dst: output register pointer, the size is NX x NY. </br>
 > src: The input data pointer of the current block, usually input + blockIdx.x x blockDim.x x NX.</br>
 > num: The current block can read at most num elements. The parameter is only used when IsBoundary = true.</br>
-
-------------------
 
 ## ReadDataBc
 
@@ -96,9 +92,6 @@ Read the 2D data that needs to be brodcast from the global memory src into the r
 > total_num_output: the total number of original output data, to avoid fetching out of bounds, the parameter is only used when IsBoundary = true. </br>
 > stride_nx: Each column of data read needs to be offset by the stride_nx column. </br>
 > stride_ny: Each read NX column needs to be offset by stride_nx rows. </br>
-
-
-------------------
 
 ## ReadDataReduce
 
@@ -149,8 +142,6 @@ Read the 2D data from the global memory SRC into the register DST in T type, whe
 > stride_nx: Each column of data read needs to be offset by the stride_nx column. </br>
 > stride_ny: Each read NX column needs to be offset by stride_nx row. </br>
 > reduce_last_dim: Whether the lowest dimension of the original input data is reduced. When reduce_last_dim = true, it is indexed according to threadIdx.x, otherwise threadIdx.y is used. </br>
-
-------------------
 
 ## WriteData
 

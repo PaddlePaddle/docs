@@ -29,8 +29,6 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 > stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。</br>
 > stride_ny ：每读取 NX 列需要偏移 stride_nx 行。</br>
 
-------------------
-
 ## ReadData
 
 ### 函数定义
@@ -58,8 +56,6 @@ __device__ void ReadData(T* dst, const T* src, int num);
 > dst : 输出寄存器指针，大小为 NX x NY。</br>
 > src : 当前 block 的输入数据指针，通常为 input + blockIdx.x x blockDim.x x NX。</br>
 > num : 当前 block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
-
-------------------
 
 ## ReadDataBc
 
@@ -97,9 +93,6 @@ __device__ void ReadDataBc(T* dst, const T* src,
 > total_num_output ：原始输出的总数据个数,避免访存越界，参数仅在 IsBoundary = true 时使用。</br>
 > stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。</br>
 > stride_ny ：每读取 NX 列需要偏移 stride_nx 行。</br>
-
-
-------------------
 
 ## ReadDataReduce
 
@@ -151,8 +144,6 @@ IsBoundary :标识是否进行访存边界判断。当block处理的数据总数
 > stride_nx : 每读取 1 列数据需要偏移 stride_nx 列。</br>
 > stride_ny : 每读取 NX 列需要偏移 stride_nx 行。</br>
 > reduce_last_dim：原始输入数据的最低维是否进行reduce，当reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。</br>
-
-------------------
 
 ## WriteData
 
