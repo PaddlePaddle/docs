@@ -8,7 +8,5 @@ API 应用实例
     :hidden:
 
 
-    io_api_cn.md
-    compute_api_cn.md
-    elementwise_add_case_cn.md
-    reduce_case_cn.md
+    add_example_cn.md
+    reduce_example_cn.md
