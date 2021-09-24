@@ -10,11 +10,11 @@ PSRoIPool
 参数
 :::::::::
     - output_size (int|Tuple(int, int)) - 池化后输出的尺寸(H, W), 数据类型为int32. 如果output_size是int类型，H和W都与其相等。
-    - spatial_scale (float) - 空间比例因子，用于将boxes中的坐标从其输入尺寸按比例映射到input特征图的尺寸。
+    - spatial_scale (float) - 空间比例因子，用于将boxes中的坐标从其输入尺寸按比例映射到输入特征图的尺寸。
 
 形状
 :::::::::
-    - input: 4-D Tensor，形状为(N, C, H, W)。
+    - x: 4-D Tensor，形状为(N, C, H, W)。数据类型为float32或float64。
     - boxes: 2-D Tensor，形状为(num_rois, 4)。
     - boxes_num: 1-D Tensor。
     - output: 4-D tensor，形状为(Roi数量，输出通道数，池化后高度，池化后宽度)。输出通道数等于输入通道数/（池化后高度 * 池化后宽度）。
