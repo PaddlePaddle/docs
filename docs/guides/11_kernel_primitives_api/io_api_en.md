@@ -91,7 +91,7 @@ Read the 2D data that needs to be brodcast from the global memory src into the r
 
 > dst: output register pointer, the size is NX x NY. </br>
 > src: pointer to raw input data. </br>
-> block_offset: The data offset of the current block, usually blockIdx.x * blockDim.x * NX. </br>
+> block_offset: The data offset of the current block, usually blockIdx.x x blockDim.x x NX. </br>
 > config: Input and output coordinate mapping function, which can be defined by BroadcastConfig(const std::vector<int64_t>& out_dims, const std::vector<int64_t>& in_dims, int dim_size). </br>
 > total_num_output: the total number of original output data, to avoid fetching out of bounds, the parameter is only used when IsBoundary = true. </br>
 > stride_nx: Each column of data read needs to be offset by the stride_nx column. </br>
@@ -131,7 +131,7 @@ Read the 2D data from the global memory SRC into the register DST in T type, whe
 ```
   struct IndexCal {  
     __device__ inline int operator()(int index) const {
-        return ... </br>
+        return ...
     }
   };
 ```
@@ -142,7 +142,7 @@ Read the 2D data from the global memory SRC into the register DST in T type, whe
 
 > dst: output register pointer, the size is NX x NY. </br>
 > src: pointer to raw input data. </br>
-> block_offset: The data offset of the current block, usually blockIdx.x * blockDim.x * NX. </br>
+> block_offset: The data offset of the current block, usually blockIdx.x x blockDim.x x NX. </br>
 > config: Input and output coordinate mapping function, which can be defined as IndexCal(). </br>
 > size_nx: The block needs to read the size_nx column data. The parameter is only used when IsBoundary = true. </br>
 > size_ny: block needs to read size_ny row data, the parameter is only used when IsBoundary = true. </br>
@@ -177,5 +177,5 @@ Write 1D data from register src to global memory dst. Continuously read NX data 
 ### Parameters
 
 > dst: The output data pointer of the current block, usually input + blockIdx.x x blockDim.x x NX. </br>
-> src: register pointer, the size is NX x NY. , Usually input + blockIdx.x * blockDim.x * NX. </br>
+> src: register pointer, the size is NX x NY. , Usually input + blockIdx.x x blockDim.x x NX. </br>
 > num: The current block reads num elements in multiples. The parameter is only used when IsBoundary = true. </br>

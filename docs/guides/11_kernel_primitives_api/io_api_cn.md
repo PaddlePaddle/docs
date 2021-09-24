@@ -24,8 +24,8 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 
 > dst ：输出寄存器指针，数据类型为Ty, 大小为 NX x NY。</br>
 > src ：当前 block 的输入数据指针，数据类型为 Tx，指针计算方式通常为 input + blockIdx.x x blockDim.x x NX。</br>
-> size_nx ：block 需要读取 size_nx 列数据，参数仅在 IsBoundary=true 时使用。</br>
-> size_ny ：block 需要读取 size_ny 行数据，参数仅在 IsBoundary=true 时使用。</br>
+> size_nx ：block 需要读取 size_nx 列数据，参数仅在 IsBoundary = true 时使用。</br>
+> size_ny ：block 需要读取 size_ny 行数据，参数仅在 IsBoundary = true 时使用。</br>
 > stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。</br>
 > stride_ny ：每读取 NX 列需要偏移 stride_nx 行。</br>
 
@@ -92,7 +92,7 @@ __device__ void ReadDataBc(T* dst, const T* src,
 
 > dst ：输出寄存器指针，大小为 NX x NY。</br>
 > src ：原始输入数据指针。</br>
-> block_offset ：当前block的数据偏移，通常为 blockIdx.x * blockDim.x * NX。</br>
+> block_offset ：当前block的数据偏移，通常为 blockIdx.x x blockDim.x x NX。</br>
 > config ：输入输出坐标映射函数，可通过 BroadcastConfig(const std::vector<int64_t>& out_dims, const std::vector<int64_t>& in_dims, int dim_size) 进行定义。</br>
 > total_num_output ：原始输出的总数据个数,避免访存越界，参数仅在 IsBoundary = true 时使用。</br>
 > stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。</br>
@@ -133,7 +133,7 @@ __device__ void ReadDataReduce(T* dst,
 ```
   struct IndexCal {  
     __device__ inline int operator()(int index) const {
-        return ... </br>
+        return ...
     }
   };
 ```
@@ -144,7 +144,7 @@ IsBoundary :标识是否进行访存边界判断。当block处理的数据总数
 
 > dst ：输出寄存器指针，大小为 NX x NY。</br>
 > src ：原始输入数据指针。</br>
-> block_offset : 当前block的数据偏移，通常为 blockIdx.x * blockDim.x * NX。</br>
+> block_offset : 当前block的数据偏移，通常为 blockIdx.x x blockDim.x x NX。</br>
 > config : 输入输出坐标映射函数，可以定义为IndexCal()。</br>
 > size_nx : block 需要读取 size_nx 列数据，参数仅在 IsBoundary = true 时使用。</br>
 > size_ny : block 需要读取 size_ny 行数据，参数仅在 IsBoundary = true 时使用。</br>
@@ -179,5 +179,5 @@ __device__ void WriteData(T* dst, T* src, int num);
 ### 函数参数
 
 > dst : 当前 block 的输出数据指针，通常为 input + blockIdx.x x blockDim.x x NX。</br>
-> src : 寄存器指针，大小为 NX x NY。，通常为 input + blockIdx.x * blockDim.x * NX。</br>
+> src : 寄存器指针，大小为 NX x NY。，通常为 input + blockIdx.x x blockDim.x x NX。</br>
 > num : 当前 block 对多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
