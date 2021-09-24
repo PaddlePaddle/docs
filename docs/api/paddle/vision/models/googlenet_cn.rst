@@ -1,9 +1,9 @@
 .. _cn_api_paddle_vision_models_googlenet:
 
-GoogLeNet
+googlenet
 -------------------------------
 
-.. py:function:: paddle.vision.models.GoogLeNet(pretrained=False, **kwargs)
+.. py:function:: paddle.vision.models.googlenet(pretrained=False, **kwargs)
 
  GoogLeNet模型，来自论文 `"Going Deeper with Convolutions" <https://arxiv.org/pdf/1409.4842.pdf>`_ 。
 
@@ -20,13 +20,13 @@ GoogLeNet模型，Layer的实例。
 .. code-block:: python
 
     import paddle
-    from paddle.vision.models import GoogLeNet
+    from paddle.vision.models import googlenet
 
     # build model
-    model = GoogLeNet()
+    model = googlenet()
 
     # build model and load imagenet pretrained weight
-    # model = GoogLeNet(pretrained=True)
+    # model = googlenet(pretrained=True)
 
     x = paddle.rand([1, 3, 224, 224])
     out = model(x)
