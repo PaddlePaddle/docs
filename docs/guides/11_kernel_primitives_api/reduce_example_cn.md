@@ -4,11 +4,12 @@
 
 ### ReduceOp定义
 ```
+TransformOp transform = DivideFunctor<T>(reduce_num);
+ReduceOp reducer = AddFunctor<Tx, Ty>();
+
 template <typename T>
 struct DivideFunctor {
   HOSTDEVICE explicit inline DivideFunctor(int n) : n_inv((T)(1.0 / n)) {}
-
-  HOSTDEVICE inline T operator()(const T* x) const { return x[0] * n_inv; }
 
   HOSTDEVICE inline T operator()(const T& x) const { return x * n_inv; }
 
@@ -17,9 +18,7 @@ struct DivideFunctor {
 };
 
 template <typename Tx, typename Ty = Tx>
-struct CustomMean {
-  using Transformer = kpds::DivideFunctor<Tx>;
-
+struct AddFunctor {
   inline Ty initial() { return static_cast<Ty>(0.0f); }
 
   __device__ __forceinline__ Ty operator()(const Ty &a, const Ty &b) const {
@@ -36,9 +35,9 @@ struct CustomMean {
 ```
 template <typename Tx, typename Ty, typename MPType, typename ReduceOp, typename TransformOp, bool IsBoundary = false>
 __device__ void HigherDimImp(const Tx* x, Ty* y, ReduceOp reducer,
-                                     TransformOp transformer, MPType init,
-                                     int reduce_num, int left_num,
-                                     int block_size) {
+                             TransformOp transform, MPType init,
+                             int reduce_num, int left_num,
+                             int block_size) {
   const int NY = 1;
   int idx = blockIdx.x * blockDim.x;
   int idy = blockIdx.y * block_size; // block_offset of rows
@@ -56,7 +55,7 @@ __device__ void HigherDimImp(const Tx* x, Ty* y, ReduceOp reducer,
 
   for (int loop_index = 0; loop_index < loop; loop_index += NY) {
     kps::ReadData<Tx, Tx, 1, NY, 1, IsBoundary>(&reduce_input[0], input + loop_index * left_num, size, NY, 1, left_num);
-    kps::ElementwiseUnary<Tx, MPType, REDUCE_VEC_SIZE, 1, 1, TransformOp>(&reduce_compute[0], &reduce_input[0], transformer);
+    kps::ElementwiseUnary<Tx, MPType, REDUCE_VEC_SIZE, 1, 1, TransformOp>(&reduce_compute[0], &reduce_input[0], transform);
     kps::Reduce<MPType, NY, 1, 1, ReduceOp, kps::details::ReduceMode::kLocalMode>( &result, &reduce_compute[0], reducer, false);
   }
 
@@ -66,7 +65,7 @@ __device__ void HigherDimImp(const Tx* x, Ty* y, ReduceOp reducer,
 
 template <typename Tx, typename Ty, typename MPType, typename ReduceOp, typename TransformOp>
 __global__ void ReduceHigherDimKernel(const Tx* x, Ty* y, ReduceOp reducer,
-                                      TransformOp transformer, MPType init,
+                                      TransformOp transform, MPType init,
                                       int reduce_num, int left_num,
                                       int blocking_size) {
   // when reduce_dim.size() == 1 and reduce_dim[0] != x_dim.size() - 1, this function will be used
@@ -77,10 +76,10 @@ __global__ void ReduceHigherDimKernel(const Tx* x, Ty* y, ReduceOp reducer,
   int size = left_num - blockIdx.x * blockDim.x;
   if (size >= blockDim.x) {  // complete segment
     HigherDimImp<Tx, Ty, MPType, ReduceOp, TransformOp>(
-        x, y, reducer, transformer, init, reduce_num, left_num, blocking_size);
+        x, y, reducer, transform, init, reduce_num, left_num, blocking_size);
   } else {
     HigherDimImp<Tx, Ty, MPType, ReduceOp, TransformOp, true>(
-        x, y, reducer, transformer, init, reduce_num, left_num, blocking_size);
+        x, y, reducer, transform, init, reduce_num, left_num, blocking_size);
   }
 }
 
