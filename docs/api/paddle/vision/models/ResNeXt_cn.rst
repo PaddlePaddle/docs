@@ -3,7 +3,7 @@
 ResNeXt
 -------------------------------
 
-.. py:class:: paddle.vision.models.ResNeXt(layers=layers, cardinality=cardinality, num_classes=1000, with_pool=True)
+.. py:class:: paddle.vision.models.ResNeXt(layers=50, cardinality=32, num_classes=1000, input_image_channel=3, data_format="NCHW")
 
  ResNeXt模型，来自论文 `"Aggregated Residual Transformations for Deep Neural Networks" <https://arxiv.org/pdf/1611.05431.pdf>`_ 。
 
