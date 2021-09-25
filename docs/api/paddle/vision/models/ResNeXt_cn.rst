@@ -13,7 +13,7 @@ ResNeXt
   - **cardinality** (int，可选) - 模型基数，也即划分组的数量。默认值：32
   - **num_classes** (int, 可选) - 最后一个全连接层输出的维度。如果该值小于0，则不定义最后一个全连接层。默认值：1000。
   - **input_image_channel**（int, 可选）- 输入图片的通道数，默认值：3
-  - **data_format**（str, 可选）- 数据的格式，默认值：NCHW
+  - **data_format**（str, 可选）- 数据的格式，默认值："NCHW"
 
 返回
 :::::::::

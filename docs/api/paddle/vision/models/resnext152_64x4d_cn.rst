@@ -5,7 +5,7 @@ resnext152_64x4d
 
 .. py:function:: paddle.vision.models.resnext152_64x4d(pretrained=False, **kwargs)
 
-resnext152_64x4d模型，来自论文 `"Aggregated Residual Transformations for Deep Neural Networks" <https://arxiv.org/pdf/1611.05431.pdf>`_ 。
+ ResNeXt-152 64x4d模型，来自论文 `"Aggregated Residual Transformations for Deep Neural Networks" <https://arxiv.org/pdf/1611.05431.pdf>`_ 。
 
 参数
 :::::::::
