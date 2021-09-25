@@ -5,7 +5,7 @@ googlenet
 
 .. py:function:: paddle.vision.models.googlenet(pretrained=False, **kwargs)
 
- GoogLeNet模型，来自论文 `"Going Deeper with Convolutions" <https://arxiv.org/pdf/1409.4842.pdf>`_ 。
+ GoogLeNet（Inception v1）模型，来自论文 `"Going Deeper with Convolutions" <https://arxiv.org/pdf/1409.4842.pdf>`_ 。
 
 参数
 :::::::::
