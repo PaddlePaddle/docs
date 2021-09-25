@@ -1,11 +1,11 @@
 .. _cn_api_paddle_vision_models_resnet264:
 
-resnet152
+densenet264
 -------------------------------
 
-.. py:function:: paddle.vision.models.resnet264(pretrained=False, **kwargs)
+.. py:function:: paddle.vision.models.densenet264(pretrained=False, **kwargs)
 
- 264层的resnet模型，来自论文 `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_ 。
+ 264层的densenet模型，来自论文 `"Densely Connected Convolutional Networks" <https://arxiv.org/abs/1608.06993>`_ 。
 
 参数
 :::::::::
@@ -13,20 +13,20 @@ resnet152
 
 返回
 :::::::::
-resnet264模型，Layer的实例。
+densenet264模型，Layer的实例。
 
 代码示例
 :::::::::
 .. code-block:: python
 
     import paddle
-    from paddle.vision.models import resnet264
+    from paddle.vision.models import densenet264
 
     # build model
-    model = resnet264()
+    model = densenet264()
 
     # build model and load imagenet pretrained weight
-    # model = resnet264(pretrained=True)
+    # model = densenet264(pretrained=True)
 
     x = paddle.rand([1, 3, 224, 224])
     out = model(x)
