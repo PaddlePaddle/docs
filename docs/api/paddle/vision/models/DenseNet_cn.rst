@@ -25,9 +25,9 @@ DenseNet模型，Layer的实例。
     import paddle
     from paddle.vision.models import DenseNet
 
-    densenet121 = DenseNet()
+    densenet = DenseNet()
 
     x = paddle.rand([1, 3, 224, 224])
-    out = resnet18(x)
+    out = densenet(x)
 
     print(out.shape)
