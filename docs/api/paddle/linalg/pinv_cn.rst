@@ -13,7 +13,7 @@ pinv
 参数
 :::::::::
     - **x** (Tensor) : 输入变量，类型为 Tensor，数据类型为float32， float64， complex64， complex12， 形状为（M, N）或（B, M, N）。
-    - **rcond** (float64，可选) : 奇异值（特征值）被截断的阈值，小于该阈值时奇异值（特征值）会被置为0， 默认值为1e-15。
+    - **rcond** (float64，可选) : 奇异值（特征值）被截断的阈值，奇异值（特征值）小于rcond*最大奇异值时会被置为0， 默认值为1e-15。
     - **hermitian** (bool，可选) : 是否为 ``hermitian`` 矩阵或者实对称矩阵，默认值为False。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
