@@ -1,7 +1,5 @@
 # API 详细介绍 - Compute
-
-## ElementwiseUnary
-
+## [ElementwiseUnary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L138)
 ### 函数定义
 
 ```
@@ -10,6 +8,7 @@ __device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
 ```
 
 ### 函数说明
+
 按照 compute 中的计算规则对 in 进行计算，将计算结果按照 OutT 类型存储到寄存器 out 中。
 
 ### 模板参数
@@ -35,7 +34,7 @@ __device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
 > in ：输入寄存器指针，大小为 NX x NY。</br>
 > compute ：计算函数，声明为OpFunc&lt;InT, OutT&gt;()。</br>
 
-## ElementwiseBinary
+## [ElementwiseBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L173)
 ### 函数定义
 
 ```
@@ -72,14 +71,13 @@ __device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpF
 > in2 ：右操作数寄存器指针，大小为 NX x NY。</br>
 > compute ：声明为OpFunc&lt;InT, OutT&gt;()的计算对象。</br>
 
-## CycleBinary
+## [CycleBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L291)
 
 ### 函数定义
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFunc>
 __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc compute)；
-
 ```
 
 ### 函数说明
@@ -111,7 +109,7 @@ __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc co
 > in2 ：右操作数寄存器指针，大小为 NX x NY。</br>
 > compute ：声明为OpFunc&lt;InT, OutT&gt;()的计算对象。</br>
 
-## ElementwiseTernary
+## [ElementwiseTernary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L210)
 
 ### 函数定义
 
@@ -150,7 +148,7 @@ template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFu
 > in3 ：操作数3的寄存器指针，大小为 NX x NY。</br>
 > compute : 声明为OpFunc&lt;InT, OutT&gt;()的计算对象。</br>
 
-## ElementwiseAny
+## [ElementwiseAny](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L250)
 
 ### 函数定义
 
@@ -187,7 +185,7 @@ template <typename InT, typename OutT>
 > ins ：由多输入指针构成的指针数组，大小为Arity。</br>
 > compute ：声明为OpFunc&lt;InT, OutT&gt;()的计算对象。</br>
 
-## Reduce
+## [Reduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L332)
 
 ### 函数定义
 
@@ -216,7 +214,6 @@ __device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_l
   };
 ```
 > Mode ：规约模式，可以取值为 kGlobalMode、kLocalMode。
-
 
 ### 函数参数
 

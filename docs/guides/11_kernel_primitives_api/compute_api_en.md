@@ -1,5 +1,5 @@
 # API Description - Compute
-## ElementwiseUnary
+## [ElementwiseUnary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L138)
 ### Function Definition
 
 ```
@@ -8,9 +8,11 @@ __device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
 ```
 
 ### Detailed Description
+
 Calculate in according to the calculation rules in compute, and store the calculation results in the register out according to the outt type.
 
 ### Template Parameters
+
 > InT: Type of input data. </br>
 > OutT: The type stored in the out register. </br>
 > NX: Each thread needs to calculate NX column data. </br>
@@ -32,7 +34,7 @@ Calculate in according to the calculation rules in compute, and store the calcul
 > in: Input register pointer, the size is NX x NY. </br>
 > compute: Calculation function, declared as OpFunc&lt;InT, OutT&gt;(). </br>
 
-## ElementwiseBinary
+## [ElementwiseBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L173)
 ### Function Definition
 
 ```
@@ -69,7 +71,7 @@ Calculate in1 and in2 according to the calculation rules in compute, and store t
 > in2: Right operand register pointer, the size is NX x NY. </br>
 > compute: The calculation object declared as OpFunc&lt;InT, OutT&gt;(). </br>
 
-## CycleBinary
+## [CycleBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L291)
 
 ### Function Definition
 
@@ -107,7 +109,7 @@ Calculate in1 and in2 according to the calculation rules in the compute, and sto
 > in2: Right operand register pointer, the size is NX x NY. </br>
 > compute: The calculation object declared as OpFunc&lt;InT, OutT&gt;(). </br>
 
-## ElementwiseTernary
+## [ElementwiseTernary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L210)
 
 ### Function Definition
 
@@ -147,7 +149,7 @@ Calculate in1, in2, and in3 according to the calculation rules in compute, and s
 > in3: The register pointer of operand 3, the size is NX x NY. </br>
 > compute: Declared as the calculation object of OpFunc&lt;InT, OutT&gt;(). </br>
 
-## ElementwiseAny
+## [ElementwiseAny](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L250)
 
 ### Function Definition
 
@@ -185,7 +187,7 @@ template <typename InT, typename OutT>
 > ins: A pointer array composed of multiple input pointers, the size is Arity. </br>
 > compute: The calculation object declared as OpFunc&lt;InT, OutT&gt;(). </br>
 
-## Reduce
+## [Reduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L332)
 
 ### Function Definition
 
@@ -216,6 +218,7 @@ Reduce the input according to the reducer, the input shape is [NY, NX], when Red
 > Mode : Reduce mode can be kGlobalMode or kLocalMode.
 
 ### Parameters
+
 > out: Output register pointer, the size is NX x NY. </br>
 > in: Input register pointer, the size is NX x NY. </br>
 > reducer: reduction method, which can be defined using ReduceFunctor&lt;InT&gt;(). </br>

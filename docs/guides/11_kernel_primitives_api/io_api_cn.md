@@ -1,5 +1,5 @@
 # API 详细介绍 - IO
-## ReadData
+## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L121)
 ### 函数定义
 
 ```
@@ -29,10 +29,9 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 > stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。</br>
 > stride_ny ：每读取 NX 列需要偏移 stride_nx 行。</br>
 
-## ReadData
+## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L226)
 
 ### 函数定义
-
 
 ```
 template <typename T, int NX, int NY, int BlockSize, bool IsBoundary = false>
@@ -57,7 +56,7 @@ __device__ void ReadData(T* dst, const T* src, int num);
 > src : 当前 block 的输入数据指针，通常为 input + blockIdx.x x blockDim.x x NX。</br>
 > num : 当前 block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
 
-## ReadDataBc
+## [ReadDataBc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L279)
 
 ### 函数定义
 
@@ -94,7 +93,7 @@ __device__ void ReadDataBc(T* dst, const T* src,
 > stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。</br>
 > stride_ny ：每读取 NX 列需要偏移 stride_nx 行。</br>
 
-## ReadDataReduce
+## [ReadDataReduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L337)
 
 ### 函数定义
 
@@ -130,7 +129,7 @@ __device__ void ReadDataReduce(T* dst,
     }
   };
 ```
-IsBoundary :标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim 时，需要进行边界判断以避免访存越界。</br>
+> IsBoundary :标识是否进行访存边界判断。当block处理的数据总数小于 NX x NY x blockDim 时，需要进行边界判断以避免访存越界。</br>
 
 
 ### 函数参数
@@ -145,7 +144,7 @@ IsBoundary :标识是否进行访存边界判断。当block处理的数据总数
 > stride_ny : 每读取 NX 列需要偏移 stride_nx 行。</br>
 > reduce_last_dim：原始输入数据的最低维是否进行reduce，当reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。</br>
 
-## WriteData
+## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L421)
 
 ### 函数定义
 
