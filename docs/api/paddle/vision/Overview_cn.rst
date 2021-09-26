@@ -49,6 +49,13 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
     " :ref:`resnet50 <cn_api_paddle_vision_models_resnet50>` ", "50层的ResNet模型"
     " :ref:`resnet101 <cn_api_paddle_vision_models_resnet101>` ", "101层的ResNet模型"
     " :ref:`resnet152 <cn_api_paddle_vision_models_resnet152>` ", "152层的ResNet模型"
+    " :ref:`ResNeXt <cn_api_paddle_vision_models_ResNeXt>` ", "ResNeXt模型"
+    " :ref:`resnext50_32x4d <cn_api_paddle_vision_models_resnext50_32x4d>` ", "ResNeXt-50 32x4d模型"
+    " :ref:`resnext50_64x4d <cn_api_paddle_vision_models_resnext50_64x4d>` ", "ResNeXt-50 64x4d模型"
+    " :ref:`resnext101_32x4d <cn_api_paddle_vision_models_resnext101_32x4d>` ", "ResNeXt-101 32x4d模型"
+    " :ref:`resnext101_64x4d <cn_api_paddle_vision_models_resnext101_64x4d>` ", "ResNeXt-101 64x4d模型"
+    " :ref:`resnext152_32x4d <cn_api_paddle_vision_models_resnext152_32x4d>` ", "ResNeXt-152 32x4d模型"
+    " :ref:`resnext152_64x4d <cn_api_paddle_vision_models_resnext152_64x4d>` ", "ResNeXt-152 64x4d模型"
     " :ref:`VGG <cn_api_paddle_vision_models_VGG>` ", "VGG模型"
     " :ref:`vgg11 <cn_api_paddle_vision_models_vgg11>` ", "11层的VGG模型"
     " :ref:`vgg13 <cn_api_paddle_vision_models_vgg13>` ", "13层的VGG模型"
@@ -56,7 +63,6 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
     " :ref:`vgg19 <cn_api_paddle_vision_models_vgg19>` ", "19层的VGG模型"
     " :ref:`InceptionV3 <cn_api_paddle_vision_models_InceptionV3>` ", "InceptionV3模型"
     " :ref:`inception_v3 <cn_api_paddle_vision_models_inception_v3>` ", "InceptionV3模型"
-
 
 .. _about_ops:
 
