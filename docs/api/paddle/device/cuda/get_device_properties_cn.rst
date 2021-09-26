@@ -20,14 +20,9 @@ get_device_properties
 _CudaDeviceProperties：设备属性，包括标识设备的ASCII字符串、设备计算能力的主版本号以及次版本号、全局显存总量、设备上多处理器的数量。
 
 
-
-
 代码示例
 ::::::::
 
 COPY-FROM: paddle.device.cuda.get_device_properties
-
-
-
 
     
