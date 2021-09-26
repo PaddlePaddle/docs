@@ -6,7 +6,7 @@ get_device_properties
 
 .. py:function:: paddle.device.cuda.get_device_properties(device)
 
-返回给定的CUDA设备属性
+返回给定的CUDA设备属性。
 
 参数
 ::::::::
