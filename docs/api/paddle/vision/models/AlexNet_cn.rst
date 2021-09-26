@@ -5,8 +5,7 @@ AlexNet
 
 .. py:function:: paddle.vision.models.AlexNet(num_classes=1000)
 
- AlexNet模型，来自论文 `"ImageNet Classification with Deep Convolutional Neural Networks
-" <https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf>`_。
+ AlexNet模型，来自论文 `"ImageNet Classification with Deep Convolutional Neural Networks" <https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf>`_ 。
 
 参数
 :::::::::
