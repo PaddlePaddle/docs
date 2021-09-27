@@ -8,7 +8,7 @@ API was divided into IO API and Compute API:
 
 1. IO API: A high-performance data read and write API designed in conjunction with GPU hardware features.
 
-2. Compute API: Design general calculation functions based on GPU computing characteristics, such as ELementwiseBinary, ElementwiseUnary, etc.
+2. Compute API: Design general calculation functions based on GPU computing characteristics, such as ElementwiseBinary, ElementwiseUnary, etc.
 
 API List
 ############
