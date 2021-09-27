@@ -2,13 +2,13 @@
 Kernel Primitive API
 #####################
 
-This part provides advanced developers with CUDA Kernel Primitive API to accelerate kernel development. These APIs are provided to the block. Developers can directly pass in the corresponding data pointer and operation type to complete the corresponding calculation. Currently, only global data pointers and register pointers are supported. To help users develop high-performance operators, we provide IO APIs with high memory access efficiency, which can help developers gain better performance while improving development efficiency.
+This part provides CUDA Kernel Primitive API for Paddle senior developers. APIs can help developers gain better performance while improving development efficiency. The current APIs are block-level multi-threaded APIs. Developers can complete the corresponding calculations according to the current block data pointer and operation type. Currently, only global data pointers and register pointers are supported. The calculation rules in the Compute API are set through OpFunc. Developers can directly use the default OpFunc or implement them as needed. The specific implementation rules will be described in detail in the OpFunc section.
 
-API was divided into IO API and Compute API:
+Kernel Primitive API includes OpFunc, IO API, Compute API:
 
-1. IO API: A high-performance data read and write API designed in conjunction with GPU hardware features.
+1. IO API: High-performance data read and write API, efficiently complete data read and write operations between global memory and registers.
 
-2. Compute API: Design general calculation functions based on GPU computing characteristics, such as ElementwiseBinary, ElementwiseUnary, etc.
+2. Compute API: General calculation functions, such as ElementwiseBinary, ElementwiseUnary, etc.
 
 API List
 ############
@@ -16,21 +16,22 @@ API List
 +--------------------------------------+-------------------------------------------------------------+
 | API Name                             | Functions                                                   |
 +======================================+=============================================================+
-| ReadData                             | IO, Efficiently read data from global memory into registers.|
+| ReadData                             | IO, read data from global memory into registers.            |
 +--------------------------------------+-------------------------------------------------------------+
-| ReadDataBc                           | IO, for Broadcast op. Calculate the original input data     |
-|                                      | coordinates corresponding to the output according to the    |
-|                                      | data offset of the current block and the original input     |
-|                                      | pointer, and read the input data into the register.         |
+| ReadDataBc                           | IO, read data in Broadcast form, calculate the input        |
+|                                      | coordinates according to the data offset of the current     |
+|                                      | block and the original input pointer, and read the input    |
+|                                      | data into the register.                                     |
 +--------------------------------------+-------------------------------------------------------------+
-| ReadDataReduce                       | IO, for Reduce op. According to the Reduce configuration,   |
-|                                      | calculate the data coordinates that require Reduce, and read|
-|                                      | the data into the register.                                 |
+| ReadDataReduce                       | IO, calculate the input coordinates according to the data   |
+|                                      | offset of the current block and the original input pointer, |
+|                                      | and read the input data into the register.                  |
 +--------------------------------------+-------------------------------------------------------------+
-| WriteData                            | IO. Efficiently write data from registers to global memory. |
+| WriteData                            | IO, write data from registers to global memory.             |
 +--------------------------------------+-------------------------------------------------------------+
-| ElementwiseUnary                     | Compute API. Unary calculation API. Complete unary function |
-|                                      | operations according to OpFunc.                             |
+| ElementwiseUnary                     | Compute API, the unary computing API with the same input and|
+|                                      | output Shape, completes unary function operations according |
+|                                      | to OpFunc calculation rules.                                |
 +--------------------------------------+-------------------------------------------------------------+
 | ElementwiseBinary                    | Compute API. The inputs and output have the same shape.     |
 |                                      | Complete the binary function operation according to the     |

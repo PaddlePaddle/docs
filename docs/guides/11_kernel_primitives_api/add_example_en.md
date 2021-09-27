@@ -1,13 +1,13 @@
-# API Examples - Add
-## Add
-+ Description: To complete the addition of two numbers of the same shape, the input is InT type, and the output is OutT type, and the corresponding calculation is completed according to the Functor.
+# API Examples - ElementwiseAdd
+## ElementwiseAdd
++ Description: To complete the addition of two numbers of the same shape, the input is InT type, and the output is OutT type, and the corresponding calculation is completed according to the OpFunc.
 
-### Functor Definition
+### OpFunc Definition
 
 ```
-AddFunctor:
+OpFunc : Used to define calculation rules. Addfunctor is defined as follows:
 
-template <typename InT, typename OutT>
+template <typename InT, typename OutT = OutT>
 struct AddFunctor {
   HOSTDEVICE OutT operator()(const InT &a, const InT &b) const { return statice<OutT>(a + b); }
 };
@@ -15,34 +15,41 @@ struct AddFunctor {
 ```
 ### Kernel Description
 
-VecSize means that each thread continuously reads VecSize elements. According to the relationship between the remaining elements num and the maximum number of elements processed by each thread VecSize x blockDim.x, the data processing is divided into two parts. The first part is when VecSize * blockDim. x> num indicates that the current data processing requires boundary processing, so set IsBoundary to true to avoid fetching out of bounds. Note that the Init function is used to initialize the registers arg0 and arg1 to avoid the occurrence of 0 when arg0 or arg1 is used as the denominator. Condition. Here, the sum of two numbers is completed according to the Functor. When two numbers need to be multiplied, the corresponding Functor can be directly modified, and the kernel code can be reused directly to improve development efficiency.
+VecSize means that each thread continuously reads VecSize elements. According to the relationship between the remaining elements num and the maximum number of elements processed by each Block VecSize * blockDim.x, the data processing is divided into two parts. The first part is VecSize * blockDim. x > num indicates that the current data processing requires boundary processing, set IsBoundary to true to avoid fetching out of bounds. In the second part, no boundary processing is required, set IsBoundary = false. Note that the Init function is used here to initialize the registers arg0 and arg1 to avoid the situation where arg0 or arg1 is used as a divisor to be 0. The summation operation of two numbers is completed according to OpFunc. When two numbers need to be multiplied, the Functor can be directly modified. Kernel code can be reused directly to improve development efficiency.
 
 ### Code
 
 ```
 #include "kernel_primitives/kernel_primitives.h"
-template<int VecSize, typename InT, typename OutT, typename Functor, bool IsBoundary>
-__device__ void elementwiseImpl(InT *in0, InT * in1, OutT * out, Functor func, int num) {
+template<int VecSize, typename InT, typename OutT, typename OpFunc, bool IsBoundary>
+__device__ void ElementwiseAddImpl(InT *in0, InT * in1, OutT * out, OpFunc func, int num) {
+
   InT arg0[VecSize];
   InT arg1[VecSize];
   OutT result[VecSize];
+  // init arg0 and arg1
   Init<InT, VecSize>(arg0, static_cast<OutT>(1.0f));
   Init<InT, VecSize>(arg1, static_cast<OutT>(1.0f));
-  ReadData<InT, VecSize, 1, 1, IsBoundary>(arg0, in0, num);
-  ReadData<InT, VecSize, 1, 1, IsBoundary>(arg1, in1, num);
-  ElementwiseBinary<InT, OutT, VecSize, 1, 1, Functor>(result, arg0, arg1, func);
+  // read data from global memory
+  ReadData<InT, InT, VecSize, 1, 1, IsBoundary>(arg0, in0, num);
+  ReadData<InT, InT, VecSize, 1, 1, IsBoundary>(arg1, in1, num);
+  // compute resut[i] = args[i] + arg1[i]
+  ElementwiseBinary<InT, OutT, VecSize, 1, 1, OpFunc>(result, arg0, arg1, func);
+  // write data
   WriteData<OutT, VecSize, 1, 1, IsBoundary>(out, result, num);
 }
 
-template<int VecSize, typename InT, typename OutT, typename Functor>
-__global__ void elementwise(InT *in0, InT *in1, OutT *out, int size, Functor func) {
-  int data_offset = VecSize * blockIdx.x * blockDim.x; // data offset of this block
+template<int VecSize, typename InT, typename OutT>
+__global__ void ElementwiseAdd(InT *in0, InT *in1, OutT *out, int size) {
+  // get the data offset of this Block
+  int data_offset = VecSize * blockIdx.x * blockDim.x;
+  // get the stride offset the block
   int stride = gridDim.x * blockDim.x * VecSize;
   for (int offset = data_offset; offset < size; offset += stride) {
-    if (offset + blockDim.x * VecSize < size) {
-      elementwiseImpl<VecSize, InT, OutT, Functor, false>(in0 + offset, in1 + offset, out + offset, func, size - offset);
-    } else {
-      elementwiseImpl<VecSize, InT, OutT, Functor, true>(in0 + offset, in1 + offset, out + offset, func, size - offset);
+    if (offset + blockDim.x * VecSize < size) {  // set IsBoundary = false
+      ElementwiseAddImpl<VecSize, InT, OutT, AddFunctor<InT, OutT>, false>(in0 + offset, in1 + offset, out + offset, AddFunctor<InT, OutT>(), size - offset);
+    } else {  // left num is smaller than blockDim.x * VecSize, IsBoundary must be true
+      ElementwiseAddImpl<VecSize, InT, OutT, AddFunctor<InT, OutT>, true>(in0 + offset, in1 + offset, out + offset, AddFunctor<InT, OutT>(), size - offset);
     }
   }
 }

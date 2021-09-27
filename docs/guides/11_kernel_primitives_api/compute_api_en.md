@@ -9,7 +9,7 @@ __device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
 
 ### Detailed Description
 
-Calculate in according to the calculation rules in compute, and store the calculation results in the register out according to the outt type.
+Calculate in according to the calculation rules in OpFunc, and store the calculation results in the register out according to the outt type.
 
 ### Template Parameters
 
@@ -17,7 +17,7 @@ Calculate in according to the calculation rules in compute, and store the calcul
 > OutT: The type stored in the out register. </br>
 > NX: Each thread needs to calculate NX column data. </br>
 > NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, and for XPU, core_id() is used as the thread index. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
 > OpFunc: calculation function, defined as follows:</br>
 ```
    template <typename InT, typename OutT>
@@ -30,8 +30,8 @@ Calculate in according to the calculation rules in compute, and store the calcul
 
 ### Parameters
 
-> out: Output register pointer, the size is NX x NY. </br>
-> in: Input register pointer, the size is NX x NY. </br>
+> out: Output register pointer, the size is NX * NY. </br>
+> in: Input register pointer, the size is NX * NY. </br>
 > compute: Calculation function, declared as OpFunc&lt;InT, OutT&gt;(). </br>
 
 ## [ElementwiseBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L173)
@@ -44,14 +44,14 @@ __device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpF
 
 ### Detailed Description
 
-Calculate in1 and in2 according to the calculation rules in compute, and store the calculation result in the register out according to the OutT type.
+Calculate in1 and in2 according to the calculation rules in OpFunc, and store the calculation result in the register out according to the OutT type.
 
 ### Template Parameters
 > InT: Type of input data. </br>
 > OutT: The type stored in the out register. </br>
 > NX: Each thread needs to calculate NX column data. </br>
 > NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, and for XPU, core_id() is used as the thread index. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
 > OpFunc: calculation function, defined as follows:</br>
 
 ```
@@ -66,9 +66,9 @@ Calculate in1 and in2 according to the calculation rules in compute, and store t
 
 ### Parameters
 
-> out: Output register pointer, the size is NX x NY. </br>
-> in1: The pointer of the left operand register, the size is NX x NY. </br>
-> in2: Right operand register pointer, the size is NX x NY. </br>
+> out: Output register pointer, the size is NX * NY. </br>
+> in1: The pointer of the left operand register, the size is NX * NY. </br>
+> in2: Right operand register pointer, the size is NX * NY. </br>
 > compute: The calculation object declared as OpFunc&lt;InT, OutT&gt;(). </br>
 
 ## [CycleBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L291)
@@ -82,7 +82,7 @@ __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc co
 
 ### Detailed Description
 
-Calculate in1 and in2 according to the calculation rules in the compute, and store the calculation results in the register out according to the OutT type. The shape of in1 is [1, NX], and the shape of in2 is [NY, NX], realizing in1, in2 Loop calculation, the shape of out is [NY, NX].
+Calculate in1 and in2 according to the calculation rules in the OpFunc, and store the calculation results in the register out according to the OutT type. The shape of in1 is [1, NX], and the shape of in2 is [NY, NX], realizing in1, in2 Loop calculation, the shape of out is [NY, NX].
 
 ### Template Parameters
 
@@ -90,7 +90,7 @@ Calculate in1 and in2 according to the calculation rules in the compute, and sto
 > OutT: The type stored in the out register. </br>
 > NX: Each thread needs to calculate NX column data. </br>
 > NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, and for XPU, core_id() is used as the thread index. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
 > OpFunc: calculation function, defined as follows:</br>
 ```
   template <typename InT, typename OutT>
@@ -104,9 +104,9 @@ Calculate in1 and in2 according to the calculation rules in the compute, and sto
 
 ### Parameters
 
-> out: Output register pointer, the size is NX x NY. </br>
+> out: Output register pointer, the size is NX * NY. </br>
 > in1: The pointer of the left operand register, the size is NX. </br>
-> in2: Right operand register pointer, the size is NX x NY. </br>
+> in2: Right operand register pointer, the size is NX * NY. </br>
 > compute: The calculation object declared as OpFunc&lt;InT, OutT&gt;(). </br>
 
 ## [ElementwiseTernary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L210)
@@ -121,7 +121,7 @@ template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFu
 
 ### Detailed Description
 
-Calculate in1, in2, and in3 according to the calculation rules in compute, and store the calculation result in the register out according to the OutT type.
+Calculate in1, in2, and in3 according to the calculation rules in OpFunc, and store the calculation result in the register out according to the OutT type.
 
 ### Template Parameters
 
@@ -129,7 +129,7 @@ Calculate in1, in2, and in3 according to the calculation rules in compute, and s
 > OutT: The type stored in the out register. </br>
 > NX: Each thread needs to calculate NX column data. </br>
 > NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, and for XPU, core_id() is used as the thread index. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
 > OpFunc: calculation function, defined as follows:</br>
 
 ```
@@ -143,10 +143,10 @@ Calculate in1, in2, and in3 according to the calculation rules in compute, and s
 
 ### Parameters
 
-> out: Output register pointer, the size is NX x NY. </br>
-> in1: The register pointer of operand 1, the size is NX x NY. </br>
-> in2: The register pointer of operand 2, the size is NX x NY. </br>
-> in3: The register pointer of operand 3, the size is NX x NY. </br>
+> out: Output register pointer, the size is NX * NY. </br>
+> in1: The register pointer of operand 1, the size is NX * NY. </br>
+> in2: The register pointer of operand 2, the size is NX * NY. </br>
+> in3: The register pointer of operand 3, the size is NX * NY. </br>
 > compute: Declared as the calculation object of OpFunc&lt;InT, OutT&gt;(). </br>
 
 ## [ElementwiseAny](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L250)
@@ -160,7 +160,7 @@ __device__ void ElementwiseAny(OutT* out, InT (*ins)[NX * NY], OpFunc compute);
 
 ### Detailed Description
 
-Calculate the input in ins according to the calculation rules in compute, and store the calculation result in the register out according to the OutT type. All input and output have the same dimensions.
+Calculate the input in ins according to the calculation rules in OpFunc, and store the calculation result in the register out according to the OutT type. All input and output have the same dimensions.
 
 ### Template Parameters
 
@@ -183,7 +183,7 @@ template <typename InT, typename OutT>
 
 ### Parameters
 
-> out: Output register pointer, the size is NX x NY. </br>
+> out: Output register pointer, the size is NX * NY. </br>
 > ins: A pointer array composed of multiple input pointers, the size is Arity. </br>
 > compute: The calculation object declared as OpFunc&lt;InT, OutT&gt;(). </br>
 
@@ -205,7 +205,7 @@ Reduce the input according to the reducer, the input shape is [NY, NX], when Red
 > T: Type of input data. </br>
 > NX: Each thread needs to calculate NX column data. </br>
 > NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, and for XPU, core_id() is used as the thread index. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
 > ReduceFunctor: Reduce calculation function, defined as follows:</br>
 ```
   template <typename InT>
@@ -219,7 +219,7 @@ Reduce the input according to the reducer, the input shape is [NY, NX], when Red
 
 ### Parameters
 
-> out: Output register pointer, the size is NX x NY. </br>
-> in: Input register pointer, the size is NX x NY. </br>
+> out: Output register pointer, the size is NX * NY. </br>
+> in: Input register pointer, the size is NX * NY. </br>
 > reducer: reduction method, which can be defined using ReduceFunctor&lt;InT&gt;(). </br>
 > reduce_last_dim: Indicates whether the last dimension of the original input is reduced. </br>
