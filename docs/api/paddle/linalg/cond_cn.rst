@@ -1,6 +1,6 @@
 .. _cn_api_linalg_cond:
 
-linalg.cond
+cond
 -------------------------------
 
 .. py:function:: paddle.linalg.cond(x, p=None, name=None)
