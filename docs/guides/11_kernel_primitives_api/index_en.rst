@@ -32,15 +32,15 @@ API List
 | ElementwiseUnary                     | Compute API. Unary calculation API. Complete unary function |
 |                                      | operations according to OpFunc.                             |
 +--------------------------------------+-------------------------------------------------------------+
-| ELementwiseBinary                    | Compute API. The inputs and output have the same shape.     |
+| ElementwiseBinary                    | Compute API. The inputs and output have the same shape.     |
 |                                      | Complete the binary function operation according to the     |
 |                                      | OpFunc.                                                     |
 +--------------------------------------+-------------------------------------------------------------+
-| ELementwiseTernary                   | Compute API，The inputs and output have the same shape.     |
+| ElementwiseTernary                   | Compute API，The inputs and output have the same shape.     |
 |                                      | Complete the ternary functions operation according to the   |
 |                                      | OpFunc.                                                     |
 +--------------------------------------+-------------------------------------------------------------+
-| ELementwiseAny                       | Compute API，The inputs and output have the same shape.     |
+| ElementwiseAny                       | Compute API，The inputs and output have the same shape.     |
 |                                      | Complete the compute according to the OpFunc.               |
 +--------------------------------------+-------------------------------------------------------------+
 | CycleBinary                          | Compute API. Input 1 and input 2 have different shapes,     |

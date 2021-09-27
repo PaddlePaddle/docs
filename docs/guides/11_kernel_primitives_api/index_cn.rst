@@ -31,13 +31,13 @@ API 列表
 | ElementwiseUnary                     | Compute API，一元计算 API，根据 OpFunc 计算规则完成一 |
 |                                      | 元函数运算。                                          |
 +--------------------------------------+-------------------------------------------------------+
-| ELementwiseBinary                    | Compute API，相同 shape 二元计算，根据 OpFunc 计算规则|
+| ElementwiseBinary                    | Compute API，相同 shape 二元计算，根据 OpFunc 计算规则|
 |                                      | 完成二元函数运算。                                    |
 +--------------------------------------+-------------------------------------------------------+
-| ELementwiseTernary                   | Compute API，相同 shape 三元计算，根据 OpFunc 计算规则|
+| ElementwiseTernary                   | Compute API，相同 shape 三元计算，根据 OpFunc 计算规则|
 |                                      | 完成三元函数运算。                                    |
 +--------------------------------------+-------------------------------------------------------+
-| ELementwiseAny                       | Compute API，相同 shape 多元计算，根据 OpFunc 计算规则|
+| ElementwiseAny                       | Compute API，相同 shape 多元计算，根据 OpFunc 计算规则|
 |                                      | 完成多元函数运算。                                    |
 +--------------------------------------+-------------------------------------------------------+
 | CycleBinary                          | Compute API，不同 shape 二元计算，根据 OpFunc 计算规则|
