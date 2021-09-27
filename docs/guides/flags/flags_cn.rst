@@ -1,4 +1,6 @@
 
+.. _cn_guides_flags_flags:
+
 环境变量FLAGS
 ==================
 
