@@ -11,7 +11,7 @@ from_dlpack
   - **dlpack** (PyCapsule) - DLPack，即带有dltensor的PyCapsule对象。
 
 返回：
-  - **out** (Tensor) - 从DLPack中解码得到的Tensor。
+  - **out** (Tensor) - 从DLPack中解码得到的Tensor。需要注意的是，对于带有`bool`数据类型的dltensor输入，我们最终解码得到的Tensor对应的数据类型为`uint8`。
 
 **代码示例**
 
