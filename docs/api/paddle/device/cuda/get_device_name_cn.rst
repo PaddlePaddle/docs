@@ -5,7 +5,7 @@ get_device_name
 
 .. py:function:: paddle.device.cuda.get_device_name(device=None)
 
-返回从CUDA函数`cudaDeviceProp <https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g1bf9d625a931d657e08db2b4391170f0>`_获取到的设备名称。
+返回从CUDA函数`cudaDeviceProp <https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g1bf9d625a931d657e08db2b4391170f0>`_ 获取到的设备名称。
 
 
 参数：
