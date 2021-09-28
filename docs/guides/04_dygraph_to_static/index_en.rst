@@ -18,8 +18,6 @@ We introduce the transformation of dygraph to static graph in the following link
 
 - `Introduction of InputSpec <input_spec_en.html>`_ : Introduce the usage of InputSpec to specify the input signature from dygraph to static program.
 
-- `Error Handling <error_handling_en.html>`_ : Introduce the error handling by ProgramTranslator.
-
 - `Debugging Methods <debugging_en.html>`_ : Introduce the debugging methods when using ProgramTranslator.
 
 
