@@ -5,7 +5,7 @@ from_dlpack
 
 .. py:function:: paddle.utils.dlpack.from_dlpack(dlpack)
 
-将DLPack解码为Tensor对象。注意一个DLPack只能被解码一次。
+将DLPack解码为Tensor对象。其中，DLPack是一种开放的内存张量结构，可用于不同深度学习框架之间的张量共享。注意，一个DLPack只能被解码一次。
 
 参数：
   - **dlpack** (PyCapsule) - DLPack，即带有dltensor的PyCapsule对象。
