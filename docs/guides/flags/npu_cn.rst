@@ -4,11 +4,11 @@
 
 
 
-FLAGS_npu_precision_mod
+FLAGS_npu_precision_mode
 *******************************************
 (develop)
 
-FLAGS_npu_precision_mod用于配置昇腾NPU芯片算子精度模式。仅在编译选项选择`WITH_ASCEND_CL = ON`时有效。
+FLAGS_npu_precision_mode用于配置昇腾NPU芯片算子精度模式。仅在编译选项选择`WITH_ASCEND_CL = ON`时有效。
 
 取值范围
 ---------------
@@ -17,5 +17,5 @@ String型，['force_fp32', 'force_fp16', 'allow_fp32_to_fp16', 'must_keep_origin
 
 示例
 -------
-FLAGS_npu_precision_mod="allow_mix_precision" - 表示使用混合精度模式。
+FLAGS_npu_precision_mode="allow_mix_precision" - 表示使用混合精度模式。
 

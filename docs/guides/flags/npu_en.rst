@@ -4,11 +4,11 @@ ascend npu
 
 
 
-FLAGS_npu_precision_mod
+FLAGS_npu_precision_mode
 *******************************************
 (develop)
 
-FLAGS_npu_precision_mod is used to set the operator precision mode of Ascend Devices. Only valid when compiled `WITH_ASCEND_CL = ON`.
+FLAGS_npu_precision_mode is used to set the operator precision mode of Ascend Devices. Only valid when compiled `WITH_ASCEND_CL = ON`.
 
 Values accepted
 ---------------
@@ -17,5 +17,5 @@ Please refer to `here <https://support.huawei.com/enterprise/en/doc/EDOC11002066
 
 Example
 -------
-FLAGS_npu_precision_mod="allow_mix_precision" will allow mixed precision.
+FLAGS_npu_precision_mode="allow_mix_precision" will allow mixed precision.
 
