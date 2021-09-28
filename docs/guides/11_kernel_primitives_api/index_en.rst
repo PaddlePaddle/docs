@@ -48,8 +48,8 @@ API List
 |                                      | input 2 and output have the same shape, and complete the    |
 |                                      | binary loop calculation according to OpFunc.                |
 +--------------------------------------+-------------------------------------------------------------+
-| Reduce                               | Compute API, Complete the reduce calculation in the block or|
-|                                      | in the thread according to the reduce mode.                 |
+| Reduce                               | Compute API, Complete the reduce calculation according to   |
+|                                      | the reduce mode.                                            |
 +--------------------------------------+-------------------------------------------------------------+
 
 API Description
