@@ -3,7 +3,7 @@
 DenseNet
 -------------------------------
 
-.. py:class:: paddle.vision.models.DenseNet(layers=121, bn_size=4, dropout=0., class_num=1000)
+.. py:class:: paddle.vision.models.DenseNet(layers=121, bn_size=4, dropout=0., num_classes=1000)
 
  DenseNet模型，来自论文 `"Densely Connected Convolutional Networks" <https://arxiv.org/abs/1608.06993>`_ 。
 
@@ -12,7 +12,7 @@ DenseNet
   - **layers** (int, 可选) - densenet的层数。默认值：121。
   - **bn_size** (int，可选) - 中间层growth rate的拓展倍数。默认值：4。
   - **dropout** (float, 可选) - dropout rate。默认值：0.。
-  - **class_num** (int，可选) - 类别数目，即最后一个全连接层输出的维度。默认值：1000。
+  - **num_classes** (int，可选) - 类别数目，即最后一个全连接层输出的维度。默认值：1000。
 
 返回
 :::::::::
