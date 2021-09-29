@@ -2039,3 +2039,12 @@ multi_dot(x, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_multi_dot`
+
+solve(x, y name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_linalg_solve`
