@@ -1,4 +1,4 @@
-# Reduce
+# 示例 - Reduce
 ## 功能说明
 + 根据 ReduceOp 中定义的计算规则对最高维度进行规约操作，例如输入为 x[N, H, W, C], axis 取值为 0, 规约后为 out[1, H, W, C]，此处以 ReduceSum 为例进行介绍。
 

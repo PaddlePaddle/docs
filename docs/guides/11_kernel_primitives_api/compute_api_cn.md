@@ -82,7 +82,7 @@ __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc co
 
 ### 函数说明
 
-按照 OpFunc 中的计算规则对 in1、in2 进行计算，将计算结果按照 OutT 类型存储到寄存器 out 中. in1 的 Shape 为[1, NX], in2 的 Shape 为 [NY, NX]，实现in1，in2的循环计算，out 的 Shape 是[NY, NX]。
+按照 OpFunc 中的计算规则对 in1、in2 进行计算，将计算结果按照 OutT 类型存储到寄存器 out 中。in1 的 Shape 为[1, NX], in2 的 Shape 为 [NY, NX]，实现 in1，in2 的循环计算，out 的 Shape 是[NY, NX]。
 
 ### 模板参数
 
@@ -196,7 +196,7 @@ __device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_l
 
 ### 函数说明
 
-根据 reducer 对 in 中的数据进行数据规约，输入 in 的 Shape 为 [NY, NX]，当 ReduceMode = kLocalMode 时，对 in 沿着 NX 方向进行规约，完成线程内规约，out为[NY, 1]；当 ReduceMode = kGlobalMode 时，使用共享内存完成 block 内线程间的规约操作，in 和 out 的size相同，均为[NY, NX]。
+根据 reducer 对 in 中的数据进行数据规约，输入 in 的 Shape 为 [NY, NX]，当 ReduceMode = kLocalMode 时，对 in 沿着 NX 方向进行规约，完成线程内规约，out 为[NY, 1]；当 ReduceMode = kGlobalMode 时，使用共享内存完成 block 内线程间的规约操作，in 和 out 的 size 相同，均为[NY, NX]。
 
 ### 模板参数
 
@@ -219,5 +219,5 @@ __device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_l
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in ：输入寄存器指针，大小为 NX * NY。</br>
-> reducer ：规约方式，可以使用ReduceFunctor&lt;InT&gt;()进行定义。</br>
+> reducer ：规约方式，可以使用 ReduceFunctor&lt;InT&gt;()进行定义。</br>
 > reduce_last_dim ：表示原始输入的最后一维是否进行规约。</br>

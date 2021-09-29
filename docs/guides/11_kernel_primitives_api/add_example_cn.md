@@ -1,6 +1,6 @@
-# ElementwiseAdd
+# 示例 - ElementwiseAdd
 ## 功能说明
-+ 完成相同 Shape 的两数相加，输入为 InT 类型，输出为 OutT 类型，根据 OpFunc 完成对应的计算.
++ 完成相同 Shape 的两数相加，输入为 InT 类型，输出为 OutT 类型，根据 OpFunc 完成对应的计算。
 
 ### OpFunc 定义
 
