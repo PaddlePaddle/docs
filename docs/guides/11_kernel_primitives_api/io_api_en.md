@@ -8,9 +8,13 @@ template <typename Tx, typename Ty, int NX, int NY, int BlockSize, bool IsBounda
 __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int stride_nx, int stride_ny);
 ```
 
-### Detailed Description
+### Description
 
-Read the Tx type 2D data from the global memory to the register, and store it in the register dst according to the Ty type. Every reading of 1 column of data needs to shift the stride_nx column, and every reading of NX column of data needs to shift the stride_ny row, until NX * NY data is loaded into the register dst. When IsBoundary = true, it is necessary to ensure that row offset of Block does not exceed size_ny, and column offset does not exceed size_nx.
+Read the Tx type 2D data from the global memory to the register, and store it in the register dst according to the Ty type. Every reading of 1 column of data needs to shift the stride_nx column, and every reading of NX column of data needs to shift the stride_ny row, until NX * NY data is loaded into the register dst. When IsBoundary = true, it is necessary to ensure that row offset of Block does not exceed size_ny, and column offset does not exceed size_nx.</br>
+The data processing process is as follows:</br>
+<center>
+![ReadData](./images/io_read_data_stride.png)
+</center>
 
 ### Template Parameters
 
@@ -39,9 +43,13 @@ template <typename T, int NX, int NY, int BlockSize, bool IsBoundary = false>
 __device__ void ReadData(T* dst, const T* src, int num);
 ```
 
-### Detailed Description
+### Description
 
-Read the 1D data of type T from the global memory src to the register dst. Continuously read NX data at a time. Currently, only NY = 1 is supported until NX data is loaded into the register dst. When IsBoundary = true, it is necessary to ensure that the total number of data read by the Block does not exceed num to avoid memory fetching out of bounds. When (NX% 4 = 0 or NX% 2 = 0) and IsBoundary = false, there will be higher memory access efficiency.
+Read the 1D data of type T from the global memory src to the register dst. Continuously read NX data at a time. Currently, only NY = 1 is supported until NX data is loaded into the register dst. When IsBoundary = true, it is necessary to ensure that the total number of data read by the Block does not exceed num to avoid memory fetching out of bounds. When (NX% 4 = 0 or NX% 2 = 0) and IsBoundary = false, there will be higher memory access efficiency.</br>
+The data processing process is as follows:</br>
+<center>
+![ReadData](./images/io_read_data.png)
+</center>
 
 ### Template Parameters
 
@@ -71,9 +79,13 @@ __device__ void ReadDataBc(T* dst, const T* src,
                            int stride_ny);
 ```
 
-### Detailed Description
+### Description
 
-Read the 2D data that needs to be brodcast from the global memory src into the register dst according to the T type, where src is the original input data pointer, calculate the input data coordinates corresponding to the current output data according to config, and read the data corresponding to the coordinates To the register.
+Read the 2D data that needs to be brodcast from the global memory src into the register dst according to the T type, where src is the original input data pointer, calculate the input data coordinates corresponding to the current output data according to config, and read the data corresponding to the coordinates To the register. </br>
+The data processing process is as follows:</br>
+<center>
+![ReadDataBc](./images/io_read_data_broadcast.png)
+</center>
 
 ### Template Parameters
 
@@ -111,9 +123,13 @@ __device__ void ReadDataReduce(T* dst,
                                bool reduce_last_dim);
 ```
 
-### Detailed Description
+### Description
 
-Read the 2D data from the global memory SRC into the register DST in T type, where SRC is the original input data pointer according to the index_ Cal calculates the input data coordinates corresponding to the current output data and reads the data corresponding to the coordinates into the register.
+Read the 2D data from the global memory SRC into the register DST in T type, where SRC is the original input data pointer according to the index_Cal calculates the input data coordinates corresponding to the current output data and reads the data corresponding to the coordinates into the register. </br>
+The data processing process is as follows:</br>
+<center>
+![ReadDataReduce](./images/io_read_data_reduce.png)
+</center>
 
 ### Template Parameters
 
@@ -155,9 +171,13 @@ template <typename T, int NX, int NY, int BlockSize, bool IsBoundary = false>
 __device__ void WriteData(T* dst, T* src, int num);
 ```
 
-### Detailed Description
+### Description
 
-Write 1D data from register src to global memory dst. Continuously read NX data at a time, currently only supports NY = 1 until NX data is written to the global memory dst. When IsBoundary = true, it is necessary to ensure that the total number of data written from the current Block to the world does not exceed num to avoid memory fetching out of bounds. When (NX% 4 = 0 or NX% 2 = 0) and IsBoundary = false, there will be higher memory access efficiency.
+Write 1D data from register src to global memory dst. Continuously read NX data at a time, currently only supports NY = 1 until NX data is written to the global memory dst. When IsBoundary = true, it is necessary to ensure that the total number of data written from the current Block to the world does not exceed num to avoid memory fetching out of bounds. When (NX% 4 = 0 or NX% 2 = 0) and IsBoundary = false, there will be higher memory access efficiency. </br>
+The data processing process is as follows:</br>
+<center>
+![WriteData](./images/io_write_data.png)
+</center>
 
 ### Template Parameters
 

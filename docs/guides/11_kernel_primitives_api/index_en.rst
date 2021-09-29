@@ -6,9 +6,51 @@ This part provides CUDA Kernel Primitive API for Paddle senior developers. APIs 
 
 Kernel Primitive API includes OpFunc, IO API, Compute API:
 
-1. IO API: High-performance data read and write API, efficiently complete data read and write operations between global memory and registers.
+1. OpFunc: It is used to define the calculation rules in the Compute API. For example, to implement the Add operation, you need to define AddFunctor for ElementwiseBinary calls.
 
-2. Compute API: General calculation functions, such as ElementwiseBinary, ElementwiseUnary, etc.
+2. IO API: High-performance data read and write API, efficiently complete data read and write operations between global memory and registers.
+
+3. Compute API: General calculation functions, such as ElementwiseBinary, ElementwiseUnary, etc.
+
+Functor List
+############
+
++--------------------------------------+-------------------------------------------------------+
+| Functor 名称                         | 功能简介                                              |
++======================================+=======================================================+
+| ExpFunctor                           | Unary Functor, perform Exp operation.                 |
++--------------------------------------+-------------------------------------------------------+
+| IdentityFunctor                      | Unary Functor, which performs type conversion on input|
+|                                      | data.                                                 |
++--------------------------------------+-------------------------------------------------------+
+| DivideFunctor                        | Unary Functor, returns the division result of the     |
+|                                      | input.                                                |
++--------------------------------------+-------------------------------------------------------+
+| SquareFunctor                        | Unary Functor, returns the square of the data.        |
++--------------------------------------+-------------------------------------------------------+
+| MinFunctor                           | Binary Functor, returns the smallest value among the  |
+|                                      | inputs.                                               |
++--------------------------------------+-------------------------------------------------------+
+| MaxFunctor                           | Binary Functor, returns the maximum value of the      |
+|                                      | inputs.                                               |
++--------------------------------------+-------------------------------------------------------+
+| AddFunctor                           | Binary Functor, returns the sum of the inputs.        |
++--------------------------------------+-------------------------------------------------------+
+| MulFunctor                           | Binary Functor, returns the product of the inputs.    |
++--------------------------------------+-------------------------------------------------------+
+| LogicalOrFunctor                     | Binary Functor, which returns the logical or result of|
+|                                      | the inputs.                                           |
++--------------------------------------+-------------------------------------------------------+
+| LogicalAndFunctor                    | Binary Functor, which returns the logical AND result  |
+|                                      | of the inputs.                                        |
++--------------------------------------+-------------------------------------------------------+
+| DivFunctor                           | Binary Functor, returns the result of division of two |
+|                                      | inputs.                                               |
++--------------------------------------+-------------------------------------------------------+
+| FloorDivFunctor                      | Binary Functor, returns the result of division of two |
+|                                      | inputs.                                               |
++--------------------------------------+-------------------------------------------------------+
+
 
 API List
 ############
@@ -55,6 +97,7 @@ API List
 API Description
 ###############
 
+- `Functor <./functor_api_en.html>`_ : Introduce the Functors provided by the Kernel Primitive API.
 - `IO API <./io_api_en.html>`_ : Describes the definition and functions of IO APIs.
 - `Compute API <./compute_api_en.html>`_ : Describes the definition and functions of compute APIs.
 
