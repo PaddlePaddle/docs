@@ -5,8 +5,7 @@ squeezenet1_0
 
 .. py:function:: paddle.vision.models.squeezenet1_0(pretrained=False, **kwargs)
 
- squeezenet1_0模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size"
-<https://arxiv.org/abs/1602.07360>`_。
+ squeezenet1_0模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size" <https://arxiv.org/abs/1602.07360>`_ 。
 
 参数
 :::::::::
