@@ -48,7 +48,7 @@ paddle.distributed.fleet是分布式训练的统一入口API，用于配置分�
     
 
     " :ref:`init_parallel_env <cn_api_distributed_init_parallel_env>` ", "初始化并行训练环境，支持动态图模式"
-    " :ref:`launch <>` ", "启动分布式训练进程，支持集合通信及参数服务器架构"
+    " :ref:`launch <cn_api_distributed_launch>` ", "启动分布式训练进程，支持集合通信及参数服务器架构"
     " :ref:`spawn <cn_api_distributed_spawn>` ", "启动分布式训练进程，仅支持集合通信架构"
     " :ref:`get_rank <cn_api_distributed_get_rank>` ", "获取当前进程的rank值"
     " :ref:`get_world_size <cn_api_distributed_get_world_size>` ", "获取当前进程数"

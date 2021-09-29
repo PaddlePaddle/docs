@@ -137,7 +137,7 @@ Tensor|tuple(Tensor)|list[Tensor]，前向函数的输出 ``out``
         # 输入多个LodTensor以list[Variable]或tuple(Variable)形式
         paddle.static.py_func(func=element_wise_add, x=[x,y], out=output)
 
-        exe=paddle.static.Executor(fluid.CPUPlace())
+        exe=paddle.static.Executor(paddle.CPUPlace())
         exe.run(start_program)
 
         # 给program喂入numpy数组
