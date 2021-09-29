@@ -1,7 +1,6 @@
-# API Examples - Reduce
-## Reduce
-+ Description:
-Perform reduction operations on the highest dimension according to the calculation rules defined in ReduceOp. For example, the input is x[N, H, W, C], the value of axis is 0, after the reduction is out[1, H, W, C], here is Take ReduceSum as an example to introduce.
+# Reduce
+## Description
++ Perform reduction operations on the highest dimension according to the calculation rules defined in ReduceOp. For example, the input is x[N, H, W, C], the value of axis is 0, after the reduction is out[1, H, W, C], here is Take ReduceSum as an example to introduce.
 ### ReduceOp Definition
 ```
 template <typename Tx, typename Ty = Tx>

@@ -1,4 +1,4 @@
-API 应用实例
+API 示例
 ############
 
 - `ElementwiseAdd <./elementwise_add_case_cn.html>`_ : 加法操作， 输入和输出具有相同 Shape。

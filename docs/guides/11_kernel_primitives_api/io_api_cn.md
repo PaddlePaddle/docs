@@ -10,7 +10,7 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 
 ### 函数说明
 
-将 Tx 类型的 2D 数据从全局内存中读取到寄存器，并按照 Ty 类型存储到寄存器 dst 中。每读取 1 列数据需要偏移 stride_nx 列数据，每读取 NX 列数据需要偏移 stride_ny 行数据，直到加载 NX * NY 个数据到寄存器 dst 中。当 IsBoundary = true 需要保证当前 Block 行偏移不超过 size_ny, 列偏移不超过 size_nx。
+将 Tx 类型的 2D 数据从全局内存中读取到寄存器，并按照 Ty 类型存储到寄存器 dst 中。每读取 1 列数据需要偏移 stride_nx 列数据，每读取 NX 列数据需要偏移 stride_ny 行数据，直到加载 NX * NY 个数据到寄存器 dst 中。当 IsBoundary = true 需要保证当前 Block 行偏移不超过 size_ny，列偏移不超过 size_nx。
 
 ### 模板参数
 
@@ -23,7 +23,7 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 
 ### 函数参数
 
-> dst ：输出寄存器指针，数据类型为Ty, 大小为 NX * NY。</br>
+> dst ：输出寄存器指针，数据类型为Ty，大小为 NX * NY。</br>
 > src ：当前 Block 的输入数据指针，数据类型为 Tx。</br>
 > size_nx ：Block 需要读取 size_nx 列数据，参数仅在 IsBoundary = true 时使用。</br>
 > size_ny ：Block 需要读取 size_ny 行数据，参数仅在 IsBoundary = true 时使用。</br>

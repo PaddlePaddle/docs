@@ -1,6 +1,6 @@
-# API Examples - ElementwiseAdd
-## ElementwiseAdd
-+ Description: To complete the addition of two numbers of the same shape, the input is InT type, and the output is OutT type, and the corresponding calculation is completed according to the OpFunc.
+# ElementwiseAdd
+## Description
++ To complete the addition of two numbers of the same shape, the input is InT type, and the output is OutT type, and the corresponding calculation is completed according to the OpFunc.
 
 ### OpFunc Definition
 

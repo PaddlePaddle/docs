@@ -1,4 +1,4 @@
-API 详细介绍
+API 介绍
 ##############
 
 - `IO API <./io_api_cn.html>`_ : 介绍 IO 类 API 的定义和功能。
