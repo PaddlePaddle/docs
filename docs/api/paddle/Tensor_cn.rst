@@ -2043,4 +2043,4 @@ solve(x, y name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_solve`
+请参考 :ref:`cn_api_linalg_solve`

@@ -248,7 +248,6 @@ tensor线性代数相关
     " :ref:`paddle.tril <cn_api_tensor_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为0"
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为0"
     " :ref:`paddle.multi_dot<cn_api_tensor_multi_dot>` ", "计算多个矩阵相乘"
-    " :ref:`paddle.solve <cn_api_tensor_solve>` ", "求线性方程组 Ax=B 的解"
 
 .. _tensor_manipulation:
 
