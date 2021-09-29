@@ -8,14 +8,17 @@ get_device_capability
 返回从CUDA函数 `cudaDeviceProp <https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__DEVICE.html#group__CUDART__DEVICE_1g1bf9d625a931d657e08db2b4391170f0>`_ 获取到的定义设备计算能力的主要和次要修订号。
 
 
-参数：
+参数
+:::::::::
     - **device** (paddle.CUDAPlace|int, 可选) - 希望获取计算能力的设备或者设备ID。如果device为None（默认），则为当前的设备。
 
-返回：设备计算能力的主要和次要修订号。
+返回
+:::::::::
+tuple(int,int): 设备计算能力的主要和次要修订号。
 
-返回类型：tuple(int,int)
 
-**代码示例**：
+代码示例
+:::::::::
 
         .. code-block:: python
 
