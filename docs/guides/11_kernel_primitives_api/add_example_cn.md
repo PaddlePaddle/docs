@@ -9,7 +9,7 @@ OpFunc: 用于定义当前数据的计算规则，AddFunctor 定义如下：
 
 template <typename InT, typename OutT = OutT>
 struct AddFunctor {
-  HOSTDEVICE OutT operator()(const InT &a, const InT &b) const { return statice<OutT>(a + b); }
+  HOSTDEVICE OutT operator()(const InT &a, const InT &b) const { return statice_cast<OutT>(a + b); }
 };
 
 ```

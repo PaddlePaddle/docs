@@ -9,7 +9,7 @@ OpFunc : Used to define calculation rules. Addfunctor is defined as follows:
 
 template <typename InT, typename OutT = OutT>
 struct AddFunctor {
-  HOSTDEVICE OutT operator()(const InT &a, const InT &b) const { return statice<OutT>(a + b); }
+  HOSTDEVICE OutT operator()(const InT &a, const InT &b) const { return statice_cast<OutT>(a + b); }
 };
 
 ```
