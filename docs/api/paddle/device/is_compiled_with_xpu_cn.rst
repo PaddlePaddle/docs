@@ -14,4 +14,9 @@ is_compiled_with_xpu
 
 **示例代码**
 
-COPY-FROM: paddle.device.is_compiled_with_xpu
+.. code-block:: python
+
+    import paddle
+    support_xpu = paddle.paddle.is_compiled_with_xpu()
+
+

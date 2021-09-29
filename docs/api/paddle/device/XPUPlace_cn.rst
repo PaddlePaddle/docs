@@ -16,6 +16,13 @@ XPUPlace
 参数：
   - **id** (int，可选) - XPU的设备ID。如果为 ``None``，则默认会使用 id 为 0 的设备。默认值为 ``None``。
 
-**代码示例**
+**示例代码**
 
-COPY-FROM: paddle.device.XPUPlace
+.. code-block:: python
+
+    # required: xpu
+
+    import paddle
+    place = paddle.device.XPUPlace(0)
+
+
