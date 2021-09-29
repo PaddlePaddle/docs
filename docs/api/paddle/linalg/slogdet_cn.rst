@@ -23,7 +23,7 @@ slogdet
 
     x =  paddle.randn([3,3,3])
 
-    A = paddle.slogdet(x)
+    A = paddle.linalg.slogdet(x)
 
     print(A)
 

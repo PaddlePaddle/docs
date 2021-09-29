@@ -24,7 +24,7 @@ det
 
     x =  paddle.randn([3,3,3])
 
-    A = paddle.det(x)
+    A = paddle.linalg.det(x)
 
     print(A)
 
