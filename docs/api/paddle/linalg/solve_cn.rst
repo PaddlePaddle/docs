@@ -1,9 +1,9 @@
-.. _cn_api_tensor_solve:
+.. _cn_api_linalg_solve:
 
 solve
 -------------------------------
 
-.. py:function:: paddle.solve(x, y, name=None)
+.. py:function:: paddle.linalg.solve(x, y, name=None)
 
 
 计算线性方程组的解。
