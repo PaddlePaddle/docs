@@ -12,8 +12,9 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 
 将 Tx 类型的 2D 数据从全局内存中读取到寄存器，并按照 Ty 类型存储到寄存器 dst 中。每读取 1 列数据需要偏移 stride_nx 列数据，每读取 NX 列数据需要偏移 stride_ny 行数据，直到加载 NX * NY 个数据到寄存器 dst 中。当 IsBoundary = true 需要保证当前 Block 行偏移不超过 size_ny，列偏移不超过 size_nx。</br>
 数据处理过程如下：</br>
-![ReadData](./images/io_read_data_stride.png)
-
+<center>
+![ReadData](./images/io_read_data_stride.png =800)
+</center>
 ### 模板参数
 
 > Tx ：数据存储在全局内存中的数据类型。</br>
@@ -45,7 +46,9 @@ __device__ void ReadData(T* dst, const T* src, int num);
 
 将 T 类型的 1D 数据从全局内存 src 中读取到寄存器 dst 中。每次连续读取 NX 个数据，当前仅支持 NY = 1，直到加载 NX 个数据到寄存器 dst 中。当 IsBoundary = true 需要保证 Block 读取的总数据个数不超过 num，以避免访存越界。当 (NX % 4 = 0 或 NX % 2 = 0) 且 IsBoundary = false 时，会有更高的访存效率。</br>
 数据处理过程如下：</br>
-![ReadData](./images/io_read_data.png)
+<center>
+![ReadData](./images/io_read_data.png =800)
+</center>
 
 ### 模板参数
 
@@ -79,7 +82,9 @@ __device__ void ReadDataBc(T* dst, const T* src,
 
 将需要进行 brodcast 的 2D 数据按照 T 类型从全局内存 src 中读取到寄存器 dst 中，其中 src 为原始输入数据指针，根据 config 计算当前输出数据对应的输入数据坐标，并将坐标对应的数据读取到寄存器中。</br>
 数据处理过程如下：</br>
-![ReadDataBc](./images/io_read_data_broadcast.png)
+<center>
+![ReadDataBc](./images/io_read_data_broadcast.png =800)
+</center>
 
 ### 模板参数
 
@@ -121,7 +126,9 @@ __device__ void ReadDataReduce(T* dst,
 
 根据 index_cal 计算当前输出数据对应的输入数据坐标，将坐标对应的数据从全局内存 src 中读取到寄存器 dst 中。</br>
 数据处理过程如下：</br>
-![ReadDataReduce](./images/io_read_data_reduce.png)
+<center>
+![ReadDataReduce](./images/io_read_data_reduce.png =800)
+</center>
 
 ### 模板参数
 
@@ -167,7 +174,9 @@ __device__ void WriteData(T* dst, T* src, int num);
 
 将 T 类型的 1D 数据从寄存器 src 写到全局内存 dst 中。每次连续读取 NX 个数据，当前仅支持NY = 1，直到写 NX 个数据到全局内存 dst 中。当 IsBoundary = true 需要保证当前 Block 向全局内从中写的总数据个数不超过 num，以避免访存越界。当 (NX % 4 = 0 或 NX % 2 = 0) 且 IsBoundary = false 时，会有更高的访存效率。</br>
 数据处理过程如下：</br>
-![WriteData](./images/io_write_data.png)
+<center>
+![WriteData](./images/io_write_data.png =800)
+</center>
 
 ### 模板参数
 
