@@ -1,5 +1,5 @@
 # API 介绍 - Functor
-介绍 Kernel Primitive API 定义的计算 Functor, 当前一共有 13 个 Functor 可以直接使用。
+介绍 Kernel Primitive API 定义的计算 Functor，当前一共有 13 个 Functor 可以直接使用。
 
 ## Unary Functor
 

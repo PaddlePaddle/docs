@@ -7,5 +7,6 @@ API 介绍
 ..  toctree::
     :hidden:
 
+    functor_api_cn.md
     io_api_cn.md
     compute_api_cn.md
