@@ -23,7 +23,10 @@ struct AddFunctor {
 ```
 ### Kernel Description
 
-Perform the reduction operation on the highest dimension, merge the dimensions that do not need to be reduced, and map blockIdx.x to the dimensions that do not need to be reduced to ensure maximum access and storage efficiency. There is no dependency on data between threads, only intra-thread protocol operations are required. When num < blockDim.x, IsBounary needs to be set to true, indicating that the memory access boundary judgment needs to be performed to avoid access to memory out of range.
+Perform the reduction operation on the highest dimension, merge the dimensions that do not need to be reduced, and map blockIdx.x to the dimensions that do not need to be reduced to ensure maximum access and storage efficiency. There is no dependency on data between threads, only intra-thread protocol operations are required. When num < blockDim.x, IsBounary needs to be set to true, indicating that the memory access boundary judgment needs to be performed to avoid access to memory out of range.</br>
+
+The data processing process of ReduceSum is as follows:</br>
+![Reduce](./images/example_reduce.png)
 
 ### Code
 
@@ -33,7 +36,7 @@ __device__ void HigherDimImp(const Tx* x, Ty* y, ReduceOp reducer,
                              TransformOp transform, MPType init,
                              int reduce_num, int left_num,
                              int block_num) {
-  const int NY = 1;
+  const int NY = 2;
   int idx = blockIdx.x * blockDim.x;
   int idy = blockIdx.y * block_num; // block_offset of rows
   Tx reduce_input[NY];

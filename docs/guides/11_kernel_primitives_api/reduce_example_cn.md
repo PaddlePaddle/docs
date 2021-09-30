@@ -25,7 +25,9 @@ struct AddFunctor {
 ```
 ### kernel 实现说明
 
-对最高维进行规约操作，将不需要进行规约的维度进行合并，将 blockIdx.x 映射到不需要进行规约的维度，保证访问存储效率最大。线程间数据没有依赖，只需要进行线程内规约操作。当num < blockDim.x时需要将 IsBounary 设置为 true，表明需要进行访存边界判断，避免访问存储越界。
+对最高维进行规约操作，将不需要进行规约的维度进行合并，将 blockIdx.x 映射到不需要进行规约的维度，保证访问存储效率最大。线程间数据没有依赖，只需要进行线程内规约操作。当num < blockDim.x时需要将 IsBounary 设置为 true，表明需要进行访存边界判断，避免访问存储越界。</br>
+ReduceSum 数据处理过程如下：</br>
+![Reduce](./images/example_reduce.png)
 
 ### kernel 代码
 
@@ -35,7 +37,7 @@ __device__ void HigherDimImp(const Tx* x, Ty* y, ReduceOp reducer,
                              TransformOp transform, MPType init,
                              int reduce_num, int left_num,
                              int block_num) {
-  const int NY = 1;
+  const int NY = 2;
   int idx = blockIdx.x * blockDim.x;
   int idy = blockIdx.y * block_num; // block_offset of rows
   Tx reduce_input[NY];
