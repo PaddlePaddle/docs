@@ -1,5 +1,5 @@
 # API 介绍 - Functor
-介绍 Kernel Primitive API 定义的计算 Functor，当前一共有 13 个 Functor 可以直接使用。
+介绍 Kernel Primitive API 定义的 Functor，当前一共有 13 个 Functor 可以直接使用。
 
 ## Unary Functor
 
@@ -14,12 +14,12 @@ struct kps::ExpFunctor<Tx, Ty>();
 对 Tx 类型的输入数做 Exp 操作，并将结果转成 Ty 类型返回。
 
 #### 模板参数
-> Tx : 输入数据的类型。
-> Ty : 返回类型。
+> Tx : 输入数据的类型。</br>
+> Ty : 返回类型。</br>
 
 #### 使用示例
 ```
-auto functor = kps::ExpFunctor<float>(1);
+auto functor = kps::ExpFunctor<float>();
 float input = 0;
 float out = functor(input);
 
@@ -39,8 +39,8 @@ struct kps::IdentityFunctor<Tx, Ty>();
 将 Tx 类型的输入数据转成 Ty 类型返回。
 
 #### 模板参数
-> Tx : 输入数据的类型。
-> Ty : 返回类型。
+> Tx : 输入数据的类型。</br>
+> Ty : 返回类型。</br>
 
 #### 使用示例
 ```
@@ -62,8 +62,8 @@ struct kps::DivideFunctor<Tx, Ty>(num);
 将 Tx 类型的输入数据除以 num，并将结果转成 Ty 类型返回。
 
 #### 模板参数
-> Tx : 输入数据的类型。
-> Ty : 返回类型。
+> Tx : 输入数据的类型。</br>
+> Ty : 返回类型。</br>
 
 #### 使用示例
 ```
@@ -86,8 +86,8 @@ struct kps::SquareFunctor<Tx, Ty>();
 对 Tx 类型的输入数做 Square 操作，并将结果转成 Ty 类型返回。
 
 #### 模板参数
-> Tx : 输入数据的类型。
-> Ty : 返回类型。
+> Tx : 输入数据的类型。</br>
+> Ty : 返回类型。</br>
 #### 使用示例
 ```
 auto functor = kps::SquareFunctor<float>();
@@ -254,6 +254,7 @@ struct kps::SubFunctor<T>();
 
 #### 模板参数
 > T : 数据类型。
+
 #### 使用示例
 ```
 auto functor = kps::SubFunctor<float>();
@@ -277,6 +278,7 @@ struct kps::DivFunctor<T>();
 
 #### 模板参数
 > T : 数据类型。
+
 #### 使用示例
 ```
 auto functor = kps::DivFunctor<float>();
@@ -313,10 +315,10 @@ float out = functor(input1, input2);
 // out = 0
 ```
 ## Functor 定义规则
-ElementwiseAny 支持指针数组的形式传递，对于其他计算函数仅仅支持普通参数传递。
+当前计算函数中仅 ElementwiseAny 支持 Functor 参数设置为指针，其他计算函数的 Functor 仅能设置为普通参数。
 
-### 指针数组传递
-目前指针数组传递仅仅在 ElementwiseAny 中支持，因此在进行 ElementwiseAny 的 Functor 定义时候需要保证重载的 operate() 函数的参数是指针数组。例如要实现功能： (a + b) * c + d， 则可以结合 ElementwiseAny 与 Functor 完成对应计算。
+### 指针传递
+在进行 ElementwiseAny 的 Functor 定义时候需要保证重载的 operate() 函数的参数是数组指针。例如要实现功能： (a + b) * c + d， 则可以结合 ElementwiseAny 与 Functor 完成对应计算。
 
 ExampleFunctor1 定义:
 ```

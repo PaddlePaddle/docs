@@ -14,12 +14,12 @@ struct kps::ExpFunctor<Tx, Ty>();
 Exp operation is performed on the input number of Tx type, and the result is converted into Ty type and returned.
 
 #### Template Parameters
-> Tx : Data type of input.
-> Ty : The type of return.
+> Tx : Data type of input.</br>
+> Ty : The type of return.</br>
 
 #### Example
 ```
-auto functor = kps::ExpFunctor<float>(1);
+auto functor = kps::ExpFunctor<float>();
 float input = 0;
 float out = functor(input);
 
@@ -62,8 +62,8 @@ struct kps::DivideFunctor<Tx, Ty>(num);
 Divide the input data of Tx type by num, and convert the result into Ty type to return.
 
 #### Template Parameters
-> Tx : Data type of input.
-> Ty : The type of return.
+> Tx : Data type of input.</br>
+> Ty : The type of return.</br>
 
 #### Example
 ```
@@ -86,8 +86,8 @@ struct kps::SquareFunctor<Tx, Ty>();
 Perform Square operation on the input number of Tx type, and convert the result into Ty type to return.
 
 #### Template Parameters
-> Tx : Data type of input.
-> Ty : The type of return.
+> Tx : Data type of input.</br>
+> Ty : The type of return.</br>
 
 #### Example
 ```
@@ -138,6 +138,7 @@ Returns the maximum value of the two inputs. MaxFunctor provides the initial() f
 
 #### Template Parameters
 > T : The type of data.
+
 #### Example
 ```
 auto functor = kps::MaxFunctor<float>();
@@ -318,10 +319,10 @@ float out = functor(input1, input2);
 // out = 0
 ```
 ## Functor Definition Rules
-ElementwiseAny supports the transfer of pointer arrays, and only supports ordinary parameter transfer for other calculation functions.
+In the current calculation function, only ElementwiseAny supports setting the functor parameter as a pointer, and the functor of other calculation functions can only be set as a normal parameter.
 
 ### Pointer Array
-Pointer array transfer is only supported in ElementwiseAny, so when defining ElementwiseAny's Functor, you need to ensure that the parameter of the overloaded operate() function is an array of pointers. For example, to realize the function: (a + b) * c + d, you can combine ElementwiseAny and Functor to complete the corresponding calculation.
+When defining ElementwiseAny's Functor, you need to ensure that the parameter of the overloaded operate() function is a pointer. For example, to realize the function: (a + b) * c + d, you can combine ElementwiseAny and Functor to complete the calculation.
 
 ExampleFunctor1:
 ```

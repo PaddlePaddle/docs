@@ -18,7 +18,7 @@ Functor List
 +--------------------------------------+-------------------------------------------------------+
 | Functor name                         | Descriptions                                          |
 +======================================+=======================================================+
-| ExpFunctor                           | Unary Functor, perform Exp operation.                 |
+| ExpFunctor                           | Unary Functor, performs Exp operation.                |
 +--------------------------------------+-------------------------------------------------------+
 | IdentityFunctor                      | Unary Functor, which performs type conversion on input|
 |                                      | data.                                                 |
@@ -41,13 +41,13 @@ Functor List
 | LogicalOrFunctor                     | Binary Functor, which returns the logical or result of|
 |                                      | the inputs.                                           |
 +--------------------------------------+-------------------------------------------------------+
-| LogicalAndFunctor                    | Binary Functor, which returns the logical AND result  |
+| LogicalAndFunctor                    | Binary Functor, which returns the logical and result  |
 |                                      | of the inputs.                                        |
 +--------------------------------------+-------------------------------------------------------+
-| DivFunctor                           | Binary Functor, returns the result of division of two |
+| DivFunctor                           | Binary Functor, returns the result of division of the |
 |                                      | inputs.                                               |
 +--------------------------------------+-------------------------------------------------------+
-| FloorDivFunctor                      | Binary Functor, returns the result of division of two |
+| FloorDivFunctor                      | Binary Functor, returns the result of division of the |
 |                                      | inputs.                                               |
 +--------------------------------------+-------------------------------------------------------+
 
@@ -65,9 +65,8 @@ API List
 |                                      | block and the original input pointer, and read the input    |
 |                                      | data into the register.                                     |
 +--------------------------------------+-------------------------------------------------------------+
-| ReadDataReduce                       | IO, calculate the input coordinates according to the data   |
-|                                      | offset of the current block and the original input pointer, |
-|                                      | and read the input data into the register.                  |
+| ReadDataReduce                       | IO, read data in Reduce form, read the input data from      |
+|                                      | global memory into register for Reduce.                     |
 +--------------------------------------+-------------------------------------------------------------+
 | WriteData                            | IO, write data from registers to global memory.             |
 +--------------------------------------+-------------------------------------------------------------+
