@@ -199,7 +199,7 @@ __device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_l
 ### Detailed Description
 
 Reduce the input according to the reducer, the input shape is [NY, NX], when Mode = kLocalMode, reduce in along the NX direction to complete the intra-thread protocol, out is [NY, 1]; when Mode = kGlobalMode , Use shared memory to complete the protocol operation between threads in the block, the size of in and out are the same, both are [NY, NX].</br>
-The data processing process is as follows:</br>
+The data processing process of ReduceMax is as follows:</br>
 ![Reduce](./images/compute_reduce.png)
 
 ### Template Parameters

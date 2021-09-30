@@ -32,7 +32,7 @@ __device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in ：输入寄存器指针，大小为 NX * NY。</br>
-> compute ：计算函数，声明为OpFunc&lt;InT, OutT&gt;()。</br>
+> compute ：计算函数，声明为 OpFunc&lt;InT, OutT&gt;()。</br>
 
 ## [ElementwiseBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L173)
 ### 函数定义
@@ -69,7 +69,7 @@ __device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpF
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in1 ：左操作数寄存器指针，大小为 NX * NY。</br>
 > in2 ：右操作数寄存器指针，大小为 NX * NY。</br>
-> compute ：声明为OpFunc&lt;InT, OutT&gt;()的计算对象。</br>
+> compute ：声明为 OpFunc&lt;InT, OutT&gt;() 的计算对象。</br>
 
 ## [CycleBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L291)
 
@@ -107,7 +107,7 @@ __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc co
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in1 ：左操作数寄存器指针，大小为 NX。</br>
 > in2 ：右操作数寄存器指针，大小为 NX * NY。</br>
-> compute ：声明为OpFunc&lt;InT, OutT&gt;()的计算对象。</br>
+> compute ：声明为 OpFunc&lt;InT, OutT&gt;() 的计算对象。</br>
 
 ## [ElementwiseTernary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L210)
 
@@ -146,7 +146,7 @@ template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFu
 > in1 ：操作数1的寄存器指针，大小为 NX * NY。</br>
 > in2 ：操作数2的寄存器指针，大小为 NX * NY。</br>
 > in3 ：操作数3的寄存器指针，大小为 NX * NY。</br>
-> compute : 声明为OpFunc&lt;InT, OutT&gt;()的计算对象。</br>
+> compute : 声明为 OpFunc&lt;InT, OutT&gt;() 的计算对象。</br>
 
 ## [ElementwiseAny](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L250)
 
@@ -183,7 +183,7 @@ template <typename InT, typename OutT>
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > ins ：由多输入指针构成的指针数组，大小为Arity。</br>
-> compute ：声明为OpFunc&lt;InT, OutT&gt;()的计算对象。</br>
+> compute ：声明为 OpFunc&lt;InT, OutT&gt;() 的计算对象。</br>
 
 ## [Reduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L332)
 
@@ -197,7 +197,7 @@ __device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_l
 ### 函数说明
 
 根据 reducer 对 in 中的数据进行数据规约，输入 in 的 Shape 为 [NY, NX]，当 Mode = kLocalMode 时，对 in 沿着 NX 方向进行规约，完成线程内规约，out 为[NY, 1]；当 Mode = kGlobalMode 时，使用共享内存完成 block 内线程间的规约操作，in 和 out 的 size 相同，均为[NY, NX]。</br>
-数据处理过程如下：</br>
+ReduceMax 数据处理过程如下：</br>
 ![Reduce](./images/compute_reduce.png)
 
 ### 模板参数
@@ -221,5 +221,5 @@ __device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_l
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in ：输入寄存器指针，大小为 NX * NY。</br>
-> reducer ：规约方式，可以使用 ReduceFunctor&lt;InT&gt;()进行定义。</br>
+> reducer ：规约方式，可以使用 ReduceFunctor&lt;InT&gt;() 进行定义。</br>
 > reduce_last_dim ：表示原始输入的最后一维是否进行规约。</br>
