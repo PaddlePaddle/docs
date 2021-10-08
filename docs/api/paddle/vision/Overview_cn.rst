@@ -52,6 +52,14 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
     " :ref:`vgg13 <cn_api_paddle_vision_models_vgg13>` ", "13层的VGG模型"
     " :ref:`vgg16 <cn_api_paddle_vision_models_vgg16>` ", "16层的VGG模型"
     " :ref:`vgg19 <cn_api_paddle_vision_models_vgg19>` ", "19层的VGG模型"
+    
+    " :ref:`shufflenetv2_x0_25 <cn_api_paddle_vision_models_shufflenetv2_x0_25>` ", "shufflenetv2_x0_25模型"
+    " :ref:`shufflenetv2_x0_33 <cn_api_paddle_vision_models_shufflenetv2_x0_33>` ", "shufflenetv2_x0_33模型"
+    " :ref:`shufflenetv2_x0_5 <cn_api_paddle_vision_models_shufflenetv2_x0_5>` ", "shufflenetv2_x0_5模型"
+    " :ref:`shufflenetv2_x1_0 <cn_api_paddle_vision_models_shufflenetv2_x1_0>` ", "shufflenetv2_x1_0模型"    
+    " :ref:`shufflenetv2_x1_5 <cn_api_paddle_vision_models_shufflenetv2_x1_5>` ", "shufflenetv2_x1_5模型"
+    " :ref:`shufflenetv2_x2_0 <cn_api_paddle_vision_models_shufflenetv2_x2_0>` ", "shufflenetv2_x2_0模型"
+    " :ref:`shufflenetv2_swish <cn_api_paddle_vision_models_shufflenetv2_swish>` ", "shufflenetv2_swish模型"    
 
 
 .. _about_ops:
