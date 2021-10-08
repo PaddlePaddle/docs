@@ -798,7 +798,7 @@ expand_as(y, name=None)
 
 请参考 :ref:`cn_api_tensor_expand_as`
 
-eigvals(x, name=None)
+eigvals(y, name=None)
 :::::::::
 
 返回：输入矩阵的特征值
