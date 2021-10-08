@@ -4,6 +4,7 @@ eig
 -------------------------------
 
 .. py:function:: paddle.linalg.eig(x, name=None)
+
 计算一般方阵``x``的的特征值和特征向量。
 
 .. note::
