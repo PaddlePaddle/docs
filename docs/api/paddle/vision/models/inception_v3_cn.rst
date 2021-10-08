@@ -28,7 +28,7 @@ InceptionV3模型，Layer的实例。
     # build model and load imagenet pretrained weight
     # model = inception_v3(pretrained=True)
 
-    x = paddle.rand([1, 3, 224, 224])
+    x = paddle.rand([1, 3, 299, 299])
     out = model(x)
 
     print(out.shape)
