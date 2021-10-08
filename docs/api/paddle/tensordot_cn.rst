@@ -8,17 +8,17 @@ tensordot
 该API做张量缩并运算（Tensor Contraction），即沿着axes给定的多个轴对两个张量对应元素的乘积进行加和操作。
 
 参数：
-    - **x** （Tensor）- 缩并运算操作的左张量，数据类型为 ``float32``，``float64``。
-    - **y** （Tensor）- 缩并运算操作的左张量，与 ``x`` 具有相同的数据类型。
+    - **x** （Tensor）- 缩并运算操作的左张量，数据类型为 ``float32`` 或 ``float64``。
+    - **y** （Tensor）- 缩并运算操作的右张量，与 ``x`` 具有相同的数据类型。
     - **axes** （int|tuple|list|Tensor）- 指定对 ``x`` 和 ``y`` 做缩并运算的轴，默认值为整数2。
         
-        1. ``axes`` 可以是一个非负整数。若输入的是一个整数 ``n`` ， 则表示对 ``x`` 的后 ``n`` 个轴和对 ``y`` 的前``n``个轴进行缩并运算。
+        1. ``axes`` 可以是一个非负整数。若输入的是一个整数 ``n`` ， 则表示对 ``x`` 的后 ``n`` 个轴和对 ``y`` 的前 ``n`` 个轴进行缩并运算。
 
-        2. ``axes`` 可以是一个一维的整数tuple或list，表示 ``x`` 和 ``y`` 沿着相同的轴方向进行锁并运算。例如，``axes`` =[0, 1]表示 ``x`` 的前两个轴和 ``y`` 的前两个轴对应进行缩并运算。
+        2. ``axes`` 可以是一个一维的整数tuple或list，表示 ``x`` 和 ``y`` 沿着相同的轴方向进行缩并运算。例如，``axes`` =[0, 1]表示 ``x`` 的前两个轴和 ``y`` 的前两个轴对应进行缩并运算。
 
-        3. ``axes`` 可以是一个tuple或list，其中包含一个或两个一维的整数tuple、list或Tensor。如果 ``axes`` 包含一个tuple、list或Tensor, 则对 ``x`` 和 ``y`` 的相同轴做缩并运算，具体轴下标由该tuple、list或Tensor中的整数值指定。如果 ``axes`` 包含两个tuple、list或Tensor，第一个指定了 ``x`` 做缩并运算的轴下标，第二个指定了 ``y`` 的对应轴下标。 如果 ``axes`` 包含两个以上的tuple、list或Tensor，只有前两个会被作为轴下标序列使用，其它的将被忽略。
+        3. ``axes`` 可以是一个tuple或list，其中包含一个或两个一维的整数tuple|list|Tensor。如果 ``axes`` 包含一个tuple|list|Tensor, 则对 ``x`` 和 ``y`` 的相同轴做缩并运算，具体轴下标由该tuple|list|Tensor中的整数值指定。如果 ``axes`` 包含两个tuple|list|Tensor，则第一个指定 ``x`` 做缩并运算的轴下标，第二个指定 ``y`` 的对应轴下标。 如果 ``axes`` 包含两个以上的tuple|list|Tensor，只有前两个会被作为轴下标序列使用，其它的将被忽略。
 
-        4. ``axes`` 可以是一个张量，这种情况将张量会被转换成python列表，然后应用前述规则确定做缩并运算的轴。请注意，输入Tensor类型的 ``axes`` 只在动态图模式下适用。
+        4. ``axes`` 可以是一个张量，这种情况下该张量会被转换成list，然后应用前述规则确定做缩并运算的轴。请注意，输入Tensor类型的 ``axes`` 只在动态图模式下可用。
     - **name** （str，可选） - 默认值为None，一般无需设置，具体用法请参见 :ref:`api_guide_Name` 。
 
 返回：一个 ``Tensor`` ，表示张量缩并的结果，数据类型与 ``x`` 和 ``y`` 相同。一般情况下，有 :math:`output.ndim = x.ndim + y.ndim - 2 \times n_{axes}` ， 其中 :math:`n_{axes}` 表示做张量缩并的轴数量。
@@ -36,7 +36,7 @@ tensordot
     data_type = 'float64'
     
     # 对于两个二维张量x和y，axes=0相当于做外积运算。
-    # 由于tensordot可以支持输入空的轴序列，因此axes=0、 axes=[]、 axes=[[]]和axes=[[],[]]都是等价的输入。
+    # 由于tensordot可以支持输入空的轴序列，因此axes=0、axes=[]、axes=[[]]和axes=[[],[]]都是等价的输入。
     x = paddle.arange(4, dtype=data_type).reshape([2, 2])
     y = paddle.arange(4, dtype=data_type).reshape([2, 2])
     z = paddle.tensordot(x, y, axes=0)
