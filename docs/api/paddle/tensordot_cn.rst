@@ -3,7 +3,7 @@
 tensordot
 -------------------------------
 
-.. py:function:: paddle.tensordot(x, y, axes, name)
+.. py:function:: paddle.tensordot(x, y, axes=2, name=None)
 
 该API做张量缩并运算（Tensor Contraction），即沿着axes给定的多个轴对两个张量对应元素的乘积进行加和操作。
 
