@@ -25,7 +25,7 @@ struct AddFunctor {
 ```
 ### kernel 实现说明
 
-对最高维进行规约操作，将不需要进行规约的维度进行合并，将 blockIdx.x 映射到不需要进行规约的维度，保证访问存储效率最大。线程间数据没有依赖，只需要进行线程内规约操作。当num < blockDim.x时需要将 IsBounary 设置为 true，表明需要进行访存边界判断，避免访问存储越界。</br>
+对最高维进行规约操作，将不需要进行规约的维度进行合并，根据 NX 和 blockDim.x 对 H * W * C 进行 block 划分。对于 blockIdx_1，数据个数小于 blockDim.x * NX，则设置 IsBoundary = true，避免访存越界。将数据从全局内存中读取到寄存器中，每个线程读取 4 个元素，线程间数据没有依赖，进行线程内规约操作得到最终结果。将数据从寄存器写入全局内存中。
 ReduceSum 数据处理过程如下：</br>
 ![Reduce](./images/example_reduce.png)
 

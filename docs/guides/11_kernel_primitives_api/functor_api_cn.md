@@ -318,7 +318,7 @@ float out = functor(input1, input2);
 当前计算函数中仅 ElementwiseAny 支持 Functor 参数设置为指针，其他计算函数的 Functor 仅能设置为普通参数。
 
 ### 指针传递
-在进行 ElementwiseAny 的 Functor 定义时候需要保证重载的 operate() 函数的参数是数组指针。例如要实现功能： (a + b) * c + d， 则可以结合 ElementwiseAny 与 Functor 完成对应计算。
+在进行 ElementwiseAny 的 Functor 定义时，需要保证 operate() 函数的参数是数组指针。例如要实现功能： (a + b) * c + d， 则可以结合 ElementwiseAny 与 Functor 完成对应计算。
 
 ExampleFunctor1 定义:
 ```
@@ -331,7 +331,7 @@ struct ExampleFunctor1 {
 
 ```
 // 全局内存输入指针 input0, input1, input2, input3
-auto functor = ExampleFunctor1<float>;
+auto functor = ExampleFunctor1<float>();
 
 const int NX = 4;
 const int NY = 1;
@@ -365,7 +365,7 @@ struct ExampleFunctor2 {
 
 ```
 // 全局内存输入指针 input0, input1, input2
-auto functor = ExampleFunctor2<float>;
+auto functor = ExampleFunctor2<float>();
 
 const int NX = 4;
 const int NY = 1;

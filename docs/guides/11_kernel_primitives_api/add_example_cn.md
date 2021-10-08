@@ -7,15 +7,18 @@
 ```
 OpFunc: 用于定义当前数据的计算规则，AddFunctor 定义如下：
 
-template <typename InT, typename OutT = OutT>
+template <typename InT>
 struct AddFunctor {
-  HOSTDEVICE OutT operator()(const InT &a, const InT &b) const { return static_cast<OutT>(a + b); }
+  HOSTDEVICE InT operator()(const InT &a, const InT &b) const { return (a + b); }
 };
 
 ```
 ### Kernel 实现说明
 
-VecSize 表示每个线程连续读取 VecSize 个元素，根据剩余元素 num 与每个 Block 最大处理的元素个数 VecSize * blockDim.x 的关系，将数据处理分为 2 部分，第一部分，当 VecSize * blockDim.x > num 表示当前数据处理需要进行边界处理，因此将 IsBoundary 设置为 true，避免访存越界; 第二部分，不需要进行边界处理，设置 IsBoundary = false。注意此处使用 Init 函数对寄存器 arg0，arg1 进行初始化，避免当 arg0 或者 arg1 作为分母时出现为 0 的情况。此处根据 OpFunc 完成两数求和操作，当需要进行两数相乘，可以直接修改对应的 Functor 即可，可以直接复用 Kernel 代码，提升开发效率。
+每个线程连续读取 VecSize 个元素，根据剩余元素 num 与 VecSize * blockDim.x 的关系，将数据处理分为 2 部分，第一部分，当 VecSize * blockDim.x > num 表示当前数据处理需要进行边界处理，将 IsBoundary 设置为 true，避免访存越界; 第二部分，不需要进行边界处理，设置 IsBoundary = false。根据当前 block 的数据指针，将数据从全局内存中读取到寄存器中，完成加法操作后，将数据写入全局内存中。注意此处使用 Init 函数对寄存器 arg0，arg1 进行初始化，避免当 arg0 或者 arg1 作为分母时出现为 0 的情况。根据 OpFunc 完成两数求和操作，当需要进行两数相乘，可以直接修改对应的 Functor 即可，可以直接复用 Kernel 代码，提升开发效率。
+
+数据处理过程如下：
+![ElementwiseAdd](./images/example_add.png)
 
 ### Kernel 代码
 

@@ -32,7 +32,7 @@ __device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in ：输入寄存器指针，大小为 NX * NY。</br>
-> compute ：计算函数，声明为 OpFunc&lt;InT, OutT&gt;()。</br>
+> compute ：计算函数，声明为 XxxFunctor&lt;InT, OutT&gt;()。</br>
 
 ## [ElementwiseBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L173)
 ### 函数定义
@@ -55,9 +55,9 @@ __device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpF
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
 > OpFunc ：计算函数，定义方式如下：</br>
 ```
-  template <typename InT, typename OutT>
+  template <typename InT>
   struct XxxFunctor {
-    HOSTDEVICE OutT operator()(const InT& a, const InT& b) const {
+    HOSTDEVICE InT operator()(const InT& a, const InT& b) const {
       return ...;
     }
   };
@@ -69,7 +69,7 @@ __device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpF
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in1 ：左操作数寄存器指针，大小为 NX * NY。</br>
 > in2 ：右操作数寄存器指针，大小为 NX * NY。</br>
-> compute ：声明为 OpFunc&lt;InT, OutT&gt;() 的计算对象。</br>
+> compute ：声明为 XxxFunctor&lt;InT&gt;() 的计算对象。</br>
 
 ## [CycleBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L291)
 
@@ -82,7 +82,7 @@ __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc co
 
 ### 函数说明
 
-按照 OpFunc 中的计算规则对 in1、in2 进行计算，将计算结果按照 OutT 类型存储到寄存器 out 中。in1 的 Shape 为[1, NX], in2 的 Shape 为 [NY, NX]，实现 in1，in2 的循环计算，out 的 Shape 是[NY, NX]。
+按照 OpFunc 中的计算规则对 in1、in2 进行计算，将计算结果按照 OutT 类型存储到寄存器 out 中。in1 的 Shape 为[1, NX]，in2 的 Shape 为 [NY, NX]，实现 in1，in2 的循环计算，out 的 Shape 是[NY, NX]。
 
 ### 模板参数
 
@@ -93,9 +93,9 @@ __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc co
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
 > OpFunc ：计算函数，定义方式如下：</br>
 ```
-  template <typename InT, typename OutT>
+  template <typename InT>
   struct XxxFunctor {
-    HOSTDEVICE OutT operator()(const InT& a, const InT& b) const {
+    HOSTDEVICE InT operator()(const InT& a, const InT& b) const {
       return ...;
     }
   };
@@ -107,7 +107,7 @@ __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc co
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in1 ：左操作数寄存器指针，大小为 NX。</br>
 > in2 ：右操作数寄存器指针，大小为 NX * NY。</br>
-> compute ：声明为 OpFunc&lt;InT, OutT&gt;() 的计算对象。</br>
+> compute ：声明为 XxxFunctor&lt;InT&gt;() 的计算对象。</br>
 
 ## [ElementwiseTernary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L210)
 
@@ -132,9 +132,9 @@ template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFu
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
 > OpFunc ：计算函数，定义方式如下：</br>
 ```
-  template <typename InT, typename OutT>
+  template <typename InT>
   struct XxxFunctor {
-    HOSTDEVICE OutT operator()(const InT& a, const InT& b, const InT& c) const {
+    HOSTDEVICE InT operator()(const InT& a, const InT& b, const InT& c) const {
       return ...;
     }
   };
@@ -143,10 +143,10 @@ template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFu
 ### 函数参数
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
-> in1 ：操作数1的寄存器指针，大小为 NX * NY。</br>
-> in2 ：操作数2的寄存器指针，大小为 NX * NY。</br>
-> in3 ：操作数3的寄存器指针，大小为 NX * NY。</br>
-> compute : 声明为 OpFunc&lt;InT, OutT&gt;() 的计算对象。</br>
+> in1 ：操作数 1 的寄存器指针，大小为 NX * NY。</br>
+> in2 ：操作数 2 的寄存器指针，大小为 NX * NY。</br>
+> in3 ：操作数 3 的寄存器指针，大小为 NX * NY。</br>
+> compute ：声明为 XxxFunctor&lt;InT&gt;() 的计算对象。</br>
 
 ## [ElementwiseAny](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L250)
 
@@ -171,9 +171,9 @@ __device__ void ElementwiseAny(OutT* out, InT (*ins)[NX * NY], OpFunc compute);
 > Arity ：指针数组 ins 中指针个数。</br>
 > OpFunc ：计算函数，定义方式如下：</br>
 ```
-template <typename InT, typename OutT>
+template <typename InT>
   struct XxxFunctor {
-    HOSTDEVICE OutT operator()(const InT* args) const {
+    HOSTDEVICE InT operator()(const InT* args) const {
       return ...;
     }
   };
@@ -182,8 +182,8 @@ template <typename InT, typename OutT>
 ### 函数参数
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
-> ins ：由多输入指针构成的指针数组，大小为Arity。</br>
-> compute ：声明为 OpFunc&lt;InT, OutT&gt;() 的计算对象。</br>
+> ins ：由多输入指针构成的指针数组，大小为 Arity。</br>
+> compute ：声明为 XxxFunctor&lt;InT&gt;() 的计算对象。</br>
 
 ## [Reduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L332)
 
@@ -208,9 +208,9 @@ ReduceMax 数据处理过程如下：</br>
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
 > ReduceFunctor ：Reduce计算函数，定义方式如下：</br>
 ```
-  template <typename InT>
-  struct XxxFunctor {
-     HOSTDEVICE OutT operator()(const InT& a, const InT& b) const {
+  template <typename T>
+  struct ReduceFunctor {
+     HOSTDEVICE T operator()(const T& a, const T& b) const {
        return ...;
      }
   };
@@ -221,5 +221,5 @@ ReduceMax 数据处理过程如下：</br>
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in ：输入寄存器指针，大小为 NX * NY。</br>
-> reducer ：规约方式，可以使用 ReduceFunctor&lt;InT&gt;() 进行定义。</br>
+> reducer ：规约方式，可以使用 ReduceFunctor&lt;T&gt;() 进行定义。</br>
 > reduce_last_dim ：表示原始输入的最后一维是否进行规约。</br>

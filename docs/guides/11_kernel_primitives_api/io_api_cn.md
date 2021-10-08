@@ -182,4 +182,4 @@ __device__ void WriteData(T* dst, T* src, int num);
 
 > dst : 当前 Block 的输出数据指针。</br>
 > src : 寄存器指针，大小为 NX * NY。</br>
-> num : 当前 Block 对多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
+> num : 当前 Block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>

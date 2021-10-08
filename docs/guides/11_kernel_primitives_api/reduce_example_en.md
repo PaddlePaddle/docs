@@ -23,7 +23,7 @@ struct AddFunctor {
 ```
 ### Kernel Description
 
-Perform the reduction operation on the highest dimension, merge the dimensions that do not need to be reduced, and map blockIdx.x to the dimensions that do not need to be reduced to ensure maximum access and storage efficiency. There is no dependency on data between threads, only intra-thread protocol operations are required. When num < blockDim.x, IsBounary needs to be set to true, indicating that the memory access boundary judgment needs to be performed to avoid access to memory out of range.</br>
+Perform reduction operations on the highest dimension, merge the dimensions that do not need to be reduced, and divide H * W * C into blocks according to NX and blockDim.x. For blockIdx_1, if the number of data is less than blockDim.x * NX, set IsBoundary = true to avoid memory fetching out of bounds. Read data from global memory to registers, each thread reads 4 elements, there is no dependence on data between threads, and the final result is obtained by intra-thread protocol operation. Write data from the register to the global memory.
 
 The data processing process of ReduceSum is as follows:</br>
 ![Reduce](./images/example_reduce.png)

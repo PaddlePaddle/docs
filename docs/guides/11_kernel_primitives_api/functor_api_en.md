@@ -322,7 +322,7 @@ float out = functor(input1, input2);
 In the current calculation function, only ElementwiseAny supports setting the functor parameter as a pointer, and the functor of other calculation functions can only be set as a normal parameter.
 
 ### Pointer Array
-When defining ElementwiseAny's Functor, you need to ensure that the parameter of the overloaded operate() function is a pointer. For example, to realize the function: (a + b) * c + d, you can combine ElementwiseAny and Functor to complete the calculation.
+When defining the Functor of ElementwiseAny, you need to ensure that the parameter of the operate() function is an array pointer. For example, to realize the function: (a + b) * c + d, you can combine ElementwiseAny and Functor to complete the corresponding calculation.
 
 ExampleFunctor1:
 ```
@@ -335,7 +335,7 @@ struct ExampleFunctor1 {
 
 ```
 // Global memory input pointer input0, input1, input2, input3
-auto functor = ExampleFunctor1<float>;
+auto functor = ExampleFunctor1<float>();
 
 const int NX = 4;
 const int NY = 1;
@@ -369,7 +369,7 @@ struct ExampleFunctor2 {
 
 ```
 // Global memory input pointer input0, input1, input2
-auto functor = ExampleFunctor2<float>;
+auto functor = ExampleFunctor2<float>();
 
 const int NX = 4;
 const int NY = 1;

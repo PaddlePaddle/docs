@@ -7,15 +7,16 @@
 ```
 OpFunc : Used to define calculation rules. Addfunctor is defined as follows:
 
-template <typename InT, typename OutT = OutT>
+template <typename InT>
 struct AddFunctor {
-  HOSTDEVICE OutT operator()(const InT &a, const InT &b) const { return static_cast<OutT>(a + b); }
+  HOSTDEVICE InT operator()(const InT &a, const InT &b) const { return (a + b); }
 };
 
 ```
 ### Kernel Description
-
-VecSize means that each thread continuously reads VecSize elements. According to the relationship between the remaining elements num and the maximum number of elements processed by each Block VecSize * blockDim.x, the data processing is divided into two parts. The first part is VecSize * blockDim. x > num indicates that the current data processing requires boundary processing, set IsBoundary to true to avoid fetching out of bounds. In the second part, no boundary processing is required, set IsBoundary = false. Note that the Init function is used here to initialize the registers arg0 and arg1 to avoid the situation where arg0 or arg1 is used as a divisor to be 0. The summation operation of two numbers is completed according to OpFunc. When two numbers need to be multiplied, the Functor can be directly modified. Kernel code can be reused directly to improve development efficiency.
+Each thread reads VecSize elements continuously, and divides the data processing into 2 parts according to the relationship between the remaining elements num and VecSize * blockDim.x. The first part, when VecSize * blockDim.x > num, indicates that the current data processing requires boundary processing, IsBoundary is set to true to avoid memory fetching out of bounds; the second part, no boundary processing is required, set IsBoundary = false. According to the data pointer of the current block, the data is read from the global memory to the register, and after the addition operation, the data is written into the global memory. Note that the Init function is used here to initialize the registers arg0 and arg1 to avoid the situation where arg0 or arg1 is used as the denominator to be 0. The summation of two numbers is completed according to OpFunc. When two numbers need to be multiplied, the Functor can be directly modified. Kernel code can be reused directly to improve development efficiency. </br>
+The data processing process of ElementwiseAdd is as follows:</br>
+![ElementwiseAdd](./images/example_add.png)
 
 ### Code
 
