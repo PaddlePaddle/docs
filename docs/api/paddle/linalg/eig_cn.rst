@@ -1,4 +1,4 @@
-pi_linalg_eig:
+.. _cn_api_linalg_eig:
 
 eig
 -------------------------------
