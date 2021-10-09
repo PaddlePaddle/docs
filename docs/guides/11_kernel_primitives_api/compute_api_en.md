@@ -9,15 +9,15 @@ __device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
 
 ### Detailed Description
 
-Calculate in according to the calculation rules in OpFunc, and store the calculation results in the register out according to the outt type.
+The input is calculated according to the calculation rules in OpFunc, and the calculation result is stored in the register out according to the OutT type.
 
 ### Template Parameters
 
-> InT: Type of input data. </br>
+> InT: The type of input. </br>
 > OutT: The type stored in the out register. </br>
-> NX: Each thread needs to calculate NX column data. </br>
-> NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
+> NX: Each thread needs to calculate NX columns. </br>
+> NY: Each thread needs to calculate NY rows. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
 > OpFunc: calculation function, defined as follows:</br>
 ```
    template <typename InT, typename OutT>
@@ -47,12 +47,12 @@ __device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpF
 Calculate in1 and in2 according to the calculation rules in OpFunc, and store the calculation result in the register out according to the OutT type.
 
 ### Template Parameters
-> InT: Type of input data. </br>
+> InT: The type of input data. </br>
 > OutT: The type stored in the out register. </br>
-> NX: Each thread needs to calculate NX column data. </br>
-> NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
-> OpFunc: calculation function, defined as follows:</br>
+> NX: Each thread needs to calculate NX columns. </br>
+> NY: Each thread needs to calculate NY rows. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
+> OpFunc: Calculation function, defined as follows:</br>
 
 ```
   template <typename InT>
@@ -88,9 +88,9 @@ Calculate in1 and in2 according to the calculation rules in the OpFunc, and stor
 
 > InT: Type of input data. </br>
 > OutT: The type stored in the out register. </br>
-> NX: Each thread needs to calculate NX column data. </br>
-> NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
+> NX: Each thread needs to calculate NX columns. </br>
+> NY: Each thread needs to calculate NY rows. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
 > OpFunc: calculation function, defined as follows:</br>
 ```
   template <typename InT>
@@ -127,10 +127,10 @@ Calculate in1, in2, and in3 according to the calculation rules in OpFunc, and st
 
 > InT: Type of input data. </br>
 > OutT: The type stored in the out register. </br>
-> NX: Each thread needs to calculate NX column data. </br>
-> NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
-> OpFunc: calculation function, defined as follows:</br>
+> NX: Each thread needs to calculate NX columns. </br>
+> NY: Each thread needs to calculate NY rows. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
+> OpFunc: Calculation function, defined as follows:</br>
 
 ```
   template <typename InT>
@@ -160,17 +160,17 @@ __device__ void ElementwiseAny(OutT* out, InT (*ins)[NX * NY], OpFunc compute);
 
 ### Detailed Description
 
-Calculate the input in ins according to the calculation rules in OpFunc, and store the calculation result in the register out according to the OutT type. All input and output have the same dimensions.
+Calculate the input in ins according to the calculation rules in OpFunc, and store the calculation result in the register out according to the OutT type. All inputs and output have the same shapes.
 
 ### Template Parameters
 
 > InT: Type of input data. </br>
 > OutT: The type stored in the out register. </br>
-> NX: Each thread needs to calculate NX column data. </br>
-> NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, and for XPU, core_id() is used as the thread index. </br>
+> NX: Each thread needs to calculate NX columns. </br>
+> NY: Each thread needs to calculate NY rows. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
 > Arity: The number of pointers in the pointer array ins. </br>
-> OpFunc: calculation function, defined as follows:</br>
+> OpFunc: Calculation function, defined as follows:</br>
 ```
 template <typename InT>
   struct XxxFunctor {
@@ -205,9 +205,9 @@ The data processing process of ReduceMax is as follows:</br>
 ### Template Parameters
 
 > T: Type of input data. </br>
-> NX: Each thread needs to calculate NX column data. </br>
-> NY: Each thread needs to calculate NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
+> NX: Each thread needs to calculate NX columns. </br>
+> NY: Each thread needs to calculate NY rows. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
 > ReduceFunctor: Reduce calculation function, defined as follows:</br>
 ```
   template <typename T>
@@ -223,5 +223,5 @@ The data processing process of ReduceMax is as follows:</br>
 
 > out: Output register pointer, the size is NX * NY. </br>
 > in: Input register pointer, the size is NX * NY. </br>
-> reducer: reduction method, which can be defined using ReduceFunctor&lt;T&gt;(). </br>
+> reducer: Reduction method, which can be defined using ReduceFunctor&lt;T&gt;(). </br>
 > reduce_last_dim: Indicates whether the last dimension of the original input is reduced. </br>

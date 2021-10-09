@@ -85,8 +85,8 @@ API List
 | ElementwiseAny                       | Compute API，The inputs and output have the same shape.     |
 |                                      | Complete the compute according to the OpFunc.               |
 +--------------------------------------+-------------------------------------------------------------+
-| CycleBinary                          | Compute API. Input 1 and input 2 have different shapes,     |
-|                                      | input 2 and output have the same shape, and complete the    |
+| CycleBinary                          | Compute API. Input1 and input2 have different shapes,       |
+|                                      | input2 and output have the same shape, and complete the     |
 |                                      | binary loop calculation according to OpFunc.                |
 +--------------------------------------+-------------------------------------------------------------+
 | Reduce                               | Compute API, Complete the reduce calculation according to   |

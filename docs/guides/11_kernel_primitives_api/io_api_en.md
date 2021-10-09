@@ -1,5 +1,5 @@
 # API Description - IO
-Introduce the APIs currently provided by the Kernel Primitive API for data exchange between global memory and registers. The currently implemented IO APIs are all multi-threaded APIs at the Block level. The function uses blockDim.x or blockDim.y for thread indexing, So please read the API usage rules in detail.
+Introduce the APIs currently provided by the Kernel Primitive API for data exchange between global memory and registers. The currently implemented IO APIs are all multi-threaded APIs at the Block level, the function uses blockDim.x or blockDim.y for thread indexing.
 ## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L121)
 ### Function Definition
 
@@ -10,7 +10,7 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 
 ### Description
 
-Read the Tx type 2D data from the global memory to the register, and store it in the register dst according to the Ty type. Every reading of 1 column of data needs to shift the stride_nx column, and every reading of NX column of data needs to shift the stride_ny row, until NX * NY data is loaded into the register dst. When IsBoundary = true, it is necessary to ensure that row offset of Block does not exceed size_ny, and column offset does not exceed size_nx.</br>
+Read the 2D data from the global memory to the register, and store it in the register dst according to the Ty type. Every reading of 1 column of data needs to shift the stride_nx columns, and every reading of NX columns of data needs to shift the stride_ny rows, until NX * NY data is loaded into the register dst. When IsBoundary = true, it is necessary to ensure that row offset of Block does not exceed size_ny, and columns offset does not exceed size_nx.</br>
 The data processing process is as follows:</br>
 ![ReadData](./images/io_read_data_stride.png)
 
@@ -18,19 +18,19 @@ The data processing process is as follows:</br>
 
 > Tx: The type of data stored in the global memory. </br>
 > Ty: The type of data stored in the register. </br>
-> NX: Each thread reads NX column data. </br>
-> NY: Each thread reads NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
+> NX: Each thread reads NX columns data. </br>
+> NY: Each thread reads NY rows data. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
 > IsBoundary: Identifies whether to fetch memory boundary judgment. When the total number of data processed by the Block is less than NX * NY * blockDim.x, boundary judgment is required to avoid memory access crossing the boundary. </br>
 
 ### Parameters
 
-> dst: output register pointer, data type is Ty, size is NX * NY. </br>
+> dst: Output register pointer, data type is Ty, size is NX * NY. </br>
 > src: The input data pointer of the current Block, the data type is Tx, and the pointer calculation method is usually input + blockIdx.x * blockDim.x * NX. </br>
 > size_nx: Block needs to read size_nx columns data, the parameter is only used when IsBoundary = true. </br>
 > size_ny: Block needs to read size_ny rows data, the parameter is only used when IsBoundary = true. </br>
 > stride_nx: Each column of data read needs to be offset by the stride_nx columns. </br>
-> stride_ny: Each read NX column needs to be offset by stride_nx rows. </br>
+> stride_ny: Each read NX columns needs to be offset by stride_nx rows. </br>
 
 ## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L226)
 
@@ -49,15 +49,15 @@ The data processing process is as follows:</br>
 
 ### Template Parameters
 
-> T: element type. </br>
-> NX: Each thread reads NX column data. </br>
-> NY: Each thread reads NY row data. Currently, only NY = 1 is supported. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
+> T: Element type. </br>
+> NX: Each thread reads NX columns data. </br>
+> NY: Each thread reads NY rows data. Currently, only NY = 1 is supported. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
 > IsBoundary: Identifies whether to fetch memory boundary judgment. When the total number of data processed by the Block is less than NX * NY * blockDim.x, boundary judgment is required to avoid memory access crossing the boundary. </br>
 
 ### Parameters
 
-> dst: output register pointer, the size is NX * NY. </br>
+> dst: Output register pointer, the size is NX * NY. </br>
 > src: The input data pointer of the current Block, usually input + blockIdx.x * blockDim.x * NX.</br>
 > num: The current Block can read at most num elements. The parameter is only used when IsBoundary = true.</br>
 
@@ -77,28 +77,28 @@ __device__ void ReadDataBc(T* dst, const T* src,
 
 ### Description
 
-Read the 2D data that needs to be brodcast from the global memory src into the register dst according to the T type, where src is the original input data pointer, calculate the input data coordinates corresponding to the current output data according to config, and read the data corresponding to the coordinates To the register. </br>
+Read the 2D data that needs to be brodcast from the global memory src into the register dst according to the T type, where src is the original input data pointer, calculate the input data coordinates corresponding to the current output data according to config, and read the data corresponding to the coordinates to the register. </br>
 The data processing process is as follows:</br>
 ![ReadDataBc](./images/io_read_data_broadcast.png)
 
 ### Template Parameters
 
-> T: element type. </br>
-> NX: Each thread reads NX column data. </br>
-> NY: Each thread reads NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
+> T: Element type. </br>
+> NX: Each thread reads NX columns data. </br>
+> NY: Each thread reads NY rows data. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
 > Rank: The dimension of the original output data. </br>
 > IsBoundary: Identifies whether to fetch memory boundary judgment. When the total number of data processed by the Block is less than NX * NY * blockDim.x, boundary judgment is required to avoid memory access crossing the boundary. </br>
 
 ### Parameters
 
-> dst: output register pointer, the size is NX * NY. </br>
-> src: pointer to raw input data. </br>
+> dst: Output register pointer, the size is NX * NY. </br>
+> src: Pointer to raw input data. </br>
 > block_offset: The data offset of the current Block, usually blockIdx.x * blockDim.x * NX. </br>
 > config: Input and output coordinate mapping function, which can be defined by BroadcastConfig(const std::vector<int64_t>& out_dims, const std::vector<int64_t>& in_dims, int dim_size). </br>
 > total_num_output: the total number of original output data, to avoid fetching out of bounds, the parameter is only used when IsBoundary = true. </br>
-> stride_nx: Each column of data read needs to be offset by the stride_nx column. </br>
-> stride_ny: Each read NX column needs to be offset by stride_nx rows. </br>
+> stride_nx: Each column of data read needs to be offset by the stride_nx columns. </br>
+> stride_ny: Each read NX columns needs to be offset by stride_nx rows. </br>
 
 ## [ReadDataReduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L337)
 
@@ -119,16 +119,16 @@ __device__ void ReadDataReduce(T* dst,
 
 ### Description
 
-Read the 2D data from the global memory SRC into the register DST in T type, where SRC is the original input data pointer according to the index_Cal calculates the input data coordinates corresponding to the current output data and reads the data corresponding to the coordinates into the register. </br>
+Read the 2D data from the global memory src into the register dst in T type, where src is the original input data pointer according to the index_Cal calculates the input data coordinates corresponding to the current output data and reads the data corresponding to the coordinates into the register. </br>
 The data processing process is as follows:</br>
 ![ReadDataReduce](./images/io_read_data_reduce.png)
 
 ### Template Parameters
 
-> T: element type. </br>
-> NX: Each thread reads NX column data. </br>
-> NY: Each thread reads NY row data. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
+> T: Element type. </br>
+> NX: Each thread reads NX columns data. </br>
+> NY: Each thread reads NY rows data. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
 > Rank: The dimension of the original output data. </br>
 > IndexCal: Input and output coordinate mapping rules. The definition is as follows:</br>
 ```
@@ -143,15 +143,15 @@ The data processing process is as follows:</br>
 
 ### Parameters
 
-> dst: output register pointer, the size is NX * NY. </br>
-> src: pointer to raw input data. </br>
+> dst: Output register pointer, the size is NX * NY. </br>
+> src: Pointer to raw input data. </br>
 > block_offset: The data offset of the current Block, usually blockIdx.x * blockDim.x * NX. </br>
 > config: Input and output coordinate mapping function, which can be defined as IndexCal(). </br>
-> size_nx: The Block needs to read the size_nx column data. The parameter is only used when IsBoundary = true. </br>
-> size_ny: Block needs to read size_ny row data, the parameter is only used when IsBoundary = true. </br>
-> stride_nx: Each column of data read needs to be offset by the stride_nx column. </br>
-> stride_ny: Each read NX column needs to be offset by stride_nx row. </br>
-> reduce_last_dim: Whether the lowest dimension of the original input data is reduced. When reduce_last_dim = true, it is indexed according to threadIdx.x, otherwise threadIdx.y is used. </br>
+> size_nx: The Block needs to read the size_nx columns data. The parameter is only used when IsBoundary = true. </br>
+> size_ny: Block needs to read size_ny rows data, the parameter is only used when IsBoundary = true. </br>
+> stride_nx: Each column of data read needs to be offset by the stride_nx columns. </br>
+> stride_ny: Each read NX columns needs to be offset by stride_nx rows. </br>
+> reduce_last_dim: Does the  operation involve the last dimension. When reduce_last_dim = true, it is indexed according to threadIdx.x, otherwise threadIdx.y is used. </br>
 
 ## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L421)
 
@@ -171,14 +171,14 @@ The data processing process is as follows:</br>
 
 ### Template Parameters
 
-> T: element type. </br>
-> NX: Each thread reads NX column data. </br>
-> NY: Each thread reads NY row data. Currently, only NY = 1 is supported. </br>
-> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, This parameter is not currently supported. </br>
+> T: Element type. </br>
+> NX: Each thread reads NX columns data. </br>
+> NY: Each thread reads NY rows data. Currently, only NY = 1 is supported. </br>
+> BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
 > IsBoundary: Identifies whether to fetch memory boundary judgment. When the total number of data processed by the Block is less than NX * NY * blockDim.x, boundary judgment is required to avoid memory access crossing the boundary. </br>
 
 ### Parameters
 
 > dst: The output data pointer of the current Block, usually input + blockIdx.x * blockDim.x * NX. </br>
-> src: register pointer, the size is NX * NY. , Usually input + blockIdx.x * blockDim.x * NX. </br>
+> src: Register pointer, the size is NX * NY. , Usually input + blockIdx.x * blockDim.x * NX. </br>
 > num: The current Block reads num elements in multiples. The parameter is only used when IsBoundary = true. </br>

@@ -274,7 +274,7 @@ template <typename T>
 struct kps::DivFunctor<T>();
 ```
 #### 功能介绍
-两个输入进行除法操作。DivFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的数据 0。
+两个输入进行除法操作。DivFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的数据 1。
 
 #### 模板参数
 > T : 数据类型。
@@ -380,6 +380,6 @@ float output[NX * NY];
 kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[0], input0, num);
 kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[1], input1, num);
 kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[2], input2, num);
-kps::ElementwiseAny<float, float, NX, NY, BlockSize, Arity, ExampleFunctor2<float>>(output, inpputs[0], inputs[1], inputs[2], functor);
+kps::ElementwiseTernary<float, float, NX, NY, BlockSize, ExampleFunctor2<float>>(output, inpputs[0], inputs[1], inputs[2], functor);
 // ...
 ```

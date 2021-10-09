@@ -1,5 +1,5 @@
 # API 介绍 - IO
-介绍目前 Kernel Primitive API 提供的用于全局内存和寄存器进行数据交换的 API。当前实现的 IO 类 API 均是 Block 级别的多线程 API。函数内部以 blockDim.x 或 blockDim.y 进行线程索引，请详细阅读 API 使用规则。
+介绍目前 Kernel Primitive API 提供的用于全局内存和寄存器进行数据交换的 API。当前实现的 IO 类 API 均是 Block 级别的多线程 API，函数内部以 blockDim.x 或 blockDim.y 进行线程索引。
 ## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L121)
 ### 函数定义
 
