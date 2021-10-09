@@ -17,8 +17,10 @@ ShuffleNetV2
 ShuffleNetV2模型，Layer的实例。
 
 代码示例
+
 :::::::::
 .. code-block:: python
+
     import paddle
     from paddle.vision.models import ShuffleNetV2
     shufflenetv2_x0_25 = ShuffleNetV2(num_classes=1000, scale=0.25, act="relu")
