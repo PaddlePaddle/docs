@@ -4,6 +4,7 @@ ShuffleNetV2
 -------------------------------
 
 .. py:class:: paddle.vision.models.ShuffleNetV2(num_classes=1000, scale=1.0, act="relu")
+
  ShuffleNetV2模型，来自论文 `"ShuffleNet V2: Practical Guidelines for Ecient CNN Architecture Design" <https://arxiv.org/pdf/1807.11164.pdf>`_。
 
 参数
