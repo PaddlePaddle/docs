@@ -7,6 +7,7 @@ Introduce the calculation functors defined by the Kernel Primitive API. There ar
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename Tx, typename Ty = Tx>
 struct kps::ExpFunctor<Tx, Ty>();
 ```
@@ -31,6 +32,7 @@ float out = functor(input);
 ### IdentityFunctor
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename Tx, typename Ty = Tx>
 struct kps::IdentityFunctor<Tx, Ty>();
 ```
@@ -54,6 +56,7 @@ double out = functor(input);
 ### DivideFunctor
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename Tx, typename Ty = Tx>
 struct kps::DivideFunctor<Tx, Ty>(num);
 ```
@@ -79,6 +82,7 @@ float out = functor(input);
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename Tx, typename Ty = Tx>
 struct kps::SquareFunctor<Tx, Ty>();
 ```
@@ -106,6 +110,7 @@ float out = functor(input);
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::MinFunctor<T>();
 ```
@@ -130,6 +135,7 @@ float out = functor(input1, input2);
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::MaxFunctor<T>();
 ```
@@ -154,6 +160,7 @@ float out = functor(input1, input2);
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::AddFunctor<T>();
 ```
@@ -178,6 +185,7 @@ float out = functor(input1, input2);
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::MulFunctor<T>();
 ```
@@ -202,6 +210,7 @@ float out = functor(input1, input2);
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::LogicalOrFunctor<T>();
 ```
@@ -226,6 +235,7 @@ bool out = functor(input1, input2);
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::LogicalAndFunctor<T>();
 ```
@@ -250,6 +260,7 @@ bool out = functor(input1, input2);
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::SubFunctor<T>();
 ```
@@ -274,6 +285,7 @@ float out = functor(input1, input2);
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::DivFunctor<T>();
 ```
@@ -298,6 +310,7 @@ float out = functor(input1, input2);
 
 #### Definition
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::FloorDivFunctor<T>();
 ```

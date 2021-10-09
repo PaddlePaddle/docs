@@ -5,13 +5,14 @@
 
 ### ExpFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename Tx, typename Ty = Tx>
 struct kps::ExpFunctor<Tx, Ty>();
 ```
 #### 功能介绍
-对 Tx 类型的输入数做 Exp 操作，并将结果转成 Ty 类型返回。
+对 Tx 类型的输入数据做 Exp 操作，并将结果转成 Ty 类型返回。
 
 #### 模板参数
 > Tx : 输入数据的类型。</br>
@@ -29,8 +30,9 @@ float out = functor(input);
 
 
 ### IdentityFunctor
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename Tx, typename Ty = Tx>
 struct kps::IdentityFunctor<Tx, Ty>();
 ```
@@ -52,8 +54,9 @@ double out = functor(input);
 ```
 
 ### DivideFunctor
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename Tx, typename Ty = Tx>
 struct kps::DivideFunctor<Tx, Ty>(num);
 ```
@@ -77,8 +80,9 @@ float out = functor(input);
 
 ### SquareFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename Tx, typename Ty = Tx>
 struct kps::SquareFunctor<Tx, Ty>();
 ```
@@ -103,13 +107,14 @@ float out = functor(input);
 
 ### MinFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::MinFunctor<T>();
 ```
 #### 功能介绍
-返回两个输入中的最小值。MinFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的最大值。
+返回两个输入中的最小值。MinFunctor 提供了用于数据初始化的 initial() 函数，返回 T 类型表示的最大值。
 
 #### 模板参数
 > T : 数据类型。
@@ -127,13 +132,14 @@ float out = functor(input1, input2);
 
 ### MaxFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::MaxFunctor<T>();
 ```
 #### 功能介绍
-返回两个输入中的最大值。MaxFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的最小值。
+返回两个输入中的最大值。MaxFunctor 提供了用于数据初始化的 initial() 函数，返回 T 类型表示的最小值。
 
 #### 模板参数
 > T : 数据类型。
@@ -150,13 +156,14 @@ float out = functor(input1, input2);
 
 ### AddFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::AddFunctor<T>();
 ```
 #### 功能介绍
-返回两个输入之和。AddFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的数据 0。
+返回两个输入之和。AddFunctor 提供了用于数据初始化的 initial() 函数，返回 T 类型表示的数据 0。
 
 #### 模板参数
 > T : 数据类型。
@@ -174,13 +181,14 @@ float out = functor(input1, input2);
 
 ### MulFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::MulFunctor<T>();
 ```
 #### 功能介绍
-返回两个输入的乘积。MulFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的数据 1。
+返回两个输入的乘积。MulFunctor 提供了用于数据初始化的 initial() 函数，返回 T 类型表示的数据 1。
 
 #### 模板参数
 > T : 数据类型。
@@ -198,13 +206,14 @@ float out = functor(input1, input2);
 
 ### LogicalOrFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::LogicalOrFunctor<T>();
 ```
 #### 功能介绍
-返回两个输入进行逻辑或操作后的结果。LogicalOrFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的数据 false。
+返回两个输入元素逻辑或操作后的结果。LogicalOrFunctor 提供了用于数据初始化的 initial() 函数，返回 T 类型表示的数据 false。
 
 #### 模板参数
 > T : 数据类型。
@@ -221,13 +230,14 @@ bool out = functor(input1, input2);
 
 ### LogicalAndFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::LogicalAndFunctor<T>();
 ```
 #### 功能介绍
-返回两个输入进行逻辑与操作后的结果。LogicalAndFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的数据 true。
+返回两个输入元素逻辑与操作后的结果。LogicalAndFunctor 提供了用于数据初始化的 initial() 函数，返回 T 类型表示的数据 true。
 
 #### 模板参数
 > T : 数据类型。
@@ -244,13 +254,14 @@ bool out = functor(input1, input2);
 
 ### SubFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::SubFunctor<T>();
 ```
 #### 功能介绍
-两个输入进行减法操作。SubFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的数据 0。
+两个输入进行减法操作。SubFunctor 提供了用于数据初始化的 initial() 函数，返回 T 类型表示的数据 0。
 
 #### 模板参数
 > T : 数据类型。
@@ -268,13 +279,14 @@ float out = functor(input1, input2);
 
 ### DivFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::DivFunctor<T>();
 ```
 #### 功能介绍
-两个输入进行除法操作。DivFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的数据 1。
+两个输入进行除法操作。DivFunctor 提供了用于数据初始化的 initial() 函数，返回 T 类型表示的数据 1。
 
 #### 模板参数
 > T : 数据类型。
@@ -292,13 +304,14 @@ float out = functor(input1, input2);
 
 ### FloorDivFunctor
 
-#### 结构体定义
+#### 定义
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct kps::FloorDivFunctor<T>();
 ```
 #### 功能介绍
-两个输入进行除法操作，返回整数部分。FloorDivFunctor 提供了用于进行数据初始化的 initial() 函数，返回 T 类型表示的数据 1。
+两个输入进行除法操作，返回整数部分。FloorDivFunctor 提供了用于数据初始化的 initial() 函数，返回 T 类型表示的数据 1。
 
 #### 模板参数
 > T : 数据类型。

@@ -2,15 +2,7 @@
 Kernel Primitive API
 #####################
 
-This part provides CUDA Kernel Primitive API for Paddle senior developers. APIs can help developers gain better performance while improving development efficiency. The current APIs are block-level multi-threaded APIs. Developers can complete the corresponding calculations according to the current block data pointer and operation type. Currently, only global data pointers and register pointers are supported. The calculation rules in the Compute API are set through OpFunc. Developers can directly use the default OpFunc or implement them as needed. The specific implementation rules will be described in detail in the OpFunc section.
-
-Kernel Primitive API includes OpFunc, IO API, Compute API:
-
-1. OpFunc: It is used to define the calculation rules in the Compute API. For example, to implement the Add operation, you need to define AddFunctor for ElementwiseBinary calls.
-
-2. IO API: High-performance data read and write API, efficiently complete data read and write operations between global memory and registers.
-
-3. Compute API: General calculation functions, such as ElementwiseBinary, ElementwiseUnary, etc.
+This part provides Paddle senior developers with CUDA Kernel Primitive API for Kernel development. This type of API can help developers gain better performance while improving development efficiency. Kernel Primitive API mainly includes IO API, Compute API and OpFunc. IO API can efficiently complete data reading and writing operations between global memory and registers; Compute API is a general calculation function, such as ElementwiseBinary, ElementwiseUnary, etc.; OpFunc is used to define Compute API. For example, to implement the Add operation, you need to define AddFunctor for ElementwiseBinary calls. Developers can directly use the default OpFunc or customize them as needed. The specific implementation rules will be described in detail in the OpFunc section. The current APIs are all block-level multi-threaded APIs. Developers can directly pass in the data pointer and operation type of the current block to complete the corresponding calculations. Currently, only global data pointers and register pointers are supported.
 
 Functor List
 ############
