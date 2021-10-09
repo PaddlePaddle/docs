@@ -22,6 +22,7 @@ shufflenetv2_swish模型，Layer的实例。
 
     import paddle
     from paddle.vision.models import shufflenetv2_swish
+    
     # build model
     model = shufflenetv2_swish()
     # build model and load imagenet pretrained weight
