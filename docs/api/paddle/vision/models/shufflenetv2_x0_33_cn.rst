@@ -22,6 +22,7 @@ shufflenetv2_x0_33模型，Layer的实例。
 
     import paddle
     from paddle.vision.models import shufflenetv2_x0_33
+    
     # build model
     model = shufflenetv2_x0_33()
     # build model and load imagenet pretrained weight
