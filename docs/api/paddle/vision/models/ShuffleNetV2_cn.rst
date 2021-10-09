@@ -24,6 +24,8 @@ ShuffleNetV2模型，Layer的实例。
 
     import paddle
     from paddle.vision.models import ShuffleNetV2
+    
+    
     shufflenetv2_x0_25 = ShuffleNetV2(num_classes=1000, scale=0.25, act="relu")
     x = paddle.rand([1, 3, 224, 224])
     out = shufflenetv2_x0_25(x)
