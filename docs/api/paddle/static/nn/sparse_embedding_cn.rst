@@ -4,7 +4,7 @@ sparse_embedding
 -------------------------------
 
 
-..py: function:: paddle.static.nn.sparse_embedding(input, size, padding_idx=None, is_test=False, entry=None, table_class="CommonSparseTable", param_attr=None, dtype='float32')
+.. py:function:: paddle.static.nn.sparse_embedding(input, size, padding_idx=None, is_test=False, entry=None, table_class="CommonSparseTable", param_attr=None, dtype='float32')
 
 
 该OP在飞桨参数服务器模式的大规模稀疏训练中作为embedding lookup层的算子，而不是使用paddle.nn.functional.embedding。
