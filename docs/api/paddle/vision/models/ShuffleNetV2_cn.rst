@@ -18,8 +18,8 @@ ShuffleNetV2
 ShuffleNetV2模型，Layer的实例。
 
 代码示例
-
 :::::::::
+
 .. code-block:: python
 
     import paddle
