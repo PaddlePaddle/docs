@@ -21,11 +21,11 @@
 |分类 |python语法 | 是否<br>支持 | 概要 | 
 |:---:|:---:|:---:|:---:|
 |<font color='purple'>控制流</font>| [if-else](#1) | 支持 | 自适应识别和转为静态图cond接口，或保持python if 执行 | 
-|| [while](#2) | 支持 |自适应识别和转为静态图while_loop接口，或保持你python while 执行 |
+|| [while](#2) | 支持 |自适应识别和转为静态图while\_loop接口，或保持你python while 执行 |
 || [for](#3) | 支持 | `for _ in x`语法支持对Tensor的迭代访问 |
 || [break<br>continue](#4)| 支持 | 支持循环中任意位置的break和continue |
 || [return](#4)| 支持 | 支持循环体中提前return | 
-|<font color='purple'>运算符</font>| +，-，，/，*, >, <, >= , <=, == | 支持 | 自适应识别和应用paddle的运算符重载 |
+|<font color='purple'>运算符</font>| +，-，，/，\*, >, <, >= , <=, == | 支持 | 自适应识别和应用paddle的运算符重载 |
 || [and, or, not](#5) | 支持 | 1.如果运算符两个都是Tensor，会组网静态图。 <br> 2. 如果运算符都不是Tensor，那么使用原始python语义 <br> 3. 如果一个是Tensor，一般会导致错误。 |
 || [类型转换运算符](#6) | 支持 | 自适应转换为paddle.cast 操作| 
 |<font color='purple'>Paddle shape</font>| [Tensor.shape()](#9) | 部分支持 | 支持获取编译期shape信息，可能包含-1 |
@@ -39,9 +39,6 @@
 |<font color='purple'>Python基本容器</font>| [list](#8) | 部分支持 | 在控制流中转化为TensorArray，支持append，pop | 
 || [Dict](#8) | 支持 | 原生支持 |
 |<font color='purple'>第三方库相关</font>| numpy | 部分支持 | 仅支持numpy操作不需要导出到Program| 无 |
-
-
-
 
 
 
