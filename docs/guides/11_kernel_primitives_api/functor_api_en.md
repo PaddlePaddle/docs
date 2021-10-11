@@ -334,38 +334,6 @@ float out = functor(input1, input2);
 ## Functor Definition Rules
 In the current calculation function, only ElementwiseAny supports setting the functor parameter as a pointer, and the functor of other calculation functions can only be set as a normal parameter.
 
-### Pointer
-When defining the Functor of ElementwiseAny, you need to ensure that the parameter of the operate() function is an array pointer. For example, to realize the function: (a + b) * c + d, you can combine ElementwiseAny and Functor to complete the calculation.
-
-ExampleFunctor1:
-```
-template <typename T>
-struct ExampleFunctor1 {
-   inline HOSTDEVICE T operator()(const T * args) const { return ((arg[0] + arg[1]) * arg[2] + arg[3]); }
-};
-```
-### example
-
-```
-// Global memory input pointer input0, input1, input2, input3
-auto functor = ExampleFunctor1<float>();
-
-const int NX = 4;
-const int NY = 1;
-const int BlockSize = 1;
-const bool IsBoundary = false;
-const int Arity = 4; // the pointers of inputs
-
-int num = NX * NY * blockDim.x;
-float inputs[Arity][NX * NY];
-float output[NX * NY];
-
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[0], input0, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[1], input1, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[2], input2, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[3], input3, num);
-kps::ElementwiseAny<float, float, NX, NY, BlockSize, Arity, ExampleFunctor1<float>>(output, inputs, functor);
-```
 ### Common parameters
 Except ElementwiseAny API, other calculation functions only support ordinary parameter transfer. For example, to realize (a + b) * c, Functor can be defined as follows:
 
@@ -399,4 +367,37 @@ kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[1], input1, num);
 kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[2], input2, num);
 kps::ElementwiseTernary<float, float, NX, NY, BlockSize, Arity, ExampleFunctor2<float>>(output, inpputs[0], inputs[1], inputs[2], functor);
 // ...
+```
+
+### Pointer
+When defining the Functor of ElementwiseAny, you need to ensure that the parameter of the operate() function is an array pointer. For example, to realize the function: (a + b) * c + d, you can combine ElementwiseAny and Functor to complete the calculation.
+
+ExampleFunctor1:
+```
+template <typename T>
+struct ExampleFunctor1 {
+   inline HOSTDEVICE T operator()(const T * args) const { return ((arg[0] + arg[1]) * arg[2] + arg[3]); }
+};
+```
+### example
+
+```
+// Global memory input pointer input0, input1, input2, input3
+auto functor = ExampleFunctor1<float>();
+
+const int NX = 4;
+const int NY = 1;
+const int BlockSize = 1;
+const bool IsBoundary = false;
+const int Arity = 4; // the pointers of inputs
+
+int num = NX * NY * blockDim.x;
+float inputs[Arity][NX * NY];
+float output[NX * NY];
+
+kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[0], input0, num);
+kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[1], input1, num);
+kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[2], input2, num);
+kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[3], input3, num);
+kps::ElementwiseAny<float, float, NX, NY, BlockSize, Arity, ExampleFunctor1<float>>(output, inputs, functor);
 ```

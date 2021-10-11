@@ -330,43 +330,12 @@ float out = functor(input1, input2);
 ## Functor 定义规则
 当前计算函数中仅 ElementwiseAny 支持 Functor 参数设置为指针，其他计算函数的 Functor 仅能设置为普通参数。
 
-### 指针传递
-在进行 ElementwiseAny 的 Functor 定义时，需要保证 operate() 函数的参数是数组指针。例如要实现功能： (a + b) * c + d， 则可以结合 ElementwiseAny 与 Functor 完成对应计算。
-
-ExampleFunctor1 定义:
-```
-template <typename T>
-struct ExampleFunctor1 {
-   inline HOSTDEVICE T operator()(const T * args) const { return ((arg[0] + arg[1]) * arg[2] + arg[3]); }
-};
-```
-### 示例
-
-```
-// 全局内存输入指针 input0, input1, input2, input3
-auto functor = ExampleFunctor1<float>();
-
-const int NX = 4;
-const int NY = 1;
-const int BlockSize = 1;
-const bool IsBoundary = false;
-const int Arity = 4; // the pointers of inputs
-
-int num = NX * NY * blockDim.x;
-float inputs[Arity][NX * NY];
-float output[NX * NY];
-
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[0], input0, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[1], input1, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[2], input2, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[3], input3, num);
-kps::ElementwiseAny<float, float, NX, NY, BlockSize, Arity, ExampleFunctor1<float>>(output, inputs, functor);
-```
 ### 普通参数传递
 除 ElementwiseAny API 外其他计算函数仅支持普通参数传递。例如需要实现 (a + b) * c 可将 Functor 定义如下：
 
 ExampleFunctor2:
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
 struct ExampleFunctor2 {
    inline HOSTDEVICE T operator()(const T &input1, const T &input2, const T &input3) const {
@@ -395,4 +364,37 @@ kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[1], input1, num);
 kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[2], input2, num);
 kps::ElementwiseTernary<float, float, NX, NY, BlockSize, ExampleFunctor2<float>>(output, inpputs[0], inputs[1], inputs[2], functor);
 // ...
+```
+### 指针传递
+在进行 ElementwiseAny 的 Functor 定义时，需要保证 operate() 函数的参数是数组指针。例如要实现功能： (a + b) * c + d， 则可以结合 ElementwiseAny 与 Functor 完成对应计算。
+
+ExampleFunctor1 定义:
+```
+namespace kps = paddle::operators::kernel_primitives;
+template <typename T>
+struct ExampleFunctor1 {
+   inline HOSTDEVICE T operator()(const T * args) const { return ((arg[0] + arg[1]) * arg[2] + arg[3]); }
+};
+```
+### 示例
+
+```
+// 全局内存输入指针 input0, input1, input2, input3
+auto functor = ExampleFunctor1<float>();
+
+const int NX = 4;
+const int NY = 1;
+const int BlockSize = 1;
+const bool IsBoundary = false;
+const int Arity = 4; // the pointers of inputs
+
+int num = NX * NY * blockDim.x;
+float inputs[Arity][NX * NY];
+float output[NX * NY];
+// read data from global memory, each thread read
+kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[0], input0, num);
+kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[1], input1, num);
+kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[2], input2, num);
+kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[3], input3, num);
+kps::ElementwiseAny<float, float, NX, NY, BlockSize, Arity, ExampleFunctor1<float>>(output, inputs, functor);
 ```
