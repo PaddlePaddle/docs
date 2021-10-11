@@ -433,7 +433,10 @@ def set_api_sketch():
         paddle.incubate,
         paddle.inference,
         paddle.onnx,
-        paddle.device
+        paddle.device,
+        paddle.device.cuda,
+        paddle.linalg,
+        paddle.fft
     ]
 
     alldict = {}
