@@ -6,9 +6,10 @@ max_unpool2d
 
 .. py:function:: paddle.nn.functional.max_unpool2d(x, indices, kernel_size, stride=None,padding=0,data_format="NCHW",output_size=None,name=None)
 
-这个API实现了`2D最大反池化`操作
+这个API实现了 `2D最大反池化` 操作
+
 .. note::
-   更多细节请参考对应的 `Class` : :ref:`cn_api_nn_pooling_MaxUnPool2D` 。
+   更多细节请参考对应的 `Class` 请参考 :ref:`cn_api_nn_pooling_MaxUnPool2D` 。
 
 
 输入：
