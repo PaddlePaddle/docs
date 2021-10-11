@@ -22,7 +22,7 @@ if __name__ == '__main__':
 ```
 执行后，报错日志如下图：
 
-![图片](./images/dy2stat_error_log.png)
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/dy2stat_error_log.png" style="zoom:45%" />
 
 报错日志从上到下一共可以分为4个部分：
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
 **NOTE**：在某些场景下，会识别报错类型并给出修改建议，如下图所示。`Revise suggestion`下面是出错的排查建议，用户可以根据建议对代码进行排查修改。
 
-![图片](./images/revise_suggestion.png)
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/revise_suggestion.png" style="zoom:45%" />
 
 ### 1.2 报错信息定制化展示
 #### 1.2.1 未经动转静报错模块处理的原生报错信息
@@ -49,13 +49,12 @@ os.environ["TRANSLATOR_DISABLE_NEW_ERROR"] = '1'
 ```
 可以得到如下的报错信息：
 
-![图片](./images/original_error_log.png)
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/original_error_log.png" style="zoom:45%" />
 
 #### 1.2.2 C++报错栈
 默认会隐藏C++报错栈，您可设置C++端的环境变量 `FLAGS_call_stack_level=2` 来显示 C++ 报错栈信息。如可以在终端输入`export FLAGS_call_stack_level=2`来进行设置，之后可以看到C++端的报错栈：
 
-![图片](./images/c++_error_log.png)
-
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/c%2B%2B_error_log.png" style="zoom:45%" />
 
 ## 二、调试方法
 在调试前**请确保转换前的动态图代码能够成功运行**，下面介绍动转静中推荐的几种调试方法。
@@ -107,7 +106,7 @@ pdb是Python中的一个模块，该模块定义了一个交互式Pyhton源代�
 
 #### 2.1.2 常用命令
 
-<img src="./images/pdb_cmd.png" style="zoom:45%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/pdb_cmd.png" style="zoom:45%" />
 
 更多pdb使用使用方法可以查看pdb的[官方文档](https://docs.python.org/zh-cn/3/library/pdb.html)
 
@@ -291,7 +290,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 
 如下是当前动、静态图对 slice 语法功能的汇总情况：
 
-<img src="./images/slice.png" style="zoom:40%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/slice.png" style="zoom:45%" />
 
 **排查建议：**
 

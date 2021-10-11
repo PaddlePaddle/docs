@@ -22,7 +22,7 @@ if __name__ == '__main__':
 ```
 After execution, the error log is shown below:
 
-![img](./images/dy2stat_error_log.png)
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/dy2stat_error_log.png" style="zoom:45%" />
 
 The error log can be divided into 4 parts from top to bottom:
 
@@ -36,7 +36,7 @@ The error log can be divided into 4 parts from top to bottom:
 
 **NOTE**: In some scenarios, the error type will be identified and suggestions for modification will be given, as shown in the figure below. `Revise suggestion` The following are troubleshooting suggestions for errors. Users can check and modify the code according to the suggestions.
 
-![img](./images/revise_suggestion.png)
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/revise_suggestion.png" style="zoom:45%" />
 
 ### 1.2 Customized Display of Error Information
 #### 1.2.1 Native error message without being processed by the Dygraph-to-Static error reporting module
@@ -48,13 +48,12 @@ os.environ["TRANSLATOR_DISABLE_NEW_ERROR"] = '1'
 ```
 You can get the following error message:
 
-![img](./images/original_error_log.png)
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/original_error_log.png" style="zoom:45%" />
 
 #### 1.2.2 C++ error stack
 The C++ error stack is hidden by default. You can set the C++ environment variable `FLAGS_call_stack_level=2` to display the C++ error stack information. For example, you can enter `export FLAGS_call_stack_level=2` in the terminal to set it, and then you can see the error stack on the C++ side:
 
-![img](./images/c++_error_log.png)
-
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/c%2B%2B_error_log.png" style="zoom:45%" />
 
 ## 2、Debugging Method
 Before debugging, **please ensure that the dynamic graph code before conversion can run successfully**. The following introduces several debugging methods recommended in Dygraph-to-Static.
@@ -106,7 +105,7 @@ pdb is a module in Python that defines an interactive Pyhton source code debugge
 
 #### 2.1.2 Common commands
 
-<img src="./images/pdb_cmd_en.png" style="zoom:45%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/pdb_cmd_en.png" style="zoom:45%" />
 
 For more pdb usage methods, please check the [official document](https://docs.python.org/zh-cn/3/library/pdb.html)
 
@@ -290,7 +289,7 @@ The reasons for such problems are generally:
 
 The following is a summary of the slice syntax functions of the current dynamic and static graph:
 
-<img src="./images/slice.png" style="zoom:45%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/slice.png" style="zoom:45%" />
 
 **Troubleshooting suggestions:**
 
