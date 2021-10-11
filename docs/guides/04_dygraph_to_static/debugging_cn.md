@@ -21,35 +21,39 @@ if __name__ == '__main__':
     train()
 ```
 执行后，报错日志如下图：
+
 ![图片](./images/dy2stat_error_log.png)
+
 报错日志从上到下一共可以分为4个部分：
 
 - **原生的Python报错栈**：如1中的前两行所示，表示`/workspace/Paddle/run_dy2stat_error.py`文件第145行调用的函数`train()`导致的后续一系列报错。
 
 - **动转静报错栈起始标志位**：`In transformed code`，表示动转静报错信息栈，指运行转换后的代码时的报错信息。实际场景中，可以直接搜索`In transformed code`关键字，从这一行以下开始看报错日志即可。
 
-- **用户代码报错栈**：隐藏了框架层面的无用的报错信息，突用户代码报错栈。并在出错代码下添加了波浪线和HERE指示词来提示具体的出错位置。并扩展了出错行代码上下文，帮助用户快速定位出错位置。
-如上图3中所示，可以看出最后出错的用户代码为`x = paddle.reshape(x, shape=[1, two])`。
+- **用户代码报错栈**：隐藏了框架层面的无用的报错信息，突用户代码报错栈。并在出错代码下添加了波浪线和HERE指示词来提示具体的出错位置。并扩展了出错行代码上下文，帮助用户快速定位出错位置。如上图3中所示，可以看出最后出错的用户代码为`x = paddle.reshape(x, shape=[1, two])`。
 
 - **框架层面报错信息**：提供了静态图组网报错信息。一般可以直接根据最后三行的信息，定位具体是在生成哪个 OpDesc 时报的错误，一般是与执行此 Op 的 infershape 逻辑报的错误。
 如上报错信息表明是reshape Op出错，出错原因是tensor x的shape为[3]，将其reshape为[1, 2]是不被允许的。
 
 **NOTE**：在某些场景下，会识别报错类型并给出修改建议，如下图所示。`Revise suggestion`下面是出错的排查建议，用户可以根据建议对代码进行排查修改。
+
 ![图片](./images/revise_suggestion.png)
 
 ### 1.2 报错信息定制化展示
 #### 1.2.1 未经动转静报错模块处理的原生报错信息
 若您想查看 Paddle 原生报错信息栈，即未被动转静模块处理过的报错信息栈，可以设置环境变量 `TRANSLATOR_DISABLE_NEW_ERROR=1` 关闭动转静报错模块。该环境变量默认值为0，表示默认开启动转静报错模块。
 在1.1小节的代码中添加下面的代码即可以查看原生的报错信息：
-```
+```python
 import os
 os.environ["TRANSLATOR_DISABLE_NEW_ERROR"] = '1'
 ```
 可以得到如下的报错信息：
+
 ![图片](./images/original_error_log.png)
 
 #### 1.2.2 C++报错栈
 默认会隐藏C++报错栈，您可设置C++端的环境变量 `FLAGS_call_stack_level=2` 来显示 C++ 报错栈信息。如可以在终端输入`export FLAGS_call_stack_level=2`来进行设置，之后可以看到C++端的报错栈：
+
 ![图片](./images/c++_error_log.png)
 
 
@@ -60,7 +64,7 @@ pdb是Python中的一个模块，该模块定义了一个交互式Pyhton源代�
 #### 2.1.1 调试步骤
 
 - step1：在想要进行调试的代码前插入`import pdb; pdb.set_trace()`开启pdb调试。
-    ```
+    ```python
     import paddle
     import numpy as np
 
@@ -103,7 +107,7 @@ pdb是Python中的一个模块，该模块定义了一个交互式Pyhton源代�
 
 #### 2.1.2 常用命令
 
-![图片](./images/pdb_cmd.png)
+<img src="./images/pdb_cmd.png" style="zoom:45%" />
 
 更多pdb使用使用方法可以查看pdb的[官方文档](https://docs.python.org/zh-cn/3/library/pdb.html)
 
@@ -113,7 +117,7 @@ pdb是Python中的一个模块，该模块定义了一个交互式Pyhton源代�
 
 #### 2.2.1 set_code_level() 或 TRANSLATOR_CODE_LEVEL
 通过调用 `set_code_level()` 或设置环境变量 `TRANSLATOR_CODE_LEVEL`，可以在日志中查看转换后的代码：
-```
+```python
 import paddle
 import numpy as np
 
@@ -131,7 +135,7 @@ func(np.ones([1]))
 
 #### 2.2.2 被装饰后的函数的 code 属性
 如下代码中，装饰器@to_static会将函数 func 转化为一个类对象 StaticFunction，可以使用 StaticFunction 的 code 属性来获得转化后的代码。
-```
+```python
 import paddle
 import numpy as np
 
@@ -146,7 +150,7 @@ func(np.ones([1]))
 print(func.code)
 ```
 运行后可以看到动转静后的静态图代码：
-```
+```python
 def func(x):
     x = paddle.assign(x)
 
@@ -164,7 +168,7 @@ def func(x):
 ### 2.3 使用print查看变量
 print 函数可以用来查看变量，该函数在动转静中会被转化。当仅打印 Paddle Tensor 时，实际运行时会被转换为 Paddle 算子 Print，否则仍然运行 print。
 
-```
+```python
 import paddle
 import numpy as np
 
@@ -206,7 +210,7 @@ Variable: assign_0.tmp_0
 > **注意：**
 > 日志中包括了源代码等信息，请在共享日志前确保它不包含敏感信息。
 打印日志的示例代码：
-```
+```python
 import paddle
 import numpy as np
 import os
@@ -274,7 +278,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 - 代码层面，判断是否是上游使用了reshape导致 -1 的污染性传播
 > 动态图由于执行时 shape 都是已知的，所以 reshape(x, [-1, 0, 128]) 是没有问题的。但静态图组网时都是编译期的 shape（可能为-1），因此使用 reshape 接口时，尽量减少 -1 的使用。
 
-- 可以结合后续调试技巧，判断是否是某个 API 的输出 shape 在动静态图下有 diff 行为
+- 可以结合调试技巧，判断是否是某个 API 的输出 shape 在动静态图下有 diff 行为
 > 比如某些 Paddle API 动态图下返回的是 1-D Tensor， 但静态图却是始终和输入保持一致，如 ctx->SetOutputDim("Out", ctx->GetInputDim("X"));
 
 ### 3.3 desc->CheckGuards() == true
@@ -286,7 +290,8 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 > 执行到报错所在行的 Paddle API 时，某些输入或者 weight 的类型还是动态图的 Tensor，而非静态图的 Variable 或者 Parameter.
 
 如下是当前动、静态图对 slice 语法功能的汇总情况：
-![图片](./images/slice.png)
+
+<img src="./images/slice.png" style="zoom:40%" />
 
 **排查建议：**
 
@@ -306,7 +311,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
 动态图下，提供了如下几种 container 的容器类：
 
 - ParameterList
-    ```
+    ```python
     class MyLayer(paddle.nn.Layer):
         def __init__(self, num_stacked_param):
             super(MyLayer, self).__init__()
@@ -321,7 +326,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
     ```
 
 - LayerList
-    ```
+    ```python
     class MyLayer(paddle.nn.Layer):
         def __init__(self):
             super(MyLayer, self).__init__()
