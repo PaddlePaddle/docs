@@ -3,7 +3,7 @@
 
 ## Unary Functor
 
-### ExpFunctor
+### [ExpFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L42)
 
 #### 定义
 ```
@@ -32,7 +32,7 @@ kps::ElementwiseUnary<float, float, VecSize, 1, 1, kps::ExpFunctor<float>>(out, 
 ```
 
 
-### IdentityFunctor
+### [IdentityFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L56)
 #### 定义
 ```
 namespace kps = paddle::operators::kernel_primitives;
@@ -59,7 +59,7 @@ kps::ElementwiseUnary<float, int, VecSize, 1, 1, kps::IdentityFunctor<float, int
 // out[0] = 1
 ```
 
-### DivideFunctor
+### [DivideFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L70)
 #### 定义
 ```
 namespace kps = paddle::operators::kernel_primitives;
@@ -88,7 +88,7 @@ kps::ElementwiseUnary<float, float, VecSize, 1, 1, kps::DivideFunctor<float>>(ou
 // out[0] = 0.3
 ```
 
-### SquareFunctor
+### [SquareFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L91)
 
 #### 定义
 ```
@@ -118,7 +118,7 @@ kps::ElementwiseUnary<float, float, VecSize, 1, 1, kps::SquareFunctor<float>>(ou
 
 ## Binary Functor
 
-### MinFunctor
+### [MinFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L103)
 
 #### 定义
 ```
@@ -147,7 +147,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::MinFunctor<float>>(out,
 // out[0] = 1.0
 ```
 
-### MaxFunctor
+### [MaxFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L115)
 
 #### 定义
 ```
@@ -176,7 +176,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::MaxFunctor<float>>(out,
 // out[0] = 3.0
 ```
 
-### AddFunctor
+### [AddFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L129)
 
 #### 定义
 ```
@@ -205,7 +205,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::AddFunctor<float>>(out,
 // out[0] = 4.0
 ```
 
-### MulFunctor
+### [MulFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L141)
 
 #### 定义
 ```
@@ -234,7 +234,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::MulFunctor<float>>(out,
 // out[0] = 3.0
 ```
 
-### LogicalOrFunctor
+### [LogicalOrFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L153)
 
 #### 定义
 ```
@@ -263,7 +263,7 @@ kps::ElementwiseBinary<bool, bool, VecSize, 1, 1, kps::LogicalOrFunctor<bool>>(o
 // out[0] = true
 ```
 
-### LogicalAndFunctor
+### [LogicalAndFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L165)
 
 #### 定义
 ```
@@ -292,7 +292,7 @@ kps::ElementwiseBinary<bool, bool, VecSize, 1, 1, kps::LogicalAndFunctor<bool>>(
 // out[0] = false
 ```
 
-### SubFunctor
+### [SubFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L177)
 
 #### 定义
 ```
@@ -321,7 +321,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::SubFunctor<float>>(out,
 // out[0] = 2.0
 ```
 
-### DivFunctor
+### [DivFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L187)
 
 #### 定义
 ```
@@ -350,7 +350,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::DivideFunctor<float>>(o
 // out[0] = 3.0
 ```
 
-### FloorDivFunctor
+### [FloorDivFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L212)
 
 #### 定义
 ```
