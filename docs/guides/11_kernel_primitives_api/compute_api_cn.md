@@ -18,21 +18,13 @@ __device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
 > NX ：每个线程需要计算 NX 列数据。</br>
 > NY ：每个线程需要计算 NY 行数据。</br>
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
-> OpFunc ：计算函数，定义方式如下：</br>
-```
-   template <typename InT, typename OutT>
-   struct XxxFunctor {
-     HOSTDEVICE OutT operator()(const InT& a) const {
-       return ...;
-     }
-   };
-```
+> OpFunc ：计算规则，定义方式请参考 OpFunc 小节。</br>
 
 ### 函数参数
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in ：输入寄存器指针，大小为 NX * NY。</br>
-> compute ：计算函数，声明为 XxxFunctor&lt;InT, OutT&gt;()。</br>
+> compute ：计算函数，声明为 OpFunc&lt;InT, OutT&gt;()。</br>
 
 ## [ElementwiseBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L173)
 ### 函数定义
@@ -53,23 +45,14 @@ __device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpF
 > NX ：每个线程需要计算 NX 列数据。</br>
 > NY ：每个线程需要计算 NY 行数据。</br>
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
-> OpFunc ：计算函数，定义方式如下：</br>
-```
-  template <typename InT>
-  struct XxxFunctor {
-    HOSTDEVICE InT operator()(const InT& a, const InT& b) const {
-      return ...;
-    }
-  };
-
-```
+> OpFunc ：计算规则，定义方式请参考 OpFunc 小节。</br>
 
 ### 函数参数
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in1 ：左操作数寄存器指针，大小为 NX * NY。</br>
 > in2 ：右操作数寄存器指针，大小为 NX * NY。</br>
-> compute ：声明为 XxxFunctor&lt;InT&gt;() 的计算对象。</br>
+> compute ：声明为 OpFunc&lt;InT&gt;() 的计算对象。</br>
 
 ## [CycleBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L291)
 
@@ -91,23 +74,14 @@ __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc co
 > NX ：每个线程需要计算 NX 列数据。</br>
 > NY ：每个线程需要计算 NY 行数据。</br>
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
-> OpFunc ：计算函数，定义方式如下：</br>
-```
-  template <typename InT>
-  struct XxxFunctor {
-    HOSTDEVICE InT operator()(const InT& a, const InT& b) const {
-      return ...;
-    }
-  };
-
-```
+> OpFunc ：计算规则，定义方式请参考 OpFunc 小节。</br>
 
 ### 函数参数
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > in1 ：左操作数寄存器指针，大小为 NX。</br>
 > in2 ：右操作数寄存器指针，大小为 NX * NY。</br>
-> compute ：声明为 XxxFunctor&lt;InT&gt;() 的计算对象。</br>
+> compute ：声明为 OpFunc&lt;InT&gt;() 的计算对象。</br>
 
 ## [ElementwiseTernary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L210)
 
@@ -130,15 +104,7 @@ template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFu
 > NX ：每个线程需要计算 NX 列数据。</br>
 > NY ：每个线程需要计算 NY 行数据。</br>
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
-> OpFunc ：计算函数，定义方式如下：</br>
-```
-  template <typename InT>
-  struct XxxFunctor {
-    HOSTDEVICE InT operator()(const InT& a, const InT& b, const InT& c) const {
-      return ...;
-    }
-  };
-```
+> OpFunc ：计算规则，定义方式请参考 OpFunc 小节。</br>
 
 ### 函数参数
 
@@ -146,7 +112,7 @@ template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFu
 > in1 ：操作数 1 的寄存器指针，大小为 NX * NY。</br>
 > in2 ：操作数 2 的寄存器指针，大小为 NX * NY。</br>
 > in3 ：操作数 3 的寄存器指针，大小为 NX * NY。</br>
-> compute ：声明为 XxxFunctor&lt;InT&gt;() 的计算对象。</br>
+> compute ：声明为 OpFunc&lt;InT&gt;() 的计算对象。</br>
 
 ## [ElementwiseAny](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L250)
 
@@ -169,21 +135,13 @@ __device__ void ElementwiseAny(OutT* out, InT (*ins)[NX * NY], OpFunc compute);
 > NY ：每个线程需要计算 NY 行数据。</br>
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
 > Arity ：指针数组 ins 中指针个数。</br>
-> OpFunc ：计算函数，定义方式如下：</br>
-```
-template <typename InT>
-  struct XxxFunctor {
-    HOSTDEVICE InT operator()(const InT* args) const {
-      return ...;
-    }
-  };
+> OpFunc ：计算规则，定义方式请参考 OpFunc 小节。</br>
 
-```
 ### 函数参数
 
 > out ：输出寄存器指针，大小为 NX * NY。</br>
 > ins ：由多输入指针构成的指针数组，大小为 Arity。</br>
-> compute ：声明为 XxxFunctor&lt;InT&gt;() 的计算对象。</br>
+> compute ：声明为 OpFunc&lt;InT&gt;() 的计算对象。</br>
 
 ## [Reduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L332)
 
@@ -206,15 +164,7 @@ ReduceMax 数据处理过程如下：</br>
 > NX ：每个线程需要计算 NX 列数据。</br>
 > NY ：每个线程需要计算 NY 行数据。</br>
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
-> ReduceFunctor ：Reduce计算函数，定义方式如下：</br>
-```
-  template <typename T>
-  struct ReduceFunctor {
-     HOSTDEVICE T operator()(const T& a, const T& b) const {
-       return ...;
-     }
-  };
-```
+> ReduceFunctor ：计算规则，定义方式请参考 OpFunc 小节。</br>
 > Mode ：规约模式，可以取值为 kGlobalMode、kLocalMode。
 
 ### 函数参数

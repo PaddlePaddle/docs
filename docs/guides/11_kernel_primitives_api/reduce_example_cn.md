@@ -33,21 +33,26 @@ ReduceSum 数据处理过程如下：</br>
 
 ```
 template <typename Tx, typename Ty, typename MPType, typename ReduceOp, typename TransformOp, bool IsBoundary = false>
-__device__ void HigherDimImp(const Tx* x, Ty* y, ReduceOp reducer,
+__device__ void HigherDimImpl(const Tx* x, Ty* y, ReduceOp reducer,
                              TransformOp transform, MPType init,
                              int reduce_num, int left_num,
                              int block_num) {
+
   const int NY = 2;
   int idx = blockIdx.x * blockDim.x;
   int idy = blockIdx.y * block_num; // block_offset of rows
   Tx reduce_input[NY];
   MPType reduce_compute[NY];
   MPType result = init;
+
   int block_offset = idy * left_num + idx + blockIdx.z * reduce_num * left_num; // the offset of this block
-  const Tx* input = x + block_offset;
   int store_offset = blockIdx.y * left_num + blockIdx.z * gridDim.y * left_num + idx;
+
+  const Tx* input = x + block_offset;
+
   // how many columns left
   int num = left_num - idx;
+
   // how many rows have to be reduced
   int loop = reduce_num - idy;
   loop = loop > block_num ? block_size : loop;
@@ -67,16 +72,22 @@ __global__ void ReduceHigherDimKernel(const Tx* x, Ty* y, ReduceOp reducer,
                                       TransformOp transform, MPType init,
                                       int reduce_num, int left_num,
                                       int blocking_num) {
+
   // get the remaining data of this kernel
   int num = left_num - blockIdx.x * blockDim.x;
+
   if (num >= blockDim.x) {
+
     // The remaining data is larger than blockdim.x
-    HigherDimImp<Tx, Ty, MPType, AddFunctor<Tx, Ty>, IdentityFunctor<Tx, Ty>, false>(
+    HigherDimImpl<Tx, Ty, MPType, AddFunctor<Tx, Ty>, IdentityFunctor<Tx, Ty>, false>(
         x, y, AddFunctor<Tx, Ty>(), IdentityFunctor<Tx, Ty>(), init, reduce_num, left_num, blocking_num);
+
   } else {
+
     // The remaining data is smaller than blockdim.x, IsBounary must be true
-    HigherDimImp<Tx, Ty, MPType, AddFunctor<Tx, Ty>, IdentityFunctor<Tx, Ty>, true>(
+    HigherDimImpl<Tx, Ty, MPType, AddFunctor<Tx, Ty>, IdentityFunctor<Tx, Ty>, true>(
         x, y, AddFunctor<Tx, Ty>(), IdentityFunctor<Tx, Ty>(), init, reduce_num, left_num, blocking_num);
+
   }
 }
 

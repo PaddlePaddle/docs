@@ -1,4 +1,4 @@
-# API Description - Functor
+# API Description - OpFunc
 Introduce the calculation functors defined by the Kernel Primitive API. There are currently 13 functors that can be used directly.
 
 ## Unary Functor
@@ -20,12 +20,15 @@ Exp operation is performed on the input of Tx type, and the result is converted 
 
 #### Example
 ```
-auto functor = kps::ExpFunctor<float>();
-float input = 0;
-float out = functor(input);
+const int VecSize = 1;
+float data[VecSize];
+float out[VecSize];
 
-// out = exp(0)
-// out = 1
+kps::ElementwiseUnary<float, float, VecSize, 1, 1, kps::ExpFunctor<float>>(out, data, kps::ExpFunctor<float>());
+
+// data[0] = 0;
+// out[0] = exp(data);
+// out[0] = 1
 ```
 
 
@@ -46,11 +49,14 @@ Convert the input data of Tx type to Ty type and return.
 
 #### Example
 ```
-auto functor = kps::DivideFunctor<float, double>();
-float input = 3.0f;
-double out = functor(input);
+const int VecSize = 1;
+float data[VecSize];
+int out[VecSize];
 
-// out = 3.0;
+kps::ElementwiseUnary<float, int, VecSize, 1, 1, kps::IdentityFunctor<float, int>>(out, data, kps::IdentityFunctor<float, int>());
+
+// data[0] = 1.3;
+// out[0] = 1
 ```
 
 ### DivideFunctor
@@ -70,12 +76,16 @@ Divide the input data of Tx type by num, and convert the result into Ty type to 
 
 #### Example
 ```
-auto functor = kps::DivideFunctor<float>(10);
-float input = 3.0f;
-float out = functor(input);
+const int VecSize = 1;
+float data[VecSize];
+float out[VecSize];
+float num = 10.0;
 
-// out = (3.0 / 10)
-// out = 0.3
+kps::ElementwiseUnary<float, float, VecSize, 1, 1, kps::DivideFunctor<float>>(out, data, kps::DivideFunctor<float>(num));
+
+// data[0] = 3.0
+// out[0] = (3.0 / 10.0)
+// out[0] = 0.3
 ```
 
 ### SquareFunctor
@@ -95,14 +105,16 @@ Perform Square operation on the input number of Tx type, and convert the result 
 
 #### Example
 ```
-auto functor = kps::SquareFunctor<float>();
-float input = 3.0f;
-float out = functor(input);
+const int VecSize = 1;
+float data[VecSize];
+float out[VecSize];
 
-// out = 3.0 * 3.0
-// out = 9.0
+kps::ElementwiseUnary<float, float, VecSize, 1, 1, kps::SquareFunctor<float>>(out, data, kps::SquareFunctor<float>());
+
+// data[0] = 3.0
+// out[0] = (3.0 * 3.0)
+// out[0] = 9.0
 ```
-
 
 ## Binary Functor
 
@@ -122,13 +134,17 @@ Returns the minimum of the two inputs. MinFunctor provides the initial() functio
 
 #### Example
 ```
-auto functor = kps::MinFunctor<float>();
-float input1 = 0;
-float input2 = 1;
-float out = functor(input1, input2);
+const int VecSize = 1;
+float input1[VecSize];
+float input2[VecSize];
+float out[VecSize];
 
-// out = input1 < input2 ? input1 : input2
-// out = 0
+kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::MinFunctor<float>>(out, input1, input2, kps::MinFunctor<float>());
+
+// input1[0] = 3.0
+// input2[0] = 1.0
+// out = input1[0] < input2[0] ? input1[0] : input2[0]
+// out[0] = 1.0
 ```
 
 ### MaxFunctor
@@ -147,13 +163,17 @@ Returns the maximum value of the two inputs. MaxFunctor provides the initial() f
 
 #### Example
 ```
-auto functor = kps::MaxFunctor<float>();
-float input1 = 0;
-float input2 = 1;
-float out = functor(input1, input2);
+const int VecSize = 1;
+float input1[VecSize];
+float input2[VecSize];
+float out[VecSize];
 
-// out = input1 > input2 ? input1 : input2
-// out = 1
+kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::MaxFunctor<float>>(out, input1, input2, kps::MaxFunctor<float>());
+
+// input1[0] = 3.0
+// input2[0] = 1.0
+// out = input1[0] > input2[0] ? input1[0] : input2[0]
+// out[0] = 3.0
 ```
 
 ### AddFunctor
@@ -172,13 +192,17 @@ Returns the sum of the two inputs. AddFunctor provides the initial() function fo
 
 #### Example
 ```
-auto functor = kps::AddFunctor<float>();
-float input1 = 1;
-float input2 = 1;
-float out = functor(input1, input2);
+const int VecSize = 1;
+float input1[VecSize];
+float input2[VecSize];
+float out[VecSize];
 
-// out = input1 + input2
-// out = 2
+kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::AddFunctor<float>>(out, input1, input2, kps::AddFunctor<float>());
+
+// input1[0] = 3.0
+// input2[0] = 1.0
+// out = input1[0] + input2[0]
+// out[0] = 4.0
 ```
 
 ### MulFunctor
@@ -197,13 +221,17 @@ Returns the product of two inputs. MulFunctor provides the initial() function fo
 
 #### Example
 ```
-auto functor = kps::MulFunctor<float>();
-float input1 = 1;
-float input2 = 2;
-float out = functor(input1, input2);
+const int VecSize = 1;
+float input1[VecSize];
+float input2[VecSize];
+float out[VecSize];
 
-// out = input1 * input2
-// out = 2
+kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::MulFunctor<float>>(out, input1, input2, kps::MulFunctor<float>());
+
+// input1[0] = 3.0
+// input2[0] = 1.0
+// out = input1[0] * input2[0]
+// out[0] = 3.0
 ```
 
 ### LogicalOrFunctor
@@ -222,13 +250,17 @@ Returns the result of the logical or operation of two inputs. LogicalOrFunctor p
 
 #### Example
 ```
-auto functor = kps::LogicalOrFunctor<bool>();
-bool input1 = false;
-bool input2 = true;
-bool out = functor(input1, input2);
+const int VecSize = 1;
+bool input1[VecSize];
+bool input2[VecSize];
+bool out[VecSize];
 
-// out = input1 || input2
-// out = true
+kps::ElementwiseBinary<bool, bool, VecSize, 1, 1, kps::LogicalOrFunctor<bool>>(out, input1, input2, kps::LogicalOrFunctor<bool>());
+
+// input1[0] = false
+// input2[0] = true
+// out = input1[0] || input2[0]
+// out[0] = true
 ```
 
 ### LogicalAndFunctor
@@ -247,13 +279,17 @@ Returns the result of the logical and operation of the two inputs. LogicalAndFun
 
 #### Example
 ```
-auto functor = kps::LogicalAndFunctor<bool>();
-bool input1 = false;
-bool input2 = true;
-bool out = functor(input1, input2);
+const int VecSize = 1;
+bool input1[VecSize];
+bool input2[VecSize];
+bool out[VecSize];
 
-// out = input1 && input2
-// out = false
+kps::ElementwiseBinary<bool, bool, VecSize, 1, 1, kps::LogicalAndFunctor<bool>>(out, input1, input2, kps::LogicalAndFunctor<bool>());
+
+// input1[0] = false
+// input2[0] = true
+// out = input1[0] && input2[0]
+// out[0] = false
 ```
 
 ### SubFunctor
@@ -272,13 +308,17 @@ Two inputs are subtracted. SubFunctor provides the initial() function for data i
 
 #### Example
 ```
-auto functor = kps::SubFunctor<float>();
-float input1 = 1;
-float input2 = 2;
-float out = functor(input1, input2);
+const int VecSize = 1;
+float input1[VecSize];
+float input2[VecSize];
+float out[VecSize];
 
-// out = input1 - input2
-// out = 1
+kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::SubFunctor<float>>(out, input1, input2, kps::SubFunctor<float>());
+
+// input1[0] = 3.0
+// input2[0] = 1.0
+// out = input1[0] - input2[0]
+// out[0] = 2.0
 ```
 
 ### DivFunctor
@@ -297,13 +337,17 @@ Two inputs are divided. DivFunctor provides the initial() function for data init
 
 #### Example
 ```
-auto functor = kps::DivFunctor<float>();
-float input1 = 1.0;
-float input2 = 2.0;
-float out = functor(input1, input2);
+const int VecSize = 1;
+float input1[VecSize];
+float input2[VecSize];
+float out[VecSize];
 
-// out = input1 / input2
-// out = 0.5
+kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::DivideFunctor<float>>(out, input1, input2, kps::DivideFunctor<float>());
+
+// input1[0] = 3.0
+// input2[0] = 1.0
+// out = input1[0] / input2[0]
+// out[0] = 3.0
 ```
 
 ### FloorDivFunctor
@@ -323,13 +367,17 @@ Divide the two inputs and return the integer part. FloorDivFunctor provides the 
 #### Example
 
 ```
-auto functor = kps::FloorFunctor<float>();
-float input1 = 1.0;
-float input2 = 2.0;
-float out = functor(input1, input2);
+const int VecSize = 1;
+float input1[VecSize];
+float input2[VecSize];
+float out[VecSize];
 
-// out = input1 / input2
-// out = 0
+kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::FloorDivFunctor<float>>(out, input1, input2, kps::FloorDivFunctor<float>());
+
+// input1[0] = 3.0
+// input2[0] = 2.0
+// out = input1[0] / input2[0]
+// out[0] = 1.0
 ```
 ## Functor Definition Rules
 In the current calculation function, only ElementwiseAny supports setting the functor parameter as a pointer, and the functor of other calculation functions can only be set as a normal parameter.
@@ -339,65 +387,86 @@ Except ElementwiseAny API, other calculation functions only support ordinary par
 
 ExampleFunctor2:
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
-struct ExampleFunctor2 {
+struct ExampleTernaryFunctor {
    inline HOSTDEVICE T operator()(const T &input1, const T &input2, const T &input3) const {
        return ((input1 + input2) * input3);
    }
 };
 ```
+
 ### Example
 
 ```
-// Global memory input pointer input0, input1, input2
-auto functor = ExampleFunctor2<float>();
+template<int VecSize, typename InT, typename OutT>
+__global__ void ElementwiseTernaryKernel(InT *input0, InT *input1, InT * input2, OutT *output, int size) {
+// global memory input pointer input0, input1, input2
+auto functor = ExampleTernaryFunctor<InT>();
 
 const int NX = 4;
 const int NY = 1;
 const int BlockSize = 1;
 const bool IsBoundary = false;
-const int Arity = 3; // the pointers of inputs
+int data_offset = NX * blockIdx.x * blockDim.x;
+int num = size - data_offset;
+// if  num < NX * blockDim.x set IsBoundary = true
 
-int num = NX * NY * blockDim.x;
-float inputs[Arity][NX * NY];
-float output[NX * NY];
+InT in0[NX * NY];
+InT in1[NX * NY];
+InT in2[NX * NY];
+OutT out[NX * NY];
 
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[0], input0, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[1], input1, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[2], input2, num);
-kps::ElementwiseTernary<float, float, NX, NY, BlockSize, Arity, ExampleFunctor2<float>>(output, inpputs[0], inputs[1], inputs[2], functor);
-// ...
+// each thread reads NX data continuously, and each block reads num data continuously
+kps::ReadData<InT, NX, NY, BlockSize, IsBoundary>(in0, input0 + data_offset, num);
+kps::ReadData<InT, NX, NY, BlockSize, IsBoundary>(in1, input1 + data_offset, num);
+kps::ReadData<InT, NX, NY, BlockSize, IsBoundary>(in2, input2 + data_offset, num);
+kps::ElementwiseTernary<InT, OutT, NX, NY, BlockSize, ExampleTernaryFunctor<InT>>(out, in0, in1, in2, functor);
+
+...
+
+}
 ```
 
 ### Pointer
 When defining the Functor of ElementwiseAny, you need to ensure that the parameter of the operate() function is an array pointer. For example, to realize the function: (a + b) * c + d, you can combine ElementwiseAny and Functor to complete the calculation.
 
-ExampleFunctor1:
+ExampleAnyFunctor:
 ```
+namespace kps = paddle::operators::kernel_primitives;
 template <typename T>
-struct ExampleFunctor1 {
+struct ExampleAnyFunctor {
    inline HOSTDEVICE T operator()(const T * args) const { return ((arg[0] + arg[1]) * arg[2] + arg[3]); }
 };
 ```
 ### example
 
 ```
-// Global memory input pointer input0, input1, input2, input3
-auto functor = ExampleFunctor1<float>();
+template<int VecSize, typename InT, typename OutT>
+__global__ void ElementwiseAnyKernel(InT *input0, InT *input1, InT * input2, InT * input3, OutT *output, int size) {
+// global memory input pointer input0, input1, input2, input3
+auto functor = ExampleAnyFunctor<InT>();
 
 const int NX = 4;
 const int NY = 1;
 const int BlockSize = 1;
 const bool IsBoundary = false;
 const int Arity = 4; // the pointers of inputs
+int data_offset = NX * blockIdx.x * blockDim.x;
+int num = size - data_offset;
+// if  num < NX * blockDim.x set IsBoundary = true
 
-int num = NX * NY * blockDim.x;
-float inputs[Arity][NX * NY];
-float output[NX * NY];
+InT inputs[Arity][NX * NY];
+OutT out[NX * NY];
 
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[0], input0, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[1], input1, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[2], input2, num);
-kps::ReadData<float, NX, NY, BlockSize, IsBoundary>(inputs[3], input3, num);
-kps::ElementwiseAny<float, float, NX, NY, BlockSize, Arity, ExampleFunctor1<float>>(output, inputs, functor);
+// each thread reads NX data continuously, and each block reads num data continuously
+kps::ReadData<InT, NX, NY, BlockSize, IsBoundary>(inputs[0], input0 + data_offset, num);
+kps::ReadData<InT, NX, NY, BlockSize, IsBoundary>(inputs[1], input1 + data_offset, num);
+kps::ReadData<InT, NX, NY, BlockSize, IsBoundary>(inputs[2], input2 + data_offset, num);
+kps::ReadData<InT, NX, NY, BlockSize, IsBoundary>(inputs[3], input3 + data_offset, num);
+kps::ElementwiseAny<InT, OutT, NX, NY, BlockSize, Arity, ExampleAnyFunctor<InT>>(out, inputs, functor);
+
+...
+
+}
 ```

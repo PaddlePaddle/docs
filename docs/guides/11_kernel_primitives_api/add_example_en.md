@@ -21,6 +21,7 @@ The data processing process of ElementwiseAdd is as follows:</br>
 ### Code
 
 ```
+
 #include "kernel_primitives/kernel_primitives.h"
 template<int VecSize, typename InT, typename OutT, typename OpFunc, bool IsBoundary>
 __device__ void ElementwiseAddImpl(InT *in0, InT * in1, OutT * out, OpFunc func, int num) {
@@ -28,29 +29,40 @@ __device__ void ElementwiseAddImpl(InT *in0, InT * in1, OutT * out, OpFunc func,
   InT arg0[VecSize];
   InT arg1[VecSize];
   OutT result[VecSize];
+
   // init arg0 and arg1
   Init<InT, VecSize>(arg0, static_cast<OutT>(1.0f));
   Init<InT, VecSize>(arg1, static_cast<OutT>(1.0f));
+
   // read data from global memory
   ReadData<InT, InT, VecSize, 1, 1, IsBoundary>(arg0, in0, num);
   ReadData<InT, InT, VecSize, 1, 1, IsBoundary>(arg1, in1, num);
+
   // compute resut[i] = args[i] + arg1[i]
   ElementwiseBinary<InT, OutT, VecSize, 1, 1, OpFunc>(result, arg0, arg1, func);
+
   // write data
   WriteData<OutT, VecSize, 1, 1, IsBoundary>(out, result, num);
 }
 
 template<int VecSize, typename InT, typename OutT>
 __global__ void ElementwiseAdd(InT *in0, InT *in1, OutT *out, int size) {
+
   // get the data offset of this Block
   int data_offset = VecSize * blockIdx.x * blockDim.x;
+
   // get the stride offset the block
   int stride = gridDim.x * blockDim.x * VecSize;
+
   for (int offset = data_offset; offset < size; offset += stride) {
     if (offset + blockDim.x * VecSize < size) {  // set IsBoundary = false
+
       ElementwiseAddImpl<VecSize, InT, OutT, AddFunctor<InT, OutT>, false>(in0 + offset, in1 + offset, out + offset, AddFunctor<InT, OutT>(), size - offset);
+
     } else {  // left num is smaller than blockDim.x * VecSize, IsBoundary must be true
+
       ElementwiseAddImpl<VecSize, InT, OutT, AddFunctor<InT, OutT>, true>(in0 + offset, in1 + offset, out + offset, AddFunctor<InT, OutT>(), size - offset);
+
     }
   }
 }
