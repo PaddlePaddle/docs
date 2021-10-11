@@ -18,7 +18,7 @@ sparse_embedding
 
 ::
 
-    Case sparse_embedding_cn.rst1:
+    Case 1:
 
     input是Tensor, 且padding_idx = -1
         input.data = [[[1], [3]], [[2], [4]], [[4], [127]]]
