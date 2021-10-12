@@ -113,20 +113,6 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 conda config --set show_channel_urls yes
 ```
 
-### Choose CPU/GPU
-
-* If your computer doesn't have NVIDIA® GPU, please install [the CPU Version of PaddlePaddle](#cpu)
-
-* If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
-
-  * **CUDA toolkit 10.1/10.2 with cuDNN 7 (cuDNN version>=7.6.5)**
-
-  * **CUDA toolkit 11.2 with cuDNN v8.1.1**
-
-  * **Hardware devices with GPU computing power over 3.5**
-
-    You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
-
 
 ### Installation Step
 
@@ -134,7 +120,9 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### <span id="cpu">CPU Version of PaddlePaddle</span>
+#### CPU Version of PaddlePaddle
+
+If your computer doesn't have NVIDIA® GPU, please install `the CPU Version of PaddlePaddle`
 
 ```
 conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
@@ -143,26 +131,28 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 
 
 
-#### <span id="gpu">GPU Version of PaddlePaddle</span>
+#### GPU Version of PaddlePaddle
 
 
-*  If you are using CUDA 10.1，cuDNN 7 (cuDNN version>=7.6.5):
+*  If you are using CUDA 10.1，cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher):
 
   ```
   conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  If you are usingCUDA 10.2，cuDNN 7 (cuDNN version>=7.6.5):
+*  If you are usingCUDA 10.2，cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher):
 
   ```
   conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  If you are using CUDA 11.2，cuDNN 8 (cuDNN version>=8.1.1):
+*  If you are using CUDA 11.2，cuDNN v8.1.1(for multi card support, NCCL2.7 or higher):
 
   ```
   conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
+
+You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
 ## Verify installation

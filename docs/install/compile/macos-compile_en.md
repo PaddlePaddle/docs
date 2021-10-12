@@ -2,7 +2,7 @@
 
 ## Environment preparation
 
-* **MacOS version 10.11/10.12/10.13/10.14 (64 bit) (not support GPU version)**
+* **MacOS version 10.x/11.x (64 bit) (not support GPU version)**
 * **Python version 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip or pip3 version 20.2.2 or above (64 bit)**
 

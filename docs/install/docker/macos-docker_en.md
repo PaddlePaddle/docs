@@ -5,7 +5,7 @@ In the following Docker installation and use process, a specific version of Padd
 
 ## Environment preparation
 
-- MacOS version 10.11/10.12/10.13/10.14 (64 bit)(not support GPU version)
+- MacOS version 10.x/11.x (64 bit)(not support GPU version)
 
 - On the local host [Install Docker](https://docs.docker.com/engine/install/)
 

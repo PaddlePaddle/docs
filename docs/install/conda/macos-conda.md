@@ -6,7 +6,7 @@
 
 在进行PaddlePaddle安装之前请确保您的Anaconda软件环境已经正确安装。软件下载和安装参见Anaconda官网(https://www.anaconda.com/)。在您已经正确安装Anaconda的情况下请按照下列步骤安装PaddlePaddle。
 
-* MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)
+* MacOS 版本 10.x/11.x (64 bit) (不支持GPU版本)
 * conda 版本 4.8.3+ (64 bit)
 
 ### 1.1 创建虚拟环境

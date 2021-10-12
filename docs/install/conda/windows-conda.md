@@ -110,27 +110,15 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
   conda config --set show_channel_urls yes
   ```
 
-### 请选择您的版本
-
-* 如果您的计算机没有 NVIDIA® GPU，请安装[CPU版的PaddlePaddle](#cpu)
-
-* 如果您的计算机有NVIDIA® GPU，请确保满足以下条件并且安装[GPU版PaddlePaddle](#gpu)
-
-  * **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5)**
-  * **CUDA 工具包11.2配合cuDNN v8.1.1**
-
-  * **GPU运算能力超过3.5的硬件设备**
-
-    您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
-
-
 
 ### 根据版本进行安装
 
-确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
+选择下面您要安装的PaddlePaddle
 
 
-#### <span id="cpu">CPU版的PaddlePaddle</span>
+#### CPU版的PaddlePaddle
+
+如果您的计算机没有 NVIDIA® GPU，请安装`CPU版的PaddlePaddle`
 
 ```
 conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
@@ -138,26 +126,28 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 
 
 
-#### <span id="gpu">GPU版的PaddlePaddle</span>
+#### GPU版的PaddlePaddle
 
 
-*  如果您是使用 CUDA 10.1，cuDNN 7 (cuDNN版本>=7.6.5)，安装GPU版本的命令为:
+*  如果您使用 `CUDA 10.1`，请确保配合cuDNN 7 (cuDNN版本>=7.6.5, 如需多卡支持，需配合NCCL2.7及更高)，安装GPU版本的命令为:
 
   ```
   conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  如果您是使用 CUDA 10.2，cuDNN 7 (cuDNN版本>=7.6.5)，安装GPU版本的命令为:
+*  如果您使用 `CUDA 10.2`，请确保配合cuDNN 7 (cuDNN版本>=7.6.5, 如需多卡支持，需配合NCCL2.7及更高)，安装GPU版本的命令为:
 
   ```
   conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  如果您是使用 CUDA 11.2，cuDNN 8 (cuDNN版本>=8.1.1)，安装GPU版本的命令为:
+*  如果您使用 `CUDA 11.2`，请配合使用cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)，安装GPU版本的命令为:
 
   ```
   conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
+
+您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
 ## **三、验证安装**
