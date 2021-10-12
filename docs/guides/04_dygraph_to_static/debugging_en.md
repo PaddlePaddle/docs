@@ -30,7 +30,7 @@ The error log can be divided into 4 parts from top to bottom:
 
 - **The start flag of Dygraph-to-Static error stack**: `In transformed code`, represents the dynamic-to-static error message stack, and refers to the error message when the transformed code is running. In the actual scene, you can directly search for the `In transformed code` keyword, and start from this line and read the error log.
 
-- **User code error stack**: It hides the useless error message at the framework level, and reports the error stack of the user code. And add a wavy line and HERE indicator under the error code to indicate the specific error location. And expanded the error line code context to help users quickly locate the error location. As shown in the third part of the above figure, it can be seen that the user code that made the last error is `x = paddle.reshape(x, shape=[1, two])`.
+- **User code error stack**: It hides the useless error message at the framework level, and reports the error stack of the user code. We add a wavy line and HERE indicator under the error code to indicate the specific error location. We also expanded the error line code context to help users quickly locate the error location. As shown in the third part of the above figure, it can be seen that the user code that made the last error is `x = paddle.reshape(x, shape=[1, two])`.
 
 - **Error message at the frame level**: Provides static graph networking error information. Generally, you can directly locate the error reported in which OpDesc was generated directly based on the information in the last three lines, which is usually the error reported by the infershape logic that executed this Op. The error message in the above figure indicates that the reshape Op error occurred. The cause of the error is that the shape of tensor x is [3], and it is not allowed to reshape it to [1, 2].
 
@@ -61,7 +61,7 @@ Before debugging, **please ensure that the dynamic graph code before conversion 
 pdb is a module in Python that defines an interactive Pyhton source code debugger. It supports setting breakpoints and single stepping between source lines, listing source code and variables, running Python code, etc.
 #### 2.1.1 Debugging steps
 
-- step1: Insert `import pdb; pdb.set_trace()` before the code you want to debug to enable pdb debugging.
+- step1: Insert `import pdb; pdb.set_trace()` before the code where you want to enable pdb debugging.
     ```python
     import paddle
     import numpy as np
@@ -227,7 +227,7 @@ paddle.jit.set_verbosity(3)
 func(np.ones([1]))
 ```
 
-run result:
+The results:
 ```
 Sun Sep 26 08:50:20 Dynamic-to-Static INFO: (Level 1) Source code:
 @paddle.jit.to_static
