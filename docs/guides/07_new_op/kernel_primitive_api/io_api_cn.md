@@ -58,9 +58,9 @@ __device__ void ReadData(T* dst, const T* src, int num);
 
 ### 函数参数
 
-> dst : 输出寄存器指针，大小为 NX * NY。</br>
-> src : 当前 Block 的输入数据指针。</br>
-> num : 当前 Block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
+> dst ；输出寄存器指针，大小为 NX * NY。</br>
+> src ；当前 Block 的输入数据指针。</br>
+> num ；当前 Block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
 
 ## [ReadDataBc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L279)
 
@@ -139,19 +139,19 @@ __device__ void ReadDataReduce(T* dst,
     }
   };
 ```
-> IsBoundary : 标识是否进行访存边界判断。当 Block 处理的数据总数小于 NX * NY * blockDim.x 时，需要进行边界判断以避免访存越界。</br>
+> IsBoundary ；标识是否进行访存边界判断。当 Block 处理的数据总数小于 NX * NY * blockDim.x 时，需要进行边界判断以避免访存越界。</br>
 
 
 ### 函数参数
 
 > dst ：输出寄存器指针，大小为 NX * NY。</br>
 > src ：原始输入数据指针。</br>
-> block_offset : 当前 Block 的数据偏移。</br>
-> config : 输入输出坐标映射函数，可以定义为 IndexCal()。</br>
-> size_nx : Block 需要读取 size_nx 列数据，参数仅在 IsBoundary = true 时使用。</br>
-> size_ny : Block 需要读取 size_ny 行数据，参数仅在 IsBoundary = true 时使用。</br>
-> stride_nx : 每读取 1 列数据需要偏移 stride_nx 列。</br>
-> stride_ny : 每读取 NX 列需要偏移 stride_nx 行。</br>
+> block_offset ；当前 Block 的数据偏移。</br>
+> config ；输入输出坐标映射函数，可以定义为 IndexCal()。</br>
+> size_nx ；Block 需要读取 size_nx 列数据，参数仅在 IsBoundary = true 时使用。</br>
+> size_ny ；Block 需要读取 size_ny 行数据，参数仅在 IsBoundary = true 时使用。</br>
+> stride_nx ；每读取 1 列数据需要偏移 stride_nx 列。</br>
+> stride_ny ；每读取 NX 列需要偏移 stride_nx 行。</br>
 > reduce_last_dim：原始输入数据的最低维是否进行reduce，当reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。</br>
 
 ## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L421)
@@ -180,6 +180,56 @@ __device__ void WriteData(T* dst, T* src, int num);
 
 ### 函数参数
 
-> dst : 当前 Block 的输出数据指针。</br>
-> src : 寄存器指针，大小为 NX * NY。</br>
-> num : 当前 Block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
+> dst ；当前 Block 的输出数据指针。</br>
+> src ；寄存器指针，大小为 NX * NY。</br>
+> num ；当前 Block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
+
+## [Init](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L206)
+
+### 函数定义
+
+
+```
+template <typename T, int NX>
+__device__ void Init(T* dst, T init_data);
+```
+
+### 函数说明
+
+将寄存器 dst 中的所有元素初始化为 init_data。
+
+### 模板参数
+
+> T ：元素类型。</br>
+> NX ：初始化 NX 个元素。</br>
+
+### 函数参数
+
+> dst ；寄存器指针。</br>
+> init_data ；初始值。</br>
+
+## [Init](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L469)
+
+### 函数定义
+
+
+```
+template <typename T, int NX, int IsBoundary = false>
+__device__ void Init(T* dst, T* src, int num);
+```
+
+### 函数说明
+
+使用 src 寄存器中的元素对 dst 中的 NX 个元素进行初始化，当 IsBoundary = true 时，初始化个数不超过 num。
+
+### 模板参数
+
+> T ：元素类型。</br>
+> NX ：初始化 NX 个元素。</br>
+> IsBoundary ：是否为初始化边界， 当 NX > num 时， IsBoundary = true。</br>
+
+### 函数参数
+
+> dst ；输出寄存器指针。</br>
+> src ；输入寄存器指针。</br>
+> num ；初始化的个数。</br>

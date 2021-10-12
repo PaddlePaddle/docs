@@ -182,3 +182,52 @@ The data processing process is as follows:</br>
 > dst: The output data pointer of the current Block, usually input + blockIdx.x * blockDim.x * NX. </br>
 > src: Register pointer, the size is NX * NY. , Usually input + blockIdx.x * blockDim.x * NX. </br>
 > num: The current Block reads num elements in multiples. The parameter is only used when IsBoundary = true. </br>
+
+## [Init](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L206)
+
+### Function Definition
+
+
+```
+template <typename T, int NX>
+__device__ void Init(T* dst, T init_data);
+```
+
+### Description
+
+Initialize all the elements in the register dst to init_data.
+
+### Template Parameters
+
+> T: Element type. </br>
+> NX : Initialize NX elements. </br>
+
+### Parameters
+
+> dst : The register pointer that needs to be initialized. </br>
+> init_data : Initial value. </br>
+
+## [Init](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L469)
+
+### Function Definition
+
+```
+template <typename T, int NX, int IsBoundary = false>
+__device__ void Init(T* dst, T* src, int num);
+```
+
+### Description
+
+Use the elements in the src register to initialize the NX elements in dst. When IsBoundary = true, the number of initializations does not exceed num.
+
+### Template Parameters
+
+> T: Element type. </br>
+> NX : Initialize NX elements. </br>
+> IsBoundary : Whether it is an assignment boundary. when NX > num, IsBoundary = true. </br>
+
+### Parameter
+
+> dst : The register pointer that needs to be initialized. </br>
+> src : The register of input.</br>
+> num : Number of initial data. </br>
