@@ -6,7 +6,7 @@
 
 - MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)
 
-- 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- 在本地主机上[安装Docker](https://docs.docker.com/engine/install/)
 
 ## 安装步骤
 
@@ -99,20 +99,20 @@
     </thead>
     <tbody>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0 </td>
-        <td> 安装了2.1.0版本paddle的CPU镜像 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0 </td>
+        <td> 安装了2.2.0rc0版本paddle的CPU镜像 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-jupyter </td>
-        <td> 安装了2.1.0版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter </td>
+        <td> 安装了2.2.0rc0版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda11.2-cudnn8 </td>
-        <td> 安装了2.1.0版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8 </td>
+        <td> 安装了2.2.0rc0版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
     </tr>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda10.2-cudnn7 </td>
-        <td> 安装了2.1.0版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7 </td>
+        <td> 安装了2.2.0rc0版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
     </tr>
    </tbody>
 </table>

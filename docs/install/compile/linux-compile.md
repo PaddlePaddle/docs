@@ -4,10 +4,10 @@
 
 * **Linux 版本 (64 bit)**
     * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
-    * **CentOS 7 (GPU 版本支持CUDA 10.1/10.2/11.2)**
+    * **CentOS 7 (GPU 版本支持CUDA 10.1/10.2/11.0/11.2)**
     * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
-    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
-    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.2)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip 或 pip3 版本 20.2.2或更高版本 (64 bit)**
 
@@ -17,13 +17,14 @@
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件以编译GPU版PaddlePaddle
 
-    * **CUDA 工具包10.1/10.2配合cuDNN v7.6+(如需多卡支持，需配合NCCL2.7及更高)**
+    * **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5, 如需多卡支持，需配合NCCL2.7及更高)**
+    * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
-    * **GPU运算能力超过3.5的硬件设备**
+    * **GPU运算能力超过1.0的硬件设备**
 
         您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CentOS 7，CUDA9，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
+* 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA10.2，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
     * **Centos 系统可以参考以下命令**
 
@@ -40,7 +41,7 @@
         ```
 
         ```
-        yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+        yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
         ```
 
     * **Ubuntu 系统可以参考以下命令**
@@ -54,7 +55,7 @@
         ```
 
         ```
-        sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+        sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
         ```
 
 
@@ -72,7 +73,7 @@
 
 使用Docker编译PaddlePaddle，您需要：
 
-- 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- 在本地主机上[安装Docker](https://docs.docker.com/engine/install/)
 
 - 如需在Linux开启GPU支持，请[安装nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
 
@@ -125,10 +126,16 @@
     cd /paddle
     ```
 
-5. 切换到develop版本进行编译：
+5. 切换到较稳定版本下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.2
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
@@ -248,7 +255,7 @@
         yum install -y make
         ```
 
-        cmake 需要3.15以上，建议使用3.16.0:
+        cmake 需要3.10以上，建议使用3.16.0:
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
@@ -291,7 +298,7 @@
         apt install -y make
         ```
 
-        cmake 需要3.15以上，建议使用3.16.0:
+        cmake 需要3.10以上，建议使用3.16.0:
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
@@ -428,10 +435,16 @@
     cd Paddle
     ```
 
-8. 切换到develop分支下进行编译：
+8. 切换到较稳定release分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.0
     ```
 
 9. 并且请创建并进入一个叫build的目录下：
@@ -456,9 +469,9 @@
         > 请注意PY_VERSION参数更换为您需要的python版本
 
 
-    * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA11.2/CUDA10.2/CUDA10.1)**)
+    * 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA11.2/CUDA11.0/CUDA10.2/CUDA10.1)**)
 
-        1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA9，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
+        1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA10.2，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
        * **Centos 系统可以参考以下命令**
 
@@ -471,7 +484,7 @@
             ```
 
             ```
-            yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+            yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
             ```
 
        * **Ubuntu 系统可以参考以下命令**
@@ -485,7 +498,7 @@
             ```
 
             ```
-            sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+            sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
             ```
 
         2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)

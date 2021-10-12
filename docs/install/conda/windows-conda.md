@@ -9,7 +9,7 @@
 在进行PaddlePaddle安装之前请确保您的Anaconda软件环境已经正确安装。软件下载和安装参见Anaconda官网(https://www.anaconda.com/)。在您已经正确安装Anaconda的情况下请按照下列步骤安装PaddlePaddle。
 
 * Windows 7/8/10 专业版/企业版 (64bit)
-  * GPU版本支持CUDA 10.1/10.2/11.2，且仅支持单卡
+  * GPU版本支持CUDA 10.1/10.2/11.0/11.2，且仅支持单卡
 * conda 版本 4.8.3+ (64 bit)
 
 
@@ -107,16 +107,16 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 本文档为您介绍conda安装方式
 
-### 首先请您选择您的版本
+### 首先请选择您的版本
 
 * 如果您的计算机没有 NVIDIA® GPU，请安装[CPU版的PaddlePaddle](#cpu)
 
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件并且安装[GPU版PaddlePaddle](#gpu)
 
-  * **CUDA 工具包10.1/10.2配合cuDNN v7.6+**
+  * **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5)**
   * **CUDA 工具包11.2配合cuDNN v8.1.1**
 
-  * **GPU运算能力超过3.5的硬件设备**
+  * **GPU运算能力超过1.0的硬件设备**
 
     您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](
 
@@ -127,7 +127,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
 
 
-#### 2.1 CPU版的PaddlePaddle
+#### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
 ```
 conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
@@ -135,25 +135,25 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 
 
 
-#### 2.2 GPU版的PaddlePaddle
+#### 2.2 <span id="gpu">GPU版的PaddlePaddle</span>
 
 
-*  如果您是使用 CUDA 10.1，cuDNN 7.6+，安装GPU版本的命令为:
-
-  ```
-  conda install paddlepaddle-gpu==2.1.0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
-  ```
-
-*  如果您是使用 CUDA 10.2，cuDNN 7.6+，安装GPU版本的命令为:
+*  如果您是使用 CUDA 10.1，cuDNN 7 (cuDNN版本>=7.6.5)，安装GPU版本的命令为:
 
   ```
-  conda install paddlepaddle-gpu==2.1.0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  如果您是使用 CUDA 11.2，cuDNN 8.1.1+，安装GPU版本的命令为:
+*  如果您是使用 CUDA 10.2，cuDNN 7 (cuDNN版本>=7.6.5)，安装GPU版本的命令为:
 
   ```
-  conda install paddlepaddle-gpu==2.1.0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+  conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  ```
+
+*  如果您是使用 CUDA 11.2，cuDNN 8 (cuDNN版本>=8.1.1)，安装GPU版本的命令为:
+
+  ```
+  conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
 
 

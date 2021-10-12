@@ -23,7 +23,7 @@ There are two compilation methods in MacOS system:
 
 Compiling PaddlePaddle with Docker，you need:
 
-- On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- On the local host [Install Docker](https://docs.docker.com/engine/install/)
 
 - Log in to Docker with Docker ID to avoid `Authenticate Failed` error
 
@@ -60,10 +60,16 @@ Please follow the steps below to install:
     cd paddle
     ```
 
-6. Switch to `develop` version to compile:
+6. Switch to a more stable version to compile:
 
     ```
-    git checkout develop
+    git checkout [name of the branch]
+    ```
+
+    For example：
+
+    ```
+    git checkout release/2.2
     ```
 
     Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
@@ -193,7 +199,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     - a. Here is a special description of the installation of **CMake**:
 
-        We support CMake version 3.15 and above, CMake 3.16 is recommended, please follow the steps below to install:
+        We support CMake version 3.10 and above, CMake 3.16 is recommended, please follow the steps below to install:
 
         1. Download the CMake image from the [official CMake website](https://cmake.org/files/v3.16/cmake-3.16.0-Darwin-x86_64.dmg) and install it.
 
@@ -215,10 +221,16 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
     cd Paddle
     ```
 
-7. Switch to `develop` branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch)
+6. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch)
 
     ```
-    git checkout develop
+    git checkout [name of the branch]
+    ```
+
+    For example：
+
+    ```
+    git checkout release/2.2
     ```
 
 7. And please create and enter a directory called build:

@@ -3,19 +3,20 @@
 ## 环境准备
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
-* **GPU版本支持CUDA 10.1/10.2/11.2，且仅支持单卡**
+* **GPU版本支持CUDA 10.1/10.2/11.0/11.2，且仅支持单卡**
 * **Python 版本 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 * **pip 版本 20.2.2或更高版本 (64 bit)**
-* **Visual Studio 2017**
+* **Visual Studio 2015 Update3**
 
 ## 选择CPU/GPU
 
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * **CUDA 工具包 10.1/10.2 配合 cuDNN v7.6.5+**
+    * **CUDA 工具包 10.1/10.2 配合 cuDNN 7 (cuDNN版本>=7.6.5）**
+    * **CUDA 工具包 11.0 配合 cuDNN v8.0.4**
     * **CUDA 工具包 11.2 配合 cuDNN v8.1.1**
-    * **GPU运算能力超过3.5的硬件设备**
+    * **GPU运算能力超过3.0的硬件设备**
 
 ## 安装步骤
 
@@ -28,7 +29,7 @@
 
 1. 安装必要的工具 cmake，git 以及 python：
 
-    > cmake我们支持3.15以上版本,但GPU编译时3.12/3.13/3.14版本存在官方[Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html),我们建议您使用CMake3.16版本, 可在官网[下载](https://cmake.org/download/)，并添加到环境变量中。
+    > cmake我们支持3.10以上版本,但GPU编译时3.12/3.13/3.14版本存在官方[Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html),我们建议您使用CMake3.16版本, 可在官网[下载](https://cmake.org/download/)，并添加到环境变量中。
 
     > python 需要 3.6 及以上版本, 可在官网[下载](https://www.python.org/downloads/release/python-3610/)。
 
@@ -60,10 +61,16 @@
     cd Paddle
     ```
 
-3. 切换到`develop`分支下进行编译：
+3. 切换到较稳定release分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.2
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
@@ -79,40 +86,18 @@
 
 5. 执行cmake：
 
-    > 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。在Windows系统下可以通过Ninja命令行方式编译（推荐）或Visual Studio IDE方式编译，需要在cmake命令中通过-G选项进行指定，如下：
+    > 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
-    *  1）通过Ninja命令行方式编译（推荐）：
-
-        需要先通过如下命令安装ninja：
+    *  编译**CPU版本PaddlePaddle**：
 
         ```
-        pip install ninja
-        ```
-        然后在搜索栏中搜索 "x64 Native Tools Command Prompt for VS 2017" 或 "适用于VS 2017 的x64本机工具命令提示符"，以管理员身份运行，再输入以下cmake命令。
-
-        * **CPU版本PaddlePaddle**：
-
-        ```
-        cmake .. -G "Ninja" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
-        * **GPU版本PaddlePaddle**：
+    *  编译**GPU版本PaddlePaddle**：
 
         ```
-        cmake .. -G "Ninja" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-        ```
-
-    *  2）通过Visual Studio IDE方式编译：
-        * **CPU版本PaddlePaddle**：
-
-        ```
-        cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-        ```
-
-        * **GPU版本PaddlePaddle**：
-
-        ```
-        cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -G "Visual Studio 14 2015 Win64" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
     Python3请添加：
@@ -128,14 +113,10 @@
     例如：（仅作示例，请根据你的设备路径信息进行设置）
 
     ```
-    cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\v10.0"
+    cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\v10.0"
     ```
 
-6. 编译
-    * 若通过Ninja命令行方式编译，请执行以下命令，开始编译（推荐）
-    > ninja
-
-    * 若通过Visual Studio IDE方式编译，使用Visual Studio 2017 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，开始编译。
+6. 使用Visual Studio 2015 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，开始编译。
 
 7. 编译成功后进入 `\Paddle\build\python\dist` 目录下找到生成的 `.whl` 包：
 

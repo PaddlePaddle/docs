@@ -23,7 +23,7 @@
 
 使用Docker编译PaddlePaddle，您需要：
 
-- 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- 在本地主机上[安装Docker](https://docs.docker.com/engine/install/)
 
 - 使用Docker ID登陆Docker，以避免出现`Authenticate Failed`错误
 
@@ -56,10 +56,16 @@
     cd paddle
     ```
 
-6. 切换到`develop`版本进行编译：
+6. 切换到较稳定版本下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.2
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
@@ -188,7 +194,7 @@
 
     - a. 这里特别说明一下**CMake**的安装：
 
-        CMake我们支持3.15以上版本,推荐使用CMake3.16,请根据以下步骤安装：
+        CMake我们支持3.10以上版本,推荐使用CMake3.16,请根据以下步骤安装：
 
         1. 从CMake[官方网站](https://cmake.org/files/v3.16/cmake-3.16.0-Darwin-x86_64.dmg)下载CMake镜像并安装
         2. 在控制台输入
@@ -208,10 +214,16 @@
     cd Paddle
     ```
 
-6. 切换到`develop`分支下进行编译：
+6. 切换到较稳定release分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.2
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持

@@ -4,9 +4,9 @@
 
 ## 环境准备
 
-- 目前支持的系统类型，请见[安装说明](../index_cn.html)，请注意目前暂不支持在CentOS 6使用Docker
+- 目前支持的系统类型，请见[安装说明](/documentation/docs/zh/install/index_cn.html)，请注意目前暂不支持在CentOS 6使用Docker
 
-- 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
+- 在本地主机上[安装Docker](https://docs.docker.com/engine/install/)
 
 - 如需在Linux开启GPU支持，请[安装nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
 
@@ -46,7 +46,7 @@
         docker pull paddlepaddle/paddle:[版本号]-gpu-cuda10.2-cudnn7
         ```
 
-    在`:`后请您填写PaddlePaddle版本号，例如当前版本`2.1.0`，更多请见[镜像简介](#dockers)。
+    在`:`后请您填写PaddlePaddle版本号，例如当前版本`2.2.0rc0`，更多请见[镜像简介](#dockers)。
 
     上例中，`cuda10.2-cudnn7` 也仅作示意用，表示安装GPU版的镜像。如果您还想安装其他cuda/cudnn版本的镜像，可以将其替换成`cuda11.2-cudnn8`等。
 
@@ -133,20 +133,20 @@
     </thead>
     <tbody>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0 </td>
-        <td> 安装了2.1.0版本paddle的CPU镜像 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0 </td>
+        <td> 安装了2.2.0rc0版本paddle的CPU镜像 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-jupyter </td>
-        <td> 安装了2.1.0版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter </td>
+        <td> 安装了2.2.0rc0版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda11.2-cudnn8 </td>
-        <td> 安装了2.1.0版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8 </td>
+        <td> 安装了2.2.0rc0版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
     </tr>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.1.0-gpu-cuda10.2-cudnn7 </td>
-        <td> 安装了2.1.0版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7 </td>
+        <td> 安装了2.2.0rc0版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
     </tr>
    </tbody>
 </table>

@@ -9,7 +9,7 @@
 Before performing PaddlePaddle installation, please make sure that your Anaconda software environment is properly installed. For software download and installation, see Anaconda's official website (https://www.anaconda.com/). If you have installed Anaconda correctly, follow these steps to install PaddlePaddle.
 
 * Windows 7/8/10 Pro/Enterprise (64bit)
-  * GPU Version supportCUDA 10.1/10.2/11.2，且仅支持单卡
+  * GPU Version supportCUDA 10.1/10.2/11.0/11.2，且仅支持单卡
 * conda version 4.8.3+ (64 bit)
 
 
@@ -114,9 +114,9 @@ We will introduce conda installation here.
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+**
+  * **CUDA toolkit 10.1/10.2 with cuDNN 7 (cuDNN version>=7.6.5)**
 
-  * **CUDA toolkit 11.2 with cuDNN v8.1.1(**
+  * **CUDA toolkit 11.2 with cuDNN v8.1.1**
 
   * **Hardware devices with GPU computing power over 3.5**
 
@@ -129,7 +129,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.1 CPU version of PaddlePaddle
+#### 2.1 <span id="cpu">CPU Version of PaddlePaddle</span>
 
 ```
 conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
@@ -138,25 +138,25 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 
 
 
-#### 2.2 GPU version of PaddlePaddle
+#### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
-*  If you are using CUDA 10.1，cuDNN 7.6+
-
-  ```
-  conda install paddlepaddle-gpu==2.1.0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
-  ```
-
-*  If you are usingCUDA 10.2，cuDNN 7.6+:
+*  If you are using CUDA 10.1，cuDNN 7 (cuDNN version>=7.6.5):
 
   ```
-  conda install paddlepaddle-gpu==2.1.0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  If you are using CUDA 11.2，cuDNN 8.1.1+:
+*  If you are usingCUDA 10.2，cuDNN 7 (cuDNN version>=7.6.5):
 
   ```
-  conda install paddlepaddle-gpu==2.1.0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+  conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  ```
+
+*  If you are using CUDA 11.2，cuDNN 8 (cuDNN version>=8.1.1):
+
+  ```
+  conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
 
 
