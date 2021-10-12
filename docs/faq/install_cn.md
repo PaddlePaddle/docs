@@ -175,3 +175,30 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.s
 + 答复：
 
 glibc版本过低，建议使用官方提供的docker镜像或者将glibc升级到2.23+。
+
+
+------
+
+##### 问题： 使用GPU版Paddle时，报错提示`OSError: (External) Cudnn error, CUDNN_STATUS_NOT_INITIALIZED`，如何解决？
+
++ 答复：
+
+可能是cuda版本与cudnn版本不匹配，例如安装了cuda10.2、cudnn7的Paddle安装包，但是系统环境中cudnn版本为cudnn8，会导致该问题。
+
+Paddle需要使用的cuda与cudnn版本的对应关系为：
+
+* **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5, 如需多卡支持，需配合NCCL2.7及更高)**
+
+  * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
+
+  * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
+
+
+------
+
+##### 问题： mac M1芯片安装paddle失败，如何解决？
+
++ 答复：
+
+Paddle支持Mac M1芯片的安装，但是使用MacOS中自带Python可能会导致安装失败。需要使用[python官网](https://www.python.org/downloads/mac-osx/)提供的python3.6.x、python3.7.x、python3.8.x 或python3.9.x。
+注意，python版本为python3.9时，只支持intel版本的python，不支持universal版本的python。
