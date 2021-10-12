@@ -437,7 +437,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
     For example:
 
     ```
-    git checkout release/2.0
+    git checkout release/2.2
     ```
 
 9. And please create and enter a directory called build:

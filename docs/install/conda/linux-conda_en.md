@@ -42,33 +42,21 @@ conda create -n paddle_env python=3.9
 
 #### 1.1.2 Enter the Anaconda Virtual Environment
 
-for Windows
-
-```
-activate paddle_env
-```
-
-for MacOS/Linux
-
 ```
 conda activate paddle_env
 ```
 
 
 
-## 1.2 Confirm Other Environments
+### 1.2 Confirm Other Environments
 
 Confirm that your conda virtual environment and the Python loaction which is preapared to install PaddlePaddle are where you expected them for your computer may have multiple Pythons environments. Enter Anaconda's command line terminal and enter the following command to confirm the Python location.
 
-1.2.1 Depending on your environment, you may need to replace python in all command lines in the instructions with specific Python path.
+#### 1.2.1 Confirm the installation path of python
 
-In a Windows environment, the command to get the Python path is:
+Depending on your environment, you may need to replace python in all command lines in the instructions with specific Python path.
 
-```
-where python
-```
-
-In a MacOS/Linux environment, the command to get the Python path is:
+The command to get the Python path is:
 
 ```
 which python
@@ -76,7 +64,7 @@ which python
 
 
 
-1.2.2 Check the version of Python
+#### 1.2.2 Check the version of Python
 
 
 Use the following command to confirm it's version is 3.6/3.7/3.8/3.9
@@ -87,7 +75,9 @@ python --version
 
 
 
-1.2.3 Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture. The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
+#### 1.2.3 Check the system environment
+
+Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture. The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
 
 
 ```
@@ -154,7 +144,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.1 <span id="cpu">CPU Version of PaddlePaddle</span>
+#### <span id="cpu">CPU Version of PaddlePaddle</span>
 
 ```
 conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
@@ -162,7 +152,7 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 
 
 
-#### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
+#### <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
 *  If you are using CUDA 10.1，cuDNN 7 (cuDNN version>=7.6.5):
@@ -195,7 +185,7 @@ If `PaddlePaddle is installed successfully!` appears, to verify that the install
 
 ## Notice
 
-For domestic users who cannot connect to the Anaconda official source, you can add Tsinghua source according to the following command.
+You can add Tsinghua source according to the following command.
 
 
 ```
