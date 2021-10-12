@@ -4,7 +4,7 @@
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFunc>
-__device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
+__device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)
 ```
 
 ### Detailed Description
@@ -31,7 +31,7 @@ The input is calculated according to the calculation rules in OpFunc, and the ca
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFunc>
-__device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpFunc compute)；
+__device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpFunc compute)
 ```
 
 ### Detailed Description
@@ -59,7 +59,7 @@ Calculate in1 and in2 according to the calculation rules in OpFunc, and store th
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFunc>
-__device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc compute)；
+__device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc compute)
 ```
 
 ### Detailed Description
@@ -88,7 +88,7 @@ Calculate in1 and in2 according to the calculation rules in the OpFunc, and stor
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFunc>
- __device__ void ElementwiseTernary(OutT* out, const InT* in1, const InT* in2, const InT* in3, OpFunc compute)；
+ __device__ void ElementwiseTernary(OutT* out, const InT* in1, const InT* in2, const InT* in3, OpFunc compute)
 
 ```
 
@@ -119,7 +119,7 @@ Calculate in1, in2, and in3 according to the calculation rules in OpFunc, and st
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, int Arity, class OpFunc>
-__device__ void ElementwiseAny(OutT* out, InT (*ins)[NX * NY], OpFunc compute);
+__device__ void ElementwiseAny(OutT* out, InT (*ins)[NX * NY], OpFunc compute)
 ```
 
 ### Detailed Description
@@ -148,7 +148,7 @@ Calculate the input in ins according to the calculation rules in OpFunc, and sto
 
 ```
 template <typename T, int NX, int NY, int BlockSize, class ReduceFunctor, details::ReduceMode Mode>
-__device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_last_dim);
+__device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_last_dim)
 ```
 
 ### Detailed Description

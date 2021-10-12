@@ -4,7 +4,7 @@
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFunc>
-__device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
+__device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)
 ```
 
 ### 函数说明
@@ -31,7 +31,7 @@ __device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)；
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFunc>
-__device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpFunc compute)；
+__device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpFunc compute)
 ```
 
 ### 函数说明
@@ -60,7 +60,7 @@ __device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpF
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFunc>
-__device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc compute)；
+__device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc compute)
 ```
 
 ### 函数说明
@@ -89,7 +89,7 @@ __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc co
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFunc>
- __device__ void ElementwiseTernary(OutT* out, const InT* in1, const InT* in2, const InT* in3, OpFunc compute)；
+ __device__ void ElementwiseTernary(OutT* out, const InT* in1, const InT* in2, const InT* in3, OpFunc compute)
 
 ```
 
@@ -120,7 +120,7 @@ template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFu
 
 ```
 template <typename InT, typename OutT, int NX, int NY, int BlockSize, int Arity, class OpFunc>
-__device__ void ElementwiseAny(OutT* out, InT (*ins)[NX * NY], OpFunc compute);
+__device__ void ElementwiseAny(OutT* out, InT (*ins)[NX * NY], OpFunc compute)
 ```
 
 ### 函数说明
@@ -149,7 +149,7 @@ __device__ void ElementwiseAny(OutT* out, InT (*ins)[NX * NY], OpFunc compute);
 
 ```
 template <typename T, int NX, int NY, int BlockSize, class ReduceFunctor, details::ReduceMode Mode>
-__device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_last_dim);
+__device__ void Reduce(T* out, const T* in, ReduceFunctor reducer, bool reduce_last_dim)
 ```
 
 ### 函数说明
