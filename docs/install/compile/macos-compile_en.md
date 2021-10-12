@@ -45,6 +45,10 @@ Please follow the steps below to install:
 4. Create and enter a Docker container that meets the compilation environment:
 
     ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev
+    ```
+
+    ```
     docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
     ```
 

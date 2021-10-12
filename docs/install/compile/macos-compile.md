@@ -45,6 +45,10 @@
 4. 创建并进入满足编译环境的Docker容器：
 
     ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev
+    ```
+
+    ```
     docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
     ```
 

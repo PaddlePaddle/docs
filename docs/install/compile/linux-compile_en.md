@@ -90,7 +90,9 @@ Please follow the steps below to install:
 
     * Compile CPU version of PaddlePaddle：
 
-
+        ```
+        docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev
+        ```
 
         ```
         docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
@@ -108,7 +110,9 @@ Please follow the steps below to install:
 
     * Compile GPU version of PaddlePaddle:
 
-
+        ```
+        nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev
+        ```
 
         ```
         nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev /bin/bash
