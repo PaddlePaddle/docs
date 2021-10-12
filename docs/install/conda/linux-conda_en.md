@@ -90,6 +90,21 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 ## INSTALLATION
 
+### Add Tsinghua source (optional)
+
+For domestic users who cannot connect to the Anaconda official source, you can add Tsinghua source according to the following command.
+
+
+```
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+```
+```
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+```
+```
+conda config --set show_channel_urls yes
+```
+
 ### Choose CPU/GPU
 
 * If your computer doesn't have NVIDIA® GPU, please install [the CPU Version of PaddlePaddle](#cpu)
@@ -180,20 +195,3 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
 
 If `PaddlePaddle is installed successfully!` appears, to verify that the installation was successful.
-
-
-
-## Notice
-
-You can add Tsinghua source according to the following command.
-
-
-```
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-```
-```
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-```
-```
-conda config --set show_channel_urls yes
-```

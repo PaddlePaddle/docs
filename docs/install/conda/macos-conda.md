@@ -97,13 +97,23 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 本文档为您介绍conda安装方式
 
-### 首先请选择您的版本
+### 添加清华源（可选）
 
-* 目前在MacOS环境仅支持CPU版PaddlePaddle
+* 对于国内用户无法连接到Anaconda官方源的可以按照以下命令添加清华源:
+
+  ```
+  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  ```
+  ```
+  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+  ```
+  ```
+  conda config --set show_channel_urls yes
+  ```
 
 ### 安装CPU版PaddlePaddle
 
-* 请参考如下命令安装:
+* 目前在MacOS环境仅支持CPU版PaddlePaddle，请参考如下命令安装Paddle:
 
   ```
   conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
@@ -115,20 +125,3 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
  `paddle.utils.run_check()`
 
 如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
-
-
-
-## 注
-
-可以按照以下命令添加清华源。
-
-
-```
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-```
-```
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-```
-```
-conda config --set show_channel_urls yes
-```
