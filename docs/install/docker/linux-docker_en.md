@@ -29,6 +29,9 @@ In the following Docker installation and use process, a specific version of Padd
         ```
         docker pull registry.baidubce.com/paddlepaddle/paddle:[version number]-gpu-cuda10.2-cudnn7
         ```
+        ```
+        docker pull registry.baidubce.com/paddlepaddle/paddle:[version number]-gpu-cuda11.2-cudnn8
+        ```
 
     If your machine is not in mainland China, you can pull the image directly from DockerHub:
 

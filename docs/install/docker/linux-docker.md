@@ -29,6 +29,9 @@
         ```
         docker pull registry.baidubce.com/paddlepaddle/paddle:[版本号]-gpu-cuda10.2-cudnn7
         ```
+        ```
+        docker pull registry.baidubce.com/paddlepaddle/paddle:[版本号]-gpu-cuda11.2-cudnn8
+        ```
 
     如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像：
 
