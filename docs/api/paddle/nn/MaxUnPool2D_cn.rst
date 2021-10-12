@@ -13,10 +13,10 @@ MaxPool2D
     Output 形状：:math:`(N, C, H_{out}, W_{out})` 具体计算公式为
 
 .. math::
-  H_{out} = (H_{in} - 1) \times \text{stride[0]} - 2 \times \text{padding[0]} + \text{kernel\_size[0]}
+  H_{out} = (H_{in} - 1) \times \text{stride[0]} - 2 \times \text{padding[0]} + \text{kernel_size[0]}
 
 .. math::
-  W_{out} = (W_{in} - 1) \times \text{stride[1]} - 2 \times \text{padding[1]} + \text{kernel\_size[1]}
+  W_{out} = (W_{in} - 1) \times \text{stride[1]} - 2 \times \text{padding[1]} + \text{kernel_size[1]}
 
 或由参数 `output_size` 直接指定
 
@@ -25,10 +25,11 @@ MaxPool2D
 参数
 :::::::::
     - **kernel_size** (int|list|tuple): 反池化的滑动窗口大小。
-    - **stride** (int|list|tuple)：池化层的步长。如果它是一个元组或列表，它必须是两个相等的整数，(pool_stride_Height, pool_stride_Width)。
-    - **padding** (string|int|list|tuple) 池化填充。
-    - **output_size** (list|tuple, optional): 目标输出尺寸。 如果 output_size 没有被设置，则实际输出尺寸会通过(input_shape, kernel_size, padding)自动计算得出。
-    - **name** (str)：函数的名字，默认为None.
+    - **stride** (int|list|tuple，可选)：池化层的步长。如果它是一个元组或列表，它必须是两个相等的整数，(pool_stride_Height, pool_stride_Width)，默认值：None。
+    - **padding** (string|int|list|tuple，可选) 池化填充,默认值：0。
+    - **output_size** (list|tuple, 可选): 目标输出尺寸。 如果 output_size 没有被设置，则实际输出尺寸会通过(input_shape, kernel_size, padding)自动计算得出，默认值：None。
+    - **data_format** (str)： 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"
+    - **name** (str，可选)：函数的名字，默认为None.
 
 
 
