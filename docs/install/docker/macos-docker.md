@@ -1,6 +1,7 @@
 # **MacOS下的Docker安装**
 
-[Docker](https://docs.docker.com/install/)是一个开源的应用容器引擎。使用Docker，既可以将PaddlePaddle的安装&使用与系统环境隔离，也可以与主机共享GPU、网络等资源
+[Docker](https://docs.docker.com/install/)是一个开源的应用容器引擎。使用Docker，既可以将PaddlePaddle的安装&使用与系统环境隔离，也可以与主机共享GPU、网络等资源。
+以下Docker安装与使用流程中，docker里已经安装好了特定版本的PaddlePaddle。
 
 ## 环境准备
 
@@ -34,7 +35,9 @@
         docker pull paddlepaddle/paddle:[版本号]-jupyter
         ```
 
-    在`:`后请您填写PaddlePaddle版本号，您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
+    在`:`后请您填写PaddlePaddle版本号，例如当前版本可使用`paddlepaddle/paddle:2.2.0rc0`，更多请见[镜像简介](#dockers)。
+
+    您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
 2. 构建、进入Docker容器
 

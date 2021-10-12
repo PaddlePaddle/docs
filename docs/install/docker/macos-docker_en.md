@@ -1,6 +1,7 @@
 # **Install on MacOS via Docker**
 
-[Docker](https://docs.docker.com/install/) is an open source application container engine. Using docker, you can not only isolate the installation and use of paddlepaddle from the system environment, but also share GPU, network and other resources with the host
+[Docker](https://docs.docker.com/install/) is an open source application container engine. Using docker, you can not only isolate the installation and use of paddlepaddle from the system environment, but also share GPU, network and other resources with the host.
+In the following Docker installation and use process, a specific version of PaddlePaddle has been installed in docker.
 
 ## Environment preparation
 
@@ -33,7 +34,9 @@
         ```
         docker pull paddlepaddle/paddle:[version number]-jupyter
 
-    After `:`please fill in the PaddlePaddle version number, you can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
+    After `:`, please fill in the PaddlePaddle version number, such as the current version `paddlepaddle/paddle:2.2.0rc0`. For more details, please refer to [image profile](#dockers).
+
+    You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
 
 2. Build and enter Docker container
 
