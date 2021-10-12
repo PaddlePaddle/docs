@@ -101,7 +101,7 @@
         cmake .. -G "Ninja" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
-    * **GPU版本PaddlePaddle**：
+        * **GPU版本PaddlePaddle**：
 
         ```
         cmake .. -G "Ninja" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release

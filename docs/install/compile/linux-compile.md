@@ -452,7 +452,7 @@
     例如：
 
     ```
-    git checkout release/2.0
+    git checkout release/2.2
     ```
 
 9. 并且请创建并进入一个叫build的目录下：
