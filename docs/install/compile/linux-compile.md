@@ -20,7 +20,7 @@
     * **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5, 如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
-    * **GPU运算能力超过1.0的硬件设备**
+    * **GPU运算能力超过3.5的硬件设备**
 
         您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
@@ -255,7 +255,7 @@
         yum install -y make
         ```
 
-        cmake 需要3.10以上，建议使用3.16.0:
+        cmake 需要3.15以上，建议使用3.16.0:
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz
@@ -298,7 +298,7 @@
         apt install -y make
         ```
 
-        cmake 需要3.10以上，建议使用3.16.0:
+        cmake 需要3.15以上，建议使用3.16.0:
 
         ```
         wget -q https://cmake.org/files/v3.16/cmake-3.16.0-Linux-x86_64.tar.gz

@@ -199,7 +199,7 @@ Congratulations, now that you have successfully installed PaddlePaddle using Doc
 
     - a. Here is a special description of the installation of **CMake**:
 
-        We support CMake version 3.10 and above, CMake 3.16 is recommended, please follow the steps below to install:
+        We support CMake version 3.15 and above, CMake 3.16 is recommended, please follow the steps below to install:
 
         1. Download the CMake image from the [official CMake website](https://cmake.org/files/v3.16/cmake-3.16.0-Darwin-x86_64.dmg) and install it.
 

@@ -76,7 +76,7 @@
 
   * **CUDA 工具包11.2配合cuDNN v8.1.1**
 
-  * **GPU运算能力超过3.0的硬件设备**
+  * **GPU运算能力超过3.5的硬件设备**
 
   * 注：目前官方发布的windows安装包仅包含 CUDA 10.1/10.2/11.0/11.2，如需使用其他cuda版本，请通过源码自行编译。您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 

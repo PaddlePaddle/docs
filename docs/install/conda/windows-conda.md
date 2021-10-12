@@ -116,7 +116,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
   * **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5)**
   * **CUDA 工具包11.2配合cuDNN v8.1.1**
 
-  * **GPU运算能力超过1.0的硬件设备**
+  * **GPU运算能力超过3.5的硬件设备**
 
     您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](
 
