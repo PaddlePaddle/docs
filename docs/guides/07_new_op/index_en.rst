@@ -15,4 +15,4 @@ This section will guide you how to add an operator, and it also includes some ne
 
    new_op_en.md
    op_notes_en.md
-   kernel_primitives_api/index_en.rst
+   kernel_primitive_api/index_en.rst
