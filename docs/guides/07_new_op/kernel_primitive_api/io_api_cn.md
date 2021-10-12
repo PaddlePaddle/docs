@@ -10,7 +10,7 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 
 ### 函数说明
 
-将 Tx 类型的 2D 数据从全局内存中读取到寄存器，并按照 Ty 类型存储到寄存器 dst 中。每读取 1 列数据需要偏移 stride_nx 列数据，每读取 NX 列数据需要偏移 stride_ny 行数据，直到加载 NX * NY 个数据到寄存器 dst 中。当 IsBoundary = true 需要保证当前 Block 行偏移不超过 size_ny，列偏移不超过 size_nx。</br>
+将 Tx 类型的 2D 数据从全局内存中读取到寄存器，并按照 Ty 类型存储到寄存器 dst 中。最低维每读取 1 个元素需要偏移 stride_nx 个元素，最高维每读取 1 个元素需要偏移 stride_ny 个元素，直到加载 NX * NY 个数据到寄存器 dst 中。当 IsBoundary = true 需要保证当前最高维偏移个数不超过 size_ny，列偏移个数不超过 size_nx。</br>
 数据处理过程如下：</br>
 
 ![ReadData](./images/io_read_data_stride.png)
@@ -30,8 +30,8 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 > src ：当前 Block 的输入数据指针，数据类型为 Tx。</br>
 > size_nx ：Block 需要读取 size_nx 列数据，参数仅在 IsBoundary = true 时使用。</br>
 > size_ny ：Block 需要读取 size_ny 行数据，参数仅在 IsBoundary = true 时使用。</br>
-> stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。</br>
-> stride_ny ：每读取 NX 列需要偏移 stride_nx 行。</br>
+> stride_nx ：最低维每读取 1 个元素 stride_nx 个元素。</br>
+> stride_ny ：最高维每读取 1 个元素 stride_ny 个元素。</br>
 
 ## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L226)
 
@@ -46,6 +46,7 @@ __device__ void ReadData(T* dst, const T* src, int num);
 
 将 T 类型的 1D 数据从全局内存 src 中读取到寄存器 dst 中。每次连续读取 NX 个数据，当前仅支持 NY = 1，直到加载 NX 个数据到寄存器 dst 中。当 IsBoundary = true 需要保证 Block 读取的总数据个数不超过 num，以避免访存越界。当 (NX % 4 = 0 或 NX % 2 = 0) 且 IsBoundary = false 时，会有更高的访存效率。</br>
 数据处理过程如下：</br>
+
 ![ReadData](./images/io_read_data.png)
 
 ### 模板参数
@@ -98,8 +99,8 @@ __device__ void ReadDataBc(T* dst, const T* src,
 > block_offset ：当前 Block的数据偏移。</br>
 > config ：输入输出坐标映射函数，可通过 BroadcastConfig(const std::vector<int64_t>& out_dims, const std::vector<int64_t>& in_dims, int dim_size) 进行定义。</br>
 > total_num_output ：原始输出的总数据个数,避免访存越界，参数仅在 IsBoundary = true 时使用。</br>
-> stride_nx ：每读取 1 列数据需要偏移 stride_nx 列。</br>
-> stride_ny ：每读取 NX 列需要偏移 stride_nx 行。</br>
+> stride_nx ：最低维每读取 1 个元素 stride_nx 个元素。</br>
+> stride_ny ：最高维每读取 1 个元素 stride_ny 个元素。</br>
 
 ## [ReadDataReduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L337)
 
@@ -150,8 +151,8 @@ __device__ void ReadDataReduce(T* dst,
 > config ；输入输出坐标映射函数，可以定义为 IndexCal()。</br>
 > size_nx ；Block 需要读取 size_nx 列数据，参数仅在 IsBoundary = true 时使用。</br>
 > size_ny ；Block 需要读取 size_ny 行数据，参数仅在 IsBoundary = true 时使用。</br>
-> stride_nx ；每读取 1 列数据需要偏移 stride_nx 列。</br>
-> stride_ny ；每读取 NX 列需要偏移 stride_nx 行。</br>
+> stride_nx ：最低维每读取 1 个元素 stride_nx 个元素。</br>
+> stride_ny ：最高维每读取 1 个元素 stride_ny 个元素。</br>
 > reduce_last_dim：原始输入数据的最低维是否进行reduce，当reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。</br>
 
 ## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L421)

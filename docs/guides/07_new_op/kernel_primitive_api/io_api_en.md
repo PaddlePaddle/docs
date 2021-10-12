@@ -10,7 +10,7 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 
 ### Description
 
-Read the 2D data from the global memory to the register, and store it in the register dst according to the Ty type. Every reading of 1 column of data needs to shift the stride_nx columns, and every reading of NX columns of data needs to shift the stride_ny rows, until NX * NY data is loaded into the register dst. When IsBoundary = true, it is necessary to ensure that row offset of Block does not exceed size_ny, and columns offset does not exceed size_nx.</br>
+Read the Tx type 2D data from the global memory to the register, and store it in the register dst according to the Ty type. Each reading of 1 element in the lowest dimension requires an offset of stride_nx elements, and each reading of an element in the highest dimension requires an offset of stride_ny elements until NX * NY data is loaded into the register dst. When IsBoundary = true, it is necessary to ensure that the number of current highest dimension offsets does not exceed size_ny, and the number of column offsets does not exceed size_nx.
 The data processing process is as follows:</br>
 ![ReadData](./images/io_read_data_stride.png)
 
@@ -29,8 +29,8 @@ The data processing process is as follows:</br>
 > src: The input data pointer of the current Block, the data type is Tx, and the pointer calculation method is usually input + blockIdx.x * blockDim.x * NX. </br>
 > size_nx: Block needs to read size_nx columns data, the parameter is only used when IsBoundary = true. </br>
 > size_ny: Block needs to read size_ny rows data, the parameter is only used when IsBoundary = true. </br>
-> stride_nx: Each column of data read needs to be offset by the stride_nx columns. </br>
-> stride_ny: Each read NX columns needs to be offset by stride_nx rows. </br>
+> stride_nx: Stride_nx elements for every 1 element of the lowest dimension read. </br>
+> stride_ny: Stride_ny elements per read 1 element of the highest dimension read. </br>
 
 ## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L226)
 
@@ -97,8 +97,8 @@ The data processing process is as follows:</br>
 > block_offset: The data offset of the current Block, usually blockIdx.x * blockDim.x * NX. </br>
 > config: Input and output coordinate mapping function, which can be defined by BroadcastConfig(const std::vector<int64_t>& out_dims, const std::vector<int64_t>& in_dims, int dim_size). </br>
 > total_num_output: the total number of original output data, to avoid fetching out of bounds, the parameter is only used when IsBoundary = true. </br>
-> stride_nx: Each column of data read needs to be offset by the stride_nx columns. </br>
-> stride_ny: Each read NX columns needs to be offset by stride_nx rows. </br>
+> stride_nx: Stride_nx elements for every 1 element of the lowest dimension read. </br>
+> stride_ny: Stride_ny elements per read 1 element of the highest dimension read. </br>
 
 ## [ReadDataReduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L337)
 
@@ -149,8 +149,8 @@ The data processing process is as follows:</br>
 > config: Input and output coordinate mapping function, which can be defined as IndexCal(). </br>
 > size_nx: The Block needs to read the size_nx columns data. The parameter is only used when IsBoundary = true. </br>
 > size_ny: Block needs to read size_ny rows data, the parameter is only used when IsBoundary = true. </br>
-> stride_nx: Each column of data read needs to be offset by the stride_nx columns. </br>
-> stride_ny: Each read NX columns needs to be offset by stride_nx rows. </br>
+> stride_nx: Stride_nx elements for every 1 element of the lowest dimension read. </br>
+> stride_ny: Stride_ny elements per read 1 element of the highest dimension read. </br>
 > reduce_last_dim: Does the  operation involve the last dimension. When reduce_last_dim = true, it is indexed according to threadIdx.x, otherwise threadIdx.y is used. </br>
 
 ## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L421)
