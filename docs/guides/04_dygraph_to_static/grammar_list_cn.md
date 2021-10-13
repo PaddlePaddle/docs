@@ -109,11 +109,11 @@ for循环按照使用方法的不同，语义有所不同。正常而言，for�
 
 ```python
 def ForTensor(x):
-	"""Fetch element in x and print the square of each x element"""
+    """Fetch element in x and print the square of each x element"""
     for i in x : 
         print (i * i)
 
-#调用方法， ForTensor(paddle.to_tensor(x)) 
+#调用方法，ForTensor(paddle.to_tensor(x)) 
 ```
 
 
@@ -221,8 +221,8 @@ def lambda_call(x):
 
 ```python
 def recur_call(x):
-	if x > 10: 
-	    return x
+    if x > 10: 
+        return x
     return recur_call(x * x) # < ------ 如果输入是 x = Tensor([2.0]) ，动态图输出为 Tensor([16])，静态图会出现调用栈溢出
 ```
 
@@ -280,7 +280,7 @@ def sort_list(x, y):
 
 ```python
 def get_shape(x):
-	return x.shape[0]
+    return x.shape[0]
 ```
 
 **不支持用法举例**：
