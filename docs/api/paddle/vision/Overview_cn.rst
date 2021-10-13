@@ -37,7 +37,8 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
     :widths: 10, 30
 
     " :ref:`LeNet <cn_api_paddle_vision_models_LeNet>` ", "LeNet模型"
-    " :ref:`AlexNet <cn_api_paddle_vision_models_Alexnet>` ", "AlexNet模型"
+    " :ref:`AlexNet <cn_api_paddle_vision_models_AlexNet>` ", "AlexNet模型"
+    " :ref:`alexnet <cn_api_paddle_vision_models_alexnet>` ", "AlexNet模型"
     " :ref:`MobileNetV1 <cn_api_paddle_vision_models_MobileNetV1>` ", "MobileNetV1模型"
     " :ref:`MobileNetV2 <cn_api_paddle_vision_models_MobileNetV2>` ", "MobileNetV2模型"
     " :ref:`mobilenet_v1 <cn_api_paddle_vision_models_mobilenet_v1>` ", "MobileNetV1模型"
