@@ -1,4 +1,4 @@
-.. _cn_api_linalg_eigh:
+.. _cn_api_linalg_det:
 
 det
 -------------------------------
