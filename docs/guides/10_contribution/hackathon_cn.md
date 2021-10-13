@@ -134,7 +134,7 @@ PS：
 
 为了帮助大家更快更好的完成任务内容开发，本次活动预计会有10+系列直播同步推出，针对通用开发流程、PaddlePaddle框架、Paddle Lite、Paddle Inference、PaddleCV、PaddleNLP、Paddle2ONNX、Paddle Quantum、PaddleHelix、OpenVINO 等相关项目技术讲解、开源社区贡献等内容，都有来自百度以及Intel等深耕该方向的工程师深入讲解，系列直播时间如下。
 
-<img src="https://github.com/PaddlePaddle/docs/blob/release/2.1/docs/guides/10_contribution/img/course_0926.png?raw=true"  style="zoom:60%">
+<img src="https://github.com/PaddlePaddle/docs/blob/release/2.1/docs/guides/10_contribution/img/course_10.png?raw=true"  style="zoom:60%">
 
 
 ## 五、反作弊声明
