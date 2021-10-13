@@ -16,6 +16,7 @@
 
 - `自定义Python算子 <./new_python_op_cn.html>`_
 
+- `Kernel Primitives API <./kernel_primitive_api/index_cn.html>`_ : 介绍 PaddlePaddle 为加快算子开发提供的 Block 级 CUDA 函数。
 
 .. toctree::
    :hidden:
@@ -24,3 +25,4 @@
    op_notes_cn.md
    new_custom_op_cn.md
    new_python_op_cn.md
+   kernel_primitive_api/index_cn.rst
