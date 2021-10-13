@@ -11,115 +11,135 @@
 
 - 如需在Linux开启GPU支持，请[安装nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
 
+- 镜像中Python版本为3.7
+
 ## 安装步骤
 
-1. 拉取PaddlePaddle镜像
+### 1. 拉取PaddlePaddle镜像
 
-    对于国内用户，因为网络问题下载docker比较慢时，可使用百度提供的镜像：
+对于国内用户，因为网络问题下载docker比较慢时，可使用百度提供的镜像：
 
-    * CPU版的PaddlePaddle：
-        ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0
-        ```
+* CPU版的PaddlePaddle：
+    ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0
+    ```
 
-    * CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
-        ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
-        ```
+* CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
+    ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
+    ```
 
-    * GPU版的PaddlePaddle：
-        ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7
-        ```
-        ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8
-        ```
+* GPU版的PaddlePaddle：
+    ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7
+    ```
+    ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8
+    ```
 
-    如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像：
+如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像：
 
-    * CPU版的PaddlePaddle：
-        ```
-        docker pull paddlepaddle/paddle:2.2.0rc0
-        ```
+* CPU版的PaddlePaddle：
+    ```
+    docker pull paddlepaddle/paddle:2.2.0rc0
+    ```
 
-    * CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
-        ```
-        docker pull paddlepaddle/paddle:2.2.0rc0-jupyter
-        ```
+* CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
+    ```
+    docker pull paddlepaddle/paddle:2.2.0rc0-jupyter
+    ```
 
-    * GPU版的PaddlePaddle：
-        ```
-        docker pull paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7
-        ```
-        ```
-        docker pull paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8
-        ```
+* GPU版的PaddlePaddle：
+    ```
+    docker pull paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7
+    ```
+    ```
+    docker pull paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8
+    ```
 
-    您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取更多镜像。
+您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取更多镜像。
 
-2. 构建、进入Docker容器
+### 2. 构建并进入docker容器
 
-    * 使用CPU版本的PaddlePaddle：
-
-
-
-        ```
-        docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
-        ```
-
-        > --name [Name of container] 设定Docker的名称；
-
-
-        > -it 参数说明容器已和本机交互式运行；
-
-
-        > -v $PWD:/paddle 指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
-
-        > `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
-
-
-    * 使用CPU版本的PaddlePaddle，且镜像中预装好了 jupyter：
-
-        ```
-        mkdir ./jupyter_docker
-        ```
-        ```
-        chmod 777 ./jupyter_docker
-        ```
-        ```
-        cd ./jupyter_docker
-        ```
-        ```
-        docker run -p 80:80 --rm --env USER_PASSWD=[password you set] -v $PWD:/home/paddle <imagename>
-        ```
-
-        > --rm 关闭容器后删除容器；
-
-
-        > --env USER_PASSWD=[password you set] 为 jupyter 设置登录密码，[password you set] 是自己设置的密码；
-
-
-        > -v $PWD:/home/paddle 指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /home/paddle 目录；
-
-        > `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看
-
-    * 使用GPU版本的PaddlePaddle：
+* 使用CPU版本的PaddlePaddle：
 
 
 
-        ```
-        nvidia-docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
-        ```
+    ```
+    docker run --name <Name of container> -it -v $PWD:/paddle <imagename> /bin/bash
+    ```
 
-        > --name [Name of container] 设定Docker的名称；
-
-
-        > -it 参数说明容器已和本机交互式运行；
+    > `--name <Name of container>`：设定Docker的名称；
 
 
-        > -v $PWD:/paddle 指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
+    > `-it`：参数说明容器已和本机交互式运行；
 
-        > `<imagename>` 指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
+
+    > `-v $PWD:/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
+
+    > `<imagename>`：指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
+
+    > 示例如下：
+
+    ```
+    docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0 /bin/bash
+    ```
+
+
+* 使用CPU版本的PaddlePaddle，且镜像中预装好了 jupyter：
+
+    ```
+    mkdir ./jupyter_docker
+    ```
+    ```
+    chmod 777 ./jupyter_docker
+    ```
+    ```
+    cd ./jupyter_docker
+    ```
+    ```
+    docker run -p 80:80 --rm --env USER_PASSWD=<password you set> -v $PWD:/home/paddle <imagename>
+    ```
+
+    > `--rm`：关闭容器后删除容器；
+
+
+    > `--env USER_PASSWD=<password you set>`：为 jupyter 设置登录密码，`<password you set>` 是自己设置的密码；
+
+
+    > `-v $PWD:/home/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /home/paddle 目录；
+
+    > `<imagename>`：指定需要使用的image名称，您可以通过`docker images`命令查看
+
+    > 示例如下：
+
+    ```
+    docker run -p 80:80 --rm --env USER_PASSWD="password only for test" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
+    ```
+
+* 使用GPU版本的PaddlePaddle：
+
+
+
+    ```
+    nvidia-docker run --name <Name of container> -it -v $PWD:/paddle <imagename> /bin/bash
+    ```
+
+    > `--name <Name of container>`：设定Docker的名称；
+
+
+    > `-it`：参数说明容器已和本机交互式运行；
+
+
+    > `-v $PWD:/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
+
+    > `<imagename>`：指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
+
+    > 示例如下：
+
+    ```
+    nvidia-docker run --name paddle_docker -it -v $PWD:/paddle paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7 /bin/bash
+    ```
 
 
 
@@ -127,7 +147,7 @@
 
 <a name="dockers"></a>
 </br></br>
-### **镜像简介**
+## **镜像简介**
 <p align="center">
 <table>
     <thead>
@@ -159,22 +179,18 @@
 
 您可以在 [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) 中找到PaddlePaddle的各个发行的版本的docker镜像。
 
-### 注意事项
-
-* 镜像中Python版本为3.7
-
-### 补充说明
+## 补充说明
 
 * 当您需要第二次进入Docker容器中，使用如下命令：
 
     启动之前创建的容器
     ```
-    docker start [Name of container]
+    docker start <Name of container>
     ```
 
     进入启动的容器
     ```
-    docker attach [Name of container]
+    docker attach <Name of container>
     ```
 
 * 如您是Docker新手，您可以参考互联网上的资料学习，例如[Docker教程](http://www.runoob.com/docker/docker-hello-world.html)
@@ -193,4 +209,4 @@
     pip uninstall paddlepaddle-gpu
     ```
 
-或通过`docker rm [Name of container]`来直接删除Docker容器
+或通过`docker rm <Name of container>`来直接删除Docker容器

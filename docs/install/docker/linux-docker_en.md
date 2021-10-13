@@ -11,123 +11,143 @@ In the following Docker installation and use process, a specific version of Padd
 
 - To enable GPU support on Linux, please [Install nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
 
+- Python version in the image is 3.7
+
 ## Installation steps
 
-1. Pull PaddlePaddle image
+### 1. Pull PaddlePaddle image
 
-    For domestic users, when downloading docker is slow due to network problems, you can use the mirror provided by Baidu:
+For domestic users, when downloading docker is slow due to network problems, you can use the mirror provided by Baidu:
 
-    * CPU version of PaddlePaddle：
-        ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0
-        ```
+* CPU version of PaddlePaddle：
+    ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0
+    ```
 
-    * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
-        ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
-        ```
+* CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
+    ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
+    ```
 
-    * GPU version of PaddlePaddle：
-        ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7
-        ```
-        ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8
-        ```
+* GPU version of PaddlePaddle：
+    ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7
+    ```
+    ```
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8
+    ```
 
-    If your machine is not in mainland China, you can pull the image directly from DockerHub:
+If your machine is not in mainland China, you can pull the image directly from DockerHub:
 
-    * CPU version of PaddlePaddle：
-        ```
-        docker pull paddlepaddle/paddle:2.2.0rc0
-        ```
+* CPU version of PaddlePaddle：
+    ```
+    docker pull paddlepaddle/paddle:2.2.0rc0
+    ```
 
-    * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
-        ```
-        docker pull paddlepaddle/paddle:2.2.0rc0-jupyter
-        ```
+* CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
+    ```
+    docker pull paddlepaddle/paddle:2.2.0rc0-jupyter
+    ```
 
-    * GPU version of PaddlePaddle：
-        ```
-        docker pull paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7
-        ```
-        ```
-        docker pull paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8
-        ```
+* GPU version of PaddlePaddle：
+    ```
+    docker pull paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7
+    ```
+    ```
+    docker pull paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8
+    ```
 
-    You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get more images.
+You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get more images.
 
-2. Build and enter Docker container
+### 2. Build and enter Docker container
 
-    * Use CPU version of PaddlePaddle：
-
-
-
-        ```
-        docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
-        ```
-
-        > --name [Name of container] set name of Docker;
-
-
-        > -it The parameter indicates that the container has been operated interactively with the local machine;
-
-
-        > -v $PWD:/paddle specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
-
-        > `<imagename>` Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
-
-
-    * Use GPU version of PaddlePaddle：
+* Use CPU version of PaddlePaddle：
 
 
 
-        ```
-        nvidia-docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
-        ```
+    ```
+    docker run --name <Name of container> -it -v $PWD:/paddle <imagename> /bin/bash
+    ```
 
-        > --name [Name of container] set name of Docker;
-
-
-        > -it The parameter indicates that the container has been operated interactively with the local machine;
+    > `--name <Name of container>`: set name of Docker;
 
 
-        > -v $PWD:/paddle specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
-
-        > `<imagename>` Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
-
-    * Use CPU version of PaddlePaddle：
+    > `-it`: The parameter indicates that the container has been operated interactively with the local machine;
 
 
-        ```
-        mkdir ./jupyter_docker
-        ```
-        ```
-        chmod 777 ./jupyter_docker
-        ```
-        ```
-        cd ./jupyter_docker
-        ```
-        ```
-        docker run -p 80:80 --rm --env USER_PASSWD=[password you set] -v $PWD:/home/paddle <imagename>
-        ```
+    > `-v $PWD:/paddle`: Specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
 
-        > --rm Delete the container after closing it;
+    > `<imagename>`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
+
+    > For example:
+
+    ```
+    docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0 /bin/bash
+    ```
 
 
-        > --env USER_PASSWD=[password you set] Set the login password for jupyter, [password you set] is the password you set;
+* Use GPU version of PaddlePaddle：
 
 
-        > -v $PWD:/home/paddle Specifies to mount the current path (the PWD variable will be expanded to the absolute path of the current path) to the /home/paddle directory inside the container;
 
-        > `<imagename>` Specify the name of the image to be used, you can view it through the `docker images` command
+    ```
+    nvidia-docker run --name <Name of container> -it -v $PWD:/paddle <imagename> /bin/bash
+    ```
+
+    > `--name <Name of container>`: set name of Docker;
+
+
+    > `-it`: The parameter indicates that the container has been operated interactively with the local machine;
+
+
+    > `-v $PWD:/paddle`: Specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
+
+    > `<imagename>`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
+
+    > For example:
+
+    ```
+    nvidia-docker run --name paddle_docker -it -v $PWD:/paddle paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7 /bin/bash
+    ```
+
+* Use CPU version of PaddlePaddle with jupyter：
+
+
+    ```
+    mkdir ./jupyter_docker
+    ```
+    ```
+    chmod 777 ./jupyter_docker
+    ```
+    ```
+    cd ./jupyter_docker
+    ```
+    ```
+    docker run -p 80:80 --rm --env USER_PASSWD=<password you set> -v $PWD:/home/paddle <imagename>
+    ```
+
+    > `--rm`: Delete the container after closing it;
+
+
+    > `--env USER_PASSWD=<password you set>`: Set the login password for jupyter, `<password you set>` is the password you set;
+
+
+    > `-v $PWD:/home/paddle`: Specifies to mount the current path (the PWD variable will be expanded to the absolute path of the current path) to the /home/paddle directory inside the container;
+
+    > `<imagename>`: Specify the name of the image to be used, you can view it through the `docker images` command
+
+    > For example:
+
+    ```
+    docker run -p 80:80 --rm --env USER_PASSWD="password only for test" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
+    ```
 
 
 Now you have successfully used Docker to install PaddlePaddle. For more information about using Docker, see[Docker official documents](https://docs.docker.com)
 
 <a name="dockers"></a>
 </br></br>
-### **Introduction to mirror images**
+## **Introduction to mirror images**
 <p align="center">
 <table>
     <thead>
@@ -160,22 +180,18 @@ Now you have successfully used Docker to install PaddlePaddle. For more informat
 You can find the docker mirroring of the published versions of PaddlePaddle in [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/).
 
 
-### Note
-
-* Python version in the image is 3.7
-
-### 补充说明
+## Supplement
 
 * When you need to enter the docker container for the second time, use the following command:
 
     Container created before startup
     ```
-    docker start [Name of container]
+    docker start <Name of container>
     ```
 
     Enter the starting container
     ```
-    docker attach [Name of container]
+    docker attach <Name of container>
     ```
 
 * If you are a newcomer to Docker, you can refer to the materials on the Internet for learning, such as [Docker tutorial](http://www.runoob.com/docker/docker-hello-world.html)
@@ -194,4 +210,4 @@ After entering the Docker container, execute the following command:
     pip uninstall paddlepaddle-gpu
     ```
 
-Or delete the docker container directly through `docker rm [Name of container]`
+Or delete the docker container directly through `docker rm <Name of container>`
