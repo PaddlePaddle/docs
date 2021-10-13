@@ -156,24 +156,22 @@
 
 7. 使用以下命令安装相关依赖：
 
+    > 安装protobuf。
+
     ```
     pip3.7 install protobuf
     ```
 
     注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
 
-    > 安装protobuf。
+    > 安装patchelf，PatchELF 是一个小而实用的程序，用于修改ELF可执行文件的动态链接器和RPATH。
 
     ```
     apt install patchelf
     ```
 
-    > 安装patchelf，PatchELF 是一个小而实用的程序，用于修改ELF可执行文件的动态链接器和RPATH。
 
 8. 执行cmake：
-
-    >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
-    >请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.7`表示python版本为3.7
 
     * 对于需要编译**CPU版本PaddlePaddle**的用户：
         ```
@@ -184,16 +182,20 @@
         ```
         cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
+    >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
+
+    >请注意修改参数`-DPY_VERSION`为您希望编译使用的python版本,  例如`-DPY_VERSION=3.7`表示python版本为3.7
 
     > 我们目前不支持CentOS 6下使用Docker编译GPU版本的PaddlePaddle
 
 9. 执行编译：
 
+    > 使用多核编译
+
     ```
     make -j$(nproc)
     ```
 
-    > 使用多核编译
 
 10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 
@@ -206,14 +208,13 @@
 
     For Python3:  
     ```
-    pip3.7 install -U（whl包的名字）
+    pip3.7 install -U [whl包的名字]
     ```
 
     注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
 
 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
-> 注：PaddlePaddle Docker镜像为了减小体积，默认没有安装`vim`，您可以在容器中执行 `apt install -y vim` 来安装
 
 <a name="ct_source"></a>
 ### <span id="compile_from_host">本机编译</span>

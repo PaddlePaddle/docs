@@ -151,7 +151,7 @@
 8. 安装编译好的 `.whl` 包：
 
     ```
-    pip install -U（whl包的名字）
+    pip install -U [whl包的名字]
     ```
 
 恭喜，至此您已完成PaddlePaddle的编译安装

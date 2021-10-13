@@ -86,40 +86,39 @@ Please follow the steps below to install:
 
 8. Use the following command to install the dependencies:
 
+    > Install protobuf 3.1.0.
+
     ```
     pip3.7 install protobuf==3.1.0
     ```
 
     Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
 
-    > Install protobuf 3.1.0.
+    > Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
 
     ```
     apt install patchelf
     ```
 
-    > Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
-
 9. Execute cmake:
 
-    > For details on the compilation options, see the [compilation options table](../Tables_en.html/#Compile).
-    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.7` means the version of python is 3.7
-
-    * For users who need to compile the **CPU version PaddlePaddle**:
+    * For users who need to compile the **CPU version PaddlePaddle** (We currently do not support the compilation of the GPU version PaddlePaddle under MacOS):
 
         ```
         cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release
         ```
+    > For details on the compilation options, see the [compilation options table](../Tables_en.html/#Compile).
 
-        > We currently do not support the compilation of the GPU version PaddlePaddle under CentOS.
+    > Please attention to modify parameters `-DPY_VERSION` for the version of Python you want to compile with, for example `-DPY_VERSION=3.7` means the version of python is 3.7
 
 10. Execute compilation:
+
+    > Use multicore compilation
 
     ```
     make -j$(nproc)
     ```
 
-    > Use multicore compilation
 
 11. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package:
     ```
@@ -131,14 +130,13 @@ Please follow the steps below to install:
 
     For Python3:
     ```
-    pip3.7 install -U (whl package name)
+    pip3.7 install -U [whl package name]
     ```
 
     Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
 
 Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
-> Note: In order to reduce the size, `vim` is not installed in PaddlePaddle Docker image by default. You can edit the code in the container after executing `apt-get install -y vim` in the container.
 
 <a name="mac_source"></a>
 <br/><br/>

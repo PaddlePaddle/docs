@@ -130,7 +130,7 @@ There is one compilation methods in Windows system:
 8. Install the generated `.whl` package:
 
      ```
-     pip install -U (whl package name)
+     pip install -U [whl package name]
      ```
 
 Congratulations, you have completed the process of compiling PaddlePaddle successfully!
