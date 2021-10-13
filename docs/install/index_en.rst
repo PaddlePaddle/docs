@@ -197,6 +197,8 @@ The second way to install: compile and install with source code
 	:hidden:
 
 	pip/frompip_en.rst
+    conda/fromconda_en.rst
+	docker/fromdocker_en.rst
 	compile/fromsource_en.rst
 	install_Kunlun_en.md
 	Tables_en.md

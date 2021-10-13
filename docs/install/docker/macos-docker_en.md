@@ -13,30 +13,31 @@ In the following Docker installation and use process, a specific version of Padd
 
 1. Pull PaddlePaddle image
 
+    For domestic users, when downloading docker is slow due to network problems, you can use the mirror provided by Baidu:
+
     * CPU version of PaddlePaddle：
         ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:[version number]
+        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0
         ```
 
     * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
         ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:[version number]-jupyter
+        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
         ```
 
     If your machine is not in mainland China, you can pull the image directly from DockerHub:
 
     * CPU version of PaddlePaddle：
         ```
-        docker pull paddlepaddle/paddle:[version number]
+        docker pull paddlepaddle/paddle:2.2.0rc0
         ```
 
     * CPU version of PaddlePaddle, and the image is pre-installed with jupyter：
         ```
-        docker pull paddlepaddle/paddle:[version number]-jupyter
+        docker pull paddlepaddle/paddle:2.2.0rc0-jupyter
+        ```
 
-    After `:`, please fill in the PaddlePaddle version number, such as the current version `paddlepaddle/paddle:2.2.0rc0`. For more details, please refer to [image profile](#dockers).
-
-    You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get the image that matches your machine.
+    You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get more images.
 
 2. Build and enter Docker container
 

@@ -15,47 +15,47 @@
 
 1. 拉取PaddlePaddle镜像
 
+    对于国内用户，因为网络问题下载docker比较慢时，可使用百度提供的镜像：
+
     * CPU版的PaddlePaddle：
         ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:[版本号]
+        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0
         ```
 
     * CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
         ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:[版本号]-jupyter
+        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
         ```
 
     * GPU版的PaddlePaddle：
         ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:[版本号]-gpu-cuda10.2-cudnn7
+        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7
         ```
         ```
-        docker pull registry.baidubce.com/paddlepaddle/paddle:[版本号]-gpu-cuda11.2-cudnn8
+        docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8
         ```
 
     如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像：
 
     * CPU版的PaddlePaddle：
         ```
-        docker pull paddlepaddle/paddle:[版本号]
+        docker pull paddlepaddle/paddle:2.2.0rc0
         ```
 
     * CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
         ```
-        docker pull paddlepaddle/paddle:[版本号]-jupyter
+        docker pull paddlepaddle/paddle:2.2.0rc0-jupyter
         ```
 
     * GPU版的PaddlePaddle：
         ```
-        docker pull paddlepaddle/paddle:[版本号]-gpu-cuda10.2-cudnn7
+        docker pull paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7
         ```
         ```
-        docker pull paddlepaddle/paddle:[版本号]-gpu-cuda11.2-cudnn8
+        docker pull paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8
         ```
 
-    在`:`后请您填写PaddlePaddle版本号，例如当前版本可使用`paddlepaddle/paddle:2.2.0rc0`，更多请见[镜像简介](#dockers)。
-
-    您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
+    您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取更多镜像。
 
 2. 构建、进入Docker容器
 
