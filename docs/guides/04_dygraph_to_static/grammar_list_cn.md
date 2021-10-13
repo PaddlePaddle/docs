@@ -1,7 +1,7 @@
-# 动转静语法支持速查文档
+# 语法支持列表
 
-## Abstract
-##### 主要针对场景
+## 主要针对场景
+
 本文档概览性介绍了飞桨动转静功能的语法支持情况，旨在向用户提供一个便捷的语法速查表，**主要适用于如下场景**：
 
 1. 不确定当前动态图模型是否可以正确转化为静态图
@@ -15,19 +15,19 @@
 
 若您对动转静原理感兴趣，或想深入了解此模块，推荐您阅读：[动转静基础原理](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/program_translator_cn.html)；
 
-若您想进行模型预测导出，或想了解调试的技巧，推荐您阅读：[预测模型导出教程](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/export_model/case_debug_cn.html)。
+若您想进行模型预测导出，或想了解调试的技巧，推荐您阅读：[预测模型导出教程](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/export_model/index_cn.html)。
 
 ## 语法支持速查列表
 
 |分类 |python语法 | 是否<br>支持 | 概要 | 
 |:---:|:---:|:---:|:---:|
 |<font color='purple'>控制流</font>| [if-else](#1) | 支持 | 自适应识别和转为静态图cond接口，或保持python if 执行 | 
-|| [while](#2) | 支持 |自适应识别和转为静态图while\_loop接口，或保持你python while 执行 |
+|| [while](#2) | 支持 |自适应识别和转为静态图while\_loop接口，或保持python while 执行 |
 || [for](#3) | 支持 | `for _ in x`语法支持对Tensor的迭代访问 |
 || [break<br>continue](#4)| 支持 | 支持循环中任意位置的break和continue |
 || [return](#4)| 支持 | 支持循环体中提前return | 
 |<font color='purple'>运算符</font>| +，-，，/，\*, >, <, >= , <=, == | 支持 | 自适应识别和应用paddle的运算符重载 |
-|| [and, or, not](#5) | 支持 | 1.如果运算符两个都是Tensor，会组网静态图。 <br> 2. 如果运算符都不是Tensor，那么使用原始python语义 <br> 3. 如果一个是Tensor，一般会导致错误。 |
+|| [and, or, not](#5) | 支持 | 1.如果运算符两个都是Tensor，会组网静态图。 <br> 2. 如果运算符都不是Tensor，那么使用原始python语义 <br> 3. 如果一个是Tensor一个是非Tensor，那么也会使用python语义，但是结果不会出错。 |
 || [类型转换运算符](#6) | 支持 | 自适应转换为paddle.cast 操作| 
 |<font color='purple'>Paddle shape</font>| [Tensor.shape()](#9) | 部分支持 | 支持获取编译期shape信息，可能包含-1 |
 |<font color='purple'>python函数类</font>| [print(x)](#7) | 支持 | 自适应识别和转为静态图的PrintOp |
@@ -40,6 +40,9 @@
 |<font color='purple'>Python基本容器</font>| [list](#8) | 部分支持 | 在控制流中转化为TensorArray，支持append，pop | 
 || [Dict](#8) | 支持 | 原生支持 |
 |<font color='purple'>第三方库相关</font>| numpy | 部分支持 | 仅支持numpy操作不需要导出到Program| 无 |
+
+
+
 
 
 
