@@ -7,6 +7,9 @@
 
 Before performing PaddlePaddle installation, please make sure that your Anaconda software environment is properly installed. For software download and installation, see Anaconda's official website (https://www.anaconda.com/). If you have installed Anaconda correctly, follow these steps to install PaddlePaddle.
 
+* CentOS 7 / Ubuntu16.04 / Ubuntu18.04 (64bit)
+* GPU Version support CUDA 10.1/10.2/11.2
+* conda version 4.8.3+ (64 bit)
 
 
 ### 1.1 Create Virtual Environment
@@ -125,19 +128,19 @@ conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anacon
 #### GPU Version of PaddlePaddle
 
 
-*  If you are using CUDA 10.1，cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher):
+*  If you are using CUDA 10.1，cuDNN 7 (cuDNN>=7.6.5, for multi card support, NCCL>=2.7):
 
   ```
   conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  If you are usingCUDA 10.2，cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher):
+*  If you are usingCUDA 10.2，cuDNN 7 (cuDNN>=7.6.5, for multi card support, NCCL>=2.7):
 
   ```
   conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
-*  If you are using CUDA 11.2，cuDNN v8.1.1(for multi card support, NCCL2.7 or higher):
+*  If you are using CUDA 11.2，cuDNN 8.1.1(for multi card support, NCCL>=2.7):
 
   ```
   conda install paddlepaddle-gpu==2.2.0rc0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
