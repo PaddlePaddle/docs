@@ -254,3 +254,18 @@ Bool型，缺省值为false。
 示例
 -------
 FLAGS_apply_pass_to_program=true - 当使用Fleet API时，在Program上使用IR Pass优化。 
+
+
+FLAGS_allreduce_record_one_event
+*******************************************
+since(v2.2.0)
+
+使allreduce操作只等待一个事件而不是多个事件。目前只适用于fuse allreduce的场景，否则精度会有误。
+
+取值范围
+---------------
+Bool型，缺省值为false。
+
+示例
+-------
+FLAGS_allreduce_record_one_event=true - 使allreduce操作只等待一个事件而不是多个事件。
