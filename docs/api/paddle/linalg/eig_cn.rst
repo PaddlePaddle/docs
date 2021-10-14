@@ -5,14 +5,14 @@ eig
 
 .. py:function:: paddle.linalg.eig(x, name=None)
 
-计算一般方阵``x``的的特征值和特征向量。
+计算一般方阵 ``x`` 的的特征值和特征向量。
+
+- 如果输入矩阵 ``x`` 为Hermitian矩阵或实对称阵，请使用更快的API :ref:`paddle.linalg.eigh` 。
+- 如果只计算特征值，请使用 :ref:`paddle.linalg.eigvals` 。
+- 如果矩阵 ``x`` 不是方阵，请使用 :ref:`paddle.linalg.svd` 。
 
 .. note::
-    - 如果输入矩阵 ``x`` 为Hermitian矩阵或实对称阵，请使用更快的API :ref:`paddle.linalg.eigh` 。
-    - 如果只计算特征值，请使用 :ref:`paddle.linalg.eigvals` 。
-    - 如果矩阵 ``x`` 不是方阵，请使用 :ref:`paddle.linalg.svd` 。
-    - 该API当前只能在CPU上执行。
-    - 对于输入是实数和复数类型，输出的数据类型均为复数。
+    该API当前只能在CPU上执行。对于输入是实数和复数类型，输出的数据类型均为复数。
 
 参数：
 :::::::::
