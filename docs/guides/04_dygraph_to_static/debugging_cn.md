@@ -30,18 +30,18 @@ if __name__ == '__main__':
 
 - **动转静报错栈起始标志位**：`In transformed code`，表示动转静报错信息栈，指运行转换后的代码时的报错信息。实际场景中，可以直接搜索`In transformed code`关键字，从这一行以下开始看报错日志即可。
 
-- **用户代码报错栈**：隐藏了框架层面的无用的报错信息，突用户代码报错栈。我们在出错代码下添加了波浪线和HERE指示词来提示具体的出错位置，并扩展了出错行代码上下文，帮助用户快速定位出错位置。如上图3中所示，可以看出最后出错的用户代码为`x = paddle.reshape(x, shape=[1, two])`。
+- **用户代码报错栈**：隐藏了框架层面的无用的报错信息，突用户代码报错栈。我们在出错代码下添加了波浪线和HERE指示词来提示具体的出错位置，并扩展了出错行代码上下文，帮助你快速定位出错位置。如上图3中所示，可以看出最后出错的用户代码为`x = paddle.reshape(x, shape=[1, two])`。
 
 - **框架层面报错信息**：提供了静态图组网报错信息。一般可以直接根据最后三行的信息，定位具体是在生成哪个 OpDesc 时报的错误，一般是与执行此 Op 的 infershape 逻辑报的错误。
 如上报错信息表明是reshape Op出错，出错原因是tensor x的shape为[3]，将其reshape为[1, 2]是不被允许的。
 
-**NOTE**：在某些场景下，会识别报错类型并给出修改建议，如下图所示。`Revise suggestion`下面是出错的排查建议，用户可以根据建议对代码进行排查修改。
+**NOTE**：在某些场景下，会识别报错类型并给出修改建议，如下图所示。`Revise suggestion`下面是出错的排查建议，你可以根据建议对代码进行排查修改。
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/revise_suggestion.png" style="zoom:45%" />
 
 ### 1.2 报错信息定制化展示
 #### 1.2.1 未经动转静报错模块处理的原生报错信息
-若您想查看 Paddle 原生报错信息栈，即未被动转静模块处理过的报错信息栈，可以设置环境变量 `TRANSLATOR_DISABLE_NEW_ERROR=1` 关闭动转静报错模块。该环境变量默认值为0，表示默认开启动转静报错模块。
+若你想查看 Paddle 原生报错信息栈，即未被动转静模块处理过的报错信息栈，可以设置环境变量 `TRANSLATOR_DISABLE_NEW_ERROR=1` 关闭动转静报错模块。该环境变量默认值为0，表示默认开启动转静报错模块。
 在1.1小节的代码中添加下面的代码即可以查看原生的报错信息：
 ```python
 import os
@@ -52,7 +52,7 @@ os.environ["TRANSLATOR_DISABLE_NEW_ERROR"] = '1'
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/original_error_log.png" style="zoom:45%" />
 
 #### 1.2.2 C++报错栈
-默认会隐藏C++报错栈，您可设置C++端的环境变量 `FLAGS_call_stack_level=2` 来显示 C++ 报错栈信息。如可以在终端输入`export FLAGS_call_stack_level=2`来进行设置，之后可以看到C++端的报错栈：
+默认会隐藏C++报错栈，你可设置C++端的环境变量 `FLAGS_call_stack_level=2` 来显示 C++ 报错栈信息。如可以在终端输入`export FLAGS_call_stack_level=2`来进行设置，之后可以看到C++端的报错栈：
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/c%2B%2B_error_log.png" style="zoom:45%" />
 
@@ -111,7 +111,7 @@ pdb是Python中的一个模块，该模块定义了一个交互式Pyhton源代�
 更多pdb使用使用方法可以查看pdb的[官方文档](https://docs.python.org/zh-cn/3/library/pdb.html)
 
 ### 2.2 打印转换后的静态图代码
-您可以打印转换后的静态图代码，有2种方法：
+你可以打印转换后的静态图代码，有2种方法：
 
 
 #### 2.2.1 set_code_level() 或 TRANSLATOR_CODE_LEVEL
@@ -130,7 +130,7 @@ def func(x):
 paddle.jit.set_code_level() # 也可设置 os.environ["TRANSLATOR_CODE_LEVEL"] = '100'，效果相同
 func(np.ones([1]))
 ```
-此外，如果您想将转化后的代码也输出到 `sys.stdout` , 可以设置参数 `also_to_stdout` 为 True，否则将仅输出到 `sys.stderr`。 `set_code_level` 函数可以设置查看不同的 AST Transformer 转化后的代码，详情请见 [set_code_level](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/jit/set_code_level_cn.html)。
+此外，如果你想将转化后的代码也输出到 `sys.stdout` , 可以设置参数 `also_to_stdout` 为 True，否则将仅输出到 `sys.stderr`。 `set_code_level` 函数可以设置查看不同的 AST Transformer 转化后的代码，详情请见 [set_code_level](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/jit/set_code_level_cn.html)。
 
 #### 2.2.2 被装饰后的函数的 code 属性
 如下代码中，装饰器@to_static会将函数 func 转化为一个类对象 StaticFunction，可以使用 StaticFunction 的 code 属性来获得转化后的代码。
@@ -199,7 +199,7 @@ Variable: assign_0.tmp_0
   - data: [1]
 ```
 ### 2.4 日志打印
-动转静在日志中记录了额外的调试信息，以帮助您了解动转静过程中函数是否被成功转换。 您可以调用 `paddle.jit.set_verbosity(level=0, also_to_stdout=False)` 或设置环境变量 `TRANSLATOR_VERBOSITY=level` 来设置日志详细等级，并查看不同等级的日志信息。目前，`level` 可以取值0-3：
+动转静在日志中记录了额外的调试信息，以帮助你了解动转静过程中函数是否被成功转换。 你可以调用 `paddle.jit.set_verbosity(level=0, also_to_stdout=False)` 或设置环境变量 `TRANSLATOR_VERBOSITY=level` 来设置日志详细等级，并查看不同等级的日志信息。目前，`level` 可以取值0-3：
 
 - 0: 无日志
 - 1: 包括了动转静转化流程的信息，如转换前的源码、转换的可调用对象
@@ -242,7 +242,7 @@ def func(x):
 
 Sun Sep 26 08:50:20 Dynamic-to-Static INFO: (Level 1) Convert callable object: convert <built-in function len>.
 ```
-此外，如果您想将日志也输出到 sys.stdout, 可以设置参数 also_to_stdout 为 True，否则将仅输出到 sys.stderr，详情请见 [set_verbosity](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/jit/set_verbosity_cn.html)。
+此外，如果你想将日志也输出到 sys.stdout, 可以设置参数 also_to_stdout 为 True，否则将仅输出到 sys.stderr，详情请见 [set_verbosity](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/jit/set_verbosity_cn.html)。
 
 
 ## 三、快速确定问题原因

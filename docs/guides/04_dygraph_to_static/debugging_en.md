@@ -30,11 +30,11 @@ The error log can be divided into 4 parts from top to bottom:
 
 - **The start flag of Dygraph-to-Static error stack**: `In transformed code`, represents the dynamic-to-static error message stack, and refers to the error message when the transformed code is running. In the actual scene, you can directly search for the `In transformed code` keyword, and start from this line and read the error log.
 
-- **User code error stack**: It hides the useless error message at the framework level, and reports the error stack of the user code. We add a wavy line and HERE indicator under the error code to indicate the specific error location. We also expanded the error line code context to help users quickly locate the error location. As shown in the third part of the above figure, it can be seen that the user code that made the last error is `x = paddle.reshape(x, shape=[1, two])`.
+- **User code error stack**: It hides the useless error message at the framework level, and reports the error stack of the user code. We add a wavy line and HERE indicator under the error code to indicate the specific error location. We also expanded the error line code context to help you quickly locate the error location. As shown in the third part of the above figure, it can be seen that the user code that made the last error is `x = paddle.reshape(x, shape=[1, two])`.
 
 - **Error message at the frame level**: Provides static graph networking error information. Generally, you can directly locate the error reported in which OpDesc was generated directly based on the information in the last three lines, which is usually the error reported by the infershape logic that executed this Op. The error message in the above figure indicates that the reshape Op error occurred. The cause of the error is that the shape of tensor x is [3], and it is not allowed to reshape it to [1, 2].
 
-**NOTE**: In some scenarios, the error type will be identified and suggestions for modification will be given, as shown in the figure below. `Revise suggestion` The following are troubleshooting suggestions for errors. Users can check and modify the code according to the suggestions.
+**NOTE**: In some scenarios, the error type will be identified and suggestions for modification will be given, as shown in the figure below. `Revise suggestion` The following are troubleshooting suggestions for errors. You can check and modify the code according to the suggestions.
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/revise_suggestion.png" style="zoom:45%" />
 
