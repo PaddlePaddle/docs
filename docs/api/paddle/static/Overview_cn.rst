@@ -66,6 +66,7 @@ Executor相关API
     " :ref:`data_norm <cn_api_fluid_layers_data_norm>` ", "数据正则化层"
     " :ref:`deform_conv2d <cn_api_paddle_static_nn_common_deform_conv2d>` ", "可变形卷积层"
     " :ref:`embedding <cn_api_fluid_input_embedding>` ", "嵌入层"
+    " :ref:`sparse_embedding <cn_api_fluid_contrib_layers_sparse_embedding>` ", "稀疏嵌入层"
     " :ref:`fc <cn_api_paddle_static_nn_common_fc>` ", "全连接层"
     " :ref:`group_norm <cn_api_fluid_layers_group_norm>` ", "Group Normalization方法"
     " :ref:`instance_norm <cn_api_fluid_layers_instance_norm>` ", "Instance Normalization方法"
