@@ -112,6 +112,7 @@ Padding层
     :header: "API名称", "API功能"
     
 
+    " :ref:`paddle.nn.CELU <cn_api_nn_CELU>` ", "CELU激活层"
     " :ref:`paddle.nn.ELU <cn_api_nn_ELU>` ", "ELU激活层"
     " :ref:`paddle.nn.GELU <cn_api_nn_GELU>` ", "GELU激活层"
     " :ref:`paddle.nn.Hardshrink <cn_api_nn_Hardshrink>` ", "Hardshrink激活层"
@@ -353,6 +354,7 @@ Padding相关函数
     :header: "API名称", "API功能"
     
 
+    " :ref:`paddle.nn.functional.celu <cn_api_nn_cn_celu>` ", "celu激活函数"
     " :ref:`paddle.nn.functional.elu <cn_api_nn_cn_elu>` ", "elu激活函数"
     " :ref:`paddle.nn.functional.elu_ <cn_api_nn_cn_elu_>` ", "Inplace 版本的 elu API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.gelu <cn_api_nn_cn_gelu>` ", "gelu激活函数"
