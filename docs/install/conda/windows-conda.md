@@ -130,7 +130,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 #### 2.1 <span id="cpu">CPU版的PaddlePaddle</span>
 
 ```
-conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+conda install paddlepaddle==2.1.3 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```
 
 
