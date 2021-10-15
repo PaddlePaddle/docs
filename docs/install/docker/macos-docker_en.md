@@ -48,24 +48,19 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
 
 
     ```
-    docker run --name <Name of container> -it -v $PWD:/paddle <imagename> /bin/bash
-    ```
-
-    > `--name <Name of container>`: set name of Docker;
-
-
-    > `-it`: The parameter indicates that the container has been operated interactively with the local machine;
-
-
-    > `-v $PWD:/paddle`: Specifies to mount the current path of the host (PWD variable will expand to the absolute path of the current path) to the /paddle directory inside the container;
-
-    > `<imagename>`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
-
-    > For example:
-
-    ```
     docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0 /bin/bash
     ```
+
+    - `--name paddle_docker`: set name of Docker, `paddle_docker` is name of docker you set;
+
+
+    - `-it`: The parameter indicates that the container has been operated interactively with the local machine;
+
+
+    - `-v $PWD:/paddle`: Specifies to mount the current path of the host (PWD variable in Linux will expand to the absolute path of the current path) to the /paddle directory inside the container;
+
+    - `registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0`: Specify the name of the image to be used. You can view it through the 'docker images' command. /bin/Bash is the command to be executed in Docker
+
 
 * Use CPU version of PaddlePaddle with jupyter：
 
@@ -80,24 +75,18 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
     cd ./jupyter_docker
     ```
     ```
-    docker run -p 80:80 --rm --env USER_PASSWD=<password you set> -v $PWD:/home/paddle <imagename>
+    docker run -p 80:80 --rm --env USER_PASSWD="password you set" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
     ```
 
-    > `--rm`: Delete the container after closing it;
+    - `--rm`: Delete the container after closing it;
 
 
-    > `--env USER_PASSWD=<password you set>`: Set the login password for jupyter, `<password you set>` is the password you set;
+    - `--env USER_PASSWD="password you set"`: Set the login password for jupyter, `password you set` is the password you set;
 
 
-    > `-v $PWD:/home/paddle`: Specifies to mount the current path (the PWD variable will be expanded to the absolute path of the current path) to the /home/paddle directory inside the container;
+    - `-v $PWD:/home/paddle`: Specifies to mount the current path (the PWD variable will be expanded to the absolute path of the current path) to the /home/paddle directory inside the container;
 
-    > `<imagename>`: Specify the name of the image to be used, you can view it through the `docker images` command
-
-    > For example:
-
-    ```
-    docker run -p 80:80 --rm --env USER_PASSWD="password only for test" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
-    ```
+    - `registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter`: Specify the name of the image to be used, you can view it through the `docker images` command
 
 
 

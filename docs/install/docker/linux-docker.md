@@ -66,24 +66,18 @@
 
 
     ```
-    docker run --name <Name of container> -it -v $PWD:/paddle <imagename> /bin/bash
-    ```
-
-    > `--name <Name of container>`：设定Docker的名称；
-
-
-    > `-it`：参数说明容器已和本机交互式运行；
-
-
-    > `-v $PWD:/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
-
-    > `<imagename>`：指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
-
-    > 示例如下：
-
-    ```
     docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0 /bin/bash
     ```
+
+    - `--name paddle_docker`：设定Docker的名称，`paddle_docker` 是自己设置的名称；
+
+
+    - `-it`：参数说明容器已和本机交互式运行；
+
+
+    - `-v $PWD:/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
+
+    - `registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0`：指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
 
 
 * 使用CPU版本的PaddlePaddle，且镜像中预装好了 jupyter：
@@ -98,48 +92,35 @@
     cd ./jupyter_docker
     ```
     ```
-    docker run -p 80:80 --rm --env USER_PASSWD=<password you set> -v $PWD:/home/paddle <imagename>
+    docker run -p 80:80 --rm --env USER_PASSWD="password you set" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
     ```
 
-    > `--rm`：关闭容器后删除容器；
+    - `--rm`：关闭容器后删除容器；
 
 
-    > `--env USER_PASSWD=<password you set>`：为 jupyter 设置登录密码，`<password you set>` 是自己设置的密码；
+    - `--env USER_PASSWD="password you set"`：为 jupyter 设置登录密码，`password you set` 是自己设置的密码；
 
 
-    > `-v $PWD:/home/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /home/paddle 目录；
+    - `-v $PWD:/home/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /home/paddle 目录；
 
-    > `<imagename>`：指定需要使用的image名称，您可以通过`docker images`命令查看
+    - `registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter`：指定需要使用的image名称，您可以通过`docker images`命令查看
 
-    > 示例如下：
-
-    ```
-    docker run -p 80:80 --rm --env USER_PASSWD="password only for test" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-jupyter
-    ```
 
 * 使用GPU版本的PaddlePaddle：
 
-
-
     ```
-    nvidia-docker run --name <Name of container> -it -v $PWD:/paddle <imagename> /bin/bash
+    nvidia-docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7 /bin/bash
     ```
 
-    > `--name <Name of container>`：设定Docker的名称；
+    - `--name paddle_docker`：设定Docker的名称，`paddle_docker` 是自己设置的名称；
 
 
-    > `-it`：参数说明容器已和本机交互式运行；
+    - `-it`：参数说明容器已和本机交互式运行；
 
 
-    > `-v $PWD:/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
+    - `-v $PWD:/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 
-    > `<imagename>`：指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
-
-    > 示例如下：
-
-    ```
-    nvidia-docker run --name paddle_docker -it -v $PWD:/paddle paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7 /bin/bash
-    ```
+    - `registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda10.2-cudnn7`：指定需要使用的image名称，如果您希望使用CUDA 11.2的镜像，也可以将其替换成`registry.baidubce.com/paddlepaddle/paddle:2.2.0rc0-gpu-cuda11.2-cudnn8`。您可以通过`docker images`命令查看镜像。/bin/bash是在Docker中要执行的命令
 
 
 
