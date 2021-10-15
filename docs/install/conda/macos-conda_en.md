@@ -48,14 +48,6 @@ conda create -n paddle_env python=3.9
 
 #### 1.1.2 Enter the Anaconda Virtual Environment
 
-for Windows
-
-```
-activate paddle_env
-```
-
-for MacOS/Linux
-
 ```
 conda activate paddle_env
 ```
