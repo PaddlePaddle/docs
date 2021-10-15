@@ -239,3 +239,33 @@ String. The default value is "./profile_ps".
 Example
 -------
 FLAGS_rpc_server_profile_path="/tmp/pserver_profile_log" generate profile log file at "/tmp/pserver_profile_log_listener_id".
+
+
+FLAGS_apply_pass_to_program
+*******************************************
+since(v2.2.0)
+
+It controls whether to apply IR pass to program when using Fleet APIs.
+
+Values accepted
+---------------
+Bool. The default value is false.
+
+Example
+-------
+FLAGS_apply_pass_to_program=true would apply IR pass to program when using Fleet APIs.
+
+
+FLAGS_allreduce_record_one_event
+*******************************************
+since(v2.2.0)
+
+Make the allreduce operations would only wait one event instead of multiple events. Currently, only fuse allreduce supports this. Otherwise, the precision may be wrong.
+
+Values accepted
+---------------
+Bool. The default value is false.
+
+Example
+-------
+FLAGS_allreduce_record_one_event=true would make the allreduce operations would only wait one event instead of multiple events.

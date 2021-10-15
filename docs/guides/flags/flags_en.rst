@@ -1,3 +1,5 @@
+.. _en_guides_flags_flags:
+
 ==================
 FLAGS
 ==================
@@ -25,6 +27,7 @@ FLAGS Quick Search
     distributed_en.rst
     executor_en.rst
     memory_en.rst
+    npu_en.rst
     others_en.rst
 
 

@@ -433,7 +433,10 @@ def set_api_sketch():
         paddle.incubate,
         paddle.inference,
         paddle.onnx,
-        paddle.device
+        paddle.device,
+        paddle.device.cuda,
+        paddle.linalg,
+        paddle.fft
     ]
 
     alldict = {}
@@ -949,6 +952,10 @@ def extract_code_blocks_from_docstr(docstr):
                     cb_info['cb_cur_indent'] = mo.start()
                     cb_info['cb_cur'].append(linecont)
                 else:
+                    mo = re.search(r"\S", linecont)
+                    if mo is None:
+                        cb_info['cb_cur'].append(linecont)
+                        continue
                     if cb_info['cb_cur_indent'] <= mo.start():
                         cb_info['cb_cur'].append(linecont)
                     else:

@@ -239,3 +239,33 @@ String型，缺省值为"./profile_ps"。
 示例
 -------
 FLAGS_rpc_server_profile_path="/tmp/pserver_profile_log" - 在"/tmp/pserver_profile_log_listener_id"中生成配置日志文件。
+
+
+FLAGS_apply_pass_to_program
+*******************************************
+since(v2.2.0)
+
+它控制当使用Fleet API时，是否在Program上使用IR Pass优化。
+
+取值范围
+---------------
+Bool型，缺省值为false。
+
+示例
+-------
+FLAGS_apply_pass_to_program=true - 当使用Fleet API时，在Program上使用IR Pass优化。 
+
+
+FLAGS_allreduce_record_one_event
+*******************************************
+since(v2.2.0)
+
+使allreduce操作只等待一个事件而不是多个事件。目前只适用于fuse allreduce的场景，否则精度会有误。
+
+取值范围
+---------------
+Bool型，缺省值为false。
+
+示例
+-------
+FLAGS_allreduce_record_one_event=true - 使allreduce操作只等待一个事件而不是多个事件。
