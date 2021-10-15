@@ -19,25 +19,25 @@
 
 ## 语法支持速查列表
 
-|分类 |python语法 | 是否<br>支持 | 概要 | 
+|分类 |python语法 | 是否<br>支持 | 概要 |
 |:---:|:---:|:---:|:---:|
-|<font color='purple'>控制流</font>| [if-else](#1) | 支持 | 自适应识别和转为静态图cond接口，或保持python if 执行 | 
+|<font color='purple'>控制流</font>| [if-else](#1) | 支持 | 自适应识别和转为静态图cond接口，或保持python if 执行 |
 || [while](#2) | 支持 |自适应识别和转为静态图while\_loop接口，或保持python while 执行 |
 || [for](#3) | 支持 | `for _ in x`语法支持对Tensor的迭代访问 |
 || [break<br>continue](#4)| 支持 | 支持循环中任意位置的break和continue |
-|| [return](#4)| 支持 | 支持循环体中提前return | 
+|| [return](#4)| 支持 | 支持循环体中提前return |
 |<font color='purple'>运算符</font>| +，-，，/，\*, >, <, >= , <=, == | 支持 | 自适应识别和应用paddle的运算符重载 |
 || [and, or, not](#5) | 支持 | 1.如果运算符两个都是Tensor，会组网静态图。 <br> 2. 如果运算符都不是Tensor，那么使用原始python语义 <br> 3. 如果一个是Tensor一个是非Tensor，那么也会使用python语义，但是结果不会出错。 |
-|| [类型转换运算符](#6) | 支持 | 自适应转换为paddle.cast 操作| 
+|| [类型转换运算符](#6) | 支持 | 自适应转换为paddle.cast 操作|
 |<font color='purple'>Paddle shape</font>| [Tensor.shape()](#9) | 部分支持 | 支持获取编译期shape信息，可能包含-1 |
 |<font color='purple'>python函数类</font>| [print(x)](#7) | 支持 | 自适应识别和转为静态图的PrintOp |
 || [len(x)](#) | 支持 | 支持返回Tensor编译期shape[0]的值 |
-|| [lambda 表达式](#7) | 支持 | 等价转换 | 
-|| [函数调用其他函数](#7) | 支持 | 会对内部的函数递归地进行动转静 | 
+|| [lambda 表达式](#7) | 支持 | 等价转换 |
+|| [函数调用其他函数](#7) | 支持 | 会对内部的函数递归地进行动转静 |
 || [函数递归调用](#7) | 不支持 | 递归调用不会终止 |
 || [list sort](#8) | 不支持 | list可能会被转化为TensorArray，故不支持此复杂操作 |
 |<font color='purple'>报错异常相关</font>| assert | 支持 | 自适应识别和转换为静态图Assert接口 | 无 |
-|<font color='purple'>Python基本容器</font>| [list](#8) | 部分支持 | 在控制流中转化为TensorArray，支持append，pop | 
+|<font color='purple'>Python基本容器</font>| [list](#8) | 部分支持 | 在控制流中转化为TensorArray，支持append，pop |
 || [Dict](#8) | 支持 | 原生支持 |
 |<font color='purple'>第三方库相关</font>| numpy | 部分支持 | 仅支持numpy操作不需要导出到Program| 无 |
 
@@ -82,9 +82,9 @@
 
 > 注：while循环条件中的Tensor须是numel为1的bool Tensor，否则会报错。
 
-**错误修改指南：** 
+**错误修改指南：**
 
-类似` if-elif-else`，注意事项也相似。 
+类似` if-elif-else`，注意事项也相似。
 
 
 
@@ -98,22 +98,22 @@ for循环按照使用方法的不同，语义有所不同。正常而言，for�
 - `for _ in range(len) `循环：动转静会先将其转化为等价的Python while循环，然后按while循环的逻辑进行动静转换。
 
 - `for _ in x `循环： 当x是Python容器或迭代器，则会用普通Python逻辑运行。当x是Tensor时，会转化为依次获取x[0], x[1], ... 。
-- `for idx, val in enumerate(x)`循环：当x是Python容器或迭代器，则会用普通Python逻辑运行。当x是Tensor时，idx会转化为依次0，1，...的1-D Tensor。val会转化为循环中每次对应拿出x[0], x[1], ... 。 
+- `for idx, val in enumerate(x)`循环：当x是Python容器或迭代器，则会用普通Python逻辑运行。当x是Tensor时，idx会转化为依次0，1，...的1-D Tensor。val会转化为循环中每次对应拿出x[0], x[1], ... 。
 
 从实现而言，for循环最终会转化为对应的while语句，然后使用`WhileOp`来进行组网。
 
 **使用样例**：
 
-此处使用上述For的第二个用法举例。如果x是一个多维Tensor，则也是返回 x[0] ，x[1]. ... 
+此处使用上述For的第二个用法举例。如果x是一个多维Tensor，则也是返回 x[0] ，x[1]. ...
 
 
 ```python
 def ForTensor(x):
     """Fetch element in x and print the square of each x element"""
-    for i in x : 
+    for i in x :
         print (i * i)
 
-#调用方法，ForTensor(paddle.to_tensor(x)) 
+#调用方法，ForTensor(paddle.to_tensor(x))
 ```
 
 
@@ -130,11 +130,11 @@ def ForTensor(x):
 ```python
 # break 的使用样例
 def break_usage(x):
-    tensor_idx = -1    
-    for idx, val in enumerate(x) : 
-        if val == 2.0 : 
+    tensor_idx = -1  
+    for idx, val in enumerate(x) :
+        if val == 2.0 :
             tensor_idx = idx
-            break  # <------- jump out of while loop when break ; 
+            break  # <------- jump out of while loop when break ;
     return tensor_idx
 ```
 当时输入 x = Tensor([1.0, 2.0 ,3.0]) 时，输出的tensor_idx是 Tensor([1])。
@@ -161,7 +161,7 @@ def break_usage(x):
 
 ```python
 def and(x, y):
-    z = y and x 
+    z = y and x
     return z
 ```
 
@@ -179,7 +179,7 @@ def and(x, y):
 def float_convert(x):
     z = float(x)
     return z
-# 如果输入是 x = Tensor([True]) ，则 z = Tensor([1.0]) 
+# 如果输入是 x = Tensor([True]) ，则 z = Tensor([1.0])
 ```
 
 
@@ -207,10 +207,10 @@ def float_convert(x):
 
 ```python
 def lambda_call(x):
-    t = lambda x : x * x 
+    t = lambda x : x * x
     z = t(x)
     return z
-# 如果输入是 x = Tensor([2.0]) ，则 z = Tensor([4.0]) 
+# 如果输入是 x = Tensor([2.0]) ，则 z = Tensor([4.0])
 ```
 
 **不支持用法**：
@@ -221,7 +221,7 @@ def lambda_call(x):
 
 ```python
 def recur_call(x):
-    if x > 10: 
+    if x > 10:
         return x
     return recur_call(x * x) # < ------ 如果输入是 x = Tensor([2.0]) ，动态图输出为 Tensor([16])，静态图会出现调用栈溢出
 ```
@@ -248,7 +248,7 @@ def list_example(x, y):
 **不支持用法**：
 
 - List的多重嵌套
- 
+
  如 `l = [[tensor1, tensor2], [tensor3, tensor4]] `，因为现在动转静将元素全是Tensor的list转化为TensorArray，但TensorArray还不支持多维数组，因此这种情况下，动转静无法正确运行。遇到这类情况我们建议尽量用一维list，或者自己使用PaddlePaddle的create_array，array_read，array_write接口编写为TensorArray。
 
 
@@ -259,7 +259,7 @@ def list_example(x, y):
 def sort_list(x, y):
     a = [x, y]
     sort(a)   # < -----  不支持，因为转化为TensorArray之后不支持sort操作。但是支持简单的append,pop和按下标修改
-    return a 
+    return a
 ```
 
 ### paddle shape函数
