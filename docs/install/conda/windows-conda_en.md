@@ -132,7 +132,7 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.1 <span id="cpu">CPU Version of PaddlePaddle</span>
 
 ```
-conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+conda install paddlepaddle==2.1.3 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```
 
 
