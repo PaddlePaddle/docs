@@ -26,7 +26,7 @@ We introduce the transformation of dygraph to static graph in the following link
 
     basic_usage_en.rst
     program_translator_en.rst
-    grammar_list_en.rst
+    grammar_list_en.md
     input_spec_en.rst
     debugging_en.md
 
