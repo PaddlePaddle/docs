@@ -2,7 +2,9 @@
 Kernel Primitive API
 #############
 
-本部分为 PaddlePaddle 高级开发人员提供了用于 Kernel 开发的 CUDA Kernel Primitive API，该类 API 能够帮助开发者在提升开发效率的同时收获较好的性能。Kernel Primitive API 主要包括 IO API、Compute API以及 OpFunc，IO API 能够高效的完成全局内存与寄存器间的数据读写操作；Compute API 为通用计算函数，如ElementwiseBinary、ElementwiseUnary 等；OpFunc 用于定义 Compute API 中的计算规则，例如实现 Add 操作则需要定义 AddFunctor 用于 ElementwiseBinary 调用，开发者可以直接使用默认的 OpFunc 也可以根据需要进行自定义，具体的实现规则将在 OpFunc 小节中进行详细介绍。当前 API 均是 Block 级别的多线程 API，开发者可以直接传入当前 Block 的数据指针以及操作类型完成相应的计算，目前仅支持全局数据指针和寄存器指针。
+Kernel Primitive API 对算子 Kernel 实现中的底层代码进行了抽象与功能封装，提供高性能的 Block 级 IO 运算和 Compute 运算。使用 Kernel Primitive API 进行 Kernel 开发可以更加专注计算逻辑的实现，在保证性能的同时大幅减少代码量，同时实现了算子计算与硬件解耦。
+
+本部分为 PaddlePaddle 高级开发人员提供了用于 Kernel 开发的 CUDA Kernel Primitive API，该类 API 能够帮助开发者在提升开发效率的同时收获较好的性能。Kernel Primitive API 主要包括 IO API、Compute API 以及 OpFunc，IO API 能够高效的完成全局内存与寄存器间的数据读写操作。Compute API 为通用计算函数，如ElementwiseBinary、ElementwiseUnary 等；OpFunc 用于定义 Compute API 中的计算规则，例如实现 Add 操作则需要定义 AddFunctor 用于 ElementwiseBinary 调用，开发者可以直接使用默认的 OpFunc 也可以根据需要进行自定义，具体的实现规则将在 OpFunc 小节中进行详细介绍。当前 API 均是 Block 级别的多线程 API，开发者可以直接传入当前 Block 的数据指针以及操作类型完成相应的计算，目前仅支持全局数据指针和寄存器指针。
 
 API 列表
 ############
