@@ -11,8 +11,7 @@ crf_decode
     - **potentials (Tensor)** 发射概率。形状为[batch_size, sequence_length, num_tags]，数据类型为float32或float64。
     - **transition_params (Tensor)** 转移概率。形状为[num_tags, num_tags]，数据类型为float32或float64。
     - **sequence_length (Tensor)** 序列真实长度。形状为[batch_size]，数据类型为int64。
-    - **include_start_end_tag (bool, 可选)** 是否包含前置、后置标签。如果设为True，**transition_params** 中倒数第一列为前置标签的转移概率，
-        倒数第二列为后置标签的转移概率。默认值为True。
+    - **include_start_end_tag (bool, 可选)** 是否包含前置、后置标签。如果设为True，**transition_params** 中倒数第一列为前置标签的转移概率，倒数第二列为后置标签的转移概率。默认值为True。
     - **name (str, 可选）** 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name` 。
 
 返回
