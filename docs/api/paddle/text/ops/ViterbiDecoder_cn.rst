@@ -15,7 +15,7 @@ ViterbiDecoder
 形状
 :::::::::
     - **potentials (Tensor)** 发射概率。形状为[batch_size, sequence_length, num_tags]，数据类型为float32或float64。
-    - **length (Tensor)** 序列真实长度。形状为[batch_size]，数据类型为int64。
+    - **lengths (Tensor)** 序列真实长度。形状为[batch_size]，数据类型为int64。
 
 返回
 :::::::::
