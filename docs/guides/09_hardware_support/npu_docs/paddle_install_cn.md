@@ -1,6 +1,6 @@
 # 飞桨框架昇腾NPU版安装说明
 
-飞桨框架NPU版支持基于华为鲲鹏CPU与昇腾NPU的Python的训练和原生预测，当前支持的CANN社区版5.0.2.alpha005 Paddle版本为develop。
+飞桨框架NPU版支持基于华为鲲鹏CPU与昇腾NPU的Python的训练和原生推理，当前支持的CANN社区版5.0.2.alpha005 Paddle版本为develop。
 
 ## 安装方式：通过源码编译安装
 
