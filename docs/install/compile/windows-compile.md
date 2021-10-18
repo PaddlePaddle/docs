@@ -3,7 +3,7 @@
 ## 环境准备
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
-* **GPU版本支持CUDA 10.1/10.2/11.2，且仅支持单卡**
+* **GPU版本支持CUDA 10.1/10.2/11.0/11.2，且仅支持单卡**
 * **Python 版本 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 * **pip 版本 20.2.2或更高版本 (64 bit)**
 * **Visual Studio 2017**
@@ -13,7 +13,8 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * **CUDA 工具包 10.1/10.2 配合 cuDNN v7.6.5+**
+    * **CUDA 工具包 10.1/10.2 配合 cuDNN 7 (cuDNN版本>=7.6.5）**
+    * **CUDA 工具包 11.0 配合 cuDNN v8.0.4**
     * **CUDA 工具包 11.2 配合 cuDNN v8.1.1**
     * **GPU运算能力超过3.5的硬件设备**
 
@@ -60,10 +61,16 @@
     cd Paddle
     ```
 
-3. 切换到`develop`分支下进行编译：
+3. 切换到较稳定release分支下进行编译：
 
     ```
-    git checkout develop
+    git checkout [分支名]
+    ```
+
+    例如：
+
+    ```
+    git checkout release/2.2
     ```
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
@@ -80,7 +87,6 @@
 5. 执行cmake：
 
     > 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。在Windows系统下可以通过Ninja命令行方式编译（推荐）或Visual Studio IDE方式编译，需要在cmake命令中通过-G选项进行指定，如下：
-
     *  1）通过Ninja命令行方式编译（推荐）：
 
         需要先通过如下命令安装ninja：
@@ -91,7 +97,6 @@
         然后在搜索栏中搜索 "x64 Native Tools Command Prompt for VS 2017" 或 "适用于VS 2017 的x64本机工具命令提示符"，以管理员身份运行，再输入以下cmake命令。
 
         * **CPU版本PaddlePaddle**：
-
         ```
         cmake .. -G "Ninja" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
@@ -146,7 +151,7 @@
 8. 安装编译好的 `.whl` 包：
 
     ```
-    pip install -U（whl包的名字）
+    pip install -U [whl包的名字]
     ```
 
 恭喜，至此您已完成PaddlePaddle的编译安装
