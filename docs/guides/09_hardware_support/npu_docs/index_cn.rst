@@ -8,13 +8,11 @@
 
 参考以下内容可快速了解和体验在昇腾芯片上运行飞桨：
 
-- `飞桨框架昇腾NPU版支持模型 <./paddle_models_cn.html>`_ : 飞桨框架昇腾NPU版支持模型
 - `飞桨框架昇腾NPU版安装说明 <./paddle_install_cn.html>`_ : 飞桨框架昇腾NPU版安装说明
 - `飞桨框架昇腾NPU版训练示例 <./train_example_cn.html>`_ : 飞桨框架昇腾NPU版训练示例
 
 ..  toctree::
     :hidden:
 
-    paddle_models_cn.md
     paddle_install_cn.md
     train_example_cn.md
