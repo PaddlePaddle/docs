@@ -48,7 +48,7 @@
     ```
 
 
-* You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
+* You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture, except mac M1. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
 
 
     ```
