@@ -81,7 +81,7 @@ python --version
 
 #### 1.2.3 Check the system environment
 
-Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture, except mac M1 . The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
+Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture, except mac M1. PaddlePaddle already supports Mac M1 . The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
 
 
 ```
