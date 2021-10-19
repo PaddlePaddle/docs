@@ -1,10 +1,21 @@
 # 飞桨框架昇腾NPU版安装说明
 
-飞桨框架NPU版支持基于华为鲲鹏CPU与昇腾NPU的Python的训练和原生推理，当前支持的CANN社区版5.0.2.alpha005 Paddle版本为develop。
+飞桨框架NPU版支持基于华为鲲鹏CPU与昇腾NPU的Python的训练和原生推理。
+
+### 环境准备
+
+当前Paddle昇腾910 NPU版支持的华为CANN社区版5.0.2.alpha005，请先根据华为昇腾910 NPU的要求，进行相关NPU运行环境的部署和配置，参考华为官方文档 [CANN社区版安装指南](https://support.huaweicloud.com/instg-cli-cann502-alpha005/atlasdeploy_03_0002.html)。
+
+Paddle 昇腾910 NPU版目前仅支持源码编译安装，其中编译与运行相关的环境要求如下：
+
+- **CPU处理器:** 鲲鹏920
+- **操作系统:** Ubuntu 18.04 / CentOS 7.6 / KylinV10SP1 / EulerOS 2.8
+- **CANN社区版:** 5.0.2.alpha005
+- **Python版本:** 3.7
+- **Cmake版本:** 3.15+
+- **GCC/G++版本:** 8.2+
 
 ## 安装方式：通过源码编译安装
-
-**预先要求**：请先根据华为昇腾910 NPU的要求，进行相关NPU运行环境的部署和配置，参考华为官方文档 [CANN社区版安装指南](https://support.huaweicloud.com/instg-cli-cann502-alpha005/atlasdeploy_03_0002.html)。
 
 **第一步**：准备 CANN 社区版 5.0.2.alpha005 运行环境 (推荐使用Paddle镜像)
 
