@@ -29,6 +29,6 @@ GoogLeNet模型，Layer的实例。
     # model = googlenet(pretrained=True)
 
     x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
+    out, out1, out2 = model(x)
 
     print(out.shape)
