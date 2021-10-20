@@ -1,8 +1,8 @@
-.. _cn_api_paddle_text_ops_viterbi_decode:
+.. _cn_api_paddle_text_viterbi_decode:
 
 viterbi_decode
 -------------------------------
-.. py:function:: paddle.text.ops.viterbi_decode(potentials, transition_params, lengths, include_bos_eos_tag=True, name=None)
+.. py:function:: paddle.text.viterbi_decode(potentials, transition_params, lengths, include_bos_eos_tag=True, name=None)
 
 该层利用输入的发射概率和转移概率进行解码。通过用Viterbi算法，动态地寻找隐藏状态最可能的序列，该序列也被称为 Viterbi 路径（Viterbi path），从而得到观察标签 (tags) 序列。
 
@@ -32,6 +32,6 @@ viterbi_decode
     length = paddle.randint(1, seq_len + 1, [batch_size])
     tags = paddle.randint(0, num_tags, [batch_size, seq_len])
     transition = paddle.rand((num_tags, num_tags), dtype='float32')
-    scores, path = paddle.text.ops.viterbi_decode(emission, transition, length, False)
+    scores, path = paddle.text.viterbi_decode(emission, transition, length, False)
     # scores: Tensor(shape=[2], dtype=float32, place=CUDAPlace(0), stop_gradient=True, [3.37089300, 1.56825531])
     # path: Tensor(shape=[2, 3], dtype=int64, place=CUDAPlace(0), stop_gradient=True, [[1, 0, 0], [1, 1, 0]])

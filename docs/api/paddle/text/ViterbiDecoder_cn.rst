@@ -1,8 +1,8 @@
-.. _cn_api_paddle_text_ops_ViterbiDecoder:
+.. _cn_api_paddle_text_ViterbiDecoder:
 
 ViterbiDecoder
 -------------------------------
-.. py:class:: paddle.text.ops.ViterbiDecoder(transitions, include_bos_eos_tag=True, name=None)
+.. py:class:: paddle.text.ViterbiDecoder(transitions, include_bos_eos_tag=True, name=None)
 
 该接口用于构建一个 ``ViterbiDecoder`` 类的可调用对象。请参见 :ref:`cn_api_paddle_text_ops_viterbi_decode` API。
 
@@ -35,7 +35,7 @@ ViterbiDecoder
    length = paddle.randint(1, seq_len + 1, [batch_size])
    tags = paddle.randint(0, num_tags, [batch_size, seq_len])
    transition = paddle.rand((num_tags, num_tags), dtype='float32')
-   decoder = paddle.text.ops.ViterbiDecoder(transition, include_bos_eos_tag=False)
+   decoder = paddle.text.ViterbiDecoder(transition, include_bos_eos_tag=False)
    scores, path = decoder(emission, length)
    # scores: Tensor(shape=[2], dtype=float32, place=CUDAPlace(0), stop_gradient=True, [3.37089300, 1.56825531])
    # path: Tensor(shape=[2, 3], dtype=int64, place=CUDAPlace(0), stop_gradient=True, [[1, 0, 0], [1, 1, 0]])
