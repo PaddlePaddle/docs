@@ -8,9 +8,10 @@ paddle.fft 目录下包含飞桨框架支持的快速傅里叶变换的相关API
 -  :ref:`标准快速傅里叶变换 <standard_ffts>`
 -  :ref:`实数傅里叶变换 <real_ffts>`
 -  :ref:`厄米特傅里叶变换 <hermitian_ffts>`
--  :ref:`标准快速傅里叶变换 <helper_functions>`
+-  :ref:`辅助函数 <helper_functions>`
 
 .. _standard_ffts:
+
 标准快速傅里叶变换
 ==========================
 
@@ -25,6 +26,7 @@ paddle.fft 目录下包含飞桨框架支持的快速傅里叶变换的相关API
     " :ref:`paddle.fft.ifftn <cn_api_paddle_fft_ifftn>` ", "N 维逆向离散傅里叶变换"
 
 .. _real_ffts:
+
 实数傅里叶变换
 ==========================
 
@@ -39,6 +41,7 @@ paddle.fft 目录下包含飞桨框架支持的快速傅里叶变换的相关API
     " :ref:`paddle.fft.irfftn <cn_api_paddle_fft_irfftn>` ", "N 维离散实数傅里叶变换的逆变换"
 
 .. _hermitian_ffts:
+
 厄米特傅里叶变换
 ==========================
 
@@ -53,6 +56,7 @@ paddle.fft 目录下包含飞桨框架支持的快速傅里叶变换的相关API
     " :ref:`paddle.fft.ihfftn <cn_api_paddle_fft_ihfftn>` ", "N 维离散厄米特傅里叶变换的逆变换"
 
 .. _helper_functions:
+
 辅助函数
 ==========================
 
