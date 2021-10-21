@@ -2,7 +2,7 @@
 
 **作者:** [GT_老张](https://github.com/GT-ZhangAcer)  
 
-**时间:** 2021.06
+**时间:** 2021.10
 
 **摘要:** 本篇将介绍如何通过飞桨实现简单的CRNN+CTC自定义数据集OCR识别模型，数据集采用[CaptchaDataset](https://github.com/GT-ZhangAcer/CaptchaDataset)中OCR部分的9453张图像，其中前8453张图像在本案例中作为训练集，后1000张则作为测试集。  
 在更复杂的场景中推荐使用[PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)产出工业级模型，模型轻量且精度大幅提升。  
@@ -10,7 +10,7 @@
 
 ## 一、环境配置
 
-本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -18,7 +18,7 @@ import paddle
 print(paddle.__version__)
 ```
 
-    2.1.1
+    2.2.0-rc0
 
 
 ## 二、自定义数据集读取器
@@ -35,12 +35,15 @@ print(paddle.__version__)
 
 
 ```python
-# 下载数据集
+# 下载数据集 
 !wget -O OCR_Dataset.zip https://bj.bcebos.com/v1/ai-studio-online/c91f50ef72de43b090298a38281e9c59a2d741eadd334f1cba7c710c5496e342?responseContentDisposition=attachment%3B%20filename%3DOCR_Dataset.zip&authorization=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2020-10-27T09%3A50%3A21Z%2F-1%2F%2Fddc4aebed803af6c57dac46abba42d207961b78e7bc81744e8388395979b66fa
+```
+
+
+```python
 # 解压数据集
 !unzip OCR_Dataset.zip -d data/
 ```
-
 
 
 ```python
@@ -272,66 +275,66 @@ model.fit(train_data=Reader(DATA_PATH),
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/10
-    step 529/529 [==============================] - loss: 0.4699 - 16ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/0
+    step 529/529 [==============================] - loss: 0.0891 - 9ms/step         
+    save checkpoint at /home/aistudio/output/0
     Eval begin...
-    step 63/63 [==============================] - loss: 0.5287 - 9ms/step          
+    step 63/63 [==============================] - loss: 0.0830 - 6ms/step        
     Eval samples: 1000
     Epoch 2/10
-    step 529/529 [==============================] - loss: 0.1224 - 16ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/1
+    step 529/529 [==============================] - loss: 0.0199 - 10ms/step        
+    save checkpoint at /home/aistudio/output/1
     Eval begin...
-    step 63/63 [==============================] - loss: 0.2269 - 10ms/step          
+    step 63/63 [==============================] - loss: 0.0353 - 6ms/step        
     Eval samples: 1000
     Epoch 3/10
-    step 529/529 [==============================] - loss: 0.1730 - 16ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/2
+    step 529/529 [==============================] - loss: 0.2133 - 10ms/step        
+    save checkpoint at /home/aistudio/output/2
     Eval begin...
-    step 63/63 [==============================] - loss: 0.1182 - 9ms/step          
+    step 63/63 [==============================] - loss: 0.0259 - 6ms/step        
     Eval samples: 1000
     Epoch 4/10
-    step 529/529 [==============================] - loss: 0.0290 - 16ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/3
+    step 529/529 [==============================] - loss: 0.0133 - 9ms/step        
+    save checkpoint at /home/aistudio/output/3
     Eval begin...
-    step 63/63 [==============================] - loss: 0.0673 - 9ms/step          
+    step 63/63 [==============================] - loss: 0.0210 - 6ms/step        
     Eval samples: 1000
     Epoch 5/10
-    step 529/529 [==============================] - loss: 0.0297 - 16ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/4
+    step 529/529 [==============================] - loss: 0.0110 - 10ms/step        
+    save checkpoint at /home/aistudio/output/4
     Eval begin...
-    step 63/63 [==============================] - loss: 0.0491 - 9ms/step          
+    step 63/63 [==============================] - loss: 0.0130 - 5ms/step        
     Eval samples: 1000
     Epoch 6/10
-    step 529/529 [==============================] - loss: 0.0515 - 16ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/5
+    step 529/529 [==============================] - loss: 0.0150 - 9ms/step         
+    save checkpoint at /home/aistudio/output/5
     Eval begin...
-    step 63/63 [==============================] - loss: 0.0345 - 9ms/step          
+    step 63/63 [==============================] - loss: 0.0111 - 6ms/step        
     Eval samples: 1000
     Epoch 7/10
-    step 529/529 [==============================] - loss: 0.0125 - 16ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/6
+    step 529/529 [==============================] - loss: 0.0039 - 9ms/step        
+    save checkpoint at /home/aistudio/output/6
     Eval begin...
-    step 63/63 [==============================] - loss: 0.0260 - 10ms/step          
+    step 63/63 [==============================] - loss: 0.0093 - 6ms/step        
     Eval samples: 1000
     Epoch 8/10
-    step 529/529 [==============================] - loss: 0.0122 - 16ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/7
+    step 529/529 [==============================] - loss: 0.0100 - 9ms/step         
+    save checkpoint at /home/aistudio/output/7
     Eval begin...
-    step 63/63 [==============================] - loss: 0.0255 - 9ms/step          
+    step 63/63 [==============================] - loss: 0.0059 - 5ms/step        
     Eval samples: 1000
     Epoch 9/10
-    step 529/529 [==============================] - loss: 0.1127 - 16ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/8
+    step 529/529 [==============================] - loss: 0.0096 - 9ms/step        
+    save checkpoint at /home/aistudio/output/8
     Eval begin...
-    step 63/63 [==============================] - loss: 0.0196 - 9ms/step          
+    step 63/63 [==============================] - loss: 0.0061 - 5ms/step        
     Eval samples: 1000
     Epoch 10/10
-    step 529/529 [==============================] - loss: 0.0050 - 16ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/9
+    step 529/529 [==============================] - loss: 0.0066 - 10ms/step        
+    save checkpoint at /home/aistudio/output/9
     Eval begin...
-    step 63/63 [==============================] - loss: 0.0212 - 9ms/step          
+    step 63/63 [==============================] - loss: 0.0054 - 6ms/step        
     Eval samples: 1000
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/image_ocr/output/final
+    save checkpoint at /home/aistudio/output/final
 
 
 ## 六、预测前准备
@@ -408,9 +411,7 @@ plt.show()
 ```
 
 
-    
-![png](output_26_0.png)
-    
+![png](output_27_0.png)
 
 
 ## 七、开始预测
@@ -474,32 +475,17 @@ for text_batch in results[0]:
     
     In Paddle <= 2.0, data is in format '[Tensor(shape=(1, 2, 3), dtype=float32)]', and in Paddle >= 2.1, data is in format 'Tensor(shape=(1, 2, 3), dtype=float32)'
     
-    WARNING: Detect dataset only contains single fileds, return format changed since Paddle 2.1. In Paddle <= 2.0, DataLoader add a list surround output data(e.g. return [data]), and in Paddle >= 2.1, DataLoader return the single filed directly (e.g. return data). For example, in following code: 
-    
-    import numpy as np
-    from paddle.io import DataLoader, Dataset
-    
-    class RandomDataset(Dataset):
-        def __getitem__(self, idx):
-            data = np.random.random((2, 3)).astype('float32')
-    
-            return data
-    
-        def __len__(self):
-            return 10
-    
-    dataset = RandomDataset()
-    loader = DataLoader(dataset, batch_size=1)
-    data = next(loader())
-    
-    In Paddle <= 2.0, data is in format '[Tensor(shape=(1, 2, 3), dtype=float32)]', and in Paddle >= 2.1, data is in format 'Tensor(shape=(1, 2, 3), dtype=float32)'
-    
 
 
     Predict begin...
-    step 1/1 [==============================] - 11ms/step
+    step 1/1 [==============================] - 10ms/step
     Predict samples: 3
-    文件名：9450.jpg，推理结果为：[8, 2, 0, 5]
-    文件名：9452.jpg，推理结果为：[0, 3, 0, 0]
     文件名：9451.jpg，推理结果为：[3, 4, 6, 3]
+    文件名：9452.jpg，推理结果为：[0, 3, 0, 0]
+    文件名：9450.jpg，推理结果为：[8, 2, 0, 5]
 
+
+
+```python
+
+```
