@@ -1,4 +1,4 @@
-.. _cn_overview_fft:
+.. _cn_overview_paddle_fft:
 
 paddle.fft
 ---------------------
