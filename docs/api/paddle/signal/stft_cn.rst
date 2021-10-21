@@ -12,17 +12,17 @@ stft
 
 .. math::
 
-    X_t[\omega] = \sum_{n = 0}^{N-1}
+    X_t[f] = \sum_{n = 0}^{N-1}
                   \mathrm{window}[n]\ x[t \times H + n]\ 
-                  \exp(-{2 \pi j \omega n}/{N})
+                  \exp(-{2 \pi j f n}/{N})
 
 上式中符号的意义：  
 
 - :math:`t`: 第 :math:`t` 帧输入信号；
-- :math:`\omega`: 傅里叶变换频域的自变量，如果 ``onesided=False`` , :math:`\omega` 
-  取值范围是 :math:`0 \leq \omega < n\_fft` ,
+- :math:`f`: 傅里叶变换频域的自变量，如果 ``onesided=False`` , :math:`f` 
+  取值范围是 :math:`0 \leq f < n\_fft` ,
   如果 `onesided=True`，取值范围是 
-  :math:`0 \leq \omega < \lfloor n\_fft / 2 \rfloor + 1`； 
+  :math:`0 \leq f < \lfloor n\_fft / 2 \rfloor + 1`； 
 - :math:`N`: ``n_fft`` 参数的值；
 - :math:`H`: ``hop_length`` 参数的值。  
 
