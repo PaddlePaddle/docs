@@ -392,14 +392,6 @@ model.fit(train_dataset, eval_dataset, epochs=5, batch_size=8, verbose=1)
 
     item 12/12 [==========================>...] - ETA: 0s - 4ms/itThe loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-
-
-    Cache file /home/aistudio/.cache/paddle/dataset/uci_housing/housing.data not found, downloading http://paddlemodels.bj.bcebos.com/uci_housing/housing.data 
-    Begin to download
-    
-    Download finished
-
-
     step 51/51 [==============================] - loss: 623.8552 - 5ms/step          
     Eval begin...
     step 13/13 [==============================] - loss: 407.3665 - 907us/step          

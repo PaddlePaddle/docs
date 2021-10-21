@@ -485,7 +485,3 @@ for text_batch in results[0]:
     文件名：9450.jpg，推理结果为：[8, 2, 0, 5]
 
 
-
-```python
-
-```

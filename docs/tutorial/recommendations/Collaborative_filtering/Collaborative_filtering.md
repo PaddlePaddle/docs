@@ -387,5 +387,3 @@ for row in recommended_movies.itertuples():
     Inception (2010) : Action|Crime|Drama|Mystery|Sci-Fi|Thriller|IMAX
 
 
-请点击[此处](https://ai.baidu.com/docs#/AIStudio_Project_Notebook/a38e5576)查看本环境基本用法.  <br>
-Please click [here ](https://ai.baidu.com/docs#/AIStudio_Project_Notebook/a38e5576) for more detailed instructions. 
