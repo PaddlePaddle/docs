@@ -131,8 +131,8 @@ class TrainDataset(paddle.io.Dataset):
     def __getitem__(self, idx):
         data = self.tuple_data[idx][0]
         label = self.tuple_data[idx][1]
-        data = np.array(list(map(lambda word: word_to_idx.get(word, 0), data)))
-        label = np.array(word_to_idx.get(label, 0))
+        data = np.array(list(map(lambda word: word_to_idx.get(word, 0), data))).astype("float32")
+        label = np.array(word_to_idx.get(label, 0)).astype("int64")
         return data, label
     
     def __len__(self):
@@ -328,7 +328,7 @@ def test(model):
     idx = random.randint(len(trigram)-10, len(trigram)-1)
     print('the input words is: ' + trigram[idx][0][0] + ', ' + trigram[idx][0][1])
     x_data = list(map(lambda word: word_to_idx.get(word, 0), trigram[idx][0]))
-    x_data = paddle.to_tensor(np.array(x_data))
+    x_data = paddle.to_tensor(np.array(x_data).astype("float32"))
     predicts = model(x_data)
     predicts = predicts.numpy().tolist()[0]
     predicts = predicts.index(max(predicts))
