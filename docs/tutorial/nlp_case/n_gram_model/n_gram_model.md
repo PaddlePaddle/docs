@@ -1,13 +1,13 @@
 # 用N-Gram模型在莎士比亚文集中训练word embedding
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.06 <br>
+**日期:** 2021.10 <br>
 **摘要:** 
 N-gram 是计算机语言学和概率论范畴内的概念，是指给定的一段文本中N个项目的序列。N=1 时 N-gram 又称为 unigram，N=2 称为 bigram，N=3 称为 trigram，以此类推。实际应用通常采用 bigram 和 trigram 进行计算。本示例在莎士比亚文集上实现了trigram。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 
 ```python
@@ -18,7 +18,7 @@ paddle.__version__
 
 
 
-    '2.1.1'
+    '2.2.0-rc0'
 
 
 
@@ -213,9 +213,9 @@ n_gram_model.fit(train_loader,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-    step 3519/3519 [==============================] - loss: 5.1551 - 8ms/step          
+    step 3519/3519 [==============================] - loss: 5.1804 - 4ms/step         
     Epoch 2/2
-    step 3519/3519 [==============================] - loss: 5.3646 - 9ms/step          
+    step 3519/3519 [==============================] - loss: 5.1577 - 4ms/step        
 
 
 ### 5.3 loss可视化
@@ -235,14 +235,12 @@ plt.plot(log_loss)
 
 
 
-    [<matplotlib.lines.Line2D at 0x7f64a65764c0>]
+    [<matplotlib.lines.Line2D at 0x7fce8e61cfd0>]
 
 
 
 
-    
 ![png](output_23_1.png)
-    
 
 
 ## 六、方式2：基于基础API，完成模型的训练与预测
@@ -272,22 +270,22 @@ model = NGramModel(vocab_size, embedding_dim, context_size)
 train(model)
 ```
 
-    epoch: 0, batch_id: 0, loss is: [7.826668]
-    epoch: 0, batch_id: 500, loss is: [5.5409365]
-    epoch: 0, batch_id: 1000, loss is: [5.42177]
-    epoch: 0, batch_id: 1500, loss is: [5.165839]
-    epoch: 0, batch_id: 2000, loss is: [5.4315114]
-    epoch: 0, batch_id: 2500, loss is: [5.076384]
-    epoch: 0, batch_id: 3000, loss is: [5.198741]
-    epoch: 0, batch_id: 3500, loss is: [5.2804403]
-    epoch: 1, batch_id: 0, loss is: [5.140076]
-    epoch: 1, batch_id: 500, loss is: [5.1054053]
-    epoch: 1, batch_id: 1000, loss is: [5.279483]
-    epoch: 1, batch_id: 1500, loss is: [5.3643165]
-    epoch: 1, batch_id: 2000, loss is: [5.2630963]
-    epoch: 1, batch_id: 2500, loss is: [5.068066]
-    epoch: 1, batch_id: 3000, loss is: [5.26749]
-    epoch: 1, batch_id: 3500, loss is: [5.1232185]
+    epoch: 0, batch_id: 0, loss is: [7.8257203]
+    epoch: 0, batch_id: 500, loss is: [5.131807]
+    epoch: 0, batch_id: 1000, loss is: [5.2822776]
+    epoch: 0, batch_id: 1500, loss is: [5.150366]
+    epoch: 0, batch_id: 2000, loss is: [5.0103335]
+    epoch: 0, batch_id: 2500, loss is: [5.2997913]
+    epoch: 0, batch_id: 3000, loss is: [5.0815167]
+    epoch: 0, batch_id: 3500, loss is: [5.0308046]
+    epoch: 1, batch_id: 0, loss is: [4.826884]
+    epoch: 1, batch_id: 500, loss is: [5.6056056]
+    epoch: 1, batch_id: 1000, loss is: [5.137417]
+    epoch: 1, batch_id: 1500, loss is: [5.2252903]
+    epoch: 1, batch_id: 2000, loss is: [5.23709]
+    epoch: 1, batch_id: 2500, loss is: [5.2346573]
+    epoch: 1, batch_id: 3000, loss is: [5.005457]
+    epoch: 1, batch_id: 3500, loss is: [5.1831474]
 
 
 ### 6.2 loss可视化
@@ -306,14 +304,12 @@ plt.plot(losses)
 
 
 
-    [<matplotlib.lines.Line2D at 0x7f648f35ad90>]
+    [<matplotlib.lines.Line2D at 0x7fce730dbc90>]
 
 
 
 
-    
 ![png](output_27_1.png)
-    
 
 
 ###  6.3 预测
@@ -338,7 +334,7 @@ def test(model):
 test(model)
 ```
 
-    the input words is: works, of
-    the predict words is: william
-    the true words is: william
+    the input words is: this, etext
+    the predict words is: of
+    the true words is: of
 

@@ -1,21 +1,21 @@
 # 使用协同过滤实现电影推荐
 
 **作者：** [HUANGCHENGAI](https://github.com/HUANGCHENGAI) <br>
-**日期：** 2021.06 <br>
+**日期：** 2021.10 <br>
 **摘要：** 本案例使用飞桨框架实现推荐电影的协同过滤算法。
 
 ## 一、介绍
 
-此示例演示使用[Movielens 数据集](https://www.kaggle.com/c/movielens-100k)基于PaddlePaddle2.1向用户推荐电影的协作过滤算法。MovieLens 评级数据集列出了一组用户对一组电影的评分。目标是能够预测用户尚未观看的电影的收视率。然后，可以向用户推荐预测收视率最高的电影。
+此示例演示使用[Movielens 数据集](https://www.kaggle.com/c/movielens-100k)基于 Paddle 2.2.0-rc0 向用户推荐电影的协作过滤算法。MovieLens 评级数据集列出了一组用户对一组电影的评分。目标是能够预测用户尚未观看的电影的收视率。然后，可以向用户推荐预测收视率最高的电影。
 
 模型中的步骤如下：
 
     1.通过嵌入矩阵将用户 ID 映射到"用户向量"
-
+    
     2.通过嵌入矩阵将电影 ID 映射到"电影载体"
-
+    
     3.计算用户矢量和电影矢量之间的点产品，以获得用户和电影之间的匹配分数（预测评级）。
-
+    
     4.使用所有已知的用户电影对通过梯度下降训练嵌入。
 
 
@@ -27,7 +27,7 @@
 
 ## 二、 环境设置
 
-本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 
 ```python
@@ -36,13 +36,11 @@ import numpy as np
 import paddle
 import paddle.nn as nn
 from paddle.io import Dataset
-print(paddle.__version__)
 
-import warnings
-warnings.filterwarnings('ignore')
+print(paddle.__version__)
 ```
 
-    2.1.1
+    2.2.0-rc0
 
 
 ## 三、数据集
@@ -86,26 +84,6 @@ userId，movieId，tag，timestamp
 !wget -O ml-latest-small.zip https://bj.bcebos.com/v1/ai-studio-online/e1686458bb494866ab51d5e2738a68387d2aa14f31164735ae601eda5c7bc938\?responseContentDisposition\=attachment%3B%20filename%3Dml-latest-small.zip\&authorization\=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2021-03-01T12%3A21%3A46Z%2F-1%2F%2F6dddaaacf7aa37c7445d3100844c71f9dd09fe938627f3ac86d0621e3f420f92
 !unzip ./ml-latest-small.zip
 ```
-
-    --2021-06-28 15:44:44--  https://bj.bcebos.com/v1/ai-studio-online/e1686458bb494866ab51d5e2738a68387d2aa14f31164735ae601eda5c7bc938?responseContentDisposition=attachment%3B%20filename%3Dml-latest-small.zip&authorization=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2021-03-01T12%3A21%3A46Z%2F-1%2F%2F6dddaaacf7aa37c7445d3100844c71f9dd09fe938627f3ac86d0621e3f420f92
-    Resolving bj.bcebos.com (bj.bcebos.com)... 10.70.0.165
-    Connecting to bj.bcebos.com (bj.bcebos.com)|10.70.0.165|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 978202 (955K) [application/octet-stream]
-    Saving to: ‘ml-latest-small.zip’
-    
-    100%[======================================>] 978,202     3.27MB/s   in 0.3s   
-    
-    2021-06-28 15:44:45 (3.27 MB/s) - ‘ml-latest-small.zip’ saved [978202/978202]
-    
-    Archive:  ./ml-latest-small.zip
-       creating: ml-latest-small/
-      inflating: ml-latest-small/links.csv  
-      inflating: ml-latest-small/tags.csv  
-      inflating: ml-latest-small/ratings.csv  
-      inflating: ml-latest-small/README.txt  
-      inflating: ml-latest-small/movies.csv  
-
 
 ### 3.1 数据处理
 
@@ -269,10 +247,6 @@ class RecommenderNet(nn.Layer):
 
 ```python
 model = RecommenderNet(num_users, num_movies, EMBEDDING_SIZE)
-```
-
-
-```python
 model = paddle.Model(model)
 
 optimizer = paddle.optimizer.Adam(parameters=model.parameters(), learning_rate=0.0003)
@@ -285,26 +259,25 @@ callback = paddle.callbacks.VisualDL(log_dir=log_dir)
 
 model.prepare(optimizer, loss, metric)
 model.fit(train_loader, epochs=5, save_dir='./checkpoints', verbose=1, callbacks=callback)
-
 ```
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step 709/709 [==============================] - loss: 0.6713 - acc: 0.8687 - 6ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/0
+    step 709/709 [==============================] - loss: 0.6732 - acc: 0.8687 - 3ms/step        
+    save checkpoint at /home/aistudio/checkpoints/0
     Epoch 2/5
-    step 709/709 [==============================] - loss: 0.6455 - acc: 0.8687 - 6ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/1
+    step 709/709 [==============================] - loss: 0.6430 - acc: 0.8687 - 3ms/step        
+    save checkpoint at /home/aistudio/checkpoints/1
     Epoch 3/5
-    step 709/709 [==============================] - loss: 0.6038 - acc: 0.8687 - 6ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/2
+    step 709/709 [==============================] - loss: 0.6170 - acc: 0.8687 - 3ms/step          
+    save checkpoint at /home/aistudio/checkpoints/2
     Epoch 4/5
-    step 709/709 [==============================] - loss: 0.6063 - acc: 0.8687 - 6ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/3
+    step 709/709 [==============================] - loss: 0.6255 - acc: 0.8687 - 3ms/step        
+    save checkpoint at /home/aistudio/checkpoints/3
     Epoch 5/5
-    step 709/709 [==============================] - loss: 0.5917 - acc: 0.8687 - 6ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/4
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/Collaborative_filtering/checkpoints/final
+    step 709/709 [==============================] - loss: 0.6264 - acc: 0.8687 - 4ms/step         
+    save checkpoint at /home/aistudio/checkpoints/4
+    save checkpoint at /home/aistudio/checkpoints/final
 
 
 ## 六、模型评估
@@ -315,14 +288,18 @@ model.evaluate(test_loader, batch_size=64, verbose=1)
 ```
 
     Eval begin...
-    step 79/79 [==============================] - loss: 0.6109 - acc: 0.8713 - 4ms/step          
+    step 79/79 [==============================] - loss: 0.5997 - acc: 0.8713 - 2ms/step         
     Eval samples: 10084
 
 
+    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/math_op_patch.py:248: UserWarning: The dtype of left and right variables are not the same, left dtype is paddle.int64, but right dtype is paddle.float32, the right dtype will convert to paddle.int64
+      format(lhs_dtype, rhs_dtype, lhs_dtype))
 
 
 
-    {'loss': [0.6108578], 'acc': 0.8712812376041253}
+
+
+    {'loss': [0.5996841], 'acc': 0.8712812376041253}
 
 
 
@@ -382,30 +359,33 @@ for row in recommended_movies.itertuples():
     print(row.title, ":", row.genres)
 ```
 
-
     Predict begin...
-    step 1/1 [==============================] - 30ms/step
-    Predict samples: 9464
-    [ 942 5574  979 1639  993  980  540  977  904  988]
-    用户的ID为: 432
+    step 1/1 [==============================] - 20ms/step
+    Predict samples: 9384
+    [ 474 1813  321 6981 5451  959 4515 5323 8145 6712]
+    用户的ID为: 313
     ================================
     用户评分较高的电影：
     --------------------------------
-    Lion King, The (1994) : Adventure|Animation|Children|Drama|Musical|IMAX
-    Misérables, Les (1998) : Crime|Drama|Romance|War
-    Exorcist, The (1973) : Horror|Mystery
-    [REC] (2007) : Drama|Horror|Thriller
-    Paranormal Activity (2009) : Horror|Thriller
+    Goodfellas (1990) : Crime|Drama
+    Raising Arizona (1987) : Comedy
+    Waiting for Guffman (1996) : Comedy
+    Watership Down (1978) : Adventure|Animation|Children|Drama|Fantasy
+    Omega Man, The (1971) : Action|Drama|Sci-Fi|Thriller
     --------------------------------
     为用户推荐的10部电影：
     --------------------------------
-    Fargo (1996) : Comedy|Crime|Drama|Thriller
-    Reservoir Dogs (1992) : Crime|Mystery|Thriller
-    Monty Python and the Holy Grail (1975) : Adventure|Comedy|Fantasy
+    Forrest Gump (1994) : Comedy|Drama|Romance|War
+    Schindler's List (1993) : Drama|War
     One Flew Over the Cuckoo's Nest (1975) : Drama
-    Princess Bride, The (1987) : Action|Adventure|Comedy|Fantasy|Romance
-    Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981) : Action|Adventure
-    Apocalypse Now (1979) : Action|Drama|War
-    Goodfellas (1990) : Crime|Drama
-    Saving Private Ryan (1998) : Action|Drama|War
+    American History X (1998) : Crime|Drama
+    Lord of the Rings: The Two Towers, The (2002) : Adventure|Fantasy
+    Lord of the Rings: The Return of the King, The (2003) : Action|Adventure|Drama|Fantasy
     Eternal Sunshine of the Spotless Mind (2004) : Drama|Romance|Sci-Fi
+    Departed, The (2006) : Crime|Drama|Thriller
+    Dark Knight, The (2008) : Action|Crime|Drama|IMAX
+    Inception (2010) : Action|Crime|Drama|Mystery|Sci-Fi|Thriller|IMAX
+
+
+请点击[此处](https://ai.baidu.com/docs#/AIStudio_Project_Notebook/a38e5576)查看本环境基本用法.  <br>
+Please click [here ](https://ai.baidu.com/docs#/AIStudio_Project_Notebook/a38e5576) for more detailed instructions. 

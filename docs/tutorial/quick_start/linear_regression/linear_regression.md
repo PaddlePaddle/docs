@@ -1,7 +1,7 @@
 # 使用线性回归预测波士顿房价
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.06 <br>
+**日期:** 2021.10 <br>
 **摘要:** 本示例教程将会演示如何使用线性回归完成波士顿房价预测。
 
 ## 一、简要介绍
@@ -10,7 +10,7 @@
 
 ## 二、环境配置
 
-本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 
 ```python
@@ -27,7 +27,7 @@ warnings.filterwarnings("ignore")
 print(paddle.__version__)
 ```
 
-    2.1.1
+    2.2.0-rc0
 
 
 ## 三、数据集介绍
@@ -46,16 +46,16 @@ print(paddle.__version__)
 !wget https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data -O housing.data 
 ```
 
-    --2021-06-30 20:33:58--  https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data
+    --2021-10-21 19:38:39--  https://archive.ics.uci.edu/ml/machine-learning-databases/housing/housing.data
     Resolving archive.ics.uci.edu (archive.ics.uci.edu)... 128.195.10.252
     Connecting to archive.ics.uci.edu (archive.ics.uci.edu)|128.195.10.252|:443... connected.
     HTTP request sent, awaiting response... 200 OK
     Length: 49082 (48K) [application/x-httpd-php]
     Saving to: ‘housing.data’
     
-    100%[======================================>] 49,082      45.8KB/s   in 1.0s   
+    housing.data        100%[===================>]  47.93K   149KB/s    in 0.3s    
     
-    2021-06-30 20:34:01 (45.8 KB/s) - ‘housing.data’ saved [49082/49082]
+    2021-10-21 19:38:40 (149 KB/s) - ‘housing.data’ saved [49082/49082]
     
 
 
@@ -77,14 +77,14 @@ features_np = np.array([x[:13] for x in housing_data], np.float32)
 labels_np = np.array([x[-1] for x in housing_data], np.float32)
 # data_np = np.c_[features_np, labels_np]
 df = pd.DataFrame(housing_data, columns=feature_names)
+matplotlib.use('TkAgg')
+%matplotlib inline
 sns.pairplot(df.dropna(), y_vars=feature_names[-1], x_vars=feature_names[::-1], diag_kind='kde')
 plt.show()
 ```
 
 
-    
 ![png](output_9_0.png)
-    
 
 
 
@@ -96,6 +96,10 @@ corr_data = np.asarray(corr_data).reshape(1, 14)
 ax = sns.heatmap(corr_data, cbar=True, annot=True)
 plt.show()
 ```
+
+
+![png](output_10_0.png)
+
 
 ### 3.2 数据归一化处理
 
@@ -109,14 +113,12 @@ sns.boxplot(data=df.iloc[:, 0:13])
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f528b374890>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f2636a2fed0>
 
 
 
 
-    
 ![png](output_12_1.png)
-    
 
 
 从上图看出，各属性的数值范围差异太大，甚至不能够在一个画布上充分的展示各属性具体的最大、最小值以及异常值等。下面进行归一化。
@@ -169,14 +171,12 @@ sns.boxplot(data=df.iloc[:, 0:13])
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f528b576e50>
+    <matplotlib.axes._subplots.AxesSubplot at 0x7f2636ba4f90>
 
 
 
 
-    
 ![png](output_18_1.png)
-    
 
 
 
@@ -274,16 +274,16 @@ train(model)
 ```
 
     start training ... 
-    Pass:0,Cost:731.48828
-    Pass:50,Cost:77.37501
-    Pass:100,Cost:21.86424
-    Pass:150,Cost:23.56446
-    Pass:200,Cost:68.49669
-    Pass:250,Cost:13.10599
-    Pass:300,Cost:20.35128
-    Pass:350,Cost:34.87028
-    Pass:400,Cost:24.54537
-    Pass:450,Cost:20.29261
+    Pass:0,Cost:596.80054
+    Pass:50,Cost:106.25673
+    Pass:100,Cost:76.36063
+    Pass:150,Cost:19.26871
+    Pass:200,Cost:36.60672
+    Pass:250,Cost:36.47162
+    Pass:300,Cost:51.34285
+    Pass:350,Cost:73.24733
+    Pass:400,Cost:34.33049
+    Pass:450,Cost:77.71943
 
 
 
@@ -294,9 +294,7 @@ draw_train_process(train_nums, train_costs)
 ```
 
 
-    
 ![png](output_26_0.png)
-    
 
 
 可以从上图看出，随着训练轮次的增加，损失在呈降低趋势。但由于每次仅基于少量样本更新参数和计算损失，所以损失下降曲线会出现震荡。
@@ -327,17 +325,17 @@ mean_loss = sum_cost / INFER_BATCH_SIZE
 print("Mean loss is:", mean_loss.numpy())
 ```
 
-    No.0: infer result is 12.17,ground truth is 8.50
-    No.10: infer result is 5.70,ground truth is 7.00
+    No.0: infer result is 11.89,ground truth is 8.50
+    No.10: infer result is 5.38,ground truth is 7.00
     No.20: infer result is 14.81,ground truth is 11.70
-    No.30: infer result is 16.45,ground truth is 11.70
+    No.30: infer result is 16.37,ground truth is 11.70
     No.40: infer result is 13.50,ground truth is 10.80
-    No.50: infer result is 15.98,ground truth is 14.90
-    No.60: infer result is 18.55,ground truth is 21.40
-    No.70: infer result is 15.36,ground truth is 13.80
-    No.80: infer result is 17.89,ground truth is 20.60
-    No.90: infer result is 21.31,ground truth is 24.50
-    Mean loss is: [12.873257]
+    No.50: infer result is 15.82,ground truth is 14.90
+    No.60: infer result is 18.64,ground truth is 21.40
+    No.70: infer result is 15.56,ground truth is 13.80
+    No.80: infer result is 18.05,ground truth is 20.60
+    No.90: infer result is 21.30,ground truth is 24.50
+    Mean loss is: [12.361651]
 
 
 
@@ -358,9 +356,7 @@ plot_pred_ground(fetch_list, infer_labels_np)
 ```
 
 
-    
 ![png](output_31_0.png)
-    
 
 
 上图可以看出，训练出来的模型的预测结果与真实结果是较为接近的。
@@ -394,30 +390,38 @@ model.prepare(paddle.optimizer.Adam(parameters=model.parameters()),
 model.fit(train_dataset, eval_dataset, epochs=5, batch_size=8, verbose=1)
 ```
 
-    The loss value printed in the log is the current step, and the metric is the average value of previous steps.
+    item 12/12 [==========================>...] - ETA: 0s - 4ms/itThe loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step 51/51 [==============================] - loss: 624.0728 - 2ms/step         
+
+
+    Cache file /home/aistudio/.cache/paddle/dataset/uci_housing/housing.data not found, downloading http://paddlemodels.bj.bcebos.com/uci_housing/housing.data 
+    Begin to download
+    
+    Download finished
+
+
+    step 51/51 [==============================] - loss: 623.8552 - 5ms/step          
     Eval begin...
-    step 13/13 [==============================] - loss: 397.2567 - 878us/step         
+    step 13/13 [==============================] - loss: 407.3665 - 907us/step          
     Eval samples: 102
     Epoch 2/5
-    step 51/51 [==============================] - loss: 422.2296 - 1ms/step        
+    step 51/51 [==============================] - loss: 414.3365 - 2ms/step          
     Eval begin...
-    step 13/13 [==============================] - loss: 394.6901 - 750us/step         
+    step 13/13 [==============================] - loss: 404.7587 - 886us/step         
     Eval samples: 102
     Epoch 3/5
-    step 51/51 [==============================] - loss: 417.4614 - 1ms/step         
+    step 51/51 [==============================] - loss: 422.7033 - 1ms/step         
     Eval begin...
-    step 13/13 [==============================] - loss: 392.1667 - 810us/step         
+    step 13/13 [==============================] - loss: 402.1946 - 915us/step         
     Eval samples: 102
     Epoch 4/5
-    step 51/51 [==============================] - loss: 423.6764 - 1ms/step         
+    step 51/51 [==============================] - loss: 431.8656 - 2ms/step         
     Eval begin...
-    step 13/13 [==============================] - loss: 389.6587 - 772us/step         
+    step 13/13 [==============================] - loss: 399.6461 - 936us/step         
     Eval samples: 102
     Epoch 5/5
-    step 51/51 [==============================] - loss: 461.0751 - 1ms/step         
+    step 51/51 [==============================] - loss: 458.7809 - 2ms/step         
     Eval begin...
-    step 13/13 [==============================] - loss: 387.1344 - 828us/step         
+    step 13/13 [==============================] - loss: 397.0794 - 883us/step         
     Eval samples: 102
 
