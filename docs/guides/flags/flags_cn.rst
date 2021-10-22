@@ -27,4 +27,5 @@ PaddlePaddle中的环境变量FLAGS支持两种设置方式。
     distributed_cn.rst
     executor_cn.rst
     memory_cn.rst
+    npu_cn.rst
     others_cn.rst
