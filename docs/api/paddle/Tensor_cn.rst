@@ -798,6 +798,14 @@ expand_as(y, name=None)
 
 请参考 :ref:`cn_api_tensor_expand_as`
 
+eigvals(y, name=None)
+:::::::::
+
+返回：输入矩阵的特征值
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_linalg_eigvals`
 
 fill_(x, value, name=None)
 :::::::::
