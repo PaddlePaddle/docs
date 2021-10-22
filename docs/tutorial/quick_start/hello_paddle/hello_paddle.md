@@ -1,12 +1,12 @@
 # hello paddle: 从普通程序走向机器学习程序
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.06 <br>
+**日期:** 2021.10 <br>
 **摘要:** 这篇示例向你介绍普通程序跟机器学习程序的区别，并带着你用飞桨框架，实现第一个机器学习程序。
 
 ## 一、普通程序跟机器学习程序的逻辑区别
 
-作为一名开发者，你最熟悉的开始学习一门编程语言，或者一个深度学习框架的方式，可能是通过一个hello, world程序。
+作为一名开发者，你最熟悉的开始学习一门编程语言，或者一个深度学习框架的方式，可能是通过一个hello world程序。
 
 学习飞桨也可以这样，这篇小示例教程将会通过一个非常简单的示例来向你展示如何开始使用飞桨。
 
@@ -53,7 +53,7 @@ total_fee = w * distance_travelled + b
 
 同时，为了能够更好的对数组进行计算和处理，还需要导入`numpy`。
 
-如果你是在本机运行这个notebook，而且还没有安装飞桨，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+如果你是在本机运行这个notebook，而且还没有安装飞桨，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 
 ```python
@@ -61,7 +61,7 @@ import paddle
 print("paddle " + paddle.__version__)
 ```
 
-    paddle 2.1.1
+    paddle 2.2.0-rc0
 
 
 ## 三、准备数据
@@ -111,7 +111,7 @@ print("w before optimize: {}".format(w_before_opt))
 print("b before optimize: {}".format(b_before_opt))
 ```
 
-    w before optimize: 1.6463441848754883
+    w before optimize: -1.4230914115905762
     b before optimize: 0.0
 
 
@@ -151,12 +151,12 @@ for i in range(total_epoch):
 print("finished training， loss {}".format(loss.numpy()))
 ```
 
-    epoch 0 loss [169.4257]
-    epoch 1000 loss [8.2731695]
-    epoch 2000 loss [1.8498101]
-    epoch 3000 loss [0.41360015]
-    epoch 4000 loss [0.09247836]
-    finished training， loss [0.02070835]
+    epoch 0 loss [1850.697]
+    epoch 1000 loss [7.8796654]
+    epoch 2000 loss [1.7618368]
+    epoch 3000 loss [0.39393744]
+    epoch 4000 loss [0.08808372]
+    finished training， loss [0.01972417]
 
 
 ## 八、机器学习出来的参数
@@ -173,8 +173,8 @@ print("b after optimize: {}".format(b_after_opt))
 
 ```
 
-    w after optimize: 2.018324613571167
-    b after optimize: 9.765690803527832
+    w after optimize: 2.0178842544555664
+    b after optimize: 9.771327018737793
 
 
 ## 九、hello paddle
