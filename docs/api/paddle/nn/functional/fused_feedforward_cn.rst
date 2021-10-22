@@ -7,14 +7,13 @@ fused_feedforward
 
 这是一个融合算子，该算子是对transformer模型中feed forward层的多个算子进行融合，该算子与如下为代码表达一样的功能：
 
-```
+.. code-block:: python
     residual = src;
     if pre_layer_norm:
         src = layer_norm(src)
     src = linear(dropout(activation(dropout(linear(src)))))
     if not pre_layer_norm:
         src = layer_norm(out)
-```
 
 参数
 :::::::::
