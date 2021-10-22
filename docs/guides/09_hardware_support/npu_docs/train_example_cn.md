@@ -7,7 +7,7 @@
 ```bash
 # 下载套件代码
 cd path_to_clone_PaddleDetection
-git clone https://github.com/PaddlePaddle/PaddleDetection.git
+git clone -b develop https://github.com/PaddlePaddle/PaddleDetection.git
 
 # 编译安装
 cd PaddleDetection
@@ -17,13 +17,22 @@ python setup.py install
 pip install -r requirements.txt
 ```
 
-也可以访问PaddleDetection的 [Github Repo](https://github.com/PaddlePaddle/PaddleDetection) 直接下载源码。
+也可以访问PaddleDetection的 [Github Repo](https://github.com/PaddlePaddle/PaddleDetection) 下载 develop 分支的源码。
 
 **第二步**：准备 VOC 训练数据集
 
 ```bash
 cd PaddleDetection/static/dataset/roadsign_voc
 python download_roadsign_voc.py
+
+# 下载完成之后，当前目录结构如下
+PaddleDetection/static/dataset/roadsign_voc/
+├── annotations
+├── download_roadsign_voc.py
+├── images
+├── label_list.txt
+├── train.txt
+└── valid.txt
 ```
 
 **第三步**：运行单卡训练
@@ -32,15 +41,13 @@ python download_roadsign_voc.py
 export FLAGS_selected_npus=0
 
 # 单卡训练
-python -u tools/train.py -c configs/yolov3_darknet_roadsign.yml \
-       -o use_npu=True
+python -u tools/train.py -c configs/yolov3_darknet_roadsign.yml -o use_npu=True
 
 # 单卡评估
-python -u tools/eval.py -c configs/yolov3_darknet_roadsign.yml \
-       -o use_npu=True
+python -u tools/eval.py -c configs/yolov3_darknet_roadsign.yml -o use_npu=True
 
 # 精度结果
-INFO:ppdet.utils.voc_eval:mAP(0.50, integral) = 79.40%
+INFO:ppdet.utils.voc_eval:mAP(0.50, integral) = 76.78%
 ```
 
 **第四步**：运行多卡训练
@@ -59,12 +66,10 @@ export HCCL_SECURITY_MODE=1
 
 # 多卡训练
 python -m paddle.distributed.fleet.launch --run_mode=collective \
-       tools/train.py -c configs/yolov3_darknet_roadsign.yml \
-       -o use_npu=True
+       tools/train.py -c configs/yolov3_darknet_roadsign.yml -o use_npu=True
 
 # 多卡训练结果评估
-python -u tools/eval.py -c configs/yolov3_darknet_roadsign.yml \
-       -o use_npu=True
+python -u tools/eval.py -c configs/yolov3_darknet_roadsign.yml -o use_npu=True
 
 # 精度结果
 INFO:ppdet.utils.voc_eval:mAP(0.50, integral) = 83.00%

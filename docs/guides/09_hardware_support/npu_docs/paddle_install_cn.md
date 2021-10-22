@@ -26,7 +26,7 @@ Paddle 昇腾910 NPU版目前仅支持源码编译安装，其中编译与运行
 docker pull paddlepaddle/paddle:latest-dev-cann5.0.2.alpha005-gcc82-aarch64
 
 # 启动容器，注意这里的参数 --device，容器仅映射设备ID为4到7的4张NPU卡，如需映射其他卡相应增改设备ID号即可
-docker run -it --name paddle-npu-dev -v  \
+docker run -it --name paddle-npu-dev -v /home/<user_name>:/workspace  \
             --pids-limit 409600 --shm-size=128G \
             --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
             --device=/dev/davinci4 --device=/dev/davinci5 \
