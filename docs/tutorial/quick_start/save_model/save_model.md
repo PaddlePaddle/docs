@@ -1,7 +1,7 @@
 # 模型保存及加载
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.06 <br>
+**日期:** 2021.10 <br>
 **摘要:** 本教程将基于Paddle高阶API对模型参数的保存和加载进行讲解。
 
 ## 一、简介
@@ -10,7 +10,7 @@
 
 ## 二、环境配置
 
-本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 
 ```python
@@ -26,7 +26,7 @@ from paddle.vision.transforms import ToTensor
 print(paddle.__version__)
 ```
 
-    2.1.1
+    2.2.0-rc0
 
 
 ## 三、数据集
@@ -97,24 +97,24 @@ model.fit(train_dataset,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/3
-    step 938/938 [==============================] - loss: 0.0111 - acc: 0.9402 - 49ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/0
+    step 938/938 [==============================] - loss: 0.0753 - acc: 0.9377 - 25ms/step         
+    save checkpoint at /home/aistudio/mnist_checkpoint/0
     Eval begin...
-    step 157/157 [==============================] - loss: 0.0063 - acc: 0.9723 - 47ms/step          
+    step 157/157 [==============================] - loss: 0.0017 - acc: 0.9781 - 22ms/step        
     Eval samples: 10000
     Epoch 2/3
-    step 938/938 [==============================] - loss: 0.0124 - acc: 0.9787 - 49ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/1
+    step 938/938 [==============================] - loss: 0.0217 - acc: 0.9795 - 24ms/step        
+    save checkpoint at /home/aistudio/mnist_checkpoint/1
     Eval begin...
-    step 157/157 [==============================] - loss: 6.2347e-04 - acc: 0.9821 - 47ms/step      
+    step 157/157 [==============================] - loss: 2.1768e-04 - acc: 0.9852 - 22ms/step      
     Eval samples: 10000
     Epoch 3/3
-    step 938/938 [==============================] - loss: 0.0512 - acc: 0.9848 - 49ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/2
+    step 938/938 [==============================] - loss: 0.0353 - acc: 0.9847 - 25ms/step        
+    save checkpoint at /home/aistudio/mnist_checkpoint/2
     Eval begin...
-    step 157/157 [==============================] - loss: 0.0022 - acc: 0.9835 - 47ms/step            
+    step 157/157 [==============================] - loss: 0.0027 - acc: 0.9834 - 22ms/step        
     Eval samples: 10000
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/final
+    save checkpoint at /home/aistudio/mnist_checkpoint/final
 
 
 ## 六、保存模型参数
@@ -154,18 +154,18 @@ model.fit(train_dataset,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-    step 938/938 [==============================] - loss: 0.0068 - acc: 0.9879 - 48ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/0
+    step 938/938 [==============================] - loss: 9.4700e-04 - acc: 0.9880 - 24ms/step    
+    save checkpoint at /home/aistudio/mnist_checkpoint/0
     Eval begin...
-    step 157/157 [==============================] - loss: 2.7416e-04 - acc: 0.9825 - 47ms/step        
+    step 157/157 [==============================] - loss: 5.0011e-04 - acc: 0.9817 - 24ms/step    
     Eval samples: 10000
     Epoch 2/2
-    step 938/938 [==============================] - loss: 0.0035 - acc: 0.9907 - 49ms/step          
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/1
+    step 938/938 [==============================] - loss: 0.0071 - acc: 0.9906 - 24ms/step         
+    save checkpoint at /home/aistudio/mnist_checkpoint/1
     Eval begin...
-    step 157/157 [==============================] - loss: 2.4854e-04 - acc: 0.9885 - 47ms/step        
+    step 157/157 [==============================] - loss: 1.8442e-04 - acc: 0.9867 - 22ms/step      
     Eval samples: 10000
-    save checkpoint at /home/chenlong21/online_repo/book/paddle2.0_docs/save_model/mnist_checkpoint/final
+    save checkpoint at /home/aistudio/mnist_checkpoint/final
 
 
 
@@ -237,16 +237,7 @@ model.fit(train_data=train_dataset,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-    step 938/938 [==============================] - loss: 4.2158e-04 - acc: 0.9916 - 49ms/step      
-    Eval begin...
-    step 157/157 [==============================] - loss: 3.2846e-05 - acc: 0.9872 - 47ms/step        
-    Eval samples: 10000
-    Epoch 2/2
-    step 938/938 [==============================] - loss: 5.8579e-04 - acc: 0.9927 - 49ms/step      
-    Eval begin...
-    step 157/157 [==============================] - loss: 1.6032e-05 - acc: 0.9878 - 46ms/step          
-    Eval samples: 10000
-
+    step  90/938 [=>............................] - loss: 0.0624 - acc: 0.9929 - ETA: 21s - 25ms/st
 
 ## 九、总结
 
