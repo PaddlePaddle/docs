@@ -175,3 +175,13 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.s
 + 答复：
 
 glibc版本过低，建议使用官方提供的docker镜像或者将glibc升级到2.23+。
+
+
+------
+
+##### 问题： mac M1芯片安装paddle失败，如何解决？
+
++ 答复：
+
+Paddle支持Mac M1芯片的安装，但是使用MacOS中自带Python可能会导致安装失败。需要使用[python官网](https://www.python.org/downloads/mac-osx/)提供的python3.6.x、python3.7.x、python3.8.x 或python3.9.x。
+注意，python版本为python3.9时，只支持intel版本的python，不支持universal版本的python。

@@ -18,9 +18,7 @@ We introduce the transformation of dygraph to static graph in the following link
 
 - `Introduction of InputSpec <input_spec_en.html>`_ : Introduce the usage of InputSpec to specify the input signature from dygraph to static program.
 
-- `Error Handling <error_handling_en.html>`_ : Introduce the error handling by ProgramTranslator.
-
-- `Debugging Methods <debugging_en.html>`_ : Introduce the debugging methods when using ProgramTranslator.
+- `Error Debugging Experience <debugging_en.html>`_ : Introduce the debugging methods when using ProgramTranslator.
 
 
 ..  toctree::
@@ -28,8 +26,7 @@ We introduce the transformation of dygraph to static graph in the following link
 
     basic_usage_en.rst
     program_translator_en.rst
-    grammar_list_en.rst
+    grammar_list_en.md
     input_spec_en.rst
-    error_handling_en.md
     debugging_en.md
 

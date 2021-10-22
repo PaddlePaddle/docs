@@ -5,7 +5,8 @@
 ### 1.1 PREQUISITES
 
 * **Windows 7/8/10 Pro/Enterprise (64bit)**
-  * **GPU version support CUDA 10.1/10.2/11.2，only support single card**
+
+* **GPU version support CUDA 10.1/10.2/11.0/11.2，only support single card**
 
 * **Python version 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 
@@ -67,7 +68,9 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5+**
+  * **CUDA toolkit 10.1/10.2 with cuDNN 7 (cuDNN version>=7.6.5）**
+
+  * **CUDA toolkit 11.0 with cuDNN v8.0.4**
 
   * **CUDA toolkit 11.2 with cuDNN v8.1.1**
 
@@ -83,37 +86,44 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.1 CPU Versoion of PaddlePaddle
+#### 2.1 <span id="cpu">CPU Version of PaddlePaddle</span>
 
 
   ```
-  python -m pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/windows/cpu-mkl-avx/develop.html
+  python -m pip install paddlepaddle==2.2.0rc0 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
 
-#### 2.2 GPU Version of PaddlePaddle
+#### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
-2.2.1 CUDA10.1的PaddlePaddle
+2.2.1 If you are using CUDA 10.1
 
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  python -m pip install paddlepaddle-gpu==2.2.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
-2.2.2 CUDA10.2的PaddlePaddle
+2.2.2 If you are using CUDA 10.2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post102 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  python -m pip install paddlepaddle-gpu==2.2.0rc0 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
-2.2.3 CUDA11.2的PaddlePaddle
+2.2.3 If you are using CUDA 11.0
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  python -m pip install paddlepaddle-gpu==2.2.0rc0.post110 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  ```
+
+
+2.2.4 If you are using CUDA 11.2
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.2.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 Note：
@@ -121,6 +131,37 @@ Note：
 * If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance.
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
+
+* The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command to install，noavx version paddle wheel only support python3.8：
+
+  First use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
+
+   * cpu and mkl version installed on noavx machine：
+
+   ```
+   python -m pip download paddlepaddle==2.2.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+   ```
+
+   * cpu and openblas version installed on noavx machine：
+
+   ```
+   python -m pip download paddlepaddle==2.2.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index --no-deps
+   ```
+
+   * GPU cuda10.1 version install on noavx machine：
+
+   ```
+   python -m pip download paddlepaddle-gpu==2.2.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+   ```
+
+   * GPU cuda10.2 version install on noavx machine：
+
+   ```
+   python -m pip download paddlepaddle-gpu==2.2.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+   ```
+
+   To determine whether your machine supports `avx`, you can install the [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) tool to view the "processor-instruction set".
+
 
 
 ## Verify installation

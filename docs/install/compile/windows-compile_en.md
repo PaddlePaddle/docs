@@ -3,7 +3,7 @@
 ## Environment preparation
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-* **GPU Version support CUDA 10.1/10.2/11.2, and only support single GPU**
+* **GPU Version support CUDA 10.1/10.2/11.0/11.2, and only support single GPU**
 * **Python version 3.6+/3.7+/3.8+/3.9+(64bit)**
 * **pip version 20.2.2 or above (64bit)**
 * **Visual Studio 2015 Update3**
@@ -13,9 +13,10 @@
 * If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
-    * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN v7.6.5+**
+    * **CUDA toolkit 9.0/10.0/10.1/10.2 with cuDNN 7 (cuDNN version>=7.6.5）**
+    * **CUDA toolkit 11.0 with cuDNN v8.0.4**
     * **CUDA toolkit 11.2 with cuDNN v8.1.1**
-    * **GPU's computing capability exceeds 3.0**
+    * **GPU's computing capability exceeds 3.5**
 
 ## Installation steps
 
@@ -64,10 +65,16 @@ There is one compilation methods in Windows system:
     cd Paddle
     ```
 
-3. Switch to `develop` branch for compilation:
+3. Switch to a more stable release branch for compilation:
 
     ```
-    git checkout develop
+    git checkout [name of the branch]
+    ```
+
+    For example：
+
+    ```
+    git checkout release/2.2
     ```
 
     Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1
@@ -123,7 +130,7 @@ There is one compilation methods in Windows system:
 8. Install the generated `.whl` package:
 
      ```
-     pip install -U (whl package name)
+     pip install -U [whl package name]
      ```
 
 Congratulations, you have completed the process of compiling PaddlePaddle successfully!
