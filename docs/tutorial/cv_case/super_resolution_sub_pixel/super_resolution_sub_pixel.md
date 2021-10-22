@@ -1,6 +1,6 @@
 # 通过Sub-Pixel实现图像超分辨率
 **作者:** [Ralph LU](https://github.com/ralph0813)<br>
-**日期:** 2021.06 <br>
+**日期:** 2021.10 <br>
 **摘要:** 本示例通过Sub-Pixel实现图像超分辨率。
 
 ## 一、简要介绍
@@ -35,7 +35,7 @@ from paddle.vision.transforms import transforms
 print(paddle.__version__)
 ```
 
-    2.1.1
+    2.2.0-rc0
 
 
 ## 三、数据集
@@ -47,7 +47,6 @@ print(paddle.__version__)
 !wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz
 !tar -zxvf BSR_bsds500.tgz
 ```
-
 
 ### 3.2 数据集概览
 ```
@@ -229,9 +228,7 @@ display(img.size)
 
 
 
-    
 ![png](output_10_1.png)
-    
 
 
 
@@ -239,9 +236,7 @@ display(img.size)
 
 
 
-    
 ![png](output_10_3.png)
-    
 
 
 
@@ -336,45 +331,45 @@ model.fit(train_dataset,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/20
-    step 13/13 [==============================] - loss: 0.3676 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.1436 - 114ms/step         
     Epoch 2/20
-    step 13/13 [==============================] - loss: 0.0958 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0444 - 113ms/step         
     Epoch 3/20
-    step 13/13 [==============================] - loss: 0.0650 - 207ms/step          
+    step 13/13 [==============================] - loss: 0.0278 - 114ms/step         
     Epoch 4/20
-    step 13/13 [==============================] - loss: 0.0387 - 205ms/step          
+    step 13/13 [==============================] - loss: 0.0210 - 113ms/step         
     Epoch 5/20
-    step 13/13 [==============================] - loss: 0.0293 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0171 - 112ms/step         
     Epoch 6/20
-    step 13/13 [==============================] - loss: 0.0195 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0103 - 112ms/step         
     Epoch 7/20
-    step 13/13 [==============================] - loss: 0.0225 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0127 - 113ms/step         
     Epoch 8/20
-    step 13/13 [==============================] - loss: 0.0170 - 207ms/step          
+    step 13/13 [==============================] - loss: 0.0099 - 112ms/step         
     Epoch 9/20
-    step 13/13 [==============================] - loss: 0.0139 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0080 - 111ms/step         
     Epoch 10/20
-    step 13/13 [==============================] - loss: 0.0104 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0059 - 113ms/step         
     Epoch 11/20
-    step 13/13 [==============================] - loss: 0.0078 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0046 - 113ms/step         
     Epoch 12/20
-    step 13/13 [==============================] - loss: 0.0120 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0073 - 112ms/step         
     Epoch 13/20
-    step 13/13 [==============================] - loss: 0.0069 - 208ms/step          
+    step 13/13 [==============================] - loss: 0.0042 - 111ms/step         
     Epoch 14/20
-    step 13/13 [==============================] - loss: 0.0089 - 205ms/step          
+    step 13/13 [==============================] - loss: 0.0057 - 111ms/step         
     Epoch 15/20
-    step 13/13 [==============================] - loss: 0.0084 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0057 - 111ms/step         
     Epoch 16/20
-    step 13/13 [==============================] - loss: 0.0068 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0045 - 111ms/step         
     Epoch 17/20
-    step 13/13 [==============================] - loss: 0.0071 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0047 - 112ms/step         
     Epoch 18/20
-    step 13/13 [==============================] - loss: 0.0047 - 206ms/step          
+    step 13/13 [==============================] - loss: 0.0031 - 113ms/step         
     Epoch 19/20
-    step 13/13 [==============================] - loss: 0.0069 - 207ms/step          
+    step 13/13 [==============================] - loss: 0.0049 - 113ms/step         
     Epoch 20/20
-    step 13/13 [==============================] - loss: 0.0090 - 205ms/step          
+    step 13/13 [==============================] - loss: 0.0063 - 111ms/step         
 
 
 ## 六、模型预测
@@ -388,7 +383,7 @@ predict_results = model.predict(val_dataset)
 ```
 
     Predict begin...
-    step 100/100 [==============================] - 12ms/step          
+    step 100/100 [==============================] - 7ms/step        
     Predict samples: 100
 
 
@@ -505,29 +500,23 @@ main(model,'BSR/BSDS500/data/images/test/100007.jpg')
 ```
 
     Predict begin...
-    step 1/1 [==============================] - 5ms/step
+    step 1/1 [==============================] - 3ms/step
     Predict samples: 1
 
 
 
-    
-![png](output_26_1.png)
-    
-
-
-
-    
 ![png](output_26_2.png)
-    
 
 
 
-    
 ![png](output_26_3.png)
-    
 
 
-    psmr_low: 30.381882136539197 psmr_pre: 24.76066109438897
+
+![png](output_26_4.png)
+
+
+    psmr_low: 30.381882136539197 psmr_pre: 27.359488287892695
 
 
 # 7.模型保存
