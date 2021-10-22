@@ -1,12 +1,12 @@
 # IMDB 数据集使用BOW网络的文本分类
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.06 <br>
+**日期:** 2021.10 <br>
 **摘要:** 本示例教程演示如何在IMDB数据集上用简单的BOW网络完成文本分类的任务。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 
 ```python
@@ -15,7 +15,7 @@ import numpy as np
 print(paddle.__version__)
 ```
 
-    2.1.1
+    2.2.0-rc0
 
 
 ## 二、加载数据
@@ -32,6 +32,10 @@ train_dataset = paddle.text.datasets.Imdb(mode='train')
 test_dataset = paddle.text.datasets.Imdb(mode='test')
 print('loading finished')
 ```
+
+    loading dataset...
+    loading finished
+
 
 构建了训练集与测试集后，可以通过 `word_idx` 获取数据集的词表。在飞桨框架2.1版本中，推荐使用padding的方式来对同一个batch中长度不一的数据进行补齐，所以在字典中，还会添加一个特殊的<pad>词，用来在后续对batch中较短的句子进行填充。
 
@@ -222,18 +226,18 @@ model.fit(train_loader,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/2
-    step 781/781 [==============================] - loss: 0.4183 - 13ms/step          
+    step 781/781 [==============================] - loss: 0.3294 - 5ms/step        
     Eval begin...
-    step 781/781 [==============================] - loss: 0.3444 - 9ms/step          
+    step 781/781 [==============================] - loss: 0.2657 - 4ms/step        
     Eval samples: 24992
     Epoch 2/2
-    step 781/781 [==============================] - loss: 0.3233 - 13ms/step          
+    step 781/781 [==============================] - loss: 0.4440 - 5ms/step        
     Eval begin...
-    step 781/781 [==============================] - loss: 0.3606 - 9ms/step          
+    step 781/781 [==============================] - loss: 0.5204 - 4ms/step        
     Eval samples: 24992
 
 
-## 五、方式2：用底层API训练与验证
+## 五、方式：2 用底层API训练与验证
 
 
 ```python
@@ -284,12 +288,12 @@ model = MyNet()
 train(model)
 ```
 
-    epoch: 0, batch_id: 0, loss is: [0.6918238]
-    epoch: 0, batch_id: 500, loss is: [0.3139313]
-    [validation] accuracy/loss: 0.8514324426651001/0.36131760478019714
-    epoch: 1, batch_id: 0, loss is: [0.38679352]
-    epoch: 1, batch_id: 500, loss is: [0.20429397]
-    [validation] accuracy/loss: 0.8641164898872375/0.3263395130634308
+    epoch: 0, batch_id: 0, loss is: [0.6941461]
+    epoch: 0, batch_id: 500, loss is: [0.39664644]
+    [validation] accuracy/loss: 0.850872278213501/0.35973402857780457
+    epoch: 1, batch_id: 0, loss is: [0.30100435]
+    epoch: 1, batch_id: 500, loss is: [0.34108388]
+    [validation] accuracy/loss: 0.8630361557006836/0.3261036276817322
 
 
 ## The End
