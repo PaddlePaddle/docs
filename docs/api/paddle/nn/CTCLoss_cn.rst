@@ -20,8 +20,6 @@ CTCLoss
     - **input_lengths** (Tensor): - 表示输入 ``logits`` 数据中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。
     - **label_lengths** (Tensor): - 表示 label 中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。
     - **norm_by_times** (bool): - 当为 True 的时候，ctc grad 除以对应样本的 logits_lenth ，即 ctc_grad[B] / logits_lenth[B].数据类型支持 bool。与其他 `norm_by_*` 互斥.
-    - **norm_by_batchsize** (bool)： -  当为 True 的时候，ctc grad 除以 batch_size。数据类型支持 bool。与其他 `norm_by_*` 互斥.
-    - **norm_by_total_logits_len** (bool): - 当为 True 的时候，ctc grad 除以 sum(logits_lenth).数据类型支持 bool。与其他 `norm_by_*` 互斥.
 
 返回
 :::::::::
