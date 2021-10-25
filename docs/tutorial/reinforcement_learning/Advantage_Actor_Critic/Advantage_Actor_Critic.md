@@ -1,7 +1,7 @@
 #  **强化学习——Advantage Actor-Critic(A2C)**
-**作者：**[EastSmith](https://github.com/EastSmith)
+**作者：**:[EastSmith](https://github.com/EastSmith)
 
-**日期：** 2021.06 
+**日期：** 2021.10
 
 **AI Studio项目**：[点击体验](https://aistudio.baidu.com/aistudio/projectdetail/1766508)
 ## **一、介绍**
@@ -43,7 +43,7 @@ Q（s，a）= V（s）+ A（s，a）
 
 
 ## **二、环境配置**
-本教程基于Paddle 2.1 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 
 ```python
@@ -251,6 +251,7 @@ envs = [make_env() for i in range(num_envs)]
 envs = SubprocVecEnv(envs) # 8 env
 
 env = gym.make(env_name) # a single env
+
 ```
 
 ### **定义网络结构并开始训练**
@@ -314,6 +315,8 @@ def plot(frame_idx, rewards):
     plt.plot(rewards,'b-')
     plt.title('frame %s. reward: %s' % (frame_idx, rewards[-1]))
     plt.pause(0.0001)
+
+
 ```
 
 ### **实例化模型和定义优化器**
