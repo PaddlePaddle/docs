@@ -114,7 +114,7 @@ However, as tracing only records operators once, if user's code contains Tensor-
 
     import paddle
 
-    def func(input_var)
+    def func(input_var):
         # if condition depends on the shape of input_var
         if input_var.shape[0] > 1:
             return paddle.cast(input_var, "float64")
