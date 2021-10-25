@@ -798,6 +798,14 @@ expand_as(y, name=None)
 
 请参考 :ref:`cn_api_tensor_expand_as`
 
+eigvals(y, name=None)
+:::::::::
+
+返回：输入矩阵的特征值
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_linalg_eigvals`
 
 fill_(x, value, name=None)
 :::::::::
@@ -841,6 +849,8 @@ zero_(x, name=None)
 fill_diagonal_(x, value, offset=0, wrap=False, name=None)
 :::::::::
 以value值填充输入Tensor x的对角线元素值。对x的原地Inplace修改。
+输入Tensor x维度至少是2维，当维度大于2维时要求所有维度值相等。
+当维度等于2维时，两个维度可以不等，且此时wrap选项生效，详见wrap参数说明。
 
 参数：
     - **x** (Tensor) - 需要修改对角线元素值的原始Tensor。
@@ -865,7 +875,9 @@ fill_diagonal_(x, value, offset=0, wrap=False, name=None)
 
 fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 :::::::::
-将输入Tensor y填充到Tensor x的以dim1、dim2所指定对角线维度作为最后一个维度的局部Tensor中，输入Tensor x其余纬度作为该局部Tensor的shape中的前几个维度。
+将输入Tensor y填充到Tensor x的以dim1、dim2所指定对角线维度作为最后一个维度的局部子Tensor中，输入Tensor x其余维度作为该局部子Tensor的shape中的前几个维度。
+其中输入Tensor y的维度要求是：最后一个维度与dim1、dim2指定的对角线维度相同，其余维度与输入Tensor x其余维度相同，且先后顺序一致。
+例如，有输入Tensor x，x.shape = (2,3,4,5)时, 若dim1=2，dim2=3，则y.shape=(2,3,4); 若dim1=1，dim2=2，则y.shape=(2,5,3); 
 
 参数：
     - **x** (Tensor) - 需要填充局部对角线区域的原始Tensor。
@@ -1938,6 +1950,15 @@ trunc(name=None)
 
 请参考 :ref:`cn_api_tensor_trunc`
 
+tensordot(y, axes=2, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensordot`
+
 unbind(axis=0)
 :::::::::
 
@@ -2026,3 +2047,21 @@ where(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_where`
+
+multi_dot(x, name=None)
+:::::::::
+
+返回：多个矩阵相乘后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_multi_dot`
+
+solve(x, y name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_linalg_solve`

@@ -28,7 +28,7 @@ svd
     - Tensor S， 奇异值向量，Shape为 ``[*, K]`` 。
     - Tensor VH， 奇异值分解的VH矩阵。如果full_matrics设置为False，则Shape为 ``[*, K, N]`` ，如果full_metrics设置为True，那么Shape为 ``[*, N, N]`` 。其中K为M和N的最小值。
 
-**代码示例**：
+代码示例：
 ::::::::::
 
 .. code-block:: python

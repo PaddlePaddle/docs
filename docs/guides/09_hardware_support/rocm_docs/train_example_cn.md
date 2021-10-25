@@ -18,7 +18,7 @@ git clone https://github.com/PaddlePaddle/PaddleClas.git
 export HIP_VISIBLE_DEVICES=0,1,2,3
 
 cd PaddleClas/
-python -m paddle.distributed.launch --gpus="0,1,2,3" tools/train.py -c ./configs/ResNet/ResNet50.yaml
+python -m paddle.distributed.launch --gpus="0,1,2,3" tools/train.py -c ./ppcls/configs/ImageNet/ResNet/ResNet50.yaml
 ```
 
 **第三步**：获取4卡训练得到的 Best Top1 Accuracy 结果如下
