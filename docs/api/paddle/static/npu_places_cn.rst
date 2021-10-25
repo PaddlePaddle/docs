@@ -7,7 +7,7 @@ npu_places
 
 
 .. note::
-    多卡任务请先使用 FLAGS_selected_npus 环境变量设置可见的NPU设备，下个版本将会修正 NPU_VISIBLE_DEVICES 环境变量无效的问题。
+    多卡任务请先使用 FLAGS_selected_npus 环境变量设置可见的NPU设备。
 
 该接口根据 ``device_ids`` 创建一个或多个 ``paddle.NPUPlace`` 对象，并返回所创建的对象列表。
 
@@ -36,4 +36,4 @@ list[paddle.NPUPlace]，创建的 ``paddle.NPUPlace`` 列表。
     
     paddle.enable_static()
 
-    cuda_places = static.npu_places()
+    npu_places = static.npu_places()
