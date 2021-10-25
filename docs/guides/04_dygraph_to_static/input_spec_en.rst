@@ -225,7 +225,7 @@ Currently, the ``input_spec`` from ``to_static`` decorator only receives objects
         net.clear_gradients()
 
     # save inference model with use_act=False
-    paddle.jit.save(net, model_path='./simple_net')
+    paddle.jit.save(net, path='./simple_net')
 
 
 In above example, use_act is equal to True if step is an odd number, and False if step is an even number. We support non-tensor argument applied to different values during training after conversion. Moreover, the shared parameters of the model can be updated during the training with different values. The behavior is consistent with the dynamic graph.

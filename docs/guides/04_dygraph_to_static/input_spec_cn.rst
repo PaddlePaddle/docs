@@ -226,7 +226,7 @@ InputSpec 初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``nam
         net.clear_gradients()
 
     # save inference model with use_act=False
-    paddle.jit.save(net, model_path='./simple_net')
+    paddle.jit.save(net, path='./simple_net')
 
 
 在上述样例中，step 为奇数时，use_act 取值为 False ； step 为偶数时， use_act 取值为 True 。动转静支持非 Tensor 参数在训练时取不同的值，且保证了取值不同的训练过程都可以更新模型的网络参数，行为与动态图一致。
