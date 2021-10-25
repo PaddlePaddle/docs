@@ -11,14 +11,9 @@ ModelAverage 优化器，在训练过程中累积特定连续的历史 ``Paramet
 
 计算平均值的窗口大小由 ``average_window_rate`` ， ``min_average_window`` ， ``max_average_window`` 以及当前 ``Parameters`` 更新次数(num_updates)共同决定。
 
-累积次数（num_accumulates）大于特定窗口阈值 (average_window) 时，将累积的 ``Parameters`` 临时变量置为 0.0，这几个参数的作用通过以下示例代码说明：
+累积次数（num_accumulates）大于特定窗口阈值 (average_window) 时，将累积的 ``Parameters`` 临时变量置为 0.0.
 
-.. code-block:: python
-
-    if num_accumulates >= min_average_window and num_accumulates >= min(max_average_window, num_updates * average_window_rate):
-        num_accumulates = 0
-
-上述条件判断语句中，``num_accumulates`` 表示当前累积的次数，可以抽象理解为累积窗口的长度；窗口长度至少要达到 ``min_average_window`` 参数设定的长度，并且不能超过 ``max_average_window`` 参数或者 ``num_updates`` * ``average_window_rate`` 规定的长度，其中 ``num_updates`` 表示当前 ``Parameters`` 更新的次数；``average_window_rate`` 是一个计算窗口长度的系数。
+``num_accumulates`` 表示当前累积的次数，可以抽象理解为累积窗口的长度；窗口长度至少要达到 ``min_average_window`` 参数设定的长度，并且不能超过 ``max_average_window`` 参数或者 ``num_updates`` * ``average_window_rate`` 规定的长度，否则为 0；而其中 ``num_updates`` 表示当前 ``Parameters`` 更新的次数，``average_window_rate`` 是一个计算窗口长度的系数。
 
 参数
 :::::::::
