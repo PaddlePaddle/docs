@@ -40,11 +40,6 @@ PaddlePaddle里Tensor的嵌套结构是指一个Tensor，或者Tensor的元组�
 :::::::::
 Tensor|list(Tensor)|tuple(Tensor)，如果 ``pred`` 是 ``True`` ，该API返回 ``true_fn()`` ，否则返回 ``false_fn()`` 。
 
-抛出异常
-:::::::::
-    - ``TypeError`` - 如果 ``true_fn`` 或 ``false_fn`` 不是callable。
-    - ``ValueError`` - 如果 ``true_fn`` 和 ``false_fn`` 没有返回同样的嵌套结构（nest structure），对嵌套结构的解释见上文。
-
 代码示例
 :::::::::
 .. code-block:: python
