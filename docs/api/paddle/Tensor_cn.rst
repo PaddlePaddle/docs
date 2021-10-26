@@ -387,6 +387,15 @@ backward(grad_tensor=None, retain_graph=False)
         # 3: [4000.]
         # 4: [5000.]
 
+bincount(weights=None, minlength=0)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_bincount`
+
 bitwise_and(y, out=None, name=None)
 :::::::::
 
