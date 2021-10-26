@@ -5,9 +5,9 @@
 ### 1.1 PREQUISITES
 
 * **Linux Version (64 bit)**
-  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.2**)**
-  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.2)**
-  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.2)**
+  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2**)**
+  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2)**
+  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2)**
 
 * **Python Version: 3.6/3.7/3.8/3.9 (64 bit)**
 
@@ -76,7 +76,9 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.7 or higher)**
+  * **CUDA toolkit 10.1/10.2 with cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher)**
+
+  * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.7 or higher)**
 
   * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 
@@ -84,7 +86,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
     You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA9 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
+* If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA10.2 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
 
   * **Centos system can refer to the following commands**
 
@@ -99,7 +101,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
     ```
 
     ```
-    yum install -y libnccl-2.3.7-2+cuda9.0 libnccl-devel-2.3.7-2+cuda9.0 libnccl-static-2.3.7-2+cuda9.0
+    yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
     ```
 
   * **Ubuntu system can refer to the following commands**
@@ -113,7 +115,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
     ```
 
     ```
-    sudo apt-get install -y libnccl2=2.3.7-1+cuda9.0 libnccl-dev=2.3.7-1+cuda9.0
+    sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
     ```
 
 
@@ -124,41 +126,48 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 
-#### 2.1 CPU Versoion of PaddlePaddle
+#### 2.1 <span id="cpu">CPU Version of PaddlePaddle</span>
 
 
   ```
-  python -m pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/linux/cpu-mkl/develop.html
-  ```
-
-
-
-#### 2.2 GPU Version of PaddlePaddle
-
-
-
-2.2.1 CUDA10.1的PaddlePaddle
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
+  python -m pip install paddlepaddle==2.2.0rc0 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
 
-2.2.2 CUDA10.2的PaddlePaddle
+#### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
+
+
+
+2.2.1 If you are using CUDA 10.1
 
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
+  python -m pip install paddlepaddle-gpu==2.2.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
-2.2.3 CUDA11.2的PaddlePaddle
+
+2.2.2 If you are using CUDA 10.2
 
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
+  python -m pip install paddlepaddle-gpu==2.2.0rc0 -i https://mirror.baidu.com/pypi/simple
+  ```
+
+2.2.3 If you are using CUDA 11.0
+
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.2.0rc0.post110 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
+
+
+2.2.4 If you are using CUDA 11.2
+
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.2.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -168,6 +177,58 @@ Note：
 * If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance.
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
+
+* If you want to use the tsinghua pypi, you can use the following command:
+
+  ```
+   python -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
+  ```
+
+* The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command to install，noavx version paddle wheel only support python3.8：
+
+  First use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
+
+   * cpu and mkl version installed on noavx machine：
+
+   ```
+   python -m pip download paddlepaddle==2.2.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
+   ```
+
+   * cpu and openblas version installed on noavx machine：
+
+   ```
+   python -m pip download paddlepaddle==2.2.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/noavx/stable.html --no-index --no-deps
+   ```
+
+
+   * GPU cuda10.1 version install on noavx machine：
+
+   ```
+   python -m pip download paddlepaddle-gpu==2.2.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
+   ```
+
+   * GPU cuda10.2 version install on noavx machine：
+
+   ```
+   python -m pip download paddlepaddle-gpu==2.2.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
+   ```
+
+   To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
+   ```
+   cat /proc/cpuinfo | grep -i avx
+   ```
+
+* If you want to install the Paddle package built with `tensorrt`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
+
+  ```
+  python -m pip download paddlepaddle-gpu==[Version] -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html --no-index --no-deps
+  ```
+
+* If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
+
+  ```
+  python -m pip download paddlepaddle-gpu==[Version] -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  ```
 
 
 

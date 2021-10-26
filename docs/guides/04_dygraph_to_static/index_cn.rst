@@ -32,7 +32,7 @@ Python执行开销较大，与C++有一定差距。因此在工业界的许多�
 
     basic_usage_cn.rst    
     program_translator_cn.rst
-    grammar_list_cn.rst
+    grammar_list_cn.md
     input_spec_cn.rst
     debugging_cn.md
     export_model/index_cn.rst

@@ -7,15 +7,15 @@
 
 | 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| ResNet50  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/ResNet_and_vd.md) |  动态图  | 支持 | 支持 | 支持 |
-| ResNet101  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/ResNet_and_vd.md) |  动态图  | 支持 | 支持 | 支持 |
-| SE_ResNet50_vd  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/SEResNext_and_Res2Net.md) |  动态图  | 支持 | 支持 | 支持 |
-| VGG16 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/Others.md) |  动态图  | 支持 | 支持 | 支持 |
-| InceptionV4 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/Inception.md) |  动态图  | 支持 | 支持 | 支持 |
-| GoogleNet | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/Inception.md) |  动态图  | 支持 | 支持 | 支持 |
-| MobileNetV3 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/Mobile.md) |  动态图  | 支持 | 支持 | 支持 |
-| AlexNet | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/Others.md) |  动态图  | 支持 | 支持 | 支持 |
-| DenseNet121 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/tree/release/2.2/docs/zh_CN/models/DPN_DenseNet.md) |  动态图  | 支持 | 支持 | 支持 |
+| ResNet50  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/ResNet/ResNet50.yaml) |  动态图  | 支持 | 支持 | 支持 |
+| ResNet101  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/ResNet/ResNet101.yaml) |  动态图  | 支持 | 支持 | 支持 |
+| SE_ResNet50_vd  | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/SENet/SE_ResNet50_vd.yaml) |  动态图  | 支持 | 支持 | 支持 |
+| VGG16 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/VGG/VGG16.yaml) |  动态图  | 支持 | 支持 | 支持 |
+| InceptionV4 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/Inception/InceptionV4.yaml) |  动态图  | 支持 | 支持 | 支持 |
+| GoogleNet | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/Inception/GoogLeNet.yaml) |  动态图  | 支持 | 支持 | 支持 |
+| MobileNetV3 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/MobileNetV3/MobileNetV3_large_x1_0.yaml) |  动态图  | 支持 | 支持 | 支持 |
+| AlexNet | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/AlexNet/AlexNet.yaml) |  动态图  | 支持 | 支持 | 支持 |
+| DenseNet121 | 图像分类 | [模型链接](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/ppcls/configs/ImageNet/DenseNet/DenseNet121.yaml) |  动态图  | 支持 | 支持 | 支持 |
 
 
 ## 目标检测
@@ -23,7 +23,7 @@
 | 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
 | YOLOv3  | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/yolov3) |  动态图  | 支持 | 支持 | 支持 |
-| PP-YOLO | 目标检测 | [模型链接](hhttps://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/ppyolo) |  动态图  | 支持 | 支持 | 支持 |
+| PP-YOLO | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/ppyolo) |  动态图  | 支持 | 支持 | 支持 |
 | SSD | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/ssd) |  动态图  | 支持 | 支持 | 支持 |
 | RetinaNet | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/static/configs/retinanet_r50_fpn_1x.yml) |  静态图  | 支持 | 支持 | 支持 |
 | Faster R-CNN  | 目标检测 | [模型链接](https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.2/configs/faster_rcnn) |  动态图  | 支持 | 支持 | 支持 |
@@ -125,7 +125,7 @@
 
 | 领域        | 套件名称        | 分支/版本        |
 | ----------- | --------------- | ---------------- |
-| 图像分类     | PaddleClas      | release/2.2      |
+| 图像分类     | PaddleClas      | release/2.3      |
 | 目标检测     | PaddleDetection | release/2.2      |
 | 图像分割     | PaddleSeg       | release/v2.0     |
 | 自然语言处理  | PaddleNLP       | develop          |
@@ -133,4 +133,4 @@
 | 推荐系统     | PaddleRec       | release/2.1.0    |
 | 视频分类     | PaddleVideo     | develop          |
 | 语音合成     | Parakeet        | develop          |
-| 生成对抗网络  | PaddleGAN        | develop          |
+| 生成对抗网络  | PaddleGAN       | develop          |

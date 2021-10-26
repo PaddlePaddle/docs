@@ -1,7 +1,7 @@
 # **强化学习——Deep Deterministic Policy Gradient (DDPG)**
-**作者：**[EastSmith](https://github.com/EastSmith)
+**作者：**:[EastSmith](https://github.com/EastSmith)
 
-**日期：** 2021.06
+**日期：** 2021.10
 
 **AI Studio项目**：[点击体验](https://aistudio.baidu.com/aistudio/projectdetail/1702021)
 
@@ -37,7 +37,7 @@
 ### 现在，看看它是如何实现的。
 
 ## **二、环境配置**
-本教程基于Paddle 2.1 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 
 ```python
@@ -64,7 +64,6 @@ from visualdl import LogWriter
 
 
 ```python
-
 # 定义评论家网络结构
 # DDPG这种方法与Q学习紧密相关，可以看作是连续动作空间的深度Q学习。 
 class Critic(nn.Layer):
@@ -134,6 +133,7 @@ class Memory(object):
     def clear(self):
         self.buffer.clear()
 
+
 ```
 
 ## **四、训练模型**
@@ -172,11 +172,12 @@ begin_train = False
 batch_size = 32
 
 learn_steps = 0
+epochs = 250
 
 writer = LogWriter('logs')
 
 # 训练循环
-for epoch in count():
+for epoch in range(0, epochs):
     state = env.reset()
     episode_reward = 0
     for time_step in range(200):
@@ -235,7 +236,7 @@ for epoch in count():
         state = next_state
 
     writer.add_scalar('episode reward', episode_reward, epoch)
-    if epoch % 10 == 0:
+    if epoch % 50 == 0:
         print('Epoch:{}, episode reward is {}'.format(epoch, episode_reward))
     
     if epoch % 200 == 0:
@@ -244,84 +245,9 @@ for epoch in count():
         print('model saved!')  
 ```
 
-    Epoch:0, episode reward is -1749.9524052543404
+    Epoch:0, episode reward is -1233.9451882846902
     model saved!
     train begin!
-    Epoch:10, episode reward is -1558.1879966274944
-    Epoch:20, episode reward is -1045.7322554445427
-    Epoch:30, episode reward is -1524.0496742842015
-    Epoch:40, episode reward is -1414.0189622621372
-    Epoch:50, episode reward is -1204.3125295484997
-    Epoch:60, episode reward is -1179.1239205083223
-    Epoch:70, episode reward is -910.6365748819718
-    Epoch:80, episode reward is -659.9206081149266
-    Epoch:90, episode reward is -529.3194043807533
-    Epoch:100, episode reward is -275.6515482316898
-    Epoch:110, episode reward is -843.7284149467482
-    Epoch:120, episode reward is -512.1250015970334
-    Epoch:130, episode reward is -461.6260601765518
-    Epoch:140, episode reward is -0.29144486697480365
-    Epoch:150, episode reward is -244.55243722973717
-    Epoch:160, episode reward is -130.92866458471315
-    Epoch:170, episode reward is -131.33029778515296
-    Epoch:180, episode reward is -132.15653322390014
-    Epoch:190, episode reward is -140.81801441859207
-    Epoch:200, episode reward is -117.0523316097533
-    model saved!
-    Epoch:210, episode reward is -259.22427383229297
-    Epoch:220, episode reward is -134.4996805053725
-    Epoch:230, episode reward is -129.0195349153491
-    Epoch:240, episode reward is -128.95548064547776
-    Epoch:250, episode reward is -261.8700650258451
-    Epoch:260, episode reward is -130.29170784969625
-
-
-
-    ---------------------------------------------------------------------------
-
-    KeyboardInterrupt                         Traceback (most recent call last)
-
-    <ipython-input-6-6b2393f53306> in <module>
-         80             writer.add_scalar('actor loss', actor_loss.numpy(), learn_steps)
-         81 
-    ---> 82             soft_update(actor_target, actor, tau)
-         83             soft_update(critic_target, critic, tau)
-         84 
-
-
-    <ipython-input-6-6b2393f53306> in soft_update(target, source, tau)
-          2 def soft_update(target, source, tau):
-          3     for target_param, param in zip(target.parameters(), source.parameters()):
-    ----> 4         target_param.set_value( target_param * (1.0 - tau) + param * tau)
-          5 
-          6 # 定义环境、实例化模型
-
-
-    ~/.conda/envs/paddle2.1/lib/python3.9/site-packages/paddle/fluid/dygraph/math_op_patch.py in __impl__(self, other_var)
-        187                 # but only +, -, *, / can use this method
-        188                 if scalar_method is not None:
-    --> 189                     return scalar_method(self, other_var)
-        190             elif isinstance(other_var, int):
-        191                 # in all cases(+, -, *, /, **, //, %), we can cast it to float
-
-
-    ~/.conda/envs/paddle2.1/lib/python3.9/site-packages/paddle/fluid/dygraph/math_op_patch.py in _scalar_mul_(var, value)
-        167 
-        168     def _scalar_mul_(var, value):
-    --> 169         return _scalar_elementwise_op_(var, value, 0.0)
-        170 
-        171     def _scalar_div_(var, value):
-
-
-    ~/.conda/envs/paddle2.1/lib/python3.9/site-packages/paddle/fluid/dygraph/math_op_patch.py in _scalar_elementwise_op_(var, scale, bias)
-        107 
-        108     def _scalar_elementwise_op_(var, scale, bias):
-    --> 109         return core.ops.scale(var, 'scale', scale, 'bias', bias)
-        110 
-        111     def _neg_(var):
-
-
-    KeyboardInterrupt: 
 
 
 ![](https://ai-studio-static-online.cdn.bcebos.com/6badbd1d51e74b62ac8d9e36f68e57828a8c776ee0e949feb5ca5d15fe4159b4)
