@@ -5,8 +5,6 @@ ExponentialMovingAverage
 
 .. py:class:: paddle.static.ExponentialMovingAverage(decay=0.999, thres_steps=None, name=None)
 
-:api_attr: 声明式编程模式（静态图)
-
 用指数衰减计算参数的滑动平均值。给定参数 :math:`\theta` ，它的指数滑动平均值 (exponential moving average, EMA) 为
 
 .. math::
@@ -26,28 +24,34 @@ ExponentialMovingAverage
     \min(\text{decay}, \frac{1 + \text{thres_steps}}{10 + \text{thres_steps}})
 通常 ``thres_steps`` 可以是全局的训练迭代步数。
 
-
-参数：
+参数
+:::::::::
     - **decay** (float, 可选) – 指数衰减率，通常接近 1 ，如 0.999 ，0.9999 ，···。默认值为 0.999 。
     - **thres_steps** (Variable|None, 可选) – 调节衰减率的阈值步数，默认值为 None 。
     - **name** (str|None，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
-**代码示例**
-
+代码示例
+:::::::::
 COPY-FROM: paddle.static.ExponentialMovingAverage
 
+
 .. py:method:: update()
+'''''''''
 更新指数滑动平均，在训练过程中需调用此方法。
 
+
 .. py:method:: apply(executor, need_restore=True)
+'''''''''
 模型评测时，将滑动平均的结果作用在参数上。
 
-参数：
+**参数**
     - **executor** (Executor) – 将滑动平均值作用在参数上的执行器。
     - **need_restore** (bool，可选) – 是否在结束后恢复原始参数，默认值为 ``True`` 。
 
+
 .. py:method:: restore(executor)
+''''''''''
 恢复参数。
 
-参数：
+**参数**
     - **executor** (Executor) – 执行恢复动作的执行器。

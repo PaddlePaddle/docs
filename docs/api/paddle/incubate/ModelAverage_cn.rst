@@ -3,7 +3,7 @@
 ModelAverage
 -------------------------------
 
-.. py:function:: paddle.incubate.ModelAverage(average_window_rate, parameters=None, min_average_window=10000, max_average_window=10000, name=None)
+.. py:class:: paddle.incubate.ModelAverage(average_window_rate, parameters=None, min_average_window=10000, max_average_window=10000, name=None)
 
 ModelAverage 优化器，在训练过程中累积特定连续的历史 ``Parameters``，累积的历史范围可以用传入的 ``average_window`` 参数来控制，在预测时使用平均后的 ``Parameters``，通常可以提高预测的精度。
 
@@ -29,55 +29,52 @@ COPY-FROM: paddle.incubate.ModelAverage
 
 
 .. py:function:: minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
+'''''''''
 通过更新 ``Parameters`` 来最小化 ``loss`` 的方法。
 
-参数
-:::::::::
+**参数**
     - **loss** (Tensor) – 一个包含需要最小化的损失值变量的 Tensor。
     - **startup_program** (Program, 可选) - 用于初始化 ``Parameters`` 中参数的 ``Program``, 默认值为 None，此时将使用 ``default_startup_program``。
     - **parameters** (list, 可选) – 待更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的列表， 默认值为 None，此时将更新所有的 ``Parameters``。
     - **no_grad_set** (set, 可选) – 不需要更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的集合，默认值为 None。
-    - **name** (str, 可选)– 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为 None。
+    - **name** (str, 可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为 None。
 
-返回: tuple(optimize_ops, params_grads)，其中 optimize_ops 为参数优化 OP 列表；param_grads 为由 (param, param_grad) 组成的列表，其中 param 和 param_grad 分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+**返回**
+tuple(optimize_ops, params_grads)，其中 optimize_ops 为参数优化 OP 列表；param_grads 为由 (param, param_grad) 组成的列表，其中 param 和 param_grad 分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
-代码示例
-:::::::::
+**代码示例**
 COPY-FROM: paddle.incubate.ModelAverage.minimize
 
 
 .. py:function:: step()
+'''''''''
 执行一次优化器并进行参数更新。
 
-返回
-:::::::::
+**返回**
 None
 
-代码示例
-:::::::::
+**代码示例**
 COPY-FROM: paddle.incubate.ModelAverage.step
 
 
 .. py:function:: apply(executor=None, need_restore=True)
+'''''''''
 将累积 ``Parameters`` 的平均值应用于当前网络的 ``Parameters``。
 
-参数
-:::::::::
+**参数**
     - **executor** (Executor) – 静态图模式下当前网络的执行器；动态图模式下默认值为 None。
     - **need_restore** (bool) - 恢复标志变量；设为True 时，执行完成后会将网络的 ``Parameters``恢复为网络默认的值，设为 False 将不会恢复。默认值为 True。
 
-代码示例
-:::::::::
+**代码示例**
 COPY-FROM: paddle.incubate.ModelAverage.apply
 
 
 .. py:function:: restore(executor=None)
+'''''''''
 恢复当前网络的 ``Parameters`` 值。
 
-参数
-:::::::::
+**参数**
     - **executor** (Executor) – 静态图模式下当前网络的执行器；动态图模式下默认值为 None。
 
-代码示例
-:::::::::
+**代码示例**
 COPY-FROM: paddle.incubate.ModelAverage.restore
