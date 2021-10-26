@@ -287,6 +287,7 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.strided_slice <cn_api_strided_slice>` ", "沿多个轴生成 x 的切片"
     " :ref:`paddle.tile <cn_api_tensor_tile>` ", "根据参数 repeat_times 对输入 x 的各维度进行复制"
     " :ref:`paddle.transpose <cn_api_fluid_layers_transpose>` ", "根据perm对输入的多维Tensor进行数据重排"
+    " :ref:`paddle.tensordot <cn_api_paddle_tensordot>`  ", "沿多个轴对输入的x和y进行张量缩并操作"
     " :ref:`paddle.unbind <cn_api_paddle_tensor_unbind>` ", "将输入Tensor按照指定的维度分割成多个子Tensor"
     " :ref:`paddle.unique <cn_api_tensor_cn_unique>` ", "返回Tensor按升序排序后的独有元素"
     " :ref:`paddle.unique_consecutive <cn_api_tensor_cn_unique_consecutive>` ", "返回无连续重复元素的Tensor"
