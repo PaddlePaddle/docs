@@ -32,8 +32,7 @@ ExponentialMovingAverage
 
 代码示例
 :::::::::
-
-    COPY-FROM: paddle.static.ExponentialMovingAverage
+COPY-FROM: paddle.static.ExponentialMovingAverage
 
 
 .. py:method:: update()
