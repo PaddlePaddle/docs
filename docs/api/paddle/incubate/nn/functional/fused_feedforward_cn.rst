@@ -1,9 +1,9 @@
-.. _cn_api_nn_functional_fused_feedforward:
+.. _cn_api_incubate_nn_functional_fused_feedforward:
 
 fused_feedforward
 -------------------------------
 
-.. py:function:: paddle.nn.functional.fused_feedforward(x, linear1_weight, linear2_weight, linear1_bias=None, linear2_bias=None, ln1_scale=None, ln1_bias=None, ln2_scale=None, ln2_bias=None, dropout1_rate=0.5, dropout2_rate=0.5,activation="relu", ln1_epsilon=1e-5, ln2_epsilon=1e-5, pre_layer_norm=False, name=None):
+.. py:function:: paddle.incubate.nn.functional.fused_feedforward(x, linear1_weight, linear2_weight, linear1_bias=None, linear2_bias=None, ln1_scale=None, ln1_bias=None, ln2_scale=None, ln2_bias=None, dropout1_rate=0.5, dropout2_rate=0.5,activation="relu", ln1_epsilon=1e-5, ln2_epsilon=1e-5, pre_layer_norm=False, name=None):
 
 这是一个融合算子，该算子是对transformer模型中feed forward层的多个算子进行融合，该算子只支持在GPU下运行，该算子与如下伪代码表达一样的功能：
 
@@ -53,7 +53,7 @@ fused_feedforward
     x = paddle.to_tensor(x_data)
     linear1_weight = paddle.to_tensor(linear1_weight_data)
     linear2_weight = paddle.to_tensor(linear2_weight_data)
-    out = paddle.nn.functional.fused_feedforward(x, linear1_weight, linear2_weight)
+    out = paddle.incubate.nn.functional.fused_feedforward(x, linear1_weight, linear2_weight)
     print(out.numpy().shape)
     # (1, 8, 8)
 
