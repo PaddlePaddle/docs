@@ -32,16 +32,19 @@ ExponentialMovingAverage
 
 代码示例
 :::::::::
-COPY-FROM: paddle.static.ExponentialMovingAverage
+
+    COPY-FROM: paddle.static.ExponentialMovingAverage
 
 
 .. py:method:: update()
 '''''''''
+
 更新指数滑动平均，在训练过程中需调用此方法。
 
 
 .. py:method:: apply(executor, need_restore=True)
 '''''''''
+
 模型评测时，将滑动平均的结果作用在参数上。
 
 **参数**
@@ -51,6 +54,7 @@ COPY-FROM: paddle.static.ExponentialMovingAverage
 
 .. py:method:: restore(executor)
 ''''''''''
+
 恢复参数。
 
 **参数**
