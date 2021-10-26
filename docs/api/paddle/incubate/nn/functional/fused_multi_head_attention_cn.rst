@@ -1,9 +1,9 @@
-.. _cn_api_nn_cn_fused_multi_head_attention:
+.. _cn_api_incubate_nn_cn_fused_multi_head_attention:
 
 fused_multi_head_attention
 -------------------------------
 
-.. py:function:: paddle.nn.functional.fused_multi_head_attention(x,
+.. py:function:: paddle.incubate.nn.functional.fused_multi_head_attention(x,
                                                                 qkv_weight,
                                                                 linear_weight,
                                                                 pre_layer_norm=False,
@@ -92,13 +92,13 @@ fused_multi_head_attention 包含的计算逻辑如下：
 
     # required: gpu            
     import paddle
-    import paddle.nn.functional as F
+    import paddle.incubate.nn.functional as F
 
     # input: [batch_size, seq_len, embed_dim]
     x = paddle.rand(shape=(2, 4, 128), dtype="float32")
-    # qkv_weight: [3, num_head, dim_head, dim_embed]
+    # qkv_weight: [3, num_head, head_dim, embed_dim]
     qkv_weight = paddle.rand(shape=(3, 4, 32, 128), dtype="float32")
-    # qkv_bias: [3, num_head, dim_head]
+    # qkv_bias: [3, num_head, head_dim]
     qkv_bias = paddle.rand(shape=(3, 4, 32), dtype="float32")
     # linear_weight: [embed_dim, embed_dim]
     linear_weight = paddle.rand(shape=(128, 128), dtype="float32")

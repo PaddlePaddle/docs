@@ -1,9 +1,9 @@
-.. _cn_api_nn_FusedMultiHeadAttention:
+.. _cn_api_incubate_nn_FusedMultiHeadAttention:
 
 FusedMultiHeadAttention
 -------------------------------
 
-.. py:class:: paddle.nn.FusedMultiHeadAttention(embed_dim, num_heads, dropout_rate=0.5, attn_dropout_rate=0.5, kdim=None, vdim=None, normalize_before=False, need_weights=False, weight_attr=None, bias_attr=None, name=None)
+.. py:class:: paddle.incubate.nn.FusedMultiHeadAttention(embed_dim, num_heads, dropout_rate=0.5, attn_dropout_rate=0.5, kdim=None, vdim=None, normalize_before=False, need_weights=False, weight_attr=None, bias_attr=None, name=None)
 
 
 
@@ -33,7 +33,7 @@ FusedMultiHeadAttention与已有的MultiHeadAttention有两处不同：（1）�
 .. code-block:: python
 
    import paddle
-   from paddle.nn import FusedMultiHeadAttention
+   from paddle.incubate.nn import FusedMultiHeadAttention
 
    # input: [batch_size, sequence_length, embed_dim]
    query = paddle.rand((2, 4, 128))
