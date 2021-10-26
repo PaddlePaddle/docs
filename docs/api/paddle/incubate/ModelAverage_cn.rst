@@ -3,7 +3,7 @@
 ModelAverage
 -------------------------------
 
-.. py:function:: class paddle.incubate.ModelAverage(average_window_rate, parameters=None, min_average_window=10000, max_average_window=10000, name=None)
+.. py:function:: paddle.incubate.ModelAverage(average_window_rate, parameters=None, min_average_window=10000, max_average_window=10000, name=None)
 
 ModelAverage 优化器，在训练过程中累积特定连续的历史 ``Parameters``，累积的历史范围可以用传入的 ``average_window`` 参数来控制，在预测时使用平均后的 ``Parameters``，通常可以提高预测的精度。
 
@@ -37,7 +37,7 @@ COPY-FROM: paddle.incubate.ModelAverage
     - **startup_program** (Program, 可选) - 用于初始化 ``Parameters`` 中参数的 ``Program``, 默认值为 None，此时将使用 ``default_startup_program``。
     - **parameters** (list, 可选) – 待更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的列表， 默认值为 None，此时将更新所有的 ``Parameters``。
     - **no_grad_set** (set, 可选) – 不需要更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的集合，默认值为 None。
-    - **name** (str, 可选)– 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name** (str, 可选)– 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为 None。
 
 返回: tuple(optimize_ops, params_grads)，其中 optimize_ops 为参数优化 OP 列表；param_grads 为由 (param, param_grad) 组成的列表，其中 param 和 param_grad 分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
