@@ -1,24 +1,11 @@
 # 使用预训练的词向量完成文本分类任务
 
 **作者**: [fiyen](https://github.com/fiyen)<br>
-**日期**: 2021.05<br>
+**日期**: 2021.10<br>
 **摘要**: 本示例教程将会演示如何使用飞桨内置的Imdb数据集，并使用预训练词向量进行文本分类。
 
-
-```python
-print('自然语言相关数据集：', paddle.text.__all__)
-```
-
-    自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
-
-
-## 一、简介
-
-在这个示例中，将使用飞桨2.1完成针对Imdb数据集（电影评论情感二分类数据集）的分类训练和测试。Imdb将直接调用自飞桨2.1，同时，
-利用预训练的词向量（[GloVe embedding](http://nlp.stanford.edu/projects/glove/))完成任务。
-
-## 二、环境设置
-本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+## 一、环境设置
+本教程基于Paddle 2.2.0-rc0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 
 ```python
@@ -31,17 +18,29 @@ import random
 print(paddle.__version__)
 ```
 
-    2.1.0
+    2.2.0-rc0
 
 
-## 三、用飞桨2.1调用Imdb数据集
-由于飞桨2.1提供了经过处理的Imdb数据集，可以方便地调用所需要的数据实例，省去了数据预处理的麻烦。目前，飞桨2.1以及内置的高质量
-数据集包括Conll05st、Imdb、Imikolov、Movielens、HCIHousing、WMT14和WMT16等，未来还将提供更多常用数据集的调用接口。
+## 二、数据载入
 
-以下定义了调用imdb训练集合测试集的方法。其中，cutoff定义了构建词典的截止大小，即数据集中出现频率在cutoff以下的不予考虑；mode定义了返回的数据用于何种用途（test: 
-测试集，train: 训练集）。
+在这个示例中，将使用 Paddle 2.2.0-rc0 完成针对 Imdb 数据集（电影评论情感二分类数据集）的分类训练和测试。Imdb 将直接调用自 Paddle 2.2.0-rc0，同时，
+利用预训练的词向量（[GloVe embedding](http://nlp.stanford.edu/projects/glove/)）完成任务。
 
-### 3.1 定义数据集
+
+```python
+print('自然语言相关数据集：', paddle.text.__all__)
+```
+
+    自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
+
+
+
+由于 Paddle 2.2.0-rc0 提供了经过处理的Imdb数据集，可以方便地调用所需要的数据实例，省去了数据预处理的麻烦。目前， Paddle 2.2.0-rc0 以及内置的高质量
+数据集包括 Conll05st、Imdb、Imikolov、Movielens、HCIHousing、WMT14 和 WMT16 等，未来还将提供更多常用数据集的调用接口。
+
+以下定义了调用 imdb 训练集合测试集的方法。其中，cutoff 定义了构建词典的截止大小，即数据集中出现频率在 cutoff 以下的不予考虑；mode 定义了返回的数据用于何种用途（test: 测试集，train: 训练集）。
+
+### 2.1 定义数据集
 
 
 ```python
@@ -49,13 +48,7 @@ imdb_train = text.Imdb(mode='train', cutoff=150)
 imdb_test = text.Imdb(mode='test', cutoff=150)
 ```
 
-    Cache file /home/aistudio/.cache/paddle/dataset/imdb/imdb%2FaclImdb_v1.tar.gz not found, downloading https://dataset.bj.bcebos.com/imdb%2FaclImdb_v1.tar.gz 
-    Begin to download
-    
-    Download finished
-
-
-调用Imdb得到的是经过编码的数据集，每个term对应一个唯一id，映射关系可以通过imdb_train.word_idx查看。将每一个样本即一条电影评论，表示成id序列。可以检查一下以上生成的数据内容：
+调用 Imdb 得到的是经过编码的数据集，每个 term 对应一个唯一 id，映射关系可以通过 imdb_train.word_idx 查看。将每一个样本即一条电影评论，表示成 id 序列。可以检查一下以上生成的数据内容：
 
 
 ```python
@@ -100,14 +93,19 @@ def vectorizer(input, label=None, length=2000):
             yield np.array((x + [0]*length)[:length]).astype('int64')
 ```
 
-### 3.2 载入预训练向量
+### 2.2 载入预训练向量
 以下给出的文件较小，可以直接完全载入内存。对于大型的预训练向量，无法一次载入内存的，可以采用分批载入，并行处理的方式进行匹配。
+此外，AIStudio 中提供了 glove.6B 数据集挂载，用户可在 AIStudio 中直接载入数据集并解压。
 
 
 ```python
-# !wget http://nlp.stanford.edu/data/glove.6B.zip
-# !unzip -q glove.6B.zip
+# 下载并解压预训练向量
+!wget http://nlp.stanford.edu/data/glove.6B.zip
+!unzip -q glove.6B.zip
+```
 
+
+```python
 glove_path = "./glove.6B.100d.txt"
 embeddings = {}
 ```
@@ -247,7 +245,12 @@ paddle.summary(sim_model, input_size=(-1, length), dtypes='int64')
     Params size (MB): 2.02
     Estimated Total Size (MB): 3.78
     ---------------------------------------------------------------------------
-    
+
+
+
+
+
+
     {'total_params': 529692, 'trainable_params': 14992}
 
 
@@ -286,54 +289,54 @@ model.fit(train_data=DataReader(train_x[:-eval_length], train_y[:-eval_length], 
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/10
-    step 586/586 [==============================] - loss: 0.4641 - acc: 0.6480 - 415ms/step        
+    step 586/586 [==============================] - loss: 0.5608 - acc: 0.7736 - 5ms/step        
     Eval begin...
-    step 196/196 [==============================] - loss: 0.3703 - acc: 0.7694 - 209ms/step        
+    step 196/196 [==============================] - loss: 0.4902 - acc: 0.8000 - 4ms/step         
     Eval samples: 6250
     Epoch 2/10
-    step 586/586 [==============================] - loss: 0.5839 - acc: 0.7744 - 416ms/step        
+    step 586/586 [==============================] - loss: 0.4298 - acc: 0.8138 - 5ms/step        
     Eval begin...
-    step 196/196 [==============================] - loss: 0.3651 - acc: 0.7939 - 206ms/step        
+    step 196/196 [==============================] - loss: 0.4801 - acc: 0.8142 - 4ms/step         
     Eval samples: 6250
     Epoch 3/10
-    step 586/586 [==============================] - loss: 0.3980 - acc: 0.7953 - 419ms/step        
+    step 586/586 [==============================] - loss: 0.4947 - acc: 0.8298 - 6ms/step        
     Eval begin...
-    step 196/196 [==============================] - loss: 0.3801 - acc: 0.7982 - 214ms/step        
+    step 196/196 [==============================] - loss: 0.4568 - acc: 0.8230 - 4ms/step         
     Eval samples: 6250
     Epoch 4/10
-    step 586/586 [==============================] - loss: 0.4552 - acc: 0.8184 - 415ms/step        
+    step 586/586 [==============================] - loss: 0.4202 - acc: 0.8455 - 5ms/step        
     Eval begin...
-    step 196/196 [==============================] - loss: 0.3370 - acc: 0.8077 - 210ms/step        
+    step 196/196 [==============================] - loss: 0.4503 - acc: 0.8266 - 4ms/step         
     Eval samples: 6250
     Epoch 5/10
-    step 586/586 [==============================] - loss: 0.4108 - acc: 0.8361 - 421ms/step        
+    step 586/586 [==============================] - loss: 0.4847 - acc: 0.8564 - 5ms/step        
     Eval begin...
-    step 196/196 [==============================] - loss: 0.3369 - acc: 0.8179 - 210ms/step        
+    step 196/196 [==============================] - loss: 0.4647 - acc: 0.8280 - 4ms/step         
     Eval samples: 6250
     Epoch 6/10
-    step 586/586 [==============================] - loss: 0.4215 - acc: 0.8486 - 415ms/step        
+    step 586/586 [==============================] - loss: 0.4952 - acc: 0.8667 - 5ms/step        
     Eval begin...
-    step 196/196 [==============================] - loss: 0.3419 - acc: 0.8062 - 213ms/step        
+    step 196/196 [==============================] - loss: 0.4855 - acc: 0.8272 - 4ms/step         
     Eval samples: 6250
     Epoch 7/10
-    step 586/586 [==============================] - loss: 0.4092 - acc: 0.8586 - 424ms/step        
+    step 586/586 [==============================] - loss: 0.4016 - acc: 0.8704 - 5ms/step        
     Eval begin...
-    step 196/196 [==============================] - loss: 0.3312 - acc: 0.8200 - 208ms/step        
+    step 196/196 [==============================] - loss: 0.4764 - acc: 0.8248 - 4ms/step         
     Eval samples: 6250
     Epoch 8/10
-    step 586/586 [==============================] - loss: 0.4488 - acc: 0.8694 - 419ms/step        
+    step 586/586 [==============================] - loss: 0.4262 - acc: 0.8807 - 5ms/step        
     Eval begin...
-    step 196/196 [==============================] - loss: 0.3328 - acc: 0.8186 - 205ms/step        
+    step 196/196 [==============================] - loss: 0.4970 - acc: 0.8104 - 4ms/step         
     Eval samples: 6250
     Epoch 9/10
-    step 586/586 [==============================] - loss: 0.5302 - acc: 0.8770 - 412ms/step        
+    step 586/586 [==============================] - loss: 0.3585 - acc: 0.8862 - 6ms/step        
     Eval begin...
-    step 196/196 [==============================] - loss: 0.3961 - acc: 0.8152 - 201ms/step        
+    step 196/196 [==============================] - loss: 0.4614 - acc: 0.8272 - 4ms/step         
     Eval samples: 6250
     Epoch 10/10
-    step 586/586 [==============================] - loss: 0.3728 - acc: 0.8807 - 420ms/step        
+    step 586/586 [==============================] - loss: 0.3333 - acc: 0.8935 - 5ms/step        
     Eval begin...
-    step 196/196 [==============================] - loss: 0.3353 - acc: 0.8210 - 202ms/step        
+    step 196/196 [==============================] - loss: 0.4986 - acc: 0.8272 - 4ms/step         
     Eval samples: 6250
 
 
@@ -358,11 +361,10 @@ for index, y in enumerate(pred_y[0]):
 ```
 
     Eval begin...
-    The loss value printed in the log is the current batch, and the metric is the average value of previous step.
-    step 782/782 [==============================] - loss: 0.4408 - acc: 0.8085 - 2ms/step
+    step 782/782 [==============================] - loss: 0.4462 - acc: 0.8262 - 4ms/step        
     Eval samples: 25000
     Predict begin...
-    step 10/10 [==============================] - 2ms/step
+    step 10/10 [==============================] - 4ms/step        
     Predict samples: 10
     原文本：albert and tom are brilliant as sir and his of course the play is brilliant to begin with and nothing can compare with the and of theatre and i think you listen better in theatre but on the screen we become more intimate were more than we are in the theatre we witness subtle changes in expression we see better as well as listen both the play and the movie are moving intelligent the story of the company of historical context of the two main characters and of the parallel characters in itself if you cannot get to see it in a theatre i dont imagine its produced much these days then please do yourself a favor and get the video
     预测的标签是：positive, 实际标签是：positive
@@ -381,7 +383,7 @@ for index, y in enumerate(pred_y[0]):
     原文本：holy what a piece of this movie is i didnt how these filmmakers could take a word book and turn it into a movie i guess they didnt know either i dont remember any or in the book do youbr br they took this all times childrens classic added some and sexual and it into a joke this should give you a good idea of what these hollywood producers think like i have to say visually it was interesting but the brilliant visual story is ruined by toilet humor if you even think that kind of thing is funny i dont want the kids that i know to think it isbr br dont take your kids to see dont rent the dvd i hope the ghost of doctor ghost comes and the people that made this movie
     预测的标签是：negative, 实际标签是：negative
     原文本：i was so looking forward to seeing this when it was in it turned out to be the the biggest let down a far cry from the world of dr it was and i dont think dr would have the stole christmas was much better i understand it had some subtle adult jokes in it but my children have yet to catch on whereas the cat in the hat they caught a lot more than i would have up with dr it really bothered me to see how this timeless classic got on the big screen lets see what they do with a hope this one does dr some justice
-    预测的标签是：negative, 实际标签是：negative
+    预测的标签是：positive, 实际标签是：negative
     原文本：ive seen some bad things in my time a half dead trying to get out of high a head on between two cars a thousand on a kitchen floor human beings living like br but never in my life have i seen anything as bad as the cat in the br this film is worse than 911 worse than hitler worse than the worse than people who put in br it is the most disturbing film of all time br i used to think it was a joke some elaborate joke and that mike myers was maybe a high drug who lost a bet or br i
     预测的标签是：negative, 实际标签是：negative
 
