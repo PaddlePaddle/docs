@@ -836,7 +836,7 @@ def insert_suggested_names():
         cnt = 0  # count of paddle.Tensor.*
         for n in names_sorted:
             if n.startswith('paddle.Tensor.'):
-                n += 1
+                cnt += 1
             else:
                 break
         if cnt:
