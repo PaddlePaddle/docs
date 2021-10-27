@@ -26,6 +26,7 @@ Properties
 .. autosummary::
     :nosignatures:
 
+    T
     block
     dtype
     grad
@@ -62,8 +63,13 @@ Methods
     astype
     atan
     backward
+    bitwise_and
+    bitwise_not
+    bitwise_or
+    bitwise_xor
     bmm
     broadcast_shape
+    broadcast_tensors
     broadcast_to
     cast
     ceil
@@ -76,6 +82,7 @@ Methods
     clip_
     clone
     concat
+    cond
     conj
     copy_
     cos
@@ -83,12 +90,16 @@ Methods
     cpu
     cross
     cuda
+    cumprod
     cumsum
     detach
+    diagonal
+    digamma
     dim
     dist
     divide
     dot
+    eigvals
     equal
     equal_all
     erf
@@ -96,6 +107,10 @@ Methods
     exp_
     expand
     expand_as
+    fill_
+    fill_diagonal_
+    fill_diagonal_tensor
+    fill_diagonal_tensor_
     flatten
     flatten_
     flip
@@ -123,6 +138,7 @@ Methods
     kron
     less_equal
     less_than
+    lgamma
     log
     log10
     log1p
@@ -134,6 +150,7 @@ Methods
     logsumexp
     masked_select
     matmul
+    matrix_power
     max
     maximum
     mean
@@ -146,6 +163,7 @@ Methods
     multiply
     mv
     ndimension
+    neg
     nonzero
     norm
     not_equal
@@ -179,8 +197,8 @@ Methods
     sign
     sin
     sinh
-    size
     slice
+    solve
     sort
     split
     sqrt
@@ -203,11 +221,15 @@ Methods
     topk
     trace
     transpose
+    trunc
     unbind
+    uniform_
     unique
+    unique_consecutive
     unsqueeze
     unsqueeze_
     unstack
     value
     var
     where
+    zero_
