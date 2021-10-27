@@ -28,13 +28,5 @@ list[paddle.NPUPlace]，创建的 ``paddle.NPUPlace`` 列表。
 
 代码示例
 :::::::::
+COPY-FROM: paddle.static.npu_places
 
-.. code-block:: python
-
-    # required: skiptest
-    import paddle
-    import paddle.static as static
-    
-    paddle.enable_static()
-
-    npu_places = static.npu_places()
