@@ -11,10 +11,9 @@ fused_multi_head_attention
 
 细节可参考论文 `Attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ 。
 
-fused_multi_head_attention 包含的计算逻辑如下：
+fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的计算功能如下：
 
-
-.. code-block:: python
+.. code-block:: ipython
 
     # pseudocode
     if pre_layer_norm:
