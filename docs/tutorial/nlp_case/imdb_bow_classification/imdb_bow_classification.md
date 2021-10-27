@@ -130,7 +130,7 @@ def create_padded_dataset(dataset):
         padded_sent = np.concatenate([sent[:seq_len], [pad_id] * (seq_len - len(sent))]).astype('int32')
         padded_sents.append(padded_sent)
         labels.append(label)
-    return np.array(padded_sents), np.array(labels)
+    return np.array(padded_sents), np.array(labels, dtype=np.int64)
 
 train_sents, train_labels = create_padded_dataset(train_dataset)
 test_sents, test_labels = create_padded_dataset(test_dataset)
