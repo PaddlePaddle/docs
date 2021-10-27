@@ -31,7 +31,7 @@ list[paddle.NPUPlace]，创建的 ``paddle.NPUPlace`` 列表。
 
 .. code-block:: python
 
-    # required: npu
+    # required: skiptest
     import paddle
     import paddle.static as static
     
