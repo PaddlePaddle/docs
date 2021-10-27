@@ -12,27 +12,30 @@ fused_multi_head_attention
 细节可参考论文 `Attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ 。
 
 fused_multi_head_attention 包含的计算逻辑如下：
+
+
 .. code-block:: python
 
     # pseudocode
     if pre_layer_norm:
-      out = layer_norm(x);
-      out = linear(out) + qkv)bias
+      out = layer_norm(x)
+      out = linear(out) + qkv) + bias
     else:
-      out = linear(x) + bias;
-    out = transpose(out, perm=[2, 0, 3, 1, 4]);
+      out = linear(x) + bias
+    out = transpose(out, perm=[2, 0, 3, 1, 4])
     # extract q, k and v from out.
     q = out[0:1,::]
     k = out[1:2,::]
     v = out[2:3,::]
-    out = q * k^t;
-    out = attn_mask + out;
-    out = softmax(out);
-    out = dropout(out);
-    out = out * v;
-    out = transpose(out, perm=[0, 2, 1, 3]);
-    out = out_linear(out);
-    out = layer_norm(x + dropout(linear_bias + out));
+    out = q * k^t
+    out = attn_mask + out
+    out = softmax(out)
+    out = dropout(out)
+    out = out * v
+    out = transpose(out, perm=[0, 2, 1, 3])
+    out = out_linear(out)
+    out = layer_norm(x + dropout(linear_bias + out))
+
 
 值得注意的是，该API中，q, k, v 的 weight 被统一存储在一个权重张量中，形状为；``[3, num_heads, head_dim, embed_dim]``。
 如果想得到单独的q, k 或v的 weight，可以通过转置和切分得到。
