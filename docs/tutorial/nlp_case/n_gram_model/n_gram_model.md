@@ -132,7 +132,7 @@ class TrainDataset(paddle.io.Dataset):
         data = self.tuple_data[idx][0]
         label = self.tuple_data[idx][1]
         data = np.array(list(map(lambda word: word_to_idx.get(word, 0), data)))
-        label = np.array(word_to_idx.get(label, 0))
+        label = np.array(word_to_idx.get(label, 0), dtype=np.int64)
         return data, label
     
     def __len__(self):

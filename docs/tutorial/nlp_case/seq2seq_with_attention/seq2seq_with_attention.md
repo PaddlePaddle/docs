@@ -299,7 +299,7 @@ for epoch in range(epochs):
         en_repr = encoder(sent)
 
         x_cn_data = train_cn_sents_shuffled[(batch_size*iteration):(batch_size*(iteration+1))]
-        x_cn_label_data = train_cn_label_sents_shuffled[(batch_size*iteration):(batch_size*(iteration+1))]
+        x_cn_label_data = train_cn_label_sents_shuffled[(batch_size*iteration):(batch_size*(iteration+1))].astype('int64')
 
         # shape: (batch,  num_layer(=1 here) * num_of_direction(=1 here), hidden_size)
         hidden = paddle.zeros([batch_size, 1, hidden_size])
