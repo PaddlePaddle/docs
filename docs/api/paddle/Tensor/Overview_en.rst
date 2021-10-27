@@ -45,8 +45,8 @@ Properties
 ``ndim``                                The dimensions of Tensor.
 ``persistable``                         The value of Tensor's persistable.
 ``place``                               The place of Tensor.
-``shape``                               The shape of Tensor. See :ref:`paddle.shape <api_paddle_shape>
-``size``                                The size of Tensor. See :ref:`paddle.numel <api_paddle_numel>
+``shape``                               The shape of Tensor. See :ref:`paddle.shape <api_paddle_shape>`
+``size``                                The size of Tensor. See :ref:`paddle.numel <api_paddle_numel>`
 ``stop_gradient``                       The value of Tensor's stop_gradient.
 ``type``                                Tensor's type.
 ======================================= ===========================================
