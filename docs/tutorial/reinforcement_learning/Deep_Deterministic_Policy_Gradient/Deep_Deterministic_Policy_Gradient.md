@@ -151,7 +151,7 @@ def soft_update(target, source, tau):
         target_param.set_value( target_param * (1.0 - tau) + param * tau) 
        
 # 定义环境、实例化模型
-env = gym.make('Pendulum-v0')
+env = gym.make('Pendulum-v1')
 actor = Actor()
 critic = Critic()
 actor_target = Actor()
