@@ -54,6 +54,8 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
     " :ref:`vgg13 <cn_api_paddle_vision_models_vgg13>` ", "13层的VGG模型"
     " :ref:`vgg16 <cn_api_paddle_vision_models_vgg16>` ", "16层的VGG模型"
     " :ref:`vgg19 <cn_api_paddle_vision_models_vgg19>` ", "19层的VGG模型"
+    " :ref:`InceptionV3 <cn_api_paddle_vision_models_InceptionV3>` ", "InceptionV3模型"
+    " :ref:`inception_v3 <cn_api_paddle_vision_models_inception_v3>` ", "InceptionV3模型"
 
 
 .. _about_ops:
