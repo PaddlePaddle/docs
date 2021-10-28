@@ -13,7 +13,11 @@ FusedMultiHeadAttention
 
 细节可参考论文 `Attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ 。
 
-FusedMultiHeadAttention与已有的MultiHeadAttention有两处不同：（1）表达的计算逻辑范围不同。相比MultiHeadAttention，FusedMultiHeadAttention的前面在normalize_before=True时，多了layer_norm算子，后面多了residual add，dropout和layer_norm的计算。（2）q, k, v的weight的存储格式不同。MultiHeadAttention将q, k, v的weight存储在三个张量中。FusedMultiHeadAttention的q, k, v的weight被统一存在一个权重张量中，其维度为；``[3, num_heads, head_dim, embed_dim]``。
+``FusedMultiHeadAttention``与已有的``MultiHeadAttention``有两处不同：
+
+（1）表达的计算逻辑范围不同。相比MultiHeadAttention，FusedMultiHeadAttention的前面在normalize_before=True时，多了layer_norm算子，后面多了residual add，dropout和layer_norm的计算。
+
+（2）q, k, v的weight的存储格式不同。MultiHeadAttention将q, k, v的weight存储在三个张量中。FusedMultiHeadAttention的q, k, v的weight被统一存在一个权重张量中，其维度为；``[3, num_heads, head_dim, embed_dim]``。
 
 参数：
     - **embed_dim** (int) - 输入输出的维度。
