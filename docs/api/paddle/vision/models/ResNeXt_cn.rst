@@ -25,7 +25,7 @@ ResNeXt模型，Layer的实例。
     import paddle
     from paddle.vision.models import ResNeXt
 
-    resnext50_32x4d = ResNeXt(layers=50, cardinality=32)
+    resnext50_32x4d = ResNeXt(depth=50, cardinality=32)
 
     x = paddle.rand([1, 3, 224, 224])
     out = resnext50_32x4d(x)
