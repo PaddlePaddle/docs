@@ -19,7 +19,8 @@ FusedMultiHeadAttention
 
 （2）q, k, v的weight的存储格式不同。 ``MultiHeadAttention`` 将q, k, v的weight存储在三个张量中。 ``FusedMultiHeadAttention`` 的q, k, v的weight被统一存在一个权重张量中，其维度为 ``[3, num_heads, head_dim, embed_dim]`` 。
 
-参数：
+参数
+:::::::::
     - **embed_dim** (int) - 输入输出的维度。
     - **num_heads** (int) - 多头注意力机制的Head数量。
     - **dropout_rate** (float，可选) - multi-head attention后面的dropout算子的注意力目标的随机失活率。0表示进行dropout计算。默认值：0.5。
@@ -32,7 +33,18 @@ FusedMultiHeadAttention
     - **bias_attr** （ParamAttr，可选）- 指定偏置参数属性的对象。默认值： ``None`` ，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **name** (str，可选） - 操作的名称。默认值为： ``None`` 。更多信息请参见 :ref:`api_guide_Name`。
 
-**代码示例**：
+形状
+:::::::::
+    - **x** (Tensor): 默认形状为 ``[batch_size, sequence_length, embed_dim]`` ，其数据类型为float32，float64或者float16。
+    - **output** (Tensor): 其形状和数据类型与输入x相同。
+
+返回
+:::::::::
+计算FusedMultiHeadAttention的可调用对象
+
+
+代码示例
+:::::::::
 
 .. code-block:: python
 
