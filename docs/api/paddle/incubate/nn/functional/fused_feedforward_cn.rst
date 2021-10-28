@@ -18,15 +18,15 @@ fused_feedforward
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入Tensor，数据类型支持float16， float32 和float64, 输入的形状是`[batch_size, sequence_length, d_model]`。
-    - **linear1_weight** (Tensor) - 第一个linear算子的权重数据，数据类型与`x`一样，形状是`[d_model, dim_feedforward]`。
-    - **linear2_weight** (Tensor) - 第二个linear算子的权重数据，数据类型与`x`一样，形状是`[dim_feedforward, d_model]`。
-    - **linear1_bias** (Tensor, 可选) - 第一个linear算子的偏置数据，数据类型与`x`一样，形状是`[dim_feedforward]`。默认值为None。
-    - **linear2_bias** (Tensor, 可选) - 第二个linear算子的偏置数据，数据类型与`x`一样，形状是`[d_model]`。默认值为None。
-    - **ln1_scale** (Tensor, 可选) - 第一个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和`x`一样。默认值为None。
-    - **ln1_bias** (Tensor, 可选) - 第一个layer_norm算子的偏置数据，数据类型和`ln1_scale`一样， 形状是`[d_model]`。默认值为None。
-    - **ln2_scale** (Tensor, 可选) - 第二个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和`x`一样。默认值为None。
-    - **ln2_bias** (Tensor, 可选) - 第二个layer_norm算子的偏置数据，数据类型和`ln2_scale`一样， 形状是`[d\_model]`。默认值为None。
+    - **x** (Tensor) - 输入Tensor，数据类型支持float16， float32 和float64, 输入的形状是 ``[batch_size, sequence_length, d_model]`` 。
+    - **linear1_weight** (Tensor) - 第一个linear算子的权重数据，数据类型与 ``x`` 一样，形状是 ``[d_model, dim_feedforward]`` 。
+    - **linear2_weight** (Tensor) - 第二个linear算子的权重数据，数据类型与 ``x`` 一样，形状是 ``[dim_feedforward, d_model]`` 。
+    - **linear1_bias** (Tensor, 可选) - 第一个linear算子的偏置数据，数据类型与 ``x`` 一样，形状是 ``[dim_feedforward]`` 。默认值为None。
+    - **linear2_bias** (Tensor, 可选) - 第二个linear算子的偏置数据，数据类型与 ``x`` 一样，形状是 ``[d_model]`` 。默认值为None。
+    - **ln1_scale** (Tensor, 可选) - 第一个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和 ``x`` 一样。默认值为None。
+    - **ln1_bias** (Tensor, 可选) - 第一个layer_norm算子的偏置数据，数据类型和 ``ln1_scale`` 一样， 形状是 ``[d_model]`` 。默认值为None。
+    - **ln2_scale** (Tensor, 可选) - 第二个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和  ``x`` 一样。默认值为None。
+    - **ln2_bias** (Tensor, 可选) - 第二个layer_norm算子的偏置数据，数据类型和 ``ln2_scale`` 一样， 形状是 ``[d_model]`` 。默认值为None。
     - **dropout1_rate** (float, 可选) - 第一个dropout算子置零的概率。默认是0.5。
     - **dropout2_rate** (float, 可选) - 第二个dropout算子置零的概率。默认是0.5。
     - **activation** (string, 可选) - 激活函数。默认值是relu。
@@ -37,7 +37,7 @@ fused_feedforward
 
 返回
 :::::::::
-    - Tensor, 输出Tensor，数据类型与`x`一样。
+    - Tensor, 输出Tensor，数据类型与 ``x`` 一样。
 
 代码示例
 ::::::::::
