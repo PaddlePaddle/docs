@@ -1,6 +1,9 @@
 
 .. _en_paddle_Tensor:
 
+paddle.Tensor
+========================
+
 ``Tensor`` can be regarded as multi-dimensional array, which can have as many diemensions as it want. For more information, you can see `Introduction to Tensor <.https://www.paddlepaddle.org.cn/documentation/docs/en/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_en.html>`_.
 
 Data types
@@ -35,7 +38,7 @@ Properties
 ~~~~~~~~~~~~~~~~~~~~~~
 
 ======================================= ===========================================
-``T``                                   The transpose of ``Tensor``. See :ref:`paddle.transpose <api_paddle_transpose>`                             
+``T``                                   The transpose of ``Tensor``. See :ref:`paddle.transpose <api_paddle_transpose>` .                            
 ``block``                               Tensor's block.
 ``dtype``                               Tensor's data type.
 ``grad``                                The value of Tensor's grad.
@@ -45,8 +48,8 @@ Properties
 ``ndim``                                The dimensions of Tensor.
 ``persistable``                         The value of Tensor's persistable.
 ``place``                               The place of Tensor.
-``shape``                               The shape of Tensor. See :ref:`paddle.shape <api_paddle_shape>`
-``size``                                The size of Tensor. See :ref:`paddle.numel <api_paddle_numel>`
+``shape``                               The shape of Tensor. See :ref:`paddle.shape <api_paddle_shape>` .
+``size``                                The size of Tensor. See :ref:`paddle.numel <api_paddle_numel>` .
 ``stop_gradient``                       The value of Tensor's stop_gradient.
 ``type``                                Tensor's type.
 ======================================= ===========================================
