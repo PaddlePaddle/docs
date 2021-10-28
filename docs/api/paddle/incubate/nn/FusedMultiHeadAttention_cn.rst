@@ -30,7 +30,7 @@ FusedMultiHeadAttention
     - **need_weights** (bool, 可选) - 表明是否返回注意力权重。默认值：``False``。
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr，可选）- 指定偏置参数属性的对象。默认值：``None``，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - name (str，可选） - 操作的名称。默认值为``None``。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选） - 操作的名称。默认值为：``None``。更多信息请参见 :ref:`api_guide_Name`。
 
 **代码示例**：
 
