@@ -1,7 +1,7 @@
 # 飞桨高层API使用指南
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.06 <br>
+**日期:** 2021.10 <br>
 **摘要:** 本示例教程是对飞桨高层API的详细说明，会介绍如何使用高层API，快速完成深度学习任务。
 
 ## 一、简介
@@ -25,7 +25,7 @@
 
 ## 二、安装并使用飞桨高层API
 
-飞桨高层API无需独立安装，只需要安装好paddlepaddle即可。如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+飞桨高层API无需独立安装，只需要安装好paddlepaddle即可。如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 安装完成后import paddle即可使用相关高层API，如：paddle.Model、视觉领域paddle.vision、NLP领域paddle.text。
 
@@ -41,7 +41,7 @@ paddle.__version__
 
 
 
-    '2.1.1'
+    '2.2.0-rc0'
 
 
 
@@ -71,7 +71,7 @@ print('视觉相关数据集：', paddle.vision.datasets.__all__)
 print('自然语言相关数据集：', paddle.text.__all__)
 ```
 
-    视觉相关数据集： ['DatasetFolderImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
+    视觉相关数据集： ['DatasetFolder', 'ImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10', 'Cifar100', 'VOC2012']
     自然语言相关数据集： ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16']
 
 
@@ -406,15 +406,15 @@ model.fit(train_dataset,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step 938/938 [==============================] - loss: 0.0895 - acc: 0.9322 - 46ms/step          
+    step 938/938 [==============================] - loss: 0.0356 - acc: 0.9887 - 22ms/step        
     Epoch 2/5
-    step 938/938 [==============================] - loss: 0.0679 - acc: 0.9691 - 46ms/step          
+    step 938/938 [==============================] - loss: 0.0056 - acc: 0.9905 - 22ms/step         
     Epoch 3/5
-    step 938/938 [==============================] - loss: 0.0555 - acc: 0.9779 - 46ms/step          
+    step 938/938 [==============================] - loss: 0.0204 - acc: 0.9908 - 22ms/step         
     Epoch 4/5
-    step 938/938 [==============================] - loss: 0.0037 - acc: 0.9827 - 46ms/step          
+    step 938/938 [==============================] - loss: 2.0174e-04 - acc: 0.9929 - 22ms/step    
     Epoch 5/5
-    step 938/938 [==============================] - loss: 0.0362 - acc: 0.9863 - 46ms/step          
+    step 938/938 [==============================] - loss: 0.0031 - acc: 0.9936 - 22ms/step          
 
 
 **注：**
@@ -453,28 +453,18 @@ model.fit(train_dataset,
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/5
-    step 938/938 [==============================] - loss: 0.0539 - acc: 0.9873 - 46ms/step          
+    step 938/938 [==============================] - loss: 2.9138e-04 - acc: 0.9930 - 22ms/step    
     Epoch 2/5
-    step 938/938 [==============================] - loss: 0.0556 - acc: 0.9907 - 46ms/step          
+    step 938/938 [==============================] - loss: 0.0039 - acc: 0.9949 - 22ms/step         
     Epoch 3/5
-    step 938/938 [==============================] - loss: 0.0043 - acc: 0.9909 - 46ms/step          
+    step 938/938 [==============================] - loss: 0.0037 - acc: 0.9948 - 22ms/step             
     Epoch 4/5
-    step 938/938 [==============================] - loss: 0.0012 - acc: 0.9928 - 46ms/step          
+    step 938/938 [==============================] - loss: 9.9295e-04 - acc: 0.9957 - 22ms/step     
     Epoch 5/5
-    step 938/938 [==============================] - loss: 0.0287 - acc: 0.9934 - 46ms/step          
+    step 938/938 [==============================] - loss: 0.0106 - acc: 0.9958 - 22ms/step        
 
 
-### 6.2 单机多卡
-
-对于高层API来实现单机多卡非常简单，整个训练代码和单机单卡没有差异。直接使用`paddle.distributed.launch`启动单机单卡的程序即可。
-
-```bash
-$ python -m paddle.distributed.launch train.py
-```
-
-train.py里面包含的就是单机单卡代码
-
-### 6.3 自定义Loss
+### 6.2 自定义Loss
 
 有时会遇到特定任务的Loss计算方式在框架既有的Loss接口中不存在，或算法不符合自己的需求，那么期望能够自己来进行Loss的自定义，这里就会讲解介绍一下如何进行Loss的自定义操作，首先来看下面的代码：
 
@@ -517,7 +507,7 @@ class SoftmaxWithCrossEntropy(paddle.nn.Layer):
         return paddle.mean(loss)
 ```
 
-### 6.4 自定义Metric
+### 6.3 自定义Metric
 
 和Loss一样，如果遇到一些想要做个性化实现的操作时，也可以来通过框架完成自定义的评估计算方法，具体的实现方式如下：
 
@@ -652,7 +642,7 @@ class Precision(Metric):
         return self._name
 ```
 
-### 6.5 自定义Callback
+### 6.4 自定义Callback
 
 `fit`接口的callback参数支持传一个Callback类实例，用来在每轮训练和每个batch训练前后进行调用，可以通过callback收集到训练过程中的一些数据和参数，或者实现一些自定义操作。
 
@@ -725,7 +715,7 @@ result = model.evaluate(val_dataset, verbose=1)
 ```
 
     Eval begin...
-    step 10000/10000 [==============================] - loss: 0.0000e+00 - acc: 0.9832 - 3ms/step          
+    step 10000/10000 [==============================] - loss: 0.0000e+00 - acc: 0.9834 - 2ms/step         
     Eval samples: 10000
 
 
@@ -745,7 +735,7 @@ pred_result = model.predict(val_dataset)
 ```
 
     Predict begin...
-    step 10000/10000 [==============================] - 3ms/step          
+    step 10000/10000 [==============================] - 2ms/step        
     Predict samples: 10000
 
 
