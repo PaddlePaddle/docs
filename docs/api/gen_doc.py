@@ -730,8 +730,13 @@ class EnDocGenerator(object):
         }
         tmpl = 'default'
         for m in [
-                'fluid.dygraph', 'paddle.vision', 'paddle.callbacks',
-                'paddle.hapi.callbacks', 'paddle.io', 'paddle.nn'
+                'fluid.dygraph',
+                'paddle.vision',
+                'paddle.callbacks',
+                'paddle.hapi.callbacks',
+                'paddle.io',
+                'paddle.nn',
+                'paddle.incubate.nn',
         ]:
             if self.api_name.startswith(m):
                 tmpl = 'no-inherited'
