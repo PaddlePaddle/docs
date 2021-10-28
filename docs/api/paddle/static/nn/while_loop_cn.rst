@@ -19,7 +19,7 @@ ____________________________________
     - **body** (callable) - 循环执行的结构体。其返回一个包含tensor或LoDTensorArray的列表或元组，且这些tensor或LoDTensorArray的长度，结构，类型和 ``loop_vars`` 中的相同。 且``body`` 的参数与 ``loop_vars`` 相对应。
     - **loop_vars** (list|tuple) - 包含tensor或LoDTensorArray的列表或是元组，将其传入至 ``cond`` 和 ``body`` 中，得到循环条件和输出值。
     - **is_test** (bool，可选) - 用于表明是否在测试阶段执行，默认值为False。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`。一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` 。一般无需设置，默认值为None。
 
 返回
 :::::::::

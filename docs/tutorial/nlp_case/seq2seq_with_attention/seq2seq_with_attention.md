@@ -1,12 +1,12 @@
 # 使用注意力机制的LSTM的机器翻译
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.06 <br>
+**日期:** 2021.10 <br>
 **摘要:** 本示例教程介绍如何使用飞桨完成一个机器翻译任务。通过使用飞桨提供的LSTM的API，组建一个`sequence to sequence with attention`的机器翻译的模型，并在示例的数据集上完成从英文翻译成中文的机器翻译。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0。
 
 
 ```python
@@ -18,7 +18,7 @@ import numpy as np
 print(paddle.__version__)
 ```
 
-    2.1.1
+    2.2.0-rc0
 
 
 ## 二、数据加载
@@ -37,7 +37,7 @@ print(paddle.__version__)
 !wc -l cmn.txt
 ```
 
-    24949 cmn.txt
+    26388 cmn.txt
 
 
 ### 2.2 构建双语句对的数据结构
@@ -75,17 +75,17 @@ print(len(filtered_pairs))
 for x in filtered_pairs[:10]: print(x) 
 ```
 
-    5800
+    6127
+    (['i', 'try'], ['我', '试', '试', '。'])
     (['i', 'won'], ['我', '赢', '了', '。'])
     (['he', 'ran'], ['他', '跑', '了', '。'])
+    (['i', 'know'], ['我', '知', '道', '。'])
     (['i', 'quit'], ['我', '退', '出', '。'])
     (['i', 'quit'], ['我', '不', '干', '了', '。'])
     (['i', 'm', 'ok'], ['我', '沒', '事', '。'])
     (['i', 'm', 'up'], ['我', '已', '经', '起', '来', '了', '。'])
     (['we', 'try'], ['我', '们', '来', '试', '试', '。'])
     (['he', 'came'], ['他', '来', '了', '。'])
-    (['he', 'runs'], ['他', '跑', '。'])
-    (['i', 'agree'], ['我', '同', '意', '。'])
 
 
 ### 2.3 创建词表
@@ -121,8 +121,8 @@ print(len(list(en_vocab)))
 print(len(list(cn_vocab)))
 ```
 
-    2617
-    2072
+    2702
+    2118
 
 
 ### 2.4 创建padding过的数据集
@@ -158,9 +158,9 @@ print(train_cn_sents.shape)
 print(train_cn_label_sents.shape)
 ```
 
-    (5800, 11)
-    (5800, 12)
-    (5800, 12)
+    (6127, 11)
+    (6127, 12)
+    (6127, 12)
 
 
 ## 三、网络构建
@@ -299,7 +299,7 @@ for epoch in range(epochs):
         en_repr = encoder(sent)
 
         x_cn_data = train_cn_sents_shuffled[(batch_size*iteration):(batch_size*(iteration+1))]
-        x_cn_label_data = train_cn_label_sents_shuffled[(batch_size*iteration):(batch_size*(iteration+1))]
+        x_cn_label_data = train_cn_label_sents_shuffled[(batch_size*iteration):(batch_size*(iteration+1))].astype('int64')
 
         # shape: (batch,  num_layer(=1 here) * num_of_direction(=1 here), hidden_size)
         hidden = paddle.zeros([batch_size, 1, hidden_size])
@@ -325,65 +325,65 @@ for epoch in range(epochs):
 ```
 
     epoch:0
-    iter 0, loss:[7.6333346]
-    iter 200, loss:[3.240852]
+    iter 0, loss:[7.6581]
+    iter 200, loss:[2.9640675]
     epoch:1
-    iter 0, loss:[2.924156]
-    iter 200, loss:[2.963185]
+    iter 0, loss:[3.1965919]
+    iter 200, loss:[2.7530746]
     epoch:2
-    iter 0, loss:[2.7534227]
-    iter 200, loss:[2.9420087]
+    iter 0, loss:[2.8197494]
+    iter 200, loss:[2.3314576]
     epoch:3
-    iter 0, loss:[2.6616998]
-    iter 200, loss:[2.213067]
+    iter 0, loss:[2.379263]
+    iter 200, loss:[2.169588]
     epoch:4
-    iter 0, loss:[2.379446]
-    iter 200, loss:[2.4059525]
+    iter 0, loss:[2.1836162]
+    iter 200, loss:[2.2637908]
     epoch:5
-    iter 0, loss:[1.9847918]
-    iter 200, loss:[1.9807642]
+    iter 0, loss:[1.9484237]
+    iter 200, loss:[1.931562]
     epoch:6
-    iter 0, loss:[1.2768617]
-    iter 200, loss:[2.0598674]
+    iter 0, loss:[2.065064]
+    iter 200, loss:[1.9013456]
     epoch:7
-    iter 0, loss:[1.725853]
-    iter 200, loss:[1.4866422]
+    iter 0, loss:[1.8007832]
+    iter 200, loss:[1.4974258]
     epoch:8
-    iter 0, loss:[1.8631328]
-    iter 200, loss:[1.3236341]
+    iter 0, loss:[1.8877685]
+    iter 200, loss:[1.4507574]
     epoch:9
-    iter 0, loss:[1.3999513]
-    iter 200, loss:[1.2560941]
+    iter 0, loss:[1.4531711]
+    iter 200, loss:[1.430221]
     epoch:10
-    iter 0, loss:[1.0076692]
-    iter 200, loss:[1.3591841]
+    iter 0, loss:[1.3251072]
+    iter 200, loss:[1.2440052]
     epoch:11
-    iter 0, loss:[1.294372]
-    iter 200, loss:[1.261159]
+    iter 0, loss:[1.1414614]
+    iter 200, loss:[1.0895728]
     epoch:12
-    iter 0, loss:[1.0107158]
-    iter 200, loss:[1.111909]
+    iter 0, loss:[0.872807]
+    iter 200, loss:[1.0373769]
     epoch:13
-    iter 0, loss:[1.1720536]
-    iter 200, loss:[0.7236399]
+    iter 0, loss:[1.0034422]
+    iter 200, loss:[0.9697341]
     epoch:14
-    iter 0, loss:[0.7384793]
-    iter 200, loss:[0.8299181]
+    iter 0, loss:[0.8007958]
+    iter 200, loss:[0.9925947]
     epoch:15
-    iter 0, loss:[0.8409471]
-    iter 200, loss:[0.80650425]
+    iter 0, loss:[0.8159515]
+    iter 200, loss:[0.7605857]
     epoch:16
-    iter 0, loss:[0.7088227]
-    iter 200, loss:[0.6375085]
+    iter 0, loss:[0.5955965]
+    iter 200, loss:[0.6686699]
     epoch:17
-    iter 0, loss:[0.6446477]
-    iter 200, loss:[0.54760987]
+    iter 0, loss:[0.4029767]
+    iter 200, loss:[0.7781136]
     epoch:18
-    iter 0, loss:[0.44298655]
-    iter 200, loss:[0.5212886]
+    iter 0, loss:[0.5034362]
+    iter 200, loss:[0.44768974]
     epoch:19
-    iter 0, loss:[0.44400704]
-    iter 200, loss:[0.5764333]
+    iter 0, loss:[0.48065186]
+    iter 200, loss:[0.40663502]
 
 
 ## 五、使用模型进行机器翻译
@@ -433,36 +433,36 @@ for i in range(num_of_exampels_to_evaluate):
     print("pred: {}".format(model_translate))
 ```
 
-    he doesn t have any friends
-    true: 他没有任何朋友。
-    pred: 他没有朋友。
-    he acted as my guide
-    true: 他擔任我的嚮導。
-    pred: 他是我的嚮導。
-    i had fun last night
-    true: 昨晚我玩得开心。
-    pred: 我昨晚很累。
-    i got up early
-    true: 我起床早。
-    pred: 我起床了。
-    he is very afraid of his mother
-    true: 他非常怕他的母親。
-    pred: 他怕那只的表者。
-    he was elected president
-    true: 他被选为总统。
-    pred: 他被选为总统。
-    i am expecting a letter from her
-    true: 我期待她的來信。
-    pred: 我在找她一起來。
-    i ve got to go to the bank
-    true: 我必须到银行去。
-    pred: 我必須去银行了。
-    i like learning languages
-    true: 我喜欢学习外语。
-    pred: 我喜歡看他的视子。
-    he doesn t tell lies
-    true: 他不说谎。
-    pred: 他不说谎。
+    i still have a question
+    true: 我還有个問題。
+    pred: 我还有一個問題。
+    i don t sleep well
+    true: 我睡不好。
+    pred: 我睡不好。
+    i ve been wanting to see you
+    true: 我一直想見你。
+    pred: 我一直想見你。
+    i go to church every day
+    true: 我每天上教堂。
+    pred: 我每天去学校。
+    we re eating apples
+    true: 我們在吃蘋果。
+    pred: 我們正在吃蘋果。
+    i sort of understand
+    true: 我大概懂了。
+    pred: 我贏得了。
+    i had sore legs the next day
+    true: 第二天我的腿很酸。
+    pred: 我每周都谨慎天和。
+    i believe in what they said
+    true: 我相信他們說的話。
+    pred: 我相信他們说的話。
+    he s three years older than she is
+    true: 他比她大三岁。
+    pred: 他比她大三岁。
+    you must do it
+    true: 你必須去做。
+    pred: 你必须做到它。
 
 
 ## The End

@@ -26,7 +26,7 @@ __device__ void ElementwiseUnary(OutT* out, const InT* in, OpFunc compute)
 > in ：输入寄存器指针，大小为 NX * NY。</br>
 > compute ：计算函数，声明为 OpFunc&lt;InT, OutT&gt;()。</br>
 
-## [ElementwiseBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L173)
+## [ElementwiseBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L172)
 ### 函数定义
 
 ```
@@ -54,7 +54,7 @@ __device__ void ElementwiseBinary(OutT* out, const InT* in1, const InT* in2, OpF
 > in2 ：右操作数寄存器指针，大小为 NX * NY。</br>
 > compute ：声明为 OpFunc&lt;InT&gt;() 的计算对象。</br>
 
-## [CycleBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L291)
+## [CycleBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L287)
 
 ### 函数定义
 
@@ -83,7 +83,7 @@ __device__ void CycleBinary(OutT* out, const InT* in1, const InT* in2, OpFunc co
 > in2 ：右操作数寄存器指针，大小为 NX * NY。</br>
 > compute ：声明为 OpFunc&lt;InT&gt;() 的计算对象。</br>
 
-## [ElementwiseTernary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L210)
+## [ElementwiseTernary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L208)
 
 ### 函数定义
 
@@ -114,7 +114,7 @@ template <typename InT, typename OutT, int NX, int NY, int BlockSize, class OpFu
 > in3 ：操作数 3 的寄存器指针，大小为 NX * NY。</br>
 > compute ：声明为 OpFunc&lt;InT&gt;() 的计算对象。</br>
 
-## [ElementwiseAny](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L250)
+## [ElementwiseAny](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L247)
 
 ### 函数定义
 
@@ -143,7 +143,7 @@ __device__ void ElementwiseAny(OutT* out, InT (*ins)[NX * NY], OpFunc compute)
 > ins ：由多输入指针构成的指针数组，大小为 Arity。</br>
 > compute ：声明为 OpFunc&lt;InT&gt;() 的计算对象。</br>
 
-## [Reduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L332)
+## [Reduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L327)
 
 ### 函数定义
 
