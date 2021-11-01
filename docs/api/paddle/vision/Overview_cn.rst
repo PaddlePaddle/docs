@@ -54,6 +54,12 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
     " :ref:`vgg13 <cn_api_paddle_vision_models_vgg13>` ", "13层的VGG模型"
     " :ref:`vgg16 <cn_api_paddle_vision_models_vgg16>` ", "16层的VGG模型"
     " :ref:`vgg19 <cn_api_paddle_vision_models_vgg19>` ", "19层的VGG模型"
+    " :ref:`DenseNet <cn_api_paddle_vision_models_DenseNet>` ", "DenseNet模型"
+    " :ref:`densenet121 <cn_api_paddle_vision_models_densenet121>` ", "121层的DenseNet模型"
+    " :ref:`densenet161 <cn_api_paddle_vision_models_densenet161>` ", "161层的DenseNet模型"
+    " :ref:`densenet169 <cn_api_paddle_vision_models_densenet169>` ", "169层的DenseNet模型"
+    " :ref:`densenet201 <cn_api_paddle_vision_models_densenet201>` ", "201层的DenseNet模型"
+    " :ref:`densenet264 <cn_api_paddle_vision_models_densenet264>` ", "264层的DenseNet模型"
     " :ref:`InceptionV3 <cn_api_paddle_vision_models_InceptionV3>` ", "InceptionV3模型"
     " :ref:`inception_v3 <cn_api_paddle_vision_models_inception_v3>` ", "InceptionV3模型"
 
