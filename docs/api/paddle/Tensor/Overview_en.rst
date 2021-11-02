@@ -4,12 +4,12 @@
 paddle.Tensor
 ========================
 
-``Tensor`` can be regarded as multi-dimensional array, which can have as many diemensions as it want. For more information, you can see `Introduction to Tensor <.https://www.paddlepaddle.org.cn/documentation/docs/en/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_en.html>`_.
+A ``Tensor`` is a generalization of vectors and matrices and is easily understood as a multidimensional array. For more information, you can see `Introduction to Tensor <https://www.paddlepaddle.org.cn/documentation/docs/en/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_en.html>`_.
 
 Data types
 ----------
 
-PaddlePaddle defines some tensor types which are as follows:
+PaddlePaddle defines the following Tensor types:
 
 ======================================= ===========================================
 Data type                               dtype                                      
