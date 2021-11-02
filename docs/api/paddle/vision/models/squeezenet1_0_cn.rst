@@ -1,4 +1,4 @@
-.. _cn_api_paddle_vision_models_squeezenet1_0
+.. _cn_api_paddle_vision_models_squeezenet1_0:
 
 squeezenet1_0
 -------------------------------
