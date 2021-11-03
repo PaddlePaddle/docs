@@ -6,7 +6,12 @@ scatter
 
 .. py:function:: paddle.distributed.scatter(tensor, tensor_list=None, src=0, group=0)
 
-进程组内指定进程源的tensor列表分发到其他所有进程中。
+进程组内指定进程源的tensor列表分发到其他所有进程中，，如下图所示（https://images.nvidia.com/events/sc15/pdfs/NCCL-Woolley.pdf）。
+
+.. image:: ./img/scatter.png
+  :width: 800
+  :alt: scatter
+  :align: center
 
 参数
 :::::::::

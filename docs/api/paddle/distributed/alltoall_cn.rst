@@ -6,8 +6,12 @@ alltoall
 
 .. py:function:: paddle.distributed.alltoall(in_tensor_list, out_tensor_list, group=None, use_calc_stream=True)
 
-将in_tensor_list里面的tensors分发到所有参与的卡并将结果tensors汇总到out_tensor_list。
+将in_tensor_list里面的tensors分发到所有参与的卡并将结果tensors汇总到out_tensor_list，如下图所示（https://images.nvidia.com/events/sc15/pdfs/NCCL-Woolley.pdf）。
 
+.. image:: ./img/alltoall.png
+  :width: 800
+  :alt: alltoall
+  :align: center
 
 参数
 :::::::::
