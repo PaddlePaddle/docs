@@ -6,9 +6,13 @@ global_scatter
 
 .. py:function:: paddle.distributed.utils.global_scatter(x, local_count, global_count, group=None, use_calc_stream=True)
 
-根据local_count将x的数据分发到n_expert * world_size个expert，然后根据global_count接收数据。
+根据local_count将x的数据分发到n_expert * world_size个expert，然后根据global_count接收数据，如下图所示。
 其中expert是用户定义的专家网络，n_expert是指每张卡拥有的专家网络数目，world_size是指运行网络的显卡数目。
 
+.. image:: ../img/global_scatter_gather.png
+  :width: 800
+  :alt: global_scatter_gather
+  :align: center
 
 参数
 :::::::::
