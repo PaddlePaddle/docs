@@ -74,6 +74,14 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
     " :ref:`SqueezeNet <cn_api_paddle_vision_models_SqueezeNet>` ", "SqueezeNet模型"
     " :ref:`squeezenet1_0 <cn_api_paddle_vision_models_squeezenet1_0>` ", "squeezenet1_0模型"
     " :ref:`squeezenet1_1 <cn_api_paddle_vision_models_squeezenet1_1>` ", "squeezenet1_1模型"
+    " :ref:`ShuffleNetV2 <cn_api_paddle_vision_models_ShuffleNetV2>` ", "ShuffleNetV2模型"
+    " :ref:`shufflenet_v2_x0_25 <cn_api_paddle_vision_models_shufflenet_v2_x0_25>` ", "输出通道缩放比例为 0.25 的 ShuffleNetV2 模型"
+    " :ref:`shufflenet_v2_x0_33 <cn_api_paddle_vision_models_shufflenet_v2_x0_33>` ", "输出通道缩放比例为 0.33 的 ShuffleNetV2 模型"
+    " :ref:`shufflenet_v2_x0_5 <cn_api_paddle_vision_models_shufflenet_v2_x0_5>` ", "输出通道缩放比例为 0.5 的 ShuffleNetV2 模型"
+    " :ref:`shufflenet_v2_x1_0 <cn_api_paddle_vision_models_shufflenet_v2_x1_0>` ", "输出通道缩放比例为 1.0 的 ShuffleNetV2 模型"
+    " :ref:`shufflenet_v2_x1_5 <cn_api_paddle_vision_models_shufflenet_v2_x1_5>` ", "输出通道缩放比例为 1.5 的 ShuffleNetV2 模型"
+    " :ref:`shufflenet_v2_x2_0 <cn_api_paddle_vision_models_shufflenet_v2_x2_0>` ", "输出通道缩放比例为 2.0 的 ShuffleNetV2 模型"
+    " :ref:`shufflenet_v2_swish <cn_api_paddle_vision_models_shufflenet_v2_swish>` ", "使用 swish 进行激活的 ShuffleNetV2 模型"
 
 
 .. _about_ops:
