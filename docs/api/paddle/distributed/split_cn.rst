@@ -19,6 +19,7 @@ split
 
     .. image:: ./img/split_embedding_single.png
         :width: 800
+        :height: 200
         :alt: single_embedding
         :align: center
     
