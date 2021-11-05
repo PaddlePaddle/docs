@@ -156,11 +156,11 @@ def set_config(args):
 
 + 答复：
 
- 方法1，使用`paddle.static.Print()`接口，可以打印中间变量及其梯度；
- 方法2，将变量梯度名放到fetch_list里，通过`exe.run()`获取，一般variable的梯度名是variable的名字加上 "@GRAD"。
- 方法3，对于参数（不适用于中间变量和梯度），还可以通过`scope.find_var()`接口，通过变量名字查找对应的tensor。
+ 1. 使用`paddle.static.Print()`接口，可以打印中间变量及其梯度；
+ 2. 将变量梯度名放到fetch_list里，通过`exe.run()`获取，一般variable的梯度名是variable的名字加上 "@GRAD"。
+ 3. 对于参数（不适用于中间变量和梯度），还可以通过`scope.find_var()`接口，通过变量名字查找对应的tensor。
 
- 后两者方法需要使用变量名，飞桨中变量的命名规则请参见 :ref:api_guide_Name 。
+ 后两者方法需要使用变量名，飞桨中变量的命名规则请参见[Name](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_guides/low_level/program.html#api-guide-name) 。
 
 
 ```python
@@ -178,7 +178,10 @@ opt.minimize(loss)
 print(paddle.static.default_main_program())
 exe = paddle.static.Executor()
 exe.run(paddle.static.default_startup_program())
-loss, loss_g, fc_bias_g = exe.run(paddle.static.default_main_program(), feed={'data': np.random.rand(4,2).astype('float32')}, fetch_list=[loss, loss.name+'@GRAD', 'fc.b_0@GRAD'])  # 通过将变量名加入到fetch_list获取变量
+loss, loss_g, fc_bias_g = exe.run(
+    paddle.static.default_main_program(),
+    feed={'data': np.random.rand(4, 2).astype('float32')},
+    fetch_list=[loss, loss.name + '@GRAD', 'fc.b_0@GRAD'])  # 通过将变量名加入到fetch_list获取变量
 print(loss, loss_g, fc_bias_g)
 print(paddle.static.global_scope().find_var('fc.b_0').get_tensor())  # 通过scope.find_var 获取变量
 ```
