@@ -141,17 +141,23 @@ def process_module(m, attr="__all__"):
                 if inspect.isclass(api_info['object']):
                     for name, value in inspect.getmembers(api_info['object']):
                         if (not name.startswith("_")):
-                            method_full_name = full_name + '.' + name  # value.__name__
-                            if name and value and isinstance(value, property):
-                                method_api_info = insert_api_into_dict(
-                                    method_full_name, 'class_property')
-                                if method_api_info is not None:
-                                    api_counter += 1
-                            elif hasattr(value, '__name__'):
-                                method_api_info = insert_api_into_dict(
-                                    method_full_name, 'class_method')
-                                if method_api_info is not None:
-                                    api_counter += 1
+                            try:
+                                method_full_name = full_name + '.' + name  # value.__name__
+                                if name and value and isinstance(value,
+                                                                 property):
+                                    method_api_info = insert_api_into_dict(
+                                        method_full_name, 'class_property')
+                                    if method_api_info is not None:
+                                        api_counter += 1
+                                elif hasattr(value, '__name__'):
+                                    method_api_info = insert_api_into_dict(
+                                        method_full_name, 'class_method')
+                                    if method_api_info is not None:
+                                        api_counter += 1
+                            except ValueError as e:
+                                logger.error(
+                                    'ValueError when processing %s: %s',
+                                    method_full_name, str(e))
     return api_counter
 
 
