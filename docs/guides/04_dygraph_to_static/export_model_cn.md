@@ -7,7 +7,7 @@
 
 动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_export.png" style="zoom:45%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_export.png" style="zoom:50%" />
 
 
 
@@ -109,7 +109,7 @@ another_func.pdiparams.info   // 存放额外的其他信息
 > 关于动转静 @to_static 的用法，可以参考 [基本用法](./basic_usage_cn.html)；搭配 `paddle.jit.save` 接口导出预测模型的用法案例，可以参考 [案例解析](./case_analysis_cn.html) 。
 
 
-### 1.3 InputSpec 使用
+### 1.3 InputSpec 功能介绍
 
 动静转换时，在生成静态图 Program 时，依赖输入 Tensor 的 shape、dtype 和 name 信息。因此，Paddle 提供了 InputSpec 接口，用于指定输入 Tensor 的描述信息，并支持动态 shape 特性。
 
@@ -306,7 +306,7 @@ net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x')])
 paddle.jit.save(net, path='./simple_net')
 
 
-# 方式一：save inference model with use_act=True
+# 方式二：save inference model with use_act=True
 net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), True])
 paddle.jit.save(net, path='./simple_net')
 ```
@@ -324,7 +324,25 @@ kwargs 参数的默认值主要用于保存推理模型。在借助 ``paddle.jit
 
 ## 二、动、静态图部署区别
 
+当训练完一个模型后，下一阶段就是保存导出，实现**模型**和**参数**的分发，进行多端部署。
 ### 2.1 动态图预测部署
+
+动态图下，**模型**指的是 Python 前端代码；**参数**指的是 ``model.state_dict()`` 中存放的权重数据。
+
+```python
+net = SimpleNet()
+
+# .... 训练过程(略)
+
+layer_state_dict = net.state_dict()
+paddle.save(layer_state_dict, "net.pdparams") # 导出模型
+```
+
+
+即意味着，动态图预测部署时，除了已经序列化的参数文件，还须提供**最初的模型组网代码**。
+
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/dygraph_export.png" style="zoom:50%" />
+
 
 2.0 版本后，Paddle 默认开启了动态图模式。动态图模式下编程组网更加灵活，也更 Pythonic 。在动态图下，模型代码是 **逐行被解释执行** 的。如：
 
@@ -378,7 +396,28 @@ sgd = paddle.optimizer.SGD(learning_rate=0.1, parameters=net.parameters())
                                                          所有待更新参数
 ```
 
+
 ### 2.2 静态图预测部署
+
+静态图部署时，**模型**指的是 ``Program`` ；参数指的是所有的 ``Persistable=True`` 的 ``Variable`` 。二者都可以序列化导出为磁盘文件，**与前端代码完全解耦**。
+
+```python
+main_program = paddle.static.default_main_program()
+
+# ...... 训练过程（略）
+
+prog_path='main_program.pdmodel'
+paddle.save(main_program, prog_path) # 导出为 .pdmodel
+
+para_path='main_program.pdparams'
+paddle.save(main_program.state_dict(), para_path) # 导出为 .pdparams
+```
+
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/static_export.png" style="zoom:50%" />
+
+
+即意味着， ``Program`` 中包含了模型所有的计算描述（ ``OpDesc`` ），不存在计算逻辑有遗漏的地方。
+
 
 **静态图编程，总体上包含两个部分：**
 
@@ -443,48 +482,6 @@ print(paddle.static.default_main_program())
 + **OpDesc**：对应每个前端 API 的计算逻辑描述
 + **Variable**：对应所有的数据变量，如 ``Parameter`` ，临时中间变量等，全局唯一 ``name`` 。
 
-### 2.3 模型和参数
-
-当训练完一个模型后，下一阶段就是保存导出，实现**模型**和**参数**的分发，进行多端部署。
-
-动态图下，**模型**指的是 Python 前端代码；**参数**指的是 ``model.state_dict()`` 中存放的权重数据。
-
-```python
-net = SimpleNet()
-
-# .... 训练过程(略)
-
-layer_state_dict = net.state_dict()
-paddle.save(layer_state_dict, "net.pdparams") # 导出模型
-```
-
-
-即意味着，动态图预测部署时，除了已经序列化的参数文件，还须提供**最初的模型组网代码**。
-
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/dygraph_export.png" style="zoom:50%" />
-
-
-
-
-静态图下，**模型**指的是 ``Program`` ；参数指的是所有的 ``Persistable=True`` 的 ``Variable`` 。二者都可以序列化导出为磁盘文件，**与前端代码完全解耦**。
-
-```python
-main_program = paddle.static.default_main_program()
-
-# ...... 训练过程（略）
-
-prog_path='main_program.pdmodel'
-paddle.save(main_program, prog_path) # 导出为 .pdmodel
-
-para_path='main_program.pdparams'
-paddle.save(main_program.state_dict(), para_path) # 导出为 .pdparams
-```
-
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/static_export.png" style="zoom:50%" />
-
-
-
-即意味着， ``Program`` 中包含了模型所有的计算描述（ ``OpDesc`` ），不存在计算逻辑有遗漏的地方。
 
 
 > 注：更多细节，请参考 [【官方文档】模型的存储与载入](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/02_paddle2.0_develop/08_model_save_load_cn.html)。

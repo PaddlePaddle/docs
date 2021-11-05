@@ -1,7 +1,7 @@
 # 案例解析
 
 
-上一节我们介绍了动转静的主要机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
+在(【基本用法】(./basic_usage_cn.html))章节我们介绍了动转静的用法和机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
 
 ## 一、 @to_static 放在哪里？
 
@@ -77,7 +77,7 @@
 
 
 
-> 注：InputSpec 接口的高阶用法，请参看 [【官方文档】InputSpec 功能介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/04_dygraph_to_static/input_spec_cn.html)
+> 注：InputSpec 接口的高阶用法，请参看 [【InputSpec 功能介绍】](./input_spec_cn.html#inputspec)
 
 ## 三、内嵌 Numpy 操作？
 

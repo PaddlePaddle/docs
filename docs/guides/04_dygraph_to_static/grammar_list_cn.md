@@ -11,11 +11,11 @@
 3. 当出现不支持的语法时，如何修改源码适配动转静语法
 
 
-若您初次接触动转静功能，或对此功能尚不熟悉，推荐您阅读：[基本用法](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/basic_usage_cn.html)；
+若您初次接触动转静功能，或对此功能尚不熟悉，推荐您阅读：[基本用法](./basic_usage_cn.html)；
 
-若您想进行预测模型导出，或想深入了解此模块，推荐您阅读：[预测模型导出](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/export_model_cn.html)；
+若您想进行预测模型导出，或想深入了解此模块，推荐您阅读：[预测模型导出](./export_model_cn.html)；
 
-若您动静转换遇到了问题，或想学习调试的技巧，推荐您阅读：[报错调试经验](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/debugging_cn.html)。
+若您动静转换遇到了问题，或想学习调试的技巧，推荐您阅读：[报错调试经验](./debugging_cn.html)。
 
 ## 二、语法支持速查列表
 

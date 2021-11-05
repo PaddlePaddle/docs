@@ -89,7 +89,7 @@ net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
 + 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度
 + 可以指定 Placeholder 的 ``name`` ，方面预测时根据 ``name`` 输入数据
 
-> 注：InputSpec 接口的高阶用法，请参看 [【官方文档】InputSpec 功能介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/04_dygraph_to_static/input_spec_cn.html)
+> 注：InputSpec 接口的高阶用法，请参看 [【InputSpec 功能介绍】](./export_model_cn.html#inputspec)
 
 
 ## 三、函数转写
@@ -168,10 +168,10 @@ def add_two(x, y):
 **转写上有两个基本原则：**
 
 + **并非**所有动态图中的 ``if/for/while`` 都会转写为 ``cond_op/while_op``
-+ **只有**控制流的判断条件**依赖了 ``Tensor`` **（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
++ **只有**控制流的判断条件 **依赖了``Tensor``**（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
 
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/convert_cond.png" style="zoom:50%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/convert_cond.png" style="zoom:80%/>
 
 
 
@@ -269,7 +269,7 @@ def convert_ifelse(pred, true_fn, false_fn, true_args, false_args, return_vars):
 
 ``For/While`` 也会先进行代码层面的规范化，在逐行执行用户代码时，才会决定是否转为 ``while_op``。
 
-示例一：不依赖 Tensor 的控制流
+**示例一：不依赖 Tensor 的控制流**
 
 ```python
 def not_depend_tensor_while(x):
@@ -303,7 +303,7 @@ def not_depend_tensor_while(x):
 
 
 
-示例二：依赖 Tensor 的控制流
+**示例二：依赖 Tensor 的控制流**
 
 ```python
 def depend_tensor_while(x):
@@ -335,11 +335,11 @@ def depend_tensor_while(x):
 ```
 
 
-``convert_while_loop`` 的底层的逻辑同样会根据**判断条件是否为``Variable``**来决定是否转为 ``while_op``
+``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Variable``** 来决定是否转为 ``while_op``
 
 ## 五、 Parameters 与 Buffers
 
-### 1.1 动态图 layer 生成 Program
+### 5.1 动态图 layer 生成 Program
 
 文档开始的样例中 ``forward`` 函数包含两行组网代码： ``Linear`` 和 ``add`` 操作。以 ``Linear`` 为例，在 Paddle 的框架底层，每个 Paddle 的组网 API 的实现包括两个分支：
 
@@ -364,7 +364,7 @@ class Linear(...):
 
 动态图 ``layer`` 生成 ``Program`` ，其实是开启 ``paddle.enable_static()`` 时，在静态图下逐行执行用户定义的组网代码，依次添加(对应 ``append_op`` 接口) 到默认的主 Program（即 ``main_program`` ） 中。
 
-### 1.2 动态图 Tensor 转为静态图 Variable
+### 5.2 动态图 Tensor 转为静态图 Variable
 
 上面提到，所有的组网代码都会在静态图模式下执行，以生成完整的 ``Program`` 。**但静态图 ``append_op`` 有一个前置条件必须满足：**
 
@@ -420,7 +420,7 @@ class Linear(...):
 + 动态图 ``Tensor`` 转为静态图 ``Variable`` ，并确保编译期的 ``InferShape`` 正确执行
 
 
-### 1.3 Buffer 变量
+### 5.3 Buffer 变量
 
 **什么是 ``Buffers`` 变量？**
 
