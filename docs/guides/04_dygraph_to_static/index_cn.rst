@@ -6,15 +6,15 @@
 
 PaddlePaddle 在2.0之后正式支持动态图转静态图（@to_static）的功能，对动态图代码进行智能化分析，自动转换为静态图网络结构，兼顾了动态图易用性和静态图部署性能两方面的优势。
 
-如下将详细地介绍动静转换的各个部分内容：
+如下将详细地介绍动静转换的各个模块内容：
 
 - `基本用法 <basic_usage_cn.html>`_ : 介绍了动静转换 @to_static 的基本用法
 
-- `语法支持列表 <grammar_list_cn.html>`_ ：介绍了动静转换功能已支持的语法列表概况
+- `语法支持列表 <grammar_list_cn.html>`_ ：介绍了动静转换功能已支持的语法概况
 
-- `预测模型导出 <./export_model/index_cn.html>`_ ：介绍了如何导出预测模型的详细教程
+- `预测模型导出 <./export_model/index_cn.html>`_ ：介绍了导出动态图预测模型的详细教程
 
-- `案例解析 <./case_analysis_cn.html>`_ : 介绍 @to_static 导出预测模型时常见的问题和用法解析
+- `案例解析 <./case_analysis_cn.html>`_ : 介绍使用 @to_static 时常见的问题和案例解析
 
 - `报错调试经验 <debugging_cn.html>`_ ：介绍了动静转换 @to_static 的调试方法和经验
 
