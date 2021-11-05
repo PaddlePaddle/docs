@@ -10,7 +10,7 @@ cuda
 
 返回：
 :::::::::
-返回cuda的版本信息。若paddle包为CPU版本，则返回``False``。
+返回cuda的版本信息。若paddle包为CPU版本，则返回 ``False`` 。
 
 代码示例：
 ::::::::::
