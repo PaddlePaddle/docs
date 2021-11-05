@@ -1,4 +1,4 @@
-# 基本用法
+# 基础接口用法
 
 
 ## 一、 @to_static 概览
@@ -391,7 +391,7 @@ class Linear(...):
 
             # ... forward_post_hook 逻辑
 
-            return outpus
+            return outputs
     ```
 
 + ``Block.append_op`` 函数中，生成 ``Op`` 之前
@@ -427,7 +427,7 @@ class Linear(...):
 + **Parameters**：``persistable`` 为 ``True`` ，且每个 batch 都被 Optimizer 更新的变量
 + **Buffers**：``persistable`` 为 ``True`` ，``is_trainable = False`` ，不参与更新，但与预测相关；如 ``BatchNorm`` 层中的均值和方差
 
-在动态图模型代码中，若一个 ``paddle.to_tensor`` 接口生成的 ``Tensor`` 参与了最终预测结果的的计算，则此 ``Tensor`` 需要在转换为静态图预测模型时，也需要作为一个 ``persistable`` 的变量保存到 ``.pdparam`` 文件中。
+在动态图模型代码中，若一个 ``paddle.to_tensor`` 接口生成的 ``Tensor`` 参与了最终预测结果的的计算，则此 ``Tensor`` 需要在转换为静态图预测模型时，也需要作为一个 ``persistable`` 的变量保存到 ``.pdiparam`` 文件中。
 
 **举一个例子（错误写法）：**
 
@@ -460,7 +460,7 @@ class SimpleNet(paddle.nn.Layer):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
-        # 此处的 mask 会当做一个 buffer Tensor，保存到 .pdparam 文件
+        # 此处的 mask 会当做一个 buffer Tensor，保存到 .pdiparam 文件
         self.mask = paddle.to_tensor(mask) # 假设为 [0, 1, 1]
 
     def forward(self, x, y):

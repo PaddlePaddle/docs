@@ -1,7 +1,7 @@
-# 案例解析
+# 常见案例解析
 
 
-在[【基本用法】](./basic_usage_cn.html)章节我们介绍了动转静的用法和机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
+在[【基础接口用法】](./basic_usage_cn.html)章节我们介绍了动转静的用法和机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
 
 ## 一、 @to_static 放在哪里？
 
@@ -193,9 +193,9 @@ class SimpleNet(paddle.nn.Layer):
 
 动态图模型常常包含很多嵌套的子网络，建议各个自定义的子网络 ``sublayer`` **无论是否包含了参数，都继承 ``nn.Layer`` .**
 
-从 **Parmaters 和 Buffers**  章节可知，有些 ``paddle.to_tensor`` 接口转来的 ``Tensor`` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 ``.pdparams`` 文件中。
+从 **Parameters 和 Buffers**  章节可知，有些 ``paddle.to_tensor`` 接口转来的 ``Tensor`` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 ``.pdiparams`` 文件中。
 
-> **原因**： 若某个 sublayer 包含了 buffer Variables，但却没有继承 ``nn.Layer`` ，则可能导致保存的 ``.pdparams`` 文件缺失部分重要参数。
+> **原因**： 若某个 sublayer 包含了 buffer Variables，但却没有继承 ``nn.Layer`` ，则可能导致保存的 ``.pdiparams`` 文件缺失部分重要参数。
 
 **举个例子：**
 
@@ -204,7 +204,7 @@ class SimpleNet(object):                       # <---- 继承 Object
     def __init__(self, mask):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)  # <---- Linear 参数永远都不会被更新
-        self.mask = paddle.to_tensor(mask)     # <---- mask 可能未保存到 .pdparams 文件中
+        self.mask = paddle.to_tensor(mask)     # <---- mask 可能未保存到 .pdiparams 文件中
 
     def forward(self, x, y):
         out = self.linear(x)
@@ -370,7 +370,7 @@ def forward(x):
 如上面的例子：
 
 ```python
-def foward(self, x)：
+def forward(self, x)：
     bs = paddle.shape(x)[0]        # <---- x.shape[0] 表示 batch_size，动态shape
     outs = []
     for i in range(bs):

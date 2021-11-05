@@ -323,7 +323,7 @@ net = SimpleNet()
 # .... 训练过程(略)
 
 layer_state_dict = net.state_dict()
-paddle.save(layer_state_dict, "net.pdparams") # 导出模型
+paddle.save(layer_state_dict, "net.pdiparams") # 导出模型
 ```
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/dygraph_export.png" style="zoom:50%" />
@@ -392,11 +392,11 @@ main_program = paddle.static.default_main_program()
 
 # ...... 训练过程（略）
 
-prog_path='main_program.pdmodel'
-paddle.save(main_program, prog_path) # 导出为 .pdmodel
+prog_path='main_program.pdimodel'
+paddle.save(main_program, prog_path) # 导出为 .pdimodel
 
-para_path='main_program.pdparams'
-paddle.save(main_program.state_dict(), para_path) # 导出为 .pdparams
+para_path='main_program.pdiparams'
+paddle.save(main_program.state_dict(), para_path) # 导出为 .pdiparams
 ```
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/static_export.png" style="zoom:50%" />
