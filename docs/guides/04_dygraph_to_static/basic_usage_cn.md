@@ -35,86 +35,6 @@ net = paddle.jit.to_static(net)  # 动静转换
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_train.png" style="zoom:50%" />
 
 
-### 1.1 动态图 layer 生成 Program
-
-上述样例中的 ``forward`` 函数包含两行组网代码： ``Linear`` 和 ``add`` 操作。以 ``Linear`` 为例，在 Paddle 的框架底层，每个 Paddle 的组网 API 的实现包括两个分支：
-
-```python
-
-class Linear(...):
-    def __init__(self, ...):
-        # ...(略)
-
-    def forward(self, input):
-
-        if in_dygraph_mode():  # 动态图分支
-            core.ops.matmul(input, self.weight, pre_bias, ...)
-            return out
-        else:                  # 静态图分支
-            self._helper.append_op(type="matmul", inputs=inputs, ...)     # <----- 生成一个 Op
-            if self.bias is not None:
-                self._helper.append_op(type='elementwise_add', ...)       # <----- 生成一个 Op
-
-            return out
-```
-
-动态图 ``layer`` 生成 ``Program`` ，其实是开启 ``paddle.enable_static()`` 时，在静态图下逐行执行用户定义的组网代码，依次添加(对应 ``append_op`` 接口) 到默认的主 Program（即 ``main_program`` ） 中。
-
-### 1.2 动态图 Tensor 转为静态图 Variable
-
-上面提到，所有的组网代码都会在静态图模式下执行，以生成完整的 ``Program`` 。**但静态图 ``append_op`` 有一个前置条件必须满足：**
-
-> **前置条件**：append_op() 时，所有的 inputs，outputs 必须都是静态图的 Variable 类型，不能是动态图的 Tensor 类型。
-
-
-**原因**：静态图下，操作的都是**描述类单元**：计算相关的 ``OpDesc`` ，数据相关的 ``VarDesc`` 。可以分别简单地理解为 ``Program`` 中的 ``Op`` 和 ``Variable`` 。
-
-因此，在动转静时，我们在需要在**某个统一的入口处**，将动态图 ``Layers`` 中 ``Tensor`` 类型（包含具体数据）的 ``Weight`` 、``Bias`` 等变量转换为**同名的静态图 ``Variable``**。
-
-+ ParamBase &rarr; Parameters
-+ VarBase &rarr;   Variable
-
-技术实现上，我们选取了框架层面两个地方作为类型**转换的入口**：
-
-+ ``Paddle.nn.Layer`` 基类的 ``__call__`` 函数
-    ```python
-    def __call__(self, *inputs, **kwargs):
-        # param_guard 会对将 Tensor 类型的 Param 和 buffer 转为静态图 Variable
-        with param_guard(self._parameters), param_guard(self._buffers):
-            # ... forward_pre_hook 逻辑
-
-            outputs = self.forward(*inputs, **kwargs) # 此处为forward函数
-
-            # ... forward_post_hook 逻辑
-
-            return outpus
-    ```
-
-+ ``Block.append_op`` 函数中，生成 ``Op`` 之前
-    ```python
-    def append_op(self, *args, **kwargs):
-        if in_dygraph_mode():
-            # ... (动态图分支)
-        else:
-            inputs=kwargs.get("inputs", None)
-            outputs=kwargs.get("outputs", None)
-            # param_guard 会确保将 Tensor 类型的 inputs 和 outputs 转为静态图 Variable
-            with param_guard(inputs), param_guard(outputs):
-                op = Operator(
-                    block=self,
-                    desc=op_desc,
-                    type=kwargs.get("type", None),
-                    inputs=inputs,
-                    outputs=outputs,
-                    attrs=kwargs.get("attrs", None))
-    ```
-
-
-以上，是动态图转为静态图的两个核心逻辑，总结如下：
-
-+ 动态图 ``layer`` 调用在动转静时会走底层 ``append_op`` 的分支，以生成 ``Program``
-+ 动态图 ``Tensor`` 转为静态图 ``Variable`` ，并确保编译期的 ``InferShape`` 正确执行
-
 
 ## 二、 输入层 InputSpec
 
@@ -419,6 +339,89 @@ def depend_tensor_while(x):
 
 ## 五、 Parameters 与 Buffers
 
+### 1.1 动态图 layer 生成 Program
+
+文档开始的样例中 ``forward`` 函数包含两行组网代码： ``Linear`` 和 ``add`` 操作。以 ``Linear`` 为例，在 Paddle 的框架底层，每个 Paddle 的组网 API 的实现包括两个分支：
+
+```python
+
+class Linear(...):
+    def __init__(self, ...):
+        # ...(略)
+
+    def forward(self, input):
+
+        if in_dygraph_mode():  # 动态图分支
+            core.ops.matmul(input, self.weight, pre_bias, ...)
+            return out
+        else:                  # 静态图分支
+            self._helper.append_op(type="matmul", inputs=inputs, ...)     # <----- 生成一个 Op
+            if self.bias is not None:
+                self._helper.append_op(type='elementwise_add', ...)       # <----- 生成一个 Op
+
+            return out
+```
+
+动态图 ``layer`` 生成 ``Program`` ，其实是开启 ``paddle.enable_static()`` 时，在静态图下逐行执行用户定义的组网代码，依次添加(对应 ``append_op`` 接口) 到默认的主 Program（即 ``main_program`` ） 中。
+
+### 1.2 动态图 Tensor 转为静态图 Variable
+
+上面提到，所有的组网代码都会在静态图模式下执行，以生成完整的 ``Program`` 。**但静态图 ``append_op`` 有一个前置条件必须满足：**
+
+> **前置条件**：append_op() 时，所有的 inputs，outputs 必须都是静态图的 Variable 类型，不能是动态图的 Tensor 类型。
+
+
+**原因**：静态图下，操作的都是**描述类单元**：计算相关的 ``OpDesc`` ，数据相关的 ``VarDesc`` 。可以分别简单地理解为 ``Program`` 中的 ``Op`` 和 ``Variable`` 。
+
+因此，在动转静时，我们在需要在**某个统一的入口处**，将动态图 ``Layers`` 中 ``Tensor`` 类型（包含具体数据）的 ``Weight`` 、``Bias`` 等变量转换为**同名的静态图 ``Variable``**。
+
++ ParamBase &rarr; Parameters
++ VarBase &rarr;   Variable
+
+技术实现上，我们选取了框架层面两个地方作为类型**转换的入口**：
+
++ ``Paddle.nn.Layer`` 基类的 ``__call__`` 函数
+    ```python
+    def __call__(self, *inputs, **kwargs):
+        # param_guard 会对将 Tensor 类型的 Param 和 buffer 转为静态图 Variable
+        with param_guard(self._parameters), param_guard(self._buffers):
+            # ... forward_pre_hook 逻辑
+
+            outputs = self.forward(*inputs, **kwargs) # 此处为forward函数
+
+            # ... forward_post_hook 逻辑
+
+            return outpus
+    ```
+
++ ``Block.append_op`` 函数中，生成 ``Op`` 之前
+    ```python
+    def append_op(self, *args, **kwargs):
+        if in_dygraph_mode():
+            # ... (动态图分支)
+        else:
+            inputs=kwargs.get("inputs", None)
+            outputs=kwargs.get("outputs", None)
+            # param_guard 会确保将 Tensor 类型的 inputs 和 outputs 转为静态图 Variable
+            with param_guard(inputs), param_guard(outputs):
+                op = Operator(
+                    block=self,
+                    desc=op_desc,
+                    type=kwargs.get("type", None),
+                    inputs=inputs,
+                    outputs=outputs,
+                    attrs=kwargs.get("attrs", None))
+    ```
+
+
+以上，是动态图转为静态图的两个核心逻辑，总结如下：
+
++ 动态图 ``layer`` 调用在动转静时会走底层 ``append_op`` 的分支，以生成 ``Program``
++ 动态图 ``Tensor`` 转为静态图 ``Variable`` ，并确保编译期的 ``InferShape`` 正确执行
+
+
+### 1.3 Buffer 变量
+
 **什么是 ``Buffers`` 变量？**
 
 + **Parameters**：``persistable`` 为 ``True`` ，且每个 batch 都被 Optimizer 更新的变量
@@ -471,4 +474,3 @@ class SimpleNet(paddle.nn.Layer):
 总结一下 ``buffers`` 的用法：
 
 +  若某个非 ``Tensor`` 数据需要当做 ``Persistable`` 的变量序列化到磁盘，则最好在 ``__init__`` 中调用 ``self.XX= paddle.to_tensor(xx)`` 接口转为 ``buffer`` 变量
-
