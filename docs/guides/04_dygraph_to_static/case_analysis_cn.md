@@ -1,14 +1,14 @@
 # 案例解析
 
 
-在(【基本用法】(./basic_usage_cn.html))章节我们介绍了动转静的用法和机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
+在[【基本用法】](./basic_usage_cn.html)章节我们介绍了动转静的用法和机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
 
 ## 一、 @to_static 放在哪里？
 
 
 ``@to_static`` 装饰器开启动转静功能的唯一接口，支持两种使用方式：
 
-+ 方式一（推荐用法）：显式地通过 ``model = to_static(model)`` 调用
++ **方式一（推荐用法）**：显式地通过 ``model = to_static(model)`` 调用
     ```python
     from paddle.jit import to_static
 
@@ -17,7 +17,7 @@
     ```
 
 
-+  方式二：在组网代码的 ``forward`` 函数处装饰
++  **方式二**：在组网代码的 ``forward`` 函数处装饰
     ```python
     class SimpleNet(paddle.nn.Layer):
         def __init__(self, ...):
@@ -275,7 +275,7 @@ jit.save(mode, model_path)
 
 ## 七、再谈控制流
 
-前面提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
+前面[【控制流转写】(./basic_usage_cn.html#sikongzhiliuzhuanxie)]提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
 
 ```python
 def true_fn_0(out):

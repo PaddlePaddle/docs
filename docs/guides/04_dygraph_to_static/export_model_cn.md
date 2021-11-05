@@ -3,8 +3,6 @@
 
 ## 一、动转静模型导出
 
-动态图由于其与 Python 语法契合的易用性，逐步成为各主流框架的默认模式。但这也带来了在非 Python 环境下的部署问题 —— 即需要将动态图的 Python 语句转为可以跨语言、跨平台部署的静态图来部署。
-
 动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_export.png" style="zoom:50%" />
@@ -111,7 +109,7 @@ another_func.pdiparams.info   // 存放额外的其他信息
 
 ### 1.3 InputSpec 功能介绍
 
-动静转换时，在生成静态图 Program 时，依赖输入 Tensor 的 shape、dtype 和 name 信息。因此，Paddle 提供了 InputSpec 接口，用于指定输入 Tensor 的描述信息，并支持动态 shape 特性。
+动静转换在生成静态图 Program 时，依赖输入 Tensor 的 shape、dtype 和 name 信息。因此，Paddle 提供了 InputSpec 接口，用于指定输入 Tensor 的描述信息，并支持动态 shape 特性。
 
 
 #### 1.3.1 InputSpec 构造
@@ -120,7 +118,7 @@ another_func.pdiparams.info   // 存放额外的其他信息
 **方式一：直接构造**
 
 
-InputSpec 接口在 ``paddle.static`` 目录下，用于描述一个 Tensor 的签名信息：shape、dtype、name。使用样例如下：
+InputSpec 接口在 ``paddle.static`` 目录下， 只有 ``shape`` 是必须参数， ``dtype`` 和 ``name`` 可以缺省，默认取值分别为 ``float32`` 和 ``None`` 。使用样例如下：
 
 ```python
 from paddle.static import InputSpec
@@ -132,13 +130,10 @@ print(x)      # InputSpec(shape=(-1, 784), dtype=VarType.FP32, name=x)
 print(label)  # InputSpec(shape=(-1, 1), dtype=VarType.INT64, name=label)
 ```
 
-InputSpec 初始化中的只有 ``shape`` 是必须参数， ``dtype`` 和 ``name`` 可以缺省，默认取值分别为 ``float32`` 和 ``None`` 。
-
-
 
 **方式二：由 Tensor 构造**
 
-可以借助 ``InputSpec.from_tensor`` 方法，从一个 Tensor 直接创建 InputSpec 对象，其拥有与源 Tensor 相同的 ``shape`` 和 ``dtype`` 。使用样例如下：
+可以借助 ``InputSpec.from_tensor`` 方法，从一个 Tensor 直接创建 InputSpec 对象，其拥有与源 Tensor 相同的 ``shape`` 和 ``dtype`` 。 使用样例如下：
 
 ```python
 import numpy as np
@@ -166,15 +161,10 @@ x_spec = InputSpec.from_numpy(x, name='x')
 print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
 ```
 
->注：若未在 ``from_numpy`` 中指定新的 name，则默认使用 None 。
+> 注：若未在 ``from_numpy`` 中指定新的 name，则默认使用 None 。
 
 
-#### 1.3.2 基本使用方法
-
-
-动转静 ``paddle.jit.to_static`` 装饰器支持 ``input_spec`` 参数，用于指定被装饰函数每个 Tensor 类型输入参数的 ``shape`` 、 ``dtype`` 、 ``name`` 等签名信息。不必再显式地传入 Tensor 数据以触发网络层 shape 的推导。 Paddle 会解析 ``to_static`` 中指定的 ``input_spec`` 参数，构建网络的起始输入，进行后续的模型组网。
-
-同时，借助 ``input_spec`` 参数，可以自定义输入 Tensor 的 shape ，比如指定 shape 为 ``[None, 784]`` ，其中 ``None`` 表示变长的维度。
+#### 1.3.2 基本用法
 
 **方式一： @to_static 装饰器模式**
 
@@ -206,9 +196,9 @@ paddle.jit.save(net, './simple_net')
 在上述的样例中， ``@to_static`` 装饰器中的 ``input_spec`` 为一个 InputSpec 对象组成的列表，用于依次指定参数 x 和 y 对应的 Tensor 签名信息。在实例化 SimpleNet 后，可以直接调用 ``paddle.jit.save`` 保存静态图模型，不需要执行任何其他的代码。
 
 > 注：
->    1. input_spec 参数中只支持 InputSpec 对象，暂不支持如 int 、 float 等类型。
+>    1. input_spec 参数中不仅支持 InputSpec 对象，也支持 int 、 float 等常见 Python 原生类型。
 >    2. 若指定 input_spec 参数，则需为被装饰函数的所有必选参数都添加对应的 InputSpec 对象，如上述样例中，不支持仅指定 x 的签名信息。
->    3. 若被装饰函数中包括非 Tensor 参数，且指定了 input_spec ，请确保函数的非 Tensor 参数都有默认值，如 ``forward(self, x, use_bn=False)``
+>    3. 若被装饰函数中包括非 Tensor 参数，推荐函数的非 Tensor 参数设置默认值，如 ``forward(self, x, use_bn=False)``
 
 
 **方式二：to_static函数调用**
@@ -243,7 +233,7 @@ paddle.jit.save(net, './simple_net')
 
 **方式三：支持 list 和 dict 推导**
 
-上述两个样例中，被装饰的 forward 函数的参数均为 Tensor 。这种情况下，参数个数必须与 InputSpec 个数相同。但当被装饰的函数参数为list或dict类型时，``input_spec`` 需要与函数参数保持相同的嵌套结构。
+上述两个样例中，被装饰的 forward 函数的参数均为 Tensor 。这种情况下，参数个数必须与 InputSpec 个数相同。但当被装饰的函数参数为 list 或 dict 类型时，``input_spec`` 需要与函数参数保持相同的嵌套结构。
 
 当函数的参数为 list 类型时，input_spec 列表中对应元素的位置，也必须是包含相同元素的 InputSpec 列表。使用样例如下：
 
@@ -312,19 +302,17 @@ paddle.jit.save(net, path='./simple_net')
 ```
 
 
-在上述样例中，step 为奇数时，use_act 取值为 False ； step 为偶数时， use_act 取值为 True 。动转静支持非 Tensor 参数在训练时取不同的值，且保证了取值不同的训练过程都可以更新模型的网络参数，行为与动态图一致。
+在上述样例中，假设 step 为奇数时，use_act 取值为 False ； step 为偶数时， use_act 取值为 True 。动转静支持非 Tensor 参数在训练时取不同的值，且保证了取值不同的训练过程都可以更新模型的网络参数，行为与动态图一致。
 
-kwargs 参数的默认值主要用于保存推理模型。在借助 ``paddle.jit.save`` 保存预测模型时，动转静会根据 input_spec 和 kwargs 的默认值保存推理模型和网络参数。因此建议将 kwargs 参数默认值设置为预测时的取值。
-
-
-更多关于动转静 ``to_static`` 搭配 ``paddle.jit.save/load`` 的使用方式，可以参考 :ref:`cn_doc_model_save_load` 。
+在借助 ``paddle.jit.save`` 保存预测模型时，动转静会根据 input_spec 和 kwargs 的默认值保存推理模型和网络参数。**建议将 kwargs 参数默认值设置为预测时的取值。**
 
 
-如下两小节，将介绍动态图和静态图的概念和差异性，以帮助理解动转静如何起到**桥梁作用**的。
+更多关于动转静 ``to_static`` 搭配 ``paddle.jit.save/load`` 的使用方式，可以参考  [【模型的存储与载入】](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/02_paddle2.0_develop/08_model_save_load_cn.html)。
+
 
 ## 二、动、静态图部署区别
 
-当训练完一个模型后，下一阶段就是保存导出，实现**模型**和**参数**的分发，进行多端部署。
+当训练完一个模型后，下一阶段就是保存导出，实现**模型**和**参数**的分发，进行多端部署。如下两小节，将介绍动态图和静态图的概念和差异性，以帮助理解动转静如何起到**桥梁作用**的。
 ### 2.1 动态图预测部署
 
 动态图下，**模型**指的是 Python 前端代码；**参数**指的是 ``model.state_dict()`` 中存放的权重数据。
@@ -338,13 +326,11 @@ layer_state_dict = net.state_dict()
 paddle.save(layer_state_dict, "net.pdparams") # 导出模型
 ```
 
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/dygraph_export.png" style="zoom:50%" />
 
 即意味着，动态图预测部署时，除了已经序列化的参数文件，还须提供**最初的模型组网代码**。
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/dygraph_export.png" style="zoom:50%" />
-
-
-2.0 版本后，Paddle 默认开启了动态图模式。动态图模式下编程组网更加灵活，也更 Pythonic 。在动态图下，模型代码是 **逐行被解释执行** 的。如：
+在动态图下，模型代码是 **逐行被解释执行** 的。如：
 
 ```python
 import paddle

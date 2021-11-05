@@ -171,13 +171,13 @@ def add_two(x, y):
 + **只有**控制流的判断条件 **依赖了``Tensor``**（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
 
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/convert_cond.png" style="zoom:80%/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/convert_cond.png" style="zoom:80%" />
 
 
 
 ### 4.1 IfElse
 
-首先，无论是否会转写为 ``cond_op`` ，动转静都会首先都会对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**
+无论是否会转写为 ``cond_op`` ，动转静都会首先对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**
 
 **示例一：不依赖 Tensor 的控制流**
 
@@ -335,7 +335,7 @@ def depend_tensor_while(x):
 ```
 
 
-``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Variable``** 来决定是否转为 ``while_op``
+``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Tensor``** 来决定是否转为 ``while_op``
 
 ## 五、 Parameters 与 Buffers
 
