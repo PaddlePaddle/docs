@@ -411,5 +411,4 @@ path = "example.model/linear"
 paddle.jit.save(layer, path)   # <---- Lazy mode, 此处才会触发 Program 的转换
 ```
 
-
 > 更多用法可以参考：[【官网文档】jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/save_cn.html#save)

@@ -221,7 +221,7 @@ net = SimpleNet()
 # train process (Pseudo code)
 for epoch_id in range(10):
     train_step(net, train_reader)
-    
+
 net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')])
 
 # save static model for inference directly
@@ -381,7 +381,6 @@ sgd = paddle.optimizer.SGD(learning_rate=0.1, parameters=net.parameters())
                                                               |
                                                          所有待更新参数
 ```
-
 
 ### 2.2 静态图预测部署
 
