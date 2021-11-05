@@ -1,6 +1,6 @@
 # 语法支持列表
 
-## 主要针对场景
+## 一、主要针对场景
 
 本文档概览性介绍了飞桨动转静功能的语法支持情况，旨在向用户提供一个便捷的语法速查表，**主要适用于如下场景**：
 
@@ -11,13 +11,13 @@
 3. 当出现不支持的语法时，如何修改源码适配动转静语法
 
 
-若您初次接触动转静功能，或对此功能尚不熟悉，推荐您阅读：[动转静入门文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/basic_usage_cn.html)；
+若您初次接触动转静功能，或对此功能尚不熟悉，推荐您阅读：[基本用法](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/basic_usage_cn.html)；
 
-若您对动转静原理感兴趣，或想深入了解此模块，推荐您阅读：[动转静基础原理](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/program_translator_cn.html)；
+若您想进行预测模型导出，或想深入了解此模块，推荐您阅读：[预测模型导出](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/export_model_cn.html)；
 
-若您想进行模型预测导出，或想了解调试的技巧，推荐您阅读：[预测模型导出教程](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/export_model/index_cn.html)。
+若您动静转换遇到了问题，或想学习调试的技巧，推荐您阅读：[报错调试经验](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/debugging_cn.html)。
 
-## 语法支持速查列表
+## 二、语法支持速查列表
 
 |分类 |python语法 | 是否<br>支持 | 概要 |
 |:---:|:---:|:---:|:---:|
@@ -46,10 +46,10 @@
 
 
 
-## 详细说明
+## 三、详细说明
 
 
-### if-else
+### 3.1 if-else
 <span id='1'></span>
 
 **主要逻辑：**
@@ -73,7 +73,7 @@
 
 
 
-### while循环
+### 3.2 while循环
 <span id='2'></span>
 
 **主要逻辑：**
@@ -88,7 +88,7 @@
 
 
 
-### for 循环
+### 3.3 for 循环
 <span id='3'></span>
 
 **主要逻辑：**
@@ -118,7 +118,7 @@ def ForTensor(x):
 
 
 
-### 流程控制语句说明 (return / break / continue)
+### 3.4 流程控制语句说明 (return / break / continue)
 
 <span id='4'></span>
 
@@ -142,7 +142,7 @@ def break_usage(x):
 > 注：这里虽然idx是-1，但是返回值还是Tensor。因为`tensor_idx` 在 while loop中转化为了`Tensor`。
 
 
-### 与、或、非
+### 3.5 与、或、非
 <span id='5'></span>
 
 **主要逻辑：**
@@ -165,7 +165,7 @@ def and(x, y):
     return z
 ```
 
-### 类型转换运算符
+### 3.6 类型转换运算符
 <span id='6'></span>
 **主要逻辑：**
 
@@ -183,7 +183,7 @@ def float_convert(x):
 ```
 
 
-### 对一些python函数调用的转换
+### 3.7 对一些python函数调用的转换
 <span id='7'></span>
 **主要逻辑：**
 
@@ -226,7 +226,7 @@ def recur_call(x):
     return recur_call(x * x) # < ------ 如果输入是 x = Tensor([2.0]) ，动态图输出为 Tensor([16])，静态图会出现调用栈溢出
 ```
 
-### List和Dict容器
+### 3.8 List和Dict容器
 <span id='8'></span>
 **主要逻辑：**
 
@@ -262,7 +262,7 @@ def sort_list(x, y):
     return a
 ```
 
-### paddle shape函数
+### 3.9 paddle shape函数
 <span id='9'></span>
 **主要逻辑：**
 
