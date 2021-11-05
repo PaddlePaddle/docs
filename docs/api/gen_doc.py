@@ -226,6 +226,9 @@ def parse_module_file(mod):
     if hasattr(mod, '__name__') and hasattr(mod, '__file__'):
         src_file = mod.__file__
         mod_name = mod.__name__
+        if (isinstance(src_file, str) and isinstance(src_file, str)):
+            logger.error('%s: mod_name=%s, src_file=%s',
+                         str(mod), mod_name, src_file)
         logger.debug("parsing %s:%s", mod_name, src_file)
         if len(mod_name) >= 6 and mod_name[:6] == 'paddle':
             if os.path.splitext(src_file)[1].lower() == '.py':
