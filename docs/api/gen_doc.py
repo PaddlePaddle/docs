@@ -141,17 +141,23 @@ def process_module(m, attr="__all__"):
                 if inspect.isclass(api_info['object']):
                     for name, value in inspect.getmembers(api_info['object']):
                         if (not name.startswith("_")):
-                            method_full_name = full_name + '.' + name  # value.__name__
-                            if name and value and isinstance(value, property):
-                                method_api_info = insert_api_into_dict(
-                                    method_full_name, 'class_property')
-                                if method_api_info is not None:
-                                    api_counter += 1
-                            elif hasattr(value, '__name__'):
-                                method_api_info = insert_api_into_dict(
-                                    method_full_name, 'class_method')
-                                if method_api_info is not None:
-                                    api_counter += 1
+                            try:
+                                method_full_name = full_name + '.' + name  # value.__name__
+                                if name and value and isinstance(value,
+                                                                 property):
+                                    method_api_info = insert_api_into_dict(
+                                        method_full_name, 'class_property')
+                                    if method_api_info is not None:
+                                        api_counter += 1
+                                elif hasattr(value, '__name__'):
+                                    method_api_info = insert_api_into_dict(
+                                        method_full_name, 'class_method')
+                                    if method_api_info is not None:
+                                        api_counter += 1
+                            except ValueError as e:
+                                logger.error(
+                                    'ValueError when processing %s: %s',
+                                    method_full_name, str(e))
     return api_counter
 
 
@@ -226,9 +232,14 @@ def parse_module_file(mod):
     if hasattr(mod, '__name__') and hasattr(mod, '__file__'):
         src_file = mod.__file__
         mod_name = mod.__name__
+        if not (isinstance(src_file, str) and isinstance(src_file, str)):
+            logger.error('%s: mod_name=%s, src_file=%s',
+                         str(mod), mod_name, src_file)
+            return
         logger.debug("parsing %s:%s", mod_name, src_file)
         if len(mod_name) >= 6 and mod_name[:6] == 'paddle':
-            if os.path.splitext(src_file)[1].lower() == '.py':
+            fn_splited = os.path.splitext(src_file)
+            if len(fn_splited) > 1 and fn_splited[1].lower() == '.py':
                 mod_ast = ast.parse(open(src_file, "r").read())
                 for node in mod_ast.body:
                     short_names = []
