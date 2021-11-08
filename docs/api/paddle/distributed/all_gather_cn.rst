@@ -6,7 +6,7 @@ all_gather
 
 .. py:function:: paddle.distributed.all_gather(tensor_list, tensor, group=0)
 
-进程组内所有进程的指定tensor进行聚合操作，并返回给所有进程聚合的结果，如下图所示（https://images.nvidia.com/events/sc15/pdfs/NCCL-Woolley.pdf）。
+进程组内所有进程的指定tensor进行聚合操作，并返回给所有进程聚合的结果，如下图所示。
 
 .. image:: ./img/allgather.png
   :width: 800
