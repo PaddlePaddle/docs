@@ -191,9 +191,10 @@ print(paddle.static.global_scope().find_var('fc.b_0').get_tensor())  # 通过sco
 ----------
 ##### 问题：paddle有对应torch.masked_fill函数api吗，还是需要自己实现？
 
-+ 答复：暂时没有对应api，可以使用`paddle.where`实现
++ 答复：由于框架设计上的区别，没有对应的 api，但是可以使用 [paddle.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/where_cn.html) 实现相同的功能。
 
 ```python
+# paddlepaddle >= 2.0
 import paddle
 import numpy as np
 
@@ -211,8 +212,8 @@ mask = paddle.to_tensor(np.random.randint(0, 2, [3, 3])).astype('bool')
 #         [True , False, True ]])
 
 def masked_fill(x, mask, value):
-  y = paddle.full(x.shape, value, x.dtype)
-  return paddle.where(mask, y, x)
+    y = paddle.full(x.shape, value, x.dtype)
+    return paddle.where(mask, y, x)
 
 out = masked_fill(x, mask, 2)
 # Tensor(shape=[3, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
