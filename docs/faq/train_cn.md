@@ -154,16 +154,17 @@ def set_config(args):
 
 ##### 问题：静态图模型如何拿到某个variable的梯度？
 
-+ 答复：
++ 答复：飞桨提供以下三种方式，用户可根据需求选择合适的方法：
 
- 1. 使用`paddle.static.Print()`接口，可以打印中间变量及其梯度；
- 2. 将变量梯度名放到fetch_list里，通过`exe.run()`获取，一般variable的梯度名是variable的名字加上 "@GRAD"。
- 3. 对于参数（不适用于中间变量和梯度），还可以通过`scope.find_var()`接口，通过变量名字查找对应的tensor。
+ 1. 使用[paddle.static.Print()](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/Print_cn.html#print)接口，可以打印中间变量及其梯度。
+ 2. 将变量梯度名放到fetch_list里，通过[Executor.run()](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/Executor_cn.html#run)获取，一般variable的梯度名是variable的名字加上 "@GRAD"。
+ 3. 对于参数（不适用于中间变量和梯度），还可以通过[Scope.find_var()](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/global_scope_cn.html#global-scope)接口，通过变量名字查找对应的tensor。
 
- 后两者方法需要使用变量名，飞桨中变量的命名规则请参见[Name](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_guides/low_level/program.html#api-guide-name) 。
+ 后两个方法需要使用变量名，飞桨中变量的命名规则请参见[Name](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_guides/low_level/program.html#api-guide-name) 。
 
 
 ```python
+# paddlepaddle>=2.0
 import paddle
 import numpy as np
 
