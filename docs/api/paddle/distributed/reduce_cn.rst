@@ -6,7 +6,7 @@ reduce
 
 .. py:function:: paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=0)
 
-进程组内所有进程的指定tensor进行归约操作，并返回给所有进程归约的结果，如下图所示（https://images.nvidia.com/events/sc15/pdfs/NCCL-Woolley.pdf）。
+进程组内所有进程的指定tensor进行归约操作，并返回给所有进程归约的结果，如下图所示。
 
 .. image:: ./img/reduce.png
   :width: 800

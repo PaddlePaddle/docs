@@ -6,7 +6,7 @@ broadcast
 
 .. py:function:: paddle.distributed.broadcast(tensor, src, group=0)
 
-广播一个Tensor给其他所有进程，如下图所示（https://images.nvidia.com/events/sc15/pdfs/NCCL-Woolley.pdf）。
+广播一个Tensor给其他所有进程，如下图所示。
 
 .. image:: ./img/broadcast.png
   :width: 800
