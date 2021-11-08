@@ -151,3 +151,39 @@ def set_config(args):
 + 答复：设置Optimizer中的`grad_clip`参数值。
 
 ----------
+
+##### 问题：静态图模型如何拿到某个variable的梯度？
+
++ 答复：飞桨提供以下三种方式，用户可根据需求选择合适的方法：
+
+ 1. 使用[paddle.static.Print()](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/Print_cn.html#print)接口，可以打印中间变量及其梯度。
+ 2. 将变量梯度名放到fetch_list里，通过[Executor.run()](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/Executor_cn.html#run)获取，一般variable的梯度名是variable的名字加上 "@GRAD"。
+ 3. 对于参数（不适用于中间变量和梯度），还可以通过[Scope.find_var()](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/global_scope_cn.html#global-scope)接口，通过变量名字查找对应的tensor。
+
+ 后两个方法需要使用变量名，飞桨中变量的命名规则请参见[Name](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_guides/low_level/program.html#api-guide-name) 。
+
+
+```python
+# paddlepaddle>=2.0
+import paddle
+import numpy as np
+
+paddle.enable_static()
+data = paddle.static.data('data', shape=[4, 2])
+out = paddle.static.nn.fc(x=data, size=1, num_flatten_dims=1, name='fc')
+
+loss = paddle.mean(out)
+loss = paddle.static.Print(loss)  # 通过 Print 算子打印中间变量及梯度
+opt = paddle.optimizer.SGD(learning_rate=0.01)
+opt.minimize(loss)
+
+exe = paddle.static.Executor()
+exe.run(paddle.static.default_startup_program())
+loss, loss_g, fc_bias_g = exe.run(
+    paddle.static.default_main_program(),
+    feed={'data': np.random.rand(4, 2).astype('float32')},
+    fetch_list=[loss, loss.name + '@GRAD', 'fc.b_0@GRAD'])  # 通过将变量名加入到fetch_list获取变量
+
+print(loss, loss_g, fc_bias_g)
+print(paddle.static.global_scope().find_var('fc.b_0').get_tensor())  # 通过scope.find_var 获取变量
+```
