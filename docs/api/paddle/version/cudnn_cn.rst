@@ -10,7 +10,7 @@ cudnn
 
 返回：
 :::::::::
-返回cudnn的版本信息。若paddle包为CPU版本，则返回 ``False`` 。
+返回cudnn的版本信息。若paddle wheel包为GPU版本，则返回cudnn具体的版本号；若paddle wheel包为CPU版本，则返回 ``False`` 。
 
 代码示例：
 ::::::::::
