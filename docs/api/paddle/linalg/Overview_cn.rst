@@ -57,7 +57,7 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关API。具体
     " :ref:`paddle.linalg.eigvalsh <cn_api_linalg_eigvalsh>` ", "计算厄米特矩阵或者实数对称矩阵的特征值"
     " :ref:`paddle.linalg.cholesky <cn_api_tensor_cholesky>` ", "计算一个实数对称正定矩阵的Cholesky分解"
     " :ref:`paddle.linalg.svd <cn_api_linalg_svd>` ", "计算矩阵的奇异值分解"
-    " :ref:`paddle.linalg.qr <cn_api_linalg_qr>` ", "计算矩阵的QR分解"
+    " :ref:`paddle.linalg.qr <cn_api_linalg_qr>` ", "计算矩阵的正交三角分解（也称QR分解）"
 
 
 .. _about_solvers:
