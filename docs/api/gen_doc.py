@@ -447,7 +447,8 @@ def set_api_sketch():
         paddle.device,
         paddle.device.cuda,
         paddle.linalg,
-        paddle.fft
+        paddle.fft,
+        paddle.version
     ]
 
     alldict = {}
