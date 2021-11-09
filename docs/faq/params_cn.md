@@ -61,3 +61,22 @@ for epoch in range(epochs):
 ##### 问题：如何修改全连接层参数，比如weight，bias？  
 
 + 答复：可以通过`param_attr`设置参数的属性，`paddle.ParamAttr(initializer=paddle.nn.initializer.Normal(0.0, 0.02), learning_rate=2.0)`，如果`learning_rate`设置为0，该层就不参与训练。也可以构造一个numpy数据，使用`paddle.nn.initializer.Assign`来给权重设置想要的值。
+
+
+-----
+
+
+##### 问题：如何进行梯度裁剪？  
+
++ 答复：Paddle的梯度裁剪方式需要在[Optimizer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/Overview_cn.html#api)中进行设置，目前提供三种梯度裁剪方式，分别是[paddle.nn.ClipGradByValue](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ClipGradByValue_cn.html)`（设定范围值裁剪）`、[paddle.nn.ClipGradByNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ClipGradByNorm_cn.html)`（设定L2范数裁剪）`
+、[paddle.nn.ClipGradByGlobalNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/nn/ClipGradByGlobalNorm_cn.html)`（通过全局L2范数裁剪）`，需要先创建一个该类的实例对象，然后将其传入到优化器中，优化器会在更新参数前，对梯度进行裁剪。
+
+注：该类接口在动态图、静态图下均会生效，是动静统一的。目前不支持其他方式的梯度裁剪。
+
+```python
+linear = paddle.nn.Linear(10, 10)
+clip = paddle.nn.ClipGradByNorm(clip_norm=1.0)  # 可以选择三种裁剪方式
+sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)
+sdg.step()                                      # 更新参数前，会先对参数的梯度进行裁剪
+```
+[了解更多梯度裁剪知识](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/01_paddle2.0_introduction/basic_concept/gradient_clip_cn.html)
