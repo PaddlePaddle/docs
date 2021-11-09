@@ -187,3 +187,37 @@ loss, loss_g, fc_bias_g = exe.run(
 print(loss, loss_g, fc_bias_g)
 print(paddle.static.global_scope().find_var('fc.b_0').get_tensor())  # 通过scope.find_var 获取变量
 ```
+
+----------
+
+##### 问题：paddle有对应torch.masked_fill函数api吗，还是需要自己实现？
+
++ 答复：由于框架设计上的区别，没有对应的 api，但是可以使用 [paddle.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/where_cn.html) 实现相同的功能。
+
+```python
+# paddlepaddle >= 2.0
+import paddle
+
+paddle.seed(123)
+x = paddle.rand([3, 3], dtype='float32')
+# Tensor(shape=[3, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+#        [[0.00276479, 0.45899123, 0.96637046],
+#         [0.66818708, 0.05855134, 0.33184195],
+#         [0.34202638, 0.95503175, 0.33745834]])
+
+mask = paddle.randint(0, 2, [3, 3]).astype('bool')
+# Tensor(shape=[3, 3], dtype=bool, place=CUDAPlace(0), stop_gradient=True,
+#        [[True , True , False],
+#         [True , True , True ],
+#         [True , True , True ]])
+
+def masked_fill(x, mask, value):
+    y = paddle.full(x.shape, value, x.dtype)
+    return paddle.where(mask, y, x)
+
+out = masked_fill(x, mask, 2)
+# Tensor(shape=[3, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+#        [[2.        , 2.        , 0.96637046],
+#         [2.        , 2.        , 2.        ],
+#         [2.        , 2.        , 2.        ]])
+```
