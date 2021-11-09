@@ -1,9 +1,9 @@
 ################
-NLP
+自然语言处理
 ################
 
 
-这里提供了一些NLP的示例：
+这里提供了一些自然语言处理的示例：
     
      - `N-Gram <./n_gram_model.html>`_ ：介绍使用 PaddlePaddle 实现N-Gram 模型。
      - `文本分类 <./imdb_bow_classification.html>`_ ：介绍使用 PaddlePaddle 在IMDB数据集上完成文本分类。

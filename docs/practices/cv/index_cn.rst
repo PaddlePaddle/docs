@@ -1,9 +1,9 @@
 ################
-CV
+计算机视觉
 ################
 
 
-这里提供了一些 CV 的案例：
+这里提供了一些计算机视觉的案例：
     
     - `图像分类 <./image_classification.html>`_ ：介绍使用 PaddlePaddle 在MNIST数据集上完成图像分类。
     - `图像分类 <./convnet_image_classification.html>`_ ：介绍使用 PaddlePaddle 在Cifar10数据集上完成图像分类。    
