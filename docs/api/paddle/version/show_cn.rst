@@ -11,15 +11,15 @@ show
 
 返回：
 :::::::::
-如果paddle wheel包没有被标记为特定版本，输出其对应的commit id。否则，输出如下信息：
+如果paddle wheel包不是正式发行版本，则输出wheel包编译时对应的commit id号。否则，输出如下信息：
 
     - full_version - paddle wheel包的版本号。
     - major - paddle wheel包版本号的major信息。
     - minor - paddle wheel包版本号的minor信息。
     - patch - paddle wheel包版本号的patch信息。
     - rc - 是否是rc版本。
-    - cuda - 若paddle wheel包为GPU版本，则返回CUDA具体的版本号；若paddle wheel包为CPU版本，则返回 ``False`` 。
-    - cudnn - 若paddle wheel包为GPU版本，则返回cuDNN具体的版本号；若paddle wheel包为CPU版本，则返回 ``False`` 。
+    - cuda - 若paddle wheel包为GPU版本，则返回paddle wheel包编译时使用的CUDA的版本信息；若paddle wheel包为CPU版本，则返回 ``False`` 。
+    - cudnn - 若paddle wheel包为GPU版本，则返回paddle wheel包编译时使用的cuDNN的版本信息；若paddle wheel包为CPU版本，则返回 ``False`` 。
 
 代码示例：
 ::::::::::
