@@ -5,12 +5,12 @@ cudnn
 
 .. py:function:: paddle.version.cudnn()
 
-获取 paddle 安装包使用的 cudnn 版本号。
+获取 paddle 安装包使用的 cuDNN 版本号。
 
 
 返回：
 :::::::::
-返回cudnn的版本信息。若paddle wheel包为GPU版本，则返回cudnn具体的版本号；若paddle wheel包为CPU版本，则返回 ``False`` 。
+返回cuDNN的版本信息。若paddle wheel包为GPU版本，则返回cuDNN具体的版本号；若paddle wheel包为CPU版本，则返回 ``False`` 。
 
 代码示例：
 ::::::::::
