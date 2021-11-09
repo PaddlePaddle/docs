@@ -5,7 +5,7 @@ show
 
 .. py:function:: paddle.version.show()
 
-如果paddle wheel包已经标记了特定版本，则打印版本号。否则，获取paddle wheel包对应的commit id。
+如果paddle wheel包是正式发行版本，则打印版本号。否则，获取paddle wheel包编译时对应的commit id。
 另外，打印paddle wheel包使用的CUDA和cuDNN的版本信息。
 
 
