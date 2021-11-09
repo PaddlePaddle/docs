@@ -79,7 +79,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 ```
-python -m pip install paddlepaddle==2.2.0rc0 -i https://mirror.baidu.com/pypi/simple
+python -m pip install paddlepaddle==2.2.0 -i https://mirror.baidu.com/pypi/simple
 ```
 
 Note：
