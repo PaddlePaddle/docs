@@ -218,6 +218,7 @@ tensor random相关
     " :ref:`paddle.normal <cn_api_tensor_random_normal>` ", "返回符合正态分布（均值为 mean ，标准差为 std 的正态随机分布）的随机Tensor"
     " :ref:`paddle.rand <cn_api_tensor_random_rand>` ", "返回符合均匀分布的，范围在[0, 1)的Tensor"
     " :ref:`paddle.randint <cn_api_tensor_random_randint>` ", "返回服从均匀分布的、范围在[low, high)的随机Tensor"
+    " :ref:`paddle.randint_like <cn_api_tensor_random_randint_like>` ", "返回一个和 x 具有相同形状的服从均匀分布的、范围在[low, high)的随机Tensor，数据类型为 dtype 或者和 x 相同。"
     " :ref:`paddle.randn <cn_api_tensor_random_randn>` ", "返回符合标准正态分布（均值为0，标准差为1的正态随机分布）的随机Tensor"
     " :ref:`paddle.randperm <cn_api_tensor_random_randperm>` ", "返回一个数值在0到n-1、随机排列的1-D Tensor"
     " :ref:`paddle.seed <cn_api_paddle_framework_seed>` ", "设置全局默认generator的随机种子"
@@ -233,6 +234,7 @@ tensor线性代数相关
     :header: "API名称", "API功能"
     :widths: 10, 30
 
+    " :ref:`paddle.bincount <cn_api_tensor_bincount>` ", "统计输入张量中元素的出现次数"
     " :ref:`paddle.bmm <cn_api_paddle_tensor_bmm>` ", "对输入x及输入y进行矩阵相乘"
     " :ref:`paddle.cholesky <cn_api_tensor_cholesky>` ", "计算一个对称正定矩阵或一批对称正定矩阵的Cholesky分解"
     " :ref:`paddle.cross <cn_api_tensor_linalg_cross>` ", "计算张量 x 和 y 在 axis 维度上的向量积（叉积）"
@@ -247,6 +249,7 @@ tensor线性代数相关
     " :ref:`paddle.t <cn_api_paddle_tensor_t>` ", "对小于等于2维的Tensor进行数据转置"
     " :ref:`paddle.tril <cn_api_tensor_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为0"
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为0"
+    " :ref:`paddle.multi_dot<cn_api_tensor_multi_dot>` ", "计算多个矩阵相乘"
 
 .. _tensor_manipulation:
 
@@ -285,6 +288,7 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.strided_slice <cn_api_strided_slice>` ", "沿多个轴生成 x 的切片"
     " :ref:`paddle.tile <cn_api_tensor_tile>` ", "根据参数 repeat_times 对输入 x 的各维度进行复制"
     " :ref:`paddle.transpose <cn_api_fluid_layers_transpose>` ", "根据perm对输入的多维Tensor进行数据重排"
+    " :ref:`paddle.tensordot <cn_api_paddle_tensordot>`  ", "沿多个轴对输入的x和y进行张量缩并操作"
     " :ref:`paddle.unbind <cn_api_paddle_tensor_unbind>` ", "将输入Tensor按照指定的维度分割成多个子Tensor"
     " :ref:`paddle.unique <cn_api_tensor_cn_unique>` ", "返回Tensor按升序排序后的独有元素"
     " :ref:`paddle.unique_consecutive <cn_api_tensor_cn_unique_consecutive>` ", "返回无连续重复元素的Tensor"

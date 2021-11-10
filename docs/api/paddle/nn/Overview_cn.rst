@@ -88,6 +88,7 @@ pooling层
     " :ref:`paddle.nn.MaxPool1D <cn_api_nn_MaxPool1D>` ", "一维最大池化层"
     " :ref:`paddle.nn.MaxPool2D <cn_api_nn_MaxPool2D>` ", "二维最大池化层"
     " :ref:`paddle.nn.MaxPool3D <cn_api_nn_MaxPool3D>` ", "三维最大池化层"
+    " :ref:`paddle.nn.MaxUnPool2D <cn_api_nn_MaxUnPool2D>` ", "二维最大反池化层"
     
 .. _padding_layers:
 
@@ -111,6 +112,7 @@ Padding层
     :header: "API名称", "API功能"
     
 
+    " :ref:`paddle.nn.CELU <cn_api_nn_CELU>` ", "CELU激活层"
     " :ref:`paddle.nn.ELU <cn_api_nn_ELU>` ", "ELU激活层"
     " :ref:`paddle.nn.GELU <cn_api_nn_GELU>` ", "GELU激活层"
     " :ref:`paddle.nn.Hardshrink <cn_api_nn_Hardshrink>` ", "Hardshrink激活层"
@@ -352,9 +354,11 @@ Padding相关函数
     :header: "API名称", "API功能"
     
 
+    " :ref:`paddle.nn.functional.celu <cn_api_nn_cn_celu>` ", "celu激活函数"
     " :ref:`paddle.nn.functional.elu <cn_api_nn_cn_elu>` ", "elu激活函数"
     " :ref:`paddle.nn.functional.elu_ <cn_api_nn_cn_elu_>` ", "Inplace 版本的 elu API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.gelu <cn_api_nn_cn_gelu>` ", "gelu激活函数"
+    " :ref:`paddle.nn.functional.gumbel_softmax <cn_api_nn_cn_gumbel_softmax>` ", "gumbel_softmax采样激活函数"
     " :ref:`paddle.nn.functional.hardshrink <cn_api_nn_cn_hard_shrink>` ", "hardshrink激活函数"
     " :ref:`paddle.nn.functional.hardsigmoid <cn_api_nn_cn_hardsigmoid>` ", "sigmoid的分段线性逼近激活函数"
     " :ref:`paddle.nn.functional.hardswish <cn_api_nn_cn_hardswish>` ", "hardswish激活函数"

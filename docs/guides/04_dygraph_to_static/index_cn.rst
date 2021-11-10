@@ -22,9 +22,7 @@ Python执行开销较大，与C++有一定差距。因此在工业界的许多�
 
 - `InputSpec功能介绍 <input_spec_cn.html>`_ ：介绍了动态图转静态图指定输入InputSpec的功能和用法
 
-- `报错信息处理 <error_handling_cn.html>`_ ：介绍了动态图转静态图的报错信息处理方法
-
-- `调试方法 <debugging_cn.html>`_ ：介绍了动态图转静态图支持的调试方法
+- `报错调试经验 <debugging_cn.html>`_ ：介绍了动态图转静态图支持的调试方法
 
 - `预测模型导出教程 <./export_model/index_cn.html>`_ ：介绍了如何导出预测模型的详细教程
 
@@ -34,9 +32,8 @@ Python执行开销较大，与C++有一定差距。因此在工业界的许多�
 
     basic_usage_cn.rst    
     program_translator_cn.rst
-    grammar_list_cn.rst
+    grammar_list_cn.md
     input_spec_cn.rst
-    error_handling_cn.md
     debugging_cn.md
     export_model/index_cn.rst
 

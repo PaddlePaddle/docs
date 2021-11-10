@@ -141,17 +141,23 @@ def process_module(m, attr="__all__"):
                 if inspect.isclass(api_info['object']):
                     for name, value in inspect.getmembers(api_info['object']):
                         if (not name.startswith("_")):
-                            method_full_name = full_name + '.' + name  # value.__name__
-                            if name and value and isinstance(value, property):
-                                method_api_info = insert_api_into_dict(
-                                    method_full_name, 'class_property')
-                                if method_api_info is not None:
-                                    api_counter += 1
-                            elif hasattr(value, '__name__'):
-                                method_api_info = insert_api_into_dict(
-                                    method_full_name, 'class_method')
-                                if method_api_info is not None:
-                                    api_counter += 1
+                            try:
+                                method_full_name = full_name + '.' + name  # value.__name__
+                                if name and value and isinstance(value,
+                                                                 property):
+                                    method_api_info = insert_api_into_dict(
+                                        method_full_name, 'class_property')
+                                    if method_api_info is not None:
+                                        api_counter += 1
+                                elif hasattr(value, '__name__'):
+                                    method_api_info = insert_api_into_dict(
+                                        method_full_name, 'class_method')
+                                    if method_api_info is not None:
+                                        api_counter += 1
+                            except ValueError as e:
+                                logger.error(
+                                    'ValueError when processing %s: %s',
+                                    method_full_name, str(e))
     return api_counter
 
 
@@ -226,9 +232,14 @@ def parse_module_file(mod):
     if hasattr(mod, '__name__') and hasattr(mod, '__file__'):
         src_file = mod.__file__
         mod_name = mod.__name__
+        if not (isinstance(src_file, str) and isinstance(src_file, str)):
+            logger.error('%s: mod_name=%s, src_file=%s',
+                         str(mod), mod_name, src_file)
+            return
         logger.debug("parsing %s:%s", mod_name, src_file)
         if len(mod_name) >= 6 and mod_name[:6] == 'paddle':
-            if os.path.splitext(src_file)[1].lower() == '.py':
+            fn_splited = os.path.splitext(src_file)
+            if len(fn_splited) > 1 and fn_splited[1].lower() == '.py':
                 mod_ast = ast.parse(open(src_file, "r").read())
                 for node in mod_ast.body:
                     short_names = []
@@ -433,7 +444,11 @@ def set_api_sketch():
         paddle.incubate,
         paddle.inference,
         paddle.onnx,
-        paddle.device
+        paddle.device,
+        paddle.device.cuda,
+        paddle.linalg,
+        paddle.fft,
+        paddle.version
     ]
 
     alldict = {}
@@ -528,44 +543,6 @@ def collect_referenced_from_infos(docdirs):
     global referenced_from_apis_dict, referenced_from_file_titles
     referenced_from_apis_dict, referenced_from_file_titles = extract_api_from_docs.extract_all_infos(
         docdirs)
-
-
-def get_shortest_api(api_list):
-    """
-    find the shortest api name (suggested name) in list.
-
-    Problems:
-    1. fuild - if there is any apis don't contain 'fluid' in name, use them.
-    2. core vs core_avx - using the 'core'.
-    """
-    if len(api_list) == 1:
-        return api_list[0]
-    # try to find shortest path of api as the real api
-    api_info = [
-    ]  # {'name': name, 'fluid_in_name': True/False, 'core_avx_in_name': True/Flase', 'len': len}
-    for api in api_list:
-        fields = api.split('.')
-        api_info.append({
-            'name': api,
-            'fluid_in_name': 'fluid' in fields,
-            'core_avx_in_name': 'core_avx' in fields,
-            'len': len(fields),
-        })
-
-    def shortest(api_info):
-        if not api_info:
-            return None
-        elif len(api_info) == 1:
-            return api_info[0].get('name')
-        api_info.sort(key=lambda ele: ele.get('len'))
-        return api_info[0].get('name')
-
-    if not all([api.get('fuild_in_name') for api in api_info]):
-        api_info = [api for api in api_info if not api.get('fluid_in_name')]
-    sn = shortest([api for api in api_info if not api.get('core_avx_in_name')])
-    if sn is None:
-        sn = shortest(api_info)
-    return sn
 
 
 def remove_all_en_files(path="./paddle"):
@@ -765,8 +742,13 @@ class EnDocGenerator(object):
         }
         tmpl = 'default'
         for m in [
-                'fluid.dygraph', 'paddle.vision', 'paddle.callbacks',
-                'paddle.hapi.callbacks', 'paddle.io', 'paddle.nn'
+                'fluid.dygraph',
+                'paddle.vision',
+                'paddle.callbacks',
+                'paddle.hapi.callbacks',
+                'paddle.io',
+                'paddle.nn',
+                'paddle.incubate.nn',
         ]:
             if self.api_name.startswith(m):
                 tmpl = 'no-inherited'
@@ -819,11 +801,65 @@ class EnDocGenerator(object):
         return self.api_name, self.api_ref_name
 
 
+def get_shortest_api(api_list):
+    """
+    find the shortest api name (suggested name) in list.
+
+    Problems:
+    1. fuild - if there is any apis don't contain 'fluid' in name, use them.
+    2. core vs core_avx - using the 'core'.
+    """
+    if len(api_list) == 1:
+        return api_list[0]
+    # try to find shortest path of api as the real api
+    api_info = [
+    ]  # {'name': name, 'fluid_in_name': True/False, 'core_avx_in_name': True/Flase', 'len': len}
+    for api in api_list:
+        fields = api.split('.')
+        api_info.append({
+            'name': api,
+            'fluid_in_name': 'fluid' in fields,
+            'core_avx_in_name': 'core_avx' in fields,
+            'len': len(fields),
+        })
+
+    def shortest(api_info):
+        if not api_info:
+            return None
+        elif len(api_info) == 1:
+            return api_info[0].get('name')
+        api_info.sort(key=lambda ele: ele.get('len'))
+        return api_info[0].get('name')
+
+    if not all([api.get('fuild_in_name') for api in api_info]):
+        api_info = [api for api in api_info if not api.get('fluid_in_name')]
+    sn = shortest([api for api in api_info if not api.get('core_avx_in_name')])
+    if sn is None:
+        sn = shortest(api_info)
+    return sn
+
+
 def insert_suggested_names():
     """
-    add suggested_name field, updte the doc_filename, and sort the all_names.
+    add suggested_name field, updte the doc_filename, and sort the all_names and api_sketch_names.
     """
     pat = re.compile(r'paddle\.fluid\.core_[\w\d]+\.(.*)$')
+
+    def sort_name_list(api_names):
+        """
+        sort and move paddle.Tensor.* to the end
+        """
+        names_sorted = sorted(list(api_names))
+        cnt = 0  # count of paddle.Tensor.*
+        for n in names_sorted:
+            if n.startswith('paddle.Tensor.'):
+                cnt += 1
+            else:
+                break
+        if cnt:
+            names_sorted = names_sorted[cnt:] + names_sorted[:cnt]
+        return names_sorted
+
     for id_api in api_info_dict:
         if "all_names" not in api_info_dict[id_api]:
             api_info_dict[id_api]["all_names"] = set()
@@ -837,9 +873,15 @@ def insert_suggested_names():
             if mo:
                 api_info_dict[id_api]["all_names"].add('paddle.fluid.core.' +
                                                        mo.group(1))
-        api_info_dict[id_api]["all_names"] = sorted(
-            list(api_info_dict[id_api]["all_names"]))
-        sn = get_shortest_api(api_info_dict[id_api]["all_names"])
+        api_info_dict[id_api]["all_names"] = sort_name_list(
+            api_info_dict[id_api]["all_names"])
+        sn = None
+        if 'api_sketch_names' in api_info_dict[id_api]:
+            api_info_dict[id_api]['api_sketch_names'] = sort_name_list(
+                api_info_dict[id_api]['api_sketch_names'])
+            sn = get_shortest_api(api_info_dict[id_api]['api_sketch_names'])
+        if not sn:
+            sn = get_shortest_api(api_info_dict[id_api]["all_names"])
         if sn:
             # Delete alias_name, api_info_dict[id_api]["alias_name"] = sn
             api_info_dict[id_api]["suggested_name"] = sn
@@ -1236,8 +1278,8 @@ if __name__ == "__main__":
         set_display_attr_of_apis()
         set_source_code_attrs()
         set_referenced_from_attr()
-        insert_suggested_names()
         set_api_sketch()
+        insert_suggested_names()
         if ('__all__' not in realattrs) or ('__all__' in realattrs and
                                             realattr == '__all__'):
             if args.gen_rst:

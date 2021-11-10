@@ -1,7 +1,7 @@
 # 基于图片相似度的图片搜索
 
 **作者:** [PaddlePaddle](https://github.com/PaddlePaddle) <br>
-**日期:** 2021.06 <br>
+**日期:** 2021.10 <br>
 **摘要:** 本示例简要介绍如何通过飞桨开源框架，实现图片搜索的功能。
 
 ## 一、简要介绍
@@ -13,7 +13,7 @@
 
 ## 二、环境配置
 
-本教程基于Paddle 2.1 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果你的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
 
 
 ```python
@@ -28,7 +28,7 @@ from collections import defaultdict
 print(paddle.__version__)
 ```
 
-    2.1.1
+    2.2.0-rc0
 
 
 ## 三、数据加载
@@ -122,9 +122,7 @@ show_collage(examples)
 
 
 
-    
 ![png](output_8_0.png)
-    
 
 
 
@@ -201,9 +199,7 @@ show_collage(examples)
 
 
 
-    
 ![png](output_15_1.png)
-    
 
 
 
@@ -302,46 +298,46 @@ train(model)
 ```
 
     start training ... 
-    epoch: 0, batch_id: 0, loss is: [2.2687693]
-    epoch: 0, batch_id: 500, loss is: [2.1315682]
-    epoch: 1, batch_id: 0, loss is: [2.035833]
-    epoch: 1, batch_id: 500, loss is: [2.4030607]
-    epoch: 2, batch_id: 0, loss is: [2.0938804]
-    epoch: 2, batch_id: 500, loss is: [1.987708]
-    epoch: 3, batch_id: 0, loss is: [2.0163271]
-    epoch: 3, batch_id: 500, loss is: [1.8376584]
-    epoch: 4, batch_id: 0, loss is: [2.0639582]
-    epoch: 4, batch_id: 500, loss is: [2.0450816]
-    epoch: 5, batch_id: 0, loss is: [2.0977197]
-    epoch: 5, batch_id: 500, loss is: [2.265034]
-    epoch: 6, batch_id: 0, loss is: [1.9975305]
-    epoch: 6, batch_id: 500, loss is: [1.6199682]
-    epoch: 7, batch_id: 0, loss is: [1.938558]
-    epoch: 7, batch_id: 500, loss is: [1.9956715]
-    epoch: 8, batch_id: 0, loss is: [1.9768231]
-    epoch: 8, batch_id: 500, loss is: [2.1569598]
-    epoch: 9, batch_id: 0, loss is: [1.9905119]
-    epoch: 9, batch_id: 500, loss is: [1.7150443]
-    epoch: 10, batch_id: 0, loss is: [1.550774]
-    epoch: 10, batch_id: 500, loss is: [2.5123065]
-    epoch: 11, batch_id: 0, loss is: [1.9810482]
-    epoch: 11, batch_id: 500, loss is: [1.9055626]
-    epoch: 12, batch_id: 0, loss is: [1.7130309]
-    epoch: 12, batch_id: 500, loss is: [1.6612748]
-    epoch: 13, batch_id: 0, loss is: [1.9763999]
-    epoch: 13, batch_id: 500, loss is: [2.2395937]
-    epoch: 14, batch_id: 0, loss is: [1.6492021]
-    epoch: 14, batch_id: 500, loss is: [1.7178599]
-    epoch: 15, batch_id: 0, loss is: [1.9918704]
-    epoch: 15, batch_id: 500, loss is: [1.6624906]
-    epoch: 16, batch_id: 0, loss is: [1.6837909]
-    epoch: 16, batch_id: 500, loss is: [1.8518999]
-    epoch: 17, batch_id: 0, loss is: [1.7270846]
-    epoch: 17, batch_id: 500, loss is: [1.6290606]
-    epoch: 18, batch_id: 0, loss is: [1.846984]
-    epoch: 18, batch_id: 500, loss is: [1.3399624]
-    epoch: 19, batch_id: 0, loss is: [1.8991164]
-    epoch: 19, batch_id: 500, loss is: [1.934908]
+    epoch: 0, batch_id: 0, loss is: [2.2835712]
+    epoch: 0, batch_id: 500, loss is: [1.930424]
+    epoch: 1, batch_id: 0, loss is: [1.8179054]
+    epoch: 1, batch_id: 500, loss is: [2.086598]
+    epoch: 2, batch_id: 0, loss is: [1.7755136]
+    epoch: 2, batch_id: 500, loss is: [2.1622424]
+    epoch: 3, batch_id: 0, loss is: [2.5169983]
+    epoch: 3, batch_id: 500, loss is: [2.1092694]
+    epoch: 4, batch_id: 0, loss is: [2.1366613]
+    epoch: 4, batch_id: 500, loss is: [2.1704998]
+    epoch: 5, batch_id: 0, loss is: [2.1734843]
+    epoch: 5, batch_id: 500, loss is: [2.151536]
+    epoch: 6, batch_id: 0, loss is: [1.921226]
+    epoch: 6, batch_id: 500, loss is: [2.1097686]
+    epoch: 7, batch_id: 0, loss is: [1.7493923]
+    epoch: 7, batch_id: 500, loss is: [1.9677612]
+    epoch: 8, batch_id: 0, loss is: [1.7499578]
+    epoch: 8, batch_id: 500, loss is: [1.9496127]
+    epoch: 9, batch_id: 0, loss is: [1.6449003]
+    epoch: 9, batch_id: 500, loss is: [1.8711673]
+    epoch: 10, batch_id: 0, loss is: [1.6817782]
+    epoch: 10, batch_id: 500, loss is: [2.0449688]
+    epoch: 11, batch_id: 0, loss is: [1.738399]
+    epoch: 11, batch_id: 500, loss is: [1.925997]
+    epoch: 12, batch_id: 0, loss is: [2.2145705]
+    epoch: 12, batch_id: 500, loss is: [1.8369207]
+    epoch: 13, batch_id: 0, loss is: [2.4660718]
+    epoch: 13, batch_id: 500, loss is: [1.6653347]
+    epoch: 14, batch_id: 0, loss is: [1.6512012]
+    epoch: 14, batch_id: 500, loss is: [1.7369428]
+    epoch: 15, batch_id: 0, loss is: [2.019823]
+    epoch: 15, batch_id: 500, loss is: [1.5744923]
+    epoch: 16, batch_id: 0, loss is: [2.095184]
+    epoch: 16, batch_id: 500, loss is: [1.8234669]
+    epoch: 17, batch_id: 0, loss is: [1.609268]
+    epoch: 17, batch_id: 500, loss is: [2.0372186]
+    epoch: 18, batch_id: 0, loss is: [2.192984]
+    epoch: 18, batch_id: 500, loss is: [1.6182362]
+    epoch: 19, batch_id: 0, loss is: [1.7874106]
+    epoch: 19, batch_id: 500, loss is: [1.5552232]
 
 
 ## 六、模型预测 
@@ -390,12 +386,11 @@ show_collage(examples)
 
 
 
-    
 ![png](output_22_0.png)
-    
 
 
 
 ## The End
 
 上面展示的结果当中，每一行里其余的图片都是跟第一张图片按照相似度进行排序相似的图片。但是，你也可以发现，在某些类别上，比如汽车、青蛙、马，可以有不错的效果，但在另外一些类别上，比如飞机，轮船，效果并不是特别好。你可以试着分析这些错误，进一步调整网络结构和超参数，以获得更好的结果。
+
