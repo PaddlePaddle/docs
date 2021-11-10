@@ -1,7 +1,9 @@
-# 基本原理
+# 基本用法
 
 
 ## 一、 @to_static概览
+
+动静转换（@to_static）通过解析 Python代码（抽象语法树，下简称：AST） 实现一行代码即可转为静态图功能，即只需在待转化的函数前添加一个装饰器 ``@paddle.jit.to_static`` 。
 
 如下是一个使用 @to_static 装饰器的 ``Model`` 示例：
 
@@ -14,7 +16,7 @@ class SimpleNet(paddle.nn.Layer):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
-    # 方式一：装饰 forward 函数
+    # 方式一：装饰 forward 函数（支持训练）
     @to_static
     def forward(self, x, y):
         out = self.linear(x)
@@ -25,6 +27,12 @@ net = SimpleNet()
 # 方式二：(推荐)仅做预测模型导出时，推荐此种用法
 net = paddle.jit.to_static(net)  # 动静转换
 ```
+
+动转静 @to_static 除了支持预测模型导出，还兼容转为静态图子图训练。仅需要在 ``forward`` 函数上添加此装饰器即可，不需要修改任何其他的代码。
+
+基本执行流程如下：
+
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_train.png" style="zoom:50%" />
 
 
 ### 1.1 动态图 layer 生成 Program
@@ -243,7 +251,7 @@ def add_two(x, y):
 + **只有**控制流的判断条件**依赖了 ``Tensor`` **（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
 
 
-![image](./images/convert_cond.png)
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/convert_cond.png" style="zoom:50%" />
 
 
 
@@ -324,7 +332,7 @@ def depend_tensor_if(x):
 ```
 
 
-``conver_ifelse`` 是框架底层的函数，在逐行执行用户代码生成 ``Program`` 时，执行到此处时，会根据**判断条件**的类型（ ``bool`` 还是 ``Bool Tensor`` ），自适应决定是否转为 ``cond_op`` 。
+``convert_ifelse`` 是框架底层的函数，在逐行执行用户代码生成 ``Program`` 时，执行到此处时，会根据**判断条件**的类型（ ``bool`` 还是 ``Bool Tensor`` ），自适应决定是否转为 ``cond_op`` 。
 
 ```python
 def convert_ifelse(pred, true_fn, false_fn, true_args, false_args, return_vars):
@@ -464,11 +472,3 @@ class SimpleNet(paddle.nn.Layer):
 
 +  若某个非 ``Tensor`` 数据需要当做 ``Persistable`` 的变量序列化到磁盘，则最好在 ``__init__`` 中调用 ``self.XX= paddle.to_tensor(xx)`` 接口转为 ``buffer`` 变量
 
-## 六、Program 执行与训练
-
-动转静 @to_static 除了支持预测模型导出，还兼容转为静态图子图训练。仅需要在 ``forward`` 函数上添加此装饰器即可。
-
-基本执行流程如下：
-
-
-![image](./images/to_static_train.png)
