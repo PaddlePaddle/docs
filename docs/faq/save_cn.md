@@ -87,7 +87,7 @@ adam.set_state_dict(opti_state_dict)
 ##### 问题：paddle 2.x 如何保存模型文件？如何保存paddle 1.x 中的 model 文件?
 + 答复：
 
-    1. 在paddle2.x可使用``paddle.jit.save/load``接口以及``paddle.static.save/load_inference_model``来保存成类似paddle1.x中的model文件和param文件。详情可参考:
+    1. 在paddle2.x可使用``paddle.jit.save``接口以及``paddle.static.save_inference_model``,通过指定``path``来保存成为``path.pdmodel``和``path.pdiparams``,可对应paddle1.x中使用``save_inference_model``指定dirname和params_filename生成``dirname/__model__``和``dirname/params文件``。paddle2.x保存模型文件详情可参考:
     - [paddle.jit.save/load](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/02_paddle2.0_develop/08_model_save_load_cn.html#dongtaitumoxing-canshubaocunzairu-xunliantuili)
     - [paddle.static.save/load_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/02_paddle2.0_develop/08_model_save_load_cn.html#jingtaitumoxing-canshubaocunzairu-tuilibushu)
     2. 如果想要在paddle2.x中读取paddle 1.x中的model文件，可参考:
