@@ -1,14 +1,14 @@
-# 案例解析
+# 常见案例解析
 
 
-上一节我们介绍了动转静的主要机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
+在[【基础接口用法】](./basic_usage_cn.html)章节我们介绍了动转静的用法和机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
 
 ## 一、 @to_static 放在哪里？
 
 
 ``@to_static`` 装饰器开启动转静功能的唯一接口，支持两种使用方式：
 
-+ 方式一（推荐用法）：显式地通过 ``model = to_static(model)`` 调用
++ **方式一（推荐用法）**：显式地通过 ``model = to_static(model)`` 调用
     ```python
     from paddle.jit import to_static
 
@@ -17,7 +17,7 @@
     ```
 
 
-+  方式二：在组网代码的 ``forward`` 函数处装饰
++  **方式二**：在组网代码的 ``forward`` 函数处装饰
     ```python
     class SimpleNet(paddle.nn.Layer):
         def __init__(self, ...):
@@ -77,7 +77,7 @@
 
 
 
-> 注：InputSpec 接口的高阶用法，请参看 [【官方文档】InputSpec 功能介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/04_dygraph_to_static/input_spec_cn.html)
+> 注：InputSpec 接口的高阶用法，请参看 [【InputSpec 功能介绍】](./input_spec_cn.html#inputspec)
 
 ## 三、内嵌 Numpy 操作？
 
@@ -193,9 +193,9 @@ class SimpleNet(paddle.nn.Layer):
 
 动态图模型常常包含很多嵌套的子网络，建议各个自定义的子网络 ``sublayer`` **无论是否包含了参数，都继承 ``nn.Layer`` .**
 
-从 **Parmaters 和 Buffers**  章节可知，有些 ``paddle.to_tensor`` 接口转来的 ``Tensor`` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 ``.pdparams`` 文件中。
+从 **Parameters 和 Buffers**  章节可知，有些 ``paddle.to_tensor`` 接口转来的 ``Tensor`` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 ``.pdiparams`` 文件中。
 
-> **原因**： 若某个 sublayer 包含了 buffer Variables，但却没有继承 ``nn.Layer`` ，则可能导致保存的 ``.pdparams`` 文件缺失部分重要参数。
+> **原因**： 若某个 sublayer 包含了 buffer Variables，但却没有继承 ``nn.Layer`` ，则可能导致保存的 ``.pdiparams`` 文件缺失部分重要参数。
 
 **举个例子：**
 
@@ -204,7 +204,7 @@ class SimpleNet(object):                       # <---- 继承 Object
     def __init__(self, mask):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)  # <---- Linear 参数永远都不会被更新
-        self.mask = paddle.to_tensor(mask)     # <---- mask 可能未保存到 .pdparams 文件中
+        self.mask = paddle.to_tensor(mask)     # <---- mask 可能未保存到 .pdiparams 文件中
 
     def forward(self, x, y):
         out = self.linear(x)
@@ -275,7 +275,7 @@ jit.save(mode, model_path)
 
 ## 七、再谈控制流
 
-前面提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
+前面[【控制流转写】(./basic_usage_cn.html#sikongzhiliuzhuanxie)]提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
 
 ```python
 def true_fn_0(out):
@@ -370,7 +370,7 @@ def forward(x):
 如上面的例子：
 
 ```python
-def foward(self, x)：
+def forward(self, x)：
     bs = paddle.shape(x)[0]        # <---- x.shape[0] 表示 batch_size，动态shape
     outs = []
     for i in range(bs):
@@ -410,6 +410,5 @@ layer = paddle.jit.to_static(layer, input_spec=[InputSpec(shape=[None, IMAGE_SIZ
 path = "example.model/linear"
 paddle.jit.save(layer, path)   # <---- Lazy mode, 此处才会触发 Program 的转换
 ```
-
 
 > 更多用法可以参考：[【官网文档】jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/save_cn.html#save)
