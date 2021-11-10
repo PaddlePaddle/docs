@@ -99,30 +99,30 @@ adam.set_state_dict(opti_state_dict)
 
     1. 如果目的是修改存储变量的值，可以使用``paddle.save``保存下来所有变量，然后再使用``paddle.load``将所有变量载入后，查找目标变量进行修改，示例代码如下：
 
-    ```
-    import paddle
+```python
+import paddle
 
-    layer = paddle.nn.Linear(3, 4)
-    path = 'example/model.pdparams'
-    paddle.save(layer.state_dict(), path)
-    layer_param = paddle.load(path)
-    # 修改fc_0.b_0的值
-    layer_param["fc_0.b_0"] = 10
-    ```
+layer = paddle.nn.Linear(3, 4)
+path = 'example/model.pdparams'
+paddle.save(layer.state_dict(), path)
+layer_param = paddle.load(path)
+# 修改fc_0.b_0的值
+layer_param["fc_0.b_0"] = 10
+```
 
     2. 如果目的是单独访问某个变量，需要单独存储然后再单独读取，示例代码如下：
 
-    ```
-    import paddle
-    
-    layer = paddle.nn.Linear(3, 4)
-    path_w = 'example/weight.tensor'
-    path_b = 'example/bias.tensor'
-    paddle.save(layer.weight, path_w)
-    paddle.save(layer.bias, path_b)
-    tensor_bias = paddle.load(path_b)
-    tensor_bias[0] = 10
-    ```
+```python
+import paddle
+
+layer = paddle.nn.Linear(3, 4)
+path_w = 'example/weight.tensor'
+path_b = 'example/bias.tensor'
+paddle.save(layer.weight, path_w)
+paddle.save(layer.bias, path_b)
+tensor_bias = paddle.load(path_b)
+tensor_bias[0] = 10
+```
 
 更多介绍请参考以下API文档：
 
