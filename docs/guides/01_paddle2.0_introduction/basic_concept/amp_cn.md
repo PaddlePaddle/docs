@@ -1,515 +1,286 @@
-```python
-import paddle
-from paddle.vision.models import vgg11
-import paddle.nn.functional as F
-import numpy as np
+# 自动混合精度训练
 
-print(paddle.__version__)
-```
+一般情况下，训练深度学习模型时使用的数据类型为单精度（FP32）。2018年，百度与NVIDIA联合发表论文：[MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf)，提出了混合精度训练的方法。混合精度训练是指在训练过程中，同时使用单精度（FP32）和半精度（FP16），其目的是相较于使用单精度（FP32）训练模型，在保持精度持平的条件下，能够加速训练。本文将介绍如何使用飞桨框架，实现自动混合精度训练。  
 
-    2.2.0
+## 一、半精度浮点类型 FP16
 
+首先介绍半精度（FP16）。如图1所示，半精度（FP16）是一种相对较新的浮点类型，在计算机中使用2字节（16位）存储。在IEEE 754-2008标准中，它亦被称作binary16。与计算中常用的单精度（FP32）和双精度（FP64）类型相比，FP16更适于在精度要求不高的场景中使用。
 
+<figure align="center">
+    <img src="https://paddleweb-static.bj.bcebos.com/images/fp16.png" width="600" alt='missing'/>
+    <figcaption><center>图 1. 半精度和单精度数据示意图</center></figcaption>
+</figure>
 
-```python
-model = vgg11()
+## 二、NVIDIA GPU的FP16算力
+在使用相同的超参数下，混合精度训练使用半精度浮点（FP16）和单精度（FP32）浮点即可达到与使用纯单精度训练相同的准确率，并可加速模型的训练速度。这主要得益于英伟达推出的Volta及Turing架构GPU在使用FP16计算时具有如下特点：
+- FP16可降低一半的内存带宽和存储需求，这使得在相同的硬件条件下研究人员可使用更大更复杂的模型以及更大的batch size大小。
+- FP16可以充分利用英伟达Volta及Turing架构GPU提供的Tensor Cores技术。在相同的GPU硬件上，Tensor Cores的FP16计算吞吐量是FP32的8倍。
 
-x = paddle.rand([1,3,224,224])
-label = paddle.randint(0,1000)
-```
+## 三、使用飞桨框架实现自动混合精度
+使用飞桨框架提供的API，``paddle.amp.auto_cast`` 和 ``paddle.amp.decorate`` 和 ``paddle.amp.GradScaler`` 能够实现自动混合精度训练（Automatic Mixed Precision，AMP），即在相关OP的计算中，根据一定的规则，自动选择FP16或FP32计算。飞桨的AMP为用户提供了两种模式：
+- level=’O1‘：采用黑名名单策略的混合精度训练，使用FP16与FP32进行计算的OP列表可见该[文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html)。
+- level=’O2‘：纯FP16训练，除用户自定义黑名单中指定的OP和不支持FP16计算的OP之外，全部使用FP16计算。
 
-    W1111 00:45:40.487871   104 device_context.cc:447] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.1, Runtime API Version: 10.1
-    W1111 00:45:40.493650   104 device_context.cc:465] device: 0, cuDNN Version: 7.6.
+下面来看一个具体的例子，来了解如果使用飞桨框架实现混合精度训练。
 
-
-
-```python
-predicts = model(x)
-```
-
-
-```python
-loss = F.cross_entropy(predicts, label)
-```
+### 3.1 辅助函数
+首先定义辅助函数，用来计算训练时间。
 
 
 ```python
-loss.backward()
+import time
+
+# 开始时间
+start_time = None
+
+def start_timer():
+    # 获取开始时间
+    global start_time
+    start_time = time.time()
+
+def end_timer_and_print(msg):
+    # 打印信息并输出训练时间
+    end_time = time.time()
+    print("\n" + msg)
+    print("共计耗时 = {:.3f} sec".format(end_time - start_time))
 ```
 
+### 3.2 构建一个简单的网络
 
-```python
-optim = paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters())
-```
-
-
-```python
-optim.step()
-```
-
-
-```python
-import paddle
-
-a = paddle.to_tensor([1.0, 2.0, 3.0])
-b = paddle.to_tensor([1.0, 2.0, 3.0], stop_gradient=False) # 将b设置为需要计算梯度的属性
-print(a.stop_gradient)
-print(b.stop_gradient)
-```
-
-    True
-    False
-
-
-
-```python
-a.stop_gradient = False
-print(a.stop_gradient)
-```
-
-    False
-
+构建一个简单的网络，用于对比使用普通方法进行训练与使用混合精度训练的训练速度。该网络由三层 ``Linear`` 组成，其中前两层 ``Linear`` 后接 ``ReLU`` 激活函数。
 
 
 ```python
 import paddle
+import paddle.nn as nn
 
-x = paddle.to_tensor([1.0, 2.0, 3.0], stop_gradient=False)
-y = paddle.to_tensor([4.0, 5.0, 6.0], stop_gradient=False)
-z = x ** 2 + 4 * y
+class SimpleNet(nn.Layer):
+
+    def __init__(self, input_size, output_size):
+        
+        super(SimpleNet, self).__init__()
+        self.linear1 = nn.Linear(input_size, output_size)
+        self.relu1 = nn.ReLU()
+        self.linear2 = nn.Linear(input_size, output_size)
+        self.relu2 = nn.ReLU()
+        self.linear3 = nn.Linear(input_size, output_size)
+
+    def forward(self, x):
+
+        x = self.linear1(x)
+        x = self.relu1(x)
+        x = self.linear2(x)
+        x = self.relu2(x)
+        x = self.linear3(x)
+
+        return x
 ```
+
+设置训练的相关参数，这里为了能有效的看出混合精度训练对于训练速度的提升，将 ``input_size`` 与 ``output_size`` 的值设为较大的值，为了使用GPU 提供的``Tensor Core`` 性能，还需将 ``batch_size`` 设置为 8 的倍数。
 
 
 ```python
-z.backward()
-print("Tensor x's grad is: {}".format(x.grad))
-print("Tensor y's grad is: {}".format(y.grad))
+epochs = 5
+input_size = 4096   # 设为较大的值
+output_size = 4096  # 设为较大的值
+batch_size = 512    # batch_size 为8的倍数
+nums_batch = 50
+
+train_data = [paddle.randn((batch_size, input_size)) for _ in range(nums_batch)]
+labels = [paddle.randn((batch_size, output_size)) for _ in range(nums_batch)]
+
+mse = paddle.nn.MSELoss()
 ```
 
-    Tensor x's grad is: Tensor(shape=[3], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [2., 4., 6.])
-    Tensor y's grad is: Tensor(shape=[3], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [4., 4., 4.])
+    W1110 18:42:02.362493   104 device_context.cc:447] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.1, Runtime API Version: 10.1
+    W1110 18:42:02.367755   104 device_context.cc:465] device: 0, cuDNN Version: 7.6.
 
+
+### 3.3 使用默认的训练方式进行训练
 
 
 ```python
-import paddle
+model = SimpleNet(input_size, output_size)  # 定义模型
 
-x = paddle.to_tensor([1.0, 2.0, 3.0], stop_gradient=False)
-y = x + 3
-y.backward(retain_graph=True) # 设置retain_graph为True，保留反向计算图
-print("Tensor x's grad is: {}".format(x.grad))
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义优化器
+
+start_timer() # 获取训练开始时间
+
+for epoch in range(epochs):
+    datas = zip(train_data, labels)
+    for i, (data, label) in enumerate(datas):
+
+        output = model(data)
+        loss = mse(output, label)
+
+        # 反向传播
+        loss.backward()
+
+        # 训练模型
+        optimizer.step()
+        optimizer.clear_grad()
+
+print(loss)
+end_timer_and_print("默认耗时:") # 获取结束时间并打印相关信息
 ```
 
-    Tensor x's grad is: Tensor(shape=[3], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1., 1., 1.])
-
-
-
-```python
-import paddle
-import numpy as np
-
-x = np.ones([2, 2], np.float32)
-inputs2 = []
-
-for _ in range(10):
-    tmp = paddle.to_tensor(x)
-    tmp.stop_gradient = False
-    inputs2.append(tmp)
-
-ret2 = paddle.add_n(inputs2)
-loss2 = paddle.sum(ret2)
-
-loss2.backward()
-print("Before clear {}".format(loss2.gradient()))
-
-loss2.clear_grad()
-print("After clear {}".format(loss2.gradient()))
-```
-
-    Before clear [1.]
-    After clear [0.]
-
-
-
-```python
-import paddle
-
-a = paddle.to_tensor(2.0, stop_gradient=False)
-b = paddle.to_tensor(5.0, stop_gradient=True)
-c = a * b
-c.backward()
-print("Tensor a's grad is: {}".format(a.grad))
-print("Tensor b's grad is: {}".format(b.grad))
-```
-
-    Tensor a's grad is: Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [5.])
-    Tensor b's grad is: None
-
-
-
-```python
-
-import paddle
-
-a = paddle.to_tensor(2.0, stop_gradient=False)
-b = paddle.to_tensor(5.0, stop_gradient=False)
-c = a * b
-d = paddle.to_tensor(4.0, stop_gradient=False)
-e = c * d
-e.backward()
-print("Tensor a's grad is: {}".format(a.grad))
-print("Tensor b's grad is: {}".format(b.grad))
-print("Tensor c's grad is: {}".format(c.grad))
-print("Tensor d's grad is: {}".format(d.grad))
-```
-
-    Tensor a's grad is: Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [20.])
-    Tensor b's grad is: Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [8.])
-    Tensor c's grad is: Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [4.])
-    Tensor d's grad is: Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [10.])
-
-
-
-```python
-class Model(paddle.nn.Layer):
-
-    def __init__(self):
-        super(Model, self).__init__()
-        self.flatten = paddle.nn.Flatten()
-
-    def forward(self, inputs):
-        y = self.flatten(inputs)
-        return y
-```
-
-
-```python
-model = Model()
-print(model.sublayers())
-
-print("----------------------")
-
-for item in model.named_sublayers():
-    print(item)
-```
-
-    [Flatten()]
-    ----------------------
-    ('flatten', Flatten())
-
-
-
-```python
-fc = paddle.nn.Linear(10, 3)
-model.add_sublayer("fc", fc)
-print(model.sublayers())
-```
-
-    [Flatten(), Linear(in_features=10, out_features=3, dtype=float32)]
-
-
-
-```python
-def function(layer):
-    print(layer)
-
-model.apply(function)
-```
-
-    Flatten()
-    Linear(in_features=10, out_features=3, dtype=float32)
-    Model(
-      (flatten): Flatten()
-      (fc): Linear(in_features=10, out_features=3, dtype=float32)
-    )
-
-
-
-
-
-    Model(
-      (flatten): Flatten()
-      (fc): Linear(in_features=10, out_features=3, dtype=float32)
-    )
-
-
-
-
-```python
-sublayer_iter = model.children()
-for sublayer in sublayer_iter:
-    print(sublayer)
-```
-
-    Flatten()
-    Linear(in_features=10, out_features=3, dtype=float32)
-
-
-
-```python
-class Model(paddle.nn.Layer):
-
-    def __init__(self):
-        super(Model, self).__init__()
-        img = self.create_parameter([1,3,256,256])
-        self.add_parameter("img", img)
-        self.flatten = paddle.nn.Flatten()
-
-    def forward(self):
-        y = self.flatten(self.img)
-        return y
-```
-
-
-```python
-model = Model()
-model.parameters()
-print("----------------------------------------------------------------------------------")
-for item in model.named_parameters():
-    print(item)
-```
-
-    ----------------------------------------------------------------------------------
-    ('img', Parameter containing:
-    Tensor(shape=[1, 3, 256, 256], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [[[[ 0.00330893,  0.00146855, -0.00315564, ..., -0.00037254,
-               -0.00398024,  0.00175103],
-              [-0.00269739,  0.00015307,  0.00215079, ...,  0.00083044,
-                0.00433949,  0.00183416],
-              [ 0.00124980,  0.00066814, -0.00296695, ..., -0.00166787,
-               -0.00208646,  0.00066172],
-              ...,
-              [ 0.00118238, -0.00020917, -0.00211811, ...,  0.00341913,
-                0.00110805, -0.00007380],
-              [-0.00283090,  0.00450932, -0.00027968, ...,  0.00141592,
-                0.00147790, -0.00163899],
-              [ 0.00473807,  0.00005514,  0.00163972, ..., -0.00105391,
-                0.00130420, -0.00455226]],
+    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+           [1.24519622])
     
-             [[ 0.00370526, -0.00421996, -0.00161209, ...,  0.00098369,
-               -0.00364983,  0.00031144],
-              [ 0.00173886,  0.00339773,  0.00141036, ...,  0.00346697,
-                0.00417612,  0.00012173],
-              [ 0.00120599,  0.00061922, -0.00084213, ..., -0.00172405,
-                0.00378877, -0.00097374],
-              ...,
-              [-0.00322239,  0.00413360,  0.00473170, ...,  0.00415691,
-                0.00108459, -0.00351989],
-              [-0.00416756,  0.00164984,  0.00244981, ...,  0.00053153,
-               -0.00464938,  0.00450330],
-              [-0.00406198, -0.00193215, -0.00431253, ..., -0.00257889,
-               -0.00165101, -0.00138488]],
+    默认耗时:
+    共计耗时 = 2.926 sec
+
+
+### 3.4 使用AMP训练模型
+
+在飞桨框架中，使用自动混合精度训练，需要进行四个步骤：
+
+- Step1： 定义 ``GradScaler`` ，用于缩放 ``loss`` 比例，避免浮点数下溢
+- Step2： 使用 ``decorate`` 在level=’O1‘模式下不做任何处理，无需调用该api，在level=’O2‘模式下，将网络参数从FP32转换为FP16
+- Step3： 使用 ``auto_cast`` 用于创建AMP上下文环境，该上下文中自动会确定每个OP的输入数据类型（FP16或FP32）
+- Step4： 使用 Step1中定义的 ``GradScaler`` 完成 ``loss`` 的缩放，用缩放后的 ``loss`` 进行反向传播，完成训练
+
+
+采用level=’O1‘模式训练：
+
+
+```python
+model = SimpleNet(input_size, output_size)  # 定义模型
+
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义优化器
+
+# Step1：定义 GradScaler，用于缩放loss比例，避免浮点数溢出
+scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
+
+start_timer() # 获取训练开始时间
+
+for epoch in range(epochs):
+    datas = zip(train_data, labels)
+    for i, (data, label) in enumerate(datas):
+
+        # Step2：创建AMP上下文环境，开启自动混合精度训练
+        with paddle.amp.auto_cast():
+            output = model(data)
+            loss = mse(output, label)
+
+        # Step3：使用 Step1中定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
+        scaled = scaler.scale(loss)
+        scaled.backward()
+
+        # 训练模型
+        scaler.minimize(optimizer, scaled)
+        optimizer.clear_grad()
+
+print(loss)
+end_timer_and_print("使用AMP-O1模式耗时:")
+```
+
+    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+           [1.24815702])
     
-             [[ 0.00441089,  0.00360072,  0.00199083, ..., -0.00120336,
-                0.00208172,  0.00016561],
-              [ 0.00456772, -0.00385161,  0.00081078, ..., -0.00298249,
-               -0.00269728, -0.00413104],
-              [ 0.00370318,  0.00103516,  0.00258130, ..., -0.00003251,
-               -0.00032389, -0.00006440],
-              ...,
-              [-0.00348314, -0.00025856, -0.00374935, ..., -0.00344840,
-                0.00243370, -0.00292505],
-              [ 0.00477740,  0.00388781, -0.00466578, ...,  0.00121291,
-                0.00004315, -0.00295597],
-              [ 0.00455716,  0.00302863,  0.00055869, ...,  0.00052850,
-                0.00218663,  0.00267356]]]]))
+    使用AMP-O1模式耗时:
+    共计耗时 = 1.294 sec
 
+
+采用level=’O2‘模式训练：
 
 
 ```python
-model = Model()
-out = model()
-out.backward()
-model.clear_gradients()
+model = SimpleNet(input_size, output_size)  # 定义模型
+
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义优化器
+
+# Step1：定义 GradScaler，用于缩放loss比例，避免浮点数溢出
+scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
+
+# Step2：在level=’O2‘模式下，将网络参数从FP32转换为FP16
+model, optimizer = paddle.amp.decorate(models=model, optimizers=optimizer, level='O2', master_weight=None, save_dtype=None)
+
+start_timer() # 获取训练开始时间
+
+for epoch in range(epochs):
+    datas = zip(train_data, labels)
+    for i, (data, label) in enumerate(datas):
+
+        # Step3：创建AMP上下文环境，开启自动混合精度训练
+        with paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None, level='O2'):
+            output = model(data)
+            loss = mse(output, label)
+
+        # Step4：使用 Step1中定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
+        scaled = scaler.scale(loss)
+        scaled.backward()
+
+        # 训练模型
+        scaler.minimize(optimizer, scaled)
+        optimizer.clear_grad()
+
+print(loss)
+end_timer_and_print("使用AMP-O2模式耗时:")
 ```
 
-
-```python
-class Model(paddle.nn.Layer):
-
-    def __init__(self):
-        super(Model, self).__init__()
-        self.saved_tensor = self.create_tensor(name="saved_tensor0")
-        self.flatten = paddle.nn.Flatten()
-        self.fc = paddle.nn.Linear(10, 100)
-
-    def forward(self, input):
-        y = self.flatten(input)
-        # Save intermediate tensor
-        paddle.assign(y, self.saved_tensor)
-        y = self.fc(y)
-        return y
-```
-
-
-```python
-class Model(paddle.nn.Layer):
-
-    def __init__(self):
-        super(Model, self).__init__()
-        saved_tensor = self.create_tensor(name="saved_tensor0")
-        self.register_buffer("saved_tensor", saved_tensor, persistable=True)
-        self.flatten = paddle.nn.Flatten()
-        self.fc = paddle.nn.Linear(10, 100)
-
-    def forward(self, input):
-        y = self.flatten(input)
-        # Save intermediate tensor
-        paddle.assign(y, self.saved_tensor)
-        y = self.fc(y)
-        return y
-```
-
-
-```python
-model = Model()
-print(model.buffers())
-for item in model.named_buffers():class Model(paddle.nn.Layer):
-
-    def __init__(self):
-        super(Model, self).__init__()
-        self.flatten = paddle.nn.Flatten()
-
-    def forward(self, inputs):
-        y = self.flatten(inputs)
-        return y
-    print(item)
-```
-
-
-      File "/tmp/ipykernel_104/851298997.py", line 3
-        for item in model.named_buffers():class Model(paddle.nn.Layer):
-                                              ^
-    SyntaxError: invalid syntax
-
-
-
-
-```python
-class Model(paddle.nn.Layer):
-
-    def __init__(self):
-        super(Model, self).__init__()
-        self.flatten = paddle.nn.Flatten()
-
-    def forward(self, inputs):
-        y = self.flatten(inputs)
-        return y
-```
-
-
-```python
-x = paddle.randn([10, 1], 'float32')
-model = Model()
-model.eval()  # set model to eval mode
-out = model(x)
-model.train()  # set model to train mode
-out = model(x)
-```
-
-
-```python
-model = Model()
-x = paddle.randn([10, 1], 'float32')
-out = model(x)
-print(out)
-```
-
-    Tensor(shape=[10, 1], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-           [[-0.12737122],
-            [-0.57012707],
-            [-0.70294005],
-            [ 0.14529558],
-            [ 0.50616348],
-            [-0.96126020],
-            [ 0.51200545],
-            [ 2.64334464],
-            [ 1.11839330],
-            [ 0.61924362]])
-
-
-
-```python
-def forward_post_hook(layer, input, output):
-    return 2*output
-
-x = paddle.ones([10, 1], 'float32')
-model = Model()
-forward_post_hook_handle = model.flatten.register_forward_post_hook(forward_post_hook)
-out = model(x)
-print(out)
-```
-
-    Tensor(shape=[10, 1], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-           [[2.],
-            [2.],
-            [2.],
-            [2.],
-            [2.],
-            [2.],
-            [2.],
-            [2.],
-            [2.],
-            [2.]])
-
-
-
-```python
-def forward_pre_hook(layer, input, output):
-    return 2*output
-
-x = paddle.ones([10, 1], 'float32')
-model = Model()
-forward_pre_hook_handle = model.flatten.register_forward_pre_hook(forward_pre_hook)
-out = model(x)
-```
-
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    /tmp/ipykernel_104/1696797913.py in <module>
-          5 model = Model()
-          6 forward_pre_hook_handle = model.flatten.register_forward_pre_hook(forward_pre_hook)
-    ----> 7 out = model(x)
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+           [1.25423336])
     
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/layers.py in __call__(self, *inputs, **kwargs)
-        912                 self._built = True
-        913 
-    --> 914             outputs = self.forward(*inputs, **kwargs)
-        915 
-        916             for forward_post_hook in self._forward_post_hooks.values():
+    使用AMP-O2模式耗时:
+    共计耗时 = 0.890 sec
 
 
-    /tmp/ipykernel_104/2161125479.py in forward(self, inputs)
-          6 
-          7     def forward(self, inputs):
-    ----> 8         y = self.flatten(inputs)
-          9         return y
+## 四、进阶用法
+### 4.1 使用梯度累加
+梯度累加是指在模型训练过程中，训练一个batch的数据得到梯度后，不立即用该梯度更新模型参数，而是继续下一个batch数据的训练，得到梯度后继续循环，多次循环后梯度不断累加，直至达到一定次数后，用累加的梯度更新参数，这样可以起到变相扩大 batch_size 的作用。
 
-
-    /opt/conda/envs/python35-paddle120-env/lib/python3.7/site-packages/paddle/fluid/dygraph/layers.py in __call__(self, *inputs, **kwargs)
-        892         with param_guard(self._parameters), param_guard(self._buffers):
-        893             for forward_pre_hook in self._forward_pre_hooks.values():
-    --> 894                 hook_result = forward_pre_hook(self, inputs)
-        895                 if hook_result is not None:
-        896                     if not isinstance(hook_result, tuple):
-
-
-    TypeError: forward_pre_hook() missing 1 required positional argument: 'output'
-
+在自动混合精度训练中，也支持梯度累加，使用方式如下：
 
 
 ```python
+model = SimpleNet(input_size, output_size)  # 定义模型
 
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义优化器
+
+accumulate_batchs_num = 10 # 梯度累加中 batch 的数量
+
+# 定义 GradScaler
+scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
+
+start_timer() # 获取训练开始时间
+
+for epoch in range(epochs):
+    datas = zip(train_data, labels)
+    for i, (data, label) in enumerate(datas):
+
+        # 创建AMP上下文环境，开启自动混合精度训练
+        with paddle.amp.auto_cast():
+            output = model(data)
+            loss = mse(output, label)
+
+        # 使用 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
+        scaled = scaler.scale(loss)
+        scaled.backward()
+
+        # 当累计的 batch 为 accumulate_batchs_num 时，更新模型参数
+        if (i + 1) % accumulate_batchs_num == 0:
+
+            # 训练模型
+            scaler.minimize(optimizer, scaled)
+            optimizer.clear_grad()
+
+print(loss)
+end_timer_and_print("使用AMP模式耗时:")
 ```
+
+    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+           [1.25602019])
+    
+    使用AMP模式耗时:
+    共计耗时 = 1.026 sec
+
+
+## 五、总结
+从上面的示例中可以看出，使用自动混合精度训练，O1模式共计耗时约 1.294s，O2模式共计耗时约 0.890s，而普通的训练方式则耗时 2.926s，O1模式训练速度提升约为 2.1倍，O2模式训练速度提升约为 3.0倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
