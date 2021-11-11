@@ -1,6 +1,6 @@
 # Automatic Mixed Precision Training
 
-In general, the datatype of training deep learning models is single-precision floating-point format(also called FP32). In 2018, Baidu and NVIDIA jointly published the paper: [MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf), which proposed mixed precision training. During the process of training, some operators use FP32 and other operators use half precision(also called FP16) in the same time. Its purpose is to speed up training, while compared with the FP32 training model, the same accuracy is maintained. This tutorial will introduce how to use automatic mixed precision training with PaddlePaddle.
+In general, the datatype of training deep learning models is single-precision floating-point format(also called FP32). In 2018, Baidu and NVIDIA jointly published the paper: [MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf), which proposed mixed precision training. During the process of training, some operators use FP32 and other operators use half precision(also called FP16) in the same time. Its purpose is to speed up training, while compared with the FP32 training model, the same accuracy is maintained. This tutorial will introduce how to use automatic mixed precision training with PaddlePaddle.  
 
 ## 1. Half Precision (FP16)
 
@@ -55,6 +55,7 @@ import paddle.nn as nn
 class SimpleNet(nn.Layer):
 
     def __init__(self, input_size, output_size):
+        
         super(SimpleNet, self).__init__()
         self.linear1 = nn.Linear(input_size, output_size)
         self.relu1 = nn.ReLU()
@@ -118,19 +119,22 @@ end_timer_and_print("Default time:") # print massage and total time
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.25010288])
-
+           [1.24072289])
+    
     Default time:
-    total time = 2.943 sec
+    total time = 2.935 sec
 
 
 ### 3.4 Training with AMP
 
-Using automatic mixed precision training with PaddlePaddle requires three steps:
+Using automatic mixed precision training with PaddlePaddle requires four steps:
 
-- Step1: Define ``GradScaler``, which is used to scale the ``loss`` and ``gradients``to avoid underflow
-- Step2: Use ``auto_cast`` to create an AMP context, in which the input datatype(FP16 or FP32) of each oprator will be automatically determined
-- Step3: Use ``GradScaler`` defined in Step1 to complete the scaling of ``loss``, and use the scaled ``loss`` for backpropagation to complete the training
+- Step1: Define ``GradScaler``, which is used to scale the ``loss`` to avoid underflow
+- Step2: Use ``decorate``, to do nothing in level='O1' mode without using this api, and in level='O2' mode to convert network parameters from FP32 to FP16
+- Step3: Use ``auto_cast`` to create an AMP context, in which the input datatype(FP16 or FP32) of each oprator will be automatically determined
+- Step4: Use ``GradScaler`` defined in Step1 to complete the scaling of ``loss``, and use the scaled ``loss`` for backpropagation to complete the training
+
+In level=’O1‘ mode：
 
 
 ```python
@@ -161,14 +165,64 @@ for epoch in range(epochs):
         optimizer.clear_grad()
 
 print(loss)
-end_timer_and_print("AMP time:")
+end_timer_and_print("AMP time in O1 mode:")
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.23644269])
+           [1.24848151])
+    
+    AMP time in O1 mode:
+    total time = 1.299 sec
 
-    AMP time:
-    total time = 1.222 sec
+
+In level='O2' mode：
+
+
+```python
+model = SimpleNet(input_size, output_size)  # define model
+
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # define optimizer
+
+# Step1：define GradScaler
+scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
+
+# Step2：in level='O2' mode, convert network parameters from FP32 to FP16
+model, optimizer = paddle.amp.decorate(models=model, optimizers=optimizer, level='O2', master_weight=None, save_dtype=None)
+
+start_timer() # get start time
+
+for epoch in range(epochs):
+    datas = zip(train_data, labels)
+    for i, (data, label) in enumerate(datas):
+
+        # Step3：create AMP context environment
+        with paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None, level='O2'):
+            output = model(data)
+            loss = mse(output, label)
+
+        # Step4：use GradScaler complete the loss scaling
+        scaled = scaler.scale(loss)
+        scaled.backward()
+
+        # update parameters
+        scaler.minimize(optimizer, scaled)
+        optimizer.clear_grad()
+
+print(loss)
+end_timer_and_print("AMP time in O2 mode:")
+```
+
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
+           [1.25075114])
+    
+    AMP time in O2 mode:
+    total time = 0.888 sec
 
 
 ## 4. Advanced Usage
@@ -204,7 +258,7 @@ for epoch in range(epochs):
         scaled = scaler.scale(loss)
         scaled.backward()
 
-        # when the accumulated batch is accumulate_batchs_num, update the model parameters
+        #  when the accumulated batch is accumulate_batchs_num, update the model parameters
         if (i + 1) % accumulate_batchs_num == 0:
 
             # update parameters
@@ -216,12 +270,12 @@ end_timer_and_print("AMP time:")
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.25127280])
-
+           [1.25853443])
+    
     AMP time:
-    total time = 1.006 sec
+    total time = 1.034 sec
 
 
 ## 5. Conclusion
 
-As can be seen from the above example, using the automatic mixed precision training, the total time is about 1.222s, while the ordinary training method takes 2.943s, and the training speed is increased by about 2.4 times. For more examples of using mixed precision training, please refer to paddlepaddle's models: [paddlepaddle/models](https://github.com/PaddlePaddle/models).
+As can be seen from the above example, using the automatic mixed precision training, in O1 mode the total time is about 1.299s, in O2 mode the total time is about 0.888s, while the ordinary training method takes 2.935s, and the training speed is increased by about 2.4 times in O1 mode and 2.4 times in O2 mode. For more examples of using mixed precision training, please refer to paddlepaddle's models: [paddlepaddle/models](https://github.com/PaddlePaddle/models).
