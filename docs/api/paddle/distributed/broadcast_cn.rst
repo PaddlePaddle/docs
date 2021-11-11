@@ -6,7 +6,8 @@ broadcast
 
 .. py:function:: paddle.distributed.broadcast(tensor, src, group=0)
 
-广播一个Tensor给其他所有进程，如下图所示。
+广播一个Tensor给其他所有进程。
+如下图所示，4个GPU分别开启4个进程，GPU0卡拥有数据，经过broadcast算子后，会将这个数据传播到所有卡上。
 
 .. image:: ./img/broadcast.png
   :width: 800

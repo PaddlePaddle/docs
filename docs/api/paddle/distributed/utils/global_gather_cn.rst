@@ -33,7 +33,6 @@ global_gather发送数据的流程如下：
   :align: center
 
 
-
 参数
 :::::::::
     - x (Tensor) - 输入Tensor。Tensor的数据类型必须是float16、float32、 float64、int32、int64。

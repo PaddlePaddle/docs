@@ -13,7 +13,7 @@ split
 情形1：并行Embedding
     Embedding操作的参数是个NxM的矩阵，行数为N，列数为M。并行Embedding情形下，参数切分到num_partitions个设备，每个设备上的参数是 (N/num_partitions + 1)行、M列的矩阵。其中，最后一行作为padding idx。
 
-    假设将NxM的参数矩阵切分到两个设备device_0和device_1。那么每个设置上的参数矩阵为(N/2+1)行和M列。device_0上，输入x中的值如果介于[0, N/2-1]，则其值保持不变；否则值变更为N/2，经过embedding映射为全0值。类似地，device_1上，输入x中的值V如果介于[N/2, N-1]之间，那么这些值将变更为(V-N/2)；否则，值变更为N/2，经过embedding映射为全0值。最后，使用all_reduce_sum操作汇聚各个卡上的结果。
+    假设将NxM的参数矩阵切分到两个设备device_0和device_1。那么每个设备上的参数矩阵为(N/2+1)行和M列。device_0上，输入x中的值如果介于[0, N/2-1]，则其值保持不变；否则值变更为N/2，经过embedding映射为全0值。类似地，device_1上，输入x中的值V如果介于[N/2, N-1]之间，那么这些值将变更为(V-N/2)；否则，值变更为N/2，经过embedding映射为全0值。最后，使用all_reduce_sum操作汇聚各个卡上的结果。
 
     单卡Embedding情况如下图所示
 
@@ -33,14 +33,16 @@ split
 情形2：行并行Linear
     Linear操作的参数是个NxM的矩阵，行数为N，列数为M。行并行Linear情形下，参数切分到num_partitions个设备，每个设备上的参数是N/num_partitions行、M列的矩阵。
 
-    单卡Linear情况如下图所示
+    单卡Linear情况如下图所示，输入变量用X表示，权重矩阵用W表示，输出变量用O表示，单卡Linear就是一个简单的矩阵乘操作，O = X * W
 
     .. image:: ./img/split_single.png
         :width: 800
         :alt: single_linear
         :align: center
 
-    行并行Linear情况如下图所示
+    行并行Linear情况如下图所示，顾名思义，行并行是按照权重矩阵W的行切分权重矩阵为
+    [[W_row1], [W_row2]]，对应的输入X也按照列切成了两份[X_col1, X_col2]，分别与各自对应的权重矩阵相乘，
+    最后通过AllReduce规约每张卡的输出得到最终输出。
 
     .. image:: ./img/split_row.png
         :width: 800
@@ -50,7 +52,8 @@ split
 情形3：列并行Linear
     Linear操作的参数是个NxM的矩阵，行数为N，列数为M。列并行Linear情形下，参数切分到num_partitions个设备，每个设备上的参数是N行、M/num_partitions列的矩阵。
 
-    单卡并行Linear可以看上面对应的图，列并行Linear情况如下图所示
+    单卡并行Linear可以看上面对应的图，列并行Linear情况如下图所示。列并行是按照权重矩阵W的列切分权重矩阵为[W_col1, W_col2]，
+    X分别与切分出来的矩阵相乘，最后通过AllGather拼接每张卡的输出得到最终输出。
 
     .. image:: ./img/split_col.png
         :width: 800
