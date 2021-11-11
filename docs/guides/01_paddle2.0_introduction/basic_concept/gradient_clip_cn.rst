@@ -20,6 +20,8 @@ Paddle提供了三种梯度裁剪方式：
 
 .. code:: ipython3
 
+    import paddle
+
     linear = paddle.nn.Linear(10, 10)
     clip = paddle.nn.ClipGradByValue(min=-1, max=1)
     sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)
