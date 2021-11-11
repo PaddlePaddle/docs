@@ -558,5 +558,5 @@ https://github.com/PaddlePaddle/paddle_upgrade_tool
 ### 2.0文档教程
 以下提供了2.0版本的一些示例教程：
 
-你可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码:
-https://github.com/PaddlePaddle/book/tree/develop/paddle2.0_docs
+你可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/practices/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码:
+https://github.com/PaddlePaddle/docs/tree/develop/docs/practices
