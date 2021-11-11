@@ -1,9 +1,9 @@
-.. _cn_api_tensor_cholesky:
+.. _cn_api_linalg_cholesky:
 
 cholesky
 -------------------------------
 
-.. py:function:: paddle.cholesky(x, upper=False, name=None)
+.. py:function:: paddle.linalg.cholesky(x, upper=False, name=None)
 
 
 
@@ -32,7 +32,7 @@ cholesky
     a_t = np.transpose(a, [1, 0])
     x_data = np.matmul(a, a_t) + 1e-03
     x = paddle.to_tensor(x_data)
-    out = paddle.cholesky(x, upper=False)
+    out = paddle.linalg.cholesky(x, upper=False)
     print(out)
     # [[1.190523   0.         0.        ]
     #  [0.9906703  0.27676893 0.        ]
