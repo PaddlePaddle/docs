@@ -361,6 +361,17 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
         paddlepaddle_gpu-2.2.0.post112-cp39-cp39-linux_x86_64.whl</a></td>
     </tr>
     <tr>
+        <td> macos-cpu-openblas </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.2.0/macos/macos-cpu-openblas/paddlepaddle-2.2.0-cp36-cp36m-macosx_10_6_intel.whl">
+        paddlepaddle-2.2.0-cp36-cp36m-macosx_10_6_intel.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.2.0/macos/macos-cpu-openblas/paddlepaddle-2.2.0-cp37-cp37m-macosx_10_6_intel.whl">
+        paddlepaddle-2.2.0-cp37-cp37m-macosx_10_6_intel.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.2.0/macos/macos-cpu-openblas/paddlepaddle-2.2.0-cp38-cp38-macosx_10_14_x86_64.whl">
+        paddlepaddle-2.2.0-cp38-cp38-macosx_10_14_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.2.0/macos/macos-cpu-openblas/paddlepaddle-2.2.0-cp39-cp39-macosx_10_14_x86_64.whl">
+        paddlepaddle-2.2.0-cp39-cp39-macosx_10_14_x86_64.whl</a></td>
+    </tr>
+    <tr>
         <td> win-cpu-mkl-avx </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.2.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.2.0-cp36-cp36m-win_amd64.whl"> paddlepaddle-2.2.0-cp36-cp36m-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.2.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.2.0-cp37-cp37m-win_amd64.whl"> paddlepaddle-2.2.0-cp37-cp37m-win_amd64.whl</a></td>
