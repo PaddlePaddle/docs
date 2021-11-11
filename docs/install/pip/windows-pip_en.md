@@ -95,7 +95,7 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.2 GPU Version of PaddlePaddle
 
 
-2.2.1 CUDA10.1的PaddlePaddle
+2.2.1 If you are using CUDA 10.1
 
 
   ```
@@ -103,14 +103,29 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.2 CUDA10.2的PaddlePaddle
+2.2.2 If you are using CUDA 10.2
 
   ```
   python -m pip install paddlepaddle-gpu==0.0.0.post102 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
   ```
 
+2.2.3 If you are using CUDA 11.0
 
-2.2.3 CUDA11.2的PaddlePaddle
+
+  ```
+  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  ```
+
+
+2.2.4 If you are using CUDA 11.1
+
+
+  ```
+  python -m pip install paddlepaddle-gpu==0.0.0.post111 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  ```
+
+
+2.2.5 If you are using CUDA 11.2
 
   ```
   python -m pip install paddlepaddle-gpu==0.0.0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
