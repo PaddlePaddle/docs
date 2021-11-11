@@ -151,3 +151,9 @@ def set_config(args):
 + 答复：设置Optimizer中的`grad_clip`参数值。
 
 ----------
+
+##### 问题：paddle是否有爱因斯坦求和（einsum）这个api？
+
++ 答复：paddle在2.2rc 版本之后，新增了[paddle.einsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/einsum_cn.html#einsum)，在 develop 和2.2rc 之后的版本中都可以正常使用。
+
+---------- 
