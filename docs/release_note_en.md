@@ -306,17 +306,17 @@ paddle.int64
 
 - Add new high-level APIs  
   - Add the ``paddle.vision.ops.roi_pool`` and ``paddle.vision.ops.RoIPool``, support RoI region pooling operations in detection tasks. ([#36154](https://github.com/PaddlePaddle/Paddle/pull/36154))
-    -  Add the ``paddle.vision.ops.roi_align`` and ``paddle.vision.ops.RoIAlign``, to support RoI region Align operations in detection tasks.  ([#36207](https://github.com/PaddlePaddle/Paddle/pull/36207))
-    -  Add the ``paddle.vision.ops.psroi_pool`` and ``paddle.vision.ops.PSRoIPool``, to support location-sensitive RoI region pooling operations in detection tasks. ([#36111](https://github.com/PaddlePaddle/Paddle/pull/36111))
-    -  Add the ``paddle.vision.models.vgg19`` pre-training weights. ([#35788](https://github.com/PaddlePaddle/Paddle/pull/35788))
-    -  Add thedatasets API download progress bar in ``paddle.vision.datasets.*``. ([#33302](https://github.com/PaddlePaddle/Paddle/pull/33302))
-    -  Add the ``paddle.Model.predict`` parameter ``verbose``, to support whether to show logs or not. ([#33405](https://github.com/PaddlePaddle/Paddle/pull/33405))
-    -  Add the ``paddle.hub`` download option ``wget`` method. ([#33379](https://github.com/PaddlePaddle/Paddle/pull/33379))
-    -  Add the ``paddle.Model`` gradient accumulation in dynamic graph mode. ([#32702](https://github.com/PaddlePaddle/Paddle/pull/32702))
-    -  Add the ``paddle.Model.fit`` and ``paddle.Model.evaluate`` ``num_iters`` parameters in dynamic graph mode to control the number of training iterations. ([#33986](https://github.com/PaddlePaddle/Paddle/pull/33986))
-    -  Add the ``paddle.vision.ops.yolo_box`` parameters ``iou_aware`` and ``iou_aware_factor``, to support YoloBox using predicted IOUs as confidence factors. ([#33400](https://github.com/PaddlePaddle/Paddle/pull/33400))
-    -  Add the ``paddle.summary`` parameter input to support the given ``input``. ([#34165](https://github.com/PaddlePaddle/Paddle/pull/34165))
-    - Add `paddle.text.viterbi_decode`, to support Viterbi decoding for CPU and GPU under dynamic graphs.  ([#35778](https://github.com/PaddlePaddle/Paddle/pull/35778))
+  -  Add the ``paddle.vision.ops.roi_align`` and ``paddle.vision.ops.RoIAlign``, to support RoI region Align operations in detection tasks.  ([#36207](https://github.com/PaddlePaddle/Paddle/pull/36207))
+  -  Add the ``paddle.vision.ops.psroi_pool`` and ``paddle.vision.ops.PSRoIPool``, to support location-sensitive RoI region pooling operations in detection tasks. ([#36111](https://github.com/PaddlePaddle/Paddle/pull/36111))
+  -  Add the ``paddle.vision.models.vgg19`` pre-training weights. ([#35788](https://github.com/PaddlePaddle/Paddle/pull/35788))
+  -  Add the datasets API download progress bar in ``paddle.vision.datasets.*``. ([#33302](https://github.com/PaddlePaddle/Paddle/pull/33302))
+  -  Add the ``paddle.Model.predict`` parameter ``verbose``, to support whether to show logs or not. ([#33405](https://github.com/PaddlePaddle/Paddle/pull/33405))
+  -  Add the ``paddle.hub`` download option ``wget`` method. ([#33379](https://github.com/PaddlePaddle/Paddle/pull/33379))
+  -  Add the ``paddle.Model`` gradient accumulation in dynamic graph mode. ([#32702](https://github.com/PaddlePaddle/Paddle/pull/32702))
+  -  Add the ``paddle.Model.fit`` and ``paddle.Model.evaluate`` ``num_iters`` parameters in dynamic graph mode to control the number of training iterations. ([#33986](https://github.com/PaddlePaddle/Paddle/pull/33986))
+  -  Add the ``paddle.vision.ops.yolo_box`` parameters ``iou_aware`` and ``iou_aware_factor``, to support YoloBox using predicted IOUs as confidence factors. ([#33400](https://github.com/PaddlePaddle/Paddle/pull/33400))
+  -  Add the ``paddle.summary`` parameter input to support the given ``input``. ([#34165](https://github.com/PaddlePaddle/Paddle/pull/34165))
+  - Add `paddle.text.viterbi_decode`, to support Viterbi decoding for CPU and GPU under dynamic graphs.  ([#35778](https://github.com/PaddlePaddle/Paddle/pull/35778))
 
 - Add networking class APIs  
   - Add `paddle.nn.functional.sparse_attention` for computing sparse Transformer Attention modules.  ([#35757](https://github.com/PaddlePaddle/Paddle/pull/35757))
