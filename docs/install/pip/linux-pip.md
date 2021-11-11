@@ -154,8 +154,15 @@
   python -m pip install paddlepaddle-gpu==2.2.0.post110 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
+2.2.4 CUDA11.1的PaddlePaddle
 
-2.2.4 CUDA11.2的PaddlePaddle
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.2.0.post111 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
+
+
+2.2.5 CUDA11.2的PaddlePaddle
 
 
   ```

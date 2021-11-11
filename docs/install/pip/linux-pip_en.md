@@ -163,7 +163,15 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.4 If you are using CUDA 11.2
+2.2.4 If you are using CUDA 11.1
+
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.2.0.post111 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
+
+
+2.2.5 If you are using CUDA 11.2
 
 
   ```
