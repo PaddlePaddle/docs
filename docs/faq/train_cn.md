@@ -261,8 +261,15 @@ out = masked_fill(x, mask, 2)
 #        [[2.        , 2.        , 0.96637046],
 #         [2.        , 2.        , 2.        ],
 #         [2.        , 2.        , 2.        ]])
-
 ```
+
+----------
+
+##### 问题：在paddle中如何实现`torch.nn.utils.rnn.pack_padded_sequence`和`torch.nn.utils.rnn.pad_packed_sequence`这两个API？
+
++ 答复：目前paddle中没有和上述两个API完全对应的实现。关于torch中这两个API的详细介绍可以参考知乎上的文章 [pack_padded_sequence 和 pad_packed_sequence](https://zhuanlan.zhihu.com/p/342685890) :
+`pack_padded_sequence`的功能是将mini-batch数据进行压缩，压缩掉无效的填充值，然后输入RNN网络中；`pad_packed_sequence`则是把RNN网络输出的压紧的序列再填充回来，便于进行后续的处理。
+在paddle中，大家可以在GRU、LSTM等RNN网络中输入含有填充值的mini-batch数据的同时传入对应的`sequence_length`参数实现上述等价功能，具体用法可以参考 [RNN](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/RNN_cn.html#rnn) 。
 
 ----------
 
