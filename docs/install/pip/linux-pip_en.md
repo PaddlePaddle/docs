@@ -5,9 +5,9 @@
 ### 1.1 PREQUISITES
 
 * **Linux Version (64 bit)**
-  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2**)**
-  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2)**
-  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2)**
+  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2**)**
+  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2)**
+  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2)**
 
 * **Python Version: 3.6/3.7/3.8/3.9 (64 bit)**
 
@@ -79,6 +79,8 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
   * **CUDA toolkit 10.1/10.2 with cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher)**
 
   * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.7 or higher)**
+
+  * **CUDA toolkit 11.1 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 
   * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 
@@ -163,7 +165,15 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.4 If you are using CUDA 11.2
+2.2.4 If you are using CUDA 11.1
+
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.2.0.post111 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
+
+
+2.2.5 If you are using CUDA 11.2
 
 
   ```
@@ -174,7 +184,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 Note：
 
-* If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance.
+* If you are using ampere-based GPU, CUDA 11 above version is recommended; otherwise CUDA 10.2 is recommended for better performance.
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
 

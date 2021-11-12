@@ -6,7 +6,7 @@
 
 * **Windows 7/8/10 Pro/Enterprise (64bit)**
 
-* **GPU version support CUDA 10.1/10.2/11.0/11.2，only support single card**
+* **GPU version support CUDA 10.1/10.2/11.0/11.1/11.2，only support single card**
 
 * **Python version 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 
@@ -72,6 +72,8 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
   * **CUDA toolkit 11.0 with cuDNN v8.0.4**
 
+  * **CUDA toolkit 11.1 with cuDNN v8.1.1**
+
   * **CUDA toolkit 11.2 with cuDNN v8.1.1**
 
   * **Hardware devices with GPU computing power over 3.5**
@@ -119,8 +121,14 @@ You can choose the following version of PaddlePaddle to start installation:
   python -m pip install paddlepaddle-gpu==2.2.0.post110 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
+2.2.4 If you are using CUDA 11.1
 
-2.2.4 If you are using CUDA 11.2
+  ```
+  python -m pip install paddlepaddle-gpu==2.2.0.post111 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  ```
+
+
+2.2.5 If you are using CUDA 11.2
 
   ```
   python -m pip install paddlepaddle-gpu==2.2.0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
@@ -128,7 +136,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 Note：
 
-* If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance.
+* If you are using ampere-based GPU, CUDA 11 above version is recommended; otherwise CUDA 10.2 is recommended for better performance.
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
 
