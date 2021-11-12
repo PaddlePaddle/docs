@@ -5,9 +5,9 @@
 ### 1.1 PREQUISITES
 
 * **Linux Version (64 bit)**
-  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2**)**
-  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2)**
-  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.2)**
+  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2**)**
+  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2)**
+  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2)**
 
 * **Python Version: 3.6/3.7/3.8/3.9 (64 bit)**
 
@@ -79,6 +79,8 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
   * **CUDA toolkit 10.1/10.2 with cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher)**
 
   * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.7 or higher)**
+
+  * **CUDA toolkit 11.1 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 
   * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 
