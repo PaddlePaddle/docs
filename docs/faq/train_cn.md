@@ -25,7 +25,7 @@ torch.gather(input, dim, index, *, sparse_grad=False, out=None)
 
 两者在输入形状、输出形状、计算公式等方面都有区别，具体如下：
 
-- `paddle.gather`
+1. `paddle.gather`
 
   - 输入形状：`x`可以是任意的`N`维Tensor。但`index`必须是形状为`[M]`的一维Tensor，或形状为`[M, 1]`的二维Tensor。
 
@@ -35,7 +35,7 @@ torch.gather(input, dim, index, *, sparse_grad=False, out=None)
 
   - 举例说明：假设`x`的形状为`[N1, N2, N3]`，`index`的形状为`[M]`，`axis`的值为1，那么输出`out`的形状为`[N1, M, N3]`，且`out[i_1][i_2][i_3] = x[i_1][index[i_2]][i_3]`。
 
-- `torch.gather`
+2. `torch.gather`
 
   - 输入形状：`input`可以是任意的`N`维Tensor，且`index.rank`必须等于`input.rank`。
 
