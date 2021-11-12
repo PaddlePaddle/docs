@@ -270,3 +270,20 @@ out = masked_fill(x, mask, 2)
 + 答复：paddle在2.2rc 版本之后，新增了[paddle.einsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/einsum_cn.html#einsum)，在 develop 和2.2rc 之后的版本中都可以正常使用。
 
 ----------
+
+
+----------
+
+##### 问题：[BatchNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BatchNorm_cn.html#batchnorm)在训练时加载预测时保存的模型参数时报错 AssertionError: Optimizer set error, batch_norm_1.w_0_moment_0 should in state dict.
+
++ 答复：BatchNorm在train模式和eval模式下需要的变量有差别，在train模式下要求传入优化器相关的变量，在eval模式下不管是保存参数还是加载参数都是不需要优化器相关变量的，因此如果在train模式下加载eval模式下保存的checkpoint，没有优化器相关的变量则会报错。如果想在train模式下加载eval模式下保存的checkpoint的话，用 ```paddle.load``` 加载进来参数之后，通过 ```set_state_dict``` 接口把参数赋值给模型，参考以下示例：
+
+```python
+import paddle
+
+bn = paddle.nn.BatchNorm(3)
+bn_param = paddle.load('./bn.pdparams')
+bn.set_state_dict()
+```
+
+----------
