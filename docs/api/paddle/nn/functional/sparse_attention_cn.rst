@@ -9,13 +9,13 @@ sparse_attention
 
 其稀疏数据排布通过CSR格式表示，CSR格式包含两个参数， ``offset`` 和 ``colunms`` 。计算公式为：
 
-.. warning::
-    目前该API只在CUDA11.3及以上版本中使用。
-
 .. math::
    result=softmax(\frac{ Q * K^T }{\sqrt{d}}) * V
 
 其中，``Q``，``K``，``V`` 表示注意力模块的三个输入参数。这三个参数的维度是一样的。 ``d`` 代表这三个参数的最后一个维度的大小。
+
+.. warning::
+    目前该API只在CUDA11.3及以上版本中使用。
 
 参数：
 :::::::::
