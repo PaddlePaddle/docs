@@ -111,7 +111,23 @@
   ```
 
 
-2.2.3 CUDA11.2的PaddlePaddle
+2.2.3 CUDA11.0的PaddlePaddle
+
+
+  ```
+  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  ```
+
+
+2.2.4 CUDA11.1的PaddlePaddle
+
+
+  ```
+  python -m pip install paddlepaddle-gpu==0.0.0.post111 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  ```
+
+
+2.2.5 CUDA11.2的PaddlePaddle
 
   ```
   python -m pip install paddlepaddle-gpu==0.0.0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
