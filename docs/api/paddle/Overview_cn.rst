@@ -61,7 +61,6 @@ tensor数学操作
     " :ref:`paddle.greater_equal <cn_api_tensor_cn_greater_equal>` ", "逐元素地返回 x>=y 的逻辑值"
     " :ref:`paddle.greater_than <cn_api_tensor_cn_greater_than>` ", "逐元素地返回 x>y 的逻辑值"
     " :ref:`paddle.increment <cn_api_tensor_increment>` ", "在控制流程中用来让 x 的数值增加 value"
-    " :ref:`paddle.inverse <cn_api_tensor_inverse>` ", "计算方阵的逆"
     " :ref:`paddle.kron <cn_api_paddle_tensor_kron>` ", "计算两个张量的克罗内克积"
     " :ref:`paddle.less_equal <cn_api_tensor_cn_less_equal>` ", "逐元素地返回 x<=y 的逻辑值"
     " :ref:`paddle.less_than <cn_api_tensor_cn_less_than>` ", "逐元素地返回 x<y 的逻辑值"
@@ -236,20 +235,16 @@ tensor线性代数相关
 
     " :ref:`paddle.bincount <cn_api_tensor_bincount>` ", "统计输入张量中元素的出现次数"
     " :ref:`paddle.bmm <cn_api_paddle_tensor_bmm>` ", "对输入x及输入y进行矩阵相乘"
-    " :ref:`paddle.cholesky <cn_api_tensor_cholesky>` ", "计算一个对称正定矩阵或一批对称正定矩阵的Cholesky分解"
     " :ref:`paddle.cross <cn_api_tensor_linalg_cross>` ", "计算张量 x 和 y 在 axis 维度上的向量积（叉积）"
     " :ref:`paddle.dist <cn_api_tensor_linalg_dist>` ", "计算 (x-y) 的 p 范数（p-norm）"
     " :ref:`paddle.dot <cn_api_paddle_tensor_linalg_dot>` ", "计算向量的内积"
     " :ref:`paddle.histogram <cn_api_tensor_histogram>` ", "计算输入张量的直方图"
     " :ref:`paddle.matmul <cn_api_tensor_matmul>` ", "计算两个Tensor的乘积，遵循完整的广播规则"
-    " :ref:`paddle.matrix_power <cn_api_tensor_matrix_power>` ", "计算一个（或一批）方阵的 n 次幂"
     " :ref:`paddle.mv <cn_api_tensor_mv>` ", "计算矩阵 x 和向量 vec 的乘积"
-    " :ref:`paddle.norm <cn_api_tensor_norm>` ", "计算给定Tensor的矩阵范数（Frobenius 范数）和向量范数（向量1范数、2范数、或者通常的p范数）"
     " :ref:`paddle.rank <cn_api_fluid_layers_rank>` ", "计算输入Tensor的维度（秩）"
     " :ref:`paddle.t <cn_api_paddle_tensor_t>` ", "对小于等于2维的Tensor进行数据转置"
     " :ref:`paddle.tril <cn_api_tensor_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为0"
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为0"
-    " :ref:`paddle.multi_dot<cn_api_tensor_multi_dot>` ", "计算多个矩阵相乘"
 
 .. _tensor_manipulation:
 
