@@ -14,6 +14,9 @@ sparse_attention
 
 其中，``Q``，``K``，``V`` 表示注意力模块的三个输入参数。这三个参数的维度是一样的。 ``d`` 代表这三个参数的最后一个维度的大小。
 
+.. warning::
+    目前该API只在CUDA11.3及以上版本中使用。
+
 参数：
 :::::::::
   - query (Tensor) - 输入的Tensor，代表注意力模块中的 ``query`` ，这是一个4维Tensor，形状为 :[batch_size, num_heads, seq_len, head_dim]，数据类型为float32或float64。
