@@ -1,12 +1,12 @@
 # 通过AutoEncoder实现时序数据异常检测
 
 **作者:** [Reatris](https://github.com/Reatris)    
-**日期:** 2021.06 <br>
+**日期:** 2021.10 <br>
 **摘要:** 本示例将会演示如何使用飞桨2.1完成时序异常检测任务。这是一个较为简单的示例，将会构建一个AutoEncoder网络完成任务。
 
 ## 一、环境配置
 
-本教程基于Paddle 2.1 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.1 。
+本教程基于Paddle 2.2.0-rc0 编写，如果您的环境不是本版本，请先参考官网[安装](https://www.paddlepaddle.org.cn/install/quick) Paddle 2.2.0-rc0 。
 
 
 ```python
@@ -16,7 +16,7 @@ import paddle.nn.functional as F
 print(paddle.__version__)
 ```
 
-    2.1.1
+    2.2.0-rc0
 
 
 
@@ -45,7 +45,7 @@ warnings.filterwarnings("ignore")
 
 ```python
 # 下载数据集
-!wget -O NAB.zip https://bj.bcebos.com/v1/ai-studio-online/f7743f2bb65848088bd74dea1608965e9d9596a028c4453f99c86b514d2d3de3?responseContentDisposition=attachment%3B%20filename%3DNAB.zip&authorization=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2020-10-15T12%3A41%3A41Z%2F-1%2F%2F7b1e4e42cf22cfa1460e3286ba2c6225d363ecadd9a9bf91570a23f1af81aec4
+!wget -O NAB.zip "https://bj.bcebos.com/v1/ai-studio-online/f7743f2bb65848088bd74dea1608965e9d9596a028c4453f99c86b514d2d3de3?responseContentDisposition=attachment%3B%20filename%3DNAB.zip&authorization=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2020-10-15T12%3A41%3A41Z%2F-1%2F%2F7b1e4e42cf22cfa1460e3286ba2c6225d363ecadd9a9bf91570a23f1af81aec4"
 ```
 
 
@@ -53,22 +53,6 @@ warnings.filterwarnings("ignore")
 # 解压数据集
 !unzip NAB.zip
 ```
-
-    Archive:  NAB.zip
-       creating: artificialNoAnomaly/
-      inflating: artificialNoAnomaly/art_daily_no_noise.csv  
-      inflating: artificialNoAnomaly/art_daily_perfect_square_wave.csv  
-      inflating: artificialNoAnomaly/art_daily_small_noise.csv  
-      inflating: artificialNoAnomaly/art_flatline.csv  
-      inflating: artificialNoAnomaly/art_noisy.csv  
-       creating: artificialWithAnomaly/
-      inflating: artificialWithAnomaly/art_daily_flatmiddle.csv  
-      inflating: artificialWithAnomaly/art_daily_jumpsdown.csv  
-      inflating: artificialWithAnomaly/art_daily_jumpsup.csv  
-      inflating: artificialWithAnomaly/art_daily_nojump.csv  
-      inflating: artificialWithAnomaly/art_increase_spike_density.csv  
-      inflating: artificialWithAnomaly/art_load_balancer_spikes.csv  
-
 
 
 ```python
@@ -115,9 +99,7 @@ plt.show()
 ```
 
 
-    
 ![png](output_9_0.png)
-    
 
 
 **带有异常的时序数据如下：**
@@ -133,9 +115,7 @@ plt.show()
 ```
 
 
-    
 ![png](output_11_0.png)
-    
 
 
 ### 2.3 数据预处理
@@ -292,16 +272,16 @@ def train():
 train()
 ```
 
+      0%|          | 0/200 [00:00<?, ?it/s]
+
     训练开始
 
 
-    100%|██████████| 200/200 [02:07<00:00,  1.56it/s]
+    100%|██████████| 200/200 [00:59<00:00,  3.34it/s]
 
 
 
-    
-![png](output_19_2.png)
-    
+![png](output_19_3.png)
 
 
 ## 五、模型预测：探测异常时序
@@ -352,12 +332,10 @@ print("阀值:", threshold)
 ```
 
 
-    
 ![png](output_21_0.png)
-    
 
 
-    阀值: 0.03135495
+    阀值: 0.02993372
 
 
 ## 六、AutoEncoder 对异常数据的重构
@@ -389,183 +367,123 @@ for batch_id, data in enumerate(data_reader()):
 ```
 
 
-    
 ![png](output_23_0.png)
-    
 
 
 
-    
 ![png](output_23_1.png)
-    
 
 
 
-    
 ![png](output_23_2.png)
-    
 
 
 
-    
 ![png](output_23_3.png)
-    
 
 
 
-    
 ![png](output_23_4.png)
-    
 
 
 
-    
 ![png](output_23_5.png)
-    
 
 
 
-    
 ![png](output_23_6.png)
-    
 
 
 
-    
 ![png](output_23_7.png)
-    
 
 
 
-    
 ![png](output_23_8.png)
-    
 
 
 
-    
 ![png](output_23_9.png)
-    
 
 
 
-    
 ![png](output_23_10.png)
-    
 
 
 
-    
 ![png](output_23_11.png)
-    
 
 
 
-    
 ![png](output_23_12.png)
-    
 
 
 
-    
 ![png](output_23_13.png)
-    
 
 
 
-    
 ![png](output_23_14.png)
-    
 
 
 
-    
 ![png](output_23_15.png)
-    
 
 
 
-    
 ![png](output_23_16.png)
-    
 
 
 
-    
 ![png](output_23_17.png)
-    
 
 
 
-    
 ![png](output_23_18.png)
-    
 
 
 
-    
 ![png](output_23_19.png)
-    
 
 
 
-    
 ![png](output_23_20.png)
-    
 
 
 
-    
 ![png](output_23_21.png)
-    
 
 
 
-    
 ![png](output_23_22.png)
-    
 
 
 
-    
 ![png](output_23_23.png)
-    
 
 
 
-    
 ![png](output_23_24.png)
-    
 
 
 
-    
 ![png](output_23_25.png)
-    
 
 
 
-    
 ![png](output_23_26.png)
-    
 
 
 
-    
 ![png](output_23_27.png)
-    
 
 
 
-    
 ![png](output_23_28.png)
-    
 
 
 
-    
 ![png](output_23_29.png)
-    
 
 
 * 可以看出对正常数据的重构效果十分不错
@@ -581,9 +499,7 @@ plt.show()
 ```
 
 
-    
 ![png](output_25_0.png)
-    
 
 
 
@@ -640,7 +556,5 @@ plt.show()
 ```
 
 
-    
 ![png](output_27_0.png)
-    
 

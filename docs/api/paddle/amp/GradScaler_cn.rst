@@ -485,7 +485,7 @@ state_dict()
 
 以字典的形式存储GradScaler对象的状态参数，如果该对象的enable为False，则返回一个空的字典。
 
-**返回：**dict，字典存储的参数包括：init_loss_scaling(float):初始loss scaling因子、incr_ratio(float):增大loss scaling时使用的乘数、decr_ratio(float):减小loss scaling时使用的小于1的乘数、incr_every_n_steps(int):连续n个steps的梯度都是有限值时，增加loss scaling、decr_every_n_nan_or_inf(int):累计出现n个steps的梯度为nan或者inf时，减小loss scaling。
+**返回：**dict，字典存储的参数包括：scale(tensor):loss scaling因子、incr_ratio(float):增大loss scaling时使用的乘数、decr_ratio(float):减小loss scaling时使用的小于1的乘数、incr_every_n_steps(int):连续n个steps的梯度都是有限值时，增加loss scaling、decr_every_n_nan_or_inf(int):累计出现n个steps的梯度为nan或者inf时，减小loss scaling、incr_count(int):连续未跳过参数更新的次数、decr_count(int):连续跳过参数更新的次数、use_dynamic_loss_scaling(bool):是否使用动态loss scaling策略。
 
 **代码示例：**
 
