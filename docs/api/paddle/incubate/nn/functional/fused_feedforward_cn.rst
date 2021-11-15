@@ -3,7 +3,7 @@
 fused_feedforward
 -------------------------------
 
-.. py:function:: paddle.incubate.nn.functional.fused_feedforward(x, linear1_weight, linear2_weight, linear1_bias=None, linear2_bias=None, ln1_scale=None, ln1_bias=None, ln2_scale=None, ln2_bias=None, dropout1_rate=0.5, dropout2_rate=0.5,activation="relu", ln1_epsilon=1e-5, ln2_epsilon=1e-5, pre_layer_norm=False, name=None):
+.. py:function:: paddle.incubate.nn.functional.fused_feedforward(x, linear1_weight, linear2_weight, linear1_bias=None, linear2_bias=None, ln1_scale=None, ln1_bias=None, ln2_scale=None, ln2_bias=None, dropout1_rate=0.5, dropout2_rate=0.5,activation="relu", ln1_epsilon=1e-5, ln2_epsilon=1e-5, pre_layer_norm=False, training=True, mode='upscale_in_train', name=None):
 
 这是一个融合算子，该算子是对transformer模型中feed forward层的多个算子进行融合，该算子只支持在GPU下运行，该算子与如下伪代码表达一样的功能：
 
@@ -33,6 +33,19 @@ fused_feedforward
     - **ln1_epsilon** (float, 可选) - 一个很小的浮点数，被第一个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
     - **ln2_epsilon** (float, 可选) - 一个很小的浮点数，被第二个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
     - **pre_layer_norm** (bool, 可选) - 在预处理阶段加上layer_norm，或者在后处理阶段加上layer_norm。默认值是False。
+    - **training** (bool): 标记是否为训练阶段。 默认: True。
+    - **mode** (str): 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认: 'upscale_in_train'。计算方法如下:
+
+        1. upscale_in_train, 在训练时增大输出结果。
+
+            - train: out = input * mask / ( 1.0 - p )
+            - inference: out = input
+
+        2. downscale_in_infer, 在预测时减小输出结果
+
+            - train: out = input * mask
+            - inference: out = input * (1.0 - p)
+
     - **name** (string, 可选) – fused_feedforward的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回
