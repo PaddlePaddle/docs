@@ -345,7 +345,7 @@ paddle.int64
  - Add `paddle.tensordot`, to support Tensor Contraction for high dimension.  ([#36454](https://github.com/PaddlePaddle/Paddle/pull/36454))
  - Add `paddle.bincount`, to support counting elements in a one-dimensional tensor.  ([#36709](https://github.com/PaddlePaddle/Paddle/pull/36709))
  - Add the `paddle.broadcast_tensors`, to support broadcast operations on a set of `Tensors`.  ([#33294](https://github.com/PaddlePaddle/Paddle/pull/33294), [#34874](https://github.com/PaddlePaddle/Paddle/pull/34874))
- - Add the `paddle.einsum`.  ([#33821](https://github.com/PaddlePaddle/Paddle/pull/34874))
+ - Add the `paddle.einsum`.  ([#33821](https://github.com/PaddlePaddle/Paddle/pull/33821))
  - Enhance the ``paddle.tensor.gradient`` interface to support second-order derivative operators for sigmoid_op. ([#32971](https://github.com/PaddlePaddle/Paddle/pull/32971))
  - Add the ``paddle.searchsorted``, to support the search of the index of a given value in an ordered ``Tensor``.  ([#35159](https://github.com/PaddlePaddle/Paddle/pull/35159))
  - Add the ``paddle.unique_consecutive``, to support removing duplicates of consecutively repeated elements in a ``Tensor`` to return consecutive non-repeated Tensor. ([#34334](https://github.com/PaddlePaddle/Paddle/pull/34334))

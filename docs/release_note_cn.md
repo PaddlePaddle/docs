@@ -344,7 +344,7 @@ paddle.int64
  - 新增`paddle.tensordot`，支持对高维张量做缩并(Tensor Contraction)运算。([#36454](https://github.com/PaddlePaddle/Paddle/pull/36454))
  - 新增`paddle.bincount`，支持对一维张量内元素进行计数。([#36709](https://github.com/PaddlePaddle/Paddle/pull/36709))
  - 新增 `paddle.broadcast_tensors` ，支持对一组 `Tensor` 进行广播操作。([#33294](https://github.com/PaddlePaddle/Paddle/pull/33294), [#34874](https://github.com/PaddlePaddle/Paddle/pull/34874))
- - 新增 `paddle.einsum` 。([#33821](https://github.com/PaddlePaddle/Paddle/pull/34874))
+ - 新增 `paddle.einsum` 。([#33821](https://github.com/PaddlePaddle/Paddle/pull/33821))
  - 增强``paddle.tensor.gradient``接口，支持sigmoid_op的二阶求导算子。([#32971](https://github.com/PaddlePaddle/Paddle/pull/32971))
  - 新增 ``paddle.searchsorted``，支持在有序``Tensor``中查找给定值的索引。([#35159](https://github.com/PaddlePaddle/Paddle/pull/35159))
  - 新增 ``paddle.unique_consecutive`` ，支持将 ``Tensor`` 中连续重复的元素进行去重，返回连续不重复的``Tensor``。([#34334](https://github.com/PaddlePaddle/Paddle/pull/34334))
