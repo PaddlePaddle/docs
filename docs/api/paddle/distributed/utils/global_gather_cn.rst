@@ -14,7 +14,7 @@ global_gather根据global_count将x的数据收集到n_expert * world_size个exp
 global_count和local_count的意义与其在global_scatter里正好相反，
 global_count[i]代表向第 (i // n_expert)张卡的第 (i % n_expert)个expert发送local_expert[i]个数据，
 local_count[i]代表从第 (i // n_expert)张卡接收global_count[i]个数据给本卡的 第(i % n_expert)个expert。
-发送的数据会按照每张卡的每个expert排列。
+发送的数据会按照每张卡的每个expert排列。图中的rank0代表第0张卡，rank1代表第1张卡。
 
 global_gather发送数据的流程如下：
 

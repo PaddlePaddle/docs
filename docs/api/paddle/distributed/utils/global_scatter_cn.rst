@@ -13,6 +13,7 @@ global_scatter根据local_count将x的数据分发到n_expert * world_size个exp
 1卡的global_count是[2, 0, ,](因为篇幅问题，这里只展示在0卡运算的数据)，在global_scatter算子里，
 local_count[i]代表向第 (i // n_expert)张卡的第 (i % n_expert)个expert发送local_expert[i]个数据，
 global_count[i]代表从第 (i // n_expert)张卡接收global_count[i]个数据给本卡的 第(i % n_expert)个expert。
+图中的rank0代表第0张卡，rank1代表第1张卡。
 global_scatter发送数据的流程如下：
 
 local_count[0]代表从x里取出2个batch的数据向第0张卡的第0个expert发送2个数据；
