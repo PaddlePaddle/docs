@@ -6,7 +6,7 @@
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
 
-* **GPU版本支持CUDA 10.1/10.2/11.0/11.2，且仅支持单卡**
+* **GPU版本支持CUDA 10.1/10.2/11.0/11.1/11.2，且仅支持单卡**
 
 * **Python 版本 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 
@@ -74,11 +74,13 @@
 
   * **CUDA 工具包11.0配合cuDNN v8.0.4**
 
+  * **CUDA 工具包11.1配合cuDNN v8.1.1**
+
   * **CUDA 工具包11.2配合cuDNN v8.1.1**
 
   * **GPU运算能力超过3.5的硬件设备**
 
-  * 注：目前官方发布的windows安装包仅包含 CUDA 10.1/10.2/11.0/11.2，如需使用其他cuda版本，请通过源码自行编译。您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+  * 注：目前官方发布的windows安装包仅包含 CUDA 10.1/10.2/11.0/11.1/11.2，如需使用其他cuda版本，请通过源码自行编译。您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
 
@@ -91,7 +93,7 @@
 
 
   ```
-  python -m pip install paddlepaddle==2.2.0rc0 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle==2.2.0 -i https://mirror.baidu.com/pypi/simple
   ```
 
 #### 2.2 <span id="gpu">GPU版的PaddlePaddle</span>
@@ -102,7 +104,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.2.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.2.0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
@@ -110,26 +112,32 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.2.0rc0 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle-gpu==2.2.0 -i https://mirror.baidu.com/pypi/simple
   ```
 
 2.2.3 CUDA11.0的PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.2.0rc0.post110 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.2.0.post110 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  ```
+
+2.2.4 CUDA11.1的PaddlePaddle
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.2.0.post111 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
-2.2.4 CUDA11.2的PaddlePaddle
+2.2.5 CUDA11.2的PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.2.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.2.0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
 注：
 
-* 如果你使用的是安培架构的GPU，推荐使用CUDA11.2。如果你使用的是非安培架构的GPU，推荐使用CUDA10.2，性能更优。
+* 如果你使用的是安培架构的GPU，推荐使用CUDA11以上。如果你使用的是非安培架构的GPU，推荐使用CUDA10.2，性能更优。
 
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
@@ -140,25 +148,25 @@
   * cpu、mkl版本noavx机器安装：
 
   ```
-  python -m pip download paddlepaddle==2.2.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.2.0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * cpu、openblas版本noavx机器安装：
 
   ```
-  python -m pip download paddlepaddle==2.2.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.2.0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index --no-deps
   ```
 
   * gpu版本cuda10.1 noavx机器安装：
 
   ```
-  python -m pip download paddlepaddle-gpu==2.2.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle-gpu==2.2.0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * gpu版本cuda10.2 noavx机器安装：
 
   ```
-  python -m pip download paddlepaddle-gpu==2.2.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle-gpu==2.2.0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。

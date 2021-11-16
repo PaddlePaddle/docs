@@ -26,3 +26,11 @@ for f in ${FILES_ARRAY[@]} ; do
     cat ${TMP_FILE} >> $TARGET_FILE
 done
 
+
+## 2 convert all ipynb files to markdown, and delete the ipynb files.
+# ../practices/**/*.ipynb
+for i in ${SCRIPT_DIR}/../../docs/practices/**/*.ipynb ; do
+    echo "convert $i to markdown and delete ipynb"
+    jupyter nbconvert --to markdown "$i"
+    rm "$i"
+done
