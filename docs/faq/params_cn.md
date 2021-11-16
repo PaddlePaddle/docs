@@ -80,3 +80,22 @@ sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), gr
 sdg.step()                                      # 更新参数前，会先对参数的梯度进行裁剪
 ```
 [了解更多梯度裁剪知识](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/01_paddle2.0_introduction/basic_concept/gradient_clip_cn.html)
+
+
+----------
+
+##### 问题：如何在同一个优化器中定义不同参数的优化策略，比如bias的参数weight_decay的值为0.0，非bias的参数weight_decay的值为0.01？
+
++ 答复：
+  1. [AdamW](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/optimizer/AdamW_cn.html#adamw)的参数`apply_decay_param_fun`可以用来选择哪些参数使用decay_weight策略。  
+  2. 在创建`Param`的时候，可以通过设置[ParamAttr](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ParamAttr_cn.html#paramattr)的属性来控制参数的属性。  
+
+----------
+
+##### 问题：paddle fluid如何自定义优化器，自定义更新模型参数的规则？
+ + 答复：
+   1. 要定义全新优化器，自定义优化器中参数的更新规则，可以通过继承fluid.Optimizer，重写_append_optimize_op方法实现。不同优化器实现原理各不相同，一般流程是先获取learning_rate，gradients参数，可训练参数，以及该优化器自身特别需要的参数，然后实现更新参数的代码，最后返回更新后的参数。  
+    在实现更新参数代码时，可以选择直接调用[paddle的API](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html)或者使用[自定义原生算子](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/index_cn.html)。在使用自定义原生算子时，要注意动态图与静态图调用方式有所区别：  
+    需要首先使用`framework.in_dygraph_mode()`判断是否为动态图模式，如果是动态图模式，则需要调用`paddle._C_ops`中相应的优化器算子；如果不是动态图模式，则需要调用`block.append_op` 来添加优化器算子。  
+    代码样例可参考[paddle源码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/optimizer.py)中AdamOptimizer等优化器的实现。  
+    2. 使用现有的常用优化器，可以在创建`Param`的时候，可以通过设置[ParamAttr](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ParamAttr_cn.html#paramattr)的属性来控制参数的属性，可以通过设置`regularizer`，`learning_rate`等参数简单设置参数的更新规则。  
