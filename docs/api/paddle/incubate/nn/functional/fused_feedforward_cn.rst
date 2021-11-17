@@ -12,7 +12,8 @@ fused_feedforward
     residual = src;
     if pre_layer_norm:
         src = layer_norm(src)
-    src = linear(dropout(activation(dropout(linear(src)))))
+    src = linear(dropout(activation(linear(src))))
+    src = residual + dropout(src)
     if not pre_layer_norm:
         src = layer_norm(src)
 
