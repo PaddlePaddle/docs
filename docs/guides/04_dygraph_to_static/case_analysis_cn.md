@@ -1,7 +1,7 @@
 # 案例解析
 
 
-在[【基础接口用法】](./basic_usage_cn.html)章节我们介绍了动转静的用法和机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
+在[【使用样例】](./basic_usage_cn.html)章节我们介绍了动转静的用法和机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
 
 ## 一、 @to_static 放在哪里？
 
@@ -77,7 +77,7 @@
 
 
 
-> 注：InputSpec 接口的高阶用法，请参看 [【InputSpec 功能介绍】](./input_spec_cn.html#inputspec)
+> 注：InputSpec 接口的高阶用法，请参看 [【InputSpec 功能介绍】](./basic_usage_cn.html#inputspec)
 
 ## 三、内嵌 Numpy 操作？
 
@@ -278,7 +278,20 @@ jit.save(mode, model_path)
 `@to_static` 与 `jit.save` 接口搭配也支持导出非forward 的其他函数，具体使用方式如下：
 
 ```python
-# SimpleNet 类的定义见 1.1
+class SimpleNet(paddle.nn.Layer):
+    def __init__(self):
+        super(SimpleNet, self).__init__()
+        self.linear = paddle.nn.Linear(10, 3)
+
+    def forward(self, x, y):
+        out = self.linear(x)
+        out = out + y
+        return out
+
+    def another_func(self, x):
+        out = self.linear(x)
+        out = out * 2
+        return out
 
 net = SimpleNet()
 # train(net)  # 模型训练
@@ -309,7 +322,7 @@ another_func.pdiparams.info   // 存放额外的其他信息
 ```
 
 
-> 关于动转静 @to_static 的用法，可以参考 [基本用法](./basic_usage_cn.html)；搭配 `paddle.jit.save` 接口导出预测模型的用法案例，可以参考 [案例解析](./case_analysis_cn.html) 。
+> 关于动转静 @to_static 的用法，以及搭配 `paddle.jit.save` 接口导出预测模型的用法案例，可以参考 [使用样例](./basic_usage_cn.html) 。
 
 ## 八、再谈控制流
 

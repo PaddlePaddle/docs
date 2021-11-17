@@ -26,9 +26,11 @@
             return out
 
     net = SimpleNet()
+    net.eval()
     x = paddle.rand([2, 10])
     y = paddle.rand([2, 3])
     out = net(x, y)
+    paddle.jit.save(net, './net')
     ```
 
 - 方式二：调用 ``paddle.jit.to_static()`` 函数
@@ -48,11 +50,13 @@
             return out
 
     net = SimpleNet()
+    net.eval()
     # 方式二：(推荐)仅做预测模型导出时，推荐此种用法
     net = paddle.jit.to_static(net)  # 动静转换
     x = paddle.rand([2, 10])
     y = paddle.rand([2, 3])
     out = net(x, y)
+    paddle.jit.save(net, './net')
     ```
 
 动转静 @to_static 除了支持预测模型导出，还兼容转为静态图子图训练，仅需要在 ``forward`` 函数上添加此装饰器即可，不需要修改任何其他的代码。

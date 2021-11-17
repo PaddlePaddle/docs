@@ -1,5 +1,6 @@
 # 转换原理
 
+在框架内部，动转静模块在转换上主要包括对InputSpec的处理，对函数调用的递归转写，对IfElse、For、While控制语句的转写，以及Layer的Parameters和Buffers变量的转换。下面将从这四个方面介绍动转静模块的转换原理。
 
 ## 一、 输入层 InputSpec
 
@@ -54,7 +55,7 @@ net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
 + 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度
 + 可以指定 Placeholder 的 ``name`` ，方面预测时根据 ``name`` 输入数据
 
-> 注：InputSpec 接口的高阶用法，请参看 [【InputSpec 功能介绍】](./export_model_cn.html#inputspec)
+> 注：InputSpec 接口的高阶用法，请参看 [【InputSpec 功能介绍】](./basic_usage_cn.html#inputspec)
 
 
 ## 二、函数转写
