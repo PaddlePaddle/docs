@@ -43,8 +43,8 @@ send_recv
 
 .. code-block:: python
 
-    import paddle
     import numpy as np
+    import paddle
     x = paddle.to_tensor(np.array([[0, 2, 3], [1, 4, 5], [2, 6, 7]]), dtype="float32")
     indexes = paddle.to_tensor(np.array([[0, 1], [1, 2], [2, 1], [0, 0]]), dtype="int32")
     src_index = indexes[:, 0]
