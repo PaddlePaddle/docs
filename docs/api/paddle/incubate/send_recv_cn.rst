@@ -5,7 +5,7 @@ send_recv
 
 .. py:function:: paddle.incubate.send_recv(x, src_index, dst_index, pool_type="sum", name=None)
 
-此API主要应用于图领域，目的是为了减少在消息传递过程中带来的中间变量显存或内存的损耗。其中，``x``作为输入Tensor，首先利用``src_index``作为索引来gather出在``x``中相应位置的条目，随后再将gather出的结果利用``dst_index``来scatter到对应的输出结果中，其中``pool_type``表示scatter的不同处理方式，包括sum、mean、max、min共计4种处理模式。
+此API主要应用于图学习领域，目的是为了减少在消息传递过程中带来的中间变量显存或内存的损耗。其中，``x``作为输入Tensor，首先利用``src_index``作为索引来gather出在``x``中相应位置的数据，随后再将gather出的结果利用``dst_index``来scatter到对应的输出结果中，其中``pool_type``表示scatter的不同处理方式，包括sum、mean、max、min共计4种处理模式。
 
 .. code-block:: text
 
@@ -45,6 +45,7 @@ send_recv
 
     import numpy as np
     import paddle
+
     x = paddle.to_tensor(np.array([[0, 2, 3], [1, 4, 5], [2, 6, 7]]), dtype="float32")
     indexes = paddle.to_tensor(np.array([[0, 1], [1, 2], [2, 1], [0, 0]]), dtype="int32")
     src_index = indexes[:, 0]
