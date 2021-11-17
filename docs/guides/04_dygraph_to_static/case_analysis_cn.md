@@ -1,4 +1,4 @@
-# 常见案例解析
+# 案例解析
 
 
 在[【基础接口用法】](./basic_usage_cn.html)章节我们介绍了动转静的用法和机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
@@ -273,7 +273,45 @@ jit.save(mode, model_path)
 
 此 flag 继承自 ``nn.Layer`` ，因此可通过 ``model.train()`` 和 ``model.eval()`` 来全局切换所有 sublayers 的分支状态。
 
-## 七、再谈控制流
+## 七、非forward函数导出
+
+`@to_static` 与 `jit.save` 接口搭配也支持导出非forward 的其他函数，具体使用方式如下：
+
+```python
+# SimpleNet 类的定义见 1.1
+
+net = SimpleNet()
+# train(net)  # 模型训练
+
+# step 1: 切换到 eval() 模式 （同上）
+net.eval()
+
+# step 2: 定义 InputSpec 信息 （同上）
+x_spec = InputSpec(shape=[None, 3], dtype='float32', name='x')
+
+# step 3: @to_static 装饰
+static_func = to_static(net.another_func, input_spec=[x_spec])
+
+# step 4: 调用 jit.save 接口
+net = paddle.jit.save(static_func, path='another_func')
+```
+
+使用上的区别主要在于：
+
++ **`@to_static` 装饰**：导出其他函数时需要显式地用 `@to_static` 装饰，以告知动静转换模块将其识别、并转为静态图 Program；
++ **`save`接口参数**：调用`jit.save`接口时，需将上述被`@to_static` 装饰后的函数作为**参数**；
+
+执行上述代码样例后，在当前目录下会生成三个文件：
+```
+another_func.pdiparams        // 存放模型中所有的权重数据
+another_func.pdimodel         // 存放模型的网络结构
+another_func.pdiparams.info   // 存放额外的其他信息
+```
+
+
+> 关于动转静 @to_static 的用法，可以参考 [基本用法](./basic_usage_cn.html)；搭配 `paddle.jit.save` 接口导出预测模型的用法案例，可以参考 [案例解析](./case_analysis_cn.html) 。
+
+## 八、再谈控制流
 
 前面[【控制流转写】(./basic_usage_cn.html#sikongzhiliuzhuanxie)]提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
 
@@ -293,7 +331,7 @@ out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (o
 ```
 
 
-### 7.1 list 与 LoDTensorArray
+### 8.1 list 与 LoDTensorArray
 
 当控制流中，出现了 ``list.append`` 类似语法时，情况会有一点点特殊。
 
@@ -359,7 +397,7 @@ def forward(x):
 > 因为框架底层的 ``LoDTensorArray = std::vector< LoDTensor >`` ，不支持两层以上 ``vector`` 嵌套
 
 
-### 7.2 x.shape 与 paddle.shape(x)
+### 8.2 x.shape 与 paddle.shape(x)
 
 模型中比较常见的控制流转写大多数与 ``batch_size`` 或者 ``x.shape`` 相关。
 
@@ -381,7 +419,7 @@ def forward(self, x)：
 
 > 动态 shape 推荐使用 ``paddle.shape(x)[i]`` ，动转静也对 ``x.shape[i]`` 做了很多兼容处理。前者写法出错率可能更低些。
 
-## 八、jit.save 与默认参数
+## 九、jit.save 与默认参数
 
 
 最后一步是预测模型的导出，Paddle 提供了 ``paddle.jit.save`` 接口，搭配 ``@to_static`` 可以导出预测模型。
