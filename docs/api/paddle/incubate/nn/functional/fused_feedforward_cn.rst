@@ -14,7 +14,7 @@ fused_feedforward
         src = layer_norm(src)
     src = linear(dropout(activation(dropout(linear(src)))))
     if not pre_layer_norm:
-        src = layer_norm(out)
+        src = layer_norm(src)
 
 参数
 :::::::::
