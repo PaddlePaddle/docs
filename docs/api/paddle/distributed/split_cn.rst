@@ -31,9 +31,10 @@ split
         :align: center
 
 情形2：行并行Linear
-    Linear操作的参数是个NxM的矩阵，行数为N，列数为M。行并行Linear情形下，参数切分到num_partitions个设备，每个设备上的参数是N/num_partitions行、M列的矩阵。
+    Linear操作是将输入变量X(N*N)与权重矩阵W(N*M)进行矩阵相乘。行并行Linear情形下，参数切分到num_partitions个设备，每个设备上的参数是N/num_partitions行、M列的矩阵。
 
-    单卡Linear情况如下图所示，输入变量用X表示，权重矩阵用W表示，输出变量用O表示，单卡Linear就是一个简单的矩阵乘操作，O = X * W
+    单卡Linear情况如下图所示，输入变量用X表示，权重矩阵用W表示，输出变量用O表示，单卡Linear就是一个简单的矩阵乘操作，O = X * W。
+
 
     .. image:: ./img/split_single.png
         :width: 800
@@ -50,7 +51,7 @@ split
         :align: center
 
 情形3：列并行Linear
-    Linear操作的参数是个NxM的矩阵，行数为N，列数为M。列并行Linear情形下，参数切分到num_partitions个设备，每个设备上的参数是N行、M/num_partitions列的矩阵。
+    Linear操作是将输入变量X(N*N)与权重矩阵W(N*M)进行矩阵相乘。列并行Linear情形下，参数切分到num_partitions个设备，每个设备上的参数是N行、M/num_partitions列的矩阵。
 
     单卡并行Linear可以看上面对应的图，列并行Linear情况如下图所示。列并行是按照权重矩阵W的列切分权重矩阵为[W_col1, W_col2]，
     X分别与切分出来的矩阵相乘，最后通过AllGather拼接每张卡的输出得到最终输出。
