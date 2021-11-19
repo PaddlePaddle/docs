@@ -26,11 +26,13 @@
 
 方案如下图所示：
 
-.. image:: images/dygraph_to_static.png
+.. figure:: images/dygraph_to_static.png
     :width: 800px
     :align: center
 
+
 .. centered:: 图1 飞桨框架动静统一方案示意图
+
 
 .. note::
     飞桨框架 2.0 及以上版本默认的编程模式是动态图模式，包括使用高层 API 编程和基础的 API 编程。如果想切换到静态图模式编程，可以在程序的开始执行 `enable_static()` 函数。如果程序已经使用动态图的模式编写了，想转成静态图模式训练或者保存模型用于部署，可以使用装饰器 @to_static。
