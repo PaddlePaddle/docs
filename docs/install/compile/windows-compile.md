@@ -14,9 +14,9 @@
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
     * **CUDA 工具包 10.1/10.2 配合 cuDNN 7 (cuDNN版本>=7.6.5）**
-    * **CUDA 工具包 11.0 配合 cuDNN v8.0.4**
+    * **CUDA 工具包 11.0 配合 cuDNN v8.0.2**
     * **CUDA 工具包 11.1 配合 cuDNN v8.1.1**
-    * **CUDA 工具包 11.2 配合 cuDNN v8.1.1**
+    * **CUDA 工具包 11.2 配合 cuDNN v8.2.1**
     * **GPU运算能力超过3.5的硬件设备**
 
 ## 安装步骤
