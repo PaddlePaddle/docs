@@ -15,7 +15,7 @@ shard_index
 
 ::
 
-    v = v - shard_id * shard_size if shard_id * shard_size <= `v` < (shard_id+1) * shard_size else ignore_value
+    v = v - shard_id * shard_size if shard_id * shard_size <= v < (shard_id+1) * shard_size else ignore_value
 
 参数：
     - input (Tensor）-  输入tensor，最后一维的维度值为1，数据类型为int64或int32。
