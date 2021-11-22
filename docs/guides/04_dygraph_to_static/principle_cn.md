@@ -55,7 +55,7 @@ net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
 + 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度
 + 可以指定 Placeholder 的 ``name`` ，方面预测时根据 ``name`` 输入数据
 
-> 注：InputSpec 接口的高阶用法，请参看 [【InputSpec 功能介绍】](./basic_usage_cn.html#inputspec)
+> 注：InputSpec 接口的高阶用法，请参看 [【使用InputSpec指定模型输入Tensor信息】](./basic_usage_cn.html#inputspec)
 
 
 ## 二、函数转写
@@ -129,15 +129,15 @@ def add_two(x, y):
 
 ## 三、控制流转写
 
-控制流 ``if/for/while`` 的转写和处理是动转静中比较重要的模块，也是动态图模型和静态图模型实现上差别最大的一部分。
+控制流 ``if/for/while`` 的转写和处理是动转静中比较重要的模块，也是动态图模型和静态图模型实现上差别最大的一部分。如下图所示，对于控制流的转写分为两个阶段：转写期和执行期。在转写期，动转静模块将控制流语句转写为统一的形式；在执行期，根据控制流是否依赖 ``Tensor`` 来决定是否将控制流转写为相应的 ``cond_op/while_op`` 。
+
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/convert_cond.png" style="zoom:80%" />
 
 **转写上有两个基本原则：**
 
 + **并非**所有动态图中的 ``if/for/while`` 都会转写为 ``cond_op/while_op``
 + **只有**控制流的判断条件 **依赖了``Tensor``**（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
 
-
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/convert_cond.png" style="zoom:80%" />
 
 
 

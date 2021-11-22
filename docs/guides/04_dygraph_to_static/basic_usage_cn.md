@@ -1,7 +1,7 @@
 # 使用样例
 
 
-## 一、 @to_static 概览
+## 一、 使用 @to_static 进行动静转换
 
 动静转换（@to_static）通过解析 Python 代码（抽象语法树，下简称：AST） 实现一行代码即可转为静态图功能，即只需在待转化的函数前添加一个装饰器 ``@paddle.jit.to_static`` 。
 
@@ -18,8 +18,7 @@
             super(SimpleNet, self).__init__()
             self.linear = paddle.nn.Linear(10, 3)
 
-        # 方式一：装饰 forward 函数（支持训练）
-        @to_static
+        @to_static # 动静转换
         def forward(self, x, y):
             out = self.linear(x)
             out = out + y
@@ -33,7 +32,7 @@
     paddle.jit.save(net, './net')
     ```
 
-- 方式二：调用 ``paddle.jit.to_static()`` 函数
+- 方式二：调用 ``paddle.jit.to_static()`` 函数，仅做预测模型导出时推荐此种用法。
 
     ```python
     import paddle
@@ -51,7 +50,6 @@
 
     net = SimpleNet()
     net.eval()
-    # 方式二：(推荐)仅做预测模型导出时，推荐此种用法
     net = paddle.jit.to_static(net)  # 动静转换
     x = paddle.rand([2, 10])
     y = paddle.rand([2, 3])
@@ -59,9 +57,7 @@
     paddle.jit.save(net, './net')
     ```
 
-动转静 @to_static 除了支持预测模型导出，还兼容转为静态图子图训练，仅需要在 ``forward`` 函数上添加此装饰器即可，不需要修改任何其他的代码。
-
-基本执行流程如下：
+动转静 @to_static 除了支持预测模型导出，还兼容转为静态图子图训练，仅需要在 ``forward`` 函数上添加此装饰器即可，不需要修改任何其他的代码。基本执行流程如下：
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_train.png" style="zoom:50%" />
 
@@ -69,7 +65,7 @@
 
 ## 二、动转静模型导出
 
-动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。
+动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。下图展示了**动态图模型训练——>动转静模型导出——>静态预测部署**的流程。
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_export.png" style="zoom:50%" />
 
@@ -134,7 +130,7 @@ simple_net.pdiparams.info   // 存放额外的其他信息
 + **调用 `save` 接口**：调用 `paddle.jit.save`接口，若传入的参数是类实例，则默认对 `forward` 函数进行 `@to_static` 装饰，并导出其对应的模型文件和参数文件。
 
 
-### 2.2 InputSpec 功能介绍
+### 2.2 使用 InputSpec 指定模型输入 Tensor 信息
 
 动静转换在生成静态图 Program 时，依赖输入 Tensor 的 shape、dtype 和 name 信息。因此，Paddle 提供了 InputSpec 接口，用于指定输入 Tensor 的描述信息，并支持动态 shape 特性。
 
@@ -354,7 +350,7 @@ paddle.save(layer_state_dict, "net.pdiparams") # 导出模型
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/dygraph_export.png" style="zoom:50%" />
 
-即意味着，动态图预测部署时，除了已经序列化的参数文件，还须提供**最初的模型组网代码**。
+上图展示了动态图下**模型训练——>参数导出——>预测部署**的流程。如图中所示，动态图预测部署时，除了已经序列化的参数文件，还须提供**最初的模型组网代码**。
 
 在动态图下，模型代码是 **逐行被解释执行** 的。如：
 
@@ -426,8 +422,7 @@ paddle.save(main_program.state_dict(), para_path) # 导出为 .pdiparams
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/static_export.png" style="zoom:50%" />
 
-
-即意味着， ``Program`` 中包含了模型所有的计算描述（ ``OpDesc`` ），不存在计算逻辑有遗漏的地方。
+上图展示了静态图下**模型训练——>模型导出——>预测部署**的流程。如图所示，静态图模型导出时将``Program``和模型参数都导出为磁盘文件，``Program`` 中包含了模型所有的计算描述（ ``OpDesc`` ），不存在计算逻辑有遗漏的地方。
 
 
 **静态图编程，总体上包含两个部分：**

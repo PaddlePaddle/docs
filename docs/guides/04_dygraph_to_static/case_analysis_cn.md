@@ -77,7 +77,7 @@
 
 
 
-> 注：InputSpec 接口的高阶用法，请参看 [【InputSpec 功能介绍】](./basic_usage_cn.html#inputspec)
+> 注：InputSpec 接口的高阶用法，请参看 [【使用InputSpec指定模型输入Tensor信息】](./basic_usage_cn.html#inputspec)
 
 ## 三、内嵌 Numpy 操作？
 
