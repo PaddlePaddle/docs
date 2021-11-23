@@ -1,8 +1,8 @@
-.. _cn_api_tensor_zeropad2d:
+.. _cn_api_nn_functional_zeropad2d:
 
 zeropad2d
 -------------------------------
-.. py:function:: paddle.zeropad2d(x, padding, data_format="NCHW", name=None)
+.. py:function:: paddle.nn.functional.zeropad2d(x, padding, data_format="NCHW", name=None)
 
 该OP返回一个按照 ``padding`` 属性对 ``x`` 进行零填充的Tensor，数据类型与 ``x`` 相同。
 
@@ -27,7 +27,7 @@ zeropad2d
 
     x_shape = (1, 1, 2, 3)
     x = paddle.arange(np.prod(x_shape), dtype="float32").reshape(x_shape) + 1
-    y = paddle.zeropad2d(x, [1, 2, 1, 1])
+    y = paddle.nn.functional.zeropad2d(x, [1, 2, 1, 1])
 
     # [[[[0. 0. 0. 0. 0. 0.]
     #    [0. 1. 2. 3. 0. 0.]
