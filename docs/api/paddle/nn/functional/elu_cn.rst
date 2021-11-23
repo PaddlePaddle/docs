@@ -11,7 +11,13 @@ elu激活层（ELU Activation Operator）
 
 .. math::
 
-    elu(x) = max(0, x) + min(0, \alpha * (e^{x} − 1))
+    elu(x)=
+        \left\{
+            \begin{array}{lcl}
+            x,& &\text{if } \ x > 0 \\
+            alpha * (e^{x} - 1),& &\text{if } \ x <= 0
+            \end{array}
+        \right.
 
 其中，:math:`x` 为输入的 Tensor
 
