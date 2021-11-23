@@ -2,7 +2,7 @@
 
 在框架内部，动转静模块在转换上主要包括对InputSpec的处理，对函数调用的递归转写，对IfElse、For、While控制语句的转写，以及Layer的Parameters和Buffers变量的转换。下面将从这四个方面介绍动转静模块的转换原理。
 
-## 一、 输入层 InputSpec
+## 一、 设置 Placeholder 信息
 
 
 静态图下，模型起始的 Placeholder 信息是通过 ``paddle.static.data`` 来指定的，并以此作为编译期的 ``InferShape`` 推导起点。
@@ -32,7 +32,6 @@ class SimpleNet(paddle.nn.Layer):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
-    # 方式一：在函数定义处装饰
     @to_static
     def forward(self, x, y):
         out = self.linear(x)
@@ -41,7 +40,6 @@ class SimpleNet(paddle.nn.Layer):
 
 net = SimpleNet()
 
-# 方式二：(推荐)仅做预测模型导出时，推荐此种用法
 x_spec = InputSpec(shape=[None, 10], name='x')
 y_spec = InputSpec(shape=[3], name='y')
 
