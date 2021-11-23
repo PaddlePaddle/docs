@@ -12,9 +12,10 @@ fused_feedforward
     residual = src;
     if pre_layer_norm:
         src = layer_norm(src)
-    src = linear(dropout(activation(dropout(linear(src)))))
+    src = linear(dropout(activation(linear(src))))
+    src = residual + dropout(src)
     if not pre_layer_norm:
-        src = layer_norm(out)
+        src = layer_norm(src)
 
 参数
 :::::::::
@@ -24,12 +25,12 @@ fused_feedforward
     - **linear1_bias** (Tensor, 可选) - 第一个linear算子的偏置数据，数据类型与 ``x`` 一样，形状是 ``[dim_feedforward]`` 。默认值为None。
     - **linear2_bias** (Tensor, 可选) - 第二个linear算子的偏置数据，数据类型与 ``x`` 一样，形状是 ``[d_model]`` 。默认值为None。
     - **ln1_scale** (Tensor, 可选) - 第一个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和 ``x`` 一样。默认值为None。
-    - **ln1_bias** (Tensor, 可选) - 第一个layer_norm算子的偏置数据，数据类型和 ``ln1_scale`` 一样， 形状是 ``[d_model]`` 。默认值为None。
+    - **ln1_bias** (Tensor, 可选) - 第一个layer_norm算子的偏置数据，数据类型和 ``ln1_scale`` 一样， 形状是 ``x.shape[-1]`` 。默认值为None。
     - **ln2_scale** (Tensor, 可选) - 第二个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和  ``x`` 一样。默认值为None。
-    - **ln2_bias** (Tensor, 可选) - 第二个layer_norm算子的偏置数据，数据类型和 ``ln2_scale`` 一样， 形状是 ``[d_model]`` 。默认值为None。
+    - **ln2_bias** (Tensor, 可选) - 第二个layer_norm算子的偏置数据，数据类型和 ``ln2_scale`` 一样， 形状是 ``x.shape[-1]`` 。默认值为None。
     - **dropout1_rate** (float, 可选) - 第一个dropout算子置零的概率。默认是0.5。
     - **dropout2_rate** (float, 可选) - 第二个dropout算子置零的概率。默认是0.5。
-    - **activation** (string, 可选) - 激活函数。默认值是relu。
+    - **activation** (string, 可选) - 激活函数，当前只支持relu和gelu。默认值是relu。
     - **ln1_epsilon** (float, 可选) - 一个很小的浮点数，被第一个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
     - **ln2_epsilon** (float, 可选) - 一个很小的浮点数，被第二个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
     - **pre_layer_norm** (bool, 可选) - 在预处理阶段加上layer_norm，或者在后处理阶段加上layer_norm。默认值是False。
