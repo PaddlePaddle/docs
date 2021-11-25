@@ -290,7 +290,6 @@ pip install -U（whl包的名字）
 pip3 install -U（whl包的名字）
 ```
 
-> 如果您的电脑上安装有多个python环境以及pip请参见[FAQ](/documentation/docs/zh/install/Tables.html#MACPRO)
 
 #### 恭喜，至此您已完成PaddlePaddle的编译安装
 

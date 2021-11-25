@@ -213,7 +213,7 @@ Install using Python official website
 - g. (Optional) If you are compiling PaddlePaddle on MacOS 10.14, make sure you have the [appropriate version](http://developer.apple.com/download) of Xcode installed.
 
 
-#### 4. Before **compilation**, please confirm that the relevant dependencies mentioned in the [compilation dependency table](h/documentation/docs/en/install/Tables_en.html/#third_party) are installed in your environment, otherwise we strongly recommend using `Homebrew` to install related dependencies.
+#### 4. Before **compilation**, please confirm that the relevant dependencies mentioned in the [compilation dependency table](/documentation/docs/en/install/Tables_en.html/#third_party) are installed in your environment, otherwise we strongly recommend using `Homebrew` to install related dependencies.
 
 > Under MacOS, if you have not modified or installed the dependencies mentioned in the "Compile Dependency Table", you only need to use `pip` to install `numpy`, `protobuf`, `wheel`, use `homebrew` to install `wget`, `swig`,then install `cmake`.
 
@@ -293,7 +293,6 @@ or
 pip3 install -U (whl package name)
 ```
 
-> If you have multiple python environments and pips installed on your computer, please see the [FAQ](/documentation/docs/en/install/Tables_en.html/#MACPRO).
 
 #### Congratulations, now you have completed the process of compiling PaddlePaddle using this machine.
 
