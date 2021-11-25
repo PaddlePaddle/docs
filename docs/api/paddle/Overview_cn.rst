@@ -38,6 +38,7 @@ tensor数学操作
     " :ref:`paddle.addmm <cn_api_tensor_addmm>` ", "计算输入Tensor x和y的乘积，将结果乘以标量alpha，再加上input与beta的乘积，得到输出"
     " :ref:`paddle.all <cn_api_tensor_all>` ", "对指定维度上的Tensor元素进行逻辑与运算"
     " :ref:`paddle.allclose <cn_api_tensor_allclose>` ", "逐个检查输入Tensor x和y的所有元素是否均满足 ∣x−y∣≤atol+rtol×∣y∣"
+    " :ref:`paddle.isclose <cn_api_tensor_isclose>` ", "逐个检查输入Tensor x和y的所有元素是否满足 ∣x−y∣≤atol+rtol×∣y∣"
     " :ref:`paddle.any <cn_api_tensor_any>` ", "对指定维度上的Tensor元素进行逻辑或运算"
     " :ref:`paddle.asin <cn_api_fluid_layers_asin>` ", "arcsine函数"
     " :ref:`paddle.atan <cn_api_fluid_layers_atan>` ", "arctangent函数"
