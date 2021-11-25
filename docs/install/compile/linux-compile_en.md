@@ -437,7 +437,7 @@ uname -m && cat /etc/*release
 workon paddle-venv
 ```
 
-#### 6. Before **executing the compilation**, please confirm that the related dependencies mentioned in the [compile dependency table](../Tables.html/#third_party) are installed in the virtual environment:
+#### 6. Before **executing the compilation**, please confirm that the related dependencies mentioned in the [compile dependency table](/documentation/docs/en/install/Tables_en.html/#third_party) are installed in the virtual environment:
 
 * Here is the installation method for `patchELF`. Other dependencies can be installed using `yum install` or `apt install`, `pip install`/`pip3 install` followed by the name and version:
 

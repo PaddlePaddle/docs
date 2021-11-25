@@ -451,7 +451,7 @@ uname -m && cat /etc/*release
 workon paddle-venv
 ```
 
-#### 6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖：
+#### 6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](/documentation/docs/zh/install/Tables.html#third_party)中提到的相关依赖：
 
 * 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install`/`pip3 install` 后跟依赖名称和版本安装:
 
