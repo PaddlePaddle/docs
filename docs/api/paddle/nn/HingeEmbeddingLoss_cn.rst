@@ -45,7 +45,6 @@ HingeEmbeddingLoss
 .. code-block:: python
 
         import paddle
-        import numpy as np
         import paddle.nn as nn
 
         input = paddle.to_tensor([[1, -2, 3], [0, -1, 2], [1, 0, 1]], dtype=paddle.float32)
