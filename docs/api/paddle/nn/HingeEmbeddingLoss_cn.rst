@@ -17,7 +17,7 @@ HingeEmbeddingLoss
         \max \{0, \Delta - x_n\}, & \text{if}\; y_n = -1,
     \end{cases}
 
-其中，:math:`x` 是 input，:math:`y` 是 label。总的 loss 计算如下：
+其中，:math:`x` 是 input，:math:`y` 是 label，:math:`\Delta` 是 delta。总的 loss 计算如下：
 
 .. math::
     \ell(x, y) = \begin{cases}
@@ -63,3 +63,8 @@ HingeEmbeddingLoss
         loss = hinge_embedding_loss(input, label)
         print(loss)
         # Tensor([0.22222222])
+
+        hinge_embedding_loss = nn.HingeEmbeddingLoss(delta=1.0, reduction='sum')
+        loss = hinge_embedding_loss(input, label)
+        print(loss)
+        # Tensor([2.])
