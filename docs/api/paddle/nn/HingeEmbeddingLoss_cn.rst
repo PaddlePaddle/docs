@@ -35,8 +35,8 @@ HingeEmbeddingLoss
 
 输入
 :::::::::
-    - **input** (Tensor): - 输入 Tensor，维度是 [N, *], 其中 N 是 batch size， `*` 是任意数量的额外维度。数据类型为：float32、float64、int32、int64。
-    - **label** (Tensor): - 标签，维度是 [N, *], 与 ``input`` 相同，Tensor 中的值应该只包含 1 和 -1。数据类型为：float32、float64、int32、int64。
+    - **input** (Tensor): - 输入 Tensor，维度是 [N, *], 其中 N 是 batch size， `*` 是任意数量的额外维度。数据类型为：float32、float64。
+    - **label** (Tensor): - 标签，维度是 [N, *], 与 ``input`` 相同，Tensor 中的值应该只包含 1 和 -1。数据类型为：float32、float64。
 
 返回
 :::::::::
@@ -44,8 +44,8 @@ HingeEmbeddingLoss
 
 形状
 :::::::::
-    - **input** (Tensor): - 输入的 Tensor，维度是 [N, *], 其中 N 是 batch size， `*` 是任意数量的额外维度。数据类型为：float32、float64、int32、int64。
-    - **label** (Tensor): - 标签，维度是 [N, *], 与 ``input`` 相同，应该只包含 1 和 -1。数据类型为：float32、float64、int32、int64。
+    - **input** (Tensor): - 输入的 Tensor，维度是 [N, *], 其中 N 是 batch size， `*` 是任意数量的额外维度。数据类型为：float32、float64。
+    - **label** (Tensor): - 标签，维度是 [N, *], 与 ``input`` 相同，应该只包含 1 和 -1。数据类型为：float32、float64。
     - **output** (Tensor): - 输入 ``input`` 和标签 ``label`` 间的 `hinge embedding loss` 损失。如果 `reduction` 是 ``'none'``, 则输出 Loss 的维度为 [N, *], 与输入 ``input`` 相同。如果 `reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出 Loss 的维度为 [1]。
 
 代码示例
