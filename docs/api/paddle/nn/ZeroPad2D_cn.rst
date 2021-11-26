@@ -8,7 +8,9 @@ ZeroPad2D
 
 按照 padding 属性对输入进行零填充。
 
-参数：
+参数
+:::::::::
+
   - **padding** (Tensor | List[int] | int]) - 填充大小。如果是int，则在所有待填充边界使用相同的填充，
     否则填充的格式为[pad_left, pad_right, pad_top, pad_bottom]。
   - **data_format** (str)  - 指定输入的format，可为 ``'NCHW'`` 或者 ``'NHWC'``，默认值为 ``'NCHW'``。
@@ -16,7 +18,8 @@ ZeroPad2D
 
 返回：无
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 
