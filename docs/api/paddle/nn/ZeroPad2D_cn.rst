@@ -18,6 +18,12 @@ ZeroPad2D
 
 返回：无
 
+形状
+:::::::::
+
+  - x(Tensor): ZeroPadD层的输入，要求形状为4-D，dtype为 ``'float32'`` 或 ``'float64'``
+  - output(Tensor): 输出，形状为4-D，dtype与 ``'input'`` 相同
+
 代码示例
 :::::::::
 
