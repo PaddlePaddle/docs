@@ -671,6 +671,17 @@ cumsum(axis=None, dtype=None, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_cumsum`
 
+deg2rad(x, name=None)
+:::::::::
+
+将元素从度的角度转换为弧度
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_deg2rad`
+
 detach()
 :::::::::
 
@@ -1478,6 +1489,17 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_cn_prod`
+
+rad2deg(x, name=None)
+:::::::::
+
+将元素从弧度的角度转换为度
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_rad2deg`
 
 rank()
 :::::::::
