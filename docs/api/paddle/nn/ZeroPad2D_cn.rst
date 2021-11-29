@@ -2,7 +2,7 @@
 
 ZeroPad2D
 -------------------------------
-.. py:class:: paddle.nn.ZeroPad2D(self, padding, data_format="NCHW", name=None)
+.. py:class:: paddle.nn.ZeroPad2D(padding, data_format="NCHW", name=None)
 
 **ZeroPad2D**
 

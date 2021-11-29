@@ -345,7 +345,7 @@ Padding相关函数
     
 
     " :ref:`paddle.nn.functional.pad <cn_api_nn_cn_pad>` ", "依照 pad 和 mode 属性对input进行填充"
-    " :ref:`paddle.nn.functional.zeropad2d <_cn_api_nn_functional_zeropad2d>` ", "依照 pad 对x进行零填充"
+    " :ref:`paddle.nn.functional.zeropad2d <cn_api_nn_functional_zeropad2d>` ", "依照 pad 对x进行零填充"
     
 .. _activation_functional:
 
