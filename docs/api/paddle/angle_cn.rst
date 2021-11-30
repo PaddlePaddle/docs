@@ -1,12 +1,12 @@
 .. _cn_api_paddle_angle:
 
-abs
+angle
 -------------------------------
 
 .. py:function:: paddle.angle(x, name=None)
 
 
-逐元素计算复数的相位角。对于非负实数，相位角为 0，而对于负实数，相位角为 :math::`\pi`.
+逐元素计算复数的相位角。对于非负实数，相位角为 0，而对于负实数，相位角为 :math:`\pi`.
 
 .. math::
 
