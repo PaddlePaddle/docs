@@ -20,7 +20,7 @@
 .. toctree::
     :hidden:
 
-    01_quick_start_cn.rst
+    01_quick_start_cn.ipynb
     02_data_load_cn.rst
     03_data_preprocessing_cn.rst
     04_model_cn.rst
