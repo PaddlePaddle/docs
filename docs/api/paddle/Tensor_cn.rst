@@ -2083,3 +2083,14 @@ solve(x, y name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_linalg_solve`
+
+lerp(x, y, weight, name=None)
+:::::::::
+
+基于给定的 weight 计算 x 与 y 的线性插值
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_lerp`
