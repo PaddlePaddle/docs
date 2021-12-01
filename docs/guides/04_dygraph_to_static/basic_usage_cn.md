@@ -1,45 +1,453 @@
-# 基础接口用法
+# 使用样例
 
 
-## 一、 @to_static 概览
+## 一、 使用 @to_static 进行动静转换
 
 动静转换（@to_static）通过解析 Python 代码（抽象语法树，下简称：AST） 实现一行代码即可转为静态图功能，即只需在待转化的函数前添加一个装饰器 ``@paddle.jit.to_static`` 。
 
-如下是一个使用 @to_static 装饰器的 ``Model`` 示例：
+如下是使用 @to_static 进行动静转换的两种方式：
+
+- 方式一：使用 @to_static 装饰器装饰 ``Model`` 的 ``forward`` 函数
+
+    ```python
+    import paddle
+    from paddle.jit import to_static
+
+    class SimpleNet(paddle.nn.Layer):
+        def __init__(self):
+            super(SimpleNet, self).__init__()
+            self.linear = paddle.nn.Linear(10, 3)
+
+        @to_static # 动静转换
+        def forward(self, x, y):
+            out = self.linear(x)
+            out = out + y
+            return out
+
+    net = SimpleNet()
+    net.eval()
+    x = paddle.rand([2, 10])
+    y = paddle.rand([2, 3])
+    out = net(x, y)
+    paddle.jit.save(net, './net')
+    ```
+
+- 方式二：调用 ``paddle.jit.to_static()`` 函数，仅做预测模型导出时推荐此种用法。
+
+    ```python
+    import paddle
+    from paddle.jit import to_static
+
+    class SimpleNet(paddle.nn.Layer):
+        def __init__(self):
+            super(SimpleNet, self).__init__()
+            self.linear = paddle.nn.Linear(10, 3)
+
+        def forward(self, x, y):
+            out = self.linear(x)
+            out = out + y
+            return out
+
+    net = SimpleNet()
+    net.eval()
+    net = paddle.jit.to_static(net)  # 动静转换
+    x = paddle.rand([2, 10])
+    y = paddle.rand([2, 3])
+    out = net(x, y)
+    paddle.jit.save(net, './net')
+    ```
+
+动转静 @to_static 除了支持预测模型导出，还兼容转为静态图子图训练，仅需要在 ``forward`` 函数上添加此装饰器即可，不需要修改任何其他的代码。基本执行流程如下：
+
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_train.png" style="zoom:50%" />
+
+
+
+## 二、动转静模型导出
+
+动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。下图展示了**动态图模型训练——>动转静模型导出——>静态预测部署**的流程。
+
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_export.png" style="zoom:50%" />
+
+
+
+在处理逻辑上，动转静主要包含两个主要模块：
+
++ **代码层面**：将所有的 Paddle ``layers`` 接口在静态图模式下执行以转为 ``Op`` ，从而生成完整的静态 ``Program``
++ **Tensor层面**：将所有的 ``Parameters`` 和 ``Buffers`` 转为**可导出的 ``Variable`` 参数**（ ``persistable=True`` ）
+
+
+### 2.1 forward 函数导出
+
+如下是一个简单的 ``Model`` 的代码：
 
 ```python
 import paddle
 from paddle.jit import to_static
+from paddle.static import InputSpec
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
-    # 方式一：装饰 forward 函数（支持训练）
-    @to_static
+    def forward(self, x, y):
+        out = self.linear(x)
+        out = out + y
+        return out
+
+    def another_func(self, x):
+        out = self.linear(x)
+        out = out * 2
+        return out
+
+net = SimpleNet()
+# train(net)  模型训练 (略)
+
+# step 1: 切换到 eval() 模式
+net.eval()
+
+# step 2: 定义 InputSpec 信息
+x_spec = InputSpec(shape=[None, 3], dtype='float32', name='x')
+y_spec = InputSpec(shape=[3], dtype='float32', name='y')
+
+# step 3: 调用 jit.save 接口
+net = paddle.jit.save(net, path='simple_net', input_spec=[x_spec, y_spec])  # 动静转换
+```
+
+执行上述代码样例后，在当前目录下会生成三个文件：
+```
+simple_net.pdiparams        // 存放模型中所有的权重数据
+simple_net.pdimodel         // 存放模型的网络结构
+simple_net.pdiparams.info   // 存放额外的其他信息
+```
+
+
+预测模型导出一般包括三个步骤：
+
++ **切换 `eval()` 模式**：类似 `Dropout` 、`LayerNorm` 等接口在 `train()` 和 `eval()` 的行为存在较大的差异，在模型导出前，**请务必确认模型已切换到正确的模式，否则导出的模型在预测阶段可能出现输出结果不符合预期的情况。**
++ **构造 `InputSpec` 信息**：InputSpec 用于表示输入的shape、dtype、name信息，且支持用 `None` 表示动态shape（如输入的 batch_size 维度），是辅助动静转换的必要描述信息。
++ **调用 `save` 接口**：调用 `paddle.jit.save`接口，若传入的参数是类实例，则默认对 `forward` 函数进行 `@to_static` 装饰，并导出其对应的模型文件和参数文件。
+
+
+### 2.2 使用 InputSpec 指定模型输入 Tensor 信息
+
+动静转换在生成静态图 Program 时，依赖输入 Tensor 的 shape、dtype 和 name 信息。因此，Paddle 提供了 InputSpec 接口，用于指定输入 Tensor 的描述信息，并支持动态 shape 特性。
+
+
+#### 2.2.1 InputSpec 构造
+
+
+**方式一：直接构造**
+
+
+InputSpec 接口在 ``paddle.static`` 目录下， 只有 ``shape`` 是必须参数， ``dtype`` 和 ``name`` 可以缺省，默认取值分别为 ``float32`` 和 ``None`` 。使用样例如下：
+
+```python
+from paddle.static import InputSpec
+
+x = InputSpec([None, 784], 'float32', 'x')
+label = InputSpec([None, 1], 'int64', 'label')
+
+print(x)      # InputSpec(shape=(-1, 784), dtype=VarType.FP32, name=x)
+print(label)  # InputSpec(shape=(-1, 1), dtype=VarType.INT64, name=label)
+```
+
+
+**方式二：由 Tensor 构造**
+
+可以借助 ``InputSpec.from_tensor`` 方法，从一个 Tensor 直接创建 InputSpec 对象，其拥有与源 Tensor 相同的 ``shape`` 和 ``dtype`` 。 使用样例如下：
+
+```python
+import numpy as np
+import paddle
+from paddle.static import InputSpec
+
+x = paddle.to_tensor(np.ones([2, 2], np.float32))
+x_spec = InputSpec.from_tensor(x, name='x')
+print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+```
+
+> 注：若未在 ``from_tensor`` 中指定新的name，则默认使用与源Tensor相同的name。
+
+
+**方式三：由 numpy.ndarray**
+
+也可以借助 ``InputSpec.from_numpy`` 方法，从一个 `Numpy.ndarray` 直接创建 InputSpec 对象，其拥有与源 ndarray 相同的 ``shape`` 和 ``dtype`` 。使用样例如下：
+
+```python
+import numpy as np
+from paddle.static import InputSpec
+
+x = np.ones([2, 2], np.float32)
+x_spec = InputSpec.from_numpy(x, name='x')
+print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+```
+
+> 注：若未在 ``from_numpy`` 中指定新的 name，则默认使用 None 。
+
+#### 2.2.2 基本用法
+
+**方式一： @to_static 装饰器模式**
+
+如下是一个简单的使用样例：
+
+```python
+import paddle
+from paddle.jit import to_static
+from paddle.static import InputSpec
+from paddle.fluid.dygraph import Layer
+
+class SimpleNet(Layer):
+    def __init__(self):
+        super(SimpleNet, self).__init__()
+        self.linear = paddle.nn.Linear(10, 3)
+
+    @to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')])
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
         return out
 
 net = SimpleNet()
-# 方式二：(推荐)仅做预测模型导出时，推荐此种用法
-net = paddle.jit.to_static(net)  # 动静转换
+
+# save static model for inference directly
+paddle.jit.save(net, './simple_net')
 ```
 
-动转静 @to_static 除了支持预测模型导出，还兼容转为静态图子图训练，仅需要在 ``forward`` 函数上添加此装饰器即可，不需要修改任何其他的代码。
+在上述的样例中， ``@to_static`` 装饰器中的 ``input_spec`` 为一个 InputSpec 对象组成的列表，用于依次指定参数 x 和 y 对应的 Tensor 签名信息。在实例化 SimpleNet 后，可以直接调用 ``paddle.jit.save`` 保存静态图模型，不需要执行任何其他的代码。
 
-基本执行流程如下：
-
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_train.png" style="zoom:50%" />
-
-
-
-## 二、 输入层 InputSpec
+> 注：
+>    1. input_spec 参数中不仅支持 InputSpec 对象，也支持 int 、 float 等常见 Python 原生类型。
+>    2. 若指定 input_spec 参数，则需为被装饰函数的所有必选参数都添加对应的 InputSpec 对象，如上述样例中，不支持仅指定 x 的签名信息。
+>    3. 若被装饰函数中包括非 Tensor 参数，推荐函数的非 Tensor 参数设置默认值，如 ``forward(self, x, use_bn=False)``
 
 
-静态图下，模型起始的 Placeholder 信息是通过 ``paddle.static.data`` 来指定的，并以此作为编译期的 ``InferShape`` 推导起点。
+**方式二：to_static函数调用**
+
+若期望在动态图下训练模型，在训练完成后保存预测模型，并指定预测时需要的签名信息，则可以选择在保存模型时，直接调用 ``to_static`` 函数。使用样例如下：
+
+```python
+class SimpleNet(Layer):
+    def __init__(self):
+        super(SimpleNet, self).__init__()
+        self.linear = paddle.nn.Linear(10, 3)
+
+    def forward(self, x, y):
+        out = self.linear(x)
+        out = out + y
+        return out
+
+net = SimpleNet()
+
+# train process (Pseudo code)
+for epoch_id in range(10):
+    train_step(net, train_reader)
+
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')])
+
+# save static model for inference directly
+paddle.jit.save(net, './simple_net')
+```
+
+如上述样例代码中，在完成训练后，可以借助 ``to_static(net, input_spec=...)`` 形式对模型实例进行处理。Paddle 会根据 input_spec 信息对 forward 函数进行递归的动转静，得到完整的静态图，且包括当前训练好的参数数据。
+
+
+**方式三：支持 list 和 dict 推导**
+
+上述两个样例中，被装饰的 forward 函数的参数均为 Tensor 。这种情况下，参数个数必须与 InputSpec 个数相同。但当被装饰的函数参数为 list 或 dict 类型时，``input_spec`` 需要与函数参数保持相同的嵌套结构。
+
+当函数的参数为 list 类型时，input_spec 列表中对应元素的位置，也必须是包含相同元素的 InputSpec 列表。使用样例如下：
+
+```python
+class SimpleNet(Layer):
+    def __init__(self):
+        super(SimpleNet, self).__init__()
+        self.linear = paddle.nn.Linear(10, 3)
+
+    @to_static(input_spec=[[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')]])
+    def forward(self, inputs):
+        x, y = inputs[0], inputs[1]
+        out = self.linear(x)
+        out = out + y
+        return out
+```
+
+其中 ``input_spec`` 参数是长度为 1 的 list ，对应 forward 函数的 inputs 参数。 ``input_spec[0]`` 包含了两个 InputSpec 对象，对应于参数 inputs 的两个 Tensor 签名信息。
+
+当函数的参数为dict时， ``input_spec`` 列表中对应元素的位置，也必须是包含相同键（key）的 InputSpec 列表。使用样例如下：
+
+```python
+class SimpleNet(Layer):
+    def __init__(self):
+        super(SimpleNet, self).__init__()
+        self.linear = paddle.nn.Linear(10, 3)
+
+    @to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), {'x': InputSpec(shape=[3], name='bias')}])
+    def forward(self, x, bias_info):
+        x_bias = bias_info['x']
+        out = self.linear(x)
+        out = out + x_bias
+        return out
+```
+
+其中 ``input_spec`` 参数是长度为 2 的 list ，对应 forward 函数的 x 和 bias_info 两个参数。 ``input_spec`` 的最后一个元素是包含键名为 x 的 InputSpec 对象的 dict ，对应参数 bias_info 的 Tensor 签名信息。
+
+
+**方式四：指定非Tensor参数类型**
+
+目前，``to_static`` 装饰器中的 ``input_spec`` 参数仅接收 ``InputSpec`` 类型对象。若被装饰函数的参数列表除了 Tensor 类型，还包含其他如 Int、 String 等非 Tensor 类型时，推荐在函数中使用 kwargs 形式定义非 Tensor 参数，如下述样例中的 use_act 参数。
+
+```python
+
+class SimpleNet(Layer):
+    def __init__(self, ):
+        super(SimpleNet, self).__init__()
+        self.linear = paddle.nn.Linear(10, 3)
+        self.relu = paddle.nn.ReLU()
+
+    def forward(self, x, use_act=False):
+        out = self.linear(x)
+        if use_act:
+            out = self.relu(out)
+        return out
+
+net = SimpleNet()
+# 方式一：save inference model with use_act=False
+net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x')])
+paddle.jit.save(net, path='./simple_net')
+
+
+# 方式二：save inference model with use_act=True
+net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), True])
+paddle.jit.save(net, path='./simple_net')
+```
+
+
+在上述样例中，假设 step 为奇数时，use_act 取值为 False ； step 为偶数时， use_act 取值为 True 。动转静支持非 Tensor 参数在训练时取不同的值，且保证了取值不同的训练过程都可以更新模型的网络参数，行为与动态图一致。
+
+在借助 ``paddle.jit.save`` 保存预测模型时，动转静会根据 input_spec 和 kwargs 的默认值保存推理模型和网络参数。**建议将 kwargs 参数默认值设置为预测时的取值。**
+
+
+更多关于动转静 ``to_static`` 搭配 ``paddle.jit.save/load`` 的使用方式，可以参考  [【模型的存储与载入】](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/02_paddle2.0_develop/08_model_save_load_cn.html)。
+
+
+## 三、动、静态图部署区别
+
+当训练完一个模型后，下一阶段就是保存导出，实现**模型**和**参数**的分发，进行多端部署。如下两小节，将介绍动态图和静态图的概念和差异性，以帮助理解动转静如何起到**桥梁作用**的。
+### 3.1 动态图预测部署
+
+动态图下，**模型**指的是 Python 前端代码；**参数**指的是 ``model.state_dict()`` 中存放的权重数据。
+
+```python
+net = SimpleNet()
+
+# .... 训练过程(略)
+
+layer_state_dict = net.state_dict()
+paddle.save(layer_state_dict, "net.pdiparams") # 导出模型
+```
+
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/dygraph_export.png" style="zoom:50%" />
+
+上图展示了动态图下**模型训练——>参数导出——>预测部署**的流程。如图中所示，动态图预测部署时，除了已经序列化的参数文件，还须提供**最初的模型组网代码**。
+
+在动态图下，模型代码是 **逐行被解释执行** 的。如：
+
+```python
+import paddle
+
+zeros = paddle.zeros(shape=[1,2], dtype='float32')
+print(zeros)
+
+#Tensor(shape=[1, 2], dtype=float32, place=CPUPlace, stop_gradient=True,
+#       [[0., 0.]])
+```
+
+
+**从框架层面上，上述的调用链是：**
+
+> 前端 zeros 接口 &rarr; core.ops.fill_constant (Pybind11)  &rarr; 后端 Kernel  &rarr; 前端 Tensor 输出
+
+如下是一个简单的 Model 示例：
+
+```python
+
+import paddle
+
+class SimpleNet(paddle.nn.Layer):
+    def __init__(self):
+        super(SimpleNet, self).__init__()
+        self.linear = paddle.nn.Linear(10, 3)
+
+    def forward(self, x, y):
+        out = self.linear(x)
+        out = out + y
+        return out
+
+net = SimpleNet()
+```
+
+动态图下，当实例化一个 ``SimpleNet()`` 对象时，隐式地执行了如下几个步骤：
+
++ 创建一个 ``Linear`` 对象，记录到 ``self._sub_layer`` 中（dict 类型）
+
+    + 创建一个 ``ParamBase`` 类型的 ``weight`` ，记录到 ``self._parameters`` 中（dict类型）
+    + 创建一个 ``ParamBase`` 类型的 ``bias`` ，记录到 ``self._parameters`` 中
+
+一个复杂模型可能包含很多子类，框架层就是通过 ``self._sub_layer`` 和 ``self._parameters`` 两个核心数据结构关联起来的，这也是后续动转静原理上操作的两个核心属性。
+
+```python
+sgd = paddle.optimizer.SGD(learning_rate=0.1, parameters=net.parameters())
+                                                              ^
+                                                              |
+                                                         所有待更新参数
+```
+
+### 3.2 静态图预测部署
+
+静态图部署时，**模型**指的是 ``Program`` ；参数指的是所有的 ``Persistable=True`` 的 ``Variable`` 。二者都可以序列化导出为磁盘文件，**与前端代码完全解耦**。
+
+```python
+main_program = paddle.static.default_main_program()
+
+# ...... 训练过程（略）
+
+prog_path='main_program.pdimodel'
+paddle.save(main_program, prog_path) # 导出为 .pdimodel
+
+para_path='main_program.pdiparams'
+paddle.save(main_program.state_dict(), para_path) # 导出为 .pdiparams
+```
+
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/static_export.png" style="zoom:50%" />
+
+上图展示了静态图下**模型训练——>模型导出——>预测部署**的流程。如图所示，静态图模型导出时将``Program``和模型参数都导出为磁盘文件，``Program`` 中包含了模型所有的计算描述（ ``OpDesc`` ），不存在计算逻辑有遗漏的地方。
+
+
+**静态图编程，总体上包含两个部分：**
+
++ **编译期**：组合各个 ``Layer`` 接口，搭建网络结构，执行每个 Op 的 ``InferShape`` 逻辑，最终生成 ``Program``
++ **执行期**：构建执行器，输入数据，依次执行每个 ``OpKernel`` ，进行训练和评估
+
+在静态图编译期，变量 ``Variable`` 只是**一个符号化表示**，并不像动态图 ``Tensor`` 那样持有实际数据。
+
+```python
+import paddle
+# 开启静态图模式
+paddle.enable_static()
+
+zeros = paddle.zeros(shape=[1,2], dtype='float32')
+print(zeros)
+# var fill_constant_1.tmp_0 : LOD_TENSOR.shape(1, 2).dtype(float32).stop_gradient(True)
+```
+
+**从框架层面上，静态图的调用链：**
+
+> layer 组网（前端） &rarr; InferShape 检查（编译期） &rarr;  Executor（执行期） &rarr; 逐个执行 OP
+
+
+如下是 ``SimpleNet`` 的静态图模式下的组网代码：
 
 ```python
 import paddle
@@ -52,424 +460,34 @@ y = paddle.static.data(shape=[None, 3], dtype='float32', name='y')
 
 out = paddle.static.nn.fc(x, 3)
 out = paddle.add(out, y)
+# 打印查看 Program 信息
+print(paddle.static.default_main_program())
+
+# { // block 0
+#    var x : LOD_TENSOR.shape(-1, 10).dtype(float32).stop_gradient(True)
+#    var y : LOD_TENSOR.shape(-1, 3).dtype(float32).stop_gradient(True)
+#    persist trainable param fc_0.w_0 : LOD_TENSOR.shape(10, 3).dtype(float32).stop_gradient(False)
+#    var fc_0.tmp_0 : LOD_TENSOR.shape(-1, 3).dtype(float32).stop_gradient(False)
+#    persist trainable param fc_0.b_0 : LOD_TENSOR.shape(3,).dtype(float32).stop_gradient(False)
+#    var fc_0.tmp_1 : LOD_TENSOR.shape(-1, 3).dtype(float32).stop_gradient(False)
+#    var elementwise_add_0 : LOD_TENSOR.shape(-1, 3).dtype(float32).stop_gradient(False)
+
+#    {Out=['fc_0.tmp_0']} = mul(inputs={X=['x'], Y=['fc_0.w_0']}, force_fp32_output = False, op_device = , op_namescope = /, op_role = 0, op_role_var = [], scale_out = 1.0, scale_x = 1.0, scale_y = [1.0], use_mkldnn = False, x_num_col_dims = 1, y_num_col_dims = 1)
+#    {Out=['fc_0.tmp_1']} = elementwise_add(inputs={X=['fc_0.tmp_0'], Y=['fc_0.b_0']}, Scale_out = 1.0, Scale_x = 1.0, Scale_y = 1.0, axis = 1, mkldnn_data_type = float32, op_device = , op_namescope = /, op_role = 0, op_role_var = [], use_mkldnn = False, use_quantizer = False, x_data_format = , y_data_format = )
+#    {Out=['elementwise_add_0']} = elementwise_add(inputs={X=['fc_0.tmp_1'], Y=['y']}, Scale_out = 1.0, Scale_x = 1.0, Scale_y = 1.0, axis = -1, mkldnn_data_type = float32, op_device = , op_namescope = /, op_role = 0, op_role_var = [], use_mkldnn = False, use_quantizer = False, x_data_format = , y_data_format = )
+}
 ```
 
 
-动转静代码示例，通过 ``InputSpec`` 设置 ``Placeholder`` 信息：
+静态图中的一些概念：
 
-```python
-import paddle
-from paddle.jit import to_static
++ **Program**：与 ``Model`` 对应，描述网络的整体结构，内含一个或多个 ``Block``
++ **Block**
+    + **global_block**：全局 ``Block`` ，包含所有 ``Parameters`` 、全部 ``Ops`` 和 ``Variables``
+    + **sub_block**：控制流，包含控制流分支内的所有 ``Ops`` 和必要的 ``Variables``
++ **OpDesc**：对应每个前端 API 的计算逻辑描述
++ **Variable**：对应所有的数据变量，如 ``Parameter`` ，临时中间变量等，全局唯一 ``name`` 。
 
-class SimpleNet(paddle.nn.Layer):
-    def __init__(self):
-        super(SimpleNet, self).__init__()
-        self.linear = paddle.nn.Linear(10, 3)
 
-    # 方式一：在函数定义处装饰
-    @to_static
-    def forward(self, x, y):
-        out = self.linear(x)
-        out = out + y
-        return out
 
-net = SimpleNet()
-
-# 方式二：(推荐)仅做预测模型导出时，推荐此种用法
-x_spec = InputSpec(shape=[None, 10], name='x')
-y_spec = InputSpec(shape=[3], name='y')
-
-net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
-```
-
-
-在导出模型时，需要显式地指定输入 ``Tensor`` 的**签名信息**，优势是：
-
-
-+ 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度
-+ 可以指定 Placeholder 的 ``name`` ，方面预测时根据 ``name`` 输入数据
-
-> 注：InputSpec 接口的高阶用法，请参看 [【InputSpec 功能介绍】](./export_model_cn.html#inputspec)
-
-
-## 三、函数转写
-
-在 NLP、CV 领域中，一个模型常包含层层复杂的子函数调用，动转静中是如何实现**只需装饰最外层的 ``forward`` 函数**，就能递归处理所有的函数。
-
-如下是一个模型样例：
-
-```python
-import paddle
-from paddle.jit import to_static
-
-class SimpleNet(paddle.nn.Layer):
-    def __init__(self):
-        super(SimpleNet, self).__init__()
-        self.linear = paddle.nn.Linear(10, 3)
-
-    @to_static
-    def forward(self, x, y):
-        out = self.my_fc(x)       # <---- self.other_func
-        out = add_two(out, y)     # <---- other plain func
-        return out
-
-    def my_fc(self, x):
-        out = self.linear(x)
-        return out
-
-# 此函数可以在任意文件
-def add_two(x, y):
-    out = x + y
-    return out
-
-net = SimpleNet()
-# 查看转写的代码内容
-paddle.jit.set_code_level(100)
-
-x = paddle.zeros([2,10], 'float32')
-y = paddle.zeros([3], 'float32')
-
-out = net(x, y)
-```
-
-可以通过 ``paddle.jit.set_code_level(100)`` 在执行时打印代码转写的结果到终端，转写代码如下：
-
-```python
-def forward(self, x, y):
-    out = paddle.jit.dy2static.convert_call(self.my_fc)(x)
-    out = paddle.jit.dy2static.convert_call(add_two)(out, y)
-    return out
-
-def my_fc(self, x):
-    out = paddle.jit.dy2static.convert_call(self.linear)(x)
-    return out
-
-def add_two(x, y):
-    out = x + y
-    return out
-```
-
-
-如上所示，所有的函数调用都会被转写如下形式：
-
-```python
- out = paddle.jit.dy2static.convert_call( self.my_fc )( x )
-  ^                    ^                      ^         ^
-  |                    |                      |         |
-返回列表           convert_call             原始函数    参数列表
-```
-
-即使函数定义分布在不同的文件中， ``convert_call`` 函数也会递归地处理和转写所有嵌套的子函数。
-
-## 四、控制流转写
-
-控制流 ``if/for/while`` 的转写和处理是动转静中比较重要的模块，也是动态图模型和静态图模型实现上差别最大的一部分。
-
-**转写上有两个基本原则：**
-
-+ **并非**所有动态图中的 ``if/for/while`` 都会转写为 ``cond_op/while_op``
-+ **只有**控制流的判断条件 **依赖了``Tensor``**（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
-
-
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/convert_cond.png" style="zoom:80%" />
-
-
-
-### 4.1 IfElse
-
-无论是否会转写为 ``cond_op`` ，动转静都会首先对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**
-
-**示例一：不依赖 Tensor 的控制流**
-
-```python
-def not_depend_tensor_if(x, label=None):
-    out = x + 1
-    if label is not None:              # <----- python bool 类型
-        out = paddle.nn.functional.cross_entropy(out, label)
-    return out
-
-print(to_static(not_depend_tensor_ifw).code)
-# 转写后的代码：
-"""
-def not_depend_tensor_if(x, label=None):
-    out = x + 1
-
-    def true_fn_1(label, out):  # true 分支
-        out = paddle.nn.functional.cross_entropy(out, label)
-        return out
-
-    def false_fn_1(out):        # false 分支
-        return out
-
-    out = paddle.jit.dy2static.convert_ifelse(label is not None, true_fn_1,
-        false_fn_1, (label, out), (out,), (out,))
-
-    return out
-"""
-```
-
-
-**示例二：依赖 Tensor 的控制流**
-
-```python
-def depend_tensor_if(x):
-    if paddle.mean(x) > 5.:         # <---- Bool Tensor 类型
-        out = x - 1
-    else:
-        out = x + 1
-    return out
-
-print(to_static(depend_tensor_if).code)
-# 转写后的代码：
-"""
-def depend_tensor_if(x):
-    out = paddle.jit.dy2static.data_layer_not_check(name='out', shape=[-1],
-        dtype='float32')
-
-    def true_fn_0(x):      # true 分支
-        out = x - 1
-        return out
-
-    def false_fn_0(x):     # false 分支
-        out = x + 1
-        return out
-
-    out = paddle.jit.dy2static.convert_ifelse(paddle.mean(x) > 5.0,
-        true_fn_0, false_fn_0, (x,), (x,), (out,))
-
-    return out
-"""
-```
-
-
-规范化代码之后，所有的 ``IfElse`` 均转为了如下形式：
-
-```python
- out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (out,))
-  ^          ^                   ^             ^           ^        ^      ^      ^
-  |          |                   |             |           |        |      |      |
- 输出   convert_ifelse          判断条件       true分支   false分支  分支输入 分支输入 输出
-```
-
-
-``convert_ifelse`` 是框架底层的函数，在逐行执行用户代码生成 ``Program`` 时，执行到此处时，会根据**判断条件**的类型（ ``bool`` 还是 ``Bool Tensor`` ），自适应决定是否转为 ``cond_op`` 。
-
-```python
-def convert_ifelse(pred, true_fn, false_fn, true_args, false_args, return_vars):
-
-    if isinstance(pred, Variable):  # 触发 cond_op 的转换
-        return _run_paddle_cond(pred, true_fn, false_fn, true_args, false_args,
-                                return_vars)
-    else:                           # 正常的 python if
-        return _run_py_ifelse(pred, true_fn, false_fn, true_args, false_args)
-```
-
-
-### 4.2 For/While
-
-``For/While`` 也会先进行代码层面的规范化，在逐行执行用户代码时，才会决定是否转为 ``while_op``。
-
-**示例一：不依赖 Tensor 的控制流**
-
-```python
-def not_depend_tensor_while(x):
-    a = 1
-
-    while a < 10:           # <---- a is python scalar
-        x = x + 1
-        a += 1
-
-    return x
-
-print(to_static(not_depend_tensor_while).code)
-"""
-def not_depend_tensor_while(x):
-    a = 1
-
-    def while_condition_0(a, x):
-        return a < 10
-
-    def while_body_0(a, x):
-        x = x + 1
-        a += 1
-        return a, x
-
-    [a, x] = paddle.jit.dy2static.convert_while_loop(while_condition_0,
-        while_body_0, [a, x])
-
-    return x
-"""
-```
-
-
-**示例二：依赖 Tensor 的控制流**
-
-```python
-def depend_tensor_while(x):
-    bs = paddle.shape(x)[0]
-
-    for i in range(bs):       # <---- bas is a Tensor
-        x = x + 1
-
-    return x
-
-print(to_static(depend_tensor_while).code)
-"""
-def depend_tensor_while(x):
-    bs = paddle.shape(x)[0]
-    i = 0
-
-    def for_loop_condition_0(x, i, bs):
-        return i < bs
-
-    def for_loop_body_0(x, i, bs):
-        x = x + 1
-        i += 1
-        return x, i, bs
-
-    [x, i, bs] = paddle.jit.dy2static.convert_while_loop(for_loop_condition_0,
-        for_loop_body_0, [x, i, bs])
-    return x
-"""
-```
-
-
-``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Tensor``** 来决定是否转为 ``while_op``
-
-## 五、 Parameters 与 Buffers
-
-### 5.1 动态图 layer 生成 Program
-
-文档开始的样例中 ``forward`` 函数包含两行组网代码： ``Linear`` 和 ``add`` 操作。以 ``Linear`` 为例，在 Paddle 的框架底层，每个 Paddle 的组网 API 的实现包括两个分支：
-
-```python
-
-class Linear(...):
-    def __init__(self, ...):
-        # ...(略)
-
-    def forward(self, input):
-
-        if in_dygraph_mode():  # 动态图分支
-            core.ops.matmul(input, self.weight, pre_bias, ...)
-            return out
-        else:                  # 静态图分支
-            self._helper.append_op(type="matmul", inputs=inputs, ...)     # <----- 生成一个 Op
-            if self.bias is not None:
-                self._helper.append_op(type='elementwise_add', ...)       # <----- 生成一个 Op
-
-            return out
-```
-
-动态图 ``layer`` 生成 ``Program`` ，其实是开启 ``paddle.enable_static()`` 时，在静态图下逐行执行用户定义的组网代码，依次添加(对应 ``append_op`` 接口) 到默认的主 Program（即 ``main_program`` ） 中。
-
-### 5.2 动态图 Tensor 转为静态图 Variable
-
-上面提到，所有的组网代码都会在静态图模式下执行，以生成完整的 ``Program`` 。**但静态图 ``append_op`` 有一个前置条件必须满足：**
-
-> **前置条件**：append_op() 时，所有的 inputs，outputs 必须都是静态图的 Variable 类型，不能是动态图的 Tensor 类型。
-
-
-**原因**：静态图下，操作的都是**描述类单元**：计算相关的 ``OpDesc`` ，数据相关的 ``VarDesc`` 。可以分别简单地理解为 ``Program`` 中的 ``Op`` 和 ``Variable`` 。
-
-因此，在动转静时，我们在需要在**某个统一的入口处**，将动态图 ``Layers`` 中 ``Tensor`` 类型（包含具体数据）的 ``Weight`` 、``Bias`` 等变量转换为**同名的静态图 ``Variable``**。
-
-+ ParamBase &rarr; Parameters
-+ VarBase &rarr;   Variable
-
-技术实现上，我们选取了框架层面两个地方作为类型**转换的入口**：
-
-+ ``Paddle.nn.Layer`` 基类的 ``__call__`` 函数
-    ```python
-    def __call__(self, *inputs, **kwargs):
-        # param_guard 会对将 Tensor 类型的 Param 和 buffer 转为静态图 Variable
-        with param_guard(self._parameters), param_guard(self._buffers):
-            # ... forward_pre_hook 逻辑
-
-            outputs = self.forward(*inputs, **kwargs) # 此处为forward函数
-
-            # ... forward_post_hook 逻辑
-
-            return outputs
-    ```
-
-+ ``Block.append_op`` 函数中，生成 ``Op`` 之前
-    ```python
-    def append_op(self, *args, **kwargs):
-        if in_dygraph_mode():
-            # ... (动态图分支)
-        else:
-            inputs=kwargs.get("inputs", None)
-            outputs=kwargs.get("outputs", None)
-            # param_guard 会确保将 Tensor 类型的 inputs 和 outputs 转为静态图 Variable
-            with param_guard(inputs), param_guard(outputs):
-                op = Operator(
-                    block=self,
-                    desc=op_desc,
-                    type=kwargs.get("type", None),
-                    inputs=inputs,
-                    outputs=outputs,
-                    attrs=kwargs.get("attrs", None))
-    ```
-
-
-以上，是动态图转为静态图的两个核心逻辑，总结如下：
-
-+ 动态图 ``layer`` 调用在动转静时会走底层 ``append_op`` 的分支，以生成 ``Program``
-+ 动态图 ``Tensor`` 转为静态图 ``Variable`` ，并确保编译期的 ``InferShape`` 正确执行
-
-
-### 5.3 Buffer 变量
-
-**什么是 ``Buffers`` 变量？**
-
-+ **Parameters**：``persistable`` 为 ``True`` ，且每个 batch 都被 Optimizer 更新的变量
-+ **Buffers**：``persistable`` 为 ``True`` ，``is_trainable = False`` ，不参与更新，但与预测相关；如 ``BatchNorm`` 层中的均值和方差
-
-在动态图模型代码中，若一个 ``paddle.to_tensor`` 接口生成的 ``Tensor`` 参与了最终预测结果的的计算，则此 ``Tensor`` 需要在转换为静态图预测模型时，也需要作为一个 ``persistable`` 的变量保存到 ``.pdiparam`` 文件中。
-
-**举一个例子（错误写法）：**
-
-```python
-import paddle
-from paddle.jit import to_static
-
-class SimpleNet(paddle.nn.Layer):
-    def __init__(self, mask):
-        super(SimpleNet, self).__init__()
-        self.linear = paddle.nn.Linear(10, 3)
-
-        # mask value，此处不会保存到预测模型文件中
-        self.mask = mask # 假设为 [0, 1, 1]
-
-    def forward(self, x, y):
-        out = self.linear(x)
-        out = out + y
-        mask = paddle.to_tensor(self.mask)    # <----- 每次执行都转为一个 Tensor
-        out = out * mask
-        return out
-```
-
-
-**推荐的写法是：**
-
-```python
-class SimpleNet(paddle.nn.Layer):
-    def __init__(self, mask):
-        super(SimpleNet, self).__init__()
-        self.linear = paddle.nn.Linear(10, 3)
-
-        # 此处的 mask 会当做一个 buffer Tensor，保存到 .pdiparam 文件
-        self.mask = paddle.to_tensor(mask) # 假设为 [0, 1, 1]
-
-    def forward(self, x, y):
-        out = self.linear(x)
-        out = out + y
-        out = out * self.mask                 # <---- 直接使用 self.mask
-        return out
-```
-
-
-总结一下 ``buffers`` 的用法：
-
-+  若某个非 ``Tensor`` 数据需要当做 ``Persistable`` 的变量序列化到磁盘，则最好在 ``__init__`` 中调用 ``self.XX= paddle.to_tensor(xx)`` 接口转为 ``buffer`` 变量
+> 注：更多细节，请参考 [【官方文档】模型的存储与载入](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/02_paddle2.0_develop/08_model_save_load_cn.html)。
