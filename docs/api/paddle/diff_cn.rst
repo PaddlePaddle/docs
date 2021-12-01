@@ -5,7 +5,7 @@ diff
 
 .. py:function:: paddle.diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
 
-沿着指定轴计算n阶的前向差值，一阶的前向差值计算公式如下：
+沿着指定轴计算输入Tensor的n阶前向差值，一阶的前向差值计算公式如下：
 
 ..  math::
     out[i] = x[i+1] - x[i]
