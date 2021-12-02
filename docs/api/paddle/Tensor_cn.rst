@@ -212,6 +212,15 @@ abs(name=None)
 
 请参考 :ref:`cn_api_fluid_layers_abs`
 
+angle(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_angle`
+
 acos(name=None)
 :::::::::
 
