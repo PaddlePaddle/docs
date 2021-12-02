@@ -1,0 +1,27 @@
+.. _cn_api_paddle_view_as_real:
+
+view_as_real
+-------------------------------
+
+.. py:function:: paddle.view_as_real(x, name=None)
+
+
+将复数 Tensor 视作实数 Tensor.
+
+输入 Tensor 的数据类型是 'complex64' 或者 'complex128'，输出 Tensor 的数据类型相应为 'float32' 或者 'float64'.
+
+输入 Tensor 的形状是 ``(*,)`` (其中 ``*`` 表示任意形状)，输出 Tensor 的形状是 ``(*, 2)``，亦即，输出的形状是在输入形状后附加一个 ``2``.
+
+参数
+:::::::::
+    - x (Tensor) - 输入 Tensor，数据类型为：'complex64' 或 'complex128'。
+    - name (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+
+返回
+:::::::::
+输出 Tensor，数据类型是 'float32' 或 'float64', 与 ``x`` 的数值精度一致。
+
+代码示例
+:::::::::
+
+COPY-FROM: paddle.view_as_real
