@@ -964,6 +964,15 @@ flip(axis, name=None)
 
 请参考 :ref:`cn_api_tensor_flip`
 
+rot90(k=1, axis=[0, 1], name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_rot90`
+
 floor(name=None)
 :::::::::
 
