@@ -32,6 +32,7 @@ tensor数学操作
     :widths: 10, 30
 
     " :ref:`paddle.abs <cn_api_fluid_layers_abs>` ", "绝对值函数"
+    " :ref:`paddle.angle <cn_api_paddle_angle>` ", "相位角函数"
     " :ref:`paddle.acos <cn_api_fluid_layers_acos>` ", "arccosine函数"
     " :ref:`paddle.add <cn_api_tensor_add>` ", "Tensor逐元素相加"
     " :ref:`paddle.add_n <cn_api_tensor_add_n>` ", "对输入的一至多个Tensor或LoDTensor求和"
@@ -113,6 +114,9 @@ tensor数学操作
     " :ref:`paddle.trunc <cn_api_tensor_trunc>` ", "对输入 Tensor 每个元素的小数部分进行截断"
     " :ref:`paddle.log1p <cn_api_paddle_tensor_log1p>` ", "该OP计算Log1p（加一的自然对数）结果"
     " :ref:`paddle.lerp <cn_api_paddle_tensor_lerp>` ", "该OP基于给定的 weight 计算 x 与 y 的线性插值"
+    " :ref:`paddle.rad2deg <cn_api_paddle_tensor_rad2deg>` ", "将元素从弧度的角度转换为度"
+    " :ref:`paddle.deg2rad <cn_api_paddle_tensor_deg2rad>` ", "将元素从度的角度转换为弧度"
+
 
 .. _tensor_logic:
 
