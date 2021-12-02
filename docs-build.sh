@@ -58,7 +58,7 @@ PADDLEDEV_DOCKERIMAGE=registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda1
 
 
 if [ "$PADDLE_WHL" = '' ] && [ "$PADDLE_DIR" = '' ] ; then
-  sudo docker run -it --rm --entrypoint=bash \
+  docker run -it --rm --entrypoint=bash \
     -e VERSIONSTR=${VERSIONSTR} \
     -v ${FLUIDDOC_DIR}:/FluidDoc \
     -v ${FLUIDDOC_DIR}/output:/docs \
@@ -70,7 +70,7 @@ fi
 
 if ! [ "$PADDLE_WHL" = '' ]; then
   if [[ ${PADDLE_WHL} = http* ]]; then
-    sudo docker run -it --rm --entrypoint=bash \
+    docker run -it --rm --entrypoint=bash \
       -e VERSIONSTR=${VERSIONSTR} \
       -e https_proxy=${https_proxy} \
       -v ${FLUIDDOC_DIR}:/FluidDoc \
@@ -81,7 +81,7 @@ if ! [ "$PADDLE_WHL" = '' ]; then
   else
     WHL_DIR=$(dirname $PADDLE_WHL)
     WHL_FN=$(basename $PADDLE_WHL)
-    sudo docker run -it --rm --entrypoint=bash \
+    docker run -it --rm --entrypoint=bash \
       -e VERSIONSTR=${VERSIONSTR} \
       -e https_proxy=${https_proxy} \
       -v ${FLUIDDOC_DIR}:/FluidDoc \
@@ -95,7 +95,7 @@ if ! [ "$PADDLE_WHL" = '' ]; then
 fi
 
 if ! [ "$PADDLE_DIR" = '' ]; then
-  sudo docker run -it --rm \
+  docker run -it --rm \
     -e PADDLE_VERSION=${VERSIONSTR} \
     -e https_proxy=${https_proxy} \
     -v ${PADDLE_DIR}:/paddle \
@@ -111,7 +111,7 @@ if ! [ "$PADDLE_DIR" = '' ]; then
     WHL_FN=$(basename ${WHL_FULLFN:-paddle.whl})
   fi
 
-  sudo docker run -it --rm --entrypoint=bash \
+  docker run -it --rm --entrypoint=bash \
     -e VERSIONSTR=${VERSIONSTR} \
     -e https_proxy=${https_proxy} \
     -v ${FLUIDDOC_DIR}/:/FluidDoc \
