@@ -271,6 +271,15 @@ allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 
 请参考 :ref:`cn_api_tensor_allclose`
 
+isclose(x, y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_isclose`
+
 any(axis=None, keepdim=False, name=None)
 :::::::::
 
@@ -747,6 +756,15 @@ dot(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_linalg_dot`
+
+diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_diff`
 
 equal(y, name=None)
 :::::::::
