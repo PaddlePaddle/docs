@@ -210,7 +210,7 @@ uname -m
 
 - g. (可选）如果您是在MacOS 10.14上编译PaddlePaddle，请保证您已经安装了[对应版本](http://developer.apple.com/download)的Xcode。
 
-#### 4. **执行编译前**请您确认您的环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
+#### 4. **执行编译前**请您确认您的环境中安装有[编译依赖表](/documentation/docs/zh/install/Tables.html#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
 
 > MacOS下如果您未自行修改或安装过“编译依赖表”中提到的依赖，则仅需要使用`pip`安装`numpy，protobuf，wheel`，使用`homebrew`安装`wget，swig, unrar`，另外安装`cmake`即可
 
@@ -290,7 +290,6 @@ pip install -U（whl包的名字）
 pip3 install -U（whl包的名字）
 ```
 
-> 如果您的电脑上安装有多个python环境以及pip请参见[FAQ](../Tables.html#MACPRO)
 
 #### 恭喜，至此您已完成PaddlePaddle的编译安装
 
