@@ -25,7 +25,6 @@ rot90
     - ``TypeError``- 当 ``dims`` 不是list或者tuple
 
 **代码示例1**：
-
 .. code-block:: python
     import paddle
     import numpy as np
