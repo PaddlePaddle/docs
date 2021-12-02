@@ -32,6 +32,7 @@ tensor数学操作
     :widths: 10, 30
 
     " :ref:`paddle.abs <cn_api_fluid_layers_abs>` ", "绝对值函数"
+    " :ref:`paddle.angle <cn_api_paddle_angle>` ", "相位角函数"
     " :ref:`paddle.acos <cn_api_fluid_layers_acos>` ", "arccosine函数"
     " :ref:`paddle.add <cn_api_tensor_add>` ", "Tensor逐元素相加"
     " :ref:`paddle.add_n <cn_api_tensor_add_n>` ", "对输入的一至多个Tensor或LoDTensor求和"
