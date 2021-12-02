@@ -69,6 +69,7 @@ Methods
     addmm
     all
     allclose
+    angle
     any
     argmax
     argmin
