@@ -298,7 +298,7 @@ tensor元素操作相关（如：转置，reshape等）
 .. einsum:
 
 爱因斯坦求和
-：：：：：：
+::::::::::::::::::
 
 .. csv-table::
     :header: "API名称", "API功能"
