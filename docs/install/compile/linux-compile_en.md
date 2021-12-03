@@ -293,7 +293,7 @@ uname -m && cat /etc/*release
     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
     ```
 
-    gcc requires version 4.8.2, we recommend that you use 8.2.0 version:
+    gcc requires version 5.4, we recommend that you use 8.2.0 version:
 
     ```
     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
@@ -332,7 +332,7 @@ uname -m && cat /etc/*release
     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
     ```
 
-    gcc requires version 4.8.2, we recommend that you use 8.2.0 version:
+    gcc requires version 5.4, we recommend that you use 8.2.0 version:
 
     ```
     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
