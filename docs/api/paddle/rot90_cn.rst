@@ -15,9 +15,8 @@ rot90
     - **axes** (list|tuple) - axes指定旋转的平面，维度必须为2。
     - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
 
-返回：在指定平面axes上翻转指定次数后的张量，与输入x数据类型相同。
-
-返回类型：Tensor，与输入x数据类型相同。
+**返回**：
+    - 在指定平面axes上翻转指定次数后的张量，与输入x数据类型相同。
 
 抛出异常：
     - ``TypeError`` - 当 ``x`` 的类型不是Variable
