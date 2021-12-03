@@ -19,24 +19,24 @@
 
 * CPU版的PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.1
     ```
 
 * CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.0-jupyter
+    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.1-jupyter
     ```
 
 如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像：
 
 * CPU版的PaddlePaddle：
     ```
-    docker pull paddlepaddle/paddle:2.2.0
+    docker pull paddlepaddle/paddle:2.2.1
     ```
 
 * CPU版的PaddlePaddle，且镜像中预装好了 jupyter：
     ```
-    docker pull paddlepaddle/paddle:2.2.0-jupyter
+    docker pull paddlepaddle/paddle:2.2.1-jupyter
     ```
 
 您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取更多镜像。
@@ -48,7 +48,7 @@
 
 
     ```
-    docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0 /bin/bash
+    docker run --name paddle_docker -it -v $PWD:/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.1 /bin/bash
     ```
 
     - `--name paddle_docker`：设定Docker的名称，`paddle_docker` 是自己设置的名称；
@@ -59,7 +59,7 @@
 
     - `-v $PWD:/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 
-    - `registry.baidubce.com/paddlepaddle/paddle:2.2.0`：指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
+    - `registry.baidubce.com/paddlepaddle/paddle:2.2.1`：指定需要使用的image名称，您可以通过`docker images`命令查看；/bin/bash是在Docker中要执行的命令
 
 * 使用CPU版本的PaddlePaddle，且镜像中预装好了 jupyter：
 
@@ -73,7 +73,7 @@
     cd ./jupyter_docker
     ```
     ```
-    docker run -p 80:80 --rm --env USER_PASSWD="password you set" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.0-jupyter
+    docker run -p 80:80 --rm --env USER_PASSWD="password you set" -v $PWD:/home/paddle registry.baidubce.com/paddlepaddle/paddle:2.2.1-jupyter
     ```
 
     - `--rm`：关闭容器后删除容器；
@@ -84,7 +84,7 @@
 
     - `-v $PWD:/home/paddle`：指定将当前路径（PWD变量会展开为当前路径的绝对路径）挂载到容器内部的 /home/paddle 目录；
 
-    - `registry.baidubce.com/paddlepaddle/paddle:2.2.0-jupyter`：指定需要使用的image名称，您可以通过`docker images`命令查看
+    - `registry.baidubce.com/paddlepaddle/paddle:2.2.1-jupyter`：指定需要使用的image名称，您可以通过`docker images`命令查看
 
 
 
@@ -104,20 +104,20 @@
     </thead>
     <tbody>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0 </td>
-        <td> 安装了2.2.0版本paddle的CPU镜像 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.1 </td>
+        <td> 安装了2.2.1版本paddle的CPU镜像 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0-jupyter </td>
-        <td> 安装了2.2.0版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.1-jupyter </td>
+        <td> 安装了2.2.1版本paddle的CPU镜像，且镜像中预装好了jupyter，启动docker即运行jupyter服务 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0-gpu-cuda11.2-cudnn8 </td>
-        <td> 安装了2.2.0版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.1-gpu-cuda11.2-cudnn8 </td>
+        <td> 安装了2.2.1版本paddle的GPU镜像，cuda版本为11.2，cudnn版本为8.1 </td>
     </tr>
         <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.0-gpu-cuda10.2-cudnn7 </td>
-        <td> 安装了2.2.0版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.2.1-gpu-cuda10.2-cudnn7 </td>
+        <td> 安装了2.2.1版本paddle的GPU镜像，cuda版本为10.2，cudnn版本为7 </td>
     </tr>
    </tbody>
 </table>
