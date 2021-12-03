@@ -7,7 +7,7 @@
 
 如下是使用 @to_static 进行动静转换的两种方式：
 
-- 方式一：使用 @to_static 装饰器装饰 ``Model`` 的 ``forward`` 函数
+- 方式一：使用 @to_static 装饰器装饰 ``SimpleNet`` (继承了 ``nn.Layer``)  的 ``forward`` 函数:
 
     ```python
     import paddle
@@ -57,7 +57,7 @@
     paddle.jit.save(net, './net')
     ```
 
-方式一和方式二的主要区别是，使用 @to_static 除了支持预测模型导出外，还支持转为静态图子图训练，而方式二仅支持预测模型导出。@to_static 的基本执行流程如下图：
+方式一和方式二的主要区别是，使用 @to_static 除了支持预测模型导出外，在模型训练时，还会转为静态图子图训练，而方式二仅支持预测模型导出。@to_static 的基本执行流程如下图：
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_train.png" style="zoom:50%" />
 
@@ -65,7 +65,7 @@
 
 ## 二、动转静模型导出
 
-动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图训练与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。下图展示了**动态图模型训练——>动转静模型导出——>静态预测部署**的流程。
+动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图模型训练与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。下图展示了**动态图模型训练——>动转静模型导出——>静态预测部署**的流程。
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_export.png" style="zoom:50%" />
 
@@ -186,15 +186,15 @@ print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
 
 #### 2.2.2 基本用法
 
-**方式一： @to_static 装饰器模式**
+**方式一： 在 @to_static 装饰器中调用**
 
 如下是一个简单的使用样例：
 
 ```python
 import paddle
+from paddle.nn import Layer
 from paddle.jit import to_static
 from paddle.static import InputSpec
-from paddle.fluid.dygraph import Layer
 
 class SimpleNet(Layer):
     def __init__(self):
@@ -221,7 +221,7 @@ paddle.jit.save(net, './simple_net')
 >    3. 若被装饰函数中包括非 Tensor 参数，推荐函数的非 Tensor 参数设置默认值，如 ``forward(self, x, use_bn=False)``
 
 
-**方式二：to_static函数调用**
+**方式二：在 to_static 函数中调用**
 
 若期望在动态图下训练模型，在训练完成后保存预测模型，并指定预测时需要的签名信息，则可以选择在保存模型时，直接调用 ``to_static`` 函数。使用样例如下：
 
@@ -251,7 +251,7 @@ paddle.jit.save(net, './simple_net')
 如上述样例代码中，在完成训练后，可以借助 ``to_static(net, input_spec=...)`` 形式对模型实例进行处理。Paddle 会根据 input_spec 信息对 forward 函数进行递归的动转静，得到完整的静态图，且包括当前训练好的参数数据。
 
 
-**方式三：支持 list 和 dict 推导**
+**方式三：通过 list 和 dict 推导**
 
 上述两个样例中，被装饰的 forward 函数的参数均为 Tensor 。这种情况下，参数个数必须与 InputSpec 个数相同。但当被装饰的函数参数为 list 或 dict 类型时，``input_spec`` 需要与函数参数保持相同的嵌套结构。
 
