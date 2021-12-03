@@ -26,9 +26,13 @@
 
 方案如下图所示：
 
-<img src="https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/04_dygraph_to_static/images/dygraph_to_static.png?raw=true"  style="zoom:60%">
+.. figure:: images/dygraph_to_static.png
+    :width: 800px
+    :align: center
 
-<div align="center">图1 飞桨框架动静统一方案示意图</div> 
+.. class:: center
+
+图1 飞桨框架动静统一方案示意图
 
 
 .. note::
