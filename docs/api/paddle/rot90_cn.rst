@@ -22,10 +22,13 @@ rot90
 抛出异常：
     - ``TypeError`` - 当 ``x`` 的类型不是Variable
     - ``TypeError`` - 当 ``x`` 的数据类型不是float16, float32, float64, int32, int64, bool
-    - ``TypeError``- 当 ``dims`` 不是list或者tuple
+    - ``TypeError``- 当 ``axes`` 不是list或者tuple
 
-**代码示例1**：
+代码示例
+::::::::::
+
 .. code-block:: python
+
     import paddle
     import numpy as np
     data = paddle.arange(4)
