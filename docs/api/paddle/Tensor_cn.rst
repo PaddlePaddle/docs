@@ -1014,6 +1014,15 @@ gather_nd(index, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_gather_nd`
 
+gcd(x1, x2, name=None)
+:::::::::
+
+计算两个输入的按元素绝对值的最大公约数
+
+返回：计算后的Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_gcd`
+
 gradient()
 :::::::::
 
@@ -1149,6 +1158,15 @@ kron(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_kron`
+
+lcm(x1, x2, name=None)
+:::::::::
+
+计算两个输入的按元素绝对值的最小公倍数
+
+返回：计算后的Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_lcm`
 
 less_equal(y, name=None)
 :::::::::
