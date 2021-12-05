@@ -2114,3 +2114,12 @@ solve(x, y name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_linalg_solve`
+
+logit(eps=0.0, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_logit`
