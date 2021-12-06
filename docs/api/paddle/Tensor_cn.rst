@@ -1014,7 +1014,7 @@ gather_nd(index, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_gather_nd`
 
-gcd(x1, x2, name=None)
+gcd(x, y, name=None)
 :::::::::
 
 计算两个输入的按元素绝对值的最大公约数
@@ -1159,7 +1159,7 @@ kron(y, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_kron`
 
-lcm(x1, x2, name=None)
+lcm(x, y, name=None)
 :::::::::
 
 计算两个输入的按元素绝对值的最小公倍数
