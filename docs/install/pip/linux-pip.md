@@ -9,6 +9,7 @@
   * **CentOS 7 (GPU版本支持CUDA 10.1/10.2/11.0/11.1/11.2)**
   * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
   * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
+  * **Ubuntu 20.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
 
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 
@@ -219,17 +220,13 @@
   cat /proc/cpuinfo | grep -i avx
   ```
 
-* 如果你想安装联编`tensorrt`的Paddle包，可以通过以下命令将wheel包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为wheel包名称）：
-
-  ```
-  python -m pip download paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html --no-index --no-deps
-  ```
-
 * 如果你想安装`avx`、`openblas`的Paddle包，可以通过以下命令将wheel包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为wheel包名称）：
 
   ```
-  python -m pip download paddlepaddle-gpu==[版本号] -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==[版本号] -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
+
+* 如果你想安装联编`tensorrt`的Paddle包，可以参考[下载安装Linux预测库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html)。
 
 
 

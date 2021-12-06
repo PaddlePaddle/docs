@@ -17,7 +17,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 * Windows 7 / 8 / 10, Pro/Enterprise
-* Ubuntu 16.04 / 18.04
+* Ubuntu 16.04 / 18.04 / 20.04
 * CentOS 7
 * MacOS 10.11 / 10.12 / 10.13 / 10.14
 * 64-bit operating system is required
@@ -51,7 +51,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
         * don't support install using **nvidia-docker** 
     * Ubuntu install GPU version
 
-        * Ubuntu 16.04 / 18.04 supports CUDA 10.1/10.2/11.0/11.1/11.2
+        * Ubuntu 16.04 / 18.04 / 20.04 supports CUDA 10.1/10.2/11.0/11.1/11.2
         * If you install using **nvidia-docker** , it supports CUDA 10.2/11.2
     * CentOS install GPU version
 
@@ -74,7 +74,7 @@ Please make sure your environment meets the above conditions. If you have other 
     * not support NCCL
 * Support for Ubuntu
 
-    * Ubuntu 16.04 / 18.04:
+    * Ubuntu 16.04 / 18.04 / 20.04:
 
         * support NCCL v2.4.2-v2.4.8 under CUDA10.1
 * Support for CentOS

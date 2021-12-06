@@ -7,7 +7,7 @@
 
 Before performing PaddlePaddle installation, please make sure that your Anaconda software environment is properly installed. For software download and installation, see Anaconda's official website (https://www.anaconda.com/). If you have installed Anaconda correctly, follow these steps to install PaddlePaddle.
 
-* CentOS 7 / Ubuntu16.04 / Ubuntu18.04 (64bit)
+* CentOS 7 / Ubuntu16.04 / Ubuntu18.04 / Ubuntu20.04 (64bit)
 * GPU Version support CUDA 10.1/10.2/11.2
 * conda version 4.8.3+ (64 bit)
 
