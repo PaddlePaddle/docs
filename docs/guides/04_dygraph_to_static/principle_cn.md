@@ -40,7 +40,8 @@ class SimpleNet(paddle.nn.Layer):
 
 net = SimpleNet()
 
-x_spec = InputSpec(shape=[None, 10], name='x')
+# 通过 InputSpec 设置 Placeholder 信息
+x_spec = InputSpec(shape=[None, 10], name='x') 
 y_spec = InputSpec(shape=[3], name='y')
 
 net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换

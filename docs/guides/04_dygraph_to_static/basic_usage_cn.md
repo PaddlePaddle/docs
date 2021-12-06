@@ -3,11 +3,11 @@
 
 ## 一、 使用 @to_static 进行动静转换
 
-动静转换（@to_static）通过解析 Python 代码（抽象语法树，下简称：AST） 实现一行代码即可转为静态图功能，即只需在待转化的函数前添加一个装饰器 ``@paddle.jit.to_static`` 。
+动静转换（@to_static）通过解析 Python 代码（抽象语法树，下简称：AST） 实现一行代码即可将动态图转为静态图的功能，只需在待转化的函数前添加一个装饰器 ``@paddle.jit.to_static`` 。
 
 如下是使用 @to_static 进行动静转换的两种方式：
 
-- 方式一：使用 @to_static 装饰器装饰 ``Model`` 的 ``forward`` 函数
+- 方式一：使用 @to_static 装饰器装饰 ``SimpleNet`` (继承了 ``nn.Layer``)  的 ``forward`` 函数:
 
     ```python
     import paddle
@@ -57,7 +57,7 @@
     paddle.jit.save(net, './net')
     ```
 
-动转静 @to_static 除了支持预测模型导出，还兼容转为静态图子图训练，仅需要在 ``forward`` 函数上添加此装饰器即可，不需要修改任何其他的代码。基本执行流程如下：
+方式一和方式二的主要区别是，使用 @to_static 除了支持预测模型导出外，在模型训练时，还会转为静态图子图训练，而方式二仅支持预测模型导出。@to_static 的基本执行流程如下图：
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_train.png" style="zoom:50%" />
 
@@ -65,7 +65,7 @@
 
 ## 二、动转静模型导出
 
-动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。下图展示了**动态图模型训练——>动转静模型导出——>静态预测部署**的流程。
+动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图模型训练与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。下图展示了**动态图模型训练——>动转静模型导出——>静态预测部署**的流程。
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_export.png" style="zoom:50%" />
 
@@ -73,13 +73,19 @@
 
 在处理逻辑上，动转静主要包含两个主要模块：
 
-+ **代码层面**：将所有的 Paddle ``layers`` 接口在静态图模式下执行以转为 ``Op`` ，从而生成完整的静态 ``Program``
++ **代码层面**：将模型中所有的 ``layers`` 接口在静态图模式下执行以转为 ``Op`` ，从而生成完整的静态 ``Program``
 + **Tensor层面**：将所有的 ``Parameters`` 和 ``Buffers`` 转为**可导出的 ``Variable`` 参数**（ ``persistable=True`` ）
 
 
-### 2.1 forward 函数导出
+### 2.1 通过 ``forward`` 导出预测模型
 
-如下是一个简单的 ``Model`` 的代码：
+通过 ``forward`` 导出预测模型导出一般包括三个步骤：
+
++ **切换 `eval()` 模式**：类似 `Dropout` 、`LayerNorm` 等接口在 `train()` 和 `eval()` 的行为存在较大的差异，在模型导出前，**请务必确认模型已切换到正确的模式，否则导出的模型在预测阶段可能出现输出结果不符合预期的情况。**
++ **构造 `InputSpec` 信息**：InputSpec 用于表示输入的shape、dtype、name信息，且支持用 `None` 表示动态shape（如输入的 batch_size 维度），是辅助动静转换的必要描述信息。
++ **调用 `save` 接口**：调用 `paddle.jit.save`接口，若传入的参数是类实例，则默认对 `forward` 函数进行 `@to_static` 装饰，并导出其对应的模型文件和参数文件。
+
+如下是一个简单的示例：
 
 ```python
 import paddle
@@ -115,27 +121,19 @@ y_spec = InputSpec(shape=[3], dtype='float32', name='y')
 net = paddle.jit.save(net, path='simple_net', input_spec=[x_spec, y_spec])  # 动静转换
 ```
 
-执行上述代码样例后，在当前目录下会生成三个文件：
+执行上述代码样例后，在当前目录下会生成三个文件，即代表成功导出预测模型：
 ```
 simple_net.pdiparams        // 存放模型中所有的权重数据
 simple_net.pdimodel         // 存放模型的网络结构
 simple_net.pdiparams.info   // 存放额外的其他信息
 ```
 
-
-预测模型导出一般包括三个步骤：
-
-+ **切换 `eval()` 模式**：类似 `Dropout` 、`LayerNorm` 等接口在 `train()` 和 `eval()` 的行为存在较大的差异，在模型导出前，**请务必确认模型已切换到正确的模式，否则导出的模型在预测阶段可能出现输出结果不符合预期的情况。**
-+ **构造 `InputSpec` 信息**：InputSpec 用于表示输入的shape、dtype、name信息，且支持用 `None` 表示动态shape（如输入的 batch_size 维度），是辅助动静转换的必要描述信息。
-+ **调用 `save` 接口**：调用 `paddle.jit.save`接口，若传入的参数是类实例，则默认对 `forward` 函数进行 `@to_static` 装饰，并导出其对应的模型文件和参数文件。
-
-
 ### 2.2 使用 InputSpec 指定模型输入 Tensor 信息
 
 动静转换在生成静态图 Program 时，依赖输入 Tensor 的 shape、dtype 和 name 信息。因此，Paddle 提供了 InputSpec 接口，用于指定输入 Tensor 的描述信息，并支持动态 shape 特性。
 
 
-#### 2.2.1 InputSpec 构造
+#### 2.2.1 构造 InputSpec
 
 
 **方式一：直接构造**
@@ -168,7 +166,7 @@ x_spec = InputSpec.from_tensor(x, name='x')
 print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
 ```
 
-> 注：若未在 ``from_tensor`` 中指定新的name，则默认使用与源Tensor相同的name。
+> 注：若未在 ``from_tensor`` 中指定新的 ``name``，则默认使用与源 Tensor 相同的 ``name``。
 
 
 **方式三：由 numpy.ndarray**
@@ -184,19 +182,19 @@ x_spec = InputSpec.from_numpy(x, name='x')
 print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
 ```
 
-> 注：若未在 ``from_numpy`` 中指定新的 name，则默认使用 None 。
+> 注：若未在 ``from_numpy`` 中指定新的 ``name``，则默认使用 ``None`` 。
 
 #### 2.2.2 基本用法
 
-**方式一： @to_static 装饰器模式**
+**方式一： 在 @to_static 装饰器中调用**
 
 如下是一个简单的使用样例：
 
 ```python
 import paddle
+from paddle.nn import Layer
 from paddle.jit import to_static
 from paddle.static import InputSpec
-from paddle.fluid.dygraph import Layer
 
 class SimpleNet(Layer):
     def __init__(self):
@@ -223,7 +221,7 @@ paddle.jit.save(net, './simple_net')
 >    3. 若被装饰函数中包括非 Tensor 参数，推荐函数的非 Tensor 参数设置默认值，如 ``forward(self, x, use_bn=False)``
 
 
-**方式二：to_static函数调用**
+**方式二：在 to_static 函数中调用**
 
 若期望在动态图下训练模型，在训练完成后保存预测模型，并指定预测时需要的签名信息，则可以选择在保存模型时，直接调用 ``to_static`` 函数。使用样例如下：
 
@@ -253,7 +251,7 @@ paddle.jit.save(net, './simple_net')
 如上述样例代码中，在完成训练后，可以借助 ``to_static(net, input_spec=...)`` 形式对模型实例进行处理。Paddle 会根据 input_spec 信息对 forward 函数进行递归的动转静，得到完整的静态图，且包括当前训练好的参数数据。
 
 
-**方式三：支持 list 和 dict 推导**
+**方式三：通过 list 和 dict 推导**
 
 上述两个样例中，被装饰的 forward 函数的参数均为 Tensor 。这种情况下，参数个数必须与 InputSpec 个数相同。但当被装饰的函数参数为 list 或 dict 类型时，``input_spec`` 需要与函数参数保持相同的嵌套结构。
 
