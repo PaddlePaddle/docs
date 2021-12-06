@@ -1,5 +1,102 @@
 ﻿
-# Release Note
+# 2.2.1 Release Note
+
+## 1. 重要更新
+
+我们很高兴的发布飞桨框架2.2.1版本，主要是对2.2.0中一些功能和性能问题的修复，并对部分功能点做了增强，重点如下：
+
+- 新增  ``paddle.linalg.triangular_solve``，用于计算带有三角系数矩阵的线性方程组。
+- 新增 `paddle.device.cuda.graphs.CUDAGraph` API，支持NVIDIA的[CUDA Graph](https://developer.nvidia.com/blog/cuda-graphs/)功能，注意目前该API还处于实验阶段，尚未稳定。
+- 修复了基础API、Tensor 索引中的已知问题。
+
+
+## 2. 训练框架（含分布式）
+
+### （1）新功能
+
+#### API
+
+- 新增``paddle.linalg.triangular_solve`` API，用于计算带有三角系数矩阵的线性方程组。([#36714](https://github.com/PaddlePaddle/Paddle/pull/36714))
+- 新增`paddle.device.cuda.graphs.CUDAGraph` API，支持NVIDIA的[CUDA Graph](https://developer.nvidia.com/blog/cuda-graphs/)功能，可以将GPU计算全部捕捉到一张CUDA Graph中，往后多次调用，可以去除框架的额外开销，提升运行性能。注意目前该API还处于实验阶段，尚未稳定。([#37109](https://github.com/PaddlePaddle/Paddle/pull/37109))
+- 新增``paddle.incubate.graph_send_recv`` API，主要应用于图学习领域，目的是为了减少在消息传递过程中带来的中间变量显存或内存的损耗，包含 SUM、MEAN、MIN、MAX 共四种更新模式。([#37205](https://github.com/PaddlePaddle/Paddle/pull/37205))
+- 新增`paddle.incubate.operators.ResNetUnit` API，用于 ResNet 网络里的卷积、批归一化、shortcut/bottleneck操作融合。([#37109](https://github.com/PaddlePaddle/Paddle/pull/37109))
+ 
+
+### （2）功能优化
+
+#### API
+
+- `paddle.incubate.FusedTransformerEncoderLayer`，添加 `src_mask=None` 的支持，添加pure fp16的支持。 ([#37229](https://github.com/PaddlePaddle/Paddle/pull/37229))
+
+#### IR(Intermediate Representation)
+
+- 动态图转静态图
+	- 使用`@paddle.jit.to_static`装饰单独的 function 时，提供 `train()、eval()` 函数支持切换到 `train、eval` 模式。([#37383](https://github.com/PaddlePaddle/Paddle/pull/37383))
+
+
+#### 分布式训练
+- 异构参数服务器完善任意次切图能力，增加流水线训练功能，提升训练吞吐。([#37446](https://github.com/PaddlePaddle/Paddle/pull/37446))
+ 
+
+#### 其他
+
+- 针对 `paddle.scatter` 的 ``index`` 越界导致 core dump 的问题，加强了越界检查，并完善对应的报错信息。([#37431](https://github.com/PaddlePaddle/Paddle/pull/37431))
+
+
+### （3）性能优化
+
+- 优化 `paddle.top_k`，根据 ``k`` 的大小和 ``input_width`` 大小进行选择不同的实现方案，当 k>=75% input_width 时选择 cub 实现，否则选择手写 kernel 实现。([#37325](https://github.com/PaddlePaddle/Paddle/pull/37325))
+- 优化`paddle.fluid.optimizer.LarsMomentumOptimizer`，通过 optimizer 算子融合 + [CUDA Cooperative Groups](https://developer.nvidia.com/blog/cooperative-groups/)的方式提高OP性能。([#37109](https://github.com/PaddlePaddle/Paddle/pull/37109))
+
+
+
+### （4）问题修复
+
+#### API
+- 修复`paddle.nn.ELU` 与 `paddle.nn.functional.elu` 的计算公式，解决 alpha<0 时结果错误的问题；`paddle.nn.functional.elu_`不支持 alpha<0 的场景，在 alpha<0 时会报错。([#37437](https://github.com/PaddlePaddle/Paddle/pull/37437))
+- 修复`paddle.slice`反向执行时出现 `out_of_range` 的问题。([#37584](https://github.com/PaddlePaddle/Paddle/pull/37584))
+- `paddle.shape` 没有反向，显式设置 ``stop_gradient`` 为 ``True``。([#37412](https://github.com/PaddlePaddle/Paddle/pull/37412))
+- `paddle.arange` 没有反向，显式设置 ``stop_gradient`` 为 ``True``。([#37486](https://github.com/PaddlePaddle/Paddle/pull/37486))
+- `paddle.shard_index` 在输入数据的最后一维不为1时进行报错提示。([#37421](https://github.com/PaddlePaddle/Paddle/pull/37421))
+- 修复 ``paddle.matmul`` 使用int8量化，反量化时维度错误的问题。([#36982](https://github.com/PaddlePaddle/Paddle/pull/36982))
+- 修复 `paddle.nn.Dropout` 在 `eval` 模式下不计算梯度的问题。([#37305](https://github.com/PaddlePaddle/Paddle/pull/37305))
+- 修复 `paddle.nn.functional.dropout` 在静态图下输入 `Tenor` 形状中有 -1 并指定 drop 该维时报错的问题。([#37223](https://github.com/PaddlePaddle/Paddle/pull/37223))
+- 修复RNN类API `paddle.nn.LSTM`,`paddle.nn.GRU`, `paddle.nn.SimpleRNN`在CPU训练时多层RNN（dropout设置为0）反向计算出错的问题。([#37086](https://github.com/PaddlePaddle/Paddle/pull/37086))
+- 修复 `paddle.incubate.FusedTransformerEncoderLayer` 反向计算梯度错误、pre_layer_norm 处理不正确、参数处理不正确，漏传参数、 add_bias 计算错误等问题。 ([#37229](https://github.com/PaddlePaddle/Paddle/pull/37229))
+- 修复 `paddle.incubate.fused_multi_head_attention` 不支持 ``bias`` 为`None` 的问题。([#37411](https://github.com/PaddlePaddle/Paddle/pull/37411), [#37566](https://github.com/PaddlePaddle/Paddle/pull/37566))
+- 修复`paddle.vision.datasets.Cifar10`, `paddle.vision.datasets.Cifar100`加载数据没有顺序的问题。 ([#37528](https://github.com/PaddlePaddle/Paddle/pull/37528))
+- 修复一维`Tensor`在使用省略号(...)索引时维度检测异常报错的问题。([#37192](https://github.com/PaddlePaddle/Paddle/pull/37192))
+- 修复`Tensor`索引赋值(`setitem`)梯度属性无法传播的问题，详见[issue](https://github.com/PaddlePaddle/Paddle/issues/36902)。([#37028](https://github.com/PaddlePaddle/Paddle/pull/37028))
+
+
+#### IR(Intermediate Representation)
+
+- 动态图转静态图
+	- 动转静后的模型调用 `paddle.flops` 能够正确统计模型参数。([#36852](https://github.com/PaddlePaddle/Paddle/pull/36852))
+	- 动转静模块能够正确转换`for i in [1, 2, 3]`循环语句。([#37259](https://github.com/PaddlePaddle/Paddle/pull/37259))
+
+#### 分布式训练
+
+  - `fleet.load_model`: 修复参数服务器模式下模型加载API不可用问题。([#37461](https://github.com/PaddlePaddle/Paddle/pull/37461))
+  -  `fleet.save_inference_model`: 修复参数服务器模式下模型保存 dense 参数前，未从 server 端拉取参数的问题。([#37461](https://github.com/PaddlePaddle/Paddle/pull/37461))
+ 
+
+#### 其他
+
+- 修复动态图 inplace 操作的问题：对一个非叶子节点进行 inplace 操作后，立即执行 backward，该节点及更前的节点的梯度计算错误。([#37420](https://github.com/PaddlePaddle/Paddle/pull/37420))
+
+
+## 4. 部署方向（Paddle Inference）
+
+### （1）问题修复
+
+- 在明确关闭日志的情况下，进一步去除冗余的调试日志。([#37212](https://github.com/PaddlePaddle/Paddle/pull/37212))
+- 修复内存/显存优化策略，避免因不当的内存/显存优化导致预测结果有误或崩溃。([#37324](https://github.com/PaddlePaddle/Paddle/pull/37324), [#37123](https://github.com/PaddlePaddle/Paddle/pull/37123))
+- 修复 Transformer 模型的 MultiHead 结构中融合后 QkvToContextPluginDynamicscale 的 scale 计算错误问题，这是由于 cuda 函数的 block 和 thread 设置错误引起的。([#37096](https://github.com/PaddlePaddle/Paddle/pull/37096))
+- 将所有的推理OP在in8量化的功能中注册：解决因历史原因有些推理OP没有在int8量化中注册的问题。([#37266](https://github.com/PaddlePaddle/Paddle/pull/37266))
+
+
+# 2.2.0 Release Note
 
 ## 1. 重要更新
 

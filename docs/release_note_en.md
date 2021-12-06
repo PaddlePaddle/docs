@@ -1,5 +1,105 @@
 ﻿
-# Release Note
+# 2.2.1 Release Note
+
+## 1. Important Updates
+
+This version fixed some function and performance issues of PaddlePaddle 2.2.0, and optimized some functions. The highlights are as follows：
+
+- Add  ``paddle.linalg.triangular_solve`` to calculate linear equations with triangular coefficient matrices. 
+- Add `paddle.device.cuda.graphs.CUDAGraph` API that supports the [CUDA Graph](https://developer.nvidia.com/blog/cuda-graphs/) function of NVIDIA. Note that the API is still experimental and not yet stable.
+- Fix known issues of basic API and Tensor index.
+
+
+## 2. Training Framework（Distributed Included）
+
+### （1）New Functions
+
+#### API
+
+- Add ``paddle.linalg.triangular_solve`` API to calculate linear equations with triangular coefficient matrices. ([#36714](https://github.com/PaddlePaddle/Paddle/pull/36714))
+- Add `paddle.device.cuda.graphs.CUDAGraph` API that supports the [CUDA Graph](https://developer.nvidia.com/blog/cuda-graphs/) function of NVIDIA by capturing all GPU calculations into a single CUDA Graph and calling them for later use, which not only cuts the extra overhead but also improves the runtime performance. Note that the API is still experimental and not yet stable. ([#37109](https://github.com/PaddlePaddle/Paddle/pull/37109))
+- Add``paddle.incubate.graph_send_recv`` API for image learning to reduce the loss of intermediate variables in memory or video memory during message passing. It contains four update modes, namely, SUM, MEAN, MIN, and MAX. ([#37205](https://github.com/PaddlePaddle/Paddle/pull/37205))
+- Add `paddle.incubate.operators.ResNetUnit` API to integrate the convolution, batch normalization, and shortcut/bottleneck operation in the ResNet network. ([#37109](https://github.com/PaddlePaddle/Paddle/pull/37109))
+
+
+### （2）Function Optimization
+
+#### API
+
+- `paddle.incubate.FusedTransformerEncoderLayer` adds `src_mask=None` and supports pure fp16.([#37229](https://github.com/PaddlePaddle/Paddle/pull/37229))
+
+#### IR(Intermediate Representation)
+
+- Dynamic Graph to Static Graph
+  - When adopting`@paddle.jit.to_static` to decorate single function, `train()、eval()` functions are provided to support the swtich to `train、eval` mode. ([#37383](https://github.com/PaddlePaddle/Paddle/pull/37383))
+
+
+#### Distributed Training
+
+- Optimize the ability of arbitrary cutting and add pipeline training in the heterogeneous parameter server, which enhance training throughput.([#37446](https://github.com/PaddlePaddle/Paddle/pull/37446))
+
+
+#### Others
+
+- Enhance the out-of-bounds check for the ``index`` of ``paddle.scatter` that causes core dump, and improve the corresponding error message. ([#37431](https://github.com/PaddlePaddle/Paddle/pull/37431))
+
+
+### （3）Performance Optimization
+
+- Optimize `paddle.top_k` by enabling it to choose different implementations according to the size of ``k`` and ``input_width``: cub implementation when k>=75% input_width, otherwise the handwritten kernel implementation.([#37325](https://github.com/PaddlePaddle/Paddle/pull/37325)) 
+- Optimize `paddle.fluid.optimizer.LarsMomentumOptimizer` to improve OP performance by integrating optimizer operator and  [CUDA Cooperative Groups](https://developer.nvidia.com/blog/cooperative-groups/). ([#37109](https://github.com/PaddlePaddle/Paddle/pull/37109))
+
+
+
+### （4）Bug Fixes
+
+#### API
+
+- Fix the calculation error of `paddle.nn.ELU` and `paddle.nn.functional.elu` when alpha<0；the error report of`paddle.nn.functional.elu_`when alpha<0 due to its objection to such scenario. ([#37437](https://github.com/PaddlePaddle/Paddle/pull/37437))
+- Fix the problem of `out_of_range` when the `paddle.slice` is revesely excuted. ([#37584](https://github.com/PaddlePaddle/Paddle/pull/37584))
+- `paddle.shape` doesn't support backward, explicitly set ``stop_gradient`` to ``True``. ([#37412](https://github.com/PaddlePaddle/Paddle/pull/37412))
+- `paddle.arange` doesn't support backward, explicitly set ``stop_gradient`` to ``True``.([#37486](https://github.com/PaddlePaddle/Paddle/pull/37486))
+- `paddle.shard_index` reports an error if the last dimension of the input data is not 1. ([#37421](https://github.com/PaddlePaddle/Paddle/pull/37421))
+- Fix the wrong dimension of inverse quantization when ``paddle.matmul`` adopts int8 quantization. ([#36982](https://github.com/PaddlePaddle/Paddle/pull/36982))
+- Fix the issue that `paddle.nn.Dropout`, under  `eval`, does not calculate the gradient. ([#37305](https://github.com/PaddlePaddle/Paddle/pull/37305))
+- Fix the issue that `paddle.nn.functional.dropout`, in static graph mode,  reports an error when  -1 is included in the input shape of  `Tensor` and it is specified to drop this dimension. ([#37223](https://github.com/PaddlePaddle/Paddle/pull/37223))
+- Fix the backward calculation errors of multi-layer RNN (dropout set 0) in CPU training by RNN API `paddle.nn.LSTM`,`paddle.nn.GRU`, `paddle.nn.SimpleRNN`. ([#37086](https://github.com/PaddlePaddle/Paddle/pull/37086))
+- Fix issues such as the gradient error of`paddle.incubate.FusedTransformerEncoderLayer` backward calculation, incorrect processing of pre_layer_norm, incorrect parameter processing, missing parameters, calculation errors of add_bias, etc. ([#37229](https://github.com/PaddlePaddle/Paddle/pull/37229))
+- Fix the issue that `paddle.incubate.fused_multi_head_attention` does not support ``bias`` as `None`.([#37411](https://github.com/PaddlePaddle/Paddle/pull/37411), [#37566](https://github.com/PaddlePaddle/Paddle/pull/37566))
+- Fix the disordered data loaded by `paddle.vision.datasets.Cifar10`, `paddle.vision.datasets.Cifar100`. ([#37528](https://github.com/PaddlePaddle/Paddle/pull/37528))
+- Fix the issue that one-dimensional `Tensor` reports an exception error of dimension detection when using ellipsis(...) indexing. ([#37192](https://github.com/PaddlePaddle/Paddle/pull/37192))
+- Fix the issue that the gradient attribute of`Tensor` cannot be spread during indexing and assignment (`setitem`), see [issue](https://github.com/PaddlePaddle/Paddle/issues/36902) for details. ([#37028](https://github.com/PaddlePaddle/Paddle/pull/37028))
+
+
+#### IR(Intermediate Representation)
+
+- Dynamic Graph to Static Graph
+  - The model can call `paddle.flops` to count the model parameters correctly. ([#36852](https://github.com/PaddlePaddle/Paddle/pull/36852))
+  - The model can correctly convert the loop statements `for i in [1, 2, 3]`.([#37259](https://github.com/PaddlePaddle/Paddle/pull/37259))
+
+#### Distributed Training
+
+  - `fleet.load_model`: Fix the unavailable API loaded by the model in parameter server mode.([#37461](https://github.com/PaddlePaddle/Paddle/pull/37461))
+  - `fleet.save_inference_model`: Fix the issue that the model does not pull parameters from the server side before saving dense parameters in parameter server mode. ([#37461](https://github.com/PaddlePaddle/Paddle/pull/37461))
+
+
+#### Others
+
+- Fix the problem of inplace operation of dynamic graph: after performing inplace operation on a non-leaf node, followed by immediate execution of backward, the gradient of this node and the nodes before is calculated incorrectly. ([#37420](https://github.com/PaddlePaddle/Paddle/pull/37420)) 
+
+
+
+
+## 4. Paddle Inference
+
+### （1）Bug Fixes
+
+- Further removal of redundant debug logs in the case of clear log closure.([#37212](https://github.com/PaddlePaddle/Paddle/pull/37212))
+- Fix memory/video memory optimization policies to avoid incorrect prediction results or crashes due to improper memory/video memory optimization. ([#37324](https://github.com/PaddlePaddle/Paddle/pull/37324), [#37123](https://github.com/PaddlePaddle/Paddle/pull/37123))
+- Fix the scale calculation error in the MultiHead structure of Transformer model after integrating QkvToContextPluginDynamicscale, which is caused by wrong block and thread settings of cuda function. ([#37096](https://github.com/PaddlePaddle/Paddle/pull/37096))
+- Register all inference OPs in the function of in8 quantization: Solve the issues that some inference OPs are not registered in int8 quantization due to historical reasons. ([#37266](https://github.com/PaddlePaddle/Paddle/pull/37266
+
+# 2.2.0 Release Note
 
 ## **1. Highlights**
 
