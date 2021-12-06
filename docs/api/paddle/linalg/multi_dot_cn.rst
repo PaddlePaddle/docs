@@ -1,9 +1,9 @@
-.. _cn_api_tensor_multi_dot:
+.. _cn_api_linalg_multi_dot:
 
 multi_dot
 -------------------------------
 
-.. py:function:: paddle.multi_dot(x, name=None)
+.. py:function:: paddle.linalg.multi_dot(x, name=None)
 
 Multi_dot是一个计算多个矩阵乘法的算子。
 

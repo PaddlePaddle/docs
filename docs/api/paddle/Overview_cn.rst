@@ -32,12 +32,14 @@ tensor数学操作
     :widths: 10, 30
 
     " :ref:`paddle.abs <cn_api_fluid_layers_abs>` ", "绝对值函数"
+    " :ref:`paddle.angle <cn_api_paddle_angle>` ", "相位角函数"
     " :ref:`paddle.acos <cn_api_fluid_layers_acos>` ", "arccosine函数"
     " :ref:`paddle.add <cn_api_tensor_add>` ", "Tensor逐元素相加"
     " :ref:`paddle.add_n <cn_api_tensor_add_n>` ", "对输入的一至多个Tensor或LoDTensor求和"
     " :ref:`paddle.addmm <cn_api_tensor_addmm>` ", "计算输入Tensor x和y的乘积，将结果乘以标量alpha，再加上input与beta的乘积，得到输出"
     " :ref:`paddle.all <cn_api_tensor_all>` ", "对指定维度上的Tensor元素进行逻辑与运算"
     " :ref:`paddle.allclose <cn_api_tensor_allclose>` ", "逐个检查输入Tensor x和y的所有元素是否均满足 ∣x−y∣≤atol+rtol×∣y∣"
+    " :ref:`paddle.isclose <cn_api_tensor_isclose>` ", "逐个检查输入Tensor x和y的所有元素是否满足 ∣x−y∣≤atol+rtol×∣y∣"
     " :ref:`paddle.any <cn_api_tensor_any>` ", "对指定维度上的Tensor元素进行逻辑或运算"
     " :ref:`paddle.asin <cn_api_fluid_layers_asin>` ", "arcsine函数"
     " :ref:`paddle.atan <cn_api_fluid_layers_atan>` ", "arctangent函数"
@@ -61,7 +63,6 @@ tensor数学操作
     " :ref:`paddle.greater_equal <cn_api_tensor_cn_greater_equal>` ", "逐元素地返回 x>=y 的逻辑值"
     " :ref:`paddle.greater_than <cn_api_tensor_cn_greater_than>` ", "逐元素地返回 x>y 的逻辑值"
     " :ref:`paddle.increment <cn_api_tensor_increment>` ", "在控制流程中用来让 x 的数值增加 value"
-    " :ref:`paddle.inverse <cn_api_tensor_inverse>` ", "计算方阵的逆"
     " :ref:`paddle.kron <cn_api_paddle_tensor_kron>` ", "计算两个张量的克罗内克积"
     " :ref:`paddle.less_equal <cn_api_tensor_cn_less_equal>` ", "逐元素地返回 x<=y 的逻辑值"
     " :ref:`paddle.less_than <cn_api_tensor_cn_less_than>` ", "逐元素地返回 x<y 的逻辑值"
@@ -112,6 +113,9 @@ tensor数学操作
     " :ref:`paddle.diagonal <cn_api_tensor_diagonal>` ", "根据给定的轴 axis 返回输入 Tensor 的局部视图"
     " :ref:`paddle.trunc <cn_api_tensor_trunc>` ", "对输入 Tensor 每个元素的小数部分进行截断"
     " :ref:`paddle.log1p <cn_api_paddle_tensor_log1p>` ", "该OP计算Log1p（加一的自然对数）结果"
+    " :ref:`paddle.diff <cn_api_tensor_diff>` ", "沿着指定维度对输入Tensor计算n阶的前向差值"
+    " :ref:`paddle.rad2deg <cn_api_paddle_tensor_rad2deg>` ", "将元素从弧度的角度转换为度"
+    " :ref:`paddle.deg2rad <cn_api_paddle_tensor_deg2rad>` ", "将元素从度的角度转换为弧度"
 
 .. _tensor_logic:
 
@@ -236,20 +240,16 @@ tensor线性代数相关
 
     " :ref:`paddle.bincount <cn_api_tensor_bincount>` ", "统计输入张量中元素的出现次数"
     " :ref:`paddle.bmm <cn_api_paddle_tensor_bmm>` ", "对输入x及输入y进行矩阵相乘"
-    " :ref:`paddle.cholesky <cn_api_tensor_cholesky>` ", "计算一个对称正定矩阵或一批对称正定矩阵的Cholesky分解"
     " :ref:`paddle.cross <cn_api_tensor_linalg_cross>` ", "计算张量 x 和 y 在 axis 维度上的向量积（叉积）"
     " :ref:`paddle.dist <cn_api_tensor_linalg_dist>` ", "计算 (x-y) 的 p 范数（p-norm）"
     " :ref:`paddle.dot <cn_api_paddle_tensor_linalg_dot>` ", "计算向量的内积"
     " :ref:`paddle.histogram <cn_api_tensor_histogram>` ", "计算输入张量的直方图"
     " :ref:`paddle.matmul <cn_api_tensor_matmul>` ", "计算两个Tensor的乘积，遵循完整的广播规则"
-    " :ref:`paddle.matrix_power <cn_api_tensor_matrix_power>` ", "计算一个（或一批）方阵的 n 次幂"
     " :ref:`paddle.mv <cn_api_tensor_mv>` ", "计算矩阵 x 和向量 vec 的乘积"
-    " :ref:`paddle.norm <cn_api_tensor_norm>` ", "计算给定Tensor的矩阵范数（Frobenius 范数）和向量范数（向量1范数、2范数、或者通常的p范数）"
     " :ref:`paddle.rank <cn_api_fluid_layers_rank>` ", "计算输入Tensor的维度（秩）"
     " :ref:`paddle.t <cn_api_paddle_tensor_t>` ", "对小于等于2维的Tensor进行数据转置"
     " :ref:`paddle.tril <cn_api_tensor_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为0"
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为0"
-    " :ref:`paddle.multi_dot<cn_api_tensor_multi_dot>` ", "计算多个矩阵相乘"
 
 .. _tensor_manipulation:
 
@@ -299,7 +299,7 @@ tensor元素操作相关（如：转置，reshape等）
 .. einsum:
 
 爱因斯坦求和
-：：：：：：
+::::::::::::::::::
 
 .. csv-table::
     :header: "API名称", "API功能"

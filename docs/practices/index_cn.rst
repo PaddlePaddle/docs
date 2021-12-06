@@ -19,7 +19,7 @@
     - `图像分类 <./cv/convnet_image_classification.html>`_ ：介绍使用 PaddlePaddle 在Cifar10数据集上完成图像分类。    
     - `以图搜图 <./cv/image_search.html>`_ : 介绍使用 PaddlePaddle 实现以图搜图。
     - `图像分割 <./cv/image_segmentation.html>`_ : 介绍使用 PaddlePaddle 实现U-Net模型完成图像分割。
-    - `OCR <./cv/image_ocr/image_ocr.html>`_ : 介绍使用 PaddlePaddle 实现 OCR。
+    - `OCR <./cv/image_ocr.html>`_ : 介绍使用 PaddlePaddle 实现 OCR。
     - `图像超分 <./cv/super_resolution_sub_pixel.html>`_ : 介绍使用 PaddlePaddle 完成图像超分。
     - `人脸关键点检测 <./cv/landmark_detection.html>`_ : 介绍使用 PaddlePaddle 完成人脸关键点检测。
     - `点云分类 <./cv/pointnet.html>`_ :介绍使用 PaddlePaddle 完成点云分类。
@@ -46,6 +46,9 @@
 
     - `异常数据检测 <./time_series/autoencoder.html>`_ : 介绍使用 PaddlePaddle 完成时序数据异常点检测。
 
+动转静：
+    - `使用动转静完成以图搜图 <./jit/image_search_with_jit.html>`_ : 介绍使用 PaddlePaddle 通过动转静完成以图搜图。
+
 
 ..  toctree::
     :hidden:
@@ -56,3 +59,4 @@
     recommendations/index_cn.rst
     reinforcement_learning/index_cn.rst
     time_series/index_cn.rst
+    jit/index_cn.rst

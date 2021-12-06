@@ -212,6 +212,15 @@ abs(name=None)
 
 请参考 :ref:`cn_api_fluid_layers_abs`
 
+angle(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_angle`
+
 acos(name=None)
 :::::::::
 
@@ -270,6 +279,15 @@ allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_allclose`
+
+isclose(x, y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_isclose`
 
 any(axis=None, keepdim=False, name=None)
 :::::::::
@@ -480,7 +498,7 @@ cholesky(upper=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cholesky`
+请参考 :ref:`cn_api_linalg_cholesky`
 
 chunk(chunks, axis=0, name=None)
 :::::::::
@@ -671,6 +689,17 @@ cumsum(axis=None, dtype=None, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_cumsum`
 
+deg2rad(x, name=None)
+:::::::::
+
+将元素从度的角度转换为弧度
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_deg2rad`
+
 detach()
 :::::::::
 
@@ -748,6 +777,15 @@ dot(y, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_linalg_dot`
 
+diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_diff`
+
 equal(y, name=None)
 :::::::::
 
@@ -814,7 +852,7 @@ eigvals(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_linalg_eigvals`
+请参考 :ref:`cn_api_linalg_eigvals`
 
 fill_(x, value, name=None)
 :::::::::
@@ -1076,14 +1114,14 @@ index_select(index, axis=0, name=None)
 
 请参考 :ref:`cn_api_tensor_search_index_select`
 
-inverse(name=None)
+inv(name=None)
 :::::::::
 
 返回：计算后的Tensor
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_inverse`
+请参考 :ref:`cn_api_linalg_inv`
 
 is_empty(cond=None)
 :::::::::
@@ -1263,7 +1301,7 @@ matrix_power(x, n, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_matrix_power`
+请参考 :ref:`cn_api_linalg_matrix_power`
 
 max(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1402,7 +1440,7 @@ norm(p=fro, axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_norm`
+请参考 :ref:`cn_api_linalg_norm`
 
 not_equal(y, name=None)
 :::::::::
@@ -1478,6 +1516,17 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_cn_prod`
+
+rad2deg(x, name=None)
+:::::::::
+
+将元素从弧度的角度转换为度
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_rad2deg`
 
 rank()
 :::::::::
@@ -1950,6 +1999,15 @@ transpose(perm, name=None)
 
 请参考 :ref:`cn_api_fluid_layers_transpose`
 
+triangular_solve(b, upper=True, transpose=False, unitriangular=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_linalg_triangular_solve`
+
 trunc(name=None)
 :::::::::
 
@@ -2064,7 +2122,7 @@ multi_dot(x, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_multi_dot`
+请参考 :ref:`cn_api_linalg_multi_dot`
 
 solve(x, y name=None)
 :::::::::

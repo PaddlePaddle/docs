@@ -43,15 +43,15 @@
 
 **以下将详细地介绍动静转换的各个模块内容：**
 
-- `基础接口用法 <basic_usage_cn.html>`_ : 介绍了动静转换 @to_static 的基本用法
+- `使用样例 <basic_usage_cn.html>`_ : 介绍了动静转换 @to_static 的基本用法
 
-- `语法支持列表 <grammar_list_cn.html>`_ ：介绍了动静转换功能已支持的语法概况
+- `转换原理 <principle_cn..html>`_ ：介绍了动静转换的内部原理
 
-- `预测模型导出 <./export_model/index_cn.html>`_ ：介绍了导出动态图预测模型的详细教程
+- `支持语法 <grammar_list_cn.html>`_ ：介绍了动静转换功能已支持的语法概况
 
-- `常见案例解析 <./case_analysis_cn.html>`_ : 介绍使用 @to_static 时常见的问题和案例解析
+- `案例解析 <./case_analysis_cn.html>`_ : 介绍使用 @to_static 时常见的问题和案例解析
 
-- `报错调试经验 <debugging_cn.html>`_ ：介绍了动静转换 @to_static 的调试方法和经验
+- `报错调试 <debugging_cn.html>`_ ：介绍了动静转换 @to_static 的调试方法和经验
 
 
 
@@ -59,8 +59,7 @@
     :hidden:
 
     basic_usage_cn.rst    
+    principle_cn.md
     grammar_list_cn.md
-    export_model_cn.md
     case_analysis_cn.md
     debugging_cn.md
-

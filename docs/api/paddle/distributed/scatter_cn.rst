@@ -7,6 +7,13 @@ scatter
 .. py:function:: paddle.distributed.scatter(tensor, tensor_list=None, src=0, group=0)
 
 进程组内指定进程源的tensor列表分发到其他所有进程中。
+如下图所示，4个GPU分别开启4个进程，scatter的源选择为第0张卡，
+经过scatter算子后，会将第0张卡的数据平均分到所有卡上。
+
+.. image:: ./img/scatter.png
+  :width: 800
+  :alt: scatter
+  :align: center
 
 参数
 :::::::::
