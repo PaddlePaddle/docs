@@ -26,12 +26,13 @@
 
 方案如下图所示：
 
-.. figure:: images/dygraph_to_static.png
+.. image:: images/dygraph_to_static.png
     :width: 800px
-    :align: center
+    :class: center
 
+.. rst-class:: center
 
-.. centered:: 图1 飞桨框架动静统一方案示意图
+图1 飞桨框架动静统一方案示意图
 
 
 .. note::
@@ -63,4 +64,3 @@
     grammar_list_cn.md
     case_analysis_cn.md
     debugging_cn.md
-
