@@ -171,6 +171,14 @@
 
   判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。
 
+* 如果你想安装`avx`、`openblas`的Paddle包，可以通过以下命令将wheel包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为wheel包名称）：
+
+  ```
+  python -m pip download paddlepaddle==2.2.1 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
+  ```
+
+* 如果你想安装联编`tensorrt`的Paddle包，可以参考[下载安装Windows预测库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html#windows)。
+
 
 ## **三、验证安装**
 
