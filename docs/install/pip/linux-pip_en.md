@@ -218,16 +218,10 @@ Note：
    cat /proc/cpuinfo | grep -i avx
    ```
 
-* If you want to install the Paddle package built with `tensorrt`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
-
-  ```
-  python -m pip download paddlepaddle-gpu==[Version] -f https://www.paddlepaddle.org.cn/whl/stable/tensorrt.html --no-index --no-deps
-  ```
-
 * If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
   ```
-  python -m pip download paddlepaddle-gpu==[Version] -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==[Version] -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
 
 
