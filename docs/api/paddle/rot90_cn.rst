@@ -7,7 +7,7 @@ rot90
 
 
 
-该API沿axes指定的平面将n维tensor转转90度。当k为正数，旋转方向为从axes[0]到axes[1]，当k为负数，旋转方向为从axes[1]到axes[0]，k的绝对值表示旋转次数。
+该API沿axes指定的平面将n维tensor旋转90度。当k为正数，旋转方向为从axes[0]到axes[1]，当k为负数，旋转方向为从axes[1]到axes[0]，k的绝对值表示旋转次数。
 
 参数
 ::::::::::
