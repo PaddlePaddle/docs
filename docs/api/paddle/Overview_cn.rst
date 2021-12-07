@@ -270,6 +270,7 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.expand_as <cn_api_tensor_expand_as>` ", "根据 y 的形状扩展 x ，扩展后， x 的形状和 y 的形状相同"
     " :ref:`paddle.flatten <cn_api_paddle_flatten>` ", "根据给定的start_axis 和 stop_axis 将连续的维度展平"
     " :ref:`paddle.flip <cn_api_tensor_flip>` ", "沿指定轴反转n维tensor"
+    " :ref:`paddle.rot90 <cn_api_tensor_rot90>` ", "沿axes指定的平面将n维tensor旋转90度k次"
     " :ref:`paddle.gather <cn_api_paddle_tensor_gather>` ", "根据索引 index 获取输入 x 的指定 aixs 维度的条目，并将它们拼接在一起"
     " :ref:`paddle.gather_nd <cn_api_tensor_cn_gather_nd>` ", "paddle.gather的高维推广"
     " :ref:`paddle.reshape <cn_api_fluid_layers_reshape>` ", "在保持输入 x 数据不变的情况下，改变 x 的形状"
