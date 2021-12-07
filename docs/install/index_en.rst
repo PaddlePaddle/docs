@@ -17,7 +17,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 * Windows 7 / 8 / 10, Pro/Enterprise
-* Ubuntu 16.04 / 18.04
+* Ubuntu 16.04 / 18.04 / 20.04
 * CentOS 7
 * MacOS 10.11 / 10.12 / 10.13 / 10.14
 * 64-bit operating system is required
@@ -51,7 +51,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
         * don't support install using **nvidia-docker** 
     * Ubuntu install GPU version
 
-        * Ubuntu 16.04 / 18.04 supports CUDA 10.1/10.2/11.0/11.1/11.2
+        * Ubuntu 16.04 / 18.04 / 20.04 supports CUDA 10.1/10.2/11.0/11.1/11.2
         * If you install using **nvidia-docker** , it supports CUDA 10.2/11.2
     * CentOS install GPU version
 
@@ -74,7 +74,7 @@ Please make sure your environment meets the above conditions. If you have other 
     * not support NCCL
 * Support for Ubuntu
 
-    * Ubuntu 16.04 / 18.04:
+    * Ubuntu 16.04 / 18.04 / 20.04:
 
         * support NCCL v2.4.2-v2.4.8 under CUDA10.1
 * Support for CentOS
@@ -145,11 +145,11 @@ This section describes how to use pip to install.
         Command to install CPU version is:
         ::
     
-            python -m pip install paddlepaddle==2.2.0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle==2.2.1 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle==2.2.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle==2.2.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
         
 
     (2). **GPU version** : If you only want to install GPU version, please refer to command below
@@ -162,11 +162,11 @@ This section describes how to use pip to install.
         Please attention that PaddlePaddle installed through command below only supports CUDA10.2 under Windows、Ubuntu、CentOS:
         ::
 
-            python -m pip install paddlepaddle-gpu==2.2.0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==2.2.1 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle-gpu==2.2.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==2.2.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         
     Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
