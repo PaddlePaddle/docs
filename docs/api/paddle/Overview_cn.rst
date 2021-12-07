@@ -145,6 +145,7 @@ tensor属性相关
     " :ref:`paddle.real <cn_api_tensor_real>` ", "返回一个包含输入复数Tensor的实部数值的新Tensor"
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入Tensor或SelectedRows的shape"
     " :ref:`paddle.broadcast_shape <cn_api_tensor_broadcast_shape>` ", "返回对x_shape大小的张量和y_shape大小的张量做broadcast操作后得到的shape"
+    " :ref:`paddle.is_floating_point <>` "<cn_api_tensor_is_floating_point>", "判断输入Tensor是否为浮点类型"
 
 .. _tensor_creation:
 
@@ -333,6 +334,7 @@ framework相关
     " :ref:`paddle.save <cn_api_paddle_framework_io_save>` ", "将对象实例obj保存到指定的路径中"
     " :ref:`paddle.set_default_dtype <cn_api_paddle_framework_set_default_dtype>` ", "设置默认的全局dtype。"
     " :ref:`paddle.set_grad_enabled <cn_api_paddle_framework_set_grad_enabled>` ", "创建启用或禁用动态图梯度计算的上下文"
+    " :ref:`paddle.is_grad_enabled <cn_api_paddle_framework_is_grad_enabled>` ", "获取当前动态图梯度计算模式"
     " :ref:`paddle.set_printoptions <cn_api_tensor_set_printoptions>` ", "设置 paddle 中 Tensor 的打印配置选项"
 
 .. _about_device:

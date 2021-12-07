@@ -1087,6 +1087,15 @@ imag(name=None)
 
 请参考 :ref:`cn_api_tensor_imag`
 
+is_floating_point(x)
+:::::::::
+
+返回：输入Tensor是否为浮点类型
+
+返回类型：bool
+
+请参考 :ref:`cn_api_tensor_is_floating_point`
+
 increment(value=1.0, in_place=True)
 :::::::::
 
