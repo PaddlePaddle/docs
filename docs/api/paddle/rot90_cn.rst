@@ -13,8 +13,8 @@ rot90
 ::::::::::
 
     - **x** (Tensor) - 输入张量。维度为多维，数据类型为bool, int32, int64, float16, float32或float64。
-    - **k** (int, 可选) - 旋转方向和次数，k的绝对值表示旋转次数, k大于0时表示旋转方向为从axes[0]到axes[1]，小于0时表示从axes[1]到axes[0]。默认值：1。
-    - **axes** (list|tuple) - axes指定旋转的平面，维度必须为2。
+    - **k** (int, 可选) - 旋转方向和次数，默认值：1。
+    - **axes** (list|tuple, 可选) - axes指定旋转的平面，维度必须为2。默认值为[0, 1]。
     - **name** (str|None, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
 
 返回
@@ -29,6 +29,7 @@ rot90
 .. code-block:: python
 
     import paddle
+
     data = paddle.arange(4)
     data = paddle.reshape(data, (2, 2))
     print(data) 
