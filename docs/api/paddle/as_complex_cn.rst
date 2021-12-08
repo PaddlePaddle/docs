@@ -1,12 +1,12 @@
-.. _cn_api_paddle_view_as_complex:
+.. _cn_api_paddle_as_complex:
 
-view_as_complex
+as_complex
 -------------------------------
 
-.. py:function:: paddle.view_as_complex(x, name=None)
+.. py:function:: paddle.as_complex(x, name=None)
 
 
-将实数 Tensor 视作复数 Tensor.
+将实数 Tensor 转为复数 Tensor.
 
 输入 Tensor 的数据类型是 'float32' 或者 'float64'，输出 Tensor 的数据类型相应为 'complex64' 或者 'complex128'.
 
@@ -24,4 +24,4 @@ view_as_complex
 代码示例
 :::::::::
 
-COPY-FROM: paddle.view_as_complex
+COPY-FROM: paddle.as_complex

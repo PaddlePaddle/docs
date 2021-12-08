@@ -294,8 +294,8 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.unsqueeze <cn_api_paddle_tensor_unsqueeze>` ", "该OP向输入Tensor的Shape中一个或多个位置（axis）插入尺寸为1的维度"
     " :ref:`paddle.unsqueeze_ <cn_api_paddle_tensor_unsqueeze_>` ", "Inplace 版本的 unsqueeze API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.unstack <cn_api_fluid_layers_unstack>` ", "该OP将单个dim为 D 的Tensor沿 axis 轴unpack为 num 个dim为 (D-1) 的Tensor"
-    " :ref:`paddle.view_as_complex <cn_api_paddle_view_as_complex>` ", "将实数 Tensor 视为复数 Tensor"
-    " :ref:`paddle.view_as_real <cn_api_paddle_view_as_real>` ", "将复数 Tensor 视为实数 Tensor"
+    " :ref:`paddle.as_complex <cn_api_paddle_as_complex>` ", "将实数 Tensor 转为复数 Tensor"
+    " :ref:`paddle.as_real <cn_api_paddle_as_real>` ", "将复数 Tensor 转为实数 Tensor"
 
 .. einsum:
 

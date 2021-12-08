@@ -1,12 +1,12 @@
-.. _cn_api_paddle_view_as_real:
+.. _cn_api_paddle_as_real:
 
 view_as_real
 -------------------------------
 
-.. py:function:: paddle.view_as_real(x, name=None)
+.. py:function:: paddle.as_real(x, name=None)
 
 
-将复数 Tensor 视作实数 Tensor.
+将复数 Tensor 转为实数 Tensor.
 
 输入 Tensor 的数据类型是 'complex64' 或者 'complex128'，输出 Tensor 的数据类型相应为 'float32' 或者 'float64'.
 
@@ -24,4 +24,4 @@ view_as_real
 代码示例
 :::::::::
 
-COPY-FROM: paddle.view_as_real
+COPY-FROM: paddle.as_real
