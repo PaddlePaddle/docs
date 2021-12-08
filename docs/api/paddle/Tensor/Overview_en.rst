@@ -114,6 +114,7 @@ Methods
     dist
     divide
     dot
+    diff
     eigvals
     equal
     equal_all
@@ -144,6 +145,7 @@ Methods
     index_sample
     index_select
     inverse
+    isclose
     is_empty
     is_tensor
     isfinite
