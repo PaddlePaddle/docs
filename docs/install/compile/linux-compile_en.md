@@ -8,6 +8,7 @@
     * **Ubuntu 14.04 (not recommended, no official support for compilation problems)**
     * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
     * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
+    * **Ubuntu 20.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
 * **Python version 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip or pip3 version 20.2.2 or above (64 bit)**
 
@@ -293,7 +294,7 @@ uname -m && cat /etc/*release
     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
     ```
 
-    gcc requires version 4.8.2, we recommend that you use 8.2.0 version:
+    gcc requires version 5.4, we recommend that you use 8.2.0 version:
 
     ```
     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
@@ -332,7 +333,7 @@ uname -m && cat /etc/*release
     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
     ```
 
-    gcc requires version 4.8.2, we recommend that you use 8.2.0 version:
+    gcc requires version 5.4, we recommend that you use 8.2.0 version:
 
     ```
     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
@@ -437,7 +438,7 @@ uname -m && cat /etc/*release
 workon paddle-venv
 ```
 
-#### 6. Before **executing the compilation**, please confirm that the related dependencies mentioned in the [compile dependency table](../Tables.html/#third_party) are installed in the virtual environment:
+#### 6. Before **executing the compilation**, please confirm that the related dependencies mentioned in the [compile dependency table](/documentation/docs/en/install/Tables_en.html/#third_party) are installed in the virtual environment:
 
 * Here is the installation method for `patchELF`. Other dependencies can be installed using `yum install` or `apt install`, `pip install`/`pip3 install` followed by the name and version:
 

@@ -1,14 +1,14 @@
 # 案例解析
 
 
-上一节我们介绍了动转静的主要机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
+在[【使用样例】](./basic_usage_cn.html)章节介绍了动转静的用法和机制，下面会结合一些具体的模型代码，解答动转静中比较常见的问题。
 
 ## 一、 @to_static 放在哪里？
 
 
 ``@to_static`` 装饰器开启动转静功能的唯一接口，支持两种使用方式：
 
-+ 方式一（推荐用法）：显式地通过 ``model = to_static(model)`` 调用
++ **方式一（推荐用法）**：显式地通过 ``model = to_static(model)`` 调用
     ```python
     from paddle.jit import to_static
 
@@ -17,7 +17,7 @@
     ```
 
 
-+  方式二：在组网代码的 ``forward`` 函数处装饰
++  **方式二**：在组网代码的 ``forward`` 函数处装饰
     ```python
     class SimpleNet(paddle.nn.Layer):
         def __init__(self, ...):
@@ -77,7 +77,7 @@
 
 
 
-> 注：InputSpec 接口的高阶用法，请参看 [【官方文档】InputSpec 功能介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/04_dygraph_to_static/input_spec_cn.html)
+> 注：InputSpec 接口的高阶用法，请参看 [【使用InputSpec指定模型输入Tensor信息】](./basic_usage_cn.html#inputspec)
 
 ## 三、内嵌 Numpy 操作？
 
@@ -193,9 +193,9 @@ class SimpleNet(paddle.nn.Layer):
 
 动态图模型常常包含很多嵌套的子网络，建议各个自定义的子网络 ``sublayer`` **无论是否包含了参数，都继承 ``nn.Layer`` .**
 
-从 **Parmaters 和 Buffers**  章节可知，有些 ``paddle.to_tensor`` 接口转来的 ``Tensor`` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 ``.pdparams`` 文件中。
+从 **Parameters 和 Buffers**  章节可知，有些 ``paddle.to_tensor`` 接口转来的 ``Tensor`` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 ``.pdiparams`` 文件中。
 
-> **原因**： 若某个 sublayer 包含了 buffer Variables，但却没有继承 ``nn.Layer`` ，则可能导致保存的 ``.pdparams`` 文件缺失部分重要参数。
+> **原因**： 若某个 sublayer 包含了 buffer Variables，但却没有继承 ``nn.Layer`` ，则可能导致保存的 ``.pdiparams`` 文件缺失部分重要参数。
 
 **举个例子：**
 
@@ -204,7 +204,7 @@ class SimpleNet(object):                       # <---- 继承 Object
     def __init__(self, mask):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)  # <---- Linear 参数永远都不会被更新
-        self.mask = paddle.to_tensor(mask)     # <---- mask 可能未保存到 .pdparams 文件中
+        self.mask = paddle.to_tensor(mask)     # <---- mask 可能未保存到 .pdiparams 文件中
 
     def forward(self, x, y):
         out = self.linear(x)
@@ -273,9 +273,60 @@ jit.save(mode, model_path)
 
 此 flag 继承自 ``nn.Layer`` ，因此可通过 ``model.train()`` 和 ``model.eval()`` 来全局切换所有 sublayers 的分支状态。
 
-## 七、再谈控制流
+## 七、非forward函数导出
 
-前面提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
+`@to_static` 与 `jit.save` 接口搭配也支持导出非forward 的其他函数，具体使用方式如下：
+
+```python
+class SimpleNet(paddle.nn.Layer):
+    def __init__(self):
+        super(SimpleNet, self).__init__()
+        self.linear = paddle.nn.Linear(10, 3)
+
+    def forward(self, x, y):
+        out = self.linear(x)
+        out = out + y
+        return out
+
+    def another_func(self, x):
+        out = self.linear(x)
+        out = out * 2
+        return out
+
+net = SimpleNet()
+# train(net)  # 模型训练
+
+# step 1: 切换到 eval() 模式 （同上）
+net.eval()
+
+# step 2: 定义 InputSpec 信息 （同上）
+x_spec = InputSpec(shape=[None, 3], dtype='float32', name='x')
+
+# step 3: @to_static 装饰
+static_func = to_static(net.another_func, input_spec=[x_spec])
+
+# step 4: 调用 jit.save 接口
+net = paddle.jit.save(static_func, path='another_func')
+```
+
+使用上的区别主要在于：
+
++ **`@to_static` 装饰**：导出其他函数时需要显式地用 `@to_static` 装饰，以告知动静转换模块将其识别、并转为静态图 Program；
++ **`save`接口参数**：调用`jit.save`接口时，需将上述被`@to_static` 装饰后的函数作为**参数**；
+
+执行上述代码样例后，在当前目录下会生成三个文件：
+```
+another_func.pdiparams        // 存放模型中所有的权重数据
+another_func.pdimodel         // 存放模型的网络结构
+another_func.pdiparams.info   // 存放额外的其他信息
+```
+
+
+> 关于动转静 @to_static 的用法，以及搭配 `paddle.jit.save` 接口导出预测模型的用法案例，可以参考 [使用样例](./basic_usage_cn.html) 。
+
+## 八、再谈控制流
+
+前面[【控制流转写】(./basic_usage_cn.html#sikongzhiliuzhuanxie)]提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
 
 ```python
 def true_fn_0(out):
@@ -293,7 +344,7 @@ out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (o
 ```
 
 
-### 7.1 list 与 LoDTensorArray
+### 8.1 list 与 LoDTensorArray
 
 当控制流中，出现了 ``list.append`` 类似语法时，情况会有一点点特殊。
 
@@ -359,7 +410,7 @@ def forward(x):
 > 因为框架底层的 ``LoDTensorArray = std::vector< LoDTensor >`` ，不支持两层以上 ``vector`` 嵌套
 
 
-### 7.2 x.shape 与 paddle.shape(x)
+### 8.2 x.shape 与 paddle.shape(x)
 
 模型中比较常见的控制流转写大多数与 ``batch_size`` 或者 ``x.shape`` 相关。
 
@@ -370,7 +421,7 @@ def forward(x):
 如上面的例子：
 
 ```python
-def foward(self, x)：
+def forward(self, x)：
     bs = paddle.shape(x)[0]        # <---- x.shape[0] 表示 batch_size，动态shape
     outs = []
     for i in range(bs):
@@ -381,7 +432,7 @@ def foward(self, x)：
 
 > 动态 shape 推荐使用 ``paddle.shape(x)[i]`` ，动转静也对 ``x.shape[i]`` 做了很多兼容处理。前者写法出错率可能更低些。
 
-## 八、jit.save 与默认参数
+## 九、jit.save 与默认参数
 
 
 最后一步是预测模型的导出，Paddle 提供了 ``paddle.jit.save`` 接口，搭配 ``@to_static`` 可以导出预测模型。
@@ -410,6 +461,5 @@ layer = paddle.jit.to_static(layer, input_spec=[InputSpec(shape=[None, IMAGE_SIZ
 path = "example.model/linear"
 paddle.jit.save(layer, path)   # <---- Lazy mode, 此处才会触发 Program 的转换
 ```
-
 
 > 更多用法可以参考：[【官网文档】jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/save_cn.html#save)
