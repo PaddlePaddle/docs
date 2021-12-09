@@ -14,7 +14,7 @@ decorate
 参数：
 :::::::::
     - **models** (Layer|list of Layer) - 网络模型。在``O2``模式下，输入的模型参数将由float32转为float16。
-    - **optimizers** (Optimizer|list of Optimizer) - 优化器，在``O2``模式下，将同步更新网络更改后的flaot16参数。
+    - **optimizers** (Optimizer|list of Optimizer, 可选) - 优化器，可通过decorate接口对optimizer的master_weight属性进行设置。
     - **level** (str, 可选) - 混合精度训练模式，默认``O1``模式。
     - **master_weight** (bool|None, 可选) - 是否使用master weight策略。支持maser weight策略的优化器包括``adam``、``adamW``、``momentum``，默认值为None，在``O2``模式下使用master weight策略。
     - **save_dtype** (str|None, 可选) - 网络存储类型，可为float16、float32、float64。通过 ``save_dtype`` 可指定通过 ``paddle.save`` 和 ``paddle.jit.save`` 存储的网络参数数据类型。默认为None，采用现有网络参数类型进行存储。
