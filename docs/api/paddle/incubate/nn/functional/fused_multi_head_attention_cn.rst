@@ -3,7 +3,7 @@
 fused_multi_head_attention
 -------------------------------
 
-.. py:function:: paddle.incubate.nn.functional.fused_multi_head_attention(x, qkv_weight, linear_weight, pre_layer_norm=False, pre_ln_scale=None, pre_ln_bias=None, ln_scale=None, ln_bias=None, pre_ln_epsilon=1e-05, qkv_bias=None, linear_bias=None, attn_mask=None, dropout_rate=0.5, attn_dropout_rate=0.5, ln_epsilon=1e-05, name=None)
+.. py:function:: paddle.incubate.nn.functional.fused_multi_head_attention(x, qkv_weight, linear_weight, pre_layer_norm=False, pre_ln_scale=None, pre_ln_bias=None, ln_scale=None, ln_bias=None, pre_ln_epsilon=1e-05, qkv_bias=None, linear_bias=None, attn_mask=None, dropout_rate=0.5, attn_dropout_rate=0.5, ln_epsilon=1e-05, traing=True, mode='upscale_in_train', name=None)
 
 **多头注意力机制**
 
@@ -33,7 +33,10 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
     out = out * v
     out = transpose(out, perm=[0, 2, 1, 3])
     out = out_linear(out)
-    out = layer_norm(x + dropout(linear_bias + out))
+    if pre_layer_norm:
+        out = x + dropout(linear_bias + out)
+    else:
+        out = layer_norm(x + dropout(linear_bias + out))
 
 
 值得注意的是，该API中，q, k, v 的 weight 被统一存储在一个权重张量中，形状为 `[3, num_heads, head_dim, embed_dim]` , 
@@ -57,6 +60,18 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
     - **dropout_rate** (float, 可选) - 代表 multi-head attention 之后的 dropout 算子的 dropout 比例，默认为0.5。
     - **attn_dropout_rate** (float, 可选) - 代表 multi-head attention 中的 dropout 算子的 dropout 比例，默认为0.5。
     - **ln_epsilon** (float, 可选) - 代表 normalize_before 为True 时，multi-head attention 中第二个 （False时的第一个） ``layer_norm`` 为了数值稳定加在分母上的值。默认值为 1e-05 。
+    - **training** (bool): 标记是否为训练阶段。 默认: True。
+    - **mode** (str): 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认: 'upscale_in_train'。计算方法如下:
+
+        1. upscale_in_train, 在训练时增大输出结果。
+
+            - train: out = input * mask / ( 1.0 - p )
+            - inference: out = input
+
+        2. downscale_in_infer, 在预测时减小输出结果
+
+            - train: out = input * mask
+            - inference: out = input * (1.0 - p)
     - **name** (str, 可选) - 操作的名称(可选，默认值为 ``None`` ）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
