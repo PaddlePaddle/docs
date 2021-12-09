@@ -8,6 +8,7 @@
     * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
     * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
     * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
+    * **Ubuntu 20.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip 或 pip3 版本 20.2.2或更高版本 (64 bit)**
 
@@ -308,7 +309,7 @@ uname -m && cat /etc/*release
     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
     ```
 
-    gcc 需要4.8.2以上，建议使用8.2.0:
+    gcc 需要5.4以上，建议使用8.2.0:
 
     ```
     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
@@ -351,7 +352,7 @@ uname -m && cat /etc/*release
     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
     ```
 
-    gcc 需要4.8.2以上，建议使用8.2.0:
+    gcc 需要5.4以上，建议使用8.2.0:
 
     ```
     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \

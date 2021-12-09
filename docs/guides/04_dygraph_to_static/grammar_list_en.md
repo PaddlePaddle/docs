@@ -13,9 +13,9 @@ This article is mainly for the following scene :
 
 If you are new to the dynamic-to-static module, or are not familiar with this function, you are recommended to read [Introduction to dynamic and static documents](https://www.paddlepaddle.org.cn/documentation/docs/en/guides/04_dygraph_to_static/basic_usage_en.html) ;
 
-If you are interested in the principle of dynamic-to-static, or want to learn more about this module, you are recommended to read: [Basic Principle of Dynamic and Static](https://www.paddlepaddle.org.cn/documentation/docs/en/guides/04_dygraph_to_static/program_translator_en.html) ;
+If you want to export model for prediction, or want to learn more about this module, you are recommended to read: [Predictive Model Export Tutorial](https://www.paddlepaddle.org.cn/documentation/docs/en/guides/04_dygraph_to_static/export_model_en.html) ;
 
-If you want to export model for prediction, or want to learn about debugging skills, you are recommended to read [Predictive Model Export Tutorial](https://www.paddlepaddle.org.cn/documentation/docs/en/guides/index_en.html).
+If you encounter problems with @to_static, or want to learn about debugging skills, you are recommended to read [Error Debugging Experience](https://www.paddlepaddle.org.cn/documentation/docs/en/guides/debugging_en.html).
 
 ## Supported Grammars
 

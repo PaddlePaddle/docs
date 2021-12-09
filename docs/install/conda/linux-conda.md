@@ -7,7 +7,7 @@
 
 在进行PaddlePaddle安装之前请确保您的Anaconda软件环境已经正确安装。软件下载和安装参见Anaconda官网(https://www.anaconda.com/)。在您已经正确安装Anaconda的情况下请按照下列步骤安装PaddlePaddle。
 
-* CentOS 7 / Ubuntu16.04 / Ubuntu18.04 (64bit)
+* CentOS 7 / Ubuntu16.04 / Ubuntu18.04 / Ubuntu20.04 (64bit)
 * GPU版本支持CUDA 10.1/10.2/11.2
 * conda 版本 4.8.3+ (64 bit)
 
@@ -116,7 +116,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 如果您的计算机没有 NVIDIA® GPU，请安装 CPU 版的 PaddlePaddle
 
 ```
-conda install paddlepaddle==2.2.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+conda install paddlepaddle==2.2.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```
 
 
@@ -127,20 +127,20 @@ conda install paddlepaddle==2.2.0 --channel https://mirrors.tuna.tsinghua.edu.cn
 *  对于 `CUDA 10.1`，需要搭配cuDNN 7 (cuDNN>=7.6.5, 多卡环境下 NCCL>=2.7)，安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==2.2.0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle-gpu==2.2.1 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 *  对于 `CUDA 10.2`，需要搭配cuDNN 7 (cuDNN>=7.6.5, 多卡环境下 NCCL>=2.7)，安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==2.2.0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle-gpu==2.2.1 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 
 *  对于 `CUDA 11.2`，需要搭配cuDNN 8.1.1(多卡环境下 NCCL>=2.7)，安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==2.2.0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+  conda install paddlepaddle-gpu==2.2.1 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
 
 您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)

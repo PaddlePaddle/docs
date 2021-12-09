@@ -14,7 +14,7 @@
 **1. 操作系统要求：**
 
 * Windows 7 / 8 / 10，专业版 / 企业版
-* Ubuntu 16.04 / 18.04
+* Ubuntu 16.04 / 18.04 / 20.04
 * CentOS 7
 * MacOS 10.11 / 10.12 / 10.13 / 10.14
 * 操作系统要求是 64 位版本
@@ -45,7 +45,7 @@
         * 不支持 **nvidia-docker** 方式安装
     * Ubuntu 安装 GPU 版本
 
-        * Ubuntu 16.04/18.04 支持 CUDA 10.1/10.2/11.0/11.1/11.2
+        * Ubuntu 16.04/18.04/20.04 支持 CUDA 10.1/10.2/11.0/11.1/11.2
         * 如果您是使用 **nvidia-docker** 安装，支持 CUDA 10.2/11.2
     * CentOS 安装 GPU 版本
 
@@ -68,7 +68,7 @@
     * 不支持NCCL
 * Ubuntu 支持情况
 
-    * Ubuntu 16.04/18.04:
+    * Ubuntu 16.04/18.04/20.04:
 
         * CUDA10.1 下支持NCCL v2.4.2-v2.4.8
 * CentOS 支持情况
@@ -137,11 +137,11 @@
         安装CPU版本的命令为：
         ::
     
-            python -m pip install paddlepaddle==2.2.0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle==2.2.1 -i https://mirror.baidu.com/pypi/simple
 
             或
 
-            python -m pip install paddlepaddle==2.2.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle==2.2.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 
     (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装 
@@ -153,11 +153,11 @@
         请注意用以下指令安装的PaddlePaddle在Windows、Ubuntu、CentOS下只支持CUDA10.2：
         ::
 
-            python -m pip install paddlepaddle-gpu==2.2.0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==2.2.1 -i https://mirror.baidu.com/pypi/simple
 
             或
 
-            python -m pip install paddlepaddle-gpu==2.2.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==2.2.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         
     请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
