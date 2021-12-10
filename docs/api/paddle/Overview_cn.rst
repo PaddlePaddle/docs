@@ -117,6 +117,8 @@ tensor数学操作
     " :ref:`paddle.diff <cn_api_tensor_diff>` ", "沿着指定维度对输入Tensor计算n阶的前向差值"
     " :ref:`paddle.rad2deg <cn_api_paddle_tensor_rad2deg>` ", "将元素从弧度的角度转换为度"
     " :ref:`paddle.deg2rad <cn_api_paddle_tensor_deg2rad>` ", "将元素从度的角度转换为弧度"
+    " :ref:`paddle.gcd <cn_api_paddle_tensor_gcd>` ", "计算两个输入的按元素绝对值的最大公约数"
+    " :ref:`paddle.lcm <cn_api_paddle_tensor_lcm>` ", "计算两个输入的按元素绝对值的最小公倍数"
 
 
 .. _tensor_logic:
