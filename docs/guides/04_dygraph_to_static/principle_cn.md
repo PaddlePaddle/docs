@@ -41,7 +41,7 @@ class SimpleNet(paddle.nn.Layer):
 net = SimpleNet()
 
 # 通过 InputSpec 设置 Placeholder 信息
-x_spec = InputSpec(shape=[None, 10], name='x') 
+x_spec = InputSpec(shape=[None, 10], name='x')
 y_spec = InputSpec(shape=[3], name='y')
 
 net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
@@ -136,8 +136,6 @@ def add_two(x, y):
 
 + **并非**所有动态图中的 ``if/for/while`` 都会转写为 ``cond_op/while_op``
 + **只有**控制流的判断条件 **依赖了``Tensor``**（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
-
-
 
 
 ### 3.1 IfElse
