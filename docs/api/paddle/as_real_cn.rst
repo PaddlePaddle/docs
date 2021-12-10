@@ -1,6 +1,6 @@
 .. _cn_api_paddle_as_real:
 
-view_as_real
+as_real
 -------------------------------
 
 .. py:function:: paddle.as_real(x, name=None)
