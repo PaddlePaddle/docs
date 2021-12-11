@@ -1,13 +1,13 @@
-.. _cn_api_fluid_IpuCompiler:
+.. _cn_api_fluid_IPUCompiledProgram:
 
-IpuCompiler
+IPUCompiledProgram
 -------------------------------
 
 
-.. py:class:: paddle.static.IpuCompiler(program, scope=None, ipu_strategy=None)
+.. py:class:: paddle.static.IPUCompiledProgram(program, scope=None, ipu_strategy=None)
 
 ·
-IpuCompiler根据 `ipu_strategy` 的配置将输入的Program转换和优化成ipu所需要的形式，例如：前向图提取、计算图转化、无用的sclae算子删除等。
+IPUCompiledProgram根据 `ipu_strategy` 的配置将输入的Program转换和优化成ipu所需要的形式，例如：前向图提取、计算图转化、无用的sclae算子删除等。
 
 参数
 :::::::::
@@ -17,12 +17,12 @@ IpuCompiler根据 `ipu_strategy` 的配置将输入的Program转换和优化成i
 
 返回
 :::::::::
-IpuCompiler，初始化后的 ``IpuCompiler`` 对象
+IPUCompiledProgram，初始化后的 ``IPUCompiledProgram`` 对象
 
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.static.IpuCompiler
+COPY-FROM: paddle.static.IPUCompiledProgram
 
 .. py:method:: compile(self, feed_list, fetch_list)
 该接口用于将初始化的Program进行转换，以便在ipu上运行该模型。用户可以通过 `feed_list` 、`fetch_list` 传入计算图输入和输出的描述。
@@ -40,5 +40,5 @@ Program，转化之后的 ``Program`` 对象
 代码示例
 :::::::::
 
-COPY-FROM: paddle.static.IpuCompiler
+COPY-FROM: paddle.static.IPUCompiledProgram
 
