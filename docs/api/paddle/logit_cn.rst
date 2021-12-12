@@ -3,9 +3,9 @@
 logit
 -------------------------------
 
-.. py:function:: paddle.logit(x, eps=0.0, name=None)
+.. py:function:: paddle.logit(x, eps=None, name=None)
 
-该OP实现了logit层。如果eps为默认值0.0，并且 ``x`` < 0 或者 ``x`` > 1，该函数将返回NaN，OP的计算公式如下：
+该OP实现了logit层。如果eps为默认值None，并且 ``x`` < 0 或者 ``x`` > 1，该函数将返回NaN，OP的计算公式如下：
 
 .. math::
     logit(x) = ln(\frac{x}{1-x}) 
@@ -26,7 +26,7 @@ logit
 参数:
 ::::::::::
  - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
- - eps (float, 可选) - 传入该参数后可将 ``x`` 的范围控制在[eps, 1-eps]，默认值为 0.0。
+ - eps (float, 可选) - 传入该参数后可将 ``x`` 的范围控制在[eps, 1-eps]，默认值为 None。
  - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
