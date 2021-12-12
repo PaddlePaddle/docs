@@ -114,8 +114,13 @@ tensor数学操作
     " :ref:`paddle.diagonal <cn_api_tensor_diagonal>` ", "根据给定的轴 axis 返回输入 Tensor 的局部视图"
     " :ref:`paddle.trunc <cn_api_tensor_trunc>` ", "对输入 Tensor 每个元素的小数部分进行截断"
     " :ref:`paddle.log1p <cn_api_paddle_tensor_log1p>` ", "该OP计算Log1p（加一的自然对数）结果"
+    " :ref:`paddle.lerp <cn_api_paddle_tensor_lerp>` ", "该OP基于给定的 weight 计算 x 与 y 的线性插值"
+    " :ref:`paddle.diff <cn_api_tensor_diff>` ", "沿着指定维度对输入Tensor计算n阶的前向差值"
     " :ref:`paddle.rad2deg <cn_api_paddle_tensor_rad2deg>` ", "将元素从弧度的角度转换为度"
     " :ref:`paddle.deg2rad <cn_api_paddle_tensor_deg2rad>` ", "将元素从度的角度转换为弧度"
+    " :ref:`paddle.gcd <cn_api_paddle_tensor_gcd>` ", "计算两个输入的按元素绝对值的最大公约数"
+    " :ref:`paddle.lcm <cn_api_paddle_tensor_lcm>` ", "计算两个输入的按元素绝对值的最小公倍数"
+
 
 .. _tensor_logic:
 
@@ -270,6 +275,7 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.expand_as <cn_api_tensor_expand_as>` ", "根据 y 的形状扩展 x ，扩展后， x 的形状和 y 的形状相同"
     " :ref:`paddle.flatten <cn_api_paddle_flatten>` ", "根据给定的start_axis 和 stop_axis 将连续的维度展平"
     " :ref:`paddle.flip <cn_api_tensor_flip>` ", "沿指定轴反转n维tensor"
+    " :ref:`paddle.rot90 <cn_api_tensor_rot90>` ", "沿axes指定的平面将n维tensor旋转90度k次"
     " :ref:`paddle.gather <cn_api_paddle_tensor_gather>` ", "根据索引 index 获取输入 x 的指定 aixs 维度的条目，并将它们拼接在一起"
     " :ref:`paddle.gather_nd <cn_api_tensor_cn_gather_nd>` ", "paddle.gather的高维推广"
     " :ref:`paddle.reshape <cn_api_fluid_layers_reshape>` ", "在保持输入 x 数据不变的情况下，改变 x 的形状"
@@ -299,7 +305,7 @@ tensor元素操作相关（如：转置，reshape等）
 .. einsum:
 
 爱因斯坦求和
-：：：：：：
+::::::::::::::::::
 
 .. csv-table::
     :header: "API名称", "API功能"
