@@ -349,7 +349,7 @@ device相关
     :widths: 10, 30
 
     " :ref:`paddle.get_cuda_rng_state <cn_api_paddle_cn_get_cuda_rng_state>` ", "获取cuda随机数生成器的状态信息"
-    " :ref:`paddle.set_cuda_rng_state <cn_api_paddle_cn_set_cuda_rng_stat>` ", "设置cuda随机数生成器的状态信息"
+    " :ref:`paddle.set_cuda_rng_state <cn_api_paddle_cn_set_cuda_rng_state>` ", "设置cuda随机数生成器的状态信息"
 
 .. _about_hapi:
 
