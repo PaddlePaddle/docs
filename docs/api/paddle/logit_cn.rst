@@ -5,7 +5,7 @@ logit
 
 .. py:function:: paddle.logit(x, eps=None, name=None)
 
-该OP实现了logit层。如果eps为默认值None，并且 ``x`` < 0 或者 ``x`` > 1，该函数将返回NaN，OP的计算公式如下：
+该OP实现了logit层。若eps为默认值None，并且 ``x`` < 0 或者 ``x`` > 1，该函数将返回NaN，OP的计算公式如下：
 
 .. math::
     logit(x) = ln(\frac{x}{1-x}) 
