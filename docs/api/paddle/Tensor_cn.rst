@@ -2160,7 +2160,7 @@ solve(x, y name=None)
 
 请参考 :ref:`cn_api_linalg_solve`
 
-lerp(x, y, weight, name=None)
+lerp(y, weight, name=None)
 :::::::::
 
 基于给定的 weight 计算 x 与 y 的线性插值
@@ -2170,3 +2170,8 @@ lerp(x, y, weight, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_lerp`
+
+lerp_(y, weight, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_tensor_lerp` API，对输入 `x` 采用 Inplace 策略 。
