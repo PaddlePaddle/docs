@@ -102,6 +102,7 @@ Padding层
     " :ref:`paddle.nn.Pad1D <cn_api_nn_Pad1D>` ", "一维填充层"
     " :ref:`paddle.nn.Pad2D <cn_api_nn_Pad2D>` ", "二维填充层"
     " :ref:`paddle.nn.Pad3D <cn_api_nn_Pad3D>` ", "三维填充层"
+    " :ref:`paddle.nn.ZeroPad2D <cn_api_nn_ZeroPad2D>` ", "二维零填充层"
     
 .. _activation_layers:
 
@@ -344,6 +345,7 @@ Padding相关函数
     
 
     " :ref:`paddle.nn.functional.pad <cn_api_nn_cn_pad>` ", "依照 pad 和 mode 属性对input进行填充"
+    " :ref:`paddle.nn.functional.zeropad2d <cn_api_nn_functional_zeropad2d>` ", "依照 pad 对x进行零填充"
     
 .. _activation_functional:
 

@@ -46,6 +46,9 @@
 
     - `异常数据检测 <./time_series/autoencoder.html>`_ : 介绍使用 PaddlePaddle 完成时序数据异常点检测。
 
+动转静：
+    - `使用动转静完成以图搜图 <./jit/image_search_with_jit.html>`_ : 介绍使用 PaddlePaddle 通过动转静完成以图搜图。
+
 
 ..  toctree::
     :hidden:
@@ -56,3 +59,4 @@
     recommendations/index_cn.rst
     reinforcement_learning/index_cn.rst
     time_series/index_cn.rst
+    jit/index_cn.rst
