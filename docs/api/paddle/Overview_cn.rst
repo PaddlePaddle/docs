@@ -74,6 +74,7 @@ tensor数学操作
     " :ref:`paddle.logical_not <cn_api_fluid_layers_logical_not>` ", "逐元素的对 X Tensor进行逻辑非运算"
     " :ref:`paddle.logical_or <cn_api_fluid_layers_logical_or>` ", "逐元素的对 X 和 Y 进行逻辑或运算"
     " :ref:`paddle.logical_xor <cn_api_fluid_layers_logical_xor>` ", "逐元素的对 X 和 Y 进行逻辑异或运算"
+    " :ref:`paddle.logit <cn_api_tensor_logit>` ", "计算logit结果"
     " :ref:`paddle.bitwise_and <cn_api_tensor_bitwise_and>` ", "逐元素的对 x 和 y 进行按位与运算"
     " :ref:`paddle.bitwise_not <cn_api_tensor_bitwise_not>` ", "逐元素的对 X Tensor进行按位取反运算"
     " :ref:`paddle.bitwise_or <cn_api_tensor_bitwise_or>` ", "逐元素的对 X 和 Y 进行按位或运算"
