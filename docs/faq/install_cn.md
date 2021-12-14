@@ -175,3 +175,11 @@ export LD_LIBRARY_PATH=/usr/local/cuda-10.0/targets/x86_64-linux/lib/libcudart.s
 + 答复：
 
 glibc版本过低，建议使用官方提供的docker镜像或者将glibc升级到2.23+。
+
+------
+
+##### 问题： python2.7中，安装paddle1.7.1之后，import paddle时，rarfile.py中的`print(f.filename, file=file)`内容报错，提示`SyntaxError: invalid syntax`，如何解决？
+
++ 答复：
+
+rarfile版本太高，可以通过`pip install rarfile==3.0`安装3.0版本的rarfile即可。
