@@ -140,15 +140,16 @@ The data processing process is as follows:</br>
 ### Function Definition
 
 ```
-template <typename T, int NX, int NY, int BlockSize, int Rank, typename IndexCal, bool IsBoundary = false>
-__device__ void ReadDataReduce(T* dst,
-                               const T* src,
+template <typename Tx, typename Ty, int NX, int NY, int BlockSize, int Rank, typename IndexCal, typename Functor, bool IsBoundary = false>
+__device__ void ReadDataReduce(Ty* dst,
+                               const Tx* src,
                                int block_offset,
                                const IndexCal& index_cal,
                                int size_nx,
                                int size_ny,
                                int stride_nx,
                                int stride_ny,
+                               Functor func,
                                bool reduce_last_dim);
 ```
 
@@ -160,7 +161,8 @@ The data processing process is as follows:</br>
 
 ### Template Parameters
 
-> T: Element type. </br>
+> Ty: The type of data stored in the global memory. </br>
+> Tx: The type of data stored in the register. </br>
 > NX: Each thread reads NX columns data. </br>
 > NY: Each thread reads NY rows data. </br>
 > BlockSize: Device attribute, which identifies the current device thread indexing method. For GPU, threadIdx.x is used as the thread index, this parameter is not currently supported. </br>
@@ -173,6 +175,7 @@ The data processing process is as follows:</br>
     }
   };
 ```
+> Functor: The data transformation done before the input element is stored in the register, such as: dst[i] = SquareFunctor(src[i]).
 > IsBoundary: Identifies whether to fetch memory boundary judgment. When the total number of data processed by the Block is less than NX * NY * blockDim.x, boundary judgment is required to avoid memory access crossing the boundary. </br>
 
 
@@ -186,6 +189,7 @@ The data processing process is as follows:</br>
 > size_ny: The current Block can read at most size_ny data that require Reduce, and the parameter only participates in the calculation when IsBoundary = true.</br>
 > stride_nx: Stride stride_nx columns for every 1 element of the lowest dimension read. </br>
 > stride_ny: Stride stride_ny rows for every 1 element of the highest dimension read. </br>
+> func: The data transformation done before the input element is stored in the register, such as: dst[i] = SquareFunctor(src[i]).
 > reduce_last_dim: Does the  operation involve the last dimension. When reduce_last_dim = true, it is indexed according to threadIdx.x, otherwise threadIdx.y is used. </br>
 
 ## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L411)
