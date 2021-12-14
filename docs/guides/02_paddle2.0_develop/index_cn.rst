@@ -23,7 +23,7 @@
     01_quick_start_cn.ipynb
     02_data_load_cn.ipynb
     03_data_preprocessing_cn.ipynb
-    04_model_cn.rst
+    04_model_cn.ipynb
     05_train_eval_predict_cn.rst
     06_device_cn.rst
     07_customize_cn.rst
