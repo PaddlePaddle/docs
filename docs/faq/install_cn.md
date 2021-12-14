@@ -178,7 +178,7 @@ glibc版本过低，建议使用官方提供的docker镜像或者将glibc升级�
 
 ------
 
-##### 问题： python2.7中，安装paddle1.7.1之后，import paddle时，rarfile.py中的`print(f.filename, file=file)`内容报错，提示`SyntaxError: invalid syntax`，如何解决？
+##### 问题： python2.7中，如果使用Paddle1.8.5之前的版本，import paddle时，rarfile.py中的`print(f.filename, file=file)`内容报错，提示`SyntaxError: invalid syntax`，如何解决？
 
 + 答复：
 
