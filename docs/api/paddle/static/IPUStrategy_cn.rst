@@ -46,7 +46,7 @@ int类型。指定使用几个IPU，默认值为1。
 
 .. py:attribute:: accumulationFactor
 
-int类型。指定micro-batches的大小（等于导出的onnx模型的batch大小），默认值为1。
+int类型。训练时指定多少个batch之后进行梯度更新，默认值为1。
     
 代码示例
 ::::::::::
