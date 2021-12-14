@@ -3,7 +3,7 @@
 HingeEmbeddingLoss
 -------------------------------
 
-.. py:class:: paddle.nn.HingeEmbeddingLoss(delta=1.0, reduction='mean', name=None)
+.. py:class:: paddle.nn.HingeEmbeddingLoss(margin=1.0, reduction='mean', name=None)
 
 该接口用于创建一个 HingeEmbeddingLoss 的可调用类，HingeEmbeddingLoss 计算输入 input 和标签 label（包含 1 和 -1） 间的 `hinge embedding loss` 损失。
 
@@ -17,7 +17,7 @@ HingeEmbeddingLoss
         \max \{0, \Delta - x_n\}, & \text{if}\; y_n = -1,
     \end{cases}
 
-其中，:math:`x` 是 input，:math:`y` 是 label，:math:`\Delta` 是 delta。总的 loss 计算如下：
+其中，:math:`x` 是 input，:math:`y` 是 label，:math:`\Delta` 是 margin。总的 loss 计算如下：
 
 .. math::
     \ell(x, y) = \begin{cases}
@@ -29,7 +29,7 @@ HingeEmbeddingLoss
 
 参数
 :::::::::
-    - **delta** (float, 可选): - 当 label 为 -1 时，该值决定了小于 `delta` 的 input 才需要纳入 `hinge embedding loss` 的计算。默认为 1.0 。
+    - **margin** (float, 可选): - 当 label 为 -1 时，该值决定了小于 `margin` 的 input 才需要纳入 `hinge embedding loss` 的计算。默认为 1.0 。
     - **reduction** (str, 可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `hinge embedding loss` 的均值；设置为 ``'sum'`` 时，计算 `hinge embedding loss` 的总和；设置为 ``'none'`` 时，则返回 `hinge embedding loss`。
     - **name** (str，可选): - 操作的名称(可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
 
@@ -60,19 +60,19 @@ HingeEmbeddingLoss
         # label的元素值在 {1., -1.} 中
         label = paddle.to_tensor([[-1, 1, -1], [1, 1, 1], [1, -1, 1]], dtype=paddle.float32)
 
-        hinge_embedding_loss = nn.HingeEmbeddingLoss(delta=1.0, reduction='none')
+        hinge_embedding_loss = nn.HingeEmbeddingLoss(margin=1.0, reduction='none')
         loss = hinge_embedding_loss(input, label)
         print(loss)
         # Tensor([[0., -2., 0.],
         #         [0., -1., 2.],
         #         [1., 1., 1.]])
 
-        hinge_embedding_loss = nn.HingeEmbeddingLoss(delta=1.0, reduction='mean')
+        hinge_embedding_loss = nn.HingeEmbeddingLoss(margin=1.0, reduction='mean')
         loss = hinge_embedding_loss(input, label)
         print(loss)
         # Tensor([0.22222222])
 
-        hinge_embedding_loss = nn.HingeEmbeddingLoss(delta=1.0, reduction='sum')
+        hinge_embedding_loss = nn.HingeEmbeddingLoss(margin=1.0, reduction='sum')
         loss = hinge_embedding_loss(input, label)
         print(loss)
         # Tensor([2.])

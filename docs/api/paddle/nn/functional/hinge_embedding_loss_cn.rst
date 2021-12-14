@@ -3,7 +3,7 @@
 hinge_embedding_loss
 -------------------------------
 
-.. py:class:: paddle.nn.functional.hinge_embedding_loss(input, label, delta=1.0, reduction='mean', name=None)
+.. py:class:: paddle.nn.functional.hinge_embedding_loss(input, label, margin=1.0, reduction='mean', name=None)
 
 该接口计算输入 input 和标签 label（包含 1 和 -1） 间的 `hinge embedding loss` 损失。
 
@@ -17,7 +17,7 @@ hinge_embedding_loss
         \max \{0, \Delta - x_n\}, & \text{if}\; y_n = -1,
     \end{cases}
 
-其中，:math:`x` 是 input，:math:`y` 是 label，:math:`\Delta` 是 delta。总的 loss 计算如下：
+其中，:math:`x` 是 input，:math:`y` 是 label，:math:`\Delta` 是 margin。总的 loss 计算如下：
 
 .. math::
     \ell(x, y) = \begin{cases}
@@ -31,7 +31,7 @@ hinge_embedding_loss
 :::::::::
     - **input** (Tensor): - 输入的 Tensor，维度是 [N, *], 其中 N 是 batch size， `*` 是任意数量的额外维度。数据类型为：float32、float64。
     - **label** (Tensor): - 标签，维度是 [N, *], 与 ``input`` 相同，Tensor 中的值应该只包含 1 和 -1。数据类型为：float32、float64。
-    - **delta** (float, 可选): - 当 label 为 -1 时，该值决定了小于 `delta` 的 input 才需要纳入 `hinge embedding loss` 的计算。默认为 1.0 。
+    - **margin** (float, 可选): - 当 label 为 -1 时，该值决定了小于 `margin` 的 input 才需要纳入 `hinge embedding loss` 的计算。默认为 1.0 。
     - **reduction** (str, 可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `hinge embedding loss` 的均值；设置为 ``'sum'`` 时，计算 `hinge embedding loss` 的总和；设置为 ``'none'`` 时，则返回 `hinge embedding loss`。
     - **name** (str，可选): - 操作的名称(可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
 
