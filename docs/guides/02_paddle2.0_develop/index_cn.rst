@@ -21,8 +21,8 @@
     :hidden:
 
     01_quick_start_cn.ipynb
-    02_data_load_cn.rst
-    03_data_preprocessing_cn.rst
+    02_data_load_cn.ipynb
+    03_data_preprocessing_cn.ipynb
     04_model_cn.rst
     05_train_eval_predict_cn.rst
     06_device_cn.rst
