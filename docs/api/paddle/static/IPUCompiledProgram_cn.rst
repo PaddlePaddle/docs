@@ -25,7 +25,7 @@ IPUCompiledProgram，初始化后的 ``IPUCompiledProgram`` 对象
 COPY-FROM: paddle.static.IPUCompiledProgram
 
 .. py:method:: compile(self, feed_list, fetch_list)
-该接口用于将Program进行编译，以便在ipu上运行该。用户可以通过 `feed_list` 、`fetch_list` 传入计算图输入和输出的描述。
+该接口用于将Program进行编译，以便在ipu上运行。用户可以通过 `feed_list` 、`fetch_list` 传入计算图输入和输出的名字。
 
 参数
 :::::::::
@@ -40,5 +40,5 @@ Program，编译之后的 ``Program`` 对象
 代码示例
 :::::::::
 
-COPY-FROM: paddle.static.IPUCompiledProgram
+COPY-FROM: paddle.static.IPUCompiledProgram.compile
 
