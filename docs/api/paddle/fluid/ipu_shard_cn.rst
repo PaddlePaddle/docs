@@ -3,7 +3,7 @@
 ipu_shard
 -------------------------------
 
-.. py:function:: paddle.fluid.ipu_shard(ipu_index=None, ipu_stage=None)
+.. py:function:: paddle.static.ipu_shard(ipu_index=None, ipu_stage=None)
 
 
 该接口用于对模型进行切分。用于指定tensor在哪个ipu上进行计算以及模型被切分之后的计算顺序。该接口无返回值。

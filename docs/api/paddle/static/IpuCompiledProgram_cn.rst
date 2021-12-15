@@ -1,13 +1,13 @@
-.. _cn_api_fluid_IPUCompiledProgram:
+.. _cn_api_fluid_IpuCompiledProgram:
 
-IPUCompiledProgram
+IpuCompiledProgram
 -------------------------------
 
 
-.. py:class:: paddle.static.IPUCompiledProgram(program, scope=None, ipu_strategy=None)
+.. py:class:: paddle.static.IpuCompiledProgram(program, scope=None, ipu_strategy=None)
 
 
-IPUCompiledProgram根据 `ipu_strategy` 的配置将输入的Program转换和优化成ipu所需要的形式，例如：前向图提取、计算图转化、无用的sclae算子删除等。关于ipu_strategy更多信息。请参阅  ``fluid.IPUStrategy``。
+IpuCompiledProgram根据 `ipu_strategy` 的配置将输入的Program转换和优化成ipu所需要的形式，例如：前向图提取、计算图转化、无用的scale算子删除等。关于ipu_strategy更多信息。请参阅  ``fluid.IpuStrategy``。
 
 参数
 :::::::::
@@ -17,12 +17,12 @@ IPUCompiledProgram根据 `ipu_strategy` 的配置将输入的Program转换和优
 
 返回
 :::::::::
-IPUCompiledProgram，初始化后的 ``IPUCompiledProgram`` 对象
+IpuCompiledProgram，初始化后的 ``IPUCompiledProgram`` 对象
 
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.static.IPUCompiledProgram
+COPY-FROM: paddle.static.IpuCompiledProgram
 
 .. py:method:: compile(self, feed_list, fetch_list)
 该接口用于将Program进行编译，以便在ipu上运行。用户可以通过 `feed_list` 、`fetch_list` 传入计算图输入和输出的名字。
@@ -40,5 +40,5 @@ Program，编译之后的 ``Program`` 对象
 代码示例
 :::::::::
 
-COPY-FROM: paddle.static.IPUCompiledProgram.compile
+COPY-FROM: paddle.static.IpuCompiledProgram.compile
 
