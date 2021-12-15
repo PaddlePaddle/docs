@@ -20,4 +20,4 @@ ipu_shard
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.fluid.ipu_shard
+COPY-FROM: paddle.static.ipu_shard
