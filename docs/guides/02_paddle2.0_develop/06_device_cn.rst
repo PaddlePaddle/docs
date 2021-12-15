@@ -36,12 +36,19 @@
 .. code:: python3
 
     import paddle
+    from paddle.io import DistributedBatchSampler
+    import paddle.vision.transforms as T
     # 第1处改动 导入分布式训练所需的包
     import paddle.distributed as dist
-    import paddle.io.DistributedBatchSampler as DistributedBatchSampler
+    from paddle.io import DistributedBatchSampler
 
     # 加载数据集
-    train_dataset = paddle.vision.datasets.MNIST(mode='train')
+    transform = T.Compose([
+                            T.Transpose(),
+                            T.Normalize([127.5], [127.5])
+                         ])
+    train_dataset = paddle.vision.datasets.MNIST(mode='train',
+                                                 transform=transform)
     test_dataset = paddle.vision.datasets.MNIST(mode='test')
 
     # 第2处改动，初始化并行环境
@@ -61,10 +68,8 @@
                                             batch_size=32,
                                             num_replicas=dist.get_world_size(),
                                             rank=dist.get_rank())
-
     train_loader = paddle.io.DataLoader(train_dataset,
-                                        batch_sampler=train_sampler,
-                                        shuffle=True)
+                                        batch_sampler=train_sampler)
     
     # 第3处改动，增加paddle.DataParallel封装
     mnist = paddle.DataParallel(mnist)
