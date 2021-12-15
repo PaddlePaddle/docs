@@ -38,6 +38,7 @@
     import paddle
     # 第1处改动 导入分布式训练所需的包
     import paddle.distributed as dist
+    import paddle.io.DistributedBatchSampler as DistributedBatchSampler
 
     # 加载数据集
     train_dataset = paddle.vision.datasets.MNIST(mode='train')
@@ -56,7 +57,14 @@
     )
 
     # 用 DataLoader 实现数据加载
-    train_loader = paddle.io.DataLoader(train_dataset, batch_size=32, shuffle=True)
+    train_sampler = DistributedBatchSampler(train_dataset,
+                                            batch_size=32,
+                                            num_replicas=dist.get_world_size(),
+                                            rank=dist.get_rank())
+
+    train_loader = paddle.io.DataLoader(train_dataset,
+                                        batch_sampler=train_sampler,
+                                        shuffle=True)
     
     # 第3处改动，增加paddle.DataParallel封装
     mnist = paddle.DataParallel(mnist)
