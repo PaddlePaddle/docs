@@ -2160,6 +2160,15 @@ solve(x, y name=None)
 
 请参考 :ref:`cn_api_linalg_solve`
 
+logit(eps=None, name=None)
+:::::::::
+
+返回：计算logit后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_logit`
+
 lerp(x, y, weight, name=None)
 :::::::::
 
