@@ -11,5 +11,9 @@ is_compiled_with_cinn
 
 **示例代码**
 
-COPY-FROM: paddle.device.is_compiled_with_cinn
+.. code-block:: python
+
+    import paddle
+    support_cinn = paddle.device.is_compiled_with_cinn()
+
 
