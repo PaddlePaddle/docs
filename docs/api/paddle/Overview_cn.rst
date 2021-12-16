@@ -149,6 +149,8 @@ tensor属性相关
     " :ref:`paddle.imag <cn_api_tensor_imag>` ", "返回一个包含输入复数Tensor的虚部数值的新Tensor"
     " :ref:`paddle.real <cn_api_tensor_real>` ", "返回一个包含输入复数Tensor的实部数值的新Tensor"
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入Tensor或SelectedRows的shape"
+    " :ref:`paddle.is_complex <cn_api_paddle_is_complex>` ", "判断输入 tensor 的数据类型是否为复数类型"
+    " :ref:`paddle.is_integer <cn_api_paddle_is_integer>` ", "判断输入 tensor 的数据类型是否为整数类型"
     " :ref:`paddle.broadcast_shape <cn_api_tensor_broadcast_shape>` ", "返回对x_shape大小的张量和y_shape大小的张量做broadcast操作后得到的shape"
 
 .. _tensor_creation:
