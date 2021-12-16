@@ -2160,7 +2160,7 @@ solve(x, y name=None)
 
 请参考 :ref:`cn_api_linalg_solve`
 
-lerp(y, weight, name=None)
+lerp(x, y, weight, name=None)
 :::::::::
 
 基于给定的 weight 计算 x 与 y 的线性插值
