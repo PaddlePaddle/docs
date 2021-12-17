@@ -11,10 +11,6 @@ is_integer
 参数
 :::::::::
    - **x** (Tensor) - 输入 Tensor
-
-抛出异常
-:::::::::
-  - TypeError: 如果输入 ``x`` 不是一个 Tensor.
     
 
 返回
