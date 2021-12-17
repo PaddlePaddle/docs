@@ -170,10 +170,12 @@ Methods
     matrix_power
     max
     maximum
+    fmax
     mean
     median
     min
     minimum
+    fmin
     mm
     mod
     multiplex
