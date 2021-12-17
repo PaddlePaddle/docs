@@ -19,7 +19,7 @@ is_integer
 
 返回
 :::::::::
-bool, 判断输入 tensor 的数据类型是否为整数类型
+bool, 输入 tensor 的数据类型为整数类型则为 True，反之为 False
 
 
 代码示例

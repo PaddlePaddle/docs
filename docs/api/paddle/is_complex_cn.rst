@@ -11,15 +11,11 @@ is_complex
 参数
 :::::::::
    - **x** (Tensor) - 输入 Tensor
-
-抛出异常
-:::::::::
-  - TypeError: 如果输入 ``x`` 不是一个 Tensor.
     
 
 返回
 :::::::::
-bool, 判断输入 tensor 的数据类型是否为复数类型(complex64 或者 complex128)
+bool, 如果输入 tensor 的数据类型为复数类型则为 True，反之为 False
 
 
 代码示例
