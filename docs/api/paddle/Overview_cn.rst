@@ -178,6 +178,7 @@ tensor创建相关
     " :ref:`paddle.tolist <cn_api_paddle_tolist>` ", "将paddle Tensor转化为python list"
     " :ref:`paddle.zeros <cn_api_tensor_zeros>` ", "该OP创建形状为 shape 、数据类型为 dtype 且值全为0的Tensor"
     " :ref:`paddle.zeros_like <cn_api_tensor_zeros_like>` ", "该OP返回一个和 x 具有相同的形状的全零Tensor，数据类型为 dtype 或者和 x 相同"
+    " :ref:`paddle.complex <cn_api_paddle_complex>` ", "给定实部和虚部，返回一个复数 Tensor"
     " :ref:`paddle.create_parameter <cn_api_paddle_create_parameter>` ", "该OP创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个reader的装饰器。返回的reader将输入reader的数据打包成指定的batch_size大小的批处理数据(不推荐使用)"
 
