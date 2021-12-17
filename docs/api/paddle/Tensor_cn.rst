@@ -212,6 +212,15 @@ abs(name=None)
 
 请参考 :ref:`cn_api_fluid_layers_abs`
 
+angle(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_angle`
+
 acos(name=None)
 :::::::::
 
@@ -270,6 +279,15 @@ allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_allclose`
+
+isclose(x, y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_isclose`
 
 any(axis=None, keepdim=False, name=None)
 :::::::::
@@ -671,6 +689,17 @@ cumsum(axis=None, dtype=None, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_cumsum`
 
+deg2rad(x, name=None)
+:::::::::
+
+将元素从度的角度转换为弧度
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_deg2rad`
+
 detach()
 :::::::::
 
@@ -747,6 +776,15 @@ dot(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_linalg_dot`
+
+diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_diff`
 
 equal(y, name=None)
 :::::::::
@@ -944,6 +982,15 @@ flip(axis, name=None)
 
 请参考 :ref:`cn_api_tensor_flip`
 
+rot90(k=1, axis=[0, 1], name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_rot90`
+
 floor(name=None)
 :::::::::
 
@@ -993,6 +1040,15 @@ gather_nd(index, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_cn_gather_nd`
+
+gcd(x, y, name=None)
+:::::::::
+
+计算两个输入的按元素绝对值的最大公约数
+
+返回：计算后的Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_gcd`
 
 gradient()
 :::::::::
@@ -1129,6 +1185,15 @@ kron(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_kron`
+
+lcm(x, y, name=None)
+:::::::::
+
+计算两个输入的按元素绝对值的最小公倍数
+
+返回：计算后的Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_lcm`
 
 less_equal(y, name=None)
 :::::::::
@@ -1478,6 +1543,17 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_cn_prod`
+
+rad2deg(x, name=None)
+:::::::::
+
+将元素从弧度的角度转换为度
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_rad2deg`
 
 rank()
 :::::::::
@@ -2083,3 +2159,28 @@ solve(x, y name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_linalg_solve`
+
+logit(eps=None, name=None)
+:::::::::
+
+返回：计算logit后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_logit`
+
+lerp(x, y, weight, name=None)
+:::::::::
+
+基于给定的 weight 计算 x 与 y 的线性插值
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_lerp`
+
+lerp_(y, weight, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_tensor_lerp` API，对输入 `x` 采用 Inplace 策略 。
