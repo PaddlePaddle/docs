@@ -2184,3 +2184,23 @@ lerp_(y, weight, name=None)
 :::::::::
 
 Inplace 版本的 :ref:`cn_api_paddle_tensor_lerp` API，对输入 `x` 采用 Inplace 策略 。
+
+
+is_complex()
+:::::::::
+
+返回：判断输入 tensor 的数据类型是否为复数类型
+
+返回类型：bool
+
+请参考 :ref:`cn_api_paddle_is_complex`
+
+
+is_integer()
+:::::::::
+
+返回：判断输入 tensor 的数据类型是否为整数类型
+
+返回类型：bool
+
+请参考 :ref:`cn_api_paddle_is_integer`

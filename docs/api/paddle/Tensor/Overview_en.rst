@@ -250,3 +250,5 @@ Methods
     var
     where
     zero_
+    is_complex
+    is_integer
