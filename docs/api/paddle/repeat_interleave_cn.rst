@@ -1,4 +1,4 @@
-.. cn_api_tensor_repeat_interleave
+.. _cn_api_tensor_repeat_interleave:
 
 repeat_interleave
 -------------------------------
