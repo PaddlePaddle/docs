@@ -982,6 +982,15 @@ flip(axis, name=None)
 
 请参考 :ref:`cn_api_tensor_flip`
 
+rot90(k=1, axis=[0, 1], name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_rot90`
+
 floor(name=None)
 :::::::::
 
@@ -1031,6 +1040,15 @@ gather_nd(index, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_cn_gather_nd`
+
+gcd(x, y, name=None)
+:::::::::
+
+计算两个输入的按元素绝对值的最大公约数
+
+返回：计算后的Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_gcd`
 
 gradient()
 :::::::::
@@ -1176,6 +1194,15 @@ kron(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_kron`
+
+lcm(x, y, name=None)
+:::::::::
+
+计算两个输入的按元素绝对值的最小公倍数
+
+返回：计算后的Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_lcm`
 
 less_equal(y, name=None)
 :::::::::
@@ -2141,3 +2168,48 @@ solve(x, y name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_linalg_solve`
+
+logit(eps=None, name=None)
+:::::::::
+
+返回：计算logit后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_logit`
+
+lerp(x, y, weight, name=None)
+:::::::::
+
+基于给定的 weight 计算 x 与 y 的线性插值
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_lerp`
+
+lerp_(y, weight, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_tensor_lerp` API，对输入 `x` 采用 Inplace 策略 。
+
+
+is_complex()
+:::::::::
+
+返回：判断输入 tensor 的数据类型是否为复数类型
+
+返回类型：bool
+
+请参考 :ref:`cn_api_paddle_is_complex`
+
+
+is_integer()
+:::::::::
+
+返回：判断输入 tensor 的数据类型是否为整数类型
+
+返回类型：bool
+
+请参考 :ref:`cn_api_paddle_is_integer`

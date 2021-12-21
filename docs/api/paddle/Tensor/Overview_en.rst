@@ -170,10 +170,12 @@ Methods
     matrix_power
     max
     maximum
+    fmax
     mean
     median
     min
     minimum
+    fmin
     mm
     mod
     multiplex
@@ -250,3 +252,5 @@ Methods
     var
     where
     zero_
+    is_complex
+    is_integer

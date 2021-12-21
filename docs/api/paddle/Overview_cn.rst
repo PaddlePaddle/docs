@@ -74,6 +74,7 @@ tensor数学操作
     " :ref:`paddle.logical_not <cn_api_fluid_layers_logical_not>` ", "逐元素的对 X Tensor进行逻辑非运算"
     " :ref:`paddle.logical_or <cn_api_fluid_layers_logical_or>` ", "逐元素的对 X 和 Y 进行逻辑或运算"
     " :ref:`paddle.logical_xor <cn_api_fluid_layers_logical_xor>` ", "逐元素的对 X 和 Y 进行逻辑异或运算"
+    " :ref:`paddle.logit <cn_api_tensor_logit>` ", "计算logit结果"
     " :ref:`paddle.bitwise_and <cn_api_tensor_bitwise_and>` ", "逐元素的对 x 和 y 进行按位与运算"
     " :ref:`paddle.bitwise_not <cn_api_tensor_bitwise_not>` ", "逐元素的对 X Tensor进行按位取反运算"
     " :ref:`paddle.bitwise_or <cn_api_tensor_bitwise_or>` ", "逐元素的对 X 和 Y 进行按位或运算"
@@ -113,9 +114,13 @@ tensor数学操作
     " :ref:`paddle.diagonal <cn_api_tensor_diagonal>` ", "根据给定的轴 axis 返回输入 Tensor 的局部视图"
     " :ref:`paddle.trunc <cn_api_tensor_trunc>` ", "对输入 Tensor 每个元素的小数部分进行截断"
     " :ref:`paddle.log1p <cn_api_paddle_tensor_log1p>` ", "该OP计算Log1p（加一的自然对数）结果"
+    " :ref:`paddle.lerp <cn_api_paddle_tensor_lerp>` ", "该OP基于给定的 weight 计算 x 与 y 的线性插值"
     " :ref:`paddle.diff <cn_api_tensor_diff>` ", "沿着指定维度对输入Tensor计算n阶的前向差值"
     " :ref:`paddle.rad2deg <cn_api_paddle_tensor_rad2deg>` ", "将元素从弧度的角度转换为度"
     " :ref:`paddle.deg2rad <cn_api_paddle_tensor_deg2rad>` ", "将元素从度的角度转换为弧度"
+    " :ref:`paddle.gcd <cn_api_paddle_tensor_gcd>` ", "计算两个输入的按元素绝对值的最大公约数"
+    " :ref:`paddle.lcm <cn_api_paddle_tensor_lcm>` ", "计算两个输入的按元素绝对值的最小公倍数"
+
 
 .. _tensor_logic:
 
@@ -144,6 +149,8 @@ tensor属性相关
     " :ref:`paddle.imag <cn_api_tensor_imag>` ", "返回一个包含输入复数Tensor的虚部数值的新Tensor"
     " :ref:`paddle.real <cn_api_tensor_real>` ", "返回一个包含输入复数Tensor的实部数值的新Tensor"
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入Tensor或SelectedRows的shape"
+    " :ref:`paddle.is_complex <cn_api_paddle_is_complex>` ", "判断输入 tensor 的数据类型是否为复数类型"
+    " :ref:`paddle.is_integer <cn_api_paddle_is_integer>` ", "判断输入 tensor 的数据类型是否为整数类型"
     " :ref:`paddle.broadcast_shape <cn_api_tensor_broadcast_shape>` ", "返回对x_shape大小的张量和y_shape大小的张量做broadcast操作后得到的shape"
     " :ref:`paddle.is_floating_point <>` "<cn_api_tensor_is_floating_point>", "判断输入Tensor是否为浮点类型"
 
@@ -174,6 +181,7 @@ tensor创建相关
     " :ref:`paddle.tolist <cn_api_paddle_tolist>` ", "将paddle Tensor转化为python list"
     " :ref:`paddle.zeros <cn_api_tensor_zeros>` ", "该OP创建形状为 shape 、数据类型为 dtype 且值全为0的Tensor"
     " :ref:`paddle.zeros_like <cn_api_tensor_zeros_like>` ", "该OP返回一个和 x 具有相同的形状的全零Tensor，数据类型为 dtype 或者和 x 相同"
+    " :ref:`paddle.complex <cn_api_paddle_complex>` ", "给定实部和虚部，返回一个复数 Tensor"
     " :ref:`paddle.create_parameter <cn_api_paddle_create_parameter>` ", "该OP创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个reader的装饰器。返回的reader将输入reader的数据打包成指定的batch_size大小的批处理数据(不推荐使用)"
 
@@ -271,6 +279,7 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.expand_as <cn_api_tensor_expand_as>` ", "根据 y 的形状扩展 x ，扩展后， x 的形状和 y 的形状相同"
     " :ref:`paddle.flatten <cn_api_paddle_flatten>` ", "根据给定的start_axis 和 stop_axis 将连续的维度展平"
     " :ref:`paddle.flip <cn_api_tensor_flip>` ", "沿指定轴反转n维tensor"
+    " :ref:`paddle.rot90 <cn_api_tensor_rot90>` ", "沿axes指定的平面将n维tensor旋转90度k次"
     " :ref:`paddle.gather <cn_api_paddle_tensor_gather>` ", "根据索引 index 获取输入 x 的指定 aixs 维度的条目，并将它们拼接在一起"
     " :ref:`paddle.gather_nd <cn_api_tensor_cn_gather_nd>` ", "paddle.gather的高维推广"
     " :ref:`paddle.reshape <cn_api_fluid_layers_reshape>` ", "在保持输入 x 数据不变的情况下，改变 x 的形状"
