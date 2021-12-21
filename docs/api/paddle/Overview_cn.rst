@@ -152,7 +152,7 @@ tensor属性相关
     " :ref:`paddle.is_complex <cn_api_paddle_is_complex>` ", "判断输入 tensor 的数据类型是否为复数类型"
     " :ref:`paddle.is_integer <cn_api_paddle_is_integer>` ", "判断输入 tensor 的数据类型是否为整数类型"
     " :ref:`paddle.broadcast_shape <cn_api_tensor_broadcast_shape>` ", "返回对x_shape大小的张量和y_shape大小的张量做broadcast操作后得到的shape"
-    " :ref:`paddle.is_floating_point <>` "<cn_api_tensor_is_floating_point>", "判断输入Tensor是否为浮点类型"
+    " :ref:`paddle.is_floating_point <cn_api_tensor_is_floating_point>` ", "判断输入Tensor是否为浮点类型"
 
 .. _tensor_creation:
 
