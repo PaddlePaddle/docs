@@ -1132,6 +1132,15 @@ index_select(index, axis=0, name=None)
 
 请参考 :ref:`cn_api_tensor_search_index_select`
 
+repeat_interleave(repeats, axis=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_repeat_interleave`
+
 inv(name=None)
 :::::::::
 
