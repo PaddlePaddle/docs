@@ -197,6 +197,7 @@ Methods
     reciprocal_
     register_hook
     remainder
+    repeat_interleave
     reshape
     reshape_
     reverse
