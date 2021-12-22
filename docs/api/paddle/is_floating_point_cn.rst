@@ -4,7 +4,7 @@ is_floating_point
 -------------------------------
 
 .. py:function:: paddle.is_floating_point(x)
-判断输入Tensor是否为浮点类型。
+判断输入Tensor的数据类型是否为浮点类型。
 
 参数
 :::::::::

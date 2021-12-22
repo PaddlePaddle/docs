@@ -1108,7 +1108,7 @@ imag(name=None)
 is_floating_point(x)
 :::::::::
 
-返回：输入Tensor是否为浮点类型
+返回：判断输入Tensor的数据类型是否为浮点类型
 
 返回类型：bool
 
