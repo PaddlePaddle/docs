@@ -116,6 +116,7 @@ Methods
     dist
     divide
     dot
+    diff
     eigvals
     equal
     equal_all
@@ -146,6 +147,7 @@ Methods
     index_sample
     index_select
     inverse
+    isclose
     is_empty
     is_tensor
     isfinite
@@ -170,10 +172,12 @@ Methods
     matrix_power
     max
     maximum
+    fmax
     mean
     median
     min
     minimum
+    fmin
     mm
     mod
     multiplex
@@ -195,6 +199,7 @@ Methods
     reciprocal_
     register_hook
     remainder
+    repeat_interleave
     reshape
     reshape_
     reverse
@@ -250,3 +255,5 @@ Methods
     var
     where
     zero_
+    is_complex
+    is_integer
