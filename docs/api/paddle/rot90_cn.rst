@@ -12,7 +12,7 @@ rot90
 参数
 ::::::::::
 
-    - **x** (Tensor) - 输入张量。维度为多维，数据类型为bool, int32, int64, float16, float32或float64。
+    - **x** (Tensor) - 输入张量。维度为多维，数据类型为bool, int32, int64, float16, float32或float64。float16只在gpu上支持。
     - **k** (int, 可选) - 旋转方向和次数，默认值：1。
     - **axes** (list|tuple, 可选) - axes指定旋转的平面，维度必须为2。默认值为[0, 1]。
     - **name** (str|None, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
