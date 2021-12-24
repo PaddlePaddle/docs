@@ -74,6 +74,8 @@ Methods
     argmax
     argmin
     argsort
+    as_complex
+    as_real
     asin
     astype
     atan
