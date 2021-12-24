@@ -112,7 +112,8 @@ tensor数学操作
     " :ref:`paddle.diagonal <cn_api_tensor_diagonal>` ", "根据给定的轴 axis 返回输入 Tensor 的局部视图"
     " :ref:`paddle.trunc <cn_api_tensor_trunc>` ", "对输入 Tensor 每个元素的小数部分进行截断"
     " :ref:`paddle.log1p <cn_api_paddle_tensor_log1p>` ", "该OP计算Log1p（加一的自然对数）结果"
-
+    " :ref:`paddle.take_along_axis <cn_api_paddle_tensor_take_along_axis>` ", "根据axis和index获取输入 Tensor 的对应元素"
+    " :ref:`paddle.put_along_axis <cn_api_paddle_tensor_put_along_axis>` ", "根据axis和index放置value值至输入 Tensor"
 .. _tensor_logic:
 
 tensor逻辑操作
