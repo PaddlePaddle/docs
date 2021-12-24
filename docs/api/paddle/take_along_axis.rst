@@ -21,14 +21,15 @@ take_along_axis
 :::::::::
 
 .. code-block:: python
-    import paddle
-    import numpy as np
 
-    x_np = np.array([[1, 2, 3], [4, 5, 6], [7,8,9]])
-    index_np = np.array([[0]])
-    x = paddle.to_tensor(x_np)
-    index = paddle.to_tensor(index_np)
-    axis = 0
-    result = paddle.take_along_axis(x, index, axis)
-    print(result)
-    # [[1, 2, 3]]
+      import paddle
+      import numpy as np
+
+      x_np = np.array([[1, 2, 3], [4, 5, 6], [7,8,9]])
+      index_np = np.array([[0]])
+      x = paddle.to_tensor(x_np)
+      index = paddle.to_tensor(index_np)
+      axis = 0
+      result = paddle.take_along_axis(x, index, axis)
+      print(result)
+      # [[1, 2, 3]]
