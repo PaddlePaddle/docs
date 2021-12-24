@@ -102,6 +102,7 @@ Padding层
     " :ref:`paddle.nn.Pad1D <cn_api_nn_Pad1D>` ", "一维填充层"
     " :ref:`paddle.nn.Pad2D <cn_api_nn_Pad2D>` ", "二维填充层"
     " :ref:`paddle.nn.Pad3D <cn_api_nn_Pad3D>` ", "三维填充层"
+    " :ref:`paddle.nn.ZeroPad2D <cn_api_nn_ZeroPad2D>` ", "二维零填充层"
     
 .. _activation_layers:
 
@@ -112,6 +113,7 @@ Padding层
     :header: "API名称", "API功能"
     
 
+    " :ref:`paddle.nn.CELU <cn_api_nn_CELU>` ", "CELU激活层"
     " :ref:`paddle.nn.ELU <cn_api_nn_ELU>` ", "ELU激活层"
     " :ref:`paddle.nn.GELU <cn_api_nn_GELU>` ", "GELU激活层"
     " :ref:`paddle.nn.Hardshrink <cn_api_nn_Hardshrink>` ", "Hardshrink激活层"
@@ -343,6 +345,7 @@ Padding相关函数
     
 
     " :ref:`paddle.nn.functional.pad <cn_api_nn_cn_pad>` ", "依照 pad 和 mode 属性对input进行填充"
+    " :ref:`paddle.nn.functional.zeropad2d <cn_api_nn_functional_zeropad2d>` ", "依照 pad 对x进行零填充"
     
 .. _activation_functional:
 
@@ -353,6 +356,7 @@ Padding相关函数
     :header: "API名称", "API功能"
     
 
+    " :ref:`paddle.nn.functional.celu <cn_api_nn_cn_celu>` ", "celu激活函数"
     " :ref:`paddle.nn.functional.elu <cn_api_nn_cn_elu>` ", "elu激活函数"
     " :ref:`paddle.nn.functional.elu_ <cn_api_nn_cn_elu_>` ", "Inplace 版本的 elu API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.gelu <cn_api_nn_cn_gelu>` ", "gelu激活函数"

@@ -212,6 +212,15 @@ abs(name=None)
 
 请参考 :ref:`cn_api_fluid_layers_abs`
 
+angle(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_angle`
+
 acos(name=None)
 :::::::::
 
@@ -270,6 +279,15 @@ allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_allclose`
+
+isclose(x, y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_isclose`
 
 any(axis=None, keepdim=False, name=None)
 :::::::::
@@ -387,6 +405,15 @@ backward(grad_tensor=None, retain_graph=False)
         # 3: [4000.]
         # 4: [5000.]
 
+bincount(weights=None, minlength=0)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_bincount`
+
 bitwise_and(y, out=None, name=None)
 :::::::::
 
@@ -471,7 +498,7 @@ cholesky(upper=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cholesky`
+请参考 :ref:`cn_api_linalg_cholesky`
 
 chunk(chunks, axis=0, name=None)
 :::::::::
@@ -662,6 +689,17 @@ cumsum(axis=None, dtype=None, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_cumsum`
 
+deg2rad(x, name=None)
+:::::::::
+
+将元素从度的角度转换为弧度
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_deg2rad`
+
 detach()
 :::::::::
 
@@ -739,6 +777,15 @@ dot(y, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_linalg_dot`
 
+diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_diff`
+
 equal(y, name=None)
 :::::::::
 
@@ -798,6 +845,14 @@ expand_as(y, name=None)
 
 请参考 :ref:`cn_api_tensor_expand_as`
 
+eigvals(y, name=None)
+:::::::::
+
+返回：输入矩阵的特征值
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_linalg_eigvals`
 
 fill_(x, value, name=None)
 :::::::::
@@ -927,6 +982,15 @@ flip(axis, name=None)
 
 请参考 :ref:`cn_api_tensor_flip`
 
+rot90(k=1, axis=[0, 1], name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_rot90`
+
 floor(name=None)
 :::::::::
 
@@ -976,6 +1040,15 @@ gather_nd(index, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_cn_gather_nd`
+
+gcd(x, y, name=None)
+:::::::::
+
+计算两个输入的按元素绝对值的最大公约数
+
+返回：计算后的Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_gcd`
 
 gradient()
 :::::::::
@@ -1032,6 +1105,15 @@ imag(name=None)
 
 请参考 :ref:`cn_api_tensor_imag`
 
+is_floating_point(x)
+:::::::::
+
+返回：判断输入Tensor的数据类型是否为浮点类型
+
+返回类型：bool
+
+请参考 :ref:`cn_api_tensor_is_floating_point`
+
 increment(value=1.0, in_place=True)
 :::::::::
 
@@ -1059,14 +1141,23 @@ index_select(index, axis=0, name=None)
 
 请参考 :ref:`cn_api_tensor_search_index_select`
 
-inverse(name=None)
+repeat_interleave(repeats, axis=None, name=None)
 :::::::::
 
 返回：计算后的Tensor
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_inverse`
+请参考 :ref:`cn_api_tensor_repeat_interleave`
+
+inv(name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_linalg_inv`
 
 is_empty(cond=None)
 :::::::::
@@ -1112,6 +1203,15 @@ kron(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_kron`
+
+lcm(x, y, name=None)
+:::::::::
+
+计算两个输入的按元素绝对值的最小公倍数
+
+返回：计算后的Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_lcm`
 
 less_equal(y, name=None)
 :::::::::
@@ -1246,7 +1346,7 @@ matrix_power(x, n, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_matrix_power`
+请参考 :ref:`cn_api_linalg_matrix_power`
 
 max(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1385,7 +1485,7 @@ norm(p=fro, axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_norm`
+请参考 :ref:`cn_api_linalg_norm`
 
 not_equal(y, name=None)
 :::::::::
@@ -1461,6 +1561,17 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_cn_prod`
+
+rad2deg(x, name=None)
+:::::::::
+
+将元素从弧度的角度转换为度
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_rad2deg`
 
 rank()
 :::::::::
@@ -1933,6 +2044,15 @@ transpose(perm, name=None)
 
 请参考 :ref:`cn_api_fluid_layers_transpose`
 
+triangular_solve(b, upper=True, transpose=False, unitriangular=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_linalg_triangular_solve`
+
 trunc(name=None)
 :::::::::
 
@@ -2047,7 +2167,7 @@ multi_dot(x, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_multi_dot`
+请参考 :ref:`cn_api_linalg_multi_dot`
 
 solve(x, y name=None)
 :::::::::
@@ -2057,3 +2177,70 @@ solve(x, y name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_linalg_solve`
+
+logit(eps=None, name=None)
+:::::::::
+
+返回：计算logit后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_logit`
+
+lerp(x, y, weight, name=None)
+:::::::::
+
+基于给定的 weight 计算 x 与 y 的线性插值
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_lerp`
+
+lerp_(y, weight, name=None)
+:::::::::
+
+Inplace 版本的 :ref:`cn_api_paddle_tensor_lerp` API，对输入 `x` 采用 Inplace 策略 。
+
+
+is_complex()
+:::::::::
+
+返回：判断输入 tensor 的数据类型是否为复数类型
+
+返回类型：bool
+
+请参考 :ref:`cn_api_paddle_is_complex`
+
+
+is_integer()
+:::::::::
+
+返回：判断输入 tensor 的数据类型是否为整数类型
+
+返回类型：bool
+
+请参考 :ref:`cn_api_paddle_is_integer`
+
+take_along_axis(arr, index, axis)
+:::::::::
+
+基于输入索引矩阵, 沿着指定axis从arr矩阵里选取1d切片。索引矩阵必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_take_along_axis`
+
+put_along_axis(arr, index, value, axis, reduce="assign")
+:::::::::
+
+基于输入index矩阵, 将输入value沿着指定axis放置入arr矩阵。索引矩阵和value必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_take_along_axis`

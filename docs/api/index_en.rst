@@ -26,6 +26,11 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 | paddle.device                 | Device management related APIs, such as set_device,   |
 |                               | get_device, etc.                                      |
 +-------------------------------+-------------------------------------------------------+
+| paddle.linalg                 | Linear algebra related APIs, such as det, svd, etc.   |    
++-------------------------------+-------------------------------------------------------+
+| paddle.fft                    | Fast Fourier Transform related APIs, such as          |
+|                               | fft, fft2, etc.                                       |
++-------------------------------+-------------------------------------------------------+
 | paddle.amp                    | Paddle automatic mixed precision strategy, including  | 
 |                               | auto_cast, GradScaler, etc.                           |
 +-------------------------------+-------------------------------------------------------+
