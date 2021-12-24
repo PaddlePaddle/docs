@@ -2222,3 +2222,14 @@ is_integer()
 返回类型：bool
 
 请参考 :ref:`cn_api_paddle_is_integer`
+
+erfinv(x, name=None)
+:::::::::
+
+对输入x进行逆误差函数计算
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_erfinv`
