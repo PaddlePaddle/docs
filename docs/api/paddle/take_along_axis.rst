@@ -9,9 +9,8 @@ take_along_axis
 :::::::::
 
 - **arr**  (Tensor) - 输入的Tensor 作为源矩阵，数据类型为：float32、float64。
-- **indices**  (Tensor) - 索引矩阵，包含沿轴提取1d切片的下标, 必须和arr矩阵有相同的维度, 
-   需要能够broadcast与arr矩阵对齐, 数据类型为: int、int64。
-- **axis**  (float|Tensor) - 指定沿着哪个维度获取对应的值, 数据类型为: int.
+- **indices**  (Tensor) - 索引矩阵，包含沿轴提取1d切片的下标, 必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐, 数据类型为: int、int64。
+- **axis**  (int) - 指定沿着哪个维度获取对应的值, 数据类型为: int。
 
 返回
 :::::::::
