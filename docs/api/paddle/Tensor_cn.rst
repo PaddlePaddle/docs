@@ -1348,6 +1348,15 @@ max(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_max`
 
+amax(axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_amax`
+
 maximum(y, axis=-1, name=None)
 :::::::::
 
@@ -1383,6 +1392,15 @@ min(axis=None, keepdim=False, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_min`
+
+amin(axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_amin`
 
 minimum(y, axis=-1, name=None)
 :::::::::

@@ -1,9 +1,9 @@
-.. _cn_api_paddle_tensor_max:
+.. _cn_api_paddle_tensor_amax:
 
-max
+amax
 -------------------------------
 
-.. py:function:: paddle.max(x, axis=None, keepdim=False, name=None)
+.. py:function:: paddle.amax(x, axis=None, keepdim=False, name=None)
 
 
 该OP是对指定维度上的Tensor元素求最大值运算，并输出相应的计算结果。
@@ -26,4 +26,4 @@ max
 
 代码示例
 ::::::::::
-COPY-FROM: paddle.max
+COPY-FROM: paddle.amax
