@@ -93,6 +93,8 @@ nums_batch = 50
 train_data = [paddle.randn((batch_size, input_size)) for _ in range(nums_batch)]
 labels = [paddle.randn((batch_size, output_size)) for _ in range(nums_batch)]
 
+mse = paddle.nn.MSELoss()
+
 ```
 
     W1110 18:42:02.362493   104 device_context.cc:447] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.1, Runtime API Version: 10.1
@@ -112,7 +114,7 @@ for epoch in range(epochs):
     for i, (data, label) in enumerate(datas):
         # 前向计算
         output = model(data)
-        loss = paddle.nn.MSELoss(output, label)
+        loss = mse(output, label)
 
         # 反向传播
         loss.backward()
@@ -126,10 +128,10 @@ end_timer_and_print("默认耗时:") # 获取结束时间并打印相关信息
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.24519622])
-    
+        [1.25424790])
+
     默认耗时:
-    共计耗时 = 2.926 sec
+    共计耗时 = 6.736 sec
 
 
 #### 3.1.2 动态图AMP-O1训练：
@@ -156,7 +158,7 @@ for epoch in range(epochs):
         # Step2：创建AMP-O1上下文环境，开启自动混合精度训练
         with paddle.amp.auto_cast(level='O1'):
             output = model(data)
-            loss = paddle.nn.MSELoss(output, label)
+            loss = mse(output, label)
 
         # Step3：使用Step1中定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
         scaled = scaler.scale(loss)
@@ -171,10 +173,10 @@ end_timer_and_print("使用AMP-O1模式耗时:")
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.24815702])
-    
+        [1.25425494])
+
     使用AMP-O1模式耗时:
-    共计耗时 = 1.294 sec
+    共计耗时 = 2.852 sec
 
 - ``paddle.amp.GradScaler``使用介绍见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/GradScaler_cn.html)
 - ``paddle.amp.auto_cast``使用介绍见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/auto_cast_cn.html)
@@ -208,7 +210,7 @@ for epoch in range(epochs):
         # Step3：创建AMP上下文环境，开启自动混合精度训练
         with paddle.amp.auto_cast(level='O2'):
             output = model(data)
-            loss = paddle.nn.MSELoss(output, label)
+            loss = mse(output, label)
 
         # Step4：使用 Step1中定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
         scaled = scaler.scale(loss)
@@ -222,15 +224,17 @@ print(loss)
 end_timer_and_print("使用AMP-O2模式耗时:")
 ```
 
-    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.25423336])
-    
+    Tensor(shape=[1], dtype=float16, place=CUDAPlace(0), stop_gradient=False,
+        [1.25878906])
+
     使用AMP-O2模式耗时:
-    共计耗时 = 0.890 sec
+    共计耗时 = 1.911 sec
 
 - ``paddle.amp.decorate``使用介绍见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/decorate_cn.html)
 
-从上面的示例中可以看出，使用自动混合精度训练，O1模式共计耗时约 1.294s，O2模式共计耗时约 0.890s，而普通的训练方式则耗时 2.926s，O1模式训练速度提升约为 2.1倍，O2模式训练速度提升约为 3.0倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
+从上面的示例中可以看出，使用自动混合精度训练，O1模式共计耗时约 2.852s，O2模式共计耗时约 1.911s，而普通的训练方式则耗时 6.736s，O1模式训练速度提升约为 2.4倍，O2模式训练速度提升约为 3.5倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
+
+**注：**受机器环境影响，上述示例代码的训练耗时统计可能存在差异，改影响主要包括：GPU利用率、CPU利用率的等。
 
 ### 3.2 静态图混合精度训练
 
@@ -242,8 +246,11 @@ end_timer_and_print("使用AMP-O2模式耗时:")
 
 ```python
 
+import numpy as np
 import paddle
+import paddle.nn.functional as F
 
+paddle.enable_static()
 place = paddle.CUDAPlace(0)
 exe = paddle.static.Executor(place)
 data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
@@ -261,7 +268,7 @@ amp_list = paddle.static.amp.CustomOpLists(custom_black_list=['pool2d'])
 # 2）通过 `decorate` 对优化器进行封装：
 optimizer = paddle.static.amp.decorate(
     optimizer=optimizer,
-    amp_list=amp_list,
+    amp_lists=amp_list,
     init_loss_scaling=128.0,
     use_dynamic_loss_scaling=True)
 
@@ -278,8 +285,11 @@ exe.run(paddle.static.default_startup_program())
 
 ```python
 
+import numpy as np
 import paddle
+import paddle.nn.functional as F
 
+paddle.enable_static()
 place = paddle.CUDAPlace(0)
 exe = paddle.static.Executor(place)
 data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
@@ -296,8 +306,8 @@ amp_list = paddle.static.amp.CustomOpLists(custom_black_list=['pool2d'])
 
 # 2）通过 `decorate` 对优化器进行封装：
 optimizer = paddle.static.amp.decorate(
-    optimizer,
-    amp_list,
+    optimizer=optimizer,
+    amp_lists=amp_list,
     init_loss_scaling=128.0,
     use_dynamic_loss_scaling=True,
     use_pure_fp16=True,
@@ -315,13 +325,15 @@ optimizer.amp_init(place, scope=paddle.static.global_scope())
 
 ```python
 
+import numpy as np
 import paddle
+import paddle.nn.functional as F
 
+paddle.enable_static()
 place = paddle.CUDAPlace(0)
 exe = paddle.static.Executor(place)
 data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
 conv2d = paddle.static.nn.conv2d(input=data, num_filters=6, filter_size=3)
-
 # 1) 利用 fp16_guard 控制使用 FP16 OP 的范围
 with paddle.static.amp.fp16_guard():
     bn = paddle.static.nn.batch_norm(input=conv2d, act="relu")
@@ -336,8 +348,8 @@ amp_list = paddle.static.amp.CustomOpLists(custom_black_list=['pool2d'])
 
 # 3）通过 `decorate` 对优化器进行封装：
 optimizer = paddle.static.amp.decorate(
-    optimizer,
-    amp_list,
+    optimizer=optimizer,
+    amp_lists=amp_list,
     init_loss_scaling=128.0,
     use_dynamic_loss_scaling=True,
     use_pure_fp16=True,
@@ -423,11 +435,11 @@ for epoch in range(epochs):
             optimizer.clear_grad()
 
 print(loss)
-end_timer_and_print("使用AMP模式耗时:")
+end_timer_and_print("使用AMP-O1模式耗时:")
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.25602019])
-    
-    使用AMP模式耗时:
-    共计耗时 = 1.026 sec
+        [1.25440383])
+
+    使用AMP-O1模式耗时:
+    共计耗时 = 2.589 sec
