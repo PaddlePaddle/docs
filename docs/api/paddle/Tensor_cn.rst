@@ -786,6 +786,33 @@ diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
 
 请参考 :ref:`cn_api_tensor_diff`
 
+element_size()
+:::::::::
+
+返回Tensor单个元素在计算机中所分配的 ``bytes`` 数量。
+
+返回：整数int
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        x = paddle.to_tensor(1, dtype='bool')
+        x.element_size() # 1
+
+        x = paddle.to_tensor(1, dtype='float16')
+        x.element_size() # 2
+
+        x = paddle.to_tensor(1, dtype='float32')
+        x.element_size() # 4
+
+        x = paddle.to_tensor(1, dtype='float64')
+        x.element_size() # 8
+
+        x = paddle.to_tensor(1, dtype='complex128')
+        x.element_size() # 16
+
 equal(y, name=None)
 :::::::::
 
@@ -844,6 +871,37 @@ expand_as(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_expand_as`
+
+exponential_(lam=1.0, name=None)
+:::::::::
+
+该OP为inplace形式，通过 ``指数分布`` 随机数来填充该Tensor。
+
+``lam`` 是 ``指数分布`` 的 :math:`\lambda` 参数。随机数符合以下概率密度函数：
+
+.. math::
+
+    f(x) = \lambda e^{-\lambda x}
+
+参数：
+    - **x** (Tensor) - 输入Tensor，数据类型为 float32/float64。
+    - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
+    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+
+
+返回：原Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        paddle.set_device('cpu')
+        paddle.seed(100)
+
+        x = paddle.empty([2,3])
+        x.exponential_()
+        # [[0.80643415, 0.23211166, 0.01169797],
+        #  [0.72520673, 0.45208144, 0.30234432]]
 
 eigvals(y, name=None)
 :::::::::
