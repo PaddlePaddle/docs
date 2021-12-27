@@ -455,7 +455,6 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.l1_loss <cn_paddle_nn_functional_loss_l1>` ", "用于计算L1损失"
     " :ref:`paddle.nn.functional.kl_div <cn_paddle_nn_functional_loss_kl_div>` ", "用于计算KL散度损失"
     " :ref:`paddle.nn.functional.log_loss <cn_api_fluid_layers_log_loss>` ", "用于计算负对数损失"
-    " :ref:`paddle.nn.functional.sampled_softmax_with_cross_entropy <cn_api_fluid_layers_sampled_softmax_with_cross_entropy>` ", "为所有示例采样若干个样本，并计算每行采样张量的SoftMax标准化值，然后计算交叉熵损失"
     " :ref:`paddle.nn.functional.margin_ranking_loss <cn_api_nn_cn_margin_ranking_loss>` ", "用于计算margin rank loss 损失"
     " :ref:`paddle.nn.functional.mse_loss <cn_paddle_nn_functional_mse_loss>` ", "用于计算均方差误差"
     " :ref:`paddle.nn.functional.nll_loss <cn_api_nn_functional_nll_loss>` ", "用于计算nll损失"
