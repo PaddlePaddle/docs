@@ -183,6 +183,7 @@ tensor创建相关
     " :ref:`paddle.zeros_like <cn_api_tensor_zeros_like>` ", "该OP返回一个和 x 具有相同的形状的全零Tensor，数据类型为 dtype 或者和 x 相同"
     " :ref:`paddle.complex <cn_api_paddle_complex>` ", "给定实部和虚部，返回一个复数 Tensor"
     " :ref:`paddle.create_parameter <cn_api_paddle_create_parameter>` ", "该OP创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
+    " :ref:`paddle.clone <cn_api_tensor_clone>` ", "对输入Tensor ``x`` 进行拷贝，并返回一个新的Tensor，并且该操作提供梯度回传"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个reader的装饰器。返回的reader将输入reader的数据打包成指定的batch_size大小的批处理数据(不推荐使用)"
 
 .. _tensor_search:
@@ -237,6 +238,7 @@ tensor random相关
     " :ref:`paddle.seed <cn_api_paddle_framework_seed>` ", "设置全局默认generator的随机种子"
     " :ref:`paddle.uniform <cn_api_tensor_uniform>` ", "返回数值服从范围[min, max)内均匀分布的随机Tensor"
     " :ref:`paddle.standard_normal <cn_api_tensor_random_standard_normal>` ", "返回符合标准正态分布（均值为0，标准差为1的正态随机分布）的随机Tensor，形状为 shape，数据类型为 dtype"
+    " :ref:`paddle.poisson <cn_api_tensor_poisson>` ", "返回服从泊松分布的随机Tensor，输出Tensor的形状和数据类型与输入 x 相同"
 
 .. _tensor_linalg:
 
@@ -298,6 +300,7 @@ tensor元素操作相关（如：转置，reshape等）
     " :ref:`paddle.strided_slice <cn_api_strided_slice>` ", "沿多个轴生成 x 的切片"
     " :ref:`paddle.tile <cn_api_tensor_tile>` ", "根据参数 repeat_times 对输入 x 的各维度进行复制"
     " :ref:`paddle.transpose <cn_api_fluid_layers_transpose>` ", "根据perm对输入的多维Tensor进行数据重排"
+    " :ref:`paddle.moveaxis <cn_api_tensor_moveaxis>` ", "移动Tensor的轴，根据移动之后的轴对输入的多维Tensor进行数据重排"
     " :ref:`paddle.tensordot <cn_api_paddle_tensordot>`  ", "沿多个轴对输入的x和y进行张量缩并操作"
     " :ref:`paddle.unbind <cn_api_paddle_tensor_unbind>` ", "将输入Tensor按照指定的维度分割成多个子Tensor"
     " :ref:`paddle.unique <cn_api_tensor_cn_unique>` ", "返回Tensor按升序排序后的独有元素"

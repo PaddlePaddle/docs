@@ -14,7 +14,7 @@ calculate_gain
 
 返回
 :::::::::
-Python float，推荐的增益值
+Python float数，推荐的增益值
 
 代码示例
 :::::::::
