@@ -1,10 +1,12 @@
-.. _cn_api_paddle_tensor_min:
+.. _cn_api_paddle_tensor_amin:
 
-min
+amin
 -------------------------------
 
-.. py:function:: paddle.min(x, axis=None, keepdim=False, name=None)
+.. py:function:: paddle.tensor.amin(x, axis=None, keepdim=False, name=None)
 
+:alias_main: paddle.amin
+:alias: paddle.amin,paddle.tensor.amin,paddle.tensor.math.amin
 
 该OP是对指定维度上的Tensor元素求最小值运算，并输出相应的计算结果。
 
@@ -26,4 +28,4 @@ min
 
 代码示例
 ::::::::::
-COPY-FROM: paddle.min
+COPY-FROM: paddle.amin
