@@ -25,7 +25,7 @@
 - level = ’O1‘：采用黑白名单策略进行混合精度训练，黑名单中的OP将采用FP32计算，白名单中的OP将采用FP16计算，训练过程中框架会自动将白名单OP的输入参数数据类型从FP32 cast FP16，使用FP16与FP32进行计算的OP列表可见该[文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html)。
 - level = ’O2‘：该模式采用了比O1更为激进的策略，除了框架不支持FP16计算的OP，其他全部采用FP16计算，框架会预先将网络参数从FP32转换为FP16，相比O1，训练过程中无需做FP32 cast FP16的操作，训练速度会有更明显的提升，但可能会存在精度问题，为此，框架提供了自定义黑名单，用户可通过该名单指定一些存在精度问题的OP执行FP32运算。
 
-飞桨动态图与静态图均为用户提供了便捷的API用于开启混合精度训练，下面以具体的训练代码为例，来了解如果使用飞桨框架实现混合精度训练。
+飞桨动态图与静态图均为用户提供了便捷的API用于开启混合精度训练，下面以具体的训练代码为例，来了解如何使用飞桨框架实现混合精度训练。
 
 ### 3.1 动态图混合精度训练
 
@@ -81,7 +81,7 @@ class SimpleNet(nn.Layer):
         return x
 ```
 
-2）设置训练的相关参数及训练数据：这里为了能有效的看出混合精度训练对于训练速度的提升，将 ``input_size`` 与 ``output_size`` 的值设为较大的值，为了使用GPU 提供的``Tensor Core`` 性能，还需将 ``batch_size`` 设置为 8 的倍数（基于混合精度训练的性能优化方法见：四、混合精度训练性能优化）。
+2）设置训练的相关参数及训练数据：这里为了能有效的看出混合精度训练对于训练速度的提升，将 ``input_size`` 与 ``output_size`` 的值设为较大的值，为了使用GPU 提供的``Tensor Core`` 性能，还需将 ``batch_size`` 设置为 8 的倍数（基于混合精度训练的性能优化方法见：<a href="#四">四、混合精度训练性能优化</a>）。
 
 ```python
 epochs = 5
@@ -96,10 +96,6 @@ labels = [paddle.randn((batch_size, output_size)) for _ in range(nums_batch)]
 mse = paddle.nn.MSELoss()
 
 ```
-
-    W1110 18:42:02.362493   104 device_context.cc:447] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.1, Runtime API Version: 10.1
-    W1110 18:42:02.367755   104 device_context.cc:465] device: 0, cuDNN Version: 7.6.
-
 
 3）使用动态图FP32训练：
 
@@ -139,7 +135,7 @@ end_timer_and_print("默认耗时:") # 获取结束时间并打印相关信息
 在飞桨框架中，使用AMP-O1训练训练，需要在FP32代码的基础上改动三处：
 
 - Step1： 定义 ``paddle.amp.GradScaler`` ，用于缩放 ``loss`` 比例，避免浮点数下溢
-- Step2： 使用 ``paddle.amp.auto_cast`` 创建AMP上下文环境，在该上下文内，框架会自动会确定每个OP的输入数据类型（FP16或FP32）
+- Step2： 使用 ``paddle.amp.auto_cast`` 创建AMP上下文环境，在该上下文内，框架会根据框架预设的黑白名单，自动确定每个OP的输入数据类型（FP16或FP32）
 - Step3： 在训练代码中使用Step1中定义的 ``GradScaler`` 完成 ``loss`` 的缩放，用缩放后的 ``loss`` 进行反向传播，完成训练
 
 ```python
@@ -187,7 +183,7 @@ O2模式采用了比O1更为激进的策略，除了框架不支持FP16计算的
 
 - Step1： 定义 ``paddle.amp.GradScaler`` ，用于缩放 ``loss`` 比例，避免浮点数下溢
 - Step2： 使用 ``paddle.amp.decorate`` 将网络参数从FP32转换为FP16
-- Step3： 使用 ``paddle.amp.auto_cast`` 创建AMP上下文环境，在该上下文内，框架会自动会确定每个OP的输入数据类型（FP16或FP32）
+- Step3： 使用 ``paddle.amp.auto_cast`` 创建AMP上下文环境，在该上下文内，框架会将所有支持FP16的OP都采用FP16进行计算（自定义的黑名单除外），其他OP采用FP32进行计算
 - Step4： 在训练代码中使用Step1中定义的 ``GradScaler`` 完成 ``loss`` 的缩放，用缩放后的 ``loss`` 进行反向传播，完成训练
 
 
@@ -363,6 +359,7 @@ optimizer.amp_init(place, scope=paddle.static.global_scope())
 
 ```
 
+<a name="四"></a>
 ## 四、混合精度训练性能优化
 
 飞桨AMP提升模型训练性能的根本原因是：利用 Tensor Core 来加速 FP16 下的``matmul``和``conv``运算，为了获得最佳的加速效果，Tensor Core 对矩阵乘和卷积运算有一定的使用约束，约束如下：
