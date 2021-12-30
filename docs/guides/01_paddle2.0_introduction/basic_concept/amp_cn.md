@@ -230,7 +230,7 @@ end_timer_and_print("使用AMP-O2模式耗时:")
 
 从上面的示例中可以看出，使用自动混合精度训练，O1模式共计耗时约 2.852s，O2模式共计耗时约 1.911s，而普通的训练方式则耗时 6.736s，O1模式训练速度提升约为 2.4倍，O2模式训练速度提升约为 3.5倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
 
-**注：**受机器环境影响，上述示例代码的训练耗时统计可能存在差异，改影响主要包括：GPU利用率、CPU利用率的等。
+ **注：**受机器环境影响，上述示例代码的训练耗时统计可能存在差异，该影响主要包括：GPU利用率、CPU利用率的等。
 
 ### 3.2 静态图混合精度训练
 
@@ -238,7 +238,7 @@ end_timer_and_print("使用AMP-O2模式耗时:")
 
 #### 3.2.1 静态图AMP-O1训练
 
-静态图通过``paddle.static.amp.decorate``对优化器进行封装，即可开启混合精度训练，示例代码如下：
+静态图通过``paddle.static.amp.decorate``对优化器进行封装、通过`paddle.static.amp.CustomOpLists`定义黑白名单，即可开启混合精度训练，示例代码如下：
 
 ```python
 
@@ -273,9 +273,15 @@ exe.run(paddle.static.default_startup_program())
 
 ```
 
+`paddle.static.amp.CustomOpLists`用于自定义黑白名单，黑名单op执行FP32 kernel、白名单op执行FP16 kernel。
+
 #### 3.2.2 静态图AMP-O2训练
 
 静态图开启AMP-O2有两种方式：
+
+- 使用``paddle.static.amp.fp16_guard``控制FP16应用的范围，在该语境下的所有op将执行FP16计算，其他op执行FP32计算；
+
+- 不使用``paddle.static.amp.fp16_guard``控制FP16应用的范围，网络的全部op执行FP16计算（除去自定义黑名单的op、不支持FP16计算的op）
 
 1）设置``paddle.static.amp.decorate``的参数``use_pure_fp16``为 True，同时设置参数``use_fp16_guard``为 False
 
@@ -358,6 +364,8 @@ exe.run(paddle.static.default_startup_program())
 optimizer.amp_init(place, scope=paddle.static.global_scope())
 
 ```
+
+
 
 <a name="四"></a>
 ## 四、混合精度训练性能优化
