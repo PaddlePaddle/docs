@@ -9,16 +9,18 @@ elif [ ${BRANCH} = 'release/2.1' ] ; then
 fi
 export PADDLE_WHL
 
-cat /etc/issue
-apt update && apt install -yq --no-install-recommends jq
+# cat /etc/issue # ubuntu 18.04
+# apt update && apt install -yq --no-install-recommends jq
 
 JOB_URL_PREFIX="http://10.24.2.236/job/doc-review-only-for-1.8/buildWithParameters?token=auto&SourcePaddlePR=&CLEAN_PADDLE_BUILD_FIRST=false&DEPLOY_AFTER_BUILD=false"
 #PaddleWhlAddr=${PADDLE_WHL//:/%3A}
 #PaddleWhlAddr=${PaddleWhlAddr//\//%2F}
 PaddleWhlAddr=$(echo ${PADDLE_WHL} | sed -e 's/:/%3A/' -e 's@/@%2F@g')
 BRANCH_SHORT=$(echo ${BRANCH} | sed 's@release/@@')
-GITHUB_LOGIN=$(curl -H "Authorization: token ${GITHUB_API_TOKEN}" https://api.github.com/repos/PaddlePaddle/docs/pulls/${AGILE_PULL_ID} | jq '.user.login')
+# GITHUB_LOGIN=$(curl -H "Authorization: token ${GITHUB_API_TOKEN}" https://api.github.com/repos/PaddlePaddle/docs/pulls/${AGILE_PULL_ID} | jq '.user.login')
+GITHUB_LOGIN=$(curl -H "Authorization: token ${GITHUB_API_TOKEN}" https://api.github.com/repos/PaddlePaddle/docs/pulls/${AGILE_PULL_ID} | grep '^    "login"' | sed 's/^.*"login": "\(.*\)".*/\1/g')
 OA_ID=$(curl -H "Host: sz-cpu-agent01.bcc-szth.baidu.com" "http://10.24.2.236:8091/v1/user/id_convert?to=oa&id=${GITHUB_LOGIN}" | sed 's/"//g')
+echo "Hello ${GITHUB_LOGIN} ${OA_ID}, docs-build run automatically."
 curl -H "Host: sz-cpu-agent01.bcc-szth.baidu.com" \
   "${JOB_URL_PREFIX}&SourceDocsPRBR=${AGILE_PULL_ID}&PaddleWhlAddr=${PaddleWhlAddr}&PADDLE_VERSIONSTR=${BRANCH_SHORT}&EMAIL=${OA_ID}"
 
