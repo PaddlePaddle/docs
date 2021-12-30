@@ -3,12 +3,7 @@ set -x
 
 function install_paddle() {
     # try to download paddle, and install
-    PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
-    if [ ${BRANCH} = 'release/2.2' ] ; then
-        PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.2.0-cp38-cp38-linux_x86_64.whl
-    elif [ ${BRANCH} = 'release/2.1' ] ; then
-        PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.1.0-cp38-cp38-linux_x86_64.whl
-    fi
+    # PADDLE_WHL is defined in ci_start.sh
     pip install --no-cache-dir -i https://mirror.baidu.com/pypi/simple ${PADDLE_WHL}
     # if failed, build paddle
     if [ $? -ne 0 ];then
