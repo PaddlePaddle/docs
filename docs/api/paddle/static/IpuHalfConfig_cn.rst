@@ -12,8 +12,8 @@ IpuHalfConfig
 
 
 参数：
-    - **ipu_config** (IpuConfig)- IpuConfig实例，可通过:ref:`cn_api_fluid_IpuConfig`获取。
-    - **enable_fp16** (bool)- 是否使能fp16运算。默认值为False。
+    - **ipu_config** (IpuConfig)- IpuConfig实例，可通过 :ref:`cn_api_fluid_IpuConfig` 获取。
+    - **enable_fp16** (bool)- 是否使能fp16运算模式并将fp32转换为fp16。默认值为False，表示不使能fp16运算模式。
 
 代码示例
 ::::::::::

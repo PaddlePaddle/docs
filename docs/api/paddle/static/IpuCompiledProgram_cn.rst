@@ -7,13 +7,13 @@ IpuCompiledProgram
 .. py:class:: paddle.static.IpuCompiledProgram(program, scope=None, ipu_config=None)
 
 
-IpuCompiledProgram根据 `ipu_config` 的配置将输入的Program转换和优化成ipu所需要的形式，例如：前向图提取、计算图转化、无用的scale算子删除等。关于ipu_config更多信息。请参阅  ``paddle.static.IpuConfig``。
+IpuCompiledProgram将输入的Program转换和优化成IPU所需要的形式，例如：前向图提取、计算图转化、无用的scale算子删除等。
 
 参数
 :::::::::
-    - **program** (Program): 该参数为被执行的Program。如果没有设置此参数，则会使用默认的program, 即paddle.static.default_main_program()。
-    - **scope** (Scope): 该参数表示执行当前program所使用的作用域。如果没有指定scope，将使用全局scope，即paddle.static.global_scope()。
-    - **ipu_config** (IpuConfig): 通过配置ipu_config，对计算图进行转换和优化，例如：计算图的float16模式、是否是训练模式、计算图需要用几个IPU等。默认为None。
+    - **program** (Program，可选): 该参数为被执行的Program。默认值为None，表示将使用默认的program, 即paddle.static.default_main_program()。
+    - **scope** (Scope，可选): 该参数表示执行当前program所使用的作用域。默认值为None，将使用全局scope，即paddle.static.global_scope()。
+    - **ipu_config** (IpuConfig，可选): 根据配置的ipu_config，对Program进行转换和优化，例如：计算图的float16模式、是否是训练模式、计算图需要用几个IPU等。默认为None，表示将使用默认的ipu_config转换Program。
 
 返回
 :::::::::
