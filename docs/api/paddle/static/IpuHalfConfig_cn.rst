@@ -6,7 +6,6 @@ IpuHalfConfig
 
 .. py::function:: paddle.static.IpuHalfConfig
 
-:api_attr: 声明式编程模式（静态图)
 
 通过``IpuHalfConfig`` 向IpuConfig实例中传递IPU构图的半精度运算配置。
 
