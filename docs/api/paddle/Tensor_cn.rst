@@ -1253,6 +1253,15 @@ isnan(name=None)
 
 请参考 :ref:`cn_api_tensor_isnan`
 
+kthvalue(k, axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_kthvalue`
+
 kron(y, name=None)
 :::::::::
 
