@@ -1656,6 +1656,15 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_prod`
 
+quantile(q, axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_quantile`
+
 rad2deg(x, name=None)
 :::::::::
 
