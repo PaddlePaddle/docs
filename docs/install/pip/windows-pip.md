@@ -5,28 +5,13 @@
 ### 1.1目前飞桨支持的环境
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
-  * **GPU版本支持CUDA 10.1/10.2/11.2，且仅支持单卡**
-
+* **GPU版本支持CUDA 10.1/10.2/11.0/11.1/11.2，且仅支持单卡**
 * **Python 版本 3.6+/3.7+/3.8+/3.9+ (64 bit)**
-
 * **pip 版本 20.2.2或更高版本 (64 bit)**
 
 ### 1.2如何查看您的环境
 
-* 可以通过【控制面板】-【系统和安全】-【系统】查看本机的操作系统和位数信息：
-
-
-* 确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
-
-  ```
-  where python
-  ```
-
-
-
-
 * 需要确认python的版本是否满足要求
-
 
   * 使用以下命令确认是 3.6/3.7/3.8/3.9
 
@@ -53,10 +38,7 @@
 
 
 * 默认提供的安装包需要计算机支持MKL
-* 当前版本暂不支持NCCL，分布式等相关功能
-
-* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
-
+* Windows暂不支持NCCL，分布式等相关功能
 
 
 ## 二、开始安装
@@ -71,7 +53,11 @@
 
   * **CUDA 工具包10.1/10.2 配合 cuDNN v7.6.5+**
 
-  * **CUDA 工具包11.2配合cuDNN v8.1.1**
+  * **CUDA 工具包 11.0 配合 cuDNN v8.0.2**
+
+  * **CUDA 工具包 11.1 配合 cuDNN v8.1.1**
+
+  * **CUDA 工具包 11.2 配合 cuDNN v8.2.1**
 
   * **GPU运算能力超过3.5的硬件设备**
 
@@ -138,13 +124,12 @@
 
 * 如果你使用的是安培架构的GPU，推荐使用CUDA11.2。如果你使用的是非安培架构的GPU，推荐使用CUDA10.2，性能更优。
 
-* 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
+* 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境，可能需要将上述命令行中所有 `python` 替换为具体的 `Python解释器` 路径（例如C:\Python37\python.exe）。
 
 
 ## **三、验证安装**
 
-安装完成后您可以使用 `python` 进入python解释器，输入`import paddle` ，再输入
- `paddle.utils.run_check()`
+安装完成后您可以使用 `python` 进入python解释器，输入`import paddle` ，再输入 `paddle.utils.run_check()`
 
 如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
 
