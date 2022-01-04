@@ -8,15 +8,14 @@ ipu_shard
 
 该接口用于对模型进行切分。用于指定Op在哪个ipu上进行计算以及模型被切分之后的计算顺序。
 
+.. note:
+仅支持当enable_manual_shard=True, ipu_index才能被置为非None。请参阅 :ref:`cn_api_fluid_IpuGraphConfig` 。
+仅支持当enable_pipelining=True, ipu_stage才能被置为非None。请参阅 :ref:`cn_api_fluid_IpuPipliningConfig` 。
+
 参数
 :::::::::
     - **ipu_index** (int, 可选) - 指定Op在哪个ipu上计算，（如‘0, 1, 2, 3’），默认值None，表示Op默认跑在IPU 0。
     - **ipu_stage** (int, 可选) – 指定被切分的模型的计算顺序，（如‘0, 1, 2, 3’），按照数值大小顺序对被切分的模型进行计算，默认值None，表示没有数据流水计算顺序并按照计算图顺序计算Op。
-
-note
-:::::::::
-    - 仅支持当enable_manual_shard=True, ipu_index才能被置为非None。请参阅 :ref:`cn_api_fluid_IpuGraphConfig` 。
-    - 仅支持当enable_pipelining=True, ipu_stage才能被置为非None。请参阅 :ref:`cn_api_fluid_IpuPipliningConfig` 。
 
 返回
 :::::::::
