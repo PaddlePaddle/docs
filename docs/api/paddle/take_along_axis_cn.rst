@@ -4,6 +4,7 @@ take_along_axis
 -------------------------------
 
 .. py:function:: paddle.take_along_axis(arr, indices, axis)
+基于输入索引矩阵, 沿着指定axis从arr矩阵里选取1d切片。索引矩阵必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
 
 参数
 :::::::::
@@ -25,10 +26,8 @@ take_along_axis
       import paddle
       import numpy as np
 
-      x_np = np.array([[1, 2, 3], [4, 5, 6], [7,8,9]])
-      index_np = np.array([[0]])
-      x = paddle.to_tensor(x_np)
-      index = paddle.to_tensor(index_np)
+      x = paddle.to_tensor([[1, 2, 3], [4, 5, 6], [7,8,9]])
+      index = paddle.to_tensor([[0]])
       axis = 0
       result = paddle.take_along_axis(x, index, axis)
       print(result)
