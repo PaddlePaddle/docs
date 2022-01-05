@@ -6,7 +6,7 @@ IpuGraphConfig
 
 .. py::function:: paddle.static.IpuGraphConfig(ipu_config, num_ipus=1, is_training=True, batch_size=1, enable_manual_shard=False, need_avg_shard=False)
 
-通过``IpuGraphConfig`` 向IpuConfig实例中传递IPU构图的Graph配置。
+通过 ``IpuGraphConfig`` 向IpuConfig实例中传递IPU构图的Graph配置。
 
 
 参数：

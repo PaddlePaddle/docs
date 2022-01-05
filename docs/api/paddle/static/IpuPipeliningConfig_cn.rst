@@ -6,7 +6,7 @@ IpuPipeliningConfig
 
 .. py::function:: paddle.static.IpuPipeliningConfig(ipu_config, enable_pipelining=False, batches_per_step=1, accumulationFactor=1)
 
-通过``IpuPipeliningConfig`` 向IpuConfig实例中传递IPU构图的子图数据流水配置。
+通过 ``IpuPipeliningConfig`` 向IpuConfig实例中传递IPU构图的子图数据流水配置。
 
 
 参数：
