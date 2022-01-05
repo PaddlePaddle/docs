@@ -2243,4 +2243,4 @@ put_along_axis(arr, index, value, axis, reduce="assign")
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_take_along_axis`
+请参考 :ref:`cn_api_paddle_tensor_put_along_axis`
