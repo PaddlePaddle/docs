@@ -22,8 +22,8 @@
 使用飞桨框架提供的API，能够在原始训练代码基础上快速开启自动混合精度训练（Automatic Mixed Precision，AMP），即在相关OP的计算中，根据一定的规则，自动选择FP16或FP32计算。
 
 依据FP16在模型中的使用程度划分，飞桨的AMP分为两个等级：
-- level = ’O1‘：采用黑白名单策略进行混合精度训练，黑名单中的OP将采用FP32计算，白名单中的OP将采用FP16计算，训练过程中框架会自动将白名单OP的输入参数数据类型从FP32 cast FP16，使用FP16与FP32进行计算的OP列表可见该[文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html)。
-- level = ’O2‘：该模式采用了比O1更为激进的策略，除了框架不支持FP16计算的OP，其他全部采用FP16计算，框架会预先将网络参数从FP32转换为FP16，相比O1，训练过程中无需做FP32 cast FP16的操作，训练速度会有更明显的提升，但可能会存在精度问题，为此，框架提供了自定义黑名单，用户可通过该名单指定一些存在精度问题的OP执行FP32运算。
+- level = ’O1‘：采用黑白名单策略进行混合精度训练，黑名单中的OP将采用FP32计算，白名单中的OP将采用FP16计算，训练过程中框架会自动将白名单OP的输入参数数据类型从FP32转为FP16，使用FP16与FP32进行计算的OP列表可见该[文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html)。
+- level = ’O2‘：该模式采用了比O1更为激进的策略，除了框架不支持FP16计算的OP，其他全部采用FP16计算，框架会预先将网络参数从FP32转换为FP16，相比O1，训练过程中无需做FP32转为FP16的操作，训练速度会有更明显的提升，但可能会存在精度问题，为此，框架提供了自定义黑名单，用户可通过该名单指定一些存在精度问题的OP执行FP32运算。
 
 飞桨动态图与静态图均为用户提供了便捷的API用于开启混合精度训练，下面以具体的训练代码为例，来了解如何使用飞桨框架实现混合精度训练。
 
@@ -51,6 +51,7 @@ def end_timer_and_print(msg):
     print("共计耗时 = {:.3f} sec".format(end_time - start_time))
 ```
 
+<a name="3.1.1"></a>
 #### 3.1.1 动态图FP32训练
 
 1）构建一个简单的网络：用于对比使用普通方法进行训练与使用混合精度训练的训练速度。该网络由三层 ``Linear`` 组成，其中前两层 ``Linear`` 后接 ``ReLU`` 激活函数。
@@ -58,6 +59,10 @@ def end_timer_and_print(msg):
 ```python
 import paddle
 import paddle.nn as nn
+import numpy
+
+paddle.seed(100)
+numpy.random.seed(100)
 
 class SimpleNet(nn.Layer):
 
@@ -90,8 +95,8 @@ output_size = 4096  # 设为较大的值
 batch_size = 512    # batch_size 为8的倍数
 nums_batch = 50
 
-train_data = [paddle.randn((batch_size, input_size)) for _ in range(nums_batch)]
-labels = [paddle.randn((batch_size, output_size)) for _ in range(nums_batch)]
+datas = [paddle.to_tensor(numpy.random.random(size=(batch_size, input_size)).astype('float32')) for _ in range(nums_batch)]
+labels = [paddle.to_tensor(numpy.random.random(size=(batch_size, input_size)).astype('float32')) for _ in range(nums_batch)]
 
 mse = paddle.nn.MSELoss()
 
@@ -106,8 +111,8 @@ optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.paramete
 start_timer() # 获取训练开始时间
 
 for epoch in range(epochs):
-    datas = zip(train_data, labels)
-    for i, (data, label) in enumerate(datas):
+    batchs = zip(datas, labels)
+    for i, (data, label) in enumerate(batchs):
         # 前向计算
         output = model(data)
         loss = mse(output, label)
@@ -120,14 +125,14 @@ for epoch in range(epochs):
         optimizer.clear_grad()
 
 print(loss)
-end_timer_and_print("默认耗时:") # 获取结束时间并打印相关信息
+end_timer_and_print("使用FP32模式耗时:") # 获取结束时间并打印相关信息
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-        [1.25424790])
+        [0.40839708])
 
-    默认耗时:
-    共计耗时 = 6.736 sec
+    使用FP32模式耗时:
+    共计耗时 = 2.925 sec
 
 
 #### 3.1.2 动态图AMP-O1训练：
@@ -148,8 +153,8 @@ scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 start_timer() # 获取训练开始时间
 
 for epoch in range(epochs):
-    datas = zip(train_data, labels)
-    for i, (data, label) in enumerate(datas):
+    batchs = zip(datas, labels)
+    for i, (data, label) in enumerate(batchs):
 
         # Step2：创建AMP-O1上下文环境，开启自动混合精度训练
         with paddle.amp.auto_cast(level='O1'):
@@ -161,7 +166,8 @@ for epoch in range(epochs):
         scaled.backward()
 
         # 训练模型
-        scaler.minimize(optimizer, scaled)
+        scaler.step(optimizer)       # 更新参数
+        scaler.update()              # 更新用于 loss 缩放的比例因子
         optimizer.clear_grad()
 
 print(loss)
@@ -169,10 +175,10 @@ end_timer_and_print("使用AMP-O1模式耗时:")
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-        [1.25425494])
+        [0.40840322])
 
     使用AMP-O1模式耗时:
-    共计耗时 = 2.852 sec
+    共计耗时 = 1.208 sec
 
 - ``paddle.amp.GradScaler``使用介绍见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/GradScaler_cn.html)
 - ``paddle.amp.auto_cast``使用介绍见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/auto_cast_cn.html)
@@ -200,8 +206,8 @@ model = paddle.amp.decorate(models=model, level='O2')
 start_timer() # 获取训练开始时间
 
 for epoch in range(epochs):
-    datas = zip(train_data, labels)
-    for i, (data, label) in enumerate(datas):
+    batchs = zip(datas, labels)
+    for i, (data, label) in enumerate(batchs):
 
         # Step3：创建AMP上下文环境，开启自动混合精度训练
         with paddle.amp.auto_cast(level='O2'):
@@ -213,7 +219,8 @@ for epoch in range(epochs):
         scaled.backward()
 
         # 训练模型
-        scaler.minimize(optimizer, scaled)
+        scaler.step(optimizer)       # 更新参数
+        scaler.update()              # 更新用于 loss 缩放的比例因子
         optimizer.clear_grad()
 
 print(loss)
@@ -221,10 +228,10 @@ end_timer_and_print("使用AMP-O2模式耗时:")
 ```
 
     Tensor(shape=[1], dtype=float16, place=CUDAPlace(0), stop_gradient=False,
-        [1.25878906])
+        [0.41528320])
 
     使用AMP-O2模式耗时:
-    共计耗时 = 1.911 sec
+    共计耗时 = 0.833 sec
 
 - ``paddle.amp.decorate``使用介绍见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/decorate_cn.html)
 
@@ -236,30 +243,69 @@ end_timer_and_print("使用AMP-O2模式耗时:")
 
 飞桨静态图提供了一系列便捷的API用于实现混合精度训练：``paddle.static.amp.decorate``、``paddle.static.amp.fp16_guard``。
 
-#### 3.2.1 静态图AMP-O1训练
+#### 3.2.1 静态图FP32训练
+
+采用与3.1.1节动态图训练相同的网络结构：<a href="#3.1.1">3.1.1 动态图FP32训练</a>），静态图网络初始化如下：
+
+```python
+paddle.enable_static()
+place = paddle.CUDAPlace(0)
+main_program = paddle.static.default_main_program()
+startup_program = paddle.static.default_startup_program()
+
+model = SimpleNet(input_size, output_size)
+mse_loss = paddle.nn.MSELoss()
+
+```
+
+静态图训练代码如下：
+
+```python
+data = paddle.static.data(name='data', shape=[batch_size, input_size], dtype='float32')
+label = paddle.static.data(name='label', shape=[batch_size, input_size], dtype='float32')
+
+predict = model(data)
+loss = mse_loss(predict, label)
+
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters()) 
+optimizer.minimize(loss)
+
+exe = paddle.static.Executor(place)
+exe.run(startup_program)
+
+datas = [numpy.random.random(size=(batch_size, input_size)).astype('float32') for _ in range(nums_batch)]
+labels = [numpy.random.random(size=(batch_size, input_size)).astype('float32') for _ in range(nums_batch)]
+start_timer() # 获取训练开始时间
+for epoch in range(epochs):
+    batchs = zip(datas, labels)
+    for i, (train_data, traiin_label) in enumerate(batchs):
+        loss_data = exe.run(main_program, feed={data.name: train_data, label.name: traiin_label }, fetch_list=[loss.name])
+
+print(loss_data)
+end_timer_and_print("使用FP32模式耗时:") # 获取结束时间并打印相关信息
+
+```
+
+    [array([0.40839708], dtype=float32)]
+
+    使用FP32模式耗时:
+    共计耗时 = 4.717 sec
+
+#### 3.2.2 静态图AMP-O1训练
 
 静态图通过``paddle.static.amp.decorate``对优化器进行封装、通过`paddle.static.amp.CustomOpLists`定义黑白名单，即可开启混合精度训练，示例代码如下：
 
 ```python
+data = paddle.static.data(name='data', shape=[batch_size, input_size], dtype='float32')
+label = paddle.static.data(name='label', shape=[batch_size, input_size], dtype='float32')
 
-import numpy as np
-import paddle
-import paddle.nn.functional as F
+predict = model(data)
+loss = mse_loss(predict, label)
 
-paddle.enable_static()
-place = paddle.CUDAPlace(0)
-exe = paddle.static.Executor(place)
-data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
-conv2d = paddle.static.nn.conv2d(input=data, num_filters=6, filter_size=3)
-bn = paddle.static.nn.batch_norm(input=conv2d, act="relu")
-pool = F.max_pool2d(bn, kernel_size=2, stride=2)
-hidden = paddle.static.nn.fc(pool, size=10)
-loss = paddle.mean(hidden)
-
-optimizer = paddle.optimizer.Momentum(learning_rate=0.01, multi_precision=True)
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters()) 
 
 # 1) 通过 `CustomOpLists` 自定义黑白名单
-amp_list = paddle.static.amp.CustomOpLists(custom_black_list=['pool2d'])
+amp_list = paddle.static.amp.CustomOpLists(custom_white_list=['elementwise_add'])
 
 # 2）通过 `decorate` 对优化器进行封装：
 optimizer = paddle.static.amp.decorate(
@@ -269,13 +315,31 @@ optimizer = paddle.static.amp.decorate(
     use_dynamic_loss_scaling=True)
 
 optimizer.minimize(loss)
-exe.run(paddle.static.default_startup_program())
+
+exe = paddle.static.Executor(place)
+exe.run(startup_program)
+
+datas = [numpy.random.random(size=(batch_size, input_size)).astype('float32') for _ in range(nums_batch)]
+labels = [numpy.random.random(size=(batch_size, input_size)).astype('float32') for _ in range(nums_batch)]
+start_timer() # 获取训练开始时间
+for epoch in range(epochs):
+    batchs = zip(datas, labels)
+    for i, (train_data, traiin_label) in enumerate(batchs):
+        loss_data = exe.run(main_program, feed={data.name: train_data, label.name: traiin_label }, fetch_list=[loss.name])
+
+print(loss_data)
+end_timer_and_print("使用AMP-O1模式耗时:") # 获取结束时间并打印相关信息
 
 ```
 
+    [array([0.40841], dtype=float32)]
+
+    使用AMP-O1模式耗时:
+    共计耗时 = 3.064 sec
+
 `paddle.static.amp.CustomOpLists`用于自定义黑白名单，黑名单op执行FP32 kernel、白名单op执行FP16 kernel。
 
-#### 3.2.2 静态图AMP-O2训练
+#### 3.2.3 静态图AMP-O2训练
 
 静态图开启AMP-O2有两种方式：
 
@@ -286,86 +350,119 @@ exe.run(paddle.static.default_startup_program())
 1）设置``paddle.static.amp.decorate``的参数``use_pure_fp16``为 True，同时设置参数``use_fp16_guard``为 False
 
 ```python
+data = paddle.static.data(name='data', shape=[batch_size, input_size], dtype='float32')
+label = paddle.static.data(name='label', shape=[batch_size, input_size], dtype='float32')
 
-import numpy as np
-import paddle
-import paddle.nn.functional as F
+predict = model(data)
+loss = mse_loss(predict, label)
 
-paddle.enable_static()
-place = paddle.CUDAPlace(0)
-exe = paddle.static.Executor(place)
-data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
-conv2d = paddle.static.nn.conv2d(input=data, num_filters=6, filter_size=3)
-bn = paddle.static.nn.batch_norm(input=conv2d, act="relu")
-pool = F.max_pool2d(bn, kernel_size=2, stride=2)
-hidden = paddle.static.nn.fc(pool, size=10)
-loss = paddle.mean(hidden)
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters()) 
 
-optimizer = paddle.optimizer.Momentum(learning_rate=0.01, multi_precision=True)
-
-# 1) 通过 `CustomOpLists` 自定义黑白名单
-amp_list = paddle.static.amp.CustomOpLists(custom_black_list=['pool2d'])
-
-# 2）通过 `decorate` 对优化器进行封装：
+# 1）通过 `decorate` 对优化器进行封装：
 optimizer = paddle.static.amp.decorate(
     optimizer=optimizer,
-    amp_lists=amp_list,
     init_loss_scaling=128.0,
     use_dynamic_loss_scaling=True,
     use_pure_fp16=True,
     use_fp16_guard=False)
 
 optimizer.minimize(loss)
-exe.run(paddle.static.default_startup_program())
 
-# 3) 利用 `amp_init` 将网络的 FP32 参数转换 FP16 参数.
+exe = paddle.static.Executor(place)
+exe.run(startup_program)
+
+# 2) 利用 `amp_init` 将网络的 FP32 参数转换 FP16 参数.
 optimizer.amp_init(place, scope=paddle.static.global_scope())
+
+datas = [numpy.random.random(size=(batch_size, input_size)).astype('float16') for _ in range(nums_batch)]
+labels = [numpy.random.random(size=(batch_size, input_size)).astype('float16') for _ in range(nums_batch)]
+start_timer() # 获取训练开始时间
+for epoch in range(epochs):
+    batchs = zip(datas, labels)
+    for i, (train_data, traiin_label) in enumerate(batchs):
+        loss_data = exe.run(main_program, feed={data.name: train_data, label.name: traiin_label }, fetch_list=[loss.name])
+
+print(loss_data)
+end_timer_and_print("使用AMP-O2模式耗时:") # 获取结束时间并打印相关信息
 
 ```
 
+    [array([0.4153], dtype=float16)]
+
+    使用AMP-O2模式耗时:
+    共计耗时 = 2.222 sec
+
 2）设置``paddle.static.amp.decorate``的参数``use_pure_fp16``为 True，同时设置参数``use_fp16_guard``为True，通过``paddle.static.amp.fp16_guard``控制使用FP16的计算范围
 
+在模型定义的代码中加入`fp16_guard`控制部分网络执行在FP16下：
+
 ```python
+class SimpleNet(nn.Layer):
 
-import numpy as np
-import paddle
-import paddle.nn.functional as F
+    def __init__(self, input_size, output_size):
+        
+        super(SimpleNet, self).__init__()
+        self.linear1 = nn.Linear(input_size, output_size)
+        self.relu1 = nn.ReLU()
+        self.linear2 = nn.Linear(input_size, output_size)
+        self.relu2 = nn.ReLU()
+        self.linear3 = nn.Linear(input_size, output_size)
 
-paddle.enable_static()
-place = paddle.CUDAPlace(0)
-exe = paddle.static.Executor(place)
-data = paddle.static.data(name='X', shape=[None, 1, 28, 28], dtype='float32')
-conv2d = paddle.static.nn.conv2d(input=data, num_filters=6, filter_size=3)
-# 1) 利用 fp16_guard 控制使用 FP16 OP 的范围
-with paddle.static.amp.fp16_guard():
-    bn = paddle.static.nn.batch_norm(input=conv2d, act="relu")
-    pool = F.max_pool2d(bn, kernel_size=2, stride=2)
-    hidden = paddle.static.nn.fc(pool, size=10)
-    loss = paddle.mean(hidden)
+    def forward(self, x):
+        x = self.linear1(x)
+        # 控制FP16使用范围
+        with paddle.static.amp.fp16_guard():
+            x = self.relu1(x)
+            x = self.linear2(x)
+            x = self.relu2(x)
+            x = self.linear3(x)
 
-optimizer = paddle.optimizer.Momentum(learning_rate=0.01, multi_precision=True)
+        return x
+```
 
-# 2) 通过 `CustomOpLists` 自定义黑白名单
-amp_list = paddle.static.amp.CustomOpLists(custom_black_list=['pool2d'])
+该模式下的训练代码如下：
+```python
+data = paddle.static.data(name='data', shape=[batch_size, input_size], dtype='float32')
+label = paddle.static.data(name='label', shape=[batch_size, input_size], dtype='float32')
 
-# 3）通过 `decorate` 对优化器进行封装：
+predict = model(data)
+loss = mse_loss(predict, label)
+
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters()) 
+
+# 1）通过 `decorate` 对优化器进行封装：
 optimizer = paddle.static.amp.decorate(
     optimizer=optimizer,
-    amp_lists=amp_list,
     init_loss_scaling=128.0,
     use_dynamic_loss_scaling=True,
     use_pure_fp16=True,
     use_fp16_guard=True)
 
 optimizer.minimize(loss)
-exe.run(paddle.static.default_startup_program())
 
-# 4) 利用 `amp_init` 将网络的 FP32 参数转换 FP16 参数.
+exe = paddle.static.Executor(place)
+exe.run(startup_program)
+
+# 2) 利用 `amp_init` 将网络的 FP32 参数转换 FP16 参数.
 optimizer.amp_init(place, scope=paddle.static.global_scope())
+
+datas = [numpy.random.random(size=(batch_size, input_size)).astype('float32') for _ in range(nums_batch)]
+labels = [numpy.random.random(size=(batch_size, input_size)).astype('float32') for _ in range(nums_batch)]
+start_timer() # 获取训练开始时间
+for epoch in range(epochs):
+    batchs = zip(datas, labels)
+    for i, (train_data, traiin_label) in enumerate(batchs):
+        loss_data = exe.run(main_program, feed={data.name: train_data, label.name: traiin_label }, fetch_list=[loss.name])
+
+print(loss_data)
+end_timer_and_print("使用AMP-O2模式耗时:") # 获取结束时间并打印相关信息
 
 ```
 
+    [array([0.4127627], dtype=float32)]
 
+    使用AMP-O2模式耗时:
+    共计耗时 = 3.407 sec
 
 <a name="四"></a>
 ## 四、混合精度训练性能优化
@@ -420,8 +517,8 @@ scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 start_timer() # 获取训练开始时间
 
 for epoch in range(epochs):
-    datas = zip(train_data, labels)
-    for i, (data, label) in enumerate(datas):
+    batchs = zip(datas, labels)
+    for i, (data, label) in enumerate(batchs):
 
         # 创建AMP上下文环境，开启自动混合精度训练
         with paddle.amp.auto_cast():
@@ -436,7 +533,8 @@ for epoch in range(epochs):
         if (i + 1) % accumulate_batchs_num == 0:
 
             # 训练模型
-            scaler.minimize(optimizer, scaled)
+            scaler.step(optimizer)       # 更新参数
+            scaler.update()              # 更新用于 loss 缩放的比例因子
             optimizer.clear_grad()
 
 print(loss)
@@ -444,7 +542,7 @@ end_timer_and_print("使用AMP-O1模式耗时:")
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-        [1.25440383])
+        [0.40864223])
 
     使用AMP-O1模式耗时:
-    共计耗时 = 2.589 sec
+    共计耗时 = 0.970 sec
