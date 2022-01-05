@@ -89,6 +89,8 @@ tensor数学操作
     " :ref:`paddle.amin <cn_api_paddle_tensor_min>` ", "对指定维度上的Tensor元素求最小值运算"
     " :ref:`paddle.minimum <cn_api_paddle_tensor_minimum>` ", "逐元素对比输入的两个Tensor，并且把各个位置更小的元素保存到返回结果中"
     " :ref:`paddle.mm <cn_api_tensor_mm>` ", "用于两个输入矩阵的相乘"
+    " :ref:`paddle.inner <cn_api_tensor_inner>` ", "计算两个输入矩阵的内积"
+    " :ref:`paddle.outer <cn_api_tensor_outer>` ", "计算两个输入矩阵的外积"
     " :ref:`paddle.multiplex <cn_api_fluid_layers_multiplex>` ", "从每个输入Tensor中选择特定行构造输出Tensor"   
     " :ref:`paddle.multiply <cn_api_fluid_layers_multiply>` ", "逐元素相乘算子"
     " :ref:`paddle.neg <cn_api_paddle_neg>` ", "计算输入 x 的相反数并返回"
