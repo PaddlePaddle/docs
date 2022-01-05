@@ -239,6 +239,12 @@ end_timer_and_print("使用AMP-O2模式耗时:")
 
  **注：**受机器环境影响，上述示例代码的训练耗时统计可能存在差异，该影响主要包括：GPU利用率、CPU利用率的等。
 
+测试机器配置如下：
+
+|Device | MEM Clocks | SM Clocks | Running with CPU Clocks | 
+|:---:|:---:|:---:|:---:|
+|Tesla V100 SXM2 16GB |  877 MHz   | 1530 MHz |   1000 - 2400 MHz  | 
+
 ### 3.2 静态图混合精度训练
 
 飞桨静态图提供了一系列便捷的API用于实现混合精度训练：``paddle.static.amp.decorate``、``paddle.static.amp.fp16_guard``。
