@@ -8,7 +8,7 @@ If you installed paddle before, you can skip this step. You can select your OS a
 
 ## 2. import paddle
 
-You can import paddle in the Python program after installed paddle successful.
+You can import paddle in the Python program after installing paddle successful.
 
 
 ```python
@@ -21,14 +21,14 @@ print(paddle.__version__)
 
 ## 3. Quick Start: Handwritten Digit Recognition
 
-In brief, deep learning tasks are generally divided into several steps: 1. dataset preparation and loading; 2. model construction; 3. training; 4. evaluation. 
+In brief, deep learning tasks are generally divided into following steps: 1. dataset preparation and loading; 2. model construction; 3. training; 4. evaluation. 
 
 
 In the following, you can use Paddle to implement the above steps.
 
 ### 3.1 Loading the Dataset
 
-Paddle provides some common datasets such as MNIST and FashionMNIST. In this tutorial, you can load two datasets, one for training and the other for validation.
+Paddle provides some public datasets such as MNIST and FashionMNIST. In this tutorial, you can load two datasets, one for training and the other for validation.
 
 
 ```python
