@@ -29,7 +29,7 @@ mnist = paddle.nn.Sequential(
 
 ## 2. Training with paddle.Model
 
- you need to pass the model into paddle.Model first to train with `paddle.Model`.
+ First，you need to put the model into paddle.Model to train with `paddle.Model`.
 
 
 ```python
@@ -38,7 +38,7 @@ model = paddle.Model(mnist)
 
 ### 2.1 Using model.prepare define functions
 
-Before training, you need define loss funtion, optimization function, metrics through model.prepare.
+Before training, you need define loss funtion, optimization function, metrics using model.prepare.
 
 
 ```python
@@ -49,7 +49,7 @@ model.prepare(optimizer=paddle.optimizer.Adam(parameters=model.parameters()),
 
 ### 2.2 Using model.fit train model
 
-Then you can train the model for a fixed number of epochs through model.fit . At least 3 key parameters need to be specified: the training dataset, the number of training epochs and the batch size of dataset.
+Then you can train the model using a fixed number of epochs in `model.fit` . At least 3 key parameters need to be specified: the training dataset, the number of training epochs and the batch size of dataset.
 
 
 ```python
@@ -158,7 +158,7 @@ for epoch in range(epochs):
 
 ### 3.2 Evaluation with basic API
 
-Evaluation with basic API，corresponding to Model.evaluate.
+Evaluate with basic API，corresponding to Model.evaluate.
 
 
 ```python
@@ -192,7 +192,7 @@ for batch_id, data in enumerate(test_loader()):
 
 ### 3.3 Prediction with basic API
 
-Prediction with basic API，corresponding to Model.predict.
+Predict with basic API，corresponding to Model.predict.
 
 
 ```python
