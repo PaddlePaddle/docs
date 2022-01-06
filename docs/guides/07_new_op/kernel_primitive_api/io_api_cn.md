@@ -143,15 +143,16 @@ __device__ void ReadDataBc(T* dst, const T* src,
 ### 函数定义
 
 ```
-template <typename T, int NX, int NY, int BlockSize, int Rank, typename IndexCal, bool IsBoundary = false>
-__device__ void ReadDataReduce(T* dst,
-                               const T* src,
+template <typename Tx, typename Ty, int NX, int NY, int BlockSize, int Rank, typename IndexCal, typename Functor, bool IsBoundary = false>
+__device__ void ReadDataReduce(Tx* dst,
+                               const Ty* src,
                                int block_offset,
                                const IndexCal& index_cal,
                                int size_nx,
                                int size_ny,
                                int stride_nx,
                                int stride_ny,
+                               Functor func,
                                bool reduce_last_dim);
 ```
 
@@ -163,7 +164,8 @@ __device__ void ReadDataReduce(T* dst,
 
 ### 模板参数
 
-> T ：元素类型。</br>
+> Ty ：数据存储在全局内存中的数据类型。</br>
+> Tx ：数据存储到寄存器上的类型。</br>
 > NX ：每个线程读取 NX 列数据。</br>
 > NY ：每个线程读取 NY 行数据。</br>
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
@@ -176,6 +178,7 @@ __device__ void ReadDataReduce(T* dst,
     }
   };
 ```
+> Functor ：输入元素在存储到寄存器前做的数据变换，如：dst[i] = SquareFunctor(src[i])。
 > IsBoundary ；标识是否进行访存边界判断。当 Block 处理的数据总数小于 NX * NY * blockDim.x 时，需要进行边界判断以避免访存越界。</br>
 
 
@@ -188,7 +191,8 @@ __device__ void ReadDataReduce(T* dst,
 > size_nx ：当前 Block 最多读取 size_nx 个不需要进行规约的数据，参数仅在 IsBoundary = true 时参与计算。</br>
 > size_ny ：当前 Block 最多读取 size_ny 个需要进行规约的数据，参数仅在 IsBoundary = true 时参与计算。</br>
 > stride_nx ：最低维每读取 1 个元素需要跳转 stride_nx 列。</br>
-> stride_ny ：最高维每读取 1 个元素需要跳转 stride_ny 行</br>
+> stride_ny ：最高维每读取 1 个元素需要跳转 stride_ny 行。</br>
+> func : 输入数据存储到寄存器前做的数据变换，如：dst[i] = SquareFunctor<Tx>(src[i])。
 > reduce_last_dim：原始输入数据的最低维是否进行reduce，当reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。</br>
 
 ## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L411)

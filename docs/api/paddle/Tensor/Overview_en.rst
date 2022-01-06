@@ -74,6 +74,8 @@ Methods
     argmax
     argmin
     argsort
+    as_complex
+    as_real
     asin
     astype
     atan
@@ -170,11 +172,19 @@ Methods
     matrix_power
     max
     maximum
+    fmax
     mean
     median
     min
     minimum
+    fmin
     mm
+    inner
+    outer
+    cov
+    lu
+    lu_unpack
+    cholesky_solve
     mod
     multiplex
     multiply
@@ -195,6 +205,7 @@ Methods
     reciprocal_
     register_hook
     remainder
+    repeat_interleave
     reshape
     reshape_
     reverse
@@ -250,3 +261,5 @@ Methods
     var
     where
     zero_
+    is_complex
+    is_integer

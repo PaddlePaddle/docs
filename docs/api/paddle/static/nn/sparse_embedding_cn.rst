@@ -1,4 +1,4 @@
-.. _cn_api_fluid_input_embedding:
+.. _cn_api_fluid_contrib_layers_sparse_embedding:
 
 sparse_embedding
 -------------------------------

@@ -45,11 +45,11 @@
 
 - `使用样例 <basic_usage_cn.html>`_ : 介绍了动静转换 @to_static 的基本用法
 
-- `转换原理 <principle_cn..html>`_ ：介绍了动静转换的内部原理
+- `转换原理 <principle_cn.html>`_ ：介绍了动静转换的内部原理
 
 - `支持语法 <grammar_list_cn.html>`_ ：介绍了动静转换功能已支持的语法概况
 
-- `案例解析 <./case_analysis_cn.html>`_ : 介绍使用 @to_static 时常见的问题和案例解析
+- `案例解析 <case_analysis_cn.html>`_ : 介绍使用 @to_static 时常见的问题和案例解析
 
 - `报错调试 <debugging_cn.html>`_ ：介绍了动静转换 @to_static 的调试方法和经验
 
