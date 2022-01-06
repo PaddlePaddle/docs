@@ -118,6 +118,8 @@ tensor数学操作
     " :ref:`paddle.diagonal <cn_api_tensor_diagonal>` ", "根据给定的轴 axis 返回输入 Tensor 的局部视图"
     " :ref:`paddle.trunc <cn_api_tensor_trunc>` ", "对输入 Tensor 每个元素的小数部分进行截断"
     " :ref:`paddle.log1p <cn_api_paddle_tensor_log1p>` ", "该OP计算Log1p（加一的自然对数）结果"
+    " :ref:`paddle.take_along_axis <cn_api_paddle_tensor_take_along_axis>` ", "根据axis和index获取输入 Tensor 的对应元素"
+    " :ref:`paddle.put_along_axis <cn_api_paddle_tensor_put_along_axis>` ", "根据axis和index放置value值至输入 Tensor"
     " :ref:`paddle.lerp <cn_api_paddle_tensor_lerp>` ", "该OP基于给定的 weight 计算 x 与 y 的线性插值"
     " :ref:`paddle.diff <cn_api_tensor_diff>` ", "沿着指定维度对输入Tensor计算n阶的前向差值"
     " :ref:`paddle.rad2deg <cn_api_paddle_tensor_rad2deg>` ", "将元素从弧度的角度转换为度"
