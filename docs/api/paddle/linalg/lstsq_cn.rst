@@ -14,7 +14,7 @@ lstsq
     - **y** (Tensor) : 形状为 ``(*, M, K)`` 的矩阵Tensor， ``*`` 为零或更大的批次维度。数据类型为 float32 或 float64 。
     - **rcond** (float，可选) : 默认值为 `None` ，用来决定 ``x`` 有效秩的 float 型浮点数。当 ``rcond`` 为 `None` 时，该值会被设为 ``max(M, N)`` 乘 ``x`` 数据类型对应的机器精度。
     - **driver** (str，可选) : 默认值为 `None` ，用来指定计算使用的 LAPACK 库方法。CPU 下该参数的合法值为 'gels', 'gelsy' (默认) , 'gelsd', 'gelss'；CUDA 下该参数的合法值为 'gels' (默认) 。
-    - **name** (str，可选) - 默认值为 `None` ，一般无需设置，具体用法请参见 :ref:`api_guide_Name` 。
+    - **name** (str，可选) : 默认值为 `None` ，一般无需设置，具体用法请参见 :ref:`api_guide_Name` 。
 
 返回：
 :::::::::
