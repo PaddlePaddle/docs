@@ -4,11 +4,11 @@ erfinv
 -------------------------------
 
 .. py:function:: paddle.erfinv(x)
-计算输入矩阵x的逆误差函数
+计算输入矩阵x的逆误差函数。
+请参考erf计算公式 :ref:`cn_api_fluid_layers_erf`
 
 .. math::
     erfinv(erf(x)) = x
-    请参考erf计算公式 :ref:`cn_api_fluid_layers_erf`
 
 参数
 :::::::::
