@@ -1,6 +1,6 @@
 # Build the Model
 
-After creating dataset, you need to build your model. First, this tutorial introduces the APIs for building model in Paddle.Then introduces two methods of building models supported by Paddle, namely Sequential and SubClass. Finally, introduce paddle provides pre-trained models.
+After creating dataset, you need to build your model. First, this tutorial introduces the APIs for building model in Paddle.Then introduces two methods of building models supported by Paddle, namely Sequential and SubClass. Finally, introduce pre-trained models provided by paddle.
 
 # 1. paddle.nn
 
