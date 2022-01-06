@@ -89,6 +89,7 @@ pooling层
     " :ref:`paddle.nn.MaxPool2D <cn_api_nn_MaxPool2D>` ", "二维最大池化层"
     " :ref:`paddle.nn.MaxPool3D <cn_api_nn_MaxPool3D>` ", "三维最大池化层"
     " :ref:`paddle.nn.MaxUnPool2D <cn_api_nn_MaxUnPool2D>` ", "二维最大反池化层"
+    " :ref:`paddle.nn.MaxUnPool3D <cn_api_nn_MaxUnPool3D>` ", "三维最大反池化层"
     
 .. _padding_layers:
 
