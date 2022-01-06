@@ -9,7 +9,7 @@ Please refer to  `PaddlePaddle Github <https://github.com/PaddlePaddle/Paddle>`_
 
 Let's start with studying basic concept of PaddlePaddle:
 
-- `Quick Start <./quick_start_en.html>`_ : Introduction of how to quickly get started with PaddlePaddle through a classic example.
+- `Quick Start <./quick_start_en.html>`_ : Introduction of how to get start with PaddlePaddle through a classic example quickly.
 - `Datasets and DataLoader <./datasets_dataloader_en.html>`_ : Introduction of Dataset and DataLoader in Paddle.
 - `Processing <./processing_en.html>`_ : Introduction of data processing in Paddle.
 - `Build the Model <./build_model_en.html>`_ : Introduction of build the model in Paddle.
