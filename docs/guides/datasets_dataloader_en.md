@@ -4,7 +4,7 @@ Deep learning models require a large amount of data to train the model, and this
 
 ## 1. Datasets in Paddle
 
-Paddle provides common datasets in `paddle.vision.datasets` and `paddle.text`, you can see the details with the following code.
+Paddle provides public datasets in `paddle.vision.datasets` and `paddle.text`, you can see the details with the following code.
 
 
 ```python
@@ -17,7 +17,7 @@ print('NLP datasets: ', paddle.text.__all__)
     NLP datasets:  ['Conll05st', 'Imdb', 'Imikolov', 'Movielens', 'UCIHousing', 'WMT14', 'WMT16', 'ViterbiDecoder', 'viterbi_decode']
 
 
-You can load the MNIST dataset in the following code, use `mode` to identify the training datasets and validation dataset. The dataset will automatically download the local cache directory ~/.cache/paddle/dataset.
+You can load the MNIST dataset in the following code, use `mode` to identify the training datasets and validation dataset. The dataset will be automatically downloaded from local cache directory ~/.cache/paddle/dataset.
 
 
 ```python
@@ -89,7 +89,7 @@ Based on the above approach, you can create your custom dataset according to the
 
 ## 3. DataLoader
 
-Paddle recommends using `paddle.io.DataLoader` to complete the data loading. A simple example is as follows.
+We recommend using `paddle.io.DataLoader` to complete the data loading. A simple example is as follows.
 
 
 ```python
