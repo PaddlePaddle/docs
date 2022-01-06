@@ -1,6 +1,6 @@
 # Processing
 
-Overfitting may be encountered in training, and one of the solutions is to do data preprocessing on the training data. The data transform API is in `paddle.vision.transofrms.*`. This tutorial introduces two ways to use it, one is based dataset Paddle provided and the other is a custom dataset.
+Overfitting sometimes happened in training, and one of the solutions is to do data preprocessing on the training data. The data transform API is in `paddle.vision.transofrms.*`. This tutorial introduces two ways to use it, one is based dataset Paddle provided and the other is a custom dataset.
 
 ## 1. Dataset Paddle provided
 
