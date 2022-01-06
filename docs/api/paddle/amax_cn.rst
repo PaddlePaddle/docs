@@ -1,9 +1,9 @@
-.. _cn_api_paddle_tensor_max:
+.. _cn_api_paddle_tensor_amax:
 
-max
+amax
 -------------------------------
 
-.. py:function:: paddle.max(x, axis=None, keepdim=False, name=None)
+.. py:function:: paddle.amax(x, axis=None, keepdim=False, name=None)
 
 
 该OP是对指定维度上的Tensor元素求最大值运算，并输出相应的计算结果。
@@ -14,7 +14,7 @@ max
 
 参数
 :::::::::
-   - **x** （Tensor）- Tensor，支持数据类型为float32，float64，int32，int64。
+   - **x** （Tensor）- Tensor，支持数据类型为float32，float64，int32，int64，维度不超过4维。
    - **axis** （list | int ，可选）- 求最大值运算的维度。如果为None，则计算所有元素的最大值并返回包含单个元素的Tensor变量，否则必须在  :math:`[-x.ndim, x.ndim]` 范围内。如果 :math:`axis[i] <0` ，则维度将变为 :math:`x.ndim+axis[i]` ，默认值为None。
    - **keepdim** （bool）- 是否在输出Tensor中保留减小的维度。如果keepdim 为 False，结果张量的维度将比输入张量的小，默认值为False。
    - **name** （str， 可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
@@ -26,4 +26,4 @@ max
 
 代码示例
 ::::::::::
-COPY-FROM: paddle.max
+COPY-FROM: paddle.amax

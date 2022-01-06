@@ -5,12 +5,6 @@ sampled_softmax_with_cross_entropy
 
 .. py:function:: paddle.fluid.layers.sampled_softmax_with_cross_entropy(logits, label, num_samples, num_true=1, remove_accidental_hits=True, use_customized_samples=False, customized_samples=None, customized_probabilities=None, seed=0)
 
-:alias_main: paddle.nn.functional.sampled_softmax_with_cross_entropy
-:alias: paddle.nn.functional.sampled_softmax_with_cross_entropy,paddle.nn.functional.loss.sampled_softmax_with_cross_entropy
-:old_api: paddle.fluid.layers.sampled_softmax_with_cross_entropy
-
-
-
 **Sampled Softmax With Cross Entropy Operator**
 
 对于较大的输出类，采样的交叉熵损失Softmax被广泛地用作输出层。该运算符为所有示例采样若干个样本，并计算每行采样张量的SoftMax标准化值，然后计算交叉熵损失。

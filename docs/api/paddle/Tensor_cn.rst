@@ -786,6 +786,33 @@ diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
 
 请参考 :ref:`cn_api_tensor_diff`
 
+element_size()
+:::::::::
+
+返回Tensor单个元素在计算机中所分配的 ``bytes`` 数量。
+
+返回：整数int
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+
+        x = paddle.to_tensor(1, dtype='bool')
+        x.element_size() # 1
+
+        x = paddle.to_tensor(1, dtype='float16')
+        x.element_size() # 2
+
+        x = paddle.to_tensor(1, dtype='float32')
+        x.element_size() # 4
+
+        x = paddle.to_tensor(1, dtype='float64')
+        x.element_size() # 8
+
+        x = paddle.to_tensor(1, dtype='complex128')
+        x.element_size() # 16
+
 equal(y, name=None)
 :::::::::
 
@@ -844,6 +871,37 @@ expand_as(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_expand_as`
+
+exponential_(lam=1.0, name=None)
+:::::::::
+
+该OP为inplace形式，通过 ``指数分布`` 随机数来填充该Tensor。
+
+``lam`` 是 ``指数分布`` 的 :math:`\lambda` 参数。随机数符合以下概率密度函数：
+
+.. math::
+
+    f(x) = \lambda e^{-\lambda x}
+
+参数：
+    - **x** (Tensor) - 输入Tensor，数据类型为 float32/float64。
+    - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
+    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+
+
+返回：原Tensor
+
+**代码示例**
+    .. code-block:: python
+
+        import paddle
+        paddle.set_device('cpu')
+        paddle.seed(100)
+
+        x = paddle.empty([2,3])
+        x.exponential_()
+        # [[0.80643415, 0.23211166, 0.01169797],
+        #  [0.72520673, 0.45208144, 0.30234432]]
 
 eigvals(y, name=None)
 :::::::::
@@ -1195,6 +1253,15 @@ isnan(name=None)
 
 请参考 :ref:`cn_api_tensor_isnan`
 
+kthvalue(k, axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_kthvalue`
+
 kron(y, name=None)
 :::::::::
 
@@ -1357,6 +1424,15 @@ max(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_max`
 
+amax(axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_amax`
+
 maximum(y, axis=-1, name=None)
 :::::::::
 
@@ -1393,6 +1469,15 @@ min(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_min`
 
+amin(axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_amin`
+
 minimum(y, axis=-1, name=None)
 :::::::::
 
@@ -1419,6 +1504,15 @@ mod(y, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_mod`
+
+mode(axis=-1, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_mode`
 
 multiplex(index)
 :::::::::
@@ -1561,6 +1655,15 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_cn_prod`
+
+quantile(q, axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_quantile`
 
 rad2deg(x, name=None)
 :::::::::
@@ -2223,13 +2326,31 @@ is_integer()
 
 请参考 :ref:`cn_api_paddle_is_integer`
 
-erfinv(x, name=None)
+take_along_axis(arr, index, axis)
 :::::::::
 
-对输入x进行逆误差函数计算
+基于输入索引矩阵, 沿着指定axis从arr矩阵里选取1d切片。索引矩阵必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
 
 返回：计算后的Tensor
 
 返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_take_along_axis`
+
+put_along_axis(arr, index, value, axis, reduce="assign")
+:::::::::
+
+基于输入index矩阵, 将输入value沿着指定axis放置入arr矩阵。索引矩阵和value必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_put_along_axis`
+
+erfinv(x, name=None)
+:::::::::
+
+对输入x进行逆误差函数计算
 
 请参考 :ref:`cn_api_paddle_tensor_erfinv`
