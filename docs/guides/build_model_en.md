@@ -1,10 +1,10 @@
 # Build the Model
 
-After creating dataset, you need to build your model. First, this tutorial introduces the APIs for building model in Paddle.Then introduces two methods of building models Paddle supported, namely Sequential and SubClass. Finally, introduces paddle provides pre-trained models.
+After creating dataset, you need to build your model. First, this tutorial introduces the APIs for building model in Paddle.Then introduces two methods of building models supported by Paddle, namely Sequential and SubClass. Finally, introduce paddle provides pre-trained models.
 
 # 1. paddle.nn
 
-After Paddle 2.0, the building model APIs are all in the `paddle.nn`, and you can build specific models by Sequential or SubClass. The list of APIs are categorized in the following table.
+After Paddle 2.0, the building model APIs are included under the `paddle.nn`, and you can build specific models by Sequential or SubClass. The list of APIs are categorized in the following table.
 
 | function | name |
 | --- | --- | 
@@ -20,7 +20,7 @@ After Paddle 2.0, the building model APIs are all in the `paddle.nn`, and you ca
 
 ## 2. Build The Model with Sequential
 
-For linear network structure, you can directly use Sequential to quickly build the model, reducing the definition of classes and other code. The code is as follows:
+For linear network structure, you can directly use `Sequential` to quickly build the model, reducing the definition of classes and other code. The code is as follows:
 
 
 ```python
@@ -37,7 +37,7 @@ mnist = paddle.nn.Sequential(
 
 ## 3. Build The Model with SubClass
 
-In general, you can build the model with SubClass. In the `__init__` declare the Model's Layer and define the forward calculation in the `forward`.
+Generally, you can build the model with SubClass，declare the Model's Layer in `__init__` and define the forward calculation in `forward`.
 
 
 ```python
@@ -67,7 +67,7 @@ mnist_2 = Mnist()
 
 ## 4. Paddle provides pre-trained Model
 
-In addition to building the models in the above way, you can also directly use the models provided of Paddle at `paddle.vision.models`, as listed below.
+In addition to building the models using the above method, you can also directly use the models provided by Paddle in `paddle.vision.models`, as listed below.
 
 
 ```python
