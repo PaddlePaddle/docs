@@ -31,32 +31,13 @@
 
 飞桨动态图提供了一系列便捷的API用于实现混合精度训练：``paddle.amp.GradScaler``、``paddle.amp.auto_cast``、``paddle.amp.decorate``。
 
-首先定义辅助函数，用来计算训练时间。
-
-```python
-import time
-
-# 开始时间
-start_time = None
-
-def start_timer():
-    # 获取开始时间
-    global start_time
-    start_time = time.time()
-
-def end_timer_and_print(msg):
-    # 打印信息并输出训练时间
-    end_time = time.time()
-    print("\n" + msg)
-    print("共计耗时 = {:.3f} sec".format(end_time - start_time))
-```
-
 <a name="3.1.1"></a>
 #### 3.1.1 动态图FP32训练
 
 1）构建一个简单的网络：用于对比使用普通方法进行训练与使用混合精度训练的训练速度。该网络由三层 ``Linear`` 组成，其中前两层 ``Linear`` 后接 ``ReLU`` 激活函数。
 
 ```python
+import time
 import paddle
 import paddle.nn as nn
 import numpy
@@ -64,10 +45,10 @@ import numpy
 paddle.seed(100)
 numpy.random.seed(100)
 
-class SimpleNet(nn.Layer):
+place = paddle.CUDAPlace(0)
 
+class SimpleNet(nn.Layer):
     def __init__(self, input_size, output_size):
-        
         super(SimpleNet, self).__init__()
         self.linear1 = nn.Linear(input_size, output_size)
         self.relu1 = nn.ReLU()
@@ -76,13 +57,11 @@ class SimpleNet(nn.Layer):
         self.linear3 = nn.Linear(input_size, output_size)
 
     def forward(self, x):
-
         x = self.linear1(x)
         x = self.relu1(x)
         x = self.linear2(x)
         x = self.relu2(x)
         x = self.linear3(x)
-
         return x
 ```
 
@@ -95,44 +74,54 @@ output_size = 4096  # 设为较大的值
 batch_size = 512    # batch_size 为8的倍数
 nums_batch = 50
 
-datas = [paddle.to_tensor(numpy.random.random(size=(batch_size, input_size)).astype('float32')) for _ in range(nums_batch)]
-labels = [paddle.to_tensor(numpy.random.random(size=(batch_size, input_size)).astype('float32')) for _ in range(nums_batch)]
+from paddle.io import Dataset
+class RandomDataset(Dataset):
+    def __init__(self, num_samples):
+        self.num_samples = num_samples
 
-mse = paddle.nn.MSELoss()
+    def __getitem__(self, idx):
+        data = numpy.random.random([input_size]).astype('float32')
+        label = numpy.random.random([output_size]).astype('float32')
+        return data, label
+
+    def __len__(self):
+        return self.num_samples
+
+dataset = RandomDataset(nums_batch * batch_size)
+loader = paddle.io.DataLoader(dataset, batch_size=batch_size, shuffle=False, drop_last=True, num_workers=0)
 
 ```
 
 3）使用动态图FP32训练：
 
 ```python
+mse = paddle.nn.MSELoss()
 model = SimpleNet(input_size, output_size)  # 定义模型
 optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义优化器
 
-start_timer() # 获取训练开始时间
-
+train_time = 0 # 总训练时长
 for epoch in range(epochs):
-    batchs = zip(datas, labels)
-    for i, (data, label) in enumerate(batchs):
+    for i, (data, label) in enumerate(loader):
+        start_time = time.time() # 开始训练时刻
+
         # 前向计算
         output = model(data)
         loss = mse(output, label)
-
         # 反向传播
         loss.backward()
-
         # 训练模型
         optimizer.step()
         optimizer.clear_grad()
 
-print(loss)
-end_timer_and_print("使用FP32模式耗时:") # 获取结束时间并打印相关信息
+        train_loss = loss.numpy()
+        train_time += time.time() - start_time # 记录总训练时长
+
+print("loss:", train_loss)
+print("使用FP32模式耗时:{:.3f} sec".format(train_time))
 ```
 
-    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-        [0.40839708])
-
-    使用FP32模式耗时:
-    共计耗时 = 2.925 sec
+    loss: [0.40836293]
+    使用FP32模式耗时:3.860 sec
 
 
 #### 3.1.2 动态图AMP-O1训练：
@@ -144,41 +133,41 @@ end_timer_and_print("使用FP32模式耗时:") # 获取结束时间并打印相�
 - Step3： 在训练代码中使用Step1中定义的 ``GradScaler`` 完成 ``loss`` 的缩放，用缩放后的 ``loss`` 进行反向传播，完成训练
 
 ```python
+mse = paddle.nn.MSELoss()
 model = SimpleNet(input_size, output_size)  # 定义模型
 optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义优化器
 
 # Step1：定义 GradScaler，用于缩放loss比例，避免浮点数溢出
 scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 
-start_timer() # 获取训练开始时间
-
+train_time = 0 # 总训练时长
 for epoch in range(epochs):
-    batchs = zip(datas, labels)
-    for i, (data, label) in enumerate(batchs):
+    for i, (data, label) in enumerate(loader):
+        start_time = time.time() # 开始训练时刻
 
         # Step2：创建AMP-O1上下文环境，开启自动混合精度训练
         with paddle.amp.auto_cast(level='O1'):
             output = model(data)
             loss = mse(output, label)
-
         # Step3：使用Step1中定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
         scaled = scaler.scale(loss)
         scaled.backward()
-
         # 训练模型
         scaler.step(optimizer)       # 更新参数
         scaler.update()              # 更新用于 loss 缩放的比例因子
         optimizer.clear_grad()
 
-print(loss)
-end_timer_and_print("使用AMP-O1模式耗时:")
+
+        train_loss = loss.numpy()
+        train_time += time.time() - start_time # 记录总训练时长
+
+print("loss:", train_loss)
+print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time))
+
 ```
 
-    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-        [0.40840322])
-
-    使用AMP-O1模式耗时:
-    共计耗时 = 1.208 sec
+    loss: [0.40836924]
+    使用AMP-O1模式耗时:2.182 sec
 
 - ``paddle.amp.GradScaler``使用介绍见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/GradScaler_cn.html)
 - ``paddle.amp.auto_cast``使用介绍见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/auto_cast_cn.html)
@@ -194,6 +183,7 @@ O2模式采用了比O1更为激进的策略，除了框架不支持FP16计算的
 
 
 ```python
+mse = paddle.nn.MSELoss()
 model = SimpleNet(input_size, output_size)  # 定义模型
 optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义优化器
 
@@ -203,11 +193,11 @@ scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 # Step2：在level=’O2‘模式下，将网络参数从FP32转换为FP16
 model = paddle.amp.decorate(models=model, level='O2')
 
-start_timer() # 获取训练开始时间
+train_time = 0 # 总训练时长
 
 for epoch in range(epochs):
-    batchs = zip(datas, labels)
-    for i, (data, label) in enumerate(batchs):
+    for i, (data, label) in enumerate(loader):
+        start_time = time.time()
 
         # Step3：创建AMP上下文环境，开启自动混合精度训练
         with paddle.amp.auto_cast(level='O2'):
@@ -223,23 +213,28 @@ for epoch in range(epochs):
         scaler.update()              # 更新用于 loss 缩放的比例因子
         optimizer.clear_grad()
 
-print(loss)
-end_timer_and_print("使用AMP-O2模式耗时:")
+        train_time += time.time() - start_time
+
+print("loss=", loss)
+print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time))
+
 ```
 
-    Tensor(shape=[1], dtype=float16, place=CUDAPlace(0), stop_gradient=False,
-        [0.41528320])
-
-    使用AMP-O2模式耗时:
-    共计耗时 = 0.833 sec
+    loss: [0.4153]
+    使用AMP-O2模式耗时:1.994 sec
 
 - ``paddle.amp.decorate``使用介绍见[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/decorate_cn.html)
 
-从上面的示例中可以看出，使用自动混合精度训练，O1模式共计耗时约 2.852s，O2模式共计耗时约 1.911s，而普通的训练方式则耗时 6.736s，O1模式训练速度提升约为 2.4倍，O2模式训练速度提升约为 3.5倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
+动态图FP32及AMP训练的精度速度对比如下表所示：
 
-注：受机器环境影响，上述示例代码的训练耗时统计可能存在差异，该影响主要包括：GPU利用率、CPU利用率的等。
+|test | FP32 | AMP-O1 | AMP-O2 | 
+|:---:|:---:|:---:|:---:|
+|耗时 | 3.860s | 2.182s | 1.994s | 
+|loss | 0.40836293 | 0.40836924 | 0.4153 | 
 
-测试机器配置如下：
+从上表统计结果可以看出，使用自动混合精度训练: O1模式训练速度提升约为1.8倍，O2模式训练速度提升约为1.94倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
+
+注：受机器环境影响，上述示例代码的训练耗时统计可能存在差异，该影响主要包括：GPU利用率、CPU利用率的等，测试机器配置如下：
 
 |Device | MEM Clocks | SM Clocks | Running with CPU Clocks | 
 |:---:|:---:|:---:|:---:|
@@ -279,23 +274,22 @@ optimizer.minimize(loss)
 exe = paddle.static.Executor(place)
 exe.run(startup_program)
 
-datas = [numpy.random.random(size=(batch_size, input_size)).astype('float32') for _ in range(nums_batch)]
-labels = [numpy.random.random(size=(batch_size, input_size)).astype('float32') for _ in range(nums_batch)]
-start_timer() # 获取训练开始时间
+train_time = 0 # 总训练时长
 for epoch in range(epochs):
-    batchs = zip(datas, labels)
-    for i, (train_data, traiin_label) in enumerate(batchs):
-        loss_data = exe.run(main_program, feed={data.name: train_data, label.name: traiin_label }, fetch_list=[loss.name])
+    for i, (train_data, train_label) in enumerate(loader()):
+        start_time = time.time() # 开始训练时刻
 
-print(loss_data)
-end_timer_and_print("使用FP32模式耗时:") # 获取结束时间并打印相关信息
+        train_loss = exe.run(main_program, feed={data.name: train_data, label.name: train_label }, fetch_list=[loss.name], use_program_cache=True)
+
+        train_time += time.time() - start_time # 记录总训练时长
+
+print("loss:", train_loss)
+print("使用FP32模式耗时:{:.3f} sec".format(train_time))
 
 ```
 
-    [array([0.40839708], dtype=float32)]
-
-    使用FP32模式耗时:
-    共计耗时 = 4.717 sec
+    loss: [array([0.40836293], dtype=float32)]
+    使用FP32模式耗时:3.618 sec
 
 #### 3.2.2 静态图AMP-O1训练
 
@@ -325,23 +319,22 @@ optimizer.minimize(loss)
 exe = paddle.static.Executor(place)
 exe.run(startup_program)
 
-datas = [numpy.random.random(size=(batch_size, input_size)).astype('float32') for _ in range(nums_batch)]
-labels = [numpy.random.random(size=(batch_size, input_size)).astype('float32') for _ in range(nums_batch)]
-start_timer() # 获取训练开始时间
+train_time = 0 # 总训练时长
 for epoch in range(epochs):
-    batchs = zip(datas, labels)
-    for i, (train_data, traiin_label) in enumerate(batchs):
-        loss_data = exe.run(main_program, feed={data.name: train_data, label.name: traiin_label }, fetch_list=[loss.name])
+    for i, (train_data, train_label) in enumerate(loader()):
+        start_time = time.time() # 开始训练时刻
 
-print(loss_data)
-end_timer_and_print("使用AMP-O1模式耗时:") # 获取结束时间并打印相关信息
+        train_loss = exe.run(main_program, feed={data.name: train_data, label.name: train_label }, fetch_list=[loss.name], use_program_cache=True)
+
+        train_time += time.time() - start_time # 记录总训练时长
+
+print("loss:", train_loss)
+print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time))
 
 ```
 
-    [array([0.40841], dtype=float32)]
-
-    使用AMP-O1模式耗时:
-    共计耗时 = 3.064 sec
+    loss: [array([0.4083764], dtype=float32)]
+    使用AMP-O1模式耗时:1.588 sec
 
 `paddle.static.amp.CustomOpLists`用于自定义黑白名单，黑名单op执行FP32 kernel、白名单op执行FP16 kernel。
 
@@ -380,23 +373,24 @@ exe.run(startup_program)
 # 2) 利用 `amp_init` 将网络的 FP32 参数转换 FP16 参数.
 optimizer.amp_init(place, scope=paddle.static.global_scope())
 
-datas = [numpy.random.random(size=(batch_size, input_size)).astype('float16') for _ in range(nums_batch)]
-labels = [numpy.random.random(size=(batch_size, input_size)).astype('float16') for _ in range(nums_batch)]
-start_timer() # 获取训练开始时间
+train_time = 0 # 总训练时长
 for epoch in range(epochs):
-    batchs = zip(datas, labels)
-    for i, (train_data, traiin_label) in enumerate(batchs):
-        loss_data = exe.run(main_program, feed={data.name: train_data, label.name: traiin_label }, fetch_list=[loss.name])
+    for i, (train_data, train_label) in enumerate(loader()):
+        start_time = time.time() # 开始训练时刻
 
-print(loss_data)
-end_timer_and_print("使用AMP-O2模式耗时:") # 获取结束时间并打印相关信息
+        train_loss = exe.run(main_program, feed={data.name: train_data, label.name: train_label }, fetch_list=[loss.name], use_program_cache=True)
+
+        train_time += time.time() - start_time # 记录总训练时长
+
+print("loss:", train_loss)
+print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time))
 
 ```
 
-    [array([0.4153], dtype=float16)]
+    loss: [array([0.4153], dtype=float16)]
+    使用AMP-O2模式耗时:1.155 sec
 
-    使用AMP-O2模式耗时:
-    共计耗时 = 2.222 sec
+注：在AMP-O2模式下，网络参数将从FP32转为FP16，输入数据需要相应输入FP16类型数据，因此需要将``class RandomDataset``中初始化的数据类型设置为``float16``。
 
 2）设置``paddle.static.amp.decorate``的参数``use_pure_fp16``为 True，同时设置参数``use_fp16_guard``为True，通过``paddle.static.amp.fp16_guard``控制使用FP16的计算范围
 
@@ -458,17 +452,25 @@ start_timer() # 获取训练开始时间
 for epoch in range(epochs):
     batchs = zip(datas, labels)
     for i, (train_data, traiin_label) in enumerate(batchs):
-        loss_data = exe.run(main_program, feed={data.name: train_data, label.name: traiin_label }, fetch_list=[loss.name])
+        loss_data = exe.run(main_program, feed={data.name: train_data, label.name: traiin_label }, fetch_list=[loss.name], use_program_cache=True)
 
 print(loss_data)
 end_timer_and_print("使用AMP-O2模式耗时:") # 获取结束时间并打印相关信息
 
 ```
 
-    [array([0.4127627], dtype=float32)]
+    loss: [array([0.41271985], dtype=float32)]
+    使用AMP-O2模式耗时:2.000 sec
 
-    使用AMP-O2模式耗时:
-    共计耗时 = 3.407 sec
+
+静态图FP32及AMP训练的精度速度对比如下表所示：
+
+|test | FP32 | AMP-O1 | AMP-O2 | 
+|:---:|:---:|:---:|:---:|
+|耗时 | 3.618s | 1.588s | 1.155s | 
+|loss | 0.40836293 | 0.4083764 | 0.4153 | 
+
+从上表统计结果可以看出，使用自动混合精度训练: O1模式训练速度提升约为2.3倍，O2模式训练速度提升约为3.1倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
 
 <a name="四"></a>
 ## 四、混合精度训练性能优化
@@ -511,44 +513,40 @@ end_timer_and_print("使用AMP-O2模式耗时:") # 获取结束时间并打印�
 
 
 ```python
+mse = paddle.nn.MSELoss()
 model = SimpleNet(input_size, output_size)  # 定义模型
-
 optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义优化器
 
 accumulate_batchs_num = 10 # 梯度累加中 batch 的数量
 
-# 定义 GradScaler
+# 定义 GradScaler，用于缩放loss比例，避免浮点数溢出
 scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 
-start_timer() # 获取训练开始时间
-
+train_time = 0 # 总训练时长
 for epoch in range(epochs):
-    batchs = zip(datas, labels)
-    for i, (data, label) in enumerate(batchs):
+    for i, (data, label) in enumerate(loader):
+        start_time = time.time() # 开始训练时刻
 
         # 创建AMP上下文环境，开启自动混合精度训练
-        with paddle.amp.auto_cast():
+        with paddle.amp.auto_cast(level='O1'):
             output = model(data)
             loss = mse(output, label)
-
-        # 使用 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
+        # 使用 Step1中定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
         scaled = scaler.scale(loss)
         scaled.backward()
-
         # 当累计的 batch 为 accumulate_batchs_num 时，更新模型参数
         if (i + 1) % accumulate_batchs_num == 0:
-
             # 训练模型
             scaler.step(optimizer)       # 更新参数
             scaler.update()              # 更新用于 loss 缩放的比例因子
             optimizer.clear_grad()
 
-print(loss)
-end_timer_and_print("使用AMP-O1模式耗时:")
+        train_loss = loss.numpy()
+        train_time += time.time() - start_time # 记录总训练时长
+
+print("loss:", train_loss)
+print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time))
 ```
 
-    Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-        [0.40864223])
-
-    使用AMP-O1模式耗时:
-    共计耗时 = 0.970 sec
+    loss: [0.40860707]
+    使用AMP-O1模式耗时:1.890 sec
