@@ -6,8 +6,15 @@ alltoall
 
 .. py:function:: paddle.distributed.alltoall(in_tensor_list, out_tensor_list, group=None, use_calc_stream=True)
 
-将in_tensor_list里面的tensors分发到所有参与的卡并将结果tensors汇总到out_tensor_list。
+将in_tensor_list里面的tensors按照卡数均分并按照卡的顺序分发到所有参与的卡并将结果tensors汇总到out_tensor_list。
+如下图所示，GPU0卡的in_tensor_list会按照两张卡拆分成0_0和0_1， GPU1卡的in_tensor_list同样拆分成1_0和1_1，经过alltoall算子后,
+GPU0卡的0_0会发送给GPU0，GPU0卡的0_1会发送给GPU1，GPU1卡的1_0会发送给GPU0，GPU1卡的1_1会发送给GPU1，所以GPU0卡的out_tensor_list包含0_0和1_0， 
+GPU1卡的out_tensor_list包含0_1和1_1。
 
+.. image:: ./img/alltoall.png
+  :width: 800
+  :alt: alltoall
+  :align: center
 
 参数
 :::::::::
