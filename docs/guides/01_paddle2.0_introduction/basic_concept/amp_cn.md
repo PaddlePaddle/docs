@@ -46,29 +46,15 @@ paddle.seed(100)
 numpy.random.seed(100)
 place = paddle.CUDAPlace(0)
 
-class SimpleNet(nn.Layer):
+class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
         super(SimpleNet, self).__init__()
-        self.linear1 = nn.Linear(input_size, output_size)
-        self.linear2 = nn.Linear(input_size, output_size)
-        self.linear3 = nn.Linear(input_size, output_size)
-        self.linear4 = nn.Linear(input_size, output_size)
-        self.linear5 = nn.Linear(input_size, output_size)
-        self.linear6 = nn.Linear(input_size, output_size)
-        self.linear7 = nn.Linear(input_size, output_size)
-        self.linear8 = nn.Linear(input_size, output_size)
-        self.linear9 = nn.Linear(input_size, output_size)
+        self.linears = paddle.nn.LayerList(
+            [paddle.nn.Linear(input_size, output_size) for i in range(9)])
 
     def forward(self, x):
-        x = self.linear1(x)
-        x = self.linear2(x)
-        x = self.linear3(x)
-        x = self.linear4(x)
-        x = self.linear5(x)
-        x = self.linear6(x)
-        x = self.linear7(x)
-        x = self.linear8(x)
-        x = self.linear9(x)
+        for i, l in enumerate(self.linears):
+            x = self.linears[i](x)
         return x
 ```
 
@@ -406,30 +392,19 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 在模型定义的代码中加入`fp16_guard`控制部分网络执行在FP16下：
 
 ```python
-class SimpleNet(nn.Layer):
+class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
         super(SimpleNet, self).__init__()
-        self.linear1 = nn.Linear(input_size, output_size)
-        self.linear2 = nn.Linear(input_size, output_size)
-        self.linear3 = nn.Linear(input_size, output_size)
-        self.linear4 = nn.Linear(input_size, output_size)
-        self.linear5 = nn.Linear(input_size, output_size)
-        self.linear6 = nn.Linear(input_size, output_size)
-        self.linear7 = nn.Linear(input_size, output_size)
-        self.linear8 = nn.Linear(input_size, output_size)
-        self.linear9 = nn.Linear(input_size, output_size)
+        self.linears = paddle.nn.LayerList(
+            [paddle.nn.Linear(input_size, output_size) for i in range(9)])
 
     def forward(self, x):
-        x = self.linear1(x)
-        with paddle.static.amp.fp16_guard():
-            x = self.linear2(x)
-            x = self.linear3(x)
-            x = self.linear4(x)
-            x = self.linear5(x)
-            x = self.linear6(x)
-            x = self.linear7(x)
-            x = self.linear8(x)
-            x = self.linear9(x)
+        for i, l in enumerate(self.linears):
+            if i > 0:
+                with paddle.static.amp.fp16_guard():
+                    x = self.linears[i](x)
+            else:
+                x = self.linears[i](x)
         return x
 ```
 
