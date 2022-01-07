@@ -34,7 +34,7 @@
 <a name="3.1.1"></a>
 #### 3.1.1 动态图FP32训练
 
-1）构建一个简单的网络：用于对比使用普通方法进行训练与使用混合精度训练的训练速度。该网络由九层 ``Linear`` 组成。
+1）构建一个简单的网络：用于对比使用普通方法进行训练与使用混合精度训练的训练速度。为了充分体现混合精度训练所带来的性能提升，构建一个由九层 ``Linear`` 组成网络：
 
 ```python
 import time
@@ -219,7 +219,7 @@ for epoch in range(epochs):
         scaler.step(optimizer)       # 更新参数
         scaler.update()              # 更新用于 loss 缩放的比例因子
         optimizer.clear_grad(set_to_zero=False)
-        
+
         train_loss = loss.numpy()
         train_time += time.time() - start_time
 
@@ -235,18 +235,18 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 
 动态图FP32及AMP训练的精度速度对比如下表所示：
 
-|test | FP32 | AMP-O1 | AMP-O2 | 
+|test | FP32 | AMP-O1 | AMP-O2 |
 |:---:|:---:|:---:|:---:|
-|耗时 | 0.529s | 0.118s | 0.102s | 
-|loss | 0.6486028 | 0.6486219 | 0.6743 | 
+|耗时 | 0.529s | 0.118s | 0.102s |
+|loss | 0.6486028 | 0.6486219 | 0.6743 |
 
 从上表统计结果可以看出，使用自动混合精度训练: O1模式训练速度提升约为4.5倍，O2模式训练速度提升约为5.2倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
 
 注：受机器环境影响，上述示例代码的训练耗时统计可能存在差异，该影响主要包括：GPU利用率、CPU利用率的等，测试机器配置如下：
 
-|Device | MEM Clocks | SM Clocks | Running with CPU Clocks | 
+|Device | MEM Clocks | SM Clocks | Running with CPU Clocks |
 |:---:|:---:|:---:|:---:|
-|Tesla V100 SXM2 16GB |  877 MHz   | 1530 MHz |   1000 - 2400 MHz  | 
+|Tesla V100 SXM2 16GB |  877 MHz   | 1530 MHz |   1000 - 2400 MHz  |
 
 ### 3.2 静态图混合精度训练
 
@@ -276,7 +276,7 @@ label = paddle.static.data(name='label', shape=[batch_size, input_size], dtype='
 predict = model(data)
 loss = mse_loss(predict, label)
 
-optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters()) 
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())
 optimizer.minimize(loss)
 
 exe = paddle.static.Executor(place)
@@ -310,7 +310,7 @@ label = paddle.static.data(name='label', shape=[batch_size, input_size], dtype='
 predict = model(data)
 loss = mse_loss(predict, label)
 
-optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters()) 
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())
 
 # 1) 通过 `CustomOpLists` 自定义黑白名单
 amp_list = paddle.static.amp.CustomOpLists(custom_white_list=['elementwise_add'])
@@ -363,7 +363,7 @@ label = paddle.static.data(name='label', shape=[batch_size, input_size], dtype='
 predict = model(data)
 loss = mse_loss(predict, label)
 
-optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters()) 
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())
 
 # 1）通过 `decorate` 对优化器进行封装：
 optimizer = paddle.static.amp.decorate(
@@ -440,7 +440,7 @@ label = paddle.static.data(name='label', shape=[batch_size, input_size], dtype='
 predict = model(data)
 loss = mse_loss(predict, label)
 
-optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters()) 
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())
 
 # 1）通过 `decorate` 对优化器进行封装：
 optimizer = paddle.static.amp.decorate(
@@ -478,10 +478,10 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 
 静态图FP32及AMP训练的精度速度对比如下表所示：
 
-|test | FP32 | AMP-O1 | AMP-O2 | 
+|test | FP32 | AMP-O1 | AMP-O2 |
 |:---:|:---:|:---:|:---:|
-|耗时 | 0.531s | 0.117s | 0.098s | 
-|loss | 0.6486028 | 0.6486222 | 0.6743 | 
+|耗时 | 0.531s | 0.117s | 0.098s |
+|loss | 0.6486028 | 0.6486222 | 0.6743 |
 
 从上表统计结果可以看出，使用自动混合精度训练: O1模式训练速度提升约为4.5倍，O2模式训练速度提升约为5.4倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
 
