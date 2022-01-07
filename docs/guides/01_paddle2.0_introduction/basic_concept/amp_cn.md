@@ -13,7 +13,7 @@
 
 ## 二、NVIDIA GPU的FP16算力
 
-在使用相同的超参数下，混合精度训练使用半精度浮点（FP16）和单精度（FP32）浮点即可达到与使用纯单精度训练相同的准确率，并可加速模型的训练速度。这主要得益于英伟达推出的Volta及Turing架构GPU在使用FP16计算时具有如下特点：
+在使用相同的超参数下，混合精度训练使用半精度浮点（FP16）和单精度（FP32）浮点即可达到与使用纯单精度训练相同的准确率，并可加速模型的训练速度，这主要得益于英伟达从Volta架构开始推出的Tensor Core技术。在使用FP16计算时具有如下特点：
 - FP16可降低一半的内存带宽和存储需求，这使得在相同的硬件条件下研究人员可使用更大更复杂的模型以及更大的batch size大小。
 - FP16可以充分利用英伟达Volta、Turing、Ampere架构GPU提供的Tensor Cores技术。在相同的GPU硬件上，Tensor Cores的FP16计算吞吐量是FP32的8倍。
 
@@ -25,7 +25,7 @@
 - level = ’O1‘：采用黑白名单策略进行混合精度训练，黑名单中的OP将采用FP32计算，白名单中的OP将采用FP16计算，训练过程中框架会自动将白名单OP的输入参数数据类型从FP32转为FP16，使用FP16与FP32进行计算的OP列表可见该[文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html)。
 - level = ’O2‘：该模式采用了比O1更为激进的策略，除了框架不支持FP16计算的OP，其他全部采用FP16计算，框架会预先将网络参数从FP32转换为FP16，相比O1，训练过程中无需做FP32转为FP16的操作，训练速度会有更明显的提升，但可能会存在精度问题，为此，框架提供了自定义黑名单，用户可通过该名单指定一些存在精度问题的OP执行FP32运算。
 
-飞桨动态图与静态图均为用户提供了便捷的API用于开启混合精度训练，下面以具体的训练代码为例，来了解如何使用飞桨框架实现混合精度训练。
+飞桨动态图与静态图均为用户提供了便捷的API用于开启上述混合精度训练，下面以具体的训练代码为例，来了解如何使用飞桨框架实现混合精度训练。
 
 ### 3.1 动态图混合精度训练
 
@@ -34,7 +34,7 @@
 <a name="3.1.1"></a>
 #### 3.1.1 动态图FP32训练
 
-1）构建一个简单的网络：用于对比使用普通方法进行训练与使用混合精度训练的训练速度。为了充分体现混合精度训练所带来的性能提升，构建一个由九层 ``Linear`` 组成网络：
+1）构建一个简单的网络：用于对比使用FP32训练与使用混合精度训练的训练速度，为了充分体现混合精度训练所带来的性能提升，构建一个由九层 ``Linear`` 组成网络。
 
 ```python
 import time
@@ -72,7 +72,7 @@ class SimpleNet(nn.Layer):
         return x
 ```
 
-2）设置训练的相关参数及训练数据：这里为了能有效的看出混合精度训练对于训练速度的提升，将 ``input_size`` 与 ``output_size`` 的值设为较大的值，为了使用GPU 提供的``Tensor Core`` 性能，还需将 ``batch_size`` 设置为 8 的倍数（基于混合精度训练的性能优化方法见：<a href="#四">四、混合精度训练性能优化</a>）。
+2）设置训练的相关参数及训练数据：这里为了能有效的看出混合精度训练对于训练速度的提升，将 ``input_size`` 与 ``output_size`` 的值设为较大的值，为了使用GPU提供的``Tensor Core``性能，还需将``batch_size``设置为 8 的倍数（基于混合精度训练的性能优化方法见：<a href="#四">四、混合精度训练性能优化</a>）。
 
 ```python
 epochs = 2
@@ -98,6 +98,8 @@ dataset = RandomDataset(nums_batch * batch_size)
 loader = paddle.io.DataLoader(dataset, batch_size=batch_size, shuffle=False, drop_last=True, num_workers=0)
 
 ```
+
+注：如果该示例代码在您的机器上显示显存不足相关的错误，请尝试将``input_size``、``output_size``、``batch_size``调小。
 
 3）使用动态图FP32训练：
 
@@ -151,6 +153,7 @@ train_time = 0 # 总训练时长
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # 开始训练时刻
+
         label._to(place)
         # Step2：创建AMP-O1上下文环境，开启自动混合精度训练
         with paddle.amp.auto_cast(custom_white_list={'elementwise_add'}, level='O1'):
@@ -163,7 +166,6 @@ for epoch in range(epochs):
         scaler.step(optimizer)       # 更新参数
         scaler.update()              # 更新用于 loss 缩放的比例因子
         optimizer.clear_grad(set_to_zero=False)
-
 
         train_loss = loss.numpy()
         train_time += time.time() - start_time # 记录总训练时长
@@ -205,16 +207,15 @@ train_time = 0 # 总训练时长
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time()
+
         label._to(place)
         # Step3：创建AMP上下文环境，开启自动混合精度训练
         with paddle.amp.auto_cast(level='O2'):
             output = model(data)
             loss = mse(output, label)
-
         # Step4：使用 Step1中定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
         scaled = scaler.scale(loss)
         scaled.backward()
-
         # 训练模型
         scaler.step(optimizer)       # 更新参数
         scaler.update()              # 更新用于 loss 缩放的比例因子
@@ -433,6 +434,7 @@ class SimpleNet(nn.Layer):
 ```
 
 该模式下的训练代码如下：
+
 ```python
 data = paddle.static.data(name='data', shape=[batch_size, input_size], dtype='float32')
 label = paddle.static.data(name='label', shape=[batch_size, input_size], dtype='float32')
