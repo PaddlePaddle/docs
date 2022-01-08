@@ -22,9 +22,9 @@ MultiplicativeDecay
 
 参数：
     - **learning_rate** （float） - 初始学习率，数据类型为Python float。
-    - **lr_lambda** （function）：lr_lambda 为一个lambda函数，其通过 epoch 计算出一个因子，该因子会乘以当前学习率。
-    - **last_epoch** （int，可选）: 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
-    - **verbose** （bool，可选）：如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+    - **lr_lambda** （function）- lr_lambda 为一个lambda函数，其通过 epoch 计算出一个因子，该因子会乘以当前学习率。
+    - **last_epoch** （int，可选）- 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
+    - **verbose** （bool，可选）- 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
 返回：用于调整学习率的 ``MultiplicativeDecay`` 实例对象。
 
@@ -47,33 +47,6 @@ MultiplicativeDecay
             loss.backward()
             sgd.minimize(loss)
             linear.clear_gradients()
-            scheduler.step()    # If you update learning rate each step
-      # scheduler.step()        # If you update learning rate each epoch
-
-    # train on static mode
-    paddle.enable_static()
-    main_prog = paddle.static.Program()
-    start_prog = paddle.static.Program()
-    with paddle.static.program_guard(main_prog, start_prog):
-        x = paddle.static.data(name='x', shape=[None, 4, 5])
-        y = paddle.static.data(name='y', shape=[None, 4, 5])
-        z = paddle.static.nn.fc(x, 100)
-        loss = paddle.mean(z)
-        scheduler = paddle.optimizer.lr.MultiplicativeDecay(learning_rate=0.5, lr_lambda=lambda x:0.95, verbose=True)
-        sgd = paddle.optimizer.SGD(learning_rate=scheduler)
-        sgd.minimize(loss)
-
-    exe = paddle.static.Executor()
-    exe.run(start_prog)
-    for epoch in range(20):
-        for batch_id in range(2):
-            out = exe.run(
-                main_prog,
-                feed={
-                    'x': np.random.randn(3, 4, 5).astype('float32'),
-                    'y': np.random.randn(3, 4, 5).astype('float32')
-                },
-                fetch_list=loss.name)
             scheduler.step()    # If you update learning rate each step
       # scheduler.step()        # If you update learning rate each epoch
 
