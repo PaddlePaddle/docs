@@ -5,9 +5,6 @@ bernoulli
 
 .. py:function:: paddle.bernoulli(x, name=None)
 
-
-
-
 该OP以输入 ``x`` 为概率，生成一个伯努利分布（0-1分布）的Tensor，输出Tensor的形状和数据类型与输入 ``x`` 相同。
 
 .. math::
@@ -37,11 +34,3 @@ bernoulli
     print(out)
     # [[0. 0. 0.]
     #  [1. 1. 0.]]
-
-
-
-
-
-
-
-

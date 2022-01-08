@@ -40,6 +40,7 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关API。具体
     " :ref:`paddle.linalg.matrix_power <cn_api_linalg_matrix_power>` ", "计算方阵的n次幂"
     " :ref:`paddle.linalg.inv <cn_api_linalg_inv>` ", "计算方阵的逆矩阵"
     " :ref:`paddle.linalg.pinv <cn_api_linalg_pinv>` ", "计算矩阵的广义逆"
+    " :ref:`paddle.linalg.cov <cn_api_linalg_cov>` ", "计算矩阵的协方差矩阵"
 
 
 .. _about_matrix_decompositions:
@@ -58,6 +59,8 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关API。具体
     " :ref:`paddle.linalg.cholesky <cn_api_linalg_cholesky>` ", "计算一个实数对称正定矩阵的Cholesky分解"
     " :ref:`paddle.linalg.svd <cn_api_linalg_svd>` ", "计算矩阵的奇异值分解"
     " :ref:`paddle.linalg.qr <cn_api_linalg_qr>` ", "计算矩阵的正交三角分解（也称QR分解）"
+    " :ref:`paddle.linalg.lu <cn_api_linalg_lu>` ", "计算矩阵的LU分解"
+    " :ref:`paddle.linalg.lu_unpack <cn_api_linalg_lu_unpack>` ", "对矩阵的LU分解结果进行展开得到各单独矩阵"
 
 
 .. _about_solvers:
@@ -71,3 +74,4 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关API。具体
 
     " :ref:`paddle.linalg.solve <cn_api_linalg_solve>` ", "计算具有唯一解的线性方程组"
     " :ref:`paddle.linalg.triangular_solve <cn_api_linalg_solve>` ", "计算具有唯一解的线性方程组"
+    " :ref:`paddle.linalg.cholesky_solve <cn_api_linalg_cholesky_solve>` ", "通过Cholesky分解矩阵，计算具有唯一解的线性方程组"
