@@ -135,6 +135,7 @@ Padding层
     " :ref:`paddle.nn.Softshrink <cn_api_nn_Softshrink>` ", "Softshrink激活层"
     " :ref:`paddle.nn.Softsign <cn_api_nn_Softsign>` ", "Softsign激活层"
     " :ref:`paddle.nn.Swish <cn_api_nn_Swish>` ", "Swish激活层"
+    " :ref:`paddle.nn.Mish <cn_api_nn_Mish>` ", "Mish激活层"
     " :ref:`paddle.nn.Tanh <cn_api_nn_Tanh>` ", "Tanh激活层"
     " :ref:`paddle.nn.Tanhshrink <cn_api_nn_Tanhshrink>` ", "Tanhshrink激活层"
     " :ref:`paddle.nn.ThresholdedReLU <cn_api_nn_ThresholdedReLU>` ", "Thresholded ReLU激活层"
@@ -382,6 +383,7 @@ Padding相关函数
     " :ref:`paddle.nn.functional.softshrink <cn_api_nn_cn_softshrink>` ", "softshrink激活函数"
     " :ref:`paddle.nn.functional.softsign <cn_api_nn_cn_softsign>` ", "softsign激活函数"
     " :ref:`paddle.nn.functional.swish <cn_api_nn_cn_swish>` ", "swish激活函数"
+    " :ref:`paddle.nn.functional.mish <cn_api_nn_cn_mish>` ", "mish激活函数"
     " :ref:`paddle.nn.functional.tanhshrink <cn_api_nn_cn_tanhshrink>` ", "tanhshrink激活函数"
     " :ref:`paddle.nn.functional.thresholded_relu <cn_api_nn_cn_thresholded_relu>` ", "thresholded_relu激活函数"
     
