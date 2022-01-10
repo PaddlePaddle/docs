@@ -8,7 +8,7 @@ mish
 
 
 
-Mish激活函数。参考`Mish: A Self Regularized Non-Monotonic Neural Activation Function <https://arxiv.org/abs/1908.08681>`_。
+Mish激活函数。参考`Mish: A Self Regularized Non-Monotonic Neural Activation Function <https://arxiv.org/abs/1908.08681>`_ 。
 
 .. math::
         softplus(x) = \begin{cases}
@@ -30,6 +30,8 @@ Mish激活函数。参考`Mish: A Self Regularized Non-Monotonic Neural Activati
 
 .. code-block:: python
 
+    import paddle
+    paddle.enable_static()
     import paddle.fluid as fluid
     import numpy as np
     DATATYPE='float32'
