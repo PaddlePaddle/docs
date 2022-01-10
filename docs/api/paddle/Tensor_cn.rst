@@ -2325,3 +2325,25 @@ is_integer()
 返回类型：bool
 
 请参考 :ref:`cn_api_paddle_is_integer`
+
+take_along_axis(arr, index, axis)
+:::::::::
+
+基于输入索引矩阵, 沿着指定axis从arr矩阵里选取1d切片。索引矩阵必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_take_along_axis`
+
+put_along_axis(arr, index, value, axis, reduce="assign")
+:::::::::
+
+基于输入index矩阵, 将输入value沿着指定axis放置入arr矩阵。索引矩阵和value必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_put_along_axis`
