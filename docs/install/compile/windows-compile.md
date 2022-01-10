@@ -13,7 +13,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * **CUDA 工具包 10.1/10.2 配合 cuDNN 7 (cuDNN版本>=7.6.5）**
+    * **CUDA 工具包 10.1/10.2 配合 cuDNN v7.6.5**
     * **CUDA 工具包 11.0 配合 cuDNN v8.0.2**
     * **CUDA 工具包 11.1 配合 cuDNN v8.1.1**
     * **CUDA 工具包 11.2 配合 cuDNN v8.2.1**
@@ -57,9 +57,8 @@
 
     ```
     git clone https://github.com/PaddlePaddle/Paddle.git
-    ```
-    ```
-    cd Paddle
+
+	cd Paddle
     ```
 
 3. 切换到较稳定release分支下进行编译：
@@ -69,7 +68,6 @@
     ```
 
     例如：
-
     ```
     git checkout release/2.2
     ```
@@ -80,68 +78,44 @@
 
     ```
     mkdir build
-    ```
-    ```
+
     cd build
     ```
 
 5. 执行cmake：
 
-    > 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。在Windows系统下可以通过Ninja命令行方式编译（推荐）或Visual Studio IDE方式编译，需要在cmake命令中通过-G选项进行指定，如下：
-    *  1）通过Ninja命令行方式编译（推荐）：
+    > 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。Windows编译方式可在 `Ninja方式(推荐)` 或 `Visual Studio IDE方式`中二选一，需要在cmake命令中通过-G选项进行指定，如下：
 
-        需要先通过如下命令安装ninja：
+    * 1）通过Ninja命令行方式编译（推荐）：
 
+        需要先安装ninja：
         ```
         pip install ninja
         ```
-        然后在搜索栏中搜索 "x64 Native Tools Command Prompt for VS 2017" 或 "适用于VS 2017 的x64本机工具命令提示符"，以管理员身份运行，再输入以下cmake命令。
 
-        * **CPU版本PaddlePaddle**：
+        然后在搜索栏中搜索 "x64 Native Tools Command Prompt for VS 2017" 或 "适用于VS 2017 的x64本机工具命令提示符"，以管理员身份运行，输入以下cmake命令：
         ```
-        cmake .. -G "Ninja" -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-        ```
-
-        * **GPU版本PaddlePaddle**：
-
-        ```
-        cmake .. -G "Ninja" -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -GNinja -DWITH_GPU=OFF
         ```
 
-    *  2）通过Visual Studio IDE方式编译：
-        * **CPU版本PaddlePaddle**：
-
+    * 2）通过Visual Studio IDE方式编译：
         ```
-        cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -G"Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=OFF
         ```
 
-        * **GPU版本PaddlePaddle**：
+	上述命令中，改成 `-DWITH_GPU=ON` 即可编译GPU版本的Paddle。
 
-        ```
-        cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-        ```
-
-    Python3请添加：
-
-    > -DPY_VERSION=3（或3.6、3.7、3.8、3.9）
-
-    如果你的设备信息包含多个Python或CUDA版本，你也可以通过设置路径变量，来指定特定版本的Python或CUDA：
-
-    > -DPYTHON_EXECUTABLE: python的安装目录
-
-    > -DCUDA_TOOLKIT_ROOT_DIR: cuda的安装目录
-
-    例如：（仅作示例，请根据你的设备路径信息进行设置）
-
+	> 注意：
+    > 1. 如果本机安装了多个CUDA，则生效的为最新安装的CUDA，且无法指定。
+    > 2. 如果本机安装了多个Python，则默认生效的为最新安装的Python，可通过 `-DPYTHON_EXECUTABLE` 来指定Python版本，例如：
     ```
-    cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DCMAKE_BUILD_TYPE=Release -DWITH_GPU=ON -DWITH_TESTING=OFF -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe -DCUDA_TOOLKIT_ROOT_DIR="C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\v10.0"
+    cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe
     ```
 
-6. 编译
-    * 若通过Ninja命令行方式编译，请执行以下命令，开始编译（推荐）
-    > ninja
+6. 执行编译：
+    * 1) 若选择使用 `Ninja命令行方式`，直接输入命令 `ninja all` 开始编译
 
-    * 若通过Visual Studio IDE方式编译，使用Visual Studio 2017 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，开始编译。
+    * 2) 若选择使用 `Visual Studio IDE方式`，使用Visual Studio 2017 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，点击相应按钮，开始编译
 
 7. 编译成功后进入 `\Paddle\build\python\dist` 目录下找到生成的 `.whl` 包：
 
@@ -152,7 +126,7 @@
 8. 安装编译好的 `.whl` 包：
 
     ```
-    pip install -U [whl包的名字]
+    pip install -U（whl包的名字）
     ```
 
 恭喜，至此您已完成PaddlePaddle的编译安装
