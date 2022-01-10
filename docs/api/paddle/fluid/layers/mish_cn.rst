@@ -8,7 +8,7 @@ mish
 
 
 
-Mish激活函数。参考`Mish: A Self Regularized Non-Monotonic Neural Activation Function <https://arxiv.org/abs/1908.08681>`_ 。
+Mish激活函数。参考 `Mish: A Self Regularized Non-Monotonic Neural Activation Function <https://arxiv.org/abs/1908.08681>`_ 。
 
 .. math::
         softplus(x) = \begin{cases}
