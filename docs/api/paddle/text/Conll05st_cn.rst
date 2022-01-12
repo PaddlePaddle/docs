@@ -14,18 +14,12 @@ Conll05st
 
 参数
 :::::::::
-    - data_file（str）- 保存数据的路径，如果参数:attr:`download`设置为True，
-    可设置为None。默认为None。
-    - word_dict_file（str）- 保存词典的路径。如果参数:attr:`download`设置为True，
-    可设置为None。默认为None。
-    - verb_dict_file（str）- 保存动词词典的路径。如果参数:attr:`download`设置为True，
-    可设置为None。默认为None。
-    - target_dict_file（str）- 保存目标词典的路径如果参数:attr:`download`设置为True，
-    可设置为None。默认为None。
-    - emb_file（str）- 保存词嵌入词典的文件。只有在:code:`get_embedding`能被设置为None
-    且:attr:`download` 为True时使用。
-    - download（bool）- 如果:attr:`data_file` :attr:`word_dict_file` 
-    :attr:`verb_dict_file` 和:attr:`target_dict_file` 未设置，是否下载数据集。默认为True。
+    - data_file（str）- 保存数据的路径，如果参数 `download` 设置为True，可设置为None。默认为None。
+    - word_dict_file（str）- 保存词典的路径。如果参数 `download` 设置为True，可设置为None。默认为None。
+    - verb_dict_file（str）- 保存动词词典的路径。如果参数 `download` 设置为True，可设置为None。默认为None。
+    - target_dict_file（str）- 保存目标词典的路径如果参数 `download` 设置为True，可设置为None。默认为None。
+    - emb_file（str）- 保存词嵌入词典的文件。只有在 `get_embedding` 能被设置为None 且 `download` 为True时使用。
+    - download（bool）- 如果 `data_file` 、 `word_dict_file` 、 `verb_dict_file` 和 `target_dict_file` 未设置，是否下载数据集。默认为True。
 
 返回值
 :::::::::
