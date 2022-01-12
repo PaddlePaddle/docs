@@ -2347,3 +2347,10 @@ put_along_axis(arr, index, value, axis, reduce="assign")
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_put_along_axis`
+
+erfinv(x, name=None)
+:::::::::
+
+对输入x进行逆误差函数计算
+
+请参考 :ref:`cn_api_paddle_tensor_erfinv`
