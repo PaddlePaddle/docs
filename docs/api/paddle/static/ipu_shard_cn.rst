@@ -10,8 +10,8 @@ ipu_shard
 
 .. note:
 
-仅支持当enable_manual_shard=True, ipu_index才能被置为非None。请参阅 :ref:`cn_api_fluid_IpuGraphConfig` 。
-仅支持当enable_pipelining=True, ipu_stage才能被置为非None。请参阅 :ref:`cn_api_fluid_IpuPipeliningConfig` 。
+仅支持当enable_manual_shard=True, ipu_index才能被置为非None。请参阅 :ref:`cn_api_fluid_IpuStrategy` 。
+仅支持当enable_pipelining=True, ipu_stage才能被置为非None。请参阅 :ref:`cn_api_fluid_IpuStrategy` 。
 
 参数
 :::::::::
