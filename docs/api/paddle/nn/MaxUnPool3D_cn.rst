@@ -21,7 +21,7 @@ MaxUnPool3D
 .. math::
   W_{out} = (W_{in} - 1) \times \text{stride[2]} - 2 \times \text{padding[2]} + \text{kernel_size[2]}
 
-或由参数 `output_size` 直接指定
+或由参数 `output_size` 直接指定。
 
 
 

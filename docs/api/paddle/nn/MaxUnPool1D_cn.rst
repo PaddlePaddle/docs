@@ -15,7 +15,7 @@ MaxUnPool1D
 .. math::
   L_{out} = (L_{in} - 1) \times \text{stride} - 2 \times \text{padding} + \text{kernel_size}
 
-或由参数 `output_size` 直接指定
+或由参数 `output_size` 直接指定。
 
 
 
