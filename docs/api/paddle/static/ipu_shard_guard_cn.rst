@@ -26,4 +26,4 @@ ipu_shard_guard
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.static.ipu_shard
+COPY-FROM: paddle.static.ipu_shard_guard
