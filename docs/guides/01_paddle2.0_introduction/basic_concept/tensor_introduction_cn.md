@@ -1,29 +1,8 @@
 # Tensor介绍
 
-## 目录
-- [0. 概述：Tensor 的概念](#0)
-- [1. Tensor的创建](#1)
-    - [1.1 指定数据创建](#1.1)
-    - [1.2 指定形状创建](#1.2)
-    - [1.3 指定区间创建](#1.3)
-- [2. Tensor的属性](#2)
-    - [2.1 Tensor的形状](#2.1)
-    - [2.2 Tensor的数据类型](#2.2)
-    - [2.3 Tensor的设备位置](#2.3)
-    - [2.4 Tensor的名称](#2.4)
-- [3. Tensor的操作](#3)
-    - [3.1 索引和切片](#3.1)
-    - [3.2 数学运算](#3.2)
-    - [3.3 逻辑运算](#3.3)
-    - [3.4 线性代数](#3.4)
-- [4. Tensor 与 numpy相互转换](#4)
-    - [4.1 Tensor转换为numpy数组](#4.1)
-    - [4.2 numpy数组转换为Tensor](#4.2)
-- [5. Tensor 的广播操作](#5)
-
 <a name="0"></a>
 
-## 0. 概述：Tensor 的概念
+## 概述：Tensor 的概念
 
 飞桨（PaddlePaddle，以下简称Paddle）和其他深度学习框架一样，使用**Tensor**来表示数据，在神经网络中传递的数据均为**Tensor**。
 
@@ -33,7 +12,7 @@
 
 <a name="1"></a>
 
-## 1. Tensor的创建
+## 一、Tensor的创建
 
 在Paddle中，创建 **Tensor** 有多种方式，如：指定数据列表创建、指定形状创建、指定间隔创建等。
 
@@ -41,12 +20,13 @@
 通过给定Python列表数据，可以创建任意维度的Tensor，举例如下：
 ```python
 # 创建类似向量（vector）的一维 Tensor
+import paddle # 后面的示例代码默认已导入paddle模块
 ndim_1_Tensor = paddle.to_tensor([2.0, 3.0, 4.0])
 print(ndim_1_Tensor)
 ```
 
 ```text
-Tensor(shape=[3], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
+Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
        [2., 3., 4.])
 ```
 
@@ -57,7 +37,7 @@ paddle.to_tensor([2])
 ```
 上述两种创建方式完全一致，形状均为[1]，输出如下：
 ```text
-Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+Tensor(shape=[1], dtype=int64, place=Place(gpu:0), stop_gradient=True,
        [2])
 ```
 
@@ -68,7 +48,7 @@ ndim_2_Tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
 print(ndim_2_Tensor)
 ```
 ```text
-Tensor(shape=[2, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+Tensor(shape=[2, 3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
        [[1., 2., 3.],
         [4., 5., 6.]])
 ```
@@ -82,9 +62,9 @@ ndim_3_Tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
 print(ndim_3_Tensor)
 ```
 ```text
-Tensor(shape=[2, 2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-       [[[1, 2, 3, 4, 5],
-         [ 6,  7,  8,  9, 10]],
+Tensor(shape=[2, 2, 5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
+       [[[1 , 2 , 3 , 4 , 5 ],
+         [6 , 7 , 8 , 9 , 10]],
 
         [[11, 12, 13, 14, 15],
          [16, 17, 18, 19, 20]]])
@@ -102,8 +82,8 @@ ndim_2_Tensor = paddle.to_tensor([[1.0, 2.0],
 该情况下将会抛出异常：
 ```text
 ValueError:
-    Faild to convert input data to a regular ndarray :
-     - Usually this means the input data contains nested lists with different lengths.
+        Faild to convert input data to a regular ndarray :
+         - Usually this means the input data contains nested lists with different lengths.
 ```
 
 ### 1.2 指定形状创建
@@ -116,7 +96,7 @@ paddle.full([m, n], 10)          # 创建数据全为10，形状为[m, n]的Tens
 ```
 例如，`paddle.ones([2,3])`输出如下：
 ```text
-Tensor(shape=[2, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+Tensor(shape=[2, 3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
        [[1., 1., 1.],
         [1., 1., 1.]])
 ```
@@ -130,20 +110,20 @@ paddle.linspace(start, end, num) # 创建以元素个数num均匀分隔区间[st
 ```
 例如，`paddle.arange(start=1, end=5, step=1)`输出如下：
 ```text
-Tensor(shape=[4], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
        [1, 2, 3, 4])
 ```
 
 <a name="2"></a>
 
-## 2. Tensor的属性
+## 二、Tensor的属性
 
 ### 2.1 Tensor的形状
 
 查看一个**Tensor**的形状可以通过 **Tensor.shape**，形状是 **Tensor** 的一个重要属性，以下为相关概念：
 
 1. shape：描述了Tensor每个维度上元素的数量
-2. ndim： Tensor的维度数量，例如向量的 ndim 为1，矩阵的 ndim 为2，Tensor可以有任意数量的维度（也称为轴）
+2. ndim： Tensor的维度数量，例如向量的维度为1，矩阵的维度为2，Tensor可以有任意数量的维度（也称为轴）
 3. axis或者dimension：指Tensor某个特定的维度
 4. size：指Tensor中全部元素的个数
 
@@ -163,7 +143,7 @@ print("Elements number along axis 0 of Tensor:", ndim_4_Tensor.shape[0])
 print("Elements number along the last axis of Tensor:", ndim_4_Tensor.shape[-1])
 ```
 ```text
-Data Type of every element: VarType.FP32
+Data Type of every element: paddle.float32
 Number of dimensions: 4
 Shape of Tensor: [2, 3, 4, 5]
 Elements number along axis 0 of Tensor: 2
@@ -191,6 +171,7 @@ After reshape: [2, 5, 3]
 在指定新的shape时存在一些技巧：
 
 **1.** -1 表示这个维度的值是从Tensor的元素总数和剩余维度推断出来的。因此，有且只有一个维度可以被设置为-1。
+
 **2.** 0 表示实际的维数是从Tensor的对应维数中复制出来的，因此shape中0的索引值不能超过Tensor的维度。
 
 有一些例子可以很好解释这些技巧：
@@ -223,11 +204,11 @@ print("Tensor dtype from Python integers:", paddle.to_tensor(1).dtype)
 print("Tensor dtype from Python floating point:", paddle.to_tensor(1.0).dtype)
 ```
 ```text
-Tensor dtype from Python integers: VarType.INT64
-Tensor dtype from Python floating point: VarType.FP32
+Tensor dtype from Python integers: paddle.int64
+Tensor dtype from Python floating point: paddle.float32
 ```
 
-**Tensor**不仅支持 floats、ints 类型数据，也支持复数类型数据。如果输入为复数，则**Tensor**的dtype为 ``complex64`` 或 ``complex128`` ，其每个元素均为1个复数：
+* **Tensor**不仅支持 floats、ints 类型数据，也支持复数类型数据。如果输入为复数，则**Tensor**的dtype为 ``complex64`` 或 ``complex128`` ，其每个元素均为1个复数：
 
 ```python
 ndim_2_Tensor = paddle.to_tensor([[(1+1j), (2+2j)],
@@ -236,7 +217,7 @@ print(ndim_2_Tensor)
 ```
 
 ```text
-Tensor(shape=[2, 2], dtype=complex64, place=CUDAPlace(0), stop_gradient=True,
+Tensor(shape=[2, 2], dtype=complex64, place=Place(gpu:0), stop_gradient=True,
        [[(1+1j), (2+2j)],
         [(3+3j), (4+4j)]])
 ```
@@ -252,43 +233,44 @@ int64_Tensor = paddle.cast(float32_Tensor, dtype='int64')
 print("Tensor after cast to int64:", int64_Tensor.dtype)
 ```
 ```text
-Tensor after cast to float64: VarType.FP64
-Tensor after cast to int64: VarType.INT64
+Tensor after cast to float64: paddle.float64
+Tensor after cast to int64: paddle.int64
 ```
 
 ### 2.3 Tensor的设备位置
 
-初始化**Tensor**时可以通过**place**来指定其分配的设备位置，可支持的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，其与GPU之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。
+初始化**Tensor**时可以通过**place**来指定其分配的设备位置，可支持的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，其与GPU之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。当未指定place时，Tensor默认设备位置和安装的Paddle版本一致，如安装了GPU版本的Paddle，则设备位置默认为GPU。
 
-* **创建CPU上的Tensor**：
+* 以下示例分别创建了CPU、GPU和固定内存上的Tensor，并通过 `Tensor.place` 查看Tensor所在的设备位置，：
+
+* **创建CPU上的Tensor**
 ```python
 cpu_Tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
-print(cpu_Tensor)
-```
-```text
-Tensor(shape=[1], dtype=int64, place=CPUPlace, stop_gradient=True,
-       [1])
+print(cpu_Tensor.place)
 ```
 
-* **创建GPU上的Tensor**：
+```text
+Place(cpu)
+```
+
+* **创建GPU上的Tensor**
 ```python
 gpu_Tensor = paddle.to_tensor(1, place=paddle.CUDAPlace(0))
-print(gpu_Tensor)
-```
-```text
-Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-       [1])
+print(gpu_Tensor.place) # 显示Tensor位于GPU设备的第 0 张显卡上
 ```
 
-* **创建固定内存上的Tensor**：
+```text
+Place(gpu:0)
+```
+
+* **创建固定内存上的Tensor**
 ```python
 pin_memory_Tensor = paddle.to_tensor(1, place=paddle.CUDAPinnedPlace())
-print(pin_memory_Tensor)
+print(pin_memory_Tensor.place)
 ```
 
 ```text
-Tensor(shape=[1], dtype=int64, place=CUDAPinnedPlace, stop_gradient=True,
-       [1])
+Place(gpu_pinned)
 ```
 
 ### 2.4 Tensor的名称
@@ -304,7 +286,7 @@ Tensor name: generated_Tensor_0
 
 <a name="3"></a>
 
-## 3. Tensor的操作
+## 三、Tensor的操作
 
 ### 3.1 索引和切片
 您可以通过索引或切片方便地访问或修改 Tensor。Paddle 使用标准的 Python 索引规则与 Numpy 索引规则，与 [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings)类似。具有以下特点：
@@ -373,7 +355,7 @@ ndim_2_Tensor[1, :]
 这两种操作的结果是完全相同的。
 
 ```text
-Tensor(shape=[4], dtype=int64, place=CPUPlace, stop_gradient=True,
+Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
        [4, 5, 6, 7])
 ```
 
@@ -386,18 +368,17 @@ Tensor(shape=[4], dtype=int64, place=CPUPlace, stop_gradient=True,
 与访问 Tensor 类似，修改 Tensor 可以在单个或多个轴上通过索引或切片操作。同时，支持将多种类型的数据赋值给该 Tensor，当前支持的数据类型有：`int`, `float`, `numpy.ndarray`, `Tensor`。
 
 ```python
-import paddle
 import numpy as np
 
 x = paddle.to_tensor(np.ones((2, 3)).astype(np.float32)) # [[1., 1., 1.], [1., 1., 1.]]
 
-x[0] = 0                      # x : [[0., 0., 0.], [1., 1., 1.]]        id(x) = 4433705584
-x[0:1] = 2.1                  # x : [[2.1, 2.1, 2.1], [1., 1., 1.]]     id(x) = 4433705584
-x[...] = 3                    # x : [[3., 3., 3.], [3., 3., 3.]]        id(x) = 4433705584
+x[0] = 0                      # x : [[0., 0., 0.], [1., 1., 1.]]
+x[0:1] = 2.1                  # x : [[2.09999990, 2.09999990, 2.09999990], [1., 1., 1.]]
+x[...] = 3                    # x : [[3., 3., 3.], [3., 3., 3.]]
 
-x[0:1] = np.array([1,2,3])    # x : [[1., 2., 3.], [3., 3., 3.]]        id(x) = 4433705584
+x[0:1] = np.array([1,2,3])    # x : [[1., 2., 3.], [3., 3., 3.]]
 
-x[1] = paddle.ones([3])       # x : [[1., 2., 3.], [1., 1., 1.]]        id(x) = 4433705584
+x[1] = paddle.ones([3])       # x : [[1., 2., 3.], [1., 1., 1.]]
 ```
 
 ---
@@ -412,13 +393,13 @@ print(x.add(y), "\n") # 方法二
 ```
 
 ```text
-Tensor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
-       [[6.60000000, 8.80000000],
-        [        11., 13.20000000]])
+Tensor(shape=[2, 2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
+       [[6.60000000 , 8.80000000 ],
+        [11.        , 13.20000000]])
 
-Tensor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
-       [[6.60000000, 8.80000000],
-        [        11., 13.20000000]])
+Tensor(shape=[2, 2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
+       [[6.60000000 , 8.80000000 ],
+        [11.        , 13.20000000]])
 ```
 
 可以看出，使用 **Tensor 类成员函数** 和 **Paddle API** 具有相同的效果，由于 **类成员函数** 操作更为方便，以下均从 **Tensor 类成员函数** 的角度，对常用 **Tensor** 操作进行介绍。
@@ -503,45 +484,42 @@ x.matmul(y)                   #矩阵乘法
 
 <a name="4"></a>
 
-## 4. Tensor 与 numpy相互转换
+## 四、Tensor 与 numpy相互转换
 ### 4.1 Tensor转换为numpy数组
 通过 Tensor.numpy() 方法，将 **Tensor** 转化为 **Numpy数组**：
 ```python
-ndim_2_Tensor.numpy()
+tensor_to_convert = paddle.to_tensor([1.,2.])
+tensor_to_convert.numpy()
 ```
 ```text
-array([[1., 2., 3.],
-       [4., 5., 6.]], dtype=float32)
+array([1., 2.], dtype=float32)
 ```
 ### 4.2 numpy数组转换为Tensor
 通过paddle.to_tensor() 方法，将 **Numpy数组** 转化为 **Tensor**：
 ```python
-ndim_1_Tensor = paddle.to_tensor(numpy.array([1.0, 2.0]))
-
-ndim_2_Tensor = paddle.to_tensor(numpy.array([[1.0, 2.0],
-                                              [3.0, 4.0]]))
-
-ndim_3_Tensor = paddle.to_tensor(numpy.random.rand(3, 2))
+tensor_temp = paddle.to_tensor(np.array([1.0, 2.0]))
+print(tensor_temp)
+```
+```text
+Tensor(shape=[2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
+       [1., 2.])
 ```
 创建的 **Tensor** 与原 **Numpy array** 具有相同的形状与数据类型。
 
 <a name="5"></a>
 
-## 5. Tensor 的广播操作
+## 五、Tensor 的广播操作
 Paddle和其他框架一样，提供的一些API支持广播(broadcasting)机制，允许在一些运算时使用不同形状的张量。
 通常来讲，如果有一个形状较小和一个形状较大的张量，会希望多次使用较小的张量来对较大的张量执行一些操作，看起来像是较小形状的张量的形状首先被扩展到和较大形状的张量一致，然后做运算。值得注意的是，这期间并没有对较小形状张量的数据拷贝操作。
 
-飞桨的广播机制主要遵循如下规则（参考 `Numpy 广播机制 <https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting>`_ ）：
+飞桨的广播机制主要遵循如下规则（参考 [Numpy 广播机制](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)）：
 
 1. 每个张量至少为一维张量
 2. 从后往前比较张量的形状，当前维度的大小要么相等，要么其中一个等于一，要么其中一个不存在
 
 例如：
 
-.. code-block:: python
-
-    import paddle
-
+```python
     x = paddle.ones((2, 3, 4))
     y = paddle.ones((2, 3, 4))
     # 两个张量 形状一致，可以广播
@@ -567,6 +545,7 @@ Paddle和其他框架一样，提供的一些API支持广播(broadcasting)机制
     # 此时x和y是不可广播的，因为第一次比较 4不等于6
     # z = x + y
     # InvalidArgumentError: Broadcast dimension mismatch.
+```
 
 现在你知道什么情况下两个张量是可以广播的，两个张量进行广播语义后的结果张量的形状计算规则如下：
 
@@ -575,10 +554,7 @@ Paddle和其他框架一样，提供的一些API支持广播(broadcasting)机制
 
 例如:
 
-.. code-block:: python
-
-    import paddle
-
+```python
     x = paddle.ones((2, 1, 4))
     y = paddle.ones((3, 1))
     z = x + y
@@ -589,3 +565,4 @@ Paddle和其他框架一样，提供的一些API支持广播(broadcasting)机制
     y = paddle.ones((3, 2))
     # z = x + y
     # ValueError: (InvalidArgument) Broadcast dimension mismatch.
+```
