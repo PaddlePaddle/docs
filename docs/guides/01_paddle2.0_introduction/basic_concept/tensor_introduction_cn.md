@@ -74,12 +74,12 @@ Tensor(shape=[2, 2, 5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 <center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="800"></center>
 <br><center>图1 不同维度的Tensor可视化表示</center>
 
-**Tensor**必须形状规则，类似于“矩形”的概念，也就是，沿任何一个轴（也称作维度）上，元素的数量都是相等的，如果为以下情况：
+> **Tensor**在任何一个维度（也称作轴）上，元素的数量必须**相等**，如果为以下情况将会抛出异常：
 ```
 ndim_2_Tensor = paddle.to_tensor([[1.0, 2.0],
                                   [4.0, 5.0, 6.0]])
 ```
-该情况下将会抛出异常：
+
 ```text
 ValueError:
         Faild to convert input data to a regular ndarray :
@@ -123,7 +123,7 @@ Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 查看一个**Tensor**的形状可以通过 **Tensor.shape**，形状是 **Tensor** 的一个重要属性，以下为相关概念：
 
 1. shape：描述了Tensor每个维度上元素的数量
-2. ndim： Tensor的维度数量，例如向量的维度为1，矩阵的维度为2，Tensor可以有任意数量的维度（也称为轴）
+2. ndim： Tensor的维度数量，例如向量的维度为1，矩阵的维度为2，Tensor可以有任意数量的维度
 3. axis或者dimension：指Tensor某个特定的维度
 4. size：指Tensor中全部元素的个数
 
@@ -190,7 +190,7 @@ Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 1
 ```
 ### 2.2 Tensor的数据类型
 
-**Tensor**的数据类型，可以通过 Tensor.dtype 来查看，dtype支持：'bool'，'float16'，'float32'，'float64'，'uint8'，'int8'，'int16'，'int32'，'int64'。
+**Tensor**的数据类型，可以通过 Tensor.dtype 来查看，dtype支持：'bool', 'float16', 'float32', 'float64', 'uint8', 'int8', 'int16', 'int32', 'int64'。
 
 * 通过Python元素创建的Tensor，可以通过dtype来进行指定，如果未指定：
 
@@ -208,7 +208,7 @@ Tensor dtype from Python integers: paddle.int64
 Tensor dtype from Python floating point: paddle.float32
 ```
 
-* **Tensor**不仅支持 floats、ints 类型数据，也支持复数类型数据。如果输入为复数，则**Tensor**的dtype为 ``complex64`` 或 ``complex128`` ，其每个元素均为1个复数：
+**Tensor**不仅支持 floats、ints 类型数据，也支持复数类型数据。如果输入为复数，则**Tensor**的dtype为 ``complex64`` 或 ``complex128`` ，其每个元素均为1个复数：
 
 ```python
 ndim_2_Tensor = paddle.to_tensor([[(1+1j), (2+2j)],
@@ -222,7 +222,7 @@ Tensor(shape=[2, 2], dtype=complex64, place=Place(gpu:0), stop_gradient=True,
         [(3+3j), (4+4j)]])
 ```
 
-* Paddle提供了**cast**接口来改变dtype：
+Paddle提供了**cast**接口来改变dtype：
 ```python
 float32_Tensor = paddle.to_tensor(1.0)
 
@@ -241,7 +241,7 @@ Tensor after cast to int64: paddle.int64
 
 初始化**Tensor**时可以通过**place**来指定其分配的设备位置，可支持的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，其与GPU之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。当未指定place时，Tensor默认设备位置和安装的Paddle版本一致，如安装了GPU版本的Paddle，则设备位置默认为GPU。
 
-* 以下示例分别创建了CPU、GPU和固定内存上的Tensor，并通过 `Tensor.place` 查看Tensor所在的设备位置，：
+以下示例分别创建了CPU、GPU和固定内存上的Tensor，并通过 `Tensor.place` 查看Tensor所在的设备位置，：
 
 * **创建CPU上的Tensor**
 ```python
@@ -478,7 +478,10 @@ x.norm('fro')                 #矩阵的弗罗贝尼乌斯范数
 x.dist(y, p=2)                #矩阵（x-y）的2范数
 x.matmul(y)                   #矩阵乘法
 ```
-需要注意，Paddle中Tensor的操作符均为非原位（inplace）操作，即 ``x.add(y)`` 不会在**Tensor x**上直接进行操作，而会返回一个新的**Tensor**来表示运算结果。
+
+> **注意**
+>
+> Paddle中API有原位（inplace）操作和非原位操作之分。原位操作即在原**Tensor**上保存操作结果，非原位（inplace）操作则不会修改原**Tensor**，而是返回一个新的**Tensor**来表示运算结果。在Paddle2.1后，部分API有对应的原位操作版本，在API后加上 `_` 表示，如`x.add(y)`是非原位操作，`x.add_(y)`为原位操作。
 
 更多Tensor操作相关的API，请参考 [class paddle.Tensor](../../../api/paddle/Tensor_cn.html)
 
@@ -520,31 +523,31 @@ Paddle和其他框架一样，提供的一些API支持广播(broadcasting)机制
 例如：
 
 ```python
-    x = paddle.ones((2, 3, 4))
-    y = paddle.ones((2, 3, 4))
-    # 两个张量 形状一致，可以广播
-    z = x + y
-    print(z.shape)
-    # [2, 3, 4]
+x = paddle.ones((2, 3, 4))
+y = paddle.ones((2, 3, 4))
+# 两个张量 形状一致，可以广播
+z = x + y
+print(z.shape)
+# [2, 3, 4]
 
-    x = paddle.ones((2, 3, 1, 5))
-    y = paddle.ones((3, 4, 1))
-    # 从后向前依次比较：
-    # 第一次：y的维度大小是1
-    # 第二次：x的维度大小是1
-    # 第三次：x和y的维度大小相等
-    # 第四次：y的维度不存在
-    # 所以 x和y是可以广播的
-    z = x + y
-    print(z.shape)
-    # [2, 3, 4, 5]
+x = paddle.ones((2, 3, 1, 5))
+y = paddle.ones((3, 4, 1))
+# 从后向前依次比较：
+# 第一次：y的维度大小是1
+# 第二次：x的维度大小是1
+# 第三次：x和y的维度大小相等
+# 第四次：y的维度不存在
+# 所以 x和y是可以广播的
+z = x + y
+print(z.shape)
+# [2, 3, 4, 5]
 
-    # 相反
-    x = paddle.ones((2, 3, 4))
-    y = paddle.ones((2, 3, 6))
-    # 此时x和y是不可广播的，因为第一次比较 4不等于6
-    # z = x + y
-    # InvalidArgumentError: Broadcast dimension mismatch.
+# 相反
+x = paddle.ones((2, 3, 4))
+y = paddle.ones((2, 3, 6))
+# 此时x和y是不可广播的，因为第一次比较 4不等于6
+# z = x + y
+# ValueError: (InvalidArgument) Broadcast dimension mismatch.
 ```
 
 现在你知道什么情况下两个张量是可以广播的，两个张量进行广播语义后的结果张量的形状计算规则如下：
@@ -555,14 +558,14 @@ Paddle和其他框架一样，提供的一些API支持广播(broadcasting)机制
 例如:
 
 ```python
-    x = paddle.ones((2, 1, 4))
-    y = paddle.ones((3, 1))
-    z = x + y
-    print(z.shape)
-    # z的形状: [2,3,4]
+x = paddle.ones((2, 1, 4))
+y = paddle.ones((3, 1))
+z = x + y
+print(z.shape)
+# z的形状: [2,3,4]
 
-    x = paddle.ones((2, 1, 4))
-    y = paddle.ones((3, 2))
-    # z = x + y
-    # ValueError: (InvalidArgument) Broadcast dimension mismatch.
+x = paddle.ones((2, 1, 4))
+y = paddle.ones((3, 2))
+# z = x + y
+# ValueError: (InvalidArgument) Broadcast dimension mismatch.
 ```
