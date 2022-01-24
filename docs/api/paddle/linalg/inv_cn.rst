@@ -1,9 +1,9 @@
-.. _cn_api_tensor_inverse:
+.. _cn_api_linalg_inv:
 
-inverse
+inv
 -------------------------------
 
-.. py:function:: paddle.inverse(x, name=None)
+.. py:function:: paddle.linalg.inv(x, name=None)
 
 
 计算方阵的逆。方阵是行数和列数相等的矩阵。输入可以是一个方阵（2-D张量），或者是批次方阵（维数大于2时）。
@@ -26,5 +26,5 @@ Tensor, 输入方阵的逆。
     import paddle
 
     mat = paddle.to_tensor([[2, 0], [0, 2]], dtype='float32')
-    inv = paddle.inverse(mat)
+    inv = paddle.linalg.inv(mat)
     print(inv) # [[0.5, 0], [0, 0.5]]

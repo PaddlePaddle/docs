@@ -1,9 +1,9 @@
-.. _cn_api_tensor_norm:
+.. _cn_api_linalg_norm:
 
 norm
 -------------------------------
 
-.. py:function:: paddle.norm(x, p='fro', axis=None, keepdim=False, name=None):
+.. py:function:: paddle.linalg.norm(x, p='fro', axis=None, keepdim=False, name=None):
 
 
 
@@ -12,7 +12,7 @@ norm
 
 .. note::
 
-    此API与`numpy.linalg.norm`存在差异。此API支持高阶张量（rank>=3）作为输入，输入`axis`对应的轴就可以计算出norm的值。但是`numpy.linalg.norm`仅支持一维向量和二维矩阵作为输入。特别需要注意的是，此API的P阶矩阵范数，实际上将矩阵摊平成向量计算。实际计算的是向量范数，而不是真正的矩阵范数。
+    此API与 ``numpy.linalg.norm`` 存在差异。此API支持高阶张量（rank>=3）作为输入，输入 ``axis`` 对应的轴就可以计算出norm的值。但是 ``numpy.linalg.norm`` 仅支持一维向量和二维矩阵作为输入。特别需要注意的是，此API的P阶矩阵范数，实际上将矩阵摊平成向量计算。实际计算的是向量范数，而不是真正的矩阵范数。
 
 参数
 :::::::::
@@ -43,27 +43,27 @@ norm
     # [[  0.   1.   2.   3.] [  4.   5.   6.   7.] [  8.   9.  10.  11.]]]
 
     # compute frobenius norm along last two dimensions.
-    out_fro = paddle.norm(x, p='fro', axis=[0,1])
+    out_fro = paddle.linalg.norm(x, p='fro', axis=[0,1])
     # out_fro.numpy() [17.435596 16.911535 16.7332   16.911535]
 
     # compute 2-order vector norm along last dimension.
-    out_pnorm = paddle.norm(x, p=2, axis=-1)
+    out_pnorm = paddle.linalg.norm(x, p=2, axis=-1)
     #out_pnorm.numpy(): [[21.118711  13.190906   5.477226]
     #                    [ 3.7416575 11.224972  19.131126]]
 
     # compute 2-order  norm along [0,1] dimension.
-    out_pnorm = paddle.norm(x, p=2, axis=[0,1])
+    out_pnorm = paddle.linalg.norm(x, p=2, axis=[0,1])
     #out_pnorm.numpy(): [17.435596 16.911535 16.7332   16.911535]
 
     # compute inf-order  norm
-    out_pnorm = paddle.norm(x, p=np.inf)
+    out_pnorm = paddle.linalg.norm(x, p=np.inf)
     #out_pnorm.numpy()  = [12.]
-    out_pnorm = paddle.norm(x, p=np.inf, axis=0)
+    out_pnorm = paddle.linalg.norm(x, p=np.inf, axis=0)
     #out_pnorm.numpy(): [[12. 11. 10. 9.] [8. 7. 6. 7.] [8. 9. 10. 11.]]
 
     # compute -inf-order  norm
-    out_pnorm = paddle.norm(x, p=-np.inf)
+    out_pnorm = paddle.linalg.norm(x, p=-np.inf)
     #out_pnorm.numpy(): [0.]
-    out_pnorm = paddle.norm(x, p=-np.inf, axis=0)
+    out_pnorm = paddle.linalg.norm(x, p=-np.inf, axis=0)
     #out_pnorm.numpy(): [[0. 1. 2. 3.] [4. 5. 6. 5.] [4. 3. 2. 1.]]
  
