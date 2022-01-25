@@ -62,8 +62,57 @@
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_train.png" style="zoom:50%" />
 
 
+## 二、动转静训练
 
-## 二、动转静模型导出
+### 2.1 背景
+从飞桨框架2.0版本开始，飞桨默认为开启了动态图开发模式，在动态图模式下可以更加方便的组织代码，更容易的调试程序，但是相应的动态图的训练速度相比静态图要慢。动转静模块可以将动态图代码转为静态图代码，执行时使用静态图执行器执行，这样即保持了动态图编码的灵活性，又能利用静态图的优化策略够提高训练速度。
+
+### 2.2 应用场景
+大多数场景下使用动态图训练就能够满足需求，在如下场景时可以考虑使用动转静进行模型训练：
+
+- CPU向GPU调度不充分时可以使用动转静训练。Python、C++代码都是CPU层面调度，然后CPU向GPU调动kernal拉起计算，如果CPU调度时间过长（静态图少一层Python和C++交互，时间会更短些），导致GPU利用率不高，则可以尝试用静态图训练提升效率。从应用层面，如果模型任务本身的kernal计算时长很长的话，相对来说调度到kernal拉起造成的影响不大，这种情况一般动态图训练就可以，比如Bert等模型，反之如HRNet等模型则可以观察GPU利用率来决定是否使用动转静训练。
+
+- 如果进阶用户想要进一步对计算图做优化，提升模型性能则可以考虑使用动转静训练。调用`to_static`进行动转静时可以使用`build_strategy`参数开启`fuse_broadcast_ops`、`memory_optimize`等优化策略来对计算图进行优化。
+
+- 混合精度(AMP)训练场景，可以考虑使用动转静训练。
+
+### 2.3 动转静训练样例
+下面的示例代码中展示了如何使用动转静训练LeNet网络，在代码中我们只需要增加一行`static_model = paddle.jit.to_static(model)`就可以将动态图网络转为静态图网络。对于其他动态图下的训练代码无需进行改动即可进行动转静的训练。
+
+```python
+import paddle
+from paddle.vision.models import LeNet
+import paddle.nn.functional as F
+from paddle.vision.transforms import Compose, Normalize
+
+def train(model):
+    model.train()
+    epochs = 2
+    optim = paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters())
+    for epoch in range(epochs):
+        for batch_id, data in enumerate(train_loader()):
+            x_data = data[0]
+            y_data = data[1]
+            predicts = model(x_data)
+            loss = F.cross_entropy(predicts, y_data)
+            acc = paddle.metric.accuracy(predicts, y_data)
+            loss.backward()
+            if batch_id % 100 == 0:
+                print("epoch: {}, batch_id: {}, loss is: {}, acc is: {}".format(
+                    epoch, batch_id, loss.numpy(), acc.numpy()))
+            optim.step()
+            optim.clear_grad()
+
+transform = Compose([Normalize(mean=[127.5], std=[127.5], data_format='CHW')])
+train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=transform)
+train_loader = paddle.io.DataLoader(train_dataset, batch_size=64, shuffle=True)
+model = LeNet()
+static_model = paddle.jit.to_static(model)      # <----只需要一行代码调用动转静
+train(static_model)
+```
+
+
+## 三、动转静模型导出
 
 动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图模型训练与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。下图展示了**动态图模型训练——>动转静模型导出——>静态预测部署**的流程。
 
@@ -77,7 +126,7 @@
 + **Tensor层面**：将所有的 ``Parameters`` 和 ``Buffers`` 转为**可导出的 ``Variable`` 参数**（ ``persistable=True`` ）
 
 
-### 2.1 通过 ``forward`` 导出预测模型
+### 3.1 通过 ``forward`` 导出预测模型
 
 通过 ``forward`` 导出预测模型导出一般包括三个步骤：
 
@@ -128,12 +177,12 @@ simple_net.pdimodel         // 存放模型的网络结构
 simple_net.pdiparams.info   // 存放额外的其他信息
 ```
 
-### 2.2 使用 InputSpec 指定模型输入 Tensor 信息
+### 3.2 使用 InputSpec 指定模型输入 Tensor 信息
 
 动静转换在生成静态图 Program 时，依赖输入 Tensor 的 shape、dtype 和 name 信息。因此，Paddle 提供了 InputSpec 接口，用于指定输入 Tensor 的描述信息，并支持动态 shape 特性。
 
 
-#### 2.2.1 构造 InputSpec
+#### 3.2.1 构造 InputSpec
 
 
 **方式一：直接构造**
@@ -184,7 +233,7 @@ print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
 
 > 注：若未在 ``from_numpy`` 中指定新的 ``name``，则默认使用 ``None`` 。
 
-#### 2.2.2 基本用法
+#### 3.2.2 基本用法
 
 **方式一： 在 @to_static 装饰器中调用**
 
@@ -330,10 +379,10 @@ paddle.jit.save(net, path='./simple_net')
 更多关于动转静 ``to_static`` 搭配 ``paddle.jit.save/load`` 的使用方式，可以参考  [【模型的存储与载入】](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/02_paddle2.0_develop/08_model_save_load_cn.html)。
 
 
-## 三、动、静态图部署区别
+## 四、动、静态图部署区别
 
 当训练完一个模型后，下一阶段就是保存导出，实现**模型**和**参数**的分发，进行多端部署。如下两小节，将介绍动态图和静态图的概念和差异性，以帮助理解动转静如何起到**桥梁作用**的。
-### 3.1 动态图预测部署
+### 4.1 动态图预测部署
 
 动态图下，**模型**指的是 Python 前端代码；**参数**指的是 ``model.state_dict()`` 中存放的权重数据。
 
@@ -402,7 +451,7 @@ sgd = paddle.optimizer.SGD(learning_rate=0.1, parameters=net.parameters())
                                                          所有待更新参数
 ```
 
-### 3.2 静态图预测部署
+### 4.2 静态图预测部署
 
 静态图部署时，**模型**指的是 ``Program`` ；参数指的是所有的 ``Persistable=True`` 的 ``Variable`` 。二者都可以序列化导出为磁盘文件，**与前端代码完全解耦**。
 
