@@ -31,10 +31,10 @@ For domestic users, when downloading docker is slow due to network problems, you
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
     ```
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
     ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
@@ -51,10 +51,10 @@ If your machine is not in mainland China, you can pull the image directly from D
 
 * GPU version of PaddlePaddle：
     ```
-    docker pull paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
+    nvidia-docker pull paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
     ```
     ```
-    docker pull paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
+    nvidia-docker pull paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
     ```
 
 You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get more images.
