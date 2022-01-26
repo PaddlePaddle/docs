@@ -31,10 +31,10 @@
 
 * GPU版的PaddlePaddle：
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
     ```
     ```
-    docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
     ```
 
 如果您的机器不在中国大陆地区，可以直接从DockerHub拉取镜像：
@@ -51,10 +51,10 @@
 
 * GPU版的PaddlePaddle：
     ```
-    docker pull paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
+    nvidia-docker pull paddlepaddle/paddle:2.2.2-gpu-cuda10.2-cudnn7
     ```
     ```
-    docker pull paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
+    nvidia-docker pull paddlepaddle/paddle:2.2.2-gpu-cuda11.2-cudnn8
     ```
 
 您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取更多镜像。
