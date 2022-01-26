@@ -11,95 +11,101 @@
 
 #### API
 
-- 新增`paddle.nn.Mish` 和 `paddle.nn.functional.mish`，支持逐元素计算mish激活函数。 ([#38803](https://github.com/PaddlePaddle/Paddle/pull/38803))
+ - 新增`paddle.nn.Mish` 和 `paddle.nn.functional.mish`，支持逐元素计算mish激活函数。 ([#38803](https://github.com/PaddlePaddle/Paddle/pull/38803)) 
 
 #### 其他
 
-- `paddle.nn.PReLU` 、 `paddle.nn.functional.prelu`、`paddle.nn.static.prelu` 新增支持 `data_format` 参数，可以设置输入的数据类型。 ([#38495](https://github.com/PaddlePaddle/Paddle/pull/38495))
-- `paddle.index_select` 新增支持 `float16` 数据类型。([#38751](https://github.com/PaddlePaddle/Paddle/pull/38751))
-- 优化 ``paddle.multiplex`` 当``inputs``中张量 `size` 为 0 时的报错信息。([#38757](https://github.com/PaddlePaddle/Paddle/pull/38757))
-- `paddle.fluid.contrib.slim.quantization.PostTrainingQuantization` 新增初始化参数`data_loader`，支持传入 `paddle.io.DataLoader` 对象或者`Python Generator` 。([#38729](https://github.com/PaddlePaddle/Paddle/pull/38729))
+-  `paddle.nn.PReLU` 、 `paddle.nn.functional.prelu`、`paddle.nn.static.prelu` 新增支持 `data_format` 参数，可以设置输入的数据类型。 ([#38495](https://github.com/PaddlePaddle/Paddle/pull/38495)) 
+-  `paddle.index_select` 新增支持 `float16` 数据类型。([#38751](https://github.com/PaddlePaddle/Paddle/pull/38751)) 
+-  优化 ``paddle.multiplex`` 当``inputs``中张量 `size` 为 0 时的报错信息。([#38757](https://github.com/PaddlePaddle/Paddle/pull/38757)) 
+-  `paddle.fluid.contrib.slim.quantization.PostTrainingQuantization` 新增初始化参数`data_loader`，支持传入 `paddle.io.DataLoader` 对象或者`Python Generator` 。([#38729](https://github.com/PaddlePaddle/Paddle/pull/38729)) 
+
 
 ### （2）问题修复
 
 #### API
 
-- 修复`paddle.max`在输入`x.ndim > 6 and axis < 0`时运行出错的问题。([#38070](https://github.com/PaddlePaddle/Paddle/pull/38070))
-- 修复`paddle.max`、`paddle.min`的bug：在CPU设备上，当参数axis是list类型且`len(axis) == x.ndim and axis[i] < 0`时，结果出错。([#38478](https://github.com/PaddlePaddle/Paddle/pull/38478))
+- 修复`paddle.max`在输入`x.ndim > 6 and axis < 0`时运行出错的问题。([#38070](https://github.com/PaddlePaddle/Paddle/pull/38070)) 
+- 修复`paddle.max`、`paddle.min`的bug：在CPU设备上，当参数axis是list类型且`len(axis) == x.ndim and axis[i] < 0`时，结果出错。([#38478](https://github.com/PaddlePaddle/Paddle/pull/38478)) 
 - 修复``paddle.nn.functional.unfold``在InferShape计算时不区分compile time和runtime的问题。([#38925](https://github.com/PaddlePaddle/Paddle/pull/38925))
 - 修复`paddle.nn.functional.cross_entropy`在对`labels`进行检查时，存在不必要的GPU与CPU同步的问题。（[#38849](https://github.com/PaddlePaddle/Paddle/pull/38849)）
-- 修复`paddle.distributed.split`在沿列切分FC时，反向计算时得到的输入梯度结果异常的问题。([#38724](https://github.com/PaddlePaddle/Paddle/pull/38724))
-- 修复 `paddle.nn.Layer.to` 不支持 `paddle.dtype` 类型的问题。([#38108](https://github.com/PaddlePaddle/Paddle/pull/38108))
-- 修复静态图下 ``paddle.linalg.svd`` 当 ``full_matrics=True`` 时，输出tensor的shape在动态图和静态图下不同的问题。([#37744](https://github.com/PaddlePaddle/Paddle/pull/37744))
-- 修复`Tensor`切片索引使用多个`None`类型索引时结果维度异常的问题。([#37400](https://github.com/PaddlePaddle/Paddle/pull/37400))
-- 修复`Tensor`索引赋值在部分场景下显存泄露的问题。([#38098](https://github.com/PaddlePaddle/Paddle/pull/38098))
-- 修复模型使用 `save_inference_model` 导出后，添加反向 pass 做训练，`conv2d` 缺失属性报错的问题。 ([#38832](https://github.com/PaddlePaddle/Paddle/pull/38832))
+- 修复`paddle.distributed.split`在沿列切分FC时，反向计算时得到的输入梯度结果异常的问题。([#38724](https://github.com/PaddlePaddle/Paddle/pull/38724)) 
+- 修复 `paddle.nn.Layer.to` 不支持 `paddle.dtype` 类型的问题。([#38108](https://github.com/PaddlePaddle/Paddle/pull/38108)) 
+- 修复静态图下 ``paddle.linalg.svd`` 当 ``full_matrics=True`` 时，输出tensor的shape在动态图和静态图下不同的问题。([#37744](https://github.com/PaddlePaddle/Paddle/pull/37744)) 
+- 修复`Tensor`切片索引使用多个`None`类型索引时结果维度异常的问题。([#37400](https://github.com/PaddlePaddle/Paddle/pull/37400)) 
+- 修复`Tensor`索引赋值在部分场景下显存泄露的问题。([#38098](https://github.com/PaddlePaddle/Paddle/pull/38098)) 
+- 修复模型使用 `save_inference_model` 导出后，添加反向 pass 做训练，`conv2d` 缺失属性报错的问题。 ([#38832](https://github.com/PaddlePaddle/Paddle/pull/38832)) 
 
 #### IR(Intermediate Representation)
 
 - 动态图转静态图
-  
-  - 修复了部分初始化相关 API 动静行为不统一的问题。([#37827](https://github.com/PaddlePaddle/Paddle/pull/37827))
-  - 修复动转静代码转写时会将 `paddle` 作为变量的问题。([#37999](https://github.com/PaddlePaddle/Paddle/pull/37999))
-  - 修复动转静代码转写时，突出的代码注释导致转写报错的问题。([#38003](https://github.com/PaddlePaddle/Paddle/pull/38003))
-  - 修复 `for ... zip...` 语句在动转静中死循环的问题。([#37846](https://github.com/PaddlePaddle/Paddle/pull/37846))
+    - 修复了部分初始化相关 API 动静行为不统一的问题。([#37827](https://github.com/PaddlePaddle/Paddle/pull/37827)) 
+    - 修复动转静代码转写时会将 `paddle` 作为变量的问题。([#37999](https://github.com/PaddlePaddle/Paddle/pull/37999))
+    - 修复动转静代码转写时，突出的代码注释导致转写报错的问题。([#38003](https://github.com/PaddlePaddle/Paddle/pull/38003))
+    - 修复 `for ... zip...` 语句在动转静中死循环的问题。([#37846](https://github.com/PaddlePaddle/Paddle/pull/37846)) 
+
 - 模型量化
-  
-  - 修复动态图量化训练导出模型多余节点问题。([#38122](https://github.com/PaddlePaddle/Paddle/pull/38122)) ([#38025](https://github.com/PaddlePaddle/Paddle/pull/38025))
-  - 针对量化模型在Paddle Lite上无法预测的问题，去除量化导出模型的 `clip_extra` 设置。 ([#38343](https://github.com/PaddlePaddle/Paddle/pull/38343))
-  - 针对 `flatten_contiguous_range` 算子在量化中输出配置错误的问题，修复 `flatten_contiguous_range` 量化设置。 ([#37741](https://github.com/PaddlePaddle/Paddle/pull/37741))
+    - 修复动态图量化训练导出模型多余节点问题。([#38122](https://github.com/PaddlePaddle/Paddle/pull/38122)) ([#38025](https://github.com/PaddlePaddle/Paddle/pull/38025)) 
+    - 针对量化模型在Paddle Lite上无法预测的问题，去除量化导出模型的 `clip_extra` 设置。 ([#38343](https://github.com/PaddlePaddle/Paddle/pull/38343)) 
+    - 针对 `flatten_contiguous_range` 算子在量化中输出配置错误的问题，修复 `flatten_contiguous_range` 量化设置。 ([#37741](https://github.com/PaddlePaddle/Paddle/pull/37741)) 
+
 
 #### 其他
 
 - 自定义OP
-  
-  - 修复了自定义算子在多进程下加载Python API 时，可能因文件不完整导致报错的问题。([#38128](https://github.com/PaddlePaddle/Paddle/pull/38128))
-  - 修复了在CentOS平台上编译时，`D_GLIBCXX_USE_CXX11_ABI`未按预期生效导致的编译失败问题。([#37878](https://github.com/PaddlePaddle/Paddle/pull/37878))
+    - 修复了自定义算子在多进程下加载Python API 时，可能因文件不完整导致报错的问题。([#38128](https://github.com/PaddlePaddle/Paddle/pull/38128)) 
+    - 修复了在CentOS平台上编译时，`D_GLIBCXX_USE_CXX11_ABI`未按预期生效导致的编译失败问题。([#37878](https://github.com/PaddlePaddle/Paddle/pull/37878)) 
+
 - 动态图Inplace策略
-  
-  - 修复了多个inplace op连续执行时，accumulator 报错的问题。([#38406](https://github.com/PaddlePaddle/Paddle/pull/38406))
-  - 修复了 `Tensor` 的 `setitem` 方法，对叶子节点进行inplace操作时，导致反向图构建错误的bug。([#38014](https://github.com/PaddlePaddle/Paddle/pull/38014))
-- NHWC 策略
-  
-  - 修复 batchnorm_op 中，当数据类型为 FP32 ，且数据维度 dims = 2，data_layout = NHWC 时，反向 Op 内中间变量未定义问题。 ([#37020](https://github.com/PaddlePaddle/Paddle/pull/37020))
+    - 修复了多个inplace op连续执行时，accumulator 报错的问题。([#38406](https://github.com/PaddlePaddle/Paddle/pull/38406))
+    - 修复了 `Tensor` 的 `setitem` 方法，对叶子节点进行inplace操作时，导致反向图构建错误的bug。([#38014](https://github.com/PaddlePaddle/Paddle/pull/38014)) 
+
+- NHWC  策略
+    -  修复 batchnorm_op 中，当数据类型为 FP32 ，且数据维度 dims = 2，data_layout = NHWC 时，反向 Op 内中间变量未定义问题。 ([#37020](https://github.com/PaddlePaddle/Paddle/pull/37020)) 
+
+
+
 
 ## 3. 部署方向（Paddle Inference）
+
+
 
 ### （1）功能优化
 
 #### 框架及API更新
 
-- C API支持对c++ std::string的处理。([#38667](https://github.com/PaddlePaddle/Paddle/pull/38667))
+ - C API支持对c++ std::string的处理。([#38667](https://github.com/PaddlePaddle/Paddle/pull/38667)) 
 
 #### 后端能力增强
 
 - GPU 及 TensorRT 子图引擎相关更新
-  - 支持 relu、relu6、tanh、sigmoid、pool2d、concat、batch_norm、split、gelu、scale、swish、prelu、clip、reduce_sum、reduce_mean 算子在静态 shape 且2维输入情况下调用 TensorRT 推理。([#37773](https://github.com/PaddlePaddle/Paddle/pull/37773))
-  - 支持mish激活函数调用 TensorRT 推理。 ([#38866](https://github.com/PaddlePaddle/Paddle/pull/38866))
+    - 支持 relu、relu6、tanh、sigmoid、pool2d、concat、batch_norm、split、gelu、scale、swish、prelu、clip、reduce_sum、reduce_mean 算子在静态 shape 且2维输入情况下调用 TensorRT 推理。([#37773](https://github.com/PaddlePaddle/Paddle/pull/37773)) 
+    - 支持mish激活函数调用 TensorRT 推理。 ([#38866](https://github.com/PaddlePaddle/Paddle/pull/38866)) 
+
 
 ### （2）问题修复
 
 #### 框架及API修复
 
 - 算子修复
-  
-  - 修复roi_align算子在使用 TRT 时不兼容的问题。([#38788](https://github.com/PaddlePaddle/Paddle/pull/38788))
-  - 增加elementwise在维度相同时广播的功能。([#37908](https://github.com/PaddlePaddle/Paddle/pull/37908))
+
+    - 修复roi_align算子在使用 TRT 时不兼容的问题。([#38788](https://github.com/PaddlePaddle/Paddle/pull/38788))
+    - 增加elementwise在维度相同时广播的功能。([#37908](https://github.com/PaddlePaddle/Paddle/pull/37908))
+
 - 框架功能修复
-  
-  - 修复动态图转静态图时的模型剪裁逻辑，使得包含 subblock 的算子在动态图转静态图时可以正确剪裁。([#37579](https://github.com/PaddlePaddle/Paddle/pull/37579))
-  - 修复多线程下 CreatePredictor 接口的报错问题，当前的 CreatePredictor 接口允许在多线程中调用而不会导致推理异常。([#37894](https://github.com/PaddlePaddle/Paddle/pull/37894))
-  - 配置config时，对于没有权重的模型，支持 params file 传空字符串。([#38579](https://github.com/PaddlePaddle/Paddle/pull/38579))
-  - 修复Paddle-TRT engine直接输入cpu tensor没有进行gpu数据拷贝的问题。([#37427](https://github.com/PaddlePaddle/Paddle/pull/37427))
+    - 修复动态图转静态图时的模型剪裁逻辑，使得包含 subblock 的算子在动态图转静态图时可以正确剪裁。([#37579](https://github.com/PaddlePaddle/Paddle/pull/37579))
+    - 修复多线程下 CreatePredictor 接口的报错问题，当前的 CreatePredictor 接口允许在多线程中调用而不会导致推理异常。([#37894](https://github.com/PaddlePaddle/Paddle/pull/37894))
+    - 配置config时，对于没有权重的模型，支持 params file 传空字符串。([#38579](https://github.com/PaddlePaddle/Paddle/pull/38579))
+    - 修复Paddle-TRT engine直接输入cpu tensor没有进行gpu数据拷贝的问题。([#37427](https://github.com/PaddlePaddle/Paddle/pull/37427)) 
+
 
 #### 后端能力修复
 
 - TensorRT 子图引擎修复
-  
-  - 修复pool2d在某些参数组合的情况下运行TensorRT出错的问题。([#37929](https://github.com/PaddlePaddle/Paddle/pull/37929))
+    - 修复pool2d在某些参数组合的情况下运行TensorRT出错的问题。([#37929](https://github.com/PaddlePaddle/Paddle/pull/37929))
+
 - MKLDNN引擎修复
-  
-  - 修复 matmul_v2 的 mkldnn kernel 不支持两个输入的shape长度不同的问题。 ([#38733](https://github.com/PaddlePaddle/Paddle/pull/38733))
+    - 修复 matmul_v2 的 mkldnn kernel 不支持两个输入的shape长度不同的问题。 ([#38733](https://github.com/PaddlePaddle/Paddle/pull/38733)) 
 
 #### 其他修复
 
