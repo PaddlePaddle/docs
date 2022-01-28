@@ -1,6 +1,5 @@
 # Tensor介绍
 
-<a name="0"></a>
 
 ## 概述：Tensor 的概念
 
@@ -10,14 +9,12 @@
 
 同一**Tensor**的中所有元素的数据类型均相同。如果你对 [Numpy](https://numpy.org/doc/stable/user/quickstart.html#the-basics) 熟悉，**Tensor**是类似于 **Numpy 数组（array）** 的概念。
 
-<a name="1"></a>
-
 ## 一、Tensor的创建
 
-在Paddle中，创建 **Tensor** 有多种方式，如：指定数据列表创建、指定形状创建、指定间隔创建等。
+Paddle提供了多种方式创建**Tensor**，如：指定数据列表创建、指定形状创建、指定区间创建等。
 
 ### 1.1 指定数据创建
-通过给定Python列表数据，可以创建任意维度的Tensor，举例如下：
+通过给定Python列表数据，可以创建任意维度（也称为轴）的Tensor，举例如下：
 ```python
 # 创建类似向量（vector）的一维 Tensor
 import paddle # 后面的示例代码默认已导入paddle模块
@@ -74,7 +71,7 @@ Tensor(shape=[2, 2, 5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 <center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="800"></center>
 <br><center>图1 不同维度的Tensor可视化表示</center>
 
-> **Tensor**在任何一个维度（也称作轴）上，元素的数量必须**相等**，如果为以下情况将会抛出异常：
+> **Tensor**必须形如矩形，也就是，在任何一个维度上，元素的数量必须**相等**，如果为以下情况将会抛出异常：
 ```
 ndim_2_Tensor = paddle.to_tensor([[1.0, 2.0],
                                   [4.0, 5.0, 6.0]])
@@ -113,8 +110,6 @@ paddle.linspace(start, end, num) # 创建以元素个数num均匀分隔区间[st
 Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
        [1, 2, 3, 4])
 ```
-
-<a name="2"></a>
 
 ## 二、Tensor的属性
 
@@ -181,7 +176,7 @@ origin:[3, 2, 5] reshape:[-1]         actual: [30]
 origin:[3, 2, 5] reshape:[0, 5, -1]   actual: [3, 5, 2]
 ```
 
-可以发现，reshape为[-1]时，会将Tensor按其在计算机上的内存分布展平为一维 Tensor。
+可以发现，reshape为[-1]时，会将Tensor按其在计算机上的内存分布展平为一维。
 ```python
 print("Tensor flattened to Vector:", paddle.reshape(ndim_3_Tensor, [-1]).numpy())
 ```
@@ -241,7 +236,7 @@ Tensor after cast to int64: paddle.int64
 
 初始化**Tensor**时可以通过**place**来指定其分配的设备位置，可支持的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，其与GPU之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。当未指定place时，Tensor默认设备位置和安装的Paddle版本一致，如安装了GPU版本的Paddle，则设备位置默认为GPU。
 
-以下示例分别创建了CPU、GPU和固定内存上的Tensor，并通过 `Tensor.place` 查看Tensor所在的设备位置，：
+以下示例分别创建了CPU、GPU和固定内存上的Tensor，并通过 `Tensor.place` 查看Tensor所在的设备位置：
 
 * **创建CPU上的Tensor**
 ```python
@@ -281,10 +276,8 @@ Tensor的名称是其唯一的标识符，为python字符串类型，查看一�
 print("Tensor name:", paddle.to_tensor(1).name)
 ```
 ```text
-Tensor name: generated_Tensor_0
+Tensor name: generated_tensor_0
 ```
-
-<a name="3"></a>
 
 ## 三、Tensor的操作
 
@@ -429,7 +422,7 @@ x.prod()                      #指定维度上元素累乘，默认为全部维�
 x.sum()                       #指定维度上元素的和，默认为全部维度
 ```
 
-Paddle对python数学运算相关的魔法函数进行了重写，以下操作与上述结果相同。
+Paddle对python数学运算相关的魔法函数进行了重写，例如：
 ```text
 x + y  -> x.add(y)            #逐元素相加
 x - y  -> x.subtract(y)       #逐元素相减
@@ -485,9 +478,7 @@ x.matmul(y)                   #矩阵乘法
 
 更多Tensor操作相关的API，请参考 [class paddle.Tensor](../../../api/paddle/Tensor_cn.html)
 
-<a name="4"></a>
-
-## 四、Tensor 与 numpy相互转换
+## 四、Tensor 与 numpy数组 相互转换
 ### 4.1 Tensor转换为numpy数组
 通过 Tensor.numpy() 方法，将 **Tensor** 转化为 **Numpy数组**：
 ```python
@@ -509,23 +500,21 @@ Tensor(shape=[2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
 ```
 创建的 **Tensor** 与原 **Numpy array** 具有相同的形状与数据类型。
 
-<a name="5"></a>
-
 ## 五、Tensor 的广播操作
-Paddle和其他框架一样，提供的一些API支持广播(broadcasting)机制，允许在一些运算时使用不同形状的张量。
-通常来讲，如果有一个形状较小和一个形状较大的张量，会希望多次使用较小的张量来对较大的张量执行一些操作，看起来像是较小形状的张量的形状首先被扩展到和较大形状的张量一致，然后做运算。值得注意的是，这期间并没有对较小形状张量的数据拷贝操作。
+Paddle和其他框架一样，提供的一些API支持广播(broadcasting)机制，允许在一些运算时使用不同形状的Tensor。
+通常来讲，如果有一个形状较小和一个形状较大的Tensor，会希望多次使用较小的Tensor来对较大的Tensor执行一些操作，看起来像是较小形状的Tensor的形状首先被扩展到和较大形状的Tensor一致，然后做运算。值得注意的是，这期间并没有对较小形状Tensor的数据拷贝操作。
 
-飞桨的广播机制主要遵循如下规则（参考 [Numpy 广播机制](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)）：
+Paddle的广播机制主要遵循如下规则（参考 [Numpy 广播机制](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)）：
 
-1. 每个张量至少为一维张量
-2. 从后往前比较张量的形状，当前维度的大小要么相等，要么其中一个等于一，要么其中一个不存在
+1. 每个Tensor至少为一维Tensor
+2. 从后往前比较Tensor的形状，当前维度的大小要么相等，要么其中一个等于一，要么其中一个不存在
 
 例如：
 
 ```python
 x = paddle.ones((2, 3, 4))
 y = paddle.ones((2, 3, 4))
-# 两个张量 形状一致，可以广播
+# 两个Tensor 形状一致，可以广播
 z = x + y
 print(z.shape)
 # [2, 3, 4]
@@ -550,10 +539,10 @@ y = paddle.ones((2, 3, 6))
 # ValueError: (InvalidArgument) Broadcast dimension mismatch.
 ```
 
-现在你知道什么情况下两个张量是可以广播的，两个张量进行广播语义后的结果张量的形状计算规则如下：
+现在你知道什么情况下两个Tensor是可以广播的，两个Tensor进行广播语义后的结果Tensor的形状计算规则如下：
 
-1. 如果两个张量的形状的长度不一致，那么需要在较小形状长度的矩阵向前添加1，直到两个张量的形状长度相等。
-2. 保证两个张量形状相等之后，每个维度上的结果维度就是当前维度上较大的那个。
+1. 如果两个Tensor的形状的长度不一致，那么需要在较小形状长度的矩阵向前添加1，直到两个Tensor的形状长度相等。
+2. 保证两个Tensor形状相等之后，每个维度上的结果维度就是当前维度上较大的那个。
 
 例如:
 
