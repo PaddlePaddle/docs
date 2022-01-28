@@ -61,7 +61,7 @@
 
   * **GPU运算能力超过3.5的硬件设备**
 
-  * 注：目前官方发布的windows安装包仅包含 CUDA 10.1/10.2/11.2，如需使用其他cuda版本，请通过源码自行编译。您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+  * 注：目前官方发布的windows安装包仅包含 CUDA 10.1/10.2/11.0/11.1/11.2，如需使用其他cuda版本，请通过源码自行编译。您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
 
@@ -132,6 +132,10 @@
 安装完成后您可以使用 `python` 进入python解释器，输入`import paddle` ，再输入 `paddle.utils.run_check()`
 
 如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
+
+注：
+
+* 由于飞桨使用Visual Studio进行编译，使用时需要操作系统自带Visual C++运行时库，大部分情况下Windows系统已默认自带，但对于某些纯净版系统可能未安装，若 `import paddle` 后出现 `DLL load failed` 报错，请下载 https://aka.ms/vs/17/release/vc_redist.x64.exe 安装后再次尝试。
 
 ## **四、如何卸载**
 
