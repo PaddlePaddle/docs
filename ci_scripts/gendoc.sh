@@ -1,0 +1,91 @@
+#! /bin/bash
+
+paddlewhl=$1
+if [[ $paddlewhl == "" ]] ; then
+  # paddlewhl=https://paddle-wheel.bj.bcebos.com/0.0.0-cpu-mkl/paddlepaddle-0.0.0-cp35-cp35m-linux_x86_64.whl
+  paddlewhl=/root/${PADDLE_WHL_PRE_INSTALLED}
+fi
+
+FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
+OUTPUTDIR=${OUTPUTDIR:=/docs}
+CONFIGDIR=${CONFIGDIR:=/config}
+VERSIONSTR=${VERSIONSTR:=develop}
+OUTPUTFORMAT=${OUTPUTFORMAT:=html}
+
+DOCROOT=${FLUIDDOCDIR}/docs/
+if [ "${VERSIONSTR:0:2}" = "1." ] ; then
+  DOCROOT=${FLUIDDOCDIR}/doc/fluid/
+fi
+APIROOT=${DOCROOT}/api/
+
+# echo $paddlewhl $FLUIDDOCDIR $OUTPUTDIR $CONFIGDIR
+# exit
+
+pip3 install $paddlewhl
+
+
+cd ${APIROOT}
+python ./gen_doc.py
+if [ -f ./copy_codes_from_en_doc.py ] && [ -f ./api_info_all.json ] ; then
+  python ./copy_codes_from_en_doc.py --api-info ./api_info_all.json ${DOCROOT}
+fi
+
+if [ -f ${FLUIDDOCDIR}/ci_scripts/hooks/pre-doc-compile.sh ] ; then
+  ${FLUIDDOCDIR}/ci_scripts/hooks/pre-doc-compile.sh
+fi
+
+thread=2
+tmp_fifofile=/tmp/$$.fifo		#脚本运行的当前进程ID号作为文件名
+mkfifo $tmp_fifofile			#新建一个随机fifo管道文件
+exec 6<>$tmp_fifofile			#定义文件描述符6指向这个fifo管道文件
+rm $tmp_fifofile			#清空管道内容
+
+# for循环 往 fifo管道文件中写入$thread个空行
+for ((i=0;i<$thread;i++));do
+  echo 
+done >&6
+
+
+for lang in en zh ; do
+  read -u6
+  {
+    mkdir -p ${OUTPUTDIR}/${lang}/${VERSIONSTR}
+    /usr/local/bin/sphinx-build -b ${OUTPUTFORMAT} -j auto -d /var/doctrees -c ${CONFIGDIR}/${lang} ${DOCROOT} ${OUTPUTDIR}/${lang}/${VERSIONSTR}
+    if [ "${OUTPUTFORMAT}" = "html" ] ; then
+      INDEXFILE="${OUTPUTDIR}/${lang}/${VERSIONSTR}/index_${lang}.html"
+      if [ "${lang}" = "zh" ] ; then
+        INDEXFILE="${OUTPUTDIR}/${lang}/${VERSIONSTR}/index_cn.html"
+      fi
+      if [ ! -f ${INDEXFILE} ] ; then 
+        /usr/local/bin/sphinx-build -b ${OUTPUTFORMAT} -j auto -d /var/doctrees -c ${CONFIGDIR}/${lang} ${DOCROOT} ${OUTPUTDIR}/${lang}/${VERSIONSTR}
+      fi
+
+      if [ "${lang}" = "en" ] ; then
+        python /root/post_filter_htmls.py ${OUTPUTDIR}/${lang}/${VERSIONSTR}/api/
+      fi
+    fi
+    echo >&6
+  } &
+done
+
+wait			#等到后台的进程都执行完毕
+exec 6>&-		##删除文件描述符6
+
+if [ -f ${FLUIDDOCDIR}/ci_scripts/hooks/post-doc-compile.sh ] ; then
+  ${FLUIDDOCDIR}/ci_scripts/hooks/post-doc-compile.sh
+fi
+
+if [ "${VERSIONSTR:0:2}" = "1." ] ; then
+  echo Done
+  exit 0
+fi
+
+mkdir -p ${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output
+for f in alias_api_mapping api_label display_doc_list not_display_doc_list api_info_dict.json api_info_all.json ; do
+  if [ -f ${APIROOT}/${f} ] ; then
+    cp ${APIROOT}/${f} ${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output
+  fi
+done
+
+echo Done
+exit 0
