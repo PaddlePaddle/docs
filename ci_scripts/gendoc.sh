@@ -1,10 +1,5 @@
 #! /bin/bash
-
-paddlewhl=$1
-if [[ $paddlewhl == "" ]] ; then
-  # paddlewhl=https://paddle-wheel.bj.bcebos.com/0.0.0-cpu-mkl/paddlepaddle-0.0.0-cp35-cp35m-linux_x86_64.whl
-  paddlewhl=/root/${PADDLE_WHL_PRE_INSTALLED}
-fi
+CURDIR=$(pwd)
 
 FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
 OUTPUTDIR=${OUTPUTDIR:=/docs}
@@ -18,10 +13,11 @@ if [ "${VERSIONSTR:0:2}" = "1." ] ; then
 fi
 APIROOT=${DOCROOT}/api/
 
-# echo $paddlewhl $FLUIDDOCDIR $OUTPUTDIR $CONFIGDIR
-# exit
 
-pip3 install $paddlewhl
+# install paddle if not installed yet.
+# PADDLE_WHL is defined in ci_start.sh
+pip3 list --disable-pip-version-check | grep paddlepaddle && \
+  pip3 install --no-cache-dir -i https://mirror.baidu.com/pypi/simple ${PADDLE_WHL}
 
 
 cd ${APIROOT}
@@ -86,6 +82,8 @@ for f in alias_api_mapping api_label display_doc_list not_display_doc_list api_i
     cp ${APIROOT}/${f} ${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output
   fi
 done
+# TODO: upload OUTPUTDIR to bos
 
 echo Done
+cd ${CURDIR}
 exit 0
