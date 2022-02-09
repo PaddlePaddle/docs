@@ -88,7 +88,9 @@ pooling层
     " :ref:`paddle.nn.MaxPool1D <cn_api_nn_MaxPool1D>` ", "一维最大池化层"
     " :ref:`paddle.nn.MaxPool2D <cn_api_nn_MaxPool2D>` ", "二维最大池化层"
     " :ref:`paddle.nn.MaxPool3D <cn_api_nn_MaxPool3D>` ", "三维最大池化层"
+    " :ref:`paddle.nn.MaxUnPool1D <cn_api_nn_MaxUnPool1D>` ", "一维最大反池化层"
     " :ref:`paddle.nn.MaxUnPool2D <cn_api_nn_MaxUnPool2D>` ", "二维最大反池化层"
+    " :ref:`paddle.nn.MaxUnPool3D <cn_api_nn_MaxUnPool3D>` ", "三维最大反池化层"
     
 .. _padding_layers:
 
@@ -135,6 +137,7 @@ Padding层
     " :ref:`paddle.nn.Softshrink <cn_api_nn_Softshrink>` ", "Softshrink激活层"
     " :ref:`paddle.nn.Softsign <cn_api_nn_Softsign>` ", "Softsign激活层"
     " :ref:`paddle.nn.Swish <cn_api_nn_Swish>` ", "Swish激活层"
+    " :ref:`paddle.nn.Mish <cn_api_nn_Mish>` ", "Mish激活层"
     " :ref:`paddle.nn.Tanh <cn_api_nn_Tanh>` ", "Tanh激活层"
     " :ref:`paddle.nn.Tanhshrink <cn_api_nn_Tanhshrink>` ", "Tanhshrink激活层"
     " :ref:`paddle.nn.ThresholdedReLU <cn_api_nn_ThresholdedReLU>` ", "Thresholded ReLU激活层"
@@ -334,7 +337,10 @@ Pooling相关函数
     " :ref:`paddle.nn.functional.max_pool1d <cn_api_nn_functional_max_pool1d>` ", "一维最大池化"
     " :ref:`paddle.nn.functional.max_pool2d <cn_api_nn_functional_max_pool2d>` ", "二维最大池化"
     " :ref:`paddle.nn.functional.max_pool3d <cn_api_nn_functional_max_pool3d>` ", "三维最大池化"
-    
+    " :ref:`paddle.nn.functional.max_unpool1d <cn_api_nn_functional_max_unpool1d>` ", "一维最大反池化层"
+    " :ref:`paddle.nn.functional.max_unpool1d <cn_api_nn_functional_max_unpool2d>` ", "二维最大反池化层"
+    " :ref:`paddle.nn.functional.max_unpool3d <cn_api_nn_functional_max_unpool3d>` ", "三维最大反池化层"
+
 .. _padding_functional:
 
 Padding相关函数
@@ -382,6 +388,7 @@ Padding相关函数
     " :ref:`paddle.nn.functional.softshrink <cn_api_nn_cn_softshrink>` ", "softshrink激活函数"
     " :ref:`paddle.nn.functional.softsign <cn_api_nn_cn_softsign>` ", "softsign激活函数"
     " :ref:`paddle.nn.functional.swish <cn_api_nn_cn_swish>` ", "swish激活函数"
+    " :ref:`paddle.nn.functional.mish <cn_api_nn_cn_mish>` ", "mish激活函数"
     " :ref:`paddle.nn.functional.tanhshrink <cn_api_nn_cn_tanhshrink>` ", "tanhshrink激活函数"
     " :ref:`paddle.nn.functional.thresholded_relu <cn_api_nn_cn_thresholded_relu>` ", "thresholded_relu激活函数"
     
