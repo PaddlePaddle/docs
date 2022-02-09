@@ -426,6 +426,7 @@ def set_api_sketch():
         paddle.utils,
         paddle.utils.download,
         paddle.utils.profiler,
+        paddle.utils.perf_analyse,
         paddle.utils.cpp_extension,
         paddle.utils.unique_name,
         paddle.utils.dlpack,
