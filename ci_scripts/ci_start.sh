@@ -21,9 +21,11 @@ if [ $? -ne 0 ];then
     exit 1
 fi
 
-/bin/bash -x ${DIR_PATH}/gendoc.sh
-if [ $? -ne 0 ];then
-    exit 1
+if [ -x /usr/local/bin/sphinx-build ] ; then
+    /bin/bash -x ${DIR_PATH}/gendoc.sh
+    if [ $? -ne 0 ];then
+        exit 1
+    fi
 fi
 
 /bin/bash  ${DIR_PATH}/checkapproval.sh
