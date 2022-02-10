@@ -28,8 +28,7 @@ REPO_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}")/.." && pwd )"
 echo ${REPO_ROOT}
 
 function prepare_env(){
-    # Install tensorflow and other packages
-    pip install pre-commit pylint pytest
+    pip install pre-commit pylint  # pytest
 }
 
 function abort(){
