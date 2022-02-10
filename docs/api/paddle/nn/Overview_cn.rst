@@ -298,7 +298,9 @@ Clip相关
     " :ref:`paddle.nn.dynamic_decode <cn_api_paddle_nn_dynamic_decode>` ", "循环解码"
     " :ref:`paddle.nn.Flatten <cn_api_tensor_Flatten>` ", "将一个连续维度的Tensor展平成一维Tensor"
     " :ref:`paddle.nn.PairwiseDistance <cn_api_nn_PairwiseDistance>` ", "计算两个向量之间pairwise的距离"
+    " :ref:`paddle.nn.Identity <cn_api_paddle_nn_layer_common_Identity>` ", "建立等效层，作为输入的 Placeholder"
     " :ref:`paddle.nn.Unfold <cn_api_fluid_layers_unfold>` ", "实现的功能与卷积中用到的im2col函数一样，通常也被称作为im2col过程"
+
 
 .. _convolution_functional:
 
