@@ -56,7 +56,7 @@ else
         exit 5
     fi
 
-   if [ "${need_check_files}" != "" ]; then
+    if [ "${need_check_files}" != "" ]; then
         for file in $need_check_files;do
             python chinese_samplecode_processor.py ../$file
             if [ $? -ne 0 ];then
