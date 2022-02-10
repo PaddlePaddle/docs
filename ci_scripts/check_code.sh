@@ -46,7 +46,7 @@ function check_style(){
         if  ! pre-commit run --files ../$file_name ; then
             git diff
             commit_files=off
-			echo "Please check the code style of ${file_name}"
+            echo "Please check the code style of ${file_name}"
         fi
     done
     if [ $commit_files == 'off' ];then
