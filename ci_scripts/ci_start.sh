@@ -21,6 +21,11 @@ if [ $? -ne 0 ];then
     exit 1
 fi
 
+/bin/bash  ${DIR_PATH}/checkapproval.sh
+if [ $? -ne 0 ];then
+    exit 1
+fi
+
 if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     export OUTPUTDIR=/docs
     export VERSIONSTR=$(echo ${BRANCH} | sed 's@release/@@g')
@@ -49,5 +54,3 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
             --delete --yes --exclude "${OUTPUTDIR}/zh/${VERSIONSTR}/_sources/"
     fi
 fi
-
-/bin/bash  ${DIR_PATH}/checkapproval.sh
