@@ -8,9 +8,6 @@ VERSIONSTR=${VERSIONSTR:=develop}
 OUTPUTFORMAT=${OUTPUTFORMAT:=html}
 
 DOCROOT=${FLUIDDOCDIR}/docs/
-if [ "${VERSIONSTR:0:2}" = "1." ] ; then
-  DOCROOT=${FLUIDDOCDIR}/doc/fluid/
-fi
 APIROOT=${DOCROOT}/api/
 
 
