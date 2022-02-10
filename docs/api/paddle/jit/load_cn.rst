@@ -169,6 +169,7 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
             batch_size=BATCH_SIZE, 
             shuffle=True,
             drop_last=True,
+            return_list=False,
             num_workers=2)
 
         # 1. train and save inference model

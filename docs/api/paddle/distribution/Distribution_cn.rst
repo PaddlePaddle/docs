@@ -5,10 +5,15 @@ Distribution
 
 .. py:class:: paddle.distribution.Distribution()
 
-
-
-
 概率分布的抽象基类，在具体的分布中实现具体功能。
+
+参数
+:::::::::
+
+- **batch_shape** - 概率分布参数批量形状。一元分布 ``batch_shape=param.shape`` , 多元分
+  布 ``batch_shape=param.shape[:-1]`` , 其中param表示分布参数，支持broadcast语义。
+- **event_shape** - 多元概率分布维数形状。一元分布 ``event_shape=()`` , 多元分布
+  ``event_shape=param.shape[-1:]``, 其中param表示分布参数，支持broadcast语义。
 
 
 .. py:function:: sample()

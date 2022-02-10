@@ -10,26 +10,23 @@ While dygraph has usability and debug benefits and static graph yields performan
 
 We introduce the transformation of dygraph to static graph in the following links:
 
-- `Basic Usage <basic_usage_en.html>`_ : Introduce the basic usage for transforming dygraph code into static code.
+- `Basic Usage <basic_usage_en.html>`_ : Introduce the basic usage for @to_static.
 
-- `Architecture <program_translator_en.html>`_ : Introduce the architecture of ProgramTranslator.
+- `Supported Grammars <grammar_list_en.html>`_ : Introduce supported grammars and unsupported grammars .
 
-- `Supported Grammars <grammar_list_en.html>`_ : Introduce the grammars supported by ProgramTranslator and list unsupported grammars.
+- `Predictive Model Export Tutorial <export_model_en.html>`_ : Introduce the tutorial for exporting predictive model.
 
-- `Introduction of InputSpec <input_spec_en.html>`_ : Introduce the usage of InputSpec to specify the input signature from dygraph to static program.
+- `Case analysis of InputSpec <export_model_en.html>`_ : Introduce the common case studies of @to_static.
 
-- `Error Handling <error_handling_en.html>`_ : Introduce the error handling by ProgramTranslator.
-
-- `Debugging Methods <debugging_en.html>`_ : Introduce the debugging methods when using ProgramTranslator.
+- `Error Debugging Experience <debugging_en.html>`_ : Introduce the debugging methods when using @to_static.
 
 
 ..  toctree::
     :hidden:
 
     basic_usage_en.rst
-    program_translator_en.rst
-    grammar_list_en.rst
-    input_spec_en.rst
-    error_handling_en.md
+    grammar_list_en.md
+    export_model_en.md
+    case_analysis_en.md
     debugging_en.md
 

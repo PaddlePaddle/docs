@@ -7,6 +7,13 @@ all_gather
 .. py:function:: paddle.distributed.all_gather(tensor_list, tensor, group=0)
 
 进程组内所有进程的指定tensor进行聚合操作，并返回给所有进程聚合的结果。
+如下图所示，4个GPU分别开启4个进程，每张卡上的数据用卡号代表，
+经过all_gather算子后，每张卡都会拥有所有卡的数据。
+
+.. image:: ./img/allgather.png
+  :width: 800
+  :alt: all_gather
+  :align: center
 
 参数
 :::::::::

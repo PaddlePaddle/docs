@@ -6,14 +6,14 @@ PiecewiseDecay
 .. py:class:: paddle.optimizer.lr.PiecewiseDecay(boundaries, values, last_epoch=-1, verbose=False)
 
 
-该接口提供分段设置学习率的策略。
+该接口提供分段设置学习率的策略。`boundaries` 表示学习率变化的边界步数，对应epoch的值，`values` 表示学习率变化的值。
 
 过程可以描述如下：
 
 .. code-block:: text
 
-    boundaries = [100, 200]
-    values = [1.0, 0.5, 0.1]
+    boundaries = [100, 200]  # epoch仅代表当前步数，无实义
+    values = [1.0, 0.5, 0.1] # 在第[0,100), [100,200), [200,+∞)分别对应value中学习率的值
 
     learning_rate = 1.0     if epoch < 100
     learning_rate = 0.5     if 100 <= epoch < 200

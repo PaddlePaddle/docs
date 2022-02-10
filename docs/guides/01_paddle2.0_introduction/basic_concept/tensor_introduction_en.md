@@ -1,5 +1,7 @@
 # Introduction to Tensor
 
+## Introduction: Concept of Tensor
+
 PaddlePaddle(Hereinafter referred to as Paddle) is the same as other Deep Learning Framework, it use **Tensor** to
 representing data.
 
@@ -7,47 +9,49 @@ representing data.
 
 The dtypes of all elements in the same Tensor are the same. If you are familiar with [Numpy](https://numpy.org/doc/stable/user/quickstart.html#the-basics), **Tensor** is similar to the **Numpy array**.
 
-## Creation of Tensor
+## Chapter1. Creation of Tensor
 
-Firstly, create a **Tensor**:
+Paddle provides several methods to create a **Tensor**, such as creating by specifying data list, by specifying shape, by specifying interval.
 
-### 1. create **1-D Tensor** like vector, whose ndim is 1
+### 1. create by specifying data list
+
+By specifying data list, you can create tensor of any diemensions(sometimes called "axes"). For example:
 ```python
-# The Tensor data type can be specified by dtype, otherwise, float32 Tensor will be created
-ndim_1_tensor = paddle.to_tensor([2.0, 3.0, 4.0], dtype='float64')
+# create **1-D Tensor** like matrix
+import paddle # The following sample code has imported the paddle module by default
+ndim_1_tensor = paddle.to_tensor([2.0, 3.0, 4.0])
 print(ndim_1_tensor)
 ```
 ```text
-Tensor(shape=[3], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
+Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
        [2., 3., 4.])
 ```
 
-Specifically, if you imput only a scalar data (for example, float/int/bool), then a **Tensor** whose shape is [1]will be created.
+Specifically, if you input only a scalar data (for example, float/int/bool), then a **Tensor** whose shape is [1] will be created.
 ```python
 paddle.to_tensor(2)
 paddle.to_tensor([2])
 ```
-The above two are completely the same, Tensor shape is [1]:
+The above two are completely the same, Tensor shape is [1] , and the output is:
 ```text
-Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+Tensor(shape=[1], dtype=int64, place=Place(gpu:0), stop_gradient=True,
        [2])
 ```
 
-### 2. create **2-D Tensor** like matrix, whose ndim is 2
 ```python
+# create **2-D Tensor** like matrix
 ndim_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
                                   [4.0, 5.0, 6.0]])
 print(ndim_2_tensor)
 ```
 ```text
-Tensor(shape=[2, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+Tensor(shape=[2, 3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
        [[1., 2., 3.],
         [4., 5., 6.]])
 ```
 
-### 3. Similarly, you can create multidimensional Tensor whose ndim is 3, 4... N
-```
-# There can be an arbitrary number of axes (sometimes called "dimensions")
+```python
+# create multidimensional Tensor
 ndim_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
                                    [6, 7, 8, 9, 10]],
                                   [[11, 12, 13, 14, 15],
@@ -55,9 +59,9 @@ ndim_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
 print(ndim_3_tensor)
 ```
 ```text
-Tensor(shape=[2, 2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-       [[[1, 2, 3, 4, 5],
-         [ 6,  7,  8,  9, 10]],
+Tensor(shape=[2, 2, 5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
+       [[[1 , 2 , 3 , 4 , 5 ],
+         [6 , 7 , 8 , 9 , 10]],
 
         [[11, 12, 13, 14, 15],
          [16, 17, 18, 19, 20]]])
@@ -65,33 +69,9 @@ Tensor(shape=[2, 2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
 The visual representation of the **Tensor* above is:
 
 <center><img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/images/Tensor_2.0.png?raw=true" width="800" ></center>
-<br><center>Figure1. Visual representation of Tensor with different ndims</center>
+<br><center>Figure1. Visual representation of Tensor with different dimensions</center>
 
-
-You can convert **Tensor** to Numpy array easily Tensor.numpy() method.
-```python
-print(ndim_2_tensor.numpy())
-```
-```text
-array([[1., 2., 3.],
-       [4., 5., 6.]], dtype=float32)
-```
-
-**Tensor** supports not only floats and ints but also complex numbers data, If input complex number data, the dtype of **Tensor** is ``complex64`` or ``complex128`` : 
-
-```python
-ndim_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
-                                  [4.0, 5.0, 6.0]])
-print(ndim_2_tensor)
-```
-
-```text
-Tensor(shape=[2, 2], dtype=complex64, place=CUDAPlace(0), stop_gradient=True,
-       [[(1+1j), (2+2j)],
-        [(3+3j), (4+4j)]])
-```
-
-**Tensor** must be "rectangular" -- that is, along each axis, every element is the same size. For example:
+**Tensor** must be "rectangular" -- that is, along each dimension, the number of elements must be equal. For example:
 ```
 ndim_2_tensor = paddle.to_tensor([[1.0, 2.0],
                                   [4.0, 5.0, 6.0]])
@@ -99,35 +79,41 @@ ndim_2_tensor = paddle.to_tensor([[1.0, 2.0],
 An exception will be thrown in this case:
 ```text
 ValueError:
-    Faild to convert input data to a regular ndarray :
-     - Usually this means the input data contains nested lists with different lengths.
+        Faild to convert input data to a regular ndarray :
+         - Usually this means the input data contains nested lists with different lengths.
 ```
 
-The way to create **Tensor** from Python data is described above. You can also create **Tensor**
-from numpy array:
+### 2. create by specifying shape
+If you want to create a **Tensor** of specific shape, you can use API below:
+
 ```python
-ndim_1_tensor = paddle.to_tensor(numpy.array([1.0, 2.0]))
-
-ndim_2_tensor = paddle.to_tensor(numpy.array([[1.0, 2.0],
-                                              [3.0, 4.0]]))
-
-ndim_3_tensor = paddle.to_tensor(numpy.random.rand(3, 2))
+paddle.zeros([m, n])             # create Tensor of all elements: 0, Shape: [m, n]
+paddle.ones([m, n])              # create Tensor of all elements: 1, Shape: [m, n]
+paddle.full([m, n], 10)          # create Tensor of all elements: 10, Shape: [m, n]
 ```
-The created **Tensor** will have the same shape and dtype with the original Numpy array.
-
-If you want to create a **Tensor** with specific size, Paddle also provide these API:
+For example, the output of `paddle.ones([2,3])` is：
 ```text
-paddle.zeros([m, n])             # All elements: 0, Shape: [m, n]
-paddle.ones([m, n])              # All elements: 1, Shape: [m, n]
-paddle.full([m, n], 10)          # All elements: 10, Shape: [m, n]
-paddle.arange(start, end, 2)     # Elements: from start to end, step size is 2
-paddle.linspace(start, end, 10)  # Elements: from start to end, num of elementwise is 10
+Tensor(shape=[2, 3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
+       [[1., 1., 1.],
+        [1., 1., 1.]])
+```
+### 3. create by specifying interval
+
+If you want to create a **Tensor** of specific interval, you can use API below:
+
+```python
+paddle.arange(start, end, step)  # create Tensor within interval [start, end) evenly separated by step
+paddle.linspace(start, end, num) # create Tensor within interval [start, end) evenly separated by elements number
+```
+For example, the output of `paddle.arange(start=1, end=5, step=1)` is：
+```text
+Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
+       [1, 2, 3, 4])
 ```
 
+## Chapter2. Attributes of Tensor
 
-## Shape of Tensor
-
-### Basic Concept
+### 2.1 shape of Tensor
 
 The shape of **Tensor** can be get by **Tensor.shape**. shape is an important attribute of **Tensor**, and the following are related concepts:
 
@@ -152,51 +138,45 @@ print("Elements number along axis 0 of tensor:", ndim_4_tensor.shape[0])
 print("Elements number along the last axis of tensor:", ndim_4_tensor.shape[-1])
 ```
 ```text
-Data Type of every element: VarType.FP32
+Data Type of every element: paddle.float32
 Number of dimensions: 4
-Shape of tensor: [2, 3, 4, 5]
-Elements number along axis 0 of tensor: 2
-Elements number along the last axis of tensor: 5
+Shape of Tensor: [2, 3, 4, 5]
+Elements number along axis 0 of Tensor: 2
+Elements number along the last axis of Tensor: 5
 ```
 
-### Manipulating Shape
-
-Manipulating shape of Tensor is important in programming.
+Manipulating shape of Tensor is important in programming, Paddle provides reshape API to manipulate the shape of Tensor:
 ```python
-ndim_3_tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
+ndim_3_Tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
                                    [6, 7, 8, 9, 10]],
                                   [[11, 12, 13, 14, 15],
                                    [16, 17, 18, 19, 20]],
                                   [[21, 22, 23, 24, 25],
                                    [26, 27, 28, 29, 30]]])
-print("the shape of ndim_3_tensor:", ndim_3_tensor.shape)
-```
-```text
-the shape of ndim_3_tensor: [3, 2, 5]
-```
+print("the shape of ndim_3_Tensor:", ndim_3_Tensor.shape)
 
-Paddle provides reshape API to manipulate the shape of Tensor:
-```python
-ndim_3_tensor = paddle.reshape(ndim_3_tensor, [2, 5, 3])
-print("After reshape:", ndim_3_tensor.shape)
+reshape_Tensor = paddle.reshape(ndim_3_Tensor, [2, 5, 3])
+print("After reshape:", reshape_Tensor.shape)
 ```
 ```text
+the shape of ndim_3_Tensor: [3, 2, 5]
 After reshape: [2, 5, 3]
 ```
 
 There are some tricks for specifying a new shape:
 
-1. -1 indicates that the value of this dimension is inferred from the total number of elements and the other dimension of Tensor. Therefore, there is one and only one that can be set to -1.
-2. 0 means that the actual dimension is copied from the corresponding dimension of Tensor, so the index value of 0 in shape can't exceed the ndim of X.
+**1.** -1 indicates that the value of this dimension is inferred from the total number of elements and the other dimension of Tensor. Therefore, there is one and only one that can be set to -1.
+
+**2.** 0 means that the actual dimension is copied from the corresponding dimension of Tensor, so the index value of 0 in shape can't exceed the ndim of the Tensor.
 
 For example:
 ```text
-origin:[3, 2, 5] reshape:[3, 10]     actual: [3, 10]
+origin:[3, 2, 5] reshape:[3, 10]      actual: [3, 10]
 origin:[3, 2, 5] reshape:[-1]         actual: [30]
-origin:[3, 2, 5] reshape:[0, 5, -1] actual: [3, 5, 2]
+origin:[3, 2, 5] reshape:[0, 5, -1]   actual: [3, 5, 2]
 ```
 
-If you flatten a tensor by reshape to -1, you can see what order it is laid out in memory.
+When reshape is [-1], Tensor will be flattened to 1-D according to its layout in computer memory.
 ```python
 print("Tensor flattened to Vector:", paddle.reshape(ndim_3_tensor, [-1]).numpy())
 ```
@@ -204,10 +184,7 @@ print("Tensor flattened to Vector:", paddle.reshape(ndim_3_tensor, [-1]).numpy()
 Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
 ```
 
-
-## Other attributes of Tensor
-
-### dtype of Tensor
+### 2.2 dtype of Tensor
 
 data type of **Tensor**, which can be get from Tensor.dtype, it support 'bool', 'float16', 'float32', 'float64','uint8', 'int8', 'int16', 'int32', 'int64'.
 
@@ -223,11 +200,26 @@ print("Tensor dtype from Python integers:", paddle.to_tensor(1).dtype)
 print("Tensor dtype from Python floating point:", paddle.to_tensor(1.0).dtype)
 ```
 ```text
-Tensor dtype from Python integers: VarType.INT64
-Tensor dtype from Python floating point: VarType.FP32
+Tensor dtype from Python integers: paddle.int64
+Tensor dtype from Python floating point: paddle.float32
 ```
 
-Paddle provide **cast** API to change the dtype:
+**Tensor** supports not only floats and ints but also complex numbers data, If input complex number data, the dtype of **Tensor** is ``complex64`` or ``complex128`` :
+
+```python
+ndim_2_tensor = paddle.to_tensor([[(1+1j), (2+2j)],
+                                  [(3+3j), (4+4j)]])
+print(ndim_2_tensor)
+```
+
+```text
+Tensor(shape=[2, 2], dtype=complex64, place=Place(gpu:0), stop_gradient=True,
+       [[(1+1j), (2+2j)],
+        [(3+3j), (4+4j)]])
+```
+
+
+Paddle provides **cast** API to change the dtype:
 ```python
 float32_tensor = paddle.to_tensor(1.0)
 
@@ -238,46 +230,44 @@ int64_tensor = paddle.cast(float32_tensor, dtype='int64')
 print("Tensor after cast to int64:", int64_tensor.dtype)
 ```
 ```text
-Tensor after cast to float64: VarType.FP64
-Tensor after cast to int64: VarType.INT64
+Tensor after cast to float64: paddle.float64
+Tensor after cast to int64: paddle.int64
 ```
 
-### place of Tensor
+### 2.3 place of Tensor
 
-Device can be specified when creating a tensor. There are three kinds of to choose from: CPU/GPU/Pinned memory.
-There is higher read and write efficiency between Pinned memory with GPU. In addition, Pinned memory supports asynchronous data copy, which will further improve the performance of network. The disadvantage is that allocating too much Pinned memory may reduce the performance of the host. Because it reduces the pageable memory which is used to store virtual memory data.
+Device can be specified when creating a tensor. There are three kinds of to choose from: CPU/GPU/Pinned memory.There is higher read and write efficiency between Pinned memory with GPU. In addition, Pinned memory supports asynchronous data copy, which will further improve the performance of network. The disadvantage is that allocating too much Pinned memory may reduce the performance of the host. Because it reduces the pageable memory which is used to store virtual memory data. When place is not specified, the default place of Tensor is consistent with the version of Paddle, for example, the place is GPU by default if you installed paddlepaddle-gpu.
 
-* **Create Tensor on GPU**:
-```python
-cpu_tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
-print(cpu_tensor)
-```
-
-```text
-Tensor(shape=[1], dtype=int64, place=CPUPlace, stop_gradient=True,
-       [1])
-```
+The following example creates Tensors on CPU, GPU, and pinned memory respectively, and uses `Tensor.place` to view the device place where the Tensor is located:
 
 * **Create Tensor on CPU**:
 ```python
-gpu_tensor = paddle.to_tensor(1, place=paddle.CUDAPlace(0))
-print(gpu_tensor)
+cpu_Tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
+print(cpu_Tensor.place)
 ```
 
 ```text
-Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-       [1])
+Place(cpu)
+```
+
+* **Create Tensor on GPU**:
+```python
+gpu_Tensor = paddle.to_tensor(1, place=paddle.CUDAPlace(0))
+print(gpu_Tensor.place) # the output shows that the Tensor is On the 0th graphics card of the GPU device
+```
+
+```text
+Place(gpu:0)
 ```
 
 * **Create Tensor on pinned memory**:
 ```python
-pin_memory_tensor = paddle.to_tensor(1, place=paddle.CUDAPinnedPlace())
-print(pin_memory_tensor)
+pin_memory_Tensor = paddle.to_tensor(1, place=paddle.CUDAPinnedPlace())
+print(pin_memory_Tensor.place)
 ```
-```text
-Tensor(shape=[1], dtype=int64, place=CUDAPinnedPlace, stop_gradient=True,
-       [1])
 
+```text
+Place(gpu_pinned)
 ```
 ### name of Tensor
 
@@ -290,10 +280,9 @@ print("Tensor name:", paddle.to_tensor(1).name)
 Tensor name: generated_tensor_0
 ```
 
+## Chapter3. Method of Tensor
 
-## Method of Tensor
-
-### Index and slice
+### 3.1 Index and slice
 
 You can easily access or modify Tensors by indexing or slicing. Paddle follows standard Python indexing rules, similar to [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) and the basic rules for NumPy indexing. It has the following features:
 
@@ -341,9 +330,9 @@ print("All element:", ndim_2_tensor[:].numpy())
 print("First row and second column:", ndim_2_tensor[0, 1].numpy())
 ```
 ```text
-Origin Tensor: array([[ 0  1  2  3]
-                      [ 4  5  6  7]
-                      [ 8  9 10 11]], dtype=int64)
+Origin Tensor: [[ 0  1  2  3]
+                [ 4  5  6  7]
+                [ 8  9 10 11]]
 First row: [0 1 2 3]
 First row: [0 1 2 3]
 First column: [0 4 8]
@@ -362,7 +351,7 @@ ndim_2_tensor[1, :]
 The result of these two operations are exactly the same.
 
 ```text
-Tensor(shape=[4], dtype=int64, place=CPUPlace, stop_gradient=True,
+Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
        [4, 5, 6, 7])
 ```
 
@@ -375,46 +364,44 @@ Tensor(shape=[4], dtype=int64, place=CPUPlace, stop_gradient=True,
 Similar to accessing a Tensor, modifying a Tensor by indexing or slicing can be on a single or multiple axes. In addition, it supports assigning multiple types of data to a Tensor. The supported data types are `int`, `float`,  `numpy.ndarray` and `Tensor`.
 
 ```python
-import paddle
 import numpy as np
 
 x = paddle.to_tensor(np.ones((2, 3)).astype(np.float32)) # [[1., 1., 1.], [1., 1., 1.]]
 
-x[0] = 0                      # x : [[0., 0., 0.], [1., 1., 1.]]        id(x) = 4433705584
-x[0:1] = 2.1                  # x : [[2.1, 2.1, 2.1], [1., 1., 1.]]     id(x) = 4433705584
-x[...] = 3                    # x : [[3., 3., 3.], [3., 3., 3.]]        id(x) = 4433705584
+x[0] = 0                      # x : [[0., 0., 0.], [1., 1., 1.]]
+x[0:1] = 2.1                  # x : [[2.09999990, 2.09999990, 2.09999990], [1., 1., 1.]]
+x[...] = 3                    # x : [[3., 3., 3.], [3., 3., 3.]]
 
-x[0:1] = np.array([1,2,3])    # x : [[1., 2., 3.], [3., 3., 3.]]        id(x) = 4433705584
+x[0:1] = np.array([1,2,3])    # x : [[1., 2., 3.], [3., 3., 3.]]
 
-x[1] = paddle.ones([3])       # x : [[1., 2., 3.], [1., 1., 1.]]        id(x) = 4433705584
+x[1] = paddle.ones([3])       # x : [[1., 2., 3.], [1., 1., 1.]]
 ```
 
 ---
 
-In addition, Paddle provides rich Tensor operating APIs, including mathematical operators, logical operators, linear algebra operators and so on. The total number is more than 100 kinds. For example:
+In addition, Paddle provides rich Tensor operating APIs, including Mathematical operations, logical operations, linear algebra and so on. The total number is more than 100 kinds. For example:
 
 ```python
 x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]], dtype="float64")
 y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]], dtype="float64")
 
-print(paddle.add(x, y), "\n")
-print(x.add(y), "\n")
+print(paddle.add(x, y), "\n") # 1st method
+print(x.add(y), "\n") # 2nd method
 ```
 
 ```text
-Tensor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
-       [[6.60000000, 8.80000000],
-        [        11., 13.20000000]])
+Tensor(shape=[2, 2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
+       [[6.60000000 , 8.80000000 ],
+        [11.        , 13.20000000]])
 
-Tensor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
-       [[6.60000000, 8.80000000],
-        [        11., 13.20000000]])
+Tensor(shape=[2, 2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
+       [[6.60000000 , 8.80000000 ],
+        [11.        , 13.20000000]])
 ```
 
-It can be seen that Tensor class method has the same result with Paddle API. And the Tensor class method is more convenient to invoke.
+It can be seen that Tensor class method has the same result with Paddle API. And since the Tensor class method is more convenient to invoke, the following is an introduction to common **Tensor** operations from the perspective of **Tensor class member functions**.
 
-
-### mathematical operators
+### 3.2 mathematical operations
 ```python
 x.abs()                       #absolute value
 x.ceil()                      #round up to an integer
@@ -439,17 +426,17 @@ x.prod()                      #multiply all elements on specific axis
 x.sum()                       #sum of all elements on specific axis
 ```
 
-Paddle overwrite the magic functions related to Python mathematical operations. Like this:
+Paddle overwrite the magic functions related to Python mathematical operations. The following operations have the same result as above.
 ```text
-x + y  -> x.add(y)  
-x - y  -> x.subtract(y)  
-x * y  -> x.multiply(y)  
-x / y  -> x.divide(y)  
-x % y  -> x.mod(y)
-x ** y -> x.pow(y)
+x + y  -> x.add(y)            #add element by element
+x - y  -> x.subtract(y)       #subtract element by element
+x * y  -> x.multiply(y)       #multiply element by element
+x / y  -> x.divide(y)         #divide element by element
+x % y  -> x.mod(y)            #mod element by element
+x ** y -> x.pow(y)            #pow element by element
 ```
 
-### logical operators
+### 3.3 logical operations
 ```python
 x.isfinite()                  #Judge whether the element in tensor is finite number
 x.equal_all(y)                #Judge whether all elements of two tensor are equal
@@ -462,14 +449,14 @@ x.greater_equal(y)            #judge whether each element of tensor x is greater
 x.allclose(y)                 #judge whether all elements of tensor x is close to all elements of tensor y
 ```
 
-Paddle overwrite the magic functions related to Python logical operations. Like this:
+Paddle overwrite the magic functions related to Python logical operations. The following operations have the same result as above.
 ```text
-x == y  -> x.equal(y)  
-x != y  -> x.not_equal(y)  
-x < y   -> x.less_than(y)  
-x <= y  -> x.less_equal(y)  
-x > y   -> x.greater_than(y)  
-x >= y  -> x.greater_equal(y)
+x == y  -> x.equal(y)         #judge whether each element of two tensor is equal
+x != y  -> x.not_equal(y)     #judge whether each element of two tensor is not equal
+x < y   -> x.less_than(y)     #judge whether each element of tensor x is less than corresponding
+x <= y  -> x.less_equal(y)    #judge whether each element of tensor x is less than or equal to element of tensor y
+x > y   -> x.greater_than(y)  #judge whether each element of tensor x is greater than element of tensor y
+x >= y  -> x.greater_equal(y) #judge whether each element of tensor x is greater than or equal to element of tensor y
 ```
 
 The following operations are targeted at bool Tensor only:
@@ -480,15 +467,104 @@ x.logical_xor(y)              #logic xor operation for two bool tensor
 x.logical_not(y)              #logic not operation for two bool tensor
 ```
 
-### linear algebra operators
+### 3.4 linear algebra
 ```python
-x.cholesky()                  #cholesky decomposition of a matrix
 x.t()                         #matrix transpose
 x.transpose([1, 0])           #swap axis 0 with axis 1
 x.norm('fro')                 #Frobenius Norm of matrix
 x.dist(y, p=2)                #The 2 norm of (x-y)
 x.matmul(y)                   #Matrix multiplication
 ```
-It should be noted that the class method of Tensor are non-inplace operations. It means, ``x.add(y)`` will not operate directly on Tensor x, but return a new Tensor to represent the results.
+> **Warning:**
+>
+> The API in Paddle is divided into in-place operations and non-in-place operations. The in-place  operation saves the operation result on the original **Tensor**, while the non-in-place operation  returns a new **Tensor** to represent the operation result instead of modifying the original **Tensor**. After Paddle 2.1, some APIs have corresponding in-place operation versions, adding `_` after the API to indicate, for example, `x.add(y)` is a non-in-place operation, and `x.add_(y)` is a in-place operation.
 
 For more API related to Tensor operations, please refer to [class paddle.Tensor]((../../../api/paddle/Tensor_cn.html))
+
+## Chapter4. Convert between Tensor and Numpy array
+
+### 4.1 Convert Tensor to numpy array
+Convert **Tensor** to **Numpy array** through the Tensor.numpy() method:
+```python
+tensor_to_convert = paddle.to_tensor([1.,2.])
+tensor_to_convert.numpy()
+```
+```text
+array([1., 2.], dtype=float32)
+```
+
+### 4.2 Convert numpy array to Tensor
+
+Convert **Numpy array** to **Tensor** through paddle.to_tensor() method:
+```python
+tensor_temp = paddle.to_tensor(np.array([1.0, 2.0]))
+print(tensor_temp)
+```
+```text
+Tensor(shape=[2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
+       [1., 2.])
+```
+The created **Tensor** will have the same shape and dtype with the original Numpy array.
+
+## Chapter5. Broadcasting of Tensor
+
+PaddlePaddle provides broadcasting semantics in some APIs like other deep learning frameworks, which allows using tensors with different shapes while operating.
+In General, broadcast is the rule how the smaller tensor is “broadcast” across the larger tsnsor so that they have same shapes.
+Note that no copies happened while broadcasting.  
+
+In Paddlepaddle, tensors are broadcastable when following rulrs hold(ref [Numpy Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)):
+
+1. there should be at least one dimention in each tensor
+2. when comparing their shapes element-wise from backward to forward, two dimensions are compatible when
+   they are equal, or one of them is 1, or one of them does not exist.
+
+For example:
+
+```python
+x = paddle.ones((2, 3, 4))
+y = paddle.ones((2, 3, 4))
+# Two tensor have some shapes are broadcastable
+z = x + y
+print(z.shape)
+# [2, 3, 4]
+
+x = paddle.ones((2, 3, 1, 5))
+y = paddle.ones((3, 4, 1))
+
+# compare from backward to forward：
+# 1st step：y's dimention is 1
+# 2nd step：x's dimention is 1
+# 3rd step：two dimentions are the same
+# 4st step：y's dimention does not exist
+# So, x and y are broadcastable
+z = x + y
+print(z.shape)
+# [2, 3, 4, 5]
+
+# In Compare
+x = paddle.ones((2, 3, 4))
+y = paddle.ones((2, 3, 6))
+# x and y are not broadcastable because in first step form tail, x's dimention 4 is not equal to y's dimention 6
+# z = x, y
+# ValueError: (InvalidArgument) Broadcast dimension mismatch.
+```
+
+Now you know in what condition two tensors are broadcastable, how to calculate the resulting tensor's size follows the rules:
+
+1. If the number of dimensions of x and y are not equal, prepend 1 to the dimensions of the tensor with fewer dimensions to make them equal length.
+2. Then, for each dimension size, the resulting dimension size is the max of the sizes of x and y along that dimension.
+
+For example:
+
+```python
+x = paddle.ones((2, 1, 4))
+y = paddle.ones((3, 1))
+z = x + y
+print(z.shape)
+# z'shape: [2, 3, 4]
+
+x = paddle.ones((2, 1, 4))
+y = paddle.ones((3, 2))
+# z = x + y
+# ValueError: (InvalidArgument) Broadcast dimension mismatch.
+```

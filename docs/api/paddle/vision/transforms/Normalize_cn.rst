@@ -22,10 +22,16 @@ Normalize
     - to_rgb (bool, optional) - 是否转换为 ``rgb`` 的格式。默认值：False。
     - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform``. 默认值: None。
 
+形状
+:::::::::
+
+    - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
+    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回归一化后的图像数据。
+
 返回
 :::::::::
 
-    ``numpy ndarray``，归一化后的图像。
+    计算 ``Normalize`` 的可调用对象。
 
 代码示例
 :::::::::

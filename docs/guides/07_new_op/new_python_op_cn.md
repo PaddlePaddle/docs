@@ -56,7 +56,7 @@ class PyLayerContext:
 前向函数和反向函数均由Python编写，可以方便地使用Paddle相关API来实现一个自定义的OP。需要遵守以下规则：
   1. `forward`和`backward`都是静态函数，它们的第一个参数是`PyLayerContext`对象。
   2. `backward` 除了第一个参数以外，其他参数都是`forward`函数的输出`Tensor`的梯度，因此，`backward`输入的`Tensor`的数量必须等于`forward`输出`Tensor`的数量。如果您需在`backward`中使用`forward`中的`Tensor`，您可以利用`save_for_backward`和`saved_tensor`这两个方法传递`Tensor`。
-  3. `backward`的输出可以是`Tensor`或者`list/tuple(Tensor)`，这些`Tensor`是`forward`输出`Tensor`的梯度。因此，`backward`的输出`Tensor`的个数等于forward输入`Tensor`的个数。如果`backward`的某个返回值（梯度）在`forward`中对应的`Tensor`是需要梯度，这个返回值必须是`Tensor`类型。
+  3. `backward`的输出可以是`Tensor`或者`list/tuple(Tensor)`，这些`Tensor`是`forward`输入`Tensor`的梯度。因此，`backward`的输出`Tensor`的个数等于forward输入`Tensor`的个数。如果`backward`的某个返回值（梯度）在`forward`中对应的`Tensor`的`stop_gradient`属性为`False`，这个返回值必须是`Tensor`类型。
 
 ```Python
 import paddle

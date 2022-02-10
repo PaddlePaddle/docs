@@ -3,7 +3,7 @@
 ## 升级概要
 飞桨2.0版本，相对1.8版本有重大升级，涉及开发方面的重要变化如下：
 
- - 动态图功能完善，动态图模下数据表示概念为`Tensor`，推荐使用动态图模式；
+ - 动态图功能完善，动态图模式下数据表示概念为`Tensor`，推荐使用动态图模式；
  - API目录体系调整，API的命名和别名进行了统一规范化，虽然兼容老版API，但请使用新API体系开发；
  - 数据处理、组网方式、模型训练、多卡启动、模型保存和推理等开发流程都有了对应优化，请对应查看说明；
 
@@ -558,5 +558,5 @@ https://github.com/PaddlePaddle/paddle_upgrade_tool
 ### 2.0文档教程
 以下提供了2.0版本的一些示例教程：
 
-你可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/tutorial/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码:
-https://github.com/PaddlePaddle/book/tree/develop/paddle2.0_docs
+你可以在官网[应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/practices/index_cn.html)栏目内进行在线浏览，也可以下载在这里提供的源代码:
+https://github.com/PaddlePaddle/docs/tree/develop/docs/practices

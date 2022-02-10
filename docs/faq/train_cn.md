@@ -12,6 +12,47 @@
 
 ----------
 
+##### 问题：请问`paddle.gather`和`torch.gather`有什么区别？
+
++ 答复：[`paddle.gather`](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/gather_cn.html#gather)和`torch.gather`的函数签名分别为：
+
+```python
+paddle.gather(x, index, axis=None, name=None)
+torch.gather(input, dim, index, *, sparse_grad=False, out=None)
+```
+
+其中，`paddle.gather`的参数`x`，`index`，`axis`分别与`torch.gather`的参数`input`，`index`，`dim`意义相同。
+
+两者在输入形状、输出形状、计算公式等方面都有区别，具体如下：
+
+- `paddle.gather`
+
+  - 输入形状：`x`可以是任意的`N`维Tensor。但`index`必须是形状为`[M]`的一维Tensor，或形状为`[M, 1]`的二维Tensor。
+
+  - 输出形状：输出Tensor `out`的形状`shape_out`和`x`的形状`shape_x`的关系为：`shape_out[i] = shape_x[i] if i != axis else M`。
+
+  - 计算公式：`out[i_1][i_2]...[i_axis]...[i_N] = x[i_1][i_2]...[index[i_axis]]...[i_N]` 。
+
+  - 举例说明：假设`x`的形状为`[N1, N2, N3]`，`index`的形状为`[M]`，`axis`的值为1，那么输出`out`的形状为`[N1, M, N3]`，且`out[i_1][i_2][i_3] = x[i_1][index[i_2]][i_3]`。
+
+- `torch.gather`
+
+  - 输入形状：`input`可以是任意的`N`维Tensor，且`index.rank`必须等于`input.rank`。
+
+  - 输出形状：输出Tensor `out`的形状与`index`相同。
+
+  - 计算公式：`out[i_1][i_2]...[i_dim]...[i_N] = input[i_1][i_2]...[index[i_1][i_2]...[i_N]]...[i_N]`。
+
+  - 举例说明：假设`x`的形状为`[N1, N2, N3]`，`index`的形状为`[M1, M2, M3]`，`dim`的值为1，那么输出`out`的形状为`[M1, M2, M3]`，且`out[i_1][i_2][i_3] = input[i_1][index[i_1][i_2][i_3]][i_3]`。
+
+- 异同比较
+
+  - 只有当`x.rank == 1`且`index.rank == 1`时，`paddle.gather`和`torch.gather`功能相同。其余情况两者无法直接互换使用。
+
+  - `paddle.gather`不支持`torch.gather`的`sparse_grad`参数。
+
+----------
+
 ##### 问题：在模型组网时，inplace参数的设置会影响梯度回传吗？经过不带参数的op之后，梯度是否会保留下来？
 
 + 答复：inplace 参数不会影响梯度回传。只要用户没有手动设置`stop_gradient=True`，梯度都会保留下来。
@@ -144,4 +185,113 @@ def set_config(args):
     config.switch_ir_optim(False)
     return config
 ```
+----------
+
+##### 问题：模型训练时如何进行梯度裁剪？
+
++ 答复：设置Optimizer中的`grad_clip`参数值。
+
+----------
+
+##### 问题：静态图模型如何拿到某个variable的梯度？
+
++ 答复：飞桨提供以下三种方式，用户可根据需求选择合适的方法：
+
+ 1. 使用[paddle.static.Print()](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/Print_cn.html#print)接口，可以打印中间变量及其梯度。
+ 2. 将变量梯度名放到fetch_list里，通过[Executor.run()](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/Executor_cn.html#run)获取，一般variable的梯度名是variable的名字加上 "@GRAD"。
+ 3. 对于参数（不适用于中间变量和梯度），还可以通过[Scope.find_var()](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/global_scope_cn.html#global-scope)接口，通过变量名字查找对应的tensor。
+
+ 后两个方法需要使用变量名，飞桨中变量的命名规则请参见[Name](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_guides/low_level/program.html#api-guide-name) 。
+
+
+```python
+# paddlepaddle>=2.0
+import paddle
+import numpy as np
+
+paddle.enable_static()
+data = paddle.static.data('data', shape=[4, 2])
+out = paddle.static.nn.fc(x=data, size=1, num_flatten_dims=1, name='fc')
+
+loss = paddle.mean(out)
+loss = paddle.static.Print(loss)  # 通过 Print 算子打印中间变量及梯度
+opt = paddle.optimizer.SGD(learning_rate=0.01)
+opt.minimize(loss)
+
+exe = paddle.static.Executor()
+exe.run(paddle.static.default_startup_program())
+loss, loss_g, fc_bias_g = exe.run(
+    paddle.static.default_main_program(),
+    feed={'data': np.random.rand(4, 2).astype('float32')},
+    fetch_list=[loss, loss.name + '@GRAD', 'fc.b_0@GRAD'])  # 通过将变量名加入到fetch_list获取变量
+
+print(loss, loss_g, fc_bias_g)
+print(paddle.static.global_scope().find_var('fc.b_0').get_tensor())  # 通过scope.find_var 获取变量
+```
+
+----------
+
+##### 问题：paddle有对应torch.masked_fill函数api吗，还是需要自己实现？
+
++ 答复：由于框架设计上的区别，没有对应的 api，但是可以使用 [paddle.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/where_cn.html) 实现相同的功能。
+
+```python
+# paddlepaddle >= 2.0
+import paddle
+
+paddle.seed(123)
+x = paddle.rand([3, 3], dtype='float32')
+# Tensor(shape=[3, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+#        [[0.00276479, 0.45899123, 0.96637046],
+#         [0.66818708, 0.05855134, 0.33184195],
+#         [0.34202638, 0.95503175, 0.33745834]])
+
+mask = paddle.randint(0, 2, [3, 3]).astype('bool')
+# Tensor(shape=[3, 3], dtype=bool, place=CUDAPlace(0), stop_gradient=True,
+#        [[True , True , False],
+#         [True , True , True ],
+#         [True , True , True ]])
+
+def masked_fill(x, mask, value):
+    y = paddle.full(x.shape, value, x.dtype)
+    return paddle.where(mask, y, x)
+
+out = masked_fill(x, mask, 2)
+# Tensor(shape=[3, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+#        [[2.        , 2.        , 0.96637046],
+#         [2.        , 2.        , 2.        ],
+#         [2.        , 2.        , 2.        ]])
+```
+
+----------
+
+##### 问题：在paddle中如何实现`torch.nn.utils.rnn.pack_padded_sequence`和`torch.nn.utils.rnn.pad_packed_sequence`这两个API？
+
++ 答复：目前paddle中没有和上述两个API完全对应的实现。关于torch中这两个API的详细介绍可以参考知乎上的文章 [pack_padded_sequence 和 pad_packed_sequence](https://zhuanlan.zhihu.com/p/342685890) :
+`pack_padded_sequence`的功能是将mini-batch数据进行压缩，压缩掉无效的填充值，然后输入RNN网络中；`pad_packed_sequence`则是把RNN网络输出的压紧的序列再填充回来，便于进行后续的处理。
+在paddle中，大家可以在GRU、LSTM等RNN网络中输入含有填充值的mini-batch数据的同时传入对应的`sequence_length`参数实现上述等价功能，具体用法可以参考 [RNN](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/RNN_cn.html#rnn) 。
+
+----------
+
+##### 问题：paddle是否有爱因斯坦求和（einsum）这个api？
+
++ 答复：paddle在2.2rc 版本之后，新增了[paddle.einsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/einsum_cn.html#einsum)，在 develop 和2.2rc 之后的版本中都可以正常使用。
+
+----------
+
+
+----------
+
+##### 问题：[BatchNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BatchNorm_cn.html#batchnorm)在训练时加载预测时保存的模型参数时报错 AssertionError: Optimizer set error, batch_norm_1.w_0_moment_0 should in state dict.
+
++ 答复：BatchNorm在train模式和eval模式下需要的变量有差别，在train模式下要求传入优化器相关的变量，在eval模式下不管是保存参数还是加载参数都是不需要优化器相关变量的，因此如果在train模式下加载eval模式下保存的checkpoint，没有优化器相关的变量则会报错。如果想在train模式下加载eval模式下保存的checkpoint的话，用 ```paddle.load``` 加载进来参数之后，通过 ```set_state_dict``` 接口把参数赋值给模型，参考以下示例：
+
+```python
+import paddle
+
+bn = paddle.nn.BatchNorm(3)
+bn_param = paddle.load('./bn.pdparams')
+bn.set_state_dict()
+```
+
 ----------

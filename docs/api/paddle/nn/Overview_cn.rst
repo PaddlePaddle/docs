@@ -48,7 +48,8 @@ paddle.nn 目录下包含飞桨框架支持的神经网络层和相关函数的�
     " :ref:`paddle.nn.LayerList <cn_api_fluid_dygraph_LayerList>` ", "用于保存子层列表"
     " :ref:`paddle.nn.ParameterList <cn_api_fluid_dygraph_ParameterList>` ", "参数列表容器"
     " :ref:`paddle.nn.Sequential <cn_api_fluid_dygraph_Sequential>` ", "顺序容器；子Layer将按构造函数参数的顺序添加到此容器中"
-    
+    " :ref:`paddle.nn.LayerDict <cn_api_nn_LayerDict>` ", "保存子层到有序字典中，它包含的子层将被正确地注册和添加"
+
 .. _convolution_layers:
 
 卷积层
@@ -87,6 +88,9 @@ pooling层
     " :ref:`paddle.nn.MaxPool1D <cn_api_nn_MaxPool1D>` ", "一维最大池化层"
     " :ref:`paddle.nn.MaxPool2D <cn_api_nn_MaxPool2D>` ", "二维最大池化层"
     " :ref:`paddle.nn.MaxPool3D <cn_api_nn_MaxPool3D>` ", "三维最大池化层"
+    " :ref:`paddle.nn.MaxUnPool1D <cn_api_nn_MaxUnPool1D>` ", "一维最大反池化层"
+    " :ref:`paddle.nn.MaxUnPool2D <cn_api_nn_MaxUnPool2D>` ", "二维最大反池化层"
+    " :ref:`paddle.nn.MaxUnPool3D <cn_api_nn_MaxUnPool3D>` ", "三维最大反池化层"
     
 .. _padding_layers:
 
@@ -100,6 +104,7 @@ Padding层
     " :ref:`paddle.nn.Pad1D <cn_api_nn_Pad1D>` ", "一维填充层"
     " :ref:`paddle.nn.Pad2D <cn_api_nn_Pad2D>` ", "二维填充层"
     " :ref:`paddle.nn.Pad3D <cn_api_nn_Pad3D>` ", "三维填充层"
+    " :ref:`paddle.nn.ZeroPad2D <cn_api_nn_ZeroPad2D>` ", "二维零填充层"
     
 .. _activation_layers:
 
@@ -110,6 +115,7 @@ Padding层
     :header: "API名称", "API功能"
     
 
+    " :ref:`paddle.nn.CELU <cn_api_nn_CELU>` ", "CELU激活层"
     " :ref:`paddle.nn.ELU <cn_api_nn_ELU>` ", "ELU激活层"
     " :ref:`paddle.nn.GELU <cn_api_nn_GELU>` ", "GELU激活层"
     " :ref:`paddle.nn.Hardshrink <cn_api_nn_Hardshrink>` ", "Hardshrink激活层"
@@ -131,6 +137,7 @@ Padding层
     " :ref:`paddle.nn.Softshrink <cn_api_nn_Softshrink>` ", "Softshrink激活层"
     " :ref:`paddle.nn.Softsign <cn_api_nn_Softsign>` ", "Softsign激活层"
     " :ref:`paddle.nn.Swish <cn_api_nn_Swish>` ", "Swish激活层"
+    " :ref:`paddle.nn.Mish <cn_api_nn_Mish>` ", "Mish激活层"
     " :ref:`paddle.nn.Tanh <cn_api_nn_Tanh>` ", "Tanh激活层"
     " :ref:`paddle.nn.Tanhshrink <cn_api_nn_Tanhshrink>` ", "Tanhshrink激活层"
     " :ref:`paddle.nn.ThresholdedReLU <cn_api_nn_ThresholdedReLU>` ", "Thresholded ReLU激活层"
@@ -292,7 +299,9 @@ Clip相关
     " :ref:`paddle.nn.Flatten <cn_api_tensor_Flatten>` ", "将一个连续维度的Tensor展平成一维Tensor"
     " :ref:`paddle.nn.PairwiseDistance <cn_api_nn_PairwiseDistance>` ", "计算两个向量之间pairwise的距离"
     " :ref:`paddle.nn.Identity <cn_api_paddle_nn_layer_common_Identity>` ", "建立等效层，作为输入的 Placeholder"
-    
+    " :ref:`paddle.nn.Unfold <cn_api_fluid_layers_unfold>` ", "实现的功能与卷积中用到的im2col函数一样，通常也被称作为im2col过程"
+
+
 .. _convolution_functional:
 
 卷积相关函数
@@ -322,13 +331,18 @@ Pooling相关函数
     " :ref:`paddle.nn.functional.adaptive_avg_pool2d <cn_api_nn_functional_adaptive_avg_pool2d>` ", "二维自适应平均池化"
     " :ref:`paddle.nn.functional.adaptive_avg_pool3d <cn_api_nn_functional_adaptive_avg_pool3d>` ", "三维自适应平均池化"
     " :ref:`paddle.nn.functional.adaptive_max_pool1d <cn_api_nn_functional_adaptive_max_pool1d>` ", "一维自适应最大池化"
+    " :ref:`paddle.nn.functional.adaptive_max_pool2d <cn_api_nn_functional_adaptive_max_pool2d>` ", "二维自适应最大池化"
+    " :ref:`paddle.nn.functional.adaptive_max_pool3d <cn_api_nn_functional_adaptive_max_pool3d>` ", "三维自适应最大池化"
     " :ref:`paddle.nn.functional.avg_pool1d <cn_api_nn_functional_avg_pool1d>` ", "一维平均池化"
     " :ref:`paddle.nn.functional.avg_pool2d <cn_api_nn_functional_avg_pool2d>` ", "二维平均池化"
     " :ref:`paddle.nn.functional.avg_pool3d <cn_api_nn_functional_avg_pool3d>` ", "三维平均池化"
     " :ref:`paddle.nn.functional.max_pool1d <cn_api_nn_functional_max_pool1d>` ", "一维最大池化"
     " :ref:`paddle.nn.functional.max_pool2d <cn_api_nn_functional_max_pool2d>` ", "二维最大池化"
     " :ref:`paddle.nn.functional.max_pool3d <cn_api_nn_functional_max_pool3d>` ", "三维最大池化"
-    
+    " :ref:`paddle.nn.functional.max_unpool1d <cn_api_nn_functional_max_unpool1d>` ", "一维最大反池化层"
+    " :ref:`paddle.nn.functional.max_unpool1d <cn_api_nn_functional_max_unpool2d>` ", "二维最大反池化层"
+    " :ref:`paddle.nn.functional.max_unpool3d <cn_api_nn_functional_max_unpool3d>` ", "三维最大反池化层"
+
 .. _padding_functional:
 
 Padding相关函数
@@ -339,6 +353,7 @@ Padding相关函数
     
 
     " :ref:`paddle.nn.functional.pad <cn_api_nn_cn_pad>` ", "依照 pad 和 mode 属性对input进行填充"
+    " :ref:`paddle.nn.functional.zeropad2d <cn_api_nn_functional_zeropad2d>` ", "依照 pad 对x进行零填充"
     
 .. _activation_functional:
 
@@ -349,8 +364,11 @@ Padding相关函数
     :header: "API名称", "API功能"
     
 
+    " :ref:`paddle.nn.functional.celu <cn_api_nn_cn_celu>` ", "celu激活函数"
     " :ref:`paddle.nn.functional.elu <cn_api_nn_cn_elu>` ", "elu激活函数"
+    " :ref:`paddle.nn.functional.elu_ <cn_api_nn_cn_elu_>` ", "Inplace 版本的 elu API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.gelu <cn_api_nn_cn_gelu>` ", "gelu激活函数"
+    " :ref:`paddle.nn.functional.gumbel_softmax <cn_api_nn_cn_gumbel_softmax>` ", "gumbel_softmax采样激活函数"
     " :ref:`paddle.nn.functional.hardshrink <cn_api_nn_cn_hard_shrink>` ", "hardshrink激活函数"
     " :ref:`paddle.nn.functional.hardsigmoid <cn_api_nn_cn_hardsigmoid>` ", "sigmoid的分段线性逼近激活函数"
     " :ref:`paddle.nn.functional.hardswish <cn_api_nn_cn_hardswish>` ", "hardswish激活函数"
@@ -361,15 +379,18 @@ Padding相关函数
     " :ref:`paddle.nn.functional.maxout <cn_api_nn_cn_maxout>` ", "maxout激活函数"
     " :ref:`paddle.nn.functional.prelu <cn_api_nn_cn_prelu>` ", "prelu激活函数"
     " :ref:`paddle.nn.functional.relu <cn_api_nn_cn_relu>` ", "relu激活函数"
+    " :ref:`paddle.nn.functional.relu_ <cn_api_nn_cn_relu_>` ", "Inplace 版本的 :ref:`cn_api_nn_cn_relu` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.relu6 <cn_api_nn_cn_relu6>` ", "relu6激活函数"
     " :ref:`paddle.nn.functional.selu <cn_api_nn_cn_selu>` ", "selu激活函数"
     " :ref:`paddle.nn.functional.sigmoid <cn_api_fluid_layers_sigmoid>` ", "sigmoid激活函数"
     " :ref:`paddle.nn.functional.silu <cn_api_nn_cn_silu>` ", "silu激活函数"
     " :ref:`paddle.nn.functional.softmax <cn_api_nn_cn_softmax>` ", "softmax激活函数"
+    " :ref:`paddle.nn.functional.softmax_ <cn_api_nn_cn_softmax_>` ", "Inplace 版本的 :ref:`cn_api_nn_cn_softmax` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.softplus <cn_api_nn_cn_softplus>` ", "softplus激活函数"
     " :ref:`paddle.nn.functional.softshrink <cn_api_nn_cn_softshrink>` ", "softshrink激活函数"
     " :ref:`paddle.nn.functional.softsign <cn_api_nn_cn_softsign>` ", "softsign激活函数"
     " :ref:`paddle.nn.functional.swish <cn_api_nn_cn_swish>` ", "swish激活函数"
+    " :ref:`paddle.nn.functional.mish <cn_api_nn_cn_mish>` ", "mish激活函数"
     " :ref:`paddle.nn.functional.tanhshrink <cn_api_nn_cn_tanhshrink>` ", "tanhshrink激活函数"
     " :ref:`paddle.nn.functional.thresholded_relu <cn_api_nn_cn_thresholded_relu>` ", "thresholded_relu激活函数"
     
@@ -382,14 +403,12 @@ Normalization方法
     :header: "API名称", "API功能"
     
 
-    " :ref:`paddle.nn.functional.batch_norm <cn_api_nn_functional_batch_norm>` ", "Batch Normalization方法"
-    " :ref:`paddle.nn.functional.instance_norm <cn_api_nn_functional_instance_norm>` ", "Instance Normalization方法"
-    " :ref:`paddle.nn.functional.layer_norm <cn_api_nn_functional_layer_norm>` ", "Layer Normalization方法"
     " :ref:`paddle.nn.functional.local_response_norm <cn_api_nn_functional_local_response_norm>` ", "Local Response Normalization函数"
     " :ref:`paddle.nn.functional.normalize <cn_api_nn_functional_normalize>` ", "归一化方法"
     " :ref:`paddle.nn.functional.remove_weight_norm <cn_api_nn_cn_remove_weight_norm>` ", "移除传入 layer 中的权重归一化"
     " :ref:`paddle.nn.functional.weight_norm <cn_api_nn_cn_weight_norm>` ", "对传入的 layer 中的权重参数进行归一化"
-    
+    " :ref:`paddle.nn.functional.spectral_norm <cn_api_nn_cn_spectral_norm>` ", "对传入的 layer 中的权重参数进行谱归一化"
+
 .. _linear_functional:
 
 线性处理相关函数
@@ -445,7 +464,6 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.l1_loss <cn_paddle_nn_functional_loss_l1>` ", "用于计算L1损失"
     " :ref:`paddle.nn.functional.kl_div <cn_paddle_nn_functional_loss_kl_div>` ", "用于计算KL散度损失"
     " :ref:`paddle.nn.functional.log_loss <cn_api_fluid_layers_log_loss>` ", "用于计算负对数损失"
-    " :ref:`paddle.nn.functional.sampled_softmax_with_cross_entropy <cn_api_fluid_layers_sampled_softmax_with_cross_entropy>` ", "为所有示例采样若干个样本，并计算每行采样张量的SoftMax标准化值，然后计算交叉熵损失"
     " :ref:`paddle.nn.functional.margin_ranking_loss <cn_api_nn_cn_margin_ranking_loss>` ", "用于计算margin rank loss 损失"
     " :ref:`paddle.nn.functional.mse_loss <cn_paddle_nn_functional_mse_loss>` ", "用于计算均方差误差"
     " :ref:`paddle.nn.functional.nll_loss <cn_api_nn_functional_nll_loss>` ", "用于计算nll损失"
@@ -453,6 +471,7 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.sigmoid_focal_loss <cn_api_nn_functional_sigmoid_focal_loss>` ", "用于计算分类任务中前景类-背景类数量不均衡问题的损失"
     " :ref:`paddle.nn.functional.smooth_l1_loss <cn_paddle_nn_functional_loss_smooth_l1>` ", "用于计算平滑L1损失"
     " :ref:`paddle.nn.functional.softmax_with_cross_entropy <cn_api_fluid_layers_softmax_with_cross_entropy>` ", "将softmax操作、交叉熵损失函数的计算过程进行合并"
+    " :ref:`paddle.nn.functional.margin_cross_entropy <cn_api_paddle_nn_functional_margin_cross_entropy>` ", "支持 ``Arcface``，``Cosface``，``Sphereface`` 的结合 Margin 损失函数"
     
 .. _common_functional:
 
@@ -472,7 +491,14 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.pixel_shuffle <cn_api_nn_functional_pixel_shuffle>` ", "将Tensor重新排列"
     " :ref:`paddle.nn.functional.square_error_cost <cn_api_fluid_layers_square_error_cost>` ", "用于计算预测值和目标值的方差估计"
     " :ref:`paddle.nn.functional.unfold <cn_api_fluid_layers_unfold>` ", "对每一个卷积核覆盖下的区域，将元素重新排成一列"
-    
+    " :ref:`paddle.nn.functional.gather_tree <cn_api_fluid_layers_gather_tree>` ", "整个束搜索结束后使用,获得每个时间步选择的的候选词 id 及其对应的在搜索树中的 parent 节点"
+    " :ref:`paddle.nn.functional.glu <cn_api_nn_cn_glu>` ", "门控线性单元"
+    " :ref:`paddle.nn.functional.interpolate <cn_api_paddle_nn_functional_interpolate>` ", "用于调整一个batch中图片的大小"
+    " :ref:`paddle.nn.functional.sequence_mask <cn_api_fluid_layers_sequence_mask>` ", "根据输入 x 和 maxlen 输出一个掩码，数据类型为 dtype"
+    " :ref:`paddle.nn.functional.temporal_shift <cn_api_fluid_layers_temporal_shift>` ", "用于对输入X做时序通道T上的位移操作，为TSM中使用的操作"
+    " :ref:`paddle.nn.functional.upsample <cn_api_paddle_nn_functional_upsample>` ", "用于调整一个batch中图片的大小"
+    " :ref:`paddle.nn.functional.class_center_sample <cn_api_paddle_nn_functional_class_center_sample>` ", "用于PartialFC类别中心采样"
+
 .. _about_initializer:
 
 初始化相关
@@ -489,6 +515,9 @@ Embedding相关函数
     " :ref:`paddle.nn.initializer.KaimingUniform <cn_api_nn_initializer_KaimingUniform>` ", "实现Kaiming均匀分布方式的权重初始化"
     " :ref:`paddle.nn.initializer.Normal <cn_api_nn_initializer_Normal>` ", "随机正态（高斯）分布初始化函数"
     " :ref:`paddle.nn.initializer.set_global_initializer <cn_api_nn_initializer_set_global_initializer>` ", "用于设置Paddle框架中全局的参数初始化方法"
+    " :ref:`paddle.nn.initializer.calculate_gain <cn_api_nn_initializer_calculate_gain>` ", "获取某些激活函数的推荐增益值（增益值可用于对某些初始化API进行设置，以调整初始化值）"
+    " :ref:`paddle.nn.initializer.Dirac <cn_api_nn_initializer_Dirac>` ", "通过狄拉克delta函数来初始化3D/4D/5D Tensor，一般用于卷积层，能最大程度保留卷积层输入的特性"
+    " :ref:`paddle.nn.initializer.Orthogonal <cn_api_nn_initializer_Orthogonal>` ", "正交矩阵初始化方式，被初始化的参数为（半）正交的"
     " :ref:`paddle.nn.initializer.TruncatedNormal <cn_api_nn_initializer_TruncatedNormal>` ", "随机截断正态（高斯）分布初始化函数"
     " :ref:`paddle.nn.initializer.Uniform <cn_api_nn_initializer_Uniform>` ", "随机均匀分布初始化函数"
     " :ref:`paddle.nn.initializer.XavierNormal <cn_api_nn_initializer_XavierNormal>` ", "实现Xavier权重初始化方法（ Xavier weight initializer）"
