@@ -52,8 +52,8 @@ else
     echo "need check files is not empty, begin to build and install paddle"
     install_paddle
     if [ $? -ne 0 ];then
-      echo "install paddle error"
-      exit 5
+        echo "install paddle error"
+        exit 5
     fi
 
    if [ "${need_check_files}" != "" ]; then
