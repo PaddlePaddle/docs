@@ -21,7 +21,7 @@ if [ $? -ne 0 ];then
     exit 1
 fi
 
-if [ -x /usr/local/bin/sphinx-build ] ; then
+if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     /bin/bash -x ${DIR_PATH}/gendoc.sh
     if [ $? -ne 0 ];then
         exit 1
