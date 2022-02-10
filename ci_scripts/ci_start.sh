@@ -28,13 +28,16 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     if [ $? -ne 0 ];then
         exit 1
     fi
+    set +x
     if [ -n "${BOS_CREDENTIAL_AK}" ] && [ -n "${BOS_CREDENTIAL_SK}" ] ; then
         echo "Ak = ${BOS_CREDENTIAL_AK}" >> ${BOSCMD_CONFIG}/credentials
         echo "Sk = ${BOS_CREDENTIAL_SK}" >> ${BOSCMD_CONFIG}/credentials
     fi
+    set -x
     # [系统参数如下](https://cloud.baidu.com/doc/XLY/s/qjwvy89pc#%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B)
     if [ "${UPLOAD_DOC}" = "true" ] ; then
         PREVIEW_JOB_NAME="preview-${AGILE_PIPELINE_ID}-${AGILE_PIPELINE_BUILD_ID}"
+        BOSBUCKET=${BOSBUCKET:=paddle-site-web-dev}
         ${BCECMD} --conf-path ${BCECMD_CONFIG} bos sync "${OUTPUTDIR}/en/${VERSIONSTR}" "bos:/${BOSBUCKET}/documentation/en/${PREVIEW_JOB_NAME}" \
             --delete --yes --exclude "${OUTPUTDIR}/en/${VERSIONSTR}/_sources/"
         ${BCECMD} --conf-path ${BCECMD_CONFIG} bos sync "${OUTPUTDIR}/en/${VERSIONSTR}" "bos:/${BOSBUCKET}/documentation/en/${PREVIEW_JOB_NAME}" \
