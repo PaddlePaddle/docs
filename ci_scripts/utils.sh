@@ -23,7 +23,7 @@ function get_repo_pr_info(){
     if [ -z "${repo_name}" ] || [ -z "${pr_num}" ] ; then
         return 1
     fi
-    tmpfile="/tmp/${repo_name}-${pr_num}-info.json"
+    tmpfile="/tmp/${repo_name//\//-}-${pr_num}-info.json"
     curl -L -o ${tmpfile} -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/${repo_name}/pulls/${pr_num}
     if [ $? -ne 0 ] ; then
         return 2
