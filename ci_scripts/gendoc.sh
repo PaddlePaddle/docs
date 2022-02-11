@@ -13,8 +13,10 @@ APIROOT=${DOCROOT}/api/
 
 # install paddle if not installed yet.
 # PADDLE_WHL is defined in ci_start.sh
-pip3 list --disable-pip-version-check | grep paddlepaddle && \
+pip3 list --disable-pip-version-check | grep paddlepaddle > /dev/null
+if [ $? -ne 0 ] ; then
   pip3 install --no-cache-dir -i https://mirror.baidu.com/pypi/simple ${PADDLE_WHL}
+fi
 
 
 cd ${APIROOT}
