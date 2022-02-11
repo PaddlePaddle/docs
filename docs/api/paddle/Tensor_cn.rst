@@ -480,7 +480,7 @@ cholesky(upper=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_cholesky`
+请参考 :ref:`cn_api_linalg_cholesky`
 
 chunk(chunks, axis=0, name=None)
 :::::::::
@@ -814,7 +814,7 @@ eigvals(y, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_linalg_eigvals`
+请参考 :ref:`cn_api_linalg_eigvals`
 
 fill_(x, value, name=None)
 :::::::::
@@ -1076,14 +1076,14 @@ index_select(index, axis=0, name=None)
 
 请参考 :ref:`cn_api_tensor_search_index_select`
 
-inverse(name=None)
+inv(name=None)
 :::::::::
 
 返回：计算后的Tensor
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_inverse`
+请参考 :ref:`cn_api_linalg_inv`
 
 is_empty(cond=None)
 :::::::::
@@ -1263,7 +1263,7 @@ matrix_power(x, n, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_matrix_power`
+请参考 :ref:`cn_api_linalg_matrix_power`
 
 max(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1402,7 +1402,7 @@ norm(p=fro, axis=None, keepdim=False, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_norm`
+请参考 :ref:`cn_api_linalg_norm`
 
 not_equal(y, name=None)
 :::::::::
@@ -1950,6 +1950,15 @@ transpose(perm, name=None)
 
 请参考 :ref:`cn_api_fluid_layers_transpose`
 
+triangular_solve(b, upper=True, transpose=False, unitriangular=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_linalg_triangular_solve`
+
 trunc(name=None)
 :::::::::
 
@@ -2064,7 +2073,7 @@ multi_dot(x, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_multi_dot`
+请参考 :ref:`cn_api_linalg_multi_dot`
 
 solve(x, y name=None)
 :::::::::
