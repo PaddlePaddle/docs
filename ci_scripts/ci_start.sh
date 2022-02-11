@@ -72,3 +72,6 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
             --delete --yes --exclude "${OUTPUTDIR}/zh/${VERSIONSTR}/_sources/"
     fi
 fi
+
+echo "PADDLE_WHL=${PADDLE_WHL}"
+echo done
