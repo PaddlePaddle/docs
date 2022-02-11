@@ -48,19 +48,20 @@ function get_paddle_pr_num_from_docs_pr_info(){
     if [ ! -r ${pr_info_file} ] ; then
         return 1
     fi
-    pr_body=$(jq -r '.body' ${pr_info_file})
+
     declare -A arr_kv
-    echo "${pr_body}" | while read line
+    while read line
     do
         echo "$line" | grep '^\w\+\s*=\s*.*' > /dev/null
         if [ $? = 0 ] ; then
-        kv=($(echo $line | sed 's/=/\n/g'))
-        k=($(echo "${kv[1]}" | sed 's/\s//g'))
-        v=($(echo "${kv[2]}" | sed 's/^\s*//g' | sed 's/\s*$//g'))
-        # arr_kv[${kv[1]}]=${kv[2]}
-        arr_kv[${k}]=${v}
+            kv=($(echo $line | sed 's/=/\n/g'))
+            k=($(echo "${kv[0]}" | sed 's/\s//g'))
+            v=($(echo "${kv[1]}" | sed 's/^\s*//g' | sed 's/\s*$//g'))
+            # arr_kv[${kv[1]}]=${kv[2]}
+            arr_kv[${k}]=${v}
         fi
-    done
+    done < <(jq -r '.body' ${pr_info_file})
+
     echo ${arr_kv[PADDLEPADDLE_PR]}
     return 0
 }
