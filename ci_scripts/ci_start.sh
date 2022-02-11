@@ -2,8 +2,7 @@
 
 export DIR_PATH=${PWD}
 
-if [ -n "${PADDLE_WHL}" ] ; then
-else
+if [ -z "${PADDLE_WHL}" ] ; then
     PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
     if [ ${BRANCH} = 'release/2.2' ] ; then
         PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.2.0-cp38-cp38-linux_x86_64.whl
