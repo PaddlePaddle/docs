@@ -32,6 +32,16 @@ function get_repo_pr_info(){
     return 0
 }
 
+function get_latest_commit_from_pr_info(){
+    # get_repo_pr_info's output
+    pr_info_file=$1
+    if [ ! -r ${pr_info_file} ] ; then
+        return 1
+    fi
+    echo $(jq -r '.head.sha' ${pr_info_file})
+    return 0
+}
+
 function get_paddle_pr_num_from_docs_pr_info(){
     # get_repo_pr_info's output
     pr_info_file=$1

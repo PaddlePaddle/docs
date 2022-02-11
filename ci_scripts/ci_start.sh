@@ -2,12 +2,28 @@
 
 export DIR_PATH=${PWD}
 
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+source ${SCRIPT_DIR}/utils.sh
+
 if [ -z "${PADDLE_WHL}" ] ; then
-    PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
-    if [ ${BRANCH} = 'release/2.2' ] ; then
-        PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.2.0-cp38-cp38-linux_x86_64.whl
-    elif [ ${BRANCH} = 'release/2.1' ] ; then
-        PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.1.0-cp38-cp38-linux_x86_64.whl
+    docs_pr_info=$(get_repo_pr_info "PaddlePaddle/docs" ${GIT_PR_ID})
+    paddle_pr_id=$(get_paddle_pr_num_from_docs_pr_info ${docs_pr_info})
+    if [ -n "${paddle_pr_id}" ] ; then
+        paddle_pr_info=$(get_repo_pr_info "PaddlePaddle/Paddle" ${paddle_pr_id})
+        paddle_pr_latest_commit=$(get_latest_commit_from_pr_info ${paddle_pr_info})
+        paddle_whl_tmp="https://xly-devops.bj.bcebos.com/PR/build_whl/${paddle_pr_id}/${paddle_pr_latest_commit}/paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl"
+        http_code=$(curl -sIL -w "%{http_code}" -o /dev/null -X GET -k ${paddle_whl_tmp})
+        if [ "${http_code}" = "200" ] ; then
+            PADDLE_WHL=${paddle_whl_tmp}
+        fi
+    fi
+    if [ -z "${PADDLE_WHL}" ] ; then
+        PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
+        if [ ${BRANCH} = 'release/2.2' ] ; then
+            PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.2.0-cp38-cp38-linux_x86_64.whl
+        elif [ ${BRANCH} = 'release/2.1' ] ; then
+            PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.1.0-cp38-cp38-linux_x86_64.whl
+        fi
     fi
 fi
 export PADDLE_WHL
