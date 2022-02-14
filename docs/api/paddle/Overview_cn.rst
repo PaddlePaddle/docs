@@ -127,6 +127,9 @@ tensor数学操作
     " :ref:`paddle.gcd <cn_api_paddle_tensor_gcd>` ", "计算两个输入的按元素绝对值的最大公约数"
     " :ref:`paddle.lcm <cn_api_paddle_tensor_lcm>` ", "计算两个输入的按元素绝对值的最小公倍数"
     " :ref:`paddle.erfinv <cn_api_paddle_tensor_erfinv>` ", "计算输入Tensor的逆误差函数"
+    " :ref:`paddle.acosh <cn_api_fluid_layers_acosh>` ", "反双曲余弦函数"
+    " :ref:`paddle.asinh <cn_api_fluid_layers_asinh>` ", "反双曲正弦函数"
+    " :ref:`paddle.atanh <cn_api_fluid_layers_atanh>` ", "反双曲正切函数"
 
 
 .. _tensor_logic:

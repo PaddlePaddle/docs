@@ -1,4 +1,4 @@
-.. _cn_api_fluid_layers_fold:
+.. _cn_api_nn_functional_fold:
 
 fold
 -------------------------------
@@ -17,21 +17,25 @@ fold
     C_out &=  C_in / kernel\_sizes[0] / kernel\_sizes[1]
 
 
-参数：
+参数
+:::::::::
     - **x**  (Tensor) – 输入3-D Tensor，形状为[N, C, L]，数据类型为float32或者float64
     - **output_sizes**  (int|list|tuple) – 输出尺寸，整数或者整型列表。如为列表类型应包含两个元素 ``[output_size_h, output_size_w]`` 。如果为整数o，则输出形状会被认为 ``[o, o]``。
     - **kernel_size** (int|list|tuple) - 卷积核大小，整数或者整型列表。如为列表类型应包含两个元素 ``[k_h, k_w]`` 。如果为整数k，则输出形状会被认为 ``[k, k]``。
-    - **strides** (int|list|tuple, 可选) - 步长大小，整数或者整型列表。如为列表类型应包含两个元素 ``[stride_h, stride_w]`` 。如果为整数stride，则输出形状会被认为 ``[sride, stride]``。默认为[1,1]
-    - **paddings** (int|list|tuple，可选) – 每个维度的扩展, 整数或者整型列表。如果为整型列表，长度应该为4或者2；长度为4 对应的padding参数是：[padding_top, padding_left，padding_bottom, padding_right]，长度为2对应的padding参数是[padding_h, padding_w]，会被当作[padding_h, padding_w, padding_h, padding_w]处理。如果为整数padding，则会被当作[padding, padding, padding, padding]处理。默认值为0
-    - **dilations** (int|list|tuple，可选) – 卷积膨胀，整型列表或者整数。如果为整型列表，应该包含两个元素[dilation_h, dilation_w]。如果是整数dilation，会被当作整型列表[dilation, dilation]处理。默认值为1
+    - **strides** (int|list|tuple, 可选) - 步长大小，整数或者整型列表。如为列表类型应包含两个元素 ``[stride_h, stride_w]`` 。如果为整数stride，则输出形状会被认为 ``[sride, stride]``。默认为[1,1]。
+    - **paddings** (int|list|tuple，可选) – 每个维度的扩展, 整数或者整型列表。如果为整型列表，长度应该为4或者2；长度为4 对应的padding参数是：[padding_top, padding_left，padding_bottom, padding_right]，长度为2对应的padding参数是[padding_h, padding_w]，会被当作[padding_h, padding_w, padding_h, padding_w]处理。如果为整数padding，则会被当作[padding, padding, padding, padding]处理。默认值为0。
+    - **dilations** (int|list|tuple，可选) – 卷积膨胀，整型列表或者整数。如果为整型列表，应该包含两个元素[dilation_h, dilation_w]。如果是整数dilation，会被当作整型列表[dilation, dilation]处理。默认值为1。
     - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 
 
-返回：Tensor,  fold操作之后的结果，形状如上面所描述的[N, Cout, H_out, W_out]，数据类型与 ``x`` 相同
+形状
+:::::::::
+ - **输出** : Tensor,  fold操作之后的结果，形状如上面所描述的[N, Cout, H_out, W_out]，数据类型与 ``x`` 相同
 
 
-**代码示例**:
+代码示例
+:::::::::
 
 .. code-block:: python
 
