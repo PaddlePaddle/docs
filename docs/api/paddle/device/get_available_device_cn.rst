@@ -14,10 +14,4 @@ get_available_device
 
 代码示例
 :::::::::
-
-.. code-block:: python
-        
-    import paddle
-    
-    device = paddle.device.get_available_device()
-    # ['cpu', 'gpu:0', 'gpu:1', 'FakeCPU', 'FakeGPU:0', 'FakeGPU:1']
+COPY-FROM: paddle.device.get_available_device

@@ -14,10 +14,4 @@ get_all_custom_device_type
 
 代码示例
 :::::::::
-
-.. code-block:: python
-        
-    import paddle
-    
-    device = paddle.device.get_all_custom_device_type()
-    # ['FakeCPU', 'FakeGPU']
+COPY-FROM: paddle.device.get_all_custom_device_type
