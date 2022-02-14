@@ -15,6 +15,8 @@ if [ -z "${PADDLE_WHL}" ] ; then
         http_code=$(curl -sIL -w "%{http_code}" -o /dev/null -X GET -k ${paddle_whl_tmp})
         if [ "${http_code}" = "200" ] ; then
             PADDLE_WHL=${paddle_whl_tmp}
+        else
+            echo "curl -I ${paddle_whl_tmp} got http_code=${http_code}"
         fi
     fi
     if [ -z "${PADDLE_WHL}" ] ; then
@@ -27,6 +29,7 @@ if [ -z "${PADDLE_WHL}" ] ; then
     fi
 fi
 export PADDLE_WHL
+echo "PADDLE_WHL=${PADDLE_WHL}"
 
 /bin/bash  ${DIR_PATH}/check_code.sh
 if [ $? -ne 0 ];then
