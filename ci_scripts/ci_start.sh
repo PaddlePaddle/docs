@@ -5,6 +5,7 @@ export DIR_PATH=${PWD}
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 
+# 1 decide PADDLE_WHL if not setted.
 if [ -z "${PADDLE_WHL}" ] ; then
     docs_pr_info=$(get_repo_pr_info "PaddlePaddle/docs" ${GIT_PR_ID})
     paddle_pr_id=$(get_paddle_pr_num_from_docs_pr_info ${docs_pr_info})
@@ -31,22 +32,20 @@ fi
 export PADDLE_WHL
 echo "PADDLE_WHL=${PADDLE_WHL}"
 
+# 2 check code style/format.
 /bin/bash  ${DIR_PATH}/check_code.sh
 if [ $? -ne 0 ];then
     echo "code format error"
     exit 1
 fi
 
+# 3 Chinese api docs check
 /bin/bash -x ${DIR_PATH}/check_api_cn.sh
 if [ $? -ne 0 ];then
     exit 1
 fi
 
-/bin/bash  ${DIR_PATH}/checkapproval.sh
-if [ $? -ne 0 ];then
-    exit 1
-fi
-
+# 4 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
 if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     export OUTPUTDIR=/docs
     export VERSIONSTR=$(echo ${BRANCH} | sed 's@release/@@g')
@@ -60,7 +59,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
         echo "Sk = ${BOS_CREDENTIAL_SK}" >> ${BCECMD_CONFIG}/credentials
     fi
     set -x
-    # [系统参数如下](https://cloud.baidu.com/doc/XLY/s/qjwvy89pc#%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B)
+    # https://cloud.baidu.com/doc/XLY/s/qjwvy89pc#%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B
     # ${AGILE_PIPELINE_ID}-${AGILE_PIPELINE_BUILD_ID}"
     if [ "${UPLOAD_DOC}" = "true" ] ; then
         PREVIEW_JOB_NAME="preview-pr-${GIT_PR_ID}"
@@ -74,6 +73,17 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
         ${BCECMD} --conf-path ${BCECMD_CONFIG} bos sync "${OUTPUTDIR}/zh/${VERSIONSTR}" "bos:/${BOSBUCKET}/documentation/zh/${PREVIEW_JOB_NAME}" \
             --delete --yes --exclude "${OUTPUTDIR}/zh/${VERSIONSTR}/_sources/"
     fi
+
+    # clean git workspace
+    cd ${SCRIPT_DIR}/..
+    git reset --hard && git clean -dfx
+    cd ${DIR_PATH}
+fi
+
+# 5 Approval check
+/bin/bash  ${DIR_PATH}/checkapproval.sh
+if [ $? -ne 0 ];then
+    exit 1
 fi
 
 echo "PADDLE_WHL=${PADDLE_WHL}"
