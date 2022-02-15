@@ -56,5 +56,5 @@ function check_style(){
     trap 0
 }
 
-prepare_env
+# prepare_env
 check_style
