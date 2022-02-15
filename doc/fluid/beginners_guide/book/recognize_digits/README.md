@@ -1,1 +1,0 @@
-../../../../external/book/02.recognize_digits/README.md
