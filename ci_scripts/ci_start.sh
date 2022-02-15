@@ -53,12 +53,19 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     if [ $? -ne 0 ];then
         exit 1
     fi
+    
     set +x
+    # clean git workspace
+    cd ${SCRIPT_DIR}/..
+    git reset --hard && git clean -dfx
+    cd ${DIR_PATH}
+
     if [ -n "${BOS_CREDENTIAL_AK}" ] && [ -n "${BOS_CREDENTIAL_SK}" ] ; then
         echo "Ak = ${BOS_CREDENTIAL_AK}" >> ${BCECMD_CONFIG}/credentials
         echo "Sk = ${BOS_CREDENTIAL_SK}" >> ${BCECMD_CONFIG}/credentials
     fi
     set -x
+
     # https://cloud.baidu.com/doc/XLY/s/qjwvy89pc#%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B
     # ${AGILE_PIPELINE_ID}-${AGILE_PIPELINE_BUILD_ID}"
     if [ "${UPLOAD_DOC}" = "true" ] ; then
@@ -72,12 +79,15 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
             --delete --yes --exclude "${OUTPUTDIR}/zh/${VERSIONSTR}/_sources/"
         ${BCECMD} --conf-path ${BCECMD_CONFIG} bos sync "${OUTPUTDIR}/zh/${VERSIONSTR}" "bos:/${BOSBUCKET}/documentation/zh/${PREVIEW_JOB_NAME}" \
             --delete --yes --exclude "${OUTPUTDIR}/zh/${VERSIONSTR}/_sources/"
+        # print preview url
+        echo "ipipe_log_param_preview_url: https://${PREVIEW_JOB_NAME}.${PREVIEW_SITE:-preview.paddlepaddle.org}/documentation/docs/zh/api/index_cn.html"
+    else
+        # build but not upload
+        echo "ipipe_log_param_preview_url: None"
     fi
-
-    # clean git workspace
-    cd ${SCRIPT_DIR}/..
-    git reset --hard && git clean -dfx
-    cd ${DIR_PATH}
+else
+    # no build
+    echo "ipipe_log_param_preview_url: None"
 fi
 
 # 5 Approval check
