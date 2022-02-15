@@ -13,8 +13,10 @@ APIROOT=${DOCROOT}/api/
 
 # install paddle if not installed yet.
 # PADDLE_WHL is defined in ci_start.sh
-pip3 list --disable-pip-version-check | grep paddlepaddle && \
+pip3 list --disable-pip-version-check | grep paddlepaddle > /dev/null
+if [ $? -ne 0 ] ; then
   pip3 install --no-cache-dir -i https://mirror.baidu.com/pypi/simple ${PADDLE_WHL}
+fi
 
 
 cd ${APIROOT}
@@ -39,18 +41,19 @@ for ((i=0;i<$thread;i++));do
 done >&6
 
 
+sphinx_thread=12
 for lang in en zh ; do
   read -u6
   {
     mkdir -p ${OUTPUTDIR}/${lang}/${VERSIONSTR}
-    /usr/local/bin/sphinx-build -b ${OUTPUTFORMAT} -j auto -d /var/doctrees -c ${CONFIGDIR}/${lang} ${DOCROOT} ${OUTPUTDIR}/${lang}/${VERSIONSTR}
+    /usr/local/bin/sphinx-build -b ${OUTPUTFORMAT} -j ${sphinx_thread} -d /var/doctrees -c ${CONFIGDIR}/${lang} ${DOCROOT} ${OUTPUTDIR}/${lang}/${VERSIONSTR}
     if [ "${OUTPUTFORMAT}" = "html" ] ; then
       INDEXFILE="${OUTPUTDIR}/${lang}/${VERSIONSTR}/index_${lang}.html"
       if [ "${lang}" = "zh" ] ; then
         INDEXFILE="${OUTPUTDIR}/${lang}/${VERSIONSTR}/index_cn.html"
       fi
       if [ ! -f ${INDEXFILE} ] ; then 
-        /usr/local/bin/sphinx-build -b ${OUTPUTFORMAT} -j auto -d /var/doctrees -c ${CONFIGDIR}/${lang} ${DOCROOT} ${OUTPUTDIR}/${lang}/${VERSIONSTR}
+        /usr/local/bin/sphinx-build -b ${OUTPUTFORMAT} -j ${sphinx_thread} -d /var/doctrees -c ${CONFIGDIR}/${lang} ${DOCROOT} ${OUTPUTDIR}/${lang}/${VERSIONSTR}
       fi
 
       if [ "${lang}" = "en" ] ; then
