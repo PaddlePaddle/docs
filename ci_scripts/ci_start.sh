@@ -46,6 +46,7 @@ if [ $? -ne 0 ];then
 fi
 
 # 4 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
+PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: None"
 if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     export OUTPUTDIR=/docs
     export VERSIONSTR=$(echo ${BRANCH} | sed 's@release/@@g')
@@ -80,14 +81,8 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
         ${BCECMD} --conf-path ${BCECMD_CONFIG} bos sync "${OUTPUTDIR}/zh/${VERSIONSTR}" "bos:/${BOSBUCKET}/documentation/zh/${PREVIEW_JOB_NAME}" \
             --delete --yes --exclude "${OUTPUTDIR}/zh/${VERSIONSTR}/_sources/"
         # print preview url
-        echo "ipipe_log_param_preview_url: https://${PREVIEW_JOB_NAME}.${PREVIEW_SITE:-preview.paddlepaddle.org}/documentation/docs/zh/api/index_cn.html"
-    else
-        # build but not upload
-        echo "ipipe_log_param_preview_url: None"
+        PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: https://${PREVIEW_JOB_NAME}.${PREVIEW_SITE:-preview.paddlepaddle.org}/documentation/docs/zh/api/index_cn.html"
     fi
-else
-    # no build
-    echo "ipipe_log_param_preview_url: None"
 fi
 
 # 5 Approval check
@@ -97,4 +92,6 @@ if [ $? -ne 0 ];then
 fi
 
 echo "PADDLE_WHL=${PADDLE_WHL}"
+# print preview url
+echo "${PREVIEW_URL_PROMPT}"
 echo done
