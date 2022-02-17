@@ -2,6 +2,8 @@
 Kernel Primitive API
 #####################
 
+The Kernel Primitive API abstracts and encapsulates the underlying code in the implementation of operator kernel functions, providing high-performance block-level IO operation and computation operation. Using the Kernel Primitive API for Kernel development can focus more on the implementation of computing logic, greatly reduce the amount of code while ensuring performance, and realize the decoupling of operator computing and hardware.
+
 This part provides PaddlePaddle senior developers with CUDA Kernel Primitive API for Kernel development. This type of API can help developers gain better performance while improving development efficiency. Kernel Primitive API mainly includes IO API, Compute API and OpFunc. IO API can efficiently complete data reading and writing operations between global memory and registers; Compute API is a general calculation function, such as ElementwiseBinary, ElementwiseUnary, etc.; OpFunc is used to define Compute API. For example, to implement the Add operation, you need to define AddFunctor for ElementwiseBinary calls. Developers can directly use the default OpFunc or customize them as needed. The specific implementation rules will be described in detail in the OpFunc section. The current APIs are all block-level multi-threaded APIs. Developers can directly pass in the data pointer and operation type of the current block to complete the corresponding calculations. Currently, only global data pointers and register pointers are supported.
 
 
