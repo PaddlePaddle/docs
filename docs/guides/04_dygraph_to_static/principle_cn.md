@@ -5,7 +5,7 @@
 ## 一、 设置 Placeholder 信息
 
 
-静态图下，模型起始的 Placeholder 信息是通过 ``paddle.static.data`` 来指定的，并以此作为编译期的 ``InferShape`` 推导起点。
+静态图下，模型起始的 Placeholder 信息是通过 ``paddle.static.data`` 来指定的，并以此作为编译期的 ``InferShape`` 推导起点，即用于推导输出 Tensor 的 shape。
 
 ```python
 import paddle
@@ -41,7 +41,7 @@ class SimpleNet(paddle.nn.Layer):
 net = SimpleNet()
 
 # 通过 InputSpec 设置 Placeholder 信息
-x_spec = InputSpec(shape=[None, 10], name='x') 
+x_spec = InputSpec(shape=[None, 10], name='x')
 y_spec = InputSpec(shape=[3], name='y')
 
 net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
@@ -138,13 +138,13 @@ def add_two(x, y):
 + **只有**控制流的判断条件 **依赖了``Tensor``**（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
 
 
-
-
 ### 3.1 IfElse
 
 无论是否会转写为 ``cond_op`` ，动转静都会首先对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**
 
 **示例一：不依赖 Tensor 的控制流**
+
+如下代码样例中的 `if label is not None`, 此判断只依赖于 `label` 是否为 `None`（存在性），并不依赖 `label` 的Tensor值（数值性），因此属于**不依赖 Tensor 的控制流**。
 
 ```python
 def not_depend_tensor_if(x, label=None):
@@ -175,6 +175,8 @@ def not_depend_tensor_if(x, label=None):
 
 
 **示例二：依赖 Tensor 的控制流**
+
+如下代码样例中的 `if paddle.mean(x) > 5`, 此判断直接依赖 `paddle.mean(x)` 返回的Tensor值（数值性），因此属于**依赖 Tensor 的控制流**。
 
 ```python
 def depend_tensor_if(x):
@@ -235,6 +237,7 @@ def convert_ifelse(pred, true_fn, false_fn, true_args, false_args, return_vars):
 ``For/While`` 也会先进行代码层面的规范化，在逐行执行用户代码时，才会决定是否转为 ``while_op``。
 
 **示例一：不依赖 Tensor 的控制流**
+如下代码样例中的 `while a < 10`, 此循环条件中的 `a` 是一个 `int` 类型，并不是 Tensor 类型，因此属于**不依赖 Tensor 的控制流**。
 
 ```python
 def not_depend_tensor_while(x):
@@ -268,6 +271,8 @@ def not_depend_tensor_while(x):
 
 
 **示例二：依赖 Tensor 的控制流**
+
+如下代码样例中的 `for i in range(bs)`, 此循环条件中的 `bs` 是一个 `paddle.shape` 返回的 Tensor 类型，且将其 Tensor 值作为了循环的终止条件，因此属于**依赖 Tensor 的控制流**。
 
 ```python
 def depend_tensor_while(x):
