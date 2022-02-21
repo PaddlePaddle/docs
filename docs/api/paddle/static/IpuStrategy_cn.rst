@@ -19,7 +19,7 @@ IpuStrategy
 
 COPY-FROM: paddle.static.IpuStrategy
 
-.. py:method:: set_graph_config(self, num_ipus, is_training, batch_size, enable_manual_shard, need_avg_shard)
+.. py:method:: set_graph_config(self, num_ipus, is_training, batch_size, enable_manual_shard)
 
 该接口用于向IpuStrategy实例传递IPU构图的Graph配置。
 
@@ -29,14 +29,13 @@ COPY-FROM: paddle.static.IpuStrategy
     - **is_training** (bool，可选)- 声明是训练还是推理，默认值为True，表示使用训练模式。
     - **batch_size** (int，可选)- 当计算图输入的batch_size可变时，指定计算图中输入batch_size，默认值为1，表示如果batch_size可变，将默认置1。
     - **enable_manual_shard** (bool，可选)- 是否使能分割计算图到不同IPU进行运算。仅支持当num_ipus > 1时，enable_manual_shard可以置为True。默认值为False，表示不使能该功能。
-    - **need_avg_shard** (bool，可选)- 是否使能自动分割计算图到不同IPU进行运算。仅支持当enable_manual_shard=True时，need_avg_shard可以置为True。默认值为False，表示不使能该功能。
 
 代码示例
 :::::::::
 
 COPY-FROM: paddle.static.IpuStrategy.set_graph_config
 
-.. py:method:: set_pipelining_config(self, enable_pipelining, batches_per_step, accumulationFactor)
+.. py:method:: set_pipelining_config(self, enable_pipelining, batches_per_step, accumulation_factor)
 
 该接口用于向IpuStrategy实例传递IPU构图的子图数据流水配置。
 
@@ -44,16 +43,16 @@ COPY-FROM: paddle.static.IpuStrategy.set_graph_config
 :::::::::
     - **enable_pipelining** (bool，可选)- 是否使能子图之间的数据流水。仅支持当enable_manual_shard=True时，enable_pipelining可以置为True。默认值为False，表示不使能该功能。
     - **batches_per_step** (int，可选)- 指定数据流水每次运算多少个batch_size的数据。仅支持当enable_pipelining=True时，batches_per_step可以置 > 1。默认值为1，表示不使能数据流水功能。
-    - **accumulationFactor** (int，可选)- 指定累积运算多少个batch_size更新一次权重。默认值为1，表示不使能权重累积更新功能。
+    - **accumulation_factor** (int，可选)- 指定累积运算多少个batch_size更新一次权重。默认值为1，表示不使能权重累积更新功能。
 
 代码示例
 :::::::::
 
 COPY-FROM: paddle.static.IpuStrategy.set_pipelining_config
 
-.. py:method:: set_half_config(self, enable_fp16)
+.. py:method:: set_precision_config(self, enable_fp16)
 
-该接口用于向IpuStrategy实例传递IPU构图的半精度运算配置。
+该接口用于向IpuStrategy实例传递IPU构图的精度配置。
 
 参数
 :::::::::
@@ -62,7 +61,7 @@ COPY-FROM: paddle.static.IpuStrategy.set_pipelining_config
 代码示例
 :::::::::
 
-COPY-FROM: paddle.static.IpuStrategy.set_half_config
+COPY-FROM: paddle.static.IpuStrategy.set_precision_config
 
 .. py:method:: add_custom_op(self, paddle_op, popart_op, domain, version)
 
