@@ -1,8 +1,5 @@
 #!/bin/bash
  
-# renwei 先打印下参数列表
-# echo $@
-
 SELFNAME=$0 
 SHORT=f:p:w:hx:
 LONG=docs-dir:,paddle-dir:,paddle-whl:,https-proxy:

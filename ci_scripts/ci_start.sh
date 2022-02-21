@@ -21,11 +21,21 @@ if [ -z "${PADDLE_WHL}" ] ; then
         fi
     fi
     if [ -z "${PADDLE_WHL}" ] ; then
-        PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
-        if [ ${BRANCH} = 'release/2.2' ] ; then
-            PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.2.0-cp38-cp38-linux_x86_64.whl
-        elif [ ${BRANCH} = 'release/2.1' ] ; then
-            PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.1.0-cp38-cp38-linux_x86_64.whl
+        if [ "${AGILE_PIPELINE_UUID}" = 'fluid-doc1' ] ; then
+            # as there are two pipelines now, only change the test pipeline's version to py3.7
+            PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/develop/linux/cpu-mkl/paddlepaddle-0.0.0-cp37-cp37m-linux_x86_64.whl
+            if [ ${BRANCH} = 'release/2.2' ] ; then
+                PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/2.2.2/linux/linux-cpu-mkl-avx/paddlepaddle-2.2.2-cp37-cp37m-linux_x86_64.whl
+            elif [ ${BRANCH} = 'release/2.1' ] ; then
+                PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/2.1.3/linux/linux-cpu-mkl-avx/paddlepaddle-2.1.3-cp37-cp37m-linux_x86_64.whl
+            fi
+        else
+            PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
+            if [ ${BRANCH} = 'release/2.2' ] ; then
+                PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.2.0-cp38-cp38-linux_x86_64.whl
+            elif [ ${BRANCH} = 'release/2.1' ] ; then
+                PADDLE_WHL=https://paddle-fluiddoc-ci.bj.bcebos.com/python/dist/paddlepaddle_gpu-2.1.0-cp38-cp38-linux_x86_64.whl
+            fi
         fi
     fi
 fi
