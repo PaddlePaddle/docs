@@ -19,7 +19,7 @@ IpuStrategy
 
 COPY-FROM: paddle.static.IpuStrategy
 
-.. py:method:: SetGraphConfig(self, num_ipus, is_training, batch_size, enable_manual_shard, need_avg_shard)
+.. py:method:: set_graph_config(self, num_ipus, is_training, batch_size, enable_manual_shard, need_avg_shard)
 
 该接口用于向IpuStrategy实例传递IPU构图的Graph配置。
 
@@ -34,9 +34,9 @@ COPY-FROM: paddle.static.IpuStrategy
 代码示例
 :::::::::
 
-COPY-FROM: paddle.static.IpuStrategy.SetGraphConfig
+COPY-FROM: paddle.static.IpuStrategy.set_graph_config
 
-.. py:method:: SetPipeliningConfig(self, enable_pipelining, batches_per_step, accumulationFactor)
+.. py:method:: set_pipelining_config(self, enable_pipelining, batches_per_step, accumulationFactor)
 
 该接口用于向IpuStrategy实例传递IPU构图的子图数据流水配置。
 
@@ -49,9 +49,9 @@ COPY-FROM: paddle.static.IpuStrategy.SetGraphConfig
 代码示例
 :::::::::
 
-COPY-FROM: paddle.static.IpuStrategy.SetPipeliningConfig
+COPY-FROM: paddle.static.IpuStrategy.set_pipelining_config
 
-.. py:method:: SetHalfConfig(self, enable_fp16)
+.. py:method:: set_half_config(self, enable_fp16)
 
 该接口用于向IpuStrategy实例传递IPU构图的半精度运算配置。
 
@@ -62,7 +62,49 @@ COPY-FROM: paddle.static.IpuStrategy.SetPipeliningConfig
 代码示例
 :::::::::
 
-COPY-FROM: paddle.static.IpuStrategy.SetHalfConfig
+COPY-FROM: paddle.static.IpuStrategy.set_half_config
+
+.. py:method:: add_custom_op(self, paddle_op, popart_op, domain, version)
+
+该接口用于向IpuStrategy实例传递PopART自定义算子的信息。
+
+参数
+:::::::::
+    - **paddle_op** (str)- 待添加的Paddle自定义算子在的名称, 根据Paddle自定义算子的定义设置此参数。
+    - **popart_op** (str，可选)- 待添加的PopART自定义算子的名称，默认值为None，表示和paddle_op相同，根据PopART自定算子的定义设置此参数。
+    - **domain** (str，可选)- 待添加的PopART自定义算子的domain属性，默认值为"custom.ops"，根据PopART自定算子的定义设置此参数。
+    - **version** (int，可选)- 待添加的PopART自定义算子的version属性，默认值为1，根据PopART自定算子的定义设置此参数。
+
+代码示例
+:::::::::
+
+COPY-FROM: paddle.static.IpuStrategy.add_custom_op
+
+.. py:method:: set_options(self, options)
+
+批量向IpuStrategy实例传递参数。
+
+参数
+:::::::::
+    - **options** (dict)- 需要传递的参数字典。
+
+代码示例
+:::::::::
+
+COPY-FROM: paddle.static.IpuStrategy.set_options
+
+.. py:method:: get_option(self, option)
+
+获取IpuStrategy实例的某一参数。
+
+参数
+:::::::::
+    - **option** (str)- 需要获取参数的名称。
+
+代码示例
+:::::::::
+
+COPY-FROM: paddle.static.IpuStrategy.get_option
 
 属性
 ::::::::::::
@@ -74,29 +116,9 @@ COPY-FROM: paddle.static.IpuStrategy.SetHalfConfig
 
 返回IpuStrategy实例中的计算模式是训练模式或推理模式，类型为 ``Bool``
 
-.. py:attribute:: batch_size
-
-返回IpuStrategy实例中的计算图batch_size,用于固定动态的batch_size，类型为 ``Int``
-
-.. py:attribute:: enable_manual_shard
-
-返回IpuStrategy实例中是否使能图切分功能，类型为 ``Bool``
-
-.. py:attribute:: need_avg_shard
-
-返回IpuStrategy实例中是否使能自动切分功能，类型为 ``Bool``
-
 .. py:attribute:: enable_pipelining
 
 返回IpuStrategy实例中是否使能数据流水功能，类型为 ``Parameter``
-
-.. py:attribute:: batches_per_step
-
-返回IpuStrategy实例中的数据流水模式下每次执行的batch_size个数，类型为 ``Int``
-
-.. py:attribute:: accumulationFactor
-
-返回IpuStrategy实例中的训练模式下权重累积batch个数，类型为 ``Int``
 
 .. py:attribute:: enable_fp16
 
