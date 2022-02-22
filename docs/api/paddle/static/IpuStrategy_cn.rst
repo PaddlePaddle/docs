@@ -69,7 +69,7 @@ COPY-FROM: paddle.static.IpuStrategy.set_precision_config
 
 参数
 :::::::::
-    - **paddle_op** (str)- 待添加的Paddle自定义算子在的名称, 根据Paddle自定义算子的定义设置此参数。
+    - **paddle_op** (str)- 待添加的Paddle自定义算子在的名称，根据Paddle自定义算子的定义设置此参数。
     - **popart_op** (str，可选)- 待添加的PopART自定义算子的名称，默认值为None，表示和paddle_op相同，根据PopART自定算子的定义设置此参数。
     - **domain** (str，可选)- 待添加的PopART自定义算子的domain属性，默认值为"custom.ops"，根据PopART自定算子的定义设置此参数。
     - **version** (int，可选)- 待添加的PopART自定义算子的version属性，默认值为1，根据PopART自定算子的定义设置此参数。
@@ -109,16 +109,16 @@ COPY-FROM: paddle.static.IpuStrategy.get_option
 ::::::::::::
 .. py:attribute:: num_ipus
 
-返回IpuStrategy实例中的IPU设备个数，类型为 ``Int``
+返回IpuStrategy实例中的IPU设备个数，类型为 ``Int``。
 
 .. py:attribute:: is_training
 
-返回IpuStrategy实例中的计算模式是训练模式或推理模式，类型为 ``Bool``
+返回IpuStrategy实例中的计算模式是训练模式或推理模式，类型为 ``Bool``。
 
 .. py:attribute:: enable_pipelining
 
-返回IpuStrategy实例中是否使能数据流水线功能，类型为 ``Bool``
+返回IpuStrategy实例中是否使能数据流水线功能，类型为 ``Bool``。
 
 .. py:attribute:: enable_fp16
 
-返回IpuStrategy实例中是否使能float16计算图，类型为 ``Bool``
+返回IpuStrategy实例中是否使能float16计算图，类型为 ``Bool``。
