@@ -37,12 +37,12 @@ COPY-FROM: paddle.static.IpuStrategy.set_graph_config
 
 .. py:method:: set_pipelining_config(self, enable_pipelining, batches_per_step, accumulation_factor)
 
-该接口用于向IpuStrategy实例传递IPU构图的子图数据流水配置。
+该接口用于向IpuStrategy实例传递IPU构图的子图数据流水线配置。
 
 参数
 :::::::::
-    - **enable_pipelining** (bool，可选)- 是否使能子图之间的数据流水。仅支持当enable_manual_shard=True时，enable_pipelining可以置为True。默认值为False，表示不使能该功能。
-    - **batches_per_step** (int，可选)- 指定数据流水每次运算多少个batch_size的数据。仅支持当enable_pipelining=True时，batches_per_step可以置 > 1。默认值为1，表示不使能数据流水功能。
+    - **enable_pipelining** (bool，可选)- 是否使能子图之间的数据流水线。仅支持当enable_manual_shard=True时，enable_pipelining可以置为True。默认值为False，表示不使能该功能。
+    - **batches_per_step** (int，可选)- 指定数据流水线每次运算多少个batch_size的数据。默认值为1，表示不使能数据流水线功能。
     - **accumulation_factor** (int，可选)- 指定累积运算多少个batch_size更新一次权重。默认值为1，表示不使能权重累积更新功能。
 
 代码示例
@@ -117,7 +117,7 @@ COPY-FROM: paddle.static.IpuStrategy.get_option
 
 .. py:attribute:: enable_pipelining
 
-返回IpuStrategy实例中是否使能数据流水功能，类型为 ``Parameter``
+返回IpuStrategy实例中是否使能数据流水线功能，类型为 ``Bool``
 
 .. py:attribute:: enable_fp16
 
