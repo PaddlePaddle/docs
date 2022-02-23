@@ -57,7 +57,7 @@ Please follow the steps below to install:
 5. After entering Docker, go to the paddle directory:
 
     ```
-    cd paddle
+    cd /paddle
     ```
 
 6. Switch to `develop` version to compile:
