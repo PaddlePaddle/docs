@@ -43,5 +43,7 @@ Normalize
 
     fake_img = normalize(fake_img)
     print(fake_img.shape)
-    print(fake_img.max, fake_img.max)
+    # (300, 320, 3)
+    print(fake_img.max(), fake_img.min())
+    # 0.99215686 -1.0
     
