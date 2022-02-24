@@ -4,7 +4,7 @@
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
 * **GPU版本支持CUDA 10.1/10.2/11.0/11.1/11.2，且仅支持单卡**
-* **Python 版本 3.6+/3.7+/3.8+/3.9+ (64 bit)**
+* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip 版本 20.2.2或更高版本 (64 bit)**
 * **Visual Studio 2017**
 
@@ -13,7 +13,7 @@
 * 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
 * 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
-    * **CUDA 工具包 10.1/10.2 配合 cuDNN v7.6.5+**
+    * **CUDA 工具包 10.1/10.2 配合 cuDNN v7.6.5**
     * **CUDA 工具包 11.0 配合 cuDNN v8.0.2**
     * **CUDA 工具包 11.1 配合 cuDNN v8.1.1**
     * **CUDA 工具包 11.2 配合 cuDNN v8.2.1**
@@ -28,40 +28,52 @@
 <a name="win_source"></a>
 ### <span id="compile_from_host">**本机编译**</span>
 
-1. 安装必要的工具 cmake，git 以及 python：
+1. 安装必要的工具 cmake, git, python, Visual studio 2017：
 
-    > cmake我们支持3.15以上版本,但GPU编译时3.12/3.13/3.14版本存在官方[Bug](https://cmake.org/pipermail/cmake/2018-September/068195.html),我们建议您使用CMake3.16版本, 可在官网[下载](https://cmake.org/download/)，并添加到环境变量中。
+    > cmake：建议安装CMake3.17版本, 官网下载[链接]](https://cmake.org/files/v3.17/cmake-3.17.0-win64-x64.msi)，注意勾选 **Add CMake to the system PATH for all users**，将CMake添加到环境变量中。
 
-    > python 需要 3.6 及以上版本, 可在官网[下载](https://www.python.org/downloads/release/python-3610/)。
+    > git：官网下载[链接](https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/Git-2.35.1.2-64-bit.exe)，使用默认选项安装。
 
-    * 安装完python 后请通过 `python --version` 检查python版本是否是预期版本，因为您的计算机可能安装有多个python，您可通过修改环境变量的顺序来处理多个python时的冲突。
+    > python：官网[链接](https://www.python.org/downloads/windows/)，可选择3.6/3.7/3.8/3.9中任一版本的 Windows installer(64-bit)安装。安装时需要勾选 **Add Python 3.x to PATH**，将Python添加到环境变量中。
 
-    > 需要安装`numpy, protobuf, wheel` 。 请使用`pip`命令;
+    > Visual studio 2017：社区版下载[链接](https://paddle-ci.gz.bcebos.com/window_requirement/VS2017/vs_Community.exe)。在安装时需要在工作负荷一栏中勾选 **使用C++的桌面开发** 和 **通用Windows平台开发**，并在语言包一栏中选择 **英语**。
 
-    * 安装 numpy 包可以通过命令
+2. 在Windows桌面下方的搜索栏中搜索 "x64 Native Tools Command Prompt for VS 2017" 或 "适用于VS 2017 的x64本机工具命令提示符"，以管理员身份运行，打开终端。之后的命令均在该终端中执行。
+
+3. 使用`pip`命令安装Python依赖：`numpy, protobuf, wheel, ninja`
+    * 通过 `python --version` 检查默认python版本是否是预期版本，因为您的计算机可能安装有多个python，您可通过修改系统环境变量的顺序修改默认的Python版本。
+    * 更新 pip
+        ```
+        pip install --upgrade pip --user
+        ```
+    * 安装 numpy
         ```
         pip install numpy
         ```
-    * 安装 protobuf 包可以通过命令
+    * 安装 protobuf
         ```
         pip install protobuf
         ```
-    * 安装 wheel 包可以通过命令
+    * 安装 wheel
         ```
         pip install wheel
         ```
+    * 安装 ninja
+        ```
+        pip install ninja
+        ```
 
-    > git可以在官网[下载](https://gitforwindows.org/)，并添加到环境变量中。
-
-2. 将PaddlePaddle的源码clone在当前目录下的Paddle的文件夹中，并进入Padde目录下：
+4. 创建要拉取PaddlePaddle源码的目录并进入（例如D:\workspace）。将PaddlePaddle的源码clone在当前目录下的Paddle的文件夹中，并进入Padde目录下：
 
     ```
+    mkdir D:\workspace && cd /d D:\workspace
+
     git clone https://github.com/PaddlePaddle/Paddle.git
 
-	cd Paddle
+    cd Paddle
     ```
 
-3. 切换到`develop`分支下进行编译：
+5. 切换到`develop`分支下进行编译：
 
     ```
     git checkout develop
@@ -69,7 +81,7 @@
 
     注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
 
-4. 创建名为build的目录并进入：
+6. 创建名为build的目录并进入：
 
     ```
     mkdir build
@@ -77,48 +89,35 @@
     cd build
     ```
 
-5. 执行cmake：
+7. 执行cmake：
 
-    > 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。Windows编译方式可在 `Ninja方式(推荐)` 或 `Visual Studio IDE方式`中二选一，需要在cmake命令中通过-G选项进行指定，如下：
+    编译CPU版本的Paddle：
 
-    * 1）通过Ninja命令行方式编译（推荐）：
+    ```
+    cmake .. -GNinja -DWITH_GPU=OFF
+    ```
 
-        需要先安装ninja：
-        ```
-        pip install ninja
-        ```
+    上述命令中，改成 `-DWITH_GPU=ON` 即可编译GPU版本的Paddle。具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。
 
-        然后在搜索栏中搜索 "x64 Native Tools Command Prompt for VS 2017" 或 "适用于VS 2017 的x64本机工具命令提示符"，以管理员身份运行，输入以下cmake命令：
-        ```
-        cmake .. -GNinja -DWITH_GPU=OFF
-        ```
-
-    * 2）通过Visual Studio IDE方式编译：
-        ```
-        cmake .. -G"Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=OFF
-        ```
-
-	上述命令中，改成 `-DWITH_GPU=ON` 即可编译GPU版本的Paddle。
-
-	> 注意：
+    > 注意：
     > 1. 如果本机安装了多个CUDA，则生效的为最新安装的CUDA，且无法指定。
-    > 2. 如果本机安装了多个Python，则默认生效的为最新安装的Python，可通过 `-DPYTHON_EXECUTABLE` 来指定Python版本，例如：
+    > 2. 如果本机安装了多个Python，将使用系统默认的Python版本。若需要指定Python版本，需要指定Python路径，例如：
     ```
-    cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe
-    ```
-
-6. 执行编译：
-    * 1) 若选择使用 `Ninja命令行方式`，直接输入命令 `ninja all` 开始编译
-
-    * 2) 若选择使用 `Visual Studio IDE方式`，使用Visual Studio 2017 打开 `paddle.sln` 文件，选择平台为 `x64`，配置为 `Release`，点击相应按钮，开始编译
-
-7. 编译成功后进入 `\Paddle\build\python\dist` 目录下找到生成的 `.whl` 包：
-
-    ```
-    cd \Paddle\build\python\dist
+    cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\Python38\python.exe -DPYTHON_INCLUDE_DIR=C:\Python38\include -DPYTHON_LIBRARY=C:\Python38\libs\python38.lib
     ```
 
-8. 安装编译好的 `.whl` 包：
+8. 执行编译：
+    ```
+    ninja
+    ```
+
+9. 编译成功后进入 `python\dist` 目录下找到生成的 `.whl` 包：
+
+    ```
+    cd python\dist
+    ```
+
+10. 安装编译好的 `.whl` 包：
 
     ```
     pip install -U（whl包的名字）
@@ -143,10 +142,10 @@ paddle.utils.run_check()
 
 * **CPU版本的PaddlePaddle**:
     ```
-    python -m pip uninstall paddlepaddle
+    pip uninstall paddlepaddle
     ```
 
 * **GPU版本的PaddlePaddle**:
     ```
-    python -m pip uninstall paddlepaddle-gpu
+    pip uninstall paddlepaddle-gpu
     ```
