@@ -30,7 +30,7 @@
 
 1. 安装必要的工具 cmake, git, python, Visual studio 2017：
 
-    > cmake：建议安装CMake3.17版本, 官网下载[链接]](https://cmake.org/files/v3.17/cmake-3.17.0-win64-x64.msi)，注意勾选 **Add CMake to the system PATH for all users**，将CMake添加到环境变量中。
+    > cmake：建议安装CMake3.17版本, 官网下载[链接](https://cmake.org/files/v3.17/cmake-3.17.0-win64-x64.msi)，注意勾选 **Add CMake to the system PATH for all users**，将CMake添加到环境变量中。
 
     > git：官网下载[链接](https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/Git-2.35.1.2-64-bit.exe)，使用默认选项安装。
 
@@ -46,24 +46,12 @@
         ```
         pip install --upgrade pip --user
         ```
-    * 安装 numpy
+    * 安装 numpy, protobuf, wheel, ninja
         ```
-        pip install numpy
-        ```
-    * 安装 protobuf
-        ```
-        pip install protobuf
-        ```
-    * 安装 wheel
-        ```
-        pip install wheel
-        ```
-    * 安装 ninja
-        ```
-        pip install ninja
+        pip install numpy protobuf wheel ninja
         ```
 
-4. 创建要拉取PaddlePaddle源码的目录并进入（例如D:\workspace）。将PaddlePaddle的源码clone在当前目录下的Paddle的文件夹中，并进入Padde目录下：
+4. 创建编译Paddle的文件夹（例如D:\workspace），进入该目录并下载源码：
 
     ```
     mkdir D:\workspace && cd /d D:\workspace
@@ -73,15 +61,7 @@
     cd Paddle
     ```
 
-5. 切换到`develop`分支下进行编译：
-
-    ```
-    git checkout develop
-    ```
-
-    注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
-
-6. 创建名为build的目录并进入：
+5. 创建名为build的目录并进入：
 
     ```
     mkdir build
@@ -89,7 +69,7 @@
     cd build
     ```
 
-7. 执行cmake：
+6. 执行cmake：
 
     编译CPU版本的Paddle：
 
@@ -106,21 +86,21 @@
     cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\Python38\python.exe -DPYTHON_INCLUDE_DIR=C:\Python38\include -DPYTHON_LIBRARY=C:\Python38\libs\python38.lib
     ```
 
-8. 执行编译：
+7. 执行编译：
     ```
     ninja
     ```
 
-9. 编译成功后进入 `python\dist` 目录下找到生成的 `.whl` 包：
+8. 编译成功后进入 `python\dist` 目录下找到生成的 `.whl` 包：
 
     ```
     cd python\dist
     ```
 
-10. 安装编译好的 `.whl` 包：
+9. 安装编译好的 `.whl` 包：
 
     ```
-    pip install -U（whl包的名字）
+    pip install（whl包的名字）--force-reinstall
     ```
 
 恭喜，至此您已完成PaddlePaddle的编译安装
