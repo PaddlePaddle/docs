@@ -1,11 +1,11 @@
 .. _cn_api_vision_transforms_normalize:
 
-normalize
+Normalize
 -------------------------------
 
 .. py:class:: paddle.vision.transforms.Normalize(mean=0.0, std=1.0, data_format='CHW', to_rgb=False, keys=None)
 
-用均值和标准差归一化输入数据。
+用均值和标准差归一化输入数据。给定n个通道的均值(M1,...,Mn)和方差(S1,..,Sn)，Normalize会在每个通道归一化输入数据。output[channel] = (input[channel] - mean[channel]) / std[channel]
 
 参数
 :::::::::
