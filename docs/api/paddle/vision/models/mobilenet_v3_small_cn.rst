@@ -10,7 +10,6 @@ mobilenet_v3_small
 参数
 :::::::::
   - **pretrained** (bool，可选) - 是否加载在imagenet数据集上的预训练权重。默认值：False。
-  - **last_channel** (int, 可选) - 倒数第二层的通道数。默认值：1280。
   - **scale** (float，可选) - 模型通道数的缩放比例。默认值：1.0。
 
 返回
