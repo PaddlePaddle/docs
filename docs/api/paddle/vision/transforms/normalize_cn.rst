@@ -3,9 +3,9 @@
 normalize
 -------------------------------
 
-.. py:function:: paddle.vision.transforms.normalize(pic, data_format='CHW')
+.. py:function:: paddle.vision.transforms.normalize(img, mean, std, data_format='CHW', to_rgb=False)
 
-将 ``PIL.Image`` 或 ``numpy.ndarray`` 转换成 ``paddle.Tensor``
+用均值和标准差归一化输入数据。
 
 参数
 :::::::::
@@ -39,4 +39,5 @@ normalize
 
     normalized_img = F.normalize(fake_img, mean, std, data_format='HWC')
     print(normalized_img.max(), normalized_img.min())
+    # 0.99215686 -1.0
     
