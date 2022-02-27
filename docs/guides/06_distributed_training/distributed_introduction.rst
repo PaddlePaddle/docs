@@ -34,6 +34,6 @@
 教程内容结构
 ~~~~~~~~~~~~~~~
 
-- \ `Collective数据并行 <./data_parallel.rst>`\ 部分介绍Collective架构下最常用的数据并行功能。
-- \ `参数服务器基础指南 <./ps.rst>`\ 部分介绍参数服务器架构的基础使用方法。
-- \ `launch组件详解 <./launch.rst>`\ 部分介绍飞桨分布式训练启动组件\ `launch`\ 的使用方法。
+- `Collective数据并行 <./data_parallel.html>`_ 部分介绍Collective架构下最常用的数据并行功能。
+- `参数服务器基础指南 <./ps.html>`_ 部分介绍参数服务器架构的基础使用方法
+- `launch组件详解 <./launch.html>`_ 部分介绍飞桨分布式训练启动组件 `launch` 的使用方法。
