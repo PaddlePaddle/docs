@@ -53,7 +53,7 @@ launch组件详解
 下面将介绍\ ``paddle.distributed.launch``\ 组件在不同场景下的详细使用方法。
 
 Collective架构分布式任务
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 在Collective分布式任务场景下，\ ``paddle.distributed.launch``\ 组件支持以下参数：
 
