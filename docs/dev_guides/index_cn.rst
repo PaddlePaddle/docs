@@ -10,4 +10,4 @@
 ..  toctree::
     :hidden:
 
-    ./Overview_cn.md
+    Overview_cn.md
