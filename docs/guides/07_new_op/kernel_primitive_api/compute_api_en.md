@@ -1,5 +1,5 @@
 # API Description - Compute
-## [ElementwiseUnary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L138)
+## [ElementwiseUnary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/compute_primitives.h#L176)
 ### Function Definition
 
 ```
@@ -26,7 +26,7 @@ The input is calculated according to the calculation rules in OpFunc, and the ca
 > in: Input register pointer, the size is NX * NY. </br>
 > compute: Calculation function, declared as OpFunc&lt;InT&gt;(). </br>
 
-## [ElementwiseBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L172)
+## [ElementwiseBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/compute_primitives.h#L215)
 ### Function Definition
 
 ```
@@ -53,7 +53,7 @@ Calculate in1 and in2 according to the calculation rules in OpFunc, and store th
 > in2: Right operand register pointer, the size is NX * NY. </br>
 > compute: The calculation object declared as OpFunc&lt;InT&gt;(). </br>
 
-## [CycleBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L287)
+## [CycleBinary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/compute_primitives.h#L343)
 
 ### Function Definition
 
@@ -82,7 +82,7 @@ Calculate in1 and in2 according to the calculation rules in the OpFunc, and stor
 > in2: Right operand register pointer, the size is NX * NY. </br>
 > compute: The calculation object declared as OpFunc&lt;InT&gt;(). </br>
 
-## [ElementwiseTernary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L208)
+## [ElementwiseTernary](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/compute_primitives.h#L256)
 
 ### Function Definition
 
@@ -113,7 +113,7 @@ Calculate in1, in2, and in3 according to the calculation rules in OpFunc, and st
 > in3: The register pointer of operand 3, the size is NX * NY. </br>
 > compute: Declared as the calculation object of OpFunc&lt;InT&gt;(). </br>
 
-## [ElementwiseAny](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L247)
+## [ElementwiseAny](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/compute_primitives.h#L297)
 
 ### Function Definition
 
@@ -142,7 +142,7 @@ Calculate the input in ins according to the calculation rules in OpFunc, and sto
 > ins: A pointer array composed of multiple input pointers, the size is Arity. </br>
 > compute: The calculation object declared as OpFunc&lt;InT&gt;(). </br>
 
-## [Reduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/compute_primitives.h#L327)
+## [Reduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/compute_primitives.h#L389)
 
 ### Function Definition
 
