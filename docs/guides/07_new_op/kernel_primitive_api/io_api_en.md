@@ -1,6 +1,6 @@
 # API Description - IO
 Introduce the APIs currently provided by the Kernel Primitive API for data exchange between global memory and registers. The currently implemented IO APIs are all multi-threaded APIs at the Block level, the function uses blockDim.x or blockDim.y for thread indexing.
-## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L121)
+## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L121)
 ### Function Definition
 
 ```
@@ -32,7 +32,7 @@ The data processing process is as follows:</br>
 > stride_nx: Stride stride_nx elements for every 1 element of the lowest dimension read. </br>
 > stride_ny: Stride stride_ny elements per read 1 element of the highest dimension read. </br>
 
-## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L225)
+## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L225)
 
 ### Function Definition
 
@@ -61,7 +61,7 @@ The data processing process is as follows:</br>
 > src: The input data pointer of the current Block, usually input + blockIdx.x * blockDim.x * NX.</br>
 > num: The current Block can read at most num elements. The parameter is only used when IsBoundary = true.</br>
 
-## [ReadDataBc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L277)
+## [ReadDataBc](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L277)
 
 ### Function Definition
 
@@ -100,7 +100,7 @@ The data processing process is as follows:</br>
 > stride_nx: Stride stride_nx elements for every 1 element of the lowest dimension read. </br>
 > stride_ny: Stride stride_ny elements per read 1 element of the highest dimension read. </br>
 
-## [ReadDataBc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L569)
+## [ReadDataBc](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L569)
 
 ### Function Definition
 
@@ -135,7 +135,7 @@ The data processing process is as follows:</br>
 > config: Input and output coordinate mapping function, which can be defined by BroadcastConfig(const std::vector<int64_t>& out_dims, const std::vector<int64_t>& in_dims, int dim_size). </br>
 > total_num_output: the total number of original output data, to avoid fetching out of bounds, the parameter is only used when IsBoundary = true. </br>
 
-## [ReadDataReduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L333)
+## [ReadDataReduce](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L333)
 
 ### Function Definition
 
@@ -188,7 +188,7 @@ The data processing process is as follows:</br>
 > stride_ny: Stride stride_ny rows for every 1 element of the highest dimension read. </br>
 > reduce_last_dim: Does the  operation involve the last dimension. When reduce_last_dim = true, it is indexed according to threadIdx.x, otherwise threadIdx.y is used. </br>
 
-## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L411)
+## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L411)
 
 ### Function Definition
 
@@ -218,7 +218,7 @@ The data processing process is as follows:</br>
 > src: Register pointer, the size is NX * NY. Usually input + blockIdx.x * blockDim.x * NX. </br>
 > num: The current Block reads num elements in multiples. The parameter is only used when IsBoundary = true. </br>
 
-## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L460)
+## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L460)
 
 ### Function Definition
 
@@ -252,7 +252,7 @@ The data processing process is as follows:</br>
 > stride_nx: Stride stride_nx elements for every 1 element of the lowest dimension write. </br>
 > stride_ny: Stride stride_ny elements per read 1 element of the highest dimension write. </br>
 
-## [Init](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L206)
+## [Init](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L206)
 
 ### Function Definition
 
@@ -275,7 +275,7 @@ Initialize all the elements in the register dst to init_data.
 > dst : The register pointer that needs to be initialized. </br>
 > init_data : Initial value. </br>
 
-## [Init](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L545)
+## [Init](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L545)
 
 ### Function Definition
 

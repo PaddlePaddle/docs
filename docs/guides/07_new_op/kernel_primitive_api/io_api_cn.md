@@ -1,6 +1,6 @@
 # API 介绍 - IO
 介绍目前 Kernel Primitive API 提供的用于全局内存和寄存器进行数据交换的 API。当前实现的 IO 类 API 均是 Block 级别的多线程 API，函数内部以 blockDim.x 或 blockDim.y 进行线程索引。
-## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L121)
+## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L121)
 ### 函数定义
 
 ```
@@ -33,7 +33,7 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 > stride_nx ：最低维每读取 1 个元素需要跳转 stride_nx 个元素。</br>
 > stride_ny ：最高维每读取 1 个元素需要跳转 stride_ny 个元素。</br>
 
-## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L225)
+## [ReadData](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L225)
 
 ### 函数定义
 
@@ -63,7 +63,7 @@ __device__ void ReadData(T* dst, const T* src, int num);
 > src ；当前 Block 的输入数据指针。</br>
 > num ；当前 Block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
 
-## [ReadDataBc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L277)
+## [ReadDataBc](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L277)
 
 ### 函数定义
 
@@ -102,7 +102,7 @@ __device__ void ReadDataBc(T* dst, const T* src,
 > stride_nx ：最低维每读取 1 个元素需要跳转 stride_nx 个元素。</br>
 > stride_ny ：最高维每读取 1 个元素需要跳转 stride_ny 个元素。</br>
 
-## [ReadDataBc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L569)
+## [ReadDataBc](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L569)
 
 ### 函数定义
 
@@ -138,7 +138,7 @@ __device__ void ReadDataBc(T* dst, const T* src,
 > total_num_output ：原始输出的总数据个数,避免访存越界，参数仅在 IsBoundary = true 时使用。</br>
 
 
-## [ReadDataReduce](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L333)
+## [ReadDataReduce](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L333)
 
 ### 函数定义
 
@@ -191,7 +191,7 @@ __device__ void ReadDataReduce(T* dst,
 > stride_ny ：最高维每读取 1 个元素需要跳转 stride_ny 行</br>
 > reduce_last_dim：原始输入数据的最低维是否进行reduce，当reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。</br>
 
-## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L411)
+## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L411)
 
 ### 函数定义
 
@@ -221,7 +221,7 @@ __device__ void WriteData(T* dst, T* src, int num);
 > src ；寄存器指针，大小为 NX * NY。</br>
 > num ；当前 Block 最多读取 num 个元素，参数仅在 IsBoundary = true 时使用。</br>
 
-## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L460)
+## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L460)
 
 ### 函数定义
 
@@ -255,7 +255,7 @@ __device__ void WriteData(Ty* dst, const Tx* src, int size_nx, int size_ny, int 
 > stride_nx ：最低维每读取 1 个元素需要跳转 stride_nx 个元素。</br>
 > stride_ny ：最高维每读取 1 个元素需要跳转 stride_ny 个元素。</br>
 
-## [Init](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L206)
+## [Init](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L206)
 
 ### 函数定义
 
@@ -279,7 +279,7 @@ __device__ void Init(T* dst, T init_data);
 > dst ；寄存器指针。</br>
 > init_data ；初始值。</br>
 
-## [Init](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L545)
+## [Init](https://github.com/PaddlePaddle/Paddle/blob/release/2.2/paddle/fluid/operators/kernel_primitives/datamover_primitives.h#L545)
 
 ### 函数定义
 
