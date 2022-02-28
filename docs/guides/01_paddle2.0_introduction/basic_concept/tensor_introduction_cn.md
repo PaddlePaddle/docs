@@ -81,8 +81,8 @@ array([[1., 2., 3.],
 **Tensor**不仅支持 floats、ints 类型数据，也支持 complex numbers数据，如果输入为复数数据，则**Tensor**的dtype为 ``complex64`` 或 ``complex128`` ，其每个元素均为1个复数：
 
 ```python
-ndim_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
-                                  [4.0, 5.0, 6.0]])
+ndim_2_tensor = paddle.to_tensor([[(1+1j), (2+2j)],
+                                  [(3+3j), (4+4j)]])
 print(ndim_2_tensor)                                    
 ```
 
@@ -473,7 +473,6 @@ x.logical_not(y)              #对两个bool型tensor逐元素进行逻辑非操
 
 ### 线性代数相关
 ```python
-x.cholesky()                  #矩阵的cholesky分解
 x.t()                         #矩阵转置
 x.transpose([1, 0])           #交换axis 0 与axis 1的顺序
 x.norm('fro')                 #矩阵的Frobenius 范数

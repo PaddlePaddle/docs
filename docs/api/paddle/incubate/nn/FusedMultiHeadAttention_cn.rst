@@ -3,7 +3,7 @@
 FusedMultiHeadAttention
 -------------------------------
 
-.. py:class:: paddle.incubate.nn.FusedMultiHeadAttention(embed_dim, num_heads, dropout_rate=0.5, attn_dropout_rate=0.5, kdim=None, vdim=None, normalize_before=False, need_weights=False, weight_attr=None, bias_attr=None, name=None)
+.. py:class:: paddle.incubate.nn.FusedMultiHeadAttention(embed_dim, num_heads, dropout_rate=0.5, attn_dropout_rate=0.5, kdim=None, vdim=None, normalize_before=False, need_weights=False, weight_attr=None, bias_attr=None, epsilon=1e-5, name=None)
 
 
 
@@ -31,6 +31,7 @@ FusedMultiHeadAttention
     - **need_weights** (bool, 可选) - 表明是否返回注意力权重。默认值： ``False`` 。
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值： ``None`` ，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr，可选）- 指定偏置参数属性的对象。默认值： ``None`` ，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **epsilon** (float, 可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
     - **name** (str，可选） - 操作的名称。默认值为： ``None`` 。更多信息请参见 :ref:`api_guide_Name`。
 
 形状

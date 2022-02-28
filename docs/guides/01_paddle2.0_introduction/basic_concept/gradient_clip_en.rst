@@ -20,6 +20,8 @@ By default, Gradients of all parameters in SGD optimizer will be clipped:
 
 .. code:: ipython3
 
+    import paddle
+    
     linear = paddle.nn.Linear(10, 10)
     clip = paddle.nn.ClipGradByValue(min=-1, max=1)
     sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)

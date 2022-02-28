@@ -1,6 +1,6 @@
 # 自动混合精度训练
 
-一般情况下，训练深度学习模型时使用的数据类型为单精度（FP32）。2018年，百度与NVIDIA联合发表论文：[MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf)，提出了混合精度训练的方法。混合精度训练是指在训练过程中，同时使用单精度（FP32）和半精度（FP16），其目的是相较于使用单精度（FP32）训练模型，在保持精度持平的条件下，能够加速训练。本文将介绍如何使用飞桨框架，实现自动混合精度训练。
+一般情况下，训练深度学习模型时使用的数据类型为单精度（FP32）。2018年，百度与NVIDIA联合发表论文：[MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf)，提出了混合精度训练的方法。混合精度训练是指在训练过程中，同时使用单精度（FP32）和半精度（FP16），其目的是相较于使用单精度（FP32）训练模型，在保持精度持平的条件下，能够加速训练。本文将介绍如何使用飞桨框架，实现自动混合精度训练。  
 
 ## 一、半精度浮点类型 FP16
 
@@ -57,6 +57,7 @@ import paddle.nn as nn
 class SimpleNet(nn.Layer):
 
     def __init__(self, input_size, output_size):
+        
         super(SimpleNet, self).__init__()
         self.linear1 = nn.Linear(input_size, output_size)
         self.relu1 = nn.ReLU()
@@ -91,6 +92,10 @@ labels = [paddle.randn((batch_size, output_size)) for _ in range(nums_batch)]
 mse = paddle.nn.MSELoss()
 ```
 
+    W1110 18:42:02.362493   104 device_context.cc:447] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 10.1, Runtime API Version: 10.1
+    W1110 18:42:02.367755   104 device_context.cc:465] device: 0, cuDNN Version: 7.6.
+
+
 ### 3.3 使用默认的训练方式进行训练
 
 
@@ -120,10 +125,10 @@ end_timer_and_print("默认耗时:") # 获取结束时间并打印相关信息
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.24609220])
-
+           [1.24519622])
+    
     默认耗时:
-    共计耗时 = 2.819 sec
+    共计耗时 = 2.926 sec
 
 
 ### 3.4 使用AMP训练模型
@@ -137,6 +142,7 @@ end_timer_and_print("默认耗时:") # 获取结束时间并打印相关信息
 
 
 采用level=’O1‘模式训练：
+
 
 ```python
 model = SimpleNet(input_size, output_size)  # 定义模型
@@ -170,13 +176,14 @@ end_timer_and_print("使用AMP-O1模式耗时:")
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.24609900])
-
+           [1.24815702])
+    
     使用AMP-O1模式耗时:
-    共计耗时 = 1.324 sec
+    共计耗时 = 1.294 sec
 
 
 采用level=’O2‘模式训练：
+
 
 ```python
 model = SimpleNet(input_size, output_size)  # 定义模型
@@ -212,11 +219,17 @@ print(loss)
 end_timer_and_print("使用AMP-O2模式耗时:")
 ```
 
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
+    in ParamBase copy_to func
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.24997652])
-
+           [1.25423336])
+    
     使用AMP-O2模式耗时:
-    共计耗时 = 0.933 sec
+    共计耗时 = 0.890 sec
 
 
 ## 四、进阶用法
@@ -263,10 +276,11 @@ end_timer_and_print("使用AMP模式耗时:")
 ```
 
     Tensor(shape=[1], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-           [1.24623466])
-
+           [1.25602019])
+    
     使用AMP模式耗时:
-    共计耗时 = 1.020 sec
+    共计耗时 = 1.026 sec
+
 
 ## 五、总结
-从上面的示例中可以看出，使用自动混合精度训练，O1模式共计耗时约 1.324s，O2模式共计耗时约 0.933s，而普通的训练方式则耗时 2.819s，O1模式训练速度提升约为 2.1倍，O2模式训练速度提升约为 3.0倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。
+从上面的示例中可以看出，使用自动混合精度训练，O1模式共计耗时约 1.294s，O2模式共计耗时约 0.890s，而普通的训练方式则耗时 2.926s，O1模式训练速度提升约为 2.1倍，O2模式训练速度提升约为 3.0倍。如需更多使用混合精度训练的示例，请参考飞桨模型库： [paddlepaddle/models](https://github.com/PaddlePaddle/models)。

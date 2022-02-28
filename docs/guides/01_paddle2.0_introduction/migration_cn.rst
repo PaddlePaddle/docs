@@ -66,7 +66,7 @@ paddle_upgrade_tool 可以使用下面的方式，快速使用:
 开始
 ^^^^
 
-在使用paddle_upgrade_tool前，需要确保已经安装了Paddle 2.0.0版本。
+在使用paddle_upgrade_tool前，需要确保已经安装了Paddle 2.0.0+版本。
 
 .. code:: ipython3
 

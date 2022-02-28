@@ -1,4 +1,4 @@
-.. _cn_api_paddle_linalg_eigvals:
+.. _cn_api_linalg_eigvals:
 
 eigvals
 -------------------------------

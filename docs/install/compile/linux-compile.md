@@ -4,10 +4,11 @@
 
 * **Linux 版本 (64 bit)**
     * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
-    * **CentOS 7 (GPU 版本支持CUDA 10.1/10.2/11.0/11.2)**
+    * **CentOS 7 (GPU 版本支持CUDA 10.1/10.2/11.0/11.1/11.2)**
     * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
-    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
-    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.2)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
+    * **Ubuntu 20.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip 或 pip3 版本 20.2.2或更高版本 (64 bit)**
 
@@ -19,6 +20,7 @@
 
     * **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5, 如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
+    * **CUDA 工具包11.1配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
     * **GPU运算能力超过3.5的硬件设备**
 
@@ -307,7 +309,7 @@ uname -m && cat /etc/*release
     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
     ```
 
-    gcc 需要4.8.2以上，建议使用8.2.0:
+    gcc 需要5.4以上，建议使用8.2.0:
 
     ```
     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
@@ -350,7 +352,7 @@ uname -m && cat /etc/*release
     PATH=/home/cmake-3.16.0-Linux-x86_64/bin:$PATH
     ```
 
-    gcc 需要4.8.2以上，建议使用8.2.0:
+    gcc 需要5.4以上，建议使用8.2.0:
 
     ```
     wget -q https://paddle-docker-tar.bj.bcebos.com/home/users/tianshuo/bce-python-sdk-0.8.27/gcc-8.2.0.tar.xz && \
@@ -450,7 +452,7 @@ uname -m && cat /etc/*release
 workon paddle-venv
 ```
 
-#### 6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](../Tables.html#third_party)中提到的相关依赖：
+#### 6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](/documentation/docs/zh/install/Tables.html#third_party)中提到的相关依赖：
 
 * 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install`/`pip3 install` 后跟依赖名称和版本安装:
 

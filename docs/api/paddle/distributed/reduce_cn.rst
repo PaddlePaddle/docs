@@ -7,6 +7,13 @@ reduce
 .. py:function:: paddle.distributed.reduce(tensor, dst, op=ReduceOp.SUM, group=0)
 
 进程组内所有进程的指定tensor进行归约操作，并返回给所有进程归约的结果。
+如下图所示，4个GPU分别开启4个进程，每张卡上的数据用卡号代表，reduce的目标是第0张卡，
+规约操作是求和，经过reduce操作后，第0张卡会得到所有卡数据的总和。
+
+.. image:: ./img/reduce.png
+  :width: 800
+  :alt: reduce
+  :align: center
 
 参数
 :::::::::

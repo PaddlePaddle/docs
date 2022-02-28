@@ -80,8 +80,8 @@ array([[1., 2., 3.],
 **Tensor** supports not only floats and ints but also complex numbers data, If input complex number data, the dtype of **Tensor** is ``complex64`` or ``complex128`` : 
 
 ```python
-ndim_2_tensor = paddle.to_tensor([[1.0, 2.0, 3.0],
-                                  [4.0, 5.0, 6.0]])
+ndim_2_tensor = paddle.to_tensor([[(1+1j), (2+2j)],
+                                  [(3+3j), (4+4j)]])
 print(ndim_2_tensor)
 ```
 
@@ -482,7 +482,6 @@ x.logical_not(y)              #logic not operation for two bool tensor
 
 ### linear algebra operators
 ```python
-x.cholesky()                  #cholesky decomposition of a matrix
 x.t()                         #matrix transpose
 x.transpose([1, 0])           #swap axis 0 with axis 1
 x.norm('fro')                 #Frobenius Norm of matrix

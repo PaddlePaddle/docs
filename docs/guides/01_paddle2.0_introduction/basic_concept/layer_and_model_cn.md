@@ -303,8 +303,9 @@ Tensor(shape=[10, 1], dtype=float32, place=CPUPlace, stop_gradient=True,
 同样的也可以使用 ``register_forward_pre_hook()`` 来注册**pre_hook**：
 
 ```python
-def forward_pre_hook(layer, input, output):
-    return 2*output
+def forward_pre_hook(layer, input):
+    print(input)
+    return input
 
 x = paddle.ones([10, 1], 'float32')
 model = Model()
@@ -313,10 +314,17 @@ out = model(x)
 ```
 
 ```text
-Tensor(shape=[10, 1], dtype=float32, place=CPUPlace, stop_gradient=True,
-       [[2.],
-        [2.],
-        ...
+(Tensor(shape=[10, 1], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+       [[1.],
+        [1.],
+        [1.],
+        [1.],
+        [1.],
+        [1.],
+        [1.],
+        [1.],
+        [1.],
+        [1.]]),)
 ```
 
 ## 模型数据保存

@@ -1,13 +1,214 @@
 ﻿
-# 2.2.0 rc0 Release Note
+# 2.2.2 Release Note
 
 ## 1. 重要更新
 
-我们很高兴的发布飞桨框架2.2.0-rc0版本，本版本包含如下重要更新。
+我们很高兴的发布飞桨框架2.2.2版本，主要是对2.2.1中一些功能和性能问题的修复，并对部分功能点做了增强。
+
+## 2. 训练框架（含分布式）
+
+### （1）新功能
+
+#### API
+
+ - 新增`paddle.nn.Mish` 和 `paddle.nn.functional.mish`，支持逐元素计算mish激活函数。 ([#38803](https://github.com/PaddlePaddle/Paddle/pull/38803)) 
+
+#### 其他
+
+-  `paddle.nn.PReLU` 、 `paddle.nn.functional.prelu`、`paddle.nn.static.prelu` 新增支持 `data_format` 参数，可以设置输入的数据类型。 ([#38495](https://github.com/PaddlePaddle/Paddle/pull/38495)) 
+-  `paddle.index_select` 新增支持 `float16` 数据类型。([#38751](https://github.com/PaddlePaddle/Paddle/pull/38751)) 
+-  优化 ``paddle.multiplex`` 当``inputs``中张量 `size` 为 0 时的报错信息。([#38757](https://github.com/PaddlePaddle/Paddle/pull/38757)) 
+-  `paddle.fluid.contrib.slim.quantization.PostTrainingQuantization` 新增初始化参数`data_loader`，支持传入 `paddle.io.DataLoader` 对象或者`Python Generator` 。([#38729](https://github.com/PaddlePaddle/Paddle/pull/38729)) 
+
+
+### （2）问题修复
+
+#### API
+
+- 修复`paddle.max`在输入`x.ndim > 6 and axis < 0`时运行出错的问题。([#38070](https://github.com/PaddlePaddle/Paddle/pull/38070)) 
+- 修复`paddle.max`、`paddle.min`的bug：在CPU设备上，当参数axis是list类型且`len(axis) == x.ndim and axis[i] < 0`时，结果出错。([#38478](https://github.com/PaddlePaddle/Paddle/pull/38478)) 
+- 修复``paddle.nn.functional.unfold``在InferShape计算时不区分compile time和runtime的问题。([#38925](https://github.com/PaddlePaddle/Paddle/pull/38925))
+- 修复`paddle.nn.functional.cross_entropy`在对`labels`进行检查时，存在不必要的GPU与CPU同步的问题。（[#38849](https://github.com/PaddlePaddle/Paddle/pull/38849)）
+- 修复`paddle.distributed.split`在沿列切分FC时，反向计算时得到的输入梯度结果异常的问题。([#38724](https://github.com/PaddlePaddle/Paddle/pull/38724)) 
+- 修复 `paddle.nn.Layer.to` 不支持 `paddle.dtype` 类型的问题。([#38108](https://github.com/PaddlePaddle/Paddle/pull/38108)) 
+- 修复静态图下 ``paddle.linalg.svd`` 当 ``full_matrics=True`` 时，输出tensor的shape在动态图和静态图下不同的问题。([#37744](https://github.com/PaddlePaddle/Paddle/pull/37744)) 
+- 修复`Tensor`切片索引使用多个`None`类型索引时结果维度异常的问题。([#37400](https://github.com/PaddlePaddle/Paddle/pull/37400)) 
+- 修复`Tensor`索引赋值在部分场景下显存泄露的问题。([#38098](https://github.com/PaddlePaddle/Paddle/pull/38098)) 
+- 修复模型使用 `save_inference_model` 导出后，添加反向 pass 做训练，`conv2d` 缺失属性报错的问题。 ([#38832](https://github.com/PaddlePaddle/Paddle/pull/38832)) 
+
+#### IR(Intermediate Representation)
+
+- 动态图转静态图
+    - 修复了部分初始化相关 API 动静行为不统一的问题。([#37827](https://github.com/PaddlePaddle/Paddle/pull/37827)) 
+    - 修复动转静代码转写时会将 `paddle` 作为变量的问题。([#37999](https://github.com/PaddlePaddle/Paddle/pull/37999))
+    - 修复动转静代码转写时，突出的代码注释导致转写报错的问题。([#38003](https://github.com/PaddlePaddle/Paddle/pull/38003))
+    - 修复 `for ... zip...` 语句在动转静中死循环的问题。([#37846](https://github.com/PaddlePaddle/Paddle/pull/37846)) 
+
+- 模型量化
+    - 修复动态图量化训练导出模型多余节点问题。([#38122](https://github.com/PaddlePaddle/Paddle/pull/38122)) ([#38025](https://github.com/PaddlePaddle/Paddle/pull/38025)) 
+    - 针对量化模型在Paddle Lite上无法预测的问题，去除量化导出模型的 `clip_extra` 设置。 ([#38343](https://github.com/PaddlePaddle/Paddle/pull/38343)) 
+    - 针对 `flatten_contiguous_range` 算子在量化中输出配置错误的问题，修复 `flatten_contiguous_range` 量化设置。 ([#37741](https://github.com/PaddlePaddle/Paddle/pull/37741)) 
+
+
+#### 其他
+
+- 自定义OP
+    - 修复了自定义算子在多进程下加载Python API 时，可能因文件不完整导致报错的问题。([#38128](https://github.com/PaddlePaddle/Paddle/pull/38128)) 
+    - 修复了在CentOS平台上编译时，`D_GLIBCXX_USE_CXX11_ABI`未按预期生效导致的编译失败问题。([#37878](https://github.com/PaddlePaddle/Paddle/pull/37878)) 
+
+- 动态图Inplace策略
+    - 修复了多个inplace op连续执行时，accumulator 报错的问题。([#38406](https://github.com/PaddlePaddle/Paddle/pull/38406))
+    - 修复了 `Tensor` 的 `setitem` 方法，对叶子节点进行inplace操作时，导致反向图构建错误的bug。([#38014](https://github.com/PaddlePaddle/Paddle/pull/38014)) 
+
+- NHWC  策略
+    -  修复 batchnorm_op 中，当数据类型为 FP32 ，且数据维度 dims = 2，data_layout = NHWC 时，反向 Op 内中间变量未定义问题。 ([#37020](https://github.com/PaddlePaddle/Paddle/pull/37020)) 
+
+
+
+
+## 3. 部署方向（Paddle Inference）
+
+
+
+### （1）功能优化
+
+#### 框架及API更新
+
+ - C API支持对c++ std::string的处理。([#38667](https://github.com/PaddlePaddle/Paddle/pull/38667)) 
+
+#### 后端能力增强
+
+- GPU 及 TensorRT 子图引擎相关更新
+    - 支持 relu、relu6、tanh、sigmoid、pool2d、concat、batch_norm、split、gelu、scale、swish、prelu、clip、reduce_sum、reduce_mean 算子在静态 shape 且2维输入情况下调用 TensorRT 推理。([#37773](https://github.com/PaddlePaddle/Paddle/pull/37773)) 
+    - 支持mish激活函数调用 TensorRT 推理。 ([#38866](https://github.com/PaddlePaddle/Paddle/pull/38866)) 
+
+
+### （2）问题修复
+
+#### 框架及API修复
+
+- 算子修复
+
+    - 修复roi_align算子在使用 TRT 时不兼容的问题。([#38788](https://github.com/PaddlePaddle/Paddle/pull/38788))
+    - 增加elementwise在维度相同时广播的功能。([#37908](https://github.com/PaddlePaddle/Paddle/pull/37908))
+
+- 框架功能修复
+    - 修复动态图转静态图时的模型剪裁逻辑，使得包含 subblock 的算子在动态图转静态图时可以正确剪裁。([#37579](https://github.com/PaddlePaddle/Paddle/pull/37579))
+    - 修复多线程下 CreatePredictor 接口的报错问题，当前的 CreatePredictor 接口允许在多线程中调用而不会导致推理异常。([#37894](https://github.com/PaddlePaddle/Paddle/pull/37894))
+    - 配置config时，对于没有权重的模型，支持 params file 传空字符串。([#38579](https://github.com/PaddlePaddle/Paddle/pull/38579))
+    - 修复Paddle-TRT engine直接输入cpu tensor没有进行gpu数据拷贝的问题。([#37427](https://github.com/PaddlePaddle/Paddle/pull/37427)) 
+
+
+#### 后端能力修复
+
+- TensorRT 子图引擎修复
+    - 修复pool2d在某些参数组合的情况下运行TensorRT出错的问题。([#37929](https://github.com/PaddlePaddle/Paddle/pull/37929))
+
+- MKLDNN引擎修复
+    - 修复 matmul_v2 的 mkldnn kernel 不支持两个输入的shape长度不同的问题。 ([#38733](https://github.com/PaddlePaddle/Paddle/pull/38733)) 
+
+#### 其他修复
+
+- 修复ERNIE模型在TRT8下可能出现的hang死问题。([#37839](https://github.com/PaddlePaddle/Paddle/pull/37839))
+
+# 2.2.1 Release Note
+
+## 1. 重要更新
+
+我们很高兴的发布飞桨框架2.2.1版本，主要是对2.2.0中一些功能和性能问题的修复，并对部分功能点做了增强，重点如下：
+
+- 新增  ``paddle.linalg.triangular_solve``，用于计算带有三角系数矩阵的线性方程组。
+- 新增 `paddle.device.cuda.graphs.CUDAGraph` API，支持NVIDIA的[CUDA Graph](https://developer.nvidia.com/blog/cuda-graphs/)功能，注意目前该API还处于实验阶段，尚未稳定。
+- 修复了基础API、Tensor 索引中的已知问题。
+
+## 2. 训练框架（含分布式）
+
+### （1）新功能
+
+#### API
+
+- 新增``paddle.linalg.triangular_solve`` API，用于计算带有三角系数矩阵的线性方程组。([#36714](https://github.com/PaddlePaddle/Paddle/pull/36714))
+- 新增`paddle.device.cuda.graphs.CUDAGraph` API，支持NVIDIA的[CUDA Graph](https://developer.nvidia.com/blog/cuda-graphs/)功能，可以将GPU计算全部捕捉到一张CUDA Graph中，往后多次调用，可以去除框架的额外开销，提升运行性能。注意目前该API还处于实验阶段，尚未稳定。([#37109](https://github.com/PaddlePaddle/Paddle/pull/37109))
+- 新增``paddle.incubate.graph_send_recv`` API，主要应用于图学习领域，目的是为了减少在消息传递过程中带来的中间变量显存或内存的损耗，包含 SUM、MEAN、MIN、MAX 共四种更新模式。([#37205](https://github.com/PaddlePaddle/Paddle/pull/37205))
+- 新增`paddle.incubate.operators.ResNetUnit` API，用于 ResNet 网络里的卷积、批归一化、shortcut/bottleneck操作融合。([#37109](https://github.com/PaddlePaddle/Paddle/pull/37109))
+ 
+### （2）功能优化
+
+#### API
+
+- `paddle.incubate.FusedTransformerEncoderLayer`，添加 `src_mask=None` 的支持，添加pure fp16的支持。 ([#37229](https://github.com/PaddlePaddle/Paddle/pull/37229))
+
+#### IR(Intermediate Representation)
+
+- 动态图转静态图
+	- 使用`@paddle.jit.to_static`装饰单独的 function 时，提供 `train()、eval()` 函数支持切换到 `train、eval` 模式。([#37383](https://github.com/PaddlePaddle/Paddle/pull/37383))
+
+
+#### 分布式训练
+- 异构参数服务器完善任意次切图能力，增加流水线训练功能，提升训练吞吐。([#37446](https://github.com/PaddlePaddle/Paddle/pull/37446))
+ 
+#### 其他
+
+- 针对 `paddle.scatter` 的 ``index`` 越界导致 core dump 的问题，加强了越界检查，并完善对应的报错信息。([#37431](https://github.com/PaddlePaddle/Paddle/pull/37431))
+
+### （3）性能优化
+
+- 优化 `paddle.top_k`，根据 ``k`` 的大小和 ``input_width`` 大小进行选择不同的实现方案，当 k>=75% input_width 时选择 cub 实现，否则选择手写 kernel 实现。([#37325](https://github.com/PaddlePaddle/Paddle/pull/37325))
+- 优化`paddle.fluid.optimizer.LarsMomentumOptimizer`，通过 optimizer 算子融合 + [CUDA Cooperative Groups](https://developer.nvidia.com/blog/cooperative-groups/)的方式提高OP性能。([#37109](https://github.com/PaddlePaddle/Paddle/pull/37109))
+
+### （4）问题修复
+
+#### API
+- 修复`paddle.nn.ELU` 与 `paddle.nn.functional.elu` 的计算公式，解决 alpha<0 时结果错误的问题；`paddle.nn.functional.elu_`不支持 alpha<0 的场景，在 alpha<0 时会报错。([#37437](https://github.com/PaddlePaddle/Paddle/pull/37437))
+- 修复`paddle.slice`反向执行时出现 `out_of_range` 的问题。([#37584](https://github.com/PaddlePaddle/Paddle/pull/37584))
+- `paddle.shape` 没有反向，显式设置 ``stop_gradient`` 为 ``True``。([#37412](https://github.com/PaddlePaddle/Paddle/pull/37412))
+- `paddle.arange` 没有反向，显式设置 ``stop_gradient`` 为 ``True``。([#37486](https://github.com/PaddlePaddle/Paddle/pull/37486))
+- `paddle.shard_index` 在输入数据的最后一维不为1时进行报错提示。([#37421](https://github.com/PaddlePaddle/Paddle/pull/37421))
+- 修复 ``paddle.matmul`` 使用int8量化，反量化时维度错误的问题。([#36982](https://github.com/PaddlePaddle/Paddle/pull/36982))
+- 修复 `paddle.nn.Dropout` 在 `eval` 模式下不计算梯度的问题。([#37305](https://github.com/PaddlePaddle/Paddle/pull/37305))
+- 修复 `paddle.nn.functional.dropout` 在静态图下输入 `Tenor` 形状中有 -1 并指定 drop 该维时报错的问题。([#37223](https://github.com/PaddlePaddle/Paddle/pull/37223))
+- 修复RNN类API `paddle.nn.LSTM`,`paddle.nn.GRU`, `paddle.nn.SimpleRNN`在CPU训练时多层RNN（dropout设置为0）反向计算出错的问题。([#37086](https://github.com/PaddlePaddle/Paddle/pull/37086))
+- 修复 `paddle.incubate.FusedTransformerEncoderLayer` 反向计算梯度错误、pre_layer_norm 处理不正确、参数处理不正确，漏传参数、 add_bias 计算错误等问题。 ([#37229](https://github.com/PaddlePaddle/Paddle/pull/37229))
+- 修复 `paddle.incubate.fused_multi_head_attention` 不支持 ``bias`` 为`None` 的问题。([#37411](https://github.com/PaddlePaddle/Paddle/pull/37411), [#37566](https://github.com/PaddlePaddle/Paddle/pull/37566))
+- 修复`paddle.vision.datasets.Cifar10`, `paddle.vision.datasets.Cifar100`加载数据没有顺序的问题。 ([#37528](https://github.com/PaddlePaddle/Paddle/pull/37528))
+- 修复一维`Tensor`在使用省略号(...)索引时维度检测异常报错的问题。([#37192](https://github.com/PaddlePaddle/Paddle/pull/37192))
+- 修复`Tensor`索引赋值(`setitem`)梯度属性无法传播的问题，详见[issue](https://github.com/PaddlePaddle/Paddle/issues/36902)。([#37028](https://github.com/PaddlePaddle/Paddle/pull/37028))
+
+#### IR(Intermediate Representation)
+
+- 动态图转静态图
+	- 动转静后的模型调用 `paddle.flops` 能够正确统计模型参数。([#36852](https://github.com/PaddlePaddle/Paddle/pull/36852))
+	- 动转静模块能够正确转换`for i in [1, 2, 3]`循环语句。([#37259](https://github.com/PaddlePaddle/Paddle/pull/37259))
+
+#### 分布式训练
+
+  - `fleet.load_model`: 修复参数服务器模式下模型加载API不可用问题。([#37461](https://github.com/PaddlePaddle/Paddle/pull/37461))
+  -  `fleet.save_inference_model`: 修复参数服务器模式下模型保存 dense 参数前，未从 server 端拉取参数的问题。([#37461](https://github.com/PaddlePaddle/Paddle/pull/37461))
+ 
+
+#### 其他
+
+- 修复动态图 inplace 操作的问题：对一个非叶子节点进行 inplace 操作后，立即执行 backward，该节点及更前的节点的梯度计算错误。([#37420](https://github.com/PaddlePaddle/Paddle/pull/37420))
+
+## 4. 部署方向（Paddle Inference）
+
+### （1）问题修复
+
+- 在明确关闭日志的情况下，进一步去除冗余的调试日志。([#37212](https://github.com/PaddlePaddle/Paddle/pull/37212))
+- 修复内存/显存优化策略，避免因不当的内存/显存优化导致预测结果有误或崩溃。([#37324](https://github.com/PaddlePaddle/Paddle/pull/37324), [#37123](https://github.com/PaddlePaddle/Paddle/pull/37123))
+- 修复 Transformer 模型的 MultiHead 结构中融合后 QkvToContextPluginDynamicscale 的 scale 计算错误问题，这是由于 cuda 函数的 block 和 thread 设置错误引起的。([#37096](https://github.com/PaddlePaddle/Paddle/pull/37096))
+- 将所有的推理OP在int8量化的功能中注册：解决因历史原因有些推理OP没有在int8量化中注册的问题。([#37266](https://github.com/PaddlePaddle/Paddle/pull/37266))
+
+
+# 2.2.0 Release Note
+
+## 1. 重要更新
+
+我们很高兴的发布飞桨框架2.2.0版本，本版本包含如下重要更新。
 
 ### API
 
-- 新增100+个API，包含24个傅里叶变换API、14个线性代数计算 API 等，更好地支持科学计算类、信号处理类模型。
+- 新增100+个API，包含24个傅里叶变换API、17个线性代数计算 API 等，更好地支持科学计算类、信号处理类模型。
 - 新增多种索引类型的支持，新增的索引类型包括：省略号（…）、维度扩增（None）、布尔类型数组（Bool Mask）、整数数组(（list)，以及张量（Tensor) ），可以更加方便的对张量（Tensor）进行操作。
 - 新增 `paddle.einsum` API，可以以更加简洁的方式来表达多维张量（Tensor）的计算。
 - 动态图混合精度功能增强，新增整个任务使用半精度（float16）训练的方式，主要任务下的计算效率提升20%左右。												
@@ -290,7 +491,9 @@ paddle.int64
 	- 新增 ``paddle.linalg.multi_dot``，支持多个矩阵连乘的计算。([#35224](https://github.com/PaddlePaddle/Paddle/pull/35224))
 	- 新增 ``paddle.linalg.solve``，支持计算线性方程组的解。([#35715](https://github.com/PaddlePaddle/Paddle/pull/35715))
 	- 新增``paddle.linalg.matrix_power``，支持矩阵的幂运算操作。([#34667](https://github.com/PaddlePaddle/Paddle/pull/34667))
-
+	-  新增`paddle.linalg.eigvalsh`，用于计算厄米特矩阵或者实数对称矩阵的特征值。([#36680](https://github.com/PaddlePaddle/Paddle/pull/36680))
+	- 新增`paddle.linalg.eig`，用于计算一般方阵的特征值和特征向量。([#35674](https://github.com/PaddlePaddle/Paddle/pull/35674))
+	- 新增`paddle.linalg.qr`，用于计算矩阵的QR分解（暂不支持反向）。([#36627](https://github.com/PaddlePaddle/Paddle/pull/36627))
 - 新增傅里叶变换相关API ([#35665](https://github.com/PaddlePaddle/Paddle/pull/35665)) 
     - 新增快速傅立叶变换系列函数
         - 可微分的 1d 到 nd 复数到复数快速傅里叶变换。(``paddle.fft.fft``, ``paddle.fft.fft2``, ``paddle.fft.fftn``, ``paddle.fft.ifft``, ``paddle.fft.ifft2``, ``paddle.fft.ifftn``)
@@ -303,19 +506,21 @@ paddle.int64
         - 短时傅里叶逆变换。(``paddle.signal.istft``)
 
 - 新增高层API
-	  - 新增 ``paddle.vision.ops.roi_pool`` 和 ``paddle.vision.ops.RoIPool``，支持检测任务中 RoI 区域池化操作。 ([#36154](https://github.com/PaddlePaddle/Paddle/pull/36154))
-	  -  新增 ``paddle.vision.ops.roi_align`` 和 ``paddle.vision.ops.RoIAlign``，支持检测任务中 RoI 区域 Align 操作。([#36207](https://github.com/PaddlePaddle/Paddle/pull/36207))
-	  - 新增 ``paddle.vision.ops.psroi_pool`` 和 ``paddle.vision.ops.PSRoIPool``，支持检测任务中位置敏感的 RoI 区域池化操作。 ([#36111](https://github.com/PaddlePaddle/Paddle/pull/36111))
-	  - 新增 ``paddle.vision.models.vgg19`` 预训练权重。 ([#35788](https://github.com/PaddlePaddle/Paddle/pull/35788))
-	  - 新增 ``paddle.vision.datasets.*`` 中数据集 API 下载进度条。([#33302](https://github.com/PaddlePaddle/Paddle/pull/33302))
-	  - 新增 ``paddle.Model.predict`` 参数 ``verbose``，支持是否显示日志。([#33405](https://github.com/PaddlePaddle/Paddle/pull/33405))
-	  - 新增 ``paddle.hub`` 下载选项 `wget` 方式。([#33379](https://github.com/PaddlePaddle/Paddle/pull/33379))
-	  -  新增 ``paddle.Model`` 动态图模式下梯度累加功能。([#32702](https://github.com/PaddlePaddle/Paddle/pull/32702))
-	  - 新增 ``paddle.Model.fit`` 和 ``paddle.Model.evaluate``  动态图模式下 ``num_iters`` 参数，控制训练迭代轮数。([#33986](https://github.com/PaddlePaddle/Paddle/pull/33986))
-	  - 新增 ``paddle.vision.ops.yolo_box`` 参数 ``iou_aware`` 和 ``iou_aware_factor``，支持 YoloBox 使用预测的 IOU 作为置信度的因子。([#33400](https://github.com/PaddlePaddle/Paddle/pull/33400))
-	  - 新增 ``paddle.summary`` 参数``input``，支持给定输入。([#34165](https://github.com/PaddlePaddle/Paddle/pull/34165))
+	- 新增 ``paddle.vision.ops.roi_pool`` 和 ``paddle.vision.ops.RoIPool``，支持检测任务中 RoI 区域池化操作。 ([#36154](https://github.com/PaddlePaddle/Paddle/pull/36154))
+	-  新增 ``paddle.vision.ops.roi_align`` 和 ``paddle.vision.ops.RoIAlign``，支持检测任务中 RoI 区域 Align 操作。([#36207](https://github.com/PaddlePaddle/Paddle/pull/36207))
+	- 新增 ``paddle.vision.ops.psroi_pool`` 和 ``paddle.vision.ops.PSRoIPool``，支持检测任务中位置敏感的 RoI 区域池化操作。 ([#36111](https://github.com/PaddlePaddle/Paddle/pull/36111))
+	- 新增 ``paddle.vision.models.vgg19`` 预训练权重。 ([#35788](https://github.com/PaddlePaddle/Paddle/pull/35788))
+	- 新增 ``paddle.vision.datasets.*`` 中数据集 API 下载进度条。([#33302](https://github.com/PaddlePaddle/Paddle/pull/33302))
+	- 新增 ``paddle.Model.predict`` 参数 ``verbose``，支持是否显示日志。([#33405](https://github.com/PaddlePaddle/Paddle/pull/33405))
+	- 新增 ``paddle.hub`` 下载选项 `wget` 方式。([#33379](https://github.com/PaddlePaddle/Paddle/pull/33379))
+	-  新增 ``paddle.Model`` 动态图模式下梯度累加功能。([#32702](https://github.com/PaddlePaddle/Paddle/pull/32702))
+	- 新增 ``paddle.Model.fit`` 和 ``paddle.Model.evaluate``  动态图模式下 ``num_iters`` 参数，控制训练迭代轮数。([#33986](https://github.com/PaddlePaddle/Paddle/pull/33986))
+	- 新增 ``paddle.vision.ops.yolo_box`` 参数 ``iou_aware`` 和 ``iou_aware_factor``，支持 YoloBox 使用预测的 IOU 作为置信度的因子。([#33400](https://github.com/PaddlePaddle/Paddle/pull/33400))
+	- 新增 ``paddle.summary`` 参数``input``，支持给定输入。([#34165](https://github.com/PaddlePaddle/Paddle/pull/34165))
+	- 新增`paddle.text.viterbi_decode`，支持动态图下CPU、GPU的Viterbi解码功能。([#35778](https://github.com/PaddlePaddle/Paddle/pull/35778))
 
 - 新增组网类 API
+	- 新增`paddle.nn.functional.sparse_attention`，用于计算稀疏的Transformer Attention模块。([#35757](https://github.com/PaddlePaddle/Paddle/pull/35757))
 	- 新增 ``paddle.nn.MaxUnPool2D`` 和 ``paddle.nn.functional.max_unpool2d``，支持根据输入的input和最大值位置计算出池化的逆结果。([#35056](https://github.com/PaddlePaddle/Paddle/pull/35056))
 	- 新增 ``paddle.nn.functional.gumbel_softmax``，支持 ``gumbel softmax`` 采样。([#35506](https://github.com/PaddlePaddle/Paddle/pull/35506), [#36065](https://github.com/PaddlePaddle/Paddle/pull/36065), [#36094](https://github.com/PaddlePaddle/Paddle/pull/36094))
 	- 新增 ``paddle.nn.functional.class_center_sample``，支持 PartialFC 类中心采样功能。([#34106](https://github.com/PaddlePaddle/Paddle/pull/34106))
@@ -332,11 +537,15 @@ paddle.int64
 	- 新增 ``paddle.device.cuda.empty_cache``，支持清理空闲的显存。([#35427](https://github.com/PaddlePaddle/Paddle/pull/35427))
 	- 新增 ``paddle.device.cuda.get_device_properties``，支持返回给定的设备属性。([#35875](https://github.com/PaddlePaddle/Paddle/pull/35875))
 	- 新增 ``paddle.device.cuda.stream_guard``，用于动态图下 CUDA Stream的灵活切换。([#35623](https://github.com/PaddlePaddle/Paddle/pull/35623))
-
+	- 新增`paddle.device.cuda.get_device_name`，支持返回给定设备的名称。([#36172](https://github.com/PaddlePaddle/Paddle/pull/36172))
+	- 新增`paddle.device.cuda.get_device_capability`，支持返回给定设备计算能力的版本号。([#36172](https://github.com/PaddlePaddle/Paddle/pull/36172))
+	- 新增`paddle.framework.core.async_read`和`paddle.framework.core.async_write`，可支持非默认 CUDA `Stream`下`CUDAPinnedPlace` 和 `CUDAPlace` 的 `Tensor` 数据异步读写。([#36501](https://github.com/PaddlePaddle/Paddle/pull/36501))
 
 - 新增Tensor操作API
+ - 新增`paddle.tensordot`，支持对高维张量做缩并(Tensor Contraction)运算。([#36454](https://github.com/PaddlePaddle/Paddle/pull/36454))
+ - 新增`paddle.bincount`，支持对一维张量内元素进行计数。([#36709](https://github.com/PaddlePaddle/Paddle/pull/36709))
  - 新增 `paddle.broadcast_tensors` ，支持对一组 `Tensor` 进行广播操作。([#33294](https://github.com/PaddlePaddle/Paddle/pull/33294), [#34874](https://github.com/PaddlePaddle/Paddle/pull/34874))
- - 新增 `paddle.einsum` 。([#33821](https://github.com/PaddlePaddle/Paddle/pull/34874))
+ - 新增 `paddle.einsum` 。([#33821](https://github.com/PaddlePaddle/Paddle/pull/33821))
  - 增强``paddle.tensor.gradient``接口，支持sigmoid_op的二阶求导算子。([#32971](https://github.com/PaddlePaddle/Paddle/pull/32971))
  - 新增 ``paddle.searchsorted``，支持在有序``Tensor``中查找给定值的索引。([#35159](https://github.com/PaddlePaddle/Paddle/pull/35159))
  - 新增 ``paddle.unique_consecutive`` ，支持将 ``Tensor`` 中连续重复的元素进行去重，返回连续不重复的``Tensor``。([#34334](https://github.com/PaddlePaddle/Paddle/pull/34334))
@@ -373,6 +582,7 @@ paddle.int64
     - 新增  ``paddle.static.ExponentialMovingAverage``，支持用指数衰减计算参数的滑动平均值。([#35673](https://github.com/PaddlePaddle/Paddle/pull/35673))
     - 新增 `` paddle::Tensor::slice`` C++ API， 支持 slice 操作，允许用户对外部 Tensor 切片操作。([#34227](https://github.com/PaddlePaddle/Paddle/pull/34227))
     - 新增``paddle.incubate.segment_*``系列API，包含 ``paddle.incubate.segment_sum, paddle.incubate.segment_mean,  paddle.incubate.segment_max, paddle.incubate.segment_min``。支持对`Tensor`按照分段求和、求均值、求最大值、求最小值。 ([#35759](https://github.com/PaddlePaddle/Paddle/pull/35759))
+    - 新增`paddle.version.cuda`和`paddle.version.cudnn`，用于获取 paddle 安装包所使用的 `CUDA`和 `cuDNN`的版本号。([#36556](https://github.com/PaddlePaddle/Paddle/pull/36556))
 
 #### IR(Intermediate Representation)
 - 动态图转静态图 
@@ -388,13 +598,15 @@ paddle.int64
     - 提供分析 `Program` 中控制流需要的依赖辅助函数。 ([#33439](https://github.com/PaddlePaddle/Paddle/pull/33439))
     - `Program` 和 `Graph` 相互转换后保留训练所需要的 `stop_gradient` ,  `persistable` 属性值。([#33771](https://github.com/PaddlePaddle/Paddle/pull/33771)) 
     - 原 `Pass` 只处理主`Graph`，忽略子图，现`Pass` 支持处理主 `Graph`及其所有子图。 ([#34158](https://github.com/PaddlePaddle/Paddle/pull/34158)) 
-    - 处理了在预测情况下 `Program` 和 `Graph` 互转的一些拓扑排序问题。([#34121](https://github.com/PaddlePaddle/Paddle/pull/34121), [#34521](https://github.com/PaddlePaddle/Paddle/pull/34521)). **《== **
+    - 处理了在预测情况下 `Program` 和 `Graph` 互转的一些拓扑排序问题。([#34121](https://github.com/PaddlePaddle/Paddle/pull/34121), [#34521](https://github.com/PaddlePaddle/Paddle/pull/34521))
 
 - Pass开发
     - 新增 Python 侧针对 fusion 等子图替换场景下的 Pass 开发方式。([#35708](https://github.com/PaddlePaddle/Paddle/pull/35708), [#35602](https://github.com/PaddlePaddle/Paddle/pull/35602))
 
 - Kernel Primitive API	
     - 对算子 Kernel 实现中的底层代码进行了抽象与功能封装，提供高性能的 Block 级 IO 运算和 Compute 运算。使用 Kernel Primitive API 进行 Kernel 开发可以更加专注计算逻辑的实现，在保证性能的同时大幅减少代码量，同时实现了算子计算与硬件解耦。([#34672](https://github.com/PaddlePaddle/Paddle/pull/34672),  [#35075](https://github.com/PaddlePaddle/Paddle/pull/35075),  [#34456](https://github.com/PaddlePaddle/Paddle/pull/34456),  [#35282](https://github.com/PaddlePaddle/Paddle/pull/35282),  [#35743](https://github.com/PaddlePaddle/Paddle/pull/35743),  [#34208](https://github.com/PaddlePaddle/Paddle/pull/34208))
+    - 在 Kernel Primitive API中添加一元和二元计算Functor共13个。 ([#36418](https://github.com/PaddlePaddle/Paddle/pull/36418))
+    - 修改 Kernel Primitive API 中 ReadData 实现方式，修复`NX !=1`访存越界的问题。 ([#36373](https://github.com/PaddlePaddle/Paddle/pull/36373))
 
 #### 混合精度训练
 - 动态图混合精度功能增强，新增整个任务使用半精度（float16）训练的方式，主要任务下的计算效率提升20%左右。 ([#35521](https://github.com/PaddlePaddle/Paddle/pull/35521))
@@ -512,7 +724,13 @@ paddle.int64
 - 优化``l2_normalize``,``p_norm``,``elementwise_max``,``prelu``,``clip_by_norm``,``lars optimizer``算子支持float16计算。 ([#35576](https://github.com/PaddlePaddle/Paddle/pull/35576), [#35888](https://github.com/PaddlePaddle/Paddle/pull/35888), [#35888](https://github.com/PaddlePaddle/Paddle/pull/35888), [35532](https://github.com/PaddlePaddle/Paddle/pull/35532), [#35446](https://github.com/PaddlePaddle/Paddle/pull/35446), [#33280](https://github.com/PaddlePaddle/Paddle/pull/33280))
 - 优化flowers数据集的读取速度，从每批次数分钟优化至1~3秒。([#31408](https://github.com/PaddlePaddle/Paddle/pull/31408))
 - 支持`paddle.distributed.fleet.DistributedStrategy` 中 `without_graph_optimize` 开关打开后的fuse allreduce sum功能。FP32下性能提升3%，AMP下性能提升8%。([#34446](https://github.com/PaddlePaddle/Paddle/pull/34446)) 
-
+- `paddle.matmul` 将底层Op算子由matmul op 切换到 matmul_v2 op。 ([#36374](https://github.com/PaddlePaddle/Paddle/pull/36374))
+- `paddle.fft` 模块添加了 mkl_cdft 和 hipfft 两个计算后端。 ([#36537](https://github.com/PaddlePaddle/Paddle/pull/36537))
+- `paddle.roll` 的参数 `shifts` 支持 `Tensor` 作为输入。 ([#36537](https://github.com/PaddlePaddle/Paddle/pull/36537))
+- `paddle.shape` 支持复数类型的输入。([#36835](https://github.com/PaddlePaddle/Paddle/pull/36835))
+- matmul_v2 支持量化。([#36469](https://github.com/PaddlePaddle/Paddle/pull/36469))
+- 新增 `clip_op` 对 `float16` 的支持。 ([#36672](https://github.com/PaddlePaddle/Paddle/pull/36672))
+- `paddle.fft` 模块为 cufft 后端添加了缓存 plan 的功能，优化性能。([#36537](https://github.com/PaddlePaddle/Paddle/pull/36537))
 
 #### IR(Intermediate Representation)
 - 动态图转静态图
@@ -521,6 +739,9 @@ paddle.int64
     - 优化了动转静训练代码逻辑，升级内部 ``Program`` 缓存机制，新增输入 ``Tensor`` 的提前 copy 策略，提升训练性能。 ([#34181](https://github.com/PaddlePaddle/Paddle/pull/34181), [#33796](https://github.com/PaddlePaddle/Paddle/pull/33796))
     - 优化动转静内部执行器显存回收策略，减少训练时显存占用量。 ([#34177](https://github.com/PaddlePaddle/Paddle/pull/34177))
     - 集成了 ``Gast`` 三方依赖库的源码，解耦了版本依赖。 ([#34556](https://github.com/PaddlePaddle/Paddle/pull/34556)) 
+    - 动转静报错时显示部分框架层报错信息，使得定位问题更加容易。([#36765](https://github.com/PaddlePaddle/Paddle/pull/36765))
+    - 移除动转静报错模块中重复的临时文件删除函数`remove_static_file()`。([#36375](https://github.com/PaddlePaddle/Paddle/pull/36375))
+    - 优化对RegisterPass中`input_specs`参数处理，支持图优化时作为匹配子图条件。([#36453](https://github.com/PaddlePaddle/Paddle/pull/36453))
 
 
 #### 分布式训练
@@ -534,7 +755,13 @@ paddle.int64
     - `paddle.io.Dataset` 支持动态库解析数据。 ([#33969](https://github.com/PaddlePaddle/Paddle/pull/33969))
     - 新增 `paddle.distributed.fleet.dataset.DatasetBase` 中对`use_var_list`和 `pipe_command` 生成数据的一致性检查函数。 ([#34463](https://github.com/PaddlePaddle/Paddle/pull/34463))
     - 新增 `paddle.fluid.layers.embedding` 的 `emd` 维度与 `fleet` 中` sparse table` 的 `emb` 维度的一致性检查。 ([#34249](https://github.com/PaddlePaddle/Paddle/pull/34249))
-
+    - 动态图混合并行支持Pure FP16训练。([#36707](https://github.com/PaddlePaddle/Paddle/pull/36707))
+    - 静态图混合并行支持dropout使用固定随机种子生成器，以确保模型并行中全局变量的一致性与局部变量的随机性。([#36682](https://github.com/PaddlePaddle/Paddle/pull/36682))
+    ‘
+    - 实现了CPU并行，并支持调用 spawn 或 launch 时可以添加自定义的backend参数。可用的backend选择为 "gloo", "nccl", "bkcl", "auto" ，分别表示CPU并行，GPU并行，XPU并行和按照Paddle版本自动选择。([#35745](https://github.com/PaddlePaddle/Paddle/pull/35745))
+    - 优化动态图混合并行 HybridParallelClipGrad 策略，支持4D混合并行+Pure FP16训练。([#36707](https://github.com/PaddlePaddle/Paddle/pull/36707))
+    - 添加 SlotRecordDataset 类支持GPU参数服务器训练。([#36710](https://github.com/PaddlePaddle/Paddle/pull/36710))
+    - GPU参数服务器构建阶段支持使用SlotRecordDataset。([#36723](https://github.com/PaddlePaddle/Paddle/pull/36723))
 
 - 静态图混合并行
     - 优化混合并行 loss scale，减少 scale op 插入个数。([#35775](https://github.com/PaddlePaddle/Paddle/pull/35775))
@@ -555,6 +782,14 @@ paddle.int64
 	- 修正 ``paddle.jit.save``  接口和模型裁剪的逻辑，不再为输出变量增加一个关联的 ``scale_op``，可以正确导出含有 ``bool``，``float16`` 类型输出的模型。([#35730](https://github.com/PaddlePaddle/Paddle/pull/35730), [#36132](https://github.com/PaddlePaddle/Paddle/pull/36132))
 - 自定义OP
 	- 移除 ``paddle::Tensor`` 的 ``copy`` 方法中不必要的 ``cudaStreamSynchronize`` 操作，以提升性能。([#35802](https://github.com/PaddlePaddle/Paddle/pull/35802))
+- 新增C++对GeneratePass开发注册的支持，开发方式与Python侧对齐。([#36302](https://github.com/PaddlePaddle/Paddle/pull/36302))
+- 自动稀疏化训练(Automic SParsity)
+	- 新增`paddle.static.sparsity`，支持生成`n:m`稀疏模式的稀疏参数，目前只支持静态图ASP训练。A100上FP32、FP16分别设置`1:2`、`2:4`的稀疏模式，训练保存的稀疏模型，可通过调用TensorRT 8利用Ampere架构的稀疏Tensor Core加速推理任务。当前版本共提供了5个API：([#32995](https://github.com/PaddlePaddle/Paddle/pull/32995)、[#33132](https://github.com/PaddlePaddle/Paddle/pull/33132)、[#33558](https://github.com/PaddlePaddle/Paddle/pull/33558)、[#36525](https://github.com/PaddlePaddle/Paddle/pull/36525))
+	- `paddle.static.sparsity.calculate_density`，计算输入Tensor的密度。
+	- `paddle.static.sparsity.decorate`，将给定的优化器包装为`OptimizerWithSparsityGuarantee`，在调用 `optimizer.minimize()`时自动为ASP工作流插入必要的操作。
+	- `paddle.static.sparsity.prune_model`，依据`mask_algo`指定的掩码生成函数裁剪`main_program`中支持的层的参数。
+	- `paddle.static.sparsity.set_excluded_layers`，设置不会被裁剪的层的参数名称。
+	- `paddle.static.sparsity.reset_excluded_layers`，重置与`main_program`相对应的`excluded_layers`设置。
 
 
 
@@ -594,6 +829,18 @@ paddle.int64
 - 优化动态图性能，将只在静态图执行的逻辑从动态图的执行路径中剥离。([#34024](https://github.com/PaddlePaddle/Paddle/pull/34024))
 - IR Pass优化能力作为通用能力露出，同时支持单机和分布式优化。在GPT混合并行场景性能提升3%-5%。([#34955](https://github.com/PaddlePaddle/Paddle/pull/34955), [#35704](https://github.com/PaddlePaddle/Paddle/pull/35704), [#34730](https://github.com/PaddlePaddle/Paddle/pull/34730), [#34524](https://github.com/PaddlePaddle/Paddle/pull/34524))
 - 优化 ctc loss grad 计算速度，提速~3x，但相应增加了GPU显存占用。([#34729](https://github.com/PaddlePadle/Paddle/pull/34729))
+- transformer encoder 性能优化
+	- 优化思路：通过新增 `paddle.incubate.nn.FusedMultiHeadAttention` 和 `paddle.incubate.nn.FusedFeedForward` 的方式，在实现中采用 q, k, v gemm融合及多种kernel融合优化技术，提升transformer encoder的性能。
+		- FusedAttention
+			- 新增 `paddle.incubate.nn.functional.fused_multi_head_attention` ，支持multi-head attention的融合计算。([#35905](https://github.com/PaddlePaddle/Paddle/pull/35905) [35903](https://github.com/PaddlePaddle/Paddle/pull/35903) [#36803](https://github.com/PaddlePaddle/Paddle/pull/36803) [#36793](https://github.com/PaddlePaddle/Paddle/pull/36793) [36185](https://github.com/PaddlePaddle/Paddle/pull/36185))
+			- 新增 `paddle.incubate.nn.FusedMultiHeadAttention` ，用于融合multi-head attention的layer层组网。 ([#36498](https://github.com/PaddlePaddle/Paddle/pull/36498) )
+			- 该模块使用q, k, v gemm融合和bias add + dropout + residual add + layer_norm kernel融合优化技术，可带来1.08x-1.45x加速。
+		
+		- FusedFeedForward
+			- 新增 `paddle.incubate.nn.functional.fused_feedforward` ，支持 feedforward的融合计算。([#36729](https://github.com/PaddlePaddle/Paddle/pull/36729) [#36730](https://github.com/PaddlePaddle/Paddle/pull/36730))
+			- 新增 `paddle.incubate.nn.FusedFeedForward` ，用于融合feedforward的layer层组网。 ([#36776](https://github.com/PaddlePaddle/Paddle/pull/36776))
+			- 性能较优化前有1.04x~1.22x左右的提升。
+		- 新增 `paddle.incubate.nn.FusedTransformerEncoderLayer`，支持使用融合multi-head attention和融合feedforward计算的layer层组网。 ([#36776](https://github.com/PaddlePaddle/Paddle/pull/36776))
 
 
 ### （4）问题修复
@@ -687,12 +934,27 @@ paddle.int64
 - 迁移``paddle.nn.functional.dice_loss``API中的`one_hot`算子到`one_hot_v2`算子。([#35734](https://github.com/PaddlePaddle/Paddle/pull/35734))
 - 修复 ``paddle.summary`` 静态图模式下使用 bug。([#35303](https://github.com/PaddlePaddle/Paddle/pull/35303))
 - 修复 ``paddle.Model.prepare`` 静态图模式下多卡启动的 bug。([#34311](https://github.com/PaddlePaddle/Paddle/pull/34311))
+- 修复`paddle.nn.functional.cross_entropy` 给定`weight`，且指定`axis`为除-1外的其他合法维度时会报错的问题。([#36647](https://github.com/PaddlePaddle/Paddle/pull/36647))
+- 修复`paddle.utils.dlpack.to_dlpack`无法编码多维 `Tensor` 的问题，修复其所生成的 DLPack 对象无法进行跨深度学习框架共享的问题。([#36177](https://github.com/PaddlePaddle/Paddle/pull/36177))
+- 修复使用`paddle.distribution.Categorical`的`sample`方法报错的问题，具体原因是multinomial op的cuda kernel中数组访问越界，该bug会导致访问超出数组下标的值，引起报错。 ([#36511](https://github.com/PaddlePaddle/Paddle/pull/36511))
+- 修复动态图`_BatchNormBase`基类中修改了 default_dtype，导致后续组网参数类型错误的问题，受影响的API有`paddle.nn.BatchNorm1D`，`paddle.nn.BatchNorm2D`，`paddle.nn.BatchNorm3D`，`paddle.nn.SyncBatchNorm`。具体原因是当 `get_default_dtype() == 'float16'` 时，通过 `set_default_dtype('float32')`修改默认参数数据类型，动态图组网的参数类型是通过 default_dtype 来创建的，因此当默认参数类型被修改后导致后续的组网参数类型错误。 ([#36376](https://github.com/PaddlePaddle/Paddle/pull/36376))
+- 修复`paddle.nn.functional.grid_sample`因特殊输入导致的异常问题。([#36625](https://github.com/PaddlePaddle/Paddle/pull/36625))
+- 修复 `paddle.fft.fft`, `paddle.fft.ifft`, `paddle.fft.rfft` , `paddle.fft.irfft`, `paddle.fft.hfft`, `paddle.fft.ihfft` 在输入 `axis=0` 情况下的计算错误问题。([#36537](https://github.com/PaddlePaddle/Paddle/pull/36537))
+- 修复 `paddle.fft.fftshift`  和 `paddle.fft.ifftshift` 在静态图下出错的问题。([#36537](https://github.com/PaddlePaddle/Paddle/pull/36537))
+- 修复 `paddle.fft.ifftshift` 计算结果不正确的问题。([#36835](https://github.com/PaddlePaddle/Paddle/pull/36835))
+- 修复`paddle.nn.functional.pad`在`replicate`模式下的报错信息提示。([#36531](https://github.com/PaddlePaddle/Paddle/pull/36531))
+
 
 #### IR(Intermediate Representation)
 
 - 动态图转静态图
     - 修复了动转静后，在 ``paddle.no_grad`` 语义下显存异常增长的问题。([#35725](https://github.com/PaddlePaddle/Paddle/pull/35725))
     - 修复了对 ``paddle.no_grad`` 接口的错误识别和转换问题。([#34136](https://github.com/PaddlePaddle/Paddle/pull/34136)) 
+    - 修复了部分场景下模型中间设置 stop_gradient=True 时，动转静训练报错的问题。([#36353](https://github.com/PaddlePaddle/Paddle/pull/36353))
+    - 修复了在控制流 if 的部分场景转换时，对返回结果检查会报错的问题。([#36830](https://github.com/PaddlePaddle/Paddle/pull/36830))
+    - 修复了在 ifelse 分支返回不等长结果时，动转静会额外对齐返回长度导致返回类型意外改变的问题。([#36565](https://github.com/PaddlePaddle/Paddle/pull/36565))
+    - 修复使用 jit.save/load 接口加载模型后，在 train 模式和 no_grad 上下文中，显存会一直增长的问题。([#36463](https://github.com/PaddlePaddle/Paddle/pull/36463))
+
 
 #### 分布式训练
 
@@ -727,6 +989,10 @@ paddle.int64
     - 修复 GPU 参数服务器使用非0卡训练报错问题。([#33078](https://github.com/PaddlePaddle/Paddle/pull/33078))
     - 修复 GPU 参数服务器 delta score，scale show问题。([#33492](https://github.com/PaddlePaddle/Paddle/pull/33078), [#33492](https://github.com/PaddlePaddle/Paddle/pull/33492))
     - 修复 GPU 参数服务器训练结束后未 merge dense，g2sum 计算有误，data norm 添加了optimize op 等问题。 ([#35029](https://github.com/PaddlePaddle/Paddle/pull/35029))
+    - 修复使用 fuse all reduce ops 开关时，如果梯度出现 empty 时会报错的问题。([#36231](https://github.com/PaddlePaddle/Paddle/pull/36231))
+    - 修复 dist_transformer 文件出现未定义的变量问题。([#36211](https://github.com/PaddlePaddle/Paddle/pull/36211))
+	
+	
 	
 - 动态图混合并行
 	- 修复流水线并行计算错误的问题。([#35556](https://github.com/PaddlePaddle/Paddle/pull/35556))
@@ -767,6 +1033,8 @@ paddle.int64
     - 子图通过支持Paddle-Lite NNAdapter接入ascend310硬件预测 [#35226](https://github.com/PaddlePaddle/Paddle/pull/35226)， 示例可参考[demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c%2B%2B/ascend310_lite_subgraph/image_classification_demo)。
     - 新增晟腾910 推理支持 [#34101](https://github.com/PaddlePaddle/Paddle/pull/34101)
 
+- 新增pool3d算子支持TensorRT的功能。([#36545](https://github.com/PaddlePaddle/Paddle/pull/36545))
+
 ### （2）功能优化
 
 #### 框架及API更新
@@ -774,6 +1042,7 @@ paddle.int64
 - 量化支持 
     - 动态图量化推理 pass 的重构，支持非模拟量化的 OP和模拟量化的 OP。([#35907](https://github.com/PaddlePaddle/Paddle/pull/35907))
   - 增加 int8 的模拟量化OP matmul（权重乘以 tensor的情况）。([#34359](https://github.com/PaddlePaddle/Paddle/pull/34359))
+  - 修复MobileNetV3模型在量化训练过程中因量化参数为0导致的Loss出NAN问题。([#36763](https://github.com/PaddlePaddle/Paddle/pull/36763))
 
 
 - API 增强
@@ -810,15 +1079,17 @@ paddle.int64
   - 增加TensorRT `qkv_context` plugin 对int8的支持([#34917](https://github.com/PaddlePaddle/Paddle/pull/34917), [#35504](https://github.com/PaddlePaddle/Paddle/pull/35504))
   - 增加TensorRT conv3d的支持。([#35507](https://github.com/PaddlePaddle/Paddle/pull/35507))
   - 增加对 `multihead_matmul` 融合算子的输入进行广播的支持。([#35780](https://github.com/PaddlePaddle/Paddle/pull/35780))
+  - Inference 支持 TensorRT8 稀疏推理，[测试环境](https://github.com/PaddlePaddle/Paddle-Inference-Demo/tree/master/c%2B%2B/sparsity)下，ERNIE 模型变长输入在不同的 batch_size 下性能提升10%-30%，ResNeXt101_32x4d模型在不同的batch_size下性能提升10%。([#36659](https://github.com/PaddlePaddle/Paddle/pull/36659))
 
 - Nvidia Jetson 原生支持能力增强
     - 新增 Op 支持，针对Jetson Nano/TX2这两款算力较低的设备，我们做了针对性的优化，目前新增了 `pool2d`, `pool_max`, `conv3d_transpose` 等 17个OP的支持。([#35378](https://github.com/PaddlePaddle/Paddle/pull/35378))
     - 针对Jetson Nano，新增模型：DPN68, EfficientNetB0, ttfnet, fcn_hrnetw18, hardnet。([#35378](https://github.com/PaddlePaddle/Paddle/pull/35378))
     - 针对Jetson TX2，新增模型：deeplabv3p_resnet50, deeplabv3_resnet50, fcn_hrnetw18, hardnet, pspnet, ttfnet, unet。([#35378](https://github.com/PaddlePaddle/Paddle/pull/35378))
 
-
 - 昆仑XPU接口功能扩展 
   - 新增 `set_xpu_device_id` 接口，支持设置推理时的昆仑芯片的设备号([#35572](https://github.com/PaddlePaddle/Paddle/pull/35572))
+
+- Inference python `copy_from_cpu`接口加入输入类型检查，错误类型输入下提前报错。([#36552](https://github.com/PaddlePaddle/Paddle/pull/36552))
 
 ### （3）问题修复
 
@@ -841,6 +1112,16 @@ paddle.int64
     - 修复ernie模型FP16精度运行时可能出现的精度问题。([#34771](https://github.com/PaddlePaddle/Paddle/pull/34711))
     - 修复ernie变长情况下，输入的顺序不一致导致输出不对的问题。([#33575](https://github.com/PaddlePaddle/Paddle/pull/33575))
     - 修复多流状态下分配器功能异常的问题。([#32932](https://github.com/PaddlePaddle/Paddle/pull/33575))
+
+- 修复 ERNIE 模型在 TRT8 下可能出现的崩溃问题。([#36769](https://github.com/PaddlePaddle/Paddle/pull/36769))
+- 修复使用 Pool, Slice 时可能出现的崩溃及精度问题。([#36666](https://github.com/PaddlePaddle/Paddle/pull/36666))
+- 修复 yolo_box op因为计算公式错误导致的精度问题。([#36365](https://github.com/PaddlePaddle/Paddle/pull/36365))
+- 修复量化后的 matmul_v2 在TRT下无法正常推理的问题。([#36821](https://github.com/PaddlePaddle/Paddle/pull/36821))
+- 修复了量化 matmul_v2 时错误地添加量化op的问题。([#36820](https://github.com/PaddlePaddle/Paddle/pull/36820))
+- 修复算子 batch_norm 和 elementwise_add 在3D应用场景下开启 TRT 报错的问题。([#36446](https://github.com/PaddlePaddle/Paddle/pull/36446))
+- 修复高层 linear api保存得到的预测模型无法被 Pass 融合优化的问题。([#36500](https://github.com/PaddlePaddle/Paddle/pull/36500))
+- 修改 MatmulV2ToMul 的 Pass，重新限定 (matmul_v2 to mul) 映射的 Pass，增加 MatmulV2ToMatmul 的 Pass，限定 (matmul_v2 to matmul) 映射的 Pass条件(不支持广播)，修改 (matmul, mul) 的 op_teller 映射条件。([#36652](https://github.com/PaddlePaddle/Paddle/pull/36652))
+
 
 #### 后端能力修复
 
@@ -908,3 +1189,4 @@ paddle.int64
 This release contains contributions from:
 
 0x45f, 123malin, Adam Osewski, Aganlengzi, Aurelius84, Baibaifan, Bo Liu, CheQiXiao, Chen Long, Chen Weihang, CtfGo, Double\_V, Ethanzjp, Fan Zhang, Feiyu Chan, Feng Xing, From00, GT-Zhang, Guanghua Yu, Guoxia Wang, Haipeng Wang, Hao Lin, Haohongxiang, Hui Zhang, Huihuang Zheng, HydrogenSulfate, IMMORTAL, JYChen, JZ-LIANG, Jacek Czaja, Jack Zhou, Jackwaterveg, Jeng Bai-Cheng, Jiangxinz, Jiaqi Liu, Jiawei Wang, JingZhuangzhuang, June Weng, Kaipeng Deng, Kqnonrime, LJQ❤️, Leo Chen, Li Min, LielinJiang, Lijunhui, Linjie Chen, Liu-xiandong, LiuWei, Ming-Xu Huang, MissPenguin, PaddlePM, Pei Yang, Peihan, Qi Li, QingshuChen, Ren Wei (任卫), Roc, Shang Zhizhou, ShenLiang, Shibo Tao, Siming Dai, Sing\_chan, TCChenLong, TTerror, TeslaZhao, Thomas Young, Thunderbrook, Tongxin Bai, WJJ1995, WangXi, Wangzheee, Wei Shengyu, WeiXin, Weilong Wu, Wenyu, Wilber, XGZhang, XYZ, XYZ916829, XiangGao, Xiaoxu Chen, YUNSHEN XIE, Yanxing Shi, Yiqun Liu, YuanRisheng, Yuang Liu, Yulong Ao, Zeng Jinle, Zhang Ting, Zhang Zheng, Zhanlue Yang, Zhen Wang, Zhong Hui, Zhou Wei, andreazanetti, andyjpaddle, arlesniak, baoachun, cc, ceci3, chajchaj, chenenquan, chenjian, chentianyu03, crystal, cuicheng01, danleifeng, denglin-github, duanboqiang, dyning, feng626, feng_shuai, furnace, gongweibao, heliqi, hlygit66666, hong, hong19860320, houj04, huangjun12, huangxu96, huzhiqiang, iducn, jakpiase, jiangcheng, joanna.wozna.intel, jzhang533, kuizhiqing, levi131, lidanqing, lilong12, limingshu, littletomatodonkey, liu zhengxi, liutiexing, liuyuhui, liym27, lyuwenyu, lzzyzlbb, niuliling123, pangyoki, parap1uie-s, ronnywang, root, seemingwang, shangliang Xu, shiyutang, smallv0221, sunli, sunzhongkai588, taixiurong, tangwei12, tianshuo78520a, veyron95, wangguanqun, wangguanzhong, wanghuancoder, wangna11BD, wangxinxin08, wangzhen38, wangzhuang01, wawltor, wenbin, whs, will-jl944, wuhuachaocoding, wuhuanzhou, xiaoting, xiaoxiaohehe001, xiayanming, xiegegege, xiemoyuan, xiongkun, yaoxuefeng, yeliang2258, yingyibiao, zhangbo9674, zhangchunle, zhangkaihuo, zhaoyingli, zhiboniu, zhoujun, zhouzj, zhulei, zhupengyang, zlsh80826, zmx, zyfncg, 李季, 津, 王明冬, 石晓伟
+

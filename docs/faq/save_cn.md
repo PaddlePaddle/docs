@@ -84,6 +84,46 @@ adam.set_state_dict(opti_state_dict)
     2. 如果被保存的对象包含``numpy.ndarray``，尽量在``load``时设置``return_numpy = True``。
     3. 对于``Layer``对象，只保存参数的值和名字，如果需要其他信息（例如``stop_gradient``），请将手将这些信息打包成`dict`等，一并保存。
 
+##### 问题：paddle 2.x 如何保存模型文件？如何保存paddle 1.x 中的 model 文件?
++ 答复：
+
+    1. 在paddle2.x可使用``paddle.jit.save``接口以及``paddle.static.save_inference_model``,通过指定``path``来保存成为``path.pdmodel``和``path.pdiparams``,可对应paddle1.x中使用``save_inference_model``指定dirname和params_filename生成``dirname/__model__``和``dirname/params文件``。paddle2.x保存模型文件详情可参考:
+    - [paddle.jit.save/load](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/02_paddle2.0_develop/08_model_save_load_cn.html#dongtaitumoxing-canshubaocunzairu-xunliantuili)
+    - [paddle.static.save/load_inference_model](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/02_paddle2.0_develop/08_model_save_load_cn.html#jingtaitumoxing-canshubaocunzairu-tuilibushu)
+    2. 如果想要在paddle2.x中读取paddle 1.x中的model文件，可参考:
+    - [兼容载入旧格式模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.2rc/guides/01_paddle2.0_introduction/load_old_format_model.html#cn-guides-load-old-format-model)
+
+
+##### 问题：paddle如何单独load存下来所有模型变量中某一个变量，然后修改变量中的值？
++ 答复：
+
+    1. 如果目的是修改存储变量的值，可以使用``paddle.save``保存下来所有变量，然后再使用``paddle.load``将所有变量载入后，查找目标变量进行修改，示例代码如下：
+
+```python
+import paddle
+
+layer = paddle.nn.Linear(3, 4)
+path = 'example/model.pdparams'
+paddle.save(layer.state_dict(), path)
+layer_param = paddle.load(path)
+# 修改fc_0.b_0的值
+layer_param["fc_0.b_0"] = 10
+```
+
+    2. 如果目的是单独访问某个变量，需要单独存储然后再单独读取，示例代码如下：
+
+```python
+import paddle
+
+layer = paddle.nn.Linear(3, 4)
+path_w = 'example/weight.tensor'
+path_b = 'example/bias.tensor'
+paddle.save(layer.weight, path_w)
+paddle.save(layer.bias, path_b)
+tensor_bias = paddle.load(path_b)
+tensor_bias[0] = 10
+```
+
 更多介绍请参考以下API文档：
 
 - [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/framework/io/save_cn.html)
