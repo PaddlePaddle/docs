@@ -56,4 +56,3 @@ CrossEntropyLoss
     ce_loss = paddle.nn.CrossEntropyLoss(weight=weight, reduction='mean')
     output = ce_loss(input, label)
     print(output)
-    # [4.84496039]
