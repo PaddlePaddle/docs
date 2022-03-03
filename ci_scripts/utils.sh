@@ -14,6 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+function is_shell_attribute_set() { # attribute, like "x"
+  case "$-" in
+    *"$1"*) return 0 ;;
+    *)    return 1 ;;
+  esac
+}
 
 function get_repo_pr_info(){
     # such as "PaddlePaddle/docs"
