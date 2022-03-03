@@ -11,4 +11,3 @@
 - [优化我们的文档](https://github.com/PaddlePaddle/docs/wiki/%E6%96%87%E6%A1%A3%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97)
 
 感谢你对飞桨开源项目的贡献！
-
