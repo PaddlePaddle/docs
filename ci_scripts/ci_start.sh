@@ -65,7 +65,11 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
         exit 1
     fi
     
-    set +x
+    is_shell_attribute_set x
+    xdebug_setted=$?
+    if [ $xdebug_setted ] ; then
+        set +x
+    fi
     # clean git workspace
     cd ${SCRIPT_DIR}/..
     git reset --hard && git clean -dfx
@@ -75,7 +79,9 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
         echo "Ak = ${BOS_CREDENTIAL_AK}" >> ${BCECMD_CONFIG}/credentials
         echo "Sk = ${BOS_CREDENTIAL_SK}" >> ${BCECMD_CONFIG}/credentials
     fi
-    set -x
+    if [ $xdebug_setted ] ; then
+        set -x
+    fi
 
     # https://cloud.baidu.com/doc/XLY/s/qjwvy89pc#%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E5%A6%82%E4%B8%8B
     # ${AGILE_PIPELINE_ID}-${AGILE_PIPELINE_BUILD_ID}"
