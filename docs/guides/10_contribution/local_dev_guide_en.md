@@ -4,10 +4,9 @@ You will learn how to develop programs in local environment under the guidelines
 
 ## Requirements of coding
 - Please refer to the coding comment format of [Doxygen](http://www.doxygen.nl/)
-- Make sure that option of builder `WITH_STYLE_CHECK` is on and the build could pass through the code style check.
 - Unit test is needed for all codes.
 - Pass through all unit tests.
-- Please follow [regulations of submitting codes](#regulations of submitting codes).
+- Please follow [regulations of submitting codes](./code_review_cn.html).
 
 The following guidiance tells you how to submit code.
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
@@ -26,7 +25,7 @@ Clone remote git to local:
 
 ## Create local branch
 
-At present [Git stream branch model](http://nvie.com/posts/a-successful-git-branching-model/)  is applied to Paddle to undergo task of development,test,release and maintenance.Please refer to [branch regulation of Paddle](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/others/releasing_process.md) about details。
+At present [Git stream branch model](http://nvie.com/posts/a-successful-git-branching-model/)  is applied to Paddle to undergo task of development,test,release and maintenance.Please refer to [branch regulation of Paddle](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/others/releasing_process.md) about details。
 
 All development tasks of feature and bug fix should be finished in a new branch which is extended from `develop` branch.
 
@@ -44,11 +43,11 @@ It is worth noting that before the checkout, you need to keep the current branch
 
 Paddle developers use the [pre-commit](http://pre-commit.com/) tool to manage Git pre-commit hooks. It helps us format the source code (C++, Python) and automatically check some basic things before committing (such as having only one EOL per file, not adding large files in Git, etc.).
 
-The `pre-commit` test is part of the unit test in Travis-CI. A PR that does not satisfy the hook cannot be submitted to Paddle. Install `pre-commit` first and then run it in current directory：
+The `pre-commit` test is part of the unit test in CI. A PR that does not satisfy the hook cannot be submitted to Paddle. The pre-commit used by Paddle is version 1.10.4. Install `pre-commit` first and then run it in current directory：
 
 
 ```bash
-➜  pip install pre-commit
+➜  pip install pre-commit==1.10.4
 ➜  pre-commit install
 ```
 

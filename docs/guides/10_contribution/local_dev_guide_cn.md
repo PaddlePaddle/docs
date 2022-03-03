@@ -4,10 +4,9 @@
 
 ## 代码要求
 - 代码注释请遵守 [Doxygen](http://www.doxygen.nl/) 的样式。
-- 确保编译器选项 `WITH_STYLE_CHECK` 已打开，并且编译能通过代码样式检查。
 - 所有代码必须具有单元测试。
 - 通过所有单元测试。
-- 请遵守[提交代码的一些约定](#提交代码的一些约定)。
+- 请遵守[提交代码的一些约定](./code_review_cn.html)。
 
 以下教程将指导您提交代码。
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
@@ -26,7 +25,7 @@
 
 ## 创建本地分支
 
-Paddle 目前使用[Git流分支模型](http://nvie.com/posts/a-successful-git-branching-model/)进行开发，测试，发行和维护，具体请参考 [Paddle 分支规范](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/others/releasing_process.md)。
+Paddle 目前使用[Git流分支模型](http://nvie.com/posts/a-successful-git-branching-model/)进行开发，测试，发行和维护，具体请参考 [Paddle 分支规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/others/releasing_process.md)。
 
 所有的 feature 和 bug fix 的开发工作都应该在一个新的分支上完成，一般从 `develop` 分支上创建新分支。
 
@@ -42,10 +41,10 @@ Paddle 目前使用[Git流分支模型](http://nvie.com/posts/a-successful-git-b
 
 Paddle 开发人员使用 [pre-commit](http://pre-commit.com/) 工具来管理 Git 预提交钩子。 它可以帮助我们格式化源代码（C++，Python），在提交（commit）前自动检查一些基本事宜（如每个文件只有一个 EOL，Git 中不要添加大文件等）。
 
-`pre-commit`测试是 Travis-CI 中单元测试的一部分，不满足钩子的 PR 不能被提交到 Paddle，首先安装并在当前目录运行它：
+`pre-commit`测试是 CI 中单元测试的一部分，不满足钩子的 PR 不能被提交到 Paddle，Paddle使用的pre-commit是1.10.4版本。首先安装并在当前目录运行它：
 
 ```bash
-➜  pip install pre-commit
+➜  pip install pre-commit==1.10.4
 ➜  pre-commit install
 ```
 
