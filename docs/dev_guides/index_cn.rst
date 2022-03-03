@@ -13,3 +13,6 @@
     :hidden:
 
     Overview_cn.md
+    local_dev_guide_cn.md
+    submit_pr_guide_cn.md
+    code_review_cn.md
