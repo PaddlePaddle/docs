@@ -3,7 +3,7 @@ CURDIR=$(pwd)
 
 FLUIDDOCDIR=${FLUIDDOCDIR:=/FluidDoc}
 OUTPUTDIR=${OUTPUTDIR:=/docs}
-CONFIGDIR=${CONFIGDIR:=/config}
+CONFIGDIR=${CONFIGDIR:=${FLUIDDOCDIR}/ci_scripts/doc-build-config}
 VERSIONSTR=${VERSIONSTR:=develop}
 OUTPUTFORMAT=${OUTPUTFORMAT:=html}
 
@@ -57,7 +57,9 @@ for lang in en zh ; do
       fi
 
       if [ "${lang}" = "en" ] ; then
-        python /root/post_filter_htmls.py ${OUTPUTDIR}/${lang}/${VERSIONSTR}/api/
+        if [ -f /root/post_filter_htmls.py ] && [ ! -f ${FLUIDDOCDIR}/ci_scripts/hooks/post-doc-compile.sh ] ; then
+          python /root/post_filter_htmls.py ${OUTPUTDIR}/${lang}/${VERSIONSTR}/api/
+        fi
       fi
     fi
     echo >&6
@@ -68,7 +70,7 @@ wait			#等到后台的进程都执行完毕
 exec 6>&-		##删除文件描述符6
 
 if [ -f ${FLUIDDOCDIR}/ci_scripts/hooks/post-doc-compile.sh ] ; then
-  ${FLUIDDOCDIR}/ci_scripts/hooks/post-doc-compile.sh
+  ${FLUIDDOCDIR}/ci_scripts/hooks/post-doc-compile.sh ${OUTPUTDIR} ${VERSIONSTR}
 fi
 
 if [ "${VERSIONSTR:0:2}" = "1." ] ; then
