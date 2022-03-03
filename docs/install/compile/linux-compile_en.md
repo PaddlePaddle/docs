@@ -8,9 +8,7 @@
     * **Ubuntu 14.04 (not recommended, no official support for compilation problems)**
     * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
     * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
-    * **Ubuntu 20.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
 * **Python version 3.6/3.7/3.8/3.9 (64 bit)**
-* **pip or pip3 version 20.2.2 or above (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -59,7 +57,8 @@
 
 ## Installation steps
 
-There are two compilation methods under Linux system:
+There are two compilation methods under Linux system. It's recommended to use Docker to compile.
+The dependencies required for compiling Paddle are pre-installed in the Docker environment, which is simpler than the native compiling environment.
 
 * [Compile with Docker](#compile_from_docker) (no official support for compilation problems under CentOS 6)
 * [Local compilation](#compile_from_host) (no official support for compilation problems under CentOS 6)
@@ -238,7 +237,9 @@ For Python3:
 pip3.7 install -U [whl package name]
 ```
 
-Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
+Note:
+We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9.
+During the compilation process, you need to download dependencies from github. Please make sure that your compilation environment can download the code from github normally.
 
 #### Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 

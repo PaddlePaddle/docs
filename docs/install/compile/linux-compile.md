@@ -8,9 +8,7 @@
     * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
     * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
     * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
-    * **Ubuntu 20.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
-* **pip 或 pip3 版本 20.2.2或更高版本 (64 bit)**
 
 ## 选择CPU/GPU
 
@@ -63,7 +61,8 @@
 
 ## 安装步骤
 
-在Linux的系统下有2种编译方式：
+在Linux的系统下有2种编译方式，推荐使用Docker编译。
+Docker环境中已预装好编译Paddle需要的各种依赖，相较本机编译环境更简单。
 
 * [使用Docker编译](#compile_from_docker)（不提供在CentOS 6下编译中遇到问题的支持）
 * [本机编译](#compile_from_host)（不提供在CentOS 6下编译中遇到问题的支持）
@@ -238,7 +237,9 @@ For Python3:
 pip3.7 install -U [whl包的名字]
 ```
 
-注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
+注意：
+以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9。
+编译过程中需要从github上下载依赖，请确保您的编译环境能正常从github下载代码。
 
 #### 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 

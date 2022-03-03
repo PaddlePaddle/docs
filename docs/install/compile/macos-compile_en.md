@@ -4,14 +4,14 @@
 
 * **MacOS version 10.x/11.x (64 bit) (not support GPU version)**
 * **Python version 3.6/3.7/3.8/3.9 (64 bit)**
-* **pip or pip3 version 20.2.2 or above (64 bit)**
 
 ## Choose CPU/GPU
 
 * Currently, only PaddlePaddle for CPU is supported.
 
 ## Installation steps
-There are two compilation methods in MacOS system:
+There are two compilation methods in MacOS system. It's recommended to use Docker to compile.
+The dependencies required for compiling Paddle are pre-installed in the Docker environment, which is simpler than the native compiling environment.
 
 * [Compile with Docker](#compile_from_docker)
 * [Local compilation](#compile_from_host)
@@ -79,7 +79,7 @@ docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidub
 #### 6. After entering Docker, go to the paddle directory:
 
 ```
-cd paddle
+cd /paddle
 ```
 
 #### 7. Switch to a more stable version to compile:
@@ -123,7 +123,7 @@ apt install patchelf
 * For users who need to compile the **CPU version PaddlePaddle** (We currently do not support the compilation of the GPU version PaddlePaddle under MacOS):
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
     ```
 > For details on the compilation options, see the [compilation options table](/documentation/docs/en/install/Tables_en.html/#Compile).
 
@@ -151,7 +151,9 @@ For Python3:
 pip3.7 install -U [whl package name]
 ```
 
-Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
+Note:
+We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9.
+During the compilation process, you need to download dependencies from github. Please make sure that your compilation environment can download the code from github normally.
 
 #### Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
