@@ -8,7 +8,6 @@ docs 是 [PaddlePaddle 官网文档](https://www.paddlepaddle.org.cn/documentati
 
 ## 仓库结构
 
-- [doc](doc): 飞桨框架 1.8 以及更老版本文档的源文件，会在未来删除。
 - [docs](docs): 飞桨框架 2.0 以及之后版本文档的源文件。
 - [docs/api](docs/api): 飞桨中文 API文档的源文件。
 - [docs/guides](docs/guides): 飞桨官方教程的源文件。

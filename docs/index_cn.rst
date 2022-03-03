@@ -15,6 +15,7 @@
     guides/index_cn.rst
     practices/index_cn.rst
     api/index_cn.rst
+    dev_guides/index_cn.rst
     faq/index_cn.rst
     release_note_cn.md
 
