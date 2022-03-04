@@ -157,6 +157,9 @@ You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to g
     - `registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`: use the image named `registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev` to create Docker container, /bin/bash start the /bin/bash command after entering the container.
 
 
+Note:
+Please make sure to allocate at least 4g of memory for docker, otherwise the compilation process may fail due to insufficient memory.
+
 #### 5. After entering Docker, go to the paddle directory:
 ```
 cd /paddle
@@ -219,6 +222,9 @@ Use multicore compilation
 make -j$(nproc)
 ```
 
+Note:
+During the compilation process, you need to download dependencies from github. Please make sure that your compilation environment can download the code from github normally.
+
 #### 11. After compiling successfully, go to the `/paddle/build/python/dist` directory and find the generated `.whl` package:
 ```
 cd /paddle/build/python/dist
@@ -233,7 +239,6 @@ pip3.7 install -U [whl package name]
 
 Note:
 We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9.
-During the compilation process, you need to download dependencies from github. Please make sure that your compilation environment can download the code from github normally.
 
 #### Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 

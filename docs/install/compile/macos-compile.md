@@ -75,6 +75,9 @@ docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidub
 
 - `registry.baidubce.com/paddlepaddle/paddle:latest-dev`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令
 
+注意：
+请确保至少为docker分配4g以上的内存，否则编译过程可能因内存不足导致失败。您可以在docker用户界面的“Preferences-Resources”中设置容器的内存分配上限。
+
 #### 6. 进入Docker后进入paddle目录下：
 
 ```
@@ -130,6 +133,9 @@ apt install patchelf
 make -j$(nproc)
 ```
 
+注意：
+编译过程中需要从github上下载依赖，请确保您的编译环境能正常从github下载代码。
+
 #### 12. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 ```
 cd /paddle/build/python/dist
@@ -143,7 +149,6 @@ pip3.7 install -U [whl包的名字]
 
 注意：
 以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9。
-编译过程中需要从github上下载依赖，请确保您的编译环境能正常从github下载代码。
 
 #### 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
