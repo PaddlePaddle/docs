@@ -24,36 +24,6 @@
 
         You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA10.2 and cuDNN7. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
-
-
-    * **Centos system can refer to the following commands**
-
-        ```
-        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        ```
-        ```
-        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        ```
-        ```
-        yum update -y
-        ```
-        ```
-        yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
-        ```
-
-    * **Ubuntu system can refer to the following commands**
-
-        ```
-        wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-        ```
-        ```
-        dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-        ```
-        ```
-        sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
-        ```
-
 
 ## Installation steps
 
@@ -273,7 +243,39 @@ uname -m && cat /etc/*release
     apt update
     ```
 
-#### 3. Install the necessary tools
+#### 3. Install NCCL (optional)
+
+* If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA10.2 and cuDNN7. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
+
+
+    * **Centos system can refer to the following commands**
+
+        ```
+        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        ```
+        ```
+        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        ```
+        ```
+        yum update -y
+        ```
+        ```
+        yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
+        ```
+
+    * **Ubuntu system can refer to the following commands**
+
+        ```
+        wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+        ```
+        ```
+        dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+        ```
+        ```
+        sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
+        ```
+
+#### 4. Install the necessary tools
 
 * Centos system
 
@@ -353,7 +355,7 @@ uname -m && cat /etc/*release
     make -j8 && make install
     ```
 
-#### 4. We support compiling and installing with virtualenv. First, create a virtual environment called `paddle-venv` with the following command:
+#### 5. We support compiling and installing with virtualenv. First, create a virtual environment called `paddle-venv` with the following command:
 
 * a. Install Python-dev:
 
@@ -439,12 +441,12 @@ uname -m && cat /etc/*release
         mkvirtualenv paddle-venv
         ```
 
-#### 5. Enter the virtual environment:
+#### 6. Enter the virtual environment:
 ```
 workon paddle-venv
 ```
 
-#### 6. Before **executing the compilation**, please confirm that the related dependencies mentioned in the [compile dependency table](/documentation/docs/en/install/Tables_en.html/#third_party) are installed in the virtual environment:
+#### 7. Before **executing the compilation**, please confirm that the related dependencies mentioned in the [compile dependency table](/documentation/docs/en/install/Tables_en.html/#third_party) are installed in the virtual environment:
 
 * Here is the installation method for `patchELF`. Other dependencies can be installed using `yum install` or `apt install`, `pip install`/`pip3 install` followed by the name and version:
 
@@ -453,7 +455,7 @@ workon paddle-venv
     ```
     > Users who can't use yum installation can refer to patchElF github [official documentation](https://gist.github.com/ruario/80fefd174b3395d34c14).
 
-#### 7. Put the PaddlePaddle source cloned in the Paddle folder in the current directory and go to the Paddle directory:
+#### 8. Put the PaddlePaddle source cloned in the Paddle folder in the current directory and go to the Paddle directory:
 
 ```
 git clone https://github.com/PaddlePaddle/Paddle.git
@@ -463,7 +465,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 8. Switch to a more stable release branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch, support for Python 3.9 is added from the 2.1 branch,):
+#### 9. Switch to a more stable release branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch, support for Python 3.9 is added from the 2.1 branch,):
 
 ```
 git checkout [name of target branch]
@@ -475,13 +477,13 @@ For example:
 git checkout release/2.2
 ```
 
-#### 9. And please create and enter a directory called build:
+#### 10. And please create and enter a directory called build:
 
 ```
 mkdir build && cd build
 ```
 
-#### 10. Execute cmake:
+#### 11. Execute cmake:
 
 > For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
 
@@ -525,7 +527,7 @@ Note: For the command involving Python 3, we use Python 3.7 as an example above,
 
 
 
-#### 11. Compile with the following command:
+#### 12. Compile with the following command:
 
 ```
 make -j$(nproc)
@@ -535,12 +537,12 @@ make -j$(nproc)
 
 > If “Too many open files” error is displayed during compilation, please use the instruction ulimit -n 8192  to increase the number of files allowed to be opened by the current process. Generally speaking, 8192 can ensure the completion of compilation.
 
-#### 12. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package:
+#### 13. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package:
 ```
 cd /paddle/build/python/dist
 ```
 
-#### 13. Install the compiled `.whl` package on the current machine or target machine:
+#### 14. Install the compiled `.whl` package on the current machine or target machine:
 
 ```
 Pip install -U (whl package name)
