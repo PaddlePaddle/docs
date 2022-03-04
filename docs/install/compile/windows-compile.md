@@ -1,29 +1,29 @@
 # **Windows下从源码编译**
 
+在Windows的系统下提供1种编译方式：
+
+* [本机编译](#compile_from_host)（暂不支持NCCL，分布式等相关功能）
+
 ## 环境准备
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
-* **GPU版本支持CUDA 10.1/10.2/11.0/11.1/11.2，且仅支持单卡**
+* **GPU版本 CUDA 10.1/10.2/11.0/11.1/11.2，且仅支持单卡**
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 * **pip 版本 20.2.2或更高版本 (64 bit)**
 * **Visual Studio 2017**
 
 ## 选择CPU/GPU
 
-* 如果您的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
+* 如果你的计算机没有 NVIDIA® GPU，请编译CPU版的PaddlePaddle
 
-* 如果您的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
+* 如果你的计算机有NVIDIA® GPU，并且满足以下条件，推荐编译GPU版的PaddlePaddle
     * **CUDA 工具包 10.1/10.2 配合 cuDNN v7.6.5**
     * **CUDA 工具包 11.0 配合 cuDNN v8.0.2**
     * **CUDA 工具包 11.1 配合 cuDNN v8.1.1**
     * **CUDA 工具包 11.2 配合 cuDNN v8.2.1**
-    * **GPU运算能力超过3.5的硬件设备**
+    * **GPU运算能力超过3.5的硬件设备（GPU算力可在NVIDIA[官网](https://developer.nvidia.com/zh-cn/cuda-gpus#compute)查看）**
 
-## 安装步骤
-
-在Windows的系统下提供1种编译方式：
-
-* [本机编译](#compile_from_host)（暂不支持NCCL，分布式等相关功能）
+## 本机编译步骤
 
 <a name="win_source"></a>
 ### <span id="compile_from_host">**本机编译**</span>
@@ -41,7 +41,7 @@
 2. 在Windows桌面下方的搜索栏中搜索 "x64 Native Tools Command Prompt for VS 2017" 或 "适用于VS 2017 的x64本机工具命令提示符"，以管理员身份运行，打开终端。之后的命令均在该终端中执行。
 
 3. 使用`pip`命令安装Python依赖：`numpy, protobuf, wheel, ninja`
-    * 通过 `python --version` 检查默认python版本是否是预期版本，因为您的计算机可能安装有多个python，您可通过修改系统环境变量的顺序修改默认的Python版本。
+    * 通过 `python --version` 检查默认python版本是否是预期版本，因为你的计算机可能安装有多个python，你可通过修改系统环境变量的顺序修改默认的Python版本。
     * 更新 pip
         ```
         pip install --upgrade pip --user
@@ -103,10 +103,10 @@
     pip install（whl包的名字）--force-reinstall
     ```
 
-恭喜，至此您已完成PaddlePaddle的编译安装
+恭喜，至此你已完成PaddlePaddle的编译安装
 
 ## **验证安装**
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入
+安装完成后你可以使用 `python` 或 `python3` 进入python解释器，输入
 ```
 import paddle
 ```
@@ -115,7 +115,7 @@ import paddle
 paddle.utils.run_check()
 ```
 
-如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
+如果出现`PaddlePaddle is installed successfully!`，说明你已成功安装。
 
 ## **如何卸载**
 请使用以下命令卸载PaddlePaddle：
