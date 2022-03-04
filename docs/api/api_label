@@ -586,6 +586,7 @@ paddle.fluid.layers.nn.mul	.. _api_paddle_fluid_layers_nn_mul:
 paddle.fluid.layers.learning_rate_scheduler.exponential_decay	.. _api_paddle_fluid_layers_learning_rate_scheduler_exponential_decay:
 paddle.static.nn.sequence_slice	.. _api_paddle_static_nn_sequence_slice:
 paddle.fluid.layers.nn.swish	.. _api_paddle_fluid_layers_nn_swish:
+paddle.fluid.layers.nn.mish	.. _api_paddle_fluid_layers_nn_mish:
 paddle.fluid.layers.nn.chunk_eval	.. _api_paddle_fluid_layers_nn_chunk_eval:
 paddle.fluid.layers.nn.reshape	.. _api_paddle_fluid_layers_nn_reshape:
 paddle.fluid.layers.nn.brelu	.. _api_paddle_fluid_layers_nn_brelu:
@@ -870,6 +871,7 @@ paddle.nn.GroupNorm	.. _api_paddle_nn_GroupNorm:
 paddle.nn.Pad2D	.. _api_paddle_nn_Pad2D:
 paddle.nn.ELU	.. _api_paddle_nn_ELU:
 paddle.nn.Swish	.. _api_paddle_nn_Swish:
+paddle.nn.Mish	.. _api_paddle_nn_Mish:
 paddle.nn.RNN	.. _api_paddle_nn_RNN:
 paddle.nn.Softsign	.. _api_paddle_nn_Softsign:
 paddle.nn.Tanh	.. _api_paddle_nn_Tanh:
@@ -916,6 +918,7 @@ paddle.nn.functional.cosine_similarity	.. _api_paddle_nn_functional_cosine_simil
 paddle.nn.functional.log_softmax	.. _api_paddle_nn_functional_log_softmax:
 paddle.nn.functional.binary_cross_entropy	.. _api_paddle_nn_functional_binary_cross_entropy:
 paddle.nn.functional.swish	.. _api_paddle_nn_functional_swish:
+paddle.nn.functional.mish	.. _api_paddle_nn_functional_mish:
 paddle.nn.functional.conv2d_transpose	.. _api_paddle_nn_functional_conv2d_transpose:
 paddle.nn.functional.tanhshrink	.. _api_paddle_nn_functional_tanhshrink:
 paddle.nn.functional.softplus	.. _api_paddle_nn_functional_softplus:

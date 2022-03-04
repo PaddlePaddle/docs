@@ -1,4 +1,4 @@
-.. __cn_api_nn_cn_spectral_norm:
+.. _cn_api_nn_cn_spectral_norm:
 
 spectral_norm
 -------------------------------

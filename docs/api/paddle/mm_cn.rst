@@ -56,11 +56,6 @@ mm
     input: [K], mat2: [K]
     out: [1]
 
-    * 例 7:
-
-    input: [M], mat2: [N]
-    out: [M, N]
-
 
 **代码示例**：
 

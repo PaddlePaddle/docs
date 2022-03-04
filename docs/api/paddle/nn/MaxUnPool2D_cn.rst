@@ -1,6 +1,6 @@
 .. _cn_api_nn_MaxUnPool2D:
 
-MaxPool2D
+MaxUnPool2D
 -------------------------------
 
 .. py:function:: paddle.nn.MaxUnPool2D(kernel_size, stride=None,padding=0,data_format="NCHW",output_size=None,name=None)

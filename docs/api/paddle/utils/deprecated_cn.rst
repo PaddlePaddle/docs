@@ -1,4 +1,4 @@
-.. _cn_api_paddle_utils_deprecated
+.. _cn_api_paddle_utils_deprecated:
 
 paddle_utils_deprecated
 -------------------------------

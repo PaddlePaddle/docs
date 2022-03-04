@@ -53,3 +53,5 @@
 * :code:`ReduceOnPlateau`: 学习率根据当前监控指标（一般为loss）来进行自适应调整，当loss趋于稳定时衰减学习率。
   相关API Reference请参考 :ref:`cn_api_paddle_optimizer_lr_ReduceOnPlateau`
 
+* :code:`MultiplicativeDecay`: 每次将当前学习率乘以lambda函数得到下一个学习率。
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_lr_MultiplicativeDecay`

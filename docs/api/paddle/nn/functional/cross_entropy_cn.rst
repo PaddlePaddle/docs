@@ -88,6 +88,7 @@ cross_entropy
     - **reduction** (str, optional) – 指示如何按批次大小平均损失，可选值为"none","mean","sum"，如果选择是"mean"，则返回reduce后的平均损失；如果选择是"sum"，则返回reduce后的总损失。如果选择是"none"，则返回没有reduce的损失。默认值是“mean”。
     - **soft_label** (bool, optional) – 指明label是否为软标签。默认为False，表示label为硬标签；若soft_label=True则表示软标签。
     - **axis** (int, optional) - 进行softmax计算的维度索引。 它应该在 :math:`[-1，dim-1]` 范围内，而 ``dim`` 是输入logits的维度。 默认值：-1。
+    - **use_softmax** (bool, optional) - 指定是否对input进行softmax归一化。 默认值：True。
     - **name** (str，optional） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
@@ -108,6 +109,5 @@ cross_entropy
 
         loss = paddle.nn.functional.cross_entropy(input=input_data, label=label_data, weight=weight_data)
         print(loss)
-        # [4.38418674]
 
 

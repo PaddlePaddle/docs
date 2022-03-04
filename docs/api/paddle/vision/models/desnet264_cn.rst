@@ -1,4 +1,4 @@
-.. _cn_api_paddle_vision_models_resnet264:
+.. _cn_api_paddle_vision_models_densenet264:
 
 densenet264
 -------------------------------

@@ -1,4 +1,111 @@
 ﻿
+# 2.2.2 Release Note
+
+## 1. Important Updates
+
+This version fixed some function and performance issues of PaddlePaddle 2.2.1 and optimized some functions. 
+
+## 2. Training Framework (distributed included)
+
+### （1）New functions
+
+#### API
+
+- Add the `paddle.nn.Mish` and `paddle.nn.functional.mish` which support the element-by-element calculation of the mish activation function. ([#38803](https://github.com/PaddlePaddle/Paddle/pull/38803))
+
+#### Others
+
+- The `paddle.nn.PReLU`, `paddle.nn.functional.prelu`, and `paddle.nn.static.prelu` newly support the `data_format` parameter. You can set input data type. ([#38495](https://github.com/PaddlePaddle/Paddle/pull/38495))
+- The `paddle.index_select` supports `float16` data type. ([#38751](https://github.com/PaddlePaddle/Paddle/pull/38751))
+- Optimize error message of `paddle.multiplex` when tensor `size` in `inputs` is 0. ([#38757](https://github.com/PaddlePaddle/Paddle/pull/38757))
+- Add initialization parameter `data_loader` for `paddle.fluid.contrib.slim.quantization.PostTrainingQuantization`, and support input of the `paddle.io.DataLoader` object or Python Generator. ([#38729](https://github.com/PaddlePaddle/Paddle/pull/38729))
+
+### （2）Bug Fixes
+
+#### API
+
+- Fix operation error of `paddle.max` in input of `x.ndim > 6 and axis < 0`. ([#38070](https://github.com/PaddlePaddle/Paddle/pull/38070))
+- Fix bug of `paddle.max` and `paddle.min`: Result is incorrect on the CPU device when the parameter axis is the list type and `len(axis) == x.ndim and axis[i] < 0`. ([#38478](https://github.com/PaddlePaddle/Paddle/pull/38478))
+- Fix bug that `paddle.nn.functional.unfold` does not distinguish between compile time and runtime in InferShape calculation. ([#38925](https://github.com/PaddlePaddle/Paddle/pull/38925)) ([#38834](https://github.com/PaddlePaddle/Paddle/pull/38834))
+- Fix bug where GPU unnecessarily synchronizes with the CPU when `paddle.nn.functional.cross_entropy` checks `labels`. （[#38849](https://github.com/PaddlePaddle/Paddle/pull/38849)）
+- Fix bug of input gradient result error in backward computing when `paddle.distributed.split` slices the FC along columns. ([#38724](https://github.com/PaddlePaddle/Paddle/pull/38724))
+- Fix bug where `paddle.nn.Layer.to` does not support `paddle.dtype` type. ([#38108](https://github.com/PaddlePaddle/Paddle/pull/38108))
+- Fix bug that output tensor's shape is different between dynamic and static graphs when `full_matrics=True` in `paddle.linalg.svd` under static graphs. ([#37744](https://github.com/PaddlePaddle/Paddle/pull/37744))
+- Fix bug of the result dimension exception when the `Tensor` slice index uses multiple None type indexes. ([#37400](https://github.com/PaddlePaddle/Paddle/pull/37400))
+- Fix memory leak bug of `Tensor` index assignment in some scenarios. ([#38098](https://github.com/PaddlePaddle/Paddle/pull/38098))
+- Fix bug of `conv2d` reporting an error with missing attributes after model is exported using `save_inference_model` and backward pass is added for training. ([#38832](https://github.com/PaddlePaddle/Paddle/pull/38832))
+
+#### IR(Intermediate Representation)
+
+- Dynamic Graph to Static Graph
+  
+	- Fix bug of inconsistency between dynamic and static behaviors of some initialization-related APIs. ([#37827](https://github.com/PaddlePaddle/Paddle/pull/37827))
+	- Fix bug where `paddle` will be used as a variable when dynamic to static code is transcribed. ([#37999](https://github.com/PaddlePaddle/Paddle/pull/37999))
+	- Fix bug that highlighted code comments lead to an error report when dynamic to static code is transcribed. ([#38003](https://github.com/PaddlePaddle/Paddle/pull/38003))
+	- Fix endless loop of `for … zip …`  statement in dynamic to static graph. ([#37846](https://github.com/PaddlePaddle/Paddle/pull/37846))
+  
+- Model quantization
+
+	- Fix problem of redundant nodes in model derived from quantitative training of dynamic graph. ([#38122](https://github.com/PaddlePaddle/Paddle/pull/38122)) ([#38025](https://github.com/PaddlePaddle/Paddle/pull/38025))
+	- To solve the problem that the quantitative model cannot be predicted on Paddle Lite, remove `clip_extra` settings of quantitative export models. ([#38343](https://github.com/PaddlePaddle/Paddle/pull/38343))
+	- Fix `flatten_contiguous_range` quantization settings for `flatten_contiguous_range` operator output configuration error in quantization. ([#37741](https://github.com/PaddlePaddle/Paddle/pull/37741))
+
+#### Others
+
+- Custom OP
+	- Fix bug that user-defined operator may report an error due to incomplete files when loading Python APIs under multiple processes. ([#38128](https://github.com/PaddlePaddle/Paddle/pull/38128))
+	- Fix compilation failure caused by `D_GLIBCXX_USE_CXX11_ABI` not taking effect as expected when compiling on CentOS platforms. ([#37878](https://github.com/PaddlePaddle/Paddle/pull/37878))
+
+- Dynamic graph inplace strategy
+  
+  - Fix problem that accumulator reports an error when multiple inplace OPs execute continuously. ([#38406](https://github.com/PaddlePaddle/Paddle/pull/38406))
+  - Fix problem that the `setitem` method of `Tensor` causes the backward graph construction error when performing the inplace operation on leaf nodes. ([#38014](https://github.com/PaddlePaddle/Paddle/pull/38014))
+- NHWC strategy
+  
+  - Fix bug of undefined intermediate variables in backward Op in batchnorm_op when data type is FP32, with dims = 2 and data_layout = NHWC. ([#37020](https://github.com/PaddlePaddle/Paddle/pull/37020))
+
+## 3. Paddle Inference
+
+### （1）Function Optimization
+
+#### Framework and API updates
+
+- C API supports processing of c++ std::string. ([#38667](https://github.com/PaddlePaddle/Paddle/pull/38667))
+
+#### Back-end capability enhancement
+
+- GPU and TensorRT subgraph engine related updates
+  - Support invoke of TensorRT inference for relu, relu6, tanh, sigmoid, pool2d, concat, batch_norm, split, gelu, scale, swish, prelu, clip, reduce_sum, and reduce_mean operators in the static shape and 2-dimensional input. ([#37773](https://github.com/PaddlePaddle/Paddle/pull/37773))
+  - Support invoke of TensorRT inference by mish activation function. ([#38866](https://github.com/PaddlePaddle/Paddle/pull/38866))
+
+### （2）Bug Fixes
+
+#### Framework and API fixing
+
+- Operator fixing
+  
+  - Fix incompatibility bug of the roi_align operator in use of TRT. ([#38788](https://github.com/PaddlePaddle/Paddle/pull/38788))
+  - Add the function of elementwise broadcasting in the same dimension. ([#37908](https://github.com/PaddlePaddle/Paddle/pull/37908))
+- Framework function fixing
+  
+  - Fix bug of model clipping logic in dynamic-to-static graphs, so operators containing subblock are clipped correctly in dynamic-to-static graphs. ([#37579](https://github.com/PaddlePaddle/Paddle/pull/37579))
+  - Fix error reporting issue of CreatePredictor interface under multiple threads. Current CreatePredictor interface allows calling in multiple threads without causing inference exceptions. ([#37894](https://github.com/PaddlePaddle/Paddle/pull/37894))
+  - Support “params file” to pass empty strings for models without weights in config. ([#38579](https://github.com/PaddlePaddle/Paddle/pull/38579))
+  - Fix problem of not copying GPU data when Paddle-TRT engine directly inputs CPU tensor. ([#37427](https://github.com/PaddlePaddle/Paddle/pull/37427))
+
+#### Back-end capability fixing
+
+- TensorRT subgraph engine fixing
+  
+  - Fix the bug of an error that occurred in the running of TensorRT by pool2d with some of the parameters. ([#37929](https://github.com/PaddlePaddle/Paddle/pull/37929))
+- MKLDNN engine fixing
+  
+  - Fix the problem that mkldnn kernel of matmul_v2 does not support different lengths of two input shapes. ([#38733](https://github.com/PaddlePaddle/Paddle/pull/38733))
+
+#### Others
+
+- Fix the possible hang bug of ERNIE model under TRT8. ([#37839](https://github.com/PaddlePaddle/Paddle/pull/37839))
+
 # 2.2.1 Release Note
 
 ## 1. Important Updates

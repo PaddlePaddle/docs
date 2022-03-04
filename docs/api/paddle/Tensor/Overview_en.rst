@@ -179,6 +179,12 @@ Methods
     minimum
     fmin
     mm
+    inner
+    outer
+    cov
+    lu
+    lu_unpack
+    cholesky_solve
     mod
     multiplex
     multiply
