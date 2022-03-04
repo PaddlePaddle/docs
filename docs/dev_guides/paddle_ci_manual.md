@@ -4,7 +4,6 @@
 
 ![](https://github.com/lelelelelez/OtherProject/blob/master/ci_exec_order.png)
 
-
 如上图所示，提交一个`PR`，您需要：
 
 - 签署CLA协议
@@ -74,7 +73,7 @@ git commit -m 'test=document_fix'
 该CI主要的功能是检测当前PR在GPU、Python3版本的编译与单测是否通过，同时增量代码需满足行覆盖率大于90%的要求。
 
 - 编译脚本：`paddle/scripts/paddle_build.sh cpu_cicheck_coverage`
-- 测试脚本：`paddle/scripts/paddle_build.sh gpu_cicheck_coverage` 
+- 测试脚本：`paddle/scripts/paddle_build.sh gpu_cicheck_coverage`
 
 #### PR-CE-Framework
 
