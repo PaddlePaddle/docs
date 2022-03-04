@@ -10,6 +10,6 @@
 
 Paddle Inference 2.1版本的安装及使用方式，请[点击查看](https://paddleinference.paddlepaddle.org.cn/demo_tutorial/paddle_xpu_infer_cn.html)。
 
-Paddle Serving 0.6.0版本的安装及使用方式，请[点击查看](https://github.com/PaddlePaddle/Serving/blob/develop/doc/BAIDU_KUNLUN_XPU_SERVING_CN.md)。
+Paddle Serving 0.6.0版本的安装及使用方式，请[点击查看](https://github.com/PaddlePaddle/Serving/blob/v0.6.0/doc/BAIDU_KUNLUN_XPU_SERVING_CN.md)。
 
 Paddle Lite 2.9版本的安装及使用方式，请[点击查看](https://paddlelite.paddlepaddle.org.cn/demo_guides/baidu_xpu.html)。
