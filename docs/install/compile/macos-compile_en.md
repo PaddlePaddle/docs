@@ -122,7 +122,7 @@ apt install patchelf
 * For users who need to compile the **CPU version PaddlePaddle** (We currently do not support the compilation of the GPU version PaddlePaddle under MacOS):
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release
     ```
 > For details on the compilation options, see the [compilation options table](/documentation/docs/en/install/Tables_en.html/#Compile).
 
