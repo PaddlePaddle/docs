@@ -6,7 +6,7 @@ Create an Issue to describe your problem and keep its number.
 
 Switch to the branch you have created and click `New pull request`。
 
-<img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/08_contribution/img/new_pull_request.png?raw=true">
+<img src="https://github.com/PaddlePaddle/FluidDoc/blob/release/1.1/doc/fluid/advanced_usage/development/contribute_to_paddle/img/new_pull_request.png?raw=true"  style="zoom:60%">
 
 
 Switch to targeted branch:

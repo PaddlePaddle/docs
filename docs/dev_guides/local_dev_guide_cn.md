@@ -48,7 +48,7 @@ Paddle 开发人员使用 [pre-commit](http://pre-commit.com/) 工具来管理 G
 ➜  pre-commit install
 ```
 
-Paddle 使用 `clang-format` 来调整 C/C++ 源代码格式，请确保 `clang-format` 版本在 3.8 以上。
+Paddle 使用 `clang-format` 来调整 C/C++ 源代码格式，请确保 `clang-format` 版本是 3.8 。
 
 注：通过`pip install pre-commit`和`conda install -c conda-forge pre-commit`安装的`yapf`稍有不同的，Paddle 开发人员使用的是`pip install pre-commit`。
 
@@ -75,10 +75,9 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-## 编译和单元测试
+## 编译
 
 关于编译 PaddlePaddle 的源码，请参见[从源码编译](../../../install/compile/fromsource.html) 选择对应的操作系统。
-关于单元测试，可参考[Op单元测试](../07_new_op/new_op.html#id7) 的运行方法。
 
 ## 提交（commit）
 

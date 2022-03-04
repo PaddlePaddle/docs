@@ -4,19 +4,15 @@
 
 切换到所建分支，然后点击 `New pull request`。
 
-<img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/08_contribution/img/new_pull_request.png?raw=true"  style="zoom:60%">
+![new_pull_request](../guides/10_contribution/img/new_pull_request.png)
 
 选择目标分支：
 
 <img src="https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/paddle/guides/08_contribution/img/change_base.png?raw=true"  style="zoom:80%" >
 
-在 PR 的描述说明中，填写 `resolve #Issue编号` 可以在这个 PR 被 merge 后，自动关闭对应的 Issue，具体请见[这里](https://help.github.com/articles/closing-issues-via-commit-messages/)。
+如果解决了某个Issue的问题创建的 PR，需要关联Issue，参考[Code Reivew 约定](./code_review_cn.html)。并在 PR 的描述说明中，填写 `resolve #Issue编号` 可以在这个 PR 被 merge 后，自动关闭对应的 Issue，具体请见[这里](https://help.github.com/articles/closing-issues-via-commit-messages/)。
 
 接下来等待 review，如果有需要修改的地方，参照上述步骤更新 origin 中的对应分支即可。
-
-### 关联Issue
-
-如果解决了某个Issue的问题创建的PR，需要关联Issue，参考[Code Reivew 约定](./code_review_cn.html)
 
 ## 签署CLA协议和通过单元测试
 
@@ -43,7 +39,7 @@
 
 ### 通过单元测试
 
-您在Pull Request中每提交一次新的commit后，会触发CI单元测试，请确认您的commit message中已加入必要的说明，请见[提交（commit）](local_dev_guide.html#permalink-8--commit-)
+您在Pull Request中每提交一次新的commit后，会触发CI单元测试，请确认您的commit message中已加入必要的说明，请见[提交（commit）](./local_dev_guide_cn.html#commit)
 
 请您关注您Pull Request中的CI单元测试进程，它将会在几个小时内完成
 
