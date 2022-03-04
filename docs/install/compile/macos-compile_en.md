@@ -76,6 +76,10 @@ docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidub
 
 - `registry.baidubce.com/paddlepaddle/paddle:latest-dev`: creates a Docker container with a mirror named `registry.baidubce.com/paddlepaddle/paddle:latest-dev`, /bin /bash starts the /bin/bash command after entering the container.
 
+
+Note:
+Please make sure to allocate at least 4g of memory for docker, otherwise the compilation process may fail due to insufficient memory. You can set a container's memory allocation cap in "Preferences-Resources" in the docker UI.
+
 #### 6. After entering Docker, go to the paddle directory:
 
 ```
@@ -137,6 +141,8 @@ apt install patchelf
 make -j$(nproc)
 ```
 
+Note:
+During the compilation process, you need to download dependencies from github. Please make sure that your compilation environment can download the code from github normally.
 
 #### 12. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package:
 ```
@@ -153,7 +159,6 @@ pip3.7 install -U [whl package name]
 
 Note:
 We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9.
-During the compilation process, you need to download dependencies from github. Please make sure that your compilation environment can download the code from github normally.
 
 #### Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
