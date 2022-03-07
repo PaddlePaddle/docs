@@ -2,7 +2,7 @@
 
 ## 完成 Pull Request PR创建
 
-切换到所建分支，然后点击 `New pull request`。
+切换到所建分支，然后点击 `Compare & pull request`。
 
 ![new_pull_request](../images/compare_pull_request.png)
 

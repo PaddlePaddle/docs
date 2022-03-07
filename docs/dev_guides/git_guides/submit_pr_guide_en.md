@@ -4,7 +4,7 @@
 
 Create an Issue to describe your problem and keep its number.
 
-Switch to the branch you have created and click `New pull request`。
+Switch to the branch you have created and click `Compare & pull request`。
 
 ![new_pull_request](../images/compare_pull_request.png)
 
