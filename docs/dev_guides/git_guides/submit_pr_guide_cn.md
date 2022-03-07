@@ -4,11 +4,11 @@
 
 切换到所建分支，然后点击 `New pull request`。
 
-![new_pull_request](../../guides/10_contribution/img/new_pull_request.png)
+![new_pull_request](../images/compare_pull_request.png)
 
 选择目标分支：
 
-![change_base](../../guides/10_contribution/img/change_base.png)
+![change_base](../images/change_base.png)
 
 如果解决了某个Issue的问题，请在该PUll Request的第一个评论框中加上：fix #issue_number，这样当该PUll Request被合并后，会自动关闭对应的Issue。关键词包括：close, closes, closed, fix, fixes, fixed, resolve, resolves, resolved，请选择合适的词汇。详细可参考[Closing issues via commit messages](https://help.github.com/articles/closing-issues-via-commit-messages/)
 

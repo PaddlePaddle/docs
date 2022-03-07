@@ -6,11 +6,11 @@ Create an Issue to describe your problem and keep its number.
 
 Switch to the branch you have created and click `New pull request`。
 
-![new_pull_request](../guides/10_contribution/img/new_pull_request.png)
+![new_pull_request](../images/compare_pull_request.png)
 
 Switch to targeted branch:
 
-![change_base](../guides/10_contribution/img/change_base.png)
+![change_base](../images/change_base.png)
 
 If the issue of an Issue is resolved, please add: fix #issue_number to the first comment box of the PUll Request, so that when the PUll Request is merged, the corresponding Issue will be automatically closed. Keywords include: close, closes, closed, fix, fixes, fixed, resolve, resolves, resolved, please choose the appropriate word. For details, please refer to
 
