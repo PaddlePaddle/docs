@@ -1,6 +1,6 @@
 # 本地开发指南
 
-本文将指导您如何在本地进行代码开发
+本文将指导你如何在本地进行代码开发
 
 ## 代码要求
 - 代码注释请遵守 [Doxygen](http://www.doxygen.nl/) 的样式。
@@ -8,7 +8,7 @@
 - 通过所有单元测试。
 - 请遵守[提交代码的一些约定](./code_review_cn.html)。
 
-以下教程将指导您提交代码。
+以下教程将指导你提交代码。
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
 跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 <https://github.com/USERNAME/Paddle>。
