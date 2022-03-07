@@ -13,3 +13,4 @@
     :hidden:
 
     Overview_cn.md
+    paddle_ci_manual.md
