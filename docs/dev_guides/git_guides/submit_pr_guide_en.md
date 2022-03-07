@@ -12,7 +12,7 @@ Switch to targeted branch:
 
 ![change_base](../guides/10_contribution/img/change_base.png)
 
-If the PR created by solving a problem of an issue needs to be associated with the issue, please refer to the Code Reivew convention. And in the description of the PR, fill in the resolve #Issue number to automatically close the corresponding Issue after the PR is merged. For details, please refer to [here](https://help.github.com/articles/closing-issues-via-commit-messages/).
+If the issue of an Issue is resolved, please add: fix #issue_number to the first comment box of the PUll Request, so that when the PUll Request is merged, the corresponding Issue will be automatically closed. Keywords include: close, closes, closed, fix, fixes, fixed, resolve, resolves, resolved, please choose the appropriate word. For details, please refer to
 
 Then please wait for review.If there is any need to make a modification,you can update corresponding branch in origin following the steps above.
 

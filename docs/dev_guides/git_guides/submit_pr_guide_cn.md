@@ -10,7 +10,6 @@
 
 ![change_base](../../guides/10_contribution/img/change_base.png)
 
-如果解决了某个Issue的问题创建的 PR，需要关联Issue，参考[Code Reivew 约定](./code_review_cn.html)。并在 PR 的描述说明中，填写 `resolve #Issue编号` 可以在这个 PR 被 merge 后，自动关闭对应的 Issue，具体请见[这里](https://help.github.com/articles/closing-issues-via-commit-messages/)。
 如果解决了某个Issue的问题，请在该PUll Request的第一个评论框中加上：fix #issue_number，这样当该PUll Request被合并后，会自动关闭对应的Issue。关键词包括：close, closes, closed, fix, fixes, fixed, resolve, resolves, resolved，请选择合适的词汇。详细可参考[Closing issues via commit messages](https://help.github.com/articles/closing-issues-via-commit-messages/)
 
 接下来等待 review，如果有需要修改的地方，参照上述步骤更新 origin 中的对应分支即可。
