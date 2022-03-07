@@ -26,7 +26,7 @@
 
     > **python**：官网[链接](https://www.python.org/downloads/windows/)，可选择3.6/3.7/3.8/3.9中任一版本的 Windows installer(64-bit)安装。安装时注意勾选 `Add Python 3.x to PATH`，将Python添加到环境变量中。
 
-    > **Visual studio 2017**：社区版下载[链接](https://paddle-ci.gz.bcebos.com/window_requirement/VS2017/vs_Community.exe)。在安装时需要在工作负荷一栏中勾选 `使用C++的桌面开发` 和 `通用Windows平台开发`，并在语言包一栏中选择 `英语`。
+    > **Visual studio 2017**：官网[链接](https://visualstudio.microsoft.com/zh-hans/vs/older-downloads/#visual-studio-2017-and-other-products)，需要登录后下载，建议下载Community社区版。在安装时需要在工作负荷一栏中勾选 `使用C++的桌面开发` 和 `通用Windows平台开发`，并在语言包一栏中选择 `英语`。
 
 2. 在Windows桌面下方的搜索栏中搜索 `x64 Native Tools Command Prompt for VS 2017` 或 `适用于VS 2017 的x64本机工具命令提示符`，右键以管理员身份打开终端。之后的命令均在该终端中执行。
 
