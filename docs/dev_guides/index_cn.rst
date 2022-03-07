@@ -16,3 +16,4 @@
     git_guides/local_dev_guide_cn.md
     git_guides/submit_pr_guide_cn.md
     git_guides/code_review_cn.md
+    paddle_ci_manual.md
