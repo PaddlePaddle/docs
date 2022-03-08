@@ -8,9 +8,7 @@
     * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
     * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
     * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
-    * **Ubuntu 20.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
-* **pip 或 pip3 版本 20.2.2或更高版本 (64 bit)**
 
 ## 选择CPU/GPU
 
@@ -26,44 +24,11 @@
 
         您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
-* 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA10.2，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
-
-    * **Centos 系统可以参考以下命令**
-
-        ```
-        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        ```
-
-        ```
-        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
-        ```
-
-        ```
-        yum update -y
-        ```
-
-        ```
-        yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
-        ```
-
-    * **Ubuntu 系统可以参考以下命令**
-
-        ```
-        wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-        ```
-
-        ```
-        dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
-        ```
-
-        ```
-        sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
-        ```
-
 
 ## 安装步骤
 
-在Linux的系统下有2种编译方式：
+在Linux的系统下有2种编译方式，推荐使用Docker编译。
+Docker环境中已预装好编译Paddle需要的各种依赖，相较本机编译环境更简单。
 
 * [使用Docker编译](#compile_from_docker)（不提供在CentOS 6下编译中遇到问题的支持）
 * [本机编译](#compile_from_host)（不提供在CentOS 6下编译中遇到问题的支持）
@@ -155,6 +120,9 @@ cd Paddle
     - `registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令。
 
 
+注意：
+请确保至少为docker分配4g以上的内存，否则编译过程可能因内存不足导致失败。
+
 #### 5. 进入Docker后进入paddle目录下：
 
 ```
@@ -223,6 +191,8 @@ apt install patchelf
 make -j$(nproc)
 ```
 
+注意：
+编译过程中需要从github上下载依赖，请确保您的编译环境能正常从github下载代码。
 
 #### 11. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 
@@ -238,7 +208,8 @@ For Python3:
 pip3.7 install -U [whl包的名字]
 ```
 
-注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
+注意：
+以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9。
 
 #### 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
@@ -277,7 +248,43 @@ uname -m && cat /etc/*release
     ```
 
 
-#### 3. 安装必要的工具
+#### 3. 安装NCCL（可选）
+
+* 如果您需要使用GPU多卡，请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA10.2，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
+
+    * **Centos 系统可以参考以下命令**
+
+        ```
+        wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        ```
+
+        ```
+        rpm -i nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
+        ```
+
+        ```
+        yum update -y
+        ```
+
+        ```
+        yum install -y libnccl-2.7.8-1+cuda10.2 libnccl-devel-2.7.8-1+cuda10.2 libnccl-static-2.7.8-1+cuda10.2
+        ```
+
+    * **Ubuntu 系统可以参考以下命令**
+
+        ```
+        wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1604/x86_64/nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+        ```
+
+        ```
+        dpkg -i nvidia-machine-learning-repo-ubuntu1604_1.0.0-1_amd64.deb
+        ```
+
+        ```
+        sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
+        ```
+
+#### 4. 安装必要的工具
 
 * Centos 环境
 
@@ -366,7 +373,7 @@ uname -m && cat /etc/*release
     make -j8 && make install
     ```
 
-#### 4. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
+#### 5. 我们支持使用virtualenv进行编译安装，首先请使用以下命令创建一个名为`paddle-venv`的虚环境：
 
 * a. 安装Python-dev:
 
@@ -446,13 +453,13 @@ uname -m && cat /etc/*release
         mkvirtualenv paddle-venv
         ```
 
-#### 5. 进入虚环境：
+#### 6. 进入虚环境：
 
 ```
 workon paddle-venv
 ```
 
-#### 6. **执行编译前**请您确认在虚环境中安装有[编译依赖表](/documentation/docs/zh/install/Tables.html#third_party)中提到的相关依赖：
+#### 7. **执行编译前**请您确认在虚环境中安装有[编译依赖表](/documentation/docs/zh/install/Tables.html#third_party)中提到的相关依赖：
 
 * 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install`/`pip3 install` 后跟依赖名称和版本安装:
 
@@ -461,7 +468,7 @@ workon paddle-venv
     ```
     > 不能使用yum安装的用户请参见patchElF github[官方文档](https://gist.github.com/ruario/80fefd174b3395d34c14)
 
-#### 7. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
+#### 8. 将PaddlePaddle的源码clone在当下目录下的Paddle的文件夹中，并进入Padde目录下：
 
 ```
 git clone https://github.com/PaddlePaddle/Paddle.git
@@ -471,7 +478,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 8. 切换到较稳定release分支下进行编译：
+#### 9. 切换到较稳定release分支下进行编译：
 
 ```
 git checkout [分支名]
@@ -483,13 +490,13 @@ git checkout [分支名]
 git checkout release/2.2
 ```
 
-#### 9. 并且请创建并进入一个叫build的目录下：
+#### 10. 并且请创建并进入一个叫build的目录下：
 
 ```
 mkdir build && cd build
 ```
 
-#### 10. 执行cmake：
+#### 11. 执行cmake：
 
 >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
@@ -548,7 +555,7 @@ mkdir build && cd build
 
 
 
-#### 11. 使用以下命令来编译：
+#### 12. 使用以下命令来编译：
 
 ```
 make -j$(nproc)
@@ -558,12 +565,12 @@ make -j$(nproc)
 
 > 如果编译过程中显示“Too many open files”错误时，请使用指令 ulimit -n 8192 来增大当前进程允许打开的文件数，一般来说8192可以保证编译完成。
 
-#### 12. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
+#### 13. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 ```
 cd /paddle/build/python/dist
 ```
 
-#### 13. 在当前机器或目标机器安装编译好的`.whl`包：
+#### 14. 在当前机器或目标机器安装编译好的`.whl`包：
 
 ```
 pip install -U（whl包的名字）
