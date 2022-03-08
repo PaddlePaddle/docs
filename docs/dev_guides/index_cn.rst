@@ -10,6 +10,7 @@
 - `代码规范 <./style_guides_cn.html>`_ : 代码规范说明。
 - `Git 操作指南 <./git_guides/index_cn.html>`_ : Git 操作相关说明与Paddle CI 手册。
 - `编译安装 <https://www.paddlepaddle.org.cn/documentation/docs/zh/install/compile/fromsource.html>`_ : 如何从源码编译安装Paddle。
+- `API开发指南 <./api_contributing_guides/api_contributing_guides_cn.html>`_ : API开发相关说明。
 - `曙光开发指南 <./sugon/index_cn.html>`_ : 曙光开发相关说明。
 - `文档贡献指南 <./docs_contributing_guides_cn.html>`_ : 飞桨文档贡献指南。
 
@@ -19,5 +20,6 @@
     Overview_cn.md
     style_guides_cn.md
     git_guides/index_cn.rst
+    api_contributing_guides/api_contributing_guides_cn.rst
     sugon/index_cn.rst
     docs_contributing_guides_cn.md
