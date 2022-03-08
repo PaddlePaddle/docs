@@ -4,7 +4,7 @@
 
 当你提交一个PR`(Pull_Request)`，你的PR需要经过一些CI`(Continuous Integration)`，以触发`develop`分支的为例为你展示CI执行的顺序：
 
-![ci_exec_order.png](./images/ci_exec_order.png)
+![ci_exec_order.png](../images/ci_exec_order.png)
 
 如上图所示，提交一个`PR`，你需要：
 
@@ -221,22 +221,22 @@ git config –local user.name 你的名字
 ### CheckPRTemplate失败
 
 如果你的`CheckPRTemplate`状态一直未变化，这是由于通信原因状态未返回到GitHub。你只需要重新编辑一下PR描述保存后就可以重新触发该条CI，步骤如下：
-![checkPRtemplate1.png](./images/checkPRtemplate1.png)
-![checkPRTemplate2.png](./images/checkPRTemplate2.png)
+![checkPRtemplate1.png](../images/checkPRtemplate1.png)
+![checkPRTemplate2.png](../images/checkPRTemplate2.png)
 
 ### 其他CI失败
 
 当你的`PR`的CI失败时，`paddle-bot`会在你的`PR`页面发出一条评论，同时此评论GitHub会同步到你的邮箱，让你第一时间感知到`PR`的状态变化（注意：只有第一条CI失败的时候会发邮件，之后失败的CI只会更新`PR`页面的评论。）
 
-![paddle-bot-comment.png](./images/paddle-bot-comment.png)
+![paddle-bot-comment.png](../images/paddle-bot-comment.png)
 
-![ci-details.png](./images/ci-details.png)
+![ci-details.png](../images/ci-details.png)
 
 你可以通过点击`paddle-bot`评论中的CI名字，也可通过点击CI列表中的`Details`来查看CI的运行日志，如上图。通常运行日志的末尾会告诉你CI失败的原因。
 
 由于网络代理、机器不稳定等原因，有时候CI的失败也并不是你的`PR`自身的原因，这时候你只需要rerun此CI即可（你需要将你的GitHub授权于效率云CI平台）。
 
-![rerun.png](./images/rerun.png)
+![rerun.png](../images/rerun.png)
 
 如果CI失败你无法判断原因，请联系 @[lelelelelez](https://github.com/lelelelelez)。
 
