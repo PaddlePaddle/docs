@@ -1,16 +1,12 @@
 ﻿# 飞桨API的设计和命名规范
 
-[toc]
-
-规范维护人：高翔、胡晓光
-
 ## API设计规范
 
 ### 总体原则
 
 1. 单一职责，每个API应只完成单一的任务
 2. 接口设计应考虑通用性，避免只适用于某些单一场景
-3. 符合行业标准，综合参考python, numpy, pytorch和tensorflow等的接口设计，借鉴竞品的优点；除非飞桨API设计有明确优势的情况下可保留自有特色，否则需要符合行业标准
+3. 符合行业标准，综合参考开源深度学习框架的接口设计，借鉴各框架的优点；除非飞桨API设计有明确优势的情况下可保留自有特色，否则需要符合行业标准
 4. 功能类似的接口，参数名和行为需要保持一致，比如，lstm和gru
 5. 优先保证清晰，然后考虑简洁，避免使用不容易理解的缩写
 6. 历史一致，如无必要原因，应避免接口修改
@@ -97,7 +93,6 @@
   paddle.nn.Conv2D(num_channels, num_filters, filter_size, padding=0, stride=1, dilation=1, groups=1, param_attr=None, bias_attr=None, use_cudnn=True, act=None, data_format="NCHW", dtype='float32')
   ```
 
-  **对于pytorch下某些API在特定的情况会返回一个数值scalar的情况，比如 torch.argmax，这种情况下在paddle里设计者需要返回一个shape=[1]的Tensor，不允许直接返回一个数值标量scalar。因为在静态图里无法返回scalar，会导致动态图和静态图写法不统一，给动、静转换带来困难；并且paddle里没有scalar的概念，目前有许多API不支持scalar的输入，返回scalar也可能会导致后续组网失败**
 
 - API不需要用户指定执行硬件，框架可以自动根据当前配置，选择执行的库。
 
