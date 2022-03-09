@@ -1,10 +1,10 @@
-# 自定义外部Kernel
+# 自定义 Kernel 教程
 
 ## 概述
 
-Kernel函数（简称Kernel）对应算子（Operator，简称Op）的具体实现，飞桨框架提供了丰富的Op和不同硬件（如CPU、GPU、XPU等）上的Kernel实现。对于通过自定义Runtime机制注册的外部硬件，飞桨提供了配套的自定义外部Kernel机制，实现独立于框架的Kernel编码与注册。
+Kernel函数（简称Kernel）对应算子（Operator，简称Op）的具体实现，飞桨框架提供了丰富的Op和不同硬件（如CPU、GPU、XPU等）上的Kernel实现。对于通过自定义Runtime机制注册的外部硬件，飞桨提供了配套的自定义Kernel机制，实现独立于框架的Kernel编码与注册。
 
-与[自定义原生算子](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/new_op_cn.html)、[自定义外部算子](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/new_custom_op_cn.html)不同，自定义外部Kernel有如下特点：
+与[自定义原生算子](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/new_op_cn.html)、[自定义外部算子](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/new_custom_op_cn.html)不同，自定义Kernel有如下特点：
 
 1. 框架解耦的Kernel实现、编译与安装
 2. 内外一致的Kernel声明、编码与注册
@@ -12,9 +12,9 @@ Kernel函数（简称Kernel）对应算子（Operator，简称Op）的具体实�
 
 其使用方式为：
 
-1. 确定Kernel的函数声明
+1. 确定Kernel函数声明
 2. 实现Kernel函数体
-2. 注册自定义外部Kernel
+2. 注册自定义Kernel
 4. 独立编译、安装与飞桨自动加载
 
 随后即可在模型中使用，下面通过实现[昇腾NPU硬件](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_hardware_support/npu_docs/index_cn.html)的自定义kernel `softmax` ，介绍其具体的实现、编译与应用流程。其中`softmax`的功能可参考[Paddle官网API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/softmax_cn.html#softmax)。
@@ -31,6 +31,7 @@ Kernel函数声明是飞桨通过头文件发布的Kernel函数约定，框架�
 在编写具体的Kernel函数前，按需查找飞桨开放的头文件以确定待实现具体Kernel的函数声明。头文件位于飞桨安装路径的`include/paddle/phi/kernels/`下。
 
 如`softmax`的Kernel函数位于`softmax_kernel.h`中，具体如下：
+
 ```c++
 // paddle/phi/kernels/softmax_kernel.h
 // ...
@@ -45,6 +46,7 @@ void SoftmaxKernel(const Context& dev_ctx,
 }
 // ...
 ```
+
 相关约定为：
 
 1. 模板参数：固定写法，第一个模板参数为数据类型`T`，第二个模板参数为设备上下文`Context`。
@@ -52,7 +54,7 @@ void SoftmaxKernel(const Context& dev_ctx,
 3. 函数命名：Kernel名称+Kernel后缀，驼峰式命名，如`SoftmaxKernel`。
 4. 函数参数：依次为`Context`，`InputTensor`，`Attribute`和`OutTensor*`。其中：
 - 首位是设备上下文参数，固定为`const Context&`类型；
-    - 自定义外部Kernel对应`CustomContext`类型，具体可参照[custom_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/custom/custom_context.h)
+    - 自定义Kernel对应`CustomContext`类型，具体可参照[custom_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/custom/custom_context.h)
 - 其次是输入的`Tensor`参数，数量>=0，支持的类型包括：
     - `const DenseTensor&` 具体参照[dense_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/dense_tensor.h)
     - `const SelectedRows&`具体参照[selected_rows.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/selected_rows.h)
@@ -91,7 +93,7 @@ void SoftmaxKernel(const Context& dev_ctx,
 
 需要注意的是，在飞桨开放的Kernel头文件中，如果Kernel函数已经通过调用其它函数或者更底层的Kernel函数实现，可逐层向下实现其调用的函数。通过这种方式，可以尽可能复用Kernel函数以减少重复代码。
 
-如`softmax_kernel.h`中，`SoftmaxKernel`通过调用`Cast`与`SoftmaxRawKernel`实现功能：
+如`softmax_kernel.h`中，`SoftmaxKernel`通过调用`Cast`与`SoftmaxRawKernel`实现：
 
 ```c++
 // ...
@@ -151,6 +153,7 @@ DenseTensor Cast(const Context& dev_ctx,
 
 }  // namespace phi
 ```
+
 所以，为实现`SoftmaxKernel`，需实现`SoftmaxRawKernel`和`CastKernel`。通过这种方式，类似`CastKernel`的基础Kernel仅需实现一次便可被其它Kernel调用。二者的Kernel函数声明如下：
 
 ```c++
@@ -169,8 +172,9 @@ void SoftmaxRawKernel(const Context& dev_ctx,
                       int axis,
                       DenseTensor* out);
 ```
+
 > 注意：
-> 1. Kernel函数声明是自定义外部Kernel能够被注册和框架调用的基础，由框架发布，需要严格遵守
+> 1. Kernel函数声明是自定义Kernel能够被注册和框架调用的基础，由框架发布，需要严格遵守
 > 2. Kernel函数与头文件可能不完全对应，可以按照函数命名约定等查找所需Kernel函数声明
 > 3. 推荐逐层向下查找和实现自定义Kernel，这样能够充分复用与避免重复，从而降低开发成本
 
@@ -186,11 +190,12 @@ Kernel函数实现根据Kernel函数声明和Kernel功能，基于飞桨API和�
 #include "paddle/phi/extension.h"
 ```
 
-该文件统一包含了飞桨对外发布用于自定义外部Kernel开发所必须的头文件。包括前文描述的Kernel函数声明、Kernel参数中各种数据类型等。
+该文件统一包含了飞桨对外发布用于自定义Kernel开发所必须的头文件。包括前文描述的Kernel函数声明、Kernel参数中各种数据类型等。
 
-> 注：也可以只引入更细层次的必要头文件
+> 注：也可以按需只引入更细层次的必要头文件
 
-在自定义外部Kernel场景中，用户一般基于硬件自身封装库的API进行逻辑实现，所以也需要引入相应库的头文件，如NPU自定义Kernel通过调用`libascendcl.so`完成逻辑计算：
+在自定义Kernel场景中，用户一般基于硬件自身封装库的API进行逻辑实现，所以也需要引入相应库的头文件，如NPU自定义Kernel通过调用`libascendcl.so`完成逻辑计算，需要引入ascendcl库的相应头文件：
+
 ```c++
 #include "acl/acl.h"
 #include "acl/acl_op_compiler.h"
@@ -273,7 +278,7 @@ PADDLE_ENFORCE_EQ(
 
 ### 函数实现
 
-基于以上飞桨开放API和`libascendcl.so`的API，`SoftmaxRawKernel`的实现如下：
+基于以上飞桨开放API和NPU的`ascendcl`库API，`SoftmaxRawKernel`的实现如下：
 
 ```c++
 #include "npu_op_runner.h" // 基于ascendcl库封装NpuOpRunner
@@ -296,9 +301,10 @@ void SoftmaxRawKernel(const Context& dev_ctx,
 
 由于昇腾NPU通过`ascendcl`库对外封装了其支持的算子库，所以此处NPU的`SoftmaxKernel`实现的基本原理为根据飞桨Kernel函数的输入、属性和输出映射调用NPU算子的输入、输出和属性，然后通过封装的NPU算子调用代理`NpuOpRunner`调用NPU的算子完成逻辑计算。
 
-在函数体实现中，基于设备上下文参数为`dev_ctx`调用`Alloc`API为输出Tensor参数`out`分配片上内存，并获取NPU硬件`stream`便于调用NPU算子。
+在函数体实现中，基于设备上下文参数`dev_ctx`调用`Alloc`API为输出Tensor参数`out`分配片上内存，并获取NPU硬件`stream`便于调用NPU算子。
 
 类似`SoftmaxKernel`，softmax的反向Kernel函数通过确定其对应的Kernel函数声明，实现如下：
+
 ```
 template <typename T, typename Context>
 void SoftmaxGradKernel(const Context& dev_ctx,
@@ -343,9 +349,9 @@ void SoftmaxGradKernel(const Context& dev_ctx,
 
 ## Kernel函数注册
 
-在完成Kernel函数体的实现后，需要通过自定义外部Kernel的注册宏进行Kernel注册以便飞桨框架调用。
+在完成Kernel函数体的实现后，需要通过自定义Kernel的注册宏进行Kernel注册以便飞桨框架调用。
 
-注册宏的基本形式：具体参照[kernel_registry.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/kernel_registry.h)
+注册宏的基本形式如下：具体可参照[kernel_registry.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/kernel_registry.h)
 
 ```
 PD_REGISTER_PLUGIN_KERNEL(kernel_name, backend, layout, meta_kernel_fn, ...)) {}
@@ -362,10 +368,12 @@ PD_REGISTER_PLUGIN_KERNEL(kernel_name, backend, layout, meta_kernel_fn, ...)) {}
 - 末尾：固定为函数体，其中可按需进行必要的设置，如果没有，保留`{}`。
 
 对末尾函数体的补充说明：其对应的函数声明如下：
+
 ```
 void __PD_KERNEL_args_def_FN_##kernel_name##_##backend##_##layout(
       const ::phi::KernelKey& kernel_key, ::phi::Kernel* kernel)
 ```
+
 即函数体中可使用`const KernelKey&`类型的`kernel_key`与`Kernel`类型的参数`kernel`，用于特定Kernel注册时对Kernel的个性化调整。如Input与Output数据类型或Layout的调整。
 
 注册宏的位置需要放置在全局空间下。
@@ -383,17 +391,17 @@ PD_REGISTER_PLUGIN_KERNEL(softmax,
                           phi::dtype::float16) {}
 ```
 
-注册的kernel_name为`softmax`
-自定义的backend名称为`Ascend910`
-layout为`ALL_LAYOUT`
-meta_kernel_fn为`custom_kernel::SoftmaxRawKernel`
-三个数据类型，分别是`float`，`double`和`phi::dtype::float16`
-末尾无需针对kernel参数进行调整，所以留空函数体
+- 第一个参数：注册的kernel_name为`softmax`
+- 第二个参数：自定义的backend名称为`Ascend910`
+- 第三个参数：layout为`ALL_LAYOUT`
+- 第四个参数：meta_kernel_fn为`custom_kernel::SoftmaxRawKernel`
+- 不定长数据类型参数：三个数据类型，分别是`float`，`double`和`phi::dtype::float16`
+- 末尾：无需针对kernel参数进行调整，所以包留空函数体`{}`
 
 
 ## Kernel编译与使用
 
-针对外部硬件，自定义外部Kernel的编译和使用与自定义Runtime绑定。
+针对外部硬件，自定义Kernel的编译和使用与自定义Runtime绑定。
 
 在具体编译时，需要：
 
@@ -500,14 +508,15 @@ add_custom_target(python_package ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/python/
 dist/paddle_ascend910-0.0.1-cp37-cp37m-linux_x86_64.whl
 ```
 
-安装后，在Python安装路径paddle-plugins下新增`libpaddle_ascend910.so`动态库。
+安装后，在Python安装路径paddle-plugins下新增了`libpaddle_ascend910.so`动态库，飞桨框架自动识别此路径进行动态库加载。
 
 ```
-(base) λ yq01-sys-rpm0132b55 /workspace/dev/ ls /opt/conda/lib/python3.7/site-packages/paddle-plugins/
+(base) λ yq01-sys-rpm0132b55 /workspace/dev ls /opt/conda/lib/python3.7/site-packages/paddle-plugins/
 libpaddle_ascend910.so
 ```
 
 此时加载Paddle可自动完成自定义Kernel的加载：
+
 ```python
 (base) λ yq01-sys-rpm0132b55 /workspace/dev python
 Python 3.7.9 (default, Aug 31 2020, 12:42:55)
@@ -522,8 +531,13 @@ I0309 20:36:00.426468 58202 custom_kernel.cc:65] Successed in loading custom ker
 I0309 20:36:00.426493 58202 init.cc:159] Finished in LoadCustomDevice with libs_path: [/opt/conda/lib/python3.7/site-packages/paddle-plugins]
 I0309 20:36:00.426545 58202 init.cc:265] CustomDevice: Ascend910, visible devices count: 1
 >>> paddle.fluid.core._get_all_register_op_kernels('phi')['softmax']
-['data_type[float]:data_layout[Undefined(AnyLayout)]:place[Place(Ascend910:0)]:library_type[PLAIN]', 'data_type[float]:data_layout[Undefined(AnyLayout)]:place[Place(cpu)]:library_type[PLAIN]', 'data_type[::paddle::platform::float16]:data_layout[Undefined(AnyLayout)]:place[Place(Ascend910:0)]:library_type[PLAIN]', 'data_type[double]:data_layout[Undefined(AnyLayout)]:place[Place(Ascend910:0)]:library_type[PLAIN]', 'data_type[double]:data_layout[Undefined(AnyLayout)]:place[Place(cpu)]:library_type[PLAIN]']
+['data_type[float]:data_layout[Undefined(AnyLayout)]:place[Place(Ascend910:0)]:library_type[PLAIN]',
+'data_type[float]:data_layout[Undefined(AnyLayout)]:place[Place(cpu)]:library_type[PLAIN]',
+'data_type[::paddle::platform::float16]:data_layout[Undefined(AnyLayout)]:place[Place(Ascend910:0)]:library_type[PLAIN]',
+'data_type[double]:data_layout[Undefined(AnyLayout)]:place[Place(Ascend910:0)]:library_type[PLAIN]',
+'data_type[double]:data_layout[Undefined(AnyLayout)]:place[Place(cpu)]:library_type[PLAIN]']
 >>>
+
 ```
 通过飞桨接口可见`softmax`中已注册`Ascend910`的Kernel，具体如下：
 
@@ -533,8 +547,9 @@ I0309 20:36:00.426545 58202 init.cc:265] CustomDevice: Ascend910, visible device
 
 与预期一致。
 
-通过选定自定义Runtime调用实现的[飞桨官网API文档softmax的代码示例](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/softmax_cn.html#softmax)如下：
-```
+选定自定义Runtime，并演示[飞桨官网API文档softmax的代码示例](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/softmax_cn.html#softmax)如下：
+
+```python
 (base) λ yq01-sys-rpm0132b55 /workspace/dev python
 Python 3.7.9 (default, Aug 31 2020, 12:42:55)
 [GCC 7.3.0] :: Anaconda, Inc. on linux
@@ -590,4 +605,4 @@ Tensor(shape=[2, 3, 4], dtype=float64, place=Place(Ascend910:0), stop_gradient=T
 
 ```
 
-以上，通过[昇腾NPU硬件](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_hardware_support/npu_docs/index_cn.html)的自定义kernel `softmax` ，介绍了自定义外部Kernel的实现、编译与应用流程。
+以上，通过[昇腾NPU硬件](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_hardware_support/npu_docs/index_cn.html)的自定义kernel `softmax` ，介绍了自定义Kernel的实现、编译与应用流程。
