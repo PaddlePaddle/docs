@@ -30,7 +30,7 @@
 | paddle.nn.utils                | 网络相关工具类API，比如weight_norm、spectral_norm等          |
 | paddle.static.nn               | 静态图下组网专用API，比如：输入占位符data/Input，控制流while_loop/cond |
 | paddle.static                  | 静态图下基础框架相关API，比如：Variable, Program, Executor等 |
-| paddle.optimizer               | 优化算法相关API，比如：SGD，Adagrad, Adam等                  |
+| paddle.optimizer               | 优化算法相关API，比如：SGD、Adagrad、Adam等                  |
 | paddle.optimizer.lr（文件）    | 学习率策略相关API，比如LinearWarmup、LRScheduler等           |
 | paddle.metric                  | 评估指标计算相关的API，比如：accuracy, auc等                 |
 | paddle.io                      | 数据输入输出相关API，比如：save, load, Dataset, DataLoader等 |
@@ -359,9 +359,10 @@
    | 按轴求和      | reduce_sum          |      |                                  |
    
 - 常用参数表
-   | 中文名       | 推荐          | 不推荐写法                            | 示例                                                         | 备注                                                         |
+
+   | 中文名         | 推荐           | 不推荐写法                            | 示例                                                         | 备注                                                         |
    | ------------ | ------------- | ------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-   | 算子名       | name          | input                                     | relu(x, inplace=False, name=None)                        | 调用api所创建的算子名称                                      |
+   | 算子名        | name          | input                                     | relu(x, inplace=False, name=None)                        | 调用api所创建的算子名称                                      |
    | 单个输入张量 | x         | x                                     | relu(x, inplace=False, name=None)                        | 单个待操作的张量                                             |
    | 两个输入张量 | x, y          | input, other/ X, Y                    | elementwise_add(x, y, axis=-1, activation=None, name=None)   | 两个待操作的张量                                             |
    | 数据类型     | dtype         | type, data_type                       | unique(x, dtype='int32')                                 |                                                              |
