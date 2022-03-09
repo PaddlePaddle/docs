@@ -18,3 +18,4 @@
     xpu_docs/index_cn.rst
     rocm_docs/index_cn.rst
     npu_docs/index_cn.rst
+    custom_docs/index_cn.rst
