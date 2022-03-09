@@ -68,15 +68,16 @@
 - 常用的API可以在更高层级建立别名，当前规则如下：
    1. paddle.tensor目录下的API，均在paddle根目录建立别名，其他所有API在paddle根目录下均没有别名。
    2. paddle.nn目录下除了functional目录以外的所有API，在paddle.nn目录下均有别名。
-
-	   
-
-    paddle.nn.functional.mse_loss # functional下的函数不建立别名，使用完整名称
-	paddle.nn.Conv2D # 为paddle.nn.layer.conv.Conv2D建立的别名
-3. 一些特殊情况比如特别常用的API会直接在paddle下建立别名
-
-    paddle.tanh # 为常用函数paddle.tensor.math.tanh建立的别名
-    paddle.linspace# 为常用函数paddle.fluid.layers.linspace建立的别名
+   
+        ```python
+        paddle.nn.functional.mse_loss # functional下的函数不建立别名，使用完整名称
+        paddle.nn.Conv2D # 为paddle.nn.layer.conv.Conv2D建立的别名
+       ```
+  1. 一些特殊情况比如特别常用的API会直接在paddle下建立别名
+        ```python
+        paddle.tanh # 为常用函数paddle.tensor.math.tanh建立的别名
+        paddle.linspace# 为常用函数paddle.fluid.layers.linspace建立的别名
+        ```
 
 
 ### API行为定义规范
