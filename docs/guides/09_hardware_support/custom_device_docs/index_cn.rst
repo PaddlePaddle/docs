@@ -1,4 +1,4 @@
-.. _cn_npu_information:
+.. _cn_custom_device_information:
 
 ####################
 自定义硬件接入
