@@ -5,7 +5,7 @@ make_scheduler
 
 .. py:function:: paddle.profiler.make_scheduler(*, closed: int, ready: int, record: int, repeat: int=0, skip_first: int=0)
 
-该接口用于生成性能分析器状态(详情见:ref:`状态说明 <cn_api_profiler_profilerstate>`)的调度器。
+该接口用于生成性能分析器状态(详情见 :ref:`状态说明 <cn_api_profiler_profilerstate>` )的调度器。
 
 参数:
     - **closed** (int) - 处于ProfilerState.CLOSED状态的step数量。
