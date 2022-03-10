@@ -53,11 +53,12 @@ API 贡献流程如下
     :header: "提交内容", "参考文档", "提交位置"
     :widths: 15, 30, 30
 
-    "API实现代码 ", "API设计规范 Python API开发指南 C++ API开发指南（基础版）C++ API开发指南（完整版）", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
-    "API英文文档 ", "API文档规范", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
-    "API中文文档 ", "API文档规范", "`Github飞桨文档仓库 <https://github.com/PaddlePaddle/docs>`_"
-    "API单测代码 ", "API验收标准", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
-
+    "API实现代码 ", "- 飞桨API设计及命名规范 
+    - Python API开发指南（请期待） 
+    - C++ API开发指南（请期待）", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
+    "API英文文档 ", "- API文档规范", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
+    "API中文文档 ", "- API文档规范", "`Github飞桨文档仓库 <https://github.com/PaddlePaddle/docs>`_"
+    "API单测代码 ", "- API验收标准", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
 
 
 当用户完成以上代码设计后，需要将代码提交至 `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_ ，并根据 `本地开发指南 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/git_guides/local_dev_guide_cn.html>`_ 提交PR、准备接受社区的评审。
