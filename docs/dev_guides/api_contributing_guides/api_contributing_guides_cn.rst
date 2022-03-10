@@ -77,13 +77,13 @@ API 贡献流程如下
 当你的代码合入 `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_ 后，官方会对你的代码进行集成测试，并通知你测试结果。如果测试通过，恭喜你贡献流程已经全部完成；如果测试不通过，我们会联系你进行代码修复，请及时关注github上的最新动态；
 
 **10、贡献完成**
+
 感谢您的贡献！
 
 **引用文献**
 
 ..  toctree::
     :maxdepth: 1
-
 
     api_design_guidelines_standard_cn.md
     api_accpetance_criteria_cn.md
