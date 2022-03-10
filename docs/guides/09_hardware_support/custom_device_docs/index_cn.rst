@@ -15,4 +15,4 @@
     :hidden:
 
     custom_runtime_cn.md
-    custom_kernel_cn.md
+    custom_kernel_cn.rst
