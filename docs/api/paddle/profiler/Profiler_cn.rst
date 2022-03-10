@@ -75,6 +75,7 @@ Profiler
     prof.stop()
     prof.summary()
 
+
 .. py::method:: step()
 
 指示性能分析器进入下一个step，根据scheduler计算新的性能分析器状态，并根据新的状态触发相应行为。如果有性能数据返回，调用on_trace_ready回调函数进行处理。
