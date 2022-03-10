@@ -73,7 +73,7 @@ PD_REGISTER_PLUGIN_KERNEL(abs,
                           phi::dtype::float16){}
 ```
 
-## 第二步：编译与使用
+## 第三步：编译与使用
 
 针对自定义硬件，自定义Kernel的使用与自定义Runtime绑定使用，且保持注册使用的backend参数与自定义Runtime中注册的名称一致。
 

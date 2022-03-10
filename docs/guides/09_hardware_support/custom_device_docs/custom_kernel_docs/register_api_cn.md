@@ -27,12 +27,12 @@ PD_REGISTER_PLUGIN_KERNEL(kernel_name, backend, layout, meta_kernel_fn, ...)) {}
 
 >说明：末尾函数体对应的函数声明如下：
 >```c++
-// Kernel 参数定义
-// 参数： kernel_key - KernelKey 对象
-//       kernel - Kernel 指针
-// 返回： None
-void __PD_KERNEL_args_def_FN_##kernel_name##_##backend##_##layout(
-      const ::phi::KernelKey& kernel_key, ::phi::Kernel* kernel);
+>// Kernel 参数定义
+>// 参数： kernel_key - KernelKey 对象
+>//       kernel - Kernel 指针
+>// 返回： None
+>void __PD_KERNEL_args_def_FN_##kernel_name##_##backend##_##layout(
+>      const ::phi::KernelKey& kernel_key, ::phi::Kernel* kernel);
 >```
 >即函数体中可使用参数`kernel_key`与`kernel`，在Kernel注册时对Kernel进行个性化调整。
 
