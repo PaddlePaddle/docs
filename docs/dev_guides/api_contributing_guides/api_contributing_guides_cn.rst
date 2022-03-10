@@ -49,20 +49,16 @@ API 贡献流程如下
 
 当API设计文档合入后，开发者根据评审通过的API设计内容进行coding开发。coding过程请参考相应的开发规范，并提交以下内容：
 
-+------------+--------------------------+-----------------------------------------------------------------------------+
-| 提交内容    | 参考文档                   | 提交位置                                                                      |
-+============+==========================+=============================================================================+
-| API实现代码 | API设计规范                |  `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_            |
-|            |Python API开发指南          |                                                                             |
-|            |C++ API开发指南（基础版）    |                                                                             |
-|            |C++ API开发指南（完整版）    |                                                                              |
-+------------+--------------------------+-----------------------------------------------------------------------------+
-| API英文文档 |API文档规范                | `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_              |
-+------------+--------------------------+-----------------------------------------------------------------------------+
-| API中文文档 |API文档规范                 |  `Github飞桨文档仓库 <https://github.com/PaddlePaddle/docs>`_                 |
-+------------+--------------------------+-----------------------------------------------------------------------------+
-| API单测代码 |API验收标准                 |   `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_           |
-+------------+--------------------------+-----------------------------------------------------------------------------+
+.. csv-table::
+    :header: "提交内容", "参考文档", "提交位置"
+    :widths: 15, 30, 30
+
+    "API实现代码 ", "API设计规范 Python API开发指南 C++ API开发指南（基础版）C++ API开发指南（完整版）", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
+    "API英文文档 ", "API文档规范", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
+    "API中文文档 ", "API文档规范", "`Github飞桨文档仓库 <https://github.com/PaddlePaddle/docs>`_"
+    "API单测代码 ", "API验收标准", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
+
+
 
 当用户完成以上代码设计后，需要将代码提交至 `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_ ，并根据 `本地开发指南 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/git_guides/local_dev_guide_cn.html>`_ 提交PR、准备接受社区的评审。
 
