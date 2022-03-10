@@ -5,14 +5,6 @@ ProfilerState
 
 .. py:class:: paddle.profiler.ProfilerState
 
-.. py::attribute:: CLOSED
-
-.. py::attribute:: READY
-
-.. py::attribute:: RECORD
-
-.. py::attribute:: RECORD_AND_RETURN
-
 
 枚举类，用来表示性能分析器的状态。
 
