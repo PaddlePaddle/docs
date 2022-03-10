@@ -21,12 +21,12 @@ void KernelNameKernel(const Context& dev_ctx,
 3. 函数命名：Kernel名称+Kernel后缀，驼峰式命名，如`SoftmaxKernel`。
 4. 函数参数：依次为设备上下文参数，输入Tensor参数（InputTensor），属性参数（Attribute）和输出Tensor参数（OutTensor）。其中：
 - 设备上下文参数：固定为`const Context&`类型；
-    - 自定义Kernel对应`CustomContext`类型，具体参照[custom_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/custom/custom_context.h)
+    - 自定义Kernel对应`CustomContext`类型，请参照[custom_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/custom/custom_context.h)
 - InputTensor：数量>=0，支持的类型包括：
-    - `const DenseTensor&` 具体参照[dense_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/dense_tensor.h)
-    - `const SelectedRows&`具体参照[selected_rows.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/selected_rows.h)
-    - `const SparseCooTensor&`具体参照[sparse_coo_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/sparse_coo_tensor.h)
-    - `const SparseCsrTensor&`具体参照[sparse_csr_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/sparse_csr_tensor.h)
+    - `const DenseTensor&` 请参照[dense_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/dense_tensor.h)
+    - `const SelectedRows&` 请参照[selected_rows.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/selected_rows.h)
+    - `const SparseCooTensor&` 请参照[sparse_coo_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/sparse_coo_tensor.h)
+    - `const SparseCsrTensor&` 请参照[sparse_csr_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/sparse_csr_tensor.h)
     - `const std::vector<DenseTensor*>&`
     - `const std::vector<SparseCooTensor*>&`
     - `const std::vector<SparseCsrTensor*>&`
@@ -36,13 +36,13 @@ void KernelNameKernel(const Context& dev_ctx,
     - `double`
     - `int`
     - `int64_t`
-    - `phi::dtype::float16` 具体参照[float16.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/float16.h)
-    - `const Scalar&` 具体参照[scalar.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/scalar.h)
-    - `DataType` 具体参照[data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
-    - `DataLayout` 具体参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/layout.h)
-    - `Place` 具体参照[place.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/place.h)
+    - `phi::dtype::float16` 请参照[float16.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/float16.h)
+    - `const Scalar&` 请参照[scalar.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/scalar.h)
+    - `DataType` 请参照[data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
+    - `DataLayout` 请参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/layout.h)
+    - `Place` 请参照[place.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/place.h)
     - `const std::vector<int64_t>&`
-    - `const ScalarArray&` 具体参照[scalar_array.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/scalar_array.h)
+    - `const ScalarArray&` 请参照[scalar_array.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/scalar_array.h)
     - `const std::vector<int>&`
     - `const std::string&`
     - `const std::vector<bool>&`

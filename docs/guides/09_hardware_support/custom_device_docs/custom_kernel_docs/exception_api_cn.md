@@ -1,7 +1,9 @@
 # Exception API
 
 
-## 使用方式
+## PADDLE_ENFORCE
+
+使用方式：
 
 ```c++
  PADDLE_ENFORCE_{TYPE}(cond_a, // 条件A
@@ -9,7 +11,7 @@
                        phi::errors::{ERR_TYPE}("{ERR_MSG}"));
 ```
 
-其中根据`TYPE`的不同，分为：
+根据`TYPE`的不同，分为：
 
 - `PADDLE_ENFORCE_EQ`：cond_a == cond_b，否则触发ERR_TYPE异常和报ERR_MSG
 - `PADDLE_ENFORCE_NE`：cond_a != cond_b，否则触发ERR_TYPE异常和报ERR_MSG
@@ -19,7 +21,7 @@
 - `PADDLE_ENFORCE_LE`：cond_a <= cond_b，否则触发ERR_TYPE异常和报ERR_MSG
 - `PADDLE_ENFORCE_NOT_NULL`：cond_a != nullptr，否则触发ERR_TYPE异常和报ERR_MSG
 
-其中配合使用的`ERR_TYPE`支持：
+`ERR_TYPE`支持：
 
 - `InvalidArgument`：非法参数
 - `NotFound`：未找到
@@ -34,11 +36,13 @@
 - `Fatal`：Fatal错误
 - `External`：外部错误
 
-其中`ERR_MSG`为C语言风格字符串，支持变长参数。
+`ERR_MSG`为C语言风格字符串，支持变长参数。
 
 示例：
 
 ```c++
+// 如果num_col_dims >= 2 && num_col_dims <= src.size()不为true则报InvalidArgument异常
+// 和打印相关提示信息
 PADDLE_ENFORCE_EQ(
       (num_col_dims >= 2 && num_col_dims <= src.size()),
       true,
@@ -50,5 +54,5 @@ PADDLE_ENFORCE_EQ(
 
 ## 相关内容
 
-- `Exception API`：请参照[enforce.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/enforce.h)
+- `PADDLE_ENFORCE`：请参照[enforce.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/enforce.h)
 - `errors`：请参照[errors.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/errors.h)

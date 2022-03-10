@@ -4,7 +4,7 @@
 
 注册宏的位置需要放置在全局空间下。
 
-注册宏的基本形式如下：具体实现参照[kernel_registry.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/kernel_registry.h)
+注册宏的基本形式如下：具体实现请参照[kernel_registry.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/kernel_registry.h)
 
 ```c++
 /** PD_REGISTER_PLUGIN_KERNEL
@@ -18,11 +18,11 @@ PD_REGISTER_PLUGIN_KERNEL(kernel_name, backend, layout, meta_kernel_fn, ...)) {}
 说明：
 
 - 注册宏名称：固定为`PD_REGISTER_PLUGIN_KERNEL`
-- 第一个参数：kernel_name，即Kernel名称，飞桨内外一致，可参照CPU相同Kernel函数注册名称，如`softmax`
+- 第一个参数：kernel_name，即Kernel名称，飞桨内外一致，请参照CPU相同Kernel函数注册名称，如`softmax`
 - 第二个参数：backend，即后端名称，可自定义，但须与自定义Runtime设定的名称一致，如`Ascend910`
-- 第三个参数：layout，即内存布局，为`DataLayout`类型的枚举，按需设定，具体参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/layout.h)
+- 第三个参数：layout，即内存布局，为`DataLayout`类型的枚举，按需设定，请参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/layout.h)
 - 第四个参数：meta_kernel_fn，即Kernel函数名，注意此处不加模板参数，如`my_namespace::SoftmaxKernel`
-- 不定长数据类型参数：C++的基础数据类型或飞桨定义的`phi::dtype::float16`、`phi::dtype::bfloat16`、`phi::dtype::complex`等类型，具体参照[data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
+- 不定长数据类型参数：C++的基础数据类型或飞桨定义的`phi::dtype::float16`、`phi::dtype::bfloat16`、`phi::dtype::complex`等类型，请参照[data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
 - 末尾：固定为函数体，其中可按需对Kernel进行必要设置，如果没有，保留`{}`。
 
 >说明：末尾函数体对应的函数声明如下：
@@ -42,7 +42,7 @@ PD_REGISTER_PLUGIN_KERNEL(kernel_name, backend, layout, meta_kernel_fn, ...)) {}
 // Softmax的CustomCPU后端Kernel注册
 // 全局命名空间
 // 参数： softmax - Kernel名称
-//       CPU - 后端名称
+//       CustomCPU - 后端名称
 //       ALL_LAYOUT - 内存布局
 //       custom_cpu::SoftmaxKernel - Kernel函数名
 //       float - 数据类型名
@@ -59,4 +59,4 @@ PD_REGISTER_PLUGIN_KERNEL(softmax,
 
 > 注意：
 > 1. 对于通过自定义Runtime接入的后端，backend参数须与之名称保持一致
-> 2. 注册宏末尾函数体中除非有明确需要，否则保留空函数体即可，具体可参照飞桨框架内其它后端的使用
+> 2. 注册宏末尾函数体中除非有明确需要，否则保留空函数体即可，请参照飞桨框架内其它后端的使用

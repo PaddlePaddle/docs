@@ -1,7 +1,7 @@
 # Context API
 
 ## CustomContext
-`CustomContext`为自定义Kernel函数模板参数Context的实参，具体参照[custom_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/custom/custom_context.h)
+`CustomContext`为自定义Kernel函数模板参数Context的实参，请参照[custom_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/custom/custom_context.h)
 
 ```c++
   // 构造函数
@@ -29,7 +29,7 @@
 ```
 
 ## DeviceContext
-`CustomContext`继承自`DeviceContext`，具体参照[device_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/device_context.h)
+`CustomContext`继承自`DeviceContext`，请参照[device_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/device_context.h)
 
 ```c++
   // 无参构造函数

@@ -1,10 +1,10 @@
 # Tensor API
 
-飞桨发布多种Tensor，基类均为`TensorBase`，这里列举常用`DenseTensor`的API，TensorBase与其它Tensor类型请参照文后链接。
+飞桨发布多种Tensor，基类均为`TensorBase`，这里列举常用的`DenseTensor` API，`TensorBase`与其它Tensor类型请参照文后链接。
 
 ## DenseTensor
 
-DenseTensor中的所有元素数据存储在连续内存中，具体参照[dense_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/dense_tensor.h)
+DenseTensor中的所有元素数据存储在连续内存中，请参照[dense_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/dense_tensor.h)
 
 ```c++
   // 构造DenseTensor并分配内存
