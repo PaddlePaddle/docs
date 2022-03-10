@@ -26,7 +26,8 @@ nanmean
 .. code-block:: python
 
     import paddle
-
+    import numpy as np
+    
     # x is a Tensor with following elements:
     #    [[nan, 0.3, 0.5, 0.9]
     #     [0.1, 0.2, -nan, 0.7]]
