@@ -36,22 +36,22 @@ void __PD_KERNEL_args_def_FN_##kernel_name##_##backend##_##layout(
 >```
 >即函数体中可使用参数`kernel_key`与`kernel`，在Kernel注册时对Kernel进行个性化调整。
 
-如`softmax`的CPU后端Kernel注册如下：
+示例，如`softmax`的CustomCPU后端Kernel注册如下：
 
 ```c++
-// Softmax的CPU后端Kernel注册
+// Softmax的CustomCPU后端Kernel注册
 // 全局命名空间
 // 参数： softmax - Kernel名称
 //       CPU - 后端名称
 //       ALL_LAYOUT - 内存布局
-//       phi::SoftmaxRawKernel - Kernel函数名
+//       custom_cpu::SoftmaxKernel - Kernel函数名
 //       float - 数据类型名
 //       double - 数据类型名
 //       phi::dtype::float16 - 数据类型名
 PD_REGISTER_PLUGIN_KERNEL(softmax,
-                          CPU,
+                          CustomCPU,
                           ALL_LAYOUT,
-                          phi::SoftmaxRawKernel,
+                          custom_cpu::SoftmaxKernel,
                           float,
                           double,
                           phi::dtype::float16) {}

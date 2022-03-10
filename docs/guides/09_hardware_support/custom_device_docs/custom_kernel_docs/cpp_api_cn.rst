@@ -1,5 +1,5 @@
 #############
-# Kernel实现API
+Kernel实现API
 #############
 
 Kernel函数体的实现主要基于Context API、Tensor API和Exception API完成，这些API随飞桨发布。

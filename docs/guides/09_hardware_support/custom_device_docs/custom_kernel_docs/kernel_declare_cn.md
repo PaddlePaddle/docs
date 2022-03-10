@@ -58,7 +58,7 @@ void KernelNameKernel(const Context& dev_ctx,
     - `std::vector<SparseCooTensor*>`
     - `std::vector<SparseCsrTensor*>`
 
-如`softmax`的Kernel函数位于`softmax_kernel.h`中，具体如下：
+示例，如`softmax`的Kernel函数位于`softmax_kernel.h`中，具体如下：
 
 ```c++
 // Softmax 内核函数

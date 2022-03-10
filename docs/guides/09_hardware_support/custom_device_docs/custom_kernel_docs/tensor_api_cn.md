@@ -1,13 +1,140 @@
 # Tensor API
 
-## Tensor信息获取：
-    - `int64_t numel() const` 返回Tensor元素数量
-    - `const DDim& dims() const` 返回Tensor的dims信息
-    - `DataType dtype() const` 返回Tensor元素的数据类型
-    - `DataLayout layout() const` 返回Tensor的layout信息
-    - `const Place& place() const` 返回Tensor的place
+飞桨发布多种Tensor，基类均为`TensorBase`，这里举例列举常用的`DenseTensor`的API，并给出其它Tensor类型与TensorBase链接。
 
-## Tensor操作：
-    - `void set_meta(DenseTensorMeta&& meta)` 设置Tensor的Meta信息
-    - `DenseTensor& Resize(const DDim& dims)` 修改Tensor的dims
-    - `DenseTensor& ShareDataWith(const DenseTensor& src)`两个Tensor共享相同内存
+## DenseTensor
+
+DenseTensor中的所有元素数据存储在连续内存中，具体参照[dense_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/dense_tensor.h)
+
+```c++
+  /// \brief Construct a dense tensor and allocate space.
+  /// \param a The allocator used to allocate space.
+  /// \param meta The meta data of dense tensor.
+  DenseTensor(Allocator* a, const DenseTensorMeta& meta);
+
+  /// \brief Construct a dense tensor and allocate space.
+  /// \param a The allocator used to allocate space.
+  /// \param meta The meta data of dense tensor.
+  DenseTensor(Allocator* a, DenseTensorMeta&& meta);
+
+  DenseTensor(const std::shared_ptr<phi::Allocation>& holder,
+              const DenseTensorMeta& meta);
+
+  /// \brief Because dense tensor is a kind of container, we give a default
+  /// constructor to use for stl container. But the dense tensor created with
+  /// the default constructor is not practical.
+  // DenseTensor() = default;
+
+  /// \brief Because dense tensor is a resource handle, we provide a default
+  /// move constructor to support move semantics.
+  DenseTensor(DenseTensor&& other) = default;
+
+  /// \brief DenseTensor shallow copy constructor.
+  DenseTensor(const DenseTensor& other);
+
+  /// \brief DenseTensor shallow copy assignment.
+  DenseTensor& operator=(const DenseTensor& other);
+
+  DenseTensor& operator=(DenseTensor&& other);
+
+  DenseTensor();
+
+  /// \brief Destroy the tensor object and release exclusive resources.
+  virtual ~DenseTensor() = default;
+
+  /// \brief Returns the name of the class for type traits.
+  /// \return The name of the class.
+  static const char* name() { return "DenseTensor"; }
+
+  /// \brief Returns the number of elements contained in tensor.
+  /// \return The number of elements contained in tensor.
+  int64_t numel() const override;
+
+  /// \brief Returns the dims of the tensor.
+  /// \return The dims of the tensor.
+  const DDim& dims() const noexcept override { return meta_.dims; }
+
+  /// \brief Returns the lod of the tensor.
+  /// \return The lod of the tensor.
+  const LoD& lod() const noexcept { return meta_.lod; }
+
+  /// \brief Returns the data type of the tensor.
+  /// \return The data type of the tensor.
+  DataType dtype() const noexcept override { return meta_.dtype; }
+
+  /// \brief Returns the data layout of the tensor.
+  /// \return The data layout of the tensor.
+  DataLayout layout() const noexcept override { return meta_.layout; }
+
+  /// \brief Returns the data place of the tensor.
+  /// \return The data place of the tensor.
+  const Place& place() const override;
+
+  /// \brief Returns the meta information of the tensor.
+  /// \return The meta information of the tensor.
+  const DenseTensorMeta& meta() const noexcept { return meta_; }
+
+  /// \brief Sets the meta information of the tensor. Only when the original
+  /// attribute of Tensor is incomplete, can it be reset.
+  /// \param meta The meta information of the tensor.
+  void set_meta(DenseTensorMeta&& meta);
+
+  void set_meta(const DenseTensorMeta& meta);
+
+  /// \brief Test whether the metadata is valid.
+  /// \return Whether the metadata is valid.
+  bool valid() const noexcept override { return meta_.valid(); }
+
+  /// \brief Test whether the allocation is allocated.
+  /// return Whether the allocation is allocated.
+  bool initialized() const override { return holder_ && holder_->ptr(); }
+
+  /// \brief Allocate memory with requested size from allocator.
+  /// \return The mutable data pointer value of type T.
+  void* AllocateFrom(Allocator* allocator,
+                     DataType dtype,
+                     size_t requested_size = 0) override;
+
+  /// \brief Check if allocation is shared with other objects.
+  /// \return Whether the allocation is shared with other objects.
+  bool IsSharedWith(const DenseTensor& b) const;
+
+  /// \brief Change the shape information in the metadata. If the new size is
+  /// larger than the original value, the allocation area will be reallocated.
+  /// \param dims The new dims of the dense tensor.
+  /// \param lod The new lod of the dense tensor.
+  // void Resize(const DDim& dims);
+  void ResizeAndAllocate(const DDim& dims);
+
+  DenseTensor& Resize(const DDim& dims);
+
+  /// \brief Change the lod information in the metadata.
+  /// \param lod The new lod of the dense tensor.
+  void ResetLoD(const LoD& lod);
+
+  /// \brief Returns the actual allocation size occupied by tensor, may be
+  /// larger
+  /// than its shape dims.
+  /// \return The actual allocation size occupied by tensor.
+  size_t capacity() const { return holder_->size(); }
+
+  /// \brief Get the const data pointer value of type T.
+  /// \return The const data pointer value of type T.
+  template <typename T>
+  const T* data() const;
+
+  /// \brief Get the const data pointer value of raw type.
+  /// \return The const data pointer value of raw type.
+  const void* data() const;
+
+  template <typename T>
+  T* data();
+
+  void* data();
+```
+
+## 其它Tensor类型
+- `TensorBase`：具体参照[tensor_base.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/tensor_base.h)
+- `SelectedRows`：具体参照[selected_rows.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/selected_rows.h)
+- `SparseCooTensor`：具体参照[sparse_coo_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/sparse_coo_tensor.h)
+- `SparseCsrTensor`：具体参照[sparse_csr_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/sparse_csr_tensor.h)

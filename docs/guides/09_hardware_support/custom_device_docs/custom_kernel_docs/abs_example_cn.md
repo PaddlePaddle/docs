@@ -11,7 +11,7 @@
 
 ## 第一步：确定Kernel声明
 
-在`abs_kernel.h`中，查找其Kernel函数声明为`AbsKernel`：
+查找飞桨发布的头文件`abs_kernel.h`中，其Kernel函数声明如下：
 
 ```c++
 // Abs 内核函数
@@ -33,7 +33,7 @@ void AbsKernel(const Context& ctx, const DenseTensor& x, DenseTensor* out);
 
 #include "paddle/phi/extension.h" // 自定义Kernel依赖头文件
 
-#include <cmath>  // CustomCPU封装库头文件，根据不同硬件封装库按需添加
+#include <cmath>  // CustomCPU封装库头文件，根据具体硬件封装库按需添加
 
 namespace custom_cpu {
 
@@ -56,7 +56,7 @@ void AbsKernel(const Context& ctx,
 } // namespace custom_cpu
 
 // 全局命名空间
-// CustomCPU后端的AbsKernel注册
+// CustomCPU的AbsKernel注册
 // 参数： abs - Kernel名称
 //       CustomCPU - 后端名称
 //       ALL_LAYOUT - 内存布局
@@ -75,9 +75,9 @@ PD_REGISTER_PLUGIN_KERNEL(abs,
 
 ## 第二步：编译与使用
 
-针对自定义硬件，自定义Kernel的使用与自定义Runtime绑定使用，保持注册使用的backend参数与自定义Runtime中注册的名称一致。
+针对自定义硬件，自定义Kernel的使用与自定义Runtime绑定使用，且保持注册使用的backend参数与自定义Runtime中注册的名称一致。
 
-TBD：链接到示例部分 或者 这部分直接放到整体举例中即可
+TBD：链接到示例部分 或者 这部分直接放到整体举例中即可？
 
 编译安装后，在Python安装路径paddle-plugins下新增了`libpaddle_custom_cpu.so`动态库，飞桨框架自动识别此路径进行动态库加载。
 
