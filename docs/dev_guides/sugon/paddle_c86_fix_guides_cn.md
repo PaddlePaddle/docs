@@ -88,7 +88,7 @@ cd /workspace/Paddle/paddle/phi/kernels
 
 例如查找得到的relu算子的注册代码如下：
 
-![图片](Paddle框架下C86加速卡算子单测修复指导.image/bj-d4d8788098fa37247fce98983b5037f05c9bfec4.png)
+![图片](../images/sugon_register_activation.png)
 
 
 注意观察其中用`PADDLE_WITH_HIP`的宏定义包围的代码才是C86加速卡相关算子，其中`REGISTER_ACTIVATION_CUDA_KERNEL`的定义如下，只为算子的前反向定义了float/double/float16三种数据类型，缺少错误提示中所说的bfloat16数据类型

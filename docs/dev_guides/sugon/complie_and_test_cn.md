@@ -44,7 +44,7 @@ tar -zcvf Paddle.tar.gz ./Paddle
 
 **第一步**：登录[曙光智算](https://www.hpccube.com/ac/home/index.html) 平台后进入菜单顶部的「文件 -> E-File」环境
 
-![图片](../images/login.png)
+![图片](../images/sugon_login.png)
 
 **第二步**：在E-File页面点击文件上传，将压缩的Paddle包上传到智算平台的个人目录下
 
