@@ -117,7 +117,7 @@ the 2-D planes specified by dim1 and dim2.
 
 ### 2.2 定义GradOpMaker类
 
-通常情况下，大部分Op只有一个对应的反向Op，每个Op的会有一个对应的`GradOpMaker`。为方便代码编写，paddle为只有一个反向的Op提供了一个模板类[`SingleGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L188)。`TraceOp`的`GradOpMaker`需要继承这个模板类，并在`Apply()`方法中设置反向Op的输入、输出和属性。此外，paddle还提供了一个默认的`GradOpMaker`，
+通常情况下，大部分Op只有一个对应的反向Op，每个Op都会有一个对应的`GradOpMaker`。为方便代码编写，paddle为只有一个反向的Op提供了一个模板类[`SingleGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L188)。`TraceOp`的`GradOpMaker`需要继承这个模板类，并在`Apply()`方法中设置反向Op的输入、输出和属性。此外，paddle还提供了一个默认的`GradOpMaker`，
 [`DefaultGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L227)，该模板类会使用前向Op的全部输入(`Input`)输出(`Output`)以及输出变量所对应的梯度（`Output@Grad`）作为反向Op的输入，将前向Op的输入变量所对应的的梯度（`Input@Grad`）作为输出。
 
 **注意:**
@@ -152,7 +152,7 @@ class TraceGradOpMaker : public framework::SingleGradOpMaker<T> {
 - 有些Op的反向对应另一个Op的前向，比如[`SplitOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/split_op.h)，这种情况下，[`SplitGradMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/split_op.h#L157)中定义的`SplitOp`反向Op的Type就是`concat`，
 - 为高效地同时支持命令式编程模式(动态图)和声明式编程模式(静态图)，`SingleGradOpMaker`是一个模板类，在注册Operator时需要同时注册`TraceOpGradMaker<OpDesc>`（静态图使用）和`TraceOpGradMaker<OpBase>`（动态图使用）。
 
-## 2.3 定义Op类
+### 2.3 定义Op类
 
 下面实现了TraceOp的定义：
 
@@ -305,7 +305,7 @@ y_dim[i] = x_dim[i] + z_dim[i]
 
 **参考代码**
 
-1. 判断的实现方法可以参考 [SigmoidCrossEntropyWithLogitsInferMeta](https://github.com/PaddlePaddle/Paddle/blob/cd28cddbfb5f5643947291e9a640ecd414dc8dae/paddle/phi/infermeta/binary.cc#L650)SigmoidCrossEntropyWithLogits 要求X和labels的两个输入，除了最后一维以外，其他的维度完全一致
+1. 判断的实现方法可以参考 [SigmoidCrossEntropyWithLogitsInferMeta](https://github.com/PaddlePaddle/Paddle/blob/cd28cddbfb5f5643947291e9a640ecd414dc8dae/paddle/phi/infermeta/binary.cc#L650)，SigmoidCrossEntropyWithLogits 要求X和labels的两个输入，除了最后一维以外，其他的维度完全一致
 
 ```cpp
   bool check = true;
@@ -509,6 +509,8 @@ void TraceKernel(const Context& dev_ctx,
   }
 }
 ```
+
+**Kernel复用：**
 
 此处TraceKernel的实现并未复用其他Kernel，但如果有需要也是可以复用的，Kernel复用时，直接 include 相应Kernel头文件，在函数中调用即可，例如 [triangular_solve_kernel](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/triangular_solve_kernel.cc) 复用 empty和expand kernel。
 
@@ -845,7 +847,8 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 如果表达式为真，或者比较对象A=B，则检查通过，否则会终止程序运行，向用户反馈相应的错误提示信息。
 为了确保提示友好易懂，开发者需要注意其使用方法。
 
-**总体原则：**任何使用了PADDLE_ENFORCE与PADDLE_ENFORCE_XX检查的地方，必须有详略得当的备注解释！<font color="#FF0000">**错误提示信息不能为空！**</font>
+**总体原则：**
+任何使用了PADDLE_ENFORCE与PADDLE_ENFORCE_XX检查的地方，必须有详略得当的备注解释！<font color="#FF0000">**错误提示信息不能为空！**</font>
 
 报错提示信息书写建议：
 
