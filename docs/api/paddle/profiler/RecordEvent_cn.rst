@@ -14,6 +14,21 @@ RecordEvent
 
 记录开始的时间。
 
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+    import paddle.profiler as profiler
+
+    record_event = profiler.RecordEvent("record_sub")
+    record_event.begin()
+    data1 = paddle.randn(shape=[3])
+    data2 = paddle.randn(shape=[3])
+    result = data1 - data2
+    record_event.end()
+
+
 .. py:method:: end()
 
 记录结束的时间。
