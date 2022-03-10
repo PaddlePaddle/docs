@@ -4,7 +4,7 @@
 
 注册宏的位置需要放置在全局空间下。
 
-注册宏的基本形式如下：具体可参照[kernel_registry.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/kernel_registry.h)
+注册宏的基本形式如下：具体实现参照[kernel_registry.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/kernel_registry.h)
 
 ```c++
 /** PD_REGISTER_PLUGIN_KERNEL
@@ -15,7 +15,7 @@
 PD_REGISTER_PLUGIN_KERNEL(kernel_name, backend, layout, meta_kernel_fn, ...)) {}
 ```
 
-说明如下：
+说明：
 
 - 注册宏名称：固定为`PD_REGISTER_PLUGIN_KERNEL`
 - 第一个参数：kernel_name，即Kernel名称，飞桨内外一致，可参照CPU相同Kernel函数注册名称，如`softmax`

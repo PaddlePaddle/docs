@@ -14,7 +14,7 @@ void KernelNameKernel(const Context& dev_ctx,
                       OutTensor(s));
 ```
 
-相关约定为：
+约定：
 
 1. 模板参数：固定写法，第一个模板参数为数据类型`T`，第二个模板参数为设备上下文`Context`。
 2. 函数返回：固定为`void`。

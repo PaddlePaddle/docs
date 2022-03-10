@@ -1,8 +1,7 @@
 # Exception API
 
-Exception API定义具体参照[enforce.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/enforce.h)与[errors](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/errors.h)：
 
-基本使用方式：
+## 使用方式
 
 ```c++
  PADDLE_ENFORCE_{TYPE}(cond_a, // 条件A
@@ -48,3 +47,8 @@ PADDLE_ENFORCE_EQ(
                                    src.size(),
                                    num_col_dims));
 ```
+
+## 相关内容
+
+- `Exception API`：请参照[enforce.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/enforce.h)
+- `errors`：请参照[errors.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/errors.h)

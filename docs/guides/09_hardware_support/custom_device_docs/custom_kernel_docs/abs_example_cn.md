@@ -42,13 +42,17 @@ template <typename T, typename Context>
 void AbsKernel(const Context& ctx,
                const phi::DenseTensor& x,
                phi::DenseTensor* out) {
-  // 分配内存空间
+  // 使用dev_ctx的Alloc API为输出参数out分配模板参数T数据类型的内存空间
   dev_ctx.template Alloc<T>(out);
+  // 使用DenseTensor的numel API获取Tensor元素数量
   auto numel = x.numel();
+  // 使用DenseTensor的data API获取输入参数x的模板参数T类型的数据指针
   auto x_data = x.data<T>();
+  // 使用DenseTensor的data API获取输出参数out的模板参数T类型的数据指针
   auto out_data = out->data<T>();
   // 完成计算逻辑
   for (auto i = 0; i < numel; ++i) {
+    // 基于硬件相关封装库API abs完成逻辑计算
     out_data[i] = abs(x_data[i]);
   }
 }

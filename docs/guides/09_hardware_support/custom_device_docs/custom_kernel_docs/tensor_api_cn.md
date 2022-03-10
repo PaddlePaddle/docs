@@ -1,140 +1,190 @@
 # Tensor API
 
-飞桨发布多种Tensor，基类均为`TensorBase`，这里举例列举常用的`DenseTensor`的API，并给出其它Tensor类型与TensorBase链接。
+飞桨发布多种Tensor，基类均为`TensorBase`，这里列举常用`DenseTensor`的API，TensorBase与其它Tensor类型请参照文后链接。
 
 ## DenseTensor
 
 DenseTensor中的所有元素数据存储在连续内存中，具体参照[dense_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/dense_tensor.h)
 
 ```c++
-  /// \brief Construct a dense tensor and allocate space.
-  /// \param a The allocator used to allocate space.
-  /// \param meta The meta data of dense tensor.
+  // 构造DenseTensor并分配内存
+  // 参数：a - Allocator指针类型
+  //      meta - DenseTensorMeta对象
+  // 返回：None
   DenseTensor(Allocator* a, const DenseTensorMeta& meta);
 
-  /// \brief Construct a dense tensor and allocate space.
-  /// \param a The allocator used to allocate space.
-  /// \param meta The meta data of dense tensor.
+  // 构造DenseTensor并分配内存
+  // 参数：a - Allocator指针类型
+  //      meta - DenseTensorMeta移动对象
+  // 返回：None
   DenseTensor(Allocator* a, DenseTensorMeta&& meta);
 
+  // 构造DenseTensor并分配内存
+  // 参数：holder - Allocation共享指针类型
+  //      meta - DenseTensorMeta移动对象
+  // 返回：None
   DenseTensor(const std::shared_ptr<phi::Allocation>& holder,
               const DenseTensorMeta& meta);
 
-  /// \brief Because dense tensor is a kind of container, we give a default
-  /// constructor to use for stl container. But the dense tensor created with
-  /// the default constructor is not practical.
-  // DenseTensor() = default;
-
-  /// \brief Because dense tensor is a resource handle, we provide a default
-  /// move constructor to support move semantics.
+  // 移动构造函数
+  // 参数：other - DenseTensor移动对象
+  // 返回：None
   DenseTensor(DenseTensor&& other) = default;
 
-  /// \brief DenseTensor shallow copy constructor.
+  // 拷贝构造函数
+  // 参数：other - DenseTensor对象
+  // 返回：None
   DenseTensor(const DenseTensor& other);
 
-  /// \brief DenseTensor shallow copy assignment.
+  // 赋值操作
+  // 参数：other - DenseTensor对象
+  // 返回：DenseTensor对象
   DenseTensor& operator=(const DenseTensor& other);
 
+  // 移动赋值操作
+  // 参数：other - DenseTensor对象
+  // 返回：DenseTensor对象
   DenseTensor& operator=(DenseTensor&& other);
 
+  // 无参构造函数
   DenseTensor();
 
-  /// \brief Destroy the tensor object and release exclusive resources.
+  // 析构函数
   virtual ~DenseTensor() = default;
 
-  /// \brief Returns the name of the class for type traits.
-  /// \return The name of the class.
-  static const char* name() { return "DenseTensor"; }
+  // 获取类名，静态函数
+  // 参数：None
+  // 返回：字符串指针
+  static const char* name();
 
-  /// \brief Returns the number of elements contained in tensor.
-  /// \return The number of elements contained in tensor.
+  // 获取Tensor中元素数量
+  // 参数：None
+  // 返回：int64_t类型变量
   int64_t numel() const override;
 
-  /// \brief Returns the dims of the tensor.
-  /// \return The dims of the tensor.
-  const DDim& dims() const noexcept override { return meta_.dims; }
+  // 获取Tensor的dims信息
+  // 参数：None
+  // 返回：DDim对象
+  const DDim& dims() const noexcept override;
 
-  /// \brief Returns the lod of the tensor.
-  /// \return The lod of the tensor.
-  const LoD& lod() const noexcept { return meta_.lod; }
+  // 获取Tensor的lod信息
+  // 参数：None
+  // 返回：LoD对象
+  const LoD& lod() const noexcept;
 
-  /// \brief Returns the data type of the tensor.
-  /// \return The data type of the tensor.
-  DataType dtype() const noexcept override { return meta_.dtype; }
+  // 获取Tensor的数据类型信息
+  // 参数：None
+  // 返回：DataType类型变量
+  DataType dtype() const noexcept override;
 
-  /// \brief Returns the data layout of the tensor.
-  /// \return The data layout of the tensor.
-  DataLayout layout() const noexcept override { return meta_.layout; }
+  // 获取Tensor的内存布局信息
+  // 参数：None
+  // 返回：DataLayout类型变量
+  DataLayout layout() const noexcept override;
 
-  /// \brief Returns the data place of the tensor.
-  /// \return The data place of the tensor.
+  // 获取Tensor的Place信息
+  // 参数：None
+  // 返回：Place类型变量
   const Place& place() const override;
 
-  /// \brief Returns the meta information of the tensor.
-  /// \return The meta information of the tensor.
-  const DenseTensorMeta& meta() const noexcept { return meta_; }
+  // 获取Tensor的meta信息
+  // 参数：None
+  // 返回：DenseTensorMeta对象
+  const DenseTensorMeta& meta() const noexcept;
 
-  /// \brief Sets the meta information of the tensor. Only when the original
-  /// attribute of Tensor is incomplete, can it be reset.
-  /// \param meta The meta information of the tensor.
+  // 设置Tensor的meta信息
+  // 参数：meta - DenseTensorMeta移动对象
+  // 返回：None
   void set_meta(DenseTensorMeta&& meta);
 
+  // 设置Tensor的meta信息
+  // 参数：meta - DenseTensorMeta对象
+  // 返回：None
   void set_meta(const DenseTensorMeta& meta);
 
-  /// \brief Test whether the metadata is valid.
-  /// \return Whether the metadata is valid.
-  bool valid() const noexcept override { return meta_.valid(); }
+  // 检查Tensor的meta信息是否有效
+  // 参数：None
+  // 返回：bool类型变量
+  bool valid() const noexcept override;
 
-  /// \brief Test whether the allocation is allocated.
-  /// return Whether the allocation is allocated.
-  bool initialized() const override { return holder_ && holder_->ptr(); }
+  // 检查Tensor的是否被初始化
+  // 参数：None
+  // 返回：bool类型变量
+  bool initialized() const override;
 
-  /// \brief Allocate memory with requested size from allocator.
-  /// \return The mutable data pointer value of type T.
+  // 为Tensor分配内存
+  // 参数：allocator - Allocator类型指针
+  //      dtype - DataType变量
+  //      requested_size - size_t类型变量
+  // 返回：void*类型指针
   void* AllocateFrom(Allocator* allocator,
                      DataType dtype,
                      size_t requested_size = 0) override;
 
-  /// \brief Check if allocation is shared with other objects.
-  /// \return Whether the allocation is shared with other objects.
+  // 检查是否与其它Tensor共享内存
+  // 参数：b - DenseTensor对象
+  // 返回：bool类型变量
   bool IsSharedWith(const DenseTensor& b) const;
 
-  /// \brief Change the shape information in the metadata. If the new size is
-  /// larger than the original value, the allocation area will be reallocated.
-  /// \param dims The new dims of the dense tensor.
-  /// \param lod The new lod of the dense tensor.
-  // void Resize(const DDim& dims);
+  // 修改Tensor的Dims信息并分配内存
+  // 参数：dims - DDim对象
+  // 返回：None
   void ResizeAndAllocate(const DDim& dims);
 
+  // 修改Tensor的Dims信息
+  // 参数：dims - DDim对象
+  // 返回：DenseTensor对象
   DenseTensor& Resize(const DDim& dims);
 
-  /// \brief Change the lod information in the metadata.
-  /// \param lod The new lod of the dense tensor.
+  // 重置Tensor的LoD信息
+  // 参数：lod - LoD对象
+  // 返回：None
   void ResetLoD(const LoD& lod);
 
-  /// \brief Returns the actual allocation size occupied by tensor, may be
-  /// larger
-  /// than its shape dims.
-  /// \return The actual allocation size occupied by tensor.
-  size_t capacity() const { return holder_->size(); }
+  // 获取Tensor的内存大小
+  // 参数：None
+  // 返回：size_t类型变量
+  size_t capacity() const;
 
-  /// \brief Get the const data pointer value of type T.
-  /// \return The const data pointer value of type T.
+  // 获取Tensor的不可修改数据指针
+  // 模板参数：T - 数据类型
+  // 参数：None
+  // 返回：不可修改的T类型数据指针
   template <typename T>
   const T* data() const;
 
-  /// \brief Get the const data pointer value of raw type.
-  /// \return The const data pointer value of raw type.
+  // 获取Tensor的不可修改数据指针
+  // 参数：None
+  // 返回：不可修改的void类型数据指针
   const void* data() const;
 
+  // 获取Tensor的可修改内存数据指针
+  // 模板参数：T - 数据类型
+  // 参数：None
+  // 返回：可修改的T类型数据指针
   template <typename T>
   T* data();
 
+  // 获取Tensor的可修改内存数据指针
+  // 参数：None
+  // 返回：可修改的void类型数据指针
   void* data();
 ```
 
 ## 其它Tensor类型
-- `TensorBase`：具体参照[tensor_base.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/tensor_base.h)
-- `SelectedRows`：具体参照[selected_rows.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/selected_rows.h)
-- `SparseCooTensor`：具体参照[sparse_coo_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/sparse_coo_tensor.h)
-- `SparseCsrTensor`：具体参照[sparse_csr_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/sparse_csr_tensor.h)
+
+- `TensorBase`：请参照[tensor_base.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/tensor_base.h)
+- `SelectedRows`：请参照[selected_rows.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/selected_rows.h)
+- `SparseCooTensor`：请参照[sparse_coo_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/sparse_coo_tensor.h)
+- `SparseCsrTensor`：请参照[sparse_csr_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/sparse_csr_tensor.h)
+
+
+## 相关内容
+
+- `Allocation`与`Allocator`：请参照[allocator.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/allocator.h)
+- `DenseTensorMeta`：请参照[tensor_meta.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/tensor_meta.h)
+- `DDim`：请参照[ddim.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/ddim.h)
+- `LoD`：请参照[lod_utils.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/lod_utils.h)
+- `DataType`：请参照[data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
+- `DataLayout`：请参照[data_layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_layout.h)
+- `Place`：请参照[place.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/place.h)

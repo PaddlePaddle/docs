@@ -7,9 +7,8 @@
 
 
 - `Kernel函数声明 <./custom_kernel_docs/kernel_declare_cn.html>`_ : 介绍飞桨发布的函数式Kernel声明。
-- `Kernel实现API <./custom_kernel_docs/cpp_api_cn.html>`_ : 介绍自定义Kernel函数体实现所需的C++ API。
-- `Kernel注册接口 <./custom_kernel_docs/register_api_cn.html>`_ : 介绍自定义Kernel注册接口。
-- `自定义Kernel举例 <./custom_kernel_docs/abs_example_cn.html>`_ : 通过示例介绍自定义Kernel完整流程。
+- `Kernel实现接口 <./custom_kernel_docs/cpp_api_cn.html>`_ : 介绍自定义Kernel函数体实现所需的C++ API。
+- `Kernel注册接口 <./custom_kernel_docs/register_api_cn.html>`_ : 介绍自定义Kernel注册宏。
 
 
 ..  toctree::
@@ -18,4 +17,3 @@
     custom_kernel_docs/kernel_declare_cn.md
     custom_kernel_docs/cpp_api_cn.rst
     custom_kernel_docs/register_api_cn.md
-    custom_kernel_docs/abs_example_cn.md
