@@ -43,6 +43,8 @@ Profiler
     prof.stop()
     prof.summary()
 
+
+
 .. py::method:: stop()
 
 性能分析器状态从当前状态 -> CLOSED，性能分析器关闭，如果有性能数据返回，调用on_trace_ready回调函数进行处理。
@@ -50,6 +52,7 @@ Profiler
 **代码示例**
 
 第[1-5)个step收集性能数据，并导出chrometracing文件，打印表单。
+
 .. code-block:: python
 
     import paddle
@@ -79,6 +82,7 @@ Profiler
 **代码示例**
 
 收集整个执行过程的性能数据，并导出chrometracing文件，打印表单。
+
 .. code-block:: python
 
     import paddle

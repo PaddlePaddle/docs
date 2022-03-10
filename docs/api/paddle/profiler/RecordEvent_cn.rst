@@ -35,19 +35,7 @@ RecordEvent
 
 **代码示例**
 
-1. 使用环境管理器的用法，with语句。
-
-.. code-block:: python
-
-    import paddle
-    import paddle.profiler as profiler
-
-    with profiler.RecordEvent("record_add"):
-      data1 = paddle.randn(shape=[3])
-      data2 = paddle.randn(shape=[3])
-      result = data1 + data2
-
-2. 手动调用记录函数
+1. 调用记录函数
 
 .. code-block:: python
 
@@ -60,3 +48,15 @@ RecordEvent
     data2 = paddle.randn(shape=[3])
     result = data1 + data2
     record_event.end()
+
+2. 使用环境管理器的用法，with语句。
+
+.. code-block:: python
+
+    import paddle
+    import paddle.profiler as profiler
+
+    with profiler.RecordEvent("record_add"):
+      data1 = paddle.randn(shape=[3])
+      data2 = paddle.randn(shape=[3])
+      result = data1 + data2
