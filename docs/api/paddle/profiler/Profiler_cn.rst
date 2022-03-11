@@ -46,12 +46,9 @@ Profiler
     prof.summary()
 
 
-
-.. py::method:: stop()
+.. py:method:: stop()
 
 性能分析器状态从当前状态 -> CLOSED，性能分析器关闭，如果有性能数据返回，调用on_trace_ready回调函数进行处理。
-
-返回：None。
 
 **代码示例**
 
@@ -80,11 +77,10 @@ Profiler
     prof.summary()
 
 
-.. py::method:: step()
+.. py:method:: step()
 
 指示性能分析器进入下一个step，根据scheduler计算新的性能分析器状态，并根据新的状态触发相应行为。如果有性能数据返回，调用on_trace_ready回调函数进行处理。
 
-返回：None。
 
 **代码示例**
 
@@ -112,7 +108,7 @@ Profiler
     prof.summary()
 
 
-.. py::method:: export(path, format="json")
+.. py:method:: export(path, format="json")
 
 导出性能数据到文件。
 
@@ -146,7 +142,7 @@ Profiler
 
 
 
-.. py::method:: summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms')
+.. py:method:: summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms')
 
 统计性能数据并打印表单。当前支持从总览、模型、分布式、算子、内存操作、自定义六个角度来对性能数据进行统计。
 
