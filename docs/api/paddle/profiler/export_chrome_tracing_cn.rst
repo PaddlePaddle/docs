@@ -12,3 +12,26 @@ export_chrome_tracing
     - **worker_name** (str, 可选) - 性能数据导出所保存到的文件名前缀，默认是[hostname]_[pid]。
 
 返回: 回调函数（callable), 该函数会接收一个参数prof(Profiler对象），调用prof的export方法保存采集到的性能数据到chrome tracing文件。
+
+**代码示例**
+
+用于性能分析器的on_trace_ready参数。
+
+.. code-block:: python
+
+    import paddle
+    import paddle.profiler as profiler
+
+    linear = paddle.nn.Linear(13, 5)
+    momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
+    with profiler.Profiler(targets=[ProfilerTarget.CPU, ProfilerTarget.GPU], 
+                        scheduler=(3, 9),
+                        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo')) as prof:
+        for i in range(10):
+            data = paddle.randn(shape=[25])
+            data = paddle.reshape(data, [2, 13])
+            out = linear(data)
+            out.backward()
+            momentum.step()
+            momentum.clear_grad()
+            prof.step()

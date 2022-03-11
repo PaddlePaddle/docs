@@ -10,4 +10,4 @@ load_profiler_result
 参数:
     - **file_name** (str) - pb格式的性能数据文件路径。
 
-返回: 结构化的性能数据。
+返回: ProfilerResult对象，底层存储性能数据的结构。
