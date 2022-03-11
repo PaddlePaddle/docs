@@ -3,15 +3,29 @@
 
 ## 概述：Tensor 的概念
 
-飞桨（PaddlePaddle，以下简称Paddle）和其他深度学习框架一样，使用**Tensor**来表示数据，在神经网络中传递的数据均为**Tensor**。
+飞桨（PaddlePaddle，以下简称Paddle）使用**Tensor**来表示数据，在神经网络中传递的数据均为**Tensor**。可以将**Tensor**理解为多维数组，其可以具有任意多的维度。不同**Tensor**可以有不同的**数据类型** (dtype) 和**形状** (shape)，同一**Tensor**中所有元素的数据类型均相同。如果你对 [Numpy](https://numpy.org/doc/stable/user/quickstart.html#the-basics) 熟悉，**Tensor**是类似于 **Numpy 数组（array）** 的概念。
 
-**Tensor**可以将其理解为多维数组，其可以具有任意多的维度，不同**Tensor**可以有不同的**数据类型** (dtype) 和**形状** (shape)。
+大部分Paddle API要求输入为**Tensor**类型，其输出亦是**Tensor**。原因是Paddle基于**Tensor**，从数据、网络、硬件等各方面，对神经网络模型的训练和预测速度和效果进行了优化，使用**Tensor**会获得更好的使用体验和性能。因此，推荐用户在程序中优先使用**Tensor**完成各种数据处理和组网操作。
 
-同一**Tensor**的中所有元素的数据类型均相同。如果你对 [Numpy](https://numpy.org/doc/stable/user/quickstart.html#the-basics) 熟悉，**Tensor**是类似于 **Numpy 数组（array）** 的概念。
+**Tensor**作为paddle中最重要的数据结构，具有完善的API用以对**Tensor**进行创建、访问、修改、计算等一系列操作，从而满足深度学习的需要。如[使用卷积神经网络进行图像分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/practices/cv/convnet_image_classification.html)教程中，使用to_tensor API将标签数据转换为**Tensor**作为模型的输入；使用unsqueeze改变**Tensor**的形状用以batch对齐，使用paddle.numpy将**Tensor**转换为numpy数组，用来调用matplotlib绘制图像。接下来，从**Tensor**的创建、属性、操作、转换和广播五个方面，介绍**Tensor**相关的概念和API。
 
 ## 一、Tensor的创建
 
-Paddle提供了多种方式创建**Tensor**，如：指定数据列表创建、指定形状创建、指定区间创建等。
+通常的CV、NLP任务，用户可能对数据准备操作关注不多，加上Tensor创建操作被封装，因此对于Tensor的创建感知不强。例如，在[使用卷积神经网络进行图像分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/practices/cv/convnet_image_classification.html)教程中，将Cifar10数据集中的图片数据转换为Tensor数据的ToTensor接口，就是在内部调用了paddle.to_tensor API。
+
+```python
+import paddle
+from paddle.vision.transforms import ToTensor
+
+transform = ToTensor()
+cifar10_train = paddle.vision.datasets.Cifar10(mode='train', transform=transform)
+train_loader = paddle.io.DataLoader(cifar10_train,
+                                   shuffle=True,
+                                   batch_size=batch_size)
+```
+
+
+若需要基于给定数据或图片手动创建**Tensor**，Paddle也提供了多种方式，如：指定数据列表创建、指定形状创建、指定区间创建、指定图像、NLP真实场景数据创建等。
 
 ### 1.1 指定数据创建
 通过给定Python列表数据，可以创建任意维度（也称为轴）的Tensor，举例如下：
@@ -111,6 +125,27 @@ Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
        [1, 2, 3, 4])
 ```
 
+### 1.4 指定图像、NLP真实场景数据创建Tensor
+对于图片，需要用到视觉模块的ToTensor API。对于NLP文本数据，在将文本数据解码转换为数字后，通过to_tensor创建Tensor即可。下面示例为使用ToTensor，将随机生成的图片转换为Tensor。
+```python
+import numpy as np
+from PIL import Image
+import paddle.vision.transforms as T
+import paddle.vision.transforms.functional as F
+
+fake_img = Image.fromarray((np.random.rand(224, 224, 3) * 255.).astype(np.uint8))
+transform = T.ToTensor()
+tensor = transform(fake_img)
+print(tensor)
+```
+
+```text
+Tensor(shape=[3, 224, 224], dtype=float32, place=Place(gpu:0), stop_gradient=True,
+       [[[0.78039223, 0.72941178, 0.34117648, ..., 0.76470596, 0.57647061, 0.94901967],
+         ...,
+         [0.49803925, 0.72941178, 0.80392164, ..., 0.08627451, 0.97647065, 0.43137258]]])
+```
+
 ## 二、Tensor的属性
 
 ### 2.1 Tensor的形状
@@ -145,7 +180,7 @@ Elements number along axis 0 of Tensor: 2
 Elements number along the last axis of Tensor: 5
 ```
 
-重新设置**Tensor**的shape在实际编程中具有重要意义，Paddle提供了reshape接口来改变Tensor的shape：
+重新设置**Tensor**的shape在实际编程中具有重要意义，例如在[使用卷积神经网络进行图像分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/practices/cv/convnet_image_classification.html)教程中，通过paddle.unsqueeze API，使y_data增加了batch维，目的是使y_data与其他数据形状对齐，满足后续Paddle API的对于输入形状的要求。相比unsqueeze，Paddle提供的reshape接口，能够直接指定Tensor的目标shape：
 ```python
 ndim_3_Tensor = paddle.to_tensor([[[1, 2, 3, 4, 5],
                                    [6, 7, 8, 9, 10]],
@@ -183,6 +218,7 @@ print("Tensor flattened to Vector:", paddle.reshape(ndim_3_Tensor, [-1]).numpy()
 ```text
 Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]
 ```
+
 ### 2.2 Tensor的数据类型
 
 **Tensor**的数据类型，可以通过 Tensor.dtype 来查看，dtype支持：'bool', 'float16', 'float32', 'float64', 'uint8', 'int8', 'int16', 'int32', 'int64'。
@@ -234,7 +270,9 @@ Tensor after cast to int64: paddle.int64
 
 ### 2.3 Tensor的设备位置
 
-初始化**Tensor**时可以通过**place**来指定其分配的设备位置，可支持的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，其与GPU之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。当未指定place时，Tensor默认设备位置和安装的Paddle版本一致，如安装了GPU版本的Paddle，则设备位置默认为GPU。
+初始化**Tensor**时可以通过**place**来指定其分配的设备位置，可支持的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，其与GPU之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。
+
+> 当未指定place时，Tensor默认设备位置和安装的Paddle版本一致，如安装了GPU版本的Paddle，则设备位置默认为GPU。就是说，在创建Tensor时如果未指定`place`参数，则Tensor的`place`为paddle.CUDAPlace。
 
 以下示例分别创建了CPU、GPU和固定内存上的Tensor，并通过 `Tensor.place` 查看Tensor所在的设备位置：
 
@@ -500,6 +538,13 @@ Tensor(shape=[2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
 ```
 创建的 **Tensor** 与原 **Numpy array** 具有相同的形状与数据类型。
 
+> **注意**
+>
+> 虽然Paddle的Tensor可以与Numpy的数组方便的互相转换，但在实际中两者频繁转换会性能消耗。目前飞桨的Tensor已经基本覆盖Numpy的所有操作并有所加强，所以推荐用户在程序中优先使用飞桨的Tensor完成各种数据处理和组网操作。具体分为如下两种场景：
+
+> 场景一：在组网程序中，对网络中向量的处理，务必使用Tensor，而不建议转成Numpy的数组。如果在组网过程中转成Numpy的数组，并使用Numpy的函数会拖慢整体性能。
+
+> 场景二：在数据处理和模型后处理等场景，建议优先使用Tensor，主要是飞桨为AI硬件做了大量的适配和性能优化工作，部分情况下会获得更好的使用体验和性能。
 ## 五、Tensor 的广播操作
 Paddle和其他框架一样，提供的一些API支持广播(broadcasting)机制，允许在一些运算时使用不同形状的Tensor。
 通常来讲，如果有一个形状较小和一个形状较大的Tensor，会希望多次使用较小的Tensor来对较大的Tensor执行一些操作，看起来像是较小形状的Tensor的形状首先被扩展到和较大形状的Tensor一致，然后做运算。值得注意的是，这期间并没有对较小形状Tensor的数据拷贝操作。
