@@ -87,5 +87,5 @@ API 贡献流程如下
     :maxdepth: 1
 
     api_design_guidelines_standard_cn.md
-    api_dosc_guidelines_cn.md
+    api_docs_guidelines_cn.md
     api_accpetance_criteria_cn.md
