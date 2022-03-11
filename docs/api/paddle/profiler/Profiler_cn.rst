@@ -33,7 +33,7 @@ Profiler
                         on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))
     prof.start()
     for i in range(10):
-        data = paddle.randn(shape=[25])
+        data = paddle.randn(shape=[26])
         data = paddle.reshape(data, [2, 13])
         out = linear(data)
         out.backward()
@@ -64,7 +64,7 @@ Profiler
                         on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))
     prof.start()
     for i in range(10):
-        data = paddle.randn(shape=[25])
+        data = paddle.randn(shape=[26])
         data = paddle.reshape(data, [2, 13])
         out = linear(data)
         out.backward()
@@ -95,7 +95,7 @@ Profiler
                         on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))
     prof.start()
     for i in range(10):
-        data = paddle.randn(shape=[25])
+        data = paddle.randn(shape=[26])
         data = paddle.reshape(data, [2, 13])
         out = linear(data)
         out.backward()
@@ -128,7 +128,7 @@ Profiler
     with profiler.Profiler(targets=[ProfilerTarget.CPU, ProfilerTarget.GPU], 
                         scheduler=(5, 9)) as prof:
         for i in range(10):
-            data = paddle.randn(shape=[25])
+            data = paddle.randn(shape=[26])
             data = paddle.reshape(data, [2, 13])
             out = linear(data)
             out.backward()
@@ -169,7 +169,7 @@ Profiler
                         scheduler=profiler.make_scheduler(closed=1, ready=2, record=3, repeat=1),
                         on_trace_ready=profiler.export_chrome_tracing('./profiler_demo')) as prof:
         for i in range(10):
-            data = paddle.randn(shape=[25])
+            data = paddle.randn(shape=[26])
             data = paddle.reshape(data, [2, 13])
             out = linear(data)
             out.backward()

@@ -28,7 +28,7 @@ export_protobuf
                         scheduler=(3, 9),
                         on_trace_ready=profiler.export_protobuf('./profiler_demo')) as prof:
         for i in range(10):
-            data = paddle.randn(shape=[25])
+            data = paddle.randn(shape=[26])
             data = paddle.reshape(data, [2, 13])
             out = linear(data)
             out.backward()
