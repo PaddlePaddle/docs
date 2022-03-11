@@ -44,7 +44,7 @@ data_type[float]:data_layout[Undefined(AnyLayout)]:place[Place(cpu)]:library_typ
 
 移除的原因可以打开具体的源码文件进行查看，例如打开[lu_op.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/lu_op.cu#L15), 可见如下结果：
 
-![图片](../images/sugon_find_source_code.png)
+![图片](../images/sugon_paddle_with_hip.png)
 
 根据注释，是由于初始适配时ROCm下的rocSolver库未曾适配导致的，需参考cuSovler代码以及 [hipSOLVER](https://github.com/ROCmSoftwarePlatform/hipSOLVER) 中rocSovler和cuSolver的API封装示例修改代码使改算子可以在HIP环境下正确运行。
 
@@ -70,7 +70,7 @@ data_type[double]:data_layout[Undefined(AnyLayout)]:place[Place(cpu)]:library_ty
 
 查看对应算子源码文件 [pool_cudnn_op.cu.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/pool_cudnn_op.cu.cc#L555) 可知对应的`pool2d_grad_grad`只在CUDA平台下注册了CUDNN的`pool2d_grad_grad`算子，但是没有在HIP平台下注册，因此修改代码在HIP平台下进行注册即可。
 
-![图片](../images/sugon_find_source_code.png)
+![图片](../images/sugon_register_op_kernel.png)
 
 ### 情况3：存在算子的GPU Kernel，只是少了某几个数据类型
 
@@ -93,7 +93,7 @@ cd /workspace/Paddle/paddle/phi/kernels
 
 注意观察其中用`PADDLE_WITH_HIP`的宏定义包围的代码才是C86加速卡相关算子，其中`REGISTER_ACTIVATION_CUDA_KERNEL`的定义如下，只为算子的前反向定义了float/double/float16三种数据类型，缺少错误提示中所说的bfloat16数据类型
 
-![图片](../images/sugon_find_source_code.png)
+![图片](../images/sugon_cuda_kernel.png)
 
 因此可以参考非`PADDLE_WITH_HIP`的宏定义包围的英伟达GPU相关代码，为 HIP算子注册bfloat16数据类型。之后再在HIP环境下验证该算子的正确输出结果。
 
