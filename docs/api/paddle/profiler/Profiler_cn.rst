@@ -17,8 +17,6 @@ Profiler
 
 性能分析器状态从CLOSED -> scheduler(0), 并根据新的状态触发相应行为。
 
-返回：None。
-
 **代码示例**
 
 第[5-9)个step收集性能数据，并导出chrometracing文件，打印表单。
@@ -141,6 +139,8 @@ Profiler
     prof.summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms')
 
 
+
+.. _cn_api_profiler_profiler_summary:
 
 .. py:method:: summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms')
 

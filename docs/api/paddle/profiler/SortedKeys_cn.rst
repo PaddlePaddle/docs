@@ -6,7 +6,7 @@ SortedKeys
 .. py:class:: paddle.profiler.SortedKeys
 
 
-枚举类，用来指定表单内数据的排序方式。
+枚举类，用来指定 :ref:`表单 <cn_api_profiler_profiler_summary>` 内数据的排序方式。
 
 排序方式说明如下：
     - **SortedKeys.CPUTotal** - 活动的CPU总时间

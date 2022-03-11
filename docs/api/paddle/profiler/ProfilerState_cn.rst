@@ -6,7 +6,7 @@ ProfilerState
 .. py:class:: paddle.profiler.ProfilerState
 
 
-枚举类，用来表示性能分析器的状态。
+枚举类，用来表示 :ref:`性能分析器 <cn_api_profiler_profiler>` 的状态。
 
 状态说明如下：
     - **ProfilerState.CLOSED** - "关闭"，不收集任何性能数据。

@@ -15,7 +15,7 @@ export_protobuf
 
 **代码示例**
 
-用于性能分析器的on_trace_ready参数。
+用于 :ref:`性能分析器 <cn_api_profiler_profiler>` 的on_trace_ready参数。
 
 .. code-block:: python
 
