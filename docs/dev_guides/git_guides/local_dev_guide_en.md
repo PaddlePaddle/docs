@@ -79,6 +79,22 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 Please refer to [Compile From Source Code](../../../install/compile/fromsource_en.html) about more information of building PaddlePaddle source codes.
 
+## Test
+
+Any new unit testing file of the format `test_*.py`  added to the directory `python/paddle/fluid/tests/unittests/` is automatically added to the project to compile.
+
+Remarks:
+
+- **running unit tests requires compiling the entire project** and requires compiling with flag `WITH_TESTING` on i.e. `cmake paddle_dir -DWITH_TESTING=ON`.
+
+- **To execute a single test, you must use the ctest command**, <font color="#FF0000">not use `python test_*.py`</font>
+
+After successfully compiling the project, run the following command to run unit tests:
+
+```bash
+ctest -R test_mul_op -V
+```
+
 ## Commit
 
 Next we cancel the modification of README.md,and submit new added test file.
