@@ -21,7 +21,7 @@
 | PADDLE_ENFORCE_GE | cond_a >= cond_b | 触发ERR_TYPE异常和报ERR_MSG |
 | PADDLE_ENFORCE_LT | cond_a < cond_b | 触发ERR_TYPE异常和报ERR_MSG |
 | PADDLE_ENFORCE_LE | cond_a <= cond_b | 触发ERR_TYPE异常和报ERR_MSG |
-| PADDLE_ENFORCE_NOT_NULL`| cond_a != nullptr | 否则触发ERR_TYPE异常和报ERR_MSG |
+| PADDLE_ENFORCE_NOT_NULL | cond_a != nullptr | 触发ERR_TYPE异常和报ERR_MSG |
 
 `ERR_TYPE`支持：
 
