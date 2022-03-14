@@ -141,3 +141,70 @@ PS：
 ## 六、其他
 
 百度在法律法规许可范围内对本活动规则享有解释权。 
+
+## 邮件模板
+
+### 提交 RFC
+
+标题： [Hackathon No.任务编号] RFC提交
+
+内容：
+
+飞桨团队你好，
+
+【队名】：XXX
+
+【序号】：任务编号
+
+【状态】：RFC提交
+
+【PR链接】：你的PR链接
+
+如：
+
+标题： [Hackathon No.100] RFC提交
+
+内容：
+
+飞桨团队你好，
+
+【队名】：百度飞桨
+
+【序号】：100
+
+【状态】：RFC提交
+
+【PR链接】：https://github.com/PaddlePaddle/community/pull/1
+
+
+### 提交 PR
+
+标题： [Hackathon No.任务编号] PR提交
+
+内容：
+
+飞桨团队你好，
+
+【队名】：XXX
+
+【序号】：任务编号
+
+【状态】：PR提交
+
+【PR链接】：你的PR链接
+
+如：
+
+标题： [Hackathon No.100] PR提交
+
+内容：
+
+飞桨团队你好，
+
+【队名】：百度飞桨
+
+【序号】：100
+
+【状态】：PR提交
+
+【PR链接】：https://github.com/PaddlePaddle/Paddle/pull/1
