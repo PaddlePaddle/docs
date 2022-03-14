@@ -246,141 +246,166 @@ void TraceInferMeta(
 }
 ```
 
+其中，`MetaTensor`是对底层异构Tensor的抽象封装，仅支持对底层Tensor的维度、数据类型、布局等属性进行读取和设置，具体方法请参考 [meta_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/meta_tensor.h)。
+
+**InferMeta的实现位置**
+
+InferMeta的文件放置规则（以Tensor输入个数为判定标准）：
+
+- `nullary.h`：没有输入Tensor参数的函数
+- `unary.h`：仅有一个输入Tensor参数的函数
+- `binary.h`：有两个输入Tensor参数的函数
+- `ternary.h`：有三个输入Tensor参数的函数
+- `multiary.h`：有三个以上输入Tensor或者输入为`vector<Tensor>`的函数
+- `backward.h`：反向op的InferMeta函数一律在此文件中，不受前序规则限制
+
+**InferMeta的编译时与运行时**
 
 在我们的静态图网络中，`InferMeta`操作在[编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#%E8%AE%A9%E6%88%91%E4%BB%AC%E5%9C%A8fluid%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B%E4%B8%AD%E5%8C%BA%E5%88%86%E7%BC%96%E8%AF%91%E6%97%B6%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6)都会被调用，在compile time时，由于真实的维度未知，框架内部用-1来表示，在run time时，用实际的维度表示，因此维度的值在compile time和 run time时可能不一致，如果存在维度的判断和运算操作，InferMeta就需要区分compile time 和 run time。
 
-以下两种情况需要区分compile time和 run time。
+对于此类InferMeta函数，需要在函数声明的参数列表末尾增加 `MetaConfig` 参数，例如：
 
-**1. 检查**
-
-如以下代码：
-
-```cpp
-int i = xxx;
-PADDLE_ENFORCE_GT(x.dims()[i] , 10)
+```
+void ConcatInferMeta(const std::vector<MetaTensor*>& x,
+                     const Scalar& axis_scalar,
+                     MetaTensor* out,
+                     MetaConfig config = MetaConfig());
 ```
 
-在compile time的时候，x.dims()[i]可能等于-1，导致这个PADDLE_ENFORCE_GT报错退出。
+然后在函数体中，使用 `config.is_runtime` 判断出于编译时还是运行时。
 
-如果用了以下paddle中定义的宏进行判断：
+具体地，以下两种情况需要区分compile time和 run time。
 
-```cpp
-PADDLE_ENFORCE_EQ (x.dims()[i] , 10)
-PADDLE_ENFORCE_NE (x.dims()[i] , 10)
-PADDLE_ENFORCE_GT (x.dims()[i] , 10)
-PADDLE_ENFORCE_GE (x.dims()[i] , 10)
-PADDLE_ENFORCE_LT (x.dims()[i] , 10)
-PADDLE_ENFORCE_LE (x.dims()[i] , 10)
-```
+1. 检查
 
-都需要注意区分compile time和run time
+    如以下代码：
 
-**2. 运算**
+    ```cpp
+    int i = xxx;
+    PADDLE_ENFORCE_GT(x.dims()[i] , 10)
+    ```
 
-如以下代码:
-```cpp
-auto x_dim = x.dims();
-int i = xxx;
-y_dim[0] = x_dim[i] + 10
-```
+    在compile time的时候，x.dims()[i]可能等于-1，导致这个PADDLE_ENFORCE_GT报错退出。
 
-在compile time的时候，x_dim[i]可能等于-1，得到的 y_dim[0] 等于 9，是不符合逻辑的
+    如果用了以下paddle中定义的宏进行判断：
 
-如果用到了类似以下的运算操作
+    ```cpp
+    PADDLE_ENFORCE_EQ (x.dims()[i] , 10)
+    PADDLE_ENFORCE_NE (x.dims()[i] , 10)
+    PADDLE_ENFORCE_GT (x.dims()[i] , 10)
+    PADDLE_ENFORCE_GE (x.dims()[i] , 10)
+    PADDLE_ENFORCE_LT (x.dims()[i] , 10)
+    PADDLE_ENFORCE_LE (x.dims()[i] , 10)
+    ```
 
-```cpp
-y_dim[i] = x_dim[i] + 10
-y_dim[i] = x_dim[i] - 10
-y_dim[i] = x_dim[i] * 10
-y_dim[i] = x_dim[i] / 10
-y_dim[i] = x_dim[i] + z_dim[i]
-```
+    都需要注意区分compile time和run time
 
-都需要区分compile time和run time
+2. 运算
 
-**处理的标准**：
+    如以下代码:
+    ```cpp
+    auto x_dim = x.dims();
+    int i = xxx;
+    y_dim[0] = x_dim[i] + 10
+    ```
 
-- 检查： compile time的时候不判断维度等于-1的情况，但在runtime的时候检查
-- 运算： -1和其他数做任何运算都要等于-1
+    在compile time的时候，x_dim[i]可能等于-1，得到的 y_dim[0] 等于 9，是不符合逻辑的
 
-**参考代码**
+    如果用到了类似以下的运算操作
 
-1. 判断的实现方法可以参考 [SigmoidCrossEntropyWithLogitsInferMeta](https://github.com/PaddlePaddle/Paddle/blob/cd28cddbfb5f5643947291e9a640ecd414dc8dae/paddle/phi/infermeta/binary.cc#L650)，SigmoidCrossEntropyWithLogits 要求X和labels的两个输入，除了最后一维以外，其他的维度完全一致
+    ```cpp
+    y_dim[i] = x_dim[i] + 10
+    y_dim[i] = x_dim[i] - 10
+    y_dim[i] = x_dim[i] * 10
+    y_dim[i] = x_dim[i] / 10
+    y_dim[i] = x_dim[i] + z_dim[i]
+    ```
 
-```cpp
-  bool check = true;
-  if ((!config.is_runtime) &&
-      (phi::product(x_dims) <= 0 || phi::product(labels_dims) <= 0)) {
-    check = false;
-  }
+    都需要区分compile time和run time
 
-  if (check) {
-    PADDLE_ENFORCE_EQ(
-        phi::slice_ddim(x_dims, 0, rank),
-        phi::slice_ddim(labels_dims, 0, rank),
-        phi::errors::InvalidArgument(
-            "Input(X) and Input(Label) shall have the same shape "
-            "except the last dimension. But received: the shape of "
-            "Input(X) is [%s], the shape of Input(Label) is [%s].",
-            x_dims,
-            labels_dims));
-  }
-```
+3. 处理的标准
 
-2. 运算的实现可以参考 [ConcatInferMeta](https://github.com/PaddlePaddle/Paddle/blob/0604df9e70dfe7be8a21df6a80d9fa6d4939bd9d/paddle/phi/infermeta/multiary.cc#L323)，concat在InferShape判断时，调用`ComputeAndCheckShape`，除了进行concat轴之外，其他的维度完全一致；在生成output的维度时，把concat轴的维度求和，其他的维度和输入保持一致。
+    - 检查： compile time的时候不判断维度等于-1的情况，但在runtime的时候检查
+    - 运算： -1和其他数做任何运算都要等于-1
 
-```cpp
-  const size_t n = inputs_dims.size();
-  auto out_dims = inputs_dims[0];
-  size_t in_zero_dims_size = out_dims.size();
-  for (size_t i = 1; i < n; i++) {
-    PADDLE_ENFORCE_EQ(
-        inputs_dims[i].size(),
-        out_dims.size(),
-        phi::errors::InvalidArgument("The shape of input[0] and input[%d] "
-                                     "is expected to be equal."
-                                     "But received input[0]'s shape = "
-                                     "[%s], input[%d]'s shape = [%s].",
-                                     i,
-                                     inputs_dims[0],
-                                     i,
-                                     inputs_dims[i]));
-    for (size_t j = 0; j < in_zero_dims_size; j++) {
-      if (j == axis) {
-        if (is_runtime) {
-          out_dims[axis] += inputs_dims[i][j];
-        } else {
-          if (inputs_dims[i][j] == -1 || out_dims[j] == -1) {
-            out_dims[axis] = -1;
+4. 参考代码
+
+    （1） 判断的实现方法可以参考 [SigmoidCrossEntropyWithLogitsInferMeta](https://github.com/PaddlePaddle/Paddle/blob/cd28cddbfb5f5643947291e9a640ecd414dc8dae/paddle/phi/infermeta/binary.cc#L650)，SigmoidCrossEntropyWithLogits 要求X和labels的两个输入，除了最后一维以外，其他的维度完全一致
+
+    ```cpp
+      bool check = true;
+      if ((!config.is_runtime) &&
+          (phi::product(x_dims) <= 0 || phi::product(labels_dims) <= 0)) {
+        check = false;
+      }
+
+      if (check) {
+        PADDLE_ENFORCE_EQ(
+            phi::slice_ddim(x_dims, 0, rank),
+            phi::slice_ddim(labels_dims, 0, rank),
+            phi::errors::InvalidArgument(
+                "Input(X) and Input(Label) shall have the same shape "
+                "except the last dimension. But received: the shape of "
+                "Input(X) is [%s], the shape of Input(Label) is [%s].",
+                x_dims,
+                labels_dims));
+      }
+    ```
+
+    （2） 运算的实现可以参考 [ConcatInferMeta](https://github.com/PaddlePaddle/Paddle/blob/0604df9e70dfe7be8a21df6a80d9fa6d4939bd9d/paddle/phi/infermeta/multiary.cc#L323)，concat在InferShape判断时，调用`ComputeAndCheckShape`，除了进行concat轴之外，其他的维度完全一致；在生成output的维度时，把concat轴的维度求和，其他的维度和输入保持一致。
+
+    ```cpp
+      const size_t n = inputs_dims.size();
+      auto out_dims = inputs_dims[0];
+      size_t in_zero_dims_size = out_dims.size();
+      for (size_t i = 1; i < n; i++) {
+        PADDLE_ENFORCE_EQ(
+            inputs_dims[i].size(),
+            out_dims.size(),
+            phi::errors::InvalidArgument("The shape of input[0] and input[%d] "
+                                        "is expected to be equal."
+                                        "But received input[0]'s shape = "
+                                        "[%s], input[%d]'s shape = [%s].",
+                                        i,
+                                        inputs_dims[0],
+                                        i,
+                                        inputs_dims[i]));
+        for (size_t j = 0; j < in_zero_dims_size; j++) {
+          if (j == axis) {
+            if (is_runtime) {
+              out_dims[axis] += inputs_dims[i][j];
+            } else {
+              if (inputs_dims[i][j] == -1 || out_dims[j] == -1) {
+                out_dims[axis] = -1;
+              } else {
+                out_dims[axis] += inputs_dims[i][j];
+              }
+            }
           } else {
-            out_dims[axis] += inputs_dims[i][j];
+            bool check_shape =
+                is_runtime || (inputs_dims[0][j] > 0 && inputs_dims[i][j] > 0);
+            if (check_shape) {
+              // check all shape in run time
+              PADDLE_ENFORCE_EQ(inputs_dims[0][j],
+                                inputs_dims[i][j],
+                                phi::errors::InvalidArgument(
+                                    "The %d-th dimension of input[0] and input[%d] "
+                                    "is expected to be equal."
+                                    "But received input[0]'s shape = "
+                                    "[%s], input[%d]'s shape = [%s].",
+                                    j,
+                                    i,
+                                    inputs_dims[0],
+                                    i,
+                                    inputs_dims[i]));
+            }
+            if (!is_runtime && out_dims[j] == -1 && inputs_dims[i][j] > 0) {
+              out_dims[j] = inputs_dims[i][j];
+            }
           }
         }
-      } else {
-        bool check_shape =
-            is_runtime || (inputs_dims[0][j] > 0 && inputs_dims[i][j] > 0);
-        if (check_shape) {
-          // check all shape in run time
-          PADDLE_ENFORCE_EQ(inputs_dims[0][j],
-                            inputs_dims[i][j],
-                            phi::errors::InvalidArgument(
-                                "The %d-th dimension of input[0] and input[%d] "
-                                "is expected to be equal."
-                                "But received input[0]'s shape = "
-                                "[%s], input[%d]'s shape = [%s].",
-                                j,
-                                i,
-                                inputs_dims[0],
-                                i,
-                                inputs_dims[i]));
-        }
-        if (!is_runtime && out_dims[j] == -1 && inputs_dims[i][j] > 0) {
-          out_dims[j] = inputs_dims[i][j];
-        }
       }
-    }
-  }
-```
+    ```
 
 ### 2.5 注册Op
 
@@ -398,7 +423,8 @@ REGISTER_OPERATOR(trace_grad, ops::TraceOpGrad,
                   ops::TraceGradNoNeedBufferVarsInferer);
 ```
 
-在上面的代码中，使用DECLARE_INFER_SHAPE_FUNCTOR使用`REGISTER_OPERATOR`注册了`ops::TraceOp`类，类型名为`trace`，该类的`ProtoMaker`为`ops::TraceOpMaker`，其`GradOpMaker`分别是`ops::TraceOpGradMaker<paddle::framework::OpDesc>`（静态图模式使用）和`ops::TraceOpGradMaker<paddle::imperative::OpBase>`(动态图模式使用)，并使用`REGISTER_OPERATOR`注册`ops::TraceGradOp`，类型名为`trace_grad`。
+在上面的代码中，首先使用`DECLARE_INFER_SHAPE_FUNCTOR`声明InferShapeFunctor，然后使用`REGISTER_OPERATOR`注册了`ops::TraceOp`类，算子名为`trace`，该类的`ProtoMaker`为`ops::TraceOpMaker`，其`GradOpMaker`分别是`ops::TraceOpGradMaker<paddle::framework::OpDesc>`（静态图模式使用）和`ops::TraceOpGradMaker<paddle::imperative::OpBase>`(动态图模式使用)，同时将前面声明的TraceInferShapeFunctor一并放入注册列表。
+前向算子注册完成后，再使用`REGISTER_OPERATOR`注册`ops::TraceGradOp`，类型名为`trace_grad`。
 
 ## 3. 新增算子Kernel
 
@@ -434,6 +460,11 @@ paddle/phi/kernels
     - `paddle/phi/kernels/xxx_kernel.h`
     - `paddle/phi/kernels/xxx_kernel.cc`
 
+    如果是反向kernel，则使用 `grad_kernel` 后缀即可：
+
+    - `paddle/phi/kernels/xxx_grad_kernel.h`
+    - `paddle/phi/kernels/xxx_grad_kernel.cc`
+
 2. 新增与设备相关、且CPU&GPU分别实现的Kernel
 
     还有部分Kernel的实现，CPU 和GPU 上逻辑不同，此时没有共同实现的代码，需要区分CPU和GPU 硬件。
@@ -442,6 +473,12 @@ paddle/phi/kernels
     - `paddle/phi/kernels/xxx_kernel.h`
     - `paddle/phi/kernels/cpu/xxx_kernel.cc`
     - `paddle/phi/kernels/gpu/xxx_kernel.cu`
+
+    相应地，反向kernel新增文件为：
+
+    - `paddle/phi/kernels/xxx_grad_kernel.h`
+    - `paddle/phi/kernels/cpu/xxx_grad_kernel.cc`
+    - `paddle/phi/kernels/gpu/xxx_grad_kernel.cu`
 
 ### 3.2 Kernel 写法
 
@@ -593,9 +630,9 @@ PD_REGISTER_KERNEL(trace,
                    double,
                    int,
                    int64_t,
-                   paddle::platform::float16,
-                   paddle::platform::complex<float>,
-                   paddle::platform::complex<double>) {}
+                   phi::dtype::float16,
+                   phi::dtype::complex<float>,
+                   phi::dtype::complex<double>) {}
 ```
 
 > 注意：
@@ -729,6 +766,10 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
     - 添加动态图分支调用，即 `if paddle.in_dynamic_mode()` 分支
     - 添加静态图分支调用，即dygraph mode分支后剩余的代码
+
+- Python API 放置位置
+    - 根据 API 自身属性，结合现有目录分类情况，放置导致对应子目录中的相应文件中
+    - 可以参考 [飞桨官方 API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html) 中对各个子目录 **功能和包含的API** 的介绍
 
 - Python API 文档
     - 参考示例格式进行添加，内容尽可能准确、翔实，详细规范请参考 [PaddlePaddle 文档](https://github.com/PaddlePaddle/docs/wiki)
