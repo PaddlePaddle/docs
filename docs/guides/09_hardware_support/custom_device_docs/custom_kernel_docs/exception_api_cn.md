@@ -13,28 +13,32 @@
 
 根据`TYPE`的不同，分为：
 
-- `PADDLE_ENFORCE_EQ`：cond_a == cond_b，否则触发ERR_TYPE异常和报ERR_MSG
-- `PADDLE_ENFORCE_NE`：cond_a != cond_b，否则触发ERR_TYPE异常和报ERR_MSG
-- `PADDLE_ENFORCE_GT`：cond_a > cond_b，否则触发ERR_TYPE异常和报ERR_MSG
-- `PADDLE_ENFORCE_GE`：cond_a >= cond_b，否则触发ERR_TYPE异常和报ERR_MSG
-- `PADDLE_ENFORCE_LT`：cond_a < cond_b，否则触发ERR_TYPE异常和报ERR_MSG
-- `PADDLE_ENFORCE_LE`：cond_a <= cond_b，否则触发ERR_TYPE异常和报ERR_MSG
-- `PADDLE_ENFORCE_NOT_NULL`：cond_a != nullptr，否则触发ERR_TYPE异常和报ERR_MSG
+| Exception宏 | 判断条件 | 报错信息 |
+|---|---|---|
+| PADDLE_ENFORCE_EQ | cond_a == cond_b | 触发ERR_TYPE异常和报ERR_MSG |
+| PADDLE_ENFORCE_NE | cond_a != cond_b | 触发ERR_TYPE异常和报ERR_MSG |
+| PADDLE_ENFORCE_GT | cond_a > cond_b | 触发ERR_TYPE异常和报ERR_MSG |
+| PADDLE_ENFORCE_GE | cond_a >= cond_b | 触发ERR_TYPE异常和报ERR_MSG |
+| PADDLE_ENFORCE_LT | cond_a < cond_b | 触发ERR_TYPE异常和报ERR_MSG |
+| PADDLE_ENFORCE_LE | cond_a <= cond_b | 触发ERR_TYPE异常和报ERR_MSG |
+| PADDLE_ENFORCE_NOT_NULL`| cond_a != nullptr | 否则触发ERR_TYPE异常和报ERR_MSG |
 
 `ERR_TYPE`支持：
 
-- `InvalidArgument`：非法参数
-- `NotFound`：未找到
-- `OutOfRange`：越界
-- `AlreadyExists`：已存在
-- `ResourceExhausted`：资源超限
-- `PreconditionNotMet`：前置条件未满足
-- `PermissionDenied`：权限限制
-- `ExecutionTimeout`：超时
-- `Unimplemented`：未实现
-- `Unavailable`：不可用
-- `Fatal`：Fatal错误
-- `External`：外部错误
+| 类型 | 含义 |
+|---|---|
+| InvalidArgument | 非法参数 |
+| NotFound | 未找到 |
+| OutOfRange | 越界 |
+| AlreadyExists | 已存在 |
+| ResourceExhausted | 资源超限 |
+| PreconditionNotMet | 前置条件未满足 |
+| PermissionDenied | 权限限制 |
+| ExecutionTimeout | 超时 |
+| Unimplemented | 未实现 |
+| Unavailable | 不可用 |
+| Fatal | Fatal错误 |
+| External | 外部错误 |
 
 `ERR_MSG`为C语言风格字符串，支持变长参数。
 

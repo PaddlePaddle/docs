@@ -4,7 +4,7 @@
 
 ## DenseTensor
 
-DenseTensor中的所有元素数据存储在连续内存中，请参照[dense_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/dense_tensor.h)
+`DenseTensor`中的所有元素数据存储在连续内存中，请参照[dense_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/dense_tensor.h)
 
 ```c++
   // 构造DenseTensor并分配内存
@@ -186,5 +186,5 @@ DenseTensor中的所有元素数据存储在连续内存中，请参照[dense_te
 - `DDim`：请参照[ddim.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/ddim.h)
 - `LoD`：请参照[lod_utils.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/lod_utils.h)
 - `DataType`：请参照[data_type.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_type.h)
-- `DataLayout`：请参照[data_layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/data_layout.h)
+- `DataLayout`：请参照[layout.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/layout.h)
 - `Place`：请参照[place.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/common/place.h)
