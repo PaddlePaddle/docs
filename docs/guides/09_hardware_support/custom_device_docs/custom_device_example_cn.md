@@ -2,6 +2,11 @@
 
 本教程介绍如何为 PaddlePaddle 实现一个 CustomDevice 插件，添加一个名为 CustomCPU 的新硬件后端，并进行编译，打包，安装和使用。
 
+> 注意：
+> - 请确保已经正确安装了[飞桨develop](https://github.com/PaddlePaddle/Paddle)最新版本
+> - 当前仅支持 `Linux`平台
+> - 支持飞桨已通过头文件开放函数式声明的Kernel自定义编码与注册
+
 ## 自定义 Runtime
 
 **InitPlugin**
@@ -157,35 +162,80 @@ C_Status get_min_chunk_size(const C_Device device, size_t *size) {
 
 例子：
 
-```c++
-#include "paddle/extension.h"
+### 1.确定Kernel声明
 
+查找飞桨发布的头文件`math_kernel.h`中，其Kernel函数声明如下：
+
+```c++
+// Add 内核函数
+// 模板参数： T - 数据类型
+//          Context - 设备上下文
+// 参数： dev_ctx - Context 对象
+//       x - DenseTensor 对象
+//       y - DenseTensor 对象
+//       out - DenseTensor 指针
+// 返回： None
+template <typename T, typename Context>
+void AddKernel(const Context& dev_ctx,
+               const DenseTensor& x,
+               const DenseTensor& y,
+               DenseTensor* out);
+
+```
+
+### 2.Kernel实现与注册
+
+```c++
+// add_kernel.cc
+
+#include "paddle/phi/extension.h" // 自定义Kernel依赖头文件
+
+namespace custom_cpu {
+
+// Kernel函数体实现
 template <typename T, typename Context>
 void AddKernel(const Context& dev_ctx,
                const phi::DenseTensor& x,
                const phi::DenseTensor& y,
                phi::DenseTensor* out) {
-  // 分配内存空间
+  // 使用dev_ctx的Alloc API为输出参数out分配模板参数T数据类型的内存空间
   dev_ctx.template Alloc<T>(out);
-
+  // 使用DenseTensor的numel API获取Tensor元素数量
   auto numel = x.numel();
+  // 使用DenseTensor的data API获取输入参数x的模板参数T类型的数据指针
   auto x_data = x.data<T>();
+  // 使用DenseTensor的data API获取输入参数y的模板参数T类型的数据指针
   auto y_data = y.data<T>();
+  // 使用DenseTensor的data API获取输出参数out的模板参数T类型的数据指针
   auto out_data = out->data<T>();
-  // 完成加法计算
+  // 完成计算逻辑
   for (auto i = 0; i < numel; ++i) {
     out_data[i] = x_data[i] + y_data[i];
   }
 }
-```
 
-实现 AddKernel 后，需要将该函数注册为 PaddlePaddle 的 kernel，并指定 kernel 名，后端硬件类型，支持的 layout ，以及数据类型。使用宏 PD_REGISTER_PLUGIN_KERNEL 完成 kernel 注册。
+} // namespace custom_cpu
 
-```c++
+// 全局命名空间内使用注册宏完成Kernel注册
+// CustomCPU的AddKernel注册
+// 参数： add - Kernel名称
+//       CustomCPU - 后端名称
+//       ALL_LAYOUT - 内存布局
+//       custom_cpu::AddKernel - Kernel函数名
+//       int - 数据类型名
+//       int64_t - 数据类型名
+//       float - 数据类型名
+//       double - 数据类型名
+//       phi::dtype::float16 - 数据类型名
 PD_REGISTER_PLUGIN_KERNEL(add,
                           CustomCPU,
                           ALL_LAYOUT,
-                          custom_kernel::AddKernel, int8_t, int32_t, int64_t, float, double) {}
+                          custom_cpu::AddKernel,
+                          int,
+                          int64_t
+                          float,
+                          double,
+                          phi::dtype::float16){}
 ```
 
 ## 编译
@@ -206,12 +256,22 @@ set(PADDLE_PLUGIN_DIR  "/opt/conda/lib/python3.7/site-packages/paddle-plugins/")
 set(PADDLE_INC_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/include/")
 set(PADDLE_LIB_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/fluid/")
 
-include_directories(${PADDLE_INC_DIR})
+############ 三方依赖
+set(BOOST_INC_DIR      "/path/to/Paddle/build/third_party/boost/src/extern_boost")
+set(GFLAGS_INC_DIR     "/path/to/Paddle/build/third_party/install/gflags/include")
+set(GLOG_INC_DIR       "/path/to/Paddle/build/third_party/install/glog/include")
+set(THREAD_INC_DIR     "/path/to/Paddle/build/third_party/threadpool/src/extern_threadpool")
+set(THIRD_PARTY_INC_DIR ${BOOST_INC_DIR} ${GFLAGS_INC_DIR} ${GLOG_INC_DIR} ${THREAD_INC_DIR})
+
+include_directories(${PADDLE_INC_DIR} ${THIRD_PARTY_INC_DIR})
 link_directories(${PADDLE_LIB_DIR})
+
+add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)  # for out CustomContext temporarily
+add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid seperate temporarily
 
 ############ 编译插件
 add_library(${PLUGIN_NAME} SHARED runtime.cc add_kernel.cc)
-target_link_libraries(${PLUGIN_NAME} PRIVATE core_avx.so)  # special name
+target_link_libraries(${PLUGIN_NAME} PRIVATE :core_avx.so)  # special name
 
 ############ 打包插件
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/setup.py.in

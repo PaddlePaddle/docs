@@ -6,12 +6,14 @@
 
 自定义硬件接入功能由两个主要组件构成：
 
-- `自定义 Runtime <./custom_runtime_cn.html>`_ 
-- 自定义 Kernel
+- `自定义Runtime教程 <./custom_runtime_cn.html>`_ : 飞桨框架自定义Runtime介绍
+- `自定义Kernel教程 <./custom_kernel_cn.html>`_ : 飞桨框架自定义Kernel介绍
 
 
 ..  toctree::
     :hidden:
 
+
     custom_runtime_cn.rst
+    custom_kernel_cn.rst
     custom_device_example_cn.md
