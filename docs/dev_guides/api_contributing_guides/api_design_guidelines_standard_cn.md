@@ -30,7 +30,7 @@
 | paddle.nn.utils                | 网络相关工具类API，比如weight_norm、spectral_norm等          |
 | paddle.static.nn               | 静态图下组网专用API，比如：输入占位符data/Input，控制流while_loop/cond |
 | paddle.static                  | 静态图下基础框架相关API，比如：Variable, Program, Executor等 |
-| paddle.optimizer               | 优化算法相关API，比如：SGD，Adagrad, Adam等                  |
+| paddle.optimizer               | 优化算法相关API，比如：SGD、Adagrad、Adam等                  |
 | paddle.optimizer.lr（文件）    | 学习率策略相关API，比如LinearWarmup、LRScheduler等           |
 | paddle.metric                  | 评估指标计算相关的API，比如：accuracy, auc等                 |
 | paddle.io                      | 数据输入输出相关API，比如：save, load, Dataset, DataLoader等 |
@@ -68,15 +68,16 @@
 - 常用的API可以在更高层级建立别名，当前规则如下：
    1. paddle.tensor目录下的API，均在paddle根目录建立别名，其他所有API在paddle根目录下均没有别名。
    2. paddle.nn目录下除了functional目录以外的所有API，在paddle.nn目录下均有别名。
-
-	   
-
-    paddle.nn.functional.mse_loss # functional下的函数不建立别名，使用完整名称
-	paddle.nn.Conv2D # 为paddle.nn.layer.conv.Conv2D建立的别名
-3. 一些特殊情况比如特别常用的API会直接在paddle下建立别名
-
-    paddle.tanh # 为常用函数paddle.tensor.math.tanh建立的别名
-    paddle.linspace# 为常用函数paddle.fluid.layers.linspace建立的别名
+   
+        ```python
+        paddle.nn.functional.mse_loss # functional下的函数不建立别名，使用完整名称
+        paddle.nn.Conv2D # 为paddle.nn.layer.conv.Conv2D建立的别名
+       ```
+  1. 一些特殊情况比如特别常用的API会直接在paddle下建立别名
+        ```python
+        paddle.tanh # 为常用函数paddle.tensor.math.tanh建立的别名
+        paddle.linspace# 为常用函数paddle.fluid.layers.linspace建立的别名
+        ```
 
 
 ### API行为定义规范
@@ -359,9 +360,10 @@
    | 按轴求和      | reduce_sum          |      |                                  |
    
 - 常用参数表
-   | 中文名       | 推荐          | 不推荐写法                            | 示例                                                         | 备注                                                         |
+
+   | 中文名         | 推荐           | 不推荐写法                            | 示例                                                         | 备注                                                         |
    | ------------ | ------------- | ------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-   | 算子名       | name          | input                                     | relu(x, inplace=False, name=None)                        | 调用api所创建的算子名称                                      |
+   | 算子名        | name          | input                                     | relu(x, inplace=False, name=None)                        | 调用api所创建的算子名称                                      |
    | 单个输入张量 | x         | x                                     | relu(x, inplace=False, name=None)                        | 单个待操作的张量                                             |
    | 两个输入张量 | x, y          | input, other/ X, Y                    | elementwise_add(x, y, axis=-1, activation=None, name=None)   | 两个待操作的张量                                             |
    | 数据类型     | dtype         | type, data_type                       | unique(x, dtype='int32')                                 |                                                              |

@@ -45,6 +45,8 @@ API设计文档的目的是为了社区开发者更容易的参与开源项目�
     - `API 设计文档示例 <https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/20200301_api_design_for_quantile.md>`_ ", "`Github开发者社区仓库 <https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs>`_"
 
 
+同时，飞桨为大家提供了 `API 设计文档模版 <https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs/api_design_template.md>`_ 和 `API 设计文档demo <https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/20200301_api_design_for_quantile.md>`_ ，你可以使用这份模版撰写API设计文档。完成后，你需要将设计文档提交至 `Github开发者社区仓库 <https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs>`_ ，并根据 `本地开发指南 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/git_guides/local_dev_guide_cn.html>`_ 提交PR。
+
 
 **4、设计文档评审&公示**
 
@@ -59,6 +61,7 @@ API设计文档的目的是为了社区开发者更容易的参与开源项目�
 
 **6、提交API实现代码**
 
+
 当API设计文档合入后，开发者根据评审通过的API设计内容进行代码开发。此过程请参考相应的开发规范，并提交以下内容：
 
 .. csv-table::
@@ -72,7 +75,8 @@ API设计文档的目的是为了社区开发者更容易的参与开源项目�
     "3、API中文文档", "- `API文档书写规范 <https://github.com/PaddlePaddle/docs/wiki/%E9%A3%9E%E6%A1%A8API%E6%96%87%E6%A1%A3%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83>`_", "`Github飞桨文档仓库 <https://github.com/PaddlePaddle/docs>`_"
     "4、API单测代码", "- `API 验收标准 <./api_accpetance_criteria_cn.html>`_", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
 
-当用户完成以上代码设计后，需要将代码提交至 `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_ ，并准备接受社区的评审。
+
+当开发者完成以上代码设计后，需要将代码提交至 `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_ ，并根据 `本地开发指南 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/git_guides/local_dev_guide_cn.html>`_ 提交PR、准备接受社区的评审。
 
 **7、实现代码评审&公示**
 
@@ -86,7 +90,7 @@ API设计文档的目的是为了社区开发者更容易的参与开源项目�
 
 **9、通过API测试及验收**
 
-当你的代码合入 `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_ 后，官方会对你的代码进行集成测试，并通知你测试结果。如果测试通过，恭喜你贡献流程已经全部完成，如果测试不通过，我们会联系你进行代码修复，请及时关注github上的最新动态；
+当你的代码合入 `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_ 后，官方会对你的代码进行集成测试，并通知你测试结果。如果测试通过，恭喜你贡献流程已经全部完成；如果测试不通过，我们会联系你进行代码修复，请及时关注github上的最新动态；
 
 注意：代码合入develop分之后的第二天你可以从官网下载develop 编译的安装包体验此功能。飞桨后续也会将此功能纳入正式版的发版计划～
 
@@ -94,11 +98,10 @@ API设计文档的目的是为了社区开发者更容易的参与开源项目�
 
 感谢您的贡献！
 
-**参考资料**
 
 ..  toctree::
-    :maxdepth: 1
-
+    :hidden:
 
     api_design_guidelines_standard_cn.md
+    api_docs_guidelines_cn.md
     api_accpetance_criteria_cn.md
