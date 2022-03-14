@@ -1,4 +1,4 @@
-# 自定义硬件接入教程
+# 新硬件接入示例
 
 本教程介绍如何为 PaddlePaddle 实现一个 CustomDevice 插件，添加一个名为 CustomCPU 的新硬件后端，并进行编译，打包，安装和使用。
 
@@ -7,7 +7,7 @@
 > - 当前仅支持 `Linux`平台
 > - 支持飞桨已通过头文件开放函数式声明的Kernel自定义编码与注册
 
-## 自定义 Runtime
+## 第一步：实现自定义 Runtime
 
 **InitPlugin**
 
@@ -156,7 +156,7 @@ C_Status get_min_chunk_size(const C_Device device, size_t *size) {
 }
 ```
 
-## 自定义 Kernel
+## 第二步：添加自定义 Kernel
 
 以 add 为例，介绍如何实现一个 kernel 并完成注册。
 
@@ -238,7 +238,7 @@ PD_REGISTER_PLUGIN_KERNEL(add,
                           phi::dtype::float16){}
 ```
 
-## 编译
+## 第三步：编译与安装
 
 ### CMake 编译
 
@@ -424,7 +424,7 @@ $ python setup.py bdist_wheel
 
 编译完成后在以及 dist 目录下生成wheel包。
 
-## 安装
+### pip 安装
 
 通过 pip 安装 wheel 包。
 
@@ -432,7 +432,7 @@ $ python setup.py bdist_wheel
 $ pip install build/dist/paddle_custom_cpu-0.0.1-cp37-cp37m-linux_aarch64.whl
 ```
 
-## 使用
+## 第四步：加载与使用
 
 安装插件到指定路径后（ site-packages/paddle-plugins ），我们就可以使用 PaddlePaddle 的 CustomCPU 硬件后端用于执行计算任务。
 
