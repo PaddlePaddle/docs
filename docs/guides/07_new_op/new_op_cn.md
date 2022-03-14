@@ -115,6 +115,8 @@ the 2-D planes specified by dim1 and dim2.
 
 上面的代码在`TraceOp`中添加两个输入`X`和`Y`，添加了一个输出`Out`，并简要解释了各自含义，命名请遵守[命名规范](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
 
+> 注意：OpProtoMaker中不允许定义未使用的输入、输入或属性。
+
 ### 2.2 定义GradOpMaker类
 
 通常情况下，大部分Op只有一个对应的反向Op，每个Op都会有一个对应的`GradOpMaker`。为方便代码编写，paddle为只有一个反向的Op提供了一个模板类[`SingleGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L188)。`TraceOp`的`GradOpMaker`需要继承这个模板类，并在`Apply()`方法中设置反向Op的输入、输出和属性。此外，paddle还提供了一个默认的`GradOpMaker`，
@@ -851,6 +853,8 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
             ['X'], 'Out', max_relative_error=0.5, no_grad_set=set('Y'))
     ```
 
+其他有关单元测试添加的注意事项请参考 [《Op开发手册》](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index) 及 [《Paddle单元测试规范》](https://github.com/PaddlePaddle/Paddle/wiki/PaddlePaddle-Unit-test-specification)。
+
 
 ### 4.3 编译和执行
 
@@ -905,4 +909,4 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 
     - 例如：`Suggested Fix:If your classifier expects one-hot encoding label,check your n_classes argument to the estimatorand/or the shape of your label.Otherwise, check the shape of your label.`
 
-详细规范请参考 [《Paddle报错信息文案书写规范》](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-Error-Message-Writing-Specification)。
+更详细的规范介绍请参考 [《Paddle报错信息文案书写规范》](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-Error-Message-Writing-Specification)。
