@@ -115,7 +115,7 @@ the 2-D planes specified by dim1 and dim2.
 
 上面的代码在`TraceOp`中添加两个输入`X`和`Y`，添加了一个输出`Out`，并简要解释了各自含义，命名请遵守[命名规范](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
 
-> 注意：OpProtoMaker中不允许定义未使用的输入、输入或属性。
+> 注意：OpProtoMaker中不允许定义未使用的输入、输出或属性。
 
 ### 2.2 定义GradOpMaker类
 
@@ -909,4 +909,4 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 
     - 例如：`Suggested Fix:If your classifier expects one-hot encoding label,check your n_classes argument to the estimatorand/or the shape of your label.Otherwise, check the shape of your label.`
 
-更详细的规范介绍请参考 [《Paddle报错信息文案书写规范》](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-Error-Message-Writing-Specification)。
+更详细的报错检查规范介绍请参考 [《Paddle报错信息文案书写规范》](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-Error-Message-Writing-Specification)。
