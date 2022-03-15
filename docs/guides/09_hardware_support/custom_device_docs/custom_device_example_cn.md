@@ -43,7 +43,7 @@ void InitPlugin(CustomRuntimeParams *params) {
   params->interface->memory_copy_d2h = memory_copy;
   params->interface->device_memory_allocate = allocate;
   params->interface->device_memory_deallocate = deallocate;
-  params->interface->get_device_count = get_device_cout;
+  params->interface->get_device_count = get_device_count;
   params->interface->get_device_list = get_device_list;
   params->interface->device_memory_stats = memstats;
   params->interface->device_min_chunk_size = get_min_chunk_size;
@@ -232,7 +232,7 @@ PD_REGISTER_PLUGIN_KERNEL(add,
                           ALL_LAYOUT,
                           custom_cpu::AddKernel,
                           int,
-                          int64_t
+                          int64_t,
                           float,
                           double,
                           phi::dtype::float16){}
