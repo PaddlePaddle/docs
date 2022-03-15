@@ -767,6 +767,8 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     return out
 ```
 
+> 概念解释：LayerHelper是一个用于创建op输出变量、向program中添加op的辅助工具类
+
 - Python API 实现要点
     - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
     - 添加动态图分支调用，即 `if paddle.in_dynamic_mode()` 分支
