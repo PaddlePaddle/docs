@@ -617,11 +617,7 @@ void TraceKernel(const Context& dev_ctx,
 
 #### 3.2.3 注册 Kernel 函数
 
-注册kernel的方式比较简单，直接使用注册宏，字段说明：
-1. trace: kernel名称，和Op的名称一致
-2. CPU: backend名称， 一般主要就是CPU和GPU
-3. phi::TraceKernel: kernel的函数名称，记得带上namespace phi
-4. 剩余的均为Kernel支持的数据类型
+注册kernel的方式比较简单，直接使用注册宏注册即可，示例如下：
 
 ```cpp
 PD_REGISTER_KERNEL(trace,
@@ -636,6 +632,13 @@ PD_REGISTER_KERNEL(trace,
                    phi::dtype::complex<float>,
                    phi::dtype::complex<double>) {}
 ```
+
+字段说明：
+1. `trace`: kernel名称，和Op的名称一致
+2. `CPU`: backend名称， 一般主要就是CPU和GPU
+3. `ALL_LAYOUT`: kernel支持的Tensor布局，一般为ALL_LAYOUT，及支持所有布局类型
+4. `phi::TraceKernel`: kernel的函数名称，记得带上namespace phi
+5. 剩余的均为Kernel支持的数据类型
 
 > 注意：
 > 1. 如果忘记添加注册相关的头文件，会曝出一个xx的错误，如果遇到，请检查include的头文件
@@ -789,11 +792,6 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里完成。测试Operator，需要：
 
 1. 在`setUp`函数定义输入、输出，以及相关的属性参数。
-
-
-    > 注意：输入输出请以`ndarray`的类型配置输入/输出，请以`tuple`的形式传入，`tuple`中应该有两个类型为`ndarray`的元素。
-
-
 2. 生成随机的输入数据。
 3. 在Python脚本中实现与前向operator相同的计算逻辑，得到输出值，与operator前向计算的输出进行对比。
 4. 反向计算已经自动集成进测试框架，直接调用相应接口即可。
@@ -835,22 +833,21 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
 而反向测试中：
 
 - `test_check_grad`中调用`check_grad`使用数值法检测梯度正确性和稳定性。
-  - 第一个参数`["X"]` : 指定对输入变量`Input`做梯度检测。
-  - 第二个参数`"Out"` : 指定前向网络最终的输出目标变量`Out`。
-
+  - 第一个参数`['Input']` : 指定对输入变量`Input`做梯度检测。
+  - 第二个参数`'Out'` : 指定前向网络最终的输出目标变量`Out`。
 
 - 对于存在多个输入的反向Op测试，需要指定只计算部分输入梯度的case
-  - 例如，`test_mul_op.py`中的`test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
+  - 例如，`test_elementwise_sub_op.py`中的`test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
   - 此处第三个参数max_relative_error：指定检测梯度时能容忍的最大错误值。
 
     ```python
     def test_check_grad_ingore_x(self):
         self.check_grad(
-            ['Y'], 'Out', max_relative_error=0.5, no_grad_set=set("X"))
+            ['Y'], 'Out', max_relative_error=0.005, no_grad_set=set("X"))
 
     def test_check_grad_ingore_y(self):
         self.check_grad(
-            ['X'], 'Out', max_relative_error=0.5, no_grad_set=set('Y'))
+            ['X'], 'Out', max_relative_error=0.005, no_grad_set=set('Y'))
     ```
 
 其他有关单元测试添加的注意事项请参考 [《Op开发手册》](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index) 及 [《Paddle单元测试规范》](https://github.com/PaddlePaddle/Paddle/wiki/PaddlePaddle-Unit-test-specification)。
