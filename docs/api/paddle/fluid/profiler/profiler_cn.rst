@@ -9,7 +9,7 @@ profiler
 
 .. warning::
    该API将在未来废弃，对CPU和GPU的性能分析请参考使用paddle最新的性能分析器 :ref:`Profiler <cn_api_profiler_profiler>` 。
-   如代码示例中对该API的使用用新的Profiler进行替换最简单的用法为
+   如代码示例中对该API的使用用新的Profiler进行替换最简单的用法如下
 
 .. code-block:: python
 

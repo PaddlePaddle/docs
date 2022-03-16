@@ -12,9 +12,10 @@ start_profiler
 
 .. warning::
   该API将在未来废弃，对CPU和GPU的性能分析请参考使用paddle最新的性能分析器 :ref:`Profiler <cn_api_profiler_profiler>`。
-  对于开启profiler，使用新的接口来替换该接口的使用有两种方式:
+  对于开启profiler，使用新的接口来替换该接口的使用有下列两种方式
 
 .. code-block:: python
+
   #使用新的接口替换该接口的使用方式
   #1. 创建Profiler对象，并调用start接口
   import paddle
