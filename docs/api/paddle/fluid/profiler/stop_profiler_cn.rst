@@ -11,34 +11,34 @@ stop_profiler
 停止使用性能分析器。除了 :ref:`cn_api_fluid_profiler_profiler` 外，用户还可以使用 :ref:`cn_api_fluid_profiler_start_profiler` 和 :ref:`cn_api_fluid_profiler_stop_profiler` 来激活和停止使用性能分析器。
 
 .. warning::
-   该API将在未来废弃，对CPU和GPU的性能分析请参考使用paddle最新的性能分析器 :ref:`Profiler <cn_api_profiler_profiler>`。
-   对于关闭profiler，使用新的接口来替换该接口的使用有两种方式：
+  该API将在未来废弃，对CPU和GPU的性能分析请参考使用paddle最新的性能分析器 :ref:`Profiler <cn_api_profiler_profiler>`。
+  对于关闭profiler，使用新的接口来替换该接口的使用有两种方式：
    
-   1. 调用Profiler对象的stop接口
+  1. 调用Profiler对象的stop接口
 
-   .. code-block:: python
+  .. code-block:: python
 
-      import paddle
-      import paddle.profiler as profiler
-      prof = profiler.Profiler()
-      prof.start()
-        for iter in range(10):
-          #train()
-          prof.step()
-      prof.stop()
-      prof.summary() # 打印表单
+    import paddle
+    import paddle.profiler as profiler
+    prof = profiler.Profiler()
+    prof.start()
+      for iter in range(10):
+        #train()
+        prof.step()
+    prof.stop()
+    prof.summary() # 打印表单
 
-   2. 使用环境管理器的用法
+  2. 使用环境管理器的用法
 
-   .. code-block:: python
+  .. code-block:: python
 
-      import paddle
-      import paddle.profiler as profiler
-      with profiler.Profiler() as prof:
-        for iter in range(10):
-          #train()
-          prof.step()
-      prof.summary() # 打印表单
+    import paddle
+    import paddle.profiler as profiler
+    with profiler.Profiler() as prof:
+      for iter in range(10):
+        #train()
+        prof.step()
+    prof.summary() # 打印表单
 
 参数:
   - **sorted_key** (str，可选) – 性能分析结果的打印顺序，取值为None、'call'、'total'、'max'、'min'、'ave'之一。默认值为None，表示按照第一次结束时间顺序打印；'call'表示按调用的数量进行排序；'total'表示按总执行时间排序；'max'表示按最大执行时间排序；'min'表示按最小执行时间排序；'ave'表示按平均执行时间排序。
