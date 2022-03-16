@@ -12,32 +12,32 @@ start_profiler
 
 .. warning::
   该API将在未来废弃，对CPU和GPU的性能分析请参考使用paddle最新的性能分析器 :ref:`Profiler <cn_api_profiler_profiler>`。
-  对于开启profiler，使用新的接口来替换该接口的使用有两种方式：
+  对于开启profiler，使用新的接口来替换该接口的使用有两种方式
 
-  - 创建Profiler对象，并调用start接口
+1. 创建Profiler对象，并调用start接口
 
-  .. code-block:: python
+.. code-block:: python
 
-    import paddle
-    import paddle.profiler as profiler
-    prof = profiler.Profiler()
-    prof.start()
-      for iter in range(10):
-        #train()
-        prof.step()
-    prof.stop()
+  import paddle
+  import paddle.profiler as profiler
+  prof = profiler.Profiler()
+  prof.start()
+    for iter in range(10):
+      #train()
+      prof.step()
+  prof.stop()
 
 
-  - 使用环境管理器的用法
+2. 使用环境管理器的用法
 
-  .. code-block:: python
+.. code-block:: python
 
-    import paddle
-    import paddle.profiler as profiler
-    with profiler.Profiler() as prof:
-      for iter in range(10):
-        #train()
-        prof.step()
+  import paddle
+  import paddle.profiler as profiler
+  with profiler.Profiler() as prof:
+    for iter in range(10):
+      #train()
+      prof.step()
 
 参数:
   - **state** (str) –  性能分析状态, 取值为 'CPU' 或 'GPU' 或 'All'。'CPU'表示只分析CPU上的性能；'GPU'表示同时分析CPU和GPU上的性能；'All'表示除了同时分析CPU和GPU上的性能外，还将生成性能分析的时间轴信息 :ref:`fluid_timeline` 。
