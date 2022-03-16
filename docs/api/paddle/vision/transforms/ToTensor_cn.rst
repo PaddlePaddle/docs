@@ -53,6 +53,8 @@ ToTensor
     
 .. code-block:: python
 
+.. code-block:: python
+
 Tensor(shape=[3, 4, 5], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
        [[[0.83137262, 0.01176471, 0.70980394, 0.67843139, 0.29411766],
          [0.72549021, 0.03137255, 0.01568628, 0.96470594, 0.87843144],
