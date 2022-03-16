@@ -12,7 +12,8 @@ profiler
    如代码示例中对该API的使用用新的Profiler进行替换最简单的用法为
 
 .. code-block:: python
-   import paddle.fluid as fluid
+
+    import paddle.fluid as fluid
     import paddle.profiler as profiler
     import numpy as np
 
