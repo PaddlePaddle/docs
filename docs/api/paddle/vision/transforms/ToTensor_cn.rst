@@ -51,7 +51,7 @@ ToTensor
 
     tensor = transform(fake_img)
     
-.. code-block:: python
+:::::::::
 
 .. code-block:: python
 
