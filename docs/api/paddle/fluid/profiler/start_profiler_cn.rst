@@ -15,22 +15,26 @@ start_profiler
   对于开启profiler，使用新的接口来替换该接口的使用有两种方式:
 
   1. 创建Profiler对象，并调用start接口
-  import paddle
-  import paddle.profiler as profiler
-  prof = profiler.Profiler()
-  prof.start()
-    for iter in range(10):
-      #train()
-      prof.step()
-  prof.stop()
+
+  .. code-block:: python
+    import paddle
+    import paddle.profiler as profiler
+    prof = profiler.Profiler()
+    prof.start()
+      for iter in range(10):
+        #train()
+        prof.step()
+    prof.stop()
 
   2. 使用环境管理器的用法
-  import paddle
-  import paddle.profiler as profiler
-  with profiler.Profiler() as prof:
-    for iter in range(10):
-      #train()
-      prof.step()
+
+  .. code-block:: python
+    import paddle
+    import paddle.profiler as profiler
+    with profiler.Profiler() as prof:
+      for iter in range(10):
+        #train()
+        prof.step()
 
 参数:
   - **state** (str) –  性能分析状态, 取值为 'CPU' 或 'GPU' 或 'All'。'CPU'表示只分析CPU上的性能；'GPU'表示同时分析CPU和GPU上的性能；'All'表示除了同时分析CPU和GPU上的性能外，还将生成性能分析的时间轴信息 :ref:`fluid_timeline` 。
