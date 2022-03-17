@@ -204,28 +204,28 @@
     conv、max、min、prod、norm、gru、lstm、add、func、op、num、cond
     ```
 
-- 在用于API命名时，以下建议使用全称，不推荐使用缩写
+  - 在用于API命名时，以下建议使用全称，不推荐使用缩写
 
-    | 不规范命名 |   规范命名    |
-    | :-------- | :----------- |
-    |    div     |    divide     |
-    |    mul     |   multiply    |
-    |    sub     |   subtract    |
-    | floor_div  | floor_divide  |
-    |     lr     | learning_rate |
-    |    act     |  activation   |
-    |    eps     |    epsilon    |
-    |    val     |     value     |
-    |    var     |    varible    |
-    |   param    |   parameter   |
-    |    prog    |    program    |
-    |    idx     |     index     |
-    |    exe     |   executor    |
-    |    buf     |    buffer     |
-    |   trans    |   transpose   |
-    |    img     |     image     |
-    |    loc     |   location    |
-    |    len     |    length     |
+      | 不规范命名 |   规范命名    |
+      | :-------- | :----------- |
+      |    div     |    divide     |
+      |    mul     |   multiply    |
+      |    sub     |   subtract    |
+      | floor_div  | floor_divide  |
+      |     lr     | learning_rate |
+      |    act     |  activation   |
+      |    eps     |    epsilon    |
+      |    val     |     value     |
+      |    var     |    varible    |
+      |   param    |   parameter   |
+      |    prog    |    program    |
+      |    idx     |     index     |
+      |    exe     |   executor    |
+      |    buf     |    buffer     |
+      |   trans    |   transpose   |
+      |    img     |     image     |
+      |    loc     |   location    |
+      |    len     |    length     |
     
     
     
@@ -236,23 +236,23 @@
     paddle.nn.multiclass_nms2
     ```
 
-- 常见的数学计算API中的逐元素操作不需要加上elementwise前缀，按照某一轴操作不需要加上reduce前缀，一些例子如下
+  - 常见的数学计算API中的逐元素操作不需要加上elementwise前缀，按照某一轴操作不需要加上reduce前缀，一些例子如下
 
-    |  paddle2.0之前  | pytorch |  numpy   | tensorflow  |   paddle2.0之后   |
-    | :------------- | :----- | :------ | :--------- | :--------------- |
-    | elementwise_add |   add   |   add    |     add     |        add        |
-    | elementwise_sub |   sub   | subtract |  subtract   |      subract      |
-    | elementwise_mul |   mul   | multiply |  multiply   |     multiply      |
-    | elementwise_div |   div   |  divide  |   divide    | divide |
-    | elementwise_min |   min   | minimum  |   minimum   |      minimum      |
-    | elementwise_max |   max   | maximum  |   maximum   |      maximum      |
-    |   reduce_sum    |   sum   |   sum    | reduce_sum  |        sum        |
-    |   reduce_prod   |  prod   |   prod   | reduce_prod |       prod        |
-    |   reduce_min    |   min   |   min    | reduce_min  |        min        |
-    |   reduce_max    |   max   |   max    | reduce_max  |        max        |
-    |   reduce_all    |   all   |   all    | reduce_all  |        all        |
-    |   reduce_any    |   any   |   any    | reduce_any  |        any        |
-    |   reduce_mean   |  mean   |   mean   | reduce_mean |       mean        |
+      |  paddle2.0之前  | pytorch |  numpy   | tensorflow  |   paddle2.0之后   |
+      | :------------- | :----- | :------ | :--------- | :--------------- |
+      | elementwise_add |   add   |   add    |     add     |        add        |
+      | elementwise_sub |   sub   | subtract |  subtract   |      subract      |
+      | elementwise_mul |   mul   | multiply |  multiply   |     multiply      |
+      | elementwise_div |   div   |  divide  |   divide    | divide |
+      | elementwise_min |   min   | minimum  |   minimum   |      minimum      |
+      | elementwise_max |   max   | maximum  |   maximum   |      maximum      |
+      |   reduce_sum    |   sum   |   sum    | reduce_sum  |        sum        |
+      |   reduce_prod   |  prod   |   prod   | reduce_prod |       prod        |
+      |   reduce_min    |   min   |   min    | reduce_min  |        min        |
+      |   reduce_max    |   max   |   max    | reduce_max  |        max        |
+      |   reduce_all    |   all   |   all    | reduce_all  |        all        |
+      |   reduce_any    |   any   |   any    | reduce_any  |        any        |
+      |   reduce_mean   |  mean   |   mean   | reduce_mean |       mean        |
     
     
     
