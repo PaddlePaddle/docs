@@ -19,7 +19,7 @@ IpuStrategy
 
 COPY-FROM: paddle.static.IpuStrategy
 
-.. py:method:: set_graph_config(self, num_ipus, is_training, batch_size, enable_manual_shard)
+.. py:method:: set_graph_config(self, num_ipus, is_training, micro_batch_size, enable_manual_shard)
 
 该接口用于向IpuStrategy实例传递IPU构图的Graph配置。
 
@@ -27,7 +27,7 @@ COPY-FROM: paddle.static.IpuStrategy
 :::::::::
     - **num_ipus** (int，可选)- 指定IPU devices的个数，默认值为1，表示仅用一个IPU。
     - **is_training** (bool，可选)- 声明是训练还是推理，默认值为True，表示使用训练模式。
-    - **batch_size** (int，可选)- 当计算图输入的batch_size可变时，指定计算图中输入batch_size，默认值为1，表示如果batch_size可变，将默认置1。
+    - **micro_batch_size** (int，可选)- 当计算图输入的micro_batch_size可变时，指定计算图中输入micro_batch_size，默认值为1，表示如果micro_batch_size可变，将默认置1。
     - **enable_manual_shard** (bool，可选)- 是否使能分割计算图到不同IPU进行运算。仅支持当num_ipus > 1时，enable_manual_shard可以置为True。默认值为False，表示不使能该功能。
 
 代码示例
@@ -35,15 +35,16 @@ COPY-FROM: paddle.static.IpuStrategy
 
 COPY-FROM: paddle.static.IpuStrategy.set_graph_config
 
-.. py:method:: set_pipelining_config(self, enable_pipelining, batches_per_step, accumulation_factor)
+.. py:method:: set_pipelining_config(self, enable_pipelining, batches_per_step, enable_gradient_accumulation, accumulation_factor)
 
 该接口用于向IpuStrategy实例传递IPU构图的子图数据流水线配置。
 
 参数
 :::::::::
     - **enable_pipelining** (bool，可选)- 是否使能子图之间的数据流水线。仅支持当enable_manual_shard=True时，enable_pipelining可以置为True。默认值为False，表示不使能该功能。
-    - **batches_per_step** (int，可选)- 指定数据流水线每次运算多少个batch_size的数据。默认值为1，表示不使能数据流水线功能。
-    - **accumulation_factor** (int，可选)- 指定累积运算多少个batch_size更新一次权重。默认值为1，表示不使能权重累积更新功能。
+    - **batches_per_step** (int，可选)- 指定数据流水线每次运算多少个batch的数据。默认值为1，表示不使能数据流水线功能。
+    - **enable_gradient_accumulation** (bool，可选)- 是否使能梯度累积，只用于训练模式。默认值为Flase，表示不使能梯度累积功能。
+    - **accumulation_factor** (int，可选)- 指定累积运算多少个batch更新一次权重。默认值为1，表示不使能权重累积更新功能。
 
 代码示例
 :::::::::
@@ -104,6 +105,32 @@ COPY-FROM: paddle.static.IpuStrategy.set_options
 :::::::::
 
 COPY-FROM: paddle.static.IpuStrategy.get_option
+
+.. py:method:: enable_pattern(self, pattern)
+
+开启某一PopART Pattern
+
+参数
+:::::::::
+    - **pattern** (str)- 需要开启的Pattern名称。
+
+代码示例
+:::::::::
+
+COPY-FROM: paddle.static.IpuStrategy.enable_pattern
+
+.. py:method:: disable_pattern(self, pattern)
+
+关闭某一PopART Pattern
+
+参数
+:::::::::
+    - **pattern** (str)- 需要关闭的Pattern名称。
+
+代码示例
+:::::::::
+
+COPY-FROM: paddle.static.IpuStrategy.disable_pattern
 
 属性
 ::::::::::::
