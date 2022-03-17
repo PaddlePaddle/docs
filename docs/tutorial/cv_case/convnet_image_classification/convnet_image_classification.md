@@ -52,7 +52,7 @@ for index in range(10):
     plt.axis('off')
 ```
 
-<img src="D:\20_Paddle\docs\docs\tutorial\cv_case\convnet_image_classification\cnn.png"  />
+<img src="cnn.png"  />
 
 使用Cifar10接口时，我们同时可以传入transform参数，对数据进行一定的变换和处理，例如标准化操作等。这里我们将数据转成paddle的内置结构Tensor，并使用这些数据进行下面的训练和测试：
 
