@@ -9,18 +9,18 @@ ChannelShuffle
 
 参数
 :::::::::
-    - **groups** （int):要把通道分成的组数
-    - **data_format** (str，可选): 数据格式，可选："NCHW"或"NHWC"，默认:"NCHW"
-    - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **groups** (int): 要把通道分成的组数；
+    - **data_format** (str，可选): 数据格式，可选："NCHW"或"NHWC"，默认: "NCHW"；
+    - **name** (str，可选): 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
 
 形状
 :::::::::
-    - **x** (Tensor): 默认形状为（批大小，通道数，高度，宽度），即NCHW格式的4-D Tensor或NHWC格式的4-D Tensor。 其数据类型为float32, float64.
-    - **output** (Tensor): 其形状与数据类型均与输入相同。
+    - **x** (Tensor): 默认形状为 (批大小，通道数，高度，宽度)，即NCHW格式的4-D Tensor。其数据类型为float32, float64；
+    - **output** (Tensor): 其形状与数据类型均和输入相同。
 
 返回
 :::::::::
-计算ChannelShuffle的可调用对象
+计算ChannelShuffle的可调用对象。
 
 代码示例
 :::::::::
