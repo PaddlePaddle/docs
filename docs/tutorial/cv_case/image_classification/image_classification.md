@@ -18,9 +18,36 @@ print(paddle.__version__)
 
 
 ## 二、数据加载
-手写数字的MNIST数据集，包含60,000个用于训练的示例和10,000个用于测试的示例。这些数字已经过尺寸标准化并位于图像中心，图像是固定大小(28x28像素)，其值为0到1。该数据集的官方地址为：http://yann.lecun.com/exdb/mnist 。
+手写数字的MNIST数据集，包含60,000个用于训练的示例和10,000个用于测试的示例。这些数字已经过尺寸标准化并位于图像中心，图像是固定大小(28x28像素)，其值为0到255（像素值未标准化之前）。该数据集的官方地址为：http://yann.lecun.com/exdb/mnist 。
 
 我们使用飞桨框架自带的 ``paddle.vision.datasets.MNIST`` 完成mnist数据集的加载。
+
+注意：paddle.vision.datasets.MNIST API可以通过设置backend参数来指定图像的返回类型为PIL.Image 或 numpy.ndarray。更多可以参考MINIST API：[MNIST-API文档-PaddlePaddle深度学习平台](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/vision/datasets/MNIST_cn.html#mnist)
+
+我们先导入原始数据并查看大小：
+
+```python
+train_dataset_raw = paddle.vision.datasets.MNIST(mode='train', backend='cv2')
+test_dataset_raw = paddle.vision.datasets.MNIST(mode='test', backend='cv2')
+len(train_dataset_raw), len(test_dataset_raw)
+```
+
+通过结果我们可以看到训练集和测试集的大小分别为60000，10000。另外，使用MNIST API读取后，每张图片的原始数据和对应的标签存放于一个元组中。下面我们将前5张图片显示出来查看：
+
+```python
+import matplotlib.pyplot as plt
+plt.figure(figsize=(10,5))
+for img_index in range(5):
+    sample = train_dataset_raw[img_index]
+    img_data,label = sample[0], sample[1]
+    plt.subplot(1,5,img_index+1)
+    plt.imshow(img_data,cmap="gray")
+    plt.title(str(label[0]))
+```
+
+<img src="D:\20_Paddle\docs\docs\tutorial\cv_case\image_classification\demo.png" style="zoom:50%;" />
+
+我们在导入数据的同时也可以加入标准化操作，下面我们就是使用标准后的数据进行训练
 
 
 ```python
@@ -36,28 +63,17 @@ test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=transform)
 print('load finished')
 ```
 
-取训练集中的一条数据看一下。
 
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-train_data0, train_label_0 = train_dataset[0][0],train_dataset[0][1]
-train_data0 = train_data0.reshape([28,28])
-plt.figure(figsize=(2,2))
-plt.imshow(train_data0, cmap=plt.cm.binary)
-print('train_data0 label is: ' + str(train_label_0))
-```
-
-    train_data0 label is: [5]
-
-
-
-![png](output_6_1.png)
 
 
 ## 三、组网
 用paddle.nn下的API，如`Conv2D`、`MaxPool2D`、`Linear`完成LeNet的构建。
+
+LeNet的网络结构如下：
+
+![](D:\20_Paddle\docs\docs\tutorial\cv_case\image_classification\dl_3_4.jpg)
+
+根据上面网络结构，我们使用paddle中的Layer类来创建每层的网络并组网
 
 
 ```python
@@ -90,7 +106,17 @@ class LeNet(paddle.nn.Layer):
         return x
 ```
 
+创建完成后，可以实例化一个网络模型，使用paddle.Model进行封装。同时可以创建一张图片并传入网络，在使用summary功能可视化该网络结构
+
+```python
+model = paddle.Model(LeNet())
+model.summary((1,1,28,28))
+```
+
+model.summary可以输出每一层网络的输入和输出的Tensor的shape，通过此可以加深对网络的理解。读者同时可以对照此结果和上面的网络结构进行对照
+
 ## 四、方式1：基于高层API，完成模型的训练与预测
+
 通过paddle提供的`Model` 构建实例，使用封装好的训练与测试接口，快速完成模型训练与测试。
 
 ### 4.1 使用 `Model.fit`来训练模型
@@ -98,7 +124,6 @@ class LeNet(paddle.nn.Layer):
 
 ```python
 from paddle.metric import Accuracy
-model = paddle.Model(LeNet())   # 用Model封装模型
 optim = paddle.optimizer.Adam(learning_rate=0.001, parameters=model.parameters())
 
 # 配置模型
