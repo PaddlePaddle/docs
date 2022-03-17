@@ -38,7 +38,7 @@ type(img_0), img_0.shape, type(label_0), label_0
 numpy.ndarray, (32, 32, 3), numpy.ndarray, array(6, dtype=int64)
 ```
 
-可以后每张图片封装在一个元组，该元组的前面一个元素是一个3通道的彩色图片数据（形状为H *W*C），后面为这个图片的标签。下面我们使用matplot画出这些图片并加上标签查看一下：
+可以看到每张图片封装在一个元组中，该元组的前面一个元素是一个3通道的彩色图片数据（形状为H *W*C），后面为这个图片的标签。下面我们使用matplot画出这些图片并加上标签查看一下：
 
 ```python
 class_dict = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
