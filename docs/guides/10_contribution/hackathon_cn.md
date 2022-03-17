@@ -13,11 +13,13 @@
 
 ## 一、活动流程
 
-### 1、本次活动整体流程，具体说明如下：
+### 1、本次活动整体流程如图，具体说明如下：
+
+![](./img/hackathon_process.png)
 
 - 1、活动报名：[点击报名](https://www.wjx.top/vj/t8yHphe.aspx?udsid=268437) 填写相关信息，完成活动报名；
 - 2、报名成功后，你可以进入百度飞桨黑客松QQ交流群（群号：343734965），所有活动相关信息都会在群中及时同步；
-- 3、**任务认领** ：首先 fork 你想要认领的任务 ISSUE 所在 repo，然后在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/35940)** 按格式相应回复，**完成任务认领**；
+- 3、**任务认领** ：首先 fork 你想要认领的任务 ISSUE 所在 repo，然后在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234)** 按格式相应回复，**完成任务认领**；
 
 - 4、**RFC提交**：本次活动绝大多数任务（曙光OP适配除外）都需要先提交RFC（Request for Comments），再进行任务的开发：
     
@@ -105,7 +107,7 @@ PS：
 
 （1）2022年3月8日至2022年4月22日，首先在活动官网完成报名。若组队报名，则由队长统一填写报名信息，完成报名即可；
 
-（2）在GitHub 的 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/35940) 中，可以查看到本次活动的所有任务，选取感兴趣的任务，按格式回复 队名、任务序号、任务对应 fork 链接，即为完成任务认领。
+（2）在GitHub 的 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234) 中，可以查看到本次活动的所有任务，选取感兴趣的任务，按格式回复 队名、任务序号、任务对应 fork 链接，即为完成任务认领。
 
 **补充信息**：
 
@@ -115,7 +117,7 @@ PS：
 
 - 4、任务开发
 
-当你完成相应开发后，相应的代码需要以 Pull Request 的形式上传到任务 ISSUE 所在仓库，并在 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/35940) 中，按格式回复相关的提交信息。黑客松评审组一般会在3个工作日内给出作品反馈，如果符合任务要求，则实时通报该任务已经被完成。
+当你完成相应开发后，相应的代码需要以 Pull Request 的形式上传到任务 ISSUE 所在仓库，并在 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234) 中，按格式回复相关的提交信息。黑客松评审组一般会在3个工作日内给出作品反馈，如果符合任务要求，则实时通报该任务已经被完成。
 
 **注意**：
 
