@@ -22,9 +22,39 @@ print(paddle.__version__)
     2.2.0-rc0
 
 
-## 二、加载数据集
+## 二、加载数据集查看
 
-本案例将会使用飞桨提供的API完成数据集的下载并为后续的训练任务准备好数据迭代器。cifar10数据集由60000张大小为32 * 32的彩色图片组成，其中有50000张图片组成了训练集，另外10000张图片组成了测试集。这些图片分为10个类别，将训练一个模型能够把图片进行正确的分类。
+本案例将会使用飞桨提供的API完成数据集的下载并为后续的训练任务准备好数据迭代器。cifar10数据集由60000张大小为32 * 32的彩色图片组成，其中有50000张图片组成了训练集，另外10000张图片组成了测试集。这些图片分为10个类别，本案例将使用paddle训练一个模型并使用该模型对测试图片进行分类。
+
+cifar10将图片分为 'airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck'共10个类别。下面加使用Cifar10这个接口加载训练集并进行查看，对数据有个感性的认识。
+
+```python
+cifar10_train_raw = paddle.vision.datasets.Cifar10(mode='train',backend='cv2')
+img_0, label_0= cifar10_train_raw[0]
+type(img_0), img_0.shape, type(label_0), label_0
+```
+
+```python
+numpy.ndarray, (32, 32, 3), numpy.ndarray, array(6, dtype=int64)
+```
+
+可以后每张图片封装在一个元组，该元组的前面一个元素是一个3通道的彩色图片数据（形状为H *W*C），后面为这个图片的标签。下面我们使用matplot画出这些图片并加上标签查看一下：
+
+```python
+class_dict = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+plt.figure(figsize=(18,12))
+for index in range(10):
+    img, lable = cifar10_train_raw[index]
+    img = img.astype(int)
+    plt.subplot(1,10, index+1)
+    plt.imshow(img[:, :, ::-1])
+    plt.title(class_dict[lable])
+    plt.axis('off')
+```
+
+<img src="D:\20_Paddle\docs\docs\tutorial\cv_case\convnet_image_classification\cnn.png"  />
+
+使用Cifar10接口时，我们同时可以传入transform参数，对数据进行一定的变换和处理，例如标准化操作等。这里我们将数据转成paddle的内置结构Tensor，如下：
 
 
 ```python
@@ -75,6 +105,39 @@ class MyNet(paddle.nn.Layer):
         x = self.linear2(x)
         return x
 ```
+
+模型类写好后，我们可以实例化一个模型示例，并传入一张图像，使用summary功能查看一下模型的各层网络的输入输出形状：
+
+```python
+model = MyNet()
+paddle.Model(model).summary((1,3,32,32))
+```
+
+```python
+---------------------------------------------------------------------------
+ Layer (type)       Input Shape          Output Shape         Param #    
+===========================================================================
+   Conv2D-16      [[1, 3, 32, 32]]     [1, 32, 30, 30]          896      
+ MaxPool2D-11    [[1, 32, 30, 30]]     [1, 32, 15, 15]           0       
+   Conv2D-17     [[1, 32, 15, 15]]     [1, 64, 13, 13]        18,496     
+ MaxPool2D-12    [[1, 64, 13, 13]]      [1, 64, 6, 6]            0       
+   Conv2D-18      [[1, 64, 6, 6]]       [1, 64, 4, 4]         36,928     
+   Flatten-6      [[1, 64, 4, 4]]         [1, 1024]              0       
+   Linear-11        [[1, 1024]]            [1, 64]            65,600     
+   Linear-12         [[1, 64]]              [1, 1]              65       
+===========================================================================
+Total params: 121,985
+Trainable params: 121,985
+Non-trainable params: 0
+---------------------------------------------------------------------------
+Input size (MB): 0.01
+Forward/backward pass size (MB): 0.39
+Params size (MB): 0.47
+Estimated Total Size (MB): 0.87
+---------------------------------------------------------------------------
+```
+
+使用summary功能可以方便快捷对模型进行可视化和参数量统计。
 
 ## 四、模型训练&预测
 
