@@ -48,7 +48,7 @@ typedef struct C_Stream_st* C_Stream;
 
 ### 说明
 
-描述一个stream对象。
+描述一个stream对象，stream是框架内部用于执行异步任务的任务队列，同一stream中的任务按顺序执行。
 
 ## C_Event
 
@@ -60,7 +60,7 @@ typedef struct C_Event_st* C_Event;
 
 ### 说明
 
-描述一个event对象。
+描述一个event对象，event被框架内部用于同步不同stream之间的任务。
 
 ## C_Callback
 
