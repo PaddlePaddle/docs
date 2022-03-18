@@ -108,7 +108,7 @@ COPY-FROM: paddle.static.IpuStrategy.get_option
 
 .. py:method:: enable_pattern(self, pattern)
 
-开启某一PopART Pattern。
+启用某一PopART Pattern。
 
 参数
 :::::::::
@@ -121,11 +121,11 @@ COPY-FROM: paddle.static.IpuStrategy.enable_pattern
 
 .. py:method:: disable_pattern(self, pattern)
 
-关闭某一PopART Pattern。
+禁用某一PopART Pattern。
 
 参数
 :::::::::
-    - **pattern** (str)- 需要关闭的Pattern名称。
+    - **pattern** (str)- 需要禁用的Pattern名称。
 
 代码示例
 :::::::::
