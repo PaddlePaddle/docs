@@ -45,11 +45,11 @@ resize
 
     fake_img = Image.fromarray(fake_img)
 
-    converted_img = F.resize(fake_img, 224)
-    print(converted_img.size)
+    converted_img1 = F.resize(fake_img, 224)
+    print(converted_img1.size)
     # (262, 224)
 
-    converted_img = F.resize(fake_img, (200, 150))
-    print(converted_img.size)
+    converted_img2 = F.resize(fake_img, (200, 150))
+    print(converted_img2.size)
     # (150, 200)
         
