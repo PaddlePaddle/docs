@@ -55,3 +55,6 @@
 
 * :code:`MultiplicativeDecay`: 每次将当前学习率乘以lambda函数得到下一个学习率。
   相关API Reference请参考 :ref:`cn_api_paddle_optimizer_lr_MultiplicativeDecay`
+
+* :code:`CyclicLR`: 学习率根据固定频率在两个边界之间进行循环。
+  相关API Reference请参考 :ref:`_cn_api_paddle_optimizer_lr_CyclicLR`
