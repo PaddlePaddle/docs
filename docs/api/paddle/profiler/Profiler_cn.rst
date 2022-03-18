@@ -28,9 +28,11 @@ Profiler
 
     linear = paddle.nn.Linear(13, 5)
     momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-    prof = profiler.Profiler(targets=[ProfilerTarget.CPU, ProfilerTarget.GPU], 
-                        scheduler=(5, 9),
-                        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))
+
+    prof = profiler.Profiler(
+        targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
+        scheduler=(5, 9),
+        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))  
     prof.start()
     for i in range(10):
         data = paddle.randn(shape=[26])
@@ -59,9 +61,10 @@ Profiler
 
     linear = paddle.nn.Linear(13, 5)
     momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-    prof = profiler.Profiler(targets=[ProfilerTarget.CPU, ProfilerTarget.GPU], 
-                        scheduler=(1, 5),
-                        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))
+    prof = profiler.Profiler(
+        targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
+        scheduler=(1, 5),
+        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))            
     prof.start()
     for i in range(10):
         data = paddle.randn(shape=[26])
@@ -91,8 +94,9 @@ Profiler
 
     linear = paddle.nn.Linear(13, 5)
     momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-    prof = profiler.Profiler(targets=[ProfilerTarget.CPU, ProfilerTarget.GPU],
-                        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))
+    prof = profiler.Profiler(
+        targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
+        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))           
     prof.start()
     for i in range(10):
         data = paddle.randn(shape=[26])
@@ -125,8 +129,9 @@ Profiler
 
     linear = paddle.nn.Linear(13, 5)
     momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-    with profiler.Profiler(targets=[ProfilerTarget.CPU, ProfilerTarget.GPU], 
-                        scheduler=(5, 9)) as prof:
+    with profiler.Profiler(
+            targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
+            scheduler=(5, 9)) as prof:
         for i in range(10):
             data = paddle.randn(shape=[26])
             data = paddle.reshape(data, [2, 13])
@@ -165,9 +170,10 @@ Profiler
 
     linear = paddle.nn.Linear(13, 5)
     momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-    with profiler.Profiler(targets=[ProfilerTarget.CPU, ProfilerTarget.GPU], 
-                        scheduler=profiler.make_scheduler(closed=1, ready=2, record=3, repeat=1),
-                        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo')) as prof:
+    with profiler.Profiler(
+            targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
+            scheduler=profiler.make_scheduler(closed=1, ready=2, record=3, repeat=1),
+            on_trace_ready=profiler.export_chrome_tracing('./profiler_demo')) as prof:                 
         for i in range(10):
             data = paddle.randn(shape=[26])
             data = paddle.reshape(data, [2, 13])

@@ -24,9 +24,10 @@ export_protobuf
 
     linear = paddle.nn.Linear(13, 5)
     momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-    with profiler.Profiler(targets=[ProfilerTarget.CPU, ProfilerTarget.GPU], 
-                        scheduler=(3, 9),
-                        on_trace_ready=profiler.export_protobuf('./profiler_demo')) as prof:
+    with profiler.Profiler(
+            targets=[ProfilerTarget.CPU, ProfilerTarget.GPU], 
+            scheduler=(3, 9),
+            on_trace_ready=profiler.export_protobuf('./profiler_demo')) as prof:
         for i in range(10):
             data = paddle.randn(shape=[26])
             data = paddle.reshape(data, [2, 13])
