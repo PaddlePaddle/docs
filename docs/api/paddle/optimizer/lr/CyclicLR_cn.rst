@@ -38,7 +38,7 @@ cycle定义为:math:`cycle = floor(1 + epoch / (step_size_up + step_size_down)),
 
     # train on default dynamic graph mode
     linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.lr.CyclicLR(learning_rate=0.5, T_max=10, verbose=True)
+    scheduler = paddle.optimizer.lr.CyclicLR(base_learning_rate=0.5, max_learning_rate=1.0, step_size_up=15, step_size_down=5, verbose=True)
     sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameters=linear.parameters())
     for epoch in range(20):
         for batch_id in range(5):
@@ -60,7 +60,7 @@ cycle定义为:math:`cycle = floor(1 + epoch / (step_size_up + step_size_down)),
         y = paddle.static.data(name='y', shape=[None, 4, 5])
         z = paddle.static.nn.fc(x, 100)
         loss = paddle.mean(z)
-        scheduler = paddle.optimizer.lr.CyclicLR(learning_rate=0.5, T_max=10, verbose=True)
+        scheduler = paddle.optimizer.lr.CyclicLR(base_learning_rate=0.5, max_learning_rate=1.0, step_size_up=15, step_size_down=5, verbose=True)
         sgd = paddle.optimizer.SGD(learning_rate=scheduler)
         sgd.minimize(loss)
 
