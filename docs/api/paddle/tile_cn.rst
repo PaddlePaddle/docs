@@ -12,7 +12,7 @@ tile
 参数
 :::::::::
     - x (Tensor) - 输入的Tensor，数据类型为：bool、float32、float64、int32或int64。
-    - repeat_times (Tensor|tuple|list) - 指定输入 ``x`` 每个维度的复制次数。如果 ``repeat_times`` 的类型是list或tuple，它的元素可以是整数或者数据类型为int32的1-D Tensor。如果 ``repeat_times`` 的类型是Tensor，则是数据类型为int32的1-D Tensor。
+    - repeat_times (list|tuple|Tensor) - 指定输入 ``x`` 每个维度的复制次数。如果 ``repeat_times`` 的类型是list或tuple，它的元素可以是整数或者数据类型为int32的1-D Tensor。如果 ``repeat_times`` 的类型是Tensor，则是数据类型为int32的1-D Tensor。
     - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回
