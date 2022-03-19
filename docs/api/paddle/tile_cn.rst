@@ -37,7 +37,7 @@ tile
     # [[1, 2, 3, 1, 2, 3]
     #  [1, 2, 3, 1, 2, 3]]
 
-    repeat_times = paddle.to_tensor([1, 2], dtype="int32")
+    repeat_times = paddle.to_tensor([1, 2], dtype='int32')
     out = paddle.tile(data, repeat_times=repeat_times)
     np_out = out.numpy()
     # [[1, 2, 3, 1, 2, 3]]
