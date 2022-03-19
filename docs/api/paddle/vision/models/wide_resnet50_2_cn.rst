@@ -32,3 +32,4 @@ wide_resnet50_2模型，Layer的实例。
     out = model(x)
 
     print(out.shape)
+    # [1, 1000]

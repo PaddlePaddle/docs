@@ -32,3 +32,4 @@ resnext101_32x4d模型，Layer的实例。
     out = model(x)
 
     print(out.shape)
+    # [1, 1000]

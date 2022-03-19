@@ -11,7 +11,8 @@ ResNet
 :::::::::
   - **Block** (BasicBlock|BottleneckBlock) - 模型的残差模块。
   - **depth** (int，可选) - resnet模型的深度。默认值：50。
-  - **width** (int，可选) - resnet模型的基础宽度。默认值：64。
+  - **groups** (int，可选) - 各个卷积块的分组数。默认值：1。
+  - **width_per_group** (int，可选) - 各个卷积块的每个卷积组基础宽度。默认值：64。
   - **num_classes** (int, 可选) - 最后一个全连接层输出的维度。如果该值小于0，则不定义最后一个全连接层。默认值：1000。
   - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值：True。
 
@@ -27,13 +28,20 @@ ResNet模型，Layer的实例。
     from paddle.vision.models import ResNet
     from paddle.vision.models.resnet import BottleneckBlock, BasicBlock
 
+    # build ResNet with 18 layers
+    resnet18 = ResNet(BasicBlock, 18)
+
+    # build ResNet with 50 layers
     resnet50 = ResNet(BottleneckBlock, 50)
 
-    wide_resnet50_2 = ResNet(BottleneckBlock, 50, width=64*2)
+    # build Wide ResNet model
+    wide_resnet50_2 = ResNet(BottleneckBlock, 50, width_per_group=64*2)
 
-    resnet18 = ResNet(BasicBlock, 18)
+    # build ResNeXt model
+    resnext50_32x4d = ResNet(BottleneckBlock, 50, groups=32, width_per_group=4)
 
     x = paddle.rand([1, 3, 224, 224])
     out = resnet18(x)
 
     print(out.shape)
+    # [1, 1000]

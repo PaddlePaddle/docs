@@ -32,3 +32,4 @@ resnet18模型，Layer的实例。
     out = model(x)
 
     print(out.shape)
+    # [1, 1000]
