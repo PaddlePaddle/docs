@@ -26,7 +26,7 @@ tile
 
     import paddle
 
-    data = paddle.to_tensor([1, 2, 3], dtype="int32")
+    data = paddle.to_tensor([1, 2, 3], dtype='int32')
     out = paddle.tile(data, repeat_times=[2, 1])
     np_out = out.numpy()
     # [[1 2 3]
