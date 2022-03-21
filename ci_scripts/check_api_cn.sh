@@ -30,7 +30,7 @@ function filter_cn_api_files() {
 
 need_check_cn_doc_files=$(find_all_cn_api_files_modified_by_pr)
 echo $need_check_cn_doc_files
-filter_cn_api_files "${need_check_cn_doc_files}" need_check_files
+need_check_files=$(filter_cn_api_files "${need_check_cn_doc_files}")
 echo "$need_check_files"
 if [ "$need_check_files" = "" ]
 then
