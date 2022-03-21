@@ -44,7 +44,7 @@ else
     fi
 
     for file in $need_check_files;do
-        python chinese_samplecode_processor.py ../$file
+        python chinese_samplecode_processor.py ../docs/$file
         if [ $? -ne 0 ];then
             echo "chinese sample code failed, the file is ${file}"
             exit 5
