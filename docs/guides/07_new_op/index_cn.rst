@@ -8,8 +8,6 @@
 2. 外部算子：编写方法较为简洁，不涉及框架内部概念，无需重新编译飞桨框架，以外接模块的方式使用的算子
 3. Python算子：使用Python编写实现前向（forward）和反向（backward）方法，在模型组网中使用的自定义API
 
-- `自定义原生算子 <./new_op_cn.html>`_
-
 - `原生算子开发注意事项 <./op_notes_cn.html>`_
 
 - `自定义外部算子 <./new_custom_op_cn.html>`_
@@ -21,7 +19,6 @@
 .. toctree::
    :hidden:
 
-   new_op_cn.md
    op_notes_cn.md
    new_custom_op_cn.md
    new_python_op_cn.md
