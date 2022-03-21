@@ -10,7 +10,7 @@ C_Status (*create_event)(const C_Device device, C_Event* event)
 
 ### 接口说明
 
-创建一个event对象。
+创建一个event对象，event被框架内部用于同步不同stream之间的任务。硬件不支持异步执行时该接口需要空实现。
 
 ### 参数
 
@@ -28,7 +28,7 @@ C_Status (*destroy_event)(const C_Device device, C_Event event)
 
 ### 接口说明
 
-销毁一个event对象。
+销毁一个event对象。硬件不支持异步执行时该接口需要空实现。
 
 ### 参数
 
@@ -46,7 +46,7 @@ C_Status (*record_event)(const C_Device device, C_Stream stream, C_Event event)
 
 ### 接口说明
 
-在stream上记录event。
+在stream上记录event。硬件不支持异步执行时该接口需要空实现。
 
 ### 参数
 
@@ -66,7 +66,7 @@ C_Status (*query_event)(const C_Device device, C_Event event)
 
 ### 接口说明
 
-查询event是否完成，如果没有实现，PaddlePaddle 会用 synchronize_event 代替
+查询event是否完成，如果没有实现，PaddlePaddle 会用 synchronize_event 代替。
 
 ### 参数
 
@@ -84,7 +84,7 @@ C_Status (*synchronize_event)(const C_Device device, C_Event event)
 
 ### 接口说明
 
-同步event，等待event完成。
+同步event，等待event完成。硬件不支持异步执行时该接口需要空实现。
 
 ### 参数
 
