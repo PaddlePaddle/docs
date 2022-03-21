@@ -21,7 +21,7 @@ function filter_cn_api_files() {
         fi
     done
     if [[ "$__resultvar" ]] ; then
-        eval $__resultvar="$need_check_files"
+        eval $__resultvar=\"${need_check_files}\"
     else
         echo "$need_check_files"
     fi
