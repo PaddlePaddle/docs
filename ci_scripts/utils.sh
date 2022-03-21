@@ -96,3 +96,18 @@ function build_paddle() {
     pip install -U python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
     cd -
 }
+
+function find_all_cn_api_files_modified_by_pr() {
+    local __resultvar=$1
+    local remotename=upstream
+    git remote | grep ${remotename}
+    if [ $? -ne 0 ] ; then
+        remotename=origin
+    fi
+    local need_check_cn_doc_files=`git diff --numstat ${remotename}/${BRANCH} | awk '{print $NF}' | grep "docs/api/paddle/.*_cn.rst" | sed 's#docs/##g'` 
+    if [[ "$__resultvar" ]] ; then
+        eval $__resultvar="$need_check_cn_doc_files"
+    else
+        echo "$need_check_cn_doc_files"
+    fi
+}
