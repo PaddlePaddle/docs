@@ -11,16 +11,13 @@ function filter_cn_api_files() {
     local __resultvar=$2
     local need_check_files=""
     for file in `echo $git_files`;do
-        grep "code-block" ../$file > /dev/null
+        grep "code-block" ../docs/$file > /dev/null
         if [ $? -eq 0 ] ;then 
-            echo $file | grep "docs/api/paddle/.*_cn.rst" > /dev/null
-            if [ $? -eq 0 ];then
-                api_file=`echo $file | sed 's#docs/api/##g'`
-                grep -w "${api_file}" ${DIR_PATH}/api_white_list.txt > /dev/null
-                if [ $? -ne 0 ];then
-                    need_check_files="${need_check_files} $file"
-                fi 
-            fi
+            api_file=`echo $file | sed 's#api/##g'`
+            grep -w "${api_file}" ${DIR_PATH}/api_white_list.txt > /dev/null
+            if [ $? -ne 0 ];then
+                need_check_files="${need_check_files} $file"
+            fi 
         fi
     done
     if [[ "$__resultvar" ]] ; then
