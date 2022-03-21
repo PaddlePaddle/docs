@@ -21,5 +21,5 @@ cuda
     import paddle
 
     paddle.version.cuda()
-    # '10.2'
+    # '11.2'
 
