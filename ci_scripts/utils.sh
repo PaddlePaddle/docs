@@ -100,7 +100,7 @@ function build_paddle() {
 function find_all_cn_api_files_modified_by_pr() {
     local __resultvar=$1
     local remotename=upstream
-    git remote | grep ${remotename}
+    git remote | grep ${remotename} > /dev/null
     if [ $? -ne 0 ] ; then
         remotename=origin
     fi
