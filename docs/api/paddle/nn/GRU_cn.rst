@@ -41,12 +41,12 @@ GRU
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
     
 输入:
-    - **inputs** (Tensor) - 网络输入。如果time_major为True，则Tensor的形状为[time_steps,batch_size,input_size]，如果time_major为False，则Tensor的形状为[batch_size,time_steps,input_size]。
-    - **initial_states** (Tensor，可选) - 网络的初始状态，形状为[num_lauers * num_directions, batch_size, hidden_size]。如果没有给出则会以全零初始化。
-    - **sequence_length** (Tensor，可选) - 指定输入序列的长度，形状为[batch_size]，数据类型为int64或int32。在输入序列中所有time step不小于sequence_length的元素都会被当作填充元素处理（状态不再更新）。
+    - **inputs** (Tensor) - 网络输入。如果time_major为True，则Tensor的形状为[time_steps,batch_size,input_size]，如果time_major为False，则Tensor的形状为[batch_size,time_steps,input_size]。`time_steps` 指输入序列的长度。
+    - **initial_states** (Tensor，可选) - 网络的初始状态，形状为[num_layers * num_directions, batch_size, hidden_size]。如果没有给出则会以全零初始化。
+    - **sequence_length** (Tensor，可选) - 指定输入序列的实际长度，形状为[batch_size]，数据类型为int64或int32。在输入序列中所有time step不小于sequence_length的元素都会被当作填充元素处理（状态不再更新）。
 
 输出:
-    - **outputs** (Tensor) - 输出，由前向和后向cell的输出拼接得到。如果time_major为True，则Tensor的形状为[time_steps,batch_size,num_directions * hidden_size]，如果time_major为False，则Tensor的形状为[batch_size,time_steps,num_directions * hidden_size]，当direction设置为bidirectional时，num_directions等于2，否则等于1。
+    - **outputs** (Tensor) - 输出，由前向和后向cell的输出拼接得到。如果time_major为True，则Tensor的形状为[time_steps,batch_size,num_directions * hidden_size]，如果time_major为False，则Tensor的形状为[batch_size,time_steps,num_directions * hidden_size]，当direction设置为bidirectional时，num_directions等于2，否则等于1。`time_steps` 指输出序列的长度。
     - **final_states** (Tensor) - 最终状态。形状为[num_layers * num_directions, batch_size, hidden_size]，当direction设置为bidirectional时，num_directions等于2，返回值的前向和后向的状态的索引是0，2，4，6...和1，3，5，7...，否则等于1。
 
 **代码示例**：
