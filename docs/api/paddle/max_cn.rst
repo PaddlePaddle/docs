@@ -19,6 +19,7 @@ max
    - **keepdim** （bool）- 是否在输出Tensor中保留减小的维度。如果keepdim 为 False，结果张量的维度将比输入张量的小，默认值为False。
    - **name** （str， 可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
+
 返回
 :::::::::
    Tensor, 在指定axis上进行求最大值运算的Tensor，数据类型和输入数据类型一致。
