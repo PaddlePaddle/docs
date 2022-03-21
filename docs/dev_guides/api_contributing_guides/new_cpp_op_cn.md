@@ -1,4 +1,4 @@
-# 自定义原生算子
+# C++ OP 开发（新增原生算子）
 
 > 注：飞桨原生算子的开发范式正在进行重构与升级，升级后算子开发方式会大幅简化，我们会及时更新本文档内容，升级后的算子开发范式预计会在2.3版本正式上线。
 
@@ -244,7 +244,7 @@ void TraceInferMeta(
     sizes.erase(sizes.begin() + std::min(dim1_, dim2_));
   }
   out->set_dims(phi::make_ddim(sizes));
-  out->set_dims(x.dtype());
+  out->set_dtype(x.dtype());
 }
 ```
 
