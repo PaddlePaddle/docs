@@ -671,7 +671,7 @@ make -j$(nproc)
 **注意：**
 新增op后请重新执行`cmake`命令，然后再执行`make`命令编译paddle。
 
-## 3. 封装Python API
+## 4. 封装Python API
 
 系统会对新增的Op即Kernel自动绑定Python，并链接到生成的lib库中，然后在Python端定义相应的API，在API内调用新增算子，并添加相应的中英文文档描述即可。
 
@@ -781,7 +781,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 - Python API 文档
     - 参考示例格式进行添加，内容尽可能准确、翔实，详细规范请参考 [PaddlePaddle 文档](https://github.com/PaddlePaddle/docs/wiki)
 
-## 4. 添加单元测试
+## 5. 添加单元测试
 
 单测包括对比前向Op不同设备(CPU、CUDA)的实现、对比反向OP不同设备(CPU、CUDA)的实现、反向Op的梯度测试。下面介绍介绍[`TraceOp`的单元测试](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_trace_op.py)。
 
@@ -789,7 +789,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 单测中的测试用例需要尽可能的覆盖Kernel中的所有分支。
 
-### 4.1 前向 Operator 单测
+### 5.1 前向 Operator 单测
 
 Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里完成。测试Operator，需要：
 
@@ -830,7 +830,7 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
     - `self.inputs` : 定义输入，类型为`numpy.array`，并初始化。
     - `self.outputs` : 定义输出，并在Python脚本中完成与operator同样的计算逻辑，返回Python端的计算结果。
 
-### 4.2 反向 operator 单测
+### 5.2 反向 operator 单测
 
 而反向测试中：
 
@@ -855,7 +855,7 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
 其他有关单元测试添加的注意事项请参考 [《Op开发手册》](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index) 及 [《Paddle单元测试规范》](https://github.com/PaddlePaddle/Paddle/wiki/PaddlePaddle-Unit-test-specification)。
 
 
-### 4.3 编译和执行
+### 5.3 编译和执行
 
 `python/paddle/fluid/tests/unittests/` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
 
@@ -877,9 +877,9 @@ ctest -R test_trace_op -V
 
 - 注册Op时的类型名，需要和该Op的名字一样。即不允许在`A_op.cc`里面，注册`REGISTER_OPERATOR(B, ...)`等，这将会导致单元测试出错。
 
-## 5. 其他编码要点
+## 6. 其他编码要点
 
-### 5.1 报错检查
+### 6.1 报错检查
 
 实现Op时检查数据的合法性需要使用PADDLE_ENFORCE以及PADDLE_ENFORCE_EQ等宏定义，基本格式如下：
 
