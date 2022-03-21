@@ -75,3 +75,24 @@ function get_paddle_pr_num_from_docs_pr_info(){
     echo ${arr_kv[PADDLEPADDLE_PR]}
     return 0
 }
+
+function install_paddle() {
+    # try to download paddle, and install
+    # PADDLE_WHL is defined in ci_start.sh
+    pip install --no-cache-dir -i https://mirror.baidu.com/pypi/simple ${PADDLE_WHL}
+    # if failed, build paddle
+    if [ $? -ne 0 ];then
+        build_paddle
+    fi
+}
+
+function build_paddle() {
+    git clone --depth=1 https://github.com/PaddlePaddle/Paddle.git
+    mkdir Paddle/build
+    cd Paddle/build
+
+    cmake .. -DPY_VERSION=3.8 -DWITH_GPU=ON  -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    make -j`nproc`
+    pip install -U python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
+    cd -
+}

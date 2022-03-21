@@ -1,26 +1,8 @@
 #!/bin/bash
 set -x
 
-function install_paddle() {
-    # try to download paddle, and install
-    # PADDLE_WHL is defined in ci_start.sh
-    pip install --no-cache-dir -i https://mirror.baidu.com/pypi/simple ${PADDLE_WHL}
-    # if failed, build paddle
-    if [ $? -ne 0 ];then
-        build_paddle
-    fi
-}
-
-function build_paddle() {
-    git clone --depth=1 https://github.com/PaddlePaddle/Paddle.git
-    mkdir Paddle/build
-    cd Paddle/build
-
-    cmake .. -DPY_VERSION=3.8 -DWITH_GPU=ON  -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
-    make -j`nproc`
-    pip install -U python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
-    cd -
-}
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+source ${SCRIPT_DIR}/utils.sh
 
 need_check_files=""
 function find_need_check_files() {
@@ -49,7 +31,7 @@ if [ "$need_check_files" = "" -a "$need_check_cn_doc_files" = "" ]
 then
     echo "need check files is empty, skip chinese api check"
 else
-    echo "need check files is not empty, begin to build and install paddle"
+    echo "need check files is not empty, begin to install paddle"
     install_paddle
     if [ $? -ne 0 ];then
         echo "install paddle error"
