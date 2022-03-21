@@ -40,8 +40,10 @@ if [ $? -ne 0 ];then
     exit 1
 fi
 
+need_check_cn_doc_files=$(find_all_cn_api_files_modified_by_pr)
+echo $need_check_cn_doc_files
 # 3 Chinese api docs check
-/bin/bash -x ${DIR_PATH}/check_api_cn.sh
+/bin/bash -x ${DIR_PATH}/check_api_cn.sh "${need_check_cn_doc_files}"
 if [ $? -ne 0 ];then
     exit 1
 fi
