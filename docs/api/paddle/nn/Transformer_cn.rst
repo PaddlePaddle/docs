@@ -44,7 +44,7 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
     - **tgt_mask** (Tensor，可选) - 在解码器的自注意力机制(Self Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor。它的形状应该是，或者能被广播到 ``[batch_size, nhead, target_length, target_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
     - **memory_mask** (Tensor，可选) - 在解码器的交叉注意力机制(Cross Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor，通常情况下指的是 padding 的部分。它的形状应该是，或者能被广播到 ``[batch_size, nhead, target_length, source_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
 
-返回：Tensor，Transformer decoder 的输出。其形状和数据类型与 ``tgt`` 相同。
+返回：Tensor，Transformer 解码器的输出。其形状和数据类型与 ``tgt`` 相同。
 
 
 .. py:method:: generate_square_subsequent_mask(self, length)
