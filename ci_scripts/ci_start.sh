@@ -104,6 +104,7 @@ else
     jsonfn=${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/api_info_all.json
     if [ -f $jsonfn ] ; then
         echo "$jsonfn exists."
+        /bin/bash ${DIR_PATH}/check_api_parameters.sh "${need_check_cn_doc_files}" ${jsonfn}
     else
         echo "$jsonfn not exists."
     fi
