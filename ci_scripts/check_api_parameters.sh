@@ -34,6 +34,7 @@ then
 else
     for file in $need_check_files; do
         echo "${file} TODO"
+        python check_api_parameters.py --rst-files "${need_check_files}" --api-info $2
         if [ $? -ne 0 ];then
             echo "api parameters check failed, the file is ${file}"
             exit 5
