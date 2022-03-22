@@ -43,7 +43,7 @@ def parse_args():
     return args
 
 
-def check(rstfiles, apiinfo):
+def check_api_parameters(rstfiles, apiinfo):
     """check function's parameters same as its origin definition.
 
     such as `.. py:function:: paddle.version.cuda()`
@@ -78,11 +78,19 @@ def check(rstfiles, apiinfo):
     return check_passed, check_failed, api_notfound
 
 
+def check_api_params_desc():
+    """chech the Args Segment.
+
+    是不是用docutils来解析rst文件的好？不要暴力正则表达式了？
+    """
+    ...
+
+
 if __name__ == '__main__':
     args = parse_args()
     rstfiles = args.rst_files.split(' ')
     apiinfo = json.load(open(args.api_info_file))
-    check_passed, check_failed, api_notfound = check(
+    check_passed, check_failed, api_notfound = check_api_parameters(
         rstfiles=rstfiles, apiinfo=apiinfo)
     result = True
     if check_failed:
