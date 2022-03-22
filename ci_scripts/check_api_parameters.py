@@ -88,7 +88,7 @@ def check_api_params_desc():
 
 if __name__ == '__main__':
     args = parse_args()
-    rstfiles = args.rst_files.split(' ')
+    rstfiles = [fn for fn in args.rst_files.split(' ') if fn]
     apiinfo = json.load(open(args.api_info_file))
     check_passed, check_failed, api_notfound = check_api_parameters(
         rstfiles=rstfiles, apiinfo=apiinfo)

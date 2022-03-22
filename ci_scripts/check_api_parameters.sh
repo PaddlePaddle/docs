@@ -32,13 +32,9 @@ if [ "$need_check_files" = "" ]
 then
     echo "need check files is empty, skip api parameters check"
 else
-    for file in $need_check_files; do
-        echo "${file} TODO"
-        python check_api_parameters.py --rst-files "${need_check_files}" --api-info $2
-        if [ $? -ne 0 ];then
-            echo "api parameters check failed, the file is ${file}"
-            exit 5
-        fi
-    done
-
+    python check_api_parameters.py --rst-files "${need_check_files}" --api-info $2
+    if [ $? -ne 0 ];then
+        echo "api parameters check failed."
+        exit 5
+    fi
 fi
