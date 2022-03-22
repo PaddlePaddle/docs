@@ -15,7 +15,7 @@
 
 ### 1、本次活动整体流程如图，具体说明如下：
 
-![](./img/hackathon_process.png)
+![](https://github.com/PaddlePaddle/docs/blob/release/2.2/docs/guides/10_contribution/img/hackathon_process.png)
 
 - 1、活动报名：[点击报名](https://www.wjx.top/vj/t8yHphe.aspx?udsid=268437) 填写相关信息，完成活动报名；
 - 2、报名成功后，你可以进入百度飞桨黑客松QQ交流群（群号：343734965），所有活动相关信息都会在群中及时同步；
