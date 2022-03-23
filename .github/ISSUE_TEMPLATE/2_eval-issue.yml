@@ -28,7 +28,6 @@ body:
       - API文档对该API的描述，是否与API的行为保持一致？
       - API文档提供的示例代码能否跑通？
       - 中英文API文档的内容是否严格一致？
-      - API文档没有 word by word的copy竞品文档中的内容？
   validations:
     required: false
 
