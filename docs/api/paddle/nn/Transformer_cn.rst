@@ -82,10 +82,10 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
 
 
 参数：
-    - **length** (tuple|list|Tensor) - 输出Tensor的形状， ``shape`` 的数据类型为int32或者int64。
+    - **length** (int|Tensor) - 序列的长度，``length`` 的数据类型为 int32 或者 int64。若为 Tensor，则当前 Tensor 需仅包含一个数值。
 
 
-返回：Tensor，根据输入的 ``length`` 具体的大小生成方形的掩码。
+返回：Tensor，根据输入的 ``length`` 具体的大小生成的形状为 ``[length, length]`` 方形的掩码。
 
 
 **代码示例**：
