@@ -95,10 +95,9 @@ if __name__ == '__main__':
     result = True
     if check_failed:
         result = False
-        print(f'check_failed: {check_failed}')
+        print(f'check_api_parameters failed: {check_failed}')
     if api_notfound:
-        result = False
-        print(f'funcname not found in: {api_notfound}')
+        print(f'check_api_parameters funcname not found in: {api_notfound}')
     if result:
         exit(0)
     else:
