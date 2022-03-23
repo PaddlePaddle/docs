@@ -1,6 +1,6 @@
 name: 📝 评估 Eval Issue
 description: 文档评估工作小组。 Document evaluation working group.
-labels: []
+labels: [eval]
 
 body:
 - type: markdown
