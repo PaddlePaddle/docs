@@ -15,25 +15,27 @@
 
 ### 1、本次活动整体流程如图，具体说明如下：
 
-![](https://github.com/PaddlePaddle/docs/blob/release/2.2/docs/guides/10_contribution/img/hackathon_process.png)
+![](https://github.com/PaddlePaddle/docs/blob/release/2.2/docs/guides/10_contribution/img/hackathon_process.png?raw=text)
 
-- 1、活动报名：[点击报名](https://www.wjx.top/vj/t8yHphe.aspx?udsid=268437) 填写相关信息，完成活动报名；
+- 1、活动报名：[点击报名](https://www.wjx.top/vj/t8yHphe.aspx?udsid=268437) 填写相关信息，完成活动报名（强烈推荐大家组队完成，组队完成提交后，将额外获得飞桨黑客松定制勋章，PS：该勋章仅该环节可获得）；
 - 2、报名成功后，你可以进入百度飞桨黑客松QQ交流群（群号：343734965），所有活动相关信息都会在群中及时同步；
 - 3、**任务认领** ：首先 fork 你想要认领的任务 ISSUE 所在 repo，然后在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234)** 按格式相应回复，**完成任务认领**；
 
 - 4、**RFC提交**：本次活动绝大多数任务（曙光OP适配除外）都需要先提交RFC（Request for Comments），再进行任务的开发：
     
     - 首先，请按照任务要求，在 [PaddlePaddle/community/rfc](https://github.com/PaddlePaddle/community) 对应的目录下新建RFC，并对任务进行技术方案设计；
-    - **3月31日** 前将 RFC 以 Pull Request(PR) 形式提交，并按模板发送邮件至 paddle-hack@baidu.com ；
+    - 将 RFC 以 Pull Request(PR) 形式提交，并按 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，以及在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234)** 下回复；
     - 黑客松评审组将在每个任务提交的所有有效方案中选择一个最佳方案，确认为本任务的 Leading Developer，并在开发方向上进行一定的指导，完善后的技术方案将会同步给所有任务提交小组，推荐大家基于最佳方案进行相应开发；
+    
+    注： [RFC设计文档模板](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md)。
 
 - 5、**任务提交**：完成项目开发后，
 
     - 你需要在相应任务的代码仓库（repo）中提交 Pull Request（需包含任务说明中的提交内容）；
-    - 并在 GitHub 的 Pinned ISSUE 下按格式回复你任务的 Pull Request 地址，依据参考模板发送提交邮件，**正式完成任务提交**；
+    - 并在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234)** 下按格式回复你任务的 Pull Request 地址，依据 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送提交邮件，**正式完成任务提交**；
 
 
-- 6、在任务提交后 3 个工作日内，黑客松评审组将对作品进行验收并给出相应反馈。如果该作品符合要求，黑客松评审组将会及时宣布该任务已被完成并更新活动相关信息，**该任务后续不再验收其他提交**。
+- 6、在任务提交后 3 个工作日内，黑客松评审组将对作品进行验收并回复邮件。如果该作品符合要求，黑客松评审组将会及时宣布该任务已被完成并更新活动相关信息，**该任务后续不再验收其他提交**。
 
 ### 2、活动日程安排
 
@@ -42,6 +44,7 @@
 | **2022/03/08 20:00 GMT+8** | 活动开启（报名开启，任务认领、作品提交、开放性任务提交通道同步开启） |
 | **2022/03/31 23:59 GMT+8** | 提案截止（提案提交通道关闭）                   |
 | **2022/04/02 23:59 GMT+8** | 名单公布（公布任务对应最佳提案，为该任务 Leading Developer） |
+| **2022/04/22 23:59 GMT+8** | 报名截止（本次活动报名通道关闭） |
 | **2022/04/29 23:59 GMT+8** | 最终评估（任务认领、作品提交、开放性任务提交通道关闭，作品进入最终评估环节） |
 | **2022/05/10**             | 结果公示（作品以及获奖团队/个人公布）                        |
 | **2022/05/20**             | 颁奖仪式（WAVE SUMMIT+深度学习开发者峰会）                   |
@@ -77,7 +80,7 @@ PS：
 
 - 活动中完成任务的开发者，可获得百度招聘绿色通道
 
-- 活动中完成作品提交的开发者，均可获得百度开源证书奖励
+- 活动中完成任务的开发者，均可获得百度开源证书奖励
 
 #### **特别注意：**
 
@@ -95,11 +98,11 @@ PS：
 
 （1）活动主办、合作项目单位，以及有机会接触任务背景的员工不得参与本次活动；
 
-（2）百度公司员工可参与比赛，但不得领取奖金。
+（2）百度公司其他员工可参与活动，并可获得百度额外奖励。
 
 - 2、活动须知
 
-（1）支持以个人或团队的形式报名并认领任务，允许跨单位自由组队；
+（1）支持以个人或团队的形式报名并认领任务，允许跨单位自由组队（强烈推荐大家组队完成，组队完成提交后，将额外获得飞桨黑客松定制勋章，PS：该勋章仅该环节可获得）；
 
 （2）报名须保证所提供的个人信息真实、准确、有效。如发放奖金或礼品时发现报名人员填写的报名信息与个人身份不相符，组委会将保留停止发放奖金或礼品的权利。
 
@@ -111,7 +114,7 @@ PS：
 
 **补充信息**：
 
-（1）**组队报名方法**：由队长统一填写报名信息（包括队员基本信息）即可。也可以个人形式完成报名后，联系工作人员进行组队；
+（1）**组队报名方法**：需所有队员均填写 [报名问卷](https://www.wjx.top/vj/t8yHphe.aspx?udsid=268437) 中的报名信息。若报名信息有误，请联系工作人员进行组队；
 
 （2）官方交流群 【飞桨黑客松QQ交流群】：343734965。
 
@@ -121,7 +124,7 @@ PS：
 
 **注意**：
 
-（1）活动评审会会**按日更新**所有任务的状态信息到 Pinned ISSUE 中；
+（1）活动评审会会**按日更新**所有任务的状态信息到 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234) 中；
 
 （2）如果发现有恶意提交或抄袭等不正当行为，将会取消参与活动资格。
 
