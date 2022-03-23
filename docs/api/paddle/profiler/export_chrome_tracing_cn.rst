@@ -5,7 +5,9 @@ export_chrome_tracing
 
 .. py:function:: paddle.profiler.export_chrome_tracing(dir_name: str, worker_name: Optional[str]=None)
 
-该接口用于生成将性能数据保存到google chrome tracing文件的回调函数。
+该接口返回一个回调函数，用于将采集的性能数据保存到google chrome tracing格式的文件。
+输出的文件将会保存在目录``dir_name``中， 文件名的前缀将会被设置成``worker_name``。
+如果``worker_name``没有被设置，默认名字为 [hostname]_[pid]。
 
 参数:
     - **dir_name** (str) - 性能数据导出所保存到的文件夹路径。
@@ -19,20 +21,11 @@ export_chrome_tracing
 
 .. code-block:: python
 
-    import paddle
     import paddle.profiler as profiler
-
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
     with profiler.Profiler(
-            targets=[ProfilerTarget.CPU, ProfilerTarget.GPU], 
-            scheduler=(3, 9),
-            on_trace_ready=profiler.export_chrome_tracing('./profiler_demo')) as prof:
-        for i in range(10):
-            data = paddle.randn(shape=[26])
-            data = paddle.reshape(data, [2, 13])
-            out = linear(data)
-            out.backward()
-            momentum.step()
-            momentum.clear_grad()
-            prof.step()
+            targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
+            scheduler = (3, 10),
+            on_trace_ready=profiler.export_protobuf('./log')) as p:
+        for iter in range(10):
+            #train()
+            p.step()

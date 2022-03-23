@@ -9,73 +9,90 @@ Profiler
 
 参数:
     - **targets** (list, 可选) - 指定性能分析所要分析的设备，默认会自动分析所有存在且支持的设备，当前为CPU和GPU（可选值见 :ref:`ProfilerState <cn_api_profiler_profilertarget>` )。
-    - **scheduler** (Callable|tuple, 可选) - 性能分析器状态的调度器，默认的调度器为始终让性能分析器处于RECORD状态(详情见 :ref:`状态说明 <cn_api_profiler_profilerstate>` ）。可以自己定义调度器函数，调度器的输入是一个整数，表示当前的step, 返回值对应的性能分析器状态，可以通过 :ref:`make_scheduler <cn_api_profiler_make_scheduler>` 接口生成调度器，或者直接放个tuple, 如(2, 5),代表第2-4(不包括5，二元组表示的区间前闭后开）个step处于RECORD状态。
-    - **on_trace_ready** (Callable, 可选) - 处理性能分析器的回调函数，当性能分析器处于RECORD_AND_RETURN状态或者结束时返回性能数据，将会调用on_trace_ready这个回调函数进行处理，默认为 :ref:`export_chrome_tracing <cn_api_profiler_export_chrome_tracing>` (./profiler_log/)。
+    - **scheduler** (Callable|tuple, 可选) - 如果是Callable对象，代表是性能分析器状态的调度器，该调度器会接受一个step_num参数并返回相应的状态(详情见 :ref:`状态说明 <cn_api_profiler_profilerstate>` ），可以通过 :ref:`make_scheduler <cn_api_profiler_make_scheduler>` 接口生成调度器。如果没有设置这个参数(None)，默认的调度器会一直让性能分析器保持RECORD状态到结束。如果是tuple类型, 有两个值start_batch和end_batch，则会在[start_batch, end_batch)(前闭后开区间)内处于RECORD状态进行性能分析。
+    - **on_trace_ready** (Callable, 可选) - 处理性能分析器的回调函数，该回调函数接受Profiler对象作为参数，给用户提供了一种自定义后处理的方式。当性能分析器处于RECORD_AND_RETURN状态或者结束时返回性能数据，将会调用该回调函数进行处理，默认为 :ref:`export_chrome_tracing <cn_api_profiler_export_chrome_tracing>` (./profiler_log/)。
 
+**代码示例**
+
+1. 性能分析 batch [2, 5)
+
+.. code-block:: python
+
+    import paddle.profiler as profiler
+    with profiler.Profiler(
+            targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
+            scheduler = (2, 5),
+            on_trace_ready = profiler.export_chrome_tracing('./log')) as p:
+        for iter in range(10):
+            #train()
+            p.step()
+
+2. 性能分析 batch [2,4], [7, 9], [11,13]
+
+.. code-block:: python
+
+    import paddle.profiler as profiler
+    with profiler.Profiler(
+            targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
+            scheduler = profiler.make_scheduler(closed=1, ready=1, record=3, repeat=3),
+            on_trace_ready = profiler.export_chrome_tracing('./log')) as p:
+        for iter in range(10):
+            #train()
+            p.step()
+
+3. 使用全部默认参数，且脱离环境管理器的用法，性能分析整个运行过程
+
+.. code-block:: python
+
+    import paddle.profiler as profiler
+    p = profiler.Profiler()
+    p.start()
+    for iter in range(10):
+        #train()
+        p.step()
+    p.stop()
+    p.summary()
 
 .. py:method:: start()
 
+开启性能分析器，进入状态scheduler(0)。即
 性能分析器状态从CLOSED -> scheduler(0), 并根据新的状态触发相应行为。
 
 **代码示例**
 
-第[5-9)个step收集性能数据，并导出chrometracing文件，打印表单。
-
 .. code-block:: python
 
-    import paddle
     import paddle.profiler as profiler
-
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-
     prof = profiler.Profiler(
         targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
-        scheduler=(5, 9),
-        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))  
+        scheduler = (1, 9),
+        on_trace_ready = profiler.export_chrome_tracing('./log'))
     prof.start()
-    for i in range(10):
-        data = paddle.randn(shape=[26])
-        data = paddle.reshape(data, [2, 13])
-        out = linear(data)
-        out.backward()
-        momentum.step()
-        momentum.clear_grad()
+    for iter in range(10):
+        #train()
         prof.step()
     prof.stop()
-    prof.summary()
 
 
 .. py:method:: stop()
 
+停止性能分析器，并且进入状态CLOSED。即
 性能分析器状态从当前状态 -> CLOSED，性能分析器关闭，如果有性能数据返回，调用on_trace_ready回调函数进行处理。
 
 **代码示例**
 
-第[1-5)个step收集性能数据，并导出chrometracing文件，打印表单。
-
 .. code-block:: python
 
-    import paddle
     import paddle.profiler as profiler
-
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
     prof = profiler.Profiler(
         targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
-        scheduler=(1, 5),
-        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))            
+        scheduler = (1, 7),
+        on_trace_ready = profiler.export_chrome_tracing('./log'))
     prof.start()
-    for i in range(10):
-        data = paddle.randn(shape=[26])
-        data = paddle.reshape(data, [2, 13])
-        out = linear(data)
-        out.backward()
-        momentum.step()
-        momentum.clear_grad()
+    for iter in range(10):
+        #train()
         prof.step()
     prof.stop()
-    prof.summary()
 
 
 .. py:method:: step()
@@ -85,29 +102,19 @@ Profiler
 
 **代码示例**
 
-收集整个执行过程的性能数据，并导出chrometracing文件，打印表单。
-
 .. code-block:: python
 
-    import paddle
     import paddle.profiler as profiler
-
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
     prof = profiler.Profiler(
         targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
-        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))           
+        scheduler = (3, 7),
+        on_trace_ready = profiler.export_chrome_tracing('./log'))
+
     prof.start()
-    for i in range(10):
-        data = paddle.randn(shape=[26])
-        data = paddle.reshape(data, [2, 13])
-        out = linear(data)
-        out.backward()
-        momentum.step()
-        momentum.clear_grad()
+    for iter in range(10):
+        #train()
         prof.step()
     prof.stop()
-    prof.summary()
 
 
 .. py:method:: export(path, format="json")
@@ -120,29 +127,18 @@ Profiler
 
 **代码示例**
 
-第[5-9)个step收集性能数据，并导出protobuf文件，打印表单。
-
 .. code-block:: python
 
-    import paddle
     import paddle.profiler as profiler
-
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-    with profiler.Profiler(
-            targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
-            scheduler=(5, 9)) as prof:
-        for i in range(10):
-            data = paddle.randn(shape=[26])
-            data = paddle.reshape(data, [2, 13])
-            out = linear(data)
-            out.backward()
-            momentum.step()
-            momentum.clear_grad()
-            prof.step()
-    prof.export("profiler_data.pb", format="pb")
-    prof.summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms')
-
+    prof = profiler.Profiler(
+        targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
+        scheduler = (3, 7))
+    prof.start()
+    for iter in range(10):
+        #train()
+        prof.step()
+    prof.stop()
+    prof.export(path="./profiler_data.json", format="json")
 
 
 .. _cn_api_profiler_profiler_summary:
@@ -160,26 +156,16 @@ Profiler
 
 **代码示例**
 
-
-第0个step处于CLOSED， 第[1 - 2]个step处于READY, 第[3 - 5]个step处于RECORD，在第5个step返回收集的性能数据，并导出chrome tracing文件，打印表单。
-
 .. code-block:: python
 
-    import paddle
     import paddle.profiler as profiler
-
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=0.0003, parameters = linear.parameters())
-    with profiler.Profiler(
-            targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
-            scheduler=profiler.make_scheduler(closed=1, ready=2, record=3, repeat=1),
-            on_trace_ready=profiler.export_chrome_tracing('./profiler_demo')) as prof:                 
-        for i in range(10):
-            data = paddle.randn(shape=[26])
-            data = paddle.reshape(data, [2, 13])
-            out = linear(data)
-            out.backward()
-            momentum.step()
-            momentum.clear_grad()
-            prof.step()
-    prof.summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms')
+    prof = profiler.Profiler(
+        targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
+        scheduler = (3, 7),
+        on_trace_ready = profiler.export_chrome_tracing('./log'))
+    prof.start()
+    for iter in range(10):
+        #train()
+        prof.step()
+    prof.stop()
+    prof.summary(sorted_by=profiler.SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms')
