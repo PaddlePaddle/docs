@@ -49,7 +49,7 @@ cmake --build \
 pip install -U build/python/dist/paddlepaddle-0.0.0-cp37-cp37m-linux_x86_64.whl
 ```
 
-更多关于 ipuof 配置的信息可见 [ipuof-configuration-file](https://docs.graphcore.ai/projects/vipu-admin/en/latest/cli_reference.html?highlight=ipuof#ipuof-configuration-file)
+更多关于 ipuof 配置的信息可见 [ipuof-configuration-file](https://docs.graphcore.ai/projects/vipu-admin/en/latest/cli_reference.html?highlight=ipuof#ipuof-configuration-file)。
 
 **第三步** 验证安装
 
