@@ -3,7 +3,7 @@
 BatchSampler
 -------------------------------
 
-.. py:class:: paddle.io.BatchSampler(dataset=None, sampler=None, shuffle=Fasle, batch_size=1, drop_last=False)
+.. py:class:: paddle.io.BatchSampler(dataset=None, sampler=None, shuffle=False, batch_size=1, drop_last=False)
 
 批采样器的基础实现，用于 ``paddle.io.DataLoader`` 中迭代式获取mini-batch的样本下标数组，数组长度与 ``batch_size`` 一致。
 
