@@ -24,6 +24,9 @@ http://paddlemodels.bj.bcebos.com/wmt/wmt14.tgz
 返回值
 :::::::::
 ``Dataset``，WMT14数据集实例。
+  - src_ids (np.array) - 源语言当前的token id序列。
+  - trg_ids (np.array) - 目标语言当前的token id序列。
+  - trg_ids_next (np.array) - 目标语言下一段的token id序列。
 
 代码示例
 :::::::::
