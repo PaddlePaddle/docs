@@ -29,7 +29,7 @@ COPY_FROM: paddle.profiler.RecordEvent:code-example1
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.RecordEvent.begin:code-example1
+COPY_FROM: paddle.profiler.RecordEvent:code-example2
 
 
 .. py:method:: end()
@@ -39,4 +39,4 @@ COPY_FROM: paddle.profiler.RecordEvent.begin:code-example1
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.RecordEvent.end:code-example1
+COPY_FROM: paddle.profiler.RecordEvent:code-example3
