@@ -17,31 +17,32 @@ make_scheduler
                                 - - - - - - - - - - - -
 
         注：repeat <= 0 意味着该状态转换过程会持续到性能分析器结束。
-参数:
+
+参数
+:::::::::
+
     - **closed** (int) - 处于ProfilerState.CLOSED状态的step数量。
     - **ready** (int) - 处于ProfilerState.CLOSED状态的step数量。
     - **record** (int) - 处于ProfilerState.RECORD状态的step数量, record的最后一个step会处于ProfilerState.RECORD_AND_RETURN状态。
-    - **repeat** (int, 可选) - 调度器重复该状态调度过程的次数, 默认值为0意味着一直重复该调度过程。
-    - **skip_first** (int, 可选) - 跳过前skip_first个step，不参与状态调度，并处于ProfilerState.CLOSED状态。
+    - **repeat** (int, 可选) - 调度器重复该状态调度过程的次数, 默认值为0, 意味着一直重复该调度过程直到性能分析器结束。
+    - **skip_first** (int, 可选) - 跳过前skip_first个step，不参与状态调度，并处于ProfilerState.CLOSED状态，默认值为0。
 
-返回: 调度函数（callable), 该函数会接收一个参数step_num，并计算返回相应的ProfilerState。调度函数会根据上述状态转换过程进行调度。
+返回
+:::::::::
+
+调度函数（callable), 该函数会接收一个参数step_num，并计算返回相应的ProfilerState。调度函数会根据上述状态转换过程进行调度。
 
 
-**代码示例**
+代码示例
+::::::::::
 
 1. 性能分析 batch [2, 5]。设定
 第0个batch处于CLOSED， 第1个batch处于READY, 第[2 - 5]个batch处于RECORD，在第5个batch返回收集的性能数据。
 
-.. code-block:: python
-
-    import paddle.profiler as profiler
-    profiler.make_scheduler(closed=1, ready=1, record=4, repeat=1)
+COPY_FROM: paddle.profiler.make_scheduler:code-example1
 
 2. 性能分析 batch [3,6], [9,12], [15, 18]... 设定
 第0个batch跳过， 第1个batch处于CLOSED, 第2个batch处于READY, 第[3 - 6]个batch处于RECORD，在第6个batch返回收集的性能数据。即第7个batch处于CLOSED，第8个batch处于READY,
 第[9-12]个batch处于RECORD，并在第12个batch返回第二轮所收集到的性能数据。以此类推，直到性能分析器结束。
 
-.. code-block:: python
-
-    import paddle.profiler as profiler
-    profiler.make_scheduler(closed=1, ready=1, record=4, skip_first=1)
+COPY_FROM: paddle.profiler.make_scheduler:code-example2

@@ -8,27 +8,16 @@ RecordEvent
 该接口用于用户自定义打点，记录某一段代码运行的时间。
 
 
-参数:
+参数
+:::::::::
+
     - **name** (str) - 记录打点的名字。
+    - **event_type(TracerEventType, 可选) - 可选参数，默认值为TracerEventType.UserDefined。该参数预留为内部使用，最好不要指定该参数。
 
-**代码示例**
+代码示例
+::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.profiler as profiler
-    # method1: using context manager
-    with profiler.RecordEvent("record_add"):
-        data1 = paddle.randn(shape=[3])
-        data2 = paddle.randn(shape=[3])
-        result = data1 + data2
-    # method2: call begin() and end()
-    record_event = profiler.RecordEvent("record_add")
-    record_event.begin()
-    data1 = paddle.randn(shape=[3])
-    data2 = paddle.randn(shape=[3])
-    result = data1 + data2
-    record_event.end()
+COPY_FROM: paddle.profiler.RecordEvent:code-example1
 
 注意:
     RecordEvent只有在 :ref:`性能分析器 <cn_api_profiler_profiler>` 处于RECORD状态才会生效。
@@ -37,34 +26,17 @@ RecordEvent
 
 记录开始的时间。
 
-**代码示例**
+代码示例
+::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.profiler as profiler
-
-    record_event = profiler.RecordEvent("record_sub")
-    record_event.begin()
-    data1 = paddle.randn(shape=[3])
-    data2 = paddle.randn(shape=[3])
-    result = data1 - data2
-    record_event.end()
+COPY_FROM: paddle.profiler.RecordEvent.begin:code-example1
 
 
 .. py:method:: end()
 
 记录结束的时间。
 
-**代码示例**
+代码示例
+::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.profiler as profiler
-    record_event = profiler.RecordEvent("record_mul")
-    record_event.begin()
-    data1 = paddle.randn(shape=[3])
-    data2 = paddle.randn(shape=[3])
-    result = data1 * data2
-    record_event.end()
+COPY_FROM: paddle.profiler.RecordEvent.end:code-example1

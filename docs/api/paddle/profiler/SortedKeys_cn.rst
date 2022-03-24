@@ -6,16 +6,16 @@ SortedKeys
 .. py:class:: paddle.profiler.SortedKeys
 
 
-枚举类，用来指定 :ref:`表单 <cn_api_profiler_profiler_summary>` 内数据的排序方式。
+SortedKeys枚举类用来指定打印的统计 :ref:`表单 <cn_api_profiler_profiler_summary>` 内数据的排序方式。
 
 排序方式说明如下：
-    - **SortedKeys.CPUTotal** - 活动的CPU总时间
-    - **SortedKeys.CPUAvg**  - 活动的CPU平均时间
-    - **SortedKeys.CPUMax**  - 活动的CPU上最大时间
-    - **SortedKeys.CPUMin**  - 活动的CPU上最小时间
-    - **SortedKeys.GPUTotal**  - 活动的GPU总时间
-    - **SortedKeys.GPUAvg**  - 活动的GPU平均时间
-    - **SortedKeys.GPUMax**  - 活动的GPU上最大时间
-    - **SortedKeys.GPUMin**  - 活动的GPU上最小时间
+    - **SortedKeys.CPUTotal** - 按活动的CPU总时间排序
+    - **SortedKeys.CPUAvg**  - 按活动的CPU平均时间排序
+    - **SortedKeys.CPUMax**  - 按活动的CPU上最大时间排序
+    - **SortedKeys.CPUMin**  - 按活动的CPU上最小时间排序
+    - **SortedKeys.GPUTotal**  - 按活动的GPU总时间排序
+    - **SortedKeys.GPUAvg**  - 按活动的GPU平均时间排序
+    - **SortedKeys.GPUMax**  - 按活动的GPU上最大时间排序
+    - **SortedKeys.GPUMin**  - 按活动的GPU上最小时间排序
 
 

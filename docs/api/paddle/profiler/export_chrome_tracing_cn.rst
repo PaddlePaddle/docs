@@ -9,23 +9,20 @@ export_chrome_tracing
 输出的文件将会保存在目录 ``dir_name`` 中， 文件名的前缀将会被设置成 ``worker_name`` 。
 如果 ``worker_name`` 没有被设置，默认名字为 [hostname]_[pid]。
 
-参数:
+参数
+:::::::::
+
     - **dir_name** (str) - 性能数据导出所保存到的文件夹路径。
     - **worker_name** (str, 可选) - 性能数据导出所保存到的文件名前缀，默认是[hostname]_[pid]。
 
-返回: 回调函数（callable), 该函数会接收一个参数prof(Profiler对象），调用prof的export方法保存采集到的性能数据到chrome tracing文件。
+返回
+:::::::::
 
-**代码示例**
+回调函数（callable), 该函数会接收一个参数prof(Profiler对象），调用prof的export方法保存采集到的性能数据到chrome tracing文件。
+
+代码示例
+::::::::::
 
 用于 :ref:`性能分析器 <cn_api_profiler_profiler>` 的on_trace_ready参数。
 
-.. code-block:: python
-
-    import paddle.profiler as profiler
-    with profiler.Profiler(
-            targets=[profiler.ProfilerTarget.CPU, profiler.ProfilerTarget.GPU],
-            scheduler = (3, 10),
-            on_trace_ready=profiler.export_protobuf('./log')) as p:
-        for iter in range(10):
-            #train()
-            p.step()
+COPY_FROM: paddle.profiler.export_chrome_tracing:code-example1
