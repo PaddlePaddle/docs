@@ -150,8 +150,8 @@ from paddle.static import InputSpec
 x = InputSpec([None, 784], 'float32', 'x')
 label = InputSpec([None, 1], 'int64', 'label')
 
-print(x)      # InputSpec(shape=(-1, 784), dtype=VarType.FP32, name=x)
-print(label)  # InputSpec(shape=(-1, 1), dtype=VarType.INT64, name=label)
+print(x)      # InputSpec(shape=(-1, 784), dtype=paddle.float32, name=x)
+print(label)  # InputSpec(shape=(-1, 1), dtype=paddle.int64, name=label)
 ```
 
 
@@ -166,7 +166,7 @@ from paddle.static import InputSpec
 
 x = paddle.to_tensor(np.ones([2, 2], np.float32))
 x_spec = InputSpec.from_tensor(x, name='x')
-print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x)
 ```
 
 > 注：若未在 ``from_tensor`` 中指定新的 ``name``，则默认使用与源 Tensor 相同的 ``name``。
@@ -182,7 +182,7 @@ from paddle.static import InputSpec
 
 x = np.ones([2, 2], np.float32)
 x_spec = InputSpec.from_numpy(x, name='x')
-print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x)
 ```
 
 > 注：若未在 ``from_numpy`` 中指定新的 ``name``，则默认使用 ``None`` 。
