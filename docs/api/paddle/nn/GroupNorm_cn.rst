@@ -3,7 +3,7 @@
 GroupNorm
 -------------------------------
 
-.. py:class:: paddle.nn.GroupNorm(num_groups, num_channels, epsilon=1e-05, weight_attr=None, bias_attr=None, data_layout='NCHW, 'name=None)
+.. py:class:: paddle.nn.GroupNorm(num_groups, num_channels, epsilon=1e-05, weight_attr=None, bias_attr=None, data_format='NCHW', name=None)
 
 **Group Normalization层**
 

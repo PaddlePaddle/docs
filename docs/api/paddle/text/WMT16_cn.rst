@@ -26,8 +26,7 @@ Multi30K: Multilingual English-German Image Descriptions.
 
 参数
 :::::::::
-    - data_file（str）- 保存数据集压缩文件的路径，如果参数:attr:`download`设置为True，可设置为None。
-    默认值为None。
+    - data_file（str）- 保存数据集压缩文件的路径，如果参数:attr:`download`设置为True，可设置为None。默认值为None。
     - mode（str）- 'train', 'test' 或 'val'。默认为'train'。
     - src_dict_size（int）- 源语言词典大小。默认为-1。
     - trg_dict_size（int) - 目标语言测点大小。默认为-1。
@@ -36,7 +35,10 @@ Multi30K: Multilingual English-German Image Descriptions.
 
 返回值
 :::::::::
-``Dataset``，WMT16数据集实例。
+``Dataset``，WMT16数据集实例。实例一共有三个字段：
+  - src_ids (np.array) - 源语言当前的token id序列。
+  - trg_ids (np.array) - 目标语言当前的token id序列。
+  - trg_ids_next (np.array) - 目标语言下一段的token id序列。
 
 代码示例
 :::::::::

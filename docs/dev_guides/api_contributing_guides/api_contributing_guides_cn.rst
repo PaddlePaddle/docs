@@ -68,9 +68,10 @@ API设计文档的目的是为了社区开发者更容易的参与开源项目�
     :header: "提交内容", "参考文档", "提交位置"
     :widths: 10, 30,30
 
-    "1、API实现代码", "- `API 设计及命名规范 <./api_design_guidelines_standard_cn.html>`_ 
+    "1、API实现代码", "- `API 设计及命名规范 <./api_design_guidelines_standard_cn.html>`_
     - Python API开发指南（请期待）
-    - C++ API开发指南（请期待）", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
+    - `C++ API开发指南 <./new_cpp_op_cn.html>`_
+    ", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
     "2、API英文文档", "- `API文档书写规范 <https://github.com/PaddlePaddle/docs/wiki/%E9%A3%9E%E6%A1%A8API%E6%96%87%E6%A1%A3%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83>`_", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
     "3、API中文文档", "- `API文档书写规范 <https://github.com/PaddlePaddle/docs/wiki/%E9%A3%9E%E6%A1%A8API%E6%96%87%E6%A1%A3%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83>`_", "`Github飞桨文档仓库 <https://github.com/PaddlePaddle/docs>`_"
     "4、API单测代码", "- `API 验收标准 <./api_accpetance_criteria_cn.html>`_", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
@@ -103,5 +104,6 @@ API设计文档的目的是为了社区开发者更容易的参与开源项目�
     :hidden:
 
     api_design_guidelines_standard_cn.md
+    new_cpp_op_cn.md
     api_docs_guidelines_cn.md
     api_accpetance_criteria_cn.md
