@@ -12,7 +12,7 @@ RecordEvent
 :::::::::
 
     - **name** (str) - 记录打点的名字。
-    - **event_type(TracerEventType, 可选) - 可选参数，默认值为TracerEventType.UserDefined。该参数预留为内部使用，最好不要指定该参数。
+    - **event_type** (TracerEventType, 可选) - 可选参数，默认值为TracerEventType.UserDefined。该参数预留为内部使用，最好不要指定该参数。
 
 代码示例
 ::::::::::
@@ -29,7 +29,7 @@ COPY-FROM: paddle.profiler.RecordEvent:code-example1
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.profiler.RecordEvent:code-example2
+COPY-FROM: paddle.profiler.RecordEvent.begin:code-example2
 
 
 .. py:method:: end()
@@ -39,4 +39,4 @@ COPY-FROM: paddle.profiler.RecordEvent:code-example2
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.profiler.RecordEvent:code-example3
+COPY-FROM: paddle.profiler.RecordEvent.end:code-example3

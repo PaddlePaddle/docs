@@ -37,7 +37,7 @@ COPY-FROM: paddle.profiler.Profiler:code-example3
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.profiler.Profiler:code-example4
+COPY-FROM: paddle.profiler.Profiler.start:code-example4
 
 
 .. py:method:: stop()
@@ -48,7 +48,7 @@ COPY-FROM: paddle.profiler.Profiler:code-example4
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.profiler.Profiler:code-example5
+COPY-FROM: paddle.profiler.Profiler.stop:code-example5
 
 
 .. py:method:: step()
@@ -59,7 +59,7 @@ COPY-FROM: paddle.profiler.Profiler:code-example5
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.profiler.Profiler:code-example6
+COPY-FROM: paddle.profiler.Profiler.step:code-example6
 
 
 .. py:method:: export(path, format="json")
@@ -75,7 +75,7 @@ COPY-FROM: paddle.profiler.Profiler:code-example6
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.profiler.Profiler:code-example7
+COPY-FROM: paddle.profiler.Profiler.export:code-example7
 
 
 .. _cn_api_profiler_profiler_summary:
@@ -96,4 +96,4 @@ COPY-FROM: paddle.profiler.Profiler:code-example7
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.profiler.Profiler:code-example8
+COPY-FROM: paddle.profiler.Profiler.summary:code-example8
