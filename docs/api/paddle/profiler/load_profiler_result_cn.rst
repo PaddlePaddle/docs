@@ -3,7 +3,7 @@
 load_profiler_result
 -------------------------------
 
-.. py:function:: paddle.profiler.load_profiler_result(file_name)
+.. py:function:: paddle.profiler.load_profiler_result(file_name: str)
 
 该接口用于载入所保存到protobuf文件的性能数据到内存。
 
