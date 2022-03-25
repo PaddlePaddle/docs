@@ -9,7 +9,7 @@ Accuracy
 
 参数：
 :::::::::
-    - **topk** (list[int]|tuple(int)) - 计算准确率的top个数，默认是1。
+    - **topk** (list[int]|tuple(int)) - 计算准确率的top个数，默认是(1,)。
     - **name** (str, optional) - metric实例的名字，默认是'acc'。
 
 代码示例
