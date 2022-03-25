@@ -127,7 +127,7 @@ net = paddle.jit.save(net, path='simple_net', input_spec=[x_spec, y_spec])  # �
 执行上述代码样例后，在当前目录下会生成三个文件，即代表成功导出预测模型：
 ```
 simple_net.pdiparams        // 存放模型中所有的权重数据
-simple_net.pdmodel         // 存放模型的网络结构
+simple_net.pdmodel          // 存放模型的网络结构
 simple_net.pdiparams.info   // 存放额外的其他信息
 ```
 
