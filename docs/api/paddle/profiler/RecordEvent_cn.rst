@@ -3,7 +3,7 @@
 RecordEvent
 ---------------------
 
-.. py:class:: paddle.profiler.RecordEvent(name)
+.. py:class:: paddle.profiler.RecordEvent(name: str, event_type: TracerEventType=TracerEventType.UserDefined)
 
 该接口用于用户自定义打点，记录某一段代码运行的时间。
 
