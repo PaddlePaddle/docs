@@ -315,12 +315,12 @@ class SimpleNet(Layer):
 
 net = SimpleNet()
 # 方式一：save inference model with use_act=False
-net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x')])
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x')])
 paddle.jit.save(net, path='./simple_net')
 
 
 # 方式二：save inference model with use_act=True
-net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), True])
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x'), True])
 paddle.jit.save(net, path='./simple_net')
 ```
 
