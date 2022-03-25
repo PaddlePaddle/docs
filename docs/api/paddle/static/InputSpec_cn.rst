@@ -26,8 +26,8 @@ InputSpec
 
     input = InputSpec([None, 784], 'float32', 'x')
     label = InputSpec([None, 1], 'int64', 'label')
-    print(input)  # InputSpec(shape=(-1, 784), dtype=VarType.FP32, name=x)
-    print(label)  # InputSpec(shape=(-1, 1), dtype=VarType.INT64, name=label)
+    print(input)  # InputSpec(shape=(-1, 784), dtype=paddle.float32, name=x)
+    print(label)  # InputSpec(shape=(-1, 1), dtype=paddle.int64, name=label)
 
 
 .. py:method:: from_tensor(tensor, name=None)
@@ -53,7 +53,7 @@ InputSpec
 
     x = paddle.to_tensor(np.ones([2, 2], np.float32))
     x_spec = InputSpec.from_tensor(x, name='x')
-    print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+    print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x)
 
 
 .. py:method:: from_numpy(ndarray, name=None)
@@ -78,7 +78,7 @@ InputSpec
 
     x = np.ones([2, 2], np.float32)
     x_spec = InputSpec.from_numpy(x, name='x')
-    print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+    print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x)
 
 
 .. py:method:: batch(batch_size)
@@ -100,7 +100,7 @@ InputSpec
   
     x_spec = InputSpec(shape=[64], dtype='float32', name='x')
     x_spec.batch(4)
-    print(x_spec)  # InputSpec(shape=(4, 64), dtype=VarType.FP32, name=x)
+    print(x_spec)  # InputSpec(shape=(4, 64), dtype=paddle.float32, name=x)
 
 
 .. py:method:: unbatch()
@@ -120,4 +120,4 @@ InputSpec
 
     x_spec = InputSpec(shape=[4, 64], dtype='float32', name='x')
     x_spec.unbatch()
-    print(x_spec)  # InputSpec(shape=(64,), dtype=VarType.FP32, name=x)
+    print(x_spec)  # InputSpec(shape=(64,), dtype=paddle.float32, name=x)
