@@ -11,7 +11,7 @@
 | AI加速芯片 | 达芬奇 | 华为 | 昇腾910 | 即将提供 | | | |
 | AI加速芯片 |  | 海光 | 海光DCU | [安装](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_install_cn.html) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_install_cn.html) | ✔️ | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_rocm_cn.html) |
 | AI加速芯片 | XPU | 百度 | 昆仑K100、K200等 | [安装](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_install_cn.html#wheel) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_install_cn.html#id2) |  | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_2.0_xpu_cn.html) |
-| AI加速芯片 | IPU | Graphcore | GC200 | | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/ipu_docs/paddle_install_cn.html) |  | |
+| AI加速芯片 | IPU | Graphcore | GC200 | | [源码编译](/documentation/docs/guides/09_hardware_support/ipu_docs/index_cn.html) |  | |
 
 ## Paddle Inference
 
