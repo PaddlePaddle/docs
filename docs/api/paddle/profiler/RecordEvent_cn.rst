@@ -17,7 +17,7 @@ RecordEvent
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.RecordEvent:code-example1
+COPY-FROM: paddle.profiler.RecordEvent:code-example1
 
 注意:
     RecordEvent只有在 :ref:`性能分析器 <cn_api_profiler_profiler>` 处于RECORD状态才会生效。
@@ -29,7 +29,7 @@ COPY_FROM: paddle.profiler.RecordEvent:code-example1
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.RecordEvent:code-example2
+COPY-FROM: paddle.profiler.RecordEvent:code-example2
 
 
 .. py:method:: end()
@@ -39,4 +39,4 @@ COPY_FROM: paddle.profiler.RecordEvent:code-example2
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.RecordEvent:code-example3
+COPY-FROM: paddle.profiler.RecordEvent:code-example3

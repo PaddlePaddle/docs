@@ -20,4 +20,4 @@ ProfilerResult对象，底层存储性能数据的结构。
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.load_profiler_result:code-example1
+COPY-FROM: paddle.profiler.load_profiler_result:code-example1

@@ -19,15 +19,15 @@ Profiler
 
 1. 性能分析 batch [2, 5)
 
-COPY_FROM: paddle.profiler.Profiler:code-example1
+COPY-FROM: paddle.profiler.Profiler:code-example1
 
 2. 性能分析 batch [2,4], [7, 9], [11,13]
 
-COPY_FROM: paddle.profiler.Profiler:code-example2
+COPY-FROM: paddle.profiler.Profiler:code-example2
 
 3. 使用全部默认参数，且脱离环境管理器的用法，性能分析整个运行过程
 
-COPY_FROM: paddle.profiler.Profiler:code-example3
+COPY-FROM: paddle.profiler.Profiler:code-example3
 
 .. py:method:: start()
 
@@ -37,7 +37,7 @@ COPY_FROM: paddle.profiler.Profiler:code-example3
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.Profiler:code-example4
+COPY-FROM: paddle.profiler.Profiler:code-example4
 
 
 .. py:method:: stop()
@@ -48,7 +48,7 @@ COPY_FROM: paddle.profiler.Profiler:code-example4
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.Profiler:code-example5
+COPY-FROM: paddle.profiler.Profiler:code-example5
 
 
 .. py:method:: step()
@@ -59,7 +59,7 @@ COPY_FROM: paddle.profiler.Profiler:code-example5
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.Profiler:code-example6
+COPY-FROM: paddle.profiler.Profiler:code-example6
 
 
 .. py:method:: export(path, format="json")
@@ -75,7 +75,7 @@ COPY_FROM: paddle.profiler.Profiler:code-example6
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.Profiler:code-example7
+COPY-FROM: paddle.profiler.Profiler:code-example7
 
 
 .. _cn_api_profiler_profiler_summary:
@@ -96,4 +96,4 @@ COPY_FROM: paddle.profiler.Profiler:code-example7
 代码示例
 ::::::::::
 
-COPY_FROM: paddle.profiler.Profiler:code-example8
+COPY-FROM: paddle.profiler.Profiler:code-example8

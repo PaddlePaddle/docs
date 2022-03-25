@@ -39,10 +39,10 @@ make_scheduler
 1. 性能分析 batch [2, 5]。设定
 第0个batch处于CLOSED， 第1个batch处于READY, 第[2 - 5]个batch处于RECORD，在第5个batch返回收集的性能数据。
 
-COPY_FROM: paddle.profiler.make_scheduler:code-example1
+COPY-FROM: paddle.profiler.make_scheduler:code-example1
 
 2. 性能分析 batch [3,6], [9,12], [15, 18]... 设定
 第0个batch跳过， 第1个batch处于CLOSED, 第2个batch处于READY, 第[3 - 6]个batch处于RECORD，在第6个batch返回收集的性能数据。即第7个batch处于CLOSED，第8个batch处于READY,
 第[9-12]个batch处于RECORD，并在第12个batch返回第二轮所收集到的性能数据。以此类推，直到性能分析器结束。
 
-COPY_FROM: paddle.profiler.make_scheduler:code-example2
+COPY-FROM: paddle.profiler.make_scheduler:code-example2
