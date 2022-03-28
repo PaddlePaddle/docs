@@ -13,10 +13,12 @@ profiler
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import paddle.profiler as profiler
     import numpy as np
 
+    paddle.enable_static()
     epoc = 8
     dshape = [4, 3, 28, 28]
     data = fluid.layers.data(name='data', shape=[3, 28, 28], dtype='float32')
@@ -50,6 +52,7 @@ profiler
     import paddle.fluid.profiler as profiler
     import numpy as np
 
+    paddle.enable_static()
     epoc = 8
     dshape = [4, 3, 28, 28]
     data = fluid.layers.data(name='data', shape=[3, 28, 28], dtype='float32')
