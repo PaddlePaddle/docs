@@ -48,6 +48,7 @@ profiler
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
     import numpy as np
