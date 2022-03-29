@@ -19,13 +19,11 @@ transpose
 
 返回
 ::::::::::::
- 多维Tensor
+多维Tensor
 
-返回类型
+
+代码示例
 ::::::::::::
-Tensor
-
-**示例**:
 
 .. code-block:: text
 
