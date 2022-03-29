@@ -10,9 +10,8 @@ show
 
 
 返回
-::::::::::::
-
 :::::::::
+
 如果paddle wheel包不是正式发行版本，则输出wheel包编译时对应的commit id号。否则，输出如下信息：
 
     - full_version - paddle wheel包的版本号。
