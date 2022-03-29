@@ -22,7 +22,7 @@ start_profiler
   import paddle.profiler as profiler
   prof = profiler.Profiler()
   prof.start()
-    for iter in range(10):
+  for iter in range(10):
       #train()
       prof.step()
   prof.stop()
