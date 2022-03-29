@@ -19,21 +19,16 @@ addmm
 参数
 ::::::::::::
 
-    - **input** （Tensor）：输入Tensor input，数据类型支持float32, float64。
-    - **x** （Tensor）：输入Tensor x，数据类型支持float32, float64。
-    - **y** （Tensor）：输入Tensor y，数据类型支持float32, float64。
-    - **alpha** （float，可选）：乘以x*y的标量，数据类型支持float32, float64，默认值为1.0。
-    - **beta** （float，可选）：乘以input的标量，数据类型支持float32, float64，默认值为1.0。
+    - **input** （Tensor）：输入Tensor input，数据类型支持float32，float64。
+    - **x** （Tensor）：输入Tensor x，数据类型支持float32，float64。
+    - **y** （Tensor）：输入Tensor y，数据类型支持float32，float64。
+    - **alpha** （float，可选）：乘以x*y的标量，数据类型支持float32，float64，默认值为1.0。
+    - **beta** （float，可选）：乘以input的标量，数据类型支持float32，float64，默认值为1.0。
     - **name** （str，可选）：具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回
 ::::::::::::
 计算得到的Tensor。Tensor数据类型与输入input数据类型一致。
-
-返回类型
-::::::::::::
-变量（Tensor）
-
 
 代码示例
 ::::::::::::
