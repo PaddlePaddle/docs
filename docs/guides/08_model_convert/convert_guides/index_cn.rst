@@ -29,5 +29,5 @@
 ..  toctree::
     :hidden:
 
-    pytorch_api_mapping_cn.rst
+    pytorch_api_mapping_cn.md
     ArticleReproduction_CV.md
