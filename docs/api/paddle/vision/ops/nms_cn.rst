@@ -6,7 +6,8 @@ nms
 .. py:function:: paddle.vision.ops.nms(boxes, threshold)
 
 非极大抑制(non-maximum suppression, NMS)用于在目标检测应用中搜索局部最大值，即只保留处于同一检测目标位置处重叠的框中分数最大的一个框。IoU(Intersection Over Union) 被用于判断两个框是否重叠，该值大于门限值则被认为两个框重叠。其计算公式如下：
-.. math:: IoU = \frac{intersection_area(box1, box2)}{union_area(box1, box2)}
+.. math:: 
+    IoU = \frac{intersection_area(box1, box2)}{union_area(box1, box2)}
 
 参数
 :::::::::
@@ -21,7 +22,9 @@ nms
 
 代码示例
 :::::::::
-.. code-block:: python
+
+..  code-block:: python
+
     import paddle
     import numpy as np
 
