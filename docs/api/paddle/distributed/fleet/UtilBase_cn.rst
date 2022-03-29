@@ -20,7 +20,7 @@ all_reduce(input, mode="sum", comm_world="worker")
 
 **返回**
 
-    - Numpy.array|None: 一个和 `input` 形状一致的numpy数组或None.
+Numpy.array|None: 一个和 `input` 形状一致的numpy数组或None。
 
 **代码示例**
 
