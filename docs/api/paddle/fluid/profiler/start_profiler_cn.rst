@@ -27,6 +27,8 @@ start_profiler
       prof.step()
   prof.stop()
 
+.. code-block:: python
+
   #2. 使用环境管理器的用法
   import paddle
   import paddle.profiler as profiler
