@@ -60,14 +60,17 @@ forward(ctx, *args, **kwargs)
 
 ``forward`` 函数必须被子类重写，它的第一个参数是 :ref:`cn_api_autograd_PyLayerContext` 的对象，其他输入参数的类型和数量任意。
 
-**参数**
+参数
+::::::::::::
  - **\*args** (tuple) - 自定义算子的输入
  - **\*\*kwargs** (dict) - 自定义算子的输入
 
-**返回**
+返回
+::::::::::::
 Tensor或至少包含一个Tensor的list/tuple
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -95,14 +98,17 @@ backward(ctx, *args, **kwargs)
 
 ``backward`` 函数的作用是计算梯度，它必须被子类重写，其第一个参数为 :ref:`cn_api_autograd_PyLayerContext` 的对象，其他输入参数为 ``forward`` 输出 ``Tensor`` 的梯度。它的输出 ``Tensor`` 为 ``forward`` 输入 ``Tensor`` 的梯度。
 
-**参数**
+参数
+::::::::::::
  - **\*args** (tuple) - ``forward`` 输出 ``Tensor`` 的梯度。
  - **\*\*kwargs** (dict) - ``forward`` 输出 ``Tensor`` 的梯度。
 
-**返回**
+返回
+::::::::::::
  ``forward`` 输入 ``Tensor`` 的梯度。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -130,14 +136,17 @@ apply(cls, *args, **kwargs)
 
 构建完自定义算子后，通过 ``apply`` 运行算子。
 
-**参数**
+参数
+::::::::::::
  - **\*args** (tuple) - 自定义算子的输入
  - **\*\*kwargs** (dict) - 自定义算子的输入
 
-**返回**
+返回
+::::::::::::
 Tensor或至少包含一个Tensor的list/tuple
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
