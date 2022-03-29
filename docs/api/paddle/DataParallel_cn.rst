@@ -33,11 +33,7 @@ DataParallel
     
 返回
 ::::::::::::
-支持数据并行的 ``Layer``
-
-返回类型
-::::::::::::
-Layer实例
+支持数据并行的 ``Layer``。
 
 代码示例
 ::::::::::::
@@ -66,15 +62,19 @@ state_dict(destination=None, include_sublayers=True)
 
 获取当前层及其子层的所有parameters和持久的buffers。并将所有parameters和buffers存放在dict结构中。
 
-**参数**
+参数
+::::::::::::
 
     - **destination** (dict, 可选) - 如果提供 ``destination`` ，则所有参数和持久的buffers都将存放在 ``destination`` 中。 默认值：None。
     - **include_sublayers** (bool, 可选) - 如果设置为True，则包括子层的参数和buffers。默认值：True。
 
-**返回**
-dict， 包含所有parameters和持久的buffers的dict
+返回
+::::::::::::
+dict， 包含所有parameters和持久的buffers的dict。
 
-**代码示例**
+代码示例
+::::::::::::
+
 COPY-FROM: paddle.DataParallel.state_dict
 
 
@@ -83,14 +83,18 @@ set_state_dict(state_dict, use_structured_name=True)
 
 根据传入的 ``state_dict`` 设置parameters和持久的buffers。 所有parameters和buffers将由 ``state_dict`` 中的 ``Tensor`` 设置。
 
-**参数**
+参数
+::::::::::::
 
     - **state_dict** (dict) - 包含所有parameters和可持久性buffers的dict。
     - **use_structured_name** (bool, 可选) - 如果设置为True，将使用Layer的结构性变量名作为dict的key，否则将使用Parameter或者Buffer的变量名作为key。默认值：True。
 
-**返回**
+
+返回
+::::::::::::
 无
 
-**代码示例**
+代码示例
+::::::::::::
 
 COPY-FROM: paddle.DataParallel.set_state_dict
