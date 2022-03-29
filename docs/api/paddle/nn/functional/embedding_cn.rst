@@ -36,7 +36,9 @@ embedding
             输入的padding_idx小于0，则自动转换为padding_idx = -1 + 128 = 127, 对于输入id为127的词，进行padding处理。
 
 
-参数：
+参数
+::::::::::::
+
 
     - **input** (Tensor) - 存储id信息的Tensor，数据类型必须为：int32/int64。input中的id必须满足 ``0 =< id < size[0]`` 。
     - **weight** (Tensor) - 存储词嵌入权重参数的Tensor，形状为(num_embeddings, embedding_dim)。
@@ -45,11 +47,16 @@ embedding
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 
-返回：input映射后得到的Embedding Tensor，数据类型和权重定义的类型一致。
+返回
+::::::::::::
+input映射后得到的Embedding Tensor，数据类型和权重定义的类型一致。
 
-返回类型：Tensor
+返回类型
+::::::::::::
+Tensor
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

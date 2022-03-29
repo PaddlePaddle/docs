@@ -11,17 +11,25 @@ case
 
 该OP的运行方式类似于python的if-elif-elif-else。
 
-参数：
+参数
+::::::::::::
+
     - **pred_fn_pairs** (list|tuple) - 一个list或者tuple，元素是二元组(pred, fn)。其中 ``pred`` 是形状为[1]的布尔型 Tensor，``fn`` 是一个可调用对象。所有的可调用对象都返回相同结构的Tensor。
     - **default** (callable，可选) - 可调用对象，返回一个或多个张量。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值：None。
 
-返回：如果 ``pred_fn_pairs`` 中存在pred是True的元组(pred, fn)，则返回第一个为True的pred的元组中fn的返回结果；如果 ``pred_fn_pairs`` 中不存在pred为True的元组(pred, fn) 且 ``default`` 不是None，则返回调用 ``default`` 的返回结果；
+返回
+::::::::::::
+如果 ``pred_fn_pairs`` 中存在pred是True的元组(pred, fn)，则返回第一个为True的pred的元组中fn的返回结果；如果 ``pred_fn_pairs`` 中不存在pred为True的元组(pred, fn) 且 ``default`` 不是None，则返回调用 ``default`` 的返回结果；
 如果 ``pred_fn_pairs`` 中不存在pred为True的元组(pred, fn) 且 ``default`` 是None，则返回 ``pred_fn_pairs`` 中最后一个pred的返回结果。
 
-返回类型：Tensor|list(Tensor)
+返回类型
+::::::::::::
+Tensor|list(Tensor)
 
-抛出异常：
+抛出异常
+::::::::::::
+
     - ``TypeError`` - 如果 ``pred_fn_pairs`` 的类型不是list或tuple。
     - ``TypeError`` - 如果 ``pred_fn_pairs`` 的元素的类型不是tuple。
     - ``TypeError`` - 如果 ``pred_fn_pairs`` 的tuple类型的元素大小不是2。
@@ -29,7 +37,8 @@ case
     - ``TypeError`` - 如果 ``pred_fn_pairs`` 中的2-tuple的第二个元素不是可调用对象。
     - ``TypeError`` - 当 ``default`` 不是None又不是可调用对象时。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -8,14 +8,19 @@ get_flags
 
 获取指定的Paddle 环境变量FLAGS状态。详情请查看 :ref:`cn_guides_flags_flags`
 
-参数:
+参数
+::::::::::::
+
 
      - **flags** (list of FLAGS [*]) - 想要获取的FLAGS标志列表
 
-返回: 
+返回
+::::::::::::
+ 
      
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

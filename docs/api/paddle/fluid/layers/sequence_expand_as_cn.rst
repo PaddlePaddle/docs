@@ -50,17 +50,24 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
     可见，输出out将x扩展至和y具有相同的lod。
 
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` 的二维Tensor或LoDTensor，第一维必须与输入 ``y`` 的第0层lod大小相同，且仅支持lod_level为1。数据类型支持int32，int64，float32或float64。
     - **y** (Variable) - 输入变量，LoDTensor，lod level必须为1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：扩展变量，维度为 :math:`[N, K]` 的二维LoDTensor，N由输入 ``y`` 的lod决定，且仅支持lod_level为1。数据类型与输入 ``x`` 一致。
+返回
+::::::::::::
+扩展变量，维度为 :math:`[N, K]` 的二维LoDTensor，N由输入 ``y`` 的lod决定，且仅支持lod_level为1。数据类型与输入 ``x`` 一致。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

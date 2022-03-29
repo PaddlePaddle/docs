@@ -20,7 +20,9 @@ auc
 
 2. PR:准确率召回率曲线
 
-参数：
+参数
+::::::::::::
+
     - **input** (Tensor|LoDTensor) - 数据类型为float32，float64。浮点二维变量，值的范围为[0,1]。每一行降序排列。该输入为网络预测值的输入。
     - **label** (Tensor|LoDTensor) - 数据类型为int32，int64。二维整型变量，为训练数据的标签。
     - **curve** (str) - 曲线类型，可以为 ``ROC`` 或 ``PR``，默认 ``ROC``。
@@ -28,7 +30,9 @@ auc
     - **topk** (int) -  取topk的输出值用于计算。
     - **slide_steps** (int) - 当计算batch auc时，不仅用当前步也用于先前步。slide_steps=1，表示用当前步；slide_steps = 3表示用当前步和前两步；slide_steps = 0，则用所有步。
 
-返回：元组，当前计算出的AUC。数据类型是tensor，支持float32和float64。
+返回
+::::::::::::
+元组，当前计算出的AUC。数据类型是tensor，支持float32和float64。
 返回的元组为auc_out, batch_auc_out, [batch_stat_pos, batch_stat_neg, stat_pos, stat_neg]。
 auc_out为准确率的结果。
 batch_auc_out为batch准确率的结果。
@@ -37,7 +41,8 @@ batch_stat_neg为batch计算时label=0的统计值
 stat_pos计算时label=1的统计值
 stat_neg为计算时label=0的统计值
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

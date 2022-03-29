@@ -26,7 +26,9 @@ Conv2D
     - :math:`Out` ：输出值，NCHW或NHWC格式的4-D Tensor， 和 ``X`` 的形状可能不同
 
 
-参数：
+参数
+::::::::::::
+
     - **in_channels** (int) - 输入图像的通道数。
     - **out_channels** (int) - 由卷积操作产生的输出的通道数。
     - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核的高和宽。如果为单个整数，表示卷积核的高和宽都等于该整数。
@@ -42,10 +44,14 @@ Conv2D
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+属性
+::::::::::::
+weight
+'''''''''
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 本层的可学习偏置，类型为 ``Parameter``
     
 形状:
@@ -80,7 +86,8 @@ Conv2D
         W_{out} = \frac{\left ( W_{in} -\left ( dilation[1]*\left ( kernel\_size[1]-1 \right )+1 \right ) \right )}{stride[1]}+1
 
 
-抛出异常：
+**抛出异常**
+
     - ``ValueError`` - 如果 ``data_format`` 既不是"NCHW"也不是"NHWC"。
     - ``ValueError`` - 如果 ``input`` 的通道数未被明确定义。
     - ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
@@ -91,7 +98,7 @@ Conv2D
     - ``ShapeError`` - 如果输出的通道数不能被 ``groups`` 整除。
 
 
-**代码示例**：
+**代码示例**
 
 .. code-block:: python
 

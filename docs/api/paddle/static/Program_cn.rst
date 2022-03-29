@@ -39,23 +39,24 @@ Program，创建的空的Program
     print("start up program is: {}".format(startup_program))
 
 
-.. py:method:: to_string(throw_on_error, with_details=False)
+方法
+::::::::::::
+to_string(throw_on_error, with_details=False)
+'''''''''
 
 将Program转换为字符串
 
-参数
-::::::::::
+**参数**
  - **throw_on_error** (bool) - 是否在没有设置必需字段时抛出异常。
  - **with_details** (bool) - 值为true时，打印更多关于变量和参数的信息，如trainable, optimize_attr等
 
-返回
-::::::::::
+**返回**
 str，由Program转换得到的字符串
 
-抛出异常： ``ValueError`` - 当 ``throw_on_error == true`` ，当没有设置任何必需的字段时，抛出 ``ValueError`` 。
+**抛出异常**
+ ``ValueError`` - 当 ``throw_on_error == true`` ，当没有设置任何必需的字段时，抛出 ``ValueError`` 。
 
-代码示例
-::::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -72,7 +73,8 @@ str，由Program转换得到的字符串
         print("program string without detail: {}".format(prog_string))
         print("program string with detail: {}".format(prog_string_with_details))
 
-.. py:method:: clone(for_test=False)
+clone(for_test=False)
+'''''''''
 
 .. note::
     1. ``Program.clone()`` 方法不会克隆例如  :ref:`cn_api_fluid_io_DataLoader` 这样的数据读取相关的部分，这可能会造成的数据读取部分在克隆后丢失； 
@@ -103,17 +105,14 @@ str，由Program转换得到的字符串
         optimizer = paddle.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
         optimizer.minimize(loss)
 
-参数
-::::::::::
+**参数**
     - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True， 并裁剪反向OP和参数优化OP，默认值为False
 
-返回
-::::::::::
+**返回**
 Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program前向内容的Program。否则返回一个新的，和当前Program完全相同的Program
 
 
-代码示例
-::::::::::
+**代码示例**
 
 .. note::
     Program在clone后的顺序可能不同，这不会影响的训练或测试进程。在下面的示例中，我们提供了一个简单的方法print_prog（Program）来打印程序描述，以确保clone后仍能得到同样的打印结果：
@@ -235,21 +234,19 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
 
 上边两个代码片段生成和打印的Program是一样的。
 
-.. py:staticmethod:: parse_from_string(binary_str)
+**static** parse_from_string(binary_str)
+'''''''''
 
 通过对 `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ 的反序列化，转换成Program
 
 
-参数
-:::::::::
+**参数**
  - **binary_str_type** (str) – `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ 二进制字符串
 
-返回
-:::::::::
+**返回**
 Program，反序列化后的 Program
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -273,16 +270,17 @@ Program，反序列化后的 Program
         print(static.default_main_program())
         print(prog_restored)
 
-.. py:attribute:: num_blocks
+属性
+::::::::::::
+num_blocks
+'''''''''
 
 该Program中的 :ref:`api_guide_Block` 的个数
 
-返回
-:::::::::
+**返回**
 int，该Program中的 :ref:`api_guide_Block` 的个数
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -298,19 +296,18 @@ int，该Program中的 :ref:`api_guide_Block` 的个数
     # print result:
     # 1
 
-.. py:attribute:: random_seed
+random_seed
+'''''''''
 
 .. note::
     必须在相关OP被添加之前设置。
 
 程序中随机运算符的默认随机种子。0意味着随机生成随机种子。
 
-返回
-:::::::::
+**返回**
 int64，该Program中当前正在使用的random seed
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -335,16 +332,15 @@ int64，该Program中当前正在使用的random seed
     ## 1
     ## the random seed is change to 1
 
-.. py:method:: global_block()
+global_block()
+'''''''''
 
 获取该Program的第一个 :ref:`api_guide_Block` 。
 
-返回
-:::::::::
+**返回**
 :ref:`api_guide_Block`，该Program的第一个 :ref:`api_guide_Block`
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -358,20 +354,18 @@ int64，该Program中当前正在使用的random seed
     print(gb_block)
             
 
-.. py:method:: block(index)
+block(index)
+'''''''''
 
 返回该Program中 ， ``index`` 指定的 :ref:`api_guide_Block` 。 ``index`` 类型为int
 
-参数
-:::::::::
+**参数**
     - **index** (int) - 需要获取的 :ref:`api_guide_Block`  的index
 
-返回
-:::::::::
+**返回**
 :ref:`api_guide_Block`，该Program中index对应的那个 :ref:`api_guide_Block`
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -384,16 +378,15 @@ int64，该Program中当前正在使用的random seed
     block_0 = prog.block(0)
     print(block_0)
 
-.. py:method:: current_block()
+current_block()
+'''''''''
 
 获取当前 :ref:`api_guide_Block` 。当前 :ref:`api_guide_Block`  是用来添加OP的。
 
-返回
-:::::::::
+**返回**
 :ref:`api_guide_Block`，该Program中用户当前所在的 :ref:`api_guide_Block`
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -406,16 +399,15 @@ int64，该Program中当前正在使用的random seed
     current_blk = prog.current_block()
     print(current_blk)
 
-.. py:method:: list_vars()
+list_vars()
+'''''''''
 
 获取当前Program中所有变量。返回值是一个可迭代对象（iterable object)。
 
-返回
-:::::::::
+**返回**
 Generator，会yield每个Program中的变量
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -433,16 +425,15 @@ Generator，会yield每个Program中的变量
     # var img : paddle.VarType.LOD_TENSOR.shape(-1, 1, 28, 28).astype(VarType.FP32)
     # var label : paddle.VarType.LOD_TENSOR.shape(-1, 1).astype(VarType.INT64)
 
-.. py:method:: all_parameters()
+all_parameters()
+'''''''''
 
 获取当前Program中所有的 :ref:`api_guide_parameter` 。返回值是一个列表。
 
-返回
-:::::::::
+**返回**
 list[ :ref:`api_guide_parameter` ]，一个包含当前Program中所有参数的列表。
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -470,21 +461,19 @@ list[ :ref:`api_guide_parameter` ]，一个包含当前Program中所有参数的
     # including name, type and persistable, you can access to specific
     # property of a parameter, such as param.name, param.type
 
-.. py:method:: state_dict(mode='all', scope=None)
+state_dict(mode='all', scope=None)
+'''''''''
 
 获取当前 ``Program`` 持久性变量。并将所有持久性变量存放在dict结构中。
 
-参数
-:::::::::
+**参数**
     - mode (str, 可选) - 获取何种持久性变量。目前支持以下选项： (1) 'opt'：获得优化器的持久性变量放在dict结构中； (2) 'param'：获得组网中的持久性变量放在dict结构中，不包含优化器中的持久性变量； (3) 'all'：获得组网和优化器中的持久性变量放在dict结构中；默认值为'all'。
     - scope (Scope, 可选) - 如果scope为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 ``state_dict`` ；否则从指定的 ``scope`` 获取 ``state_dict`` 。默认值为 ``None`` 。
 
-返回
-:::::::::
+**返回**
 dict， 包含持久性变量的dict，键值是持久性变量的名字，值为持久性变量。
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -505,21 +494,19 @@ dict， 包含持久性变量的dict，键值是持久性变量的名字，值�
     path = "./temp/model.pdparams"
     paddle.save(prog.state_dict(), path)
 
-.. py:method:: set_state_dict(state_dict, scope=None)
+set_state_dict(state_dict, scope=None)
+'''''''''
 
 将 ``state_dict`` 中的持久性变量设置到 ``Program`` 中。
 
-参数
-:::::::::
+**参数**
     - state_dict (dict) - 包含持久性变量的字典。键值是持久性变量的名字，值为持久性变量。
     - scope (Scope, 可选) - 如果scope为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并将 ``state_dict`` 中久性变量设置到这个作用域中；否则将 ``state_dict`` 设置到指定的 ``scope`` 中。默认值为 ``None`` 。
 
-返回
-:::::::::
+**返回**
 None
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 

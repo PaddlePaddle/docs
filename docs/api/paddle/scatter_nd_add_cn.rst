@@ -42,17 +42,24 @@ scatter_nd_add
             output = [[67, 19], [-16, -27]]
 
 
-参数：
+参数
+::::::::::::
+
     - **x** (Tensor) - 输入张量，数据类型可以是int32，int64，float32，float64。
     - **index** (Tensor) - 输入的索引张量，数据类型为非负int32或非负int64。它的维度 :code:`index.ndim` 必须大于1，并且 :code:`index.shape[-1] <= x.ndim`
     - **updates** (Tensor) - 输入的更新张量，它必须和 :code:`x` 有相同的数据类型。形状必须是 :code:`index.shape[:-1] + x.shape[index.shape[-1]:]` 。
     - **name** (string) - 该层的名字，默认值为None，表示会自动命名。
 
-返回：数据类型和形状都与 :code:`x` 相同的Tensor。
+返回
+::::::::::::
+数据类型和形状都与 :code:`x` 相同的Tensor。
 
-返回类型：Tensor
+返回类型
+::::::::::::
+Tensor
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

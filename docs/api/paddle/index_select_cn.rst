@@ -19,7 +19,8 @@ index_select
     -**Tensor**: 返回一个数据类型同输入的Tensor。
      
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

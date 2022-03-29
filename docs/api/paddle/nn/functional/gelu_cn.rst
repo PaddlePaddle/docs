@@ -21,7 +21,9 @@ gelu激活层（GELU Activation Operator）
 
 其中，:math:`x` 为输入的 Tensor
 
-参数:
+参数
+::::::::::::
+
 ::::::::::
  - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
  - approximate (bool, 可选) - 是否使用近似计算，默认值为 False，表示不使用近似计算。

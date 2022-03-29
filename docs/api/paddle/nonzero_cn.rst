@@ -19,7 +19,8 @@ nonzero
 **返回**：
     - **Tensor or tuple(1-D Tensor)**，数据类型为 **INT64** 。
      
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

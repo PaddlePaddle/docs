@@ -9,34 +9,40 @@ Fleet
 Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化后即可快速开始使用飞桨大规模分布式训练
 
 
-.. py:method:: init(role_maker=None, is_collective=False, strategy=None)
+方法
+::::::::::::
+init(role_maker=None, is_collective=False, strategy=None)
+'''''''''
 
 使用RoleMaker或其他配置初始化fleet。
 
 
-参数：
+**参数**
+
     - **role_maker** (RoleMakerBase) 已初始化好的PaddleCloudRoleMaker或UserDefineRoleMaker
     - **is_collective** (bool) 在未指定role_maker的情况下,可由init方法自行初始化RoleMaker, is_collective为True则按照collective模式进行创建， is_collective=False则按照ParameterServer模式进行创建
     - **strategy** (DistributedStrategy): 分布式训练的额外属性。详情请参阅paddle.distributed.fleet.DistributedStrategy。默认值：None。 
 
-返回：None
+**返回**
+None
 
 
-**代码示例1**
+**代码示例 1**
 
 .. code-block:: python
 
     import paddle.distributed.fleet as fleet
     fleet.init()
 
-**代码示例2**
+**代码示例 2**
 
 .. code-block:: python
 
     import paddle.distributed.fleet as fleet
     fleet.init(is_collective=True)
 
-**代码示例3**
+代码示例3
+::::::::::::
 
 .. code-block:: python
 
@@ -44,7 +50,8 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     role = fleet.PaddleCloudRoleMaker()
     fleet.init(role)
 
-**代码示例4**
+代码示例4
+::::::::::::
 
 .. code-block:: python
 
@@ -53,11 +60,13 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     fleet.init(strategy=strategy)
 
 
-.. py:method:: is_first_worker()
+is_first_worker()
+'''''''''
 
 返回当前节点是否为第一个`worker`节点, 判断当前worker_index是否为0， 如果为0则返回True，否则返回False
 
-返回：True/False
+**返回**
+True/False
 
 
 **代码示例**
@@ -70,11 +79,13 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
 
 
 
-.. py:method:: worker_index()
+worker_index()
+'''''''''
 
 返回当前节点的编号, 每个`worker`节点被分配[0, worker_num-1]内的唯一的编码ID
 
-返回：int
+**返回**
+int
 
 
 **代码示例**
@@ -86,11 +97,13 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     fleet.worker_index()
 
 
-.. py:method:: worker_num()
+worker_num()
+'''''''''
 
 返回当前全部训练节点中`workjer`节点的个数
 
-返回：int
+**返回**
+int
 
 **代码示例**
 
@@ -101,11 +114,13 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     fleet.worker_num()
 
 
-.. py:method:: is_worker()
+is_worker()
+'''''''''
 
 返回当前节点是否为`worker`节点
 
-返回：True/False
+**返回**
+True/False
 
 **代码示例**
 
@@ -116,11 +131,13 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     fleet.is_worker()
 
 
-.. py:method:: worker_endpoints(to_string=False)
+worker_endpoints(to_string=False)
+'''''''''
 
 返回全部worker节点的ip及端口信息
 
-返回：list/string
+**返回**
+list/string
 
 **代码示例**
 
@@ -131,7 +148,8 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     fleet.worker_endpoints()
 
 
-.. py:method:: server_num()
+server_num()
+'''''''''
 
 **注意：**
 
@@ -140,7 +158,8 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
 
 返回当前全部Server节点的个数
 
-返回：int
+**返回**
+int
 
 **代码示例**
 
@@ -151,7 +170,8 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     fleet.server_num()
 
 
-.. py:method:: server_index()
+server_index()
+'''''''''
 
 
 **注意：**
@@ -161,7 +181,8 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
 
 返回当前节点的编号, 每个`server`节点被分配[0, server_num-1]内的唯一的编码ID
 
-返回：int
+**返回**
+int
 
 
 **代码示例**
@@ -173,7 +194,8 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     fleet.server_index()
 
 
-.. py:method:: server_endpoints(to_string=False)
+server_endpoints(to_string=False)
+'''''''''
 
 
 **注意：**
@@ -183,7 +205,8 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
 
 返回全部server节点的ip及端口信息
 
-返回：list/string
+**返回**
+list/string
 
 **代码示例**
 
@@ -194,7 +217,8 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     fleet.server_endpoints()
 
 
-.. py:method:: is_server()
+is_server()
+'''''''''
 
 
 **注意：**
@@ -204,7 +228,8 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
 
 返回当前节点是否为`server`节点
 
-返回：True/False
+**返回**
+True/False
 
 **代码示例**
 
@@ -215,11 +240,13 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     fleet.is_server()
 
 
-.. py:method:: barrier_worker()
+barrier_worker()
+'''''''''
 
 调用集合通信功能，强制要求所有的worker在此处相互等待一次
 
-返回：无
+**返回**
+无
 
 **代码示例**
 
@@ -230,11 +257,13 @@ Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化�
     fleet.barrier_worker()
 
 
-.. py:method:: init_worker()
+init_worker()
+'''''''''
 
 worker节点在训练前的初始化, 包括通信模块， 参数同步等
 
-返回：无
+**返回**
+无
 
 **代码示例**
 
@@ -245,11 +274,13 @@ worker节点在训练前的初始化, 包括通信模块， 参数同步等
     fleet.init_worker()
 
 
-.. py:method:: init_server(*args, **kwargs)
+init_server(*args, **kwargs)
+'''''''''
 
 server节点的初始化, 包括server端参数初始化，模型加载等
 
-返回：无
+**返回**
+无
 
 **代码示例**
 
@@ -260,11 +291,13 @@ server节点的初始化, 包括server端参数初始化，模型加载等
     fleet.init_server()
 
 
-.. py:method:: run_server()
+run_server()
+'''''''''
 
 server节点的运行, 此命令会将ParameterServer的进程启动并常驻直至训练结束
 
-返回：无
+**返回**
+无
 
 **代码示例**
 
@@ -276,11 +309,13 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     fleet.run_server()
 
 
-.. py:method:: stop_worker()
+stop_worker()
+'''''''''
 
 停止当前正在运行的worker节点
 
-返回：无
+**返回**
+无
 
 **代码示例**
 
@@ -293,12 +328,14 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     fleet.stop_worker()
 
 
-.. py:method:: save_inference_model(executor, dirname, feeded_var_names, target_vars, main_program=None, export_for_deployment=True)
+save_inference_model(executor, dirname, feeded_var_names, target_vars, main_program=None, export_for_deployment=True)
+'''''''''
 
 修剪指定的 ``main_program`` 以构建一个专门用于预测的 ``Inference Program`` （ ``Program`` 含义详见 :ref:`api_guide_Program` ）。 所得到的 ``Inference Program`` 及其对应的所>有相关参数均被保存到 ``dirname`` 指定的目录中。
 
 
-参数:
+**参数**
+
   - **executor** (Executor) –  用于保存预测模型的 ``executor`` ，详见 :ref:`api_guide_executor` 。
   - **dirname** (str) – 指定保存预测模型结构和参数的文件目录。
   - **feeded_var_names** (list[str]) – 字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
@@ -308,7 +345,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 只支持设置为True，且默认值为True。
 
 
-返回：无
+**返回**
+无
 
 **代码示例**
 
@@ -328,17 +366,20 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     fleet.save_inference_model(exe, "dirname", ["feed_varname"], [loss], paddle.static.default_main_program())
 
 
-.. py:method:: save_persistables(executor, dirname, main_program=None)
+save_persistables(executor, dirname, main_program=None)
+'''''''''
 
 
 保存全量模型参数
 
-参数:
+**参数**
+
  - **executor**  (Executor) – 用于保存持久性变量的 ``executor`` ，详见 :ref:`api_guide_executor` 。
  - **dirname**  (str) – 用于储存持久性变量的文件目录。
  - **main_program**  (Program，可选) – 需要保存持久性变量的Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program 。默认值为None>。
 
-返回：无
+**返回**
+无
 
 **代码示例**
 
@@ -357,11 +398,13 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     fleet.save_persistables(exe, "dirname", paddle.static.default_main_program())
 
 
-.. py:method:: distributed_optimizer(optimizer, strategy=None)
+distributed_optimizer(optimizer, strategy=None)
+'''''''''
 
 基于分布式布式并行策略进行模型的拆分及优化。
 
-参数:
+**参数**
+
  - **optimizer**  (optimizer) – paddle定义的优化器。
  - **strategy**  (DistributedStrategy) – 分布式优化器的额外属性。建议在fleet.init()创建。这里的仅仅是为了兼容性。如果这里的参数strategy不是None，则它将覆盖在fleet.init()创建的DistributedStrategy，并在后续的分布式训练中生效。
 
@@ -378,7 +421,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     optimizer = fleet.distributed_optimizer(optimizer, strategy=strategy)
 
 
-.. py:method:: distributed_model(model)
+distributed_model(model)
+'''''''''
 
 **注意：**
 
@@ -386,10 +430,12 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
 返回分布式数据并行模型。
 
-参数：
+**参数**
+
     model (Layer) - 用户定义的模型，此处模型是指继承动态图Layer的网络。
 
-返回：分布式数据并行模型，该模型同样继承动态图Layer。
+**返回**
+分布式数据并行模型，该模型同样继承动态图Layer。
 
 
 **代码示例**
@@ -440,7 +486,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     adam.step()
     adam.clear_grad()
 
-.. py:method:: state_dict()
+state_dict()
+'''''''''
 
 **注意：**
 
@@ -448,7 +495,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
 以 ``dict`` 返回当前 ``optimizer`` 使用的所有Tensor 。比如对于Adam优化器，将返回 beta1, beta2, momentum 等Tensor。
 
-返回：dict, 当前 ``optimizer`` 使用的所有Tensor。
+**返回**
+dict, 当前 ``optimizer`` 使用的所有Tensor。
 
 
 **代码示例**
@@ -476,7 +524,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     state_dict = adam.state_dict()
 
 
-.. py:method:: set_state_dict(state_dict)
+set_state_dict(state_dict)
+'''''''''
 
 **注意：**
 
@@ -484,7 +533,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
 加载 ``optimizer`` 的Tensor字典给当前 ``optimizer`` 。
 
-返回：None
+**返回**
+None
 
 
 **代码示例**
@@ -515,7 +565,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     adam.set_state_dict(para_state_dict)
 
 
-.. py:method:: set_lr(value)
+set_lr(value)
+'''''''''
 
 **注意：**
 
@@ -523,10 +574,12 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
 手动设置当前 ``optimizer`` 的学习率。
 
-参数：
+**参数**
+
     value (float) - 需要设置的学习率的值。
 
-返回：None
+**返回**
+None
 
 
 **代码示例**
@@ -565,7 +618,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     #    current lr is 0.6
 
 
-.. py:method:: get_lr()
+get_lr()
+'''''''''
 
 **注意：**
 
@@ -573,7 +627,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
 获取当前步骤的学习率。
 
-返回：float，当前步骤的学习率。
+**返回**
+float，当前步骤的学习率。
 
 
 
@@ -604,7 +659,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     print(lr) # 0.01
 
 
-.. py:method:: step()
+step()
+'''''''''
 
 **注意：**
 
@@ -612,7 +668,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
 执行一次优化器并进行参数更新。
 
-返回：None。
+**返回**
+None。
 
 
 **代码示例**
@@ -663,7 +720,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     adam.clear_grad()
 
 
-.. py:method:: clear_grad()
+clear_grad()
+'''''''''
 
 **注意：**
 
@@ -672,7 +730,8 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
 
 清除需要优化的参数的梯度。
 
-返回：None。
+**返回**
+None。
 
 
 **代码示例**
@@ -723,9 +782,13 @@ server节点的运行, 此命令会将ParameterServer的进程启动并常驻直
     adam.clear_grad()
 
 
-.. py:method:: minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
+minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
+'''''''''
 
 
-.. py:attribute:: util
+属性
+::::::::::::
+util
+'''''''''
 
 

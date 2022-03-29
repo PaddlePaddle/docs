@@ -27,7 +27,9 @@ data_norm
         \sigma_{\beta}^{2} + \epsilon}} \qquad &//\ normalize \\
         y_i &\gets \gamma \hat{x_i} + \beta \qquad &//\ scale\ and\ shift
 
-参数:
+参数
+::::::::::::
+
   - **input** （Tensor） - 输入变量。
   - **act** （string，可选） - 激活函数类型，线性| relu | prelu | ..., 默认值为 None。
   - **epsilon** （float，可选） - 指明在计算过程中是否添加较小的值到方差中以防止除零。默认值：1e-05。
@@ -43,11 +45,16 @@ data_norm
   - **sync_stats** （bool, 默认值False） - 在多GPU卡的场景下可以使用，用来同步多卡间的summary信息。
   - **enable_scale_and_shift** (bool, 默认值False) - 在分布式全局正则化后是否做像batchnorm一样做scale&shift的操作。
 
-返回: 张量变量，是对输入数据进行正则化后的结果。
+返回
+::::::::::::
+ 张量变量，是对输入数据进行正则化后的结果。
 
-返回类型: Tensor
+返回类型
+::::::::::::
+ Tensor
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

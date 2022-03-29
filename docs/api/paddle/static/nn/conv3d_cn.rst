@@ -65,7 +65,9 @@ conv3d
 
     W_{out} = \frac{\left ( W_{in} -\left ( dilation[2]*\left ( W_{f}-1 \right )+1 \right ) \right )}{stride[2]}+1
 
-参数：
+参数
+::::::::::::
+
     - **input** (Tensor) - 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型为float16, float32或float64。
     - **num_fliters** (int) - 滤波器（卷积核）的个数。和输出图像通道相同。
     - **filter_size** (int|list|tuple) - 滤波器大小。如果它是一个列表或元组，则必须包含三个整数值：（filter_size_depth, filter_size_height，filter_size_width）。若为一个整数，则filter_size_depth = filter_size_height = filter_size_width = filter_size。
@@ -80,10 +82,13 @@ conv3d
     - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值：None。
     - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。默认值："NCDHW"。
 
-返回：5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回卷积计算的结果，如果指定激活层，则返回卷积和激活计算之后的最终结果。
+返回
+::::::::::::
+5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回卷积计算的结果，如果指定激活层，则返回卷积和激活计算之后的最终结果。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
     

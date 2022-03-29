@@ -17,7 +17,9 @@ lu_unpack
         swap(ones[i], ones[pivots[i]])
     return ones
 
-参数：
+参数
+::::::::::::
+
 :::::::::
     - **x** (Tensor) - paddle.linalg.lu返回结果的LU矩阵。
     - **y** (Tensor) - paddle.linalg.lu返回结果的pivot序列。
@@ -25,7 +27,9 @@ lu_unpack
     - **unpack_pivots** (bool, 可选) - 若为True，则对输入y(pivots)序列进行展开，得到转换矩阵P。默认True。
     - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：
+返回
+::::::::::::
+
 :::::::::
     - Tensor L, 由LU展开得到的L矩阵，若unpack_ludata为False，则为None。
     - Tensor U, 由LU展开得到的U矩阵，若unpack_ludata为False，则为None。

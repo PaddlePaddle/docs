@@ -18,16 +18,21 @@ KaimingUniform
 
     x = \sqrt{\frac{6.0}{fan\_in}}
 
-参数：
+参数
+::::::::::::
+
     - **fan_in** (float16|float32) - Kaiming Uniform Initializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None
 
-返回：对象
+返回
+::::::::::::
+对象
 
 .. note:: 
 
     在大多数情况下推荐设置fan_in为None
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

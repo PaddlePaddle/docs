@@ -26,7 +26,9 @@ layer_norm
 - :math:`g` : 可训练的比例参数
 - :math:`b` : 可训练的偏差参数
 
-参数：
+参数
+::::::::::::
+
   - **input** (Tensor) - 维度为任意维度的多维 ``Tensor`` ，数据类型为float32或float64。
   - **scale** (bool, 可选) - 指明是否在归一化后学习自适应增益 ``g`` 。默认值：True。
   - **shift** (bool, 可选) - 指明是否在归一化后学习自适应偏差 ``b`` 。默认值：True。
@@ -37,10 +39,13 @@ layer_norm
   - **act** (str, 可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
   - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。。
 
-返回：表示归一化结果的 ``Tensor`` ，数据类型和 ``input`` 一致，返回维度和 ``input`` 一致。
+返回
+::::::::::::
+表示归一化结果的 ``Tensor`` ，数据类型和 ``input`` 一致，返回维度和 ``input`` 一致。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

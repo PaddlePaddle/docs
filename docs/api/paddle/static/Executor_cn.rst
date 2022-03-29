@@ -12,12 +12,17 @@ Executor
 
 Executor支持单GPU、多GPU以及CPU运行。
 
-参数：
+参数
+::::::::::::
+
     - **place** (paddle.CPUPlace()|paddle.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本设置默认的运行设备。当安装的Paddle为CPU版时，默认运行设置会设置成 `CPUPlace()` ，而当Paddle为GPU版时，默认运行设备会设置成 `CUDAPlace(0)` 。默认值为None。注意：多卡训练初始化Executor时也只用传入一个Place或None，其他API会处理使用的多卡，见 `多卡使用方式 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/update_cn.html#danjiduokaqidong>`_ 
   
-返回：初始化后的 ``Executor`` 对象
+返回
+::::::::::::
+初始化后的 ``Executor`` 对象
 
-**示例代码**
+代码示例
+::::::::::::
 
 .. code-block:: python
     
@@ -71,14 +76,18 @@ Executor支持单GPU、多GPU以及CPU运行。
         train_program).with_data_parallel(loss_name=loss.name)
     loss_data, = exe.run(compiled_prog, feed={"X": x}, fetch_list=[loss.name])
 
-.. py:method:: close()
+方法
+::::::::::::
+close()
+'''''''''
 
 
 关闭执行器。该接口主要用于对于分布式训练，调用该接口后不可以再使用该执行器。该接口会释放在PServers上和目前Trainer有关联的资源。
 
-返回：无
+**返回**
+无
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
     
@@ -90,11 +99,13 @@ Executor支持单GPU、多GPU以及CPU运行。
     exe.close()
 
 
-.. py:method:: run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True, use_program_cache=False, return_merged=True, use_prune=False)
+run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True, use_program_cache=False, return_merged=True, use_prune=False)
+'''''''''
 
 执行指定的Program或者CompiledProgram。需要注意的是，执行器会执行Program或CompiledProgram中的所有算子，而不会根据fetch_list对Program或CompiledProgram中的算子进行裁剪。同时，需要传入运行该模型用到的scope，如果没有指定scope，执行器将使用全局scope，即paddle.static.global_scope()。
 
-参数：  
+**参数**
+  
   - **program** (Program|CompiledProgram) – 该参数为被执行的Program或CompiledProgram，如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为paddle.static.default_main_program()。默认为：None。
   - **feed** (list|dict) – 该参数表示模型的输入变量。如果是单卡训练，``feed`` 为 ``dict`` 类型，如果是多卡训练，参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量，如果该参数类型为 ``dict`` ，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU），即输入数据被均匀分配到不同设备上；如果该参数类型为 ``list`` ，则列表中的各个元素都会直接分别被拷贝到各设备中。默认为：None。
   - **fetch_list** (list) – 该参数表示模型运行之后需要返回的变量。默认为：None。
@@ -106,14 +117,15 @@ Executor支持单GPU、多GPU以及CPU运行。
   - **return_merged** (bool) – 该参数表示是否按照执行设备维度将返回的计算结果（fetch list中指定的变量）进行合并。如果 ``return_merged`` 设为False，返回值类型是一个Tensor的二维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy.ndarray的二维列表（ ``return_numpy`` 设为True时）。如果 ``return_merged`` 设为True，返回值类型是一个Tensor的一维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy.ndarray的一维列表（ ``return_numpy`` 设为True时）。更多细节请参考示例代码2。如果返回的计算结果是变长的，请设置 ``return_merged`` 为False，即不按照执行设备维度合并返回的计算结果。该参数的默认值为True，但这仅是为了兼容性考虑，在未来的版本中默认值可能会更改为False。
   - **use_prune** (bool) - 该参数表示输入Program是否会被裁剪。如果该参数为True，会根据feed和fetch_list裁剪Program，这意味着对生成fetch_list没有必要的算子和变量会被裁剪掉。默认为False，即算子和变量在运行过程不会被裁剪。注意如果Optimizer.minimize()返回的tuple被作为fetch_list参数，那么use_prune会被重载为True并且Program会被裁剪。
 
-返回：返回fetch_list中指定的变量值
+**返回**
+返回fetch_list中指定的变量值
 
 .. note::
      1. 如果是多卡训练，并且feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
      2. 如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
 
 
-**示例代码1**
+**代码示例 1**
 
 .. code-block:: python
 
@@ -142,7 +154,7 @@ Executor支持单GPU、多GPU以及CPU运行。
             print(array_val)
             # [array([0.02153828], dtype=float32)]
 
-**示例代码2**
+**代码示例 2**
 
 .. code-block:: python
 
@@ -210,11 +222,13 @@ Executor支持单GPU、多GPU以及CPU运行。
             #  [-0.44514108 -0.2345845 ]]
 
 
-.. py:method:: infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
+infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
+'''''''''
 
 infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在分布式训练中，推进梯度将在infer_from_dataset中禁用。 infer_from_dataset（）可以非常容易地用于多线程中的评估。
 
-参数：  
+**参数**
+  
   - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
   - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域
@@ -224,9 +238,10 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
   - **fetch_info** (String List) – 每个变量的打印信息，默认为None
   - **print_period** (int) – 每两次打印之间间隔的mini-batches的数量，默认为100
 
-返回：None
+**返回**
+None
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -248,13 +263,15 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
                            dataset=dataset)
 
 
-.. py:method:: train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
+train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
+'''''''''
 
 从预定义的数据集中训练。 数据集在paddle.fluid.dataset中定义。 给定程序（或编译程序），train_from_dataset将使用数据集中的所有数据样本。 输入范围可由用户给出。 默认情况下，范围是global_scope()。训练中的线程总数是thread。 训练中使用的线程数将是数据集中threadnum的最小值，同时也是此接口中线程的值。 可以设置debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。
 
 注意：train_from_dataset将销毁每次运行在executor中创建的所有资源。
 
-参数：  
+**参数**
+  
   - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)
   - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域
@@ -264,9 +281,10 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
   - **fetch_info** (String List) – 每个变量的打印信息，默认为None
   - **print_period** (int) – 每两次打印之间间隔的mini-batches的数量，默认为100
 
-返回：None
+**返回**
+None
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 

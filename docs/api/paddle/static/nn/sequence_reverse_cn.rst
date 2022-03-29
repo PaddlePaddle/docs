@@ -39,7 +39,8 @@ sequence_reverse
 :::::::::
 输出在每个序列上反转后的LoDTensor，数据类型和输入类型一致。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 COPY-FROM: paddle.static.nn.sequence_reverse
 

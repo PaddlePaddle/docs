@@ -15,7 +15,9 @@ celu激活层（CELU Activation Operator）
 
 其中，:math:`x` 为输入的 Tensor
 
-参数:
+参数
+::::::::::::
+
 ::::::::::
  - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float16、float32、float64。
  - alpha (float, 可选) - celu的alpha值，默认值为1.0。

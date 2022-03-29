@@ -14,7 +14,9 @@ nce
 <http://www.jmlr.org/proceedings/papers/v9/gutmann10a/gutmann10a.pdf>`_
 该层默认使用均匀分布进行抽样。
 
-参数:
+参数
+::::::::::::
+
     - **input** (Tensor) -  输入张量, 2-D 张量，形状为 [batch_size, dim]，数据类型为 float32 或者 float64。
     - **label** (Tensor) -  标签，2-D 张量，形状为 [batch_size, num_true_class]，数据类型为 int64。
     - **num_total_classes** (int) - 所有样本中的类别的总数。
@@ -28,12 +30,17 @@ nce
     - **seed** (int，可选) – 采样器使用的seed。默认为0
     - **is_sparse** (bool，可选) – 标志位，指明是否使用稀疏更新, 为 ``True`` 时 :math:`weight@GRAD` 和 :math:`bias@GRAD` 的类型会变为 SelectedRows。默认为 ``False`` 。
 
-返回： nce loss，数据类型与 **input** 相同
+返回
+::::::::::::
+ nce loss，数据类型与 **input** 相同
 
-返回类型: Tensor
+返回类型
+::::::::::::
+ Tensor
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

@@ -36,7 +36,9 @@ Embedding
 
 
 
-参数：
+参数
+::::::::::::
+
     - **num_embeddings** (int) - 嵌入字典的大小， input中的id必须满足 ``0 =< id < num_embeddings`` 。 。
     - **embedding_dim** (int) - 每个嵌入向量的维度。
     - **padding_idx** (int|long|None) - padding_idx的配置区间为 ``[-weight.shape[0], weight.shape[0]``，如果配置了padding_idx，那么在训练过程中遇到此id时，其参数及对应的梯度将会以0进行填充。
@@ -46,11 +48,16 @@ Embedding
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 
-返回：input映射后得到的Embedding Tensor，数据类型和词嵌入的定义类型一致。
+返回
+::::::::::::
+input映射后得到的Embedding Tensor，数据类型和词嵌入的定义类型一致。
 
-返回类型：Tensor
+返回类型
+::::::::::::
+Tensor
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

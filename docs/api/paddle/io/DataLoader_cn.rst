@@ -25,7 +25,9 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
     当禁用自动组batch时， ``default_collate_fn`` 将不对输入数据做任何处理。
 
-参数:
+参数
+::::::::::::
+
     - **dataset** (Dataset) - DataLoader从此参数给定数据集中加载数据，此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例。
     - **feed_list** (list(Tensor)|tuple(Tensor)) - feed变量列表，由 ``paddle.static.data()`` 创建。当 ``return_list`` 为False时，此参数必须设置。默认值为None。
     - **places** (list(Place)|tuple(Place)) - 数据需要放置到的Place列表。在静态图和动态图模式中，此参数均必须设置。在动态图模式中，此参数列表长度必须是1。默认值为None。
@@ -41,11 +43,16 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
     - **timeout** (int) - 从子进程输出队列获取mini-batch数据的超时时间。默认值为0。
     - **worker_init_fn** (callable) - 子进程初始化函数，此函数会被子进程初始化时被调用，并传递 ``worker id`` 作为参数。默认值为None。
 
-返回：迭代 ``dataset`` 数据的迭代器，迭代器返回的数据中的每个元素都是一个Tensor。
+返回
+::::::::::::
+迭代 ``dataset`` 数据的迭代器，迭代器返回的数据中的每个元素都是一个Tensor。
 
-返回类型: DataLoader
+返回类型
+::::::::::::
+ DataLoader
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -108,7 +115,10 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
             simple_net.clear_gradients()
             print("Epoch {} batch {}: loss = {}".format(e, i, np.mean(loss.numpy())))
 
-.. py:method:: from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False, drop_last=True)
+方法
+::::::::::::
+from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=True, return_list=False, use_multiprocess=False, drop_last=True)
+'''''''''
 
 .. warning::
     这个API将在未来版本废弃，推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``
@@ -125,7 +135,8 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
 如果iterable = False，本方法创建的DataLoader对象提供 :code:`start()` 和 :code:`reset()` 方法控制数据读取过程。
 
-参数:
+**参数**
+
     - **feed_list** (list(Tensor)|tuple(Tensor)) - feed变量列表，由 ``paddle.static.data()`` 创建。
     - **capacity** (int) - DataLoader对象内部维护队列的容量大小。单位是batch数量。若reader读取速度较快，建议设置较大的capacity值。
     - **use_double_buffer** (bool) - 是否使用 ``double_buffer_reader`` 。若use_double_buffer=True，DataLoader会异步地预读取下一个batch的数据，可加速数据读取过程，但同时会占用少量的CPU/GPU存储，即一个batch输入数据的存储空间。
@@ -134,9 +145,11 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
     - **use_multiprocess** (bool) - 设置是否是用多进程加速动态图的数据载入过程。注意：该参数的设置仅在动态图模式下有效, 在静态图模式下，该参数设置与否均无任何影响。默认值为False。
     - **drop_last** (bool): 是否丢弃最后的不足CPU/GPU设备数的批次。默认值为True。在网络训练时，用户不能设置drop_last=False，此时所有CPU/GPU设备均应从DataLoader中读取到数据。在网络预测时，用户可以设置drop_last=False，此时最后不足CPU/GPU设备数的批次可以进行预测。
 
-返回: 被创建的DataLoader对象
+**返回**
+ 被创建的DataLoader对象
 
-返回类型: loader (DataLoader)
+**返回类型**
+ loader (DataLoader)
 
 **代码示例 1**
 
@@ -339,7 +352,8 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
             print("Epoch {} batch {}: loss = {}".format(
                 epoch_id, batch_id, np.mean(loss.numpy())))
 
-**代码示例 3**
+代码示例 3
+::::::::::::
 
 .. code-block:: python
 
@@ -389,21 +403,25 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
     print(run_inference(drop_last=False)) # [1.0, 4.0, 9.0]
 
 
-.. py:method:: from_dataset(dataset, places, drop_last=True)
+from_dataset(dataset, places, drop_last=True)
+'''''''''
 
 .. warning::
     这个API将在未来版本废弃，推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``
 
 创建一个DataLoader对象用于加载Dataset产生的数据。目前，Dataset仅支持Linux系统下使用。
 
-参数:
+**参数**
+
     - **dataset** (InMemoryDataset|QueueDataset) - Dataset对象。
     - **places** (list(CUDAPlace)|list(CPUPlace)) - DataLoader对象返回数据所在的place。
     - **drop_last** (bool) - 是否丢弃最后样本数量不足batch size的batch。若drop_last = True则丢弃，若drop_last = False则不丢弃。
 
-返回: 被创建的DataLoader对象，可以for-range的方式循环迭代
+**返回**
+ 被创建的DataLoader对象，可以for-range的方式循环迭代
 
-返回类型: loader (DataLoader)
+**返回类型**
+ loader (DataLoader)
 
 **代码示例**
 

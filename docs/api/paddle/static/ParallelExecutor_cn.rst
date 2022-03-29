@@ -11,7 +11,9 @@ ParallelExecutor
 
 ``ParallelExecutor`` 是 ``Executor`` 的一个升级版本，可以支持基于数据并行的多节点模型训练和测试。如果采用数据并行模式， ``ParallelExecutor`` 在构造时会将参数分发到不同的节点上，并将输入的 ``Program`` 拷贝到不同的节点，在执行过程中，各个节点独立运行模型，将模型反向计算得到的参数梯度在多个节点之间进行聚合，之后各个节点独立的进行参数的更新。如果使用GPU运行模型，即 ``use_cuda=True`` ，节点指代GPU， ``ParallelExecutor`` 将自动获取在当前机器上可用的GPU资源，用户也可以通过在环境变量设置可用的GPU资源，例如：希望使用GPU0、GPU1计算，export CUDA_VISIBLEDEVICES=0,1；如果在CPU上进行操作，即 ``use_cuda=False`` ，节点指代CPU，**注意：此时需要用户在环境变量中手动添加 CPU_NUM ，并将该值设置为CPU设备的个数，例如：export CPU_NUM=4，如果没有设置该环境变量，执行器会在环境变量中添加该变量，并将其值设为1**。
 
-参数:
+参数
+::::::::::::
+
     - **use_cuda** (bool) – 该参数表示是否使用GPU执行。
     - **loss_name** （str） - 该参数为模型最后得到的损失变量的名字。**注意：如果是数据并行模型训练，必须设置loss_name，否则计算结果可能会有问题。** 默认为：None。
     - **main_program** (Program) – 需要被执行的Program 。如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为paddle.static.default_main_program()。 默认为：None。
@@ -22,16 +24,21 @@ ParallelExecutor
     - **trainer_id** (int) –  进行GPU分布式训练时需要设置该参数。该参数必须与num_trainers参数同时使用。trainer_id指明是当前所在节点的 “rank”（层级）。trainer_id从0开始计数。默认为：0。
     - **scope** (Scope) – 指定执行Program所在的作用域。默认为：paddle.static.global_scope()。
 
-返回：初始化后的 ``ParallelExecutor`` 对象
+返回
+::::::::::::
+初始化后的 ``ParallelExecutor`` 对象
 
-抛出异常：``TypeError`` 
+抛出异常
+::::::::::::
+``TypeError`` 
     - 如果提供的参数 ``share_vars_from`` 不是 ``ParallelExecutor`` 类型的，将会抛出此异常。
 
 .. note::
      1. 如果只是进行多卡测试，不需要设置loss_name以及share_vars_from。
      2. 如果程序中既有模型训练又有模型测试，则构建模型测试所对应的ParallelExecutor时必须设置share_vars_from，否则模型测试和模型训练所使用的参数是不一致。
 
-**示例代码**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -78,19 +85,25 @@ ParallelExecutor
     loss_data, = test_exe.run(feed={"X": x},
                               fetch_list=[loss.name])
 
-.. py:method::  run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
+方法
+::::::::::::
+run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
+'''''''''
 
 该接口用于运行当前模型，需要注意的是，执行器会执行Program中的所有算子，而不会根据fetch_list对Program中的算子进行裁剪。
 
-参数：
+**参数**
+
     - **fetch_list** (list) – 该变量表示模型运行之后需要返回的变量。
     - **feed** (list|dict) – 该变量表示模型的输入变量。如果该参数类型为 ``dict`` ，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU）；如果该参数类型为 ``list`` ，则列表中的各个元素都会直接分别被拷贝到各设备中。默认为：None。
     - **feed_dict** – 该参数已经停止使用。默认为：None。
     - **return_numpy** (bool) – 该变量表示是否将fetched tensor转换为numpy。默认为：True。
 
-返回：返回fetch_list中指定的变量值
+**返回**
+返回fetch_list中指定的变量值
 
-抛出异常：
+**抛出异常**
+
      - ``ValueError`` - 如果feed参数是list类型，但是它的长度不等于可用设备（执行场所）的数目，再或者给定的feed不是dict类型，抛出此异常
      - ``TypeError`` - 如果feed参数是list类型，但是它里面的元素不是dict类型时，抛出此异常
 
@@ -98,7 +111,7 @@ ParallelExecutor
      1. 如果feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
      2. 如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
     import paddle
@@ -147,11 +160,13 @@ ParallelExecutor
     loss_data, = train_exe.run(feed=[{"X": x}, {"X": x2}],
                                fetch_list=[loss.name])
 
-.. py:method::  drop_local_exe_scopes()
+drop_local_exe_scopes()
+'''''''''
 
 立即清除scope中的临时变量。模型运行过程中，生成的中间临时变量将被放到local execution scope中，为了避免对临时变量频繁的申请与释放，ParallelExecutor中采取的策略是间隔若干次迭代之后清理一次临时变量。ParallelExecutor在ExecutionStrategy中提供了num_iteration_per_drop_scope选项，该选项表示间隔多少次迭代之后清理一次临时变量。如果num_iteration_per_drop_scope值为100，但是希望在迭代50次之后清理一次临时变量，可以通过手动调用该接口。
 
-返回：无
+**返回**
+无
 
 **代码示例**
 

@@ -23,7 +23,9 @@ bilinear_tensor_product
   - :math:`out_{i}`: 输出的第 :math:`i` 个元素，形状是 [batch_size, size]。
   - :math:`y^\mathrm{T}`: :math:`y_{2}` 的转置。
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable): 2-D 输入张量，形状为 [batch_size, M], 数据类型为 float32 或 float64。
     - **y** (Variable): 2-D 输入张量，形状为 [batch_size, N]，数据类型与 **x** 一致。
     - **size** (int): 此层的维度。
@@ -32,9 +34,12 @@ bilinear_tensor_product
     - **param_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr，可选) : 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
-返回： Variable, 一个形为 [batch_size, size] 的 2-D 张量。
+返回
+::::::::::::
+ Variable, 一个形为 [batch_size, size] 的 2-D 张量。
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

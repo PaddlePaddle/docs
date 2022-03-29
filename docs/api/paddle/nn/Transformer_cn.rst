@@ -16,7 +16,9 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
 用户可以使用相应的参数配置模型结构。请注意 ``normalize_before`` 的用法与某些类似Transformer的模型例如BERT和GPT2的用法不同，它表示在哪里（多头注意力机制或前馈神经网络的输入还是输出）进行层标准化（Layer Normalization）。该模型默认的结构是对每个子层的output进行层归一化，并在最后一个编码器/解码器的输出上进行另一个层归一化操作。
 
 
-参数：
+参数
+::::::::::::
+
     - **d_model** (int，可选) - 编码器和解码器的输入输出的维度。默认值：512。
     - **nhead** (int，可选) - 多头注意力机制的Head数量。默认值：8。
     - **num_encoder_layers** (int，可选) - 编码器中 ``TransformerEncoderLayer`` 的层数。默认值：6。
@@ -33,7 +35,8 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
     - **custom_decoder** (Layer，可选) - 若提供该参数，则将 ``custom_decoder`` 作为解码器。默认值：``None``。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

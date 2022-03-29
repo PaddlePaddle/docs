@@ -12,11 +12,16 @@ in_dynamic_mode
 
 可以通过 :ref:`cn_api_paddle_enable_static` 开启静态图模式， :ref:`cn_api_paddle_disable_static` 关闭静态图模式。
 
-返回：如果paddle当前是在动态图模式运行，则返回 ``True`` ，否则返回 ``False``
+返回
+::::::::::::
+如果paddle当前是在动态图模式运行，则返回 ``True`` ，否则返回 ``False``
 
-返回类型：bool
+返回类型
+::::::::::::
+bool
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

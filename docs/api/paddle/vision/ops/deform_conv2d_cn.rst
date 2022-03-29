@@ -42,7 +42,9 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     W_{out}&= \frac{(W_{in} + 2 * paddings[1] - (dilations[1] * (W_f - 1) + 1))}{strides[1]} + 1
 
 
-参数：
+参数
+::::::::::::
+
     - **x** (Tensor) - 形状为 :math:`[N, C, H, W]` 的输入Tensor，数据类型为float32或float64。
     - **offset** (Tensor) – 可变形卷积层的输入坐标偏移，数据类型为float32或float64。
     - **weight** (Tensor) – 卷积核参数，形状为 :math:`[[M, C/g, kH, kW]`, 其中 M 是输出通道数，g 是group组数,kH是卷积核高度尺寸，kW是卷积核宽度尺寸。数据类型为float32或float64。
@@ -55,10 +57,13 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     - **mask** (Tensor, 可选) – 可变形卷积层的输入掩码，当使用可变形卷积算子v1时，请将mask设置为None, 数据类型为float32或float64。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
  
-返回：可变形卷积输出的4-D Tensor，数据类型为float32或float64。
+返回
+::::::::::::
+可变形卷积输出的4-D Tensor，数据类型为float32或float64。
      
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

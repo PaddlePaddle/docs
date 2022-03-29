@@ -19,7 +19,9 @@ SimpleRNN
 
         y_{t} & = h_{t}
 
-参数：
+参数
+::::::::::::
+
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
     - **num_layers** (int，可选) - 网络层数。默认为1。
@@ -41,7 +43,8 @@ SimpleRNN
     - **outputs** (Tensor) - 输出，由前向和后向cell的输出拼接得到。如果time_major为False，则Tensor的形状为[batch_size,time_steps,num_directions * hidden_size]，如果time_major为True，则Tensor的形状为[time_steps,batch_size,num_directions * hidden_size]，当direction设置为bidirectional时，num_directions等于2，否则等于1。
     - **final_states** (Tensor) - 最终状态。形状为[num_layers * num_directions, batch_size, hidden_size]，当direction设置为bidirectional时，num_directions等于2，返回值的前向和后向的状态的索引是0，2，4，6...和1，3，5，7...，否则等于1。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

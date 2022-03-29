@@ -10,13 +10,17 @@ outer
 
 对于1维Tensor正常计算外积，对于大于1维的Tensor先展平为1维再计算外积。
 
-参数：
+参数
+::::::::::::
+
 :::::::::
     - **x** (Tensor) - 一个N维Tensor或者标量Tensor。
     - **y** (Tensor) - 一个N维Tensor或者标量Tensor。
     - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：
+返回
+::::::::::::
+
 :::::::::
     - Tensor, x、y的外积结果，Tensor shape为 [x.size, y.size]。
 
