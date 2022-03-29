@@ -61,18 +61,12 @@ scale(var)
 将Tensor乘上缩放因子，返回缩放后的输出。
 如果这个 :class:`GradScaler` 的实例不使用loss scaling，则返回的输出将保持不变。
 
-
-参数
-:::::::::
+**参数：**
     - **var** (Tensor) - 需要进行缩放的Tensor。
 
+**返回：**缩放后的Tensor或者原Tensor。
 
-返回
-:::::::::
-    缩放后的Tensor或者原Tensor。
-
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -99,14 +93,12 @@ minimize(optimizer, *args, **kwargs)
 如果参数缩放后的梯度包含NAN或者INF，则跳过参数更新。否则，首先让缩放过梯度的参数取消缩放，然后更新参数。
 最终，更新loss scaling的比例。
 
-参数
-:::::::::
+**参数：**
     - **optimizer** (Optimizer) - 用于更新参数的优化器。
     - **args** - 参数，将会被传递给 ``optimizer.minimize()`` 。
     - **kwargs** - 关键词参数，将会被传递给 ``optimizer.minimize()`` 。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -133,12 +125,10 @@ step(optimizer)
 如果参数缩放后的梯度包含NAN或者INF，则跳过参数更新。否则，首先让缩放过梯度的参数取消缩放，然后更新参数。
 该函数与 ``update()`` 函数一起使用，效果等同于 ``minimize()``。
 
-参数
-:::::::::
+**参数：**
     - **optimizer** (Optimizer) - 用于更新参数的优化器。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -162,8 +152,7 @@ update()
 
 更新缩放比例。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -189,12 +178,10 @@ unscale_(optimizer)
 如果在 ``step()`` 调用前调用 ``unscale_()``，则 ``step()`` 不会重复调用 ``unscale()``，否则 ``step()`` 将先执行 ``unscale_()`` 再做参数更新。
 ``minimize()`` 用法同上。
 
-参数
-:::::::::
+**参数：**
     - **optimizer** (Optimizer) - 用于更新参数的优化器。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -219,12 +206,9 @@ is_enable()
 
 判断是否开启loss scaling策略。
 
-返回
-:::::::::
-    bool，采用loss scaling策略返回True，否则返回False。
+**返回：**bool，采用loss scaling策略返回True，否则返回False。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -244,12 +228,9 @@ is_use_dynamic_loss_scaling()
 
 判断是否动态调节loss scaling的缩放比例。
 
-返回
-:::::::::
-    bool，动态调节loss scaling缩放比例返回True，否则返回False。
+**返回：**bool，动态调节loss scaling缩放比例返回True，否则返回False。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -269,12 +250,9 @@ get_init_loss_scaling()
 
 返回初始化的loss scaling缩放比例。
 
-返回
-:::::::::
-    float，初始化的loss scaling缩放比例。
+**返回：**float，初始化的loss scaling缩放比例。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -294,12 +272,10 @@ set_init_loss_scaling(new_init_loss_scaling)
 
 利用输入的new_init_loss_scaling对初始缩放比例参数init_loss_scaling重新赋值。
 
-参数
-:::::::::
+**参数：**
     - **new_init_loss_scaling** (float) - 用于更新缩放比例的参数。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -321,13 +297,9 @@ get_incr_ratio()
 
 返回增大loss scaling时使用的乘数。
 
+**返回：**float，增大loss scaling时使用的乘数。
 
-返回
-:::::::::
-    float，增大loss scaling时使用的乘数。
-
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -347,12 +319,10 @@ set_incr_ratio(new_incr_ratio)
 
 利用输入的new_incr_ratio对增大loss scaling时使用的乘数重新赋值。
 
-参数
-:::::::::
+**参数：**
     - **new_incr_ratio** (float) - 用于更新增大loss scaling时使用的乘数，该值需>1.0。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -374,13 +344,9 @@ get_decr_ratio()
 
 返回缩小loss scaling时使用的乘数。
 
+**返回：**float，缩小loss scaling时使用的乘数。
 
-返回
-:::::::::
-    float，缩小loss scaling时使用的乘数。
-
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -400,12 +366,10 @@ set_decr_ratio(new_decr_ratio)
 
 利用输入的new_decr_ratio对缩小loss scaling时使用的乘数重新赋值。
 
-参数
-:::::::::
+**参数：**
     - **new_decr_ratio** (float) - 用于更新缩小loss scaling时使用的乘数，该值需<1.0。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -427,13 +391,9 @@ get_incr_every_n_steps()
 
 连续n个steps的梯度都是有限值时，增加loss scaling，返回对应的值n。
 
+**返回：**int，参数incr_every_n_steps。
 
-返回
-:::::::::
-    int，参数incr_every_n_steps。
-
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -453,12 +413,10 @@ set_incr_every_n_steps(new_incr_every_n_steps)
 
 利用输入的new_incr_every_n_steps对参数incr_every_n_steps重新赋值。
 
-参数
-:::::::::
+**参数：**
     - **new_incr_every_n_steps** (int) - 用于更新参数incr_every_n_steps。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -480,13 +438,9 @@ get_decr_every_n_nan_or_inf()
 
 累计出现n个steps的梯度为nan或者inf时，减小loss scaling，返回对应的值n。
 
+**返回：**int，参数decr_every_n_nan_or_inf。
 
-返回
-:::::::::
-    int，参数decr_every_n_nan_or_inf。
-
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -506,12 +460,10 @@ set_decr_every_n_nan_or_inf(new_decr_every_n_nan_or_inf)
 
 利用输入的new_decr_every_n_nan_or_inf对参数decr_every_n_nan_or_inf重新赋值。
 
-参数
-:::::::::
+**参数：**
     - **new_decr_every_n_nan_or_inf** (int) - 用于更新参数decr_every_n_nan_or_inf。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -533,13 +485,9 @@ state_dict()
 
 以字典的形式存储GradScaler对象的状态参数，如果该对象的enable为False，则返回一个空的字典。
 
+**返回：**dict，字典存储的参数包括：scale(tensor):loss scaling因子、incr_ratio(float):增大loss scaling时使用的乘数、decr_ratio(float):减小loss scaling时使用的小于1的乘数、incr_every_n_steps(int):连续n个steps的梯度都是有限值时，增加loss scaling、decr_every_n_nan_or_inf(int):累计出现n个steps的梯度为nan或者inf时，减小loss scaling、incr_count(int):连续未跳过参数更新的次数、decr_count(int):连续跳过参数更新的次数、use_dynamic_loss_scaling(bool):是否使用动态loss scaling策略。
 
-返回
-:::::::::
-    dict，字典存储的参数包括：scale(tensor):loss scaling因子、incr_ratio(float):增大loss scaling时使用的乘数、decr_ratio(float):减小loss scaling时使用的小于1的乘数、incr_every_n_steps(int):连续n个steps的梯度都是有限值时，增加loss scaling、decr_every_n_nan_or_inf(int):累计出现n个steps的梯度为nan或者inf时，减小loss scaling、incr_count(int):连续未跳过参数更新的次数、decr_count(int):连续跳过参数更新的次数、use_dynamic_loss_scaling(bool):是否使用动态loss scaling策略。
-
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
@@ -559,12 +507,10 @@ load_state_dict(state_dict)
 
 利用输入的state_dict设置或更新GradScaler对象的属性参数。
 
-参数
-:::::::::
+**参数：**
     - **state_dict** (dict) - 用于设置或更新GradScaler对象的属性参数，dict需要是``GradScaler.state_dict()``的返回值。
 
-代码示例
-::::::::::::
+**代码示例：**
 
 .. code-block:: python
 
