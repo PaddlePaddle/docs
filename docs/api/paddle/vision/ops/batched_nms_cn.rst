@@ -1,11 +1,11 @@
 .. _cn_api_paddle_vision_ops_batched_nms:
 
-batched_nm 
+batched_nms
 -------------------------------
 
 .. py:function:: paddle.vision.ops.batched_nms(boxes, scores, category_idxs, categories, iou_threshold, top_k)
 
-在batched_nms中，nms过程会在每一个类别的框当中分别进行计算，计算结果会被组合起来然后按照得分倒序排列。了解nms可参考:ref:`_cn_api_paddle_vision_ops_nms`
+在batched_nms中，nms过程会在每一个类别的框当中分别进行计算，计算结果会被组合起来然后按照得分倒序排列。了解nms可参考 :ref:`cn_api_paddle_vision_ops_nms`
 
 参数
 :::::::::
