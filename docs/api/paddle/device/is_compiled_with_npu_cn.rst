@@ -9,7 +9,7 @@ is_compiled_with_npu
 
 返回
 ::::::::::::
-bool, 支持NPU则为True，否则为False。
+bool，支持NPU则为True，否则为False。
 
 代码示例
 ::::::::::::
