@@ -9,13 +9,18 @@ get_default_dtype
 得到当前全局的dtype。 该值初始是float32。
 
 
-参数:
+参数
+::::::::::::
+
 
      无
 
-返回: string，这个全局dtype仅支持float16、float32、float64
+返回
+::::::::::::
+ string，这个全局dtype仅支持float16、float32、float64
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -22,21 +22,23 @@ COPY-FROM: paddle.profiler.RecordEvent:code-example1
 注意:
     RecordEvent只有在 :ref:`性能分析器 <cn_api_profiler_profiler>` 处于RECORD状态才会生效。
 
-.. py:method:: begin()
+方法
+::::::::::::
+begin()
+'''''''''
 
 记录开始的时间。
 
-代码示例
-::::::::::
+**代码示例**
 
 COPY-FROM: paddle.profiler.RecordEvent.begin:code-example2
 
 
-.. py:method:: end()
+end()
+'''''''''
 
 记录结束的时间。
 
-代码示例
-::::::::::
+**代码示例**
 
 COPY-FROM: paddle.profiler.RecordEvent.end:code-example3

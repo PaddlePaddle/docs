@@ -31,7 +31,9 @@ GRUCell
 详情请参考论文 :`An Empirical Exploration of Recurrent Network Architectures <http://proceedings.mlr.press/v37/jozefowicz15.pdf>`_。
 
 
-参数：
+参数
+::::::::::::
+
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih的参数。默认为None。
@@ -58,7 +60,8 @@ GRUCell
     所有的变换矩阵的权重和偏置都默认初始化为Uniform(-std, std)，其中std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

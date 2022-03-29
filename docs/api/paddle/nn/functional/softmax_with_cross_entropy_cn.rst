@@ -31,7 +31,9 @@ softmax_with_cross_entropy
     log\_max\_sum_j &= \log\sum_{i=0}^{K}\exp(logits_i - max_j)\\
     softmax_j &= \exp(logits_j - max_j - {log\_max\_sum}_j)
 
-参数：
+参数
+::::::::::::
+
   - **logits** (Tensor) - 维度为任意维的多维 ``Tensor`` ，数据类型为float32或float64。表示未缩放的输入。
   - **label** (Tensor) - 如果 ``soft_label`` 为True， ``label`` 是一个和 ``logits`` 维度相同的的 ``Tensor`` 。如果 ``soft_label`` 为False， ``label`` 是一个在axis维度上大小为1，其它维度上与 ``logits`` 维度相同的 ``Tensor`` 。
   - **soft_label** (bool, 可选) - 指明是否将输入标签当作软标签。默认值：False。
@@ -40,13 +42,18 @@ softmax_with_cross_entropy
   - **return_softmax** (bool, 可选) – 指明是否在返回交叉熵计算结果的同时返回softmax结果。默认值：False。
   - **axis** (int, 可选) – 执行softmax计算的维度索引。其范围为 :math:`[-1，rank-1]` ，其中 ``rank`` 是输入 ``logits`` 的秩。默认值：-1。
 
-返回：
+返回
+::::::::::::
+
   - 如果 ``return_softmax`` 为 False，则返回交叉熵损失结果的 ``Tensor`` ，数据类型和 ``logits`` 一致，除了 ``axis`` 维度上的形状为1，其余维度和 ``logits`` 一致。
   - 如果 ``return_softmax`` 为 True，则返回交叉熵损失结果的 ``Tensor`` 和softmax结果的 ``Tensor`` 组成的元组。其中交叉熵损失结果的数据类型和 ``logits`` 一致，除了 ``axis`` 维度上的形状为1，其余维度上交叉熵损失结果和 ``logits`` 一致；softmax结果的数据类型和 ``logits`` 一致，维度和 ``logits`` 一致。
 
-返回类型：变量或者两个变量组成的元组
+返回类型
+::::::::::::
+变量或者两个变量组成的元组
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

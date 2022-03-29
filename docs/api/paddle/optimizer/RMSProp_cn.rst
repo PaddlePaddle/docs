@@ -31,7 +31,9 @@ RMSProp
       
 其中， :math:`ρ` 是超参数，典型值为0.9,0.95等。 :math:`beta` 是动量术语。  :math:`epsilon` 是一个平滑项，用于避免除零，通常设置在1e-4到1e-8的范围内。
       
-参数：
+参数
+::::::::::::
+
     - **learning_rate** （float） - 全局学习率。
     - **rho** （float，可选） - rho是等式中的 :math:`rho` ，默认值0.95。
     - **epsilon** （float，可选） - 等式中的epsilon是平滑项，避免被零除，默认值1e-6。
@@ -45,10 +47,13 @@ RMSProp
       默认值为None，此时将不进行梯度裁剪。
     - **name** (str, 可选) - 可选的名称前缀，一般无需设置，默认值为None。
     
-抛出异常:
+抛出异常
+::::::::::::
+
     - ``ValueError`` -如果 ``learning_rate`` ， ``rho`` ， ``epsilon`` ， ``momentum`` 为None。
 
-**示例代码**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -66,7 +71,10 @@ RMSProp
     rmsprop.step()
     rmsprop.clear_grad()
 
-.. py:method:: step()
+方法
+::::::::::::
+step()
+'''''''''
 
 **注意：**
 
@@ -74,7 +82,8 @@ RMSProp
 
 执行一次优化器并进行参数更新。
 
-返回：None。
+**返回**
+None。
 
 
 **代码示例**
@@ -91,20 +100,23 @@ RMSProp
     rmsprop.step()
     rmsprop.clear_grad()
 
-.. py:method:: minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
+minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
+'''''''''
 
 为网络添加反向计算过程，并根据反向计算所得的梯度，更新parameters中的Parameters，最小化网络损失值loss。
 
-参数：
+**参数**
+
     - **loss** (Tensor) – 需要最小化的损失值变量
     - **startup_program** (Program, 可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 
     - **parameters** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
     - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
         
-返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+**返回**
+ tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -122,7 +134,8 @@ RMSProp
     rmsprop.step()
     rmsprop.clear_grad()
 
-.. py:method:: clear_gradients()
+clear_gradients()
+'''''''''
 
 **注意：**
 
@@ -146,7 +159,8 @@ RMSProp
     rmsprop.step()
     rmsprop.clear_gradients()
 
-.. py:method:: set_lr(value)
+set_lr(value)
+'''''''''
 
 **注意：**
 
@@ -154,10 +168,12 @@ RMSProp
 
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
-参数：
+**参数**
+
     value (float) - 需要设置的学习率的值。
 
-返回：None
+**返回**
+None
 
 **代码示例**
 
@@ -182,7 +198,8 @@ RMSProp
     #    current lr is 0.5
     #    current lr is 0.6
 
-.. py:method:: get_lr()
+get_lr()
+'''''''''
 
 **注意：**
 
@@ -190,7 +207,8 @@ RMSProp
 
 获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
-返回：float，当前步骤的学习率。
+**返回**
+float，当前步骤的学习率。
 
 
 **代码示例**

@@ -18,7 +18,8 @@ increment
 **返回**: Tensor，形状和数据类型同输入 ``x`` 。
 
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

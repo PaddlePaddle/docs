@@ -11,7 +11,9 @@ multi_box_head
 
 基于SSD（Single Shot MultiBox Detector）算法，在不同层输入特征上提取先验框、计算回归的坐标位置和分类的置信度，并合并到一起作为输出，具体参数解释和输出格式参考下面说明。更详细信息，请参阅SSD论文 `SSD：Single Shot MultiBox Detector <https://arxiv.org/abs/1512.02325>`_ 的2.2节。
 
-参数：
+参数
+::::::::::::
+
         - **inputs** (list(Variable) | tuple(Variable)) - 输入特征的列表，仅支持格式为NCHW的4-D Tensor。
         - **image** (Variable) - 一般是网络输入的图像数据，仅支持NCHW格式。
         - **base_size** (int) - 输入图片的大小，当输入个数len(inputs) > 2，并且 ``min_size`` 和 ``max_size`` 为None时，通过 ``baze_size``, ``min_ratio`` 和 ``max_ratio`` 来计算出 ``min_size`` 和 ``max_size`` 。计算公式如下:
@@ -46,15 +48,20 @@ multi_box_head
         - **name** (str) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
         - **min_max_aspect_ratios_order** (bool) - 如果设置为True，则输出先验框的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响卷积层后面的权重顺序，但不会影响最终检测结果。默认值：False。
 
-返回：
+返回
+::::::::::::
+
     - **mbox_loc(Variable)** - 预测框的回归位置。格式为[N，num_priors，4]，其中 ``N`` 是batch size， ``num_priors`` 是总共提取的先验框的个数。
     - **mbox_conf(Variable）** - 预测框的分类信度。格式为[N，num_priors，C]，其中 ``num_priors`` 同上，C是类别数。
     - **boxes(Variable)** - 提取的先验框。布局是[num_priors，4]， ``num_priors`` 同上，常量4是坐标个数。
     - **variances(Variable)** - 提取的先验框方差。布局是[num_priors，4]， ``num_priors`` 同上。
 
-返回类型：list(Variable) | tuple(Variable）
+返回类型
+::::::::::::
+list(Variable) | tuple(Variable）
 
-**代码示例1: 设置min_ratio和max_ratio**
+代码示例 1: 设置min_ratio和max_ratio
+::::::::::::
 
 ..  code-block:: python
         
@@ -81,7 +88,8 @@ multi_box_head
           flip=True,
           clip=True)
 
-**代码示例2: 设置min_sizes和max_sizes**
+代码示例 2: 设置min_sizes和max_sizes
+::::::::::::
 
 ..  code-block:: python
         

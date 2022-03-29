@@ -16,7 +16,8 @@ IterableDataset
 
 见 ``paddle.io.DataLoader`` 。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -43,7 +44,8 @@ IterableDataset
 
 1. 通过 ``__iter__`` 函数划分各子进程的数据
 
-**代码示例1**
+代码示例 1
+::::::::::::
 
 .. code-block:: python
 
@@ -86,7 +88,8 @@ IterableDataset
 
 2. 通过各子进程初始化函数 ``worker_inif_fn`` 划分子进程数据
 
-**代码示例2**
+代码示例 2
+::::::::::::
 
 .. code-block:: python
 

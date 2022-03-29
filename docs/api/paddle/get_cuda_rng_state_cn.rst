@@ -7,14 +7,19 @@ get_cuda_rng_state
 获取cuda随机数生成器的状态信息
 
 
-参数:
+参数
+::::::::::::
+
 
      无
 
-返回: 
+返回
+::::::::::::
+ 
      GeneratorState：对象
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

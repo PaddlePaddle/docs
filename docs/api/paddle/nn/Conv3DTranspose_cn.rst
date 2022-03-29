@@ -34,7 +34,9 @@ Conv3DTranspose
 
 如果指定了output_size， 该算子可以自动计算卷积核的大小。
 
-参数:
+参数
+::::::::::::
+
   - **in_channels** (int) - 输入图像的通道数。
   - **out_channels** (int) - 卷积核的个数，和输出特征图个数相同。
   - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核的深度，高和宽。如果为单个整数，表示卷积核的深度，高和宽都等于该整数。默认：None。output_size和kernel_size不能同时为None。
@@ -82,7 +84,9 @@ Conv3DTranspose
         & H'_{out} = (H_{in}-1)*strides[1] + dilations[1]*(kernel\_size[1]-1)+1\\
         & W'_{out} = (W_{in}-1)*strides[2] + dilations[2]*(kernel\_size[2]-1)+1 \\
 
-抛出异常:
+抛出异常
+::::::::::::
+
     -  ``ValueError`` : 如果输入的shape、kernel_size、stride、padding和groups不匹配，抛出ValueError
     -  ``ValueError`` - 如果 ``data_format`` 既不是"NCHW"也不是"NHWC"。
     -  ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
@@ -92,7 +96,8 @@ Conv3DTranspose
     -  ``ShapeError`` - 如果输入和卷积核的维度大小不相同。
     -  ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

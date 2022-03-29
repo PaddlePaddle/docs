@@ -19,7 +19,8 @@ index_sample
 **返回**：
     -**Tensor** ，数据类型与输入 ``x`` 相同，维度与 ``index`` 相同。
      
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
         

@@ -55,7 +55,8 @@ sequence_softmax
 根据区间计算softmax之后的LoDTensor，其维度与input的维度一致，数据类型与input的数据类型一致。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 COPY-FROM: paddle.static.nn.sequence_softmax
 

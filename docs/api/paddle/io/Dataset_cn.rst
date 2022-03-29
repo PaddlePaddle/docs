@@ -15,7 +15,8 @@ Dataset
 
 见 ``paddle.io.DataLoader`` 。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

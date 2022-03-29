@@ -7,14 +7,21 @@ SequenceSampler
 
 顺序迭代 ``data_source`` 返回样本下标，即一次返回 ``0, 1, 2, ..., len(data_source) - 1``
 
-参数:
+参数
+::::::::::::
+
     - **data_source** (Dataset) - 此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例或实现了 ``__len__`` 的Python对象，用于生成样本下标。默认值为None。
 
-返回：返回样本下标的迭代器。
+返回
+::::::::::::
+返回样本下标的迭代器。
 
-返回类型: SequenceSampler 
+返回类型
+::::::::::::
+ SequenceSampler 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

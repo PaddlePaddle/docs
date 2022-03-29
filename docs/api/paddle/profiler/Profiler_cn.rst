@@ -29,63 +29,64 @@ COPY-FROM: paddle.profiler.Profiler:code-example2
 
 COPY-FROM: paddle.profiler.Profiler:code-example3
 
-.. py:method:: start()
+方法
+::::::::::::
+start()
+'''''''''
 
 开启性能分析器，进入状态scheduler(0)。即
 性能分析器状态从CLOSED -> scheduler(0), 并根据新的状态触发相应行为。
 
-代码示例
-::::::::::
+**代码示例**
 
 COPY-FROM: paddle.profiler.Profiler.start:code-example4
 
 
-.. py:method:: stop()
+stop()
+'''''''''
 
 停止性能分析器，并且进入状态CLOSED。即
 性能分析器状态从当前状态 -> CLOSED，性能分析器关闭，如果有性能数据返回，调用on_trace_ready回调函数进行处理。
 
-代码示例
-::::::::::
+**代码示例**
 
 COPY-FROM: paddle.profiler.Profiler.stop:code-example5
 
 
-.. py:method:: step()
+step()
+'''''''''
 
 指示性能分析器进入下一个step，根据scheduler计算新的性能分析器状态，并根据新的状态触发相应行为。如果有性能数据返回，调用on_trace_ready回调函数进行处理。
 
 
-代码示例
-::::::::::
+**代码示例**
 
 COPY-FROM: paddle.profiler.Profiler.step:code-example6
 
 
-.. py:method:: export(path, format="json")
+export(path, format="json")
+'''''''''
 
 导出性能数据到文件。
 
-参数
-:::::::::
+**参数**
 
     - **path** (str) – 性能数据导出的文件名。
     - **format** (str, 可选) – 性能数据导出的格式，目前支持"json"和"pb"两种。即"json"为导出chrome tracing文件，"pb"为导出protobuf文件，默认值为"json"。
 
-代码示例
-::::::::::
+**代码示例**
 
 COPY-FROM: paddle.profiler.Profiler.export:code-example7
 
 
 .. _cn_api_profiler_profiler_summary:
 
-.. py:method:: summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms')
+summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms')
+'''''''''
 
 统计性能数据并打印表单。当前支持从总览、模型、分布式、算子、内存操作、自定义六个角度来对性能数据进行统计。
 
-参数
-:::::::::
+**参数**
 
     - **sorted_by** ( :ref:`SortedKeys <cn_api_profiler_sortedkeys>` , 可选) – 表单的数据项排列方式, 默认值SortedKeys.CPUTotal。
     - **op_detail** (bool, 可选) – 是否打印算子内各过程的详细信息，默认值True。
@@ -93,7 +94,6 @@ COPY-FROM: paddle.profiler.Profiler.export:code-example7
     - **time_unit** (str, 可选) - 表单数据的时间单位，默认为'ms', 可选's', 'us', 'ns'。 
 
 
-代码示例
-::::::::::
+**代码示例**
 
 COPY-FROM: paddle.profiler.Profiler.summary:code-example8

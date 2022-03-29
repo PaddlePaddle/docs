@@ -13,11 +13,14 @@ program_guard
 
 ``with`` 语句块下的各接口将在新的main program（主程序）中添加 operators（算子）和 Tensors（张量）。
 
-参数：
+参数
+::::::::::::
+
     - **main_program** (Program) – ``with`` 语句中将使用的新的 main program。
     - **startup_program** (Program，可选) – ``with`` 语句中将使用的新的 startup program。若传入 ``None`` 则不改变当前的启动程序，即仍使用 default_startup_program。默认值为 None。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -32,7 +35,8 @@ program_guard
 
 例如，当组的网不需要 startup_program 初始化各变量时，可以传入一个临时的 program。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

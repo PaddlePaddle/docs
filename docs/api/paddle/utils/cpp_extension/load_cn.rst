@@ -40,7 +40,9 @@ load
    out = custom_op_module.relu(x)
 
 
-参数：
+参数
+::::::::::::
+
   - **name** (str): 用于指定编译自定义 OP 时，生成的动态链接库的名字，不包括后缀如 .so 或者 .dll
   - **sources** (list[str]): 用于指定自定义 OP 对应的源码文件。cpp 源文件支持 .cc、.cpp 等后缀；cuda 源文件以 .cu 为后缀。
   - **extra_cxx_cflags** (list[str], 可选): 用于指定编译 cpp 源文件时额外的编译选项。默认情况下，Paddle 框架相关的必要选项均已被隐式地包含；默认值为 None 。
@@ -50,4 +52,6 @@ load
   - **build_directory** (str, 可选): 用于指定存放生成动态链接库的目录。若为 None， 则会使用环境变量 ``PADDLE_EXTENSION_DIR`` 的值作为默认的存放目录。可使用 :ref:`cn_api_paddle_utils_cpp_extension_get_build_directory` 接口查看当前的目录设置。默认值为 None 。
   - **verbose** (str, 可选): 用于指定是否需要输出编译过程中的日志信息，默认为 False。
 
-返回： 包含自定义 OP 的可调用 Module 对象。
+返回
+::::::::::::
+ 包含自定义 OP 的可调用 Module 对象。

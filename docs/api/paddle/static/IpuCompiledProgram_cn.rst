@@ -24,22 +24,22 @@ IpuCompiledProgram，初始化后的 ``IpuCompiledProgram`` 对象
 
 COPY-FROM: paddle.static.IpuCompiledProgram
 
-.. py:method:: compile(self, feed_list, fetch_list)
+方法
+::::::::::::
+compile(self, feed_list, fetch_list)
+'''''''''
 
 该接口用于将Program进行编译，以便在ipu上运行。用户可以通过 `feed_list` 、`fetch_list` 传入计算图输入和输出的名字。
 
-参数
-:::::::::
+**参数**
     - **feed_list** （list）: 该参数为模型的输入变量的名字。
     - **fetch_list** （list）:  模型运行之后需要返回的变量的名字。
 
-返回
-:::::::::
+**返回**
 Program，编译之后的 ``Program`` 对象
 
 
-代码示例
-:::::::::
+**代码示例**
 
 COPY-FROM: paddle.static.IpuCompiledProgram.compile
 

@@ -13,15 +13,22 @@ floor
 .. math::
     out = \left \lfloor x \right \rfloor
 
-参数：
+参数
+::::::::::::
+
     - **x** - 该OP的输入为多维Tensor。数据类型必须为float32或float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：输出为Tensor，与 ``x`` 维度相同、数据类型相同。
+返回
+::::::::::::
+输出为Tensor，与 ``x`` 维度相同、数据类型相同。
 
-返回类型：Tensor
+返回类型
+::::::::::::
+Tensor
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

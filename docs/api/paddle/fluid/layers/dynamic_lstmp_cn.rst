@@ -50,7 +50,9 @@ dynamic_lstmp
       - :math:`act_g, act_h, \overline{act_h}` 分别表示 cell 输入 cell 输出和映射输出的非线性激活函数，默认为 tanh
       - :math:`\odot` 表示矩阵的 Hadamard product，即对两个维度相同的矩阵，将相同位置的元素相乘，得到另一个维度相同的矩阵
 
-参数：
+参数
+::::::::::::
+
   - **input** ( :ref:`api_guide_Variable` ) 维度为 :math:`[T, 4*hidden\_size]` 的多维 LoDTensor（必须在传入该OP前对维度为 :math:`[T, hidden\_size]` 的输入经过线性变换得到），其中 T 为 batch 中所有样本的长度之和，hidden_size 为隐层大小，数据类型为 float32 或者 float64。
   - **size** (int) – 必须为 4 * hidden_size。
   - **proj_size** (int) - 投影映射输出的大小。
@@ -85,14 +87,19 @@ dynamic_lstmp
   - **cell_clip** (float，可选) - 如果该参数不为None，则在单元输出激活之前，单元状态将被此值剪裁。默认值为None。
   - **proj_clip** (float，可选) - 如果 num_proj > 0 并且 proj_clip 不为None，那么将投影值沿元素方向剪切到[-proj_clip，proj_clip]内。默认值为None。
 
-返回：经过lstmp运算输出的 hidden 的映射和 cell 状态的tuple，包括
+返回
+::::::::::::
+经过lstmp运算输出的 hidden 的映射和 cell 状态的tuple，包括
 
 - hidden：LSTM hidden的输出结果，维度为 :math:`[T, P]` 的LoDTensor，且LoD保持与输入一致，数据类型与input一致。
 - cell：LSTM cell的输出结果，维度为 :math:`[T, hidden\_size]` 的LoDTensor，且LoD保持与输入一致，数据类型与input一致。
 
-返回类型: tuple（ :ref:`api_guide_Variable` , :ref:`api_guide_Variable` ）
+返回类型
+::::::::::::
+ tuple（ :ref:`api_guide_Variable` , :ref:`api_guide_Variable` ）
 
-**代码示例**：
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

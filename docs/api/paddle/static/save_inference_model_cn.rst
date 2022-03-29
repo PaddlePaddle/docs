@@ -12,7 +12,9 @@ save_inference_model
 将模型及其参数保存到指定的路径。例如，``path_prefix="/path/to/modelname"`` ，在调用 ``save_inference_model(path_prefix, feed_vars, fetch_vars, executor)`` 之后，你可以在 "/path/to" 目录下找到两个文件，分别是 "modelname.pdmodel" 和 "modelname.pdiparams"，前者表示序列化之后的模型文件，后者表示序列化之后的参数文件。
 
 
-参数:
+参数
+::::::::::::
+
   - **path_prefix** (str) – 要保存到的目录 + 模型名称（不包含后缀）。
   - **feed_vars** (Variable | list[Variable]) – 模型的所有输入变量。
   - **fetch_vars** (Variable | list[Variable]) – 模型的所有输出变量。
@@ -23,11 +25,14 @@ save_inference_model
 
 **返回：** None
 
-抛出异常：
+抛出异常
+::::::::::::
+
  - ``ValueError`` – 若 ``feed_vars`` 不是 ``Variable`` 或 ``Variable`` 类型列表，则抛出异常。
  - ``ValueError`` – 若 ``fetch_vars`` 不是 ``Variable`` 或 ``Variable`` 类型列表，则抛出异常。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -81,14 +81,18 @@ update(preds, labels, *args)
     - **preds** (numpy.array | Tensor): 预测输出结果通常是sigmoid函数的输出，是一个数据类型为float64或float32的向量。
     - **labels** (numpy.array | Tensor): 真实标签的shape和:code: `preds` 相同，数据类型为int32或int64。
 
-返回: 无。
+返回
+::::::::::::
+ 无。
 
 reset()
 :::::::::
 
 清空状态和计算结果。
 
-返回：无
+返回
+::::::::::::
+无
 
 
 accumulate()
@@ -96,7 +100,9 @@ accumulate()
 
 累积的统计指标，计算和返回precision值。
 
-返回：precision值，一个标量。
+返回
+::::::::::::
+precision值，一个标量。
 
 
 name()
@@ -104,4 +110,6 @@ name()
 
 返回Metric实例的名字, 参考上述的name，默认是'precision'。
 
-返回: 评估的名字，string类型。
+返回
+::::::::::::
+ 评估的名字，string类型。

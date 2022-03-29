@@ -26,7 +26,9 @@ Conv1D
     - :math:`Out` ：输出值，NCL或NLC格式的3-D Tensor， 和 ``X`` 的形状可能不同
 
 
-参数：
+参数
+::::::::::::
+
     - **in_channels** (int) - 输入特征的通道数。
     - **out_channels** (int) - 由卷积操作产生的输出的通道数。
     - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含一个整数的元组或列表，表示卷积核的长度。
@@ -42,10 +44,14 @@ Conv1D
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+属性
+::::::::::::
+weight
+'''''''''
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 本层的可学习偏置，类型为 ``Parameter``
     
 形状:
@@ -71,7 +77,7 @@ Conv1D
 
 
 
-**代码示例**：
+**代码示例**
 
 .. code-block:: python
 

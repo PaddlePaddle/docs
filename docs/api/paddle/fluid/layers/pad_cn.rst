@@ -28,18 +28,25 @@ pad
                    [0, 0, 0, 0, 0]]
 
 
-参数:
+参数
+::::::::::::
+
     - **x** (Variable) — 多维Tensor，数据类型为float32
     - **paddings** (list of integers) — 整数列表，指定每个维度填充值的个数。维度 ``i`` 中 ``x`` 内容前填充的值个数用 ``paddings[2*i]`` 表示，维度 ``i`` 中 ``x`` 内容后填充的值个数用 ``paddings[2*i+1]`` 表示。 ``paddings`` 长度必须是 ``rank(x)×2``
     - **pad_value** (float32, 可选) — 用来填充的常量值，数据类型为float。默认值为0.
     - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回： 填充后的Tensor，数据类型与输入 ``x`` 相同
+返回
+::::::::::::
+ 填充后的Tensor，数据类型与输入 ``x`` 相同
 
-返回类型： Variable
+返回类型
+::::::::::::
+ Variable
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

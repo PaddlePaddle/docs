@@ -11,7 +11,9 @@ BiRNN
 
 该OP是双向循环神经网络（BiRNN）的封装，将输入的前向cell和后向cell封装为一个双向循环神经网络。该网络单独执行前向和后向cell的计算并将输出拼接。
 
-参数：
+参数
+::::::::::::
+
     - **cell_fw** (RNNCellBase) - 前向cell。RNNCellBase类的一个实例。
     - **cell_bw** (RNNCellBase) - 后向cell。RNNCellBase类的一个实例。
     - **time_major** (bool，可选) - 指定input的第一个维度是否是time steps。默认为False。
@@ -29,7 +31,8 @@ BiRNN
     该类是一个封装rnn cell的低级api，用户在使用forward函数时须确保initial_states满足cell的要求。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

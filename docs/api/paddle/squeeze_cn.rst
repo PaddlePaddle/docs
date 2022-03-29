@@ -51,7 +51,8 @@ squeeze
 
 **返回**：对维度进行压缩后的Tensor，数据类型与输入Tensor一致。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -9,7 +9,9 @@ show
 另外，打印paddle wheel包使用的CUDA和cuDNN的版本信息。
 
 
-返回：
+返回
+::::::::::::
+
 :::::::::
 如果paddle wheel包不是正式发行版本，则输出wheel包编译时对应的commit id号。否则，输出如下信息：
 

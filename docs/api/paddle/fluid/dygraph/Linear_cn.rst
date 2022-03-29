@@ -23,7 +23,9 @@ Linear 层将输入 Tensor 与权重矩阵 :math:`W` 相乘，然后生成形状
 如果 bias_attr 不是 None，则将创建一个 bias 变量并将其添加到输出中。
 最后，如果激活 act 不是 None，则相应激活函数也将应用于输出上。
 
-参数:
+参数
+::::::::::::
+
   - **input_dim** (int) – 线性变换层输入单元的数目。
   - **output_dim** (int) – 线性变换层输出单元的数目。
   - **param_attr** (ParamAttr, 可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
@@ -31,9 +33,12 @@ Linear 层将输入 Tensor 与权重矩阵 :math:`W` 相乘，然后生成形状
   - **act** (str, 可选) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
   - **dtype** (str, 可选) – 权重的数据类型，可以为float32或float64。默认为float32。
 
-返回：无
+返回
+::::::::::::
+无
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 
@@ -50,11 +55,15 @@ Linear 层将输入 Tensor 与权重矩阵 :math:`W` 相乘，然后生成形状
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+属性
+::::::::::::
+weight
+'''''''''
 
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 
 本层的可学习偏置，类型为 ``Parameter``
 

@@ -11,17 +11,24 @@ normalize_program
 
 根据指定的 feed_vars 和 fetch_vars，优化 program。
 
-参数：
+参数
+::::::::::::
+
   - **program** - 指定想要优化的 program。
   - **feed_vars** (Variable | list[Variable]) – 模型的输入变量。
   - **fetch_vars** (Variable | list[Variable]) – 模型的输出变量。
 
-返回：优化之后的 program。
+返回
+::::::::::::
+优化之后的 program。
 
-抛出异常：
+抛出异常
+::::::::::::
+
   - ``TypeError`` – 如果 ``program`` 类型不是 ``Program``, 或 ``feed_vars``, ``fetch_vars`` 类型不是 Variable 或 list[Variable]，则抛出异常。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

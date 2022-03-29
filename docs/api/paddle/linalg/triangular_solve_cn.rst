@@ -33,7 +33,9 @@ triangular_solve
     - **unitriangular** (bool, 可选) - 如果为True，则将系数矩阵 ``x`` 对角线元素假设为1来求解方程。默认为False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：
+返回
+::::::::::::
+
 :::::::::
     - Tensor， 线程方程组的解， 数据类型和 ``x`` 一致。
 

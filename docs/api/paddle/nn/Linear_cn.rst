@@ -30,11 +30,15 @@ Linear层只接受一个Tensor作为输入，形状为 :math:`[batch\_size, *, i
 属性
 :::::::::
 
-.. py:attribute:: weight
+属性
+::::::::::::
+weight
+'''''''''
 
 本层的可学习参数，类型为 ``Parameter`` 。
 
-.. py:attribute:: bias
+bias
+'''''''''
 
 本层的可学习偏置，类型为 ``Parameter`` 。
 
@@ -44,8 +48,7 @@ Linear层只接受一个Tensor作为输入，形状为 :math:`[batch\_size, *, i
 - 输入：形状为 :math:`[batch\_size, *, in\_features]` 的多维Tensor。
 - 输出：形状为 :math:`[batch\_size, *, out\_features]` 的多维Tensor。
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 

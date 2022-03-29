@@ -22,7 +22,9 @@ Adaptive Gradient 优化器(自适应梯度优化器，简称Adagrad)可以针�
 
 引入epsilon参数依据：`Per-parameter adaptive learning rate methods <http://cs231n.github.io/neural-networks-3/#ada>`_。
 
-参数：
+参数
+::::::::::::
+
     - **learning_rate** (float|Tensor) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个值为浮点型的Tensor.
     - **epsilon** (float, 可选) - 维持数值稳定性的浮点型值，默认值为1e-06.
     - **parameters** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
@@ -34,7 +36,8 @@ Adaptive Gradient 优化器(自适应梯度优化器，简称Adagrad)可以针�
     - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
     - **initial_accumulator_value** (float, 可选) - moment累加器的初始值，默认值为0.0
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

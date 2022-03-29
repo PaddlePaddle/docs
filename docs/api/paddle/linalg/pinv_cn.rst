@@ -17,7 +17,9 @@ pinv
     - **hermitian** (bool，可选) : 是否为 ``hermitian`` 矩阵或者实对称矩阵，默认值为False。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：
+返回
+::::::::::::
+
 :::::::::
 
     - Tensor，输入矩阵的伪逆矩阵，数据类型和输入数据类型一致。形状为（N, M）或（B, N, M）。

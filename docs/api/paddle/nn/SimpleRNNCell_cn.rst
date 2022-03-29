@@ -23,7 +23,9 @@ SimpleRNNCell
 
 详情请参考论文 :`Finding Structure in Time <https://crl.ucsd.edu/~elman/Papers/fsit.pdf>`_。
 
-参数：
+参数
+::::::::::::
+
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
     - **activation** (str, 可选) - 简单循环神经网络单元的激活函数。可以是tanh或relu。默认为tanh。
@@ -51,7 +53,8 @@ SimpleRNNCell
     所有的变换矩阵的权重和偏置都默认初始化为Uniform(-std, std)，其中std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

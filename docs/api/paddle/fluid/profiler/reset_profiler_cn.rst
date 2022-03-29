@@ -10,7 +10,8 @@ reset_profiler
 .. warning::
    该API将在未来废弃，对CPU和GPU的性能分析请参考使用paddle最新的性能分析器 :ref:`Profiler <cn_api_profiler_profiler>` 。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -32,7 +32,9 @@ matmul
     - **transpose_y** (bool，可选) : 相乘前是否转置 y，默认值为False。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：
+返回
+::::::::::::
+
 :::::::::
 
     - Tensor，矩阵相乘后的结果，数据类型和输入数据类型一致。

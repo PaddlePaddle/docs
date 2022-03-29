@@ -28,21 +28,27 @@ Distribution
 
 对数概率密度函数
 
-参数：
+参数
+::::::::::::
+
     - **value** (Tensor) - 输入张量。
 
 .. py:function:: probs(value)
 
 概率密度函数
 
-参数：
+参数
+::::::::::::
+
     - **value** (Tensor) - 输入张量。
 
 .. py:function:: kl_divergence(other)
 
 两个分布之间的KL散度。
 
-参数：
+参数
+::::::::::::
+
     - **other** (Distribution) - Distribution的实例。
 
 

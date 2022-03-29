@@ -17,7 +17,9 @@ WeightNormParamAttr
 
 该类定义了权重归一化(Weight Normalization)的参数。权重归一化可以将神经网络中权重向量的长度与其方向解耦，详细的定义与实现可以参考论文：`Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_
 
-参数:
+参数
+::::::::::::
+
   - **dim** (int，可选) - 进行归一化操作(norm)的切片所在维度，是小于权重Tensor rank的非负数。比如卷积的权重shape是 :math:`[cout, cin, kh, kw]` , rank是4，则dim可以选0,1,2,3；fc的权重shape是 :math:`[cout, cin]` ，rank是2，dim可以选0，1。 dim 默认为None，如果为None就对所有元素做归一化(norm)。
   - **name** (None|str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认为None。
   - **initializer** （Initializer，可选) - 初始化参数方法，例如 ``initializer = fluid.nn.initializer.Constant(1.0)`` 。默认为None，如果为None则使用默认初始化函数 `Xavier()` 。
@@ -30,7 +32,8 @@ WeightNormParamAttr
   - **need_clip** (bool) - 可选，指明参数梯度是否需要在优化器中进行clip，默认为True。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

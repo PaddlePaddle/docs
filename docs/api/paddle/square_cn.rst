@@ -13,15 +13,22 @@ square
 .. math::
     out = x^2
 
-参数:
+参数
+::::::::::::
+
     - **x** (Tensor) - 任意维度的Tensor，支持的数据类型： float32，float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：返回取平方后的Tensor，维度和数据类型同输入一致。
+返回
+::::::::::::
+返回取平方后的Tensor，维度和数据类型同输入一致。
 
-返回类型：Tensor
+返回类型
+::::::::::::
+Tensor
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

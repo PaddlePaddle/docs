@@ -14,17 +14,24 @@ clip
 
         Out = MIN(MAX(x, min), max) 
 
-参数：
+参数
+::::::::::::
+
     - x (Tensor) - 输入的Tensor，数据类型为：float32、float64。
     - min (float32|Tensor, 可选) - 裁剪的最小值，输入中小于该值的元素将由该元素代替，若参数为空，则不对输入的最小值做限制。数据类型可以是float32或形状为[1]的Tensor，类型可以为int32，float32，float64，默认值为None。
     - max (float32|Tensor, 可选) - 裁剪的最大值，输入中大于该值的元素将由该元素代替，若参数为空，则不对输入的最大值做限制。数据类型可以是float32或形状为[1]的Tensor，类型可以为int32，float32，float64，默认值为None。
     - name (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回：输出Tensor，与 ``x`` 维度相同、数据类型相同。
+返回
+::::::::::::
+输出Tensor，与 ``x`` 维度相同、数据类型相同。
 
-返回类型：Tensor
+返回类型
+::::::::::::
+Tensor
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

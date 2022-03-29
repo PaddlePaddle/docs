@@ -12,7 +12,9 @@ Auc
 该接口创建四个局部变量true_positives, true_negatives, false_positives和false_negatives，用于计算Auc。为了离散化AUC曲线，使用临界值的线性间隔来计算召回率和准确率的值。用false positive的召回值高度计算ROC曲线面积，用recall的准确值高度计算PR曲线面积。
 
 
-参数：
+参数
+::::::::::::
+
 :::::::::
     - **curve** (str) - 将要计算的曲线名的模式，包括'ROC'（默认）或者'PR'（Precision-Recall-curve）。
     - **num_thresholds** (int) - 离散化AUC曲线的整数阈值数，默认是4095。
@@ -97,7 +99,9 @@ reset()
 
 清空状态和计算结果。
 
-返回：无
+返回
+::::::::::::
+无
 
 
 accumulate()
@@ -105,7 +109,9 @@ accumulate()
 
 累积的统计指标，计算和返回AUC值。
 
-返回：AUC值，一个标量。
+返回
+::::::::::::
+AUC值，一个标量。
 
 
 name()
@@ -113,4 +119,6 @@ name()
 
 返回Metric实例的名字, 参考上述的name，默认是'auc'。
 
-返回: 评估的名字，string类型。
+返回
+::::::::::::
+ 评估的名字，string类型。

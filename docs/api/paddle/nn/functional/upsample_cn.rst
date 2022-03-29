@@ -137,7 +137,9 @@ https://en.wikipedia.org/wiki/Trilinear_interpolation
 有关双三次插值的详细信息，请参阅维基百科：
 https://en.wikipedia.org/wiki/Bicubic_interpolation
 
-参数:
+参数
+::::::::::::
+
     - **x** (Tensor) - 4-D或5-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
     - **size** (list|tuple|Tensor|None) - 输出Tensor，输入为4D张量时，形状为为(out_h, out_w)的2-D Tensor。输入为5-D Tensor时，形状为(out_d, out_h, out_w)的3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
     - **scale_factor** (float|Tensor|list|tuple|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。如果scale_factor是一个list或tuple，它必须与输入的shape匹配。
@@ -147,10 +149,14 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
     - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致。对于4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
     - **name** (str|None, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
 
-返回：4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)；或者5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
+返回
+::::::::::::
+4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)；或者5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
 
 
-抛出异常：
+抛出异常
+::::::::::::
+
     - :code:`TypeError` - out_shape应该是一个列表、元组或张量。
     - :code:`TypeError` - actual_shape应该是变量或None。
     - :code:`ValueError` - upsample的"resample"只能是"BILINEAR"或"TRILINEAR"或"NEAREST"或"BICUBIC"或"LINEAR"或"AREA"。
@@ -167,7 +173,8 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
     - :code:`ValueError` - data_format 只能取 'NCW', 'NCHW'、'NHWC'、'NCDHW' 或者 'NDHWC'。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

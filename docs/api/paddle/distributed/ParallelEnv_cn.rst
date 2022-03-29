@@ -45,14 +45,16 @@ ParallelEnv
 属性
 ::::::::::::
 
-.. py:attribute:: rank
+属性
+::::::::::::
+rank
+'''''''''
 
 当前训练进程的编号。
 
 此属性的值等于环境变量 `PADDLE_TRAINER_ID` 的值。默认值是0。
 
-代码示例
-:::::::::
+**代码示例**
 
     .. code-block:: python
 
@@ -64,14 +66,14 @@ ParallelEnv
         # The rank is 0
 
 
-.. py:attribute:: world_size
+world_size
+'''''''''
 
 参与训练进程的数量，一般也是训练所使用GPU卡的数量。
 
 此属性的值等于环境变量 `PADDLE_TRAINERS_NUM` 的值。默认值为1。
 
-代码示例
-:::::::::
+**代码示例**
 
     .. code-block:: python
 
@@ -83,14 +85,14 @@ ParallelEnv
         # The world_size is 4
 
 
-.. py:attribute:: device_id
+device_id
+'''''''''
 
 当前用于并行训练的GPU的编号。
 
 此属性的值等于环境变量 `FLAGS_selected_gpus` 的值。默认值是0。
 
-代码示例
-:::::::::
+**代码示例**
 
     .. code-block:: python
 
@@ -102,14 +104,14 @@ ParallelEnv
         # The device id are 1
 
 
-.. py:attribute:: current_endpoint
+current_endpoint
+'''''''''
 
 当前训练进程的终端节点IP与相应端口，形式为（机器节点IP:端口号）。例如：127.0.0.1:6170。
 
 此属性的值等于环境变量 `PADDLE_CURRENT_ENDPOINT` 的值。默认值为空字符串""。
 
-代码示例
-:::::::::
+**代码示例**
 
     .. code-block:: python
             
@@ -121,14 +123,14 @@ ParallelEnv
         # The current endpoint are 127.0.0.1:6170
 
 
-.. py:attribute:: trainer_endpoints
+trainer_endpoints
+'''''''''
 
 当前任务所有参与训练进程的终端节点IP与相应端口，用于在NCCL2初始化的时候建立通信，广播NCCL ID。
 
 此属性的值等于环境变量 `PADDLE_TRAINER_ENDPOINTS` 的值。默认值为空字符串""。
 
-代码示例
-:::::::::
+**代码示例**
 
     .. code-block:: python
 

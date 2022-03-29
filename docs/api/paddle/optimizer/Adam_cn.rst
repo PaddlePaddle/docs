@@ -25,7 +25,9 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 
 
-参数: 
+参数
+::::::::::::
+ 
     - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001
     - **beta1** (float|Tensor, 可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.9
     - **beta2** (float|Tensor, 可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.999
@@ -40,7 +42,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     - **lazy_mode** （bool, 可选） - 设为True时，仅更新当前具有梯度的元素。官方Adam算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。 lazy mode仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果，默认为False
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -82,7 +85,10 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     adam.step()
     adam.clear_grad()
 
-.. py:method:: step()
+方法
+::::::::::::
+step()
+'''''''''
 
 **注意：**
 
@@ -90,7 +96,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 执行一次优化器并进行参数更新。
 
-返回：None。
+**返回**
+None。
 
 
 **代码示例**
@@ -110,17 +117,20 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     adam.step()
     adam.clear_grad()
 
-.. py:method:: minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
+minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
+'''''''''
 
 为网络添加反向计算过程，并根据反向计算所得的梯度，更新parameters中的Parameters，最小化网络损失值loss。
 
-参数：
+**参数**
+
     - **loss** (Tensor) – 需要最小化的损失值变量
     - **startup_program** (Program, 可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 
     - **parameters** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
     - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
          
-返回: tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+**返回**
+ tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
 
 **代码示例**
@@ -146,7 +156,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     adam.minimize(loss)
     adam.clear_grad()
 
-.. py:method:: clear_grad()
+clear_grad()
+'''''''''
 
 **注意：**
 
@@ -172,7 +183,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     optimizer.step()
     optimizer.clear_grad()
 
-.. py:method:: set_lr(value)
+set_lr(value)
+'''''''''
 
 **注意：**
 
@@ -180,10 +192,12 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
-参数：
+**参数**
+
     value (float) - 需要设置的学习率的值。
 
-返回：None
+**返回**
+None
 
 **代码示例**
 
@@ -208,7 +222,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     #    current lr is 0.5
     #    current lr is 0.6
 
-.. py:method:: get_lr()
+get_lr()
+'''''''''
 
 **注意：**
 
@@ -216,7 +231,8 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
 
 获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
-返回：float，当前步骤的学习率。
+**返回**
+float，当前步骤的学习率。
 
 
 **代码示例**

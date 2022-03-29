@@ -61,7 +61,8 @@ stack
 
 **返回**：堆叠运算后的Tensor，数据类型与输入Tensor相同。
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
    
