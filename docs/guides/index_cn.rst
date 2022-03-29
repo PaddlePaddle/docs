@@ -16,7 +16,7 @@
 - `分布式训练 <./06_distributed_training/index_cn.html>`_ : 介绍如何使用分布式进行训练。
 - `自定义算子 <./07_new_op/index_cn.html>`_ : 介绍飞桨框架自定义算子的方法。
 - `性能调优 <./performance_improving/index_cn.html>`_ : 介绍飞桨框架性能调优的方法。
-- `算子映射 <./08_api_mapping/index_cn.html>`_ : 介绍飞桨框架API算子的映射信息。
+- `模型迁移 <./08_model_convert/index_cn.html>`_ : 介绍飞桨框架模型迁移的方法。
 - `硬件支持 <./09_hardware_support/index_cn.html>`_ : 介绍飞桨框架硬件支持相关信息。
 - `参与开发 <./10_contribution/index_cn.html>`_ : 介绍如何参与飞桨框架的开发。
 - `环境变量 <./flags/flags_cn.html>`_ : 介绍飞桨相关环境变量的使用。
@@ -32,7 +32,7 @@
     06_distributed_training/index_cn.rst
     07_new_op/index_cn.rst
     performance_improving/index_cn.rst
-    08_api_mapping/index_cn.rst
+    08_model_convert/index_cn.rst
     09_hardware_support/index_cn.rst
     10_contribution/index_cn.rst
     flags/flags_cn.rst
