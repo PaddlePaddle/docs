@@ -225,7 +225,7 @@ def extract_rst_title(filename):
     return None
 
 
-def extract_params_desc_from_rst_file(filename):
+def extract_params_desc_from_rst_file(filename, section_title='参数'):
     overrides = {
         # Disable the promotion of a lone top-level section title to document
         # title (and subsequent section title to document subtitle promotion).
@@ -235,10 +235,22 @@ def extract_params_desc_from_rst_file(filename):
     with open(filename, 'r') as fileobj:
         doctree = docutils.core.publish_doctree(
             fileobj.read(), settings_overrides=overrides)
-        with find_node_by_class(
-                doctree, docutils.nodes.section, remove=True) as node:
-            if node is not None:
-                return node
+        found = False
+        for child in doctree.children:
+            if isinstance(child, docutils.nodes.section) and isinstance(
+                    child.children[0], docutils.nodes.title):
+                sectitle = child.children[0].astext()
+                if isinstance(section_title, (list, tuple)):
+                    for st in section_title:
+                        if sectitle.startswith(st):
+                            found = True
+                            break
+                else:
+                    if sectitle.startswith(section_title):
+                        found = True
+                        break
+                if found:
+                    return child
     return None
 
 
@@ -314,7 +326,7 @@ docutils.parsers.rst.directives.register_directive(
 docutils.parsers.rst.directives.register_directive(
     'py:class', PyFunctionDirective)  # as Tensor_cn.rst
 docutils.parsers.rst.directives.register_directive(
-    'py:mechod', PyFunctionDirective)  # as grad_cn.rst
+    'py:method', PyFunctionDirective)  # as grad_cn.rst
 
 
 class ToctreeDirective(docutils.parsers.rst.Directive):

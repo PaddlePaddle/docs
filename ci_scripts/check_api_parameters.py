@@ -17,6 +17,18 @@ import json
 import argparse
 import os.path as osp
 import re
+import sys
+
+
+def add_path(path):
+    if path not in sys.path:
+        sys.path.insert(0, path)
+
+
+this_dir = osp.dirname(__file__)
+# Add docs/api to PYTHONPATH
+add_path(osp.abspath(osp.join(this_dir, '..', 'docs', 'api')))
+from extract_api_from_docs import extract_params_desc_from_rst_file
 
 arguments = [
     # flags, dest, type, default, help
@@ -47,6 +59,8 @@ def check_api_parameters(rstfiles, apiinfo):
     """check function's parameters same as its origin definition.
 
     such as `.. py:function:: paddle.version.cuda()`
+    
+    class类别的文档，其成员函数的说明有好多。且class标题还有好多不写参数，暂时都跳过吧
     """
     pat = re.compile(
         r'^\.\.\s+py:(method|function|class)::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$')
@@ -54,7 +68,9 @@ def check_api_parameters(rstfiles, apiinfo):
     check_failed = []
     api_notfound = []
     for rstfile in rstfiles:
-        with open(osp.join('../docs', rstfile), 'r') as rst_fobj:
+        rstfilename = osp.join('../docs', rstfile)
+        print(f'checking : {rstfile}')
+        with open(rstfilename, 'r') as rst_fobj:
             func_found = False
             for line in rst_fobj:
                 mo = pat.match(line)
@@ -69,25 +85,54 @@ def check_api_parameters(rstfiles, apiinfo):
                     for apiobj in apiinfo.values():
                         if 'all_names' in apiobj and funcname in apiobj[
                                 'all_names']:
-                            if 'args' in apiobj and paramstr == apiobj['args']:
-                                flag = True
+                            if 'args' in apiobj:
+                                if paramstr == apiobj['args']:
+                                    flag = True
+                                # else:
+                                #     paramstr = apiobj['args']
                             break
+                    funcdescnode = extract_params_desc_from_rst_file(
+                        rstfilename)
+                    if funcdescnode:
+                        items = funcdescnode.children[1].children[0].children
+                        params_intitle = paramstr.split(
+                            ', '
+                        )  # is there any parameter with default value of type list/tuple? may break this.
+                        if len(items) != len(params_intitle):
+                            flag = False
+                            print(
+                                f'check failed (parammeters description): {rstfile}'
+                            )
+                        else:
+                            for i in range(len(items)):
+                                pname_intitle = params_intitle[i].split('=')[
+                                    0].strip()
+                                mo = re.match(r'(\w+)\b.*',
+                                              items[i].children[0].astext())
+                                if mo:
+                                    pname_indesc = mo.group(1)
+                                    if pname_indesc != pname_intitle:
+                                        flag = False
+                                        print(
+                                            f'check failed (parammeters description): {rstfile}, {pname_indesc} != {pname_intitle}'
+                                        )
+                                else:
+                                    flag = False
+                                    print(
+                                        f'check failed (parammeters description): {rstfile}, param name not found in {i} paragraph.'
+                                    )
                     if flag:
                         check_passed.append(rstfile)
+                        print(f'check success: {rstfile}')
                     else:
                         check_failed.append(rstfile)
+                        print(f'check failed: {rstfile}')
                     break
             if not func_found:
                 api_notfound.append(rstfile)
+                print(f'check failed (object not found): {rstfile}')
+            print(f'checking done: {rstfile}')
     return check_passed, check_failed, api_notfound
-
-
-def check_api_params_desc():
-    """chech the Args Segment.
-
-    是不是用docutils来解析rst文件的好？不要暴力正则表达式了？
-    """
-    ...
 
 
 if __name__ == '__main__':
