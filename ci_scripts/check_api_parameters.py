@@ -87,6 +87,35 @@ def _check_params_in_description(rstfilename, paramstr):
     return flag
 
 
+def _check_params_in_description_with_fullargspec(rstfilename, funcname):
+    flag = True
+    funcspec = inspect.getfullargspec(eval(funcname))
+    funcdescnode = extract_params_desc_from_rst_file(rstfilename)
+    if funcdescnode:
+        items = funcdescnode.children[1].children[0].children
+        params_inspec = funcspec.args
+        if len(items) != len(params_inspec):
+            flag = False
+            print(f'check failed (parammeters description): {rstfilename}')
+        else:
+            for i in range(len(items)):
+                pname_intitle = params_inspec[i]
+                mo = re.match(r'(\w+)\b.*', items[i].children[0].astext())
+                if mo:
+                    pname_indesc = mo.group(1)
+                    if pname_indesc != pname_intitle:
+                        flag = False
+                        print(
+                            f'check failed (parammeters description): {rstfilename}, {pname_indesc} != {pname_intitle}'
+                        )
+                else:
+                    flag = False
+                    print(
+                        f'check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph.'
+                    )
+    return flag
+
+
 def check_api_parameters(rstfiles, apiinfo):
     """check function's parameters same as its origin definition.
 
@@ -128,7 +157,8 @@ def check_api_parameters(rstfiles, apiinfo):
                                     flag = _check_params_in_description(
                                         rstfilename, paramstr)
                             else:  # paddle.abs class_method does not have `args` in its json item.
-                                params = inspect.getfullargspec(eval(funcname))
+                                flag = _check_params_in_description_with_fullargspec(
+                                    rstfilename, funcname)
                             break
                     if flag:
                         check_passed.append(rstfile)
