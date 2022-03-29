@@ -51,15 +51,11 @@ z (4-D Tensor):  8 x 7 x 6 x 5
 
   - **x** (Tensor): 1-D 到 6-D Tensor，数据类型为float32或float64。
   - **y** (Tensor): 1-D 到 6-D Tensor，数据类型为float32或float64。
-  - **p** (float, optional): 用于设置需要计算的范数，数据类型为float32或float64。默认值为2.
+  - **p** (float，optional): 用于设置需要计算的范数，数据类型为float32或float64。默认值为2。
 
 返回
 ::::::::::::
  `(x-y)` 的 `p` 范数。
-
-返回类型
-::::::::::::
- Tensor
 
 代码示例
 ::::::::::::
