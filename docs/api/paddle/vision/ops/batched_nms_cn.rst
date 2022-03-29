@@ -23,7 +23,8 @@ batched_nm
 代码示例
 :::::::::
 
-.. code-block:: python
+..  code-block:: python
+
     import paddle
     import numpy as np
 
