@@ -9,7 +9,7 @@ nms
 
 .. math:: 
 
-    IoU = \frac{intersection_area(box1, box2)}{union_area(box1, box2)}
+    IoU = \frac{intersection\_area(box1, box2)}{union\_area(box1, box2)}
 
 参数
 :::::::::
