@@ -48,7 +48,8 @@ def check_api_parameters(rstfiles, apiinfo):
 
     such as `.. py:function:: paddle.version.cuda()`
     """
-    pat = re.compile(r'^\.\.\s+py:function::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$')
+    pat = re.compile(
+        r'^\.\.\s+py:(method|function|class)::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$')
     check_passed = []
     check_failed = []
     api_notfound = []
@@ -59,8 +60,11 @@ def check_api_parameters(rstfiles, apiinfo):
                 mo = pat.match(line)
                 if mo:
                     func_found = True
-                    funcname = mo.group(1)
-                    paramstr = mo.group(2)
+                    functype = mo.group(1)
+                    if functype not in ('function', 'method'):
+                        check_passed.append(rstfile)
+                    funcname = mo.group(2)
+                    paramstr = mo.group(3)
                     flag = False
                     for apiobj in apiinfo.values():
                         if 'all_names' in apiobj and funcname in apiobj[
