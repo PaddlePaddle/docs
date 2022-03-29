@@ -31,13 +31,8 @@ uniform
 返回
 ::::::::::::
 
-    Tensor：数值服从范围[``min``, ``max``)内均匀分布的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
+Tensor：数值服从范围[``min``, ``max``)内均匀分布的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
-抛出异常
-::::::::::::
-
-    - ``TypeError`` - 如果 ``shape`` 的类型不是list、tuple、Tensor。
-    - ``TypeError`` - 如果 ``dtype`` 不是float32、float64。
 
 代码示例
 ::::::::::::
