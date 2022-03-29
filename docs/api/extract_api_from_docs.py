@@ -309,8 +309,12 @@ class PyFunctionDirective(docutils.parsers.rst.Directive):
         return [thenode]
 
 
-docutils.parsers.rst.directives.register_directive('py:function',
-                                                   PyFunctionDirective)
+docutils.parsers.rst.directives.register_directive(
+    'py:function', PyFunctionDirective)  # as abs_cn.rst
+docutils.parsers.rst.directives.register_directive(
+    'py:class', PyFunctionDirective)  # as Tensor_cn.rst
+docutils.parsers.rst.directives.register_directive(
+    'py:mechod', PyFunctionDirective)  # as grad_cn.rst
 
 
 class ToctreeDirective(docutils.parsers.rst.Directive):
