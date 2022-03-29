@@ -18,6 +18,8 @@ import argparse
 import os.path as osp
 import re
 import sys
+import inspect
+import paddle
 
 
 def add_path(path):
@@ -55,6 +57,36 @@ def parse_args():
     return args
 
 
+def _check_params_in_description(rstfilename, paramstr):
+    flag = True
+    funcdescnode = extract_params_desc_from_rst_file(rstfilename)
+    if funcdescnode:
+        items = funcdescnode.children[1].children[0].children
+        params_intitle = paramstr.split(
+            ', '
+        )  # is there any parameter with default value of type list/tuple? may break this.
+        if len(items) != len(params_intitle):
+            flag = False
+            print(f'check failed (parammeters description): {rstfilename}')
+        else:
+            for i in range(len(items)):
+                pname_intitle = params_intitle[i].split('=')[0].strip()
+                mo = re.match(r'(\w+)\b.*', items[i].children[0].astext())
+                if mo:
+                    pname_indesc = mo.group(1)
+                    if pname_indesc != pname_intitle:
+                        flag = False
+                        print(
+                            f'check failed (parammeters description): {rstfilename}, {pname_indesc} != {pname_intitle}'
+                        )
+                else:
+                    flag = False
+                    print(
+                        f'check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph.'
+                    )
+    return flag
+
+
 def check_api_parameters(rstfiles, apiinfo):
     """check function's parameters same as its origin definition.
 
@@ -87,40 +119,17 @@ def check_api_parameters(rstfiles, apiinfo):
                                 'all_names']:
                             if 'args' in apiobj:
                                 if paramstr == apiobj['args']:
-                                    flag = True
-                                # else:
-                                #     paramstr = apiobj['args']
-                            break
-                    funcdescnode = extract_params_desc_from_rst_file(
-                        rstfilename)
-                    if funcdescnode:
-                        items = funcdescnode.children[1].children[0].children
-                        params_intitle = paramstr.split(
-                            ', '
-                        )  # is there any parameter with default value of type list/tuple? may break this.
-                        if len(items) != len(params_intitle):
-                            flag = False
-                            print(
-                                f'check failed (parammeters description): {rstfile}'
-                            )
-                        else:
-                            for i in range(len(items)):
-                                pname_intitle = params_intitle[i].split('=')[
-                                    0].strip()
-                                mo = re.match(r'(\w+)\b.*',
-                                              items[i].children[0].astext())
-                                if mo:
-                                    pname_indesc = mo.group(1)
-                                    if pname_indesc != pname_intitle:
-                                        flag = False
-                                        print(
-                                            f'check failed (parammeters description): {rstfile}, {pname_indesc} != {pname_intitle}'
-                                        )
+                                    flag = _check_params_in_description(
+                                        rstfilename, paramstr)
                                 else:
-                                    flag = False
                                     print(
-                                        f'check failed (parammeters description): {rstfile}, param name not found in {i} paragraph.'
+                                        f'checking (args str different): {rstfile}'
                                     )
+                                    flag = _check_params_in_description(
+                                        rstfilename, paramstr)
+                            else:  # paddle.abs class_method does not have `args` in its json item.
+                                params = inspect.getfullargspec(eval(funcname))
+                            break
                     if flag:
                         check_passed.append(rstfile)
                         print(f'check success: {rstfile}')
