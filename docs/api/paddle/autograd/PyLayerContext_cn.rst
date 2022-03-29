@@ -42,17 +42,16 @@ save_for_backward(self, *tensors)
 .. note::
   这个API只能被调用一次，且只能在 ``forward`` 中调用。
 
-参数
-::::::::::::
+**参数**
+
  - **tensors** (list of Tensor) - 需要被暂存的 ``Tensor`` 
 
 
-返回
-::::::::::::
+**返回**
+
 None
 
-代码示例
-::::::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -82,12 +81,11 @@ saved_tensor(self, *tensors)
 获取被 ``save_for_backward`` 暂存的 ``Tensor`` 。
 
 
-返回
-::::::::::::
+**返回**
+
 如果调用 ``save_for_backward`` 暂存了一些 ``Tensor`` ，则返回这些 ``Tensor`` ，否则，返回 None。
 
-代码示例
-::::::::::::
+**代码示例**
 
 .. code-block:: python
 
