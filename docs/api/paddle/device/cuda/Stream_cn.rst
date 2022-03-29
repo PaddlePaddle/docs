@@ -10,8 +10,8 @@ CUDA stream的句柄。
 参数
 ::::::::::::
 
-    - **device** (paddle.CUDAPlace()|int|None, 可选) - 希望分配stream的设备。如果是None或者负数，则设备为当前的设备。如果是正数，则必须小于设备的个数。默认值为None。
-    - **priority** (int|None, 可选) - stream的优先级。优先级可以为1（高优先级）或者2（正常优先级）。如果优先级为None，优先级为2（正常优先级）。默认值为None。
+    - **device** (paddle.CUDAPlace()|int|None，可选) - 希望分配stream的设备。如果是None或者负数，则设备为当前的设备。如果是正数，则必须小于设备的个数。默认值为None。
+    - **priority** (int|None，可选) - stream的优先级。优先级可以为1（高优先级）或者2（正常优先级）。如果优先级为None，优先级为2（正常优先级）。默认值为None。
 
 
 代码示例
@@ -76,7 +76,7 @@ query()
 返回stream 中所有的操作是否完成的状态。
 
 **返回**
- 一个boolean 值。
+ 一个boolean值。
 
 **代码示例**
 
