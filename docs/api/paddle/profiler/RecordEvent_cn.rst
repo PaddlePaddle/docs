@@ -1,0 +1,42 @@
+.. _cn_api_profiler_record_event:
+
+RecordEvent
+---------------------
+
+.. py:class:: paddle.profiler.RecordEvent(name: str, event_type: TracerEventType=TracerEventType.UserDefined)
+
+该接口用于用户自定义打点，记录某一段代码运行的时间。
+
+
+参数
+:::::::::
+
+    - **name** (str) - 记录打点的名字。
+    - **event_type** (TracerEventType, 可选) - 可选参数，默认值为TracerEventType.UserDefined。该参数预留为内部使用，最好不要指定该参数。
+
+代码示例
+::::::::::
+
+COPY-FROM: paddle.profiler.RecordEvent:code-example1
+
+注意:
+    RecordEvent只有在 :ref:`性能分析器 <cn_api_profiler_profiler>` 处于RECORD状态才会生效。
+
+.. py:method:: begin()
+
+记录开始的时间。
+
+代码示例
+::::::::::
+
+COPY-FROM: paddle.profiler.RecordEvent.begin:code-example2
+
+
+.. py:method:: end()
+
+记录结束的时间。
+
+代码示例
+::::::::::
+
+COPY-FROM: paddle.profiler.RecordEvent.end:code-example3
