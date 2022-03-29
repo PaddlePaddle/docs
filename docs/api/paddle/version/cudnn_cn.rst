@@ -9,9 +9,8 @@ cudnn
 
 
 返回
-::::::::::::
-
 :::::::::
+
 若paddle wheel包为GPU版本，则返回paddle wheel包编译时使用的cuDNN的版本信息；若paddle wheel包为CPU版本，则返回 ``False`` 。
 
 代码示例：
