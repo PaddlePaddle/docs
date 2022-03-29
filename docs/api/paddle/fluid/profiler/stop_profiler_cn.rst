@@ -28,6 +28,8 @@ stop_profiler
   prof.stop()
   prof.summary() # 打印表单
 
+.. code-block:: python
+
   #2. 使用环境管理器的用法
   import paddle
   import paddle.profiler as profiler
