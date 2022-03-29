@@ -41,8 +41,7 @@ None
     import paddle.distributed.fleet as fleet
     fleet.init(is_collective=True)
 
-代码示例3
-::::::::::::
+**代码示例 3**
 
 .. code-block:: python
 
@@ -50,8 +49,7 @@ None
     role = fleet.PaddleCloudRoleMaker()
     fleet.init(role)
 
-代码示例4
-::::::::::::
+**代码示例 4**
 
 .. code-block:: python
 
@@ -63,7 +61,7 @@ None
 is_first_worker()
 '''''''''
 
-返回当前节点是否为第一个`worker`节点, 判断当前worker_index是否为0， 如果为0则返回True，否则返回False
+返回当前节点是否为第一个`worker`节点，判断当前worker_index是否为0， 如果为0则返回True，否则返回False。
 
 **返回**
 True/False
