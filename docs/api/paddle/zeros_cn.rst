@@ -20,11 +20,6 @@ zeros
 ::::::::::::
 值全为0的Tensor，数据类型和 ``dtype`` 定义的类型一致。
 
-抛出异常
-::::::::::::
-
-    - ``TypeError`` - 当 ``dtype`` 不是bool、 float16、float32、float64、int32、int64和None时。
-    - ``TypeError`` - 当 ``shape`` 不是tuple、list、或者Tensor时， 当 ``shape`` 为Tensor，其数据类型不是int32或者int64时。
 
 代码示例
 ::::::::::::
