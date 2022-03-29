@@ -5,10 +5,35 @@ profiler
 
 .. py:function:: paddle.fluid.profiler.profiler(state, sorted_key=None, profile_path='/tmp/profile', tracer_option='Default')
 
-
-
-
 通用性能分析器 。与 :ref:`cn_api_fluid_profiler_cuda_profiler` 不同，此分析器可用于分析CPU和GPU程序。
+
+.. warning::
+   该API将在未来废弃，对CPU和GPU的性能分析请参考使用paddle最新的性能分析器 :ref:`Profiler <cn_api_profiler_profiler>` 。
+   如代码示例中对该API的使用用新的Profiler进行替换最简单的用法如下
+
+.. code-block:: python
+
+    import paddle
+    import paddle.fluid as fluid
+    import paddle.profiler as profiler
+    import numpy as np
+
+    paddle.enable_static()
+    epoc = 8
+    dshape = [4, 3, 28, 28]
+    data = fluid.layers.data(name='data', shape=[3, 28, 28], dtype='float32')
+    conv = fluid.layers.conv2d(data, 20, 3, stride=[1, 1], padding=[1, 1])
+
+    place = fluid.CPUPlace()
+    exe = fluid.Executor(place)
+    exe.run(fluid.default_startup_program())
+
+    with profiler.Profiler() as prof:
+        for i in range(epoc):
+            input = np.random.random(dshape).astype('float32')
+            exe.run(fluid.default_main_program(), feed={'data': input})
+            prof.step()
+    prof.summary()
 
 参数:
   - **state** (str) –  性能分析状态, 取值为 'CPU' 或 'GPU' 或 'All'。'CPU'表示只分析CPU上的性能；'GPU'表示同时分析CPU和GPU上的性能；'All'表示除了同时分析CPU和GPU上的性能外，还将生成 `性能分析的时间轴信息 <../../advanced_usage/development/profiling/timeline_cn.html>`_ 。
@@ -23,10 +48,12 @@ profiler
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
     import paddle.fluid.profiler as profiler
     import numpy as np
 
+    paddle.enable_static()
     epoc = 8
     dshape = [4, 3, 28, 28]
     data = fluid.layers.data(name='data', shape=[3, 28, 28], dtype='float32')
