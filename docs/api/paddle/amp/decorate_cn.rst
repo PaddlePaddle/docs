@@ -14,7 +14,6 @@ decorate
 参数
 ::::::::::::
 
-:::::::::
     - **models** (Layer|list of Layer) - 网络模型。在``O2``模式下，输入的模型参数将由float32转为float16。
     - **optimizers** (Optimizer|list of Optimizer, 可选) - 优化器，默认值为None，若传入优化器或由优化器组成的list列表，将依据master_weight对优化器的master_weight属性进行设置。
     - **level** (str, 可选) - 混合精度训练模式，默认``O1``模式。
