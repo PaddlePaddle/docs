@@ -3,7 +3,7 @@
 flops
 -------------------------------
 
-.. py:function:: paddle.flops(self, input_size=None, dtype=None)
+.. py:function:: paddle.flops(net, input_size, custom_ops=None, print_detail=False)
 
  ``flops`` 函数能够打印网络的基础结构和参数信息。
 
