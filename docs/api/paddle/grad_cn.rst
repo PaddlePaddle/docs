@@ -6,10 +6,7 @@ grad
 .. note::
 该API仅支持【动态图】模式。
 
-方法
-::::::::::::
-paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None)
-'''''''''
+.. py:function:: paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=False, only_inputs=True, allow_unused=False, no_grad_vars=None)
 
 对于每个 `inputs` ，计算所有 `outputs` 相对于其的梯度和。
 
