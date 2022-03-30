@@ -19,6 +19,7 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 
 方法
 ::::::::::::
+
 **static** trace(layer, inputs)
 '''''''''
 
@@ -30,10 +31,9 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
     - **inputs** (list(Variable)) - 动态图layer对象的输入变量列表。
 
 **返回**
- 包含2个元素的tuple，其中第一个元素是 ``layer(*inputs)`` 的输出结果，第二个元素是转换后得到的TracedLayer对象。
 
-**返回类型**
- tuple
+tuple，包含2个元素，其中第一个元素是 ``layer(*inputs)`` 的输出结果，第二个元素是转换后得到的TracedLayer对象。
+
 
 **代码示例**
 
@@ -72,7 +72,8 @@ set_strategy(build_strategy=None, exec_strategy=None)
     - **exec_strategy** (ExecutionStrategy, 可选) - TracedLayer内部 ``CompiledProgram`` 的执行策略。
 
 **返回**
- 无
+
+ 无。
 
 **代码示例**
 
@@ -116,7 +117,8 @@ save_inference_model(path, feed=None, fetch=None)
     - **fetch** (list(int), 可选) - 预测模型输出变量的索引。若为None，则TracedLayer的所有输出变量均会作为预测模型的输出。默认值为None。
 
 **返回**
- 无
+ 
+ 无。
 
 **代码示例**
 
