@@ -6,9 +6,12 @@ Adadelta
 .. py:class:: paddle.optimizer.Adadelta(learning_rate=0.001, epsilon=1.0e-6, rho=0.95, parameters=None, weight_decay=0.01, grad_clip=None, name=None)
 
 
-**注意：此接口不支持稀疏参数更新。**
+.. note::
+此接口不支持稀疏参数更新。
 
-Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING RATE METHOD <https://arxiv.org/abs/1212.5701>`_ 。
+Adadelta优化器，是对 :ref:`Adagrad <_cn_api_paddle_optimizer_Adagrad>` 的改进。
+
+相关论文：`ADADELTA: AN ADAPTIVE LEARNING RATE METHOD <https://arxiv.org/abs/1212.5701>`_ 。
 
 更新公式如下：
 
@@ -22,16 +25,16 @@ Adadelta优化器，具体细节可参考论文 `ADADELTA: AN ADAPTIVE LEARNING 
 参数
 ::::::::::::
 
-    - **learning_rate** (float|_LRScheduleri, 可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001
-    - **epsilon** (float, 可选) - 保持数值稳定性的短浮点类型值，默认值为1e-06
-    - **rho** (float, 可选) - 算法中的衰减率，默认值为0.95。
-    - **parameters** (list, 可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
-    - **weight_decay** (float|Tensor, 可选) - 权重衰减系数，是一个float类型或者shape为[1] ，数据类型为float32的Tensor类型。默认值为0.01
-    - **grad_clip** (GradientClipBase, 可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 。
+    - **learning_rate** (float|_LRScheduleri，可选) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001。
+    - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为1e-06。
+    - **rho** (float，可选) - 算法中的衰减率，默认值为0.95。
+    - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
+    - **weight_decay** (float|Tensor，可选) - 权重衰减系数，是一个float类型或者shape为[1]，数据类型为float32的Tensor类型。默认值为0.01。
+    - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 。
       默认值为None，此时将不进行梯度裁剪。
-    - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
+    - **name** (str，可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxiv.org/pdf/1711.05101.pdf>`,用来解决Adam优化器中L2正则化失效的问题。
+Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxiv.org/pdf/1711.05101.pdf>`，用来解决Adam优化器中L2正则化失效的问题。
 
 
 
@@ -58,14 +61,15 @@ Adadelta优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://a
 step()
 '''''''''
 
-**注意：**
+.. note::
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次优化器并进行参数更新。
 
 **返回**
-None。
+
+无。
 
 
 
@@ -92,11 +96,12 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 **参数**
 
     - **loss** (Tensor) – 需要最小化的损失值变量
-    - **startup_program** (Program, 可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 
-    - **parameters** (list, 可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter
-    - **no_grad_set** (set, 可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
+    - **startup_program** (Program，可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 。
+    - **parameters** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter。
+    - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None。
          
 **返回**
+
  tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
 
@@ -123,9 +128,9 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 clear_grad()
 '''''''''
 
-**注意：**
+.. note::
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
 清除需要优化的参数的梯度。
@@ -149,9 +154,9 @@ clear_grad()
 set_lr(value)
 '''''''''
 
-**注意：**
+.. note::
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**  
+  该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。  
 
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
@@ -160,7 +165,8 @@ set_lr(value)
     value (float) - 需要设置的学习率的值。
 
 **返回**
-None
+
+无。
 
 **代码示例**
 
@@ -188,13 +194,14 @@ None
 get_lr()
 '''''''''
 
-**注意：**
+.. note::
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
 **返回**
+
 float，当前步骤的学习率。
 
 

@@ -9,31 +9,31 @@ LRScheduler
 
 目前在paddle中基于该基类，已经实现了12种策略，分别为：
 
-* :code:`NoamDecay`: 诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_ 。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`
+* :code:`NoamDecay`: 诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_ 。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`。
 
-* :code:`ExponentialDecay`: 指数衰减，即每次将当前学习率乘以给定的衰减率得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_ExponentialDecay`
+* :code:`ExponentialDecay`: 指数衰减，即每次将当前学习率乘以给定的衰减率得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_ExponentialDecay`。
 
-* :code:`NaturalExpDecay`: 自然指数衰减，即每次将当前学习率乘以给定的衰减率的自然指数得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_NaturalExpDecay`
+* :code:`NaturalExpDecay`: 自然指数衰减，即每次将当前学习率乘以给定的衰减率的自然指数得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_NaturalExpDecay`。
 
-* :code:`InverseTimeDecay`: 逆时间衰减，即得到的学习率与当前衰减次数成反比。请参考 :ref:`cn_api_paddle_optimizer_lr_InverseTimeDecay`
+* :code:`InverseTimeDecay`: 逆时间衰减，即得到的学习率与当前衰减次数成反比。请参考 :ref:`cn_api_paddle_optimizer_lr_InverseTimeDecay`。
 
-* :code:`PolynomialDecay`: 多项式衰减，即得到的学习率为初始学习率和给定最终学习之间由多项式计算权重定比分点的插值。请参考 :ref:`cn_api_paddle_optimizer_lr_PolynomialDecay`
+* :code:`PolynomialDecay`: 多项式衰减，即得到的学习率为初始学习率和给定最终学习之间由多项式计算权重定比分点的插值。请参考 :ref:`cn_api_paddle_optimizer_lr_PolynomialDecay`。
 
-* :code:`PiecewiseDecay`: 分段衰减，即由给定step数分段呈阶梯状衰减，每段内学习率相同。请参考 :ref:`cn_api_paddle_optimizer_lr_PiecewiseDecay`
+* :code:`PiecewiseDecay`: 分段衰减，即由给定step数分段呈阶梯状衰减，每段内学习率相同。请参考 :ref:`cn_api_paddle_optimizer_lr_PiecewiseDecay`。
 
-* :code:`CosineAnnealingDecay`: 余弦式衰减，即学习率随step数变化呈余弦函数周期变化。请参考 :ref:`cn_api_paddle_optimizer_lr_CosineAnnealingDecay`
+* :code:`CosineAnnealingDecay`: 余弦式衰减，即学习率随step数变化呈余弦函数周期变化。请参考 :ref:`cn_api_paddle_optimizer_lr_CosineAnnealingDecay`。
 
-* :code:`LinearWarmup`: 学习率随step数线性增加到指定学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_LinearWarmup`
+* :code:`LinearWarmup`: 学习率随step数线性增加到指定学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_LinearWarmup`。
 
-* :code:`StepDecay`: 学习率每隔固定间隔的step数进行衰减，需要指定step的间隔数。请参考 :ref:`cn_api_paddle_optimizer_lr_StepDecay`
+* :code:`StepDecay`: 学习率每隔固定间隔的step数进行衰减，需要指定step的间隔数。请参考 :ref:`cn_api_paddle_optimizer_lr_StepDecay`。
 
-* :code:`MultiStepDecay`: 学习率在特定的step数时进行衰减，需要指定衰减时的节点位置。请参考 :ref:`cn_api_paddle_optimizer_lr_MultiStepDecay`
+* :code:`MultiStepDecay`: 学习率在特定的step数时进行衰减，需要指定衰减时的节点位置。请参考 :ref:`cn_api_paddle_optimizer_lr_MultiStepDecay`。
 
-* :code:`LambdaDecay`: 学习率根据自定义的lambda函数进行衰减。请参考 :ref:`cn_api_paddle_optimizer_lr_LambdaDecay`
+* :code:`LambdaDecay`: 学习率根据自定义的lambda函数进行衰减。请参考 :ref:`cn_api_paddle_optimizer_lr_LambdaDecay`。
 
-* :code:`ReduceOnPlateau`: 学习率根据当前监控指标（一般为loss）来进行自适应调整，当loss趋于稳定时衰减学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_ReduceOnPlateau`
+* :code:`ReduceOnPlateau`: 学习率根据当前监控指标（一般为loss）来进行自适应调整，当loss趋于稳定时衰减学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_ReduceOnPlateau`。
 
-* :code:`MultiplicativeDecay`: 每次将当前学习率乘以lambda函数得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_MultiplicativeDecay`
+* :code:`MultiplicativeDecay`: 每次将当前学习率乘以lambda函数得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_MultiplicativeDecay`。
 
 你可以继承该基类实现任意的学习率策略，导出基类的方法为 ``form paddle.optimizer.lr import LRScheduler`` ，
 必须要重写该基类的 ``get_lr()`` 函数，否则会抛出 ``NotImplementedError`` 异常。
@@ -41,7 +41,7 @@ LRScheduler
 参数
 ::::::::::::
 
-    - **learning_rate** (float, 可选) - 初始学习率，数据类型为Python float。
+    - **learning_rate** (float，可选) - 初始学习率，数据类型为Python float。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
     - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
@@ -93,10 +93,10 @@ step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
     - **epoch** （int，可选）- 指定具体的epoch数。默认值None，此时将会从-1自动累加 ``epoch`` 数。
 
 **返回**
+
 无。
 
-代码示例 ：
-::::::::::::
+**代码示例**
 
 请参考 ``基类LRScheduler`` 的任意子类实现，这里以 ``StepLR`` 为例进行了示例：
 

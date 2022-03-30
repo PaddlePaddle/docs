@@ -5,7 +5,7 @@ MultiStepDecay
 
 .. py:class:: paddle.optimizer.lr.MultiStepDecay(learning_rate, milestones, gamma=0.1, last_epoch=-1, verbose=False)
 
-该接口提供一种学习率按 `指定轮数` 进行衰减的策略。
+该接口提供一种学习率按 **指定轮数** 进行衰减的策略。
 
 衰减过程可以参考以下代码：
 
@@ -97,10 +97,8 @@ step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
 
 **返回**
 
-  无。
+无。
 
-代码示例 ：
-::::::::::::
+**代码示例**
 
-  参照上述示例代码。
-
+参照上述示例代码。

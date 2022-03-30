@@ -16,7 +16,7 @@ ReduceOnPlateau
 ::::::::::::
 
     - **learning_rate** (float) - 初始学习率，数据类型为Python float。
-    - **mode** (str，可选) - ``'min'`` 和 ``'max'`` 之一。通常情况下，为 ``'min'`` ，此时当 ``loss`` 停止下降时学习率将衰减。默认：``'min'`` 。 （注意：仅在特殊用法时，可以将其设置为 ``'max'`` ，此时判断逻辑相反， ``loss`` 停止上升学习率才衰减）
+    - **mode** (str，可选) - ``'min'`` 和 ``'max'`` 之一。通常情况下，为 ``'min'`` ，此时当 ``loss`` 停止下降时学习率将衰减。默认：``'min'`` 。 （注意：仅在特殊用法时，可以将其设置为 ``'max'`` ，此时判断逻辑相反， ``loss`` 停止上升学习率才衰减）。
     - **factor** (float，可选) - 学习率衰减的比例。``new_lr = origin_lr * factor`` ，它是值小于1.0的float型数字，默认: 0.1。
     - **patience** (int，可选) - 当 ``loss`` 连续 ``patience`` 个epoch没有下降(对应mode: 'min')或上升(对应mode: 'max')时，学习率才会衰减。默认：10。
     - **threshold** (float，可选) - ``threshold`` 和 ``threshold_mode`` 两个参数将会决定 ``loss`` 最小变化的阈值。小于该阈值的变化将会被忽视。默认：1e-4。
@@ -95,8 +95,8 @@ step函数需要在优化器的 `optimizer.step()` 函数之后调用，其根�
 
 **返回**
 
-    无
+无。
 
 **代码示例**
 
-    参照上述示例代码。
+参照上述示例代码。

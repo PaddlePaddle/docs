@@ -6,7 +6,7 @@ Adagrad
 .. py:class:: paddle.optimizer.Adagrad(learning_rate, epsilon=1e-06, parameters=None, weight_decay=None, grad_clip=None, name=None, initial_accumulator_value=0.0)
 
 
-Adaptive Gradient 优化器(自适应梯度优化器，简称Adagrad)可以针对不同参数样本数不平均的问题，自适应地为各个参数分配不同的学习率。
+Adaptive Gradient 优化器（自适应梯度优化器，简称Adagrad）可以针对不同参数样本数不平均的问题，自适应地为各个参数分配不同的学习率。
 
 其参数更新的计算过程如下：
 
