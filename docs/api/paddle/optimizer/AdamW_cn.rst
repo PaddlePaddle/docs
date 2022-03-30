@@ -8,7 +8,7 @@ AdamW
 
 
 
-AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxiv.org/pdf/1711.05101.pdf>`,用来解决Adam优化器中L2正则化失效的问题。
+AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxiv.org/pdf/1711.05101.pdf>`,用来解决 :ref:`Adam <_cn_api_paddle_optimizer_Adam>` 优化器中L2正则化失效的问题。
 
 其参数更新的计算公式如下：
 
@@ -70,7 +70,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     adam.step()
     adam.clear_grad()
 
-    #Note that the learning_rate of linear_2 is 0.01.
+    # Note that the learning_rate of linear_2 is 0.01.
     linear_1 = paddle.nn.Linear(10, 10)
     linear_2 = paddle.nn.Linear(10, 10)
     inp = paddle.uniform(shape=[10, 10], min=-0.1, max=0.1)
