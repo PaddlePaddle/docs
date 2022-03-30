@@ -14,11 +14,8 @@ SequenceSampler
 
 返回
 ::::::::::::
-返回样本下标的迭代器。
-
-返回类型
-::::::::::::
- SequenceSampler 
+SequenceSampler，返回样本下标的迭代器。
+  
 
 代码示例
 ::::::::::::

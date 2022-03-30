@@ -24,11 +24,8 @@ DistributedBatchSampler
 
 返回
 ::::::::::::
-返回样本下标数组的迭代器。
-
-返回类型
-::::::::::::
- DistributedBatchSampler
+DistributedBatchSampler，返回样本下标数组的迭代器。
+ 
 
 代码示例
 ::::::::::::

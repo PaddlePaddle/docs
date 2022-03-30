@@ -45,11 +45,8 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 
 返回
 ::::::::::::
-迭代 ``dataset`` 数据的迭代器，迭代器返回的数据中的每个元素都是一个Tensor。
-
-返回类型
-::::::::::::
- DataLoader
+DataLoader，迭代 ``dataset`` 数据的迭代器，迭代器返回的数据中的每个元素都是一个Tensor。
+ 
 
 代码示例
 ::::::::::::
