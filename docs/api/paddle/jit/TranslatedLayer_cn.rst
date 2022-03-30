@@ -112,9 +112,6 @@ program(method_name='forward'):
 **返回**
 Program
 
-**返回类型**
-Program
-
 **代码示例**
     .. code-block:: python
 
