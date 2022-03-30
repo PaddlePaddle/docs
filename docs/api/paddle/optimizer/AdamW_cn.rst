@@ -30,6 +30,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 
 参数
 ::::::::::::
+
     - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001。
     - **beta1** (float|Tensor，可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.9。
     - **beta2** (float|Tensor，可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.999。
