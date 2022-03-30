@@ -41,11 +41,6 @@ slice
 ::::::::::::
 多维 ``Tensor`` ，数据类型与 ``input`` 相同。
 
-抛出异常
-::::::::::::
-
-    - :code:`TypeError`：``starts`` 的类型应该是 list、tuple 或 Tensor。
-    - :code:`TypeError`：``ends`` 的类型应该是 list、tuple 或 Tensor。
 代码示例
 ::::::::::::
 

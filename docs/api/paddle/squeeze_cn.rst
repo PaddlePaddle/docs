@@ -44,15 +44,19 @@ squeeze
         Output:
         out.shape = [1, 3, 5]
 
-**参数**：
+参数
+:::::::::
+
         - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、bool、int8、int32、int64。
         - **axis** (int|list|tuple, 可选) - 输入一个或一列整数，代表要压缩的轴。axis的范围： [−ndim(x), ndim(x))] 。 如果axis为负数， 则axis=axis+ndim(x) 。默认为None，表示对所有尺寸为1的维度进行压缩。
         - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-**返回**：对维度进行压缩后的Tensor，数据类型与输入Tensor一致。
+返回
+:::::::::
+对维度进行压缩后的Tensor，数据类型与输入Tensor一致。
 
 代码示例
-::::::::::::
+:::::::::
 
 .. code-block:: python
 

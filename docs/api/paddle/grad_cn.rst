@@ -12,7 +12,8 @@ paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=
 
 对于每个 `inputs` ，计算所有 `outputs` 相对于其的梯度和。
 
-**参数**
+参数
+:::::::::
 
     - **outputs** (Tensor|list(Tensor)|tuple(Tensor)) – 用于计算梯度的图的输出变量，或多个输出变量构成的list/tuple。
     - **inputs** (Tensor|list(Tensor)|tuple(Tensor)) - 用于计算梯度的图的输入变量，或多个输入变量构成的list/tuple。该API的每个返回值对应每个 `inputs` 的梯度。
@@ -23,10 +24,13 @@ paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=
     - **allow_unused** (bool, 可选) - 决定当某些 `inputs` 变量不在计算图中时抛出错误还是返回None。若某些 `inputs` 变量不在计算图中（即它们的梯度为None），则当allowed_unused=False时会抛出错误，当allow_unused=True时会返回None作为这些变量的梯度。默认值为False。
     - **no_grad_vars** (Tensor|list(Tensor)|tuple(Tensor)|set(Tensor), 可选) - 指明不需要计算梯度的变量。默认值为None。
 
-**返回**
- tuple(Tensor)，其长度等于 `inputs` 中的变量个数，且第i个返回的变量是所有 `outputs` 相对于第i个 `inputs` 的梯度之和。
+返回
+:::::::::
 
-**代码示例 1**
+tuple(Tensor)，其长度等于 `inputs` 中的变量个数，且第i个返回的变量是所有 `outputs` 相对于第i个 `inputs` 的梯度之和。
+
+代码示例 1
+:::::::::
   .. code-block:: python
 
         import paddle
@@ -60,7 +64,8 @@ paddle.grad(outputs, inputs, grad_outputs=None, retain_graph=None, create_graph=
         print(test_dygraph_grad(create_graph=False)) # [2.]
         print(test_dygraph_grad(create_graph=True)) # [4.]
 
-**代码示例 2**
+代码示例 2
+:::::::::
   .. code-block:: python
 
         import paddle

@@ -19,11 +19,8 @@ greater_equal
 
 返回
 ::::::::::::
-输出结果的Tensor，输出Tensor的shape和输入一致，Tensor数据类型为bool。
+输出结果的Tensor，shape和输入一致，数据类型为bool。
 
-返回类型
-::::::::::::
-变量（Tensor）
 
 代码示例
 ::::::::::::

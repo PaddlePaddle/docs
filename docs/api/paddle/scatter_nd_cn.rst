@@ -20,11 +20,8 @@ scatter_nd
     
 返回
 ::::::::::::
-数据类型与 :code:`updates` 相同，形状是 :code:`shape` 的Tensor。
+Tensor, 数据类型与 :code:`updates` 相同，形状是 :code:`shape` 。
 
-返回类型
-::::::::::::
-Tensor
 
 代码示例
 ::::::::::::

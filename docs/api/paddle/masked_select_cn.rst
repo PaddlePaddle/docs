@@ -21,12 +21,6 @@ masked_select
 返回一个根据 ``mask`` 选择的的Tensor
 
 
-抛出异常
-::::::::::::
-
-    - ``TypeError``: - 如果 ``x`` 不是 Tensor 或者 ``x`` 是Tensor的时候的数据类型不是 float32, float64, int32, int64其中之一。
-    - ``TypeError``: - 如果 ``mask`` 不是 Tensor 或者 ``mask`` 是Tensor的时候的数据类型不是 bool。
-
 代码示例
 ::::::::::::
 
