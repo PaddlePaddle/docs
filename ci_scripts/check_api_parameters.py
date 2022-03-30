@@ -59,12 +59,12 @@ def parse_args():
 
 def _check_params_in_description(rstfilename, paramstr):
     flag = True
+    params_intitle = paramstr.split(
+        ', '
+    )  # is there any parameter with default value of type list/tuple? may break this.
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
         items = funcdescnode.children[1].children[0].children
-        params_intitle = paramstr.split(
-            ', '
-        )  # is there any parameter with default value of type list/tuple? may break this.
         if len(items) != len(params_intitle):
             flag = False
             print(f'check failed (parammeters description): {rstfilename}')
@@ -84,6 +84,12 @@ def _check_params_in_description(rstfilename, paramstr):
                     print(
                         f'check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph.'
                     )
+    else:
+        if params_intitle:
+            print(
+                f'check failed (parameters description not found): {rstfilename}.'
+            )
+            flag = False
     return flag
 
 
