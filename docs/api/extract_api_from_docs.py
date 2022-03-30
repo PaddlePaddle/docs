@@ -338,7 +338,7 @@ class ToctreeDirective(docutils.parsers.rst.Directive):
     def run(self):
         text = self.arguments[0]
         thenode = None
-        return [thenode]
+        return []
 
 
 docutils.parsers.rst.directives.register_directive('toctree', ToctreeDirective)
