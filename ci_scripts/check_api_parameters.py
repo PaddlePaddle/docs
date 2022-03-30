@@ -121,6 +121,12 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
                     print(
                         f'check failed (parammeters description): {rstfilename}, param name not found in {i} paragraph.'
                     )
+    else:
+        if funcspec.args:
+            print(
+                f'check failed (parameters description not found): {rstfilename}, {funcspec.args}.'
+            )
+            flag = False
     return flag
 
 
@@ -156,15 +162,21 @@ def check_api_parameters(rstfiles, apiinfo):
                                 'all_names']:
                             if 'args' in apiobj:
                                 if paramstr == apiobj['args']:
+                                    print(
+                                        f'check func:{funcname} in {rstfilename} with {paramstr}'
+                                    )
                                     flag = _check_params_in_description(
                                         rstfilename, paramstr)
                                 else:
                                     print(
-                                        f'checking (args str different): {rstfile}'
+                                        f'check func:{funcname} in {rstfilename} with {paramstr}, but different with json\'s {apiobj["args"]}'
                                     )
                                     flag = _check_params_in_description(
                                         rstfilename, paramstr)
                             else:  # paddle.abs class_method does not have `args` in its json item.
+                                print(
+                                    f'check func:{funcname} in {rstfilename} with its FullArgSpec'
+                                )
                                 flag = _check_params_in_description_with_fullargspec(
                                     rstfilename, funcname)
                             break

@@ -248,7 +248,6 @@ def extract_params_desc_from_rst_file(filename, section_title='参数'):
                 else:
                     if sectitle.startswith(section_title):
                         found = True
-                        break
                 if found:
                     return child
     return None
