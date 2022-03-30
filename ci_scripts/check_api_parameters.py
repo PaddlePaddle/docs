@@ -163,9 +163,11 @@ def check_api_parameters(rstfiles, apiinfo):
                     funcname = mo.group(2)
                     paramstr = mo.group(3)
                     flag = False
+                    func_found_in_json = False
                     for apiobj in apiinfo.values():
                         if 'all_names' in apiobj and funcname in apiobj[
                                 'all_names']:
+                            func_found_in_json = True
                             if 'args' in apiobj:
                                 if paramstr == apiobj['args']:
                                     print(
@@ -186,6 +188,12 @@ def check_api_parameters(rstfiles, apiinfo):
                                 flag = _check_params_in_description_with_fullargspec(
                                     rstfilename, funcname)
                             break
+                    if not func_found_in_json:  # may be inner functions
+                        print(
+                            f'check func:{funcname} in {rstfilename} with its FullArgSpec'
+                        )
+                        flag = _check_params_in_description_with_fullargspec(
+                            rstfilename, funcname)
                     if flag:
                         check_passed.append(rstfile)
                         print(f'check success: {rstfile}')
