@@ -18,9 +18,9 @@ Lookahead每k次训练迭代更新slow_params和fast_params，如下所示：
 参数
 :::::::::
     - **inner_optimizer** (inner_optimizer) - 每次迭代更新fast params的优化器。
-    - **alpha** (float, 可选) - Lookahead的学习率。默认值为0.5。
-    - **k** (int, 可选) - slow params每k次迭代更新一次。默认值为5。
-    - **name** (str, 可选) - 一般不需要用户设置这个属性。更多信息请参照 :ref:`api_guide_Name` 。默认值为None。
+    - **alpha** (float，可选) - Lookahead的学习率。默认值为0.5。
+    - **k** (int，可选) - slow params每k次迭代更新一次。默认值为5。
+    - **name** (str，可选) - 一般不需要用户设置这个属性。更多信息请参照 :ref:`api_guide_Name` 。默认值为None。
 
 代码示例
 :::::::::
@@ -99,7 +99,7 @@ step()
 
 **返回**
 
-None
+None。
 
 
 **代码示例**
