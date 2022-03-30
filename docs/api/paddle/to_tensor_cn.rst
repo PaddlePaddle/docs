@@ -13,7 +13,7 @@ to_tensor
 否则会创建一个新的tensor，且不保留原来计算图。
 
 参数
-::::::::::::
+:::::::::
 
     - **data** (scalar|tuple|list|ndarray|Tensor) - 初始化tensor的数据，可以是
       scalar，list，tuple，numpy\.ndarray，paddle\.Tensor类型。
@@ -27,19 +27,12 @@ to_tensor
     - **stop_gradient** (bool, optional) - 是否阻断Autograd的梯度传导。默认值为True，此时不进行梯度传传导。
 
 返回
-::::::::::::
+:::::::::
 通过 ``data`` 创建的 tensor。
 
-抛出异常
-::::::::::::
-
-    - ``TypeError``: 当 ``data`` 不是 scalar，list，tuple，numpy.ndarray，paddle.Tensor类型时
-    - ``ValueError``: 当 ``data`` 是包含不等长子序列的tuple或list时， 例如[[1, 2], [3, 4, 5]]
-    - ``TypeError``: 当 ``dtype`` 不是 bool，float16，float32，float64，int8，int16，int32，int64，uint8，complex64，complex128时
-    - ``ValueError``: 当 ``place`` 不是 paddle.CPUPlace，paddle.CUDAPinnedPlace，paddle.CUDAPlace时
 
 代码示例
-::::::::::::
+:::::::::
 
 .. code-block:: python
 
