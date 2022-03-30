@@ -59,9 +59,11 @@ def parse_args():
 
 def _check_params_in_description(rstfilename, paramstr):
     flag = True
-    params_intitle = paramstr.split(
-        ', '
-    )  # is there any parameter with default value of type list/tuple? may break this.
+    params_intitle = []
+    if paramstr:
+        params_intitle = paramstr.split(
+            ', '
+        )  # is there any parameter with default value of type list/tuple? may break this.
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
         items = funcdescnode.children[1].children[0].children
@@ -87,7 +89,7 @@ def _check_params_in_description(rstfilename, paramstr):
     else:
         if params_intitle:
             print(
-                f'check failed (parameters description not found): {rstfilename}.'
+                f'check failed (parameters description not found): {rstfilename}, {params_intitle}.'
             )
             flag = False
     return flag
