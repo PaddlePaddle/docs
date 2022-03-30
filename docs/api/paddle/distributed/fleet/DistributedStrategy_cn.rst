@@ -10,8 +10,6 @@ DistributedStrategy
 属性
 ::::::::::::
 
-属性
-::::::::::::
 save_to_prototxt
 '''''''''
 
@@ -35,6 +33,8 @@ load_from_prototxt
 加载已经序列化过的DistributedStrategy文件，并作为初始化DistributedStrategy返回
 
 **代码示例**
+
+.. code-block:: python
 
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
