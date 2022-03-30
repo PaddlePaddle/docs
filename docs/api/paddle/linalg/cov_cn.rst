@@ -14,19 +14,17 @@ cov
 参数
 ::::::::::::
 
-:::::::::
     - **x** (Tensor) - 一个N(N<=2)维矩阵，包含多个变量。默认矩阵的每行是一个观测变量，由参数rowvar设置。
-    - **rowvar** (bool, 可选) - 若是True，则每行作为一个观测变量；若是False，则每列作为一个观测变量。默认True。
-    - **ddof** (bool, 可选) - 若是True，返回无偏估计结果；若是False，返回普通平均值计算结果。默认True。
-    - **fweights** (Tensor, 可选) - 包含整数频率权重的1维Tensor，表示每一个观测向量的重复次数。其维度值应该与输入x的观测维度值相等，为None则不起作用，默认None。
-    - **aweights** (Tensor, 可选) - 包含整数观测权重的1维Tensor，表示每一个观测向量的重要性，重要性越高对应值越大。其维度值应该与输入x的观测维度值相等，为None则不起作用，默认None。
-    - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **rowvar** (bool，可选) - 若是True，则每行作为一个观测变量；若是False，则每列作为一个观测变量。默认True。
+    - **ddof** (bool，可选) - 若是True，返回无偏估计结果；若是False，返回普通平均值计算结果。默认True。
+    - **fweights** (Tensor，可选) - 包含整数频率权重的1维Tensor，表示每一个观测向量的重复次数。其维度值应该与输入x的观测维度值相等，为None则不起作用，默认None。
+    - **aweights** (Tensor，可选) - 包含整数观测权重的1维Tensor，表示每一个观测向量的重要性，重要性越高对应值越大。其维度值应该与输入x的观测维度值相等，为None则不起作用，默认None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回
 ::::::::::::
 
-:::::::::
-    - Tensor, 输入x的协方差矩阵。假设x是[m,n]的矩阵，rowvar=True, 则输出为[m,m]的矩阵。
+Tensor, 输入x的协方差矩阵。假设x是[m,n]的矩阵，rowvar=True, 则输出为[m,m]的矩阵。
 
 代码示例：
 ::::::::::
