@@ -25,6 +25,9 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
 
 相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 
 
+.. note::
+  当前，AdamW不支持稀疏参数优化。
+
 参数
 ::::::::::::
     - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001。
@@ -33,7 +36,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08。
     - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **weight_decay** (float|Tensor，可选) - 权重衰减系数，是一个float类型或者shape为[1] ，数据类型为float32的Tensor类型。默认值为0.01。
-    - **lr_ratio** (function|None，可选) – 若设置非None，则其会为每个参数的学习率计算一个规约值，并使用该规约值与学习率的乘积作为新的学习率。否则, 使用原学习率。仅支持GPU设备，默认值为None。
+    - **lr_ratio** (function|None，可选) – 传入函数时，会为每个参数计算一个权重衰减系数，并使用该系数与学习率的乘积作为新的学习率。否则，使用原学习率。仅支持GPU设备，默认值为None。
     - **apply_decay_param_fun** (function|None，可选): 传入函数时，只有可以使 apply_decay_param_fun(Tensor.name)==True的Tensor会进行weight decay更新。只有在想要指定特定需要进行weight decay更新的参数时使用。默认值为None。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 。
       默认值为None，此时将不进行梯度裁剪。
@@ -41,8 +44,6 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     - **multi_precision** (bool，可选) – 在基于GPU设备的混合精度训练场景中，该参数主要用于保证梯度更新的数值稳定性。设置为True时，优化器会针对FP16类型参数保存一份与其值相等的FP32类型参数备份。梯度更新时，首先将梯度类型提升到FP32，然后将其更新到FP32类型参数备份中。最后，更新后的FP32类型值会先转换为FP16类型，再赋值给实际参与计算的FP16类型参数。默认为False。
     - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-.. note::
-  当前，AdamW不支持稀疏参数优化。
 
 代码示例
 ::::::::::::
