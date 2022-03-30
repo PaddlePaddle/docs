@@ -73,7 +73,7 @@ Uniform
 sample(shape, seed=0)
 '''''''''
 
-生成指定维度的样本
+生成指定维度的样本。
 
 **参数**
 
@@ -82,7 +82,7 @@ sample(shape, seed=0)
     
 **返回**
 
-Tensor, 预先设计好维度的张量, 数据类型为float32
+Tensor，预先设计好维度的张量，数据类型为float32。
 
 entropy()
 '''''''''
@@ -95,7 +95,7 @@ entropy()
 
 **返回**
 
-Tensor, 均匀分布的信息熵, 数据类型为float32
+Tensor，均匀分布的信息熵，数据类型为float32。
 
 
 log_prob(value)
@@ -109,7 +109,7 @@ log_prob(value)
     
 **返回**
 
-Tensor, 对数概率, 数据类型与value相同
+Tensor，对数概率，数据类型与value相同。
 
 
 probs(value)
@@ -123,4 +123,4 @@ probs(value)
     
 **返回**
 
-Tensor, 概率, 数据类型与value相同
+Tensor，概率，数据类型与value相同。
