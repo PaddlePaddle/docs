@@ -3,7 +3,7 @@
 
 ## 一、Tensor 的概念介绍
 
-飞桨使用张量（[Tensor](../api/paddle/Tensor_cn.html)） 来表示神经网络中传递的数据，Tensor 可以理解为多维数组，类似于 [Numpy 数组（ndarray）](https://numpy.org/doc/stable/user/quickstart.html#the-basics) 的概念。不同之处是 Tensor 不仅可以运行在 CPU 上，还支持运行在 GPU 及各种 AI 芯片上，以实现计算加速；并且飞桨基于 Tensor，从数据处理、组网操作、硬件适配等各方面进行了优化，在神经网络训练、推理等任务中可获得更好的效果和使用体验。因此推荐优先使用 Tensor 完成数据处理和组网操作。
+飞桨使用张量（[Tensor](../../../api/paddle/Tensor_cn.html)） 来表示神经网络中传递的数据，Tensor 可以理解为多维数组，类似于 [Numpy 数组（ndarray）](https://numpy.org/doc/stable/user/quickstart.html#the-basics) 的概念。不同之处是 Tensor 不仅可以运行在 CPU 上，还支持运行在 GPU 及各种 AI 芯片上，以实现计算加速；并且飞桨基于 Tensor，从数据处理、组网操作、硬件适配等各方面进行了优化，在神经网络训练、推理等任务中可获得更好的效果和使用体验。因此推荐优先使用 Tensor 完成数据处理和组网操作。
 在飞桨框架中，神经网络的输入、输出数据，以及网络中的参数均采用 Tensor 数据结构，示例如下：
 ```python
 def train(model):
@@ -38,15 +38,18 @@ predicts:  Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=Fa
 weight:  Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=False,
        [0.02227839])
 ```
-以上示例代码来源 [使用LeNet在MNIST数据集实现图像分类](../practices/cv/image_classification) 任务 5.1 小节（篇幅原因仅截取部分），分别打印了神经网络的输入、输出数据和网络中的参数，可以看到均采用了 Tensor 数据结构。
+以上示例代码来源 [使用LeNet在MNIST数据集实现图像分类](../../../practices/cv/image_classification) 任务 5.1 小节（篇幅原因仅截取部分），分别打印了神经网络的输入、输出数据和网络中的参数，可以看到均采用了 Tensor 数据结构。
 
 ## 二、Tensor 的创建
 
 飞桨可基于给定数据手动创建 Tensor，并提供了多种方式，如：
 
 [1.1 指定数据创建](#newtensor1)
+
 [1.2 指定形状创建](#newtensor2)
+
 [1.3 指定区间创建](#newtensor3)
+
 [1.4 通过 Numpy 数组创建](#newtensor4)
 
 另外在常见深度学习任务中，数据样本可能是图片（image）、文本（text）、语音（audio）等多种类型，在送入神经网络训练或推理前均需要创建为 Tensor。飞桨提供了将这类数据手动创建为 Tensor 的方法，如：
@@ -60,7 +63,7 @@ weight:  Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=Fals
 
 ### <span id="newtensor1">1.1 指定数据创建</span>
 
-与 Numpy 创建数组方式类似，通过给定 Python 序列（如列表 list、元组 tuple），可使用 [paddle.to_tensor](../api/paddle/to_tensor_cn.html) 创建任意维度的 Tensor。示例如下：
+与 Numpy 创建数组方式类似，通过给定 Python 序列（如列表 list、元组 tuple），可使用 [paddle.to_tensor](../../../api/paddle/to_tensor_cn.html) 创建任意维度的 Tensor。示例如下：
 
 （1）创建类似向量（vector）的 1 维 Tensor：
 ```python
@@ -132,12 +135,12 @@ ValueError:
 ```
 > **说明：**
 >
-> * 飞桨也支持将 Tensor 转换为 Python 序列数据，可通过 [paddle.tolist](../api/paddle/tolist_cn.html) 实现，飞桨实际的转换处理过程是 **Python 序列 <-> Numpy 数组 <-> Tensor**。
+> * 飞桨也支持将 Tensor 转换为 Python 序列数据，可通过 [paddle.tolist](../../../api/paddle/tolist_cn.html) 实现，飞桨实际的转换处理过程是 **Python 序列 <-> Numpy 数组 <-> Tensor**。
 > * 基于给定数据创建 Tensor 时，飞桨是通过拷贝方式创建，与原始数据不共享内存。
 
 ### <span id="newtensor2">1.2 指定形状创建</span>
 
-如果要创建一个指定形状的 Tensor，可以使用 [paddle.zeros](../api/paddle/zeros_cn.html)、[paddle.ones](../api/paddle/ones_cn.html)、[paddle.full](../api/paddle/full_cn.html) 实现。
+如果要创建一个指定形状的 Tensor，可以使用 [paddle.zeros](../../../api/paddle/zeros_cn.html)、[paddle.ones](../../../api/paddle/ones_cn.html)、[paddle.full](../../../api/paddle/full_cn.html) 实现。
 ```python
 paddle.zeros([m, n])             # 创建数据全为 0，形状为 [m, n] 的 Tensor
 paddle.ones([m, n])              # 创建数据全为 1，形状为 [m, n] 的 Tensor
@@ -153,7 +156,7 @@ Tensor(shape=[2, 3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
 
 ### <span id="newtensor3">1.3 指定区间创建</span>
 
-如果要在指定区间内创建 Tensor，可以使用[paddle.arrange](../api/paddle/arrange_cn.html)、 [paddle.linspace](../api/paddle/linspace_cn.html)  实现。
+如果要在指定区间内创建 Tensor，可以使用[paddle.arrange](../../../api/paddle/arrange_cn.html)、 [paddle.linspace](../../../api/paddle/linspace_cn.html)  实现。
 ```python
 paddle.arange(start, end, step)  # 创建以步长step均匀分隔区间[start, end)的Tensor
 paddle.linspace(start, end, num) # 创建以元素个数num均匀分隔区间[start, end)的Tensor
@@ -170,15 +173,15 @@ Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 > **说明：**
 >
 > 除了以上指定数据、形状、区间创建 Tensor 的方法，飞桨还支持如下类似的创建方式，如：
->  * **创建一个空 Tensor**，即根据 shape 和 dtype 创建尚未初始化元素值的 Tensor，可通过 [paddle.empty](../api/paddle/empty_cn.html) 实现。
->  * **创建一个与其他 Tensor 具有相同 shape 与 dtype 的 Tensor**，可通过  [paddle.ones_like](../api/paddle/ones_like_cn.html) 、 [paddle.zeros_like](../api/paddle/zeros_like_cn.html) 、 [paddle.full_like](../api/paddle/full_like_cn.html) 、[paddle.empty_like](../api/paddle/empty_like_cn.html) 实现。
->  * **拷贝并创建一个与其他 Tensor 完全相同的 Tensor**，可通过 [paddle.clone](../api/paddle/clone_cn.html)实现。
->  * **创建一个满足特定分布的Tensor**，如[paddle.rand](../api/paddle/rand_cn.html),  [paddle.randn](../api/paddle/randn_cn.html) , [paddle.randint](../api/paddle/randint_cn.html)等。
->  * **通过设置随机种子创建 Tensor**，可每次生成相同元素值的随机数 Tensor，可通过 [paddle.seed](../api/paddle/seed_cn.html) 和  [paddle.rand](../api/paddle/rand_cn.html) 组合实现。
+>  * **创建一个空 Tensor**，即根据 shape 和 dtype 创建尚未初始化元素值的 Tensor，可通过 [paddle.empty](../../../api/paddle/empty_cn.html) 实现。
+>  * **创建一个与其他 Tensor 具有相同 shape 与 dtype 的 Tensor**，可通过  [paddle.ones_like](../../../api/paddle/ones_like_cn.html) 、 [paddle.zeros_like](../../../api/paddle/zeros_like_cn.html) 、 [paddle.full_like](../../../api/paddle/full_like_cn.html) 、[paddle.empty_like](../../../api/paddle/empty_like_cn.html) 实现。
+>  * **拷贝并创建一个与其他 Tensor 完全相同的 Tensor**，可通过 [paddle.clone](../../../api/paddle/clone_cn.html)实现。
+>  * **创建一个满足特定分布的Tensor**，如[paddle.rand](../../../api/paddle/rand_cn.html),  [paddle.randn](../../../api/paddle/randn_cn.html) , [paddle.randint](../../../api/paddle/randint_cn.html)等。
+>  * **通过设置随机种子创建 Tensor**，可每次生成相同元素值的随机数 Tensor，可通过 [paddle.seed](../../../api/paddle/seed_cn.html) 和  [paddle.rand](../../../api/paddle/rand_cn.html) 组合实现。
 
 ### <span id="newtensor4">1.4 通过 Numpy 数组创建</span>
 
-通过给定 Numpy 数组，可使用 [paddle.to_tensor](../api/paddle/to_tensor_cn.html) 创建任意维度的 Tensor，创建的 Tensor 与原 Numpy 数组具有相同的形状与数据类型。
+通过给定 Numpy 数组，可使用 [paddle.to_tensor](../../../api/paddle/to_tensor_cn.html) 创建任意维度的 Tensor，创建的 Tensor 与原 Numpy 数组具有相同的形状与数据类型。
 ```python
 tensor_temp = paddle.to_tensor(np.array([1.0, 2.0]))
 print(tensor_temp)
@@ -187,7 +190,7 @@ print(tensor_temp)
 Tensor(shape=[2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
        [1., 2.])
 ```
-飞桨也支持将 Tensor 转换为 Numpy 数组，可通过 [Tensor.numpy](../api/paddle/Tensor_cn.html#numpy) 方法实现。
+飞桨也支持将 Tensor 转换为 Numpy 数组，可通过 [Tensor.numpy](../../../api/paddle/Tensor_cn.html#numpy) 方法实现。
 ```python
 tensor_to_convert = paddle.to_tensor([1.,2.])
 tensor_to_convert.numpy()
@@ -207,8 +210,8 @@ array([1., 2.], dtype=float32)
 
 在常见深度学习任务中，数据样本可能是图片（image）、文本（text）、语音（audio）等多种类型，在送入神经网络训练或推理前，这些数据和对应的标签均需要创建为 Tensor。以下是图像场景和 NLP 场景中手动转换 Tensor 方法的介绍。
 
-* 对于图像场景，可使用 [paddle.vision.transforms.ToTensor](../api/paddle/vision/transforms/ToTensor_cn.html) 直接将 PIL.Image 格式的数据转为 Tensor，使用 [paddle.to_tensor](../api/paddle/to_tensor_cn.html)  将图像的标签（Label，通常是Python 或 Numpy 格式的数据）转为 Tensor。
-* 对于文本场景，需将文本数据解码为数字后，再通过 [paddle.to_tensor](../api/paddle/to_tensor_cn.html) 转为 Tensor。不同文本任务标签形式不一样，有的任务标签也是文本，有的则是数字，均需最终通过 paddle.to_tensor 转为 Tensor。
+* 对于图像场景，可使用 [paddle.vision.transforms.ToTensor](../../../api/paddle/vision/transforms/ToTensor_cn.html) 直接将 PIL.Image 格式的数据转为 Tensor，使用 [paddle.to_tensor](../../../api/paddle/to_tensor_cn.html)  将图像的标签（Label，通常是Python 或 Numpy 格式的数据）转为 Tensor。
+* 对于文本场景，需将文本数据解码为数字后，再通过 [paddle.to_tensor](../../../api/paddle/to_tensor_cn.html) 转为 Tensor。不同文本任务标签形式不一样，有的任务标签也是文本，有的则是数字，均需最终通过 paddle.to_tensor 转为 Tensor。
 
 下面以图像场景为例介绍，以下示例代码中将随机生成的图片转换为 Tensor。
 
@@ -232,11 +235,11 @@ Tensor(shape=[3, 224, 224], dtype=float32, place=Place(gpu:0), stop_gradient=Tru
 ```
 > **说明：**
 >
->实际编码时，由于飞桨数据加载的 [paddle.io.DataLoader](../api/paddle/io/DataLoader_cn.html) API 能够将原始 [paddle.io.Dataset](../api/paddle/io/Dataset_cn.html) 定义的数据自动转换为 Tensor，所以可以不做手动转换。具体如下节介绍。
+>实际编码时，由于飞桨数据加载的 [paddle.io.DataLoader](../../../api/paddle/io/DataLoader_cn.html) API 能够将原始 [paddle.io.Dataset](../../../api/paddle/io/Dataset_cn.html) 定义的数据自动转换为 Tensor，所以可以不做手动转换。具体如下节介绍。
 
 ### <span id="newtensor6">1.6 自动创建 Tensor 的功能介绍</span>
 
-除了手动创建 Tensor 外，实际在飞桨框架中有一些 API 封装了 Tensor 创建的操作，从而无需用户手动创建 Tensor。例如 [paddle.io.DataLoader](../api/paddle/io/DataLoader_cn.html) 能够基于原始 Dataset，返回读取 Dataset 数据的迭代器，迭代器返回的数据中的每个元素都是一个 Tensor。另外在一些高层API，如 [paddle.Model.fit](../api/paddle/Model_cn.html) 、[paddle.Model.predict](../api/paddle/Model_cn.html) ，如果传入的数据不是 Tensor，会自动转为 Tensor 再进行模型训练或推理。
+除了手动创建 Tensor 外，实际在飞桨框架中有一些 API 封装了 Tensor 创建的操作，从而无需用户手动创建 Tensor。例如 [paddle.io.DataLoader](../../../api/paddle/io/DataLoader_cn.html) 能够基于原始 Dataset，返回读取 Dataset 数据的迭代器，迭代器返回的数据中的每个元素都是一个 Tensor。另外在一些高层API，如 [paddle.Model.fit](../../../api/paddle/Model_cn.html) 、[paddle.Model.predict](../../../api/paddle/Model_cn.html) ，如果传入的数据不是 Tensor，会自动转为 Tensor 再进行模型训练或推理。
 > **说明：**
 >
 > paddle.Model.fit、paddle.Model.predict 等高层 API 支持传入 Dataset 或 DataLoader，如果传入的是 Dataset，那么会用 DataLoader 封装转为 Tensor 数据；如果传入的是 DataLoader，则直接从  DataLoader 迭代读取 Tensor 数据送入模型训练或推理。因此即使没有写将数据转为 Tensor 的代码，也能正常执行，提升了编程效率和容错性。
@@ -276,7 +279,7 @@ Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
 ### 2.1 Tensor的形状（shape）
 
 **（1）形状的介绍**
-形状是  Tensor 的一个重要的基础属性，可以通过  [Tensor.shape](../api/paddle/Tensor_cn.html#shape) 查看一个 Tensor 的形状，以下为相关概念：
+形状是  Tensor 的一个重要的基础属性，可以通过  [Tensor.shape](../../../api/paddle/Tensor_cn.html#shape) 查看一个 Tensor 的形状，以下为相关概念：
 
  * shape：描述了 Tensor 每个维度上元素的数量。
  * ndim： Tensor 的维度数量，例如向量的维度为 1，矩阵的维度为2，Tensor 可以有任意数量的维度。
@@ -308,7 +311,7 @@ Elements number along axis 0 of Tensor: 2
 Elements number along the last axis of Tensor: 5
 ```
 **（2）重置 Tensor 形状（Reshape） 的方法**
-重新设置 Tensor 的 shape 在深度学习任务中比较常见，如一些计算类 API 会对输入数据有特定的形状要求，这时可通过 [paddle.reshape](../api/paddle/reshape_cn.html) 接口来改变 Tensor 的 shape，但并不改变 Tensor 的 size 和其中的元素数据。
+重新设置 Tensor 的 shape 在深度学习任务中比较常见，如一些计算类 API 会对输入数据有特定的形状要求，这时可通过 [paddle.reshape](../../../api/paddle/reshape_cn.html) 接口来改变 Tensor 的 shape，但并不改变 Tensor 的 size 和其中的元素数据。
 
 
 以下示例代码中，创建 1 个 `shape=[3]` 的一维 Tensor，使用 reshape 功能将该 Tensor 重置为 `shape=[1, 3]` 的二维 Tensor。这种做法经常用在把一维的标签（label）数据扩展为二维，由于飞桨框架中神经网络通常需要传入一个 batch 的数据进行计算，因此可将数据增加一个 batch 维，方便后面的数据计算。
@@ -347,14 +350,14 @@ Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 1
 > **说明：**
 >
 >  除了 paddle.reshape 可重置 Tensor 的形状，还可通过如下方法改变 shape：
->  * [paddle.squeeze](../api/paddle/squeeze_cn.html)，可实现 Tensor 的降维操作，即把 Tensor 中尺寸为 1 的维度删除。
->  * [paddle.unsqueeze](../api/paddle/unsqueeze_cn.html)，可实现 Tensor 的升维操作，即向 Tensor 中某个位置插入尺寸为 1 的维度。
->  * [paddle.flatten](../api/paddle/flatten_cn.html)，将 Tensor 的数据在指定的连续维度上展平。
->  * [transpose](../api/paddle/transpose_cn.html)，对 Tensor 的数据进行重排。
+>  * [paddle.squeeze](../../../api/paddle/squeeze_cn.html)，可实现 Tensor 的降维操作，即把 Tensor 中尺寸为 1 的维度删除。
+>  * [paddle.unsqueeze](../../../api/paddle/unsqueeze_cn.html)，可实现 Tensor 的升维操作，即向 Tensor 中某个位置插入尺寸为 1 的维度。
+>  * [paddle.flatten](../../../api/paddle/flatten_cn.html)，将 Tensor 的数据在指定的连续维度上展平。
+>  * [transpose](../../../api/paddle/transpose_cn.html)，对 Tensor 的数据进行重排。
 
 **（3）原位（Inplace）操作和非原位操作的区别**
 
-飞桨框架的 API 有原位（Inplace）操作和非原位操作之分，原位操作即在原 Tensor 上保存操作结果，输出 Tensor 将与输入Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。非原位操作则不会修改原 Tensor，而是返回一个新的 Tensor。通过 API 名称区分两者，如 [paddle.reshape](../api/paddle/reshape_cn.html) 是非原位操作，[paddle.reshape_](../api/paddle/reshape__cn.html) 是原位操作。
+飞桨框架的 API 有原位（Inplace）操作和非原位操作之分，原位操作即在原 Tensor 上保存操作结果，输出 Tensor 将与输入Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。非原位操作则不会修改原 Tensor，而是返回一个新的 Tensor。通过 API 名称区分两者，如 [paddle.reshape](../../../api/paddle/reshape_cn.html) 是非原位操作，[paddle.reshape_](../../../api/paddle/reshape__cn.html) 是原位操作。
 
 下面以 reshape 为例说明，通过对比Tensor的 name （每个 Tensor 创建时都会有一个独一无二的 name），判断是否为同一个Tensor。
 ```python
@@ -373,13 +376,14 @@ same_tensor name:  generated_tensor_0 # 原位操作后产生的Tensor与原始T
 
 ### 2.2 Tensor的数据类型（dtype）
 **（1）指定数据类型的介绍**
-Tensor 的数据类型 dtype 可以通过  [Tensor.dtype](../api/paddle/Tensor_cn.html#dtype) 查看，支持类型包括：`bool`、`float16`、`float32`、`float64`、`uint8`、`int8`、`int16`、`int32`、`int64`、`complex64`、`complex128`。
+Tensor 的数据类型 dtype 可以通过  [Tensor.dtype](../../../api/paddle/Tensor_cn.html#dtype) 查看，支持类型包括：`bool`、`float16`、`float32`、`float64`、`uint8`、`int8`、`int16`、`int32`、`int64`、`complex64`、`complex128`。
 
 同一 Tensor 中所有元素的数据类型均相同，通常通过如下方式指定：
 
 * 通过给定 Python 序列创建的 Tensor，可直接使用 dtype 参数指定。如果未指定：
- * 对于 Python 整型数据，默认会创建 `int64` 型 Tensor；
- * 对于 Python 浮点型数据，默认会创建 `float32` 型 Tensor，并且可以通过 [paddle.set_default_dtype](../api/paddle/set_default_dtype_cn.html) 来调整浮点型数据的默认类型。
+
+    * 对于 Python 整型数据，默认会创建 `int64` 型 Tensor；
+    * 对于 Python 浮点型数据，默认会创建 `float32` 型 Tensor，并且可以通过 [paddle.set_default_dtype](../../../api/paddle/set_default_dtype_cn.html) 来调整浮点型数据的默认类型。
 ```python
 # 创建Tensor时指定dtype
 ndim_1_tensor = paddle.to_tensor([2.0, 3.0, 4.0], dtype='float64')
@@ -409,7 +413,7 @@ Tensor(shape=[2, 2], dtype=complex64, place=Place(gpu:0), stop_gradient=True,
 ```
 **（2）修改数据类型的方法**
 
-飞桨框架提供了[paddle.cast](../api/paddle/cast_cn.html) 接口来改变 Tensor 的 dtype：
+飞桨框架提供了[paddle.cast](../../../api/paddle/cast_cn.html) 接口来改变 Tensor 的 dtype：
 ```python
 float32_Tensor = paddle.to_tensor(1.0)
 
@@ -424,11 +428,11 @@ Tensor after cast to float64: paddle.float64
 Tensor after cast to int64: paddle.int64
 ```
 ### 2.3 Tensor的设备位置（place）
-初始化 Tensor 时可以通过 [Tensor.place](../api/paddle/Tensor_cn.html#place) 来指定其分配的设备位置，可支持的设备位置有：CPU、GPU、固定内存、XPU（Baidu Kunlun）、NPU（Huawei）、MLU（寒武纪）、IPU（Graphcore）等。其中固定内存也称为不可分页内存或锁页内存，其与 GPU 之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。
+初始化 Tensor 时可以通过 [Tensor.place](../../../api/paddle/Tensor_cn.html#place) 来指定其分配的设备位置，可支持的设备位置有：CPU、GPU、固定内存、XPU（Baidu Kunlun）、NPU（Huawei）、MLU（寒武纪）、IPU（Graphcore）等。其中固定内存也称为不可分页内存或锁页内存，其与 GPU 之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。
 > **说明：**
 >
-> * 当未指定 place 时，Tensor 默认设备位置和安装的飞桨框架版本一致。如安装了 GPU 版本的飞桨，则设备位置默认为 GPU，即 Tensor 的`place` 默认为 [paddle.CUDAPlace](../api/paddle/CUDAPlace_cn.html)。
-> * 使用 [paddle.device.set_device](../api/paddle/device/set_device_cn.html) 可设置全局默认的设备位置。Tensor.place 的指定值优先级高于全局默认值。
+> * 当未指定 place 时，Tensor 默认设备位置和安装的飞桨框架版本一致。如安装了 GPU 版本的飞桨，则设备位置默认为 GPU，即 Tensor 的`place` 默认为 [paddle.CUDAPlace](../../../api/paddle/CUDAPlace_cn.html)。
+> * 使用 [paddle.device.set_device](../../../api/paddle/device/set_device_cn.html) 可设置全局默认的设备位置。Tensor.place 的指定值优先级高于全局默认值。
 
 以下示例分别创建了CPU、GPU和固定内存上的 Tensor，并通过 `Tensor.place` 查看 Tensor 所在的设备位置：
 
@@ -473,7 +477,7 @@ print("Tensor name:", paddle.to_tensor(1).name)
 Tensor name: generated_tensor_0
 ```
 ### 2.5 Tensor 的 stop_gradient 属性
-stop_gradient 表示是否停止计算梯度，默认值为 True，表示停止计算梯度，梯度不再回传。可以直接设置 stop_gradient 的值。
+stop_gradient 表示是否停止计算梯度，默认值为 True，表示停止计算梯度，梯度不再回传。在设计网络时，如不需要对某些参数进行训练更新，可以将参数的stop_gradient设置为True。可以直接设置 stop_gradient 的值。
 
 ```python
 eg = paddle.to_tensor(1)
