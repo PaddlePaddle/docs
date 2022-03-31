@@ -141,7 +141,8 @@ def check_api_parameters(rstfiles, apiinfo):
 
     such as `.. py:function:: paddle.version.cuda()`
     
-    class类别的文档，其成员函数的说明有好多。且class标题还有好多不写参数，暂时都跳过吧
+    1. class类别的文档，其成员函数的说明有好多。且class标题还有好多不写参数，暂时都跳过吧
+    2. 一些函数有annotation参数注解，也需要考虑。
     """
     pat = re.compile(
         r'^\.\.\s+py:(method|function|class)::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$')
