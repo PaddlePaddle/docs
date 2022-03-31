@@ -175,8 +175,8 @@ Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 > 除了以上指定数据、形状、区间创建 Tensor 的方法，飞桨还支持如下类似的创建方式，如：
 >  * **创建一个空 Tensor**，即根据 shape 和 dtype 创建尚未初始化元素值的 Tensor，可通过 [paddle.empty](../../../api/paddle/empty_cn.html) 实现。
 >  * **创建一个与其他 Tensor 具有相同 shape 与 dtype 的 Tensor**，可通过  [paddle.ones_like](../../../api/paddle/ones_like_cn.html) 、 [paddle.zeros_like](../../../api/paddle/zeros_like_cn.html) 、 [paddle.full_like](../../../api/paddle/full_like_cn.html) 、[paddle.empty_like](../../../api/paddle/empty_like_cn.html) 实现。
->  * **拷贝并创建一个与其他 Tensor 完全相同的 Tensor**，可通过 [paddle.clone](../../../api/paddle/clone_cn.html)实现。
->  * **创建一个满足特定分布的Tensor**，如[paddle.rand](../../../api/paddle/rand_cn.html),  [paddle.randn](../../../api/paddle/randn_cn.html) , [paddle.randint](../../../api/paddle/randint_cn.html)等。
+>  * **拷贝并创建一个与其他 Tensor 完全相同的 Tensor**，可通过 [paddle.clone](../../../api/paddle/clone_cn.html) 实现。
+>  * **创建一个满足特定分布的Tensor**，如 [paddle.rand](../../../api/paddle/rand_cn.html),  [paddle.randn](../../../api/paddle/randn_cn.html) , [paddle.randint](../../../api/paddle/randint_cn.html) 等。
 >  * **通过设置随机种子创建 Tensor**，可每次生成相同元素值的随机数 Tensor，可通过 [paddle.seed](../../../api/paddle/seed_cn.html) 和  [paddle.rand](../../../api/paddle/rand_cn.html) 组合实现。
 
 ### <span id="newtensor4">1.4 通过 Numpy 数组创建</span>
@@ -204,6 +204,7 @@ array([1., 2.], dtype=float32)
 > 虽然飞桨框架中 Tensor 可以与 Numpy 数组方便地互相转换，但在实际应用中两者频繁转换会存在性能消耗，具体使用场景说明如下：
 > * 场景一：在组网程序中，对网络中向量的处理，务必使用 Tensor，而不建议转成 Numpy 数组。如果在组网过程中转成Numpy 数组，并使用 Numpy 的函数会降低整体性能。
 > * 场景二：在数据处理和模型后处理等场景，也建议优先使用 Tensor，主要是飞桨为 AI 硬件做了大量的适配和性能优化工作，部分情况下会获得更好的使用体验和性能。
+>
 > 目前飞桨的 Tensor 基本覆盖 Numpy 数组的操作并有所加强，所以推荐在程序中优先使用 Tensor 完成各种数据处理和组网操作。
 
 ### <span id="newtensor5">1.5 指定图像、文本数据创建</span>
@@ -279,6 +280,7 @@ Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
 ### 2.1 Tensor的形状（shape）
 
 **（1）形状的介绍**
+
 形状是  Tensor 的一个重要的基础属性，可以通过  [Tensor.shape](../../../api/paddle/Tensor_cn.html#shape) 查看一个 Tensor 的形状，以下为相关概念：
 
  * shape：描述了 Tensor 每个维度上元素的数量。
@@ -311,6 +313,7 @@ Elements number along axis 0 of Tensor: 2
 Elements number along the last axis of Tensor: 5
 ```
 **（2）重置 Tensor 形状（Reshape） 的方法**
+
 重新设置 Tensor 的 shape 在深度学习任务中比较常见，如一些计算类 API 会对输入数据有特定的形状要求，这时可通过 [paddle.reshape](../../../api/paddle/reshape_cn.html) 接口来改变 Tensor 的 shape，但并不改变 Tensor 的 size 和其中的元素数据。
 
 
@@ -376,6 +379,7 @@ same_tensor name:  generated_tensor_0 # 原位操作后产生的Tensor与原始T
 
 ### 2.2 Tensor的数据类型（dtype）
 **（1）指定数据类型的介绍**
+
 Tensor 的数据类型 dtype 可以通过  [Tensor.dtype](../../../api/paddle/Tensor_cn.html#dtype) 查看，支持类型包括：`bool`、`float16`、`float32`、`float64`、`uint8`、`int8`、`int16`、`int32`、`int64`、`complex64`、`complex128`。
 
 同一 Tensor 中所有元素的数据类型均相同，通常通过如下方式指定：
@@ -477,7 +481,7 @@ print("Tensor name:", paddle.to_tensor(1).name)
 Tensor name: generated_tensor_0
 ```
 ### 2.5 Tensor 的 stop_gradient 属性
-stop_gradient 表示是否停止计算梯度，默认值为 True，表示停止计算梯度，梯度不再回传。在设计网络时，如不需要对某些参数进行训练更新，可以将参数的stop_gradient设置为True。可以直接设置 stop_gradient 的值。
+stop_gradient 表示是否停止计算梯度，默认值为 True，表示停止计算梯度，梯度不再回传。在设计网络时，如不需要对某些参数进行训练更新，可以将参数的stop_gradient设置为True。可参考以下代码直接设置 stop_gradient 的值。
 
 ```python
 eg = paddle.to_tensor(1)
