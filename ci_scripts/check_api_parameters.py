@@ -61,9 +61,15 @@ def _check_params_in_description(rstfilename, paramstr):
     flag = True
     params_intitle = []
     if paramstr:
-        params_intitle = paramstr.split(
+        _params_intitle = paramstr.split(
             ', '
         )  # is there any parameter with default value of type list/tuple? may break this.
+        for s in _params_intitle:
+            if ':' in s:  # annotations
+                pname = s.split(':')
+                params_intitle.append(pname[0].strip())
+            else:
+                params_intitle.append(s.strip())
     funcdescnode = extract_params_desc_from_rst_file(rstfilename)
     if funcdescnode:
         items = funcdescnode.children[1].children[0].children
@@ -133,9 +139,11 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
 def check_api_parameters(rstfiles, apiinfo):
     """check function's parameters same as its origin definition.
 
-    such as `.. py:function:: paddle.version.cuda()`
-    
-    class类别的文档，其成员函数的说明有好多。且class标题还有好多不写参数，暂时都跳过吧
+    TODO:
+    1. All the documents of classes are skiped now. As 
+        (1) there ars many class methods in documents, may break the scripts.
+        (2) parameters of Class should be checked with its `__init__` method.
+    2. Some COMPLICATED annotations may break the scripts.
     """
     pat = re.compile(
         r'^\.\.\s+py:(method|function|class)::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$')
@@ -157,9 +165,11 @@ def check_api_parameters(rstfiles, apiinfo):
                     funcname = mo.group(2)
                     paramstr = mo.group(3)
                     flag = False
+                    func_found_in_json = False
                     for apiobj in apiinfo.values():
                         if 'all_names' in apiobj and funcname in apiobj[
                                 'all_names']:
+                            func_found_in_json = True
                             if 'args' in apiobj:
                                 if paramstr == apiobj['args']:
                                     print(
@@ -180,6 +190,12 @@ def check_api_parameters(rstfiles, apiinfo):
                                 flag = _check_params_in_description_with_fullargspec(
                                     rstfilename, funcname)
                             break
+                    if not func_found_in_json:  # may be inner functions
+                        print(
+                            f'check func:{funcname} in {rstfilename} with its FullArgSpec'
+                        )
+                        flag = _check_params_in_description_with_fullargspec(
+                            rstfilename, funcname)
                     if flag:
                         check_passed.append(rstfile)
                         print(f'check success: {rstfile}')
