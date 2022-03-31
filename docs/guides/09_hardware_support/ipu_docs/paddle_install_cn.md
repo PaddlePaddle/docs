@@ -22,14 +22,13 @@ docker build -t paddlepaddle/paddle:latest-dev-ipu \
 
 ```
 # 创建并运行 Docker 容器
-# 需要将主机端的 ipuof 配置文件映射到容器中，可通过设置 HOST_IPUOF_PATH 环境变量传入
-# 可以按照主机上的 ipuof 配置文件名称对下面的脚本进行修改，将 ipu.conf 改成相应的名称
+# 需要将主机端的 ipuof 配置文件映射到容器中，可通过设置 IPUOF_CONFIG_PATH 环境变量指向 ipuof 配置文件传入
 # 更多关于 ipuof 配置的信息可访问 https://docs.graphcore.ai/projects/vipu-admin/en/latest/cli_reference.html?highlight=ipuof#ipuof-configuration-file
 docker run --ulimit memlock=-1:-1 --net=host --cap-add=IPC_LOCK \
 --device=/dev/infiniband/ --ipc=host \
 --name paddle-dev-ipu -w /home \
--v ${HOST_IPUOF_PATH}:/ipuof \
--e IPUOF_CONFIG_PATH=/ipuof/ipu.conf \
+-v ${IPUOF_CONFIG_PATH}:/ipuof.conf \
+-e IPUOF_CONFIG_PATH=/ipuof.conf \
 -it paddlepaddle/paddle:latest-dev-ipu bash
 
 # 容器内下载源码
