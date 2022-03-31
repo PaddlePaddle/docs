@@ -48,9 +48,6 @@ softmax_with_cross_entropy
   - 如果 ``return_softmax`` 为 False，则返回交叉熵损失结果的 ``Tensor`` ，数据类型和 ``logits`` 一致，除了 ``axis`` 维度上的形状为1，其余维度和 ``logits`` 一致。
   - 如果 ``return_softmax`` 为 True，则返回交叉熵损失结果的 ``Tensor`` 和softmax结果的 ``Tensor`` 组成的元组。其中交叉熵损失结果的数据类型和 ``logits`` 一致，除了 ``axis`` 维度上的形状为1，其余维度上交叉熵损失结果和 ``logits`` 一致；softmax结果的数据类型和 ``logits`` 一致，维度和 ``logits`` 一致。
 
-返回类型
-::::::::::::
-变量或者两个变量组成的元组
 
 代码示例
 ::::::::::::

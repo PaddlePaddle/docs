@@ -14,6 +14,7 @@ conv1d
     Out = \sigma \left ( W * X + b \right )
 
 其中：
+
     - :math:`X` ：输入值，NCL或NLC格式的3-D Tensor
     - :math:`W` ：卷积核值，MCL格式的3-D Tensor
     - :math:`*` ：卷积操作

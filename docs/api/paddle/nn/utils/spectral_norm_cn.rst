@@ -26,6 +26,8 @@ spectral_norm
 可参考: `Spectral Normalization <https://arxiv.org/abs/1802.05957>`_
 
 参数
+::::::::::::
+
     - **layer** (paddle.nn.Layer) - 要添加权重谱归一化的层。
     - **name** (str, 可选) - 权重参数的名字。默认：'weight'.
     - **n_power_iterations** (int, 可选) - 将用于计算的 ``SpectralNorm`` 幂迭代次数，默认值：1。

@@ -21,6 +21,7 @@ conv3d_transpose
                         \\Out=\sigma (W*X+b)\\
 
 其中：
+
     -  :math:`X` : 输入，具有NCDHW或NDHWC格式的5-D Tensor
     -  :math:`W` : 卷积核，具有NCDHW格式的5-D Tensor
     -  :math:`*` : 卷积操作（注意：转置卷积本质上的计算还是卷积）

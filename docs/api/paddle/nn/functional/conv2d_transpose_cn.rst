@@ -21,6 +21,7 @@ conv2d_transpose
                         Out=\sigma (W*X+b)\\
 
 其中：
+
     -  :math:`X` : 输入，具有NCHW或NHWC格式的4-D Tensor
     -  :math:`W` : 卷积核，具有NCHW格式的4-D Tensor
     -  :math:`*` : 卷积计算（注意：转置卷积本质上的计算还是卷积）

@@ -49,11 +49,8 @@ embedding
 
 返回
 ::::::::::::
-input映射后得到的Embedding Tensor，数据类型和权重定义的类型一致。
+Tensor, input映射后得到的Embedding Tensor，数据类型和权重定义的类型一致。
 
-返回类型
-::::::::::::
-Tensor
 
 代码示例
 ::::::::::::

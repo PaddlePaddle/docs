@@ -16,6 +16,7 @@ class_center_sample
 更多的细节信息，请参考论文《Partial FC: Training 10 Million Identities on a Single Machine》，arxiv: https://arxiv.org/abs/2010.05222
 
 提示:
+
     如果正类别中心数量大于给定的 ``num_samples``，将保留所有的正类别中心，因此 ``sampled_class_center`` 的维度将是 [``num_positive_class_centers``]。
 
 
@@ -32,10 +33,6 @@ class_center_sample
 
     ``Tensor`` 二元组 - (``remapped_label``, ``sampled_class_center``)，``remapped_label`` 是重新映射后的标签，``sampled_class_center`` 是所采样的类别中心。
 
-抛出异常
-::::::::::::
-
-    - :code:`ValueError` - ``num_samples`` > ``num_classes`` 时抛出异常。
 
 代码示例
 ::::::::::::

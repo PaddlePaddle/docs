@@ -154,25 +154,6 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)；或者5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
 
 
-抛出异常
-::::::::::::
-
-    - :code:`TypeError` - out_shape应该是一个列表、元组或张量。
-    - :code:`TypeError` - actual_shape应该是变量或None。
-    - :code:`ValueError` - upsample的"resample"只能是"BILINEAR"或"TRILINEAR"或"NEAREST"或"BICUBIC"或"LINEAR"或"AREA"。
-    - :code:`ValueError` - 'linear' 只支持 3-D tensor。
-    - :code:`ValueError` - 'bilinear', 'bicubic' ，'nearest' 只支持 4-D tensor。
-    - :code:`ValueError` - 'trilinear' 只支持 5-D tensor
-    - :code:`ValueError` - out_shape 和 scale 不可同时为 None。
-    - :code:`ValueError` - out_shape 的长度必须为1如果输入是3D张量
-    - :code:`ValueError` - out_shape 的长度必须为2如果输入是4D张量。
-    - :code:`ValueError` - out_shape 的长度必须为3如果输入是5D张量。
-    - :code:`ValueError` - scale应大于0。
-    - :code:`TypeError`  - align_corners 应为bool型。
-    - :code:`ValueError` - align_mode 只能取 ‘0’ 或 ‘1’。
-    - :code:`ValueError` - data_format 只能取 'NCW', 'NCHW'、'NHWC'、'NCDHW' 或者 'NDHWC'。
-
-
 代码示例
 ::::::::::::
 

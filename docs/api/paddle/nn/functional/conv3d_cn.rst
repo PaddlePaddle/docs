@@ -14,6 +14,7 @@ conv3d
     Out = \sigma \left ( W * X + b \right )
 
 其中：
+
     - :math:`X` ：输入值，NCDHW或NDHWC格式的5-D Tensor
     - :math:`W` ：卷积核值，MCDHW格式的5-D Tensor
     - :math:`*` ：卷积操作

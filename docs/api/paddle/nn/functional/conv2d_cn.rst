@@ -14,6 +14,7 @@ conv2d
     Out = \sigma \left ( W * X + b \right )
 
 其中：
+
     - :math:`X` ：输入值，NCHW或NHWC格式的4-D Tensor
     - :math:`W` ：卷积核值，MCHW格式的4-D Tensor
     - :math:`*` ：卷积操作
