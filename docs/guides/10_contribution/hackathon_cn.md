@@ -17,17 +17,18 @@
 
 ![](https://github.com/PaddlePaddle/docs/blob/release/2.2/docs/guides/10_contribution/img/hackathon_process.png?raw=text)
 
-- 1、活动报名：[点击报名](https://www.wjx.top/vj/t8yHphe.aspx?udsid=268437) 填写相关信息，完成活动报名（强烈推荐大家组队完成，组队完成提交后，将额外获得飞桨黑客松定制勋章，PS：该勋章仅该环节可获得）；
-- 2、报名成功后，你可以进入百度飞桨黑客松QQ交流群（群号：343734965），所有活动相关信息都会在群中及时同步；
-- 3、**任务认领** ：首先 fork 你想要认领的任务 ISSUE 所在 repo，然后在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234)** 按格式相应回复，**完成任务认领**；
-
+- 1、活动报名：[点击报名](https://www.wjx.top/vj/t8yHphe.aspx?udsid=268437) 填写相关信息，完成活动报名（强烈推荐大家组队完成，组队完成提交后，将额外获得飞桨黑客松定制勋章，PS：该勋章仅该环节可获得）；报名成功后，你可以进入百度飞桨黑客松QQ交流群（群号：343734965），所有活动相关信息都会在群中及时同步；
+- 2、**任务认领** ：首先 fork 你想要认领的任务 ISSUE 所在 repo，然后在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234)** 按格式相应回复，**完成任务认领**；
+- 3、签署开源协议：将对于你贡献的源代码，你将拥有合法的知识产权，为了保护你的权益，你需要先签署一份[贡献者许可协议](https://cla-assistant.io/PaddlePaddle/Paddle?pullRequest=39047) 
 - 4、**RFC提交**：本次活动绝大多数任务（曙光OP适配除外）都需要先提交RFC（Request for Comments），再进行任务的开发：
     
     - 首先，请按照任务要求，在 [PaddlePaddle/community/rfc](https://github.com/PaddlePaddle/community) 对应的目录下新建RFC，并对任务进行技术方案设计；
     - 将 RFC 以 Pull Request(PR) 形式提交，并按 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，以及在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234)** 下回复；
-    - 黑客松评审组将在每个任务提交的所有有效方案中选择一个最佳方案，确认为本任务的 Leading Developer，并在开发方向上进行一定的指导，完善后的技术方案将会同步给所有任务提交小组，推荐大家基于最佳方案进行相应开发；
     
     注： [RFC设计文档模板](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md)。
+- 5、设计文档评审&公示：设计文档将接受来自于飞桨专家和社区开发者的评审。    
+    - 黑客松评审组将在每个任务提交的所有有效方案中选择一个最佳方案，确认为本任务的 Leading Developer，并在开发方向上进行一定的指导，完善后的技术方案将会同步给所有任务提交小组，推荐大家基于最佳方案进行相应开发；
+
 
 - 5、**任务提交**：完成项目开发后，
 
@@ -52,6 +53,7 @@
 ## 二、奖项设置
 
 ### 1、常规奖项
+
 根据任务难度划分，完成所选任务并通过黑客松评审组验收，将可获得对应金额现金奖励。
 
 PS：
@@ -65,6 +67,16 @@ PS：
 | 困难 | **⭐ ⭐ ⭐** | ￥10,000/任务 |
 | 中等 | **⭐ ⭐**   | ￥5,000/任务  |
 | 简单 | **⭐**     | ￥1,000/任务  |
+
+**特别说明：**
+
+如果一个任务，其他开发者完成了RFC的合入，你仍然可以继续报名这个任务，根据已经通过的RFC进行代码开发；当然，你也可以联系RFC作者组成小组，联合开发，效率更高；若你的代码逻辑和RFC不一致，将不会被 review 。
+
+- 若 RFC 合入，并且 PR 被合入：
+  - RFC 作者与 PR 作者不为同一人：RFC 作者获得该任务奖金的10%，PR 作者获得该任务奖金的90%
+  - RFC 作者与 PR 作者协作完成：奖金发给小组，自由分配
+  - RFC 作者与 PR 作者为一人：100%
+- RFC 合入，但无 PR 提交：无奖金!
 
 
 ### 2、特别奖项
