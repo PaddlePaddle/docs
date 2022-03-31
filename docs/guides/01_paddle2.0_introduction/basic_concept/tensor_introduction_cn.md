@@ -116,10 +116,9 @@ Tensor(shape=[2, 2, 5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 ```
 上述不同维度的 Tensor 可视化的表示如下图所示：
 
-<div align=center>
-<img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_2.0.png" width="800" >
+
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_2.0.png" width="800" ></center>
 <br><center>图1 不同维度的Tensor可视化表示</center>
-</div>
 
 需要注意的是，Tensor 必须形如矩形，即在任何一个维度上，元素的数量必须相等，否则会抛出异常，示例如下：
 
@@ -293,10 +292,9 @@ Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
 ndim_4_Tensor = paddle.ones([2, 3, 4, 5])
 ```
 
-<div align=center>
-<img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Axis_2.0.png" width="800" >
+
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Axis_2.0.png" width="800" ></center>
 <br><center>图2 Tensor的shape、axis、dimension、ndim之间的关系</center>
-</div>
 
 ```python
 print("Data Type of every element:", ndim_4_Tensor.dtype)
@@ -750,10 +748,9 @@ print(z.shape)
 # z的形状: [2,3,4]，z的每一维度上的尺寸，将取x和y对应维度上尺寸的较大值，如第0维x的尺寸为2，y的尺寸为1，则z的第0维尺寸为2
 ```
 
-<div align=center>
-<img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_broadcast.png" width="800" >
+
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_broadcast.png" width="800" ></center>
 <br><center>图3 Tensor 广播示例</center>
-</div>
 
 ## 六、总结
 
