@@ -22,6 +22,7 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
 **示例**
      
 输入：
+
     input 形状： :math:`(N, C_{in}, H_{in}, W_{in})`
 
     卷积核形状： :math:`(C_{out}, C_{in}, H_f, W_f)`
@@ -31,6 +32,7 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     mask 形状： :math:`(N, H_f * W_f, H_{out}, W_{out})`
      
 输出：
+
     输出形状： :math:`(N, C_{out}, H_{out}, W_{out})`
 
 其中
@@ -48,13 +50,13 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     - **x** (Tensor) - 形状为 :math:`[N, C, H, W]` 的输入Tensor，数据类型为float32或float64。
     - **offset** (Tensor) – 可变形卷积层的输入坐标偏移，数据类型为float32或float64。
     - **weight** (Tensor) – 卷积核参数，形状为 :math:`[[M, C/g, kH, kW]`, 其中 M 是输出通道数，g 是group组数,kH是卷积核高度尺寸，kW是卷积核宽度尺寸。数据类型为float32或float64。
-    - **bias** (Tensor, 可选) - 可变形卷积偏置项, 形状为 :math:`[M,]` 。
+    - **bias** (Tensor，选) - 可变形卷积偏置项, 形状为 :math:`[M,]` 。
     - **stride** (int|list|tuple，可选) - 步长大小。卷积核和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含两个整型数：（stride_height,stride_width）。若为一个整数，stride_height = stride_width = stride。默认值：1。
     - **padding** (int|list|tuple，可选) - 填充大小。卷积核操作填充大小。如果它是一个列表或元组，则必须包含两个整型数：（padding_height,padding_width）。若为一个整数，padding_height = padding_width = padding。默认值：0。
     - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。如果空洞大小为列表或元组，则必须包含两个整型数：（dilation_height,dilation_width）。若为一个整数，dilation_height = dilation_width = dilation。默认值：1。
     - **deformable_groups** (int，可选) - 可变形卷积组数。默认值：1。
     - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=n，输入和卷积核分别根据通道数量平均分为n组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第n组卷积核和第n组输入进行卷积计算。默认值：1。
-    - **mask** (Tensor, 可选) – 可变形卷积层的输入掩码，当使用可变形卷积算子v1时，请将mask设置为None, 数据类型为float32或float64。
+    - **mask** (Tensor，可选) – 可变形卷积层的输入掩码，当使用可变形卷积算子v1时，请将mask设置为None, 数据类型为float32或float64。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
  
 返回
