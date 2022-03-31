@@ -143,10 +143,9 @@ from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=T
     - **drop_last** (bool): 是否丢弃最后的不足CPU/GPU设备数的批次。默认值为True。在网络训练时，用户不能设置drop_last=False，此时所有CPU/GPU设备均应从DataLoader中读取到数据。在网络预测时，用户可以设置drop_last=False，此时最后不足CPU/GPU设备数的批次可以进行预测。
 
 **返回**
- 被创建的DataLoader对象
 
-**返回类型**
- loader (DataLoader)
+ 被创建的DataLoader对象。
+
 
 **代码示例 1**
 
@@ -349,8 +348,7 @@ from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=T
             print("Epoch {} batch {}: loss = {}".format(
                 epoch_id, batch_id, np.mean(loss.numpy())))
 
-代码示例 3
-::::::::::::
+**代码示例 3**
 
 .. code-block:: python
 
@@ -415,10 +413,9 @@ from_dataset(dataset, places, drop_last=True)
     - **drop_last** (bool) - 是否丢弃最后样本数量不足batch size的batch。若drop_last = True则丢弃，若drop_last = False则不丢弃。
 
 **返回**
- 被创建的DataLoader对象，可以for-range的方式循环迭代
 
-**返回类型**
- loader (DataLoader)
+ 被创建的DataLoader对象，可以for-range的方式循环迭代。
+
 
 **代码示例**
 

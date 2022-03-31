@@ -21,6 +21,6 @@ decorate
     - **save_dtype** (str|None, 可选) - 网络存储类型，可为float16、float32、float64。通过 ``save_dtype`` 可指定通过 ``paddle.save`` 和 ``paddle.jit.save`` 存储的网络参数数据类型。默认为None，采用现有网络参数类型进行存储。
 
 
-代码示例：
+代码示例
 :::::::::
 COPY-FROM: paddle.amp.decorate
