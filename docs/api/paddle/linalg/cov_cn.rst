@@ -24,9 +24,9 @@ cov
 返回
 ::::::::::::
 
-Tensor, 输入x的协方差矩阵。假设x是[m,n]的矩阵，rowvar=True, 则输出为[m,m]的矩阵。
+Tensor，输入x的协方差矩阵。假设x是[m,n]的矩阵，rowvar=True，则输出为[m,m]的矩阵。
 
-代码示例：
+代码示例
 ::::::::::
 
 .. code-block:: python
