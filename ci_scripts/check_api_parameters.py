@@ -139,10 +139,11 @@ def _check_params_in_description_with_fullargspec(rstfilename, funcname):
 def check_api_parameters(rstfiles, apiinfo):
     """check function's parameters same as its origin definition.
 
-    such as `.. py:function:: paddle.version.cuda()`
-    
-    1. class类别的文档，其成员函数的说明有好多。且class标题还有好多不写参数，暂时都跳过吧
-    2. 一些函数有annotation参数注解，也需要考虑。
+    TODO:
+    1. All the documents of classes are skiped now. As 
+        (1) there ars many class methods in documents, may break the scripts.
+        (2) parameters of Class should be checked with its `__init__` method.
+    2. Some COMPLICATED annotations may break the scripts.
     """
     pat = re.compile(
         r'^\.\.\s+py:(method|function|class)::\s+(\S+)\s*\(\s*(.*)\s*\)\s*$')
