@@ -20,17 +20,24 @@ gelu
 .. math::
     out = 0.5 * x * (1 + erf(\frac{x}{\sqrt{2}}))
 
-参数：
+参数
+::::::::::::
+
   - **x** (Variable) - Gelu Op 的输入，多维 Tensor 或 LoDTensor，数据类型为 float32 或 float64。
   - **approximate** (bool, 可选) - 是否使用近似计算，默认值为 False。
 
-返回：
+返回
+::::::::::::
+
   - 多维 Tensor 或 LoDTensor, 数据类型为 float32 或 float64， 和输入 x 的数据类型相同，形状和输入 x 相同。
 
-返回类型：
+返回类型
+::::::::::::
+
   - Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
     

@@ -14,7 +14,9 @@ MultiHeadAttention
 细节可参考论文 `Attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ 。
 
 
-参数：
+参数
+::::::::::::
+
     - **embed_dim** (int) - 输入输出的维度。
     - **num_heads** (int) - 多头注意力机制的Head数量。
     - **dropout** (float，可选) - 注意力目标的随机失活率。0表示不加dropout。默认值：0。
@@ -25,7 +27,8 @@ MultiHeadAttention
     - **bias_attr** （ParamAttr，可选）- 指定偏置参数属性的对象。默认值：``None``，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

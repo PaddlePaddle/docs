@@ -21,9 +21,6 @@ batch
 ::::::::::::
 batched reader
 
-返回类型
-::::::::::::
-generator
 
 代码示例
 ::::::::::::

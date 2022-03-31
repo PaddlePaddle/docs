@@ -7,7 +7,9 @@ randperm
 
 该OP返回一个数值在0到n-1、随机排列的1-D Tensor，数据类型为 ``dtype``。
 
-参数:
+参数
+::::::::::::
+
 ::::::::::
   - **n** (int) - 随机序列的上限（不包括在序列中），应该大于0。 
   - **dtype** (str|np.dtype, 可选) - 输出Tensor的数据类型，支持int32、int64、float32、float64。默认值为"int64".

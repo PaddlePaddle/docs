@@ -51,18 +51,6 @@ stft
 - **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试
   信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 
 
-抛出异常
-:::::::::
-
-- ``TypeError``  – 如果输入 ``x`` 的数据类型不是 ``float16``, ``float32``, 
-  ``float64``, ``complex64`` 或 ``complex128``.
-- ``AssertionError``  – 如果输入 ``x`` 的维度不为1D或者2D.
-- ``AssertionError``  – 如果 ``hop_length`` 小于或等于0.
-- ``AssertionError``  – 如果 ``n_fft`` 小于或等于0或者大于输入信号长度。
-- ``AssertionError``  – 如果 ``win_length`` 小于或等于0或者大于 ``n_fft``.
-- ``AssertionError``  – 如果输入的窗函数的维度不为1D或者其长度不等于 ``win_length``.
-- ``AssertionError``  – 如果输入复信号或复窗函数，但 ``onesided`` 为 ``True``.
-
 返回
 :::::::::
 短时傅里叶变换的结果，复数Tensor。当输入实信号和实窗函数，如果 ``onesided`` 为 ``True``，

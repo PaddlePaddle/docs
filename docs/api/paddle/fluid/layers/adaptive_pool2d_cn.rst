@@ -27,7 +27,9 @@ adaptive_pool2d
 
        Output(i ,j) &= \frac{sum(Input[hstart:hend, wstart:wend])}{(hend - hstart) * (wend - wstart)}
 
-参数：
+参数
+::::::::::::
+
   - **input** （Variable） - 池化操作的输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor。 输入张量的格式为NCHW，其中N是batch大小，C是通道数，H是特征的高度，W是特征的宽度，数据类型为float32或float64。
   - **pool_size** （int|list|tuple） - 池化核大小。 如果池化核大小是元组或列表，则它必须包含两个整数（pool_size_Height，pool_size_Width。若为一个整数，则表示H和W维度上均为该值。
   - **pool_type** （string）- 池化类型，可输入“max”代表max-pooling，或者“avg”代表average-pooling。
@@ -35,12 +37,18 @@ adaptive_pool2d
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
 
 
-返回： Variable(Tensor) 自适应池化结果张量
+返回
+::::::::::::
+ Variable(Tensor) 自适应池化结果张量
 
-返回类型：变量(Variable)，数据类型与 ``input`` 一致
+返回类型
+::::::::::::
+变量(Variable)，数据类型与 ``input`` 一致
 
 
-抛出异常:
+抛出异常
+::::::::::::
+
 
   - ``ValueError`` – ``pool_type`` 不是 ‘max’ 或 ‘avg’
   - ``ValueError`` – 当 ``pool_type`` 是 ‘avg’ 时，错误地设置 ‘require_index’ 为true .

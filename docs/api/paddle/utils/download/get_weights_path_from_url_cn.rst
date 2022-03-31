@@ -5,16 +5,21 @@ get_weights_path_from_url
 
 .. py:function:: paddle.utils.download.get_weights_path_from_url(url, md5sum=None)
 
- 从 ``WEIGHT_HOME`` 文件夹获取权重，如果不存在，就从url下载
+ 从 ``WEIGHT_HOME`` 文件夹获取权重，如果不存在，就从url下载。
 
-参数：
+参数
+::::::::::::
+
   - **url** (str) - 下载的链接。
   - **md5sum** (str，可选) - 下载文件的md5值。默认值：None。
 
-返回：权重的本地路径。
+返回
+::::::::::::
+权重的本地路径。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

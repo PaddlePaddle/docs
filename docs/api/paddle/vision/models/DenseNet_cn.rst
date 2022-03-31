@@ -9,9 +9,9 @@ DenseNet
 
 参数
 :::::::::
-  - **layers** (int, 可选) - densenet的层数。默认值：121。
+  - **layers** (int，可选) - densenet的层数。默认值：121。
   - **bn_size** (int，可选) - 中间层growth rate的拓展倍数。默认值：4。
-  - **dropout** (float, 可选) - dropout rate。默认值：0.。
+  - **dropout** (float，可选) - dropout rate。默认值：0.。
   - **num_classes** (int，可选) - 类别数目，即最后一个全连接层输出的维度。默认值：1000。
   - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值：True。
 
