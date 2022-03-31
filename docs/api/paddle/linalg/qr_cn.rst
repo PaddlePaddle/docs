@@ -29,7 +29,7 @@ qr
     - Tensor Q， 正交三角分解的Q正交矩阵，需注意如果 ``mode = "reduced"`` ，则不返回Q矩阵，只返回R矩阵。
     - Tensor R， 正交三角分解的R上三角矩阵。
 
-代码示例：
+代码示例
 ::::::::::
 
 .. code-block:: python

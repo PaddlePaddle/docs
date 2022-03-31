@@ -18,7 +18,7 @@ eigvalsh
 
 Tensor，输出矩阵的特征值，输出顺序按照从小到大进行排序。Shape为 ``[*, M]`` 。
 
-代码示例：
+代码示例
 ::::::::::
 
 .. code-block:: python

@@ -16,7 +16,7 @@ det
 
 Tensor， 输出矩阵的行列式值 Shape为 ``[*]`` 。
 
-代码示例：
+代码示例
 ::::::::::
 
 .. code-block:: python

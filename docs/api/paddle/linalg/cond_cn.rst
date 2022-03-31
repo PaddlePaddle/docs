@@ -19,7 +19,7 @@ cond
 ::::::::::::
 Tensor， 条件数的计算结果， 数据类型和输入 ``x`` 的一致。
 
-代码示例：
+代码示例
 ::::::::::
 
 COPY-FROM: paddle.linalg.cond

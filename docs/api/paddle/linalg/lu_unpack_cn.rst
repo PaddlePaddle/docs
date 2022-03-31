@@ -33,7 +33,7 @@ lu_unpack
     - Tensor U，由LU展开得到的U矩阵，若unpack_ludata为False，则为None。
     - Tensor P，由序列pivots展开得到的旋转矩阵P，若unpack_pivots为False，则为None。
 
-代码示例：
+代码示例
 ::::::::::
 
 .. code-block:: python

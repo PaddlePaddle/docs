@@ -16,7 +16,7 @@ slogdet
 
 Tensor ，输出矩阵的行列式值 Shape为 ``[2, *]``。
 
-代码示例：
+代码示例
 ::::::::::
 
 .. code-block:: python

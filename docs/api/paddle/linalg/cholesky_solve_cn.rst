@@ -21,7 +21,7 @@ cholesky_solve
 ::::::::::::
 Tensor，线性方程的解X。
 
-代码示例：
+代码示例
 ::::::::::
 
 .. code-block:: python

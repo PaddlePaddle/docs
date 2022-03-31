@@ -13,7 +13,7 @@ http://paddlemodels.bj.bcebos.com/wmt/wmt14.tgz
 
 参数
 :::::::::
-    - **data_file**（str）- 保存数据集压缩文件的路径, 如果参数:attr: `download` 设置为True，可设置为None。默认为None。
+    - **data_file**（str）- 保存数据集压缩文件的路径,如果参数:attr: `download` 设置为True，可设置为None。默认为None。
 
     - **mode**（str）- 'train'，'test' 或'gen'。默认为'train'。
 

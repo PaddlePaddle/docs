@@ -27,7 +27,7 @@ lstsq
     - ``rank`` 指 ``x`` 中矩阵的秩，形状为 ``(*)`` 的 Tensor；当 ``driver`` 为 'gelsy', 'gelsd', 'gelss' 时，该值会被计算，否则返回空 Tensor。
     - ``singular_values`` 指 ``x`` 中矩阵的奇异值，形状为 ``(*, min(M, N))`` 的 Tensor；当 ``driver`` 为 'gelsd', 'gelss' 时，该值会被计算，否则返回空 Tensor。
 
-代码示例：
+代码示例
 ::::::::::
 
 COPY-FROM: paddle.linalg.lstsq
