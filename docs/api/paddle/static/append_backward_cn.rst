@@ -26,16 +26,7 @@ append_backward
 
 返回
 ::::::::::::
-   参数及其梯度 Tensor 的元组的列表。元组的第一个值为参数，第二个值为该参数的梯度 Tensor 。
-
-返回类型
-::::::::::::
-       list[(Tensor , Tensor)]
-
-抛出异常
-::::::::::::
-     
-    - ``AssertionError`` - 如果 loss 不是 Tensor 的实例。
+   list[(Tensor , Tensor)]，参数及其梯度 Tensor 的元组的列表。元组的第一个值为参数，第二个值为该参数的梯度 Tensor 。
 
 代码示例
 ::::::::::::

@@ -13,11 +13,11 @@ switch
 参数
 ::::::::::::
 
-  - **new_generator** (UniqueNameGenerator, 可选) - 要切换到的新命名空间，一般无需设置。缺省值为None，表示切换到一个匿名的新命名空间。
+  - **new_generator** (UniqueNameGenerator，可选) - 要切换到的新命名空间，一般无需设置。缺省值为None，表示切换到一个匿名的新命名空间。
 
 返回
 ::::::::::::
-UniqueNameGenerator, 先前的命名空间，一般无需操作该返回值。
+UniqueNameGenerator，先前的命名空间，一般无需操作该返回值。
 
 代码示例
 ::::::::::::

@@ -20,16 +20,15 @@ save_inference_model
   - **fetch_vars** (Variable | list[Variable]) – 模型的所有输出变量。
   - **executor** (Executor) –  用于保存预测模型的 ``executor`` ，详见 :ref:`api_guide_executor` 。
   - **kwargs** - 支持的 key 包括 'program'。(注意：kwargs 主要是用来做反向兼容的)。
+
       - **program** - 自定义一个 program，默认使用 default_main_program。
 
 
-**返回：** None
-
-抛出异常
+返回
 ::::::::::::
 
- - ``ValueError`` – 若 ``feed_vars`` 不是 ``Variable`` 或 ``Variable`` 类型列表，则抛出异常。
- - ``ValueError`` – 若 ``fetch_vars`` 不是 ``Variable`` 或 ``Variable`` 类型列表，则抛出异常。
+无。
+
 
 代码示例
 ::::::::::::

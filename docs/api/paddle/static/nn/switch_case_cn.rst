@@ -6,10 +6,8 @@ switch_case
 
 .. py:function:: paddle.static.nn.switch_case(branch_index, branch_fns, default=None, name=None)
 
-:api_attr: 声明式编程模式（静态图)
 
-
-该OP的运行方式类似于c++的switch/case。
+运行方式类似于c++的switch/case。
 
 参数
 ::::::::::::
@@ -21,25 +19,11 @@ switch_case
 
 返回
 ::::::::::::
-如果 ``branch_fns`` 中存在与 ``branch_index`` 匹配的可调用对象，则返回该可调用对象的返回结果；如果 ``branch_fns`` 中不存在与 ``branch_index`` 匹配的可调用对象且 ``default`` 不是None，则返回调用 ``default`` 的返回结果；
-如果 ``branch_fns`` 中不存在与 ``branch_index`` 匹配的可调用对象且 ``default`` 是None，则返回 ``branch_fns`` 中键值最大的可调用对象的返回结果。
 
-返回类型
-::::::::::::
 Tensor|list(Tensor)
 
-抛出异常
-::::::::::::
-
-    - ``TypeError`` - 如果 ``branch_index`` 的类型不是list或tuple。
-    - ``TypeError`` - 如果 ``branch_index`` 的数据类型不是 ``int32``， ``int64`` 或 ``uint8``。
-    - ``TypeError`` - 如果 ``branch_fns`` 的类型不是dict，list或tuple。
-    - ``TypeError`` - 如果 ``branch_fns`` 的元素不是2-tuple。
-    - ``TypeError`` - 如果 ``branch_fns`` 中的2-tuple的第一个元素的类型不是整数。
-    - ``ValueError`` - 如果 ``branch_fns`` 中的2-tuple的第一个元素值不唯一。
-    - ``TypeError`` - 如果 ``branch_fns`` 中的2-tuple的第二个元素不是可调用对象。
-    - ``TypeError`` - 当 ``default`` 不是None又不是可调用对象时。
-
+- 如果 ``branch_fns`` 中存在与 ``branch_index`` 匹配的可调用对象，则返回该可调用对象的返回结果；如果 ``branch_fns`` 中不存在与 ``branch_index`` 匹配的可调用对象且 ``default`` 不是None，则返回调用 ``default`` 的返回结果；
+- 如果 ``branch_fns`` 中不存在与 ``branch_index`` 匹配的可调用对象且 ``default`` 是None，则返回 ``branch_fns`` 中键值最大的可调用对象的返回结果。
 
 代码示例
 ::::::::::::

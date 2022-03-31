@@ -9,7 +9,9 @@ multi_box_head
 
 
 
-基于SSD（Single Shot MultiBox Detector）算法，在不同层输入特征上提取先验框、计算回归的坐标位置和分类的置信度，并合并到一起作为输出，具体参数解释和输出格式参考下面说明。更详细信息，请参阅SSD论文 `SSD：Single Shot MultiBox Detector <https://arxiv.org/abs/1512.02325>`_ 的2.2节。
+基于SSD（Single Shot MultiBox Detector）算法，在不同层输入特征上提取先验框、计算回归的坐标位置和分类的置信度，并合并到一起作为输出，具体参数解释和输出格式参考下面说明。更详细信息，请参阅SSD论文的2.2节。
+
+论文参考：`SSD：Single Shot MultiBox Detector <https://arxiv.org/abs/1512.02325>`_ 。
 
 参数
 ::::::::::::
@@ -51,17 +53,18 @@ multi_box_head
 返回
 ::::::::::::
 
+list(Variable) | tuple(Variable）
+
     - **mbox_loc(Variable)** - 预测框的回归位置。格式为[N，num_priors，4]，其中 ``N`` 是batch size， ``num_priors`` 是总共提取的先验框的个数。
     - **mbox_conf(Variable）** - 预测框的分类信度。格式为[N，num_priors，C]，其中 ``num_priors`` 同上，C是类别数。
     - **boxes(Variable)** - 提取的先验框。布局是[num_priors，4]， ``num_priors`` 同上，常量4是坐标个数。
     - **variances(Variable)** - 提取的先验框方差。布局是[num_priors，4]， ``num_priors`` 同上。
 
-返回类型
-::::::::::::
-list(Variable) | tuple(Variable）
 
-代码示例 1: 设置min_ratio和max_ratio
+代码示例 1
 ::::::::::::
+
+设置min_ratio和max_ratio
 
 ..  code-block:: python
         
@@ -88,8 +91,10 @@ list(Variable) | tuple(Variable）
           flip=True,
           clip=True)
 
-代码示例 2: 设置min_sizes和max_sizes
+代码示例 2:
 ::::::::::::
+
+设置min_sizes和max_sizes
 
 ..  code-block:: python
         

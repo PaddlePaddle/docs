@@ -39,4 +39,4 @@ CppExtension
 
 返回
 ::::::::::::
- ``setuptools.Extension`` 对象
+ ``setuptools.Extension`` 对象。

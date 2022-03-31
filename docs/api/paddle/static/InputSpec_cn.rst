@@ -18,11 +18,8 @@ InputSpec
 
 返回
 ::::::::::::
-初始化后的 ``InputSpec`` 对象
+初始化后的 ``InputSpec`` 对象。
 
-返回类型
-::::::::::::
-InputSpec
 
 代码示例
 ::::::::::::
@@ -50,10 +47,8 @@ from_tensor(tensor, name=None)
 
 
 **返回**
-根据Tensor信息构造的 ``InputSpec`` 对象
 
-**返回类型**
-InputSpec
+根据Tensor信息构造的 ``InputSpec`` 对象。
 
 
 **代码示例**
@@ -80,10 +75,8 @@ from_numpy(ndarray, name=None)
 
 
 **返回**
-根据ndarray信息构造的 ``InputSpec`` 对象
 
-**返回类型**
-InputSpec
+根据ndarray信息构造的 ``InputSpec`` 对象。
 
 
 **代码示例**
@@ -107,10 +100,8 @@ batch(batch_size)
   - **batch_size** (int) - 被插入的batch size整型数值
 
 **返回**
- 更新shape信息后的 ``InputSpec`` 对象
 
-**返回类型**
-InputSpec
+ 更新shape信息后的 ``InputSpec`` 对象。
 
 
 **代码示例**
@@ -130,10 +121,8 @@ unbatch()
 
 
 **返回**
- 更新shape信息后的 ``InputSpec`` 对象
 
-**返回类型**
-InputSpec
+ 更新shape信息后的 ``InputSpec`` 对象。
 
 
 **代码示例**

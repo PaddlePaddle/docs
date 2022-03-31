@@ -6,7 +6,10 @@ sequence_reverse
 .. py:function:: paddle.static.nn.sequence_reverse(x, name=None)
 
 
-**该OP仅支持LoDTensor** ，对于输入的LoDTensor，在每个序列（sequence）上进行反转。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。该OP在构建反向 :ref:`cn_api_fluid_layers_DynamicRNN` 网络时十分有用。
+.. note::
+该API仅支持LoDTensor。
+
+输入的LoDTensor，在每个序列（sequence）上进行反转。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。该OP在构建反向 :ref:`cn_api_fluid_layers_DynamicRNN` 网络时十分有用。
 
 ::
 

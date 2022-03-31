@@ -13,8 +13,9 @@ batch_norm
 
 可用作卷积和全连接操作的批正则化函数，根据当前批次数据按通道计算的均值和方差进行正则化。该层需要的数据格式如下：
 
-1.NHWC[batch,in_height,in_width,in_channels]
-2.NCHW[batch,in_channels,in_height,in_width]
+- 1.NHWC[batch,in_height,in_width,in_channels]
+
+- 2.NCHW[batch,in_channels,in_height,in_width]
 
 更多详情请参考 : `Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 

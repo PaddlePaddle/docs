@@ -22,7 +22,6 @@ PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Pad
 参数
 ::::::::::::
 
-:::::::::
     - **func** （callable） - 所注册的Python OP的前向函数，运行网络时，将根据该函数与前向输入 ``x`` ，计算前向输出 ``out`` 。 在 ``func`` 建议先主动将Tensor转换为numpy数组，方便灵活的使用numpy相关的操作，如果未转换成numpy，则可能某些操作无法兼容。
     - **x** (Tensor|tuple(Tensor)|list[Tensor]) -  前向函数 ``func`` 的输入，多个Tensor以tuple(Tensor)或list[Tensor]的形式传入。
     - **out** (T|tuple(T)|list[T]) -  前向函数 ``func`` 的输出，可以为T|tuple(T)|list[T]，其中T既可以为Tensor，也可以为numpy数组。由于Paddle无法自动推断 ``out`` 的形状和数据类型，必须应事先创建 ``out`` 。
@@ -32,13 +31,11 @@ PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Pad
 返回
 ::::::::::::
 
-:::::::::
 Tensor|tuple(Tensor)|list[Tensor]，前向函数的输出 ``out``
 
 
 代码示例 1
 ::::::::::::
-:::::::::
 
 .. code-block:: python
 
@@ -100,7 +97,6 @@ Tensor|tuple(Tensor)|list[Tensor]，前向函数的输出 ``out``
 
 代码示例 2
 ::::::::::::
-:::::::::
 
 ..  code-block:: python
     
