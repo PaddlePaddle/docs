@@ -10,7 +10,7 @@ ExecutionStrategy
 
 返回
 :::::::::
-ExecutionStrategy，一个ExecutionStrategy的实例
+ExecutionStrategy，一个ExecutionStrategy的实例。
 
 代码示例
 :::::::::

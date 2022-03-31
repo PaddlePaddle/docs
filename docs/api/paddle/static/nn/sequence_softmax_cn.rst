@@ -7,9 +7,9 @@ sequence_softmax
 .. py:function:: paddle.static.nn.sequence_softmax(input, use_cudnn=False, name=None)
 
 .. note::
-    该OP的输入只能是LoDTensor，如果要处理的输入是Tensor类型，请使用  :ref:`paddle.nn.functional.softmax <cn_api_nn_cn_softmax>` .
+    该API的输入只能是LoDTensor，如果要处理的输入是Tensor类型，请使用  :ref:`paddle.nn.functional.softmax <cn_api_nn_cn_softmax>`。
 
-该OP根据LoD信息将输入的第0维度进行划分，在划分的每一个区间内部进行运算。
+根据LoD信息将输入的第0维度进行划分，在划分的每一个区间内部进行运算。
 
 对第i个区间内的元素的计算公式如下：
 

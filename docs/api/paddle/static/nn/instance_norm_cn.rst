@@ -36,11 +36,8 @@ NCHW[batch,in_channels,in_height,in_width]
 
 返回
 ::::::::::::
- 张量，在输入中运用instance normalization后的结果
+Tensor，在输入中运用instance normalization后的结果。
 
-返回类型
-::::::::::::
-变量（Tensor）
 
 代码示例
 ::::::::::::

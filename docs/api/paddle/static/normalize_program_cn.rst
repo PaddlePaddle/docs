@@ -22,11 +22,6 @@ normalize_program
 ::::::::::::
 优化之后的 program。
 
-抛出异常
-::::::::::::
-
-  - ``TypeError`` – 如果 ``program`` 类型不是 ``Program``, 或 ``feed_vars``, ``fetch_vars`` 类型不是 Variable 或 list[Variable]，则抛出异常。
-
 代码示例
 ::::::::::::
 

@@ -9,13 +9,14 @@ embedding
 
 
 
-嵌入层(Embedding Layer)
+**嵌入层(Embedding Layer)**
 
 该OP根据input中的id信息从embedding矩阵中查询对应embedding信息，并会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
 
 输出的Tensor的shape是将输入Tensor shape的会在输出的embedding最后追加一维emb_size。
 
-注：input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
+.. note::
+input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
 
 
 ::
@@ -71,11 +72,8 @@ embedding
 
 返回
 ::::::::::::
-input映射后得到的Embedding Tensor或LoDTensor，数据类型和dtype定义的类型一致。
+Variable，input映射后得到的Embedding Tensor或LoDTensor，数据类型和dtype定义的类型一致。
 
-返回类型
-::::::::::::
-Variable
 
 代码示例
 ::::::::::::

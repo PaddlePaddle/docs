@@ -6,7 +6,8 @@ Program
 .. py:class::  paddle.static.Program
 
 
-**注意：默认情况下，Paddle内部默认含有** :ref:`cn_api_fluid_default_startup_program` **和** :ref:`cn_api_fluid_default_main_program` **，它们共享参数。** :ref:`cn_api_fluid_default_startup_program` **只运行一次来初始化参数，** :ref:`cn_api_fluid_default_main_program` **在每个mini batch中运行并更新权重。**
+.. note::
+默认情况下，Paddle内部默认含有 :ref:`cn_api_fluid_default_startup_program` 和 :ref:`cn_api_fluid_default_main_program` ，它们共享参数。 :ref:`cn_api_fluid_default_startup_program` 只运行一次来初始化参数， :ref:`cn_api_fluid_default_main_program` 在每个mini batch中运行并更新权重。
 
 Program是Paddle对于计算图的一种静态描述，使用Program的构造函数可以创建一个Program。Program中包括至少一个 :ref:`api_guide_Block` ，当 :ref:`api_guide_Block` 中存在条件选择的控制流OP（例如 :ref:`cn_api_fluid_layers_While` 等）时，该Program将会含有嵌套着的 :ref:`api_guide_Block` 即控制流外部的 :ref:`api_guide_Block` 将包含着控制流内部的 :ref:`api_guide_Block` ，而嵌套的 :ref:`api_guide_Block` 的元素访问控制将由具体的控制流OP来决定。关于Program具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
 。
@@ -16,7 +17,7 @@ Program是Paddle对于计算图的一种静态描述，使用Program的构造函
 
 返回
 :::::::::
-Program，创建的空的Program
+Program，创建的空的Program。
 
 代码示例
 ::::::::::
@@ -44,17 +45,17 @@ Program，创建的空的Program
 to_string(throw_on_error, with_details=False)
 '''''''''
 
-将Program转换为字符串
+将Program转换为字符串。
 
 **参数**
+
  - **throw_on_error** (bool) - 是否在没有设置必需字段时抛出异常。
- - **with_details** (bool) - 值为true时，打印更多关于变量和参数的信息，如trainable, optimize_attr等
+ - **with_details** (bool) - 值为true时，打印更多关于变量和参数的信息，如trainable, optimize_attr等。
 
 **返回**
-str，由Program转换得到的字符串
 
-**抛出异常**
- ``ValueError`` - 当 ``throw_on_error == true`` ，当没有设置任何必需的字段时，抛出 ``ValueError`` 。
+str，由Program转换得到的字符串。
+
 
 **代码示例**
 
@@ -106,10 +107,12 @@ clone(for_test=False)
         optimizer.minimize(loss)
 
 **参数**
-    - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True， 并裁剪反向OP和参数优化OP，默认值为False
+
+    - **for_test** (bool) – 取值为True时，clone方法内部会把operator的属性 ``is_test`` 设置为 True， 并裁剪反向OP和参数优化OP，默认值为False。
 
 **返回**
-Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program前向内容的Program。否则返回一个新的，和当前Program完全相同的Program
+
+Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program前向内容的Program。否则返回一个新的，和当前Program完全相同的Program。
 
 
 **代码示例**
@@ -237,14 +240,16 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
 **static** parse_from_string(binary_str)
 '''''''''
 
-通过对 `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ 的反序列化，转换成Program
+通过对 `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ 的反序列化，转换成Program。
 
 
 **参数**
- - **binary_str_type** (str) – `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ 二进制字符串
+
+ - **binary_str_type** (str) – `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ 二进制字符串。
 
 **返回**
-Program，反序列化后的 Program
+
+Program，反序列化后的 Program。
 
 **代码示例**
 
@@ -275,10 +280,11 @@ Program，反序列化后的 Program
 num_blocks
 '''''''''
 
-该Program中的 :ref:`api_guide_Block` 的个数
+该Program中的 :ref:`api_guide_Block` 的个数。
 
 **返回**
-int，该Program中的 :ref:`api_guide_Block` 的个数
+
+int，该Program中的 :ref:`api_guide_Block` 的个数。
 
 **代码示例**
 
@@ -305,7 +311,8 @@ random_seed
 程序中随机运算符的默认随机种子。0意味着随机生成随机种子。
 
 **返回**
-int64，该Program中当前正在使用的random seed
+
+int64，该Program中当前正在使用的random seed。
 
 **代码示例**
 
@@ -338,7 +345,8 @@ global_block()
 获取该Program的第一个 :ref:`api_guide_Block` 。
 
 **返回**
-:ref:`api_guide_Block`，该Program的第一个 :ref:`api_guide_Block`
+
+:ref:`api_guide_Block`，该Program的第一个 :ref:`api_guide_Block`。
 
 **代码示例**
 
@@ -357,13 +365,15 @@ global_block()
 block(index)
 '''''''''
 
-返回该Program中 ， ``index`` 指定的 :ref:`api_guide_Block` 。 ``index`` 类型为int
+返回该Program中 ， ``index`` 指定的 :ref:`api_guide_Block` 。 ``index`` 类型为int。
 
 **参数**
-    - **index** (int) - 需要获取的 :ref:`api_guide_Block`  的index
+
+    - **index** (int) - 需要获取的 :ref:`api_guide_Block`  的index。
 
 **返回**
-:ref:`api_guide_Block`，该Program中index对应的那个 :ref:`api_guide_Block`
+
+:ref:`api_guide_Block`，该Program中index对应的那个 :ref:`api_guide_Block`。
 
 **代码示例**
 
@@ -384,7 +394,8 @@ current_block()
 获取当前 :ref:`api_guide_Block` 。当前 :ref:`api_guide_Block`  是用来添加OP的。
 
 **返回**
-:ref:`api_guide_Block`，该Program中用户当前所在的 :ref:`api_guide_Block`
+
+:ref:`api_guide_Block`，该Program中用户当前所在的 :ref:`api_guide_Block`。
 
 **代码示例**
 
@@ -405,7 +416,8 @@ list_vars()
 获取当前Program中所有变量。返回值是一个可迭代对象（iterable object)。
 
 **返回**
-Generator，会yield每个Program中的变量
+
+Generator，会yield每个Program中的变量。
 
 **代码示例**
 
@@ -431,6 +443,7 @@ all_parameters()
 获取当前Program中所有的 :ref:`api_guide_parameter` 。返回值是一个列表。
 
 **返回**
+
 list[ :ref:`api_guide_parameter` ]，一个包含当前Program中所有参数的列表。
 
 **代码示例**
@@ -467,10 +480,12 @@ state_dict(mode='all', scope=None)
 获取当前 ``Program`` 持久性变量。并将所有持久性变量存放在dict结构中。
 
 **参数**
-    - mode (str, 可选) - 获取何种持久性变量。目前支持以下选项： (1) 'opt'：获得优化器的持久性变量放在dict结构中； (2) 'param'：获得组网中的持久性变量放在dict结构中，不包含优化器中的持久性变量； (3) 'all'：获得组网和优化器中的持久性变量放在dict结构中；默认值为'all'。
-    - scope (Scope, 可选) - 如果scope为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 ``state_dict`` ；否则从指定的 ``scope`` 获取 ``state_dict`` 。默认值为 ``None`` 。
+
+    - mode (str，可选) - 获取何种持久性变量。目前支持以下选项： (1) 'opt'：获得优化器的持久性变量放在dict结构中； (2) 'param'：获得组网中的持久性变量放在dict结构中，不包含优化器中的持久性变量； (3) 'all'：获得组网和优化器中的持久性变量放在dict结构中；默认值为'all'。
+    - scope (Scope，可选) - 如果scope为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 ``state_dict`` ；否则从指定的 ``scope`` 获取 ``state_dict`` 。默认值为 ``None`` 。
 
 **返回**
+
 dict， 包含持久性变量的dict，键值是持久性变量的名字，值为持久性变量。
 
 **代码示例**
@@ -500,11 +515,13 @@ set_state_dict(state_dict, scope=None)
 将 ``state_dict`` 中的持久性变量设置到 ``Program`` 中。
 
 **参数**
+
     - state_dict (dict) - 包含持久性变量的字典。键值是持久性变量的名字，值为持久性变量。
-    - scope (Scope, 可选) - 如果scope为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并将 ``state_dict`` 中久性变量设置到这个作用域中；否则将 ``state_dict`` 设置到指定的 ``scope`` 中。默认值为 ``None`` 。
+    - scope (Scope，可选) - 如果scope为 ``None`` ，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并将 ``state_dict`` 中久性变量设置到这个作用域中；否则将 ``state_dict`` 设置到指定的 ``scope`` 中。默认值为 ``None`` 。
 
 **返回**
-None
+
+无。
 
 **代码示例**
 

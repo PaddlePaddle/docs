@@ -17,7 +17,7 @@ IpuCompiledProgram将输入的Program转换和优化成IPU所需要的形式，�
 
 返回
 :::::::::
-IpuCompiledProgram，初始化后的 ``IpuCompiledProgram`` 对象
+IpuCompiledProgram，初始化后的 ``IpuCompiledProgram`` 对象。
 
 代码示例
 ::::::::::
@@ -32,11 +32,13 @@ compile(self, feed_list, fetch_list)
 该接口用于将Program进行编译，以便在ipu上运行。用户可以通过 `feed_list` 、`fetch_list` 传入计算图输入和输出的名字。
 
 **参数**
-    - **feed_list** （list）: 该参数为模型的输入变量的名字。
-    - **fetch_list** （list）:  模型运行之后需要返回的变量的名字。
+
+    - **feed_list** (list)：该参数为模型的输入变量的名字。
+    - **fetch_list** (list)：模型运行之后需要返回的变量的名字。
 
 **返回**
-Program，编译之后的 ``Program`` 对象
+
+Program，编译之后的 ``Program`` 对象。
 
 
 **代码示例**

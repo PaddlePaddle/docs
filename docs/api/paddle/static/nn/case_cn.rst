@@ -6,8 +6,6 @@ case
 
 .. py:function:: paddle.static.nn.case(pred_fn_pairs, default=None, name=None)
 
-:api_attr: 声明式编程模式（静态图)
-
 
 该OP的运行方式类似于python的if-elif-elif-else。
 
@@ -20,22 +18,11 @@ case
 
 返回
 ::::::::::::
-如果 ``pred_fn_pairs`` 中存在pred是True的元组(pred, fn)，则返回第一个为True的pred的元组中fn的返回结果；如果 ``pred_fn_pairs`` 中不存在pred为True的元组(pred, fn) 且 ``default`` 不是None，则返回调用 ``default`` 的返回结果；
-如果 ``pred_fn_pairs`` 中不存在pred为True的元组(pred, fn) 且 ``default`` 是None，则返回 ``pred_fn_pairs`` 中最后一个pred的返回结果。
-
-返回类型
-::::::::::::
 Tensor|list(Tensor)
 
-抛出异常
-::::::::::::
+- 如果 ``pred_fn_pairs`` 中存在pred是True的元组(pred, fn)，则返回第一个为True的pred的元组中fn的返回结果；如果 ``pred_fn_pairs`` 中不存在pred为True的元组(pred, fn) 且 ``default`` 不是None，则返回调用 ``default`` 的返回结果；
+- 如果 ``pred_fn_pairs`` 中不存在pred为True的元组(pred, fn) 且 ``default`` 是None，则返回 ``pred_fn_pairs`` 中最后一个pred的返回结果。
 
-    - ``TypeError`` - 如果 ``pred_fn_pairs`` 的类型不是list或tuple。
-    - ``TypeError`` - 如果 ``pred_fn_pairs`` 的元素的类型不是tuple。
-    - ``TypeError`` - 如果 ``pred_fn_pairs`` 的tuple类型的元素大小不是2。
-    - ``TypeError`` - 如果 ``pred_fn_pairs`` 中的2-tuple的第一个元素的类型不是Tensor。
-    - ``TypeError`` - 如果 ``pred_fn_pairs`` 中的2-tuple的第二个元素不是可调用对象。
-    - ``TypeError`` - 当 ``default`` 不是None又不是可调用对象时。
 
 代码示例
 ::::::::::::

@@ -6,7 +6,6 @@ WeightNormParamAttr
 
 .. py:class:: paddle.static.WeightNormParamAttr(dim=None, name=None, initializer=None, learning_rate=1.0, regularizer=None, trainable=True, do_model_average=False, need_clip=True)
 
-:api_attr: 声明式编程模式（静态图)
 
 .. note::
     动态图模式下请使用 ``paddle.nn.utils.weight_norm`` 。

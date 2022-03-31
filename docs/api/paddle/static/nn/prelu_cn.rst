@@ -12,11 +12,9 @@ prelu激活函数
 
 共提供三种激活方式：
 
-.. code-block:: text
-
-    all: 所有元素使用同一个alpha值
-    channel: 在同一个通道中的元素使用同一个alpha值
-    element: 每一个元素有一个独立的alpha值
+    - all: 所有元素使用同一个alpha值；
+    - channel: 在同一个通道中的元素使用同一个alpha值；
+    - element: 每一个元素有一个独立的alpha值。
 
 
 参数
@@ -31,7 +29,7 @@ prelu激活函数
 
 返回
 ::::::::::::
- 表示激活输出Tensor，数据类型和形状于输入相同。
+表示激活输出Tensor，数据类型和形状于输入相同。
 
 代码示例
 ::::::::::::

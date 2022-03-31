@@ -5,7 +5,6 @@ load
 
 .. py:function:: paddle.static.load(program, model_path, executor=None, var_list=None)
 
-:api_attr: 声明式编程模式（静态图)
 
 该接口从Program中过滤出参数和优化器信息，然后从文件中获取相应的值。
 
@@ -24,7 +23,7 @@ load
 
 返回
 ::::::::::::
- 无
+无。
 
 代码示例
 ::::::::::::

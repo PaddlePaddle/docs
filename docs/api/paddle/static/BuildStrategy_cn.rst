@@ -9,7 +9,7 @@ BuildStrategy
 
 返回
 :::::::::
-BuildStrategy，一个BuildStrategy的实例
+BuildStrategy，一个BuildStrategy的实例。
 
 代码示例
 :::::::::
