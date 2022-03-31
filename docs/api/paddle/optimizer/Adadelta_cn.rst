@@ -9,7 +9,7 @@ Adadelta
 .. note::
 此接口不支持稀疏参数更新。
 
-Adadelta优化器，是对 :ref:`Adagrad <_cn_api_paddle_optimizer_Adagrad>` 的改进。
+Adadelta优化器，是对 :ref:`Adagrad <cn_api_paddle_optimizer_Adagrad>` 的改进。
 
 相关论文：`ADADELTA: AN ADAPTIVE LEARNING RATE METHOD <https://arxiv.org/abs/1212.5701>`_ 。
 
