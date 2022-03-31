@@ -117,7 +117,7 @@ Tensor(shape=[2, 2, 5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 上述不同维度的 Tensor 可视化的表示如下图所示：
 
 <div align=center>
-<img src=./images/https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_2.0.png>
+<img src=https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_2.0.png>
 <center>图1 不同维度的Tensor可视化表示</center>
 </div>
 
@@ -294,7 +294,7 @@ ndim_4_Tensor = paddle.ones([2, 3, 4, 5])
 ```
 
 <div align=center>
-<img src=./images/https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Axis_2.0.png>
+<img src=https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Axis_2.0.png>
 <center>图2 Tensor的shape、axis、dimension、ndim之间的关系</center>
 </div>
 
@@ -751,7 +751,7 @@ print(z.shape)
 ```
 
 <div align=center>
-<img src=./images/https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_broadcast.png>
+<img src=https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_broadcast.png>
 <center>图3 Tensor 广播示例</center>
 </div>
 
