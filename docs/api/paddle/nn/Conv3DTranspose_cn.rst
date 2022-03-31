@@ -18,6 +18,7 @@ Conv3DTranspose
                         \\Out=\sigma (W*X+b)\\
 
 其中：
+
     -  :math:`X` : 输入，具有NCDHW或NDHWC格式的5-D Tensor
     -  :math:`W` : 卷积核，具有NCDHW格式的5-D Tensor
     -  :math:`*` : 卷积操作（注意：转置卷积本质上的计算还是卷积）
@@ -49,7 +50,8 @@ Conv3DTranspose
   - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCDHW"。
 
-形状:
+形状
+::::::::::::
 
     - 输入：:math:`（N，C_{in}， H_{in}， W_{in}）`
 
@@ -83,18 +85,6 @@ Conv3DTranspose
         & D'_{out} = (D_{in}-1)*strides[0] + dilations[0]*(kernel\_size[0]-1)+1\\
         & H'_{out} = (H_{in}-1)*strides[1] + dilations[1]*(kernel\_size[1]-1)+1\\
         & W'_{out} = (W_{in}-1)*strides[2] + dilations[2]*(kernel\_size[2]-1)+1 \\
-
-抛出异常
-::::::::::::
-
-    -  ``ValueError`` : 如果输入的shape、kernel_size、stride、padding和groups不匹配，抛出ValueError
-    -  ``ValueError`` - 如果 ``data_format`` 既不是"NCHW"也不是"NHWC"。
-    -  ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
-    -  ``ValueError`` - 如果 ``padding`` 含有4个二元组，与批尺寸对应维度的值不为0或者与通道对应维度的值不为0。
-    -  ``ValueError`` - 如果 ``output_size`` 和 ``filter_size`` 同时为None。
-    -  ``ShapeError`` - 如果输入不是4-D Tensor。
-    -  ``ShapeError`` - 如果输入和卷积核的维度大小不相同。
-    -  ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
 
 代码示例
 ::::::::::::

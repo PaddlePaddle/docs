@@ -32,11 +32,9 @@ LayerNorm
     - **bias_attr** (ParamAttr, 可选) - 指定偏置参数属性的对象。如果为False固定为0，不进行学习。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **name** (string, 可选) – LayerNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
-返回
+形状
 ::::::::::::
-无
 
-形状：
     - input: 2-D, 3-D, 4-D或5D 的Tensor。
     - output: 和输入形状一样。
 

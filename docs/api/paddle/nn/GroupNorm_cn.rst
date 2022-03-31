@@ -20,11 +20,9 @@ GroupNorm
     - **data_format** (string, 可选) - 只支持“NCHW”(num_batches，channels，height，width)格式。默认值：“NCHW”。
     - **name** (string, 可选) – GroupNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
-返回
+形状
 ::::::::::::
-无
 
-形状：
     - input: 形状为(批大小, 通道数, \*) 的Tensor。
     - output: 和输入形状一样。
 

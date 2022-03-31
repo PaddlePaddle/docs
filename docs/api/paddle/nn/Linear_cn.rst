@@ -30,8 +30,6 @@ Linear层只接受一个Tensor作为输入，形状为 :math:`[batch\_size, *, i
 属性
 :::::::::
 
-属性
-::::::::::::
 weight
 '''''''''
 
@@ -48,7 +46,8 @@ bias
 - 输入：形状为 :math:`[batch\_size, *, in\_features]` 的多维Tensor。
 - 输出：形状为 :math:`[batch\_size, *, out\_features]` 的多维Tensor。
 
-**代码示例**
+代码示例
+:::::::::
 
 .. code-block:: python
 

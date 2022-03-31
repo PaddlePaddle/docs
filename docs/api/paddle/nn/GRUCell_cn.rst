@@ -26,6 +26,7 @@ GRUCell
         y_{t} & = h_{t}
 
 其中：
+
     - :math:`\sigma` ：sigmoid激活函数。
    
 详情请参考论文 :`An Empirical Exploration of Recurrent Network Architectures <http://proceedings.mlr.press/v37/jozefowicz15.pdf>`_。
@@ -42,13 +43,17 @@ GRUCell
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
     - **name** (str, 可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
 
-变量：
+变量
+::::::::::::
+
     - **weight_ih** (Parameter) - input到hidden的变换矩阵的权重。形状为（3 * hidden_size, input_size）。对应公式中的 :math:`W_{ir}, W_{iz}, W_{ic}`。
     - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（3 * hidden_size, hidden_size）。对应公式中的 :math:`W_{hr}, W_{hz}, W_{hc}`。
     - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（3 * hidden_size, ）。对应公式中的 :math:`b_{ir}, b_{iz}, b_{ic}`。
     - **bias_hh** (Parameter) - hidden到hidden的变换矩阵的偏置。形状为（3 * hidden_size, ）。对应公式中的 :math:`b_{hr}, b_{hz}, b_{hc}`。
     
-输入:
+输入
+::::::::::::
+
     - **inputs** (Tensor) - 输入。形状为[batch_size, input_size]，对应公式中的 :math:`x_t`。
     - **states** (Tensor，可选) - 上一轮的隐藏状态。对应公式中的 :math:`h_{t-1}`。当state为None的时候，初始状态为全0矩阵。默认为None。
 

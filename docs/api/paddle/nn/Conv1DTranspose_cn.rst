@@ -19,6 +19,7 @@ Conv1DTranspose
                         Out=\sigma (W*X+b)\\
 
 其中：
+
     -  :math:`X` : 输入，具有NCL或NLC格式的3-D Tensor
     -  :math:`W` : 卷积核，具有NCL格式的3-D Tensor
     -  :math:`*` : 卷积计算（注意：转置卷积本质上的计算还是卷积）
@@ -43,7 +44,8 @@ Conv1DTranspose
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCL"和"NLC"。N是批尺寸，C是通道数，L特征长度。默认值："NCL"。
   
 
-形状:
+形状
+::::::::::::
 
     - 输入：:math:`（N，C_{in}， L_{in}）`
 

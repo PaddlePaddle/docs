@@ -17,6 +17,7 @@ InstanceNorm2D
     y_i &\gets \gamma \hat{x_i} + \beta                                                      \quad &// scale-and-shift
 
 Note:
+
     `H` 是高度, `W` 是宽度.
 
 
@@ -32,11 +33,9 @@ Note:
     - **name** (string, 可选) – InstanceNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
 
-返回
+形状
 ::::::::::::
-无
 
-形状：
     - input: 形状为（批大小，通道数，高度，宽度）的4-D Tensor。
     - output: 和输入形状一样。
 

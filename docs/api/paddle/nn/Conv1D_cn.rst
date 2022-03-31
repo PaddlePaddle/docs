@@ -18,6 +18,7 @@ Conv1D
     Out = \sigma \left ( W * X + b \right )
 
 其中：
+
     - :math:`X` ：输入值，NCL或NLC格式的3-D Tensor
     - :math:`W` ：卷积核值，MCL格式的3-D Tensor
     - :math:`*` ：卷积操作
@@ -44,8 +45,7 @@ Conv1D
 
 属性
 ::::::::::::
-属性
-::::::::::::
+
 weight
 '''''''''
 本层的可学习参数，类型为 ``Parameter``
@@ -54,7 +54,8 @@ bias
 '''''''''
 本层的可学习偏置，类型为 ``Parameter``
     
-形状:
+形状
+::::::::::::
     - 输入: :math:`(N， C_{in}， L_{in})`
     - 卷积核: :math:`(C_{out}， C_{in}， K)`
     - 偏置: :math:`(C_{out})`
@@ -77,7 +78,8 @@ bias
 
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

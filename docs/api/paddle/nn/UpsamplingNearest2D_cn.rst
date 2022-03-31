@@ -63,15 +63,6 @@ https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation
 4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)。
 
 
-抛出异常
-::::::::::::
-
-    - :code:`TypeError` - out_shape应该是一个列表、元组或变量。
-    - :code:`ValueError` - out_shape 和 scale 不可同时为 None。
-    - :code:`ValueError` - out_shape 的长度必须为2如果输入是4D张量。
-    - :code:`ValueError` - scale应大于0。
-    - :code:`ValueError` - data_format 只能取 ‘NCHW’、‘NHWC’
-
 
 代码示例
 ::::::::::::

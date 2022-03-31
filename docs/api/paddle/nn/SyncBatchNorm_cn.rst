@@ -47,7 +47,9 @@ SyncBatchNorm
     - **weight_attr** (ParamAttr|bool, 可选) - 指定权重参数属性的对象。如果设置为 ``False`` ，则表示本层没有可训练的权重参数。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。如果设置为 ``False`` ，则表示本层没有可训练的偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
-形状：
+形状
+::::::::::::
+
     - input: 一个二维到五维的 ``Tensor`` 。
     - output: 和input 相同形状的 ``Tensor`` 。
 
