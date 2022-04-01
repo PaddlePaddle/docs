@@ -114,8 +114,8 @@
      ```
 
   2. 支持Tensor和python Scalar之间的隐式类型转换，当 Tensor 的数据类型和 python Scalar
-  是同一类的数据类型时（都是整形，或者都是浮点型），或者 Tensor 是浮点型而 python Scalar 是
-  整型的，默认会将 python Scalar 转换成 Tensor 的数据类型。而如果 Tensor 的数据类型是整形而 python Scalar 是浮点型时，计算结果会是 float32 类型的。
+  是同一类的数据类型时（都是整型，或者都是浮点型），或者 Tensor 是浮点型而 python Scalar 是
+  整型的，默认会将 python Scalar 转换成 Tensor 的数据类型。而如果 Tensor 的数据类型是整型而 python Scalar 是浮点型时，计算结果会是 float32 类型的。
      ```python
      import paddle
      a = paddle.to_tensor([1.0], dtype='float32')
