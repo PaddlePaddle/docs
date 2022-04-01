@@ -21,6 +21,7 @@ conv3d_transpose
                         \\Out=\sigma (W*X+b)\\
 
 其中：
+
     -  :math:`X` : 输入，具有NCDHW或NDHWC格式的5-D Tensor
     -  :math:`W` : 卷积核，具有NCDHW格式的5-D Tensor
     -  :math:`*` : 卷积操作（注意：转置卷积本质上的计算还是卷积）
@@ -72,7 +73,9 @@ conv3d_transpose
 
 由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
-参数:
+参数
+::::::::::::
+
   - **x** (Tensor) - 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型：float32或float64。
   - **weight** (Tensor) - 形状为 :math:`[C, M/g, kD, kH, kW]` 的卷积核。 M是输出通道数， g是分组的个数，kD是卷积核的深度，kH是卷积核的高度，kW是卷积核的宽度。
   - **bias** (int|list|tuple) - 偏置项，形状为： :math:`[M,]` 。
@@ -86,11 +89,17 @@ conv3d_transpose
   - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值：None。
 
   
-返回：5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
+返回
+::::::::::::
+5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
-返回类型：Tensor
+返回类型
+::::::::::::
+Tensor
 
-抛出异常:
+抛出异常
+::::::::::::
+
     - ``ValueError`` - 如果输入的shape、kernel_size、stride、padding和groups不匹配。
     - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
     - ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
@@ -100,7 +109,8 @@ conv3d_transpose
     - ``ShapeError`` - 如果输入和卷积核的维度大小不相同。
     - ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

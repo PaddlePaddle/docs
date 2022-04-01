@@ -51,7 +51,9 @@ resize_nearest
 最邻近插值的详细介绍请参照： `Wiki Nearest-neighbor interpolation <https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation>`_
 
 
-参数:
+参数
+::::::::::::
+
   - **input** (Variable) - 4-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
   - **out_shape** (list|tuple|Variable|None) - 双线性插值法调整后的输出，维度为[out_h, out_w]的2-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者shape为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
   - **scale** (float|Variable|None) – 输入高宽的乘数因子。 ``out_shape`` 和 ``scale`` 二者至少设置其一。 ``out_shape`` 具有比 ``scale`` 更高的优先级。 默认值为None。
@@ -60,12 +62,17 @@ resize_nearest
   - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值为True。
   - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
 
-返回：4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)。
+返回
+::::::::::::
+4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

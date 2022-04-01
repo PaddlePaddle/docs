@@ -20,14 +20,21 @@ cuda_pinned_places
 
 关于如何设置任务中使用的GPU设备，具体请查看 fluid. :ref:`cn_api_fluid_cuda_places`  。
 
-参数：
+参数
+::::::::::::
+
   - **device_count** (int，可选) - 设备数目。默认值为 ``None``。
 
-返回: ``fluid.CUDAPinnedPlace`` 对象列表。
+返回
+::::::::::::
+ ``fluid.CUDAPinnedPlace`` 对象列表。
 
-返回类型：list[fluid.CUDAPinnedPlace]
+返回类型
+::::::::::::
+list[fluid.CUDAPinnedPlace]
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

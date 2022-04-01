@@ -12,16 +12,21 @@ isfinite
 
 测试 x 是否包含无穷值（即 nan 或 inf）。若元素均为有穷数，返回真；否则返回假。
 
-参数：
+参数
+::::::::::::
+
   - **x(variable)** : 变量，包含被测试的 Tensor / LoDTensor。
 
-返回: 
+返回
+::::::::::::
+ 
   - Variable (Tensor / LoDTensor)，此 Tensor 变量包含一个 bool 型结果。
 
 返回类型
   - Variable (Tensor / LoDTensor)，一个包含 Tensor 的变量。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

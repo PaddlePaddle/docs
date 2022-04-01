@@ -47,7 +47,9 @@ Conv2DTranspose
         
         & W_{out}\in[W'_{out},W'_{out} + strides[1])
 
-参数：
+参数
+::::::::::::
+
     - **num_channels** (int) - 输入图像的通道数。
     - **num_filters** (int) - 滤波器的个数，和输出特征图个数相同。
     - **filter_size** (int|tuple) - 滤波器大小。如果 ``filter_size`` 是一个元组，则必须包含两个整型数，分别表示滤波器高度和宽度。否则，表示滤波器高度和宽度均为 ``filter_size`` 。
@@ -62,9 +64,12 @@ Conv2DTranspose
     - **act** (str, 可选) -  应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值：None。
     - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
 
-返回：无
+返回
+::::::::::::
+无
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -79,11 +84,15 @@ Conv2DTranspose
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+属性
+::::::::::::
+weight
+'''''''''
 
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 
 本层的可学习偏置，类型为 ``Parameter``
 
