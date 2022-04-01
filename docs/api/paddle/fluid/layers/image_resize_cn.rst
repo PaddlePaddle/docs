@@ -118,7 +118,9 @@ https://en.wikipedia.org/wiki/Bilinear_interpolation
 有关三线插值的详细信息，请参阅维基百科：
 https://en.wikipedia.org/wiki/Trilinear_interpolation
 
-参数:
+参数
+::::::::::::
+
     - **input** (Variable) - 4-D或5-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
     - **out_shape** (list|tuple|Variable|None) - 输出Tensor，输入为4D张量时，形状为为(out_h, out_w)的2-D Tensor。输入为5-D Tensor时，形状为(out_d, out_h, out_w)的3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
     - **scale** (float|Variable|None)-输入的高度或宽度的乘数因子 。 out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。
@@ -129,11 +131,17 @@ https://en.wikipedia.org/wiki/Trilinear_interpolation
     - **align_mode** （int）- 双线性插值的可选项。 可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1' ，代表src_idx = scale * dst_index。
     - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致。对于4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
 
-返回：4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)；或者5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
+返回
+::::::::::::
+4-D Tensor，形状为 (num_batches, channels, out_h, out_w) 或 (num_batches, out_h, out_w, channels)；或者5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
 
-返回类型: 变量（variable）
+返回类型
+::::::::::::
+ 变量（variable）
 
-抛出异常：
+抛出异常
+::::::::::::
+
     - :code:`TypeError` - out_shape应该是一个列表、元组或变量。
     - :code:`TypeError` - actual_shape应该是变量或None。
     - :code:`ValueError` - image_resize的"resample"只能是"BILINEAR"或"TRILINEAR"或"NEAREST"。
@@ -146,7 +154,8 @@ https://en.wikipedia.org/wiki/Trilinear_interpolation
     - :code:`ValueError` - data_format 只能取 ‘NCHW’、‘NHWC’、‘NCDHW’ 或者 ‘NDHWC’。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

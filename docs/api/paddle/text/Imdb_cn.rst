@@ -16,7 +16,7 @@ Imdb
     - cutoff(int) - 构建词典的截止大小。默认为Default 150。
     - download(bool) - 如果:attr:`data_file`未设置，是否自动下载数据集。默认为True。
 
-返回值
+返回
 :::::::::
 ``Dataset``， IMDB数据集实例。
 

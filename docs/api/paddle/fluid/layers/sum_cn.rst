@@ -40,15 +40,22 @@ sum
     	output = [[8, 10, 12],
 	          [14, 16, 18]]
 
-参数：
+参数
+::::::::::::
+
     **x** (Variable|list(Variable)) - 输入的一至多个Variable。如果输入了多个Variable，则不同Variable间的shape和数据类型应保持一致。Variable为多维Tensor或LoDTensor，数据类型支持：float32，float64，int32，int64
 
-返回：对输入 ``x`` 中的Variable求和后的结果，shape和数据类型与 ``x`` 一致
+返回
+::::::::::::
+对输入 ``x`` 中的Variable求和后的结果，shape和数据类型与 ``x`` 一致
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 	

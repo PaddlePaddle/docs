@@ -33,7 +33,9 @@ yolo_box
     score_{pred} = score_{conf} * score_{class}
 
 
-参数：
+参数
+::::::::::::
+
     - **x** （Variable） -  YoloBox的输入张量是一个4-D张量，形状为[N，C，H，W]。第二维（C）存储每个anchor box位置坐标，每个anchor box的置信度分数和one hot key。通常，X应该是YOLOv3网络的输出。数据类型为float32或float64
     - **img_size** （Variable） -  YoloBox的图像大小张量，这是一个形状为[N，2]的二维张量。该张量保持每个输入图像的高度和宽度，用于对输出图像按输入图像比例调整输出框的大小。数据类型为int32。
     - **anchors** （list | tuple） - anchor的宽度和高度，它将逐对解析
@@ -43,19 +45,26 @@ yolo_box
     - **clip_bbox** （bool） - 是否将输出的bbox裁剪到 :attr:`img_size` 范围内，默认为True。
     - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
 
-返回: 
+返回
+::::::::::::
+ 
      1. 框的坐标，形为[N，M，4]的三维张量
      2. 框的分类得分， 形为 [N，M，class_num]的三维张量
 
-返回类型:   变量（Variable）
+返回类型
+::::::::::::
+   变量（Variable）
 
-抛出异常:
+抛出异常
+::::::::::::
+
     - TypeError  -  yolov_box的输入x必须是Variable
     - TypeError  -  yolo框的anchors参数必须是list或tuple
     - TypeError  -  yolo box的class_num参数必须是整数
     - TypeError  -  yolo框的conf_thresh参数必须是一个浮点数
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

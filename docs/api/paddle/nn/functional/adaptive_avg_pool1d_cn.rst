@@ -23,9 +23,6 @@ adaptive_avg_pool1d
 :::::::::
 ``Tensor``, 输入 `x` 经过自适应池化计算得到的目标3-D Tensor，其数据类型与输入相同。
 
-抛出异常
-:::::::::
-    - ``ValueError`` - ``output_size`` 应是一个整数。
 
 代码示例
 :::::::::

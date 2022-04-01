@@ -11,7 +11,9 @@ stanh 激活函数
 
     out = b * \frac{e^{a * x} - e^{-a * x}}{e^{a * x} + e^{-a * x}}
 
-参数:
+参数
+::::::::::::
+
 ::::::::::
  - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
  - scale_a (float, 可选) - stanh激活计算公式中的输入缩放参数a。默认值为0.67。

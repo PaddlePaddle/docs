@@ -17,7 +17,9 @@ softshrink激活层
 
 其中，:math:`x` 为输入的 Tensor
 
-参数:
+参数
+::::::::::::
+
 ::::::::::
  - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
  - threshold (float, 可选) - softshrink激活计算公式中的threshold值，必须大于等于零。默认值为0.5。

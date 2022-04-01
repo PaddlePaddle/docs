@@ -10,6 +10,7 @@
 - `昆仑XPU芯片运行飞桨 <./xpu_docs/index_cn.html>`_ : 介绍如何在昆仑XPU芯片环境上安装和使用飞桨。
 - `海光DCU芯片运行飞桨 <./rocm_docs/index_cn.html>`_ : 介绍如何在海光DCU芯片环境上安装和使用飞桨。
 - `昇腾NPU芯片运行飞桨 <./npu_docs/index_cn.html>`_ : 介绍如何在昇腾环境上安装和使用飞桨。
+- `Graphcore IPU芯片运行飞桨 <./ipu_docs/index_cn.html>`_ : 介绍如何在IPU环境上安装和使用飞桨。
 
 ..  toctree::
     :hidden:
@@ -18,3 +19,4 @@
     xpu_docs/index_cn.rst
     rocm_docs/index_cn.rst
     npu_docs/index_cn.rst
+    ipu_docs/index_cn.rst

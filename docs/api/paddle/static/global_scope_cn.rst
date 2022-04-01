@@ -11,11 +11,12 @@ global_scope
 
 获取全局/默认作用域实例。很多API使用默认 ``global_scope`` ，例如 ``Executor.run`` 等。
 
-返回：全局/默认作用域实例
+返回
+::::::::::::
+Scope，全局/默认作用域实例。
 
-返回类型：Scope
-
-**示例代码**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -17,15 +17,22 @@ Softshrink激活函数
         0,  \text{otherwise}
         \end{cases}
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable0 - 张量（Tensor）
     - **alpha** (float) - 上面公式中alpha的值
 
-返回: 张量(Tensor)
+返回
+::::::::::::
+ 张量(Tensor)
 
-返回类型: 变量(Variable)
+返回类型
+::::::::::::
+ 变量(Variable)
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

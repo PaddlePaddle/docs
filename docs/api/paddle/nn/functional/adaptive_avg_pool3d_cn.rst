@@ -39,9 +39,6 @@ adaptive_avg_pool3d
 :::::::::
 ``Tensor``, 默认形状为（批大小，通道数，输出特征长度，输出特征高度，输出特征宽度），即NCDHW格式的5-D Tensor，其数据类型与输入相同。
 
-抛出异常
-:::::::::
-    - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
 
 代码示例
 :::::::::

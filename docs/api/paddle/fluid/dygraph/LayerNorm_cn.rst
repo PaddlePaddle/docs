@@ -26,7 +26,9 @@ LayerNorm
 - :math:`b` : 可训练的偏差参数
 
 
-参数：
+参数
+::::::::::::
+
     - **normalized_shape** (int 或 list 或 tuple) – 需规范化的shape，期望的输入shape为 ``[*, normalized_shape[0], normalized_shape[1], ..., normalized_shape[-1]]``。如果是单个整数，则此模块将在最后一个维度上规范化（此时最后一维的维度需与该参数相同）。
     - **scale** (bool, 可选) - 指明是否在归一化后学习自适应增益 ``g`` 。默认值：True。
     - **shift** (bool, 可选) - 指明是否在归一化后学习自适应偏差 ``b`` 。默认值：True。
@@ -37,9 +39,12 @@ LayerNorm
     - **dtype** (str，可选) - 输出Tensor或LoDTensor的数据类型，数据类型必须为：float32或float64，默认为float32。
 
 
-返回：无
+返回
+::::::::::::
+无
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
