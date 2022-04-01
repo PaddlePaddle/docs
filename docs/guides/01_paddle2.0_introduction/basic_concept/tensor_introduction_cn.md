@@ -117,7 +117,7 @@ Tensor(shape=[2, 2, 5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 上述不同维度的 Tensor 可视化的表示如下图所示：
 
 
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_2.0.png" width="800" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_2.0.png?raw=true" width="800" ></center>
 <br><center>图1 不同维度的Tensor可视化表示</center>
 
 需要注意的是，Tensor 必须形如矩形，即在任何一个维度上，元素的数量必须相等，否则会抛出异常，示例如下：
@@ -293,7 +293,7 @@ ndim_4_Tensor = paddle.ones([2, 3, 4, 5])
 ```
 
 
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Axis_2.0.png" width="800" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Axis_2.0.png?raw=true" width="800" ></center>
 <br><center>图2 Tensor的shape、axis、dimension、ndim之间的关系</center>
 
 ```python
@@ -749,7 +749,7 @@ print(z.shape)
 ```
 
 
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_broadcast.png" width="800" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_broadcast.png?raw=true" width="800" ></center>
 <br><center>图3 Tensor 广播示例</center>
 
 ## 六、总结
