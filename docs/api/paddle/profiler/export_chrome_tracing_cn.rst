@@ -12,8 +12,8 @@ export_chrome_tracing
 参数
 :::::::::
 
-    - **dir_name** (str) - 性能数据导出所保存到的文件夹路径。
     - **worker_name** (str, 可选) - 性能数据导出所保存到的文件名前缀，默认是`[hostname]_[pid]`。
+    - **dir_name** (str) - 性能数据导出所保存到的文件夹路径。
 
 返回
 :::::::::
