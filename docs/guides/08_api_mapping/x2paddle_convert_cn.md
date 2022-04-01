@@ -1,10 +1,8 @@
-# 模型迁移指南
+# 使用 X2Paddle 迁移推理模型
+
+X2Paddle 是飞桨生态下的模型转换工具，致力于帮助你快速迁移其他深度学习框架至飞桨框架。目前支持**推理模型的框架转换**与**PyTorch训练代码迁移**，除此之外还提供了详细的不同框架间API对比文档，降低你上手飞桨核心的学习成本。
 
 ## 迁移 PyTorch、ONNX、TensorFlow 以及 Caffe 模型
-
-### X2Paddle 简介
-
-X2Paddle 是飞桨生态下的模型转换工具，致力于帮助其它深度学习框架用户快速迁移至飞桨框架。目前支持**推理模型的框架转换**与**PyTorch训练代码迁移**，我们还提供了详细的不同框架间API对比文档，降低开发者上手飞桨核心的学习成本。
 
 ### 具体用法
 
@@ -22,7 +20,7 @@ pytorch2paddle(module=torch_module,
 # input_examples (list[torch.tensor]): torch.nn.Module的输入示例，list的长度必须与输入的长度一致。默认为None。
 ```
 
-` ` ` script ` ` `模式以及更多细节可参考[PyTorch模型转换文档](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/pytorch2paddle.md)。
+` `  ` script `  ` ` 模式以及更多细节可参考[PyTorch模型转换文档](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/pytorch2paddle.md)。
 
 #### TensorFlow 模型转换
 
