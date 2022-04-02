@@ -11,12 +11,17 @@ disable_static
 该接口关闭静态图模式。可通过 :ref:`cn_api_paddle_enable_static` 开启静态图模式。
 
 
-参数：
+参数
+::::::::::::
+
   - **place** (paddle.CPUPlace|paddle.CUDAPlace，可选) - 动态图运行时的设备。默认值为 ``None`` , 此时，会根据paddle的版本自动判断。
 
-返回：无
+返回
+::::::::::::
+无
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

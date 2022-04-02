@@ -8,7 +8,9 @@ Pad3D
 
 按照 padding、mode 和 value 属性对输入进行填充。
 
-参数：
+参数
+::::::::::::
+
   - **padding** (Tensor | List[int] | int) - 填充大小。如果是int，则在所有待填充边界使用相同的填充，
     否则填充的格式为[pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back]。
   - **mode** (str) - padding的四种模式，分别为 ``'constant'``, ``'reflect'``, ``'replicate'`` 和 ``'circular'``。
@@ -18,9 +20,12 @@ Pad3D
   - **data_format** (str)  - 指定输入的format，可为 ``'NCDHW'`` 或者 ``'NDHWC'``，默认值为 ``'NCDHW'``。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
 
-返回：无
+返回
+::::::::::::
+无
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

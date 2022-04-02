@@ -36,10 +36,13 @@ ClipGradByNorm
 .. math::
   \\norm(X) = (\sum_{i=1}^{n}|x_i|^2)^{\frac{1}{2}}\\
 
-参数:
+参数
+::::::::::::
+
  - **clip_norm** (float) - 所允许的二范数最大值。
 
-**代码示例**
+代码示例
+::::::::::::
  
 .. code-block:: python
 

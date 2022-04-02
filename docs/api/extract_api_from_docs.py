@@ -24,6 +24,7 @@ from contextlib import contextmanager
 import docutils
 import docutils.core
 import docutils.nodes
+import docutils.parsers.rst
 import markdown
 
 logger = logging.getLogger()
@@ -224,6 +225,34 @@ def extract_rst_title(filename):
     return None
 
 
+def extract_params_desc_from_rst_file(filename, section_title='参数'):
+    overrides = {
+        # Disable the promotion of a lone top-level section title to document
+        # title (and subsequent section title to document subtitle promotion).
+        'docinfo_xform': 0,
+        'initial_header_level': 2,
+    }
+    with open(filename, 'r') as fileobj:
+        doctree = docutils.core.publish_doctree(
+            fileobj.read(), settings_overrides=overrides)
+        found = False
+        for child in doctree.children:
+            if isinstance(child, docutils.nodes.section) and isinstance(
+                    child.children[0], docutils.nodes.title):
+                sectitle = child.children[0].astext()
+                if isinstance(section_title, (list, tuple)):
+                    for st in section_title:
+                        if sectitle.startswith(st):
+                            found = True
+                            break
+                else:
+                    if sectitle.startswith(section_title):
+                        found = True
+                if found:
+                    return child
+    return None
+
+
 def extract_md_title(filename):
     with open(filename, 'r') as fileobj:
         html = markdown.markdown(fileobj.read())
@@ -262,6 +291,56 @@ def extract_all_infos(docdirs):
                 apis_dict[ffn] = list(apis)
     return apis_dict, file_titles
 
+
+def ref_role(role, rawtext, text, lineno, inliner, options=None, content=None):
+    '''dummy ref role'''
+    ref_target = text
+    node = docutils.nodes.reference(rawtext, text)
+    return [node], []
+
+
+docutils.parsers.rst.roles.register_canonical_role('ref', ref_role)
+docutils.parsers.rst.roles.register_local_role('ref', ref_role)
+
+
+class PyFunctionDirective(docutils.parsers.rst.Directive):
+    '''dummy py:function directive
+    
+    see https://docutils-zh-cn.readthedocs.io/zh_CN/latest/howto/rst-roles.html
+    '''
+    required_arguments = 0
+    optional_arguments = 0
+    final_argument_whitespace = True
+    option_spec = {}
+    has_content = True
+
+    def run(self):
+        text = '\n'.join(self.content)
+        thenode = docutils.nodes.title(text, text)
+        return [thenode]
+
+
+docutils.parsers.rst.directives.register_directive(
+    'py:function', PyFunctionDirective)  # as abs_cn.rst
+docutils.parsers.rst.directives.register_directive(
+    'py:class', PyFunctionDirective)  # as Tensor_cn.rst
+docutils.parsers.rst.directives.register_directive(
+    'py:method', PyFunctionDirective)  # as grad_cn.rst
+
+
+class ToctreeDirective(docutils.parsers.rst.Directive):
+    '''dummy toctree directive'''
+    required_arguments = 1
+    optional_arguments = 5
+    has_content = True
+
+    def run(self):
+        text = self.arguments[0]
+        thenode = None
+        return []
+
+
+docutils.parsers.rst.directives.register_directive('toctree', ToctreeDirective)
 
 arguments = [
     # flags, dest, type, default, help

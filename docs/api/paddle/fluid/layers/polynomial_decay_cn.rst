@@ -19,18 +19,25 @@ polynomial_decay
         decayed_learning_rate = (learning_rate - end_learning_rate) *
             (1 - global_step / decay_steps) ^ power + end_learning_rate
 
-参数：
+参数
+::::::::::::
+
     - **learning_rate** (Variable|float) - 训练过程中的初始学习率，数据类型为float的常数或变量。
     - **decay_steps** (int) - 衰减步数
     - **end_learning_rate** (float) - 训练过程的最终学习率
     - **power** (float) - 多项式衰减系数
     - **cycle** (bool) - step 超出 decay_steps 后是否继续循环，默认为False
 
-返回：衰减的学习率
+返回
+::::::::::::
+衰减的学习率
 
-返回类型：变量（Variable）
+返回类型
+::::::::::::
+变量（Variable）
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

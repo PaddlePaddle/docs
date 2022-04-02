@@ -15,7 +15,9 @@ ReduceLROnPlateau
 此外，每降低一次学习率后，将会进入一个时长为 ``cooldown`` 个epoch的冷静期，在冷静期内，将不会监控 ``loss`` 的变化情况，也不会衰减。
 在冷静期之后，会继续监控 ``loss`` 的上升或下降。
 
-参数：
+参数
+::::::::::::
+
     - **learning_rate** (Variable|float|int) - 初始学习率。其类型可以是Python的float类型，如果输入int类型则会被转为float类型。其也可以是shape为[1]的
       1-D Tensor，且相应数据类型必须为 "float32" 或 "float64" 。
     - **mode** (str，可选) - `'min'` 和 `'max'` 之一。通常情况下，为 `'min'` ，此时当 ``loss`` 停止下降时学习率将减小。默认：`'min'` 。
@@ -32,11 +34,16 @@ ReduceLROnPlateau
     - **eps** (float，可选) - 如果新旧学习率间的差异小于 ``eps`` ，则不会更新。默认值:1e-8。
     - **dtype** (str，可选) – 学习率值的数据类型，可以为"float32", "float64"。默认："float32"。
 
-返回： ``loss`` 自适应的学习率
+返回
+::::::::::::
+ ``loss`` 自适应的学习率
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
     .. code-block:: python
 
@@ -74,16 +81,21 @@ ReduceLROnPlateau
 
 
 
-.. py:method:: step(loss)
+方法
+::::::::::::
+step(loss)
+'''''''''
 需要在每个epoch调用该方法，其根据传入的 ``loss`` 调整optimizer中的学习率，调整后的学习率将会在下一次调用 ``optimizer.minimize`` 时生效。
 
-参数：
+**参数**
+
   - **loss** (Variable) - 类型：Variable，shape为[1]的1-D Tensor。将被用来判断是否需要降低学习率。如果 ``loss`` 连续 ``patience`` 个epochs没有下降，
     将会降低学习率。
 
-返回：
+**返回**
+
     无
 
-**代码示例**:
+**代码示例**
 
     参照其类中的说明。

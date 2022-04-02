@@ -14,7 +14,9 @@ softplus激活层
 
 其中，:math:`x` 为输入的 Tensor
 
-参数:
+参数
+::::::::::::
+
 ::::::::::
  - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
  - beta (float, 可选) - Softplus激活计算公式中的beta值。默认值为1。

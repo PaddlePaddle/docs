@@ -127,7 +127,7 @@ net = paddle.jit.save(net, path='simple_net', input_spec=[x_spec, y_spec])  # �
 执行上述代码样例后，在当前目录下会生成三个文件，即代表成功导出预测模型：
 ```
 simple_net.pdiparams        // 存放模型中所有的权重数据
-simple_net.pdimodel         // 存放模型的网络结构
+simple_net.pdmodel          // 存放模型的网络结构
 simple_net.pdiparams.info   // 存放额外的其他信息
 ```
 
@@ -315,12 +315,12 @@ class SimpleNet(Layer):
 
 net = SimpleNet()
 # 方式一：save inference model with use_act=False
-net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x')])
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x')])
 paddle.jit.save(net, path='./simple_net')
 
 
 # 方式二：save inference model with use_act=True
-net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), True])
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x'), True])
 paddle.jit.save(net, path='./simple_net')
 ```
 
@@ -398,8 +398,8 @@ main_program = paddle.static.default_main_program()
 
 # ...... 训练过程（略）
 
-prog_path='main_program.pdimodel'
-paddle.save(main_program, prog_path) # 导出为 .pdimodel
+prog_path='main_program.pdmodel'
+paddle.save(main_program, prog_path) # 导出为 .pdmodel
 
 para_path='main_program.pdiparams'
 paddle.save(main_program.state_dict(), para_path) # 导出为 .pdiparams

@@ -21,7 +21,9 @@ matmul
 
 - 如果原始 Tensor x 或 y 的秩为 1 且未转置，则矩阵相乘后的前置或附加维度 1 将移除。
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable) : 输入变量，类型为 Tensor 或 LoDTensor。
     - **y** (Variable) : 输入变量，类型为 Tensor 或 LoDTensor。
     - **transpose_x** (bool) : 相乘前是否转置 x。
@@ -29,10 +31,14 @@ matmul
     - **alpha** (float) : 输出比例，默认为 1.0。
     - **name** (str|None) : 该层名称（可选），如果设置为空，则自动为该层命名。
 
-返回：
+返回
+::::::::::::
+
     - Variable (Tensor / LoDTensor)，矩阵相乘后的结果。
 
-返回类型：
+返回类型
+::::::::::::
+
     - Variable（变量）。
 
 ::
@@ -73,7 +79,8 @@ matmul
     out: [M, N]
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

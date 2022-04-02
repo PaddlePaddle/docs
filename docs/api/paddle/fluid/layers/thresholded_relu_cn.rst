@@ -17,17 +17,24 @@ thresholded_relu
       0, &otherwise
       \end{matrix}\right.
 
-参数：
+参数
+::::::::::::
+
   - **x** (Variable) -ThresholdedRelu Op 的输入，多维 Tensor 或 LoDTensor，数据类型为 float32，float64。
   - **threshold** (float，可选)-激活函数的 threshold 值，如 threshold 值为 None，则其值为 1.0。
 
-返回：
+返回
+::::::::::::
+
    - 多维 Tensor 或 LoDTensor, 数据类型为 float32 或 float64， 和输入 x 的数据类型相同，形状和输入 x 相同。
 
-返回类型：
+返回类型
+::::::::::::
+
   - Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 
