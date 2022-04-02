@@ -23,13 +23,18 @@ piecewise_decay
     else:
         learning_rate = 0.1
 
-参数：
+参数
+::::::::::::
+
     - **boundaries(list)** - 代表步数的数字
     - **values(list)** - 学习率的值，不同的步边界中的学习率值
 
-返回：衰减的学习率
+返回
+::::::::::::
+衰减的学习率
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

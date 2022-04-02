@@ -9,14 +9,19 @@ set_cuda_rng_state
 设置cuda随机数生成器的状态信息
 
 
-参数:
+参数
+::::::::::::
+
 
      - **state_list** (list [GeneratorState]) - 需要设置的随机数生成器状态信息列表，通过get_cuda_rng_state()获取。
 
-返回: 
+返回
+::::::::::::
+ 
      无
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

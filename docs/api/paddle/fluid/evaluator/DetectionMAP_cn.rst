@@ -19,7 +19,9 @@ DetectionMAP
     - https://sanchom.wordpress.com/tag/average-precision/
     - https://arxiv.org/abs/1512.0232
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) – detection的输出结果，一个 shape=[M, 6] 的 LoDtensor。布局为[label, confidence, xmin, ymin, xmax, ymax],label为类别标签，confidence为置信度，xmin，ymin为检测框左上点坐标，xmax，ymax为检测框右下点坐标，数据类型为float32或float64。
     - **gt_label** (Variable) – ground truth label 的索引，它是一个形状为[N, 1]的LoDtensor，数据类型为float32或float64。
     - **gt_box** (Variable) – ground truth bounds box (bbox)，是一个具有形状的LoD张量[N, 4]。布局是[xmin, ymin, xmax, ymax]，数据类型为float32或float64。
@@ -30,12 +32,17 @@ DetectionMAP
     - **evaluate_difficult** (bool) – 是否考虑 difficult ground truth 进行评价，默认为 True。当 gt_difficult 为 None 时，这个参数不起作用。
     - **ap_version** (str) – 平均精度的计算方法，必须是 "integral" 或 "11point"。详情请查看 https://sanchom.wordpress.com/tag/average-precision/。 其中，11point为：11-point 插值平均精度。积分: precision-recall曲线的自然积分。
 
-返回：变量(Variable) 计算mAP的结果，其中数据类型为float32或float64。
+返回
+::::::::::::
+变量(Variable) 计算mAP的结果，其中数据类型为float32或float64。
 
-返回类型：变量(Variable)
+返回类型
+::::::::::::
+变量(Variable)
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -70,15 +77,21 @@ DetectionMAP
 
 
 
-.. py:method:: get_map_var()
+方法
+::::::::::::
+get_map_var()
+'''''''''
 
-返回：当前 mini-batch 的 mAP 变量和不同 mini-batch 的 mAP 累加和
+**返回**
+当前 mini-batch 的 mAP 变量和不同 mini-batch 的 mAP 累加和
 
-.. py:method::  reset(executor, reset_program=None)
+reset(executor, reset_program=None)
+'''''''''
 
 在指定的 batch 结束或者用户指定的开始时重置度量状态。
 
-参数：
+**参数**
+
     - **executor** (Executor) – 执行reset_program的执行程序
     - **reset_program** (Program|None, 可选) – 单个program 的 reset 过程。如果设置为 None，将创建一个 program
 

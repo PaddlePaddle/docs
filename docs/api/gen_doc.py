@@ -336,8 +336,11 @@ def gen_functions_args_str(node):
                 str_args_list[defarg_ind_start + defarg_ind] += '=' + str(
                     node.args.defaults[defarg_ind].id)
             elif isinstance(node.args.defaults[defarg_ind], ast.Constant):
-                str_args_list[defarg_ind_start + defarg_ind] += '=' + str(
-                    node.args.defaults[defarg_ind].value)
+                defarg_val = str(node.args.defaults[defarg_ind].value)
+                if isinstance(node.args.defaults[defarg_ind].value, str):
+                    defarg_val = f"'{defarg_val}'"
+                str_args_list[defarg_ind_start +
+                              defarg_ind] += '=' + defarg_val
         if node.args.vararg is not None:
             str_args_list.append('*' + node.args.vararg.arg)
         if len(node.args.kwonlyargs) > 0:
@@ -444,6 +447,8 @@ def set_api_sketch():
         paddle.hub,
         paddle.autograd,
         paddle.incubate,
+        paddle.incubate.optimizer,
+        paddle.incubate.optimizer.functional,
         paddle.inference,
         paddle.onnx,
         paddle.device,

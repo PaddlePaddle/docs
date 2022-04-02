@@ -25,7 +25,9 @@ generate_proposals
 
         5、通过NMS选出满足条件的候选框作为结果。
 
-参数：
+参数
+::::::::::::
+
         - **scores** (Variable) - Shape为 ``[N，A，H，W]`` 的4-D Tensor，表示每个框包含object的概率。N是批量大小，A是anchor数，H和W是feature map的高度和宽度。数据类型支持float32。
         - **bbox_deltas** (Variable)- Shape为 ``[N，4 * A，H，W]`` 的4-D Tensor，表示预测出的候选框的位置和anchor的位置之间的距离。数据类型支持float32。
         - **im_info** (Variable) - Shape为 ``[N，3]`` 的2-D张量，表示原始图像的大小信息。信息包含原始图像宽、高和feature map相对于原始图像缩放的比例。
@@ -38,14 +40,19 @@ generate_proposals
         - **eta** (float，可选) - 浮点型数字。自适应阈值的衰减系数。仅在自适应NMS中且自适应阈值大于0.5时生效，在每次迭代中 ``adaptive_threshold = adaptive_treshold * eta`` 。缺省值为1.0。
 
 
-返回： 元组，格式为 ``(rpn_rois, rpn_roi_probs)`` 
+返回
+::::::::::::
+ 元组，格式为 ``(rpn_rois, rpn_roi_probs)`` 
 
 - **rpn_rois** (Variable) - 表示产出的RoIs, shape为 ``[N, 4]`` 的2D LoDTensor， N为RoIs的数量。数据类型与 ``scores`` 一致。
 - **rpn_roi_probs** (Variable) - 表示RoIs的得分，shape为 ``[N, 1]`` ，N为RoIs的数量。数据类型与 ``scores`` 一致。
 
-返回类型：元组
+返回类型
+::::::::::::
+元组
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

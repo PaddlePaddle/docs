@@ -9,7 +9,9 @@ pad
 
 
 
-参数：
+参数
+::::::::::::
+
   - **x** (Tensor) - Tensor，format可以为 ``'NCL'``, ``'NLC'``, ``'NCHW'``, ``'NHWC'``, ``'NCDHW'``
     或 ``'NDHWC'``，默认值为 ``'NCHW'``，数据类型支持float16, float32, float64, int32, int64。
   - **pad** (Tensor | List[int] | Tuple[int]) - 填充大小。如果 ``mode`` 为 ``'constant'``，并且 ``pad`` 的长度为 ``x`` 维度的2倍时，
@@ -23,9 +25,13 @@ pad
   - **data_format** (str)  - 指定 ``x`` 的format，可为 ``'NCL'``, ``'NLC'``, ``'NCHW'``, ``'NHWC'``, ``'NCDHW'``
     或 ``'NDHWC'``，默认值为 ``'NCHW'``。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
-返回： 对 ``x`` 进行 ``'pad'`` 的结果，数据类型和 ``x`` 相同。
+返回
+::::::::::::
+Tensor, 对 ``x`` 进行 ``'pad'`` 的结果，数据类型和 ``x`` 相同。
 
-返回类型：Tensor
+返回类型
+
+
 
 **示例**：
 
@@ -76,7 +82,8 @@ pad
                     [5. 6. 4. 5. 6. 4. 5.]
                     [2. 3. 1. 2. 3. 1. 2.]]]]]
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -27,7 +27,9 @@ hsigmoid
 
 4. 每个单词都已经有自己的路径和路径编码，当对于同一批输入进行操作时，可以同时传入一批路径和路径编码进行运算。
 
-参数:
+参数
+::::::::::::
+
     - **input** (Variable) - 输入Tensor。数据类型为float32或float64，形状为 ``[N, D]`` ，其中 ``N`` 为minibatch的大小，``D`` 为特征大小。
     - **label** (Variable) - 训练数据的标签。数据类型为int64，形状为 ``[N, 1]`` 。
     - **num_classes** (int) - 类别总数(字典大小)必须大于等于2。若使用默认树结构，即当 ``is_custom=False`` 时 ，必须设置该参数。若使用自定义树结构，即当 ``is_custom=True`` 时，它取值应为自定义树结构的非叶节点的个数，用于指定二分类的类别总数。
@@ -39,12 +41,17 @@ hsigmoid
     - **is_custom** (bool，可选) – 是否使用用户自定义二叉树取代默认二叉树结构。如果设置为True，请务必设置 ``path_table``  ， ``path_code`` ， ``num_classes`` ，否则必须设置num_classes。默认值为False。
     - **is_sparse** (bool，可选) – 是否使用稀疏更新方式。如果设置为True，W的梯度和输入梯度将会变得稀疏。默认值为False。
 
-返回: 层次sigmoid计算后的Tensor，形状为[N, 1]，数据类型和 ``input`` 一致。
+返回
+::::::::::::
+ 层次sigmoid计算后的Tensor，形状为[N, 1]，数据类型和 ``input`` 一致。
 
-返回类型: Variable
+返回类型
+::::::::::::
+ Variable
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

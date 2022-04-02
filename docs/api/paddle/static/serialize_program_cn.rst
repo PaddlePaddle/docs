@@ -11,18 +11,22 @@ serialize_program
 
 根据指定的 feed_vars 和 fetch_vars，序列化 program。
 
-参数：
+参数
+::::::::::::
+
   - **feed_vars** (Variable | list[Variable]) – 模型的输入变量。
   - **fetch_vars** (Variable | list[Variable]) – 模型的输出变量。
-  - **kwargs** - 支持的 key 包括 'program'。(注意：kwargs 主要是用来做反向兼容的)
+  - **kwargs** - 支持的 key 包括 program。(注意：kwargs 主要是用来做反向兼容的)
+
       - **program** - 指定想要序列化的 program，默认是 default_main_program。
 
-返回：字节数组。
+返回
+::::::::::::
+字节数组。
 
-抛出异常：
-  - ``ValueError`` – 如果 ``feed_vars`` 或 ``fetch_vars`` 类型不是 Variable 或 list[Variable]，则抛出异常。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
