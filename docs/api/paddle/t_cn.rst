@@ -5,7 +5,7 @@ t
 
 .. py:function:: paddle.t(input, name=None)
 
-小于等于2维的Tensor进行数据转置。0维和1维Tensor返回本身，2维Tensor等价于perm设置为0，1的 :ref:`cn_api_fluid_layers_transpose` 函数。
+对小于等于2维的Tensor进行数据转置。0维和1维Tensor返回本身，2维Tensor等价于perm设置为0，1的 :ref:`cn_api_fluid_layers_transpose` 函数。
 
 参数
 ::::::::
@@ -14,7 +14,7 @@ t
 
 返回
 ::::::::
-N维Tensor。
+Tensor，0维和1维Tensor返回本身，2维Tensor返回转置Tensor。
 
 代码示例
 ::::::::
