@@ -158,6 +158,7 @@ def check_api_parameters(rstfiles, apiinfo):
                     functype = mo.group(1)
                     if functype not in ('function', 'method'):
                         check_passed.append(rstfile)
+                        continue
                     funcname = mo.group(2)
                     paramstr = mo.group(3)
                     flag = False
