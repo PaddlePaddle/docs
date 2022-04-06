@@ -36,18 +36,23 @@ Kronecker Product 算子。
           k_{t} = i_{t} * s_{t} + j_{t}, t = 0, 1, ..., N
 
 
-参数:
+参数
+::::::::::::
+
   - **x** (Tensor) – Kron OP 的第一个输入。多维 Tensor，数据类型为 float16, float32, float64, int32 或 int64。
   - **y** (Tensor) – Kron OP 的第二个输入。多维 Tensor，数据类型为 float16, float32, float64, int32 或 int64，与 x 相同。
   - **out**  (Tensor， 可选) -  指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。
   - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为 None。
 
-返回：
+返回
+::::::::::::
+
   - Kron OP 的输出。多维 Tensor，数据类型为 float16, float32, float64, int32 或 int64，与 x 一致。
 
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

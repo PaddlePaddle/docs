@@ -24,18 +24,23 @@ MSRAInitializer
 
     \sqrt{\frac{2.0}{fan\_in}}
 
-参数：
+参数
+::::::::::::
+
     - **uniform** (bool) - 为True表示使用均匀分布，为False表示使用正态分布
     - **fan_in** (float16|float32) - MSRAInitializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None
     - **seed** (int32) - 随机种子
 
-返回：对象
+返回
+::::::::::::
+对象
 
 .. note:: 
 
     在大多数情况下推荐设置fan_in为None
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

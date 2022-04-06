@@ -19,18 +19,25 @@ edit_distance
 
 输出包含批尺寸大小的结果，代表一对字符串中每个字符串的编辑距离。如果Attr(normalized)为真，编辑距离则处以参照字符串的长度。
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 假设字符串的索引，rank为2的Tensor或LoDTensor，数据类型为int64。
     - **label** (Variable) - 参照字符串的索引，rank为2的Tensor或LoDTensor，数据类型为int64。
     - **normalized** (bool)-表示是否用参照字符串的长度进行归一化，默认值为True。
     - **ignored_tokens** (list<int>)-计算编辑距离前需要移除的token，默认值为None。
     - **name** (None|str) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_name` ，默认值为None。
 
-返回：包含有形为[batch_size,1]的编辑距离和形为[ ]的序列数元组。
+返回
+::::::::::::
+包含有形为[batch_size,1]的编辑距离和形为[ ]的序列数元组。
 
-返回类型：元组
+返回类型
+::::::::::::
+元组
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -58,7 +58,9 @@ embedding
     输入的padding_idx = 0，则对于输入id为0的词，进行padding处理。
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 存储id信息的Tensor或LoDTensor，数据类型必须为：int64，输入的shape最后一维须为1。input中的id必须满足 ``0 =< id < size[0]`` 。
     - **size** (tuple|list) - embedding矩阵的维度。必须包含两个元素，第一个元素为vocab_size(词表大小), 第二个为emb_size（embedding层维度）。
     - **is_sparse** (bool) - 是否使用稀疏的更新方式，这个参数只会影响反向的梯度更新的性能，sparse更新速度更快，推荐使用稀疏更新的方式。但某些optimizer不支持sparse更新，比如 :ref:`cn_api_fluid_optimizer_AdadeltaOptimizer` 、 :ref:`cn_api_fluid_optimizer_AdamaxOptimizer` 、 :ref:`cn_api_fluid_optimizer_DecayedAdagradOptimizer` 、 :ref:`cn_api_fluid_optimizer_FtrlOptimizer` 、 :ref:`cn_api_fluid_optimizer_LambOptimizer` 、:ref:`cn_api_fluid_optimizer_LarsMomentumOptimizer` ，此时is_sparse必须为False。默认为False。
@@ -67,11 +69,16 @@ embedding
     - **param_attr** (ParamAttr) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。此外，可以通过 ``param_attr`` 参数加载用户自定义或预训练的词向量。只需将本地词向量转为numpy数据格式，且保证本地词向量的shape和embedding的 ``size`` 参数一致，然后使用 :ref:`cn_api_fluid_initializer_NumpyArrayInitializer` 进行初始化，即可实现加载自定义或预训练的词向量。详细使用方法见代码示例2。
     - **dtype** (str|core.VarDesc.VarType) - 输出Tensor或LoDTensor的数据类型，数据类型必须为：float32或float64，默认为float32。
 
-返回：input映射后得到的Embedding Tensor或LoDTensor，数据类型和dtype定义的类型一致。
+返回
+::::::::::::
+input映射后得到的Embedding Tensor或LoDTensor，数据类型和dtype定义的类型一致。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

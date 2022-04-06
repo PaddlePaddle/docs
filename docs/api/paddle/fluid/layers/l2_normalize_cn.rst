@@ -17,7 +17,9 @@ l2_normalize
 
 对于输入为多维Tensor的情况，该OP分别对维度轴上的每个1-D切片单独归一化
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable) - 维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
     - **axis** (int) - 归一化的轴。如果轴小于0，归一化的维是rank(X)+axis。其中，-1用来表示最后一维。
     - **epsilon** (float) - epsilon，用于避免除0，默认值为1e-12。
@@ -27,7 +29,8 @@ l2_normalize
 
     返回类型：Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

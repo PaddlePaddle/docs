@@ -63,17 +63,24 @@ sequence_pool
             where 1.=1., 5.=3. + 2., 4.=4., 0.0=pad_value, 12.=6. + 5. + 1.
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 类型为LoDTensor的输入序列，仅支持lod_level不超过2的LoDTensor，数据类型为float32。
     - **pool_type** (str) - 池化类型，支持average，sum，sqrt，max，last和first池化操作。
     - **is_test** (bool) - 仅在pool_type取值为max时生效。当is_test为False时，则在池化操作过程中会创建maxIndex临时Tenosr，以记录最大特征值对应的索引信息，用于训练阶段的反向梯度计算。默认为False。
     - **pad_value** (float) - 用于填充输入序列为空时的池化结果，默认为0.0。
 
-返回：经过指定类型池化后的LoDTensor，数据类型为float32。
+返回
+::::::::::::
+经过指定类型池化后的LoDTensor，数据类型为float32。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

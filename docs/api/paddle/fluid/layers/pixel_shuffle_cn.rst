@@ -16,19 +16,28 @@ pixel_shuffle
     设定：upscale_factor=3
     那么输出张量的形为：[1, 1, 12, 12]
 
-参数：
+参数
+::::::::::::
+
           - **x** （Variable）- 维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
           - **upscale_factor** （int）- 增大空间分辨率的增大因子
 
 
-返回：根据新的维度信息进行重组的张量
+返回
+::::::::::::
+根据新的维度信息进行重组的张量
 
-返回类型：  Variable
+返回类型
+::::::::::::
+  Variable
 
-抛出异常： ``ValueError``  - 如果upscale_factor的平方不能整除输入的通道维度(C)的大小。
+抛出异常
+::::::::::::
+ ``ValueError``  - 如果upscale_factor的平方不能整除输入的通道维度(C)的大小。
 
 
-**示例代码**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 
