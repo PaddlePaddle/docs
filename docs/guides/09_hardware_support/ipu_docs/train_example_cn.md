@@ -4,7 +4,7 @@
 
 示例将默认用户已安装飞桨框架IPU版，并且已经配置运行时需要的环境(建议在Docker环境中使用飞桨框架IPU版)。
 
-示例代码位于 [Paddle-BERT with Graphcore IPUs](https://github.com/PaddlePaddle/PaddleNLP/examples/language_model/bert/static_ipu)
+示例代码位于 [Paddle-BERT with Graphcore IPUs](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/language_model/bert/static_ipu)
 
 **第一步**：下载源码并安装依赖
 
