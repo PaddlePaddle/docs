@@ -6,7 +6,7 @@
 
 示例代码位于 [Paddle-BERT with Graphcore IPUs](https://github.com/PaddlePaddle/PaddleNLP/examples/language_model/bert/static_ipu)
 
-**第一步**：下载并安装PaddleNLP库
+**第一步**：下载并安装依赖
 
 ```
 # clone paddlenlp repo
