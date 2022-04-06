@@ -68,7 +68,9 @@ Conv3DTranspose
     如果指定了output_size， 其可以自动计算滤波器的大小。
 
 
-参数:
+参数
+::::::::::::
+
       - **num_channels** (int) - 输入图像的通道数。
       - **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数相同。
       - **filter_size** (int|tuple) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，（filter_size_depth，filter_size_height, filter_size_width）。否则，filter_size_depth = filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， 其会根据output_size、padding和stride计算出滤波器大小。
@@ -85,9 +87,12 @@ Conv3DTranspose
       - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
 
-返回： 无
+返回
+::::::::::::
+ 无
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 
@@ -106,11 +111,15 @@ Conv3DTranspose
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+属性
+::::::::::::
+weight
+'''''''''
 
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 
 本层的可学习偏置，类型为 ``Parameter``
 

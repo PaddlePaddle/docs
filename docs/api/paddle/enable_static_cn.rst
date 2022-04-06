@@ -11,9 +11,12 @@ enable_static
 该接口开启静态图模式。可通过 :ref:`cn_api_paddle_disable_static` 关闭静态图模式。
 
 
-返回：无
+返回
+::::::::::::
+无
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

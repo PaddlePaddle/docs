@@ -30,7 +30,7 @@
 | paddle.nn.utils                | 网络相关工具类API，比如weight_norm、spectral_norm等          |
 | paddle.static.nn               | 静态图下组网专用API，比如：输入占位符data/Input，控制流while_loop/cond |
 | paddle.static                  | 静态图下基础框架相关API，比如：Variable, Program, Executor等 |
-| paddle.optimizer               | 优化算法相关API，比如：SGD，Adagrad, Adam等                  |
+| paddle.optimizer               | 优化算法相关API，比如：SGD、Adagrad、Adam等                  |
 | paddle.optimizer.lr（文件）    | 学习率策略相关API，比如LinearWarmup、LRScheduler等           |
 | paddle.metric                  | 评估指标计算相关的API，比如：accuracy, auc等                 |
 | paddle.io                      | 数据输入输出相关API，比如：save, load, Dataset, DataLoader等 |
@@ -68,15 +68,16 @@
 - 常用的API可以在更高层级建立别名，当前规则如下：
    1. paddle.tensor目录下的API，均在paddle根目录建立别名，其他所有API在paddle根目录下均没有别名。
    2. paddle.nn目录下除了functional目录以外的所有API，在paddle.nn目录下均有别名。
-
-	   
-
-    paddle.nn.functional.mse_loss # functional下的函数不建立别名，使用完整名称
-	paddle.nn.Conv2D # 为paddle.nn.layer.conv.Conv2D建立的别名
-3. 一些特殊情况比如特别常用的API会直接在paddle下建立别名
-
-    paddle.tanh # 为常用函数paddle.tensor.math.tanh建立的别名
-    paddle.linspace# 为常用函数paddle.fluid.layers.linspace建立的别名
+   
+        ```python
+        paddle.nn.functional.mse_loss # functional下的函数不建立别名，使用完整名称
+        paddle.nn.Conv2D # 为paddle.nn.layer.conv.Conv2D建立的别名
+       ```
+  1. 一些特殊情况比如特别常用的API会直接在paddle下建立别名
+        ```python
+        paddle.tanh # 为常用函数paddle.tensor.math.tanh建立的别名
+        paddle.linspace# 为常用函数paddle.fluid.layers.linspace建立的别名
+        ```
 
 
 ### API行为定义规范
@@ -112,16 +113,17 @@
      # ......\paddle\fluid\dygraph\math_op_patch.py:239: UserWarning: The dtype of left and right variables are not the same, left dtype is paddle.float32, but right dtype is paddle.int32, the right dtype will convert to paddle.float32 format(lhs_dtype, rhs_dtype, lhs_dtype))
      ```
 
-  2. 支持Tensor和Scalar之间的隐式类型转换，转换规则为向优先级更高的数据类型转换。因为python的scalar只支持int64和float64，要求用户显示地对scalar进行类型转换比较困难，需要先转成tensor，对易用性的影响较大。
-
+  2. 支持Tensor和python Scalar之间的隐式类型转换，当 Tensor 的数据类型和 python Scalar
+  是同一类的数据类型时（都是整型，或者都是浮点型），或者 Tensor 是浮点型而 python Scalar 是
+  整型的，默认会将 python Scalar 转换成 Tensor 的数据类型。而如果 Tensor 的数据类型是整型而 python Scalar 是浮点型时，计算结果会是 float32 类型的。
      ```python
      import paddle
      a = paddle.to_tensor([1.0], dtype='float32')
      b = a + 1  # 由于python scalar默认采用int64, 转换后b的类型为'float32'
-     c = a + 1.0  # python saclar默认采用float64, 转换后c的类型为'float64'
+     c = a + 1.0  # 虽然 python scalar 是 float64, 但计算结果c的类型为'float32'
      a = paddle.to_tensor([1], dtype='int32')
-     b = a + 1.0  # python scalar默认采用float64, 转换后b的类型为'float64'
-     c = a + 1  # python scalar默认采用int64, 转换后c的类型为'int64'
+     b = a + 1.0  # 虽然 python scalar 是 float64, 但计算结果b的类型为 'float32
+     c = a + 1  # 虽然 python scalar 是 int64, 但计算结果c的类型为'int32'
      ```
 
 ### 数据类型规范
@@ -359,9 +361,10 @@
    | 按轴求和      | reduce_sum          |      |                                  |
    
 - 常用参数表
-   | 中文名       | 推荐          | 不推荐写法                            | 示例                                                         | 备注                                                         |
+
+   | 中文名         | 推荐           | 不推荐写法                            | 示例                                                         | 备注                                                         |
    | ------------ | ------------- | ------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-   | 算子名       | name          | input                                     | relu(x, inplace=False, name=None)                        | 调用api所创建的算子名称                                      |
+   | 算子名        | name          | input                                     | relu(x, inplace=False, name=None)                        | 调用api所创建的算子名称                                      |
    | 单个输入张量 | x         | x                                     | relu(x, inplace=False, name=None)                        | 单个待操作的张量                                             |
    | 两个输入张量 | x, y          | input, other/ X, Y                    | elementwise_add(x, y, axis=-1, activation=None, name=None)   | 两个待操作的张量                                             |
    | 数据类型     | dtype         | type, data_type                       | unique(x, dtype='int32')                                 |                                                              |

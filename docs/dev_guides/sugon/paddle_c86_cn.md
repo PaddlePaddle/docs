@@ -15,7 +15,7 @@ ROCm 软件栈整体架构如下，其中除了支持C86加速卡 的 Driver/Fir
 
 ROCm 软件栈本身具备较高的成熟度与完备性，用户根据 ROCm 提供的 CUDA到HIP的[代码移植手册](https://rocmdocs.amd.com/en/latest/Programming_Guides/HIP-porting-guide.html) ，可以较为方便的将 CUDA 上的工作移植到 HIP 上，使得用户程序可以支持跨 ROCm 与 CUDA 的异构计算。
 
-![图片](Paddle适配C86加速卡详解.image/bj-e6f7280a74292b79c5ec843cd7fd6452f13b9b25.png)
+![图片](../images/sugon_rocm.png)
 
 
 ### Paddle 适配 ROCm

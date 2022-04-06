@@ -51,7 +51,9 @@ sequence_conv
 
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 维度为 :math:`（M, K)` 的二维LoDTensor，仅支持lod_level为1。其中M是mini-batch的总时间步数，K是输入的 ``hidden_size`` 特征维度。数据类型为float32或float64。
     - **num_filters** (int) - 滤波器的数量。
     - **filter_size** (int) - 滤波器的高度（H）；不支持指定滤波器宽度（W），宽度固定取值为输入的 ``hidden_size`` 。默认值为3。
@@ -64,11 +66,16 @@ sequence_conv
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 
-返回：和输入序列等长的LoDTensor，数据类型和输入一致，为float32或float64。
+返回
+::::::::::::
+和输入序列等长的LoDTensor，数据类型和输入一致，为float32或float64。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

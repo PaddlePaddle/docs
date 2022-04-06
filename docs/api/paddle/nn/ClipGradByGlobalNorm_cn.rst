@@ -29,11 +29,14 @@ ClipGradByGlobalNorm
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(l2norm(t\_list[i]))^2}\\
 
 
-参数:
+参数
+::::::::::::
+
  - **clip_norm** (float) - 所允许的范数最大值
  - **group_name** (str, optional) - 剪切的组名
 
-**代码示例**
+代码示例
+::::::::::::
  
 .. code-block:: python
 

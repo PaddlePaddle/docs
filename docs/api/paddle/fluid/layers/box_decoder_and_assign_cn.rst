@@ -29,7 +29,9 @@ box decode过程得出decode_box，然后分配方案如下所述：
 
 
 
-参数：
+参数
+::::::::::::
+
    - **prior_box** （Variable） - 维度为[N,4]的2-D Tensor，包含N个框，数据类型为float32或float64。每个框表示为[xmin，ymin，xmax，ymax]， [xmin，ymin]是anchor框的左上坐标，如果输入是图像特征图，则它们接近坐标系的原点。 [xmax，ymax]是anchor框的右下坐标
    - **prior_box_var** （Variable） - 维度为[N,4]的2-D Tensor，包含N组variance。数据类型为float32或float64。 prior_box_var默认将所有元素设置为1
    - **target_box** （Variable） - 维度为[N,classnum * 4]的2-D Tensor或LoDTensor，拥有N个目标框，数据类型为float32或float64。
@@ -38,16 +40,21 @@ box decode过程得出decode_box，然后分配方案如下所述：
    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 
-返回：
+返回
+::::::::::::
+
 
      - 表示解压检测框的Tensor或LoDTensor，数据类型为float32，float64。维度为[N，classnum * 4]，N个prior_box解码得到的N个目标框的结果。
      - 表示输出最佳检测框的Tensor或LoDTensor，数据类型为float32，float64。维度为[N，4]，N个prior_box解码后得到目标框，再选择最佳非背景类的目标框结果。
 
 
-返回类型：Tuple
+返回类型
+::::::::::::
+Tuple
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

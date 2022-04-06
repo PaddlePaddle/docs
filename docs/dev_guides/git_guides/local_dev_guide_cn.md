@@ -79,6 +79,24 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 关于编译 PaddlePaddle 的源码，请参见[从源码编译](../../../install/compile/fromsource.html) 选择对应的操作系统。
 
+## 单测
+
+`python/paddle/fluid/tests/unittests/` 目录下新增的 `test_*.py` 单元测试会被自动加入工程进行编译。
+
+注意事项：
+
+- **运行单元测试测时需要编译整个工程**，并且编译时需要打开`WITH_TESTING`。
+
+- **执行单测一定要用ctest命令**，<font color="#FF0000">不可直接`python test_*.py`</font>。
+
+参考上述[编译](#编译)过程，编译成功后，在`build`目录下执行下面的命令来运行单元测试：
+
+执行:
+
+```bash
+ctest -R test_mul_op -V
+```
+
 ## 提交（commit）
 
 接下来我们取消对 README.md 文件的改变，然后提交新添加的 test 文件。

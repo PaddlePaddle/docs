@@ -55,7 +55,9 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
 
 
 
-参数：
+参数
+::::::::::::
+
     - **x**  (Variable) – YOLOv3损失运算的输入张量，这是一个形状为[N，C，H，W]的四维Tensor。H和W应该相同，第二维（C）存储框的位置信息，以及每个anchor box的置信度得分和one-hot分类。数据类型为float32或float64。
     - **gt_box**  (Variable) – 真实框，应该是[N，B，4]的形状。第三维用来承载x、y、w、h，其中 x, y是真实框的中心坐标，w, h是框的宽度和高度，且x、y、w、h将除以输入图片的尺寸，缩放到[0,1]区间内。 N是batch size，B是图像中所含有的的最多的box数目。数据类型为float32或float64。
     - **gt_label**  (Variable) – 真实框的类id，应该形为[N，B]。数据类型为int32。
@@ -69,11 +71,17 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
     - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
 
 
-返回: yolov3损失的值，具有形状[N]的1-D张量。
+返回
+::::::::::::
+ yolov3损失的值，具有形状[N]的1-D张量。
 
-返回类型:   变量（Variable），数据类型与input一致。
+返回类型
+::::::::::::
+   变量（Variable），数据类型与input一致。
 
-抛出异常:
+抛出异常
+::::::::::::
+
     - ``TypeError``  – yolov3_loss的输入x必须是Variable
     - ``TypeError``  – 输入yolov3_loss的gtbox必须是Variable
     - ``TypeError``  – 输入yolov3_loss的gtlabel必须是None或Variable
@@ -83,7 +91,8 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
     - ``TypeError``  – 输入yolov3_loss的ignore_thresh必须是一个浮点数float类型
     - ``TypeError``  – 输入yolov3_loss的use_label_smooth必须是bool型
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
