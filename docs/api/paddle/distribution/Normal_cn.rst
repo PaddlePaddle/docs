@@ -24,12 +24,15 @@ Normal
 :math:`scale = \sigma` : 标准差。
 :math:`Z`: 正态分布常量。
 
-参数：
+参数
+::::::::::::
+
     - **loc** (int|float|list|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为int、float、list、numpy.ndarray或Tensor。
     - **scale** (int|float|list|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为int、float、list、numpy.ndarray或Tensor。
     - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -65,19 +68,25 @@ Normal
     # [0.34939718] with shape: [1]
 
 
-.. py:function:: sample(shape, seed=0)
+方法
+:::::::::
 
-生成指定维度的样本
+sample(shape, seed=0)
+'''''''''
 
-参数：
+生成指定维度的样本。
+
+**参数**
+
     - **shape** (list) - 1维列表，指定生成样本的维度。数据类型为int32。
     - **seed** (int) - 长整型数。
 
-返回：预先设计好维度的张量, 数据类型为float32
+**返回**
 
-返回类型：Tensor
+Tensor，预先设计好维度的Tensor，数据类型为float32。
 
-.. py:function:: entropy()
+entropy()
+'''''''''
 
 信息熵
 
@@ -91,33 +100,38 @@ Normal
 
 :math:`scale = \sigma` : 标准差。
 
-返回：正态分布的信息熵, 数据类型为float32
+**返回**
 
-返回类型：Tensor
+Tensor, 正态分布的信息熵，数据类型为float32。
 
-.. py:function:: log_prob(value)
+log_prob(value)
+'''''''''
 
 对数概率密度函数
 
-参数：
+**参数**
+
     - **value** (Tensor) - 输入张量。数据类型为float32或float64。
 
-返回：对数概率, 数据类型与value相同
+**返回**
 
-返回类型：Tensor
+Tensor，对数概率，数据类型与value相同。
 
-.. py:function:: probs(value)
+probs(value)
+'''''''''
 
 概率密度函数
 
-参数：
+**参数**
+
     - **value** (Tensor) - 输入张量。数据类型为float32或float64。
 
-返回：概率, 数据类型与value相同
+**返回**
 
-返回类型：Tensor
+Tensor，概率，数据类型与value相同。
 
-.. py:function:: kl_divergence(other)
+kl_divergence(other)
+'''''''''
 
 两个正态分布之间的KL散度。
 
@@ -140,14 +154,10 @@ Normal
 :math:`ratio`: 两个标准差之间的比例。
 :math:`diff`: 两个平均值之间的差值。
 
-参数：
+**参数**
+
     - **other** (Normal) - Normal的实例。
 
-返回：两个正态分布之间的KL散度, 数据类型为float32
+**返回**
 
-返回类型：Tensor
-
-
-
-
-
+Tensor，两个正态分布之间的KL散度，数据类型为float32。

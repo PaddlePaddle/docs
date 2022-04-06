@@ -8,7 +8,7 @@ AdamW
 
 
 
-AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxiv.org/pdf/1711.05101.pdf>`,用来解决Adam优化器中L2正则化失效的问题。
+AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION <https://arxiv.org/pdf/1711.05101.pdf>`_，用来解决 :ref:`Adam <cn_api_paddle_optimizer_Adam>` 优化器中L2正则化失效的问题。
 
 其参数更新的计算公式如下：
 
@@ -43,7 +43,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
       默认值为None，此时将不进行梯度裁剪。
     - **lazy_mode** （bool，可选） - 设为True时，仅更新当前具有梯度的元素。官方Adam算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。 lazy mode仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果，默认为False。
     - **multi_precision** (bool，可选) – 在基于GPU设备的混合精度训练场景中，该参数主要用于保证梯度更新的数值稳定性。设置为True时，优化器会针对FP16类型参数保存一份与其值相等的FP32类型参数备份。梯度更新时，首先将梯度类型提升到FP32，然后将其更新到FP32类型参数备份中。最后，更新后的FP32类型值会先转换为FP16类型，再赋值给实际参与计算的FP16类型参数。默认为False。
-    - **name** (str, 可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name** (str，可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 
 代码示例
@@ -70,8 +70,7 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     adam.step()
     adam.clear_grad()
 
-
-    #Note that the learning_rate of linear_2 is 0.01.
+    # Note that the learning_rate of linear_2 is 0.01.
     linear_1 = paddle.nn.Linear(10, 10)
     linear_2 = paddle.nn.Linear(10, 10)
     inp = paddle.uniform(shape=[10, 10], min=-0.1, max=0.1)
@@ -94,20 +93,19 @@ AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://arxi
     adam.step()
     adam.clear_grad()
 
-
 方法
 ::::::::::::
 step()
 '''''''''
 
 .. note::
-  1. 该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+  该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次优化器并进行参数更新。
 
 **返回**
 
-None。
+无。
 
 
 **代码示例**
@@ -167,7 +165,7 @@ clear_grad()
 '''''''''
 
 .. note::
-  1. 该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+  该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
 清除需要优化的参数的梯度。
@@ -192,7 +190,7 @@ set_lr(value)
 '''''''''
 
 .. note::
-  1. 该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+  该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
@@ -202,7 +200,7 @@ set_lr(value)
 
 **返回**
 
-None。
+无。
 
 **代码示例**
 
@@ -231,7 +229,7 @@ get_lr()
 '''''''''
 
 .. note::
-  1. 该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+  该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 

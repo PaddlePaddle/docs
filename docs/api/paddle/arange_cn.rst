@@ -21,9 +21,6 @@ arange
 ::::::::::
         Tensor: 以步长 ``step`` 均匀分割给定数值区间[``start``, ``end``)后得到的1-D Tensor, 数据类型为 ``dtype`` 。
 
-抛出异常
-::::::::::
-        - ``TypeError`` - 如果 ``dtype`` 不是int32、int64、float32、float64。
 
 代码示例
 ::::::::::

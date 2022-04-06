@@ -14,6 +14,7 @@ conv1d
     Out = \sigma \left ( W * X + b \right )
 
 其中：
+
     - :math:`X` ：输入值，NCL或NLC格式的3-D Tensor
     - :math:`W` ：卷积核值，MCL格式的3-D Tensor
     - :math:`*` ：卷积操作
@@ -49,7 +50,9 @@ conv1d
 .. math::
     L_{out} = \frac{\left ( L_{in} -\left ( dilation*\left ( L_{f}-1 \right )+1 \right ) \right )}{stride}+1
 
-参数：
+参数
+::::::::::::
+
     - **x** (Tensor) - 输入是形状为 :math:`[N, C, L]` 或 :math:`[N, L, C]` 的4-D Tensor，N是批尺寸，C是通道数，L是特征长度，数据类型为float16, float32或float64。
     - **weight** (Tensor)) - 形状为 :math:`[M, C/g, kL]` 的卷积核。 M是输出通道数， g是分组的个数，kL是卷积核的长度度。
     - **bias** (int|list|tuple，可选) - 偏置项，形状为： :math:`[M,]` 。
@@ -60,10 +63,13 @@ conv1d
     - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCL"和"NLC"。N是批尺寸，C是通道数，L是特征长度。默认值："NCL"。
     - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值：None。
 
-返回：3-D Tensor，数据类型与 ``x`` 一致。返回卷积的结果。
+返回
+::::::::::::
+3-D Tensor，数据类型与 ``x`` 一致。返回卷积的结果。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

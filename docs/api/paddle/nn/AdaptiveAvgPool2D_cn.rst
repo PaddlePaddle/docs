@@ -39,9 +39,6 @@ AdaptiveAvgPool2D
 :::::::::
 计算AdaptiveAvgPool2D的可调用对象
 
-抛出异常
-:::::::::
-    - ``ValueError`` - 如果 ``data_format`` 既不是"NCHW"也不是"NHWC"。
 
 代码示例
 :::::::::

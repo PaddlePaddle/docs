@@ -17,7 +17,7 @@ sparse_attention
 .. warning::
     目前该API只在CUDA11.3及以上版本中使用。
 
-参数：
+参数
 :::::::::
   - query (Tensor) - 输入的Tensor，代表注意力模块中的 ``query`` ，这是一个4维Tensor，形状为 :[batch_size, num_heads, seq_len, head_dim]，数据类型为float32或float64。
   - key (Tensor) - 输入的Tensor，代表注意力模块中的 ``key`` ，这是一个4维Tensor，形状为 :[batch_size, num_heads, seq_len, head_dim]，数据类型为float32或float64。
@@ -25,7 +25,7 @@ sparse_attention
   - sparse_csr_offset (Tensor) - 输入的Tensor，注意力模块中的稀疏特性，稀疏特性使用CSR格式表示， ``offset`` 代表矩阵中每一行非零元的数量。这是一个3维Tensor，形状为 :[batch_size, num_heads, seq_len + 1]，数据类型为int32。
   - sparse_csr_columns (Tensor) - 输入的Tensor，注意力模块中的稀疏特性，稀疏特性使用CSR格式表示， ``colunms`` 代表矩阵中每一行非零元的列索引值。这是一个3维Tensor，形状为 :[batch_size, num_heads, sparse_nnz]，数据类型为int32。
 
-返回：
+返回
 :::::::::
   ``Tensor`` ，代表注意力模块的结果。这是一个4维Tensor，形状为 :[batch_size, num_heads, seq_len, head_dim]，数据类型为float32或float64。
 

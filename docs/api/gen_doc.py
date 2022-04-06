@@ -447,6 +447,7 @@ def set_api_sketch():
         paddle.hub,
         paddle.autograd,
         paddle.incubate,
+        paddle.incubate.optimizer,
         paddle.inference,
         paddle.onnx,
         paddle.device,

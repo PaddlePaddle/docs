@@ -21,7 +21,9 @@ LinearWarmup
 
 其中learning_rate为热身之后的学习率，可以是python的float类型或者 ``_LRScheduler`` 的任意子类。
 
-参数：
+参数
+::::::::::::
+
     - **learning rate** (float|_LRScheduler) - 热启训练之后的学习率，可以是python的float类型或者 ``_LRScheduler`` 的任意子类。
     - **warmup_steps** (int) - 进行warm up过程的步数。
     - **start_lr** (float) - warm up的起始学习率。
@@ -30,9 +32,12 @@ LinearWarmup
     - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
 
-返回：用于调整学习率的 ``LinearWarmup`` 实例对象。
+返回
+::::::::::::
+用于调整学习率的 ``LinearWarmup`` 实例对象。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -83,18 +88,22 @@ LinearWarmup
             scheduler.step()    # If you update learning rate each step
       # scheduler.step()        # If you update learning rate each epoch
 
-.. py:method:: step(epoch=None)
+方法
+::::::::::::
+step(epoch=None)
+'''''''''
 
 step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
 
-参数：
+**参数**
+
   - **epoch** (int，可选) - 指定具体的epoch数。默认值None，此时将会从-1自动累加 ``epoch`` 数。
 
-返回：
-  无。
+**返回**
 
-**代码示例** ：
+无。
 
-  参照上述示例代码。
+**代码示例**
 
+参照上述示例代码。
 

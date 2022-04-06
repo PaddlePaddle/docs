@@ -23,7 +23,9 @@ BilinearTensorProduct
 - :math:`y^T` ： :math:`y` 的转置
 
 
-参数：
+参数
+::::::::::::
+
     - **input1_dim**  (int) – 第一个输入的维度大小。
     - **input1_dim**  (int) – 第二个输入的维度大小。
     - **output_dim**  (int) – 输出的维度。
@@ -33,9 +35,12 @@ BilinearTensorProduct
     - **bias_attr**  (ParamAttr) – 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
-返回：Tensor, 维度为[batch_size, size]的2D Tensor，数据类型与输入数据类型相同。
+返回
+::::::::::::
+Tensor, 维度为[batch_size, size]的2D Tensor，数据类型与输入数据类型相同。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -51,11 +56,15 @@ BilinearTensorProduct
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+属性
+::::::::::::
+weight
+'''''''''
 
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 
 本层的可学习偏置，类型为 ``Parameter``
 
