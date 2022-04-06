@@ -21,6 +21,6 @@ pip install -r requirements.txt
 
 按照 `README.md` 的描述准备用于预训练的数据集。
 
-**第二步**：执行模型训练
+**第三步**：执行模型训练
 
 按照 `README.md` 的描述开始BERT-Base模型的预训练和在SQuAD v1.1数据集上的模型微调。
