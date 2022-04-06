@@ -6,14 +6,14 @@
 
 示例代码位于 [Paddle-BERT with Graphcore IPUs](https://github.com/PaddlePaddle/PaddleNLP/examples/language_model/bert/static_ipu)
 
-**第一步**：下载并安装依赖
+**第一步**：下载源码并安装依赖
 
 ```
-# clone paddlenlp repo
+# 下载源码
 git clone https://github.com/PaddlePaddle/PaddleNLP.git
 cd paddlenlp/examples/language_model/bert/static_ipu
 
-# install requirements
+# 安装依赖
 pip install -r requirements.txt
 ```
 
