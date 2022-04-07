@@ -11,7 +11,7 @@ corrcoef
 
 皮尔逊积矩相关系数 `R` 和协方差矩阵 `C` 的关系如下：
 
-    .. math:: R_{ij} = C_{ij} / sqrt{ C_{ii} * C_{jj} }
+    .. math:: R_{ij} = \\frac{ C_{ij} } { \\sqrt{ C_{ii} * C_{jj} } }
 
     `R` 的值在-1到1之间。
 
