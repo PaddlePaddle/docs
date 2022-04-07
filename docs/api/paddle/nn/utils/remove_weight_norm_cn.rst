@@ -7,14 +7,19 @@ remove_weight_norm
 
 移除传入 ``layer`` 中的权重归一化。
 
-参数：
+参数
+::::::::::::
+
    - **layer** (paddle.nn.Layer) - 要添加权重归一化的层。
    - **name** (str, 可选) - 权重参数的名字。默认：'weight'. 
 
-返回：
+返回
+::::::::::::
+
    ``Layer`` , 移除权重归一化hook之后的层
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

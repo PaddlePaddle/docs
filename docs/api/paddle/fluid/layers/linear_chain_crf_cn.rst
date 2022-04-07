@@ -51,20 +51,26 @@ linear_chain_crf
 
     3.Emission的第二维度必须和标记数字（tag number）相同。
 
-参数：
+参数
+::::::::::::
+
     - **input** (LoDTensor|Tensor) - 数据类型为float32， float64的Tensor或者LoDTensor。线性链条件随机场的发射矩阵emission。输入为LoDTensor时，是一个shape为[N*D]的2-D LoDTensor，N是每一个batch中batch对应的长度数想加的总数，D是维度。当输入为Tensor时，应该是一个shape为[N x S x D]的Tensor，N是batch_size，S为序列的最大长度，D是维度。
     - **label** (Tensor|LoDTensor） - 数据类型为int64类型Tensor或者LoDTensor。该值为标签值。输入为LoDTensor时[N x 1]，N是mini-batch的总数;输入为Tensor时，[N x S],N为batch数量，S为序列的最大长度。
     - **Length** (Tensor) - 数据类型为int64类型的Tensor。 shape为[M x 1]的Tensor,M为mini_batch中序列的数量。
     - **param_attr** (ParamAttr) - 可学习参数的属性，为transition矩阵。详见代码示例。
 
-返回：
+返回
+::::::::::::
+
     Emission的指数形式。shape与Emission相同。这是前向计算中的中间计算结果，在反向计算中还会复用。
 
     Transition的指数形式。shape为[(D+2)*D]的二维张量。这是前向计算中的中间计算结果，在反向计算中还会复用。
 
     条件概率的对数形式。每个batch训练样本的条件概率的对数。这是一个shape为[S*1]的二维张量，S是mini-batch的序列数。注：S等于mini-batch的序列数。输出不再是LoDTensor。
 
-返回类型：
+返回类型
+::::::::::::
+
     Emission的指数形式。Variable(Tensor|LoDTensor)：数据类型为float32， float64的Tensor或者LoDTensor。
 
     Transition的指数形式。Variable(Tensor|LoDTensor)：数据类型为float32， float64的Tensor或者LoDTensor。
@@ -72,7 +78,8 @@ linear_chain_crf
     条件概率的对数形式。Variable(Tensor)：数据类型为float32， float64的Tensor。
 
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

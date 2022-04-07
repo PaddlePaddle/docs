@@ -43,7 +43,9 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
 如果想得到单独的q, k 或v的 weight，可以通过转置和切分得到。
 
 
-参数:
+参数
+::::::::::::
+
 ::::::::::
     - **x** (Tensor) - 输入的 ``Tensor`` ，代表 Query，是一个三维 tensor，形状为 ``[batch_size, sequence_length, embed_dim]`` 。其中，batch_size 是一次训练所处理的样本个数（句子个数)；sequence_length 代表每一个样本序列（每句话）中的 word 个数；embed_dim 代表 word 经过 embedding 后得到的向量长度。
     - **qkv_weight** (Tensor) - 代表 Attention 中计算 q, k, v 时的权重，是一个四维 tensor，形状为 ``[3, num_heads, head_dim, embed_dim]`` 。其中，3 代表 qkv_weight 是包含了 q, k, v 三个权重矩阵，num_heads 代表 multi-head attention 中的 head 数量，head_dim 代表 head 的维度。

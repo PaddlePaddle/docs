@@ -10,16 +10,23 @@ array_write
 
 该OP将输入的变量 ``x`` 写入到数组 :ref:`cn_api_fluid_LoDTensorArray` ``array`` 的第i个位置，并返回修改后的LoDTensorArray，如果 ``array`` 为None，则创建一个新的LoDTensorArray。常与 :ref:`cn_api_fluid_layers_array_read` OP联合使用对LoDTensorArray进行读写。
 
-参数:
+参数
+::::::::::::
+
     - **x** (Variable) – 待写入的数据，多维Tensor或LoDTensor，数据类型支持float32，float64，int32，int64
     - **i** (Variable) – shape为[1]的1-D Tensor，表示写入到输出数组LoDTensorArray的位置，数据类型为int64
     - **array** (Variable，可选) – 指定写入 ``x`` 的数组LoDTensorArray。默认值为None, 此时将创建新的LoDTensorArray并作为结果返回
 
-返回: 写入输入 ``x`` 之后的LoDTensorArray
+返回
+::::::::::::
+ 写入输入 ``x`` 之后的LoDTensorArray
 
-返回类型: Variable
+返回类型
+::::::::::::
+ Variable
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

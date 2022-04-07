@@ -18,6 +18,7 @@ Conv3D
     Out = \sigma \left ( W * X + b \right )
 
 其中：
+
     - :math:`X` ：输入值，NCDHW或NDHWC格式的5-D Tensor
     - :math:`W` ：卷积核值，MCDHW格式的5-D Tensor
     - :math:`*` ：卷积操作
@@ -25,7 +26,9 @@ Conv3D
     - :math:`\sigma` ：激活函数
     - :math:`Out` ：输出值, NCDHW或NDHWC格式的5-D Tensor，和 ``X`` 的形状可能不同
 
-参数：
+参数
+::::::::::::
+
     - **in_channels** (int) - 输入图像的通道数。
     - **out_channels** (int) - 由卷积操作产生的输出的通道数。
     - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核的深度，高和宽。如果为单个整数，表示卷积核的深度，高和宽都等于该整数。
@@ -41,13 +44,17 @@ Conv3D
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+
+weight
+'''''''''
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 本层的可学习偏置，类型为 ``Parameter``
     
-形状：
+形状
+::::::::::::
 
     - 输入：:math:`(N, C_{in}, D_{in}, H_{in}, W_{in})`
     - 卷积核：:math:`(C_{out}, C_{in}, K_{d}, K_{h}, K_{w})`
@@ -82,18 +89,9 @@ Conv3D
 
         W_{out} = \frac{\left ( W_{in} -\left ( dilation[2]*\left ( kernel\_size[2]-1 \right )+1 \right ) \right )}{stride[2]}+1
 
-抛出异常：
-    - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
-    - ``ValueError`` - 如果 ``input`` 的通道数未被明确定义。
-    - ``ValueError`` - 如果 ``padding`` 是字符串，既不是"SAME"也不是"VALID"。
-    - ``ValueError`` - 如果 ``padding`` 含有5个二元组，与批尺寸对应维度的值不为0或者与通道对应维度的值不为0。
-    - ``ShapeError`` - 如果输入不是5-D Tensor。
-    - ``ShapeError`` - 如果输入和卷积核的维度大小不相同。
-    - ``ShapeError`` - 如果输入的维度大小与 ``stride`` 之差不是2。
-    - ``ShapeError`` - 如果输出的通道数不能被 ``groups`` 整除。
 
-
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

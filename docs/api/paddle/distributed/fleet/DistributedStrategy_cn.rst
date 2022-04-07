@@ -10,11 +10,12 @@ DistributedStrategy
 属性
 ::::::::::::
 
-.. py:attribute:: save_to_prototxt
+save_to_prototxt
+'''''''''
 
 序列化当前的DistributedStrategy，并且保存到output文件中
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -26,24 +27,28 @@ DistributedStrategy
   strategy.save_to_prototxt("dist_strategy.prototxt")
 
 
-.. py:attribute:: load_from_prototxt
+load_from_prototxt
+'''''''''
 
 加载已经序列化过的DistributedStrategy文件，并作为初始化DistributedStrategy返回
 
-**示例代码**
+**代码示例**
+
+.. code-block:: python
 
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.load_from_prototxt("dist_strategy.prototxt")
 
 
-.. py:attribute:: execution_strategy
+execution_strategy
+'''''''''
 
 `Post Local SGD <https://arxiv.org/abs/1808.07217>`__
 
 配置DistributedStrategy中的 `ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`_
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -57,11 +62,12 @@ DistributedStrategy
   strategy.execution_strategy = exe_strategy
 
 
-.. py:attribute:: build_strategy
+build_strategy
+'''''''''
 
 配置DistributedStrategy中的 `BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`_
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -80,11 +86,12 @@ DistributedStrategy
   strategy.build_strategy = build_strategy
 
 
-.. py:attribute:: auto
+auto
+'''''''''
 
 表示是否启用自动并行策略。此功能目前是实验性功能。目前，自动并行只有在用户只设置auto，不设置其它策略时才能生效。具体请参考示例代码。默认值：False
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -101,11 +108,12 @@ DistributedStrategy
   optimizer = fleet.distributed_optimizer(optimizer, strategy)
 
 
-.. py:attribute:: recompute
+recompute
+'''''''''
 
 是否启用Recompute来优化内存空间，默认值：False
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -120,7 +128,8 @@ DistributedStrategy
     }
 
 
-.. py:attribute:: recompute_configs
+recompute_configs
+'''''''''
 
 设置Recompute策略的配置。目前来讲，用户使用Recompute策略时，必须配置 checkpoints 参数。
 
@@ -131,11 +140,12 @@ DistributedStrategy
 **checkpoint_shape(list):** 该参数仅在 offload 开启时需要设置，用来指定 checkpoints 的各维度大小。目前offload 需要所有checkpoints 具有相同的 shape，并且各维度是确定的（不支持 -1 维度）。
 
 
-.. py:attribute:: pipeline
+pipeline
+'''''''''
 
 是否启用Pipeline并行。目前，主要实现单机多GPU间的Pipeline并行和多机间的数据并行。Pipeline信息由用户定义程序中的device_guard确定。
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -144,13 +154,14 @@ DistributedStrategy
   strategy.pipeline = True
 
 
-.. py:attribute:: pipeline_configs
+pipeline_configs
+'''''''''
 
 设置Pipeline策略的配置。Pipeline策略下，神经网络的不同层在不同的GPU设备。相邻的GPU设备间有用于同步隐层Tensor的队列。Pipeline并行包含多种生产者-消费者形式的硬件对，如GPU-CPU、CPU-GPU、GPU-XPU。加速PIpeline并行的最佳方式是减少Tensor队列中的Tensor大小，这样生产者可以更快的为下游消费者提供数据。
 
 **micro_batch_size (int):** 每个用户定义的mini-batch中包含的更小的micro-batch的数量。
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -160,14 +171,15 @@ DistributedStrategy
   strategy.pipeline_configs = {"micro_batch_size": 12}
 
 
-.. py:attribute:: gradient_merge
+gradient_merge
+'''''''''
 
 梯度累加，是一种大Batch训练的策略。添加这一策略后，模型的参数每过 **k_steps** 步更新一次，
 **k_steps** 是用户定义的步数。在不更新参数的步数里，Paddle只进行前向、反向网络的计算；
 在更新参数的步数里，Paddle执行优化网络，通过特定的优化器（比如SGD、Adam），
 将累加的梯度应用到模型参数上。
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -176,7 +188,8 @@ DistributedStrategy
   strategy.gradient_merge = True
   strategy.gradient_merge_configs = {"k_steps": 4, "avg": True}  
 
-.. py:attribute:: gradient_merge_configs
+gradient_merge_configs
+'''''''''
 
 设置 **distribute_strategy** 策略的配置。
 
@@ -188,11 +201,12 @@ DistributedStrategy
 - **avg**: 梯度求平均
 
 
-.. py:attribute:: lars
+lars
+'''''''''
 
 是否使用LARS optimizer，默认值：False
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -206,7 +220,8 @@ DistributedStrategy
     "exclude_from_weight_decay": ["batch_norm", ".b"],
   } 
 
-.. py:attribute:: lars_configs
+lars_configs
+'''''''''
 
 设置LARS优化器的参数。用户可以配置 lars_coeff，lars_weight_decay，epsilon，exclude_from_weight_decay 参数。
 
@@ -219,11 +234,12 @@ DistributedStrategy
 **epsilon(float):** 一个小的浮点值，目的是维持数值稳定性，避免 lars 公式中的分母为零。 默认值是 0.
 
 
-.. py:attribute:: lamb
+lamb
+'''''''''
 
 是否使用LAMB optimizer，默认值：False
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -235,7 +251,8 @@ DistributedStrategy
       'exclude_from_weight_decay': [],
   }
 
-.. py:attribute:: lamb_configs
+lamb_configs
+'''''''''
 
 设置LAMB优化器的参数。用户可以配置 lamb_weight_decay，exclude_from_weight_decay 参数。
 
@@ -244,10 +261,11 @@ DistributedStrategy
 **exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0. 默认值是 None.
 
 
-.. py:attribute:: localsgd
+localsgd
+'''''''''
 是否使用LocalSGD optimizer，默认值：False。更多的细节请参考 `Don't Use Large Mini-Batches, Use Local SGD <https://arxiv.org/pdf/1808.07217.pdf>`__
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python  
 
@@ -256,10 +274,11 @@ DistributedStrategy
   strategy.localsgd = True # by default this is false
 
 
-.. py:attribute:: localsgd_configs
+localsgd_configs
+'''''''''
 设置LocalSGD优化器的参数。用户可以配置k_steps和begin_step参数。
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -273,10 +292,11 @@ DistributedStrategy
 
 **begin_step(int):** 指定从第几个step之后进行local SGD算法，默认值1。
 
-.. py:attribute:: adaptive_localsgd
+adaptive_localsgd
+'''''''''
 是否使用AdaptiveLocalSGD optimizer，默认值：False。更多的细节请参考`Adaptive Communication Strategies to Achieve the Best Error-Runtime Trade-off in Local-Update SGD <https://arxiv.org/pdf/1810.08313.pdf>`__
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -284,10 +304,11 @@ DistributedStrategy
   strategy = fleet.DistributedStrategy()
   strategy.adaptive_localsgd = True # by default this is false
 
-.. py:attribute:: adaptive_localsgd_configs
+adaptive_localsgd_configs
+'''''''''
 设置AdaptiveLocalSGD优化器的参数。用户可以配置init_k_steps和begin_step参数。
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -301,11 +322,12 @@ DistributedStrategy
 
 **begin_step(int):** 指定从第几个step之后进行Adaptive LocalSGD算法，默认值1。
 
-.. py:attribute:: amp
+amp
+'''''''''
 
 是否启用自动混合精度训练。默认值：False
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -313,7 +335,8 @@ DistributedStrategy
   strategy = fleet.DistributedStrategy()
   strategy.amp = True # by default this is false
 
-.. py:attribute:: amp_configs
+amp_configs
+'''''''''
 
 设置自动混合精度训练配置。为避免梯度inf或nan，amp会根据梯度值自动调整loss scale值。目前可以通过字典设置以下配置。
 
@@ -333,7 +356,7 @@ DistributedStrategy
 
 **custom_black_list(list[str]):** 用户自定义OP禁止fp16执行的黑名单。
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -344,11 +367,12 @@ DistributedStrategy
       "init_loss_scaling": 32768,
       "custom_white_list": ['conv2d']}
 
-.. py:attribute:: dgc
+dgc
+'''''''''
 
 是否启用深度梯度压缩训练。更多信息请参考[Deep Gradient Compression](https://arxiv.org/abs/1712.01887)。 默认值：False
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -356,7 +380,8 @@ DistributedStrategy
   strategy = fleet.DistributedStrategy()
   strategy.dgc = True  # by default this is false
 
-.. py:attribute:: dgc_configs
+dgc_configs
+'''''''''
 
 设置dgc策略的配置。目前用户可配置 rampup_begin_step，rampup_step，sparsity参数。
 
@@ -368,7 +393,7 @@ DistributedStrategy
 **sparsity(list[float]):** 从梯度张量中获取top个重要元素，比率为（1-当前稀疏度）。默认值为[0.999]。\
 例如：如果sparsity为[0.99, 0.999]，则将传输top [1%, 0.1%]的重要元素。
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -377,11 +402,12 @@ DistributedStrategy
   strategy.dgc = True
   strategy.dgc_configs = {"rampup_begin_step": 1252}
 
-.. py:attribute:: fp16_allreduce
+fp16_allreduce
+'''''''''
 
 是否使用fp16梯度allreduce训练。默认值：False
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -390,7 +416,8 @@ DistributedStrategy
   strategy.fp16_allreduce = True  # by default this is false
 
 
-.. py:attribute:: sharding
+sharding
+'''''''''
 
 是否开启sharding 策略。sharding 实现了[ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv.org/abs/1910.02054)
 中 ZeRO-DP 类似的功能，其通过将模型的参数和优化器状态在ranks 间分片来支持更大模型的训练。 
@@ -399,7 +426,7 @@ DistributedStrategy
 
 默认值：False
 
-**示例代码**
+**代码示例**
 
 .. code-block:: python
 
@@ -407,7 +434,8 @@ DistributedStrategy
   strategy = fleet.DistributedStrategy()
   strategy.sharding = True
 
-.. py:attribute:: sharding_configs
+sharding_configs
+'''''''''
 
 设置sharding策略的参数。
 

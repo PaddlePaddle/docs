@@ -9,7 +9,9 @@ batch_norm
 
 详情见 :ref:`cn_api_nn_BatchNorm1D` 。
 
-参数：
+参数
+::::::::::::
+
     - **x** (int) - 输入，数据类型为float32, float64。
     - **running_mean** (Tensor) - 均值的Tensor。
     - **running_var** (Tensor) - 方差的Tensor。
@@ -21,10 +23,13 @@ batch_norm
     - **name** (string, 可选) – BatchNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
 
-返回：无
+返回
+::::::::::::
+无
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

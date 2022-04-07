@@ -10,13 +10,17 @@ inner
 
 对于1维Tensor计算普通内积，对于大于1维的Tensor计算最后一个维度的乘积和，此时两个输入Tensor最后一个维度长度需要相等。
 
-参数：
+参数
+::::::::::::
+
 :::::::::
     - **x** (Tensor) - 一个N维Tensor或者标量Tensor, 如果是N维Tensor最后一个维度长度需要跟y保持一致。
     - **y** (Tensor) - 一个N维Tensor或者标量Tensor, 如果是N维Tensor最后一个维度长度需要跟x保持一致。
     - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：
+返回
+::::::::::::
+
 :::::::::
     - Tensor, x、y的内积结果，Tensor shape为 x.shape[:-1] + y.shape[:-1]。
 

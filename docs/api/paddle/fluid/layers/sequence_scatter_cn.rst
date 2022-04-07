@@ -45,18 +45,25 @@ output[i][j]的值取决于能否在index中第i+1个区间中找到对应的数
     out.dims = X.dims = [3, 6]
 
 
-参数：
+参数
+::::::::::::
+
       - **input** (Variable) - 维度为 :math:`[N, k_1 ... k_n]` 的Tensor， 支持的数据类型：float32，float64，int32，int64。
       - **index** (Variable) - 包含index信息的LoDTensor，lod level必须等于1，支持的数据类型：int32，int64。
       - **updates** (Variable) - 包含updates信息的LoDTensor，lod level和index一致，数据类型与input的数据类型一致。支持的数据类型：float32，float64，int32，int64。 
       - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：在input的基础上使用updates进行更新后得到的Tensor，它与input有相同的维度和数据类型。
+返回
+::::::::::::
+在input的基础上使用updates进行更新后得到的Tensor，它与input有相同的维度和数据类型。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
 
-**代码示例**:
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

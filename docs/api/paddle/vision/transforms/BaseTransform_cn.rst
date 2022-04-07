@@ -21,9 +21,7 @@ BaseTransform
 参数
 :::::::::
 
-    - keys (list[str]|tuple[str], optional) - 输入的类型. 你的输入可以是单一的图像，也可以是包含不同数据结构的元组, ``keys`` 可以用来指定输入类型. 举个例子, 如果你的输入就是一个单一的图像，那么 ``keys`` 可以为 ``None`` 或者 ("image")。如果你的输入是两个图像：``(image, image)`` ，那么 `keys` 应该设置为 ``("image", "image")`` 。如果你的输入是 ``(image, boxes)``, 那么 ``keys`` 应该为 ``("image", "boxes")`` 。
-
-            目前支持的数据类型如下所示:
+    - keys (list[str]|tuple[str], optional) - 输入的类型. 你的输入可以是单一的图像，也可以是包含不同数据结构的元组, ``keys`` 可以用来指定输入类型. 举个例子, 如果你的输入就是一个单一的图像，那么 ``keys`` 可以为 ``None`` 或者 ("image")。如果你的输入是两个图像：``(image, image)`` ，那么 `keys` 应该设置为 ``("image", "image")`` 。如果你的输入是 ``(image, boxes)``, 那么 ``keys`` 应该为 ``("image", "boxes")`` 。目前支持的数据类型如下所示:
 
             - "image": 输入的图像, 它的维度为 ``(H, W, C)`` 。 
             - "coords": 输入的左边, 它的维度为 ``(N, 2)`` 。 

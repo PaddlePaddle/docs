@@ -16,7 +16,9 @@ ZeroPad2D
   - **data_format** (str)  - 指定输入的format，可为 ``'NCHW'`` 或者 ``'NHWC'``，默认值为 ``'NCHW'``。
   - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
 
-返回：无
+返回
+::::::::::::
+无
 
 形状
 :::::::::
