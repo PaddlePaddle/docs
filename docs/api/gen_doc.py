@@ -459,6 +459,7 @@ def set_api_sketch():
         paddle.incubate,
         paddle.incubate.autograd,
         paddle.incubate.nn,
+        paddle.incubate.nn.functional,
         paddle.incubate.optimizer,
         paddle.incubate.optimizer.functional,
         paddle.incubate.operators,
