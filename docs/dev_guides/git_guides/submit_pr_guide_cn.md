@@ -12,7 +12,7 @@
 
 - <font color="#FF0000">请不要频繁Merge develop 分支（在过CI时，会自动Merge develop）</font>，这样会使CI重跑，更加延长CI通过时间。
 
-- 评审人review过后，不允许使用git push -f 强行提交代码，这样评审人无法看到修改前后的diff，使评审变得困难。 
+- 评审人review过后，不允许使用git push -f 强行提交代码，这样评审人无法看到修改前后的diff，使评审变得困难。
 
 ## 完成 Pull Request PR创建
 
@@ -73,6 +73,7 @@
 ```bash
 ➜  git push origin :my-cool-stuff
 ```
+
 
 ## 删除本地分支
 
