@@ -3,7 +3,8 @@
 
 ## 一、Tensor 的概念介绍
 
-飞桨使用张量（[Tensor](../../../api/paddle/Tensor_cn.html)） 来表示神经网络中传递的数据，Tensor 可以理解为多维数组，类似于 [Numpy 数组（ndarray）](https://numpy.org/doc/stable/user/quickstart.html#the-basics) 的概念。不同之处是 Tensor 不仅可以运行在 CPU 上，还支持运行在 GPU 及各种 AI 芯片上，以实现计算加速；并且飞桨基于 Tensor，从数据处理、组网操作、硬件适配等各方面进行了优化，在神经网络训练、推理等任务中可获得更好的效果和使用体验。因此推荐优先使用 Tensor 完成数据处理和组网操作。
+飞桨使用张量（[Tensor](../../../api/paddle/Tensor_cn.html)） 来表示神经网络中传递的数据，Tensor 可以理解为多维数组，类似于 [Numpy 数组（ndarray）](https://numpy.org/doc/stable/user/quickstart.html#the-basics) 的概念。与Numpy 数组相比，Tensor 支持运行在 GPU 及各种 AI 芯片上，以实现计算加速；此外，Paddle基于Tensor，实现了深度学习所必须的反向传播功能和多种多样的算子，从而能够进行完整的深度学习任务。
+
 在飞桨框架中，神经网络的输入、输出数据，以及网络中的参数均采用 Tensor 数据结构，示例如下：
 ```python
 def train(model):
@@ -198,13 +199,9 @@ tensor_to_convert.numpy()
 array([1., 2.], dtype=float32)
 ```
 
-> **说明：**
->
-> 虽然飞桨框架中 Tensor 可以与 Numpy 数组方便地互相转换，但在实际应用中两者频繁转换会存在性能消耗，具体使用场景说明如下：
-> * 场景一：在组网程序中，对网络中向量的处理，务必使用 Tensor，而不建议转成 Numpy 数组。如果在组网过程中转成Numpy 数组，并使用 Numpy 的函数会降低整体性能。
-> * 场景二：在数据处理和模型后处理等场景，也建议优先使用 Tensor，主要是飞桨为 AI 硬件做了大量的适配和性能优化工作，部分情况下会获得更好的使用体验和性能。
->
-> 目前飞桨的 Tensor 基本覆盖 Numpy 数组的操作并有所加强，所以推荐在程序中优先使用 Tensor 完成各种数据处理和组网操作。
+为了方便理解和迁移，Tensor 的很多基础操作API和numpy 在功能、用法上基本保持一致。如第二节中Tensor的指定数据、形状、区间创建，第三节中Tensor的形状、数据类型，第四节中Tensor的各种操作，以及第五届中Tensor的广播，可以很方便的在numpy中找到对应操作。
+
+但是，Tensor也有一些独有的属性和操作，这是为了更好地支持深度学习任务的结果。如第一节中介绍的通过numpy数据甚至图像文本等原生数据手动或自动创建Tensor的功能，能够减轻用户数据前处理的负担。而第二节中介绍的Tensor的设备位置，则方便用户决定Tensor的运行设备。至于Tensor的stop_gradient属性，更是和神经网络的训练息息相关。
 
 ### <span id="newtensor5">1.5 指定图像、文本数据创建</span>
 
@@ -258,9 +255,9 @@ test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=transform)
 print(test_dataset[0][1]) # 打印原始数据集的第一个数据的label
 loader = paddle.io.DataLoader(test_dataset)
 for data in enumerate(loader):
-	x, label = data[1]
-	print(label) # 打印由DataLoader返回的迭代器中的第一个数据的label
-	break
+    x, label = data[1]
+    print(label) # 打印由DataLoader返回的迭代器中的第一个数据的label
+    break
 ```
 ```text
 [7] # 原始数据中label为Python list
@@ -337,8 +334,8 @@ After reshape: [1, 3]
 origin:[3, 2, 5] reshape:[3, 10]      actual: [3, 10] # 直接指定目标 shape
 origin:[3, 2, 5] reshape:[-1]         actual: [30] # 转换为1维，维度根据元素总数推断出来是3*2*5=30
 origin:[3, 2, 5] reshape:[-1, 5]      actual: [6, 5] # 转换为2维，固定一个维度5，另一个维度根据元素总数推断出来是30÷5=6
-origin:[3, 2, 5] reshape:[0, -1]   	  actual: [3, 6] # reshape:[0, -1]中0的索引值为0，按照规则，转换后第0维的元素数量与原始Tensor第0维的元素数量相同，为3；第1维的元素数量根据元素总值计算得出为30÷3=10。
-origin:[3, 2] reshape:[3, 1, 0]	      error： # reshape:[3, 1, 0]中0的索引值为2，但原Tensor只有2维，无法找到与第3维对应的元素数量，因此出错。
+origin:[3, 2, 5] reshape:[0, -1]         actual: [3, 6] # reshape:[0, -1]中0的索引值为0，按照规则，转换后第0维的元素数量与原始Tensor第0维的元素数量相同，为3；第1维的元素数量根据元素总值计算得出为30÷3=10。
+origin:[3, 2] reshape:[3, 1, 0]          error： # reshape:[3, 1, 0]中0的索引值为2，但原Tensor只有2维，无法找到与第3维对应的元素数量，因此出错。
 ```
 
 从上面的例子可以看到，通过 reshape:[-1] ，可以很方便地将 Tensor 按其在计算机上的内存分布展平为一维。
