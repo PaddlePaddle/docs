@@ -12,7 +12,7 @@ Suggestion：Keep commit concise as much as possible at every submit.You can mak
 
 - Please do not merge the develop branch frequently (when passing CI, it will automatically merge develop), which will make the CI run again and prolong the CI passing time.
 
-- After the person in charge has reviewed it, it is not allowed to use git push -f to forcibly submit the code.
+- After the reviewer has reviewed, it is not allowed to use git push -f to forcibly submit the code, so that the reviewer cannot see the diff before and after the modification, making the review difficult.
 
 ## Finish Pull Request create PR
 
