@@ -1,6 +1,6 @@
 # 提交PR注意事项
 
-## 提交 Pull Request：
+## 提交 Pull Request
 
 - 请注意commit的数量：
 
