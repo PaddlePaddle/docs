@@ -1,7 +1,6 @@
 .. _cn_api_distributed_ParallelMode:
 
 ParallelMode
-
 -------------------------------
 
 .. py:class:: paddle.distributed.ParallelMode
