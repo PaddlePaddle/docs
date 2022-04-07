@@ -1,5 +1,19 @@
 # Guide of submitting PR to Github
 
+## Tthe submit of Pull Request:
+
+- Please note the number of commit:
+
+Reason：It will bother reviewers a lot if a dozen of commits are submitted after modification of only one file and only a few modifications are updated in every commit.Reviewers have to check commit one by one to figure out the modification.And sometimes it needs to take the overlap among commits into consideration.
+
+Suggestion：Keep commit concise as much as possible at every submit.You can make a multiple commits can be merged into one by `git rebase -i HEAD~3` and then push to the remote warehouse.you can refer to [rebase usage](https://www.jianshu.com/p/4a8f4af4e803).
+
+- Pay attention to the name of every commit:It would be better to abstract the content of present commit and be not too arbitrary.
+
+- Please do not merge the develop branch frequently (when passing CI, it will automatically merge develop), which will make the CI run again and prolong the CI passing time.
+
+- After the person in charge has reviewed it, it is not allowed to use git push -f to forcibly submit the code.
+
 ## Finish Pull Request create PR
 
 Create an Issue to describe your problem and keep its number.
