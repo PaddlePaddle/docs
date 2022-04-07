@@ -6,6 +6,7 @@ ParallelMode
 .. py:class:: paddle.distributed.ParallelMode
 
 以下是目前支持的并行模式：
+
     - 数据并行：将输入数据分发在不同的设备。
     - 张量并行：将网络中的张量切分到不同的设备。
     - 流水线并行：将网络的不同层切分到不同的设备。
