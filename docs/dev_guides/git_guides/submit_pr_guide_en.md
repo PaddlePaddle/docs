@@ -6,11 +6,11 @@
 
 Reason：It will bother reviewers a lot if a dozen of commits are submitted after modification of only one file and only a few modifications are updated in every commit.Reviewers have to check commit one by one to figure out the modification.And sometimes it needs to take the overlap among commits into consideration.
 
-Suggestion：Keep commit concise as much as possible at every submit.You can make a multiple commits can be merged into one by `git rebase -i HEAD~3` and then push to the remote warehouse.you can refer to [rebase usage](https://www.jianshu.com/p/4a8f4af4e803).
+Suggestion: Keep as few commits as possible for each commit. You can merge the latest 3 commits into one through `git rebase -i HEAD~3` (you can modify the value according to the actual situation).you can refer to [rebase usage](https://www.jianshu.com/p/4a8f4af4e803).
 
 - Pay attention to the name of every commit:It would be better to abstract the content of present commit and be not too arbitrary.
 
-- Please do not merge the develop branch frequently (when passing CI, it will automatically merge develop), which will make the CI run again and prolong the CI passing time.
+- <font color="#FF0000">Please do not merge the develop branch frequently (when passing CI, it will automatically merge develop)</font>, which will make the CI run again and prolong the CI passing time.
 
 - After the reviewer has reviewed, it is not allowed to use git push -f to forcibly submit the code, so that the reviewer cannot see the diff before and after the modification, making the review difficult.
 

@@ -6,11 +6,11 @@
 
 原因：如果仅仅修改一个文件但提交了十几个commit，每个commit只做了少量的修改，这会给评审人带来很大困扰。评审人需要逐一查看每个commit才能知道做了哪些修改，且不排除commit之间的修改存在相互覆盖的情况。
 
-建议：每次提交时，保持尽量少的commit。可以通过`git rebase -i HEAD~3`把多个commit合并成一个，再Push到远程仓库，可以参考[rebase 用法](https://www.jianshu.com/p/4a8f4af4e803)。
+建议：每次提交时，保持尽量少的commit。可以通过`git rebase -i HEAD~3`将最新的3个commit合并成一个（你可以根据实际情况修改该数值），再Push到远程仓库，可以参考[rebase 用法](https://www.jianshu.com/p/4a8f4af4e803)。
 
 - 请注意每个commit的名称：应能反映当前commit的内容，不能太随意。
 
-- 请不要频繁Merge develop 分支（在过CI时，会自动Merge develop），这样会使CI重跑，更加延长CI通过时间。
+- <font color="#FF0000">请不要频繁Merge develop 分支（在过CI时，会自动Merge develop）</font>，这样会使CI重跑，更加延长CI通过时间。
 
 - 评审人review过后，不允许使用git push -f 强行提交代码，这样评审人无法看到修改前后的diff，使评审变得困难。 
 
