@@ -45,6 +45,7 @@ COPY-FROM: paddle.profiler.Profiler:code-example-timer1
 
 方法
 ::::::::::::
+
 start()
 '''''''''
 
@@ -72,8 +73,7 @@ step(num_samples: Optional[int]=None)
 
 指示性能分析器进入下一个step，根据scheduler计算新的性能分析器状态，并根据新的状态触发相应行为。如果有性能数据返回，调用on_trace_ready回调函数进行处理。
 
-参数
-:::::::::
+**参数**
 
     - **num_samples** (int|None，可选) - 模型运行中每一步的样本数量batch size，当timer_only为True时该参数被用于计算吞吐量。默认值：None。
 
@@ -93,13 +93,12 @@ step_info(unit: Optional[int]=None)
 
 3. ips（Instance Per Second）：模型吞吐量，单位为samples/s或其他，取决于参数unit的设置。 当step()的num_samples为None时，单位为steps/s。
 
-参数
-:::::::::
+**参数**
 
     - **unit** (string，可选) - 输入数据的单位，仅在step()的num_samples指定为实数时有效。例如，当unit为images时，吞吐量的单位为images/s。 默认值：None，吞吐量的单位是samples/s。
 
-返回
-::::::::::::
+**返回**
+
 表示统计数据的字符串
 
 **代码示例**
