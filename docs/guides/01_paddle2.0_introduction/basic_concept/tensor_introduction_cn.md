@@ -733,7 +733,7 @@ print(z.shape)
 
 如果你已熟悉 Numpy，通过以下要点，可以方便地理解和迁移到 Tensor 的使用上：
 * Tensor 的很多基础操作 API 和 Numpy 在功能、用法上基本保持一致。如前文第二节中指定数据、形状、区间创建 Tensor，第三节中 Tensor 的形状、数据类型属性，第四节中 Tensor 的各种操作，以及第五节中 Tensor 的广播，可以很方便地在 Numpy 中找到相似操作。
-* 但是，Tensor 也有一些独有的属性和操作，而 Numpy 中没有对应概念或功能，这是为了更好地支持深度学习任务。如前文第一节中通过图像、文本等原始数据手动或自动创建 Tensor 的功能，能够更便捷地处理数据，第二节中的 Tensor 的设备位置属性，可以很方便地将 Tensor 迁移到 GPU 等各种 AI 加速设备上，第二节中的 Tensor 的 stop_gradient 属性，也是 Tensor 独有的，以便更好地支持深度学习任务。
+* 但是，Tensor 也有一些独有的属性和操作，而 Numpy 中没有对应概念或功能，这是为了更好地支持深度学习任务。如前文第一节中通过图像、文本等原始数据手动或自动创建 Tensor 的功能，能够更便捷地处理数据，第三节中的 Tensor 的设备位置属性，可以很方便地将 Tensor 迁移到 GPU 等各种 AI 加速设备上，第三节中的 Tensor 的 stop_gradient 属性，也是 Tensor 独有的，以便更好地支持深度学习任务。
 
 如果已有 Numpy 数组，可使用 [paddle.to_tensor](../../../api/paddle/to_tensor_cn.html) 创建任意维度的 Tensor，创建的 Tensor 与原 Numpy 数组具有相同的形状与数据类型。
 ```python
