@@ -267,6 +267,7 @@ Vision层
     
 
     " :ref:`paddle.nn.PixelShuffle <cn_api_nn_PixelShuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor重新排列成形为 [N, C/r**2, H*r, W*r]或 [N, H*r, W*r, C/r**2] 的Tensor"
+    " :ref:`paddle.nn.PixelUnshuffle <cn_api_nn_PixelUnshuffle>` ", "PixelShuffle的逆操作，将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor重新排列成形为 [N, C*r*r, H/r, W/r] 或 [N, H/r, W/r, C*r*r] 的Tensor"
     " :ref:`paddle.nn.Upsample <cn_api_paddle_nn_Upsample>` ", "用于调整一个batch中图片的大小"
     " :ref:`paddle.nn.UpsamplingBilinear2D <cn_api_paddle_nn_UpsamplingBilinear2D>` ", "用于调整一个batch中图片的大小（使用双线性插值方法）"
     " :ref:`paddle.nn.UpsamplingNearest2D <cn_api_paddle_nn_UpsamplingNearest2D>` ", "用于调整一个batch中图片的大小（使用最近邻插值方法）"
