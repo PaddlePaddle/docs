@@ -32,15 +32,6 @@ N 维厄米特(Hermitian)傅里叶变换的逆变换。
 - **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息
   时使用，具体用法请参见 :ref:`api_guide_Name` 。 
 
-抛出异常
-:::::::::
-
-- ``ValueError``  – 如果 ``s`` 或 ``axes`` 不是整形序列或者 None 。
-- ``ValueError``  – 如果 ``s`` 和 ``axes`` 都不是 None 且长度不等。
-- ``ValueError``  - 如果 ``s`` 中某些轴的长度小于或等于 0。
-- ``ValueError``  - 如果 ``axes`` 中某些轴的 index 超出有效范围。
-- ``ValueError``  - 如果 ``s`` 和 ``axes`` 至少有一个不是 None 且输入的维数小于 
-  ``s`` 或 ``axes`` 的长度。
 
 返回
 :::::::::

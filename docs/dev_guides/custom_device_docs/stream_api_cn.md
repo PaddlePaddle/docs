@@ -10,7 +10,7 @@ C_Status (*create_stream)(const C_Device device, C_Stream* stream)
 
 ### 接口说明
 
-创建一个stream对象。
+创建一个stream对象，stream是框架内部用于执行异步任务的任务队列，同一stream中的任务按顺序执行。硬件不支持异步执行时该接口需要空实现。
 
 ### 参数
 
@@ -28,7 +28,7 @@ C_Status (*destroy_stream)(const C_Device device, C_Stream stream)
 
 ### 接口说明
 
-销毁一个stream对象。
+销毁一个stream对象。硬件不支持异步执行时该接口需要空实现。
 
 ### 参数
 
@@ -64,7 +64,7 @@ C_Status (*synchronize_stream)(const C_Device device, C_Stream stream)
 
 ### 接口说明
 
-同步stream，等待stream上所有任务完成。
+同步stream，等待stream上所有任务完成。硬件不支持异步执行时该接口需要空实现。
 
 ### 参数
 
@@ -82,7 +82,7 @@ C_Status (*stream_add_callback)(const C_Device device, C_Stream stream, C_Callba
 
 ### 接口说明
 
-添加一个主机回调到stream上。
+添加一个主机回调函数到stream上。
 
 ### 参数
 
@@ -104,7 +104,7 @@ C_Status (*stream_wait_event)(const C_Device device, C_Stream stream, C_Event ev
 
 ### 接口说明
 
-等待stream上的一个event完成。
+等待stream上的一个event完成。硬件不支持异步执行时该接口需要空实现。
 
 ### 参数
 

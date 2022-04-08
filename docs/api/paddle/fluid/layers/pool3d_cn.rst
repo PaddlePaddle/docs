@@ -12,7 +12,9 @@ pool3d
 
 输入 ``input`` 和输出（Out）采用NCDHW或NDHWC格式，其中N是批大小，C是通道数，D，H和W分别是特征的深度，高度和宽度。
 
-参数 ``pool_size`` 和 ``pool_stride`` 含有三个整型元素。 分别代表深度，高度和宽度维度上的参数。
+参数
+::::::::::::
+``pool_size`` 和 ``pool_stride`` 含有三个整型元素。 分别代表深度，高度和宽度维度上的参数。
 
 输入 ``input`` 和输出（Out）的形状可能不同。
 
@@ -86,7 +88,9 @@ pool3d
     W_{out} = \frac{(W_{in} - pool\_size[2])}{pool\_stride[2]} + 1
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (Vairable) - 形状为 :math:`[N, C, D, H, W]` 或  :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型为float32或float64。
     - **pool_size** (int|list|tuple) - 池化核的大小。如果它是一个元组或列表，那么它包含三个整数值，(pool_size_Depth, pool_size_Height, pool_size_Width)。若为一个整数，则表示D，H和W维度上均为该值，比如若pool_size=2, 则池化核大小为[2,2,2]。
     - **pool_type** (str) - 池化类型，可以为"max"或"avg"，"max" 对应max-pooling, "avg" 对应average-pooling。默认值："max"。
@@ -99,11 +103,17 @@ pool3d
     - **exclusive** (bool) - 是否在平均池化模式忽略填充值。计算细节可参考上述 ``exclusive`` = true或  ``exclusive`` = false 时的计算公式。默认值：True。
     - **data_format** (str) - 输入和输出的数据格式，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。默认值："NDCHW"。
 
-返回： 5-D Tensor，数据类型与 ``input`` 一致。
+返回
+::::::::::::
+ 5-D Tensor，数据类型与 ``input`` 一致。
 
-返回类型：Variable。
+返回类型
+::::::::::::
+Variable。
 
-抛出异常：
+抛出异常
+::::::::::::
+
     - ``ValueError`` - 如果 ``pool_type`` 既不是"max"也不是"avg"。
     - ``ValueError`` - 如果 ``global_pooling`` 为False并且 ``pool_size`` 为-1。
     - ``TypeError`` - 如果 ``use_cudnn`` 不是bool值。
@@ -117,7 +127,8 @@ pool3d
     - ``ShapeError`` - 如果计算出的输出形状的元素值不大于0。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

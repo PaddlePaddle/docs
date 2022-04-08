@@ -28,16 +28,23 @@ create_lod_tensor
 
 请查阅 :ref:`cn_user_guide_lod_tensor` 了解更多关于LoD的介绍。
 
-参数:
+参数
+::::::::::::
+
     - **data** (numpy.ndarray|list|LoDTensor) - 表示LoDTensor数据的numpy数组、list或LoDTensor。
     - **recursive_seq_lens** (list[list[int]]) - 基于序列长度的LoD信息。
     - **place** (CPUPlace|CUDAPlace) - 表示返回的LoDTensor存储在CPU或GPU place中。
 
-返回: 包含数据信息和序列长度信息的LoDTensor。
+返回
+::::::::::::
+ 包含数据信息和序列长度信息的LoDTensor。
 
-返回类型: LoDTensor
+返回类型
+::::::::::::
+ LoDTensor
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

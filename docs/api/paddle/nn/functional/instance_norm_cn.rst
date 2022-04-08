@@ -9,7 +9,9 @@ instance_norm
 
 详情见 :ref:`cn_api_nn_InstanceNorm1D` 。
 
-参数：
+参数
+::::::::::::
+
     - **x** (int) - 输入，数据类型为float32, float64。
     - **running_mean** (Tensor) - 均值的Tensor。
     - **running_var** (Tensor) - 方差的Tensor。
@@ -21,10 +23,13 @@ instance_norm
     - **data_format** (string, 可选) - 指定输入数据格式，数据格式可以为“NC", "NCL", "NCHW" 或者"NCDHW"。默认值："NCHW"。
     - **name** (string, 可选) – InstanceNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
-返回：无
+返回
+::::::::::::
+无
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -23,7 +23,9 @@ logit
     \right.
 
 
-参数:
+参数
+::::::::::::
+
 ::::::::::
  - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
  - eps (float, 可选) - 传入该参数后可将 ``x`` 的范围控制在[eps, 1-eps]，默认值为 None。
