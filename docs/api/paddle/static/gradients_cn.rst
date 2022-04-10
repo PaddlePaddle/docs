@@ -28,16 +28,4 @@ list[Tensor]，包含与输入对应的梯度。如果一个输入不影响目�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-            import paddle
-            import paddle.nn.functional as F
-
-            paddle.enable_static()
-
-            x = paddle.static.data(name='x', shape=[None, 2, 8, 8], dtype='float32')
-            x.stop_gradient=False
-            y = paddle.static.nn.conv2d(x, 4, 1, bias_attr=False)
-            y = F.relu(y)
-            z = paddle.static.gradients([y], x)
-            print(z) # [var x@GRAD : fluid.VarType.LOD_TENSOR.shape(-1L, 2L, 8L, 8L).astype(VarType.FP32)]
+COPY-FROM: <paddle.static.gradients>:<code-example>
