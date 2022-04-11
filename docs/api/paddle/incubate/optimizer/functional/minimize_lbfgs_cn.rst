@@ -1,9 +1,16 @@
-使用 L-BFGS 方法求解可微函数`func`的最小值。L-BFGS 是一种拟牛顿方法，用于解决可微函数上的无约束最优化问题。与之密切相关的是用于最优化的牛顿法,考虑迭代更新公式：
+.. _cn_api_incubate_optimizer_functional_minimize_lbfgs:
+
+minimize_lbfgs
+-------------------------------
+
+.. py:function:: paddle.incubate.optimizer.functional.minimize_lbfgs(objective_func, initial_position, history_size=100, max_iters=50, tolerance_grad=1e-08, tolerance_change=1e-08, initial_inverse_hessian_estimate=None, line_search_fn='strong_wolfe', max_line_search_iters=50, initial_step_length=1.0, dtype='float32', name=None)
+
+使用 L-BFGS 方法求解可微函数 ``objective_func`` 的最小值。L-BFGS 是一种拟牛顿方法，用于解决可微函数上的无约束最优化问题。与之密切相关的是用于最优化的牛顿法,考虑迭代更新公式：
 
 .. math::
     x_{k+1} = x_{k} + H_k \nabla{f_k}
 
-如果 :math:`H_k` 是函数:math:`f` 在 :math:`x_k`的逆海森矩阵, 此时就是牛顿法。如果 :math:`H_k` 满足对称性和正定性，用来作为逆海森矩阵的近似，则为高斯-牛顿法。在实际算法中，近似逆海森矩阵是通过整个或部分搜索历史的梯度计算得到，前者对应BFGS，后者对应于L-BFGS。
+如果 :math:`H_k` 是函数 :math:`f` 在 :math:`x_k`的逆海森矩阵, 此时就是牛顿法。如果 :math:`H_k` 满足对称性和正定性，用来作为逆海森矩阵的近似，则为高斯-牛顿法。在实际算法中，近似逆海森矩阵是通过整个或部分搜索历史的梯度计算得到，前者对应BFGS，后者对应于L-BFGS。
 
 
 参考
