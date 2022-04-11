@@ -491,6 +491,7 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.label_smooth <cn_api_paddle_nn_functional_common_label_smooth>` ", "标签平滑"
     " :ref:`paddle.nn.functional.one_hot <cn_api_nn_functional_one_hot>` ", "将输入'x'中的每个id转换为一个one-hot向量"
     " :ref:`paddle.nn.functional.pixel_shuffle <cn_api_nn_functional_pixel_shuffle>` ", "将Tensor重新排列"
+    " :ref:`paddle.nn.functional.pixel_unshuffle <cn_api_nn_functional_pixel_unshuffle>` ", "将Tensor重新排列，是pixel_shuffle的逆操作"
     " :ref:`paddle.nn.functional.square_error_cost <cn_api_fluid_layers_square_error_cost>` ", "用于计算预测值和目标值的方差估计"
     " :ref:`paddle.nn.functional.unfold <cn_api_fluid_layers_unfold>` ", "对每一个卷积核覆盖下的区域，将元素重新排成一列"
     " :ref:`paddle.nn.functional.fold <cn_api_nn_functional_fold>` ", "该Op用于将一个滑动局部块组合成一个大的张量,通常也被称为col2im。"
