@@ -3,7 +3,7 @@
 
 ## 一、Tensor 的概念介绍
 
-飞桨使用张量（[Tensor](../../../api/paddle/Tensor_cn.html)） 来表示神经网络中传递的数据，Tensor 可以理解为多维数组，类似于 [Numpy 数组（ndarray）](https://numpy.org/doc/stable/user/quickstart.html#the-basics) 的概念。与 Numpy 数组相比，Tensor 除了支持 CPU 还支持运行在 GPU 及各种 AI 芯片上，以实现计算加速；此外，飞桨基于 Tensor，实现了深度学习所必须的反向传播功能和多种多样的算子，从而更利于处理深度学习任务。
+飞桨使用张量（[Tensor](../../../api/paddle/Tensor_cn.html)） 来表示神经网络中传递的数据，Tensor 可以理解为多维数组，类似于 [Numpy 数组（ndarray）](https://numpy.org/doc/stable/user/quickstart.html#the-basics) 的概念。与 Numpy 数组相比，Tensor 除了支持运行在 CPU 上，还支持运行在 GPU 及各种 AI 芯片上，以实现计算加速；此外，飞桨基于 Tensor，实现了深度学习所必须的反向传播功能和多种多样的组网算子，从而可更快捷地实现深度学习组网与训练等功能。两者具体异同点可参见下文 [Tensor 与 Numpy 数组相互转换](#newtensor6)。
 
 在飞桨框架中，神经网络的输入、输出数据，以及网络中的参数均采用 Tensor 数据结构，示例如下：
 ```python
@@ -744,7 +744,7 @@ print(tensor_temp)
 Tensor(shape=[2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
        [1., 2.])
 ```
-> **说明：**
+> **注意：**
 >
 > * 基于 Numpy 数组创建 Tensor 时，飞桨是通过拷贝方式创建，与原始数据不共享内存。
 
