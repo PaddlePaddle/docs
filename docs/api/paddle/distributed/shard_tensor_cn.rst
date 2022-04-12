@@ -10,9 +10,9 @@ shard_tensor
 参数
 :::::::::
     - x (Tensor) - 待切分的张量。
-    - dst (int) - 张量的分布式属性。可接受的属性如下: 
-        "process_mesh":一个嵌套的列表，用来描述逻辑进程的网状拓扑结构。
-        "dims_mapping":描述维度`x`和`process_mesh`之间映射的列表
+    - dst (int) - 张量的分布式属性。可接受的属性如下:
+        "process_mesh": 一个嵌套的列表，用来描述逻辑进程的网状拓扑结构。
+        "dims_mapping": 描述维度`x`和`process_mesh`之间映射的列表
             `x`的`i`在`process_mesh`的`process_mesh`维度上被分割，
             其中-1表示张量维数没有分割。
         process_mesh和dims_mapping都是可选的，用户可以根据需要指定。
@@ -21,9 +21,11 @@ shard_tensor
 :::::::::
 张量:用分布式属性标注的张量x。
 
+
 代码示例
 :::::::::
 .. code-block:: python
+
     import paddle
     import paddle.distributed as dist
 
