@@ -22,20 +22,4 @@ frac
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-     = paddle.rand([3,3],'float32')
-    print(x)
-    # Tensor(shape=[3, 3], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [[5.29032421, 7.70876980, 5.14640331],
-    #         [2.30558801, 7.60625172, 2.57993436],
-    #         [1.53053904, 1.51977015, 2.96169519]])
-
-    output = paddle.frac(x)
-    print(output)
-    # Tensor(shape=[3, 3], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [[0.29032421, 0.70876980, 0.14640331],
-    #         [0.30558801, 0.60625172, 0.57993436],
-    #         [0.53053904, 0.51977015, 0.96169519]])
+COPY-FROM: paddle.frac
