@@ -6,7 +6,7 @@ dot
 .. py:function:: paddle.dot(x, y, name=None)
 
 
-该OP计算向量的内积
+计算向量的内积
 
 .. note::
 

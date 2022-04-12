@@ -5,7 +5,7 @@ bitwise_or
 
 .. py:function:: paddle.bitwise_or(x, y, out=None, name=None)
 
-该OP对Tensor ``x`` 和 ``y`` 逐元素进行 ``按位或`` 运算。
+对Tensor ``x`` 和 ``y`` 逐元素进行 ``按位或`` 运算。
 
 .. math::
        Out = X | Y
