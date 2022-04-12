@@ -26,7 +26,7 @@ frac
 
     import paddle
 
-     = paddle.rand([3,4],'float32')
+     = paddle.rand([3,3],'float32')
     print(x)
     # Tensor(shape=[3, 3], dtype=float32, place=Place(cpu), stop_gradient=True,
     #        [[5.29032421, 7.70876980, 5.14640331],
