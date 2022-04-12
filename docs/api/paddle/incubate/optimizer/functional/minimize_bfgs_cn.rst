@@ -23,15 +23,15 @@ minimize_bfgs
 :::::::::
     - **objective_func** - 待优化的目标函数. 接受多元输入并返回一个标量。
     - **initial_position** (Tensor) - 迭代的初始位置。 
-    - **max_iters** (int) - BFGS迭代的最大次数。
-    - **tolerance_grad** (float) - 当梯度的范数小于该值时，终止迭代。当前使用正无穷范数。
-    - **tolerance_change** (float) - 当函数值/x值/其他参数 两次迭代的改变量小于该值时，终止迭代。
-    - **initial_inverse_hessian_estimate** (Tensor) - 函数在初始位置时的近似逆海森矩阵，必须满足对称性和正定性。
-    - **line_search_fn** (str) - 指定要使用的线搜索方法，目前只支持值为'strong wolfe'方法，未来将支持'Hager Zhang'方法。
-    - **max_line_search_iters** (int) - 线搜索的最大迭代次数。
-    - **initial_step_length** (float) - 线搜索中第一次迭代时的步长，不同的初始步长可能会产生不同的优化结果。对于高斯牛顿类方法初始的试验步长应该总是1。
-    - **dtype** ('float32' | 'float64') - 在算法中使用的数据类型。
-    - **name** (str) - 操作名称（可选，默认为 None）。 更多信息请参考 :ref:`api_guide_Name`。
+    - **max_iters** (int，可选) - BFGS迭代的最大次数。默认值：50。
+    - **tolerance_grad** (float，可选) - 当梯度的范数小于该值时，终止迭代。当前使用正无穷范数。默认值：1e-7。
+    - **tolerance_change** (float，可选) - 当函数值/x值/其他参数 两次迭代的改变量小于该值时，终止迭代。默认值：1e-9。
+    - **initial_inverse_hessian_estimate** (Tensor，可选) - 函数在初始位置时的近似逆海森矩阵，必须满足对称性和正定性。默认值：None。
+    - **line_search_fn** (str，可选) - 指定要使用的线搜索方法，目前只支持值为'strong wolfe'方法，未来将支持'Hager Zhang'方法。默认值：'strong wolfe'。
+    - **max_line_search_iters** (int，可选) - 线搜索的最大迭代次数。默认值：50。
+    - **initial_step_length** (float，可选) - 线搜索中第一次迭代时的步长，不同的初始步长可能会产生不同的优化结果。对于高斯牛顿类方法初始的试验步长应该总是1。默认值：1.0。
+    - **dtype** ('float32' | 'float64'，可选) - 在算法中使用的数据类型。默认值：'float32'。
+    - **name** (str，可选) - 操作名称。 更多信息请参考 :ref:`api_guide_Name`。默认值：None。
 
 返回
 :::::::::
