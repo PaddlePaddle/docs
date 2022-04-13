@@ -11,9 +11,8 @@ shard_tensor
 :::::::::
     - x (Tensor) - 待切分的张量。
     - dst (int) - 张量的分布式属性。可接受的属性如下:
-        - process_mesh: 一个嵌套的列表，用来描述逻辑进程的网状拓扑结构。
-        - dims_mapping: 描述维度x和process_mesh之间映射的列表，x的i在process_mesh的process_mesh维度上被分割，其中-1表示张量维数没有分割。
-        process_mesh和dims_mapping都是可选的，用户可以根据需要指定。
+        - process_mesh - 一个嵌套的列表，用来描述逻辑进程的网状拓扑结构。
+        - dims_mapping - 描述维度x和process_mesh之间映射的列表，x的i在process_mesh的process_mesh维度上被分割，其中-1表示张量维数没有分割。process_mesh和dims_mapping都是可选的，用户可以根据需要指定。
 
 返回
 :::::::::
