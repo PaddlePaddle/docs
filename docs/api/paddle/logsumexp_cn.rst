@@ -5,7 +5,7 @@ logsumexp
 
 .. py:function:: paddle.logsumexp(x, axis=None, keepdim=False, name=None)
 
-该OP沿着 ``axis`` 计算 ``x`` 的以e为底的指数的和的自然对数。计算公式如下：
+沿着参数``axis`` 计算 ``x`` 的以e为底的指数的和的自然对数。计算公式如下：
 
 .. math::
    logsumexp(x) = \log\sum exp(x)
