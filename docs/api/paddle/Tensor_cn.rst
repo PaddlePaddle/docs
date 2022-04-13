@@ -1144,6 +1144,14 @@ greater_than(y, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_greater_than`
 
+heaviside(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_heaviside`
 
 histogram(bins=100, min=0, max=0)
 :::::::::
