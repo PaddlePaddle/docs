@@ -9,11 +9,11 @@ shard_op
 
 参数
 :::::::::
-    - op_fn (callable) - 待切分的可调用算子或模块。  
-    - dist_attr (dict) - 算子分布式属性。将接受的属性分为两类。第一类描述了为所有输入和输出
-        共享的分布式属性，现在只能指定process_mesh。第二类描述的是分布式输入或输出的属性与
-        shard_tensor的dist_attr相同。这两类都是可选的，用户可以根据需要指定它们。   
-        注意，算子的process_mesh必须是与这些用于输入和输出的process_mesh相同。
+    - op_fn (callable) - 待切分的可调用算子或模块。
+    - dist_attr (dict) - 算子分布式属性。将接受的属性分为两类。第一类描述了为所有输入和输出共享的分布式属性，
+        现在只能指定process_mesh。第二类描述的是分布式输入或输出的属性与shard_tensor的dist_attr相同。这
+        两类都是可选的，用户可以根据需要指定它们。注意，算子的process_mesh必须是与这些用于输入和输出的process_mesh
+        相同。
 
 返回
 :::::::::
