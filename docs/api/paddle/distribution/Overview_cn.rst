@@ -3,15 +3,17 @@
 paddle.distribution
 ---------------------
 
-paddle.distribution 目录下包含飞桨框架支持的概率分布及KL散度相关API。具体如下：
+paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分布、随机变量的变换、KL散度相关API。
+具体如下：
 
--  :ref:`概率分布相关API <about_distribution>`
+-  :ref:`随机变量的概率分布 <about_distribution>`
+-  :ref:`随机变量的变换 <about_transform>`
 -  :ref:`KL散度相关API <about_distribution_kl>`
 
 
 .. _about_distribution:
 
-概率分布相关API
+随机变量的概率分布
 ::::::::::::::::::::
 
 .. csv-table::
@@ -26,6 +28,14 @@ paddle.distribution 目录下包含飞桨框架支持的概率分布及KL散度�
     " :ref:`Beta <cn_api_paddle_distribution_Beta>` ", "Beta概率分布类"
     " :ref:`Dirichlet <cn_api_paddle_distribution_Dirichlet>` ", "Dirichlet概率分布类"
 
+随机变量的变换
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API名称", "API功能"
+    :widths: 10, 30
+
+    " :ref:`Transform <cn_api_paddle_distribution_Transform>` ", "随机变量变换的基类"
 
 .. _about_distribution_kl:
 
