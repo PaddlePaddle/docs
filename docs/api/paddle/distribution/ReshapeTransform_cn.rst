@@ -1,23 +1,27 @@
-.. _cn_api_paddle_distribution_AffineTransform:
+.. _cn_api_paddle_distribution_ReshapeTransform:
 
-AffineTransform
+ReshapeTransform
 -------------------------------
 
-.. py:class:: paddle.distribution.AffineTransform(loc, scale)
+.. py:class:: paddle.distribution.ReshapeTransform(in_event_shape, out_event_shape)
 
-仿射变换 :math:`y = loc + scale \times x` .
+ ``ReshapeTransform`` 将输入Tensor的事件形状 ``in_event_shape`` 改变
+ 为 ``out_event_shape`` .
+
+ 注意 ``in_event_shape`` 、 ``out_event_shape`` 需要包含相同的元素个数。
+
 
 参数
 :::::::::
 
-- **loc** (Tensor) - 表示偏置参数。
-- **scale** (Tensor） - 表示缩放参数。
+- **in_event_shape** (Sequence[int]) - Reshape前的事件形状。
+- **out_event_shape** (float|Tensor） - Reshape后的事件形状。
 
 
 代码示例
 :::::::::
 
-COPY-FROM: paddle.distribution.AffineTransform
+COPY-FROM: paddle.distribution.ReshapeTransform
 
 方法
 :::::::::

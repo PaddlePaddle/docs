@@ -1,23 +1,22 @@
-.. _cn_api_paddle_distribution_AffineTransform:
+.. _cn_api_paddle_distribution_PowerTransform:
 
-AffineTransform
+PowerTransform
 -------------------------------
 
-.. py:class:: paddle.distribution.AffineTransform(loc, scale)
+.. py:class:: paddle.distribution.PowerTransform(power)
 
-仿射变换 :math:`y = loc + scale \times x` .
+幂变换 :math:`y = x^{power}` .
 
 参数
 :::::::::
 
-- **loc** (Tensor) - 表示偏置参数。
-- **scale** (Tensor） - 表示缩放参数。
+- **power** (Tensor) - 幂参数。
 
 
 代码示例
 :::::::::
 
-COPY-FROM: paddle.distribution.AffineTransform
+COPY-FROM: paddle.distribution.PowerTransform
 
 方法
 :::::::::
