@@ -12,7 +12,9 @@ nms
     IoU = \frac{intersection\_area(box1, box2)}{union\_area(box1, box2)}
 
 如果参数scores不为None，输入的boxes会首先按照它们对应的score降序排序，否则将默认输入的boxes为排好序的。
+
 如果category_idxs和categories不为None，分类NMS将会被执行，也就是说，nms过程会在每一个类别的框当中分别进行计算，计算结果会被组合起来然后按照得分倒序排列。
+
 如果top_k不为None的话，排序的计算结果中仅有前k个元素会被返回，否则会返回所有的元素。
 
 参数
