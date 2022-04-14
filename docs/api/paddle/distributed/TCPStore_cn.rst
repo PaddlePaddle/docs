@@ -22,7 +22,7 @@ TCPStore
     import datetime
     import paddle
 
-    store = paddle.distributed.TCPStore("127.0.0.1", 6170, True, 1,
+    store = paddle.distributed.TCPStore("127.0.0.1", 6174, True, 1,
                                            datetime.timedelta(0))
     store.add("my", 3)
     ret = store.get('my')
@@ -44,7 +44,7 @@ add(**kwargs)
 
     import paddle
 
-    store = paddle.fluid.core.TCPStore("127.0.0.1", 6170, True, 1,
+    store = paddle.fluid.core.TCPStore("127.0.0.1", 6172, True, 1,
                                            datetime.timedelta(0))
     store.add("my", 3)
     store.add("my", 3)
@@ -68,7 +68,7 @@ get(**kwargs)
     import datetime
     import paddle
 
-    store = paddle.fluid.core.TCPStore("127.0.0.1", 6170, True, 1,
+    store = paddle.fluid.core.TCPStore("127.0.0.1", 6171, True, 1,
                                            datetime.timedelta(0))
     store.add("my", 3)
     ret = store.get('my')
@@ -92,28 +92,11 @@ set(**kwargs)
 
     store = paddle.fluid.core.TCPStore("127.0.0.1", 6170, True, 1,
                                            datetime.timedelta(0))
-    store.set("key",3)
+    store.set("key",str(3))
     ret = store.get("key")
-    print(ret)
-
-wait(**kwargs)
-
-该OP对将key添加到存储超时(存储初始化时设置)的情况抛出异常。
-
-**参数**
-    - **key** (str)- 需要等待的key。
+    print(int(ret))
 
 
-**代码示例**：
-
-.. code-block:: python
-
-    import datetime
-    import paddle
-
-    store = paddle.fluid.core.TCPStore("127.0.0.1", 6170, True, 1,
-                                           datetime.timedelta(0))
-    store.wait("my")
 
 
 
