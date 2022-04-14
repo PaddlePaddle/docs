@@ -39,7 +39,9 @@ unfold
         out.shape = [5, 90, 625]
 
 
-参数：
+参数
+::::::::::::
+
     - **x**  (Tensor) – 输入4-D Tensor，形状为[N, C, H, W]，数据类型为float32或者float64
     - **kernel_size**  (int|list of int) – 卷积核的尺寸，整数或者整型列表。如果为整型列表，应包含两个元素 ``[k_h, k_w]`` ，卷积核大小为 ``k_h * k_w`` ；如果为整数k，会被当作整型列表 ``[k, k]`` 处理
     - **strides**  (int|list of int，可选) – 卷积步长，整数或者整型列表。如果为整型列表，应该包含两个元素 ``[stride_h, stride_w]`` 。如果为整数，则 ``stride_h = stride_w = strides`` 。默认值为1
@@ -48,10 +50,13 @@ unfold
     - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
 
-返回：Tensor,  unfold操作之后的结果，形状如上面所描述的[N, Cout, Lout]，Cout每一个滑动block里面覆盖的元素个数，Lout是滑动block的个数，数据类型与 ``x`` 相同
+返回
+::::::::::::
+Tensor,  unfold操作之后的结果，形状如上面所描述的[N, Cout, Lout]，Cout每一个滑动block里面覆盖的元素个数，Lout是滑动block的个数，数据类型与 ``x`` 相同
 
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
     

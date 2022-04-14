@@ -22,16 +22,23 @@ reorder_lod_tensor_by_rank
 
 注意：该OP对 ``X`` 进行的排序所依据的 ``LoDRankTable`` 不一定是在 ``X`` 的基础上得出来的。它可以由其他不同的序列得出，并由该OP依据这个 ``LoDRankTable`` 来对 ``X`` 排序。
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable) - 待根据提供的 ``rank_table`` 进行排序的LoDTensor.
     - **rank_table** (Variable) - 提供对 ``x`` 重新排列的 ``LoDRankTable`` 类型的顺序信息.
 
 
-返回： 重新排列后的LoDTensor
+返回
+::::::::::::
+ 重新排列后的LoDTensor
 
-返回类型: Variable
+返回类型
+::::::::::::
+ Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

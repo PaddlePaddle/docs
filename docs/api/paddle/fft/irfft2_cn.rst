@@ -28,14 +28,6 @@ irfft2
   信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 需设置，默认值为None。该参数供开发
   人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 
 
-抛出异常
-:::::::::
-
-- ``ValueError``  – 如果 ``s`` 不是长度为 2 的整形序列或者 None。
-- ``ValueError``  – 如果 ``axes`` 不是长度为 2 的整形序列或者 None。
-- ``ValueError``  - 如果 ``s`` 中某些轴的长度小于或等于 0。
-- ``ValueError``  - 如果 ``axes`` 中某些轴的 index 超出有效范围。
-- ``ValueError``  - 如果输入的维数小于 2。
 
 返回
 :::::::::

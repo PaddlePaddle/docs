@@ -13,7 +13,9 @@ BatchSampler
 
 ``__len__``: 每epoch中mini-batch数。
 
-参数:
+参数
+::::::::::::
+
     - **dataset** (Dataset) - 此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例或实现了 ``__len__`` 的Python对象，用于生成样本下标。默认值为None。
     - **sampler** (Sampler) - 此参数必须是 ``paddle.io.Sampler`` 的子类实例，用于迭代式获取样本下标。``dataset`` 和 ``sampler`` 参数只能设置一个。默认值为None。
     - **shuffle** (bool) - 是否需要在生成样本下标时打乱顺序。默认值为False。
@@ -22,11 +24,13 @@ BatchSampler
 
 见 ``paddle.io.DataLoader`` 。
 
-返回：返回样本下标数组的迭代器。
+返回
+::::::::::::
+BatchSampler，返回样本下标数组的迭代器。
+ 
 
-返回类型: BatchSampler
-
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

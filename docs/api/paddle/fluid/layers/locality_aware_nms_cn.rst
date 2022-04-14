@@ -20,7 +20,9 @@ locality_aware_nms
 
 
 
-参数：
+参数
+::::::::::::
+
     - **bboxes**  (Variable) – 支持两种类型的边界框（bounding box）:
 
       1. （Tensor）形为[N，M，4 或 8、16、24、32]的3-D张量，表示将预测M个边界框的预测位置， N是批大小（batch size）。当边界框(bounding box)大小等于4时，每个边界框有四个坐标值，布局为 :math:`[xmin, ymin, xmax, ymax]` 。数据类型为float32或float64。
@@ -38,11 +40,16 @@ locality_aware_nms
     - **normalized**  (bool) –  检测是否已经经过正则化。默认值：True 。
     - **name** (str|None) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：形为[No，6]的2-D LoDTensor，表示检测(detections)结果。每行有6个值：[标签label，置信度confidence，xmin，ymin，xmax，ymax]。或形为[No，10]的2-D LoDTensor，用来表示检测结果。 每行有10个值：[标签label，置信度confidence，x1，y1，x2，y2，x3，y3，x4，y4]。 No是检测的总数。 如果对所有图像都没有检测到的box，则lod将设置为{1}，而Out仅包含一个值-1。 （1.3版本之后，当未检测到box时，lod从{0}更改为{1}）
+返回
+::::::::::::
+形为[No，6]的2-D LoDTensor，表示检测(detections)结果。每行有6个值：[标签label，置信度confidence，xmin，ymin，xmax，ymax]。或形为[No，10]的2-D LoDTensor，用来表示检测结果。 每行有10个值：[标签label，置信度confidence，x1，y1，x2，y2，x3，y3，x4，y4]。 No是检测的总数。 如果对所有图像都没有检测到的box，则lod将设置为{1}，而Out仅包含一个值-1。 （1.3版本之后，当未检测到box时，lod从{0}更改为{1}）
 
-返回类型：Variable，数据类型与输入一致。
+返回类型
+::::::::::::
+Variable，数据类型与输入一致。
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

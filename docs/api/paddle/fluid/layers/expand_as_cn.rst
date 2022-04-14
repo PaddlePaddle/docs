@@ -33,19 +33,28 @@ expand_as
                 
         
 
-参数:
+参数
+::::::::::::
+
         - **x** （Variable）- 维度最高为6的多维 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``，``float64``，``int32`` 或 ``bool``。
         - **target_tensor** （list|tuple|Variable）- 数据类型为 ``float32``，``float64``，``int32`` 或 ``bool`` 。可为Tensor或者LODTensor。
         - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值： ``None``。
 
-返回：维度与输入 ``x`` 相同的 ``Tensor`` 或 ``LoDTensor``，数据类型与 ``x`` 相同。返回值的每个维度的大小等于``target_tensor`` 对应的维度的大小。
+返回
+::::::::::::
+维度与输入 ``x`` 相同的 ``Tensor`` 或 ``LoDTensor``，数据类型与 ``x`` 相同。返回值的每个维度的大小等于``target_tensor`` 对应的维度的大小。
 
-返回类型：``Variable`` 。
+返回类型
+::::::::::::
+``Variable`` 。
 
-抛出异常：
+抛出异常
+::::::::::::
+
     - :code:`ValueError`：``target_tensor`` 对应的每一维必须能整除输入x中对应的维度，否则会报错。
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

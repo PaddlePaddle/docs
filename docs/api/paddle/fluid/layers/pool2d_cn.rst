@@ -12,7 +12,9 @@ pool2d
 
 输入 ``input`` 和输出（out）采用NCHW或NHWC格式，N为批大小，C是通道数，H是特征高度，W是特征宽度。
 
-参数 ``pool_size`` 和 ``pool_stride`` 含有两个整型元素，分别表示高度和宽度维度上的参数。
+参数
+::::::::::::
+``pool_size`` 和 ``pool_stride`` 含有两个整型元素，分别表示高度和宽度维度上的参数。
 
 输入 ``input`` 和输出（out）的形状可能不同。
 
@@ -75,7 +77,9 @@ pool2d
 .. math::
     W_{out} = \frac{(W_{in} - pool\_size[1])}{pool\_stride[1]} + 1
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float32或float64。
     - **pool_size** (int|list|tuple)  - 池化核的大小。如果它是一个元组或列表，那么它包含两个整数值：(pool_size_Height, pool_size_Width)。若为一个整数，则表示H和W维度上均为该值，比如若pool_size=2, 则池化核大小为[2,2]。
     - **pool_type** (str) - 池化类型，可以为"max"或"avg"，"max"对应max-pooling，"avg"对应average-pooling。默认值："max"。
@@ -88,11 +92,17 @@ pool2d
     - **exclusive** (bool) - 是否在平均池化模式忽略填充值。计算细节可参考上述 ``exclusive`` = true或 ``exclusive`` = false 时的计算公式。默认值：True。
     - **data_format** (str) - 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
 
-返回： 4-D Tensor，数据类型与 ``input`` 一致。
+返回
+::::::::::::
+ 4-D Tensor，数据类型与 ``input`` 一致。
 
-返回类型：Variable。
+返回类型
+::::::::::::
+Variable。
 
-抛出异常：
+抛出异常
+::::::::::::
+
     - ``ValueError`` - 如果 ``pool_type`` 既不是"max"也不是"avg"。
     - ``ValueError`` - 如果 ``global_pooling`` 为False并且 ``pool_size`` 为-1。
     - ``TypeError`` - 如果 ``use_cudnn`` 不是bool值。
@@ -106,7 +116,8 @@ pool2d
     - ``ShapeError`` - 如果计算出的输出形状的元素值不大于0。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

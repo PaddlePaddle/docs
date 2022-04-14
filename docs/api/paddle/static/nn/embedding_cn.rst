@@ -9,13 +9,14 @@ embedding
 
 
 
-嵌入层(Embedding Layer)
+**嵌入层(Embedding Layer)**
 
 该OP根据input中的id信息从embedding矩阵中查询对应embedding信息，并会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
 
 输出的Tensor的shape是将输入Tensor shape的会在输出的embedding最后追加一维emb_size。
 
-注：input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
+.. note::
+input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
 
 
 ::
@@ -58,7 +59,9 @@ embedding
     输入的padding_idx = 0，则对于输入id为0的词，进行padding处理。
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 存储id信息的Tensor，数据类型必须为：int64，输入的shape最后一维须为1。input中的id必须满足 ``0 =< id < size[0]`` 。
     - **size** (tuple|list) - embedding矩阵的维度。必须包含两个元素，第一个元素为vocab_size(词表大小), 第二个为emb_size（embedding层维度）。
     - **is_sparse** (bool) - 是否使用稀疏的更新方式，这个参数只会影响反向的梯度更新的性能，sparse更新速度更快，推荐使用稀疏更新的方式。但某些optimizer不支持sparse更新，比如 :ref:`cn_api_paddle_optimizer_Adadelta` 、 :ref:`cn_api_paddle_optimizer_Adamax`，此时is_sparse必须为False。默认为False。
@@ -67,11 +70,13 @@ embedding
     - **param_attr** (ParamAttr) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr` 。此外，可以通过 ``param_attr`` 参数加载用户自定义或预训练的词向量。只需将本地词向量转为numpy数据格式，且保证本地词向量的shape和embedding的 ``size`` 参数一致，然后使用 :ref:`cn_api_paddle_to_tensor` 进行初始化，即可实现加载自定义或预训练的词向量。
     - **dtype** (str) - 输出Tensor的数据类型，数据类型必须为：float32 或 float64，默认为 float32。
 
-返回：input映射后得到的Embedding Tensor或LoDTensor，数据类型和dtype定义的类型一致。
+返回
+::::::::::::
+Variable，input映射后得到的Embedding Tensor或LoDTensor，数据类型和dtype定义的类型一致。
 
-返回类型：Variable
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

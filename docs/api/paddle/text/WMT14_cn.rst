@@ -13,20 +13,21 @@ http://paddlemodels.bj.bcebos.com/wmt/wmt14.tgz
 
 参数
 :::::::::
-    - data_file（str）- 保存数据集压缩文件的路径, 如果参数:attr: `download` 设置为True，可设置为None。默认为None。
+    - **data_file**（str）- 保存数据集压缩文件的路径,如果参数:attr: `download` 设置为True，可设置为None。默认为None。
 
-    - mode（str）- 'train', 'test' 或'gen'。默认为'train'。
+    - **mode**（str）- 'train'，'test' 或'gen'。默认为'train'。
 
-    - dict_size（int）- 词典大小。默认为-1。
+    - **dict_size**（int）- 词典大小。默认为-1。
 
-    - download（bool）- 如果:attr: `data_file` 未设置，是否自动下载数据集。默认为True。
+    - **download**（bool）- 如果:attr: `data_file` 未设置，是否自动下载数据集。默认为True。
 
 返回值
 :::::::::
 ``Dataset``，WMT14数据集实例。
-  - src_ids (np.array) - 源语言当前的token id序列。
-  - trg_ids (np.array) - 目标语言当前的token id序列。
-  - trg_ids_next (np.array) - 目标语言下一段的token id序列。
+
+  - **src_ids** (np.array) - 源语言当前的token id序列。
+  - **trg_ids** (np.array) - 目标语言当前的token id序列。
+  - **trg_ids_next** (np.array) - 目标语言下一段的token id序列。
 
 代码示例
 :::::::::

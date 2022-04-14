@@ -14,7 +14,9 @@ dropout操作
 
 dropout op可以从Program中删除，提高执行效率。
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable) - 输入，多维Tensor。数据类型：float32和float64。
     - **dropout_prob** (float32) - 输入单元的丢弃概率，即输入单元设置为0的概率。
     - **is_test** (bool) - 标记是否是测试阶段。默认：False。
@@ -40,11 +42,16 @@ dropout op可以从Program中删除，提高执行效率。
 
 dropout操作符可以从程序中移除，使程序变得高效。
 
-返回：Tensor。经过丢弃部分数据之后的结果，与输入X形状相同的张量。
+返回
+::::::::::::
+Tensor。经过丢弃部分数据之后的结果，与输入X形状相同的张量。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

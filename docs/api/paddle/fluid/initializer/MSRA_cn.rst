@@ -3,7 +3,10 @@
 MSRA
 -------------------------------
 
-.. py:attribute:: paddle.fluid.initializer.MSRA
+属性
+::::::::::::
+paddle.fluid.initializer.MSRA
+'''''''''
 
 
 

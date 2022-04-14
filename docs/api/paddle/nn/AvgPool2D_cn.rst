@@ -10,12 +10,18 @@ AvgPool2D
 例如：
 
 输入：
+
     X 形状：:math:`\left ( N,C,H_{in},W_{in} \right )`
+
 属性：
+
     kernel_size: :math:`ksize`
     stride: :math:`stride`
+
 输出：
+
     Out 形状：:math:`\left ( N,C,H_{out},W_{out} \right )`
+
 .. math::
     out(N_i, C_j, h, w)  = \frac{1}{ksize[0] * ksize[1]} \sum_{m=0}^{ksize[0]-1} \sum_{n=0}^{ksize[1]-1}
                                input(N_i, C_j, stride[0] \times h + m, stride[1] \times w + n)

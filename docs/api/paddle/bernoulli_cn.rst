@@ -10,15 +10,20 @@ bernoulli
 .. math::
    out_i \sim Bernoulli(p = x_i)
 
-参数：
+参数
+::::::::::::
+
     - **x** (Tensor) - 输入的概率值。数据类型为 ``float32`` 、``float64`` .
     - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回：
+返回
+::::::::::::
+
     Tensor：伯努利分布的随机Tensor，形状和数据类型为与输入 ``x`` 相同。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

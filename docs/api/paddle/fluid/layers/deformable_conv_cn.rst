@@ -48,7 +48,9 @@ deformable_conv op对输入4-D Tensor计算2-D可变形卷积。给定输入Tens
     W_{out}&= \frac{(W_{in} + 2 * paddings[1] - (dilations[1] * (W_f - 1) + 1))}{strides[1]} + 1
      
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 形状为 :math:`[N, C, H, W]` 的输入Tensor，数据类型为float32或float64。
     - **offset** (Variable) – 可变形卷积层的输入坐标偏移，数据类型为float32或float64。
     - **mask** (Variable, 可选) – 可变形卷积层的输入掩码，当使用可变形卷积算子v1时，请将mask设置为None, 数据类型为float32或float64。
@@ -65,13 +67,20 @@ deformable_conv op对输入4-D Tensor计算2-D可变形卷积。给定输入Tens
     - **modulated** （bool）- 确定使用v1和v2中的哪个版本，如果为True，则选择使用v2。默认值为True。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
  
-返回：可变形卷积输出的4-D Tensor，数据类型为float32或float64。
+返回
+::::::::::::
+可变形卷积输出的4-D Tensor，数据类型为float32或float64。
      
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
      
-抛出异常：ValueError – 如果input, filter_size, stride, padding和groups的大小不匹配。
+抛出异常
+::::::::::::
+ValueError – 如果input, filter_size, stride, padding和groups的大小不匹配。
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 
