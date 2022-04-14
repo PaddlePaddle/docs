@@ -1,23 +1,24 @@
-.. _cn_api_paddle_distribution_AffineTransform:
+.. _cn_api_paddle_distribution_ChainTransform:
 
-AffineTransform
+ChainTransform
 -------------------------------
 
-.. py:class:: paddle.distribution.AffineTransform(loc, scale)
+.. py:class:: paddle.distribution.ChainTransform(transforms)
 
-放射变换 :math:`y = loc + scale \times x` .
+变换的链式组合。
+
+``ChainTransform`` 将一些列变换以链式组合方式作用于一个随机变量，计算变换后的结果。
 
 参数
 :::::::::
 
-- **loc** (float|Tensor) - 表示偏置参数。
-- **scale** (float|Tensor） - 表示缩放参数。
+- **transforms** (Sequence[Transform]) - 输入的变换序列。
 
 
 代码示例
 :::::::::
 
-COPY-FROM: paddle.distribution.AffineTransform
+COPY-FROM: paddle.distribution.ChainTransform
 
 方法
 :::::::::

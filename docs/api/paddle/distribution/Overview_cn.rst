@@ -7,7 +7,7 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
 具体如下：
 
 -  :ref:`随机变量的概率分布 <about_distribution>`
--  :ref:`随机变量的变换 <about_transform>`
+-  :ref:`随机变量的变换 <about_distribution_transform>`
 -  :ref:`KL散度相关API <about_distribution_kl>`
 
 
@@ -28,6 +28,8 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
     " :ref:`Beta <cn_api_paddle_distribution_Beta>` ", "Beta概率分布类"
     " :ref:`Dirichlet <cn_api_paddle_distribution_Dirichlet>` ", "Dirichlet概率分布类"
 
+.. _about_distribution_transform:
+
 随机变量的变换
 ::::::::::::::::::::
 
@@ -36,6 +38,8 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
     :widths: 10, 30
 
     " :ref:`Transform <cn_api_paddle_distribution_Transform>` ", "随机变量变换的基类"
+    " :ref:`AbsTransform <cn_api_paddle_distribution_AbsTransform>` ", "绝对值变换"
+    " :ref:`AffineTransform <cn_api_paddle_distribution_AffineTransform>` ", "放射变换"
 
 .. _about_distribution_kl:
 

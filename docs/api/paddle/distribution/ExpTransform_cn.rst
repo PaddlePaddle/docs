@@ -1,23 +1,16 @@
-.. _cn_api_paddle_distribution_AffineTransform:
+.. _cn_api_paddle_distribution_ExpTransform:
 
-AffineTransform
+ExpTransform
 -------------------------------
 
-.. py:class:: paddle.distribution.AffineTransform(loc, scale)
+.. py:class:: paddle.distribution.ExpTransform
 
-放射变换 :math:`y = loc + scale \times x` .
-
-参数
-:::::::::
-
-- **loc** (float|Tensor) - 表示偏置参数。
-- **scale** (float|Tensor） - 表示缩放参数。
-
+指数变换 :math:`y = exp(x)` .
 
 代码示例
 :::::::::
 
-COPY-FROM: paddle.distribution.AffineTransform
+COPY-FROM: paddle.distribution.ExpTransform
 
 方法
 :::::::::

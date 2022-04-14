@@ -1,23 +1,37 @@
-.. _cn_api_paddle_distribution_AffineTransform:
+.. _cn_api_paddle_distribution_IndependentTransform:
 
-AffineTransform
+IndependentTransform
 -------------------------------
 
-.. py:class:: paddle.distribution.AffineTransform(loc, scale)
+.. py:class:: paddle.distribution.IndependentTransform(base, reinterpreted_batch_rank)
 
-放射变换 :math:`y = loc + scale \times x` .
+ ``IndependentTransform`` 将一个基础变换 ``base`` 的部分批(batch)维
+ 度 ``reinterpreted_batch_rank`` 扩展为事件(event)维度。
+
+ ``IndependentTransform`` 不改变基础变换 ``forward`` 以及 ``inverse`` 计算结果，但会对
+ ``forward_log_det_jacobian`` 以及 ``inverse_log_det_jacobian`` 计算结果沿着扩展的维
+ 度进行求和。
+
+ 例如，假设基础变换为 ``ExpTransform`` , 其输入为一个随机采样结果 ``x`` , 形状
+ 为 ``(S=[4],B=[2,2],E=[3])`` , ``S`` 、``B`` 、``E`` 分别表示采样形状、批形状、事件形
+ 状, ``reinterpreted_batch_rank=1`` 。 则 ``IndependentTransform(ExpTransform)`` 
+ 变换后，``x`` 的形状为 ``(S=[4],B=[2],E=[2,3])`` ，即将最右侧的批维度作为事件维度。
+ 此时 ``forward`` 和 ``inverse`` 输出形状仍是 ``(4,2,2,3)`` , 
+ 但 ``forward_log_det_jacobian`` 以及 ``inverse_log_det_jacobian`` 输出形状
+ 为 ``(4, 2)`` . 
+
 
 参数
 :::::::::
 
-- **loc** (float|Tensor) - 表示偏置参数。
-- **scale** (float|Tensor） - 表示缩放参数。
+- **base** (Transform) - 基础变换。
+- **reinterpreted_batch_rank** (int) - 将被扩展为事件维度的最右侧批维度数量。
 
 
 代码示例
 :::::::::
 
-COPY-FROM: paddle.distribution.AffineTransform
+COPY-FROM: paddle.distribution.IndependentTransform
 
 方法
 :::::::::
