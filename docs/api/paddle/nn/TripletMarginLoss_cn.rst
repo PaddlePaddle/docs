@@ -30,7 +30,7 @@ TripletMarginLoss
     - **p** (float，可选) - 手动指定范数，默认为2
     - **swap** (bool，可选) 
     - **margin** (float，可选) - 手动指定间距，默认为1
-    - **reduction**(str,可选) -指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `BCELoss` 的均值；设置为 ``'sum'`` 时，计算 `BCELoss` 的总和；设置为 ``'none'`` 时，则返回原始loss。
+    - **reduction**(str,可选) -指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 Loss 的均值；设置为 ``'sum'`` 时，计算 Loss 的总和；设置为 ``'none'`` 时，则返回原始Loss。
     - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 形状
@@ -50,11 +50,11 @@ TripletMarginLoss
 .. code-block:: python
 
       import paddle
-      import paddle.nn.functional as F
+      import paddle.nn.layer as L
 
       input = paddle.to_tensor([[1, 5, 3], [0, 3, 2], [1, 4, 1]], dtype=paddle.float32)
       positive= paddle.to_tensor([[5, 1, 2], [3, 2, 1], [3, -1, 1]], dtype=paddle.float32)
       negative = paddle.to_tensor([[2, 1, -3], [1, 1, -1], [4, -2, 1]], dtype=paddle.float32)
-      loss = F.triplet_margin_loss(input, positive, negative, margin=1.0, reduction='none')
+      triplet_margin_loss = L.TripletMarginLoss(margin=1.0, reduction='none')
 
-      loss = F.triplet_margin_loss(input, positive, negative, margin=1.0, reduction='mean')
+      loss = triplet_margin_loss(input, positive, negative,)
