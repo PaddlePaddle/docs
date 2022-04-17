@@ -50,15 +50,20 @@ gather_nd
                       = [23]
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (Tensor) - 输入Tensor，数据类型可以是int32，int64，float32，float64, bool。
     - **index** (Tensor) - 输入的索引Tensor，其数据类型为int32或者int64。它的维度 :code:`index.rank` 必须大于1，并且 :code:`index.shape[-1] <= input.rank` 。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     
-返回：shape为index.shape[:-1] + input.shape[index.shape[-1]:]的Tensor|LoDTensor，数据类型与 :code:`input` 一致。
+返回
+::::::::::::
+shape为index.shape[:-1] + input.shape[index.shape[-1]:]的Tensor|LoDTensor，数据类型与 :code:`input` 一致。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

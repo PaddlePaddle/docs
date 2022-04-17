@@ -46,16 +46,23 @@ sequence_softmax
                    output.lod = [[0, 3, 5, 9, 10, 12, 15]] 
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 维度为 :math:`[N, 1]` 或者 :math:`[N]` 的LoDTensor，推荐使用 :math:`[N]` 。支持的数据类型：float32，float64。
     - **use_cudnn** (bool，可选) - 是否用cudnn核，仅当安装cudnn版本的paddle库且使用gpu训练或推理的时候生效。支持的数据类型：bool型。默认值为False。
     - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：根据区间计算softmax之后的LoDTensor，其维度与input的维度一致，数据类型与input的数据类型一致。
+返回
+::::::::::::
+根据区间计算softmax之后的LoDTensor，其维度与input的维度一致，数据类型与input的数据类型一致。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

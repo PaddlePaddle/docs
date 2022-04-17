@@ -75,3 +75,39 @@ function get_paddle_pr_num_from_docs_pr_info(){
     echo ${arr_kv[PADDLEPADDLE_PR]}
     return 0
 }
+
+function install_paddle() {
+    # try to download paddle, and install
+    # PADDLE_WHL is defined in ci_start.sh
+    pip install --no-cache-dir -i https://mirror.baidu.com/pypi/simple ${PADDLE_WHL}
+    # if failed, build paddle
+    if [ $? -ne 0 ];then
+        build_paddle
+    fi
+}
+
+function build_paddle() {
+    git clone --depth=1 https://github.com/PaddlePaddle/Paddle.git
+    mkdir Paddle/build
+    cd Paddle/build
+
+    cmake .. -DPY_VERSION=3.8 -DWITH_GPU=ON  -DWITH_COVERAGE=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    make -j`nproc`
+    pip install -U python/dist/paddlepaddle_gpu-0.0.0-cp38-cp38-linux_x86_64.whl
+    cd -
+}
+
+function find_all_cn_api_files_modified_by_pr() {
+    local __resultvar=$1
+    local remotename=upstream
+    git remote | grep ${remotename} > /dev/null
+    if [ $? -ne 0 ] ; then
+        remotename=origin
+    fi
+    local need_check_cn_doc_files=`git diff --numstat ${remotename}/${BRANCH} | awk '{print $NF}' | grep "docs/api/paddle/.*_cn.rst" | sed 's#docs/##g'` 
+    if [[ "$__resultvar" ]] ; then
+        eval $__resultvar="$need_check_cn_doc_files"
+    else
+        echo "$need_check_cn_doc_files"
+    fi
+}

@@ -49,7 +49,9 @@ Align_corners和align_mode都是可选参数，可以用来设置插值的计算
                 H_out = H_{in} * scale_{factor}
                 W_out = W_{in} * scale_{factor}
 
-参数:
+参数
+::::::::::::
+
   - **input** (Variable) – 5-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
   - **out_shape** (list|tuple|Variable|None) – 调整最近邻层的输出形状，形式为(out_h, out_w)。默认值：None。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者shape为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。
   - **scale** (float|None) – 输入高、宽的乘法器。 ``out_shape`` 和 ``scale`` 二者至少设置其一。 ``out_shape`` 具有比 ``scale`` 更高的优先级。 默认: None
@@ -59,9 +61,12 @@ Align_corners和align_mode都是可选参数，可以用来设置插值的计算
   - **align_mode** (bool) - (int,默认为'1')，双线性插值选项，src_idx = scale*(dst_index+0.5)-0.5时取'0'，src_idx = scale*dst_index时取'1'。
   - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCDHW"。
 
-返回：5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
+返回
+::::::::::::
+5-D Tensor，形状为 (num_batches, channels, out_d, out_h, out_w) 或 (num_batches, out_d, out_h, out_w, channels)。
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
     

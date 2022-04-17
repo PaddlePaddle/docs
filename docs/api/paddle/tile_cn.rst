@@ -25,20 +25,19 @@ tile
 .. code-block:: python
 
     import paddle
-    import numpy as np
-    
-    np_data = np.array([1, 2, 3]).astype('int32')
-    data = paddle.to_tensor(np_data)
+
+    data = paddle.to_tensor([1, 2, 3], dtype='int32')
     out = paddle.tile(data, repeat_times=[2, 1])
     np_out = out.numpy()
-    # [[1, 2, 3], [1, 2, 3]]
-    
-    out = paddle.tile(data, repeat_times=[2, 2])
+    # [[1, 2, 3]
+    #  [1, 2, 3]]
+
+    out = paddle.tile(data, repeat_times=(2, 2))
     np_out = out.numpy()
-    # [[1, 2, 3, 1, 2, 3], [1, 2, 3, 1, 2, 3]]
-    
-    np_repeat_times = np.array([2, 1]).astype("int32")
-    repeat_times = paddle.to_tensor(np_repeat_times)
+    # [[1, 2, 3, 1, 2, 3]
+    #  [1, 2, 3, 1, 2, 3]]
+
+    repeat_times = paddle.to_tensor([1, 2], dtype='int32')
     out = paddle.tile(data, repeat_times=repeat_times)
     np_out = out.numpy()
-    # [[1, 2, 3], [1, 2, 3]]
+    # [[1, 2, 3, 1, 2, 3]]

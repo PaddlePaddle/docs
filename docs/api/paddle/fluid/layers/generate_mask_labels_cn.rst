@@ -39,7 +39,9 @@ generate_mask_labels
     feeder.feed(batch_masks)
 
 
-参数：
+参数
+::::::::::::
+
     - **im_info** (Variable) – 维度为[N，3]的2-D Tensor，数据类型为float32。 N是batch size，其每个元素是图像的高度、宽度、比例，比例是图片预处理时resize之后的大小和原始大小的比例 :math:`\frac{target\_size}{original\_size}` 。
     - **gt_classes**  (Variable) – 维度为[M，1]的2-D LoDTensor，数据类型为int32，LoD层数为1。 M是的groud-truth总数，其每个元素是类别索引。
     - **is_crowd**  (Variable) – 维度和 ``gt_classes`` 相同的 LoDTensor，数据类型为int32，每个元素指示一个ground-truth是否为crowd（crowd表示一组对象的集合）。
@@ -49,14 +51,19 @@ generate_mask_labels
     - **num_classes**  (int) – 类别数目。
     - **resolution**  (int) – 特征图分辨率大小。
 
-返回：
+返回
+::::::::::::
+
     - mask_rois (Variable): 维度为[P，4]的2-D LoDTensor，数据类型为float32。P是采样出的RoI总数，每个元素都是在原始图像大小范围内具有[xmin，ymin，xmax，ymax]格式的bounding box。
     - mask_rois_has_mask_int32（Variable)：维度为[P，1]的2-D LoDTensor，数据类型为int32。每个元素表示采样出的RoI在输入 ``rois`` 内的位置索引。
     - mask_int32（Variable)：维度为[P，K * M * M]的2-D LoDTensor，数据类型为int32。K为种类数，M为特征图的分辨率大小，每个元素都是二值mask标签。
 
-返回类型：tuple(Variable)
+返回类型
+::::::::::::
+tuple(Variable)
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
     

@@ -7,7 +7,7 @@ bincount
 
 统计输入张量中每个元素出现的次数，如果传入weights张量则每次计数加一时会乘以weights张量对应的值
 
-参数：
+参数
 ::::::::::::
 
     - **x** (Tensor) - 输入Tensor。必须是一维Tensor，其中元素必须大于等于0，数据类型为int32, int64。
@@ -15,7 +15,7 @@ bincount
     - **minlength** (int, 可选) - 输出Tensor的最小长度，如果大于输入Tensor中的最大值，则多出的位置补0。该值必须大于等于0。默认为0。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：
+返回
 ::::::::::::
 Tensor，维度为1。
 

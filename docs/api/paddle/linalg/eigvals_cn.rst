@@ -4,11 +4,11 @@ eigvals
 -------------------------------
 
 .. py:function:: paddle.linalg.eigvals(x, name=None)
-该OP计算一个（或一批）普通方阵的特征值。
+计算一个（或一批）普通方阵的特征值。
 
 
-.. warning::   
-该OP的反向实现尚未完成，若您的代码需要对其进行反向传播，请使用paddle.linalg.eig。
+.. note::   
+该API的反向实现尚未完成，若你的代码需要对其进行反向传播，请使用ref:`cn_api_linalg_eig`。
 
 
 参数

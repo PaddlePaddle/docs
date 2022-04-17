@@ -7,15 +7,20 @@ random_split
 
 给定子集合dataset的长度数组，随机切分出原数据集合的非重复子集合。
 
-参数:
+参数
+::::::::::::
+
     - **dataset** (Dataset) - 此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例或实现了 ``__len__`` 的Python对象，用于生成样本下标。默认值为None。
     - **lengths** (list) - 总和为原数组长度的，子集合长度数组。
     - **generator** (Generator) - 指定采样 ``data_source`` 的采样器。默认值为None。
 
-返回: list, 返回按给定长度数组描述随机分割的原数据集合的非重复子集合。
+返回
+::::::::::::
+ list, 返回按给定长度数组描述随机分割的原数据集合的非重复子集合。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
