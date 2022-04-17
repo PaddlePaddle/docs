@@ -44,7 +44,9 @@ strided_slice算子。
                      result=[[2],]
                      
 
-参数：
+参数
+::::::::::::
+
        
         - **input** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``，``float64``，``int32``，或 ``int64``。
         - **axes** （list|tuple）- 数据类型是 ``int32``。表示进行切片的轴。
@@ -53,17 +55,24 @@ strided_slice算子。
         - **strides** （list|tuple|Variable）- 数据类型是 ``int32``。如果 ``strides`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor`` 或 ``LoDTensor``。如果 ``strides`` 的类型是 ``Variable``，则是1-D ``Tensor`` 或 ``LoDTensor``。表示在各个轴上切片的步长。
 
 
-返回：多维 ``Tensor`` 或 ``LoDTensor``，数据类型与 ``input`` 相同。
+返回
+::::::::::::
+多维 ``Tensor`` 或 ``LoDTensor``，数据类型与 ``input`` 相同。
 
 
-返回类型：Variable。
+返回类型
+::::::::::::
+Variable。
 
-抛出异常：
+抛出异常
+::::::::::::
+
     - :code:`TypeError`：``starts`` 的类型应该是 list、tuple 或 Variable。
     - :code:`TypeError`：``ends`` 的类型应该是 list、tuple 或 Variable。
     - :code:`TypeError`：``strides`` 的类型应该是 list、tuple 或 Variable。
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

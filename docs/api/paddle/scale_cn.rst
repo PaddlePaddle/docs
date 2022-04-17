@@ -22,7 +22,9 @@ scale
 .. math::
                         Out=scale*(X+bias)
 
-参数:
+参数
+::::::::::::
+
         - **x** (Tensor) - 要进行缩放的多维Tensor，数据类型可以为float32，float64，int8，int16，int32，int64，uint8。
         - **scale** (float|Tensor) - 缩放的比例，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。
         - **bias** (float) - 缩放的偏置。 
@@ -30,9 +32,12 @@ scale
         - **act** (str，可选) - 应用于输出的激活函数，如tanh、softmax、sigmoid、relu等。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回: Tensor，缩放后的计算结果。
+返回
+::::::::::::
+ Tensor，缩放后的计算结果。
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

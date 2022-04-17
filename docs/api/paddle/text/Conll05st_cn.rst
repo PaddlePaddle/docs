@@ -7,7 +7,7 @@ Conll05st
 
 
 该类是对 `Conll05st <https://www.cs.upc.edu/~srlconll/soft.html>`_
-测试数据集的实现.
+测试数据集的实现。
 
 .. note::
     只支持自动下载公共的 Conll05st测试数据集。

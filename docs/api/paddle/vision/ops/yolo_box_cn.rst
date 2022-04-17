@@ -30,21 +30,21 @@ yolo_box
 参数
 :::::::::
 
-    - **x** （Tensor）: YoloBox的输入张量是一个4-D张量，形状为[N，C，H，W]。第二维（C）存储每个anchor box位置坐标，每个anchor box的置信度分数和one hot key。通常，X应该是YOLOv3网络的输出。数据类型为float32或float64
-    - **img_size** （Tensor）: YoloBox的图像大小张量，这是一个形状为[N，2]的二维张量。该张量保持每个输入图像的高度和宽度，用于对输出图像按输入图像比例调整输出框的大小。数据类型为int32。
-    - **anchors** （list | tuple） : anchor的宽度和高度，它将逐对解析
-    - **class_num** （int）: 要预测的类数
-    - **conf_thresh** （float）: 检测框的置信度得分阈值。置信度得分低于阈值的框应该被忽略
-    - **downsample_ratio** （int）: 从网络输入到YoloBox操作输入的下采样率，因此应依次为第一个，第二个和第三个YoloBox运算设置该值为32,16,8
-    - **clip_bbox** （bool, 可选）: 是否将输出的bbox裁剪到 :attr:`img_size` 范围内，默认为True。
-    - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
-    - **scale_x_y** (float, 可选): 放缩解码边界框的中心点，默认值：1.0 .
+    - **x** （Tensor）- YoloBox的输入张量是一个4-D张量，形状为[N，C，H，W]。第二维（C）存储每个anchor box位置坐标，每个anchor box的置信度分数和one hot key。通常，X应该是YOLOv3网络的输出。数据类型为float32或float64。
+    - **img_size** （Tensor）- YoloBox的图像大小张量，这是一个形状为[N，2]的二维张量。该张量保持每个输入图像的高度和宽度，用于对输出图像按输入图像比例调整输出框的大小。数据类型为int32。
+    - **anchors** （list | tuple） - anchor的宽度和高度，它将逐对解析。
+    - **class_num** （int）- 要预测的类数。
+    - **conf_thresh** （float）- 检测框的置信度得分阈值。置信度得分低于阈值的框应该被忽略。
+    - **downsample_ratio** （int）- 从网络输入到YoloBox操作输入的下采样率，因此应依次为第一个，第二个和第三个YoloBox运算设置该值为32,16,8
+    - **clip_bbox** （bool，可选）- 是否将输出的bbox裁剪到 :attr:`img_size` 范围内，默认为True。
+    - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - **scale_x_y** (float，可选) - 放缩解码边界框的中心点，默认值：1.0。
 
 返回
 :::::::::
 
-     1. 框的坐标，形为[N，M，4]的三维张量
-     2. 框的分类得分， 形为 [N，M，class_num]的三维张量
+     1. 框的坐标，形为[N，M，4]的三维张量；
+     2. 框的分类得分， 形为 [N，M，class_num]的三维张量。
 
 代码示例
 :::::::::

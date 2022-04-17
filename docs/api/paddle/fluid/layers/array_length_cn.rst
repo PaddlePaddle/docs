@@ -10,14 +10,21 @@ array_length
 
 该OP用于获取输入数组 :ref:`cn_api_fluid_LoDTensorArray` 的长度。可以与 :ref:`cn_api_fluid_layers_array_read` 、 :ref:`cn_api_fluid_layers_array_write` 、 :ref:`cn_api_fluid_layers_While` OP结合使用，实现LoDTensorArray的遍历与读写。
 
-参数：
+参数
+::::::::::::
+
     - **array** (LoDTensorArray) - 输入的数组LoDTensorArray
 
-返回：shape为[1]的1-D Tensor, 表示数组LoDTensorArray的长度，数据类型为int64
+返回
+::::::::::::
+shape为[1]的1-D Tensor, 表示数组LoDTensorArray的长度，数据类型为int64
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

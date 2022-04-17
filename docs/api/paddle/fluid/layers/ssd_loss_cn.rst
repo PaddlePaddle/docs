@@ -42,7 +42,9 @@ ssd_loss
 
         5.3计算总体加权损失。
 
-参数：
+参数
+::::::::::::
+
         - **location** （Variable）- 位置预测，具有形状[N，Np，4]的3D-Tensor，N是batch大小，Np是每个实例的预测总数。 4是坐标的维数，布局是[xmin，ymin，xmax，ymax]，xmin，ymin代表box左上坐标，xmax，ymax代表box右下坐标，数据类型为float32或float64。
         - **confidence**  (Variable) - 置信度(分类)预测，具有形状[N，Np，C]的3D-Tensor，N是batch大小，Np是每个实例的预测总数，C是类别数量，数据类型为float32或float64。
         - **gt_box** （Variable）- 真实框(bbox),具有形状[Ng，4]的2D LoDTensor，Ng是mini-batch输入的真实框（bbox）的总数,4是坐标的维数，布局是[xmin，ymin，xmax，ymax]，xmin，ymin代表box左上坐标，xmax，ymax代表box右下坐标，数据类型为float32或float64。
@@ -60,11 +62,16 @@ ssd_loss
         - **normalize** （bool）- 是否通过输出位置的总数将SSD损失标准化，默认为True。
         - **sample_size** （int）- 负样本框的最大样本大小，仅在 ``mining_type`` 为'hard_example'时使用。
 
-返回：  Variable(Tensor)  定位损失和置信度损失的加权和, 具有形状[N * Np，1], N是batch大小，Np是每个实例的预测总数，数据类型为float32或float64。
+返回
+::::::::::::
+  Variable(Tensor)  定位损失和置信度损失的加权和, 具有形状[N * Np，1], N是batch大小，Np是每个实例的预测总数，数据类型为float32或float64。
 
-抛出异常：        ``ValueError`` - 如果 ``mining_type`` 是'hard_example'，目前只支持 ``max_negative`` 的挖掘类型。
+抛出异常
+::::::::::::
+        ``ValueError`` - 如果 ``mining_type`` 是'hard_example'，目前只支持 ``max_negative`` 的挖掘类型。
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

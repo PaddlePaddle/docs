@@ -11,7 +11,9 @@ DistributedBatchSampler
 .. note::
   假定Dataset的大小是固定的。
 
-参数:
+参数
+::::::::::::
+
     - **dataset** (paddle.io.Dataset) - 此参数必须是 ``paddle.io.Dataset`` 的一个子类实例或实现了 ``__len__`` 的Python对象，用于生成样本下标。默认值为None。
     - **batch_size** (int) - 每mini-batch中包含的样本数。
     - **num_replicas** (int, optional) - 分布式训练时的进程个数。如果是None，会依据 ``paddle.distributed.ParallenEnv`` 获取值。默认是None。
@@ -20,11 +22,13 @@ DistributedBatchSampler
     - **drop_last** (bool) - 是否需要丢弃最后无法凑整一个mini-batch的样本。默认值为False。
 
 
-返回：返回样本下标数组的迭代器。
+返回
+::::::::::::
+DistributedBatchSampler，返回样本下标数组的迭代器。
+ 
 
-返回类型: DistributedBatchSampler
-
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -52,11 +56,15 @@ DistributedBatchSampler
         # do something
         break
 
-.. py:function:: set_epoch(epoch)
+方法
+::::::::::::
+set_epoch(epoch)
+'''''''''
 
 设置epoch数。当设置``shuffle=True``时，此epoch被用作随机种子。默认情况下，用户可以不用此接口设置，每个epoch时，所有的进程(workers)使用不同的顺序。如果每个epoch设置相同的数字，每个epoch数据的读取顺序将会相同。
 
-参数：
+**参数**
+
     - **epoch** (int) - epoch数。
 
 **代码示例**

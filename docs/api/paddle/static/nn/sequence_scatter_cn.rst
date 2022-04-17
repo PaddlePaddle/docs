@@ -6,16 +6,13 @@ sequence_scatter
 
 .. py:function:: paddle.static.nn.sequence_scatter(input, index, updates, name=None)
 
-:api_attr: 声明式编程模式（静态图)
-
-
 
 .. note::
     该OP的输入index，updates必须是LoDTensor。
 
-该OP根据index提供的位置将updates中的信息更新到输出中。
+根据index提供的位置将updates中的信息更新到输出中。
 
-该OP先使用input初始化output，然后通过output[instance_index][index[pos]] += updates[pos]方式，将updates的信息更新到output中，其中instance_idx是pos对应的在batch中第k个样本。
+先使用input初始化output，然后通过output[instance_index][index[pos]] += updates[pos]方式，将updates的信息更新到output中，其中instance_idx是pos对应的在batch中第k个样本。
 
 output[i][j]的值取决于能否在index中第i+1个区间中找到对应的数据j，若能找到out[i][j] = input[i][j] + update[m][n]，否则 out[i][j] = input[i][j]。
 

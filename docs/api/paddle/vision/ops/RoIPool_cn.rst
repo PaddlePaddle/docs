@@ -10,7 +10,7 @@ RoIPool
 参数
 :::::::::
     - output_size (int|Tuple(int, int)) - 池化后输出的尺寸(H, W), 数据类型为int32. 如果output_size是int类型，H和W都与其相等。
-    - spatial_scale (float, 可选) - 空间比例因子，用于将boxes中的坐标从其输入尺寸按比例映射到input特征图的尺寸，默认值1.0。
+    - spatial_scale (float，可选) - 空间比例因子，用于将boxes中的坐标从其输入尺寸按比例映射到input特征图的尺寸，默认值1.0。
 
 形状
 :::::::::
@@ -21,7 +21,7 @@ RoIPool
 
 返回
 :::::::::
-    无
+无。
 
 代码示例
 :::::::::

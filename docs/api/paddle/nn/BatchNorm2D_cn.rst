@@ -35,7 +35,9 @@ BatchNorm2D
 - :math:`\gamma` : 可训练的比例参数
 - :math:`\beta` : 可训练的偏差参数
 
-参数：
+参数
+::::::::::::
+
     - **num_features** (int) - 指明输入 ``Tensor`` 的通道数量。
     - **epsilon** (float, 可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
     - **momentum** (float, 可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var`` 。默认值：0.9。更新公式如上所示。
@@ -45,9 +47,13 @@ BatchNorm2D
     - **name** (string, 可选) – BatchNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
 
-返回：无
+返回
+::::::::::::
+无
 
-形状：
+形状
+::::::::::::
+
     - input: 形状为（批大小，通道数, 高度，宽度）的4-D Tensor 或（批大小, 通道数，宽度，高度）的4-D Tensor。
     - output: 和输入形状一样。
 
@@ -55,7 +61,8 @@ BatchNorm2D
 目前训练时设置track_running_stats为False是无效的，实际还是会按照True的方案保存全局均值和方差。之后的版本会修复此问题。
     
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
