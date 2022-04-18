@@ -5,6 +5,7 @@ IndependentTransform
 
 .. py:class:: paddle.distribution.IndependentTransform(base, reinterpreted_batch_rank)
 
+
  ``IndependentTransform`` 将一个基础变换 ``base`` 的部分批(batch)维
  度 ``reinterpreted_batch_rank`` 扩展为事件(event)维度。
 
@@ -25,7 +26,7 @@ IndependentTransform
 :::::::::
 
 - **base** (Transform) - 基础变换。
-- **reinterpreted_batch_rank** (int) - 将被扩展为事件维度的最右侧批维度数量。
+- **reinterpreted_batch_rank** (int) - 被扩展为事件维度的最右侧批维度数量。
 
 
 代码示例

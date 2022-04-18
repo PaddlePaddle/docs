@@ -7,8 +7,9 @@ SoftmaxTransform
 
 Softmax变换，首先进行 :math:`y = exp(x)` 变换, 然后归一化。
 
-Softmax变换主要用途是将一个无约束空间变换为单纯形。Softmax不是双射函数，
-所以 ``forward_log_det_jacobian`` 、 ``inverse_log_det_jacobian`` 未实现。
+Softmax变换将向量变换为单纯形。
+
+注意，Softmax不是双射函数，所以 ``forward_log_det_jacobian`` 、 ``inverse_log_det_jacobian`` 未实现。
 
 代码示例
 :::::::::
