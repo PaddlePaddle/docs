@@ -256,6 +256,7 @@ Loss层
     " :ref:`paddle.nn.MSELoss <cn_api_paddle_nn_MSELoss>` ", "均方差误差损失层"
     " :ref:`paddle.nn.NLLLoss <cn_api_nn_loss_NLLLoss>` ", "NLLLoss层"
     " :ref:`paddle.nn.SmoothL1Loss <cn_api_paddle_nn_SmoothL1Loss>` ", "平滑L1损失层"
+    " :ref:`paddle.nn.MultiLabelSoftMarginLoss <cn_api_paddle_nn_MultiLabelSoftMarginLoss>` ", "多标签Hinge损失层"
     
 .. _vision_layers:
 
@@ -473,6 +474,7 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.smooth_l1_loss <cn_paddle_nn_functional_loss_smooth_l1>` ", "用于计算平滑L1损失"
     " :ref:`paddle.nn.functional.softmax_with_cross_entropy <cn_api_fluid_layers_softmax_with_cross_entropy>` ", "将softmax操作、交叉熵损失函数的计算过程进行合并"
     " :ref:`paddle.nn.functional.margin_cross_entropy <cn_api_paddle_nn_functional_margin_cross_entropy>` ", "支持 ``Arcface``，``Cosface``，``Sphereface`` 的结合 Margin 损失函数"
+    " :ref:`paddle.nn.functional.multi_label_soft_margin_loss <cn_api_nn_functional_multi_label_soft_margin_loss>` ", "用于计算多分类的hinge loss损失函数"
     
 .. _common_functional:
 
