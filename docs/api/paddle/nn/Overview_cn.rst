@@ -256,6 +256,7 @@ Loss层
     " :ref:`paddle.nn.MSELoss <cn_api_paddle_nn_MSELoss>` ", "均方差误差损失层"
     " :ref:`paddle.nn.NLLLoss <cn_api_nn_loss_NLLLoss>` ", "NLLLoss层"
     " :ref:`paddle.nn.SmoothL1Loss <cn_api_paddle_nn_SmoothL1Loss>` ", "平滑L1损失层"
+    " :ref:`paddle.nn.AdaptiveLogSoftmaxWithLoss <cn_api_paddle_nn_AdaptiveLogSoftmaxWithLoss>` ", "AdaptiveLogSoftmaxWithLoss损失层"
     
 .. _vision_layers:
 
