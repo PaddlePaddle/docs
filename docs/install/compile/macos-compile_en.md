@@ -80,17 +80,22 @@ docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidub
 Note:
 Please make sure to allocate at least 4g of memory for docker, otherwise the compilation process may fail due to insufficient memory. You can set a container's memory allocation cap in "Preferences-Resources" in the docker UI.
 
-
 #### 6. After entering Docker, go to the paddle directory:
 
 ```
 cd /paddle
 ```
 
-#### 7. Switch to develop version to compile:
+#### 7. Switch to a more stable version to compile:
 
 ```
-git checkout develop
+git checkout [name of the branch]
+```
+
+For example：
+
+```
+git checkout release/2.2
 ```
 
 Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
@@ -243,10 +248,16 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 6. Switch to develop branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch)
+#### 6. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch)
 
 ```
-git checkout develop
+git checkout [name of the branch]
+```
+
+For example：
+
+```
+git checkout release/2.2
 ```
 
 #### 7. And please create and enter a directory called build:

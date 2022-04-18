@@ -11,4 +11,3 @@
 	arm-compile.md
 	sw-compile.md
 	zhaoxin-compile.md
-        mips-compile.md
