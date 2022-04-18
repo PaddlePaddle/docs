@@ -50,7 +50,7 @@
 5. 切换到2.2分支下进行编译：
 
     ```
-    git checkout release/2.2
+    git checkout release/2.3
     ```
 
 6. 创建名为build的目录并进入：

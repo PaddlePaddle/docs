@@ -144,7 +144,7 @@ git checkout [name of the branch]
 For example：
 
 ```
-git checkout release/2.2
+git checkout release/2.3
 ```
 
 Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
@@ -474,7 +474,7 @@ git checkout [name of target branch]
 For example:
 
 ```
-git checkout release/2.2
+git checkout release/2.3
 ```
 
 #### 10. And please create and enter a directory called build:

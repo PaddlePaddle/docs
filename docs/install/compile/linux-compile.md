@@ -138,7 +138,7 @@ git checkout [分支名]
 例如：
 
 ```
-git checkout release/2.2
+git checkout release/2.3
 ```
 
 注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
@@ -487,7 +487,7 @@ git checkout [分支名]
 例如：
 
 ```
-git checkout release/2.2
+git checkout release/2.3
 ```
 
 #### 10. 并且请创建并进入一个叫build的目录下：
