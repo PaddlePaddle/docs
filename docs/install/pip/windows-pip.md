@@ -81,7 +81,7 @@
 
 
 
-2.2.2 CUDA10.1的PaddlePaddle
+2.2.1 CUDA10.1的PaddlePaddle
 
 
   ```
@@ -98,8 +98,16 @@
 
 2.2.3 CUDA11.0的PaddlePaddle
 
+若您的GPU架构为6.0, 6.1, 7.0, 7.5, 8.0, 8.6 (Pascal, Volta, Turing, Ampere)，请使用如下命令安装：
+
   ```
   python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple
+  ```
+
+若您的GPU架构为3.5, 3.7, 5.0, 5.2 (Kepler and Maxwell)，请使用如下命令安装：
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.3.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 2.2.4 CUDA11.1的PaddlePaddle

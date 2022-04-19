@@ -81,7 +81,7 @@ You can choose the following version of PaddlePaddle to start installation:
 #### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
-2.2.2 If you are using CUDA 10.1
+2.2.1 If you are using CUDA 10.1
 
 
   ```
@@ -98,8 +98,16 @@ You can choose the following version of PaddlePaddle to start installation:
 
 2.2.3 If you are using CUDA 11.0
 
+If your GPU architecture is 6.0, 6.1, 7.0, 7.5, 8.0, 8.6 (Pascal, Volta, Turing, Ampere), please use the following command to install:
+
   ```
   python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple
+  ```
+
+If your GPU architecture is 3.5, 3.7, 5.0, 5.2 (Kepler and Maxwell), please use the following command to install:
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.3.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 2.2.4 If you are using CUDA 11.1
