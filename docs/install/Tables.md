@@ -1,6 +1,123 @@
 <a name="third_party"></a>
 # 附录
 
+<a name="gpu-install"></a>
+</br></br>
+
+## **飞桨支持的GPU架构及安装方式**
+<p align="center">
+<table>
+    <thead>
+    <tr>
+        <th> GPU架构 </th>
+        <th> Compute Capability </th>
+        <th> 具体GPU型号 </th>
+        <th> 可用CUDA版本 </th>
+        <th> CUDA11.0的whl包下载方式 </th>
+        <th> 其他CUDA版本的whl包下载方式（CUDA10.2为例） </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td> Fermi </td>
+        <td> sm_20 </td>
+        <td> GeForce 400, 500, 600, GT-630 </td>
+        <td> 不支持 </td>
+        <td> 不支持 </td>
+        <td> 不支持 </td>
+    </tr>
+    <tr>
+        <td> Kepler </td>
+        <td> sm_30 </td>
+        <td> GeForce 700, GT-730 </td>
+        <td> 不支持 </td>
+        <td> 不支持 </td>
+        <td> 不支持 </td>
+    </tr>
+    <tr>
+        <td> Kepler </td>
+        <td> sm_35 </td>
+        <td> Tesla K40 </td>
+        <td> CUDA10 </td>
+        <td> 不支持 </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
+    </tr>
+    <tr>
+        <td> Kepler </td>
+        <td> sm_37 </td>
+        <td> Tesla K80 </td>
+        <td> CUDA10 </td>
+        <td> 不支持 </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
+    </tr>
+    <tr>
+        <td> Maxwell </td>
+        <td> sm_50 </td>
+        <td> Tesla/Quadro M series </td>
+        <td> CUDA10、CUDA11 </td>
+        <td> <code>python -m pip download paddlepaddle-gpu==2.3.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html --no-index --no-deps</code> </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
+    </tr>
+    <tr>
+        <td> Maxwell </td>
+        <td> sm_52 </td>
+        <td> Quadro M6000 , GeForce 900, GTX-970, GTX-980, GTX Titan X </td>
+        <td> CUDA10、CUDA11 </td>
+        <td> <code>python -m pip download paddlepaddle-gpu==2.3.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html --no-index --no-deps</code> </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
+    </tr>
+    <tr>
+        <td> Pascal </td>
+        <td> sm_60 </td>
+        <td> Quadro GP100, Tesla P100, DGX-1 </td>
+        <td> CUDA10、CUDA11 </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
+    </tr>
+    <tr>
+        <td> Pascal </td>
+        <td> sm_61 </td>
+        <td> GTX 1080, GTX 1070, GTX 1060, GTX 1050, GTX 1030 (GP108), GT 1010 (GP108) Titan Xp, Tesla P40, Tesla P4 </td>
+        <td> CUDA10、CUDA11 </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
+    </tr>
+    <tr>
+        <td> Volta </td>
+        <td> sm_70 </td>
+        <td> DGX-1 with Volta, Tesla V100, GTX 1180 (GV104), Titan V, Quadro GV100 </td>
+        <td> CUDA10、CUDA11 </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
+    </tr>
+    <tr>
+        <td> Turing </td>
+        <td> sm_75 </td>
+        <td> GTX/RTX Turing – GTX 1660 Ti, RTX 2060, RTX 2070, RTX 2080, Titan RTX, Quadro RTX 4000, Quadro RTX 5000, Quadro RTX 6000, Quadro RTX 8000, Quadro T1000/T2000, Tesla T4 </td>
+        <td> CUDA10、CUDA11 </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
+    </tr>
+    <tr>
+        <td> Ampere </td>
+        <td> sm_80 </td>
+        <td> NVIDIA A100, GA100, NVIDIA DGX-A100 </td>
+        <td> CUDA11 </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
+        <td> 不支持CUDA10 </td>
+    </tr>
+    <tr>
+        <td> Ampere </td>
+        <td> sm_86 </td>
+        <td> Tesla GA10x cards, RTX Ampere – RTX 3080, GA102 – RTX 3090, RTX A2000, A3000, RTX A4000, A5000, A6000, NVIDIA A40, GA106 – RTX 3060, GA104 – RTX 3070, GA107 – RTX 3050, RTX A10, RTX A16, RTX A40, A2 Tensor Core GPU </td>
+        <td> CUDA11、CUDA11.2（推荐） </td>
+        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
+        <td> CUDA11.2: <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
+    </tr>
+    </tbody>
+</table>
+</p>
+
 ## **编译依赖表**
 
 <p align="center">
