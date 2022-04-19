@@ -166,10 +166,10 @@ If your GPU architecture is 6.0, 6.1, 7.0, 7.5, 8.0, 8.6 (Pascal, Volta, Turing,
   python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple
   ```
 
-If your GPU architecture is 3.5, 3.7, 5.0, 5.2 (Kepler and Maxwell), please use the following command to install:
+If your GPU architecture is 3.5, 3.7, 5.0, 5.2 (Kepler and Maxwell), first use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
   ```
-  python -m pip install paddlepaddle-gpu==2.3.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python -m pip download paddlepaddle-gpu==2.3.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html --no-index --no-deps
   ```
 
 
