@@ -6,7 +6,7 @@
 
 在进行PaddlePaddle安装之前请确保您的Anaconda软件环境已经正确安装。软件下载和安装参见Anaconda官网(https://www.anaconda.com/)。在您已经正确安装Anaconda的情况下请按照下列步骤安装PaddlePaddle。
 
-* MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)
+* MacOS 版本 10.x/11.x (64 bit) (不支持GPU版本)
 * conda 版本 4.8.3+ (64 bit)
 
 ### 1.1 创建虚拟环境
@@ -43,18 +43,48 @@ conda create -n paddle_env python=3.9
 
 #### 1.1.2进入Anaconda虚拟环境
 
+
 ```
 conda activate paddle_env
 ```
 
 
-## 1.2其他环境检查
 
-确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64（或x64、AMD64）"即可：
+### 1.2其他环境检查
+
+#### 1.2.1 确认Python安装路径
+
+确认您的conda虚拟环境和需要安装PaddlePaddle的Python是您预期的位置，因为您计算机可能有多个Python。进入Anaconda的命令行终端，输入以下指令确认Python位置。
+
+输出 Python 路径的命令为:
+
+```
+which python
+```
+
+根据您的环境，您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
+
+
+
+#### 1.2.2 检查Python版本
+
+使用以下命令确认版本(Python 应对应 3.6/3.7/3.8/3.9)
+
+```
+python --version
+```
+
+
+
+#### 1.2.3 检查系统环境
+
+确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构（mac M1除外，paddle 已支持Mac M1 芯片）。下面的第一行输出的是"64bit"，第二行输出的是"x86_64（或x64、AMD64）"即可：
+
 
 ```
 python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 ```
+
 
 ## 二、开始安装
 
@@ -62,26 +92,24 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 ### 添加清华源（可选）
 
-对于国内用户无法连接到Anaconda官方源的可以按照以下命令添加清华源。
-
-```
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-conda config --set show_channel_urls yes
-```
-
-### 首先请您选择您的版本
-
-* 目前在MacOS环境仅支持CPU版PaddlePaddle
-
-### 根据版本进行安装
-
-确定您的环境满足条件后可以开始安装了，选择下面您要安装的PaddlePaddle
-
-* 请参考如下命令安装:
+* 对于国内用户无法连接到Anaconda官方源的可以按照以下命令添加清华源:
 
   ```
-  conda install paddlepaddle --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+  ```
+  ```
+  conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+  ```
+  ```
+  conda config --set show_channel_urls yes
+  ```
+
+### 安装CPU版PaddlePaddle
+
+* 目前在MacOS环境仅支持CPU版PaddlePaddle，请参考如下命令安装Paddle:
+
+  ```
+  conda install paddlepaddle==2.3.0rc0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 ## **三、验证安装**

@@ -13,9 +13,9 @@
 * If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
-    * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5+**
-    * **CUDA toolkit 11.0 with cuDNN v8.0.2+**
-    * **CUDA toolkit 11.1 with cuDNN v8.1.1+**
+    * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5**
+    * **CUDA toolkit 11.0 with cuDNN v8.0.2**
+    * **CUDA toolkit 11.1 with cuDNN v8.1.1**
     * **CUDA toolkit 11.2 with cuDNN v8.2.1**
     * **GPU's computing capability exceeds 3.5**
 
@@ -65,10 +65,15 @@ There is one compilation methods in Windows system:
     cd Paddle
     ```
 
-3. Switch to `develop` branch for compilation:
+3. Switch to a more stable release branch for compilation:
 
     ```
-    git checkout develop
+    git checkout [name of the branch]
+    ```
+
+    For example：
+    ```
+    git checkout release/2.3
     ```
 
     Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1

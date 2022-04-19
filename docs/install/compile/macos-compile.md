@@ -75,6 +75,7 @@ docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidub
 
 - `registry.baidubce.com/paddlepaddle/paddle:latest-dev`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev`的镜像创建Docker容器，/bin/bash 进入容器后启动/bin/bash命令
 
+
 注意：
 请确保至少为docker分配4g以上的内存，否则编译过程可能因内存不足导致失败。您可以在docker用户界面的“Preferences-Resources”中设置容器的内存分配上限。
 
@@ -84,10 +85,16 @@ docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidub
 cd /paddle
 ```
 
-#### 7. 切换到develop版本进行编译：
+#### 7. 切换到较稳定版本下进行编译：
 
 ```
-git checkout develop
+git checkout [分支名]
+```
+
+例如：
+
+```
+git checkout release/2.3
 ```
 
 注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
@@ -237,10 +244,16 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 6. 切换到develop分支进行编译：
+#### 6. 切换到较稳定release分支下进行编译：
 
 ```
-git checkout develop
+git checkout [分支名]
+```
+
+例如：
+
+```
+git checkout release/2.3
 ```
 
 注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持

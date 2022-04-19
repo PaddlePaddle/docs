@@ -47,7 +47,13 @@
     cd Paddle
     ```
 
-5. 创建名为build的目录并进入：
+5. 切换到2.2分支下进行编译：
+
+    ```
+    git checkout release/2.3
+    ```
+
+6. 创建名为build的目录并进入：
 
     ```
     mkdir build
@@ -55,7 +61,7 @@
     cd build
     ```
 
-6. 执行cmake：
+7. 执行cmake：
 
     编译CPU版本的Paddle：
 
@@ -78,19 +84,19 @@
     cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\Python38\python.exe -DPYTHON_INCLUDE_DIR=C:\Python38\include -DPYTHON_LIBRARY=C:\Python38\libs\python38.lib
     ```
 
-7. 执行编译：
+8. 执行编译：
 
     ```
     ninja
     ```
 
-8. 编译成功后进入 `python\dist` 目录下找到生成的 `.whl` 包：
+9. 编译成功后进入 `python\dist` 目录下找到生成的 `.whl` 包：
 
     ```
     cd python\dist
     ```
 
-9. 安装编译好的 `.whl` 包：
+10. 安装编译好的 `.whl` 包：
 
     ```
     pip install（whl包的名字）--force-reinstall

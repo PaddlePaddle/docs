@@ -135,10 +135,16 @@ Please make sure to allocate at least 4g of memory for docker, otherwise the com
 cd /paddle
 ```
 
-#### 6. Switch to develop version to compile:
+#### 6. Switch to a more stable version to compile:
 
 ```
-git checkout develop
+git checkout [name of the branch]
+```
+
+For example：
+
+```
+git checkout release/2.3
 ```
 
 Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
@@ -459,10 +465,16 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 9. Switch to develop branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch, support for Python 3.9 is added from the 2.1 branch,):
+#### 9. Switch to a more stable release branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch, support for Python 3.9 is added from the 2.1 branch,):
 
 ```
-git checkout develop
+git checkout [name of target branch]
+```
+
+For example:
+
+```
+git checkout release/2.3
 ```
 
 #### 10. And please create and enter a directory called build:
