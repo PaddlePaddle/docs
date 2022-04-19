@@ -133,7 +133,7 @@ cmake .. -DPY_VERSION=3.7 \
          -DWITH_DISTRIBUTE=ON \
          -DWITH_NCCL=OFF
 
-make -j20
+make -j$(nproc)
 ```
 
 （6）编译成功后进入Paddle/build/python/dist目录下找到生成的.whl包 。
