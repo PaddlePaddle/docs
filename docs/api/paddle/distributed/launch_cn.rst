@@ -29,7 +29,7 @@ launch
 
     - ``--rank``: 节点序号, 可以通过主节点进行分配。默认值 ``--rank=-1``.
 
-    - ``--log_level``: 日志级别, 可选值为 CRITICAL/ERROR/WARNING/INFO/DEBUG/NOTSET, 不区分大小写. 0 号节点的日志默认不输出到标准输出，需要开启输出请使用 debug 模式。默认值 ``--log_level=INFO``.
+    - ``--log_level``: 日志级别, 可选值为 CRITICAL/ERROR/WARNING/INFO/DEBUG/NOTSET, 不区分大小写。默认值 ``--log_level=INFO``.
 
     - ``--nnodes``: 节点数量，支持区间设定以开启弹性模式，比如 ``--nnodes=2:3``. 默认值 ``--nnodes=1``.
 
