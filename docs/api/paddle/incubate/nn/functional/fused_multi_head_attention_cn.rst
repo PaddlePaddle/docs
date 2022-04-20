@@ -3,7 +3,7 @@
 fused_multi_head_attention
 -------------------------------
 
-.. py:function:: paddle.incubate.nn.functional.fused_multi_head_attention(x, qkv_weight, linear_weight, pre_layer_norm=False, pre_ln_scale=None, pre_ln_bias=None, ln_scale=None, ln_bias=None, pre_ln_epsilon=1e-05, qkv_bias=None, linear_bias=None, attn_mask=None, dropout_rate=0.5, attn_dropout_rate=0.5, ln_epsilon=1e-05, traing=True, mode='upscale_in_train', name=None)
+.. py:function:: paddle.incubate.nn.functional.fused_multi_head_attention(x, qkv_weight, linear_weight, pre_layer_norm=False, pre_ln_scale=None, pre_ln_bias=None, ln_scale=None, ln_bias=None, pre_ln_epsilon=1e-05, qkv_bias=None, linear_bias=None, cache_kv=None, attn_mask=None, dropout_rate=0.5, attn_dropout_rate=0.5, ln_epsilon=1e-05, traing=True, mode='upscale_in_train', ring_id=-1, name=None)
 
 **多头注意力机制**
 
@@ -75,7 +75,7 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
 
             - train: out = input * mask
             - inference: out = input * (1.0 - p)
-    - **ring_id** (int, 可选) - 分布式tensor parallel运行下通讯所使用的NCCL id。
+    - **ring_id** (int, 可选) - 分布式tensor parallel运行下通讯所使用的NCCL id。默认值为 -1 。
     - **name** (str, 可选) - 操作的名称(可选，默认值为 ``None`` ）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
