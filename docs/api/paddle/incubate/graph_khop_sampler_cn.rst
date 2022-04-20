@@ -5,7 +5,7 @@ graph_khop_sampler
 
 .. py:function:: paddle.incubate.graph_khop_sampler(row, colptr, input_nodes, sample_sizes, sorted_eids=None, return_eids=False, name=None)
 
-此API主要应用于图学习领域，将节点邻居采样和节点重编号两步骤统一在一起，同时提供多层邻居采样，方便用户使用。关于邻居采样和节点重编号的相关API可以分别参考 :ref:`cn_api_incubate_graph_sample_neighbors` 和 :ref:`cp_api_incubate_graph_reindex` 。
+此API主要应用于图学习领域，将节点邻居采样和节点重编号两步骤统一在一起，同时提供多层邻居采样，方便用户使用。关于邻居采样和节点重编号的相关API可以分别参考 :ref:`cn_api_incubate_graph_sample_neighbors` 和 :ref:`cn_api_incubate_graph_reindex` 。
 
 参数
 :::::::::
