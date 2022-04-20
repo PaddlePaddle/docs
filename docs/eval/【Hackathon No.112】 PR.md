@@ -119,6 +119,18 @@ pip install opencv-python -i https://pypi.tuna.tsinghua.edu.cn/simple/
 
 ## （3）对比两者的易用性与区别
 Pytorch的分布式环境在曙光平台安装时需要手动编译torchversion，这一点上pytorch比较繁琐。但是pytorch的环境在曙光平台比较稳定，而paddle环境在曙光平台经常不稳定，有时候能运行，有时候不能运行。
+![image](https://user-images.githubusercontent.com/102226413/164142960-e956efce-a8fe-40ea-bfba-a83b8f8203c5.png)
+
+上述问题是rocm版本问题，需要使用rocm-4.0.1版本。 修改rocm版本的方法为.  module switch compiler/rocm/4.0.1
+
+另外有一些问题没办法解决，我们使用的办法是重新开启镜像（多次开启后就会有可以使用的时候）无法解决的问题截图如下：
+![image](https://user-images.githubusercontent.com/102226413/164143125-70d0e4ff-46d7-4461-8cb0-72c14e98b8e0.png)
+
+![image](https://user-images.githubusercontent.com/102226413/164143166-cde2793b-eb06-43a3-92d1-bfa68c2f1558.png)
+
+
+另外，我们在曙光上使用paddle的方法为开启镜像的方式，但是曙光平台对docker镜像的支持不太好，每次镜像保持的时间最多为72小时，而且每次关闭镜像后，无法重新开启原先镜像。为了方便使用，希望能够支持 任务提交方式运行的paddle分布式框架。而且任务提交的方式还方便管理多节点运行。
+
 
 #  三、Fleet API的使用
 ## （1）分析pytorch分布式框架DDP某些API的使用
@@ -342,6 +354,16 @@ python -m torch.distributed.launch --nproc_per_node=4 train.py
 - 1、导入了paddle.vision的部分包，
 - 2、对鲜花数据集加载的代码进行了修改，改为：
 - train_dataset = paddle.vision.datasets.Flowers(mode='train', transform=transform)
+
+官网的代码不能再曙光平台下载鲜花数据集，所以我们需要提取下载离线鲜花数据集报错如下：
+![image](https://user-images.githubusercontent.com/102226413/164143513-24236f90-975d-47f1-a1db-7e18e6c94c9c.png)
+
+且数据集的保存地址为一个缓存空间，用户在使用的时候可能找不到数据集，如/public/home/username/.cache/paddle/dataset目录。
+而pytorch的加载数据集API会吧数据集加载到当前目录，方便了使用者。
+![image](https://user-images.githubusercontent.com/102226413/164144065-2fea8ac3-dcf5-48ac-a4c7-05cace99c611.png)
+
+
+
 - 3、optimizer.minimize(avg_loss)改为optimizer.step()
 - 4、鲜花数据集的label索引是从1开始的，不是从0开始的，需要手工减1。
 
@@ -649,10 +671,19 @@ train_dataset = paddle.vision.datasets.Flowers(mode='train', transform=transform
 module rm compiler/rocm/2.9 
 module load compiler/rocm/4.0.1
 ```  
+
+![image](https://user-images.githubusercontent.com/102226413/164144235-ce808c51-1712-4417-b9bf-99da6362b3f0.png)
+
+
 2、无法下载flower数据集，需要手动加载数据集
 按照文档旧API无法在曙光平台以及移动九天平台加载数据集，需要手动下载数据集。
 且数据集的保存地址为一个缓存空间，用户在使用的时候可能找不到数据集，如/public/home/username/.cache/paddle/dataset目录。
 而pytorch的加载数据集API会吧数据集加载到当前目录，方便了使用者。
+
+![image](https://user-images.githubusercontent.com/102226413/164143513-24236f90-975d-47f1-a1db-7e18e6c94c9c.png)
+
+![image](https://user-images.githubusercontent.com/102226413/164144065-2fea8ac3-dcf5-48ac-a4c7-05cace99c611.png)
+
 3、安装完paddle后运行该程序会缺少常用两个库：opencv-python以及scipy。
 安装方式：
 ```python
@@ -665,4 +696,7 @@ img, label = data
 label = label - 1
 ```
 
+5、未解决问题（无法在曙光上使用paddle 的问题）
+![image](https://user-images.githubusercontent.com/102226413/164143125-70d0e4ff-46d7-4461-8cb0-72c14e98b8e0.png)
 
+![image](https://user-images.githubusercontent.com/102226413/164143166-cde2793b-eb06-43a3-92d1-bfa68c2f1558.png)
