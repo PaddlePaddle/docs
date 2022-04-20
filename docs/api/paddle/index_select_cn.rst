@@ -7,7 +7,7 @@ index_select
 
 
 
-该OP沿着指定轴 ``axis`` 对输入 ``x`` 进行索引，取 ``index`` 中指定的相应项，创建并返回到一个新的Tensor。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的Tensor其余维度大小和输入 ``x`` 相等 ， ``axis`` 维度的大小等于 ``index`` 的大小。
+沿着指定轴 ``axis`` 对输入 ``x`` 进行索引，取 ``index`` 中指定的相应项，创建并返回到一个新的Tensor。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的Tensor其余维度大小和输入 ``x`` 相等 ， ``axis`` 维度的大小等于 ``index`` 的大小。
         
 参数
 :::::::::

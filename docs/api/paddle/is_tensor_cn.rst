@@ -5,7 +5,7 @@ is_tensor
 .. py:function:: paddle.is_tensor(x)
 
 
-该函数用来测试输入对象是否是paddle.Tensor
+测试输入对象是否是paddle.Tensor
 
 参数
 ::::::::::::
