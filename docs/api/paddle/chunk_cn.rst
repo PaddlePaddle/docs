@@ -5,7 +5,7 @@ chunk
 
 .. py:function:: paddle.chunk(x, chunks, axis=0, name=None)
 
-该OP将输入Tensor分割成多个子Tensor。
+将输入Tensor分割成多个子Tensor。
 
 参数
 :::::::::

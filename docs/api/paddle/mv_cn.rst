@@ -5,7 +5,7 @@ mv
 
 .. py:function:: paddle.mv(x, vec, name=None)
 
-该op计算矩阵 ``x`` 和向量 ``vec`` 的乘积。
+计算矩阵 ``x`` 和向量 ``vec`` 的乘积。
 
 参数
 :::::::::

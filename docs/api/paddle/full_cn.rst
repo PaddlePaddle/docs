@@ -7,7 +7,7 @@ full
 
 
 
-该OP创建形状大小为 ``shape`` 并且数据类型为 ``dtype``  的Tensor，其中元素值均为 ``fill_value`` 。
+创建形状大小为 ``shape`` 并且数据类型为 ``dtype``  的Tensor，其中元素值均为 ``fill_value`` 。
 
 参数
 ::::::::::::

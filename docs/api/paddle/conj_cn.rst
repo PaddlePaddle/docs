@@ -6,7 +6,7 @@ conj
 .. py:function:: paddle.conj(x, name=None)
 
 
-该OP是逐元素计算Tensor的共轭运算。
+是逐元素计算Tensor的共轭运算。
 
 参数
 ::::::::::::

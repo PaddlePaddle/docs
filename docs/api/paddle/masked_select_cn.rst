@@ -7,7 +7,7 @@ masked_select
 
 
 
-该OP返回一个1-D 的Tensor, Tensor的值是根据 ``mask`` 对输入 ``x`` 进行选择的， ``mask`` 的数据类型是bool 。
+返回一个1-D 的Tensor, Tensor的值是根据 ``mask`` 对输入 ``x`` 进行选择的， ``mask`` 的数据类型是bool 。
 
 参数
 ::::::::::::

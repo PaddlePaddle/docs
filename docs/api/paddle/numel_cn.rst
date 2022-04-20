@@ -6,7 +6,7 @@ numel
 .. py:function:: paddle.numel(x)
 
 
-该OP返回一个长度为1并且元素值为输入 ``x`` 元素个数的Tensor。
+返回一个长度为1并且元素值为输入 ``x`` 元素个数的Tensor。
 
 参数
 ::::::::::::
