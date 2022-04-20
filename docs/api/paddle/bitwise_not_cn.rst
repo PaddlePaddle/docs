@@ -5,7 +5,7 @@ bitwise_not
 
 .. py:function:: paddle.bitwise_not(x, out=None, name=None)
 
-该OP对Tensor ``x`` 逐元素进行 ``按位取反`` 运算。
+对Tensor ``x`` 逐元素进行 ``按位取反`` 运算。
 
 .. math::
        Out = \sim X

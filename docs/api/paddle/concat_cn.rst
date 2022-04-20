@@ -6,7 +6,7 @@ concat
 .. py:function:: paddle.concat(x, axis=0, name=None)
 
 
-该OP对输入沿 ``axis`` 轴进行联结，返回一个新的Tensor。
+对输入沿参数 ``axis`` 轴进行联结，返回一个新的Tensor。
 
 参数
 ::::::::::::
