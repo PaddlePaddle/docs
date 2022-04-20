@@ -5,7 +5,7 @@ rand
 
 .. py:function:: paddle.rand(shape, dtype=None, name=None)
 
-该OP返回符合均匀分布的，范围在[0, 1)的Tensor，形状为 ``shape``，数据类型为 ``dtype``。
+返回符合均匀分布的，范围在[0, 1)的Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
 参数
 ::::::::::

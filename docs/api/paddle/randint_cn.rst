@@ -5,7 +5,7 @@ randint
 
 .. py:function:: paddle.randint(low=0, high=None, shape=[1], dtype=None, name=None)
 
-该OP返回服从均匀分布的、范围在[``low``, ``high``)的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。当 ``high`` 为None时（默认），均匀采样的区间为[0, ``low``)。
+返回服从均匀分布的、范围在[``low``, ``high``)的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。当 ``high`` 为None时（默认），均匀采样的区间为[0, ``low``)。
 
 参数
 ::::::::::

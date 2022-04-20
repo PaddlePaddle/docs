@@ -8,7 +8,7 @@ unstack
 
 
 
-该OP将单个dim为 ``D`` 的Tensor沿 ``axis`` 轴unpack为 ``num`` 个dim为 ``(D-1)`` 的Tensor
+将单个dim为 ``D`` 的Tensor沿 ``axis`` 轴unpack为 ``num`` 个dim为 ``(D-1)`` 的Tensor
 
 参数
 ::::::::::::

@@ -8,7 +8,7 @@ t
 
 
 
-该OP对小于等于2维的Tensor进行数据转置。0维和1维Tensor返回本身，2维Tensor等价于perm设置为0，1的 :ref:`cn_api_fluid_layers_transpose` 函数。
+对小于等于2维的Tensor进行数据转置。0维和1维Tensor返回本身，2维Tensor等价于perm设置为0，1的 :ref:`cn_api_fluid_layers_transpose` 函数。
 
 参数
 :::::::::

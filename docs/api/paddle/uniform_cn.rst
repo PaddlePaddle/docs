@@ -8,7 +8,7 @@ uniform
 
 
 
-该OP返回数值服从范围[``min``, ``max``)内均匀分布的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
+返回数值服从范围[``min``, ``max``)内均匀分布的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
 .. code-block:: text
 

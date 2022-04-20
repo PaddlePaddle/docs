@@ -5,7 +5,7 @@ standard_normal
 
 .. py:function:: paddle.standard_normal(shape, dtype=None, name=None)
 
-该OP返回符合标准正态分布（均值为0，标准差为1的正态随机分布）的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
+返回符合标准正态分布（均值为0，标准差为1的正态随机分布）的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
 参数
 ::::::::::

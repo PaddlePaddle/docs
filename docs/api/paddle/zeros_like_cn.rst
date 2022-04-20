@@ -6,7 +6,7 @@ zeros_like
 .. py:function:: paddle.zeros_like(x, dtype=None, name=None)
 
 
-该OP返回一个和 ``x`` 具有相同的形状的全零Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
+返回一个和 ``x`` 具有相同的形状的全零Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 
 参数
 ::::::::::
