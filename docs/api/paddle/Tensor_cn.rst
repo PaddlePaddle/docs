@@ -1665,6 +1665,15 @@ quantile(q, axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_quantile`
 
+nanquantile(q, axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_nanquantile`
+
 rad2deg(x, name=None)
 :::::::::
 
