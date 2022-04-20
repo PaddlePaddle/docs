@@ -2,7 +2,6 @@
 # 附录
 
 <a name="gpu-install"></a>
-</br></br>
 
 ## **飞桨支持的GPU架构及安装方式**
 <p align="center">
@@ -117,6 +116,8 @@
     </tbody>
 </table>
 </p>
+
+</br></br>
 
 ## **编译依赖表**
 
