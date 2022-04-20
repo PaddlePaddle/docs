@@ -42,5 +42,5 @@ graph_khop_sampler
     nodes = paddle.to_tensor(nodes, dtype="int64")
 
     edge_src, edge_dst, sample_index, reindex_nodes = \
-        paddle.incubate.graph_khop_sampler(row, colptr, nodes, sample_sizes, False)
+        paddle.incubate.graph_khop_sampler(row, colptr, nodes, sample_sizes)
 
