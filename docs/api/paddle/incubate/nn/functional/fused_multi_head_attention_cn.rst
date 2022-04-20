@@ -58,6 +58,7 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
     - **pre_ln_epsilon** (float, 可选) - 代表 normalize_before 为True 时，multi-head attention 中第一个 ``layer_norm`` 为了数值稳定加在分母上的值。默认值为 1e-05 。
     - **qkv_bias** (Tensor, 可选) - 代表 Attention 中计算 q, k, v 时的偏置，是一个三维 tensor，形状为 ``[3, num_heads, head_dim]`` 。
     - **linear_bias** (Tensor, 可选) - 代表 ``linear`` 的偏置，一维tensor，形状为 ``[embed_dim]`` 。
+    - **cache_kv** (Tensor, 可选) - 代表自回归生成模型中cache结构的部分，五维tensor，形状为 ``[2, bsz, num_head, seq_len, head_dim]`` 。默认值为None。
     - **attn_mask** （Tensor, 可选）- 用于限制 multi-head attention中对当前词产生影响的其他词的范围。形状会被广播为 ``[batch_size, num_heads, sequence_length, sequence_length ]`` 。
     - **dropout_rate** (float, 可选) - 代表 multi-head attention 之后的 dropout 算子的 dropout 比例，默认为0.5。
     - **attn_dropout_rate** (float, 可选) - 代表 multi-head attention 中的 dropout 算子的 dropout 比例，默认为0.5。
@@ -74,6 +75,7 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
 
             - train: out = input * mask
             - inference: out = input * (1.0 - p)
+    - **ring_id** (int, 可选) - 分布式tensor parallel运行下通讯所使用的NCCL id。
     - **name** (str, 可选) - 操作的名称(可选，默认值为 ``None`` ）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
@@ -83,28 +85,6 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
 代码示例
 :::::::::
 
-.. code-block:: python
+COPY-FROM: paddle.incubate.nn.functional.fused_multi_head_attention
 
-    # required: gpu            
-    import paddle
-    import paddle.incubate.nn.functional as F
 
-    # input: [batch_size, seq_len, embed_dim]
-    x = paddle.rand(shape=(2, 4, 128), dtype="float32")
-    # qkv_weight: [3, num_head, head_dim, embed_dim]
-    qkv_weight = paddle.rand(shape=(3, 4, 32, 128), dtype="float32")
-    # qkv_bias: [3, num_head, head_dim]
-    qkv_bias = paddle.rand(shape=(3, 4, 32), dtype="float32")
-    # linear_weight: [embed_dim, embed_dim]
-    linear_weight = paddle.rand(shape=(128, 128), dtype="float32")
-    # linear_bias: [embed_dim]
-    linear_bias = paddle.rand(shape=[128], dtype="float32")
-    # self attention mask: [batch_size, num_heads, seq_len, seq_len]
-    attn_mask = paddle.rand(shape=(2, 4, 4, 4), dtype="float32")
-    # output: [batch_size, seq_len, embed_dim]
-    output = F.fused_multi_head_attention(
-        x, qkv_weight, linear_weight, False,
-        None, None, None, None, 1e-5, qkv_bias,
-        linear_bias, attn_mask)
-    # [2, 4, 128]
-    print(output.shape)
