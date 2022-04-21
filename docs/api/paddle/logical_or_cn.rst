@@ -5,7 +5,7 @@ logical_or
 
 .. py:function:: paddle.logical_or(x, y, out=None, name=None)
 
-该OP逐元素的对 ``X`` 和 ``Y`` 进行逻辑或运算。
+逐元素的对 ``X`` 和 ``Y`` 进行逻辑或运算。
 
 .. math::
         Out = X || Y
