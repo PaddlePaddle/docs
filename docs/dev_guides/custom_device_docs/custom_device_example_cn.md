@@ -254,11 +254,11 @@ project(paddle-custom_cpu CXX C)
 set(PLUGIN_NAME        "paddle_custom_cpu")
 set(PLUGIN_VERSION     "0.0.1")
 
-set(PADDLE_PLUGIN_DIR  "/opt/conda/lib/python3.7/site-packages/paddle-plugins/")
-set(PADDLE_INC_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/include/")
-set(PADDLE_LIB_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/fluid/")
+set(PADDLE_PLUGIN_DIR  "/path/to/site-packages/paddle-plugins/")
+set(PADDLE_INC_DIR     "/path/to/site-packages/paddle/include/")
+set(PADDLE_LIB_DIR     "/path/to/site-packages/paddle/fluid/")
 
-############ 三方依赖，此Demo中使用Paddle相同依赖
+############ 三方依赖，本示例中使用Paddle相同依赖
 set(BOOST_INC_DIR      "/path/to/Paddle/build/third_party/boost/src/extern_boost")
 set(GFLAGS_INC_DIR     "/path/to/Paddle/build/third_party/install/gflags/include")
 set(GLOG_INC_DIR       "/path/to/Paddle/build/third_party/install/glog/include")
@@ -381,11 +381,11 @@ for pkg_dir in ['build/python/paddle-plugins/']:
     os.makedirs(pkg_dir)
 
 include_dirs = [
-    '/opt/conda/lib/python3.7/site-packages/paddle/include',
-    "/workspace/dev/Paddle/build/third_party/boost/src/extern_boost",
-    "/workspace/dev/Paddle/build/third_party/install/gflags/include",
-    "/workspace/dev/Paddle/build/third_party/install/glog/include",
-    "/workspace/dev/Paddle/build/third_party/install/mkldnn/include",
+    '/path/to/site-packages/paddle/include',
+    "/path/to/Paddle/build/third_party/boost/src/extern_boost",
+    "/path/to/Paddle/build/third_party/install/gflags/include",
+    "/path/to/Paddle/build/third_party/install/glog/include",
+    "/path/to/Paddle/build/third_party/install/mkldnn/include",
     ]
 
 extra_compile_args = [
@@ -397,7 +397,7 @@ extra_compile_args = [
 ext_modules = [Extension(name='paddle-plugins.libpaddle_custom_cpu',
                          sources=['runtime.cc', 'add_kernel.cc'],
                          include_dirs=include_dirs,
-                         library_dirs=['/opt/conda/lib/python3.7/site-packages/paddle/fluid/'],
+                         library_dirs=['/path/to/site-packages/paddle/fluid/'],
                          libraries=[':core_avx.so'],
                          extra_compile_args=extra_compile_args)]
 
