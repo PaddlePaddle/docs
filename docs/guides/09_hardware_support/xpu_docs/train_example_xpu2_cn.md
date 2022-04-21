@@ -13,10 +13,10 @@ python -m pip install -r requirements.txt
 ```
 
 
-2. 下载数据集
+2. 下载数据集：
 
+基于CIFAR100数据集的ResNet50训练任务
 ```
-#基于CIFAR100数据集的ResNet50训练任务
 cd dataset
 rm -rf ILSVRC2012
 wget -nc https://paddle-imagenet-models-name.bj.bcebos.com/data/whole_chain/whole_chain_CIFAR100.tar
