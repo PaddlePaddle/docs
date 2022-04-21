@@ -22,9 +22,9 @@ heaviside
 
 参数
 :::::::::
-   - **x** （Tensor）- 输入的 Tensor。数据类型为 float32、float64、int32 或 int64。
-   - **y** （Tensor）- 输入的 Tensor。数据类型为 float32、float64、int32 或 int64。
-   - **name** （str，可选）- 操作的名称（可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
+   - **x** （Tensor）- 赫维赛德阶跃函数的输入 Tensor。数据类型为 float32、float64、int32 或 int64。
+   - **y** （Tensor）- 决定了一个赫维赛德阶跃函数的 Tensor。数据类型为 float32、float64、int32 或 int64。
+   - **name** （str，可选）- 操作的名称（可选，默认值为 None）。更多信息请参见 :ref:`cn_api_guide_Name`。
 
 返回
 :::::::::
@@ -33,16 +33,4 @@ heaviside
 
 代码示例
 ::::::::::
-
-.. code-block:: python
-
-   import paddle
-   x = paddle.to_tensor([-0.5, 0, 0.5])
-   y = paddle.to_tensor([0.1])
-   paddle.heaviside(x, y)
-   #    [0.        , 0.10000000, 1.        ]
-   x = paddle.to_tensor([[-0.5, 0, 0.5], [-0.5, 0.5, 0]])
-   y = paddle.to_tensor([0.1, 0.2, 0.3])
-   paddle.heaviside(x, y)
-   #    [[0.        , 0.20000000, 1.        ],
-   #     [0.        , 1.        , 0.30000001]]
+COPY-FROM: paddle.heaviside:heaviside-example
