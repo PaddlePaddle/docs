@@ -6,7 +6,7 @@
 
 1、 安装依赖：
 ```
-git clone https://github.com/PaddlePaddle/PaddleClas.git -b develop 
+git clone https://github.com/PaddlePaddle/PaddleClas.git -b develop
 cd PaddleClas
 python -m pip install -r requirements.txt
 ```
@@ -40,7 +40,7 @@ python tools/train.py \
 
 1、安装依赖：
 ```
-git clone https://github.com/PaddlePaddle/PaddleDetection.git -b develop 
+git clone https://github.com/PaddlePaddle/PaddleDetection.git -b develop
 cd PaddleDetection/
 pip install -U pip Cython
 pip install -r requirements.txt
