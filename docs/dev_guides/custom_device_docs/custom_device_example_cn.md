@@ -4,7 +4,7 @@
 
 > 注意：
 > - 请确保已经正确安装了[飞桨develop](https://github.com/PaddlePaddle/Paddle)最新版本
-> - 当前仅支持 `Linux`平台
+> - 当前仅支持 `Linux`平台，示例中使用X86_64平台
 > - 支持飞桨已通过头文件开放函数式声明的Kernel自定义编码与注册
 
 ## 第一步：实现自定义 Runtime
@@ -62,7 +62,7 @@ void InitPlugin(CustomRuntimeParams *params) {
 最后，插件需要填充 params->interface 中的回调接口（至少实现 Required 接口，否则 Runtime 不会被注册），完成自定义 Runtime 的初始化。具体API的说明详见[自定义 Runtime 文档](./custom_runtime_cn.html)。
 
 ```c++
-#include <malloc>
+#include <malloc.h>
 
 static size_t global_total_mem_size = 1 * 1024 * 1024 * 1024UL;
 static size_t global_free_mem_size = global_total_mem_size;
@@ -350,7 +350,7 @@ setup(
 ```bash
 $ mkdir build
 $ cd build
-$ cmake .. -DWITH_KERNELS=ON
+$ cmake ..
 $ make
 ```
 
