@@ -674,11 +674,12 @@ cuda(device_id=None, blocking=False)
         x = paddle.to_tensor(1.0, place=paddle.CPUPlace())
         print(x.place)        # CPUPlace
 
-        y = x.cuda()
-        print(y.place)        # CUDAPlace(0)
+        if paddle.device.is_compiled_with_cuda():
+            y = x.cuda()
+            print(y.place)        # CUDAPlace(0)
 
-        y = x.cuda(1)
-        print(y.place)        # CUDAPlace(1)
+            y = x.cuda(1)
+            print(y.place)        # CUDAPlace(1)
 
 cumsum(axis=None, dtype=None, name=None)
 :::::::::
