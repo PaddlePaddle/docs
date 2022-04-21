@@ -362,7 +362,7 @@ $ make
 
 setuptools 也可以用于编译插件，并直接打包
 
-```
+```python
 from setuptools import setup, Distribution, Extension
 from setuptools.command.build_ext import build_ext
 import os
@@ -380,11 +380,26 @@ for pkg_dir in ['build/python/paddle-plugins/']:
         shutil.rmtree(pkg_dir)
     os.makedirs(pkg_dir)
 
+include_dirs = [
+    '/opt/conda/lib/python3.7/site-packages/paddle/include',
+    "/workspace/dev/Paddle/build/third_party/boost/src/extern_boost",
+    "/workspace/dev/Paddle/build/third_party/install/gflags/include",
+    "/workspace/dev/Paddle/build/third_party/install/glog/include",
+    "/workspace/dev/Paddle/build/third_party/install/mkldnn/include",
+    ]
+
+extra_compile_args = [
+    '-DPADDLE_WITH_CUSTOM_KERNEL',
+    '-DPADDLE_WITH_CUSTOM_DEVICE',
+    '-DPADDLE_WITH_MKLDNN',
+    ]
+
 ext_modules = [Extension(name='paddle-plugins.libpaddle_custom_cpu',
                          sources=['runtime.cc', 'add_kernel.cc'],
-                         include_dirs=['/opt/conda/lib/python3.7/site-packages/paddle/include/'],
+                         include_dirs=include_dirs,
                          library_dirs=['/opt/conda/lib/python3.7/site-packages/paddle/fluid/'],
-                         libraries=['core_avx.so'])]
+                         libraries=[':core_avx.so'],
+                         extra_compile_args=extra_compile_args)]
 
 setup(
     name='paddle-custom_cpu',
@@ -422,7 +437,7 @@ setup(
 
 通过如下命令完成插件编译。
 
-```
+```bash
 $ python setup.py bdist_wheel
 ```
 
@@ -432,8 +447,8 @@ $ python setup.py bdist_wheel
 
 通过 pip 安装 wheel 包。
 
-```
-$ pip install build/dist/paddle_custom_cpu-0.0.1-cp37-cp37m-linux_aarch64.whl
+```bash
+$ pip install build/dist/paddle_custom_cpu*.whl
 ```
 
 ## 第四步：加载与使用
@@ -442,20 +457,20 @@ $ pip install build/dist/paddle_custom_cpu-0.0.1-cp37-cp37m-linux_aarch64.whl
 
 首先，需要查看 PaddlePaddle 目前已注册的自定义硬件。
 
-```
+```bash
 >>> paddle.device.get_all_custom_device_type()
 ['CustomCPU']
 ```
 
 接下来设置要使用的硬件后端。
 
-```
+```bash
 >>> paddle.set_device('CustomCPU')
 ```
 
 最后， 使用新硬件后端用于执行计算任务。
 
-```
+```bash
 >>> x = paddle.to_tensor([1])
 >>> x
 Tensor(shape=[1], dtype=int64, place=Place(CustomCPU:0), stop_gradient=True,
