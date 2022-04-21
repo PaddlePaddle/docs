@@ -4,13 +4,14 @@
 
 #### ResNet50下载并运行示例：
 
-1. 安装依赖：
+1、 安装依赖：
 ```
 git clone https://github.com/PaddlePaddle/PaddleClas.git -b develop 
 cd PaddleClas
 python -m pip install -r requirements.txt
 ```
-2. 下载数据集：
+
+2、下载数据集：
 基于CIFAR100数据集的ResNet50训练任务
 ```
 cd dataset
@@ -22,7 +23,8 @@ cd ILSVRC2012
 mv train.txt train_list.txt
 mv test.txt val_list.txt
 ```
-3. 配置XPU进行训练的命令非常简单：
+
+3、配置XPU进行训练的命令非常简单：
 ```
 cd ../..
 #FLAGS指定单卡或多卡训练，此示例运行1个卡
@@ -36,21 +38,23 @@ python tools/train.py \
 
 #### YOLOv3-DarkNet53下载并运行示例：
 
-1. 安装依赖：
+1、安装依赖：
 ```
 git clone https://github.com/PaddlePaddle/PaddleDetection.git -b develop 
 cd PaddleDetection/
 pip install -U pip Cython
 pip install -r requirements.txt
 ```
-2. 下载数据集
+
+2、下载数据集
 ```
 cd dataset/voc/
 python download_voc.py
 python create_list.py
 cd ../..
 ```
-3. 配置XPU进行训练的命令非常简单：
+
+3、配置XPU进行训练的命令非常简单：
 ```
 #FLAGS指定单卡或多卡训练，此示例运行1个卡
 export FLAGS_selected_xpus=2
