@@ -62,6 +62,8 @@ void InitPlugin(CustomRuntimeParams *params) {
 最后，插件需要填充 params->interface 中的回调接口（至少实现 Required 接口，否则 Runtime 不会被注册），完成自定义 Runtime 的初始化。具体API的说明详见[自定义 Runtime 文档](./custom_runtime_cn.html)。
 
 ```c++
+#include <malloc>
+
 static size_t global_total_mem_size = 1 * 1024 * 1024 * 1024UL;
 static size_t global_free_mem_size = global_total_mem_size;
 
@@ -146,7 +148,7 @@ C_Status stream_wait_event(const C_Device device, C_Stream stream, C_Event event
 
 C_Status memstats(const C_Device device, size_t *total_memory, size_t *free_memory) {
   *total_memory = global_total_mem_size;
-  *free_memory = global_free_mem_size
+  *free_memory = global_free_mem_size;
   return C_SUCCESS;
 }
 
@@ -250,24 +252,26 @@ cmake_minimum_required(VERSION 3.10)
 project(paddle-custom_cpu CXX C)
 
 set(PLUGIN_NAME        "paddle_custom_cpu")
-set(PLUGIN_VERSION      "0.0.1")
+set(PLUGIN_VERSION     "0.0.1")
 
 set(PADDLE_PLUGIN_DIR  "/opt/conda/lib/python3.7/site-packages/paddle-plugins/")
 set(PADDLE_INC_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/include/")
 set(PADDLE_LIB_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/fluid/")
 
-############ 三方依赖
+############ 三方依赖，此Demo中使用Paddle相同依赖
 set(BOOST_INC_DIR      "/path/to/Paddle/build/third_party/boost/src/extern_boost")
 set(GFLAGS_INC_DIR     "/path/to/Paddle/build/third_party/install/gflags/include")
 set(GLOG_INC_DIR       "/path/to/Paddle/build/third_party/install/glog/include")
-set(THREAD_INC_DIR     "/path/to/Paddle/build/third_party/threadpool/src/extern_threadpool")
-set(THIRD_PARTY_INC_DIR ${BOOST_INC_DIR} ${GFLAGS_INC_DIR} ${GLOG_INC_DIR} ${THREAD_INC_DIR})
+set(MKLDNN_INC_DIR     "/path/to/Paddle/build/third_party/install/mkldnn/include")
+set(THIRD_PARTY_INC_DIR ${BOOST_INC_DIR} ${GFLAGS_INC_DIR} ${GLOG_INC_DIR} ${MKLDNN_INC_DIR})
 
 include_directories(${PADDLE_INC_DIR} ${THIRD_PARTY_INC_DIR})
 link_directories(${PADDLE_LIB_DIR})
 
-add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)  # for out CustomContext temporarily
-add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid seperate temporarily
+add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)  # for out CustomContext
+add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid seperate
+add_definitions(-DPADDLE_WITH_MKLDNN)  # for out MKLDNN compiling
+
 
 ############ 编译插件
 add_library(${PLUGIN_NAME} SHARED runtime.cc add_kernel.cc)
