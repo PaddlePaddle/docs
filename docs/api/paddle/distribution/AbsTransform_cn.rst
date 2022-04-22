@@ -3,7 +3,7 @@
 AbsTransform
 -------------------------------
 
-.. py:class:: paddle.distribution.Transform
+.. py:class:: paddle.distribution.AbsTransform()
 
 取绝对值变换 :math:`y = |x|` .
 

@@ -3,10 +3,9 @@
 StickBreakingTransform
 -------------------------------
 
-.. py:class:: paddle.distribution.StickBreakingTransform
+.. py:class:: paddle.distribution.StickBreakingTransform()
 
- ``StickBreakingTransform`` 将一个长度为K的向量通过StackBreaking构造过程变换为标准K-单纯
- 形。
+``StickBreakingTransform`` 将一个长度为K的向量通过StackBreaking构造过程变换为标准K-单纯形。
 
 
 代码示例

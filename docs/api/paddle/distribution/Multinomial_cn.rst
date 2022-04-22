@@ -5,13 +5,10 @@ Multinomial
 
 .. py:class:: paddle.distribution.Multinomial(total_count, probs)
 
-
- ``Multinomial`` 表示实验次数为 ``total_count`` ，概率为 ``probs`` 的多项分布。
+``Multinomial`` 表示实验次数为 ``total_count`` ，概率为 ``probs`` 的多项分布。
 
 在概率论中，多项分布是二项分布的多元推广，表示具有 :math:`k` 个类别的事件重复实验 :math:`n` 
-次，每个类别出现次数的概率。当 :math:`k=2` 且 :math:`n=1` 时，为伯努利分布，
-当 :math:`k=2` 且 :math:`n>1` 时，为二项分布，当 :math:`k>2` 且 :math:`n=1` 时，
-为分类分布。
+次，每个类别出现次数的概率。当 :math:`k=2` 且 :math:`n=1` 时，为伯努利分布，当 :math:`k=2` 且 :math:`n>1` 时，为二项分布，当 :math:`k>2` 且 :math:`n=1` 时，为分类分布。
 
 多项分布概率密度函数如下：
 
@@ -21,7 +18,7 @@ Multinomial
 
 
 其中， :math:`n` 表示实验次数， :math:`k` 表示类别数， :math:`p_i` 表示一次实验中，实验结果
-为第 :math:`i` 个类比的概率，需要满足 :math:`{\textstyle \sum_{i=1}^{k}p_i=1}, p_i \ge 0` ,
+为第 :math:`i` 个类别的概率，需要满足 :math:`{\textstyle \sum_{i=1}^{k}p_i=1}, p_i \ge 0` ,
  :math:`x_i` 表示第 :math:`i` 个分类出现的次数。
 
 

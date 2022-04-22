@@ -3,7 +3,7 @@
 Transform
 -------------------------------
 
-.. py:class:: paddle.distribution.Transform
+.. py:class:: paddle.distribution.Transform()
 
 随机变量变换的基类。
 

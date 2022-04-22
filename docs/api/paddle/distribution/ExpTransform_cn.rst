@@ -3,7 +3,7 @@
 ExpTransform
 -------------------------------
 
-.. py:class:: paddle.distribution.ExpTransform
+.. py:class:: paddle.distribution.ExpTransform()
 
 指数变换 :math:`y = exp(x)` .
 
