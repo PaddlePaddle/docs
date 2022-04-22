@@ -4,7 +4,7 @@ sparse_coo_tensor
 -------------------------------
 
 
-.. py:function:: paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=None, stop_gradient=True)
+.. py:function:: paddle.sparse.sparse_coo_tensor(indices, values, shape, dtype, place, stop_gradient)
 
 该API通过已知的非零元素的 ``indices`` 和 ``values`` 来创建一个coordinate格式的稀疏tensor，tensor类型为 ``paddle.Tensor`` 。
 
