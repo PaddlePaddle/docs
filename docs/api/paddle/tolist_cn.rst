@@ -5,7 +5,7 @@ tolist
 
 .. py:function:: paddle.tolist(x)
 
-该OP将paddle Tensor转化为python list。该OP只适用于动态图。
+将paddle Tensor转化为python list， 注意： 只适用于动态图。
 
 .. code-block:: text
 

@@ -5,7 +5,7 @@ logical_and
 
 .. py:function:: paddle.logical_and(x, y, out=None, name=None)
 
-该OP逐元素的对 ``x`` 和 ``y`` 进行逻辑与运算。
+逐元素的对 ``x`` 和 ``y`` 进行逻辑与运算。
 
 .. math::
        Out = X \&\& Y

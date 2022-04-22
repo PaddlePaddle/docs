@@ -8,7 +8,7 @@ flatten
 
 
 
-flatten op 根据给定的start_axis 和 stop_axis 将连续的维度展平。
+根据给定的start_axis 和 stop_axis 将连续的维度展平。
 
 请注意，在动态图模式下，输出Tensor将与输入Tensor共享数据，并且没有Tensor数据拷贝的过程。
 如果不希望输入与输出共享数据，请使用 `Tensor.clone` ，例如 `flatten_clone_x = x.flatten().clone()` 。
