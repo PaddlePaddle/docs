@@ -14,6 +14,7 @@ local_response_norm
     Output(i,x,y) = Input(i,x,y)/\left ( k+\alpha \sum_{j=max(0,i-size/2)}^{min(C-1,i+size/2)}(Input(j,x,y))^2 \right )^\beta
 
 在以上公式中：
+
   - :math:`size` ：累加的通道数
   - :math:`k` ：位移
   - :math:`\alpha` ： 缩放参数

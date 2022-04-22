@@ -5,8 +5,7 @@ dynamic_decode
 
 
 
-.. py:method:: paddle.nn.dynamic_decode(decoder, inits=None, max_step_num=None, output_time_major=False, impute_finished=False, is_test=False, return_length=False, **kwargs):
-
+.. py:function:: paddle.nn.dynamic_decode(decoder, inits=None, max_step_num=None, output_time_major=False, impute_finished=False, is_test=False, return_length=False, **kwargs):
 
 
 
@@ -14,7 +13,9 @@ dynamic_decode
 
 :code:`decode.initialize()` 会在解码循环之前被调用一次。如果 :code:`decoder` 实现了 :code:`finalize` 方法，则 :code:`decoder.finalize()` 在解码循环后将被调用一次。
 
-参数:
+参数
+:::::::::
+
   - **decoder** (Decoder) - 解码器的实例。
   - **inits** (object，可选) - 传递给 :code:`decoder.initialize` 的参数。默认为None。
   - **max_step_num** (int，可选) - 最大步数。如果未提供，解码直到解码过程完成（ :code:`decode.step()` 返回的表示完成状态的Tensor中的值全部为True）。默认为None。
@@ -24,11 +25,13 @@ dynamic_decode
   - **return_length** (bool，可选) - 标识是否在返回的元组中额外包含一个存放了所有解码序列实际长度的Tensor。默认为False。
   - **kwargs** - 其他命名关键字参数。这些参数将传递给 :code:`decoder.step`。
 
-返回：若 :code:`return_length` 为True，则返回三元组 :code:`(final_outputs, final_states, sequence_lengths)` ，否则返回二元组 :code:`(final_outputs, final_states)` 。 :code:`final_outputs, final_states` 包含了最终的输出和状态，这两者都是Tensor或Tensor的嵌套结构。:code:`final_outputs` 具有与 :code:`decoder.step()` 返回的 :code:`outputs` 相同的结构和数据类型， 且其中的每个tensor都是将所有解码步中与其对应的的输出进行堆叠的结果；如果 :code:`decoder` 实现了 :code:`finalize` 方法，这些tensor也可能会通过 :code:`decoder.finalize()` 进行修改。:code:`final_states` 是最后时间步的状态，和 :code:`decoder.initialize()` 返回的初始状态具有相同的结构，形状和数据类型。:code:`sequence_lengths` 是int64类型的tensor，和 :code:`decoder.initialize()` 返回的 :code:`finished` 具有相同的形状，其保存了所有解码序列实际长度。
+返回
+:::::::::
 
-返回类型：tuple
+tuple, 若 :code:`return_length` 为True，则返回三元组 :code:`(final_outputs, final_states, sequence_lengths)` ，否则返回二元组 :code:`(final_outputs, final_states)` 。 :code:`final_outputs, final_states` 包含了最终的输出和状态，这两者都是Tensor或Tensor的嵌套结构。:code:`final_outputs` 具有与 :code:`decoder.step()` 返回的 :code:`outputs` 相同的结构和数据类型， 且其中的每个tensor都是将所有解码步中与其对应的的输出进行堆叠的结果；如果 :code:`decoder` 实现了 :code:`finalize` 方法，这些tensor也可能会通过 :code:`decoder.finalize()` 进行修改。:code:`final_states` 是最后时间步的状态，和 :code:`decoder.initialize()` 返回的初始状态具有相同的结构，形状和数据类型。:code:`sequence_lengths` 是int64类型的tensor，和 :code:`decoder.initialize()` 返回的 :code:`finished` 具有相同的形状，其保存了所有解码序列实际长度。
 
-**示例代码**
+代码示例
+:::::::::
 
 .. code-block:: python
 

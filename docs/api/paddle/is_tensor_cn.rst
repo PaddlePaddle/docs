@@ -5,15 +5,20 @@ is_tensor
 .. py:function:: paddle.is_tensor(x)
 
 
-该函数用来测试输入对象是否是paddle.Tensor
+测试输入对象是否是paddle.Tensor
 
-参数：
+参数
+::::::::::::
+
     - **x** (Object) - 测试的对象。
 
 
-返回：布尔值，如果x是paddle.Tensor的话返回True，否则返回False。
+返回
+::::::::::::
+布尔值，如果x是paddle.Tensor的话返回True，否则返回False。
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

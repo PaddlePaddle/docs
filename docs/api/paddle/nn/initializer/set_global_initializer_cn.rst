@@ -12,13 +12,18 @@ set_global_initializer
 
 如果创建网络层时还通过 ``param_attr`` 、 ``bias_attr`` 设置了初始化方式，这里的全局设置将不会生效，因为其优先级更低。
 
-参数：
+参数
+::::::::::::
+
     - **weight_init** (Initializer) - 设置框架的全局的weight参数初始化方法。
     - **bias_init** (Initializer，可选) - 设置框架的全局的bias参数初始化方法。默认：None。
 
-返回：无
+返回
+::::::::::::
+无
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

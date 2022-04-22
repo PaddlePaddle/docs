@@ -37,69 +37,63 @@ Beta
 
 COPY-FROM: paddle.distribution.Beta
 
+方法
+:::::::::
 
-.. py:function:: mean
+mean()
+'''''''''
 
 计算Beta分布均值。
 
 
-.. py:function:: variance
+variance()
+'''''''''
 
 计算Beta分布方差。
 
 
-.. py:function:: prob(value)
+prob(value)
+'''''''''
 
 计算value的概率。
 
-参数
-:::::::::
+**参数**
 
 - **value** (Tensor) - 待计算值。
     
-返回
-:::::::::
+**返回**
 
 - Tensor: value的概率。
 
 
-.. py:function:: log_prob(value)
+log_prob(value)
+'''''''''
 
 计算value的对数概率。
 
-参数
-:::::::::
+**参数**
 
 - **value** (Tensor) - 待计算值。
     
-返回
-:::::::::
+**返回**
 
 - Tensor: value的对数概率。
 
 
-.. py:function:: sample()
+sample()
+'''''''''
 
 从Beta分布中生成满足特定形状的样本数据。
 
-参数
-:::::::::
+**参数**
 
 - **shape** (Sequence[int], 可选)：采样次数。最终生成样本形状为 ``shape+batch_shape`` .
 
-返回
-:::::::::
+**返回**
 
 - Tensor: 样本数据。
 
-.. py:function:: entropy()
+entropy()
+'''''''''
 
 计算Beta分布的信息熵。
-
-
-
-
-
-
-
-

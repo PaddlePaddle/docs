@@ -7,13 +7,14 @@ sparse_embedding
 .. py:function:: paddle.static.nn.sparse_embedding(input, size, padding_idx=None, is_test=False, entry=None, table_class="CommonSparseTable", param_attr=None, dtype='float32')
 
 
-该OP在飞桨参数服务器模式的大规模稀疏训练中作为embedding lookup层的算子，而不是使用paddle.nn.functional.embedding。
+在飞桨参数服务器模式的大规模稀疏训练中作为embedding lookup层的算子，而不是使用paddle.nn.functional.embedding。
 
-该OP根据input中的id信息从embedding矩阵中查询对应embedding信息，并会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
+根据input中的id信息从embedding矩阵中查询对应embedding信息，并会根据输入的size (vocab_size, emb_size)和dtype自动构造一个二维embedding矩阵。
 
 输出的Tensor的shape是将输入Tensor shape的会在输出的embedding最后追加一维emb_size。
 
-注：input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
+.. note::
+input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
 
 
 ::

@@ -14,13 +14,17 @@ mm
 
 如果原始 Tensor input 或 mat2 的秩为 1 且未转置，则矩阵相乘后的前置或附加维度 1 将移除。
 
-参数：
+参数
+::::::::::::
+
     - **input** (Tensor) : 输入变量，类型为 Tensor 或 LoDTensor。
     - **mat2** (Tensor) : 输入变量，类型为 Tensor 或 LoDTensor。
     - **out** (Tensor, 可选) – 指定存储运算结果的Tensor。如果设置为None或者不设置，将创建新的Tensor存储运算结果，默认值为None。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：
+返回
+::::::::::::
+
     - Tensor，矩阵相乘后的结果。
 
 
@@ -57,7 +61,8 @@ mm
     out: [1]
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 
