@@ -3,7 +3,7 @@
 auto_cast
 -------------------------------
 
-.. py:function:: paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None, level='O1')
+.. py:function:: paddle.amp.auto_cast(enable=True, custom_white_list=None, custom_black_list=None, level='O1', dtype='float16')
 
 
 创建一个上下文环境，来支持动态图模式下执行的算子的自动混合精度策略（AMP）。
@@ -18,6 +18,7 @@ auto_cast
     - **custom_white_list** (set|list, 可选) - 自定义算子白名单。这个名单中的算子在支持float16计算时会被认为是数值安全的，并且对性能至关重要。如果设置了白名单，该名单中的算子会使用float16计算。
     - **custom_black_list** (set|list, 可选) - 自定义算子黑名单。这个名单中的算子在支持float16计算时会被认为是数值危险的，它们的影响也可能会在下游操作中观察到。这些算子通常不会转为float16计算。
     - **level** (str, 可选) - 混合精度训练模式，可为``O1``或``O2``模式，默认``O1``模式。
+    - **dtype** (str, 可选) - 使用的数据类型，可以是'float16' 或'bfloat16'。默认为'float16'。
 
 
 代码示例
