@@ -639,9 +639,12 @@ cpu()
     .. code-block:: python
 
         import paddle
-        x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
-        print(x.place)    # CUDAPlace(0)
-
+        
+        if paddle.device.cuda.device_count() > 0:
+            x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
+            print(x.place)    # CUDAPlace(0)
+        
+        x = paddle.to_tensor(1.0)
         y = x.cpu()
         print(y.place)    # CPUPlace
 
@@ -1641,11 +1644,13 @@ pin_memory(y, name=None)
     .. code-block:: python
 
         import paddle
-        x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
-        print(x.place)      # CUDAPlace(0)
+        
+        if paddle.device.cuda.device_count() > 0:
+            x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
+            print(x.place)      # CUDAPlace(0)
 
-        y = x.pin_memory()
-        print(y.place)      # CUDAPinnedPlace
+            y = x.pin_memory()
+            print(y.place)      # CUDAPinnedPlace
 
 pow(y, name=None)
 :::::::::
