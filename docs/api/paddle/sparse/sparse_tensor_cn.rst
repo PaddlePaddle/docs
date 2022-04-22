@@ -8,11 +8,9 @@ sparse_coo_tensor
 
 该API通过已知的非零元素的 ``indices`` 和 ``values`` 来创建一个coordinate格式的稀疏tensor，tensor类型为 ``paddle.Tensor`` 。
 
-``indices`` 是存放坐标信息，是一个二维数组，每一列是对应非零元素的坐标，shape是 ``[sparse_dim, nnz]`` , 
-  其中 ``sparse_dim`` 是坐标的维度， ``nnz`` 是非零元素的个数。
+其中 ``indices`` 是存放坐标信息，是一个二维数组，每一列是对应非零元素的坐标，shape是 ``[sparse_dim, nnz]`` , ``sparse_dim`` 是坐标的维度， ``nnz`` 是非零元素的个数。
 
-``values`` 是存放非零元素，是一个多维数组，shape是 ``[nnz, {dense_dim}]`` , 其中nnz是非零元素个数， 
-  ``dense_dim`` 是非零元素的维度。
+其中 ``values`` 是存放非零元素，是一个多维数组，shape是 ``[nnz, {dense_dim}]`` , nnz是非零元素个数， ``dense_dim`` 是非零元素的维度。
 
 
 如果 ``values`` 已经是一个tensor，且 ``dtype`` 、 ``place`` 没有发生变化，将不会发生 tensor 的拷贝并返回原来的 tensor。
