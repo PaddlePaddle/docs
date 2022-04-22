@@ -9,6 +9,7 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
 -  :ref:`内置模型相关API <about_models>`
 -  :ref:`视觉操作相关API <about_ops>`
 -  :ref:`数据处理相关API <about_transforms>`
+-  :ref:`数据集读取相关API <about_reader>`
 -  :ref:`其他API <about_others>`
 
 .. _about_datasets:
@@ -145,6 +146,19 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
     " :ref:`ToTensor <cn_api_vision_transforms_ToTensor>` ", "将`PIL.Image`或`numpy.ndarray`转为`paddle.Tensor`"
     " :ref:`Transpose <cn_api_vision_transforms_Transpose>` ", "将输入的图像数据更改为目标格式"
     " :ref:`vflip <cn_api_vision_transforms_vflip>` ", "垂直翻转图像"
+
+
+.. _about_reader:
+
+数据集读取相关API
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API名称", "API功能"
+    :widths: 10, 30
+
+    " :ref:`file_label_loader <cn_api_vision_reader_file_label_loader>` ", "根据输入indices读取ImageNet格式数据集对应样本"
+    " :ref:`file_label_reader <cn_api_vision_reader_file_label_reader>` ", "迭代式读取ImageNet格式数据集对应样本"
 
 
 .. _about_others:

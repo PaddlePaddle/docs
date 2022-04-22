@@ -24,6 +24,8 @@ paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的API�
 
     " :ref:`DataLoader <cn_api_fluid_io_DataLoader>` ", "多进程数据读取器"
     " :ref:`get_worker_info <cn_api_io_cn_get_worker_info>` ", "获取当前子进程相关信息"
+    " :ref:`map<cn_api_io_cn_map>` ", "用于GPU DataLoader中划分数据预处理阶段"
+    " :ref:`data_reader<cn_api_io_cn_data_reader>` ", "用于GPU DataLoader中启动数据集读取阶段"
     
 .. _about_dataset_define:
 
