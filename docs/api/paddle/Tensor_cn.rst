@@ -674,7 +674,7 @@ cuda(device_id=None, blocking=False)
         x = paddle.to_tensor(1.0, place=paddle.CPUPlace())
         print(x.place)        # CPUPlace
 
-        if paddle.device.is_compiled_with_cuda():
+        if paddle.device.cuda.device_count() > 0:
             y = x.cuda()
             print(y.place)        # CUDAPlace(0)
 
