@@ -7,6 +7,7 @@ heaviside
 
 
 逐元素地对 Tensor `x` 计算由 Tensor `y` 中的对应元素决定的赫维赛德阶跃函数，其计算公式为
+
 .. math::
    \mathrm{heaviside}(x, y)=
       \left\{
