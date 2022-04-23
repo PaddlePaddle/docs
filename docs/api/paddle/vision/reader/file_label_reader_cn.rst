@@ -31,8 +31,7 @@ file_label_reader
     from paddle.utils.download import get_path_from_url
 
     DATASET_HOME = os.path.expanduser("~/.cache/paddle/datasets")
-    DATASET_URL = "https://paddlemodels.cdn.bcebos.com/ImageNet_stub.tarr
-"
+    DATASET_URL = "https://paddlemodels.cdn.bcebos.com/ImageNet_stub.tar"
     DATASET_MD5 = "c7110519124a433901cf005a4a91b607"
     BATCH_SIZE = 16
 

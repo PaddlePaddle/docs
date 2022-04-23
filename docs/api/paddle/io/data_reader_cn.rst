@@ -1,6 +1,6 @@
 .. _cn_api_io_cn_map:
 
-map
+data_reader
 -------------------------------
 
 .. py:class:: paddle.io.data_reader(reader_func, batch_size=1, num_samples=1, shuffle=False, drop_last=False, seed=None)
