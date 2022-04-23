@@ -9,9 +9,9 @@ random_flip
 
 参数
 :::::::::
-    - x (Tensor) - 形状为[N, ...]的Tensor，N为批次大小，用于生成形状为[N, 1]的输出Tensor。
-    - prob (float) - 翻转输入样本的概率，取值在0到1之间，默认为0.5
-    - name (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
+    - **x** (Tensor) - 形状为[N, ...]的Tensor，N为批次大小，用于生成形状为[N, 1]的输出Tensor。
+    - **prob** (float) - 翻转输入样本的概率，取值在0到1之间，默认为0.5
+    - **name** (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::

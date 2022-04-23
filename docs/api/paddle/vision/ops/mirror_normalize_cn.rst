@@ -9,11 +9,11 @@ mirror_normalize
 
 参数
 :::::::::
-    - x (Tensor) - 形状为[N, ...]的输入Tensor，N为批次大小。
-    - mirror (Tensor) - 形状为[N, 1]的输入Tensor，N为批次大小，并且每个值用户标识是否对该样本做水平翻转。
-    - mean (float | List[float]) - 每个通道归一化的平均值，默认为 [123.675, 116.28, 103.53]。
-    - std (float | List[float]) - 每个通道归一化的标准差，默认为 [58.395, 57.120, 57.375]。
-    - name (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
+    - **x** (Tensor) - 形状为[N, ...]的输入Tensor，N为批次大小。
+    - **mirror** (Tensor) - 形状为[N, 1]的输入Tensor，N为批次大小，并且每个值用户标识是否对该样本做水平翻转。
+    - **mean** (float | List[float]) - 每个通道归一化的平均值，默认为 [123.675, 116.28, 103.53]。
+    - **std** (float | List[float]) - 每个通道归一化的标准差，默认为 [58.395, 57.120, 57.375]。
+    - **name** (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::

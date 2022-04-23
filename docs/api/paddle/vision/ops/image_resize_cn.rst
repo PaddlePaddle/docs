@@ -11,13 +11,13 @@ image_resize
 
 参数
 :::::::::
-    - x (List[Tensor]) - 包含JPEG图像位数据的1维uint8 Tensor列表。
-    - size (int | List(int)) - 输出图像的大小，格式为(height, width)
-    - interp_method (str) - 缩放图像时的插值方式，支持双线性插值'bilinear'和'nearest'最近领插值，默认为'bilinear'。
-    - align_corners (bool, 可选) - 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值为False。
-    - align_mode (int, 可选) - 双线性插值的可选项。 可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1' ，代表src_idx = scale * dst_index。默认值：0。
-    - data_format (str) - 输出图像的格式，如果为NCHW，则输出图像形状为(channel, height, width)，如果为NHWC，则输出图像形状为(height, width, channel)，默认为NCHW
-    - name (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
+    - **x** (List[Tensor]) - 包含JPEG图像位数据的1维uint8 Tensor列表。
+    - **size** (int | List(int)) - 输出图像的大小，格式为(height, width)
+    - **interp_method** (str) - 缩放图像时的插值方式，支持双线性插值'bilinear'和'nearest'最近领插值，默认为'bilinear'。
+    - **align_corners** (bool, 可选) - 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值为False。
+    - **align_mode** (int, 可选) - 双线性插值的可选项。 可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1' ，代表src_idx = scale * dst_index。默认值：0。
+    - **data_format** (str) - 输出图像的格式，如果为NCHW，则输出图像形状为(channel, height, width)，如果为NHWC，则输出图像形状为(height, width, channel)，默认为NCHW
+    - **name** (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::

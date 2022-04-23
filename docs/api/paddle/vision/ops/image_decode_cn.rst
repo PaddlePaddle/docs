@@ -13,11 +13,11 @@ image_decode
 
 参数
 :::::::::
-    - x (Tensor) - 包含JPEG图像位数据的1维uint8 Tensor列表。
-    - num_threads (int) - 解码子线程数，默认为2.
-    - host_memory_padding (int) - Nvjpeg解码分配CUDA Pinned内存的填充值，默认为0.
-    - device_memory_padding (int) - Nvjpeg解码分配CUDA内存的填充值，默认为0.
-    - name (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
+    - **x** (Tensor) - 包含JPEG图像位数据的1维uint8 Tensor列表。
+    - **num_threads** (int) - 解码子线程数，默认为2.
+    - **host_memory_padding** (int) - Nvjpeg解码分配CUDA Pinned内存的填充值，默认为0.
+    - **device_memory_padding** (int) - Nvjpeg解码分配CUDA内存的填充值，默认为0.
+    - **name** (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::

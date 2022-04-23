@@ -11,10 +11,10 @@ file_label_loader
 
 参数
 :::::::::
-    - data_root (str) - ImageNet格式数据集的根目录。
-    - indices (Tensor) - 包含batch中样本下标的Tensor，shape为[N]，其中N为batch size。
-    - batch_size (int) - batch大小，与indices的shape相同。
-    - name (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
+    - **data_root** (str) - ImageNet格式数据集的根目录。
+    - **indices** (Tensor) - 包含batch中样本下标的Tensor，shape为[N]，其中N为batch size。
+    - **batch_size** (int) - batch大小，与indices的shape相同。
+    - **name** (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::

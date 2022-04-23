@@ -11,11 +11,11 @@ file_label_reader
 
 参数
 :::::::::
-    - data_root (str) - ImageNet格式数据集的根目录。
-    - batch_size (int) - batch大小，默认为1。
-    - shuffle (bool) - 是否打乱数据集，默认为False。
-    - drop_last (bool) - 是否丢弃最后不足一个batch的数据，默认为False。
-    - seed (int) - 打乱数据集时的随机种子，默认为None。
+    - **data_root** (str) - ImageNet格式数据集的根目录。
+    - **batch_size** (int) - batch大小，默认为1。
+    - **shuffle** (bool) - 是否打乱数据集，默认为False。
+    - **drop_last** (bool) - 是否丢弃最后不足一个batch的数据，默认为False。
+    - **seed** (int) - 打乱数据集时的随机种子，默认为None。
 
 返回
 :::::::::
