@@ -6,7 +6,7 @@ reshape
 .. py:function::  paddle.reshape(x, shape, name=None)
 
 
-该OP在保持输入 ``x`` 数据不变的情况下，改变 ``x`` 的形状。
+在保持输入 ``x`` 数据不变的情况下，改变 ``x`` 的形状。
 
 请注意，在动态图模式下，输出Tensor将与输入Tensor共享数据，并且没有Tensor数据拷贝的过程。
 如果不希望输入与输出共享数据，请使用 `Tensor.clone` ，例如 `reshape_clone_x = x.reshape([-1]).clone()` 。

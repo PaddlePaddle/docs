@@ -7,7 +7,7 @@ zeros
 
 
 
-该OP创建形状为 ``shape`` 、数据类型为 ``dtype`` 且值全为0的Tensor。
+创建形状为 ``shape`` 、数据类型为 ``dtype`` 且值全为0的Tensor。
 
 参数
 ::::::::::::

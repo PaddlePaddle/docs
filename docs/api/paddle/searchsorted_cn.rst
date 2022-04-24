@@ -5,7 +5,7 @@ searchsorted
 
 .. py:function:: paddle.searchsorted(sorted_sequence, values, out_int32=False, right=False, name=None)
 
-将根据给定的 ``values`` 在 ``sorted_sequence`` 的最后一个维度查找合适的索引。
+根据给定的 ``values`` 在 ``sorted_sequence`` 的最后一个维度查找合适的索引。
 
 参数
 ::::::::

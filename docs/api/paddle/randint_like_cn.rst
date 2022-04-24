@@ -5,7 +5,7 @@ randint_like
 
 .. py:function:: paddle.randint_like(x, low=0, high=None, dtype=None, name=None)
 
-该OP返回服从均匀分布的、范围在[``low``, ``high``)的随机Tensor，输出的形状与x的形状一致，当数据类型 ``dtype`` 为None时（默认），输出的数据类型与x的数据类型一致，当数据类型 ``dtype`` 不为None时，将输出用户指定的数据类型。当 ``high`` 为None时（默认），均匀采样的区间为[0, ``low``)。
+返回服从均匀分布的、范围在[``low``, ``high``)的随机Tensor，输出的形状与x的形状一致，当数据类型 ``dtype`` 为None时（默认），输出的数据类型与x的数据类型一致，当数据类型 ``dtype`` 不为None时，将输出用户指定的数据类型。当 ``high`` 为None时（默认），均匀采样的区间为[0, ``low``)。
 
 参数
 ::::::::::

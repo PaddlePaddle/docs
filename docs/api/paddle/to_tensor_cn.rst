@@ -6,7 +6,7 @@ to_tensor
 
 .. py:function:: paddle.to_tensor(data, dtype=None, place=None, stop_gradient=True)
 
-该API通过已知的 ``data`` 来创建一个 tensor，tensor类型为 ``paddle.Tensor``。
+通过已知的 ``data`` 来创建一个 tensor，tensor类型为 ``paddle.Tensor``。
 ``data`` 可以是 scalar，tuple，list，numpy\.ndarray，paddle\.Tensor。
 
 如果 ``data`` 已经是一个tensor，且 ``dtype`` 、 ``place`` 没有发生变化，将不会发生 tensor 的拷贝并返回原来的 tensor。

@@ -5,7 +5,7 @@ topk
 
 .. py:function:: paddle.topk（x, k, axis=None, largest=True, sorted=True, name=None）
 
-该OP沿着可选的 ``axis`` 查找topk最大或者最小的结果和结果所在的索引信息。
+沿着可选的 ``axis`` 查找topk最大或者最小的结果和结果所在的索引信息。
 如果是一维Tensor，则直接返回topk查询的结果。如果是多维Tensor，则在指定的轴上查询topk的结果。
 
 参数

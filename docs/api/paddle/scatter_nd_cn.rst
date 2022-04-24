@@ -8,7 +8,7 @@ scatter_nd
 
 
 
-该OP根据 :code:`index` ，将 :code:`updates` 添加到一个新的张量中，从而得到输出的Tensor。这个操作与 :code:`scatter_nd_add` 类似，除了形状为 :code:`shape` 的张量是通过零初始化的。相应地， :code:`scatter_nd(index, updates, shape)` 等价于 :code:`scatter_nd_add(fluid.layers.zeros(shape, updates.dtype), index, updates)` 。如果 :code:`index` 有重复元素，则将累积相应的更新，因此，由于数值近似问题，索引中重复元素的顺序不同可能会导致不同的输出结果。具体的计算方法可以参见 :code:`scatter_nd_add` 。该OP是 :code:`gather_nd` 的反函数。
+根据 :code:`index` ，将 :code:`updates` 添加到一个新的张量中，从而得到输出的Tensor。这个操作与 :code:`scatter_nd_add` 类似，除了形状为 :code:`shape` 的张量是通过零初始化的。相应地， :code:`scatter_nd(index, updates, shape)` 等价于 :code:`scatter_nd_add(fluid.layers.zeros(shape, updates.dtype), index, updates)` 。如果 :code:`index` 有重复元素，则将累积相应的更新，因此，由于数值近似问题，索引中重复元素的顺序不同可能会导致不同的输出结果。具体的计算方法可以参见 :code:`scatter_nd_add` 。该OP是 :code:`gather_nd` 的反函数。
 
 参数
 ::::::::::::
