@@ -27,7 +27,7 @@ sparse_csr_tensor
       list，tuple，numpy\.ndarray，paddle\.Tensor类型。
     - **values** (list|tuple|ndarray|Tensor) - 一维数组，存储非零元素，可以是
       list，tuple，numpy\.ndarray，paddle\.Tensor类型。
-    - **shape** (list|tuple, optional) - 稀疏Tensor的形状，也是Tensor的形状，如果没有提供，将自动推测出最小的形状。
+    - **shape** (list|tuple) - 稀疏Tensor的形状，也是Tensor的形状，如果没有提供，将自动推测出最小的形状。
     - **dtype** (str|np.dtype, optional) - 创建tensor的数据类型，可以是 'bool' ，'float16'，'float32'，
       'float64' ，'int8'，'int16'，'int32'，'int64'，'uint8'，'complex64'，'complex128'。
       默认值为None，如果 ``values`` 为python浮点类型，则从
@@ -39,7 +39,7 @@ sparse_csr_tensor
 
 返回
 :::::::::
-通过 ``crows``, ``cols`` 和 ``values`` 创建的 稀疏Tensor。
+通过 ``crows``, ``cols`` 和 ``values`` 创建的稀疏Tensor。
 
 代码示例
 :::::::::

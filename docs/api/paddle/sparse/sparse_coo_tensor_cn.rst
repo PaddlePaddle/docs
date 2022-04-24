@@ -4,7 +4,7 @@ sparse_coo_tensor
 -------------------------------
 
 
-.. py:function:: paddle.sparse.sparse_coo_tensor(indices, values, shape, dtype, place, stop_gradient)
+.. py:function:: paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=None, stop_gradient=True)
 
 参数
 :::::::::
@@ -25,7 +25,7 @@ sparse_coo_tensor
 
 返回
 :::::::::
-通过 ``indices`` 和 ``values`` 创建的 稀疏Tensor。
+通过 ``indices`` 和 ``values`` 创建的稀疏Tensor。
 
 代码示例
 :::::::::
