@@ -28,9 +28,9 @@ DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``ma
 参数
 ::::::::::::
 
-    - **dataset** (Dataset) - 待加载数据的数据集，支持两种格式:
-      1. ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例，会使用Python多子进程数据加载器；
-      2. 由 ``paddle.io.map`` 和 ``paddle.io.data_reader`` 或 ``paddle.vision.ops`` 下的API组成的可执行函数，会使用C++端GPU多流、多线程数据加载器，当前仅支持ImageNet格式数据集加载，使用方法请见 ``paddle.io.map`` 。
+    - **dataset** (Dataset | callable) - 待加载数据的数据集，支持两种格式:
+      1. :ref:` cn_api_io_cn_Dataset`或:ref:` cn_api_io_cn_IterableDataset`的一个子类实例，会使用Python多子进程数据加载器；
+      2. 由:ref:` cn_api_io_map`和:ref:` cn_api_io_data_reader`或 ``paddle.vision.ops`` 下的API组成的可执行函数，会使用C++端GPU多流、多线程数据加载器，当前仅支持ImageNet格式数据集加载，使用方法请见:ref:` cn_api_io_cn_map`。
     - **feed_list** (list(Tensor)|tuple(Tensor)) - feed变量列表，由 ``paddle.static.data()`` 创建。当 ``return_list`` 为False时，此参数必须设置。默认值为None。
     - **places** (list(Place)|tuple(Place)) - 数据需要放置到的Place列表。在静态图和动态图模式中，此参数均必须设置。在动态图模式中，此参数列表长度必须是1。默认值为None。
     - **return_list** (bool) - 每个设备上的数据是否以list形式返回。若return_list = False，每个设备上的返回数据均是str -> Tensor的映射表，其中映射表的key是每个输入变量的名称。若return_list = True，则每个设备上的返回数据均是list(Tensor)。在动态图模式下，此参数必须为True。默认值为False。

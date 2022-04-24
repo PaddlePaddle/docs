@@ -10,7 +10,7 @@ random_flip
 参数
 :::::::::
     - **x** (Tensor) - 形状为[N, ...]的Tensor，N为批次大小，用于生成形状为[N, 1]的输出Tensor。
-    - **prob** (float) - 翻转输入样本的概率，取值在0到1之间，默认为0.5
+    - **prob** (float, 可选) - 翻转输入样本的概率，取值在0到1之间，随机值小于 ``prob`` 设置，输出为 ``True`` ，反之则为 ``False``， 默认为0.5
     - **name** (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
 
 返回
@@ -20,11 +20,4 @@ random_flip
 代码示例
 :::::::::
 
-..  code-block:: python
-
-    import paddle
-
-    x = paddle.rand(shape=[8, 3, 32, 32])
-    mirror = paddle.vision.ops.random_flip(x)
-
-    print(mirror)
+COPY-FROM: <paddle.vision.ops.mirror_normalize>:<code-example>

@@ -157,8 +157,8 @@ paddle.vision 目录是飞桨在视觉领域的高层API。具体如下：
     :header: "API名称", "API功能"
     :widths: 10, 30
 
-    " :ref:`file_label_loader <cn_api_vision_reader_file_label_loader>` ", "根据输入indices读取ImageNet格式数据集对应样本"
-    " :ref:`file_label_reader <cn_api_vision_reader_file_label_reader>` ", "迭代式读取ImageNet格式数据集对应样本"
+    " :ref:`file_label_loader <cn_api_paddle_vision_reader_file_label_loader>` ", "根据输入indices读取ImageNet格式数据集对应样本"
+    " :ref:`file_label_reader <cn_api_paddle_vision_reader_file_label_reader>` ", "迭代式读取ImageNet格式数据集对应样本"
 
 
 .. _about_others:
