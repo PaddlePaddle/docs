@@ -22,7 +22,7 @@ rsqrt激活函数。
 ::::::::::::
 
     - **x** (Tensor) – 输入是多维Tensor，数据类型可以是float32和float64。 
-    - **name** (str，可选）— 这一层的名称（可选）。如果设置为None，则将自动命名这一层。默认值为None。
+    - **name** (str，可选）— 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::::::

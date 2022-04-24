@@ -13,7 +13,7 @@ randint_like
     - **low** (int) - 要生成的随机值范围的下限，``low`` 包含在范围中。当 ``high`` 为None时，均匀采样的区间为[0, ``low``)。默认值为0。
     - **high** (int, 可选) - 要生成的随机值范围的上限，``high`` 不包含在范围中。默认值为None，此时范围是[0, ``low``)。
     - **dtype** (str|np.dtype, 可选) - 输出Tensor的数据类型，支持bool，int32，int64，float16，float32，float64。当该参数值为None时， 输出Tensor的数据类型与输入Tensor的数据类型一致。默认值为None。
-    - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
+    - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::::

@@ -28,7 +28,7 @@ where
     - **condition** （Tensor）- 选择 ``x`` 或 ``y`` 元素的条件 。为 ``True`` （非零值）时，选择 ``x`` ，否则选择 ``y`` 。
     - **x** （Tensor，Scalar，可选）- 多维 ``Tensor`` 或 ``Scalar``，数据类型为 ``float32`` 或 ``float64`` 或 ``int32`` 或 ``int64`` 。``x`` 和 ``y`` 必须都给出或者都不给出。
     - **y** （Tensor，Scalar，可选）- 多维 ``Tensor`` 或 ``Scalar``，数据类型为 ``float32`` 或 ``float64`` 或 ``int32`` 或 ``int64`` 。``x`` 和 ``y`` 必须都给出或者都不给出。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** （str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::::::
