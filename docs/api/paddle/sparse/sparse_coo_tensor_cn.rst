@@ -40,4 +40,4 @@ sparse_coo_tensor
 代码示例
 :::::::::
 
-COPY-FROM: <sparse.sparse_coo_tensor>
+COPY-FROM: paddle.sparse.sparse_coo_tensor

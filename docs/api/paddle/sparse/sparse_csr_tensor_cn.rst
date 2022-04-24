@@ -43,4 +43,4 @@ sparse_csr_tensor
 
 代码示例
 :::::::::
-COPY-FROM: <paddle.sparse.sparse_csr_tensor>
+COPY-FROM: paddle.sparse.sparse_csr_tensor
