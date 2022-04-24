@@ -472,6 +472,7 @@ def set_api_sketch():
         paddle.fft,
         paddle.version,
         paddle.profiler,
+        paddle.sparse,
     ]
 
     alldict = {}
