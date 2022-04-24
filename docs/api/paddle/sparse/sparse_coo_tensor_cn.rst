@@ -6,6 +6,16 @@ sparse_coo_tensor
 
 .. py:function:: paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=None, stop_gradient=True)
 
+该API通过已知的非零元素的 ``indices`` 和 ``values`` 来创建一个coordinate格式的稀疏tensor，tensor类型为 ``paddle.Tensor`` 。
+
+其中 ``indices`` 是存放坐标信息，是一个二维数组，每一列是对应非零元素的坐标，shape是 ``[sparse_dim, nnz]`` , ``sparse_dim`` 是坐标的维度， ``nnz`` 是非零元素的个数。
+
+其中 ``values`` 是存放非零元素，是一个多维数组，shape是 ``[nnz, {dense_dim}]`` , nnz是非零元素个数， ``dense_dim`` 是非零元素的维度。
+
+
+如果 ``values`` 已经是一个tensor，且 ``dtype`` 、 ``place`` 没有发生变化，将不会发生 tensor 的拷贝并返回原来的 tensor。
+否则会创建一个新的tensor，且不保留原来计算图。
+
 参数
 :::::::::
 
@@ -25,7 +35,7 @@ sparse_coo_tensor
 
 返回
 :::::::::
-通过 ``indices`` 和 ``values`` 创建的稀疏Tensor。
+通过 ``indices`` 和 ``values`` 创建的 稀疏Tensor。
 
 代码示例
 :::::::::
@@ -86,24 +96,8 @@ sparse_csr_tensor
 
 返回
 :::::::::
-通过 ``crows``, ``cols`` 和 ``values`` 创建的 稀疏Tensor。
+通过 ``crows``, ``cols`` 和 ``values`` 创建的稀疏Tensor。
 
 代码示例
 :::::::::
-
-.. code-block:: python
-
-        import paddle
-        from paddle.fluid.framework import _test_eager_guard
-
-        with _test_eager_guard():
-            crows = [0, 2, 3, 5]
-            cols = [1, 3, 2, 0, 1]
-            values = [1, 2, 3, 4, 5]
-            dense_shape = [3, 4]
-            csr = paddle.sparse.sparse_csr_tensor(crows, cols, values, dense_shape)
-            # print(csr)
-            # Tensor(shape=[3, 4], dtype=paddle.int64, place=Place(gpu:0), stop_gradient=True,
-            #       crows=[0, 2, 3, 5],
-            #       cols=[1, 3, 2, 0, 1],
-            #       values=[1, 2, 3, 4, 5])
+COPY-FROM: <paddle.sparse.sparse_coo_tensor>
