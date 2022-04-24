@@ -41,6 +41,6 @@ sparse_csr_tensor
 :::::::::
 通过 ``crows``, ``cols`` 和 ``values`` 创建的稀疏Tensor。
 
-代码示例
-:::::::::
+**代码示例**
+
 COPY-FROM: paddle.sparse.sparse_csr_tensor
