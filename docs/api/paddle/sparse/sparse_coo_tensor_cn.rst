@@ -37,6 +37,7 @@ sparse_coo_tensor
 :::::::::
 通过 ``indices`` 和 ``values`` 创建的稀疏Tensor。
 
-**代码示例**
+代码示例
+:::::::::
 
 COPY-FROM: paddle.sparse.sparse_coo_tensor
