@@ -18,6 +18,7 @@ paddle 目录下包含tensor、device、framework相关API以及某些高层API�
 -  :ref:`framework相关 <about_framework>`
 -  :ref:`device相关 <about_device>`
 -  :ref:`高层API相关 <about_hapi>`
+-  :ref:`稀疏API相关 <about_sparse_api>`
 
 
 
@@ -386,11 +387,14 @@ device相关
     " :ref:`paddle.summary <cn_api_paddle_summary>` ", "打印网络的基础结构和参数信息"
     " :ref:`paddle.flops <cn_api_paddle_flops>` ", "打印网络的基础结构和参数信息"
 
+.. _about_sparse_api:
+
 稀疏API相关
 ::::::::::::::::::::
 
 .. csv-table::
     :header: "API名称", "API功能"
     :widths: 10, 30
+
     " :ref:`paddle.sparse.sparse_coo_tensor<cn_api_paddle_sparse_coo_tensor>` ", "创建一个COO(Coordinate)格式的稀疏Tensor"
     " :ref:`paddle.sparse.sparse_csr_tensor<cn_api_paddle_sparse_csr_tensor>` ", "创建一个CSR(Compressed Sparse Row)格式的稀疏Tensor"
