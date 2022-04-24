@@ -18,7 +18,7 @@ random_crop_and_resize
     - **aspect_ratio_max** (float, 可选) - 随机图像裁剪框的最大纵横比，默认为4/3。
     - **area_min** (float, 可选) - 随机图像裁剪框的最小面积比率，默认为0.08。
     - **area_max** (float, 可选) - 随机图像裁剪框的最大面积比率，默认为1.0。
-    - **num_attempts** (int, 可选) - 随机图像裁剪的最大尝试次数，默认为10。
+    - **num_attempts** (int, 可选) - 随机图像裁剪的最大尝试次数，若超出尝试次数不满足纵横比、面积限制，则不做裁剪。须为正整数，默认为10。
     - **interp_method** (str, 可选) - 缩放图像时的插值方式，支持双线性插值'bilinear'和'nearest'最近领插值，默认为'bilinear'。
     - **align_corners** (bool, 可选) - 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值；如果为False，将输入和输出张量的4个角落像素的外角点对齐。默认值为True。
     - **align_mode** (int, 可选) - 双线性插值的可选项。 可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1' ，代表src_idx = scale * dst_index。默认值：0。
