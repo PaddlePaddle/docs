@@ -16,8 +16,8 @@ image_decode
 :::::::::
     - **x** (Tensor) - 包含JPEG图像位数据的1维uint8 Tensor列表。
     - **num_threads** (int, 可选) - 解码子线程数，默认为2.
-    - **host_memory_padding** (int, 可选) - Nvjpeg解码分配CUDA Pinned内存的填充值，默认为0.
-    - **device_memory_padding** (int, 可选) - Nvjpeg解码分配CUDA内存的填充值，默认为0.
+    - **host_memory_padding** (int, 可选) - Nvjpeg解码分配CUDA Pinned内存的填充值，如果大于0，会预分配对应大小的CUDA Pinned内存作为缓存，设置合理时能避免在执行过程中重复分配内存。默认为0.
+    - **device_memory_padding** (int, 可选) - Nvjpeg解码分配CUDA内存的填充值，如果大于0，会预分配对应大小的CUDA Pinned内存作为缓存，设置合理时能避免在执行过程中重复分配内存。默认为0.
     - **name** (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
 
 返回
@@ -27,4 +27,4 @@ image_decode
 代码示例
 :::::::::
 
-COPY-FROM: <paddle.vision.ops.image_decode>:<code-example>
+COPY-FROM: paddle.vision.ops.image_decode:code-example

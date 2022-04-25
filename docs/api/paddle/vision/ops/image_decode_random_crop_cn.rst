@@ -16,8 +16,8 @@ image_decode_random_crop
 :::::::::
     - **x** (List[Tensor]) - 包含JPEG图像位数据的1维uint8 Tensor列表。
     - **num_threads** (int, 可选) - 解码子线程数，默认为2.
-    - **host_memory_padding** (int, 可选) - Nvjpeg解码分配CUDA Pinned内存的填充值，默认为0.
-    - **device_memory_padding** (int, 可选) - Nvjpeg解码分配CUDA内存的填充值，默认为0.
+    - **host_memory_padding** (int, 可选) - Nvjpeg解码分配CUDA Pinned内存的填充值，如果大于0，会预分配对应大小的CUDA Pinned内存作为缓存，设置合理时能避免在执行过程中重复分配内存。默认为0.
+    - **device_memory_padding** (int, 可选) - Nvjpeg解码分配CUDA内存的填充值，如果大于0，会预分配对应大小的CUDA Pinned内存作为缓存，设置合理时能避免在执行过程中重复分配内存。默认为0.
     - **aspect_ratio_min** (float, 可选) - 随机图像裁剪框的最小纵横比，默认为3/4。
     - **aspect_ratio_max** (float, 可选) - 随机图像裁剪框的最大纵横比，默认为4/3。
     - **area_min** (float, 可选) - 随机图像裁剪框的最小面积比率，默认为0.08。
@@ -34,4 +34,4 @@ image_decode_random_crop
 
 ..  code-block:: python
 
-COPY-FROM: <paddle.vision.ops.image_decode_random_crop>:<code-example>
+COPY-FROM: paddle.vision.ops.image_decode_random_crop:code-example

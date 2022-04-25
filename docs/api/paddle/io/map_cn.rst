@@ -24,4 +24,4 @@ map
 
 .. code-block:: python
 
-COPY-FROM: <paddle.io.map>:<code-example>
+COPY-FROM: paddle.io.map:code-example

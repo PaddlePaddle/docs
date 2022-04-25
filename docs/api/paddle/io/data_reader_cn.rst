@@ -25,4 +25,4 @@ data_reader
 代码示例
 ::::::::::::
 
-COPY-FROM: <paddle.io.data_reader>:<code-example>
+COPY-FROM: paddle.io.data_reader:code-example

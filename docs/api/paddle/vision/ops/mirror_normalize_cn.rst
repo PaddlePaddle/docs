@@ -5,7 +5,7 @@ mirror_normalize
 
 .. py:function:: paddle.vision.ops.mirror_normalize(x, mirror, mean=[123.675, 116.28, 103.53], std=[58.395, 57.120, 57.375], name=None)
 
-对输入张量做随机水平翻转和归一化，将第一个维度视为批量大小，并根据输入张量中每个样本做随机水平翻转和归一化
+对输入张量做水平翻转和归一化，将第一个维度视为批量大小，并根据输入张量中每个样本对应 ``mirror`` 值做水平翻转，最后对通道做做归一化
 
 .. note::
   此API仅能在PaddlePaddle GPU版本中使用
@@ -25,4 +25,4 @@ mirror_normalize
 代码示例
 :::::::::
 
-COPY-FROM: <paddle.vision.ops.mirror_normalize>:<code-example>
+COPY-FROM: paddle.vision.ops.mirror_normalize:code-example
