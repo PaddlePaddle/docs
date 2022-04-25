@@ -3,7 +3,7 @@
 random_crop_and_resize
 -------------------------------
 
-.. py:function:: paddle.vision.ops.random_crop_and_resize(x, size, aspect_ratio_min=3./4., aspect_ratio_max=4./3., area_min=0.08, area_max=1.0, num_attempts=10, interp_method='bilinear', align_corners=True, align_mode=1, data_format='NCHW', name=None)
+.. py:function:: paddle.vision.ops.random_crop_and_resize(x, size, aspect_ratio_min=3./4., aspect_ratio_max=4./3., area_min=0.08, area_max=1.0, num_attempts=10, interp_method='bilinear', align_corners=True, align_mode=1, data_format='NHWC', name=None)
 
 此OP实现GPU版本的 paddle.vision.transforms.RandomResizedCrop ，详细信息请见:ref:`cn_api_vision_transforms_RandomResizedCrop` 
 
@@ -22,7 +22,7 @@ random_crop_and_resize
     - **interp_method** (str, 可选) - 缩放图像时的插值方式，支持双线性插值'bilinear'和'nearest'最近领插值，默认为'bilinear'。
     - **align_corners** (bool, 可选) - 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值；如果为False，将输入和输出张量的4个角落像素的外角点对齐。默认值为True。
     - **align_mode** (int, 可选) - 双线性插值的可选项。 可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1' ，代表src_idx = scale * dst_index。默认值：0。
-    - **data_format** (str) - 输出图像的格式，如果为NCHW，则输出图像形状为(channel, height, width)，如果为NHWC，则输出图像形状为(height, width, channel)，默认为NCHW
+    - **data_format** (str) - 输出图像的格式，如果为NCHW，则输出图像形状为(channel, height, width)，如果为NHWC，则输出图像形状为(height, width, channel)，默认为NHWC
     - **name** (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
 
 返回

@@ -3,7 +3,7 @@
 image_decode_random_crop
 -------------------------------
 
-.. py:function:: paddle.vision.ops.image_decode_random_crop(x, num_threads=2, host_memory_padding=0, device_memory_padding=0, data_format='NCHW', aspect_ratio_min=3./4., aspect_ratio_max=4./3., area_min=0.08, area_max=1.0, num_attempts=10, name=None)
+.. py:function:: paddle.vision.ops.image_decode_random_crop(x, num_threads=2, host_memory_padding=0, device_memory_padding=0, aspect_ratio_min=3./4., aspect_ratio_max=4./3., area_min=0.08, area_max=1.0, num_attempts=10, name=None)
 
 将一个批次的JPEG图像通过Nvjpeg多线程解码为3维的Tensor并做随机裁剪，默认解码格式为RGBI，更多信息请见https://docs.nvidia.com/cuda/nvjpeg/index.html
 
@@ -18,7 +18,6 @@ image_decode_random_crop
     - **num_threads** (int, 可选) - 解码子线程数，默认为2.
     - **host_memory_padding** (int, 可选) - Nvjpeg解码分配CUDA Pinned内存的填充值，默认为0.
     - **device_memory_padding** (int, 可选) - Nvjpeg解码分配CUDA内存的填充值，默认为0.
-    - **data_format** (str, 可选) - 输出图像的格式，如果为NCHW，则输出图像形状为(channel, height, width)，如果为NHWC，则输出图像形状为(height, width, channel)，默认为NCHW
     - **aspect_ratio_min** (float, 可选) - 随机图像裁剪框的最小纵横比，默认为3/4。
     - **aspect_ratio_max** (float, 可选) - 随机图像裁剪框的最大纵横比，默认为4/3。
     - **area_min** (float, 可选) - 随机图像裁剪框的最小面积比率，默认为0.08。
@@ -28,7 +27,7 @@ image_decode_random_crop
 
 返回
 :::::::::
-    形状为(channel, width, height)解码图像数组
+    形状为(width, height, channels)解码图像数组
 
 代码示例
 :::::::::
