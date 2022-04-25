@@ -35,4 +35,4 @@ image_decode_random_crop
 
 ..  code-block:: python
 
-COPY-FROM: <paddle.vision.ops.image_decode_random_crop>:<code-example>
+COPY-FROM: paddle.vision.ops.image_decode_random_crop:code-example

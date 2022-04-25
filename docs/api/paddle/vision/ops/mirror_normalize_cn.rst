@@ -25,4 +25,4 @@ mirror_normalize
 代码示例
 :::::::::
 
-COPY-FROM: <paddle.vision.ops.mirror_normalize>:<code-example>
+COPY-FROM: paddle.vision.ops.mirror_normalize:code-example

@@ -30,4 +30,4 @@ file_label_reader
 
 ..  code-block:: python
 
-COPY-FROM: <paddle.vision.reader.file_label_reader>:<code-example>
+COPY-FROM: paddle.vision.reader.file_label_reader:code-example

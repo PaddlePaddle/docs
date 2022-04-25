@@ -27,4 +27,4 @@ image_resize
 代码示例
 :::::::::
 
-COPY-FROM: <paddle.vision.ops.image_resize>:<code-example>
+COPY-FROM: paddle.vision.ops.image_resize:code-example

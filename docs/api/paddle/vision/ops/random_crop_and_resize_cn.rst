@@ -32,4 +32,4 @@ random_crop_and_resize
 代码示例
 :::::::::
 
-COPY-FROM: <paddle.vision.ops.random_crop_and_resize>:<code-example>
+COPY-FROM: paddle.vision.ops.random_crop_and_resize:code-example

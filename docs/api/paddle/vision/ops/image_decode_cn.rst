@@ -27,4 +27,4 @@ image_decode
 代码示例
 :::::::::
 
-COPY-FROM: <paddle.vision.ops.image_decode>:<code-example>
+COPY-FROM: paddle.vision.ops.image_decode:code-example

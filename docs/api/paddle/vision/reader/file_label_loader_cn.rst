@@ -26,4 +26,4 @@ file_label_loader
 
 ..  code-block:: python
 
-COPY-FROM: <paddle.vision.reader.file_label_loader>:<code-example>
+COPY-FROM: paddle.vision.reader.file_label_loader:code-example
