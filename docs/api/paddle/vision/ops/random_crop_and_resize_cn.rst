@@ -5,7 +5,7 @@ random_crop_and_resize
 
 .. py:function:: paddle.vision.ops.random_crop_and_resize(x, size, aspect_ratio_min=3./4., aspect_ratio_max=4./3., area_min=0.08, area_max=1.0, num_attempts=10, interp_method='bilinear', align_corners=True, align_mode=1, data_format='NCHW', name=None)
 
-此OP实现GPU版本的 paddle.vision.transforms.RandomResizedCrop ，详细信息请见:ref:`cn_api_vision_transforms_RandomResizedCrop` 
+此OP实现GPU版本的 paddle.vision.transforms.RandomResizedCrop ，详细信息请见 :ref:`cn_api_vision_transforms_RandomResizedCrop` 
 
 .. note::
   此API仅能在PaddlePaddle GPU版本中使用

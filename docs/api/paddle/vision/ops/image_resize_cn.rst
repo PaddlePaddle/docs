@@ -5,7 +5,7 @@ image_resize
 
 .. py:function:: paddle.vision.ops.image_resize(x, size, interp_method='bilinear', align_corners=True, align_mode=1, data_format='NCHW', name=None)
 
-此OP实现GPU版本的 paddle.vision.transforms.RandomResizedCrop ，详细信息请见 https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/RandomResizedCrop_cn.html#randomresizedcrop
+此OP实现GPU版本的 paddle.vision.transforms.Resize，详细信息请见 :ref:`cn_api_vision_transforms_resize` 
 
 .. note::
   此API仅能在PaddlePaddle GPU版本中使用

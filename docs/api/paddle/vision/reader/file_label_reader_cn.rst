@@ -3,11 +3,11 @@
 file_label_reader
 -------------------------------
 
-.. py:function:: paddle.vision.reader.file_label_loader(data_root, batch_size=1, shuffle=False, drop_last=False, seed=None, name=None)
+.. py:function:: paddle.vision.reader.file_label_reader(data_root, batch_size=1, shuffle=False, drop_last=False, seed=None, name=None)
 
 迭代式的返回batch的数据，输出为包含文件内数据流的uint8 Tensor。
 
-此API会启动一个C++子线程通过:ref:`cn_api_paddle_vision_reader_file_label_loader` 加载数据，并迭代式的返回。
+此API会启动一个C++子线程通过 :ref:`cn_api_paddle_vision_reader_file_label_loader` 加载数据，并迭代式的返回。
 
 .. note::
   此API仅能在PaddlePaddle GPU版本中使用
