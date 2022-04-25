@@ -5,11 +5,6 @@ scale
 
 .. py:function:: paddle.scale(x, scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 
-
-
-
-缩放算子。
-
 对输入Tensor进行缩放和偏置，其公式如下：
 
 ``bias_after_scale`` 为True:
