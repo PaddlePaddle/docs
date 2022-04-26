@@ -43,30 +43,7 @@ reshape
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-  import numpy as np
-  import paddle
-
-  x = paddle.rand([2, 4, 6], dtype="float32")
-  positive_four = paddle.full([1], 4, "int32")
-
-  out = paddle.reshape(x, [-1, 0, 3, 2])
-  print(out)
-  # the shape is [2,4,3,2].
-
-  out = paddle.reshape(x, shape=[positive_four, 12])
-  print(out)
-  # the shape of out_2 is [4, 12].
-
-  shape_tensor = paddle.to_tensor(np.array([8, 6]).astype("int32"))
-  out = paddle.reshape(x, shape=shape_tensor)
-  print(out)
-  # the shape is [8, 6].
-  # 在动态图模式下，输出out与输入x共享数据
-  x[0, 0, 0] = 10.
-  print(out[0, 0])
-  # the value is [10.]
+COPY-FROM: <reshape>:<code-example1>
 
 
 
