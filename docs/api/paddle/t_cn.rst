@@ -9,8 +9,8 @@ t
 
 参数
 ::::::::
-    - **input** (Tensor) - 输入：N维(N<=2)Tensor，可选的数据类型为float16、float32、float64、int32、int64，默认值为None。
-    - **name** (str，可选)- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **input** (Tensor) - 输入：N维(N<=2)Tensor，可选的数据类型为float16、float32、float64、int32、int64。
+    - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::
