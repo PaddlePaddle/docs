@@ -245,7 +245,7 @@ helper.append_op(
 
 如果为这个 API 也开发了对应的 c++ operator，那么也可以把对 API 的单元测试和 operator 的单元测试写在同一个文件中，文件位置在 `Python/paddle/fluid/tests/unittests/`，一般以 `test_${op_name}_op.py` 的形式命名。
 
-对 Python API 的单元测试直接继承 `UnitTest.TestCase`，一般来说需要用 numpy/scipy 中的对应功能作为参考，如果 numpy/scipy 中没有现成的对应函数，可以用 numpy/scipy 实现一个作为参考，并以这个为基准对新增的 paddle Python API 进行测试。比如
+对 Python API 的单元测试直接继承 `UnitTest.TestCase`，一般来说需要用 numpy/scipy 中的对应功能作为参考，如果 numpy/scipy 中没有现成的对应函数，可以用 numpy/scipy 实现一个作为参考，并以这个为基准对新增的 paddle Python API 进行测试，如 [test_softmax_op](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_softmax_op.py#L29)。
 
 如果新增的 API 没有使用新增的 c++ operator, 可以不必测试反向功能（因为 operator 的新增本身要求 operator 单元测试，这本身就会测试反向功能）。常见的流程是构建相同的输入，调用参考的实现和新增的 Python API，对比结果是否一致。一般用 `self.assertTrue(numpy.allclose(actual, desired))` 或者 `numpy.testing.assert_allclose(actual, desired)` 来进行数值对比。
 
