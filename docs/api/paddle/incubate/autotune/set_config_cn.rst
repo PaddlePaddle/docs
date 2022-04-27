@@ -11,7 +11,7 @@ set_config
     - **enable** (bool) - 是否开启kernel的调优功能。默认值：False。
     - **tuning_range** (list) - 自动调优开始和结束的迭代序号。默认值：[1, 10]。
 
-2. layout：当开启自动调优，将根据设备和数据类型确定最优的数据布局如NCHW或者NHWC。当原始的layout设置并非最优时，将会自动进行layout的转换已提升模型的性能。调优参数如下：
+2. layout：当开启自动调优，将根据设备和数据类型确定最优的数据布局如NCHW或者NHWC。当原始的layout设置并非最优时，将会自动进行layout的转换以提升模型的性能。调优参数如下：
 
     - **enable** (bool) - 是否开启layout的调优功能。默认值：False。
 
