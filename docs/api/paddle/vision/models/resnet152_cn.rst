@@ -17,19 +17,4 @@ resnet152模型，Layer的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
-
-    import paddle
-    from paddle.vision.models import resnet152
-
-    # build model
-    model = resnet152()
-
-    # build model and load imagenet pretrained weight
-    # model = resnet152(pretrained=True)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
-    # [1, 1000]
+COPY-FROM: paddle.vision.models.resnet152

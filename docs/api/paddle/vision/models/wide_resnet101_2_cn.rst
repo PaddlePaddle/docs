@@ -17,19 +17,4 @@ wide_resnet101_2模型，Layer的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
-
-    import paddle
-    from paddle.vision.models import wide_resnet101_2
-
-    # build model
-    model = wide_resnet101_2()
-
-    # build model and load imagenet pretrained weight
-    # model = wide_resnet101_2(pretrained=True)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
-    # [1, 1000]
+COPY-FROM: paddle.vision.models.wide_resnet101_2

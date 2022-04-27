@@ -17,19 +17,4 @@ resnext152_32x4d模型，Layer的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
-
-    import paddle
-    from paddle.vision.models import resnext152_32x4d
-
-    # build model
-    model = resnext152_32x4d()
-
-    # build model and load imagenet pretrained weight
-    # model = resnext152_32x4d(pretrained=True)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
-    # [1, 1000]
+COPY-FROM: paddle.vision.models.resnext152_32x4d
