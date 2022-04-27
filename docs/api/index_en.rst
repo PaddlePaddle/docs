@@ -84,4 +84,6 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 |                               | data processing ColorJitter, and commonly used models |
 |                               | like resnet                                           |
 +-------------------------------+-------------------------------------------------------+
+| paddle.sparse                 | The Sparse domain API.                                |
++-------------------------------+-------------------------------------------------------+
 

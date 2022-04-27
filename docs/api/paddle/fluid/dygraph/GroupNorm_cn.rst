@@ -12,7 +12,9 @@ GroupNorm
 
 该接口用于构建 ``GroupNorm`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了组归一化层的功能。更多详情请参考： `Group Normalization <https://arxiv.org/abs/1803.08494>`_ 。
 
-参数：
+参数
+::::::::::::
+
     - **channels** (int) - 输入的通道数。
     - **groups** (int) - 从通道中分离出来的 ``group`` 的数目。
     - **epsilon** (float, 可选) - 为防止方差除零，增加一个很小的值。默认值：1e-05。
@@ -22,12 +24,17 @@ GroupNorm
     - **data_layout** (str, 可选) - 只支持“NCHW”(num_batches，channels，height，width)格式。默认值：“NCHW”。
     - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
-返回：无
+返回
+::::::::::::
+无
 
-抛出异常：
+抛出异常
+::::::::::::
+
     - ValueError - 如果 ``data_layout`` 不是“NCHW”格式。
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

@@ -8,18 +8,22 @@ transpose
 
 
 
-该OP根据perm对输入的多维Tensor进行数据重排。返回多维Tensor的第i维对应输入Tensor的perm[i]维。
+根据perm对输入的多维Tensor进行数据重排。返回多维Tensor的第i维对应输入Tensor的perm[i]维。
 
-参数：
+参数
+::::::::::::
+
     - **x** (Tensor) - 输入：x:[N_1, N_2, ..., N_k, D]多维Tensor，可选的数据类型为bool, float16, float32, float64, int32, int64。
     - **perm** (list|tuple) - perm长度必须和X的维度相同，并依照perm中数据进行重排。
-    - **name** (str) - 该层名称（可选）。
+    - **name** (str) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回： 多维Tensor
+返回
+::::::::::::
+多维Tensor
 
-返回类型：Tensor
 
-**示例**:
+代码示例
+::::::::::::
 
 .. code-block:: text
 
@@ -43,7 +47,8 @@ transpose
          shape(y_perm1) = [4,3,2]
 
 
-**代码示例**:
+代码示例
+::::::::::::
 
 .. code-block:: python
 

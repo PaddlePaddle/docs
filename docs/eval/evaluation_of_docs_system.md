@@ -21,6 +21,148 @@
 
 TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标准。
 
+具体的文档结构如下：
+
+**Tutorials**
+
+- Quickstart for beginners
+- Quickstart for experts
+- ML basics with Keras
+    - Basic image classfication
+    - Basic text classification
+    - Text classification with TF Hub
+    - Regression
+    - Overfit and underfit
+    - Save and load
+    - Tune hyperprameters with Keras Tuner
+    - More examples on kera.io
+- Load and preprocess data
+    - Images
+    - CSV
+    - Numpy
+    - pandas.DataFrame
+    - TFRecord and tf.Example
+    - Additional formats with tf.io
+    - Text
+    - More text loading
+- Customization
+    - Tensors and operations
+    - Custom layers
+    - Custom traning: walkthrough
+- Distributed training
+    - Distributed training with Kereas
+    - Distributed training with DTensors
+    - Using DTensors with Keras
+    - Custom training loops
+    - Multi-worker training with Keras
+    - Multi-worker training with CTL
+    - Parameter Server Training
+    - Save and load
+    - Distributed input
+- Images
+    - Convolutional Neural Network
+    - Image classification
+    - Transfer learning and fine-tuning
+    - Transfer learning with TF Hub
+    - Data Augmentaion
+    - Image segmentation
+    - Object detection with TF Hub
+- Text
+    - Word embeddings
+    - Word2Vec
+    - Text classification with an RNN
+    - classify Text with BERT
+    - Solve GLUE tasks using BERT on TPU
+    - Neural machine translation with attention
+    - Image captioning
+- Audio
+    - Simple audio recognition
+    - Transfer learning for audio recognition
+    - Generate music with an RNN
+- Structured data
+    - Classifying structured data with preprocessing layers
+    - Classfication on imbalanced data
+    - Time series forecasting
+    - Decision forest models
+    - Recommenders
+- Generative
+    - Neural style transfer
+    - DeepDream
+    - DCGAN
+    - Pix2Pix
+    - CycleGAN
+    - Adversarial FGSM
+    - Intro to Autoencoders
+    - Variational Autoencoder
+- Model Understanding
+    - Integrated gradients
+    - Uncertainty quantification with SNGP
+    - Probabilistic regression
+- Reinforcement learning
+    - Actor-Critic method
+    - TensorFlow agents
+- tf.Estimator
+    - Premade estimator
+    - Linear model
+    - Keras model to Estimator
+    - Multi-worker training with Estimator
+    - Feature columns
+
+**Guide**
+
+- TensorFlow basics
+    - Overview
+    - Tensors
+    - Variables
+    - Automatic differentiation
+    - Graphs and functions
+    - Modules, layers, and models
+    - Training loops
+- Keras
+    - The Sequnetial model
+    - The Functional API
+    - Training and evaluation with the built-in methods
+    - Making new Laayers and Models via subclassing
+    - Save and load Kears models
+    - Working with preprocessing layers
+    - Customize what happens in Model.fit
+    - Writing a training loop from scratch
+    - Recurrent Neural Networks(RNN) with Keras
+    - Masking and padding wiht Keras
+    - Writing your own callbacks
+    - Transfer learning and fine-tuning
+    - Traing Keras models with TensorFlow Cloud
+- TensorFlow in depth
+    - Tensor slicing
+    - Advanced autodiff
+    - Ragged tensor
+    - Sparse tensor
+    - Random number generation
+    - NumPy API
+    - DTensor concepts
+    - Thinking in TensorFlow 2
+- Customization
+    - Create an op
+    - Extension types
+- Data input pipelines
+    - tf.data
+    - Optimize pipeline performance
+    - Analyze pipeline performance
+- Save a model
+    - Checkpoint
+    - SavedModel
+- Accelerators
+    - Distributed training
+    - GPU
+    - TPU
+- Performance
+    - Better performance with tf.function
+    - Profile TensorFlow performance
+    - Optimize GPU Performance
+    - Graph optimizaition
+    - Mixed precision
+
+
 #### PyTorch
 
     - Tutorial：https://pytorch.org/tutorials/beginner/basics/intro.html
@@ -32,6 +174,111 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
 
 并且，PyTorch 在自己的 API 文档首页中有 Notes。在必要时，也会在模块 API 开始做背景介绍，这些内容可以归为 “Explanation” 象限。
 
+- Introduction to PyTorch
+    - Learn the Basics
+    - Quickstart
+    - Tensors
+    - Datasets & Dataloaders
+    - Transforms
+    - Build the Neural Network
+    - Automatic Differentiation with torch.autograd
+    - Optimization Model Parameters
+    - Save and Load the Model
+- Introduction to PyTorch on YouTube
+    - Introduction to PyTorch - YouTube Series
+    - Introduction to PyTorch
+    - Introduction to PyTorch Tensors
+    - The Fundamentals of Autograd
+    - Building Models with PyTorch
+    - PyTorch TensorBoard Support
+    - Traning wiht PyTorch
+    - Model Understanding with Captum
+- Learning PyTorch
+    - Deep Learning with PyTorch: A 60 Minute Blitz
+    - Learing PyTorch with Examples
+    - What is torch.nn really?
+    - Visualizing Models, Data, and Training with TensorBoard
+- Image and Video
+    - TorchVision Object Detection Finetuning Tutorial
+    - Transfer Learning for Computer Vision Tutorial
+    - Adversarial Example Generation
+    - DCGAN Tutorial
+    - Spatial Tansformer Networks Tutorial
+    - Optimizaing Vision Transformer Model for Deployment
+- Audio
+    - Audio I/O
+    - Audio Resampling
+    - Audio Data Augmentation
+    - Audio Feature Extractions
+    - Audio Feature Augmentation
+    - Audio Datasets
+    - Speech Recognition with Wav2Vec2
+    - Speech Command Classification with torchaudio
+    - Text-to-speech with torchaudio
+    - Forced Alignment with Wav2Vec2
+- Text
+    - Language Modeling with nn.Transformer and TorchText
+    - NLP From Scratch: Classifying Names with a Character-Level RNN
+    - NLP From Scratch: Generating Names with a Character-Level RNN
+    - NLP From Scratch: Translation with a Sequence to Sequence Network and Attention
+    - Text classification with the torchtext library Language Translation with nn.Transformer and torchtext
+- Deploying PyTorch Models in Production
+    - Deploying PyTorch in Python via a REST API with Flask
+    - Introduction to TorchScript
+    - Loading a TorchScript Model in C++
+    - (optional) Exporting a Model from PyTorch to ONNX and Running it using ONNX Runtime
+    - Real Time Inference on Raspberry Pi 4
+- Code Transforms with FX
+    - Building a Convolution/Batch Norm fuser in FX
+    - Building a Simple CPU Performance Profiler with FX
+- Frontend APIs
+    - Channels Last Memory Format in PyTorch
+    - Forward-mode Automatic Differentiation
+    - Using the PyTorch C++ Frontend
+    - Dynamic Parallelism in TorchScript
+    - Autograd in C++ Frontend
+- Extending PyTorch
+    - Double Backward with Custom Functions
+    - Fusing Convolution and Batch Norm using Custom Function
+    - Custom C++ and CUDA Extensions
+    - Extending TorchScript with Custom C++ Operators
+    - Extending TorchScript with Custom C++ Classes
+    - Registering a Dispatched Operator in C++
+    - Extending dispatcher for a new backend in C++
+- Model Optimization
+    - Profiling your PyTorch Module
+    - PyTorch Profiler with TensorBoard
+    - Hyperparameter tuning with Ray Tune
+    - Optimizing Vision Transformer Model for Deployment Parametrization Tutorial
+    - Pruning Tutorial
+    - Dynamic Quantization on an LSTM Word Language Model
+    - Dynamic Quantization on BERT
+    - Quantized Transfer Learning for Computer Vision Tutorial
+    - Static Quantization with Eager Model in PyTorch
+    - Grokking PyTorch Intel CPU performance from first principles
+- Parallel and Distributed Tranining
+    - PyTorch Distributed Overview
+    - Single-Machine Model Parallel Best Practices
+    - Getting Started with Distributed Data Parallel
+    - Writing Distributed Applications with PyTorch
+    - Getting Started with Fully Sharded Data Prallel
+    - Customize Process Group Backends Using Cpp Extension
+    - Getting Started with Distributed RPC Framework
+    - Implementing a Parameter Server Using Distributed RPC Framework
+    - Distributed Pipeline Parallelsim using RPC
+    - Implementing Batch RPC Processing Using Asynchronous Executions
+    - Combining Distributed DataPrallel with Distributed RPC Framework
+    - Training Transformer models using Pipeline Parallelism
+    - Training Transformer models using Distributed Data Parallel and Pipeline Parallelism
+    - Distributed Training with Uneven Inputs Using the Join Context Manager
+- Moible
+    - Image Segmentation DeepLabV3 on iOS
+    - Image Segmentation DeepLabV3 on Android
+- Recommendation Systems
+    - Introduction to TorchRec
+
+
+
 #### MindSpore
 
     - Tutorial：在 [教程](https://www.mindspore.cn/tutorials/zh-CN/r1.6/index.html) 前部分和 [编程指南](https://www.mindspore.cn/docs/programming_guide/zh-CN/r1.6/index.html) 的前半部分话题中
@@ -42,9 +289,47 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
 MindSpore 的有自己独立的文档分类标准和风格，所以硬套本文提及的文档分类标准，结果会显得有些复杂。以上所列的各类文档中，《开发者精华分享》是比较独特的一个栏目，他更像是 MindSpore 搭建的开源社区平台，吸收了用户贡献的各种经验，包括 Numpy 的使用，MindSpore 的安装问题如何解决等社区贡献的知识。
 
 
+
+### 完备性定义
+
+综合 Paddle 及其它竞品，先罗列一个较为完备的“知识点体系”。即如果是各个级别的用户，面向他们应该提供哪类信息，做一个全集式的罗列。
+
+- 初级用户：初级用户定位是未有使用深度学习框架完成项目的经验，如高校低年级学生
+- 中级用户：中级用户定位是通常意义上的算法工程师，在日常的项目中需要使用深度学习框架，但还不涉及较为“高级”的特性。如独立参与比赛的高校学生，工业界的初级、中级算法工程师。
+- 高级用户：需要紧随前沿使用框架高级特性的工业届、学术界用户。如复杂的并行技术、算子融合、AMP 等高级优化技术。
+
+对应的信息分类和罗列：
+
+- 初级：
+    - 基本数据（Tensor） 的概念及基本使用
+    - 基本操作（算子）的概念及基本使用
+    - 数据加载
+    - 如何组网
+    - 如何训练
+    - 保存与加载模型
+    - 可视化
+    - 动态图、静态图的概念及基本使用
+
+- 中级：
+    - 动态图与静态图的转换
+    - 如何转为 ONNX 格式
+    - 如何部署
+    - CV 领域的实践指南
+    - NLP 领域的实践指南
+    - 推荐系统领域的实践指南
+    - 强化学习领域的实践指南
+    - 移动端相关
+
+- 高级：
+    - 如何自定义算子
+    - “高级”优化特性（如量化、AMP 等）
+    - 框架设计文档
+
 ## 文档的完备性 & 宏观组织分析
 
 现有 Paddle 文档，结构如下：
+
+**文档**
 
 - 整体介绍
     - 基本概念
@@ -110,38 +395,27 @@ MindSpore 的有自己独立的文档分类标准和风格，所以硬套本文�
     - 曻腾 NPU
     - 其它
 
+**应用实践**
+
+- 快速上手
+    - hello paddle：从普通程序走向机器学习程序
+    - 动态图
+    - 飞桨高层 API 使用指南
+    - 模型保存及加载
+    - 使用线性回归预测波士顿房价
+- 计算机视觉
+    - 使用 LeNet 在 MNIST 数据集实现图像分类
+    - 使用卷积神经网络进行图像分类
+    - 基于图片相似度的图片搜索
+    - 基于U-Net卷积神经网络实现宠物图像分割
+    - 通过OCR实现验证码识别
+    - 通过Sub-Pixel实现图像超分辨率
+    - 人脸关键点检测
+    - 点云处理：实现 PointNet 点云分类
+- 自然语言处理
+    - 用 N-Gram 模型在
+
 ### 完备性分析
-
-综合 Paddle 及其它竞品，先罗列一个较为完备的“知识点体系”。即如果是各个级别的用户，面向他们应该提供哪类信息，做一个全集式的罗列。
-
-- 初级用户：初级用户定位是未有使用深度学习框架完成项目的经验，如高校低年级学生
-- 中级用户：中级用户定位是通常意义上的算法工程师，在日常的项目中需要使用深度学习框架，但还不涉及较为“高级”的特性。如独立参与比赛的高校学生，工业界的初级、中级算法工程师。
-- 高级用户：需要紧随前沿使用框架高级特性的工业届、学术界用户。如复杂的并行技术、算子融合、AMP 等高级优化技术。
-
-对应的信息分类和罗列：
-
-- 初级：
-    - 基本数据（Tensor） 的概念及基本使用
-    - 基本操作（算子）的概念及基本使用
-    - 数据加载
-    - 如何组网
-    - 如何训练
-    - 保存与加载模型
-    - 可视化
-    - 动态图、静态图的概念及基本使用
-
-- 中级：
-    - 动态图与静态图的转换
-    - 如何转为 ONNX 格式
-    - 如何部署
-    - CV 领域的实践指南
-    - NLP 领域的实践指南
-    - 推荐系统领域的实践指南
-
-- 高级：
-    - 如何自定义算子
-    - “高级”优化特性（如量化、AMP 等）
-    - 框架设计文档
 
 从内容完备性的角度看，飞桨应该是目前各个框架中完备性做得最好的，包括了以上除“框架设计文档”之外的所有点。并且提供了一系列与产业下沉，AI 助力有关的“产业实践文档”。
 

@@ -8,7 +8,7 @@ add_n
 
 
 
-该OP用于对输入的一至多个Tensor或LoDTensor求和。如果输入的是LoDTensor，输出仅与第一个输入共享LoD信息（序列信息）。
+对输入的一至多个Tensor或LoDTensor求和。如果输入的是LoDTensor，输出仅与第一个输入共享LoD信息（序列信息）。
 
 例1：
 ::
@@ -40,14 +40,19 @@ add_n
         output = [[8, 10, 12],
               [14, 16, 18]]
 
-参数：
+参数
+::::::::::::
+
     - **inputs** (Tensor|list(Tensor)) - 输入的一至多个Tensor。如果输入了多个Tensor，则不同Tensor的shape和数据类型应保持一致。数据类型支持：float32，float64，int32，int64。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：Tensor, 输入 ``inputs`` 求和后的结果，shape和数据类型与 ``inputs`` 一致。
+返回
+::::::::::::
+Tensor，输入 ``inputs`` 求和后的结果，shape和数据类型与 ``inputs`` 一致。
 
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

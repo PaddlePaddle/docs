@@ -266,6 +266,7 @@ Vision层
     :header: "API名称", "API功能"
     
 
+    " :ref:`paddle.nn.ChannelShuffle <cn_api_nn_ChannelShuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor按通道分成g组，得到形为[N, g, C/g, H, W]或[N, H, W, g, C/g]的Tensor，然后转置为[N, C/g, g, H, W]或[N, H, W, C/g, g]的形状，最后重新排列为原来的形状"
     " :ref:`paddle.nn.PixelShuffle <cn_api_nn_PixelShuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor重新排列成形为 [N, C/r**2, H*r, W*r]或 [N, H*r, W*r, C/r**2] 的Tensor"
     " :ref:`paddle.nn.Upsample <cn_api_paddle_nn_Upsample>` ", "用于调整一个batch中图片的大小"
     " :ref:`paddle.nn.UpsamplingBilinear2D <cn_api_paddle_nn_UpsamplingBilinear2D>` ", "用于调整一个batch中图片的大小（使用双线性插值方法）"

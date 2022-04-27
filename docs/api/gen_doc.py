@@ -336,8 +336,11 @@ def gen_functions_args_str(node):
                 str_args_list[defarg_ind_start + defarg_ind] += '=' + str(
                     node.args.defaults[defarg_ind].id)
             elif isinstance(node.args.defaults[defarg_ind], ast.Constant):
-                str_args_list[defarg_ind_start + defarg_ind] += '=' + str(
-                    node.args.defaults[defarg_ind].value)
+                defarg_val = str(node.args.defaults[defarg_ind].value)
+                if isinstance(node.args.defaults[defarg_ind].value, str):
+                    defarg_val = f"'{defarg_val}'"
+                str_args_list[defarg_ind_start +
+                              defarg_ind] += '=' + defarg_val
         if node.args.vararg is not None:
             str_args_list.append('*' + node.args.vararg.arg)
         if len(node.args.kwonlyargs) > 0:
@@ -412,13 +415,17 @@ def set_api_sketch():
         paddle.nn.functional,
         paddle.nn.initializer,
         paddle.nn.utils,
+        paddle.nn.quant.quant_layers,
         paddle.static,
         paddle.static.nn,
+        paddle.static.sparsity,
         paddle.signal,
         paddle.io,
         paddle.jit,
         paddle.metric,
         paddle.distribution,
+        paddle.distribution.transform,
+        paddle.distribution.kl,
         paddle.optimizer,
         paddle.optimizer.lr,
         paddle.regularizer,
@@ -438,19 +445,34 @@ def set_api_sketch():
         paddle.distributed,
         paddle.distributed.fleet,
         paddle.distributed.fleet.utils,
+        paddle.distributed.fleet.base.topology,
         paddle.distributed.parallel,
         paddle.distributed.utils,
+        paddle.distributed.passes,
+        paddle.distributed.ps.utils,
+        paddle.distributed.ps.utils.ps_factory,
+        paddle.distributed.ps.the_one_ps,
+        paddle.distributed.sharding,
         paddle.callbacks,
         paddle.hub,
         paddle.autograd,
         paddle.incubate,
+        paddle.incubate.autograd,
+        paddle.incubate.nn,
+        paddle.incubate.nn.functional,
+        paddle.incubate.optimizer,
+        paddle.incubate.optimizer.functional,
+        paddle.incubate.operators,
+        paddle.incubate.operators.resnet_unit,
         paddle.inference,
         paddle.onnx,
         paddle.device,
         paddle.device.cuda,
         paddle.linalg,
         paddle.fft,
-        paddle.version
+        paddle.version,
+        paddle.profiler,
+        paddle.sparse,
     ]
 
     alldict = {}

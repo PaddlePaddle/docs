@@ -89,7 +89,8 @@ ONNX官方工具包提供了API可验证模型的正确性，主要包括两个�
     
     # predict by Paddle
     layer.eval() 
-    paddle_outs = layer(x)
+    tensor_x = paddle.to_tensor(x)
+    paddle_outs = layer(tensor_x)
     
     # compare ONNX Runtime and Paddle results
     np.testing.assert_allclose(ort_outs[0], paddle_outs.numpy(), rtol=1.0, atol=1e-05)

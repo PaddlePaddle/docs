@@ -47,6 +47,6 @@ cumsum
 
         y = paddle.cumsum(data, dtype='float64')
         print(y.dtype)
-        # VarType.FP64
+        # paddle.float64
 
 

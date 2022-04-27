@@ -2165,6 +2165,15 @@ trunc(name=None)
 
 请参考 :ref:`cn_api_tensor_trunc`
 
+frac(name=None)
+:::::::::
+
+返回：计算后的tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_frac`
+
 tensordot(y, axes=2, name=None)
 :::::::::
 

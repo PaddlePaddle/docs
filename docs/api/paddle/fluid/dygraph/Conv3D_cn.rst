@@ -44,7 +44,9 @@ Conv3D
     H_{out}&= \frac{(H_{in} + 2 * paddings[1] - (dilations[1] * (H_f - 1) + 1))}{strides[1]} + 1 \\
     W_{out}&= \frac{(W_{in} + 2 * paddings[2] - (dilations[2] * (W_f - 1) + 1))}{strides[2]} + 1
 
-参数：
+参数
+::::::::::::
+
     - **num_channels** (int) - 输入图像的通道数。
     - **num_fliters** (int) - 滤波器（卷积核）的个数。和输出图像通道相同。
     - **filter_size** (int|tuple) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，(filter_size_D, filter_size_H, filter_size_W)。如果filter_size是一个int型，则filter_size_depth = filter_size_height = filter_size_width = filter_size。
@@ -59,9 +61,12 @@ Conv3D
     - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
 
 
-返回：无
+返回
+::::::::::::
+无
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -77,11 +82,15 @@ Conv3D
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+属性
+::::::::::::
+weight
+'''''''''
 
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 
 本层的可学习偏置，类型为 ``Parameter``
 
