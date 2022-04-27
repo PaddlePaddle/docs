@@ -6,7 +6,7 @@ minimum
 .. py:function:: paddle.minimum(x, y, name=None)
 
 
-该OP逐元素对比输入的两个Tensor，并且把各个位置更小的元素保存到返回结果中。
+逐元素对比输入的两个Tensor，并且把各个位置更小的元素保存到返回结果中。
 
 等式是：
 

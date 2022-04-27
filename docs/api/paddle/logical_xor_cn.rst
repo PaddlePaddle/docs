@@ -5,7 +5,7 @@ logical_xor
 
 .. py:function:: paddle.logical_xor(x, y, out=None, name=None)
 
-该OP逐元素的对 ``X`` 和 ``Y`` 进行逻辑异或运算。
+逐元素的对 ``X`` 和 ``Y`` 进行逻辑异或运算。
 
 .. math::
         Out = (X || Y) \&\& !(X \&\& Y)

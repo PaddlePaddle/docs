@@ -5,7 +5,7 @@ bitwise_xor
 
 .. py:function:: paddle.bitwise_xor(x, y, out=None, name=None)
 
-该OP对Tensor ``x`` 和 ``y`` 逐元素进行 ``按位异或`` 运算。
+对Tensor ``x`` 和 ``y`` 逐元素进行 ``按位异或`` 运算。
 
 .. math::
         Out = X ^\wedge Y

@@ -5,7 +5,7 @@ all
 
 .. py:function:: paddle.all(x, axis=None, keepdim=False, name=None)
 
-该OP是对指定维度上的Tensor元素进行逻辑与运算，并输出相应的计算结果。
+对指定维度上的Tensor元素进行逻辑与运算，并输出相应的计算结果。
 
 参数
 :::::::::

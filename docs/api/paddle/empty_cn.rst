@@ -7,7 +7,7 @@ empty
 
 
 
-该OP创建形状大小为shape并且数据类型为dtype的Tensor，其中元素值是未初始化的。
+创建形状大小为shape并且数据类型为dtype的Tensor，其中元素值是未初始化的。
 
 参数
 ::::::::::::
