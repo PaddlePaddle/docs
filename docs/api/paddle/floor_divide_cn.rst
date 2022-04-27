@@ -5,7 +5,7 @@ floor_divide
 
 .. py:function:: paddle.floor_divide(x, y, name=None)
 
-该OP是逐元素整除算子，输入 ``x`` 与输入 ``y`` 逐元素整除，并将各个位置的输出元素保存到返回结果中。
+逐元素整除算子，输入 ``x`` 与输入 ``y`` 逐元素整除，并将各个位置的输出元素保存到返回结果中。
 输入 ``x`` 与输入 ``y`` 必须可以广播为相同形状, 关于广播规则，请参考 :ref:`cn_user_guide_broadcasting`
 
 等式为：

@@ -3,10 +3,11 @@
 device_guard
 -------------------------------
 
-**注意：该API仅支持静态图模式**
-
 .. py:function:: paddle.static.device_guard(device=None)
 
+.. note::
+    该API仅支持静态图模式。
+    
 一个用于指定OP运行设备的上下文管理器。
 
 参数
