@@ -47,4 +47,4 @@ Tensor, 进行Multiplex运算后的输出Tensor。
 代码示例
 ::::::::::::
 
-COPY-FROM: <multiplex>:<code-example1>
+COPY-FROM: paddle.multiplex:code-example1
