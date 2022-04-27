@@ -21,4 +21,4 @@ take_along_axis
 代码示例
 :::::::::
 
-COPY-FROM: <take_along_axis>:<code-example1>
+COPY-FROM: paddle.take_along_axis:code-example1
