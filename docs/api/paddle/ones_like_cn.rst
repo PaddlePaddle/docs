@@ -6,7 +6,7 @@ ones_like
 .. py:function:: paddle.ones_like(x, dtype=None, name=None)
 
 
-该OP返回一个和 ``x`` 具有相同形状的数值都为1的Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
+返回一个和输入参数 ``x`` 具有相同形状的数值都为1的Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 
 参数
 ::::::::::
@@ -16,11 +16,9 @@ ones_like
     
 返回
 ::::::::::
-    Tensor：和 ``x`` 具有相同形状的数值都为1的Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
 
-抛出异常
-::::::::::
-    - ``TypeError`` - 如果 ``dtype`` 不是bool、float16、float32、float64、int32、int64。
+Tensor：和 ``x`` 具有相同形状的数值都为1的Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。
+
 
 代码示例
 ::::::::::

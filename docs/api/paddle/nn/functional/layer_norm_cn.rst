@@ -9,7 +9,9 @@ layer_norm
 
 详情见 :ref:`cn_api_nn_LayerNorm` . 
 
-参数：
+参数
+::::::::::::
+
     - **x** (int) - 输入，数据类型为float32, float64。
     - **normalized_shape** (int|list|tuple) - 期望的输入是 :math:`[*, normalized_shape[0], normalized_shape[1], ..., normalized_shape[-1]]` ,如果是一个整数，会作用在最后一个维度。
     - **weight** (Tensor) - 权重的Tensor, 默认为None。
@@ -18,9 +20,12 @@ layer_norm
     - **name** (string, 可选) – LayerNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
 
-返回：无
+返回
+::::::::::::
+无
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

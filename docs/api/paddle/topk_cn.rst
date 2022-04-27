@@ -5,7 +5,7 @@ topk
 
 .. py:function:: paddle.topk（x, k, axis=None, largest=True, sorted=True, name=None）
 
-该OP沿着可选的 ``axis`` 查找topk最大或者最小的结果和结果所在的索引信息。
+沿着可选的 ``axis`` 查找topk最大或者最小的结果和结果所在的索引信息。
 如果是一维Tensor，则直接返回topk查询的结果。如果是多维Tensor，则在指定的轴上查询topk的结果。
 
 参数
@@ -15,7 +15,7 @@ topk
     - **axis** （int，可选） - 指定对输入Tensor进行运算的轴， ``axis`` 的有效范围是[-R, R），R是输入 ``x`` 的Rank， ``axis`` 为负时与 ``axis`` + R 等价。默认值为-1。
     - **largest** （bool，可选） - 指定算法排序的方向。如果设置为True，排序算法按照降序的算法排序，否则按照升序排序。默认值为True。
     - **sorted** （bool，可选） - 控制返回的结果是否按照有序返回，默认为True。在gpu上总是返回有序的结果。
-    - **name** （str，可选） – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** （str，可选） – 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::

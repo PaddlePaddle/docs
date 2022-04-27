@@ -5,7 +5,7 @@ mode
 
 .. py:function:: paddle.mode（x, axis=-1, keepdim=False,  name=None):
 
-该OP沿着可选的 ``axis`` 查找对应轴上的众数和结果所在的索引信息。
+沿着可选的 ``axis`` 查找对应轴上的众数和结果所在的索引信息。
 
 参数
 :::::::::

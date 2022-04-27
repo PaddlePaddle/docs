@@ -20,10 +20,13 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
 .. math::
             \\loss = 0.5 * coeff * reduce\_sum(square(x))\\
 
-参数:
+参数
+::::::::::::
+
   - **coeff** (float) – 正则化系数，默认值为0.0。
 
-**代码示例1**
+代码示例 1
+::::::::::::
 
 .. code-block:: python
     
@@ -46,7 +49,8 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
     momentum.clear_grad()
 
 
-**代码示例2**
+代码示例 2
+::::::::::::
 
 .. code-block:: python
     

@@ -19,5 +19,6 @@ wait
 :::::::::
 None
 
-**代码示例**：
+代码示例
+::::::::::::
 COPY-FROM: paddle.distributed.wait

@@ -8,6 +8,7 @@ viterbi_decode
 
 参数
 :::::::::
+
     - **potentials (Tensor)** 发射概率。形状为[batch_size, lengths, num_tags]，数据类型为float32或float64。
     - **transition_params (Tensor)** 转移概率。形状为[num_tags, num_tags]，数据类型为float32或float64。
     - **lengths (Tensor)** 序列真实长度。形状为[batch_size]，数据类型为int64。
@@ -16,6 +17,7 @@ viterbi_decode
 
 返回
 :::::::::
+
     - **scores (Tensor)** Viterbi路径的最高得分。形状为[batch_size]，数据类型为float32或float64。
     - **paths (Tensor)** Viterbi路径。形状为[batch_size, lengths]，数据类型为int64。
 

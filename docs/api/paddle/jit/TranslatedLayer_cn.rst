@@ -11,7 +11,8 @@ TranslatedLayer
 .. note::
   ``TranslatedLayer`` 对象不能够通过构造函数创建，仅能够通过 :ref:`cn_api_paddle_jit_load` 接口载入构建。
 
-**示例代码：**
+代码示例
+::::::::::::
     .. code-block:: python
 
         import numpy as np
@@ -97,18 +98,21 @@ TranslatedLayer
         train(translated_layer, loader, loss_fn, adam)
 
 
-.. py:method:: program(method_name='forward'):
+方法
+::::::::::::
+program(method_name='forward'):
+'''''''''
 
 获取TranslatedLayer中指定方法对应的Program。
 
-参数：
+**参数**
+
     - **method_name** (string) - 要获取的Porgram对应的方法名。默认值为"forward"。
 
-返回：Program
+**返回**
+Program
 
-返回类型：Program
-
-**示例代码：**
+**代码示例**
     .. code-block:: python
 
         import numpy as np

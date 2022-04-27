@@ -12,7 +12,9 @@ fill_constant
 
 创建的Tensor的stop_gradient属性默认为True。
 
-参数：
+参数
+::::::::::::
+
     - **shape** (tuple|list|Variable)- 要创建的LoDTensor或者SelectedRows的形状。 数据类型为int32或int64。 如果shape是一个列表或元组，则其元素应该是形状为[1]的整数或Tensor。 如果shape是Variable，则它应该是一维Tensor。
     - **dtype** (np.dtype|core.VarDesc.VarType|str)- 创建LoDTensor或者SelectedRows的数据类型，支持数据类型为float16， float32， float64， int32， int64。
     - **value** (float|int)- 用于初始化输出LoDTensor或者SelectedRows的常量数据的值。
@@ -20,11 +22,16 @@ fill_constant
     - **out** (Variable，可选)- 用于存储创建的LoDTensor或者SelectedRows，可以是程序中已经创建的任何Variable。默认值为None，此时将创建新的Variable来保存输出结果。
    
 
-返回： 根据shape和dtype创建的Tensor。
+返回
+::::::::::::
+ 根据shape和dtype创建的Tensor。
 
-返回类型：变量（Variable）
+返回类型
+::::::::::::
+变量（Variable）
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

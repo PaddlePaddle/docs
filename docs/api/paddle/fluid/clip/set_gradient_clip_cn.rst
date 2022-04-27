@@ -16,14 +16,19 @@ set_gradient_clip
 
 给指定参数做梯度裁剪。
 
-参数:
+参数
+::::::::::::
+
     - **clip** (GradientClipBase) - 梯度裁剪的策略，如 :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 等，用于描述具体的裁剪方法和属性。
     - **param_list** (list(Variable)，可选) - 需要裁剪的参数列表，可以是参数或参数名称列表。默认值为None，表示裁剪 ``program`` 中的所有参数。
     - **program** (Program，可选) - 参数所在的Program。默认值为None，表示使用 :ref:`cn_api_fluid_default_main_program` 。
 
-返回: 无。
+返回
+::::::::::::
+ 无。
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

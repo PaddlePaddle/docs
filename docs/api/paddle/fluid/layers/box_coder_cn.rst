@@ -42,7 +42,9 @@ Bounding Box Coder
 在Box Decoding期间，支持两种broadcast模式。 假设目标框具有形状[N，M，4]，并且prior框的形状可以是[N，4]或[M，4]。 然后，prior框将沿指定的轴broadcast到目标框。
 
 
-参数：
+参数
+::::::::::::
+
     - **prior_box** (Variable) - 维度为[M,4]的2-D Tensor，M表示存储M个框，数据类型为float32或float64。先验框，每个框代表[xmin，ymin，xmax，ymax]，[xmin，ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐
 标
     - **prior_box_var** (list|Variable|None) - 支持三种输入类型，一是维度为：math:`[M,4]`的2-D Tensor，存储M个先验框的variance，数据类型为float32或float64。另外是一个长度为4的列表，所有先验框共用这个列表中的variance，数据类型为float32或float64。为None时不参与计算。
@@ -53,16 +55,21 @@ Bounding Box Coder
     - **axis**  (int32) – 在PriorBox中为axis指定的轴broadcast以进行框解码，例如，如果axis为0，TargetBox具有形状[N，M，4]且PriorBox具有形状[M，4]，则PriorBox将broadcast到[N，M，4]用于解码。仅在code_type为decode_center_size时有效。默认值为0
 
 
-返回：
+返回
+::::::::::::
+
        - 表示解码或编码结果的Tensor或LoDTensor。数据类型为float32或float64。
        - ``code_type`` 为 ``‘encode_center_size’`` 时，形状为[N,M,4]的编码结果，N为目标框的个数，M为先验框的个数。
        - ``code_type`` 为 ``‘decode_center_size’`` 时，形状为[N,M,4]的解码结果，形状与输入目标框相同。
 
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

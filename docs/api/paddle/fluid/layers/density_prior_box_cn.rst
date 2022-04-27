@@ -16,7 +16,9 @@ density_prior_box
   N\_density\_prior\_box =sum(N\_fixed\_ratios * {densities\_i}^2)
 
 
-参数：
+参数
+::::::::::::
+
   - **input** (Variable) - 形状为NCHW的4-D Tensor，数据类型为float32或float64。
   - **image** (Variable) - 输入图像，形状为NCHW的4-D Tensor，数据类型为float32或float64。
   - **densities** (list|tuple|None) - 生成的density prior boxes的densities，此属性应该是一个整数列表或数组。默认值为None。
@@ -30,7 +32,9 @@ density_prior_box
   - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。
 
 
-返回：含有两个变量的元组，包括：
+返回
+::::::::::::
+含有两个变量的元组，包括：
   候选框：
 
     当flatten_to_2d为False时，形状为[H, W, num_priors, 4]的4-D Tensor。
@@ -43,9 +47,12 @@ density_prior_box
     当flatten_to_2d为True时，形式为[H * W * num_priors, 4]的2-D Tensor。
     其中，H是输入的高度，W是输入的宽度，num_priors是输入中每个位置的候选框数。
 
-返回类型：元组
+返回类型
+::::::::::::
+元组
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
     

@@ -35,7 +35,9 @@ GRUUnit
 其中， :math:`x_t` 为当前时间步的输入，:math:`h_{t-1}` 为前一时间步的隐状态 ``hidden``； :math:`u_t` 、 :math:`r_t` 、 :math:`\tilde{h_t}` 和 :math:`h_t` 分别代表了GRU单元中update gate（更新门）、reset gate（重置门）、candidate hidden（候选隐状态）和隐状态输出; :math:`\odot` 为逐个元素相乘；
 :math:`W_{uh}, b_u` 、 :math:`W_{rh}, b_r` 和 :math:`W_{ch}, b_c` 分别代表更新门、重置门和候选隐状态在计算时使用的权重矩阵和偏置。在实现上，三个权重矩阵合并为一个维度为 :math:`[D, D \times 3]` 的Tensor存放。
 
-参数:
+参数
+::::::::::::
+
     - **size** (int) – 输入数据的维度大小。
     - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     **注意**
@@ -47,10 +49,13 @@ GRUUnit
     - **origin_mode** (bool) – 指明要使用的GRU计算方式，两种计算方式具体差异见公式描述。默认值为False。
     - **dtype** (str，可选) – 该层的数据类型，可以为'float32', 'float64'。默认值为'float32'。
 
-返回： 
+返回
+::::::::::::
+ 
     None.
     
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -73,10 +78,14 @@ GRUUnit
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+属性
+::::::::::::
+weight
+'''''''''
 
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 
 本层的可学习偏置，类型为 ``Parameter``

@@ -39,7 +39,7 @@ common_args_en = """
 common_args_cn = """
     x (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、int32、int64。
     y (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、int32、int64。
-    name (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    name (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
     dtype (str，可选) - 输出 `Tensor` 的数据类型，支持int32、int64、float32、float64。
     param_attr (ParamAttr，可选) – 该Layer的可学习的权重(Parameter)的参数属性。更多信息请参见 :ref:`cn_api_fluid_ParamAttr`。
     bias_attr (ParamAttr，可选) - 该Layer的可学习的偏置(Bias)的参数属性。更多信息请参见 :ref:`cn_api_fluid_ParamAttr`。

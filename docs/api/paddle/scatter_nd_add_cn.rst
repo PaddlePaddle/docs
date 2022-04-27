@@ -8,7 +8,7 @@ scatter_nd_add
 
 
 
-该OP通过对Tensor中的单个值或切片应用稀疏加法，从而得到输出的Tensor。
+通过对Tensor中的单个值或切片应用稀疏加法，从而得到输出的Tensor。
 
 :code:`x` 是维度为 :code:`R` 的张量。 :code:`index` 是维度为 :code:`K` 的张量。因此， :code:`index` 的形状是 :math:`[i_0, i_1, ..., i_{K-2}, Q]` ，其中  :math:`Q \leq R` 。:code:`updates` 是一个维度为 :math:`K - 1 + R - Q` 的张量，它的形状是 :math:`index.shape[:-1] + x.shape[index.shape[-1]:]` 。
 
@@ -42,17 +42,20 @@ scatter_nd_add
             output = [[67, 19], [-16, -27]]
 
 
-参数：
+参数
+::::::::::::
+
     - **x** (Tensor) - 输入张量，数据类型可以是int32，int64，float32，float64。
     - **index** (Tensor) - 输入的索引张量，数据类型为非负int32或非负int64。它的维度 :code:`index.ndim` 必须大于1，并且 :code:`index.shape[-1] <= x.ndim`
     - **updates** (Tensor) - 输入的更新张量，它必须和 :code:`x` 有相同的数据类型。形状必须是 :code:`index.shape[:-1] + x.shape[index.shape[-1]:]` 。
-    - **name** (string) - 该层的名字，默认值为None，表示会自动命名。
+    - **name** (string) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-返回：数据类型和形状都与 :code:`x` 相同的Tensor。
+返回
+::::::::::::
+Tensor, 数据类型和形状都与 :code:`x` 相同。
 
-返回类型：Tensor
-
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

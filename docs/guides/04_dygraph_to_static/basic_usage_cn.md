@@ -127,7 +127,7 @@ net = paddle.jit.save(net, path='simple_net', input_spec=[x_spec, y_spec])  # �
 执行上述代码样例后，在当前目录下会生成三个文件，即代表成功导出预测模型：
 ```
 simple_net.pdiparams        // 存放模型中所有的权重数据
-simple_net.pdimodel         // 存放模型的网络结构
+simple_net.pdmodel          // 存放模型的网络结构
 simple_net.pdiparams.info   // 存放额外的其他信息
 ```
 
@@ -150,8 +150,8 @@ from paddle.static import InputSpec
 x = InputSpec([None, 784], 'float32', 'x')
 label = InputSpec([None, 1], 'int64', 'label')
 
-print(x)      # InputSpec(shape=(-1, 784), dtype=VarType.FP32, name=x)
-print(label)  # InputSpec(shape=(-1, 1), dtype=VarType.INT64, name=label)
+print(x)      # InputSpec(shape=(-1, 784), dtype=paddle.float32, name=x)
+print(label)  # InputSpec(shape=(-1, 1), dtype=paddle.int64, name=label)
 ```
 
 
@@ -166,7 +166,7 @@ from paddle.static import InputSpec
 
 x = paddle.to_tensor(np.ones([2, 2], np.float32))
 x_spec = InputSpec.from_tensor(x, name='x')
-print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x)
 ```
 
 > 注：若未在 ``from_tensor`` 中指定新的 ``name``，则默认使用与源 Tensor 相同的 ``name``。
@@ -182,7 +182,7 @@ from paddle.static import InputSpec
 
 x = np.ones([2, 2], np.float32)
 x_spec = InputSpec.from_numpy(x, name='x')
-print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x)
 ```
 
 > 注：若未在 ``from_numpy`` 中指定新的 ``name``，则默认使用 ``None`` 。
@@ -315,12 +315,12 @@ class SimpleNet(Layer):
 
 net = SimpleNet()
 # 方式一：save inference model with use_act=False
-net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x')])
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x')])
 paddle.jit.save(net, path='./simple_net')
 
 
 # 方式二：save inference model with use_act=True
-net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), True])
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x'), True])
 paddle.jit.save(net, path='./simple_net')
 ```
 
@@ -398,8 +398,8 @@ main_program = paddle.static.default_main_program()
 
 # ...... 训练过程（略）
 
-prog_path='main_program.pdimodel'
-paddle.save(main_program, prog_path) # 导出为 .pdimodel
+prog_path='main_program.pdmodel'
+paddle.save(main_program, prog_path) # 导出为 .pdmodel
 
 para_path='main_program.pdiparams'
 paddle.save(main_program.state_dict(), para_path) # 导出为 .pdiparams

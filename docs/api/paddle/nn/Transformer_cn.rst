@@ -16,7 +16,9 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
 用户可以使用相应的参数配置模型结构。请注意 ``normalize_before`` 的用法与某些类似Transformer的模型例如BERT和GPT2的用法不同，它表示在哪里（多头注意力机制或前馈神经网络的输入还是输出）进行层标准化（Layer Normalization）。该模型默认的结构是对每个子层的output进行层归一化，并在最后一个编码器/解码器的输出上进行另一个层归一化操作。
 
 
-参数：
+参数
+::::::::::::
+
     - **d_model** (int，可选) - 编码器和解码器的输入输出的维度。默认值：512。
     - **nhead** (int，可选) - 多头注意力机制的Head数量。默认值：8。
     - **num_encoder_layers** (int，可选) - 编码器中 ``TransformerEncoderLayer`` 的层数。默认值：6。
@@ -33,7 +35,8 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
     - **custom_decoder** (Layer，可选) - 若提供该参数，则将 ``custom_decoder`` 作为解码器。默认值：``None``。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -57,3 +60,61 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
                         dec_self_attn_mask,
                         cross_attn_mask)  # [2, 6, 128]
    
+
+
+方法
+::::::::::::
+forward(self, src, tgt, src_mask=None, tgt_mask=None, memory_mask=None)
+'''''''''
+
+将 Transformer 应用于源序列和目标序列。
+
+
+**参数**
+
+    - **src** (Tensor) - Transformer 编码器的输入。它的形状应该是 ``[batch_size, source_length, d_model]``。数据类型为 float32 或是 float64。
+    - **tgt** (Tensor) - Transformer 解码器的输入。它的形状应该是 ``[batch_size, target_length, d_model]]``。数据类型为 float32 或是 float64。
+    - **src_mask** (Tensor，可选) - 在编码器的多头注意力机制(Multi-head Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor。它的形状应该是，或者能被广播到 ``[batch_size, nhead, source_length, source_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
+    - **tgt_mask** (Tensor，可选) - 在解码器的自注意力机制(Self Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor。它的形状应该是，或者能被广播到 ``[batch_size, nhead, target_length, target_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
+    - **memory_mask** (Tensor，可选) - 在解码器的交叉注意力机制(Cross Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor，通常情况下指的是 padding 的部分。它的形状应该是，或者能被广播到 ``[batch_size, nhead, target_length, source_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
+
+
+**返回**
+Tensor，Transformer 解码器的输出。其形状和数据类型与 ``tgt`` 相同。
+
+
+
+generate_square_subsequent_mask(self, length)
+'''''''''
+
+生成一个方形的掩码并且生成的掩码确保对于位置 i 的预测只依赖于已知的结果，即位置小于 i 所对应的结果。
+
+
+**参数**
+
+    - **length** (int|Tensor) - 序列的长度，``length`` 的数据类型为 int32 或者 int64。若为 Tensor，则当前 Tensor 需仅包含一个数值。
+
+
+**返回**
+Tensor，根据输入的 ``length`` 具体的大小生成的形状为 ``[length, length]`` 方形的掩码。
+
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+    from paddle.nn.layer.transformer import Transformer
+    length = 5
+    d_model, n_head, dim_feedforward = 8, 4, 64
+    transformer_paddle = Transformer(
+        d_model, n_head, dim_feedforward=dim_feedforward)
+    mask = transformer_paddle.generate_square_subsequent_mask(length)
+    print(mask)
+
+    # [[  0. -inf -inf -inf -inf]
+    # [  0.   0. -inf -inf -inf]
+    # [  0.   0.   0. -inf -inf]
+    # [  0.   0.   0.   0. -inf]
+    # [  0.   0.   0.   0.   0.]]
+

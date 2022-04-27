@@ -250,6 +250,7 @@ Methods
     trace
     transpose
     trunc
+    frac
     unbind
     uniform_
     unique
