@@ -2,6 +2,13 @@
 Paddle profiler模块是paddle框架自带的低开销性能分析器，辅助用户对模型的运行性能进行调试。
 用户可以通过性能分析器提供的对性能数据进行收集、统计和展示的功能，来对程序的执行瓶颈进行判断分析，识别造成程序运行时间过长或者GPU利用率低的原因，并寻求优化方案来获得性能的提升。
 
+在这篇文档中，我们主要介绍如何使用Profiler工具来调试程序性能，以及阐述当前提供的所有功能特性。
+## 内容
+- [使用Profiler工具进行性能分析](#paddle-profiler)
+- [功能特性](#gongnengtexing)
+- [更多细节](#gengduoxijie)
+
+
 ## 使用Profiler工具进行性能分析
 
 ### 1. 收集和统计性能数据
@@ -68,7 +75,7 @@ def train(model):
 
 
 ### 2. 定位性能瓶颈点
-上述程序会收集程序在第3到14次（不包括14）训练迭代过程中的性能数据，并在profiler_demo文件夹中输出一个json格式的文件，用于展示程序执行过程的timeline，可通过chrome浏览器的chrome://tracing插件打开这个文件进行观察。
+上述程序会收集程序在第3到14次（不包括14）训练迭代过程中的性能数据，并在profiler_demo文件夹中输出一个json格式的文件，用于展示程序执行过程的timeline，可通过chrome浏览器的[chrome://tracing](chrome://tracing)插件打开这个文件进行观察。
 <p align="center">
 <img src="https://user-images.githubusercontent.com/22424850/165498308-734b4978-252e-45fc-8376-aaf8eb8a4270.png"   width='80%' hspace='10'/>
 <br />
@@ -158,7 +165,7 @@ benchmark信息（如ips, 每秒的迭代次数），可以将Profiler的timer_o
 当前Profiler提供Timeline、统计表单、benchmark信息共三个方面的展示功能。
 
 ### Timeline展示
-对于采集的性能数据，导出为chrome tracing timeline格式的文件后，可以进行可视化分析。当前，所采用的可视化工具为chrome浏览器里的tracing插件，可以按照如下方式进行查看
+对于采集的性能数据，导出为chrome tracing timeline格式的文件后，可以进行可视化分析。当前，所采用的可视化工具为chrome浏览器里的[tracing插件](chrome://tracing)，可以按照如下方式进行查看
   <p align="center">
   <img src="https://user-images.githubusercontent.com/22424850/165717586-599a08fb-c915-4e3c-af40-0732c30c5855.gif"   width='80%' hspace='10'/>
   <br />
@@ -411,5 +418,6 @@ Time Unit: s, IPS Unit: steps/s
 其中ReaderRatio表示数据读取部分占batch迭代过程的时间占比，reader_cost代表数据读取时间，batch_cost代表batch迭代的时间，ips表示每秒能迭代多少次，即跑多少个batch。
 
 
+## 更多细节
 
-**Note**: 关于paddle.profiler模块更详细的使用说明，可以参考[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Overview_cn.html)。目前Paddle的性能分析工具主要还只提供时间方面的分析，之后会提供更多信息的收集来辅助做更全面的分析，如提供显存分析来监控显存泄漏问题。此外，Paddle的可视化工具VisualDL正在对Profiler的数据展示进行开发，敬请期待。
+关于paddle.profiler模块更详细的使用说明，可以参考[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Overview_cn.html)。目前Paddle的性能分析工具主要还只提供时间方面的分析，之后会提供更多信息的收集来辅助做更全面的分析，如提供显存分析来监控显存泄漏问题。此外，Paddle的可视化工具VisualDL正在对Profiler的数据展示进行开发，敬请期待。
