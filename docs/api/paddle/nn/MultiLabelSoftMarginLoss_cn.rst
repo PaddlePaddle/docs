@@ -33,7 +33,7 @@ MultiLabelSoftMarginLoss
 
 返回
 :::::::::
-   返回计算的Loss。
+   返回一个可调用计算Loss的类
 
 代码示例
 :::::::::
