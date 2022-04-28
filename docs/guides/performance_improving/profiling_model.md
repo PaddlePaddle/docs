@@ -10,7 +10,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 - [Benchmark信息](#Benchmark信息)
 - [使用案例](#使用案例)
 
-## <a name="Paddle&nbsp;Profiler使用介绍">Paddle&nbsp;Profiler使用介绍</a>
+### <a name="Paddle&nbsp;Profiler使用介绍">Paddle&nbsp;Profiler使用介绍</a>
 关于paddle.profiler模块的API说明，在API文档的[paddle.profiler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Overview_cn.html)中, 这里主要根据常用使用场景来进行示例说明。
 
 1. 将paddle.profiler.Profiler作为Context Manager, 对所包含的代码块进行性能分析
@@ -90,6 +90,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 
 
 2. 手动调用paddle.profiler.Profiler的start, step, stop方法来对代码进行性能分析
+
   - 对某一段batch的训练过程进行性能分析，如第[2,10）个batch，前闭后开区间
     ```python
     import paddle
@@ -264,7 +265,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
   p.stop() # 打印总的benchmark表单
   ```
 
-## <a name="Timeline展示">Timeline展示</a>
+### <a name="Timeline展示">Timeline展示</a>
 对于采集的性能数据，通过上述示例代码的方法导出为chrome tracing timeline格式的文件后，可以进行可视化分析。当前，所采用的可视化工具为google chrome浏览器里的tracing插件，可以按照如下方式进行查看
   <p align="center">
   <img src="https://user-images.githubusercontent.com/22424850/161976125-27838228-d1c2-48ec-a96b-03d8f1bdad65.gif"   width='80%' hspace='10'/>
@@ -279,7 +280,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 
 
 
-## <a name="统计表单展示">统计表单展示</a>
+### <a name="统计表单展示">统计表单展示</a>
 统计表单负责对采集到的数据(Event)从多个不同的角度进行解读，也可以理解为对timeline进行一些量化的指标计算。
 目前提供的Device Summary、Overview Summary、Model Summary、Distributed Summary、Operator Summary、Kernel Summary、Memory Manipulation Summary和UserDefined Summary的统计，
 每个统计表单从不同的角度根据需要取出对应类型的性能数据进行统计计算。每种表单的统计内容简要叙述如下：
@@ -391,38 +392,81 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 
 - Operator Summary
   ```text
-  (由于原始表单较长，这里截取一部分数据处理后进行展示)
-  -----------------------------------------------------Operator Summary--------------------------------------------------------
+  (由于原始表单较长，这里截取一部分进行展示)
+  ----------------------------------------------------------------Operator Summary----------------------------------------------------------------
   Time unit: ms
-  ---------------------------------  ------  ----------------------------------------  ----------------------------------------  
-  Name                               Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)    
-  ---------------------------------  ------  ----------------------------------------  ----------------------------------------  
-  range trace_op                     48      2.46 / 0.05 / 0.07 / 0.05 / 0.20          0.06 / 0.00 / 0.00 / 0.00 / 0.00          
-    range::infer_shape               48      0.26 / 0.01 / 0.01 / 0.00 / 10.66         0.00 / 0.00 / 0.00 / 0.00 / 0.00          
-    range::compute                   48      1.48 / 0.03 / 0.04 / 0.03 / 60.21         0.06 / 0.00 / 0.00 / 0.00 / 100.00        
-      void phi::Range<long>          48      - / - / - / - / -                         0.06 / 0.00 / 0.00 / 0.00 / 100.00        
-    range node_creation              48      0.02 / 0.00 / 0.00 / 0.00 / 0.77          0.00 / 0.00 / 0.00 / 0.00 / 0.00          
-  reshape2_grad grad_node            48      0.48 / 0.01 / 0.02 / 0.01 / 0.04          0.00 / 0.00 / 0.00 / 0.00 / 0.00          
-    reshape2_grad::infer_shape       48      0.07 / 0.00 / 0.00 / 0.00 / 14.02         0.00 / 0.00 / 0.00 / 0.00 / 0.00          
-    reshape2_grad::compute           48      0.08 / 0.00 / 0.00 / 0.00 / 16.08         0.00 / 0.00 / 0.00 / 0.00 / 0.00   
-  ---------------------------------  ------  ----------------------------------------  ---------------------------------------- 
+  ----------------------------------------------------  ------  ----------------------------------------  ----------------------------------------  
+  Name                                                  Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)    
+  ----------------------------------------------------  ------  ----------------------------------------  ----------------------------------------  
+  -----------------------------------------------------------Thread: All threads merged-----------------------------------------------------------
+  conv2d_grad grad_node                                 296     53.70 / 0.18 / 0.40 / 0.14 / 4.34         679.11 / 2.29 / 5.75 / 0.24 / 24.11       
+    conv2d_grad::infer_shape                            296     0.44 / 0.00 / 0.00 / 0.00 / 0.81          0.00 / 0.00 / 0.00 / 0.00 / 0.00          
+    conv2d_grad::compute                                296     44.09 / 0.15 / 0.31 / 0.10 / 82.10        644.39 / 2.18 / 5.75 / 0.24 / 94.89       
+      cudnn::maxwell::gemm::computeWgradOffsetsKern...  224     - / - / - / - / -                         0.50 / 0.00 / 0.00 / 0.00 / 0.08          
+      void scalePackedTensor_kernel<float, float>(c...  224     - / - / - / - / -                         0.79 / 0.00 / 0.01 / 0.00 / 0.12          
+      cudnn::maxwell::gemm::computeBOffsetsKernel(c...  464     - / - / - / - / -                         0.95 / 0.00 / 0.01 / 0.00 / 0.15          
+      maxwell_scudnn_128x32_stridedB_splitK_large_nn    8       - / - / - / - / -                         15.70 / 1.96 / 1.97 / 1.96 / 2.44         
+      cudnn::maxwell::gemm::computeOffsetsKernel(cu...  240     - / - / - / - / -                         0.54 / 0.00 / 0.00 / 0.00 / 0.08          
+      maxwell_scudnn_128x32_stridedB_interior_nn        8       - / - / - / - / -                         9.53 / 1.19 / 1.19 / 1.19 / 1.48          
+      maxwell_scudnn_128x64_stridedB_splitK_interio...  8       - / - / - / - / -                         28.67 / 3.58 / 3.59 / 3.58 / 4.45         
+      maxwell_scudnn_128x64_stridedB_interior_nn        8       - / - / - / - / -                         5.53 / 0.69 / 0.70 / 0.69 / 0.86          
+      maxwell_scudnn_128x128_stridedB_splitK_interi...  184     - / - / - / - / -                         167.03 / 0.91 / 2.28 / 0.19 / 25.92       
+      maxwell_scudnn_128x128_stridedB_interior_nn       200     - / - / - / - / -                         105.10 / 0.53 / 0.97 / 0.09 / 16.31       
+      MEMSET                                            104     - / - / - / - / -                         0.12 / 0.00 / 0.00 / 0.00 / 0.02          
+      maxwell_scudnn_128x128_stridedB_small_nn          24      - / - / - / - / -                         87.58 / 3.65 / 4.00 / 3.53 / 13.59        
+      void cudnn::winograd_nonfused::winogradWgradD...  72      - / - / - / - / -                         15.66 / 0.22 / 0.36 / 0.09 / 2.43         
+      void cudnn::winograd_nonfused::winogradWgradD...  72      - / - / - / - / -                         31.64 / 0.44 / 0.75 / 0.19 / 4.91         
+      maxwell_sgemm_128x64_nt                           72      - / - / - / - / -                         62.03 / 0.86 / 1.09 / 0.75 / 9.63         
+      void cudnn::winograd_nonfused::winogradWgradO...  72      - / - / - / - / -                         14.45 / 0.20 / 0.49 / 0.04 / 2.24         
+      void cudnn::winograd::generateWinogradTilesKe...  48      - / - / - / - / -                         1.78 / 0.04 / 0.06 / 0.02 / 0.28          
+      maxwell_scudnn_winograd_128x128_ldg1_ldg4_til...  24      - / - / - / - / -                         45.94 / 1.91 / 1.93 / 1.90 / 7.13         
+      maxwell_scudnn_winograd_128x128_ldg1_ldg4_til...  24      - / - / - / - / -                         40.93 / 1.71 / 1.72 / 1.69 / 6.35         
+      maxwell_scudnn_128x32_stridedB_splitK_interio...  24      - / - / - / - / -                         9.91 / 0.41 / 0.77 / 0.15 / 1.54          
+    GpuMemcpyAsync:CPU->GPU                             64      0.68 / 0.01 / 0.02 / 0.01 / 1.27          0.09 / 0.00 / 0.00 / 0.00 / 0.01          
+      MEMCPY_HtoD                                       64      - / - / - / - / -                         0.09 / 0.00 / 0.00 / 0.00 / 100.00        
+    void phi::funcs::ConcatKernel_<float>(float con...  16      - / - / - / - / -                         2.84 / 0.18 / 0.36 / 0.06 / 0.42          
+    void phi::funcs::ForRangeElemwiseOp<paddle::imp...  16      - / - / - / - / -                         1.33 / 0.08 / 0.16 / 0.01 / 0.20          
+    ncclAllReduceRingLLKernel_sum_f32(ncclColl)         16      - / - / - / - / -                         26.35 / 1.65 / 3.14 / 0.20 / 3.88         
+    void phi::funcs::SplitKernel_<float>(float cons...  16      - / - / - / - / -                         2.49 / 0.16 / 0.37 / 0.06 / 0.37          
+    void axpy_kernel_val<float, float>(cublasAxpyPa...  16      - / - / - / - / -                         1.63 / 0.10 / 0.14 / 0.07 / 0.24          
+  sync_batch_norm_grad grad_node                        376     37.90 / 0.10 / 0.31 / 0.08 / 3.07         670.62 / 1.78 / 39.29 / 0.13 / 23.81      
+    sync_batch_norm_grad::infer_shape                   376     1.60 / 0.00 / 0.01 / 0.00 / 4.22          0.00 / 0.00 / 0.00 / 0.00 / 0.00          
+    sync_batch_norm_grad::compute                       376     23.26 / 0.06 / 0.10 / 0.06 / 61.37        555.96 / 1.48 / 39.29 / 0.13 / 82.90      
+      void paddle::operators::KeBackwardLocalStats<...  376     - / - / - / - / -                         129.62 / 0.34 / 1.83 / 0.04 / 23.32       
+      ncclAllReduceRingLLKernel_sum_f32(ncclColl)       376     - / - / - / - / -                         128.00 / 0.34 / 37.70 / 0.01 / 23.02      
+      void paddle::operators::KeBNBackwardScaleBias...  376     - / - / - / - / -                         126.37 / 0.34 / 1.84 / 0.03 / 22.73       
+      void paddle::operators::KeBNBackwardData<floa...  376     - / - / - / - / -                         171.97 / 0.46 / 2.58 / 0.04 / 30.93       
+    GpuMemcpyAsync:CPU->GPU                             64      0.71 / 0.01 / 0.02 / 0.01 / 1.88          0.08 / 0.00 / 0.00 / 0.00 / 0.01          
+      MEMCPY_HtoD                                       64      - / - / - / - / -                         0.08 / 0.00 / 0.00 / 0.00 / 100.00        
+    void phi::funcs::ConcatKernel_<float>(float con...  16      - / - / - / - / -                         6.40 / 0.40 / 0.53 / 0.34 / 0.95          
+    void phi::funcs::ForRangeElemwiseOp<paddle::imp...  16      - / - / - / - / -                         6.23 / 0.39 / 0.56 / 0.27 / 0.93          
+    ncclAllReduceRingLLKernel_sum_f32(ncclColl)         16      - / - / - / - / -                         95.02 / 5.94 / 7.56 / 4.75 / 14.17        
+    void phi::funcs::SplitKernel_<float>(float cons...  16      - / - / - / - / -                         6.93 / 0.43 / 0.76 / 0.34 / 1.03          
   ```
 
   Operator Summary用于展示框架中算子(op)的执行信息。对于每一个Op，可以通过打印表单时候的op_detail选项控制是否打印出Op执行过程里面的子过程。同时展示每个子过程中的GPU上的活动，且子过程的活动算时间占比时以上层的时间为总时间。
 
 - Kernel Summary
   ```text
-  (由于原始表单较长，这里截取一部分数据处理后进行展示)
-  -----------------------------------------------Kernel Summary------------------------------------------------------
+  (由于原始表单较长，这里截取一部分进行展示)
+  ---------------------------------------------------------------Kernel Summary---------------------------------------------------------------
   Time unit: ms
-  ----------------------------------------  --------------------------- ------ --------------------------------------  
-  Name                                                                  Calls  GPU Total / Avg / Max / Min / Ratio(%)    
-  --------------------------------------------------------------------- ------ --------------------------------------
-  
-  maxwell_scudnn_128x128_stridedB_splitK_interior_nn                    184    167.03 / 0.91 / 2.28 / 0.19 / 5.99        
-  maxwell_scudnn_128x128_stridedB_interior_nn                           200    105.10 / 0.53 / 0.97 / 0.09 / 3.77        
-  maxwell_scudnn_128x128_relu_interior_nn                               184    103.17 / 0.56 / 0.98 / 0.12 / 3.70  
-  ---------------------------------------------------------------------- ------ --------------------------------------
+  ------------------------------------------------------------------------------------------  ------  ----------------------------------------  
+  Name                                                                                        Calls   GPU Total / Avg / Max / Min / Ratio(%)    
+  ------------------------------------------------------------------------------------------  ------  ----------------------------------------  
+  void paddle::operators::KeNormAffine<float, (paddle::experimental::DataLayout)2>            376     362.11 / 0.96 / 5.43 / 0.09 / 12.97       
+  ncclAllReduceRingLLKernel_sum_f32(ncclColl)                                                 784     257.23 / 0.33 / 37.70 / 0.01 / 9.22       
+  maxwell_scudnn_winograd_128x128_ldg1_ldg4_tile418n_nt                                       72      176.84 / 2.46 / 3.35 / 1.90 / 6.34        
+  void paddle::operators::KeBNBackwardData<float, (paddle::experimental::DataLayout)2>        376     171.97 / 0.46 / 2.58 / 0.04 / 6.16        
+  maxwell_scudnn_128x128_stridedB_splitK_interior_nn                                          184     167.03 / 0.91 / 2.28 / 0.19 / 5.99        
+  void paddle::operators::KeBackwardLocalStats<float, 256, (paddle::experimental::DataLay...  376     129.62 / 0.34 / 1.83 / 0.04 / 4.64        
+  void paddle::operators::KeBNBackwardScaleBias<float, 256, (paddle::experimental::DataLa...  376     126.37 / 0.34 / 1.84 / 0.03 / 4.53        
+  void phi::funcs::VectorizedElementwiseKernel<float, phi::funcs::CudaReluGradFunctor<flo...  216     115.61 / 0.54 / 2.31 / 0.07 / 4.14        
+  void paddle::operators::math::KernelDepthwiseConvFilterGradSp<float, 1, 1, 3, (paddle::...  72      113.87 / 1.58 / 2.04 / 1.36 / 4.08        
+  maxwell_scudnn_128x128_stridedB_interior_nn                                                 200     105.10 / 0.53 / 0.97 / 0.09 / 3.77        
+  maxwell_scudnn_128x128_relu_interior_nn                                                     184     103.17 / 0.56 / 0.98 / 0.12 / 3.70        
+  maxwell_scudnn_winograd_128x128_ldg1_ldg4_tile228n_nt                                       48      90.87 / 1.89 / 2.09 / 1.69 / 3.26         
+  maxwell_scudnn_128x128_stridedB_small_nn                                                    24      87.58 / 3.65 / 4.00 / 3.53 / 3.14      
   ```
   Kernel Summary用于展示在GPU执行的kernel的信息。
 
@@ -459,7 +503,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 
   UserDefined Summary用于展示用户自定义记录的Event所花费的时间。
 
-## <a name="Benchmark信息">Benchmark信息</a>
+### <a name="Benchmark信息">Benchmark信息</a>
 benckmark信息用于展示模型的吞吐量以及时间开销。
 ```text
 ============================================Perf Summary============================================
@@ -472,7 +516,7 @@ Time Unit: s, IPS Unit: steps/s
 ```
 其中ReaderRatio表示数据读取占一个batch迭代过程的时间占比，reader_cost代表数据读取时间，batch_cost代表一个batch的时间，ips表示每秒能迭代多少次，即跑多少个batch。
 
-## <a name="使用示例">使用示例</a>
+### <a name="使用案例">使用案例</a>
 
 我们以一个比较简单的示例，来看性能分析工具是如何在调试程序性能中发挥作用。下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/convnet_image_classification.html)的示例代码，我们加上了性能分析的代码
 ```python
@@ -553,6 +597,7 @@ ProfileStep      11      293.39 / 26.67 / 30.42 / 25.42 / 100.00   13.25 / 1.20 
   Optimization   11      34.52 / 3.14 / 3.32 / 2.52 / 11.77        0.67 / 0.06 / 0.06 / 0.06 / 5.03          
   Others         -       44.03 / - / - / - / 15.01                 0.52 / - / - / - / 3.94                   
 ---------------  ------  ----------------------------------------  ---------------------------------------- 
+```
 benchmark工具输出的信息如下所示（由于打点位置不同和数据处理上的差异，benchmark输出的Reader Ratio和上面统计表单中Dataloader的比例不完全一致）
 ```text
 ============================================Perf Summary============================================
@@ -566,7 +611,7 @@ Time Unit: s, IPS Unit: steps/s
 
 从timeline和统计表单中可以看到，dataloader占了执行过程的很大比重，甚至超过了50%。通过分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上dataloader
 准备数据时只用了单线程来读取，使得程序近乎没有并行操作，导致dataloader占比过大。通过对程序做如下修改，将dataloader的num_workers设置为4，使得能有多个线程并行读取数据。
-```
+```python
 train_loader = paddle.io.DataLoader(cifar10_train,
                                     shuffle=True,
                                     batch_size=batch_size,
