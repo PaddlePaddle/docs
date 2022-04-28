@@ -12,9 +12,9 @@ Normalize
     
     - mean (list|tuple) - 用于每个通道归一化的均值。
     - std (list|tuple) - 用于每个通道归一化的标准差值。
-    - data_format (str, 可选): 数据的格式，必须为 'HWC' 或 'CHW'。 默认值: 'CHW'。
-    - to_rgb (bool, 可选) - 是否转换为 ``rgb`` 的格式。默认值：False。
-    - keys (list[str]|tuple[str], 可选) – 与BaseTransform相同. 默认值: None.
+    - data_format (str, 可选): 数据的格式，必须为 'HWC' 或 'CHW'。 默认为'CHW'。
+    - to_rgb (bool, 可选) - 是否转换为 ``rgb`` 的格式。默认为False。
+    - keys (list[str]|tuple[str], 可选) – 与BaseTransform相同. 默认为None.
 
 形状
 :::::::::
