@@ -13,7 +13,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 ### Paddle&nbsp;Profiler使用介绍
 关于paddle.profiler模块的API说明，在API文档的[paddle.profiler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Overview_cn.html)中, 这里主要根据常用使用场景来进行示例说明。
 
-1. 将paddle.profiler.Profiler作为Context Manager, 对所包含的代码块进行性能分析
+1、 将paddle.profiler.Profiler作为Context Manager, 对所包含的代码块进行性能分析
   - 对某一段batch的训练过程进行性能分析，如batch [2,10），前闭后开区间
     ```python
     import paddle
@@ -89,7 +89,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
     该段代码会对整个训练过程性能数据进行采集（默认的scheduler参数会让Profiler始终保持收集数据的RECORD状态），即batch [0, 20)在CPU和GPU上的性能数据（默认的targets参数会判断是否支持GPU数据的采集，支持则自动开启）, 并将收集到的性能数据以chrome tracing timeline的格式保存在profiler_log文件夹(默认的on_trace_ready参数会将日志文件保存到profiler_log文件夹)中，最后对收集到的性能数据进行统计分析打印到终端。在正常使用中不推荐这种方式，因为采集性能数据的batch太多有可能会耗尽所有的内存，并且导出的文件也会非常大，一般采几个batch的性能数据就能够对整个程序的运行情况有个判断了，没必要采集所有数据。
 
 
-2. 手动调用paddle.profiler.Profiler的start, step, stop方法来对代码进行性能分析
+2、 手动调用paddle.profiler.Profiler的start, step, stop方法来对代码进行性能分析
 
   - 对某一段batch的训练过程进行性能分析，如第[2,10）个batch，前闭后开区间
     ```python
@@ -119,7 +119,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
     该段代码手动调用Profiler的start()和stop()来开启和关闭Profiler，其实在上述的with语句用法中，在进入with代码块和离开with代码块的时候，也是分别调用了这两个方法而已。
     用这种手动调用start()和stop()来代替使用with语句的方式，可以避免对所分析的代码块进行缩进。
 
-3. 自定义scheduler来控制性能分析过程的跨度
+3、 自定义scheduler来控制性能分析过程的跨度
 
   - 上述例子中，我们是通过将一个二元组tuple，如(2,10) 或者是通过make_scheduler接口来生成scheduler。实际上也可以自己来定义scheduler，比如定义一个收集所有batch的性能数据的scheduler
 
@@ -152,7 +152,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
     prof.summary() # 打印统计表单
     ```
 
-4. 自定义on_trace_ready来控制每一段性能分析过程结束后的动作
+4、 自定义on_trace_ready来控制每一段性能分析过程结束后的动作
 
   - 当对多段batch的训练过程进行性能分析，如上述例子中的batch [2, 5], [8, 11], [14, 17]，如果在离开with语句块后加上prof.summary()进行打印，将只能打印最后一段batch, 即batch [14, 17]这段时间内所收集的性能数据的统计结果。这是因为Profiler只会持有最新返回的性能数据，如果当某一段batch的性能数据返回时，没有进行处理，那等
   下一段性能数据返回时，就会覆盖上一段的数据。这也是on_trace_ready参数的用处所在，既是提供给用户一种自定义后处理的方式，同时也是为了能够及时对每段返回的性能数据进行处理，
@@ -188,7 +188,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
     prof.stop() # 调用stop()方法，告知Profiler性能分析过程结束，Profiler进入CLOSED状态
     ```
 
-5. 在Python脚本中自定义记录某一个代码片段的性能数据
+5、 在Python脚本中自定义记录某一个代码片段的性能数据
   - 为了分析某一段代码所花费的时间，可以使用profiler.RecordEvent接口来进行打点记录
     ```python
       import paddle
@@ -216,7 +216,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
     ```
     该代码片段将会记录paddle.randn和paddle.reshape这两句代码所花费的时间，所自定义的名字"DataPrepare"将会出现在chrome tracing timeline以及统计表单中，方便对此代码片段的性能进行分析。注意，在正常情况下，无需对模型训练或推理过程的dataloader, forward, backward和optimizer部分的代码进行自定义打点记录，我们的Profiler已经默认对这些代码进行了记录。
 
-6. 仅使用Profiler做benchmark有关的数据统计
+6、 仅使用Profiler做benchmark有关的数据统计
   ```python
   import paddle
   import paddle.profiler as profiler
