@@ -1,6 +1,5 @@
 # 模型性能分析
-Paddle profiler模块是paddle框架自带的低开销性能分析器，辅助用户对模型的运行性能进行调试。
-用户可以通过性能分析器提供的对性能数据进行收集、统计和展示的功能，来对程序的执行瓶颈进行判断分析，识别造成程序运行时间过长或者GPU利用率低的原因，并寻求优化方案来获得性能的提升。
+Paddle Profiler是Paddle框架自带的低开销性能分析器，可以对模型运行过程的性能数据进行收集、统计和展示。性能分析器提供的数据可以帮助我们定位模型的瓶颈，识别造成程序运行时间过长或者GPU利用率低的原因，从而寻求优化方案来获得性能的提升。
 
 在这篇文档中，我们主要介绍如何使用Profiler工具来调试程序性能，以及阐述当前提供的所有功能特性。
 
@@ -12,9 +11,14 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，辅助�
 
 
 ## 使用Profiler工具调试程序性能
+在模型性能分析中，通常采用如下四个步骤：
+- 获取模型正常运行时的ips(iterations per second, 每秒的迭代次数)，给出baseline数据。
+- 开启性能分析器，定位性能瓶颈点。
+- 优化程序，检查优化效果。
+- 获取优化后模型正常运行时的ips，和baseline比较，确定真实的提升幅度。
 
-### 1. 收集和统计性能数据
-我们以一个比较简单的示例，来看性能分析工具是如何在调试程序性能中发挥作用。下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/convnet_image_classification.html)的示例代码，我们加上了启动性能分析的代码。
+我们以一个比较简单的示例，来看性能分析工具是如何通过上述四个步骤在调试程序性能中发挥作用。下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/convnet_image_classification.html)的示例代码，我们加上了启动性能分析的代码。
+
 ```python
 def train(model):
     print('start training ... ')
@@ -29,12 +33,13 @@ def train(model):
                                         batch_size=batch_size)
 
     valid_loader = paddle.io.DataLoader(cifar10_test, batch_size=batch_size)
+
+    # 创建性能分析器相关的代码
     def my_on_trace_ready(prof):
       callback = profiler.export_chrome_tracing('./profiler_demo')
       callback(prof)
-      prof.stop()
       prof.summary(sorted_by=profiler.SortedKeys.GPUTotal)
-    p = profiler.Profiler(scheduler = [3,14], on_trace_ready=my_on_trace_ready)
+    p = profiler.Profiler(scheduler = [3,14], on_trace_ready=my_on_trace_ready, timer_only=True)
     p.start()
     for epoch in range(epoch_num):
         for batch_id, data in enumerate(train_loader()):
@@ -51,6 +56,9 @@ def train(model):
             opt.step()
             opt.clear_grad()
             p.step()
+            if batch_id == 19:
+              p.stop()
+              exit() # 做性能分析时，可以将程序提前退出
 
         # evaluate model after one epoch
         model.eval()
@@ -72,18 +80,38 @@ def train(model):
         val_acc_history.append(avg_acc)
         val_loss_history.append(avg_loss)
         model.train()
-    p.stop()
 ```
 
 
-### 2. 定位性能瓶颈点
-上述程序会收集程序在第3到14次（不包括14）训练迭代过程中的性能数据，并在profiler_demo文件夹中输出一个json格式的文件，用于展示程序执行过程的timeline，可通过chrome浏览器的[chrome://tracing](chrome://tracing)插件打开这个文件进行观察。
+### 1. 获取性能调试前模型正常运行的ips
+
+上述程序在创建Profiler时候，timer_only设置的值为True，此时将只开启benchmark功能，不开启性能分析器，程序输出模型正常运行时的benchmark信息如下
+
+============================================Perf Summary============================================
+Reader Ratio: 53.514%
+Time Unit: s, IPS Unit: steps/s
+|                 |       avg       |       max       |       min       |
+|   reader_cost   |     0.01367     |     0.01407     |     0.01310     |
+|    batch_cost   |     0.02555     |     0.02381     |     0.02220     |
+|       ips       |     39.13907    |     45.03588    |     41.99930    |
+
+可以看到，此时的ips为39.1，可将这个值作为优化对比的baseline。
+
+
+### 2. 开启性能分析器，定位性能瓶颈点
+
+修改程序，将Profiler的timer_only参数设置为False, 此时代表不只开启benchmark功能，还将开启性能分析器，进行详细的性能分析。
+```python
+p = profiler.Profiler(scheduler = [3,14], on_trace_ready=my_on_trace_ready, timer_only=False)
+```
+
+性能分析器会收集程序在第3到14次（不包括14）训练迭代过程中的性能数据，并在profiler_demo文件夹中输出一个json格式的文件，用于展示程序执行过程的timeline，可通过chrome浏览器的[chrome://tracing](chrome://tracing)插件打开这个文件进行观察。
 <p align="center">
 <img src="https://user-images.githubusercontent.com/22424850/165498308-734b4978-252e-45fc-8376-aaf8eb8a4270.png"   width='80%' hspace='10'/>
 <br />
 </p>
 
-程序还会直接在终端打印统计表单和benchmark信息（建议重定向到文件中查看），查看程序输出的Model Summary表单
+性能分析器还会直接在终端打印统计表单（建议重定向到文件中查看），查看程序输出的Model Summary表单
 
 ```text
 -----------------------------------------------Model Summary-----------------------------------------------
@@ -91,40 +119,27 @@ Time unit: ms
 ---------------  ------  ----------------------------------------  ----------------------------------------  
 Name             Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)  
 ---------------  ------  ----------------------------------------  ----------------------------------------  
-ProfileStep      11      293.39 / 26.67 / 30.42 / 25.42 / 100.00   13.25 / 1.20 / 1.21 / 1.20 / 100.00  
-  Dataloader     11      144.09 / 13.10 / 15.09 / 12.05 / 49.11    0.00 / 0.00 / 0.00 / 0.00 / 0.00  
-  Forward        11      50.26 / 4.57 / 5.34 / 4.22 / 17.13        3.96 / 0.36 / 0.37 / 0.36 / 29.73  
-  Backward       11      20.49 / 1.86 / 2.26 / 1.55 / 6.99         8.13 / 0.74 / 0.74 / 0.73 / 61.30  
-  Optimization   11      34.52 / 3.14 / 3.32 / 2.52 / 11.77        0.67 / 0.06 / 0.06 / 0.06 / 5.03  
-  Others         -       44.03 / - / - / - / 15.01                 0.52 / - / - / - / 3.94  
----------------  ------  ----------------------------------------  ----------------------------------------
-```
-查看程序输出的benchmark信息
-
-```text
-============================================Perf Summary============================================
-Reader Ratio: 38.304%
-Time Unit: s, IPS Unit: steps/s
-|                 |       avg       |       max       |       min       |
-|   reader_cost   |     0.01236     |     0.01277     |       inf       |
-|    batch_cost   |     0.03228     |     0.02624     |     0.02544     |
-|       ips       |     30.98171    |     39.30185    |     38.11149    |
+ProfileStep      11      294.53 / 26.78 / 35.28 / 24.56 / 100.00   13.22 / 1.20 / 1.20 / 1.20 / 100.00  
+  Dataloader     11      141.49 / 12.86 / 17.53 / 10.34 / 48.04    0.00 / 0.00 / 0.00 / 0.00 / 0.00  
+  Forward        11      51.41 / 4.67 / 6.18 / 3.93 / 17.45        3.92 / 0.36 / 0.36 / 0.35 / 29.50  
+  Backward       11      21.23 / 1.93 / 2.61 / 1.70 / 7.21         8.14 / 0.74 / 0.74 / 0.74 / 61.51  
+  Optimization   11      34.74 / 3.16 / 3.65 / 2.41 / 11.79        0.67 / 0.06 / 0.06 / 0.06 / 5.03  
+  Others         -       45.66 / - / - / - / 15.50                 0.53 / - / - / - / 3.96  
+---------------  ------  ----------------------------------------  ----------------------------------------  
 ```
 
-通过上述多种信息可以看到，dataloader占了执行过程的很大比重，甚至接近了50%。分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上dataloader
+通过timeline可以看到，dataloader占了执行过程的很大比重，Model Summary显示其甚至接近了50%。分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上dataloader
 准备数据时只用了单进程来读取，使得程序读取数据时和执行计算时没有并行操作，导致dataloader占比过大。
 
-### 3. 优化程序
+### 3. 优化程序，检查优化效果
 
-识别到了问题产生的原因，我们对程序做如下修改，将dataloader的num_workers设置为4，使得能有多个进程并行读取数据。
+识别到了问题产生的原因，我们对程序继续做如下修改，将dataloader的num_workers设置为4，使得能有多个进程并行读取数据。
 ```python
 train_loader = paddle.io.DataLoader(cifar10_train,
                                     shuffle=True,
                                     batch_size=batch_size,
                                     num_workers=4)
 ```
-
-### 4. 再次进行性能分析，检查优化效果
 
 重新对程序进行性能分析，新的timeline和Model Summary如下所示
 <p align="center">
@@ -138,29 +153,33 @@ Time unit: ms
 ---------------  ------  ----------------------------------------  ----------------------------------------  
 Name             Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)  
 ---------------  ------  ----------------------------------------  ----------------------------------------  
-ProfileStep      11      93.45 / 8.50 / 12.00 / 7.78 / 100.00      13.26 / 1.21 / 1.22 / 1.19 / 100.00  
-  Dataloader     11      1.70 / 0.15 / 0.55 / 0.11 / 1.82          0.00 / 0.00 / 0.00 / 0.00 / 0.00  
-  Forward        11      32.25 / 2.93 / 5.56 / 2.52 / 34.51        3.84 / 0.35 / 0.35 / 0.35 / 30.73  
-  Backward       11      15.43 / 1.40 / 2.09 / 1.32 / 16.51        8.27 / 0.75 / 0.76 / 0.74 / 60.58  
-  Optimization   11      17.55 / 1.60 / 1.95 / 1.55 / 18.78        0.66 / 0.06 / 0.06 / 0.06 / 4.84  
-  Others         -       26.52 / - / - / - / 28.38                 0.53 / - / - / - / 3.86  
+ProfileStep      11      90.94 / 8.27 / 11.82 / 7.85 / 100.00      13.27 / 1.21 / 1.22 / 1.19 / 100.00  
+  Dataloader     11      1.82 / 0.17 / 0.67 / 0.11 / 2.00          0.00 / 0.00 / 0.00 / 0.00 / 0.00  
+  Forward        11      29.58 / 2.69 / 3.53 / 2.52 / 32.52        3.82 / 0.35 / 0.35 / 0.34 / 30.67  
+  Backward       11      15.21 / 1.38 / 1.95 / 1.31 / 16.72        8.30 / 0.75 / 0.77 / 0.74 / 60.71  
+  Optimization   11      17.55 / 1.60 / 1.92 / 1.55 / 19.30        0.66 / 0.06 / 0.06 / 0.06 / 4.82  
+  Others         -       26.79 / - / - / - / 29.46                 0.52 / - / - / - / 3.80  
 ---------------  ------  ----------------------------------------  ----------------------------------------  
 ```
-新的benchmark信息如下所示
-```text
+可以看到，从dataloader中取数据的时间大大减少，变成了平均只占一个step的2%，并且平均一个step所需要的时间也相应减少了。
+
+### 4. 获取优化后模型正常运行的ips，确定真实提升幅度
+重新将timer_only设置的值为True，获取优化后模型正常运行时的benchmark信息
+
 ============================================Perf Summary============================================
-Reader Ratio: 0.989%
+Reader Ratio: 1.653%
 Time Unit: s, IPS Unit: steps/s
 |                 |       avg       |       max       |       min       |
-|   reader_cost   |     0.00010     |     0.00011     |     0.00009     |
-|    batch_cost   |     0.00986     |     0.00798     |     0.00786     |
-|       ips       |    101.41524    |    127.25977    |    125.29320    |
-```
-可以看到，从dataloader中取数据的时间大大减少，变成了平均只占一个step的1.8%，并且一个step所需要的时间也相应减少了。从benchmark工具给出的信息来看，ips也从平均30增长到了101，程序性能得到了236%的提升。
+|   reader_cost   |     0.00011     |     0.00024     |     0.00009     |
+|    batch_cost   |     0.00660     |     0.00629     |     0.00587     |
+|       ips       |    151.45498    |    170.28927    |    159.06308    |
+
+此时ips的值变成了151.5，相比优化前的baseline 39.1，模型真实性能提升了287%。
 
 **Note** 由于Profiler开启的时候，收集性能数据本身也会造成程序性能的开销，因此正常跑程序时请不要开启性能分析器，性能分析器只作为调试程序性能时使用。如果想获得程序正常运行时候的
-benchmark信息（如ips, 每秒的迭代次数），可以将Profiler的timer_only参数设置为True，此时不会进行详尽的性能数据收集，几乎不影响程序正常运行的性能，所获得的benchmark信息也趋于真实。
-此外，benchmark信息计算的数据范围是从调用Profiler的start方法开始，到调用stop方法结束这个过程的数据。而Timeline和性能数据的统计表单的数据范围是所指定的采集区间，如这个例子中的第3到14次迭代，这也是为什么上面Model Summary的Dataloader比例和benchmark信息里的reader ratio比例不同的原因。
+benchmark信息（如ips），可以像示例一样将Profiler的timer_only参数设置为True，此时不会进行详尽的性能数据收集，几乎不影响程序正常运行的性能，所获得的benchmark信息也趋于真实。
+此外，benchmark信息计算的数据范围是从调用Profiler的start方法开始，到调用stop方法结束这个过程的数据。而Timeline和性能数据的统计表单的数据范围是所指定的采集区间，如这个例子中的第3到14次迭代，这会导致开启性能分析器时统计表单和benchmark信息输出的值不同（如统计到的dataloader的时间占比）。此外，当benchmark统计的范围和性能分析器统计的范围不同时，
+由于benchmark统计的是平均时间，如果benchmark统计的范围覆盖了性能分析器开启的范围，也覆盖了关闭性能调试时的正常执行的范围，此时benchmark的值没有意义，因此**开启性能分析器时请以性能分析器输出的统计表单为参考**，这也是为何上面示例里在开启性能分析器时没贴benchmark信息的原因。
 
 ## 功能特性
 
