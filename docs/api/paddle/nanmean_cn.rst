@@ -22,4 +22,4 @@ paddle.nanmean
 
 代码示例
 ::::::::::
-COPY-FROM: <nanmean>:<code-example1>
+COPY-FROM: paddle.nanmean
