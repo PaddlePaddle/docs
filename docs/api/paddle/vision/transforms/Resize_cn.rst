@@ -26,7 +26,7 @@ resize
             + "area": cv2.INTER_AREA, 
             + "bicubic": cv2.INTER_CUBIC, 
             + "lanczos": cv2.INTER_LANCZOS4。
-
+            
 返回
 :::::::::
 
