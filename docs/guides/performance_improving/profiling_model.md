@@ -3,13 +3,15 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，辅助�
 用户可以通过性能分析器提供的对性能数据进行收集、统计和展示的功能，来对程序的执行瓶颈进行判断分析，识别造成程序运行时间过长或者GPU利用率低的原因，并寻求优化方案来获得性能的提升。
 
 在这篇文档中，我们主要介绍如何使用Profiler工具来调试程序性能，以及阐述当前提供的所有功能特性。
+
 ## 内容
-- [使用Profiler工具进行性能分析](#paddle-profiler)
+
+- [使用Profiler工具调试程序性能](#profiler)
 - [功能特性](#gongnengtexing)
 - [更多细节](#gengduoxijie)
 
 
-## 使用Profiler工具进行性能分析
+## 使用Profiler工具调试程序性能
 
 ### 1. 收集和统计性能数据
 我们以一个比较简单的示例，来看性能分析工具是如何在调试程序性能中发挥作用。下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/convnet_image_classification.html)的示例代码，我们加上了启动性能分析的代码。
