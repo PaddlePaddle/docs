@@ -1,276 +1,165 @@
 # 模型性能分析
-Paddle profiler模块是paddle框架自带的低开销性能分析器，用于辅助用户对模型运行过程中的性能数据进行分析。用户可以通过性能分析器在程序运行过程中收集到的各种性能数据所导出的timeline和相关统计指标，来对程序的执行瓶颈进行判断分析，并寻求优化方案来获得性能的提升。用户可以识别到的问题一般有GPU“饥饿”所导致的利用率低，不必要的GPU同步，不充分的GPU并行，或者是算法计算复杂度太高等。
+Paddle profiler模块是paddle框架自带的低开销性能分析器，辅助用户对模型的运行性能进行调试。
+用户可以通过性能分析器提供的对性能数据进行收集、统计和展示的功能，来对程序的执行瓶颈进行判断分析，识别造成程序运行时间过长或者GPU利用率低的原因，并寻求优化方案来获得性能的提升。
 
-在这篇文档中，我们将对如何使用paddle profiler做性能分析进行说明，介绍程序所输出的timeline和统计表单，以及使用Profiler输出benchmark相关信息，最后通过一个简单的使用案例来阐述如何利用性能分析工具进行性能调试。
+## 使用Profiler工具进行性能分析
 
-## 内容
-- [Paddle&nbsp;Profiler使用介绍](#paddle-profiler)
-- [Timeline展示](#timeline)
-- [统计表单展示](#tongjibiaodanzhanshi)
-- [Benchmark信息](#benchmark)
-- [使用案例](#shiyonganli)
+### 1. 收集和统计性能数据
+我们以一个比较简单的示例，来看性能分析工具是如何在调试程序性能中发挥作用。下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/convnet_image_classification.html)的示例代码，我们加上了启动性能分析的代码。
+```python
+def train(model):
+    print('start training ... ')
+    # turn into training mode
+    model.train()
 
-### Paddle&nbsp;Profiler使用介绍
-关于paddle.profiler模块的API说明，在API文档的[paddle.profiler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Overview_cn.html)中, 这里主要根据常用使用场景来进行示例说明。
+    opt = paddle.optimizer.Adam(learning_rate=learning_rate,
+                                parameters=model.parameters())
 
-1、 将paddle.profiler.Profiler作为Context Manager, 对所包含的代码块进行性能分析
-  - 对某一段batch的训练过程进行性能分析，如batch [2,10），前闭后开区间
-    ```python
-    import paddle
-    import paddle.profiler as profiler # 引入paddle.profiler包
+    train_loader = paddle.io.DataLoader(cifar10_train,
+                                        shuffle=True,
+                                        batch_size=batch_size)
 
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=1e-4, parameters = linear.parameters())
-    # 初始化Profiler对象，并使用with语句
-    with profiler.Profiler(
-             targets=[ProfilerTarget.CPU, ProfilerTarget.GPU],
-             scheduler=(2, 10),
-             on_trace_ready=profiler.export_chrome_tracing('./profiler_demo')) as prof:
-      # 进入with代码块，对如下代码块进行性能分析
-      for i in range(30):
-          data = paddle.randn(shape=[26])
-          data = paddle.reshape(data, [2, 13])
-          out = linear(data)
-          out.backward()
-          momentum.step()
-          momentum.clear_grad()
-          prof.step() # 每迭代一个step(batch), prof也调用step(), 告知Profiler进入了下一个step(batch)
-    # 离开with代码块，性能分析结束
-    prof.summary() # 打印统计表单
-    ```
-    该段代码会对训练过程的batch [2, 10), 共8个batch在CPU和GPU上的性能数据进行采集，并将收集到的性能数据以chrome tracing timeline的格式保存在profiler_demo文件夹中，最后对收集到的性能数据进行统计分析打印到终端。
-
-  - 对多段batch的训练过程进行性能分析，如[2, 5], [8, 11], [14, 17]
-    ```python
-    import paddle
-    import paddle.profiler as profiler # 引入paddle.profiler包
-
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=1e-4, parameters = linear.parameters())
-    # 初始化Profiler对象，并使用with语句
-    with profiler.Profiler(
-             targets=[ProfilerTarget.CPU, ProfilerTarget.GPU],
-             scheduler=profiler.make_scheduelr(closed=1, ready=1, record=4, repeat=3),
-             on_trace_ready=profiler.export_chrome_tracing('./profiler_demo')) as prof:
-      # 进入with代码块，对如下代码块进行性能分析
-      for i in range(30):
-          data = paddle.randn(shape=[26])
-          data = paddle.reshape(data, [2, 13])
-          out = linear(data)
-          out.backward()
-          momentum.step()
-          momentum.clear_grad()
-          prof.step() # 每迭代一个step(batch), prof也调用step(), 告知Profiler进入了下一个step(batch)
-    # 离开with代码块，性能分析结束
-    ```
-    该段代码会对训练过程的batch [2, 5] [8, 11] [14 17], 共3段batch在CPU和GPU上的性能数据进行分开采集，并且将收集到的性能数据以chrome tracing timeline的格式保存在profiler_demo文件夹中，一共会产生3个文件，每一个文件中分别存储某一段batch中所采集到的性能数据。
-
-  - 对所有batch的训练过程进行性能分析
-    ```python
-    import paddle
-    import paddle.profiler as profiler # 引入paddle.profiler包
-
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=1e-4, parameters = linear.parameters())
-    # 初始化Profiler对象，并使用with语句
-    with profiler.Profiler() as prof:
-      # 进入with代码块，对如下代码块进行性能分析
-      for i in range(20):
-          data = paddle.randn(shape=[26])
-          data = paddle.reshape(data, [2, 13])
-          out = linear(data)
-          out.backward()
-          momentum.step()
-          momentum.clear_grad()
-          prof.step() # 每迭代一个step(batch), prof也调用step(), 告知Profiler进入了下一个step(batch)
-    # 离开with代码块，性能分析结束
-    prof.summary() # 打印统计表单
-    ```
-    该段代码会对整个训练过程性能数据进行采集（默认的scheduler参数会让Profiler始终保持收集数据的RECORD状态），即batch [0, 20)在CPU和GPU上的性能数据（默认的targets参数会判断是否支持GPU数据的采集，支持则自动开启）, 并将收集到的性能数据以chrome tracing timeline的格式保存在profiler_log文件夹(默认的on_trace_ready参数会将日志文件保存到profiler_log文件夹)中，最后对收集到的性能数据进行统计分析打印到终端。在正常使用中不推荐这种方式，因为采集性能数据的batch太多有可能会耗尽所有的内存，并且导出的文件也会非常大，一般采几个batch的性能数据就能够对整个程序的运行情况有个判断了，没必要采集所有数据。
-
-
-2、 手动调用paddle.profiler.Profiler的start, step, stop方法来对代码进行性能分析
-
-  - 对某一段batch的训练过程进行性能分析，如第[2,10）个batch，前闭后开区间
-    ```python
-    import paddle
-    import paddle.profiler as profiler # 引入paddle.profiler包
-
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=1e-4, parameters = linear.parameters())
-
-    # 初始化Profiler对象
-    prof = profiler.Profiler(
-               targets=[ProfilerTarget.CPU, ProfilerTarget.GPU],
-               scheduler=(2, 10),
-               on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))
-    prof.start() # 调用start()方法，告知Profiler进入第0个step(batch), 进入性能分析过程
-    for i in range(30):
-        data = paddle.randn(shape=[26])
-        data = paddle.reshape(data, [2, 13])
-        out = linear(data)
-        out.backward()
-        momentum.step()
-        momentum.clear_grad()
-        prof.step() # 每迭代一个step(batch), prof也调用step(), 告知Profiler进入了下一个step(batch)
-    prof.stop() # 调用stop()方法，告知Profiler性能分析过程结束，Profiler进入CLOSED状态
-    prof.summary() # 打印统计表单
-    ```
-    该段代码手动调用Profiler的start()和stop()来开启和关闭Profiler，其实在上述的with语句用法中，在进入with代码块和离开with代码块的时候，也是分别调用了这两个方法而已。
-    用这种手动调用start()和stop()来代替使用with语句的方式，可以避免对所分析的代码块进行缩进。
-
-3、 自定义scheduler来控制性能分析过程的跨度
-
-  - 上述例子中，我们是通过将一个二元组tuple，如(2,10) 或者是通过make_scheduler接口来生成scheduler。实际上也可以自己来定义scheduler，比如定义一个收集所有batch的性能数据的scheduler
-
-    ```python
-    import paddle
-    import paddle.profiler as profiler
-
-    # 定义一个收集所有batch的scheduler，即当前不管是第几个step(batch), 都返回RECORD状态
-    def my_scheduler(step):
-      return profiler.ProfilerState.RECORD
-
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=1e-4, parameters = linear.parameters())
-
-    # 初始化Profiler对象
-    prof = profiler.Profiler(
-        targets=[ProfilerTarget.CPU, ProfilerTarget.GPU],
-        scheduler=my_scheduler, # 放入自定义的scheduler
-        on_trace_ready=profiler.export_chrome_tracing('./profiler_demo'))
-    prof.start() # 调用start()方法，告知Profiler进入第0个step(batch), 进入性能分析过程
-    for i in range(30):
-        data = paddle.randn(shape=[26])
-        data = paddle.reshape(data, [2, 13])
-        out = linear(data)
-        out.backward()
-        momentum.step()
-        momentum.clear_grad()
-        prof.step() # 每迭代一个step(batch), prof也调用step(), 告知Profiler进入了下一个step(batch)
-    prof.stop() # 调用stop()方法，告知Profiler性能分析过程结束，Profiler进入CLOSED状态
-    prof.summary() # 打印统计表单
-    ```
-
-4、 自定义on_trace_ready来控制每一段性能分析过程结束后的动作
-
-  - 当对多段batch的训练过程进行性能分析，如上述例子中的batch [2, 5], [8, 11], [14, 17]，如果在离开with语句块后加上prof.summary()进行打印，将只能打印最后一段batch, 即batch [14, 17]这段时间内所收集的性能数据的统计结果。这是因为Profiler只会持有最新返回的性能数据，如果当某一段batch的性能数据返回时，没有进行处理，那等
-  下一段性能数据返回时，就会覆盖上一段的数据。这也是on_trace_ready参数的用处所在，既是提供给用户一种自定义后处理的方式，同时也是为了能够及时对每段返回的性能数据进行处理，
-  当性能数据返回时，Profiler将会调用on_trace_ready回调函数进行处理。Profiler的默认on_trace_ready参数是profiler.export_chrome_tracing('./profiler_log/')，上述示例所填的on_trace_ready参数也基本是这一回调函数，所做的即是每当性能数据返回时，以chrome tracing timeline的格式导出到指定文件夹。
-    对于这种多段batch的性能分析，如果需要对每一段的数据都导出到chrome tracing timeline，并且打印统计表单，我们可以自定义on_trace_ready回调函数:
-    ```python
-    import paddle
-    import paddle.profiler as profiler
-
-    # 定义一个回调函数处理Profiler, 每当一段batch的性能数据采集结束并返回，都会调用该回调函数进行处理
+    valid_loader = paddle.io.DataLoader(cifar10_test, batch_size=batch_size)
     def my_on_trace_ready(prof):
       callback = profiler.export_chrome_tracing('./profiler_demo')
-      callback(prof) # 导出数据到chrome tracing timeline
-      prof.summary() # 调用summary方法打印表单
+      callback(prof)
+      prof.stop()
+      prof.summary(sorted_by=profiler.SortedKeys.GPUTotal)
+    p = profiler.Profiler(scheduler = [3,14], on_trace_ready=my_on_trace_ready)
+    p.start()
+    for epoch in range(epoch_num):
+        for batch_id, data in enumerate(train_loader()):
+            x_data = data[0]
+            y_data = paddle.to_tensor(data[1])
+            y_data = paddle.unsqueeze(y_data, 1)
 
-    linear = paddle.nn.Linear(13, 5)
-    momentum = paddle.optimizer.Momentum(learning_rate=1e-4, parameters = linear.parameters())
+            logits = model(x_data)
+            loss = F.cross_entropy(logits, y_data)
 
-    # 初始化Profiler对象
-    prof = profiler.Profiler(
-        targets=[ProfilerTarget.CPU, ProfilerTarget.GPU],
-        scheduler=(2, 10),
-        on_trace_ready=my_on_trace_ready) # 放入自定义的on_trace_ready回调函数
-    prof.start() # 调用start()方法，告知Profiler进入第0个step(batch), 进入性能分析过程
-    for i in range(30):
-        data = paddle.randn(shape=[26])
-        data = paddle.reshape(data, [2, 13])
-        out = linear(data)
-        out.backward()
-        momentum.step()
-        momentum.clear_grad()
-        prof.step() # 每迭代一个step(batch), prof也调用step(), 告知Profiler进入了下一个step(batch)
-    prof.stop() # 调用stop()方法，告知Profiler性能分析过程结束，Profiler进入CLOSED状态
-    ```
+            if batch_id % 1000 == 0:
+                print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, loss.numpy()))
+            loss.backward()
+            opt.step()
+            opt.clear_grad()
+            p.step()
 
-5、 在Python脚本中自定义记录某一个代码片段的性能数据
-  - 为了分析某一段代码所花费的时间，可以使用profiler.RecordEvent接口来进行打点记录
-    ```python
-      import paddle
-      import paddle.profiler as profiler
+        # evaluate model after one epoch
+        model.eval()
+        accuracies = []
+        losses = []
+        for batch_id, data in enumerate(valid_loader()):
+            x_data = data[0]
+            y_data = paddle.to_tensor(data[1])
+            y_data = paddle.unsqueeze(y_data, 1)
 
-      linear = paddle.nn.Linear(13, 5)
-      momentum = paddle.optimizer.Momentum(learning_rate=1e-4, parameters = linear.parameters())
-      # 初始化Profiler对象
-      prof = profiler.Profiler(
-          targets=[ProfilerTarget.CPU, ProfilerTarget.GPU],
-          scheduler=(2, 10),
-          on_trace_ready=my_on_trace_ready) # 放入自定义的on_trace_ready回调函数
-      prof.start() # 调用start()方法，告知Profiler进入第0个step(batch), 进入性能分析过程
-      for i in range(30):
-          with profiler.RecordEvent("DataPrepare"):
-            data = paddle.randn(shape=[26])
-            data = paddle.reshape(data, [2, 13])
-          out = linear(data)
-          out.backward()
-          momentum.step()
-          momentum.clear_grad()
-          prof.step() # 每迭代一个step(batch), prof也调用step(), 告知Profiler进入了下一个step(batch)
-      prof.stop() # 调用stop()方法，告知Profiler性能分析过程结束，Profiler进入CLOSED状态
-      prof.summary() # 打印统计表单
-    ```
-    该代码片段将会记录paddle.randn和paddle.reshape这两句代码所花费的时间，所自定义的名字"DataPrepare"将会出现在chrome tracing timeline以及统计表单中，方便对此代码片段的性能进行分析。注意，在正常情况下，无需对模型训练或推理过程的dataloader, forward, backward和optimizer部分的代码进行自定义打点记录，我们的Profiler已经默认对这些代码进行了记录。
+            logits = model(x_data)
+            loss = F.cross_entropy(logits, y_data)
+            acc = paddle.metric.accuracy(logits, y_data)
+            accuracies.append(acc.numpy())
+            losses.append(loss.numpy())
 
-6、 仅使用Profiler做benchmark有关的数据统计
-  ```python
-  import paddle
-  import paddle.profiler as profiler
+        avg_acc, avg_loss = np.mean(accuracies), np.mean(losses)
+        print("[validation] accuracy/loss: {}/{}".format(avg_acc, avg_loss))
+        val_acc_history.append(avg_acc)
+        val_loss_history.append(avg_loss)
+        model.train()
+    p.stop()
+```
 
-  class RandomDataset(paddle.io.Dataset):
-      def __init__(self, num_samples):
-          self.num_samples = num_samples
 
-      def __getitem__(self, idx):
-          image = paddle.rand(shape=[100], dtype='float32')
-          label = paddle.randint(0, 10, shape=[1], dtype='int64')
-          return image, label
+### 2. 定位性能瓶颈点
+上述程序会在profiler_demo文件夹中输出一个json格式的文件，用于展示程序执行过程的timeline，可通过chrome浏览器的chrome://tracing插件打开这个文件进行观察。
+<p align="center">
+<img src="https://user-images.githubusercontent.com/22424850/165498308-734b4978-252e-45fc-8376-aaf8eb8a4270.png"   width='80%' hspace='10'/>
+<br />
+</p>
 
-      def __len__(self):
-          return self.num_samples
+程序还会直接在终端打印统计表单和benchmark信息（建议重定向到文件中查看），查看程序输出的Model Summary表单
 
-  class SimpleNet(paddle.nn.Layer):
-      def __init__(self):
-          super(SimpleNet, self).__init__()
-          self.fc = paddle.nn.Linear(100, 10)
+```text
+-----------------------------------------------Model Summary-----------------------------------------------
+Time unit: ms
+---------------  ------  ----------------------------------------  ----------------------------------------  
+Name             Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)  
+---------------  ------  ----------------------------------------  ----------------------------------------  
+ProfileStep      11      293.39 / 26.67 / 30.42 / 25.42 / 100.00   13.25 / 1.20 / 1.21 / 1.20 / 100.00  
+  Dataloader     11      144.09 / 13.10 / 15.09 / 12.05 / 49.11    0.00 / 0.00 / 0.00 / 0.00 / 0.00  
+  Forward        11      50.26 / 4.57 / 5.34 / 4.22 / 17.13        3.96 / 0.36 / 0.37 / 0.36 / 29.73  
+  Backward       11      20.49 / 1.86 / 2.26 / 1.55 / 6.99         8.13 / 0.74 / 0.74 / 0.73 / 61.30  
+  Optimization   11      34.52 / 3.14 / 3.32 / 2.52 / 11.77        0.67 / 0.06 / 0.06 / 0.06 / 5.03  
+  Others         -       44.03 / - / - / - / 15.01                 0.52 / - / - / - / 3.94  
+---------------  ------  ----------------------------------------  ----------------------------------------
+```
+查看程序输出的benchmark信息
 
-      def forward(self, image, label=None):
-          return self.fc(image)
+```text
+============================================Perf Summary============================================
+Reader Ratio: 38.304%
+Time Unit: s, IPS Unit: steps/s
+|                 |       avg       |       max       |       min       |
+|   reader_cost   |     0.01236     |     0.01277     |       inf       |
+|    batch_cost   |     0.03228     |     0.02624     |     0.02544     |
+|       ips       |     30.98171    |     39.30185    |     38.11149    |
+```
 
-  dataset = RandomDataset(20 * 4)
-  simple_net = SimpleNet()
-  opt = paddle.optimizer.SGD(learning_rate=1e-3,
-                              parameters=simple_net.parameters())
-  BATCH_SIZE = 4
-  loader = paddle.io.DataLoader(
-      dataset,
-      batch_size=BATCH_SIZE)
-  p = profiler.Profiler(timer_only=True) # 仅做benchmark有关的统计
-  p.start()
-  for i, (image, label) in enumerate(loader()):
-      out = simple_net(image)
-      loss = paddle.nn.functional.cross_entropy(out, label)
-      avg_loss = paddle.mean(loss)
-      avg_loss.backward()
-      opt.minimize(avg_loss)
-      simple_net.clear_gradients()
-      p.step(num_samples=BATCH_SIZE)
-      if i % 10 == 0:
-          step_info = p.step_info(unit='images')
-          print("Iter {}: {}".format(i, step_info)) # 打印到第i个batch的信息
-  p.stop() # 打印总的benchmark表单
-  ```
-  这段代码会只开启Profiler的benchmark统计功能，用于输出模型的吞吐量和执行时间信息，而不开启详细性能数据的采集。如果只需要获得ips(iterations per second)的数据，
-  而不关心各部分的详细性能，可以如上所示设置timer_only=True。
+通过上述多种信息可以看到，dataloader占了执行过程的很大比重，甚至接近了50%。分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上dataloader
+准备数据时只用了单进程来读取，使得程序读取数据时和执行计算时没有并行操作，导致dataloader占比过大。
+
+### 3. 优化程序
+
+识别到了问题产生的原因，我们对程序做如下修改，将dataloader的num_workers设置为4，使得能有多个进程并行读取数据。
+```python
+train_loader = paddle.io.DataLoader(cifar10_train,
+                                    shuffle=True,
+                                    batch_size=batch_size,
+                                    num_workers=4)
+```
+
+### 4. 再次进行性能分析，检查优化效果
+
+重新对程序进行性能分析，新的timeline和Model Summary如下所示
+<p align="center">
+<img src="https://user-images.githubusercontent.com/22424850/165498358-100b7e73-de25-47df-9b5d-5b10c887bcbd.png"   width='80%' hspace='10'/>
+<br />
+</p>
+
+```text
+-----------------------------------------------Model Summary-----------------------------------------------
+Time unit: ms
+---------------  ------  ----------------------------------------  ----------------------------------------  
+Name             Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)  
+---------------  ------  ----------------------------------------  ----------------------------------------  
+ProfileStep      11      93.45 / 8.50 / 12.00 / 7.78 / 100.00      13.26 / 1.21 / 1.22 / 1.19 / 100.00  
+  Dataloader     11      1.70 / 0.15 / 0.55 / 0.11 / 1.82          0.00 / 0.00 / 0.00 / 0.00 / 0.00  
+  Forward        11      32.25 / 2.93 / 5.56 / 2.52 / 34.51        3.84 / 0.35 / 0.35 / 0.35 / 30.73  
+  Backward       11      15.43 / 1.40 / 2.09 / 1.32 / 16.51        8.27 / 0.75 / 0.76 / 0.74 / 60.58  
+  Optimization   11      17.55 / 1.60 / 1.95 / 1.55 / 18.78        0.66 / 0.06 / 0.06 / 0.06 / 4.84  
+  Others         -       26.52 / - / - / - / 28.38                 0.53 / - / - / - / 3.86  
+---------------  ------  ----------------------------------------  ----------------------------------------  
+```
+新的benchmark信息如下所示
+```text
+============================================Perf Summary============================================
+Reader Ratio: 0.989%
+Time Unit: s, IPS Unit: steps/s
+|                 |       avg       |       max       |       min       |
+|   reader_cost   |     0.00010     |     0.00011     |     0.00009     |
+|    batch_cost   |     0.00986     |     0.00798     |     0.00786     |
+|       ips       |    101.41524    |    127.25977    |    125.29320    |
+```
+可以看到，从dataloader中取数据的时间大大减少，变成了平均只占一个step的1.8%，并且一个step所需要的时间也相应减少了。从benchmark工具给出的信息来看，ips也从平均30增长到了101，程序性能得到了236%的提升。
+
+**Note** 由于Profiler开启的时候，收集性能数据本身也会造成程序性能的开销，因此正常跑程序时请不要开启性能分析器，性能分析器只作为调试程序性能时使用。如果想获得程序正常运行时候的
+benchmark信息（如ips, 每秒的迭代次数），可以将Profiler的timer_only参数设置为True，此时不会进行详尽的性能数据收集，几乎不影响程序正常运行的性能，所获得的benchmark信息也趋于真实。
+
+## 功能特性
+
+当前Profiler提供Timeline、统计表单、benchmark信息共三个方面的展示功能。
 
 ### Timeline展示
-对于采集的性能数据，通过上述示例代码的方法导出为chrome tracing timeline格式的文件后，可以进行可视化分析。当前，所采用的可视化工具为google chrome浏览器里的tracing插件，可以按照如下方式进行查看
+对于采集的性能数据，导出为chrome tracing timeline格式的文件后，可以进行可视化分析。当前，所采用的可视化工具为chrome浏览器里的tracing插件，可以按照如下方式进行查看
   <p align="center">
-  <img src="https://user-images.githubusercontent.com/22424850/161976125-27838228-d1c2-48ec-a96b-03d8f1bdad65.gif"   width='80%' hspace='10'/>
+  <img src="https://user-images.githubusercontent.com/22424850/165717586-599a08fb-c915-4e3c-af40-0732c30c5855.gif"   width='80%' hspace='10'/>
   <br />
   Timeline使用Demo
   </p>
@@ -284,8 +173,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 
 ### 统计表单展示
 统计表单负责对采集到的数据(Event)从多个不同的角度进行解读，也可以理解为对timeline进行一些量化的指标计算。
-目前提供的Device Summary、Overview Summary、Model Summary、Distributed Summary、Operator Summary、Kernel Summary、Memory Manipulation Summary和UserDefined Summary的统计，
-每个统计表单从不同的角度根据需要取出对应类型的性能数据进行统计计算。每种表单的统计内容简要叙述如下：
+目前提供Device Summary、Overview Summary、Model Summary、Distributed Summary、Operator Summary、Kernel Summary、Memory Manipulation Summary和UserDefined Summary的统计表单，每个表单从不同的角度进行统计计算。每个表单的统计内容简要叙述如下：
 
 - Device Summary
   ```text
@@ -519,140 +407,8 @@ Time Unit: s, IPS Unit: steps/s
 |    batch_cost   |     0.00986     |     0.00798     |     0.00786     |
 |       ips       |    101.41524    |    127.25977    |    125.29320    |
 ```
-其中ReaderRatio表示数据读取占一个batch迭代过程的时间占比，reader_cost代表数据读取时间，batch_cost代表一个batch的时间，ips表示每秒能迭代多少次，即跑多少个batch。
+其中ReaderRatio表示数据读取部分占batch迭代过程的时间占比，reader_cost代表数据读取时间，batch_cost代表batch迭代的时间，ips表示每秒能迭代多少次，即跑多少个batch。
 
-### 使用案例
 
-我们以一个比较简单的示例，来看性能分析工具是如何在调试程序性能中发挥作用。下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/convnet_image_classification.html)的示例代码，我们加上了性能分析的代码
-```python
-def train(model):
-    print('start training ... ')
-    # turn into training mode
-    model.train()
 
-    opt = paddle.optimizer.Adam(learning_rate=learning_rate,
-                                parameters=model.parameters())
-
-    train_loader = paddle.io.DataLoader(cifar10_train,
-                                        shuffle=True,
-                                        batch_size=batch_size)
-
-    valid_loader = paddle.io.DataLoader(cifar10_test, batch_size=batch_size)
-    def my_on_trace_ready(prof):
-      callback = profiler.export_chrome_tracing('./profiler_demo')
-      callback(prof)
-      prof.stop() # 可以打印benchmark信息
-      prof.summary(sorted_by=profiler.SortedKeys.GPUTotal)
-    p = profiler.Profiler(scheduler = [3,14], on_trace_ready=my_on_trace_ready)
-    p.start()
-    for epoch in range(epoch_num):
-        for batch_id, data in enumerate(train_loader()):
-            x_data = data[0]
-            y_data = paddle.to_tensor(data[1])
-            y_data = paddle.unsqueeze(y_data, 1)
-
-            logits = model(x_data)
-            loss = F.cross_entropy(logits, y_data)
-
-            if batch_id % 1000 == 0:
-                print("epoch: {}, batch_id: {}, loss is: {}".format(epoch, batch_id, loss.numpy()))
-            loss.backward()
-            opt.step()
-            opt.clear_grad()
-            p.step()
-
-        # evaluate model after one epoch
-        model.eval()
-        accuracies = []
-        losses = []
-        for batch_id, data in enumerate(valid_loader()):
-            x_data = data[0]
-            y_data = paddle.to_tensor(data[1])
-            y_data = paddle.unsqueeze(y_data, 1)
-
-            logits = model(x_data)
-            loss = F.cross_entropy(logits, y_data)
-            acc = paddle.metric.accuracy(logits, y_data)
-            accuracies.append(acc.numpy())
-            losses.append(loss.numpy())
-
-        avg_acc, avg_loss = np.mean(accuracies), np.mean(losses)
-        print("[validation] accuracy/loss: {}/{}".format(avg_acc, avg_loss))
-        val_acc_history.append(avg_acc)
-        val_loss_history.append(avg_loss)
-        model.train()
-    p.stop()
-```
-通过分析第3-9个batch的性能数据，导出timeline和统计表单。
-<p align="center">
-<img src="https://user-images.githubusercontent.com/22424850/165498308-734b4978-252e-45fc-8376-aaf8eb8a4270.png"   width='80%' hspace='10'/>
-<br />
-</p>
-
-```text
------------------------------------------------Model Summary-----------------------------------------------
-Time unit: ms
----------------  ------  ----------------------------------------  ----------------------------------------  
-Name             Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)  
----------------  ------  ----------------------------------------  ----------------------------------------  
-ProfileStep      11      293.39 / 26.67 / 30.42 / 25.42 / 100.00   13.25 / 1.20 / 1.21 / 1.20 / 100.00  
-  Dataloader     11      144.09 / 13.10 / 15.09 / 12.05 / 49.11    0.00 / 0.00 / 0.00 / 0.00 / 0.00  
-  Forward        11      50.26 / 4.57 / 5.34 / 4.22 / 17.13        3.96 / 0.36 / 0.37 / 0.36 / 29.73  
-  Backward       11      20.49 / 1.86 / 2.26 / 1.55 / 6.99         8.13 / 0.74 / 0.74 / 0.73 / 61.30  
-  Optimization   11      34.52 / 3.14 / 3.32 / 2.52 / 11.77        0.67 / 0.06 / 0.06 / 0.06 / 5.03  
-  Others         -       44.03 / - / - / - / 15.01                 0.52 / - / - / - / 3.94  
----------------  ------  ----------------------------------------  ----------------------------------------
-```
-benchmark工具输出的信息如下所示（由于打点位置不同和数据处理上的差异，benchmark输出的Reader Ratio和上面统计表单中Dataloader的比例不完全一致）
-```text
-============================================Perf Summary============================================
-Reader Ratio: 38.304%
-Time Unit: s, IPS Unit: steps/s
-|                 |       avg       |       max       |       min       |
-|   reader_cost   |     0.01236     |     0.01277     |       inf       |
-|    batch_cost   |     0.03228     |     0.02624     |     0.02544     |
-|       ips       |     30.98171    |     39.30185    |     38.11149    |
-```
-
-从timeline和统计表单中可以看到，dataloader占了执行过程的很大比重，甚至接近了50%。通过分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上dataloader
-准备数据时只用了单线程来读取，使得程序近乎没有并行操作，导致dataloader占比过大。通过对程序做如下修改，将dataloader的num_workers设置为4，使得能有多个线程并行读取数据。
-```python
-train_loader = paddle.io.DataLoader(cifar10_train,
-                                    shuffle=True,
-                                    batch_size=batch_size,
-                                    num_workers=4)
-```
-重新对程序进行性能分析，新的timeline和统计表单如下所示
-<p align="center">
-<img src="https://user-images.githubusercontent.com/22424850/165498358-100b7e73-de25-47df-9b5d-5b10c887bcbd.png"   width='80%' hspace='10'/>
-<br />
-</p>
-
-```text
------------------------------------------------Model Summary-----------------------------------------------
-Time unit: ms
----------------  ------  ----------------------------------------  ----------------------------------------  
-Name             Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)  
----------------  ------  ----------------------------------------  ----------------------------------------  
-ProfileStep      11      93.45 / 8.50 / 12.00 / 7.78 / 100.00      13.26 / 1.21 / 1.22 / 1.19 / 100.00  
-  Dataloader     11      1.70 / 0.15 / 0.55 / 0.11 / 1.82          0.00 / 0.00 / 0.00 / 0.00 / 0.00  
-  Forward        11      32.25 / 2.93 / 5.56 / 2.52 / 34.51        3.84 / 0.35 / 0.35 / 0.35 / 30.73  
-  Backward       11      15.43 / 1.40 / 2.09 / 1.32 / 16.51        8.27 / 0.75 / 0.76 / 0.74 / 60.58  
-  Optimization   11      17.55 / 1.60 / 1.95 / 1.55 / 18.78        0.66 / 0.06 / 0.06 / 0.06 / 4.84  
-  Others         -       26.52 / - / - / - / 28.38                 0.53 / - / - / - / 3.86  
----------------  ------  ----------------------------------------  ----------------------------------------  
-```
-benchmark工具输出的信息如下所示
-```text
-============================================Perf Summary============================================
-Reader Ratio: 0.989%
-Time Unit: s, IPS Unit: steps/s
-|                 |       avg       |       max       |       min       |
-|   reader_cost   |     0.00010     |     0.00011     |     0.00009     |
-|    batch_cost   |     0.00986     |     0.00798     |     0.00786     |
-|       ips       |    101.41524    |    127.25977    |    125.29320    |
-```
-可以看到，从dataloader中取数据的时间大大减少，变成了平均只占一个step的1.8%，并且一个step所需要的时间也相应减少了。从benchmark工具给出的信息来看，ips也从平均30增长到了101，程序性能得到了极大的提升。
-通过Profiler工具，您也可以使用RecordEvent对您所想要分析的程序片段进行监控，以此来寻找瓶颈点进行优化。
-
-**Note**: 目前Paddle的性能分析工具主要还只提供时间方面的分析，之后会提供更多信息的收集来辅助做更全面的分析，如提供显存分析来监控显存泄漏问题。此外，Paddle的可视化工具VisualDL正在对Profiler的数据展示进行开发，敬请期待。
+**Note**: 关于paddle.profiler模块更详细的使用说明，可以参考[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Overview_cn.html)。目前Paddle的性能分析工具主要还只提供时间方面的分析，之后会提供更多信息的收集来辅助做更全面的分析，如提供显存分析来监控显存泄漏问题。此外，Paddle的可视化工具VisualDL正在对Profiler的数据展示进行开发，敬请期待。
