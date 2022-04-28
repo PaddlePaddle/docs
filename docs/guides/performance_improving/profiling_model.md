@@ -1,7 +1,7 @@
 # 模型性能分析
 Paddle profiler模块是paddle框架自带的低开销性能分析器，用于辅助用户对模型运行过程中的性能数据进行分析。用户可以通过性能分析器在程序运行过程中收集到的各种性能数据所导出的timeline和相关统计指标，来对程序的执行瓶颈进行判断分析，并寻求优化方案来获得性能的提升。用户可以识别到的问题一般有GPU“饥饿”所导致的利用率低，不必要的GPU同步，不充分的GPU并行，或者是算法计算复杂度太高等。
 
-在这篇文档中，我们将对如何使用paddle profiler做性能分析进行说明，介绍程序所输出的timeline和统计表单，以及使用Profiler输出benchmark相关信息，最后通过一个简单的使用案例来阐述该工具的使用场景。
+在这篇文档中，我们将对如何使用paddle profiler做性能分析进行说明，介绍程序所输出的timeline和统计表单，以及使用Profiler输出benchmark相关信息，最后通过一个简单的使用案例来阐述如何利用性能分析工具进行性能调试。
 
 ## 内容
 - [Paddle&nbsp;Profiler使用介绍](#Paddle&nbsp;Profiler使用介绍)
@@ -86,7 +86,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
     # 离开with代码块，性能分析结束
     prof.summary() # 打印统计表单
     ```
-    该段代码会对整个训练过程性能数据进行采集（默认的sheduler参数会让Profiler始终保持收集数据的RECORD状态），即batch [0, 20)在CPU和GPU上的性能数据（默认的targets参数会判断是否支持GPU数据的采集，支持则自动开启）, 并将收集到的性能数据以chrome tracing timeline的格式保存在profiler_log文件夹(默认的on_trace_ready参数会将日志文件保存到profiler_log文件夹)中，最后对收集到的性能数据进行统计分析打印到终端。在正常使用中不推荐这种方式，因为采集性能数据的batch太多有可能会耗尽所有的内存，并且导出的文件也会非常大，一般采几个batch的性能数据就能够对整个程序的运行情况有个判断了，没必要采集所有数据。
+    该段代码会对整个训练过程性能数据进行采集（默认的scheduler参数会让Profiler始终保持收集数据的RECORD状态），即batch [0, 20)在CPU和GPU上的性能数据（默认的targets参数会判断是否支持GPU数据的采集，支持则自动开启）, 并将收集到的性能数据以chrome tracing timeline的格式保存在profiler_log文件夹(默认的on_trace_ready参数会将日志文件保存到profiler_log文件夹)中，最后对收集到的性能数据进行统计分析打印到终端。在正常使用中不推荐这种方式，因为采集性能数据的batch太多有可能会耗尽所有的内存，并且导出的文件也会非常大，一般采几个batch的性能数据就能够对整个程序的运行情况有个判断了，没必要采集所有数据。
 
 
 2. 手动调用paddle.profiler.Profiler的start, step, stop方法来对代码进行性能分析
@@ -386,8 +386,11 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
   ```
 
   Distribution Summary用于展示分布式训练中通信(Communication)、计算(Computation)以及这两者Overlap的时间。
+
   Communication: 所有和通信有关活动的时间，包括和分布式相关的算子(op)以及gpu上的kernel的时间等。
+
   Computation: 即是所有kernel在GPU上的执行时间, 但是去除了和通信相关的kernel的时间。
+
   Overlap: Communication和Computation的重叠时间
 
 - Operator Summary
@@ -538,7 +541,7 @@ def train(model):
       callback(prof)
       prof.stop() # 可以打印benchmark信息
       prof.summary(sorted_by=profiler.SortedKeys.GPUTotal)
-    p = profiler.Profiler(scheduler = [3,10], on_trace_ready=my_on_trace_ready)
+    p = profiler.Profiler(scheduler = [3,14], on_trace_ready=my_on_trace_ready)
     p.start()
     for epoch in range(epoch_num):
         for batch_id, data in enumerate(train_loader()):
@@ -609,7 +612,7 @@ Time Unit: s, IPS Unit: steps/s
 |       ips       |     30.98171    |     39.30185    |     38.11149    |
 ```
 
-从timeline和统计表单中可以看到，dataloader占了执行过程的很大比重，甚至超过了50%。通过分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上dataloader
+从timeline和统计表单中可以看到，dataloader占了执行过程的很大比重，甚至接近了50%。通过分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上dataloader
 准备数据时只用了单线程来读取，使得程序近乎没有并行操作，导致dataloader占比过大。通过对程序做如下修改，将dataloader的num_workers设置为4，使得能有多个线程并行读取数据。
 ```python
 train_loader = paddle.io.DataLoader(cifar10_train,
@@ -624,27 +627,18 @@ train_loader = paddle.io.DataLoader(cifar10_train,
 </p>
 
 ```text
----------------------------------------------Overview Summary---------------------------------------------
+-----------------------------------------------Model Summary-----------------------------------------------
 Time unit: ms
--------------------------  -------------------------  -------------------------  -------------------------  
-Event Type                 Calls                      CPU Time                   Ratio (%)                  
--------------------------  -------------------------  -------------------------  -------------------------  
-ProfileStep                11                         93.45                      100.00                     
-  Operator                 660                        49.18                      52.62                      
-  OperatorInner            1738                       33.27                      35.60                      
-  Forward                  11                         32.25                      34.51                      
-  CudaRuntime              2915                       22.41                      23.98                      
-  Optimization             11                         17.55                      18.78                      
-  Backward                 11                         15.43                      16.51                      
-  UserDefined              66                         7.06                       7.56                       
-  Dataloader               11                         1.70                       1.82                       
--------------------------  -------------------------  -------------------------  -------------------------  
-                           Calls                      GPU Time                   Ratio (%)                  
--------------------------  -------------------------  -------------------------  -------------------------  
-  Kernel                   1067                       13.00                      13.91                      
-  Memset                   11                         0.02                       0.02                       
-  Memcpy                   55                         0.44                       0.47                       
--------------------------  -------------------------  -------------------------  -------------------------  
+---------------  ------  ----------------------------------------  ----------------------------------------  
+Name             Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)    
+---------------  ------  ----------------------------------------  ----------------------------------------  
+ProfileStep      11      93.45 / 8.50 / 12.00 / 7.78 / 100.00      13.26 / 1.21 / 1.22 / 1.19 / 100.00       
+  Dataloader     11      1.70 / 0.15 / 0.55 / 0.11 / 1.82          0.00 / 0.00 / 0.00 / 0.00 / 0.00          
+  Forward        11      32.25 / 2.93 / 5.56 / 2.52 / 34.51        3.84 / 0.35 / 0.35 / 0.35 / 30.73         
+  Backward       11      15.43 / 1.40 / 2.09 / 1.32 / 16.51        8.27 / 0.75 / 0.76 / 0.74 / 60.58         
+  Optimization   11      17.55 / 1.60 / 1.95 / 1.55 / 18.78        0.66 / 0.06 / 0.06 / 0.06 / 4.84          
+  Others         -       26.52 / - / - / - / 28.38                 0.53 / - / - / - / 3.86                   
+---------------  ------  ----------------------------------------  ----------------------------------------   
 ```
 benchmark工具输出的信息如下所示
 ```text
@@ -656,8 +650,8 @@ Time Unit: s, IPS Unit: steps/s
 |    batch_cost   |     0.00986     |     0.00798     |     0.00786     |
 |       ips       |    101.41524    |    127.25977    |    125.29320    |
 ```
-可以看到，从dataloader中取数据的时间大大减少，变成了平均只占一个step的2%，并且一个step所需要的时间也相应减少了。从benchmark工具给出的信息来看，ips也从平均30增长到了101，程序性能得到了极大的提升。
+可以看到，从dataloader中取数据的时间大大减少，变成了平均只占一个step的1.8%，并且一个step所需要的时间也相应减少了。从benchmark工具给出的信息来看，ips也从平均30增长到了101，程序性能得到了极大的提升。
 通过Profiler工具，您也可以使用RecordEvent对您所想要分析的程序片段进行监控，以此来寻找瓶颈点进行优化。
 
-Note: 目前Paddle的性能分析工具主要还只提供时间方面的分析，之后会提供更多信息的收集来辅助做更全面的分析，如提供显存分析来监控显存泄漏问题。此外，Paddle的可视化工具VisualDL正在对Profiler的数据展示进行开发，敬请期待。
+**Note**: 目前Paddle的性能分析工具主要还只提供时间方面的分析，之后会提供更多信息的收集来辅助做更全面的分析，如提供显存分析来监控显存泄漏问题。此外，Paddle的可视化工具VisualDL正在对Profiler的数据展示进行开发，敬请期待。
 
