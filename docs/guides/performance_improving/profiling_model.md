@@ -4,11 +4,11 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 在这篇文档中，我们将对如何使用paddle profiler做性能分析进行说明，介绍程序所输出的timeline和统计表单，以及使用Profiler输出benchmark相关信息，最后通过一个简单的使用案例来阐述如何利用性能分析工具进行性能调试。
 
 ## 内容
-- [Paddle&nbsp;Profiler使用介绍](###Paddle&nbsp;Profiler使用介绍)
-- [Timeline展示](###Timeline展示)
-- [统计表单展示](###统计表单展示)
-- [Benchmark信息](###Benchmark信息)
-- [使用案例](###使用案例)
+- [Paddle&nbsp;Profiler使用介绍](#Paddle&nbsp;Profiler使用介绍)
+- [Timeline展示](#Timeline展示)
+- [统计表单展示](#统计表单展示)
+- [Benchmark信息](#Benchmark信息)
+- [使用案例](#使用案例)
 
 ### Paddle&nbsp;Profiler使用介绍
 关于paddle.profiler模块的API说明，在API文档的[paddle.profiler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Overview_cn.html)中, 这里主要根据常用使用场景来进行示例说明。
@@ -264,6 +264,8 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
           print("Iter {}: {}".format(i, step_info)) # 打印到第i个batch的信息
   p.stop() # 打印总的benchmark表单
   ```
+  这段代码会只开启Profiler的benchmark统计功能，用于输出模型的吞吐量和执行时间信息，而不开启详细性能数据的采集。如果只需要获得ips(iterations per second)的数据，
+  而不关心各部分的详细性能，可以如上所示设置timer_only=True。
 
 ### Timeline展示
 对于采集的性能数据，通过上述示例代码的方法导出为chrome tracing timeline格式的文件后，可以进行可视化分析。当前，所采用的可视化工具为google chrome浏览器里的tracing插件，可以按照如下方式进行查看
