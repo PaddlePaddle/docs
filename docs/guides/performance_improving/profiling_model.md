@@ -68,7 +68,7 @@ def train(model):
 
 
 ### 2. 定位性能瓶颈点
-上述程序会在profiler_demo文件夹中输出一个json格式的文件，用于展示程序执行过程的timeline，可通过chrome浏览器的chrome://tracing插件打开这个文件进行观察。
+上述程序会收集程序在第3到14次（不包括14）训练迭代过程中的性能数据，并在profiler_demo文件夹中输出一个json格式的文件，用于展示程序执行过程的timeline，可通过chrome浏览器的chrome://tracing插件打开这个文件进行观察。
 <p align="center">
 <img src="https://user-images.githubusercontent.com/22424850/165498308-734b4978-252e-45fc-8376-aaf8eb8a4270.png"   width='80%' hspace='10'/>
 <br />
@@ -151,6 +151,7 @@ Time Unit: s, IPS Unit: steps/s
 
 **Note** 由于Profiler开启的时候，收集性能数据本身也会造成程序性能的开销，因此正常跑程序时请不要开启性能分析器，性能分析器只作为调试程序性能时使用。如果想获得程序正常运行时候的
 benchmark信息（如ips, 每秒的迭代次数），可以将Profiler的timer_only参数设置为True，此时不会进行详尽的性能数据收集，几乎不影响程序正常运行的性能，所获得的benchmark信息也趋于真实。
+此外，benchmark信息计算的数据范围是从调用Profiler的start方法开始，到调用stop方法结束这个过程的数据。而Timeline和性能数据的统计表单的数据范围是所指定的采集区间，如这个例子中的第3到14次迭代，这也是为什么上面Model Summary的Dataloader比例和benchmark信息里的reader ratio比例不同的原因。
 
 ## 功能特性
 
