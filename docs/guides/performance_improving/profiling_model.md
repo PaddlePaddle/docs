@@ -4,13 +4,13 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 在这篇文档中，我们将对如何使用paddle profiler做性能分析进行说明，介绍程序所输出的timeline和统计表单，以及使用Profiler输出benchmark相关信息，最后通过一个简单的使用案例来阐述如何利用性能分析工具进行性能调试。
 
 ## 内容
-- [Paddle&nbsp;Profiler使用介绍](#Paddle&nbsp;Profiler使用介绍)
-- [Timeline展示](#Timeline展示)
-- [统计表单展示](#统计表单展示)
-- [Benchmark信息](#Benchmark信息)
-- [使用案例](#使用案例)
+- [Paddle&nbsp;Profiler使用介绍](###Paddle&nbsp;Profiler使用介绍)
+- [Timeline展示](###Timeline展示)
+- [统计表单展示](###统计表单展示)
+- [Benchmark信息](###Benchmark信息)
+- [使用案例](###使用案例)
 
-### <a name="Paddle&nbsp;Profiler使用介绍">Paddle&nbsp;Profiler使用介绍</a>
+### Paddle&nbsp;Profiler使用介绍
 关于paddle.profiler模块的API说明，在API文档的[paddle.profiler](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Overview_cn.html)中, 这里主要根据常用使用场景来进行示例说明。
 
 1. 将paddle.profiler.Profiler作为Context Manager, 对所包含的代码块进行性能分析
@@ -265,7 +265,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
   p.stop() # 打印总的benchmark表单
   ```
 
-### <a name="Timeline展示">Timeline展示</a>
+### Timeline展示
 对于采集的性能数据，通过上述示例代码的方法导出为chrome tracing timeline格式的文件后，可以进行可视化分析。当前，所采用的可视化工具为google chrome浏览器里的tracing插件，可以按照如下方式进行查看
   <p align="center">
   <img src="https://user-images.githubusercontent.com/22424850/161976125-27838228-d1c2-48ec-a96b-03d8f1bdad65.gif"   width='80%' hspace='10'/>
@@ -280,7 +280,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 
 
 
-### <a name="统计表单展示">统计表单展示</a>
+### 统计表单展示
 统计表单负责对采集到的数据(Event)从多个不同的角度进行解读，也可以理解为对timeline进行一些量化的指标计算。
 目前提供的Device Summary、Overview Summary、Model Summary、Distributed Summary、Operator Summary、Kernel Summary、Memory Manipulation Summary和UserDefined Summary的统计，
 每个统计表单从不同的角度根据需要取出对应类型的性能数据进行统计计算。每种表单的统计内容简要叙述如下：
@@ -506,7 +506,7 @@ Paddle profiler模块是paddle框架自带的低开销性能分析器，用于�
 
   UserDefined Summary用于展示用户自定义记录的Event所花费的时间。
 
-### <a name="Benchmark信息">Benchmark信息</a>
+### Benchmark信息
 benckmark信息用于展示模型的吞吐量以及时间开销。
 ```text
 ============================================Perf Summary============================================
@@ -519,7 +519,7 @@ Time Unit: s, IPS Unit: steps/s
 ```
 其中ReaderRatio表示数据读取占一个batch迭代过程的时间占比，reader_cost代表数据读取时间，batch_cost代表一个batch的时间，ips表示每秒能迭代多少次，即跑多少个batch。
 
-### <a name="使用案例">使用案例</a>
+### 使用案例
 
 我们以一个比较简单的示例，来看性能分析工具是如何在调试程序性能中发挥作用。下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/convnet_image_classification.html)的示例代码，我们加上了性能分析的代码
 ```python
