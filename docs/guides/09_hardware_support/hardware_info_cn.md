@@ -6,12 +6,12 @@
 
 |  分类  | 架构 | 公司 | 型号 | 安装 | 源码编译 |  完全支持训练 | 支持部分模型 |
 |  ----  | ----  | ---- | ---- |---- | ---- |---- | ---- |
-| 服务端CPU | x86 | Intel | 常见CPU型号如Xeon、Core全系列 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/linux-compile.html) | ✔️ |  |
-| 服务端GPU |  | NVIDIA | 常见GPU型号如V100、T4等| [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/linux-compile.html) | ✔️ |  |
-| AI加速芯片 | 达芬奇 | 华为 | 昇腾910 | 即将提供 | | | |
-| AI加速芯片 |  | 海光 | 海光DCU | [安装](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_install_cn.html) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_install_cn.html) | ✔️ | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/rocm_docs/paddle_rocm_cn.html) |
-| AI加速芯片 | XPU | 百度 | 昆仑K200、R200等 | [安装](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_install_cn.html#wheel) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_install_cn.html#id2) |  | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/xpu_docs/paddle_2.0_xpu_cn.html) |
-| AI加速芯片 | IPU | Graphcore | GC200 | | [源码编译](/documentation/docs/guides/09_hardware_support/ipu_docs/index_cn.html) |  | |
+| 服务端CPU | x86 | Intel | 常见CPU型号如Xeon、Core全系列 | [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) | ✔️ |  |
+| 服务端GPU |  | NVIDIA | 常见GPU型号如V100、T4等| [安装](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html) | [源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/compile/linux-compile.html) | ✔️ |  |
+| AI加速芯片 | 达芬奇 | 华为 | 昇腾910 | [安装](./npu_docs/paddle_install_cn.html) | [源码编译](./npu_docs/paddle_install_cn.html#anzhuangfangshi-tongguoyuanmabianyianzhuang) | | ✔️ |
+| AI加速芯片 |  | 海光 | 海光DCU | [安装](./rocm_docs/paddle_install_cn.html#wheel) | [源码编译](./rocm_docs/paddle_install_cn.html#anzhuangfangshier-tongguoyuanmabianyianzhuang) | ✔️ | [支持模型](./rocm_docs/paddle_rocm_cn.html) |
+| AI加速芯片 | XPU | 百度 | 昆仑K200、R200等 | [安装](./xpu_docs/paddle_install_xpu2_cn.html#wheel) | [源码编译](./xpu_docs/paddle_install_xpu2_cn.html#xpu) |  | [支持模型](./xpu_docs/paddle_2.0_xpu2_cn.html) |
+| AI加速芯片 | IPU | Graphcore | GC200 | | [源码编译](./ipu_docs/paddle_install_cn.html) |  | |
 
 ## Paddle Inference
 
@@ -21,12 +21,12 @@
 | 服务端GPU |  | NVIDIA | 常见GPU型号如V100、T4等 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | 移动端GPU |  | NVIDIA | Jetson系列 | [预编译库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html) | [源码编译](https://paddleinference.paddlepaddle.org.cn/user_guides/source_compile.html) | ✔️ |   |
 | AI加速芯片 | 达芬奇 | 华为 | 昇腾910 | 即将提供 | | | |
-| AI加速芯片 |  | 海光 | 海光DCU | [预编译库](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_hardware_support/rocm_docs/paddle_install_cn.html) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_hardware_support/rocm_docs/paddle_install_cn.html) | ✔️ | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_hardware_support/rocm_docs/paddle_rocm_cn.html) |
-| AI加速芯片 | XPU | 百度 | 昆仑K200、R200等 | [预编译库](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/09_hardware_support/xpu_docs/inference_install_example_cn.html#wheel) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/09_hardware_support/xpu_docs/paddle_install_cn.html#id2) |  | [支持模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/09_hardware_support/xpu_docs/paddle_2.0_xpu_cn.html#xunlianzhichi) |
-| 服务端CPU | ARM | 飞腾 | FT-2000+/64、S2500 |  |[源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/install/compile/arm-compile.html#anchor-1) |  | [支持模型](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/arm-compile.html#anchor-6) |
-| 服务端CPU | ARM | 华为 | 鲲鹏 920 2426SK |  |[源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/arm-compile.html#anchor-1) |  | [支持模型](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/arm-compile.html#anchor-6) |
-| 服务端CPU | MIPS | 龙芯 | 龙芯3A4000、3A5000、3C5000L |  |[源码编译](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/mips-compile.html#anchor-1) |  | [支持模型](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/mips-compile.html#anchor-6) |
-| 服务端CPU | x86 | 兆芯 | 全系列CPU |  |[源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/install/compile/zhaoxin-compile.html#anchor-1) |  | [支持模型](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/2.0/install/compile/zhaoxin-compile.html#anchor-6) |
+| AI加速芯片 |  | 海光 | 海光DCU | [预编译库](./rocm_docs/paddle_install_cn.html) | [源码编译](./rocm_docs/paddle_install_cn.html) | ✔️ | [支持模型](./rocm_docs/paddle_rocm_cn.html) |
+| AI加速芯片 | XPU | 百度 | 昆仑K200、R200等 | [预编译库](./xpu_docs/inference_install_example_cn.html#wheel) | [源码编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/09_hardware_support/xpu_docs/paddle_install_cn.html#id2) |  | [支持模型](./xpu_docs/paddle_2.0_xpu_cn.html#xunlianzhichi) |
+| 服务端CPU | ARM | 飞腾 | FT-2000+/64、S2500 |  |[源码编译](../../install/compile/arm-compile.html#anchor-1) |  |  |
+| 服务端CPU | ARM | 华为 | 鲲鹏 920 2426SK |  |[源码编译](../../install/compile/arm-compile.html) |  |   |
+| 服务端CPU | MIPS | 龙芯 | 龙芯3A4000、3A5000、3C5000L |  |[源码编译](../../install/compile/mips-compile.html#anchor-0) |  |  |
+| 服务端CPU | x86 | 兆芯 | 全系列CPU |  |[源码编译](../../install/compile/zhaoxin-compile.html#anchor-1) |  |  |
 
 ## Paddle Lite
 
