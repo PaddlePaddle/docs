@@ -1,0 +1,65 @@
+.. _cn_api_vision_transforms_RandomAffine:
+
+RandomAffine
+-------------------------------
+
+.. py:class:: paddle.vision.transforms.RandomAffine(degrees, translate=None, scale=None, shear=None, interpolation='nearest', fill=0, center=None, keys=None)
+
+依据degrees等参数，随机产生一个仿射变换矩阵参数，对图像进行仿射变换。
+
+参数
+:::::::::
+
+    - degrees (sequence|float|int) - 随机旋转变换的角度大小。
+        如果是number类型，则随机区间为(-degrees, +degrees)，如果是像(min, max)的sequence类型，则随机区间为[min, max]，如果是0则不执行旋转。
+    - translate (sequence|float|int, optional) - 随机平移变化的位移大小。
+        给定(a, b)，则水平位移量dx在 (-img_width * a, img_width * a) 范围中随机采样，垂直位移量dy在 (-img_height * b < dy < img_height * b) 范围中随机采样；
+        默认不会进行平移变换。
+    - scale (sequence|float|int, optional) - 随机伸缩变换的比例大小。
+        scale必须是tuple类型，给定(a, b)，随机在[a, b]区间选择一个伸缩比例系数，默认不会进行伸缩变换。
+    - shear (sequence|float|int, optional) - 随机剪切角度的大小。
+        如果shear是number类型，则与x轴平行方向范围(-shear, +shear)内进行剪切；
+        如果shear是2个值的sequence类型，则与x轴平行方向范围 (shear[0]，shear[1]) 内进行剪切；
+        如果shear为4个值的sequence类型，则与x轴平行方向范围 (shear[2]，shear[1]) 内进行剪切，与y轴平行方向范围(shear[2]，shear[3]) 内进行剪切；
+        默认不会进行剪切；
+    - interpolation (str, optional): 插值的方法。
+        如果这个参数没有设定或者输入图像为单通道，则该参数会根据使用的后端，被设置为 ``PIL.Image.NEAREST`` 或者 ``cv2.INTER_NEAREST``。
+        当使用 ``pil`` 作为后端时, 支持的插值方法如下:
+            - "nearest": Image.NEAREST,
+            - "bilinear": Image.BILINEAR,
+            - "bicubic": Image.BICUBIC
+        当使用 ``cv2`` 作为后端时, 支持的插值方法如下:
+            - "nearest": cv2.INTER_NEAREST,
+            - "bilinear": cv2.INTER_LINEAR,
+            - "bicubic": cv2.INTER_CUBIC
+    - fill (int，可选) - 对图像扩展时填充的值。默认值：0。
+    - center (2-tuple，可选) - 旋转的中心点坐标，原点是图片左上角，默认值是图像的中心点。
+    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值: None。
+    
+形状
+:::::::::
+
+    - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
+    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回仿射变换后的图像数据。
+
+返回
+:::::::::
+
+    计算 ``RandomAffine`` 的可调用对象。
+
+代码示例
+:::::::::
+    
+.. code-block:: python
+    
+    import numpy as np
+    from PIL import Image
+    from paddle.vision.transforms import RandomAffine
+
+    transform = RandomAffine([-90, 90], translate=[0.2, 0.2], scale=[0.5, 0.5], shear=[-10, 10])
+
+    fake_img = Image.fromarray((np.random.rand(200, 150, 3) * 255.).astype(np.uint8))
+
+    fake_img = transform(fake_img)
+    print(fake_img.size)
+    
