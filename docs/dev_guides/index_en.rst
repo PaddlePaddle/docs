@@ -16,3 +16,4 @@ Similarly, if you feel that this document is missing, or that the description is
     local_dev_guide_en.md
     submit_pr_guide_en.md
     code_review_en.md
+    custom_device_docs/index_en.rst
