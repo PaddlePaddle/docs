@@ -1,23 +1,21 @@
 # 模型性能分析
 Paddle Profiler是Paddle框架自带的低开销性能分析器，可以对模型运行过程的性能数据进行收集、统计和展示。性能分析器提供的数据可以帮助定位模型的瓶颈，识别造成程序运行时间过长或者GPU利用率低的原因，从而寻求优化方案来获得性能的提升。
 
-在这篇文档中，主要介绍如何使用Profiler工具来调试程序性能，以及阐述当前提供的所有功能特性。
-
-## 内容
+在这篇文档中，主要介绍如何使用Profiler工具来调试程序性能，以及阐述当前提供的所有功能特性。主要内容如下：
 
 - [使用Profiler工具调试程序性能](#profiler)
 - [功能特性](#gongnengtexing)
 - [更多细节](#gengduoxijie)
 
 
-## 使用Profiler工具调试程序性能
+## 一、使用Profiler工具调试程序性能
 在模型性能分析中，通常采用如下四个步骤：
 - 获取模型正常运行时的ips(iterations per second， 每秒的迭代次数)，给出baseline数据。
 - 开启性能分析器，定位性能瓶颈点。
 - 优化程序，检查优化效果。
-- 获取优化后模型正常运行时的ips，和baseline比较，确定真实的提升幅度。
+- 获取优化后模型正常运行时的ips，和baseline比较，计算真实的提升幅度。
 
-我们以一个比较简单的示例，来看性能分析工具是如何通过上述四个步骤在调试程序性能中发挥作用。下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](../../practices/cv/convnet_image_classification.html)的示例代码，我们加上了启动性能分析的代码。
+下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](../../practices/cv/convnet_image_classification.html)的示例代码，里面加上了启动性能分析的代码。通过这个比较简单的示例，来看性能分析工具是如何通过上述四个步骤在调试程序性能中发挥作用。
 
 ```python
 def train(model):
@@ -137,7 +135,7 @@ ProfileStep      11      294.53 / 26.78 / 35.28 / 24.56 / 100.00   13.22 / 1.20 
 
 ### 3. 优化程序，检查优化效果
 
-识别到了问题产生的原因，我们对程序继续做如下修改，将dataloader的num_workers设置为4，使得能有多个进程并行读取数据。
+识别到了问题产生的原因，对程序继续做如下修改，将dataloader的num_workers设置为4，使得能有多个进程并行读取数据。
 ```python
 train_loader = paddle.io.DataLoader(cifar10_train,
                                     shuffle=True,
@@ -186,7 +184,7 @@ benchmark信息（如ips），可以像示例一样将Profiler的timer_only参�
 此外，benchmark信息计算的数据范围是从调用Profiler的start方法开始，到调用stop方法结束这个过程的数据。而Timeline和性能数据的统计表单的数据范围是所指定的采集区间，如这个例子中的第3到14次迭代，这会导致开启性能分析器时统计表单和benchmark信息输出的值不同（如统计到的Dataloader的时间占比）。此外，当benchmark统计的范围和性能分析器统计的范围不同时，
 由于benchmark统计的是平均时间，如果benchmark统计的范围覆盖了性能分析器开启的范围，也覆盖了关闭性能调试时的正常执行的范围，此时benchmark的值没有意义，因此**开启性能分析器时请以性能分析器输出的统计表单为参考**，这也是为何上面示例里在开启性能分析器时没贴benchmark信息的原因。
 
-## 功能特性
+## 二、功能特性
 
 当前Profiler提供Timeline、统计表单、benchmark信息共三个方面的展示功能。
 
@@ -272,7 +270,7 @@ benchmark信息（如ips），可以像示例一样将Profiler的timer_only参�
 
   ----------------------------------------------------------------------------------------------------------
   ```
-  Overview Summary用于展示每种类型的Event一共分别消耗了多少时间，对于多线程或多stream下，如果同一类型的Event有重叠的时间段，我们采取取并集操作，不对重叠的时间进行重复计算。
+  Overview Summary用于展示每种类型的Event一共分别消耗了多少时间，对于多线程或多stream下，如果同一类型的Event有重叠的时间段，采取取并集操作，不对重叠的时间进行重复计算。
 
 
 - Model Summary
@@ -444,6 +442,6 @@ Time Unit: s, IPS Unit: steps/s
 其中ReaderRatio表示数据读取部分占batch迭代过程的时间占比，reader_cost代表数据读取时间，batch_cost代表batch迭代的时间，ips表示每秒能迭代多少次，即跑多少个batch。
 
 
-## 更多细节
+## 三、更多细节
 
 关于paddle.profiler模块更详细的使用说明，可以参考[API文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/profiler/Overview_cn.html)。目前Paddle的性能分析工具主要还只提供时间方面的分析，之后会提供更多信息的收集来辅助做更全面的分析，如提供显存分析来监控显存泄漏问题。此外，Paddle的可视化工具VisualDL正在对Profiler的数据展示进行开发，敬请期待。
