@@ -5,7 +5,7 @@ sum
 
 .. py:function:: paddle.sum(x, axis=None, dtype=None, keepdim=False, name=None)
 
-该OP是对指定维度上的Tensor元素进行求和运算，并输出相应的计算结果。
+对指定维度上的Tensor元素进行求和运算，并输出相应的计算结果。
 
 参数
 ::::::::::::

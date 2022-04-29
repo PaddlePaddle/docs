@@ -206,7 +206,7 @@
     ```
 
 - 在用于API命名时，以下建议使用全称，不推荐使用缩写
-
+    
     | 不规范命名 |   规范命名    |
     | :-------- | :----------- |
     |    div     |    divide     |
@@ -238,7 +238,7 @@
     ```
 
 - 常见的数学计算API中的逐元素操作不需要加上elementwise前缀，按照某一轴操作不需要加上reduce前缀，一些例子如下
-
+    
     |  paddle2.0之前  | pytorch |  numpy   | tensorflow  |   paddle2.0之后   |
     | :------------- | :----- | :------ | :--------- | :--------------- |
     | elementwise_add |   add   |   add    |     add     |        add        |
@@ -254,7 +254,7 @@
     |   reduce_all    |   all   |   all    | reduce_all  |        all        |
     |   reduce_any    |   any   |   any    | reduce_any  |        any        |
     |   reduce_mean   |  mean   |   mean   | reduce_mean |       mean        |
-    
+
     
     
 - 整数取模和取余

@@ -6,9 +6,9 @@ equal_all
 .. py:function:: paddle.equal_all(x, y, name=None)
 
 
-该OP返回：返回的结果只有一个元素值，如果所有相同位置的元素相同返回True，否则返回False。
+通过比较输入x和y的元素值，返回一个bool类型的数值。如果所有相同位置的元素相同返回True，否则返回False。
 
-**注：该OP输出的结果不返回梯度。**
+**注：输出的结果不返回梯度。**
 
 
 参数
