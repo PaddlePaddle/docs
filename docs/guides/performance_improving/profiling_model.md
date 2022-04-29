@@ -4,8 +4,8 @@ Paddle Profiler是Paddle框架自带的低开销性能分析器，可以对模�
 在这篇文档中，主要介绍如何使用Profiler工具来调试程序性能，以及阐述当前提供的所有功能特性。主要内容如下：
 
 - [使用Profiler工具调试程序性能](#profiler)
-- [功能特性](#gongnengtexing)
-- [更多细节](#gengduoxijie)
+- [功能特性](#ergongnengtexing)
+- [更多细节](#sangengduoxijie)
 
 
 ## 一、使用Profiler工具调试程序性能
