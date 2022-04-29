@@ -1,7 +1,7 @@
 # 模型性能分析
-Paddle Profiler是Paddle框架自带的低开销性能分析器，可以对模型运行过程的性能数据进行收集、统计和展示。性能分析器提供的数据可以帮助我们定位模型的瓶颈，识别造成程序运行时间过长或者GPU利用率低的原因，从而寻求优化方案来获得性能的提升。
+Paddle Profiler是Paddle框架自带的低开销性能分析器，可以对模型运行过程的性能数据进行收集、统计和展示。性能分析器提供的数据可以帮助定位模型的瓶颈，识别造成程序运行时间过长或者GPU利用率低的原因，从而寻求优化方案来获得性能的提升。
 
-在这篇文档中，我们主要介绍如何使用Profiler工具来调试程序性能，以及阐述当前提供的所有功能特性。
+在这篇文档中，主要介绍如何使用Profiler工具来调试程序性能，以及阐述当前提供的所有功能特性。
 
 ## 内容
 
@@ -12,12 +12,12 @@ Paddle Profiler是Paddle框架自带的低开销性能分析器，可以对模�
 
 ## 使用Profiler工具调试程序性能
 在模型性能分析中，通常采用如下四个步骤：
-- 获取模型正常运行时的ips(iterations per second, 每秒的迭代次数)，给出baseline数据。
+- 获取模型正常运行时的ips(iterations per second， 每秒的迭代次数)，给出baseline数据。
 - 开启性能分析器，定位性能瓶颈点。
 - 优化程序，检查优化效果。
 - 获取优化后模型正常运行时的ips，和baseline比较，确定真实的提升幅度。
 
-我们以一个比较简单的示例，来看性能分析工具是如何通过上述四个步骤在调试程序性能中发挥作用。下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/convnet_image_classification.html)的示例代码，我们加上了启动性能分析的代码。
+我们以一个比较简单的示例，来看性能分析工具是如何通过上述四个步骤在调试程序性能中发挥作用。下面是Paddle的应用实践教学中关于[使用神经网络对cifar10进行分类](../../practices/cv/convnet_image_classification.html)的示例代码，我们加上了启动性能分析的代码。
 
 ```python
 def train(model):
@@ -35,12 +35,15 @@ def train(model):
     valid_loader = paddle.io.DataLoader(cifar10_test, batch_size=batch_size)
 
     # 创建性能分析器相关的代码
-    def my_on_trace_ready(prof):
-      callback = profiler.export_chrome_tracing('./profiler_demo')
-      callback(prof)
-      prof.summary(sorted_by=profiler.SortedKeys.GPUTotal)
-    p = profiler.Profiler(scheduler = [3,14], on_trace_ready=my_on_trace_ready, timer_only=True)
-    p.start()
+    def my_on_trace_ready(prof): # 定义回调函数，性能分析器结束采集数据时会被调用
+      callback = profiler.export_chrome_tracing('./profiler_demo') # 创建导出性能数据到profiler_demo文件夹的回调函数
+      callback(prof)  # 执行该导出函数
+      prof.summary(sorted_by=profiler.SortedKeys.GPUTotal) # 打印表单，按GPUTotal排序表单项
+
+    p = profiler.Profiler(scheduler = [3,14], on_trace_ready=my_on_trace_ready, timer_only=True) # 初始化Profiler对象
+
+    p.start() # 性能分析器进入第0个step
+
     for epoch in range(epoch_num):
         for batch_id, data in enumerate(train_loader()):
             x_data = data[0]
@@ -55,9 +58,10 @@ def train(model):
             loss.backward()
             opt.step()
             opt.clear_grad()
-            p.step()
+
+            p.step() # 指示性能分析器进入下一个step
             if batch_id == 19:
-              p.stop()
+              p.stop() # 关闭性能分析器
               exit() # 做性能分析时，可以将程序提前退出
 
         # evaluate model after one epoch
@@ -95,17 +99,17 @@ Time Unit: s, IPS Unit: steps/s
 |    batch_cost   |     0.02555     |     0.02381     |     0.02220     |
 |       ips       |     39.13907    |     45.03588    |     41.99930    |
 ```
-可以看到，此时的ips为39.1，可将这个值作为优化对比的baseline。
+其中ReaderRatio表示数据读取部分占训练batch迭代过程的时间占比，reader_cost代表数据读取时间，batch_cost代表batch迭代的时间，ips表示每秒能迭代多少次，即跑多少个batch。可以看到，此时的ips为39.1，可将这个值作为优化对比的baseline。
 
 
 ### 2. 开启性能分析器，定位性能瓶颈点
 
-修改程序，将Profiler的timer_only参数设置为False, 此时代表不只开启benchmark功能，还将开启性能分析器，进行详细的性能分析。
+修改程序，将Profiler的timer_only参数设置为False， 此时代表不只开启benchmark功能，还将开启性能分析器，进行详细的性能分析。
 ```python
 p = profiler.Profiler(scheduler = [3,14], on_trace_ready=my_on_trace_ready, timer_only=False)
 ```
 
-性能分析器会收集程序在第3到14次（不包括14）训练迭代过程中的性能数据，并在profiler_demo文件夹中输出一个json格式的文件，用于展示程序执行过程的timeline，可通过chrome浏览器的[chrome://tracing](chrome://tracing)插件打开这个文件进行观察。
+性能分析器会收集程序在第3到14次（不包括14）训练迭代过程中的性能数据，并在profiler_demo文件夹中输出一个json格式的文件，用于展示程序执行过程的timeline，可通过chrome浏览器的[chrome://tracing](chrome://tracing)插件打开这个文件进行查看。
 <p align="center">
 <img src="https://user-images.githubusercontent.com/22424850/165498308-734b4978-252e-45fc-8376-aaf8eb8a4270.png"   width='80%' hspace='10'/>
 <br />
@@ -127,9 +131,9 @@ ProfileStep      11      294.53 / 26.78 / 35.28 / 24.56 / 100.00   13.22 / 1.20 
   Others         -       45.66 / - / - / - / 15.50                 0.53 / - / - / - / 3.96  
 ---------------  ------  ----------------------------------------  ----------------------------------------  
 ```
-
-通过timeline可以看到，dataloader占了执行过程的很大比重，Model Summary显示其甚至接近了50%。分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上dataloader
-准备数据时只用了单进程来读取，使得程序读取数据时和执行计算时没有并行操作，导致dataloader占比过大。
+其中ProfileStep表示训练batch的迭代step过程，对应代码中每两次调用`p.step()`的间隔时间；Dataloader表示数据读取的时间，即`for batch_id, data in enumerate(train_loader())`的执行时间；Forward表示模型前向的时间，即`logits = model(x_data)`的执行时间，Backward表示反向传播的时间，即`loss.backward()`的执行时间；Optimization表示优化器的时间，即`opt.step()`的执行时间。
+通过timeline可以看到，Dataloader占了执行过程的很大比重，Model Summary显示其甚至接近了50%。分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上dataloader
+准备数据时只用了单进程来读取，使得程序读取数据时和执行计算时没有并行操作，导致Dataloader占比过大。
 
 ### 3. 优化程序，检查优化效果
 
@@ -161,7 +165,7 @@ ProfileStep      11      90.94 / 8.27 / 11.82 / 7.85 / 100.00      13.27 / 1.21 
   Others         -       26.79 / - / - / - / 29.46                 0.52 / - / - / - / 3.80  
 ---------------  ------  ----------------------------------------  ----------------------------------------  
 ```
-可以看到，从dataloader中取数据的时间大大减少，变成了平均只占一个step的2%，并且平均一个step所需要的时间也相应减少了。
+可以看到，从Dataloader中取数据的时间大大减少，变成了平均只占一个step的2%，并且平均一个step所需要的时间也相应减少了。
 
 ### 4. 获取优化后模型正常运行的ips，确定真实提升幅度
 重新将timer_only设置的值为True，获取优化后模型正常运行时的benchmark信息
@@ -196,7 +200,7 @@ benchmark信息（如ips），可以像示例一样将Profiler的timer_only参�
 目前Timeline提供以下特性：
 
 1. 查看CPU和GPU在不同线程或stream下的事件发生的时间线。将同一线程下所记录的数据分为Python层和C++层，以便根据需要进行折叠和展开。对于有名字的线程，标注线程名字。
-2. 所展示的事件名字上标注事件所持续的时间，点击具体的事件，可在下方的说明栏中看到更详细的事件信息。通过按键'w', 's'可进行放大和缩小，通过'a','d'可进行左移和右移。
+2. 所展示的事件名字上标注事件所持续的时间，点击具体的事件，可在下方的说明栏中看到更详细的事件信息。通过按键'w'、's'可进行放大和缩小，通过'a'、'd'可进行左移和右移。
 3. 对于GPU上的事件，可以通过点击下方的'launch'链接查看所发起它的CPU上的事件。
 
 
@@ -309,7 +313,7 @@ benchmark信息（如ips），可以像示例一样将Profiler的timer_only参�
 
   Communication: 所有和通信有关活动的时间，包括和分布式相关的算子(op)以及gpu上的kernel的时间等。
 
-  Computation: 即是所有kernel在GPU上的执行时间, 但是去除了和通信相关的kernel的时间。
+  Computation: 即是所有kernel在GPU上的执行时间，但是去除了和通信相关的kernel的时间。
 
   Overlap: Communication和Computation的重叠时间
 
