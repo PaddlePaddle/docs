@@ -6,7 +6,7 @@ trace
 .. py:function:: paddle.trace(x, offset=0, axis1=0, axis2=1, name=None)
 
 
-该 OP 计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果。
+计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果。
 
 如果输入是 2D Tensor，则返回对角线元素之和。 
 
@@ -24,7 +24,7 @@ trace
     - **offset** （int ，可选）- 从指定的二维平面中获取对角线的位置，默认值为 0，既主对角线。
     - **axis1** （int ， 可选）- 获取对角线的二维平面的第一维，默认值为 0。
     - **axis2** （int ， 可选）- 获取对角线的二维平面的第二维，默认值为 1。
-    - **name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选)- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::
