@@ -6,12 +6,10 @@ We very much welcome you to participate in the construction of the paddle. The f
 
 Similarly, if you feel that this document is missing, or that the description is unclear, we also welcome you to contribute to this series of documents.
 
-- `Overview <./Overview_en.html>`_ : Contribution guidelines overview.
 - `custom_device_docs <./custom_device_docs/index_en.html>`_ : Contribution guidelines overview.
 
 
 ..  toctree::
     :hidden:
 
-    Overview_en.md
     custom_device_docs/index_en.rst
