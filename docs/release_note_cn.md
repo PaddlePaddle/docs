@@ -33,8 +33,6 @@
 
 ### 编译安装
 
-- 飞桨在 PIP 源上发布的默认安装包 CUDA 架构调整为11.2，如需安装其他 CUDA 版本的 PaddlePaddle，请移步[飞桨官网-安装](https://www.paddlepaddle.org.cn/install/quick)﻿进行下载安装。
-
 - 从 2.3.0-rc0 版本开始，飞桨对框架支持的 GPU 架构种类进行了调整和升级。
 
 ### 推理部署
@@ -51,7 +49,7 @@
 
 ### 框架架构
 
-- 这个版本中，我们在框架的执行器也做了大量工作，详情请见：[新动态图执行机制](https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/7UhIeLfrn3/0rDW-MD4RXSfkx#anchor-088a55e0-b962-11ec-a8b3-f52dfa102ded) 与 [全新静态图执行器](https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/7UhIeLfrn3/0rDW-MD4RXSfkx#anchor-e81120c0-c233-11ec-a2f2-c9306d79e3c2)。
+- 这个版本中，我们在框架的执行器也做了大量工作，详情请见：[新动态图执行机制](#%E6%96%B0%E5%8A%A8%E6%80%81%E5%9B%BE%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6) 与 [全新静态图执行器](#%E5%85%A8%E6%96%B0%E9%9D%99%E6%80%81%E5%9B%BE%E6%89%A7%E8%A1%8C%E5%99%A8)。
 
 ## 2. 不兼容升级
 
@@ -2064,10 +2062,6 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 ## 5. 环境适配
 
 ### 编译安装
-
-- 飞桨在 PIP 源上发布的安装包 CUDA 架构调整为11.0，如需安装其他 CUDA 版本的 paddle，请到 [飞桨官网](https://www.paddlepaddle.org.cn/install/quick) 进行下载。
-
-- 飞桨2.3.0-rc0 PIP 源发布的 CUDA11.0的安装包新增了对 Ampere 架构的支持。GPU 架构为8.0或8.6的用户可以直接通过 `pip install paddlepaddle-gpu`的方式进行升级。
 
 - 从2.3.0-rc0版本开始，飞桨对框架支持的 GPU 架构种类进行了调整和升级。(更多请参考: [飞桨支持的 GPU 架构](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.3rc/install/Tables.html#gpu))
 
