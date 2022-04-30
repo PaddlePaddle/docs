@@ -53,133 +53,114 @@
 
 - 这个版本中，我们在框架的执行器也做了大量工作，详情请见：[新动态图执行机制](https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/7UhIeLfrn3/0rDW-MD4RXSfkx#anchor-088a55e0-b962-11ec-a8b3-f52dfa102ded) 与 [全新静态图执行器](https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/7UhIeLfrn3/0rDW-MD4RXSfkx#anchor-e81120c0-c233-11ec-a2f2-c9306d79e3c2)。
 
-### 其他备注（发布时要删除）
-
-> 我这面好像rc没有特别重要的了，性能自动优化得正式版才能发，编译器的部分更是不跟版本走，只到develop了。 by 蓝翔
-> 
-> 高阶自动微分的功能是否统一由一位高T来写？
-> 
-> 里面的术语需要统一起来，并且用标准的用法。例如：有的地方用float16，有的地方用FP16；用的地方用TensorRT，有的地方用tensorrt。
-> 
-> 术语统一（注意大小写与特殊标注）：
-> 
-> Pure FP16、FP32、bfloat16、Tensor、TensorRT、CUDA、cuDNN、GPU、CPU、op(op名称不需要加 )、API(API名称与参数需要加 `paddle.*`，如`NHCW`、`axis`)、 Kernel、seed、pass、inplace、PaddlePaddle/飞桨、shape、MKLDNN、python、conv、cache、dropout、ERNIE、Windows、Mac、Linux（更多统一标准待补充...）
-> 
-> 中英文之间加空格，句尾加句号；标点符号不要中英文混用，尤其注意中英文的逗号。
-
 ## 2. 不兼容升级
 
 - `paddle.to_tensor` 将一个 python int scalar 转换为 Tensor 时，在 Windows 上的默认数据类型由 int32 变为 int64，从而与 Linux/Mac 保持对齐。([#39662](https://github.com/PaddlePaddle/Paddle/pull/39662)) 
 
 - 为了与 python3 下的除法行为保持一致，除法符号 `/` 从 rounding divide 变成 true divide，计算输出结果的数据类型从 int 切换成 float。 ([#40890](https://github.com/PaddlePaddle/Paddle/pull/40890)) 
 
-### Paddle 2.2 version
+<table>
+<tr>
+<th>
+2.2
+</th>
+<th>
+2.3.0-rc0
+</th>
+</tr>
 
-import paddle
+<tr>
+<td>
+<pre>
 
-a = paddle.to_tensor([327])
-
-b = paddle.to_tensor([80])
-
-a / b
-
-'''
-
+```python
+>>> import paddle
+>>> a = paddle.to_tensor([327])
+>>> b = paddle.to_tensor([80])
+>>> a / b
 Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+      [4])
+```
+</pre>
+</td>
+<td>
+<pre>
 
- [4])
-
-'''
-
-### Paddle 2.3.0-rc0 version
-
-import paddle
-
-a = paddle.to_tensor([327])
-
-b = paddle.to_tensor([80])
-
-a / b
-
-'''
-
+```python
+>>> import paddle
+>>> a = paddle.to_tensor([327])
+>>> b = paddle.to_tensor([80])
+>>> a / b
 Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=True,
-
- [4.08750010])
-
-'''
+      [4.08750010])
+```
+</pre>
+</td>
+</tr>
+</table>
 
 - 修正 ELU 的公式，alpha < 0 时的计算方式与原论文对齐，从而修复小部分情况下的计算结果错误。同时，由于在 alpha < 0 无法在数学上仅从输出计算反向梯度，因此 elu_ 在 alpha < 0 时将报错。([#37316](https://github.com/PaddlePaddle/Paddle/pull/37316))
 
-### Paddle 2.2 version
+<table>
+<tr>
+<th>
+2.2
+</th>
+<th>
+2.3.0-rc0
+</th>
+</tr>
 
+<tr>
+<td>
+<pre>
+
+```python
 # elu(x) = max(0, x) + min(0, α ∗ (e^x − 1))
-
-> > > import paddle
-
-> > > x = paddle.to_tensor([-1. ,6.])
-
-> > > m = paddle.nn.ELU(-0.2)
-
-> > > out = m(x)
-
-> > > out
-
+>>> import paddle
+>>> x = paddle.to_tensor([-1. ,6.])
+>>> m = paddle.nn.ELU(-0.2)
+>>> out = m(x)
+>>> out
 Tensor(shape=[2], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-
- [ 0.         , -74.48576355])
-
-> > > out = paddle.nn.functional.elu_(x, alpha=-0.2, name=None)
-
-> > > out
-
+       [ 0.         , -74.48576355])
+>>> out = paddle.nn.functional.elu_(x, alpha=-0.2, name=None)
+>>> out
 Tensor(shape=[2], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+       [ 0.         , -74.48576355])
+```
+</pre>
+</td>
+<td>
+<pre>
 
- [ 0.         , -74.48576355])
-
-### Paddle 2.3.0-rc0 version
-
+```python
 # elu(x) = x, if x > 0
-
 # elu(x) = α ∗ (e^x − 1), if x <= 0
-
-> > > import paddle
-
-> > > x = paddle.to_tensor([-1. ,6.])
-
-> > > m = paddle.nn.ELU(-0.2)
-
-> > > out = m(x)
-
-> > > out
-
+>>> import paddle
+>>> x = paddle.to_tensor([-1. ,6.])
+>>> m = paddle.nn.ELU(-0.2)
+>>> out = m(x)
+>>> out
 Tensor(shape=[2], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-
- [0.12642412,  6.        ])
-
-> > > out = paddle.nn.functional.elu_(x, alpha=-0.2, name=None)
-
+       [0.12642412,  6.        ])
+>>> out = paddle.nn.functional.elu_(x, alpha=-0.2, name=None)
 Traceback (most recent call last):
-
- File "<stdin>", line 1, in <module>
-
- File "/usr/local/lib/python3.7/dist-packages/decorator.py", line 232, in fun
-
- return caller(func, *(extras + args), **kw)
-
- File "/usr/local/lib/python3.7/dist-packages/paddle/fluid/wrapped_decorator.py", line 25, in __impl__
-
- return wrapped_func(*args, **kwargs)
-
- File "/usr/local/lib/python3.7/dist-packages/paddle/fluid/dygraph/inplace_utils.py", line 34, in __impl__
-
- return func(*args, **kwargs)
-
- File "/usr/local/lib/python3.7/dist-packages/paddle/nn/functional/activation.py", line 89, in elu_
-
- assert alpha >= 0., "elu_ only support alpha >= 0, please use elu instead."
-
+  File "<stdin>", line 1, in <module>
+  File "/usr/local/lib/python3.7/dist-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+  File "/usr/local/lib/python3.7/dist-packages/paddle/fluid/wrapped_decorator.py", line 25, in __impl__
+    return wrapped_func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/paddle/fluid/dygraph/inplace_utils.py", line 34, in __impl__
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/paddle/nn/functional/activation.py", line 89, in elu_
+    assert alpha >= 0., "elu_ only support alpha >= 0, please use elu instead."
 AssertionError: elu_ only support alpha >= 0, please use elu instead.
+```
+</pre>
+</td>
+</tr>
+</table>
 
 ## 3. 训练框架（含分布式）
 
