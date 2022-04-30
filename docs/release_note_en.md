@@ -65,105 +65,108 @@ We are pleased to announce the release the PaddlePaddle Framework V2.3.0-rc0. Th
 - To keep consistency with division behavior under python3, the division symbol `/` has been changed from “rounding divide” to “true divide”, and the data type of the computed output has been switched from int to float. ([#40890](https://github.com/PaddlePaddle/Paddle/pull/40890))
   
 
-|     |     |
-| --- | --- |
-| 2.2 | 2.3.0-rc0 |
+<table>
+<tr>
+<th>
+2.2
+</th>
+<th>
+2.3.0-rc0
+</th>
+</tr>
 
-> > > import paddle
+<tr>
+<td>
+<pre>
 
-> > > a = paddle.to_tensor([327])
-
-> > > b = paddle.to_tensor([80])
-
-> > > a / b
-
+```python
+>>> import paddle
+>>> a = paddle.to_tensor([327])
+>>> b = paddle.to_tensor([80])
+>>> a / b
 Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
+      [4])
+```
+</pre>
+</td>
+<td>
+<pre>
 
-[4])
-
-> > > import paddle
-
-> > > a = paddle.to_tensor([327])
-
-> > > b = paddle.to_tensor([80])
-
-> > > a / b
-
+```python
+>>> import paddle
+>>> a = paddle.to_tensor([327])
+>>> b = paddle.to_tensor([80])
+>>> a / b
 Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=True,
-
-[4.08750010])
+      [4.08750010])
+```
+</pre>
+</td>
+</tr>
+</table>
 
 - Revise the ELU's formula. The computing method in case of alpha <0 aligns with the original paper, thus fixing a small number of cases where the results are incorrectly calculated. Meanwhile, elu_ will report an error in case of alpha <0, because it is not mathematically possible to compute the inverse gradient from the output only at alpha <0. ([#37316](https://github.com/PaddlePaddle/Paddle/pull/37316))
 
-|     |     |
-| --- | --- |
-| 2.2 | 2.3.0-rc0 |
+<table>
+<tr>
+<th>
+2.2
+</th>
+<th>
+2.3.0-rc0
+</th>
+</tr>
 
+<tr>
+<td>
+<pre>
+
+```python
 # elu(x) = max(0, x) + min(0, α ∗ (e^x − 1))
-
-> > > import paddle
-
-> > > x = paddle.to_tensor([-1. ,6.])
-
-> > > m = paddle.nn.ELU(-0.2)
-
-> > > out = m(x)
-
-> > > out
-
+>>> import paddle
+>>> x = paddle.to_tensor([-1. ,6.])
+>>> m = paddle.nn.ELU(-0.2)
+>>> out = m(x)
+>>> out
 Tensor(shape=[2], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-
-[ 0. , -74.48576355])
-
-> > > out = paddle.nn.functional.elu_(x, alpha=-0.2, name=None)
-
-> > > out
-
+       [ 0.         , -74.48576355])
+>>> out = paddle.nn.functional.elu_(x, alpha=-0.2, name=None)
+>>> out
 Tensor(shape=[2], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
+       [ 0.         , -74.48576355])
+```
+</pre>
+</td>
+<td>
+<pre>
 
-[ 0. , -74.48576355])
-
+```python
 # elu(x) = x, if x > 0
-
 # elu(x) = α ∗ (e^x − 1), if x <= 0
-
-> > > import paddle
-
-> > > x = paddle.to_tensor([-1. ,6.])
-
-> > > m = paddle.nn.ELU(-0.2)
-
-> > > out = m(x)
-
-> > > out
-
+>>> import paddle
+>>> x = paddle.to_tensor([-1. ,6.])
+>>> m = paddle.nn.ELU(-0.2)
+>>> out = m(x)
+>>> out
 Tensor(shape=[2], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-
-[0.12642412, 6. ])
-
-> > > out = paddle.nn.functional.elu_(x, alpha=-0.2, name=None)
-
+       [0.12642412,  6.        ])
+>>> out = paddle.nn.functional.elu_(x, alpha=-0.2, name=None)
 Traceback (most recent call last):
-
-File "<stdin>", line 1, in <module>
-
-File "/usr/local/lib/python3.7/dist-packages/decorator.py", line 232, in fun
-
-return caller(func, *(extras + args), **kw)
-
-File "/usr/local/lib/python3.7/dist-packages/paddle/fluid/wrapped_decorator.py", line 25, in __impl__
-
-return wrapped_func(*args, **kwargs)
-
-File "/usr/local/lib/python3.7/dist-packages/paddle/fluid/dygraph/inplace_utils.py", line 34, in __impl__
-
-return func(*args, **kwargs)
-
-File "/usr/local/lib/python3.7/dist-packages/paddle/nn/functional/activation.py", line 89, in elu_
-
-assert alpha >= 0., "elu_ only support alpha >= 0, please use elu instead."
-
+  File "<stdin>", line 1, in <module>
+  File "/usr/local/lib/python3.7/dist-packages/decorator.py", line 232, in fun
+    return caller(func, *(extras + args), **kw)
+  File "/usr/local/lib/python3.7/dist-packages/paddle/fluid/wrapped_decorator.py", line 25, in __impl__
+    return wrapped_func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/paddle/fluid/dygraph/inplace_utils.py", line 34, in __impl__
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.7/dist-packages/paddle/nn/functional/activation.py", line 89, in elu_
+    assert alpha >= 0., "elu_ only support alpha >= 0, please use elu instead."
 AssertionError: elu_ only support alpha >= 0, please use elu instead.
+```
+</pre>
+</td>
+</tr>
+</table>
 
 ## **3. Training Framework (with the distributed function)**
 
