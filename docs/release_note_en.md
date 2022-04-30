@@ -3,7 +3,7 @@
 
 ## 1. **Important Updates**
 
-We are pleased to announce the release the PaddlePaddle Framework V2.3.0-rc0. This version contains the following important updates.
+We are excited to release the PaddlePaddle Framework V2.3.0-rc0. This version contains the following highlights.
 
 ### API
 
@@ -22,7 +22,7 @@ We are pleased to announce the release the PaddlePaddle Framework V2.3.0-rc0. Th
 
 ### **Paddle** HIgh reusability operator l**ibrary**
 
-- We anounce PHI as the new Paddle HIgh reusability operator library. PHI provides Primitive API, enabling kernel reuse for operator development. As a refactored functional operator library, PHI aims to solve legacy problems that harm the framework's performance and reusability, in particular on the operator development. Such problems include inefficient ways of cross using operators, unclear operator interfaces and lacking direct calls to the operator library in C++. With PHI, new operators can be easily implemented by composing functions available in the functional library. The library provides over 200 C++ operator class APIs and nearly 500 kernels. Composing new operators through these built-in functions can greatly reduce the user's development effort. PHI supports different types of hardware (e.g., GPU and XPU). In addition, PHI is extensible with plugins for accommodating third party accelerators (such as NPU) in a low cost and reusable fashion. In short, PHI supports low level operator composabilty, the reuse of kernels through Primitives, and accelerators through plugins.
+- We announce PHI as the new Paddle HIgh reusability operator library. PHI provides Primitive API, enabling kernel reuse for operator development. As a refactored functional operator library, PHI aims to solve legacy problems that harm the framework's performance and reusability, in particular on the operator development. Such problems include inefficient ways of cross using operators, unclear operator interfaces and lacking direct calls to the operator library in C++. With PHI, new operators can be easily implemented by composing functions available in the functional library. The library provides over 200 C++ operator class APIs and nearly 500 kernels. Composing new operators through these built-in functions can greatly reduce the user's development effort. PHI supports different types of hardware (e.g., GPU and XPU). In addition, PHI is extensible with plugins for accommodating third party accelerators (such as NPU) in a low cost and reusable fashion. In short, PHI supports low level operator composability, the reuse of kernels through Primitives, and accelerators through plugins.
 
 ### **Distributed Training**
 
@@ -34,8 +34,6 @@ We are pleased to announce the release the PaddlePaddle Framework V2.3.0-rc0. Th
   
 
 ### **Compile and Install**
-
-- The CUDA architecture of the installation package on the PIP source is adjusted to V11.0. If you need to install other CUDA versions please visit the [PaddlePaddle website - Installation](https://www.paddlepaddle.org.cn/install/quick) to download and install.
   
 - From version 2.3.0-rc0, PaddlePaddle upgrades GPU architectures supported.
   
@@ -56,7 +54,7 @@ We are pleased to announce the release the PaddlePaddle Framework V2.3.0-rc0. Th
 
 ### **Framework Architecture**
 
-- In this version, we did a lot of work on the framework executor. For details, please see [New Dynamic Graph Execution Mechanism](https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/7UhIeLfrn3/0rDW-MD4RXSfkx#anchor-088a55e0-b962-11ec-a8b3-f52dfa102ded) and [New Static Graph Executor](https://ku.baidu-int.com/knowledge/HFVrC7hq1Q/pKzJfZczuc/7UhIeLfrn3/0rDW-MD4RXSfkx#anchor-e81120c0-c233-11ec-a2f2-c9306d79e3c2).
+- In this version, we did a lot of work on the framework executor. For details, please see [New Dynamic Graph Execution Mechanism](#new-dynamic-graph-execution-mechanism) and [New Static Graph Executor](#new-static-graph-executor).
 
 ## **2. Incompatibility Upgrade**
 
@@ -2091,10 +2089,6 @@ In order to solve the problem that the original static graph executor of the Pad
 ## **5. Environment Adaptation**
 
 ### **Compile and Install**
-
-- The installation package CUDA released by PaddlePaddle on PIP source is adjusted to V11.0. If you need to install other CUDA versions of PaddlePaddle, please visit [PaddlePaddle official website](https://www.paddlepaddle.org.cn/install/quick) for downloading.
-  
-- PaddlePaddle 2.3.0-rc0 PIP source release of CUDA11.0 installer adds the support for Ampere architecture. Users with GPU architecture 8.0 or 8.6 can upgrade directly through `pip install paddlepaddle-gpu` .
   
 - From version 2.3.0-rc0, PaddlePaddle has adjusted and upgraded the types of GPU architectures supported by the framework. (For more information, please refer to: [GPU architectures supported by PaddlePaddle](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.3rc/install/Tables.html#gpu))
   
