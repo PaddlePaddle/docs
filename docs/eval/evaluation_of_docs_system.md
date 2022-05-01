@@ -593,7 +593,9 @@ MindSpore 的有自己独立的文档分类标准和风格，所以硬套本文�
 
 **文章的新旧更迭**
 
-还有一些文章的链接，已经失效了，比如
+还有一些文章的链接，已经失效了，比如 [本地开发指南](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/10_contribution/local_dev_guide_cn.html) 中：
+
+![](./images/invalid-url.png)
 
 有些文章中引用的链接，虽然没有失效，但是其实不应该引用，或者需要做更新。比如 [使用动转静完成以图搜图](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/jit/image_search_with_jit.html) 一文中引用了 [基于图片相似度的图片搜索](https://www.paddlepaddle.org.cn/documentation/docs/zh/tutorial/cv_case/image_search/image_search.html)，但是后者其实已经是一篇“孤岛文章”，并没有被纳入到 Paddle 的文档体系中：
 
