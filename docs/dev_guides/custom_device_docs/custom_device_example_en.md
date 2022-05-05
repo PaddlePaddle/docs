@@ -59,7 +59,7 @@ Then, the plug-in should fill in its basic information and version number, which
 - params->device_type ： the appellation of the device backend. If there is another plug-in with the same name, the runtime will not be registered.
 - params->sub_device_type ： the appellation of the sub-type of the device backend
 
-Finally, some callback APIs in params->interface should be filled by the plug-in (At least the required APIs should be implemented, or the runtime will not be registered otherwise). Thus, the custom runtime can be initialized. For details of the APIS, please refer to [Custom Runtime Document](./custom_runtime_cn.html)。
+Finally, some callback APIs in params->interface should be filled by the plug-in (At least the required APIs should be implemented, or the runtime will not be registered otherwise). Thus, the custom runtime can be initialized. For details of the APIS, please refer to [Custom Runtime Document](./custom_runtime_en.html)。
 
 ```c++
 static size_t global_total_mem_size = 1 * 1024 * 1024 * 1024UL;

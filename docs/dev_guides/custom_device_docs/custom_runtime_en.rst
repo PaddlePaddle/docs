@@ -1,14 +1,14 @@
-#############
+#############################
 Custom Runtime
-#############
+#############################
 
 Custom Runtime offers a new method to register the runtime of new devices via plug-ins. Responsible for the management of PaddlePaddle devices and Runtime/Driver API, DeviceManager provides a uniform API for the framework to invoke device capabilities, offers a series of APIs to register Custom Runtime, and ensure that the binary system is compatible through C API. The APIs can be found in  `device_ext.h <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/device_ext.h>`_ . Developers can add custom runtime for PaddlePaddle only by implementing these APIs.
 
-- `Data type <./runtime_data_type_cn.html>`_ : to introduce definitions of data types of custom runtime. 
-- `Device API <./device_api_cn.html>`_ : to introduce definitions and functions of Device APIs.
-- `Memory API <./memory_api_cn.html>`_ : to introduce definitions and functions of Memory APIs.
-- `Stream API <./stream_api_cn.html>`_ : to introduce definitions and functions of Stream APIs.
-- `Event API <./event_api_cn.html>`_ : to introduce definitions and functions of Event APIs.
+- `Data type <./runtime_data_type_en.html>`_ : to introduce definitions of data types of custom runtime. 
+- `Device API <./device_api_en.html>`_ : to introduce definitions and functions of Device APIs.
+- `Memory API <./memory_api_en.html>`_ : to introduce definitions and functions of Memory APIs.
+- `Stream API <./stream_api_en.html>`_ : to introduce definitions and functions of Stream APIs.
+- `Event API <./event_api_en.html>`_ : to introduce definitions and functions of Event APIs.
 
 
 Device APIs
@@ -136,9 +136,9 @@ Event APIs
 ..  toctree::
     :hidden:
 
-    runtime_data_type_cn.md
-    device_api_cn.md
-    memory_api_cn.md
-    stream_api_cn.md
-    event_api_cn.md
+    runtime_data_type_en.md
+    device_api_en.md
+    memory_api_en.md
+    stream_api_en.md
+    event_api_en.md
 

@@ -1,6 +1,6 @@
-#############
+#############################
 Kernel Implementation APIs
-#############
+#############################
 
 The custom kernel-function implementation mainly depends on two parts: 1.APIs released by PaddlePaddle, including the context API, the tensor API, and the exception API; 2. APIs of the device encapsulation library. And the C++ API of PaddlePaddle has been released by the header file. 
 
