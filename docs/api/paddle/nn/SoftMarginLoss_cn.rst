@@ -3,7 +3,7 @@
 SoftMarginloss
 -------------------------------
 
-.. py:class:: paddle.nn.SoftMarginloss(reduction: str = 'mean', name=)
+.. py:class:: paddle.nn.SoftMarginloss(reduction: str = 'mean', name=None)
 
 该 APIs 生成一个可以计算输入 `input` 和 `label` 间的二分类损失的类。
 
@@ -30,9 +30,9 @@ SoftMarginloss
 
 返回
 :::::::::
-   返回一个可以计算Loss的类
+   返回计算SoftMarginLoss的可调用对象
 
 
 代码示例
 :::::::::
-COPY-FROM: paddle.nn.layer.loss.SoftMarginLoss
+COPY-FROM: paddle.nn.SoftMarginLoss
