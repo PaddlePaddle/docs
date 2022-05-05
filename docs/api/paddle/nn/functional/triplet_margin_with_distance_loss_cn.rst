@@ -49,4 +49,4 @@ triplet_margin_with_distance_loss
 
 代码示例
 :::::::::
-COPY-FROM: Paddle.nn.functional.loss.triplet_margin_with_distance_loss
+COPY-FROM: paddle.nn.functional.loss.triplet_margin_with_distance_loss
