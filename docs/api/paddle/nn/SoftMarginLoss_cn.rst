@@ -35,4 +35,4 @@ SoftMarginloss
 
 代码示例
 :::::::::
-COPY-FROM: Paddle.nn.layer.loss.SoftMarginLoss
+COPY-FROM: paddle.nn.layer.loss.SoftMarginLoss
