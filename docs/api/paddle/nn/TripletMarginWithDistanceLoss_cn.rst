@@ -22,7 +22,8 @@ TripletMarginWithDistanceLoss
 
 然后， ``distance_function`` 为距离函数，默认为2范数。 ``margin`` 为（input,positive）与（input,negative）的距离间隔， ``swap`` 的内容可以看论文Learning shallow convolutional feature descriptors with triplet losses<http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf>
 
-最后，该api会添加 `reduce` 操作到前面的输出Out上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
+最后，该api会添加 `reduce` 操作到前面的输出Out上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，
+返回输出的均值 :math:`Out = MEAN(Out)` 。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
 
 参数
@@ -46,4 +47,4 @@ TripletMarginWithDistanceLoss
 
 代码示例
 :::::::::
-COPY-FROM: Paddle.nn.layer.loss.TripletMarginWithDistanceLoss
+COPY-FROM: paddle.nn.layer.loss.TripletMarginWithDistanceLoss
