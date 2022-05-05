@@ -58,5 +58,5 @@ PD_REGISTER_PLUGIN_KERNEL(softmax,
 ```
 
 > Note：
-> 1. When the backend is accessed through the custom runtime, the backend parameter must be the same as its name.
+> 1. When the backend is registered through the custom runtime, the backend parameter must be the same as its name.
 > 2. Except the requirement of the end function body of the registration macro，keep the empty function body. You can refer to other backends within the PaddlePaddle framework.

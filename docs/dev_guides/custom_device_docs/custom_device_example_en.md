@@ -1,11 +1,10 @@
-# Example of Device Access
+# CustomDevice Example
 
-This section will talk about how to implement a CustomDevice plug-in and add a new device backend for PaddlePaddle. How to compile, package, install, and use the backend will also be introduced.
+In this section we will walk through the steps required to extend a fake hardware backend for PaddlePaddle by implementing a fake device named CustomCPU.
 
 > Note：
 > - Please make sure that you have correctly installed the latest version of [Paddle develop](https://github.com/PaddlePaddle/Paddle).
 > - Only `Linux` is supported
-> - PaddlePaddle can have the custom kernel code and registration of open functional statements in heder files.
 
 ## Step One: Implement Custom Runtime
 
