@@ -1,5 +1,5 @@
 # 模型性能分析
-Paddle Profiler是Paddle框架自带的低开销性能分析器，可以对模型运行过程的性能数据进行收集、统计和展示。性能分析器提供的数据可以帮助定位模型的瓶颈，识别造成程序运行时间过长或者GPU利用率低的原因，从而寻求优化方案来获得性能的提升。
+Paddle Profiler是飞桨框架自带的低开销性能分析器，可以对模型运行过程的性能数据进行收集、统计和展示。性能分析器提供的数据可以帮助定位模型的瓶颈，识别造成程序运行时间过长或者GPU利用率低的原因，从而寻求优化方案来获得性能的提升。
 
 在这篇文档中，主要介绍如何使用Profiler工具来调试程序性能，以及阐述当前提供的所有功能特性。主要内容如下：
 
@@ -97,7 +97,7 @@ Time Unit: s, IPS Unit: steps/s
 |    batch_cost   |     0.02555     |     0.02381     |     0.02220     |
 |       ips       |     39.13907    |     45.03588    |     41.99930    |
 ```
-其中ReaderRatio表示数据读取部分占训练batch迭代过程的时间占比，reader_cost代表数据读取时间，batch_cost代表batch迭代的时间，ips表示每秒能迭代多少次，即跑多少个batch。可以看到，此时的ips为39.1，可将这个值作为优化对比的baseline。
+其中Reader Ratio表示数据读取部分占训练batch迭代过程的时间占比，reader_cost代表数据读取时间，batch_cost代表batch迭代的时间，ips表示每秒能迭代多少次，即跑多少个batch。可以看到，此时的ips为39.1，可将这个值作为优化对比的baseline。
 
 
 ### 2. 开启性能分析器，定位性能瓶颈点
@@ -130,12 +130,12 @@ ProfileStep      11      294.53 / 26.78 / 35.28 / 24.56 / 100.00   13.22 / 1.20 
 ---------------  ------  ----------------------------------------  ----------------------------------------  
 ```
 其中ProfileStep表示训练batch的迭代step过程，对应代码中每两次调用`p.step()`的间隔时间；Dataloader表示数据读取的时间，即`for batch_id, data in enumerate(train_loader())`的执行时间；Forward表示模型前向的时间，即`logits = model(x_data)`的执行时间，Backward表示反向传播的时间，即`loss.backward()`的执行时间；Optimization表示优化器的时间，即`opt.step()`的执行时间。
-通过timeline可以看到，Dataloader占了执行过程的很大比重，Model Summary显示其甚至接近了50%。分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上dataloader
+通过timeline可以看到，Dataloader占了执行过程的很大比重，Model Summary显示其甚至接近了50%。分析程序发现，这是由于模型本身比较简单，需要的计算量小，再加上Dataloader
 准备数据时只用了单进程来读取，使得程序读取数据时和执行计算时没有并行操作，导致Dataloader占比过大。
 
 ### 3. 优化程序，检查优化效果
 
-识别到了问题产生的原因，对程序继续做如下修改，将dataloader的num_workers设置为4，使得能有多个进程并行读取数据。
+识别到了问题产生的原因，对程序继续做如下修改，将Dataloader的num_workers设置为4，使得能有多个进程并行读取数据。
 ```python
 train_loader = paddle.io.DataLoader(cifar10_train,
                                     shuffle=True,
@@ -188,7 +188,7 @@ benchmark信息（如ips），可以像示例一样将Profiler的timer_only参�
 
 当前Profiler提供Timeline、统计表单、benchmark信息共三个方面的展示功能。
 
-### Timeline展示
+### 1. Timeline展示
 对于采集的性能数据，导出为chrome tracing timeline格式的文件后，可以进行可视化分析。当前，所采用的可视化工具为chrome浏览器里的[tracing插件](chrome://tracing)，可以按照如下方式进行查看
   <p align="center">
   <img src="https://user-images.githubusercontent.com/22424850/165717586-599a08fb-c915-4e3c-af40-0732c30c5855.gif"   width='80%' hspace='10'/>
@@ -203,7 +203,7 @@ benchmark信息（如ips），可以像示例一样将Profiler的timer_only参�
 
 
 
-### 统计表单展示
+### 2. 统计表单展示
 统计表单负责对采集到的数据(Event)从多个不同的角度进行解读，也可以理解为对timeline进行一些量化的指标计算。
 目前提供Device Summary、Overview Summary、Model Summary、Distributed Summary、Operator Summary、Kernel Summary、Memory Manipulation Summary和UserDefined Summary的统计表单，每个表单从不同的角度进行统计计算。每个表单的统计内容简要叙述如下：
 
@@ -428,7 +428,7 @@ benchmark信息（如ips），可以像示例一样将Profiler的timer_only参�
 
   UserDefined Summary用于展示用户自定义记录的Event所花费的时间。
 
-### Benchmark信息
+### 3. Benchmark信息
 benckmark信息用于展示模型的吞吐量以及时间开销。
 ```text
 ============================================Perf Summary============================================
