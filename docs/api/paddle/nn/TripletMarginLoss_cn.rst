@@ -5,8 +5,7 @@ TripletMarginLoss
 
 .. py:class:: paddle.nn.TripletMarginLoss(margin: float = 1.0, p: float = 2., eps: float = 1e-6, swap: bool = False,reduction: str = 'mean')
 
-创建一个TripletMarginLoss的可调用类，计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失。
-
+创建一个TripletMarginLoss的可调用类。通过计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失，测量样本之间，即 `input`与 `positive examples` 和 `negative examples` 的相对相似性。所有输入张量的形状都为 :math:`(N, *)`。
 
 损失函数按照下列公式计算
 
