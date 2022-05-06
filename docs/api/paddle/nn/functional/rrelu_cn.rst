@@ -15,13 +15,13 @@ rrelu激活层（RRelu Activation Operator）。计算公式如下：
                 ax & \text{ otherwise }
                 \end{cases}
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
-    - lower (float, 可选) - 负值斜率的随机值范围下限，`lower`包含在范围中。支持的数据类型：float。默认值为0.125。
-    - upper (float, 可选) - 负值斜率的随机值范围上限，`upper`包含在范围中。支持的数据类型：float。默认值为0.333。
-    - training (bool): 标记是否为训练阶段。 默认: True。
+    - lower (float，可选) - 负值斜率的随机值范围下限，`lower` 包含在范围中。支持的数据类型：float。默认值为0.125。
+    - upper (float，可选) - 负值斜率的随机值范围上限，`upper` 包含在范围中。支持的数据类型：float。默认值为0.333。
+    - training (bool) - 标记是否为训练阶段。 默认: True。
     - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
