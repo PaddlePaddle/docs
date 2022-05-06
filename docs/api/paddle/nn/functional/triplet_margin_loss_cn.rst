@@ -5,7 +5,7 @@ triplet_margin_loss
 
 .. py:class:: paddle.nn.functional.triplet_margin_loss(input, positive, negative, p:float = 2.0, margin: float = 1.0, swap: bool = False, reduction: str = 'mean')
 
-该api计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失。
+该 api 计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失，测量 `input`与 `positive examples` 和 `negative examples` 之间的相对相似性。所有输入张量的形状都为 :math:`(N, *)`，`*` 是任意其他维度。
 
 
 损失函数按照下列公式计算
@@ -13,8 +13,7 @@ triplet_margin_loss
 .. math::
     L(input, pos, neg) = \max \{d(input_i, pos_i) - d(input_i, neg_i) + {\rm margin}, 0\}
 
-
-其中的距离函数可以由用户自定义，使用lambda或是def都可以。如果未定义则调用2范数计算距离
+距离函数为
 
 .. math::
     d(x_i, y_i) = \left\lVert {\bf x}_i - {\bf y}_i \right\rVert_2
