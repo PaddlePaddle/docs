@@ -268,20 +268,37 @@ mkdir build && cd build
 
 >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
-*  对于需要编译**CPU版本PaddlePaddle**的用户：
+*  若您的机器为Mac M1机器，需要编译**Arm架构、CPU版本PaddlePaddle**：
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    cmake .. -DPY_VERSION=3.8 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF \
+    -DWITH_AVX=OFF -DWITH_ARM=ON -DCMAKE_BUILD_TYPE=Release
+    ```
+
+*  若您的机器不是Mac M1机器，需要编译**x86_64架构、CPU版本PaddlePaddle**：
+
+    ```
+    cmake .. -DPY_VERSION=3.8 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
     -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release
     ```
 
->`-DPY_VERSION=3.7`请修改为安装环境的Python版本
+>`-DPY_VERSION=3.8`请修改为安装环境的Python版本
+> 若编译arm架构的paddlepaddle，需要`cmake`版本为 3.19.2 以上
 
 #### 9. 使用以下命令来编译：
 
-```
-make -j4
-```
+*  若您的机器为Mac M1机器，需要编译**Arm架构、CPU版本PaddlePaddle**：
+
+    ```
+    make TARGET=ARMV8 -j4
+    ```
+
+*  若您的机器不是Mac M1机器，需要编译**x86_64架构、CPU版本PaddlePaddle**：
+
+    ```
+    make -j4
+    ```
 
 #### 10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 ```

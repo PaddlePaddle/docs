@@ -270,20 +270,37 @@ mkdir build && cd build
 
 > For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
 
-* For users who need to compile the **CPU version PaddlePaddle**:
+* If you use Mac M1 machine, and need to compile the **Arm architecture, CPU version PaddlePaddle**:
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    cmake .. -DPY_VERSION=3.8 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF \
+    -DWITH_AVX=OFF -DWITH_ARM=ON -DCMAKE_BUILD_TYPE=Release
+    ```
+
+* If you don't use Mac M1 machine, and need to compile the **x86_64 architecture, CPU version PaddlePaddle**:
+
+    ```
+    cmake .. -DPY_VERSION=3.8 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
     -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
     ```
 
-- ``-DPY_VERSION=3.7`` Please change to the Python version of the installation environment.
+- ``-DPY_VERSION=3.8`` Please change to the Python version of the installation environment.
+- If compiling paddlepaddle for arm architecture, you need ``cmake`` version 3.19.2 or above
 
 #### 9. Compile with the following command:
 
-```
-make -j4
-```
+* If you use Mac M1 machine, and need to compile the **Arm architecture, CPU version PaddlePaddle**:
+
+    ```
+    make TARGET=ARMV8 -j4
+    ```
+
+* If you don't use Mac M1 machine, and need to compile the **x86_64 architecture, CPU version PaddlePaddle**:
+
+    ```
+    make -j4
+    ```
 
 #### 10. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package:
 ```
