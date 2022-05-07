@@ -3,7 +3,7 @@
 perspective
 -------------------------------
 
-.. py:function:: paddle.vision.transforms.perspective(img, startpoints, endpoints, interpolation='bilinear', fill=0)
+.. py:function:: paddle.vision.transforms.perspective(img, startpoints, endpoints, interpolation='nearest', fill=0)
 
 对图像进行透视变换。
 
@@ -13,7 +13,16 @@ perspective
     - img (PIL.Image|numpy.ndarray|paddle.Tensor) - 输入图像。
     - startpoints (list(list(float))) - 在原图上的四个角（左上、右上、右下、左下）的坐标。
     - endpoints (list(list(float))) - 在变换后的图上的四个角（左上、右上、右下、左下）的坐标。
-    - interpolation (int|str，可选) - 插值的方法. 如果省略，或者图像只有一个通道，则根据后端将其设置为PIL.Image.NEAREST或cv2.INTER_NEAREST。使采用pil后端时，支持方法如下："nearest": Image.NEAREST, "bilinear": Image.BILINEAR, "bicubic": Image.BICUBIC;当采用cv2后端时，支持方法如下："nearest": cv2.INTER_NEAREST,  - "bilinear": cv2.INTER_LINEAR, "bicubic": cv2.INTER_CUBIC.
+    - interpolation (str, 可选): 插值的方法。
+        如果这个参数没有设定或者输入图像为单通道，则该参数会根据使用的后端，被设置为 ``PIL.Image.NEAREST`` 或者 ``cv2.INTER_NEAREST``。
+        当使用 ``pil`` 作为后端时, 支持的插值方法如下:
+            - "nearest": Image.NEAREST,
+            - "bilinear": Image.BILINEAR,
+            - "bicubic": Image.BICUBIC
+        当使用 ``cv2`` 作为后端时, 支持的插值方法如下:
+            - "nearest": cv2.INTER_NEAREST,
+            - "bilinear": cv2.INTER_LINEAR,
+            - "bicubic": cv2.INTER_CUBIC
     - fill (int，可选) - 对图像扩展时填充的值。默认值：0。
 
 返回
