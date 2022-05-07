@@ -283,8 +283,8 @@ mkdir build && cd build
     -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release
     ```
 
->`-DPY_VERSION=3.8`请修改为安装环境的Python版本
-> 若编译arm架构的paddlepaddle，需要`cmake`版本为 3.19.2 以上
+- `-DPY_VERSION=3.8`请修改为安装环境的Python版本
+- 若编译arm架构的paddlepaddle，需要`cmake`版本为 3.19.2 以上
 
 #### 9. 使用以下命令来编译：
 
