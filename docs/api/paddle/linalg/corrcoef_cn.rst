@@ -27,4 +27,4 @@ corrcoef
 
 代码示例
 ::::::::::
-COPY-FROM: <paddle.linalg.corrcoef>:<code-example1>
+COPY-FROM: paddle.linalg.corrcoef:code-example1
