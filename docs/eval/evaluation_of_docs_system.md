@@ -566,11 +566,33 @@ MindSpore 的有自己独立的文档分类标准和风格，所以硬套本文�
 | 框架设计文档                 | Random number generation                                     | 1    | 分散在 API 文档、源码中，其实比较丰富。30+                   | 30+  | 设计白皮书 全场景统一 函数式微分编程 动静态图结合 异构并行训练 分布式并行 中间表达 MindIR 高性能数据处理引擎 图算融合加速引擎 二阶优化 可视化调试调优 安全可信 术语 | 13   |                                                              | 0      |
 | 其它                         | Integrated gradients Uncertainty quantification with SNGP Probabilistic regression Keras一级标题下的13篇文章 Thinking in TensorFlow 2 Data input pipelines 一级标题下的3篇 GPU TPU | 20   | Learn the Basics Quickstart Deep Learning with PyTorch: A 60 Minute Blitz Building a Convolution/Batch Norm fuser in FX Building a Simple CPU Performance Profiler with FX Channels Last Memory Format in PyTorch Forward-mode Automatic Differentiation Using the PyTorch C++ Frontend Dynamic Parallelism in TorchScript Autograd in C++ Frontend Static Quantization with Eager Model in PyTorch | 11   | 基本介绍 快速入门 进阶案例：线性拟合 混合精度 梯度累积算法 自适应梯度求和算法 降维训练算法 | 7    | 10 分钟快速上手飞桨 使用线性回归预测波士顿房价 模型导出 ONNX 协议 飞桨产品硬件支持表 昆仑 XPU 芯片运行飞桨 海光 DCU 芯片运行飞桨 昇腾 NPU 芯片运行飞桨 环境变量 FLAGS 下9篇 hello paddle：从普通程序走向机器学习程序 通过AutoEncoder实现时序数据异常检测 广播介绍 自动混合精度训练 梯度裁剪 升级指南 | 20+    |
 
-可以看除，PaddlePaddle 在文档上是比较完备的，但是在个别领域，还比较薄弱甚至空缺，主要是：
+可以看除，PaddlePaddle 在文档上是比较完备的，在本文划分的 19 个具体领域中的 17 个领域中都已有文档，包括：
+
+- 基本数据（Tensor）和基本算子
+- 数据加载与预处理
+- 如何组网
+- 如何训练
+- 保存与加载模型
+- 可视化、调优技巧
+- 自动微分
+- 动态图与静态图
+- 部署相关
+- CV 领域相关
+- NLP 领域相关
+- 推荐领域相关
+- 强化学习领域相关
+- 移动端相关
+- 框架之间的迁移相关
+- 自定义算子
+- 分布式训练
+
+并且，与其它框架相比，有一些独特的文章，它们归类到了“其它”中，比如与国产芯片的适配，Paddle 的环境变量的设置及意义等。
+
+但是在个别领域，还比较薄弱甚至空缺，主要是：
 
 - 语音领域是空缺的
-- 与 PyTorch 相比，分布式领域的文档还比较薄弱
-- 框架设计文档在官方网站上也空缺
+- 与 PyTorch 相比，分布式领域的文档还比较薄弱。PyTorch 有 13 篇分布式有关的文档，涵盖了分布式训练的基本概念、设备之间的通信、不同模块的使用、不同分布式策略的选择和使用。而 Paddle 只有三篇，并且主要集中在 API 接口的介绍，没有结合分布式策略详细介绍，对于没有太多分布式训练经验的人而言，容易困惑。
+- 框架设计文档在官方网站上是空缺的，像 PyTorch、TensorFlow 都有深度介绍框架设计的文档，这对像参与开源建设或者自定义框架的高阶用户，还是很必要的。
 
 ### 行文风格分析
 
@@ -614,11 +636,24 @@ MindSpore 的有自己独立的文档分类标准和风格，所以硬套本文�
 
 ### 内容分析
 
-按照本文开头谈及的“文档体系分类标准”， Tutorial 和 Guide 是两类相似，但是又不同的文档。一般而言，Tutorial 的风格更像一堂课，需要动手操作 steps，也需要介绍“知识概念”。而 Guide 是解决问题为导向的，需要一系列的 steps，以及较为直接的解决问题。
+#### 概述
 
-因为 Paddle 中的一些文章，并没有显式地说明到底是 Tutorial 还是 Guide。笔者只能根据自己的感受主观上判断，然后依据 Tutorial 或 Guide 的要求，来做分析，不一定准确，仅供参考。
+按照 [The documentation system](https://documentation.divio.com/) 中对文档的划分（见本文开头图片），每类文档都有自己的特点和写作标准。而相邻区间的文档，又因为有相似的性质，所以容易“混乱”。
 
-我认为，Paddle 当前文档中的 Tutorial，特别是初级内容部分，都很好的遵循了 Tutorial 的写作要求，如 [基本概念](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/basic_concept/index_cn.html) 中的所有文章和 [模型开发](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/02_paddle2.0_develop/index_cn.html) 中的大部分文章。
+比如 Tutorial 和 Guide 是两类相似，但是又不同的文档。一般而言，Tutorial 的风格更像一堂课，需要动手操作 steps，也需要介绍“知识概念”。而 Guide 是解决问题为导向的，需要一系列的 steps，以及较为直接的解决问题。
+
+如果在 Guide 中引入了太多的“知识概念”，会让急于解决具体问题的读者，感到重点不明显。
+
+而如果在 Tutorial 中，不顾及读者的已有知识体系，单纯地“灌输”操作步骤，就容易让读者失去阅读和学习的乐趣，过早地产生放弃继续阅读的想法。
+
+再比如，Reference 和 Guide 也是相邻的象限，不过 Guide 更侧重实际操作，而 Reference 注重理论知识。如果不注意它们的区分，比如在 Guide 中只介绍接口参数，却不举具体的接口使用的例子，容易让读者“心中没底”；在 Reference （如 API 文档）中如果不追求 “dry & clean” 的风格，以及完备的信息，就容易让读者怀疑资料的权威性。
+
+
+因为 Paddle 中的一些文章，并没有显式地说明到底是哪种类型，除了 API 文档明显应该属于 Reference 外，其它的笔者只能根据自己的感受主观上判断，并且笔者认为几乎均为 Tutorial 或者 Guide 类别，而没有显式的 Explanation 类别的文档。以下内容依据 Tutorial 或 Guide 的要求，来做具体案例分析，不一定准确，仅供参考。
+
+#### 具体案例
+
+Paddle 当前文档中的 Tutorial，特别是初级内容部分，都很好的遵循了 Tutorial 的写作要求，如 [基本概念](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/basic_concept/index_cn.html) 中的所有文章和 [模型开发](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/02_paddle2.0_develop/index_cn.html) 中的大部分文章。
 
 但是，对于一些类别为 Guide 的文章，往往还有提升空间。以一级标题 [动态图转静态图](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/04_dygraph_to_static/index_cn.html) 中的文章为例，我们继续讨论：
 
@@ -647,7 +682,75 @@ MindSpore 的有自己独立的文档分类标准和风格，所以硬套本文�
 
 从组织结构角度分析，以我个人的感受，飞桨还有一些值得讨论，和可能改进的地方。
 
-#### 整体介绍
+#### 从 Paddle 文档一级标题看完备性分析
+
+在上文 [完备性分析](#完备性分析) 部分，已经 Paddle 文档体系覆盖内容的分析。在本节，笔者尝试讨论，如何对文档的标题做重构，得到更好的文档结构，个人看法，仅供参考。之所以认为这样更合理，是可以为读者提供“一站式”服务，而现有的 Paddle 文档体系，同类别的文档，有时会分散在多个栏目中；或者某个重要的内容，藏的目录级别较深（如 “整体介绍/升级指南/使用高层 API”），不容易被读者发现。
+
+建议，可以分为以下几个 “栏目”，每个栏目中有若干篇文章（一级标题）。
+
+- 使用 Paddle
+- Paddle 与 CV
+- Paddle 与 NLP
+- Paddle 与语音
+- Paddle 与推荐系统
+- Paddle 与强化学习
+- 自定义扩展 Paddle
+- 框架设计文档
+- Cookbook
+
+它们与现有文档体系的对应关系，以下分开阐述。
+
+**使用 Paddle**
+
+在这个栏目下，针对上手 Paddle 的用户，分模块介绍 Paddle 的各个功能。可以包括：
+
+- 快速上手（对应现有的《10 分钟快速上手飞桨》，同时应注意链在文章内连接重构后的其它更细节的文章）
+- Tensor（对应现有的《Tensor 概念介绍》）
+- 数据加载与预处理（对应现有的《数据集定义和加载》、《数据预处理》）
+- 搭建模型（对应现有的《Paddle 中的模型与层》、《模型组网》）
+- 模型训练（对应现有的《训练与预测验证》、《自定义指标》
+- 自动微分（对应现有的《自动微分机制介绍》）
+- 转静态图（对应现有的《动态图与静态图一栏》）
+- 模型的保存与加载（对应现有的《模型的保存于加载》）
+- 分布式训练（对应现有的《单机多卡训练》、《分布式训练快速开始》、《使用 FleetAPI 进行分布式训练》
+
+**Paddle 与 CV**
+
+对应现有 [计算机视觉](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/image_classification.html) 与 [目标检测 YOLOv3](https://www.paddlepaddle.org.cn/tutorials/projectdetail/3106208) 中等的内容。
+
+**Paddle 与 NLP**
+
+对应现有文档中的 [自然语言处理](https://www.paddlepaddle.org.cn/tutorials/projectdetail/2504863) 与 [持续学习语义理解框架](https://www.paddlepaddle.org.cn/tutorials/projectdetail/2538222)等内容。
+
+**Paddle 与语音**
+
+这一部分 Paddle 尚缺少，可以参考 PyTorch 的文档 https://pytorch.org/tutorials/beginner/audio_io_tutorial.html
+
+**Paddle 与推荐系统**
+
+对应现有 [推荐系统](https://www.paddlepaddle.org.cn/tutorials/projectdetail/2200430) 中相关文档。
+
+**Paddle 与强化学习**
+
+对应现有文档 [强化学习](https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/reinforcement_learning/index_cn.html) 中相关文档。
+
+**自定义扩展 Paddle**
+
+对应现有文档中 [自定义算子](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/index_cn.html) 中相关文档。且其中的 “Kernel Primitive API” 中的文章，可以上升一个级别。
+
+**框架设计文档**
+
+现有 Paddle 文档欠缺这类文档，可以参考 Mindspore 的文档补充 https://www.mindspore.cn/docs/zh-CN/r1.7/design/technical_white_paper.html。
+
+**Cookbook**
+
+建议将现有的已经足够丰富程独立产品的文档，分离出去，变为独立产品的文档（如部署相关的文档）。
+
+将内容不够丰富，又不方便分类的“其它”类型的文档，做成 cookbook（具体名字可以讨论，这里主要是参考的 Python Cookbook 一书），意味着以解决问题为导向的实践指南。
+
+比如现有的《自动混合精度训练》、《梯度剪裁方式介绍》、《飞桨模型量化》、《模型导出 ONNX》 等，可以放在这一个栏目。
+
+#### “整体介绍”栏目下的结构问题
 
 首先是 [整体介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/index_cn.html) 里的目录结构和内容可以考虑调整。
 
