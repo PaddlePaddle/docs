@@ -96,7 +96,7 @@
 1.3 完整示例代码
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.3.1 示例1：当样本数据尺寸一致时，采用Paddle内置的cifar10数据集介绍
+1.3.1 示例1：采用Paddle内置的cifar10数据集介绍
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. code-block:: python
@@ -219,7 +219,7 @@
     if __name__ == "__main__":
         train()
 
-1.3.2 示例2：当样本数据尺寸不一致时，采用自定义的人脸关键点检测数据集 
+1.3.2 示例2：采用自定义的人脸关键点检测数据集 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 .. code-block:: python
@@ -260,10 +260,7 @@
                 "mode should be 'train' or 'test', but got {}".format(self.mode)
             self.data_source = pd.read_csv(data_path)
 
-            # 清洗数据, 数据集中有很多样本只标注了部分关键点, 这里有两种策略
-            # 第一种, 将未标注的位置从上一个样本对应的关键点复制过来
-            # self.data_source.fillna(method = 'ffill',inplace = True)
-            # 第二种, 将包含有未标注的样本从数据集中移除
+            # 清洗数据
             self.data_source.dropna(how="any", inplace=True)
             self.data_label_all = self.data_source.drop('Image', axis=1)
 
@@ -272,8 +269,6 @@
                 data_len = len(self.data_source)
                 # 随机划分
                 shuffled_indices = np.random.permutation(data_len)
-                # 顺序划分
-                # shuffled_indices = np.arange(data_len)
                 self.shuffled_indices = shuffled_indices
                 val_set_size = int(data_len * val_split)
                 if self.mode == 'val':
@@ -447,53 +442,52 @@
 
 1.4.2 自定义集群启动
 """"""""""""""""""""""""
-.. note::
 
-    对于自定义集群启动，用户需要提供集群中使用节点的IP地址。
+- 多机多卡训练
+    用户需要给 `paddle.distributed.launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html#launch>`_ 配置以下参数：
 
-用户在使用 `paddle.distributed.launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html#launch>`_ 启动时，只需要配置以下参数：
+        .. code-block:: bash
 
-.. code-block:: bash
+            --cluster_node_ips： 集群中所有节点的IP地址列表，以','分隔，例如：192.168.1.2,192.168.1.3。
 
-    --cluster_node_ips： 集群中所有节点的IP地址列表，以','分隔，例如：192.168.1.2,192.168.1.3。
+            --node_ip: 当前节点的IP地址。
 
-    --node_ip: 当前节点的IP地址。
+            --started_port：起始端口号，假设起始端口号为51340，并且节点上使用的GPU卡数为4，那么GPU卡上对应训练进程的端口号分别为51340、51341和51342。务必确保端口号可用。
 
-    --started_port：起始端口号，假设起始端口号为51340，并且节点上使用的GPU卡数为4，那么GPU卡上对应训练进程的端口号分别为51340、51341和51342。务必确保端口号可用。
+            --selected_gpus：使用的GPU卡。
 
-    --selected_gpus：使用的GPU卡。
+    假设自定义集群包含两个节点（机器），IP地址分别为192.168.1.2和192.168.1.3，并且每个节点上使用的GPU卡数为4，那么需要在两个节点终端上分别运行如下命令：
 
-假设自定义集群包含两个节点（机器），IP地址分别为192.168.1.2和192.168.1.3，并且每个节点上使用的GPU卡数为4，那么需要在两个节点终端上分别运行如下命令。
+    在192.168.1.2节点运行：
+    
+        .. code-block:: bash
 
-在192.168.1.2节点运行：
+            python -m paddle.distributed.launch \
+            --cluster_node_ips=192.168.1.2,192.168.1.3 \
+            --node_ip=192.168.1.2 \
+            --started_port=6170 \
+            --selected_gpus=0,1,2,3 \
+            train_with_fleet.py
 
-.. code-block:: bash
+    在192.168.1.3节点运行：
 
-    python -m paddle.distributed.launch \
-    --cluster_node_ips=192.168.1.2,192.168.1.3 \
-    --node_ip=192.168.1.2 \
-    --started_port=6170 \
-    --selected_gpus=0,1,2,3 \
-    train_with_fleet.py
+        .. code-block:: bash
 
-在192.168.1.3节点运行：
+            python -m paddle.distributed.launch \
+            --cluster_node_ips=192.168.1.2,192.168.1.3 \
+            --node_ip=192.168.1.3 \
+            --started_port=6170 \
+            --selected_gpus=0,1,2,3 \
+            train_with_fleet.py
 
-.. code-block:: bash
 
-    python -m paddle.distributed.launch \
-    --cluster_node_ips=192.168.1.2,192.168.1.3 \
-    --node_ip=192.168.1.3 \
-    --started_port=6170 \
-    --selected_gpus=0,1,2,3 \
-    train_with_fleet.py
+- 单机多卡训练
+    用户只需要通过 `--selected_gpus` 指定GPU卡，其他采用默认命令行参数即可，如：
 
-.. note::
+    .. code-block:: bash
 
-    进行单机多卡训练的用户，只需要指定GPU卡，其他采用默认命令行参数即可，如：
+        python -m paddle.distributed.launch --selected_gpus=0,1,2,3 train_with_fleet.py
 
-.. code-block:: bash
-
-    python -m paddle.distributed.launch --selected_gpus=0,1,2,3 train_with_fleet.py
 
 .. _launch3_label:
 
