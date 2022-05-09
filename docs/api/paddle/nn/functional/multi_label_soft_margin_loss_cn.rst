@@ -1,9 +1,9 @@
-.. _cn_api_paddle_nn_functional_multi_label_soft_margin_losss:
+.. _cn_api_paddle_nn_functional_multi_label_soft_margin_loss:
 
 multi_label_soft_margin_loss
 -------------------------------
 
-.. py:class:: paddle.nn.MultiLabelSoftMarginLoss(weight:Optional=None, reduction: str = 'mean')
+.. py:class:: paddle.nn.functional.multi_label_soft_margin_loss(input, label, weight:Optional=None, reduction: str = 'mean', name:str=None)
 
 该 APIs 计算输入 `input` 和 `label` 间的 `margin-based loss` 损失。
 
@@ -21,6 +21,9 @@ multi_label_soft_margin_loss
 
 参数
 :::::::::
+    - **input** (Tensor) - :math:`[N, *]` , 其中N是batch_size， `*` 是任意其他维度。数据类型是float32、float64。
+    - **label** (Tensor) - :math:`[N, *]` , 标签 ``label`` 的维度、数据类型与输入 ``input`` 相同。
+    - **output** (Tensor) - 输出的Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` , 与输入 ``input`` 的形状相同。如果 
     - **weight** (Tensor，可选) - 手动设定权重，默认为None
     - **reduction** (str,可选) - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 Loss 的均值；设置为 ``'sum'`` 时，计算 Loss 的总和；设置为 ``'none'`` 时，则返回原始Loss。
     - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
@@ -33,9 +36,9 @@ multi_label_soft_margin_loss
 
 返回
 :::::::::
-   返回计算的Loss。
+    输出的Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` , 与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或           ``'sum'``, 则输出的维度为 :math:`[1]` 。
 
 
 代码示例
 :::::::::
-COPY-FROM: Paddle.nn.functional.loss.multi_label_soft_margin_loss
+COPY-FROM: Paddle.nn.functional.multi_label_soft_margin_loss
