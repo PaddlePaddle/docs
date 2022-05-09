@@ -5,6 +5,8 @@ VGG
 
 .. py:class:: paddle.vision.models.VGG(features, num_classes=1000)
 
+
+
  VGG模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv.org/pdf/1409.1556.pdf>`_ 。
 
 参数
@@ -20,19 +22,16 @@ vgg模型，Layer的实例。
 代码示例
 :::::::::
 
-.. code-block:: python
+COPY-FROM: paddle.vision.models.VGG:code-example
 
-    import paddle
-    from paddle.vision.models import VGG
-    from paddle.vision.models.vgg import make_layers
+方法
+::::::::::::
+forward(x)
+'''''''''
 
-    vgg11_cfg = [64, 'M', 128, 'M', 256, 256, 'M', 512, 512, 'M', 512, 512, 'M']
+定义计算过程。应当被所有子类重写。
 
-    features = make_layers(vgg11_cfg)
+**参数**
 
-    vgg11 = VGG(features)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = vgg11(x)
-
-    print(out.shape)
+ - ***inputs** (tuple) - 元组参数。
+ - ****kwargs** (dict) - 字典参数。
