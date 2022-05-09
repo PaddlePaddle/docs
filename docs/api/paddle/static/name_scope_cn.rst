@@ -6,11 +6,10 @@ name_scope
 
 .. py:function:: paddle.static.name_scope(prefix=None)
 
+该函数为静态图下的operators生成不同的命名空间。
 
-
-
-
-该函数为静态图下的operators生成不同的命名空间。该函数只用于静态图下的调试和可视化，不建议用在其它方面。
+.. note::
+    该函数只用于静态图下的调试和可视化，不建议用在其它方面，否则会引起内存泄露。
 
 
 参数

@@ -17,6 +17,7 @@ import subprocess
 import multiprocessing
 import platform
 import extract_api_from_docs
+from queue import Queue
 """
 generate api_info_dict.json to describe all info about the apis.
 """
@@ -403,76 +404,81 @@ def set_display_attr_of_apis():
                 logger.info("set {} display to False".format(id_api))
 
 
+def check_module_in_black_list(module_name):
+    black_module_list = [
+        'paddle.fluid',
+    ]
+    for i in black_module_list:
+        if i in module_name:
+            return True
+    return False
+
+
+def get_all_modules():
+    """
+    get all modules from paddle
+    :return: module list
+    """
+    module_str_queue = Queue()
+    module_str_queue.put('paddle')
+
+    MODULE_CLS = type(paddle)
+    module_list = []
+    while not module_str_queue.empty():
+        module_name = module_str_queue.get()
+        try:
+            module = importlib.import_module(module_name)
+            module_list.append(module)
+            for sub_module_str in dir(module):
+                if sub_module_str.startswith('_'):
+                    continue
+                full_sub_module_path = '.'.join([module_name, sub_module_str])
+                sub_module = eval(full_sub_module_path)
+                if isinstance(sub_module, MODULE_CLS):
+                    module_str_queue.put(full_sub_module_path)
+        except Exception as e:
+            continue
+
+    return module_list
+
+
+def get_public_modules():
+    """
+    get public modules from paddle
+    :return: module list
+    """
+    public_module_list = []
+    all_modules = get_all_modules()
+    for module in all_modules:
+        if check_module_in_black_list(module.__name__):
+            logger.info('module %s in black module list', module.__name__)
+            continue
+        if hasattr(module, '__all__'):
+            api_in_module = module.__all__
+            if len(api_in_module) == 0:
+                logger.info('API in module %s is empty', module.__name__)
+                continue
+            public_module_list.append(module)
+    return public_module_list
+
+
+def get_api_from_module(module):
+    """
+    get api list from module
+    :param module: module object
+    :return: api list
+    """
+    if not hasattr(module, '__all__'):
+        return []
+    return module.__all__
+
+
 def set_api_sketch():
     """
     set the in_api_sktech attr. may replace the set_display_attr_of_apis.
     """
     global api_info_dict
-    modulelist = [  #noqa
-        paddle,
-        paddle.amp,
-        paddle.nn,
-        paddle.nn.functional,
-        paddle.nn.initializer,
-        paddle.nn.utils,
-        paddle.nn.quant.quant_layers,
-        paddle.static,
-        paddle.static.nn,
-        paddle.static.sparsity,
-        paddle.signal,
-        paddle.io,
-        paddle.jit,
-        paddle.metric,
-        paddle.distribution,
-        paddle.distribution.transform,
-        paddle.distribution.kl,
-        paddle.optimizer,
-        paddle.optimizer.lr,
-        paddle.regularizer,
-        paddle.text,
-        paddle.utils,
-        paddle.utils.download,
-        paddle.utils.profiler,
-        paddle.utils.cpp_extension,
-        paddle.utils.unique_name,
-        paddle.utils.dlpack,
-        paddle.sysconfig,
-        paddle.vision,
-        paddle.vision.datasets,
-        paddle.vision.models,
-        paddle.vision.transforms,
-        paddle.vision.ops,
-        paddle.distributed,
-        paddle.distributed.fleet,
-        paddle.distributed.fleet.utils,
-        paddle.distributed.fleet.base.topology,
-        paddle.distributed.parallel,
-        paddle.distributed.utils,
-        paddle.distributed.passes,
-        paddle.distributed.ps.utils,
-        paddle.distributed.ps.utils.ps_factory,
-        paddle.distributed.ps.the_one_ps,
-        paddle.distributed.sharding,
-        paddle.callbacks,
-        paddle.hub,
-        paddle.autograd,
-        paddle.incubate,
-        paddle.incubate.autograd,
-        paddle.incubate.nn,
-        paddle.incubate.nn.functional,
-        paddle.incubate.optimizer,
-        paddle.incubate.optimizer.functional,
-        paddle.incubate.operators,
-        paddle.incubate.operators.resnet_unit,
-        paddle.inference,
-        paddle.onnx,
-        paddle.device,
-        paddle.device.cuda,
-        paddle.linalg,
-        paddle.fft,
-        paddle.version,
-        paddle.profiler,
-    ]
+    modulelist = get_public_modules()
 
     alldict = {}
     for module in modulelist:

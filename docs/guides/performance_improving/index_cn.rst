@@ -10,3 +10,10 @@
     :hidden:
 
     quantization.md
+
+- `模型性能分析 <./profiling_model.html>`_ : 使用飞桨性能分析器对模型进行性能调试。
+
+..  toctree::
+    :hidden:
+
+    profiling_model.md
