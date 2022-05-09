@@ -252,6 +252,7 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <th> cp37-cp37m    </th>
         <th> cp38-cp38    </th>
         <th> cp39-cp39    </th>
+        <th> cp310-cp310    </th>
     </tr>
     </thead>
     <tbody>
@@ -261,12 +262,14 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp37-cp37m-linux_x86_64.whl"> paddlepaddle-2.3.0-cp37-cp37m-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp39-cp39-linux_x86_64.whl"> paddlepaddle-2.3.0-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp310-cp310-linux_x86_64.whl"> paddlepaddle-2.3.0-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> cpu-openblas-avx </td>
         <td> - </td>
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-openblas-avx/paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
@@ -275,12 +278,14 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-noavx/paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
         <td> - </td>
+        <td> - </td>
     </tr>
     <tr>
         <td> cpu-openblas-noavx </td>
         <td> - </td>
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-openblas-noavx/paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
@@ -293,6 +298,8 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         paddlepaddle_gpu-2.3.0.post101-cp38-cp38-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0.post101-cp39-cp39-linux_x86_64.whl">
         paddlepaddle_gpu-2.3.0.post101-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0.post101-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post101-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> cuda10.1-cudnn7-mkl-gcc5.4-noavx </td>
@@ -300,6 +307,7 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-noavx/paddlepaddle_gpu-2.3.0.post101-cp38-cp38-linux_x86_64.whl">
         paddlepaddle_gpu-2.3.0.post101-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
@@ -312,6 +320,8 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         paddlepaddle_gpu-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0-cp39-cp39-linux_x86_64.whl">
         paddlepaddle_gpu-2.3.0-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> cuda10.2-cudnn7-mkl-gcc8.2-noavx </td>
@@ -319,6 +329,7 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-noavx/paddlepaddle_gpu-2.3.0-cp38-cp38-linux_x86_64.whl">
         paddlepaddle_gpu-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
@@ -331,6 +342,8 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         paddlepaddle_gpu-2.3.0.post110-cp38-cp38-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post110-cp39-cp39-linux_x86_64.whl">
         paddlepaddle_gpu-2.3.0.post110-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post110-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post110-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> cuda11.1-cudnn8.1-mkl-gcc8.2-avx </td>
@@ -342,6 +355,8 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         paddlepaddle_gpu-2.3.0.post111-cp38-cp38-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post111-cp39-cp39-linux_x86_64.whl">
         paddlepaddle_gpu-2.3.0.post111-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post111-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post111-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> cuda11.2-cudnn8.1-mkl-gcc8.2-avx </td>
@@ -353,6 +368,8 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         paddlepaddle_gpu-2.3.0.post112-cp38-cp38-linux_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post112-cp39-cp39-linux_x86_64.whl">
         paddlepaddle_gpu-2.3.0.post112-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post112-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post112-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> macos-cpu-openblas </td>
@@ -364,6 +381,19 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         paddlepaddle-2.3.0-cp38-cp38-macosx_10_14_x86_64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas/paddlepaddle-2.3.0-cp39-cp39-macosx_10_14_x86_64.whl">
         paddlepaddle-2.3.0-cp39-cp39-macosx_10_14_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas/paddlepaddle-2.3.0-cp310-cp310-macosx_10_14_universal2.whl">
+        paddlepaddle-2.3.0-cp310-cp310-macosx_10_14_universal2.whl</a></td>
+    </tr>
+    <tr>
+        <td> macos-cpu-openblas-m1 </td>
+        <td> - </td>
+        <td> - </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.0-cp38-cp38-macosx_11_0_universal2.whl">
+        paddlepaddle-2.3.0-cp38-cp38-macosx_11_0_universal2.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.0-cp39-cp39-macosx_11_0_universal2.whl">
+        paddlepaddle-2.3.0-cp39-cp39-macosx_11_0_universal2.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.0-cp310-cp310-macosx_11_0_universal2.whl">
+        paddlepaddle-2.3.0-cp310-cp310-macosx_11_0_universal2.whl</a></td>
     </tr>
     <tr>
         <td> win-cpu-mkl-avx </td>
@@ -371,12 +401,14 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0-cp37-cp37m-win_amd64.whl"> paddlepaddle-2.3.0-cp37-cp37m-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0-cp39-cp39-win_amd64.whl"> paddlepaddle-2.3.0-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0-cp310-cp310-win_amd64.whl"> paddlepaddle-2.3.0-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cpu-mkl-noavx </td>
         <td> - </td>
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-noavx/paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
@@ -385,12 +417,14 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-openblas-avx/paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl</a></td>
         <td> - </td>
+        <td> - </td>
     </tr>
     <tr>
         <td> win-cpu-openblas-noavx </td>
         <td> - </td>
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-openblas-noavx/paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
@@ -399,12 +433,14 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0.post101-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp37-cp37m-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0.post101-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp38-cp38-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0.post101-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0.post101-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cuda10.1-cudnn7-mkl-vs2017-noavx </td>
         <td> - </td>
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-noavx/paddlepaddle_gpu-2.3.0.post101-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
@@ -413,12 +449,14 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp37-cp37m-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp38-cp38-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cuda10.2-cudnn7-mkl-vs2017-noavx </td>
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-noavx/paddlepaddle_gpu-2.3.0-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp37-cp37m-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-noavx/paddlepaddle_gpu-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
@@ -427,6 +465,7 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post110-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post110-cp37-cp37m-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post110-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post110-cp38-cp38-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post110-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post110-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post110-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post110-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cuda11.1-cudnn8.1-mkl-vs2017-avx </td>
@@ -434,6 +473,7 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post111-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post111-cp37-cp37m-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post111-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post111-cp38-cp38-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post111-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post111-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post111-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post111-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cuda11.2-cudnn8.2-mkl-vs2017-avx </td>
@@ -441,6 +481,7 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.0 </code> will i
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post112-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post112-cp37-cp37m-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post112-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post112-cp38-cp38-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post112-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post112-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post112-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post112-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     </tbody>
 </table>
