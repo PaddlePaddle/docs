@@ -12,31 +12,43 @@ PaddlePaddle 分布式对不同系统和硬件的支持情况如下表所示，
    * - 
      - CPU
      - GPU
-     - XPU
-     - NPU
+     - 昆仑XPU
+     - 海光DCU
+     - 昇腾NPU
    * - Linux
      - PS/Collective
      - PS/Collective
      - Collective
      - Collective
-   * - Windows
-     - Single
-     - Single
-     - -
-     - -
+     - Collective
+
+目前 Windows 只支持单机的 CPU 和 GPU，暂不支持分布式训练。
 
 
-裸机及docker化部署
+常用环境介绍
 ^^^^^^^^^^^^^^^^^^^^^^
 
-本节针对使用多台裸机使用分布式的场景提供指导，当机器数量多于 5 台且长期使用时，建议部署 kubernetes 或其他类似集群管理工具使用。
+下面针对使用多台裸机使用分布式的场景提供指导，总体而言，
 
-无论开发调试还是长期部署训练任务，建议使用 docker 环境，PaddlePaddle 提供了官方镜像供 `下载 <https://www.paddlepaddle.org.cn/install/quick>`_ 使用。
+* 强烈推荐使用 `docker <https://docs.docker.com/engine/install/>`_ 环境部署使用分布式训练，不建议在机器上直接安装使用 PaddlePaddle
+* 当机器数量多于 5 台且长期使用时，建议使用 :ref:`Kubernetes 部署` 或其他类似集群管理工具使用
+
+
+裸机及Docker化部署
+^^^^^^^^^^^^^^^^^^^^^^
 
 paddle 环境安装
-~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-根据 `安装 <https://www.paddlepaddle.org.cn/install/quick>`_ 部分选择合适的 paddle 版本进行安装或下载对应版本的镜像然后通过以下命令启动
+根据 `安装 <https://www.paddlepaddle.org.cn/install/quick>`_ 部分选择合适的 paddle 版本，
+直接使用 pip 可以在环境中 `安装 PaddlePaddle <>`_ , 例如
+
+.. code-block::
+
+    $ python -m pip install paddlepaddle-gpu==2.2.2.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+
+或者在装有 docker 的环境中可以直接使用 PaddlePaddle 官方提供的镜像，
+下载对应版本的镜像然后通过以下命令启动
 
 .. code-block::
 
@@ -45,7 +57,7 @@ paddle 环境安装
 * 当使用 gpu 时请配置 nvidia docker runtime 或使用 nvidia-docker 启动容器，进入容器后使用 nvidia-smi 命令确认环境正确
 * 使用分布式时需要添加 --host=net 参数让容器使用主机网络以实现跨机建立连接
 
-运行以下命令
+安装后，运行以下命令
 
 .. code-block::
 
@@ -54,7 +66,7 @@ paddle 环境安装
 确保输出结果符合预期以保证 paddle 环境安装正确。 至此，可以进行单机的代码开发和调试工作。
 
 分布式启动
-~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 在多机中安装好环境，同步数据和代码，在任意节点上运行以下命令
 
@@ -92,7 +104,7 @@ paddle-operator 通过添加自定义资源类型 (paddlejob) 以及部署 contr
 目前支持运行 ParameterServer (PS) 和 Collective 两种分布式任务，当然也支持运行单节点任务。
 
 paddle-operator 安装
-~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 安装 paddle-operator 需要有已经安装的 kubernetes (v1.8+) 集群和 `kubectl <https://kubernetes.io/docs/tasks/tools/install-kubectl/>`_  (v1.8+) 工具。
 
@@ -139,14 +151,6 @@ paddle-operator 安装
     $ kubectl get crd
     NAME                                    CREATED AT
     paddlejobs.batch.paddlepaddle.org       2021-02-08T07:43:24Z
- 
-
-*注意：默认部署的 namespace 为 paddle-system，如果希望在自定义的 namespace 中运行或者提交任务，
-需要先在 operator.yaml 文件中对应更改 namespace 配置，其中*
-
-* *namespace: paddle-system* 表示该资源部署的 namespace，可理解为系统 controller namespace；
-* Deployment 资源中 containers.args 中 *--namespace=paddle-system* 表示 controller 监控资源所在 namespace，即任务提交 namespace。
-
 
 执行以下部署命令，
 
@@ -191,7 +195,7 @@ paddle-operator 安装
 以上信息可以看出：训练任务已经正确完成，该任务为 ps 模式。
 可通过 cleanPodPolicy 配置任务完成/失败后的 pod 删除策略，详见任务配置。
 
-查看 pod 状态，
+训练期间可以通过如下命令查看 pod 状态，
 
 .. code-block::
 
@@ -201,12 +205,11 @@ paddle-operator 安装
 paddlejob 任务提交
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-在上述安装过程中，我们使用了 wide-and-deep 的例子作为提交任务演示，本节详细描述任务配置和提交流程供用户参考提交自己的任务，
-镜像的制作过程可在 *docker 镜像* 章节找到。
+在上述安装过程中，我们使用了 wide-and-deep 的例子作为提交任务演示，本节详细描述任务配置和提交流程供用户参考提交自己的任务。
 
 示例 wide and deep
 
-本示例采用 PS 模式，使用 cpu 进行训练，所以需要配置 ps 和 worker。
+本示例为 PS 模式，使用 cpu 进行训练，需要配置 ps 和 worker。
 
 准备配置文件，
 
@@ -255,7 +258,7 @@ paddlejob 任务提交
 示例 resnet
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-本示例采用 Collective 模式，使用 gpu 进行训练，所以只需要配置 worker，且需要配置 gpu。
+本示例为 Collective 模式，使用 gpu 进行训练，只需要配置 worker，worker 配置中需要声明使用的 gpu 信息。
 
 准备配置文件，
 
