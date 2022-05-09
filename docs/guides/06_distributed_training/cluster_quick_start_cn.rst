@@ -3,7 +3,7 @@
 分布式训练快速开始
 ==================
 
-FleetX 是飞桨分布式训练扩展包，为了可以让用户更快速了解和使用飞桨分布式训练特性，提供了大量分布式训练例子，可以查阅 https://github.com/PaddlePaddle/FleetX/tree/develop/examples，以下章节的例子都可以在这找到，用户也可以直接将仓库下载到本地直接。
+FleetX 是飞桨分布式训练扩展包，能让用户很容易进行分布式训练任务，同时还提供 `具体例子 <、https://github.com/PaddlePaddle/FleetX/tree/develop/examples>`_ 来帮助用户更快速了解和使用飞桨分布式训练特性。
 
 一、Collective 训练快速开始
 -------------------------------

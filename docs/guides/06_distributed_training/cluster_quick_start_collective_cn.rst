@@ -10,11 +10,11 @@
 
 与单机单卡的普通模型训练相比，无论静态图还是动态图，Collective训练的代码都只需要简单补充五个部分代码：
 
-    1. :ref:`导入分布式训练依赖包 <method1_label>` 
-    2. :ref:`初始化Fleet环境 <method2_label>` 
-    3. :ref:`构建分布式训练使用的网络模型 <method3_label>` 
-    4. :ref:`构建分布式训练使用的优化器 <method4_label>` 
-    5. :ref:`构建分布式训练所使用的数据集 <method5_label>` 
+    1. 导入分布式训练依赖包 
+    2. 初始化Fleet环境 
+    3. 构建分布式训练使用的网络模型 
+    4. 构建分布式训练使用的优化器 
+    5. 构建分布式训练所使用的数据集 
 
 下面将逐一进行讲解。
 
@@ -48,8 +48,6 @@
 
     # 选择不设置分布式策略
     fleet.init(is_collective=True)
-
-.. code-block:: python
 
     # 选择设置分布式策略
     strategy = fleet.DistributedStrategy()
@@ -390,9 +388,9 @@
 
 使用Fleet `paddle.distributed.launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html#launch>`_ 能够在如下3种不同集群平台上分布式训练：
 
-- :ref:`AI Studio启动 <launch1_label>` 
-- :ref:`自定义集群启动 <launch2_label>` 
-- :ref:`PaddleCloud集群启动 <launch3_label>` 
+- AI Studio启动 
+- 自定义集群启动 
+- PaddleCloud集群启动 
 
 .. _launch1_label:
 
@@ -508,7 +506,7 @@
 
     在PaddleCloud上进行分布式训练，训练方式需要选择“分布式训练”选项，任务模式需要选择“NCCL2模式”选项，如下图所示。
 
-.. image:: docs/guides/images/paddlecloud.png
+.. image:: images/paddlecloud.png
 
 如果使用客户端提交任务，需要设置 `start_cmd` 和在命令行参数中指定运行模式为“NCCL2模式”，具体命令如下：
 
