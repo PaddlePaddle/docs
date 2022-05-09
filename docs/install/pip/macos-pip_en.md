@@ -79,7 +79,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 ```
-python -m pip install paddlepaddle==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple
+python -m pip install paddlepaddle==2.3.0 -i https://mirror.baidu.com/pypi/simple
 ```
 
 Note：
@@ -87,7 +87,7 @@ Note：
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
 
-* Support the installation of Mac M1 chip. Note that when the python version is python3.9, only the intel version of python is supported, and the universal version of python is not supported.
+* Support the installation of Mac M1 chip.
 
 
 

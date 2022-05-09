@@ -145,11 +145,11 @@ This section describes how to use pip to install.
         Command to install CPU version is:
         ::
     
-            python -m pip install paddlepaddle==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle==2.3.0 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle==2.3.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle==2.3.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
         
 
     (2). **GPU version** : If you only want to install GPU version, please refer to command below
@@ -159,14 +159,14 @@ This section describes how to use pip to install.
 
             * You need to confirm that your GPU meets the requirements listed above
 
-        Please attention that PaddlePaddle installed through command below only supports CUDA11.0 under Windows、Ubuntu、CentOS:
+        Please attention that PaddlePaddle installed through command below only supports CUDA10.2 under Windows、Ubuntu、CentOS:
         ::
 
-            python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==2.3.0 -i https://mirror.baidu.com/pypi/simple
 
             or
 
-            python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==2.3.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         
     Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.

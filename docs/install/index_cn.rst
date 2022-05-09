@@ -5,24 +5,6 @@
 =========
 
 
----------------------
-  飞桨2.3版本升级须知
----------------------
-
-* 飞桨在PIP源上发布的安装包CUDA 架构调整为11.0；如需安装其他CUDA 版本的paddle，请移步飞桨官网-安装主页进行下载；
-* 飞桨2.3 PIP源发布包新增了对Ampere 架构的支持。GPU架构为8.0或8.6的用户可以直接通过`pip install paddlepaddle`的方式进行升级；
-* 为了支持新GPU架构，兼容旧GPU架构；从2.3版本开始，飞桨对框架支持的GPU架构种类进行了调整和升级。
-
-**备注：**
-
-* pip源指用户将从pip官网网站下载安装包及依赖库，支持架构种类少，安装包更轻量，国外源。
-* 飞桨官网bos源指用户从飞桨官网下载安装包及依赖库，支持的GPU架构更多，国内源下载较快。
-
-**详情：**
-
-* 飞桨支持的GPU架构及安装方式请参考：`飞桨支持的GPU架构及安装方式 <Tables.html#gpu-install>`_ .
-
-
 -----------
   安装说明
 -----------
@@ -155,11 +137,11 @@
         安装CPU版本的命令为：
         ::
     
-            python -m pip install paddlepaddle==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle==2.3.0 -i https://mirror.baidu.com/pypi/simple
 
             或
 
-            python -m pip install paddlepaddle==2.3.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle==2.3.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 
     (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装 
@@ -168,14 +150,14 @@
 
             * 需要您确认您的 GPU 满足上方列出的要求
 
-        请注意用以下指令安装的PaddlePaddle在Windows、Ubuntu、CentOS下只支持CUDA11.0：
+        请注意用以下指令安装的PaddlePaddle在Windows、Ubuntu、CentOS下只支持CUDA10.2：
         ::
 
-            python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==2.3.0 -i https://mirror.baidu.com/pypi/simple
 
             或
 
-            python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+            python -m pip install paddlepaddle-gpu==2.3.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 
         
     请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
