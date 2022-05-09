@@ -3,7 +3,7 @@
 triplet_margin_loss
 -------------------------------
 
-.. py:class:: paddle.nn.functional.triplet_margin_loss(input, positive, negative, swap: bool = False, p:float = 2.0, eps:float=1e-6, margin: float = 1.0, reduction: str = 'mean')
+.. py:function:: paddle.nn.functional.triplet_margin_loss(input, positive, negative, swap: bool = False, p:float = 2.0, eps:float=1e-6, margin: float = 1.0, reduction: str = 'mean')
 
 该 api 计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失，测量 `input` 与 `positive examples` 和 `negative examples` 之间的相对相似性。所有输入张量的形状都为 :math:`(N, *)`，`*` 是任意其他维度。
 
@@ -20,7 +20,7 @@ triplet_margin_loss
 
 
 
-``p`` 为距离函数的范数。 ``margin`` 为（input,positive）与（input,negative）的距离间隔， ``swap`` 的内容可以看论文 `Learning shallow convolutional feature descriptors with triplet losses <http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf>`_。
+``p`` 为距离函数的范数。 ``margin`` 为（input，positive）与（input，negative）的距离间隔， ``swap`` 为True时，会比较（input，negative）和（positive，negative）的大小，并将（input，negative）换为其中较小的值，内容详见论文 `Learning shallow convolutional feature descriptors with triplet losses <http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf>`_。
 
 最后，添加 `reduce` 操作到前面的输出Out上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
