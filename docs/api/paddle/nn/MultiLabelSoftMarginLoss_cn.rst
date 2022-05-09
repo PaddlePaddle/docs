@@ -3,7 +3,7 @@
 MultiLabelSoftMarginLoss
 -------------------------------
 
-.. py:class:: paddle.nn.MultiLabelSoftMarginLoss(weight:Optional=None, reduction: str = 'mean')
+.. py:class:: paddle.nn.MultiLabelSoftMarginLoss(weight:Optional=None, reduction: str = 'mean', name:str=None)
 
 该 APIs 计算输入 `input` 和 `label` 间的 `margin-based loss` 损失。
 
@@ -31,10 +31,6 @@ MultiLabelSoftMarginLoss
     - **label** (Tensor) - :math:`[N, *]` ，标签 ``label`` 的维度、数据类型与输入 ``input`` 相同。
     - **output** (Tensor) - 输出的Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` , 与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出的维度为 :math:`[1]` 。
 
-返回
-:::::::::
-   返回一个可调用计算Loss的类
-
 代码示例
 :::::::::
-COPY-FROM: Paddle.nn.layer.loss.MultiLabelSoftMarginLoss
+COPY-FROM: Paddle.nn.MultiLabelSoftMarginLoss
