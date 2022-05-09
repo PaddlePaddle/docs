@@ -45,6 +45,12 @@ If you want to use python version 3.9:
 conda create -n paddle_env python=3.9
 ```
 
+If you want to use python version 3.10:
+
+```
+conda create -n paddle_env python=3.10
+```
+
 
 
 #### 1.1.2 Enter the Anaconda Virtual Environment
@@ -73,7 +79,7 @@ where python
 
 #### 1.2.2 Check the version of Python
 
-Use the following command to confirm it's version is 3.6/3.7/3.8/3.9
+Use the following command to confirm it's version is 3.6/3.7/3.8/3.9/3.10
 
 ```
 python --version

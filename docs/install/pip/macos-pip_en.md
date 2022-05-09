@@ -6,7 +6,7 @@
 
 * **MacOS version 10.x/11.x (64 bit) (not support GPU version)**
 
-* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python version 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 * **pip or pip3 版本 20.2.2 or above (64 bit)**
 
@@ -33,7 +33,7 @@
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9
+  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9/3.10
 
         python --version
 

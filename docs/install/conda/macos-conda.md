@@ -40,6 +40,12 @@ conda create -n paddle_env python=3.8
 conda create -n paddle_env python=3.9
 ```
 
+如果您想使用的python版本为3.10:
+
+```
+conda create -n paddle_env python=3.10
+```
+
 
 #### 1.1.2进入Anaconda虚拟环境
 
@@ -68,7 +74,7 @@ which python
 
 #### 1.2.2 检查Python版本
 
-使用以下命令确认版本(Python 应对应 3.6/3.7/3.8/3.9)
+使用以下命令确认版本(Python 应对应 3.6/3.7/3.8/3.9/3.10)
 
 ```
 python --version

@@ -10,7 +10,7 @@
   * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2)**
   * **Ubuntu 20.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2)**
 
-* **Python Version: 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python Version: 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 * **pip or pip3 Version 20.2.2 or above (64 bit)**
 
@@ -36,7 +36,7 @@
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9
+  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9/3.10
 
         python --version
 
