@@ -6,6 +6,8 @@
 
 * **MacOS version 10.x/11.x (64 bit) (not support GPU version)**
 
+* **Mac machine supports Mac M1 chip, Intel chip**
+
 * **Python version 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 * **pip or pip3 版本 20.2.2 or above (64 bit)**
@@ -48,7 +50,7 @@
     ```
 
 
-* You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture, except mac M1. PaddlePaddle already supports Mac M1. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
+* You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64) or arm64 (PaddlePaddle already supports Mac M1):
 
 
     ```

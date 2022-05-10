@@ -45,12 +45,6 @@ If you want to use python version 3.9:
 conda create -n paddle_env python=3.9
 ```
 
-If you want to use python version 3.10:
-
-```
-conda create -n paddle_env python=3.10
-```
-
 
 
 #### 1.1.2 Enter the Anaconda Virtual Environment
@@ -79,7 +73,7 @@ where python
 
 #### 1.2.2 Check the version of Python
 
-Use the following command to confirm it's version is 3.6/3.7/3.8/3.9/3.10
+Use the following command to confirm it's version is 3.6/3.7/3.8/3.9
 
 ```
 python --version
@@ -89,7 +83,7 @@ python --version
 
 #### 1.2.3 Check the system environment
 
-Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture. The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
+Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
 
 
 ```

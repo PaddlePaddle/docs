@@ -40,12 +40,6 @@ conda create -n paddle_env python=3.8
 conda create -n paddle_env python=3.9
 ```
 
-如果您想使用的python版本为3.10:
-
-```
-conda create -n paddle_env python=3.10
-```
-
 
 #### 1.1.2进入Anaconda虚拟环境
 
@@ -74,7 +68,7 @@ which python
 
 #### 1.2.2 检查Python版本
 
-使用以下命令确认版本(Python 应对应 3.6/3.7/3.8/3.9/3.10)
+使用以下命令确认版本(Python 应对应 3.6/3.7/3.8/3.9)
 
 ```
 python --version
@@ -84,7 +78,7 @@ python --version
 
 #### 1.2.3 检查系统环境
 
-确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构（mac M1除外，paddle 已支持Mac M1 芯片）。下面的第一行输出的是"64bit"，第二行输出的是"x86_64（或x64、AMD64）"即可：
+确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构 或 arm64架构（paddle已支持Mac M1芯片）：
 
 
 ```
