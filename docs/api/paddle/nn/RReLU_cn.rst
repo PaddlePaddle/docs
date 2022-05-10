@@ -5,7 +5,7 @@ RReLU
 .. py:class:: paddle.nn.RReLU(lower=1./8., upper=1./3., name=None)
 
 RReLU激活层，应用随机纠正线性单元对神经元激活，参考论文：
-`Empirical Evaluation of Rectified Activations in Convolutional Network <https://arxiv.org/abs/1505.00853>`
+`Empirical Evaluation of Rectified Activations in Convolutional Network <https://arxiv.org/abs/1505.00853>`_ 。
 
 训练阶段对负斜率进行均匀分布随机采样：
 
