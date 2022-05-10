@@ -23,7 +23,7 @@ perspective
             - "nearest": cv2.INTER_NEAREST,
             - "bilinear": cv2.INTER_LINEAR,
             - "bicubic": cv2.INTER_CUBIC
-    - fill (int，可选) - 对图像扩展时填充的值。默认值：0。
+    - fill (int|list|tuple，可选) - 对图像扩展时填充的像素值，默认值：0，如果只设定一个数字则所有通道上像素值均为该值。
 
 返回
 :::::::::
@@ -32,9 +32,9 @@ perspective
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
-        
+
     import numpy as np
     from PIL import Image
     from paddle.vision.transforms import functional as F
@@ -47,4 +47,3 @@ perspective
 
     perspectived_img = F.perspective(fake_img, startpoints, endpoints)
     print(perspectived_img.size)
-    
