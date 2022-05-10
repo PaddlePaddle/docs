@@ -3,14 +3,14 @@
 tril_indices
 --------------------------------
 
-.. py:function:: paddle.tril_indices(rows, cols, offset=0, dtype='int64')
+.. py:function:: paddle.tril_indices(row, col, offset=0, dtype='int64')
 
 返回行数和列数已知的二维矩阵中下三角矩阵元素的行列坐标，其中下三角矩阵为原始矩阵某一对角线左下部分元素的子矩阵。
 
 参数
 :::::::::
-    - **rows** (int) - 输入矩阵的行数。
-    - **cols** (int) - 输入矩阵的列数。
+    - **row** (int) - 输入矩阵的行数。
+    - **col** (int) - 输入矩阵的列数。
     - **offset** (int，可选) - 确定从指定二维平面中获取对角线的位置。
 
         + 如果 offset = 0， 取主对角线。
