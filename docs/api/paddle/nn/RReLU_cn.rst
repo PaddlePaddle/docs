@@ -4,30 +4,47 @@ RReLU
 -------------------------------
 .. py:class:: paddle.nn.RReLU(lower=1./8., upper=1./3., name=None)
 
-RReLU激活层（RReLU Activation Operator）。计算公式如下：
+RReLU激活层，应用随机纠正线性单元对神经元激活，参考论文：
+`Empirical Evaluation of Rectified Activations in Convolutional Network <https://arxiv.org/abs/1505.00853>`
 
-如果使用近似计算：
+训练阶段对负斜率进行均匀分布随机采样：
 
 .. math::
 
-	\text{RReLU}(x) =
-        	\begin{cases}
-            	x & \text{if } x \geq 0 \\
-            	ax & \text{ otherwise }
-        	\end{cases}
+        rrelu(x)=
+            \left\{
+                \begin{array}{rcl}
+                    x, & & if \ x >= 0 \\
+                    a * x, & & otherwise \\
+                \end{array}
+            \right.
 
-其中，:math:`x` 为输入的 Tensor。
+其中，:math:`x` 为输入的 Tensor，:math:`a` 是服从（:math:`lower`，:math:`upper` ）均匀分布的随机值。
+
+测试阶段负斜率取均匀分布上下边界（:math:`lower` 及 :math:`upper` ）的平均值：
+
+.. math::
+
+        rrelu(x)=
+            \left\{
+                \begin{array}{rcl}
+                    x, & & if \ x >= 0 \\
+                    (lower + upper) * 0.5 * x, & & otherwise \\
+                \end{array}
+            \right.
+    
+其中，:math:`x` 为输入的 Tensor，:math:`lower` 及 :math:`upper` 是随机均匀分布的上下边界。
 
 参数
 ::::::::::
     - lower (float，可选) - 负值斜率的随机值范围下限，`lower` 包含在范围中。支持的数据类型：float。默认值为0.125。
     - upper (float，可选) - 负值斜率的随机值范围上限，`upper` 包含在范围中。支持的数据类型：float。默认值为0.333。
-    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-形状:
+形状
 ::::::::::
-    - input: 任意形状的Tensor，默认数据类型为float32。
-    - output: 和input具有相同形状的Tensor。
+    - **x** (Tensor) – 任意形状的Tensor，默认数据类型为float32。
+    - **out** (Tensor) – 和x具有相同形状的Tensor。
 
 代码示例
 :::::::::
