@@ -1,5 +1,5 @@
 
-飞桨高可复用算子库 PHI (Paddle HIgh reusability operator library)，或者我们也成为函数式算子库，支持组合式算子功能复用、Primitive算子内核复用、插件式硬件加速库复用。针对飞桨框架原算子库存在的算子接口不清晰、算子复用成本较高、调用性能不够快的问题，我们重构了飞桨框架的算子库，设计了灵活、高效的函数式算子库 Phi，可以通过对函数式算子接口组合调用的方式实现新算子。新算子库提供了 200 余个跟 python 开发接口保持一致的 C++ 运算类 API，以及近500个可供组合调用的前、反向函数式算子内核 Kernel，可大幅降低框架原生算子和自定义算子的开发成本。新算子库支持Primitive API方式开发算子内核，可支持不同硬件（比如GPU和XPU）的算子内核复用。新算子库支持以插件方式接入硬件（比如NPU）的加速库，实现低成本复用硬件加速库。
+飞桨高可复用算子库 PHI (Paddle HIgh reusability operator library)，或者我们也成为函数式算子库，支持组合式算子功能复用、Primitive算子内核复用、插件式硬件加速库复用。针对飞桨框架原算子库存在的算子接口不清晰、算子复用成本较高、调用性能不够快的问题，我们重构了飞桨框架的算子库，设计了灵活、高效的函数式算子库 Phi，可以通过对函数式算子接口组合调用的方式实现新算子。新算子库提供了 200 余个跟 Python 开发接口保持一致的 C++ 运算类 API，以及近500个可供组合调用的前、反向函数式算子内核 Kernel，可大幅降低框架原生算子和自定义算子的开发成本。新算子库支持Primitive API方式开发算子内核，可支持不同硬件（比如GPU和XPU）的算子内核复用。新算子库支持以插件方式接入硬件（比如NPU）的加速库，实现低成本复用硬件加速库。
 
 > 本文档撰写于phi架构基本成型之时（2022年2月），仅代表该时间点的基本设计形态，可能和最新形态有细微差别；此外，在2.3版本发布的phi算子库仍然处于初期形态，后续仍然需要持续建设并完善，设计上也有可能调整。
 
@@ -64,9 +64,9 @@ Paddle 2.0发布之后，多次收到内外部用户反馈动态图在小模型C
 
 ### 1.1.6 Op及Kernel参数规范化
 
-python 2.0 API项目规范了Paddle Python端API的参数列表，使其变得简洁、易用，但是限于当时的情况，Op层面的参数列表并没有规范化，因此会有不少早期开发的算子和Python API参数相差较多，例如conv op这种，python API仅有7个参数，但C++ Op却有30+参数的分裂情况，而API和Op本质上是同一层概念，都是对一个运算的描述，参数应该是一致的。推理为了解决此问题，推动了算子定义增强项目，为部分不需要的参数添加了AsExtra以及AsQuant的声明，但并未从根本上解决问题，这也是phi算子库构建希望重点去解决的。
+Python 2.0 API项目规范了Paddle Python端API的参数列表，使其变得简洁、易用，但是限于当时的情况，Op层面的参数列表并没有规范化，因此会有不少早期开发的算子和Python API参数相差较多，例如conv op这种，Python API仅有7个参数，但C++ Op却有30+参数的分裂情况，而API和Op本质上是同一层概念，都是对一个运算的描述，参数应该是一致的。推理为了解决此问题，推动了算子定义增强项目，为部分不需要的参数添加了AsExtra以及AsQuant的声明，但并未从根本上解决问题，这也是phi算子库构建希望重点去解决的。
 
-我们希望能做到，Python API -> Op(C++ API) -> Kernel API三层参数一致，使整体架构清晰，每一层复用也清晰，一套python官方文档，基本能够满足三层API的共同参考需求，不再着重维护额外的文档体系，降低维护成本。
+我们希望能做到，Python API -> Op(C++ API) -> Kernel API三层参数一致，使整体架构清晰，每一层复用也清晰，一套Python官方文档，基本能够满足三层API的共同参考需求，不再着重维护额外的文档体系，降低维护成本。
 
 ## 1.2 目标及范围
 
@@ -142,7 +142,7 @@ paddle/phi
 部分目录结构说明：
 
 - `api`：API模块，面向外部用户
-	- 直接使用类python的C++ Tensor计算 API，和Python端形式高度一致
+	- 直接使用类Python的C++ Tensor计算 API，和Python端形式高度一致
 	- 该部分可能反向依赖框架的DeviceContextPool等实现，所以单独管理
 	- 在该类API上，训练和预测也可能是不同的
 - `common`：phi内部及phi api目录均要使用的数据结构，这些数据结构既不属于phi core，也不属于api目录
@@ -529,8 +529,8 @@ Tensor scale(const Tensor& x,
 
  C++ API的自动生成是通过解析Yaml配置文件来进行生成的，Yaml配置文件分为：
 
- - 前向API配置文件(`python/paddle/utils/code_gen/api.yaml`，解析后生成代码文件为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`)
- - 反向API配置文件(`python/paddle/utils/code_gen/backward.yaml`，解析后生成的代码文件为`paddle/phi/api/backward/backward_api.h`和`paddle/phi/api/lib/backward_api.cc`)。
+ - 前向API配置文件(`Python/paddle/utils/code_gen/api.yaml`，解析后生成代码文件为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`)
+ - 反向API配置文件(`Python/paddle/utils/code_gen/backward.yaml`，解析后生成的代码文件为`paddle/phi/api/backward/backward_api.h`和`paddle/phi/api/lib/backward_api.cc`)。
 
 C++ API生成的关键在于Yaml文件的配置，以matmul为例，其前向和反向的配置文件如下：
 
@@ -1590,7 +1590,7 @@ class KernelContext {
 
 目前，phi算子库仍然处在Kernel体系的建设阶段，Kernel尚未完全迁移，且仍然存在诸多完善点，但将来phi算子库会更好地将“算子”的概念纳入进来，这还需要比较长的时间和比较大的人力投入。最后，从“产品”的角度介绍一下phi后续对于算子开发范式的规划，也能够让开发者更容易理解 “为什么要做算子库重构？” 这件事。
 
-### 2.5.2 原算子开发范式
+### 2.5.1 原算子开发范式
 
 我们应该如何描述“框架算子”这个概念？
 
@@ -1684,14 +1684,14 @@ REGISTER_OP_VERSION
 
 说回开始的两段式结构，”1.算子描述；2.算子执行“，分这两段是必要的，也是业界普遍的做法，我们不需要再分第三段了，但paddle目前存在第三段，算子描述分了两段进行，并且这两段还不一致，即PythonaAPI和Op。
 
-API和Op都是对算子运行行为的概要描述，本质上只是同一段内容的不同展现形式，比如[python dot API](https://github.com/PaddlePaddle/Paddle/blob/c6f49f0b9f189e043b458348d7fd1468e2645621/python/paddle/tensor/linalg.py#L993)和[DotOpMaker](https://github.com/PaddlePaddle/Paddle/blob/c6f49f0b9f189e043b458348d7fd1468e2645621/paddle/fluid/operators/dot_op.cc#L35)，就是告诉别人“它叫什么，参数都是什么”。
+API和Op都是对算子运行行为的概要描述，本质上只是同一段内容的不同展现形式，比如[Python dot API](https://github.com/PaddlePaddle/Paddle/blob/c6f49f0b9f189e043b458348d7fd1468e2645621/Python/paddle/tensor/linalg.py#L993)和[DotOpMaker](https://github.com/PaddlePaddle/Paddle/blob/c6f49f0b9f189e043b458348d7fd1468e2645621/paddle/fluid/operators/dot_op.cc#L35)，就是告诉别人“它叫什么，参数都是什么”。
 
 
 咱们对同一个东西的描述，分两个地方写，还写得不一样，这是很令人费解的。就好像你介绍一个人，在学校你说他叫”张三“，在公司你说他叫”张三丰“，有相像之处，但又不是一个意思。
 
 对于一个算子，它的输入、输出应该在各个场景下都是一致的，如果不一致，那本质上就不是一个算子。
 
-比如，conv2d的api和op，[Python conv2d API](https://github.com/PaddlePaddle/Paddle/blob/c6f49f0b9f189e043b458348d7fd1468e2645621/python/paddle/nn/functional/conv.py#L416)，很简单，8个输入参数；但是对应的[conv2d op](https://github.com/PaddlePaddle/Paddle/blob/c6f49f0b9f189e043b458348d7fd1468e2645621/paddle/fluid/operators/conv_op.cc#L259)，有**32个**输入参数，让人摸不着头脑。
+比如，conv2d的api和op，[Python conv2d API](https://github.com/PaddlePaddle/Paddle/blob/c6f49f0b9f189e043b458348d7fd1468e2645621/Python/paddle/nn/functional/conv.py#L416)，很简单，8个输入参数；但是对应的[conv2d op](https://github.com/PaddlePaddle/Paddle/blob/c6f49f0b9f189e043b458348d7fd1468e2645621/paddle/fluid/operators/conv_op.cc#L259)，有**32个**输入参数，让人摸不着头脑。
 
 开发者也会很困惑，我开发op的时候，API和Op不是一个东西吗，我应该写得一样呢？还是不一样？
 
@@ -1704,7 +1704,7 @@ API和Op都是对算子运行行为的概要描述，本质上只是同一段内
 
 对于这个问题的解决，我们的方向是很明确的，就是**Op层描述向API层靠拢，因为API层的定义是经过2.0 API项目仔细设计过的**。
 
-### 2.5.1 新算子开发范式：完形填空 + 拼积木
+### 2.5.2 新算子开发范式：完形填空 + 拼积木
 
 phi期望的Op开发方式：**“完形填空”式算子描述实现 + “堆积木”式算子执行实现**
 
