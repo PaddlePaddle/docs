@@ -443,6 +443,13 @@
 1.4.2 自定义集群启动
 """"""""""""""""""""""""
 
+- 单机多卡训练
+    用户只需要通过 `--selected_gpus` 指定GPU卡，其他采用默认命令行参数即可，如：
+
+    .. code-block:: bash
+
+        python -m paddle.distributed.launch --selected_gpus=0,1,2,3 train_with_fleet.py
+        
 - 多机多卡训练
     用户需要给 `paddle.distributed.launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html#launch>`_ 配置以下参数：
 
@@ -481,12 +488,6 @@
             train_with_fleet.py
 
 
-- 单机多卡训练
-    用户只需要通过 `--selected_gpus` 指定GPU卡，其他采用默认命令行参数即可，如：
-
-    .. code-block:: bash
-
-        python -m paddle.distributed.launch --selected_gpus=0,1,2,3 train_with_fleet.py
 
 
 .. _launch3_label:
