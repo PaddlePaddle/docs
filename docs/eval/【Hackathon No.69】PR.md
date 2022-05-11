@@ -61,7 +61,191 @@ Paddle与Pytorch环境配置使用对比： 在单机安装中，都安装在了
 
 # 三、API使用及对比
 
-在API使用上，首先感觉paddle升级后的 paddle.xxx  （例如：paddle.device  paddle.nn  paddle.vision ）比之前的 padddle.fluid.xxx 好用很多，还有就是新增加的高层API个人比较喜欢，一是对初学者比较友好、易用，二是对于开发者可以节省代码量，更简洁直观一些，在（六、动态图单机训练）中进行了代码展示和对比分析。
+## 一、从PaddlePaddle的各个API目录来对比分析
+
+首先，基础操作类、组网类、Loss类、工具类、视觉类这五大类从映射Pytorch上看，在单机训练中可以满足训练及预测所需的API使用类别。
+
+其次，在单机模型训练中对比了一下主要API的使用
+
+| 名称    | PaddlePaddle                  | Pytorch                        |
+| ------- | ----------------------------- | ------------------------------ |
+| layer   | nn.Layer                      | nn.Module                      |
+| 各种层  | nn.layer2D(即paddle使用大写D) | nn.layer2d(即Pytorch使用小写d) |
+| flatten | nn.Flatten                    | var.view(var.size(0), -1)      |
+| concat  | paddle.concat                 | torch.cat                      |
+| optim   | paddle.optimizer              | torch.optim                    |
+
+## 二、从具体API的参数设计差异作对比分析
+
+通过训练和测试Paddle的动态图单机模型，就个人体验而言，对模型中常用到的一些API作简要分析，如paddle.to_tensor，paddle.save,paddle.load,paddle.nn.Conv2D , paddle.nn.Linear, paddle.nn.CrossEntropyLoss , paddle.io.DataLoader
+
+### 1、基础操作类API
+
+```python
+#paddle.to_tensor
+paddle.to_tensor(data,
+                 dtype=None,
+                 place=None,
+                 stop_gradient=True)
+#torch.tensor
+torch.tensor(data,
+             dtype=None,
+             device=None,
+             requires_grad=False,
+             pin_memory=False)
+```
+
+在paddle.to_tensor中，stop_gradient表示是否阻断梯度传导，PyTorch的requires_grad表示是否不阻断梯度传导。
+
+在torch.tensor中，pin_memeory表示是否使用锁页内存，而PaddlePaddle却无此参数。
+
+------
+
+```python
+#paddle.load
+paddle.load(path, **configs)
+
+#torch.load
+torch.load(f,
+           map_location=None,
+           pickle_module=pickle,
+           **pickle_load_args)
+```
+
+在torch.load中， pickle_module  表示用于unpickling元数据和对象的模块，PaddlePaddle无此参数。  map_location  表示加载模型的位置，PaddlePaddle无此参数。 
+
+在加载内容上，PyTorch可以加载torch.Tensor、torch.nn.Module、优化器等多个类型的数据。
+PaddlePaddle只能加载paddle.nn.Layer、优化器这两个类型的数据，这方面Pytorch更优一些。
+
+------
+
+```python
+#paddle.save
+paddle.save(obj, path, pickle_protocol=2)
+
+#torch.save
+torch.save(obj,
+           f,
+           pickle_module=pickle,
+           pickle_protocol=2)
+```
+
+在paddle.save中， path表示存储的路径，这一点比 PyTorch 的f更为清晰一些。
+
+在torch.save中， pickle_module  表示用于pickling元数据和对象的模块，PaddlePaddle无此参数。 
+
+还有在存储内容上，跟paddle.load情况类似，PaddlePaddle只能存储paddle.nn.Layer、优化器这两个类型的数据，个人觉得这方面PaddlePaddle有待加强。
+
+------
+
+### 2、组网类API
+
+```python
+#paddle.nn.Conv2D
+paddle.nn.Conv2D(in_channels,
+                 out_channels,
+                 kernel_size,
+                 stride=1,
+                 padding=0,
+                 dilation=1,
+                 groups=1,
+                 padding_mode='zeros',
+                 weight_attr=None,
+                 bias_attr=None,
+                 data_format='NCHW')
+#torch.nn.Conv2d
+torch.nn.Conv2d(in_channels,
+                out_channels,
+                kernel_size,
+                stride=1,
+                padding=0,
+                dilation=1,
+                groups=1,
+                bias=True,
+                padding_mode='zeros')
+```
+
+在paddle.nn.Conv2D中，PaddlePaddle支持NCHW和NHWC两种格式的输入（通过data_format设置）。而PyTorch只支持NCHW的输入，这一点PaddlePaddle更优一些。
+
+------
+
+```python
+#paddle.nn.Linear
+paddle.nn.Linear(in_features, out_features, weight_attr=None, bias_attr=None, name=None)
+#torch.nn.Linear
+torch.nn.Linear(in_features, out_features, bias=True)
+```
+
+在paddle.nn.Linear中，weight_attr/bias_attr默认使用默认的权重/偏置参数属性，否则为指定的权重/偏置参数属性，而PyTorch的bias默认为True，表示使用可更新的偏置参数。需要注意的是在PaddlePaddle中，当bias_attr设置为bool类型与PyTorch的作用一致。
+
+------
+
+### 3、Loss类API
+
+```python
+#paddle.nn.CrossEntropyLoss
+paddle.nn.CrossEntropyLoss(weight=None,
+                           ignore_index=-100,
+                           reduction='mean',
+                           soft_label=False,
+                           axis=-1,
+                           use_softmax=True,
+                           name=None)
+#torch.nn.CrossEntropyLoss
+torch.nn.CrossEntropyLoss(weight=None,
+                          size_average=None,
+                          ignore_index=-100,
+                          reduce=None,
+                          reduction='mean')
+```
+
+在paddle.nn.CrossEntropyLoss中， use_softmax  表示在使用交叉熵之前是否计算softmax，PyTorch无此参数；soft_label指明label是否为软标签，PyTorch无此参数；而axis表示进行softmax计算的维度索引，PyTorch无此参数。 在这个API中，个人感觉PaddlePaddle的表现优于PyTorch。
+
+------
+
+### 4、工具类API
+
+```python
+#paddle.io.DataLoader
+paddle.io.DataLoader(dataset,
+                     feed_list=None,
+                     places=None,
+                     return_list=False,
+                     batch_sampler=None,
+                     batch_size=1,
+                     shuffle=False,
+                     drop_last=False,
+                     collate_fn=None,
+                     num_workers=0,
+                     use_buffer_reader=True,
+                     use_shared_memory=False,
+                     timeout=0,
+                     worker_init_fn=None)
+#torch.utils.data.DataLoader
+torch.utils.data.DataLoader(dataset,
+                            batch_size=1,
+                            shuffle=False,
+                            sampler=None,
+                            batch_sampler=None,
+                            num_workers=0,
+                            collate_fn=None,
+                            pin_memory=False,
+                            drop_last=False,
+                            timeout=0,
+                            worker_init_fn=None,
+                            multiprocessing_context=None,
+                            generator=None,
+                            prefetch_factor=2,
+                            persistent_workers=False)
+```
+
+在paddle.io.DataLoader中， feed_list 表示feed变量列表，PyTorch无此参数。  use_shared_memory  表示是否使用共享内存来提升子进程将数据放入进程间队列的速度，PyTorch无此参数。 
+
+在torch.utils.data.DataLoader中，prefetch_factor  表示每个worker预先加载的数据数量，PaddlePaddle无此参数；还有就是PyTorch可通过设置sampler自定义数据采集器，PaddlePaddle无此功能，只能自定义一个DataLoader来实现该功能，会有些繁琐。总的来说，这部分Pytorch的体验更好一些。
+
+------
+
+​		从整体的API使用上，感觉paddle升级后的 paddle.xxx  （例如：paddle.device  paddle.nn  paddle.vision ）比之前的 padddle.fluid.xxx 好用很多，还有就是新增加的高层API个人比较喜欢，一是对初学者比较友好、易用，二是对于开发者可以节省代码量，更简洁直观一些，在（六、动态图单机训练）中进行了代码展示和对比分析。
 
 与Pytorch相比，基础API的结构和调用没有太大区别，但是在速度上，paddle的基础API会更快一点，如果是利用了paddle高层API，速度会快很多，在同样epoch的情况下，能减少大约三分之二的训练时间。
 
@@ -71,19 +255,238 @@ Paddle与Pytorch环境配置使用对比： 在单机安装中，都安装在了
 
 # 四、Tensor 索引
 
-在了解Paddle的Tensor索引和其切片规则以及逻辑相关函数重写规则等内容后，结合指南内容（ https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_cn.html#id1 ）和模型训练过程中的Tensor索引体验，感觉在通过索引或切片修改 Tensor 的整体过程有些冗余，稳定性也会下降。虽然使用指南里说明了修改会导致原值不会被保存，可能会给梯度计算引入风险 ，但是在这点上个人感觉Pytorch的体验要好于Paddle。
+在了解Paddle的Tensor索引和其切片规则以及逻辑相关函数重写规则等内容后，结合指南内容（ https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_cn.html#id1 ）和模型训练过程中的Tensor索引使用，共有以下几点体验总结：
+
+**一、Paddle可以使用静态数组索引；不可以使用tensor索引。**
+示例：广播 (broadcasting)
+1.每个张量至少为一维张量
+
+2.从后往前比较张量的形状，当前维度的大小要么相等，要么其中一个等于一，要么其中一个不存在
+
+```python
+import paddle
+x = paddle.ones((2, 3, 4))
+y = paddle.ones((2, 3, 4))
+# 两个张量 形状一致，可以广播
+z = x + y
+print(z.shape)
+# [2, 3, 4]
+ 
+x = paddle.ones((2, 3, 1, 5))
+y = paddle.ones((3, 4, 1))
+# 从后向前依次比较：
+# 第一次：y的维度大小是1
+# 第二次：x的维度大小是1
+# 第三次：x和y的维度大小相等
+# 第四次：y的维度不存在
+# 所以 x和y是可以广播的
+z = x + y
+print(z.shape)
+# [2, 3, 4, 5]
+ 
+# 相反
+x = paddle.ones((2, 3, 4))
+y = paddle.ones((2, 3, 6))
+# 此时x和y是不可广播的，因为第一次比较 4不等于6
+# z = x + y
+# InvalidArgumentError: Broadcast dimension mismatch.
+```
+
+**二、两个张量进行广播语义后的结果张量的形状计算规则如下：**
+
+1.如果两个张量的形状的长度不一致，那么需要在较小形状长度的矩阵向前添加1，直到两个张量的形状长度相等。
+
+2.保证两个张量形状相等之后，每个维度上的结果维度就是当前维度上较大的那个。
+
+```python
+import paddle
+ 
+x = paddle.ones((2, 1, 4))
+y = paddle.ones((3, 1))
+z = x + y
+print(z.shape)
+# z的形状: [2,3,4]
+ 
+
+x = paddle.ones((2, 1, 4))
+y = paddle.ones((3, 2))
+# z = x + y
+# ValueError: (InvalidArgument) Broadcast dimension mismatch.
+
+```
+
+**三、Paddle 目前支持的Tensor索引规则：**
+1、基于 0-n 的下标进⾏索引
+2、如果下标为负数，则从尾部开始
+3、通过冒号 : 分隔切⽚参数 start:stop:step 来进⾏切⽚操作，其中 start、stop、step 均可缺省
+
+示例1：索引
+
+```python
+ndim_1_tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
+print("最初的Tensor: ", ndim_1_tensor.numpy())
+print("取⾸端元素:", ndim_1_tensor[0].numpy())
+print("取末端元素:", ndim_1_tensor[-1].numpy())
+print("取所有元素:", ndim_1_tensor[:].numpy())
+print("取索引3之前的所有元素:", ndim_1_tensor[:3].numpy())
+print("取从索引6开始的所有元素:", ndim_1_tensor[6:].numpy())
+print("取从索引3开始到索引6之前的所有元素:", ndim_1_tensor[3:6].numpy())
+print("间隔3取所有元素:", ndim_1_tensor[::3].numpy())
+print("逆序取所有元素:", ndim_1_tensor[::-1].numpy())
+
+```
+
+部分运⾏结果如下：
+
+```python
+First element: [0]
+Last element: [8]
+All element: [0 1 2 3 4 5 6 7 8]
+Before 3: [0 1 2]
+From 6 to the end: [6 7 8]
+From 3 to 6: [3 4 5]
+Interval of 3: [0 3 6]
+Reverse: [8 7 6 5 4 3 2 1 0]
+
+```
+
+示例2：不能维度直接赋值
+
+```python
+#报错：
+TypeError: 'paddle.fluid.core_avx.VarBase' object does not support item assignment
+    
+# pytorch code
+Pred_boxes[:, 0] = pred_ctr_x - 0.5 * pred_w
+pred_boxes[:, 1] = pred_ctr_y - 0.5 * pred_h
+pred_boxes[:, 2] = pred_ctr_x + 0.5 * pred_w
+pred_boxes[:, 3] = pred_ctr_y + 0.5 * pred_h
+    
+# paddlepaddle code
+pred_boxes = fluid.layers.concat([
+    pred_ctr_x - 0.5 * pred_w,
+    pred_ctr_y - 0.5 * pred_h,
+    pred_ctr_x + 0.5 * pred_w,
+    pred_ctr_y + 0.5 * pred_h
+])
+
+
+#维度报错:
+
+too many indices (3) for tensor of dimension 2
+
+# pytorch code
+bbox_x[bind, :, np.newaxis ] 
+# paddlepaddle code
+fluid.layers.reshape(bbox_x[bind, :], [1, -1, 1])
+
+```
+
+**示例3： tensor的值不能直接利用**
+
+报错：paddlepaddle中的value不能直接拿出来用。
+
+```python
+TypeError: The type of 'shape' in reshape must be list[int] or tuple(int) in
+ Dygraph mode, but received <class 'list'>, which contains Variable.
+#错误代码：其中stack_size, feat_size 为 tensor。
+
+# paddlepaddle code
+shift_x1 = fluid.layers.reshape(fluid.dygraph.to_variable(shift_x1), [1, stack_size, feat_size[1]])
+
+
+```
+
+改进加入
+
+```python
+# paddlepaddle code
+stack_size = stack_size.numpy()
+feat_size = feat_size.numpy()
+
+```
+
+**四、Tensor 索引整体体验**
+
+感觉在通过索引或切片修改 Tensor 的整体过程有些冗余，稳定性也会下降。虽然使用指南里说明了修改会导致原值不会被保存，可能会给梯度计算引入风险 ，但是在这点上个人感觉Pytorch的体验要好于Paddle。
 
 总的来说，在模型训练中利用Tensor加载数据集等操作上 Pytorch与 Paddle的体验并没有太大区别，但整体的感觉Pytorch的Tensor 索引更好一些，个人感觉Paddle在修改 Tensor的部分上可以增加一些文档说明。
 
+**文档序号错误小提醒：**
 
+ https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/update_cn.html#tensor 中的“使用Tensor概念表示数据”下的序号应为1、2、；文档中为两个1、1、。
 
 # 五、NumPy兼容性分析及对比
 
 NumPy在Paddle的体验，感觉和Pytorch的体验并无区别，但是在阅读使用文档时的体验感较好，内容叙述很详细 （文档链接：https://www.paddlepaddle.org.cn/tutorials/projectdetail/3466356 ）
 
-这部分个人体验较好的第一点就是 飞桨的Tensor高度兼容Numpy数组（array），在基础数据结构和方法上，增加了很多适用于深度学习任务的参数和方法，如：反向计算梯度，更灵活的指定运行硬件等。 
+**1、关于numpy API的重写**
 
-第二点就是对于刚使用Paddle的新手，这部分需要注意的就是 Paddle的Tensor虽然可以与Numpy的数组方便的互相转换 ，但是有两个场景优先使用Paddle的Tensor 比较好:
+在Paddle动态图单机训练中，NumPy在Paddle的体验，感觉和Pytorch的体验并无区别，但是 所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现 ，这一点个人认为需要注意，因为在习惯使用Pytorch代码逻辑时，转为PaddlePaddle容易出错，下面举例说明：
+
+```python
+#下述样例需要将 forward 中的所有的 numpy 操作都转为 Paddle API：
+def forward(self, x):
+    out = self.linear(x)  # [bs, 3]
+
+    # 以下将 tensor 转为了 numpy 进行一系列操作
+    x_data = x.numpy().astype('float32')  # [bs, 10]
+    weight = np.random.randn([10,3])
+    mask = paddle.to_tensor(x_data * weight)  # 此处又转回了 Tensor
+
+    out = out * mask
+    return out
+
+```
+
+注：由于在动态图模型代码中的 numpy 相关的操作不可以转为静态图，所以在动态图单机训练时候，只要与组网相关的 numpy 操作用 paddle 的 API 重新实现即可，所以在numpy API的重写部分，记住以上区别可以防止 Segment Fault 等错误的产生。
+
+**2、关于Tensor 操作的支持**
+
+在动态图单机训练中，感觉Paddle的Tensor高度兼容Numpy数组（array），发现增加了很多适用于深度学习任务的参数和方法，如反向计算梯度，更灵活的指定运行硬件 ，还有就是Paddle的Tensor可以与Numpy的数组方便的互转 ，比如以下代码展示：
+
+```python
+import paddle
+import numpy as np
+
+tensor_to_convert = paddle.to_tensor([1.,2.])
+
+#通过 Tensor.numpy() 方法，将 Tensor 转化为 Numpy数组
+tensor_to_convert.numpy()
+
+#通过paddle.to_tensor() 方法，将 Numpy数组 转化为 Tensor
+tensor_temp = paddle.to_tensor(np.array([1.0, 2.0]))
+
+```
+
+**3、numpy与tensor的转换补充**
+
+numpy操作多样, 简单. 但网络前向只能是tensor类型, 各有优势, 所以需要相互转换补充.
+
+```python
+# convert Tensor x of torch to array y of  numpy: 
+y = x.numpy();
+ 
+# convert array x of  numpy to Tensor y of torch: 
+y = torch.from_numpy(x)
+ 
+# 先将数据转换成Tensor, 再使用CUDA函数来将Tensor移动到GPU上加速
+如果想把CUDA tensor格式的数据改成numpy时，需要先将其转换成cpu float-tensor随后再转到numpy格式。
+x_np = x.data.numpy()
+ 
+# 改为：
+ 
+x_np = x.data.cpu().numpy()
+ 
+# 或者兼容上面两者的方式
+x_np = x.detach().cpu().numpy() if x.requires_grad else x.cpu().numpy()
+
+
+```
+
+**整体体验：**
+
+感觉对于刚使用Paddle的新手，这部分需要注意的就是 Paddle的Tensor虽然可以与Numpy的数组方便的互相转换 ，但是有两个场景优先使用Paddle的Tensor 比较好:
 
 - 场景一：在组网程序中，对网络中向量的处理，务必使用Tensor，而不建议转成Numpy的数组。如果在组网过程中转成Numpy的数组，并使用Numpy的函数会拖慢整体性能；
 - 场景二：在数据处理和模型后处理等场景，建议优先使用Tensor，主要是飞桨为AI硬件做了大量的适配和性能优化工作，部分情况下会获得更好的使用体验和性能。
@@ -91,8 +494,6 @@ NumPy在Paddle的体验，感觉和Pytorch的体验并无区别，但是在阅�
 建议：这两个场景内容可以增加一些实例，可能会使新手在这部分的理解更为透彻。
 
 总体来说：Tensor与Numpy数组的兼容与转换，Paddle体验更好一点，兼容性上与Pytorch感觉没区别，但是Paddle的兼容转换处理上更具有一些前瞻性。
-
-
 
 # 六、动态图单机训练
 
@@ -181,6 +582,7 @@ for t in range(epoch):
     test(test_dataloader, model, loss_fn)
     torch.save(model.state_dict(), "save_model/{}model.pth".format(t))    # 模型保存
 print("Done!")
+
 ```
 
 （2）使用 Paddle 完成一个图像分类的动态图单机训练例子（MNIST数据集）
@@ -285,6 +687,7 @@ def test(model):
         if batch_id % 20 == 0:
             print("batch_id: {}, loss is: {}, acc is: {}".format(batch_id, loss.numpy(), acc.numpy()))
 test(model)
+
 ```
 
 （3）两个程序的运行结果
@@ -312,6 +715,7 @@ Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
 Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz to ./data\MNIST\raw\t10k-labels-idx1-ubyte.gz
 5120it [00:00, 5302428.76it/s]          
 Extracting ./data\MNIST\raw\t10k-labels-idx1-ubyte.gz to ./data\MNIST\raw
+
 ```
 
 ```python
@@ -346,6 +750,7 @@ train_loss：0.35491258655836183
 train_acc：0.8926666666666667
 test_loss：0.3223567478398482
 test_acc：0.9044666666666666
+
 ```
 
 二、Paddle程序运行结果
@@ -469,6 +874,7 @@ step 140/157 [=========================>....] - loss: 9.8257e-05 - acc: 0.9856 -
 step 150/157 [===========================>..] - loss: 0.0412 - acc: 0.9859 - ETA: 0s - 10ms/step    
 step 157/157 [==============================] - loss: 2.9252e-04 - acc: 0.9860 - 10ms/step      
 Eval samples: 10000
+
 ```
 
 ​	2、使用基础API结果
@@ -505,6 +911,7 @@ batch_id: 120, loss is: [0.00981056], acc is: [1.]
 batch_id: 140, loss is: [0.07646853], acc is: [0.984375]
 
 Process finished with exit code 0
+
 ```
 
 这部分简单说就是Paddle的高层API比基础API运行速度快，且简单好用，体验感较好。
@@ -517,7 +924,93 @@ Process finished with exit code 0
 
 # 八、报错汇总
 
-Paddle加载数据集报错，无法下载MNIST数据集，需要手动进行下载，（使用了多台电脑测试，均会出现此情况）
+1、 DataLoader报错问题 ：
+
+```python
+SystemError: (Fatal) Blocking queue is killed because the data reader raises an exception.
+[Hint: Expected killed_ != true, but received killed_:1 == true:1.] (at /paddle/paddle/fluid/operators/reader/blocking_queue.h:158)
+
+```
+
+原因分析：由于PaddlePaddle和Pytorch两个框架在这部分并无区别，Paddle读取数据在这主要用到两个类：paddle.io.Dataset和paddle.io.DataLoader，所以查看源代码后发现在Dataset类中的__getitem__(self, idx)返回的数据不是numpy.ndarray类型
+
+解决方案：
+
+ 在__getitem__（）函数里添加一行代码：image = paddle.to_tensor(image)
+
+```python
+# define a random dataset
+class RandomDataset(Dataset):
+    def __init__(self, num_samples):
+        self.num_samples = num_samples
+
+    def __getitem__(self, idx):
+        image = np.random.random([784]).astype('float32')
+        label = np.random.randint(0, 9, (1, )).astype('int64')
+        image = paddle.to_tensor(image) # 添加这行代码
+        return image, label
+
+    def __len__(self):
+        return self.num_samples
+
+```
+
+注：还有一种情况是Dataset类的__getitem__(self, idx)返回的数据为字典（Dict） 类型也会报同样的错误，这时可把return改为return {'input': image, 'lb': label}
+
+
+
+2、使用自己数据集的图像大小不合适而报错
+
+```python
+ERROR:root:DataLoader reader thread raised an exception!
+Traceback (most recent call last):
+File “/home/disk0/zw/workspace/PaddleOCR/test/load_data.py”, line 38, in
+for idx,batch in enumerate(data_loader):
+File “/home/disk0/wy/anaconda3/envs/paddle/lib/python3.7/site-packages/paddle/fluid/dataloader/dataloader_iter.py”, line 788, in next
+data = self.reader.read_next_var_list()
+SystemError: (Fatal) Blocking queue is killed because the data reader raises an exception.
+[Hint: Expected killed != true, but received killed_:1 == true:1.] (at /paddle/paddle/fluid/operators/reader/blocking_queue.h:158)
+
+```
+
+解决方案：由于自己数据集中有部分图片超过了默认shape的[3, 32, 320]，图片宽度大于了320，所以直接删除或调大shape尺寸即可
+
+注:使用公开数据集时不会出现此问题
+
+
+
+3、使用paddle.reshape时出现错误
+
+```python
+ValueError: (InvalidArgument) The 'shape' in ReshapeOp is invalid. The input tensor X'size must be equal to the capacity of 'shape'. But received X's shape = [64, 50, 4, 4], X's size = 51200, 'shape' is [1, 800], the capacity of 'shape' is 800.
+  [Hint: Expected capacity == in_size, but received capacity:800 != in_size:51200.] (at C:\home\workspace\Paddle_release\paddle/fluid/operators/reshape_op.cc:224)
+  [operator < reshape2 > error]
+
+```
+
+解决方案：在使用forward函数实现MNIST网络的执行逻辑时，忽略了self.pool_2_shape变量的大小，重新设置paddle.reshape为x = paddle.reshape(x, shape=[-1, self.pool_2_shape])即可
+
+
+
+4、tensor的值不能直接利用
+
+报错：paddlepaddle中的value不能直接拿出来用。
+
+```python
+TypeError: The type of 'shape' in reshape must be list[int] or tuple(int) in
+ Dygraph mode, but received <class 'list'>, which contains Variable.
+#错误代码：其中stack_size, feat_size 为 tensor。
+
+#改进加入
+# paddlepaddle code
+stack_size = stack_size.numpy()
+feat_size = feat_size.numpy()
+
+```
+
+
+
+5、Paddle加载数据集报错，无法下载MNIST数据集，需要手动进行下载，（使用了多台电脑测试，均会出现此情况）
 
 ```python
 File "E:\anaconda\lib\site-packages\paddle\vision\datasets\mnist.py", line 98, in __init__
@@ -527,6 +1020,7 @@ File "E:\anaconda\lib\site-packages\paddle\vision\datasets\mnist.py", line 98, i
   File "E:\anaconda\lib\site-packages\paddle\dataset\common.py", line 82, in download
     raise RuntimeError("Cannot download {0} within retry limit {1}".
 RuntimeError: Cannot download https://dataset.bj.bcebos.com/mnist/train-images-idx3-ubyte.gz within retry limit 3
+
 ```
 
 ```python
@@ -537,6 +1031,7 @@ File "E:\anaconda\lib\site-packages\paddle\vision\datasets\cifar.py", line 122, 
   File "E:\anaconda\lib\site-packages\paddle\dataset\common.py", line 82, in download
     raise RuntimeError("Cannot download {0} within retry limit {1}".
 RuntimeError: Cannot download https://dataset.bj.bcebos.com/cifar/cifar-10-python.tar.gz within retry limit 3
+
 ```
 
 按照文档提供的'DatasetFolder', 'ImageFolder', 'MNIST', 'FashionMNIST', 'Flowers', 'Cifar10',多种数据集进行了下载测试，均无法在单机上加载数据集，需要手动下载数据集。 
