@@ -5,12 +5,12 @@ RandomPerspective
 
 .. py:class:: paddle.vision.transforms.RandomPerspective(prob=0.5, distortion_scale=0.5, interpolation='nearest', fill=0, keys=None)
 
-依据distortion_scale失真程度参数的范围，按照一定概率对图片进行透视变换。
+按照一定概率对图片进行透视变换。
 
 参数
 :::::::::
 
-    - prob (float, 可选) - 进行透视变换的概率。默认值：0.5。
+    - prob (float, 可选) - 进行透视变换的概率，范围为0到1。默认值：0.5。
     - distortion_scale (float, 可选) - 图片失真程度的大小，范围为0到1。默认值：0.5。
     - interpolation (str, 可选): 插值的方法。
         如果这个参数没有设定或者输入图像为单通道，则该参数会根据使用的后端，被设置为 ``PIL.Image.NEAREST`` 或者 ``cv2.INTER_NEAREST``。
