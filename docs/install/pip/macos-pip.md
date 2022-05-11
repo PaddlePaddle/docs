@@ -54,7 +54,7 @@
 
 
 
-* 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构 或 arm64架构（paddle已支持Mac M1芯片）：
+* 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构 或 arm64架构（paddle已原生支持Mac M1芯片）：
 
     ```
     python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
@@ -92,7 +92,6 @@
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 * 默认下载最新稳定版的安装包，如需获取develop 版本nightly build 的安装包，请参考[这里](https://www.paddlepaddle.org.cn/install/quick/zh/1.8.5-windows-pip)
 * 使用MacOS中自带Python可能会导致安装失败。请使用[python官网](https://www.python.org/downloads/mac-osx/)提供的python3.6.x、python3.7.x、python3.8.x、python3.9.x、python3.10.x。
-* 支持Mac M1芯片的安装。
 
 ## **三、验证安装**
 

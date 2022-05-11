@@ -78,7 +78,7 @@ python --version
 
 #### 1.2.3 检查系统环境
 
-确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构 或 arm64架构（paddle已支持Mac M1芯片）：
+确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构 或 arm64架构（paddle已原生支持Mac M1芯片）：
 
 
 ```

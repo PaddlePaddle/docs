@@ -3,15 +3,15 @@
 
 <a name="gpu-install"></a>
 
-## **飞桨支持的GPU架构及安装方式**
+## **飞桨支持的Nvidia GPU架构及安装方式**
 <p align="center">
 <table>
     <thead>
     <tr>
         <th> GPU架构 </th>
         <th> Compute Capability </th>
-        <th> 具体GPU型号 </th>
-        <th> 可用CUDA版本 </th>
+        <th> 对应GPU硬件型号 </th>
+        <th> 请下载以下CUDA版本的飞桨安装包 </th>
     </tr>
     </thead>
     <tbody>
