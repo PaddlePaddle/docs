@@ -12,8 +12,8 @@ affine
 
     - img (PIL.Image|np.array|paddle.Tensor) - 输入图像。
     - angle (float|int) - 旋转角度，顺时针方向。
-    - translate (list, tuple) - 随机水平平移和垂直平移变化的位移大小。
-    - scale (float|int) - 伸缩变换的比例大小，注意必须大于0.0。
+    - translate (list[float]) - 随机水平平移和垂直平移变化的位移大小。
+    - scale (float) - 伸缩变换的比例大小，注意必须大于0.0。
     - shear (list, tuple) - 剪切角度值，顺时针方向，第一个值是平行于x轴的剪切量，而第二个值是于平行于y轴的剪切量。
     - interpolation (str, 可选): 插值的方法。
         如果这个参数没有设定或者输入图像为单通道，则该参数会根据使用的后端，被设置为 ``PIL.Image.NEAREST`` 或者 ``cv2.INTER_NEAREST``。

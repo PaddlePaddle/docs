@@ -10,7 +10,7 @@ RandomAffine
 参数
 :::::::::
 
-    - degrees (sequence|float|int) - 随机旋转变换的角度大小。
+    - degrees (tuple|float|int) - 随机旋转变换的角度大小。
         如果是number类型，则随机区间为(-degrees, +degrees)，如果是像(min, max)的sequence类型，则随机区间为[min, max]，如果是0则不执行旋转。
     - translate (sequence|float|int, 可选) - 随机水平平移和垂直平移变化的位移大小。
         给定(a, b)，则水平位移量dx在 (-img_width * a, img_width * a) 范围中随机采样，垂直位移量dy在 (-img_height * b < dy < img_height * b) 范围中随机采样；
