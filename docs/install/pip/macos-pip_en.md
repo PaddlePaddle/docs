@@ -6,7 +6,9 @@
 
 * **MacOS version 10.x/11.x (64 bit) (not support GPU version)**
 
-* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
+* **Mac machine supports Mac M1 chip, Intel chip**
+
+* **Python version 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 * **pip or pip3 版本 20.2.2 or above (64 bit)**
 
@@ -33,7 +35,7 @@
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9
+  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9/3.10
 
         python --version
 
@@ -48,7 +50,7 @@
     ```
 
 
-* You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture, except mac M1. PaddlePaddle already supports Mac M1. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
+* You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64) or arm64 (PaddlePaddle already supports Mac M1):
 
 
     ```
@@ -79,15 +81,13 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 ```
-python -m pip install paddlepaddle==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple
+python -m pip install paddlepaddle==2.3.0 -i https://mirror.baidu.com/pypi/simple
 ```
 
 Note：
 
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
-
-* Support the installation of Mac M1 chip. Note that when the python version is python3.9, only the intel version of python is supported, and the universal version of python is not supported.
 
 
 

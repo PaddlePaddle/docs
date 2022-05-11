@@ -80,7 +80,7 @@ python --version
 
 #### 1.2.3 检查系统环境
 
-确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64（或x64、AMD64）"即可：
+确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64（或x64、AMD64）"即可：
 
 ```
 python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
@@ -116,7 +116,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 如果您的计算机没有 NVIDIA® GPU，请安装 CPU 版的 PaddlePaddle
 
 ```
-conda install paddlepaddle==2.3.0rc0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+conda install paddlepaddle==2.3.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
 ```
 
 
@@ -127,20 +127,20 @@ conda install paddlepaddle==2.3.0rc0 --channel https://mirrors.tuna.tsinghua.edu
 *  对于 `CUDA 10.1`，需要搭配cuDNN 7 (cuDNN>=7.6.5, 多卡环境下 NCCL>=2.7)，安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==2.3.0rc0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle-gpu==2.3.0 cudatoolkit=10.1 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 *  对于 `CUDA 10.2`，需要搭配cuDNN 7 (cuDNN>=7.6.5, 多卡环境下 NCCL>=2.7)，安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==2.3.0rc0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle-gpu==2.3.0 cudatoolkit=10.2 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 
 *  对于 `CUDA 11.2`，需要搭配cuDNN 8.1.1(多卡环境下 NCCL>=2.7)，安装命令为:
 
   ```
-  conda install paddlepaddle-gpu==2.3.0rc0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+  conda install paddlepaddle-gpu==2.3.0 cudatoolkit=11.2 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
 
 您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)

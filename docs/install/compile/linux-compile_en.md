@@ -8,7 +8,7 @@
     * **Ubuntu 14.04 (not recommended, no official support for compilation problems)**
     * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
     * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
-* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python version 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -147,7 +147,7 @@ For example：
 git checkout release/2.3
 ```
 
-Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
+Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch
 
 #### 7. Create and enter the /paddle/build path:
 
@@ -163,7 +163,7 @@ mkdir -p /paddle/build && cd /paddle/build
 pip3.7 install protobuf
 ```
 
-Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
+Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9/3.10, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9/pip3.10
 
 - Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
 
@@ -214,7 +214,7 @@ pip3.7 install -U [whl package name]
 ```
 
 Note:
-We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9.
+We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9/3.10, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9/pip3.10.
 
 #### Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -367,13 +367,13 @@ uname -m && cat /etc/*release
 
     (Please refer to the official Python installation process, and ensure that the pip3 version 20.2.2 and above, please note that in python3.6 and above, pip3 does not necessarily correspond to the python version, such as python3.7 default only Pip3.7)
 
-* c. (Only For Python3) set Python3 related environment variables, here is python3.7 version example, please replace with the version you use (3.6, 3.8, 3.9):
+* c. (Only For Python3) set Python3 related environment variables, here is python3.7 version example, please replace with the version you use (3.6, 3.8, 3.9, 3.10):
 
     1. First find the path to the Python lib using
         ```
         find `dirname $(dirname $(which python3))` -name "libpython3.so"
         ```
-        If it is 3.6,3.7,3.8,3.9, change `python3` to `python3.6`,`python3.7`, `python3.8`, `python3.9`, then replace [python-lib-path] in the following steps with the file path found.
+        If it is 3.6,3.7,3.8,3.9,3.10, change `python3` to `python3.6`,`python3.7`, `python3.8`, `python3.9`, `python3.10`, then replace [python-lib-path] in the following steps with the file path found.
 
     2. Set PYTHON_LIBRARIES:
         ```
@@ -397,7 +397,7 @@ uname -m && cat /etc/*release
         ```
         (here replace the last two levels content of [python-lib-path] with /bin/)
 
-* d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.6, pip3.7, pip3.8, pip3.9)
+* d. Install the virtual environment `virtualenv` and `virtualenvwrapper` and create a virtual environment called `paddle-venv`: (please note the pip3 commands corresponding to the python version, such as pip3.6, pip3.7, pip3.8, pip3.9, pip3.10)
 
     1. Install `virtualenv`:
         ```
@@ -465,7 +465,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 9. Switch to a more stable release branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch, support for Python 3.9 is added from the 2.1 branch,):
+#### 9. Switch to a more stable release branch for compilation (support for Python 3.6 and 3.7 is added from the 1.2 branch, support for Python 3.8 is added from the 1.8 branch, support for Python 3.9 is added from the 2.1 branch, support for Python 3.10 is added from the 2.3 branch):
 
 ```
 git checkout [name of target branch]
@@ -523,7 +523,7 @@ mkdir build && cd build
         ```
 
 
-Note: For the command involving Python 3, we use Python 3.7 as an example above, if the version of your Python is 3.6/3.8/3.9, please change Python3.7 in the commands to Python3.6/Python3.8/Python3.9
+Note: For the command involving Python 3, we use Python 3.7 as an example above, if the version of your Python is 3.6/3.8/3.9/3.10, please change Python3.7 in the commands to Python3.6/Python3.8/Python3.9/Python3.10
 
 
 

@@ -3,17 +3,15 @@
 
 <a name="gpu-install"></a>
 
-## **飞桨支持的GPU架构及安装方式**
+## **飞桨支持的Nvidia GPU架构及安装方式**
 <p align="center">
 <table>
     <thead>
     <tr>
         <th> GPU架构 </th>
         <th> Compute Capability </th>
-        <th> 具体GPU型号 </th>
-        <th> 可用CUDA版本 </th>
-        <th> CUDA11.0的whl包下载方式 </th>
-        <th> 其他CUDA版本的whl包下载方式（CUDA10.2为例） </th>
+        <th> 对应GPU硬件型号 </th>
+        <th> 请下载以下CUDA版本的飞桨安装包 </th>
     </tr>
     </thead>
     <tbody>
@@ -22,15 +20,11 @@
         <td> sm_20 </td>
         <td> GeForce 400, 500, 600, GT-630 </td>
         <td> 不支持 </td>
-        <td> 不支持 </td>
-        <td> 不支持 </td>
     </tr>
     <tr>
         <td> Kepler </td>
         <td> sm_30 </td>
         <td> GeForce 700, GT-730 </td>
-        <td> 不支持 </td>
-        <td> 不支持 </td>
         <td> 不支持 </td>
     </tr>
     <tr>
@@ -38,80 +32,60 @@
         <td> sm_35 </td>
         <td> Tesla K40 </td>
         <td> CUDA10 </td>
-        <td> 不支持 </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
     </tr>
     <tr>
         <td> Kepler </td>
         <td> sm_37 </td>
         <td> Tesla K80 </td>
         <td> CUDA10 </td>
-        <td> 不支持 </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
     </tr>
     <tr>
         <td> Maxwell </td>
         <td> sm_50 </td>
         <td> Tesla/Quadro M series </td>
         <td> CUDA10、CUDA11 </td>
-        <td> <code>python -m pip download paddlepaddle-gpu==2.3.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html --no-index --no-deps</code> </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
     </tr>
     <tr>
         <td> Maxwell </td>
         <td> sm_52 </td>
         <td> Quadro M6000 , GeForce 900, GTX-970, GTX-980, GTX Titan X </td>
         <td> CUDA10、CUDA11 </td>
-        <td> <code>python -m pip download paddlepaddle-gpu==2.3.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html --no-index --no-deps</code> </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
     </tr>
     <tr>
         <td> Pascal </td>
         <td> sm_60 </td>
         <td> Quadro GP100, Tesla P100, DGX-1 </td>
         <td> CUDA10、CUDA11 </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
     </tr>
     <tr>
         <td> Pascal </td>
         <td> sm_61 </td>
         <td> GTX 1080, GTX 1070, GTX 1060, GTX 1050, GTX 1030 (GP108), GT 1010 (GP108) Titan Xp, Tesla P40, Tesla P4 </td>
         <td> CUDA10、CUDA11 </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
     </tr>
     <tr>
         <td> Volta </td>
         <td> sm_70 </td>
         <td> DGX-1 with Volta, Tesla V100, GTX 1180 (GV104), Titan V, Quadro GV100 </td>
         <td> CUDA10、CUDA11 </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
     </tr>
     <tr>
         <td> Turing </td>
         <td> sm_75 </td>
         <td> GTX/RTX Turing – GTX 1660 Ti, RTX 2060, RTX 2070, RTX 2080, Titan RTX, Quadro RTX 4000, Quadro RTX 5000, Quadro RTX 6000, Quadro RTX 8000, Quadro T1000/T2000, Tesla T4 </td>
         <td> CUDA10、CUDA11 </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
     </tr>
     <tr>
         <td> Ampere </td>
         <td> sm_80 </td>
         <td> NVIDIA A100, GA100, NVIDIA DGX-A100 </td>
         <td> CUDA11 </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
-        <td> 不支持CUDA10 </td>
     </tr>
     <tr>
         <td> Ampere </td>
         <td> sm_86 </td>
         <td> Tesla GA10x cards, RTX Ampere – RTX 3080, GA102 – RTX 3090, RTX A2000, A3000, RTX A4000, A5000, A6000, NVIDIA A40, GA106 – RTX 3060, GA104 – RTX 3070, GA107 – RTX 3050, RTX A10, RTX A16, RTX A40, A2 Tensor Core GPU </td>
         <td> CUDA11、CUDA11.2（推荐） </td>
-        <td> <code>python -m pip install paddlepaddle-gpu==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple</code> </td>
-        <td> CUDA11.2: <code>python -m pip install paddlepaddle-gpu==2.3.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html</code> </td>
     </tr>
     </tbody>
 </table>
@@ -346,12 +320,12 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
     </thead>
     <tbody>
     <tr>
-        <td> paddlepaddle==[版本号] 例如 paddlepaddle==2.3.0rc0 </td>
+        <td> paddlepaddle==[版本号] 例如 paddlepaddle==2.3.0 </td>
         <td> 只支持CPU对应版本的PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
     </tr>
     <tr>
-        <td> paddlepaddle-gpu==[版本号] 例如 paddlepaddle-gpu==2.3.0rc0 </td>
-        <td> 默认安装支持CUDA 11.0和cuDNN 8的对应[版本号]的PaddlePaddle安装包 </td>
+        <td> paddlepaddle-gpu==[版本号] 例如 paddlepaddle-gpu==2.3.0 </td>
+        <td> 默认安装支持CUDA 10.2和cuDNN 7的对应[版本号]的PaddlePaddle安装包 </td>
     </tr>
    </tbody>
 </table>
@@ -360,7 +334,7 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
 > 其中`postXX` 对应的是CUDA和cuDNN的版本，`postXX`之前的数字代表Paddle的版本
 
-需要注意的是，命令中<code> paddlepaddle-gpu==2.3.0rc0 </code> 在windows环境下，会默认安装支持CUDA 11.0和cuDNN 8的对应[版本号]的PaddlePaddle安装包
+需要注意的是，命令中<code> paddlepaddle-gpu==2.3.0 </code> 在windows环境下，会默认安装支持CUDA 10.2和cuDNN 7的对应[版本号]的PaddlePaddle安装包
 
 <a name="ciwhls-release"></a>
 </br></br>
@@ -376,195 +350,236 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
         <th> cp37-cp37m    </th>
         <th> cp38-cp38    </th>
         <th> cp39-cp39    </th>
+        <th> cp310-cp310    </th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td> cpu-mkl-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0rc0-cp36-cp36m-linux_x86_64.whl"> paddlepaddle-2.3.0rc0-cp36-cp36m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0rc0-cp37-cp37m-linux_x86_64.whl"> paddlepaddle-2.3.0rc0-cp37-cp37m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0rc0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0rc0-cp38-cp38-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0rc0-cp39-cp39-linux_x86_64.whl"> paddlepaddle-2.3.0rc0-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp36-cp36m-linux_x86_64.whl"> paddlepaddle-2.3.0-cp36-cp36m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp37-cp37m-linux_x86_64.whl"> paddlepaddle-2.3.0-cp37-cp37m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp39-cp39-linux_x86_64.whl"> paddlepaddle-2.3.0-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp310-cp310-linux_x86_64.whl"> paddlepaddle-2.3.0-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> cpu-openblas-avx </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-cpu-openblas-avx/paddlepaddle-2.3.0rc0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0rc0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-openblas-avx/paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> cpu-mkl-noavx </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-cpu-mkl-noavx/paddlepaddle-2.3.0rc0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0rc0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-noavx/paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> cpu-openblas-noavx </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-cpu-openblas-noavx/paddlepaddle-2.3.0rc0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0rc0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-openblas-noavx/paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> cuda10.1-cudnn7-mkl-gcc5.4-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0rc0.post101-cp36-cp36m-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post101-cp36-cp36m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0rc0.post101-cp37-cp37m-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post101-cp37-cp37m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0rc0.post101-cp38-cp38-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post101-cp38-cp38-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0rc0.post101-cp39-cp39-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post101-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0.post101-cp36-cp36m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post101-cp36-cp36m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0.post101-cp37-cp37m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post101-cp37-cp37m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0.post101-cp38-cp38-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post101-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0.post101-cp39-cp39-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post101-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-avx/paddlepaddle_gpu-2.3.0.post101-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post101-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> cuda10.1-cudnn7-mkl-gcc5.4-noavx </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-noavx/paddlepaddle_gpu-2.3.0rc0.post101-cp38-cp38-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post101-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.1-cudnn7-mkl-gcc5.4-noavx/paddlepaddle_gpu-2.3.0.post101-cp38-cp38-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post101-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> cuda10.2-cudnn7-mkl-gcc8.2-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post102-cp36-cp36m-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post102-cp36-cp36m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post102-cp37-cp37m-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post102-cp37-cp37m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post102-cp38-cp38-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post102-cp38-cp38-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post102-cp39-cp39-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post102-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0-cp36-cp36m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0-cp36-cp36m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0-cp37-cp37m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0-cp37-cp37m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0-cp38-cp38-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0-cp39-cp39-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> cuda10.2-cudnn7-mkl-gcc8.2-noavx </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-noavx/paddlepaddle_gpu-2.3.0rc0.post102-cp38-cp38-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post102-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda10.2-cudnn7-mkl-gcc8.2-noavx/paddlepaddle_gpu-2.3.0-cp38-cp38-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> cuda11.0-cudnn8.0-mkl-gcc8.2-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0-cp36-cp36m-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0-cp36-cp36m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0-cp37-cp37m-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0-cp37-cp37m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0-cp38-cp38-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0-cp38-cp38-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0-cp39-cp39-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post110-cp36-cp36m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post110-cp36-cp36m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post110-cp37-cp37m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post110-cp37-cp37m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post110-cp38-cp38-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post110-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post110-cp39-cp39-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post110-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.0-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post110-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post110-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> cuda11.1-cudnn8.1-mkl-gcc8.2-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post111-cp36-cp36m-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post111-cp36-cp36m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post111-cp37-cp37m-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post111-cp37-cp37m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post111-cp38-cp38-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post111-cp38-cp38-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post111-cp39-cp39-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post111-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post111-cp36-cp36m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post111-cp36-cp36m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post111-cp37-cp37m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post111-cp37-cp37m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post111-cp38-cp38-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post111-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post111-cp39-cp39-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post111-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.1-cudnn8.1-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post111-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post111-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> cuda11.2-cudnn8.1-mkl-gcc8.2-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post112-cp36-cp36m-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post112-cp36-cp36m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post112-cp37-cp37m-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post112-cp37-cp37m-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post112-cp38-cp38-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post112-cp38-cp38-linux_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0rc0.post112-cp39-cp39-linux_x86_64.whl">
-        paddlepaddle_gpu-2.3.0rc0.post112-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post112-cp36-cp36m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post112-cp36-cp36m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post112-cp37-cp37m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post112-cp37-cp37m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post112-cp38-cp38-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post112-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post112-cp39-cp39-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post112-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-gpu-cuda11.2-cudnn8-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.0.post112-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.0.post112-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
         <td> macos-cpu-openblas </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/macos/macos-cpu-openblas/paddlepaddle-2.3.0rc0-cp36-cp36m-macosx_10_6_intel.whl">
-        paddlepaddle-2.3.0rc0-cp36-cp36m-macosx_10_6_intel.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/macos/macos-cpu-openblas/paddlepaddle-2.3.0rc0-cp37-cp37m-macosx_10_6_intel.whl">
-        paddlepaddle-2.3.0rc0-cp37-cp37m-macosx_10_6_intel.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/macos/macos-cpu-openblas/paddlepaddle-2.3.0rc0-cp38-cp38-macosx_10_14_x86_64.whl">
-        paddlepaddle-2.3.0rc0-cp38-cp38-macosx_10_14_x86_64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/macos/macos-cpu-openblas/paddlepaddle-2.3.0rc0-cp39-cp39-macosx_10_14_x86_64.whl">
-        paddlepaddle-2.3.0rc0-cp39-cp39-macosx_10_14_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas/paddlepaddle-2.3.0-cp36-cp36m-macosx_10_6_intel.whl">
+        paddlepaddle-2.3.0-cp36-cp36m-macosx_10_6_intel.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas/paddlepaddle-2.3.0-cp37-cp37m-macosx_10_6_intel.whl">
+        paddlepaddle-2.3.0-cp37-cp37m-macosx_10_6_intel.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas/paddlepaddle-2.3.0-cp38-cp38-macosx_10_14_x86_64.whl">
+        paddlepaddle-2.3.0-cp38-cp38-macosx_10_14_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas/paddlepaddle-2.3.0-cp39-cp39-macosx_10_14_x86_64.whl">
+        paddlepaddle-2.3.0-cp39-cp39-macosx_10_14_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas/paddlepaddle-2.3.0-cp310-cp310-macosx_10_14_universal2.whl">
+        paddlepaddle-2.3.0-cp310-cp310-macosx_10_14_universal2.whl</a></td>
+    </tr>
+    <tr>
+        <td> macos-cpu-openblas-m1 </td>
+        <td> - </td>
+        <td> - </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.0-cp38-cp38-macosx_11_0_universal2.whl">
+        paddlepaddle-2.3.0-cp38-cp38-macosx_11_0_universal2.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.0-cp39-cp39-macosx_11_0_universal2.whl">
+        paddlepaddle-2.3.0-cp39-cp39-macosx_11_0_universal2.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.0-cp310-cp310-macosx_11_0_universal2.whl">
+        paddlepaddle-2.3.0-cp310-cp310-macosx_11_0_universal2.whl</a></td>
     </tr>
     <tr>
         <td> win-cpu-mkl-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0rc0-cp36-cp36m-win_amd64.whl"> paddlepaddle-2.3.0rc0-cp36-cp36m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0rc0-cp37-cp37m-win_amd64.whl"> paddlepaddle-2.3.0rc0-cp37-cp37m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0rc0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0rc0-cp38-cp38-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0rc0-cp39-cp39-win_amd64.whl"> paddlepaddle-2.3.0rc0-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0-cp36-cp36m-win_amd64.whl"> paddlepaddle-2.3.0-cp36-cp36m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0-cp37-cp37m-win_amd64.whl"> paddlepaddle-2.3.0-cp37-cp37m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0-cp39-cp39-win_amd64.whl"> paddlepaddle-2.3.0-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-avx/paddlepaddle-2.3.0-cp310-cp310-win_amd64.whl"> paddlepaddle-2.3.0-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cpu-mkl-noavx </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-cpu-mkl-noavx/paddlepaddle-2.3.0rc0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0rc0-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-mkl-noavx/paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> win-cpu-openblas-avx </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-cpu-openblas-avx/paddlepaddle-2.3.0rc0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0rc0-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-openblas-avx/paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> win-cpu-openblas-noavx </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-cpu-openblas-noavx/paddlepaddle-2.3.0rc0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0rc0-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-cpu-openblas-noavx/paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.3.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> win-cuda10.1-cudnn7-mkl-vs2017-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post101-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post101-cp36-cp36m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post101-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post101-cp37-cp37m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post101-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post101-cp38-cp38-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post101-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post101-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0.post101-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp36-cp36m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0.post101-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp37-cp37m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0.post101-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0.post101-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0.post101-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cuda10.1-cudnn7-mkl-vs2017-noavx </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.1-cudnn7-mkl-noavx/paddlepaddle_gpu-2.3.0rc0.post101-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post101-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.1-cudnn7-mkl-noavx/paddlepaddle_gpu-2.3.0.post101-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post101-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> win-cuda10.2-cudnn7-mkl-vs2017-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post102-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post102-cp36-cp36m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post102-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post102-cp37-cp37m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post102-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post102-cp38-cp38-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post102-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post102-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp36-cp36m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp37-cp37m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-avx/paddlepaddle_gpu-2.3.0-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cuda10.2-cudnn7-mkl-vs2017-noavx </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.2-cudnn7-mkl-noavx/paddlepaddle_gpu-2.3.0rc0.post102-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post102-cp37-cp37m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda10.2-cudnn7-mkl-noavx/paddlepaddle_gpu-2.3.0rc0.post102-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post102-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-noavx/paddlepaddle_gpu-2.3.0-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp37-cp37m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda10.2-cudnn7-mkl-noavx/paddlepaddle_gpu-2.3.0-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>
         <td> win-cuda11.0-cudnn8.0-mkl-vs2017-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0-cp36-cp36m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0-cp37-cp37m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0-cp38-cp38-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post110-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post110-cp36-cp36m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post110-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post110-cp37-cp37m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post110-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post110-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post110-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post110-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.0-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post110-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post110-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cuda11.1-cudnn8.1-mkl-vs2017-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post111-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post111-cp36-cp36m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post111-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post111-cp37-cp37m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post111-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post111-cp38-cp38-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post111-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post111-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post111-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post111-cp36-cp36m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post111-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post111-cp37-cp37m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post111-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post111-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post111-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post111-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.1-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post111-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post111-cp310-cp310-win_amd64.whl</a></td>
     </tr>
     <tr>
         <td> win-cuda11.2-cudnn8.2-mkl-vs2017-avx </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post112-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post112-cp36-cp36m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post112-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post112-cp37-cp37m-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post112-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post112-cp38-cp38-win_amd64.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0-rc0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0rc0.post112-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0rc0.post112-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post112-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post112-cp36-cp36m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post112-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post112-cp37-cp37m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post112-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post112-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post112-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post112-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.0/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.0.post112-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.0.post112-cp310-cp310-win_amd64.whl</a></td>
     </tr>
    </tbody>
 </table>

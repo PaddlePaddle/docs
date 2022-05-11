@@ -3,7 +3,7 @@
 ## Environment preparation
 
 * **MacOS version 10.x/11.x (64 bit) (not support GPU version)**
-* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python version 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -98,7 +98,7 @@ For example：
 git checkout release/2.3
 ```
 
-Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
+Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch
 
 #### 8. Create and enter the /paddle/build path:
 
@@ -114,7 +114,7 @@ mkdir -p /paddle/build && cd /paddle/build
 pip3.7 install protobuf==3.1.0
 ```
 
-Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9
+Note: We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9/3.10, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9/pip3.10
 
 > Installing patchelf, PatchELF is a small and useful program for modifying the dynamic linker and RPATH of ELF executables.
 
@@ -158,7 +158,7 @@ pip3.7 install -U [whl package name]
 ```
 
 Note:
-We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9.
+We used Python3.7 command as an example above, if the version of your Python is 3.6/3.8/3.9/3.10, please change pip3.7 in the commands to pip3.6/pip3.8/pip3.9/pip3.10.
 
 #### Congratulations, now that you have successfully installed PaddlePaddle using Docker, you only need to run PaddlePaddle after entering the Docker container. For more Docker usage, please refer to the [official Docker documentation](https://docs.docker.com/).
 
@@ -173,7 +173,7 @@ We used Python3.7 command as an example above, if the version of your Python is 
 
 #### 2. Install python and pip:
 
-> **Please do not use the Python initially given by MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.6.x, python3.7.x, python3.8, python3.9), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
+> **Please do not use the Python initially given by MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.6.x, python3.7.x, python3.8, python3.9, python3.10), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
 
 Install using Python official website
 
@@ -248,7 +248,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 6. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch)
+#### 6. Switch to a more stable release branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch)
 
 ```
 git checkout [name of the branch]
@@ -270,20 +270,37 @@ mkdir build && cd build
 
 > For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
 
-* For users who need to compile the **CPU version PaddlePaddle**:
+* If you use Mac M1 machine, and need to compile the **Arm architecture, CPU version PaddlePaddle**:
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    cmake .. -DPY_VERSION=3.8 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF \
+    -DWITH_AVX=OFF -DWITH_ARM=ON -DCMAKE_BUILD_TYPE=Release
+    ```
+
+* If you don't use Mac M1 machine, and need to compile the **x86_64 architecture, CPU version PaddlePaddle**:
+
+    ```
+    cmake .. -DPY_VERSION=3.8 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
     -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
     ```
 
-- ``-DPY_VERSION=3.7`` Please change to the Python version of the installation environment.
+- ``-DPY_VERSION=3.8`` Please change to the Python version of the installation environment.
+- If compiling paddlepaddle for arm architecture, you need ``cmake`` version 3.19.2 or above
 
 #### 9. Compile with the following command:
 
-```
-make -j4
-```
+* If you use Mac M1 machine, and need to compile the **Arm architecture, CPU version PaddlePaddle**:
+
+    ```
+    make TARGET=ARMV8 -j4
+    ```
+
+* If you don't use Mac M1 machine, and need to compile the **x86_64 architecture, CPU version PaddlePaddle**:
+
+    ```
+    make -j4
+    ```
 
 #### 10. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package:
 ```

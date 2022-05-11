@@ -7,7 +7,7 @@
 ## 环境准备
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 * **Visual Studio 2017 社区版/专业版/企业版**
 
 ## 选择CPU/GPU
@@ -24,7 +24,7 @@
 
     > **git**：官网下载[链接](https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/Git-2.35.1.2-64-bit.exe)，使用默认选项安装。
 
-    > **python**：官网[链接](https://www.python.org/downloads/windows/)，可选择3.6/3.7/3.8/3.9中任一版本的 Windows installer(64-bit)安装。安装时注意勾选 `Add Python 3.x to PATH`，将Python添加到环境变量中。
+    > **python**：官网[链接](https://www.python.org/downloads/windows/)，可选择3.6/3.7/3.8/3.9/3.10中任一版本的 Windows installer(64-bit)安装。安装时注意勾选 `Add Python 3.x to PATH`，将Python添加到环境变量中。
 
     > **Visual studio 2017**：官网[链接](https://visualstudio.microsoft.com/zh-hans/vs/older-downloads/#visual-studio-2017-and-other-products)，需要登录后下载，建议下载Community社区版。在安装时需要在工作负荷一栏中勾选 `使用C++的桌面开发` 和 `通用Windows平台开发`，并在语言包一栏中选择 `英语`。
 

@@ -81,7 +81,8 @@ python --version
 
 #### 1.2.3 Check the system environment
 
-Confirm that Python and pip are 64bit, and the processor architecture is x86_64 (or x64, Intel 64, AMD64) architecture. Currently PaddlePaddle does not support arm64 architecture, except mac M1. PaddlePaddle already supports Mac M1 . The first line below print "64bit", the second line prints "x86_64 (or x64, AMD64)."
+
+Confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64) or arm64 (PaddlePaddle already supports Mac M1):
 
 
 ```
@@ -114,7 +115,7 @@ conda config --set show_channel_urls yes
 * Currently, only the CPU version of PaddlePaddle is supported in the MacOS environment. Please use the following command to install PaddlePaddle：
 
   ```
-  conda install paddlepaddle==2.3.0rc0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle==2.3.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 

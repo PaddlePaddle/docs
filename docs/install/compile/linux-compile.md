@@ -8,7 +8,7 @@
     * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
     * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
     * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 ## 选择CPU/GPU
 
@@ -141,7 +141,7 @@ git checkout [分支名]
 git checkout release/2.3
 ```
 
-注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
+注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持, python3.10版本从release/2.3分支开始支持
 
 #### 7. 创建并进入/paddle/build路径下：
 
@@ -157,7 +157,7 @@ mkdir -p /paddle/build && cd /paddle/build
 pip3.7 install protobuf
 ```
 
-注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
+注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9/3.10，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9/pip3.10
 
 - 安装patchelf，PatchELF 是一个小而实用的程序，用于修改ELF可执行文件的动态链接器和RPATH。
 
@@ -209,7 +209,7 @@ pip3.7 install -U [whl包的名字]
 ```
 
 注意：
-以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9。
+以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9/3.10，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9/pip3.10。
 
 #### 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
@@ -384,13 +384,13 @@ uname -m && cat /etc/*release
 
     (请参照Python官方流程安装, 并保证拥有20.2.2及以上的pip3版本，请注意，python3.6及以上版本环境下，pip3并不一定对应python版本，如python3.7下默认只有pip3.7）
 
-* c.（Only For Python3）设置Python3相关的环境变量，这里以python3.7版本示例，请替换成您使用的版本（3.6、3.8、3.9）：
+* c.（Only For Python3）设置Python3相关的环境变量，这里以python3.7版本示例，请替换成您使用的版本（3.6、3.8、3.9、3.10）：
 
     1. 首先使用
         ```
         find `dirname $(dirname $(which python3))` -name "libpython3.so"
         ```
-        找到Python lib的路径，如果是3.6、3.7、3.8、3.9，请将`python3`改成`python3.6`、`python3.7`、`python3.8`、`python3.9`，然后将下面[python-lib-path]替换为找到文件路径
+        找到Python lib的路径，如果是3.6、3.7、3.8、3.9、3.10，请将`python3`改成`python3.6`、`python3.7`、`python3.8`、`python3.9`、`python3.10`，然后将下面[python-lib-path]替换为找到文件路径
 
     2. 设置PYTHON_LIBRARIES：
         ```
@@ -414,7 +414,7 @@ uname -m && cat /etc/*release
         ```
         （这里将[python-lib-path]的最后两级目录替换为/bin/)
 
-* d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应python版本的pip3的命令，如pip3.6、pip3.7、pip3.8、pip3.9)
+* d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应python版本的pip3的命令，如pip3.6、pip3.7、pip3.8、pip3.9、pip3.10)
 
     1. 安装`virtualenv`
         ```
@@ -550,7 +550,7 @@ mkdir build && cd build
         cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
-注意：以上涉及Python3的命令，用Python3.7来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的Python3.7改成Python3.6/Python3.8/Python3.9
+注意：以上涉及Python3的命令，用Python3.7来举例，如您的Python版本为3.6/3.8/3.9/3.10，请将上述命令中的Python3.7改成Python3.6/Python3.8/Python3.9/Python3.10
 
 
 

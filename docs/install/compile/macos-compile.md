@@ -3,7 +3,7 @@
 ## 环境准备
 
 * **MacOS 版本 10.x/11.x (64 bit) (不支持GPU版本)**
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 ## 选择CPU/GPU
 
@@ -97,7 +97,7 @@ git checkout [分支名]
 git checkout release/2.3
 ```
 
-注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
+注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持, python3.10版本从release/2.3分支开始支持
 
 #### 8. 创建并进入/paddle/build路径下：
 
@@ -113,7 +113,7 @@ mkdir -p /paddle/build && cd /paddle/build
 pip3.7 install protobuf==3.1.0
 ```
 
-注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9
+注意：以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9/3.10，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9/pip3.10
 
 - 安装patchelf，PatchELF 是一个小而实用的程序，用于修改ELF可执行文件的动态链接器和RPATH。
 
@@ -155,7 +155,7 @@ pip3.7 install -U [whl包的名字]
 ```
 
 注意：
-以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9。
+以上用Python3.7命令来举例，如您的Python版本为3.6/3.8/3.9/3.10，请将上述命令中的pip3.7改成pip3.6/pip3.8/pip3.9/pip3.10。
 
 #### 恭喜，至此您已完成PaddlePaddle的编译安装。您只需要进入Docker容器后运行PaddlePaddle，即可开始使用。更多Docker使用请参见[Docker官方文档](https://docs.docker.com)
 
@@ -174,7 +174,7 @@ uname -m
 
 #### 2. 安装Python以及pip：
 
-> **请不要使用MacOS中自带Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.6.x、python3.7.x、python3.8、python3.9), pip以及其他的依赖，这将会使您高效编译。
+> **请不要使用MacOS中自带Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.6.x、python3.7.x、python3.8、python3.9、python3.10), pip以及其他的依赖，这将会使您高效编译。
 
 使用Python官网安装
 
@@ -256,7 +256,7 @@ git checkout [分支名]
 git checkout release/2.3
 ```
 
-注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持
+注意：python3.6、python3.7版本从release/1.2分支开始支持, python3.8版本从release/1.8分支开始支持, python3.9版本从release/2.1分支开始支持, python3.10版本从release/2.3分支开始支持
 
 #### 7. 并且请创建并进入一个叫build的目录下：
 
@@ -268,20 +268,37 @@ mkdir build && cd build
 
 >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
-*  对于需要编译**CPU版本PaddlePaddle**的用户：
+*  若您的机器为Mac M1机器，需要编译**Arm架构、CPU版本PaddlePaddle**：
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    cmake .. -DPY_VERSION=3.8 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF \
+    -DWITH_AVX=OFF -DWITH_ARM=ON -DCMAKE_BUILD_TYPE=Release
+    ```
+
+*  若您的机器不是Mac M1机器，需要编译**x86_64架构、CPU版本PaddlePaddle**：
+
+    ```
+    cmake .. -DPY_VERSION=3.8 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
     -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF  -DCMAKE_BUILD_TYPE=Release
     ```
 
->`-DPY_VERSION=3.7`请修改为安装环境的Python版本
+- `-DPY_VERSION=3.8`请修改为安装环境的Python版本
+- 若编译arm架构的paddlepaddle，需要`cmake`版本为 3.19.2 以上
 
 #### 9. 使用以下命令来编译：
 
-```
-make -j4
-```
+*  若您的机器为Mac M1机器，需要编译**Arm架构、CPU版本PaddlePaddle**：
+
+    ```
+    make TARGET=ARMV8 -j4
+    ```
+
+*  若您的机器不是Mac M1机器，需要编译**x86_64架构、CPU版本PaddlePaddle**：
+
+    ```
+    make -j4
+    ```
 
 #### 10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 ```

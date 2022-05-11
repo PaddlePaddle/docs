@@ -4,7 +4,7 @@
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
 * **GPU Version support CUDA 10.1/10.2/11.0/11.1/11.2, and only support single GPU**
-* **Python version 3.6+/3.7+/3.8+/3.9+(64bit)**
+* **Python version 3.6+/3.7+/3.8+/3.9+/3.10+(64bit)**
 * **pip version 20.2.2 or above (64bit)**
 * **Visual Studio 2017**
 
@@ -76,7 +76,7 @@ There is one compilation methods in Windows system:
     git checkout release/2.3
     ```
 
-    Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1
+    Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1, python3.10 version started supporting from release/2.3
 
 4. Create a directory called build and enter it:
 

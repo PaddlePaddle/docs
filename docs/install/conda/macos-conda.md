@@ -78,7 +78,7 @@ python --version
 
 #### 1.2.3 检查系统环境
 
-确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构（mac M1除外，paddle 已支持Mac M1 芯片）。下面的第一行输出的是"64bit"，第二行输出的是"x86_64（或x64、AMD64）"即可：
+确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构 或 arm64架构（paddle已原生支持Mac M1芯片）：
 
 
 ```
@@ -109,7 +109,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 * 目前在MacOS环境仅支持CPU版PaddlePaddle，请参考如下命令安装Paddle:
 
   ```
-  conda install paddlepaddle==2.3.0rc0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle==2.3.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 ## **三、验证安装**

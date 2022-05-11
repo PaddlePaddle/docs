@@ -6,7 +6,9 @@
 
 * **macOS 版本 10.x/11.x (64 bit) (不支持GPU版本)**
 
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **mac机器上支持mac M1芯片、Intel芯片**
+
+* **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 * **pip 或 pip3 版本 20.2.2或更高版本 (64 bit)**
 
@@ -33,7 +35,7 @@
 
 * 需要确认python的版本是否满足要求
 
-  * 使用以下命令确认是 3.6/3.7/3.8/3.9
+  * 使用以下命令确认是 3.6/3.7/3.8/3.9/3.10
 
     ```
     python --version
@@ -52,7 +54,7 @@
 
 
 
-* 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构（mac M1除外，paddle 已支持Mac M1 芯片）。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
+* 需要确认Python和pip是64bit，并且处理器架构是x86_64（或称作x64、Intel 64、AMD64）架构 或 arm64架构（paddle已原生支持Mac M1芯片）：
 
     ```
     python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
@@ -81,7 +83,7 @@
 
 
   ```
-  python -m pip install paddlepaddle==2.3.0rc0 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle==2.3.0 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
@@ -89,8 +91,7 @@
 * MacOS上您需要安装unrar以支持PaddlePaddle，可以使用命令`brew install unrar`
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 * 默认下载最新稳定版的安装包，如需获取develop 版本nightly build 的安装包，请参考[这里](https://www.paddlepaddle.org.cn/install/quick/zh/1.8.5-windows-pip)
-* 使用MacOS中自带Python可能会导致安装失败。请使用[python官网](https://www.python.org/downloads/mac-osx/)提供的python3.6.x、python3.7.x、python3.8.x 或python3.9.x。
-* 支持Mac M1芯片的安装。注意，python版本为python3.9时，只支持intel版本的python，不支持universal版本的python。
+* 使用MacOS中自带Python可能会导致安装失败。请使用[python官网](https://www.python.org/downloads/mac-osx/)提供的python3.6.x、python3.7.x、python3.8.x、python3.9.x、python3.10.x。
 
 ## **三、验证安装**
 
