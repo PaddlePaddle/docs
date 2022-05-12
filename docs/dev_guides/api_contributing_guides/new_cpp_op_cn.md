@@ -1,4 +1,4 @@
-# C++ OP 开发（新增原生算子）
+# C++ OP 开发
 
 > 注：飞桨原生算子的开发范式正在进行重构与升级，升级后算子开发方式会大幅简化，我们会及时更新本文档内容，升级后的算子开发范式预计会在2.3版本正式上线。
 
@@ -590,28 +590,28 @@ void TraceKernel(const Context& dev_ctx,
 仍然以trace op为例，首先在`paddle/phi/ops/compat`目录下新建`trace_sig.cc`文件，用于放置这里的映射函数。
 
 - 由于函数式kernel的一个最重要的特别就是参数顺序和类型（顺序和类型是关键，变量名称不影响），我们需要定义一个函数来做一个从OpMaker中如何获取信息，并且按照顺序传递给新的kernel函数； 这个模块就是OpArgumentMapping， trace反向op的OpArgumentMapping定义如下， KernelSignature共包含4个内容
-	1. kernel名称，这个是我们给kernel注册的时候的名称
-	2. input list： 这个要和OpMaker（或者GradOpMaker）中定义的Key要完全一致
-	3. attribute list： 这个要和OpMaker（或者GradOpMaker）中定义的Key要完全一致
-	4. output list： 这个要和OpMaker（或者GradOpMaker）中定义的Key要完全一致
+    1. kernel名称，这个是我们给kernel注册的时候的名称
+    2. input list： 这个要和OpMaker（或者GradOpMaker）中定义的Key要完全一致
+    3. attribute list： 这个要和OpMaker（或者GradOpMaker）中定义的Key要完全一致
+    4. output list： 这个要和OpMaker（或者GradOpMaker）中定义的Key要完全一致
 
 
-	```cpp
-	#include "paddle/phi/core/compat/op_utils.h"
+    ```cpp
+    #include "paddle/phi/core/compat/op_utils.h"
 
-	namespace phi {
+    namespace phi {
 
-	KernelSignature TraceGradOpArgumentMapping(const ArgumentMappingContext& ctx) {
-	  return KernelSignature("trace_grad",
-	                         {GradVarName("Out"), "Input"},
-	                         {"offset", "axis1", "axis2"},
-	                         {GradVarName("Input")});
-	}
+    KernelSignature TraceGradOpArgumentMapping(const ArgumentMappingContext& ctx) {
+      return KernelSignature("trace_grad",
+                             {GradVarName("Out"), "Input"},
+                             {"offset", "axis1", "axis2"},
+                             {GradVarName("Input")});
+    }
 
-	}  // namespace phi
+    }  // namespace phi
 
-	PD_REGISTER_ARG_MAPPING_FN(trace_grad, phi::TraceGradOpArgumentMapping);
-	```
+    PD_REGISTER_ARG_MAPPING_FN(trace_grad, phi::TraceGradOpArgumentMapping);
+    ```
 
 >注：没有input list或attribute list的，相应花括号内留空，不能省略花括号
 
