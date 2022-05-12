@@ -10,13 +10,8 @@ While dygraph has usability and debug benefits and static graph yields performan
 
 We introduce the transformation of dygraph to static graph in the following links:
 
-- `Basic Usage <basic_usage_en.html>`_ : Introduce the basic usage for @to_static.
 
 - `Supported Grammars <grammar_list_en.html>`_ : Introduce supported grammars and unsupported grammars .
-
-- `Predictive Model Export Tutorial <export_model_en.html>`_ : Introduce the tutorial for exporting predictive model.
-
-- `Case analysis of InputSpec <export_model_en.html>`_ : Introduce the common case studies of @to_static.
 
 - `Error Debugging Experience <debugging_en.html>`_ : Introduce the debugging methods when using @to_static.
 
@@ -24,9 +19,6 @@ We introduce the transformation of dygraph to static graph in the following link
 ..  toctree::
     :hidden:
 
-    basic_usage_en.rst
     grammar_list_en.md
-    export_model_en.md
-    case_analysis_en.md
     debugging_en.md
 

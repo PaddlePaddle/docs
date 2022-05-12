@@ -3,7 +3,7 @@ Model Development
 ###################
 
 
-- `Introduction of Tensor <./tensor_en.html>`_ : 
+- `Introduction of Tensor <./tensor_en.html>`_
 
 .. toctree::
     :hidden:
