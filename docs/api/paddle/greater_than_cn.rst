@@ -5,7 +5,7 @@ greater_than
 .. py:function:: paddle.greater_than(x, y, name=None)
 
 
-该OP返回 :math:`x>y` 逐元素比较x和y是否相等，相同位置前者输入大于等于后者输入则返回True，否则返回False。使用重载算子 `>` 可以有相同的计算函数效果
+返回 :math:`x>y` 逐元素比较x和y是否相等，相同位置前者输入大于等于后者输入则返回True，否则返回False。使用重载算子 `>` 可以有相同的计算函数效果
 
 **注：该OP输出的结果不返回梯度。**
 

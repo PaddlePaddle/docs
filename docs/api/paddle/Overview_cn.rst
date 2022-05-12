@@ -18,6 +18,7 @@ paddle 目录下包含tensor、device、framework相关API以及某些高层API�
 -  :ref:`framework相关 <about_framework>`
 -  :ref:`device相关 <about_device>`
 -  :ref:`高层API相关 <about_hapi>`
+-  :ref:`稀疏API相关 <about_sparse_api>`
 
 
 
@@ -117,6 +118,7 @@ tensor数学操作
     " :ref:`paddle.var <cn_api_tensor_cn_var>` ", "沿给定的轴 axis 计算 x 中元素的方差"
     " :ref:`paddle.diagonal <cn_api_tensor_diagonal>` ", "根据给定的轴 axis 返回输入 Tensor 的局部视图"
     " :ref:`paddle.trunc <cn_api_tensor_trunc>` ", "对输入 Tensor 每个元素的小数部分进行截断"
+    " :ref:`paddle.frac <cn_api_tensor_frac>` ", "得到输入 Tensor 每个元素的小数部分"
     " :ref:`paddle.log1p <cn_api_paddle_tensor_log1p>` ", "该OP计算Log1p（加一的自然对数）结果"
     " :ref:`paddle.take_along_axis <cn_api_paddle_tensor_take_along_axis>` ", "根据axis和index获取输入 Tensor 的对应元素"
     " :ref:`paddle.put_along_axis <cn_api_paddle_tensor_put_along_axis>` ", "根据axis和index放置value值至输入 Tensor"
@@ -127,6 +129,9 @@ tensor数学操作
     " :ref:`paddle.gcd <cn_api_paddle_tensor_gcd>` ", "计算两个输入的按元素绝对值的最大公约数"
     " :ref:`paddle.lcm <cn_api_paddle_tensor_lcm>` ", "计算两个输入的按元素绝对值的最小公倍数"
     " :ref:`paddle.erfinv <cn_api_paddle_tensor_erfinv>` ", "计算输入Tensor的逆误差函数"
+    " :ref:`paddle.acosh <cn_api_fluid_layers_acosh>` ", "反双曲余弦函数"
+    " :ref:`paddle.asinh <cn_api_fluid_layers_asinh>` ", "反双曲正弦函数"
+    " :ref:`paddle.atanh <cn_api_fluid_layers_atanh>` ", "反双曲正切函数"
 
 
 .. _tensor_logic:
@@ -382,3 +387,15 @@ device相关
     " :ref:`paddle.Model <cn_api_paddle_Model>` ", "一个具备训练、测试、推理的神经网络"
     " :ref:`paddle.summary <cn_api_paddle_summary>` ", "打印网络的基础结构和参数信息"
     " :ref:`paddle.flops <cn_api_paddle_flops>` ", "打印网络的基础结构和参数信息"
+
+.. _about_sparse_api:
+
+稀疏API相关
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API名称", "API功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.sparse.sparse_coo_tensor<cn_api_paddle_sparse_coo_tensor>` ", "创建一个COO(Coordinate)格式的稀疏Tensor"
+    " :ref:`paddle.sparse.sparse_csr_tensor<cn_api_paddle_sparse_csr_tensor>` ", "创建一个CSR(Compressed Sparse Row)格式的稀疏Tensor"

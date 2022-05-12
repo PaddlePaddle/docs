@@ -5,7 +5,7 @@ poisson
 
 .. py:function:: paddle.poisson(x, name=None)
 
-该OP以输入 ``x`` 为泊松分布的 `lambda` 参数，生成一个泊松分布的随机数Tensor，输出Tensor的shape和dtype与输入Tensor相同。
+以输入参数 ``x`` 为泊松分布的 `lambda` 参数，生成一个泊松分布的随机数Tensor，输出Tensor的shape和dtype与输入Tensor相同。
 
 .. math::
    out_i \sim Poisson(lambda = x_i)

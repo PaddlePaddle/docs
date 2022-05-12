@@ -24,18 +24,25 @@ Ins   |   Ins_Tag |
 
 Lod为[1，1，1，1]，filter tags为[1]，从上面的定义中，带有标签[1]的样本将会通过filter，所以，样本0和1将会通过并且出现在输出中。准确来说，如果 ``is_lod`` 为false，它是一个等于值全为1的lod_tensor的普通的tensor，和上面的例子很相似。
 
-参数：
+参数
+::::::::::::
+
     - **ins** (Variable) - 输入变量(LoDTensor)，通常为2D向量，第一个维度可以有lod info，也可以没有。
     - **ins_tag** (Variable) - 输入变量(LoDTensor),通常为1维列表，通过lod info来分割。
     - **filter_tag** (Variable) - 输入变量(1D Tensor/List)，通常为持有tags的列表。
     - **is_lod** (Bool) – 指定样本是否为lod tensor的布尔值。
     - **out_val_if_empty** (Int64) - 如果batch内样本被全部过滤，输出会被指定成这个值。
     
-返回：过滤之后的样本（LoDTensor）和 损失权重（Tensor）。
+返回
+::::::::::::
+过滤之后的样本（LoDTensor）和 损失权重（Tensor）。
 
-返回类型：变量（Variable）
+返回类型
+::::::::::::
+变量（Variable）
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

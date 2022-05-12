@@ -30,11 +30,13 @@ Linear层只接受一个Tensor作为输入，形状为 :math:`[batch\_size, *, i
 属性
 :::::::::
 
-.. py:attribute:: weight
+weight
+'''''''''
 
 本层的可学习参数，类型为 ``Parameter`` 。
 
-.. py:attribute:: bias
+bias
+'''''''''
 
 本层的可学习偏置，类型为 ``Parameter`` 。
 

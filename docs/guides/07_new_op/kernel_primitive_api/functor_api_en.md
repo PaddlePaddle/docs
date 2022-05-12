@@ -3,7 +3,7 @@ Introduce the calculation functors defined by the Kernel Primitive API. There ar
 
 ## Unary Functor
 
-### [ExpFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L42)
+### [ExpFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L49)
 
 #### Definition
 ```
@@ -32,7 +32,7 @@ kps::ElementwiseUnary<float, float, VecSize, 1, 1, kps::ExpFunctor<float>>(out, 
 ```
 
 
-### [IdentityFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L56)
+### [IdentityFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L63)
 #### Definition
 ```
 namespace kps = paddle::operators::kernel_primitives;
@@ -59,7 +59,7 @@ kps::ElementwiseUnary<float, int, VecSize, 1, 1, kps::IdentityFunctor<float, int
 // out[0] = 1
 ```
 
-### [DivideFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L70)
+### [DivideFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L77)
 #### Definition
 ```
 namespace kps = paddle::operators::kernel_primitives;
@@ -88,7 +88,7 @@ kps::ElementwiseUnary<float, float, VecSize, 1, 1, kps::DivideFunctor<float>>(ou
 // out[0] = 0.3
 ```
 
-### [SquareFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L91)
+### [SquareFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L112)
 
 #### Definition
 ```
@@ -118,7 +118,7 @@ kps::ElementwiseUnary<float, float, VecSize, 1, 1, kps::SquareFunctor<float>>(ou
 
 ## Binary Functor
 
-### [MinFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L103)
+### [MinFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L128)
 
 #### Definition
 ```
@@ -147,7 +147,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::MinFunctor<float>>(out,
 // out[0] = 1.0
 ```
 
-### [MaxFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L115)
+### [MaxFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L140)
 
 #### Definition
 ```
@@ -176,7 +176,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::MaxFunctor<float>>(out,
 // out[0] = 3.0
 ```
 
-### [AddFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L129)
+### [AddFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L154)
 
 #### Definition
 ```
@@ -205,7 +205,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::AddFunctor<float>>(out,
 // out[0] = 4.0
 ```
 
-### [MulFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L141)
+### [MulFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L166)
 
 #### Definition
 ```
@@ -234,7 +234,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::MulFunctor<float>>(out,
 // out[0] = 3.0
 ```
 
-### [LogicalOrFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L153)
+### [LogicalOrFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L178)
 
 #### Definition
 ```
@@ -263,7 +263,7 @@ kps::ElementwiseBinary<bool, bool, VecSize, 1, 1, kps::LogicalOrFunctor<bool>>(o
 // out[0] = true
 ```
 
-### [LogicalAndFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L165)
+### [LogicalAndFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L190)
 
 #### Definition
 ```
@@ -292,7 +292,7 @@ kps::ElementwiseBinary<bool, bool, VecSize, 1, 1, kps::LogicalAndFunctor<bool>>(
 // out[0] = false
 ```
 
-### [SubFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L177)
+### [SubFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L202)
 
 #### Definition
 ```
@@ -321,7 +321,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::SubFunctor<float>>(out,
 // out[0] = 2.0
 ```
 
-### [DivFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L187)
+### [DivFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L212)
 
 #### Definition
 ```
@@ -350,7 +350,7 @@ kps::ElementwiseBinary<float, float, VecSize, 1, 1, kps::DivideFunctor<float>>(o
 // out[0] = 3.0
 ```
 
-### [FloorDivFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/kernel_primitives/functor_primitives.h#L212)
+### [FloorDivFunctor](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/functor_primitives.h#L238)
 
 #### Definition
 ```

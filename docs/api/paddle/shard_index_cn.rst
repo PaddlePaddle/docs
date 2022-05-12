@@ -17,16 +17,21 @@ shard_index
 
     v = v - shard_id * shard_size if shard_id * shard_size <= v < (shard_id+1) * shard_size else ignore_value
 
-参数：
+参数
+::::::::::::
+
     - input (Tensor）-  输入tensor，最后一维的维度值为1，数据类型为int64或int32。
     - index_num (int) - 用户设置的大于\ `input`\ 最大值的整型值。
     - nshards (int) - 分片数量。
     - shard_id (int) - 当前分片ID。
     - ignore_value (int) - 超出分片范围的默认值。
 
-返回：Tensor
+返回
+::::::::::::
+Tensor
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

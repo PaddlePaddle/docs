@@ -18,6 +18,7 @@ Conv1D
     Out = \sigma \left ( W * X + b \right )
 
 其中：
+
     - :math:`X` ：输入值，NCL或NLC格式的3-D Tensor
     - :math:`W` ：卷积核值，MCL格式的3-D Tensor
     - :math:`*` ：卷积操作
@@ -26,7 +27,9 @@ Conv1D
     - :math:`Out` ：输出值，NCL或NLC格式的3-D Tensor， 和 ``X`` 的形状可能不同
 
 
-参数：
+参数
+::::::::::::
+
     - **in_channels** (int) - 输入特征的通道数。
     - **out_channels** (int) - 由卷积操作产生的输出的通道数。
     - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含一个整数的元组或列表，表示卷积核的长度。
@@ -42,13 +45,17 @@ Conv1D
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+
+weight
+'''''''''
 本层的可学习参数，类型为 ``Parameter``
 
-.. py:attribute:: bias
+bias
+'''''''''
 本层的可学习偏置，类型为 ``Parameter``
     
-形状:
+形状
+::::::::::::
     - 输入: :math:`(N， C_{in}， L_{in})`
     - 卷积核: :math:`(C_{out}， C_{in}， K)`
     - 偏置: :math:`(C_{out})`
@@ -71,7 +78,8 @@ Conv1D
 
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

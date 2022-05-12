@@ -5,7 +5,7 @@
 
 动静转换（@to_static）通过解析 Python 代码（抽象语法树，下简称：AST） 实现一行代码即可将动态图转为静态图的功能，只需在待转化的函数前添加一个装饰器 ``@paddle.jit.to_static`` 。
 
-如下是使用 @to_static 进行动静转换的两种方式：
+使用 @to_static 即支持 **可训练可部署** ，也支持**只部署**（详见[模型导出](#2)） ，常见使用方式如下：
 
 - 方式一：使用 @to_static 装饰器装饰 ``SimpleNet`` (继承了 ``nn.Layer``)  的 ``forward`` 函数:
 
@@ -28,8 +28,8 @@
     net.eval()
     x = paddle.rand([2, 10])
     y = paddle.rand([2, 3])
-    out = net(x, y)
-    paddle.jit.save(net, './net')
+    out = net(x, y)                # 动转静训练
+    paddle.jit.save(net, './net')  # 导出预测模型
     ```
 
 - 方式二：调用 ``paddle.jit.to_static()`` 函数，仅做预测模型导出时推荐此种用法。
@@ -53,17 +53,20 @@
     net = paddle.jit.to_static(net)  # 动静转换
     x = paddle.rand([2, 10])
     y = paddle.rand([2, 3])
-    out = net(x, y)
-    paddle.jit.save(net, './net')
+    out = net(x, y)                  # 动转静训练
+    paddle.jit.save(net, './net')    # 导出预测模型
     ```
 
-方式一和方式二的主要区别是，使用 @to_static 除了支持预测模型导出外，在模型训练时，还会转为静态图子图训练，而方式二仅支持预测模型导出。@to_static 的基本执行流程如下图：
+方式一和方式二的主要区别是，前者直接在 `forward()` 函数定义处装饰，后者显式调用了 `jit.to_static()`方法，默认会对 `net.forward`进行动静转换。
+
+两种方式均支持动转静训练，如下是@to_static 的基本执行流程：
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/to_static_train.png" style="zoom:50%" />
 
 
 
 ## 二、动转静模型导出
+<span id='2'></span>
 
 动转静模块**是架在动态图与静态图的一个桥梁**，旨在打破动态图模型训练与静态部署的鸿沟，消除部署时对模型代码的依赖，打通与预测端的交互逻辑。下图展示了**动态图模型训练——>动转静模型导出——>静态预测部署**的流程。
 
@@ -124,7 +127,7 @@ net = paddle.jit.save(net, path='simple_net', input_spec=[x_spec, y_spec])  # �
 执行上述代码样例后，在当前目录下会生成三个文件，即代表成功导出预测模型：
 ```
 simple_net.pdiparams        // 存放模型中所有的权重数据
-simple_net.pdimodel         // 存放模型的网络结构
+simple_net.pdmodel          // 存放模型的网络结构
 simple_net.pdiparams.info   // 存放额外的其他信息
 ```
 
@@ -147,8 +150,8 @@ from paddle.static import InputSpec
 x = InputSpec([None, 784], 'float32', 'x')
 label = InputSpec([None, 1], 'int64', 'label')
 
-print(x)      # InputSpec(shape=(-1, 784), dtype=VarType.FP32, name=x)
-print(label)  # InputSpec(shape=(-1, 1), dtype=VarType.INT64, name=label)
+print(x)      # InputSpec(shape=(-1, 784), dtype=paddle.float32, name=x)
+print(label)  # InputSpec(shape=(-1, 1), dtype=paddle.int64, name=label)
 ```
 
 
@@ -163,7 +166,7 @@ from paddle.static import InputSpec
 
 x = paddle.to_tensor(np.ones([2, 2], np.float32))
 x_spec = InputSpec.from_tensor(x, name='x')
-print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x)
 ```
 
 > 注：若未在 ``from_tensor`` 中指定新的 ``name``，则默认使用与源 Tensor 相同的 ``name``。
@@ -179,7 +182,7 @@ from paddle.static import InputSpec
 
 x = np.ones([2, 2], np.float32)
 x_spec = InputSpec.from_numpy(x, name='x')
-print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
+print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x)
 ```
 
 > 注：若未在 ``from_numpy`` 中指定新的 ``name``，则默认使用 ``None`` 。
@@ -312,12 +315,12 @@ class SimpleNet(Layer):
 
 net = SimpleNet()
 # 方式一：save inference model with use_act=False
-net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x')])
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x')])
 paddle.jit.save(net, path='./simple_net')
 
 
 # 方式二：save inference model with use_act=True
-net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), True])
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x'), True])
 paddle.jit.save(net, path='./simple_net')
 ```
 
@@ -350,22 +353,6 @@ paddle.save(layer_state_dict, "net.pdiparams") # 导出模型
 
 上图展示了动态图下**模型训练——>参数导出——>预测部署**的流程。如图中所示，动态图预测部署时，除了已经序列化的参数文件，还须提供**最初的模型组网代码**。
 
-在动态图下，模型代码是 **逐行被解释执行** 的。如：
-
-```python
-import paddle
-
-zeros = paddle.zeros(shape=[1,2], dtype='float32')
-print(zeros)
-
-#Tensor(shape=[1, 2], dtype=float32, place=CPUPlace, stop_gradient=True,
-#       [[0., 0.]])
-```
-
-
-**从框架层面上，上述的调用链是：**
-
-> 前端 zeros 接口 &rarr; core.ops.fill_constant (Pybind11)  &rarr; 后端 Kernel  &rarr; 前端 Tensor 输出
 
 如下是一个简单的 Model 示例：
 
@@ -411,8 +398,8 @@ main_program = paddle.static.default_main_program()
 
 # ...... 训练过程（略）
 
-prog_path='main_program.pdimodel'
-paddle.save(main_program, prog_path) # 导出为 .pdimodel
+prog_path='main_program.pdmodel'
+paddle.save(main_program, prog_path) # 导出为 .pdmodel
 
 para_path='main_program.pdiparams'
 paddle.save(main_program.state_dict(), para_path) # 导出为 .pdiparams
@@ -429,20 +416,6 @@ paddle.save(main_program.state_dict(), para_path) # 导出为 .pdiparams
 + **执行期**：构建执行器，输入数据，依次执行每个 ``OpKernel`` ，进行训练和评估
 
 在静态图编译期，变量 ``Variable`` 只是**一个符号化表示**，并不像动态图 ``Tensor`` 那样持有实际数据。
-
-```python
-import paddle
-# 开启静态图模式
-paddle.enable_static()
-
-zeros = paddle.zeros(shape=[1,2], dtype='float32')
-print(zeros)
-# var fill_constant_1.tmp_0 : LOD_TENSOR.shape(1, 2).dtype(float32).stop_gradient(True)
-```
-
-**从框架层面上，静态图的调用链：**
-
-> layer 组网（前端） &rarr; InferShape 检查（编译期） &rarr;  Executor（执行期） &rarr; 逐个执行 OP
 
 
 如下是 ``SimpleNet`` 的静态图模式下的组网代码：

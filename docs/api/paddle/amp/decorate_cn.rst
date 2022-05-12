@@ -11,8 +11,9 @@ decorate
 通过该函数可为支持master weight策略的优化器开启master weight策略，以保证训练精度。通过 ``save_dtype`` 可指定 ``paddle.save`` 和 ``paddle.jit.save`` 存储的网络参数数据类型。
 
 
-参数：
-:::::::::
+参数
+::::::::::::
+
     - **models** (Layer|list of Layer) - 网络模型。在``O2``模式下，输入的模型参数将由float32转为float16。
     - **optimizers** (Optimizer|list of Optimizer, 可选) - 优化器，默认值为None，若传入优化器或由优化器组成的list列表，将依据master_weight对优化器的master_weight属性进行设置。
     - **level** (str, 可选) - 混合精度训练模式，默认``O1``模式。
@@ -20,6 +21,6 @@ decorate
     - **save_dtype** (str|None, 可选) - 网络存储类型，可为float16、float32、float64。通过 ``save_dtype`` 可指定通过 ``paddle.save`` 和 ``paddle.jit.save`` 存储的网络参数数据类型。默认为None，采用现有网络参数类型进行存储。
 
 
-代码示例：
+代码示例
 :::::::::
 COPY-FROM: paddle.amp.decorate
