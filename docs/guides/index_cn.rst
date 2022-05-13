@@ -8,7 +8,7 @@
 
 使用教程分为如下的模块：
 
-- `模型开发 <./beginner/index_cn.html>`_
+- `模型开发入门 <./beginner/index_cn.html>`_
 - `模型开发更多用法 <./advanced/index_cn.html>`_
 - `动态图转静态图 <./jit/index_cn.html>`_
 - `预测部署 <./infer/index_cn.html>`_ 
