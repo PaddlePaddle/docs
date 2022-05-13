@@ -9,6 +9,6 @@ More Uses for Model Development
 ..  toctree::
     :hidden:
 
-    visualdl_usage_cn.md
-    layer_and_model_cn.md
-    gradient_clip_cn.rst
+    visualdl_usage_en.md
+    layer_and_model_en.md
+    gradient_clip_en.rst
