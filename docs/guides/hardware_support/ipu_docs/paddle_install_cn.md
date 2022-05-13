@@ -1,23 +1,23 @@
 # 飞桨框架IPU版安装说明
 
-飞桨框架IPU版支持基于Graphcore IPU的Python的训练和原生推理，当前支持的Poplar版本为2.5.0, 提供两种安装方式：
+飞桨框架IPU版支持基于 Graphcore IPU 的 Python 的训练和原生推理，当前支持的 Poplar 版本为 2.5.0, 提供两种安装方式：
 
 - Docker镜像方式启动
 - 通过源代码编译安装
 
 ## Docker镜像方式启动
 
-当前Docker镜像包含预编译的飞桨框架IPU版，镜像基于Ubuntu18.04基础镜像构建，内置的Python版本为Python3.7。
+当前 Docker 镜像包含预编译的飞桨框架 IPU 版，镜像基于 Ubuntu18.04 基础镜像构建，内置的 Python 版本为 Python3.7。
 
-**第一步** 拉取飞桨框架IPU版镜像
+**第一步**：拉取飞桨框架 IPU 版镜像
 
 ```bash
 docker pull registry.baidubce.com/device/paddlepaddle:ipu-poplar250
 ```
 
-**第二步** 构建并进入Docker容器
+**第二步**：构建并进入 Docker 容器
 
-**注意**：容器启动命令需将主机端的 ipuof 配置文件映射到容器中，可通过设置 IPUOF_CONFIG_PATH 环境变量指向 ipuof 配置文件传入，更多关于 ipuof 配置的信息请访问 [Graphcore: IPUoF configuration file](https://docs.graphcore.ai/projects/vipu-admin/en/latest/cli_reference.html?highlight=ipuof#ipuof-configuration-file)。
+**注意**：容器启动命令需将主机端的 IPUoF 配置文件映射到容器中，可通过设置 IPUOF_CONFIG_PATH 环境变量指向 IPUoF 配置文件传入，更多关于 IPUoF 配置的信息请访问 [Graphcore: IPUoF configuration file](https://docs.graphcore.ai/projects/vipu-admin/en/latest/cli_reference.html?highlight=ipuof#ipuof-configuration-file)。
 
 ```bash
 # 注意替换这里的 /home/<username> 到对应的用户目录
@@ -30,10 +30,10 @@ docker run -it --name paddle-ipu -v /home/<username>:/workspace \
      registry.baidubce.com/device/paddlepaddle:ipu-poplar250 /bin/bash
 ```
 
-**第三步** 检查容器运行环境
+**第三步**：检查容器运行环境
 
 ```bash
-# 检查容器是否可以正确识别IPU设备
+# 检查容器是否可以正确识别 IPU 设备
 gc-monitor
 # 预期得到如下结果
 +---------------+--------------------------------------------------------------------------------+
@@ -50,12 +50,12 @@ gc-monitor
 |                             No attached processes in partition ipuof                             |
 +--------------------------------------------------------------------------------------------------+
 
-# 检查飞桨框架IPU版已经安装
+# 检查飞桨框架 IPU 版已经安装
 pip list | grep paddlepaddle-ipu
 # 预期得到如下结果
 paddlepaddle-ipu       0.0.0.dev250
 
-# 检查飞桨框架IPU版正常工作
+# 检查飞桨框架 IPU 版正常工作
 python -c "import paddle; paddle.utils.run_check()"
 # 预期得到如下结果
 Running verify PaddlePaddle program ...
@@ -66,7 +66,7 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 
 ## 通过源代码编译安装
 
-**预先要求**：建议在Docker环境内进行飞桨框架IPU版的源码编译，容器环境配置和启动命令请参考上一章节的内容。
+**预先要求**：建议在 Docker 环境内进行飞桨框架 IPU 版的源码编译，容器环境配置和启动命令请参考上一章节的内容。
 
 **第一步**：检查容器编译环境
 
@@ -88,7 +88,7 @@ export LD_LIBRARY_PATH=/opt/popart/lib:/opt/poplar/lib:${LD_LIBRARY_PATH}
 export PATH=/opt/conda/bin:${PATH}
 ```
 
-**第二步**：下载Paddle源码并编译，CMAKE编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
+**第二步**：下载 Paddle 源码并编译，CMAKE 编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
 ```bash
 # 下载源码，默认 develop 分支
@@ -98,7 +98,7 @@ cd Paddle
 # 创建编译目录
 mkdir build && cd build
 
-# 执行cmake
+# 执行 cmake
 cmake .. -DPY_VERSION=3.7 -DWITH_IPU=ON -DWITH_MKL=ON \
          -DPOPLAR_DIR=/opt/poplar -DPOPART_DIR=/opt/popart \
          -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release
@@ -107,9 +107,9 @@ cmake .. -DPY_VERSION=3.7 -DWITH_IPU=ON -DWITH_MKL=ON \
 make -j$(nproc)
 ```
 
-**第三步**：安装与验证编译生成的wheel包
+**第三步**：安装与验证编译生成的 WHEEL 包
 
-编译完成之后进入`Paddle/build/python/dist`目录即可找到编译生成的.whl安装包，安装与验证命令如下：
+编译完成之后进入 `Paddle/build/python/dist` 目录即可找到编译生成的 .whl 安装包，安装与验证命令如下：
 
 ```bash
 # 安装命令
@@ -125,7 +125,7 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 ```
 ## 如何卸载
 
-请使用以下命令卸载Paddle:
+请使用以下命令卸载 Paddle:
 
 ```bash
 pip uninstall paddlepaddle-ipu
