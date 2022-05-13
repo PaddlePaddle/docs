@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo 'xxtest'
 export DIR_PATH=${PWD}
 
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
