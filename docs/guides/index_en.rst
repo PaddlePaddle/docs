@@ -10,7 +10,7 @@ Please refer to  `PaddlePaddle Github <https://github.com/PaddlePaddle/Paddle>`_
 Let's start with studying basic concept of PaddlePaddle:
 
 - `Model Development <./beginner/index_en.html>`_
-- `Advanced Guides <./advanced/index_en.html>`_
+- `More Uses for Model Development <./advanced/index_en.html>`_
 - `Dygraph to Static Graph <./jit/index_en.html>`_ : Introduce the transformation of dygraph to static graph.
 - `Inference and Deployment <./infer/index_en.html>`_ : Introduce the method of using the trained model to inference.
 - `Distributed Training <./06_distributed_training/index_en.html>`_ : Introduce how the PaddlePaddle uses distributed training
