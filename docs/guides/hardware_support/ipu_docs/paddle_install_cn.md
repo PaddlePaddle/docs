@@ -20,8 +20,9 @@ docker pull registry.baidubce.com/device/paddlepaddle:ipu-poplar250
 **注意**：容器启动命令需将主机端的 ipuof 配置文件映射到容器中，可通过设置 IPUOF_CONFIG_PATH 环境变量指向 ipuof 配置文件传入，更多关于 ipuof 配置的信息请访问 [Graphcore: IPUoF configuration file](https://docs.graphcore.ai/projects/vipu-admin/en/latest/cli_reference.html?highlight=ipuof#ipuof-configuration-file)。
 
 ```bash
+# 注意替换这里的 /home/<username> 到对应的用户目录
 export IPUOF_CONFIG_PATH=/opt/ipuof.conf
-docker run -it --name liqi-ipu250 -v /home/liqi27:/workspace \
+docker run -it --name paddle-ipu -v /home/<username>:/workspace \
      --shm-size=128G --network=host --ulimit memlock=-1:-1 \
      --cap-add=SYS_PTRACE --security-opt seccomp=unconfined \
      --cap-add=IPC_LOCK --device=/dev/infiniband/ --ipc=host \
