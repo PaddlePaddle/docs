@@ -1,6 +1,8 @@
 #!/bin/bash
 set -x
 
+echo 'test'
+
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 
