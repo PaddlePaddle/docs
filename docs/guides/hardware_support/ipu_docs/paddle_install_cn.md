@@ -107,7 +107,7 @@ cmake .. -DPY_VERSION=3.7 -DWITH_IPU=ON -DWITH_MKL=ON \
 make -j$(nproc)
 ```
 
-**第三步**：安装与验证编译生成的 WHEEL 包
+**第三步**：安装与验证编译生成的 whl 包
 
 编译完成之后进入 `Paddle/build/python/dist` 目录即可找到编译生成的 .whl 安装包，安装与验证命令如下：
 
@@ -125,7 +125,7 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 ```
 ## 如何卸载
 
-请使用以下命令卸载 Paddle:
+请使用以下命令卸载 Paddle：
 
 ```bash
 pip uninstall paddlepaddle-ipu
