@@ -6,10 +6,13 @@ We very much welcome you to participate in the construction of the paddle. The f
 
 Similarly, if you feel that this document is missing, or that the description is unclear, we also welcome you to contribute to this series of documents.
 
+- `Kernel Primitives API <./kernel_primitive_api/index_cn.html>`_ : Introduce the block-level CUDA functions provided by PaddlePaddle to speed up operator development.
 - `custom_device_docs <./custom_device_docs/index_en.html>`_ : Contribution guidelines overview.
 
 
 ..  toctree::
     :hidden:
 
+
+    kernel_primitive_api/index_en.rst
     custom_device_docs/index_en.rst
