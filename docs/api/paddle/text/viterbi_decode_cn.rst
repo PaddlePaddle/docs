@@ -26,7 +26,6 @@ viterbi_decode
 
 ..  code-block:: python
 
-    import numpy as np
     import paddle
     paddle.seed(102)
     batch_size, seq_len, num_tags = 2, 4, 3
