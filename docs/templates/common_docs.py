@@ -6,7 +6,7 @@
 common_args_en = """
     x (Tensor): The input tensor, it's data type should be float32, float64, int32, int64.
     y (Tensor): The input tensor, it's data type should be float32, float64, int32, int64.
-    name (str, optional): Name for the operation (optional, default is None). For more information, please refer to :ref:`api_guide_Name`.
+    name (str, optional): For details, please refer to :ref:`api_guide_Name`. Generally, no setting is required. Default: None.
     dtype (str, optional): The data type of the output tensor, can be float32, float64, int32, int64.
     param_attr (ParamAttr, optional): The parameter attribute for learnable weights(Parameter) of this layer. For more information, please refer to :ref:`api_fluid_ParamAttr`.
     bias_attr (ParamAttr, optional): The parameter attribute for learnable bias(Bias) of this layer. For more information, please refer to :ref:`api_fluid_ParamAttr`.
@@ -39,7 +39,7 @@ common_args_en = """
 common_args_cn = """
     x (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、int32、int64。
     y (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、int32、int64。
-    name (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
+    name (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
     dtype (str，可选) - 输出 `Tensor` 的数据类型，支持int32、int64、float32、float64。
     param_attr (ParamAttr，可选) – 该Layer的可学习的权重(Parameter)的参数属性。更多信息请参见 :ref:`cn_api_fluid_ParamAttr`。
     bias_attr (ParamAttr，可选) - 该Layer的可学习的偏置(Bias)的参数属性。更多信息请参见 :ref:`cn_api_fluid_ParamAttr`。
@@ -49,7 +49,7 @@ common_args_cn = """
     epsilon (float，可选) - 添加到分母上的值以防止分母除0。默认值为1e-05。
     is_test (bool，可选) - 用于表明是否在测试阶段执行。默认值为False，表示非测试阶段。
     shape (Tensor|tuple|list) - `Tensor` 的形状。如果 `shape` 是一个列表或元组，则其元素应该是形状为[1]的整数或 `Tensor` 。 如果 `shape` 是 `Tensor` ，则它应该是1-D `Tensor`。
-    keep_dim (bool) - 是否在输出 `Tensor` 中保留减小的维度。如 `keep_dim` 为True，否则结果张量的维度将比输入张量小，默认值为False。
+    keep_dim (bool) - 是否在输出 Tensor 中保留输入的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
     filter_size (tuple|list|int) - 卷积核大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核的高和宽。如果为单个整数，表示卷积核的高和宽都等于该整数。
     padding (tuple|int) – 填充大小。可以为单个整数或包含两个整数的元组，分别表示对输入高和宽两侧填充的大小。如果为单个整数，表示高和宽的填充都等于该整数。默认值为0。
     include_sublayers (bool，可选) - 是否返回子层的参数。如果为True，返回的列表中包含子层的参数。默认值为True。
