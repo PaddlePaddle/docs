@@ -213,6 +213,13 @@
 
 准备好分布式训练脚本后，就可以通过 `paddle.distributed.launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html#launch>`_ 在集群上启动分布式训练：
 
+- 单机多卡训练
+    假设只使用集群的一个节点，节点上可使用的GPU卡数为4，那么只需要在节点终端运行如下命令：
+
+    .. code-block:: bash
+
+        python -m paddle.distributed.launch --selected_gpus=0,1,2,3 train_with_fleet.py
+
 - 多机多卡训练
     假设集群包含两个节点，每个节点上可使用的GPU卡数为4，IP地址分别为192.168.1.2和192.168.1.3，那么需要在两个节点的终端上分别运行如下命令：
 
@@ -239,9 +246,3 @@
             train_with_fleet.py
 
 
-- 单机多卡训练
-    假设只使用集群的一个节点，节点上可使用的GPU卡数为4，那么只需要在节点终端运行如下命令：
-
-    .. code-block:: bash
-
-        python -m paddle.distributed.launch --selected_gpus=0,1,2,3 train_with_fleet.py
