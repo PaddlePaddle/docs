@@ -3,7 +3,7 @@
 triplet_margin_loss
 -------------------------------
 
-.. py:function:: paddle.nn.functional.triplet_margin_loss(input, positive, negative, swap: bool = False, p:float = 2.0, eps:float=1e-6, margin: float = 1.0, reduction: str = 'mean')
+.. py:function:: paddle.nn.functional.triplet_margin_loss(input, positive, negative, swap: bool = False, p:float = 2.0, eps:float=1e-6, margin: float = 1.0, reduction: str = 'mean', name:str=None)
 
 该 api 计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失，测量 `input` 与 `positive examples` 和 `negative examples` 之间的相对相似性。所有输入张量的形状都为 :math:`(N, *)`，`*` 是任意其他维度。
 
