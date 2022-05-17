@@ -29,35 +29,4 @@ to_tensor
 代码示例
 :::::::::
 
-.. code-block:: python
-
-        import paddle
-                
-        type(paddle.to_tensor(1))
-        # <class 'paddle.Tensor'>
-
-        paddle.to_tensor(1)  # allocate on global default place CUDA:0
-        # Tensor(shape=[1], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-        #        [1])
-
-        x = paddle.to_tensor(1)
-        paddle.to_tensor(x, dtype='int32', place=paddle.CPUPlace()) # A new tensor will be constructed due to different dtype or place
-        # Tensor(shape=[1], dtype=int32, place=CPUPlace, stop_gradient=True,
-        #        [1])
-
-        paddle.to_tensor((1.1, 2.2), place=paddle.CUDAPinnedPlace())
-        # Tensor(shape=[2], dtype=float32, place=CUDAPinnedPlace, stop_gradient=True,
-        #        [1.10000002, 2.20000005])
-
-        paddle.to_tensor([[0.1, 0.2], [0.3, 0.4]], place=paddle.CUDAPlace(0), stop_gradient=False)
-        # Tensor(shape=[2, 2], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-        #        [[0.10000000, 0.20000000],
-        #         [0.30000001, 0.40000001]])
-
-        type(paddle.to_tensor([[1+1j, 2], [3+2j, 4]], dtype='complex64'))
-        # <class 'paddle.Tensor'>
-
-        paddle.to_tensor([[1+1j, 2], [3+2j, 4]], dtype='complex64')
-        # Tensor(shape=[2, 2], dtype=complex64, place=CUDAPlace(0), stop_gradient=True,
-        #        [[(1+1j), (2+0j)],
-        #         [(3+2j), (4+0j)]])
+COPY-FROM: paddle.to_tensor
