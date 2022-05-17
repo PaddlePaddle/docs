@@ -15,7 +15,7 @@ roll
 
     - **x** （Tensor）– 输入张量。
     - **shifts** (int|list|tuple) - 滚动位移。如果 ``shifts`` 是一个元组或者列表，则 ``axis`` 必须是相同大小的元组或者列表，输入张量将依次沿着每个维度滚动相应的数值。
-    - **axis** (int|list|tuple， 可选) – 滚动轴。
+    - **axis**    (int|list|tuple, optinal) – 滚动轴。默认值为None。
     - **name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回
@@ -43,5 +43,10 @@ roll
         #[[7. 8. 9.]
         # [1. 2. 3.]
         # [4. 5. 6.]]
+        out_z3 = paddle.roll(x, shifts=1, axis=1)
+        print(out_z3)
+        #[[3. 1. 2.]
+        # [6. 4. 5.]
+        # [9. 7. 8.]]
 
 
