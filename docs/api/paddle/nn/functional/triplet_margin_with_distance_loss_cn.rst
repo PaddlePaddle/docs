@@ -3,7 +3,7 @@
 triplet_margin_with_distance_loss
 -------------------------------
 
-.. py:class:: paddle.nn.functional.triplet_margin_with_distance_loss(input, positive, negative, distance_function=None, swap: bool = False, margin: float = 1.0, reduction: str = 'mean', name:str=None)
+.. py:function:: paddle.nn.functional.triplet_margin_with_distance_loss(input, positive, negative, distance_function=None, swap: bool = False, margin: float = 1.0, reduction: str = 'mean', name:str=None)
 
 计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失。
 
@@ -14,13 +14,13 @@ triplet_margin_with_distance_loss
     L(input, pos, neg) = \max \{d(input_i, pos_i) - d(input_i, neg_i) + {\rm margin}, 0\}
 
 
-其中的距离函数可以由用户自定义，使用 lambda 或是 def 都可以。如果未定义则调用2范数计算距离
+其中的距离函数 ``distance_function`` 可以由用户自定义，使用 lambda 或是 def 都可以。如果未定义则调用2范数计算距离
 
 .. math::
     d(x_i, y_i) = \left\lVert {\bf x}_i - {\bf y}_i \right\rVert_2
 
 
-然后， ``distance_function`` 为距离函数，默认为2范数。 ``margin`` 为（input,positive）与（input,negative）的距离间隔， ``swap`` 为True时，会比较（input，negative）和（positive，negative）的大小，并将（input，negative）换为其中较小的值，内容详见论文 `Learning shallow convolutional feature descriptors with triplet losses <http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf>`_。
+``margin`` 为（input,positive）与（input,negative）的距离间隔， ``swap`` 为True时，会比较（input，negative）和（positive，negative）的大小，并将（input，negative）的值换为其中较小的值，内容详见论文 `Learning shallow convolutional feature descriptors with triplet losses <http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf>`_。
 
 最后，该算子会添加 `reduce` 操作到前面的输出Out上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
