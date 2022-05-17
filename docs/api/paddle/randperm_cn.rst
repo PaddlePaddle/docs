@@ -12,8 +12,8 @@ randperm
 
 ::::::::::
   - **n** (int) - 随机序列的上限（不包括在序列中），应该大于0。 
-  - **dtype** (str|np.dtype, 可选) - 输出Tensor的数据类型，支持int32、int64、float32、float64。默认值为"int64".
-  - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+  - **dtype** (str|np.dtype，可选) - 输出Tensor的数据类型，支持int32、int64、float32、float64。默认值为 int64。
+  - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::::
