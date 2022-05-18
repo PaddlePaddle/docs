@@ -3,7 +3,7 @@
 flip
 -------------------------------
 
-.. py:function:: paddle.flip(x, axis, name=None):
+.. py:function:: paddle.flip(x, axis, name=None)
 
 
 
