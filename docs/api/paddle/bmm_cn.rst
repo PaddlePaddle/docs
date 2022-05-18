@@ -3,7 +3,7 @@
 bmm
 -------------------------------
 
-.. py:function:: paddle.bmm(x, y, name=None):
+.. py:function:: paddle.bmm(x, y, name=None)
 
 
 
