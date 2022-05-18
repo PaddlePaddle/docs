@@ -41,7 +41,7 @@ paddle 环境安装
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 根据 `安装 <https://www.paddlepaddle.org.cn/install/quick>`_ 部分选择合适的 paddle 版本，
-直接使用 pip 可以在环境中 `安装 PaddlePaddle <>`_ , 例如
+直接使用 pip 可以在环境中安装 PaddlePaddle, 例如
 
 .. code-block::
 
@@ -340,3 +340,85 @@ paddlejob 任务提交
 
 
 更为方便的是使用百度提供的全功能AI开发平台 `BML <https://cloud.baidu.com/product/bml>`_  来使用，详细的使用方式请参考 `这里 <https://ai.baidu.com/ai-doc/BML/pkhxhgo5v>`_ 。
+
+FAQ
+^^^^^^^^^^^^^^^^^^^^^^
+
+怎么知道分布式启动正确？
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+典型的启动日志如下所示
+
+.. code-block::
+
+    LAUNCH INFO 2022-05-18 11:53:09,773 -----------  Configuration  ----------------------
+    LAUNCH INFO 2022-05-18 11:53:09,773 devices: 6,7
+    LAUNCH INFO 2022-05-18 11:53:09,773 elastic_level: -1
+    LAUNCH INFO 2022-05-18 11:53:09,773 elastic_timeout: 30
+    LAUNCH INFO 2022-05-18 11:53:09,773 gloo_port: 6767
+    LAUNCH INFO 2022-05-18 11:53:09,773 host: None
+    LAUNCH INFO 2022-05-18 11:53:09,773 job_id: default
+    LAUNCH INFO 2022-05-18 11:53:09,773 legacy: False
+    LAUNCH INFO 2022-05-18 11:53:09,773 log_dir: log
+    LAUNCH INFO 2022-05-18 11:53:09,773 log_level: INFO
+    LAUNCH INFO 2022-05-18 11:53:09,774 master: None
+    LAUNCH INFO 2022-05-18 11:53:09,774 max_restart: 3
+    LAUNCH INFO 2022-05-18 11:53:09,774 nnodes: 1
+    LAUNCH INFO 2022-05-18 11:53:09,774 nproc_per_node: None
+    LAUNCH INFO 2022-05-18 11:53:09,774 rank: -1
+    LAUNCH INFO 2022-05-18 11:53:09,774 run_mode: collective
+    LAUNCH INFO 2022-05-18 11:53:09,774 server_num: None
+    LAUNCH INFO 2022-05-18 11:53:09,774 servers:
+    LAUNCH INFO 2022-05-18 11:53:09,774 trainer_num: None
+    LAUNCH INFO 2022-05-18 11:53:09,774 trainers:
+    LAUNCH INFO 2022-05-18 11:53:09,774 training_script: demo.py
+    LAUNCH INFO 2022-05-18 11:53:09,774 training_script_args: []
+    LAUNCH INFO 2022-05-18 11:53:09,774 with_gloo: 0
+    LAUNCH INFO 2022-05-18 11:53:09,774 --------------------------------------------------
+    LAUNCH INFO 2022-05-18 11:53:09,783 Job: default, mode collective, replicas 1[1:1], elastic False
+    LAUNCH INFO 2022-05-18 11:53:09,784 Run Pod: gistdo, replicas 2, status ready
+    LAUNCH INFO 2022-05-18 11:53:09,806 Watching Pod: gistdo, replicas 2, status running
+
+
+可以通过如下信息确认符合预期：
+
+* 检查 launch 参数是否生效， 参考 launch API 文档设置各个参数
+
+* Job 默认为 default，当环境共用时，为避免冲突，请设置单独的 job_id 参数以区别
+
+* Job replicas 对应节点数，3[2:4] 表示当前 3 节点，允许最少 2 节点，最多 4 节点，非弹性任务三者一致
+
+* Pod 为逻辑节点，可以在一个物理节点上部署多个逻辑节点模拟分布式，Pod name 为 hash，和日志对应
+
+* Pod replicas 即节点上的进程数，在 GPU 训练时，一张卡对应一个进程
+
+* 当 launch 日志显示 status running 即表示分布式运行已正确启动，后续默认输出 0 号进程的日志
+
+
+GPU 分布式不生效？ 节点数不对？
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+在 GPU 训练时，一张卡对应一个进程, 每个节点（Pod）分配到的卡数即 Pod replicas，确认显示的数量是否符合预期，如果不符合预期请检查遗下设置：
+
+* 首先使用环境中使用 nvidia-smi 命令查看环境中的卡是否正常
+
+* 检查 CUDA_VISIBLE_DEVICES 设置，卡必须可见才可用
+
+* 检查 --devices 设置，该设置为卡号的绝对 index
+
+当检查设置无误后可通过设置 --log_level 打印更多日志以排查，当任务启动后，可以查看日志文件查看节点 ip 信息，然后检查机器连通性。
+
+
+为什么弹性不生效？
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+弹性使用需要满足一下条件：
+
+* 使用 etcd 作为 master
+
+* 任务需要使用唯一 id，即设置 job_id
+
+* 设置 nnodes 需要设置范围，例如 2:4
+
+* 检查超时设置是否过长
+
