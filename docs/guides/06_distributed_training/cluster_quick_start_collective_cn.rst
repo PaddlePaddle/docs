@@ -1,4 +1,7 @@
-数据并行(data parallelism)是大规模深度学习训练中常用的并行模式，它将训练任务切分到多个进程(设备)上运行，其中每个进程维护相同的模型参数和相同的计算任务，但处理不同的数据(batch data)。通过这种方式，同一全局数据(global batch)下的数据和计算被切分到了不同的进程，从而减轻了单个设备上的计算和存储压力。
+数据并行(data parallelism)是大规模深度学习训练中常用的并行模式，它会在每个进程(设备)中维护完整的模型和参数，
+但在每个进程上处理不同的数据。因此，数据并行非常适合单卡已经能够放得下完整的模型和参数，但希望通过并行来增大
+全局数据(global batch)大小来提升训练的吞吐量。
+
 本节将采用自定义卷积网络和Paddle内置的CIFAR-10数据集来介绍如何使用 `Fleet API <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/Overview_cn.html#fleetapi>`_ (paddle.distributed.fleet) 进行数据并行训练。
 
 1.1 版本要求
@@ -211,14 +214,14 @@
 1.4 分布式启动
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-准备好分布式训练脚本后，就可以通过 `paddle.distributed.launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html#launch>`_ 在集群上启动分布式训练：
+准备好分布式训练脚本后，就可以通过paddle.distributed.launch在集群上启动分布式训练：
 
 - 单机多卡训练
     假设只使用集群的一个节点，节点上可使用的GPU卡数为4，那么只需要在节点终端运行如下命令：
 
     .. code-block:: bash
 
-        python -m paddle.distributed.launch --selected_gpus=0,1,2,3 train_with_fleet.py
+        python -m paddle.distributed.launch --gpus=0,1,2,3 train_with_fleet.py
 
 - 多机多卡训练
     假设集群包含两个节点，每个节点上可使用的GPU卡数为4，IP地址分别为192.168.1.2和192.168.1.3，那么需要在两个节点的终端上分别运行如下命令：
@@ -228,21 +231,18 @@
         .. code-block:: bash
 
             python -m paddle.distributed.launch \
-            --cluster_node_ips=192.168.1.2,192.168.1.3 \
-            --node_ip=192.168.1.2 \
-            --started_port=6170 \
-            --selected_gpus=0,1,2,3 \
+            --gpus=0,1,2,3 \
+            --ips=192.168.1.2,192.168.1.3 \
             train_with_fleet.py
 
-    在192.168.1.3节点运行：
+    在192.168.1.3节点运行相同命令：
 
         .. code-block:: bash
 
             python -m paddle.distributed.launch \
-            --cluster_node_ips=192.168.1.2,192.168.1.3 \
-            --node_ip=192.168.1.3 \
-            --started_port=6170 \
-            --selected_gpus=0,1,2,3 \
+            --gpus=0,1,2,3 \
+            --ips=192.168.1.2,192.168.1.3 \
             train_with_fleet.py
 
+相关启动问题，可参考 `paddle.distributed.launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html#launch>`_。
 
