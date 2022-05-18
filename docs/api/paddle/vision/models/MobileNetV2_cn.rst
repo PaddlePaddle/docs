@@ -23,14 +23,3 @@ mobilenetv2模型，Layer的实例。
 :::::::::
 COPY-FROM: paddle.vision.models.MobileNetV2:code-example1
 
-方法
-::::::::::::
-forward(x)
-'''''''''
-
-定义计算过程。应当被所有子类重写。
-
-**参数**
-
- - ***inputs** (tuple) - 元组参数。
- - ****kwargs** (dict) - 字典参数。
