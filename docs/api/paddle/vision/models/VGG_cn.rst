@@ -23,15 +23,3 @@ vgg模型，Layer的实例。
 :::::::::
 
 COPY-FROM: paddle.vision.models.VGG:code-example
-
-方法
-::::::::::::
-forward(x)
-'''''''''
-
-定义计算过程。应当被所有子类重写。
-
-**参数**
-
- - ***inputs** (tuple) - 元组参数。
- - ****kwargs** (dict) - 字典参数。
