@@ -189,6 +189,7 @@ Methods
     multiplex
     multiply
     mv
+    nan_to_num
     ndimension
     neg
     nonzero
