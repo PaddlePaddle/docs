@@ -6,7 +6,7 @@ empty_like
 .. py:function:: paddle.empty_like(x, dtype=None, name=None)
 
 
-根据参数``x`` 的shape和数据类型 ``dtype`` 创建未初始化的Tensor。如果 ``dtype`` 为None，则Tensor的数据类型与 ``x`` 相同。
+根据参数 ``x`` 的shape和数据类型 ``dtype`` 创建未初始化的Tensor。如果 ``dtype`` 为None，则Tensor的数据类型与 ``x`` 相同。
 
 参数
 ::::::::::::
