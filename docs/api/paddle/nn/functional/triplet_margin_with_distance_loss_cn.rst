@@ -22,8 +22,6 @@ triplet_margin_with_distance_loss
 
 ``margin`` 为（input,positive）与（input,negative）的距离间隔， ``swap`` 为True时，会比较（input，negative）和（positive，negative）的大小，并将（input，negative）的值换为其中较小的值，内容详见论文 `Learning shallow convolutional feature descriptors with triplet losses <http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf>`_。
 
-最后，该算子会添加 `reduce` 操作到前面的输出Out上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
-
 
 参数
 :::::::::
