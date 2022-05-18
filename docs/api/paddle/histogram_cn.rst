@@ -3,7 +3,7 @@
 histogram
 -------------------------------
 
-.. py:function:: paddle.histogram(input, bins=100, min=0, max=0)
+.. py:function:: paddle.histogram(input, bins=100, min=0, max=0, name=None)
 
 计算输入 Tensor 的直方图。以 min 和 max 为 range 边界，将其均分成 bins 个直条，然后将排序好的数据划分到各个直条(bins)中。如果 min 和 max 都为0，则利用数据中的最大最小值作为边界。
 
