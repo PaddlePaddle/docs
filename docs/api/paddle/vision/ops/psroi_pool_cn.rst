@@ -24,12 +24,4 @@ PSROIPooling由R-FCN提出。更多详细信息，请参阅 https://arxiv.org/ab
 
 代码示例
 :::::::::
-    
-..  code-block:: python
-
-    import paddle
-
-    x = paddle.uniform([2, 490, 28, 28], dtype='float32')
-    boxes = paddle.to_tensor([[1, 5, 8, 10], [4, 2, 6, 7], [12, 12, 19, 21]], dtype='float32')
-    boxes_num = paddle.to_tensor([1, 2], dtype='int32')
-    pool_out = paddle.vision.ops.psroi_pool(x, boxes, boxes_num, 7, 1.0)
+COPY-FROM: paddle.vision.ops.psroi_pool:code-example1
