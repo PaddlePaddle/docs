@@ -162,6 +162,7 @@ Methods
     log10
     log1p
     log2
+    logcumsumexp
     logical_and
     logical_not
     logical_or

@@ -71,6 +71,7 @@ tensor数学操作
     " :ref:`paddle.log <cn_api_fluid_layers_log>` ", "Log激活函数（计算自然对数）"
     " :ref:`paddle.log10 <cn_api_paddle_tensor_math_log10>` ", "Log10激活函数（计算底为10的对数）" 
     " :ref:`paddle.log2 <cn_api_paddle_tensor_math_log2>` ", "计算Log1p（加一的自然对数）结果"
+    " :ref:`paddle.logcumsumexp <cn_api_paddle_tensor_math_logsumexp>` ", "计算 x 的指数的前缀和的对数"
     " :ref:`paddle.logical_and <cn_api_fluid_layers_logical_and>` ", "逐元素的对 x 和 y 进行逻辑与运算"
     " :ref:`paddle.logical_not <cn_api_fluid_layers_logical_not>` ", "逐元素的对 X Tensor进行逻辑非运算"
     " :ref:`paddle.logical_or <cn_api_fluid_layers_logical_or>` ", "逐元素的对 X 和 Y 进行逻辑或运算"
