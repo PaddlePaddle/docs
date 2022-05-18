@@ -25,16 +25,5 @@ ViterbiDecoder
 代码示例
 :::::::::
 
-.. code-block:: python
+COPY-FROM: paddle.text.ViterbiDecoder
 
-   import paddle
-   paddle.seed(102)
-   batch_size, seq_len, num_tags = 2, 4, 3
-   emission = paddle.rand((batch_size, seq_len, num_tags), dtype='float32')
-   length = paddle.randint(1, seq_len + 1, [batch_size])
-   tags = paddle.randint(0, num_tags, [batch_size, seq_len])
-   transition = paddle.rand((num_tags, num_tags), dtype='float32')
-   decoder = paddle.text.ViterbiDecoder(transition, include_bos_eos_tag=False)
-   scores, path = decoder(emission, length)
-   # scores: Tensor(shape=[2], dtype=float32, place=CUDAPlace(0), stop_gradient=True, [3.37089300, 1.56825531])
-   # path: Tensor(shape=[2, 3], dtype=int64, place=CUDAPlace(0), stop_gradient=True, [[1, 0, 0], [1, 1, 0]])
