@@ -3,7 +3,7 @@
 roll
 -------------------------------
 
-.. py:function:: paddle.roll(x, shifts, axis=None, name=None):
+.. py:function:: paddle.roll(x, shifts, axis=None, name=None)
 
 
 
