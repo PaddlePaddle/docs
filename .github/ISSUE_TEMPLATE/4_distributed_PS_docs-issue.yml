@@ -34,7 +34,7 @@ body:
 - type: textarea
   id: distributed_eval1
   attributes:
-    label: 体验评测表格
+    label: 导入分布式训练需要的依赖包
     description: |
       针对 导入分布式训练需要的依赖包 这一环节，请回答以下内容
       - 核心步骤：
@@ -56,7 +56,7 @@ body:
   attributes:
     label: 体验评测表格
     description: |
-      针对 导入分布式训练需要的依赖包 这一环节，请回答以下内容
+      针对 定义分布式模式并初始化分布式训练环境	 这一环节，请回答以下内容
       - 核心步骤：
       - 完成情况（成功/不成功) ：
       - 遇到问题：
