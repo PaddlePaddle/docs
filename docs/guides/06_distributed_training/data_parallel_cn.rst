@@ -62,6 +62,7 @@
 使用Fleet API设置分布式训练模型、优化器。
 
 .. code-block::
+
     model = fleet.distributed_model(model)
     optimizer = fleet.distributed_optimizer(optimizer)
 
@@ -71,6 +72,7 @@
 使用``DistributedBatchSampler``设置分布式批采样器，并传递给DataLoader，使得每个进程加载原始数据的一个子集。
 
 .. code-block::
+
     dataset = RandomDataset(batch_num * batch_size)
     sampler = DistributedBatchSampler(dataset,
                                       rank=get_rank(),
