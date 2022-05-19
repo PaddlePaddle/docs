@@ -29,7 +29,7 @@ body:
 - type: markdown
   attributes:
     value: >
-      ## 项目一体验评测标
+      ## 项目一体验评测
       
 - type: textarea
   id: distributed_eval1
@@ -37,7 +37,6 @@ body:
     label: 导入分布式训练需要的依赖包
     description: |
       针对 导入分布式训练需要的依赖包 这一环节，请回答以下内容
-      - 核心步骤：
       - 完成情况（成功/不成功) ：
       - 遇到问题：
       - 解决方法（无法解决需注明)
@@ -52,12 +51,11 @@ body:
     required: true
 
 - type: textarea
-  id: distributed_eval6
+  id: distributed_eval2
   attributes:
     label: 定义分布式模式并初始化分布式训练环境
     description: |
       针对 定义分布式模式并初始化分布式训练环境	 这一环节，请回答以下内容
-      - 核心步骤：
       - 完成情况（成功/不成功) ：
       - 遇到问题：
       - 解决方法（无法解决需注明)
@@ -71,15 +69,82 @@ body:
   validations:
     required: true
 
+- type: textarea
+  id: distributed_eval3
+  attributes:
+    label: 加载模型
+    description: |
+      针对 加载模型	 这一环节，请回答以下内容
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    value: |
+      - 核心步骤：加载模型
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+
 
 - type: textarea
-  id: distributed_eval2
+  id: distributed_eval4
   attributes:
-    label: 其他问题或建议
+    label: 构建 dataset 加载数据
     description: |
-     如果有其他问题或建议，请您详细描述。
+      针对 构建 dataset 加载数据	 这一环节，请回答以下内容
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    value: |
+      - 核心步骤：构建 dataset 加载数据
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
-    required: false
+    required: true
+    
+- type: textarea
+  id: distributed_eval5
+  attributes:
+    label: 定义同步训练 Strategy 及 Optimizer	
+    description: |
+      针对 定义同步训练 Strategy 及 Optimizer 这一环节，请回答以下内容
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    value: |
+      - 核心步骤：定义同步训练 Strategy 及 Optimizer	
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+    
+- type: textarea
+  id: distributed_eval6
+  attributes:
+    label: 开始多机分布式训练
+    description: |
+      针对 开始多机分布式训练 这一环节，请回答以下内容
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+    value: |
+      - 核心步骤：开始多机分布式训练
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
 
 - type: textarea
   id: distributed_code1
@@ -106,18 +171,13 @@ body:
   validations:
     required: true
 
-- type: textarea
-  id: distributed_eval3
+- type: markdown
   attributes:
-    label: 体验评测表格
-    description: |
-      请针对问卷模板提供的维度，评估本篇文档。您可以直接将#填好的问卷表格复制到此处#。
-      - 序号	核心步骤	完成情况（成功/不成功）	遇到问题	解决方法（无法解决需注明） 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）
-  validations:
-    required: true
+    value: >
+      ## 项目一体验评测
 
 - type: textarea
-  id: distributed_eval4
+  id: distributed_eval14
   attributes:
     label: 其他问题或建议
     description: |
