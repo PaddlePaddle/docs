@@ -14,16 +14,16 @@ http://www.statmt.org/wmt16/multimodal-task.html#task1
 
 参数
 :::::::::
-  - **data_file** (str)- 保存数据集压缩文件的路径，如果参数 :attr:`download` 设置为 True，可设置为 None。默认值为 None。
-  - **mode** (str)- 'train' ，'test' 或 'val'。默认为'train'。
-  - **src_dict_size** (int)- 源语言词典大小。默认为-1。
-  - **trg_dict_size** (int) - 目标语言测点大小。默认为-1。
-  - **lang** (str)- 源语言， 'en' 或 'de'。默认为 'en'。
-  - **download** (bool)- 如果 :attr:`data_file` 未设置，是否自动下载数据集。默认为 True。
+  - **data_file** (str) - 保存数据集压缩文件的路径，如果参数 :attr:`download` 设置为 True，可设置为 None。默认值为 None。
+  - **mode** (str) - 'train' ，'test' 或 'val'。默认为 'train'。
+  - **src_dict_size** (int) - 源语言词典大小。默认为 -1。
+  - **trg_dict_size** (int) - 目标语言测点大小。默认为 -1。
+  - **lang** (str) - 源语言， 'en' 或 'de'。默认为 'en'。
+  - **download** (bool) - 如果 :attr:`data_file` 未设置，是否自动下载数据集。默认为 True。
 
 返回值
 :::::::::
-``Dataset``，WMT16数据集实例。实例一共有三个字段：
+``Dataset`` ， WMT16 数据集实例。实例一共有三个字段：
 
   - **src_ids** (np.array) - 源语言当前的 token id 序列。
   - **trg_ids** (np.array) - 目标语言当前的 token id 序列。

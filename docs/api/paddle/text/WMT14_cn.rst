@@ -24,7 +24,7 @@ http://paddlemodels.bj.bcebos.com/wmt/wmt14.tgz
 
   - **src_ids** (np.array) - 源语言当前的 token id 序列。
   - **trg_ids** (np.array) - 目标语言当前的 token id 序列。
-  - **trg_ids_next** (np.array) - 目标语言下一段的 token id序列。
+  - **trg_ids_next** (np.array) - 目标语言下一段的 token id 序列。
 
 代码示例
 :::::::::
