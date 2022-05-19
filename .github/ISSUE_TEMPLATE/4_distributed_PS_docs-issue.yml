@@ -33,6 +33,15 @@ body:
     description: |
       请针对问卷模板提供的维度，评估本篇文档。您可以直接将#填好的问卷表格复制到此处#。
       - 序号 | 核心步骤 | 完成情况（成功/不成功) | 遇到问题 | 解决方法（无法解决需注明) | 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）
+    value: |
+      <span>
+
+      序号 | 核心步骤 | 完成情况 | 遇到问题 | 解决方法 | 对应文档是否描述清晰
+      -----| --------- | --------- | --------- | --------- | -------------------
+      1 | 导入分布式训练需要的依赖包 |    ...   |     ...   |    ... |  ...
+      2 | 定义分布式模式并初始化分布式训练环境 |  ...     |    ...  |     ...   |  
+
+      </span>
   validations:
     required: true
 
@@ -104,22 +113,3 @@ body:
     value: >
       感谢你的贡献 🎉！Thanks for your contribution 🎉!
       
-      
-- type: textarea
-  id: repro
-  attributes:
-    label: Reproduction steps
-    description: "How do you trigger this bug? Please walk us through it step by step."
-    value: |
-      1.
-      2.
-      3.
-      |  表头   | 表头  |
-      |  ----  | ----  |
-      | 单元格  | 单元格 |
-      | 单元格  | 单元格 |
-      ...
-    render: markdown
-  validations:
-    required: true
-
