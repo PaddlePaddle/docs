@@ -1,6 +1,6 @@
 name:  📝 分布式文档——Parameter Sever快速开始体验评估 Eval Issue
 description: 第三期分布式文档——Parameter Sever快速开始体验评估报告。
-labels: [eval]
+labels: [distributed_ps_eval]
 
 body:
 - type: markdown
