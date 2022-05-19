@@ -59,5 +59,5 @@
 * :code:`OneCycleLR`: One Cycle衰减，学习率上升至最大，再下降至最小.
   相关API Reference请参考 :ref:`cn_api_paddle_optimizer_lr_OneCycleLR`
 
-* :code:`CyclicLR`: 学习率根据固定频率在两个边界之间进行循环。
+* :code:`CyclicLR`: 学习率根据指定的缩放策略以固定频率在最小和最大学习率之间进行循环。
   相关API Reference请参考 :ref:`_cn_api_paddle_optimizer_lr_CyclicLR`
