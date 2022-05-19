@@ -17,9 +17,9 @@ body:
 
 
 - type: textarea
-  id: distributed_task1
+  id: distributed_ps_task1
   attributes:
-    label: 认领任务名称
+    label: 认领任务
     description: |
       请输入您认领的任务名称，并附上链接（如果有）。
       例：CTR-DNN
@@ -29,10 +29,10 @@ body:
 - type: markdown
   attributes:
     value: >
-      ## 项目一体验评测
+      ## 任务一体验评测
       
 - type: textarea
-  id: distributed_eval1
+  id: distributed_ps_eval1
   attributes:
     label: 导入分布式训练需要的依赖包
     description: |
@@ -47,7 +47,7 @@ body:
     required: true
 
 - type: textarea
-  id: distributed_eval2
+  id: distributed_ps_eval2
   attributes:
     label: 定义分布式模式并初始化分布式训练环境
     description: |
@@ -62,7 +62,7 @@ body:
     required: true
 
 - type: textarea
-  id: distributed_eval3
+  id: distributed_ps_eval3
   attributes:
     label: 加载模型
     description: |
@@ -78,7 +78,7 @@ body:
 
 
 - type: textarea
-  id: distributed_eval4
+  id: distributed_ps_eval4
   attributes:
     label: 构建 dataset 加载数据
     description: |
@@ -93,7 +93,7 @@ body:
     required: true
     
 - type: textarea
-  id: distributed_eval5
+  id: distributed_ps_eval5
   attributes:
     label: 定义同步训练 Strategy 及 Optimizer	
     description: |
@@ -108,7 +108,7 @@ body:
     required: true
     
 - type: textarea
-  id: distributed_eval6
+  id: distributed_ps_eval6
   attributes:
     label: 开始多机分布式训练
     description: |
@@ -121,9 +121,18 @@ body:
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
+    
+ - type: textarea
+  id: distributed_ps_eval7
+  attributes:
+    label: 其他问题或建议
+    description: |
+     如果有其他问题或建议，请您详细描述。
+  validations:
+    required: false
 
 - type: textarea
-  id: distributed_code1
+  id: distributed_ps_code1
   attributes:
     label: 相关代码
     description: |
@@ -138,7 +147,7 @@ body:
 
 
 - type: textarea
-  id: distributed_task2
+  id: distributed_ps_task2
   attributes:
     label: 认领任务名称
     description: |
@@ -150,10 +159,101 @@ body:
 - type: markdown
   attributes:
     value: >
-      ## 项目一体验评测
+      ## 任务二体验评测
+      
+- type: textarea
+  id: distributed_ps_eval11
+  attributes:
+    label: 导入分布式训练需要的依赖包
+    description: |
+      针对 导入分布式训练需要的依赖	这一环节，请回答以下内容
+    value: |
+      - 核心步骤：导入分布式训练需要的依赖包	
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
 
 - type: textarea
-  id: distributed_eval14
+  id: distributed_ps_eval12
+  attributes:
+    label: 定义分布式模式并初始化分布式训练环境
+    description: |
+      针对 定义分布式模式并初始化分布式训练环境	这一环节，请回答以下内容
+    value: |
+      - 核心步骤：定义分布式模式并初始化分布式训练环境	
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+
+- type: textarea
+  id: distributed_ps_eval13
+  attributes:
+    label: 加载模型
+    description: |
+      针对 加载模型	这一环节，请回答以下内容
+    value: |
+      - 核心步骤：加载模型
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+
+
+- type: textarea
+  id: distributed_ps_eval14
+  attributes:
+    label: 构建 dataset 加载数据
+    description: |
+      针对 构建 dataset 加载数据 这一环节，请回答以下内容
+    value: |
+      - 核心步骤：构建 dataset 加载数据
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+    
+- type: textarea
+  id: distributed_ps_eval15
+  attributes:
+    label: 定义同步训练 Strategy 及 Optimizer	
+    description: |
+      针对 定义同步训练 Strategy 及 Optimizer 这一环节，请回答以下内容
+    value: |
+      - 核心步骤：定义同步训练 Strategy 及 Optimizer	
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+    
+- type: textarea
+  id: distributed_ps_eval16
+  attributes:
+    label: 开始多机分布式训练
+    description: |
+      针对 开始多机分布式训练 这一环节，请回答以下内容
+    value: |
+      - 核心步骤：开始多机分布式训练
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+
+- type: textarea
+  id: distributed_ps_eval17
   attributes:
     label: 其他问题或建议
     description: |
@@ -162,7 +262,7 @@ body:
     required: false
 
 - type: textarea
-  id: distributed_code2
+  id: distributed_ps_code2
   attributes:
     label: 相关代码
     description: |
