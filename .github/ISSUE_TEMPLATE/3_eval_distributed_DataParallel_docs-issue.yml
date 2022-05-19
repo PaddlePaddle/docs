@@ -13,7 +13,7 @@ body:
 - type: markdown
   attributes:
     value: >
-      # 项目一体验评估报告及代码
+      # 项目一体验评估报告
 
 
 - type: textarea
@@ -57,7 +57,7 @@ body:
 - type: markdown
   attributes:
     value: >
-      # 项目二体验评估报告及代码
+      # 项目二体验评估报告
 
 
 - type: textarea
