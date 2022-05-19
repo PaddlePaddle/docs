@@ -46,7 +46,7 @@ body:
       6 | 开始多机分布式训练 |    ...     |    ...   |     ...    |  ... 
 
       </span>
-validations:
+  validations:
     required: true
 
 - type: textarea
@@ -123,7 +123,6 @@ validations:
       请附上aistudio项目地址 或 直接贴示例代码
   validations:
     required: true
-
 
 
 - type: markdown
