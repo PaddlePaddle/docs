@@ -75,7 +75,7 @@ paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关�
 自动微分规则及其对应的程序变换：
 在自动微分基础算子上定义 linearize 和 transpose 规则。
 其中单独使用 linearize 规则可以实现前向自动微分变换，配合使用 linearize 规则和 transpose 规则可以实现反向自动微分变换。
-linearize 和 transpose 程序变换的想法来自`JAX <https://github.com/google/jax>`_ 。
+linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/google/jax>`_ 。
 规则变化具备可组合性，例如在使用 linearize 和 transpose 完成一阶反向自动微分变换之后，可以在生成的计算图上再次使用 linearize 和 transpose 规则得到二阶反向微分计算图，从而实现高阶自动微分功能。
 
 
