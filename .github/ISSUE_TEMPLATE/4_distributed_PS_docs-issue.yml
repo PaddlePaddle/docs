@@ -54,7 +54,7 @@ body:
 - type: textarea
   id: distributed_eval6
   attributes:
-    label: 体验评测表格
+    label: 定义分布式模式并初始化分布式训练环境
     description: |
       针对 定义分布式模式并初始化分布式训练环境	 这一环节，请回答以下内容
       - 核心步骤：
