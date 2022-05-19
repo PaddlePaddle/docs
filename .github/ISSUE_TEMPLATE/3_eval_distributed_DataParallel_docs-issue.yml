@@ -81,13 +81,13 @@ body:
     required: true
 
  - type: textarea
-  id: eval4
-  attributes:
-    label: 其他问题或建议
-    description: |
+   id: eval4
+   attributes:
+     label: 其他问题或建议
+     description: |
       如果有其他问题或建议，请您详细描述。
-  validations:
-    required: false
+   validations:
+     required: false
 
 - type: textarea
   id: code2
