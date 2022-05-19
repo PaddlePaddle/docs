@@ -6,7 +6,7 @@ equal_all
 .. py:function:: paddle.equal_all(x, y, name=None)
 
 
-通过比较输入x和y的元素值，返回一个bool类型的数值。如果所有相同位置的元素相同返回True，否则返回False。
+返回 x==y 的布尔值，如果所有相同位置的元素相同返回 True，否则返回 False。
 
 **注：输出的结果不返回梯度。**
 

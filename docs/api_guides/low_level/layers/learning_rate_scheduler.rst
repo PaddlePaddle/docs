@@ -55,3 +55,6 @@
 
 * :code:`MultiplicativeDecay`: 每次将当前学习率乘以lambda函数得到下一个学习率。
   相关API Reference请参考 :ref:`cn_api_paddle_optimizer_lr_MultiplicativeDecay`
+
+* :code:`OneCycleLR`: One Cycle衰减，学习率上升至最大，再下降至最小.
+  相关API Reference请参考 :ref:`cn_api_paddle_optimizer_lr_OneCycleLR`
