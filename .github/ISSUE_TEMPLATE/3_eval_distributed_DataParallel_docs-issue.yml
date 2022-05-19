@@ -37,7 +37,7 @@ body:
     required: true
 
  - type: textarea
-   id: eval1
+   id: eval2
    attributes:
      label: 其他问题或建议
      description: |
@@ -54,10 +54,10 @@ body:
   validations:
     required: true
 
-  - type: markdown
-    attributes:
-      value: >
-        # 项目二体验评估报告及代码
+- type: markdown
+  attributes:
+    value: >
+      # 项目二体验评估报告及代码
 
 
 - type: textarea
