@@ -73,6 +73,6 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关API。具体
     :widths: 10, 30
 
     " :ref:`paddle.linalg.lstsq <cn_api_linalg_lstsq>` ", "求解线性方程组的最小二乘问题"
-    " :ref:`paddle.linalg.solve <cn_api_linalg_solve>` ", "计算具有唯一解的线性方程组"
-    " :ref:`paddle.linalg.triangular_solve <cn_api_linalg_solve>` ", "计算具有唯一解的线性方程组"
+    " :ref:`paddle.linalg.solve <cn_api_linalg_solve>` ", "计算具有唯一解的线性方程组，方程左边为方阵，右边为矩阵"
+    " :ref:`paddle.linalg.triangular_solve <cn_api_linalg_triangular_solve>` ", "计算具有唯一解的线性方程组，方程左边为上(下)三角方阵，右边为矩阵"
     " :ref:`paddle.linalg.cholesky_solve <cn_api_linalg_cholesky_solve>` ", "通过Cholesky分解矩阵，计算具有唯一解的线性方程组"

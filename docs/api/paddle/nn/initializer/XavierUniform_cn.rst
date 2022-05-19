@@ -16,15 +16,20 @@ XavierUniform
 
     x = \sqrt{\frac{6.0}{fan\_in+fan\_out}}
 
-参数：
+参数
+::::::::::::
+
     - **fan_in** (float，可选) - 用于Xavier初始化的fan_in，从tensor中推断。默认为None。
     - **fan_out** (float，可选) - 用于Xavier初始化的fan_out，从tensor中推断。默认为None。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
-返回：
+返回
+::::::::::::
+
     由使用均匀分布的Xavier权重初始化的参数。
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

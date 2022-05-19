@@ -11,7 +11,9 @@ simple_img_conv_pool
 
  ``simple_img_conv_pool`` 由一个conv2d( :ref:`cn_api_fluid_layers_conv2d` )和一个pool2d( :ref:`cn_api_fluid_layers_pool2d` ) OP组成。
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 输入图像, 4-D Tensor, 格式为[N，C，H，W]。数据类型是float32或者float64
     - **num_filters** (int) - 卷积核的数目，整数。
     - **filter_size** (int | list | tuple) - conv2d卷积核大小，整数或者整型列表或者整型元组。如果 ``filter_size`` 是列表或元组，则它必须包含两个整数(filter_size_H，filter_size_W)。如果是整数，则filter_size_H = filter_size_W = filter_size。
@@ -30,11 +32,16 @@ simple_img_conv_pool
     - **use_cudnn** (bool，可选) - 是否使用cudnn内核，仅在安装cudnn库时才有效。默认值：True。
     - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
-返回： 输入input经过conv2d和pool2d之后输入的结果，数据类型与input相同
+返回
+::::::::::::
+ 输入input经过conv2d和pool2d之后输入的结果，数据类型与input相同
 
-返回类型：  Variable
+返回类型
+::::::::::::
+  Variable
 
-**示例代码**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

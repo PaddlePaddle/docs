@@ -14,18 +14,25 @@ hard_swish
 
  阈值 ``threshold`` 和缩放因子 ``scale`` 为正数，位移 ``offset`` 正负均可，建议使用默认参数。
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable) - 输入特征，多维Tensor。数据类型为float32或float64。
     - **threshold** (float，可选) - 激活操作中Relu函数的阈值，默认值为6.0。 
     - **scale** (float，可选) - 激活操作的缩放因子，默认值为6.0。
     - **offset** (float，可选) - 激活操作的位移，默认值为3.0。
     - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
     
-返回：经过hard_swish计算后的结果，数据类型及维度和x相同。
+返回
+::::::::::::
+经过hard_swish计算后的结果，数据类型及维度和x相同。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -12,6 +12,7 @@ save
 ``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``.pdmodel`` ，存储的持久参数变量文件的后缀为 ``.pdiparams`` ，同时这里也会将一些变量描述信息存储至文件，文件后缀为 ``.pdiparams.info`` ，这些额外的信息将在fine-tune训练中使用。
 
 存储的模型能够被以下API完整地载入使用：
+
     - ``paddle.jit.load``
     - ``paddle.static.load_inference_model`` 
     - 其他预测库API
@@ -23,8 +24,8 @@ save
 :::::::::
     - layer (Layer|function) - 需要存储的 ``Layer`` 对象或者 ``function``。
     - path (str) - 存储模型的路径前缀。格式为 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
-    - input_spec (list[InputSpec|Tensor], 可选) - 描述存储模型forward方法的输入，可以通过InputSpec或者示例Tensor进行描述。如果为 ``None`` ，所有原 ``Layer`` forward方法的输入变量将都会被配置为存储模型的输入变量。默认为 ``None``。
-    - **configs (dict, 可选) - 其他用于兼容的存储配置选项。这些选项将来可能被移除，如果不是必须使用，不推荐使用这些配置选项。默认为 ``None``。目前支持以下配置选项：(1) output_spec (list[Tensor]) - 选择存储模型的输出目标。默认情况下，所有原 ``Layer`` forward方法的返回值均会作为存储模型的输出。如果传入的 ``output_spec`` 列表不是所有的输出变量，存储的模型将会根据 ``output_spec`` 所包含的结果被裁剪。
+    - input_spec (list[InputSpec|Tensor]，可选) - 描述存储模型forward方法的输入，可以通过InputSpec或者示例Tensor进行描述。如果为 ``None`` ，所有原 ``Layer`` forward方法的输入变量将都会被配置为存储模型的输入变量。默认为 ``None``。
+    - **configs (dict，可选) - 其他用于兼容的存储配置选项。这些选项将来可能被移除，如果不是必须使用，不推荐使用这些配置选项。默认为 ``None``。目前支持以下配置选项：(1) output_spec (list[Tensor]) - 选择存储模型的输出目标。默认情况下，所有原 ``Layer`` forward方法的返回值均会作为存储模型的输出。如果传入的 ``output_spec`` 列表不是所有的输出变量，存储的模型将会根据 ``output_spec`` 所包含的结果被裁剪。
 
 返回
 :::::::::

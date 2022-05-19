@@ -5,7 +5,7 @@ matmul
 
 .. py:function:: paddle.matmul(x, y, transpose_x=False, transpose_y=False, name=None)
 
-该op是计算两个Tensor的乘积，遵循完整的广播规则，关于广播规则，请参考 :ref:`cn_user_guide_broadcasting` 。
+计算两个Tensor的乘积，遵循完整的广播规则，关于广播规则，请参考 :ref:`cn_user_guide_broadcasting` 。
 并且其行为与 ``numpy.matmul`` 一致。目前，输入张量的维数可以是任意数量， ``matmul``  可以用于
 实现 ``dot`` ， ``matmul`` 和 ``batchmatmul`` 。实际行为取决于输入 ``x`` 、输入 ``y`` 、 ``transpose_x`` ，
 ``transpose_y`` 。具体如下：
@@ -32,8 +32,8 @@ matmul
     - **transpose_y** (bool，可选) : 相乘前是否转置 y，默认值为False。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
-返回：
-:::::::::
+返回
+::::::::::::
 
     - Tensor，矩阵相乘后的结果，数据类型和输入数据类型一致。
 

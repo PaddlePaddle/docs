@@ -16,7 +16,8 @@ IterableDataset
 
 见 ``paddle.io.DataLoader`` 。
 
-**代码示例**
+代码示例 1
+::::::::::::
 
 .. code-block:: python
 
@@ -41,9 +42,11 @@ IterableDataset
 当 ``paddle.io.DataLoader`` 中 ``num_workers > 0`` 时，每个子进程都会遍历全量的数据集返回全量样本，所以数据集会重复 ``num_workers``
 次，如果需要数据集样本不会重复返回，可通过如下两种方法避免样本重复，两种方法中都需要通过 ``paddle.io.get_worker_info`` 获取各子进程的信息。
 
-1. 通过 ``__iter__`` 函数划分各子进程的数据
 
-**代码示例1**
+代码示例 2
+::::::::::::
+
+通过 ``__iter__`` 函数划分各子进程的数据
 
 .. code-block:: python
 
@@ -84,9 +87,11 @@ IterableDataset
         print(data)
     # outputs: [2, 5, 3, 6, 4, 7]
 
-2. 通过各子进程初始化函数 ``worker_inif_fn`` 划分子进程数据
 
-**代码示例2**
+代码示例 3
+::::::::::::
+
+通过各子进程初始化函数 ``worker_inif_fn`` 划分子进程数据
 
 .. code-block:: python
 

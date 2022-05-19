@@ -21,16 +21,23 @@ array_read
     输出:
         output = [0.4, 0.2]
 
-参数：
+参数
+::::::::::::
+
     - **array** (Variable) - 输入的数组LoDTensorArray
     - **i** (Variable) - shape为[1]的1-D Tensor，表示从 ``array`` 中读取数据的位置，数据类型为int64
 
 
-返回：从 ``array`` 中指定位置读取的LoDTensor或Tensor
+返回
+::::::::::::
+从 ``array`` 中指定位置读取的LoDTensor或Tensor
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

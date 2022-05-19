@@ -10,13 +10,13 @@ adjust_brightness
 参数
 :::::::::
 
-    - img (PIL.Image|np.array) - 输入的图像。
-    - brightness_factor (float): 调节图像亮度值的多少，可以是任何非负数。参数等于0时输出黑色图像，参数等于1时输出原始图像，参数大于1时输出图像亮度增强，如参数等于2时图像亮度增强两倍。
+    - img (PIL.Image|np.array|paddle.Tensor) - 输入的图像。
+    - brightness_factor (float) - 调节图像亮度值的多少，可以是任何非负数。参数等于0时输出黑色图像，参数等于1时输出原始图像，参数大于1时输出图像亮度增强，如参数等于2时图像亮度增强两倍。
 
 返回
 :::::::::
 
-    ``PIL.Image 或 numpy.ndarray``，调整后的图像。
+    ``PIL.Image 或 numpy.ndarray 或 paddle.Tensor``，调整后的图像。
 
 代码示例
 :::::::::

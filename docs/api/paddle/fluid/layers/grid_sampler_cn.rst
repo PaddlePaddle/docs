@@ -52,16 +52,23 @@ step 2：
     output = wn * d_e * d_s + en * d_w * d_s
            + ws * d_e * d_n + es * d_w * d_n
 
-参数：
+参数
+::::::::::::
+
   - **x** (Variable): 输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
   - **grid** (Variable): 输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
   - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
 
-返回： Variable(Tensor): 输入X基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的4-D Tensor
+返回
+::::::::::::
+ Variable(Tensor): 输入X基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的4-D Tensor
 
-返回类型：变量(Variable)，数据类型与 ``x`` 一致
+返回类型
+::::::::::::
+变量(Variable)，数据类型与 ``x`` 一致
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

@@ -19,7 +19,9 @@ center_loss
 
 
 
-参数:
+参数
+::::::::::::
+
 
     - **input** (Variable) - 输入形状为[N x M]的2维张量，数据类型为float32，float64。
     - **label** (Variable) - 输入的标签，一个形状为为[N x 1]的2维张量，N表示batch size，数据类型为int32。
@@ -28,11 +30,16 @@ center_loss
     - **param_attr** (ParamAttr) - 指定权重参数属性的对象。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **update_center** (bool) - 是否更新类别中心的参数。
 
-返回：形状为[N x 1]的2维Tensor|LoDTensor。
+返回
+::::::::::::
+形状为[N x 1]的2维Tensor|LoDTensor。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

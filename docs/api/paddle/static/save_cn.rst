@@ -5,7 +5,6 @@ save
 
 .. py:function:: paddle.static.save(program, model_path, protocol=4)
 
-:api_attr: 声明式编程模式（静态图)
 
 该接口将传入的参数、优化器信息和网络描述保存到 ``model_path`` 。
 
@@ -16,14 +15,20 @@ save
 
 网络描述是程序的描述。它只用于部署。描述将保存到后缀为 ``.pdmodel`` 的文件中。
 
-参数:
+参数
+::::::::::::
+
  - **program**  ( :ref:`cn_api_fluid_Program` ) – 要保存的Program。
  - **model_path**  (str) – 保存program的文件前缀。格式为 ``目录名称/文件前缀``。如果文件前缀为空字符串，会引发异常。
- - **protocol**  (int, 可选) – pickle模块的协议版本，默认值为4，取值范围是[2,4]。
+ - **protocol**  (int，可选) – pickle模块的协议版本，默认值为4，取值范围是[2,4]。
 
-返回: 无
+返回
+::::::::::::
 
-**代码示例**
+无。
+
+代码示例
+::::::::::::
 
 .. code-block:: python
 

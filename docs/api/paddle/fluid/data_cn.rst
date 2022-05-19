@@ -21,17 +21,24 @@ data
 
   本API创建的变量默认 ``stop_gradient`` 属性为true，这意味这反向梯度不会被传递过这个数据变量。如果用户想传递反向梯度，可以设置 ``var.stop_gradient = False`` 。
 
-参数：
+参数
+::::::::::::
+
     - **name** (str)- 被创建的变量的名字，具体用法请参见 :ref:`api_guide_Name` 。
     - **shape** (list|tuple)- 声明维度信息的list或tuple。
     - **dtype** (np.dtype|VarType|str，可选)- 数据类型，支持bool，float16，float32，float64，int8，int16，int32，int64，uint8。默认值为float32。
     - **lod_level** (int，可选)- LoDTensor变量的LoD level数，LoD level是PaddlePaddle的高级特性，一般任务中不会需要更改此默认值，关于LoD level的详细适用场景和用法请见 :ref:`cn_user_guide_lod_tensor` 。默认值为0。
 
-返回：全局变量，可进行数据访问
+返回
+::::::::::::
+全局变量，可进行数据访问
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 
