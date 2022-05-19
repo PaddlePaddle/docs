@@ -82,9 +82,9 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
 
 接口设计与使用案例
 ==========================
-当前阶段我们优先在静态图中支持了基于自动微分基础算子的自动微分机制，通过全局切换接口 ``enable_prim`` 和 ``disable_prim`` 可以在这套自动微分机制和原始的自动微分机制之间进行切换。
+当前阶段优先在静态图中支持了基于自动微分基础算子的自动微分机制，通过全局切换接口 ``enable_prim`` 和 ``disable_prim`` 可以在这套自动微分机制和原始的自动微分机制之间进行切换。
 
-接口层面，我们基于 orig2prim，linearize 和 transpose 三种变换改写了 ``paddle.static.gradients`` 接口和优化器中的 ``minimize`` 接口，并且对外提供 ``prim2orig`` 接口, 只需要做很少的改动就可以使用新自动微分机制完成自动微分功能。
+接口层面，基于 orig2prim，linearize 和 transpose 三种变换改写了 ``paddle.static.gradients`` 接口和优化器中的 ``minimize`` 接口，并且对外提供 ``prim2orig`` 接口, 只需要做很少的改动就可以使用新自动微分机制完成自动微分功能。
 
 .. code-block:: python
 
