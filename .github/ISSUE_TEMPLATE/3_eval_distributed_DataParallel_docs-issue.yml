@@ -36,13 +36,13 @@ body:
   validations:
     required: true
 
- - type: textarea
-   id: eval2
-   attributes:
-     label: 其他问题或建议
-     description: |
-      如果有其他问题或建议，请您详细描述。
-   validations:
+- type: textarea
+  id: eval2
+  attributes:
+    label: 其他问题或建议
+    description: |
+     如果有其他问题或建议，请您详细描述。
+  validations:
     required: false
 
 - type: textarea
@@ -80,14 +80,14 @@ body:
   validations:
     required: true
 
- - type: textarea
-   id: eval4
-   attributes:
-     label: 其他问题或建议
-     description: |
-      如果有其他问题或建议，请您详细描述。
-   validations:
-     required: false
+- type: textarea
+  id: eval4
+  attributes:
+    label: 其他问题或建议
+    description: |
+     如果有其他问题或建议，请您详细描述。
+  validations:
+    required: false
 
 - type: textarea
   id: code2
