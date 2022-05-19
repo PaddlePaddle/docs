@@ -3,104 +3,104 @@ description: 第三期分布式文档(数据并行）体验评估报告。Distri
 labels: [eval]
 
 body:
+- type: markdown
+  attributes:
+    value: >
+      #### 此模板用于第三期分布式文档（数据并行）评估工作小组成员，向飞桨团队反馈文档问题。如非工作小组成员，请使用 文档」模板，感谢配合~「📚
+
+      #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
+
+- type: markdown
+  attributes:
+    value: >
+      # 项目一体验评估报告及代码
+
+
+- type: textarea
+  id: task1
+  attributes:
+    label: 认领任务名称
+    description: |
+      请输入您认领的任务名称，并附上链接（如果有）。
+      例：【CV】使用卷积神经网络进行图像分类
+  validations:
+    required: true
+
+- type: textarea
+  id: eval1
+  attributes:
+    label: 体验评测表格
+    description: |
+      请针对问卷模板提供的维度，评估本篇文档。您可以直接将#填好的问卷表格复制到此处#。
+      - 序号	核心步骤	完成情况（成功/不成功）	遇到问题	解决方法（无法解决需注明） 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）
+  validations:
+    required: true
+
+ - type: textarea
+  id: eval1
+  attributes:
+    label: 其他问题或建议
+    description: |
+      如果有其他问题或建议，请您详细描述。
+  validations:
+    required: false
+
+- type: textarea
+  id: code1
+  attributes:
+    label: 相关代码
+    description: |
+      请附上aistudio项目地址 或 直接贴示例代码
+  validations:
+    required: true
+
   - type: markdown
-    attributes:
-      value: >
-        #### 此模板用于第三期分布式文档（数据并行）评估工作小组成员，向飞桨团队反馈文档问题。如非工作小组成员，请使用 文档」模板，感谢配合~「📚
-
-        #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
-
-  - type: markdown
-    attributes:
-      value: >
-        # 项目一体验评估报告及代码
+  attributes:
+    value: >
+      # 项目二体验评估报告及代码
 
 
-  - type: textarea
-    id: task1
-    attributes:
-      label: 认领任务名称
-      description: |
-        请输入您认领的任务名称，并附上链接（如果有）。
-        例：【CV】使用卷积神经网络进行图像分类
-    validations:
-      required: true
+- type: textarea
+  id: task2
+  attributes:
+    label: 认领任务名称
+    description: |
+      请输入您认领的任务名称，并附上链接（如果有）。
+      例：【CV】使用卷积神经网络进行图像分类
+  validations:
+    required: true
 
-  - type: textarea
-    id: eval1
-    attributes:
-      label: 体验评测表格
-      description: |
-        请针对问卷模板提供的维度，评估本篇文档。您可以直接将#填好的问卷表格复制到此处#。
-        - 序号	核心步骤	完成情况（成功/不成功）	遇到问题	解决方法（无法解决需注明） 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）
-    validations:
-      required: true
-      
-   - type: textarea
-    id: eval1
-    attributes:
-      label: 其他问题或建议
-      description: |
-        如果有其他问题或建议，请您详细描述。
-    validations:
-      required: false
+- type: textarea
+  id: eval3
+  attributes:
+    label: 体验评测表格
+    description: |
+      请针对问卷模板提供的维度，评估本篇文档。您可以直接将#填好的问卷表格复制到此处#。
+      - 序号	核心步骤	完成情况（成功/不成功）	遇到问题	解决方法（无法解决需注明） 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）
+  validations:
+    required: true
 
-  - type: textarea
-    id: code1
-    attributes:
-      label: 相关代码
-      description: |
-        请附上aistudio项目地址 或 直接贴示例代码
-    validations:
-      required: true
-    
-    - type: markdown
-    attributes:
-      value: >
-        # 项目二体验评估报告及代码
+ - type: textarea
+  id: eval4
+  attributes:
+    label: 其他问题或建议
+    description: |
+      如果有其他问题或建议，请您详细描述。
+  validations:
+    required: false
+
+- type: textarea
+  id: code2
+  attributes:
+    label: 相关代码
+    description: |
+      请附上aistudio项目地址 或 直接贴示例代码
+  validations:
+    required: true
 
 
-  - type: textarea
-    id: task2
-    attributes:
-      label: 认领任务名称
-      description: |
-        请输入您认领的任务名称，并附上链接（如果有）。
-        例：【CV】使用卷积神经网络进行图像分类
-    validations:
-      required: true
 
-  - type: textarea
-    id: eval3
-    attributes:
-      label: 体验评测表格
-      description: |
-        请针对问卷模板提供的维度，评估本篇文档。您可以直接将#填好的问卷表格复制到此处#。
-        - 序号	核心步骤	完成情况（成功/不成功）	遇到问题	解决方法（无法解决需注明） 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）
-    validations:
-      required: true
-      
-   - type: textarea
-    id: eval4
-    attributes:
-      label: 其他问题或建议
-      description: |
-        如果有其他问题或建议，请您详细描述。
-    validations:
-      required: false
-
-  - type: textarea
-    id: code2
-    attributes:
-      label: 相关代码
-      description: |
-        请附上aistudio项目地址 或 直接贴示例代码
-    validations:
-      required: true
-      
-      
-    
-  - type: markdown
-    attributes:
-      value: >
-        感谢你的贡献 🎉！Thanks for your contribution 🎉!
+- type: markdown
+  attributes:
+    value: >
+      感谢你的贡献 🎉！Thanks for your contribution 🎉!
