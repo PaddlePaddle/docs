@@ -6,7 +6,7 @@ body:
 - type: markdown
   attributes:
     value: >
-      #### 此模板用于第三期分布式文档（数据并行）评估工作小组成员，向飞桨团队反馈文档问题。如非工作小组成员，请使用 文档」模板，感谢配合~「📚
+      #### 此模板用于第三期分布式文档（数据并行）评估工作小组成员，向飞桨团队反馈文档问题。如非工作小组成员，请使用 「📚文档」模板，感谢配合~
 
       #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
 
