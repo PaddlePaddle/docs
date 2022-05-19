@@ -6,9 +6,11 @@
 
 - `分布式训练快速开始 <./cluster_quick_start_cn.html>`_ : 使用飞桨框架快速开始分布式训练。
 - `使用FleetAPI进行分布式训练 <./fleet_api_howto_cn.html>`_ : 使用飞桨框架FleetAPI完成分布式训练。
+- `数据并行使用手册 <./data_parallel_cn.html>`_ : 使用飞桨框架完成数据并行训练。
 
 ..  toctree::
     :hidden:
 
     cluster_quick_start_cn.rst
     fleet_api_howto_cn.rst
+    data_parallel_cn.rst
