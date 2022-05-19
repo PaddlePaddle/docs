@@ -1,56 +1,123 @@
-name:  📝 分布式文档——数据并行评估 Eval Issue
-description: 第三期分布式文档——数据并行 体验评估报告。Distributed document evaluation working group.
+name:  📝 分布式文档——Parameter Sever快速开始体验评估 Eval Issue
+description: 第三期分布式文档——Parameter Sever快速开始体验评估报告。
 labels: [eval]
 
 body:
 - type: markdown
   attributes:
     value: >
-      #### 此模板用于第三期分布式文档（数据并行）评估工作小组成员，向飞桨团队反馈文档问题。如非工作小组成员，请使用 「📚文档」模板，感谢配合~
+      #### 此模板用于第三期分布式文档（Parameter Sever快速开始）评估工作小组成员，向飞桨团队反馈文档问题。如非工作小组成员，请使用 「📚文档」模板，感谢配合~
 
       #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
 
 - type: markdown
   attributes:
     value: >
-      # 项目一体验评估报告
+      # Parameter Sever任务一 体验评估报告
 
 
 - type: textarea
-  id: distributed_task1
+  id: distributed_ps_task1
   attributes:
-    label: 认领任务名称
+    label: 认领任务
     description: |
       请输入您认领的任务名称，并附上链接（如果有）。
-      例：【CV】使用卷积神经网络进行图像分类
+      例：CTR-DNN
   validations:
     required: true
 
-- type: textarea
-  id: distributed_eval1
+- type: markdown
   attributes:
-    label: 体验评测表格
+    value: >
+      ## 任务一体验评测
+      
+- type: textarea
+  id: distributed_ps_eval1
+  attributes:
+    label: 导入分布式训练需要的依赖包
     description: |
-      请针对问卷模板提供的维度，评估本篇文档.您可以将填好的问卷表格内容，复制到此处相应的位置。
-      - 序号	核心步骤	完成情况（成功/不成功）	遇到问题	解决方法（无法解决需注明） 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）
+      针对 导入分布式训练需要的依赖	这一环节，请回答以下内容
     value: |
-      <span>
-
-      序号 | 核心步骤 | 完成情况 | 遇到问题 | 解决方法 | 对应文档是否描述清晰
-      -----| ----| --------- | --------- | --------- | -------
-      1 | 导入分布式训练需要的依赖包 |    ...     |    ...   |     ...    |  ...  
-      2 | 定义分布式模式并初始化分布式训练环境 |    ...     |    ...   |     ...    |  ... 
-      3 | 加载模型 |    ...     |    ...   |     ...    |  ... 
-      4 | 构建 dataset 加载数据 |    ...     |    ...   |     ...    |  ... 
-      5 | 定义同步训练 Strategy 及 Optimizer |    ...     |    ...   |     ...    |  ... 
-      6 | 开始多机分布式训练 |    ...     |    ...   |     ...    |  ... 
-
-      </span>
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
 
 - type: textarea
-  id: distributed_eval2
+  id: distributed_ps_eval2
+  attributes:
+    label: 定义分布式模式并初始化分布式训练环境
+    description: |
+      针对 定义分布式模式并初始化分布式训练环境	这一环节，请回答以下内容
+    value: |
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+
+- type: textarea
+  id: distributed_ps_eval3
+  attributes:
+    label: 加载模型
+    description: |
+      针对 加载模型	这一环节，请回答以下内容
+    value: |
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+
+
+- type: textarea
+  id: distributed_ps_eval4
+  attributes:
+    label: 构建 dataset 加载数据
+    description: |
+      针对 构建 dataset 加载数据 这一环节，请回答以下内容
+    value: |
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+    
+- type: textarea
+  id: distributed_ps_eval5
+  attributes:
+    label: 定义同步训练 Strategy 及 Optimizer	
+    description: |
+      针对 定义同步训练 Strategy 及 Optimizer 这一环节，请回答以下内容
+    value: |
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+    
+- type: textarea
+  id: distributed_ps_eval6
+  attributes:
+    label: 开始多机分布式训练
+    description: |
+      针对 开始多机分布式训练 这一环节，请回答以下内容
+    value: |
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+    
+- type: textarea
+  id: distributed_ps_eval7
   attributes:
     label: 其他问题或建议
     description: |
@@ -59,7 +126,7 @@ body:
     required: false
 
 - type: textarea
-  id: distributed_code1
+  id: distributed_ps_code1
   attributes:
     label: 相关代码
     description: |
@@ -70,44 +137,111 @@ body:
 - type: markdown
   attributes:
     value: >
-      # 项目二体验评估报告
+      # Parameter Sever任务二 体验评估报告
 
 
 - type: textarea
-  id: distributed_task2
+  id: distributed_ps_task2
   attributes:
     label: 认领任务名称
     description: |
       请输入您认领的任务名称，并附上链接（如果有）。
-      例：【CV】使用卷积神经网络进行图像分类
+      例：DSSM文本匹配模型
   validations:
     required: true
 
-- type: textarea
-  id: distributed_eval3
+- type: markdown
   attributes:
-    label: 体验评测表格
+    value: >
+      ## 任务二体验评测
+      
+- type: textarea
+  id: distributed_ps_eval11
+  attributes:
+    label: 导入分布式训练需要的依赖包
     description: |
-      请针对问卷模板提供的维度，评估本篇文档。您可以直接将#填好的问卷表格复制到此处#。
-      - 序号	核心步骤	完成情况（成功/不成功）	遇到问题	解决方法（无法解决需注明） 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）
+      针对 导入分布式训练需要的依赖	这一环节，请回答以下内容
     value: |
-      <span>
-
-      序号 | 核心步骤 | 完成情况 | 遇到问题 | 解决方法 | 对应文档是否描述清晰
-      -----| ----| --------- | --------- | --------- | -------
-      1 | 导入分布式训练需要的依赖包 |    ...     |    ...   |     ...    |  ...  
-      2 | 定义分布式模式并初始化分布式训练环境 |    ...     |    ...   |     ...    |  ... 
-      3 | 加载模型 |    ...     |    ...   |     ...    |  ... 
-      4 | 构建 dataset 加载数据 |    ...     |    ...   |     ...    |  ... 
-      5 | 定义同步训练 Strategy 及 Optimizer |    ...     |    ...   |     ...    |  ... 
-      6 | 开始多机分布式训练 |    ...     |    ...   |     ...    |  ... 
-
-      </span>
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
 
 - type: textarea
-  id: distributed_eval4
+  id: distributed_ps_eval12
+  attributes:
+    label: 定义分布式模式并初始化分布式训练环境
+    description: |
+      针对 定义分布式模式并初始化分布式训练环境	这一环节，请回答以下内容
+    value: |
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+
+- type: textarea
+  id: distributed_ps_eval13
+  attributes:
+    label: 加载模型
+    description: |
+      针对 加载模型	这一环节，请回答以下内容
+    value: |
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+
+
+- type: textarea
+  id: distributed_ps_eval14
+  attributes:
+    label: 构建 dataset 加载数据
+    description: |
+      针对 构建 dataset 加载数据 这一环节，请回答以下内容
+    value: |
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+    
+- type: textarea
+  id: distributed_ps_eval15
+  attributes:
+    label: 定义同步训练 Strategy 及 Optimizer	
+    description: |
+      针对 定义同步训练 Strategy 及 Optimizer 这一环节，请回答以下内容
+    value: |
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+    
+- type: textarea
+  id: distributed_ps_eval16
+  attributes:
+    label: 开始多机分布式训练
+    description: |
+      针对 开始多机分布式训练 这一环节，请回答以下内容
+    value: |
+      - 完成情况（成功/不成功) ：
+      - 遇到问题：
+      - 解决方法（无法解决需注明)
+      - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
+  validations:
+    required: true
+
+- type: textarea
+  id: distributed_ps_eval17
   attributes:
     label: 其他问题或建议
     description: |
@@ -116,7 +250,7 @@ body:
     required: false
 
 - type: textarea
-  id: distributed_code2
+  id: distributed_ps_code2
   attributes:
     label: 相关代码
     description: |
@@ -129,3 +263,4 @@ body:
   attributes:
     value: >
       感谢你的贡献 🎉！Thanks for your contribution 🎉!
+      
