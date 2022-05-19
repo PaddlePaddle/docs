@@ -17,7 +17,7 @@ body:
 
 
 - type: textarea
-  id: task1
+  id: distributed_task1
   attributes:
     label: 认领任务名称
     description: |
@@ -27,17 +27,30 @@ body:
     required: true
 
 - type: textarea
-  id: eval1
+  id: distributed_eval1
   attributes:
     label: 体验评测表格
     description: |
-      请针对问卷模板提供的维度，评估本篇文档。您可以直接将# 填好的问卷表格复制到此处 #。
+      请针对问卷模板提供的维度，评估本篇文档.您可以将填好的问卷表格内容，复制到此处相应的位置。
       - 序号	核心步骤	完成情况（成功/不成功）	遇到问题	解决方法（无法解决需注明） 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）
-  validations:
+    value: |
+      <span>
+
+      序号 | 核心步骤 | 完成情况 | 遇到问题 | 解决方法 | 对应文档是否描述清晰
+      -----| ----| --------- | --------- | --------- | -------
+      1 | 导入分布式训练需要的依赖包 |    ...     |    ...   |     ...    |  ...  
+      2 | 定义分布式模式并初始化分布式训练环境 |    ...     |    ...   |     ...    |  ... 
+      3 | 加载模型 |    ...     |    ...   |     ...    |  ... 
+      4 | 构建 dataset 加载数据 |    ...     |    ...   |     ...    |  ... 
+      5 | 定义同步训练 Strategy 及 Optimizer |    ...     |    ...   |     ...    |  ... 
+      6 | 开始多机分布式训练 |    ...     |    ...   |     ...    |  ... 
+
+      </span>
+validations:
     required: true
 
 - type: textarea
-  id: eval2
+  id: distributed_eval2
   attributes:
     label: 其他问题或建议
     description: |
@@ -46,7 +59,7 @@ body:
     required: false
 
 - type: textarea
-  id: code1
+  id: distributed_code1
   attributes:
     label: 相关代码
     description: |
@@ -61,7 +74,7 @@ body:
 
 
 - type: textarea
-  id: task2
+  id: distributed_task2
   attributes:
     label: 认领任务名称
     description: |
@@ -71,17 +84,30 @@ body:
     required: true
 
 - type: textarea
-  id: eval3
+  id: distributed_eval3
   attributes:
     label: 体验评测表格
     description: |
       请针对问卷模板提供的维度，评估本篇文档。您可以直接将#填好的问卷表格复制到此处#。
       - 序号	核心步骤	完成情况（成功/不成功）	遇到问题	解决方法（无法解决需注明） 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）
+    value: |
+      <span>
+
+      序号 | 核心步骤 | 完成情况 | 遇到问题 | 解决方法 | 对应文档是否描述清晰
+      -----| ----| --------- | --------- | --------- | -------
+      1 | 导入分布式训练需要的依赖包 |    ...     |    ...   |     ...    |  ...  
+      2 | 定义分布式模式并初始化分布式训练环境 |    ...     |    ...   |     ...    |  ... 
+      3 | 加载模型 |    ...     |    ...   |     ...    |  ... 
+      4 | 构建 dataset 加载数据 |    ...     |    ...   |     ...    |  ... 
+      5 | 定义同步训练 Strategy 及 Optimizer |    ...     |    ...   |     ...    |  ... 
+      6 | 开始多机分布式训练 |    ...     |    ...   |     ...    |  ... 
+
+      </span>
   validations:
     required: true
 
 - type: textarea
-  id: eval4
+  id: distributed_eval4
   attributes:
     label: 其他问题或建议
     description: |
@@ -90,7 +116,7 @@ body:
     required: false
 
 - type: textarea
-  id: code2
+  id: distributed_code2
   attributes:
     label: 相关代码
     description: |
