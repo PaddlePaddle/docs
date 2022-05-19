@@ -37,12 +37,12 @@ body:
     required: true
 
  - type: textarea
-  id: eval1
-  attributes:
-    label: 其他问题或建议
-    description: |
+   id: eval1
+   attributes:
+     label: 其他问题或建议
+     description: |
       如果有其他问题或建议，请您详细描述。
-  validations:
+   validations:
     required: false
 
 - type: textarea
@@ -55,9 +55,9 @@ body:
     required: true
 
   - type: markdown
-  attributes:
-    value: >
-      # 项目二体验评估报告及代码
+    attributes:
+      value: >
+        # 项目二体验评估报告及代码
 
 
 - type: textarea
