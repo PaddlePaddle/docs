@@ -12,3 +12,4 @@
 
     cluster_quick_start_cn.rst
     fleet_api_howto_cn.rst
+    model_parallel.rst
