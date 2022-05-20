@@ -11,28 +11,27 @@ body:
       #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
 
 - type: dropdown
-  id: distributed_dp_environment
+  id: distributed_dp_task_type
   attributes:
-    label: 您的项目运行环境
+    label: 您的任务类型
     options:
       - 单机多卡
       - 多机多卡
   validations:
     required: true
-    
-- type: checkboxes
-  id: distributed_dp_environment1
-  attributes:
-    label: 您的项目运行环境
-    description: You may select more than one.
-    options:
-      - label: 单机多卡
-      - label: 多机多卡
-      - label: 云平台
-      - label: 自己的硬件（如集群）
-      - label: AI Studio
-      - label: 其他
 
+- type: dropdown
+  id: distributed_dp_environment
+  attributes:
+    label: 您的任务类型
+    options:
+      - 云平台
+      - 自己的硬件（如集群）
+      - AI Studio
+      - 其他
+  validations:
+    required: true
+    
 - type: markdown
   attributes:
     value: >
