@@ -11,17 +11,6 @@ body:
       #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
 
 - type: dropdown
-  id: distributed_ps_task_type
-  attributes:
-    label: 任务类型
-    description: 请选择您的任务类型
-    options:
-      - 单机多卡
-      - 多机多卡
-  validations:
-    required: true
-
-- type: dropdown
   id: distributed_ps_environment
   attributes:
     label: 项目环境
