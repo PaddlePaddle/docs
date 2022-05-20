@@ -13,7 +13,8 @@ body:
 - type: dropdown
   id: distributed_dp_task_type
   attributes:
-    label: 您的任务类型
+    label: 任务类型
+    description: 请选择您的任务类型
     options:
       - 单机多卡
       - 多机多卡
@@ -23,7 +24,8 @@ body:
 - type: dropdown
   id: distributed_dp_environment
   attributes:
-    label: 您的任务类型
+    label: 项目环境
+    description: 请选择您的项目运行环境
     options:
       - 云平台
       - 自己的硬件（如集群）
