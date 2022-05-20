@@ -152,7 +152,7 @@ body:
       - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
-    required: true
+    required: false
 
 - type: textarea
   id: distributed_dp_eval8
@@ -289,7 +289,7 @@ body:
       - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
-    required: true
+    required: false
     
 - type: textarea
   id: distributed_dp_eval18
