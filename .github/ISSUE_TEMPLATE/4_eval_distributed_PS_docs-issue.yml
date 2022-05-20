@@ -10,6 +10,19 @@ body:
 
       #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
 
+- type: dropdown
+  id: distributed_ps_environment
+  attributes:
+    label: 项目环境
+    description: 请选择您的项目运行环境
+    options:
+      - 云平台
+      - 自己的硬件（如集群）
+      - AI Studio
+      - 其他
+  validations:
+    required: true
+
 - type: markdown
   attributes:
     value: >
@@ -34,13 +47,13 @@ body:
 - type: textarea
   id: distributed_ps_eval1
   attributes:
-    label: 导入分布式训练需要的依赖包
+    label: 1.导入分布式训练需要的依赖包
     description: |
       针对 导入分布式训练需要的依赖	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -48,13 +61,13 @@ body:
 - type: textarea
   id: distributed_ps_eval2
   attributes:
-    label: 定义分布式模式并初始化分布式训练环境
+    label: 2.定义分布式模式并初始化分布式训练环境
     description: |
       针对 定义分布式模式并初始化分布式训练环境	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -62,13 +75,13 @@ body:
 - type: textarea
   id: distributed_ps_eval3
   attributes:
-    label: 加载模型
+    label: 3.加载模型
     description: |
       针对 加载模型	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -77,13 +90,13 @@ body:
 - type: textarea
   id: distributed_ps_eval4
   attributes:
-    label: 构建 dataset 加载数据
+    label: 4.构建 dataset 加载数据
     description: |
       针对 构建 dataset 加载数据 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -91,13 +104,13 @@ body:
 - type: textarea
   id: distributed_ps_eval5
   attributes:
-    label: 定义同步训练 Strategy 及 Optimizer	
+    label: 5.定义同步训练 Strategy 及 Optimizer	
     description: |
       针对 定义同步训练 Strategy 及 Optimizer 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -105,13 +118,13 @@ body:
 - type: textarea
   id: distributed_ps_eval6
   attributes:
-    label: 开始多机分布式训练
+    label: 6.开始多机分布式训练
     description: |
       针对 开始多机分布式训练 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -158,13 +171,13 @@ body:
 - type: textarea
   id: distributed_ps_eval11
   attributes:
-    label: 导入分布式训练需要的依赖包
+    label: 1.导入分布式训练需要的依赖包
     description: |
       针对 导入分布式训练需要的依赖	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -172,13 +185,13 @@ body:
 - type: textarea
   id: distributed_ps_eval12
   attributes:
-    label: 定义分布式模式并初始化分布式训练环境
+    label: 2.定义分布式模式并初始化分布式训练环境
     description: |
       针对 定义分布式模式并初始化分布式训练环境	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -186,13 +199,13 @@ body:
 - type: textarea
   id: distributed_ps_eval13
   attributes:
-    label: 加载模型
+    label: 3.加载模型
     description: |
       针对 加载模型	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -201,13 +214,13 @@ body:
 - type: textarea
   id: distributed_ps_eval14
   attributes:
-    label: 构建 dataset 加载数据
+    label: 4.构建 dataset 加载数据
     description: |
       针对 构建 dataset 加载数据 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -215,13 +228,13 @@ body:
 - type: textarea
   id: distributed_ps_eval15
   attributes:
-    label: 定义同步训练 Strategy 及 Optimizer	
+    label: 5.定义同步训练 Strategy 及 Optimizer	
     description: |
       针对 定义同步训练 Strategy 及 Optimizer 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -229,13 +242,13 @@ body:
 - type: textarea
   id: distributed_ps_eval16
   attributes:
-    label: 开始多机分布式训练
+    label: 6.开始多机分布式训练
     description: |
       针对 开始多机分布式训练 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true

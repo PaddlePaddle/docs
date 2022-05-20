@@ -10,6 +10,30 @@ body:
 
       #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
 
+- type: dropdown
+  id: distributed_dp_task_type
+  attributes:
+    label: 任务类型
+    description: 请选择您的任务类型
+    options:
+      - 单机多卡
+      - 多机多卡
+  validations:
+    required: true
+
+- type: dropdown
+  id: distributed_dp_environment
+  attributes:
+    label: 项目环境
+    description: 请选择您的项目运行环境
+    options:
+      - 云平台
+      - 自己的硬件（如集群）
+      - AI Studio
+      - 其他
+  validations:
+    required: true
+    
 - type: markdown
   attributes:
     value: >
@@ -34,13 +58,13 @@ body:
 - type: textarea
   id: distributed_dp_eval1
   attributes:
-    label: 导入分布式训练需要的依赖包
+    label: 1.导入分布式训练需要的依赖包
     description: |
       针对 导入分布式训练需要的依赖	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -48,13 +72,13 @@ body:
 - type: textarea
   id: distributed_dp_eval2
   attributes:
-    label: 初始化分布式训练环境
+    label: 2.初始化分布式训练环境
     description: |
       针对 初始化分布式训练环境	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -62,13 +86,13 @@ body:
 - type: textarea
   id: distributed_dp_eval3
   attributes:
-    label: 设置分布式训练需要的优化器
+    label: 3.设置分布式训练需要的优化器
     description: |
       针对 设置分布式训练需要的优化器	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -77,13 +101,13 @@ body:
 - type: textarea
   id: distributed_dp_eval4
   attributes:
-    label: 数据集拆分
+    label: 4.数据集拆分
     description: |
       针对 数据集拆分 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -91,13 +115,13 @@ body:
 - type: textarea
   id: distributed_dp_eval5
   attributes:
-    label: 构建训练代码	
+    label: 5.构建训练代码	
     description: |
       针对 构建训练代码 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -105,13 +129,13 @@ body:
 - type: textarea
   id: distributed_dp_eval6
   attributes:
-    label: 单机多卡分布式训练
+    label: 6.单机多卡分布式训练
     description: |
       针对 单机多卡分布式训练 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -119,16 +143,16 @@ body:
 - type: textarea
   id: distributed_dp_eval7
   attributes:
-    label: 多机多卡分布式训练
+    label: 7.多机多卡分布式训练
     description: |
       针对 多机多卡分布式训练 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
-    required: true
+    required: false
 
 - type: textarea
   id: distributed_dp_eval8
@@ -171,13 +195,13 @@ body:
 - type: textarea
   id: distributed_dp_eval11
   attributes:
-    label: 导入分布式训练需要的依赖包
+    label: 1.导入分布式训练需要的依赖包
     description: |
       针对 导入分布式训练需要的依赖	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -185,13 +209,13 @@ body:
 - type: textarea
   id: distributed_dp_eval12
   attributes:
-    label: 初始化分布式训练环境
+    label: 2.初始化分布式训练环境
     description: |
       针对 初始化分布式训练环境	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -199,13 +223,13 @@ body:
 - type: textarea
   id: distributed_dp_eval13
   attributes:
-    label: 设置分布式训练需要的优化器
+    label: 3.设置分布式训练需要的优化器
     description: |
       针对 设置分布式训练需要的优化器	这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -214,13 +238,13 @@ body:
 - type: textarea
   id: distributed_dp_eval14
   attributes:
-    label: 数据集拆分
+    label: 4.数据集拆分
     description: |
       针对 数据集拆分 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -228,13 +252,13 @@ body:
 - type: textarea
   id: distributed_dp_eval15
   attributes:
-    label: 构建训练代码	
+    label: 5.构建训练代码	
     description: |
       针对 构建训练代码 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -242,13 +266,13 @@ body:
 - type: textarea
   id: distributed_dp_eval16
   attributes:
-    label: 单机多卡分布式训练
+    label: 6.单机多卡分布式训练
     description: |
       针对 单机多卡分布式训练 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
     required: true
@@ -256,16 +280,16 @@ body:
 - type: textarea
   id: distributed_dp_eval17
   attributes:
-    label: 多机多卡分布式训练
+    label: 7.多机多卡分布式训练
     description: |
       针对 多机多卡分布式训练 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
-      - 解决方法（无法解决需注明)
+      - 解决方法（无法解决需注明)：
       - 对应文档是否描述清晰（如不清晰，需注明问题并提供文档链接）：
   validations:
-    required: true
+    required: false
     
 - type: textarea
   id: distributed_dp_eval18
