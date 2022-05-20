@@ -3,7 +3,7 @@
 triplet_margin_with_distance_loss
 -------------------------------
 
-.. py:function:: paddle.nn.functional.triplet_margin_with_distance_loss(input, positive, negative, distance_function=None, swap: bool = False, margin: float = 1.0, reduction: str = 'mean', name:str=None)
+.. py:function:: paddle.nn.functional.triplet_margin_with_distance_loss(input, positive, negative, distance_function=None,  margin: float = 1.0, swap: bool = False,reduction: str = 'mean', name:str=None)
 
 计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失。
 
@@ -29,8 +29,8 @@ triplet_margin_with_distance_loss
     - **positive** (Tensor) - :math:`[N, *]` ，正样本，维度、数据类型与输入 ``input`` 相同。
     - **negative** (Tensor) - :math:`[N, *]` ，负样本，维度、数据类型与输入 ``input`` 相同。
     - **distance_function** (Callable，可选) - 手动指定范数，默认为 None, 计算欧式距离。
-    - **swap** (bool，可选) - 默认为 False。
     - **margin** (float，可选) - 手动指定间距，默认为1。
+    - **swap** (bool，可选) - 默认为 False。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有: ``'none'``， ``'mean'``， ``'sum'`` 。默认为 ``'mean'``，计算 Loss 的均值；设置为 ``'sum'`` 时，计算 Loss 的总和；设置为 ``'none'`` 时，则返回原始 Loss。
     - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
