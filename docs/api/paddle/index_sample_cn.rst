@@ -15,8 +15,8 @@ index_sample
 参数
 :::::::::
 
-    - **x** （Tensor）– 输入的二维张量，数据类型为 int32，int64，float32，float64。
-    - **index** （Tensor）– 包含索引下标的二维张量。数据类型为 int32，int64。
+    - **x** （Tensor）– 输入的二维张量，数据类型为 int32、int64、float32、float64。
+    - **index** （Tensor）– 包含索引下标的二维张量。数据类型为 int32、int64。
 
 返回
 :::::::::
