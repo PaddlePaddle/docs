@@ -11,7 +11,7 @@ center_crop
 :::::::::
 
     - img (PIL.Image|np.array) - 用于裁剪的图像。
-    - output_size (int|list|tuple): 要裁剪的矩形框的大小：(height, width)。如果是 ``int`` 值，则所有方向按照这个值裁剪。
+    - output_size (int|list|tuple) - 要裁剪的矩形框的大小：(height, width)。如果是 ``int`` 值，则所有方向按照这个值裁剪。
 
 返回
 :::::::::

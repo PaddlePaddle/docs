@@ -53,24 +53,6 @@ istft
 - **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试
   信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 
 
-抛出异常
-:::::::::
-
-- ``TypeError`` – 如果输入 ``x`` 的数据类型不是 ``complex64`` 或 ``complex128``.
-- ``ValueError``  – 如果输入的窗函数不满足NOLA条件.
-- ``AssertionError``  – 如果输入 ``x`` 的维度不为2D或者3D.
-- ``AssertionError``  – 如果 ``hop_length`` 小于或等于0，或者大于 ``win_length``.
-- ``AssertionError``  – 如果 ``win_length`` 小于或等于0或者大于 ``n_fft``.
-- ``AssertionError``  – 如果 ``onesided`` 为 ``True``，但 ``fft_size`` 不等于 
-  ``n_fft//2 + 1``.
-- ``AssertionError``  – 如果 ``onesided`` 为 ``False``，但 ``fft_size`` 不等于 
-  ``n_fft``.
-- ``AssertionError``  – 如果输入的窗函数的维度不为1D或者其长度不等于 ``win_length``.
-- ``AssertionError``  – 如果 ``return_complex`` 为 ``True``，但 ``onesided`` 
-  为 ``True``.
-- ``AssertionError``  – 如果 ``return_complex`` 为 ``False``，但窗函数的数据类型为
-  复数。
-
 返回
 :::::::::
 逆短时傅里叶变换的结果，是重构信号的最小二乘估计Tensor，其形状为 ``[..., seq_length]``。

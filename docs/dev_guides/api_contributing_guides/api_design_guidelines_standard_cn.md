@@ -113,16 +113,17 @@
      # ......\paddle\fluid\dygraph\math_op_patch.py:239: UserWarning: The dtype of left and right variables are not the same, left dtype is paddle.float32, but right dtype is paddle.int32, the right dtype will convert to paddle.float32 format(lhs_dtype, rhs_dtype, lhs_dtype))
      ```
 
-  2. 支持Tensor和Scalar之间的隐式类型转换，转换规则为向优先级更高的数据类型转换。因为python的scalar只支持int64和float64，要求用户显示地对scalar进行类型转换比较困难，需要先转成tensor，对易用性的影响较大。
-
+  2. 支持Tensor和python Scalar之间的隐式类型转换，当 Tensor 的数据类型和 python Scalar
+  是同一类的数据类型时（都是整型，或者都是浮点型），或者 Tensor 是浮点型而 python Scalar 是
+  整型的，默认会将 python Scalar 转换成 Tensor 的数据类型。而如果 Tensor 的数据类型是整型而 python Scalar 是浮点型时，计算结果会是 float32 类型的。
      ```python
      import paddle
      a = paddle.to_tensor([1.0], dtype='float32')
      b = a + 1  # 由于python scalar默认采用int64, 转换后b的类型为'float32'
-     c = a + 1.0  # python saclar默认采用float64, 转换后c的类型为'float64'
+     c = a + 1.0  # 虽然 python scalar 是 float64, 但计算结果c的类型为'float32'
      a = paddle.to_tensor([1], dtype='int32')
-     b = a + 1.0  # python scalar默认采用float64, 转换后b的类型为'float64'
-     c = a + 1  # python scalar默认采用int64, 转换后c的类型为'int64'
+     b = a + 1.0  # 虽然 python scalar 是 float64, 但计算结果b的类型为 'float32
+     c = a + 1  # 虽然 python scalar 是 int64, 但计算结果c的类型为'int32'
      ```
 
 ### 数据类型规范
@@ -205,7 +206,7 @@
     ```
 
 - 在用于API命名时，以下建议使用全称，不推荐使用缩写
-
+    
     | 不规范命名 |   规范命名    |
     | :-------- | :----------- |
     |    div     |    divide     |
@@ -237,7 +238,7 @@
     ```
 
 - 常见的数学计算API中的逐元素操作不需要加上elementwise前缀，按照某一轴操作不需要加上reduce前缀，一些例子如下
-
+    
     |  paddle2.0之前  | pytorch |  numpy   | tensorflow  |   paddle2.0之后   |
     | :------------- | :----- | :------ | :--------- | :--------------- |
     | elementwise_add |   add   |   add    |     add     |        add        |
@@ -253,7 +254,7 @@
     |   reduce_all    |   all   |   all    | reduce_all  |        all        |
     |   reduce_any    |   any   |   any    | reduce_any  |        any        |
     |   reduce_mean   |  mean   |   mean   | reduce_mean |       mean        |
-    
+
     
     
 - 整数取模和取余

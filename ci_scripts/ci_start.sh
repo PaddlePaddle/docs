@@ -33,20 +33,7 @@ fi
 export PADDLE_WHL
 echo "PADDLE_WHL=${PADDLE_WHL}"
 
-# 2 check code style/format.
-/bin/bash  ${DIR_PATH}/check_code.sh
-if [ $? -ne 0 ];then
-    echo "code format error"
-    exit 1
-fi
-
-# 3 Chinese api docs check
-/bin/bash -x ${DIR_PATH}/check_api_cn.sh
-if [ $? -ne 0 ];then
-    exit 1
-fi
-
-# 4 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
+# 2 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
 PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: None"
 if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     export OUTPUTDIR=/docs
@@ -90,6 +77,52 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
         # print preview url
         PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: http://${PREVIEW_JOB_NAME}.${PREVIEW_SITE:-preview.paddlepaddle.org}/documentation/docs/zh/api/index_cn.html"
     fi
+fi
+
+check_parameters=OFF
+if [ "${check_parameters}" = "OFF" ] ; then
+    #echo "chinese api doc fileslist is empty, skip check."
+    echo "check_api_parameters is not stable, close it temporarily."
+else
+    jsonfn=${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/api_info_all.json
+    if [ -f $jsonfn ] ; then
+        echo "$jsonfn exists."
+        /bin/bash ${DIR_PATH}/check_api_parameters.sh "${need_check_cn_doc_files}" ${jsonfn}
+        if [ $? -ne 0 ];then
+            exit 1
+        fi
+    else
+        echo "$jsonfn not exists."
+        exit 1
+    fi
+fi
+
+EXIT_CODE=0
+# 3 check code style/format.
+/bin/bash  ${DIR_PATH}/check_code.sh
+if [ $? -ne 0 ];then
+    EXIT_CODE=1
+fi
+
+need_check_cn_doc_files=$(find_all_cn_api_files_modified_by_pr)
+echo $need_check_cn_doc_files
+# 4 Chinese api docs check
+if [ "${need_check_cn_doc_files}" = "" ] ; then
+    echo "chinese api doc fileslist is empty, skip check."
+else
+    /bin/bash -x ${DIR_PATH}/check_api_cn.sh "${need_check_cn_doc_files}"
+    if [ $? -ne 0 ];then
+        EXIT_CODE=1
+    fi
+fi
+
+if [ ${EXIT_CODE} -ne 0 ]; then
+    set +x
+    echo "=========================================================================================="
+    echo "Code style check or API Chinese doc check failed! Please check the error info above carefully."
+    echo "=========================================================================================="
+    set -x
+    exit ${EXIT_CODE}
 fi
 
 # 5 Approval check

@@ -42,9 +42,6 @@ AdaptiveAvgPool3D
 :::::::::
 计算AdaptiveAvgPool3D的可调用对象
 
-抛出异常
-:::::::::
-    - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
 
 代码示例
 :::::::::

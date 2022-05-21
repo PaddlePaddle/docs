@@ -15,16 +15,19 @@ Log10激活函数（计算底为10的对数）
                   \\Out=log_{10} x\\
 
 
-参数:
-  - **x** (Tensor) – 该OP的输入为Tensor。数据类型为float32，float64。 
-  - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+参数
+::::::::::::
 
-返回：Log10算子底为10对数输出
+  - **x** (Tensor) – 输入的 Tensor。数据类型为float32、float64。 
+  - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
 
-返回类型: Tensor - 该OP的输出为Tensor，数据类型为输入一致。
+返回
+::::::::::::
+ Tensor，Log10算子底为10对数输出，数据类型与输入一致。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 

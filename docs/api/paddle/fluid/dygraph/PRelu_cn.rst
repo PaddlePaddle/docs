@@ -16,7 +16,9 @@ PRelu
     y = max(0, x) + \alpha min(0, x)
 
 
-参数：
+参数
+::::::::::::
+
     - **mode** (str) - 权重共享模式。共提供三种激活方式：
 
     .. code-block:: text
@@ -30,9 +32,12 @@ PRelu
     - **param_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
 
-返回：无
+返回
+::::::::::::
+无
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -60,7 +65,10 @@ PRelu
 
 属性
 ::::::::::::
-.. py:attribute:: weight
+属性
+::::::::::::
+weight
+'''''''''
 
 本层的可学习参数，类型为 ``Parameter``
 

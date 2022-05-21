@@ -16,7 +16,9 @@ detection_output
 
 请注意，该操作符没有将最终输出边界框clip至图像大小。
 
-参数：
+参数
+::::::::::::
+
     - **loc** (Variable) - 3-D Tensor，数据类型为float32或float64，表示回归位置偏移。维度为[N,M,4]，M是输入的预测bounding box的个数，N是batch size，每个bounding box有四个坐标值，格式为[xmin,ymin,xmax,ymax]，[xmin,ymin]是左上角坐标，[xmax,ymax]是右下角坐标。
     - **scores** (Variable) - 3-D Tensor，数据类型为float32或float64，表示未归一化的置信度。维度为[N,M,C]，N和M的含义同上，C是类别数。
     - **prior_box** (Variable) - 2-D Tensor，表示先验框。维度为[M,4]，M是提取的先验框个数，格式为[xmin,ymin,xmax,ymax]。
@@ -28,12 +30,17 @@ detection_output
     - **score_threshold** (float) - 置信度得分阈值（Threshold），在NMS之前用来过滤低置信数的边界框（bounding box）。若未提供，则考虑所有框。默认值是0.001。
     - **nms_eta** (float) - 一种adaptive NMS的参数，仅当该值小于1.0时才起作用。默认值是1.0。
 
-返回：
+返回
+::::::::::::
+
   输出是2-D LoDTensor，形状为[No,6]。每行有6个值：[label,confidence,xmin,ymin,xmax,ymax]。No是该mini-batch总的检测框数。LoD的层级数为1，如果采用偏移的LoD表示，则第i个图像有 ``LoD[i+1] - LoD[i]`` 个检测结果，如果等于0，则表示无检测结果。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
     

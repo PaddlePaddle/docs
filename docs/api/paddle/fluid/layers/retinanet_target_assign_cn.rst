@@ -21,7 +21,9 @@ retinanet_target_assign
 分配结束后，从全部anchor的类别预测值cls_logits中取出属于各正负样本的部分，从针对全部anchor的位置预测值bbox_pred中取出属于各正样本的部分。
 
 
-参数：
+参数
+::::::::::::
+
     - **bbox_pred**  (Variable) – 维度为 :math:`[N, M, 4]` 的3-D Tensor，表示全部anchor的位置回归预测值。其中，第一维N表示批量训练时批量内的图片数量，第二维M表示每张图片的全部anchor的数量，第三维4表示每个anchor有四个坐标值。数据类型为float32或float64。
     - **cls_logits**  (Variable) – 维度为 :math:`[N, M, C]` 的3-D Tensor，表示全部anchor的分类预测值。 其中，第一维N表示批量训练时批量内的图片数量，第二维M表示每张图片的全部anchor的数量，第三维C表示每个anchor需预测的类别数量（ **注意：不包括背景** ）。数据类型为float32或float64。
 
@@ -36,7 +38,9 @@ retinanet_target_assign
     - **negative_overlap**  (float32) – 判定anchor是一个负样本时anchor和真值框之间的最大IoU，默认值为0.4。该参数的设定值应小于等于positive_overlap的设定值，若大于，则positive_overlap的取值为negative_overlap的设定值。
 
 
-返回：
+返回
+::::::::::::
+
     - **predict_scores** (Variable) – 维度为 :math:`[F + B, C]` 的2-D Tensor，表示正负样本的分类预测值。其中，第一维F为批量内正样本的数量，B为批量内负样本的数量，第二维C为分类的类别数量。数据类型为float32或float64。
     - **predict_location** (Variable) — 维度为 :math:`[F, 4]` 的2-D Tensor，表示正样本的位置回归预测值。其中，第一维F为批量内正样本的数量，第二维4表示每个样本有4个坐标值。数据类型为float32或float64。
     - **target_label** (Variable) — 维度为 :math:`[F + B, 1]` 的2-D Tensor，表示正负样本的分类目标值。其中，第一维F为正样本的数量，B为负样本的数量，第二维1表示每个样本的真值类别只有1类。数据类型为int32。
@@ -45,10 +49,13 @@ retinanet_target_assign
     - **fg_num** (Variable) — 维度为 :math:`[N, 1]` 的2-D Tensor，表示正样本的数量。其中，第一维N表示批量内的图片数量。 **注意：由于正样本数量会用作后续损失函数的分母，为避免出现除以0的情况，该OP已将每张图片的正样本数量做加1操作** 。数据类型为int32。
 
 
-返回类型：元组(tuple)，元组中的元素predict_scores，predict_location，target_label，target_bbox，bbox_inside_weight，fg_num都是Variable。
+返回类型
+::::::::::::
+元组(tuple)，元组中的元素predict_scores，predict_location，target_label，target_bbox，bbox_inside_weight，fg_num都是Variable。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

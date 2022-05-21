@@ -11,7 +11,9 @@ img_conv_group
 
 Image Convolution Group由Convolution2d，BatchNorm，DropOut和Pool2d组成。根据输入参数，img_conv_group将使用Convolution2d，BatchNorm，DropOut对Input进行连续计算，得到最后结果。
 
-参数：
+参数
+::::::::::::
+
        - **input** （Variable） - 输入，格式为[N，C，H，W]的4-D Tensor。数据类型：float32和float64。
        - **conv_num_filter** （list | tuple） - 卷积中使用的滤波器数。
        - **pool_size** （int | list | tuple） - 池化层中池化核的大小。如果pool_size是列表或元组，则它必须包含两个整数（pool_size_height，pool_size_width）。否则，pool_size_height = pool_size_width = pool_size。
@@ -25,11 +27,16 @@ Image Convolution Group由Convolution2d，BatchNorm，DropOut和Pool2d组成。�
        - **pool_type** （str） - 池化类型可以是最大池化的 ``max`` 和平均池化的 ``avg`` 。默认：max。
        - **use_cudnn** （bool） - 是否使用cudnn内核，仅在安装cudnn库时才有效。默认值：True
        
-返回： Tensor。使用Convolution2d，BatchNorm，DropOut和Pool2d进行串行计算后的最终结果。
+返回
+::::::::::::
+ Tensor。使用Convolution2d，BatchNorm，DropOut和Pool2d进行串行计算后的最终结果。
 
-返回类型： Variable
+返回类型
+::::::::::::
+ Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

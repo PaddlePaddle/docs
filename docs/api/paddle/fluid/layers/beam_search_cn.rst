@@ -22,7 +22,9 @@ beam_search
 
 
 
-参数:
+参数
+::::::::::::
+
     - **pre_ids** （Variable） - LoD level为2的LodTensor，表示前一时间步选择的候选id，是前一时间步 ``beam_search`` 的输出。第一步时，其形状应为为 :math:`[batch\_size，1]` ， lod应为 :math:`[[0,1，...，batch\_size]，[0,1，...，batch\_size]]` 。数据类型为int64。
     - **pre_scores** （Variable） - 维度和LoD均与 ``pre_ids`` 相同的LodTensor，表示前一时间步所选id对应的累积得分，是前一时间步 ``beam_search`` 的输出。数据类型为float32。
     - **ids** （None|Variable） - 包含候选id的LodTensor。LoD应与 ``pre_ids`` 相同，形状为 :math:`[batch\_size \times beam\_size，K]` ，其中第一维大小与 ``pre_ids`` 相同且``batch_size`` 会随样本到达结束而自动减小， ``K`` 应该大于 ``beam_size`` 。数据类型为int64。可为空，为空时使用 ``scores`` 上的索引作为id。
@@ -35,11 +37,16 @@ beam_search
     - **return_parent_idx** （bool，可选） - 指明是否返回一个额外的Tensor，该Tensor保存了选择的id的父节点（beam）在 ``pre_id`` 中索引，可用于通过gather OP更新其他Tensor的内容。默认为False。
 
 
-返回：Variable的二元组或三元组。二元组中包含了当前时间步选择的id和对应的累积得分两个LodTensor，形状相同且均为 :math:`[batch\_size×beam\_size，1]` ，LoD相同且level均为2，数据类型分别为int64和float32；若 ``return_parent_idx`` 为True时为三元组，多返回一个保存了父节点在 ``pre_id`` 中索引的Tensor，形状为 :math:`[batch\_size \times beam\_size]` ，数据类型为int64。
+返回
+::::::::::::
+Variable的二元组或三元组。二元组中包含了当前时间步选择的id和对应的累积得分两个LodTensor，形状相同且均为 :math:`[batch\_size×beam\_size，1]` ，LoD相同且level均为2，数据类型分别为int64和float32；若 ``return_parent_idx`` 为True时为三元组，多返回一个保存了父节点在 ``pre_id`` 中索引的Tensor，形状为 :math:`[batch\_size \times beam\_size]` ，数据类型为int64。
 
-返回类型：tuple
+返回类型
+::::::::::::
+tuple
 
-**代码示例**
+代码示例
+::::::::::::
 
 ..  code-block:: python
 
