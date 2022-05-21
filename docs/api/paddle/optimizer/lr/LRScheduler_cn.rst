@@ -7,7 +7,7 @@ LRScheduler
 
 学习率策略的基类。定义了所有学习率调整策略的公共接口。
 
-目前在paddle中基于该基类，已经实现了12种策略，分别为：
+目前在paddle中基于该基类，已经实现了13种策略，分别为：
 
 * :code:`NoamDecay`: 诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_ 。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`。
 
@@ -34,6 +34,8 @@ LRScheduler
 * :code:`ReduceOnPlateau`: 学习率根据当前监控指标（一般为loss）来进行自适应调整，当loss趋于稳定时衰减学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_ReduceOnPlateau`。
 
 * :code:`MultiplicativeDecay`: 每次将当前学习率乘以lambda函数得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_MultiplicativeDecay`。
+
+* :code:`OneCycleLR`: One Cycle衰减，学习率上升至最大，再下降至最小。请参考 :ref:`cn_api_paddle_optimizer_lr_OneCycleLR`。
 
 你可以继承该基类实现任意的学习率策略，导出基类的方法为 ``form paddle.optimizer.lr import LRScheduler`` ，
 必须要重写该基类的 ``get_lr()`` 函数，否则会抛出 ``NotImplementedError`` 异常。

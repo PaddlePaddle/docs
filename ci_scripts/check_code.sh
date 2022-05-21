@@ -50,7 +50,9 @@ function check_style(){
         fi
     done
     if [ $commit_files == 'off' ];then
-        echo "code format error"
+        echo "======================================================================="
+        echo "Code style check failed! Please check the error info above carefully."
+        echo "======================================================================="
         exit 1
     fi
     trap 0
