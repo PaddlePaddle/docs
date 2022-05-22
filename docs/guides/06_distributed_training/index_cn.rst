@@ -6,6 +6,7 @@
 
 - `分布式训练快速开始 <./cluster_quick_start_cn.html>`_ : 使用飞桨框架快速开始分布式训练。
 - `使用FleetAPI进行分布式训练 <./fleet_api_howto_cn.html>`_ : 使用飞桨框架FleetAPI完成分布式训练。
+- `张量模型并行 <./model_parallel.html>`_ : 张量模型并行。
 
 ..  toctree::
     :hidden:
