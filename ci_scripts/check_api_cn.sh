@@ -46,10 +46,10 @@ else
     for file in $need_check_files;do
         python chinese_samplecode_processor.py ../docs/$file
         if [ $? -ne 0 ];then
-            echo "chinese sample code failed, the file is ${file}"
-            exit 5
+            EXIT_CODE=5
         fi
     done
+    exit ${EXIT_CODE}
 
     #if [ "${need_check_cn_doc_files}" != "" ];then
     #    cd ../docs/paddle/api

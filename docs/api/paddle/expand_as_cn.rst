@@ -11,27 +11,15 @@ expand_as
 
 参数
 :::::::::
-    - x (Tensor) - 输入的Tensor，数据类型为：bool、float32、float64、int32或int64。
-    - y (Tensor) - 给定输入 ``x`` 扩展后的形状。
-    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
-
+    - **x** (Tensor) - 输入的 Tensor，数据类型为：bool、float32、float64、int32 或 int64。
+    - **y** (Tensor) - 给定输入 ``x`` 扩展后的形状。
+    - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
 返回
 :::::::::
-``Tensor`` ，数据类型与 ``x`` 相同。
+Tensor，数据类型与 ``x`` 相同。
 
 代码示例
 :::::::::
 
-.. code-block:: python
-
-       import paddle
-       import numpy as np
-               
-       np_data_x = np.array([1, 2, 3]).astype('int32')
-       np_data_y = np.array([[1, 2, 3], [4, 5, 6]]).astype('int32')
-       data_x = paddle.to_tensor(np_data_x)
-       data_y = paddle.to_tensor(np_data_y)
-       out = paddle.expand_as(data_x, data_y)
-       np_out = out.numpy()
-       # [[1, 2, 3], [1, 2, 3]]
+COPY-FROM: paddle.expand_as
 

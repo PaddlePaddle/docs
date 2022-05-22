@@ -266,7 +266,9 @@ Vision层
     :header: "API名称", "API功能"
     
 
+    " :ref:`paddle.nn.ChannelShuffle <cn_api_nn_ChannelShuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor按通道分成g组，得到形为[N, g, C/g, H, W]或[N, H, W, g, C/g]的Tensor，然后转置为[N, C/g, g, H, W]或[N, H, W, C/g, g]的形状，最后重新排列为原来的形状"
     " :ref:`paddle.nn.PixelShuffle <cn_api_nn_PixelShuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor重新排列成形为 [N, C/r**2, H*r, W*r]或 [N, H*r, W*r, C/r**2] 的Tensor"
+    " :ref:`paddle.nn.PixelUnshuffle <cn_api_nn_PixelUnshuffle>` ", "PixelShuffle的逆操作，将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor重新排列成形为 [N, C*r*r, H/r, W/r] 或 [N, H/r, W/r, C*r*r] 的Tensor"
     " :ref:`paddle.nn.Upsample <cn_api_paddle_nn_Upsample>` ", "用于调整一个batch中图片的大小"
     " :ref:`paddle.nn.UpsamplingBilinear2D <cn_api_paddle_nn_UpsamplingBilinear2D>` ", "用于调整一个batch中图片的大小（使用双线性插值方法）"
     " :ref:`paddle.nn.UpsamplingNearest2D <cn_api_paddle_nn_UpsamplingNearest2D>` ", "用于调整一个batch中图片的大小（使用最近邻插值方法）"
@@ -490,6 +492,7 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.label_smooth <cn_api_paddle_nn_functional_common_label_smooth>` ", "标签平滑"
     " :ref:`paddle.nn.functional.one_hot <cn_api_nn_functional_one_hot>` ", "将输入'x'中的每个id转换为一个one-hot向量"
     " :ref:`paddle.nn.functional.pixel_shuffle <cn_api_nn_functional_pixel_shuffle>` ", "将Tensor重新排列"
+    " :ref:`paddle.nn.functional.pixel_unshuffle <cn_api_nn_functional_pixel_unshuffle>` ", "将Tensor重新排列，是pixel_shuffle的逆操作"
     " :ref:`paddle.nn.functional.square_error_cost <cn_api_fluid_layers_square_error_cost>` ", "用于计算预测值和目标值的方差估计"
     " :ref:`paddle.nn.functional.unfold <cn_api_fluid_layers_unfold>` ", "对每一个卷积核覆盖下的区域，将元素重新排成一列"
     " :ref:`paddle.nn.functional.fold <cn_api_nn_functional_fold>` ", "该Op用于将一个滑动局部块组合成一个大的张量,通常也被称为col2im。"
