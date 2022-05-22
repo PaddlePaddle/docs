@@ -10,35 +10,34 @@ add_n
 
 对输入的一至多个Tensor或LoDTensor求和。如果输入的是LoDTensor，输出仅与第一个输入共享LoD信息（序列信息）。
 
-例1：
-::
-    输入：
-        input.shape = [2, 3]
-        input = [[1, 2, 3],
-              [4, 5, 6]]
-
-    输出：
-        output.shape = [2, 3]
-        output = [[1, 2, 3],
-                [4, 5, 6]]
-
-例2：
-::
-    输入：
-    第一个输入：
-            input1.shape = [2, 3]
-            input1 = [[1, 2, 3],
+.. code-block:: text
+    Case 1:
+        输入：
+            input.shape = [2, 3]
+            input = [[1, 2, 3],
                   [4, 5, 6]]
 
-    第二个输入：
-            input2.shape = [2, 3]
-            input2 = [[7, 8, 9],
-                  [10, 11, 12]]
+        输出：
+            output.shape = [2, 3]
+            output = [[1, 2, 3],
+                    [4, 5, 6]]
+                    
+    Case 2:
+        输入：
+        第一个输入：
+                input1.shape = [2, 3]
+                input1 = [[1, 2, 3],
+                      [4, 5, 6]]
 
-    输出：
-        output.shape = [2, 3]
-        output = [[8, 10, 12],
-              [14, 16, 18]]
+        第二个输入：
+                input2.shape = [2, 3]
+                input2 = [[7, 8, 9],
+                      [10, 11, 12]]
+
+        输出：
+            output.shape = [2, 3]
+            output = [[8, 10, 12],
+                  [14, 16, 18]]
 
 参数
 ::::::::::::
