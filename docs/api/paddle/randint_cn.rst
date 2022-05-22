@@ -9,15 +9,15 @@ randint
 
 参数
 ::::::::::
-    - **low** (int) - 要生成的随机值范围的下限，``low`` 包含在范围中。当 ``high`` 为None时，均匀采样的区间为[0, ``low``)。默认值为0。
-    - **high** (int, 可选) - 要生成的随机值范围的上限，``high`` 不包含在范围中。默认值为None，此时范围是[0, ``low``)。
-    - **shape** (list|tuple|Tensor) - 生成的随机Tensor的形状。如果 ``shape`` 是list、tuple，则其中的元素可以是int，或者是形状为[1]且数据类型为int32、int64的Tensor。如果 ``shape`` 是Tensor，则是数据类型为int32、int64的1-D Tensor。。默认值为[1]。
-    - **dtype** (str|np.dtype|core.VarDesc.VarType, 可选) - 输出Tensor的数据类型，支持int32、int64。当该参数值为None时， 输出Tensor的数据类型为int64。默认值为None.
-    - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **low** (int，可选) - 要生成的随机值范围的下限，``low`` 包含在范围中。当 ``high`` 为None时，均匀采样的区间为[0, ``low``)。默认值为0。
+    - **high** (int，可选) - 要生成的随机值范围的上限，``high`` 不包含在范围中。默认值为None，此时范围是[0, ``low``)。
+    - **shape** (list|tuple|Tensor，可选) - 生成的随机Tensor的形状。如果 ``shape`` 是list、tuple，则其中的元素可以是int，或者是形状为[1]且数据类型为int32、int64的Tensor。如果 ``shape`` 是Tensor，则是数据类型为int32、int64的1-D Tensor。默认值为[1]。
+    - **dtype** (str|np.dtype|core.VarDesc.VarType，可选) - 输出Tensor的数据类型，支持int32、int64。当该参数值为None时， 输出Tensor的数据类型为int64。默认值为None。
+    - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::::
-    Tensor：从区间[``low``，``high``)内均匀分布采样的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
+    Tensor：从区间[``low``, ``high``)内均匀分布采样的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
 代码示例
 :::::::::::
