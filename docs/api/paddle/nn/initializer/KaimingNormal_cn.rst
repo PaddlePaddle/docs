@@ -23,21 +23,14 @@ KaimingNormal
 
     - **fan_in** (float16|float32) - Kaiming Normal Initializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None
 
-返回
-::::::::::::
-对象
-
 .. note:: 
 
     在大多数情况下推荐设置fan_in为None
 
+返回
+::::::::::::
+对象
+
 代码示例
 ::::::::::::
-
-.. code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    linear = nn.Linear(2, 4, weight_attr=nn.initializer.KaimingNormal())
-    data = paddle.rand([30, 10, 2], dtype='float32')
-    res = linear(data)
+COPY-FROM: paddle.nn.initializer.KaimingNormal:code-example1
