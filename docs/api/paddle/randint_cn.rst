@@ -17,7 +17,7 @@ randint
 
 返回
 ::::::::::
-    Tensor：从区间[``low``, ``high``)内均匀分布采样的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
+    服从均匀分布的、范围在[``low``, ``high``)的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
 代码示例
 :::::::::::
