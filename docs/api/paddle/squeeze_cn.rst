@@ -57,17 +57,4 @@ squeeze
 
 代码示例
 :::::::::
-
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.rand([5, 1, 10])
-    output = paddle.squeeze(x, axis=1)
-
-    print(x.shape)  # [5, 1, 10]
-    print(output.shape)  # [5, 10]
-
-    # 在动态图模式下，输出output与输入x共享数据
-    x[0, 0, 0] = 10.
-    print(output[0, 0]) # [10.]
+COPY-FROM: paddle.squeeze:code-example1
