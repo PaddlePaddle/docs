@@ -18,25 +18,8 @@ argmin
 
 返回
 ::::::::
-``Tensor``, 如果设置 :attr:`dtype` 为 `int32` 时，返回的tensor的数据类型为 `int32` ，其它情况将返回的tensor的数据类型为 `int64` 。
+数据类型为 :attr:`dtype` 的 ``Tensor``。
 
 示例代码
 ::::::::
-
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-
-    data = [[5,8,9,5],
-            [0,0,1,7],
-            [6,9,2,4]]
-    x =  paddle.to_tensor(data)
-    out1 = paddle.argmin(x)
-    print(out1) # 4
-    out2 = paddle.argmin(x, axis=1)
-    print(out2) 
-    # [0 0 2]
-    out3 = paddle.argmin(x, axis=-1)
-    print(out3) 
-    # [0 0 2]
+COPY-FROM: paddle.argmin:code-example1
