@@ -3,7 +3,7 @@
 VGG
 -------------------------------
 
-.. py:class:: paddle.vision.models.VGG(features, num_classes=1000)
+.. py:class:: paddle.vision.models.VGG(features, num_classes=1000, with_pool=True)
 
 
 
