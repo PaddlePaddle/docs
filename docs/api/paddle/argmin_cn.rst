@@ -18,7 +18,7 @@ argmin
 
 返回
 ::::::::
-数据类型为 :attr:`dtype` 的 ``Tensor``。
+``Tensor``, 如果设置 :attr:`dtype` 为 `int32` 时，返回的tensor的数据类型为 `int32`，其它情况将返回的tensor的数据类型为 `int64`。
 
 示例代码
 ::::::::
