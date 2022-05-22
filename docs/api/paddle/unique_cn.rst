@@ -28,30 +28,4 @@ unique
 
 代码示例
 ::::::::::::
-
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-
-    x_data = np.array([2, 3, 3, 1, 5, 3])
-    x = paddle.to_tensor(x_data)
-    unique = paddle.unique(x)
-    np_unique = unique.numpy() # [1 2 3 5]
-    _, indices, inverse, counts = paddle.unique(x, return_index=True, return_inverse=True, return_counts=True)
-    np_indices = indices.numpy() # [3 0 1 4]
-    np_inverse = inverse.numpy() # [1 2 2 0 3 2]
-    np_counts = counts.numpy() # [1 1 3 1]
-
-    x_data = np.array([[2, 1, 3], [3, 0, 1], [2, 1, 3]])
-    x = paddle.to_tensor(x_data)
-    unique = paddle.unique(x)
-    np_unique = unique.numpy() # [0 1 2 3]
-
-    unique = paddle.unique(x, axis=0)
-    np_unique = unique.numpy() 
-    # [[2 1 3]
-    #  [3 0 1]]
-    
-
-
+COPY-FROM: paddle.unique:code-example1
