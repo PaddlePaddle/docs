@@ -53,14 +53,4 @@ Tensor，输入 ``inputs`` 求和后的结果，shape和数据类型与 ``inputs
 
 代码示例
 ::::::::::::
-
-.. code-block:: python
-
-    import paddle
-    
-    input0 = paddle.to_tensor([[1, 2, 3], [4, 5, 6]], dtype='float32')
-    input1 = paddle.to_tensor([[7, 8, 9], [10, 11, 12]], dtype='float32')
-    output = paddle.add_n([input0, input1])
-    # [[8., 10., 12.], 
-    #  [14., 16., 18.]]
-
+COPY-FROM: paddle.add_n:code-example1
