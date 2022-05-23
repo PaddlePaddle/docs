@@ -12,6 +12,6 @@
 ..  toctree::
     :hidden:
 
-    deployment.rst
+    deployment_cn.rst
     cluster_quick_start_cn.rst
     fleet_api_howto_cn.rst
