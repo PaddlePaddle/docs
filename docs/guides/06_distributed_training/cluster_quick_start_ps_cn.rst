@@ -1,3 +1,4 @@
+
 ..  _cluster_quick_start_ps:
 
 快速开始-参数服务器
@@ -8,10 +9,10 @@
 1. 海量训练数据：单机训练太慢，需要增加训练节点数。
 2. 特征维度高且稀疏化：模型稀疏参数过多，单机内存无法容纳，需要采用分布式存储。
 
-参数服务器（ParameterServer）模式采用了一种将模型参数中心化管理的方式来实现模型参数的分布式存储和更新。该模式下的节点有两种不同的角色：
+参数服务器（ParameterServer）模式采用了一种将模型参数中心化管理的方式来实现模型参数的分布式存储和更新。该模式下的节点/进程有两种不同的角色：
 
-1. 训练节点：该节点负责完成数据读取、从服务节点拉取参数、前向计算、反向梯度计算等过程，并将计算出的梯度上传至服务节点。
-2. 服务节点：在收到所有训练节点传来的梯度后，该节点会将梯度聚合并更新参数，供训练节点拉取进行下一轮的训练。
+1. 训练节点（Trainer/Worker）：该节点负责完成数据读取、从服务节点拉取参数、前向计算、反向梯度计算等过程，并将计算出的梯度上传至服务节点。
+2. 服务节点（Server）：在收到所有训练节点传来的梯度后，该节点会将梯度聚合并更新参数，供训练节点拉取进行下一轮的训练。
 
 因此参数服务器模式对于存储超大规模模型参数的训练场景十分友好，常被用于训练拥有海量稀疏参数的搜索推荐领域模型。
 
@@ -32,6 +33,7 @@
     4. 构建dataset加载数据
     5. 定义参数更新策略及优化器。
     6. 开始训练。 
+
     
 下面将逐一进行讲解。
 
@@ -57,13 +59,11 @@
     fleet.init(is_collective=False)
 
 2.2.3 加载模型
-""""""""""""
 
 .. code-block:: python
 
     # 模型定义参考 examples/wide_and_deep_dataset 中 model.py
     from model import WideDeepModel
-
     model = WideDeepModel()
     model.net(is_train=True)
 
@@ -156,7 +156,7 @@
     LAUNCH INFO 2022-05-18 11:27:17,761 elastic_level: -1
     LAUNCH INFO 2022-05-18 11:27:17,761 elastic_timeout: 30
     LAUNCH INFO 2022-05-18 11:27:17,761 gloo_port: 6767
-    LAUNCH INFO 2022-05-18 11:27:17,761 host: None
+    LAUNCH INFO 2022-05-1811:27:17,761 host: None
     LAUNCH INFO 2022-05-18 11:27:17,761 job_id: default
     LAUNCH INFO 2022-05-18 11:27:17,761 legacy: False
     LAUNCH INFO 2022-05-18 11:27:17,761 log_dir: log
