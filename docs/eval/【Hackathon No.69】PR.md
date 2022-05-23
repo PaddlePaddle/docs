@@ -422,7 +422,7 @@ NumPy在Paddle的体验，感觉和Pytorch的体验并无区别，但是在阅�
 
 **1、关于numpy API的重写**
 
-在Paddle动态图单机训练中，NumPy在Paddle的体验，感觉和Pytorch的体验并无区别，但是 所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现 ，这一点个人认为需要注意，因为在习惯使用Pytorch代码逻辑时，转为PaddlePaddle容易出错，下面举例说明：
+在Paddle动态图单机训练中，所有与组网相关的 numpy 操作都必须用 paddle 的 API 重新实现 ，这一点个人认为需要注意，因为在习惯使用Pytorch代码逻辑时，转为PaddlePaddle容易出错，下面举例说明：
 
 ```python
 #下述样例需要将 forward 中的所有的 numpy 操作都转为 Paddle API：
@@ -911,7 +911,77 @@ Process finished with exit code 0
 
 # 七、各种 trick 的用法
 
-这部分在Paddle使用过程中，优化器等trick的使用体验与Pytorch感觉没有区别
+PaddlePaddle有丰富的api可以实现各种调参trick，像dropout，batchnormalization，groupnormalization，l2regularization, lr decay等等都可以很轻松地实现。
+另外数据增强则推荐使用PIL库，尝试各种技巧不一定每次都能让模型准确度提升，毕竟训练神经网络是一个多参数配合的过程，只有练得多了才更容易找到最佳的方向。
+根据查阅资料，现总结以下几点：
+1、 cuDNN操作的选择
+在 use_cudnn=True 时，框架底层调用的是cuDNN中的卷积操作。
+通常cuDNN库提供的操作具有很好的性能表现，其性能明显优于Paddle原生的CUDA实现，比如 conv2d 。
+但是cuDNN中有些操作的性能较差，比如： conv2d_transpose 在 batch_size=1 时、pool2d 在 global_pooling=True 时等，
+这些情况下，cuDNN实现的性能差于Paddle的CUDA实现，建议手动设置 use_cudnn=False 。
+
+2、使用融合功能的API
+用户网络配置中使用融合功能的API，通常能取得更好的计算性能。
+例如softmax_with_cross_entropy通常会比softmax cross_entropy分开用好
+
+3、优化数据准备速度的方法
+为降低训练的整体时间，建议用户使用异步数据读取的方式，并开启 use_double_buffer（默认开）。此外，用户可根据模型的实际情况设置数据队列的大小（capacity）。
+如果数据准备的时间大于模型执行的时间，或者出现了数据队列为空的情况，这时候需要考虑对Python的用户reader进行加速。常用的方法为：使用Python多进程准备数据。
+Python端的数据预处理，都是使用CPU完成。如果Paddle提供了相应功能的API，可将这部分预处理功能写到模型配置中，如此Paddle就可以使用GPU来完成该预处理功能，
+这样也可以减轻CPU预处理数据的负担，提升总体训练速度。
+
+4、显存优化策略
+GC（Garbage Collection）的原理是在网络运行阶段及时释放无用变量的显存空间，达到节省显存的目的。GC适用于使用Executor，ParallelExecutor做模型训练/预测的场合。
+由于原生的CUDA系统调用 cudaMalloc 和 cudaFree 均是同步操作，非常耗时。因此与许多框架类似，PaddlePaddle采用了显存预分配的策略加速显存分配。
+
+5、Inplace策略
+原理是Op的输出复用Op输入的显存空间。
+由于目前设计上的一些问题，在开启Inplace策略后，必须保证后续exe.run中fetch_list的变量是persistable的。
+fetch_list：结果获取表，训练时一般有loss等。
+推荐的最佳显存优化策略为：
+开启Inplace策略：设置 build_strategy.enable_inplace = True ，并设置fetch_list中的 var.persistable = True 。
+
+PaddlePaddle在深度学习框架方面，已经覆盖了搜索、图像识别、语音语义识别理解、情感分析、机器翻译、用户画像推荐等多领域的业务和技术。
+基于动态图实现的AlexNet代码如下:
+
+```python
+class ConvPoolLayer(nn.Layer):
+  '''卷积+池化'''
+    def __init__(self,
+                 input_channels,
+                 output_channels,
+                 filter_size,
+                 stride,
+                 padding,
+                 stdv,
+                 groups=1,
+                 act=None,
+                 name=None):
+        super(ConvPoolLayer, self).__init__()
+        self.relu = ReLU() if act == "relu" else None
+
+  self._conv = Conv2D(#返回一个由所有子层组成的列表。
+            in_channels=input_channels,
+            out_channels=output_channels,
+            kernel_size=filter_size,
+            stride=stride,
+            padding=padding,
+            groups=groups,
+            weight_attr=ParamAttr(
+                name=name + "_weights", initializer=Uniform(-stdv, stdv)),
+            bias_attr=ParamAttr(
+                name=name + "_offset", initializer=Uniform(-stdv, stdv)))
+        self._pool = MaxPool2D(kernel_size=3, stride=2, padding=0)
+
+    def forward(self, inputs):
+        x = self._conv(inputs)
+        if self.relu is not None:
+            x = self.relu(x)
+        x = self._pool(x)
+        return x
+```
+
+PaddlePaddle搭建cnn网络以及进行模型训练预测，可以说PaddlePaddle搭建训练pipeline还是比较方便的。
 
 # 八、报错汇总
 
