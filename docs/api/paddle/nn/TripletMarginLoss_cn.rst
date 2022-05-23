@@ -3,7 +3,7 @@
 TripletMarginLoss
 -------------------------------
 
-.. py:class:: paddle.nn.TripletMarginLoss(margin: float = 1.0, p: float = 2., eps: float = 1e-6, swap: bool = False,reduction: str = 'mean', name:str=None)
+.. py:class:: paddle.nn.TripletMarginLoss(margin: float = 1.0, p: float = 2., epsilon: float = 1e-6, swap: bool = False,reduction: str = 'mean', name:str=None)
 
 创建一个TripletMarginLoss的可调用类。通过计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失，测量样本之间，即 `input` 与 `positive examples` 和 `negative examples` 的相对相似性。
 
@@ -23,9 +23,10 @@ TripletMarginLoss
 
 参数
 :::::::::
-    - **p** (float，可选) - 手动指定范数，默认为2。
-    - **swap** (bool，可选) - 默认为False。
     - **margin** (float，可选) - 手动指定间距，默认为1。
+    - **p** (float，可选) - 手动指定范数，默认为2。
+    - **epsilon** (float，可选) - 防止除数为0，默认为1e-6。
+    - **swap** (bool，可选) - 默认为False。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``、``'mean'``、``'sum'`` 。默认为 ``'mean'``，计算 Loss 的均值；设置为 ``'sum'`` 时，计算 Loss 的总和；设置为 ``'none'`` 时，则返回原始Loss。
     - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
