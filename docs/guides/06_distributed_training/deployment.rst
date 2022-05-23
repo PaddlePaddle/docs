@@ -18,7 +18,7 @@ PaddlePaddle 分布式对不同系统和硬件的支持情况如下表所示，
    * - Linux
      - PS/Collective
      - PS/Collective
-     - Collective
+     - PS/Collective
      - Collective
      - Collective
 
@@ -339,7 +339,7 @@ paddlejob 任务提交
     - https://www.huaweicloud.com/product/cce.html
 
 
-更为方便的是使用百度提供的全功能AI开发平台 `BML <https://cloud.baidu.com/product/bml>`_  来使用，详细的使用方式请参考 `这里 <https://ai.baidu.com/ai-doc/BML/pkhxhgo5v>`_ 。
+更为方便的是使用百度提供的全功能AI开发平台 `BML <https://cloud.baidu.com/product/bml>`_  来使用，详细的使用方式请参考 `BML文档 <https://ai.baidu.com/ai-doc/BML/pkhxhgo5v>`_ 。
 
 FAQ
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -396,7 +396,7 @@ FAQ
 
 
 GPU 分布式不生效？ 节点数不对？
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 在 GPU 训练时，一张卡对应一个进程, 每个节点（Pod）分配到的卡数即 Pod replicas，确认显示的数量是否符合预期，如果不符合预期请检查遗下设置：
 
@@ -412,7 +412,7 @@ GPU 分布式不生效？ 节点数不对？
 为什么弹性不生效？
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-弹性使用需要满足一下条件：
+弹性使用需要满足以下条件：
 
 * 使用 etcd 作为 master
 
