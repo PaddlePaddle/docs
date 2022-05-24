@@ -73,7 +73,7 @@
 
 由于搜索推荐场景涉及到的训练数据通常较大，为提升训练中的数据读取效率，参数服务器采用InMemoryDataset/QueueDataset进行高性能的IO。
 
-InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_and_deep_dataset中的reader.py，与单机DataLoader相比，存在如下区别：
+InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_and_deep_dataset/reader.py，与单机DataLoader相比，存在如下区别：
 
     1. 继承自 ``fleet.MultiSlotDataGenerator`` 基类。
     2. 实现基类中的 ``generate_sample()`` 函数，逐行读取数据进行处理，并返回一个可以迭代的reader方法。
