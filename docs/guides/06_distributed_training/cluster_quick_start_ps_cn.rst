@@ -16,13 +16,13 @@
 
 因此参数服务器模式对于存储超大规模模型参数的训练场景十分友好，常被用于训练拥有海量稀疏参数的搜索推荐领域模型。
 
-2.1 任务介绍
+1.1 任务介绍
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 本节将采用推荐领域非常经典的模型wide_and_deep为例，介绍如何使用飞桨分布式完成参数服务器训练任务，本次快速开始的完整示例代码位于 https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep_dataset。
 在编写分布式训练程序之前，用户需要确保已经安装PaddlePaddle2.3及以上版本的飞桨开源框架。
 
-2.2 操作方法
+1.2 操作方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 参数服务器训练的基本代码主要包括如下几个部分：
@@ -37,7 +37,7 @@
     
 下面将逐一进行讲解。
 
-2.2.1 导入依赖
+1.2.1 导入依赖
 """"""""""""
 
 导入必要的依赖，例如分布式训练专用的Fleet API(paddle.distributed.fleet)。
@@ -47,7 +47,7 @@
     import paddle
     import paddle.distributed.fleet as fleet
 
-2.2.2 定义分布式模式并初始化分布式训练环境
+1.2.2 定义分布式模式并初始化分布式训练环境
 """"""""""""
 
 通过 ``fleet.init()`` 接口，用户可以定义训练相关的环境，注意此环境是用户预先在环境变量中配置好的，包括：训练节点个数，服务节点个数，当前节点的序号，服务节点完整的IP:PORT列表等。
@@ -58,7 +58,7 @@
     paddle.enable_static()
     fleet.init(is_collective=False)
 
-2.2.3 加载模型
+1.2.3 加载模型
 """"""""""""
 
 .. code-block:: python
@@ -68,7 +68,7 @@
     model = WideDeepModel()
     model.net(is_train=True)
 
-2.2.4 构建dataset加载数据
+1.2.4 构建dataset加载数据
 """"""""""""
 
 由于搜索推荐场景涉及到的训练数据通常较大，为提升训练中的数据读取效率，参数服务器采用InMemoryDataset/QueueDataset进行高性能的IO。
@@ -98,7 +98,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 备注：dataset更详细用法参见\ `使用InMemoryDataset/QueueDataset进行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/parameter_server/performance/dataset.html>`_\。
 
 
-2.2.5 定义同步训练 Strategy 及 Optimizer
+1.2.5 定义同步训练 Strategy 及 Optimizer
 """"""""""""
 
 在Fleet API中，用户可以使用 ``fleet.DistributedStrategy()`` 接口定义自己想要使用的分布式策略。
@@ -115,7 +115,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
     optimizer = fleet.distributed_optimizer(optimizer, dist_strategy)
     optimizer.minimize(model.loss)
 
-2.2.6 开始训练
+1.2.6 开始训练
 """"""""""""
 
 完成模型及训练策略以后，我们就可以开始训练模型了。因为在参数服务器模式下会有不同的角色，所以根据不同节点分配不同的任务。
@@ -149,7 +149,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 备注：Paddle2.3版本及以后，ParameterServer训练将废弃掉dataloader + exe.run()方式，请切换到dataset + exe.train_from_dataset()方式。
 
 
-2.3 运行训练脚本
+1.3 运行训练脚本
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 定义完训练脚本后，我们就可以用 ``fleetrun`` 指令运行分布式任务了。其中 ``server_num`` , ``worker_num`` 分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
