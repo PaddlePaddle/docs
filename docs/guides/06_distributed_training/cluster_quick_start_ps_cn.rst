@@ -76,16 +76,58 @@
 InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_and_deep_dataset/reader.py，与单机DataLoader相比，存在如下区别：
 
     1. 继承自 ``fleet.MultiSlotDataGenerator`` 基类。
-    2. 实现基类中的 ``generate_sample()`` 函数，逐行读取数据进行处理，并返回一个可以迭代的reader方法。
-    3. reader方法需返回一个list，其中的每个元素都是一个由参数名和对应值组成的元组。
+    2. 实现基类中的 ``generate_sample()`` 函数，逐行读取数据进行处理（不需要对数据文件进行操作），并返回一个可以迭代的reader方法。
+    3. reader方法需返回一个list，其中的每个元素都是一个元组，元组的第一个元素为特征名（string类型），第二个元素为特征值（list类型）
+
+一个完整的reader.py伪代码如下：
+
+.. code-block:: python
+
+    import paddle
+    # 导入所需要的fleet依赖
+    import paddle.distributed.fleet as fleet
+
+    # 需要继承fleet.MultiSlotDataGenerator
+    class WideDeepDatasetReader(fleet.MultiSlotDataGenerator):
+        def line_process(self, line):
+            features = line.rstrip('\n').split('\t')
+            # 省略数据处理过程，具体可参考单机reader
+            # 返回值为一个list，其中的每个元素均为一个list，不需要转成np.array格式
+            return [dense_feature] + sparse_feature + [label]
+        
+        # 实现generate_sample()函数
+        # 该方法有一个名为line的参数，只需要逐行处理数据，不需要对数据文件进行操作
+        def generate_sample(self, line):
+            def wd_reader():
+                # 按行处理数据
+                input_data = self.line_process(line)
+                
+                # 构造特征名数组feature_name
+                feature_name = ["dense_input"]
+                for idx in categorical_range_:
+                    feature_name.append("C" + str(idx - 13))
+                feature_name.append("label")
+
+                # 返回一个list，其中的每个元素都是一个元组
+                # 元组的第一个元素为特征名（string类型），第二个元素为特征值（list类型）
+                yield zip(feature_name, input_data)
+            
+            # generate_sample()函数需要返回一个可以迭代的reader方法
+            return wd_reader
+
+    if __name__ == "__main__":
+        my_data_generator = WideDeepDatasetReader()
+        my_data_generator.run_from_stdin()
 
 在训练脚本中，构建dataset加载数据：
 
 .. code-block:: python
 
-    # 具体数据处理参考examples/wide_and_deep_dataset中reader.py
     dataset = paddle.distributed.QueueDataset()
     thread_num = 1
+    
+    # use_var指定网络中的输入数据，pipe_command指定数据处理脚本
+    # 要求use_var中输入数据的顺序与数据处理脚本输出的特征顺序一一对应
     dataset.init(use_var=model.inputs, 
                  pipe_command="python reader.py", 
                  batch_size=batch_size, 
@@ -93,6 +135,8 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 
     train_files_list = [os.path.join(train_data_path, x)
                           for x in os.listdir(train_data_path)]
+    
+    # set_filelist指定dataset读取的训练文件的列表
     dataset.set_filelist(train_files_list)
 
 备注：dataset更详细用法参见\ `使用InMemoryDataset/QueueDataset进行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/parameter_server/performance/dataset.html>`_\。
