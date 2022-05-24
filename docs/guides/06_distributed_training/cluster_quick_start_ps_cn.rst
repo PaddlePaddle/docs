@@ -59,6 +59,7 @@
     fleet.init(is_collective=False)
 
 2.2.3 加载模型
+""""""""""""
 
 .. code-block:: python
 
@@ -69,6 +70,16 @@
 
 2.2.4 构建dataset加载数据
 """"""""""""
+
+由于搜索推荐场景涉及到的训练数据通常较大，为提升训练中的数据读取效率，参数服务器采用InMemoryDataset/QueueDataset进行高性能的IO。
+
+InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_and_deep_dataset中的reader.py，与单机DataLoader相比，存在如下区别：
+
+    1. 继承自 ``fleet.MultiSlotDataGenerator`` 基类。
+    2. 实现基类中的 ``generate_sample()`` 函数，逐行读取数据进行处理，并返回一个可以迭代的reader方法。
+    3. reader方法需返回一个list，其中的每个元素都是一个由参数名和对应值组成的元组。
+
+在训练脚本中，构建dataset加载数据：
 
 .. code-block:: python
 
@@ -84,7 +95,7 @@
                           for x in os.listdir(train_data_path)]
     dataset.set_filelist(train_files_list)
 
-备注：dataset具体用法参见\ `使用InMemoryDataset/QueueDataset进行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/parameter_server/performance/dataset.html>`_\。
+备注：dataset更详细用法参见\ `使用InMemoryDataset/QueueDataset进行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/parameter_server/performance/dataset.html>`_\。
 
 
 2.2.5 定义同步训练 Strategy 及 Optimizer

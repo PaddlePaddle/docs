@@ -14,4 +14,5 @@
 
     deployment.rst
     cluster_quick_start_cn.rst
+    cluster_quick_start_ps_cn.rst
     fleet_api_howto_cn.rst
