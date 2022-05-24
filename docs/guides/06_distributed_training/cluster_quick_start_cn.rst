@@ -3,40 +3,66 @@
 Paddle分布式整体介绍
 ====================================
 
-概述
+1.概述
 ------
 
-分布式训练是在单机算力和存储能力有限的情况下，通过多计算节点协同工作，以实现训练加速或者解决单机无法训练的问题。
+近几年，深度学习领域的开发者们对模型效果的追求愈演愈烈，各大榜单纪录不断刷新，而这个现象的背后都有着 “大规模训练” 的身影。简单来说，就是使用大规模的数据或大规模参数量的模型来做训练。大规模的数据可以让模型有足够的 “教材” 用于 “学习”，而大规模的参数量则可以让模型“学习能力” 更强，更容易 “学习” 到“教材”中的“知识”。在数据和参数规模增长的过程中，常规的单机训练由于硬件资源的限制渐渐显得捉襟见肘，而分布式训练则成为了广大开发者的必然选择。
 
-大规模的数据可以让模型有足够的“教材”用于“学习”，而大规模的参数量则可以让模型“学习能力”更强，更容易 “学习” 到“教材”中的“知识”。在数据和参数规模增长的过程中，常规的单机训练由于硬件资源的限制渐渐显得捉襟见肘，而分布式训练则成为了广大开发者的必然选择。这其中涉及多机任务拆分（多种并行策略）、集群训练资源配置、平衡训练速度和收敛速度、弹性训练与容错等多项重要技术。
+所谓分布式训练，就是使用多台机器共同完成训练任务，这其中涉及多机任务拆分、集群训练资源配置、平衡训练速度和收敛速度、弹性训练与容错等多项重要技术，同时也是各大深度学习框架彰显技术实力的重要 “战略高地”。
 
-PaddleFleet是Paddle的分布式模块，其功能放置在了`Paddle.distributed`这个Package下。在这篇文章中，我们将会整体介绍一下这个Pacakge的各个组成部分以便让您对其有一个整体的感知。
+飞桨是我国首个开源开放、自主研发、功能完备的产业级深度学习框架，其英文名“PaddlePaddle” 正是 “Parallel Distributed Deep Learning” 并行分布式深度学习的字母缩写组合。飞桨不仅在业内最早支持了万亿级稀疏参数模型的训练能力，而且近期又创新性的提出了 4D 混合并行策略，以训练千亿级稠密参数模型，可以说分布式训练是飞桨最具特色的技术之一。
 
-场景介绍和功能选择
-----------------
-
-首先我们来看一下需要用到分布式的场景以及如何选择相应的分布式技术。
+飞桨的分布式训练技术在对外提供之前就已经在百度内部广泛应用，如搜索引擎、信息流推荐、百度翻译、百度地图、好看视频、文心 ERNIE 等等，既包含网络复杂、稠密参数特点的计算机视觉（CV）\ 自然语言处理（NLP）模型训练场景，又覆盖了有着庞大的 Embedding 层模型和超大数据量的推荐搜索训练场景，可谓是分布式训练技术得天独厚的“练功房”。
 
 
-分布式功能分类
-------------
+.. image:: ./images/paddle_distributed.jpeg
+  :width: 300
+  :alt: paddle_dist
+  :align: center
 
-.. note:: 分布式功能从不同的维度可能会有不同的分类方式。比如通信模式角度，动静角度，功能角度等等。考虑到用户实际使用关心的焦点不同，我们这里按照功能角度进行分类的介绍
+常见的使用场景
+----------------------
 
-* `数据并行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/data_parallel.html>`__ 数据并行训练是分布式并行训练中用的最早、也是最广泛的一个功能。和混合并行训练不同，它适合于模型单卡能放下，多卡间复制模型（SPMD:single program, multiple data）然后同步通信参数的梯度、提高minibatchsize的方式提高训练效率。
+1.1 :doc:`搜索推荐场景 <parameter_server>`
+^^^^^^^^^^^^^^^^^^^^^^
 
+搜索推荐场景经常面临数据量大、特征维度高且稀疏化的问题。而分布式训练的参数服务器模式采用了一种将模型参数中心化管理的方式来实现模型参数的分布式存储和更新，该模式有两个角色 Server 与 Worker：Worker 用于执行模型的前向与反向计算；Server 负责从各个 Worker 收集汇总梯度并更新参数，因此对于存储超大规模模型参数的训练场景十分友好，常被用于训练拥有海量稀疏参数的搜索推荐领域模型。
 
-* `混合并行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/collective_mp/hybrid_parallelism.html>`__ 更大的模型一般会有更好的效果，但是更大的模型会带来显存瓶颈、计算瓶颈、通信扩展瓶颈的问题，为了更好的解决这些问题，我们提出了高效的 `4D混合并行的方式 <https://ai.baidu.com/forum/topic/show/987996>`__ ，即 `数据并行 <https://>`__ 、`流水线并行 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/collective_mp/pipeline.html>`__ 、`张量并行 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/collective_mp/model_parallel.html>`__、`GroupSharding <https://>`__，指南里面描述了详细的代码结构骨架和完整代码连接)并行，可以让用户根据模型的规模和机器资源规模来选择不同的并行方式来进行高效的训练。PaddleFleet通过API方式提供了4D混合并行的方法，这些功能是垂直的、可以相互嵌套使用的。
+Paddle提供了传统纯 CPU 参数服务器、纯 GPU 参数服务器以及异构参数服务器等不同方案，您可以根据自己的模型特点和资源情况进行选择。详细内容可以参考 :doc:`搜索推荐场景 <parameter_server>`
 
-* `MoE并行训练 <https://>`__ 与Dense大模型不同，MoE训练过程中只会激活部分的Expert参数从而大幅减少了计算量。目前MoE成为了通往万亿以及更大的模型的主要方式。优于模型规模和计算资源规模的提升，MoE训练仍然面临计算瓶颈和通信瓶颈。PaddleMoE并行训练提供了业内高效的MoE训练常用的[`Gate` 和 `MoELayer`]()方式。
+.. image:: ./images/parameter_server.png
+  :width: 600
+  :alt: parameter_server
+  :align: center
 
-* `自动并行训练 <https://>`__ 自动并行能根据用户输入串行网络模型和集群资源信息自动进行分布式训练，支持半自动与全自动两种模式，半自动模式下用户可以指定某些tensor和operator的切分方式，而全自动模式下所有tensor和operator都由框架自适应选择最优切分策略。
+1.2 稠密参数collective训练场景
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+对于 NLP 和 CV 等这类拥有复杂网络、稠密参数特点的模型，飞桨分布式训练技术的集合通信模式可以很好的支持这类模型的训练。该模式没有管理模型参数的中心节点，每个节点都是 Worker，每个 Worker 负责模型训练的同时还需要掌握当前最新的全局梯度信息。集合通信模式对计算芯片的算力和芯片之间的网络互联要求较高，如高性能计算的 GPU、芯片之间的高速网络互联 NVLINK 和 InfiniBand 等，因此非常适合 CV 和 NLP 领域计算密集型训练任务。
 
-* `PS-based并行训练 <https://>`__ 参数服务器由高性能异步训练 Worker、高效通信策略和高性能 Server 组成。Server节点负责参数的创建，更新和保存。Worker负责训练数据IO，模型前向反向计算。Server和Worker的通信主要包括参数从Server拉取以及更新梯度到Server。Worker数据并行的方式能够激发多Worker节点的吞吐量优势。在异步训练模式下训练简单模型可以极大提升数据吞吐量，Server分片存储机制能够支持超大模型规模。
+当我们的模型比较小或者单卡能放下时，我们可以采用 `数据并行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/data_parallel.html>`__ 的方式通过多卡间复制模型、同步梯度、增加minibatch的方法提高训练的效率，比如ERNIE large或者Bert Large模型单卡能够放大下，但是优于计算量偏大，在V100上训练这样的模型经常需要扩展到4机甚至8机上进行训练。
 
-* `通信模块 <https://>`__ 一般情况下，用户不需要直接调用通信模块的API，因为各种并行的方式已经集成了通信部分。当您需要[比如PipeLineParallel的自定义组网](此处连接到PipeLine的Send/Recv部分)时，或者各个训练进程之间需要显式的通信比如loss、配置文件等内容时，可以使用通信模块所提供的collective和P2P的通信接口。
+当模型变大、单卡放不下时，比如训练百亿NLP模型，为了能够放的开这样的模型，我们可以采用 `GroupSharded并行 <https://>`__ 切分优化器状态、参数方式减少显存使用，用通信换时间； 或者使用 `张量并行 <https://>`__ 把 占比例高的参数比如矩阵进行按照行列的维度进行切分，减少显存使用切分计算。例如，`ERNIE 百亿 <https://>`__ 或者Bert 可以通过上述方式单机可以训练百亿大小的模型，机器之间可以使用数据并行增加训练的效率。
+
+当模型进一步增加，比如千亿模型，单机可能就放不下了。我们提出了 `4D混合并行的策略 <https://>`__ 充分利用各个并行策略的特点，对模型进行合理的切分，充分利用机器的计算能力。
+
+当模型增加到万亿甚至10W亿，Dense参数的训练模式由于计算量太大以至于比较难实际实施。与Dense大模型不同，`MoE训练 <http://>`__ 过程中只会激活部分的Expert参数从而大幅减少了计算量。目前MoE成为了通往万亿以及更大的模型的主要方式。
+
+.. note::需要注意的是，我们使用任何一个并行策略都是有性能代价的，而且常常随着并行策略所应用的范围变大而上升。所以，把并行策略限定到尽量少的范围中会对性能提升有益。
+
+.. note::分布式程序的性能要点在于：负载均衡、通信极小。
+
+1.3 集群和云端训练支持
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * `弹性训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/edl.html>`__ 弹性训练提供两方面的能力，任务所需要的资源可以随训练进度变化，以及当所能分配给任务的资源变化时对任务进行动态调整，前者可以保证任务能够充分利用可用资源提高训练效率，后者可以提高集群的资源利用率。PaddlePaddle 的弹性训练能够根据任务需求动态调整训练节点数和训练参数以提升训练效率，例如资源空闲时扩充训练节点加快训练进度，资源过载时收缩部分任务节点优先保证高优任务训练。
 
 * `云端训练的支持 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/public_cloud.html>`__ 针对常见的云平台，我们提供了在其上运行任务的详细的方法和步骤。
+
+2. 文章
+----------------------
+* Ji Liu, Zhihua Wu, Dianhai Yu, Yanjun Ma, Danlei Feng, Minxu Zhang, Xinxuan Wu, Xuefeng Yao, Dejing Dou. `End-to-end Adaptive Distributed Training on PaddlePaddle <https://arxiv.org/abs/2112.02752>`__ .
+
+* Yulong Ao, Zhihua Wu, Dianhai Yu, Weibao Gong, Zhiqing Kui, Minxu Zhang, Zilingfeng Ye, Liang Shen, Yanjun Ma, Tian Wu, Haifeng Wang, Wei Zeng, Chao Yang. `End-to-end Adaptive Distributed Training on PaddlePaddle <https://arxiv.org/abs/2112.02752>`__ .
+
+* Yang Xiang, Zhihua Wu, Weibao Gong, Siyu Ding, Xianjie Mo, Yuang Liu, Shuohuan Wang, Peng Liu, Yongshuai Hou, Long Li, Bin Wang, Shaohuai Shi, Yaqian Han, Yue Yu, Ge Li, Yu Sun, Yanjun Ma, Dianhai Yu. `Nebula-I: A General Framework for Collaboratively Training Deep Learning Models on Low-Bandwidth Cloud Clusters <https://arxiv.org/abs/2205.09470>`__ .
 
