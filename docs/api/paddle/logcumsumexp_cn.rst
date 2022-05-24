@@ -5,16 +5,17 @@ logcumsumexp
 
 .. py:function:: paddle.logcumsumexp(x, axis=None, dtype=None, name=None)
 
-计算 x 的指数的前缀和的对数
+计算 x 的指数的前缀和的对数。
 
-**注意**：结果的第一个元素和输入的第一个元素相同。
+.. note::
+   结果的第一个元素和输入的第一个元素相同。
 
 参数
 :::::::::
-    - x (Tensor) - 需要进行操作的Tensor.
-    - axis (int，可选) - 指明需要计算的维度。-1代表最后一维。默认：None，将输入展开为一维变量再进行计算。
-    - dtype (str，可选) - 输出Tensor的数据类型，支持float32、float64. 如果指定了，那么在执行操作之前，输入张量将被转换为dtype. 这对于防止数据类型溢出非常有用。默认为：None.
-    - name （str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - **x** (Tensor) - 需要进行操作的Tensor。
+    - **axis** (int，可选) - 指明需要计算的维度。-1代表最后一维。默认：None，将输入展开为一维变量再进行计算。
+    - **dtype** (str，可选) - 输出Tensor的数据类型，支持float32、float64. 如果指定了，那么在执行操作之前，输入张量将被转换为dtype. 这对于防止数据类型溢出非常有用。默认为：None。
+    - **name** (str，可选)- 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回
 :::::::::
