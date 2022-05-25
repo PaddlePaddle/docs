@@ -1,12 +1,12 @@
-.. _cn_api_fluid_ipu_shard_guard:
+.. _cn_api_fluid_set_ipu_shard:
 
-ipu_shard_guard
+set_ipu_shard
 -------------------------------
 
-.. py:function:: paddle.static.ipu_shard_guard(index=-1, stage=-1)
+.. py:function:: paddle.static.set_ipu_shard(call_func, index=-1, stage=-1)
 
 
-该接口用于对模型进行切分。用于指定Op在哪个ipu上进行计算以及模型被切分之后的计算顺序。
+该接口通过设置输入的函数或计算层内的每个算子的流水线属性实现对模型的切分。
 
 .. note:
 
@@ -16,7 +16,8 @@ ipu_shard_guard
 
 参数
 :::::::::
-    - **index** (int, 可选) - 指定Op在哪个ipu上计算，（如‘0, 1, 2, 3’），默认值-1，表示Op没有指定ipu。
+    - **call_func** (Layer|function) - 静态图下的函数或者计算层。
+    - **index** (int, 可选) - 指定Op在哪个ipu上计算，（如‘0, 1, 2, 3’），默认值-1，表示不指定ipu。
     - **stage** (int, 可选) – 指定被切分的模型的计算顺序，（如‘0, 1, 2, 3’），按照数值大小顺序对被切分的模型进行计算，默认值-1，表示没有数据流水计算顺序并按照计算图顺序计算Op。
 
 返回
@@ -26,4 +27,4 @@ ipu_shard_guard
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.static.ipu_shard_guard
+COPY-FROM: paddle.static.set_ipu_shard
