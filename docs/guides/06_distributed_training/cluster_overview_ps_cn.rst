@@ -100,7 +100,7 @@ load_model
 3 进阶教程
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1. accessor配置
-2. GPUPS示例
-3. HeterPS示例
+1. GPUPS示例
+2. HeterPS示例
+3. 稀疏参数配置（accessor）
 4. 二次开发
