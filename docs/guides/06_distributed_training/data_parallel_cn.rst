@@ -94,7 +94,7 @@
 动态图完整训练代码如下所示(train.py)，只需添加高亮部分代码，即可将单卡训练扩展为分布式训练：
 
 .. code-block:: py
-    :emphasize-lines: 5,45,50,52,55,56,
+    :emphasize-lines: 5,45,50,52,55,56
 
     # -*- coding: UTF-8 -*-
     import numpy as np
