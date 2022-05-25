@@ -1,4 +1,4 @@
-..  _cluster_quick_start:
+..  _distributed_overview:
 
 Paddle分布式整体介绍
 ====================================

@@ -11,6 +11,7 @@
 ..  toctree::
     :hidden:
 
-    deployment_cn.rst
+    distributed_overview.rst
     cluster_quick_start_collective_cn.rst
     cluster_quick_start_ps_cn.rst
+    deployment_cn.rst
