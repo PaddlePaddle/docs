@@ -3,7 +3,7 @@
 erf
 -------------------------------
 
-.. py:function:: paddle.erf(x,name = None)
+.. py:function:: paddle.erf(x, name = None)
 
 
 
@@ -17,8 +17,8 @@ erf
 参数
 ::::::::::::
 
-  - **x** (Tensor) - Erf Op 的输入，多维 Tensor，数据类型为 float16、float32 或 float64。
-  - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为 None。
+  - **x** (Tensor) - 输入的多维 Tensor，数据类型为 float16、float32 或 float64。
+  - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::::::
