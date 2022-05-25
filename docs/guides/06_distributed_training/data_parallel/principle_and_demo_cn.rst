@@ -99,9 +99,7 @@
     import numpy as np
     import paddle
     # 导入必要分布式训练的依赖包
-    ```python
     from paddle.distributed import fleet, get_rank
-    ```
     # 导入模型文件
     from paddle.vision.models import ResNet
     from paddle.vision.models.resnet import BottleneckBlock
@@ -141,24 +139,19 @@
     # 设置训练函数
     def train_model():
         # 初始化Fleet环境
-        ```python
         fleet.init(is_collective=True)
-        ```
 
         model = ResNet(BottleneckBlock, 50, num_classes=class_dim)
 
         optimizer = optimizer_setting(parameter_list=model.parameters())
         # 通过Fleet API获取分布式model，用于支持分布式训练
-        ```python
         model = fleet.distributed_model(model)
         optimizer = fleet.distributed_optimizer(optimizer)
-        ```
 
         dataset = RandomDataset(batch_num * batch_size)
-        ```python
+        # 设置分布式批采样器，用于数据并行训练
         sampler = DistributedBatchSampler(dataset, rank=get_rank(),
                                           batch_size=batch_size,shuffle=False, drop_last=True)
-        ```
         train_loader = DataLoader(dataset,
                                 batch_sampler=sampler,
                                 num_workers=1)
