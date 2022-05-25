@@ -3,12 +3,7 @@
 数据并行
 =========
 
-数据并行是深度学习领域最常用的并行方法。如下图所示，在此策略下数据集被平均分为多份，每个卡上保存完整的模型参数并独立处理一份子数据集，以加速模型训练过程。
-
-.. image:: ./img/data_parallel_1.png
-  :width: 400
-  :alt: Data Parallel 1
-  :align: center
+数据并行是深度学习领域最常用的并行方法。在此策略下数据集被平均分为多份，每个卡上保存完整的模型参数并独立处理一份子数据集，以加速模型训练过程。
 
 一、原理介绍
 -----------------------
@@ -23,9 +18,9 @@
 
 2. 各个卡的批处理大小总和与单卡训练的批处理大小一致。那么，分布式训练方式下，各个卡的批处理大小为 ``B/K`` 。因此，分布式训练方式下，每次迭代的时间均明显小于单卡训练，从而在整体上提高训练吞吐量。
 
-.. image:: ./img/data_parallel_2.png
+.. image:: ./img/data_parallel.png
   :width: 500
-  :alt: Data Parallel 2
+  :alt: Data Parallel
   :align: center
 
 二、动态图使用方法
@@ -96,9 +91,10 @@
 3.1 完整训练代码
 ^^^^^^^^^^^^^^^^^^
 
-动态图完整训练代码如下所示(train.py)：
+动态图完整训练代码如下所示(train.py)，只需添加高亮部分代码，即可将单卡训练扩展为分布式训练：
 
 .. code-block:: py
+    :emphasize-lines: 5,45,50,52,55,56,
 
     # -*- coding: UTF-8 -*-
     import numpy as np
@@ -154,11 +150,8 @@
         model = fleet.distributed_model(model)
 
         dataset = RandomDataset(batch_num * batch_size)
-        sampler = DistributedBatchSampler(dataset,
-                                        rank=get_rank(),
-                                        batch_size=batch_size,
-                                        shuffle=False,
-                                        drop_last=True,)
+        sampler = DistributedBatchSampler(dataset, rank=get_rank(),
+                                          batch_size=batch_size,shuffle=False, drop_last=True)
         train_loader = DataLoader(dataset,
                                 batch_sampler=sampler,
                                 num_workers=1)
@@ -186,7 +179,7 @@
     if __name__ == '__main__':
         train_model()
 
-3.2 运行日志
+3.2 运行方式
 ^^^^^^^^^^^^^^^^^^
 
 飞桨分布式任务可以通过 ``paddle.distributed.launch`` 组件启动。假设要运行2卡任务，只需在命令行中执行:
@@ -195,67 +188,30 @@
 
    python -m paddle.distributed.launch --gpus=0,1 --log_dir logs train.py
 
-您将在logs路径下看到2份日志文件，即workerlog.0和workerlog.1；日志中显示如下运行信息：
-
-.. code-block::
-
-    -----------  Configuration Arguments -----------
-    gpus: 0,1
-    heter_worker_num: None
-    heter_workers:
-    http_port: None
-    ips: 127.0.0.1
-    log_dir: logs
-    ...
-    ------------------------------------------------
-    launch train in GPU mode!
-    INFO 2022-05-19 08:07:19,137 launch_utils.py:557] Local start 2 processes. First process distributed environment info (Only For Debug): 
-        +=======================================================================================+
-        |                        Distributed Envs                      Value                    |
-        +---------------------------------------------------------------------------------------+
-        |                       PADDLE_TRAINER_ID                        0                      |
-        |                 PADDLE_CURRENT_ENDPOINT                 127.0.0.1:57073               |
-        |                     PADDLE_TRAINERS_NUM                        2                      |
-        |                PADDLE_TRAINER_ENDPOINTS         127.0.0.1:57073,127.0.0.1:11503       |
-        |                     PADDLE_RANK_IN_NODE                        0                      |
-        |                 PADDLE_LOCAL_DEVICE_IDS                        0                      |
-        |                 PADDLE_WORLD_DEVICE_IDS                       0,1                     |
-        |                     FLAGS_selected_gpus                        0                      |
-        |             FLAGS_selected_accelerators                        0                      |
-        +=======================================================================================+
-
-    launch proc_id:19793 idx:0
-    launch proc_id:19798 idx:1
-    I0519 08:07:21.830699 19793 nccl_context.cc:82] init nccl context nranks: 2 local rank: 0 gpu id: 0 ring id: 0
-    W0519 08:07:23.502454 19793 device_context.cc:525] Please NOTE: device: , GPU Compute Capability: 7.0, Driver API Version: 11.2, Runtime API Version: 11.2
-    W0519 08:07:23.509383 19793 device_context.cc:543] device: , cuDNN Version: 8.1.
-    I0519 08:07:29.192090 19793 nccl_context.cc:114] init nccl context nranks: 2 local rank: 0 gpu id: 0 ring id: 10
-    2022-05-19 08:07:29,466-INFO: [topology.py:169:__init__] HybridParallelInfo: rank_id: 0, mp_degree: 1, sharding_degree: 1, pp_degree: 1, dp_degree: 2, mp_group: [0],  sharding_group: [0], pp_group: [0], dp_group: [0, 1], check/clip group: [0]
-    [Epoch 0, batch 0] loss: 6.37349, acc1: 0.00000, acc5: 0.03125
-    [Epoch 0, batch 5] loss: 35.73608, acc1: 0.00000, acc5: 0.03125
-    [Epoch 0, batch 10] loss: 51.47758, acc1: 0.00000, acc5: 0.00000
-    [Epoch 0, batch 15] loss: 8.24211, acc1: 0.00000, acc5: 0.09375
-    [Epoch 0, batch 20] loss: 5.11644, acc1: 0.00000, acc5: 0.00000
-    [Epoch 0, batch 25] loss: 7.18224, acc1: 0.03125, acc5: 0.03125
-    [Epoch 0, batch 30] loss: 5.15862, acc1: 0.00000, acc5: 0.09375
-    [Epoch 0, batch 35] loss: 4.54878, acc1: 0.00000, acc5: 0.06250
-    [Epoch 0, batch 40] loss: 4.61982, acc1: 0.03125, acc5: 0.12500
+您将在logs路径下看到2份日志文件，即workerlog.0和workerlog.1，分别记录着 ``gpu0`` 和 ``gpu1`` 的运行信息。
 
 
 四、数据并行使用技巧
 -----------------------
 
-首先，我们阐述数据并行模式下学习率的设置技巧，其基本原则是学习率正比于global batch size。
+本节给出一些常见的数据并行技巧。在实际使用中，用户需要根据实际业务需要，灵活处理。
+
+4.1 学习率设置
+^^^^^^^^^^^^^^^^^^
+
+首先，阐述数据并行模式下学习率的设置技巧，其基本原则是学习率正比于global batch size。
 
 与单卡训练相比，数据并行训练通常有两种配置：
 1. 一种是保持保持所有计算设备的batch size的总和（我们称为global batch size）与单卡训练的batch size保持一致。这中情形下，由于数据并行训练和单卡训练的global batch size是一致的，通常保持数据并行模式下各个计算设备上的学习率与单卡训练一致。
 2. 另一种情形是，保持数据并行模式下每个计算设备的batch size和单卡训练的batch size一致。这种情形下，数据并行模式的global batch size是单卡训练的 ``N`` 倍。这里， ``N`` 指的是数据并行计算的设备数。因此，通常需要将数据并行模式下每个计算设备的学习率相应的设置为单卡训练的 ``N`` 倍。这样，数据并行模式下的初始学习率通常较大，不利于模型的收敛。因此，通常需要使用warm-up机制。即，在初始训练时使用较小的学习率，并逐步缓慢增加学习率，经过一定迭代次数后，学习率增长到期望的学习率。
 
-接着，我们介绍数据集切分问题。数据并行中，我们通常将数据集切分为 ``N`` 份，每个训练卡负责训练其中的一份数据。这里， ``N`` 是数据并行的并行度。如我们前面介绍的，每一个迭代中，各个训练卡均需要做一次梯度同步。因此，我们需要确保对于每个 ``epoch`` ，各个训练卡经历相同的迭代数，否则，运行迭代数多的训练卡会一直等待通信完成。实践中，我们通常通过数据补齐或者丢弃的方式保证各个训练卡经历相同的迭代数。数据补齐的方式指的是，为某些迭代数少训练数据补充部分数据，从而保证切分后的各份数据集的迭代次数相同；丢弃的方式则是丢弃部分迭代次数较多的数据，从而保证各份数据集的迭代次数相同。
+4.2 数据集切分
+^^^^^^^^^^^^^^^^^^
+
+接着，介绍数据集切分问题。数据并行中，我们通常将数据集切分为 ``N`` 份，每个训练卡负责训练其中的一份数据。这里， ``N`` 是数据并行的并行度。如我们前面介绍的，每一个迭代中，各个训练卡均需要做一次梯度同步。因此，我们需要确保对于每个 ``epoch`` ，各个训练卡经历相同的迭代数，否则，运行迭代数多的训练卡会一直等待通信完成。实践中，我们通常通过数据补齐或者丢弃的方式保证各个训练卡经历相同的迭代数。数据补齐的方式指的是，为某些迭代数少训练数据补充部分数据，从而保证切分后的各份数据集的迭代次数相同；丢弃的方式则是丢弃部分迭代次数较多的数据，从而保证各份数据集的迭代次数相同。
 
 通常，在每个 ``epoch`` 需要对数据做shuffle处理。因此，根据shuffle时机的不同，有两种数据切分的方法。一种是在数据切分前做shuffle；即，首先对完整的数据做shuffle处理，做相应的数据补充或丢弃，然后做数据的切分。另一种是在数据切分后做shuffle；即，首先做数据的补充或丢弃和数据切分，然后对切分后的每一份数据分别做shuffle处理。
 
-需要注意的是，上述只是给出一些常见的数据并行技巧。在实际使用中，用户需要根据实际业务需要，灵活处理。
 
 
 五、参考文献
