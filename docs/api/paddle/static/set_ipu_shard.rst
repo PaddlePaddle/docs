@@ -6,7 +6,7 @@ set_ipu_shard
 .. py:function:: paddle.static.set_ipu_shard(call_func, index=-1, stage=-1)
 
 
-该接口通过设置输入的函数或计算层内的每个算子的流水线属性实现对模型的切分。
+该接口通过设置输入的函数或计算层内每个算子的流水线属性实现对模型的切分。
 
 .. note:
 
