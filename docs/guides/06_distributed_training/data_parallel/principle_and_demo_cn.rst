@@ -1,6 +1,6 @@
-..  _data_parallel:
+..  _principle_and_demo:
 
-数据并行
+数据并行原理和实践案例
 =========
 
 数据并行是深度学习领域最常用的并行方法。在此策略下数据集被平均分为多份，每个卡上保存完整的模型参数并独立处理一份子数据集，以加速模型训练过程。
@@ -95,6 +95,7 @@
 
 .. code-block:: py
     :emphasize-lines: 5,45,50,52,55,56
+    :linenos:
 
     # -*- coding: UTF-8 -*-
     import numpy as np
