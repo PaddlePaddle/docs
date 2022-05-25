@@ -10,6 +10,12 @@ logcumsumexp
 .. note::
    结果的第一个元素和输入的第一个元素相同。
 
+假设输入是二维矩阵，j 是 axis 维的下标，i 是另一维的下标，那么运算结果将是
+
+.. math::
+
+    logcumsumexp(x)_{ij} = log \sum_{i=0}^{j}exp(x_{ij})
+    
 参数
 :::::::::
     - **x** (Tensor) - 需要进行操作的Tensor。
