@@ -50,7 +50,7 @@ Embedding的参数被均匀切分到多个卡上。假设Embedding参数的维�
 AllGather通信操作汇聚最终的结果。
 
 .. image:: ./img/col_parallel_matrix.png
-  :width: 800
+  :width: 400
   :alt: column parallel matrix
   :align: center
 
@@ -60,7 +60,7 @@ AllGather通信操作汇聚最终的结果。
 AllReduce通信操作按元素累加结果矩阵得到最终的结果。
 
 .. image:: ./img/row_parallel_matrix.png
-  :width: 600
+  :width: 400
   :alt: row parallel matrix
   :align: center
 
@@ -69,7 +69,7 @@ AllReduce通信操作按元素累加结果矩阵得到最终的结果。
 可以按照这种串联方式分别把Attention和MLP组件中的两次矩阵乘法串联起来，从而进一步优化性能。
 
 .. image:: ./img/parallel_matrix.png
-  :width: 600
+  :width: 400
   :alt: parallel matrix
   :align: center
 
@@ -84,7 +84,7 @@ Dropout。直观理解，模型并行下，所有卡上的Dropout算子构成一
 丢弃位置是相同的。
 
 .. image:: ./img/global_local_dropout.png
-  :width: 600
+  :width: 400
   :alt: dropout details from the paper Megatron-LM
   :align: center
 
