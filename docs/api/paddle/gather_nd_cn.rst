@@ -52,30 +52,19 @@ gather_nd
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入Tensor，数据类型可以是int32、int64、float32、float64、bool。
-    - **index** (Tensor) - 输入的索引Tensor，其数据类型int32或者int64。它的维度 :code:`index.rank` 必须大于1，并且 :code:`index.shape[-1] <= x.rank` 。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **x** (Tensor) - 输入 Tensor，数据类型可以是 int32、int64、float32、float64、bool。
+    - **index** (Tensor) - 输入的索引 Tensor，其数据类型 int32 或者 int64。它的维度 :code:`index.rank` 必须大于1，并且 :code:`index.shape[-1] <= x.rank` 。
+    - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
     
 返回
 ::::::::::::
 
-shape为index.shape[:-1] + x.shape[index.shape[-1]:]的Tensor，数据类型与 :code:`x` 一致。
+shape 为index.shape[:-1] + x.shape[index.shape[-1]:]的Tensor，数据类型与 :code:`x` 一致。
 
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-    
-    np_x = np.array([[[1, 2], [3, 4], [5, 6]],
-                     [[7, 8], [9, 10], [11, 12]]])
-    np_index = [[0, 1]]
-    x = paddle.to_tensor(np_x)
-    index = paddle.to_tensor(np_index)
-    
-    output = paddle.gather_nd(x, index) #[[3, 4]]
+COPY-FROM: paddle.gather_nd
 
 

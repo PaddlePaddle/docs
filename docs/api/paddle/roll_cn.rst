@@ -3,7 +3,7 @@
 roll
 -------------------------------
 
-.. py:function:: paddle.roll(x, shifts, axis=None, name=None):
+.. py:function:: paddle.roll(x, shifts, axis=None, name=None)
 
 
 
@@ -13,9 +13,9 @@ roll
 参数
 :::::::::
 
-    - **x** （Tensor）– 输入张量。
+    - **x** （Tensor）– 输入的 Tensor。
     - **shifts** (int|list|tuple) - 滚动位移。如果 ``shifts`` 是一个元组或者列表，则 ``axis`` 必须是相同大小的元组或者列表，输入张量将依次沿着每个维度滚动相应的数值。
-    - **axis**    (int|list|tuple, optinal) – 滚动轴。
+    - **axis** (int|list|tuple, optinal) – 滚动轴。默认值为 None。
     - **name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回
