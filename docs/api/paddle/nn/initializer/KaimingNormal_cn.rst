@@ -21,15 +21,15 @@ KaimingNormal
 参数
 ::::::::::::
 
-    - **fan_in** (float16|float32) - Kaiming Normal Initializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None。
+    - **fan_in** (float16|float32) - Kaiming Normal Initializer 的 fan_in。如果为 None，fan_in 沿伸自变量，多设置为 None。
 
 .. note:: 
 
-    在大多数情况下推荐设置fan_in为None。
+    在大多数情况下推荐设置 fan_in 为 None。
 
 返回
 ::::::::::::
-对象
+对象。
 
 代码示例
 ::::::::::::
