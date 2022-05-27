@@ -5,9 +5,9 @@ squeeze
 
 .. py:function:: paddle.squeeze(x, axis=None, name=None)
 
-删除输入Tensor的Shape中尺寸为1的维度。如果指定了axis，则会删除axis中指定的尺寸为1的维度。如果没有指定axis，那么所有等于1的维度都会被删除。
+删除输入 Tensor 的 Shape 中尺寸为1的维度。如果指定了 axis，则会删除 axis 中指定的尺寸为1的维度。如果没有指定 axis，那么所有等于1的维度都会被删除。
 
-请注意，在动态图模式下，输出Tensor将与输入Tensor共享数据，并且没有Tensor数据拷贝的过程。
+请注意，在动态图模式下，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。
 如果不希望输入与输出共享数据，请使用 `Tensor.clone` ，例如 `squeeze_clone_x = x.squeeze().clone()` 。
 
 .. code-block:: text
@@ -48,12 +48,12 @@ squeeze
 :::::::::
 
         - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、bool、int8、int32、int64。
-        - **axis** (int|list|tuple，可选) - 输入一个或一列整数，代表要压缩的轴。axis的范围： [−ndim(x), ndim(x))] 。 如果axis为负数， 则axis=axis+ndim(x) 。默认为None，表示对所有尺寸为1的维度进行压缩。
+        - **axis** (int|list|tuple，可选) - 输入一个或一列整数，代表要压缩的轴。axis 的范围： [−ndim(x), ndim(x))] 。 如果 axis 为负数， 则 axis=axis+ndim(x) 。默认为None，表示对所有尺寸为1的维度进行压缩。
         - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::
-对维度进行压缩后的Tensor，数据类型与输入Tensor一致。
+对维度进行压缩后的 Tensor，数据类型与输入 Tensor 一致。
 
 代码示例
 :::::::::
