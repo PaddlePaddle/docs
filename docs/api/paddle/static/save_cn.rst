@@ -21,7 +21,7 @@ save
  - **program**  ( :ref:`cn_api_fluid_Program` ) – 要保存的Program。
  - **model_path**  (str) – 保存program的文件前缀。格式为 ``目录名称/文件前缀``。如果文件前缀为空字符串，会引发异常。
  - **protocol**  (int，可选) – pickle模块的协议版本，默认值为4，取值范围是[2,4]。
- - **configs**  (dict，可选) - 可选的关键字参数。
+ - **\*\*configs**  (dict，可选) - 可选的关键字参数。
 
 返回
 ::::::::::::
