@@ -21,7 +21,7 @@ KaimingUniform
 参数
 ::::::::::::
 
-    - **fan_in** (float16|float32，可选) - Kaiming Uniform Initializer 的 fan_in。如果为 None，fan_in 沿伸自变量，多设置为 None。
+    - **fan_in** (float32|None，可选) - Kaiming Uniform Initializer 的 fan_in。如果为 None，fan_in 沿伸自变量，多设置为 None。
 
 .. note:: 
 
