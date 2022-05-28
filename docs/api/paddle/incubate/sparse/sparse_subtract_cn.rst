@@ -1,9 +1,9 @@
-.. _cn_api_sparse_subtract:
+.. _cn_api_incubate_sparse_subtract:
 
 subtract
 -------------------------------
 
-.. py:function:: paddle.sparse.subtract(x, y, name=None)
+.. py:function:: paddle.incubate.sparse.subtract(x, y, name=None)
 
 
 
@@ -33,4 +33,4 @@ subtract
 代码示例
 :::::::::
 
-COPY-FROM: paddle.sparse.subtract
+COPY-FROM: paddle.incubate.sparse.subtract

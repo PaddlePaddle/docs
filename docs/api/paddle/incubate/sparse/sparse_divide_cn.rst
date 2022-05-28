@@ -1,9 +1,9 @@
-.. _cn_api_sparse_divide:
+.. _cn_api_incubate_sparse_divide:
 
 divide
 -------------------------------
 
-.. py:function:: paddle.sparse.divide(x, y, name=None)
+.. py:function:: paddle.incubate.sparse.divide(x, y, name=None)
 
 
 
@@ -33,4 +33,4 @@ divide
 代码示例
 :::::::::
 
-COPY-FROM: paddle.sparse.divide
+COPY-FROM: paddle.incubate.sparse.divide
