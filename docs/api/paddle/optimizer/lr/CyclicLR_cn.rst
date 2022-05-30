@@ -11,10 +11,7 @@ CyclicLR
 
 相关论文： `Cyclic Learning Rates for Training Neural Networks <https://arxiv.org/abs/1506.01186>`_ 
 
-  内置了三种学习率缩放策略，分别如下：
-    1. **triangular**: 没有任何缩放的三角循环。
-    2. **triangular2**：每个三角循环里将初始幅度缩放一半。
-    3. **exp_range**：每个循环中将初始幅度按照指数函数进行缩放，公式为 :math:`gamma^{iterations}`。
+内置了三种学习率缩放策略: 1. **triangular**: 没有任何缩放的三角循环。2. **triangular2**: 每个三角循环里将初始幅度缩放一半。3. **exp_range**: 每个循环中将初始幅度按照指数函数进行缩放，公式为 :math:`gamma^{iterations}`。
 
 初始幅度由 `max_learning_rate - base_learning_rate` 定义。同时需要注意CyclicLR应在每次迭代后调用 ``step`` 方法。
 
