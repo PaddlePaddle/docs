@@ -1,4 +1,4 @@
-.. _cn_api_vision_transforms_normalize:
+.. _cn_api_vision_transforms_Normalize:
 
 Normalize
 -------------------------------

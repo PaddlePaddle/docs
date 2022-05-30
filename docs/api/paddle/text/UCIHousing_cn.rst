@@ -11,8 +11,8 @@ UCIHousing
 
 参数
 :::::::::
-    - data_file（str）- 保存数据的路径，如果参数:attr:`download`设置为True，
-    可设置为None。默认为None。
+
+    - data_file（str）- 保存数据的路径，如果参数:attr:`download`设置为True，可设置为None。默认为None。
     - mode（str）- 'train'或'test'模式。默认为'train'。
     - download（bool）- 如果:attr:`data_file`未设置，是否自动下载数据集。默认为True。
 

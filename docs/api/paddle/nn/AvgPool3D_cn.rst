@@ -10,12 +10,18 @@ AvgPool3D
 例如：
 
 输入：
+
     X 形状：:math:`\left ( N,C, D_{in}, H_{in},W_{in} \right )`
+
 属性：
+
     kernel_size: :math:`[KD, KH, KW]`
     stride: :math:`stride`
+
 输出：
+
     Out 形状：:math:`\left ( N,C, D_{in}, H_{out},W_{out} \right )`
+
 .. math::
     \text{out}(N_i, C_j, d, h, w) ={} & \sum_{k=0}^{kD-1} \sum_{m=0}^{kH-1} \sum_{n=0}^{kW-1} \\
                                               & \frac{\text{input}(N_i, C_j, \text{stride}[0] \times d + k,

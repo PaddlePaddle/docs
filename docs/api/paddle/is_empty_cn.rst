@@ -8,16 +8,21 @@ is_empty
 
 
 
-测试变量是否为空
+测试输入 Tensor x 是否为空。
 
-参数：
-   - **x** (Tensor) - 测试的变量
-   - **name** （str，可选）- 输出的名字。默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
+参数
+::::::::::::
 
-返回：Tensor，布尔类型的Tensor，如果变量x为空则值为真
+   - **x** (Tensor) - 测试的 Tensor。
+   - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
+
+返回
+::::::::::::
+Tensor，布尔类型的 Tensor，如果输入 Tensor x 为空则值为 True。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

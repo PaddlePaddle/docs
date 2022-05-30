@@ -43,7 +43,9 @@ lstm
       - :math:`\sigma` 表示 gate 的非线性激活函数，默认为 sigmoid
       - :math:`\odot` 表示矩阵的 Hadamard product，即对两个维度相同的矩阵，将相同位置的元素相乘，得到另一个维度相同的矩阵
 
-参数：
+参数
+::::::::::::
+
   - **input** ( :ref:`api_guide_Variable` ) - LSTM的输入张量，维度为 :math:`[batch\_size, seq\_len, input\_dim]` 的 3-D Tensor，其中 seq_len 为序列的长度， input_dim 为序列词嵌入的维度。数据类型为 float32 或者 float64。
   - **init_h** ( :ref:`api_guide_Variable` ) – LSTM的初始 hidden 状态，维度为 :math:`[num\_layers, batch\_size, hidden\_size]` 的 3-D Tensor，其中 num_layers 是LSTM的总层数，hidden_size 是隐层维度。 如果is_bidirec = True， 维度应该为 :math:`[num\_layers*2, batch\_size, hidden\_size]` 。数据类型为 float32 或者 float64。
   - **init_c** ( :ref:`api_guide_Variable` ) - LSTM的初始 cell 状态。维度为 :math:`[num\_layers, batch\_size, hidden\_size]` 的 3-D Tensor，其中 num_layers 是LSTM的总层数，hidden_size 是隐层维度。 如果is_bidirec = True， 维度应该为 :math:`[num\_layers*2, batch\_size, hidden\_size]` 。数据类型为 float32 或者 float64。
@@ -57,15 +59,20 @@ lstm
   - **default_initializer** (Initializer，可选) – 用于初始化权重的初始化器，如果为None，将进行默认初始化。默认值为 None。
   - **seed** (int，可选) – LSTM中dropout的seed，如果是-1，dropout将使用随机seed。默认值为 1。
 
-返回： 经过lstm运算输出的三个Tensor的tuple，包括
+返回
+::::::::::::
+ 经过lstm运算输出的三个Tensor的tuple，包括
 
 - rnn_out：LSTM hidden的输出结果的Tensor，数据类型与input一致，维度为 :math:`[batch\_size, seq\_len, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[batch\_size, seq\_len, hidden\_size*2]`
 - last_h：LSTM最后一步的hidden状态的Tensor，数据类型与input一致，维度为 :math:`[num\_layers, batch\_size, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[num\_layers*2, batch\_size, hidden\_size]`
 - last_c：LSTM最后一步的cell状态的Tensor，数据类型与input一致，维度为 :math:`[num\_layers, batch\_size, hidden\_size]` 。如果 ``is_bidirec`` 设置为True，则维度为 :math:`[num\_layers*2, batch\_size, hidden\_size]`
 
-返回类型:  tuple（ :ref:`api_guide_Variable` , :ref:`api_guide_Variable` , :ref:`api_guide_Variable` ）
+返回类型
+::::::::::::
+  tuple（ :ref:`api_guide_Variable` , :ref:`api_guide_Variable` , :ref:`api_guide_Variable` ）
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

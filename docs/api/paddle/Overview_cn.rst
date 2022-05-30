@@ -18,6 +18,7 @@ paddle 目录下包含tensor、device、framework相关API以及某些高层API�
 -  :ref:`framework相关 <about_framework>`
 -  :ref:`device相关 <about_device>`
 -  :ref:`高层API相关 <about_hapi>`
+-  :ref:`稀疏API相关 <about_sparse_api>`
 
 
 
@@ -62,6 +63,7 @@ tensor数学操作
     " :ref:`paddle.floor_divide <cn_api_tensor_floor_divide>` ", "逐元素整除算子，输入 x 与输入 y 逐元素整除，并将各个位置的输出元素保存到返回结果中"
     " :ref:`paddle.greater_equal <cn_api_tensor_cn_greater_equal>` ", "逐元素地返回 x>=y 的逻辑值"
     " :ref:`paddle.greater_than <cn_api_tensor_cn_greater_than>` ", "逐元素地返回 x>y 的逻辑值"
+    " :ref:`paddle.heaviside <cn_api_tensor_heaviside>` ", "逐元素地对 x 计算由 y 中的对应元素决定的赫维赛德阶跃函数"
     " :ref:`paddle.increment <cn_api_tensor_increment>` ", "在控制流程中用来让 x 的数值增加 value"
     " :ref:`paddle.kron <cn_api_paddle_tensor_kron>` ", "计算两个张量的克罗内克积"
     " :ref:`paddle.less_equal <cn_api_tensor_cn_less_equal>` ", "逐元素地返回 x<=y 的逻辑值"
@@ -117,6 +119,7 @@ tensor数学操作
     " :ref:`paddle.var <cn_api_tensor_cn_var>` ", "沿给定的轴 axis 计算 x 中元素的方差"
     " :ref:`paddle.diagonal <cn_api_tensor_diagonal>` ", "根据给定的轴 axis 返回输入 Tensor 的局部视图"
     " :ref:`paddle.trunc <cn_api_tensor_trunc>` ", "对输入 Tensor 每个元素的小数部分进行截断"
+    " :ref:`paddle.frac <cn_api_tensor_frac>` ", "得到输入 Tensor 每个元素的小数部分"
     " :ref:`paddle.log1p <cn_api_paddle_tensor_log1p>` ", "该OP计算Log1p（加一的自然对数）结果"
     " :ref:`paddle.take_along_axis <cn_api_paddle_tensor_take_along_axis>` ", "根据axis和index获取输入 Tensor 的对应元素"
     " :ref:`paddle.put_along_axis <cn_api_paddle_tensor_put_along_axis>` ", "根据axis和index放置value值至输入 Tensor"
@@ -385,3 +388,15 @@ device相关
     " :ref:`paddle.Model <cn_api_paddle_Model>` ", "一个具备训练、测试、推理的神经网络"
     " :ref:`paddle.summary <cn_api_paddle_summary>` ", "打印网络的基础结构和参数信息"
     " :ref:`paddle.flops <cn_api_paddle_flops>` ", "打印网络的基础结构和参数信息"
+
+.. _about_sparse_api:
+
+稀疏API相关
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API名称", "API功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.sparse.sparse_coo_tensor<cn_api_paddle_sparse_coo_tensor>` ", "创建一个COO(Coordinate)格式的稀疏Tensor"
+    " :ref:`paddle.sparse.sparse_csr_tensor<cn_api_paddle_sparse_csr_tensor>` ", "创建一个CSR(Compressed Sparse Row)格式的稀疏Tensor"

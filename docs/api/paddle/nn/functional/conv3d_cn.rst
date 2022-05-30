@@ -14,6 +14,7 @@ conv3d
     Out = \sigma \left ( W * X + b \right )
 
 其中：
+
     - :math:`X` ：输入值，NCDHW或NDHWC格式的5-D Tensor
     - :math:`W` ：卷积核值，MCDHW格式的5-D Tensor
     - :math:`*` ：卷积操作
@@ -33,7 +34,9 @@ conv3d
 
   输出形状： :math:`(N, C_{out}, D_{out}, H_{out}, W_{out})`
 
-参数：
+参数
+::::::::::::
+
     - **x** (Tensor) - 输入是形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float16, float32或float64。
     - **weight** (Tensor) - 形状为 :math:`[M, C/g, kH, kW]` 的卷积核（卷积核）。 M是输出通道数， g是分组的个数，kH是卷积核的高度，kW是卷积核的宽度。
     - **bias** (int|list|tuple) - 偏置项，形状为： :math:`[M,]` 。
@@ -46,11 +49,17 @@ conv3d
     - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
     - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值：None。
 
-返回：5-D Tensor，数据类型与 ``input`` 一致。返回卷积计算的结果。
+返回
+::::::::::::
+5-D Tensor，数据类型与 ``input`` 一致。返回卷积计算的结果。
 
-返回类型：Tensor。
+返回类型
+::::::::::::
+Tensor。
 
-抛出异常：
+抛出异常
+::::::::::::
+
     - ``ValueError`` - 如果 ``use_cudnn`` 不是bool值。
     - ``ValueError`` - 如果 ``data_format`` 既不是"NCDHW"也不是"NDHWC"。
     - ``ValueError`` - 如果 ``input`` 的通道数未被明确定义。
@@ -62,7 +71,8 @@ conv3d
     - ``ShapeError`` - 如果输出的通道数不能被 ``groups`` 整除。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

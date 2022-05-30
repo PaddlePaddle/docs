@@ -7,33 +7,43 @@ launch
 
 使用 ``python -m paddle.distributed.launch`` 方法启动分布式训练任务。
 
+Launch 模块是在每个节点运行，负责分布式协同和本地进程管理的模块。使用 launch 启动分布式训练可以简化参数配置，进行稳定可靠的分布式组网训练，同时使用优化的调试和日志收集功能。另外一些高级的分布式功能如容错和弹性都依赖 launch 启动。
+
 使用方法
 :::::::::
 .. code-block:: bash
     :name: code-block-bash1
 
-    python -m paddle.distributed.launch [-h] [--log_dir LOG_DIR] [--nproc_per_node NPROC_PER_NODE] [--run_mode RUN_MODE] [--gpus GPUS]
-                     [--selected_gpus GPUS] [--ips IPS] [--servers SERVERS] [--workers WORKERS] [--heter_workers HETER_WORKERS]
-                     [--worker_num WORKER_NUM] [--server_num SERVER_NUM] [--heter_worker_num HETER_WORKER_NUM]
-                     [--http_port HTTP_PORT] [--elastic_server ELASTIC_SERVER] [--job_id JOB_ID] [--np NP] [--scale SCALE]
-                     [--host HOST] [--force FORCE]
-                     training_script ...    
+    python -m paddle.distributed.launch [-h] [--master MASTER] [--rank RANK]
+           [--log_level LOG_LEVEL] [--nnodes NNODES]
+           [--nproc_per_node NPROC_PER_NODE] [--log_dir LOG_DIR]
+           [--run_mode RUN_MODE] [--job_id JOB_ID] [--devices DEVICES]
+           [--host HOST] [--servers SERVERS] [--trainers TRAINERS]
+           [--trainer_num TRAINER_NUM] [--server_num SERVER_NUM]
+           [--gloo_port GLOO_PORT] [--with_gloo WITH_GLOO]
+           [--max_restart MAX_RESTART] [--elastic_level ELASTIC_LEVEL]
+           [--elastic_timeout ELASTIC_TIMEOUT]
+           training_script ...
     
 基础参数
 :::::::::
-    - ``--log_dir``: 日志输出目录。例如 ``--log_dir=output_dir``。默认值 ``--log_dir=log``。
+    - ``--master``: 主节点, 支持缺省 http:// 和 etcd://, 默认缺省 http://。例如 ``--master=127.0.0.1:8080``. 默认值 ``--master=None``.
 
-    - ``--nproc_per_node``: 每个节点启动的进程数，在 GPU 训练中，应该小于等于系统的 GPU 数量（或者也可以通过 --gpus 来设置）。例如 ``--nproc_per_node=8``
+    - ``--rank``: 节点序号, 可以通过主节点进行分配。默认值 ``--rank=-1``.
+
+    - ``--log_level``: 日志级别, 可选值为 CRITICAL/ERROR/WARNING/INFO/DEBUG/NOTSET, 不区分大小写。默认值 ``--log_level=INFO``.
+
+    - ``--nnodes``: 节点数量，支持区间设定以开启弹性模式，比如 ``--nnodes=2:3``. 默认值 ``--nnodes=1``.
+
+    - ``--nproc_per_node``: 每个节点启动的进程数，在 GPU 训练中，应该小于等于系统的 GPU 数量。例如 ``--nproc_per_node=8``
+
+    - ``--log_dir``: 日志输出目录。例如 ``--log_dir=output_dir``。默认值 ``--log_dir=log``。
 
     - ``--run_mode``: 启动任务的运行模式，可选有 collective/ps/ps-heter。例如 ``--run_mode=ps``。默认值 ``--run_mode=collective``。
 
-    - ``--gpus``: GPU 训练模式下对 GPU 设置。例如 ``--gpus=0,1,2,3``，这会启动 4 个进程，每个进程绑定到 1 个 GPU 上。
+    - ``--job_id``: 任务唯一标识，缺省将使用 default，会影响日志命名。例如 ``--job_id=job1``. 默认值 ``--job_id=default``.
 
-    - ``--selected_gpus``: ``--gpus`` 的别名， 作用是一样的，推荐使用 ``--gpus``。
-
-    - ``--xpus``: 如果 XPU 可用且想使用 XPU 训练，则用该参数，例如 ``--xpus=0,1,2,3``。
-
-    - ``--selected_xpus``: ``--xpus`` 的别名，推荐使用 ``--xpus``。
+    - ``--devices``: 节点上的加速卡设备，支持 gpu/xpu/npu/mlu。例如 ``--devices=0,1,2,3``，这会启动 4 个进程，每个进程绑定到 1 个设备上。
 
     - ``training_script``: 需要运行的任务脚本，例如 ``traing.py``。
 
@@ -41,94 +51,124 @@ launch
 
 Collective 参数
 :::::::::
-    - ``--ips``: 需要运行分布式环境的节点 IP 地址，例如 ``--ips=192.168.0.16,192.168.0.17``。 单机默认值是 ``--ips=127.0.0.1``。
+    - ``--ips``: [DEPRECATED] 需要运行分布式环境的节点 IP 地址，例如 ``--ips=192.168.0.16,192.168.0.17``。 单机默认值是 ``--ips=127.0.0.1``。
 
 Parameter-Server 参数
 :::::::::
     - ``--servers``: 多机分布式任务中，指定参数服务器服务节点的IP和端口，例如 ``--servers="192.168.0.16:6170,192.168.0.17:6170"``。
 
-    - ``--workers``: 多机分布式任务中，指定参数服务器训练节点的IP和端口，也可只指定IP，例如 ``--workers="192.168.0.16:6171,192.168.0.16:6172,192.168.0.17:6171,192.168.0.17:6172"``。
+    - ``--trainers``: 多机分布式任务中，指定参数服务器训练节点的IP和端口，也可只指定IP，例如 ``--trainers="192.168.0.16:6171,192.168.0.16:6172,192.168.0.17:6171,192.168.0.17:6172"``。
+
+    - ``--workers``: [DEPRECATED] 同 trainers。
 
     - ``--heter_workers``: 在异构集群中启动分布式任务，指定参数服务器异构训练节点的IP和端口，例如 ``--heter_workers="192.168.0.16:6172,192.168.0.17:6172"``。
 
-    - ``--worker_num``: 单机模拟分布式任务中，指定参数服务器训练节点的个数。
+    - ``--trainer_num``: 指定参数服务器训练节点的个数。
 
-    - ``--server_num``: 单机模拟分布式任务中，指定参数服务器服务节点的个数。
+    - ``--worker_num``: [DEPRECATED] 同 trainer_num。
+
+    - ``--server_num``: 指定参数服务器服务节点的个数。
 
     - ``--heter_worker_num``: 在异构集群中启动单机模拟分布式任务, 指定参数服务器异构训练节点的个数。
 
-    - ``--http_port``: 参数服务器模式中，用 Gloo 启动时设置的连接端口。
+    - ``--gloo_port``: 参数服务器模式中，用 Gloo 启动时设置的连接端口。同 http_port. Default ``--gloo_port=6767``.
+
+    - ``--with_gloo``: 是否使用 gloo. 默认值 ``--with_gloo=0``.
+
 
 Elastic 参数
 :::::::::
-    - ``--elastic_server``: etcd 服务地址 host:port，例如 ``--elastic_server=127.0.0.1:2379``。
+    - ``--max_restart``: 最大重启次数. 默认值 ``--max_restart=3``.
 
-    - ``--job_id``: 任务唯一 ID，例如 ``--job_id=job1``。
+    - ``--elastic_level``: 弹性级别设置，-1: 不开启, 0: 错误节点退出, 1: 节点内重启. 默认值 ``--elastic_level=-1``.
 
-    - ``--np``: 任务 pod/node 编号，例如 ``--np=2``。
-
-    - ``--host``: 绑定的主机，默认等于 ``POD_IP`` 环境变量。
+    - ``--elastic_timeout``: 弹性超时时间，经过该时间达到最小节点数即开启训练。默认值 ``--elastic_timeout=30``.
 
 返回
 :::::::::
     ``None``
+
+代码示例零 (主节点, ip/port 自动识别)
+:::::::::
+.. code-block:: bash
+    :name: code-block-example-bash0
+
+    # 在其中一个节点上运行如下命令以启动 2 机任务
+
+    python -m paddle.distributed.launch --nnodes 2 train.py
+
+    # 这时，日志会打印如下信息，
+
+    # Copy the following command to other nodes to run.
+    # --------------------------------------------------------------------------------
+    # python -m paddle.distributed.launch --master 10.0.0.1:38714 --nnodes 2 train.py
+    # --------------------------------------------------------------------------------
+
+    # 按照提示，复制命令在另外的节点上运行命令即可启动分布式训练。
+
+    # 要想在每个节点上运行同样的命令启动分布式训练有如下两种方法：
+    # 1) 使用预配置的 master 信息，其中 master 的 ip 为其中一个训练节点，端口为可用端口
+    # python -m paddle.distributed.launch --master 10.0.0.1:38714 --nnodes 2 train.py
+    # 2) 使用额外部署的 etcd 服务作为 master
+    # python -m paddle.distributed.launch --master etcd://10.0.0.1:2379 --nnodes 2 train.py
+
+    # 以上功能介绍可用配合别的参数使用。
+
 
 代码示例一 (collective, 单机)
 :::::::::
 .. code-block:: bash
     :name: code-block-example-bash1
 
-    # For training on single node using 4 gpus.
+    # 启动单机4卡任务
 
-    python -m paddle.distributed.launch --gpus=0,1,2,3 train.py --lr=0.01
+    python -m paddle.distributed.launch --devices=0,1,2,3 train.py --lr=0.01
 
 代码示例二 (collective, 多机)
 :::::::::
 .. code-block:: bash
     :name: code-block-example-bash2
     
-    # The parameters of --gpus and --ips must be consistent in each node.
-
-    # For training on multiple nodes, e.g., 192.168.0.16, 192.168.0.17 
+    # 启动两机任务，其中机器 ip 为 192.168.0.16, 192.168.0.17 
 
     # On 192.168.0.16:
 
-    python -m paddle.distributed.launch --gpus=0,1,2,3 --ips=192.168.0.16,192.168.0.17 train.py --lr=0.01
+    python -m paddle.distributed.launch --devices=0,1,2,3 --master=192.168.0.16:8090 --nnodes=2 train.py --lr=0.01
 
     # On 192.168.0.17:
     
-    python -m paddle.distributed.launch --gpus=0,1,2,3 --ips=192.168.0.16,192.168.0.17 train.py --lr=0.01
+    python -m paddle.distributed.launch --devices=0,1,2,3 --master=192.168.0.16:8090 --nnodes=2 train.py --lr=0.01
 
 代码示例三 (ps, cpu, 单机)
 :::::::::
 .. code-block:: bash
     :name: code-block-example-bash3
 
-    # To simulate distributed environment using single node, e.g., 2 servers and 4 workers.
+    # 在单机上启动多个 server 和 trainer
     
-    python -m paddle.distributed.launch --server_num=2 --worker_num=4 train.py --lr=0.01
+    python -m paddle.distributed.launch --server_num=2 --trainer_num=4 train.py --lr=0.01
 
 代码示例四 (ps, cpu, 多机)
 :::::::::
 .. code-block:: bash
     :name: code-block-example-bash4
 
-    # For training on multiple nodes, e.g., 192.168.0.16, 192.168.0.17 where each node with 1 server and 2 workers.
+    # 在多机上启动, 例如在 192.168.0.16, 192.168.0.17 分别启动1个 server 和2个 trainer
 
     # On 192.168.0.16:
 
-    python -m paddle.distributed.launch --servers="192.168.0.16:6170,192.168.0.17:6170" --workers="192.168.0.16:6171,192.168.0.16:6172,192.168.0.17:6171,192.168.0.17:6172" train.py --lr=0.01
+    python -m paddle.distributed.launch --master=192.168.0.16:8090 --nnodes=2 --server_num=1 --trainer_num=2 train.py --lr=0.01
 
     # On 192.168.0.17:
 
-    python -m paddle.distributed.launch --servers="192.168.0.16:6170,192.168.0.17:6170" --workers="192.168.0.16:6171,192.168.0.16:6172,192.168.0.17:6171,192.168.0.17:6172" train.py --lr=0.01
+    python -m paddle.distributed.launch --master=192.168.0.16:8090 --nnodes=2 --server_num=1 --trainer_num=2 train.py --lr=0.01
 
 代码示例五 (ps, gpu, 单机)
 :::::::::
 .. code-block:: bash
     :name: code-block-example-bash5
 
-    # To simulate distributed environment using single node, e.g., 2 servers and 4 workers, each worker use single gpu.
+    # 当启动 gpu ps 时，需要指定使用的 gpu，
 
     export CUDA_VISIBLE_DEVICES=0,1,2,3
     python -m paddle.distributed.launch --server_num=2 --worker_num=4 train.py --lr=0.01
@@ -138,7 +178,7 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash6
 
-    # For training on multiple nodes, e.g., 192.168.0.16, 192.168.0.17 where each node with 1 server and 2 workers.
+    # 使用如下命令启动多机 gpu ps
 
     # On 192.168.0.16:
 
@@ -155,7 +195,7 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash7
 
-    # To simulate distributed environment using single node, e.g., 2 servers and 4 workers, two workers use gpu, two workers use cpu.
+    # 使用如下命令启动单机 heter ps
 
     export CUDA_VISIBLE_DEVICES=0,1
     python -m paddle.distributed.launch --server_num=2 --worker_num=2 --heter_worker_num=2 train.py --lr=0.01
@@ -165,7 +205,7 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash8
 
-    # For training on multiple nodes, e.g., 192.168.0.16, 192.168.0.17 where each node with 1 server, 1 gpu worker, 1 cpu worker.
+    # 使用如下命令启动多机 heter ps
     
     # On 192.168.0.16:
 
@@ -182,4 +222,8 @@ Elastic 参数
 .. code-block:: bash
     :name: code-block-example-bash9
 
-    python -m paddle.distributed.launch --elastic_server=127.0.0.1:2379 --np=2 --job_id=job1  --gpus=0,1,2,3 train.py
+    # 使用如下命令启动弹性训练
+    # 当 4 个节点 ready 时，训练立即开始，当只有 2 或 3 个节点 ready 时，将等待超时然后开始训练
+    python -m paddle.distributed.launch --master etcd://10.0.0.1:2379 --nnodes 2:4 train.py
+    
+    # 在训练过程中如果节点发生变化，上述逻辑不变。

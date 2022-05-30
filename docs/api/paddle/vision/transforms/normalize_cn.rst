@@ -40,4 +40,3 @@ normalize
     normalized_img = F.normalize(fake_img, mean, std, data_format='HWC')
     print(normalized_img.max(), normalized_img.min())
     # 0.99215686 -1.0
-    

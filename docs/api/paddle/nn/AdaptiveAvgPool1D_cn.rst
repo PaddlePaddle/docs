@@ -34,9 +34,6 @@ AdaptiveAvgPool1D
 :::::::::
 计算AdaptiveAvgPool1D的可调用对象
 
-抛出异常
-:::::::::
-    - ``ValueError`` - ``output_size`` 应是一个整数。
 
 代码示例
 :::::::::

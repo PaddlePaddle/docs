@@ -28,7 +28,9 @@ psroi_pool
         out.shape = [5, 10, 7, 7], out.lod = [[3, 2]]
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 输入特征图，4-D Tensor，格式是NCHW。 其中N是batch_size，C是输入通道的数量，H是输入特征图的高度，W是特征图宽度。数据类型是float32或者float64
     - **rois** (Variable) - 感兴趣区域，2-D LoDTensor，形状为(num_rois, 4)，lod_level为1。形式如[x1, y1, x2, y2], ...]，其中(x1, y1)为左上角坐标，(x2, y2)为右下角坐标。数据类型与input相同
     - **output_channels** (int) - 输出特征图的通道数。对于共C个种类的图像分类任务，output_channels应该是 ``(C + 1)`` ，其中1代表背景
@@ -37,11 +39,16 @@ psroi_pool
     - **pooled_width** (int) - 池化输出的宽度
     - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
-返回： 经过PSROIPooling之后的结果，形状为(num_rois，output_channels，pooled_height，pooled_width) 的4维LoDTensor，lod_level为1，数据类型与input相同，与rois具有相同的lod信息。
+返回
+::::::::::::
+ 经过PSROIPooling之后的结果，形状为(num_rois，output_channels，pooled_height，pooled_width) 的4维LoDTensor，lod_level为1，数据类型与input相同，与rois具有相同的lod信息。
 
-返回类型：  Variable
+返回类型
+::::::::::::
+  Variable
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

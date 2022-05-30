@@ -16,6 +16,7 @@ Bilinear
        out = out + b
 
 在这个公式中：
+
   - :math:`x1`: 第一个输入，包含 :in1_features个元素，形状为 [batch_size, in1_features]。
   - :math:`x2`: 第二个输入，包含 :in2_features个元素，形状为 [batch_size, in2_features]。
   - :math:`W_{i}`: 第 :i个被学习的权重，形状是 [in1_features, in2_features], 而完整的W（即可训练的参数W）的形状为[out_features, in1_features, in2_features]。
