@@ -190,6 +190,7 @@ paddle.max	.. _api_paddle_max:
 paddle.maximum	.. _api_paddle_maximum:
 paddle.mean	.. _api_paddle_mean:
 paddle.median	.. _api_paddle_median:
+paddle.nanmedian	.. _api_paddle_nanmedian:
 paddle.min	.. _api_paddle_min:
 paddle.minimum	.. _api_paddle_minimum:
 paddle.mm	.. _api_paddle_mm:
