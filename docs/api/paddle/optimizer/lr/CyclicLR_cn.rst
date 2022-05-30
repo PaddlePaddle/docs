@@ -9,12 +9,12 @@ CyclicLR
 
 该策略将学习率调整的过程视为一个又一个的循环，学习率根据指定的缩放策略以固定的频率在最大和最小学习率之间变化。
 
-相关论文： `Cyclic Learning Rates for Training Neural Networks <https://arxiv.org/abs/1506.01186>`_
+相关论文： `Cyclic Learning Rates for Training Neural Networks <https://arxiv.org/abs/1506.01186>`_ 
 
-内置了三种学习率缩放策略，分别如下：
-    - **triangular**: 没有任何缩放的三角循环。
-    - **triangular2**：每个三角循环里将初始幅度缩放一半。
-    - **exp_range**：每个循环中将初始幅度按照指数函数进行缩放，公式为 :math:`gamma^{iterations}`。
+  内置了三种学习率缩放策略，分别如下：
+    1. **triangular**: 没有任何缩放的三角循环。
+    2. **triangular2**：每个三角循环里将初始幅度缩放一半。
+    3. **exp_range**：每个循环中将初始幅度按照指数函数进行缩放，公式为 :math:`gamma^{iterations}`。
 
 初始幅度由 `max_learning_rate - base_learning_rate` 定义。同时需要注意CyclicLR应在每次迭代后调用 ``step`` 方法。
 
@@ -25,10 +25,10 @@ CyclicLR
     - **max_learning_rate** (float) - 最大学习率，需要注意的是，实际的学习率由 ``base_learning_rate`` 与初始幅度的缩放求和而来，因此实际学习率可能达不到 ``max_learning_rate`` 。
     - **step_size_up** (int) - 学习率从初始学习率增长到最大学习率所需步数。每个循环总的步长 ``step_size`` 由 ``step_size_up + step_size_down`` 定义，论文中建议将 ``step_size`` 设置为单个epoch中步长的3或4倍。
     - **step_size_down** (int，可选) - 学习率从最大学习率下降到初始学习率所需步数。若未指定，则其值默认等于 ``step_size_up`` 。
-    - **mode** (str，可选) - 可以是'triangular'、'triangular2'或者'exp_range'，对应策略已在上文描述，当`scale_fn`被指定时时，该参数将被忽略。默认值：'triangular'。
-    - **exp_gamma** (float，可选) - 'exp_range'缩放函数中的常量。默认值：1.0。
-    - **sacle_fn** (function, 可选) - 一个有且仅有单个参数的函数，且对于任意的输入x，都必须满足0 <= scale_fn(x) <= 1；如果该参数被指定，则会忽略`mode`参数。默认值: ``False`` 。
-    - **scale_mode** (str，可选) - 'cycle'或者'iterations'，表示缩放函数使用`cycle`数或`iterations`数作为输入。
+    - **mode** (str，可选) - 可以是triangular、triangular2或者exp_range，对应策略已在上文描述，当scale_fn被指定时时，该参数将被忽略。默认值：triangular。
+    - **exp_gamma** (float，可选) - exp_range缩放函数中的常量。默认值：1.0。
+    - **sacle_fn** (function, 可选) - 一个有且仅有单个参数的函数，且对于任意的输入x，都必须满足0 ≤ scale_fn(x) ≤ 1；如果该参数被指定，则会忽略`mode`参数。默认值: ``False`` 。
+    - **scale_mode** (str，可选) - cycle或者iterations，表示缩放函数使用cycle数或iterations数作为输入。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
     - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
