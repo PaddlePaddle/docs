@@ -43,7 +43,9 @@ Launch 模块是在每个节点运行，负责分布式协同和本地进程管�
 
     - ``--job_id``: 任务唯一标识，缺省将使用 default，会影响日志命名。例如 ``--job_id=job1``. 默认值 ``--job_id=default``.
 
-    - ``--devices``: 节点上的加速卡设备，支持 gpu/xpu/npu/mlu。例如 ``--devices=0,1,2,3``，这会启动 4 个进程，每个进程绑定到 1 个设备上。
+    - ``--devices``: 节点上的加速卡设备，支持 gpu/xpu/npu/mlu/ipu。例如 ``--devices=0,1,2,3``，这会启动 4 个进程，每个进程绑定到 1 个设备上。
+
+    - ``--device_num``: 节点上的加速卡设备数量，支持 gpu/xpu/npu/mlu/ipu。例如 ``--device_num=4``，每个节点绑定4个设备。
 
     - ``training_script``: 需要运行的任务脚本，例如 ``traing.py``。
 
@@ -227,3 +229,13 @@ Elastic 参数
     python -m paddle.distributed.launch --master etcd://10.0.0.1:2379 --nnodes 2:4 train.py
     
     # 在训练过程中如果节点发生变化，上述逻辑不变。
+
+代码示例十 (ipu)
+:::::::::
+.. code-block:: bash
+    :name: code-block-example-bash10
+            
+    # 使用如下命令启动IPU分布式训练
+    # IPU分布式训练只支持和要求 device_num 参数 和 ipu 作为训练脚本用于启动IPU分布式训练
+    # 针对IPU启动训练脚本参数，请参阅 :ref:`IPULaunch <cn_api_distributed_IPULaunch>` 了解细节
+    python -m paddle.distributed.launch --device_num 4 ipu --hosts=localhost --nproc_per_host=2 --ipus_per_replica=1 --ipu_partition=pod16 --vipu_server=127.0.0.1 train.py
