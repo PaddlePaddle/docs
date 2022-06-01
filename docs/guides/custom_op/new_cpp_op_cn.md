@@ -169,7 +169,7 @@ auto gpu_tensor = paddle::full({3, 4}, 1.0, paddle::DataType::FLOAT64, paddle::G
     - `DataType dtype() const`：获取 `Tensor` 的数据类型
 - 长度与维度获取API：
     - `int64_t numel() const`：获取 `Tensor` 的数据长度
-    - `const DDim& dims() const`：获取 `Tensor` 的维度信息
+    - `std::vector<int64_t> shape() const`：获取 `Tensor` 的维度信息
 - 数据访问API：
     - `template <typename T> const T* data() const`：模板类方法，获取数据内存的起始地址（只读）
     - `template <typename T> T* data()`：模板类方法，获取数据内存的起始地址（读写）
