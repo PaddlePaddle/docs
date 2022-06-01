@@ -35,7 +35,7 @@
 上图即为参数服务器的示意图，该模式下的节点/进程有两种不同的角色：
 
 1. 训练节点（Trainer/Worker）：负责训练，完成数据读取、从服务节点拉取参数、前向计算、反向梯度计算等过程，并将计算出的梯度上传至服务节点。
-2. 服务节点（Server）：负责模型参数的集中式存储和更新，当服务节点接受到来自训练节点的参数梯度时，服务节点会将梯度聚合并更新参数，供训练节点拉取进行下一轮的训练。
+2. 服务节点（Server）：负责模型参数的集中式存储和更新，当服务节点接收到来自训练节点的参数梯度时，服务节点会将梯度聚合并更新参数，供训练节点拉取进行下一轮的训练。
 
 参数服务器模式对于存储超大规模模型参数的训练场景十分友好，常被用于训练拥有海量稀疏参数的搜索推荐领域模型。
 
@@ -77,49 +77,164 @@ HeterPS使训练任务对硬件型号不敏感，即可以同时使用不同的�
 2 使用方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-本节将利用一个推荐领域的训练实例，详细讲解CPUPS的基础使用方法，完整示例代码位于 \ `PaddleRec流式训练 <https://github.com/PaddlePaddle/PaddleRec/blob/master/tools/static_ps_online_trainer.py>`_\
+使用参数服务器的一个简单的代码示例如下：
 
-在推荐系统在服务的过程中，会不断产生可用于训练CTR模型的日志数据，流式训练是指数据不是一次性放入训练系统中，而是随着时间流式地加入到训练过程中去。
+.. code-block:: python
 
-一个完整的训练过程应该包含以下几个部分：
+    import paddle
+    # 导入分布式训练需要的依赖fleet
+    import paddle.distributed.fleet as fleet
+    # 导入模型
+    from model import WideDeepModel
+
+    # 参数服务器目前只支持静态图，需要使用enable_static()
+    paddle.enable_static()
+
+    # 加载模型并构造优化器
+    model = WideDeepModel()
+    model.net(is_train=True)
+    optimizer = paddle.optimizer.SGD(learning_rate=0.0001)
+
+    # 初始化fleet
+    fleet.init(is_collective=False)
+    # 设置分布式策略（异步更新方式）
+    strategy = fleet.DistributedStrategy()
+    strategy.a_sync = True
+
+    # 构造分布式优化器
+    optimizer = fleet.distributed_optimizer(optimizer, strategy)
+    optimizer.minimize(model.cost)
+
+    if fleet.is_server():
+        # 初始化服务节点
+        fleet.init_server()
+        # 启动服务节点，即可接收来自训练节点的请求
+        fleet.run_server()
+
+    if fleet.is_worker():
+        # 训练节点的具体训练过程
+        ...
+        # 训练结束终止训练节点
+        fleet.stop_worker()
+
+其中示例代码中省略的，训练节点的一个完整的训练过程应该包含以下几个部分：
 
     1. 获取之前训练已经保存好的模型，并加载模型（如果之前没有保存模型，则跳过加载模型这一步）。
     2. 分Pass训练，在每一个Pass的训练过程中，分为如下几步：
-       a. 加载数据。
-       b. 分布式训练并获取训练指标（AUC等）。
-       c. 分布式预测：主要用于召回模块的离线建库部分。
+      a. 加载数据。
+      b. 分布式训练并获取训练指标（AUC等）。
+      c. 分布式预测：主要用于召回模块的离线建库部分。
     3. 保存模型：
-       a. Checkpoint Model：用于下次训练开始时的模型加载部分。
-       b. Inference Model：用于线上推理部署。
+      a. Checkpoint Model：用于下次训练开始时的模型加载部分。
+      b. Inference Model：用于线上推理部署。
     
-下面将逐一进行讲解。
+完整训练示例代码请参考：\ `CPUPS示例 <https://>`_\、\ `GPUPS示例 <https://>`_\，本节只介绍飞桨参数服务器在训练过程中需要使用到的与单机不同的API。
 
 2.1 大规模稀疏参数
 """"""""""""
 
-sparse_embedding
-entry
+为存储海量的稀疏参数，参数服务器使用 ``paddle.static.nn.sparse_embedding()`` 取代 ``paddle.static.nn.embedding`` 作为embedding lookup层的算子。
+
+``paddle.static.nn.sparse_embedding()`` 采用稀疏模式进行梯度的计算和更新，输入接受[0, UINT64]范围内的特征ID，支持稀疏参数各种高阶配置（特征准入、退场等），更加符合流式训练的功能需求。
+
+.. code-block:: python
+
+    import paddle
+
+    # sparse_embedding输入接受[0, UINT64]范围内的特征ID，参数size的第一维词表大小无用，可指定任意整数
+    # 大规模稀疏场景下，参数规模初始为0，会随着训练的进行逐步扩展
+    sparse_feature_num = 10
+    embedding_size = 64
+
+    input = paddle.static.data(name='ins', shape=[1], dtype='int64')
+
+    emb = paddle.static.nn.sparse_embedding((
+        input=input,
+        size=[sparse_feature_num, embedding_size],
+        param_attr=paddle.ParamAttr(name="SparseFeatFactors",
+        initializer=paddle.nn.initializer.Uniform()))
 
 2.2 加载数据
 """"""""""""
 
-dataset使用
-数据拆分
+由于搜索推荐场景涉及到的训练数据通常较大，为提升训练中的数据读取效率，参数服务器采用Dataset进行高性能的IO。
+
+Dataset是为多线程及全异步方式量身打造的数据读取方式，每个数据读取线程会与一个训练线程耦合，形成了多生产者-多消费者的模式，会极大的加速模型训练过程。
+
+.. image:: ./images/dataset.JPG
+  :width: 600
+  :alt: dataset
+  :align: center
+
+Dataset有两种不同的类型：
+1. QueueDataset：随训练流式读取数据。
+2. InmemoryDataset：训练数据全部读入训练节点内存，然后分配至各个训练线程，支持全局秒级打散数据（global_shuffle）。
+
+.. code-block:: python
+
+    dataset = paddle.distributed.QueueDataset()
+    thread_num = 1
+    
+    # use_var指定网络中的输入数据，pipe_command指定数据处理脚本
+    # 要求use_var中输入数据的顺序与数据处理脚本输出的特征顺序一一对应
+    dataset.init(use_var=model.inputs, 
+                 pipe_command="python reader.py", 
+                 batch_size=batch_size, 
+                 thread_num=thread_num)
+
+    train_files_list = [os.path.join(train_data_path, x)
+                        for x in os.listdir(train_data_path)]
+    
+    # set_filelist指定dataset读取的训练文件的列表
+    dataset.set_filelist(train_files_list)
+
+更多dataset用法参见\ `使用InMemoryDataset/QueueDataset进行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/parameter_server/performance/dataset.html>`_\。
 
 2.3 分布式训练及预测
 """"""""""""
 
-train_from_dataset
-infer_from_dataset
-dump
+与数据加载dataset相对应的，使用 ``exe.train_from_dataset()`` 接口进行分布式训练。
+
+.. code-block:: python
+    exe.train_from_dataset(paddle.static.default_main_program(),
+                          dataset,
+                          paddle.static.global_scope(), 
+                          debug=False, 
+                          fetch_list=[model.cost],
+                          fetch_info=["loss"],
+                          print_period=1)
+
+分布式预测使用 ``exe.infer_from_dataset()`` 接口，与分布式训练的区别是，预测阶段训练节点不向服务节点发送梯度。
+
+.. code-block:: python
+    exe.infer_from_dataset(paddle.static.default_main_program(),
+                          dataset,
+                          paddle.static.global_scope(), 
+                          debug=False, 
+                          fetch_list=[model.cost],
+                          fetch_info=["loss"],
+                          print_period=1)
 
 2.4 分布式指标计算
 """"""""""""
 
-stat_var_name
-ctr_metric_bundle
-all_reduce
-fleet.metrics
+分布式指标是指在分布式训练任务中用以评测模型效果的指标。
+由于参数服务器存在多个训练节点，传统的指标计算只能评测当前节点的数据，而分布式指标需要汇总所有节点的全量数据，进行全局指标计算。
+
+分布式指标计算的接口位于 ``paddle.distributed.fleet.metrics`` ，其中封装了包括AUC、Accuracy、MSE等常见指标计算。
+
+以AUC指标为例，全局AUC指标计算示例如下：
+
+.. code-block:: python
+    # 组网阶段，AUC算子在计算auc指标同时，返回正负样例中间统计结果（stat_pos, stat_neg）
+    auc, batch_auc, [batch_stat_pos, batch_stat_neg, stat_pos, stat_neg] = \
+        paddle.static.auc(input=pred, label=label)
+
+    # 利用AUC算子返回的中间计算结果，以及fleet提供的分布式指标计算接口，完成全局AUC计算。
+    global_auc = fleet.metrics.auc(stat_pos, stat_neg)
+
+更多分布式指标用法参见\ `分布式指标计算 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/parameter_server/ps_distributed_metrics.html>`_\。
+
 
 2.5 模型保存与加载
 """"""""""""
