@@ -3,7 +3,7 @@
 CyclicLR
 -----------------------------------
 
-.. py:class:: paddle.optimizer.lr.CyclicLR(base_learning_rate, max_learning_rate, step_size_up, step_size_down, mode, exp_gamma, scale_fn, scale_mode, last_epoch, verbose)
+.. py:class:: paddle.optimizer.lr.CyclicLR(base_learning_rate, max_learning_rate, step_size_up, step_size_down=None, mode='triangular', exp_gamma=1., scale_fn=None, scale_mode='cycle', last_epoch=-1, verbose=False)
 
 提供一种学习率按固定频率在两个边界之间循环的策略。
 
@@ -25,13 +25,13 @@ CyclicLR
     - **mode** (str，可选) - 可以是triangular、triangular2或者exp_range，对应策略已在上文描述，当scale_fn被指定时时，该参数将被忽略。默认值：triangular。
     - **exp_gamma** (float，可选) - exp_range缩放函数中的常量。默认值：1.0。
     - **sacle_fn** (function, 可选) - 一个有且仅有单个参数的函数，且对于任意的输入x，都必须满足0 ≤ scale_fn(x) ≤ 1；如果该参数被指定，则会忽略mode参数。默认值: ``False`` 。
-    - **scale_mode** (str，可选) - cycle或者iterations，表示缩放函数使用cycle数或iterations数作为输入。
+    - **scale_mode** (str，可选) - cycle或者iterations，表示缩放函数使用cycle数或iterations数作为输入,。默认值为：cycle。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
     - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
 返回：
 ::::::::::::
-用于调整学习率的``CyclicLR``实例对象。
+用于调整学习率的 ``CyclicLR`` 实例对象。
 
 代码示例
 ::::::::::::
