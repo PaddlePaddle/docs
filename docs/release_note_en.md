@@ -278,7 +278,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
     
   - Add `paddle.text.ViterbiDecoder`, and `paddle.text.viterbi_decode` Viterbi decoding API, mainly for sequence tagging model prediction. ([#35778](https://github.com/PaddlePaddle/Paddle/pull/35778))
     
-- Add 11 Sparse class APIs, to support basic functions, such as creating Sparse Tensor in COO and CRS formats, and add C++ inter-converting with Tensor.
+- Add 11 Sparse class APIs, to support basic functions, such as creating Sparse Tensor in COO and CSR formats, and add C++ inter-converting with Tensor.
   
   - `paddle.sparse.sparse_coo_tensor`，create Sparse Tensor in COO format. ([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780)）
     
