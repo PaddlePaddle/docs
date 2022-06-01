@@ -239,9 +239,30 @@ Dataset有两种不同的类型：
 2.5 模型保存与加载
 """"""""""""
 
-save_persistables
-save_inference_model
-load_model
+参数服务器的模型一般分为两种类型：
+1. 明文模型（checkpoint model）：主要用于增量训练，由服务节点以明文形式保存模型全量的稀疏参数和稠密参数以及优化器状态。
+2. 推理模型（inference model）：主要用于线上推理部署，其中稠密参数由某个训练节点（一般是0号训练节点）以二进制方式保存，稀疏参数由服务节点以明文形式保存，为节省线上推理所需的存储空间，inference model中的稀疏参数可能并非全量，有一定的过滤逻辑。
+
+.. code-block:: python
+
+    exe = paddle.static.Executor(paddle.CPUPlace())
+    dirname = "/you/path/to/model"
+
+    # 保存checkpoint model
+    fleet.save_persistables(exe, dirname)
+
+    # 保存inference model
+    # feed_var_names和target_vars用于指定需要裁剪网络的输入和输出
+    fleet.save_inference_model(exe, dirname, feed_var_names, target_vars)
+
+在checkpoint model保存成功之后，可以在训练开始时加载已经保存好的模型，用于之后的增量训练
+
+.. code-block:: python
+
+    dirname = "/you/path/to/model"
+    
+    # 加载checkpoint model
+    fleet.load_model(dirname)
 
 3 进阶教程
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
