@@ -262,7 +262,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
     
   - Add `paddle.vision.models.MobileNetV3Small`, `paddle.vision.models.MobileNetV3Large`, `paddle.vision.models.mobilenet_v3_small`, and `paddle.vision.models.mobilenet_v3_large`, to use MobileNetV3 models directly . ([#38653](https://github.com/PaddlePaddle/Paddle/pull/38653))
     
-  - Add `paddle.vision.models.ResNeXt`, `paddle.vision.models.resnext50_32x4d`, `paddle.vision.models.resnext50_64x4d`, `paddle.vision.models. paddle.vision.models.resnext101_32x4d`, `paddle.vision.models.resnext101_64x4d`, `paddle.vision.models.resnext152_32x4d`, and `paddle.vision.models.resnext152_64x4d`, to use ResNeXt models directly. ([#36070](https://github.com/PaddlePaddle/Paddle/pull/36070))
+  - Add `paddle.vision.models.resnext50_32x4d`, `paddle.vision.models.resnext50_64x4d`, `paddle.vision.models. paddle.vision.models.resnext101_32x4d`, `paddle.vision.models.resnext101_64x4d`, `paddle.vision.models.resnext152_32x4d`, and `paddle.vision.models.resnext152_64x4d`, to use ResNeXt models directly. ([#36070](https://github.com/PaddlePaddle/Paddle/pull/36070))
     
   - Add `paddle.vision.models.ShuffleNetV2`, `paddle.vision.models.shufflenet_v2_x0_25`, `paddle.vision.models.shufflenet_v2_x0_33`, `paddle.vision.models.shufflenet_v2_x0_5`, `paddle.vision.models.shufflenet_v2_x1_0`, `paddle.vision.models.shufflenet_v2_x1_5`, `paddle.vision.models.shufflenet_v2_x2_0`, and `paddle.vision.models.shufflenet_v2_swish`, to use ShuffleNetV2 models directly ([#36067](https://github.com/PaddlePaddle/Paddle/pull/36067))
     
