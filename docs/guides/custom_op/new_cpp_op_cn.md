@@ -346,7 +346,9 @@ PADDLE_API Tensor where(const Tensor& condition, const Tensor& x, const Tensor& 
 
 > 注：后续我们会提供更方便的查阅C++ API文档的入口。
 
-在2.3版本，我们供支持了大约250个类似的C++ API，但是除前述的109个C++ API之外，剩余的C++ API由于一些历史原因，其参数列表尚未和相应的Python API对齐，因此目前剩余这些API只能作为experimental的API使用，通过 `paddle::experimental::xxx` 进行调用，且这些experimental API在下个版本可能会有不兼容的升级，如果追求稳定的话不建议使用。如有需要，具体的API列表请参考paddle安装路径下的api.h头文件，以Python3.7为例，其路径是 `python3.7/site-packages/paddle/include/paddle/phi/api/include/api.h`。
+在2.3版本，我们共支持了大约250个类似的C++ API，能够覆盖大部分的基础运算，但是除前述的109个C++ API之外，剩余的C++ API由于一些历史原因，其参数列表尚未和相应的Python API对齐，因此目前剩余这些API只能作为experimental的API使用，需要通过 `paddle::experimental::xxx` 进行调用，且这些experimental API在下个版本可能会有不兼容的升级，如果不介意随下一版本升级的话，可以使用，追求稳定的话则不建议使用。
+
+如有需要，目前支持的全量API列表（包含experimental API）请参考paddle安装路径下的api.h头文件，以Python3.7为例，其路径是 `python3.7/site-packages/paddle/include/paddle/phi/api/include/api.h`。
 
 
 ### 运算函数实现
