@@ -16,7 +16,7 @@
 - `性能调优 <./performance_improving/index_cn.html>`_
 - `模型迁移 <./model_convert/index_cn.html>`_
 - `硬件支持 <./hardware_support/index_cn.html>`_
-- `自定义算子 <./new_op/index_cn.html>`_
+- `自定义算子 <./custom_op/index_cn.html>`_
 - `环境变量 <./flags/flags_cn.html>`_
 
 ..  toctree::
@@ -30,5 +30,5 @@
     performance_improving/index_cn.rst
     model_convert/index_cn.rst
     hardware_support/index_cn.rst
-    new_op/index_cn.rst
+    custom_op/index_cn.rst
     flags/flags_cn.rst
