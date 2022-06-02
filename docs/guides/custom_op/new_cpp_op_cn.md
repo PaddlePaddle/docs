@@ -1370,7 +1370,7 @@ for epoch_id in range(EPOCH_NUM):
 
         if batch_id % 300 == 0:
             print("Epoch {} batch {}: loss = {}".format(
-                    epoch_id, batch_id, np.mean(loss.numpy())))
+                    epoch_id, batch_id, paddle.mean(loss).numpy()))
 
         opt.step()
         opt.clear_grad()
