@@ -268,7 +268,7 @@ include_directories(${PADDLE_INC_DIR} ${THIRD_PARTY_INC_DIR})
 link_directories(${PADDLE_LIB_DIR})
 
 add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)  # for out CustomContext
-add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid seperate
+add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid separate
 add_definitions(-DPADDLE_WITH_MKLDNN)  # for out MKLDNN compiling
 
 
