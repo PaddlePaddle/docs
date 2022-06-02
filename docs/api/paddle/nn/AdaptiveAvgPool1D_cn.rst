@@ -6,7 +6,7 @@ AdaptiveAvgPool1D
 
 .. py:class:: paddle.nn.AdaptiveAvgPool1D(output_size, name=None)
 
-根据 `output_size` 对一个输入 Tensor 计算 1D 的自适应平均汇聚。输入和输出都是以 NCL 格式表示的 3-D Tensor，其中 N 是批大小，C 是通道数而 L 是特征的长度。输出的形状是 :math:`[N, C, output\_size]`。
+根据 ``output_size`` 对一个输入 Tensor 计算 1D 的自适应平均汇聚。输入和输出都是以 NCL 格式表示的 3-D Tensor，其中 N 是批大小，C 是通道数而 L 是特征的长度。输出的形状是 :math:`[N, C, output\_size]`。
 
 计算公式为
 
