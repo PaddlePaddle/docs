@@ -160,7 +160,7 @@ auto gpu_tensor = paddle::empty({3, 4}, paddle::DataType::FLOAT64, paddle::GPUPl
 auto gpu_tensor = paddle::full({3, 4}, 1.0, paddle::DataType::FLOAT64, paddle::GPUPlace());
 ```
 
-（1） `Tensor` 成员方法
+（2） `Tensor` 成员方法
 
 此外 `paddle::Tensor` 自身目前提供了一些基础的功能API，在定义算子最后那个常用的包括：
 
