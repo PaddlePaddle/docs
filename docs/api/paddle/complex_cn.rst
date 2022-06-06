@@ -13,7 +13,7 @@ complex
 :::::::::
     - real (Tensor) - 实部，数据类型为：float32 或 float64。
     - imag (Tensor) - 虚部，数据类型和 ``real`` 相同。
-    - name (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
 返回
 :::::::::

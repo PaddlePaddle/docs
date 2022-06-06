@@ -20,7 +20,7 @@ floor_divide
 :::::::::
         - x（Tensor）- 多维Tensor。数据类型为int32或int64。
         - y（Tensor）- 多维Tensor。数据类型为int32或int64。
-        - name（str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+        - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
 
 返回
