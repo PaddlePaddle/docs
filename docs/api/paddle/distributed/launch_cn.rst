@@ -45,7 +45,7 @@ Launch 模块是在每个节点运行，负责分布式协同和本地进程管�
 
     - ``--devices``: 节点上的加速卡设备，支持 gpu/xpu/npu/mlu。例如 ``--devices=0,1,2,3``，这会启动 4 个进程，每个进程绑定到 1 个设备上。
 
-    - ``training_script``: 需要运行的任务脚本，例如 ``traing.py``。
+    - ``training_script``: 需要运行的任务脚本，例如 ``training.py``。
 
     - ``training_script_args``: ``training_script`` 的输入参数，与普通起任务时输入的参数一样，例如 ``--lr=0.1``。
 
