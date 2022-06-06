@@ -3,9 +3,9 @@
 conv3d
 -------------------------------
 
-.. py:function:: paddle.nn.functional.conv3d(x, weight, bias=None, stride=1, padding=0, dilation=1, groups=1, data_format="NCHW", name=None)
+.. py:function:: paddle.nn.functional.conv3d(x, weight, bias=None, stride=1, padding=0, dilation=1, groups=1, data_format="NCDHW", name=None)
 
-该OP是三维卷积层（convolution3D layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算得到输出特征层大小。输入和输出是NCDHW或NDHWC格式，其中N是批尺寸，C是通道数，D是特征层深度，H是特征层高度，W是特征层宽度。三维卷积（Convlution3D）和二维卷积（Convlution2D）相似，但多了一维深度信息（depth）。如果bias_attr不为False，卷积计算会添加偏置项。
+三维卷积层（convolution3D layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算得到输出特征层大小。输入和输出是NCDHW或NDHWC格式，其中N是批尺寸，C是通道数，D是特征层深度，H是特征层高度，W是特征层宽度。三维卷积（Convlution3D）和二维卷积（Convlution2D）相似，但多了一维深度信息（depth）。如果bias_attr不为False，卷积计算会添加偏置项。
 
 对每个输入X，有等式：
 
@@ -37,7 +37,7 @@ conv3d
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入是形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float16, float32或float64。
+    - **x** (Tensor) - 输入是形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征层深度，H是特征高度，W是特征宽度，数据类型为float16, float32或float64。
     - **weight** (Tensor) - 形状为 :math:`[M, C/g, kH, kW]` 的卷积核（卷积核）。 M是输出通道数， g是分组的个数，kH是卷积核的高度，kW是卷积核的宽度。
     - **bias** (int|list|tuple) - 偏置项，形状为： :math:`[M,]` 。
     - **stride** (int|list|tuple，可选) - 步长大小。卷积核和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含两个整型数：（stride_height,stride_width）。若为一个整数，stride_height = stride_width = stride。默认值：1。
@@ -46,7 +46,7 @@ conv3d
     - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=n，输入和卷积核分别根据通道数量平均分为n组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第n组卷积核和第n组输入进行卷积计算。默认值：1。
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
+    - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，D是特征层深度，H是特征高度，W是特征宽度。默认值："NCDHW"。
     - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值：None。
 
 返回
