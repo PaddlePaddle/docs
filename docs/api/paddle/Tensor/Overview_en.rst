@@ -175,6 +175,7 @@ Methods
     fmax
     mean
     median
+    nanmedian
     min
     minimum
     fmin

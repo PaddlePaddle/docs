@@ -87,6 +87,7 @@ tensor数学操作
     " :ref:`paddle.maximum <cn_api_paddle_tensor_maximum>` ", "逐元素对比输入的两个Tensor，并且把各个位置更大的元素保存到返回结果中"
     " :ref:`paddle.mean <cn_api_tensor_cn_mean>` ", "沿 axis 计算 x 的平均值"
     " :ref:`paddle.median <cn_api_tensor_cn_median>` ", "沿给定的轴 axis 计算 x 中元素的中位数"
+    " :ref:`paddle.nanmedian <cn_api_tensor_cn_nanmedian>` ", "沿给定的轴 axis 忽略NAN元素计算 x 中元素的中位数"
     " :ref:`paddle.min <cn_api_paddle_tensor_min>` ", "对指定维度上的Tensor元素求最小值运算"
     " :ref:`paddle.amin <cn_api_paddle_tensor_min>` ", "对指定维度上的Tensor元素求最小值运算"
     " :ref:`paddle.minimum <cn_api_paddle_tensor_minimum>` ", "逐元素对比输入的两个Tensor，并且把各个位置更小的元素保存到返回结果中"

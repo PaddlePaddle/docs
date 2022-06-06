@@ -1472,6 +1472,15 @@ median(axis=None, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_median`
 
+nanmedian(axis=None, keepdim=True, name=None)
+:::::::::
+
+返回：沿着 ``axis`` 忽略NAN元素进行中位数计算的结果
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_nanmedian`
+
 min(axis=None, keepdim=False, name=None)
 :::::::::
 
