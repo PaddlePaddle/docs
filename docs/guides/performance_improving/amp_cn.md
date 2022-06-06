@@ -169,9 +169,9 @@ for epoch in range(epochs):
 print("loss:", train_loss)
 print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
 
+```
 上述代码中，在 ``paddle.amp.auto_cast`` 语境下的 ``model`` 及 ``mse`` 均以 AMP-O1 的逻辑执行，由于 ``elementwise_add`` 加入了白名单，因为 Linear 层的 ``matmul`` 算子及 ``add`` 算子均执行FP16计算。
 
-```
 
     loss: [0.6486219]
     使用AMP-O1模式耗时:0.118 sec
