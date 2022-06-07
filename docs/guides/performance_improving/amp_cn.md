@@ -19,7 +19,7 @@
 - FP16可降低一半的内存带宽和存储需求，这使得在相同的硬件条件下研究人员可使用更大更复杂的模型以及更大的batch size大小。
 - FP16可以充分利用英伟达Volta、Turing、Ampere架构GPU提供的Tensor Cores技术。在相同的GPU硬件上，Tensor Cores的FP16计算吞吐量是FP32的8倍。
 
-通过``nvidia-smi``指令可帮助查看显卡架构信息。此外如果已开启amp训练，Paddle会自动帮助检测硬件环境是否符合上述硬件条件，如不符合，则将提供类似如下的警告信息：``UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.``。
+通过``nvidia-smi``指令可帮助查看NVIDIA显卡架构信息。此外如果已开启amp训练，Paddle会自动帮助检测硬件环境是否符合上述硬件条件，如不符合，则将提供类似如下的警告信息：``UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.``。
 
 ## 二、使用飞桨框架实现自动混合精度
 
@@ -209,7 +209,7 @@ for epoch in range(epochs):
         with paddle.amp.auto_cast(level='O2'):
             output = model(data)
             loss = mse(output, label)
-        # Step4：使用 Step1中定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
+        # 逻辑3：使用定义的 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
         scaled = scaler.scale(loss)
         scaled.backward()
         # 训练模型
