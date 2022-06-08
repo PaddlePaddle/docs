@@ -16,20 +16,22 @@ MSRAInitializer
 
 .. math::
 
-    x = \sqrt{\frac{6.0}{fan\_in}}
+    x = gain \times \sqrt{\frac{3}{fan\_in}}
 
 在正态分布中，均值为0，标准差为：
 
 .. math::
 
-    \sqrt{\frac{2.0}{fan\_in}}
+    \frac{gain}{\sqrt{{fan\_in}}}
 
 参数
 ::::::::::::
 
-    - **uniform** (bool) - 为True表示使用均匀分布，为False表示使用正态分布
-    - **fan_in** (float16|float32) - MSRAInitializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None
-    - **seed** (int32) - 随机种子
+    - **uniform** (bool，可选) - 为True表示使用均匀分布，为False表示使用正态分布
+    - **fan_in** (float16|float32，可选) - MSRAInitializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None
+    - **negative_slope** (float，可选): 只适用于使用leaky_relu 作为激活函数时的 negative_slope 参数. 默认值为 0.0.
+    - **nonlinearity** (str，可选): 非线性激活函数。 默认值为 relu.
+    - **seed** (int32，可选) - 随机种子
 
 返回
 ::::::::::::
