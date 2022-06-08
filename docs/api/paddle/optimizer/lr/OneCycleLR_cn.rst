@@ -36,3 +36,22 @@ OneCycleLR
 ::::::::::::
 
 COPY-FROM: paddle.optimizer.lr.OneCycleLR
+
+方法
+::::::::::::
+step(epoch=None)
+'''''''''
+
+step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
+
+**参数**
+
+  - **epoch** (int，可选) - 指定具体的epoch数。默认值None，此时将会从-1自动累加 ``epoch`` 数。
+
+**返回**
+
+无。
+
+**代码示例**
+
+参照上述示例代码。
