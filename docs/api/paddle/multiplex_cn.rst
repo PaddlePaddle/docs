@@ -3,8 +3,7 @@
 multiplex
 -------------------------------
 
-.. py:function:: paddle.multiplex(inputs, index, name)
-
+.. py:function:: paddle.multiplex(inputs, index, name=None)
 
 
 
