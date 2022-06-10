@@ -24,7 +24,7 @@
 
 **2. 签订贡献者许可协议（CLA）**
 
-对于您贡献的源代码，您将拥有合法的知识产权，为了保护您的权益，您需要先签署一份`贡献者许可协议 <https://cla-assistant.io/PaddlePaddle/Paddle?pullRequest=39047>`_ 。
+对于您贡献的源代码，您将拥有合法的知识产权，为了保护您的权益，您需要先签署一份 `贡献者许可协议 <https://cla-assistant.io/PaddlePaddle/Paddle?pullRequest=39047>`_ 。
 
 **注意**：只有当您签署完CLA后，我们才能继续对您提交的设计方案和实现代码进行评审及合入
 
