@@ -639,9 +639,12 @@ cpu()
     .. code-block:: python
 
         import paddle
-        x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
-        print(x.place)    # CUDAPlace(0)
-
+        
+        if paddle.device.cuda.device_count() > 0:
+            x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
+            print(x.place)    # CUDAPlace(0)
+        
+        x = paddle.to_tensor(1.0)
         y = x.cpu()
         print(y.place)    # CPUPlace
 
@@ -674,11 +677,12 @@ cuda(device_id=None, blocking=False)
         x = paddle.to_tensor(1.0, place=paddle.CPUPlace())
         print(x.place)        # CPUPlace
 
-        y = x.cuda()
-        print(y.place)        # CUDAPlace(0)
+        if paddle.device.cuda.device_count() > 0:
+            y = x.cuda()
+            print(y.place)        # CUDAPlace(0)
 
-        y = x.cuda(1)
-        print(y.place)        # CUDAPlace(1)
+            y = x.cuda(1)
+            print(y.place)        # CUDAPlace(1)
 
 cumsum(axis=None, dtype=None, name=None)
 :::::::::
@@ -1144,6 +1148,14 @@ greater_than(y, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_greater_than`
 
+heaviside(y, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_heaviside`
 
 histogram(bins=100, min=0, max=0)
 :::::::::
@@ -1343,6 +1355,15 @@ log1p(name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_log1p`
 
+logcumsumexp(x, axis=None, dtype=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_logcumsumexp`
+
 logical_and(y, out=None, name=None)
 :::::::::
 
@@ -1459,6 +1480,15 @@ median(axis=None, keepdim=False, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_cn_median`
+
+nanmedian(axis=None, keepdim=True, name=None)
+:::::::::
+
+返回：沿着 ``axis`` 忽略NAN元素进行中位数计算的结果
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_nanmedian`
 
 min(axis=None, keepdim=False, name=None)
 :::::::::
@@ -1632,11 +1662,13 @@ pin_memory(y, name=None)
     .. code-block:: python
 
         import paddle
-        x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
-        print(x.place)      # CUDAPlace(0)
+        
+        if paddle.device.cuda.device_count() > 0:
+            x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
+            print(x.place)      # CUDAPlace(0)
 
-        y = x.pin_memory()
-        print(y.place)      # CUDAPinnedPlace
+            y = x.pin_memory()
+            print(y.place)      # CUDAPinnedPlace
 
 pow(y, name=None)
 :::::::::

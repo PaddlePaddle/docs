@@ -13,7 +13,7 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
 :::::::::
 
     - **input** (Tensor)-数据类型为float32,float64。输入为网络的预测值。shape为 ``[sample_number, class_dim]`` 。
-    - **label** (Tensor)-数据类型为int64，int32。输入为数据集的标签。shape为 ``[sample_number, 1]`` 。
+    - **label** (Tensor)-数据类型为int64。输入为数据集的标签。shape为 ``[sample_number, 1]`` 。
     - **k** (int64|int32，可选) - 取每个类别中k个预测值用于计算，默认值为1。
     - **correct** (int64|int32, 可选)-正确预测值的个数，默认值为None。
     - **total** (int64|int32，可选)-总共的预测值，默认值为None。

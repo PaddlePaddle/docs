@@ -105,7 +105,7 @@ Tip: 当出现类似把一个元素放入一个集中管理的列表的操作时
 
 这类的接口需要兼容动态图和静态图。在动态图下，函数会被多次执行；而在静态图下，函数仅在组网时被调用，真正被多次执行的是组网得到的结果。但 API 在动态图和静态图下的行为是保持一致的。
 
-关于 API 的命名，参数命名等的一般规范，可以参考 [飞桨API的设计和命名规范](../api_design_guidelines_standard_cn.html#id2)。
+关于 API 的命名，参数命名等的一般规范，可以参考 [飞桨API的设计和命名规范](api_design_guidelines_standard_cn.html#id2)。
 
 Python API 一般包含如下的部分：
 
@@ -200,7 +200,7 @@ _C_ops.matmul_v2(input, mat2)
 
 `_C_ops` 是 `Python/paddle/_C_ops.py`，其中从 paddle 编译得到的二进制文件中 import 了 c++ operator 对应的 Python C 函数，函数名和 operator 名一致。如希望调用名为 `matmul_v2` 的 operator，则使用 `_C_ops.matmul_v2`, 然后传入参数。
 
-其中参数分为两个部分，`Tensor` 对于 `Tensor` 类型的输入，直接按照定义 opmaker 时添加输入的次序，以按位置传参的方式传入。关于 opmaker 可以参考 [定义OpProtoMaker类](../new_cpp_op_cn.html#opprotomaker)（本文中用 opmaker 简称 operator ）.
+其中参数分为两个部分，`Tensor` 对于 `Tensor` 类型的输入，直接按照定义 opmaker 时添加输入的次序，以按位置传参的方式传入。关于 opmaker 可以参考 [定义OpProtoMaker类](new_cpp_op_cn.html#opprotomaker)（本文中用 opmaker 简称 operator ）.
 
 而对于非 `Tensor` 类型的输入（对应 opmaker 中的 Attribute），则以 `attribute 名，attribute 值` 交替的方式传入，这类似 Python 中的按关键字传参的方式。然后返回调用函数得到的结果。
 
@@ -235,7 +235,7 @@ helper.append_op(
 
 单元测试相关的开发规范可以参考
 
- [C++ OP 开发（新增原生算子）](../new_cpp_op_cn.html) ，[Op开发手册(Operator Development Manual)](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index).
+ [C++ OP 开发（新增原生算子）](new_cpp_op_cn.html) ，[Op开发手册(Operator Development Manual)](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index).
 
 在此不作展开，主要讲述 Python API 的单元测试。
 

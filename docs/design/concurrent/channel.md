@@ -133,7 +133,7 @@ As a result, these variables should not be used after they are sent.  We
 provide a flag in channel_send method to allow users to copy the variable to
 be sent before it is sent.  
 
-Please note that this is acheived by adding an **assign** operator and creating
+Please note that this is achieved by adding an **assign** operator and creating
 a temporary variable that is sent in place of the original variable.  Please
 note that **assign** operator has limited support for only certain variables
 datatypes.
