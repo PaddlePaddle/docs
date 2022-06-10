@@ -28,3 +28,4 @@
     sugon/index_cn.rst
     custom_device_docs/index_cn.rst
     docs_contributing_guides_cn.md
+    op_optimization/op_optimization_contributing_guides_cn.rst
