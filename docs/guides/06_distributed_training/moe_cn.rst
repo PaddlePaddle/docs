@@ -1,0 +1,131 @@
+..  _moe:
+
+MoE
+=======================
+
+通常来讲，模型规模的扩展会导致训练成本显著增加，计算资源的限制成为了大规模密集模型训练的瓶颈。为了解决这个问题，`《Outrageously large neural networks: The sparsely-gated mixture-of-experts layer》 <https://arxiv.org/abs/1701.06538>` 提出了
+一种基于稀疏MoE层的深度学习模型架构，即将大模型拆分成多个小模型并引入稀疏门(gate)机制，根据样本来决定激活一部分小模型用于机器，达到了节省计算资源的效果；门机制需要确保稀疏性，以保证计算能力的优化。
+
+一、原理介绍
+-------------------
+
+.. image:: ./images/moe_layer.png
+  :width: 400
+  :alt: moe_layer
+  :align: center
+
+与密集模型不同，MoE将模型的某一层扩展为多个具有相同结构的expert，并由门(gate)网络决定激活哪些expert用于计算，从而实现超大规模稀疏模型的训练。以上图为例，示例模型包含3个模型层；若将中间层扩展为具有 ``n`` 个expert的MoE结构，并引入 ``Gating network`` 和 ``Top_k`` 机制，
+门网络的输出看作每个expert的权重，每个输入 ``x`` 需要分配 ``k`` 个权重最大的expert进行计算，然后只对选中的 ``k`` 个专家网络的输出进行加权求和，最后得到整个MoE Layer的计算结果。
+
+
+二、功能效果
+-------------------------
+
+使用MoE结构，可以在计算成本次线性增加的同时实现超大规模模型训练，为恒定的计算资源预算带来巨大增益。
+
+
+三、动态图使用方法
+------------------------
+
+下面我们将分别介绍如何在动态图模式下使用飞桨框架进行MoE架构的适配和训练。以下代码(train_moe.py)在Paddle2.3以上可以运行，建议将Paddle版本升级到最新版.
+
+首先导入需要的包
+
+.. code-block:: python
+
+    import paddle
+    from paddle.nn import Layer, LayerList, Linear, Dropout
+    from paddle.incubate.distributed.models.moe import MoELayer
+    from paddle.distributed.collective import Group
+    from paddle.distributed import fleet
+    import numpy as np
+
+构建一个可以正常训练的模型
+
+.. code-block:: python
+    
+    num_experts = 8
+    d_model = 512
+    d_hidden = 2048
+
+    class ExpertLayer(Layer):
+        def __init__(self, d_model, d_hidden, name=None):
+            super(ExpertLayer, self).__init__()                
+            self.htoh4 = Linear(d_model, d_hidden)
+            self.h4toh = Linear(d_hidden, d_model)
+
+        def forward(self, x):
+            x = self.htoh4(x)
+            x = self.h4toh(x)
+            return x
+
+然后初始化分布式环境，并构建expert通信组moe_group
+
+.. code-block:: python
+
+    fleet.init(is_collective=True)
+    moe_group = paddle.distributed.new_group(list(range(fleet.worker_num())))
+
+设置门网络的gate策略和top_k机制，并将模型单层扩展为 ``num_expert`` 个相同结构的专家网络
+
+.. code-block:: python
+
+    gate_config = {
+        "type": "gshard",
+        "top_k": 2,
+    }
+
+    experts_list = LayerList()
+    for expi in range(num_experts):
+        exp_layer = ExpertLayer(d_model, d_hidden)
+        experts_list.append(exp_layer)
+
+接着调用 ``MoELayer`` API 封装并创建出MoE模型
+
+.. code-block:: python
+
+    class Model(Layer):
+    def __init__(self, d_model, d_hidden, name=None):
+        super(Model, self).__init__()
+        self.linear1 = Linear(d_model, d_model)
+        self.moe_layer = MoELayer(d_model = d_model,
+                                experts=experts_list,
+                                gate=gate_config,
+                                moe_group=moe_group,
+                                recompute_interval=0)
+
+        self.linear2 = Linear(d_model, d_model)
+        self.dropout = Dropout(p=0.1)   
+    
+    def forward(self, x):
+        x = self.linear1(x)
+        x = self.moe_layer(x)
+        x = self.linear2(x)
+        x = self.dropout(x)
+        return x
+    
+    model = Model(d_model, d_hidden)
+    optim = paddle.optimizer.SGD(parameters=model.parameters())
+
+最后创建数据集，开始训练
+
+.. code-block:: python
+
+    for step in range(1, 100):
+        x = paddle.rand([4, 256, d_model])
+
+        y = model(x)
+        loss = y.mean()
+        loss.backward()
+        optim.step()
+
+        optim.clear_grad()
+
+        print("=== step : {}, loss : {}".format(step, loss.numpy()))
+
+运行方式：
+
+.. code-block:: bash
+  
+  export CUDA_VISIBLE_DEVICES=0
+  python train_moe.py
