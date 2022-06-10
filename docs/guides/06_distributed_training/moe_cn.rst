@@ -3,14 +3,15 @@
 MoE
 =======================
 
-通常来讲，模型规模的扩展会导致训练成本显著增加，计算资源的限制成为了大规模密集模型训练的瓶颈。为了解决这个问题，`《Outrageously large neural networks: The sparsely-gated mixture-of-experts layer》 <https://arxiv.org/abs/1701.06538>` 提出了
-一种基于稀疏MoE层的深度学习模型架构，即将大模型拆分成多个小模型并引入稀疏门(gate)机制，根据样本来决定激活一部分小模型用于机器，达到了节省计算资源的效果；门机制需要确保稀疏性，以保证计算能力的优化。
+通常来讲，模型规模的扩展会导致训练成本显著增加，计算资源的限制成为了大规模密集模型训练的瓶颈。为了解决这个问题，
+`《Outrageously large neural networks: The sparsely-gated mixture-of-experts layer》 <https://arxiv.org/abs/1701.06538>`__
+提出了一种基于稀疏MoE层的深度学习模型架构，即将大模型拆分成多个小模型并引入稀疏门(gate)机制，根据样本来决定激活一部分小模型用于机器，达到了节省计算资源的效果；门机制需要确保稀疏性，以保证计算能力的优化。
 
 一、原理介绍
 -------------------
 
 .. image:: ./images/moe_layer.png
-  :width: 400
+  :width: 700
   :alt: moe_layer
   :align: center
 
