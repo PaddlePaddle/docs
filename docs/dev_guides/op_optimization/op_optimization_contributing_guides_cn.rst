@@ -63,8 +63,7 @@
     "算子性能优化实现代码", "- `Paddle代码规范 <https://www.paddlepaddle.org.cn/documentation/docs/zh/dev_guides/style_guides_cn.html>`_
     - `C++ OP开发指南 <../api_contributing_guides/new_cpp_op_cn.html>`_
     - `OP Benchmark使用指南 <https://github.com/PaddlePaddle/benchmark/blob/master/api>`_
-    - `算子性能优化 验收标准 <./op_optimization_accpetance_criteria_cn.html>`_ ",
-    "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
+    - `算子性能优化 验收标准 <./op_optimization_accpetance_criteria_cn.html>`_ ", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
 
 
 当开发者完成以上代码设计后，需要将代码提交至 `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_ ，并根据 `本地开发指南 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/git_guides/local_dev_guide_cn.html>`_ 提交PR、准备接受社区的评审。
