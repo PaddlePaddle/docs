@@ -24,9 +24,7 @@ hfft2
   - "ortho": 正向和逆向变换的缩放系数均为 ``1/sqrt(n)``;
 
   其中 ``n`` 为 ``s`` 中每个元素连乘。
-- **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。该参数供开发人员打印调试
-  信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 需设置，默认值为None。该参数供开发
-  人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 
+- **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回
