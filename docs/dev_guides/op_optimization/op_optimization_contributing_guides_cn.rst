@@ -1,5 +1,5 @@
 #####################
-算子性能优化 开发&提交流程
+算子性能优化 提交流程
 #####################
 
 飞桨作为一个开源项目，非常欢迎你为 Paddle 框架贡献高性能算子，当你想为飞桨开发或优化算子性能时，请遵守此下述贡献流程，在 GitHub 上完成文档设计和代码设计并提交至相应的 GitHub 仓库。
@@ -40,8 +40,8 @@
     :header: "提交内容", "参考文档", "提交位置"
     :widths: 10, 30, 30
 
-    "算子性能优化设计文档", "- `算子性能优化设计文档 模版 <https://github.com/PaddlePaddle/community/tree/master/rfcs/OPs/op_optimization_template.md>`_ 
-    - `算子性能优化设计文档 示例 <https://github.com/PaddlePaddle/community/blob/master/rfcs/OPs/20220607_op_optimization_for_quantile.md>`_ ", "`Github开发者社区仓库 <https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs>`_"
+    "算子性能优化设计文档", "- `算子性能优化设计文档 模版 <https://github.com/PaddlePaddle/community/tree/master/rfcs/OPs-Perf/op_optimization_template.md>`_ 
+    - `算子性能优化设计文档 示例 <https://github.com/PaddlePaddle/community/blob/master/rfcs/OPs-Perf/op_optimization_example.md>`_ ", "`Github开发者社区仓库 <https://github.com/PaddlePaddle/community/tree/master/rfcs/OPs-Perf>`_"
 
 
 **4. 设计文档评审&公示**
@@ -65,7 +65,7 @@
     "算子性能优化实现代码", "- `Paddle代码规范 <https://www.paddlepaddle.org.cn/documentation/docs/zh/dev_guides/style_guides_cn.html>`_
     - `C++ OP开发指南 <../api_contributing_guides/new_cpp_op_cn.html>`_
     - `OP Benchmark使用指南 <https://github.com/PaddlePaddle/benchmark/blob/master/api>`_
-    - `算子性能优化 验收标准 <./op_optimization_accpetance_criteria_cn.html>`_ ", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
+    - `算子性能优化 验收规范 <./op_optimization_accpetance_criteria_cn.html>`_ ", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
 
 
 当你完成以上代码设计后，需要将代码提交至 `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_ ，并根据 `本地开发指南 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/git_guides/local_dev_guide_cn.html>`_ 提交PR、准备接受社区的评审。
