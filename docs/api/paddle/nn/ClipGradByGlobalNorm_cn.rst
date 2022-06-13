@@ -14,7 +14,7 @@ ClipGradByGlobalNorm
 
 - 如果范数之和小于或等于 ``clip_norm`` ，则不会进行任何操作。
 
-输入的 Tensor 不是从该类里传入， 而是默认选择优化器中输入的所有参数的梯度。如果某个参数 ``ParamAttr`` 中的 ``need_clip`` 值被设置为 ``False`` ，则该参数的梯度不会被裁剪。
+输入的 Tensor 不是从该类里传入，而是默认选择优化器中输入的所有参数的梯度。如果某个参数 ``ParamAttr`` 中的 ``need_clip`` 值被设置为 ``False`` ，则该参数的梯度不会被裁剪。
 
 该类需要在初始化 ``optimizer`` 时进行设置后才能生效，可参看 ``optimizer`` 文档(例如： :ref:`cn_api_paddle_optimizer_SGD` )。
 
@@ -33,7 +33,7 @@ ClipGradByGlobalNorm
 ::::::::::::
 
  - **clip_norm** (float) - 所允许的范数最大值
- - **group_name** (str, optional) - 剪切的组名
+ - **group_name** (str，optional) - 剪切的组名
 
 代码示例
 ::::::::::::

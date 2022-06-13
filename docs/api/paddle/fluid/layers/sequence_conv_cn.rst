@@ -19,7 +19,7 @@ sequence_conv
 
     这里详细介绍数据填充操作的细节：
     对于一个min-batch为2的变长序列输入，分别包含3个、1个时间步（time_step），
-    假设输入input是一个[4, N]的float类型LoDTensor，为了方便，这里假设N = 2
+    假设输入input是一个[4，N]的float类型LoDTensor，为了方便，这里假设N = 2
         input.data = [[1, 1],
                       [2, 2],
                       [3, 3],
@@ -47,14 +47,14 @@ sequence_conv
                        [-0.1343,  0.5653,  0.4555],
                        [ 0.9954, -0.1234, -0.1234]]
         output.shape = [4, 3]     # 3 = num_filters
-        output.lod = [[0, 3, 4]]  # 保持不变
+        output.lod = [[0，3，4]]  # 保持不变
 
 
 
 参数
 ::::::::::::
 
-    - **input** (Variable) - 维度为 :math:`（M, K)` 的二维LoDTensor，仅支持lod_level为1。其中M是mini-batch的总时间步数，K是输入的 ``hidden_size`` 特征维度。数据类型为float32或float64。
+    - **input** (Variable) - 维度为 :math:`（M，K)` 的二维LoDTensor，仅支持lod_level为1。其中M是mini-batch的总时间步数，K是输入的 ``hidden_size`` 特征维度。数据类型为float32或float64。
     - **num_filters** (int) - 滤波器的数量。
     - **filter_size** (int) - 滤波器的高度（H）；不支持指定滤波器宽度（W），宽度固定取值为输入的 ``hidden_size`` 。默认值为3。
     - **filter_stride** (int) - 滤波器每次移动的步长。目前只支持取值为1，默认为1。

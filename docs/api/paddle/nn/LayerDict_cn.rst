@@ -13,7 +13,7 @@ LayerDict用于保存子层到有序字典中，它包含的子层将被正确�
 参数
 ::::::::::::
 
-    - **sublayers** (LayerDict|OrderedDict|list[(key, Layer)]，可选) - 键值对的可迭代对象，值的类型为 `paddle.nn.Layer` 。
+    - **sublayers** (LayerDict|OrderedDict|list[(key，Layer)]，可选) - 键值对的可迭代对象，值的类型为 `paddle.nn.Layer` 。
 
 
 代码示例
@@ -215,7 +215,7 @@ update()
 
 **参数**
 
-    - **sublayers** (LayerDict|OrderedDict|list[(key, Layer)]) - 键值对的可迭代对象，值的类型为 `paddle.nn.Layer` 。
+    - **sublayers** (LayerDict|OrderedDict|list[(key，Layer)]) - 键值对的可迭代对象，值的类型为 `paddle.nn.Layer` 。
 
 **代码示例**
 

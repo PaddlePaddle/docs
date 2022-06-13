@@ -18,7 +18,7 @@ unsqueeze
 
 返回
 :::::::::
-Tensor,扩展维度后的多维Tensor，数据类型与输入Tensor一致。
+Tensor，扩展维度后的多维Tensor，数据类型与输入Tensor一致。
 
 代码示例
 :::::::::
@@ -40,7 +40,7 @@ Tensor,扩展维度后的多维Tensor，数据类型与输入Tensor一致。
     out3 = paddle.unsqueeze(x, axis=axis) 
     print(out3.shape)  # [1, 1, 1, 5, 10]
 
-    # 在动态图模式下，输出out1, out2, out3与输入x共享数据
+    # 在动态图模式下，输出out1，out2，out3与输入x共享数据
     x[0, 0] = 10.
     print(out1[0, 0, 0]) # [10.]
     print(out2[0, 0, 0, 0]) # [10.]

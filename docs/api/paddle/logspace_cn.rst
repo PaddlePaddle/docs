@@ -5,7 +5,7 @@ logspace
 
 .. py:function:: paddle.logspace(start, stop, num, base=10.0, dtype=None, name=None)
 
-返回一个 Tensor，Tensor 的值为在区间 :math:`[base^{start}, base^{stop}]` 上按对数均匀间隔的 :math:`num` 个值，输出 Tensor 的长度为 num。
+返回一个 Tensor，Tensor 的值为在区间 :math:`[base^{start}，base^{stop}]` 上按对数均匀间隔的 :math:`num` 个值，输出 Tensor 的长度为 num。
 
 .. note::
     ``paddle.logspace`` 不进行梯度计算。

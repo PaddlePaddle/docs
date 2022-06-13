@@ -15,8 +15,8 @@ tanh 激活函数
 :::::::::
 
 
-    - **x** (Tensor) - Tanh算子的输入, 多维Tensor，数据类型为 float16，float32或float64。
-    - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **x** (Tensor) - Tanh算子的输入，多维Tensor，数据类型为 float16，float32或float64。
+    - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::

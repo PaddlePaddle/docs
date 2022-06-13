@@ -14,7 +14,7 @@ shuffle_channel
 
 ::
 
-    输入一个形为 (N, C, H, W) 的4-D tensor:
+    输入一个形为 (N，C，H，W) 的4-D tensor:
 
     input.shape = (1, 4, 2, 2)
     input.data =[[[[0.1, 0.2],

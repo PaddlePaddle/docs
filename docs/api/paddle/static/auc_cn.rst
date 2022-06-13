@@ -25,7 +25,7 @@ auc
 参数
 ::::::::::::
 
-    - **input** (Tensor|LoDTensor) - 数据类型为float32、float64。浮点二维变量，值的范围为[0,1]。每一行降序排列。该输入为网络预测值的输入。
+    - **input** (Tensor|LoDTensor) - 数据类型为float32、float64。浮点二维变量，值的范围为[0，1]。每一行降序排列。该输入为网络预测值的输入。
     - **label** (Tensor|LoDTensor) - 数据类型为int32、int64。二维整型变量，为训练数据的标签。
     - **curve** (str) - 曲线类型，可以为 ``ROC`` 或 ``PR``，默认 ``ROC``。
     - **num_thresholds** (int) - 将roc曲线离散化时使用的临界值数。默认200。
@@ -36,7 +36,7 @@ auc
 ::::::::::::
 tuple，当前计算出的AUC。数据类型是tensor，支持float32和float64。
 
-返回的元组为auc_out, batch_auc_out, [batch_stat_pos, batch_stat_neg, stat_pos, stat_neg]。
+返回的元组为auc_out，batch_auc_out，[batch_stat_pos，batch_stat_neg，stat_pos，stat_neg]。
 
 - auc_out为准确率的结果；
 - batch_auc_out为batch准确率的结果；

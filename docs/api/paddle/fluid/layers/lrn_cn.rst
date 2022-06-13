@@ -27,7 +27,7 @@ lrn
 参数
 ::::::::::::
 
-    - **input** （Variable）- 输入特征，形状为[N,C,H,W]或者[N,H,W,C]的4D-Tensor，其中N为batch大小，C为输入通道数，H为特征高度，W为特征宽度。必须包含4个维度，否则会抛出 ``ValueError`` 的异常。数据类型为float32。
+    - **input** （Variable）- 输入特征，形状为[N，C，H，W]或者[N，H，W，C]的4D-Tensor，其中N为batch大小，C为输入通道数，H为特征高度，W为特征宽度。必须包含4个维度，否则会抛出 ``ValueError`` 的异常。数据类型为float32。
     - **n** (int，可选） - 累加的通道数，默认值为5。
     - **k** （float，可选）- 位移，正数。默认值为1.0。
     - **alpha** （float，可选）- 缩放参数，正数。默认值为1e-4。

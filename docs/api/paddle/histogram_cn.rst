@@ -18,7 +18,7 @@ histogram
 
 返回
 ::::::::::::
-Tensor，数据为 int64 类型，维度为(nbins,)。
+Tensor，数据为 int64 类型，维度为(nbins，)。
 
 代码示例
 ::::::::::::

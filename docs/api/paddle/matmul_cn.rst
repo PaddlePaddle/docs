@@ -6,11 +6,11 @@ matmul
 .. py:function:: paddle.matmul(x, y, transpose_x=False, transpose_y=False, name=None)
 
 计算两个Tensor的乘积，遵循完整的广播规则，关于广播规则，请参考 :ref:`cn_user_guide_broadcasting` 。
-并且其行为与 ``numpy.matmul`` 一致。目前，输入张量的维数可以是任意数量， ``matmul``  可以用于
-实现 ``dot`` ， ``matmul`` 和 ``batchmatmul`` 。实际行为取决于输入 ``x`` 、输入 ``y`` 、 ``transpose_x`` ，
+并且其行为与 ``numpy.matmul`` 一致。目前，输入张量的维数可以是任意数量，``matmul``  可以用于
+实现 ``dot`` ，``matmul`` 和 ``batchmatmul`` 。实际行为取决于输入 ``x`` 、输入 ``y`` 、 ``transpose_x`` ，
 ``transpose_y`` 。具体如下：
 
-- 如果 ``transpose`` 为真，则对应 Tensor 的后两维会转置。如果Tensor的一维，则转置无效。假定 ``x`` 是一个 shape=[D] 的一维 Tensor，则 ``x`` 视为 [1, D]。然而， ``y`` 是一个shape=[D]的一维Tensor，则视为[D, 1]。
+- 如果 ``transpose`` 为真，则对应 Tensor 的后两维会转置。如果Tensor的一维，则转置无效。假定 ``x`` 是一个 shape=[D] 的一维 Tensor，则 ``x`` 视为 [1，D]。然而，``y`` 是一个shape=[D]的一维Tensor，则视为[D，1]。
 
 乘法行为取决于 ``x`` 和 ``y`` 的尺寸。 具体如下：
 
@@ -26,8 +26,8 @@ matmul
 
 参数
 :::::::::
-    - **x** (Tensor) : 输入变量，类型为 Tensor，数据类型为float32， float64。
-    - **y** (Tensor) : 输入变量，类型为 Tensor，数据类型为float32， float64。
+    - **x** (Tensor) : 输入变量，类型为 Tensor，数据类型为float32，float64。
+    - **y** (Tensor) : 输入变量，类型为 Tensor，数据类型为float32，float64。
     - **transpose_x** (bool，可选) : 相乘前是否转置 x，默认值为False。
     - **transpose_y** (bool，可选) : 相乘前是否转置 y，默认值为False。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。

@@ -17,7 +17,7 @@ ImageFolder
 
   - **root** (str) - 根目录路径。
   - **loader** (callable，可选) - 可以加载数据路径的一个函数，如果该值没有设定，默认使用 ``cv2.imread``  。默认值：None。
-  - **extensions** (tuple[str]，可选) - 允许的数据后缀列表，如果该值没有设定，默认使用 ``('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif', '.tiff', '.webp')`` 。默认值：None。
+  - **extensions** (tuple[str]，可选) - 允许的数据后缀列表，如果该值没有设定，默认使用 ``('.jpg'，'.jpeg'，'.png'，'.ppm'，'.bmp'，'.pgm'，'.tif'，'.tiff'，'.webp')`` 。默认值：None。
   - **transform** (callable，可选) - 图片数据的预处理，若为 ``None`` 即为不做预处理。默认值为``None``。
   - **is_valid_file** (callable，可选) - 根据每条数据的路径来判断是否合法的一个函数。默认值：None。
 

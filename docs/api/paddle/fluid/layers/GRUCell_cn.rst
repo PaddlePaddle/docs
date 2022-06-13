@@ -58,7 +58,7 @@ call(inputs, states)
   - **states** (Variable) - 状态，形状为 :math:`[batch\_size，hidden\_size]` 的tensor。 对应于公式中的 :math:`h_{t-1}` 。数据类型应为float32。 
     
 **返回**
-一个元组 :code:`(outputs, new_states)` ，其中 :code:`outputs` 和 :code:`new_states` 是同一个tensor，其形状为 :math:`[batch\_size，hidden\_size]`，数据类型和 :code:`state` 的数据类型相同，对应于公式中的 :math:`h_t`。
+一个元组 :code:`(outputs，new_states)` ，其中 :code:`outputs` 和 :code:`new_states` 是同一个tensor，其形状为 :math:`[batch\_size，hidden\_size]`，数据类型和 :code:`state` 的数据类型相同，对应于公式中的 :math:`h_t`。
 
 **返回类型**
 tuple

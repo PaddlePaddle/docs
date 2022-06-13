@@ -10,11 +10,11 @@ get_device_capability
 
 参数
 ::::::::::
-    - **device** (paddle.CUDAPlace|int, 可选) - 希望获取计算能力的设备或者设备ID。如果device为None（默认），则为当前的设备。
+    - **device** (paddle.CUDAPlace|int，可选) - 希望获取计算能力的设备或者设备ID。如果device为None（默认），则为当前的设备。
 
 返回
 ::::::::::
-tuple(int,int): 设备计算能力的主要和次要修订号。
+tuple(int，int): 设备计算能力的主要和次要修订号。
 
 
 代码示例

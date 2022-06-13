@@ -12,8 +12,8 @@ PiecewiseDecay
 
 .. code-block:: text
 
-    boundaries = [100, 200]  # epoch仅代表当前步数，无实义
-    values = [1.0, 0.5, 0.1] # 在第[0,100), [100,200), [200,+∞)分别对应value中学习率的值
+    boundaries = [100，200]  # epoch仅代表当前步数，无实义
+    values = [1.0，0.5，0.1] # 在第[0，100)，[100，200)，[200，+∞)分别对应value中学习率的值
 
     learning_rate = 1.0     if epoch < 100
     learning_rate = 0.5     if 100 <= epoch < 200

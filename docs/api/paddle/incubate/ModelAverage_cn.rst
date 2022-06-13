@@ -9,7 +9,7 @@ ModelAverage 优化器，在训练过程中累积特定连续的历史 ``Paramet
 
 在滑动窗口中累积 ``Parameters`` 的平均值，将结果将保存在临时变量中，通过调用 ``apply()`` 方法可应用于当前模型的 ``Parameters``，使用 ``restore()`` 方法恢复当前模型 ``Parameters`` 的值。
 
-计算平均值的窗口大小由 ``average_window_rate`` ， ``min_average_window`` ， ``max_average_window`` 以及当前 ``Parameters`` 更新次数(num_updates)共同决定。
+计算平均值的窗口大小由 ``average_window_rate`` ，``min_average_window`` ，``max_average_window`` 以及当前 ``Parameters`` 更新次数(num_updates)共同决定。
 
 累积次数（num_accumulates）大于特定窗口阈值 (average_window) 时，将累积的 ``Parameters`` 临时变量置为 0.0。
 
@@ -39,14 +39,14 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 **参数**
 
     - **loss** (Tensor) – 一个包含需要最小化的损失值变量的 Tensor。
-    - **startup_program** (Program，可选) - 用于初始化 ``Parameters`` 中参数的 ``Program``, 默认值为 None，此时将使用 ``default_startup_program``。
-    - **parameters** (list，可选) – 待更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的列表， 默认值为 None，此时将更新所有的 ``Parameters``。
+    - **startup_program** (Program，可选) - 用于初始化 ``Parameters`` 中参数的 ``Program``，默认值为 None，此时将使用 ``default_startup_program``。
+    - **parameters** (list，可选) – 待更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的列表，默认值为 None，此时将更新所有的 ``Parameters``。
     - **no_grad_set** (set，可选) – 不需要更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的集合，默认值为 None。
     - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为 None。
 
 **返回**
 
-tuple(optimize_ops, params_grads)，其中 optimize_ops 为参数优化 OP 列表；param_grads 为由 (param, param_grad) 组成的列表，其中 param 和 param_grad 分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
+tuple(optimize_ops，params_grads)，其中 optimize_ops 为参数优化 OP 列表；param_grads 为由 (param，param_grad) 组成的列表，其中 param 和 param_grad 分别为参数和参数的梯度。该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
 
 **代码示例**
 

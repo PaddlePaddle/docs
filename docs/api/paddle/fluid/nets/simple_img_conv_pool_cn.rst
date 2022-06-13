@@ -14,7 +14,7 @@ simple_img_conv_pool
 参数
 ::::::::::::
 
-    - **input** (Variable) - 输入图像, 4-D Tensor, 格式为[N，C，H，W]。数据类型是float32或者float64
+    - **input** (Variable) - 输入图像，4-D Tensor，格式为[N，C，H，W]。数据类型是float32或者float64
     - **num_filters** (int) - 卷积核的数目，整数。
     - **filter_size** (int | list | tuple) - conv2d卷积核大小，整数或者整型列表或者整型元组。如果 ``filter_size`` 是列表或元组，则它必须包含两个整数(filter_size_H，filter_size_W)。如果是整数，则filter_size_H = filter_size_W = filter_size。
     - **pool_size** (int | list | tuple) - pool2d池化层大小，整数或者整型列表或者整型元组。如果pool_size是列表或元组，则它必须包含两个整数(pool_size_H，pool_size_W)。如果是整数，则pool_size_H = pool_size_W = pool_size。
@@ -28,7 +28,7 @@ simple_img_conv_pool
     - **conv_groups** (int，可选) - conv2d Layer的组数，整数。根据Alex Krizhevsky的Deep CNN论文中的分组卷积：当group = 2时，前半部分滤波器仅连接到输入通道的前半部分，而后半部分滤波器仅连接到后半部分输入通道。默认值：conv_groups = 1。
     - **param_attr** (ParamAttr，可选) - conv2d的weights参数属性。如果将其设置为None或ParamAttr的一个属性，则conv2d将创建ParamAttr作为param_attr。如果未设置param_attr的初始化，则使用 :math:`Normal（0.0，std）` 初始化参数，并且 ``std`` 为 :math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}` 。默认值:None
     - **bias_attr** (ParamAttr | bool | None，可选) - conv2d的bias参数属性。如果设置为False，则不会向输出单元添加bias。如果将其设置为None或ParamAttr的一个属性，则conv2d将创建ParamAttr作为bias_attr。如果设置bias_attr为None，则将其初始化为零。默认值：None
-    - **act** (str，可选) - conv2d的激活类型，字符串，可以是'relu', 'softmax', 'sigmoid'等激活函数的类型。如果设置为None，则不附加激活。默认值：None。
+    - **act** (str，可选) - conv2d的激活类型，字符串，可以是'relu'，'softmax'，'sigmoid'等激活函数的类型。如果设置为None，则不附加激活。默认值：None。
     - **use_cudnn** (bool，可选) - 是否使用cudnn内核，仅在安装cudnn库时才有效。默认值：True。
     - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
 
@@ -46,8 +46,8 @@ simple_img_conv_pool
 .. code-block:: python
 
     import paddle.fluid as fluid
-    # 输入 img.shape = [-1, 1, 28, 28]
-    # 使用该接口带如下参数的操作之后，输出conv_pool.shape = [-1, 20, 12, 12]
+    # 输入 img.shape = [-1，1，28，28]
+    # 使用该接口带如下参数的操作之后，输出conv_pool.shape = [-1，20，12，12]
     img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
     conv_pool = fluid.nets.simple_img_conv_pool(input=img,
                                             filter_size=5,

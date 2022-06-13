@@ -58,10 +58,10 @@ call(inputs, states)
 **参数**
 
   - **input** (Variable) - 输入，形状为 :math:`[batch\_size，input\_size]` 的tensor，对应于公式中的 :math:`x_t`。数据类型应为float32。 
-  - **states** (Variable) - 状态，包含两个tensor的列表，每个tensor形状为 :math:`[batch\_size，hidden\_size]`。 对应于公式中的 :math:`h_{t-1}, c_{t-1}`。数据类型应为float32。 
+  - **states** (Variable) - 状态，包含两个tensor的列表，每个tensor形状为 :math:`[batch\_size，hidden\_size]`。 对应于公式中的 :math:`h_{t-1}，c_{t-1}`。数据类型应为float32。 
     
 **返回**
-一个元组 :code:`(outputs, new_states)`，其中 :code:`outputs` 是形状为 :math:`[batch\_size，hidden\_size]` 的tensor，对应于公式中的 :math:`h_{t}`；:code:`new_states` 是一个列表，包含形状为 :math:`[batch_size，hidden_size]` 的两个tensor变量，它们对应于公式中的 :math:`h_{t}, c_{t}`。这些tensor的数据类型都与 :code:`state` 的数据类型相同。
+一个元组 :code:`(outputs，new_states)`，其中 :code:`outputs` 是形状为 :math:`[batch\_size，hidden\_size]` 的tensor，对应于公式中的 :math:`h_{t}`；:code:`new_states` 是一个列表，包含形状为 :math:`[batch_size，hidden_size]` 的两个tensor变量，它们对应于公式中的 :math:`h_{t}，c_{t}`。这些tensor的数据类型都与 :code:`state` 的数据类型相同。
 
 **返回类型**
 tuple
@@ -69,7 +69,7 @@ tuple
 state_shape()
 '''''''''
 
-LSTMCell的 :code:`state_shape` 是一个具有两个形状的列表：:math:`[[hidden\_size], [hidden\_size]]` （batch大小为-1，自动插入到形状中）。 这两个形状分别对应于公式中的 :math:`h_{t-1}` and :math:`c_{t-1}`。
+LSTMCell的 :code:`state_shape` 是一个具有两个形状的列表：:math:`[[hidden\_size]，[hidden\_size]]` （batch大小为-1，自动插入到形状中）。 这两个形状分别对应于公式中的 :math:`h_{t-1}` and :math:`c_{t-1}`。
 
 **参数**
 无。

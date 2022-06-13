@@ -26,16 +26,16 @@ LayerNorm
 参数
 ::::::::::::
 
-    - **normalized_shape** (int 或 list 或 tuple) – 需规范化的shape，期望的输入shape为 ``[*, normalized_shape[0], normalized_shape[1], ..., normalized_shape[-1]]`` 。如果是单个整数，则此模块将在最后一个维度上规范化（此时最后一维的维度需与该参数相同）。
-    - **epsilon** (float, 可选) - 指明在计算过程中是否添加较小的值到方差中以防止除零。默认值：1e-05。
-    - **weight_attr** (ParamAttr|bool, 可选) - 指定权重参数属性的对象。如果为False固定为1，不进行学习。默认值为None, 表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr, 可选) - 指定偏置参数属性的对象。如果为False固定为0，不进行学习。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **name** (string, 可选) – LayerNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
+    - **normalized_shape** (int 或 list 或 tuple) – 需规范化的shape，期望的输入shape为 ``[*，normalized_shape[0]，normalized_shape[1]，...，normalized_shape[-1]]`` 。如果是单个整数，则此模块将在最后一个维度上规范化（此时最后一维的维度需与该参数相同）。
+    - **epsilon** (float，可选) - 指明在计算过程中是否添加较小的值到方差中以防止除零。默认值：1e-05。
+    - **weight_attr** (ParamAttr|bool，可选) - 指定权重参数属性的对象。如果为False固定为1，不进行学习。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。如果为False固定为0，不进行学习。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **name** (string，可选) – LayerNorm的名称，默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
 形状
 ::::::::::::
 
-    - input: 2-D, 3-D, 4-D或5D 的Tensor。
+    - input: 2-D，3-D，4-D或5D 的Tensor。
     - output: 和输入形状一样。
 
 代码示例

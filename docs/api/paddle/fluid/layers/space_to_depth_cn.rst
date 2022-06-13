@@ -10,10 +10,10 @@ space_to_depth
 
 该OP对成块的空间数据进行重组，输出一个输入张量的拷贝，其高度和宽度维度上的值移至通道维度。
 
-重组时，依据 ``blocksize`` 指明的数据块大小, 对形为 ``[batch, channel, height, width]`` 的输入张量进行space_to_depth（广度至深度）运算，生成形为 ``[batch, channel * blocksize * blocksize, height/blocksize, width/blocksize]``  的输出：
+重组时，依据 ``blocksize`` 指明的数据块大小，对形为 ``[batch，channel，height，width]`` 的输入张量进行space_to_depth（广度至深度）运算，生成形为 ``[batch，channel * blocksize * blocksize，height/blocksize，width/blocksize]``  的输出：
 
  - 在各位置上，不重叠的，大小为 ``blocksize * blocksize`` 的块重组入深度depth
- - 输入各个块中的Y, X坐标变为输出张量通道索引的高序部位
+ - 输入各个块中的Y，X坐标变为输出张量通道索引的高序部位
  - 输入 ``channel`` 需可以被 ``blocksize`` 的平方整除
  - 输入的高度和宽度需可以被 ``blocksize`` 整除
 
@@ -23,14 +23,14 @@ space_to_depth
 
 ::
 
-    给定形状为[1, 1, 4, 4]的输入 x：
+    给定形状为[1，1，4，4]的输入 x：
       x.data = [[[[1,   2,  5,  6],
                   [3,   4,  7,  8],
                   [9,  10, 13, 14],
                   [11, 12, 15, 16]]]]
     设置 blocksize = 2
 
-    得到形状为[1, 4, 2, 2]的输出 out：
+    得到形状为[1，4，2，2]的输出 out：
       out.data = [[[[1,   2],  [3,  4]],
                    [[5,   6],  [7,  8]],
                    [[9,  10], [11, 12]],
@@ -42,13 +42,13 @@ space_to_depth
 参数
 ::::::::::::
 
-  - **x** (Variable) – 输入，形状为 ``[batch, channel, height, width]`` 的4维Tensor或LoD Tensor。数据类型支持int32，int64，float32或float64。
+  - **x** (Variable) – 输入，形状为 ``[batch，channel，height，width]`` 的4维Tensor或LoD Tensor。数据类型支持int32，int64，float32或float64。
   - **blocksize** (int) – 在每个特征图上选择元素时采用的块大小，应该 >= 2
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回
 ::::::::::::
-输出，形状为 ``[batch, channel * blocksize * blocksize, height/blocksize, width/blocksize]``  的4维Tensor或LoD Tensor。数据类型与输入 ``x`` 一致。
+输出，形状为 ``[batch，channel * blocksize * blocksize，height/blocksize，width/blocksize]``  的4维Tensor或LoD Tensor。数据类型与输入 ``x`` 一致。
 
 返回类型
 ::::::::::::

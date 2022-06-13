@@ -24,7 +24,7 @@ sequence_unpad
                   [ 6.0,  7.0,  8.0,  9.0, 10.0],
                   [11.0, 12.0, 13.0, 14.0, 15.0]],
 
-    其中包含 3 个被填充到长度为5的序列，实际长度由输入变量 ``length`` 指明，其中，x的维度为[3,4]，length维度为[3]，length的第0维与x的第0维一致：
+    其中包含 3 个被填充到长度为5的序列，实际长度由输入变量 ``length`` 指明，其中，x的维度为[3，4]，length维度为[3]，length的第0维与x的第0维一致：
 
         length.data = [2, 3, 4],
 
@@ -37,7 +37,7 @@ sequence_unpad
 
 参数
 :::::::::
-  - **x** (Tensor) – 包含填充元素的Tensor，其维度大小不能小于2，支持的数据类型：float32, float64,int32, int64。
+  - **x** (Tensor) – 包含填充元素的Tensor，其维度大小不能小于2，支持的数据类型：float32，float64，int32，int64。
   - **length** (Tensor) – 存储每个样本实际长度信息的1D Tesnor，该Tensor维度的第0维必须与x维度的第0维一致。支持的数据类型：int64。
   - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 

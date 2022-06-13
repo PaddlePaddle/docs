@@ -370,9 +370,9 @@ backward(grad_tensor=None, retain_graph=False)
 从当前Tensor开始计算反向的神经网络，传导并计算计算图中Tensor的梯度。
 
 参数：
-    - **grad_tensor** (Tensor, optional) - 当前Tensor的初始梯度值。如果 ``grad_tensor`` 是None， 当前Tensor 的初始梯度值将会是值全为1.0的Tensor；如果 ``grad_tensor`` 不是None，必须和当前Tensor有相同的长度。默认值：None。
+    - **grad_tensor** (Tensor，optional) - 当前Tensor的初始梯度值。如果 ``grad_tensor`` 是None，当前Tensor 的初始梯度值将会是值全为1.0的Tensor；如果 ``grad_tensor`` 不是None，必须和当前Tensor有相同的长度。默认值：None。
 
-    - **retain_graph** (bool, optional) - 如果为False，反向计算图将被释放。如果在backward()之后继续添加OP，
+    - **retain_graph** (bool，optional) - 如果为False，反向计算图将被释放。如果在backward()之后继续添加OP，
       需要设置为True，此时之前的反向计算图会保留。将其设置为False会更加节省内存。默认值：False。
 
 返回：无
@@ -665,8 +665,8 @@ cuda(device_id=None, blocking=False)
 如果当前Tensor已经在GPU上，且device_id为None，则不会发生任何拷贝。
 
 参数：
-    - **device_id** (int, optional) - 目标GPU的设备Id，默认为None，此时为当前Tensor的设备Id，如果当前Tensor不在GPU上，则为0。
-    - **blocking** (bool, optional) - 如果为False并且当前Tensor处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为False。
+    - **device_id** (int，optional) - 目标GPU的设备Id，默认为None，此时为当前Tensor的设备Id，如果当前Tensor不在GPU上，则为0。
+    - **blocking** (bool，optional) - 如果为False并且当前Tensor处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为False。
 
 返回：拷贝到GPU上的Tensor
 
@@ -890,7 +890,7 @@ exponential_(lam=1.0, name=None)
 参数：
     - **x** (Tensor) - 输入Tensor，数据类型为 float32/float64。
     - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
-    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
 
 
 返回：原Tensor
@@ -923,7 +923,7 @@ fill_(x, value, name=None)
 参数：
     - **x** (Tensor) - 需要修改的原始Tensor。
     - **value** (float) - 以输入value值修改原始Tensor元素。
-    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
 
 返回：修改原始Tensor x的所有元素为value以后的新的Tensor。
 
@@ -942,7 +942,7 @@ zero_(x, name=None)
 
 参数：
     - **x** (Tensor) - 需要修改的原始Tensor。
-    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
 
 返回：修改原始Tensor x的所有元素为 0 以后的新的Tensor。
 
@@ -964,9 +964,9 @@ fill_diagonal_(x, value, offset=0, wrap=False, name=None)
 参数：
     - **x** (Tensor) - 需要修改对角线元素值的原始Tensor。
     - **value** (float) - 以输入value值修改原始Tensor对角线元素。
-    - **offset** (int, optional) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为0。
-    - **wrap** (bool, optional) - 对于2维Tensor，height>width时是否循环填充，默认为False。
-    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+    - **offset** (int，optional) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为0。
+    - **wrap** (bool，optional) - 对于2维Tensor，height>width时是否循环填充，默认为False。
+    - **name** (str，optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
 
 返回：修改原始Tensor x的对角线元素为value以后的新的Tensor。
 
@@ -986,15 +986,15 @@ fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 :::::::::
 将输入Tensor y填充到Tensor x的以dim1、dim2所指定对角线维度作为最后一个维度的局部子Tensor中，输入Tensor x其余维度作为该局部子Tensor的shape中的前几个维度。
 其中输入Tensor y的维度要求是：最后一个维度与dim1、dim2指定的对角线维度相同，其余维度与输入Tensor x其余维度相同，且先后顺序一致。
-例如，有输入Tensor x，x.shape = (2,3,4,5)时, 若dim1=2，dim2=3，则y.shape=(2,3,4); 若dim1=1，dim2=2，则y.shape=(2,5,3); 
+例如，有输入Tensor x，x.shape = (2，3，4，5)时，若dim1=2，dim2=3，则y.shape=(2，3，4); 若dim1=1，dim2=2，则y.shape=(2，5，3); 
 
 参数：
     - **x** (Tensor) - 需要填充局部对角线区域的原始Tensor。
     - **y** (Tensor) - 需要被填充到原始Tensor x对角线区域的输入Tensor。
-    - **offset** (int, optional) - 选取局部区域对角线位置相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为0。
-    - **dim1** (int, optional) - 指定对角线所参考第一个维度，默认为0。
-    - **dim2** (int, optional) - 指定对角线所参考第二个维度，默认为1。
-    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+    - **offset** (int，optional) - 选取局部区域对角线位置相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为0。
+    - **dim1** (int，optional) - 指定对角线所参考第一个维度，默认为0。
+    - **dim2** (int，optional) - 指定对角线所参考第二个维度，默认为1。
+    - **name** (str，optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
 
 返回：将y的值填充到输入Tensor x对角线区域以后所组合成的新Tensor。
 
@@ -2227,17 +2227,17 @@ unbind(axis=0)
 uniform_(min=-1.0, max=1.0, seed=0, name=None)
 :::::::::
 
-Inplace版本的 :ref:`cn_api_tensor_uniform`, 返回一个从均匀分布采样的随机数填充的Tensor。输出Tensor将被置于输入x的位置。
+Inplace版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采样的随机数填充的Tensor。输出Tensor将被置于输入x的位置。
 
 参数：
     - **x** (Tensor) - 待被随机数填充的输入Tensor。
-    - **min** (float|int, optional) - 生成随机数的下界, min包含在该范围内。默认为-1.0。
-    - **max** (float|int, optional) - 生成随机数的上界，max不包含在该范围内。默认为1.0。
-    - **seed** (int, optional) - 用于生成随机数的随机种子。如果seed为0，将使用全局默认生成器的种子（可通过paddle.seed设置）。
+    - **min** (float|int，optional) - 生成随机数的下界，min包含在该范围内。默认为-1.0。
+    - **max** (float|int，optional) - 生成随机数的上界，max不包含在该范围内。默认为1.0。
+    - **seed** (int，optional) - 用于生成随机数的随机种子。如果seed为0，将使用全局默认生成器的种子（可通过paddle.seed设置）。
                                  注意如果seed不为0，该操作每次将生成同一个随机值。默认为0。
-    - **name** (str, optional) - 默认值为None。通常用户不需要设置这个属性。更多信息请参见 :ref:`api_guide_Name` 。
+    - **name** (str，optional) - 默认值为None。通常用户不需要设置这个属性。更多信息请参见 :ref:`api_guide_Name` 。
 
-返回：由服从范围在[min, max)的均匀分布的随机数所填充的输入Tensor x。
+返回：由服从范围在[min，max)的均匀分布的随机数所填充的输入Tensor x。
 
 返回类型：Tensor
 
@@ -2370,7 +2370,7 @@ is_integer()
 take_along_axis(arr, index, axis)
 :::::::::
 
-基于输入索引矩阵, 沿着指定axis从arr矩阵里选取1d切片。索引矩阵必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
+基于输入索引矩阵，沿着指定axis从arr矩阵里选取1d切片。索引矩阵必须和arr矩阵有相同的维度，需要能够broadcast与arr矩阵对齐。
 
 返回：计算后的Tensor
 
@@ -2381,7 +2381,7 @@ take_along_axis(arr, index, axis)
 put_along_axis(arr, index, value, axis, reduce="assign")
 :::::::::
 
-基于输入index矩阵, 将输入value沿着指定axis放置入arr矩阵。索引矩阵和value必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
+基于输入index矩阵，将输入value沿着指定axis放置入arr矩阵。索引矩阵和value必须和arr矩阵有相同的维度，需要能够broadcast与arr矩阵对齐。
 
 返回：计算后的Tensor
 

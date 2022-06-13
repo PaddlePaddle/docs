@@ -17,7 +17,7 @@ diag
 
 返回
 ::::::::::::
-存储着方阵的Tensor，对角线值是输入Tensor diagonal的值， 数据shape为 :math:`[N, N]` 二维Tensor。
+存储着方阵的Tensor，对角线值是输入Tensor diagonal的值，数据shape为 :math:`[N，N]` 二维Tensor。
 
 返回类型
 ::::::::::::

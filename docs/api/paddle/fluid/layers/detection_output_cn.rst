@@ -19,9 +19,9 @@ detection_output
 参数
 ::::::::::::
 
-    - **loc** (Variable) - 3-D Tensor，数据类型为float32或float64，表示回归位置偏移。维度为[N,M,4]，M是输入的预测bounding box的个数，N是batch size，每个bounding box有四个坐标值，格式为[xmin,ymin,xmax,ymax]，[xmin,ymin]是左上角坐标，[xmax,ymax]是右下角坐标。
-    - **scores** (Variable) - 3-D Tensor，数据类型为float32或float64，表示未归一化的置信度。维度为[N,M,C]，N和M的含义同上，C是类别数。
-    - **prior_box** (Variable) - 2-D Tensor，表示先验框。维度为[M,4]，M是提取的先验框个数，格式为[xmin,ymin,xmax,ymax]。
+    - **loc** (Variable) - 3-D Tensor，数据类型为float32或float64，表示回归位置偏移。维度为[N，M，4]，M是输入的预测bounding box的个数，N是batch size，每个bounding box有四个坐标值，格式为[xmin，ymin，xmax，ymax]，[xmin，ymin]是左上角坐标，[xmax，ymax]是右下角坐标。
+    - **scores** (Variable) - 3-D Tensor，数据类型为float32或float64，表示未归一化的置信度。维度为[N，M，C]，N和M的含义同上，C是类别数。
+    - **prior_box** (Variable) - 2-D Tensor，表示先验框。维度为[M，4]，M是提取的先验框个数，格式为[xmin，ymin，xmax，ymax]。
     - **prior_box_var** (Variable) - 2-D Tensor，表示先验框的方差，和 ``prior_box`` 维度相同。
     - **background_label** (int) - 背景标签类别值，背景标签类别上不做NMS。若设为-1，将考虑所有类别。默认值是0。
     - **nms_threshold** (float) - 用于NMS的阈值（threshold），默认值是0.3。
@@ -33,7 +33,7 @@ detection_output
 返回
 ::::::::::::
 
-  输出是2-D LoDTensor，形状为[No,6]。每行有6个值：[label,confidence,xmin,ymin,xmax,ymax]。No是该mini-batch总的检测框数。LoD的层级数为1，如果采用偏移的LoD表示，则第i个图像有 ``LoD[i+1] - LoD[i]`` 个检测结果，如果等于0，则表示无检测结果。
+  输出是2-D LoDTensor，形状为[No，6]。每行有6个值：[label，confidence，xmin，ymin，xmax，ymax]。No是该mini-batch总的检测框数。LoD的层级数为1，如果采用偏移的LoD表示，则第i个图像有 ``LoD[i+1] - LoD[i]`` 个检测结果，如果等于0，则表示无检测结果。
 
 返回类型
 ::::::::::::

@@ -40,7 +40,7 @@ one_hot
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 维度为 :math:`[N_1, ..., N_n]` 的多维Tensor，维度至少1维。数据类型为int32或int64。
+    - **x** (Tensor) - 维度为 :math:`[N_1，...，N_n]` 的多维Tensor，维度至少1维。数据类型为int32或int64。
     - **num_classes** (int) - 用于定义一个one-hot向量的长度。若输入为词id，则 ``num_classes`` 通常取值为词典大小。
     - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 

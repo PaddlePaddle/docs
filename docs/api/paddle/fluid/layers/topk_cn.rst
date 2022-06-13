@@ -40,7 +40,7 @@ topk
 
     - **input** (Variable) - 输入的Tensor，支持的数据类型: float32，float64。
     - **k** (int|Variable) - 指定在输入Tensor最后一维中寻找最大前多少项。
-    - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回
 ::::::::::::
@@ -70,7 +70,7 @@ topk
 
     # k=Variable
     input2 = layers.data(name="input2", shape=[13, 11], dtype='float32')
-    vk = layers.data(name="vk", shape=[1], dtype='int32') # 把k值保存在vk.data[0]中
+    vk = layers.data(name="vk"，shape=[1]，dtype='int32') # 把k值保存在vk.data[0]中
     vk_values, vk_indices = layers.topk(input2, k=vk) #vk_values.shape=[13, k]，vk_indices.shape=[13, k]
 
 

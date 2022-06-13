@@ -5,7 +5,7 @@ SequenceSampler
 
 .. py:class:: paddle.io.SequenceSampler(data_source=None)
 
-顺序迭代 ``data_source`` 返回样本下标，即一次返回 ``0, 1, 2, ..., len(data_source) - 1``
+顺序迭代 ``data_source`` 返回样本下标，即一次返回 ``0，1，2，...，len(data_source) - 1``
 
 参数
 ::::::::::::

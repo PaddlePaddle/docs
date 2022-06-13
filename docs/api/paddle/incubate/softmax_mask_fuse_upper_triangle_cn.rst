@@ -5,7 +5,7 @@ softmax_mask_fuse_upper_triangle
 
 .. py:function:: paddle.incubate.softmax_mask_fuse_upper_triangle(x)
 
-该op是对输入 ``x`` 进行被mask的softmax操作，该op总是mask住x的上三角矩阵部分（不包含对角线部分）。该op主要针对加速Transformer架构而设计。将 ``tmp = x + mask, rst = softmax(tmp)`` 两个操作合为一个操作。计算公式为：
+该op是对输入 ``x`` 进行被mask的softmax操作，该op总是mask住x的上三角矩阵部分（不包含对角线部分）。该op主要针对加速Transformer架构而设计。将 ``tmp = x + mask，rst = softmax(tmp)`` 两个操作合为一个操作。计算公式为：
 
 .. math::
     out = softmax(LowerTriangular(x))

@@ -39,10 +39,10 @@ save_dygraph
         emb = fluid.dygraph.Embedding([10, 10])
 
         state_dict = emb.state_dict()
-        fluid.save_dygraph( state_dict, "paddle_dy") # 会保存为 paddle_dy.pdparams
+        fluid.save_dygraph( state_dict，"paddle_dy") # 会保存为 paddle_dy.pdparams
 
         adam = fluid.optimizer.Adam( learning_rate = fluid.layers.noam_decay( 100, 10000),
                                      parameter_list = emb.parameters() )
 
         state_dict = adam.state_dict()
-        fluid.save_dygraph( state_dict, "paddle_dy") # 会保存为 paddle_dy.pdopt
+        fluid.save_dygraph( state_dict，"paddle_dy") # 会保存为 paddle_dy.pdopt

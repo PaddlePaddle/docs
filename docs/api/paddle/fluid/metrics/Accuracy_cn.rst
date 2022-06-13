@@ -52,7 +52,7 @@ Accuracy
 update(value, weight)
 '''''''''
 
-该函数使用输入的(value, weight)来累计更新Accuracy对象的对应状态，更新方式如下：
+该函数使用输入的(value，weight)来累计更新Accuracy对象的对应状态，更新方式如下：
 
     .. math::
                    \\ \begin{array}{l}{\text { self. value }+=\text { value } * \text { weight }} \\ {\text { self. weight }+=\text { weight }}\end{array} \\

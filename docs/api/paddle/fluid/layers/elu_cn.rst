@@ -19,8 +19,8 @@ ELU激活层（ELU Activation Operator）
 ::::::::::::
 
  - **x** (Variable) - 该OP的输入为多维Tensor。数据类型为float32或float64。
- - **alpha** (float, 可选) - ELU的alpha值，默认值为1.0。
- - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+ - **alpha** (float，可选) - ELU的alpha值，默认值为1.0。
+ - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

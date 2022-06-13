@@ -15,12 +15,12 @@ outer
 
     - **x** (Tensor) - 一个N维Tensor或者标量Tensor。
     - **y** (Tensor) - 一个N维Tensor或者标量Tensor。
-    - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回
 :::::::::
 
-Tensor, x、y的外积结果，Tensor shape为 [x.size, y.size]。
+Tensor，x、y的外积结果，Tensor shape为 [x.size，y.size]。
 
 代码示例：
 ::::::::::

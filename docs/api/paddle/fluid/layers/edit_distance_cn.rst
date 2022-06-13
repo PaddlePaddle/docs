@@ -15,7 +15,7 @@ edit_distance
 
 “kitten”->“sitten”->“sittn”->“sitting”
 
-输入为LoDTensor/Tensor,包含假设字符串（带有表示批尺寸的总数）和分离信息（具体为LoD信息或者 ``input_length`` ）。并且批尺寸大小的参照字符串和输入LoDTensor的顺序保持一致。
+输入为LoDTensor/Tensor，包含假设字符串（带有表示批尺寸的总数）和分离信息（具体为LoD信息或者 ``input_length`` ）。并且批尺寸大小的参照字符串和输入LoDTensor的顺序保持一致。
 
 输出包含批尺寸大小的结果，代表一对字符串中每个字符串的编辑距离。如果Attr(normalized)为真，编辑距离则处以参照字符串的长度。
 
@@ -30,7 +30,7 @@ edit_distance
 
 返回
 ::::::::::::
-包含有形为[batch_size,1]的编辑距离和形为[ ]的序列数元组。
+包含有形为[batch_size，1]的编辑距离和形为[ ]的序列数元组。
 
 返回类型
 ::::::::::::

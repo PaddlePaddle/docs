@@ -127,7 +127,7 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
 返回fetch_list中指定的变量值。
 
 .. note::
-     1. 如果是多卡训练，并且feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
+     1. 如果是多卡训练，并且feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0，1，2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1，2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
      2. 如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
 
 
@@ -193,7 +193,7 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
                                            feed={'X': x},
                                            fetch_list=[prediction.name],
                                            return_merged=False) 
-            # 如果用户使用两个GPU卡来运行此python代码示例，输出结果将为(2, 3, class_dim)。
+            # 如果用户使用两个GPU卡来运行此python代码示例，输出结果将为(2，3，class_dim)。
             # 输出结果中第一个维度值代表所使用的GPU卡数，而第二个维度值代表batch_size和所使用
             # 的GPU卡数之商。
             print("The unmerged prediction shape: {}".format(
@@ -206,7 +206,7 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
                                          fetch_list=[prediction.name],
                                          return_merged=True)
 
-            # 如果用户使用两个GPU卡来运行此python代码示例，输出结果将为(6, class_dim)。输出结果
+            # 如果用户使用两个GPU卡来运行此python代码示例，输出结果将为(6，class_dim)。输出结果
             # 中第一个维度值代表batch_size值。
             print("The merged prediction shape: {}".format(
                 np.array(merged_prediction).shape))
@@ -235,10 +235,10 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
 
 **参数**
   
-  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)。
+  - **program** (Program|CompiledProgram) – 需要执行的program，如果没有给定那么默认使用default_main_program (未编译的)。
   - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None。
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域。
-  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num, thread)，如果thread > 0，默认为0。
+  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num，thread)，如果thread > 0，默认为0。
   - **debug** (bool) – 是否开启debug模式，默认为False。
   - **fetch_list** (Tensor List) – 返回变量列表，每个变量都会在预测过程中被打印出来，默认为None。
   - **fetch_info** (String List) – 每个变量的打印信息，默认为None。
@@ -280,10 +280,10 @@ train_from_dataset将销毁每次运行在executor中创建的所有资源。
 
 **参数**
   
-  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)。
+  - **program** (Program|CompiledProgram) – 需要执行的program，如果没有给定那么默认使用default_main_program (未编译的)。
   - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None。
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域。
-  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num, thread)，如果thread > 0，默认为0。
+  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num，thread)，如果thread > 0，默认为0。
   - **debug** (bool) – 是否开启debug模式，默认为False。
   - **fetch_list** (Tensor List) – 返回变量列表，每个变量都会在训练过程中被打印出来，默认为None。
   - **fetch_info** (String List) – 每个变量的打印信息，默认为None。

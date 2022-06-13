@@ -52,7 +52,7 @@ reader
     reader.decorate_paddle_reader(
         paddle.reader.shuffle(paddle.batch(mnist.train(), batch_size=5), buf_size=500))
     img, label = fluid.layers.read_file(reader)
-    loss = network(img, label) # 用户构建自定义网络并返回损失函数
+    loss = network(img，label) # 用户构建自定义网络并返回损失函数
 
     place = fluid.CUDAPlace(0) if USE_CUDA else fluid.CPUPlace()
     exe = fluid.Executor(place)

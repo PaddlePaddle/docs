@@ -134,7 +134,7 @@ get_lr()
 _state_keys()
 '''''''''
 
-该函数通过定义字典 ``self.keys`` 来设置 ``optimizer.state_dict()`` 时的存储对象，默认情况下：``self.keys=['last_epoch', 'last_lr']`` ，其中 ``last_epoch``
+该函数通过定义字典 ``self.keys`` 来设置 ``optimizer.state_dict()`` 时的存储对象，默认情况下：``self.keys=['last_epoch'，'last_lr']`` ，其中 ``last_epoch``
 是当前的epoch数，``last_lr`` 是当前的学习率值。
 
 如果需要改变默认的行为，用户需要重写该方法，来重新定义字典 ``self.keys`` ，一般无需重新设置。

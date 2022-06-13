@@ -22,8 +22,8 @@ Identity
 形状
 :::::::::
 
-- 输入：形状为 :math:`[batch\_size, n1, n2, ...]` 的多维Tensor。
-- 输出：形状为 :math:`[batch\_size, n1, n2, ...]` 的多维Tensor。
+- 输入：形状为 :math:`[batch\_size，n1，n2，...]` 的多维Tensor。
+- 输出：形状为 :math:`[batch\_size，n1，n2，...]` 的多维Tensor。
 
 代码示例
 :::::::::

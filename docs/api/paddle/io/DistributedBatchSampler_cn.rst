@@ -16,8 +16,8 @@ DistributedBatchSampler
 
     - **dataset** (paddle.io.Dataset) - 此参数必须是 ``paddle.io.Dataset`` 的一个子类实例或实现了 ``__len__`` 的Python对象，用于生成样本下标。默认值为None。
     - **batch_size** (int) - 每mini-batch中包含的样本数。
-    - **num_replicas** (int, optional) - 分布式训练时的进程个数。如果是None，会依据 ``paddle.distributed.ParallenEnv`` 获取值。默认是None。
-    - **rank** (int, optional) - num_replicas个进程中的进程序号。如果是None，会依据 ``paddle.distributed.ParallenEnv`` 获取值。默认是None。
+    - **num_replicas** (int，optional) - 分布式训练时的进程个数。如果是None，会依据 ``paddle.distributed.ParallenEnv`` 获取值。默认是None。
+    - **rank** (int，optional) - num_replicas个进程中的进程序号。如果是None，会依据 ``paddle.distributed.ParallenEnv`` 获取值。默认是None。
     - **shuffle** (bool) - 是否需要在生成样本下标时打乱顺序。默认值为False。
     - **drop_last** (bool) - 是否需要丢弃最后无法凑整一个mini-batch的样本。默认值为False。
 

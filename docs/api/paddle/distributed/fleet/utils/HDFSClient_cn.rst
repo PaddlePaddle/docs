@@ -40,7 +40,7 @@ ls_dir(fs_path)
 
 **返回**
 
-    - Tuple， 一个包含所有子目录和文件名的2-Tuple，格式形如: ([subdirname1, subdirname1, ...], [filename1, filename2, ...])。
+    - Tuple，一个包含所有子目录和文件名的2-Tuple，格式形如: ([subdirname1，subdirname1，...]，[filename1，filename2，...])。
 
 **代码示例**
 

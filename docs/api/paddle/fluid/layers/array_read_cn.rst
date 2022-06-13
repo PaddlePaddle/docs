@@ -8,12 +8,12 @@ array_read
 
 
 
-该OP用于读取输入数组 :ref:`cn_api_fluid_LoDTensorArray` 中指定位置的数据, ``array`` 为输入的数组， ``i`` 为指定的读取位置。常与 :ref:`cn_api_fluid_layers_array_write` OP配合使用进行LoDTensorArray的读写。
+该OP用于读取输入数组 :ref:`cn_api_fluid_LoDTensorArray` 中指定位置的数据，``array`` 为输入的数组，``i`` 为指定的读取位置。常与 :ref:`cn_api_fluid_layers_array_write` OP配合使用进行LoDTensorArray的读写。
 
 例1:
 ::
     输入：
-        包含4个Tensor的LoDTensorArray，前3个shape为[1]，最后一个shape为[1,2]:
+        包含4个Tensor的LoDTensorArray，前3个shape为[1]，最后一个shape为[1，2]:
             input = ([0.6], [0.1], [0.3], [0.4, 0.2])
         并且:
             i = [3]
@@ -46,7 +46,7 @@ Variable
     arr = fluid.layers.create_array(dtype='float32')
     tmp = fluid.layers.fill_constant(shape=[3, 2], dtype='int64', value=5)
     i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
-    #tmp是shape为[3,2]的Tensor，将其写入空数组arr的下标10的位置，则arr的长度变为11
+    #tmp是shape为[3，2]的Tensor，将其写入空数组arr的下标10的位置，则arr的长度变为11
     arr = fluid.layers.array_write(tmp, i, array=arr)
     #读取arr的下标10的位置的数据
     item = fluid.layers.array_read(arr, i)
@@ -67,7 +67,7 @@ Variable
 	    dtype: l
 	    data: 5,5,5,5,5,5,
 
-    #输出了shape为[3,2]的Tensor
+    #输出了shape为[3，2]的Tensor
     #dtype为对应C++数据类型，在不同环境下可能显示值不同，但本质一致
     #例如：如果Tensor中数据类型是int64，则对应的C++数据类型为int64_t，所以dtype值为typeid(int64_t).name()，
     #      其在MacOS下为'x'，linux下为'l'，Windows下为'__int64'，都表示64位整型变量

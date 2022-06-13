@@ -18,7 +18,7 @@ bpr_loss
   Y[i] = 1/(N[i] - 1) * \sum_j{\log(\sigma(X[i, Label[i]]-X[i, j]))}
 
 其中：
-    - :math:`X` ：输入值，一个形为[T x D]的2-D Tensor, 此处为logit值。
+    - :math:`X` ：输入值，一个形为[T x D]的2-D Tensor，此处为logit值。
     - :math:`N[i]` ： 在时间步i的正例和负例的总和。
     - :math:`Label[i]` ：在时间步i的正例下标。
     - :math:`\sigma` ：激活函数。
@@ -30,7 +30,7 @@ bpr_loss
 参数
 ::::::::::::
 
-  - **input** (Variable) - 形为[T x D] , Tensor类型时T为batch大小，LoDTensor类型时T为mini-batch的总时间步。D 为正例加负例的个数。该输入为logits而非概率。数据类型是float32或float64。
+  - **input** (Variable) - 形为[T x D] ，Tensor类型时T为batch大小，LoDTensor类型时T为mini-batch的总时间步。D 为正例加负例的个数。该输入为logits而非概率。数据类型是float32或float64。
   - **label** (Variable) - 形为[T x 1]，表示input中正例的下标，数据类型为int64。。
   - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
 
@@ -56,6 +56,6 @@ Variable
     # predict = [0.1, 0.2, 0.3, 0.4]
     predict = fluid.layers.data(
               name="predict", shape=[neg_size + 1], dtype="float32")
-    # bpr_Loss : label [0] 表示predict中下标0表示正例，即为0.1, 负例有3个为0.2,0.3,0.4
+    # bpr_Loss : label [0] 表示predict中下标0表示正例，即为0.1，负例有3个为0.2，0.3，0.4
     cost = fluid.layers.bpr_loss(input=predict, label=label)
 

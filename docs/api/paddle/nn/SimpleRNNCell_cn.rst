@@ -28,35 +28,35 @@ SimpleRNNCell
 
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
-    - **activation** (str, 可选) - 简单循环神经网络单元的激活函数。可以是tanh或relu。默认为tanh。
+    - **activation** (str，可选) - 简单循环神经网络单元的激活函数。可以是tanh或relu。默认为tanh。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih的参数。默认为None。
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh的参数。默认为None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih的参数。默认为None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
-    - **name** (str, 可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
+    - **name** (str，可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
 
 变量
 ::::::::::::
 
-    - **weight_ih** (Parameter) - input到hidden的变换矩阵的权重。形状为（hidden_size, input_size）。对应公式中的 :math:`W_{ih}`。
-    - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（hidden_size, hidden_size）。对应公式中的 :math:`W_{hh}`。
-    - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（hidden_size, ）。对应公式中的 :math:`b_{ih}`。
-    - **bias_hh** (Parameter) - hidden到hidden的变换矩阵的偏置。形状为（hidden_size, ）。对应公式中的 :math:`b_{hh}`。
+    - **weight_ih** (Parameter) - input到hidden的变换矩阵的权重。形状为（hidden_size，input_size）。对应公式中的 :math:`W_{ih}`。
+    - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（hidden_size，hidden_size）。对应公式中的 :math:`W_{hh}`。
+    - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（hidden_size，）。对应公式中的 :math:`b_{ih}`。
+    - **bias_hh** (Parameter) - hidden到hidden的变换矩阵的偏置。形状为（hidden_size，）。对应公式中的 :math:`b_{hh}`。
     
 输入
 ::::::::::::
 
-    - **inputs** (Tensor) - 输入。形状为[batch_size, input_size]，对应公式中的 :math:`x_t`。
-    - **states** (Tensor，可选) - 上一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t-1}`。当state为None的时候，初始状态为全0矩阵。默认为None。
+    - **inputs** (Tensor) - 输入。形状为[batch_size，input_size]，对应公式中的 :math:`x_t`。
+    - **states** (Tensor，可选) - 上一轮的隐藏状态。形状为[batch_size，hidden_size]，对应公式中的 :math:`h_{t-1}`。当state为None的时候，初始状态为全0矩阵。默认为None。
 
 输出
 ::::::::::::
 
-    - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
-    - **new_states** (Tensor) - 新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
+    - **outputs** (Tensor) - 输出。形状为[batch_size，hidden_size]，对应公式中的 :math:`h_{t}`。
+    - **new_states** (Tensor) - 新一轮的隐藏状态。形状为[batch_size，hidden_size]，对应公式中的 :math:`h_{t}`。
     
 .. Note::
-    所有的变换矩阵的权重和偏置都默认初始化为Uniform(-std, std)，其中std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
+    所有的变换矩阵的权重和偏置都默认初始化为Uniform(-std，std)，其中std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
 
 
 代码示例

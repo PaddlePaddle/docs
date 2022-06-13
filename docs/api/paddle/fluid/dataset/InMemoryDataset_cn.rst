@@ -257,7 +257,7 @@ set_batch_size(batch_size)
 set_fea_eval(record_candidate_size, fea_eval=True)
 '''''''''
 
-设置特征打乱特征验证模式，来修正特征level的重要性， 特征打乱需要 ``fea_eval`` 被设置为True。
+设置特征打乱特征验证模式，来修正特征level的重要性，特征打乱需要 ``fea_eval`` 被设置为True。
 
 **参数**
 

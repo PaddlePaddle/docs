@@ -32,4 +32,4 @@ broadcast_tensors
     x3 = paddle.rand([1, 1, 3, 1]).astype('float32')
 
     out1, out2, out3 = paddle.broadcast_tensors(input=[x1, x2, x3])
-    # out1, out2, out3: 分别对应x1, x2, x3 Broadcast的结果，其形状均为 [1,2,3,4]
+    # out1，out2，out3: 分别对应x1，x2，x3 Broadcast的结果，其形状均为 [1，2，3，4]

@@ -12,7 +12,7 @@ Transform
 :ref:`cn_api_distribution_Distribution` 的随机采样结果进行变换。
 
 假设 :math:`X` 为 ``K`` 元随机变量，概率密度为 :math:`p_X(x)` . 映射 
-:math:`f: x \rightarrow y` 为可微且可逆映射, 则 :math:`Y` 的概率密度为
+:math:`f: x \rightarrow y` 为可微且可逆映射，则 :math:`Y` 的概率密度为
 
 .. math::
 
@@ -42,7 +42,7 @@ Transform
        表示逆向变换 :math:`y \rightarrow f^{-1}(y)` .
     #. 雅可比行列式绝对值的对数( ``log_det_jacobian`` ):
        又可以细分为正变换雅可比行列式绝对值的对数 ``forward_log_det_jacobian`` 和逆变换雅
-       可比行列式绝对值的对数 ``inverse_log_det_jacobian`` , 两者互为负数关系，只实现一种
+       可比行列式绝对值的对数 ``inverse_log_det_jacobian`` ，两者互为负数关系，只实现一种
        即可。
 
 子类通常通过重写如下方法实现变换功能：
@@ -52,7 +52,7 @@ Transform
     * ``_forward_log_det_jacobian``
     * ``_inverse_log_det_jacobian`` (可选)
 
-通常情况下， ``_forward_log_det_jacobian`` 与 ``_inverse_log_det_jacobian`` 实现其中
+通常情况下，``_forward_log_det_jacobian`` 与 ``_inverse_log_det_jacobian`` 实现其中
 一个即可。仅在某些特定情况下，为了追求更高性能以及数值稳定性，需要实现两者。
 
 如果子类变换改变了输入数据形状，还需要重写：

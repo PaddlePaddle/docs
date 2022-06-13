@@ -35,9 +35,9 @@ LU和pivot可以通过调用paddle.linalg.lu_unpack展开获得L、U、P矩阵�
 返回
 ::::::::::::
 
-    - Tensor LU, LU分解结果矩阵LU，由L、U拼接组成。
-    - Tensor(dtype=int) Pivots，旋转矩阵对应的旋转序列，详情见说明部分pivot部分，对于输入[*,m,n]的x，Pivots shape为[*, m]。
-    - Tensor(dtype=int) Infos，矩阵分解状态信息矩阵，对于输入[*,m,n]，Infos shape为[*]。每个元素表示每组矩阵的LU分解是否成功，0表示分解成功。
+    - Tensor LU，LU分解结果矩阵LU，由L、U拼接组成。
+    - Tensor(dtype=int) Pivots，旋转矩阵对应的旋转序列，详情见说明部分pivot部分，对于输入[*，m，n]的x，Pivots shape为[*，m]。
+    - Tensor(dtype=int) Infos，矩阵分解状态信息矩阵，对于输入[*，m，n]，Infos shape为[*]。每个元素表示每组矩阵的LU分解是否成功，0表示分解成功。
 
 代码示例
 ::::::::::

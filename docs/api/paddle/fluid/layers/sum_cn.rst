@@ -76,7 +76,7 @@ Variable
 		dtype: l
 		data: 8,8,8,8,8,8,
 
-	#输出了shape为[2,3]的Tensor，与输入的shape一致
+	#输出了shape为[2，3]的Tensor，与输入的shape一致
 	#dtype为对应C++数据类型，在不同环境下可能显示值不同，但本质相同
 	#例如：如果Tensor中数据类型是int64，则对应的C++数据类型为int64_t，所以dtype值为typeid(int64_t).name()，
 	#      其在MacOS下为'x'，linux下为'l'，Windows下为'__int64'，都表示64位整型变量

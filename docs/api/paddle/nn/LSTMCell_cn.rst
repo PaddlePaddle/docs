@@ -41,30 +41,30 @@ LSTMCell
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh的参数。默认为None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih的参数。默认为None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
-    - **name** (str, 可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
+    - **name** (str，可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
 
 变量
 ::::::::::::
 
-    - **weight_ih** (Parameter) - input到hidden的变换矩阵的权重。形状为（4 * hidden_size, input_size）。对应公式中的 :math:`W_{ii}, W_{if}, W_{ig}, W_{io}`。
-    - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（4 * hidden_size, hidden_size）。对应公式中的 :math:`W_{hi}, W_{hf}, W_{hg}, W_{ho}`。
-    - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（4 * hidden_size, ）。对应公式中的 :math:`b_{ii}, b_{if}, b_{ig}, b_{io}`。
-    - **bias_hh** (Parameter) - hidden到hidden的变换矩阵的偏置。形状为（4 * hidden_size, ）。对应公式中的 :math:`b_{hi}, b_{hf}, b_{hg}, b_{ho}`。
+    - **weight_ih** (Parameter) - input到hidden的变换矩阵的权重。形状为（4 * hidden_size，input_size）。对应公式中的 :math:`W_{ii}，W_{if}，W_{ig}，W_{io}`。
+    - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（4 * hidden_size，hidden_size）。对应公式中的 :math:`W_{hi}，W_{hf}，W_{hg}，W_{ho}`。
+    - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（4 * hidden_size，）。对应公式中的 :math:`b_{ii}，b_{if}，b_{ig}，b_{io}`。
+    - **bias_hh** (Parameter) - hidden到hidden的变换矩阵的偏置。形状为（4 * hidden_size，）。对应公式中的 :math:`b_{hi}，b_{hf}，b_{hg}，b_{ho}`。
     
 输入
 ::::::::::::
 
-    - **inputs** (Tensor) - 输入。形状为[batch_size, input_size]，对应公式中的 :math:`x_t`。
-    - **states** (tuple，可选) - 一个包含两个Tensor的元组，每个Tensor的形状都为[batch_size, hidden_size]，上一轮的隐藏状态。对应公式中的 :math:`h_{t-1}，c_{t-1}`。当state为None的时候，初始状态为全0矩阵。默认为None。
+    - **inputs** (Tensor) - 输入。形状为[batch_size，input_size]，对应公式中的 :math:`x_t`。
+    - **states** (tuple，可选) - 一个包含两个Tensor的元组，每个Tensor的形状都为[batch_size，hidden_size]，上一轮的隐藏状态。对应公式中的 :math:`h_{t-1}，c_{t-1}`。当state为None的时候，初始状态为全0矩阵。默认为None。
 
 输出
 ::::::::::::
 
-    - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
-    - **new_states** (tuple) - 一个包含两个Tensor的元组，每个Tensor的形状都为[batch_size, hidden_size]，新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}，c_{t}`。
+    - **outputs** (Tensor) - 输出。形状为[batch_size，hidden_size]，对应公式中的 :math:`h_{t}`。
+    - **new_states** (tuple) - 一个包含两个Tensor的元组，每个Tensor的形状都为[batch_size，hidden_size]，新一轮的隐藏状态。形状为[batch_size，hidden_size]，对应公式中的 :math:`h_{t}，c_{t}`。
     
 .. Note::
-    所有的变换矩阵的权重和偏置都默认初始化为Uniform(-std, std)，其中std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
+    所有的变换矩阵的权重和偏置都默认初始化为Uniform(-std，std)，其中std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
 
 
 代码示例

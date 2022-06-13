@@ -44,8 +44,8 @@ update(preds, labels)
 
 **参数**
 
-    - **preds** (numpy.array) - 当前mini-batch的预测结果，二分类sigmoid函数的输出，shape为[batch_size, 1]，数据类型为'float64'或'float32'。
-    - **labels** (numpy.array) - 当前mini-batch的真实标签，输入的shape应与preds保持一致，shape为[batch_size, 1]，数据类型为'int32'或'int64'
+    - **preds** (numpy.array) - 当前mini-batch的预测结果，二分类sigmoid函数的输出，shape为[batch_size，1]，数据类型为'float64'或'float32'。
+    - **labels** (numpy.array) - 当前mini-batch的真实标签，输入的shape应与preds保持一致，shape为[batch_size，1]，数据类型为'int32'或'int64'
 
 **返回**
 无

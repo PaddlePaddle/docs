@@ -7,7 +7,7 @@ ChunkEvaluator
 
 
 
-该接口使用mini-batch的chunk_eval累计的counter numbers，来计算准确率、召回率和F1值。ChunkEvaluator有三个状态num_infer_chunks，num_label_chunks和num_correct_chunks，分别对应语块数目、标签中的语块数目、正确识别的语块数目。对于chunking的基础知识，请参考 https://www.aclweb.org/anthology/N01-1025 。ChunkEvalEvaluator计算块检测（chunk detection）的准确率，召回率和F1值，支持IOB, IOE, IOBES和IO标注方案。
+该接口使用mini-batch的chunk_eval累计的counter numbers，来计算准确率、召回率和F1值。ChunkEvaluator有三个状态num_infer_chunks，num_label_chunks和num_correct_chunks，分别对应语块数目、标签中的语块数目、正确识别的语块数目。对于chunking的基础知识，请参考 https://www.aclweb.org/anthology/N01-1025 。ChunkEvalEvaluator计算块检测（chunk detection）的准确率，召回率和F1值，支持IOB，IOE，IOBES和IO标注方案。
 
 参数
 ::::::::::::
@@ -57,7 +57,7 @@ ChunkEvaluator
 update(num_infer_chunks, num_label_chunks, num_correct_chunks)
 '''''''''
 
-该函数使用输入的(num_infer_chunks, num_label_chunks, num_correct_chunks)来累计更新ChunkEvaluator对象的对应状态，更新方式如下：
+该函数使用输入的(num_infer_chunks，num_label_chunks，num_correct_chunks)来累计更新ChunkEvaluator对象的对应状态，更新方式如下：
     
     .. math:: 
                    \\ \begin{array}{l}{\text { self. num_infer_chunks }+=\text { num_infer_chunks }} \\ {\text { self. num_Label_chunks }+=\text { num_label_chunks }} \\ {\text { self. num_correct_chunks }+=\text { num_correct_chunks }}\end{array} \\

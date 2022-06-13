@@ -60,7 +60,7 @@ Variable
                             buf_size=1000))
 
   img, label = fluid.layers.read_file(reader)
-  loss = network(img, label) # 一些网络定义
+  loss = network(img，label) # 一些网络定义
 
   fluid.Executor(fluid.CUDAPlace(0)).run(fluid.default_startup_program())
   exe = fluid.ParallelExecutor(use_cuda=True, loss_name=loss.name)

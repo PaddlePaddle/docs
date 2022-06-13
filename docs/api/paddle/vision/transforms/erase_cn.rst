@@ -10,13 +10,13 @@ erase
 参数
 :::::::::
 
-    - img (paddle.Tensor|np.array|PIL.Image) - 输入的图像。对于Tensor类型的输入，形状应该为(C, H, W)。对于np.array类型的输入，形状应该为(H, W, C)。
+    - img (paddle.Tensor|np.array|PIL.Image) - 输入的图像。对于Tensor类型的输入，形状应该为(C，H，W)。对于np.array类型的输入，形状应该为(H，W，C)。
     - i (int) - 擦除区域左上角点的纵坐标。
     - j (int) - 擦除区域左上角点的横坐标。
     - h (int) - 擦除区域的高。
     - w (int) - 擦除区域的宽。
     - v (paddle.Tensor|np.array) - 用于替换擦除区域中像素的值。当输入为np.array或者PIL.Image类型时，需要为np.array类型。
-    - inplace (bool, 可选) - 该变换是否在原地操作。默认值：False。
+    - inplace (bool，可选) - 该变换是否在原地操作。默认值：False。
 
 返回
 :::::::::

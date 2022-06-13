@@ -24,7 +24,7 @@ dropout op可以从Program中删除，提高执行效率。
     - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
     - **dropout_implementation** (str) - 丢弃单元的方式，有两种'downgrade_in_infer'和'upscale_in_train'两种选择，默认：'downgrade_in_infer'。具体作用可以参考一下描述。
 
-      1. downgrade_in_infer(default), 在预测时减小输出结果
+      1. downgrade_in_infer(default)，在预测时减小输出结果
 
          - train: out = input * mask
 
@@ -32,7 +32,7 @@ dropout op可以从Program中删除，提高执行效率。
 
          (mask是一个张量，维度和输入维度相同，值为0或1，值为0的比例即为 ``dropout_prob`` )
 
-      2. upscale_in_train, 增加训练时的结果
+      2. upscale_in_train，增加训练时的结果
 
          - train: out = input * mask / ( 1.0 - dropout_prob )
 

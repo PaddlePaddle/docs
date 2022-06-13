@@ -28,7 +28,7 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
     - **activation** (str，可选) - 前馈神经网络的激活函数。默认值：``relu``。
     - **attn_dropout** (float，可选) - 多头自注意力机制中对注意力目标的随机失活率。如果为 ``None`` 则 ``attn_dropout = dropout``。默认值：``None``。
     - **act_dropout** (float，可选) - 前馈神经网络的激活函数后的dropout。如果为 ``None`` 则 ``act_dropout = dropout``。默认值：``None``。
-    - **normalize_before** (bool, 可选) - 设置对编码器解码器的每个子层的输入输出的处理。如果为 ``True``，则对每个子层的输入进行层标准化（Layer Normalization），对每个子层的输出进行dropout和残差连接（residual connection）。否则（即为 ``False``），则对每个子层的输入不进行处理，只对每个子层的输出进行dropout、残差连接（residual connection）和层标准化（Layer Normalization）。默认值：``False``。
+    - **normalize_before** (bool，可选) - 设置对编码器解码器的每个子层的输入输出的处理。如果为 ``True``，则对每个子层的输入进行层标准化（Layer Normalization），对每个子层的输出进行dropout和残差连接（residual connection）。否则（即为 ``False``），则对每个子层的输入不进行处理，只对每个子层的输出进行dropout、残差连接（residual connection）和层标准化（Layer Normalization）。默认值：``False``。
     - **weight_attr** (ParamAttr|tuple，可选) - 指定权重参数属性的对象。如果是 ``tuple``，则只支持 ``tuple`` 长度为1、2或3的情况。如果 ``tuple`` 长度为3，多头自注意力机制的权重参数属性使用 ``weight_attr[0]``，解码器的编码-解码交叉注意力机制的权重参数属性使用 ``weight_attr[1]``，前馈神经网络的权重参数属性使用 ``weight_attr[2]``；如果 ``tuple`` 的长度是2，多头自注意力机制和解码器的编码-解码交叉注意力机制的权重参数属性使用 ``weight_attr[0]``，前馈神经网络的权重参数属性使用 ``weight_attr[1]``；如果 ``tuple`` 的长度是1，多头自注意力机制、解码器的编码-解码交叉注意力机制和前馈神经网络的权重参数属性都使用 ``weight_attr[0]``。如果该参数值是 ``ParamAttr``，则多头自注意力机制、解码器的编码-解码交叉注意力机制和前馈神经网络的权重参数属性都使用 ``ParamAttr``。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr|tuple|bool，可选）- 指定偏置参数属性的对象。如果是 ``tuple``，则只支持 ``tuple`` 长度为1、2或3的情况。如果 ``tuple`` 长度为3，多头自注意力机制的偏置参数属性使用 ``bias_attr[0]``，解码器的编码-解码交叉注意力机制的偏置参数属性使用 ``bias_attr[1]``，前馈神经网络的偏置参数属性使用 ``bias_attr[2]``；如果 ``tuple`` 的长度是2，多头自注意力机制和解码器的编码-解码交叉注意力机制的偏置参数属性使用 ``bias_attr[0]``，前馈神经网络的偏置参数属性使用 ``bias_attr[1]``；如果 ``tuple`` 的长度是1，多头自注意力机制、解码器的编码-解码交叉注意力机制和前馈神经网络的偏置参数属性都使用 ``bias_attr[0]``。如果该参数值是 ``ParamAttr``，则多头自注意力机制、解码器的编码-解码交叉注意力机制和前馈神经网络的偏置参数属性都使用 ``ParamAttr``。如果该参数为 ``bool`` 类型，只支持为 ``False``，表示没有偏置参数。默认值：``None``，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **custom_encoder** (Layer，可选) - 若提供该参数，则将 ``custom_encoder`` 作为编码器。默认值：``None``。
@@ -72,11 +72,11 @@ forward(self, src, tgt, src_mask=None, tgt_mask=None, memory_mask=None)
 
 **参数**
 
-    - **src** (Tensor) - Transformer 编码器的输入。它的形状应该是 ``[batch_size, source_length, d_model]``。数据类型为 float32 或是 float64。
-    - **tgt** (Tensor) - Transformer 解码器的输入。它的形状应该是 ``[batch_size, target_length, d_model]]``。数据类型为 float32 或是 float64。
-    - **src_mask** (Tensor，可选) - 在编码器的多头注意力机制(Multi-head Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor。它的形状应该是，或者能被广播到 ``[batch_size, nhead, source_length, source_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
-    - **tgt_mask** (Tensor，可选) - 在解码器的自注意力机制(Self Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor。它的形状应该是，或者能被广播到 ``[batch_size, nhead, target_length, target_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
-    - **memory_mask** (Tensor，可选) - 在解码器的交叉注意力机制(Cross Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor，通常情况下指的是 padding 的部分。它的形状应该是，或者能被广播到 ``[batch_size, nhead, target_length, source_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
+    - **src** (Tensor) - Transformer 编码器的输入。它的形状应该是 ``[batch_size，source_length，d_model]``。数据类型为 float32 或是 float64。
+    - **tgt** (Tensor) - Transformer 解码器的输入。它的形状应该是 ``[batch_size，target_length，d_model]]``。数据类型为 float32 或是 float64。
+    - **src_mask** (Tensor，可选) - 在编码器的多头注意力机制(Multi-head Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor。它的形状应该是，或者能被广播到 ``[batch_size，nhead，source_length，source_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
+    - **tgt_mask** (Tensor，可选) - 在解码器的自注意力机制(Self Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor。它的形状应该是，或者能被广播到 ``[batch_size，nhead，target_length，target_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
+    - **memory_mask** (Tensor，可选) - 在解码器的交叉注意力机制(Cross Attention)中，用于避免注意到序列中无关的位置的表示的 Tensor，通常情况下指的是 padding 的部分。它的形状应该是，或者能被广播到 ``[batch_size，nhead，target_length，source_length]``。当 ``src_mask`` 的数据类型是 ``bool`` 时，无关的位置所对应的值应该为 ``False`` 并且其余为 ``True``。当 ``src_mask`` 的数据类型为 ``int`` 时，无关的位置所对应的值应该为 0 并且其余为 1。当 ``src_mask`` 的数据类型为 ``float`` 时，无关的位置所对应的值应该为 ``-INF`` 并且其余为 0。当输入中不包含无关项的时候，当前值可以为 ``None``，表示不做 mask 操作。默认值为 ``None``。
 
 
 **返回**
@@ -96,7 +96,7 @@ generate_square_subsequent_mask(self, length)
 
 
 **返回**
-Tensor，根据输入的 ``length`` 具体的大小生成的形状为 ``[length, length]`` 方形的掩码。
+Tensor，根据输入的 ``length`` 具体的大小生成的形状为 ``[length，length]`` 方形的掩码。
 
 
 **代码示例**

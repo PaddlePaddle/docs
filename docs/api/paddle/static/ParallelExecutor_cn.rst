@@ -9,9 +9,9 @@ ParallelExecutor
 
 
 
-``ParallelExecutor`` 是 ``Executor`` 的一个升级版本，可以支持基于数据并行的多节点模型训练和测试。如果采用数据并行模式， ``ParallelExecutor`` 在构造时会将参数分发到不同的节点上，并将输入的 ``Program`` 拷贝到不同的节点，在执行过程中，各个节点独立运行模型，将模型反向计算得到的参数梯度在多个节点之间进行聚合，之后各个节点独立的进行参数的更新。
+``ParallelExecutor`` 是 ``Executor`` 的一个升级版本，可以支持基于数据并行的多节点模型训练和测试。如果采用数据并行模式，``ParallelExecutor`` 在构造时会将参数分发到不同的节点上，并将输入的 ``Program`` 拷贝到不同的节点，在执行过程中，各个节点独立运行模型，将模型反向计算得到的参数梯度在多个节点之间进行聚合，之后各个节点独立的进行参数的更新。
 
-- 如果使用GPU运行模型，即 ``use_cuda=True`` ，节点指代GPU， ``ParallelExecutor`` 将自动获取在当前机器上可用的GPU资源，用户也可以通过在环境变量设置可用的GPU资源，例如：希望使用GPU0、GPU1计算，export CUDA_VISIBLEDEVICES=0,1；
+- 如果使用GPU运行模型，即 ``use_cuda=True`` ，节点指代GPU，``ParallelExecutor`` 将自动获取在当前机器上可用的GPU资源，用户也可以通过在环境变量设置可用的GPU资源，例如：希望使用GPU0、GPU1计算，export CUDA_VISIBLEDEVICES=0，1；
 - 如果在CPU上进行操作，即 ``use_cuda=False`` ，节点指代CPU，**注意：此时需要用户在环境变量中手动添加 CPU_NUM ，并将该值设置为CPU设备的个数，例如：export CPU_NUM=4，如果没有设置该环境变量，执行器会在环境变量中添加该变量，并将其值设为1**。
 
 参数
@@ -104,7 +104,7 @@ run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
 返回fetch_list中指定的变量值。
 
 .. note::
-     1. 如果feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
+     1. 如果feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0，1，2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1，2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
      2. 如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
 
 **代码示例**
@@ -141,15 +141,15 @@ run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
                                                main_program=train_program,
                                                loss_name=loss.name)
     # 如果feed参数是dict类型:
-    # 图像会被split到设备中。假设有两个设备，那么每个设备将会处理形为 (5, 1)的图像
+    # 图像会被split到设备中。假设有两个设备，那么每个设备将会处理形为 (5，1)的图像
     x = numpy.random.random(size=(10, 1)).astype('float32')
     loss_data, = train_exe.run(feed={"X": x},
                                fetch_list=[loss.name])
 
     # 如果feed参数是list类型:
     # 各设备挨个处理列表中的每个元素
-    # 第一个设备处理形为 (10, 1) 的图像
-    # 第二个设备处理形为 (9, 1) 的图像
+    # 第一个设备处理形为 (10，1) 的图像
+    # 第二个设备处理形为 (9，1) 的图像
     #
     # 使用 exe.device_count 得到设备数目
     x2 = numpy.random.random(size=(9, 1)).astype('float32')

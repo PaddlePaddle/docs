@@ -31,7 +31,7 @@ generate_proposals
         - **scores** (Variable) - Shape为 ``[N，A，H，W]`` 的4-D Tensor，表示每个框包含object的概率。N是批量大小，A是anchor数，H和W是feature map的高度和宽度。数据类型支持float32。
         - **bbox_deltas** (Variable)- Shape为 ``[N，4 * A，H，W]`` 的4-D Tensor，表示预测出的候选框的位置和anchor的位置之间的距离。数据类型支持float32。
         - **im_info** (Variable) - Shape为 ``[N，3]`` 的2-D张量，表示原始图像的大小信息。信息包含原始图像宽、高和feature map相对于原始图像缩放的比例。
-        - **anchors** (Variable) - Shape为 ``[H，W，A，4]`` 的4-D Tensor。H和W是feature map的高度和宽度。A是每个位置的框的数量。每个anchor以 ``（xmin，ymin，xmax，ymax）`` 的格式表示，其中， ``xmin`` 和 ``ymin`` 为左上角的坐标， ``xmax`` 和 ``ymax`` 为右下角的坐标。
+        - **anchors** (Variable) - Shape为 ``[H，W，A，4]`` 的4-D Tensor。H和W是feature map的高度和宽度。A是每个位置的框的数量。每个anchor以 ``（xmin，ymin，xmax，ymax）`` 的格式表示，其中，``xmin`` 和 ``ymin`` 为左上角的坐标，``xmax`` 和 ``ymax`` 为右下角的坐标。
         - **variances** (Variable) - Shape为 ``[H，W，A，4]`` 的4-D Tensor，表示 ``anchors`` 的方差。每个anchor的方差都是 ``（xcenter，ycenter，w，h）`` 的格式表示。
         - **pre_nms_top_n** (int，可选) - 整型数字。每张图在NMS操作之前要保留的总框数。数据类型仅支持int32。缺省值为6000。
         - **post_nms_top_n** (int，可选) - 整型数字。每个图在NMS后要保留的总框数。数据类型仅支持int32。缺省值为1000。
@@ -42,10 +42,10 @@ generate_proposals
 
 返回
 ::::::::::::
- 元组，格式为 ``(rpn_rois, rpn_roi_probs)`` 
+ 元组，格式为 ``(rpn_rois，rpn_roi_probs)`` 
 
-- **rpn_rois** (Variable) - 表示产出的RoIs, shape为 ``[N, 4]`` 的2D LoDTensor， N为RoIs的数量。数据类型与 ``scores`` 一致。
-- **rpn_roi_probs** (Variable) - 表示RoIs的得分，shape为 ``[N, 1]`` ，N为RoIs的数量。数据类型与 ``scores`` 一致。
+- **rpn_rois** (Variable) - 表示产出的RoIs，shape为 ``[N，4]`` 的2D LoDTensor，N为RoIs的数量。数据类型与 ``scores`` 一致。
+- **rpn_roi_probs** (Variable) - 表示RoIs的得分，shape为 ``[N，1]`` ，N为RoIs的数量。数据类型与 ``scores`` 一致。
 
 返回类型
 ::::::::::::

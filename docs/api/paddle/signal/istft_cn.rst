@@ -30,7 +30,7 @@ istft
 :::::::::
 
 - **x** (Tensor) - 输入数据，是维度为2D或者3D的Tensor，数据类型必须为复数（复信号），其
-  形状为 ``[..., fft_size, num_frames]``；
+  形状为 ``[...，fft_size，num_frames]``；
 - **n_fft** (int) - 离散傅里叶变换的样本点个数；
 - **hop_length** (int，可选) - 对输入分帧时，相邻两帧偏移的样本点个数，默认为 ``None`` 
   (为 ``n_fft//4``)；
@@ -48,14 +48,14 @@ istft
 - **length** (int，可选) - 指定输出信号的长度，该信号将从逆短时傅里叶变换的结果中截取。
   默认为 ``None`` (返回不截取的信号)；
 - **return_complex** (bool，可选) - 表示输出的重构信号是否为复信号。如果 
-  ``return_complex`` 设为 ``True``， ``onesided`` 必须设为 ``False``，默认
+  ``return_complex`` 设为 ``True``，``onesided`` 必须设为 ``False``，默认
   为 ``False``；
 - **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试
   信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 
 
 返回
 :::::::::
-逆短时傅里叶变换的结果，是重构信号的最小二乘估计Tensor，其形状为 ``[..., seq_length]``。
+逆短时傅里叶变换的结果，是重构信号的最小二乘估计Tensor，其形状为 ``[...，seq_length]``。
 
 代码示例
 :::::::::

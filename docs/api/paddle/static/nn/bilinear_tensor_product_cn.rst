@@ -18,17 +18,17 @@ bilinear_tensor_product
 
 在这个公式中：
 
-  - :math:`x`: 第一个输入，包含 :math:`M` 个元素，形状为 [batch_size, M]。
-  - :math:`y`: 第二个输入，包含 :math:`N` 个元素，形状为 [batch_size, N]。
-  - :math:`W_{i}`: 第 :math:`i` 个被学习的权重，形状是 [M, N]。
-  - :math:`out_{i}`: 输出的第 :math:`i` 个元素，形状是 [batch_size, size]。
+  - :math:`x`: 第一个输入，包含 :math:`M` 个元素，形状为 [batch_size，M]。
+  - :math:`y`: 第二个输入，包含 :math:`N` 个元素，形状为 [batch_size，N]。
+  - :math:`W_{i}`: 第 :math:`i` 个被学习的权重，形状是 [M，N]。
+  - :math:`out_{i}`: 输出的第 :math:`i` 个元素，形状是 [batch_size，size]。
   - :math:`y^\mathrm{T}`: :math:`y_{2}` 的转置。
 
 参数
 ::::::::::::
 
-    - **x** (Variable): 2-D 输入张量，形状为 [batch_size, M], 数据类型为 float32 或 float64。
-    - **y** (Variable): 2-D 输入张量，形状为 [batch_size, N]，数据类型与 **x** 一致。
+    - **x** (Variable): 2-D 输入张量，形状为 [batch_size，M]，数据类型为 float32 或 float64。
+    - **y** (Variable): 2-D 输入张量，形状为 [batch_size，N]，数据类型与 **x** 一致。
     - **size** (int): 此层的维度。
     - **act** (str，可选): 应用到该层输出的激活函数。
     - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为 None。
@@ -37,7 +37,7 @@ bilinear_tensor_product
 
 返回
 ::::::::::::
- Variable，一个形为 [batch_size, size] 的 2-D 张量。
+ Variable，一个形为 [batch_size，size] 的 2-D 张量。
 
 代码示例
 ::::::::::::

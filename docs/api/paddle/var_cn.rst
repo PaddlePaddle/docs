@@ -12,7 +12,7 @@ var
    - **x** (Tensor) - 输入的 Tensor，数据类型为：float32、float64。
    - **axis** (int|list|tuple，可选) - 指定对 ``x`` 进行计算的轴。``axis`` 可以是 int、list(int)、tuple(int)。
    
-      - 如果 ``axis`` 包含多个维度，则沿着 ``axis`` 中的所有轴进行计算。``axis`` 或者其中的元素值应该在范围[-D, D)内，D是 ``x`` 的维度。
+      - 如果 ``axis`` 包含多个维度，则沿着 ``axis`` 中的所有轴进行计算。``axis`` 或者其中的元素值应该在范围[-D，D)内，D是 ``x`` 的维度。
       - 如果 ``axis`` 或者其中的元素值小于0，则等价于 :math:`axis + D` 。
       - 如果 ``axis`` 是 None，则对 ``x`` 的全部元素计算方差。默认值为 None。
       

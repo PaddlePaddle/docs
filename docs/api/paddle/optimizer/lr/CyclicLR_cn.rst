@@ -24,7 +24,7 @@ CyclicLR
     - **step_size_down** (int，可选) - 学习率从最大学习率下降到初始学习率所需步数。若未指定，则其值默认等于 ``step_size_up`` 。
     - **mode** (str，可选) - 可以是triangular、triangular2或者exp_range，对应策略已在上文描述，当scale_fn被指定时时，该参数将被忽略。默认值为triangular。
     - **exp_gamma** (float，可选) - exp_range缩放函数中的常量。默认值为1.0。
-    - **sacle_fn** (function, 可选) - 一个有且仅有单个参数的函数，且对于任意的输入x，都必须满足0 ≤ scale_fn(x) ≤ 1；如果该参数被指定，则会忽略mode参数。默认值为 ``False`` 。
+    - **sacle_fn** (function，可选) - 一个有且仅有单个参数的函数，且对于任意的输入x，都必须满足0 ≤ scale_fn(x) ≤ 1；如果该参数被指定，则会忽略mode参数。默认值为 ``False`` 。
     - **scale_mode** (str，可选) - cycle或者iterations，表示缩放函数使用cycle数或iterations数作为输入。默认值为cycle。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
     - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。

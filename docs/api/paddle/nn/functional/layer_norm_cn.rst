@@ -12,12 +12,12 @@ layer_norm
 参数
 ::::::::::::
 
-    - **x** (int) - 输入，数据类型为float32, float64。
-    - **normalized_shape** (int|list|tuple) - 期望的输入是 :math:`[*, normalized_shape[0], normalized_shape[1], ..., normalized_shape[-1]]` ,如果是一个整数，会作用在最后一个维度。
-    - **weight** (Tensor) - 权重的Tensor, 默认为None。
-    - **bias** (Tensor) - 偏置的Tensor, 默认为None。
-    - **epsilon** (float, 可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
-    - **name** (string, 可选) – LayerNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
+    - **x** (int) - 输入，数据类型为float32，float64。
+    - **normalized_shape** (int|list|tuple) - 期望的输入是 :math:`[*，normalized_shape[0]，normalized_shape[1]，...，normalized_shape[-1]]` ，如果是一个整数，会作用在最后一个维度。
+    - **weight** (Tensor) - 权重的Tensor，默认为None。
+    - **bias** (Tensor) - 偏置的Tensor，默认为None。
+    - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
+    - **name** (string，可选) – LayerNorm的名称，默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
 
 返回

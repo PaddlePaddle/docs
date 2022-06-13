@@ -73,7 +73,7 @@ get_output(dygraph_func, *args, **kwargs)
 **参数**
 
     - **dygraph_func** (callable) - 动态图函数。
-    - **args, kwargs** - 动态图函数的输入。
+    - **args，kwargs** - 动态图函数的输入。
 
 **返回**
 
@@ -140,11 +140,11 @@ get_program(dygraph_func, *args, **kwargs)
 **参数**
 
     - **dygraph_func** (callable) - 动态图函数。
-    - **args, kwargs** - 动态图函数的输入。
+    - **args，kwargs** - 动态图函数的输入。
 
 **返回**
 
-元组(main_program, startup_program, inputs, outputs)
+元组(main_program，startup_program，inputs，outputs)
 
     - main_program: 转化后的main program。
     - startup_program: 转化后的startup program。

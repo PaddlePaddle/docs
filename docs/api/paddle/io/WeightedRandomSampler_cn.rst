@@ -5,7 +5,7 @@ WeightedRandomSampler
 
 .. py:class:: paddle.io.WeightedRandomSampler(weights, num_samples, replacement=True)
 
-通过制定的权重随机采样，采样下标范围在 ``[0, len(weights) - 1]`` , 如果 ``replacement`` 为 ``True`` ，则下标可被采样多次
+通过制定的权重随机采样，采样下标范围在 ``[0，len(weights) - 1]`` ，如果 ``replacement`` 为 ``True`` ，则下标可被采样多次
 
 参数
 :::::::::

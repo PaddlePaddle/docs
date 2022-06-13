@@ -9,8 +9,8 @@ graph_sample_neighbors
 
 参数
 :::::::::
-    - row (Tensor) - 输入原始图的CSC格式的行信息，数据类型为：int32、int64，形状为[num_edges, 1] 或 [num_edges]。
-    - colptr (Tensor) - 输入原始图的CSC格式的压缩列信息，数据类型应当与 ``row`` 一致，形状为[num_nodes + 1, 1]或 [num_nodes + 1]。
+    - row (Tensor) - 输入原始图的CSC格式的行信息，数据类型为：int32、int64，形状为[num_edges，1] 或 [num_edges]。
+    - colptr (Tensor) - 输入原始图的CSC格式的压缩列信息，数据类型应当与 ``row`` 一致，形状为[num_nodes + 1，1]或 [num_nodes + 1]。
     - input_nodes (Tensor) - 需进行邻居采样的中心节点信息，数据类型应当与 ``row`` 一致。
     - eids (Tensor，可选) - 输入原始图在CSC格式下的边编号信息。如果 ``return_eids`` 为True，则不能为空。数据类型应当与 ``row`` 一致。默认为None，表示不需要返回边编号信息。
     - perm_buffer (Tensor，可选) - Fisher-yates采样方法需要用到的缓存Tensor。如果 ``flag_perm_buffer`` 为True，则不能为空。数据类型应当与 ``row`` 一致，形状为[num_edges]，填充内容为0 至 num_edges的顺序递增序列。

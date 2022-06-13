@@ -17,7 +17,7 @@ conv2d_transpose
 
 转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解转置卷积层细节，请参考下面的说明和论文细节。
 
-如果参数bias_attr不为False, 转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
+如果参数bias_attr不为False，转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
 
 论文参考: https://arxiv.org/pdf/1603.07285.pdf
 
@@ -32,21 +32,21 @@ conv2d_transpose
     -  :math:`X` : 输入，具有NCHW或NHWC格式的4-D Tensor；
     -  :math:`W` : 滤波器，具有NCHW格式的4-D Tensor；
     -  :math:`*` : 卷积计算（注意：转置卷积本质上的计算还是卷积）；
-    -  :math:`b` : 偏置（bias），2-D Tensor，形状为 ``[M,1]``；
+    -  :math:`b` : 偏置（bias），2-D Tensor，形状为 ``[M，1]``；
     -  :math:`σ` : 激活函数；
-    -  :math:`Out` : 输出值，NCHW或NHWC格式的4-D Tensor， 和 ``X`` 的形状可能不同。
+    -  :math:`Out` : 输出值，NCHW或NHWC格式的4-D Tensor，和 ``X`` 的形状可能不同。
 
 **示例**
 
 - 输入：
 
-    输入Tensor的形状： :math:`（N，C_{in}， H_{in}， W_{in}）`
+    输入Tensor的形状： :math:`（N，C_{in}，H_{in}，W_{in}）`
 
-    滤波器的形状 ： :math:`（C_{in}, C_{out}, H_f, W_f）`
+    滤波器的形状 ： :math:`（C_{in}，C_{out}，H_f，W_f）`
 
 - 输出：
 
-    输出Tensor的形状 ： :math:`（N，C_{out}, H_{out}, W_{out}）`
+    输出Tensor的形状 ： :math:`（N，C_{out}，H_{out}，W_{out}）`
 
 其中
 
@@ -70,28 +70,28 @@ conv2d_transpose
     & W'_{out} = (W_{in}-1)*strides[1] + dilations[1]*(W_f-1)+1 \\
 
 .. note::
-如果output_size为None，则 :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}` ;
-否则，指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[0]` 之间（不包含 :math:`H^\prime_{out} + strides[0]` ）, 并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[1]` 之间（不包含 :math:`W^\prime_{out} + strides[1]` ）。
+如果output_size为None，则 :math:`H_{out}` = :math:`H^\prime_{out}` ，:math:`W_{out}` = :math:`W^\prime_{out}` ;
+否则，指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[0]` 之间（不包含 :math:`H^\prime_{out} + strides[0]` ），并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[1]` 之间（不包含 :math:`W^\prime_{out} + strides[1]` ）。
 
 由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
-如果指定了output_size， ``conv2d_transpose`` 可以自动计算滤波器的大小。
+如果指定了output_size，``conv2d_transpose`` 可以自动计算滤波器的大小。
 
 参数
 ::::::::::::
 
-  - **input** （Tensor）- 形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度。数据类型：float32或float64。
+  - **input** （Tensor）- 形状为 :math:`[N，C，H，W]` 或 :math:`[N，H，W，C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度。数据类型：float32或float64。
   - **num_filters** (int) - 滤波器（卷积核）的个数，与输出图片的通道数相同。
   - **output_size** (int|tuple，可选) - 输出图片的大小。如果output_size是一个元组，则必须包含两个整型数，（output_size_height，output_size_width）。如果output_size=None，则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。默认：None。output_size和filter_size不能同时为None。
-  - **filter_size** (int|tuple，可选) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size_height, filter_size_width）。否则，filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， ``conv2d_transpose`` 内部会根据output_size、padding和stride计算出滤波器大小。默认：None。output_size和filter_size不能同时为None。
+  - **filter_size** (int|tuple，可选) - 滤波器大小。如果filter_size是一个元组，则必须包含两个整型数，（filter_size_height，filter_size_width）。否则，filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size，``conv2d_transpose`` 内部会根据output_size、padding和stride计算出滤波器大小。默认：None。output_size和filter_size不能同时为None。
   - **padding** (int|list|tuple|str，可选) - 填充padding大小。padding参数在输入特征层每边添加 ``dilation * (kernel_size - 1) - padding`` 个0。如果它是一个字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考上述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。如果它是一个元组或列表，它可以有3种格式：
   
-    - (1)包含4个二元组：当 ``data_format`` 为"NCHW"时为 [[0,0], [0,0], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right]]，当 ``data_format`` 为"NHWC"时为[[0,0], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right], [0,0]]；
-    - (2)包含4个整数值：[padding_height_top, padding_height_bottom, padding_width_left, padding_width_right]；
-    - (3)包含2个整数值：[padding_height, padding_width]，此时padding_height_top = padding_height_bottom = padding_height， padding_width_left = padding_width_right = padding_width。若为一个整数，padding_height = padding_width = padding。默认值：0。
+    - (1)包含4个二元组：当 ``data_format`` 为"NCHW"时为 [[0，0]，[0，0]，[padding_height_top，padding_height_bottom]，[padding_width_left，padding_width_right]]，当 ``data_format`` 为"NHWC"时为[[0，0]，[padding_height_top，padding_height_bottom]，[padding_width_left，padding_width_right]，[0，0]]；
+    - (2)包含4个整数值：[padding_height_top，padding_height_bottom，padding_width_left，padding_width_right]；
+    - (3)包含2个整数值：[padding_height，padding_width]，此时padding_height_top = padding_height_bottom = padding_height，padding_width_left = padding_width_right = padding_width。若为一个整数，padding_height = padding_width = padding。默认值：0。
     
   - **stride** (int|tuple，可选) - 步长stride大小。滤波器和输入进行卷积计算时滑动的步长。如果stride是一个元组，则必须包含两个整型数，形式为(stride_height，stride_width)。否则，stride_height = stride_width = stride。默认：stride = 1。
-  - **dilation** (int|tuple，可选) - 膨胀比例(dilation)大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图 <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀比例dilation是一个元组，那么元组必须包含两个整型数，形式为(dilation_height, dilation_width)。否则，dilation_height = dilation_width = dilation。默认：dilation= 1。
+  - **dilation** (int|tuple，可选) - 膨胀比例(dilation)大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图 <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀比例dilation是一个元组，那么元组必须包含两个整型数，形式为(dilation_height，dilation_width)。否则，dilation_height = dilation_width = dilation。默认：dilation= 1。
   - **groups** (int，可选) - 二维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认：group = 1。
   - **param_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv2d_transpose算子默认的权重初始化是Xavier。
   - **bias_attr** （ParamAttr|False，可选）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv2d_transpose算子默认的偏置初始化是0.0。

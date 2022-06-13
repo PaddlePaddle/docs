@@ -20,7 +20,7 @@ l2_normalize
 参数
 ::::::::::::
 
-    - **x** (Variable) - 维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
+    - **x** (Variable) - 维度为 :math:`[N_1，N_2，...，N_k，D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
     - **axis** (int) - 归一化的轴。如果轴小于0，归一化的维是rank(X)+axis。其中，-1用来表示最后一维。
     - **epsilon** (float) - epsilon，用于避免除0，默认值为1e-12。
     - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。默认值为None。

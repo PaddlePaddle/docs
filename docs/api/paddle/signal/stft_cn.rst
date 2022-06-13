@@ -19,8 +19,8 @@ stft
 上式中符号的意义：  
 
 - :math:`t`: 第 :math:`t` 帧输入信号；
-- :math:`f`: 傅里叶变换频域的自变量，如果 ``onesided=False`` , :math:`f` 
-  取值范围是 :math:`0 \leq f < n\_fft` ,
+- :math:`f`: 傅里叶变换频域的自变量，如果 ``onesided=False`` ，:math:`f` 
+  取值范围是 :math:`0 \leq f < n\_fft` ，
   如果 `onesided=True`，取值范围是 
   :math:`0 \leq f < \lfloor n\_fft / 2 \rfloor + 1`； 
 - :math:`N`: ``n_fft`` 参数的值；
@@ -31,7 +31,7 @@ stft
 :::::::::
 
 - **x** (Tensor) - 输入数据，是维度为1D或者2D的Tensor，数据类型可为复数（复信号），其形状
-  为 ``[..., seq_length]``；
+  为 ``[...，seq_length]``；
 - **n_fft** (int) - 离散傅里叶变换的样本点个数；
 - **hop_length** (int，可选) - 对输入分帧时，相邻两帧偏移的样本点个数，默认为 ``None`` 
   (为 ``n_fft//4``)；
@@ -54,7 +54,7 @@ stft
 返回
 :::::::::
 短时傅里叶变换的结果，复数Tensor。当输入实信号和实窗函数，如果 ``onesided`` 为 ``True``，
-其形状为 ``[..., n_fft//2 + 1, num_frames]``；否则为 ``[..., n_fft, num_frames]``。
+其形状为 ``[...，n_fft//2 + 1，num_frames]``；否则为 ``[...，n_fft，num_frames]``。
 
 代码示例
 :::::::::

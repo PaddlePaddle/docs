@@ -5,7 +5,7 @@ softmax_mask_fuse
 
 .. py:function:: paddle.incubate.softmax_mask_fuse(x, mask, name=None)
 
-该op是对输入 ``x`` 进行被输入 ``mask`` mask后的softmax操作。该op主要针对加速Transformer架构而设计。将 ``tmp = x + mask, rst = softmax(tmp)`` 两个操作合为一个操作。计算公式为：
+该op是对输入 ``x`` 进行被输入 ``mask`` mask后的softmax操作。该op主要针对加速Transformer架构而设计。将 ``tmp = x + mask，rst = softmax(tmp)`` 两个操作合为一个操作。计算公式为：
 
 .. math::
     out = softmax(x + mask)
@@ -17,7 +17,7 @@ softmax_mask_fuse
 :::::::::
     - x (4-D Tensor) - 输入的Tensor，必须为4D的shape，数据类型为：float16、float32。x的第四维必须大于等于32，并且小于8192。
     - mask (4-D Tensor) - 输入的Tensor，必须为4D的shape，数据类型为：float16、float32。mask的第二维必须为1，其余维度必须与x的对应维度相同。
-    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref: `api_guide_Name` 。
+    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref: `api_guide_Name` 。
 
 返回
 :::::::::

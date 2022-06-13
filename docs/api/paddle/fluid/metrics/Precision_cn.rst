@@ -8,7 +8,7 @@ Precision
 
 
 
-精确率Precision(也称为 positive predictive value,正预测值)是被预测为正样例中实际为正的比例。 https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers 该类管理二分类任务的precision分数。
+精确率Precision(也称为 positive predictive value，正预测值)是被预测为正样例中实际为正的比例。 https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers 该类管理二分类任务的precision分数。
 
 
 代码示例
@@ -48,8 +48,8 @@ update(preds, labels)
 
 **参数**
  
-    - **preds** (numpy.array) - 当前mini-batch的预测结果，二分类sigmoid函数的输出，shape为[batch_size, 1]，数据类型为'float64'或'float32'。
-    - **labels** (numpy.array) - 当前mini-batch的真实标签，输入的shape应与preds保持一致，shape为[batch_size, 1]，数据类型为'int32'或'int64'
+    - **preds** (numpy.array) - 当前mini-batch的预测结果，二分类sigmoid函数的输出，shape为[batch_size，1]，数据类型为'float64'或'float32'。
+    - **labels** (numpy.array) - 当前mini-batch的真实标签，输入的shape应与preds保持一致，shape为[batch_size，1]，数据类型为'int32'或'int64'
 
 **返回**
 无

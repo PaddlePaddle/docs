@@ -235,7 +235,7 @@ decorate_sample_generator(sample_generator, batch_size, drop_last=True, places=N
 
 当PyReader对象可迭代时，必须设置 ``places`` 。
 
-如果所有的输入都没有LOD，这个方法比 ``decorate_sample_list_generator(paddle.batch(sample_generator, ...))`` 更快。
+如果所有的输入都没有LOD，这个方法比 ``decorate_sample_list_generator(paddle.batch(sample_generator，...))`` 更快。
 
 **参数**
 

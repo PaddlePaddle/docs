@@ -19,8 +19,8 @@ generate_mask_labels
 
     #[
     #  [[[229.14, 370.9, 229.14, 370.9, ...]],
-    #   [[343.7, 139.85, 349.01, 138.46, ...]]], # 第0个实例对象
-    #  [[[500.0, 390.62, ...],[115.48, 187.86, ...]]] # 第1个实例对象
+    #   [[343.7，139.85，349.01，138.46，...]]]，# 第0个实例对象
+    #  [[[500.0，390.62，...]，[115.48，187.86，...]]] # 第1个实例对象
     #]
 
     batch_masks = []
@@ -76,7 +76,7 @@ tuple(Variable)
         dtype="float32", lod_level=1)
     gt_masks = fluid.data(name="gt_masks", shape=[None, 2],
         dtype="float32", lod_level=3)
-    # rois, roi_labels 可以是fluid.layers.generate_proposal_labels的输出
+    # rois，roi_labels 可以是fluid.layers.generate_proposal_labels的输出
     rois = fluid.data(name="rois", shape=[None, 4],
         dtype="float32", lod_level=1)
     roi_labels = fluid.data(name="roi_labels", shape=[None, 1],

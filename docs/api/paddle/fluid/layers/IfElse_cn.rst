@@ -9,9 +9,9 @@ IfElse
 
 
 
-该类用于实现IfElse分支控制功能， IfElse包含两个Block，true_block，false_block，IfElse会将满足True或False条件的数据分别放入不同的block运行。    
+该类用于实现IfElse分支控制功能，IfElse包含两个Block，true_block，false_block，IfElse会将满足True或False条件的数据分别放入不同的block运行。    
 
-cond是一个shape为[N, 1]、数据类型为bool的2-D tensor，表示输入数据对应部分的执行条件。
+cond是一个shape为[N，1]、数据类型为bool的2-D tensor，表示输入数据对应部分的执行条件。
 
 .. note::
     如果参数 ``cond`` 的形状为[1]，强烈建议您使用新的OP :ref:`cn_api_fluid_layers_cond` 而不是 ``IfElse``。
@@ -32,8 +32,8 @@ IfElse OP同其他的OP在使用上有一定的区别，可能会对一些用户
         x_d = np.array([[3], [1], [-2], [-3]]).astype(np.float32)
         y_d = np.zeros((4, 1)).astype(np.float32)
         
-        # 比较x, y对元素的大小，输出cond, cond是shape为[4, 1]，数据类型为bool的2-D tensor。
-        # 根据输入数据x_d, y_d，可以推断出cond中的数据为[[true], [true], [false], [false]]
+        # 比较x，y对元素的大小，输出cond，cond是shape为[4，1]，数据类型为bool的2-D tensor。
+        # 根据输入数据x_d，y_d，可以推断出cond中的数据为[[true]，[true]，[false]，[false]]
         cond = fluid.layers.greater_than(x, y)
         # 同其他常见OP不同的是，该OP返回的ie是一个IfElse OP的对象
         ie = fluid.layers.IfElse(cond)
@@ -65,12 +65,12 @@ IfElse OP同其他的OP在使用上有一定的区别，可能会对一些用户
 参数
 ::::::::::::
 
-    - **cond** (Variable)- cond是一个shape为[N, 1]、数据类型为bool的2-D tensor，表示N个输入数据的对应的执行条件。数据类型为bool。
+    - **cond** (Variable)- cond是一个shape为[N，1]、数据类型为bool的2-D tensor，表示N个输入数据的对应的执行条件。数据类型为bool。
     - **Name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 **返回：**    
 
-同其他常见OP不同的是，该OP调用返回一个IfElse OP对象(如例子中的 ie)，通过调用对象内部函数 ``true_block()`` ， ``false_block()`` ， ``input()`` ， ``output()`` 对输入数据进行分支处理，
+同其他常见OP不同的是，该OP调用返回一个IfElse OP对象(如例子中的 ie)，通过调用对象内部函数 ``true_block()`` ，``false_block()`` ，``input()`` ，``output()`` 对输入数据进行分支处理，
 通过调用内部的 ``__call__()`` 函数，将不同分支处理的数据进行整合，作为整体的输出，输出类型为列表，列表中每个元素的类型为Variable。
 
 **内部函数：**

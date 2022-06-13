@@ -18,21 +18,21 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
 
 其中 :math:`\Delta p_k` 和 :math:`\Delta m_k` 分别为第k个位置的可学习偏移和调制标量。在deformable conv v1中 :math:`\Delta m_k` 为1.
 
-具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable, Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_ 。
+具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable，Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_ 。
 
 **示例**
      
 输入：
-    input 形状： :math:`(N, C_{in}, H_{in}, W_{in})`
+    input 形状： :math:`(N，C_{in}，H_{in}，W_{in})`
 
-    卷积核形状： :math:`(C_{out}, C_{in}, H_f, W_f)`
+    卷积核形状： :math:`(C_{out}，C_{in}，H_f，W_f)`
 
-    offset 形状： :math:`(N, 2 * H_f * W_f, H_{out}, W_{out})`
+    offset 形状： :math:`(N，2 * H_f * W_f，H_{out}，W_{out})`
 
-    mask 形状： :math:`(N, H_f * W_f, H_{out}, W_{out})`
+    mask 形状： :math:`(N，H_f * W_f，H_{out}，W_{out})`
      
 输出：
-    输出形状： :math:`(N, C_{out}, H_{out}, W_{out})`
+    输出形状： :math:`(N，C_{out}，H_{out}，W_{out})`
 
 其中
 
@@ -50,7 +50,7 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     - **out_channels** (int) - 由卷积操作产生的输出的通道数。
     - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核的高和宽。如果为单个整数，表示卷积核的高和宽都等于该整数。
     - **stride** (int|list|tuple，可选) - 步长大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积沿着高和宽的步长。如果为单个整数，表示沿着高和宽的步长都等于该整数。默认值：1。
-    - **padding** (int|list|tuple，可选) - 填充大小。卷积核操作填充大小。如果它是一个列表或元组，则必须包含两个整型数：（padding_height,padding_width）。若为一个整数，padding_height = padding_width = padding。默认值：0。
+    - **padding** (int|list|tuple，可选) - 填充大小。卷积核操作填充大小。如果它是一个列表或元组，则必须包含两个整型数：（padding_height，padding_width）。若为一个整数，padding_height = padding_width = padding。默认值：0。
     - **dilation** (int|list|tuple，可选) - 空洞大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核中的元素沿着高和宽的空洞。如果为单个整数，表示高和宽的空洞都等于该整数。默认值：1。
     - **deformable_groups** (int，可选) - 可变形卷积组数。默认值：1。
     - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=n，输入和卷积核分别根据通道数量平均分为n组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第n组卷积核和第n组输入进行卷积计算。默认值：1。
@@ -62,7 +62,7 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     - x: :math:`(N, C_{in}, H_{in}, W_{in})`
     - offset: :math:`(N, 2 * H_f * W_f, H_{out}, W_{out})`
     - mask: :math:`(N, H_f * W_f, H_{out}, W_{out})`
-    - 输出: :math:`(N, C_{out}, H_{out}, W_{out})`
+    - 输出: :math:`(N，C_{out}，H_{out}，W_{out})`
 
     其中:
 

@@ -4,7 +4,7 @@ LookAhead
 -------------------------------
 
 .. py:function:: class paddle.incubate.LookAhead(inner_optimizer, alpha=0.5, k=5, name=None)
-此API为论文 `Lookahead Optimizer: k steps forward, 1 step back <https://arxiv.org/abs/1907.08610>`_ 中Lookahead优化器的实现。
+此API为论文 `Lookahead Optimizer: k steps forward，1 step back <https://arxiv.org/abs/1907.08610>`_ 中Lookahead优化器的实现。
 Lookahead保留两组参数：fast_params和slow_params。每次训练迭代中inner_optimizer更新fast_params。
 Lookahead每k次训练迭代更新slow_params和fast_params，如下所示：
 
@@ -133,7 +133,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 
 **返回**
 
-tuple: tuple (optimize_ops, params_grads)，由 ``minimize`` 添加的操作列表和 ``(param, grad)`` 张量对的列表，其中param是参数，grad参数对应的梯度值。在静态图模式中，返回的元组可以传给 ``Executor.run()`` 中的 ``fetch_list`` 来表示程序剪枝。这样程序在运行之前会通过 ``feed`` 和 ``fetch_list`` 被剪枝，详情请参考 ``Executor`` 。
+tuple: tuple (optimize_ops，params_grads)，由 ``minimize`` 添加的操作列表和 ``(param，grad)`` 张量对的列表，其中param是参数，grad参数对应的梯度值。在静态图模式中，返回的元组可以传给 ``Executor.run()`` 中的 ``fetch_list`` 来表示程序剪枝。这样程序在运行之前会通过 ``feed`` 和 ``fetch_list`` 被剪枝，详情请参考 ``Executor`` 。
 
 **代码示例**
 

@@ -11,7 +11,7 @@ Transpose
 参数
 :::::::::
 
-    - order (list|tuple，可选) - 目标的维度顺序. Default: (2, 0, 1)。
+    - order (list|tuple，可选) - 目标的维度顺序. Default: (2，0，1)。
     - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform``. 默认值: None。
 
 形状

@@ -56,7 +56,7 @@ step_input(x, level=0)
 
 .. code-block:: text
 
-    # 输入，其中Si代表维度为[1, N]的数据
+    # 输入，其中Si代表维度为[1，N]的数据
     level = 0
     x.lod = [[2, 1, 3]]
     x.shape = [6, N]
@@ -90,10 +90,10 @@ step_input(x, level=0)
 **参数**
 
     - **x** (Variable) - 输入序列LoDTensor，代表由长度不同的多个序列组成的minibatch，要求 :code:`x.lod_level >= 1`。输入x第一个维度的值等于minibatch内所有序列的长度之和。RNN有多个输入序列时，多个输入LoDTensor的第一个维度必须相同，其它维度可以不同。支持的数据类型有：bool，float16，float32，float64，int8，int16，int32，int64，uint8。
-    - **level** (int，可选) - 用于拆分输入序列的LoD层级，取值范围是 :math:`[0, x.lod\_level)`，默认值是0。
+    - **level** (int，可选) - 用于拆分输入序列的LoD层级，取值范围是 :math:`[0，x.lod\_level)`，默认值是0。
 
 **返回**
- 输入序列每个时间步的数据。执行第 :code:`step_idx` 个时间步时，若输入 :code:`x` 中有 :code:`num_sequences` 个长度不小于 :code:`step_idx` 的序列，则这个时间步返回值中只包含了这 :code:`num_sequences` 个序列第 :code:`step_idx` 时间步的数据。数据类型和输入一致。如果 :code:`x.lod_level == 1` ，返回值的维度是 :math:`\{num\_sequences, x.shape[1], ...\}`。否则，返回值也是一个变长的LoDTensor。
+ 输入序列每个时间步的数据。执行第 :code:`step_idx` 个时间步时，若输入 :code:`x` 中有 :code:`num_sequences` 个长度不小于 :code:`step_idx` 的序列，则这个时间步返回值中只包含了这 :code:`num_sequences` 个序列第 :code:`step_idx` 时间步的数据。数据类型和输入一致。如果 :code:`x.lod_level == 1` ，返回值的维度是 :math:`\{num\_sequences，x.shape[1]，...\}`。否则，返回值也是一个变长的LoDTensor。
 
 **返回类型**
 Variable
@@ -117,7 +117,7 @@ Variable
       with drnn.block():
           # 将embedding标记为RNN的输入，每个时间步取句子中的一个字进行处理
           word = drnn.step_input(embedding)
-          # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 200]，其中batch_size由输入embedding决定
+          # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size，200]，其中batch_size由输入embedding决定
           memory = drnn.memory(shape=[200])
           hidden = fluid.layers.fc(input=[word, memory], size=200, act='relu')
           # 用hidden更新memory
@@ -144,7 +144,7 @@ static_input(x)
 .. code-block:: text
 
     # RNN的输入见step_input中的示例
-    # 静态输入，其中Si代表维度为[1, M]的数据
+    # 静态输入，其中Si代表维度为[1，M]的数据
     x.lod = [[3, 1, 2]]
     x.shape = [6, M]
     x.data = [[S0],
@@ -185,7 +185,7 @@ static_input(x)
 .. code-block:: text
 
     # RNN的输入见step_input中的示例
-    # 静态输入，其中Si代表维度为[1, M]的数据
+    # 静态输入，其中Si代表维度为[1，M]的数据
     x.lod = [[]]
     x.shape = [3, M]
     x.data = [[S0],
@@ -216,7 +216,7 @@ static_input(x)
     - **x** (Variable) - 静态输入序列LoDTensor，要求持有与输入LoDTensor（通过 :code:`step_input` 设置的输入）相同的序列个数。如果输入x的LoD信息为空，则会被当成由 :code:`x.shape[0]` 个长度为1序列组成。支持的数据类型有：bool，float16，float32，float64，int8，int16，int32，int64，uint8。
 
 **返回**
- 经过按照RNN输入LoD信息重排序、且收缩处理后的静态输入LoDTensor。执行第 :code:`step_idx` 个时间步时，如果输入序列中只有 :code:`num_sequences` 长度不小于 :code:`step_idx` 的序列，静态输入也会进行收缩处理，只返回对应的 :code:`num_sequences` 个序列对应的数据。数据类型和输入一致。如果 :code:`x.lod == None` ，返回值的维度是 :math:`\{num\_sequences, x.shape[1], ...\}` 。否则，返回值是一个变长的LoDTensor。
+ 经过按照RNN输入LoD信息重排序、且收缩处理后的静态输入LoDTensor。执行第 :code:`step_idx` 个时间步时，如果输入序列中只有 :code:`num_sequences` 长度不小于 :code:`step_idx` 的序列，静态输入也会进行收缩处理，只返回对应的 :code:`num_sequences` 个序列对应的数据。数据类型和输入一致。如果 :code:`x.lod == None` ，返回值的维度是 :math:`\{num\_sequences，x.shape[1]，...\}` 。否则，返回值是一个变长的LoDTensor。
 
 **返回类型**
 Variable
@@ -288,7 +288,7 @@ memory(init=None, shape=None, value=0.0, need_reorder=False, dtype='float32')
 **参数**
 
     - **init** (Variable，可选) – 设置memory初始值的LoDTensor。如果init不是None，将使用init来初始化memory，要求持有与输入LoDTensor（通过 :code:`step_input` 设置的输入）相同的序列个数。如果输入init的LoD信息为空，则会被当成由 :code:`init.shape[0]` 个长度为1序列组成。默认值是None。
-    - **shape** (list|tuple，可选) – 当init是None时，用来设置memory的维度。注意：shape中不包含batch_size。若设置 :math:`shape=\{D_1, D_2, ...\}`，memory Tensor的实际维度为 :math:`\{batch\_size, D_1, D_2, ...\}`，其中batch_size由输入序列决定。默认值是None。
+    - **shape** (list|tuple，可选) – 当init是None时，用来设置memory的维度。注意：shape中不包含batch_size。若设置 :math:`shape=\{D_1，D_2，...\}`，memory Tensor的实际维度为 :math:`\{batch\_size，D_1，D_2，...\}`，其中batch_size由输入序列决定。默认值是None。
     - **value** (float，可选) – 当init是None时，用来设置memory的初始值。默认值是0.0。
     - **need_reorder** (bool，可选) – 当init不是None时，用来决定init是否需要重新排序。动态RNN在计算时，会按照输入LoDTensor中序列的长度对输入进行排序，因此当init中的信息与输入序列样本紧密关联时，需要设置 :code:`need_reorder=True`。默认值是False。
     - **dtype** (str|numpy.dtype，可选) – 当init是None是，初始化memory的数据类型。默认值是"float32"。可设置的字符串值有："float32"，"float64"，"int32"，"int64"。
@@ -344,7 +344,7 @@ Variable
     with drnn.block():
         # 将sentence标记为RNN的输入，每个时间步取句子中的一个字进行处理
         word = drnn.step_input(sentence)
-        # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size, 10]，其中batch_size由输入sentence决定
+        # 将memory初始化为一个值为0的常量Tensor，shape=[batch_size，10]，其中batch_size由输入sentence决定
         memory = drnn.memory(shape=[10], dtype='float32', value=0)
         hidden = fluid.layers.fc(input=[word, memory], size=10, act='tanh')
         # 用hidden更新memory

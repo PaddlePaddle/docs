@@ -11,7 +11,7 @@ gather_nd
 .. math::
     output[(i_0, ..., i_{K-2})] = input[index[(i_0, ..., i_{K-2})]]
 
-显然， :code:`index.shape[-1] <= input.rank` 并且输出张量的维度是 :code:`index.shape[:-1] + input.shape[index.shape[-1]:]` 。 
+显然，:code:`index.shape[-1] <= input.rank` 并且输出张量的维度是 :code:`index.shape[:-1] + input.shape[index.shape[-1]:]` 。 
 
 示例：
 
@@ -53,7 +53,7 @@ gather_nd
 参数
 ::::::::::::
 
-    - **input** (Tensor) - 输入Tensor，数据类型可以是int32，int64，float32，float64, bool。
+    - **input** (Tensor) - 输入Tensor，数据类型可以是int32，int64，float32，float64，bool。
     - **index** (Tensor) - 输入的索引Tensor，其数据类型为int32或者int64。它的维度 :code:`index.rank` 必须大于1，并且 :code:`index.shape[-1] <= input.rank` 。
     - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
     

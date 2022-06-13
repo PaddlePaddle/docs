@@ -6,7 +6,7 @@ sequence_enumerate
 
 .. py:function:: paddle.static.nn.sequence_enumerate(input, win_size, pad_value=0, name=None)
 
-枚举形状为 ``[d_1, 1]`` 的输入序列所有长度为 ``win_size`` 的子序列，生成一个形状为 ``[d_1, win_size]`` 的新序列，需要时以 ``pad_value`` 填充。
+枚举形状为 ``[d_1，1]`` 的输入序列所有长度为 ``win_size`` 的子序列，生成一个形状为 ``[d_1，win_size]`` 的新序列，需要时以 ``pad_value`` 填充。
 
 .. note::
 该API的输入 ``input`` 只能是LodTensor。
@@ -29,14 +29,14 @@ sequence_enumerate
 参数
 :::::::::
 
-        - **input** （Variable）- 输入序列，形状为 ``[d_1, 1]`` ，lod level为1的LodTensor。数据类型支持int32，int64，float32或float64。
+        - **input** （Variable）- 输入序列，形状为 ``[d_1，1]`` ，lod level为1的LodTensor。数据类型支持int32，int64，float32或float64。
         - **win_size** （int）- 子序列窗口大小。
         - **pad_value** （int，可选）- 填充值，默认为0。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回
 :::::::::
-枚举序列，形状为 ``[d_1, win_size]`` ，lod_level为1的LoDTensor。数据类型与输入 ``input`` 一致。
+枚举序列，形状为 ``[d_1，win_size]`` ，lod_level为1的LoDTensor。数据类型与输入 ``input`` 一致。
 
 
 

@@ -31,17 +31,17 @@ Variable，数据类型是int64。
         import paddle.fluid as fluid
         import paddle.fluid.layers as layers
         import numpy as np
-        # tensor 为 [True, False, True]
+        # tensor 为 [True，False，True]
         condition = layers.assign(np.array([1, 0, 1], dtype='int32'))
         condition = layers.cast(condition, 'bool')
         out = layers.where(condition) # [[0], [2]]
 
-        # tensor 为 [[True, False], [False, True]]
+        # tensor 为 [[True，False]，[False，True]]
         condition = layers.assign(np.array([[1, 0], [0, 1]], dtype='int32'))
         condition = layers.cast(condition, 'bool')
         out = layers.where(condition) # [[0, 0], [1, 1]]
 
-        # tensor 为 [False, False, False]
+        # tensor 为 [False，False，False]
         condition = layers.assign(np.array([0, 0, 0], dtype='int32'))
         condition = layers.cast(condition, 'bool')
         out = layers.where(condition) # [[]]

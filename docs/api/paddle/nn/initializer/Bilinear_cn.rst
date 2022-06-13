@@ -44,7 +44,7 @@ Bilinear
                                  bias_attr=False)
     x = conv_up(data)
 
-上述代码实现的是将输入x（shape=[-1, 4, H, W]）经过转置卷积得到shape=[-1, C, H*factor, W*factor]的输出，out_channels = C和groups = C 表示这是按通道转置的卷积函数，输出通道为C，转置卷积的groups为C。滤波器shape为(C,1,K,K)，K为kernel_size。该初始化函数为滤波器的每个通道设置(K,K)插值核。输出特征图的最终输出shape为(B,C,factor*H,factor*W)。注意学习率和权重衰减设为0，以便在训练过程中双线性插值的系数值保持不变
+上述代码实现的是将输入x（shape=[-1，4，H，W]）经过转置卷积得到shape=[-1，C，H*factor，W*factor]的输出，out_channels = C和groups = C 表示这是按通道转置的卷积函数，输出通道为C，转置卷积的groups为C。滤波器shape为(C，1，K，K)，K为kernel_size。该初始化函数为滤波器的每个通道设置(K，K)插值核。输出特征图的最终输出shape为(B，C，factor*H，factor*W)。注意学习率和权重衰减设为0，以便在训练过程中双线性插值的系数值保持不变
 
 
 
