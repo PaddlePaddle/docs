@@ -44,7 +44,7 @@ space_to_depth
 
   - **x** (Variable) – 输入，形状为 ``[batch, channel, height, width]`` 的4维Tensor或LoD Tensor。数据类型支持int32，int64，float32或float64。
   - **blocksize** (int) – 在每个特征图上选择元素时采用的块大小，应该 >= 2
-  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

@@ -54,7 +54,7 @@ gather_nd
 
     - **x** (Tensor) - 输入 Tensor，数据类型可以是 int32、int64、float32、float64、bool。
     - **index** (Tensor) - 输入的索引 Tensor，其数据类型 int32 或者 int64。它的维度 :code:`index.rank` 必须大于1，并且 :code:`index.shape[-1] <= x.rank` 。
-    - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     
 返回
 ::::::::::::

@@ -16,7 +16,7 @@ adaptive_avg_pool1d
 :::::::::
     - **x** (Tensor) - 自适应平均池化的输入，它是形状为 :math:`[N,C,L]` 的 3-D Tensor，其中 :math:`N` 是批大小，:math:`C` 是通道数而 :math:`L` 是输入特征的长度，其数据类型为 float32 或 float64。
     - **output_size** (int) - 输出特征的长度，数据类型为 int。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

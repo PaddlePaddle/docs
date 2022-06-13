@@ -31,7 +31,7 @@ __init__(name)
 
 **参数**
 
-    - **name** (str) - 当前创建的评估器的名字，用于区分不同的评估器，例如准确率（accuracy）或者其他自定义名字（如，my_evaluator）。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 **返回**
 一个python对象，表示一个具体的评估器。

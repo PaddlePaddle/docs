@@ -21,7 +21,7 @@ instance_norm
     - **momentum** (float, 可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var`` 。默认值：0.9。更新公式如上所示。
     - **use_input_stats** (bool, 可选) - 默认是True.
     - **data_format** (string, 可选) - 指定输入数据格式，数据格式可以为“NC", "NCL", "NCHW" 或者"NCDHW"。默认值："NCHW"。
-    - **name** (string, 可选) – InstanceNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

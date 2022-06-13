@@ -15,7 +15,7 @@ cholesky_solve
     - **x** (Tensor) - 线性方程中的B矩阵。是2维矩阵或者2维矩阵以batch形式组成的3维矩阵。
     - **y** (Tensor) - 线性方程中A矩阵的Cholesky分解矩阵u，上三角或者下三角矩阵。是2维矩阵或者2维矩阵以batch形式组成的3维矩阵。
     - **upper** (bool，可选) - 输入x是否是上三角矩阵，True为上三角矩阵，False为下三角矩阵。默认值False。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

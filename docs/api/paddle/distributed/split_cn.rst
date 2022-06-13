@@ -79,7 +79,7 @@ split
     - gather_out (bool，可选) - 是否聚合所有设备的计算结果。默认地，聚合所有设备的计算结果。默认值：True。
     - weight_attr (ParamAttr，可选) - 指定参数的属性。默认值：None。
     - bias_attr (ParamAttr，可选) - 指定偏置的属性。默认值：None。
-    - name (str，可选) - 默认值为None，通常用户不需要设置该属性。更多信息请参考 :ref:`api_guide_Name` 。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

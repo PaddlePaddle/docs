@@ -31,7 +31,7 @@ triangular_solve
     - **upper** (bool，可选) - 对系数矩阵 ``x`` 取上三角还是下三角。默认为True，表示取上三角。
     - **transpose** (bool，可选) - 是否对系数矩阵 ``x`` 进行转置。默认为False，不进行转置。
     - **unitriangular** (bool，可选) - 如果为True，则将系数矩阵 ``x`` 对角线元素假设为1来求解方程。默认为False。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

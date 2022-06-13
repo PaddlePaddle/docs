@@ -19,7 +19,7 @@ hash
   - **input** (Variable) - 输入是一个 **二维** ``LoDTensor`` 。**输入维数必须为2**。数据类型为：int32、int64。**仅支持LoDTensor**。
   - **hash_size** (int) - 哈希算法的空间大小。输出值将保持在 :math:`[0, hash\_size)` 范围内。
   - **num_hash** (int) - 哈希次数。默认值为1。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

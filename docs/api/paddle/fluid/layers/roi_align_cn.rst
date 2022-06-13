@@ -26,7 +26,7 @@ Region of Interests align(直译：有意义、有价值选区对齐) 用于实�
   - **pooled_width** (int32，可选) – 池化后的输出宽度，默认值为1。
   - **spatial_scale** (float32，可选) – 乘法性质空间标尺因子，池化时，将RoI坐标变换至运算采用的标度，默认值为1.0。
   - **sampling_ratio** (int32) – 插值格中采样点的数目。 如果它 <=0, 它们将自适应 ``roi_width`` 和 ``pooled_w`` , 在高度上也是同样的道理。默认值为-1
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。 
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。 
 
 
 返回

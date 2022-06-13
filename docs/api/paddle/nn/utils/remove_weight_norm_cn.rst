@@ -11,7 +11,7 @@ remove_weight_norm
 ::::::::::::
 
    - **layer** (paddle.nn.Layer) - 要添加权重归一化的层。
-   - **name** (str, 可选) - 权重参数的名字。默认：'weight'. 
+   - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。 
 
 返回
 ::::::::::::

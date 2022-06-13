@@ -38,7 +38,7 @@ max_unpool3d
     - **padding** (string|int|list|tuple，可选) 池化填充,默认值：0。
     - **output_size** (list|tuple, 可选): 目标输出尺寸。 如果 output_size 没有被设置，则实际输出尺寸会通过(input_shape, kernel_size, stride, padding)自动计算得出，默认值：None。
     - **data_format** (str, 可选)： 输入和输出的数据格式，只能是"NCDHW"。N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。默认值："NCDHW"
-    - **name** (str，可选)：函数的名字，默认为None.
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 

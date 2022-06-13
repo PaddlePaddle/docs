@@ -15,7 +15,7 @@ channel_shuffle
     - **x** (Tensor) – 当前算子的输入，其是一个形状为 [N, C, H, W] 的 4-D Tensor。其中 N 是批大小，C 是通道数，H 是输入特征的高度，W 是输入特征的宽度。其数据类型为 float32 或 float64。
     - **groups** (int) – 要把通道分成的组数；
     - **data_format** (str，可选) – 数据格式，可选：NCHW 或 NHWC，默认为 NCHW，即（批大小，通道数，高度，宽度）的格式。
-    - **name** (str，可选) – 操作的名称（可选，默认值为 None），大多数情况下不需要设置此属性。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

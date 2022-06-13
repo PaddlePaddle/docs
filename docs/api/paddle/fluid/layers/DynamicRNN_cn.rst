@@ -24,7 +24,7 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 参数
 ::::::::::::
 
-    - **name** (str，可选) - 具体用法参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 成员函数列表：
     - :ref:`cn_api_fluid_layers_DynamicRNN_step_input` ，设置输入变量

@@ -15,7 +15,7 @@ unique_consecutive
     - **return_counts** (bool, 可选) - 如果为True，则还返回每个连续不重复元素在输入Tensor中的个数。默认：False.
     - **axis** (int, 可选) - 指定选取连续不重复元素的轴。默认值为None，将输入平铺为1-D的Tensor后再选取连续不重复元素。默认：None.
     - **dtype** (np.dtype|str, 可选) - 用于设置 `inverse` 或者 `counts` 的类型，应该为int32或者int64。默认：int64.
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

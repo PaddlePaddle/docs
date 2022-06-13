@@ -13,7 +13,7 @@ searchsorted
     - **values** (Tensor) - 输入的N维Tensor，支持的数据类型：float32、float64、int32、int64。
     - **out_int32** (bool，可选) - 输出的数据类型支持int32、int64。默认值为False，表示默认的输出数据类型为int64。
     - **right** (bool，可选) - 根据给定 ``values`` 在 ``sorted_sequence`` 查找对应的上边界或下边界。默认值为False，表示在 ``sorted_sequence`` 的查找给定 ``values`` 的下边界。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::

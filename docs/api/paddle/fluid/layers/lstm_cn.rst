@@ -55,7 +55,7 @@ lstm
   - **dropout_prob** (float，可选) – dropout比例，dropout 只在 rnn 层之间工作，而不是在时间步骤之间。dropout 不作用于最后的 rnn 层的 rnn 输出中。默认值为 0.0。
   - **is_bidirec** (bool，可选) – 是否是双向的LSTM。默认值为 False。
   - **is_test** (bool，可选) – 是否在测试阶段。默认值为 False。
-  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
   - **default_initializer** (Initializer，可选) – 用于初始化权重的初始化器，如果为None，将进行默认初始化。默认值为 None。
   - **seed** (int，可选) – LSTM中dropout的seed，如果是-1，dropout将使用随机seed。默认值为 1。
 

@@ -16,7 +16,7 @@ weight_norm
 ::::::::::::
 
    - **layer** (paddle.nn.Layer) - 要添加权重归一化的层。
-   - **name** (str, 可选) - 权重参数的名字。默认：'weight'. 
+   - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。 
    - **dim** (int|None, 可选) - 进行归一化操作的切片所在维度，是小于权重Tensor rank的非负数。比如卷积的权重shape是 [cout,cin,kh,kw] , rank是4，则dim可以选0,1,2,3；fc的权重shape是 [cout,cin] ，rank是2，dim可以选0，1。 如果为None就对所有维度上的元素做归一化。默认：0。 
 
 返回

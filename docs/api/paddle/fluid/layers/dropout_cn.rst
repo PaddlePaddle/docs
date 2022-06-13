@@ -21,7 +21,7 @@ dropout op可以从Program中删除，提高执行效率。
     - **dropout_prob** (float32) - 输入单元的丢弃概率，即输入单元设置为0的概率。
     - **is_test** (bool) - 标记是否是测试阶段。默认：False。
     - **seed** (int) - 整型数据，用于创建随机种子。如果该参数设为None，则使用随机种子。注：如果给定一个整型种子，始终丢弃相同的输出单元。训练过程中勿用固定不变的种子。
-    - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **dropout_implementation** (str) - 丢弃单元的方式，有两种'downgrade_in_infer'和'upscale_in_train'两种选择，默认：'downgrade_in_infer'。具体作用可以参考一下描述。
 
       1. downgrade_in_infer(default), 在预测时减小输出结果

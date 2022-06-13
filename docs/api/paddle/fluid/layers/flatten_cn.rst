@@ -37,7 +37,7 @@ flatten op将输入的多维Tensor展平成2-D Tensor矩阵
 
   - **x** (Variable) - 一个维度数>=axis 的多维Tensor, 数据类型可以为float32，float64，int8，int32或int64。
   - **axis** (int) - flatten展开的分割轴，[0, axis) 轴数据被flatten到输出矩阵的0轴，[axis, R)数据被flatten到输出矩阵的1轴，其中R是输入张量的总维度数。axis的值必须在[0,R]范围内。当 axis=0 时，若输入Tensor的维度为 :math:`[d_0, d_1，… d_n]` ，则输出张量的Tensor维度为 :math:`[1，d_0 * d_1 *… d_n]` ，默认值为1。
-  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

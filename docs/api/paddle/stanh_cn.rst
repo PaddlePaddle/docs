@@ -18,7 +18,7 @@ stanh 激活函数
  - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
  - scale_a (float, 可选) - stanh激活计算公式中的输入缩放参数a。默认值为0.67。
  - scale_b (float, 可选) - stanh激活计算公式中的输出缩放参数b。默认值为1.7159。
- - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+ - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::

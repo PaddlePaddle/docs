@@ -19,7 +19,7 @@ bmm
 
     - **x** (Tensor) - 输入变量，类型为 Tensor。
     - **y** (Tensor) - 输入变量，类型为 Tensor。
-    - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

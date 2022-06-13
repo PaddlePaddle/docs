@@ -76,7 +76,7 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
             - train: out = input * mask
             - inference: out = input * (1.0 - p)
     - **ring_id** (int, 可选) - 分布式tensor parallel运行下通讯所使用的NCCL id。默认值为 -1 。
-    - **name** (str, 可选) - 操作的名称(可选，默认值为 ``None`` ）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::

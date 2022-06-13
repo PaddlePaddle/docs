@@ -14,7 +14,7 @@ histogram
     - **bins** (int，可选) - 直方图 bins(直条)的个数，默认为100。
     - **min** (int，可选) - range的下边界(包含)，默认为0。
     - **max** (int，可选) - range的上边界(包含)，默认为0。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

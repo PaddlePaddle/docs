@@ -23,7 +23,7 @@ PRROIPool运算
     - **spatial_scale** （float） - （float，default 1.0），乘法空间比例因子，用于将ROI坐标从其输入比例转换为池化使用的比例。默认值：1.0
     - **pooled_height** （integer） - （int，默认值1），池化输出的高度。默认值：1
     - **pooled_width** （integer） - （int，默认值1），池化输出的宽度。默认值：1
-    - **name** （str，default None） - 此层的名称。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

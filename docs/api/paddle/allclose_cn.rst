@@ -20,7 +20,7 @@ allclose
     - **rtol** (float，可选) - 相对容忍误差，默认值为1e-5。
     - **atol** (float，可选) - 绝对容忍误差，默认值为1e-8。
     - **equal_nan** (bool，可选) - 如果设置为True，则两个NaN数值将被视为相等，默认值为False。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

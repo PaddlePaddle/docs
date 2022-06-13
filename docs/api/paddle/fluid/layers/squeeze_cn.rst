@@ -43,7 +43,7 @@ squeeze
 
         - **input** (Variable) - 输入任意维度的Tensor。 支持的数据类型：float32，float64，int8，int32，int64。
         - **axes** (list) - 输入一个或一列整数，代表要压缩的轴。axes的范围： :math:`[-rank(input), rank(input))` 。 axes为负数时， :math:`axes=axes+rank(input)` 。
-        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+        - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

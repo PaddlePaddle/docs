@@ -33,7 +33,7 @@ spectral_norm
     - **dim** (int，可选) - 将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果input（weight）是fc层的权重，则应设置为0；如果input（weight）是conv层的权重，则应设置为1，默认为0。
     - **power_iters** (int，可选) - 将用于计算spectral norm的功率迭代次数，默认值1。
     - **eps** (float，可选) - epsilon用于保证计算规范中的数值稳定性，分母会加上 ``eps`` 防止除零，默认1e-12。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

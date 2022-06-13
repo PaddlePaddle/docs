@@ -26,7 +26,7 @@ linear接口可以计算输入Tensor与权重矩阵 :math:`W` 的乘积，生成
 - **x** (Tensor) – 输入Tensor。它的数据类型可以为float16，float32或float64。
 - **weight** (Tensor) – 权重Tensor。它的数据类型可以为float16，float32或float64。
 - **bias** (Tensor, 可选) – 偏置Tensor。它的数据类型可以为float16，float32或float64。如果不为None，则将会被加到输出中。默认值为None。
-- **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+- **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

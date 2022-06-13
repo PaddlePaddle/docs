@@ -17,7 +17,7 @@ ParamAttr
 参数
 ::::::::::::
 
-    - **name** (str，可选) - 参数的名称。默认值为None，表示框架自动创建参数的名称。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **initializer** (Initializer，可选) - 参数的初始化方式。默认值为None，表示权重参数采用Xavier初始化方式，偏置参数采用全0初始化方式。
     - **learning_rate** (float，可选) - 参数的学习率。实际参数的学习率等于全局学习率乘以参数的学习率，再乘以learning rate schedule的系数。
     - **regularizer** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`api_paddle_regularizer_L1Decay` 、 

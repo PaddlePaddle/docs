@@ -13,7 +13,7 @@ Uniform
 
     - **low** (float，可选) - 均匀分布的下界，默认值为 :math:`-1.0`。
     - **high** (float，可选) - 均匀分布的上界，默认值为 :math:`1.0`。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
