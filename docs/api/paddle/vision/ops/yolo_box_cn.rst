@@ -38,7 +38,7 @@ yolo_box
     - **downsample_ratio** （int）- 从网络输入到YoloBox操作输入的下采样率，因此应依次为第一个，第二个和第三个YoloBox运算设置该值为32,16,8
     - **clip_bbox** （bool，可选）- 是否将输出的bbox裁剪到 :attr:`img_size` 范围内，默认为True。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **scale_x_y** (float，可选) - 放缩解码边界框的中心点，默认值：1。0。
+    - **scale_x_y** (float，可选) - 放缩解码边界框的中心点，默认值：1.0。
 
 返回
 :::::::::

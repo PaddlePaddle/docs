@@ -17,11 +17,11 @@ prior_box
     - **min_sizes** (list|tuple|float) - 生成的候选框的最小尺寸。
     - **max_sizes** (list|tuple|None) - 生成的候选框的最大尺寸。默认值为None
     - **aspect_ratios** (list|tuple|float) - 生成的候选框的长宽比。默认值为[1。]。
-    - **variance** (list|tuple) - 在候选框中解码的方差。默认值为[0。1,0.1,0.2,0.2]。
+    - **variance** (list|tuple) - 在候选框中解码的方差。默认值为[0.1,0.1,0.2,0.2]。
     - **flip** (bool) - 是否翻转。默认值为False。
     - **clip** (bool) - 是否裁剪。默认值为False。
-    - **step** (list|tuple) - 候选框在width和height上的步长。如果step[0]等于0。0或者step[1]等于0。0，则自动计算候选框在宽度和高度上的步长。默认：[0。,0.]
-    - **offset** (float) - 候选框中心位移。默认：0。5
+    - **step** (list|tuple) - 候选框在width和height上的步长。如果step[0]等于0.0或者step[1]等于0.0，则自动计算候选框在宽度和高度上的步长。默认：[0。,0.]
+    - **offset** (float) - 候选框中心位移。默认：0.5
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **min_max_aspect_ratios_order** (bool) - 若设为True，候选框的输出以[min, max, aspect_ratios]的顺序输出，和Caffe保持一致。请注意，该顺序会影响后面卷基层的权重顺序，但不影响最后的检测结果。默认：False。
 

@@ -23,7 +23,7 @@ HardShrink激活函数(HardShrink activation operator)
 ::::::::::::
 
     - **x** - HardShrink激活函数的输入
-    - **threshold** (FLOAT)-HardShrink激活函数的threshold值。[默认：0。5]
+    - **threshold** (FLOAT)-HardShrink激活函数的threshold值。[默认：0.5]
 
 返回
 ::::::::::::

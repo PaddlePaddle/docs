@@ -36,7 +36,7 @@ sequence_last_step
             input.data = [[1.], [3.], [2.], [4.], [6.], [5.], [1.]]
             input.shape = [7, 1]
         
-        将根据最后一层的lod信息[0, 1, 3, 4, 4, 7]进行池化操作，且pad_value = 0。0
+        将根据最后一层的lod信息[0, 1, 3, 4, 4, 7]进行池化操作，且pad_value = 0.0
         输出为LoDTensor：
             out.shape= [5, 1]
             out.lod = [[0, 2, 2, 5]]

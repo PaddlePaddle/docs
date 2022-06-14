@@ -28,9 +28,9 @@ Adam优化器出自 `Adam论文 <https://arxiv。org/abs/1412.6980>`_ 的第二�
 参数
 ::::::::::::
  
-    - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0。001。
-    - **beta1** (float|Tensor，可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0。9。
-    - **beta2** (float|Tensor，可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0。999。
+    - **learning_rate** (float|_LRScheduler) - 学习率，用于参数更新的计算。可以是一个浮点型值或者一个_LRScheduler类，默认值为0.001。
+    - **beta1** (float|Tensor，可选) - 一阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.9。
+    - **beta2** (float|Tensor，可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.999。
     - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08。
     - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是float类型的L2正则化系数或者正则化策略： :ref:`cn_api_fluid_regularizer_L1Decay` 、 

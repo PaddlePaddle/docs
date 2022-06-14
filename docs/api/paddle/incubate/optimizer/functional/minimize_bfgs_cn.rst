@@ -29,7 +29,7 @@ minimize_bfgs
     - **initial_inverse_hessian_estimate** (Tensor，可选) - 函数在初始位置时的近似逆海森矩阵，必须满足对称性和正定性。当为None时，将使用N阶单位矩阵，其中N为 ``initial_position`` 的size。默认值：None。
     - **line_search_fn** (str，可选) - 指定要使用的线搜索方法，目前只支持值为'strong wolfe'方法，未来将支持'Hager Zhang'方法。默认值：'strong wolfe'。
     - **max_line_search_iters** (int，可选) - 线搜索的最大迭代次数。默认值：50。
-    - **initial_step_length** (float，可选) - 线搜索中第一次迭代时的步长，不同的初始步长可能会产生不同的优化结果。对于高斯牛顿类方法初始的试验步长应该总是1。默认值：1。0。
+    - **initial_step_length** (float，可选) - 线搜索中第一次迭代时的步长，不同的初始步长可能会产生不同的优化结果。对于高斯牛顿类方法初始的试验步长应该总是1。默认值：1.0。
     - **dtype** ('float32' | 'float64'，可选) - 在算法中使用的数据类型，输入参数的数据类型必须与dtype保持一致。默认值：'float32'。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

@@ -11,7 +11,7 @@ ReduceLROnPlateau
 ::::::::::::
 
   - **monitor** (str，可选) - 监视的指标名称。默认值：'loss'。
-  - **factor** (float，可选) - 学习率减小的因子。`new_lr = lr * factor`。默认值：0。1。
+  - **factor** (float，可选) - 学习率减小的因子。`new_lr = lr * factor`。默认值：0.1。
   - **patience** (int，可选) - 多少个epoch监视的指标没有提升后就减小学习率。默认值：10。
   - **verbose** (int，可选) - 可视化的模式。0表示不打印任何信息，1表示打印信息。默认值：1。
   - **mode** (int，可选) - 必须是 `{'auto', 'min', 'max'}` 中的值。`'min'` 表示学习率会减少当监视的指标不再下降。`'max'` 表示学习率会减少当监视的指标不再上升。`'auto'` 会根据监视指标的名字来推理是使用min还是max模式，如果名字中包含acc则使用max模式，否则使用min模式。默认值：'auto'。

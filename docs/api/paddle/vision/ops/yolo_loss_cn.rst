@@ -45,7 +45,7 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
          $$
 
 
-当 ``use_label_smooth`` 为 ``True`` 时，在计算分类损失时将平滑分类目标，将正样本的目标平滑到1。0-1.0 / class_num，并将负样本的目标平滑到1。0 / class_num。
+当 ``use_label_smooth`` 为 ``True`` 时，在计算分类损失时将平滑分类目标，将正样本的目标平滑到1.0-1.0 / class_num，并将负样本的目标平滑到1.0 / class_num。
 
 ``GTScore`` （如果存在）表示真实框的mixup得分，那么真实框所产生的所有损失需要乘上GTScore。
 
@@ -65,7 +65,7 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
     - **gt_score** （Tensor）- 真实框的混合得分，形为[N，B]。默认None。数据类型为float32或float64。
     - **use_label_smooth** (bool）- 是否使用平滑标签。默认为True
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **scale_x_y** (float，可选) - 缩放解码边界框的中心点。默认值1。0。
+    - **scale_x_y** (float，可选) - 缩放解码边界框的中心点。默认值1.0。
 
 
 返回

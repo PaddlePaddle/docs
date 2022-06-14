@@ -28,7 +28,7 @@ DetectionMAP
     - **gt_difficult** (Variable|None，可选) – 指定这个ground truth是否是一个difficult bounding bbox，它可以是一个 shape=[N, 1]的LoDTensor，也可以不被指定。默认设置为None，表示所有的ground truth标签都不是difficult bbox，数据类型为float32或float64。
     - **class_num** (int) – 检测类别的数目。
     - **background_label** (int) – 背景标签的索引，背景标签将被忽略。如果设置为-1，则所有类别将被考虑，默认为0。
-    - **overlap_threshold** (float) – 判断真假阳性的阈值，默认为0。5。
+    - **overlap_threshold** (float) – 判断真假阳性的阈值，默认为0.5。
     - **evaluate_difficult** (bool) – 是否考虑 difficult ground truth 进行评价，默认为 True。当 gt_difficult 为 None 时，这个参数不起作用。
     - **ap_version** (str) – 平均精度的计算方法，必须是 "integral" 或 "11point"。详情请查看 https://sanchom。wordpress.com/tag/average-precision/。其中，11point为：11-point 插值平均精度。积分：precision-recall曲线的自然积分。
 

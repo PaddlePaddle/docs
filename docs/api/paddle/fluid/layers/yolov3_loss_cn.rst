@@ -49,7 +49,7 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
          $$
 
 
-当 ``use_label_smooth`` 为 ``True`` 时，在计算分类损失时将平滑分类目标，将正样本的目标平滑到1。0-1.0 / class_num，并将负样本的目标平滑到1。0 / class_num。
+当 ``use_label_smooth`` 为 ``True`` 时，在计算分类损失时将平滑分类目标，将正样本的目标平滑到1.0-1.0 / class_num，并将负样本的目标平滑到1.0 / class_num。
 
 ``GTScore`` （如果存在）表示真实框的mixup得分，那么真实框所产生的所有损失需要乘上GTScore。
 

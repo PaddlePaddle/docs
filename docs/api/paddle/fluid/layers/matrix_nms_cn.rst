@@ -28,7 +28,7 @@ matrix_nms
     - **nms_top_k**  (int) – 基于 score_threshold 的过滤检测后，根据置信度保留的最大检测次数。
     - **keep_top_k**  (int) – 经过NMS抑制后，最终保留的最大检测次数。如果设置为 -1 ，则则保留全部。
     - **use_gaussian**  (bool) –  是否使用高斯函数衰减。默认值：False。
-    - **gaussian_sigma**  (float) – 高斯函数的Sigma值，默认值：2。0。
+    - **gaussian_sigma**  (float) – 高斯函数的Sigma值，默认值：2.0。
     - **background_label**  (int) – 背景标签（类别）的索引，如果设置为 0 ，则忽略背景标签（类别）。如果设置为 -1 ，则考虑所有类别。默认值：0
     - **normalized**  (bool) –  检测是否已经经过正则化。默认值：True。
     - **return_index**  (bool) –  是否同时返回保留检测框的序号。默认值：False。
@@ -37,7 +37,7 @@ matrix_nms
 返回
 ::::::::::::
 
-    - **Out**  (Variable) - 形为[No，6]的2-D LoDTensor，表示检测结果。每行有6个值：[标签label，置信度confidence，xmin，ymin，xmax，ymax]。或形为[No，10]的2-D LoDTensor，用来表示检测结果。每行有10个值：[标签label，置信度confidence，x1，y1，x2，y2，x3，y3，x4，y4]。No是检测的总数。如果对所有图像都没有检测到的box，则lod将设置为{1}，而Out仅包含一个值-1。（1。3版本之后，当未检测到box时，lod从{0}更改为{1}）
+    - **Out**  (Variable) - 形为[No，6]的2-D LoDTensor，表示检测结果。每行有6个值：[标签label，置信度confidence，xmin，ymin，xmax，ymax]。或形为[No，10]的2-D LoDTensor，用来表示检测结果。每行有10个值：[标签label，置信度confidence，x1，y1，x2，y2，x3，y3，x4，y4]。No是检测的总数。如果对所有图像都没有检测到的box，则lod将设置为{1}，而Out仅包含一个值-1。（1.3版本之后，当未检测到box时，lod从{0}更改为{1}）
     - **Index**  (Variable) - 形为[No，1]的2-D LoDTensor，表示检测结果在整个批次中的序号。
 
 

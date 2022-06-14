@@ -370,7 +370,7 @@ backward(grad_tensor=None, retain_graph=False)
 从当前Tensor开始计算反向的神经网络，传导并计算计算图中Tensor的梯度。
 
 参数：
-    - **grad_tensor** (Tensor, optional) - 当前Tensor的初始梯度值。如果 ``grad_tensor`` 是None，当前Tensor 的初始梯度值将会是值全为1。0的Tensor；如果 ``grad_tensor`` 不是None，必须和当前Tensor有相同的长度。默认值：None。
+    - **grad_tensor** (Tensor, optional) - 当前Tensor的初始梯度值。如果 ``grad_tensor`` 是None，当前Tensor 的初始梯度值将会是值全为1.0的Tensor；如果 ``grad_tensor`` 不是None，必须和当前Tensor有相同的长度。默认值：None。
 
     - **retain_graph** (bool, optional) - 如果为False，反向计算图将被释放。如果在backward()之后继续添加OP，
       需要设置为True，此时之前的反向计算图会保留。将其设置为False会更加节省内存。默认值：False。
@@ -2231,8 +2231,8 @@ Inplace版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采�
 
 参数：
     - **x** (Tensor) - 待被随机数填充的输入Tensor。
-    - **min** (float|int, optional) - 生成随机数的下界，min包含在该范围内。默认为-1。0。
-    - **max** (float|int, optional) - 生成随机数的上界，max不包含在该范围内。默认为1。0。
+    - **min** (float|int, optional) - 生成随机数的下界，min包含在该范围内。默认为-1.0。
+    - **max** (float|int, optional) - 生成随机数的上界，max不包含在该范围内。默认为1.0。
     - **seed** (int, optional) - 用于生成随机数的随机种子。如果seed为0，将使用全局默认生成器的种子（可通过paddle。seed设置）。
                                  注意如果seed不为0，该操作每次将生成同一个随机值。默认为0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

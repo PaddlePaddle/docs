@@ -32,10 +32,10 @@ rpn_target_assign
         - **is_crowd** (Variable) –Shape为 ``[M, 1]`` 的2-D LoDTensor，M为groundtruth boxes的数量。用于标记boxes是否是crowd。数据类型支持int32。
         - **im_info** (Variable) - Shape为[N，3]的2-D张量，表示原始图像的大小信息。信息包含原始图像宽、高和feature map相对于原始图像缩放的比例。数据类型支持int32。
         - **rpn_batch_size_per_im** (int，可选) - 整型数字。每个图像中RPN示例总数。数据类型支持int32。缺省值为256。
-        - **rpn_straddle_thresh** (float，可选) - 浮点数字。超出图像外部 ``straddle_thresh`` 个像素的RPN anchors会被删除。数据类型支持float32。缺省值为0。0。
-        - **rpn_fg_fraction** (float，可选) - 浮点数字。标记为foreground boxes的数量占batch内总体boxes的比例。数据类型支持float32。缺省值为0。5。
-        - **rpn_positive_overlap** (float，可选) - 浮点数字。和任意一个groundtruth box的 ``IoU`` 超出了阈值 ``rpn_positive_overlap`` 的box被判定为正类别。数据类型支持float32。缺省值为0。7。
-        - **rpn_negative_overlap** (float，可选) - 浮点数字。负类别anchor是和任何ground-truth boxes的IoU都低于阈值 ``rpn_negative_overlap`` 的anchor。数据类型支持float32。缺省值为0。3。
+        - **rpn_straddle_thresh** (float，可选) - 浮点数字。超出图像外部 ``straddle_thresh`` 个像素的RPN anchors会被删除。数据类型支持float32。缺省值为0.0。
+        - **rpn_fg_fraction** (float，可选) - 浮点数字。标记为foreground boxes的数量占batch内总体boxes的比例。数据类型支持float32。缺省值为0.5。
+        - **rpn_positive_overlap** (float，可选) - 浮点数字。和任意一个groundtruth box的 ``IoU`` 超出了阈值 ``rpn_positive_overlap`` 的box被判定为正类别。数据类型支持float32。缺省值为0.7。
+        - **rpn_negative_overlap** (float，可选) - 浮点数字。负类别anchor是和任何ground-truth boxes的IoU都低于阈值 ``rpn_negative_overlap`` 的anchor。数据类型支持float32。缺省值为0.3。
         - **use_random** (bool，可选) – 布尔类型。是否使用随机采样来选择foreground boxes和background boxes。缺省值为True。
 
 返回

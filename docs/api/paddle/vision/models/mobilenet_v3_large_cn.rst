@@ -10,7 +10,7 @@ mobilenet_v3_large
 参数
 :::::::::
   - **pretrained** (bool，可选) - 是否加载在imagenet数据集上的预训练权重。默认值：False。
-  - **scale** (float，可选) - 模型通道数的缩放比例。默认值：1。0。
+  - **scale** (float，可选) - 模型通道数的缩放比例。默认值：1.0。
 
 返回
 :::::::::

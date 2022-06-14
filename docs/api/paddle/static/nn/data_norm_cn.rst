@@ -41,7 +41,7 @@ data_norm
   - **moving_variance_name** （string，可选） - 存储全局Variance的moving_variance的名称。默认值为None。
   - **do_model_average_for_mean_and_var** （bool，可选） - 是否为mean和variance进行模型平均。默认值为False。
   - **slot_dim** （int，可选） -  一个slot的embedding维度，slot用来表征一类特征的集合，在pslib模式下，通常我们通过slot区分特征id，并从参数服务器（pslib）中提取它们的embedding。embedding的第一维是历史上这个embedding展示的次数。如果本op的输入是由这样的embedding连接而来，那么当这个特征id是新的或空的，则正则化结果可能不实际。为了避免这种情况，我们添加了slot_dim来定位并判断这一维是否为零。如果是的话，我们选择跳过正则化。默认值为 -1。
-  - **summary_decay_rate** （float，可选） - 更新summary信息时的衰减率。默认值为 0。9999999。
+  - **summary_decay_rate** （float，可选） - 更新summary信息时的衰减率。默认值为 0.9999999。
   - **sync_stats** （bool，默认值False） - 在多GPU卡的场景下可以使用，用来同步多卡间的summary信息。
   - **enable_scale_and_shift** (bool，默认值False) - 在分布式全局正则化后是否做像batchnorm一样做scale&shift的操作。
 

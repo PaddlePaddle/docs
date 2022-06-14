@@ -12,8 +12,8 @@ require_version
 参数
 ::::::::::::
 
-    - **min_version** (str) - 指定所需要的最低版本（如‘1。4.0’）
-    - **max_version** (str, optional) – 指定可接受的最高版本（如‘1。7.0’），默认值None，表示任意大于等于 ``min_version`` 的版本都可以接受。
+    - **min_version** (str) - 指定所需要的最低版本（如‘1.4.0’）
+    - **max_version** (str, optional) – 指定可接受的最高版本（如‘1.7.0’），默认值None，表示任意大于等于 ``min_version`` 的版本都可以接受。
 
 返回
 ::::::::::::
@@ -37,9 +37,9 @@ require_version
 
         import paddle.fluid as fluid
 
-        # 任何大于等于0。1.0的版本都可以接受
+        # 任何大于等于0.1.0的版本都可以接受
         fluid.require_version('0.1.0')
 
-        # 只接受介于0。1.0和10。0.0之间的版本（包含0。1.0和10。0.0）
+        # 只接受介于0.1.0和10.0.0之间的版本（包含0.1.0和10.0.0）
         fluid.require_version(min_version='0.1.0', max_version='10.0.0')
 

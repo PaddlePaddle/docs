@@ -11,7 +11,7 @@ FusedFeedForward
 :::::::::
     - **d_model** (int) - 输入输出的维度。
     - **dim_feedforward** (int) - 前馈神经网络中隐藏层的大小。
-    - **dropout_rate** (float，可选) - 对本层的输出进行处理的dropout值，置零的概率。默认值：0。1。
+    - **dropout_rate** (float，可选) - 对本层的输出进行处理的dropout值，置零的概率。默认值：0.1。
     - **activation** (str，可选) - 激活函数。默认值：``relu``。
     - **act_dropout_rate** (float，可选) - 激活函数后的dropout置零的概率。如果为 ``None`` 则  ``act_dropout_rate = dropout_rate``.默认值： ``None``。
     - **normalize_before** (bool，可选) - 设置对输入输出的处理。如果为 ``True`` ，则对输入进行层标准化（Layer Normalization），否则（即为 ``False`` ），则对输入不进行处理，而是在输出前进行标准化。默认值： ``False``。

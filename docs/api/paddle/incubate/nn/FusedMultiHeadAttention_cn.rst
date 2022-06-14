@@ -23,8 +23,8 @@ FusedMultiHeadAttention
 :::::::::
     - **embed_dim** (int) - 输入输出的维度。
     - **num_heads** (int) - 多头注意力机制的Head数量。
-    - **dropout_rate** (float，可选) - multi-head attention后面的dropout算子的注意力目标的随机失活率。0表示进行dropout计算。默认值：0。5。
-    - **attn_dropout_rate** (float，可选) - multi-head attention中的dropout算子的注意力目标的随机失活率。0表示不进行dropout计算。默认值：0。5。
+    - **dropout_rate** (float，可选) - multi-head attention后面的dropout算子的注意力目标的随机失活率。0表示进行dropout计算。默认值：0.5。
+    - **attn_dropout_rate** (float，可选) - multi-head attention中的dropout算子的注意力目标的随机失活率。0表示不进行dropout计算。默认值：0.5。
     - **kdim** (int，可选) - 键值对中key的维度。如果为 ``None`` 则 ``kdim = embed_dim``.默认值 ``None``。
     - **vdim** (int，可选) - 键值对中value的维度。如果为 ``None`` 则 ``kdim = embed_dim``.默认值： ``None``。
     - **normalize_before** (bool，可选) - 是pre_layer_norm结构（True）还是post_layer_norm结构（False）。pre_layer_norm结构中，``layer_norm`` 算子位于multi-head attention和ffn的前面，post_layer_norm结构中，``layer_norm`` 位于两者的后面。默认值： ``False``。

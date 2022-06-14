@@ -26,7 +26,7 @@ Faster-RCNN使用了roi池化。roi池化的具体原理请参考 https://stacko
     - **rois** (Variable) – 待池化的ROIs (Regions of Interest)，维度为[num_rois,4]的2D-LoDTensor，lod level 为1。给定如[[x1,y1,x2,y2],。..]，其中(x1,y1)为左上点坐标，(x2,y2)为右下点坐标。lod信息记录了每个roi所属的batch_id。
     - **pooled_height** (int，可选) - 数据类型为int32，池化输出的高度。默认值为1。
     - **pooled_width** (int，可选) -  数据类型为int32，池化输出的宽度。默认值为1。
-    - **spatial_scale** (float，可选) - 数据类型为float32，用于将ROI coords从输入比例转换为池化时使用的比例。默认值为1。0。
+    - **spatial_scale** (float，可选) - 数据类型为float32，用于将ROI coords从输入比例转换为池化时使用的比例。默认值为1.0。
 
 返回
 ::::::::::::

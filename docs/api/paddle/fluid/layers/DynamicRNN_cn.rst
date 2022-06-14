@@ -289,7 +289,7 @@ memory(init=None, shape=None, value=0.0, need_reorder=False, dtype='float32')
 
     - **init** (Variable，可选) – 设置memory初始值的LoDTensor。如果init不是None，将使用init来初始化memory，要求持有与输入LoDTensor（通过 :code:`step_input` 设置的输入）相同的序列个数。如果输入init的LoD信息为空，则会被当成由 :code:`init。shape[0]` 个长度为1序列组成。默认值是None。
     - **shape** (list|tuple，可选) – 当init是None时，用来设置memory的维度。注意：shape中不包含batch_size。若设置 :math:`shape=\{D_1, D_2,。..\}`，memory Tensor的实际维度为 :math:`\{batch\_size, D_1, D_2,。..\}`，其中batch_size由输入序列决定。默认值是None。
-    - **value** (float，可选) – 当init是None时，用来设置memory的初始值。默认值是0。0。
+    - **value** (float，可选) – 当init是None时，用来设置memory的初始值。默认值是0.0。
     - **need_reorder** (bool，可选) – 当init不是None时，用来决定init是否需要重新排序。动态RNN在计算时，会按照输入LoDTensor中序列的长度对输入进行排序，因此当init中的信息与输入序列样本紧密关联时，需要设置 :code:`need_reorder=True`。默认值是False。
     - **dtype** (str|numpy.dtype，可选) – 当init是None是，初始化memory的数据类型。默认值是"float32"。可设置的字符串值有："float32"，"float64"，"int32"，"int64"。
 

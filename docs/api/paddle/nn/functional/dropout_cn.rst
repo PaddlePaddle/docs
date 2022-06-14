@@ -10,7 +10,7 @@ Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p` ，�
 参数
 :::::::::
  - **x** (Tensor): 输入的多维 `Tensor` ，数据类型为：float32、float64。
- - **p** (float): 将输入节点置0的概率，即丢弃概率。默认：0。5。
+ - **p** (float): 将输入节点置0的概率，即丢弃概率。默认：0.5。
  - **axis** (int|list): 指定对输入 `Tensor` 进行dropout操作的轴。默认：None。
  - **training** (bool): 标记是否为训练阶段。默认：True。
  - **mode** (str): 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认：'upscale_in_train'。计算方法如下：
@@ -50,7 +50,7 @@ axis参数的默认值为None。当 ``axis=None`` 时，dropout的功能为：�
    将输入x和生成的mask点积，就得到了随机丢弃部分元素之后的结果：
    [[0 2 0]
     [4 0 6]]
-   假定dropout的概率使用默认值，即 ``p=0。5`` ，若mode参数使用默认值，即 ``mode='upscale_in_train'`` ，
+   假定dropout的概率使用默认值，即 ``p=0.5`` ，若mode参数使用默认值，即 ``mode='upscale_in_train'`` ，
    则在训练阶段，最终增大后的结果为：
    [[0 4 0 ]
     [8 0 12]]

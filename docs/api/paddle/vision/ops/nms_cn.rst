@@ -20,7 +20,7 @@ nms
 参数
 :::::::::
     - boxes(Tensor) - 待进行计算的框坐标，它应当是一个形状为[num_boxes, 4]的2-D Tensor，以[[x1, y1, x2, y2],。..]的形式给出，数据类型可以是float32或float64，其中(x1, y1)是左上角的坐标值，(x2, y2)是右下角的坐标值，其关系应符合``0 <= x1 < x2 && 0 <= y1 < y2``。
-    - iou_threshold(float32，可选) - 用于判断两个框是否重叠的IoU门限值。如果IoU(box1, box2) > threshold， box1和box2将被认为是重叠框。默认为：0。3。
+    - iou_threshold(float32，可选) - 用于判断两个框是否重叠的IoU门限值。如果IoU(box1, box2) > threshold， box1和box2将被认为是重叠框。默认为：0.3。
     - scores(Tensor，可选) - 与boxes参数对应的score，它应当是一个形状为[num_boxes]的1-D Tensor。数据类型可以是float32或float64。默认为：None。
     - category_idxs(Tensor，可选) - 与boxes参数对应的类别编号，它应当是一个形状为[num_boxes]的1-D Tensor。数据类型为int64。默认为：None。
     - categories(List，可选) - 类别列表，它的每个元素应该是唯一的，满足categories == paddle。unique(class_idxs)。默认为：None。

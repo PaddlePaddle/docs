@@ -24,11 +24,11 @@ detection_output
     - **prior_box** (Variable) - 2-D Tensor，表示先验框。维度为[M,4]，M是提取的先验框个数，格式为[xmin,ymin,xmax,ymax]。
     - **prior_box_var** (Variable) - 2-D Tensor，表示先验框的方差，和 ``prior_box`` 维度相同。
     - **background_label** (int) - 背景标签类别值，背景标签类别上不做NMS。若设为-1，将考虑所有类别。默认值是0。
-    - **nms_threshold** (float) - 用于NMS的阈值（threshold），默认值是0。3。
+    - **nms_threshold** (float) - 用于NMS的阈值（threshold），默认值是0.3。
     - **nms_top_k** (int) - 基于score_threshold过滤预测框后，NMS操作前，要挑选出的置信度高的预测框的个数。默认值是400。
     - **keep_top_k** (int) - NMS操作后，要挑选的bounding box总数。默认值是200。
-    - **score_threshold** (float) - 置信度得分阈值（Threshold），在NMS之前用来过滤低置信数的边界框（bounding box）。若未提供，则考虑所有框。默认值是0。001。
-    - **nms_eta** (float) - 一种adaptive NMS的参数，仅当该值小于1。0时才起作用。默认值是1。0。
+    - **score_threshold** (float) - 置信度得分阈值（Threshold），在NMS之前用来过滤低置信数的边界框（bounding box）。若未提供，则考虑所有框。默认值是0.001。
+    - **nms_eta** (float) - 一种adaptive NMS的参数，仅当该值小于1.0时才起作用。默认值是1.0。
 
 返回
 ::::::::::::

@@ -6,7 +6,7 @@ in_dynamic_mode
 .. py:function:: paddle.in_dynamic_mode()
 
 .. note::
-    从2。0.0版本开始，Paddle默认开启动态图模式。
+    从2.0.0版本开始，Paddle默认开启动态图模式。
 
 该接口查看paddle当前是否在动态图模式中运行。
 

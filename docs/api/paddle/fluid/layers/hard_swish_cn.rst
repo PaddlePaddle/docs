@@ -18,9 +18,9 @@ hard_swish
 ::::::::::::
 
     - **x** (Variable) - 输入特征，多维Tensor。数据类型为float32或float64。
-    - **threshold** (float，可选) - 激活操作中Relu函数的阈值，默认值为6。0。
-    - **scale** (float，可选) - 激活操作的缩放因子，默认值为6。0。
-    - **offset** (float，可选) - 激活操作的位移，默认值为3。0。
+    - **threshold** (float，可选) - 激活操作中Relu函数的阈值，默认值为6.0。
+    - **scale** (float，可选) - 激活操作的缩放因子，默认值为6.0。
+    - **offset** (float，可选) - 激活操作的位移，默认值为3.0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     
 返回

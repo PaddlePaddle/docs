@@ -225,9 +225,9 @@ lars_configs
 
 设置LARS优化器的参数。用户可以配置 lars_coeff，lars_weight_decay，epsilon，exclude_from_weight_decay 参数。
 
-**lars_coeff(float):** lars 系数，`原论文 <https://arxiv。org/abs/1708.03888>`_ _ 中的 trust coefficient。默认值是 0。001.
+**lars_coeff(float):** lars 系数，`原论文 <https://arxiv。org/abs/1708.03888>`_ _ 中的 trust coefficient。默认值是 0.001.
 
-**lars_weight_decay(float):** lars 公式中 weight decay 系数。默认值是 0。0005.
+**lars_weight_decay(float):** lars 公式中 weight decay 系数。默认值是 0.0005.
 
 **exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lars_weight_decay将被置为 0。默认值是 None。
 
@@ -256,7 +256,7 @@ lamb_configs
 
 设置LAMB优化器的参数。用户可以配置 lamb_weight_decay，exclude_from_weight_decay 参数。
 
-**lamb_weight_decay(float):** lars 公式中 weight decay 系数。默认值是 0。01.
+**lamb_weight_decay(float):** lars 公式中 weight decay 系数。默认值是 0.01.
 
 **exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0。默认值是 None。
 
@@ -348,9 +348,9 @@ amp_configs
 
 **decr_every_n_nan_or_inf(int):** 每经过n个连续的无效梯度值(nan或者inf)才会减小loss scaling值。默认值2。
 
-**incr_ratio(float):** 每次增大loss scaling值的扩增倍数，其为大于1的浮点数。默认值2。0。
+**incr_ratio(float):** 每次增大loss scaling值的扩增倍数，其为大于1的浮点数。默认值2.0。
 
-**decr_ratio(float):** 每次减小loss scaling值的比例系数，其为小于1的浮点数。默认值0。5。
+**decr_ratio(float):** 每次减小loss scaling值的比例系数，其为小于1的浮点数。默认值0.5。
 
 **custom_white_list(list[str]):** 用户自定义OP开启fp16执行的白名单。
 
@@ -387,11 +387,11 @@ dgc_configs
 
 **rampup_begin_step(int):** 梯度压缩的起点步。默认值0。
 
-**rampup_step(int):** 使用稀疏预热的时间步长。默认值为1。例如：如果稀疏度为[0。75,0.9375,0.984375,0.996,0.999]，\
-并且rampup_step为100，则在0~19步时使用0。75，在20~39步时使用0。9375，依此类推。当到达sparsity数组末尾时，此后将会使用0。999。
+**rampup_step(int):** 使用稀疏预热的时间步长。默认值为1。例如：如果稀疏度为[0.75,0.9375,0.984375,0.996,0.999]，\
+并且rampup_step为100，则在0~19步时使用0.75，在20~39步时使用0.9375，依此类推。当到达sparsity数组末尾时，此后将会使用0.999。
 
-**sparsity(list[float]):** 从梯度张量中获取top个重要元素，比率为（1-当前稀疏度）。默认值为[0。999]。\
-例如：如果sparsity为[0。99, 0.999]，则将传输top [1%, 0。1%]的重要元素。
+**sparsity(list[float]):** 从梯度张量中获取top个重要元素，比率为（1-当前稀疏度）。默认值为[0.999]。\
+例如：如果sparsity为[0.99, 0.999]，则将传输top [1%, 0.1%]的重要元素。
 
 **代码示例**
 

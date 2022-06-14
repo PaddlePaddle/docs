@@ -26,7 +26,7 @@ simple_img_conv_pool
     - **conv_padding** (int | list | tuple，可选) - conv2d Layer的padding大小，整数或者整型列表或者整型元组。如果conv_padding是列表或元组，则它必须包含两个整数(conv_padding_H，conv_padding_W)。如果是整数，conv_padding_H = conv_padding_W = conv_padding。默认值：conv_padding = 0。
     - **conv_dilation** (int | list | tuple，可选) - conv2d Layer的dilation大小，整数或者整型列表或者整型元。如果conv_dilation是列表或元组，则它必须包含两个整数(conv_dilation_H，conv_dilation_W)。如果是整数，conv_dilation_H = conv_dilation_W = conv_dilation。默认值：conv_dilation = 1。
     - **conv_groups** (int，可选) - conv2d Layer的组数，整数。根据Alex Krizhevsky的Deep CNN论文中的分组卷积：当group = 2时，前半部分滤波器仅连接到输入通道的前半部分，而后半部分滤波器仅连接到后半部分输入通道。默认值：conv_groups = 1。
-    - **param_attr** (ParamAttr，可选) - conv2d的weights参数属性。如果将其设置为None或ParamAttr的一个属性，则conv2d将创建ParamAttr作为param_attr。如果未设置param_attr的初始化，则使用 :math:`Normal（0。0，std）` 初始化参数，并且 ``std`` 为 :math:`(\frac{2。0 }{filter\_elem\_num})^{0.5}`。默认值：None
+    - **param_attr** (ParamAttr，可选) - conv2d的weights参数属性。如果将其设置为None或ParamAttr的一个属性，则conv2d将创建ParamAttr作为param_attr。如果未设置param_attr的初始化，则使用 :math:`Normal（0.0，std）` 初始化参数，并且 ``std`` 为 :math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}`。默认值：None
     - **bias_attr** (ParamAttr | bool | None，可选) - conv2d的bias参数属性。如果设置为False，则不会向输出单元添加bias。如果将其设置为None或ParamAttr的一个属性，则conv2d将创建ParamAttr作为bias_attr。如果设置bias_attr为None，则将其初始化为零。默认值：None
     - **act** (str，可选) - conv2d的激活类型，字符串，可以是'relu', 'softmax', 'sigmoid'等激活函数的类型。如果设置为None，则不附加激活。默认值：None。
     - **use_cudnn** (bool，可选) - 是否使用cudnn内核，仅在安装cudnn库时才有效。默认值：True。

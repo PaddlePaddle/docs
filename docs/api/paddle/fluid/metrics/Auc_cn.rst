@@ -51,7 +51,7 @@ Auc
         labels = np.random.randint(2, size = (batch_size, 1))
         auc_metric.update(preds = preds, labels = labels)
         
-        # 应为一个接近0。5的值，因为preds是随机指定的
+        # 应为一个接近0.5的值，因为preds是随机指定的
         print("auc for iteration %d is %.2f" % (batch_id, auc_metric.eval()))
 
 方法

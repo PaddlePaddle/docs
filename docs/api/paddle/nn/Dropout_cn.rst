@@ -14,7 +14,7 @@ Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p` ，�
 
 参数
 :::::::::
- - **p** (float): 将输入节点置为0的概率，即丢弃概率。默认：0。5。
+ - **p** (float): 将输入节点置为0的概率，即丢弃概率。默认：0.5。
  - **axis** (int|list): 指定对输入 `Tensor` 进行Dropout操作的轴。默认：None。
  - **mode** (str): 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认：'upscale_in_train'。计算方法如下：
 

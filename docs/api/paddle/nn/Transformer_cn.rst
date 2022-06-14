@@ -24,7 +24,7 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
     - **num_encoder_layers** (int，可选) - 编码器中 ``TransformerEncoderLayer`` 的层数。默认值：6。
     - **num_decoder_layers** (int，可选) - 解码器中 ``TransformerDecoderLayer`` 的层数。默认值：6。
     - **dim_feedforward** (int，可选) - 前馈神经网络中隐藏层的大小。默认值：2048。
-    - **dropout** (float，可选) - 对编码器和解码器中每个子层的输出进行处理的dropout值。默认值：0。1。
+    - **dropout** (float，可选) - 对编码器和解码器中每个子层的输出进行处理的dropout值。默认值：0.1。
     - **activation** (str，可选) - 前馈神经网络的激活函数。默认值：``relu``。
     - **attn_dropout** (float，可选) - 多头自注意力机制中对注意力目标的随机失活率。如果为 ``None`` 则 ``attn_dropout = dropout``.默认值：``None``。
     - **act_dropout** (float，可选) - 前馈神经网络的激活函数后的dropout。如果为 ``None`` 则 ``act_dropout = dropout``.默认值：``None``。

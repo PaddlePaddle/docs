@@ -17,10 +17,10 @@ anchor_generator
 
     - **input** (Variable) - 维度为[N,C,H,W]的4-D Tensor。数据类型为float32或float64。
     - **anchor_sizes** (float32|list|tuple，可选) - 生成anchor的anchor大小，以绝对像素的形式表示，例如：[64。,128.,256.,512.]。若anchor的大小为64，则意味着这个anchor的面积等于64**2。默认值为None。
-    - **aspect_ratios** (float32|list|tuple，可选) - 生成anchor的高宽比，例如[0。5,1.0,2.0]。默认值为None。
-    - **variance** (list|tuple，可选) - 变量，在框回归delta中使用，数据类型为float32。默认值为[0。1,0.1,0.2,0.2]。
-    - **stride** (list|tuple，可选) - anchor在宽度和高度方向上的步长，比如[16。0,16.0]，数据类型为float32。默认值为None。
-    - **offset** (float32，可选) - 先验框的中心位移。默认值为0。5
+    - **aspect_ratios** (float32|list|tuple，可选) - 生成anchor的高宽比，例如[0.5,1.0,2.0]。默认值为None。
+    - **variance** (list|tuple，可选) - 变量，在框回归delta中使用，数据类型为float32。默认值为[0.1,0.1,0.2,0.2]。
+    - **stride** (list|tuple，可选) - anchor在宽度和高度方向上的步长，比如[16.0,16.0]，数据类型为float32。默认值为None。
+    - **offset** (float32，可选) - 先验框的中心位移。默认值为0.5
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

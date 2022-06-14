@@ -28,7 +28,7 @@ sequence_pool
 
     Case 1:
 
-        input是1-level的LoDTensor，且pad_value = 0。0:
+        input是1-level的LoDTensor，且pad_value = 0.0:
             input.lod = [[0, 2, 5, 7, 7]]
             input.data = [[1.], [3.], [2.], [4.], [6.], [5.], [1.]]
             input.shape = [7, 1]
@@ -43,7 +43,7 @@ sequence_pool
             last   : out.data = [[3.], [6.], [1.], [0.0]], where 3.=last(1., 3.), 6.=last(2., 4., 6.), 1.=last(5., 1.)
             first  : out.data = [[1.], [2.], [5.], [0.0]], where 1.=first(1., 3.), 2.=first(2., 4., 6.), 5.=first(5., 1.)
         
-        上述out。data中的最后一个[0。0]均为填充的数据。
+        上述out。data中的最后一个[0.0]均为填充的数据。
 
     Case 2:
     
@@ -54,7 +54,7 @@ sequence_pool
             input.data = [[1.], [3.], [2.], [4.], [6.], [5.], [1.]]
             input.shape = [7, 1]
         
-        以pool_type取值为sum为例，将根据最后一层的lod信息[0, 1, 3, 4, 4, 7]进行池化操作，且pad_value = 0。0
+        以pool_type取值为sum为例，将根据最后一层的lod信息[0, 1, 3, 4, 4, 7]进行池化操作，且pad_value = 0.0
         输出为LoDTensor：
             out.shape= [5, 1]
             out.lod = [[0, 2, 2, 5]]
@@ -69,7 +69,7 @@ sequence_pool
     - **input** (Variable) - 类型为LoDTensor的输入序列，仅支持lod_level不超过2的LoDTensor，数据类型为float32。
     - **pool_type** (str) - 池化类型，支持average，sum，sqrt，max，last和first池化操作。
     - **is_test** (bool) - 仅在pool_type取值为max时生效。当is_test为False时，则在池化操作过程中会创建maxIndex临时Tenosr，以记录最大特征值对应的索引信息，用于训练阶段的反向梯度计算。默认为False。
-    - **pad_value** (float) - 用于填充输入序列为空时的池化结果，默认为0。0。
+    - **pad_value** (float) - 用于填充输入序列为空时的池化结果，默认为0.0。
 
 返回
 ::::::::::::

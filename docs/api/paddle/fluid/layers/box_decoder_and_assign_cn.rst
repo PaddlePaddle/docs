@@ -36,7 +36,7 @@ box decode过程得出decode_box，然后分配方案如下所述：
    - **prior_box_var** （Variable） - 维度为[N,4]的2-D Tensor，包含N组variance。数据类型为float32或float64。prior_box_var默认将所有元素设置为1
    - **target_box** （Variable） - 维度为[N,classnum * 4]的2-D Tensor或LoDTensor，拥有N个目标框，数据类型为float32或float64。
    - **box_score** （Variable） - 维度为[N,classnum]的2-D Tensor或LoDTensor，拥有N个目标框，数据类型为float32或float64。表示每个框属于各分类概率值。
-   - **box_clip** （float32） - 裁剪框以防止溢出，默认值为4。135（即np。log（1000. / 16.））
+   - **box_clip** （float32） - 裁剪框以防止溢出，默认值为4.135（即np。log（1000. / 16.））
    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 

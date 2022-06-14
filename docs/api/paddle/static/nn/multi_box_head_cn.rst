@@ -9,7 +9,7 @@ multi_box_head
 
 
 
-基于SSD（Single Shot MultiBox Detector）算法，在不同层输入特征上提取先验框、计算回归的坐标位置和分类的置信度，并合并到一起作为输出，具体参数解释和输出格式参考下面说明。更详细信息，请参阅SSD论文的2。2节。
+基于SSD（Single Shot MultiBox Detector）算法，在不同层输入特征上提取先验框、计算回归的坐标位置和分类的置信度，并合并到一起作为输出，具体参数解释和输出格式参考下面说明。更详细信息，请参阅SSD论文的2.2节。
 
 论文参考：`SSD：Single Shot MultiBox Detector <https://arxiv。org/abs/1512.02325>`_ 。
 
@@ -33,15 +33,15 @@ multi_box_head
 
         - **num_classes** (int) - 类别数。
         - **aspect_ratios**  (list(float) | tuple(float) | list(list(float)) | tuple(tuple(float)) - 候选框的宽高比，``aspect_ratios`` 和 ``input`` 的个数必须相等。如果每个特征层提取先验框的 ``aspect_ratio`` 多余一个，写成嵌套的list，例如[[2。, 3.]]。
-        - **min_ratio** (int）- 先验框的长度和 ``base_size`` 的最小比率，注意，这里是百分比，假如比率为0。2，这里应该给20。0。默认值：None。
+        - **min_ratio** (int）- 先验框的长度和 ``base_size`` 的最小比率，注意，这里是百分比，假如比率为0.2，这里应该给20.0。默认值：None。
         - **max_ratio** (int）- 先验框的长度和 ``base_size`` 的最大比率，注意事项同 ``min_ratio``。默认值：None。
         - **min_sizes** (list(float) | tuple(float) | None）- 每层提取的先验框的最小长度，如果输入个数len(inputs)<= 2，则必须设置 ``min_sizes`` ，并且 ``min_sizes`` 的个数应等于len(inputs)。默认值：None。
         - **max_sizes** (list | tuple | None）- 每层提取的先验框的最大长度，如果len(inputs）<= 2，则必须设置 ``max_sizes`` ，并且 ``min_sizes`` 的长度应等于len(inputs)。默认值：None。
         - **steps** (list(float) | tuple(float)) - 相邻先验框的中心点步长 ，如果在水平和垂直方向上步长相同，则设置steps即可，否则分别通过step_w和step_h设置不同方向的步长。如果 ``steps``, ``ste_w`` 和 ``step_h`` 均为None，步长为输入图片的大小 ``base_size`` 和特征图大小的比例。默认值：None。
         - **step_w** (list(float）| tuple(float)) - 水平方向上先验框中心点步长。默认值：None。
         - **step_h** (list | tuple) - 垂直方向上先验框中心点步长。默认值：None。
-        - **offset** (float) - 左上角先验框中心在水平和垂直方向上的偏移。默认值：0。5
-        - **variance** (list | tuple) - 先验框的方差。默认值：[0。1,0.1,0.2,0.2]。
+        - **offset** (float) - 左上角先验框中心在水平和垂直方向上的偏移。默认值：0.5
+        - **variance** (list | tuple) - 先验框的方差。默认值：[0.1,0.1,0.2,0.2]。
         - **flip** (bool) - 是否翻转宽高比。默认值：False。
         - **clip** (bool) - 是否剪切超出边界的框。默认值：False。
         - **kernel_size** (int) - 计算回归位置和分类置信度的卷积核的大小。默认值：1。

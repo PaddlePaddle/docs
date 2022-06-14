@@ -15,7 +15,7 @@ NCE
 
     - **num_total_classes** (int) - 所有样本中的类别的总数。
     - **dim** (int) - 输入的维度（一般为词嵌入的维度）。
-    - **sample_weight** (Variable，可选) - 维度为\[batch_size, 1\]，存储每个样本的权重。每个样本的默认权重为1。0。默认值：None。
+    - **sample_weight** (Variable，可选) - 维度为\[batch_size, 1\]，存储每个样本的权重。每个样本的默认权重为1.0。默认值：None。
     - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **num_neg_samples** (int，可选) - 负样本的数量。默认值：10。

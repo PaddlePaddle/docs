@@ -22,7 +22,7 @@ ReduceLROnPlateau
       1-D Tensor，且相应数据类型必须为 "float32" 或 "float64"。
     - **mode** (str，可选) - `'min'` 和 `'max'` 之一。通常情况下，为 `'min'` ，此时当 ``loss`` 停止下降时学习率将减小。默认：`'min'`。
       （注意：仅在特殊用法时，可以将其设置为 `'max'` ，此时判断逻辑相反，``loss`` 停止上升学习率才减小）
-    - **decay_rate** (float，可选) - 学习率衰减的比例。`new_lr = origin_lr * decay_rate` ，它是值小于1。0的float型数字，默认：0。1。
+    - **decay_rate** (float，可选) - 学习率衰减的比例。`new_lr = origin_lr * decay_rate` ，它是值小于1.0的float型数字，默认：0.1。
     - **patience** (int，可选) - 当 ``loss`` 连续 ``patience`` 个epoch没有下降(mode: 'min')或上升(mode: 'max')时，学习率才会减小。默认：10。
     - **verbose** (bool，可选) - 如果为 ``True`` ，会在每次更新optimizer中的learning_rate时，打印信息。默认：``False``。
     - **threshold** (float，可选) - ``threshold`` 和 ``threshold_mode`` 两个参数将会决定 ``loss`` 最小变化的阈值。小于该阈值的变化

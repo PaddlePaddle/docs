@@ -29,15 +29,15 @@ RMSProp
       v(w, t) & = \beta v(w, t-1) + \frac{\eta} {\sqrt{r(w,t) - (g(w, t))^2 +\epsilon}} \nabla Q_{i}(w)\\
             w & = w - v(w, t)
       
-其中，:math:`ρ` 是超参数，典型值为0。9,0.95等。:math:`beta` 是动量术语。:math:`epsilon` 是一个平滑项，用于避免除零，通常设置在1e-4到1e-8的范围内。
+其中，:math:`ρ` 是超参数，典型值为0.9,0.95等。:math:`beta` 是动量术语。:math:`epsilon` 是一个平滑项，用于避免除零，通常设置在1e-4到1e-8的范围内。
       
 参数
 ::::::::::::
 
     - **learning_rate** （float） - 全局学习率。
-    - **rho** （float，可选） - rho是等式中的 :math:`rho` ，默认值0。95。
+    - **rho** （float，可选） - rho是等式中的 :math:`rho` ，默认值0.95。
     - **epsilon** （float，可选） - 等式中的epsilon是平滑项，避免被零除，默认值1e-6。
-    - **momentum** （float，可选） - 方程中的β是动量项，默认值0。0。
+    - **momentum** （float，可选） - 方程中的β是动量项，默认值0.0。
     - **centered** （bool，可选） - 如果为True，则通过梯度的估计方差，对梯度进行归一化；如果False，则由未centered的第二个moment归一化。将此设置为True有助于模型训练，但会消耗额外计算和内存资源。默认为False。
     - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是float类型的L2正则化系数或者正则化策略： :ref:`cn_api_fluid_regularizer_L1Decay` 、 

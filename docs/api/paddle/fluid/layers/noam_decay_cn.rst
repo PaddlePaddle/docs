@@ -33,7 +33,7 @@ noam衰减的numpy实现如下：
 
     - **d_model** (Variable|int) - 模型的输入、输出向量特征维度。类型可设置为标量Tensor，或int值。
     - **warmup_steps** (Variable|int) - 预热步数，类型可设置为标量Tensor，或int值。
-    - **learning_rate** (Variable|float|int，可选) - 初始学习率。如果类型为Variable，则为shape为[1]的Tensor，数据类型为float32或float64；也可以是python的int类型。默认值为1。0。
+    - **learning_rate** (Variable|float|int，可选) - 初始学习率。如果类型为Variable，则为shape为[1]的Tensor，数据类型为float32或float64；也可以是python的int类型。默认值为1.0。
 
 返回
 ::::::::::::

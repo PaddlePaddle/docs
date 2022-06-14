@@ -28,8 +28,8 @@ fused_feedforward
     - **ln1_bias** (Tensor，可选) - 第一个layer_norm算子的偏置数据，数据类型和 ``ln1_scale`` 一样，形状是 ``x.shape[-1]``。默认值为None。
     - **ln2_scale** (Tensor，可选) - 第二个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和  ``x`` 一样。默认值为None。
     - **ln2_bias** (Tensor，可选) - 第二个layer_norm算子的偏置数据，数据类型和 ``ln2_scale`` 一样，形状是 ``x.shape[-1]``。默认值为None。
-    - **dropout1_rate** (float，可选) - 第一个dropout算子置零的概率。默认是0。5。
-    - **dropout2_rate** (float，可选) - 第二个dropout算子置零的概率。默认是0。5。
+    - **dropout1_rate** (float，可选) - 第一个dropout算子置零的概率。默认是0.5。
+    - **dropout2_rate** (float，可选) - 第二个dropout算子置零的概率。默认是0.5。
     - **activation** (string，可选) - 激活函数，当前只支持relu和gelu。默认值是relu。
     - **ln1_epsilon** (float，可选) - 一个很小的浮点数，被第一个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
     - **ln2_epsilon** (float，可选) - 一个很小的浮点数，被第二个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。

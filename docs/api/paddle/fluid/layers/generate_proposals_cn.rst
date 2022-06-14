@@ -35,9 +35,9 @@ generate_proposals
         - **variances** (Variable) - Shape为 ``[H，W，A，4]`` 的4-D Tensor，表示 ``anchors`` 的方差。每个anchor的方差都是 ``（xcenter，ycenter，w，h）`` 的格式表示。
         - **pre_nms_top_n** (int，可选) - 整型数字。每张图在NMS操作之前要保留的总框数。数据类型仅支持int32。缺省值为6000。
         - **post_nms_top_n** (int，可选) - 整型数字。每个图在NMS后要保留的总框数。数据类型仅支持int32。缺省值为1000。
-        - **nms_thresh** (float，可选) - 浮点型数字。NMS中的阈值。数据类型仅支持float32。缺省值为0。5。
-        - **min_size** (float，可选) - 浮点型数字。根据宽和高过滤候选框的阈值，宽或高小于该阈值的候选框将被过滤掉。数据类型仅支持float32。缺省值为0。1。
-        - **eta** (float，可选) - 浮点型数字。自适应阈值的衰减系数。仅在自适应NMS中且自适应阈值大于0。5时生效，在每次迭代中 ``adaptive_threshold = adaptive_treshold * eta``。缺省值为1。0。
+        - **nms_thresh** (float，可选) - 浮点型数字。NMS中的阈值。数据类型仅支持float32。缺省值为0.5。
+        - **min_size** (float，可选) - 浮点型数字。根据宽和高过滤候选框的阈值，宽或高小于该阈值的候选框将被过滤掉。数据类型仅支持float32。缺省值为0.1。
+        - **eta** (float，可选) - 浮点型数字。自适应阈值的衰减系数。仅在自适应NMS中且自适应阈值大于0.5时生效，在每次迭代中 ``adaptive_threshold = adaptive_treshold * eta``。缺省值为1.0。
 
 
 返回

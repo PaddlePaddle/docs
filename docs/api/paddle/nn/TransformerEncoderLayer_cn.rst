@@ -18,7 +18,7 @@ Transformer编码器层由两个子层组成：多头自注意力机制和前馈
     - **d_model** (int) - 输入输出的维度。
     - **nhead** (int) - 多头注意力机制的Head数量。
     - **dim_feedforward** (int) - 前馈神经网络中隐藏层的大小。
-    - **dropout** (float，可选) - 对两个子层的输出进行处理的dropout值。默认值：0。1。
+    - **dropout** (float，可选) - 对两个子层的输出进行处理的dropout值。默认值：0.1。
     - **activation** (str，可选) - 前馈神经网络的激活函数。默认值：``relu``。
     - **attn_dropout** (float，可选) - 多头自注意力机制中对注意力目标的随机失活率。如果为 ``None`` 则 ``attn_dropout = dropout``.默认值：``None``。
     - **act_dropout** (float，可选) - 前馈神经网络的激活函数后的dropout。如果为 ``None`` 则 ``act_dropout = dropout``.默认值：``None``。

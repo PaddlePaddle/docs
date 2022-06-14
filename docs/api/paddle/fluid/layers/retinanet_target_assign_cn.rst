@@ -34,8 +34,8 @@ retinanet_target_assign
     - **is_crowd**  (Variable) – 维度为 :math:`[G]` 且LoD level必须为1的1-D LoDTensor，表示各真值框是否位于重叠区域，值为1表示重叠，则不参与训练。第一维G表示批量内真值框的总数。数据类型为int32。
     - **im_info**  (Variable) – 维度为 :math:`[N, 3]` 的2-D Tensor，表示输入图片的尺寸信息。其中，第一维N表示批量训练时批量内的图片数量，第二维3表示各图片的尺寸信息，分别是网络输入尺寸的高和宽，以及原图缩放至网络输入尺寸的缩放比例。数据类型为float32或float64。
     - **num_classes**  (int32) – 分类的类别数量，默认值为1。
-    - **positive_overlap**  (float32) – 判定anchor是一个正样本时anchor和真值框之间的最小IoU，默认值为0。5。
-    - **negative_overlap**  (float32) – 判定anchor是一个负样本时anchor和真值框之间的最大IoU，默认值为0。4。该参数的设定值应小于等于positive_overlap的设定值，若大于，则positive_overlap的取值为negative_overlap的设定值。
+    - **positive_overlap**  (float32) – 判定anchor是一个正样本时anchor和真值框之间的最小IoU，默认值为0.5。
+    - **negative_overlap**  (float32) – 判定anchor是一个负样本时anchor和真值框之间的最大IoU，默认值为0.4。该参数的设定值应小于等于positive_overlap的设定值，若大于，则positive_overlap的取值为negative_overlap的设定值。
 
 
 返回
