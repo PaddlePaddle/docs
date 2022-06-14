@@ -38,7 +38,7 @@ expand_as
 
         - **x** （Variable）- 维度最高为6的多维 ``Tensor`` 或 ``LoDTensor``，数据类型为 ``float32``，``float64``，``int32`` 或 ``bool``。
         - **target_tensor** （list|tuple|Variable）- 数据类型为 ``float32``，``float64``，``int32`` 或 ``bool``。可为Tensor或者LODTensor。
-        - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name`，一般无需设置。默认值： ``None``。
+        - **name** （str，可选）- 具体用法请参见  :ref:`api_guide_Name`，一般无需设置。默认值： ``None``。
 
 返回
 ::::::::::::

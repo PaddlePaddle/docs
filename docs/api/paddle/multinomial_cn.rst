@@ -15,10 +15,10 @@ multinomial
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入的概率值。数据类型为 ``float32`` 、``float64`` .
+    - **x** (Tensor) - 输入的概率值。数据类型为 ``float32`` 、``float64``。
     - **num_samples** (int，可选) - 采样的次数（可选，默认值为1）。
     - **replacement** (bool，可选) - 是否是可放回的采样（可选，默认值为 False）。
-    - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 返回
 ::::::::::::

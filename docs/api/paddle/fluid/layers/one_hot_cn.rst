@@ -8,7 +8,7 @@ one_hot
 
 
 
-**注意：此OP要求输入Tensor shape的最后一维必须为1。此OP将在未来的版本中被移除！推荐使用fluid.** :ref:`cn_api_fluid_one_hot`。
+**注意：此OP要求输入Tensor shape的最后一维必须为1。此OP将在未来的版本中被移除！推荐使用fluid.**  :ref:`cn_api_fluid_one_hot`。
 
 该OP将输入（input）中的每个id转换为一个one-hot向量，其长度为 ``depth``，该id对应的向量维度上的值为1，其余维度的值为0。
 

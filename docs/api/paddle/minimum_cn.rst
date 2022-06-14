@@ -14,13 +14,13 @@ minimum
         out = min(x, y)
 
 .. note::
-   ``paddle.minimum`` 遵守 broadcasting，如你想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
+   ``paddle.minimum`` 遵守 broadcasting，如你想了解更多，请参见  :ref:`cn_user_guide_broadcasting`。
 
 参数
 :::::::::
    - **x** (Tensor) - 输入的 Tensor。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
    - **y** (Tensor) - 输入的 Tensor。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
-   - **name** (str，可选) - 操作的名称(可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
+   - **name** (str，可选) - 操作的名称(可选，默认值为 None）。更多信息请参见  :ref:`api_guide_Name`。
 
 返回
 :::::::::

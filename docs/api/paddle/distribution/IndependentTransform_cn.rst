@@ -17,7 +17,7 @@ IndependentTransform
 变换后，``x`` 的形状为 ``(S=[4],B=[2],E=[2,3])``，即将最右侧的批维度作为事件维度。
 此时 ``forward`` 和 ``inverse`` 输出形状仍是 ``(4,2,2,3)`` , 
 但 ``forward_log_det_jacobian`` 以及 ``inverse_log_det_jacobian`` 输出形状
-为 ``(4, 2)`` . 
+为 ``(4, 2)``。
 
 
 参数
@@ -42,7 +42,7 @@ forward(x)
 
 **参数**
 
-- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution` 
+- **x** (Tensor) - 正变换输入参数，通常为  :ref:`cn_api_distribution_Distribution` 
   的随机采样结果。
     
 **返回**
@@ -68,7 +68,7 @@ forward_log_det_jacobian(x)
 
 计算正变换雅可比行列式绝对值的对数。
 
-如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` .
+如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError``。
 
 **参数**
 

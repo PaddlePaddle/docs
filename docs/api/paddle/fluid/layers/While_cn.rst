@@ -13,8 +13,8 @@ While
 该类用于实现while循环控制功能，只要循环条件cond为True，就循环执行while循环体中的语句，直到cond为False为止。
 
 .. note::
-    如果参数 ``cond`` 的形状为[1]，强烈建议您使用新的OP :ref:`cn_api_fluid_layers_while_loop` 而不是 ``While``。
-    OP :ref:`cn_api_fluid_layers_while_loop` 的使用方式更简单，并且调用该OP所用的代码更少且功能与 ``While`` 一样。
+    如果参数 ``cond`` 的形状为[1]，强烈建议您使用新的OP  :ref:`cn_api_fluid_layers_while_loop` 而不是 ``While``。
+    OP  :ref:`cn_api_fluid_layers_while_loop` 的使用方式更简单，并且调用该OP所用的代码更少且功能与 ``While`` 一样。
 
 **注意：**
     在 ``While`` 中创建的局部变量类似于C++中的while，无法被外部引用，因此无法通过 ``Executor`` 中的 ``fetch_list`` 来获取。
@@ -25,7 +25,7 @@ While
 
     - **cond** (Variable) – 用于判断循环继续进行的条件，为数据类型bool型的Tensor，其shape必须为[1]。
     - **is_test** (bool，可选) – 用于表明是否在测试阶段执行，默认值为False。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 代码示例 1
 ::::::::::::

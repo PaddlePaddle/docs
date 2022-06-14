@@ -10,7 +10,7 @@ dynamic_gru
 
 
 
-**注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用StaticRNN（fluid.layers.** :ref:`cn_api_fluid_layers_StaticRNN` **）。**
+**注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用StaticRNN（fluid.layers.**  :ref:`cn_api_fluid_layers_StaticRNN` **）。**
 
 该OP用于在完整序列上逐个时间步的进行单层Gated Recurrent Unit（GRU）的计算，单个时间步内GRU的计算支持以下两种计算方式：
 
@@ -46,8 +46,8 @@ dynamic_gru
 
     - **input** (Variable) – LoD level为1的LoDTensor，表示经线性变换后的序列输入，形状为 :math:`[T, D \times 3]`，其中 :math:`T` 表示mini-batch中所有序列长度之和， :math:`D` 为隐状态特征维度的大小。数据类型为float32或float64。
     - **size** (int) – 隐状态特征维度的大小
-    - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
-    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
+    - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。
     - **is_reverse** (bool，可选) – 指明是否按照和输入相反的序列顺序计算，默认为False。
     - **gate_activation** (str，可选) – 公式中 :math:`act_g` 激活函数的类型。支持identity、sigmoid、tanh、relu四种激活函数类型，默认为sigmoid。
     - **candidate_activation** (str，可选) – 公式中 :math:`act_c` 激活函数的类型。支持identity、sigmoid、tanh、relu四种激活函数类型，默认为tanh。

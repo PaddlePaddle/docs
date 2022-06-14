@@ -8,7 +8,7 @@ glu
 
 
 
-门控线性单元 Gated Linear Units (GLU) 由 :ref:`cn_api_fluid_layers_split` ，:ref:`cn_api_fluid_layers_sigmoid` 和 :ref:`cn_api_fluid_layers_elementwise_mul` 组成。特定的，沿着给定维度将输入拆分成两个大小相同的部分，:math:`a` 和 :math:`b`，按如下方式计算：
+门控线性单元 Gated Linear Units (GLU) 由  :ref:`cn_api_fluid_layers_split` ， :ref:`cn_api_fluid_layers_sigmoid` 和  :ref:`cn_api_fluid_layers_elementwise_mul` 组成。特定的，沿着给定维度将输入拆分成两个大小相同的部分，:math:`a` 和 :math:`b`，按如下方式计算：
 
 .. math::
     GLU(a,b) = a \bigotimes \sigma (b)

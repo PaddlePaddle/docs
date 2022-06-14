@@ -10,12 +10,12 @@ AlphaDropout是一种具有自归一化性质的dropout。均值为0，方差为
 在动态图模式下，请使用模型的 `eval()` 方法切换至测试阶段。
 
 .. note::
-   对应的 `functional方法` 请参考：:ref:`cn_api_nn_functional_alpha_dropout`。
+   对应的 `functional方法` 请参考： :ref:`cn_api_nn_functional_alpha_dropout`。
 
 参数
 :::::::::
  - **p** (float): 将输入节点置0的概率，即丢弃概率。默认：0.5。
- - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+ - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 返回
 :::::::::

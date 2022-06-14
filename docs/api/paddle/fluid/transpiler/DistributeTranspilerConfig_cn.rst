@@ -26,7 +26,7 @@ slice_var_up (bool)
 split_method (PSDispatcher)
 '''''''''
 
-参数分发的方式，当前支持的方法包括 :ref:`cn_api_fluid_transpiler_RoundRobin` 和 :ref:`cn_api_fluid_transpiler_HashName` 两种，默认为RoundRobin。
+参数分发的方式，当前支持的方法包括  :ref:`cn_api_fluid_transpiler_RoundRobin` 和  :ref:`cn_api_fluid_transpiler_HashName` 两种，默认为RoundRobin。
 
 注意：尝试选择最佳方法来达到负载均衡。
 

@@ -23,7 +23,7 @@ Multi_dot会选择计算量最小的乘法顺序进行计算。(a, b)和(b, c)�
 参数
 :::::::::
     - **x** ([tensor]): 输入的是一个tensor列表。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

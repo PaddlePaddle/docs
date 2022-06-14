@@ -33,7 +33,7 @@ hsigmoid_loss
     - **path_table** (Tensor，可选) – 存储每一批样本从类别（单词）到根节点的路径，按照从叶至根方向存储。数据类型为int64，形状为 ``[N, L]``，其中L为路径长度。``path_table`` 和 ``path_code`` 应具有相同的形状，对于每个样本i，path_table[i]为一个类似np.ndarray的结构，该数组内的每个元素都是其双亲结点权重矩阵的索引。默认值为None。
     - **path_code** (Tensor，可选) – 存储每一批样本从类别（单词）到根节点的路径编码，按从叶至根方向存储。数据类型为int64，形状为 ``[N, L]``。默认值为None。
     - **is_sparse** (bool，可选) – 是否使用稀疏更新方式。如果设置为True，W的梯度和输入梯度将会变得稀疏。默认值为False。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **name** (str，可选) – 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::

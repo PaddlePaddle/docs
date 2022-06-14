@@ -34,7 +34,7 @@ temporal_shift
   - **x**  (Tensor) – 时移算符的输入张量。维度为 :math:`[N*T，C，H，W]` 的4-D Tensor。N为批量大小，T为时间段数，C为信道数，H为特征高度，W为特征宽度，数据类型为float32或float64。
   - **seg_num**  (int) – 时间段编号，这应该是一个正整数。
   - **shift_ratio**  (float) – 通道的移位比、通道的第一个 ``shift_ratio`` 部分沿时间维度移动-1，通道的第二个 ``shift_ratio`` 部分沿时间维度移动1，范围须在[0, 0.5]内。默认值0.25
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置。默认值：None。
+  - **name** (str，可选) – 具体用法请参见  :ref:`api_guide_Name`，一般无需设置。默认值：None。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"或"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
 
 返回

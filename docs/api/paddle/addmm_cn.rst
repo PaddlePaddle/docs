@@ -24,7 +24,7 @@ addmm
     - **y** (Tensor) - 输入 Tensor y，数据类型支持 float32、float64。
     - **alpha** (float，可选) - 乘以x*y的标量，数据类型支持float32、float64，默认值为1.0。
     - **beta** (float，可选) - 乘以input的标量，数据类型支持float32、float64，默认值为1.0。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

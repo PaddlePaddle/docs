@@ -5,7 +5,7 @@ RoIPool
 
 .. py:class:: paddle.vision.ops.RoIPool(output_size, spatial_scale=1.0)
 
-该接口用于构建一个 ``RoIPool`` 类的可调用对象。请参见 :ref:`cn_api_paddle_vision_ops_roi_pool` API。
+该接口用于构建一个 ``RoIPool`` 类的可调用对象。请参见  :ref:`cn_api_paddle_vision_ops_roi_pool` API。
 
 参数
 :::::::::

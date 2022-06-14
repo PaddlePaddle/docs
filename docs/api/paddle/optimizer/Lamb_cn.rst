@@ -35,9 +35,9 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器�
   - **beta2** (float，可选) - 第二个动量估计的指数衰减率。默认值为0.999。
   - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为1e-06。
   - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
-  - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>`。默认值为None，此时将不进行梯度裁剪。
+  - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：  :ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、  :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、  :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>`。默认值为None，此时将不进行梯度裁剪。
   - **exclude_from_weight_decay_fn** (function) - 当某个参数作为输入该函数返回值为 True 时，为该参数跳过权重衰减。
-  - **name** (str，可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
+  - **name** (str，可选)- 该参数供开发人员打印调试信息时使用，具体用法请参见  :ref:`api_guide_Name`，默认值为None。
 
 .. note::
     目前 ``Lamb`` 不支持 Sparse Parameter Optimization（稀疏参数优化）。
@@ -100,7 +100,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 **参数**
 
     - **loss** (Tensor) – 需要最小化的损失值变量。
-    - **startup_program** (Program，可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program`，默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
+    - **startup_program** (Program，可选) – 用于初始化parameters中参数的  :ref:`cn_api_fluid_Program`，默认值为None，此时将使用  :ref:`cn_api_fluid_default_startup_program`。
     - **parameters** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表，默认值为None，此时将更新所有的Parameter。
     - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成集合，默认值为None。
         

@@ -124,7 +124,7 @@ https://en.wikipedia.org/wiki/Trilinear_interpolation
     - **input** (Variable) - 4-D或5-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
     - **out_shape** (list|tuple|Variable|None) - 输出Tensor，输入为4D张量时，形状为为(out_h, out_w)的2-D Tensor。输入为5-D Tensor时，形状为(out_d, out_h, out_w)的3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
     - **scale** (float|Variable|None)-输入的高度或宽度的乘数因子。out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。
-    - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`。默认值为None。
+    - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见  :ref:`api_guide_Name`。默认值为None。
     - **resample** (str) - 插值方法。支持“双线性”,“三线性”,“临近插值”。默认值为双线性插值。
     - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说， :code:`actual_shape` 具有最高的优先级。如果希望动态指定输出形状，建议使用 :code:`out_shape`，因为 :code:`actual_shape` 未来将被弃用。在使用actual_shape指定输出形状时，还需要设置out_shape和scale之一，否则在图形构建阶段会出现错误。默认值：None
     - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。默认值为True

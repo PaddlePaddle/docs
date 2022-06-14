@@ -21,7 +21,7 @@ ModelAverage 优化器，在训练过程中累积特定连续的历史 ``Paramet
     - **parameters** (list，可选) - 为了最小化 ``loss`` 需要更新的 Tensor 列表。动态图模式下该参数是必需的；静态图模型下该参数的默认值为 None，此时所有参数都会被更新。
     - **min_average_window** (int，可选) – 平均值计算窗口长度的最小值，默认值为 10000。
     - **max_average_window** (int，可选) – 平均值计算窗口长度的最大值，默认值为 10000。
-    - **name** (str，可选)– 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为 None。
+    - **name** (str，可选)– 该参数供开发人员打印调试信息时使用，具体用法请参见  :ref:`api_guide_Name`，默认值为 None。
 
 代码示例
 :::::::::
@@ -42,7 +42,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
     - **startup_program** (Program，可选) - 用于初始化 ``Parameters`` 中参数的 ``Program``，默认值为 None，此时将使用 ``default_startup_program``。
     - **parameters** (list，可选) – 待更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的列表，默认值为 None，此时将更新所有的 ``Parameters``。
     - **no_grad_set** (set，可选) – 不需要更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的集合，默认值为 None。
-    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为 None。
+    - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见  :ref:`api_guide_Name`，默认值为 None。
 
 **返回**
 

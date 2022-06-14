@@ -6,7 +6,7 @@ rfftfreq
 .. py:function:: paddle.fft.rfftfreq(n, d=1.0, dtype=None, name=None)
 
 返回离散傅里叶变换的频率窗口(frequency bins)中心，以 "循环/采样间隔" 为单位。例如，采样间
-隔以秒为单位，则频谱的单位是 "循环/秒"。用于 ``rfft`` 和 ``irfft``.
+隔以秒为单位，则频谱的单位是 "循环/秒"。用于 ``rfft`` 和 ``irfft``。
 
 对于窗口长度 n 和采样间隔 d，输出的频率序列 f 排布如下：:
 
@@ -21,7 +21,7 @@ rfftfreq
 - **dtype** (str，可选) - 返回 Tensor 的数据类型，默认为 
   ``paddle.get_default_dtype()`` 返回的类型。
 - **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试
-  信息时使用，具体用法请参见 :ref:`api_guide_Name`。
+  信息时使用，具体用法请参见  :ref:`api_guide_Name`。
 
 
 返回

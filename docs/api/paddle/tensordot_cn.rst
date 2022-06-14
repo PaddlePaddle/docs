@@ -21,7 +21,7 @@ tensordot
         3. ``axes`` 可以是一个tuple或list，其中包含一个或两个一维的整数tuple|list|Tensor。如果 ``axes`` 包含一个tuple|list|Tensor，则对 ``x`` 和 ``y`` 的相同轴做缩并运算，具体轴下标由该tuple|list|Tensor中的整数值指定。如果 ``axes`` 包含两个tuple|list|Tensor，则第一个指定 ``x`` 做缩并运算的轴下标，第二个指定 ``y`` 的对应轴下标。如果 ``axes`` 包含两个以上的tuple|list|Tensor，只有前两个会被作为轴下标序列使用，其它的将被忽略。
 
         4. ``axes`` 可以是一个张量，这种情况下该张量会被转换成list，然后应用前述规则确定做缩并运算的轴。请注意，输入Tensor类型的 ``axes`` 只在动态图模式下可用。
-    - **name** （str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** （str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 返回
 ::::::::::::

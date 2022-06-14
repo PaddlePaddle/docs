@@ -39,11 +39,11 @@ GRUUnit
 ::::::::::::
 
     - **size** (int) – 输入数据的维度大小。
-    - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
+    - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。
     **注意**
       - 权重参数维度为 :math:`[T, 3×D]` ， :math:`D` 是隐藏状态的规模（hidden size），其值与输入size相关，计算方式为size除以3取整。
       - 权重参数矩阵所有元素由两部分组成，一是update gate和reset gate的权重，维度为 :math:`[D, 2×D]` 的2D Tensor，数据类型可以为float32或float64；二是候选隐藏状态（candidate hidden state）的权重矩阵，维度为 :math:`[D, D]` 的2D Tensor，数据类型可以为float32或float64。
-    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。
     - **activation** (str，可选) –  公式中 :math:`act_c` 激活函数的类型。可以为'identity'、'sigmoid'、'tanh'、'relu'四种激活函数设置值。默认值为'tanh'。
     - **gate_activation** (str，可选) – 公式中 :math:`act_g` 激活函数的类型。可以为'identity'、'sigmoid'、'tanh'、'relu'四种激活函数设置值。默认值为'sigmoid'。
     - **origin_mode** (bool) – 指明要使用的GRU计算方式，两种计算方式具体差异见公式描述。默认值为False。

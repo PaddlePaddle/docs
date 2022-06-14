@@ -6,7 +6,7 @@ SortedKeys
 .. py:class:: paddle.profiler.SortedKeys
 
 
-SortedKeys枚举类用来指定打印的统计 :ref:`表单 <cn_api_profiler_profiler_summary>` 内数据的排序方式。
+SortedKeys枚举类用来指定打印的统计  :ref:`表单 <cn_api_profiler_profiler_summary>` 内数据的排序方式。
 
 排序方式说明
 ::::::::::::

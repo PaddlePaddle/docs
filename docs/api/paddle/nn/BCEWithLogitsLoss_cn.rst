@@ -7,7 +7,7 @@ BCEWithLogitsLoss
 
 该OP可创建一个BCEWithLogitsLoss的可调用类，计算输入 `logit` 和标签 `label` 间的 `binary cross entropy with logits loss` 损失。
 
-该OP结合了 `sigmoid` 操作和 :ref:`api_nn_loss_BCELoss` 操作。同时，我们也可以认为该OP是 ``sigmoid_cross_entrop_with_logits`` 和一些 `reduce` 操作的组合。
+该OP结合了 `sigmoid` 操作和  :ref:`api_nn_loss_BCELoss` 操作。同时，我们也可以认为该OP是 ``sigmoid_cross_entrop_with_logits`` 和一些 `reduce` 操作的组合。
 
 在每个类别独立的分类任务中，该OP可以计算按元素的概率误差。可以将其视为预测数据点的标签，其中标签不是互斥的。例如，一篇新闻文章可以同时关于政治，科技，体育或者同时不包含这些内容。
 
@@ -37,7 +37,7 @@ BCEWithLogitsLoss
     - **weight** (Tensor，可选) - 手动指定每个batch二值交叉熵的权重，如果指定的话，维度必须是一个batch的数据的维度。数据类型是float32, float64。默认值是：None。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'``。默认为 ``'mean'``，计算 `BCELoss` 的均值；设置为 ``'sum'`` 时，计算 `BCELoss` 的总和；设置为 ``'none'`` 时，则返回原始loss。
     - **pos_weight** (Tensor，可选) - 手动指定正类的权重，必须是与类别数相等长度的向量。数据类型是float32, float64。默认值是：None。
-    - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 形状
 :::::::::

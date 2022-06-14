@@ -10,7 +10,7 @@ DynamicRNN
 
 
 **注意：该类型的输入仅支持LoDTensor，如果您需要处理的输入数据是Tensor类型，
-请使用StaticRNN（ fluid.layers.** :ref:`cn_api_fluid_layers_StaticRNN` **)。**
+请使用StaticRNN（ fluid.layers.**  :ref:`cn_api_fluid_layers_StaticRNN` **)。**
 
 DynamicRNN可以处理一批序列数据，其中每个样本序列的长度可以不同，每个序列的长度信息记录在LoD里面。
 DynamicRNN会按照时间步 (time step) 将输入序列展开，用户可以在 :code:`block` 中定义每个时间步要进行的运算。
@@ -24,16 +24,16 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 参数
 ::::::::::::
 
-    - **name** (str，可选) - 具体用法参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 成员函数列表：
-    - :ref:`cn_api_fluid_layers_DynamicRNN_step_input`，设置输入变量
-    - :ref:`cn_api_fluid_layers_DynamicRNN_static_input`，设置静态输入变量
-    - :ref:`cn_api_fluid_layers_DynamicRNN_block`，定义每个时间步执行的运算
-    - :ref:`cn_api_fluid_layers_DynamicRNN_memory`，创建用于在时间步之间传递信息的变量
-    - :ref:`cn_api_fluid_layers_DynamicRNN_update_memory`，更新需要传递的时间步信息
-    - :ref:`cn_api_fluid_layers_DynamicRNN_output`，设置时间步的输出变量
-    - :ref:`cn_api_fluid_layers_DynamicRNN_call`，获取RNN的输出序列
+    -  :ref:`cn_api_fluid_layers_DynamicRNN_step_input`，设置输入变量
+    -  :ref:`cn_api_fluid_layers_DynamicRNN_static_input`，设置静态输入变量
+    -  :ref:`cn_api_fluid_layers_DynamicRNN_block`，定义每个时间步执行的运算
+    -  :ref:`cn_api_fluid_layers_DynamicRNN_memory`，创建用于在时间步之间传递信息的变量
+    -  :ref:`cn_api_fluid_layers_DynamicRNN_update_memory`，更新需要传递的时间步信息
+    -  :ref:`cn_api_fluid_layers_DynamicRNN_output`，设置时间步的输出变量
+    -  :ref:`cn_api_fluid_layers_DynamicRNN_call`，获取RNN的输出序列
 
 
 .. _cn_api_fluid_layers_DynamicRNN_step_input:
@@ -416,7 +416,7 @@ __call__()
 
 若定义了 :code:`drnn = DynamicRNN()`，则可以调用 :code:`drnn()` 获得输出序列，该输出序列是通过将每一个时间步的output数据合并得到的一个LoDTensor。
 当RNN的输入x（通过 :code:`step_input()` 接口设置）的 :code:`x.lod_level` 为1时，该输出LoDTensor将会和输入x持有完全相同的LoD信息。
-通过 :code:`drnn()` 获取的RNN输出LoDTensor中包含了所有时间步的计算结果，可调用 :ref:`cn_api_fluid_layers_sequence_last_step` 获取最后一个时间步的计算结果。
+通过 :code:`drnn()` 获取的RNN输出LoDTensor中包含了所有时间步的计算结果，可调用  :ref:`cn_api_fluid_layers_sequence_last_step` 获取最后一个时间步的计算结果。
 
 **参数**
 

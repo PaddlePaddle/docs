@@ -31,7 +31,7 @@ sigmoid_focal_loss
     - **alpha** (int|float，可选) - 用于平衡正样本和负样本的超参数，取值范围 :math:`[0，1]`。默认值设置为0.25。
     - **gamma** (int|float，可选) - 用于平衡易分样本和难分样本的超参数，默认值设置为2.0。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'``。默认为 ``'mean'``，计算 `focal loss` 的均值；设置为 ``'sum'`` 时，计算 `focal loss` 的总和；设置为 ``'none'`` 时，则返回原始loss。
-    - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 返回
 :::::::::

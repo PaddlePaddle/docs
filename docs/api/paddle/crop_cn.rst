@@ -60,7 +60,7 @@ crop
   - **x** (Tensor): 1-D到6-D Tensor，数据类型为float32、float64、int32或者int64。
   - **shape** (list|tuple|Tensor) - 输出Tensor的形状，数据类型为int32。如果是列表或元组，则其长度必须与x的维度大小相同，如果是Tensor，则其应该是1-D Tensor。当它是列表时，每一个元素可以是整数或者形状为[1]的Tensor。含有Variable的方式适用于每次迭代时需要改变输出形状的情况。
   - **offsets** (list|tuple|Tensor，可选) - 每个维度上裁剪的偏移量，数据类型为int32。如果是列表或元组，则其长度必须与x的维度大小相同，如果是Tensor，则其应是1-D Tensor。当它是列表时，每一个元素可以是整数或者形状为[1]的Variable。含有Variable的方式适用于每次迭代的偏移量（offset）都可能改变的情况。默认值：None，每个维度的偏移量为0。
-  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 :::::::::

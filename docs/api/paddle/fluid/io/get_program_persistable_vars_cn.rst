@@ -13,7 +13,7 @@ get_program_persistable_vars
 参数
 ::::::::::::
 
- - **program**  ( :ref:`cn_api_fluid_Program` ) – 从该Program中获取persistable的变量。
+ - **program**  (  :ref:`cn_api_fluid_Program` ) – 从该Program中获取persistable的变量。
 
 返回
 ::::::::::::

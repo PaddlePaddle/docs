@@ -14,8 +14,8 @@ IfElse
 cond是一个shape为[N, 1]、数据类型为bool的2-D tensor，表示输入数据对应部分的执行条件。
 
 .. note::
-    如果参数 ``cond`` 的形状为[1]，强烈建议您使用新的OP :ref:`cn_api_fluid_layers_cond` 而不是 ``IfElse``。
-    OP :ref:`cn_api_fluid_layers_cond` 的使用方式更简单，并且调用该OP所用的代码更少且功能与 ``IfElse`` 一样。
+    如果参数 ``cond`` 的形状为[1]，强烈建议您使用新的OP  :ref:`cn_api_fluid_layers_cond` 而不是 ``IfElse``。
+    OP  :ref:`cn_api_fluid_layers_cond` 的使用方式更简单，并且调用该OP所用的代码更少且功能与 ``IfElse`` 一样。
 
 IfElse OP同其他的OP在使用上有一定的区别，可能会对一些用户造成一定的困惑，以下展示了一个
 简单的样例对该OP进行说明。
@@ -66,7 +66,7 @@ IfElse OP同其他的OP在使用上有一定的区别，可能会对一些用户
 ::::::::::::
 
     - **cond** (Variable)- cond是一个shape为[N, 1]、数据类型为bool的2-D tensor，表示N个输入数据的对应的执行条件。数据类型为bool。
-    - **Name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **Name** (str，可选)- 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 **返回：**    
 

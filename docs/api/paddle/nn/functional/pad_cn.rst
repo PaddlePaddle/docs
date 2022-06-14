@@ -24,7 +24,7 @@ pad
   - **value** (float32) - 以 ``'constant'`` 模式填充区域时填充的值。默认值为0.0。
   - **data_format** (str)  - 指定 ``x`` 的format，可为 ``'NCL'``, ``'NLC'``, ``'NCHW'``, ``'NHWC'``, ``'NCDHW'``
     或 ``'NDHWC'``，默认值为 ``'NCHW'``。
-  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，缺省值为None。
+  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见  :ref:`api_guide_Name`，缺省值为None。
 返回
 ::::::::::::
 Tensor，对 ``x`` 进行 ``'pad'`` 的结果，数据类型和 ``x`` 相同。

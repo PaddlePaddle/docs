@@ -32,7 +32,7 @@ ExponentialMovingAverage
 :::::::::
     - **decay** (float，可选) – 指数衰减率，通常接近 1，如 0.999 ，0.9999 ，···。默认值为 0.999。
     - **thres_steps** (Variable|None，可选) – 调节衰减率的阈值步数，默认值为 None。
-    - **name** (str|None，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str|None，可选) – 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
 :::::::::

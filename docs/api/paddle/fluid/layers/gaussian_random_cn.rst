@@ -18,7 +18,7 @@ gaussian_random
     - **std** (float|int，可选) - 输出Tensor的标准差，支持的数据类型：float、int。默认值为1.0。
     - **seed** (int，可选) - 随机数种子，默认值为 0。注：seed 设置为 0 表示使用系统的随机数种子。注意如果 seed 不为 0，则此算子每次将始终生成相同的随机数。
     - **dtype** (str|np.dtype|core.VarDesc.VarType，可选) - 输出Tensor的数据类型，支持float32、float64。默认值为float32。
-    - **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见  :ref:`api_guide_Name`。
 
 返回
 ::::::::::::

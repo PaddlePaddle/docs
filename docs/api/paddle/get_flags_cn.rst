@@ -6,7 +6,7 @@ get_flags
 .. py:function:: paddle.get_flags(flags)
 
 
-获取指定的Paddle 环境变量FLAGS状态。详情请查看 :ref:`cn_guides_flags_flags`。
+获取指定的Paddle 环境变量FLAGS状态。详情请查看  :ref:`cn_guides_flags_flags`。
 
 参数
 ::::::::::::

@@ -9,7 +9,7 @@ simple_img_conv_pool
 
 
 
- ``simple_img_conv_pool`` 由一个conv2d( :ref:`cn_api_fluid_layers_conv2d` )和一个pool2d( :ref:`cn_api_fluid_layers_pool2d` ) OP组成。
+ ``simple_img_conv_pool`` 由一个conv2d(  :ref:`cn_api_fluid_layers_conv2d` )和一个pool2d(  :ref:`cn_api_fluid_layers_pool2d` ) OP组成。
 
 参数
 ::::::::::::
@@ -30,7 +30,7 @@ simple_img_conv_pool
     - **bias_attr** (ParamAttr | bool | None，可选) - conv2d的bias参数属性。如果设置为False，则不会向输出单元添加bias。如果将其设置为None或ParamAttr的一个属性，则conv2d将创建ParamAttr作为bias_attr。如果设置bias_attr为None，则将其初始化为零。默认值：None
     - **act** (str，可选) - conv2d的激活类型，字符串，可以是'relu', 'softmax', 'sigmoid'等激活函数的类型。如果设置为None，则不附加激活。默认值：None。
     - **use_cudnn** (bool，可选) - 是否使用cudnn内核，仅在安装cudnn库时才有效。默认值：True。
-    - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None
+    - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见  :ref:`api_guide_Name`，默认值为None
 
 返回
 ::::::::::::

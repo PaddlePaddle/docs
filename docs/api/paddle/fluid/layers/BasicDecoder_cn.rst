@@ -6,7 +6,7 @@ BasicDecoder
 
 .. py:class:: paddle.fluid.layers.BasicDecoder(cell, helper, output_fn=None)
 
-BasicDecoder是 :ref:`cn_api_fluid_layers_Decoder` 的子类，它组装了 :ref:`cn_api_fluid_layers_RNNCell` 和 :ref:`cn_api_fluid_layers_DecodeHelper` 的实例作为成员，其中DecodeHelper用来实现不同的解码策略。它依次执行以下步骤来完成单步解码：
+BasicDecoder是  :ref:`cn_api_fluid_layers_Decoder` 的子类，它组装了  :ref:`cn_api_fluid_layers_RNNCell` 和  :ref:`cn_api_fluid_layers_DecodeHelper` 的实例作为成员，其中DecodeHelper用来实现不同的解码策略。它依次执行以下步骤来完成单步解码：
 
 1. 执行 :code:`cell_outputs, cell_states = cell.call(inputs, states)` 以获取输出和新的状态。
 
@@ -56,7 +56,7 @@ initialize(initial_cell_states)
 
 **参数**
 
-  - **initial_cell_states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。这是由调用者 :ref:`cn_api_fluid_layers_dynamic_decode` 提供的参数。
+  - **initial_cell_states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。这是由调用者  :ref:`cn_api_fluid_layers_dynamic_decode` 提供的参数。
 
 **返回**
 :code:`(initial_inputs, initial_states, finished)` 的三元组。:code:`initial_inputs, initial_states` 均是单个tensor变量或tensor变量组成的嵌套结构， :code:`finished` 是bool类型的tensor。:code:`initial_inputs, finished` 与 :code:`helper.initialize()` 返回的内容相同； :code:`initial_states` 与输入参数中的 :code:`initial_cell_states` 的相同。
@@ -84,7 +84,7 @@ step(time, inputs, states, **kwargs)
   - **time** (Variable) - 调用者提供的形状为[1]的tensor，表示当前解码的时间步长。其数据类型为int64。
   - **inputs** (Variable) - tensor变量。在第一个解码时间步时与由 :code:`initialize()` 返回的 :code:`initial_inputs` 相同，其他时间步与由 :code:`step()` 返回的 :code:`next_inputs` 相同。
   - **states** (Variable) - tensor变量的结构。在第一个解码时间步时与 :code:`initialize()` 返回的 :code:`initial_states` 相同，其他时间步与由 :code:`step()` 返回的 :code:`next_states` 相同。
-  - **kwargs** - 附加的关键字参数，由调用者 :ref:`cn_api_fluid_layers_dynamic_decode` 提供。
+  - **kwargs** - 附加的关键字参数，由调用者  :ref:`cn_api_fluid_layers_dynamic_decode` 提供。
 
 **返回**
  :code:`(outputs, next_states, next_inputs, finished)` 的四元组。:code:`outputs` 是包含 :code:`cell_outputs` 和 :code:`sample_ids` 两个字段的命名元组，其中 :code:`cell_outputs` 是 :code:`cell.call()` 的结果， :code:`sample_ids` 是 :code:`helper.sample()` 的结果； :code:`next_states, next_inputs` 分别和输入参数中的 :code:`states, inputs` 有相同的的结构、形状和数据类型； :code:`finished` 是一个bool类型的tensor，形状是 :math:`[batch\_size]`。

@@ -9,7 +9,7 @@ sequence_pool
 
 
 
-**注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用pool2d函数（fluid.layers.** :ref:`cn_api_fluid_layers_pool2d` **）。**
+**注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用pool2d函数（fluid.layers.**  :ref:`cn_api_fluid_layers_pool2d` **）。**
 
 该OP **仅支持LoDTensor类型的输入**，将对输入的LoDTensor进行指定方式的池化（pooling）操作。通过指定pool_type参数，将输入的每个序列（sequence）在最后一层lod_level上或时间步（time-step）上对特征进行诸如sum、average、sqrt等池化操作。
 

@@ -25,8 +25,8 @@ GRUCell
 ::::::::::::
 
   - **hidden_size** (int) - GRUCell中的隐藏层大小。
-  - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
-  - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
+  - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。
+  - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。
   - **gate_activation** (function，可选) - :math:`act_g` 的激活函数。默认值为 :code:`fluid.layers.sigmoid`。
   - **activation** (function，可选) - :math:`act_c` 的激活函数。默认值为 :code:`fluid.layers.tanh` 
   - **dtype** (string，可选) - 此cell中使用的数据类型。默认为"float32"。

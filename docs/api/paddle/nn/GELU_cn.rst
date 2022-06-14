@@ -24,7 +24,7 @@ GELU激活层（GELU Activation Operator）
 参数
 ::::::::::
     - approximate (bool，可选) - 是否使用近似计算，默认值为 False，即不使用近似计算。
-    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 形状：
 ::::::::::

@@ -11,7 +11,7 @@ bitwise_not
        Out = \sim X
 
 .. note::
-    ``paddle.bitwise_not`` 遵守broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
+    ``paddle.bitwise_not`` 遵守broadcasting，如您想了解更多，请参见  :ref:`cn_user_guide_broadcasting`。
 
 参数
 ::::::::::::

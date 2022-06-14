@@ -31,7 +31,7 @@ Uniform
 
     - **low** (int|float|list|numpy.ndarray|Tensor) - 均匀分布的下边界。数据类型为int、float、list、numpy.ndarray或Tensor。
     - **high** (int|float|list|numpy.ndarray|Tensor) - 均匀分布的上边界。数据类型为int、float、list、numpy.ndarray或Tensor。
-    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 代码示例
 :::::::::

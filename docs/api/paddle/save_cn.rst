@@ -12,8 +12,8 @@ save
 
 .. note::
     不同于 ``paddle.jit.save``，由于 ``paddle.save`` 的存储结果是单个文件，所以不需要通过添加后缀的方式区分多个存储文件，``paddle.save`` 的输入参数 ``path`` 将直接作为存储结果的文件名而非前缀。为了统一存储文件名的格式，我们推荐使用paddle标椎文件后缀：
-    1. 对于 ``Layer.state_dict``，推荐使用后缀 ``.pdparams`` ；
-    2. 对于 ``Optimizer.state_dict``，推荐使用后缀 ``.pdopt``。
+    1. 对于 ``Layer.state_dict``，推荐使用后缀 ``。pdparams`` ；
+    2. 对于 ``Optimizer.state_dict``，推荐使用后缀 ``。pdopt``。
     具体示例请参考API的代码示例。
 
 

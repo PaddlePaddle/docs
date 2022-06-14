@@ -27,8 +27,8 @@ retinanet_target_assign
     - **bbox_pred**  (Variable) – 维度为 :math:`[N, M, 4]` 的3-D Tensor，表示全部anchor的位置回归预测值。其中，第一维N表示批量训练时批量内的图片数量，第二维M表示每张图片的全部anchor的数量，第三维4表示每个anchor有四个坐标值。数据类型为float32或float64。
     - **cls_logits**  (Variable) – 维度为 :math:`[N, M, C]` 的3-D Tensor，表示全部anchor的分类预测值。其中，第一维N表示批量训练时批量内的图片数量，第二维M表示每张图片的全部anchor的数量，第三维C表示每个anchor需预测的类别数量（ **注意：不包括背景** ）。数据类型为float32或float64。
 
-    - **anchor_box**  (Variable) – 维度为 :math:`[M, 4]` 的2-D Tensor，表示全部anchor的坐标值。其中，第一维M表示每张图片的全部anchor的数量，第二维4表示每个anchor有四个坐标值 :math:`[xmin, ymin, xmax, ymax]` ，:math:`[xmin, ymin]` 是anchor的左上顶部坐标，:math:`[xmax, ymax]` 是anchor的右下坐标。数据类型为float32或float64。anchor_box的生成请参考OP :ref:`cn_api_fluid_layers_anchor_generator`。
-    - **anchor_var**  (Variable) – 维度为 :math:`[M, 4]` 的2-D Tensor，表示在后续计算损失函数时anchor坐标值的缩放比例。其中，第一维M表示每张图片的全部anchor的数量，第二维4表示每个anchor有四个坐标缩放因子。数据类型为float32或float64。anchor_var的生成请参考OP :ref:`cn_api_fluid_layers_anchor_generator`。
+    - **anchor_box**  (Variable) – 维度为 :math:`[M, 4]` 的2-D Tensor，表示全部anchor的坐标值。其中，第一维M表示每张图片的全部anchor的数量，第二维4表示每个anchor有四个坐标值 :math:`[xmin, ymin, xmax, ymax]` ，:math:`[xmin, ymin]` 是anchor的左上顶部坐标，:math:`[xmax, ymax]` 是anchor的右下坐标。数据类型为float32或float64。anchor_box的生成请参考OP  :ref:`cn_api_fluid_layers_anchor_generator`。
+    - **anchor_var**  (Variable) – 维度为 :math:`[M, 4]` 的2-D Tensor，表示在后续计算损失函数时anchor坐标值的缩放比例。其中，第一维M表示每张图片的全部anchor的数量，第二维4表示每个anchor有四个坐标缩放因子。数据类型为float32或float64。anchor_var的生成请参考OP  :ref:`cn_api_fluid_layers_anchor_generator`。
     - **gt_boxes**  (Variable) – 维度为 :math:`[G, 4]` 且LoD level必须为1的2-D LoDTensor，表示批量训练时批量内的真值框位置。其中，第一维G表示批量内真值框的总数，第二维表示每个真值框有四个坐标值。数据类型为float32或float64。
     - **gt_labels**  (variable) – 维度为 :math:`[G, 1]` 且LoD level必须为1的2-D LoDTensor，表示批量训练时批量内的真值框类别，数值范围为 :math:`[1, C]`。其中，第一维G表示批量内真值框的总数，第二维表示每个真值框只有1个类别。数据类型为int32。
     - **is_crowd**  (Variable) – 维度为 :math:`[G]` 且LoD level必须为1的1-D LoDTensor，表示各真值框是否位于重叠区域，值为1表示重叠，则不参与训练。第一维G表示批量内真值框的总数。数据类型为int32。

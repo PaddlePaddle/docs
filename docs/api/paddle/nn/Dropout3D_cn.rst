@@ -10,13 +10,13 @@ Dropout3D
 在动态图模式下，请使用模型的 `eval()` 方法切换至测试阶段。
 
 .. note::
-   对应的 `functional方法` 请参考：:ref:`cn_api_nn_functional_dropout3d`。
+   对应的 `functional方法` 请参考： :ref:`cn_api_nn_functional_dropout3d`。
 
 参数
 :::::::::
  - **p** (float): 将输入通道置0的概率，即丢弃概率。默认：0.5。
  - **data_format** (str): 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 `NCDHW` 和 `NDHWC`。其中 `N` 是批尺寸， `C` 是通道数， `D` 是特征深度， `H` 是特征高度， `W` 是特征宽度。默认值：`NCDHW`。
- - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+ - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 形状
 :::::::::

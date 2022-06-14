@@ -48,7 +48,7 @@ scatter_nd_add
     - **x** (Tensor) - 输入张量，数据类型可以是int32，int64，float32，float64。
     - **index** (Tensor) - 输入的索引张量，数据类型为非负int32或非负int64。它的维度 :code:`index.ndim` 必须大于1，并且 :code:`index.shape[-1] <= x.ndim`
     - **updates** (Tensor) - 输入的更新张量，它必须和 :code:`x` 有相同的数据类型。形状必须是 :code:`index.shape[:-1] + x.shape[index.shape[-1]:]`。
-    - **name** (string) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (string) - 操作的名称(可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 返回
 ::::::::::::

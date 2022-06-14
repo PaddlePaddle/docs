@@ -40,7 +40,7 @@ adaptive_pool3d
   - **pool_size** （int|list|tuple） - 池化核大小。如果池化核大小是元组或列表，则它必须包含三个整数（Depth, Height, Width）。若为一个整数，则表示D, H和W维度上均为该值。
   - **pool_type** （string）- 池化类型，可输入“max”代表max-pooling，或者“avg”代表average-pooling。
   - **require_index** （bool） - 如果为True，则输出中带有最大池化点所在的索引。如果pool_type为avg，该项不可被设置为True，默认False。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置。默认值：None。
+  - **name** (str，可选) – 具体用法请参见  :ref:`api_guide_Name`，一般无需设置。默认值：None。
 
 
 返回

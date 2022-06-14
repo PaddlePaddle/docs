@@ -8,7 +8,7 @@ array_write
 
 
 
-该OP将输入的变量 ``x`` 写入到数组 :ref:`cn_api_fluid_LoDTensorArray` ``array`` 的第i个位置，并返回修改后的LoDTensorArray，如果 ``array`` 为None，则创建一个新的LoDTensorArray。常与 :ref:`cn_api_fluid_layers_array_read` OP联合使用对LoDTensorArray进行读写。
+该OP将输入的变量 ``x`` 写入到数组  :ref:`cn_api_fluid_LoDTensorArray` ``array`` 的第i个位置，并返回修改后的LoDTensorArray，如果 ``array`` 为None，则创建一个新的LoDTensorArray。常与  :ref:`cn_api_fluid_layers_array_read` OP联合使用对LoDTensorArray进行读写。
 
 参数
 ::::::::::::

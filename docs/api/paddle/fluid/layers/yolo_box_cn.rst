@@ -43,7 +43,7 @@ yolo_box
     - **conf_thresh** （float） - 检测框的置信度得分阈值。置信度得分低于阈值的框应该被忽略
     - **downsample_ratio** （int） - 从网络输入到YoloBox操作输入的下采样率，因此应依次为第一个，第二个和第三个YoloBox运算设置该值为32,16,8
     - **clip_bbox** （bool） - 是否将输出的bbox裁剪到 :attr:`img_size` 范围内，默认为True。
-    - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name`，一般无需设置，默认值为None。
+    - **name** (str|None) – 具体用法请参见  :ref:`cn_api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

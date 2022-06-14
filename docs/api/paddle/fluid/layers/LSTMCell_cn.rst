@@ -27,8 +27,8 @@ LSTMCell
 ::::::::::::
 
   - **hidden_size** (int) - LSTMCell中的隐藏层大小。
-  - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
-  - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
+  - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。
+  - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。
   - **gate_activation** (function，可选) - :math:`act_g` 的激活函数。默认值为 :code:`fluid.layers.sigmoid`。
   - **activation** (function，可选) - :math:`act_c` 的激活函数。默认值为 :code:`fluid.layers.tanh`。
   - **forget_bias** (float，可选) - 计算遗忘们时使用的遗忘偏置。默认值为 1.0。

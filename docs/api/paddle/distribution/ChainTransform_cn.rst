@@ -30,7 +30,7 @@ forward(x)
 
 **参数**
 
-- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution` 
+- **x** (Tensor) - 正变换输入参数，通常为  :ref:`cn_api_distribution_Distribution` 
   的随机采样结果。
     
 **返回**
@@ -56,7 +56,7 @@ forward_log_det_jacobian(x)
 
 计算正变换雅可比行列式绝对值的对数。
 
-如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` .
+如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError``。
 
 **参数**
 

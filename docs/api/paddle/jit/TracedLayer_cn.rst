@@ -108,7 +108,7 @@ save_inference_model(path, feed=None, fetch=None)
 
 将TracedLayer保存为用于预测部署的模型。保存的预测模型可被C++预测接口加载。
 
-``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``.pdmodel``，存储的持久参数变量文件的后缀为 ``.pdiparams``.
+``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``。pdmodel``，存储的持久参数变量文件的后缀为 ``。pdiparams``。
 
 **参数**
 

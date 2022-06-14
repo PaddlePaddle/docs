@@ -9,7 +9,7 @@ max_unpool1d
 这个API实现了 `1D最大反池化` 操作
 
 .. note::
-   更多细节请参考对应的 `Class` 请参考 :ref:`cn_api_nn_MaxUnPool1D`。
+   更多细节请参考对应的 `Class` 请参考  :ref:`cn_api_nn_MaxUnPool1D`。
 
 
 输入：

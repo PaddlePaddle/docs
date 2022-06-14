@@ -10,7 +10,7 @@ avg_pool1d
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`L` 是输入特征的长度。
 
 .. note::
-   详细请参考对应的 `Class` 请参考：:ref:`cn_api_nn_AvgPool1D`。
+   详细请参考对应的 `Class` 请参考： :ref:`cn_api_nn_AvgPool1D`。
 
 
 参数
@@ -21,7 +21,7 @@ avg_pool1d
     - **padding** (string|int|list|tuple): 池化补零的方式。如果padding是一个字符串，则必须为 `SAME` 或者 `VALID`。如果是turple或者list类型，则应是 `[pad_left, pad_right]` 形式。如果padding是一个非0值，那么表示会在输入的两端都padding上同样长度的0。
     - **exclusive** (bool): 是否用额外padding的值计算平均池化结果，默认为True。
     - **ceil_mode** (bool): 是否用ceil函数计算输出的height和width，如果设置为False，则使用floor函数来计算，默认为False。
-    - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 
 

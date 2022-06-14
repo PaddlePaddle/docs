@@ -51,7 +51,7 @@ Bounding Box Coder
     - **target_box** (Variable) - 数据类型为float，double的Tensor或者LoDTensor，当code_type为‘encode_center_size’，输入是二维LoDTensor，维度为[N,4]，N为目标框的个数，目标框的格式与先验框相同。当code_type为‘decode_center_size’，输>入为3-D Tensor，维度为[N,M,4]。通常N表示产生检测框的个数，M表示类别数。此时目标框为偏移量。
     - **code_type** (str) - 编码类型用目标框，可以是encode_center_size或decode_center_size，默认值为`encode_center_size`
     - **box_normalized** (bool) - 先验框坐标是否正则化，即是否在[0, 1]区间内。默认值为true
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **name** (str，可选) – 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
     - **axis**  (int32) – 在PriorBox中为axis指定的轴broadcast以进行框解码，例如，如果axis为0，TargetBox具有形状[N，M，4]且PriorBox具有形状[M，4]，则PriorBox将broadcast到[N，M，4]用于解码。仅在code_type为decode_center_size时有效。默认值为0
 
 

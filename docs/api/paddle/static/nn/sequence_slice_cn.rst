@@ -13,7 +13,7 @@ sequence_slice
 
 
 .. note::
-该API输入只能是LoDTensor，如果您需要处理的是Tensor类型，请使用  :ref:`paddle.slice <cn_api_paddle_slice>`。
+该API输入只能是LoDTensor，如果您需要处理的是Tensor类型，请使用   :ref:`paddle.slice <cn_api_paddle_slice>`。
 
 
 ::
@@ -44,7 +44,7 @@ sequence_slice
   - **input** (Tensor) – 输入变量，类型为LoDTensor，承载着完整的序列。数据类型为float32，float64，int32或int64。
   - **offset** (Tensor) – 指定每个序列切片的起始索引，数据类型为int32或int64。
   - **length** (Tensor) – 指定每个子序列的长度，数据类型为int32或int64。
-  - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+  - **name**  (str，可选) – 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 :::::::::

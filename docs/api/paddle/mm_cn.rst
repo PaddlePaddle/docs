@@ -20,7 +20,7 @@ mm
     - **input** (Tensor) : 输入变量，类型为 Tensor 或 LoDTensor。
     - **mat2** (Tensor) : 输入变量，类型为 Tensor 或 LoDTensor。
     - **out** (Tensor，可选) – 指定存储运算结果的Tensor。如果设置为None或者不设置，将创建新的Tensor存储运算结果，默认值为None。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **name** （str，可选）- 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

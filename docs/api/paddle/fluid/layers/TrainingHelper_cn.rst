@@ -6,7 +6,7 @@ TrainingHelper
 
 .. py:class:: paddle.fluid.layers.TrainingHelper(inputs, sequence_length, time_major=False)
 
-TrainingHelper是 :ref:`cn_api_fluid_layers_DecodeHelper` 的子类。作为解码helper，它在每个解码时间步通过在完整序列输入 :code:`inputs` 的相应位置切片作为各步的输入，并且使用 :code:`argmax` 根据 :code:`cell.call()` 的输出进行采样。
+TrainingHelper是  :ref:`cn_api_fluid_layers_DecodeHelper` 的子类。作为解码helper，它在每个解码时间步通过在完整序列输入 :code:`inputs` 的相应位置切片作为各步的输入，并且使用 :code:`argmax` 根据 :code:`cell.call()` 的输出进行采样。
 由于要求有完整的序列输入 :code:`inputs` ，TrainingHelper主要用于以teach-forcing的方式进行最大似然训练，采样得到的内容通常不会使用。
 
 参数
@@ -42,7 +42,7 @@ TrainingHelper是 :ref:`cn_api_fluid_layers_DecodeHelper` 的子类。作为解�
 initialize()
 '''''''''
 
-TrainingHelper初始化，其通过在完整序列输入 :code:`inputs` 中首个时间步的位置上切片，以此作为第一个解码步的输入，并给出每个序列是否结束的初始标识。这是 :ref:`cn_api_fluid_layers_BasicDecoder` 初始化的一部分。
+TrainingHelper初始化，其通过在完整序列输入 :code:`inputs` 中首个时间步的位置上切片，以此作为第一个解码步的输入，并给出每个序列是否结束的初始标识。这是  :ref:`cn_api_fluid_layers_BasicDecoder` 初始化的一部分。
 
 **返回**
 :code:`(initial_inputs, initial_finished)` 的二元组， :code:`initial_inputs` 是单个tensor变量或tensor变量组成的嵌套结构，tensor的形状是 :math:`[batch\_size, ...]`。:code:`initial_finished` 是一个bool类型且形状为 :math:`[batch\_size]` 的tensor。

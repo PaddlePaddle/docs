@@ -35,7 +35,7 @@ NLLLoss
     - **weight** (Tensor，可选): - 手动指定每个类别的权重。其默认为 `None`。如果提供该参数的话，长度必须为 `num_classes`。数据类型为float32或float64。
     - **ignore_index** (int64，可选): - 指定一个忽略的标签值，此标签值不参与计算。默认值为-100。数据类型为int64。
     - **reduction** (str，可选): - 指定应用于输出结果的计算方式，可选值有：`none`, `mean`, `sum`。默认为 `mean`，计算 `mini-batch` loss均值。设置为 `sum` 时，计算 `mini-batch` loss的总和。设置为 `none` 时，则返回loss Tensor。数据类型为string。
-    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见  :ref:`api_guide_Name`。
 
 形状
 :::::::::

@@ -6,7 +6,7 @@ set_flags
 .. py:function:: paddle.set_flags(flags)
 
 
-设置Paddle 环境变量FLAGS，详情请查看 :ref:`cn_guides_flags_flags`
+设置Paddle 环境变量FLAGS，详情请查看  :ref:`cn_guides_flags_flags`
 
 
 参数

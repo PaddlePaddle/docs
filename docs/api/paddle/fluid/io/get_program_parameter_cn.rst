@@ -13,7 +13,7 @@ get_program_parameter
 参数
 ::::::::::::
 
- - **program**  ( :ref:`cn_api_fluid_Program` ) – 从该Program中获取参数。
+ - **program**  (  :ref:`cn_api_fluid_Program` ) – 从该Program中获取参数。
 
 返回
 ::::::::::::

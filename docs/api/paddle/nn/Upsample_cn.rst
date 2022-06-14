@@ -156,7 +156,7 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
     - **align_corners** （bool，可选）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。默认值为True
     - **align_mode** （int，可选）- 双线性插值的可选项。可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1'，代表src_idx = scale * dst_index。
     - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致。对于3-D Tensor，支持 NCHW(num_batches, channels, width)，对于4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
-    - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`。默认值为None。
+    - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见  :ref:`api_guide_Name`。默认值为None。
 
 返回
 ::::::::::::

@@ -5,7 +5,7 @@ RoIAlign
 
 .. py:class:: paddle.vision.ops.RoIAlign(output_size, spatial_scale=1.0)
 
-该接口用于构建一个 ``RoIAlign`` 类的可调用对象。请参见 :ref:`cn_api_paddle_vision_ops_roi_align` API。
+该接口用于构建一个 ``RoIAlign`` 类的可调用对象。请参见  :ref:`cn_api_paddle_vision_ops_roi_align` API。
 
 参数
 :::::::::

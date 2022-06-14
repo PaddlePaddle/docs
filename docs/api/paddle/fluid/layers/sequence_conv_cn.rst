@@ -9,7 +9,7 @@ sequence_conv
 
 
 
-**注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用conv2d函数（fluid.layers.** :ref:`cn_api_fluid_layers_conv2d` **）。**
+**注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用conv2d函数（fluid.layers.**  :ref:`cn_api_fluid_layers_conv2d` **）。**
 
 该OP在给定的卷积参数下（如卷积核数目、卷积核大小等），对输入的变长序列（sequence）LoDTensor进行卷积操作。默认情况下，该OP会自适应地在每个输入序列的两端等长地填充全0数据，以确保卷积后的序列输出长度和输入长度一致。支持通过配置 ``padding_start`` 参数来指定序列填充的行为。
 
@@ -60,10 +60,10 @@ sequence_conv
     - **filter_stride** (int) - 滤波器每次移动的步长。目前只支持取值为1，默认为1。
     - **padding** (bool) - **此参数不起任何作用，将在未来的版本中被移除。** 无论 ``padding`` 取值为False或者True，默认地，该函数会自适应地在每个输入序列的两端等长地填充全0数据，以确保卷积后的输出序列长度和输入长度一致。默认填充是考虑到输入的序列长度可能会小于卷积核大小，这会导致无正确计算卷积输出。填充为0的数据在训练过程中不会被更新。默认为True。
     - **padding_start** (int) - 表示对输入序列填充时的起始位置，可以为负值。负值表示在每个序列的首端填充 ``|padding_start|`` 个时间步（time_step）的全0数据；正值表示对每个序列跳过前 ``padding_start`` 个时间步的数据。同时在末端填充 :math:`filter\_size + padding\_start - 1` 个时间步的全0数据，以保证卷积输出序列长度和输入长度一致。如果 ``padding_start`` 为None，则在每个序列的两端填充 :math:`\frac{filter\_size}{2}` 个时间步的全0数据；如果 ``padding_start`` 设置为0，则只在序列的末端填充 :math:`filter\_size - 1` 个时间步的全0数据。默认为None。
-    - **bias_attr** (ParamAttr) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
-    - **param_attr** (ParamAttr) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
-    - **act** (str) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations`，默认值为None。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **bias_attr** (ParamAttr) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。
+    - **param_attr** (ParamAttr) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。
+    - **act** (str) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考  :ref:`api_guide_activations`，默认值为None。
+    - **name** (str，可选) – 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 
 返回

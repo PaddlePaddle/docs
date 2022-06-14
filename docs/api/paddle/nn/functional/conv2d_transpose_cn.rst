@@ -81,7 +81,7 @@ conv2d_transpose
   - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=n，输入和卷积核分别根据通道数量平均分为n组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第n组卷积核和第n组输入进行卷积计算。默认值：1。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
   - **output_size** (int|list|tuple，可选) - 输出尺寸，整数或包含一个整数的列表或元组。如果为 ``None``，则会用 filter_size(``weight``的shape), ``padding`` 和 ``stride`` 计算出输出特征图的尺寸。默认值：None。
-  - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name`，一般无需设置，默认值：None。
+  - **name** (str，可选) – 具体用法请参见  :ref:`cn_api_guide_Name`，一般无需设置，默认值：None。
 
 
 返回

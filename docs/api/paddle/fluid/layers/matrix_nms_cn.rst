@@ -32,7 +32,7 @@ matrix_nms
     - **background_label**  (int) – 背景标签（类别）的索引，如果设置为 0，则忽略背景标签（类别）。如果设置为 -1，则考虑所有类别。默认值：0
     - **normalized**  (bool) –  检测是否已经经过正则化。默认值：True。
     - **return_index**  (bool) –  是否同时返回保留检测框的序号。默认值：False。
-    - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name`，一般无需设置，默认值为None。
+    - **name** (str|None) – 具体用法请参见  :ref:`cn_api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

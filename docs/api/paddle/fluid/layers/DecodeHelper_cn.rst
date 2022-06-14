@@ -6,14 +6,14 @@ DecodeHelper
 
 .. py:class:: paddle.fluid.layers.DecodeHelper()
 
-DecodeHelper是一个基类，其子类的实例将在 :ref:`cn_api_fluid_layers_BasicDecoder` 中使用。它提供了在动态解码时采样和产生下一解码步的输入的接口。
+DecodeHelper是一个基类，其子类的实例将在  :ref:`cn_api_fluid_layers_BasicDecoder` 中使用。它提供了在动态解码时采样和产生下一解码步的输入的接口。
 
 方法
 ::::::::::::
 initialize()
 '''''''''
 
-初始化以产生第一个解码步的输入和每个序列是否结束的初始标识。这是 :ref:`cn_api_fluid_layers_BasicDecoder` 初始化的一部分。
+初始化以产生第一个解码步的输入和每个序列是否结束的初始标识。这是  :ref:`cn_api_fluid_layers_BasicDecoder` 初始化的一部分。
 
 **返回**
 :code:`(initial_inputs, initial_finished)` 的二元组， :code:`initial_inputs` 是单个tensor变量或tensor变量组成的嵌套结构，tensor的形状是 :math:`[batch\_size, ...]`。:code:`initial_finished` 是一个bool类型且形状为 :math:`[batch\_size]` 的tensor。

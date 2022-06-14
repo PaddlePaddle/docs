@@ -29,7 +29,7 @@ density_prior_box
   - **step** (list|tuple) - Prior boxes在宽度和高度的步长，如果step[0]等于0.0或step[1]等于0.0, input的the density prior boxes的高度/宽度的步长将被自动计算。默认值：Default: [0., 0.]
   - **offset** (float) - Prior boxes中心偏移值，默认为：0.5
   - **flatten_to_2d** (bool) - 是否将output prior boxes和方差 ``flatten`` 至2-D，其中第二个dim为4。默认值：False
-  - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`。默认值为None。
+  - **name** (str|None) - 该参数供开发人员打印调试信息时使用，具体用法请参见  :ref:`api_guide_Name`。默认值为None。
 
 
 返回

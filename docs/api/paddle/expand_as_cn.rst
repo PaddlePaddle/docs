@@ -13,7 +13,7 @@ expand_as
 :::::::::
     - **x** (Tensor) - 输入的 Tensor，数据类型为：bool、float32、float64、int32 或 int64。
     - **y** (Tensor) - 给定输入 ``x`` 扩展后的形状。
-    - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见  :ref:`api_guide_Name`。
 返回
 :::::::::
 Tensor，数据类型与 ``x`` 相同。

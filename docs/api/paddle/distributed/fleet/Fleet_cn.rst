@@ -329,15 +329,15 @@ stop_worker()
 save_inference_model(executor, dirname, feeded_var_names, target_vars, main_program=None, export_for_deployment=True)
 '''''''''
 
-修剪指定的 ``main_program`` 以构建一个专门用于预测的 ``Inference Program`` （ ``Program`` 含义详见 :ref:`api_guide_Program` ）。所得到的 ``Inference Program`` 及其对应的所>有相关参数均被保存到 ``dirname`` 指定的目录中。
+修剪指定的 ``main_program`` 以构建一个专门用于预测的 ``Inference Program`` （ ``Program`` 含义详见  :ref:`api_guide_Program` ）。所得到的 ``Inference Program`` 及其对应的所>有相关参数均被保存到 ``dirname`` 指定的目录中。
 
 
 **参数**
 
-  - **executor** (Executor) –  用于保存预测模型的 ``executor``，详见 :ref:`api_guide_executor`。
+  - **executor** (Executor) –  用于保存预测模型的 ``executor``，详见  :ref:`api_guide_executor`。
   - **dirname** (str) – 指定保存预测模型结构和参数的文件目录。
   - **feeded_var_names** (list[str]) – 字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
-  - **target_vars** (list[Tensor]) – ``Tensor`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
+  - **target_vars** (list[Tensor]) – ``Tensor`` （详见  :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
   - **main_program** (Program，可选) – 通过该参数指定的 ``main_program`` 可构建一个专门用于预测的 ``Inference Program``。若为None，则使用全局默认的  ``_main_program_``。>默认值为None。
   - **export_for_deployment** (bool，可选) – 若为True，则 ``main_program`` 指定的Program将被修改为只支持直接预测部署的Program。否则，将存储更多的信息，方便优化和再训练。目前
 只支持设置为True，且默认值为True。
@@ -372,9 +372,9 @@ save_persistables(executor, dirname, main_program=None)
 
 **参数**
 
- - **executor**  (Executor) – 用于保存持久性变量的 ``executor``，详见 :ref:`api_guide_executor`。
+ - **executor**  (Executor) – 用于保存持久性变量的 ``executor``，详见  :ref:`api_guide_executor`。
  - **dirname**  (str) – 用于储存持久性变量的文件目录。
- - **main_program**  (Program，可选) – 需要保存持久性变量的Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program。默认值为None>。
+ - **main_program**  (Program，可选) – 需要保存持久性变量的Program（ ``Program`` 含义详见  :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program。默认值为None>。
 
 **返回**
 无

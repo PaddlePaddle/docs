@@ -33,7 +33,7 @@ beam_search
     - **end_id** （int） - 指明标识序列结束的id。
     - **level** （int，可选） - **可忽略，当前不能更改**。知道LoD level为2即可，两层lod的意义如下： 第一级表示每个源句（样本）包含的beam大小，若满足结束条件（达到 ``beam_size`` 个结束）则变为0；第二级是表示每个beam被选择的次数。
     - **is_accumulated** （bool，可选） - 指明输入分数 ``scores`` 是否为累积分数，默认为True。
-    - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **name**  (str，可选) – 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为None。
     - **return_parent_idx** （bool，可选） - 指明是否返回一个额外的Tensor，该Tensor保存了选择的id的父节点（beam）在 ``pre_id`` 中索引，可用于通过gather OP更新其他Tensor的内容。默认为False。
 
 
