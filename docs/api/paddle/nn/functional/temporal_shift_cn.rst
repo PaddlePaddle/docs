@@ -27,7 +27,7 @@ temporal_shift
 
 步骤4：沿第3(C)维连接三个切片，并将结果重塑为[N*T, C, H, W]。
 
-有关时序移动的详细信息，请参阅文件： `Temporal Shift Module <https://arxiv.org/abs/1811.08383>`_
+有关时序移动的详细信息，请参阅文件： `Temporal Shift Module <https://arxiv.org/abs/1811.08383>`_ 
 
 参数
 :::::::::

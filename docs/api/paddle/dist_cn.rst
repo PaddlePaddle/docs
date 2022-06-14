@@ -5,7 +5,7 @@ dist
 
 .. py:function:: paddle.dist(x, y, p=2)
 
-计算 `(x-y)` 的 p 范数（p-norm），需要注意这不是严格意义上的范数，仅作为距离的度量。输入 `x` 和 `y` 的形状（shape）必须是可广播的（broadcastable）。其含义如下，详情请参考 `numpy的广播概念 <https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html>`_ ：
+计算 `(x-y)` 的 p 范数（p-norm），需要注意这不是严格意义上的范数，仅作为距离的度量。输入 `x` 和 `y` 的形状（shape）必须是可广播的（broadcastable）。其含义如下，详情请参考 `numpy的广播概念 <https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html>`_  ：
 
 - 每个输入都至少有1维
 - 对两个输入的维度从后向前匹配，两个输入每一维的大小需要满足3个条件中的任意一个：相等、其中一个为1或者其中一个不存在。

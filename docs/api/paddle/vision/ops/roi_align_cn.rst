@@ -7,7 +7,7 @@ roi_align
 
 RoI Align是在指定输入的感兴趣区域上执行双线性插值以获得固定大小的特征图（例如7*7），如 Mask R-CNN论文中所述。
 
-论文参考：`Mask R-CNN <https://arxiv.org/abs/1703.06870>`_。
+论文参考：`Mask R-CNN <https://arxiv.org/abs/1703.06870>`_ 。
 
 参数
 :::::::::

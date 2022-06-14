@@ -21,7 +21,7 @@ LSTMCell
     o_{t} &= act_g\left ( W_{x_{o}}x_{t}+W_{h_{o}}h_{t-1}+b_{o} \right ) \\
     h_{t} &= o_{t}act_h \left ( c_{t} \right )
 
-更多细节可以参考 `RECURRENT NEURAL NETWORK REGULARIZATION <http://arxiv.org/abs/1409.2329>`_  
+更多细节可以参考 `RECURRENT NEURAL NETWORK REGULARIZATION <http://arxiv.org/abs/1409.2329>`_   
 
 参数
 ::::::::::::

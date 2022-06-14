@@ -38,7 +38,7 @@ profiler
 参数
 ::::::::::::
 
-  - **state** (str) –  性能分析状态，取值为 'CPU' 或 'GPU' 或 'All'。'CPU'表示只分析CPU上的性能；'GPU'表示同时分析CPU和GPU上的性能；'All'表示除了同时分析CPU和GPU上的性能外，还将生成 `性能分析的时间轴信息 <../../advanced_usage/development/profiling/timeline_cn.html>`_。
+  - **state** (str) –  性能分析状态，取值为 'CPU' 或 'GPU' 或 'All'。'CPU'表示只分析CPU上的性能；'GPU'表示同时分析CPU和GPU上的性能；'All'表示除了同时分析CPU和GPU上的性能外，还将生成 `性能分析的时间轴信息 <../../advanced_usage/development/profiling/timeline_cn.html>`_ 。
   - **sorted_key** (str，可选) – 性能分析结果的打印顺序，取值为None、'call'、'total'、'max'、'min'、'ave'之一。默认值为None，表示按照第一次结束时间顺序打印；'call'表示按调用的数量进行排序；'total'表示按总执行时间排序；'max'表示按最大执行时间排序；'min'表示按最小执行时间排序；'ave'表示按平均执行时间排序。
   - **profile_path** (str，可选) –  如果性能分析状态为'All'，将生成的时间轴信息写入profile_path，默认输出文件为 ``/tmp/profile``。
   - **tracer_option** (str，可选) –   性能分析选项取值为 'Default' 或 'OpDetail' 或 'AllOpDetail'，此选项用于设置性能分析层次并打印不同层次的性能分析结果， `Default` 选项打印不同Op类型的性能分析结果， `OpDetail` 则会打印不同OP类型更详细的性能分析结果，比如compute和data transform。`AllOpDetail` 和 `OpDetail` 类似，但是打印的是不同Op名字的性能分析结果。

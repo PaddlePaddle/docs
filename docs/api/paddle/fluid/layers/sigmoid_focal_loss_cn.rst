@@ -8,7 +8,7 @@ sigmoid_focal_loss
 
 
 
-`Focal Loss <https://arxiv.org/abs/1708.02002>`_ 被提出用于解决计算机视觉任务中前景-背景不平衡的问题。该OP先计算输入x中每个元素的sigmoid值，然后计算sigmoid值与类别目标值label之间的Focal Loss。
+`Focal Loss <https://arxiv.org/abs/1708.02002>`_  被提出用于解决计算机视觉任务中前景-背景不平衡的问题。该OP先计算输入x中每个元素的sigmoid值，然后计算sigmoid值与类别目标值label之间的Focal Loss。
 
 Focal Loss的计算过程如下：
 

@@ -19,7 +19,7 @@ GRUCell
     \tilde{h_t} & = act_c(W_{cx}x_{t} + W_{ch}(r_t \odot h_{t-1}) + b_c)\\
     h_t & = u_t \odot h_{t-1} + (1-u_t) \odot \tilde{h_t}
 
-更多细节可以参考 `Learning Phrase Representations using RNN Encoder Decoder for Statistical Machine Translation <https://arxiv.org/pdf/1406.1078.pdf>`_
+更多细节可以参考 `Learning Phrase Representations using RNN Encoder Decoder for Statistical Machine Translation <https://arxiv.org/pdf/1406.1078.pdf>`_ 
   
 参数
 ::::::::::::

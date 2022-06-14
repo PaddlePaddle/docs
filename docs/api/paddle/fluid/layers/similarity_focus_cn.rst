@@ -18,7 +18,7 @@ similarity_focus
 2. 对于每一个索引，在输出T中找到最大值。所以同一行、同一列最多只有一个数字，这意味着如果在第i行，第j列中找到最大值，那么在相应行、列中的其他数值都将被忽略。然后再在剩余的数值中找到下一个最大值。显然，将会产生 min（B,C）个数字，并把三维相似聚焦掩码张量相应位置的元素置为1，其余则置为0。对每个索引按元素进行or运算。
 3. 将这个三维相似度聚焦掩码张量 broadcast 成输入 ``input`` 的形状
 
-请参考 `Similarity Focus Layer <http://www.aclweb.org/anthology/N16-1108>`_。
+请参考 `Similarity Focus Layer <http://www.aclweb.org/anthology/N16-1108>`_ 。
 
 ::
 

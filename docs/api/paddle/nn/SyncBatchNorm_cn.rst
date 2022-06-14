@@ -5,7 +5,7 @@ SyncBatchNorm
 
 .. py:class:: paddle.nn.SyncBatchNorm(num_features, epsilon=1e-5, momentum=0.9, weight_attr=None, bias_attr=None, data_format='NCHW', name=None)
 
-该接口用于构建 ``SyncBatchNorm`` 类的一个可调用对象，具体用法参照 ``代码示例``。实现了跨卡GPU同步的批归一化(Cross-GPU Synchronized Batch Normalization Layer)的功能，可用在其他层（类似卷积层和全连接层）之后进行归一化操作。根据所有GPU同一批次的数据按照通道计算的均值和方差进行归一化。更多详情请参考 : `Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
+该接口用于构建 ``SyncBatchNorm`` 类的一个可调用对象，具体用法参照 ``代码示例``。实现了跨卡GPU同步的批归一化(Cross-GPU Synchronized Batch Normalization Layer)的功能，可用在其他层（类似卷积层和全连接层）之后进行归一化操作。根据所有GPU同一批次的数据按照通道计算的均值和方差进行归一化。更多详情请参考 : `Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_ 
 
 当模型处于训练模式时，:math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 是所有GPU上同一minibatch的统计数据。计算公式如下：
 

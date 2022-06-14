@@ -11,7 +11,7 @@ HSigmoidLoss
 
 相较于传统softmax的计算复杂度 :math:`O(N)` ，hsigmoid可以将计算复杂度降至 :math:`O(logN)`，其中 :math:`N` 表示类别总数（字典大小）。
 
-若使用默认树结构，请参考 `Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_。
+若使用默认树结构，请参考 `Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_ 。
 
 若使用自定义树结构，请将参数 ``is_custom`` 设置为True，并完成以下步骤（以语言模型为例）：
 

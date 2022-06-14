@@ -6,7 +6,7 @@ XavierUniform
 .. py:class:: paddle.nn.initializer.XavierUniform(fan_in=None, fan_out=None, name=None)
 
 
-使用均匀分布的泽维尔权重初始化方法。泽维尔权重初始化方法出自泽维尔·格洛特和约书亚·本吉奥的论文 `Understanding the difficulty of training deep feedforward neural networks <http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf>`_。
+使用均匀分布的泽维尔权重初始化方法。泽维尔权重初始化方法出自泽维尔·格洛特和约书亚·本吉奥的论文 `Understanding the difficulty of training deep feedforward neural networks <http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf>`_ 。
 
 该初始化函数用于保持所有层的梯度尺度几乎一致。在均匀分布的情况下，取值范围为 :math:`[-x,x]`，其中
 

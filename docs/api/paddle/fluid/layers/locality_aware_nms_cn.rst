@@ -10,7 +10,7 @@ locality_aware_nms
 
 **局部感知NMS**
 
-`局部感知NMS <https://arxiv.org/abs/1704.03155>`_ 用于对边界框（bounding box）和评分（scores）执行局部感知非极大值抑制（LANMS）。
+`局部感知NMS <https://arxiv.org/abs/1704.03155>`_  用于对边界框（bounding box）和评分（scores）执行局部感知非极大值抑制（LANMS）。
 
 首先，根据边界框之间的IOU(交并比)，对边界框和评分进行融合。
 

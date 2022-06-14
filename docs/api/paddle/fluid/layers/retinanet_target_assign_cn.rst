@@ -8,7 +8,7 @@ retinanet_target_assign
 
 
 
-该OP是从输入anchor中找出训练检测模型 `RetinaNet <https://arxiv.org/abs/1708.02002>`_ 所需的正负样本，并为每个正负样本分配用于分类的目标值和位置回归的目标值，同时从全部anchor的类别预测值cls_logits、位置预测值bbox_pred中取出属于各正负样本的部分。
+该OP是从输入anchor中找出训练检测模型 `RetinaNet <https://arxiv.org/abs/1708.02002>`_  所需的正负样本，并为每个正负样本分配用于分类的目标值和位置回归的目标值，同时从全部anchor的类别预测值cls_logits、位置预测值bbox_pred中取出属于各正负样本的部分。
 
 正负样本的查找准则如下：
     - 若anchor与某个真值框之间的Intersection-over-Union（IoU）大于其他anchor与该真值框的IoU，则该anchor是正样本，且被分配给该真值框；

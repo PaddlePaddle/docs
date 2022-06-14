@@ -48,7 +48,7 @@ resize_nearest
               H_out = round(H_{in} * scale_{factor})
               W_out = round(W_{in} * scale_{factor})
 
-最邻近插值的详细介绍请参照： `Wiki Nearest-neighbor interpolation <https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation>`_
+最邻近插值的详细介绍请参照： `Wiki Nearest-neighbor interpolation <https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation>`_ 
 
 
 参数

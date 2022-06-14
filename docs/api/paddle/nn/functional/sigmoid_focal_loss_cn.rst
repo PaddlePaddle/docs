@@ -5,7 +5,7 @@ sigmoid_focal_loss
 
 .. py:function:: paddle.nn.functional.sigmoid_focal_loss(logit, label, normalizer=None, alpha=0.25, gamma=2.0, reduction='sum', name=None)
 
-`Focal Loss <https://arxiv.org/abs/1708.02002>`_ 用于解决分类任务中的前景类-背景类数量不均衡的问题。在这种损失函数，易分样本的占比被减少，而难分样本的比重被增加。例如在一阶段的目标检测任务中，前景-背景不均衡表现得非常严重。
+`Focal Loss <https://arxiv.org/abs/1708.02002>`_  用于解决分类任务中的前景类-背景类数量不均衡的问题。在这种损失函数，易分样本的占比被减少，而难分样本的比重被增加。例如在一阶段的目标检测任务中，前景-背景不均衡表现得非常严重。
 
 该算子通过下式计算focal loss：
 

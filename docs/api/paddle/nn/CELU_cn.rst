@@ -6,7 +6,7 @@ CELU
 
 CELU激活层（CELU Activation Operator）
 
-根据 `Continuously Differentiable Exponential Linear Units <https://arxiv.org/abs/1704.07483>`_ 对输入Tensor中每个元素应用以下计算。
+根据 `Continuously Differentiable Exponential Linear Units <https://arxiv.org/abs/1704.07483>`_  对输入Tensor中每个元素应用以下计算。
 
 .. math::
 

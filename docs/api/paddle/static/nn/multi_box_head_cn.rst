@@ -11,7 +11,7 @@ multi_box_head
 
 基于SSD（Single Shot MultiBox Detector）算法，在不同层输入特征上提取先验框、计算回归的坐标位置和分类的置信度，并合并到一起作为输出，具体参数解释和输出格式参考下面说明。更详细信息，请参阅SSD论文的2.2节。
 
-论文参考：`SSD：Single Shot MultiBox Detector <https://arxiv.org/abs/1512.02325>`_。
+论文参考：`SSD：Single Shot MultiBox Detector <https://arxiv.org/abs/1512.02325>`_ 。
 
 参数
 ::::::::::::

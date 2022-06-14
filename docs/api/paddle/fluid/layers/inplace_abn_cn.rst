@@ -9,7 +9,7 @@ inplace_abn
 
 就地批正则化化激活层（Inplace Activation Batch Normalization Layer）
 
-此层使用就地内存计算批处理正则化和激活来实现节省内存，有关批量正则化计算，请参见 ``fluid.layers.batch_norm``，有关就地激活批正则化化的计算，请参考 `In-Place Activated BatchNorm for Memory-Optimized Training of DNNs <https://arxiv.org/abs/1712.02616>`_。
+此层使用就地内存计算批处理正则化和激活来实现节省内存，有关批量正则化计算，请参见 ``fluid.layers.batch_norm``，有关就地激活批正则化化的计算，请参考 `In-Place Activated BatchNorm for Memory-Optimized Training of DNNs <https://arxiv.org/abs/1712.02616>`_ 。
 
 参数
 ::::::::::::

@@ -14,7 +14,7 @@ WeightNormParamAttr
     该类中的 ``gradient_clip`` 属性在2.0版本会废弃，推荐在初始化 ``optimizer`` 时设置梯度裁剪。共有三种裁剪策略： :ref:`cn_api_paddle_nn_ClipGradByGlobalNorm` 、 
     :ref:`cn_api_paddle_nn_ClipGradByNorm` 、 :ref:`cn_api_paddle_nn_ClipGradByValue` 。
 
-该类定义了权重归一化(Weight Normalization)的参数。权重归一化可以将神经网络中权重向量的长度与其方向解耦，详细的定义与实现可以参考论文：`Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_
+该类定义了权重归一化(Weight Normalization)的参数。权重归一化可以将神经网络中权重向量的长度与其方向解耦，详细的定义与实现可以参考论文：`Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv.org/pdf/1602.07868.pdf>`_ 
 
 参数
 ::::::::::::

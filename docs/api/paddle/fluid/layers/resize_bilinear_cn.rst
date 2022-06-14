@@ -14,7 +14,7 @@ resize_bilinear
 
 双线性插值是对线性插值的扩展，即二维变量方向上(如h方向和w方向)插值。关键思想是先在一个方向上执行线性插值，然后再在另一个方向上执行线性插值。
 
-详情请参阅 `维基百科 <https://en.wikipedia.org/wiki/Bilinear_interpolation>`_。
+详情请参阅 `维基百科 <https://en.wikipedia.org/wiki/Bilinear_interpolation>`_ 。
 
 align_corners和align_mode是可选参数，插值的计算方法可以由它们选择。
 

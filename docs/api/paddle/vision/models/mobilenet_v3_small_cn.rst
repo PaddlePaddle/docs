@@ -5,7 +5,7 @@ mobilenet_v3_small
 
 .. py:function:: paddle.vision.models.mobilenet_v3_small(pretrained=False, scale=1.0, **kwargs)
 
- MobileNetV3Small模型，来自论文 `"Searching for MobileNetV3" <https://arxiv.org/abs/1905.02244>`_。
+ MobileNetV3Small模型，来自论文 `"Searching for MobileNetV3" <https://arxiv.org/abs/1905.02244>`_ 。
 
 参数
 :::::::::

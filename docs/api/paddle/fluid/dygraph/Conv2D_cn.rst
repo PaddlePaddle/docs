@@ -8,7 +8,7 @@ Conv2D
 
 
 
-该接口用于构建 ``Conv2D`` 类的一个可调用对象，具体用法参照 ``代码示例``。其将在神经网络中构建一个二维卷积层（Convolution2D Layer），其根据输入、滤波器参数（num_filters、filter_size）、步长（stride）、填充（padding）、膨胀系数（dilation）、组数（groups）参数来计算得到输出特征图。输入和输出是 ``NCHW`` 格式，N是批数据大小，C是特征图个数，H是特征图高度，W是特征图宽度。滤波器的维度是 [M, C, H, W] ，M是输出特征图个数，C是输入特征图个数，H是滤波器高度，W是滤波器宽度。如果组数大于1，C等于输入特征图个数除以组数的结果。如果提供了偏移属性和激活函数类型，卷积的结果会和偏移相加，激活函数会作用在最终结果上。详情请参考： `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_。
+该接口用于构建 ``Conv2D`` 类的一个可调用对象，具体用法参照 ``代码示例``。其将在神经网络中构建一个二维卷积层（Convolution2D Layer），其根据输入、滤波器参数（num_filters、filter_size）、步长（stride）、填充（padding）、膨胀系数（dilation）、组数（groups）参数来计算得到输出特征图。输入和输出是 ``NCHW`` 格式，N是批数据大小，C是特征图个数，H是特征图高度，W是特征图宽度。滤波器的维度是 [M, C, H, W] ，M是输出特征图个数，C是输入特征图个数，H是滤波器高度，W是滤波器宽度。如果组数大于1，C等于输入特征图个数除以组数的结果。如果提供了偏移属性和激活函数类型，卷积的结果会和偏移相加，激活函数会作用在最终结果上。详情请参考： `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。
 
 对每个输入 ``X``，有等式：
 

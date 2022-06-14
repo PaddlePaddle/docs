@@ -8,7 +8,7 @@ swish
 
 
 
-逐元素计算 Swish 激活函数，参考 `Searching for Activation Functions <https://arxiv.org/abs/1710.05941>`_。
+逐元素计算 Swish 激活函数，参考 `Searching for Activation Functions <https://arxiv.org/abs/1710.05941>`_ 。
 
 .. math::
          out = \frac{x}{1 + e^{- beta * x}}

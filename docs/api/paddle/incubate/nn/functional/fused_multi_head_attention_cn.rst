@@ -9,7 +9,7 @@ fused_multi_head_attention
 
 注意力机制可以将查询（Query）与一组键值对（Key-Value）映射到输出。而多头注意力机制是将注意力机制的计算过程计算多次，以便模型提取不同子空间的信息。
 
-细节可参考论文 `Attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_。
+细节可参考论文 `Attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ 。
 
 fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的计算功能如下：
 

@@ -6,7 +6,7 @@ MNIST
 .. py:class:: paddle.vision.datasets.MNIST()
 
 
-    `MNIST <http://yann.lecun.com/exdb/mnist/>`_ 数据集。
+    `MNIST <http://yann.lecun.com/exdb/mnist/>`_  数据集。
 
 参数
 :::::::::

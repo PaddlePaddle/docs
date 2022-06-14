@@ -19,7 +19,7 @@ label_smooth
 其中 :math:`1-\epsilon` 和 :math:`\epsilon` 分别是权重， :math:`\tilde{y_k}` 是平滑后的标签，通常 :math:`\mu` 使用均匀分布。
 
 
-关于更多标签平滑的细节， `查看论文  <https://arxiv.org/abs/1512.00567>`_。
+关于更多标签平滑的细节， `查看论文  <https://arxiv.org/abs/1512.00567>`_ 。
 
 
 参数

@@ -8,7 +8,7 @@ RMSProp
 
 
 
-该接口实现均方根传播（RMSProp）法，是一种未发表的，自适应学习率的方法。原演示幻灯片中的第29张提出了 `RMSProp <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_。等式如下所示：
+该接口实现均方根传播（RMSProp）法，是一种未发表的，自适应学习率的方法。原演示幻灯片中的第29张提出了 `RMSProp <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_ 。等式如下所示：
 
 .. math::
     r(w, t) & = \rho r(w, t-1) + (1 - \rho)(\nabla Q_{i}(w))^2\\
@@ -74,7 +74,7 @@ step()
 
 .. note::
 
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
 
 执行一次优化器并进行参数更新。
 
@@ -137,7 +137,7 @@ clear_gradients()
 
 .. note::
 
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
 
 
 清除需要优化的参数的梯度。
@@ -162,7 +162,7 @@ set_lr(value)
 
 .. note::
 
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
 
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
@@ -202,7 +202,7 @@ get_lr()
 
 .. note::
 
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
 
 获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 

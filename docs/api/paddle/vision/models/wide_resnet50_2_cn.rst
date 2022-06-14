@@ -5,7 +5,7 @@ wide_resnet50_2
 
 .. py:function:: paddle.vision.models.wide_resnet50_2(pretrained=False, **kwargs)
 
- 50层的wide_resnet模型，来自论文 `"Wide Residual Networks" <https://arxiv.org/pdf/1605.07146.pdf>`_。
+ 50层的wide_resnet模型，来自论文 `"Wide Residual Networks" <https://arxiv.org/pdf/1605.07146.pdf>`_ 。
 
 参数
 :::::::::

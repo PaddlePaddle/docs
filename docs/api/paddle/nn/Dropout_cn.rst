@@ -5,7 +5,7 @@ Dropout
 
 .. py:function:: paddle.nn.Dropout(p=0.5, axis=None, mode="upscale_in_train”, name=None)
 
-Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p`，在训练过程中随机将一些神经元输出设置为0，通过阻止神经元节点间的相关性来减少过拟合。论文请参考：`Improving neural networks by preventing co-adaptation of feature detectors <https://arxiv.org/abs/1207.0580>`_ 
+Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p`，在训练过程中随机将一些神经元输出设置为0，通过阻止神经元节点间的相关性来减少过拟合。论文请参考：`Improving neural networks by preventing co-adaptation of feature detectors <https://arxiv.org/abs/1207.0580>`_  
 
 在动态图模式下，请使用模型的 `eval()` 方法切换至测试阶段。
 

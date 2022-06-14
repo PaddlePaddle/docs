@@ -6,7 +6,7 @@ WMT14
 .. py:class:: paddle.text.datasets.WMT14()
 
 
-该类是对 `WMT14 <http://www.statmt.org/wmt14/>`_ 测试数据集实现。
+该类是对 `WMT14 <http://www.statmt.org/wmt14/>`_  测试数据集实现。
 由于原始WMT14数据集太大，我们在这里提供了一组小数据集。该类将从
 http://paddlemodels.bj.bcebos.com/wmt/wmt14.tgz
 下载数据集。

@@ -6,7 +6,7 @@ Cifar100
 .. py:class:: paddle.vision.datasets.Cifar100()
 
 
-    `Cifar-100 <https://www.cs.toronto.edu/~kriz/cifar.html>`_ 数据集的实现，数据集包含100种类别。
+    `Cifar-100 <https://www.cs.toronto.edu/~kriz/cifar.html>`_  数据集的实现，数据集包含100种类别。
 
 参数
 :::::::::
