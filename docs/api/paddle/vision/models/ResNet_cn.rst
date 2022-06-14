@@ -6,7 +6,7 @@ ResNet
 .. py:class:: paddle.vision.models.ResNet(Block, depth=50, width=64, num_classes=1000, with_pool=True, groups=1)
 
 
-ResNet模型，来自论文 `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_ 。
+ResNet 模型，来自论文 `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_ 。
 
 参数
 :::::::::
@@ -19,7 +19,7 @@ ResNet模型，来自论文 `"Deep Residual Learning for Image Recognition" <htt
 
 返回
 :::::::::
-ResNet模型，Layer的实例。
+ResNet 模型，:ref:`api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::
