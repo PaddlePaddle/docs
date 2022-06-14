@@ -240,12 +240,12 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
 **static** parse_from_string(binary_str)
 '''''''''
 
-通过对 `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_  的反序列化，转换成Program。
+通过对 `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ 的反序列化，转换成Program。
 
 
 **参数**
 
- - **binary_str_type** (str) – `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_  二进制字符串。
+ - **binary_str_type** (str) – `protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ 二进制字符串。
 
 **返回**
 

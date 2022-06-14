@@ -4,7 +4,7 @@ LookAhead
 -------------------------------
 
 .. py:function:: class paddle.incubate.LookAhead(inner_optimizer, alpha=0.5, k=5, name=None)
-此API为论文 `Lookahead Optimizer: k steps forward, 1 step back <https://arxiv.org/abs/1907.08610>`_  中Lookahead优化器的实现。
+此API为论文 `Lookahead Optimizer: k steps forward, 1 step back <https://arxiv.org/abs/1907.08610>`_ 中Lookahead优化器的实现。
 Lookahead保留两组参数：fast_params和slow_params。每次训练迭代中inner_optimizer更新fast_params。
 Lookahead每k次训练迭代更新slow_params和fast_params，如下所示：
 

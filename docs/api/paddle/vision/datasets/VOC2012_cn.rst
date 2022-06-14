@@ -6,7 +6,7 @@ VOC2012
 .. py:class:: paddle.vision.datasets.VOC2012()
 
 
-    `VOC2012 <http://host.robots.ox.ac.uk/pascal/VOC/voc2012/>`_  数据集。
+    `VOC2012 <http://host.robots.ox.ac.uk/pascal/VOC/voc2012/>`_ 数据集。
 
 参数
 :::::::::

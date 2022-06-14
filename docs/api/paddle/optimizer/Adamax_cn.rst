@@ -8,7 +8,7 @@ Adamax
 
 
 
-Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_  第7节Adamax优化相关内容所实现的。Adamax算法是基于无穷大范数的  :ref:`Adam <_cn_api_paddle_optimizer_Adam>` 算法的一个变种，使学习率更新的算法更加稳定和简单。
+Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节Adamax优化相关内容所实现的。Adamax算法是基于无穷大范数的  :ref:`Adam <_cn_api_paddle_optimizer_Adam>` 算法的一个变种，使学习率更新的算法更加稳定和简单。
 
 其参数更新的计算公式如下：
 
@@ -72,7 +72,7 @@ step()
 
 .. note::
 
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次优化器并进行参数更新。
 
@@ -143,7 +143,7 @@ clear_grad()
 
 .. note::
 
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
 清除需要优化的参数的梯度。
@@ -170,7 +170,7 @@ set_lr(value)
 
 .. note::
 
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
@@ -210,7 +210,7 @@ get_lr()
 
 .. note::
 
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 

@@ -10,7 +10,7 @@ lstm_unit
 
 
 
-Long-Short Term Memory（LSTM）循环神经网络计算单元。该OP用于完成单个时间步内LSTM的计算，基于论文 `RECURRENT NEURAL NETWORK REGULARIZATION <http://arxiv.org/abs/1409.2329>`_  中的描述实现，
+Long-Short Term Memory（LSTM）循环神经网络计算单元。该OP用于完成单个时间步内LSTM的计算，基于论文 `RECURRENT NEURAL NETWORK REGULARIZATION <http://arxiv.org/abs/1409.2329>`_ 中的描述实现，
 
 并在forget gate（遗忘门）中增加了 ``forget_bias`` 来控制遗忘力度，公式如下：
 

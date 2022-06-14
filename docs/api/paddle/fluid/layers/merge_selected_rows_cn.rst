@@ -8,7 +8,7 @@ merge_selected_rows
 
 
 
-累加合并 `SelectedRows <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/selected_rows.h>`_  ( ``x`` ) 中的重复行，并对行值由小到大重新排序。
+累加合并 `SelectedRows <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/selected_rows.h>`_ ( ``x`` ) 中的重复行，并对行值由小到大重新排序。
 
 参数
 ::::::::::::

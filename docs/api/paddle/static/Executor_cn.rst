@@ -19,7 +19,7 @@ Executor支持单GPU、多GPU以及CPU运行。
     
 
 .. note::
-多卡训练初始化Executor时也只用传入一个Place或None，其他API会处理使用的多卡，见 `多卡使用方式 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/update_cn.html#danjiduokaqidong>`_  
+多卡训练初始化Executor时也只用传入一个Place或None，其他API会处理使用的多卡，见 `多卡使用方式 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/update_cn.html#danjiduokaqidong>`_ 
   
 返回
 ::::::::::::

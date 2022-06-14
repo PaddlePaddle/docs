@@ -98,7 +98,7 @@ conv3d_transpose
     - (3)包含3个整数值：[pad_depth, pad_height, pad_width]，此时 pad_depth_front = pad_depth_back = pad_depth, pad_height_top = pad_height_bottom = pad_height, pad_width_left = pad_width_right = pad_width。若为一个整数，pad_depth = pad_height = pad_width = padding。默认值：0。
     
   - **stride** (int|tuple，可选) - 步长stride大小。滤波器和输入进行卷积计算时滑动的步长。如果stride是一个元组，那么元组的形式为(stride_depth，stride_height，stride_width)。否则，stride_depth = stride_height = stride_width = stride。默认：stride = 1。
-  - **dilation** (int|tuple，可选) - 膨胀比例dilation大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图 <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_  较好理解。如果膨胀比例dilation是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认：dilation= 1。
+  - **dilation** (int|tuple，可选) - 膨胀比例dilation大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图 <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀比例dilation是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认：dilation= 1。
   - **groups** (int，可选) - 三维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认：group = 1。
   - **param_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。conv3d_transpose算子默认的权重初始化是Xavier。
   - **bias_attr** （ParamAttr|False，可选）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见  :ref:`cn_api_fluid_ParamAttr`。conv3d_transpose算子默认的偏置初始化是0.0。

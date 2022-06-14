@@ -27,7 +27,7 @@ Tensor经过展平并拼接后的形状为 ``(B, N)``，则最终输出雅可比
 第 ``1`` 行到第 ``3`` 进行求值，并且 ``1`` 到 ``3`` 行的计算结果会以行的粒度进行缓存，下次再
 获取上述某一行或多行结果时不会发生重复计算。
 
-更多索引方式可以参考Paddle官网 `索引和切片 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_cn.html#suoyinheqiepian>`_  .
+更多索引方式可以参考Paddle官网 `索引和切片 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_cn.html#suoyinheqiepian>`_ .
 
 .. note::
   当前暂不支持省略号索引。

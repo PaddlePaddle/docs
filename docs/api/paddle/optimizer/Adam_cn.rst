@@ -8,7 +8,7 @@ Adam
 
 
 
-Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_  的第二节，能够利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。
+Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节，能够利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。
 
 其参数更新的计算公式如下：
 
@@ -23,7 +23,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_  的第二�
 .. math::
     param\_out=param-learning\_rate*\frac{moment\_1}{\sqrt{moment\_2}+\epsilon}\\
 
-相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_  
+相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 
 
 参数
 ::::::::::::
@@ -91,7 +91,7 @@ step()
 '''''''''
 
 .. note::
-  该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
+  该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次优化器并进行参数更新。
 
@@ -161,7 +161,7 @@ clear_grad()
 '''''''''
 
 .. note::
- 该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
+ 该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
 清除需要优化的参数的梯度。
@@ -188,7 +188,7 @@ set_lr(value)
 
 .. note::
 
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
@@ -227,7 +227,7 @@ get_lr()
 '''''''''
 
 .. note::
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_  模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 

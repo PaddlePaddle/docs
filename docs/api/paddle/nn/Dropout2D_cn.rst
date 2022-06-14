@@ -5,7 +5,7 @@ Dropout2D
 
 .. py:function:: paddle.nn.Dropout2D(p=0.5, data_format='NCHW', name=None)
 
-根据丢弃概率 `p`，在训练过程中随机将某些通道特征图置0(对一个形状为 `NCHW` 的4维张量，通道特征图指的是其中的形状为 `HW` 的2维特征图)。Dropout2D可以提高通道特征图之间的独立性。论文请参考：`Efficient Object Localization Using Convolutional Networks <https://arxiv.org/abs/1411.4280>`_  
+根据丢弃概率 `p`，在训练过程中随机将某些通道特征图置0(对一个形状为 `NCHW` 的4维张量，通道特征图指的是其中的形状为 `HW` 的2维特征图)。Dropout2D可以提高通道特征图之间的独立性。论文请参考：`Efficient Object Localization Using Convolutional Networks <https://arxiv.org/abs/1411.4280>`_ 
 
 在动态图模式下，请使用模型的 `eval()` 方法切换至测试阶段。
 
