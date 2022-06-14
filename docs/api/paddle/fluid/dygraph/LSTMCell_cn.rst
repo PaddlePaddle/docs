@@ -21,7 +21,7 @@ LSTMCell
     o_{t} &= act_g\left ( W_{x_{o}}x_{t}+W_{h_{o}}h_{t-1}+b_{o} \right ) \\
     h_{t} &= o_{t}act_h \left ( c_{t} \right )
 
-更多细节可以参考 `RECURRENT NEURAL NETWORK REGULARIZATION <http://arxiv。org/abs/1409.2329>`_  
+更多细节可以参考 `RECURRENT NEURAL NETWORK REGULARIZATION <http://arxiv。org/abs/1409.2329>`_ 
 
 参数
 ::::::::::::
@@ -33,7 +33,7 @@ LSTMCell
   - **activation** (function，可选) - :math:`act_c` 的激活函数。默认值为 :code:`fluid。layers.tanh`。
   - **forget_bias** (float，可选) - 计算遗忘们时使用的遗忘偏置。默认值为 1。0。
   - **dtype** (string，可选) - 此Cell中使用的数据类型。默认值为 `float32`。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

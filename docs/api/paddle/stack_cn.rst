@@ -59,7 +59,7 @@ stack
 
         - **axis** (int，可选) – 指定对输入 Tensor 进行堆叠运算的轴，有效 axis 的范围是：[−(R+1),R+1]，R是输入中第一个 Tensor 的维数。如果 axis < 0，则 axis=axis+R+1。默认值为0。
 
-        - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

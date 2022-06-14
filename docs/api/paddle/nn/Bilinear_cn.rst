@@ -31,7 +31,7 @@ Bilinear
   - **out_features** (int): 输出张量的维度。
   - **weight_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。
   - **bias_attr** (ParamAttr，可选) : 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性，此时bias的元素会被初始化成0。如果设置成False，则不会有bias加到output结果上。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 属性
 :::::::::

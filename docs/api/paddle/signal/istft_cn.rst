@@ -50,7 +50,7 @@ istft
 - **return_complex** (bool，可选) - 表示输出的重构信号是否为复信号。如果 
   ``return_complex`` 设为 ``True``， ``onesided`` 必须设为 ``False``，默认
   为 ``False``；
-- **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+- **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

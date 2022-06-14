@@ -22,7 +22,7 @@ AvgPool1D
     - **padding** (str|int|list|tuple，可选): 池化补零的方式。如果padding是一个字符串，则必须为 `SAME` 或者 `VALID`。如果是turple或者list类型，则应是 `[pad_left, pad_right]` 形式。如果padding是一个非0值，那么表示会在输入的两端都padding上同样长度的0。默认值为0。
     - **exclusive** (bool，可选): 是否用额外padding的值计算平均池化结果，默认为True。
     - **ceil_mode** (bool，可选): 是否用ceil函数计算输出的height和width，如果设置为False，则使用floor函数来计算，默认为False。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 形状

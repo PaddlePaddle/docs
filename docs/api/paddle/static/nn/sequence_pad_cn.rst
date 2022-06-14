@@ -62,7 +62,7 @@ sequence_pad
     - **x** (Tensor) - 输入，维度为 ``[M, K]`` 的LoDTensor，仅支持lod_level为1。lod所描述的序列数量，作为要填充的batch_size。数据类型为int32，int64，float32或float64。
     - **pad_value** (Tensor) - 填充值，可以是标量或长度为 ``K`` 的一维Tensor。如果是标量，则自动广播为Tensor。数据类型需与 ``x`` 相同。
     - **maxlen** (int，可选) - 填充序列的长度。默认为None，此时以序列中最长序列的长度为准，其他所有序列填充至该长度。当是某个特定的正整数，最大长度必须大于最长初始序列的长度。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

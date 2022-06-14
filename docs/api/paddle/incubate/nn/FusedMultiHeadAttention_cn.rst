@@ -11,7 +11,7 @@ FusedMultiHeadAttention
 
 注意力机制可以将查询（Query）与一组键值对（Key-Value）映射到输出。而多头注意力机制是将注意力机制的计算过程计算多次，以便模型提取不同子空间的信息。
 
-细节可参考论文 `Attention is all you need <https://arxiv。org/pdf/1706.03762.pdf>`_。
+细节可参考论文 `Attention is all you need <https://arxiv。org/pdf/1706.03762.pdf>`_ 。
 
 ``FusedMultiHeadAttention`` 与已有的 ``MultiHeadAttention`` 有两处不同：
 
@@ -32,7 +32,7 @@ FusedMultiHeadAttention
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值： ``None`` ，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **bias_attr** （ParamAttr，可选）- 指定偏置参数属性的对象。默认值： ``None`` ，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::

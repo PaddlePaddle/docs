@@ -5,7 +5,7 @@ MobileNetV3Large
 
 .. py:class:: paddle.vision.models.MobileNetV3Large(scale=1.0, num_classes=1000, with_pool=True)
 
- MobileNetV3Large模型，来自论文 `"Searching for MobileNetV3" <https://arxiv。org/abs/1905.02244>`_。
+ MobileNetV3Large模型，来自论文 `"Searching for MobileNetV3" <https://arxiv。org/abs/1905.02244>`_ 。
 
 参数
 :::::::::

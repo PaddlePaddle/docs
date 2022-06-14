@@ -40,7 +40,7 @@ topk
 
     - **input** (Variable) - 输入的Tensor，支持的数据类型：float32，float64。
     - **k** (int|Variable) - 指定在输入Tensor最后一维中寻找最大前多少项。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

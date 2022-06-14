@@ -29,7 +29,7 @@ multiply
 
         - **x** （Tensor）- 多维 ``Tensor``.数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 、 ``int64`` 或  ``bool``。
         - **y** （Tensor）- 多维 ``Tensor``.数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 、 ``int64`` 或  ``bool``。
-        - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

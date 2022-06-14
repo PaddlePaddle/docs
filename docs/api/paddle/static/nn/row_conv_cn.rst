@@ -23,9 +23,9 @@ row_conv
     - :math:`X_j` : 第j行输出变量，形为[1，D]
     - :math:`W_{j-i}` : 第(j-i)行参数，其形状为[1,D]。
 
-详细请参考 `设计文档 <https://github。com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_。
+详细请参考 `设计文档 <https://github。com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_ 。
 
-论文链接：`Deep Speech 2: End-to-End Speech Recognition in English and Mandarin <https://arxiv。org/pdf/1512.02595.pdf>`_。
+论文链接：`Deep Speech 2: End-to-End Speech Recognition in English and Mandarin <https://arxiv。org/pdf/1512.02595.pdf>`_ 。
     
 参数
 ::::::::::::

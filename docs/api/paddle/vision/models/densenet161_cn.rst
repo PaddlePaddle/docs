@@ -5,7 +5,7 @@ densenet161
 
 .. py:function:: paddle.vision.models.densenet161(pretrained=False, **kwargs)
 
- 161层的densenet模型，来自论文 `"Densely Connected Convolutional Networks" <https://arxiv。org/abs/1608.06993>`_。
+ 161层的densenet模型，来自论文 `"Densely Connected Convolutional Networks" <https://arxiv。org/abs/1608.06993>`_ 。
 
 参数
 :::::::::

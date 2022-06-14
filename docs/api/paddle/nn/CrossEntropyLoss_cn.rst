@@ -29,7 +29,7 @@ CrossEntropyLoss
     - **soft_label** (bool, optional) – 指明label是否为软标签。默认为False，表示label为硬标签；若soft_label=True则表示软标签。
     - **axis** (int, optional) - 进行softmax计算的维度索引。它应该在 :math:`[-1，dim-1]` 范围内，而 ``dim`` 是输入logits的维度。默认值：-1。
     - **use_softmax** (bool, optional) - 指定是否对input进行softmax归一化。默认值：True。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 形状
 :::::::::
     - **input** (Tensor): - 输入 `Tensor` ，数据类型为float32或float64。其形状为 :math:`[N, C]` ，其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2,。.., d_k, C]` ，k >= 1。

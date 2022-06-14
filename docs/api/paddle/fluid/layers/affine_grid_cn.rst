@@ -15,7 +15,7 @@ affine_grid
 
   - **theta** (Variable) - Shape为 ``[batch_size, 2, 3]`` 的Tensor，表示batch_size个 ``2X3`` 的变换矩阵。数据类型支持float32，float64。
   - **out_shape** (Variable | list | tuple) - 类型可以是1-D Tensor、list或tuple。用于表示在仿射变换中的输出的shape，其格式 ``[N, C, H, W]`` ，分别为输出feature map的batch size、channel数量、高和宽。数据类型支持int32。
- - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+ - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

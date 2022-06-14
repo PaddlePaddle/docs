@@ -47,7 +47,7 @@ fused_feedforward
             - train: out = input * mask
             - inference: out = input * (1.0 - p)
 
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

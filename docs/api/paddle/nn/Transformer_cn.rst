@@ -11,7 +11,7 @@ Transformer
 
 Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerDecoder`` 实例组成，不包含embedding层和输出层。
 
-细节可参考论文 `Attention is all you need <https://arxiv。org/pdf/1706.03762.pdf>`_。
+细节可参考论文 `Attention is all you need <https://arxiv。org/pdf/1706.03762.pdf>`_ 。
 
 用户可以使用相应的参数配置模型结构。请注意 ``normalize_before`` 的用法与某些类似Transformer的模型例如BERT和GPT2的用法不同，它表示在哪里（多头注意力机制或前馈神经网络的输入还是输出）进行层标准化（Layer Normalization）。该模型默认的结构是对每个子层的output进行层归一化，并在最后一个编码器/解码器的输出上进行另一个层归一化操作。
 

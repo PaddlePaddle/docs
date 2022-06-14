@@ -74,7 +74,7 @@ fc
 - **weight_attr** (ParamAttr，可选) – 指定权重参数的属性。默认值为None，表示使用默认的权重参数属性，将权重参数初始化为0。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。注意：如果该api输入x为一个张量的数组，那**weight_attr**也应该是一个同样长度的数组，并且与x数组一一对应。
 - **bias_attr** (ParamAttr|bool，可选) – 指定偏置参数的属性。:attr:`bias_attr` 为bool类型且设置为False时，表示不会为该层添加偏置。:attr:`bias_attr` 如果设置为True或者None，则表示使用默认的偏置参数属性，将偏置参数初始化为0。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。默认值为None。
 - **activation** (str，可选) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
-- **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+- **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

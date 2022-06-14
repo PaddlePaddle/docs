@@ -18,7 +18,7 @@ create_global_var
     - **dtype** (str|numpy.dtype，可选)– 初始化数据类型。
     - **persistable** (bool，可选)- 是否为永久变量，默认：False。
     - **force_cpu** (bool，可选)- 是否将该变量压入CPU，默认值为 False。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

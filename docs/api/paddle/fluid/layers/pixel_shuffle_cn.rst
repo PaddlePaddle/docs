@@ -8,7 +8,7 @@ pixel_shuffle
 
 
 
-该OP将一个形为[N, C, H, W]的Tensor重新排列成形为 [N, C/r**2, H*r, W*r] 的Tensor。这样做有利于实现步长（stride）为1/r的高效sub-pixel（亚像素）卷积。详见Shi等人在2016年发表的论文 `Real Time Single Image and Video Super Resolution Using an Efficient Sub Pixel Convolutional Neural Network <https://arxiv。org/abs/1609.05158v2>`_。
+该OP将一个形为[N, C, H, W]的Tensor重新排列成形为 [N, C/r**2, H*r, W*r] 的Tensor。这样做有利于实现步长（stride）为1/r的高效sub-pixel（亚像素）卷积。详见Shi等人在2016年发表的论文 `Real Time Single Image and Video Super Resolution Using an Efficient Sub Pixel Convolutional Neural Network <https://arxiv。org/abs/1609.05158v2>`_ 。
 
 .. code-block:: text
 

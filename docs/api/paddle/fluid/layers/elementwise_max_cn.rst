@@ -44,7 +44,7 @@ elementwise_max
         - **y** （Variable）- 多维Tensor。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
         - **axis** （int32，可选）- Y的维度对应到X维度上时的索引。默认值为 -1。
         - **act** （string，可选）- 激活函数名称，作用于输出上。默认值为None。详细请参考 :ref:`api_guide_activations` ，常见的激活函数有：``relu`` ``tanh`` ``sigmoid`` 等。
-        - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

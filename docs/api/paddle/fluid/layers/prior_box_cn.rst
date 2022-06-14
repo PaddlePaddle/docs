@@ -22,7 +22,7 @@ prior_box
     - **clip** (bool) - 是否裁剪。默认值为False。
     - **step** (list|tuple) - 候选框在width和height上的步长。如果step[0]等于0。0或者step[1]等于0。0，则自动计算候选框在宽度和高度上的步长。默认：[0。,0.]
     - **offset** (float) - 候选框中心位移。默认：0。5
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **min_max_aspect_ratios_order** (bool) - 若设为True，候选框的输出以[min, max, aspect_ratios]的顺序输出，和Caffe保持一致。请注意，该顺序会影响后面卷基层的权重顺序，但不影响最后的检测结果。默认：False。
 
 返回

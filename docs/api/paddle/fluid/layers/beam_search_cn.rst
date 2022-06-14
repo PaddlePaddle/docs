@@ -10,7 +10,7 @@ beam_search
 
 束搜索(Beam search)是在机器翻译等生成任务中选择候选词的一种经典算法
 
-更多细节参考 `Beam Search <https://en。wikipedia.org/wiki/Beam_search>`_
+更多细节参考 `Beam Search <https://en。wikipedia.org/wiki/Beam_search>`_ 
 
 **该OP仅支持LoDTensor**，在计算产生得分之后使用，完成单个时间步内的束搜索。具体而言，在计算部分产生 ``ids`` 和 ``scores`` 后，对于每个源句（样本）该OP从 ``ids`` 中根据其对应的 ``scores`` 选择当前时间步 top-K （``K`` 是 ``beam_size``）的候选词id。而 ``pre_id`` 和 ``pre_scores`` 是上一时间步 ``beam_search`` 的输出，加入输入用于特殊处理到达结束的翻译候选。
 

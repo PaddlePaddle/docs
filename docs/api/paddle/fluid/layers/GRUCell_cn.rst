@@ -19,7 +19,7 @@ GRUCell
     \tilde{h_t} & = act_c(W_{cx}x_{t} + W_{ch}(r_t \odot h_{t-1}) + b_c)\\
     h_t & = u_t \odot h_{t-1} + (1-u_t) \odot \tilde{h_t}
 
-更多细节可以参考 `Learning Phrase Representations using RNN Encoder Decoder for Statistical Machine Translation <https://arxiv。org/pdf/1406.1078.pdf>`_
+更多细节可以参考 `Learning Phrase Representations using RNN Encoder Decoder for Statistical Machine Translation <https://arxiv。org/pdf/1406.1078.pdf>`_ 
   
 参数
 ::::::::::::
@@ -30,7 +30,7 @@ GRUCell
   - **gate_activation** (function，可选) - :math:`act_g` 的激活函数。默认值为 :code:`fluid。layers.sigmoid`。
   - **activation** (function，可选) - :math:`act_c` 的激活函数。默认值为 :code:`fluid。layers.tanh` 
   - **dtype** (string，可选) - 此cell中使用的数据类型。默认为"float32"。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

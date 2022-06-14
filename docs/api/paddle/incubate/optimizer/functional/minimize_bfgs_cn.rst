@@ -31,7 +31,7 @@ minimize_bfgs
     - **max_line_search_iters** (int，可选) - 线搜索的最大迭代次数。默认值：50。
     - **initial_step_length** (float，可选) - 线搜索中第一次迭代时的步长，不同的初始步长可能会产生不同的优化结果。对于高斯牛顿类方法初始的试验步长应该总是1。默认值：1。0。
     - **dtype** ('float32' | 'float64'，可选) - 在算法中使用的数据类型，输入参数的数据类型必须与dtype保持一致。默认值：'float32'。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

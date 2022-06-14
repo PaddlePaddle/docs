@@ -11,12 +11,12 @@ dynamic_lstmp
 .. note::
     在实现的时候为了提升效率，用户必须将输入先进行线性映射，将维度为 [T, hidden_size] 的输入映射为 [T, 4×hidden_size] 输入，然后再传给该OP。
 
-该OP实现了LSTMP（LSTM Projected）层。LSTMP层在LSTM层之后有一个单独的的线性映射层。-- `Sak, H。, Senior, A., & Beaufays, F. (2014) <https://ai.google/research/pubs/pub43905.pdf>`_。
+该OP实现了LSTMP（LSTM Projected）层。LSTMP层在LSTM层之后有一个单独的的线性映射层。-- `Sak, H。, Senior, A., & Beaufays, F. (2014) <https://ai.google/research/pubs/pub43905.pdf>`_ 。
 
 与标准的LSTM层相比，LSTMP多出来的线性映射层，用于从原始隐藏状态 :math:`h_t` 映射到较低维的状态 :math:`r_t`，
 从而减少参数总数和计算复杂度，特别是输出单元相对较大的情况下。
 
-该OP的默认实现方式为 diagonal/peephole 连接，参见 `Gers, F。A., & Schmidhuber, J. (2000) <ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf>`_。
+该OP的默认实现方式为 diagonal/peephole 连接，参见 `Gers, F。A., & Schmidhuber, J. (2000) <ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf>`_ 。
 如果需要禁用 peephole 连接方法，将 use_peepholes 设为 False 即可。
 
 该OP对于序列中每一个时间步的计算公式如下：
@@ -81,7 +81,7 @@ dynamic_lstmp
   - **candidate_activation** (str，可选) - 候选隐藏状态（candidate hidden state）的激活状态。可选值包括 sigmoid，tanh，relu，identity。默认值为 tanh。
   - **proj_activation** (str，可选) - 投影输出的激活函数。可选值包括 sigmoid，tanh，relu，identity。默认值为 tanh。
   - **dtype** (str，可选) - 数据类型。可选值包括 float32，float64。默认值为 float32。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
   - **h_0** ( :ref:`api_guide_Variable` ，可选) 维度为 :math:`[batch\_size, hidden\_size]` 的多维 Tensor。如果为 None，该OP会自动设置为全0的向量。默认值为None。
   - **c_0** ( :ref:`api_guide_Variable` ，可选) 维度为 :math:`[batch\_size, hidden\_size]` 的多维 Tensor。如果为 None，该OP会自动设置为全0的向量；:math:`h_0, c_0` 如果要设置为None，必须同时为None。默认值为None。
   - **cell_clip** (float，可选) - 如果该参数不为None，则在单元输出激活之前，单元状态将被此值剪裁。默认值为None。

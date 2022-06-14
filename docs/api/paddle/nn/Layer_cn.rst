@@ -238,7 +238,7 @@ create_variable(name=None, persistable=None, dtype=None)
 
 **参数**
 
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **persistable** (bool，可选) - 是否为持久性变量，后续会被移出。默认值：None。
     - **dtype** (str，可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 "float32"。
 
@@ -273,7 +273,7 @@ create_tensor(name=None, persistable=None, dtype=None)
 
 **参数**
 
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **persistable** (bool，可选) - 是否为持久性变量，后续会被移出。默认值：None。
     - **dtype** (str，可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 "float32"。
 

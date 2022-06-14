@@ -7,7 +7,7 @@ GroupNorm
 
 **Group Normalization层**
 
-该接口用于构建 ``GroupNorm`` 类的一个可调用对象，具体用法参照 ``代码示例``。其中实现了组归一化层的功能。更多详情请参考： `Group Normalization <https://arxiv。org/abs/1803.08494>`_。
+该接口用于构建 ``GroupNorm`` 类的一个可调用对象，具体用法参照 ``代码示例``。其中实现了组归一化层的功能。更多详情请参考： `Group Normalization <https://arxiv。org/abs/1803.08494>`_ 。
 
 参数
 ::::::::::::
@@ -18,7 +18,7 @@ GroupNorm
     - **weight_attr** (ParamAttr|bool，可选) - 指定权重参数属性的对象。如果为False，表示参数不学习。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。如果为False，表示参数不学习。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **data_format** (string，可选) - 只支持“NCHW”(num_batches，channels，height，width)格式。默认值：“NCHW”。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 ::::::::::::

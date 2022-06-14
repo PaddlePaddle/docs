@@ -29,7 +29,7 @@ GRUCell
 
     - :math:`\sigma` ：sigmoid激活函数。
    
-详情请参考论文 :`An Empirical Exploration of Recurrent Network Architectures <http://proceedings。mlr.press/v37/jozefowicz15.pdf>`_。
+详情请参考论文 :`An Empirical Exploration of Recurrent Network Architectures <http://proceedings。mlr.press/v37/jozefowicz15.pdf>`_ 。
 
 
 参数
@@ -41,7 +41,7 @@ GRUCell
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh的参数。默认为None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih的参数。默认为None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 变量
 ::::::::::::

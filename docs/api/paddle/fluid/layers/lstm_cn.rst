@@ -12,9 +12,9 @@ lstm
 .. note::
     该OP仅支持 GPU 设备运行
 
-该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S。, & Schmidhuber, J. (1997) <https://www.bioinf.jku.at/publications/older/2604.pdf>`_。
+该OP实现了 LSTM，即 Long-Short Term Memory（长短期记忆）运算 - `Hochreiter, S。, & Schmidhuber, J. (1997) <https://www.bioinf.jku.at/publications/older/2604.pdf>`_ 。
 
-该OP的实现不包括 diagonal/peephole 连接，参见 `Gers, F。A., & Schmidhuber, J. (2000) <ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf>`_。
+该OP的实现不包括 diagonal/peephole 连接，参见 `Gers, F。A., & Schmidhuber, J. (2000) <ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf>`_ 。
 如果需要使用 peephole 连接方法，请使用 :ref:`cn_api_fluid_layers_dynamic_lstm`。
 
 该OP对于序列中每一个时间步的计算公式如下：
@@ -55,7 +55,7 @@ lstm
   - **dropout_prob** (float，可选) – dropout比例，dropout 只在 rnn 层之间工作，而不是在时间步骤之间。dropout 不作用于最后的 rnn 层的 rnn 输出中。默认值为 0。0。
   - **is_bidirec** (bool，可选) – 是否是双向的LSTM。默认值为 False。
   - **is_test** (bool，可选) – 是否在测试阶段。默认值为 False。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
   - **default_initializer** (Initializer，可选) – 用于初始化权重的初始化器，如果为None，将进行默认初始化。默认值为 None。
   - **seed** (int，可选) – LSTM中dropout的seed，如果是-1，dropout将使用随机seed。默认值为 1。
 

@@ -17,7 +17,7 @@ Softplus激活层
 ::::::::::
     - beta (float，可选) - Softplus激活计算公式中的beta值。默认值为1。
     - threshold (float，可选) - Softplus激活计算公式中的threshold值。默认值为20。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状：
 ::::::::::

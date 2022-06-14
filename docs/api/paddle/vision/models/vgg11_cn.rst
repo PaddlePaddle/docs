@@ -5,7 +5,7 @@ vgg11
 
 .. py:function:: paddle.vision.models.vgg11(pretrained=False, batch_norm=False, **kwargs)
 
- vgg11模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv。org/pdf/1409.1556.pdf>`_。
+ vgg11模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv。org/pdf/1409.1556.pdf>`_ 。
 
 参数
 :::::::::

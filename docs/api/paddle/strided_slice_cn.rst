@@ -53,7 +53,7 @@ strided_slice算子。
         - **starts** （list|tuple|Tensor）- 数据类型是 ``int32``.如果 ``starts`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor``.如果 ``starts`` 的类型是 ``Tensor``，则是1-D ``Tensor``。表示在各个轴上切片的起始索引值。
         - **ends** （list|tuple|Tensor）- 数据类型是 ``int32``.如果 ``ends`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor``.如果 ``ends`` 的类型是 ``Tensor``，则是1-D ``Tensor``。表示在各个轴上切片的结束索引值。
         - **strides** （list|tuple|Tensor）- 数据类型是 ``int32``.如果 ``strides`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor``.如果 ``strides`` 的类型是 ``Tensor``，则是1-D ``Tensor``。表示在各个轴上切片的步长。
-        - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

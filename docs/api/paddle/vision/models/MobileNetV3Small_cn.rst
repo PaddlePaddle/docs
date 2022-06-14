@@ -5,7 +5,7 @@ MobileNetV3Small
 
 .. py:class:: paddle.vision.models.MobileNetV3Small(scale=1.0, num_classes=1000, with_pool=True)
 
- MobileNetV3Small模型，来自论文 `"Searching for MobileNetV3" <https://arxiv。org/abs/1905.02244>`_。
+ MobileNetV3Small模型，来自论文 `"Searching for MobileNetV3" <https://arxiv。org/abs/1905.02244>`_ 。
 
 参数
 :::::::::

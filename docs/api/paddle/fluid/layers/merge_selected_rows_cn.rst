@@ -14,7 +14,7 @@ merge_selected_rows
 ::::::::::::
 
   - x (Variable) : 类型为 SelectedRows，选中行允许重复。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

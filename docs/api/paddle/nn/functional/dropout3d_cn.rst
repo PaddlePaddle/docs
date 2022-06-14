@@ -15,7 +15,7 @@ dropout3d
  - **x** (Tensor): 形状为[N, C, D, H, W]或[N, D, H, W, C]的5D `Tensor` ，数据类型为float32或float64。
  - **p** (float): 将输入通道置0的概率，即丢弃概率。默认：0。5。
  - **training** (bool): 标记是否为训练阶段。默认：True。
- - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+ - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

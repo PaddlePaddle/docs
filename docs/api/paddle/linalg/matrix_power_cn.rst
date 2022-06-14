@@ -25,7 +25,7 @@ matrix_power
 :::::::::
     - **x** (Tensor) : 输入的欲进行 ``n`` 次幂运算的一个或一批方阵，类型为 Tensor。``x`` 的形状应为 ``[*, M, M]``，其中 ``*`` 为零或更大的批次维度，数据类型为float32， float64。
     - **n** (int) : 输入的幂次，类型为 int。它可以是任意整数。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

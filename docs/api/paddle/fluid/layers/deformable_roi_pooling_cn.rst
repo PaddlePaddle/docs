@@ -10,7 +10,7 @@ deformable_roi_pooling
 
 可变形感兴趣区域（ROI）池化层
 
-该OP对输入进行了可形变的感兴趣区域(ROI)池化操作。如同 `可形变卷积网络 <https://arxiv。org/abs/1703.06211>`_  描述的一样，它将为每个bin中的像素获取一个偏移量，以便于在合适的位置进行池化。在完成可变形感兴趣区域（ROI）池化操作之后，批量数将变为候选框的数量。
+该OP对输入进行了可形变的感兴趣区域(ROI)池化操作。如同 `可形变卷积网络 <https://arxiv。org/abs/1703.06211>`_ 描述的一样，它将为每个bin中的像素获取一个偏移量，以便于在合适的位置进行池化。在完成可变形感兴趣区域（ROI）池化操作之后，批量数将变为候选框的数量。
 
 可变形感兴趣区域（ROI）池化包含三个步骤：
     
@@ -36,7 +36,7 @@ deformable_roi_pooling
     - **sample_per_part** （int）- 每个bin中的样本数量，设置值越大，采样结果越精细，但是更加消耗性能。默认为1。
     - **trans_std** （float）- 偏移系数，控制偏移量的大小，默认为0。1。
     - **position_sensitive** （bool）- 是否选择可变形位置敏感型感兴趣区域（PSROI）池化模式，数值类型为bool型。如果为False，输入维度和输出维度相等。如果为True，输入维度等于输出维度乘以pooled_width和pooled_height。默认为False。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

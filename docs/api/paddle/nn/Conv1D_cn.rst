@@ -9,7 +9,7 @@ Conv1D
 
 **一维卷积层**
 
-该OP是一维卷积层（convolution1d layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算输出特征层大小。输入和输出是NCL或NLC格式，其中N是批尺寸，C是通道数，L是特征长度。卷积核是MCL格式，M是输出特征通道数，C是输入特征通道数，L是卷积核长度度。如果组数(groups)大于1，C等于输入图像通道数除以组数的结果。详情请参考UFLDL's : `卷积 <http://ufldl。stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_。如果bias_attr不为False，卷积计算会添加偏置项。
+该OP是一维卷积层（convolution1d layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算输出特征层大小。输入和输出是NCL或NLC格式，其中N是批尺寸，C是通道数，L是特征长度。卷积核是MCL格式，M是输出特征通道数，C是输入特征通道数，L是卷积核长度度。如果组数(groups)大于1，C等于输入图像通道数除以组数的结果。详情请参考UFLDL's : `卷积 <http://ufldl。stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。如果bias_attr不为False，卷积计算会添加偏置项。
 
 对每个输入X，有等式：
 

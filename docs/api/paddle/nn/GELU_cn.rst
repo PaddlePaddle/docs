@@ -6,7 +6,7 @@ GELU
 
 GELU激活层（GELU Activation Operator）
 
-逐元素计算 GELU激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv。org/abs/1606.08415>`_。
+逐元素计算 GELU激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv。org/abs/1606.08415>`_ 。
 
 如果使用近似计算：
 
@@ -24,7 +24,7 @@ GELU激活层（GELU Activation Operator）
 参数
 ::::::::::
     - approximate (bool，可选) - 是否使用近似计算，默认值为 False，即不使用近似计算。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状：
 ::::::::::

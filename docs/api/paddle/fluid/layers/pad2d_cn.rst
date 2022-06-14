@@ -19,7 +19,7 @@ pad2d
   - **mode** (str) - padding的三种模式，分别为 `'constant'` (默认)、 `'reflect'` 、 `'edge'`。`'constant'` 为填充常数 `pad_value` ， `'reflect'` 为填充以input边界值为轴的映射，`'edge'` 为填充input边界值。具体结果可见以下示例。默认值为 `'constant'`。
   - **pad_value** (float32) - 以 `'constant'` 模式填充区域时填充的值。默认值为0。0。
   - **data_format** (str)  - 指定input的格式，可为 `'NCHW'` 和 `'NHWC'` ，默认值为 `'NCHW'`。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 返回
 ::::::::::::
 Tensor，对input进行2维 pad 的结果，数据类型和input一样的4-D Tensor。

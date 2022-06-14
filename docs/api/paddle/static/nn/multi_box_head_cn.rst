@@ -11,7 +11,7 @@ multi_box_head
 
 基于SSD（Single Shot MultiBox Detector）算法，在不同层输入特征上提取先验框、计算回归的坐标位置和分类的置信度，并合并到一起作为输出，具体参数解释和输出格式参考下面说明。更详细信息，请参阅SSD论文的2。2节。
 
-论文参考：`SSD：Single Shot MultiBox Detector <https://arxiv。org/abs/1512.02325>`_。
+论文参考：`SSD：Single Shot MultiBox Detector <https://arxiv。org/abs/1512.02325>`_ 。
 
 参数
 ::::::::::::
@@ -47,7 +47,7 @@ multi_box_head
         - **kernel_size** (int) - 计算回归位置和分类置信度的卷积核的大小。默认值：1。
         - **pad** (int | list(int) | tuple(int)) - 计算回归位置和分类置信度的卷积核的填充。默认值：0。
         - **stride** (int | list | tuple) - 计算回归位置和分类置信度的卷积核的步长。默认值：1。
-        - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
         - **min_max_aspect_ratios_order** (bool) - 如果设置为True，则输出先验框的顺序为[min，max，aspect_ratios]，这与Caffe一致。请注意，此顺序会影响卷积层后面的权重顺序，但不会影响最终检测结果。默认值：False。
 
 返回
