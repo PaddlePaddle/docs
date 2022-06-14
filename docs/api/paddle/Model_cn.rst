@@ -368,8 +368,8 @@ fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_fr
 
 **参数**
 
-    - **train_data** (Dataset|DataLoader) - 一个可迭代的数据源，推荐给定一个 ``paddle paddle。io.Dataset`` 或 ``paddle.io.Dataloader`` 的实例。默认值：None。
-    - **eval_data** (Dataset|DataLoader) - 一个可迭代的数据源，推荐给定一个 ``paddle paddle。io.Dataset`` 或 ``paddle.io.Dataloader`` 的实例。当给定时，会在每个 ``epoch`` 后都会进行评估。默认值：None。
+    - **train_data** (Dataset|DataLoader) - 一个可迭代的数据源，推荐给定一个 ``paddle paddle.io.Dataset`` 或 ``paddle.io.Dataloader`` 的实例。默认值：None。
+    - **eval_data** (Dataset|DataLoader) - 一个可迭代的数据源，推荐给定一个 ``paddle paddle.io.Dataset`` 或 ``paddle.io.Dataloader`` 的实例。当给定时，会在每个 ``epoch`` 后都会进行评估。默认值：None。
     - **batch_size** (int) - 训练数据或评估数据的批大小，当 ``train_data`` 或 ``eval_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：1。
     - **epochs** (int) - 训练的轮数。默认值：1。
     - **eval_freq** (int) - 评估的频率，多少个 ``epoch`` 评估一次。默认值：1。
@@ -474,7 +474,7 @@ evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbac
 
 **参数**
 
-    - **eval_data** (Dataset|DataLoader) - 一个可迭代的数据源，推荐给定一个 ``paddle paddle。io.Dataset`` 或 ``paddle.io.Dataloader`` 的实例。默认值：None。
+    - **eval_data** (Dataset|DataLoader) - 一个可迭代的数据源，推荐给定一个 ``paddle paddle.io.Dataset`` 或 ``paddle.io.Dataloader`` 的实例。默认值：None。
     - **batch_size** (int) - 训练数据或评估数据的批大小，当 ``eval_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：1。
     - **log_freq** (int) - 日志打印的频率，多少个 ``step`` 打印一次日志。默认值：1。
     - **verbose** (int) - 可视化的模型，必须为0，1，2。当设定为0时，不打印日志，设定为1时，使用进度条的方式打印日志，设定为2时，一行一行地打印日志。默认值：2。
@@ -514,7 +514,7 @@ predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=N
 
 **参数**
 
-    - **test_data** (Dataset|DataLoader) - 一个可迭代的数据源，推荐给定一个 ``paddle paddle。io.Dataset`` 或 ``paddle.io.Dataloader`` 的实例。默认值：None。
+    - **test_data** (Dataset|DataLoader) - 一个可迭代的数据源，推荐给定一个 ``paddle paddle.io.Dataset`` 或 ``paddle.io.Dataloader`` 的实例。默认值：None。
     - **batch_size** (int) - 训练数据或评估数据的批大小，当 ``eval_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：1。
     - **num_workers** (int) - 启动子进程用于读取数据的数量。当 ``eval_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：True。
     - **stack_outputs** (bool) - 是否将输出进行堆叠。默认值：False。
