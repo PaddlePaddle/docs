@@ -16,7 +16,7 @@ create_py_reader_by_data
 
   - **capacity** (int) - ``py_reader`` 维护的队列缓冲区的容量大小。单位是batch数量。若reader读取速度较快，建议设置较大的 ``capacity`` 值。
   - **feed_list** (list(Variable)) - feed变量列表，这些变量一般由 :code:`fluid.data()` 创建。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
   - **use_double_buffer** (bool，可选) - 是否使用双缓冲区，双缓冲区是为了预读下一个batch的数据、异步CPU -> GPU拷贝。默认值为True。
 
 返回

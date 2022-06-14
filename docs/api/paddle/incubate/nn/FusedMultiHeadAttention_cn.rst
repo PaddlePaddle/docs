@@ -29,14 +29,14 @@ FusedMultiHeadAttention
     - **vdim** (int，可选) - 键值对中value的维度。如果为 ``None`` 则 ``kdim = embed_dim`` 。默认值： ``None`` 。
     - **normalize_before** (bool，可选) - 是pre_layer_norm结构（True）还是post_layer_norm结构（False）。pre_layer_norm结构中，``layer_norm`` 算子位于multi-head attention和ffn的前面，post_layer_norm结构中，``layer_norm`` 位于两者的后面。默认值： ``False`` 。
     - **need_weights** (bool，可选) - 表明是否返回注意力权重。默认值： ``False`` 。
-    - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值： ``None`` ，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** （ParamAttr，可选）- 指定偏置参数属性的对象。默认值： ``None`` ，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值： ``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** （ParamAttr，可选）- 指定偏置参数属性的对象。默认值： ``None``，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
     - **name** (str，可选） - 操作的名称。默认值为： ``None`` 。更多信息请参见 :ref:`api_guide_Name`。
 
 形状
 :::::::::
-    - **x** (Tensor): 默认形状为 ``[batch_size, sequence_length, embed_dim]`` ，其数据类型为float32，float64或者float16。
+    - **x** (Tensor): 默认形状为 ``[batch_size, sequence_length, embed_dim]``，其数据类型为float32，float64或者float16。
     - **output** (Tensor): 其形状和数据类型与输入x相同。
 
 返回

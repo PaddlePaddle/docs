@@ -8,7 +8,7 @@ glu
 
 
 
-门控线性单元 Gated Linear Units (GLU) 由 :ref:`cn_api_fluid_layers_split` ，:ref:`cn_api_fluid_layers_sigmoid` 和 :ref:`cn_api_fluid_layers_elementwise_mul` 组成。特定的，沿着给定维度将输入拆分成两个大小相同的部分，:math:`a` 和 :math:`b` ，按如下方式计算：
+门控线性单元 Gated Linear Units (GLU) 由 :ref:`cn_api_fluid_layers_split` ，:ref:`cn_api_fluid_layers_sigmoid` 和 :ref:`cn_api_fluid_layers_elementwise_mul` 组成。特定的，沿着给定维度将输入拆分成两个大小相同的部分，:math:`a` 和 :math:`b`，按如下方式计算：
 
 .. math::
     GLU(a,b) = a \bigotimes \sigma (b)
@@ -20,7 +20,7 @@ glu
 ::::::::::::
 
     - **input** (Variable) - 输入变量，多维 Tensor 或 LoDTensor，支持的数据类型为float32、float64 和 float16（GPU）。
-    - **dim** (int) - 拆分的维度。如果 :math:`dim<0` ，拆分的维为 :math:`rank(input) + dim` 。默认为 -1，即最后一维。
+    - **dim** (int) - 拆分的维度。如果 :math:`dim<0`，拆分的维为 :math:`rank(input) + dim` 。默认为 -1，即最后一维。
 
 返回
 ::::::::::::

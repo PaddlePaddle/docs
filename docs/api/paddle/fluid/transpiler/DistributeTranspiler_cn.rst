@@ -119,7 +119,7 @@ get_trainer_program(wait_port=True)
 该方法可以得到Trainer侧的program。Trainer侧的program相较于原始的单机执行的program，主要有以下不同：
 
      - 删除了参数更新optimizer相关op，参数的更新由Pserver（参数服务器）执行
-     - 在每个参数的反向梯度计算op后，添加了 ``Send_op`` 与 ``Recv_op`` ，用于发送参数的梯度与接受更新后的参数
+     - 在每个参数的反向梯度计算op后，添加了 ``Send_op`` 与 ``Recv_op``，用于发送参数的梯度与接受更新后的参数
 
 **参数**
 

@@ -69,7 +69,7 @@ minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
 **参数**
 
     - **loss** (Variable) – 需要最小化的损失值变量
-    - **startup_program** (Program，可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program` ，默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 
+    - **startup_program** (Program，可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program`，默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 
     - **parameter_list** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表，默认值为None，此时将更新所有的Parameter
     - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
         

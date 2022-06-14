@@ -81,9 +81,9 @@ dynamic_lstmp
   - **candidate_activation** (str，可选) - 候选隐藏状态（candidate hidden state）的激活状态。可选值包括 sigmoid，tanh，relu，identity。默认值为 tanh。
   - **proj_activation** (str，可选) - 投影输出的激活函数。可选值包括 sigmoid，tanh，relu，identity。默认值为 tanh。
   - **dtype** (str，可选) - 数据类型。可选值包括 float32，float64。默认值为 float32。
-  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
-  - **h_0** ( :ref:`api_guide_Variable` ，可选) 维度为 :math:`[batch\_size, hidden\_size]` 的多维 Tensor。如果为 None，该OP会自动设置为全0的向量。默认值为None。
-  - **c_0** ( :ref:`api_guide_Variable` ，可选) 维度为 :math:`[batch\_size, hidden\_size]` 的多维 Tensor。如果为 None，该OP会自动设置为全0的向量；:math:`h_0, c_0` 如果要设置为None，必须同时为None。默认值为None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+  - **h_0** ( :ref:`api_guide_Variable`，可选) 维度为 :math:`[batch\_size, hidden\_size]` 的多维 Tensor。如果为 None，该OP会自动设置为全0的向量。默认值为None。
+  - **c_0** ( :ref:`api_guide_Variable`，可选) 维度为 :math:`[batch\_size, hidden\_size]` 的多维 Tensor。如果为 None，该OP会自动设置为全0的向量；:math:`h_0, c_0` 如果要设置为None，必须同时为None。默认值为None。
   - **cell_clip** (float，可选) - 如果该参数不为None，则在单元输出激活之前，单元状态将被此值剪裁。默认值为None。
   - **proj_clip** (float，可选) - 如果 num_proj > 0 并且 proj_clip 不为None，那么将投影值沿元素方向剪切到[-proj_clip，proj_clip]内。默认值为None。
 

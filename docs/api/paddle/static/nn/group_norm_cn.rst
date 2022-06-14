@@ -18,7 +18,7 @@ group_norm
   - **bias_attr** (ParamAttr|bool，可选) : 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **act** (str，可选)：将激活应用于输出的 group normalizaiton。
   - **data_layout** (str，可选)：指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"，默认值："NCHW"。如果是"NCHW"，则数据按[批大小，输入通道数，* ]的顺序存储。
-  - **name** (str，可选)：具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选)：具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 :::::::::

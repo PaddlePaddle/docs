@@ -20,7 +20,7 @@ GroupNorm
     - **epsilon** (float，可选) - 为防止方差除零，增加一个很小的值。默认值：1e-05。
     - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **act** (str，可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
+    - **act** (str，可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations`，默认值为None。
     - **data_layout** (str，可选) - 只支持“NCHW”(num_batches，channels，height，width)格式。默认值：“NCHW”。
     - **dtype** (str，可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 

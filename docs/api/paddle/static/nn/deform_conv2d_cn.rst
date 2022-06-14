@@ -64,7 +64,7 @@ deform_conv2d op对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor
     - **im2col_step** (int，可选) – 每个im2col计算的最大图像数。总batch大小应可以被该值整除或小于该值。如果您面临内存问题，可以尝试在此处使用一个较小的值。默认值为1。
     - **weight_attr** (ParamAttr，可选) – 可变形卷积的可学习权重的属性。如果将其设置为None或某种ParamAttr，可变形卷积将创建ParamAttr作为weight_attr。如果没有设置此weight_attr的Initializer，该参数将被Normal(0.0, std)初始化，且其中的std为 :math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}` 。默认值为None。
     - **bias_attr** (ParamAttr|bool，可选) – 可变形卷积层的偏置的参数属性。如果设为False，则输出单元不会加偏置。如果设为None或者某种ParamAttr，conv2d会创建ParamAttr作为bias_attr。如果不设置bias_attr的Initializer，偏置会被初始化为0。默认值为None。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
  
 返回
 ::::::::::::

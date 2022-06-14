@@ -124,6 +124,6 @@ compute()
 此接口可以通过PaddlePaddle内置的算子计算metric的状态，可以加速metric的计算，为可选的高阶接口。
 
 - 如果这个接口定义了，输入是网络的输出 **outputs** 和 标签 **labels**，定义如：`compute(output1, output2, ..., label1, label2,...)` 。
-- 如果这个接口没有定义，默认的行为是直接将输入参数返回给 `update` ，则其定义如：`update(output1, output2, ..., label1, label2,...)` 。
+- 如果这个接口没有定义，默认的行为是直接将输入参数返回给 `update`，则其定义如：`update(output1, output2, ..., label1, label2,...)` 。
 
 也可以参考 `compute` 。

@@ -8,7 +8,7 @@ pool3d
 
 
 
-该OP使用上述输入参数的池化配置，为三维空间池化操作，根据 ``input`` ，池化核大小 ``pool_size`` ，池化类型 ``pool_type`` ，步长 ``pool_stride`` 和填充 ``pool_padding`` 等参数计算输出。
+该OP使用上述输入参数的池化配置，为三维空间池化操作，根据 ``input``，池化核大小 ``pool_size``，池化类型 ``pool_type``，步长 ``pool_stride`` 和填充 ``pool_padding`` 等参数计算输出。
 
 输入 ``input`` 和输出（Out）采用NCDHW或NDHWC格式，其中N是批大小，C是通道数，D，H和W分别是特征的深度，高度和宽度。
 
@@ -99,7 +99,7 @@ pool3d
     - **global_pooling** （bool）- 是否用全局池化。如果global_pooling = True，已设置的 ``pool_size`` 和 ``pool_padding`` 会被忽略，``pool_size`` 将被设置为 :math:`[D_{in}, H_{in}, W_{in}]` ， ``pool_padding`` 将被设置为0。默认值：False。
     - **use_cudnn** （bool）- 是否使用cudnn内核。只有已安装cudnn库时才有效。默认值：True。
     - **ceil_mode** （bool）- 是否用ceil函数计算输出的深度、高度和宽度。计算细节可参考上述 ``ceil_mode`` = true或  ``ceil_mode`` = false 时的计算公式。默认值：False。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置。默认值：None。
     - **exclusive** (bool) - 是否在平均池化模式忽略填充值。计算细节可参考上述 ``exclusive`` = true或  ``exclusive`` = false 时的计算公式。默认值：True。
     - **data_format** (str) - 输入和输出的数据格式，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。默认值："NDCHW"。
 

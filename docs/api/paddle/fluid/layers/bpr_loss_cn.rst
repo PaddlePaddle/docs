@@ -32,7 +32,7 @@ bpr_loss
 
   - **input** (Variable) - 形为[T x D] , Tensor类型时T为batch大小，LoDTensor类型时T为mini-batch的总时间步。D 为正例加负例的个数。该输入为logits而非概率。数据类型是float32或float64。
   - **label** (Variable) - 形为[T x 1]，表示input中正例的下标，数据类型为int64。。
-  - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+  - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
 返回
 ::::::::::::

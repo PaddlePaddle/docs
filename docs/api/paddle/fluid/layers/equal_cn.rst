@@ -14,7 +14,7 @@ equal
     - **x** (Variable) - 输入Tensor，支持的数据类型包括 float32， float64，int32， int64。
     - **y** (Variable) - 输入Tensor，支持的数据类型包括 float32， float64， int32， int64。
     - **cond** (Variable，可选) – 如果为None，则创建一个Tensor来作为进行比较的输出结果，该Tensor的shape和数据类型和输入x一致；如果不为None，则将Tensor作为该OP的输出，数据类型和数据shape需要和输入x一致。默认值为None。 
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

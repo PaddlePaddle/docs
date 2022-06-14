@@ -61,7 +61,7 @@ input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出
 ::::::::
     - **input** (Variable) - 存储id信息的Tensor，数据类型必须为：int64，输入的shape最后一维须为1。input中的id必须满足 ``0 =< id < size[0]`` 。
     - **size** (tuple|list) - embedding矩阵的维度(vocab_size，emb_size)。必须包含两个元素，第一个元素为vocab_size(词表大小)，第二个为emb_size（embedding层维度）。大规模稀疏场景下，参数规模初始为0，会随着训练的进行逐步扩展，因此如果vocab_size暂时无用，其值可以为任意整数，emb_size则为词嵌入权重参数的维度配置。
-    - **padding_idx** (int|long|None，可选) - padding_idx需在区间 ``[-vocab_size, vocab_size)`` ，否则不生效，``padding_idx < 0`` 时，padding_idx会被改成``vocab_size + padding_idx``，input中等于padding_index的id对应的embedding信息会被设置为0，且这部分填充数据在训练时将不会被更新。如果为None，不作处理，默认为None。
+    - **padding_idx** (int|long|None，可选) - padding_idx需在区间 ``[-vocab_size, vocab_size)``，否则不生效，``padding_idx < 0`` 时，padding_idx会被改成``vocab_size + padding_idx``，input中等于padding_index的id对应的embedding信息会被设置为0，且这部分填充数据在训练时将不会被更新。如果为None，不作处理，默认为None。
     - **is_test** (bool，可选) -  表示训练/预测模式。在预测模式(is_test=False)下，遇到不存在的特征，不会初始化及创建，直接以0填充后返回。默认值为False。
     - **entry** (str，可选) - 准入策略配置，目前支持概率准入ProbabilityEntry和频次准入CountFilterEntry。默认为None。
     - **table_class** (str，可选) - 稀疏表的类型，其值可以为CommonSparseTable和SSDSparseTable。默认为CommonSparseTable。 

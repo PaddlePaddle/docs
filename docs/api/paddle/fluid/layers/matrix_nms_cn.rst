@@ -26,13 +26,13 @@ matrix_nms
     - **score_threshold**  (float) – 过滤掉低置信度分数的边界框的阈值。
     - **post_threshold**  (float) – 经过NMS衰减后，过滤掉低置信度分数的边界框的阈值。
     - **nms_top_k**  (int) – 基于 score_threshold 的过滤检测后，根据置信度保留的最大检测次数。
-    - **keep_top_k**  (int) – 经过NMS抑制后，最终保留的最大检测次数。如果设置为 -1 ，则则保留全部。
+    - **keep_top_k**  (int) – 经过NMS抑制后，最终保留的最大检测次数。如果设置为 -1，则则保留全部。
     - **use_gaussian**  (bool) –  是否使用高斯函数衰减。默认值：False 。
     - **gaussian_sigma**  (float) – 高斯函数的Sigma值，默认值：2.0 。
-    - **background_label**  (int) – 背景标签（类别）的索引，如果设置为 0 ，则忽略背景标签（类别）。如果设置为 -1 ，则考虑所有类别。默认值：0
+    - **background_label**  (int) – 背景标签（类别）的索引，如果设置为 0，则忽略背景标签（类别）。如果设置为 -1，则考虑所有类别。默认值：0
     - **normalized**  (bool) –  检测是否已经经过正则化。默认值：True 。
     - **return_index**  (bool) –  是否同时返回保留检测框的序号。默认值：False 。
-    - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

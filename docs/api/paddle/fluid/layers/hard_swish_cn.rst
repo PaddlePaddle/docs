@@ -21,7 +21,7 @@ hard_swish
     - **threshold** (float，可选) - 激活操作中Relu函数的阈值，默认值为6.0。 
     - **scale** (float，可选) - 激活操作的缩放因子，默认值为6.0。
     - **offset** (float，可选) - 激活操作的位移，默认值为3.0。
-    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
     
 返回
 ::::::::::::

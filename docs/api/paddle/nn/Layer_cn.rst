@@ -111,7 +111,7 @@ register_forward_pre_hook(hook)
 
 为Layer注册一个 ``forward pre-hook`` 函数，该 ``hook`` 函数将会在 ``forward`` 函数调用之前被调用。
 
-``hook`` 函数具有以下形式：它的 ``input`` 是 ``Layer`` 的 ``input`` ，并且可以返回一个元组或者单个修改值；如果返回单个修改值，则将值包装到一个元组中。用户可以使用该函数来查看或修改 ``Layer`` ``forward`` 函数的输入。
+``hook`` 函数具有以下形式：它的 ``input`` 是 ``Layer`` 的 ``input``，并且可以返回一个元组或者单个修改值；如果返回单个修改值，则将值包装到一个元组中。用户可以使用该函数来查看或修改 ``Layer`` ``forward`` 函数的输入。
 
 hook(Layer, input) -> None or modified input
 
@@ -206,7 +206,7 @@ create_parameter(shape, attr=None, dtype="float32", is_bias=False, default_initi
     - **attr** (ParamAttr，可选) - 指定权重参数属性的对象，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。默认值为None。
     - **dtype** (str|core.VarDesc.VarType，可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为“float32”。
     - **is_bias** (bool，可选) - 是否是偏置参数。默认值：False。
-    - **default_initializer** (Initializer，可选) - 默认的参数初始化方法。如果设置为None，则设置非bias参数的初始化方式为 paddle.nn.initializer.Xavier ，设置bias参数的初始化方式为 paddle.nn.initializer.Constant 。默认值：None。
+    - **default_initializer** (Initializer，可选) - 默认的参数初始化方法。如果设置为None，则设置非bias参数的初始化方式为 paddle.nn.initializer.Xavier，设置bias参数的初始化方式为 paddle.nn.initializer.Constant 。默认值：None。
 
 **返回**
 Tensor，创建的参数变量
@@ -665,7 +665,7 @@ state_dict(destination=None, include_sublayers=True)
 
 **参数**
 
-    - **destination** (dict，可选) - 如果提供 ``destination`` ，则所有参数和可持久性buffers都将存放在 ``destination`` 中。 默认值：None。
+    - **destination** (dict，可选) - 如果提供 ``destination``，则所有参数和可持久性buffers都将存放在 ``destination`` 中。 默认值：None。
     - **include_sublayers** (bool，可选) - 如果设置为True，则包括子层的参数和buffers。默认值：True。
 
 **返回**
@@ -715,7 +715,7 @@ to(device=None, dtype=None, blocking=None)
 
 **参数**
 
-    - **device** （str|paddle.CPUPlace()|paddle.CUDAPlace()|paddle.CUDAPinnedPlace()|paddle.XPUPlace()|None，可选) - 希望存储Layer 的设备位置。如果为None，设备位置和原始的Tensor 的设备位置一致。如果设备位置是string 类型，取值可为 ``cpu``, ``gpu:x`` and ``xpu:x`` ，这里的 ``x`` 是 GPUs 或者 XPUs的编号。默认值：None。
+    - **device** （str|paddle.CPUPlace()|paddle.CUDAPlace()|paddle.CUDAPinnedPlace()|paddle.XPUPlace()|None，可选) - 希望存储Layer 的设备位置。如果为None，设备位置和原始的Tensor 的设备位置一致。如果设备位置是string 类型，取值可为 ``cpu``, ``gpu:x`` and ``xpu:x``，这里的 ``x`` 是 GPUs 或者 XPUs的编号。默认值：None。
     - **dtype** （str|numpy.dtype|paddle.dtype|None，可选) - 数据的类型。如果为None，数据类型和原始的Tensor 一致。默认值：None。
     - **blocking** （bool|None，可选）- 如果为False并且当前Tensor处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。如果为None，blocking 会被设置为True。默认为False。
 

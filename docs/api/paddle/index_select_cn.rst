@@ -15,7 +15,7 @@ index_select
     - **x** （Tensor）– 输入Tensor。 ``x`` 的数据类型可以是float32，float64，int32，int64。
     - **index** （Tensor）– 包含索引下标的1-D Tensor。
     - **axis**    (int，可选) – 索引轴，若未指定，则默认选取第0维。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 :::::::::

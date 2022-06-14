@@ -60,7 +60,7 @@ step 2：
   - **mode** (str, optional): 插值方式，可以为 'bilinear' 或者 'nearest'. 默认值：'bilinear'。
   - **padding_mode** (str, optional) 当原来的索引超过输入的图像大小时的填充方式。可以为 'zeros', 'reflection' 和 'border'. 默认值：'zeros'。
   - **align_corners** (bool, optional): 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。 默认值：True。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
+  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置。默认值：None。
 
 返回
 ::::::::::::

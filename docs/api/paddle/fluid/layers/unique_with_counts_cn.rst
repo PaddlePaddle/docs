@@ -9,7 +9,7 @@ unique_with_counts
 
 该OP对输入Tensor元素进行去重，获取去重后结果Tensor，同时获取去重后结果在原始输入中的计数Tensor以及在原始输入中的索引Tensor。
 
-注：该OP仅支持 **CPU** ，同时仅支持 **Tensor**
+注：该OP仅支持 **CPU**，同时仅支持 **Tensor**
 
 参数
 ::::::::::::
@@ -22,7 +22,7 @@ unique_with_counts
  
     - **out** 表示对输入进行去重后结果一维Tensor，数据shape为 :math:`[K]` ，K和输入x的shape中的N可能不一致。 
     - **index** 表示原始输入在去重后结果中的索引Tensor :math:`[N]` ，shape和输入x的shape一致。 
-    - **count** 表示去重后元素的计数结果Tensor，数据shape为 :math:`[K]` ，数据shape和out的shape一致。 
+    - **count** 表示去重后元素的计数结果Tensor，数据shape为 :math:`[K]`，数据shape和out的shape一致。 
 
 返回类型
 ::::::::::::

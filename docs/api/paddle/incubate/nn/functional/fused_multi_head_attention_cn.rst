@@ -47,7 +47,7 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
 ::::::::::::
 
 ::::::::::
-    - **x** (Tensor) - 输入的 ``Tensor`` ，代表 Query，是一个三维 tensor，形状为 ``[batch_size, sequence_length, embed_dim]`` 。其中，batch_size 是一次训练所处理的样本个数（句子个数)；sequence_length 代表每一个样本序列（每句话）中的 word 个数；embed_dim 代表 word 经过 embedding 后得到的向量长度。
+    - **x** (Tensor) - 输入的 ``Tensor``，代表 Query，是一个三维 tensor，形状为 ``[batch_size, sequence_length, embed_dim]`` 。其中，batch_size 是一次训练所处理的样本个数（句子个数)；sequence_length 代表每一个样本序列（每句话）中的 word 个数；embed_dim 代表 word 经过 embedding 后得到的向量长度。
     - **qkv_weight** (Tensor) - 代表 Attention 中计算 q, k, v 时的权重，是一个四维 tensor，形状为 ``[3, num_heads, head_dim, embed_dim]`` 。其中，3 代表 qkv_weight 是包含了 q, k, v 三个权重矩阵，num_heads 代表 multi-head attention 中的 head 数量，head_dim 代表 head 的维度。
     - **linear_weight** (Tensor) - 代表 linear 的权重，二维 tensor，形状为 ``[embed_dim, embed_dim]`` 。
     - **normalize_before** (bool，可选) - 代表是采用 pre_layer_norm 的结构（True）还是 post_layer_norm 的结构（False）。若为True，则为 pre_layer_norm 结构，代表在 multi-head attention 和 ffn 之前各执行一次 ``layer_norm`` 。若为False，则为 post_layer_norm 结构，代表在 multi-head attention 和 ffn 之后各执行一次 ``layer_norm`` 。默认值： ``False`` 。
@@ -80,7 +80,7 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
 
 返回
 ::::::::::
-    ``Tensor`` ，数据类型和形状同 ``x`` 一致。
+    ``Tensor``，数据类型和形状同 ``x`` 一致。
 
 代码示例
 :::::::::

@@ -25,9 +25,9 @@ nce
     - **param_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr，可选) : 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **num_neg_samples** (int) - 负样例的数量，默认值是10。
-    - **name** (str，可选) - 该layer的名称，具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
-    - **sampler** (str，可选) – 采样器，用于从负类别中进行取样。可以是 ``uniform``, ``log_uniform`` 或 ``custom_dist`` ，默认 ``uniform`` 。
-    - **custom_dist** (nd.array，可选) – 第0维的长度为 ``num_total_classes`` 。  如果采样器类别为 ``custom_dist`` ，则使用此参数。custom_dist[i] 是第i个类别被取样的概率。默认为 None。
+    - **name** (str，可选) - 该layer的名称，具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **sampler** (str，可选) – 采样器，用于从负类别中进行取样。可以是 ``uniform``, ``log_uniform`` 或 ``custom_dist``，默认 ``uniform`` 。
+    - **custom_dist** (nd.array，可选) – 第0维的长度为 ``num_total_classes`` 。  如果采样器类别为 ``custom_dist``，则使用此参数。custom_dist[i] 是第i个类别被取样的概率。默认为 None。
     - **seed** (int，可选) – 采样器使用的seed。默认为0。
     - **is_sparse** (bool，可选) – 标志位，指明是否使用稀疏更新，为 ``True`` 时 :math:`weight@GRAD` 和 :math:`bias@GRAD` 的类型会变为 SelectedRows。默认为 ``False`` 。
 

@@ -21,7 +21,7 @@ default_startup_program
 
 返回
 :::::::::
- :ref:`cn_api_fluid_Program` ，当前的默认/全局的 ``startup program`` 。
+ :ref:`cn_api_fluid_Program`，当前的默认/全局的 ``startup program`` 。
 
 
 代码示例

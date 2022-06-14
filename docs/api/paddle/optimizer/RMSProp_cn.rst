@@ -35,7 +35,7 @@ RMSProp
 ::::::::::::
 
     - **learning_rate** （float） - 全局学习率。
-    - **rho** （float，可选） - rho是等式中的 :math:`rho` ，默认值0.95。
+    - **rho** （float，可选） - rho是等式中的 :math:`rho`，默认值0.95。
     - **epsilon** （float，可选） - 等式中的epsilon是平滑项，避免被零除，默认值1e-6。
     - **momentum** （float，可选） - 方程中的β是动量项，默认值0.0。
     - **centered** （bool，可选） - 如果为True，则通过梯度的估计方差，对梯度进行归一化；如果False，则由未centered的第二个moment归一化。将此设置为True有助于模型训练，但会消耗额外计算和内存资源。默认为False。
@@ -105,7 +105,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 **参数**
 
     - **loss** (Tensor) – 需要最小化的损失值变量。
-    - **startup_program** (Program，可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program` ，默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。 
+    - **startup_program** (Program，可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program`，默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。 
     - **parameters** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表，默认值为None，此时将更新所有的Parameter。
     - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None。
         

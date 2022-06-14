@@ -64,7 +64,7 @@ state_dict(destination=None, include_sublayers=True)
 
 **参数**
 
-    - **destination** (dict，可选) - 如果提供 ``destination`` ，则所有参数和持久的buffers都将存放在 ``destination`` 中。 默认值：None。
+    - **destination** (dict，可选) - 如果提供 ``destination``，则所有参数和持久的buffers都将存放在 ``destination`` 中。 默认值：None。
     - **include_sublayers** (bool，可选) - 如果设置为True，则包括子层的参数和buffers。默认值：True。
 
 **返回**

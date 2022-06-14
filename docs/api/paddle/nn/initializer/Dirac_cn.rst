@@ -8,7 +8,7 @@ Dirac
 
 通过 ``狄拉克delta函数`` 来初始化3D/4D/5D Tensor。
 
-该初始化方式一般用于 Conv1D/Conv2D/Conv3D 卷积层，能尽可能多的保留卷积层输入的特性。（如果 `out_channels` > `in_channels` ，则可保留全部的输入 `channel` 特性）
+该初始化方式一般用于 Conv1D/Conv2D/Conv3D 卷积层，能尽可能多的保留卷积层输入的特性。（如果 `out_channels` > `in_channels`，则可保留全部的输入 `channel` 特性）
 
 被初始化的参数，每个卷积核中间的元素会被置为1，其余元素为0。公式可以描述为：
 

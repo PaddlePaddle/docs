@@ -20,7 +20,7 @@ NCE
     - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **num_neg_samples** (int，可选) - 负样本的数量。默认值：10。
     - **sampler** (str，可选) – 指明采样器的类型，用于从负类别中进行采样。可以是 ``uniform`` 、 ``log_uniform`` 或 ``custom_dist`` 。 默认值： ``uniform`` 。
-    - **custom_dist** (float[]，可选) – float[] 类型的数据，并且它的长度为 ``num_total_classes`` 。如果采样器类别为 ``custom_dist`` ，则使用此参数。custom_dist\[i\]是第i个类别被取样的概率。默认值：None
+    - **custom_dist** (float[]，可选) – float[] 类型的数据，并且它的长度为 ``num_total_classes`` 。如果采样器类别为 ``custom_dist``，则使用此参数。custom_dist\[i\]是第i个类别被取样的概率。默认值：None
     - **seed** (int，可选) – 采样器使用的随机种子。默认值：0。
     - **is_sparse** (bool，可选) – 指明是否使用稀疏更新，如果为True， :math:`weight@GRAD` 和 :math:`bias@GRAD` 会变为 SelectedRows。默认值：False。
     - **dtype** (str，可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。

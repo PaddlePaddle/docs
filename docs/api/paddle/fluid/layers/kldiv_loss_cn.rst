@@ -32,8 +32,8 @@ kL发散损失计算如下：
     - **x** (Variable) - KL散度损失算子的输入张量。维度为[N, \*]的多维Tensor，其中N是批大小，\*表示任何数量的附加维度，数据类型为float32或float64。
     - **target** (Variable) - KL散度损失算子的张量。与输入 ``x`` 的维度和数据类型一致的多维Tensor。
     - **reduction** (Variable)-要应用于输出的reduction类型，可用类型为‘none’ | ‘batchmean’ | ‘mean’ | ‘sum’，‘none’表示无reduction，‘batchmean’ 表示输出的总和除以批大小，‘mean’ 表示所有输出的平均值，‘sum’表示输出的总和。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
-    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置。默认值：None。
+    - **name** (None|str) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None。
 
 返回
 ::::::::::::

@@ -187,7 +187,7 @@ decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
 
         - **reader** (fun) – 该参数是一个可以生成数据的函数
         - **multi_devices** (bool) – bool型，指明是否使用多个设备
-        - **num_places** (int) – 如果 ``multi_devices`` 为 ``True`` ，可以使用此参数来设置GPU数目。如果 ``multi_devices`` 为 ``None`` ，该函数默认使用当前训练机所有GPU设备。默认为None。
+        - **num_places** (int) – 如果 ``multi_devices`` 为 ``True``，可以使用此参数来设置GPU数目。如果 ``multi_devices`` 为 ``None``，该函数默认使用当前训练机所有GPU设备。默认为None。
         - **drop_last** (bool) – 如果最后一个batch的大小比 ``batch_size`` 要小，则可使用该参数来指明是否选择丢弃最后一个batch数据。 默认为 ``True``
 
 **返回**

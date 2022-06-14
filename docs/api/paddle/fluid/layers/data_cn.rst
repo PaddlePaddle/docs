@@ -13,7 +13,7 @@ data
 
 注意：
 
-  不推荐使用 ``paddle.fluid.layers.data`` ，其在之后的版本中会被删除。请使用这个 ``paddle.fluid.data`` 。 
+  不推荐使用 ``paddle.fluid.layers.data``，其在之后的版本中会被删除。请使用这个 ``paddle.fluid.data`` 。 
 
   ``paddle.fluid.layers.data`` 在组网期间会设置创建的变量维度（shape）和数据类型（dtype），但不会检查输入数据的维度和数据类型是否符合要求。 ``paddle.fluid.data`` 会在运行过程中由Executor/ParallelExecutor检查输入数据的维度和数据类型。
 

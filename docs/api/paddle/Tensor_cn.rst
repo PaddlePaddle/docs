@@ -337,7 +337,7 @@ asin(name=None)
 astype(dtype)
 :::::::::
 
-将Tensor的类型转换为 ``dtype`` ，并返回一个新的Tensor。
+将Tensor的类型转换为 ``dtype``，并返回一个新的Tensor。
 
 参数：
     - **dtype** (str) - 转换后的dtype，支持'bool'，'float16'，'float32'，'float64'，'int8'，'int16'，
@@ -1747,7 +1747,7 @@ register_hook(hook)
 
 该被注册的 hook 函数将会在每次当前 Tensor 的梯度 Tensor 计算完成时被调用。
 
-被注册的 hook 函数不会修改输入的梯度 Tensor ，但是 hook 可以返回一个新的临时梯度 Tensor 代替当前 Tensor 的梯度继续进行反向传播。
+被注册的 hook 函数不会修改输入的梯度 Tensor，但是 hook 可以返回一个新的临时梯度 Tensor 代替当前 Tensor 的梯度继续进行反向传播。
 
 输入的 hook 函数写法如下：
 

@@ -9,7 +9,7 @@ Dirichlet
 狄利克雷分布（Dirichlet distribution）是一类在实数域以正单纯形（standard simplex）为支撑集的高维连续概率分布，是Beta分布在高维情形的推广。
 
 对独立同分布（independent and identically distributed, iid）的连续随机变量 
-:math:`\boldsymbol X \in R_k`，和支撑集 :math:`\boldsymbol X \in (0,1), ||\boldsymbol X|| = 1` ，其概率密度函数（pdf）为：
+:math:`\boldsymbol X \in R_k`，和支撑集 :math:`\boldsymbol X \in (0,1), ||\boldsymbol X|| = 1`，其概率密度函数（pdf）为：
 
 .. math::
 
@@ -29,7 +29,7 @@ Gamma函数。
 
 - **concentration** (Tensor) - 浓度参数，即上述公式 :math:`\alpha` 参数。当
   concentration维度大于1时，最后一维表示参数，参数形状 
-  ``event_shape=concentration.shape[-1:]`` ，其余维为Batch维，
+  ``event_shape=concentration.shape[-1:]``，其余维为Batch维，
   ``batch_shape=concentration.shape[:-1]`` .
 
 

@@ -24,7 +24,7 @@ collect_fpn_proposals
     - **min_level** (int) - 要收集的FPN层的最低级
     - **max_level** (int) – 要收集的FPN层的最高级
     - **post_nms_top_n** (int) – 所选RoIs的数目
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。 
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。 
 
 返回
 ::::::::::::

@@ -69,7 +69,7 @@ finalize(self, outputs, final_states, sequence_lengths)
 
 **参数**
   
-  - **outputs** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。 其中每个tensor的形状均为 :math:`[time\_step，batch\_size，...]` ，是将所有解码步中与其对应的的输出进行堆叠的结果，这个过程由其调用者完成。 
+  - **outputs** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。 其中每个tensor的形状均为 :math:`[time\_step，batch\_size，...]`，是将所有解码步中与其对应的的输出进行堆叠的结果，这个过程由其调用者完成。 
   - **final_states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。 它是 :code:`decoder.step` 在最后一个解码步返回的 :code:`next_states`，因此具有与任何时间步的状态相同的结构，形状和数据类型。
   - **kwargs** - 命名关键字参数，由提供调用者。
 

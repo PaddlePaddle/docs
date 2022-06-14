@@ -9,7 +9,7 @@ sequence_first_step
 
 
 
-该OP **仅支持LoDTensor类型的输入** ，将对输入的LoDTensor，在最后一层lod_level上，选取其每个序列（sequence）的第一个时间步（time_step）的特征向量作为池化后的输出向量。
+该OP **仅支持LoDTensor类型的输入**，将对输入的LoDTensor，在最后一层lod_level上，选取其每个序列（sequence）的第一个时间步（time_step）的特征向量作为池化后的输出向量。
 
 ::
 

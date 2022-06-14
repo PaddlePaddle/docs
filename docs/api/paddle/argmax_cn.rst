@@ -10,7 +10,7 @@ argmax
 
 参数
 ::::::::
-    - **x** (Tensor) - 输入的多维 ``Tensor`` ，支持的数据类型：float32、float64、int16、int32、int64、uint8。
+    - **x** (Tensor) - 输入的多维 ``Tensor``，支持的数据类型：float32、float64、int16、int32、int64、uint8。
     - **axis** (int，可选) - 指定对输入Tensor进行运算的轴，``axis`` 的有效范围是[-R, R），R是输入 ``x`` 的维度个数，``axis`` 为负数时，进行计算的 ``axis`` 与 ``axis`` + R 一致。默认值为None，将会对输入的 `x` 进行平铺展开，返回最大值的索引。
     - **keepdim** (bool，可选) - 是否在输出Tensor中保留减小的维度。如果 keepdim 为True，则输出Tensor和 x 具有相同的维度(减少的维度除外，减少的维度的大小为1)，默认值为False。
     - **dtype** (np.dtype|str，可选) - 输出Tensor的数据类型，可选值为int32，int64，默认值为int64，将返回int64类型的结果。
@@ -18,7 +18,7 @@ argmax
 
 返回
 ::::::::
-``Tensor`` ，如果设置 :attr:`dtype` 为 int32 时，返回的 Tensor 的数据类型为 int32，其它情况将返回的 Tensor 的数据类型为 int64。
+``Tensor``，如果设置 :attr:`dtype` 为 int32 时，返回的 Tensor 的数据类型为 int32，其它情况将返回的 Tensor 的数据类型为 int64。
 
 
 示例代码

@@ -37,7 +37,7 @@ gumbel_softmax
 
 返回
 ::::::::::
-    与 ``x`` 形状相同的符合gumbel-softmax分布的 ``Tensor``。如果 ``hard=True`` ，则返回的样本将是one-hot。如果 ``hard=False``，则返回的向量将是各维度加起来等于1的概率。
+    与 ``x`` 形状相同的符合gumbel-softmax分布的 ``Tensor``。如果 ``hard=True``，则返回的样本将是one-hot。如果 ``hard=False``，则返回的向量将是各维度加起来等于1的概率。
 
 代码示例
 ::::::::::

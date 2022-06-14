@@ -334,7 +334,7 @@ save_inference_model(executor, dirname, feeded_var_names, target_vars, main_prog
 
 **参数**
 
-  - **executor** (Executor) –  用于保存预测模型的 ``executor`` ，详见 :ref:`api_guide_executor` 。
+  - **executor** (Executor) –  用于保存预测模型的 ``executor``，详见 :ref:`api_guide_executor` 。
   - **dirname** (str) – 指定保存预测模型结构和参数的文件目录。
   - **feeded_var_names** (list[str]) – 字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
   - **target_vars** (list[Tensor]) – ``Tensor`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
@@ -372,7 +372,7 @@ save_persistables(executor, dirname, main_program=None)
 
 **参数**
 
- - **executor**  (Executor) – 用于保存持久性变量的 ``executor`` ，详见 :ref:`api_guide_executor` 。
+ - **executor**  (Executor) – 用于保存持久性变量的 ``executor``，详见 :ref:`api_guide_executor` 。
  - **dirname**  (str) – 用于储存持久性变量的文件目录。
  - **main_program**  (Program，可选) – 需要保存持久性变量的Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program 。默认值为None>。
 

@@ -23,7 +23,7 @@ logspace
 
 返回
 ::::::::::::
-等对数间隔划分的 1-D Tensor，该 Tensor 的 shape 大小为 :math:`[num]` ，在 num 为 1 的情况下，仅返回包含 :math:`base^{start}` 值的 Tensor。
+等对数间隔划分的 1-D Tensor，该 Tensor 的 shape 大小为 :math:`[num]`，在 num 为 1 的情况下，仅返回包含 :math:`base^{start}` 值的 Tensor。
 
 
 代码示例

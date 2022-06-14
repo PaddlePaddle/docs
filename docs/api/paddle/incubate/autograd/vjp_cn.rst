@@ -13,11 +13,11 @@ vjp
 参数
 :::::::::
 
-- **func** (Callable) - Python函数，输入参数为 ``xs`` ，输出为Tensor或Tensor序列。
+- **func** (Callable) - Python函数，输入参数为 ``xs``，输出为Tensor或Tensor序列。
 - **xs** (Tensor|Sequence[Tensor]） - 函数 ``func`` 的输入参数，数据类型为Tensor或
   Tensor序列。
 - **v** (Tensor|Sequence[Tensor]|None，可选) - 用于计算 ``vjp`` 输入向量，形状要求与
-  函数 ``func`` 的输出一致。默认值为 ``None`` ，此时相当于形状与 ``func`` 输出一致，值全为
+  函数 ``func`` 的输出一致。默认值为 ``None``，此时相当于形状与 ``func`` 输出一致，值全为
   1的Tensor或Tensor序列。
 
 返回

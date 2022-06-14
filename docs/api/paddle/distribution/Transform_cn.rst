@@ -42,7 +42,7 @@ Transform
        表示逆向变换 :math:`y \rightarrow f^{-1}(y)` .
     #. 雅可比行列式绝对值的对数( ``log_det_jacobian`` ):
        又可以细分为正变换雅可比行列式绝对值的对数 ``forward_log_det_jacobian`` 和逆变换雅
-       可比行列式绝对值的对数 ``inverse_log_det_jacobian`` ，两者互为负数关系，只实现一种
+       可比行列式绝对值的对数 ``inverse_log_det_jacobian``，两者互为负数关系，只实现一种
        即可。
 
 子类通常通过重写如下方法实现变换功能：

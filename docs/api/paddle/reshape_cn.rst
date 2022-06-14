@@ -9,7 +9,7 @@ reshape
 在保持输入 ``x`` 数据不变的情况下，改变 ``x`` 的形状。
 
 请注意，在动态图模式下，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。
-如果不希望输入与输出共享数据，请使用 `Tensor.clone` ，例如 `reshape_clone_x = x.reshape([-1]).clone()` 。
+如果不希望输入与输出共享数据，请使用 `Tensor.clone`，例如 `reshape_clone_x = x.reshape([-1]).clone()` 。
 
 在指定目标shape时存在一些技巧：
 

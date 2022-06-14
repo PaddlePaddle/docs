@@ -19,7 +19,7 @@ logsumexp
 
 返回
 ::::::::::
-    ``Tensor`` ，沿着 ``axis`` 进行 logsumexp 计算的结果，数据类型和 ``x`` 相同。
+    ``Tensor``，沿着 ``axis`` 进行 logsumexp 计算的结果，数据类型和 ``x`` 相同。
 
 代码示例
 ::::::::::

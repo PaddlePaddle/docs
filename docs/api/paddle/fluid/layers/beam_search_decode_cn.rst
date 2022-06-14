@@ -31,7 +31,7 @@ beam_search_decode
     - **score** (Variable) - 保存了每个时间步选择的id所对应累积得分（beam_search OP的输出）的LoDTensorArray，和 ``id`` 具有相同大小。其中每个LoDTensor要和 ``id`` 中相应LoDTensor具有相同的形状和LoD，表示其对应的累积得分。数据类型为float32。
     - **beam_size** (int) - 指示束搜索中波束的宽度。
     - **end_id** (int) - 指明标识序列结束的id。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

@@ -8,7 +8,7 @@ adaptive_pool3d
 
 
 
-该OP使用上述输入参数的池化配置，为二维空间自适应池化操作，根据 ``input`` ，池化类型 ``pool_type`` ，池化核大小 ``pool_size`` 这些参数得到输出。
+该OP使用上述输入参数的池化配置，为二维空间自适应池化操作，根据 ``input``，池化类型 ``pool_type``，池化核大小 ``pool_size`` 这些参数得到输出。
 
 输入X和输出Out是NCDHW格式，N为批大小，D是特征深度，C是通道数，H是特征高度，W是特征宽度。参数 ``pool_size`` 含有两个整型元素，分别代表深度，高度和宽度上的参数。输出Out的D, H和W维由 ``pool_size`` 决定，即输出shape为 :math:`\left ( N,C,pool_size[0],pool_size[1],pool_size[2] \right )`
 
@@ -40,7 +40,7 @@ adaptive_pool3d
   - **pool_size** （int|list|tuple） - 池化核大小。 如果池化核大小是元组或列表，则它必须包含三个整数（Depth, Height, Width）。若为一个整数，则表示D, H和W维度上均为该值。
   - **pool_type** （string）- 池化类型，可输入“max”代表max-pooling，或者“avg”代表average-pooling。
   - **require_index** （bool） - 如果为True，则输出中带有最大池化点所在的索引。 如果pool_type为avg，该项不可被设置为True，默认False。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
+  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置。默认值：None。
 
 
 返回
@@ -65,7 +65,7 @@ adaptive_pool3d
     # average adaptive pool2d
     # 假设输入形为[N, C, D, H, W], `pool_size` 为 [l, m, n],
     # 输出形为 [N, C, l, m, n], adaptive pool 将输入的D, H 和 W 维度
-    # 平均分割为 l * m * n 个栅格(grid) ，然后为每个栅格进行池化得到输出
+    # 平均分割为 l * m * n 个栅格(grid)，然后为每个栅格进行池化得到输出
     # adaptive average pool 进行如下操作
     #
     #     for i in range(l):
@@ -92,7 +92,7 @@ adaptive_pool3d
     # max adaptive pool2d
     # 假设输入形为[N, C, D, H, W], `pool_size` 为 [l, m, n],
     # 输出形为 [N, C, l, m, n], adaptive pool 将输入的D, H 和 W 维度
-    # 平均分割为 l * m * n 个栅格(grid) ，然后为每个栅格进行池化得到输出
+    # 平均分割为 l * m * n 个栅格(grid)，然后为每个栅格进行池化得到输出
     # adaptive average pool 进行如下操作
     #
     #     for i in range(l):

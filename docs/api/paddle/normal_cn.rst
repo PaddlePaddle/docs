@@ -6,7 +6,7 @@ normal
 .. py:function:: paddle.normal(mean=0.0, std=1.0, shape=None, name=None)
 
 
-返回符合正态分布（均值为 ``mean`` ，标准差为 ``std`` 的正态随机分布）的随机 Tensor。
+返回符合正态分布（均值为 ``mean``，标准差为 ``std`` 的正态随机分布）的随机 Tensor。
 
 如果 ``mean`` 是 Tensor，则输出 Tensor 和 ``mean`` 具有相同的形状和数据类型。
 如果 ``mean`` 不是 Tensor，且 ``std`` 是 Tensor，则输出 Tensor 和 ``std`` 具有相同的形状和数据类型。
@@ -23,7 +23,7 @@ normal
 
 返回
 ::::::::::
-  Tensor：符合正态分布（均值为 ``mean`` ，标准差为 ``std`` 的正态随机分布）的随机 Tensor。
+  Tensor：符合正态分布（均值为 ``mean``，标准差为 ``std`` 的正态随机分布）的随机 Tensor。
 
 示例代码
 ::::::::::

@@ -47,7 +47,7 @@ conv3d
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，D是特征层深度，H是特征高度，W是特征宽度。默认值："NCDHW"。
-    - **name** (str，可选) – 具体用法请参见  :ref:`cn_api_guide_Name` ，一般无需设置，默认值：None。
+    - **name** (str，可选) – 具体用法请参见  :ref:`cn_api_guide_Name`，一般无需设置，默认值：None。
 
 返回
 ::::::::::::

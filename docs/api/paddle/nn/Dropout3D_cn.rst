@@ -5,7 +5,7 @@ Dropout3D
 
 .. py:function:: paddle.nn.Dropout3D(p=0.5, data_format='NCDHW', name=None)
 
-根据丢弃概率 `p` ，在训练过程中随机将某些通道特征图置0(对一个形状为 `NCDHW` 的5维张量，通道特征图指的是其中的形状为 `DHW` 的3维特征图)。Dropout3D可以提高通道特征图之间的独立性。论文请参考：`Efficient Object Localization Using Convolutional Networks <https://arxiv.org/abs/1411.4280>`_
+根据丢弃概率 `p`，在训练过程中随机将某些通道特征图置0(对一个形状为 `NCDHW` 的5维张量，通道特征图指的是其中的形状为 `DHW` 的3维特征图)。Dropout3D可以提高通道特征图之间的独立性。论文请参考：`Efficient Object Localization Using Convolutional Networks <https://arxiv.org/abs/1411.4280>`_
 
 在动态图模式下，请使用模型的 `eval()` 方法切换至测试阶段。
 
@@ -21,7 +21,7 @@ Dropout3D
 形状
 :::::::::
  - **输入** : 5-D `Tensor` 。
- - **输出** : 5-D `Tensor` ，形状与输入相同。
+ - **输出** : 5-D `Tensor`，形状与输入相同。
 
 代码示例
 :::::::::

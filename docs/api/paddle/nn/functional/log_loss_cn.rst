@@ -23,7 +23,7 @@ log_loss
   - **input** (Tensor) – 形为 [N x 1] 的二维张量，其中 N 为 batch 大小。该输入是由前驱算子计算得来的概率，数据类型是 float32。
   - **label** (Tensor) – 形为 [N x 1] 的二维张量，真值标签，其中 N 为 batch 大小，数据类型是 float32。
   - **epsilon** (float) – epsilon
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

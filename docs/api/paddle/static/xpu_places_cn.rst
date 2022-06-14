@@ -12,11 +12,11 @@ xpu_places
 该接口根据 ``device_ids`` 创建一个或多个 ``paddle.XPUPlace`` 对象，并返回所创建的对象列表。
 
 如果 ``device_ids`` 为 ``None``，则首先检查 ``FLAGS_selected_xpus`` 标志。
-例如： ``FLAGS_selected_xpus=0,1,2`` ，则返回的列表将为 ``[paddle.XPUPlace(0), paddle.XPUPlace(1), paddle.XPUPlace(2)]``。
-如果未设置标志 ``FLAGS_selected_xpus`` ，则根据 ``XPU_VISIBLE_DEVICES`` 环境变量，返回所有可见的 XPU places。
+例如： ``FLAGS_selected_xpus=0,1,2``，则返回的列表将为 ``[paddle.XPUPlace(0), paddle.XPUPlace(1), paddle.XPUPlace(2)]``。
+如果未设置标志 ``FLAGS_selected_xpus``，则根据 ``XPU_VISIBLE_DEVICES`` 环境变量，返回所有可见的 XPU places。
 
 如果 ``device_ids`` 不是 ``None``，它应该是使用的XPU设备ID的列表或元组。
-例如： ``device_id=[0,1,2]`` ，返回的列表将是 ``[paddle.XPUPlace(0), paddle.XPUPlace(1), paddle.XPUPlace(2)]``。
+例如： ``device_id=[0,1,2]``，返回的列表将是 ``[paddle.XPUPlace(0), paddle.XPUPlace(1), paddle.XPUPlace(2)]``。
 
 参数
 :::::::::

@@ -19,7 +19,7 @@ affine_channel
   - **scale** (Variable): 维度为(C)的一维输入，第C个元素为输入的第C通道仿射变换的尺度因子。数据类型为float32或float64。
   - **bias** (Variable): 维度为(C)的一维输入，第C个元素是输入的第C个通道的仿射变换的偏置。数据类型为float32或float64。
   - **data_layout** (str，可选): 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。如果输入是一个2D张量，可以忽略该参数，默认值为"NCHW"。
-  - **name** (str，可选): 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选): 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
   - **act** (str，可选): 应用于该层输出的激活函数，默认值为None。
 
 返回
