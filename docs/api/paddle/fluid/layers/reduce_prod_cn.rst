@@ -32,7 +32,7 @@ reduce_prod
 ..  code-block:: python
 
       import paddle.fluid as fluid
-      # x是一个Tensor，元素如下:
+      # x是一个Tensor，元素如下：
       #    [[0.2, 0.3, 0.5, 0.9]
       #     [0.1, 0.2, 0.6, 0.7]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
@@ -43,7 +43,7 @@ reduce_prod
       fluid.layers.reduce_prod(x, dim=1,
                                keep_dim=True)  # [[0.027], [0.0084]]
 
-      # y 是一个shape为[2, 2, 2]的Tensor元素如下:
+      # y 是一个shape为[2, 2, 2]的Tensor元素如下：
       #      [[[1.0, 2.0], [3.0, 4.0]],
       #      [[5.0, 6.0], [7.0, 8.0]]]
       # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。

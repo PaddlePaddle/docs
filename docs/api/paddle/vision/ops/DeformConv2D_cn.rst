@@ -58,13 +58,13 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
 
     
-形状:
+形状：
     - x: :math:`(N, C_{in}, H_{in}, W_{in})`
     - offset: :math:`(N, 2 * H_f * W_f, H_{out}, W_{out})`
     - mask: :math:`(N, H_f * W_f, H_{out}, W_{out})`
-    - 输出: :math:`(N, C_{out}, H_{out}, W_{out})`
+    - 输出：:math:`(N, C_{out}, H_{out}, W_{out})`
 
-    其中:
+    其中：
 
     .. math::
 

@@ -15,10 +15,10 @@ array_read
     输入：
         包含4个Tensor的LoDTensorArray，前3个shape为[1]，最后一个shape为[1,2]:
             input = ([0.6], [0.1], [0.3], [0.4, 0.2])
-        并且:
+        并且：
             i = [3]
 
-    输出:
+    输出：
         output = [0.4, 0.2]
 
 参数

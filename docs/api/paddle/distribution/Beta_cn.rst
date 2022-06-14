@@ -16,7 +16,7 @@ Beta
 
     f(x; \alpha, \beta) = \frac{1}{B(\alpha, \beta)}x^{\alpha-1}(1-x)^{\beta-1}
 
-其中，B为Beta函数，表示归一化因子:
+其中，B为Beta函数，表示归一化因子：
 
 .. math::
 

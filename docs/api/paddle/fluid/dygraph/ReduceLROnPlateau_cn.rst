@@ -22,7 +22,7 @@ ReduceLROnPlateau
       1-D Tensor，且相应数据类型必须为 "float32" 或 "float64"。
     - **mode** (str，可选) - `'min'` 和 `'max'` 之一。通常情况下，为 `'min'` ，此时当 ``loss`` 停止下降时学习率将减小。默认：`'min'`。
       （注意：仅在特殊用法时，可以将其设置为 `'max'` ，此时判断逻辑相反，``loss`` 停止上升学习率才减小）
-    - **decay_rate** (float，可选) - 学习率衰减的比例。`new_lr = origin_lr * decay_rate` ，它是值小于1。0的float型数字，默认: 0。1。
+    - **decay_rate** (float，可选) - 学习率衰减的比例。`new_lr = origin_lr * decay_rate` ，它是值小于1。0的float型数字，默认：0。1。
     - **patience** (int，可选) - 当 ``loss`` 连续 ``patience`` 个epoch没有下降(mode: 'min')或上升(mode: 'max')时，学习率才会减小。默认：10。
     - **verbose** (bool，可选) - 如果为 ``True`` ，会在每次更新optimizer中的learning_rate时，打印信息。默认：``False``。
     - **threshold** (float，可选) - ``threshold`` 和 ``threshold_mode`` 两个参数将会决定 ``loss`` 最小变化的阈值。小于该阈值的变化
@@ -31,7 +31,7 @@ ReduceLROnPlateau
       其中 ``last_loss`` 是 ``loss`` 在上个epoch的值。在 `'abs'` 模式下，``loss`` 最小变化的阈值是 `threshold`。默认：`'rel'`。
     - **cooldown** (int，可选) - 在学习速率每次减小之后，会进入时长为 ``cooldown`` 个epoch的冷静期。默认：0。
     - **min_lr** (float，可选) - 最小的学习率。减小后的学习率最低下界限。默认：0。
-    - **eps** (float，可选) - 如果新旧学习率间的差异小于 ``eps`` ，则不会更新。默认值:1e-8。
+    - **eps** (float，可选) - 如果新旧学习率间的差异小于 ``eps`` ，则不会更新。默认值：1e-8。
     - **dtype** (str，可选) – 学习率值的数据类型，可以为"float32", "float64"。默认："float32"。
 
 返回

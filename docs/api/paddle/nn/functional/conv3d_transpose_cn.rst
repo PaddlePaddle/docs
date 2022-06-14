@@ -13,7 +13,7 @@ conv3d_transpose
 
 该层根据输入（input）、卷积核（kernel）和卷积核空洞大小（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW或者NDHWC格式。其中N为批尺寸，C为通道数（channel），D为特征深度，H为特征层高度，W为特征层宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_。如果参数bias_attr不为False，转置卷积计算会添加偏置项。
 
-.. _参考文献: https://www。matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf
+.. _参考文献：https://www。matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
 
@@ -31,13 +31,13 @@ conv3d_transpose
 
 **示例**
 
-输入:
+输入：
 
     输入的shape：:math:`（N,C_{in}, D_{in}, H_{in}, W_{in}）`
 
     卷积核的shape：:math:`（C_{in}, C_{out}, D_f, H_f, W_f）`
 
-输出:
+输出：
 
     输出的shape：:math:`（N,C_{out}, D_{out}, H_{out}, W_{out}）`
 
@@ -81,7 +81,7 @@ conv3d_transpose
   - **bias** (int|list|tuple) - 偏置项，形状为： :math:`[M,]`。
   - **stride** (int|list|tuple，可选) - 步长大小。如果 ``stride`` 为元组或列表，则必须包含三个整型数，分别表示深度，垂直和水平滑动步长。否则，表示深度，垂直和水平滑动步长均为 ``stride``。默认值：1。
   - **padding** (int|list|tuple|str，可选) - 填充padding大小。padding参数在输入特征层每边添加 ``dilation * (kernel_size - 1) - padding`` 个0。如果它是一个字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考上述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。如果它是一个元组或列表，它可以有3种格式：(1)包含5个二元组：当 ``data_format`` 为"NCDHW"时为 [[0,0], [0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right]]，当 ``data_format`` 为"NDHWC"时为[[0,0], [pad_depth_front, pad_depth_back], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right], [0,0]]；(2)包含6个整数值：[pad_depth_front, pad_depth_back, pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]；(3)包含3个整数值：[pad_depth, pad_height, pad_width]，此时 pad_depth_front = pad_depth_back = pad_depth, pad_height_top = pad_height_bottom = pad_height, pad_width_left = pad_width_right = pad_width。若为一个整数，pad_depth = pad_height = pad_width = padding。默认值：0。
-  - **output_padding** (int|list|tuple, optional): 输出形状上一侧额外添加的大小。默认值: 0。
+  - **output_padding** (int|list|tuple, optional): 输出形状上一侧额外添加的大小。默认值：0。
   - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。如果空洞大小为列表或元组，则必须包含两个整型数：（dilation_height,dilation_width）。若为一个整数，dilation_height = dilation_width = dilation。默认值：1。
   - **groups** (int，可选) - 三维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和卷积核分别根据通道数量平均分为两组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算。默认：group = 1。
   - **output_size** (int|list|tuple，可选) - 输出尺寸，整数或包含一个整数的列表或元组。如果为 ``None`` ，则会用 filter_size(``weight``的shape), ``padding`` 和 ``stride`` 计算出输出特征图的尺寸。默认值：None。

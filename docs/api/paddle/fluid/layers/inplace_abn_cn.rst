@@ -17,7 +17,7 @@ inplace_abn
     - **input** (Variable) - inplace_abn算子的输入特征，是一个Variable类型，输入维度可以是 2, 3, 4, 5。数据类型：flaot16, float32, float64。
     - **act** （string）- 激活函数类型，可以是leaky_realu、relu、prelu等。默认：None。
     - **is_test** （bool） - 指示它是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认：False。
-    - **momentum** （float|Variable）- 此值用于计算 moving_mean 和 moving_var，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。更新公式为:  :math:`moving\_mean = moving\_mean * momentum + new\_mean * (1。- momentum)` ， :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum)` ，默认：0。9。
+    - **momentum** （float|Variable）- 此值用于计算 moving_mean 和 moving_var，是一个float类型或者一个shape为[1]，数据类型为float32的Variable类型。更新公式为：:math:`moving\_mean = moving\_mean * momentum + new\_mean * (1。- momentum)` ， :math:`moving\_var = moving\_var * momentum + new\_var * (1. - momentum)` ，默认：0。9。
     - **epsilon** （float）- 加在分母上为了数值稳定的值。默认：1e-5。
     - **param_attr** (ParamAttr|None) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。inplace_abn算子默认的权重初始化是1。0。
     - **bias_attr** （ParamAttr|None）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。inplace_abn算子默认的偏置初始化是0。0。

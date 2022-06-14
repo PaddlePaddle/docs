@@ -7,7 +7,7 @@ Maxout
 
 Maxout激活层。
 
-假设输入形状为(N, Ci, H, W)，输出形状为(N, Co, H, W)，则 :math:`Co=Ci/groups` 运算公式如下:
+假设输入形状为(N, Ci, H, W)，输出形状为(N, Co, H, W)，则 :math:`Co=Ci/groups` 运算公式如下：
 
 .. math::
 
@@ -26,7 +26,7 @@ Maxout激活层。
     - axis (int，可选) - 指定通道所在维度的索引。当数据格式为NCHW时，axis应该被设置为1，当数据格式为NHWC时，axis应该被设置为-1或者3。默认值为1。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状:
+形状：
 ::::::::::
     - input: 形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度。
     - output: 输出形状为 :math:`[N, Co, H, W]` 或 :math:`[N, H, W, Co]` 的4-D Tensor，其中 :math:`Co=C/groups`

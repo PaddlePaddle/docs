@@ -58,7 +58,7 @@ cross_entropy
      .. math::
         \\loss=\sum_{j}loss_j
 
-2.3 如果 ``reduction`` 参数为 ``mean``，则根据 ``weight``  参数情况进行处理:  
+2.3 如果 ``reduction`` 参数为 ``mean``，则根据 ``weight``  参数情况进行处理：
 
 2.3.1. 如果 ``weight`` 参数为 ``None`` 
 

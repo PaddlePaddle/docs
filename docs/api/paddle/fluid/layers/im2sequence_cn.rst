@@ -9,7 +9,7 @@ im2sequence
 
 
 
-该OP使用 `filter` 扫描输入的Tensor并将输入Tensor转换成序列，返回值的 `shape={input。batch_size * output_height * output_width, filter_size_height* filter_size_width * input.channels}`。返回值的timestep的个数为 `output_height * output_width` ，每个timestep的维度是 `filter_size_height* filter_size_width * input。channels`。其中 `output_height` 和 `output_width` 由以下式计算:
+该OP使用 `filter` 扫描输入的Tensor并将输入Tensor转换成序列，返回值的 `shape={input。batch_size * output_height * output_width, filter_size_height* filter_size_width * input.channels}`。返回值的timestep的个数为 `output_height * output_width` ，每个timestep的维度是 `filter_size_height* filter_size_width * input。channels`。其中 `output_height` 和 `output_width` 由以下式计算：
 
 
 .. math::

@@ -38,7 +38,7 @@ DataFeedDesc
     f.close()
     data_feed = fluid.DataFeedDesc('data.proto')
 
-用户需要了解DataFeedDesc中每个字段的含义，以便自定义字段的值。例如:
+用户需要了解DataFeedDesc中每个字段的含义，以便自定义字段的值。例如：
 
 .. code-block:: python
 

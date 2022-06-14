@@ -11,12 +11,12 @@ huber_loss
 
 该OP计算输入（input）与标签（label）之间的Huber损失。Huber损失是常用的回归损失之一，相较于平方误差损失，Huber损失减小了对异常点的敏感度，更具鲁棒性。
 
-当输入与标签之差的绝对值大于delta时，计算线性误差:
+当输入与标签之差的绝对值大于delta时，计算线性误差：
 
 .. math::
         huber\_loss = delta * (label - input) - 0.5 * delta * delta
 
-当输入与标签之差的绝对值小于delta时，计算平方误差:
+当输入与标签之差的绝对值小于delta时，计算平方误差：
 
 .. math::
         huber\_loss = 0.5 * (label - input) * (label - input)

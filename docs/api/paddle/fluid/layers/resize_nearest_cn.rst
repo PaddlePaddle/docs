@@ -12,7 +12,7 @@ resize_nearest
 
 输出形状按优先级顺序依据 ``actual_shape`` , ``out_shape`` 和 ``scale`` 而定。
 
-**注意:** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
+**注意：** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
 
 ::
 

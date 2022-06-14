@@ -11,7 +11,7 @@ create_lod_tensor
 
 从一个numpy数组、list或LoDTensor创建一个新的LoDTensor。
 
-具体实现方法如下:
+具体实现方法如下：
 
 1. 检查基于序列长度的LoD（length-based LoD），即参数中的 :code:`recursive_seq_lens` 是否正确。
 

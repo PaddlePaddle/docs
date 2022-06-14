@@ -212,7 +212,7 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
                 np.array(merged_prediction).shape))
             print(merged_prediction)
 
-            # 输出:
+            # 输出：
             # The unmerged prediction shape: (2, 3, 2)
             # [array([[-0.37620035, -0.19752218],
             #        [-0.3561043 , -0.18697084],

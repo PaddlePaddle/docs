@@ -11,7 +11,7 @@ bpr_loss
 
 贝叶斯个性化排序损失函数（Bayesian Personalized Ranking Loss Operator ）
 
-该OP属于pairwise类型的损失函数。损失值由下式计算而得:
+该OP属于pairwise类型的损失函数。损失值由下式计算而得：
 
 .. math::
 

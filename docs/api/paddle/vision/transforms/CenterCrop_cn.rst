@@ -11,7 +11,7 @@ CenterCrop
 :::::::::
 
     - size (int|tuple) - 输出图像的形状大小。
-    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值: None。
+    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值：None。
 
 形状
 :::::::::

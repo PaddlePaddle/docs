@@ -140,13 +140,13 @@ run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
     train_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
                                                main_program=train_program,
                                                loss_name=loss.name)
-    # 如果feed参数是dict类型:
+    # 如果feed参数是dict类型：
     # 图像会被split到设备中。假设有两个设备，那么每个设备将会处理形为 (5, 1)的图像
     x = numpy.random.random(size=(10, 1)).astype('float32')
     loss_data, = train_exe.run(feed={"X": x},
                                fetch_list=[loss.name])
 
-    # 如果feed参数是list类型:
+    # 如果feed参数是list类型：
     # 各设备挨个处理列表中的每个元素
     # 第一个设备处理形为 (10, 1) 的图像
     # 第二个设备处理形为 (9, 1) 的图像

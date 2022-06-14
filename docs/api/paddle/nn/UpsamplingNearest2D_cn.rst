@@ -11,7 +11,7 @@ UpsamplingNearest2D
 
 输入为4-D Tensor时形状为(num_batches, channels, in_h, in_w)或者(num_batches, in_h, in_w, channels)，调整大小只适用于高度和宽度对应的维度。
 
-支持的插值方法:
+支持的插值方法：
 
     NEAREST：最近邻插值
 
@@ -19,7 +19,7 @@ UpsamplingNearest2D
 最近邻插值是在输入张量的高度和宽度上进行最近邻插值。
 
 
-示例:
+示例：
 
 ::
 

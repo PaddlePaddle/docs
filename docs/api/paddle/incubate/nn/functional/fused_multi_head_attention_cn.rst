@@ -63,8 +63,8 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
     - **dropout_rate** (float，可选) - 代表 multi-head attention 之后的 dropout 算子的 dropout 比例，默认为0。5。
     - **attn_dropout_rate** (float，可选) - 代表 multi-head attention 中的 dropout 算子的 dropout 比例，默认为0。5。
     - **ln_epsilon** (float，可选) - 代表 normalize_before 为True 时，multi-head attention 中第二个 （False时的第一个） ``layer_norm`` 为了数值稳定加在分母上的值。默认值为 1e-05。
-    - **training** (bool): 标记是否为训练阶段。默认: True。
-    - **mode** (str): 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认: 'upscale_in_train'。计算方法如下:
+    - **training** (bool): 标记是否为训练阶段。默认：True。
+    - **mode** (str): 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认：'upscale_in_train'。计算方法如下：
 
         1. upscale_in_train，在训练时增大输出结果。
 

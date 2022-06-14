@@ -16,7 +16,7 @@ tensor_array_to_tensor
     
     - 案例 1：
 
-        给定:
+        给定：
             
             input.data = {[[0.6, 0.1, 0.3],
                            [0.5, 0.3, 0.2]],
@@ -27,7 +27,7 @@ tensor_array_to_tensor
 
             axis = 1, use_stack = False
 
-        结果:                
+        结果：
 
             output.data = [[0.6, 0.1, 0.3, 1.3, 2.3, 2.1],
                            [0.5, 0.3, 0.2, 1.8, 2.5, 2.4]]
@@ -36,7 +36,7 @@ tensor_array_to_tensor
 
     - 案例 2：
 
-        给定:
+        给定：
             
             input.data = {[[0.6, 0.1],
                            [0.5, 0.3]],
@@ -47,7 +47,7 @@ tensor_array_to_tensor
 
             axis = 1, use_stack = False
 
-        结果:                
+        结果：
 
             output.data = [[[0.6, 0.1]
                             [0.3, 1.3]

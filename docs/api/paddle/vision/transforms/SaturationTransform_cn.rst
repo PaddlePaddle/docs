@@ -11,7 +11,7 @@ SaturationTransform
 :::::::::
 
     - value (float) - 饱和度的调整数值，非负数，当参数值为0时返回原始图像。
-    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值: None。
+    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值：None。
 
 形状
 :::::::::

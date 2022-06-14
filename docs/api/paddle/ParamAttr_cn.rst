@@ -20,7 +20,7 @@ ParamAttr
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **initializer** (Initializer，可选) - 参数的初始化方式。默认值为None，表示权重参数采用Xavier初始化方式，偏置参数采用全0初始化方式。
     - **learning_rate** (float，可选) - 参数的学习率。实际参数的学习率等于全局学习率乘以参数的学习率，再乘以learning rate schedule的系数。
-    - **regularizer** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`api_paddle_regularizer_L1Decay` 、 
+    - **regularizer** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略：:ref:`api_paddle_regularizer_L1Decay` 、 
       :ref:`api_paddle_regularizer_L2Decay` ，如果在 ``optimizer`` (例如 :ref:`api_paddle_optimizer_SGD` ) 中也
       设置了正则化，``optimizer`` 中的正则化将被忽略。默认值为None，表示没有正则化。
     - **trainable** (bool，可选) - 参数是否需要训练。默认值为True，表示需要训练。

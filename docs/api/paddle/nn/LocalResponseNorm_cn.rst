@@ -8,7 +8,7 @@ LocalResponseNorm
 局部响应正则化（Local Response Normalization）用于对局部输入区域进行正则化，执行一种侧向抑制（lateral inhibition）。更多详情参考： `ImageNet Classification with Deep Convolutional Neural Networks <https://papers。nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf>`_
 
 .. note::
-   对应的 `functional方法` 请参考: :ref:`cn_api_nn_functional_local_response_norm`。
+   对应的 `functional方法` 请参考：:ref:`cn_api_nn_functional_local_response_norm`。
 
 参数
 :::::::::

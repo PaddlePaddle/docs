@@ -5,12 +5,12 @@ weight_norm
 
 .. py:function:: paddle.nn.utils.weight_norm(layer, name='weight', dim=0)
 
-该接口根据以下公式对传入的 ``layer`` 中的权重参数进行归一化:
+该接口根据以下公式对传入的 ``layer`` 中的权重参数进行归一化：
 
 .. math::
     \mathbf{w} = g \dfrac{v}{\|v\|}
 
-权重归一化可以将神经网络中权重向量的长度与其方向解耦，权重归一化可以用两个变量(例如: 代表长度的变量 `weight_g` 和代表方向的变量 `weight_v`)来代替由名字(例如: `weight`)指定的变量。详细可以参考论文: `A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv。org/pdf/1602.07868.pdf>`_
+权重归一化可以将神经网络中权重向量的长度与其方向解耦，权重归一化可以用两个变量(例如：代表长度的变量 `weight_g` 和代表方向的变量 `weight_v`)来代替由名字(例如：`weight`)指定的变量。详细可以参考论文：`A Simple Reparameterization to Accelerate Training of Deep Neural Networks <https://arxiv。org/pdf/1602.07868.pdf>`_
 
 参数
 ::::::::::::

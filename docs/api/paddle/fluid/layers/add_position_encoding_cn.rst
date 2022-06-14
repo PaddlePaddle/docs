@@ -8,7 +8,7 @@ add_position_encoding
 
 
 
-该OP将输入inpu中每个位置（序列中的位置）的特征与对应的位置编码加权求和，位置编码可参考论文: `Attention Is All You Need <http://arxiv。org/pdf/1706.03762.pdf>`_
+该OP将输入inpu中每个位置（序列中的位置）的特征与对应的位置编码加权求和，位置编码可参考论文：`Attention Is All You Need <http://arxiv。org/pdf/1706.03762.pdf>`_
 
 输出的计算公式如下：
 
@@ -18,7 +18,7 @@ add_position_encoding
     PE(pos, 2i + 1) &= \cos{(pos / 10000^{2i / P})}\\
     Out(:, pos, i) &= \alpha * input(:, pos, i) + \beta * PE(pos, i)
 
-其中:
+其中：
     - PE(pos, 2i): pos位置对应的编码中偶数特征位上的值
     - PE(pos, 2i + 1): pos位置对应的编码中奇数特征位上的值
 

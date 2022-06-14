@@ -10,7 +10,7 @@ crop
 
 该OP根据偏移量(offsets)和形状(shape)，裁剪输入张量。
 
-**注意:** 此OP已被弃用，它将在以后的版本中被删除，请使用 :ref:`cn_api_fluid_layers_crop_tensor` 替代
+**注意：** 此OP已被弃用，它将在以后的版本中被删除，请使用 :ref:`cn_api_fluid_layers_crop_tensor` 替代
 
 **样例**：
 
@@ -74,12 +74,12 @@ crop
     # 输入x的形状为[-1, 3, 5]，
     # 参数shape = y是个Variable，形状是[-1, 2, 2]，输出Tensor将具有和y一样的形状
     # y的具体数值不起作用，起作用的只有它的形状
-    # 经过下面的crop操作之后输出张量的形状是: [-1, 2, 2]
+    # 经过下面的crop操作之后输出张量的形状是：[-1, 2, 2]
     x = fluid.layers.data(name="x", shape=[3, 5], dtype="float32")
     y = fluid.layers.data(name="y", shape=[2, 2], dtype="float32")
     crop = fluid.layers.crop(x, shape=y)
     ## 或者 case 2
-    # 输入z的形状为: [-1, 3, 5], shape为整数列表[-1, 2, 3]
+    # 输入z的形状为：[-1, 3, 5], shape为整数列表[-1, 2, 3]
     # 则经过下面的crop操作之后输出张量的形状为：[-1, 2, 3]
     z = fluid.layers.data(name="z", shape=[3, 5], dtype="float32")
     crop = fluid.layers.crop(z, shape=[-1, 2, 3])

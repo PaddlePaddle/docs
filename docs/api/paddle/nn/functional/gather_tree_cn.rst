@@ -15,7 +15,7 @@ gather_tree
 
 ::
 
-        给定:
+        给定：
             ids = [[[2 2]
                     [6 1]]
                    [[3 9]
@@ -29,7 +29,7 @@ gather_tree
                        [[0 0]
                         [0 1]]]
 
-        结果:                
+        结果：
             gather_tree(ids, parents)  
                         = [[[2 2]
                             [1 6]]

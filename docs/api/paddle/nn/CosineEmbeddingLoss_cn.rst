@@ -25,7 +25,7 @@ CosineEmbeddingLoss
 参数
 :::::::::
     - **margin** (float，可选): - 可以设置的范围为[-1, 1]，建议设置的范围为[0, 0。5]。其默认为 `0`。数据类型为int。
-    - **reduction** (string，可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'``.默认为 ``'mean'``，计算 `CosineEmbeddingLoss` 的均值；设置为 ``'sum'`` 时，计算 `CosineEmbeddingLoss` 的总和；设置为 ``'none'`` 时，则返回 `CosineEmbeddingLoss`。数据类型为string。
+    - **reduction** (string，可选): - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'``.默认为 ``'mean'``，计算 `CosineEmbeddingLoss` 的均值；设置为 ``'sum'`` 时，计算 `CosineEmbeddingLoss` 的总和；设置为 ``'none'`` 时，则返回 `CosineEmbeddingLoss`。数据类型为string。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状

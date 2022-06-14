@@ -16,7 +16,7 @@ data_norm
 1. NHWC [batch, in_height, in_width, in_channels]
 2. NCHW [batch, in_channels, in_height, in_width]
 
-:math:`input` 为一个mini-batch上的特征:
+:math:`input` 为一个mini-batch上的特征：
 
 .. math::
         \mu_{\beta} &\gets \frac{1}{m} \sum_{i=1}^{m} x_i \qquad &//\

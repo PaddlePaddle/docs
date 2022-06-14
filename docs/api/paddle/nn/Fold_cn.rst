@@ -7,7 +7,7 @@ Fold
 
 该Op用于将一个滑动局部块组合成一个大的张量。通常也被称为col2im，用于批处理二维图像张量。Fold通过对所有包含块的值求和来计算结果中的每个大张量的组合值。
 
-对于输入x，如果形状为[N, C_in, L]，其输出形状[N, C_out, H_out, W_out]，计算过程如下:
+对于输入x，如果形状为[N, C_in, L]，其输出形状[N, C_out, H_out, W_out]，计算过程如下：
 .. math::
 
     H_out &=  output_size[0]
@@ -15,7 +15,7 @@ Fold
     C_out &=  C_in / kernel\_sizes[0] / kernel\_sizes[1]
 
 .. note::
-   对应的 `functional方法` 请参考: :ref:`cn_api_nn_functional_fold`。
+   对应的 `functional方法` 请参考：:ref:`cn_api_nn_functional_fold`。
 
 
 

@@ -15,17 +15,17 @@ logistic loss可通过下式计算：
 .. math::
     loss = -Labels * log(sigma(X)) - (1 - Labels) * log(1 - sigma(X))
 
-已知:
+已知：
 
 .. math::
     sigma(X) = \frac{1}{1 + exp(-X)}
 
-代入上方计算logistic loss公式中:
+代入上方计算logistic loss公式中：
 
 .. math::
     loss = X - X * Labels + log(1 + exp(-X))
 
-为了计算稳定性，防止 :math:`exp(-X)` 溢出，当 :math:`X<0` 时，loss将采用以下公式计算:
+为了计算稳定性，防止 :math:`exp(-X)` 溢出，当 :math:`X<0` 时，loss将采用以下公式计算：
 
 .. math::
     loss = max(X, 0) - X * Labels + log(1 + exp(-|X|))

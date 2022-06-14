@@ -25,7 +25,7 @@ flatten
         start_axis = 1
         stop_axis = 2
 
-      得到:
+      得到：
         Out.shape = (3, 100 * 100, 4)
 
     Case 2:
@@ -36,7 +36,7 @@ flatten
         start_axis = 0
         stop_axis = -1
 
-      得到:
+      得到：
         Out.shape = (3 * 100 * 100 * 4)
 
 参数
