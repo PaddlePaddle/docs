@@ -51,7 +51,7 @@ dtype
 grad
 :::::::::
 
-查看一个Tensor的梯度，数据类型为numpy\。ndarray。
+查看一个Tensor的梯度，数据类型为numpy\.ndarray。
 
 **代码示例**
 
@@ -1115,10 +1115,10 @@ gcd(x, y, name=None)
 gradient()
 :::::::::
 
-与 ``Tensor.grad`` 相同，查看一个Tensor的梯度，数据类型为numpy\。ndarray。
+与 ``Tensor.grad`` 相同，查看一个Tensor的梯度，数据类型为numpy\.ndarray。
 
 返回：该Tensor的梯度
-返回类型：numpy\。ndarray
+返回类型：numpy\.ndarray
 
 **代码示例**
     .. code-block:: python
@@ -1632,10 +1632,10 @@ numel(name=None)
 numpy()
 :::::::::
 
-将当前Tensor转化为numpy\。ndarray。
+将当前Tensor转化为numpy\.ndarray。
 
-返回：Tensor转化成的numpy\。ndarray。
-返回类型：numpy\。ndarray
+返回：Tensor转化成的numpy\.ndarray。
+返回类型：numpy\.ndarray
 
 **代码示例**
     .. code-block:: python
@@ -1920,7 +1920,7 @@ set_value(value)
 设置当前Tensor的值。
 
 参数：
-    - **value** (Tensor|np.ndarray) - 需要被设置的值，类型为Tensor或者numpy\。array。
+    - **value** (Tensor|np.ndarray) - 需要被设置的值，类型为Tensor或者numpy\.array。
 
 **代码示例**
     .. code-block:: python

@@ -10,9 +10,9 @@ sparse_csr_tensor
 
 当前 ``sparse_csr_tensor`` 要求输入的 ``crows`` 中每个batch的数据是递增的，``cols`` 也是递增的。
 
-``crows`` 可以是 scalar，tuple，list，numpy\。ndarray，paddle\.Tensor。
-``cols`` 可以是 scalar，tuple，list，numpy\。ndarray，paddle\.Tensor。
-``values`` 可以是 scalar，tuple，list，numpy\。ndarray，paddle\.Tensor。
+``crows`` 可以是 scalar，tuple，list，numpy\.ndarray，paddle\.Tensor。
+``cols`` 可以是 scalar，tuple，list，numpy\.ndarray，paddle\.Tensor。
+``values`` 可以是 scalar，tuple，list，numpy\.ndarray，paddle\.Tensor。
 
 
 如果 ``values`` 已经是一个tensor，且 ``dtype`` 、 ``place`` 没有发生变化，将不会发生 tensor 的拷贝并返回原来的 tensor。

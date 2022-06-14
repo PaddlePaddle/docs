@@ -7,7 +7,7 @@ ReduceOnPlateau
 
 `loss` 自适应的学习率衰减策略。默认情况下，当 ``loss`` 停止下降时，降低学习率。其思想是：一旦模型表现不再提升，将学习率降低2-10倍对模型的训练往往有益。
 
-`loss` 是传入到该类方法 ``step`` 中的 ``metrics`` 参数，其可以是float或者shape为[1]的Tensor或numpy\。ndarray。如果 loss 停止下降超过 ``patience`` 个epoch，学习率将会衰减为 ``learning_rate * factor`` （特殊地，``mode`` 也可以被设置为 ``'max'`` ，此时逻辑相反）。
+`loss` 是传入到该类方法 ``step`` 中的 ``metrics`` 参数，其可以是float或者shape为[1]的Tensor或numpy\.ndarray。如果 loss 停止下降超过 ``patience`` 个epoch，学习率将会衰减为 ``learning_rate * factor`` （特殊地，``mode`` 也可以被设置为 ``'max'`` ，此时逻辑相反）。
 
 此外，每降低一次学习率后，将会进入一个时长为 ``cooldown`` 个epoch的冷静期，在冷静期内，将不会监控 ``loss`` 的变化情况，也不会衰减。在冷静期之后，会继续监控 ``loss`` 的上升或下降。
 
