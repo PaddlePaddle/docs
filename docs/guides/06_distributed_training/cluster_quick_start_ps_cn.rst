@@ -76,8 +76,10 @@
 InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_and_deep_dataset/reader.py，与单机DataLoader相比，存在如下区别：
 
     1. 继承自 ``fleet.MultiSlotDataGenerator`` 基类。
-    2. 实现基类中的 ``generate_sample()`` 函数，逐行读取数据进行处理（不需要对数据文件进行操作），并返回一个可以迭代的reader方法。
-    3. reader方法需返回一个list，其中的每个元素都是一个元组，元组的第一个元素为特征名（string类型），第二个元素为特征值（list类型）
+    2. 复用单机reader中的 ``line_process()`` 方法，该方法将数据文件中一行的数据处理后生成特征数组并返回，特征数组不需要转成np.array格式。
+    3. 实现基类中的 ``generate_sample()`` 函数，调用 ``line_process()`` 方法逐行读取数据进行处理，并返回一个可以迭代的reader方法。
+    4. reader方法需返回一个list，其中的每个元素都是一个元组，具体形式为 ``(特征名，[特征值列表])`` ，元组的第一个元素为特征名（string类型，需要与模型中对应输入input的name对应），第二个元素为特征值列表（list类型）。
+    5. 在__main__作用域中调用 ``run_from_stdin()`` 方法，直接从标准输入流获取待处理数据，而不需要对数据文件进行操作。
 
 一个完整的reader.py伪代码如下：
 
@@ -116,6 +118,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
             return wd_reader
 
     if __name__ == "__main__":
+        # 调用run_from_stdin()方法，直接从标准输入流获取待处理数据
         my_data_generator = WideDeepDatasetReader()
         my_data_generator.run_from_stdin()
 
