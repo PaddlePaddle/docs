@@ -8,7 +8,7 @@ Recall
 
 召回率Recall（也称为敏感度）是指得到的相关实例数占相关实例总数的比例。该类管理二分类任务的召回率。
 
-相关链接：https://en.wikipedia.org/wiki/Precision_and_recall
+相关链接：https://en。wikipedia.org/wiki/Precision_and_recall
 
 .. note::
 这个metric只能用来评估二分类。

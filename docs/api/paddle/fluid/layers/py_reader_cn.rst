@@ -12,7 +12,7 @@ py_reader
 
 创建一个在Python端提供数据的reader
 
-该OP返回一个Reader Variable。该Reader提供了 ``decorate_paddle_reader()`` 和 ``decorate_tensor_provider()`` 来设置Python generator作为数据源，将数据源中的数据feed到Reader Variable。在c++端调用 ``Executor::Run()`` 时，来自generator的数据将被自动读取。与 ``DataFeeder.feed()`` 不同，数据读取进程和  ``Executor::Run()`` 进程可以使用 ``py_reader`` 并行运行。在每次数据传递开始时调用reader的 ``start()`` ，在传递结束和抛出  ``fluid.core.EOFException`` 异常后执行 ``reset()`` 。
+该OP返回一个Reader Variable。该Reader提供了 ``decorate_paddle_reader()`` 和 ``decorate_tensor_provider()`` 来设置Python generator作为数据源，将数据源中的数据feed到Reader Variable。在c++端调用 ``Executor::Run()`` 时，来自generator的数据将被自动读取。与 ``DataFeeder.feed()`` 不同，数据读取进程和  ``Executor::Run()`` 进程可以使用 ``py_reader`` 并行运行。在每次数据传递开始时调用reader的 ``start()`` ，在传递结束和抛出  ``fluid.core.EOFException`` 异常后执行 ``reset()``。
 
 注意： ``Program.clone()`` （含义详见 :ref:`cn_api_fluid_Program` ）不能克隆 ``py_reader`` ，且 ``read_file`` （ ``read_file`` 含义详见 :ref:`cn_api_fluid_layers_read_file` ）调用需在声明 ``py_reader`` 的program block内。
 
@@ -97,7 +97,7 @@ Variable
     train_main_prog = fluid.Program()
     train_startup_prog = fluid.Program()
     with fluid.program_guard(train_main_prog, train_startup_prog):
-        # 使用 fluid.unique_name.guard() 实现与test program的参数共享
+        # 使用 fluid。unique_name.guard() 实现与test program的参数共享
         with fluid.unique_name.guard():
             train_reader = fluid.layers.py_reader(capacity=64,
                                                 shapes=[(-1, 1, 28, 28), (-1, 1)],
@@ -115,7 +115,7 @@ Variable
     test_main_prog = fluid.Program()
     test_startup_prog = fluid.Program()
     with fluid.program_guard(test_main_prog, test_startup_prog):
-        # 使用 fluid.unique_name.guard() 实现与train program的参数共享
+        # 使用 fluid。unique_name.guard() 实现与train program的参数共享
         with fluid.unique_name.guard():
             test_reader = fluid.layers.py_reader(capacity=32,
                                                 shapes=[(-1, 1, 28, 28), (-1, 1)],

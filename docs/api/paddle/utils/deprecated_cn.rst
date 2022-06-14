@@ -8,7 +8,7 @@ paddle_utils_deprecated
 对于即将废弃的API可以加入该装饰器，在调用对应 PaddlePaddle API 时，可以做如下两件事情：
 
   - 修改被装饰API的相关docstring，添加即将废弃警告。
-  - 当相关API被调用时，向控制台输出相关warning信息 :class:`~exceptions.DeprecatedWarning`。
+  - 当相关API被调用时，向控制台输出相关warning信息 :class:`~exceptions。DeprecatedWarning`。
 
 参数
 ::::::::::::

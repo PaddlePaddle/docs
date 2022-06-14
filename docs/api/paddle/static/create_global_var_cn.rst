@@ -8,7 +8,7 @@ create_global_var
 
 
 
-该OP在全局块中创建一个新的Tensor，Tensor的值为 ``value`` 。
+该OP在全局块中创建一个新的Tensor，Tensor的值为 ``value``。
 
 参数
 ::::::::::::

@@ -17,9 +17,9 @@ NaturalExpDecay
 ::::::::::::
 
     - **learning_rate** (float) - 初始学习率，数据类型为Python float。
-    - **gamma** (float) - 衰减率，gamma应该大于0.0，才能使学习率衰减。默认值为0.1。
+    - **gamma** (float) - 衰减率，gamma应该大于0。0，才能使学习率衰减。默认值为0。1。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
-    - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+    - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False``。
 
 返回
 ::::::::::::
@@ -80,7 +80,7 @@ NaturalExpDecay
 step(epoch=None)
 '''''''''
 
-step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
+step函数需要在优化器的 `optimizer。step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
 
 **参数**
 

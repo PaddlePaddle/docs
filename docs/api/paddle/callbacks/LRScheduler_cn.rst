@@ -10,8 +10,8 @@ LRScheduler
 参数
 ::::::::::::
 
-  - **by_step** (bool，可选) - 是否每个step都更新学习率。默认值：True。 
-  - **by_epoch** (bool，可选) - 是否每个epoch都更新学习率。默认值：False。 
+  - **by_step** (bool，可选) - 是否每个step都更新学习率。默认值：True。
+  - **by_epoch** (bool，可选) - 是否每个epoch都更新学习率。默认值：False。
 
 
 代码示例

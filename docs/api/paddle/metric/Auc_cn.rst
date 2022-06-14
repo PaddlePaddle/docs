@@ -12,7 +12,7 @@ Auc
 
 该接口创建四个局部变量true_positives，true_negatives，false_positives和false_negatives，用于计算Auc。为了离散化AUC曲线，使用临界值的线性间隔来计算召回率和准确率的值。用false positive的召回值高度计算ROC曲线面积，用recall的准确值高度计算PR曲线面积。
 
-参考链接：https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve
+参考链接：https://en。wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve
 
 参数
 ::::::::::::

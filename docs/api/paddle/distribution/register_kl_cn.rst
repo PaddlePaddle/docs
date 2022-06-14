@@ -7,7 +7,7 @@ register_kl
 
 用于注册KL散度具体计算函数装饰器。
 
-调用 ``kl_divergence(p,q)`` 计算KL散度时，会通过多重派发机制，即根据p和q的类型查找通过 ``register_kl`` 注册的实现函数，如果找到返回计算结果，否则，抛出 ``NotImplementError`` 。 用户可通过该装饰器自行注册KL散度计算函数。
+调用 ``kl_divergence(p,q)`` 计算KL散度时，会通过多重派发机制，即根据p和q的类型查找通过 ``register_kl`` 注册的实现函数，如果找到返回计算结果，否则，抛出 ``NotImplementError``。用户可通过该装饰器自行注册KL散度计算函数。
 
 参数
 :::::::::

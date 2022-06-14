@@ -46,7 +46,7 @@ ExecutionStrategy，一个ExecutionStrategy的实例。
 num_threads
 '''''''''
 
-int型成员。该选项表示当前 ``Executor`` 的线程池(thread pool)的大小, 此线程池可用来并发执行program中的operator（算子，运算）。如果 :math:`num\_threads=1` ，则所有的operator将一个接一个地执行，但在不同的program重复周期(iterations)中执行顺序可能不同。如果该选项没有被设置，则在 ``Executor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num\_threads=device\_count∗4` ；对CPU， :math:`num\_threads=CPU\_NUM∗4` 。在 ``Executor`` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM` ，则设置默认值为1， 并提示用户进行 :math:`CPU\_NUM` 的设置。
+int型成员。该选项表示当前 ``Executor`` 的线程池(thread pool)的大小，此线程池可用来并发执行program中的operator（算子，运算）。如果 :math:`num\_threads=1` ，则所有的operator将一个接一个地执行，但在不同的program重复周期(iterations)中执行顺序可能不同。如果该选项没有被设置，则在 ``Executor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num\_threads=device\_count∗4` ；对CPU， :math:`num\_threads=CPU\_NUM∗4`。在 ``Executor`` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM` ，则设置默认值为1，并提示用户进行 :math:`CPU\_NUM` 的设置。
 
 **代码示例**
 
@@ -85,7 +85,7 @@ int型成员。该选项表示间隔多少次迭代之后清理一次临时变�
 num_iteration_per_run
 '''''''''
 
-int型成员。它配置了当用户在python脚本中调用pe.run()时执行器会执行的迭代次数。Executor每次调用，会进行num_iteration_per_run次训练，它会使整体执行过程更快。默认值为1。
+int型成员。它配置了当用户在python脚本中调用pe。run()时执行器会执行的迭代次数。Executor每次调用，会进行num_iteration_per_run次训练，它会使整体执行过程更快。默认值为1。
 
 **代码示例**
 

@@ -7,7 +7,7 @@ Beta
 
 
 在概率论中，Beta分布是指一组定义在 [0,1] 区间的连续概率分布，有两个参数 
-:math:`\alpha,\beta>0`, 是狄利克雷(:ref:`cn_api_paddle_distribution_Dirichlet`)
+:math:`\alpha,\beta>0`，是狄利克雷(:ref:`cn_api_paddle_distribution_Dirichlet`)
 分布的一元形式。
 
 其概率密度函数（pdf）为：
@@ -26,7 +26,7 @@ Beta
 :::::::::
 
 - **alpha** (float|Tensor) - 即上述公式中 :math:`\alpha` 参数，大于零，支持Broadcast
-  语义。当参数类型为Tensor时，表示批量创建多个不同参数的分布， ``batch_shape`` (参考 :ref:`cn_api_distribution_Distribution` 基类) 为参数
+  语义。当参数类型为Tensor时，表示批量创建多个不同参数的分布，``batch_shape`` (参考 :ref:`cn_api_distribution_Distribution` 基类) 为参数
   Broadcast后的形状。
 - **beta** (float|Tensor） - 即上述公式中 :math:`\beta` 参数，大于零，支持Broadcast语
   义。当参数类型为Tensor时，表示批量创建多个不同参数的分布，``batch_shape`` (参考 :ref:`cn_api_distribution_Distribution` 基类) 为参数Broadcast
@@ -87,7 +87,7 @@ sample()
 
 **参数**
 
-- **shape** (Sequence[int], 可选)：采样次数。最终生成样本形状为 ``shape+batch_shape`` .
+- **shape** (Sequence[int]，可选)：采样次数。最终生成样本形状为 ``shape+batch_shape``。
 
 **返回**
 

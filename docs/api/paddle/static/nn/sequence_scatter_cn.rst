@@ -45,9 +45,9 @@ output[i][j]的值取决于能否在index中第i+1个区间中找到对应的数
 
 参数
 :::::::::
-      - **input** (Tensor) - 维度为 :math:`[N, k_1 ... k_n]` 的Tensor， 支持的数据类型：float32，float64，int32，int64。
+      - **input** (Tensor) - 维度为 :math:`[N, k_1。.. k_n]` 的Tensor，支持的数据类型：float32，float64，int32，int64。
       - **index** (Tensor) - 包含index信息的LoDTensor，lod level必须等于1，支持的数据类型：int32，int64。
-      - **updates** (Tensor) - 包含updates信息的LoDTensor，lod level和index一致，数据类型与input的数据类型一致。支持的数据类型：float32，float64，int32，int64。 
+      - **updates** (Tensor) - 包含updates信息的LoDTensor，lod level和index一致，数据类型与input的数据类型一致。支持的数据类型：float32，float64，int32，int64。
       - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 
 返回

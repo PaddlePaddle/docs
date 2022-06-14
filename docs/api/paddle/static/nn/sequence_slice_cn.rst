@@ -9,11 +9,11 @@ sequence_slice
 
 **实现Sequence Slice(序列切片)运算**
 
-该层从给定序列中截取子序列。截取依据为所给的开始 ``offset`` （偏移量） 和子序列长 ``length`` 。
+该层从给定序列中截取子序列。截取依据为所给的开始 ``offset`` （偏移量） 和子序列长 ``length``。
 
 
 .. note::
-该API输入只能是LoDTensor, 如果您需要处理的是Tensor类型，请使用  :ref:`paddle.slice <cn_api_paddle_slice>` 。
+该API输入只能是LoDTensor，如果您需要处理的是Tensor类型，请使用  :ref:`paddle。slice <cn_api_paddle_slice>`。
 
 
 ::
@@ -35,7 +35,7 @@ sequence_slice
         out.lod = [[2, 1]],
         out.dims = (3, 2).
 
-.. 注意::
+.。注意::
    ``input`` ， ``offset`` ， ``length`` 的第一维大小应相同。
    ``offset`` 从0开始。
 

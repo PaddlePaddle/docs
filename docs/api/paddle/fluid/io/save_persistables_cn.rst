@@ -16,10 +16,10 @@ save_persistables
 参数
 ::::::::::::
 
- - **executor**  (Executor) – 用于保存持久性变量的 ``executor`` ，详见 :ref:`api_guide_executor` 。
+ - **executor**  (Executor) – 用于保存持久性变量的 ``executor`` ，详见 :ref:`api_guide_executor`。
  - **dirname**  (str) – 用于储存持久性变量的文件目录。
- - **main_program**  (Program，可选) – 需要保存持久性变量的Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program 。默认值为None。
- - **filename**  (str，可选) – 保存持久性变量的文件名称。若想分开保存变量，设置 ``filename=None`` 。 默认值为None。
+ - **main_program**  (Program，可选) – 需要保存持久性变量的Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program。默认值为None。
+ - **filename**  (str，可选) – 保存持久性变量的文件名称。若想分开保存变量，设置 ``filename=None``。默认值为None。
  
 返回
 ::::::::::::
@@ -45,7 +45,7 @@ save_persistables
     exe = fluid.Executor(fluid.CPUPlace())
     exe.run(fluid.default_startup_program())
     fluid.io.save_persistables(executor=exe, dirname=dir_path, filename=file_name)
-    # 网络中fc层中的持久性变量weight和bia将会保存在路径“./my_paddle_model”下名为"persistables"的文件中。
+    # 网络中fc层中的持久性变量weight和bia将会保存在路径“。/my_paddle_model”下名为"persistables"的文件中。
     
 
 

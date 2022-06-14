@@ -14,7 +14,7 @@ instance_norm
 
 NCHW[batch,in_channels,in_height,in_width]
 
-更多详情请参考 : `Instance Normalization: The Missing Ingredient for Fast Stylization <https://arxiv.org/pdf/1607.08022.pdf>`_
+更多详情请参考 : `Instance Normalization: The Missing Ingredient for Fast Stylization <https://arxiv。org/pdf/1607.08022.pdf>`_
 
 ``input`` 是mini-batch的输入。
 
@@ -30,8 +30,8 @@ NCHW[batch,in_channels,in_height,in_width]
 
     - **input** (Tensor) - instance_norm算子的输入特征，是一个Tensor，输入的维度可以为 2, 3, 4, 5。数据类型：float32和float64。
     - **epsilon** （float，默认1e-05）-为了当前输入做标准化时得到稳定的结果而加在的分母上的扰动值。默认值为1e-5。
-    - **param_attr** （ParamAttr|None） - instance_norm 权重参数的属性，可以设置为None或者一个ParamAttr的类（ParamAttr中可以指定参数的各种属性）。 如果设为None，则默认的参数初始化为1.0。如果在ParamAttr指定了属性时, instance_norm创建相应属性的param_attr（权重）参数。默认：None。
-    - **bias_attr** （ParamAttr|None） - instance_norm 偏置参数的属性，可以设置为None或者一个ParamAttr的类（ParamAttr中可以指定参数的各种属性）。如果设为None，默认的参数初始化为0.0。如果在ParamAttr指定了参数的属性时, instance_norm创建相应属性的bias_attr（偏置）参数。默认：None。
+    - **param_attr** （ParamAttr|None） - instance_norm 权重参数的属性，可以设置为None或者一个ParamAttr的类（ParamAttr中可以指定参数的各种属性）。如果设为None，则默认的参数初始化为1。0。如果在ParamAttr指定了属性时，instance_norm创建相应属性的param_attr（权重）参数。默认：None。
+    - **bias_attr** （ParamAttr|None） - instance_norm 偏置参数的属性，可以设置为None或者一个ParamAttr的类（ParamAttr中可以指定参数的各种属性）。如果设为None，默认的参数初始化为0。0。如果在ParamAttr指定了参数的属性时，instance_norm创建相应属性的bias_attr（偏置）参数。默认：None。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

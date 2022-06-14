@@ -18,7 +18,7 @@ While
 
 **注意：**
     在 ``While`` 中创建的局部变量类似于C++中的while，无法被外部引用，因此无法通过 ``Executor`` 中的 ``fetch_list`` 来获取。
-    若想实现该功能，PaddlePaddle提供了 ``assign`` 接口将局部变量赋值到外部，请参考示例代码2 或参考 `issue#22724 <https://github.com/PaddlePaddle/Paddle/issues/22724>`_ 。
+    若想实现该功能，PaddlePaddle提供了 ``assign`` 接口将局部变量赋值到外部，请参考示例代码2 或参考 `issue#22724 <https://github。com/PaddlePaddle/Paddle/issues/22724>`_。
 
 参数
 ::::::::::::
@@ -71,7 +71,7 @@ While
     while_op = fluid.layers.While(cond=cond)
     with while_op.block():
         sums_tensor = fluid.layers.elementwise_add(x=data, y=data)
-        fluid.layers.assign(input=sums_tensor, output=sums)  # 将 While 内定义的变量 sums_tenosr 通过 layers.assign 更新至 While 外的变量 sums 中
+        fluid.layers.assign(input=sums_tensor, output=sums)  # 将 While 内定义的变量 sums_tenosr 通过 layers。assign 更新至 While 外的变量 sums 中
         i = fluid.layers.increment(x=i, value=1, in_place=True)
         data = fluid.layers.elementwise_add(x=data, y=one)
         fluid.layers.less_than(x=i, y=loop_len, cond=cond)
@@ -80,7 +80,7 @@ While
     exe = fluid.Executor(fluid.CPUPlace())
     exe.run(fluid.default_startup_program())
     res = exe.run(fluid.default_main_program(), feed={'data': feed_data}, fetch_list=sums)
-    print(res[0])  # [2.]    # 因 While 内的 data 没有将值更新到 While 外，故循环过后此处 sums 的值为 [2.]
+    print(res[0])  # [2.]    # 因 While 内的 data 没有将值更新到 While 外，故循环过后此处 sums 的值为 [2。]
 
 
 

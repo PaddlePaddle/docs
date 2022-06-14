@@ -10,7 +10,7 @@ isclose
 ..  math::
     \left| x - y \right| \leq atol + rtol \times \left| y \right|
 
-该API的行为类似于 :math:`numpy.isclose` ，即逐个比较两个Tensor的所有元素是否在一定容忍误差范围内视为相等。
+该API的行为类似于 :math:`numpy。isclose` ，即逐个比较两个Tensor的所有元素是否在一定容忍误差范围内视为相等。
 
 参数
 :::::::::

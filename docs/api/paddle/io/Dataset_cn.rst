@@ -11,9 +11,9 @@ Dataset
 
 ``__getitem__``: 根据给定索引获取数据集中指定样本，在 ``paddle.io.DataLoader`` 中需要使用此函数通过下标获取样本。
 
-``__len__``: 返回数据集样本个数， ``paddle.io.BatchSampler`` 中需要样本个数生成下标序列。
+``__len__``: 返回数据集样本个数，``paddle.io.BatchSampler`` 中需要样本个数生成下标序列。
 
-见 ``paddle.io.DataLoader`` 。
+见 ``paddle.io.DataLoader``。
 
 代码示例
 ::::::::::::

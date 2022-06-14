@@ -8,7 +8,7 @@ sequence_reverse
 
 
 
-**注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用reverse函数（fluid.layers.** :ref:`cn_api_fluid_layers_reverse` **）。**
+**注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用reverse函数（fluid。layers.** :ref:`cn_api_fluid_layers_reverse` **）。**
 
 **该OP仅支持LoDTensor** ，对于输入的LoDTensor，在每个序列（sequence）上进行反转。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。该OP在构建反向 :ref:`cn_api_fluid_layers_DynamicRNN` 网络时十分有用。
 

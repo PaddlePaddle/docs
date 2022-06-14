@@ -11,7 +11,7 @@ logical_xor
         Out = (X || Y) \&\& !(X \&\& Y)
 
 .. note::
-    ``paddle.logical_xor`` 遵守broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+    ``paddle.logical_xor`` 遵守broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
 
 参数
 ::::::::::::
@@ -23,7 +23,7 @@ logical_xor
 
 返回
 ::::::::::::
- ``Tensor`` ， 维度``x`` 维度相同，存储运算后的结果。
+ ``Tensor`` ，维度``x`` 维度相同，存储运算后的结果。
 
 代码示例
 ::::::::::::

@@ -14,7 +14,7 @@ IterableDataset
 .. note::
     迭代式数据集不需要实现 ``__getitem__`` 和 ``__len__``，也不可以调用迭代式数据集的这两个方法。
 
-见 ``paddle.io.DataLoader`` 。
+见 ``paddle.io.DataLoader``。
 
 代码示例 1
 ::::::::::::

@@ -14,7 +14,7 @@ kL发散损失计算如下：
     l(input, label) = label * (log(label) - input)
 
 
-当 ``reduction``  为 ``none`` 时，输出损失与输入（x）形状相同，各点的损失单独计算，不会对结果做reduction 。
+当 ``reduction``  为 ``none`` 时，输出损失与输入（x）形状相同，各点的损失单独计算，不会对结果做reduction。
 
 当 ``reduction``  为 ``mean`` 时，输出损失为[1]的形状，输出为所有损失的平均值。
 

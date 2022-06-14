@@ -9,7 +9,7 @@ LRScheduler
 
 目前在paddle中基于该基类，已经实现了14种策略，分别为：
 
-* :code:`NoamDecay`: 诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_ 。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`。
+* :code:`NoamDecay`: 诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv。org/pdf/1706.03762.pdf>`_。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`。
 
 * :code:`ExponentialDecay`: 指数衰减，即每次将当前学习率乘以给定的衰减率得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_ExponentialDecay`。
 
@@ -39,7 +39,7 @@ LRScheduler
 
 * :code:`CyclicLR`: Cyclic学习率衰减，其将学习率变化的过程视为一个又一个循环，学习率根据固定的频率在最小和最大学习率之间不停变化。请参考 :ref:`cn_api_paddle_optimizer_lr_CyclicLR`。
 
-你可以继承该基类实现任意的学习率策略，导出基类的方法为 ``form paddle.optimizer.lr import LRScheduler`` ，
+你可以继承该基类实现任意的学习率策略，导出基类的方法为 ``form paddle。optimizer.lr import LRScheduler`` ，
 必须要重写该基类的 ``get_lr()`` 函数，否则会抛出 ``NotImplementedError`` 异常。
 
 参数
@@ -47,7 +47,7 @@ LRScheduler
 
     - **learning_rate** (float，可选) - 初始学习率，数据类型为Python float。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
-    - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+    - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False``。
 
 返回
 ::::::::::::
@@ -90,7 +90,7 @@ LRScheduler
 step(epoch=None)
 '''''''''
 
-step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
+step函数需要在优化器的 `optimizer。step()` 函数之后调用，调用之后将会根据epoch数来更新学习率，更新之后的学习率将会在优化器下一轮更新参数时使用。
 
 **参数**
 

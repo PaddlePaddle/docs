@@ -22,13 +22,13 @@ BiRNN
 ::::::::::::
 
     - **inputs** (Tensor) - 输入。如果time_major为False，则Tensor的形状为[batch_size,time_steps,input_size]，如果time_major为True，则Tensor的形状为[time_steps,batch_size,input_size]，input_size为cell的input_size。
-    - **initial_states** (list|tuple，可选) - 输入前向和后向cell的初始状态，如果没有给出则会调用 :code:`cell.get_initial_states` 生成初始状态。默认为None。
+    - **initial_states** (list|tuple，可选) - 输入前向和后向cell的初始状态，如果没有给出则会调用 :code:`cell。get_initial_states` 生成初始状态。默认为None。
     - **sequence_length** (Tensor，可选) - 指定输入序列的长度，形状为[batch_size]，数据类型为int64或int32。在输入序列中所有time step不小于sequence_length的元素都会被当作填充元素处理（状态不再更新）。
 
 输出
 ::::::::::::
 
-    - **outputs** (Tensor) - 输出，由前向和后向cell的输出拼接得到。如果time_major为False，则Tensor的形状为[batch_size,time_steps,cell_fw.hidden_size + cell_bw.hidden_size]，如果time_major为True，则Tensor的形状为[time_steps,batch_size,cell_fw.hidden_size + cell_bw.hidden_size]。
+    - **outputs** (Tensor) - 输出，由前向和后向cell的输出拼接得到。如果time_major为False，则Tensor的形状为[batch_size,time_steps,cell_fw。hidden_size + cell_bw.hidden_size]，如果time_major为True，则Tensor的形状为[time_steps,batch_size,cell_fw。hidden_size + cell_bw.hidden_size]。
     - **final_states** (tuple) - 前向和后向cell的最终状态。
     
 .. Note::

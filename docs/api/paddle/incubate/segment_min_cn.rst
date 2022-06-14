@@ -15,7 +15,7 @@ segment_min
 
     out_i = \min_{j \in \{segment\_ids_j == i \} } data_{j}
 
-其中求最小值的索引 ``j`` ，是符合 ``segment_ids[j] == i`` 的所有 ``j`` 。
+其中求最小值的索引 ``j`` ，是符合 ``segment_ids[j] == i`` 的所有 ``j``。
 
 
 参数

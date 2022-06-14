@@ -5,7 +5,7 @@ is_tensor
 .. py:function:: paddle.is_tensor(x)
 
 
-测试输入对象是否是 `paddle.Tensor`
+测试输入对象是否是 `paddle。Tensor`
 
 参数
 ::::::::::::
@@ -15,7 +15,7 @@ is_tensor
 
 返回
 ::::::::::::
-bool 值，如果 x 是 `paddle.Tensor` 类型返回 True，反之返回 False。
+bool 值，如果 x 是 `paddle。Tensor` 类型返回 True，反之返回 False。
 
 代码示例
 ::::::::::::

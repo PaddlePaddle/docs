@@ -15,7 +15,7 @@ vflip
 返回
 :::::::::
 
-    ``PIL.Image 或 numpy.ndarray``，翻转后的图像数据。
+    ``PIL.Image 或 numpy。ndarray``，翻转后的图像数据。
 
 代码示例
 :::::::::

@@ -5,7 +5,7 @@ hardsigmoid
 
 .. py:function:: paddle.nn.functional.hardsigmoid(x, slope=0.1666667, offset=0.5, name=None)
 
-hardsigmoid激活层。sigmoid的分段线性逼近激活函数，速度比sigmoid快，详细解释参见 https://arxiv.org/abs/1603.00391。
+hardsigmoid激活层。sigmoid的分段线性逼近激活函数，速度比sigmoid快，详细解释参见 https://arxiv。org/abs/1603.00391。
 
 .. math::
 
@@ -25,8 +25,8 @@ hardsigmoid激活层。sigmoid的分段线性逼近激活函数，速度比sigmo
 
 ::::::::::
     - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
-    - slope (float, 可选) - hardsigmoid的斜率。默认值为0.1666667。
-    - offset (float, 可选) - hardsigmoid的截距。默认值为0.5。
+    - slope (float，可选) - hardsigmoid的斜率。默认值为0。1666667。
+    - offset (float，可选) - hardsigmoid的截距。默认值为0。5。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

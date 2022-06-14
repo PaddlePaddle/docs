@@ -15,11 +15,11 @@ Executor支持单GPU、多GPU以及CPU运行。
 参数
 ::::::::::::
 
-    - **place** (paddle.CPUPlace()|paddle.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本设置默认的运行设备。当安装的Paddle为CPU版时，默认运行设置会设置成 `CPUPlace()` ，而当Paddle为GPU版时，默认运行设备会设置成 `CUDAPlace(0)` 。默认值为None。
+    - **place** (paddle.CPUPlace()|paddle.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本设置默认的运行设备。当安装的Paddle为CPU版时，默认运行设置会设置成 `CPUPlace()` ，而当Paddle为GPU版时，默认运行设备会设置成 `CUDAPlace(0)`。默认值为None。
     
 
 .. note::
-多卡训练初始化Executor时也只用传入一个Place或None，其他API会处理使用的多卡，见 `多卡使用方式 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/update_cn.html#danjiduokaqidong>`_ 
+多卡训练初始化Executor时也只用传入一个Place或None，其他API会处理使用的多卡，见 `多卡使用方式 <https://www。paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/update_cn.html#danjiduokaqidong>`_ 
   
 返回
 ::::::::::::
@@ -107,20 +107,20 @@ close()
 run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True, use_program_cache=False, return_merged=True, use_prune=False)
 '''''''''
 
-执行指定的Program或者CompiledProgram。需要注意的是，执行器会执行Program或CompiledProgram中的所有算子，而不会根据fetch_list对Program或CompiledProgram中的算子进行裁剪。同时，需要传入运行该模型用到的scope，如果没有指定scope，执行器将使用全局scope，即paddle.static.global_scope()。
+执行指定的Program或者CompiledProgram。需要注意的是，执行器会执行Program或CompiledProgram中的所有算子，而不会根据fetch_list对Program或CompiledProgram中的算子进行裁剪。同时，需要传入运行该模型用到的scope，如果没有指定scope，执行器将使用全局scope，即paddle。static.global_scope()。
 
 **参数**
   
-  - **program** (Program|CompiledProgram) – 该参数为被执行的Program或CompiledProgram，如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为paddle.static.default_main_program()。默认为：None。
+  - **program** (Program|CompiledProgram) – 该参数为被执行的Program或CompiledProgram，如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为paddle。static.default_main_program()。默认为：None。
   - **feed** (list|dict) – 该参数表示模型的输入变量。如果是单卡训练，``feed`` 为 ``dict`` 类型，如果是多卡训练，参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量，如果该参数类型为 ``dict`` ，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU），即输入数据被均匀分配到不同设备上；如果该参数类型为 ``list`` ，则列表中的各个元素都会直接分别被拷贝到各设备中。默认为：None。
   - **fetch_list** (list) – 该参数表示模型运行之后需要返回的变量。默认为：None。
   - **feed_var_name** (str) – 该参数表示数据输入算子(feed operator)的输入变量名称。默认为："feed"。
   - **fetch_var_name** (str) – 该参数表示结果获取算子(fetch operator)的输出变量名称。默认为："fetch"。
-  - **scope** (Scope) – 该参数表示执行当前program所使用的作用域，用户可以为不同的program指定不同的作用域。默认值：paddle.static.global_scope()。
-  - **return_numpy** (bool) – 该参数表示是否将返回的计算结果（fetch list中指定的变量）转化为numpy；如果为False，则每个变量返回的类型为LoDTensor，否则返回变量的类型为numpy.ndarray。默认为：True。
+  - **scope** (Scope) – 该参数表示执行当前program所使用的作用域，用户可以为不同的program指定不同的作用域。默认值：paddle。static.global_scope()。
+  - **return_numpy** (bool) – 该参数表示是否将返回的计算结果（fetch list中指定的变量）转化为numpy；如果为False，则每个变量返回的类型为LoDTensor，否则返回变量的类型为numpy。ndarray。默认为：True。
   - **use_program_cache** (bool) – 该参数表示是否对输入的Program进行缓存。如果该参数为True，在以下情况时，模型运行速度可能会更快：输入的program为 ``paddle.static.Program`` ，并且模型运行过程中，调用该接口的参数（program、 feed变量名和fetch_list变量）名始终不变。默认为：False。
-  - **return_merged** (bool) – 该参数表示是否按照执行设备维度将返回的计算结果（fetch list中指定的变量）进行合并。如果 ``return_merged`` 设为False，返回值类型是一个Tensor的二维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy.ndarray的二维列表（ ``return_numpy`` 设为True时）。如果 ``return_merged`` 设为True，返回值类型是一个Tensor的一维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy.ndarray的一维列表（ ``return_numpy`` 设为True时）。更多细节请参考示例代码2。如果返回的计算结果是变长的，请设置 ``return_merged`` 为False，即不按照执行设备维度合并返回的计算结果。该参数的默认值为True，但这仅是为了兼容性考虑，在未来的版本中默认值可能会更改为False。
-  - **use_prune** (bool) - 该参数表示输入Program是否会被裁剪。如果该参数为True，会根据feed和fetch_list裁剪Program，这意味着对生成fetch_list没有必要的算子和变量会被裁剪掉。默认为False，即算子和变量在运行过程不会被裁剪。注意如果Optimizer.minimize()返回的tuple被作为fetch_list参数，那么use_prune会被重载为True并且Program会被裁剪。
+  - **return_merged** (bool) – 该参数表示是否按照执行设备维度将返回的计算结果（fetch list中指定的变量）进行合并。如果 ``return_merged`` 设为False，返回值类型是一个Tensor的二维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy。ndarray的二维列表（ ``return_numpy`` 设为True时）。如果 ``return_merged`` 设为True，返回值类型是一个Tensor的一维列表（ ``return_numpy`` 设为Fasle时）或者一个numpy。ndarray的一维列表（ ``return_numpy`` 设为True时）。更多细节请参考示例代码2。如果返回的计算结果是变长的，请设置 ``return_merged`` 为False，即不按照执行设备维度合并返回的计算结果。该参数的默认值为True，但这仅是为了兼容性考虑，在未来的版本中默认值可能会更改为False。
+  - **use_prune** (bool) - 该参数表示输入Program是否会被裁剪。如果该参数为True，会根据feed和fetch_list裁剪Program，这意味着对生成fetch_list没有必要的算子和变量会被裁剪掉。默认为False，即算子和变量在运行过程不会被裁剪。注意如果Optimizer。minimize()返回的tuple被作为fetch_list参数，那么use_prune会被重载为True并且Program会被裁剪。
 
 **返回**
 
@@ -231,14 +231,14 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
 infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 '''''''''
 
-infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在分布式训练中，推进梯度将在infer_from_dataset中禁用。 infer_from_dataset（）可以非常容易地用于多线程中的评估。
+infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在分布式训练中，推进梯度将在infer_from_dataset中禁用。infer_from_dataset（）可以非常容易地用于多线程中的评估。
 
 **参数**
   
-  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)。
+  - **program** (Program|CompiledProgram) – 需要执行的program，如果没有给定那么默认使用default_main_program (未编译的)。
   - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None。
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域。
-  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num, thread)，如果thread > 0，默认为0。
+  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset。thread_num, thread)，如果thread > 0，默认为0。
   - **debug** (bool) – 是否开启debug模式，默认为False。
   - **fetch_list** (Tensor List) – 返回变量列表，每个变量都会在预测过程中被打印出来，默认为None。
   - **fetch_info** (String List) – 每个变量的打印信息，默认为None。
@@ -255,14 +255,14 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
     import paddle
 
     paddle.enable_static()
-    place = paddle.CPUPlace() # 使用GPU时可设置place = paddle.CUDAPlace(0)
+    place = paddle.CPUPlace() # 使用GPU时可设置place = paddle。CUDAPlace(0)
     exe = paddle.static.Executor(place)
     x = paddle.static.data(name="x", shape=[None, 10, 10], dtype="int64")
     y = paddle.static.data(name="y", shape=[None, 1], dtype="int64", lod_level=1)
     dataset = paddle.fluid.DatasetFactory().create_dataset()
     dataset.set_use_var([x, y])
     dataset.set_thread(1)
-    # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
+    # 您可以设置您自己的filelist，如filelist = ["dataA。txt"]
     filelist = []
     dataset.set_filelist(filelist)
     exe.run(paddle.static.default_startup_program())
@@ -273,17 +273,17 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
 train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 '''''''''
 
-从预定义的数据集中训练。 数据集在paddle.fluid.dataset中定义。 给定程序（或编译程序），train_from_dataset将使用数据集中的所有数据样本。 输入范围可由用户给出。 默认情况下，范围是global_scope()。训练中的线程总数是thread。 训练中使用的线程数将是数据集中threadnum的最小值，同时也是此接口中线程的值。 可以设置debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。
+从预定义的数据集中训练。数据集在paddle。fluid.dataset中定义。给定程序（或编译程序），train_from_dataset将使用数据集中的所有数据样本。输入范围可由用户给出。默认情况下，范围是global_scope()。训练中的线程总数是thread。训练中使用的线程数将是数据集中threadnum的最小值，同时也是此接口中线程的值。可以设置debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。
 
 .. note::
 train_from_dataset将销毁每次运行在executor中创建的所有资源。
 
 **参数**
   
-  - **program** (Program|CompiledProgram) – 需要执行的program,如果没有给定那么默认使用default_main_program (未编译的)。
+  - **program** (Program|CompiledProgram) – 需要执行的program，如果没有给定那么默认使用default_main_program (未编译的)。
   - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None。
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域。
-  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset.thread_num, thread)，如果thread > 0，默认为0。
+  - **thread** (int) – 用户想要在这个函数中运行的线程数量。线程的实际数量为min(Dataset。thread_num, thread)，如果thread > 0，默认为0。
   - **debug** (bool) – 是否开启debug模式，默认为False。
   - **fetch_list** (Tensor List) – 返回变量列表，每个变量都会在训练过程中被打印出来，默认为None。
   - **fetch_info** (String List) – 每个变量的打印信息，默认为None。
@@ -300,14 +300,14 @@ train_from_dataset将销毁每次运行在executor中创建的所有资源。
     import paddle
 
     paddle.enable_static()
-    place = paddle.CPUPlace() # 使用GPU时可设置place = paddle.CUDAPlace(0)
+    place = paddle.CPUPlace() # 使用GPU时可设置place = paddle。CUDAPlace(0)
     exe = paddle.static.Executor(place)
     x = paddle.static.data(name="x", shape=[None, 10, 10], dtype="int64")
     y = paddle.static.data(name="y", shape=[None, 1], dtype="int64", lod_level=1)
     dataset = paddle.fluid.DatasetFactory().create_dataset()
     dataset.set_use_var([x, y])
     dataset.set_thread(1)
-    # 您可以设置您自己的filelist，如filelist = ["dataA.txt"]
+    # 您可以设置您自己的filelist，如filelist = ["dataA。txt"]
     filelist = []
     dataset.set_filelist(filelist)
     exe.run(paddle.static.default_startup_program())

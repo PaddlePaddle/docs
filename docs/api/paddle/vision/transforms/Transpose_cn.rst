@@ -6,13 +6,13 @@ Transpose
 .. py:class:: paddle.vision.transforms.Transpose(order=(2, 0, 1), keys=None)
 
 将输入的图像数据更改为目标格式。例如，大多数数据预处理是使用HWC格式的图片，而神经网络可能使用CHW模式输入张量。
-输出的图片是numpy.ndarray的实例。
+输出的图片是numpy。ndarray的实例。
 
 参数
 :::::::::
 
-    - order (list|tuple，可选) - 目标的维度顺序. Default: (2, 0, 1)。
-    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform``. 默认值: None。
+    - order (list|tuple，可选) - 目标的维度顺序。Default: (2, 0, 1)。
+    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform``。默认值: None。
 
 形状
 :::::::::

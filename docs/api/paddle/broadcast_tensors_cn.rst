@@ -9,7 +9,7 @@ broadcast_tensors
 输入应符合Broadcast规范
 
 .. note::
-    如想了解更多Broadcasting内容，请参见 :ref:`cn_user_guide_broadcasting` 。
+    如想了解更多Broadcasting内容，请参见 :ref:`cn_user_guide_broadcasting`。
 
 参数
 :::::::::

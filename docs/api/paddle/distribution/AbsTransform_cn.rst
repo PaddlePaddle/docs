@@ -5,14 +5,14 @@ AbsTransform
 
 .. py:class:: paddle.distribution.AbsTransform()
 
-取绝对值变换 :math:`y = |x|` .
+取绝对值变换 :math:`y = |x|`。
 
 ``AbsTransform`` 不是双射变换，其逆变换处理逻辑如下：
 
-* 当 :math:`y \in (0, +\infty )` , ``AbsTransform.inverse(y)`` 返回元组 ``(-y, y)`` .
-* 当 :math:`y=0` , ``AbsTransform.inverse(y)`` 返回 ``(0, 0)`` .
-* 当 :math:`y \in (-\infty, 0)` ,  为了避免对 ``Tensor`` 数据进行判断带来性能下降，
-  ``AbsTransform.inverse(y)`` 仍返回 ``(-y, y)`` , 注意这本质上是一个错误结果，仅仅出于
+* 当 :math:`y \in (0, +\infty )` , ``AbsTransform.inverse(y)`` 返回元组 ``(-y, y)``。
+* 当 :math:`y=0` , ``AbsTransform.inverse(y)`` 返回 ``(0, 0)``。
+* 当 :math:`y \in (-\infty, 0)` ，为了避免对 ``Tensor`` 数据进行判断带来性能下降，
+  ``AbsTransform.inverse(y)`` 仍返回 ``(-y, y)`` ，注意这本质上是一个错误结果，仅仅出于
   性能考虑。
 
 
@@ -57,7 +57,7 @@ forward_log_det_jacobian(x)
 
 计算正变换雅可比行列式绝对值的对数。
 
-如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` .
+如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError``。
 
 **参数**
 

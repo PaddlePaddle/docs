@@ -8,7 +8,7 @@ erf
 
 
 
-逐元素计算 Erf 激活函数。更多细节请参考 `Error function <https://en.wikipedia.org/wiki/Error_function>`_ 。
+逐元素计算 Erf 激活函数。更多细节请参考 `Error function <https://en。wikipedia.org/wiki/Error_function>`_。
 
 
 .. math::
@@ -23,7 +23,7 @@ erf
 返回
 ::::::::::::
 
-  - 多维 Tensor，数据类型为 float16、float32 或 float64， 和输入 x 的数据类型相同，形状和输入 x 相同。
+  - 多维 Tensor，数据类型为 float16、float32 或 float64，和输入 x 的数据类型相同，形状和输入 x 相同。
 
 
 代码示例

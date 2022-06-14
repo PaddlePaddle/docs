@@ -5,7 +5,7 @@ tile
 
 .. py:function:: paddle.tile(x, repeat_times, name=None)
 
-根据参数 ``repeat_times`` 对输入 ``x`` 的各维度进行复制。 平铺后，输出的第 ``i``  个维度的值等于 ``x.shape[i]*repeat_times[i]`` 。
+根据参数 ``repeat_times`` 对输入 ``x`` 的各维度进行复制。平铺后，输出的第 ``i``  个维度的值等于 ``x.shape[i]*repeat_times[i]``。
 
 ``x`` 的维数和 ``repeat_times`` 中的元素数量应小于等于6。
 
@@ -17,7 +17,7 @@ tile
 
 返回
 :::::::::
-``Tensor`` ，数据类型与 ``x`` 相同。返回值的第i维的大小等于 ``x[i] * repeat_times[i]`` 。
+``Tensor`` ，数据类型与 ``x`` 相同。返回值的第i维的大小等于 ``x[i] * repeat_times[i]``。
 
 代码示例
 :::::::::

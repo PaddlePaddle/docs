@@ -5,7 +5,7 @@ broadcast_to
 
 .. py:function:: paddle.broadcast_to(x, shape, name=None)
 
-根据 ``shape`` 指定的形状广播 ``x`` ，广播后， ``x`` 的形状和 ``shape`` 指定的形状一致。
+根据 ``shape`` 指定的形状广播 ``x`` ，广播后，``x`` 的形状和 ``shape`` 指定的形状一致。
 
 ``x`` 的维数和 ``shape`` 的元素数应小于等于6，并且 ``shape`` 中的元素数应该大于等于 ``x`` 的维数。扩展的维度的维度值应该为1。
 

@@ -6,9 +6,9 @@ Precision
 .. py:class:: paddle.metric.Precision()
 
 
-精确率Precision(也称为 positive predictive value,正预测值)是被预测为正样例中实际为正的比例。该类管理二分类任务的precision分数。
+精确率Precision(也称为 positive predictive value，正预测值)是被预测为正样例中实际为正的比例。该类管理二分类任务的precision分数。
 
-相关链接：https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers
+相关链接：https://en。wikipedia.org/wiki/Evaluation_of_binary_classifiers
 
 .. note::
 这个metric只能用来评估二分类。

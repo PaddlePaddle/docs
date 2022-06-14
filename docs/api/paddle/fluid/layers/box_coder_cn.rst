@@ -39,7 +39,7 @@ Bounding Box Coder
 其中tx，ty，tw，th分别表示目标框的中心坐标、宽度和高度。同样地，px，py，pw，ph表示先验框地中心坐标、宽度和高度。pxv，pyv，pwv，phv表示先验框变量，ox，oy，ow，oh表示编码/解码坐标、宽度和高度。
 
 
-在Box Decoding期间，支持两种broadcast模式。 假设目标框具有形状[N，M，4]，并且prior框的形状可以是[N，4]或[M，4]。 然后，prior框将沿指定的轴broadcast到目标框。
+在Box Decoding期间，支持两种broadcast模式。假设目标框具有形状[N，M，4]，并且prior框的形状可以是[N，4]或[M，4]。然后，prior框将沿指定的轴broadcast到目标框。
 
 
 参数

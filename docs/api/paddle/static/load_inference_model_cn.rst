@@ -15,7 +15,7 @@ load_inference_model
 ::::::::::::
 
   - **path_prefix** (str) – 模型的存储目录 + 模型名称（不包含后缀）。如果是 None，表示从内存加载模型。
-  - **executor** (Executor) – 运行模型的 ``executor`` ，详见 :ref:`api_guide_executor` 。
+  - **executor** (Executor) – 运行模型的 ``executor`` ，详见 :ref:`api_guide_executor`。
   - **kwargs** - 支持的 key 包括 'model_filename', 'params_filename'。(注意：kwargs 主要是用来做反向兼容的)。
 
       - **model_filename** (str) - 自定义 model_filename。
@@ -63,8 +63,8 @@ load_inference_model
                   feed={feed_target_names[0]: tensor_img},
                   fetch_list=fetch_targets)
 
-    # 在上述示例中，inference program 被保存在 "./infer_model.pdmodel" 文件中，
-    # 参数被保存在 "./infer_model.pdiparams" 文件中。
-    # 加载 inference program 后， executor可使用 fetch_targets 和 feed_target_names，
+    # 在上述示例中，inference program 被保存在 "。/infer_model.pdmodel" 文件中，
+    # 参数被保存在 "。/infer_model.pdiparams" 文件中。
+    # 加载 inference program 后，executor可使用 fetch_targets 和 feed_target_names，
     # 执行Program，并得到预测结果。
 

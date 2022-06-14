@@ -5,7 +5,7 @@ isinf
 
 .. py:function:: paddle.isinf(x, name=None)
 
-返回输入tensor的每一个值是否为 `+/-INF` 。
+返回输入tensor的每一个值是否为 `+/-INF`。
 
 参数
 :::::::::
@@ -14,7 +14,7 @@ isinf
 
 返回
 :::::::::
-``Tensor``, 每个元素是一个bool值，表示输入 `x` 的每个元素是否为 `+/-INF` 。
+``Tensor``，每个元素是一个bool值，表示输入 `x` 的每个元素是否为 `+/-INF`。
 
 代码示例
 :::::::::

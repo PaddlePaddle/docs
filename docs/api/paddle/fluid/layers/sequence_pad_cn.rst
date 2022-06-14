@@ -9,7 +9,7 @@ sequence_pad
 
 
 
-序列填充操作符（Sequence Pad Operator）,该OP将同一batch中的序列填充到一个一致的长度（由 ``maxlen`` 指定）。填充的新元素的值具体由输入 ``pad_value`` 指定，并会添加到每一个序列的末尾，使得他们最终的长度保持一致。最后返回一个Python tuple ``(Out, Length)`` ，其中LodTensor ``Out`` 为填充后的序列，LodTensor ``Length`` 为填充前的原序列长度信息。
+序列填充操作符（Sequence Pad Operator），该OP将同一batch中的序列填充到一个一致的长度（由 ``maxlen`` 指定）。填充的新元素的值具体由输入 ``pad_value`` 指定，并会添加到每一个序列的末尾，使得他们最终的长度保持一致。最后返回一个Python tuple ``(Out, Length)`` ，其中LodTensor ``Out`` 为填充后的序列，LodTensor ``Length`` 为填充前的原序列长度信息。
 
 注意，该OP的输入 ``x`` 只能是LodTensor。
 

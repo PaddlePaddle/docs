@@ -49,7 +49,7 @@ forward_log_det_jacobian(x)
 
 计算正变换雅可比行列式绝对值的对数。
 
-如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` .
+如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError``。
 
 **参数**
 

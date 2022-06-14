@@ -10,7 +10,7 @@ zeropad2d
 ::::::::::
     - **x** (Tensor) - Tensor，format可以为 ``'NCHW'``, ``'NHWC'`` ，默认值为 ``'NCHW'``，数据类型支持float16, float32, float64, int32, int64。
     - **padding** (Tensor | List[int] | Tuple[int]) - 填充大小。pad的格式为[pad_left, pad_right, pad_top, pad_bottom]；
-    - **data_format** (str)  - 指定 ``x`` 的format，可为 ``'NCHW'``, ``'NHWC'``, 默认值为 ``'NCHW'``。
+    - **data_format** (str)  - 指定 ``x`` 的format，可为 ``'NCHW'``, ``'NHWC'``，默认值为 ``'NCHW'``。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

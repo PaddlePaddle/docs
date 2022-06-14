@@ -19,7 +19,7 @@ set_code_level
 ::::::::::::
 
   - **level** (int) - 打印的代码级别。默认值为100，这意味着打印的是所有 AST Transformer 转化后的代码。
-  - **also_to_stdout** (bool) - 表示是否也将代码输出到 ``sys.stdout``。默认值 False，表示仅输出到 ``sys.stderr``。
+  - **also_to_stdout** (bool) - 表示是否也将代码输出到 ``sys.stdout``.默认值 False，表示仅输出到 ``sys.stderr``。
 
 
 代码示例

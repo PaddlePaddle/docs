@@ -14,13 +14,13 @@ glu
     GLU(a,b) = a \bigotimes \sigma (b)
 
 
-参考论文: `Language Modeling with Gated Convolutional Networks <https://arxiv.org/pdf/1612.08083.pdf>`_
+参考论文: `Language Modeling with Gated Convolutional Networks <https://arxiv。org/pdf/1612.08083.pdf>`_
 
 参数
 ::::::::::::
 
-    - **input** (Variable) - 输入变量，多维 Tensor 或 LoDTensor, 支持的数据类型为float32、float64 和 float16（GPU）。
-    - **dim** (int) - 拆分的维度。如果 :math:`dim<0` ，拆分的维为 :math:`rank(input) + dim` 。默认为 -1，即最后一维。
+    - **input** (Variable) - 输入变量，多维 Tensor 或 LoDTensor，支持的数据类型为float32、float64 和 float16（GPU）。
+    - **dim** (int) - 拆分的维度。如果 :math:`dim<0` ，拆分的维为 :math:`rank(input) + dim`。默认为 -1，即最后一维。
 
 返回
 ::::::::::::

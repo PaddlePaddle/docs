@@ -9,7 +9,7 @@ ParallelExecutor
 
 
 
-``ParallelExecutor`` 是 ``Executor`` 的一个升级版本，可以支持基于数据并行的多节点模型训练和测试。如果采用数据并行模式， ``ParallelExecutor`` 在构造时会将参数分发到不同的节点上，并将输入的 ``Program`` 拷贝到不同的节点，在执行过程中，各个节点独立运行模型，将模型反向计算得到的参数梯度在多个节点之间进行聚合，之后各个节点独立的进行参数的更新。
+``ParallelExecutor`` 是 ``Executor`` 的一个升级版本，可以支持基于数据并行的多节点模型训练和测试。如果采用数据并行模式，``ParallelExecutor`` 在构造时会将参数分发到不同的节点上，并将输入的 ``Program`` 拷贝到不同的节点，在执行过程中，各个节点独立运行模型，将模型反向计算得到的参数梯度在多个节点之间进行聚合，之后各个节点独立的进行参数的更新。
 
 - 如果使用GPU运行模型，即 ``use_cuda=True`` ，节点指代GPU， ``ParallelExecutor`` 将自动获取在当前机器上可用的GPU资源，用户也可以通过在环境变量设置可用的GPU资源，例如：希望使用GPU0、GPU1计算，export CUDA_VISIBLEDEVICES=0,1；
 - 如果在CPU上进行操作，即 ``use_cuda=False`` ，节点指代CPU，**注意：此时需要用户在环境变量中手动添加 CPU_NUM ，并将该值设置为CPU设备的个数，例如：export CPU_NUM=4，如果没有设置该环境变量，执行器会在环境变量中添加该变量，并将其值设为1**。
@@ -19,15 +19,15 @@ ParallelExecutor
 
     - **use_cuda** (bool) – 该参数表示是否使用GPU执行。
     - **loss_name** （str） - 该参数为模型最后得到的损失变量的名字。**注意：如果是数据并行模型训练，必须设置loss_name，否则计算结果可能会有问题。** 默认为：None。
-    - **main_program** (Program) – 需要被执行的Program 。如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为paddle.static.default_main_program()。 默认为：None。
+    - **main_program** (Program) – 需要被执行的Program。如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为paddle。static.default_main_program()。默认为：None。
     - **share_vars_from** (ParallelExecutor) - 如果设置了share_vars_from，当前的ParallelExecutor将与share_vars_from指定的ParallelExecutor共享参数值。
     需要设置该参数的情况：模型训练过程中需要进行模型测试，并且训练和测试都是采用数据并行模式，那么测试对应的ParallelExecutor在调用with_data_parallel时，需要将share_vars_from设置为训练所对应的ParallelExecutor。
     由于ParallelExecutor只有在第一次执行时才会将参数变量分发到其他设备上，因此share_vars_from指定的ParallelExecutor必须在当前ParallelExecutor之前运行。默认为：None。
-    - **exec_strategy** (ExecutionStrategy) -  通过exec_strategy指定执行计算图过程可以调整的选项，例如线程池大小等。 关于exec_strategy更多信息，请参阅 ``paddle.static.ExecutionStrategy`` 。 默认为：None。
-    - **build_strategy** (BuildStrategy): 通过配置build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于build_strategy更多的信息，请参阅  ``paddle.static.BuildStrategy`` 。 默认为：None。
+    - **exec_strategy** (ExecutionStrategy) -  通过exec_strategy指定执行计算图过程可以调整的选项，例如线程池大小等。关于exec_strategy更多信息，请参阅 ``paddle.static.ExecutionStrategy``。默认为：None。
+    - **build_strategy** (BuildStrategy): 通过配置build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于build_strategy更多的信息，请参阅  ``paddle.static.BuildStrategy``。默认为：None。
     - **num_trainers** (int) – 进行GPU分布式训练时需要设置该参数。如果该参数值大于1，NCCL将会通过多层级节点的方式来初始化。每个节点应有相同的GPU数目。默认为：1。
     - **trainer_id** (int) –  进行GPU分布式训练时需要设置该参数。该参数必须与num_trainers参数同时使用。trainer_id指明是当前所在节点的 “rank”（层级）。trainer_id从0开始计数。默认为：0。
-    - **scope** (Scope) – 指定执行Program所在的作用域。默认为：paddle.static.global_scope()。
+    - **scope** (Scope) – 指定执行Program所在的作用域。默认为：paddle。static.global_scope()。
 
 返回
 ::::::::::::
@@ -151,7 +151,7 @@ run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
     # 第一个设备处理形为 (10, 1) 的图像
     # 第二个设备处理形为 (9, 1) 的图像
     #
-    # 使用 exe.device_count 得到设备数目
+    # 使用 exe。device_count 得到设备数目
     x2 = numpy.random.random(size=(9, 1)).astype('float32')
     loss_data, = train_exe.run(feed=[{"X": x}, {"X": x2}],
                                fetch_list=[loss.name])

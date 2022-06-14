@@ -19,7 +19,7 @@ set_verbosity
 ::::::::::::
 
     - **level** (int) - 日志详细级别。值越大，表示越详细。默认值为0，表示不显示日志。
-    - **also_to_stdout** (bool) - 表示是否也将日志信息输出到 ``sys.stdout``。默认值 False，表示仅输出到 ``sys.stderr``。
+    - **also_to_stdout** (bool) - 表示是否也将日志信息输出到 ``sys.stdout``.默认值 False，表示仅输出到 ``sys.stderr``。
 
 代码示例
 ::::::::::::

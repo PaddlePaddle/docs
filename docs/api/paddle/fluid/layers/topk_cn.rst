@@ -45,7 +45,7 @@ topk
 返回
 ::::::::::::
 
-    - ``values``: 输入Tensor最后维切片的最大前k项。数据类型同输入Tensor一致。Tensor维度等于 :math:`input.shape[:-1]+ [k]` 。
+    - ``values``: 输入Tensor最后维切片的最大前k项。数据类型同输入Tensor一致。Tensor维度等于 :math:`input。shape[:-1]+ [k]`。
 
     - ``indices``: 输入Tensor最后维切片最大前k项值的索引，数据类型为int64，维度同values的维度。
 
@@ -70,7 +70,7 @@ topk
 
     # k=Variable
     input2 = layers.data(name="input2", shape=[13, 11], dtype='float32')
-    vk = layers.data(name="vk", shape=[1], dtype='int32') # 把k值保存在vk.data[0]中
+    vk = layers.data(name="vk", shape=[1], dtype='int32') # 把k值保存在vk。data[0]中
     vk_values, vk_indices = layers.topk(input2, k=vk) #vk_values.shape=[13, k]，vk_indices.shape=[13, k]
 
 

@@ -22,7 +22,7 @@ BatchSampler
     - **batch_size** (int) - 每mini-batch中包含的样本数。默认值为1。
     - **drop_last** (bool) - 是否需要丢弃最后无法凑整一个mini-batch的样本。默认值为False。
 
-见 ``paddle.io.DataLoader`` 。
+见 ``paddle.io.DataLoader``。
 
 返回
 ::::::::::::

@@ -81,11 +81,11 @@ pool2d
 ::::::::::::
 
     - **input** (Variable) - 形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float32或float64。
-    - **pool_size** (int|list|tuple)  - 池化核的大小。如果它是一个元组或列表，那么它包含两个整数值：(pool_size_Height, pool_size_Width)。若为一个整数，则表示H和W维度上均为该值，比如若pool_size=2, 则池化核大小为[2,2]。
+    - **pool_size** (int|list|tuple)  - 池化核的大小。如果它是一个元组或列表，那么它包含两个整数值：(pool_size_Height, pool_size_Width)。若为一个整数，则表示H和W维度上均为该值，比如若pool_size=2，则池化核大小为[2,2]。
     - **pool_type** (str) - 池化类型，可以为"max"或"avg"，"max"对应max-pooling，"avg"对应average-pooling。默认值："max"。
-    - **pool_stride** (int|list|tuple)  - 池化层的步长。如果它是一个元组或列表，它将包含两个整数：(pool_stride_Height, pool_stride_Width)。若为一个整数，则表示H和W维度上均为该值，比如若pool_stride=3, 则池化层步长为[3,3]。默认值：1。
+    - **pool_stride** (int|list|tuple)  - 池化层的步长。如果它是一个元组或列表，它将包含两个整数：(pool_stride_Height, pool_stride_Width)。若为一个整数，则表示H和W维度上均为该值，比如若pool_stride=3，则池化层步长为[3,3]。默认值：1。
     - **pool_padding** (int|list|tuple|str) - 池化填充。如果它是一个字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考上述 ``pool_padding`` = "SAME"或  ``pool_padding`` = "VALID" 时的计算公式。如果它是一个元组或列表，它可以有3种格式：(1)包含2个整数值：[pad_height, pad_width]；(2)包含4个整数值：[pad_height_top, pad_height_bottom, pad_width_left, pad_width_right]；(3)包含4个二元组：当 ``data_format`` 为"NCHW"时为 [[0,0], [0,0], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right]]，当 ``data_format`` 为"NHWC"时为[[0,0], [pad_height_top, pad_height_bottom], [pad_width_left, pad_width_right], [0,0]]。若为一个整数，则表示H和W维度上均为该值。默认值：0。
-    - **global_pooling** （bool）- 是否用全局池化。如果global_pooling = True， 已设置的 ``pool_size`` 和 ``pool_padding`` 会被忽略， ``pool_size`` 将被设置为 :math:`[H_{in}, W_{in}]` ， ``pool_padding`` 将被设置为0。默认值：False。
+    - **global_pooling** （bool）- 是否用全局池化。如果global_pooling = True，已设置的 ``pool_size`` 和 ``pool_padding`` 会被忽略，``pool_size`` 将被设置为 :math:`[H_{in}, W_{in}]` ， ``pool_padding`` 将被设置为0。默认值：False。
     - **use_cudnn** （bool）- 是否使用cudnn内核。只有已安装cudnn库时才有效。默认值：True。
     - **ceil_mode** （bool）- 是否用ceil函数计算输出高度和宽度。计算细节可参考上述 ``ceil_mode`` = true或  ``ceil_mode`` = false 时的计算公式。默认值：False。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。

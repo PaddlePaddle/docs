@@ -5,7 +5,7 @@ SoftmaxTransform
 
 .. py:class:: paddle.distribution.SoftmaxTransform
 
-Softmax变换，首先进行 :math:`y = exp(x)` 变换, 然后归一化。
+Softmax变换，首先进行 :math:`y = exp(x)` 变换，然后归一化。
 
 Softmax变换将向量变换为单纯形。
 
@@ -53,7 +53,7 @@ forward_log_det_jacobian(x)
 
 计算正变换雅可比行列式绝对值的对数。
 
-如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` .
+如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError``。
 
 **参数**
 

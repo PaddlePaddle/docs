@@ -9,7 +9,7 @@ Auc
 
 **注意**：目前只用Python实现Auc，可能速度略慢
 
-该接口计算Auc，在二分类(binary classification)中广泛使用。相关定义参考 https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve 。
+该接口计算Auc，在二分类(binary classification)中广泛使用。相关定义参考 https://en。wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve。
 
 该接口创建四个局部变量true_positives, true_negatives, false_positives和false_negatives，用于计算Auc。为了离散化AUC曲线，使用临界值的线性间隔来计算召回率和准确率的值。用false positive的召回值高度计算ROC曲线面积，用recall的准确值高度计算PR曲线面积。
 
@@ -51,7 +51,7 @@ Auc
         labels = np.random.randint(2, size = (batch_size, 1))
         auc_metric.update(preds = preds, labels = labels)
         
-        # 应为一个接近0.5的值，因为preds是随机指定的
+        # 应为一个接近0。5的值，因为preds是随机指定的
         print("auc for iteration %d is %.2f" % (batch_id, auc_metric.eval()))
 
 方法

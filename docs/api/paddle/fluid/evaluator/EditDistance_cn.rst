@@ -8,7 +8,7 @@ EditDistance
 
 
 
-用于管理字符串的编辑距离。编辑距离是通过计算将一个字符串转换为另一个字符串所需的最小编辑操作数（添加、删除或替换）来量化两个字符串（例如单词）彼此不相似的程度一种方法。 参考 https://en.wikipedia.org/wiki/Edit_distance。
+用于管理字符串的编辑距离。编辑距离是通过计算将一个字符串转换为另一个字符串所需的最小编辑操作数（添加、删除或替换）来量化两个字符串（例如单词）彼此不相似的程度一种方法。参考 https://en。wikipedia.org/wiki/Edit_distance。
 
 代码示例
 ::::::::::::
@@ -59,7 +59,7 @@ update(distances, seq_num)
 
 **参数**
 
-    - **distances** – 一个形状为(batch_size, 1)的numpy.array，每个元素代表两个序列间的距离。
+    - **distances** – 一个形状为(batch_size, 1)的numpy。array，每个元素代表两个序列间的距离。
     - **seq_num** – 一个整型/浮点型值，代表序列对的数量。
 
 **返回**

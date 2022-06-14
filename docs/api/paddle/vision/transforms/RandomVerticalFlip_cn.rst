@@ -10,7 +10,7 @@ RandomVerticalFlip
 参数
 :::::::::
 
-    - prob (float) - 执行图片垂直翻转的概率，默认值为0.5。
+    - prob (float) - 执行图片垂直翻转的概率，默认值为0。5。
     - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
 形状

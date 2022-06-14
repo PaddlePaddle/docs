@@ -62,14 +62,14 @@ memory(init=None, shape=None, batch_ref=None, init_value=0.0, init_batch_dim_idx
 '''''''''
  
 为静态RNN创建一个内存变量。
-如果init不为None，则用init将初始化memory。 如果init为None，则必须设置shape和batch_ref，函数会使用shape和batch_ref创建新的Variable来初始化init。
+如果init不为None，则用init将初始化memory。如果init为None，则必须设置shape和batch_ref，函数会使用shape和batch_ref创建新的Variable来初始化init。
 
 **参数**
 
   - **init** (Variable，可选) - 用来初始化memory的Tensor。如果没有设置，则必须提供shape和batch_ref参数。默认值None。
   - **shape** (list|tuple) - 当init为None时用来设置memory的维度，注意不包括batch_size。默认值None。
   - **batch_ref** (Variable，可选) - 当init为None时，memory变量的batch size会设置为该batch_ref变量的ref_batch_dim_idx轴。默认值None。
-  - **init_value** (float，可选) - 当init为None时用来设置memory的初始值，默认值0.0。
+  - **init_value** (float，可选) - 当init为None时用来设置memory的初始值，默认值0。0。
   - **init_batch_dim_idx** (int，可选) - init变量的batch_size轴，默认值0。
   - **ref_batch_dim_idx** (int，可选) - batch_ref变量的batch_size轴，默认值1。
 
@@ -148,7 +148,7 @@ step_input(x)
 
 **参数**
 
-  - **x** (Variable) – 输入序列，x的形状应为[seq_len, ...]。
+  - **x** (Variable) – 输入序列，x的形状应为[seq_len,。..]。
 
 **返回**
 输入序列中当前时间步的数据。

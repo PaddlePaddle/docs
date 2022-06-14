@@ -10,7 +10,7 @@ allclose
 ..  math::
     \left| x - y \right| \leq atol + rtol \times \left| y \right|
 
-该API的行为类似于 :math:`numpy.allclose` ，即当两个待比较Tensor的所有元素均在一定容忍误差范围内视为相等则该API返回True值。
+该API的行为类似于 :math:`numpy。allclose` ，即当两个待比较Tensor的所有元素均在一定容忍误差范围内视为相等则该API返回True值。
 
 参数
 ::::::::::::

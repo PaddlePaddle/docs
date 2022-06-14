@@ -22,7 +22,7 @@ lu
 
     pivot选项只在gpu下起作用，cpu下暂不支持为False，会报错。
 
-LU和pivot可以通过调用paddle.linalg.lu_unpack展开获得L、U、P矩阵。
+LU和pivot可以通过调用paddle。linalg.lu_unpack展开获得L、U、P矩阵。
 
 参数
 ::::::::::::

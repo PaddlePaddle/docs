@@ -6,7 +6,7 @@ ParallelEnv
 .. py:class:: paddle.distributed.ParallelEnv()
 
 .. note::
-    不推荐使用这个API，如果需要获取rank和world_size，建议使用 ``paddle.distributed.get_rank()`` 和  ``paddle.distributed.get_world_size()`` 。
+    不推荐使用这个API，如果需要获取rank和world_size，建议使用 ``paddle.distributed.get_rank()`` 和  ``paddle.distributed.get_world_size()``。
 
 这个类用于获取动态图模型并行执行所需的环境变量值。
 
@@ -107,7 +107,7 @@ device_id
 current_endpoint
 '''''''''
 
-当前训练进程的终端节点IP与相应端口，形式为（机器节点IP:端口号）。例如：127.0.0.1:6170。
+当前训练进程的终端节点IP与相应端口，形式为（机器节点IP:端口号）。例如：127。0.0.1:6170。
 
 此属性的值等于环境变量 `PADDLE_CURRENT_ENDPOINT` 的值。默认值为空字符串""。
 

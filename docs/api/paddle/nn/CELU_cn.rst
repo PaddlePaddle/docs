@@ -6,7 +6,7 @@ CELU
 
 CELU激活层（CELU Activation Operator）
 
-根据 `Continuously Differentiable Exponential Linear Units <https://arxiv.org/abs/1704.07483>`_ 对输入Tensor中每个元素应用以下计算。
+根据 `Continuously Differentiable Exponential Linear Units <https://arxiv。org/abs/1704.07483>`_ 对输入Tensor中每个元素应用以下计算。
 
 .. math::
 
@@ -16,7 +16,7 @@ CELU激活层（CELU Activation Operator）
 
 参数
 ::::::::::
-    - alpha (float, 可选) - CELU的alpha值，默认值为1.0。
+    - alpha (float，可选) - CELU的alpha值，默认值为1。0。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状:

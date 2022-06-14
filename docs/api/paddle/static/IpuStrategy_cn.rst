@@ -75,7 +75,7 @@ add_custom_op(self, paddle_op, popart_op, domain, version)
 
     - **paddle_op** (str)- 待添加的Paddle自定义算子在的名称，根据Paddle自定义算子的定义设置此参数。
     - **popart_op** (str，可选)- 待添加的PopART自定义算子的名称，默认值为None，表示和paddle_op相同，根据PopART自定算子的定义设置此参数。
-    - **domain** (str，可选)- 待添加的PopART自定义算子的domain属性，默认值为"custom.ops"，根据PopART自定算子的定义设置此参数。
+    - **domain** (str，可选)- 待添加的PopART自定义算子的domain属性，默认值为"custom。ops"，根据PopART自定算子的定义设置此参数。
     - **version** (int，可选)- 待添加的PopART自定义算子的version属性，默认值为1，根据PopART自定算子的定义设置此参数。
 
 **代码示例**

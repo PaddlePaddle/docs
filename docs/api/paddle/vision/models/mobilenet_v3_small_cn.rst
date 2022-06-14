@@ -5,12 +5,12 @@ mobilenet_v3_small
 
 .. py:function:: paddle.vision.models.mobilenet_v3_small(pretrained=False, scale=1.0, **kwargs)
 
- MobileNetV3Small模型，来自论文 `"Searching for MobileNetV3" <https://arxiv.org/abs/1905.02244>`_ 。
+ MobileNetV3Small模型，来自论文 `"Searching for MobileNetV3" <https://arxiv。org/abs/1905.02244>`_。
 
 参数
 :::::::::
   - **pretrained** (bool，可选) - 是否加载在imagenet数据集上的预训练权重。默认值：False。
-  - **scale** (float，可选) - 模型通道数的缩放比例。默认值：1.0。
+  - **scale** (float，可选) - 模型通道数的缩放比例。默认值：1。0。
 
 返回
 :::::::::

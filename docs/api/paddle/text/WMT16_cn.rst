@@ -6,11 +6,11 @@ WMT16
 .. py:class:: paddle.text.datasets.WMT16()
 
 
-该类是对 `WMT16 <http://www.statmt.org/wmt16/>`_ 测试数据集实现。
+该类是对 `WMT16 <http://www。statmt.org/wmt16/>`_ 测试数据集实现。
 ACL2016多模态机器翻译。有关更多详细信息，请访问此网站：
 http://www.statmt.org/wmt16/multimodal-task.html#task1
 
-如果您任务中使用了该数据集，请引用论文：`Multi30K: Multilingual English-German Image Descriptions. <https://aclanthology.org/W16-3210/>`_ 。
+如果您任务中使用了该数据集，请引用论文：`Multi30K: Multilingual English-German Image Descriptions。<https://aclanthology.org/W16-3210/>`_。
 
 参数
 :::::::::

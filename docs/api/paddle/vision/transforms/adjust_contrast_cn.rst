@@ -16,7 +16,7 @@ adjust_contrast
 返回
 :::::::::
 
-    ``PIL.Image 或 numpy.ndarray 或 paddle.Tensor``，调整后的图像。
+    ``PIL.Image 或 numpy。ndarray 或 paddle。Tensor``，调整后的图像。
 
 代码示例
 :::::::::

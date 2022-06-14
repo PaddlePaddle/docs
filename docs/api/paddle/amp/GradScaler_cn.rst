@@ -20,13 +20,13 @@ GradScaler用于动态图模式下的"自动混合精度"的训练。它控制lo
 
 参数
 :::::::::
-    - **enable** (bool, 可选) - 是否使用loss scaling。默认值为True。
-    - **init_loss_scaling** (float, 可选) - 初始loss scaling因子。默认值为32768.0。
-    - **incr_ratio** (float, 可选) - 增大loss scaling时使用的乘数。默认值为2.0。
-    - **decr_ratio** (float, 可选) - 减小loss scaling时使用的小于1的乘数。默认值为0.5。
-    - **incr_every_n_steps** (int, 可选) - 连续n个steps的梯度都是有限值时，增加loss scaling。默认值为1000。
-    - **decr_every_n_nan_or_inf** (int, 可选) - 累计出现n个steps的梯度为nan或者inf时，减小loss scaling。默认值为2。
-    - **use_dynamic_loss_scaling** (bool, 可选) - 是否使用动态的loss scaling。如果不使用，则使用固定的loss scaling；如果使用，则会动态更新loss scaling。默认值为True。
+    - **enable** (bool，可选) - 是否使用loss scaling。默认值为True。
+    - **init_loss_scaling** (float，可选) - 初始loss scaling因子。默认值为32768。0。
+    - **incr_ratio** (float，可选) - 增大loss scaling时使用的乘数。默认值为2。0。
+    - **decr_ratio** (float，可选) - 减小loss scaling时使用的小于1的乘数。默认值为0。5。
+    - **incr_every_n_steps** (int，可选) - 连续n个steps的梯度都是有限值时，增加loss scaling。默认值为1000。
+    - **decr_every_n_nan_or_inf** (int，可选) - 累计出现n个steps的梯度为nan或者inf时，减小loss scaling。默认值为2。
+    - **use_dynamic_loss_scaling** (bool，可选) - 是否使用动态的loss scaling。如果不使用，则使用固定的loss scaling；如果使用，则会动态更新loss scaling。默认值为True。
 
 返回
 :::::::::
@@ -99,8 +99,8 @@ minimize(optimizer, *args, **kwargs)
 **参数**
 
     - **optimizer** (Optimizer) - 用于更新参数的优化器。
-    - **args** - 参数，将会被传递给 ``optimizer.minimize()`` 。
-    - **kwargs** - 关键词参数，将会被传递给 ``optimizer.minimize()`` 。
+    - **args** - 参数，将会被传递给 ``optimizer.minimize()``。
+    - **kwargs** - 关键词参数，将会被传递给 ``optimizer.minimize()``。
 
 **代码示例**
 
@@ -335,7 +335,7 @@ set_incr_ratio(new_incr_ratio)
 
 **参数**
 
-- **new_incr_ratio** (float) - 用于更新增大loss scaling时使用的乘数，该值需>1.0。
+- **new_incr_ratio** (float) - 用于更新增大loss scaling时使用的乘数，该值需>1。0。
 
 **代码示例**
 
@@ -385,7 +385,7 @@ set_decr_ratio(new_decr_ratio)
 
 **参数**
 
-- **new_decr_ratio** (float) - 用于更新缩小loss scaling时使用的乘数，该值需<1.0。
+- **new_decr_ratio** (float) - 用于更新缩小loss scaling时使用的乘数，该值需<1。0。
 
 **代码示例**
 

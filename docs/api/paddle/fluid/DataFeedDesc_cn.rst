@@ -11,7 +11,7 @@ DataFeedDesc
 
 描述训练数据的格式。输入是一个文件路径名，其内容是protobuf message。
 
-可以参考 :code:`paddle/fluid/framework/data_feed.proto` 查看我们如何定义message
+可以参考 :code:`paddle/fluid/framework/data_feed。proto` 查看我们如何定义message
 
 一段典型的message可能是这样的：
 
@@ -63,7 +63,7 @@ DataFeedDesc
 set_batch_size(batch_size)
 '''''''''
 
-该接口用于设置DataFeedDesc中的 :code:`batch_size` 。可以在训练期间调用修改 :code:`batch_size` 。
+该接口用于设置DataFeedDesc中的 :code:`batch_size`。可以在训练期间调用修改 :code:`batch_size`。
 
 **代码示例**
 

@@ -20,7 +20,7 @@ outer
 返回
 :::::::::
 
-Tensor, x、y的外积结果，Tensor shape为 [x.size, y.size]。
+Tensor, x、y的外积结果，Tensor shape为 [x。size, y.size]。
 
 代码示例：
 ::::::::::

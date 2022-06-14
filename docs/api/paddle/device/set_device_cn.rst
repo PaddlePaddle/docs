@@ -11,7 +11,7 @@ Paddle支持包括CPU和GPU在内的多种设备运行，设备可以通过字�
 参数
 ::::::::::::
 
-    - **device** (str)- 此参数确定特定的运行设备，它可以是 ``cpu``、 ``gpu``、 ``xpu``、 ``mlu``、 ``npu``、 ``gpu:x``、 ``xpu:x``、 ``mlu:x`` 或者是 ``npu:x`` 。其中， ``x`` 是GPU、 XPU、 MLU 或者是 NPU 的编号。当 ``device`` 是 ``cpu`` 的时候， 程序在CPU上运行， 当device是 ``gpu:x`` 的时候，程序在GPU上运行， 当device是 ``mlu:x`` 的时候，程序在MLU上运行， 当device是 ``npu:x`` 的时候，程序在NPU上运行。
+    - **device** (str)- 此参数确定特定的运行设备，它可以是 ``cpu``、 ``gpu``、 ``xpu``、 ``mlu``、 ``npu``、 ``gpu:x``、 ``xpu:x``、 ``mlu:x`` 或者是 ``npu:x``.其中，``x`` 是GPU、 XPU、 MLU 或者是 NPU 的编号。当 ``device`` 是 ``cpu`` 的时候，程序在CPU上运行，当device是 ``gpu:x`` 的时候，程序在GPU上运行，当device是 ``mlu:x`` 的时候，程序在MLU上运行，当device是 ``npu:x`` 的时候，程序在NPU上运行。
 
 返回
 ::::::::::::

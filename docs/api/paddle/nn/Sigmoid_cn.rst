@@ -5,7 +5,7 @@ Sigmoid
 
 .. py:class:: paddle.nn.Sigmoid(name=None)
 
-该接口用于创建一个 ``Sigmoid`` 的可调用类。 这个类可以计算输入 `x` 经过激活函数 `sigmoid` 之后的值。
+该接口用于创建一个 ``Sigmoid`` 的可调用类。这个类可以计算输入 `x` 经过激活函数 `sigmoid` 之后的值。
 
     .. math::
 
@@ -17,7 +17,7 @@ Sigmoid
 
 形状
 ::::::::
-  - **x** （Tensor）- N-D tensor, 可以支持的数据类型是float16，float32，float64。 
+  - **x** （Tensor）- N-D tensor，可以支持的数据类型是float16，float32，float64。
 
 返回
 ::::::::

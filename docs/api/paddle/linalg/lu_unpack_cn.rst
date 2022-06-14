@@ -5,7 +5,7 @@ lu_unpack
 
 .. py:function:: paddle.linalg.lu_unpack(x, y, unpack_ludata=True, unpack_pivots=True, name=None)
 
-对paddle.linalg.lu返回结果的LU、pivot进行展开得到原始的单独矩阵L、U、P。
+对paddle。linalg.lu返回结果的LU、pivot进行展开得到原始的单独矩阵L、U、P。
 
 从LU中获得下三角矩阵L，上三角矩阵U。
 从序列pivot转换得到矩阵P，其转换过程原理如下伪代码所示：

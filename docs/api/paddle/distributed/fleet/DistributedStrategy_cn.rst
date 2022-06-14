@@ -46,7 +46,7 @@ execution_strategy
 
 `Post Local SGD <https://arxiv.org/abs/1808.07217>`__
 
-配置DistributedStrategy中的 `ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`_
+配置DistributedStrategy中的 `ExecutionStrategy <https://www。paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`_
 
 **代码示例**
 
@@ -65,7 +65,7 @@ execution_strategy
 build_strategy
 '''''''''
 
-配置DistributedStrategy中的 `BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`_
+配置DistributedStrategy中的 `BuildStrategy <https://www。paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`_
 
 **代码示例**
 
@@ -135,7 +135,7 @@ recompute_configs
 
 **checkpoints(int):** Recompute策略的检查点，默认为空列表，也即不启用Recompute。
 
-**enable_offload(bool):** 是否开启recompute-offload 策略。 该策略会在recompute的基础上，将原本驻留在显存中的checkpoints 卸载到Host 端的内存中， 进一步更大的batch size。 因为checkpoint 在内存和显存间的拷贝较慢，该策略是通过牺牲速度换取更大的batch size。 默认值：False。
+**enable_offload(bool):** 是否开启recompute-offload 策略。该策略会在recompute的基础上，将原本驻留在显存中的checkpoints 卸载到Host 端的内存中，进一步更大的batch size。因为checkpoint 在内存和显存间的拷贝较慢，该策略是通过牺牲速度换取更大的batch size。默认值：False。
 
 **checkpoint_shape(list):** 该参数仅在 offload 开启时需要设置，用来指定 checkpoints 的各维度大小。目前offload 需要所有checkpoints 具有相同的 shape，并且各维度是确定的（不支持 -1 维度）。
 
@@ -225,13 +225,13 @@ lars_configs
 
 设置LARS优化器的参数。用户可以配置 lars_coeff，lars_weight_decay，epsilon，exclude_from_weight_decay 参数。
 
-**lars_coeff(float):** lars 系数，`原论文 <https://arxiv.org/abs/1708.03888>`__ 中的 trust coefficient。 默认值是 0.001.
+**lars_coeff(float):** lars 系数，`原论文 <https://arxiv。org/abs/1708.03888>`__ 中的 trust coefficient。默认值是 0。001.
 
-**lars_weight_decay(float):** lars 公式中 weight decay 系数。 默认值是 0.0005.
+**lars_weight_decay(float):** lars 公式中 weight decay 系数。默认值是 0。0005.
 
-**exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lars_weight_decay将被置为 0. 默认值是 None.
+**exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lars_weight_decay将被置为 0。默认值是 None。
 
-**epsilon(float):** 一个小的浮点值，目的是维持数值稳定性，避免 lars 公式中的分母为零。 默认值是 0.
+**epsilon(float):** 一个小的浮点值，目的是维持数值稳定性，避免 lars 公式中的分母为零。默认值是 0。
 
 
 lamb
@@ -256,14 +256,14 @@ lamb_configs
 
 设置LAMB优化器的参数。用户可以配置 lamb_weight_decay，exclude_from_weight_decay 参数。
 
-**lamb_weight_decay(float):** lars 公式中 weight decay 系数。 默认值是 0.01.
+**lamb_weight_decay(float):** lars 公式中 weight decay 系数。默认值是 0。01.
 
-**exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0. 默认值是 None.
+**exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0。默认值是 None。
 
 
 localsgd
 '''''''''
-是否使用LocalSGD optimizer，默认值：False。更多的细节请参考 `Don't Use Large Mini-Batches, Use Local SGD <https://arxiv.org/pdf/1808.07217.pdf>`__
+是否使用LocalSGD optimizer，默认值：False。更多的细节请参考 `Don't Use Large Mini-Batches, Use Local SGD <https://arxiv。org/pdf/1808.07217.pdf>`__
 
 **代码示例**
 
@@ -294,7 +294,7 @@ localsgd_configs
 
 adaptive_localsgd
 '''''''''
-是否使用AdaptiveLocalSGD optimizer，默认值：False。更多的细节请参考`Adaptive Communication Strategies to Achieve the Best Error-Runtime Trade-off in Local-Update SGD <https://arxiv.org/pdf/1810.08313.pdf>`__
+是否使用AdaptiveLocalSGD optimizer，默认值：False。更多的细节请参考`Adaptive Communication Strategies to Achieve the Best Error-Runtime Trade-off in Local-Update SGD <https://arxiv。org/pdf/1810.08313.pdf>`__
 
 **代码示例**
 
@@ -318,7 +318,7 @@ adaptive_localsgd_configs
   strategy.adaptive_localsgd_configs = {"init_k_steps": 1,
                                         "begin_step": 30}
 
-**init_k_steps(int):** 自适应localsgd的初始训练步长。训练后，自适应localsgd方法将自动调整步长。 默认值1。
+**init_k_steps(int):** 自适应localsgd的初始训练步长。训练后，自适应localsgd方法将自动调整步长。默认值1。
 
 **begin_step(int):** 指定从第几个step之后进行Adaptive LocalSGD算法，默认值1。
 
@@ -348,9 +348,9 @@ amp_configs
 
 **decr_every_n_nan_or_inf(int):** 每经过n个连续的无效梯度值(nan或者inf)才会减小loss scaling值。默认值2。
 
-**incr_ratio(float):** 每次增大loss scaling值的扩增倍数，其为大于1的浮点数。默认值2.0。
+**incr_ratio(float):** 每次增大loss scaling值的扩增倍数，其为大于1的浮点数。默认值2。0。
 
-**decr_ratio(float):** 每次减小loss scaling值的比例系数，其为小于1的浮点数。默认值0.5。
+**decr_ratio(float):** 每次减小loss scaling值的比例系数，其为小于1的浮点数。默认值0。5。
 
 **custom_white_list(list[str]):** 用户自定义OP开启fp16执行的白名单。
 
@@ -370,7 +370,7 @@ amp_configs
 dgc
 '''''''''
 
-是否启用深度梯度压缩训练。更多信息请参考[Deep Gradient Compression](https://arxiv.org/abs/1712.01887)。 默认值：False
+是否启用深度梯度压缩训练。更多信息请参考[Deep Gradient Compression](https://arxiv。org/abs/1712.01887)。默认值：False
 
 **代码示例**
 
@@ -387,11 +387,11 @@ dgc_configs
 
 **rampup_begin_step(int):** 梯度压缩的起点步。默认值0。
 
-**rampup_step(int):** 使用稀疏预热的时间步长。默认值为1。例如：如果稀疏度为[0.75,0.9375,0.984375,0.996,0.999]，\
-并且rampup_step为100，则在0~19步时使用0.75，在20~39步时使用0.9375，依此类推。当到达sparsity数组末尾时，此后将会使用0.999。
+**rampup_step(int):** 使用稀疏预热的时间步长。默认值为1。例如：如果稀疏度为[0。75,0.9375,0.984375,0.996,0.999]，\
+并且rampup_step为100，则在0~19步时使用0。75，在20~39步时使用0。9375，依此类推。当到达sparsity数组末尾时，此后将会使用0。999。
 
-**sparsity(list[float]):** 从梯度张量中获取top个重要元素，比率为（1-当前稀疏度）。默认值为[0.999]。\
-例如：如果sparsity为[0.99, 0.999]，则将传输top [1%, 0.1%]的重要元素。
+**sparsity(list[float]):** 从梯度张量中获取top个重要元素，比率为（1-当前稀疏度）。默认值为[0。999]。\
+例如：如果sparsity为[0。99, 0.999]，则将传输top [1%, 0。1%]的重要元素。
 
 **代码示例**
 
@@ -419,10 +419,10 @@ fp16_allreduce
 sharding
 '''''''''
 
-是否开启sharding 策略。sharding 实现了[ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv.org/abs/1910.02054)
-中 ZeRO-DP 类似的功能，其通过将模型的参数和优化器状态在ranks 间分片来支持更大模型的训练。 
+是否开启sharding 策略。sharding 实现了[ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv。org/abs/1910.02054)
+中 ZeRO-DP 类似的功能，其通过将模型的参数和优化器状态在ranks 间分片来支持更大模型的训练。
 
-目前在混合并行(Hybrid parallelism) 模式下, sharding config 作为混合并行设置的统一入口来设置混合并行相关参数。
+目前在混合并行(Hybrid parallelism) 模式下，sharding config 作为混合并行设置的统一入口来设置混合并行相关参数。
 
 默认值：False
 
@@ -439,25 +439,25 @@ sharding_configs
 
 设置sharding策略的参数。
 
-**sharding_segment_strategy(float, optional):** 选择sharding 中用来将前向反向program 切segments 的策略。目前可选策略有："segment_broadcast_MB" 和 "segment_anchors"。 segment 是sharding中引入的一个内部概念，目的是用来让通信和计算相互重叠掩盖（overlap）。默认值是 segment_broadcast_MB. 
+**sharding_segment_strategy(float, optional):** 选择sharding 中用来将前向反向program 切segments 的策略。目前可选策略有："segment_broadcast_MB" 和 "segment_anchors"。segment 是sharding中引入的一个内部概念，目的是用来让通信和计算相互重叠掩盖（overlap）。默认值是 segment_broadcast_MB。
 
-**segment_broadcast_MB(float, optional):** 根据sharding 广播通信中的参数量来切segments，仅当 sharding_segment_strategy = segment_broadcast_MB时生效。sharding 会在前向和反向中引入参数广播，在该segment 策略下，每当参数广播量达到 “segment_broadcast_MB”时，在program 中切出一个segment。该参数是一个经验值，最优值会受模型大小和网咯拓扑的影响。 默认值是 32. 
+**segment_broadcast_MB(float, optional):** 根据sharding 广播通信中的参数量来切segments，仅当 sharding_segment_strategy = segment_broadcast_MB时生效。sharding 会在前向和反向中引入参数广播，在该segment 策略下，每当参数广播量达到 “segment_broadcast_MB”时，在program 中切出一个segment。该参数是一个经验值，最优值会受模型大小和网咯拓扑的影响。默认值是 32。
 
 **segment_anchors(list):** 根据用户选定的锚点切割 segments，仅当 sharding_segment_strategy = segment_anchors 生效。该策略可以让用户更精确的控制program 的切分，目前还在实验阶段。
 
-**sharding_degree(int, optional):** sharding并行数。 sharding_degree=1 时，sharding 策略会被关闭。 默认值是 8。
+**sharding_degree(int, optional):** sharding并行数。sharding_degree=1 时，sharding 策略会被关闭。默认值是 8。
 
-**gradient_merge_acc_step(int, optional):** 梯度累积中的累积步数。 gradient_merge_acc_step=1 梯度累积会被关闭。 默认值是 1。
+**gradient_merge_acc_step(int, optional):** 梯度累积中的累积步数。gradient_merge_acc_step=1 梯度累积会被关闭。默认值是 1。
 
-**optimize_offload(bool, optional):** 优化器状态卸载开关。 开启后会将优化器中的状态(moment) 卸载到Host 的内存中，以到达节省GPU 显存、支持更大模型的目的。开启后，优化器状态会在训练的更新阶段经历：预取-计算-卸载（offload）三个阶段，更新阶段耗时会增加。 这个策略需要权衡显存节省量和训练速度，仅推荐在开启梯度累积并且累积步数较大时开启。 因为累积步数较大时，训练中更新阶段的比例将远小于前向&反向阶段， 卸载引入的耗时将不明显。
+**optimize_offload(bool, optional):** 优化器状态卸载开关。开启后会将优化器中的状态(moment) 卸载到Host 的内存中，以到达节省GPU 显存、支持更大模型的目的。开启后，优化器状态会在训练的更新阶段经历：预取-计算-卸载（offload）三个阶段，更新阶段耗时会增加。这个策略需要权衡显存节省量和训练速度，仅推荐在开启梯度累积并且累积步数较大时开启。因为累积步数较大时，训练中更新阶段的比例将远小于前向&反向阶段，卸载引入的耗时将不明显。
 
-**dp_degree(int, optional):** 数据并行的路数。 当dp_degree>=2 时，会在内层并行的基础上，再引入dp_degree路 数据并行。用户需要保证 global_world_size = mp_degree * sharding_degree * pp_degree * dp_degree。 默认值是 1。
+**dp_degree(int, optional):** 数据并行的路数。当dp_degree>=2 时，会在内层并行的基础上，再引入dp_degree路 数据并行。用户需要保证 global_world_size = mp_degree * sharding_degree * pp_degree * dp_degree。默认值是 1。
 
-**mp_degree(int, optional):** [仅在混合并行中使用] megatron 并行数。 mp_degree=1 时，mp 策略会被关闭。 默认值是 1。
+**mp_degree(int, optional):** [仅在混合并行中使用] megatron 并行数。mp_degree=1 时，mp 策略会被关闭。默认值是 1。
 
-**pp_degree(int, optional):** [仅在混合并行中使用] pipeline 并行数。 pp_degree=1 时，pipeline 策略会被关闭。 默认值是 1。
+**pp_degree(int, optional):** [仅在混合并行中使用] pipeline 并行数。pp_degree=1 时，pipeline 策略会被关闭。默认值是 1。
 
-**pp_allreduce_in_optimize(bool, optional):** [仅在混合并行中使用] 在开启pipeline 并行后，将allreduce 操作从反向阶段移动到更新阶段。根据不同的网络拓扑，该选项会影响训练速度，该策略目前还在实验阶段。 默认值是 False。
+**pp_allreduce_in_optimize(bool, optional):** [仅在混合并行中使用] 在开启pipeline 并行后，将allreduce 操作从反向阶段移动到更新阶段。根据不同的网络拓扑，该选项会影响训练速度，该策略目前还在实验阶段。默认值是 False。
 
 
 .. code-block:: python

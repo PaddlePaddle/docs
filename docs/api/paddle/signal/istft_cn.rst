@@ -18,7 +18,7 @@ istft
 
 - :math:`t`: 短时傅里叶变换中的第 :math:`t` 帧输入信号；
 - :math:`N`: `n_fft` 参数的值；
-- :math:`H`: `hop_length` 参数的值。  
+- :math:`H`: `hop_length` 参数的值。
 
 
 ``paddle.signal.istft`` 的结果理论上是 ``paddle.signal.stft`` 的原始输入 ``x``，但
@@ -30,13 +30,13 @@ istft
 :::::::::
 
 - **x** (Tensor) - 输入数据，是维度为2D或者3D的Tensor，数据类型必须为复数（复信号），其
-  形状为 ``[..., fft_size, num_frames]``；
+  形状为 ``[。.., fft_size, num_frames]``；
 - **n_fft** (int) - 离散傅里叶变换的样本点个数；
 - **hop_length** (int，可选) - 对输入分帧时，相邻两帧偏移的样本点个数，默认为 ``None`` 
   (为 ``n_fft//4``)；
 - **win_length** (int，可选) - 信号窗的长度，默认为 ``None`` (为 ``n_fft``)；
 - **window** (int，可选) - 维度为1D长度为 ``win_length`` 的Tensor，数据类型可为复数。
-  如果 ``win_length < n_fft``，该Tensor将被补长至 ``n_fft``。默认为 ``None`` (长
+  如果 ``win_length < n_fft``，该Tensor将被补长至 ``n_fft``.默认为 ``None`` (长
   度为 ``win_length`` 幅值为1的矩形窗)；
 - **center** (bool，可选) - 选择是否将输入信号进行补长，使得第 
   :math:`t \times hop\_length` 个样本点在第 :math:`t` 帧的中心，默认为 ``True``；
@@ -54,7 +54,7 @@ istft
 
 返回
 :::::::::
-逆短时傅里叶变换的结果，是重构信号的最小二乘估计Tensor，其形状为 ``[..., seq_length]``。
+逆短时傅里叶变换的结果，是重构信号的最小二乘估计Tensor，其形状为 ``[。.., seq_length]``。
 
 代码示例
 :::::::::

@@ -6,7 +6,7 @@ XavierNormal
 .. py:class:: paddle.nn.initializer.XavierNormal(fan_in=None, fan_out=None, name=None)
 
 
-使用正态分布的泽维尔权重初始化方法。泽维尔权重初始化方法出自泽维尔·格洛特和约书亚·本吉奥的论文 `Understanding the difficulty of training deep feedforward neural networks <http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf>`_。
+使用正态分布的泽维尔权重初始化方法。泽维尔权重初始化方法出自泽维尔·格洛特和约书亚·本吉奥的论文 `Understanding the difficulty of training deep feedforward neural networks <http://proceedings。mlr.press/v9/glorot10a/glorot10a.pdf>`_。
 
 该初始化函数用于保持所有层的梯度尺度几乎一致。所使用的正态分布的的均值为 :math:`0`，标准差为
 

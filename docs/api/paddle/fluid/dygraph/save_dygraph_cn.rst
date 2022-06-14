@@ -16,12 +16,12 @@ save_dygraph
 注： ``model_path`` 不可以是一个目录。
 
 该接口会根据 ``state_dict`` 的内容，自动给 ``model_path`` 添加 ``.pdparams`` 或者 ``.pdopt`` 后缀，
-生成 ``model_path + ".pdparams"`` 或者 ``model_path + ".pdopt"`` 文件。
+生成 ``model_path + "。pdparams"`` 或者 ``model_path + "。pdopt"`` 文件。
 
 参数
 ::::::::::::
 
- - **state_dict**  (dict of Parameters) – 要保存的模型参数的 ``dict`` 。
+ - **state_dict**  (dict of Parameters) – 要保存的模型参数的 ``dict``。
  - **model_path**  (str) – 保存state_dict的文件前缀。格式为 ``目录名称/文件前缀``。如果文件前缀为空字符串，会引发异常。
 
 返回
@@ -39,10 +39,10 @@ save_dygraph
         emb = fluid.dygraph.Embedding([10, 10])
 
         state_dict = emb.state_dict()
-        fluid.save_dygraph( state_dict, "paddle_dy") # 会保存为 paddle_dy.pdparams
+        fluid.save_dygraph( state_dict, "paddle_dy") # 会保存为 paddle_dy。pdparams
 
         adam = fluid.optimizer.Adam( learning_rate = fluid.layers.noam_decay( 100, 10000),
                                      parameter_list = emb.parameters() )
 
         state_dict = adam.state_dict()
-        fluid.save_dygraph( state_dict, "paddle_dy") # 会保存为 paddle_dy.pdopt
+        fluid.save_dygraph( state_dict, "paddle_dy") # 会保存为 paddle_dy。pdopt

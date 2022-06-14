@@ -5,7 +5,7 @@ Hardsigmoid
 
 .. py:function:: paddle.nn.Hardsigmoid(name=None)
 
-Hardsigmoid激活层。sigmoid的分段线性逼近激活函数，速度比sigmoid快，详细解释参见 https://arxiv.org/abs/1603.00391。
+Hardsigmoid激活层。sigmoid的分段线性逼近激活函数，速度比sigmoid快，详细解释参见 https://arxiv。org/abs/1603.00391。
 
 .. math::
 

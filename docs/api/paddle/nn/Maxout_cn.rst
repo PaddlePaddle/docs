@@ -5,7 +5,7 @@ Maxout
 
 .. py:function:: paddle.nn.Maxout(groups, axis=1, name=None)
 
-Maxout激活层.
+Maxout激活层。
 
 假设输入形状为(N, Ci, H, W)，输出形状为(N, Co, H, W)，则 :math:`Co=Ci/groups` 运算公式如下:
 
@@ -23,7 +23,7 @@ Maxout激活层.
 
 ::::::::::
     - groups (int) - 指定将输入张量的channel通道维度进行分组的数目。输出的通道数量为通道数除以组数。
-    - axis (int, 可选) - 指定通道所在维度的索引。当数据格式为NCHW时，axis应该被设置为1，当数据格式为NHWC时，axis应该被设置为-1或者3。默认值为1。
+    - axis (int，可选) - 指定通道所在维度的索引。当数据格式为NCHW时，axis应该被设置为1，当数据格式为NHWC时，axis应该被设置为-1或者3。默认值为1。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状:

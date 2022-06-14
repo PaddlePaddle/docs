@@ -4,11 +4,11 @@ PixelShuffle
 -------------------------------
 
 .. py:function:: paddle.nn.PixelShuffle(upscale_factor, data_format="NCHW", name=None)
-该算子将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor重新排列成形为 [N, C/r**2, H*r, W*r]或 [N, H*r, W*r, C/r**2]  的Tensor。这样做有利于实现步长（stride）为1/r的高效sub-pixel（亚像素）卷积。详见Shi等人在2016年发表的论文 `Real Time Single Image and Video Super Resolution Using an Efficient Sub Pixel Convolutional Neural Network <https://arxiv.org/abs/1609.05158v2>`_ 。
+该算子将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor重新排列成形为 [N, C/r**2, H*r, W*r]或 [N, H*r, W*r, C/r**2]  的Tensor。这样做有利于实现步长（stride）为1/r的高效sub-pixel（亚像素）卷积。详见Shi等人在2016年发表的论文 `Real Time Single Image and Video Super Resolution Using an Efficient Sub Pixel Convolutional Neural Network <https://arxiv。org/abs/1609.05158v2>`_。
 
 .. code-block:: text
 
-    给定一个形为  x.shape = [1, 9, 4, 4]  的4-D张量
+    给定一个形为  x。shape = [1, 9, 4, 4]  的4-D张量
     设定：upscale_factor=3
     那么输出张量的形为：[1, 1, 12, 12]
 
@@ -20,8 +20,8 @@ PixelShuffle
 
 形状
 :::::::::
-    - **x** (Tensor): 默认形状为（批大小，通道数，高度，宽度），即NCHW格式的4-D Tensor或NHWC格式的4-DTensor。 其数据类型为float32, float64.
-    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征高度，输出特征宽度），即NCHW格式或NHWC的4-D Tensor。 其数据类型与输入相同。
+    - **x** (Tensor): 默认形状为（批大小，通道数，高度，宽度），即NCHW格式的4-D Tensor或NHWC格式的4-DTensor。其数据类型为float32, float64。
+    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征高度，输出特征宽度），即NCHW格式或NHWC的4-D Tensor。其数据类型与输入相同。
 
 返回
 :::::::::
