@@ -21,7 +21,7 @@ ResNet 模型，来自论文 `"Deep Residual Learning for Image Recognition" <ht
 返回
 :::::::::
 
-ResNet 模型，:ref:`api_fluid_dygraph_Layer` 的实例。
+ResNet 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::
