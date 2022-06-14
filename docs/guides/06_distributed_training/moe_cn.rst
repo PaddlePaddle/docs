@@ -5,8 +5,8 @@ MoE
 
 通常来讲，模型规模的扩展会导致训练成本显著增加，计算资源的限制成为了大规模密集模型训练的瓶颈。为了解决这个问题，
 `《Outrageously large neural networks: The sparsely-gated mixture-of-experts layer》 <https://arxiv.org/abs/1701.06538>`__
-提出了一种基于稀疏MoE层的深度学习模型架构，即将大模型拆分成多个小模型(专家, expert), 每轮迭代根据样本决定激活一部分专家用于计算，达到了节省计算资源的效果；
-并引入可训练并确保稀疏性的门(gate)机制，以保证计算能力的优化。
+提出了一种基于稀疏MoE层的深度学习模型架构，即将大模型拆分成多个小模型(专家,  ``expert`` ), 每轮迭代根据样本决定激活一部分专家用于计算，达到了节省计算资源的效果；
+并引入可训练并确保稀疏性的门( ``gate`` )机制，以保证计算能力的优化。
 
 一、原理介绍
 -------------------
@@ -16,17 +16,16 @@ MoE
   :alt: moe_layer
   :align: center
 
-与密集模型不同，MoE将模型的某一层扩展为多个具有相同结构的专家网络(expert)，并由门(gate)网络决定激活哪些 ``expert`` 用于计算，从而实现超大规模稀疏模型的训练。
-以上图为例，示例模型包含3个模型层；若将中间层扩展为具有 ``n`` 个 ``expert`` 的MoE结构，并引入 ``Gating network`` 和 ``Top_k`` 机制，门网络的输出看作每个 ``expert`` 的
-权重，每个输入 ``x`` 需要分配 ``k`` 个权重最大的 ``expert`` 进行计算，然后只对选中的 ``k`` 个专家网络的输出进行加权求和，最后得到整个 ``MoE Layer`` 的计算结果。公示表示如下：
+与密集模型不同，MoE将模型的某一层扩展为多个具有相同结构的专家网络( ``expert`` )，并由门( ``gate`` )网络决定激活哪些 ``expert`` 用于计算，从而实现超大规模稀疏模型的训练。
+以上图为例，示例模型包含3个模型层；如(a)到(b)，将中间层扩展为具有 ``n`` 个 ``expert`` 的MoE结构，并引入 ``Gating network`` 和 ``Top_k`` 机制，MoE细节见图(c)，计算过程如下述公式。
 
 .. math::
     MoE\left ( {x} \right )=\sum ^{n}_{i=1} \left ( {{G\left ( {x} \right )}_{i}{E}_{i}\left ( {x} \right )} \right )
 .. math::
     G\left ( {x} \right )=TopK\left ( {softmax\left ( {{W}_{g}\left ( {x} \right )+ϵ} \right )} \right )
 
-上述第1个公式表示了包含 ``n`` 个专家的MoE层的计算过程。具体来讲，首先对样本 ``x`` 进行门控计算， ``W`` 表示权重矩阵；然后由 ``Softmax`` 处理后获得样本 ``x`` 被分配到各个专家的权重；
-然后取前 ``k`` (通常取 1 或者 2）个权重，最终MoE层的输出就是前 ``k`` 个专家的加权和。
+上述第1个公式表示了包含 ``n`` 个专家的MoE层的计算过程。具体来讲，首先对样本 ``x`` 进行门控计算， ``W`` 表示权重矩阵；然后由 ``Softmax`` 处理后获得样本 ``x`` 被分配到各个 ``expert`` 的权重；
+然后只取前 ``k`` (通常取 1 或者 2）个最大权重，最终整个 ``MoE Layer`` 的计算结果就是选中的 ``k`` 个专家网络输出的加权和。
 
 
 二、功能效果
@@ -77,7 +76,7 @@ MoE
     fleet.init(is_collective=True)
     moe_group = paddle.distributed.new_group(list(range(fleet.worker_num())))
 
-设置门网络的gate策略和top_k机制，并将模型单层扩展为 ``num_expert`` 个相同结构的专家网络
+设置门网络的 ``gate`` 策略和 ``top_k`` 机制，并将模型单层扩展为 ``num_expert`` 个相同结构的专家网络
 
 .. code-block:: python
 
@@ -137,6 +136,5 @@ MoE
 运行方式：
 
 .. code-block:: bash
-  
-  export CUDA_VISIBLE_DEVICES=0
-  python train_moe.py
+
+  python -m paddle.distributed.launch --gpus=0,1,2,3,4,5,6,7 --log_dir logs train_moe.py
