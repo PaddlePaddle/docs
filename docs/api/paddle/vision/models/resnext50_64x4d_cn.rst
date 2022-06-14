@@ -11,7 +11,7 @@ ResNeXt-50 64x4d 模型，来自论文 `"Aggregated Residual Transformations for
 参数
 :::::::::
 
-  - **pretrained** (bool，可选) - 是否加载在imagenet数据集上的预训练权重。默认值：False。
+  - **pretrained** (bool，可选) - 是否加载在 ImageNet 数据集上的预训练权重。默认值：False。
 
 返回
 :::::::::
