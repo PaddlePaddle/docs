@@ -12,11 +12,11 @@ DataParallel
 
 支持两种使用方式：
 
-1. 使用 ``paddle.distributed.spawn`` 方法启动，例如：
+1。使用 ``paddle.distributed.spawn`` 方法启动，例如：
 
  ``python demo.py`` (spawn need to be called in ``__main__`` method)
 
-2. 使用 ``paddle.distributed.launch`` 方法启动，例如：
+2。使用 ``paddle.distributed.launch`` 方法启动，例如：
 
 ``python -m paddle.distributed.launch –selected_gpus=0,1 demo.py``
 

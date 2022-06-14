@@ -14,17 +14,17 @@ softmax_with_cross_entropy
 
 涉及到的等式如下：
 
-1. 硬标签（每个样本仅可分到一个类别）
+1。硬标签（每个样本仅可分到一个类别）
 
 .. math::
    loss_j =  -\text{logits}_{label_j} +\log\left(\sum_{i=0}^{K}\exp(\text{logits}_i)\right), j = 1,..., K
 
-2. 软标签（每个样本以一定的概率被分配至多个类别中，概率和为1）
+2。软标签（每个样本以一定的概率被分配至多个类别中，概率和为1）
 
 .. math::
    loss_j =  -\sum_{i=0}^{K}\text{label}_i\left(\text{logits}_i - \log\left(\sum_{i=0}^{K}\exp(\text{logits}_i)\right)\right), j = 1,...,K
 
-3. 如果 ``numeric_stable_mode`` 为 ``True`` ，softmax结果首先经由下式计算得出，然后使用softmax结果和 ``label`` 计算交叉熵损失。
+3。如果 ``numeric_stable_mode`` 为 ``True`` ，softmax结果首先经由下式计算得出，然后使用softmax结果和 ``label`` 计算交叉熵损失。
 
 .. math::
     max_j           &= \max_{i=0}^{K}{\text{logits}_i} \\

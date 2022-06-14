@@ -19,7 +19,7 @@ hfft
   ``2*(m-1)``，其中，``m`` 是输入 Tensor 在 ``axis`` 维的长度。
 - **axis** (int，optional) - 傅里叶变换的轴。如果没有指定，默认是使用最后一维。       
 - **norm** (str，可选) - 傅里叶变换的缩放模式，缩放系数由变换的方向和缩放模式同时决定。取
-  值必须是 "forward", "backward", "ortho" 之一，默认值为 "backward". 三种缩放模式对
+  值必须是 "forward", "backward", "ortho" 之一，默认值为 "backward"。三种缩放模式对
   应的行为如下：
 
   - "backward": 正向和逆向变换的缩放系数分别为 ``1`` 和 ``1/n``;

@@ -12,8 +12,8 @@ DetectionMAP
 
 通常步骤如下：
 
-1. 根据检测器中的输入和label，计算True Positive(TP)真正例 和 False Positive(FP)假正例
-2. 计算map，支持 ``11 point`` 和 ``integral`` 模式
+1。根据检测器中的输入和label，计算True Positive(TP)真正例 和 False Positive(FP)假正例
+2。计算map，支持 ``11 point`` 和 ``integral`` 模式
 
 请从以下文章中获取更多信息：
     - https://sanchom.wordpress.com/tag/average-precision/

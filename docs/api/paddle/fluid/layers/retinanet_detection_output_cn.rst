@@ -10,8 +10,8 @@ retinanet_detection_output
 
 在 `RetinaNet <https://arxiv.org/abs/1708.02002>`_ 中，有多个 `FPN <https://arxiv.org/abs/1612.03144>`_ 层会输出用于分类的预测值和位置回归的预测值，该OP通过执行以下步骤将这些预测值转换成最终的检测结果：
 
-1. 在每个FPN层上，先剔除分类预测值小于score_threshold的anchor，然后按分类预测值从大到小排序，选出排名前nms_top_k的anchor，并将这些anchor与其位置回归的预测值做解码操作得到检测框。
-2. 合并全部FPN层上的检测框，对这些检测框进行非极大值抑制操作（NMS）以获得最终的检测结果。
+1。在每个FPN层上，先剔除分类预测值小于score_threshold的anchor，然后按分类预测值从大到小排序，选出排名前nms_top_k的anchor，并将这些anchor与其位置回归的预测值做解码操作得到检测框。
+2。合并全部FPN层上的检测框，对这些检测框进行非极大值抑制操作（NMS）以获得最终的检测结果。
 
 
 参数

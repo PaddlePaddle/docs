@@ -17,7 +17,7 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
     - **k** (int64|int32，可选) - 取每个类别中k个预测值用于计算，默认值为1。
     - **correct** (int64|int32，可选)-正确预测值的个数，默认值为None。
     - **total** (int64|int32，可选)-总共的预测值，默认值为None。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 :::::::::

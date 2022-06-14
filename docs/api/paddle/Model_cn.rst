@@ -13,17 +13,17 @@ Model
 :::::::::
 
     - **network** (paddle.nn.Layer): 是 ``paddle.nn.Layer`` 的一个实例
-    - **inputs** (InputSpec|list|dict|None，可选):  ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者是格式为 ``{name: InputSpec}`` 的 ``dict``，或者为 ``None`` . 默认值为 ``None`` .
-    - **labels** (InputSpec|list|None，可选): ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者为 ``None``. 默认值为 ``None`` .
+    - **inputs** (InputSpec|list|dict|None，可选):  ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者是格式为 ``{name: InputSpec}`` 的 ``dict``，或者为 ``None``。默认值为 ``None`` .
+    - **labels** (InputSpec|list|None，可选): ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者为 ``None``。默认值为 ``None`` .
       
 .. note::
 
-    在动态图中，``inputs`` 和 ``labels`` 都可以设置为 ``None``. 但是，在静态图中，``input`` 不能设置为 ``None`` . 而如果损失函数需要标签(label)作为输入，则必须设置 ``labels``，否则，可以为 ``None`` 。
+    在动态图中，``inputs`` 和 ``labels`` 都可以设置为 ``None``。但是，在静态图中，``input`` 不能设置为 ``None``。而如果损失函数需要标签(label)作为输入，则必须设置 ``labels``，否则，可以为 ``None`` 。
 
 代码示例
 :::::::::
 
-1.一般示例
+1。一般示例
 
 .. code-block:: python
 
@@ -59,7 +59,7 @@ Model
     model.fit(data, epochs=2, batch_size=32, verbose=1)
 
 
-2.使用混合精度训练的例子
+2。使用混合精度训练的例子
 
 .. code-block:: python
 
@@ -388,7 +388,7 @@ None
 
 **代码示例**
 
-    1. 使用Dataset训练，并设置batch_size的例子。
+    1。使用Dataset训练，并设置batch_size的例子。
 
     .. code-block:: python
 
@@ -427,7 +427,7 @@ None
                   save_dir='mnist_checkpoint')
 
 
-    2. 使用Dataloader训练的例子。
+    2。使用Dataloader训练的例子。
 
     .. code-block:: python
 

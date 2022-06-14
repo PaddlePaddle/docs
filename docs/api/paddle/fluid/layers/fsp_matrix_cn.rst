@@ -12,9 +12,9 @@ fsp_matrix
 
 fsp_matrix op用于计算两个4-D Tensor特征图的求解过程（FSP）矩阵。假设特征图x的形状为 :math:`[x\_channel，h，w]`，特征图y的形状为 :math:`[y\_channel，h，w]` ，fsp_matrix op分两步得到x和y的fsp矩阵：
 
-1.将x reshape到形状为 :math:`[x\_channel，h*w]` 的矩阵，将y reshape到形状为 :math:`[h*w，y\_channel]` 的矩阵。
+1。将x reshape到形状为 :math:`[x\_channel，h*w]` 的矩阵，将y reshape到形状为 :math:`[h*w，y\_channel]` 的矩阵。
 
-2.对x和y做矩阵乘法得到形状为 :math:`[x\_channel，y\_channel]` 的fsp矩阵。
+2。对x和y做矩阵乘法得到形状为 :math:`[x\_channel，y\_channel]` 的fsp矩阵。
 
 输出是一个batch的fsp矩阵。
 

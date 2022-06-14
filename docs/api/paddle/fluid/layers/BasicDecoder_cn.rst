@@ -8,11 +8,11 @@ BasicDecoder
 
 BasicDecoder是 :ref:`cn_api_fluid_layers_Decoder` 的子类，它组装了 :ref:`cn_api_fluid_layers_RNNCell` 和 :ref:`cn_api_fluid_layers_DecodeHelper` 的实例作为成员，其中DecodeHelper用来实现不同的解码策略。它依次执行以下步骤来完成单步解码：
 
-1. 执行 :code:`cell_outputs, cell_states = cell.call(inputs, states)` 以获取输出和新的状态。
+1。执行 :code:`cell_outputs, cell_states = cell.call(inputs, states)` 以获取输出和新的状态。
 
-2. 执行 :code:`sample_ids = helper.sample(time, cell_outputs, cell_states)` 以采样id并将其作为当前步的解码结果。
+2。执行 :code:`sample_ids = helper.sample(time, cell_outputs, cell_states)` 以采样id并将其作为当前步的解码结果。
 
-3. 执行 :code:`finished, next_inputs, next_states = helper.next_inputs(time, cell_outputs, cell_states, sample_ids)` 以产生下一解码步的结束标识、输入和状态。
+3。执行 :code:`finished, next_inputs, next_states = helper.next_inputs(time, cell_outputs, cell_states, sample_ids)` 以产生下一解码步的结束标识、输入和状态。
 
 参数
 ::::::::::::
@@ -73,11 +73,11 @@ step(time, inputs, states, **kwargs)
 
 按照以下步骤执行单步解码：
 
-1. 执行 :code:`cell_outputs, cell_states = cell.call(inputs, states)` 以获取输出和新的状态。
+1。执行 :code:`cell_outputs, cell_states = cell.call(inputs, states)` 以获取输出和新的状态。
 
-2. 执行 :code:`sample_ids = helper.sample(time, cell_outputs, cell_states)` 以采样id并将其作为当前步的解码结果。
+2。执行 :code:`sample_ids = helper.sample(time, cell_outputs, cell_states)` 以采样id并将其作为当前步的解码结果。
 
-3. 执行 :code:`finished, next_inputs, next_states = helper.next_inputs(time, cell_outputs, cell_states, sample_ids)` 以产生下一解码步的结束标识、输入和状态。
+3。执行 :code:`finished, next_inputs, next_states = helper.next_inputs(time, cell_outputs, cell_states, sample_ids)` 以产生下一解码步的结束标识、输入和状态。
 
 **参数**
 

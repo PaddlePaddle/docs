@@ -30,7 +30,7 @@ linear_chain_crf
 线性链条件随机场最终输出每个batch训练样本的条件概率的对数
 
 
-  1.这里 :math:`x` 代表Emission
+  1。这里 :math:`x` 代表Emission
 
   2.Transition的第一维度值，代表起始权重，这里用 :math:`a` 表示
 
@@ -45,9 +45,9 @@ linear_chain_crf
 
 **注意：**
 
-    1.条件随机场（CRF）的特征函数由发射特征(emission feature）和转移特征（transition feature）组成。发射特征（emission feature）权重在调用函数前计算，而不在函数里计算。
+    1。条件随机场（CRF）的特征函数由发射特征(emission feature）和转移特征（transition feature）组成。发射特征（emission feature）权重在调用函数前计算，而不在函数里计算。
 
-    2.由于该函数对所有可能序列的进行全局正则化，发射特征（emission feature）权重应是未缩放的。因此如果该函数带有发射特征（emission feature），并且发射特征是任意非线性激活函数的输出，则请勿调用该函数。
+    2。由于该函数对所有可能序列的进行全局正则化，发射特征（emission feature）权重应是未缩放的。因此如果该函数带有发射特征（emission feature），并且发射特征是任意非线性激活函数的输出，则请勿调用该函数。
 
     3.Emission的第二维度必须和标记数字（tag number）相同。
 

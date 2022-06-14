@@ -8,19 +8,19 @@ gumbel_softmax
 该OP实现了按Gumbel-Softmax分布进行采样的功能，通过hard可选择是否离散化。
 记temperature为t，涉及到的等式如下：
 
-1. 产生gumbel噪声
+1。产生gumbel噪声
 
 .. math::
 
     G_i = -log(-log(U_i)),\ U_i \sim U(0,1)
 
-2. 对输入x添加噪声
+2。对输入x添加噪声
 
 .. math::
 
     v = [x_1 + G_1,...,x_n + G_n]
 
-3. 计算gumbel_softmax
+3。计算gumbel_softmax
 
 .. math::
 

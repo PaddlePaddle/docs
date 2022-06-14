@@ -46,8 +46,8 @@ with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, shar
 CompiledProgram，配置之后的 ``CompiledProgram`` 对象。
 
 .. note::
-     1. 如果只是进行多卡测试，不需要设置loss_name以及share_vars_from。
-     2. 如果程序中既有模型训练又有模型测试，则构建模型测试所对应的CompiledProgram时必须设置share_vars_from，否则模型测试和模型训练所使用的参数是不一致。
+     1。如果只是进行多卡测试，不需要设置loss_name以及share_vars_from。
+     2。如果程序中既有模型训练又有模型测试，则构建模型测试所对应的CompiledProgram时必须设置share_vars_from，否则模型测试和模型训练所使用的参数是不一致。
 
 
 **代码示例**

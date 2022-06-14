@@ -26,7 +26,7 @@ init(**kwargs)
 
 **注意：**
 
-  **1. 该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1。该API只在非** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 对QueueDataset的实例进行配置初始化。
 
@@ -38,7 +38,7 @@ init(**kwargs)
     - **use_var** (list) - 用于输入的variable列表，默认值为[]。
     - **input_type** (int) - 输入到模型训练样本的类型。0 代表一条样本，1 代表一个batch。 默认值为0。
     - **fs_name** (str) - hdfs名称。默认值为""。
-    - **fs_ugi** (str) - hdfs的ugi. 默认值为""。
+    - **fs_ugi** (str) - hdfs的ugi。默认值为""。
     - **pipe_command** (str) - 在当前的 ``dataset`` 中设置的pipe命令用于数据的预处理。pipe命令只能使用UNIX的pipe命令，默认为"cat"。
     - **download_cmd** (str) - 数据下载pipe命令。 pipe命令只能使用UNIX的pipe命令，默认为"cat"。
 

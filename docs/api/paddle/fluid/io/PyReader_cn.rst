@@ -33,7 +33,7 @@ PyReader
 代码示例
 ::::::::::::
 
-1.如果iterable=False，则创建的PyReader对象几乎与 ``fluid.layers.py_reader（）`` 相同。算子将被插入program中。用户应该在每个epoch之前调用 ``start（）``，并在epoch结束时捕获 ``Executor.run（）`` 抛出的 ``fluid.core.EOFException`` 。一旦捕获到异常，用户应该调用 ``reset（）`` 手动重置reader。
+1。如果iterable=False，则创建的PyReader对象几乎与 ``fluid.layers.py_reader（）`` 相同。算子将被插入program中。用户应该在每个epoch之前调用 ``start（）``，并在epoch结束时捕获 ``Executor.run（）`` 抛出的 ``fluid.core.EOFException`` 。一旦捕获到异常，用户应该调用 ``reset（）`` 手动重置reader。
 
 .. code-block:: python
 
@@ -84,7 +84,7 @@ PyReader
                 break
 
 
-2.如果iterable=True，则创建的PyReader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是可迭代的。用户应将从PyReader对象生成的数据输入 ``Executor.run(feed=...)`` 。
+2。如果iterable=True，则创建的PyReader对象与程序分离。程序中不会插入任何算子。在本例中，创建的reader是一个python生成器，它是可迭代的。用户应将从PyReader对象生成的数据输入 ``Executor.run(feed=...)`` 。
 
 .. code-block:: python
 

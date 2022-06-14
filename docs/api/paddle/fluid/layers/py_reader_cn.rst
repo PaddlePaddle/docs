@@ -78,7 +78,7 @@ Variable
                                 executor=fluid.Executor(fluid.CUDAPlace(0)))
 
 
-2.训练和测试应使用不同的名称创建两个不同的py_reader，例如：
+2。训练和测试应使用不同的名称创建两个不同的py_reader，例如：
 
 ..  code-block:: python
 

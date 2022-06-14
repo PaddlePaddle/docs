@@ -21,7 +21,7 @@ fftn
 - **axes** (Sequence[int]，可选) - 计算快速傅里叶变换的轴。如果没有指定，默认是使用最后
   ``len(s)`` 个轴，如果 ``s`` 也没有指定则使用输入 Tensor 的全部的轴。
 - **norm** (str，可选) - 指定傅里叶变换的缩放模式，缩放系数由变换的方向和模式同时决定。取
-  值必须是 "forward", "backward", "ortho"之一，默认值为 "backward". 三种缩放模式对应
+  值必须是 "forward", "backward", "ortho"之一，默认值为 "backward"。三种缩放模式对应
   的行为如下：
 
   - "backward": 正向和逆向变换的缩放系数分别为 ``1`` 和 ``1/n``;

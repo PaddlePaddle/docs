@@ -79,7 +79,7 @@ clone(for_test=False)
 
 .. note::
     1. ``Program.clone()`` 方法不会克隆例如  :ref:`cn_api_fluid_io_DataLoader` 这样的数据读取相关的部分，这可能会造成的数据读取部分在克隆后丢失； 
-    2. 此API当 ``for_test=True`` 时将会裁剪部分OP和变量。为防止错误的裁剪，推荐在 :ref:`cn_api_fluid_backward_append_backward` 和执行优化器之前使用； ``clone(for_test=True)`` 。
+    2。此API当 ``for_test=True`` 时将会裁剪部分OP和变量。为防止错误的裁剪，推荐在 :ref:`cn_api_fluid_backward_append_backward` 和执行优化器之前使用； ``clone(for_test=True)`` 。
 
 
 当 ``for_test=True`` 时创建一个新的、仅包含当前Program前向内容的Program。否则创建一个新的，和当前Program完全相同的Program
@@ -135,7 +135,7 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
                 if key not in ['op_callstack', 'op_role_var']:
                     print(" [ attrs: {}:   {} ]".format(key, value))
 
-1.克隆一个Program，示例代码如下。
+1。克隆一个Program，示例代码如下。
 
 .. code-block:: python
 
@@ -188,7 +188,7 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前Program�
             sgd = paddle.optimizer.SGD(learning_rate=1e-3)
             sgd.minimize(avg_loss)
 
-2.如果分别运行 train Program 和 test Program，则可以不使用clone。
+2。如果分别运行 train Program 和 test Program，则可以不使用clone。
 
 .. code-block:: python
 

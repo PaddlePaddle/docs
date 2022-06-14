@@ -229,7 +229,7 @@ lars_configs
 
 **lars_weight_decay(float):** lars 公式中 weight decay 系数。 默认值是 0.0005.
 
-**exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lars_weight_decay将被置为 0. 默认值是 None.
+**exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lars_weight_decay将被置为 0。默认值是 None.
 
 **epsilon(float):** 一个小的浮点值，目的是维持数值稳定性，避免 lars 公式中的分母为零。 默认值是 0.
 
@@ -258,7 +258,7 @@ lamb_configs
 
 **lamb_weight_decay(float):** lars 公式中 weight decay 系数。 默认值是 0.01.
 
-**exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0. 默认值是 None.
+**exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0。默认值是 None.
 
 
 localsgd
