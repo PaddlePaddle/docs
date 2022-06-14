@@ -39,10 +39,10 @@ dynamic_lstm
       - :math:`h_{t-1}, c_{t-1}` 分别表示前一个时间步的 hidden 和 cell 状态
       - :math:`\widetilde{c_t}` 表示候选的 cell 状态
       - :math:`i_t` ，:math:`f_t` 和 :math:`o_t` 分别为 input gate，forget gate，output gate
-      - :math:`W` 表示 weight （例如， :math:`W_{ix}` 是在计算 input gate :math:`i_t` 时，对输入 :math:`x_{t}` 做线性变换的 weight）
-      - :math:`b` 表示 bias （例如， :math:`b_{i}` 是 input gate 的 bias）
+      - :math:`W` 表示 weight （例如，:math:`W_{ix}` 是在计算 input gate :math:`i_t` 时，对输入 :math:`x_{t}` 做线性变换的 weight）
+      - :math:`b` 表示 bias （例如，:math:`b_{i}` 是 input gate 的 bias）
       - :math:`\sigma` 表示 gate 的非线性激活函数，默认为 sigmoid
-      - :math:`act_g， act_h` 分别表示 cell 输入和 cell 输出的非线性激活函数，默认为 tanh
+      - :math:`act_g，act_h` 分别表示 cell 输入和 cell 输出的非线性激活函数，默认为 tanh
       - :math:`\odot` 表示矩阵的 Hadamard product，即对两个维度相同的矩阵，将相同位置的元素相乘，得到另一个维度相同的矩阵
 
 参数
@@ -56,7 +56,7 @@ dynamic_lstm
   - **bias_attr** (ParamAttr，可选) – 指定偏置参数属性的对象。如果为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。如果用户需要设置此属性，如果 use_peepholes=true，维度需为 :math:`[1, 4*hidden\_size]`, use_peepholes=true，维度需为 :math:`[1, 7*hidden\_size]`。默认值为None。   
   - **use_peepholes** (bool，可选) – 是否使用 peephole 连接。默认值为True。
   - **is_reverse** (bool，可选) – 是否将输入的数据根据根据样本长度进行逆序，同时会将输出进行逆序，用户拿到结果之后，不需要再逆序。默认值为False。
-  - **gate_activation** (str，可选) – 应用于input gate，forget gate， output gate 的激活函数。默认值为sigmoid。
+  - **gate_activation** (str，可选) – 应用于input gate，forget gate，output gate 的激活函数。默认值为sigmoid。
   - **cell_activation** (str，可选) – 用于cell输入的激活函数。默认值为tanh。
   - **candidate_activation** (str，可选) – 用于cell输出的激活函数。默认值为tanh。
   - **dtype** (str，可选) – 数据类型为 float32 或者 float64。默认值为 float32。

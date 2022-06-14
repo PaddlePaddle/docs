@@ -37,7 +37,7 @@ shape层。
 
 返回
 ::::::::::::
- Tensor, 表示输入Tensor或SelectedRows的shape。
+ Tensor，示输入Tensor或SelectedRows的shape。
 
 
 代码示例

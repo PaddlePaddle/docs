@@ -13,7 +13,7 @@ sequence_slice
 
 
 .. note::
-该API输入只能是LoDTensor, 如果您需要处理的是Tensor类型，请使用  :ref:`paddle.slice <cn_api_paddle_slice>` 。
+该API输入只能是LoDTensor，果您需要处理的是Tensor类型，请使用  :ref:`paddle.slice <cn_api_paddle_slice>` 。
 
 
 ::
@@ -36,7 +36,7 @@ sequence_slice
         out.dims = (3, 2).
 
 .. 注意::
-   ``input`` ， ``offset`` ， ``length`` 的第一维大小应相同。
+   ``input`` ，``offset`` ，``length`` 的第一维大小应相同。
    ``offset`` 从0开始。
 
 参数

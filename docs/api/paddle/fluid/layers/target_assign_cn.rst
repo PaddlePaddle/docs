@@ -8,7 +8,7 @@ target_assign
 
 
 
-对于每个实例，根据 ``match_indices`` 和 ``negative_indices`` 位置索引, 给输入 ``out`` 和 ``out_weight`` 赋值。输入 ``input`` 和 ``negative_indices`` 均为2-D LoDTensor。假如 ``input`` 中每个实例的行偏移称作lod，该操作计算步骤如下：
+对于每个实例，根据 ``match_indices`` 和 ``negative_indices`` 位置索，给输入 ``out`` 和 ``out_weight`` 赋值。输入 ``input`` 和 ``negative_indices`` 均为2-D LoDTensor。假如 ``input`` 中每个实例的行偏移称作lod，该操作计算步骤如下：
 
 1.根据match_indices赋值:
 

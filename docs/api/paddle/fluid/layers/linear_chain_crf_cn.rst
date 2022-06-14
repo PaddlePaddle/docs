@@ -11,7 +11,7 @@ linear_chain_crf
 
 线性链条件随机场（Linear Chain CRF）
 
-条件随机场定义间接概率图，节点代表随机变量，边代表两个变量之间的依赖。CRF学习条件概率 :math:`P\left ( Y|X \right )` ， :math:`X = \left ( x_{1},x_{2},...,x_{n} \right )` 是结构性输入，:math:`Y = \left ( y_{1},y_{2},...,y_{n} \right )` 为输入标签。
+条件随机场定义间接概率图，节点代表随机变量，边代表两个变量之间的依赖。CRF学习条件概率 :math:`P\left ( Y|X \right )` ，:math:`X = \left ( x_{1},x_{2},...,x_{n} \right )` 是结构性输入，:math:`Y = \left ( y_{1},y_{2},...,y_{n} \right )` 为输入标签。
 
 线性链条件随机场（Linear Chain CRF)是特殊的条件随机场（CRF），有利于序列标注任务。序列标注任务不为输入设定许多条件依赖。唯一的限制是输入和输出必须是线性序列。因此类似CRF的图是一个简单的链或者线，也就是线性链随机场（linear chain CRF）。
 
@@ -54,7 +54,7 @@ linear_chain_crf
 参数
 ::::::::::::
 
-    - **input** (LoDTensor|Tensor) - 数据类型为float32， float64的Tensor或者LoDTensor。线性链条件随机场的发射矩阵emission。输入为LoDTensor时，是一个shape为[N*D]的2-D LoDTensor，N是每一个batch中batch对应的长度数想加的总数，D是维度。当输入为Tensor时，应该是一个shape为[N x S x D]的Tensor，N是batch_size，S为序列的最大长度，D是维度。
+    - **input** (LoDTensor|Tensor) - 数据类型为float32，float64的Tensor或者LoDTensor。线性链条件随机场的发射矩阵emission。输入为LoDTensor时，是一个shape为[N*D]的2-D LoDTensor，N是每一个batch中batch对应的长度数想加的总数，D是维度。当输入为Tensor时，应该是一个shape为[N x S x D]的Tensor，N是batch_size，S为序列的最大长度，D是维度。
     - **label** (Tensor|LoDTensor） - 数据类型为int64类型Tensor或者LoDTensor。该值为标签值。输入为LoDTensor时[N x 1]，N是mini-batch的总数;输入为Tensor时，[N x S],N为batch数量，S为序列的最大长度。
     - **Length** (Tensor) - 数据类型为int64类型的Tensor。 shape为[M x 1]的Tensor,M为mini_batch中序列的数量。
     - **param_attr** (ParamAttr) - 可学习参数的属性，为transition矩阵。详见代码示例。
@@ -71,11 +71,11 @@ linear_chain_crf
 返回类型
 ::::::::::::
 
-    Emission的指数形式。Variable(Tensor|LoDTensor)：数据类型为float32， float64的Tensor或者LoDTensor。
+    Emission的指数形式。Variable(Tensor|LoDTensor)：数据类型为float32，float64的Tensor或者LoDTensor。
 
-    Transition的指数形式。Variable(Tensor|LoDTensor)：数据类型为float32， float64的Tensor或者LoDTensor。
+    Transition的指数形式。Variable(Tensor|LoDTensor)：数据类型为float32，float64的Tensor或者LoDTensor。
 
-    条件概率的对数形式。Variable(Tensor)：数据类型为float32， float64的Tensor。
+    条件概率的对数形式。Variable(Tensor)：数据类型为float32，float64的Tensor。
 
 
 代码示例

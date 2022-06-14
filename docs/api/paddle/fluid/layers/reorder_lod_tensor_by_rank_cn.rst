@@ -10,11 +10,11 @@ reorder_lod_tensor_by_rank
 
 
 该OP根据 ``rank_table`` 中提供的 ``LoDRankTable`` 类型的顺序信息来实现对 ``X`` 的重新排列。
-接口参数 ``X`` 是由多个序列(Sequence)组成的的一个批序列（Batch of Sequences）， ``rank_table`` 存储着对batch中序列重新排列的 ``LoDRankTable`` 类型的顺序信息。
+接口参数 ``X`` 是由多个序列(Sequence)组成的的一个批序列（Batch of Sequences），``rank_table`` 存储着对batch中序列重新排列的 ``LoDRankTable`` 类型的顺序信息。
 
 例如:
 
-假设在 ``rank_table`` 中存储的序列索引为 :math:`[3,0,2,1]` ， ``X``  将会被这样被重新排列：
+假设在 ``rank_table`` 中存储的序列索引为 :math:`[3,0,2,1]` ，``X``  将会被这样被重新排列：
 ``X`` 中的第四个序列（即索引为3的序列，后面以此类推）会变成排列后的batch中的第一个，紧接着就是原来batch中的第一个元素，第三个元素，和第二个元素。
 简言之，若有原batch：:math:`X = [Seq0, Seq1, Seq2, Seq3]` 且 RankTable 中的索引为 :math:`[3,0,2,1]` ，那么输出即为 :math:`Out = [Seq3, Seq0, Seq2, Seq1]` ，它携带着新的LoD信息。
 如果 ``X`` 的LoD信息是空的，这表明 ``X`` 不是序列型数据。这和由多个定长为1的序列组成的batch是相同的情况。此时，该函数将对 ``X`` 中数据 在第一轴(axis)上按 ``rank_table`` 里的规则加以排列。

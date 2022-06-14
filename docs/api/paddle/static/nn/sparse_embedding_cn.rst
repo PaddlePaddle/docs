@@ -21,7 +21,7 @@ input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出
 
     Case 1:
 
-    input是Tensor, 且padding_idx = -1
+    input是Tensor，padding_idx = -1
         input.data = [[1, 3], [2, 4], [4, 127]]
         input.shape = [3, 2]
     若size = [128, 16]
@@ -35,11 +35,11 @@ input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出
                      
                     [[0.945345345, 0.435394634, ..., 0.435345365],
                      [0.0,         0.0,         ..., 0.0        ]]]  # padding data
-    输入的padding_idx小于0，则自动转换为padding_idx = -1 + 128 = 127, 对于输入id为127的词，进行padding处理。
+    输入的padding_idx小于0，则自动转换为padding_idx = -1 + 128 = 127，于输入id为127的词，进行padding处理。
     
     Case 2:
 
-    input是lod level 为1的LoDTensor, 且padding_idx = 0
+    input是lod level 为1的LoDTensor，padding_idx = 0
         input.lod = [[2, 3]]
         input.data = [[1], [3], [2], [4], [0]]
         input.shape = [5, 1]
@@ -60,7 +60,7 @@ input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出
 参数
 ::::::::
     - **input** (Variable) - 存储id信息的Tensor，数据类型必须为：int64，输入的shape最后一维须为1。input中的id必须满足 ``0 =< id < size[0]`` 。
-    - **size** (tuple|list) - embedding矩阵的维度(vocab_size，emb_size)。必须包含两个元素，第一个元素为vocab_size(词表大小), 第二个为emb_size（embedding层维度）。大规模稀疏场景下，参数规模初始为0，会随着训练的进行逐步扩展，因此如果vocab_size暂时无用，其值可以为任意整数，emb_size则为词嵌入权重参数的维度配置。
+    - **size** (tuple|list) - embedding矩阵的维度(vocab_size，emb_size)。必须包含两个元素，第一个元素为vocab_size(词表大小)，二个为emb_size（embedding层维度）。大规模稀疏场景下，参数规模初始为0，会随着训练的进行逐步扩展，因此如果vocab_size暂时无用，其值可以为任意整数，emb_size则为词嵌入权重参数的维度配置。
     - **padding_idx** (int|long|None，可选) - padding_idx需在区间 ``[-vocab_size, vocab_size)`` ，否则不生效，``padding_idx < 0`` 时，padding_idx会被改成``vocab_size + padding_idx``，input中等于padding_index的id对应的embedding信息会被设置为0，且这部分填充数据在训练时将不会被更新。如果为None，不作处理，默认为None。
     - **is_test** (bool，可选) -  表示训练/预测模式。在预测模式(is_test=False)下，遇到不存在的特征，不会初始化及创建，直接以0填充后返回。默认值为False。
     - **entry** (str，可选) - 准入策略配置，目前支持概率准入ProbabilityEntry和频次准入CountFilterEntry。默认为None。

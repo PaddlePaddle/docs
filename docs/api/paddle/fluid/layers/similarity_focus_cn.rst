@@ -13,7 +13,7 @@ similarity_focus
 通过以下三个步骤，该层生成一个和输入 ``input`` 同形的 similarity focus mask（相似度聚焦掩码）：
 
 1. 根据 ``axis`` 和 ``indexes`` 提取一个三维张量，第一维为batch大小。
-   例如，如果 ``axis=1, indexes=[a]`` , 将得到矩阵 T=X[:, a, :, :] 。
+   例如，如果 ``axis=1, indexes=[a]`` ，得到矩阵 T=X[:, a, :, :] 。
    该例中，如果输入X的形为 (BatchSize, A, B, C) ，则输出张量T的形为 (BatchSize, B, C) 。
 2. 对于每一个索引，在输出T中找到最大值。所以同一行、同一列最多只有一个数字，这意味着如果在第i行，第j列中找到最大值，那么在相应行、列中的其他数值都将被忽略。然后再在剩余的数值中找到下一个最大值。显然，将会产生 min（B,C）个数字，并把三维相似聚焦掩码张量相应位置的元素置为1，其余则置为0。对每个索引按元素进行or运算。
 3. 将这个三维相似度聚焦掩码张量 broadcast 成输入 ``input`` 的形状
@@ -24,7 +24,7 @@ similarity_focus
 
     例如 :
 
-    给定四维张量 x 形为 (BatchSize, C, A, B), 其中C 为通道Channel数目，
+    给定四维张量 x 形为 (BatchSize, C, A, B)，中C 为通道Channel数目，
     特征图（feature map）的形为（A,B）：
 
         x.shape = (2, 3, 2, 2)

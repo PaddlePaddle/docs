@@ -37,7 +37,7 @@ serialize_persistables
 
     path_prefix = "./infer_model"
 
-    # 用户自定义网络, 此处用 softmax 回归为例
+    # 用户自定义网，此处用 softmax 回归为例
     image = paddle.static.data(name='img', shape=[None, 28, 28], dtype='float32')
     label = paddle.static.data(name='label', shape=[None, 1], dtype='int64')
     predict = paddle.static.nn.fc(image, 10, activation='softmax')

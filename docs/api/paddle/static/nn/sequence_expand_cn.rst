@@ -11,7 +11,7 @@ sequence_expand
 序列扩张层（Sequence Expand Layer)，根据输入 ``y`` 的第 ``ref_level`` 层lod对输入 ``x`` 进行扩展。 ``x`` 的lod level最多为1，若 ``x`` 的lod level为1，则 ``x`` 的lod大小必须与 ``y`` 的第 ``ref_level`` 层lod大小相等；若 ``x`` 的lod level为0，则 ``x`` 的第一维大小必须与 ``y`` 第 ``ref_level`` 层大小相等。 ``x`` 的秩最少为2，当 ``x`` 的秩大于2时，将被当作是一个二维张量处理。
 
 .. note::
-该API的输入 ``x`` 可以是Tensor或LodTensor， ``y`` 只能是LodTensor。
+该API的输入 ``x`` 可以是Tensor或LodTensor，``y`` 只能是LodTensor。
 
 范例解释如下：
 

@@ -18,7 +18,7 @@ bpr_loss
   Y[i] = 1/(N[i] - 1) * \sum_j{\log(\sigma(X[i, Label[i]]-X[i, j]))}
 
 其中：
-    - :math:`X` ：输入值，一个形为[T x D]的2-D Tensor, 此处为logit值。
+    - :math:`X` ：输入值，一个形为[T x D]的2-D Tensor，处为logit值。
     - :math:`N[i]` ： 在时间步i的正例和负例的总和。
     - :math:`Label[i]` ：在时间步i的正例下标。
     - :math:`\sigma` ：激活函数。
@@ -56,6 +56,6 @@ Variable
     # predict = [0.1, 0.2, 0.3, 0.4]
     predict = fluid.layers.data(
               name="predict", shape=[neg_size + 1], dtype="float32")
-    # bpr_Loss : label [0] 表示predict中下标0表示正例，即为0.1, 负例有3个为0.2,0.3,0.4
+    # bpr_Loss : label [0] 表示predict中下标0表示正例，即为0.1，例有3个为0.2,0.3,0.4
     cost = fluid.layers.bpr_loss(input=predict, label=label)
 

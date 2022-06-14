@@ -38,7 +38,7 @@ set_global_initializer
     conv1 = nn.Conv2D(4, 6, (3, 3))
     y_var1 = conv1(x_var)
 
-    # 如果同时设置了param_attr/bias_attr, 全局初始化将不会生效
+    # 如果同时设置了param_attr/bias_attr，局初始化将不会生效
     # conv2的weight参数是通过Xavier来初始化
     # conv2的bias参数是通过Normal来初始化
     conv2 = nn.Conv2D(4, 6, (3, 3), 

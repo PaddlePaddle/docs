@@ -65,6 +65,6 @@ load_inference_model
 
     # 在上述示例中，inference program 被保存在 "./infer_model.pdmodel" 文件中，
     # 参数被保存在 "./infer_model.pdiparams" 文件中。
-    # 加载 inference program 后， executor可使用 fetch_targets 和 feed_target_names，
+    # 加载 inference program 后，executor可使用 fetch_targets 和 feed_target_names，
     # 执行Program，并得到预测结果。
 

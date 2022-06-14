@@ -48,7 +48,7 @@ istft
 - **length** (int，可选) - 指定输出信号的长度，该信号将从逆短时傅里叶变换的结果中截取。
   默认为 ``None`` (返回不截取的信号)；
 - **return_complex** (bool，可选) - 表示输出的重构信号是否为复信号。如果 
-  ``return_complex`` 设为 ``True``， ``onesided`` 必须设为 ``False``，默认
+  ``return_complex`` 设为 ``True``，``onesided`` 必须设为 ``False``，默认
   为 ``False``；
 - **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试
   信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 

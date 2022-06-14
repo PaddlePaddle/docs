@@ -22,7 +22,7 @@ MultiHeadAttention
     - **dropout** (float，可选) - 注意力目标的随机失活率。0表示不加dropout。默认值：0。
     - **kdim** (int，可选) - 键值对中key的维度。如果为 ``None`` 则 ``kdim = embed_dim``。默认值：``None``。
     - **vdim** (int，可选) - 键值对中value的维度。如果为 ``None`` 则 ``kdim = embed_dim``。默认值：``None``。
-    - **need_weights** (bool, 可选) - 表明是否返回注意力权重。默认值：``False``。
+    - **need_weights** (bool，选) - 表明是否返回注意力权重。默认值：``False``。
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr，可选）- 指定偏置参数属性的对象。默认值：``None``，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 

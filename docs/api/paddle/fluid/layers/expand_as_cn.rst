@@ -8,8 +8,8 @@ expand_as
 
 
 
-该OP会根据输入的variable ``target_tensor`` 对输入 ``x`` 的各维度进行广播。通过 ``target_tensor``的维度来为 ``x`` 的每个维度设置广播的次数，使得x 的维度与target_tensor的维度相同。 ``x`` 的秩应小于等于6。注意， ``target_tensor`` 的秩必须与 ``x`` 的秩相同。
-注意:``target_tensor`` 对应的每一维必须能整除输入x中对应的维度，否则会报错。比如，target_tensor的维度为[2,6,2],x为[2,3,1],则整除后为[1,2,2]，x广播后维度为[2,6,2]。如果target_tensor的维度为[2,5,2]，第二维5不能整除x的第二维3，则会报错。        
+该OP会根据输入的variable ``target_tensor`` 对输入 ``x`` 的各维度进行广播。通过 ``target_tensor``的维度来为 ``x`` 的每个维度设置广播的次数，使得x 的维度与target_tensor的维度相同。 ``x`` 的秩应小于等于6。注意，``target_tensor`` 的秩必须与 ``x`` 的秩相同。
+注意:``target_tensor`` 对应的每一维必须能整除输入x中对应的维度，否则会报错。比如，target_tensor的维度为[2,6,2],x为[2,3,1]，整除后为[1,2,2]，x广播后维度为[2,6,2]。如果target_tensor的维度为[2,5,2]，第二维5不能整除x的第二维3，则会报错。        
 
 以下是一个示例：
 

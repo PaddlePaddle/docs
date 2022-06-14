@@ -14,7 +14,7 @@ disable_static
 参数
 ::::::::::::
 
-  - **place** (paddle.CPUPlace|paddle.CUDAPlace，可选) - 动态图运行时的设备。默认值为 ``None`` , 此时，会根据paddle的版本自动判断。
+  - **place** (paddle.CPUPlace|paddle.CUDAPlace，可选) - 动态图运行时的设备。默认值为 ``None`` ，时，会根据paddle的版本自动判断。
 
 返回
 ::::::::::::

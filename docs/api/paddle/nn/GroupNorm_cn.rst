@@ -14,16 +14,16 @@ GroupNorm
 
     - **num_groups** (int) - 从通道中分离出来的 ``group`` 的数目。
     - **num_channels** (int) - 输入的通道数。
-    - **epsilon** (float, 可选) - 为防止方差除零，增加一个很小的值。默认值：1e-05。
-    - **weight_attr** (ParamAttr|bool, 可选) - 指定权重参数属性的对象。如果为False, 表示参数不学习。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。如果为False, 表示参数不学习。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **data_format** (string, 可选) - 只支持“NCHW”(num_batches，channels，height，width)格式。默认值：“NCHW”。
-    - **name** (string, 可选) – GroupNorm的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
+    - **epsilon** (float，选) - 为防止方差除零，增加一个很小的值。默认值：1e-05。
+    - **weight_attr** (ParamAttr|bool，选) - 指定权重参数属性的对象。如果为False，示参数不学习。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr|bool，选) - 指定偏置参数属性的对象。如果为False，示参数不学习。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **data_format** (string，选) - 只支持“NCHW”(num_batches，channels，height，width)格式。默认值：“NCHW”。
+    - **name** (string，选) – GroupNorm的名，默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
 
 形状
 ::::::::::::
 
-    - input: 形状为(批大小, 通道数, \*) 的Tensor。
+    - input: 形状为(批大，通道，\*) 的Tensor。
     - output: 和输入形状一样。
 
 代码示例

@@ -8,7 +8,7 @@ array_read
 
 
 
-该OP用于读取输入数组 :ref:`cn_api_fluid_LoDTensorArray` 中指定位置的数据, ``array`` 为输入的数组， ``i`` 为指定的读取位置。常与 :ref:`cn_api_fluid_layers_array_write` OP配合使用进行LoDTensorArray的读写。
+该OP用于读取输入数组 :ref:`cn_api_fluid_LoDTensorArray` 中指定位置的数，``array`` 为输入的数组，``i`` 为指定的读取位置。常与 :ref:`cn_api_fluid_layers_array_write` OP配合使用进行LoDTensorArray的读写。
 
 例1:
 ::

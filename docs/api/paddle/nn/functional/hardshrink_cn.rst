@@ -22,8 +22,8 @@ hardshrink激活层。计算公式如下：
 参数
 ::::::::::
     - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
-    - threshold (float, 可选) - hard_shrink激活计算公式中的threshold值。默认值为0.5。
-    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - threshold (float，选) - hard_shrink激活计算公式中的threshold值。默认值为0.5。
+    - name (str，选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::::

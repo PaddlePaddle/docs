@@ -28,7 +28,7 @@ sequence_pool
 
     Case 1:
 
-        input是1-level的LoDTensor, 且pad_value = 0.0:
+        input是1-level的LoDTensor，pad_value = 0.0:
             input.lod = [[0, 2, 5, 7, 7]]
             input.data = [[1.], [3.], [2.], [4.], [6.], [5.], [1.]]
             input.shape = [7, 1]
@@ -47,7 +47,7 @@ sequence_pool
 
     Case 2:
     
-        input是2-level的LoDTensor, 包含3个长度分别为[2, 0, 3]的序列，其中中间的0表示序列为空。
+        input是2-level的LoDTensor，含3个长度分别为[2, 0, 3]的序列，其中中间的0表示序列为空。
         第一个长度为2的序列包含2个长度分别为[1, 2]的子序列；
         最后一个长度为3的序列包含3个长度分别为[1, 0, 3]的子序列。
             input.lod = [[0, 2, 2, 5], [0, 1, 3, 4, 4, 7]]

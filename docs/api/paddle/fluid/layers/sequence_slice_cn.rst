@@ -11,7 +11,7 @@ sequence_slice
 
 **实现Sequence Slice(序列切片)运算**
 
-**该OP输入只能是LoDTensor, 如果您需要处理的是Tensor类型，请使用 :ref:`cn_api_fluid_layers_slice` 。**
+**该OP输入只能是LoDTensor，果您需要处理的是Tensor类型，请使用 :ref:`cn_api_fluid_layers_slice` 。**
 该层从给定序列中截取子序列。截取依据为所给的开始 ``offset`` （偏移量） 和子序列长 ``length`` 。
 
 ::
@@ -34,7 +34,7 @@ sequence_slice
         out.dims = (3, 2).
 
 .. 注意::
-   ``input`` ， ``offset`` ， ``length`` 的第一维大小应相同。
+   ``input`` ，``offset`` ，``length`` 的第一维大小应相同。
    ``offset`` 从0开始。
 
 参数
@@ -51,7 +51,7 @@ Variable(LoDTensor) 序列切片运算结果
 
 返回类型
 ::::::::::::
-变量(Variable), 数据类型与 ``input`` 一致
+变量(Variable)，据类型与 ``input`` 一致
 
 代码示例
 ::::::::::::

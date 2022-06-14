@@ -13,11 +13,11 @@ jvp
 参数
 :::::::::
 
-- **func** (Callable) - Python函数，输入参数为 ``xs`` , 输出为Tensor或Tensor序列。
+- **func** (Callable) - Python函数，输入参数为 ``xs`` ，出为Tensor或Tensor序列。
 - **xs** (Tensor|Sequence[Tensor]） - 函数 ``func`` 的输入参数，数据类型为Tensor或
   Tensor序列。
-- **v** (Tensor|Sequence[Tensor]|None, 可选) - 用于计算 ``jvp`` 的输入向量，形状要求
-  与 ``xs`` 一致。默认值为 ``None`` , 即相当于形状与 ``xs`` 一致，值全为1的Tensor或
+- **v** (Tensor|Sequence[Tensor]|None，选) - 用于计算 ``jvp`` 的输入向量，形状要求
+  与 ``xs`` 一致。默认值为 ``None`` ，相当于形状与 ``xs`` 一致，值全为1的Tensor或
   Tensor序列。
 
 返回

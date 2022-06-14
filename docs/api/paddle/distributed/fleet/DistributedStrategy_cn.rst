@@ -135,7 +135,7 @@ recompute_configs
 
 **checkpoints(int):** Recompute策略的检查点，默认为空列表，也即不启用Recompute。
 
-**enable_offload(bool):** 是否开启recompute-offload 策略。 该策略会在recompute的基础上，将原本驻留在显存中的checkpoints 卸载到Host 端的内存中， 进一步更大的batch size。 因为checkpoint 在内存和显存间的拷贝较慢，该策略是通过牺牲速度换取更大的batch size。 默认值：False。
+**enable_offload(bool):** 是否开启recompute-offload 策略。 该策略会在recompute的基础上，将原本驻留在显存中的checkpoints 卸载到Host 端的内存中，进一步更大的batch size。 因为checkpoint 在内存和显存间的拷贝较慢，该策略是通过牺牲速度换取更大的batch size。 默认值：False。
 
 **checkpoint_shape(list):** 该参数仅在 offload 开启时需要设置，用来指定 checkpoints 的各维度大小。目前offload 需要所有checkpoints 具有相同的 shape，并且各维度是确定的（不支持 -1 维度）。
 
@@ -422,7 +422,7 @@ sharding
 是否开启sharding 策略。sharding 实现了[ZeRO: Memory Optimizations Toward Training Trillion Parameter Models](https://arxiv.org/abs/1910.02054)
 中 ZeRO-DP 类似的功能，其通过将模型的参数和优化器状态在ranks 间分片来支持更大模型的训练。 
 
-目前在混合并行(Hybrid parallelism) 模式下, sharding config 作为混合并行设置的统一入口来设置混合并行相关参数。
+目前在混合并行(Hybrid parallelism) 模式，sharding config 作为混合并行设置的统一入口来设置混合并行相关参数。
 
 默认值：False
 
@@ -449,7 +449,7 @@ sharding_configs
 
 **gradient_merge_acc_step(int, optional):** 梯度累积中的累积步数。 gradient_merge_acc_step=1 梯度累积会被关闭。 默认值是 1。
 
-**optimize_offload(bool, optional):** 优化器状态卸载开关。 开启后会将优化器中的状态(moment) 卸载到Host 的内存中，以到达节省GPU 显存、支持更大模型的目的。开启后，优化器状态会在训练的更新阶段经历：预取-计算-卸载（offload）三个阶段，更新阶段耗时会增加。 这个策略需要权衡显存节省量和训练速度，仅推荐在开启梯度累积并且累积步数较大时开启。 因为累积步数较大时，训练中更新阶段的比例将远小于前向&反向阶段， 卸载引入的耗时将不明显。
+**optimize_offload(bool, optional):** 优化器状态卸载开关。 开启后会将优化器中的状态(moment) 卸载到Host 的内存中，以到达节省GPU 显存、支持更大模型的目的。开启后，优化器状态会在训练的更新阶段经历：预取-计算-卸载（offload）三个阶段，更新阶段耗时会增加。 这个策略需要权衡显存节省量和训练速度，仅推荐在开启梯度累积并且累积步数较大时开启。 因为累积步数较大时，训练中更新阶段的比例将远小于前向&反向阶段，卸载引入的耗时将不明显。
 
 **dp_degree(int, optional):** 数据并行的路数。 当dp_degree>=2 时，会在内层并行的基础上，再引入dp_degree路 数据并行。用户需要保证 global_world_size = mp_degree * sharding_degree * pp_degree * dp_degree。 默认值是 1。
 

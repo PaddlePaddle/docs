@@ -41,20 +41,20 @@ BatchNorm
 ::::::::::::
 
     - **num_channels** (int) - 指明输入 ``Tensor`` 的通道数量。
-    - **act** (str, 可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
-    - **is_test** (bool, 可选) - 指示是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认值：False。
-    - **momentum** (float, 可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var`` 。默认值：0.9。更新公式如上所示。
-    - **epsilon** (float, 可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
-    - **param_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr, 可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **dtype** (str, 可选) - 指明输入 ``Tensor`` 的数据类型，可以为float32或float64。默认值：float32。
-    - **data_layout** (string, 可选) - 指定输入数据格式，数据格式可以为“NCHW”或者“NHWC”。默认值：“NCHW”。
-    - **in_place** (bool, 可选) - 指示 ``batch_norm`` 的输出是否可以复用输入内存。默认值：False。
-    - **moving_mean_name** (str, 可选) - ``moving_mean`` 的名称，存储全局均值。如果将其设置为None, ``batch_norm`` 将随机命名全局均值；否则， ``batch_norm`` 将命名全局均值为 ``moving_mean_name`` 。默认值：None。
-    - **moving_variance_name** (string, 可选) - ``moving_var`` 的名称，存储全局方差。如果将其设置为None, ``batch_norm`` 将随机命名全局方差；否则， ``batch_norm`` 将命名全局方差为 ``moving_variance_name`` 。默认值：None。
-    - **do_model_average_for_mean_and_var** (bool, 可选) - 指示是否为mean和variance做模型均值。默认值：False。
-    - **use_global_stats** (bool, 可选) – 指示是否使用全局均值和方差。在预测或测试模式下，将 ``use_global_stats`` 设置为true或将 ``is_test`` 设置为true，这两种行为是等效的。在训练模式中，当设置 ``use_global_stats`` 为True时，在训练期间也将使用全局均值和方差。默认值：False。
-    - **trainable_statistics** (bool, 可选) - eval模式下是否计算mean均值和var方差。eval模式下，trainable_statistics为True时，由该批数据计算均值和方差。默认值：False。
+    - **act** (str，选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
+    - **is_test** (bool，选) - 指示是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认值：False。
+    - **momentum** (float，选) - 此值用于计算 ``moving_mean`` 和 ``moving_var`` 。默认值：0.9。更新公式如上所示。
+    - **epsilon** (float，选) - 为了数值稳定加在分母上的值。默认值：1e-05。
+    - **param_attr** (ParamAttr，选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr，选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **dtype** (str，选) - 指明输入 ``Tensor`` 的数据类型，可以为float32或float64。默认值：float32。
+    - **data_layout** (string，选) - 指定输入数据格式，数据格式可以为“NCHW”或者“NHWC”。默认值：“NCHW”。
+    - **in_place** (bool，选) - 指示 ``batch_norm`` 的输出是否可以复用输入内存。默认值：False。
+    - **moving_mean_name** (str，选) - ``moving_mean`` 的名称，存储全局均值。如果将其设置为None, ``batch_norm`` 将随机命名全局均值；否则，``batch_norm`` 将命名全局均值为 ``moving_mean_name`` 。默认值：None。
+    - **moving_variance_name** (string，选) - ``moving_var`` 的名称，存储全局方差。如果将其设置为None, ``batch_norm`` 将随机命名全局方差；否则，``batch_norm`` 将命名全局方差为 ``moving_variance_name`` 。默认值：None。
+    - **do_model_average_for_mean_and_var** (bool，选) - 指示是否为mean和variance做模型均值。默认值：False。
+    - **use_global_stats** (bool，选) – 指示是否使用全局均值和方差。在预测或测试模式下，将 ``use_global_stats`` 设置为true或将 ``is_test`` 设置为true，这两种行为是等效的。在训练模式中，当设置 ``use_global_stats`` 为True时，在训练期间也将使用全局均值和方差。默认值：False。
+    - **trainable_statistics** (bool，选) - eval模式下是否计算mean均值和var方差。eval模式下，trainable_statistics为True时，由该批数据计算均值和方差。默认值：False。
 
 返回
 ::::::::::::

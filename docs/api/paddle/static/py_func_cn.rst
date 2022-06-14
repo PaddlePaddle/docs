@@ -11,7 +11,7 @@ py_func
 
 PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Paddle中的Tensor与numpy数组可以方便的互相转换，从而可使用Python中的numpy API来自定义一个Python OP。
 
-该自定义的Python OP的前向函数是 ``func``, 反向函数是 ``backward_func`` 。 Paddle将在前向部分调用 ``func`` ，并在反向部分调用 ``backward_func`` （如果 ``backward_func`` 不是None)。 ``x`` 为 ``func`` 的输入，必须为Tensor类型； ``out``  为 ``func`` 的输出， 既可以是Tensor类型, 也可以是numpy数组。
+该自定义的Python OP的前向函数是 ``func``，向函数是 ``backward_func`` 。 Paddle将在前向部分调用 ``func`` ，并在反向部分调用 ``backward_func`` （如果 ``backward_func`` 不是None)。 ``x`` 为 ``func`` 的输入，必须为Tensor类型； ``out``  为 ``func`` 的输出，既可以是Tensor类，也可以是numpy数组。
 
 反向函数 ``backward_func`` 的输入依次为：前向输入 ``x`` 、前向输出 ``out`` 、 ``out`` 的梯度。 如果 ``out`` 的某些输出没有梯度，则 ``backward_func`` 的相关输入为None。如果 ``x`` 的某些变量没有梯度，则用户应在 ``backward_func`` 中主动返回None。 
 

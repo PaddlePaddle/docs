@@ -25,7 +25,7 @@ sigmoid_focal_loss
 
 参数
 :::::::::
-    - **logit** (Tensor) - 维度为 :math:`[N, *]` , 其中N是batch_size， `*` 是任意其他维度。输入数据 ``logit`` 一般是卷积层的输出，不需要经过 ``sigmoid`` 层。数据类型是float32、float64。
+    - **logit** (Tensor) - 维度为 :math:`[N, *]` ，中N是batch_size，`*` 是任意其他维度。输入数据 ``logit`` 一般是卷积层的输出，不需要经过 ``sigmoid`` 层。数据类型是float32、float64。
     - **label** (Tensor) - 维度为 :math:`[N, *]` ，标签 ``label`` 的维度、数据类型与输入 ``logit`` 相同。
     - **normalizer** (Tensor，可选) - 维度为 :math:`[1]` ，focal loss的归一化系数，数据类型与输入 ``logit`` 相同。若设置为None，则不会将focal loss做归一化操作（即不会将focal loss除以normalizer）。在目标检测任务中，设置为正样本的数量。默认值为None。
     - **alpha** (int|float，可选) - 用于平衡正样本和负样本的超参数，取值范围 :math:`[0，1]` 。默认值设置为0.25。
@@ -35,7 +35,7 @@ sigmoid_focal_loss
 
 返回
 :::::::::
-    - Tensor，输出的Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` , 与输入 ``logit`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出的维度为 :math:`[1]` 。
+    - Tensor，输出的Tensor。如果 :attr:`reduction` 是 ``'none'``，输出的维度为 :math:`[N, *]` ，输入 ``logit`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，输出的维度为 :math:`[1]` 。
 
 代码示例
 :::::::::

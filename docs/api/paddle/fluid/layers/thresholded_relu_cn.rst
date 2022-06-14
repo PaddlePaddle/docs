@@ -26,7 +26,7 @@ thresholded_relu
 返回
 ::::::::::::
 
-   - 多维 Tensor 或 LoDTensor, 数据类型为 float32 或 float64， 和输入 x 的数据类型相同，形状和输入 x 相同。
+   - 多维 Tensor 或 LoDTensor，据类型为 float32 或 float64，和输入 x 的数据类型相同，形状和输入 x 相同。
 
 返回类型
 ::::::::::::

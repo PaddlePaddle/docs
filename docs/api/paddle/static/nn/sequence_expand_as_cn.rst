@@ -9,7 +9,7 @@ sequence_expand_as
 Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 进行扩展。当前实现要求 ``y`` 的lod层数（level）必须为1，且 ``x`` 的第一维必须和 ``y`` 的第0层lod大小相同，所以扩展后的LodTensor具有和 ``y`` 相同的lod。扩展结果与输入 ``x`` 的lod无关，所以无需考虑 ``x`` 的lod。
 
 .. note::
-该API的输入 ``x`` 可以是Tensor或LoDTensor， ``y`` 只能是LodTensor。
+该API的输入 ``x`` 可以是Tensor或LoDTensor，``y`` 只能是LodTensor。
 
 范例解释如下：
 

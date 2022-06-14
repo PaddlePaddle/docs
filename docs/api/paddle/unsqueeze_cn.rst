@@ -18,7 +18,7 @@ unsqueeze
 
 返回
 :::::::::
-Tensor,扩展维度后的多维Tensor，数据类型与输入Tensor一致。
+Tensor，展维度后的多维Tensor，数据类型与输入Tensor一致。
 
 代码示例
 :::::::::

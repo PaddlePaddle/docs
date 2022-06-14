@@ -32,7 +32,7 @@ multi_box_head
                       max_sizes = [base_size * .20] + max_sizes
 
         - **num_classes** (int) - 类别数。
-        - **aspect_ratios**  (list(float) | tuple(float) | list(list(float)) | tuple(tuple(float)) - 候选框的宽高比， ``aspect_ratios`` 和 ``input`` 的个数必须相等。如果每个特征层提取先验框的 ``aspect_ratio`` 多余一个，写成嵌套的list，例如[[2., 3.]]。
+        - **aspect_ratios**  (list(float) | tuple(float) | list(list(float)) | tuple(tuple(float)) - 候选框的宽高比，``aspect_ratios`` 和 ``input`` 的个数必须相等。如果每个特征层提取先验框的 ``aspect_ratio`` 多余一个，写成嵌套的list，例如[[2., 3.]]。
         - **min_ratio** (int）- 先验框的长度和 ``base_size`` 的最小比率，注意，这里是百分比，假如比率为0.2，这里应该给20.0。默认值: None。
         - **max_ratio** (int）- 先验框的长度和 ``base_size`` 的最大比率，注意事项同 ``min_ratio`` 。默认值: None。
         - **min_sizes** (list(float) | tuple(float) | None）- 每层提取的先验框的最小长度，如果输入个数len(inputs)<= 2，则必须设置 ``min_sizes`` ，并且 ``min_sizes`` 的个数应等于len(inputs)。默认值：None。
@@ -55,10 +55,10 @@ multi_box_head
 
 list(Variable) | tuple(Variable）
 
-    - **mbox_loc(Variable)** - 预测框的回归位置。格式为[N，num_priors，4]，其中 ``N`` 是batch size， ``num_priors`` 是总共提取的先验框的个数。
+    - **mbox_loc(Variable)** - 预测框的回归位置。格式为[N，num_priors，4]，其中 ``N`` 是batch size，``num_priors`` 是总共提取的先验框的个数。
     - **mbox_conf(Variable）** - 预测框的分类信度。格式为[N，num_priors，C]，其中 ``num_priors`` 同上，C是类别数。
-    - **boxes(Variable)** - 提取的先验框。布局是[num_priors，4]， ``num_priors`` 同上，常量4是坐标个数。
-    - **variances(Variable)** - 提取的先验框方差。布局是[num_priors，4]， ``num_priors`` 同上。
+    - **boxes(Variable)** - 提取的先验框。布局是[num_priors，4]，``num_priors`` 同上，常量4是坐标个数。
+    - **variances(Variable)** - 提取的先验框方差。布局是[num_priors，4]，``num_priors`` 同上。
 
 
 代码示例 1

@@ -16,7 +16,7 @@ SyncBatchNorm
 - :math:`x` : 所有GPU上同一批输入数据
 - :math:`m` : 所有GPU上同一批次数据的大小
 
-当模型处于评估模式时，:math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 是全局（或运行）统计数据（moving_mean和moving_variance， 这两个统计量通常来自预先训练好的模型）。计算公式如下：
+当模型处于评估模式时，:math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 是全局（或运行）统计数据（moving_mean和moving_variance，这两个统计量通常来自预先训练好的模型）。计算公式如下：
 
 .. math::
 
@@ -42,10 +42,10 @@ SyncBatchNorm
 ::::::::::::
 
     - **num_features** (int) - 指明输入 ``Tensor`` 的通道数量。
-    - **epsilon** (float, 可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
-    - **momentum** (float, 可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var`` 。默认值：0.9。更新公式如上所示。
-    - **weight_attr** (ParamAttr|bool, 可选) - 指定权重参数属性的对象。如果设置为 ``False`` ，则表示本层没有可训练的权重参数。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。如果设置为 ``False`` ，则表示本层没有可训练的偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **epsilon** (float，选) - 为了数值稳定加在分母上的值。默认值：1e-05。
+    - **momentum** (float，选) - 此值用于计算 ``moving_mean`` 和 ``moving_var`` 。默认值：0.9。更新公式如上所示。
+    - **weight_attr** (ParamAttr|bool，选) - 指定权重参数属性的对象。如果设置为 ``False`` ，则表示本层没有可训练的权重参数。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr|bool，选) - 指定偏置参数属性的对象。如果设置为 ``False`` ，则表示本层没有可训练的偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
 形状
 ::::::::::::
@@ -84,7 +84,7 @@ convert_sync_batchnorm(layer)
 返回
 ::::::::::::
 
-    如果原始模型中有 ``BatchNorm*d`` 层， 则把 ``BatchNorm*d`` 层转换为 ``SyncBatchNorm`` 层的原始模型。
+    如果原始模型中有 ``BatchNorm*d`` 层，则把 ``BatchNorm*d`` 层转换为 ``SyncBatchNorm`` 层的原始模型。
 
 代码示例
 ::::::::::::

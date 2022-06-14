@@ -16,12 +16,12 @@ BCEWithLogitsLoss
 .. math::
     Out = -Labels * \log(\sigma(Logit)) - (1 - Labels) * \log(1 - \sigma(Logit))
 
-其中 :math:`\sigma(Logit) = \frac{1}{1 + e^{-Logit}}` ， 代入上方计算公式中:
+其中 :math:`\sigma(Logit) = \frac{1}{1 + e^{-Logit}}` ，代入上方计算公式中:
 
 .. math::
     Out = Logit - Logit * Labels + \log(1 + e^{-Logit})
 
-为了计算稳定性，防止当 :math:`Logit<0` 时， :math:`e^{-Logit}` 溢出，loss将采用以下公式计算:
+为了计算稳定性，防止当 :math:`Logit<0` 时，:math:`e^{-Logit}` 溢出，loss将采用以下公式计算:
 
 .. math::
     Out = \max(Logit, 0) - Logit * Labels + \log(1 + e^{-\|Logit\|})
@@ -41,9 +41,9 @@ BCEWithLogitsLoss
 
 形状
 :::::::::
-    - **logit** (Tensor) - :math:`[N, *]` , 其中N是batch_size， `*` 是任意其他维度。输入数据 ``logit`` 一般是线性层的输出，不需要经过 ``sigmoid`` 层。数据类型是float32、float64。
+    - **logit** (Tensor) - :math:`[N, *]` ，中N是batch_size，`*` 是任意其他维度。输入数据 ``logit`` 一般是线性层的输出，不需要经过 ``sigmoid`` 层。数据类型是float32、float64。
     - **label** (Tensor) - :math:`[N, *]` ，标签 ``label`` 的维度、数据类型与输入 ``logit`` 相同。
-    - **output** (Tensor) - 输出的Tensor。如果 :attr:`reduction` 是 ``'none'``, 则输出的维度为 :math:`[N, *]` , 与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``, 则输出的维度为 :math:`[1]` 。
+    - **output** (Tensor) - 输出的Tensor。如果 :attr:`reduction` 是 ``'none'``，输出的维度为 :math:`[N, *]` ，输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，输出的维度为 :math:`[1]` 。
 
 返回
 :::::::::

@@ -15,7 +15,7 @@ Linear
 
         \\Out = Act({XW + b})\\
 
-其中，:math:`X` 为输入的 Tensor， :math:`W` 和 :math:`b` 分别为权重和偏置。
+其中，:math:`X` 为输入的 Tensor，:math:`W` 和 :math:`b` 分别为权重和偏置。
 
 Linear 层只接受一个 Tensor 的输入。
 Linear 层将输入 Tensor 与权重矩阵 :math:`W` 相乘，然后生成形状为 :math:`[N，*，output_dim]` 的输出张量，
@@ -28,10 +28,10 @@ Linear 层将输入 Tensor 与权重矩阵 :math:`W` 相乘，然后生成形状
 
   - **input_dim** (int) – 线性变换层输入单元的数目。
   - **output_dim** (int) – 线性变换层输出单元的数目。
-  - **param_attr** (ParamAttr, 可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-  - **bias_attr** (ParamAttr, 可选) – 指定偏置参数属性的对象，若 `bias_attr` 为bool类型，如果设置为False，表示不会为该层添加偏置；如果设置为True，表示使用默认的偏置参数属性。默认值为None，表示使用默认的偏置参数属性。默认的偏置参数属性将偏置参数的初始值设为0。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-  - **act** (str, 可选) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
-  - **dtype** (str, 可选) – 权重的数据类型，可以为float32或float64。默认为float32。
+  - **param_attr** (ParamAttr，选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+  - **bias_attr** (ParamAttr，选) – 指定偏置参数属性的对象，若 `bias_attr` 为bool类型，如果设置为False，表示不会为该层添加偏置；如果设置为True，表示使用默认的偏置参数属性。默认值为None，表示使用默认的偏置参数属性。默认的偏置参数属性将偏置参数的初始值设为0。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+  - **act** (str，选) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
+  - **dtype** (str，选) – 权重的数据类型，可以为float32或float64。默认为float32。
 
 返回
 ::::::::::::

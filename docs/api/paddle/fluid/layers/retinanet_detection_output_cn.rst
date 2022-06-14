@@ -30,7 +30,7 @@ retinanet_detection_output
 
 返回
 ::::::::::::
-维度是 :math:`[No, 6]` 的2-D LoDTensor，表示批量内的检测结果。第一维No表示批量内的检测框的总数，第二维6表示每行有六个值：[label， score，xmin，ymin，xmax，ymax]。该LoDTensor的LoD中存放了每张图片的检测框数量，第i张图片的检测框数量为 :math:`LoD[i + 1] - LoD[i]` 。如果 :math:`LoD[i + 1] - LoD[i]` 为0，则第i个图像没有检测结果。 如果批量内的全部图像都没有检测结果，则LoD中所有元素被设置为0，LoDTensor被赋为空（None）。
+维度是 :math:`[No, 6]` 的2-D LoDTensor，表示批量内的检测结果。第一维No表示批量内的检测框的总数，第二维6表示每行有六个值：[label，score，xmin，ymin，xmax，ymax]。该LoDTensor的LoD中存放了每张图片的检测框数量，第i张图片的检测框数量为 :math:`LoD[i + 1] - LoD[i]` 。如果 :math:`LoD[i + 1] - LoD[i]` 为0，则第i个图像没有检测结果。 如果批量内的全部图像都没有检测结果，则LoD中所有元素被设置为0，LoDTensor被赋为空（None）。
 
 
 返回类型

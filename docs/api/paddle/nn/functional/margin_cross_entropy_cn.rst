@@ -23,9 +23,9 @@ margin_cross_entropy
     - **margin2** (float，可选) - 公式中的 ``m2``。默认值为 ``0.5``。
     - **margin3** (float，可选) - 公式中的 ``m3``。默认值为 ``0.0``。
     - **scale** (float，可选) - 公式中的 ``s``。默认值为 ``64.0``。
-    - **group** (Group, 可选) - 通信组的抽象描述，具体可以参考 ``paddle.distributed.collective.Group``。默认值为 ``None``。
+    - **group** (Group，选) - 通信组的抽象描述，具体可以参考 ``paddle.distributed.collective.Group``。默认值为 ``None``。
     - **return_softmax** (bool，可选) - 是否返回 ``softmax`` 概率值。默认值为 ``None``。
-    - **reduction** （str, 可选）- 是否对 ``loss`` 进行归约。可选值为 ``'none'`` | ``'mean'`` | ``'sum'``。如果 ``reduction='mean'``，则对 ``loss`` 进行平均，如果 ``reduction='sum'``，则对 ``loss`` 进行求和，``reduction='None'``，则直接返回 ``loss``。默认值为 ``'mean'``。
+    - **reduction** （str，选）- 是否对 ``loss`` 进行归约。可选值为 ``'none'`` | ``'mean'`` | ``'sum'``。如果 ``reduction='mean'``，则对 ``loss`` 进行平均，如果 ``reduction='sum'``，则对 ``loss`` 进行求和，``reduction='None'``，则直接返回 ``loss``。默认值为 ``'mean'``。
 
 返回
 ::::::::::::

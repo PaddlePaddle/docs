@@ -10,7 +10,7 @@ in_dynamic_mode
 
 该接口查看paddle当前是否在动态图模式中运行。
 
-可以通过 :ref:`cn_api_paddle_enable_static` 开启静态图模式， :ref:`cn_api_paddle_disable_static` 关闭静态图模式。
+可以通过 :ref:`cn_api_paddle_enable_static` 开启静态图模式，:ref:`cn_api_paddle_disable_static` 关闭静态图模式。
 
 返回
 ::::::::::::

@@ -10,11 +10,11 @@ isinf
 参数
 :::::::::
     - **x** (Tensor): 输入的 `Tensor` ，数据类型为：float16、float32、float64、int32、int64。
-    - **name** (str, 可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - **name** (str，选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回
 :::::::::
-``Tensor``, 每个元素是一个bool值，表示输入 `x` 的每个元素是否为 `+/-INF` 。
+``Tensor``，个元素是一个bool值，表示输入 `x` 的每个元素是否为 `+/-INF` 。
 
 代码示例
 :::::::::

@@ -18,7 +18,7 @@ Mish激活层
 
 参数
 ::::::::::
-    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - name (str，选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 形状:
 ::::::::::

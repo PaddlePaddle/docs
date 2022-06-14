@@ -49,7 +49,7 @@ initialize()
 GreedyEmbeddingHelper初始化，其使用构造函数中的 :code:`start_tokens` 作为第一个解码步的输入，并给出每个序列是否结束的初始标识。这是 :ref:`cn_api_fluid_layers_BasicDecoder` 初始化的一部分。
 
 **返回**
-:code:`(initial_inputs, initial_finished)` 的二元组， :code:`initial_inputs` 同构造函数中的 :code:`start_tokens` ； :code:`initial_finished` 是一个bool类型、值为False的tensor，其形状和 :code:`start_tokens` 相同。
+:code:`(initial_inputs, initial_finished)` 的二元组，:code:`initial_inputs` 同构造函数中的 :code:`start_tokens` ； :code:`initial_finished` 是一个bool类型、值为False的tensor，其形状和 :code:`start_tokens` 相同。
 
 **返回类型**
 tuple
@@ -84,7 +84,7 @@ next_inputs(time, outputs, states, sample_ids)
   - **sample_ids** (Variable) - 数据类型为int64形状为 :math:`[batch\_size]` 的tensor，和由 :code:`sample()` 返回的 :code:`sample_ids` 是同一内容。
 
 **返回**
- :code:`(finished, next_inputs, next_states)` 的三元组。 :code:`next_inputs, next_states` 均是单个tensor变量或tensor变量组成的嵌套结构，tensor的形状是 :math:`[batch\_size, ...]` ， :code:`next_states` 和输入参数中的 :code:`states` 相同； :code:`finished` 是一个bool类型且形状为 :math:`[batch\_size]` 的tensor。
+ :code:`(finished, next_inputs, next_states)` 的三元组。 :code:`next_inputs, next_states` 均是单个tensor变量或tensor变量组成的嵌套结构，tensor的形状是 :math:`[batch\_size, ...]` ，:code:`next_states` 和输入参数中的 :code:`states` 相同； :code:`finished` 是一个bool类型且形状为 :math:`[batch\_size]` 的tensor。
 
 **返回类型**
 tuple

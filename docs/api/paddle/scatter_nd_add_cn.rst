@@ -10,7 +10,7 @@ scatter_nd_add
 
 通过对Tensor中的单个值或切片应用稀疏加法，从而得到输出的Tensor。
 
-:code:`x` 是维度为 :code:`R` 的张量。 :code:`index` 是维度为 :code:`K` 的张量。因此， :code:`index` 的形状是 :math:`[i_0, i_1, ..., i_{K-2}, Q]` ，其中  :math:`Q \leq R` 。:code:`updates` 是一个维度为 :math:`K - 1 + R - Q` 的张量，它的形状是 :math:`index.shape[:-1] + x.shape[index.shape[-1]:]` 。
+:code:`x` 是维度为 :code:`R` 的张量。 :code:`index` 是维度为 :code:`K` 的张量。因此，:code:`index` 的形状是 :math:`[i_0, i_1, ..., i_{K-2}, Q]` ，其中  :math:`Q \leq R` 。:code:`updates` 是一个维度为 :math:`K - 1 + R - Q` 的张量，它的形状是 :math:`index.shape[:-1] + x.shape[index.shape[-1]:]` 。
 
 根据 :code:`index` 的 :math:`[i_0, i_1, ..., i_{K-2}]` 得到相应的 :code:`updates` 切片，将其加到根据 :code:`index` 的最后一维得到 :code:`x` 切片上，从而得到最终的输出张量。  
 
@@ -52,7 +52,7 @@ scatter_nd_add
 
 返回
 ::::::::::::
-Tensor, 数据类型和形状都与 :code:`x` 相同。
+Tensor，据类型和形状都与 :code:`x` 相同。
 
 代码示例
 ::::::::::::

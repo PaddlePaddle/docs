@@ -9,21 +9,21 @@ DataLoader返回一个迭代器，该迭代器根据 ``batch_sampler`` 给定的
 
 DataLoader支持单进程和多进程的数据加载方式，当 ``num_workers`` 大于0时，将使用多进程方式异步加载数据。
 
-DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集， ``map-style`` 的数据集可通过下标索引样本，请参考 ``paddle.io.Dataset`` ； ``iterable-style`` 数据集只能迭代式地获取样本，类似Python迭代器，请参考 ``paddle.io.IterableDataset`` 。
+DataLoader当前支持 ``map-style`` 和 ``iterable-style`` 的数据集，``map-style`` 的数据集可通过下标索引样本，请参考 ``paddle.io.Dataset`` ； ``iterable-style`` 数据集只能迭代式地获取样本，类似Python迭代器，请参考 ``paddle.io.IterableDataset`` 。
 
 .. note::
 
-    当前还不支持在子进程中进行GPU Tensor的操作，请不要在子进程流程中使用GPU Tensor，例如 ``dataset`` 中的预处理， ``collate_fn`` 等， ``numpy array`` 和CPU Tensor操作已支持。
+    当前还不支持在子进程中进行GPU Tensor的操作，请不要在子进程流程中使用GPU Tensor，例如 ``dataset`` 中的预处理，``collate_fn`` 等，``numpy array`` 和CPU Tensor操作已支持。
 
 ``batch_sampler`` 请参考 ``paddle.io.BatchSampler``
 
 **禁用自动组batch**
 
-在如NLP等任务中，用户需求自定义组batch的方式，不希望 ``DataLoader`` 自动组batch， ``DataLoader`` 支持在 ``batch_size`` 和 ``batch_sampler`` 均为None的时候禁用自动组batch功能，此时需求从 ``dataset`` 中获取的数据为已经组好batch的数据，该数据将不做任何处理直接传到 ``collate_fn`` 或 ``default_collate_fn`` 中。
+在如NLP等任务中，用户需求自定义组batch的方式，不希望 ``DataLoader`` 自动组batch，``DataLoader`` 支持在 ``batch_size`` 和 ``batch_sampler`` 均为None的时候禁用自动组batch功能，此时需求从 ``dataset`` 中获取的数据为已经组好batch的数据，该数据将不做任何处理直接传到 ``collate_fn`` 或 ``default_collate_fn`` 中。
 
 .. note::
 
-    当禁用自动组batch时， ``default_collate_fn`` 将不对输入数据做任何处理。
+    当禁用自动组batch时，``default_collate_fn`` 将不对输入数据做任何处理。
 
 参数
 ::::::::::::
@@ -140,7 +140,7 @@ from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=T
     - **use_double_buffer** (bool) - 是否使用 ``double_buffer_reader`` 。若use_double_buffer=True，DataLoader会异步地预读取下一个batch的数据，可加速数据读取过程，但同时会占用少量的CPU/GPU存储，即一个batch输入数据的存储空间。
     - **iterable** (bool) - 所创建的DataLoader对象是否可迭代。
     - **return_list** (bool) - 每个设备上的数据是否以list形式返回。仅在iterable = True模式下有效。若return_list = False，每个设备上的返回数据均是str -> LoDTensor的映射表，其中映射表的key是每个输入变量的名称。若return_list = True，则每个设备上的返回数据均是list(LoDTensor)。推荐在静态图模式下使用return_list = False，在动态图模式下使用return_list = True。
-    - **use_multiprocess** (bool) - 设置是否是用多进程加速动态图的数据载入过程。注意：该参数的设置仅在动态图模式下有效, 在静态图模式下，该参数设置与否均无任何影响。默认值为False。
+    - **use_multiprocess** (bool) - 设置是否是用多进程加速动态图的数据载入过程。注意：该参数的设置仅在动态图模式下有，在静态图模式下，该参数设置与否均无任何影响。默认值为False。
     - **drop_last** (bool): 是否丢弃最后的不足CPU/GPU设备数的批次。默认值为True。在网络训练时，用户不能设置drop_last=False，此时所有CPU/GPU设备均应从DataLoader中读取到数据。在网络预测时，用户可以设置drop_last=False，此时最后不足CPU/GPU设备数的批次可以进行预测。
 
 **返回**

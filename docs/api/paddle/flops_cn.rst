@@ -56,7 +56,7 @@ int，网络模型的计算量。
                 return x
 
         lenet = LeNet()
-        # m 是 nn.Layer 的一个实类, x 是m的输入, y 是网络层的输出.
+        # m 是 nn.Layer 的一个实，x 是m的输，y 是网络层的输出.
         def count_leaky_relu(m, x, y):
             x = x[0]
             nelements = x.numel()

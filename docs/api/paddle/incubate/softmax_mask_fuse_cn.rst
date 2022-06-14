@@ -17,7 +17,7 @@ softmax_mask_fuse
 :::::::::
     - x (4-D Tensor) - 输入的Tensor，必须为4D的shape，数据类型为：float16、float32。x的第四维必须大于等于32，并且小于8192。
     - mask (4-D Tensor) - 输入的Tensor，必须为4D的shape，数据类型为：float16、float32。mask的第二维必须为1，其余维度必须与x的对应维度相同。
-    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref: `api_guide_Name` 。
+    - name (str，选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref: `api_guide_Name` 。
 
 返回
 :::::::::

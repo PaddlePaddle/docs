@@ -32,7 +32,7 @@ mse_loss
 
 返回
 :::::::::
-``Tensor``, 输入 ``input`` 和标签 ``label`` 间的 `mse loss` 损失。
+``Tensor``，入 ``input`` 和标签 ``label`` 间的 `mse loss` 损失。
 
 代码示例
 :::::::::

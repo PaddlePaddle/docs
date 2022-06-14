@@ -32,7 +32,7 @@ MarginRankingLoss
 
 形状
 ::::::::
-    - **input** - N-D Tensor, 维度是[N，*] 其中N 是batch size，`*` 是任意数量的额外维度，数据类型为float32或float64。
+    - **input** - N-D Tensor，度是[N，*] 其中N 是batch size，`*` 是任意数量的额外维度，数据类型为float32或float64。
     - **other** - 与 ``input`` 的形状、数据类型相同。
     - **label** - 与 ``input`` 的形状、数据类型相同。
     - **output** - 如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'`` ，则形状为 :math:`[1]` ，否则shape和输入 `input` 保持一致 。数据类型与 ``input``、 ``other`` 相同。

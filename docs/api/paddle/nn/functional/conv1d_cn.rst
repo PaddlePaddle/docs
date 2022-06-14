@@ -20,7 +20,7 @@ conv1d
     - :math:`*` ：卷积操作
     - :math:`b` ：偏置值，2-D Tensor，形状为 ``[M,1]``
     - :math:`\sigma` ：激活函数
-    - :math:`Out` ：输出值，NCL或NLC格式的3-D Tensor， 和 ``X`` 的形状可能不同
+    - :math:`Out` ：输出值，NCL或NLC格式的3-D Tensor，和 ``X`` 的形状可能不同
 
 **示例**
 
@@ -54,7 +54,7 @@ conv1d
 ::::::::::::
 
     - **x** (Tensor) - 输入是形状为 :math:`[N, C, L]` 或 :math:`[N, L, C]` 的4-D Tensor，N是批尺寸，C是通道数，L是特征长度，数据类型为float16, float32或float64。
-    - **weight** (Tensor)) - 形状为 :math:`[M, C/g, kL]` 的卷积核。 M是输出通道数， g是分组的个数，kL是卷积核的长度度。
+    - **weight** (Tensor)) - 形状为 :math:`[M, C/g, kL]` 的卷积核。 M是输出通道数，g是分组的个数，kL是卷积核的长度度。
     - **bias** (int|list|tuple，可选) - 偏置项，形状为： :math:`[M,]` 。
     - **stride** (int|list|tuple，可选) - 步长大小。卷积核和输入进行卷积计算时滑动的步长。整数或包含一个整数的列表或元组。默认值：1。
     - **padding** (int|list|tuple|str，可选) - 填充大小。可以是以下三种格式：（1）字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。（2）整数，表示在输入特征两侧各填充 ``padding`` 大小的0。（3）包含一个整数的列表或元组，表示在输入特征两侧各填充 ``padding[0]`` 大小的0. 默认值：0。

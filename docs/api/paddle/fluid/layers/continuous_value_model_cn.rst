@@ -17,17 +17,17 @@ continuous_value_model
 参数
 ::::::::::::
 
-    - **input** (Variable) - cvm操作的输入张量。维度为 :math:`[N, D]` 的2-D LoDTensor。 N为batch大小， D为 `2 + 嵌入维度` ， `lod level = 1` 。
+    - **input** (Variable) - cvm操作的输入张量。维度为 :math:`[N, D]` 的2-D LoDTensor。 N为batch大小，D为 `2 + 嵌入维度` ，`lod level = 1` 。
     - **cvm** (Variable) - cvm操作的展示和点击张量。维度为 :math:`[N, 2]` 的2-D Tensor。 N为batch大小，2为展示和点击值。
     - **use_cvm** (bool) - 是否使用展示和点击信息。如果使用，输出维度和输入相等，对 ``input`` 中的展示和点击值取log；如果不使用，输出维度为输入减2（移除展示和点击值)。
 
 返回
 ::::::::::::
-Variable(LoDTensor)变量， :math:`[N, M]` 的2-D LoDTensor。如果 ``use_cvm=True`` ，M等于输入的维度D，否则M等于 `D - 2` 。
+Variable(LoDTensor)变量，:math:`[N, M]` 的2-D LoDTensor。如果 ``use_cvm=True`` ，M等于输入的维度D，否则M等于 `D - 2` 。
 
 返回类型
 ::::::::::::
-变量（Variable）,数据类型与 ``input`` 一致。
+变量（Variable），据类型与 ``input`` 一致。
 
 代码示例
 ::::::::::::
