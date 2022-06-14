@@ -88,20 +88,22 @@ GroupSharded 结合 amp （O2) + recompute，可以在 8 张 40GB A100 并行的
 .. code-block::
 
     import paddle
-    from paddle.fluid.dygraph.nn import Linear
+    from paddle.vision.models import ResNet
+    from paddle.vision.models.resnet import BasicBlock
     from paddle.distributed import fleet
-    from paddle.distributed.GroupSharded import group_sharded_parallel, save_group_sharded_model
+    from paddle.distributed.sharding import group_sharded_parallel, save_group_sharded_model
 
     fleet.init(is_collective=True)
     group = paddle.distributed.new_group([0, 1])
-    model = Linear(1000, 1000)
+    use_pure_fp16 = True
 
     clip = paddle.nn.ClipGradByGlobalNorm(clip_norm=1.0)
+    model = ResNet(BasicBlock, 18)
     optimizer = paddle.optimizer.AdamW(learning_rate=0.001, parameters=model.parameters(), weight_decay=0.00001, grad_clip=clip)
 
     scaler = None
     if use_pure_fp16:
-        scaler = paddle.amp.GradScaler(init_loss_scaling=scale_loss)
+        scaler = paddle.amp.GradScaler(init_loss_scaling=32768)
         # level O2 means converting the network to FP16
         model = paddle.amp.decorate(
             models=model,
@@ -109,23 +111,24 @@ GroupSharded 结合 amp （O2) + recompute，可以在 8 张 40GB A100 并行的
             save_dtype='float32')
 
     # wrap GroupSharded model, optimizer and scaler
-    model, optimizer, scaler = group_sharded_parallel(model, optimizer, "p_g", scaler=scaler)
+    model, optimizer, scaler = group_sharded_parallel(model, optimizer, "os_g", scaler=scaler)
 
-    img, label = data
-    label.stop_gradient = True
-    img.stop_gradient = True
+    for step_id in range(1, 100):
+        x = paddle.rand([1, 3, 224, 224])
+        with paddle.amp.auto_cast(use_pure_fp16):
+            out = model(x)
+        loss = out.mean()
 
-    out = model(img)
-    loss = paddle.nn.functional.cross_entropy(input=out, label=label)
+        if use_pure_fp16:
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
+        else:
+            loss.backward()     
+            optimizer.step()
+        optimizer.clear_grad()
 
-    if use_pure_fp16:
-        scaler.scale(loss).backward()
-        scaler.step(optimizer)
-        scaler.update()
-    else:
-        loss.backward()     
-        optimizer.step()
-    optimizer.clear_grad()
+        print("=== step_id : {}    loss : {}".format(step_id, loss.numpy()))
 
     # save model and optimizer state_dict
     save_group_sharded_model(model, optimizer, output=output_dir)
