@@ -19,39 +19,39 @@ fused_feedforward
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入Tensor，数据类型支持float16， float32 和float64, 输入的形状是 ``[batch_size, sequence_length, d_model]`` 。
-    - **linear1_weight** (Tensor) - 第一个linear算子的权重数据，数据类型与 ``x`` 一样，形状是 ``[d_model, dim_feedforward]`` 。
-    - **linear2_weight** (Tensor) - 第二个linear算子的权重数据，数据类型与 ``x`` 一样，形状是 ``[dim_feedforward, d_model]`` 。
-    - **linear1_bias** (Tensor, 可选) - 第一个linear算子的偏置数据，数据类型与 ``x`` 一样，形状是 ``[dim_feedforward]`` 。默认值为None。
-    - **linear2_bias** (Tensor, 可选) - 第二个linear算子的偏置数据，数据类型与 ``x`` 一样，形状是 ``[d_model]`` 。默认值为None。
-    - **ln1_scale** (Tensor, 可选) - 第一个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和 ``x`` 一样。默认值为None。
-    - **ln1_bias** (Tensor, 可选) - 第一个layer_norm算子的偏置数据，数据类型和 ``ln1_scale`` 一样， 形状是 ``x.shape[-1]`` 。默认值为None。
-    - **ln2_scale** (Tensor, 可选) - 第二个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和  ``x`` 一样。默认值为None。
-    - **ln2_bias** (Tensor, 可选) - 第二个layer_norm算子的偏置数据，数据类型和 ``ln2_scale`` 一样， 形状是 ``x.shape[-1]`` 。默认值为None。
-    - **dropout1_rate** (float, 可选) - 第一个dropout算子置零的概率。默认是0.5。
-    - **dropout2_rate** (float, 可选) - 第二个dropout算子置零的概率。默认是0.5。
-    - **activation** (string, 可选) - 激活函数，当前只支持relu和gelu。默认值是relu。
-    - **ln1_epsilon** (float, 可选) - 一个很小的浮点数，被第一个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
-    - **ln2_epsilon** (float, 可选) - 一个很小的浮点数，被第二个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
-    - **pre_layer_norm** (bool, 可选) - 在预处理阶段加上layer_norm，或者在后处理阶段加上layer_norm。默认值是False。
-    - **training** (bool): 标记是否为训练阶段。 默认: True。
-    - **mode** (str): 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认: 'upscale_in_train'。计算方法如下:
+    - **x** (Tensor) - 输入Tensor，数据类型支持float16， float32 和float64，输入的形状是 ``[batch_size, sequence_length, d_model]``。
+    - **linear1_weight** (Tensor) - 第一个linear算子的权重数据，数据类型与 ``x`` 一样，形状是 ``[d_model, dim_feedforward]``。
+    - **linear2_weight** (Tensor) - 第二个linear算子的权重数据，数据类型与 ``x`` 一样，形状是 ``[dim_feedforward, d_model]``。
+    - **linear1_bias** (Tensor，可选) - 第一个linear算子的偏置数据，数据类型与 ``x`` 一样，形状是 ``[dim_feedforward]``。默认值为None。
+    - **linear2_bias** (Tensor，可选) - 第二个linear算子的偏置数据，数据类型与 ``x`` 一样，形状是 ``[d_model]``。默认值为None。
+    - **ln1_scale** (Tensor，可选) - 第一个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和 ``x`` 一样。默认值为None。
+    - **ln1_bias** (Tensor，可选) - 第一个layer_norm算子的偏置数据，数据类型和 ``ln1_scale`` 一样，形状是 ``x.shape[-1]``。默认值为None。
+    - **ln2_scale** (Tensor，可选) - 第二个layer_norm算子的权重数据，数据类型可以是float32或者float64，形状和  ``x`` 一样。默认值为None。
+    - **ln2_bias** (Tensor，可选) - 第二个layer_norm算子的偏置数据，数据类型和 ``ln2_scale`` 一样，形状是 ``x.shape[-1]``。默认值为None。
+    - **dropout1_rate** (float，可选) - 第一个dropout算子置零的概率。默认是0.5。
+    - **dropout2_rate** (float，可选) - 第二个dropout算子置零的概率。默认是0.5。
+    - **activation** (string，可选) - 激活函数，当前只支持relu和gelu。默认值是relu。
+    - **ln1_epsilon** (float，可选) - 一个很小的浮点数，被第一个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
+    - **ln2_epsilon** (float，可选) - 一个很小的浮点数，被第二个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
+    - **pre_layer_norm** (bool，可选) - 在预处理阶段加上layer_norm，或者在后处理阶段加上layer_norm。默认值是False。
+    - **training** (bool): 标记是否为训练阶段。默认：True。
+    - **mode** (str): 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认：'upscale_in_train'。计算方法如下：
 
-        1. upscale_in_train, 在训练时增大输出结果。
+        1. upscale_in_train，在训练时增大输出结果。
 
             - train: out = input * mask / ( 1.0 - p )
             - inference: out = input
 
-        2. downscale_in_infer, 在预测时减小输出结果
+        2. downscale_in_infer，在预测时减小输出结果
 
             - train: out = input * mask
             - inference: out = input * (1.0 - p)
 
-    - **name** (string, 可选) – fused_feedforward的名称, 默认值为None。更多信息请参见 :ref:`api_guide_Name` 。
+    - **name** (string，可选) – fused_feedforward的名称，默认值为None。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::
-    - Tensor, 输出Tensor，数据类型与 ``x`` 一样。
+    - Tensor，输出Tensor，数据类型与 ``x`` 一样。
 
 代码示例
 ::::::::::

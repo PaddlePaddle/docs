@@ -27,7 +27,7 @@ center_loss
     - **label** (Variable) - 输入的标签，一个形状为为[N x 1]的2维张量，N表示batch size，数据类型为int32。
     - **num_class** (int32) - 输入类别的数量。
     - **alpha** (float32|float64|Variable) - 学习率。数据类型为float32或者float64。
-    - **param_attr** (ParamAttr) - 指定权重参数属性的对象。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **param_attr** (ParamAttr) - 指定权重参数属性的对象。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **update_center** (bool) - 是否更新类别中心的参数。
 
 返回

@@ -5,7 +5,7 @@ tolist
 
 .. py:function:: paddle.tolist(x)
 
-将paddle Tensor转化为python list， 注意： 只适用于动态图。
+将paddle Tensor转化为python list，注意： 只适用于动态图。
 
 .. code-block:: text
 
@@ -14,7 +14,7 @@ tolist
 参数
 :::::::::
 
-        - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float32、float64、bool、int8、int32、int64。
+        - **x** (Tensor) - 输入的 `Tensor`，数据类型为：float32、float64、bool、int8、int32、int64。
 
 返回
 :::::::::

@@ -13,7 +13,7 @@ Dataset
 
 ``__len__``: 返回数据集样本个数， ``paddle.io.BatchSampler`` 中需要样本个数生成下标序列。
 
-见 ``paddle.io.DataLoader`` 。
+见 ``paddle.io.DataLoader``。
 
 代码示例
 ::::::::::::

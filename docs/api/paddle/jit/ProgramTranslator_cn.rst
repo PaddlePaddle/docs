@@ -36,7 +36,7 @@ enable(enable_static)
 
 **参数**
 
-    - **enable_static** (bool) - 设置True或者False来打开或关闭动静转化 。
+    - **enable_static** (bool) - 设置True或者False来打开或关闭动静转化。
 
 **返回**
 

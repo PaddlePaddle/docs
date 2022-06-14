@@ -68,8 +68,8 @@ set_strategy(build_strategy=None, exec_strategy=None)
 
 **参数**
 
-    - **build_strategy** (BuildStrategy, 可选) - TracedLayer内部 ``CompiledProgram`` 的构建策略。
-    - **exec_strategy** (ExecutionStrategy, 可选) - TracedLayer内部 ``CompiledProgram`` 的执行策略。
+    - **build_strategy** (BuildStrategy，可选) - TracedLayer内部 ``CompiledProgram`` 的构建策略。
+    - **exec_strategy** (ExecutionStrategy，可选) - TracedLayer内部 ``CompiledProgram`` 的执行策略。
 
 **返回**
 
@@ -108,13 +108,13 @@ save_inference_model(path, feed=None, fetch=None)
 
 将TracedLayer保存为用于预测部署的模型。保存的预测模型可被C++预测接口加载。
 
-``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``.pdmodel``,存储的持久参数变量文件的后缀为 ``.pdiparams``.
+``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``.pdmodel``，存储的持久参数变量文件的后缀为 ``.pdiparams``.
 
 **参数**
 
-    - **path** (str) - 存储模型的路径前缀。格式为 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
-    - **feed** (list(int), 可选) - 预测模型输入变量的索引。若为None，则TracedLayer的所有输入变量均会作为预测模型的输入。默认值为None。
-    - **fetch** (list(int), 可选) - 预测模型输出变量的索引。若为None，则TracedLayer的所有输出变量均会作为预测模型的输出。默认值为None。
+    - **path** (str) - 存储模型的路径前缀。格式为 ``dirname/file_prefix`` 或者 ``file_prefix``。
+    - **feed** (list(int)，可选) - 预测模型输入变量的索引。若为None，则TracedLayer的所有输入变量均会作为预测模型的输入。默认值为None。
+    - **fetch** (list(int)，可选) - 预测模型输出变量的索引。若为None，则TracedLayer的所有输出变量均会作为预测模型的输出。默认值为None。
 
 **返回**
  

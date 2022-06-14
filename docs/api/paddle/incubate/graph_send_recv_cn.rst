@@ -32,13 +32,13 @@ graph_send_recv
     - x (Tensor) - 输入的 Tensor，数据类型为：float32、float64、int32、int64。
     - src_index (Tensor) - 1-D Tensor，数据类型为：int32、int64。
     - dst_index (Tensor) - 1-D Tensor，数据类型为：int32、int64。注意： ``dst_index`` 的形状应当与 ``src_index`` 一致。
-    - pool_type (str) - scatter结果的不同处理方式，包括sum、mean、max、min。 默认值为 sum。
-    - out_size (int64，可选) - 可以通过根据实际需求设置 ``out_size`` 来改变实际输出形状。默认值为None，表示这个参数将不会被使用。注意， ``out_size`` 的值必须等于或大于 ``max(dst_index) + 1`` 。
-    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - pool_type (str) - scatter结果的不同处理方式，包括sum、mean、max、min。默认值为 sum。
+    - out_size (int64，可选) - 可以通过根据实际需求设置 ``out_size`` 来改变实际输出形状。默认值为None，表示这个参数将不会被使用。注意， ``out_size`` 的值必须等于或大于 ``max(dst_index) + 1``。
+    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::
-``Tensor`` ，维度和数据类型都与 ``x`` 相同，存储运算后的结果。
+``Tensor``，维度和数据类型都与 ``x`` 相同，存储运算后的结果。
 
 
 代码示例

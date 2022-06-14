@@ -7,12 +7,12 @@ Accuracy
 
 
 
-该接口用来计算多个mini-batch的平均准确率。Accuracy对象有两个状态value和weight。Accuracy的定义参照 https://en.wikipedia.org/wiki/Accuracy_and_precision 。
+该接口用来计算多个mini-batch的平均准确率。Accuracy对象有两个状态value和weight。Accuracy的定义参照 https://en.wikipedia.org/wiki/Accuracy_and_precision。
 
 参数
 ::::::::::::
 
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

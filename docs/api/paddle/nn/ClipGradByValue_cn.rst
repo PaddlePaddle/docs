@@ -10,11 +10,11 @@ ClipGradByValue
 
 将输入的多维Tensor :math:`X` 的值限制在 [min, max] 范围。
 
-输入的 Tensor 不是从该类里传入， 而是默认选择优化器中输入的所有参数的梯度。如果某个参数 ``ParamAttr`` 中的 ``need_clip`` 值被设置为 ``False`` ，则该参数的梯度不会被裁剪。
+输入的 Tensor 不是从该类里传入，而是默认选择优化器中输入的所有参数的梯度。如果某个参数 ``ParamAttr`` 中的 ``need_clip`` 值被设置为 ``False``，则该参数的梯度不会被裁剪。
 
 该类需要在初始化 ``optimizer`` 时进行设置后才能生效，可参看 ``optimizer`` 文档(例如： :ref:`cn_api_paddle_optimizer_SGD` )。
 
-给定一个 Tensor  ``t`` ，该操作将它的值压缩到 ``min`` 和 ``max`` 之间
+给定一个 Tensor  ``t``，该操作将它的值压缩到 ``min`` 和 ``max`` 之间
 
 - 任何小于 ``min`` 的值都被设置为 ``min``
 

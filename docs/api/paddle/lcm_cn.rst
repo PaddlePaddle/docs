@@ -12,7 +12,7 @@ lcm
     lcm(0,0)=0, lcm(0, y)=0
 
     如果x和y的shape不一致，会对两个shape进行广播操作，得到一致的shape（并作为输出结果的shape），
-    请参见 :ref:`cn_user_guide_broadcasting` 。
+    请参见 :ref:`cn_user_guide_broadcasting`。
 
 参数
 :::::::::

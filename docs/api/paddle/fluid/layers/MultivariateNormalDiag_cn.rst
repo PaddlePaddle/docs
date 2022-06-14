@@ -20,7 +20,7 @@ MultivariateNormalDiag
     
     Z = (2\pi )^{0.5k} |det(scale)|
 
-上面公式中:
+上面公式中：
   - :math:`inv` 表示： 对矩阵求逆
   - :math:`@` 表示：矩阵相乘
   - :math:`det` 表示：求行列式的值

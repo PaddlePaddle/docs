@@ -41,7 +41,7 @@ GRUCell
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh的参数。默认为None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih的参数。默认为None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
-    - **name** (str, 可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
+    - **name** (str，可选): OP的名字。默认为None。详情请参考 :ref:`api_guide_Name`。
 
 变量
 ::::::::::::
@@ -57,7 +57,7 @@ GRUCell
     - **inputs** (Tensor) - 输入。形状为[batch_size, input_size]，对应公式中的 :math:`x_t`。
     - **states** (Tensor，可选) - 上一轮的隐藏状态。对应公式中的 :math:`h_{t-1}`。当state为None的时候，初始状态为全0矩阵。默认为None。
 
-输出:
+输出：
     - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
     - **new_states** (Tensor) - 新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
     

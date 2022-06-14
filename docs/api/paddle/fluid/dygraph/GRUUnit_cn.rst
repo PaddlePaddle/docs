@@ -8,7 +8,7 @@ GRUUnit
 
 
 
-该接口用于构建 ``GRU(Gated Recurrent Unit)`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其用于完成单个时间步内GRU的计算，支持以下两种计算方式：
+该接口用于构建 ``GRU(Gated Recurrent Unit)`` 类的一个可调用对象，具体用法参照 ``代码示例``。其用于完成单个时间步内GRU的计算，支持以下两种计算方式：
 
 如果origin_mode为True，则使用的运算公式来自论文
 `Learning Phrase Representations using RNN Encoder Decoder for Statistical Machine Translation <https://arxiv.org/pdf/1406.1078.pdf>`_ 。
@@ -23,7 +23,7 @@ GRUUnit
 如果origin_mode为False，则使用的运算公式来自论文
 `Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling  <https://arxiv.org/pdf/1412.3555.pdf>`_ 。
 
-公式如下:
+公式如下：
 
 .. math::
     u_t & = act_g(W_{ux}x_{t} + W_{uh}h_{t-1} + b_u)\\
@@ -39,11 +39,11 @@ GRUUnit
 ::::::::::::
 
     - **size** (int) – 输入数据的维度大小。
-    - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **param_attr** (ParamAttr，可选) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     **注意**
-      - 权重参数维度为 :math:`[T, 3×D]` ， :math:`D` 是隐藏状态的规模（hidden size）, 其值与输入size相关，计算方式为size除以3取整 。
-      - 权重参数矩阵所有元素由两部分组成， 一是update gate和reset gate的权重，维度为 :math:`[D, 2×D]` 的2D Tensor，数据类型可以为float32或float64；二是候选隐藏状态（candidate hidden state）的权重矩阵，维度为 :math:`[D, D]` 的2D Tensor，数据类型可以为float32或float64。
-    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+      - 权重参数维度为 :math:`[T, 3×D]` ， :math:`D` 是隐藏状态的规模（hidden size），其值与输入size相关，计算方式为size除以3取整。
+      - 权重参数矩阵所有元素由两部分组成，一是update gate和reset gate的权重，维度为 :math:`[D, 2×D]` 的2D Tensor，数据类型可以为float32或float64；二是候选隐藏状态（candidate hidden state）的权重矩阵，维度为 :math:`[D, D]` 的2D Tensor，数据类型可以为float32或float64。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **activation** (str，可选) –  公式中 :math:`act_c` 激活函数的类型。可以为'identity'、'sigmoid'、'tanh'、'relu'四种激活函数设置值。默认值为'tanh'。
     - **gate_activation** (str，可选) – 公式中 :math:`act_g` 激活函数的类型。可以为'identity'、'sigmoid'、'tanh'、'relu'四种激活函数设置值。默认值为'sigmoid'。
     - **origin_mode** (bool) – 指明要使用的GRU计算方式，两种计算方式具体差异见公式描述。默认值为False。

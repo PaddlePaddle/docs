@@ -9,7 +9,7 @@ GRU
 
 **门控循环单元网络**
 
-该OP是门控循环单元网络(GRU),根据输出序列和给定的初始状态计算返回输出序列和最终状态。在该网络中的每一层对应输入的step，每个step根据当前时刻输入 :math:`x_{t}` 和上一时刻状态 :math:`h_{t-1}` 计算当前时刻输出 :math:`y_{t}` 并更新状态 :math:`h_{t}` 。
+该OP是门控循环单元网络(GRU)，根据输出序列和给定的初始状态计算返回输出序列和最终状态。在该网络中的每一层对应输入的step，每个step根据当前时刻输入 :math:`x_{t}` 和上一时刻状态 :math:`h_{t-1}` 计算当前时刻输出 :math:`y_{t}` 并更新状态 :math:`h_{t}`。
 
 状态更新公式如下：
 
@@ -54,7 +54,7 @@ GRU
 ::::::::::::
 
     - **outputs** (Tensor) - 输出，由前向和后向cell的输出拼接得到。如果time_major为True，则Tensor的形状为[time_steps,batch_size,num_directions * hidden_size]，如果time_major为False，则Tensor的形状为[batch_size,time_steps,num_directions * hidden_size]，当direction设置为bidirectional时，num_directions等于2，否则等于1。`time_steps` 指输出序列的长度。
-    - **final_states** (Tensor) - 最终状态。形状为[num_layers * num_directions, batch_size, hidden_size]，当direction设置为bidirectional时，num_directions等于2，返回值的前向和后向的状态的索引是0，2，4，6...和1，3，5，7...，否则等于1。
+    - **final_states** (Tensor) - 最终状态。形状为[num_layers * num_directions, batch_size, hidden_size]，当direction设置为bidirectional时，num_directions等于2，返回值的前向和后向的状态的索引是0，2，4，6..。和1，3，5，7...，否则等于1。
 
 代码示例
 ::::::::::::

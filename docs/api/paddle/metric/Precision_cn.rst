@@ -6,7 +6,7 @@ Precision
 .. py:class:: paddle.metric.Precision()
 
 
-精确率Precision(也称为 positive predictive value,正预测值)是被预测为正样例中实际为正的比例。该类管理二分类任务的precision分数。
+精确率Precision(也称为 positive predictive value，正预测值)是被预测为正样例中实际为正的比例。该类管理二分类任务的precision分数。
 
 相关链接：https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers
 
@@ -86,7 +86,7 @@ update(preds, labels, *args)
 **参数**
 
     - **preds** (numpy.array | Tensor): 预测输出结果通常是sigmoid函数的输出，是一个数据类型为float64或float32的向量。
-    - **labels** (numpy.array | Tensor): 真实标签的shape和:code: `preds` 相同，数据类型为int32或int64。
+    - **labels** (numpy.array | Tensor): 真实标签的shape和：code: `preds` 相同，数据类型为int32或int64。
 
 **返回**
 

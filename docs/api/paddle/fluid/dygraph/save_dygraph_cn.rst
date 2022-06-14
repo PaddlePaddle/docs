@@ -21,7 +21,7 @@ save_dygraph
 参数
 ::::::::::::
 
- - **state_dict**  (dict of Parameters) – 要保存的模型参数的 ``dict`` 。
+ - **state_dict**  (dict of Parameters) – 要保存的模型参数的 ``dict``。
  - **model_path**  (str) – 保存state_dict的文件前缀。格式为 ``目录名称/文件前缀``。如果文件前缀为空字符串，会引发异常。
 
 返回

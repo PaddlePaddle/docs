@@ -29,7 +29,7 @@ MultiStepDecay
 
     - **learning_rate** (float|int) - 初始化的学习率。可以是Python的float或int。
     - **milestones** (tuple|list) - 列表或元组。必须是递增的。
-    - **decay_rate** (float, optional) - 学习率的衰减率。 ``new_lr = origin_lr * decay_rate`` 。其值应该小于1.0。默认：0.1。
+    - **decay_rate** (float, optional) - 学习率的衰减率。``new_lr = origin_lr * decay_rate``。其值应该小于1.0。默认：0.1。
 
 返回
 ::::::::::::

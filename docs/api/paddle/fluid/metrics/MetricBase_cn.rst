@@ -16,7 +16,7 @@ MetricBase
 
 MetricBase是所有paddle.fluid.metrics下定义的所有python类的基类，它定义了一组接口，并需要所有继承他的类实现具体的计算逻辑，包括：
 
-1. update(preds, labels)：给定当前计算当前batch的预测结果（preds）和标签（labels），计算这个batch的评估结果。 
+1. update(preds, labels)：给定当前计算当前batch的预测结果（preds）和标签（labels），计算这个batch的评估结果。
 
 2. eval()：合并当前累积的每个batch的评估结果，并返回整体评估结果。
 

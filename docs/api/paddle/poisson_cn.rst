@@ -13,7 +13,7 @@ poisson
 参数
 :::::::::
     - **x** (Tensor) - Tensor的每个元素，对应泊松分布的 ``lambda`` 参数。数据类型为： float32、float64。
-    - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::

@@ -11,7 +11,7 @@ GreedyEmbeddingHelper是 :ref:`cn_api_fluid_layers_DecodeHelper` 的子类。作
 参数
 ::::::::::::
 
-  - **embedding_fn** (callable) - 作用于 :code:`argmax` 结果的函数，通常是一个将词id转换为词嵌入的embedding层，**注意** ，这里要使用 :ref:`cn_api_fluid_embedding` 而非 :ref:`cn_api_fluid_layers_embedding`，因为选中的id的形状是 :math:`[batch\_size]` ，如果使用后者则还需要在这里提供unsqueeze。
+  - **embedding_fn** (callable) - 作用于 :code:`argmax` 结果的函数，通常是一个将词id转换为词嵌入的embedding层，**注意**，这里要使用 :ref:`cn_api_fluid_embedding` 而非 :ref:`cn_api_fluid_layers_embedding`，因为选中的id的形状是 :math:`[batch\_size]`，如果使用后者则还需要在这里提供unsqueeze。
   - **start_tokens** (Variable) - 形状为 :math:`[batch\_size]` 、数据类型为int64、 值为起始标记id的tensor。
   - **end_token** (int) - 结束标记id。
 
@@ -62,7 +62,7 @@ sample(time, outputs, states)
 **参数**
 
   - **time** (Variable) - 调用者提供的形状为[1]的tensor，表示当前解码的时间步长。其数据类型为int64。
-  - **outputs** (Variable) - tensor变量，通常其数据类型为float32或float64，形状为 :math:`[batch\_size, vocabulary\_size]` ，表示当前解码步预测产生的logit（未归一化的概率），和由 :code:`BasicDecoder.output_fn(BasicDecoder.cell.call())` 返回的 :code:`outputs` 是同一内容。
+  - **outputs** (Variable) - tensor变量，通常其数据类型为float32或float64，形状为 :math:`[batch\_size, vocabulary\_size]`，表示当前解码步预测产生的logit（未归一化的概率），和由 :code:`BasicDecoder.output_fn(BasicDecoder.cell.call())` 返回的 :code:`outputs` 是同一内容。
   - **states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构，和由 :code:`BasicDecoder.cell.call()` 返回的 :code:`new_states` 是同一内容。
 
 **返回**
@@ -74,17 +74,17 @@ Variable
 next_inputs(time, outputs, states, sample_ids)
 '''''''''
 
-对 :code:`sample_ids` 使用 :code:`embedding_fn` ，以此作为下一解码步的输入；同时直接使用输入参数中的 :code:`states` 作为下一解码步的状态；并通过判别 :code:`sample_ids` 是否得到 :code:`end_token`，依此产生每个序列是否结束的标识。
+对 :code:`sample_ids` 使用 :code:`embedding_fn`，以此作为下一解码步的输入；同时直接使用输入参数中的 :code:`states` 作为下一解码步的状态；并通过判别 :code:`sample_ids` 是否得到 :code:`end_token`，依此产生每个序列是否结束的标识。
 
 **参数**
 
   - **time** (Variable) - 调用者提供的形状为[1]的tensor，表示当前解码的时间步长。其数据类型为int64。
-  - **outputs** (Variable) - tensor变量，通常其数据类型为float32或float64，形状为 :math:`[batch\_size, vocabulary\_size]` ，表示当前解码步预测产生的logit（未归一化的概率），和由 :code:`BasicDecoder.output_fn(BasicDecoder.cell.call())` 返回的 :code:`outputs` 是同一内容。
+  - **outputs** (Variable) - tensor变量，通常其数据类型为float32或float64，形状为 :math:`[batch\_size, vocabulary\_size]`，表示当前解码步预测产生的logit（未归一化的概率），和由 :code:`BasicDecoder.output_fn(BasicDecoder.cell.call())` 返回的 :code:`outputs` 是同一内容。
   - **states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构，和由 :code:`BasicDecoder.cell.call()` 返回的 :code:`new_states` 是同一内容。
   - **sample_ids** (Variable) - 数据类型为int64形状为 :math:`[batch\_size]` 的tensor，和由 :code:`sample()` 返回的 :code:`sample_ids` 是同一内容。
 
 **返回**
- :code:`(finished, next_inputs, next_states)` 的三元组。 :code:`next_inputs, next_states` 均是单个tensor变量或tensor变量组成的嵌套结构，tensor的形状是 :math:`[batch\_size, ...]` ， :code:`next_states` 和输入参数中的 :code:`states` 相同； :code:`finished` 是一个bool类型且形状为 :math:`[batch\_size]` 的tensor。
+ :code:`(finished, next_inputs, next_states)` 的三元组。:code:`next_inputs, next_states` 均是单个tensor变量或tensor变量组成的嵌套结构，tensor的形状是 :math:`[batch\_size, ...]` ， :code:`next_states` 和输入参数中的 :code:`states` 相同； :code:`finished` 是一个bool类型且形状为 :math:`[batch\_size]` 的tensor。
 
 **返回类型**
 tuple

@@ -5,7 +5,7 @@ SoftmaxTransform
 
 .. py:class:: paddle.distribution.SoftmaxTransform
 
-Softmax变换，首先进行 :math:`y = exp(x)` 变换, 然后归一化。
+Softmax变换，首先进行 :math:`y = exp(x)` 变换，然后归一化。
 
 Softmax变换将向量变换为单纯形。
 

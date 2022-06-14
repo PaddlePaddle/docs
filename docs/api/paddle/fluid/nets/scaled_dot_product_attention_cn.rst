@@ -18,9 +18,9 @@ scaled_dot_product_attention
     where \  head_i & = Attention(QW_i^Q , KW_i^K , VW_i^V )\\
     Attention(Q, K, V) & = softmax(\frac{QK^\mathrm{T}}{\sqrt{d_k}})V\\
 
-其中， :math:`Q, K, V` 分别对应 ``queries``、 ``keys`` 和 ``values`` ，详细内容请参阅 `Attention Is All You Need <https://arxiv.org/pdf/1706.03762.pdf>`_ 
+其中， :math:`Q, K, V` 分别对应 ``queries``、 ``keys`` 和 ``values``，详细内容请参阅 `Attention Is All You Need <https://arxiv.org/pdf/1706.03762.pdf>`_ 
 
-要注意该接口实现支持的是batch形式， :math:`Attention(Q, K, V)` 中使用的矩阵乘是batch形式的矩阵乘法，参考 fluid.layers. :ref:`cn_api_fluid_layers_matmul` 。
+要注意该接口实现支持的是batch形式， :math:`Attention(Q, K, V)` 中使用的矩阵乘是batch形式的矩阵乘法，参考 fluid.layers. :ref:`cn_api_fluid_layers_matmul`。
 
 参数
 ::::::::::::

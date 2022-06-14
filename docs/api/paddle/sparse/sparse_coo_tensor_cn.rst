@@ -6,7 +6,7 @@ sparse_coo_tensor
 
 .. py:function:: paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=None, stop_gradient=True)
 
-该API通过已知的非零元素的 ``indices`` 和 ``values`` 来创建一个coordinate格式的稀疏tensor，tensor类型为 ``paddle.Tensor`` 。
+该API通过已知的非零元素的 ``indices`` 和 ``values`` 来创建一个coordinate格式的稀疏tensor，tensor类型为 ``paddle.Tensor``。
 
 其中 ``indices`` 是存放坐标信息，是一个二维数组，每一列是对应非零元素的坐标，shape是 ``[sparse_dim, nnz]`` , ``sparse_dim`` 是坐标的维度， ``nnz`` 是非零元素的个数。
 

@@ -8,17 +8,17 @@ array_read
 
 
 
-该OP用于读取输入数组 :ref:`cn_api_fluid_LoDTensorArray` 中指定位置的数据, ``array`` 为输入的数组， ``i`` 为指定的读取位置。常与 :ref:`cn_api_fluid_layers_array_write` OP配合使用进行LoDTensorArray的读写。
+该OP用于读取输入数组 :ref:`cn_api_fluid_LoDTensorArray` 中指定位置的数据，``array`` 为输入的数组， ``i`` 为指定的读取位置。常与 :ref:`cn_api_fluid_layers_array_write` OP配合使用进行LoDTensorArray的读写。
 
 例1:
 ::
     输入：
         包含4个Tensor的LoDTensorArray，前3个shape为[1]，最后一个shape为[1,2]:
             input = ([0.6], [0.1], [0.3], [0.4, 0.2])
-        并且:
+        并且：
             i = [3]
 
-    输出:
+    输出：
         output = [0.4, 0.2]
 
 参数

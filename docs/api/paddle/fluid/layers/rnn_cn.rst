@@ -27,7 +27,7 @@ rnn创建一个由RNNCell :code:`cell` 指定的递归神经网络，该神经�
   - **kwargs** - 其他关键字参数。参数传递给 :code:`cell.call`。
   
 **返回**
-一个元组 :code:`(final_outputs, final_states)` ，包括 :code:`final_outputs` 和 :code:`final_states`，均为单个tensor变量或tensor变量的嵌套结构。:code:`final_outputs` 具有与 :code:`cell.call` 返回的 :code:`outputs` 相同的结构和数据类型，并且 :code:`final_outputs` 中的每个tensor是将所有时间步的 :code:`outputs` 中对应内容堆叠产生，因此其形状为 :math:`[batch\_size，sequence\_length，...]` （:code:`time_major == False` 时）或 :math:`[sequence\_length，batch\_size，...]` （:code:`time_major == True` 时）。:code:`final_states` 是最后一步的状态，因此具有和 :code:`initial_states` 相同的结构，形状和数据类型。
+一个元组 :code:`(final_outputs, final_states)`，包括 :code:`final_outputs` 和 :code:`final_states`，均为单个tensor变量或tensor变量的嵌套结构。:code:`final_outputs` 具有与 :code:`cell.call` 返回的 :code:`outputs` 相同的结构和数据类型，并且 :code:`final_outputs` 中的每个tensor是将所有时间步的 :code:`outputs` 中对应内容堆叠产生，因此其形状为 :math:`[batch\_size，sequence\_length，...]` （:code:`time_major == False` 时）或 :math:`[sequence\_length，batch\_size，...]` （:code:`time_major == True` 时）。:code:`final_states` 是最后一步的状态，因此具有和 :code:`initial_states` 相同的结构，形状和数据类型。
 
 **返回类型**
 tuple

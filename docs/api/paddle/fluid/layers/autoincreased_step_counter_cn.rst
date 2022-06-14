@@ -14,7 +14,7 @@ autoincreased_step_counter
 参数
 ::::::::::::
 
-    - **counter_name** (str, 可选) - 该计数器的名称，默认为 ``@STEP_COUNTER@`` 。
+    - **counter_name** (str，可选) - 该计数器的名称，默认为 ``@STEP_COUNTER@``。
     - **begin** (int) - 该计数器返回的第一个值。
     - **step** (int) - 累加步长。
 

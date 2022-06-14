@@ -18,7 +18,7 @@ Pad1D
     填充输入边界值； ``'circular'`` 为循环填充输入。默认值为 ``'constant'``。
   - **value** (float32) - 以 ``'constant'`` 模式填充区域时填充的值。默认值为0.0。
   - **data_format** (str)  - 指定输入的format，可为 ``'NCL'`` 或者 ``'NLC'``，默认值为 ``'NCL'``。
-  - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
+  - **name** (str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，缺省值为None。
 
 返回
 ::::::::::::

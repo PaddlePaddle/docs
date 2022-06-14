@@ -18,7 +18,7 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
 
 其中 :math:`\Delta p_k` 和 :math:`\Delta m_k` 分别为第k个位置的可学习偏移和调制标量。在deformable conv v1中 :math:`\Delta m_k` 为1.
 
-具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable, Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_ 。
+具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable, Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_。
 
 **示例**
      
@@ -54,17 +54,17 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     - **dilation** (int|list|tuple，可选) - 空洞大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核中的元素沿着高和宽的空洞。如果为单个整数，表示高和宽的空洞都等于该整数。默认值：1。
     - **deformable_groups** (int，可选) - 可变形卷积组数。默认值：1。
     - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=n，输入和卷积核分别根据通道数量平均分为n组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第n组卷积核和第n组输入进行卷积计算。默认值：1。
-    - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
+    - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
 
     
-形状:
+形状：
     - x: :math:`(N, C_{in}, H_{in}, W_{in})`
     - offset: :math:`(N, 2 * H_f * W_f, H_{out}, W_{out})`
     - mask: :math:`(N, H_f * W_f, H_{out}, W_{out})`
-    - 输出: :math:`(N, C_{out}, H_{out}, W_{out})`
+    - 输出：:math:`(N, C_{out}, H_{out}, W_{out})`
 
-    其中:
+    其中：
 
     .. math::
 

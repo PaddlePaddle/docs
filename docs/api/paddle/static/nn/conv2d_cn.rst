@@ -13,7 +13,7 @@ conv2d
 
 输入和输出是NCHW或NHWC格式，其中N是批尺寸，C是通道数，H是特征高度，W是特征宽度。滤波器是MCHW格式，M是输出图像通道数，C是输入图像通道数，H是滤波器高度，W是滤波器宽度。
 
-如果组数(groups)大于1，C等于输入图像通道数除以组数的结果。详情请参考UFLDL's : `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。
+如果组数(groups)大于1，C等于输入图像通道数除以组数的结果。详情请参考UFLDL's : `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_。
 
 如果bias_attr不为False，卷积计算会添加偏置项。如果指定了激活函数类型，相应的激活函数会作用在最终结果上。
 
@@ -30,7 +30,7 @@ conv2d
     - :math:`*` ：卷积操作；
     - :math:`b` ：偏置值，2-D Tensor，形状为 ``[M,1]``；
     - :math:`\sigma` ：激活函数；
-    - :math:`Out` ：输出值，NCHW或NHWC格式的4-D Tensor， 和 ``X`` 的形状可能不同。
+    - :math:`Out` ：输出值，NCHW或NHWC格式的4-D Tensor，和 ``X`` 的形状可能不同。
 
 **示例**
 
@@ -82,11 +82,11 @@ conv2d
 
     - **dilation** (int|list|tuple，可选) - 膨胀比例大小。空洞卷积时会使用该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。如果膨胀比例为列表或元组，则必须包含两个整型数：（dilation_height,dilation_width）。若为一个整数，dilation_height = dilation_width = dilation。默认值：1。
     - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=n，输入和滤波器分别根据通道数量平均分为n组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算，……，第n组滤波器和第n组输入进行卷积计算。默认值：1。
-    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
+    - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **use_cudnn** （bool，可选）- 是否使用cudnn内核。只有已安装cudnn库时才有效。默认值：True。
-    - **act** (str，可选) - 激活函数类型， 如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` 。如果设为None，则未添加激活函数。默认值：None。
-    - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值：None。
+    - **act** (str，可选) - 激活函数类型，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations`。如果设为None，则未添加激活函数。默认值：None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name`，一般无需设置，默认值：None。
     - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
 
 返回

@@ -9,7 +9,7 @@ LRScheduler
 
 目前在paddle中基于该基类，已经实现了14种策略，分别为：
 
-* :code:`NoamDecay`: 诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_ 。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`。
+* :code:`NoamDecay`: 诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`。
 
 * :code:`ExponentialDecay`: 指数衰减，即每次将当前学习率乘以给定的衰减率得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_ExponentialDecay`。
 
@@ -47,7 +47,7 @@ LRScheduler
 
     - **learning_rate** (float，可选) - 初始学习率，数据类型为Python float。
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
-    - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+    - **verbose** (bool，可选) - 如果是 ``True``，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False``。
 
 返回
 ::::::::::::
@@ -127,14 +127,14 @@ step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
 get_lr()
 '''''''''
 
-如果一个子类继承了 ``基类LRScheduler`` ，则用户必须重写方法 ``get_lr()`` ，否则，将会抛出 ``NotImplementedError`` 异常，
+如果一个子类继承了 ``基类LRScheduler``，则用户必须重写方法 ``get_lr()``，否则，将会抛出 ``NotImplementedError`` 异常，
 
 上述给出了实现 ``StepLR`` 的一个简单示例。
 
 _state_keys()
 '''''''''
 
-该函数通过定义字典 ``self.keys`` 来设置 ``optimizer.state_dict()`` 时的存储对象，默认情况下：``self.keys=['last_epoch', 'last_lr']`` ，其中 ``last_epoch``
+该函数通过定义字典 ``self.keys`` 来设置 ``optimizer.state_dict()`` 时的存储对象，默认情况下：``self.keys=['last_epoch', 'last_lr']``，其中 ``last_epoch``
 是当前的epoch数，``last_lr`` 是当前的学习率值。
 
-如果需要改变默认的行为，用户需要重写该方法，来重新定义字典 ``self.keys`` ，一般无需重新设置。
+如果需要改变默认的行为，用户需要重写该方法，来重新定义字典 ``self.keys``，一般无需重新设置。

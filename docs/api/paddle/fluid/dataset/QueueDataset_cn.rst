@@ -176,7 +176,7 @@ set_thread(thread_num)
 set_use_var(var_list)
 '''''''''
 
-设置将要使用的 ``Variable`` 。
+设置将要使用的 ``Variable``。
 
 **代码示例**
 

@@ -7,7 +7,7 @@ BatchSampler
 
 批采样器的基础实现，用于 ``paddle.io.DataLoader`` 中迭代式获取mini-batch的样本下标数组，数组长度与 ``batch_size`` 一致。
 
-所有用于 ``paddle.io.DataLoader`` 中的批采样器都必须是 ``paddle.io.BatchSampler`` 的子类并实现以下方法:
+所有用于 ``paddle.io.DataLoader`` 中的批采样器都必须是 ``paddle.io.BatchSampler`` 的子类并实现以下方法：
 
 ``__iter__``: 迭代式返回批样本下标数组。
 
@@ -22,7 +22,7 @@ BatchSampler
     - **batch_size** (int) - 每mini-batch中包含的样本数。默认值为1。
     - **drop_last** (bool) - 是否需要丢弃最后无法凑整一个mini-batch的样本。默认值为False。
 
-见 ``paddle.io.DataLoader`` 。
+见 ``paddle.io.DataLoader``。
 
 返回
 ::::::::::::

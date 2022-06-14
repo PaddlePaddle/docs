@@ -11,8 +11,8 @@ Transform
 并提供变换前后相应概率密度计算方法。主要应用于对一个分布 
 :ref:`cn_api_distribution_Distribution` 的随机采样结果进行变换。
 
-假设 :math:`X` 为 ``K`` 元随机变量，概率密度为 :math:`p_X(x)` . 映射 
-:math:`f: x \rightarrow y` 为可微且可逆映射, 则 :math:`Y` 的概率密度为
+假设 :math:`X` 为 ``K`` 元随机变量，概率密度为 :math:`p_X(x)`。映射 
+:math:`f: x \rightarrow y` 为可微且可逆映射，则 :math:`Y` 的概率密度为
 
 .. math::
 
@@ -36,13 +36,13 @@ Transform
 
 通过上述描述易知，变换 ``Transform`` 主要包含下述三个操作：
 
-    #. 正变换( ``forward`` ):
+    #。正变换( ``forward`` ):
        表示正向变换 :math:`x \rightarrow f(x)` .
-    #. 逆变换( ``inverse`` ):
+    #。逆变换( ``inverse`` ):
        表示逆向变换 :math:`y \rightarrow f^{-1}(y)` .
-    #. 雅可比行列式绝对值的对数( ``log_det_jacobian`` ):
+    #。雅可比行列式绝对值的对数( ``log_det_jacobian`` ):
        又可以细分为正变换雅可比行列式绝对值的对数 ``forward_log_det_jacobian`` 和逆变换雅
-       可比行列式绝对值的对数 ``inverse_log_det_jacobian`` , 两者互为负数关系，只实现一种
+       可比行列式绝对值的对数 ``inverse_log_det_jacobian``，两者互为负数关系，只实现一种
        即可。
 
 子类通常通过重写如下方法实现变换功能：

@@ -8,7 +8,7 @@ gelu
 
 
 
-逐元素计算 Gelu激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv.org/abs/1606.08415>`_ 。
+逐元素计算 Gelu激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv.org/abs/1606.08415>`_。
 
 如果使用近似计算：
 
@@ -24,12 +24,12 @@ gelu
 ::::::::::::
 
   - **x** (Variable) - Gelu Op 的输入，多维 Tensor 或 LoDTensor，数据类型为 float32 或 float64。
-  - **approximate** (bool, 可选) - 是否使用近似计算，默认值为 False。
+  - **approximate** (bool，可选) - 是否使用近似计算，默认值为 False。
 
 返回
 ::::::::::::
 
-  - 多维 Tensor 或 LoDTensor, 数据类型为 float32 或 float64， 和输入 x 的数据类型相同，形状和输入 x 相同。
+  - 多维 Tensor 或 LoDTensor，数据类型为 float32 或 float64，和输入 x 的数据类型相同，形状和输入 x 相同。
 
 返回类型
 ::::::::::::

@@ -5,7 +5,7 @@ graph_khop_sampler
 
 .. py:function:: paddle.incubate.graph_khop_sampler(row, colptr, input_nodes, sample_sizes, sorted_eids=None, return_eids=False, name=None)
 
-主要应用于图学习领域，将节点邻居采样和节点重编号两步骤统一在一起，同时提供多层邻居采样的功能。关于邻居采样和节点重编号的相关API可以分别参考 :ref:`cn_api_incubate_graph_sample_neighbors` 和 :ref:`cn_api_incubate_graph_reindex` 。
+主要应用于图学习领域，将节点邻居采样和节点重编号两步骤统一在一起，同时提供多层邻居采样的功能。关于邻居采样和节点重编号的相关API可以分别参考 :ref:`cn_api_incubate_graph_sample_neighbors` 和 :ref:`cn_api_incubate_graph_reindex`。
 
 参数
 :::::::::
@@ -15,7 +15,7 @@ graph_khop_sampler
     - sample_sizes (list | tuple) - 表示每一层需要采样的邻居个数，数据类型为int。
     - sorted_eids (Tensor，可选) - 输入原始图在CSC格式下的边编号信息。如果 ``return_eids`` 为True，则不能为空。数据类型应当与 ``row`` 一致。默认值为None，表示不需要返回边编号信息。
     - return_eids (bool) - 是否返回采样后对应的原始边编号信息，默认为False。
-    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::

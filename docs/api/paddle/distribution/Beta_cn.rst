@@ -7,7 +7,7 @@ Beta
 
 
 在概率论中，Beta分布是指一组定义在 [0,1] 区间的连续概率分布，有两个参数 
-:math:`\alpha,\beta>0`, 是狄利克雷(:ref:`cn_api_paddle_distribution_Dirichlet`)
+:math:`\alpha,\beta>0`，是狄利克雷(:ref:`cn_api_paddle_distribution_Dirichlet`)
 分布的一元形式。
 
 其概率密度函数（pdf）为：
@@ -16,7 +16,7 @@ Beta
 
     f(x; \alpha, \beta) = \frac{1}{B(\alpha, \beta)}x^{\alpha-1}(1-x)^{\beta-1}
 
-其中，B为Beta函数，表示归一化因子:
+其中，B为Beta函数，表示归一化因子：
 
 .. math::
 
@@ -87,7 +87,7 @@ sample()
 
 **参数**
 
-- **shape** (Sequence[int], 可选)：采样次数。最终生成样本形状为 ``shape+batch_shape`` .
+- **shape** (Sequence[int]，可选)：采样次数。最终生成样本形状为 ``shape+batch_shape`` .
 
 **返回**
 

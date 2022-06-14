@@ -8,7 +8,7 @@ lod_reset
 
 
 
-根据给定的参数 ``y`` 或 ``target_lod`` ，重设输入 ``x`` (LoDTensor) 的 LoD 信息。
+根据给定的参数 ``y`` 或 ``target_lod``，重设输入 ``x`` (LoDTensor) 的 LoD 信息。
 
 参数
 ::::::::::::

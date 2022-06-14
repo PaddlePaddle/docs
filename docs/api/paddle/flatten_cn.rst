@@ -11,7 +11,7 @@ flatten
 根据给定的 start_axis 和 stop_axis 将连续的维度展平。
 
 .. note::
-  在动态图模式下，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。如果不希望输入与输出共享数据，请使用 ``Tensor.clone`` ，例如 ``flatten_clone_x = x.flatten().clone()`` 。
+  在动态图模式下，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。如果不希望输入与输出共享数据，请使用 ``Tensor.clone``，例如 ``flatten_clone_x = x.flatten().clone()``。
 
 例如：
 
@@ -25,7 +25,7 @@ flatten
         start_axis = 1
         stop_axis = 2
 
-      得到:
+      得到：
         Out.shape = (3, 100 * 100, 4)
 
     Case 2:
@@ -36,7 +36,7 @@ flatten
         start_axis = 0
         stop_axis = -1
 
-      得到:
+      得到：
         Out.shape = (3 * 100 * 100 * 4)
 
 参数

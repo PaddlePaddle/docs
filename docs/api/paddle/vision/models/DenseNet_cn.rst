@@ -5,7 +5,7 @@ DenseNet
 
 .. py:class:: paddle.vision.models.DenseNet(layers=121, bn_size=4, dropout=0., num_classes=1000)
 
- DenseNet模型，来自论文 `"Densely Connected Convolutional Networks" <https://arxiv.org/abs/1608.06993>`_ 。
+ DenseNet模型，来自论文 `"Densely Connected Convolutional Networks" <https://arxiv.org/abs/1608.06993>`_。
 
 参数
 :::::::::

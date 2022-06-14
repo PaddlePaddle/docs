@@ -14,7 +14,7 @@ kL发散损失计算如下：
     l(input, label) = label * (log(label) - input)
 
 
-当 ``reduction``  为 ``none`` 时，输出损失与输入（input）形状相同，各点的损失单独计算，不会对结果做reduction 。
+当 ``reduction``  为 ``none`` 时，输出损失与输入（input）形状相同，各点的损失单独计算，不会对结果做reduction。
 
 当 ``reduction``  为 ``mean`` 时，输出损失为[1]的形状，输出为所有损失的平均值。
 
@@ -30,9 +30,9 @@ kL发散损失计算如下：
 形状
 ::::::::::::
 
-    - **input** (Tensor): - 输入的Tensor，维度是[N, *], 其中N是batch size， `*` 是任意数量的额外维度。数据类型为：float32、float64。
-    - **label** (Tensor): - 标签，维度是[N, *], 与 ``input`` 相同。数据类型为：float32、float64。
-    - **output** (Tensor): - 输入 ``input`` 和标签 ``label`` 间的kl散度。如果 `reduction` 是 ``'none'``, 则输出Loss的维度为 [N, *], 与输入 ``input`` 相同。如果 `reduction` 是 ``'batchmean'`` 、 ``'mean'`` 或 ``'sum'``, 则输出Loss的维度为 [1]。
+    - **input** (Tensor): - 输入的Tensor，维度是[N, *]，其中N是batch size， `*` 是任意数量的额外维度。数据类型为：float32、float64。
+    - **label** (Tensor): - 标签，维度是[N, *]，与 ``input`` 相同。数据类型为：float32、float64。
+    - **output** (Tensor): - 输入 ``input`` 和标签 ``label`` 间的kl散度。如果 `reduction` 是 ``'none'``，则输出Loss的维度为 [N, *]，与输入 ``input`` 相同。如果 `reduction` 是 ``'batchmean'`` 、 ``'mean'`` 或 ``'sum'``，则输出Loss的维度为 [1]。
 
 代码示例
 ::::::::::::

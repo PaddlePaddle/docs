@@ -8,9 +8,9 @@ sequence_mask
 
 
 
-该层根据输入 ``x`` 和 ``maxlen`` 输出一个掩码，数据类型为 ``dtype`` 。
+该层根据输入 ``x`` 和 ``maxlen`` 输出一个掩码，数据类型为 ``dtype``。
 
-假设 x 是一个形状为 ``[d_1, d_2，…, d_n]`` 的张量， 则输出 y 是一个形状为 ``[d_1, d_2，… ，d_n, maxlen]`` 的掩码，其中:
+假设 x 是一个形状为 ``[d_1, d_2，…, d_n]`` 的张量，则输出 y 是一个形状为 ``[d_1, d_2，… ，d_n, maxlen]`` 的掩码，其中：
 
 .. math::
 
@@ -37,12 +37,12 @@ sequence_mask
 :::::::::
   - **x** (Tensor) - 输入张量，其元素是小于等于 ``maxlen`` 的整数，形状为 ``[d_1, d_2，…, d_n]`` 的Tensor。
   - **maxlen** (int，可选) - 序列的最大长度。默认为空，此时 ``maxlen`` 取 ``x`` 中所有元素的最大值。
-  - **dtype** (np.dtype|core.VarDesc.VarType|str，可选) - 输出的数据类型，默认为 ``int64`` 。
-  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **dtype** (np.dtype|core.VarDesc.VarType|str，可选) - 输出的数据类型，默认为 ``int64``。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 :::::::::
-mask张量，Tensor，形状为 ``[d_1, d_2，… ，d_n, maxlen]`` ，数据类型由 ``dtype`` 指定，支持float32、float64、int32和int64，默认为int64。
+mask张量，Tensor，形状为 ``[d_1, d_2，… ，d_n, maxlen]``，数据类型由 ``dtype`` 指定，支持float32、float64、int32和int64，默认为int64。
 
 代码示例
 :::::::::

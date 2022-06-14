@@ -5,7 +5,7 @@ Multinomial
 
 .. py:class:: paddle.distribution.Multinomial(total_count, probs)
 
-``Multinomial`` 表示实验次数为 ``total_count`` ，概率为 ``probs`` 的多项分布。
+``Multinomial`` 表示实验次数为 ``total_count``，概率为 ``probs`` 的多项分布。
 
 在概率论中，多项分布是二项分布的多元推广，表示具有 :math:`k` 个类别的事件重复实验 :math:`n` 
 次，每个类别出现次数的概率。当 :math:`k=2` 且 :math:`n=1` 时，为伯努利分布，当 :math:`k=2` 且 :math:`n>1` 时，为二项分布，当 :math:`k>2` 且 :math:`n=1` 时，为分类分布。
@@ -28,7 +28,7 @@ Multinomial
 
 - **total_count** (int) - 实验次数。
 - **probs** (Tensor） - 每个类别发生的概率。最后一维为事件维度，其它维为批维度。``probs`` 中
-  的每个元素取值范围为 ``[0,1]`` 。如果输入数据大于1，会沿着最后一维进行归一化操作。
+  的每个元素取值范围为 ``[0,1]``。如果输入数据大于1，会沿着最后一维进行归一化操作。
  
 代码示例
 :::::::::
@@ -88,7 +88,7 @@ sample(shape=())
 
 **参数**
 
-- **shape** (Sequence[int], 可选)：采样形状。
+- **shape** (Sequence[int]，可选)：采样形状。
 
 **返回**
 

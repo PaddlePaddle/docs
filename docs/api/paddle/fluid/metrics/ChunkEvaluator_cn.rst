@@ -7,12 +7,12 @@ ChunkEvaluator
 
 
 
-该接口使用mini-batch的chunk_eval累计的counter numbers，来计算准确率、召回率和F1值。ChunkEvaluator有三个状态num_infer_chunks，num_label_chunks和num_correct_chunks，分别对应语块数目、标签中的语块数目、正确识别的语块数目。对于chunking的基础知识，请参考 https://www.aclweb.org/anthology/N01-1025 。ChunkEvalEvaluator计算块检测（chunk detection）的准确率，召回率和F1值，支持IOB, IOE, IOBES和IO标注方案。
+该接口使用mini-batch的chunk_eval累计的counter numbers，来计算准确率、召回率和F1值。ChunkEvaluator有三个状态num_infer_chunks，num_label_chunks和num_correct_chunks，分别对应语块数目、标签中的语块数目、正确识别的语块数目。对于chunking的基础知识，请参考 https://www.aclweb.org/anthology/N01-1025。ChunkEvalEvaluator计算块检测（chunk detection）的准确率，召回率和F1值，支持IOB, IOE, IOBES和IO标注方案。
 
 参数
 ::::::::::::
 
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

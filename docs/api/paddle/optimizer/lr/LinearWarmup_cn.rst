@@ -28,8 +28,8 @@ LinearWarmup
     - **warmup_steps** (int) - 进行warm up过程的步数。
     - **start_lr** (float) - warm up的起始学习率。
     - **end_lr** (float) - warm up的最终学习率。
-    - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率 。
-    - **verbose** (bool，可选) - 如果是 ``True`` ，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+    - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
+    - **verbose** (bool，可选) - 如果是 ``True``，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False``。
 
 
 返回

@@ -8,7 +8,7 @@ WeightNormParamAttr
 
 
 .. note::
-    动态图模式下请使用 ``paddle.nn.utils.weight_norm`` 。
+    动态图模式下请使用 ``paddle.nn.utils.weight_norm``。
 
 .. note::
     该类中的 ``gradient_clip`` 属性在2.0版本会废弃，推荐在初始化 ``optimizer`` 时设置梯度裁剪。共有三种裁剪策略： :ref:`cn_api_paddle_nn_ClipGradByGlobalNorm` 、 
@@ -19,12 +19,12 @@ WeightNormParamAttr
 参数
 ::::::::::::
 
-  - **dim** (int，可选) - 进行归一化操作(norm)的切片所在维度，是小于权重Tensor rank的非负数。比如卷积的权重shape是 :math:`[cout, cin, kh, kw]` , rank是4，则dim可以选0,1,2,3；fc的权重shape是 :math:`[cout, cin]` ，rank是2，dim可以选0，1。 dim 默认为None，如果为None就对所有元素做归一化(norm)。
-  - **name** (None|str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认为None。
-  - **initializer** （Initializer，可选) - 初始化参数方法，例如 ``initializer = fluid.nn.initializer.Constant(1.0)`` 。默认为None，如果为None则使用默认初始化函数 `Xavier()` 。
+  - **dim** (int，可选) - 进行归一化操作(norm)的切片所在维度，是小于权重Tensor rank的非负数。比如卷积的权重shape是 :math:`[cout, cin, kh, kw]` , rank是4，则dim可以选0,1,2,3；fc的权重shape是 :math:`[cout, cin]` ，rank是2，dim可以选0，1。dim 默认为None，如果为None就对所有元素做归一化(norm)。
+  - **name** (None|str，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认为None。
+  - **initializer** （Initializer，可选) - 初始化参数方法，例如 ``initializer = fluid.nn.initializer.Constant(1.0)``。默认为None，如果为None则使用默认初始化函数 `Xavier()`。
   - **learning_rate** (float32，可选) - 学习率，优化过程 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 的学习速率，默认为1.0。
-  - **regularizer** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_paddle_regularizer_L1Decay` 、 
-    :ref:`cn_api_paddle_regularizer_L2Decay` ，如果在 ``optimizer`` (例如 :ref:`cn_api_paddle_optimizer_SGD` ) 中也
+  - **regularizer** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略：:ref:`cn_api_paddle_regularizer_L1Decay` 、 
+    :ref:`cn_api_paddle_regularizer_L2Decay`，如果在 ``optimizer`` (例如 :ref:`cn_api_paddle_optimizer_SGD` ) 中也
     设置了正则化，``optimizer`` 中的正则化将被忽略。默认值为None，表示没有正则化。
   - **trainable** (bool) - 可选，指明参数是否可训练，默认为True。
   - **do_model_average** (bool) - 可选，指明参数是否需要模型平均化操作(Model Average)，默认为False。

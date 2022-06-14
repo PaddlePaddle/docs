@@ -6,9 +6,9 @@ AdaptiveMaxPool2D
 
 .. py:class:: paddle.nn.AdaptiveMaxPool2D(output_size, return_mask=False, name=None)
 该算子根据输入 `x` , `output_size` 等参数对一个输入Tensor计算2D的自适应最大池化。输入和输出都是4-D Tensor，
-默认是以 `NCHW` 格式表示的，其中 `N` 是 batch size, `C` 是通道数, `H` 是输入特征的高度, `W` 是输入特征的宽度.
+默认是以 `NCHW` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`H` 是输入特征的高度，`W` 是输入特征的宽度。
 
-计算公式如下:
+计算公式如下：
 
 ..  math::
 
@@ -38,8 +38,8 @@ AdaptiveMaxPool2D
 形状
 :::::::::
 
-    - **x** (Tensor): 默认形状为（批大小，通道数，输出特征长度，宽度），即NCHW格式的4-D Tensor。 其数据类型为float32或者float64。
-    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征长度，宽度），即NCHW格式的4-D Tensor。 其数据类型与输入x相同。
+    - **x** (Tensor): 默认形状为（批大小，通道数，输出特征长度，宽度），即NCHW格式的4-D Tensor。其数据类型为float32或者float64。
+    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征长度，宽度），即NCHW格式的4-D Tensor。其数据类型与输入x相同。
 
 返回
 :::::::::
