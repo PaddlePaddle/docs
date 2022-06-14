@@ -52,7 +52,7 @@
 
 **5. 公布评审结果&合入文档**
 
-当设计文档评审&公示通过后，你的算子性能优化设计文档将会合入至`飞桨开发者社区仓库 <https://github.com/PaddlePaddle/community>`_ ，并在开源社区中同步。
+当设计文档评审&公示通过后，你的算子性能优化设计文档将会合入至 `飞桨开发者社区仓库 <https://github.com/PaddlePaddle/community>`_ ，并在开源社区中同步。
 
 **6. 提交API实现代码**
 
