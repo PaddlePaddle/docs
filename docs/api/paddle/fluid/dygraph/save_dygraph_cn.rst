@@ -15,7 +15,7 @@ save_dygraph
 
 注： ``model_path`` 不可以是一个目录。
 
-该接口会根据 ``state_dict`` 的内容，自动给 ``model_path`` 添加 ``。pdparams`` 或者 ``。pdopt`` 后缀，
+该接口会根据 ``state_dict`` 的内容，自动给 ``model_path`` 添加 ``.pdparams`` 或者 ``.pdopt`` 后缀，
 生成 ``model_path + ".pdparams"`` 或者 ``model_path + ".pdopt"`` 文件。
 
 参数
