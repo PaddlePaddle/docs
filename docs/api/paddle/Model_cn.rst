@@ -427,7 +427,7 @@ None
                   save_dir='mnist_checkpoint')
 
 
-    2. 使用Dataloader训练的例子.
+    2. 使用Dataloader训练的例子。
 
     .. code-block:: python
 

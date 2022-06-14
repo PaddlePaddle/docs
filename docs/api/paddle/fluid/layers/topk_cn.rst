@@ -14,21 +14,21 @@ topk
 
 .. code-block:: python
 
-    输入:
+    输入：
         input.shape = [3, 4]
         input.data = [[5, 4, 2, 3],
                      [9, 7, 10, 25],
                      [6, 2, 10, 1]]
         k = 2
 
-    输出:
-        第一个输出:
+    输出：
+        第一个输出：
         values.shape = [3, 2]
         values.data = [[5, 4],
                       [10, 25],
                       [6, 10]]
 
-        第二个输出:
+        第二个输出：
         indices.shape = [3, 2]
         indices.data = [[0, 1],
                        [2, 3],
@@ -38,7 +38,7 @@ topk
 参数
 ::::::::::::
 
-    - **input** (Variable) - 输入的Tensor，支持的数据类型: float32，float64。
+    - **input** (Variable) - 输入的Tensor，支持的数据类型：float32，float64。
     - **k** (int|Variable) - 指定在输入Tensor最后一维中寻找最大前多少项。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
 

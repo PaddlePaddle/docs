@@ -10,7 +10,7 @@ Upsample
 
 输入为3-D Tensor时形状为(num_batches, channels, in_w)，输入为4-D Tensor时形状为(num_batches, channels, in_h, in_w)或者(num_batches, in_h, in_w, channels)，输入为5-D Tensor时形状为(num_batches, channels, in_d, in_h, in_w)或者(num_batches, in_d, in_h, in_w, channels)，并且调整大小只适用于深度，高度和宽度对应的维度。
 
-支持的插值方法:
+支持的插值方法：
 
     NEAREST：最近邻插值
 
@@ -35,7 +35,7 @@ Upsample
 
 Align_corners和align_mode是可选参数，插值的计算方法可以由它们选择。
 
-示例:
+示例：
 
 ::
 

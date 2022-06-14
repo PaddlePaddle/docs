@@ -16,12 +16,12 @@ binary_cross_entropy_with_logits
 .. math::
     Out = -Labels * \log(\sigma(Logit)) - (1 - Labels) * \log(1 - \sigma(Logit))
 
-其中 :math:`\sigma(Logit) = \frac{1}{1 + e^{-Logit}}` ，代入上方计算公式中:
+其中 :math:`\sigma(Logit) = \frac{1}{1 + e^{-Logit}}` ，代入上方计算公式中：
 
 .. math::
     Out = Logit - Logit * Labels + \log(1 + e^{-Logit})
 
-为了计算稳定性，防止当 :math:`Logit<0` 时，:math:`e^{-Logit}` 溢出，loss将采用以下公式计算:
+为了计算稳定性，防止当 :math:`Logit<0` 时，:math:`e^{-Logit}` 溢出，loss将采用以下公式计算：
 
 .. math::
     Out = \max(Logit, 0) - Logit * Labels + \log(1 + e^{-\|Logit\|})
@@ -30,14 +30,14 @@ binary_cross_entropy_with_logits
 
 最后，该算子会添加 `reduce` 操作到前面的输出Out上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)` 。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
-**注意: 因为是二分类任务，所以标签值应该是0或者1。
+**注意：因为是二分类任务，所以标签值应该是0或者1。
 
 参数
 :::::::::
     - **logit** (Tensor) - :math:`[N, *]` ，其中N是batch_size， `*` 是任意其他维度。输入数据 ``logit`` 一般是线性层的输出，不需要经过 ``sigmoid`` 层。数据类型是float32、float64。
     - **label** (Tensor) - :math:`[N, *]` ，标签 ``label`` 的维度、数据类型与输入 ``logit`` 相同。
     - **weight** (Tensor，可选) - 手动指定每个batch二值交叉熵的权重，如果指定的话，维度必须是一个batch的数据的维度。数据类型是float32, float64。默认值是：None。
-    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `BCELoss` 的均值；设置为 ``'sum'`` 时，计算 `BCELoss` 的总和；设置为 ``'none'`` 时，则返回原始loss。
+    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `BCELoss` 的均值；设置为 ``'sum'`` 时，计算 `BCELoss` 的总和；设置为 ``'none'`` 时，则返回原始loss。
     - **pos_weight** (Tensor，可选) - 手动指定正类的权重，必须是与类别数相等长度的向量。数据类型是float32, float64。默认值是：None。
     - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 

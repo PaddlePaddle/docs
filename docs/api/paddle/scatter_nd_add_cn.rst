@@ -24,7 +24,7 @@ scatter_nd_add
             index = [[1], [2], [3], [1]]
             updates = [9, 10, 11, 12]
 
-          得到:
+          得到：
              
             output = [0, 22, 12, 14, 4, 5]
 
@@ -37,7 +37,7 @@ scatter_nd_add
             index.shape = (2, 0)
             updates.shape = (2, 2, 2)
 
-          得到:
+          得到：
              
             output = [[67, 19], [-16, -27]]
 

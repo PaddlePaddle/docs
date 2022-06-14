@@ -19,7 +19,7 @@ multiclass_nms
 计算示例：
     .. code-block:: text
 
-        如果:
+        如果：
             box1.data = (2.0, 3.0, 7.0, 5.0)  数据格式为 (xmin, ymin, xmax, ymax)
             box1.scores = (0.7, 0.2, 0.4)   其中 (label0.score=0.7, label1.score=0.2, label2.cores=0.4)
             box2.data = (3.0, 4.0, 8.0, 5.0)
@@ -27,7 +27,7 @@ multiclass_nms
             nms_threshold = 0.3
             background_label = 0
             score_threshold = 0
-        则:
+        则：
             iou = 4/11 > 0.3
             out.data = [[1, 0.3, 3.0, 4.0, 8.0, 5.0],    
                          [2, 0.4, 2.0, 3.0, 7.0, 5.0]]

@@ -12,7 +12,7 @@ yolov3_loss
 
 yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用来指定网格(grid)大小。每个网格点预测S个边界框(bounding boxes)，S由每个尺度中 ``anchors`` 簇的个数指定。在第二维（表示通道的维度）中，C的值应为S *（class_num + 5），class_num是源数据集的对象种类数（如coco中为80），另外，除了存储4个边界框位置坐标x，y，w，h，还包括边界框以及每个anchor框的one-hot关键字的置信度得分。
 
-假设有四个表征位置的坐标为 :math:`t_x, t_y, t_w, t_h` ，那么边界框的预测将会如下定义:
+假设有四个表征位置的坐标为 :math:`t_x, t_y, t_w, t_h` ，那么边界框的预测将会如下定义：
 
          $$
          b_x = \\sigma(t_x) + c_x
@@ -42,7 +42,7 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
          weight_{box} = 2.0 - t_w * t_h
          $$
 
-最后的loss值将如下计算:
+最后的loss值将如下计算：
 
          $$
          loss = (loss_{xy} + loss_{wh}) * weight_{box} + loss_{conf} + loss_{class}

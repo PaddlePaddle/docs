@@ -15,7 +15,7 @@ get_tensor_from_selected_rows
 
     例如：
 
-          输入为SelectedRows类型:
+          输入为SelectedRows类型：
                x.rows = [0, 5, 5, 4, 19]
                x.height = 20
                x.value = [[1, 1] [2, 2] [2, 2] [3, 3] [6, 6]]

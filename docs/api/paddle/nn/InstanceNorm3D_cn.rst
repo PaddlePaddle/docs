@@ -17,7 +17,7 @@ InstanceNorm3D
 
 Note:
 
-    `H` 是高度，`W` 是宽度.
+    `H` 是高度，`W` 是宽度。
 
 
 参数

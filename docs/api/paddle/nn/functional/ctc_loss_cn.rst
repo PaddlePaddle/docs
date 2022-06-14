@@ -15,7 +15,7 @@ ctc_loss
     - **input_lengths** (Tensor): - 表示输入 ``log_probs`` 数据中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。
     - **label_lengths** (Tensor): - 表示 label 中每个序列的长度，shape为 [batch_size] 。数据类型支持int64。
     - **blank** (int，可选): - 空格标记的 ID 值，其取值范围为 [0，num_classes+1) 。数据类型支持int32。默认值为0。
-    - **reduction** (string，可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'``。设置为 ``'mean'`` 时，对 loss 值除以 label_lengths，并返回所得商的均值；设置为 ``'sum'`` 时，返回 loss 值的总和；设置为 ``'none'`` 时，则直接返回输出的 loss 值。默认值为 ``'mean'``。
+    - **reduction** (string，可选): - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'``。设置为 ``'mean'`` 时，对 loss 值除以 label_lengths，并返回所得商的均值；设置为 ``'sum'`` 时，返回 loss 值的总和；设置为 ``'none'`` 时，则直接返回输出的 loss 值。默认值为 ``'mean'``。
 
 返回
 :::::::::

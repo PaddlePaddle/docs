@@ -19,7 +19,7 @@ conv2d_transpose
 
 如果参数bias_attr不为False，转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
 
-论文参考: https://arxiv.org/pdf/1603.07285.pdf
+论文参考：https://arxiv.org/pdf/1603.07285.pdf
 
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：

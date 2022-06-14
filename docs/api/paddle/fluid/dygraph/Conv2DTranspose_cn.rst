@@ -60,7 +60,7 @@ Conv2DTranspose
     - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的分组卷积：当group=2，滤波器的前一半仅和输入特征图的前一半连接。滤波器的后一半仅和输入特征图的后一半连接。默认值：1。
     - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **use_cudnn** (bool，可选) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值:True。
+    - **use_cudnn** (bool，可选) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认值：True。
     - **act** (str，可选) -  应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值：None。
     - **dtype** (str，可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
 

@@ -15,7 +15,7 @@ RandomErasing
     - ratio (sequence，可选) - 擦除区域的纵横比范围。 默认值：(0.3, 3.3)。
     - value (int|float|sequence|str，可选) - 擦除区域中像素将被替换为的值。如果value是一个数，所有的像素都将被替换为这个数。如果value是长为3的序列，R,G,B通道将被对应地替换。如果value是"random"，每个像素会被替换为随机值。默认值：0。
     - inplace (bool，可选) - 该变换是否在原地操作。 默认值：False。
-    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值: None。
+    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值：None。
 
 形状
 :::::::::

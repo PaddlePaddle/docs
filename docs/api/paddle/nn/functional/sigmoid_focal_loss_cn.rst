@@ -30,7 +30,7 @@ sigmoid_focal_loss
     - **normalizer** (Tensor，可选) - 维度为 :math:`[1]` ，focal loss的归一化系数，数据类型与输入 ``logit`` 相同。若设置为None，则不会将focal loss做归一化操作（即不会将focal loss除以normalizer）。在目标检测任务中，设置为正样本的数量。默认值为None。
     - **alpha** (int|float，可选) - 用于平衡正样本和负样本的超参数，取值范围 :math:`[0，1]` 。默认值设置为0.25。
     - **gamma** (int|float，可选) - 用于平衡易分样本和难分样本的超参数，默认值设置为2.0。
-    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `focal loss` 的均值；设置为 ``'sum'`` 时，计算 `focal loss` 的总和；设置为 ``'none'`` 时，则返回原始loss。
+    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `focal loss` 的均值；设置为 ``'sum'`` 时，计算 `focal loss` 的总和；设置为 ``'none'`` 时，则返回原始loss。
     - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回

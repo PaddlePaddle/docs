@@ -8,7 +8,7 @@ resize_bilinear
 
 
 
-**注意:** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
+**注意：** 参数 ``actual_shape`` 将被弃用，请使用 ``out_shape`` 替代。
 
 该OP应用双向性插值法调整输入图片的大小，输出形状按优先级由actual_shape、out_shape和scale指定。
 

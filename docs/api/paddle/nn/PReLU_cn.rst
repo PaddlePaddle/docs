@@ -22,7 +22,7 @@ PReLU激活层（PReLU Activation Operator）。计算公式如下：
     - data_format (str，可选) – 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 "NC", "NCL", "NCHW", "NCDHW", "NLC", "NHWC" 或者 "NDHWC"。默认值："NCHW"。
     - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-形状:
+形状：
 ::::::::::
     - input: 任意形状的Tensor，默认数据类型为float32。
     - output: 和input具有相同形状的Tensor。

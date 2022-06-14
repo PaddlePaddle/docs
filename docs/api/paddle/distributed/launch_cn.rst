@@ -78,9 +78,9 @@ Parameter-Server 参数
 
 Elastic 参数
 :::::::::
-    - ``--max_restart``: 最大重启次数. 默认值 ``--max_restart=3``.
+    - ``--max_restart``: 最大重启次数。默认值 ``--max_restart=3``.
 
-    - ``--elastic_level``: 弹性级别设置，-1: 不开启，0: 错误节点退出，1: 节点内重启. 默认值 ``--elastic_level=-1``.
+    - ``--elastic_level``: 弹性级别设置，-1: 不开启，0: 错误节点退出，1: 节点内重启。默认值 ``--elastic_level=-1``.
 
     - ``--elastic_timeout``: 弹性超时时间，经过该时间达到最小节点数即开启训练。默认值 ``--elastic_timeout=30``.
 

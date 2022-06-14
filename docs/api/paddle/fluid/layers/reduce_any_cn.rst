@@ -36,7 +36,7 @@ Variable，数据类型为bool类型。
         import paddle.fluid.layers as layers
         import numpy as np
 
-        # x是一个布尔型Tensor，元素如下:
+        # x是一个布尔型Tensor，元素如下：
         #    [[True, False]
         #     [False, False]]
         x = layers.assign(np.array([[1, 0], [0, 0]], dtype='int32'))

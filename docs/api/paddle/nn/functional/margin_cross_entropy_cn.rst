@@ -10,7 +10,7 @@ margin_cross_entropy
 
 其中，:math:`\theta_{y_i}` 是特征 :math:`x` 与类 :math:`w_{i}` 的角度。更详细的介绍请参考 ``Arcface loss``，https://arxiv.org/abs/1801.07698 。
 
-提示:
+提示：
 
     这个 API 支持单卡，也支持多卡（模型并行），使用模型并行时，``logits.shape[-1]`` 在每张卡上可以不同。
 

@@ -33,7 +33,7 @@ Adam优化器出自 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 的第二节
     - **beta2** (float|Tensor，可选) - 二阶矩估计的指数衰减率，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。默认值为0.999。
     - **epsilon** (float，可选) - 保持数值稳定性的短浮点类型值，默认值为1e-08。
     - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
-    - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是float类型的L2正则化系数或者正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
+    - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是float类型的L2正则化系数或者正则化策略：:ref:`cn_api_fluid_regularizer_L1Decay` 、 
       :ref:`cn_api_fluid_regularizer_L2Decay` 。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
       如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 。

@@ -24,7 +24,7 @@ Gated Recurrent Unit（GRU）循环神经网络计算单元。该OP用于完成�
 如果origin_mode为False，则使用的运算公式来自论文
 `Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling  <https://arxiv.org/pdf/1412.3555.pdf>`_ 。
 
-公式如下:
+公式如下：
 
 .. math::
     u_t & = act_g(W_{ux}x_{t} + W_{uh}h_{t-1} + b_u)\\

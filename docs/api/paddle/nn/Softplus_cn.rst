@@ -19,7 +19,7 @@ Softplus激活层
     - threshold (float，可选) - Softplus激活计算公式中的threshold值。默认值为20。
     - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
 
-形状:
+形状：
 ::::::::::
     - input: 任意形状的Tensor。
     - output: 和input具有相同形状的Tensor。

@@ -26,13 +26,13 @@ squeeze
         输入：
             X.shape = [1,3,1,5]
             axes = []
-        输出:
+        输出：
             Out.shape = [3,5]
 - 例3：
 
 .. code-block:: python
 
-        输入:
+        输入：
             X.shape = [1,3,1,5]
             axes = [-2]
         输出：

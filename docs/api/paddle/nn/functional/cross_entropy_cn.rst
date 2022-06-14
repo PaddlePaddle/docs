@@ -13,7 +13,7 @@ cross_entropy
 
 该OP的计算包括以下两个步骤：
 
-- **一. softmax交叉熵**
+- **一。softmax交叉熵**
 
 1. 硬标签（每个样本仅可分到一个类别）
 
@@ -27,7 +27,7 @@ cross_entropy
       \\loss_j=-\sum_{i=0}^{C}\text{label}_i\left(\text{logits}_i-\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right)\right)
         , j = 1,...,N, N为样本数，C为类别数
 
-- **二. weight及reduction处理**
+- **二。weight及reduction处理**
 
 1. weight情况
 
@@ -58,7 +58,7 @@ cross_entropy
      .. math::
         \\loss=\sum_{j}loss_j
 
-2.3 如果 ``reduction`` 参数为 ``mean``，则根据 ``weight``  参数情况进行处理:  
+2.3 如果 ``reduction`` 参数为 ``mean``，则根据 ``weight``  参数情况进行处理： 
 
 2.3.1. 如果 ``weight`` 参数为 ``None`` 
 

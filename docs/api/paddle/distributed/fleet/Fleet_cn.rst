@@ -441,9 +441,9 @@ distributed_model(model)
 .. code-block:: python
 
 
-    # 这个示例需要由fleetrun启动，用法为:
+    # 这个示例需要由fleetrun启动，用法为：
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import paddle
     import paddle.nn as nn
@@ -501,9 +501,9 @@ dict，当前 ``optimizer`` 使用的所有Tensor。
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动，用法为:
+    # 这个示例需要由fleetrun启动，用法为：
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import numpy as np
     import paddle
@@ -539,9 +539,9 @@ None
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动，用法为:
+    # 这个示例需要由fleetrun启动，用法为：
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import numpy as np
     import paddle
@@ -584,9 +584,9 @@ None
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动，用法为:
+    # 这个示例需要由fleetrun启动，用法为：
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import numpy as np
     import paddle
@@ -634,9 +634,9 @@ float，当前步骤的学习率。
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动，用法为:
+    # 这个示例需要由fleetrun启动，用法为：
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import numpy as np
     import paddle
@@ -674,9 +674,9 @@ None。
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动，用法为:
+    # 这个示例需要由fleetrun启动，用法为：
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import paddle
     import paddle.nn as nn
@@ -736,9 +736,9 @@ None。
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动，用法为:
+    # 这个示例需要由fleetrun启动，用法为：
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import paddle
     import paddle.nn as nn

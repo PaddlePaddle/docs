@@ -11,7 +11,7 @@ bilinear_tensor_product
 
 该层对两个输入执行双线性张量积。
 
-例如:
+例如：
 
 .. math::
        out_{i} = x * W_{i} * {y^\mathrm{T}}, i=0,1,...,size-1

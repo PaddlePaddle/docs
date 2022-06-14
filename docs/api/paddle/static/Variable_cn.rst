@@ -94,7 +94,7 @@ clone(self)
 detach(self)
 '''''''''
 
-返回一个新的 ``Variable`` ，并从当前计算图分离.
+返回一个新的 ``Variable`` ，并从当前计算图分离。
 
 **返回**
 
@@ -146,7 +146,7 @@ get_value(scope=None)
 
 **返回**
 
-Tensor， :ref:`api_guide_Variable` 的值.
+Tensor， :ref:`api_guide_Variable` 的值。
 
 **代码示例**
 

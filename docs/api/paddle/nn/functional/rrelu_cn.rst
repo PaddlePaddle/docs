@@ -41,7 +41,7 @@ rrelu激活函数，应用随机纠正线性单元对神经元激活，参考论
     - **x** (Tensor) - 输入的 `Tensor` ，数据类型为：float16、float32、float64。
     - **lower** (float，可选) - 负值斜率的随机值范围下限，`lower` 包含在范围中。支持的数据类型：float。默认值为0.125。
     - **upper** (float，可选) - 负值斜率的随机值范围上限，`upper` 包含在范围中。支持的数据类型：float。默认值为0.333。
-    - **training** (bool，可选) - 标记是否为训练阶段。 默认: True。
+    - **training** (bool，可选) - 标记是否为训练阶段。 默认：True。
     - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
 
 返回

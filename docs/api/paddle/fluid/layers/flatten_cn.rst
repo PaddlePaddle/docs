@@ -20,7 +20,7 @@ flatten op将输入的多维Tensor展平成2-D Tensor矩阵
         X.shape = (3, 100, 100, 4)
       且
         axis = 2
-      得到:
+      得到：
         Out.shape = (3 * 100, 4 * 100)
 
     Case 2:
@@ -29,7 +29,7 @@ flatten op将输入的多维Tensor展平成2-D Tensor矩阵
         X.shape = (3, 100, 100, 4)
       且
         axis = 0
-      得到:
+      得到：
         Out.shape = (1, 3 * 100 * 100 * 4)
 
 参数

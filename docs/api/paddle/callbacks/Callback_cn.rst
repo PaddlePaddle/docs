@@ -32,7 +32,7 @@ Callback
 set_params(params)
 '''''''''
 
-设置参数，类型是dict，包含字段如下:
+设置参数，类型是dict，包含字段如下：
 
 - 'batch_size': 整数，批大小
 - ‘epochs’: 整数，总共epochs

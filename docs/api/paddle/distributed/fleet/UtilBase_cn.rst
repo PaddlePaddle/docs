@@ -16,7 +16,7 @@ all_reduce(input, mode="sum", comm_world="worker")
 
     - **input** (list|numpy.array) – 归约操作的输入。
     - **mode** (str) - 归约操作的模式，包含求和，取最大值和取最小值，默认为求和归约。
-    - **comm_world** (str) - 归约操作的通信集合，包含: server集合(“server")，worker集合("worker")及所有节点集合("all")，默认为worker集合。
+    - **comm_world** (str) - 归约操作的通信集合，包含：server集合(“server")，worker集合("worker")及所有节点集合("all")，默认为worker集合。
 
 **返回**
 
@@ -64,7 +64,7 @@ barrier(comm_world="worker")
 
 **参数**
 
-   - **comm_world** (str) - 阻塞操作的通信集合，包含: server集合(“server")，worker集合("worker")及所有节点集合("all")，默认为worker集合。
+   - **comm_world** (str) - 阻塞操作的通信集合，包含：server集合(“server")，worker集合("worker")及所有节点集合("all")，默认为worker集合。
 
 **代码示例**
 
@@ -105,7 +105,7 @@ all_gather(input, comm_world="worker")
 **参数**
 
    - **input** (int|float) - 聚合操作的输入。
-   - **comm_world** (str) - 聚合操作的通信集合，包含: server集合(“server")，worker集合("worker")及所有节点集合("all")，默认为worker集合。
+   - **comm_world** (str) - 聚合操作的通信集合，包含：server集合(“server")，worker集合("worker")及所有节点集合("all")，默认为worker集合。
 
 **返回**
 
