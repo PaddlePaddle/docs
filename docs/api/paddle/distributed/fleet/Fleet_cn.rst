@@ -424,7 +424,7 @@ distributed_model(model)
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 返回分布式数据并行模型。
 
@@ -489,7 +489,7 @@ state_dict()
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 以 ``dict`` 返回当前 ``optimizer`` 使用的所有Tensor。比如对于Adam优化器，将返回 beta1, beta2, momentum 等Tensor。
 
@@ -527,7 +527,7 @@ set_state_dict(state_dict)
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 加载 ``optimizer`` 的Tensor字典给当前 ``optimizer``。
 
@@ -568,7 +568,7 @@ set_lr(value)
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 手动设置当前 ``optimizer`` 的学习率。
 
@@ -621,7 +621,7 @@ get_lr()
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 获取当前步骤的学习率。
 
@@ -662,7 +662,7 @@ step()
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 执行一次优化器并进行参数更新。
 
@@ -723,7 +723,7 @@ clear_grad()
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 
 清除需要优化的参数的梯度。

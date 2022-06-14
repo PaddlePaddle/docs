@@ -74,7 +74,7 @@ step()
 
 .. note::
 
-该API只在 `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 执行一次优化器并进行参数更新。
 
@@ -137,7 +137,7 @@ clear_gradients()
 
 .. note::
 
-该API只在 `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 
 清除需要优化的参数的梯度。
@@ -162,7 +162,7 @@ set_lr(value)
 
 .. note::
 
-该API只在 `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 手动设置当前 ``optimizer`` 的学习率。当使用_LRScheduler时，无法使用该API手动设置学习率，因为这将导致冲突。
 
@@ -202,7 +202,7 @@ get_lr()
 
 .. note::
 
-该API只在 `Dygraph <。./../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
 
 获取当前步骤的学习率。当不使用_LRScheduler时，每次调用的返回值都相同，否则返回当前步骤的学习率。
 
