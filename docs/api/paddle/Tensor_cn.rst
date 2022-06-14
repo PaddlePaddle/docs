@@ -1355,6 +1355,15 @@ log1p(name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_log1p`
 
+logcumsumexp(x, axis=None, dtype=None, name=None)
+:::::::::
+
+返回：计算后的Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_logcumsumexp`
+
 logical_and(y, out=None, name=None)
 :::::::::
 
