@@ -88,7 +88,7 @@ softmax
 
     - **input** (Variable) - 任意维度的多维 ``Tensor`` ，数据类型为float32或float64。
     - **use_cudnn** (bool, 可选) - 指示是否用cudnn库。当 ``use_cudnn`` 为True时，在安装GPU版本Paddle并且本机安装cudnn库的前提下，使用GPU训练或推理时才有效。默认值：False。
-    - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **axis** (int, 可选) - 指示进行softmax计算的维度索引，其范围应为 :math:`[-1，rank-1]` ，其中rank是输入变量的秩。默认值：-1（表示对最后一维做softmax操作）。
 
 返回

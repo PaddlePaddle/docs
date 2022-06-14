@@ -33,7 +33,7 @@ hinge_embedding_loss
     - **label** (Tensor): - 标签，维度是 [N, *], 与 ``input`` 相同，Tensor 中的值应该只包含 1 和 -1。数据类型为：float32、float64。
     - **margin** (float, 可选): - 当 label 为 -1 时，该值决定了小于 `margin` 的 input 才需要纳入 `hinge embedding loss` 的计算。默认为 1.0 。
     - **reduction** (str, 可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `hinge embedding loss` 的均值；设置为 ``'sum'`` 时，计算 `hinge embedding loss` 的总和；设置为 ``'none'`` 时，则返回 `hinge embedding loss`。
-    - **name** (str，可选): - 操作的名称(可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

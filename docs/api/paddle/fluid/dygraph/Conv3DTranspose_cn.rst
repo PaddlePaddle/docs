@@ -83,7 +83,7 @@ Conv3DTranspose
       - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
       - **use_cudnn** (bool，可选) - 是否使用cudnn内核，只有安装Paddle GPU版时才有效。默认值为True。
       - **act** (str，可选) -  激活函数类型，如果设置为None，则不使用激活函数。默认值为None。
-      - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+      - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
       - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
 

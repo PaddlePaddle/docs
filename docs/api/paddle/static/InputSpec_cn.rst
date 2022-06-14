@@ -14,7 +14,7 @@ InputSpec
 
   - **shape** (list|tuple)- 声明维度信息的list或tuple，默认值为None。
   - **dtype** (np.dtype|str，可选)- 数据类型，支持bool，float16，float32，float64，int8，int16，int32，int64，uint8。默认值为float32。
-  - **name** (str)- 被创建对象的名字，具体用法请参见 :ref:`api_guide_Name` 。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -43,7 +43,7 @@ from_tensor(tensor, name=None)
 **参数**
 
   - **tensor** (Tensor) - 用于构建InputSpec的源Tensor
-  - **name** (str): 被创建对象的名字，具体用法请参见 :ref:`api_guide_Name` 。 默认为：None。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 **返回**
@@ -71,7 +71,7 @@ from_numpy(ndarray, name=None)
 **参数**
 
   - **ndarray** (Tensor) - 用于构建InputSpec的numpy ndarray
-  - **name** (str): 被创建对象的名字，具体用法请参见 :ref:`api_guide_Name` 。 默认为：None。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 **返回**

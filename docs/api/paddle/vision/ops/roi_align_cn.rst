@@ -17,7 +17,7 @@ RoI Align是在指定输入的感兴趣区域上执行双线性插值以获得�
     - output_size (int|Tuple(int, int)) - 池化后输出的尺寸(H, W)，数据类型为int32。如果output_size是单个int类型整数，则H和W都与其相等。
     - spatial_scale (float，可选) - 空间比例因子，用于将boxes中的坐标从其输入尺寸按比例映射到input特征图的尺寸。
     - aligned (bool，可选）- 默认值为True，表示像素移动框将其坐标移动-0.5，以便与两个相邻像素索引更好地对齐。如果为False，则是使用遗留版本的实现。
-    - name (str，可选）- 默认值为None。一般用户无需设置，具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

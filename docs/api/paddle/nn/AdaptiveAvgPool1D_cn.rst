@@ -22,7 +22,7 @@ AdaptiveAvgPool1D
 参数
 :::::::::
     - **output_size** (int) - 输出特征的长度，数据类型为 int。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

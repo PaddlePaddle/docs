@@ -27,7 +27,7 @@ im2sequence
   - **padding** (int32 | List[int32]) - 填充大小。如果padding是一个List，它可以包含四个整数 `[padding_up, padding_left, padding_down, padding_right]` ，当包含两个整数 `[padding_height, padding_width]` 时，可展开为 `[padding_height, padding_width, padding_height, padding_width]` 。如果padding是一个int, 可展开为 `[padding, padding, padding, padding]` 。默认值为0。
   - **input_image_size** (Variable, 可选) - 2-D Tensor, 输入图像的实际大小, 它的维度为 `[batchsize，2]` 。当该参数不为None时，可用于batch inference。默认值为None.
   - **out_stride** (int32 | List[int32]) - 输出步长。只有当input_image_size不为None时才有效。如果out_stride是List，它必须包含 `[out_stride_height, out_stride_width]` ，如果out_stride是int32, 则可展开为 `[out_stride, out_stride]` ，默认值为1。
-  - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

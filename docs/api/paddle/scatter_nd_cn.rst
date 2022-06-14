@@ -16,7 +16,7 @@ scatter_nd
     - **index** (Tensor) - 输入的索引张量，数据类型为非负int32或非负int64。它的维度 :code:`index.ndim` 必须大于1，并且 :code:`index.shape[-1] <= len(shape)`
     - **updates** (Tensor) - 输入的更新张量。形状必须是 :code:`index.shape[:-1] + shape[index.shape[-1]:]` 。数据类型可以是float32，float64。
     - **shape** (tuple|list) - 要求输出张量的形状。类型是tuple或者list。
-    - **name** (string) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     
 返回
 ::::::::::::

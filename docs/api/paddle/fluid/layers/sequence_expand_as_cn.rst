@@ -55,7 +55,7 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
 
     - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` 的二维Tensor或LoDTensor，第一维必须与输入 ``y`` 的第0层lod大小相同，且仅支持lod_level为1。数据类型支持int32，int64，float32或float64。
     - **y** (Variable) - 输入变量，LoDTensor，lod level必须为1。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

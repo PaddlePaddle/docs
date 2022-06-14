@@ -17,7 +17,7 @@ pow
 :::::::::
     - **x** （Tensor）- 多维 ``Tensor``，数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
     - **y** （float|int|Tensor）- 如果类型是多维 ``Tensor``，其数据类型应该和 ``x`` 相同。
-    - **name** （str, 可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

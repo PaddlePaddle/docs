@@ -30,7 +30,7 @@ GRUCell
   - **gate_activation** (function，可选) - :math:`act_g` 的激活函数。 默认值为 :code:`fluid.layers.sigmoid`。 
   - **activation** (function，可选) - :math:`act_c` 的激活函数。 默认值为 :code:`fluid.layers.tanh` 
   - **dtype** (string，可选) - 此cell中使用的数据类型。 默认为"float32"。 
-  - **name** (string，可选) - 用于标识参数和偏差的名称域。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

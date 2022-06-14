@@ -68,7 +68,7 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
     - **downsample_ratio**  (int) – 网络输入到YOLOv3 loss输入的下采样率，因此第一，第二和第三个 loss 的下采样率应分别为32,16,8
     - **gt_score** （Variable） - 真实框的混合得分，形为[N，B]。 默认None。数据类型为float32或float64。
     - **use_label_smooth** (bool） - 是否使用平滑标签。 默认为True
-    - **name** (str|None) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

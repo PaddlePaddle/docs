@@ -60,7 +60,7 @@ dynamic_lstm
   - **cell_activation** (str，可选) – 用于cell输入的激活函数。默认值为tanh。
   - **candidate_activation** (str，可选) – 用于cell输出的激活函数。默认值为tanh。
   - **dtype** (str，可选) – 数据类型为 float32 或者 float64。默认值为 float32。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

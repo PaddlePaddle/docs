@@ -33,7 +33,7 @@ LSTMCell
   - **activation** (function，可选) - :math:`act_c` 的激活函数。 默认值为 :code:`fluid.layers.tanh`。
   - **forget_bias** (float，可选) - 计算遗忘们时使用的遗忘偏置。默认值为 1.0。
   - **dtype** (string，可选) - 此Cell中使用的数据类型。 默认值为 `float32`。 
-  - **name** (string，可选) - 用于标识参数和偏差的名称域。
+  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

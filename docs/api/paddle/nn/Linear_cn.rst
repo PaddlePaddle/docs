@@ -25,7 +25,7 @@ Linear层只接受一个Tensor作为输入，形状为 :math:`[batch\_size, *, i
 - **out_features** (int) – 线性变换层输出单元的数目。
 - **weight_attr** (ParamAttr, 可选) – 指定权重参数的属性。默认值为None，表示使用默认的权重参数属性，将权重参数初始化为0。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 - **bias_attr** (ParamAttr|bool, 可选) – 指定偏置参数的属性。 :math:`bias\_attr` 为bool类型且设置为False时，表示不会为该层添加偏置。 :math:`bias\_attr` 如果设置为True或者None，则表示使用默认的偏置参数属性，将偏置参数初始化为0。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。默认值为None。
-- **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+- **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 属性
 :::::::::

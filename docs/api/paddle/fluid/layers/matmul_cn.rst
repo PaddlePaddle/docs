@@ -29,7 +29,7 @@ matmul
     - **transpose_x** (bool) : 相乘前是否转置 x。
     - **transpose_y** (bool) : 相乘前是否转置 y。
     - **alpha** (float) : 输出比例，默认为 1.0。
-    - **name** (str|None) : 该层名称（可选），如果设置为空，则自动为该层命名。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

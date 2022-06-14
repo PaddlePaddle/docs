@@ -32,7 +32,7 @@ avg_pool2d
     - **exclusive** (bool)： 是否在平均池化模式忽略填充值，默认是 `True`.
     - **divisor_override** (int|float)：如果指定，它将用作除数，否则根据`kernel_size`计算除数。 默认`None`.
     - **data_format** (str)： 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"
-    - **name** (str)：函数的名字，默认为None.
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 

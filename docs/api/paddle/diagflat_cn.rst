@@ -20,7 +20,7 @@ diagflat
 :::::::::
     - x（Tensor）：输入的 `Tensor`。它的形状可以是任意维度。其数据类型应为float32，float64，int32，int64。
     - offset（int，可选）：对角线偏移量。正值表示上对角线，0表示主对角线，负值表示下对角线。
-    - name (str，可选）：操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

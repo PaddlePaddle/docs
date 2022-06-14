@@ -88,7 +88,7 @@ pool2d
     - **global_pooling** （bool）- 是否用全局池化。如果global_pooling = True， 已设置的 ``pool_size`` 和 ``pool_padding`` 会被忽略， ``pool_size`` 将被设置为 :math:`[H_{in}, W_{in}]` ， ``pool_padding`` 将被设置为0。默认值：False。
     - **use_cudnn** （bool）- 是否使用cudnn内核。只有已安装cudnn库时才有效。默认值：True。
     - **ceil_mode** （bool）- 是否用ceil函数计算输出高度和宽度。计算细节可参考上述 ``ceil_mode`` = true或  ``ceil_mode`` = false 时的计算公式。默认值：False。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **exclusive** (bool) - 是否在平均池化模式忽略填充值。计算细节可参考上述 ``exclusive`` = true或 ``exclusive`` = false 时的计算公式。默认值：True。
     - **data_format** (str) - 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
 

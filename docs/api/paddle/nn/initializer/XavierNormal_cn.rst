@@ -19,7 +19,7 @@ XavierNormal
 
     - **fan_in** (float，可选) - 用于泽维尔初始化的 fan_in，从 Tensor 中推断，默认值为 None。
     - **fan_out** (float，可选) - 用于泽维尔初始化的 fan_out，从 Tensor 中推断，默认值为 None。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

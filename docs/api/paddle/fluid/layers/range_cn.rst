@@ -19,7 +19,7 @@ range
         - **end** (float|int|Tensor) - 区间终点（且通常区间不包括此值）。当 ``end`` 类型是Tensor时，是形状为[1]且数据类型为int32、int64、float32、float64的Tensor。
         - **step** (float|int|Tensor) - 均匀分割的步长。当 ``step`` 类型是Tensor时，是形状为[1]且数据类型为int32、int64、float32、float64的Tensor。
         - **dtype** (str|np.dtype|core.VarDesc.VarType) - 输出Tensor的数据类型，支持int32、int64、float32、float64。
-        - **name** (str, 可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` 。
+        - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

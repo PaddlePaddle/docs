@@ -27,7 +27,7 @@ AdaptiveAvgPool2D
 :::::::::
     - **output_size** (int|list|tuple): 算子输出特征图的尺寸，如果其是list或turple类型的数值，必须包含两个元素，H和W。H和W既可以是int类型值也可以是None，None表示与输入特征尺寸相同。
     - **data_format** (str，可选): 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
-    - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::

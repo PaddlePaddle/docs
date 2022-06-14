@@ -26,7 +26,7 @@ edit_distance
     - **label** (Variable) - 参照字符串的索引，rank为2的Tensor或LoDTensor，数据类型为int64。
     - **normalized** (bool)-表示是否用参照字符串的长度进行归一化，默认值为True。
     - **ignored_tokens** (list<int>)-计算编辑距离前需要移除的token，默认值为None。
-    - **name** (None|str) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_name` ，默认值为None。
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
