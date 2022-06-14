@@ -16,7 +16,7 @@ RandomSampler
 
 返回
 :::::::::
-RandomSampler, 返回随机采样下标的采样器
+RandomSampler，返回随机采样下标的采样器
 
 
 代码示例

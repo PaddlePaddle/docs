@@ -17,7 +17,7 @@ Multinomial
     f(x_1, ..., x_k; n, p_1,...,p_k) = \frac{n!}{x_1!...x_k!}p_1^{x_1}...p_k^{x_k}
 
 
-其中， :math:`n` 表示实验次数， :math:`k` 表示类别数， :math:`p_i` 表示一次实验中，实验结果
+其中，:math:`n` 表示实验次数，:math:`k` 表示类别数，:math:`p_i` 表示一次实验中，实验结果
 为第 :math:`i` 个类别的概率，需要满足 :math:`{\textstyle \sum_{i=1}^{k}p_i=1}, p_i \ge 0` ,
  :math:`x_i` 表示第 :math:`i` 个分类出现的次数。
 
@@ -88,7 +88,7 @@ sample(shape=())
 
 **参数**
 
-- **shape** (Sequence[int], 可选)：采样形状。
+- **shape** (Sequence[int]，可选)：采样形状。
 
 **返回**
 

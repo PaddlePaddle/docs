@@ -25,7 +25,7 @@ add_position_encoding
 参数
 ::::::::::::
 
-    - **input**  (Variable) – Tensor或LoD level为1的LoDTensor。Tensor时，其形状为 :math:`[N, M, P]` ，其中 :math:`N` 表示batch size， :math:`M` 表示序列长度， :math:`P` 为特征维度大小；LoDTensor时，其形状为 :math:`[N, P]` ，其中 :math:`N` 表示所有序列长度之和， :math:`P` 为特征维度大小。数据类型为float32或float64。
+    - **input**  (Variable) – Tensor或LoD level为1的LoDTensor。Tensor时，其形状为 :math:`[N, M, P]` ，其中 :math:`N` 表示batch size， :math:`M` 表示序列长度，:math:`P` 为特征维度大小；LoDTensor时，其形状为 :math:`[N, P]` ，其中 :math:`N` 表示所有序列长度之和，:math:`P` 为特征维度大小。数据类型为float32或float64。
     - **alpha**  (float) – 加权求和时输入input的权重系数
     - **beta**  (float) – 加权求和时位置编码的权重系数
     - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。

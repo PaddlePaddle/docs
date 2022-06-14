@@ -49,7 +49,7 @@ initialize()
 GreedyEmbeddingHelper初始化，其使用构造函数中的 :code:`start_tokens` 作为第一个解码步的输入，并给出每个序列是否结束的初始标识。这是 :ref:`cn_api_fluid_layers_BasicDecoder` 初始化的一部分。
 
 **返回**
-:code:`(initial_inputs, initial_finished)` 的二元组， :code:`initial_inputs` 同构造函数中的 :code:`start_tokens` ； :code:`initial_finished` 是一个bool类型、值为False的tensor，其形状和 :code:`start_tokens` 相同。
+:code:`(initial_inputs, initial_finished)` 的二元组，:code:`initial_inputs` 同构造函数中的 :code:`start_tokens` ； :code:`initial_finished` 是一个bool类型、值为False的tensor，其形状和 :code:`start_tokens` 相同。
 
 **返回类型**
 tuple

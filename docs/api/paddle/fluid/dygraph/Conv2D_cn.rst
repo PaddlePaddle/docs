@@ -17,12 +17,12 @@ Conv2D
     Out = \sigma \left ( W * X + b \right )
 
 其中：
-    - :math:`X` ：输入特征图， ``NCHW`` 格式的 ``Tensor``
+    - :math:`X` ：输入特征图，``NCHW`` 格式的 ``Tensor``
     - :math:`W` ：滤波器，维度为 [M, C, H, W] 的 ``Tensor``
     - :math:`*` ：卷积操作
     - :math:`b` ：偏移值，2-D ``Tensor`` ，维度为 ``[M,1]``
     - :math:`\sigma` ：激活函数
-    - :math:`Out` ：输出值， ``Out`` 和 ``X`` 的维度可能不同
+    - :math:`Out` ：输出值，``Out`` 和 ``X`` 的维度可能不同
 
 **输出维度计算示例**
 
@@ -50,15 +50,15 @@ Conv2D
     - **num_channels** (int) - 输入图像的通道数。
     - **num_filters** (int) - 滤波器的个数，和输出特征图个数相同。
     - **filter_size** (int|tuple) - 滤波器大小。如果 ``filter_size`` 是一个元组，则必须包含两个整型数，分别表示滤波器高度和宽度。否则，表示滤波器高度和宽度均为 ``filter_size`` 。
-    - **stride** (int|tuple, 可选) - 步长大小。如果 ``stride`` 为元组，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride`` 。默认值：1。
-    - **padding** (int|tuple, 可选) - 填充大小。如果 ``padding`` 为元组，则必须包含两个整型数，分别表示竖直和水平边界填充大小。否则，表示竖直和水平边界填充大小均为 ``padding`` 。默认值：0。
-    - **dilation** (int|tuple, 可选) - 膨胀系数大小。如果 ``dialation`` 为元组，则必须包含两个整型数，分别表示垂直和水平膨胀系数。否则，表示垂直和水平膨胀系数均为 ``dialation`` 。默认值：1。
-    - **groups** (int, 可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的分组卷积：当group=2，滤波器的前一半仅和输入特征图的前一半连接。滤波器的后一半仅和输入特征图的后一半连接。默认值：1。
-    - **param_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr|bool, 可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **use_cudnn** (bool, 可选) - 是否用cudnn核，只有已安装cudnn库时才有效。默认值：True。
-    - **act** (str, 可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值：None。
-    - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
+    - **stride** (int|tuple，可选) - 步长大小。如果 ``stride`` 为元组，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride`` 。默认值：1。
+    - **padding** (int|tuple，可选) - 填充大小。如果 ``padding`` 为元组，则必须包含两个整型数，分别表示竖直和水平边界填充大小。否则，表示竖直和水平边界填充大小均为 ``padding`` 。默认值：0。
+    - **dilation** (int|tuple，可选) - 膨胀系数大小。如果 ``dialation`` 为元组，则必须包含两个整型数，分别表示垂直和水平膨胀系数。否则，表示垂直和水平膨胀系数均为 ``dialation`` 。默认值：1。
+    - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的分组卷积：当group=2，滤波器的前一半仅和输入特征图的前一半连接。滤波器的后一半仅和输入特征图的后一半连接。默认值：1。
+    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **use_cudnn** (bool，可选) - 是否用cudnn核，只有已安装cudnn库时才有效。默认值：True。
+    - **act** (str，可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值：None。
+    - **dtype** (str，可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
 
 返回
 ::::::::::::

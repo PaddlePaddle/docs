@@ -41,7 +41,7 @@ multiclass_nms
 
     - **bboxes**  (Variable) – 支持两种类型的边界框（bounding box）:
 
-      1. （Tensor）形为[N，M，4 或 8、16、24、32]的3-D张量，表示将预测M个边界框的预测位置， N是批大小（batch size）。当边界框(bounding box)大小等于4时，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。数据类型为float32或float64。
+      1. （Tensor）形为[N，M，4 或 8、16、24、32]的3-D张量，表示将预测M个边界框的预测位置，N是批大小（batch size）。当边界框(bounding box)大小等于4时，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。数据类型为float32或float64。
       2. （LoDTensor）形状为[M，C，4] M是边界框的个数，C是类别个数。数据类型为float32或float64
 
     - **scores**  (Variable) – 支持两种类型的分数：

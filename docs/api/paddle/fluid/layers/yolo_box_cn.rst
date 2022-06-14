@@ -23,7 +23,7 @@ yolo_box
     b_w &= p_w e^{t_w}\\
     b_h &= p_h e^{t_h}\\
 
-在上面的等式中， :math:`c_x` ， :math:`c_x` 是当前网格的左上角顶点坐标。 :math:`p_w` ， :math:`p_h`  由anchors指定。
+在上面的等式中，:math:`c_x` ， :math:`c_x` 是当前网格的左上角顶点坐标。 :math:`p_w` ， :math:`p_h`  由anchors指定。
 
 每个anchor预测框的第五通道的逻辑回归值表示每个预测框的置信度得分，并且每个anchor预测框的最后class_num通道的逻辑回归值表示分类得分。 应忽略置信度低于conf_thresh的框。另外，框最终得分是置信度得分和分类得分的乘积。
 
@@ -49,7 +49,7 @@ yolo_box
 ::::::::::::
  
      1. 框的坐标，形为[N，M，4]的三维张量
-     2. 框的分类得分， 形为 [N，M，class_num]的三维张量
+     2. 框的分类得分，形为 [N，M，class_num]的三维张量
 
 返回类型
 ::::::::::::

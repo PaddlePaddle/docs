@@ -9,7 +9,7 @@ IfElse
 
 
 
-该类用于实现IfElse分支控制功能， IfElse包含两个Block，true_block，false_block，IfElse会将满足True或False条件的数据分别放入不同的block运行。    
+该类用于实现IfElse分支控制功能，IfElse包含两个Block，true_block，false_block，IfElse会将满足True或False条件的数据分别放入不同的block运行。    
 
 cond是一个shape为[N, 1]、数据类型为bool的2-D tensor，表示输入数据对应部分的执行条件。
 

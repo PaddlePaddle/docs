@@ -13,12 +13,12 @@ Model
 :::::::::
 
     - **network** (paddle.nn.Layer): 是 ``paddle.nn.Layer`` 的一个实例
-    - **inputs** (InputSpec|list|dict|None, 可选):  ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list`` ,或者是格式为 ``{name: InputSpec}`` 的 ``dict`` ，或者为 ``None`` . 默认值为 ``None`` .
-    - **labels** (InputSpec|list|None, 可选): ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list`` ,或者为 ``None``. 默认值为 ``None`` .
+    - **inputs** (InputSpec|list|dict|None，可选):  ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list`` ，或者是格式为 ``{name: InputSpec}`` 的 ``dict`` ，或者为 ``None`` . 默认值为 ``None`` .
+    - **labels** (InputSpec|list|None，可选): ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list`` ，或者为 ``None``. 默认值为 ``None`` .
       
 .. note::
 
-    在动态图中， ``inputs`` 和 ``labels`` 都可以设置为 ``None``. 但是，在静态图中， ``input`` 不能设置为 ``None`` . 而如果损失函数需要标签(label)作为输入，则必须设置 ``labels`` ，否则，可以为 ``None`` 。
+    在动态图中，``inputs`` 和 ``labels`` 都可以设置为 ``None``. 但是，在静态图中，``input`` 不能设置为 ``None`` . 而如果损失函数需要标签(label)作为输入，则必须设置 ``labels`` ，否则，可以为 ``None`` 。
 
 代码示例
 :::::::::

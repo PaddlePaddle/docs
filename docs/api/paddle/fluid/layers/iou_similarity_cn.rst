@@ -10,7 +10,7 @@ iou_similarity
 
 **IOU Similarity Operator**
 
-计算两个框列表的intersection-over-union(IOU)。框列表 :math:`X` 应为LoDTensor， :math:`Y` 是普通张量， :math:`X` 成批输入的所有实例共享 :math:`Y` 中的框。给定框A和框B，IOU的运算如下：
+计算两个框列表的intersection-over-union(IOU)。框列表 :math:`X` 应为LoDTensor， :math:`Y` 是普通张量，:math:`X` 成批输入的所有实例共享 :math:`Y` 中的框。给定框A和框B，IOU的运算如下：
 
 .. math::
     IOU(A, B) = \frac{area(A\cap B)}{area(A)+area(B)-area(A\cap B)}

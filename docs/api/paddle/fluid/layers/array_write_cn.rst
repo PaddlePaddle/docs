@@ -15,7 +15,7 @@ array_write
 
     - **x** (Variable) – 待写入的数据，多维Tensor或LoDTensor，数据类型支持float32，float64，int32，int64
     - **i** (Variable) – shape为[1]的1-D Tensor，表示写入到输出数组LoDTensorArray的位置，数据类型为int64
-    - **array** (Variable，可选) – 指定写入 ``x`` 的数组LoDTensorArray。默认值为None, 此时将创建新的LoDTensorArray并作为结果返回
+    - **array** (Variable，可选) – 指定写入 ``x`` 的数组LoDTensorArray。默认值为None，此时将创建新的LoDTensorArray并作为结果返回
 
 返回
 ::::::::::::

@@ -27,7 +27,7 @@ bilinear_tensor_product
 参数
 ::::::::::::
 
-    - **x** (Variable): 2-D 输入张量，形状为 [batch_size, M], 数据类型为 float32 或 float64。
+    - **x** (Variable): 2-D 输入张量，形状为 [batch_size, M]，数据类型为 float32 或 float64。
     - **y** (Variable): 2-D 输入张量，形状为 [batch_size, N]，数据类型与 **x** 一致。
     - **size** (int): 此层的维度。
     - **act** (str，可选): 应用到该层输出的激活函数。

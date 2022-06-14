@@ -27,9 +27,9 @@ anchor_generator
 ::::::::::::
 
 
-    - 表示输出anchor的Tensor，数据类型为float32或float64。维度为[H,W,num_anchors,4]。 ``H``  是输入的高度， ``W`` 是输入的宽度， ``num_anchors`` 是输入每位的框数,每个anchor格式（未归一化）为(xmin,ymin,xmax,ymax)
+    - 表示输出anchor的Tensor，数据类型为float32或float64。维度为[H,W,num_anchors,4]。 ``H``  是输入的高度，``W`` 是输入的宽度，``num_anchors`` 是输入每位的框数，每个anchor格式（未归一化）为(xmin,ymin,xmax,ymax)
 
-    - 表示输出variance的Tensor，数据类型为float32或float64。维度为[H,W,num_anchors,4]。 ``H`` 是输入的高度， ``W`` 是输入的宽度， ``num_anchors`` 是输入每个位置的框数,每个变量的格式为(xcenter,ycenter,w,h)。
+    - 表示输出variance的Tensor，数据类型为float32或float64。维度为[H,W,num_anchors,4]。 ``H`` 是输入的高度，``W`` 是输入的宽度，``num_anchors`` 是输入每个位置的框数，每个变量的格式为(xcenter,ycenter,w,h)。
 
 
 返回类型

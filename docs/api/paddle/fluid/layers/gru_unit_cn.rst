@@ -33,7 +33,7 @@ Gated Recurrent Unit（GRU）循环神经网络计算单元。该OP用于完成�
     h_t & = (1-u_t) \odot h_{t-1} + u_t \odot \tilde{h_t}
 
 
-其中， :math:`x_t` 为当前时间步的输入，这个输入并非 ``input``，该OP不包含 :math:`W_{ux}x_{t}, W_{rx}x_{t}, W_{cx}x_{t}` 的计算，**注意** 要在该OP前使用大小为GRU隐单元数目的3倍的全连接层并将其输出作为 ``input``；
+其中，:math:`x_t` 为当前时间步的输入，这个输入并非 ``input``，该OP不包含 :math:`W_{ux}x_{t}, W_{rx}x_{t}, W_{cx}x_{t}` 的计算，**注意** 要在该OP前使用大小为GRU隐单元数目的3倍的全连接层并将其输出作为 ``input``；
 :math:`h_{t-1}` 为前一时间步的隐状态 ``hidden``； :math:`u_t` 、 :math:`r_t` 、 :math:`\tilde{h_t}` 和 :math:`h_t` 分别代表了GRU单元中update gate（更新门）、reset gate（重置门）、candidate hidden（候选隐状态）和隐状态输出; :math:`\odot` 为逐个元素相乘；
 :math:`W_{uh}, b_u` 、 :math:`W_{rh}, b_r` 和 :math:`W_{ch}, b_c` 分别代表更新门、重置门和候选隐状态在计算时使用的权重矩阵和偏置。在实现上，三个权重矩阵合并为一个 :math:`[D, D \times 3]` 形状的Tensor存放，三个偏置拼接为一个 :math:`[1, D \times 3]` 形状的Tensor存放，其中 :math:`D` 为隐单元的数目；权重Tensor存放布局为： :math:`W_{uh}` 和 :math:`W_{rh}` 拼接为 :math:`[D, D  \times 2]` 形状位于前半部分，:math:`W_{ch}` 以 :math:`[D, D]` 形状位于后半部分。
 

@@ -6,7 +6,7 @@ Fleet
 
 .. py:class:: paddle.distributed.fleet.Fleet
 
-Fleet是飞桨分布式训练统一API, 只需要import fleet并简单初始化后即可快速开始使用飞桨大规模分布式训练
+Fleet是飞桨分布式训练统一API，只需要import fleet并简单初始化后即可快速开始使用飞桨大规模分布式训练
 
 
 方法
@@ -20,7 +20,7 @@ init(role_maker=None, is_collective=False, strategy=None)
 **参数**
 
     - **role_maker** (RoleMakerBase) 已初始化好的PaddleCloudRoleMaker或UserDefineRoleMaker
-    - **is_collective** (bool) 在未指定role_maker的情况下,可由init方法自行初始化RoleMaker, is_collective为True则按照collective模式进行创建， is_collective=False则按照ParameterServer模式进行创建
+    - **is_collective** (bool) 在未指定role_maker的情况下，可由init方法自行初始化RoleMaker, is_collective为True则按照collective模式进行创建，is_collective=False则按照ParameterServer模式进行创建
     - **strategy** (DistributedStrategy): 分布式训练的额外属性。详情请参阅paddle.distributed.fleet.DistributedStrategy。默认值：None。 
 
 **返回**
@@ -61,7 +61,7 @@ None
 is_first_worker()
 '''''''''
 
-返回当前节点是否为第一个`worker`节点，判断当前worker_index是否为0， 如果为0则返回True，否则返回False。
+返回当前节点是否为第一个`worker`节点，判断当前worker_index是否为0，如果为0则返回True，否则返回False。
 
 **返回**
 True/False
@@ -80,7 +80,7 @@ True/False
 worker_index()
 '''''''''
 
-返回当前节点的编号, 每个`worker`节点被分配[0, worker_num-1]内的唯一的编码ID
+返回当前节点的编号，每个`worker`节点被分配[0, worker_num-1]内的唯一的编码ID
 
 **返回**
 int
@@ -177,7 +177,7 @@ server_index()
   **该参数只在ParameterServer模式下生效**
 
 
-返回当前节点的编号, 每个`server`节点被分配[0, server_num-1]内的唯一的编码ID
+返回当前节点的编号，每个`server`节点被分配[0, server_num-1]内的唯一的编码ID
 
 **返回**
 int
@@ -258,7 +258,7 @@ barrier_worker()
 init_worker()
 '''''''''
 
-worker节点在训练前的初始化, 包括通信模块， 参数同步等
+worker节点在训练前的初始化，包括通信模块，参数同步等
 
 **返回**
 无
@@ -275,7 +275,7 @@ worker节点在训练前的初始化, 包括通信模块， 参数同步等
 init_server(*args, **kwargs)
 '''''''''
 
-server节点的初始化, 包括server端参数初始化，模型加载等
+server节点的初始化，包括server端参数初始化，模型加载等
 
 **返回**
 无
@@ -292,7 +292,7 @@ server节点的初始化, 包括server端参数初始化，模型加载等
 run_server()
 '''''''''
 
-server节点的运行, 此命令会将ParameterServer的进程启动并常驻直至训练结束
+server节点的运行，此命令会将ParameterServer的进程启动并常驻直至训练结束
 
 **返回**
 无
@@ -338,7 +338,7 @@ save_inference_model(executor, dirname, feeded_var_names, target_vars, main_prog
   - **dirname** (str) – 指定保存预测模型结构和参数的文件目录。
   - **feeded_var_names** (list[str]) – 字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
   - **target_vars** (list[Tensor]) – ``Tensor`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
-  - **main_program** (Program，可选) – 通过该参数指定的 ``main_program`` 可构建一个专门用于预测的 ``Inference Program`` 。 若为None, 则使用全局默认的  ``_main_program_`` 。>默认值为None。
+  - **main_program** (Program，可选) – 通过该参数指定的 ``main_program`` 可构建一个专门用于预测的 ``Inference Program`` 。 若为None，则使用全局默认的  ``_main_program_`` 。>默认值为None。
   - **export_for_deployment** (bool，可选) – 若为True，则 ``main_program`` 指定的Program将被修改为只支持直接预测部署的Program。否则，将存储更多的信息，方便优化和再训练。目前
 只支持设置为True，且默认值为True。
 
@@ -441,7 +441,7 @@ distributed_model(model)
 .. code-block:: python
 
 
-    # 这个示例需要由fleetrun启动, 用法为:
+    # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
     # 脚本example.py中的代码是下面这个示例.
 
@@ -494,14 +494,14 @@ state_dict()
 以 ``dict`` 返回当前 ``optimizer`` 使用的所有Tensor 。比如对于Adam优化器，将返回 beta1, beta2, momentum 等Tensor。
 
 **返回**
-dict, 当前 ``optimizer`` 使用的所有Tensor。
+dict，当前 ``optimizer`` 使用的所有Tensor。
 
 
 **代码示例**
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动, 用法为:
+    # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
     # 脚本example.py中的代码是下面这个示例.
 
@@ -539,7 +539,7 @@ None
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动, 用法为:
+    # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
     # 脚本example.py中的代码是下面这个示例.
 
@@ -584,7 +584,7 @@ None
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动, 用法为:
+    # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
     # 脚本example.py中的代码是下面这个示例.
 
@@ -634,7 +634,7 @@ float，当前步骤的学习率。
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动, 用法为:
+    # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
     # 脚本example.py中的代码是下面这个示例.
 
@@ -674,7 +674,7 @@ None。
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动, 用法为:
+    # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
     # 脚本example.py中的代码是下面这个示例.
 
@@ -736,7 +736,7 @@ None。
 
 .. code-block:: python
 
-    # 这个示例需要由fleetrun启动, 用法为:
+    # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
     # 脚本example.py中的代码是下面这个示例.
 

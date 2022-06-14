@@ -53,7 +53,7 @@ deformable_conv op对输入4-D Tensor计算2-D可变形卷积。给定输入Tens
 
     - **input** (Variable) - 形状为 :math:`[N, C, H, W]` 的输入Tensor，数据类型为float32或float64。
     - **offset** (Variable) – 可变形卷积层的输入坐标偏移，数据类型为float32或float64。
-    - **mask** (Variable, 可选) – 可变形卷积层的输入掩码，当使用可变形卷积算子v1时，请将mask设置为None, 数据类型为float32或float64。
+    - **mask** (Variable，可选) – 可变形卷积层的输入掩码，当使用可变形卷积算子v1时，请将mask设置为None，数据类型为float32或float64。
     - **num_filters** (int) – 卷积核数，与输出Tensor通道数相同。
     - **filter_size** (int|tuple) – 卷积核大小。如果filter_size为元组，则必须包含两个整数(filter_size_H, filter_size_W)。若数据类型为int，卷积核形状为(filter_size, filter_size)。
     - **stride** (int|tuple) – 步长大小。如果stride为元组，则必须包含两个整数(stride_H, stride_W)。否则stride_H = stride_W = stride。默认值为1。

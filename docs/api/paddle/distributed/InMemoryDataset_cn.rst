@@ -32,15 +32,15 @@ init(**kwargs)
 
 **参数**
 
-    - **kwargs** - 可选的关键字参数，由调用者提供， 目前支持以下关键字配置。
+    - **kwargs** - 可选的关键字参数，由调用者提供，目前支持以下关键字配置。
     - **batch_size** (int) - batch size的大小. 默认值为1。
-    - **thread_num** (int) - 用于训练的线程数, 默认值为1。
+    - **thread_num** (int) - 用于训练的线程数，默认值为1。
     - **use_var** (list) - 用于输入的variable列表，默认值为[]。
-    - **input_type** (int) - 输入到模型训练样本的类型. 0 代表一条样本, 1 代表一个batch。 默认值为0。
+    - **input_type** (int) - 输入到模型训练样本的类型. 0 代表一条样本，1 代表一个batch。 默认值为0。
     - **fs_name** (str) - hdfs名称. 默认值为""。
     - **fs_ugi** (str) - hdfs的ugi. 默认值为""。
     - **pipe_command** (str) - 在当前的 ``dataset`` 中设置的pipe命令用于数据的预处理。pipe命令只能使用UNIX的pipe命令，默认为"cat"。
-    - **download_cmd** (str) - 数据下载pipe命令。 pipe命令只能使用UNIX的pipe命令, 默认为"cat"。
+    - **download_cmd** (str) - 数据下载pipe命令。 pipe命令只能使用UNIX的pipe命令，默认为"cat"。
 
 
 **返回**
@@ -110,13 +110,13 @@ _init_distributed_settings(**kwargs)
 
 **参数**
 
-    - **kwargs** - 可选的关键字参数，由调用者提供， 目前支持以下关键字配置。
+    - **kwargs** - 可选的关键字参数，由调用者提供，目前支持以下关键字配置。
     - **merge_size** (int) - 通过样本id来设置合并，相同id的样本将会在shuffle之后进行合并，你应该在一个data生成器里面解析样本id。merge_size表示合并的最小数量，默认值为-1，表示不做合并。
     - **parse_ins_id** (bool) - 是否需要解析每条样的id，默认值为False。
-    - **parse_content** (bool) - 是否需要解析每条样本的content, 默认值为False。
+    - **parse_content** (bool) - 是否需要解析每条样本的content，默认值为False。
     - **fleet_send_batch_size** (int) - 设置发送batch的大小，默认值为1024。
     - **fleet_send_sleep_seconds** (int) - 设置发送batch后的睡眠时间，默认值为0。
-    - **fea_eval** (bool) - 设置特征打乱特征验证模式，来修正特征级别的重要性， 特征打乱需要 ``fea_eval`` 被设置为True. 默认值为False。
+    - **fea_eval** (bool) - 设置特征打乱特征验证模式，来修正特征级别的重要性，特征打乱需要 ``fea_eval`` 被设置为True. 默认值为False。
     - **candidate_size** (int) - 特征打乱特征验证模式下，用于随机化特征的候选池大小. 默认值为10000。
 
 **返回**
@@ -155,21 +155,21 @@ update_settings(**kwargs)
 
 **参数**
 
-    - **kwargs** - 可选的关键字参数，由调用者提供， 目前支持以下关键字配置。
+    - **kwargs** - 可选的关键字参数，由调用者提供，目前支持以下关键字配置。
     - **batch_size** (int) - batch size的大小. 默认值为1。
-    - **thread_num** (int) - 用于训练的线程数, 默认值为1。
+    - **thread_num** (int) - 用于训练的线程数，默认值为1。
     - **use_var** (list) - 用于输入的variable列表，默认值为[]。
-    - **input_type** (int) - 输入到模型训练样本的类型. 0 代表一条样本, 1 代表一个batch。 默认值为0。
+    - **input_type** (int) - 输入到模型训练样本的类型. 0 代表一条样本，1 代表一个batch。 默认值为0。
     - **fs_name** (str) - hdfs名称. 默认值为""。
     - **fs_ugi** (str) - hdfs的ugi. 默认值为""。
     - **pipe_command** (str) - 在当前的 ``dataset`` 中设置的pipe命令用于数据的预处理。pipe命令只能使用UNIX的pipe命令，默认为"cat"。
-    - **download_cmd** (str) - 数据下载pipe命令。 pipe命令只能使用UNIX的pipe命令, 默认为"cat"。
+    - **download_cmd** (str) - 数据下载pipe命令。 pipe命令只能使用UNIX的pipe命令，默认为"cat"。
     - **merge_size** (int) - 通过样本id来设置合并，相同id的样本将会在shuffle之后进行合并，你应该在一个data生成器里面解析样本id。merge_size表示合并的最小数量，默认值为-1，表示不做合并。
     - **parse_ins_id** (bool) - 是否需要解析每条样的id，默认值为False。
-    - **parse_content** (bool) 是否需要解析每条样本的content, 默认值为False。
+    - **parse_content** (bool) 是否需要解析每条样本的content，默认值为False。
     - **fleet_send_batch_size** (int) - 设置发送batch的大小，默认值为1024。
     - **fleet_send_sleep_seconds** (int) - 设置发送batch后的睡眠时间，默认值为0。
-    - **fea_eval** (bool) - 设置特征打乱特征验证模式，来修正特征级别的重要性， 特征打乱需要 ``fea_eval`` 被设置为True. 默认值为False。
+    - **fea_eval** (bool) - 设置特征打乱特征验证模式，来修正特征级别的重要性，特征打乱需要 ``fea_eval`` 被设置为True. 默认值为False。
     - **candidate_size** (int) - 特征打乱特征验证模式下，用于随机化特征的候选池大小. 默认值为10000。
 
 **返回**

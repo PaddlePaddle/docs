@@ -11,7 +11,7 @@ save_vars
 
 该接口将 ``Program`` 的变量保存到文件中。
 
-通过 ``vars`` 指定需要保存的变量，或者通过 ``predicate`` 筛选需要保存的变量， ``vars`` 和 ``predicate`` 不能同时为None。
+通过 ``vars`` 指定需要保存的变量，或者通过 ``predicate`` 筛选需要保存的变量，``vars`` 和 ``predicate`` 不能同时为None。
 
 参数
 ::::::::::::

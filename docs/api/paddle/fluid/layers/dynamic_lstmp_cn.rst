@@ -44,8 +44,8 @@ dynamic_lstmp
       - :math:`h_{t-1}, c_{t-1}, r_{t-1}` 分别表示前一个时间步的 hidden 状态，cell 状态和循环映射输出状态
       - :math:`\widetilde{c_t}` 表示候选的 cell 状态
       - :math:`i_t` ，:math:`f_t` 和 :math:`o_t` 分别为 input gate，forget gate，output gate
-      - :math:`W` 表示 weight （例如， :math:`W_{ix}` 是在计算 input gate :math:`i_t` 时，对输入 :math:`x_{t}` 做线性变换的 weight）
-      - :math:`b` 表示 bias （例如， :math:`b_{i}` 是 input gate 的 bias）
+      - :math:`W` 表示 weight （例如，:math:`W_{ix}` 是在计算 input gate :math:`i_t` 时，对输入 :math:`x_{t}` 做线性变换的 weight）
+      - :math:`b` 表示 bias （例如，:math:`b_{i}` 是 input gate 的 bias）
       - :math:`\sigma` 表示 gate 的非线性激活函数，默认为 sigmoid
       - :math:`act_g, act_h, \overline{act_h}` 分别表示 cell 输入 cell 输出和映射输出的非线性激活函数，默认为 tanh
       - :math:`\odot` 表示矩阵的 Hadamard product，即对两个维度相同的矩阵，将相同位置的元素相乘，得到另一个维度相同的矩阵

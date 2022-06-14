@@ -8,7 +8,7 @@ yolo_loss
 该运算通过给定的预测结果和真实框计算yolov3损失。
 
 yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用来指定网格(grid)大小。每个网格点预测S个边界框(bounding boxes)，S由每个尺度中 ``anchors`` 簇的个数指定。在第二维（表示通道的维度）中，C的值应为S *（class_num + 5），class_num是源数据集的对象种类数（如coco中为80），另外，除了存储4个边界框位置坐标x，y，w，h，还包括边界框以及每个anchor框的one-hot关键字的置信度得分。
-假设有四个表征位置的坐标为 :math:`t_x, t_y, t_w, t_h` ,那么边界框的预测将会如下定义:
+假设有四个表征位置的坐标为 :math:`t_x, t_y, t_w, t_h` ，那么边界框的预测将会如下定义:
 
          $$
          b_x = \\sigma(t_x) + c_x
@@ -23,7 +23,7 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
          b_h = p_h e^{t_h}
          $$
 
-在上面的等式中， :math:`c_x, c_y` 是当前网格的左上角, :math:`p_w, p_h` 由anchors指定。
+在上面的等式中，:math:`c_x, c_y` 是当前网格的左上角，:math:`p_w, p_h` 由anchors指定。
 置信度得分是anchor框和真实框之间的IoU的逻辑回归值，anchor框的得分最高为1，此时该anchor框对应着最大IoU。
 如果anchor框之间的IoU大于忽略阀值ignore_thresh，则该anchor框的置信度评分损失将会被忽略。
 

@@ -14,7 +14,7 @@ simple_img_conv_pool
 参数
 ::::::::::::
 
-    - **input** (Variable) - 输入图像, 4-D Tensor, 格式为[N，C，H，W]。数据类型是float32或者float64
+    - **input** (Variable) - 输入图像，4-D Tensor，格式为[N，C，H，W]。数据类型是float32或者float64
     - **num_filters** (int) - 卷积核的数目，整数。
     - **filter_size** (int | list | tuple) - conv2d卷积核大小，整数或者整型列表或者整型元组。如果 ``filter_size`` 是列表或元组，则它必须包含两个整数(filter_size_H，filter_size_W)。如果是整数，则filter_size_H = filter_size_W = filter_size。
     - **pool_size** (int | list | tuple) - pool2d池化层大小，整数或者整型列表或者整型元组。如果pool_size是列表或元组，则它必须包含两个整数(pool_size_H，pool_size_W)。如果是整数，则pool_size_H = pool_size_W = pool_size。

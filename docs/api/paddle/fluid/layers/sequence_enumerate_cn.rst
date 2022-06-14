@@ -11,7 +11,7 @@ sequence_enumerate
 
 枚举形状为 ``[d_1, 1]`` 的输入序列所有长度为 ``win_size`` 的子序列，生成一个形状为 ``[d_1, win_size]`` 的新序列，需要时以 ``pad_value`` 填充。
 
-注意,该OP的输入 ``input`` 只能是LodTensor。
+注意，该OP的输入 ``input`` 只能是LodTensor。
 
 范例如下：
 

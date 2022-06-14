@@ -11,9 +11,9 @@ Profiler
 :::::::::
 
     - **targets** (list，可选) - 指定性能分析所要分析的设备，默认会自动分析所有存在且支持的设备，当前支持CPU，GPU和MLU（可选值见 :ref:`ProfilerState <cn_api_profiler_profilertarget>` )。
-    - **scheduler** (Callable|tuple，可选) - 如果是Callable对象，代表是性能分析器状态的调度器，该调度器会接受一个step_num参数并返回相应的状态(详情见 :ref:`状态说明 <cn_api_profiler_profilerstate>` ），可以通过 :ref:`make_scheduler <cn_api_profiler_make_scheduler>` 接口生成调度器。如果没有设置这个参数(None)，默认的调度器会一直让性能分析器保持RECORD状态到结束。如果是tuple类型, 有两个值start_batch和end_batch，则会在[start_batch, end_batch)(前闭后开区间)内处于RECORD状态进行性能分析。
+    - **scheduler** (Callable|tuple，可选) - 如果是Callable对象，代表是性能分析器状态的调度器，该调度器会接受一个step_num参数并返回相应的状态(详情见 :ref:`状态说明 <cn_api_profiler_profilerstate>` ），可以通过 :ref:`make_scheduler <cn_api_profiler_make_scheduler>` 接口生成调度器。如果没有设置这个参数(None)，默认的调度器会一直让性能分析器保持RECORD状态到结束。如果是tuple类型，有两个值start_batch和end_batch，则会在[start_batch, end_batch)(前闭后开区间)内处于RECORD状态进行性能分析。
     - **on_trace_ready** (Callable，可选) - 处理性能分析器的回调函数，该回调函数接受Profiler对象作为参数，提供了一种自定义后处理的方式。当性能分析器处于RECORD_AND_RETURN状态或者结束时返回性能数据，将会调用该回调函数进行处理，默认为 :ref:`export_chrome_tracing <cn_api_profiler_export_chrome_tracing>` (./profiler_log/)。
-    - **timer_only** (bool, 可选) - 如果设置为True，将只统计模型的数据读取和每一个迭代所消耗的时间，而不进行性能分析。否则，模型将被计时，同时进行性能分析。默认值：False。
+    - **timer_only** (bool，可选) - 如果设置为True，将只统计模型的数据读取和每一个迭代所消耗的时间，而不进行性能分析。否则，模型将被计时，同时进行性能分析。默认值：False。
 
 代码示例 1
 ::::::::::
@@ -50,7 +50,7 @@ start()
 '''''''''
 
 开启性能分析器，进入状态scheduler(0)。即
-性能分析器状态从CLOSED -> scheduler(0), 并根据新的状态触发相应行为。
+性能分析器状态从CLOSED -> scheduler(0)，并根据新的状态触发相应行为。
 
 **代码示例**
 

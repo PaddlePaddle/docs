@@ -19,7 +19,7 @@ RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs`` ，
 
 按上述规则筛选出一批boxes后，在对这些boxes做随机采样，以保证foreground boxes的数量不高于batch_size_per_im * fg_fraction。
 
-对最终得到的boxes, 我们给它们分配类别标签和回归目标(box label)，并产出 ``bboxInsideWeights`` 和 ``BboxOutsideWeights`` 。
+对最终得到的boxes，我们给它们分配类别标签和回归目标(box label)，并产出 ``bboxInsideWeights`` 和 ``BboxOutsideWeights`` 。
 
 参数
 ::::::::::::

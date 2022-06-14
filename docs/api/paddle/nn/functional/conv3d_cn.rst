@@ -20,7 +20,7 @@ conv3d
     - :math:`*` ：卷积操作
     - :math:`b` ：偏置值，2-D Tensor，形为 ``[M,1]``
     - :math:`\sigma` ：激活函数
-    - :math:`Out` ：输出值, NCDHW或NDHWC格式的5-D Tensor，和 ``X`` 的形状可能不同
+    - :math:`Out` ：输出值，NCDHW或NDHWC格式的5-D Tensor，和 ``X`` 的形状可能不同
 
 **示例**
 
@@ -38,7 +38,7 @@ conv3d
 ::::::::::::
 
     - **x** (Tensor) - 输入是形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征层深度，H是特征高度，W是特征宽度，数据类型为float16, float32或float64。
-    - **weight** (Tensor) - 形状为 :math:`[M, C/g, kH, kW]` 的卷积核（卷积核）。 M是输出通道数， g是分组的个数，kH是卷积核的高度，kW是卷积核的宽度。
+    - **weight** (Tensor) - 形状为 :math:`[M, C/g, kH, kW]` 的卷积核（卷积核）。 M是输出通道数，g是分组的个数，kH是卷积核的高度，kW是卷积核的宽度。
     - **bias** (int|list|tuple，可选) - 偏置项，形状为： :math:`[M,]` 。
     - **stride** (int|list|tuple，可选) - 步长大小。卷积核和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含两个整型数：（stride_height,stride_width）。若为一个整数，stride_height = stride_width = stride。默认值：1。
     - **padding** (int|list|tuple|str，可选) - 填充大小。如果它是一个字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考上述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。如果它是一个元组或列表，它可以有3种格式：(1)包含5个二元组：当 ``data_format`` 为"NCDHW"时为 [[0,0], [0,0], [padding_depth_front, padding_depth_back], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right]]，当 ``data_format`` 为"NDHWC"时为[[0,0], [padding_depth_front, padding_depth_back], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right], [0,0]]；(2)包含6个整数值：[padding_depth_front, padding_depth_back, padding_height_top, padding_height_bottom, padding_width_left, padding_width_right]；(3)包含3个整数值：[padding_depth, padding_height, padding_width]，此时 padding_depth_front = padding_depth_back = padding_depth, padding_height_top = padding_height_bottom = padding_height, padding_width_left = padding_width_right = padding_width。若为一个整数，padding_depth = padding_height = padding_width = padding。默认值：0。

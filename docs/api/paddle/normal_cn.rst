@@ -16,10 +16,10 @@ normal
 
 参数
 ::::::::::
-    - mean (float|Tensor, 可选) - 输出 Tensor 的正态分布的平均值。如果 ``mean`` 是 float，则表示输出 Tensor 中所有元素的正态分布的平均值。如果 ``mean`` 是 Tensor (支持的数据类型为 float32、float64)，则表示输出Tensor中每个元素的正态分布的平均值。默认值为0.0。
-    - std (float|Tensor, 可选) - 输出 Tensor 的正态分布的标准差。如果 ``std`` 是 float，则表示输出 Tensor 中所有元素的正态分布的标准差。如果 ``std`` 是 Tensor (支持的数据类型为 float32、float64)，则表示输出Tensor中每个元素的正态分布的标准差。默认值为0.0。
-    - shape (list|tuple|Tensor, 可选) - 生成的随机 Tensor 的形状。如果 ``shape`` 是 list、tuple，则其中的元素可以是 int，或者是形状为[1]且数据类型为 int32、int64 的 Tensor。如果 ``shape`` 是 Tensor，则是数据类型为 int32、int64 的一维 Tensor。如果 ``mean`` 或者 ``std`` 是 Tensor，输出 Tensor 的形状和 ``mean`` 或者 ``std`` 相同(此时 ``shape`` 无效)。默认值为 None。
-    - name (str, 可选) - 操作的名称(可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
+    - mean (float|Tensor，可选) - 输出 Tensor 的正态分布的平均值。如果 ``mean`` 是 float，则表示输出 Tensor 中所有元素的正态分布的平均值。如果 ``mean`` 是 Tensor (支持的数据类型为 float32、float64)，则表示输出Tensor中每个元素的正态分布的平均值。默认值为0.0。
+    - std (float|Tensor，可选) - 输出 Tensor 的正态分布的标准差。如果 ``std`` 是 float，则表示输出 Tensor 中所有元素的正态分布的标准差。如果 ``std`` 是 Tensor (支持的数据类型为 float32、float64)，则表示输出Tensor中每个元素的正态分布的标准差。默认值为0.0。
+    - shape (list|tuple|Tensor，可选) - 生成的随机 Tensor 的形状。如果 ``shape`` 是 list、tuple，则其中的元素可以是 int，或者是形状为[1]且数据类型为 int32、int64 的 Tensor。如果 ``shape`` 是 Tensor，则是数据类型为 int32、int64 的一维 Tensor。如果 ``mean`` 或者 ``std`` 是 Tensor，输出 Tensor 的形状和 ``mean`` 或者 ``std`` 相同(此时 ``shape`` 无效)。默认值为 None。
+    - name (str，可选) - 操作的名称(可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 ::::::::::

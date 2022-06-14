@@ -39,8 +39,8 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 **参数**
 
     - **loss** (Tensor) – 一个包含需要最小化的损失值变量的 Tensor。
-    - **startup_program** (Program，可选) - 用于初始化 ``Parameters`` 中参数的 ``Program``, 默认值为 None，此时将使用 ``default_startup_program``。
-    - **parameters** (list，可选) – 待更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的列表， 默认值为 None，此时将更新所有的 ``Parameters``。
+    - **startup_program** (Program，可选) - 用于初始化 ``Parameters`` 中参数的 ``Program``，默认值为 None，此时将使用 ``default_startup_program``。
+    - **parameters** (list，可选) – 待更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的列表，默认值为 None，此时将更新所有的 ``Parameters``。
     - **no_grad_set** (set，可选) – 不需要更新的 ``Parameters`` 或者 ``Parameter.name`` 组成的集合，默认值为 None。
     - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为 None。
 

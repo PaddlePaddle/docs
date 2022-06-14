@@ -20,7 +20,7 @@ row_conv
 公式中：
     - :math:`out_i` : 第i行输出变量形为[1, D].
     - :math:`context` ： 下文（future context）大小
-    - :math:`X_j` : 第j行输出变量,形为[1，D]
+    - :math:`X_j` : 第j行输出变量，形为[1，D]
     - :math:`W_{j-i}` : 第(j-i)行参数，其形状为[1,D]。
 
 详细请参考 `设计文档 <https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_  。

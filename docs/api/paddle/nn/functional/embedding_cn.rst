@@ -19,7 +19,7 @@ embedding
 
 .. code-block:: text
 
-            x是Tensor， 且padding_idx = -1.
+            x是Tensor，且padding_idx = -1.
                 padding_idx = -1
                 x.data = [[1, 3], [2, 4], [4, 127]]
                 x.shape = [3, 2]
@@ -33,7 +33,7 @@ embedding
                             [[0.945345345, 0.435394634, ..., 0.435345365],
                             [0.0,         0.0,         ..., 0.0        ]]]  # padding data
 
-            输入的padding_idx小于0，则自动转换为padding_idx = -1 + 128 = 127, 对于输入id为127的词，进行padding处理。
+            输入的padding_idx小于0，则自动转换为padding_idx = -1 + 128 = 127，对于输入id为127的词，进行padding处理。
 
 
 参数
