@@ -79,12 +79,80 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
 规则变化具备可组合性，例如在使用 linearize 和 transpose 完成一阶反向自动微分变换之后，可以在生成的计算图上再次使用 linearize 和 transpose 规则得到二阶反向微分计算图，从而实现高阶自动微分功能。
 
 
-
 接口设计与使用案例
 ==========================
 当前阶段优先在静态图中支持了基于自动微分基础算子的自动微分机制，通过全局切换接口 ``enable_prim`` 和 ``disable_prim`` 可以在这套自动微分机制和原始的自动微分机制之间进行切换。
 
-接口层面，基于 orig2prim，linearize 和 transpose 三种变换改写了 ``paddle.static.gradients`` 接口和优化器中的 ``minimize`` 接口，并且对外提供 ``prim2orig`` 接口, 只需要做很少的改动就可以使用新自动微分机制完成自动微分功能。
+接口层面，基于 orig2prim，linearize 和 transpose 三种变换改写了 ``paddle.static.gradients`` 接口和优化器中的 ``minimize`` 接口，并且对外提供 ``prim2orig`` 接口, 只需要做很少的改动就可以使用新自动微分机制完成高阶微分的计算。
+
+下边是一个使用示例：
+
+1、首先通过 ``enable_static`` 和 ``enable_prim`` 切换到静态图模式和新自动微分机制。
+
+.. code-block:: python
+
+    import numpy as np
+    import paddle
+    from paddle.incubate.autograd import enable_prim, prim_enabled, prim2orig
+    
+    paddle.enable_static()
+    enable_prim()
+
+
+2、生成输入数据，配置执行器.
+.. code-block:: python
+
+    x = np.random.rand(2, 20)
+    
+    # Set place and excutor
+    place = paddle.CPUPlace()
+    if paddle.device.is_compiled_with_cuda():
+        place = paddle.CUDAPlace(0)
+    exe = paddle.static.Executor(place)
+
+
+3、完成 ``program`` 搭建，其中两次调用 ``paddle.static.gradients`` 完成二阶微分运算，调用优化器中的 ``minimize`` 接口完成三阶微分运算，最后调用 ``prim2orig`` 接口将 ``program`` 中的自动微分基础算子转化为等价功能的原生算子。
+
+
+.. code-block:: python
+
+    # Build program
+    main = paddle.static.Program()
+    startup = paddle.static.Program()
+    with paddle.static.program_guard(main, startup):
+        # Set input and parameter
+        input_x = paddle.static.data('x', [2, 20], dtype='float64')
+        input_x.stop_gradient = False
+        params_w = paddle.static.create_parameter(
+            shape=[20, 2], dtype='float64', is_bias=False)
+        params_bias = paddle.static.create_parameter(
+            shape=[2], dtype='float64', is_bias=True)
+    
+        # Build network
+        y = paddle.tanh(paddle.matmul(input_x, params_w) + params_bias)
+        dy_dx, = paddle.static.gradients([y], [input_x])
+        d2y_dx2, = paddle.static.gradients([dy_dx], [input_x])
+        loss = paddle.norm(d2y_dx2, p=2)
+        opt = paddle.optimizer.Adam(0.01)
+        _, grads = opt.minimize(loss)
+    
+        # Do prim2orig transform.
+        if prim_enabled():
+            prim2orig()
+
+4、使用执行器执行 ``program`` 。
+
+.. code-block:: python
+
+    # Run program
+    exe.run(startup)
+    grads = exe.run(main,
+                    feed={'x': x},
+                    fetch_list=grads)
+
+
+完整的示例代码如下：
+
 
 .. code-block:: python
 
@@ -118,19 +186,21 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
         # Build network
         y = paddle.tanh(paddle.matmul(input_x, params_w) + params_bias)
         dy_dx, = paddle.static.gradients([y], [input_x])
-        loss = paddle.norm(dy_dx, p=2)
+        d2y_dx2, = paddle.static.gradients([dy_dx], [input_x])
+        loss = paddle.norm(d2y_dx2, p=2)
         opt = paddle.optimizer.Adam(0.01)
-        _, grads = opt.minimize(loss)
+        _, p_g = opt.minimize(loss)
     
         # Do prim2orig transform.
         if prim_enabled():
-            prim2orig(main.block(0))
+            prim2orig()
     
     # Run program
     exe.run(startup)
-    grads = exe.run(main,
+    p_g = exe.run(main,
                     feed={'x': x},
-                    fetch_list=grads)
+                    fetch_list=p_g)
+
 
 演进计划
 ==========================
