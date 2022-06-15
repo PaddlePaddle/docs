@@ -12,6 +12,7 @@
 - `张量模型并行 <./model_parallel_cn.html>`_ : 使用飞桨框架完成张量模型并行训练。
 - `流水线并行 <./pipeline_parallel_cn.html>`_ : 使用飞桨框架完成流水线并行训练。
 - `分组切分并行 <./group_sharded_parallel_cn.html>`_ : 使用飞桨框架完成分组切分并行训练。
+- `常见问题 <./FAQ/index_cn.html>`_ : 使用飞桨分布式过程中的常见问题汇总。
 
 ..  toctree::
     :hidden:
@@ -24,3 +25,4 @@
     model_parallel_cn.rst
     pipeline_parallel_cn.rst
     group_sharded_parallel_cn.rst
+    FAQ/index.rst
