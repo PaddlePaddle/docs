@@ -187,7 +187,7 @@ fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_fr
     - **drop_last** (bool，可选) - 是否丢弃训练数据中最后几个不足设定的批次大小的数据。默认值：False。
     - **shuffle** (bool，可选) - 是否对训练数据进行洗牌。当 ``train_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：True。
     - **num_workers** (int，可选) - 启动子进程用于读取数据的数量。当 ``train_data`` 和 ``eval_data`` 都为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：0。
-    - **callbacks** (Callback|list[Callback]|None，可选) -  ``Callback`` 的一个实例或实例列表。该参数不给定时，默认会插入 ``ProgBarLogger`` 和 ``ModelCheckpoint`` 这两个实例。默认值：None。
+    - **callbacks** (Callback|list[Callback]|None，可选) -  ``Callback`` 的一个实例或实例列表。该参数不给定时，默认会插入 :ref:`cn_api_paddle_callbacks_ProgBarLogger` 和 :ref:`cn_api_paddle_callbacks_ModelCheckpoint` 这两个实例。默认值：None。
     - **accumulate_grad_batches** (int，可选) -  训练过程中，在优化器更新之前累积梯度的批次数。通过改变该参数可以模拟大的 ``batch_size``。默认值：1。
     - **num_iters** (int，可选) -  训练模型过程中的迭代次数。如果设置为 None，则根据参数 ``epochs`` 来训练模型，否则训练模型 ``num_iters`` 次。默认值：None。
 
