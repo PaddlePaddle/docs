@@ -25,70 +25,12 @@ Model
 
 1. 一般示例
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    import paddle.vision.transforms as T
-    from paddle.static import InputSpec
-
-    device = paddle.set_device('cpu') # or 'gpu'
-
-    net = nn.Sequential(
-        nn.Flatten(1),
-        nn.Linear(784, 200),
-        nn.Tanh(),
-        nn.Linear(200, 10))
-
-    # inputs and labels are not required for dynamic graph.
-    input = InputSpec([None, 784], 'float32', 'x')
-    label = InputSpec([None, 1], 'int64', 'label')
-    
-    model = paddle.Model(net, input, label)
-    optim = paddle.optimizer.SGD(learning_rate=1e-3,
-        parameters=model.parameters())
-    model.prepare(optim,
-                  paddle.nn.CrossEntropyLoss(),
-                  paddle.metric.Accuracy())
-    
-    transform = T.Compose([
-        T.Transpose(),
-        T.Normalize([127.5], [127.5])
-    ])
-    data = paddle.vision.datasets.MNIST(mode='train', transform=transform)
-    model.fit(data, epochs=2, batch_size=32, verbose=1)
+COPY-FROM: paddle.Model:code-example1
 
 
 2. 使用混合精度训练的例子
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    import paddle.vision.transforms as T
-
-    def run_example_code():
-        device = paddle.set_device('gpu')
-        net = nn.Sequential(nn.Flatten(1), nn.Linear(784, 200), nn.Tanh(),
-                            nn.Linear(200, 10))
-        model = paddle.Model(net)
-        optim = paddle.optimizer.SGD(learning_rate=1e-3, parameters=model.parameters())
-        amp_configs = {
-            "level": "O1",
-            "custom_white_list": {'conv2d'},
-            "use_dynamic_loss_scaling": True
-        }
-        model.prepare(optim,
-            paddle.nn.CrossEntropyLoss(),
-            paddle.metric.Accuracy(),
-            amp_configs=amp_configs)
-        transform = T.Compose([T.Transpose(), T.Normalize([127.5], [127.5])])
-        data = paddle.vision.datasets.MNIST(mode='train', transform=transform)
-        model.fit(data, epochs=2, batch_size=32, verbose=1)
-
-    # mixed precision training is only support on GPU now.
-    if paddle.is_compiled_with_cuda():
-        run_example_code()
+COPY-FROM: paddle.Model:code-example2
 
 
 方法
@@ -111,31 +53,8 @@ train_batch(inputs, labels=None)
 
 **代码示例**
 
+COPY-FROM: paddle.Model:code-example-train-batch
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-    import paddle.nn as nn
-    from paddle.static import InputSpec
-
-    device = paddle.set_device('cpu') # or 'gpu'
-
-    net = nn.Sequential(
-        nn.Linear(784, 200),
-        nn.Tanh(),
-        nn.Linear(200, 10))
-
-    input = InputSpec([None, 784], 'float32', 'x')
-    label = InputSpec([None, 1], 'int64', 'label')
-    model = paddle.Model(net, input, label)
-    optim = paddle.optimizer.SGD(learning_rate=1e-3,
-        parameters=model.parameters())
-    model.prepare(optim, paddle.nn.CrossEntropyLoss())
-    data = np.random.random(size=(4,784)).astype(np.float32)
-    label = np.random.randint(0, 10, size=(4, 1)).astype(np.int64)
-    loss = model.train_batch([data], [label])
-    print(loss)
 
 eval_batch(inputs, labels=None)
 '''''''''
@@ -155,31 +74,8 @@ list，如果没有定义评估函数，则返回包含了预测损失函数的�
 
 **代码示例**
 
-.. code-block:: python
+COPY-FROM: paddle.Model:code-example-eval-batch
 
-    import numpy as np
-    import paddle
-    import paddle.nn as nn
-    from paddle.static import InputSpec
-
-    device = paddle.set_device('cpu') # or 'gpu'
-
-    net = nn.Sequential(
-        nn.Linear(784, 200),
-        nn.Tanh(),
-        nn.Linear(200, 10))
-
-    input = InputSpec([None, 784], 'float32', 'x')
-    label = InputSpec([None, 1], 'int64', 'label')
-    model = paddle.Model(net, input, label)
-    optim = paddle.optimizer.SGD(learning_rate=1e-3,
-        parameters=model.parameters())
-    model.prepare(optim,
-                paddle.nn.CrossEntropyLoss())
-    data = np.random.random(size=(4,784)).astype(np.float32)
-    label = np.random.randint(0, 10, size=(4, 1)).astype(np.int64)
-    loss = model.eval_batch([data], [label])
-    print(loss)
 
 predict_batch(inputs)
 '''''''''
@@ -197,30 +93,7 @@ predict_batch(inputs)
 
 **代码示例**
 
-
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-    import paddle.nn as nn
-    from paddle.static import InputSpec
-
-    device = paddle.set_device('cpu') # or 'gpu'
-    
-    input = InputSpec([None, 784], 'float32', 'x')
-    label = InputSpec([None, 1], 'int64', 'label')
-
-    net = nn.Sequential(
-        nn.Linear(784, 200),
-        nn.Tanh(),
-        nn.Linear(200, 10),
-        nn.Softmax())
-
-    model = paddle.Model(net, input, label)
-    model.prepare()
-    data = np.random.random(size=(4,784)).astype(np.float32)
-    out = model.predict_batch([data])
-    print(out)
+COPY-FROM: paddle.Model:code-example-predict-batch
 
 
 save(path, training=True)
@@ -241,47 +114,7 @@ None
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    import paddle.vision.transforms as T
-    from paddle.static import InputSpec
-
-    class Mnist(nn.Layer):
-        def __init__(self):
-            super(Mnist, self).__init__()
-            self.net = nn.Sequential(
-                nn.Flatten(1),
-                nn.Linear(784, 200),
-                nn.Tanh(),
-                nn.Linear(200, 10),
-                nn.Softmax())
-
-        def forward(self, x):
-            return self.net(x)
-
-    dynamic = True  # False
-    # if use static graph, do not set
-    if not dynamic:
-        paddle.enable_static()
-
-    input = InputSpec([None, 784], 'float32', 'x')
-    label = InputSpec([None, 1], 'int64', 'label')
-    model = paddle.Model(Mnist(), input, label)
-    optim = paddle.optimizer.SGD(learning_rate=1e-3,
-        parameters=model.parameters())
-    model.prepare(optim, paddle.nn.CrossEntropyLoss())
-    
-    transform = T.Compose([
-        T.Transpose(),
-        T.Normalize([127.5], [127.5])
-    ])
-    data = paddle.vision.datasets.MNIST(mode='train', transform=transform)
-    
-    model.fit(data, epochs=1, batch_size=32, verbose=0)
-    model.save('checkpoint/test')  # save for training
-    model.save('inference_model', False)  # save for inference
+COPY-FROM: paddle.Model:code-example-save
 
 
 load(path, skip_mismatch=False, reset_optimizer=False)
@@ -302,26 +135,8 @@ None
 
 **代码示例**
 
+COPY-FROM: paddle.Model:code-example-load
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    from paddle.static import InputSpec
-    
-    device = paddle.set_device('cpu')
-
-    input = InputSpec([None, 784], 'float32', 'x')
-    label = InputSpec([None, 1], 'int64', 'label')
-    model = paddle.Model(nn.Sequential(
-        nn.Linear(784, 200),
-        nn.Tanh(),
-        nn.Linear(200, 10),
-        nn.Softmax()),
-        input,
-        label)
-    model.save('checkpoint/test')
-    model.load('checkpoint/test')
 
 parameters(*args, **kwargs)
 '''''''''
@@ -334,18 +149,7 @@ parameters(*args, **kwargs)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    from paddle.static import InputSpec
-
-    model = paddle.Model(nn.Sequential(
-        nn.Linear(784, 200),
-        nn.Tanh(),
-        nn.Linear(200, 10)))
-
-    params = model.parameters()
+COPY-FROM: paddle.Model:code-example-parameters
 
 
 prepare(optimizer=None, loss=None, metrics=None, amp_configs=None)
@@ -390,82 +194,13 @@ None
 
     1. 使用Dataset训练，并设置batch_size的例子。
 
-    .. code-block:: python
-
-        import paddle
-        import paddle.vision.transforms as T
-        from paddle.vision.datasets import MNIST
-        from paddle.static import InputSpec
-
-        dynamic = True
-        if not dynamic:
-            paddle.enable_static()
-
-        transform = T.Compose([
-            T.Transpose(),
-            T.Normalize([127.5], [127.5])
-        ])
-        train_dataset = MNIST(mode='train', transform=transform)
-        val_dataset = MNIST(mode='test', transform=transform)
-        
-        input = InputSpec([None, 1, 28, 28], 'float32', 'image')
-        label = InputSpec([None, 1], 'int64', 'label')
-        
-        model = paddle.Model(
-            paddle.vision.models.LeNet(),
-            input, label)
-        optim = paddle.optimizer.Adam(
-            learning_rate=0.001, parameters=model.parameters())
-        model.prepare(
-            optim,
-            paddle.nn.CrossEntropyLoss(),
-            paddle.metric.Accuracy(topk=(1, 2)))
-        model.fit(train_dataset,
-                  val_dataset,
-                  epochs=2,
-                  batch_size=64,
-                  save_dir='mnist_checkpoint')
+    COPY-FROM: paddle.Model:code-example-fit-1
 
 
     2. 使用Dataloader训练的例子。
 
-    .. code-block:: python
+    COPY-FROM: paddle.Model:code-example-fit-2
 
-        import paddle
-        import paddle.vision.transforms as T
-        from paddle.vision.datasets import MNIST
-        from paddle.static import InputSpec
-
-        dynamic = True
-        if not dynamic:
-            paddle.enable_static()
-        
-        transform = T.Compose([
-              T.Transpose(),
-              T.Normalize([127.5], [127.5])
-          ])
-        train_dataset = MNIST(mode='train', transform=transform)
-        train_loader = paddle.io.DataLoader(train_dataset,
-            batch_size=64)
-        val_dataset = MNIST(mode='test', transform=transform)
-        val_loader = paddle.io.DataLoader(val_dataset,
-            batch_size=64)
-        
-        input = InputSpec([None, 1, 28, 28], 'float32', 'image')
-        label = InputSpec([None, 1], 'int64', 'label')
-        
-        model = paddle.Model(
-            paddle.vision.models.LeNet(), input, label)
-        optim = paddle.optimizer.Adam(
-            learning_rate=0.001, parameters=model.parameters())
-        model.prepare(
-            optim,
-            paddle.nn.CrossEntropyLoss(),
-            paddle.metric.Accuracy(topk=(1, 2)))
-        model.fit(train_loader,
-                  val_loader,
-                  epochs=2,
-                  save_dir='mnist_checkpoint')
 
 evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbacks=None)
 '''''''''
@@ -487,25 +222,8 @@ dict, key是 ``prepare`` 时Metric的的名称，value是该Metric的值。
 
 **代码示例**
 
-.. code-block:: python
+COPY-FROM: paddle.Model:code-example-evaluate
 
-    import paddle
-    import paddle.vision.transforms as T
-    from paddle.static import InputSpec
-
-    # declarative mode
-    transform = T.Compose([
-            T.Transpose(),
-            T.Normalize([127.5], [127.5])
-        ])
-    val_dataset = paddle.vision.datasets.MNIST(mode='test', transform=transform)
-
-    input = InputSpec([-1, 1, 28, 28], 'float32', 'image')
-    label = InputSpec([None, 1], 'int64', 'label')
-    model = paddle.Model(paddle.vision.models.LeNet(), input, label)
-    model.prepare(metrics=paddle.metric.Accuracy())
-    result = model.evaluate(val_dataset, batch_size=64)
-    print(result)
 
 predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=None)
 '''''''''
@@ -526,44 +244,8 @@ predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=N
 
 **代码示例**
 
-.. code-block:: python
+COPY-FROM: paddle.Model:code-example-predict
 
-    import numpy as np
-    import paddle
-    from paddle.static import InputSpec
-
-    class MnistDataset(paddle.vision.datasets.MNIST):
-        def __init__(self, mode, return_label=True):
-            super(MnistDataset, self).__init__(mode=mode)
-            self.return_label = return_label
-
-        def __getitem__(self, idx):
-            img = np.reshape(self.images[idx], [1, 28, 28])
-            if self.return_label:
-                return img, np.array(self.labels[idx]).astype('int64')
-            return img,
-
-        def __len__(self):
-            return len(self.images)
-
-    test_dataset = MnistDataset(mode='test', return_label=False)
-
-    # imperative mode
-    input = InputSpec([-1, 1, 28, 28], 'float32', 'image')
-    model = paddle.Model(paddle.vision.models.LeNet(), input)
-    model.prepare()
-    result = model.predict(test_dataset, batch_size=64)
-    print(len(result[0]), result[0][0].shape)
-
-    # declarative mode
-    device = paddle.set_device('cpu')
-    paddle.enable_static()
-    input = InputSpec([-1, 1, 28, 28], 'float32', 'image')
-    model = paddle.Model(paddle.vision.models.LeNet(), input)
-    model.prepare()
-
-    result = model.predict(test_dataset, batch_size=64)
-    print(len(result[0]), result[0][0].shape)
 
 summary(input_size=None, batch_size=None, dtype=None)
 '''''''''
@@ -582,22 +264,4 @@ summary(input_size=None, batch_size=None, dtype=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.static import InputSpec
-    
-    input = InputSpec([None, 1, 28, 28], 'float32', 'image')
-    label = InputSpec([None, 1], 'int64', 'label')
-    
-    model = paddle.Model(paddle.vision.models.LeNet(),
-        input, label)
-    optim = paddle.optimizer.Adam(
-        learning_rate=0.001, parameters=model.parameters())
-    model.prepare(
-        optim,
-        paddle.nn.CrossEntropyLoss())
-
-    params_info = model.summary()
-    print(params_info)
-
+COPY-FROM: paddle.Model:code-example-summary
