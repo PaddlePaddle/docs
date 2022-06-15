@@ -93,8 +93,9 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
     class WideDeepDatasetReader(fleet.MultiSlotDataGenerator):
         def line_process(self, line):
             features = line.rstrip('\n').split('\t')
-            # 省略数据处理过程，具体可参考单机reader
+            # 省略数据处理过程，具体实现可参考单机reader的line_process()方法
             # 返回值为一个list，其中的每个元素均为一个list，不需要转成np.array格式
+            # 具体格式：[[dense_value1, dense_value2, ...], [sparse_value1], [sparse_value2], ..., [label]]
             return [dense_feature] + sparse_feature + [label]
         
         # 实现generate_sample()函数
@@ -112,6 +113,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 
                 # 返回一个list，其中的每个元素都是一个元组
                 # 元组的第一个元素为特征名（string类型），第二个元素为特征值（list类型）
+                # 具体格式：[('dense_input', [dense_value1, dense_value2, ...]), ('C1', [sparse_value1]), ('C2', [sparse_value2]), ..., ('label', [label])]
                 yield zip(feature_name, input_data)
             
             # generate_sample()函数需要返回一个可以迭代的reader方法
