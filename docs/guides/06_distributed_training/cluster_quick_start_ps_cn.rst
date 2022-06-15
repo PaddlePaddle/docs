@@ -147,7 +147,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 备注：dataset更详细用法参见\ `使用InMemoryDataset/QueueDataset进行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/parameter_server/performance/dataset.html>`_\。
 
 
-1.2.5 定义同步训练 Strategy 及 Optimizer
+1.2.5 定义参数更新策略及优化器
 """"""""""""
 
 在Fleet API中，用户可以使用 ``fleet.DistributedStrategy()`` 接口定义自己想要使用的分布式策略。
@@ -159,9 +159,16 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
     # 定义异步训练
     dist_strategy = fleet.DistributedStrategy()
     dist_strategy.a_sync = True
+    
+用户需要使用 ``fleet.distributed_optimizer()`` 接口，将单机优化器转换成分布式优化器，并最小化模型的损失值。
 
+.. code-block:: python
+
+    # 定义单机优化器
     optimizer = paddle.optimizer.SGD(learning_rate=0.0001)
+    # 单机优化器转换成分布式优化器
     optimizer = fleet.distributed_optimizer(optimizer, dist_strategy)
+    # 使用分布式优化器最小化模型损失值model.loss，model.loss定义参见model.py
     optimizer.minimize(model.loss)
 
 1.2.6 开始训练
@@ -189,7 +196,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
                                    dataset,
                                    paddle.static.global_scope(), 
                                    debug=False, 
-                                   fetch_list=[train_model.cost],
+                                   fetch_list=[model.loss],
                                    fetch_info=["loss"],
                                    print_period=1)
     
@@ -201,7 +208,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 1.3 运行训练脚本
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-定义完训练脚本后，我们就可以用 ``fleetrun`` 指令运行分布式任务了。其中 ``server_num`` , ``worker_num`` 分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
+定义完训练脚本后，我们就可以用 ``fleetrun`` 指令运行分布式任务了。 ``fleetrun`` 是飞桨封装的分布式启动命令，命令参数 ``server_num`` , ``worker_num`` 分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
 
 .. code-block:: bash
 
