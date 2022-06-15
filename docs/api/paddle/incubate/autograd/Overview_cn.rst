@@ -56,7 +56,6 @@ paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关�
 在高阶微分计算中，随着阶数的升高，输出数量会越来越多，前向微分重要性也会越来越高。
 为了更好地支持这些应用场景，需要深度学习框架具备高阶自动微分的能力，且支持前向和反向两种微分模式。
 
-
 在框架中增加如下功能：
 
 - 设计一套自动微分基础算子
@@ -65,7 +64,6 @@ paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关�
 
 自动微分基础算子设计：
 自动微分基础算子和原生算子基于同样的数据结构，但是与原生算子体系中的算子不同，这些自动微分基础算子不包含 kernel 实现，只用做表达语义，用于和原生算子体系之间转化规则和自动微分规则的定义，不能直接执行。
-
 
 原生算子体系和自动微分基础算子体系之间的转化：
 一方面，原生算子体系中的算子语义往往比较复杂，需要拆分为多个自动微分基础算子的组合。
@@ -98,8 +96,8 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
     paddle.enable_static()
     enable_prim()
 
-
 2、生成输入数据，配置执行器.
+
 .. code-block:: python
 
     x = np.random.rand(2, 20)
@@ -110,9 +108,7 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
         place = paddle.CUDAPlace(0)
     exe = paddle.static.Executor(place)
 
-
 3、完成 ``program`` 搭建，其中两次调用 ``paddle.static.gradients`` 完成二阶微分运算，调用优化器中的 ``minimize`` 接口完成三阶微分运算，最后调用 ``prim2orig`` 接口将 ``program`` 中的自动微分基础算子转化为等价功能的原生算子。
-
 
 .. code-block:: python
 
@@ -134,7 +130,7 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
         d2y_dx2, = paddle.static.gradients([dy_dx], [input_x])
         loss = paddle.norm(d2y_dx2, p=2)
         opt = paddle.optimizer.Adam(0.01)
-        _, grads = opt.minimize(loss)
+        _, p_g = opt.minimize(loss)
     
         # Do prim2orig transform.
         if prim_enabled():
@@ -146,13 +142,11 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
 
     # Run program
     exe.run(startup)
-    grads = exe.run(main,
-                    feed={'x': x},
-                    fetch_list=grads)
-
+    p_g = exe.run(main,
+                  feed={'x': x},
+                  fetch_list=p_g)
 
 完整的示例代码如下：
-
 
 .. code-block:: python
 
@@ -198,8 +192,8 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
     # Run program
     exe.run(startup)
     p_g = exe.run(main,
-                    feed={'x': x},
-                    fetch_list=p_g)
+                  feed={'x': x},
+                  fetch_list=p_g)
 
 
 演进计划
