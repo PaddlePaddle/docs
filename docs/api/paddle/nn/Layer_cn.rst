@@ -658,7 +658,7 @@ Parameter， 传入的参数实例
         print(name, param)      # will print w_tmp,_linear.weight,_linear.bias
 
 
-state_dict(destination=None, include_sublayers=True)
+state_dict(destination=None, include_sublayers=True, use_hook=True)
 '''''''''
 
 获取当前层及其子层的所有参数和可持久性buffers。并将所有参数和buffers存放在dict结构中。
@@ -667,6 +667,7 @@ state_dict(destination=None, include_sublayers=True)
 
     - **destination** (dict, 可选) - 如果提供 ``destination`` ，则所有参数和可持久性buffers都将存放在 ``destination`` 中。 默认值：None。
     - **include_sublayers** (bool, 可选) - 如果设置为True，则包括子层的参数和buffers。默认值：True。
+    - **use_hook** (bool, 可选) - 如果设置为True，将_state_dict_hooks中注册的函数应用于destination。默认值：True。
 
 **返回**
 dict， 包含所有参数和可持久行buffers的dict
