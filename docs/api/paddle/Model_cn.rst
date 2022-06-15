@@ -242,7 +242,7 @@ predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=N
     - **test_data** (Dataset|DataLoader) - 一个可迭代的数据源，推荐给定一个 ``paddle.io.Dataset`` 或 ``paddle.io.Dataloader`` 的实例。默认值：None。
     - **batch_size** (int，可选) - 训练数据或评估数据的批大小，当 ``test_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：1。
     - **num_workers** (int，可选) - 启动子进程用于读取数据的数量。当 ``test_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：True。
-    - **stack_outputs** (bool，可选) - 是否将输出进行堆叠。默认值：False。
+    - **stack_outputs** (bool，可选) - 是否将输出进行堆叠。比如对于单个样本输出形状为 ``[X, Y]``，``test_data`` 包含 N 个样本的情况，如果 ``stack_outputs`` 设置为 True，那么输出的形状将会是 ``[N, X, Y]``，如果 ``stack_outputs`` 设置为 False，那么输出的形状将会是 ``[[X, Y], [X, Y], ..., [X, Y]]``。将 ``stack_outputs`` 设置为 False 适用于输出为 LoDTensor 的情况，如果输出不包含 LoDTensor，建议将其设置为 True。默认值：False。
     - **callbacks** (Callback|list[Callback]|None，可选) -  ``Callback`` 的一个实例或实例列表。默认值：None。
 
 **返回**
