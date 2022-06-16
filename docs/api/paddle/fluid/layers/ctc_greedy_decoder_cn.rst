@@ -80,7 +80,7 @@ ctc_greedy_decoder
 
         - **input** (Variable) — 变长序列的概率，在输入为LoDTensor情况下，它是具有LoD信息的二维LoDTensor。形状为[Lp，num_classes +1]，其中Lp是所有输入序列的长度之和，num_classes是真实的类数。在输入为Tensor情况下，它是带有填充的3-D张量，其形状为[batch_size，N，num_classes +1]。 （不包括空白标签）。数据类型可以是float32或float64。
         - **blank** (int) — Connectionist Temporal Classification (CTC) loss空白标签索引，其数值属于半开区间[0,num_classes + 1）
-        - **name** (str) — (str|None，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见：ref:`api_guide_Name`，默认值为None
+        - **name** (str) — (str|None，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None
 
 返回
 ::::::::::::

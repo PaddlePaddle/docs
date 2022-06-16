@@ -56,7 +56,7 @@ multiclass_nms
     - **nms_eta**  (float) – 在NMS中用于调整 nms_threshold 的参数，设为1时表示nms_threshold不变。默认值：1.0 。
     - **keep_top_k**  (int) – NMS步骤后每个图像要保留的总bbox数。-1表示在NMS步骤之后保留所有bbox。
     - **normalized**  (bool) –  检测是否已经经过正则化。默认值：True 。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

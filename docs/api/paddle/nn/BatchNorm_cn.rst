@@ -10,7 +10,7 @@ BatchNorm
 
 该接口用于构建 ``BatchNorm`` 类的一个可调用对象，具体用法参照 ``代码示例``。其中实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 
-当use_global_stats = False时，:math:`\mu_{\beta}` 和：math:`\sigma_{\beta}^{2}` 是minibatch的统计数据。计算公式如下：
+当use_global_stats = False时，:math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 是minibatch的统计数据。计算公式如下：
 
 .. math::
     \mu_{\beta}        &\gets \frac{1}{m} \sum_{i=1}^{m} x_i                                 \quad &// mini-batch-mean \\
@@ -19,7 +19,7 @@ BatchNorm
 - :math:`x`：批输入数据
 - :math:`m`：当前批次数据的大小
 
-当use_global_stats = True时，:math:`\mu_{\beta}` 和：math:`\sigma_{\beta}^{2}` 是全局（或运行）统计数据（moving_mean和moving_variance），通常来自预先训练好的模型。计算公式如下：
+当use_global_stats = True时，:math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 是全局（或运行）统计数据（moving_mean和moving_variance），通常来自预先训练好的模型。计算公式如下：
 
 .. math::
 
@@ -41,12 +41,12 @@ BatchNorm
 ::::::::::::
 
     - **num_channels** (int) - 指明输入 ``Tensor`` 的通道数量。
-    - **act** (str，可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考：ref:`api_guide_activations`，默认值为None。
+    - **act** (str，可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations`，默认值为None。
     - **is_test** (bool，可选) - 指示是否在测试阶段，非训练阶段使用训练过程中统计到的全局均值和全局方差。默认值：False。
     - **momentum** (float，可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var``。默认值：0.9。更新公式如上所示。
     - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
-    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见：ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见：ref:`cn_api_fluid_ParamAttr` 。
+    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **dtype** (str，可选) - 指明输入 ``Tensor`` 的数据类型，可以为float32或float64。默认值：float32。
     - **data_layout** (string，可选) - 指定输入数据格式，数据格式可以为“NCHW”或者“NHWC”。默认值：“NCHW”。
     - **in_place** (bool，可选) - 指示 ``batch_norm`` 的输出是否可以复用输入内存。默认值：False。

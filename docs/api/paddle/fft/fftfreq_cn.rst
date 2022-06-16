@@ -20,7 +20,7 @@ fftfreq
 - **d** (float，可选) - 采样间隔，采样率的倒数，默认值为 1。
 - **dtype** (str，可选) - 返回 Tensor 的数据类型，默认为 
   ``paddle.get_default_dtype()`` 返回的类型。
-- **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+- **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

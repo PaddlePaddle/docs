@@ -9,7 +9,7 @@ yolo_box
 
 连接 yolo_box 网络的输出形状应为[N，C，H，W]，其中 H 和 W 相同，用来指定网格大小。对每个网格点预测给定的数目的框，这个数目记为 S，由 anchor 的数量指定。在第二维（通道维度）中，C应该等于S *（5 + class_num），class_num是源数据集中对象类别数目（例如coco数据集中的80），此外第二个（通道）维度中还有4个框位置坐标x，y，w，h，以及anchor box的one-hot key的置信度得分。
 
-假设4个位置坐标是：math:`t_x` ，:math:`t_y` ，:math:`t_w` ， :math:`t_h`，则框的预测算法为：
+假设4个位置坐标是 :math:`t_x` ，:math:`t_y` ，:math:`t_w` ， :math:`t_h`，则框的预测算法为：
 
 .. math::
 
@@ -36,8 +36,8 @@ yolo_box
     - **class_num** （int）- 要预测的类数。
     - **conf_thresh** （float）- 检测框的置信度得分阈值。置信度得分低于阈值的框应该被忽略。
     - **downsample_ratio** （int）- 从网络输入到YoloBox操作输入的下采样率，因此应依次为第一个，第二个和第三个YoloBox运算设置该值为32,16,8
-    - **clip_bbox** （bool，可选）- 是否将输出的bbox裁剪到：attr:`img_size` 范围内，默认为True。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **clip_bbox** （bool，可选）- 是否将输出的bbox裁剪到 :attr:`img_size` 范围内，默认为True。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **scale_x_y** (float，可选) - 放缩解码边界框的中心点，默认值：1.0。
 
 返回

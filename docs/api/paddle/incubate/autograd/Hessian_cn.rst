@@ -19,7 +19,7 @@ Tensor形状为 ``(B, 1)``，则最终输出海森矩阵形状为 ``(B, M, M)``�
 维大小，``M`` 为展平并拼接后的输入大小。
 
 可以通过对 ``Hessian`` 对象多维索引获取整个矩阵或子矩阵的实际结果，子矩阵会以惰性求值方式计算，
-并且已经计算结果会被缓存，详细参考：ref:`cn_api_paddle_incubate_autograd_Jacobian` 。
+并且已经计算结果会被缓存，详细参考 :ref:`cn_api_paddle_incubate_autograd_Jacobian` 。
 
 .. note::
   当前暂不支持省略号索引。

@@ -13,7 +13,7 @@ repeat_interleave
     - **x** （Tensor）– 输入Tensor。 ``x`` 的数据类型可以是float32，float64，int32，int64。
     - **repeats** （Tensor, int）– 包含复制次数的 1-D Tensor 或指定的复制次数。
     - **axis**    (int，可选) – 指定对输入 ``x`` 进行运算的轴，若未指定，默认值为 None，使用输入 Tensor 的 flatten 形式。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

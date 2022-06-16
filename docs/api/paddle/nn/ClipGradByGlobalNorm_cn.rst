@@ -8,7 +8,7 @@ ClipGradByGlobalNorm
 
 
  
-将一个 Tensor列表：math:`t\_list` 中所有Tensor的L2范数之和，限定在 ``clip_norm`` 范围内。
+将一个 Tensor列表 :math:`t\_list` 中所有Tensor的L2范数之和，限定在 ``clip_norm`` 范围内。
 
 - 如果范数之和大于 ``clip_norm``，则所有 Tensor 会乘以一个系数进行压缩
 

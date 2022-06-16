@@ -59,7 +59,7 @@ scale(var)
 '''''''''
 
 将Tensor乘上缩放因子，返回缩放后的输出。
-如果这个：class:`GradScaler` 的实例不使用loss scaling，则返回的输出将保持不变。
+如果这个 :class:`GradScaler` 的实例不使用loss scaling，则返回的输出将保持不变。
 
 **参数**
 

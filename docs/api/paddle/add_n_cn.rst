@@ -44,7 +44,7 @@ add_n
 ::::::::::::
 
     - **inputs** (Tensor|list(Tensor)) - 输入的一至多个Tensor。如果输入了多个Tensor，则不同Tensor的shape和数据类型应保持一致。数据类型支持：float32，float64，int32，int64。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

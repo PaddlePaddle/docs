@@ -14,15 +14,15 @@ unique_with_counts
 参数
 ::::::::::::
 
-    - **x** (Variable) – 数据shape为：math:`[N]` 的一维Tensor，数据类型为 float32，float64，int32，int64。
+    - **x** (Variable) – 数据shape为 :math:`[N]` 的一维Tensor，数据类型为 float32，float64，int32，int64。
     - **dtype** (np.dtype|core.VarDesc.VarType|str) – 索引和计数Tensor的类型，默认为 int32，数据类型需要为 int32或int64。
 
 返回
 ::::::::::::
  
-    - **out** 表示对输入进行去重后结果一维Tensor，数据shape为：math:`[K]` ，K和输入x的shape中的N可能不一致。
+    - **out** 表示对输入进行去重后结果一维Tensor，数据shape为 :math:`[K]` ，K和输入x的shape中的N可能不一致。
     - **index** 表示原始输入在去重后结果中的索引Tensor :math:`[N]` ，shape和输入x的shape一致。
-    - **count** 表示去重后元素的计数结果Tensor，数据shape为：math:`[K]`，数据shape和out的shape一致。
+    - **count** 表示去重后元素的计数结果Tensor，数据shape为 :math:`[K]`，数据shape和out的shape一致。
 
 返回类型
 ::::::::::::

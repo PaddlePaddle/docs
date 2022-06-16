@@ -26,9 +26,9 @@ CosineAnnealingDecay
 参数
 ::::::::::::
 
-    - **learning_rate** (float) - 初始学习率，也就是公式中的：math:`\eta_{max}`，数据类型为Python float。
+    - **learning_rate** (float) - 初始学习率，也就是公式中的 :math:`\eta_{max}`，数据类型为Python float。
     - **T_max** (float|int) - 训练的上限轮数，是余弦衰减周期的一半。
-    - **eta_min** (float|int，可选) - 学习率的最小值，即公式中的：math:`\eta_{min}`。默认值为0。 
+    - **eta_min** (float|int，可选) - 学习率的最小值，即公式中的 :math:`\eta_{min}`。默认值为0。 
     - **last_epoch** (int，可选) - 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
     - **verbose** (bool，可选) - 如果是 ``True``，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 

@@ -19,12 +19,12 @@ elementwise_mod
 - :math:`Y`：维度必须小于等于X维度的Tensor。
 
 对于这个运算算子有2种情况：
-        1. :math:`Y` 的 ``shape`` 与：math:`X` 相同。
-        2. :math:`Y` 的 ``shape`` 是：math:`X` 的连续子序列。
+        1. :math:`Y` 的 ``shape`` 与 :math:`X` 相同。
+        2. :math:`Y` 的 ``shape`` 是 :math:`X` 的连续子序列。
 
 对于情况2:
-        1. 用：math:`Y` 匹配：math:`X` 的形状（shape），其中 ``axis`` 是：math:`Y` 在：math:`X` 上的起始维度的位置。
-        2. 如果 ``axis`` 为-1（默认值），则：math:`axis= rank(X)-rank(Y)` 。
+        1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 是 :math:`Y` 在 :math:`X` 上的起始维度的位置。
+        2. 如果 ``axis`` 为-1（默认值），则 :math:`axis= rank(X)-rank(Y)` 。
         3. 考虑到子序列，:math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
@@ -44,8 +44,8 @@ elementwise_mod
         - **x** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor``。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
         - **y** （Variable）- 多维 ``Tensor`` 或 ``LoDTensor``。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64``。
         - **axis** （int32，可选）-  ``y`` 的维度对应到 ``x`` 维度上时的索引。默认值为 -1。
-        - **act** （str，可选）- 激活函数名称，作用于输出上。详细请参考：ref:`api_guide_activations`，常见的激活函数有：``relu`` ``tanh`` ``sigmoid`` 等。如果为None则不添加激活函数。默认值为None。
-        - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+        - **act** （str，可选）- 激活函数名称，作用于输出上。详细请参考 :ref:`api_guide_activations`，常见的激活函数有：``relu`` ``tanh`` ``sigmoid`` 等。如果为None则不添加激活函数。默认值为None。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

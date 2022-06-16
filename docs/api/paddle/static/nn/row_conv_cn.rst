@@ -12,7 +12,7 @@ row_conv
 
 然而，与单向RNNs不同的是，在线部署和低延迟设置中，双向RNNs具有难度。超前卷积将来自未来子序列的信息以一种高效的方式进行计算，以改进单向递归神经网络。row convolution operator 与一维序列卷积不同，计算方法如下：
 
-给定输入序列长度为：math:`t` 的输入序列：math:`X` 和输入维度：math:`D`，以及一个大小为：math:`context * D` 的滤波器：math:`W`，输出序列卷积为：
+给定输入序列长度为 :math:`t` 的输入序列 :math:`X` 和输入维度 :math:`D`，以及一个大小为 :math:`context * D` 的滤波器 :math:`W`，输出序列卷积为：
 
 .. math::
     out_i = \sum_{j=i}^{i+context-1} X_{j} · W_{j-i}

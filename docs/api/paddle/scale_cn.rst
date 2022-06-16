@@ -25,7 +25,7 @@ scale
         - **bias** (float) - 缩放的偏置。
         - **bias_after_scale** (bool) - 判断在缩放之前或之后添加偏置。为True时，先缩放再偏置；为False时，先偏置再缩放。该参数在某些情况下，对数值稳定性很有用。
         - **act** (str，可选) - 应用于输出的激活函数，如tanh、softmax、sigmoid、relu等。
-        - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

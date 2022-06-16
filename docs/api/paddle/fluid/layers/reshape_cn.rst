@@ -37,9 +37,9 @@ reshape
   - **x** （Tensor）- N-D ``Tensor``，数据类型为 ``float32``，``float64``，``int32``，或 ``int64``。
   - **shape** （list|tuple|Tensor）- 数据类型是 ``int32``。定义目标形状。目标形状最多只能有一个维度为-1。如果 ``shape`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor``。如果 ``shape`` 的类型是 ``Tensor``，则是1-D的 ``Tensor``。
   - **actual_shape** （Tensor，可选）- 1-D ``Tensor``，默认值：`None`。如果 ``actual_shape`` 被提供，``actual_shape`` 具有比 ``shape`` 更高的优先级，此时 ``shape`` 只能是整数列表或元组。更新提示：``actual_shape`` 在未来的版本中将被舍弃，并用 ``shape`` 代替。
-  - **act** （str，可选）- 对形状改变后的输入变量做非线性激活操作，激活函数类型可以参考：ref:`api_guide_activations`。默认值：``None``。
+  - **act** （str，可选）- 对形状改变后的输入变量做非线性激活操作，激活函数类型可以参考 :ref:`api_guide_activations`。默认值：``None``。
   - **inplace** （bool，可选）- 如果 ``inplace`` 为 ``True``，则 ``layers.reshape`` 的输入和输出是同一个变量，否则 ``layers.reshape`` 的输入和输出是不同的变量。默认值：``False``。请注意，如果 ``x`` 是多个OP的输入，则 ``inplace`` 必须为False。
-  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

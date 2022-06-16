@@ -16,7 +16,7 @@ adaptive_max_pool3d
     - **x** (Tensor)：当前算子的输入，其是一个形状为 `[N, C, D, H, W]` 的5-D Tensor。其中 `N` 是batch size, `C` 是通道数，`D` , `H` , `W` 是输入特征的深度，高度，宽度。其数据类型为float32或者float64。
     - **output_size** (int|list|tuple)：算子输出特征图的长度，其数据类型为int或list，tuple。
     - **return_mask** (bool，可选)：如果设置为True，则会与输出一起返回最大值的索引，默认为False。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

@@ -32,7 +32,7 @@ lrn
     - **k** （float，可选）- 位移，正数。默认值为1.0。
     - **alpha** （float，可选）- 缩放参数，正数。默认值为1e-4。
     - **beta** （float，可选）- 指数，正数。默认值为0.75。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
 
 

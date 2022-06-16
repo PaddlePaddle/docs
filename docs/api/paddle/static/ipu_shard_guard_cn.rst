@@ -10,8 +10,8 @@ ipu_shard_guard
 
 .. note:
 
-仅支持当enable_manual_shard=True，index设置才有效。请参阅：ref:`cn_api_fluid_IpuStrategy` 。
-仅支持当enable_pipelining=True，stage设置才有效。请参阅：ref:`cn_api_fluid_IpuStrategy` 。
+仅支持当enable_manual_shard=True，index设置才有效。请参阅 :ref:`cn_api_fluid_IpuStrategy` 。
+仅支持当enable_pipelining=True，stage设置才有效。请参阅 :ref:`cn_api_fluid_IpuStrategy` 。
 一个index支持对应None stage或一个stage，一个stage仅支持对应一个新的index或者一个重复的index。
 
 参数

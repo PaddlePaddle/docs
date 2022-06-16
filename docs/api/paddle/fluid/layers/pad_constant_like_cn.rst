@@ -62,7 +62,7 @@ pad_constant_like
           - **x** （Variable）- 多维Tensor
           - **y** （Variable）- 多维Tensor，与x具有相同的秩，而且对任意维度 ``i``，要求满足 ``y.shape[i] <= x.shape[i]``。数据类型为float32或float64
           - **pad_value** (float，可选) - 用于填充的常量值。默认值为0。
-          - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+          - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

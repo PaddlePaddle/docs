@@ -65,7 +65,7 @@ input中的id必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出
     - **is_test** (bool，可选) -  表示训练/预测模式。在预测模式(is_test=False)下，遇到不存在的特征，不会初始化及创建，直接以0填充后返回。默认值为False。
     - **entry** (str，可选) - 准入策略配置，目前支持概率准入ProbabilityEntry和频次准入CountFilterEntry。默认为None。
     - **table_class** (str，可选) - 稀疏表的类型，其值可以为CommonSparseTable和SSDSparseTable。默认为CommonSparseTable。 
-    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见：ref:`cn_api_paddle_ParamAttr`。此外，可以通过 ``param_attr`` 参数加载用户自定义或预训练的词向量。只需将本地词向量转为numpy数据格式，且保证本地词向量的shape和embedding的 ``size`` 参数一致，然后使用：ref:`cn_api_paddle_to_tensor` 进行初始化，即可实现加载自定义或预训练的词向量。
+    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_paddle_ParamAttr`。此外，可以通过 ``param_attr`` 参数加载用户自定义或预训练的词向量。只需将本地词向量转为numpy数据格式，且保证本地词向量的shape和embedding的 ``size`` 参数一致，然后使用 :ref:`cn_api_paddle_to_tensor` 进行初始化，即可实现加载自定义或预训练的词向量。
     - **dtype** (str) - 输出Tensor的数据类型，数据类型必须为：float32 或float64，默认为float32。
 
 返回

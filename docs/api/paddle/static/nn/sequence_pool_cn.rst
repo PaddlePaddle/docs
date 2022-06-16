@@ -9,7 +9,7 @@ sequence_pool
 
 
 .. note::
-该API的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用：ref:`paddle.nn.functional.avg_pool2d <cn_api_nn_functional_avg_pool2d>`  或：ref:`paddle.nn.functional.max_pool2d <cn_api_nn_functional_max_pool2d>` 。
+该API的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用 :ref:`paddle.nn.functional.avg_pool2d <cn_api_nn_functional_avg_pool2d>`  或 :ref:`paddle.nn.functional.max_pool2d <cn_api_nn_functional_max_pool2d>` 。
 
 对输入的LoDTensor进行指定方式的池化（pooling）操作。通过指定pool_type参数，将输入的每个序列（sequence）在最后一层lod_level上或时间步（time-step）上对特征进行诸如sum、average、sqrt等池化操作。
 

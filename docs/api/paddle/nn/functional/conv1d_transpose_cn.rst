@@ -15,7 +15,7 @@ conv1d_transpose
 .. _参考文献：https://arxiv.org/pdf/1603.07285.pdf
 
 
-输入：math:`X` 和输出：math:`Out` 函数关系如下：
+输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
 
 .. math::
                         Out=\sigma (W*X+b)\\
@@ -62,15 +62,15 @@ conv1d_transpose
 
 注意：
 
-如果output_size为None，则：math:`L_{out}` = :math:`L^\prime_{out}` ;否则，指定的output_size（输出特征层的长度） :math:`L_{out}` 应当介于：math:`L^\prime_{out}` 和：math:`L^\prime_{out} + stride` 之间（不包含：math:`L^\prime_{out} + stride` ）。
+如果output_size为None，则 :math:`L_{out}` = :math:`L^\prime_{out}` ;否则，指定的output_size（输出特征层的长度） :math:`L_{out}` 应当介于 :math:`L^\prime_{out}` 和 :math:`L^\prime_{out} + stride` 之间（不包含 :math:`L^\prime_{out} + stride` ）。
 
 由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
 参数
 ::::::::::::
 
-  - **x** (Tensor) - 输入是形状为：math:`[N, C, L]` 或：math:`[N, L, C]` 的3-D Tensor，N是批尺寸，C是通道数，L是特征长度，数据类型为float16, float32或float64。
-  - **weight** (Tensor) - 形状为：math:`[C, M/g, kL]` 的卷积核（卷积核）。 M是输出通道数，g是分组的个数，kL是卷积核的长度。
+  - **x** (Tensor) - 输入是形状为 :math:`[N, C, L]` 或 :math:`[N, L, C]` 的3-D Tensor，N是批尺寸，C是通道数，L是特征长度，数据类型为float16, float32或float64。
+  - **weight** (Tensor) - 形状为 :math:`[C, M/g, kL]` 的卷积核（卷积核）。 M是输出通道数，g是分组的个数，kL是卷积核的长度。
   - **bias** (int|list|tuple，可选) - 偏置项，形状为：:math:`[M,]` 。
   - **stride** (int|list|tuple，可选) - 步长大小。整数或包含一个整数的列表或元组。默认值：1。
   - **padding** (int|list|tuple|str，可选) - 填充大小。可以是以下三种格式：（1）字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。（2）整数，表示在输入特征两侧各填充 ``padding`` 大小的0。（3）包含一个整数的列表或元组，表示在输入特征两侧各填充 ``padding[0]`` 大小的0。默认值：0。
@@ -79,7 +79,7 @@ conv1d_transpose
   - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。整数或包含一个整数的列表或元组。默认值：1。
   - **output_size** (int|list|tuple，可选) - 输出尺寸，整数或包含一个整数的列表或元组。如果为 ``None``，则会用 filter_size(``weight``的shape), ``padding`` 和 ``stride`` 计算出输出特征图的尺寸。默认值：None。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCL"和"NLC"。N是批尺寸，C是通道数，L是特征长度。默认值："NCL"。
-  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

@@ -54,8 +54,8 @@ Conv3D
     - **padding** (int|tuple，可选) - 填充（padding）大小。padding参数在输入特征层每边添加padding个0。如果填充（padding）为元组，则必须包含三个整型数，(padding_depth, padding_height, padding_width)。否则，padding_depth = padding_height = padding_width = padding。默认值为0。
     - **dilation** (int|tuple，可选) - 膨胀（dilation）大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图  <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀（dialation）为元组，则必须包含两个整型数，(dilation_D, dilation_H, dilation_W)。否则，dilation_D = dilation_H = dilation_W = dilation。默认值为1。
     - **groups** (int，可选) - 三维卷积层（Conv3D Layer）的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=2，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认值为1。
-    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见：ref:`cn_api_fluid_ParamAttr` 。
-    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见：ref:`cn_api_fluid_ParamAttr`。
+    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。
     - **use_cudnn** （bool，可选） - 是否用cudnn内核，只有安装Paddle GPU版时才有效。默认值为True。
     - **act** (str，可选) - 激活函数类型，如果设为None，则未添加激活函数。默认值为None。
     - **dtype** (str，可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。

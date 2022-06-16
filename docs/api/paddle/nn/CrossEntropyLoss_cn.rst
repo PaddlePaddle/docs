@@ -27,13 +27,13 @@ CrossEntropyLoss
     - **ignore_index** (int64，可选): - 指定一个忽略的标签值，此标签值不参与计算，负值表示无需忽略任何标签值。仅在soft_label=False时有效。默认值为-100。数据类型为int64。
     - **reduction** (str，可选): - 指定应用于输出结果的计算方式，数据类型为string，可选值有：`none`, `mean`, `sum`。默认为 `mean`，计算 `mini-batch` loss均值。设置为 `sum` 时，计算 `mini-batch` loss的总和。设置为 `none` 时，则返回loss Tensor。
     - **soft_label** (bool, optional) – 指明label是否为软标签。默认为False，表示label为硬标签；若soft_label=True则表示软标签。
-    - **axis** (int, optional) - 进行softmax计算的维度索引。它应该在：math:`[-1，dim-1]` 范围内，而 ``dim`` 是输入logits的维度。默认值：-1。
+    - **axis** (int, optional) - 进行softmax计算的维度索引。它应该在 :math:`[-1，dim-1]` 范围内，而 ``dim`` 是输入logits的维度。默认值：-1。
     - **use_softmax** (bool, optional) - 指定是否对input进行softmax归一化。默认值：True。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 形状
 :::::::::
-    - **input** (Tensor): - 输入 `Tensor`，数据类型为float32或float64。其形状为：math:`[N, C]`，其中 `C` 为类别数。对于多维度的情形下，它的形状为：math:`[N, d_1, d_2, ..., d_k, C]` ，k >= 1。
-    - **label** (Tensor): - 当soft_label=False时，输入input对应的标签值，数据类型为int64。其形状为：math:`[N]`，每个元素符合条件：0 <= label[i] <= C-1。对于多维度的情形下，它的形状为：math:`[N, d_1, d_2, ..., d_k]` ，k >= 1；当soft_label=True时，输入形状应与input一致，数据类型为float32或float64且每个样本的各标签概率和应为1。
+    - **input** (Tensor): - 输入 `Tensor`，数据类型为float32或float64。其形状为 :math:`[N, C]`，其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k, C]` ，k >= 1。
+    - **label** (Tensor): - 当soft_label=False时，输入input对应的标签值，数据类型为int64。其形状为 :math:`[N]`，每个元素符合条件：0 <= label[i] <= C-1。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k]` ，k >= 1；当soft_label=True时，输入形状应与input一致，数据类型为float32或float64且每个样本的各标签概率和应为1。
     - **output** (Tensor): - 计算 `CrossEntropyLoss` 交叉熵后的损失值。
 
 

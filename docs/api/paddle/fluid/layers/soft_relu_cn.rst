@@ -17,7 +17,7 @@ SoftReLU 激活函数。
 
     - **x** (Variable) - SoftReLU激活函数的输入，为数据类型为float32，float64的多维Tensor或者LoDTensor。
     - **threshold** (float) - SoftRelu的阈值，默认为40.0。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

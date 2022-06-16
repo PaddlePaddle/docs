@@ -28,7 +28,7 @@ Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p`，在
        - train: out = input * mask
        - inference: out = input * (1.0 - p)
 
- - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+ - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::

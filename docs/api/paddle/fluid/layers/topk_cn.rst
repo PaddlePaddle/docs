@@ -40,12 +40,12 @@ topk
 
     - **input** (Variable) - 输入的Tensor，支持的数据类型：float32，float64。
     - **k** (int|Variable) - 指定在输入Tensor最后一维中寻找最大前多少项。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
 
-    - ``values``：输入Tensor最后维切片的最大前k项。数据类型同输入Tensor一致。Tensor维度等于：math:`input.shape[:-1]+ [k]` 。
+    - ``values``：输入Tensor最后维切片的最大前k项。数据类型同输入Tensor一致。Tensor维度等于 :math:`input.shape[:-1]+ [k]` 。
 
     - ``indices``：输入Tensor最后维切片最大前k项值的索引，数据类型为int64，维度同values的维度。
 

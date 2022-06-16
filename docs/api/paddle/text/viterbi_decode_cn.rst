@@ -13,7 +13,7 @@ viterbi_decode
     - **transition_params (Tensor)** 转移概率。形状为[num_tags, num_tags]，数据类型为float32或float64。
     - **lengths (Tensor)** 序列真实长度。形状为[batch_size]，数据类型为int64。
     - **include_bos_eos_tag (bool，可选)** 是否包含前置、后置标签。如果设为True，**transition_params** 中倒数第一列为前置标签的转移概率，倒数第二列为后置标签的转移概率。默认值为True。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

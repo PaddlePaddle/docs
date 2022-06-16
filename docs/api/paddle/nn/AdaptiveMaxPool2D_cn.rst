@@ -33,7 +33,7 @@ AdaptiveMaxPool2D
 
     - **output_size** (int|list|tuple)：算子输出特征图的高和宽大小，其数据类型为int,list或tuple。
     - **return_mask** (bool，可选)：如果设置为True，则会与输出一起返回最大值的索引，默认为False。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::

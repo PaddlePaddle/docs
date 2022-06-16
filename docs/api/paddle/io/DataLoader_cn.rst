@@ -126,12 +126,12 @@ from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=T
 
 创建一个DataLoader对象用于加载Python生成器产生的数据。数据会由Python线程预先读取，并异步送入一个队列中。
 
-本方法创建的DataLoader对象提供了3个方法设置数据源，分别是：code:`set_sample_generator` , :code:`set_sample_list_generator` 和
+本方法创建的DataLoader对象提供了3个方法设置数据源，分别是 :code:`set_sample_generator` , :code:`set_sample_list_generator` 和
 :code:`set_batch_generator`。请查阅下述示例代码了解它们的使用方法。
 
 如果iterable = True，本方法创建的DataLoader对象是一个Python生成器，可以for-range的方法循环迭代。
 
-如果iterable = False，本方法创建的DataLoader对象提供：code:`start()` 和：code:`reset()` 方法控制数据读取过程。
+如果iterable = False，本方法创建的DataLoader对象提供 :code:`start()` 和 :code:`reset()` 方法控制数据读取过程。
 
 **参数**
 

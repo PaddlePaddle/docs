@@ -11,7 +11,7 @@ bitwise_or
        Out = X | Y
 
 .. note::
-    ``paddle.bitwise_or`` 遵守broadcasting，如您想了解更多，请参见：ref:`cn_user_guide_broadcasting` 。
+    ``paddle.bitwise_or`` 遵守broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
 
 参数
 ::::::::::::

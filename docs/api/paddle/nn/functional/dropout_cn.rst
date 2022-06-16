@@ -25,7 +25,7 @@ Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p`，在
        - train: out = input * mask
        - inference: out = input * (1.0 - p)
 
- - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+ - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
@@ -103,12 +103,12 @@ axis参数的默认值为None。当 ``axis=None`` 时，dropout的功能为：�
       [4 0 6]]
    (3) 若 ``axis=[0, 1]``，则表示在第0维和第1维上做dropout。此时与默认设置 ``axis=None`` 的作用一致。
 
-若输入x为4维张量，形状为 `NCHW`，当设置 ``axis=[0,1]`` 时，则只会在通道 `N` 和 `C` 上做dropout，通道 `H` 和 `W` 的元素是绑定在一起的，即：``paddle.nn.functional.dropout(x, p, axis=[0,1])``，此时对4维张量中的某个2维特征图(形状 `HW` )，或者全部置0，或者全部保留，这便是dropout2d的实现。详情参考：ref:`cn_api_nn_functional_dropout2d` 。
+若输入x为4维张量，形状为 `NCHW`，当设置 ``axis=[0,1]`` 时，则只会在通道 `N` 和 `C` 上做dropout，通道 `H` 和 `W` 的元素是绑定在一起的，即：``paddle.nn.functional.dropout(x, p, axis=[0,1])``，此时对4维张量中的某个2维特征图(形状 `HW` )，或者全部置0，或者全部保留，这便是dropout2d的实现。详情参考 :ref:`cn_api_nn_functional_dropout2d` 。
 
-类似的，若输入x为5维张量，形状为 `NCDHW`，当设置 ``axis=[0,1]`` 时，便可实现dropout3d。详情参考：ref:`cn_api_nn_functional_dropout3d` 。
+类似的，若输入x为5维张量，形状为 `NCDHW`，当设置 ``axis=[0,1]`` 时，便可实现dropout3d。详情参考 :ref:`cn_api_nn_functional_dropout3d` 。
 
 .. note::
-   关于广播(broadcasting)机制，如您想了解更多，请参见：ref:`cn_user_guide_broadcasting` 。
+   关于广播(broadcasting)机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
 
 代码示例
 :::::::::

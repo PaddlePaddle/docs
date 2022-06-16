@@ -20,7 +20,7 @@ Lookahead每k次训练迭代更新slow_params和fast_params，如下所示：
     - **inner_optimizer** (inner_optimizer) - 每次迭代更新fast params的优化器。
     - **alpha** (float，可选) - Lookahead的学习率。默认值为0.5。
     - **k** (int，可选) - slow params每k次迭代更新一次。默认值为5。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
 :::::::::
@@ -127,7 +127,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 **参数**
 
     - **loss** (Tensor) - 包含要最小化的值的张量。
-    - **startup_program** (Program，可选) - :ref:`cn_api_fluid_Program`。在 ``parameters`` 中初始化参数。默认值为None，此时将使用：ref:`cn_api_fluid_default_startup_program` 。
+    - **startup_program** (Program，可选) - :ref:`cn_api_fluid_Program`。在 ``parameters`` 中初始化参数。默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 。
     - **parameters** (list，可选) - 列出更新最小化 ``loss`` 的 ``Tensor`` 或 ``Tensor.name``。默认值为None，此时所有参数都会被更新。
     - **no_grad_set** (set，可选) - 不需要更新的 ``Tensor`` 或 ``Tensor.name`` 的集合。默认值为None。
 

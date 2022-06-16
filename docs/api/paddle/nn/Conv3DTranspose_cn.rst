@@ -12,7 +12,7 @@ Conv3DTranspose
 
 .. _参考文献：https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf
 
-输入：math:`X` 和输出：math:`Out` 函数关系如下：
+输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
 
 .. math::
                         \\Out=\sigma (W*X+b)\\
@@ -29,7 +29,7 @@ Conv3DTranspose
 
 注意：
 
-如果output_size为None，则：math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}` ;否则，指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于：math:`H^\prime_{out}` 和：math:`H^\prime_{out} + strides[0]` 之间（不包含：math:`H^\prime_{out} + strides[0]` ），并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于：math:`W^\prime_{out}` 和：math:`W^\prime_{out} + strides[1]` 之间（不包含：math:`W^\prime_{out} + strides[1]` ）。
+如果output_size为None，则 :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}` ;否则，指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[0]` 之间（不包含 :math:`H^\prime_{out} + strides[0]` ），并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[1]` 之间（不包含 :math:`W^\prime_{out} + strides[1]` ）。
 
 由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
@@ -46,8 +46,8 @@ Conv3DTranspose
   - **output_padding** (int|list|tuple, optional)：输出形状上一侧额外添加的大小。默认值：0。
   - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的分组卷积：当group=2，卷积核的前一半仅和输入特征图的前一半连接。卷积核的后一半仅和输入特征图的后一半连接。默认值：1。
   - **dilation** (int|tuple，可选) - 空洞大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核中的元素沿着深度，高和宽的空洞。如果为单个整数，表示深度，高和宽的空洞都等于该整数。默认值：1。
-  - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见：ref:`cn_api_fluid_ParamAttr` 。
-  - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见：ref:`cn_api_fluid_ParamAttr` 。
+  - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+  - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCDHW"。
 
 形状

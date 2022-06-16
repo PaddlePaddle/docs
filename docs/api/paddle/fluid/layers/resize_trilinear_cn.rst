@@ -53,7 +53,7 @@ Align_corners和align_mode都是可选参数，可以用来设置插值的计算
 ::::::::::::
 
   - **input** (Variable) – 5-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
-  - **out_shape** (list|tuple|Variable|None) – 调整最近邻层的输出形状，形式为(out_h, out_w)。默认值：None。如果：code:`out_shape` 是列表，每一个元素可以是整数或者shape为[1]的变量。如果：code:`out_shape` 是变量，则其维度大小为1。
+  - **out_shape** (list|tuple|Variable|None) – 调整最近邻层的输出形状，形式为(out_h, out_w)。默认值：None。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者shape为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。
   - **scale** (float|None) – 输入高、宽的乘法器。``out_shape`` 和 ``scale`` 二者至少设置其一。``out_shape`` 具有比 ``scale`` 更高的优先级。默认：None
   - **name** (str|None) – 输出变量的命名
   - **actual_shape** (Variable) – 可选输入，动态设置输出张量的形状。如果提供该值，图片放缩会依据此形状进行，而非依据 ``out_shape`` 和 ``scale``。即为，``actual_shape`` 具有最高的优先级。如果想动态指明输出形状，推荐使用 ``out_shape``，因为 ``actual_shape`` 未来将被弃用。当使用 ``actual_shape`` 来指明输出形状，``out_shape`` 和 ``scale`` 也应该进行设置，否则在图形生成阶段将会报错。默认：None

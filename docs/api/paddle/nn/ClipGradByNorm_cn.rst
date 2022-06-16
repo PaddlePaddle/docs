@@ -31,7 +31,7 @@ ClipGradByNorm
   \right.
 
 
-其中：math:`norm（X）` 代表：math:`X` 的L2范数
+其中 :math:`norm（X）` 代表 :math:`X` 的L2范数
 
 .. math::
   \\norm(X) = (\sum_{i=1}^{n}|x_i|^2)^{\frac{1}{2}}\\

@@ -11,7 +11,7 @@ save_dygraph
 
 该接口将传入的参数或优化器的 ``dict`` 保存到磁盘上。
 
-``state_dict`` 是通过：ref:`cn_api_fluid_dygraph_Layer` 的 ``state_dict()`` 方法得到的。
+``state_dict`` 是通过 :ref:`cn_api_fluid_dygraph_Layer` 的 ``state_dict()`` 方法得到的。
 
 注：``model_path`` 不可以是一个目录。
 

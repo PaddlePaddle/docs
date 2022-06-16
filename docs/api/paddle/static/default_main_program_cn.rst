@@ -11,7 +11,7 @@ default_main_program
 
 ``default main program`` 是许多编程接口中Program参数的默认值。例如对于 ``Executor.run()`` 如果用户没有传入Program参数，会默认使用 ``default main program`` 。
 
-可以使用：ref:`cn_api_fluid_program_guard` 来切换 ``default main program``。 
+可以使用 :ref:`cn_api_fluid_program_guard` 来切换 ``default main program``。 
 
 返回
 :::::::::

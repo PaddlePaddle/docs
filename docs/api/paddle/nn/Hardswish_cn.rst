@@ -23,7 +23,7 @@ Hardswish激活函数。在MobileNetV3架构中被提出，相较于swish函数�
 参数
 
 ::::::::::
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状：
 ::::::::::

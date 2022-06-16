@@ -8,7 +8,7 @@ margin_cross_entropy
 .. math::
     L=-\frac{1}{N}\sum^N_{i=1}\log\frac{e^{s(cos(m_{1}\theta_{y_i}+m_{2})-m_{3})}}{e^{s(cos(m_{1}\theta_{y_i}+m_{2})-m_{3})}+\sum^n_{j=1,j\neq y_i} e^{scos\theta_{y_i}}}
 
-其中，:math:`\theta_{y_i}` 是特征：math:`x` 与类：math:`w_{i}` 的角度。更详细的介绍请参考 ``Arcface loss``，https://arxiv.org/abs/1801.07698 。
+其中，:math:`\theta_{y_i}` 是特征 :math:`x` 与类 :math:`w_{i}` 的角度。更详细的介绍请参考 ``Arcface loss``，https://arxiv.org/abs/1801.07698 。
 
 提示：
 

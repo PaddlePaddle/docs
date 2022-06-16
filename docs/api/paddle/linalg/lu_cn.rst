@@ -30,7 +30,7 @@ LU和pivot可以通过调用paddle.linalg.lu_unpack展开获得L、U、P矩阵�
     - **x** (Tensor) - 需要进行LU分解的输入矩阵x，x是维度大于2维的矩阵。
     - **pivot** (bool，可选) - LU分解时是否进行旋转。若为True则执行旋转操作，若为False则不执行旋转操作，该选项只在gpu下起作用，cpu下暂不支持为False，会报错。默认True。
     - **get_infos** (bool，可选) - 是否返回分解状态信息，若为True，则返回分解状态Tensor，否则不返回。默认False。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

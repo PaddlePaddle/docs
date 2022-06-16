@@ -16,7 +16,7 @@ istft
 
 上式中符号的意义：
 
-- :math:`t`：短时傅里叶变换中的第：math:`t` 帧输入信号；
+- :math:`t`：短时傅里叶变换中的第 :math:`t` 帧输入信号；
 - :math:`N`: `n_fft` 参数的值；
 - :math:`H`: `hop_length` 参数的值。
 
@@ -39,7 +39,7 @@ istft
   如果 ``win_length < n_fft``，该Tensor将被补长至 ``n_fft``。默认为 ``None`` (长
   度为 ``win_length`` 幅值为1的矩形窗)；
 - **center** (bool，可选) - 选择是否将输入信号进行补长，使得第 
-  :math:`t \times hop\_length` 个样本点在第：math:`t` 帧的中心，默认为 ``True``；
+  :math:`t \times hop\_length` 个样本点在第 :math:`t` 帧的中心，默认为 ``True``；
 - **normalized** (bool，可选) - 是否将傅里叶变换的结果乘以值为 ``1/sqrt(n)`` 的缩放
   系数；
 - **onesided** (bool，可选) - 该参数与 ``paddle.signal.stft`` 中的有区别，此处表示
@@ -50,7 +50,7 @@ istft
 - **return_complex** (bool，可选) - 表示输出的重构信号是否为复信号。如果 
   ``return_complex`` 设为 ``True``， ``onesided`` 必须设为 ``False``，默认
   为 ``False``；
-- **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+- **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

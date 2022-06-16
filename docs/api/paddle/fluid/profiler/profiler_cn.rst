@@ -5,10 +5,10 @@ profiler
 
 .. py:function:: paddle.fluid.profiler.profiler(state, sorted_key=None, profile_path='/tmp/profile', tracer_option='Default')
 
-通用性能分析器。与：ref:`cn_api_fluid_profiler_cuda_profiler` 不同，此分析器可用于分析CPU和GPU程序。
+通用性能分析器。与 :ref:`cn_api_fluid_profiler_cuda_profiler` 不同，此分析器可用于分析CPU和GPU程序。
 
 .. warning::
-   该API将在未来废弃，对CPU和GPU的性能分析请参考使用paddle最新的性能分析器：ref:`Profiler <cn_api_profiler_profiler>` 。
+   该API将在未来废弃，对CPU和GPU的性能分析请参考使用paddle最新的性能分析器 :ref:`Profiler <cn_api_profiler_profiler>` 。
    如代码示例中对该API的使用用新的Profiler进行替换最简单的用法如下
 
 .. code-block:: python

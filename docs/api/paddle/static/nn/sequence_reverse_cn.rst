@@ -9,7 +9,7 @@ sequence_reverse
 .. note::
 该API仅支持LoDTensor。
 
-输入的LoDTensor，在每个序列（sequence）上进行反转。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。该OP在构建反向：ref:`cn_api_fluid_layers_DynamicRNN` 网络时十分有用。
+输入的LoDTensor，在每个序列（sequence）上进行反转。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。该OP在构建反向 :ref:`cn_api_fluid_layers_DynamicRNN` 网络时十分有用。
 
 ::
 
@@ -36,7 +36,7 @@ sequence_reverse
 :::::::::
 
   - **x** (Variable) – 输入是LoD level为1的LoDTensor。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。数据类型为float32，float64，int8，int32或int64。
-  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

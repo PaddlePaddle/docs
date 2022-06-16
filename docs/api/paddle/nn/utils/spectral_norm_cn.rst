@@ -17,7 +17,7 @@ spectral_norm
     \mathbf{v} &:= \frac{\mathbf{W}^{T} \mathbf{u}}{\|\mathbf{W}^{T} \mathbf{u}\|_2}\\
     \mathbf{u} &:= \frac{\mathbf{W} \mathbf{v}}{\|\mathbf{W} \mathbf{v}\|_2}
 
-步骤3：计算：math:`\sigma(\mathbf{W})` 并将特征值归一化。
+步骤3：计算 :math:`\sigma(\mathbf{W})` 并将特征值归一化。
 
 .. math::
     \sigma(\mathbf{W}) &= \mathbf{u}^{T} \mathbf{W} \mathbf{v}\\

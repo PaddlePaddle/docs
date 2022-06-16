@@ -25,7 +25,7 @@ distribute_fpn_proposals
     - **max_level** （int32） - 产生proposal最高级别FPN层。
     - **refer_level** （int32） - 具有指定比例的FPN层的引用级别。
     - **refer_scale** （int32） - 具有指定级别的FPN层的引用比例。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。 
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。 
 
 返回
 ::::::::::::

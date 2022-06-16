@@ -31,7 +31,7 @@ exponential_decay
 
 返回
 ::::::::::::
-Variable(Tensor) 随step衰减的学习率变量，维度为：math:`[1]` 的1-D Tensor。
+Variable(Tensor) 随step衰减的学习率变量，维度为 :math:`[1]` 的1-D Tensor。
 
 返回类型
 ::::::::::::

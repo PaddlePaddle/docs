@@ -55,16 +55,16 @@ step 2：
 参数
 ::::::::::::
 
-  - **x** (Tensor)：输入张量，维度为：math:`[N, C, H, W]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float32或float64。
-  - **grid** (Tensor)：输入网格数据张量，维度为：math:`[N, H, W, 2]` 的4-D Tensor，N为批尺寸，H是特征高度，W是特征宽度，数据类型为float32或float64。
+  - **x** (Tensor)：输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float32或float64。
+  - **grid** (Tensor)：输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的4-D Tensor，N为批尺寸，H是特征高度，W是特征宽度，数据类型为float32或float64。
   - **mode** (str, optional)：插值方式，可以为 'bilinear' 或者 'nearest'。默认值：'bilinear'。
   - **padding_mode** (str, optional) 当原来的索引超过输入的图像大小时的填充方式。可以为 'zeros', 'reflection' 和 'border'。默认值：'zeros'。
   - **align_corners** (bool, optional)：一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。默认值：True。
-  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
-Tensor，输入X基于输入网格的双线性插值计算结果，维度为：math:`[N, C, H, W]` 的4-D Tensor，数据类型与 ``x`` 一致。
+Tensor，输入X基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的4-D Tensor，数据类型与 ``x`` 一致。
 
 
 代码示例

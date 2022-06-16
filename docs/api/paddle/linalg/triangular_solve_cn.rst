@@ -8,7 +8,7 @@ triangular_solve
 
 计算具有唯一解的线性方程组解，其中系数矩阵 `x` 是上(下)三角系数矩阵，`y` 是方程右边。
 
-记：math:`X` 表示一个或一批方阵，:math:`Y` 表示一个或一批矩阵。
+记 :math:`X` 表示一个或一批方阵，:math:`Y` 表示一个或一批矩阵。
 
 则方程组为：
 
@@ -31,7 +31,7 @@ triangular_solve
     - **upper** (bool，可选) - 对系数矩阵 ``x`` 取上三角还是下三角。默认为True，表示取上三角。
     - **transpose** (bool，可选) - 是否对系数矩阵 ``x`` 进行转置。默认为False，不进行转置。
     - **unitriangular** (bool，可选) - 如果为True，则将系数矩阵 ``x`` 对角线元素假设为1来求解方程。默认为False。
-    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
