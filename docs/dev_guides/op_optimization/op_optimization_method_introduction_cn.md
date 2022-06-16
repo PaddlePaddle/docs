@@ -1,11 +1,8 @@
-#####################
-算子性能优化 方法介绍
-#####################
+# 算子性能优化 方法介绍
 
 飞桨作为一个开源项目, 提供高性能的计算服务是飞桨的特色之一。我们非常欢迎开发者为 Paddle 框架贡献高性能算子, 本文旨在向开发者提供一些快速实现高性能计算的方法。
 
-基本介绍
-::::::::::::::::::::::
+# 基本介绍
 
 - 算子性能优化工作的业务范围涵盖前向算子、反向算子、优化器等.
 
@@ -14,67 +11,56 @@
 - 飞桨内算子性能优化主要围绕GPU计算开展, 因此需要用户掌握基本的[GPU编程模型](https://developer.nvidia.com/zh-cn/blog/cuda-model-intro-cn/).
 
 
-优化技巧
-::::::::::::::::::::::
+# 优化技巧
 
-**1.通用优化技巧**
+## 1.通用优化技巧
 
 GPU Kernel直接影响了算子性能, 我们推荐采用以下等通用优化策略提升GPU Kernel的性能, 从而削减算子的计算开销.
 
-.. csv-table::
-    :header: "通用GPU Kernel优化技巧"
-    :widths: 30
-
-    "- `向量化读写   <https://developer.nvidia.com/blog/cuda-pro-tip-increase-performance-with-vectorized-memory-access>`_
-     - `协线程操作   <https://developer.nvidia.com/blog/cooperative-groups/>`_
-     - `Warp级操作  <https://developer.nvidia.com/blog/using-cuda-warp-level-primitives>`_
-     - `共享内存操作 (须注意[Bank Confilct}(https://developer.nvidia.com/blog/using-shared-memory-cuda-cc/)) <https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/>`_ "
+| 通用技巧 |
+| -- |
+| [向量化读写](https://developer.nvidia.com/blog/cuda-pro-tip-increase-performance-with-vectorized-memory-access>)|
+| [协线程操作](https://developer.nvidia.com/blog/cooperative-groups/>) |
+| [Warp级操作](https://developer.nvidia.com/blog/using-cuda-warp-level-primitives>) |
+| [共享内存操作](<https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/>) ([注意Bank Conflicts](https://developer.nvidia.com/blog/using-shared-memory-cuda-cc/)) |
 
 
-**2. 飞桨内置优化技巧**
+## 2. 飞桨内置优化技巧
 
 我们在飞桨内开发并封装了一些优化技巧, 具体如下表所示, 欢迎使用, 也欢迎在使用过程中提出修改建议.
 
-1. [线程配置优化](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/gpu/gpu_launch_config.h)
+### 2.1 [线程配置优化](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/gpu/gpu_launch_config.h)
 
 我们推荐结合OP的使用场景设计对于的线程配置策略，如下图所示[IndexSample OP](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/index_sample_cn.html#index-sample)常用于处理2维数据, 因此使用[2维的线程配置策略](https://github.com/PaddlePaddle/Paddle/blob/30838aa698d6f3f3b0860b052f6a50ef53ac6784/paddle/phi/kernels/gpu/index_sample_kernel.cu#L82-L91)相对比1维配置策略，性能可提升20%左右。
 
-.. image:: ../images/index_sample.png
-  :width: 800
-  :alt: index_sample
-  :align: center
-
+<p align="center">
+<img src="../images/index_sample.png" alt="index_sample" style="zoom:80%"/><br/>
+</p>
 
 优化GPU Kernel中的线程配置策略, 涵盖一维、二维、三维线程配置策略, 目前已经在`Elementwise`, `Stack`, `IndexSample`等OP中使用.
 
-2. [Warp计算优化](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/funcs/math_cuda_utils.h)
+### 2.2 [Warp计算优化](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/funcs/math_cuda_utils.h)
 
 飞桨内对上文中提到的**Warp级操作**进行了封装, 提供了简易的调用接口, 开发者可调用接口快速获得Warp内或者Block内的全部数据的求和、最大值、最小值.
 
-.. image:: ../images/cuda_math_utils.png
-  :width: 1000
-  :alt: cuda_math_utils
-  :align: center
+<p align="center">
+<img src="../images/cuda_math_utils.png" alt="warp_shuffle" style="zoom:80%"/><br/>
+</p>
 
+### 2.3 [索引计算优化](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/platform/fast_divmod.h):
 
-3. [索引计算优化](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/platform/fast_divmod.h):
+当GPU Kernel的索引计算中存在除法或取模操作, 将在导致汇编层面计算开销变大, 我们建议采用快速除法优化这部分的计算开销。飞桨内[Pooling OP](https://github.com/PaddlePaddle/Paddle/blob/890c73158f663b327be7664ed6c4d08fb2c236a9/paddle/phi/kernels/funcs/pooling.cu#L41-L101) 采用索引优化计算后, 性能提升1倍.
 
-优化GPU Kernel中含除法或取模操作的索引计算开销.
+<p align="center">
+<img src="../images/fast_divmod.png" alt="fast_divmod" style="zoom:50%"/><br/>
+</p>
 
-- 案例: [Pooling OP](https://github.com/PaddlePaddle/Paddle/blob/890c73158f663b327be7664ed6c4d08fb2c236a9/paddle/phi/kernels/funcs/pooling.cu#L41-L101) 采用索引优化计算后, 性能提升1倍.
-
-.. image:: ../images/fast_divmod.png
-  :width: 500
-  :alt: fast_divmod
-  :align: center
-
-
-4. [Kps优化工具库](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/kernel_primitive_api/index_cn.html)
+### 2.4 [Kps优化工具库](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/kernel_primitive_api/index_cn.html)
 
 飞桨综合了一系列GPU Kernel通用性能优化技巧推出了Kernel Primitive API，提供高性能的 Block 级 IO 运算和 Compute 运算。使用 Kernel Primitive API 进行 Kernel 开发可以更加专注计算逻辑的实现，在保证性能的同时大幅减少代码量，同时实现了算子计算与硬件解耦，详情见官网[Kernel Primitive API](https://www.paddlepaddle.org.cn/documentation/docs/zh/dev_guides/kernel_primitive_api/index_cn.html), 建议参考案例[ElementwiseAdd](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/kernel_primitive_api/add_example_cn.html)和[Reduce](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/kernel_primitive_api/reduce_example_cn.html) 使用。
 
 
-**3. C++模板特性**
+### 3. C++模板特性
 
 我们也鼓励充分挖掘C++侧的可用优化点, 如使用`#pragma unroll`编译阶段加速指令，编译期自动展循环, 加速运行时循环的执行效率.
 
@@ -91,6 +77,6 @@ struct SameDimsElementwisePrimitiveCaller {
 };
 ```
 
-**4. 内置第三方库**
+### 4. 内置第三方库
 
 飞桨内置了cuBLAS, cuDNN, cuSOLVER, Thrust等一系列第三方库, 若采用这些第三方等高性能计算库能获得显著的性能收益，也欢迎使用。cuBLAS使用示例见[matmul_kernel_impl.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/impl/matmul_kernel_impl.h), cuDNN的使用示例见[conv_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/30838aa698d6f3f3b0860b052f6a50ef53ac6784/paddle/phi/kernels/gpudnn/conv_kernel.cu#L366-L379), cuSOLVER使用示例见[values_vectors_functor.h](https://github.com/PaddlePaddle/Paddle/blob/30838aa698d6f3f3b0860b052f6a50ef53ac6784/paddle/phi/kernels/funcs/values_vectors_functor.h#L219-L260), Thrust使用示例见[coalesced_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/30838aa698d6f3f3b0860b052f6a50ef53ac6784/paddle/phi/kernels/sparse/gpu/coalesced_kernel.cu#L93-L106).

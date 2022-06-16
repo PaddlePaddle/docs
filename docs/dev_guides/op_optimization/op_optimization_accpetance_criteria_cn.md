@@ -23,8 +23,7 @@ run command: nvprof --profile-from-start off /work/.virtualenvs_cuda10.2/paddle_
 
 total gpu_time: 437.4400 ms
 
-W0615 14:55:43.819144 28877 gpu_resources.cc:61] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 11.4, Runtime API Version: 10.2
-W0615 14:55:43.824806 28877 gpu_resources.cc:91] device: 0, cuDNN Version: 7.6.
+W0615 14:55:43.819144 28877 gpu_resources.cc:61] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 11.4, Runtime API Version: 10.2 , cuDNN Version: 7.6.
 
 [paddle][adaptive_avg_pool2d] adaptive_avg_pool2d {
   run_tf: True
