@@ -29,7 +29,7 @@ LSTMCell
 
     - :math:`\sigma` ：sigmoid激活函数。
    
-详情请参考论文：`An Empirical Exploration of Recurrent Network Architectures <http://proceedings.mlr.press/v37/jozefowicz15.pdf>`_。
+详情请参考论文：`An Empirical Exploration of Recurrent Network Architectures <http://proceedings.mlr.press/v37/jozefowicz15.pdf>`_ 。
 
 
 参数

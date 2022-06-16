@@ -8,7 +8,7 @@ warpctc
 
 
 
-该OP用于计算 `CTC loss <https://www.cs.toronto.edu/~graves/icml_2006.pdf>`_。该OP的底层调用了第三方 `baidu-research::warp-ctc <https://github.com/baidu-research/warp-ctc>`_ 的实现。
+该OP用于计算 `CTC loss <https://www.cs.toronto.edu/~graves/icml_2006.pdf>`_ 。该OP的底层调用了第三方 `baidu-research::warp-ctc <https://github.com/baidu-research/warp-ctc>`_ 的实现。
 
 参数
 ::::::::::::

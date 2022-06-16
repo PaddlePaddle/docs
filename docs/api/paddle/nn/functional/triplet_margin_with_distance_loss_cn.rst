@@ -20,7 +20,7 @@ triplet_margin_with_distance_loss
     d(x_i, y_i) = \left\lVert {\bf x}_i - {\bf y}_i \right\rVert_2
 
 
-``margin`` 为（input,positive）与（input,negative）的距离间隔，``swap`` 为True时，会比较（input，negative）和（positive，negative）的大小，并将（input，negative）的值换为其中较小的值，内容详见论文 `Learning shallow convolutional feature descriptors with triplet losses <http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf>`_。
+``margin`` 为（input,positive）与（input,negative）的距离间隔，``swap`` 为True时，会比较（input，negative）和（positive，negative）的大小，并将（input，negative）的值换为其中较小的值，内容详见论文 `Learning shallow convolutional feature descriptors with triplet losses <http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf>`_ 。
 
 
 参数

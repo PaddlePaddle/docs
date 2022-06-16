@@ -14,7 +14,7 @@ glu
     GLU(a,b) = a \bigotimes \sigma (b)
 
 
-参考论文：`Language Modeling with Gated Convolutional Networks <https://arxiv.org/pdf/1612.08083.pdf>`_
+参考论文：`Language Modeling with Gated Convolutional Networks <https://arxiv.org/pdf/1612.08083.pdf>`_ 
 
 参数
 ::::::::::::

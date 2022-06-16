@@ -17,7 +17,7 @@ batch_norm
 
 - 2.NCHW[batch,in_channels,in_height,in_width]
 
-更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
+更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_ 
 
 ``input`` 是mini-batch的输入。
 

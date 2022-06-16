@@ -23,7 +23,7 @@ Adamax优化器是参考 `Adam论文 <https://arxiv.org/abs/1412.6980>`_ 第7节
 .. math::
     param\_out=param−learning\_rate*\frac{moment\_out}{inf\_norm\_out}\\
 
-相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_
+相关论文：`Adam: A Method for Stochastic Optimization <https://arxiv.org/abs/1412.6980>`_ 
 
 论文中没有 ``epsilon`` 参数。但是，为了保持数值稳定性，避免除0错误，此处增加了这个参数。
 

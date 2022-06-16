@@ -11,7 +11,7 @@ layer_norm
 
 该OP实现了层归一化层（Layer Normalization Layer），其可以应用于小批量输入数据。
 
-论文参考：`Layer Normalization <https://arxiv.org/pdf/1607.06450v1.pdf>`_
+论文参考：`Layer Normalization <https://arxiv.org/pdf/1607.06450v1.pdf>`_ 
 
 计算公式如下
 

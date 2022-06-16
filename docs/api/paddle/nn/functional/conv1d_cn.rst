@@ -5,7 +5,7 @@ conv1d
 
 .. py:function:: paddle.nn.functional.conv1d(x, weight, bias=None, stride=1, padding=0, dilation=1, groups=1, data_format="NCL", name=None)
 
-该OP是一维卷积层（convolution1d layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilation）一组参数计算输出特征层大小。输入和输出是NCL或NLC格式，其中N是批尺寸，C是通道数，L是长度。卷积核是MCL格式，M是输出图像通道数，C是输入图像通道数，L是卷积核长度。如果组数(groups)大于1，C等于输入图像通道数除以组数的结果。详情请参考UFLDL's : `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_。如果bias_attr不为False，卷积计算会添加偏置项。如果指定了激活函数类型，相应的激活函数会作用在最终结果上。
+该OP是一维卷积层（convolution1d layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilation）一组参数计算输出特征层大小。输入和输出是NCL或NLC格式，其中N是批尺寸，C是通道数，L是长度。卷积核是MCL格式，M是输出图像通道数，C是输入图像通道数，L是卷积核长度。如果组数(groups)大于1，C等于输入图像通道数除以组数的结果。详情请参考UFLDL's : `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。如果bias_attr不为False，卷积计算会添加偏置项。如果指定了激活函数类型，相应的激活函数会作用在最终结果上。
 
 对每个输入X，有等式：
 

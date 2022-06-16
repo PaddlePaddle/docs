@@ -8,7 +8,7 @@ AdamW
 
 
 
-AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION <https://arxiv.org/pdf/1711.05101.pdf>`_，用来解决 :ref:`Adam <cn_api_paddle_optimizer_Adam>` 优化器中L2正则化失效的问题。
+AdamW优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION <https://arxiv.org/pdf/1711.05101.pdf>`_ ，用来解决 :ref:`Adam <cn_api_paddle_optimizer_Adam>` 优化器中L2正则化失效的问题。
 
 其参数更新的计算公式如下：
 

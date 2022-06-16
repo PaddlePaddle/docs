@@ -8,7 +8,7 @@ RMSProp
 
 
 
-该接口实现均方根传播（RMSProp）法，是一种未发表的，自适应学习率的方法。原演示幻灯片中的第29张提出了 `RMSProp <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_。等式如下所示：
+该接口实现均方根传播（RMSProp）法，是一种未发表的，自适应学习率的方法。原演示幻灯片中的第29张提出了 `RMSProp <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_ 。等式如下所示：
 
 .. math::
     r(w, t) & = \rho r(w, t-1) + (1 - \rho)(\nabla Q_{i}(w))^2\\

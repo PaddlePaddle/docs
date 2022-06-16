@@ -10,7 +10,7 @@ BeamSearchDecoder
 
 
     
-带beam search解码策略的解码器。该接口包装一个cell来计算概率，然后执行一个beam search步骤计算得分，并为每个解码步骤选择候选输出。更多详细信息请参阅 `Beam search <https://en.wikipedia.org/wiki/Beam_search>`_
+带beam search解码策略的解码器。该接口包装一个cell来计算概率，然后执行一个beam search步骤计算得分，并为每个解码步骤选择候选输出。更多详细信息请参阅 `Beam search <https://en.wikipedia.org/wiki/Beam_search>`_ 
     
 **注意** 在使用beam search解码时，cell的输入和状态将被扩展到 :math:`beam\_size`，得到 :math:`[batch\_size * beam\_size, ...]` 一样的形状，这个操作在BeamSearchDecoder中自动完成，因此，其他任何在 :code:`cell.call` 中使用的Tensor，如果形状为 :math:`[batch\_size, ...]`，都必须先手动使用 :code:`BeamSearchDecoder.tile_beam_merge_with_batch` 接口扩展。最常见的情况是带注意机制的编码器输出。
 

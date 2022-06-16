@@ -9,7 +9,7 @@ LRScheduler
 
 目前在paddle中基于该基类，已经实现了14种策略，分别为：
 
-* :code:`NoamDecay`：诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`。
+* :code:`NoamDecay`：诺姆衰减，相关算法请参考 `《Attention Is All You Need》 <https://arxiv.org/pdf/1706.03762.pdf>`_ 。请参考 :ref:`cn_api_paddle_optimizer_lr_NoamDecay`。
 
 * :code:`ExponentialDecay`：指数衰减，即每次将当前学习率乘以给定的衰减率得到下一个学习率。请参考 :ref:`cn_api_paddle_optimizer_lr_ExponentialDecay`。
 

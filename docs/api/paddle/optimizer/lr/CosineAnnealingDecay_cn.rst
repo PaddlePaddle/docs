@@ -21,7 +21,7 @@ CosineAnnealingDecay
 :math:`\eta_{max}` 的初始值为 ``learning_rate``， :math:`T_{cur}` 是SGDR（重启训练SGD）训练过程中的当前训练轮数。SGDR的训练方法可以参考论文，
 这里只是实现了 ``cosine annealing`` 动态学习率，热启训练部分没有实现。
 
-相关论文：`SGDR: Stochastic Gradient Descent with Warm Restarts <https://arxiv.org/abs/1608.03983>`_
+相关论文：`SGDR: Stochastic Gradient Descent with Warm Restarts <https://arxiv.org/abs/1608.03983>`_ 
 
 参数
 ::::::::::::
