@@ -14,6 +14,7 @@ Git 操作指南
     :hidden:
 
     local_dev_guide_cn.md
+    pre_commit_guide_cn.md
     submit_pr_guide_cn.md
     code_review_cn.md
     paddle_ci_manual_cn.md
