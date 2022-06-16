@@ -40,7 +40,7 @@ ls_dir(fs_path)
 
 **返回**
 
-    - Tuple， 一个包含所有子目录和文件名的2-Tuple，格式形如: ([subdirname1, subdirname1, ...], [filename1, filename2, ...])。
+    - Tuple，一个包含所有子目录和文件名的2-Tuple，格式形如：([subdirname1, subdirname1, ...], [filename1, filename2, ...])。
 
 **代码示例**
 
@@ -113,7 +113,7 @@ is_file(fs_path)
 
 **返回**
 
-    - Bool：若当前路径存在且是一个文件，返回 `True` ，反之则返回 `False` 。
+    - Bool：若当前路径存在且是一个文件，返回 `True`，反之则返回 `False` 。
 
 **代码示例**
 
@@ -140,7 +140,7 @@ is_dir(fs_path)
 
 **返回**
 
-    - Bool：若当前路径存在且是一个目录，返回 `True` ，反之则返回 `False` 。
+    - Bool：若当前路径存在且是一个目录，返回 `True`，反之则返回 `False` 。
 
 **代码示例**
 
@@ -167,7 +167,7 @@ is_exist(fs_path)
 
 **返回**
 
-    - Bool：若当前路径存在返回 `True` ，反之则返回 `False` 。
+    - Bool：若当前路径存在返回 `True`，反之则返回 `False` 。
 
 **代码示例**
 
@@ -190,7 +190,7 @@ upload(local_path, fs_path)
 
 **参数**
 
-    - **local_path** (str): 本地文件路径。
+    - **local_path** (str)：本地文件路径。
     - **fs_path** (str): HADOOP文件路径。
 
 **代码示例**
@@ -214,7 +214,7 @@ download(fs_path, local_path)
 
 **参数**
 
-    - **local_path** (str): 本地文件路径。
+    - **local_path** (str)：本地文件路径。
     - **fs_path** (str): HADOOP文件路径。
 
 **代码示例**
@@ -240,7 +240,7 @@ touch(fs_path, exist_ok=True)
 **参数**
 
     - **fs_path** (str): HADOOP文件路径。
-    - **exist_ok** (bool): 路径已存在时程序是否报错。若 `exist_ok = True`，则直接返回，反之则抛出文件存在的异常，默认不抛出异常。
+    - **exist_ok** (bool)：路径已存在时程序是否报错。若 `exist_ok = True`，则直接返回，反之则抛出文件存在的异常，默认不抛出异常。
 
 **代码示例**
 
@@ -263,9 +263,9 @@ HADOOP系统文件移动。
 
 **参数**
 
-    - **fs_src_path** (str): 移动前源文件路径名。
-    - **fs_dst_path** (str): 移动后目标文件路径名。
-    - **overwrite** (bool): 若目标文件已存在，是否删除进行重写，默认不重写并抛出异常。
+    - **fs_src_path** (str)：移动前源文件路径名。
+    - **fs_dst_path** (str)：移动后目标文件路径名。
+    - **overwrite** (bool)：若目标文件已存在，是否删除进行重写，默认不重写并抛出异常。
  
 **代码示例**
 
@@ -292,7 +292,7 @@ list_dirs(fs_path)
 
 **返回**
 
-    - List: 该路径下所有的子目录名。
+    - List：该路径下所有的子目录名。
 
 **代码示例**
 

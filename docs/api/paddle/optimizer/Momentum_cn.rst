@@ -27,10 +27,10 @@ Momentum
     - **momentum** (float，可选) - 动量因子。
     - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **use_nesterov** (bool，可选) - 赋能牛顿动量，默认值False。
-    - **weight_decay** (float|Tensor，可选) - 权重衰减系数，是一个float类型或者shape为[1] ，数据类型为float32的Tensor类型。默认值为0.01。
-    - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 。
+    - **weight_decay** (float|Tensor，可选) - 权重衰减系数，是一个float类型或者shape为[1]，数据类型为float32的Tensor类型。默认值为0.01。
+    - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 。
       默认值为None，此时将不进行梯度裁剪。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 
@@ -89,8 +89,8 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 **参数**
 
     - **loss** (Tensor) – 需要最小化的损失值变量。
-    - **startup_program** (Program，可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program` , 默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
-    - **parameters** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表， 默认值为None，此时将更新所有的Parameter。
+    - **startup_program** (Program，可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program`，默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
+    - **parameters** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表，默认值为None，此时将更新所有的Parameter。
     - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None。
          
 **返回**
@@ -147,6 +147,6 @@ set_lr(value)
 
 .. note::
 
-该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。  
+该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
  
 

@@ -13,9 +13,9 @@ data
 
 注意：
 
-  不推荐使用 ``paddle.fluid.layers.data`` ，其在之后的版本中会被删除。请使用这个 ``paddle.fluid.data`` 。 
+  不推荐使用 ``paddle.fluid.layers.data``，其在之后的版本中会被删除。请使用这个 ``paddle.fluid.data`` 。 
 
-  ``paddle.fluid.layers.data`` 在组网期间会设置创建的变量维度（shape）和数据类型（dtype），但不会检查输入数据的维度和数据类型是否符合要求。 ``paddle.fluid.data`` 会在运行过程中由Executor/ParallelExecutor检查输入数据的维度和数据类型。
+  ``paddle.fluid.layers.data`` 在组网期间会设置创建的变量维度（shape）和数据类型（dtype），但不会检查输入数据的维度和数据类型是否符合要求。``paddle.fluid.data`` 会在运行过程中由Executor/ParallelExecutor检查输入数据的维度和数据类型。
 
   如果想输入变长输入，可以使用 ``paddle.fluid.data`` 时将变长维度设为-1，或者直接输入 ``paddle.fluid.layers.data`` 且PaddlePaddle会按具体输入的形状运行。
 
@@ -24,10 +24,10 @@ data
 参数
 ::::::::::::
 
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **shape** (list|tuple)- 声明维度信息的list或tuple。
     - **dtype** (np.dtype|VarType|str，可选)- 数据类型，支持bool，float16，float32，float64，int8，int16，int32，int64，uint8。默认值为float32。
-    - **lod_level** (int，可选)- LoDTensor变量的LoD level数，LoD level是PaddlePaddle的高级特性，一般任务中不会需要更改此默认值，关于LoD level的详细适用场景和用法请见 :ref:`cn_user_guide_lod_tensor` 。默认值为0。
+    - **lod_level** (int，可选)- LoDTensor变量的LoD level数，LoD level是PaddlePaddle的高级特性，一般任务中不会需要更改此默认值，关于LoD level的详细适用场景和用法请见 :ref:`cn_user_guide_lod_tensor`。默认值为0。
 
 返回
 ::::::::::::

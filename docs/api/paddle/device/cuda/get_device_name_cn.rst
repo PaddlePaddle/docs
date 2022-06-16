@@ -10,11 +10,11 @@ get_device_name
 
 参数
 ::::::::::
-    - **device** (paddle.CUDAPlace|int, 可选) - 希望获取名称的设备或者设备ID。如果device为None（默认），则为当前的设备。
+    - **device** (paddle.CUDAPlace|int，可选) - 希望获取名称的设备或者设备ID。如果device为None（默认），则为当前的设备。
 
 返回
 ::::::::::
-str: 设备的名称。
+str：设备的名称。
 
 
 代码示例

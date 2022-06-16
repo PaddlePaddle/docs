@@ -16,7 +16,7 @@ PixelUnshuffle
 :::::::::
     - **downscale_factor** (int) – 减小空间分辨率的减小因子。
     - **data_format** (str，可选) – 数据格式，可选 NCHW 或 NHWC，默认为 NCHW，即（批大小，通道数，高度，宽度）的格式。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::

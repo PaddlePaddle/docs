@@ -14,9 +14,9 @@ inner
 ::::::::::::
 
 :::::::::
-    - **x** (Tensor) - 一个N维Tensor或者标量Tensor, 如果是N维Tensor最后一个维度长度需要跟y保持一致。
-    - **y** (Tensor) - 一个N维Tensor或者标量Tensor, 如果是N维Tensor最后一个维度长度需要跟x保持一致。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **x** (Tensor) - 一个N维Tensor或者标量Tensor，如果是N维Tensor最后一个维度长度需要跟y保持一致。
+    - **y** (Tensor) - 一个N维Tensor或者标量Tensor，如果是N维Tensor最后一个维度长度需要跟x保持一致。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

@@ -5,9 +5,9 @@ accuracy
 
 .. py:function:: paddle.metric.accuracy(input, label, k=1, correct=None, total=None, name=None)
 
-accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
+accuracy layer。参考 https://en.wikipedia.org/wiki/Precision_and_recall
 
-使用输入和标签计算准确率。 如果正确的标签在topk个预测值里，则计算结果加1。注意：输出正确率的类型由input类型决定，input和lable的类型可以不一样。
+使用输入和标签计算准确率。如果正确的标签在topk个预测值里，则计算结果加1。注意：输出正确率的类型由input类型决定，input和lable的类型可以不一样。
 
 参数
 :::::::::
@@ -17,7 +17,7 @@ accuracy layer。 参考 https://en.wikipedia.org/wiki/Precision_and_recall
     - **k** (int64|int32，可选) - 取每个类别中k个预测值用于计算，默认值为1。
     - **correct** (int64|int32, 可选)-正确预测值的个数，默认值为None。
     - **total** (int64|int32，可选)-总共的预测值，默认值为None。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

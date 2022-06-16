@@ -14,11 +14,11 @@ istft
 
     \sum_{t = -\infty}^{\infty}\text{window}^2[n - t \times H]\ \neq \ 0, \ \text{for } all \ n
 
-上式中符号的意义：  
+上式中符号的意义：
 
-- :math:`t`: 短时傅里叶变换中的第 :math:`t` 帧输入信号；
+- :math:`t`：短时傅里叶变换中的第 :math:`t` 帧输入信号；
 - :math:`N`: `n_fft` 参数的值；
-- :math:`H`: `hop_length` 参数的值。  
+- :math:`H`: `hop_length` 参数的值。
 
 
 ``paddle.signal.istft`` 的结果理论上是 ``paddle.signal.stft`` 的原始输入 ``x``，但
@@ -50,7 +50,7 @@ istft
 - **return_complex** (bool，可选) - 表示输出的重构信号是否为复信号。如果 
   ``return_complex`` 设为 ``True``， ``onesided`` 必须设为 ``False``，默认
   为 ``False``；
-- **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+- **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

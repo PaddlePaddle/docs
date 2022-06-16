@@ -14,7 +14,7 @@ ZeroPad2D
   - **padding** (Tensor | List[int] | int]) - 填充大小。如果是int，则在所有待填充边界使用相同的填充，
     否则填充的格式为[pad_left, pad_right, pad_top, pad_bottom]。
   - **data_format** (str)  - 指定输入的format，可为 ``'NCHW'`` 或者 ``'NHWC'``，默认值为 ``'NCHW'``。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -24,7 +24,7 @@ ZeroPad2D
 :::::::::
 
   - x(Tensor): ZeroPadD层的输入，要求形状为4-D，dtype为 ``'float32'`` 或 ``'float64'``
-  - output(Tensor): 输出，形状为4-D，dtype与 ``'input'`` 相同
+  - output(Tensor)：输出，形状为4-D，dtype与 ``'input'`` 相同
 
 代码示例
 :::::::::

@@ -24,8 +24,8 @@ load
     - **\*\*configs** (dict，可选) - 其他用于兼容的载入配置选项。这些选项将来可能被移除，如果不是必须使用，不推荐使用这些配置选项。默认为 ``None``。目前支持以下配置选项：
     
         - (1) model_filename (str) - paddle 1.x版本 ``save_inference_model`` 接口存储格式的预测模型文件名，原默认文件名为 ``__model__`` ； 
-        - (2) params_filename (str) - paddle 1.x版本 ``save_inference_model`` 接口存储格式的参数文件名，没有默认文件名，默认将各个参数分散存储为单独的文件； 
-        - (3) return_numpy(bool) - 如果被指定为 ``True`` ，``load`` 的结果中的Tensor会被转化为 ``numpy.ndarray`` ，默认为 ``False`` 。
+        - (2) params_filename (str) - paddle 1.x版本 ``save_inference_model`` 接口存储格式的参数文件名，没有默认文件名，默认将各个参数分散存储为单独的文件；
+        - (3) return_numpy(bool) - 如果被指定为 ``True`` ，``load`` 的结果中的Tensor会被转化为 ``numpy.ndarray``，默认为 ``False`` 。
 
 返回
 :::::::::

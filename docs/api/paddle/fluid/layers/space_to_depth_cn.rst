@@ -10,7 +10,7 @@ space_to_depth
 
 该OP对成块的空间数据进行重组，输出一个输入张量的拷贝，其高度和宽度维度上的值移至通道维度。
 
-重组时，依据 ``blocksize`` 指明的数据块大小, 对形为 ``[batch, channel, height, width]`` 的输入张量进行space_to_depth（广度至深度）运算，生成形为 ``[batch, channel * blocksize * blocksize, height/blocksize, width/blocksize]``  的输出：
+重组时，依据 ``blocksize`` 指明的数据块大小，对形为 ``[batch, channel, height, width]`` 的输入张量进行space_to_depth（广度至深度）运算，生成形为 ``[batch, channel * blocksize * blocksize, height/blocksize, width/blocksize]``  的输出：
 
  - 在各位置上，不重叠的，大小为 ``blocksize * blocksize`` 的块重组入深度depth
  - 输入各个块中的Y, X坐标变为输出张量通道索引的高序部位
@@ -44,7 +44,7 @@ space_to_depth
 
   - **x** (Variable) – 输入，形状为 ``[batch, channel, height, width]`` 的4维Tensor或LoD Tensor。数据类型支持int32，int64，float32或float64。
   - **blocksize** (int) – 在每个特征图上选择元素时采用的块大小，应该 >= 2
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

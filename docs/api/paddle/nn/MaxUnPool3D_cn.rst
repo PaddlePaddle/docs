@@ -27,20 +27,20 @@ MaxUnPool3D
 
 参数
 :::::::::
-    - **kernel_size** (int|list|tuple): 反池化的滑动窗口大小。
+    - **kernel_size** (int|list|tuple)：反池化的滑动窗口大小。
     - **stride** (int|list|tuple，可选)：池化层的步长。如果它是一个元组或列表，它必须是三个相等的整数，(pool_stride_Depth, pool_stride_Height, pool_stride_Width)，默认值：None。
-    - **padding** (string|int|list|tuple，可选) 池化填充,默认值：0。
-    - **output_size** (list|tuple, 可选): 目标输出尺寸。 如果 output_size 没有被设置，则实际输出尺寸会通过(input_shape, kernel_size, stride, padding)自动计算得出，默认值：None。
-    - **data_format** (str, 可选)： 输入和输出的数据格式, 只能是"NCDHW"。N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。默认值："NCDHW"
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **padding** (string|int|list|tuple，可选) 池化填充，默认值：0。
+    - **output_size** (list|tuple，可选)：目标输出尺寸。如果 output_size 没有被设置，则实际输出尺寸会通过(input_shape, kernel_size, stride, padding)自动计算得出，默认值：None。
+    - **data_format** (str，可选)：输入和输出的数据格式，只能是"NCDHW"。N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。默认值："NCDHW"
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 
 形状
 :::::::::
-    - **x** (Tensor): 默认形状为（批大小，通道数，深度，高度，宽度），即NCDHW格式的5-D Tensor。 其数据类型为float32或float64。
-    - **indices** (Tensor): 默认形状为（批大小，通道数，输出特征深度, 输出特征高度，输出特征宽度），即NCDHW格式的5-D Tensor。 其数据类型为int32。
-    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征深度, 输出特征高度，输出特征宽度），即NCDHW格式的5-D Tensor。其数据类型与输入一致。
+    - **x** (Tensor)：默认形状为（批大小，通道数，深度，高度，宽度），即NCDHW格式的5-D Tensor。其数据类型为float32或float64。
+    - **indices** (Tensor)：默认形状为（批大小，通道数，输出特征深度，输出特征高度，输出特征宽度），即NCDHW格式的5-D Tensor。其数据类型为int32。
+    - **output** (Tensor)：默认形状为（批大小，通道数，输出特征深度，输出特征高度，输出特征宽度），即NCDHW格式的5-D Tensor。其数据类型与输入一致。
 
 
 返回

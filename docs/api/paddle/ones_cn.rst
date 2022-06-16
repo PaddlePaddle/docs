@@ -14,7 +14,7 @@ ones
 
     - **shape** (tuple|list|Tensor) - 要创建的 Tensor 的形状，``shape`` 的数据类型为 int32 或 int64。
     - **dtype** (np.dtype|str，可选) - 要创建的 Tensor 的数据类型，可以为 bool、float16、float32、float64、int32 或 int64。如果 ``dtype`` 为 None，那么数据类型为 float32。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

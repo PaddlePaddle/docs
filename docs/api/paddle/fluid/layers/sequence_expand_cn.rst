@@ -9,7 +9,7 @@ sequence_expand
 
 
 
-序列扩张层（Sequence Expand Layer)，根据输入 ``y`` 的第 ``ref_level`` 层lod对输入 ``x`` 进行扩展。 ``x`` 的lod level最多为1，若 ``x`` 的lod level为1，则 ``x`` 的lod大小必须与 ``y`` 的第 ``ref_level`` 层lod大小相等；若 ``x`` 的lod level为0，则 ``x`` 的第一维大小必须与 ``y`` 第 ``ref_level`` 层大小相等。 ``x`` 的秩最少为2，当 ``x`` 的秩大于2时，将被当作是一个二维张量处理。
+序列扩张层（Sequence Expand Layer)，根据输入 ``y`` 的第 ``ref_level`` 层lod对输入 ``x`` 进行扩展。``x`` 的lod level最多为1，若 ``x`` 的lod level为1，则 ``x`` 的lod大小必须与 ``y`` 的第 ``ref_level`` 层lod大小相等；若 ``x`` 的lod level为0，则 ``x`` 的第一维大小必须与 ``y`` 第 ``ref_level`` 层大小相等。``x`` 的秩最少为2，当 ``x`` 的秩大于2时，将被当作是一个二维张量处理。
 
 注意，该OP的输入 ``x`` 可以是Tensor或LodTensor， ``y`` 只能是LodTensor。
 
@@ -56,7 +56,7 @@ sequence_expand
     - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` ，lod level至多1的二维Tensor或LoDTensor。数据类型支持int32，int64，float32或float64。
     - **y** (Variable) - 输入变量，lod level至少为1的LoDTensor。数据类型不限。
     - **ref_level** (int，可选) - 扩展 ``x`` 所依据的 ``y`` 的lod层。默认值-1，表示lod的最后一层。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

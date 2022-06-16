@@ -9,7 +9,7 @@ spectral_norm
 
 该OP用于计算了fc、conv1d、conv2d、conv3d层的权重参数的谱正则值，输入权重参数应分别为2-D, 3-D, 4-D, 5-D张量，输出张量与输入张量shape相同。谱特征值计算方式如下。
 
-步骤1：生成形状为[H]的向量U,以及形状为[W]的向量V,其中H是输入权重张量的第 ``dim`` 个维度，W是剩余维度的乘积。
+步骤1：生成形状为[H]的向量U，以及形状为[W]的向量V，其中H是输入权重张量的第 ``dim`` 个维度，W是剩余维度的乘积。
 
 步骤2： ``power_iters`` 应该是一个正整数，用U和V迭代计算 ``power_iters`` 轮，迭代步骤如下。
 
@@ -24,7 +24,7 @@ spectral_norm
     \sigma(\mathbf{W}) &= \mathbf{u}^{T} \mathbf{W} \mathbf{v}\\
     \mathbf{W} &= \frac{\mathbf{W}}{\sigma(\mathbf{W})}
 
-论文参考: `Spectral Normalization <https://arxiv.org/abs/1802.05957>`_
+论文参考：`Spectral Normalization <https://arxiv.org/abs/1802.05957>`_ 
 
 参数
 :::::::::
@@ -33,7 +33,7 @@ spectral_norm
     - **dim** (int，可选) - 将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果input（weight）是fc层的权重，则应设置为0；如果input（weight）是conv层的权重，则应设置为1，默认为0。
     - **power_iters** (int，可选) - 将用于计算spectral norm的功率迭代次数，默认值1。
     - **eps** (float，可选) - epsilon用于保证计算规范中的数值稳定性，分母会加上 ``eps`` 防止除零，默认1e-12。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

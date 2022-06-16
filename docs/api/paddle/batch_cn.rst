@@ -37,7 +37,7 @@ batched reader
     for data in batch_reader():
         print(data)
     
-    # 输出为:
+    # 输出为：
     # [0, 1]
     # [2, 3]
     # [4, 5]

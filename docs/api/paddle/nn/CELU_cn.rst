@@ -16,13 +16,13 @@ CELU激活层（CELU Activation Operator）
 
 参数
 ::::::::::
-    - alpha (float, 可选) - CELU的alpha值，默认值为1.0。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - alpha (float，可选) - CELU的alpha值，默认值为1.0。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状:
+形状：
 ::::::::::
-    - input: 任意形状的Tensor。
-    - output: 和input具有相同形状的Tensor。
+    - input：任意形状的Tensor。
+    - output：和input具有相同形状的Tensor。
 
 代码示例
 :::::::::

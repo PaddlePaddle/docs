@@ -19,7 +19,7 @@ cov
     - **ddof** (bool，可选) - 若是True，返回无偏估计结果；若是False，返回普通平均值计算结果。默认True。
     - **fweights** (Tensor，可选) - 包含整数频率权重的1维Tensor，表示每一个观测向量的重复次数。其维度值应该与输入x的观测维度值相等，为None则不起作用，默认None。
     - **aweights** (Tensor，可选) - 包含整数观测权重的1维Tensor，表示每一个观测向量的重要性，重要性越高对应值越大。其维度值应该与输入x的观测维度值相等，为None则不起作用，默认None。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

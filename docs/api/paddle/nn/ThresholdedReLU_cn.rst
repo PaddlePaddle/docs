@@ -17,13 +17,13 @@ Thresholded ReLU激活层
 
 参数
 ::::::::::
-    - threshold (float, 可选) - ThresholdedReLU激活计算公式中的threshold值。默认值为1.0。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - threshold (float，可选) - ThresholdedReLU激活计算公式中的threshold值。默认值为1.0。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状:
+形状：
 ::::::::::
-    - input: 任意形状的Tensor。
-    - output: 和input具有相同形状的Tensor。
+    - input：任意形状的Tensor。
+    - output：和input具有相同形状的Tensor。
 
 代码示例
 :::::::::

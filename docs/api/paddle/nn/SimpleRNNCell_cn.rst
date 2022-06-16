@@ -21,19 +21,19 @@ SimpleRNNCell
 
 其中的 `act` 表示激活函数。
 
-详情请参考论文 :`Finding Structure in Time <https://crl.ucsd.edu/~elman/Papers/fsit.pdf>`_。
+详情请参考论文：`Finding Structure in Time <https://crl.ucsd.edu/~elman/Papers/fsit.pdf>`_ 。
 
 参数
 ::::::::::::
 
     - **input_size** (int) - 输入的大小。
     - **hidden_size** (int) - 隐藏状态大小。
-    - **activation** (str, 可选) - 简单循环神经网络单元的激活函数。可以是tanh或relu。默认为tanh。
+    - **activation** (str，可选) - 简单循环神经网络单元的激活函数。可以是tanh或relu。默认为tanh。
     - **weight_ih_attr** (ParamAttr，可选) - weight_ih的参数。默认为None。
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh的参数。默认为None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih的参数。默认为None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 变量
 ::::::::::::

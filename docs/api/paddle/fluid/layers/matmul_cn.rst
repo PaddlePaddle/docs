@@ -24,12 +24,12 @@ matmul
 参数
 ::::::::::::
 
-    - **x** (Variable) : 输入变量，类型为 Tensor 或 LoDTensor。
-    - **y** (Variable) : 输入变量，类型为 Tensor 或 LoDTensor。
-    - **transpose_x** (bool) : 相乘前是否转置 x。
-    - **transpose_y** (bool) : 相乘前是否转置 y。
-    - **alpha** (float) : 输出比例，默认为 1.0。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **x** (Variable)：输入变量，类型为 Tensor 或 LoDTensor。
+    - **y** (Variable)：输入变量，类型为 Tensor 或 LoDTensor。
+    - **transpose_x** (bool)：相乘前是否转置 x。
+    - **transpose_y** (bool)：相乘前是否转置 y。
+    - **alpha** (float)：输出比例，默认为 1.0。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

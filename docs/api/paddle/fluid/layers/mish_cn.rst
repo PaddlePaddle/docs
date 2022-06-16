@@ -23,7 +23,7 @@ Mish激活函数。参考 `Mish: A Self Regularized Non-Monotonic Neural Activat
 
     - **x** (Variable) -  多维 Tensor 或 LoDTensor，数据类型为 float32，float64。
     - **threshold** (float) - Mish激活函数中计算softplus的阈值。如果输入大于该阈值，将使用近似计算，默认值为 20.0。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

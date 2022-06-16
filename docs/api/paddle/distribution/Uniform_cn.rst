@@ -22,7 +22,7 @@ Uniform
 
 :math:`low = a` 。
 :math:`high = b` 。
-:math:`Z`: 正态分布常量。
+:math:`Z`：正态分布常量。
 
 参数low和high的维度必须能够支持广播。
 
@@ -31,7 +31,7 @@ Uniform
 
     - **low** (int|float|list|numpy.ndarray|Tensor) - 均匀分布的下边界。数据类型为int、float、list、numpy.ndarray或Tensor。
     - **high** (int|float|list|numpy.ndarray|Tensor) - 均匀分布的上边界。数据类型为int、float、list、numpy.ndarray或Tensor。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
 :::::::::
