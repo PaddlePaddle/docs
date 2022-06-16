@@ -59,7 +59,7 @@ initialize(initial_cell_states)
   - **initial_cell_states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。这是由调用者 :ref:`cn_api_fluid_layers_dynamic_decode` 提供的参数。
 
 **返回**
-:code:`(initial_inputs, initial_states, finished)` 的三元组。:code:`initial_inputs, initial_states` 均是单个tensor变量或tensor变量组成的嵌套结构，:code:`finished` 是bool类型的tensor。 :code:`initial_inputs, finished` 与 :code:`helper.initialize()` 返回的内容相同； :code:`initial_states` 与输入参数中的 :code:`initial_cell_states` 的相同。
+:code:`(initial_inputs, initial_states, finished)` 的三元组。:code:`initial_inputs, initial_states` 均是单个tensor变量或tensor变量组成的嵌套结构，:code:`finished` 是bool类型的tensor。 :code:`initial_inputs, finished` 与 :code:`helper.initialize()` 返回的内容相同；:code:`initial_states` 与输入参数中的 :code:`initial_cell_states` 的相同。
 
 **返回类型**
 tuple
@@ -87,7 +87,7 @@ step(time, inputs, states, **kwargs)
   - **kwargs** - 附加的关键字参数，由调用者 :ref:`cn_api_fluid_layers_dynamic_decode` 提供。
 
 **返回**
- :code:`(outputs, next_states, next_inputs, finished)` 的四元组。:code:`outputs` 是包含 :code:`cell_outputs` 和 :code:`sample_ids` 两个字段的命名元组，其中 :code:`cell_outputs` 是 :code:`cell.call()` 的结果，:code:`sample_ids` 是 :code:`helper.sample()` 的结果； :code:`next_states, next_inputs` 分别和输入参数中的 :code:`states, inputs` 有相同的的结构、形状和数据类型； :code:`finished` 是一个bool类型的tensor，形状是 :math:`[batch\_size]` 。
+ :code:`(outputs, next_states, next_inputs, finished)` 的四元组。:code:`outputs` 是包含 :code:`cell_outputs` 和 :code:`sample_ids` 两个字段的命名元组，其中 :code:`cell_outputs` 是 :code:`cell.call()` 的结果，:code:`sample_ids` 是 :code:`helper.sample()` 的结果；:code:`next_states, next_inputs` 分别和输入参数中的 :code:`states, inputs` 有相同的的结构、形状和数据类型；:code:`finished` 是一个bool类型的tensor，形状是 :math:`[batch\_size]` 。
 
 **返回类型**
 tuple

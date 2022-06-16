@@ -43,7 +43,7 @@ unfold
 ::::::::::::
 
     - **x**  (Tensor) – 输入4-D Tensor，形状为[N, C, H, W]，数据类型为float32或者float64
-    - **kernel_size**  (int|list of int) – 卷积核的尺寸，整数或者整型列表。如果为整型列表，应包含两个元素 ``[k_h, k_w]``，卷积核大小为 ``k_h * k_w`` ；如果为整数k，会被当作整型列表 ``[k, k]`` 处理
+    - **kernel_size**  (int|list of int) – 卷积核的尺寸，整数或者整型列表。如果为整型列表，应包含两个元素 ``[k_h, k_w]``，卷积核大小为 ``k_h * k_w``；如果为整数k，会被当作整型列表 ``[k, k]`` 处理
     - **strides**  (int|list of int，可选) – 卷积步长，整数或者整型列表。如果为整型列表，应该包含两个元素 ``[stride_h, stride_w]``。如果为整数，则 ``stride_h = stride_w = strides``。默认值为1
     - **paddings** (int|list of int，可选) – 每个维度的扩展，整数或者整型列表。如果为整型列表，长度应该为4或者2；长度为4 对应的padding参数是：[padding_top, padding_left，padding_bottom, padding_right]，长度为2对应的padding参数是[padding_h, padding_w]，会被当作[padding_h, padding_w, padding_h, padding_w]处理。如果为整数padding，则会被当作[padding, padding, padding, padding]处理。默认值为0
     - **dilations** (int|list of int，可选) – 卷积膨胀，整型列表或者整数。如果为整型列表，应该包含两个元素[dilation_h, dilation_w]。如果是整数dilation，会被当作整型列表[dilation, dilation]处理。默认值为1

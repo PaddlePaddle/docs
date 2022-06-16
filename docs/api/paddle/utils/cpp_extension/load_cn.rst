@@ -46,7 +46,7 @@ load
   - **name** (str) - 用于指定编译自定义 OP 时，生成的动态链接库的名字，不包括后缀如。so 或者。dll。
   - **sources** (list[str]) - 用于指定自定义 OP 对应的源码文件。cpp 源文件支持。cc、.cpp 等后缀；cuda 源文件以。cu 为后缀。
   - **extra_cxx_cflags** (list[str]，可选) - 用于指定编译 cpp 源文件时额外的编译选项。默认情况下，Paddle 框架相关的必要选项均已被隐式地包含；默认值为 None 。
-  - **extra_cuda_cflags** (list[str]，可选) - 用于指定编译 cuda 源文件时额外的编译选项。默认情况下，Paddle 框架相关的必要选项均已被隐式地包含； ``nvcc`` 相关的编译选项请参考：`CUDA Compiler Driver NVCC <https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html>`_ 。默认值为 None 。
+  - **extra_cuda_cflags** (list[str]，可选) - 用于指定编译 cuda 源文件时额外的编译选项。默认情况下，Paddle 框架相关的必要选项均已被隐式地包含；``nvcc`` 相关的编译选项请参考：`CUDA Compiler Driver NVCC <https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html>`_ 。默认值为 None 。
   - **extra_ldflags** (list[str]，可选) - 用于指定编译自定义 OP 时额外的链接选项。GCC 支持的链接选项请参考：`GCC Link Options <https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html>`_ 。默认值为 None 。
   - **extra_include_paths** (list[str]，可选) - 用于指定编译 cpp 或 cuda 源文件时，额外的头文件搜索目录。默认情况下，Paddle 框架相关头文件所在目录 ``site-packages/paddle/include`` 已被隐式地包含。默认值为 None 。
   - **build_directory** (str，可选) - 用于指定存放生成动态链接库的目录。若为 None，则会使用环境变量 ``PADDLE_EXTENSION_DIR`` 的值作为默认的存放目录。可使用 :ref:`cn_api_paddle_utils_cpp_extension_get_build_directory` 接口查看当前的目录设置。默认值为 None 。

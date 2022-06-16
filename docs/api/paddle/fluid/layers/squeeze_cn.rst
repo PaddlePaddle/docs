@@ -17,7 +17,7 @@ squeeze
         输入：
             X.shape = [1,3,1,5]
             axes = [0]
-        输出;
+        输出；
             Out.shape = [3,1,5]
 - 例2：
 

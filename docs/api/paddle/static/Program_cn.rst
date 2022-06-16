@@ -78,8 +78,8 @@ clone(for_test=False)
 '''''''''
 
 .. note::
-    1. ``Program.clone()`` 方法不会克隆例如 :ref:`cn_api_fluid_io_DataLoader` 这样的数据读取相关的部分，这可能会造成的数据读取部分在克隆后丢失； 
-    2. 此API当 ``for_test=True`` 时将会裁剪部分OP和变量。为防止错误的裁剪，推荐在 :ref:`cn_api_fluid_backward_append_backward` 和执行优化器之前使用； ``clone(for_test=True)`` 。
+    1. ``Program.clone()`` 方法不会克隆例如 :ref:`cn_api_fluid_io_DataLoader` 这样的数据读取相关的部分，这可能会造成的数据读取部分在克隆后丢失；
+    2. 此API当 ``for_test=True`` 时将会裁剪部分OP和变量。为防止错误的裁剪，推荐在 :ref:`cn_api_fluid_backward_append_backward` 和执行优化器之前使用；``clone(for_test=True)`` 。
 
 
 当 ``for_test=True`` 时创建一个新的、仅包含当前Program前向内容的Program。否则创建一个新的，和当前Program完全相同的Program
@@ -481,8 +481,8 @@ state_dict(mode='all', scope=None)
 
 **参数**
 
-    - mode (str，可选) - 获取何种持久性变量。目前支持以下选项：(1) 'opt'：获得优化器的持久性变量放在dict结构中； (2) 'param'：获得组网中的持久性变量放在dict结构中，不包含优化器中的持久性变量； (3) 'all'：获得组网和优化器中的持久性变量放在dict结构中；默认值为'all'。
-    - scope (Scope，可选) - 如果scope为 ``None``，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 ``state_dict`` ；否则从指定的 ``scope`` 获取 ``state_dict``。默认值为 ``None`` 。
+    - mode (str，可选) - 获取何种持久性变量。目前支持以下选项：(1) 'opt'：获得优化器的持久性变量放在dict结构中；(2) 'param'：获得组网中的持久性变量放在dict结构中，不包含优化器中的持久性变量；(3) 'all'：获得组网和优化器中的持久性变量放在dict结构中；默认值为'all'。
+    - scope (Scope，可选) - 如果scope为 ``None``，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 ``state_dict``；否则从指定的 ``scope`` 获取 ``state_dict``。默认值为 ``None`` 。
 
 **返回**
 

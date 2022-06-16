@@ -150,7 +150,7 @@ initialize(initial_cell_states)
 
 **返回**
 
-tuple，一个元组 :code:`(initial_inputs, initial_states, finished)`。:code:`initial_inputs` 是一个Tensor，当 :code:`embedding_fn` 为None时，该Tensor t的形状为 :math:`[batch\_size,beam\_size]`，值为 :code:`start_token` ；否则使用 :code:`embedding_fn(t)` 返回的值。:code:`initial_states` 是Tensor变量的嵌套结构(命名元组，字段包括 :code:`cell_states，log_probs，finished，lengths`)，其中 :code:`log_probs，finished，lengths` 都含有一个Tensor，形状为 :math:`[batch\_size, beam\_size]`，数据类型为float32，bool，int64。:code:`cell_states` 具有与输入参数 :code:`initial_cell_states` 相同结构的值，但形状扩展为 :math:`[batch\_size,beam\_size,...]`。 :code:`finished` 是一个布尔型Tensor，由False填充，形状为 :math:`[batch\_size,beam\_size]`。
+tuple，一个元组 :code:`(initial_inputs, initial_states, finished)`。:code:`initial_inputs` 是一个Tensor，当 :code:`embedding_fn` 为None时，该Tensor t的形状为 :math:`[batch\_size,beam\_size]`，值为 :code:`start_token`；否则使用 :code:`embedding_fn(t)` 返回的值。:code:`initial_states` 是Tensor变量的嵌套结构(命名元组，字段包括 :code:`cell_states，log_probs，finished，lengths`)，其中 :code:`log_probs，finished，lengths` 都含有一个Tensor，形状为 :math:`[batch\_size, beam\_size]`，数据类型为float32，bool，int64。:code:`cell_states` 具有与输入参数 :code:`initial_cell_states` 相同结构的值，但形状扩展为 :math:`[batch\_size,beam\_size,...]`。 :code:`finished` 是一个布尔型Tensor，由False填充，形状为 :math:`[batch\_size,beam\_size]`。
 
 
 _beam_search_step(time, logits, next_cell_states, beam_state)

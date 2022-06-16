@@ -22,7 +22,7 @@ Long-Short Term Memory（LSTM）循环神经网络计算单元。该OP用于完�
     o_{t} &= \sigma \left ( W_{x_{o}}x_{t}+W_{h_{o}}h_{t-1}+b_{o} \right ) \\
     h_{t} &= o_{t}tanh \left ( c_{t} \right )
 
-其中，:math:`x_{t}` 对应 ``x_t``，表示当前时间步的输入； :math:`h_{t-1}` 和 :math:`c_{t-1}` 对应 ``hidden_t_prev`` 和 ``cell_t_prev``，表示上一时间步的hidden和cell输出；
+其中，:math:`x_{t}` 对应 ``x_t``，表示当前时间步的输入；:math:`h_{t-1}` 和 :math:`c_{t-1}` 对应 ``hidden_t_prev`` 和 ``cell_t_prev``，表示上一时间步的hidden和cell输出；
 :math:`i_{t}, f_{t}, c_{t}, o_{t}, h_{t}` 分别为input gate（输入门）、forget gate（遗忘门）、cell、output gate（输出门）和hidden的计算。
 
 

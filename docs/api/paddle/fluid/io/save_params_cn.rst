@@ -11,7 +11,7 @@ save_params
 
 该OP从 ``main_program`` 中取出所有参数，然后将它们保存到 ``dirname`` 目录下或名为 ``filename`` 的文件中。
 
-``dirname`` 用于指定保存参数的目标路径。若想将参数保存到多个独立文件中，设置 ``filename=None`` ； 若想将所有参数保存在单个文件中，请设置 ``filename`` 来指定该文件的名称。
+``dirname`` 用于指定保存参数的目标路径。若想将参数保存到多个独立文件中，设置 ``filename=None``；若想将所有参数保存在单个文件中，请设置 ``filename`` 来指定该文件的名称。
 
 注意：
    - 有些变量不是参数，如学习率，全局训练步数（global step）等，但它们对于训练却是必要的。因此，调用 :ref:`cn_api_fluid_io_save_params` 和 :ref:`cn_api_fluid_io_load_params` 来保存和加载参数对于断点训练是不够的，这种情况下可以使用 :ref:`cn_api_fluid_io_save_persistables` 和 :ref:`cn_api_fluid_io_load_persistables` 来保存和加载训练过程中的检查点（checkpoint）。
