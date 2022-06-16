@@ -7,7 +7,7 @@ AdaptiveMaxPool1D
 .. py:function:: paddle.nn.AdaptiveMaxPool1D(output_size, return_mask=False, name=None)
 
 该算子根据输入 `x` , `output_size` 等参数对一个输入Tensor计算1D的自适应最大池化。输入和输出都是3-D Tensor，
-默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`L` 是输入特征的长度.
+默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`L` 是输入特征的长度。
 
 计算公式如下:
 
@@ -28,8 +28,8 @@ AdaptiveMaxPool1D
 
 形状
 :::::::::
-    - **x** (Tensor): 默认形状为（批大小，通道数，输出特征长度），即NCL格式的3-D Tensor。 其数据类型为float32或者float64。
-    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征长度），即NCL格式的3-D Tensor。 其数据类型与输入x相同。
+    - **x** (Tensor): 默认形状为（批大小，通道数，输出特征长度），即NCL格式的3-D Tensor。其数据类型为float32或者float64。
+    - **output** (Tensor): 默认形状为（批大小，通道数，输出特征长度），即NCL格式的3-D Tensor。其数据类型与输入x相同。
 
 返回
 :::::::::

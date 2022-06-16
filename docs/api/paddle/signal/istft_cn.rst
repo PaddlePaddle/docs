@@ -18,7 +18,7 @@ istft
 
 - :math:`t`: 短时傅里叶变换中的第 :math:`t` 帧输入信号；
 - :math:`N`: `n_fft` 参数的值；
-- :math:`H`: `hop_length` 参数的值。  
+- :math:`H`: `hop_length` 参数的值。
 
 
 ``paddle.signal.istft`` 的结果理论上是 ``paddle.signal.stft`` 的原始输入 ``x``，但

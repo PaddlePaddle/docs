@@ -10,7 +10,7 @@ cosine_decay
 
 使用 cosine decay 的衰减方式进行学习率调整。
 
-在训练模型时，建议一边进行训练一边降低学习率。 通过使用此方法，学习速率将通过如下cosine衰减策略进行衰减：
+在训练模型时，建议一边进行训练一边降低学习率。通过使用此方法，学习速率将通过如下cosine衰减策略进行衰减：
 
 .. math::
     decayed\_lr = learning\_rate * 0.5 * (cos(epoch * math.pi / epochs) + 1)

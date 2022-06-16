@@ -13,7 +13,7 @@ guard
 参数
 ::::::::::::
 
-  - **new_generator** (str|bytes，可选) - 新命名空间的名称。请注意，Python2中的str在Python3中被区分为str和bytes两种，因此这里有两种类型。 缺省值为None，若不为None，new_generator将作为前缀添加到generate接口产生的唯一名称中。
+  - **new_generator** (str|bytes，可选) - 新命名空间的名称。请注意，Python2中的str在Python3中被区分为str和bytes两种，因此这里有两种类型。缺省值为None，若不为None，new_generator将作为前缀添加到generate接口产生的唯一名称中。
 
 返回
 ::::::::::::

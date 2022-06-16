@@ -20,7 +20,7 @@ ToTensor
 参数
 :::::::::
 
-    - data_format (str，可选): 返回张量的格式，必须为 'HWC' 或 'CHW'。 默认值: 'CHW'。
+    - data_format (str，可选): 返回张量的格式，必须为 'HWC' 或 'CHW'。默认值: 'CHW'。
     - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
 形状

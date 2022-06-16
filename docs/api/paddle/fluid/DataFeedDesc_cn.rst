@@ -63,7 +63,7 @@ DataFeedDesc
 set_batch_size(batch_size)
 '''''''''
 
-该接口用于设置DataFeedDesc中的 :code:`batch_size` 。可以在训练期间调用修改 :code:`batch_size` 。
+该接口用于设置DataFeedDesc中的 :code:`batch_size`。可以在训练期间调用修改 :code:`batch_size` 。
 
 **代码示例**
 

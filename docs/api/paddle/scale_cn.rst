@@ -22,7 +22,7 @@ scale
 
         - **x** (Tensor) - 要进行缩放的多维Tensor，数据类型可以为float32，float64，int8，int16，int32，int64，uint8。
         - **scale** (float|Tensor) - 缩放的比例，是一个float类型或者一个shape为[1]，数据类型为float32的Tensor类型。
-        - **bias** (float) - 缩放的偏置。 
+        - **bias** (float) - 缩放的偏置。
         - **bias_after_scale** (bool) - 判断在缩放之前或之后添加偏置。为True时，先缩放再偏置；为False时，先偏置再缩放。该参数在某些情况下，对数值稳定性很有用。
         - **act** (str，可选) - 应用于输出的激活函数，如tanh、softmax、sigmoid、relu等。
         - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。

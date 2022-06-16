@@ -24,7 +24,7 @@ stft
   如果 `onesided=True`，取值范围是 
   :math:`0 \leq f < \lfloor n\_fft / 2 \rfloor + 1`； 
 - :math:`N`: ``n_fft`` 参数的值；
-- :math:`H`: ``hop_length`` 参数的值。  
+- :math:`H`: ``hop_length`` 参数的值。
 
 
 参数

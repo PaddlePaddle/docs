@@ -17,7 +17,7 @@ smooth_l1
         - **x** (Tensor|LoDTensor) - 数据类型为float32，rank至少为2的张量。smooth L1损失函数的输入，shape为[batch_size, dim1，…，dimN]。
         - **y** (Tensor|LoDTensor) - 数据类型为float32，rank至少为2的张量。与 ``x`` shape相同的目标值。
         - **inside_weight** (Tensor|None) - 数据类型为float32，rank至少为2的张量。这个输入是可选的，与x的shape应该相同。如果给定，``(x - y)`` 的结果将乘以这个张量元素。
-        - **outside_weight** (Tensor|None) - 数据类型为float32，一个rank至少为2的张量。这个输入是可选的，它的shape应该与 ``x`` 相同。 smooth L1 loss的输出会乘以这个张量。
+        - **outside_weight** (Tensor|None) - 数据类型为float32，一个rank至少为2的张量。这个输入是可选的，它的shape应该与 ``x`` 相同。smooth L1 loss的输出会乘以这个张量。
         - **sigma** (float|NoneType) - smooth L1 loss layer的超参数。标量，默认值为1.0。
 
 返回

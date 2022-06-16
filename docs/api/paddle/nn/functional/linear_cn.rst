@@ -7,7 +7,7 @@ linear
 .. py:function:: paddle.nn.functional.linear(x, weight, bias=None, name=None)
 
 
-**线性变换OP** 。对于每个输入Tensor :math:`X`，计算公式为：
+**线性变换OP**。对于每个输入Tensor :math:`X`，计算公式为：
 
 .. math::
 

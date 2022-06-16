@@ -17,7 +17,7 @@ start_profiler
 .. code-block:: python
 
   #使用新的接口替换该接口的使用方式
-  #1. 创建Profiler对象，并调用start接口
+  #1。创建Profiler对象，并调用start接口
   import paddle
   import paddle.profiler as profiler
   prof = profiler.Profiler()
@@ -29,7 +29,7 @@ start_profiler
 
 .. code-block:: python
 
-  #2. 使用环境管理器的用法
+  #2。使用环境管理器的用法
   import paddle
   import paddle.profiler as profiler
   with profiler.Profiler() as prof:

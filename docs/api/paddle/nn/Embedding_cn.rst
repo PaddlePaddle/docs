@@ -9,7 +9,7 @@ Embedding
 
 嵌入层(Embedding Layer)
 
-该接口用于构建 ``Embedding`` 的一个可调用对象，具体用法参照 ``代码示例`` 。其根据input中的id信息从embedding矩阵中查询对应embedding信息，并会根据输入的size (num_embeddings, embedding_dim)和weight_attr自动构造一个二维embedding矩阵。
+该接口用于构建 ``Embedding`` 的一个可调用对象，具体用法参照 ``代码示例``。其根据input中的id信息从embedding矩阵中查询对应embedding信息，并会根据输入的size (num_embeddings, embedding_dim)和weight_attr自动构造一个二维embedding矩阵。
 
 输出的Tensor的shape是在输入Tensor shape的最后一维后面添加了embedding_dim的维度。
 

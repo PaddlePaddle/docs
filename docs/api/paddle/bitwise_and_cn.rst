@@ -18,7 +18,7 @@ bitwise_and
 
         - **x** （Tensor）- 输入的 N-D `Tensor`，数据类型为：bool，uint8，int8，int16，int32，int64。
         - **y** （Tensor）- 输入的 N-D `Tensor`，数据类型为：bool，uint8，int8，int16，int32，int64。
-        - **out** （Tensor，可选）- 输出的结果 `Tensor`，是与输入数据类型相同的 N-D `Tensor` 。默认值为None，此时将创建新的Tensor来保存输出结果。
+        - **out** （Tensor，可选）- 输出的结果 `Tensor`，是与输入数据类型相同的 N-D `Tensor`。默认值为None，此时将创建新的Tensor来保存输出结果。
 
 返回
 ::::::::::::

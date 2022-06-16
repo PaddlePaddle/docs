@@ -53,7 +53,7 @@ Gated Recurrent Unit（GRU）循环神经网络计算单元。该OP用于完成�
 
 返回
 ::::::::::::
-Variable的三元组，包含三个与 ``input`` 相同数据类型的Tensor，分别表示下一时间步的隐状态（ :math:`h_t` ）、重置的前一时间步的隐状态（ :math:`r_t \odot h_{t-1}` ）和 :math:`h_t, r_t, \tilde{h_t}` 的拼接，形状分别为 :math:`[N, D]` 、 :math:`[N, D]` 和 :math:`[N, D \times 3]` 。通常只有下一时间步的隐状态（ :math:`h_t` ）作为GRU的输出和隐状态使用，其他内容只是中间计算结果。
+Variable的三元组，包含三个与 ``input`` 相同数据类型的Tensor，分别表示下一时间步的隐状态（ :math:`h_t` ）、重置的前一时间步的隐状态（ :math:`r_t \odot h_{t-1}` ）和 :math:`h_t, r_t, \tilde{h_t}` 的拼接，形状分别为 :math:`[N, D]` 、 :math:`[N, D]` 和 :math:`[N, D \times 3]`。通常只有下一时间步的隐状态（ :math:`h_t` ）作为GRU的输出和隐状态使用，其他内容只是中间计算结果。
 
 返回类型
 ::::::::::::

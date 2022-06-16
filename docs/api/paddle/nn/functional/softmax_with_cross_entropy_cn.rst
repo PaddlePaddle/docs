@@ -8,7 +8,7 @@ softmax_with_cross_entropy
 
 该OP实现了softmax交叉熵损失函数。该函数会将softmax操作、交叉熵损失函数的计算过程进行合并，从而提供了数值上更稳定的梯度值。
 
-因为该运算对 ``logits`` 的 ``axis`` 维执行softmax运算，所以它需要未缩放的 ``logits`` 。该运算不应该对softmax运算的输出进行操作，否则会产生错误的结果。
+因为该运算对 ``logits`` 的 ``axis`` 维执行softmax运算，所以它需要未缩放的 ``logits``。该运算不应该对softmax运算的输出进行操作，否则会产生错误的结果。
 
 当 ``soft_label`` 为 ``False`` 时，``label`` 除了 ``axis`` 维度上的形状为1，其余维度和 ``logits`` 一致，表示一批数据中的每一个样本仅可分类到一个类别。
 
@@ -35,7 +35,7 @@ softmax_with_cross_entropy
 ::::::::::::
 
   - **logits** (Tensor) - 维度为任意维的多维 ``Tensor``，数据类型为float32或float64。表示未缩放的输入。
-  - **label** (Tensor) - 如果 ``soft_label`` 为True， ``label`` 是一个和 ``logits`` 维度相同的的 ``Tensor`` 。如果 ``soft_label`` 为False， ``label`` 是一个在axis维度上大小为1，其它维度上与 ``logits`` 维度相同的 ``Tensor`` 。
+  - **label** (Tensor) - 如果 ``soft_label`` 为True， ``label`` 是一个和 ``logits`` 维度相同的的 ``Tensor``。如果 ``soft_label`` 为False， ``label`` 是一个在axis维度上大小为1，其它维度上与 ``logits`` 维度相同的 ``Tensor`` 。
   - **soft_label** (bool，可选) - 指明是否将输入标签当作软标签。默认值：False。
   - **ignore_index** (int，可选) - 指明要无视的目标值，使其不对输入梯度有贡献。仅在 ``soft_label`` 为False时有效，默认值：kIgnoreIndex（-100）。 
   - **numeric_stable_mode** (bool，可选) – 指明是否使用一个具有更佳数学稳定性的算法。仅在 ``soft_label`` 为 False的GPU模式下生效。若 ``soft_label`` 为 True或者执行设备为CPU，算法一直具有数学稳定性。注意使用稳定算法时速度可能会变慢。默认值：True。

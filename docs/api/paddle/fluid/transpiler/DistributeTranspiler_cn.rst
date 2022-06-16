@@ -12,7 +12,7 @@ DistributeTranspiler
 
 该类可以把fluid program转变为分布式数据并行计算的program，有PServer和NCCL2两种模式。
 在Pserver（全称：parameter server）模式下，通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于parameter server的分布式架构(即PServer，参数服务器)来进行训练的program。
-在NCCL2模式下，通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于NCCL2的分布式架构来进行训练的program。在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID`` 。 调用 ``transpile_nccl2`` 后，你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``Executor`` 来启动NCCL2分布式模式。 
+在NCCL2模式下，通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于NCCL2的分布式架构来进行训练的program。在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID``。调用 ``transpile_nccl2`` 后，你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``Executor`` 来启动NCCL2分布式模式。
 
 
 参数
@@ -185,7 +185,7 @@ get_pserver_programs(endpoint)
 '''''''''
 
 
-该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。该函数返回的 ``main_program`` 与函数 ``get_pserver_program`` 的返回值一致。
+该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program``。该函数返回的 ``main_program`` 与函数 ``get_pserver_program`` 的返回值一致。
 
 **参数**
     
@@ -224,7 +224,7 @@ get_startup_program(endpoint, pserver_program=None, startup_program=None)
 **参数**
     
     - **endpoint** (str) – 当前Pserver终端
-    - **pserver_program** (Program) – 已停止使用。 先调用get_pserver_program
+    - **pserver_program** (Program) – 已停止使用。先调用get_pserver_program
     - **startup_program** (Program) – 已停止使用。应在初始化时传入startup_program
 
 **返回**

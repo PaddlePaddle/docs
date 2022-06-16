@@ -19,12 +19,12 @@ ParallelExecutor
 
     - **use_cuda** (bool) – 该参数表示是否使用GPU执行。
     - **loss_name** （str） - 该参数为模型最后得到的损失变量的名字。**注意：如果是数据并行模型训练，必须设置loss_name，否则计算结果可能会有问题。** 默认为：None。
-    - **main_program** (Program) – 需要被执行的Program 。如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为paddle.static.default_main_program()。 默认为：None。
+    - **main_program** (Program) – 需要被执行的Program。如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为paddle.static.default_main_program()。默认为：None。
     - **share_vars_from** (ParallelExecutor) - 如果设置了share_vars_from，当前的ParallelExecutor将与share_vars_from指定的ParallelExecutor共享参数值。
     需要设置该参数的情况：模型训练过程中需要进行模型测试，并且训练和测试都是采用数据并行模式，那么测试对应的ParallelExecutor在调用with_data_parallel时，需要将share_vars_from设置为训练所对应的ParallelExecutor。
     由于ParallelExecutor只有在第一次执行时才会将参数变量分发到其他设备上，因此share_vars_from指定的ParallelExecutor必须在当前ParallelExecutor之前运行。默认为：None。
-    - **exec_strategy** (ExecutionStrategy) -  通过exec_strategy指定执行计算图过程可以调整的选项，例如线程池大小等。 关于exec_strategy更多信息，请参阅 ``paddle.static.ExecutionStrategy`` 。 默认为：None。
-    - **build_strategy** (BuildStrategy): 通过配置build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于build_strategy更多的信息，请参阅  ``paddle.static.BuildStrategy`` 。 默认为：None。
+    - **exec_strategy** (ExecutionStrategy) -  通过exec_strategy指定执行计算图过程可以调整的选项，例如线程池大小等。关于exec_strategy更多信息，请参阅 ``paddle.static.ExecutionStrategy``。默认为：None。
+    - **build_strategy** (BuildStrategy): 通过配置build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于build_strategy更多的信息，请参阅  ``paddle.static.BuildStrategy``。默认为：None。
     - **num_trainers** (int) – 进行GPU分布式训练时需要设置该参数。如果该参数值大于1，NCCL将会通过多层级节点的方式来初始化。每个节点应有相同的GPU数目。默认为：1。
     - **trainer_id** (int) –  进行GPU分布式训练时需要设置该参数。该参数必须与num_trainers参数同时使用。trainer_id指明是当前所在节点的 “rank”（层级）。trainer_id从0开始计数。默认为：0。
     - **scope** (Scope) – 指定执行Program所在的作用域。默认为：paddle.static.global_scope()。
@@ -34,8 +34,8 @@ ParallelExecutor
 初始化后的 ``ParallelExecutor`` 对象。
 
 .. note::
-     1. 如果只是进行多卡测试，不需要设置loss_name以及share_vars_from。
-     2. 如果程序中既有模型训练又有模型测试，则构建模型测试所对应的ParallelExecutor时必须设置share_vars_from，否则模型测试和模型训练所使用的参数是不一致。
+     1。如果只是进行多卡测试，不需要设置loss_name以及share_vars_from。
+     2。如果程序中既有模型训练又有模型测试，则构建模型测试所对应的ParallelExecutor时必须设置share_vars_from，否则模型测试和模型训练所使用的参数是不一致。
 
 代码示例
 ::::::::::::
@@ -104,8 +104,8 @@ run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
 返回fetch_list中指定的变量值。
 
 .. note::
-     1. 如果feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
-     2. 如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
+     1。如果feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
+     2。如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
 
 **代码示例**
 

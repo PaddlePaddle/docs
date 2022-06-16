@@ -329,7 +329,7 @@ stop_worker()
 save_inference_model(executor, dirname, feeded_var_names, target_vars, main_program=None, export_for_deployment=True)
 '''''''''
 
-修剪指定的 ``main_program`` 以构建一个专门用于预测的 ``Inference Program`` （ ``Program`` 含义详见 :ref:`api_guide_Program` ）。 所得到的 ``Inference Program`` 及其对应的所>有相关参数均被保存到 ``dirname`` 指定的目录中。
+修剪指定的 ``main_program`` 以构建一个专门用于预测的 ``Inference Program`` （ ``Program`` 含义详见 :ref:`api_guide_Program` ）。所得到的 ``Inference Program`` 及其对应的所>有相关参数均被保存到 ``dirname`` 指定的目录中。
 
 
 **参数**
@@ -338,7 +338,7 @@ save_inference_model(executor, dirname, feeded_var_names, target_vars, main_prog
   - **dirname** (str) – 指定保存预测模型结构和参数的文件目录。
   - **feeded_var_names** (list[str]) – 字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
   - **target_vars** (list[Tensor]) – ``Tensor`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
-  - **main_program** (Program，可选) – 通过该参数指定的 ``main_program`` 可构建一个专门用于预测的 ``Inference Program`` 。 若为None，则使用全局默认的  ``_main_program_`` 。>默认值为None。
+  - **main_program** (Program，可选) – 通过该参数指定的 ``main_program`` 可构建一个专门用于预测的 ``Inference Program``。若为None，则使用全局默认的  ``_main_program_`` 。>默认值为None。
   - **export_for_deployment** (bool，可选) – 若为True，则 ``main_program`` 指定的Program将被修改为只支持直接预测部署的Program。否则，将存储更多的信息，方便优化和再训练。目前
 只支持设置为True，且默认值为True。
 
@@ -374,7 +374,7 @@ save_persistables(executor, dirname, main_program=None)
 
  - **executor**  (Executor) – 用于保存持久性变量的 ``executor``，详见 :ref:`api_guide_executor` 。
  - **dirname**  (str) – 用于储存持久性变量的文件目录。
- - **main_program**  (Program，可选) – 需要保存持久性变量的Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program 。默认值为None>。
+ - **main_program**  (Program，可选) – 需要保存持久性变量的Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program。默认值为None>。
 
 **返回**
 无
@@ -424,7 +424,7 @@ distributed_model(model)
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1。该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 返回分布式数据并行模型。
 
@@ -443,7 +443,7 @@ distributed_model(model)
 
     # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import paddle
     import paddle.nn as nn
@@ -489,9 +489,9 @@ state_dict()
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1。该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
-以 ``dict`` 返回当前 ``optimizer`` 使用的所有Tensor 。比如对于Adam优化器，将返回 beta1, beta2, momentum 等Tensor。
+以 ``dict`` 返回当前 ``optimizer`` 使用的所有Tensor。比如对于Adam优化器，将返回 beta1, beta2, momentum 等Tensor。
 
 **返回**
 dict，当前 ``optimizer`` 使用的所有Tensor。
@@ -503,7 +503,7 @@ dict，当前 ``optimizer`` 使用的所有Tensor。
 
     # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import numpy as np
     import paddle
@@ -527,7 +527,7 @@ set_state_dict(state_dict)
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1。该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 加载 ``optimizer`` 的Tensor字典给当前 ``optimizer`` 。
 
@@ -541,7 +541,7 @@ None
 
     # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import numpy as np
     import paddle
@@ -568,7 +568,7 @@ set_lr(value)
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1。该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 手动设置当前 ``optimizer`` 的学习率。
 
@@ -586,7 +586,7 @@ None
 
     # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import numpy as np
     import paddle
@@ -621,7 +621,7 @@ get_lr()
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1。该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 获取当前步骤的学习率。
 
@@ -636,7 +636,7 @@ float，当前步骤的学习率。
 
     # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import numpy as np
     import paddle
@@ -662,7 +662,7 @@ step()
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1。该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 执行一次优化器并进行参数更新。
 
@@ -676,7 +676,7 @@ None。
 
     # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import paddle
     import paddle.nn as nn
@@ -723,7 +723,7 @@ clear_grad()
 
 **注意：**
 
-  **1. 该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1。该API只在** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
 
 
 清除需要优化的参数的梯度。
@@ -738,7 +738,7 @@ None。
 
     # 这个示例需要由fleetrun启动，用法为:
     # fleetrun --gpus=0,1 example.py
-    # 脚本example.py中的代码是下面这个示例.
+    # 脚本example.py中的代码是下面这个示例。
 
     import paddle
     import paddle.nn as nn

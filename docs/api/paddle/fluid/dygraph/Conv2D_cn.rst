@@ -8,7 +8,7 @@ Conv2D
 
 
 
-该接口用于构建 ``Conv2D`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其将在神经网络中构建一个二维卷积层（Convolution2D Layer），其根据输入、滤波器参数（num_filters、filter_size）、步长（stride）、填充（padding）、膨胀系数（dilation）、组数（groups）参数来计算得到输出特征图。输入和输出是 ``NCHW`` 格式，N是批数据大小，C是特征图个数，H是特征图高度，W是特征图宽度。滤波器的维度是 [M, C, H, W] ，M是输出特征图个数，C是输入特征图个数，H是滤波器高度，W是滤波器宽度。如果组数大于1，C等于输入特征图个数除以组数的结果。如果提供了偏移属性和激活函数类型，卷积的结果会和偏移相加，激活函数会作用在最终结果上。详情请参考： `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。
+该接口用于构建 ``Conv2D`` 类的一个可调用对象，具体用法参照 ``代码示例``。其将在神经网络中构建一个二维卷积层（Convolution2D Layer），其根据输入、滤波器参数（num_filters、filter_size）、步长（stride）、填充（padding）、膨胀系数（dilation）、组数（groups）参数来计算得到输出特征图。输入和输出是 ``NCHW`` 格式，N是批数据大小，C是特征图个数，H是特征图高度，W是特征图宽度。滤波器的维度是 [M, C, H, W] ，M是输出特征图个数，C是输入特征图个数，H是滤波器高度，W是滤波器宽度。如果组数大于1，C等于输入特征图个数除以组数的结果。如果提供了偏移属性和激活函数类型，卷积的结果会和偏移相加，激活函数会作用在最终结果上。详情请参考： `卷积 <http://ufldl.stanford.edu/tutorial/supervised/FeatureExtractionUsingConvolution/>`_ 。
 
 对每个输入 ``X``，有等式：
 
@@ -50,9 +50,9 @@ Conv2D
     - **num_channels** (int) - 输入图像的通道数。
     - **num_filters** (int) - 滤波器的个数，和输出特征图个数相同。
     - **filter_size** (int|tuple) - 滤波器大小。如果 ``filter_size`` 是一个元组，则必须包含两个整型数，分别表示滤波器高度和宽度。否则，表示滤波器高度和宽度均为 ``filter_size`` 。
-    - **stride** (int|tuple，可选) - 步长大小。如果 ``stride`` 为元组，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride`` 。默认值：1。
-    - **padding** (int|tuple，可选) - 填充大小。如果 ``padding`` 为元组，则必须包含两个整型数，分别表示竖直和水平边界填充大小。否则，表示竖直和水平边界填充大小均为 ``padding`` 。默认值：0。
-    - **dilation** (int|tuple，可选) - 膨胀系数大小。如果 ``dialation`` 为元组，则必须包含两个整型数，分别表示垂直和水平膨胀系数。否则，表示垂直和水平膨胀系数均为 ``dialation`` 。默认值：1。
+    - **stride** (int|tuple，可选) - 步长大小。如果 ``stride`` 为元组，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride``。默认值：1。
+    - **padding** (int|tuple，可选) - 填充大小。如果 ``padding`` 为元组，则必须包含两个整型数，分别表示竖直和水平边界填充大小。否则，表示竖直和水平边界填充大小均为 ``padding``。默认值：0。
+    - **dilation** (int|tuple，可选) - 膨胀系数大小。如果 ``dialation`` 为元组，则必须包含两个整型数，分别表示垂直和水平膨胀系数。否则，表示垂直和水平膨胀系数均为 ``dialation``。默认值：1。
     - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的分组卷积：当group=2，滤波器的前一半仅和输入特征图的前一半连接。滤波器的后一半仅和输入特征图的后一半连接。默认值：1。
     - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** (ParamAttr|bool，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。

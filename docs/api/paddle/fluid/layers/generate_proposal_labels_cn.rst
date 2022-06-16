@@ -24,7 +24,7 @@ RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs``，�
 参数
 ::::::::::::
 
-  - **rpn_rois** (Variable) – Shape为 ``[N, 4]`` 的2-D LoDTensor。 其中，N为RoIs的个数。每个RoI以 :math:`[x_{min}, y_{min}, x_{max}, y_{max}]` 的格式表示，其中，:math:`x_{min}` 和 :math:`y_{min}` 为RoI的左上角坐标，:math:`x_{max}` 和 :math:`y_{max}` 为RoI的右下角坐标。数据类型支持float32和float64。
+  - **rpn_rois** (Variable) – Shape为 ``[N, 4]`` 的2-D LoDTensor。其中，N为RoIs的个数。每个RoI以 :math:`[x_{min}, y_{min}, x_{max}, y_{max}]` 的格式表示，其中，:math:`x_{min}` 和 :math:`y_{min}` 为RoI的左上角坐标，:math:`x_{max}` 和 :math:`y_{max}` 为RoI的右下角坐标。数据类型支持float32和float64。
   - **gt_classes** (Variable) – Shape为 ``[M, 1]`` 的2-D LoDTensor，M为groundtruth boxes的数量。用于表示groundtruth boxes的类别ID。数据类型支持int32。
   - **is_crowd** (Variable) –Shape为 ``[M, 1]`` 的2-D LoDTensor，M为groundtruth boxes的数量。用于标记boxes是否是crowd。数据类型支持int32。
   - **gt_boxes** (Variable) – Shape为 ``[M, 4]`` 的2-D LoDTensor，M为groundtruth boxes的数量。每个box以 :math:`[x_{min}, y_{min}, x_{max}, y_{max}]` 的格式表示。
@@ -45,8 +45,8 @@ RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs``，�
 ::::::::::::
 元组，格式为 ``(rois, labels_int32, bbox_targets, bbox_inside_weights, bbox_outside_weights)``，其中，各个元素解释如下：
 
-- **rois** - Shape为 ``[P, 4]`` 的2-D LoDTensor，P一般是 ``batch_size_per_im * batch_size`` 。每个RoIs以 ``[xmin, ymin, xmax, ymax]`` 的格式表示。数据类型与 ``rpn_rois`` 一致。
-- **labels_int32** - Shape为 ``[P, 1]`` 的2-D LoDTensor，P一般是 ``batch_size_per_im * batch_size`` 。表示每个RoI的类别ID。数据类型为int32。
+- **rois** - Shape为 ``[P, 4]`` 的2-D LoDTensor，P一般是 ``batch_size_per_im * batch_size``。每个RoIs以 ``[xmin, ymin, xmax, ymax]`` 的格式表示。数据类型与 ``rpn_rois`` 一致。
+- **labels_int32** - Shape为 ``[P, 1]`` 的2-D LoDTensor，P一般是 ``batch_size_per_im * batch_size``。表示每个RoI的类别ID。数据类型为int32。
 - **bbox_targets** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor，表示所有RoIs的回归目标（box label）。数据类型与 ``rpn_rois`` 一致。
 - **bbox_inside_weights** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor。foreground boxes回归loss的权重。数据类型与 ``rpn_rois`` 一致。
 - **bbox_outside_weights** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor。回归loss的权重。数据类型与 ``rpn_rois`` 一致。

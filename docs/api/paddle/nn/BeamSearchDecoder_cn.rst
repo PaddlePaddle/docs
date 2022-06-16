@@ -79,7 +79,7 @@ _split_batch_beams(x)
 
 **返回**
 
-Tensor，形状为 :math:`[batch\_size, beam\_size, ...]` 的Tensor，其数据类型与 :code:`x` 相同。   
+Tensor，形状为 :math:`[batch\_size, beam\_size, ...]` 的Tensor，其数据类型与 :code:`x` 相同。
 
 _merge_batch_beams(x)
 '''''''''
@@ -184,7 +184,7 @@ step(time, inputs, states, **kwargs)
   
 **返回**
 
-tuple，一个元组 :code:`(beam_search_output，beam_search_state，next_inputs，finish)` 。:code:`beam_search_state` 和参数 :code:`states` 具有相同的结构，形状和数据类型。 :code:`next_inputs` 与输入参数 :code:`inputs` 具有相同的结构，形状和数据类型。 :code:`beam_search_output` 是Tensor变量的命名元组(字段包括 :code:`scores，predicted_ids，parent_ids` )，其中 :code:`scores，predicted_ids，parent_ids` 都含有一个Tensor，形状为 :math:`[batch\_size,beam\_size]`，数据类型为float32 ，int64，int64。:code:`finished` 是一个bool类型的Tensor，形状为 :math:`[batch\_size,beam\_size]`。
+tuple，一个元组 :code:`(beam_search_output，beam_search_state，next_inputs，finish)` 。:code:`beam_search_state` 和参数 :code:`states` 具有相同的结构，形状和数据类型。:code:`next_inputs` 与输入参数 :code:`inputs` 具有相同的结构，形状和数据类型。:code:`beam_search_output` 是Tensor变量的命名元组(字段包括 :code:`scores，predicted_ids，parent_ids` )，其中 :code:`scores，predicted_ids，parent_ids` 都含有一个Tensor，形状为 :math:`[batch\_size,beam\_size]`，数据类型为float32 ，int64，int64。:code:`finished` 是一个bool类型的Tensor，形状为 :math:`[batch\_size,beam\_size]`。
 
 
 finalize(outputs, final_states, sequence_lengths)

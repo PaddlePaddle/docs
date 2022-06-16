@@ -157,7 +157,7 @@ register_forward_post_hook(hook)
 
 为Layer注册一个 ``forward post-hook`` 函数，该 ``hook`` 函数将会在 ``forward`` 函数调用之后被调用。
 
-``hook`` 函数具有以下形式，它的 ``input`` 和 ``output`` 是 ``Layer`` 的 ``input`` 和 ``output`` 。用户可以用该函数来查看和修改 ``Layer`` ``forward`` 函数的输出。
+``hook`` 函数具有以下形式，它的 ``input`` 和 ``output`` 是 ``Layer`` 的 ``input`` 和 ``output``。用户可以用该函数来查看和修改 ``Layer`` ``forward`` 函数的输出。
 
 hook(Layer, input, output) -> None or modified output
 
@@ -203,10 +203,10 @@ create_parameter(shape, attr=None, dtype="float32", is_bias=False, default_initi
 **参数**
 
     - **shape** (list) - 参数的形状。列表中的数据类型必须为int。
-    - **attr** (ParamAttr，可选) - 指定权重参数属性的对象，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。默认值为None。
+    - **attr** (ParamAttr，可选) - 指定权重参数属性的对象，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr`。默认值为None。
     - **dtype** (str|core.VarDesc.VarType，可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为“float32”。
     - **is_bias** (bool，可选) - 是否是偏置参数。默认值：False。
-    - **default_initializer** (Initializer，可选) - 默认的参数初始化方法。如果设置为None，则设置非bias参数的初始化方式为 paddle.nn.initializer.Xavier，设置bias参数的初始化方式为 paddle.nn.initializer.Constant 。默认值：None。
+    - **default_initializer** (Initializer，可选) - 默认的参数初始化方法。如果设置为None，则设置非bias参数的初始化方式为 paddle.nn.initializer.Xavier，设置bias参数的初始化方式为 paddle.nn.initializer.Constant。默认值：None。
 
 **返回**
 Tensor，创建的参数变量
@@ -665,7 +665,7 @@ state_dict(destination=None, include_sublayers=True, use_hook=True)
 
 **参数**
 
-    - **destination** (dict，可选) - 如果提供 ``destination``，则所有参数和可持久性buffers都将存放在 ``destination`` 中。 默认值：None。
+    - **destination** (dict，可选) - 如果提供 ``destination``，则所有参数和可持久性buffers都将存放在 ``destination`` 中。默认值：None。
     - **include_sublayers** (bool，可选) - 如果设置为True，则包括子层的参数和buffers。默认值：True。
     - **use_hook** (bool，可选) - 如果设置为True，将_state_dict_hooks中注册的函数应用于destination。默认值：True。
 
@@ -686,7 +686,7 @@ dict，包含所有参数和可持久行buffers的dict
 set_state_dict(state_dict, use_structured_name=True)
 '''''''''
 
-根据传入的 ``state_dict`` 设置参数和可持久性buffers。 所有参数和buffers将由 ``state_dict`` 中的 ``Tensor`` 设置。
+根据传入的 ``state_dict`` 设置参数和可持久性buffers。所有参数和buffers将由 ``state_dict`` 中的 ``Tensor`` 设置。
 
 **参数**
 

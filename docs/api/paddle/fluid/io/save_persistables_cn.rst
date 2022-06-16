@@ -18,8 +18,8 @@ save_persistables
 
  - **executor**  (Executor) – 用于保存持久性变量的 ``executor``，详见 :ref:`api_guide_executor` 。
  - **dirname**  (str) – 用于储存持久性变量的文件目录。
- - **main_program**  (Program，可选) – 需要保存持久性变量的Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program 。默认值为None。
- - **filename**  (str，可选) – 保存持久性变量的文件名称。若想分开保存变量，设置 ``filename=None`` 。 默认值为None。
+ - **main_program**  (Program，可选) – 需要保存持久性变量的Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program。默认值为None。
+ - **filename**  (str，可选) – 保存持久性变量的文件名称。若想分开保存变量，设置 ``filename=None``。默认值为None。
  
 返回
 ::::::::::::

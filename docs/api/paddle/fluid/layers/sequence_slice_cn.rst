@@ -33,7 +33,7 @@ sequence_slice
         out.lod = [[2, 1]],
         out.dims = (3, 2).
 
-.. 注意::
+.。注意::
    ``input`` ， ``offset`` ， ``length`` 的第一维大小应相同。
    ``offset`` 从0开始。
 

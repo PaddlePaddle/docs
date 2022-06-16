@@ -91,11 +91,11 @@ step_info(unit: Optional[int]=None)
 
 2. batch_cost：1次迭代的开销，单位为秒。
 
-3. ips（Instance Per Second）：模型吞吐量，单位为samples/s或其他，取决于参数unit的设置。 当step()的num_samples为None时，单位为steps/s。
+3. ips（Instance Per Second）：模型吞吐量，单位为samples/s或其他，取决于参数unit的设置。当step()的num_samples为None时，单位为steps/s。
 
 **参数**
 
-    - **unit** (string，可选) - 输入数据的单位，仅在step()的num_samples指定为实数时有效。例如，当unit为images时，吞吐量的单位为images/s。 默认值：None，吞吐量的单位是samples/s。
+    - **unit** (string，可选) - 输入数据的单位，仅在step()的num_samples指定为实数时有效。例如，当unit为images时，吞吐量的单位为images/s。默认值：None，吞吐量的单位是samples/s。
 
 **返回**
 

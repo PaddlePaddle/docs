@@ -21,7 +21,7 @@ WeightNormParamAttr
 
   - **dim** (int，可选) - 进行归一化操作(norm)的切片所在维度，是小于权重Tensor rank的非负数。比如卷积的权重shape是 :math:`[cout, cin, kh, kw]` , rank是4，则dim可以选0,1,2,3；fc的权重shape是 :math:`[cout, cin]` ，rank是2，dim可以选0，1。 dim 默认为None，如果为None就对所有元素做归一化(norm)。
   - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-  - **initializer** （Initializer，可选) - 初始化参数方法，例如 ``initializer = fluid.nn.initializer.Constant(1.0)`` 。默认为None，如果为None则使用默认初始化函数 `Xavier()` 。
+  - **initializer** （Initializer，可选) - 初始化参数方法，例如 ``initializer = fluid.nn.initializer.Constant(1.0)``。默认为None，如果为None则使用默认初始化函数 `Xavier()` 。
   - **learning_rate** (float32，可选) - 学习率，优化过程 :math:`global\_lr∗parameter\_lr∗scheduler\_factor` 的学习速率，默认为1.0。
   - **regularizer** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_paddle_regularizer_L1Decay` 、 
     :ref:`cn_api_paddle_regularizer_L2Decay`，如果在 ``optimizer`` (例如 :ref:`cn_api_paddle_optimizer_SGD` ) 中也

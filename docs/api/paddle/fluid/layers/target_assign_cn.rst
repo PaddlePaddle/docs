@@ -10,7 +10,7 @@ target_assign
 
 对于每个实例，根据 ``match_indices`` 和 ``negative_indices`` 位置索引，给输入 ``out`` 和 ``out_weight`` 赋值。输入 ``input`` 和 ``negative_indices`` 均为2-D LoDTensor。假如 ``input`` 中每个实例的行偏移称作lod，该操作计算步骤如下：
 
-1.根据match_indices赋值:
+1. 根据match_indices赋值:
 
 .. code-block:: text
 
@@ -24,7 +24,7 @@ target_assign
         out[j][j][0 : K] = {mismatch_value, mismatch_value, ...}
         out_weight[i][j] = 0.
 
-2.如果提供neg_indices，则再次依据该输入赋值：
+2. 如果提供neg_indices，则再次依据该输入赋值：
 
 neg_indices中的第i个实例的索引称作neg_indice，则对于第i个实例：
 
@@ -45,7 +45,7 @@ neg_indices中的第i个实例的索引称作neg_indice，则对于第i个实例
 
 返回
 ::::::::::::
-返回一个元组（out,out_weight）。out是三维张量，维度为[N,P,K]，N和P与 ``matched_indices`` 中的N和P一致，K和输入X中的K一致。 ``out_weight`` 的维度为[N,P,1]。
+返回一个元组（out,out_weight）。out是三维张量，维度为[N,P,K]，N和P与 ``matched_indices`` 中的N和P一致，K和输入X中的K一致。``out_weight`` 的维度为[N,P,1]。
 
 返回类型
 ::::::::::::

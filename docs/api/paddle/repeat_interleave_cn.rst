@@ -6,7 +6,7 @@ repeat_interleave
 .. py:function:: paddle.repeat_interleave(x, repeats, axis=None, name=None)
 
 
-沿着指定轴 ``axis`` 对输入 ``x`` 进行复制，创建并返回到一个新的Tensor。当 ``repeats`` 为 ``1-D`` Tensor 时，``repeats``  长度必须和指定轴 ``axis`` 维度一致，``repeats`` 对应位置的值表示 ``x`` 对应位置元素需要复制的次数。 当 ``repeats`` 为 int 时，``x`` 沿指定轴 ``axis`` 上所有元素复制 ``repeats`` 次。
+沿着指定轴 ``axis`` 对输入 ``x`` 进行复制，创建并返回到一个新的Tensor。当 ``repeats`` 为 ``1-D`` Tensor 时，``repeats``  长度必须和指定轴 ``axis`` 维度一致，``repeats`` 对应位置的值表示 ``x`` 对应位置元素需要复制的次数。当 ``repeats`` 为 int 时，``x`` 沿指定轴 ``axis`` 上所有元素复制 ``repeats`` 次。
 
 参数
 :::::::::

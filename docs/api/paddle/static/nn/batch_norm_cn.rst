@@ -35,7 +35,7 @@ batch_norm
 moving_mean和moving_var是训练过程中统计得到的全局均值和方差，在预测或者评估中使用。
 `is_test` 参数只能用于测试或者评估阶段，如果想在训练阶段使用预训练模型的全局均值和方差的话，可以设置 `use_global_stats=True`.
 
-当use_global_stats = True时，:math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 不是一个minibatch的统计数据。 它们是全局（或运行）统计数据（moving_mean和moving_variance），通常来自预先训练好的模型。训练和测试（或预测）具有相同的行为：
+当use_global_stats = True时，:math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 不是一个minibatch的统计数据。它们是全局（或运行）统计数据（moving_mean和moving_variance），通常来自预先训练好的模型。训练和测试（或预测）具有相同的行为：
 
 .. math::
 
@@ -58,10 +58,10 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
     - **data_layout** （string) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
     - **in_place** （bool）- batch_norm的输出复用输入的tensor，可以节省显存。默认：False。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **moving_mean_name** （string）- moving_mean的名称，存储全局均值。如果将其设置为None, ``batch_norm`` 将随机命名全局均值；否则，``batch_norm`` 将命名全局均值为 ``moving_mean_name`` 。默认：None。
-    - **moving_variance_name** （string）- moving_variance的名称，存储全局变量。如果将其设置为None, ``batch_norm`` 将随机命名全局方差；否则，``batch_norm`` 将命名全局方差为 ``moving_variance_name`` 。默认：None。
+    - **moving_mean_name** （string）- moving_mean的名称，存储全局均值。如果将其设置为None, ``batch_norm`` 将随机命名全局均值；否则，``batch_norm`` 将命名全局均值为 ``moving_mean_name``。默认：None。
+    - **moving_variance_name** （string）- moving_variance的名称，存储全局变量。如果将其设置为None, ``batch_norm`` 将随机命名全局方差；否则，``batch_norm`` 将命名全局方差为 ``moving_variance_name``。默认：None。
     - **do_model_average_for_mean_and_var** （bool，默认False）- 是否为mean和variance做模型均值。
-    - **use_global_stats** （bool） – 是否使用全局均值和方差。 在预测或测试模式下，将use_global_stats设置为true或将is_test设置为true，并且行为是等效的。 在训练模式中，当设置use_global_stats为True时，在训练期间也使用全局均值和方差。默认：False。
+    - **use_global_stats** （bool） – 是否使用全局均值和方差。在预测或测试模式下，将use_global_stats设置为true或将is_test设置为true，并且行为是等效的。在训练模式中，当设置use_global_stats为True时，在训练期间也使用全局均值和方差。默认：False。
 
 返回
 ::::::::::::

@@ -11,7 +11,7 @@ data_norm
 
 **数据正则化层**
 
-可用作conv2d和fully_connected操作的正则化函数。 此层所需的数据格式为以下之一：
+可用作conv2d和fully_connected操作的正则化函数。此层所需的数据格式为以下之一：
 
 1. NHWC [batch, in_height, in_width, in_channels]
 2. NCHW [batch, in_channels, in_height, in_width]

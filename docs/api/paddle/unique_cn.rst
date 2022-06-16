@@ -5,7 +5,7 @@ unique
 
 .. py:function:: paddle.unique(x, return_index=False, return_inverse=False, return_counts=False, axis=None, dtype="int64", name=None)
 
-返回Tensor按升序排序后的独有元素。 
+返回Tensor按升序排序后的独有元素。
 
 参数
 ::::::::::::

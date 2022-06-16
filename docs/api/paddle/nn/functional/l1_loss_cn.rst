@@ -29,7 +29,7 @@ l1_loss
 :::::::::
     - **input** (Tensor): - 输入的Tensor，维度是[N, *]，其中N是batch size， `*` 是任意数量的额外维度。数据类型为：float32、float64、int32、int64。
     - **label** (Tensor): - 标签，维度是[N, *]，与 ``input`` 相同。数据类型为：float32、float64、int32、int64。
-    - **reduction** (str，可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'`` 。默认为 ``'mean'``，计算 `L1Loss` 的均值；设置为 ``'sum'`` 时，计算 `L1Loss` 的总和；设置为 ``'none'`` 时，则返回 `L1Loss`。
+    - **reduction** (str，可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'``。默认为 ``'mean'``，计算 `L1Loss` 的均值；设置为 ``'sum'`` 时，计算 `L1Loss` 的总和；设置为 ``'none'`` 时，则返回 `L1Loss`。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

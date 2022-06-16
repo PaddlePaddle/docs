@@ -22,7 +22,7 @@ minimize_bfgs
 参数
 :::::::::
     - **objective_func** (callable) - 待优化的目标函数，接受1维 Tensor 并返回一个标量。
-    - **initial_position** (Tensor) - 迭代的初始位置，与 ``objective_func`` 的输入形状相同。 
+    - **initial_position** (Tensor) - 迭代的初始位置，与 ``objective_func`` 的输入形状相同。
     - **max_iters** (int，可选) - BFGS迭代的最大次数。默认值：50。
     - **tolerance_grad** (float，可选) - 当梯度的范数小于该值时，终止迭代。当前使用正无穷范数。默认值：1e-7。
     - **tolerance_change** (float，可选) - 当函数值/x值/其他参数 两次迭代的改变量小于该值时，终止迭代。默认值：1e-9。

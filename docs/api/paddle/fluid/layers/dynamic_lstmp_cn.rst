@@ -11,13 +11,13 @@ dynamic_lstmp
 .. note::
     在实现的时候为了提升效率，用户必须将输入先进行线性映射，将维度为 [T, hidden_size] 的输入映射为 [T, 4×hidden_size] 输入，然后再传给该OP。
 
-该OP实现了LSTMP（LSTM Projected）层。LSTMP层在LSTM层之后有一个单独的的线性映射层。 -- `Sak, H., Senior, A., & Beaufays, F. (2014) <https://ai.google/research/pubs/pub43905.pdf>`_。
+该OP实现了LSTMP（LSTM Projected）层。LSTMP层在LSTM层之后有一个单独的的线性映射层。-- `Sak, H., Senior, A., & Beaufays, F. (2014) <https://ai.google/research/pubs/pub43905.pdf>`_。
 
 与标准的LSTM层相比，LSTMP多出来的线性映射层，用于从原始隐藏状态 :math:`h_t` 映射到较低维的状态 :math:`r_t`，
 从而减少参数总数和计算复杂度，特别是输出单元相对较大的情况下。
 
 该OP的默认实现方式为 diagonal/peephole 连接，参见 `Gers, F. A., & Schmidhuber, J. (2000) <ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf>`_。
-如果需要禁用 peephole 连接方法，将 use_peepholes 设为 False 即可。 
+如果需要禁用 peephole 连接方法，将 use_peepholes 设为 False 即可。
 
 该OP对于序列中每一个时间步的计算公式如下：
 
@@ -59,9 +59,9 @@ dynamic_lstmp
   - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
     说明:
-      1. 隐藏状态到隐藏状态（Hidden-hidden）权重 = :math:`\{ W_{cr},W_{ir},W_{fr},W_{or} \}`，维度为 [P, 4*hidden_size] ，P是投影大小
+      1。隐藏状态到隐藏状态（Hidden-hidden）权重 = :math:`\{ W_{cr},W_{ir},W_{fr},W_{or} \}`，维度为 [P, 4*hidden_size] ，P是投影大小
       
-      2. 投影（Projection）权重 = :math:`\{ W_{rh} \}`，维度为 [D, P]
+      2。投影（Projection）权重 = :math:`\{ W_{rh} \}`，维度为 [D, P]
 
   - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 

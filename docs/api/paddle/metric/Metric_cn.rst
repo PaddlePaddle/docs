@@ -20,7 +20,7 @@ Metric
 `compute` 接口的进阶用法:
 
 在 `compute` 中可以使用PaddlePaddle内置的算子进行评估器的状态，而不是通过
-Python/NumPy，这样可以加速计算。 `update` 接口将 `compute` 的输出作为
+Python/NumPy，这样可以加速计算。`update` 接口将 `compute` 的输出作为
 输入，内部采用Python/NumPy计算。
 
 `Metric` 计算流程如下 （在{}中的表示模型和评估器的计算）:
@@ -46,7 +46,7 @@ Python/NumPy，这样可以加速计算。 `update` 接口将 `compute` 的输�
 代码示例 1
 ::::::::::::
 
-以 计算正确率的 `Accuracy` 为例，该评估器的输入为 `pred` 和 `label`，可以在 `compute` 中通过 `pred` 和 `label`先计算正确预测的矩阵。 
+以 计算正确率的 `Accuracy` 为例，该评估器的输入为 `pred` 和 `label`，可以在 `compute` 中通过 `pred` 和 `label`先计算正确预测的矩阵。
 例如，预测结果包含10类，`pred` 的shape是[N, 10]，`label` 的shape是[N, 1]，N是batch size，我们需要计算top-1和top-5的准确率，
 可以在 `compute` 中计算每个样本的top-5得分，正确预测的矩阵的shape是[N, 5]。
 

@@ -242,7 +242,7 @@ add(y, name=None)
 add_(y, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_tensor_add` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_tensor_add` API，对输入 `x` 采用 Inplace 策略。
 
 add_n(inputs, name=None)
 :::::::::
@@ -489,7 +489,7 @@ ceil(name=None)
 ceil_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_ceil` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_ceil` API，对输入 `x` 采用 Inplace 策略。
 
 cholesky(upper=False, name=None)
 :::::::::
@@ -547,7 +547,7 @@ clip(min=None, max=None, name=None)
 clip_(min=None, max=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_tensor_clip` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_tensor_clip` API，对输入 `x` 采用 Inplace 策略。
 
 clone()
 :::::::::
@@ -856,7 +856,7 @@ exp(name=None)
 exp_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_exp` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_exp` API，对输入 `x` 采用 Inplace 策略。
 
 expand(shape, name=None)
 :::::::::
@@ -1010,7 +1010,7 @@ fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 fill_diagonal_tensor_(x, y, offset=0, dim1=0, dim2=1, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fill_diagonal_tensor` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fill_diagonal_tensor` API，对输入 `x` 采用 Inplace 策略。
 
 **代码示例**
     .. code-block:: python
@@ -1033,7 +1033,7 @@ flatten(start_axis=0, stop_axis=-1, name=None)
 flatten_(start_axis=0, stop_axis=-1, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_flatten` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_flatten` API，对输入 `x` 采用 Inplace 策略。
 
 flip(axis, name=None)
 :::::::::
@@ -1065,7 +1065,7 @@ floor(name=None)
 floor_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_floor` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_floor` API，对输入 `x` 采用 Inplace 策略。
 
 floor_divide(y, name=None)
 :::::::::
@@ -1738,7 +1738,7 @@ reciprocal(name=None)
 reciprocal_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_reciprocal` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_reciprocal` API，对输入 `x` 采用 Inplace 策略。
 
 register_hook(hook)
 :::::::::
@@ -1852,7 +1852,7 @@ round(name=None)
 round_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_round` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_round` API，对输入 `x` 采用 Inplace 策略。
 
 rsqrt(name=None)
 :::::::::
@@ -1866,7 +1866,7 @@ rsqrt(name=None)
 rsqrt_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_rsqrt` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_rsqrt` API，对输入 `x` 采用 Inplace 策略。
 
 scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 :::::::::
@@ -1880,7 +1880,7 @@ scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 scale_(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采用 Inplace 策略。
 
 scatter(index, updates, overwrite=True, name=None)
 :::::::::
@@ -1894,7 +1894,7 @@ scatter(index, updates, overwrite=True, name=None)
 scatter_(index, updates, overwrite=True, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_cn_scatter` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_cn_scatter` API，对输入 `x` 采用 Inplace 策略。
 
 scatter_nd(updates, shape, name=None)
 :::::::::
@@ -2027,7 +2027,7 @@ sqrt(name=None)
 sqrt_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_sqrt` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_sqrt` API，对输入 `x` 采用 Inplace 策略。
 
 square(name=None)
 :::::::::
@@ -2050,7 +2050,7 @@ squeeze(axis=None, name=None)
 squeeze_(axis=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_squeeze` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_tensor_squeeze` API，对输入 `x` 采用 Inplace 策略。
 
 stack(axis=0, name=None)
 :::::::::
@@ -2100,7 +2100,7 @@ subtract(y, name=None)
 subtract_(y, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_subtract` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_tensor_subtract` API，对输入 `x` 采用 Inplace 策略。
 
 sum(axis=None, dtype=None, keepdim=False, name=None)
 :::::::::
@@ -2132,7 +2132,7 @@ tanh(name=None)
 tanh_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_tan` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_tan` API，对输入 `x` 采用 Inplace 策略。
 
 tile(repeat_times, name=None)
 :::::::::
@@ -2275,7 +2275,7 @@ unsqueeze(axis, name=None)
 unsqueeze_(axis, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采用 Inplace 策略。
 
 unstack(axis=0, num=None)
 :::::::::
@@ -2345,7 +2345,7 @@ lerp(x, y, weight, name=None)
 lerp_(y, weight, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_lerp` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_tensor_lerp` API，对输入 `x` 采用 Inplace 策略。
 
 
 is_complex()

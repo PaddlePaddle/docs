@@ -49,7 +49,7 @@ sequence_softmax
 参数
 ::::::::::::
 
-    - **input** (Variable) - 维度为 :math:`[N, 1]` 或者 :math:`[N]` 的LoDTensor，推荐使用 :math:`[N]` 。支持的数据类型：float32，float64。
+    - **input** (Variable) - 维度为 :math:`[N, 1]` 或者 :math:`[N]` 的LoDTensor，推荐使用 :math:`[N]`。支持的数据类型：float32，float64。
     - **use_cudnn** (bool，可选) - 是否用cudnn核，仅当安装cudnn版本的paddle库且使用gpu训练或推理的时候生效。支持的数据类型：bool型。默认值为False。
     - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 

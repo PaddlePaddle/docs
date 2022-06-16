@@ -5,7 +5,7 @@ maxout
 
 .. py:function:: paddle.nn.functional.maxout(x, groups, axis=1, name=None)
 
-maxout激活层.
+maxout激活层。
 
 假设输入形状为(N, Ci, H, W)，输出形状为(N, Co, H, W)，则 :math:`Co=Ci/groups` 运算公式如下:
 

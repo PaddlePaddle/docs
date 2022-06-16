@@ -58,7 +58,7 @@ one_hot
     allow_out_of_range=False
 
   输出：抛出 Illegal value 的异常
-    X中第2维的值是5，超过了depth，而allow_out_of_range=False表示不允许超过，因此抛异常。  
+    X中第2维的值是5，超过了depth，而allow_out_of_range=False表示不允许超过，因此抛异常。
 
 
 参数

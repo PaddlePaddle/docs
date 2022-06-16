@@ -5,7 +5,7 @@ MultiplicativeDecay
 
 .. py:class:: paddle.optimizer.lr.MultiplicativeDecay(learning_rate, lr_lambda, last_epoch=-1, verbose=False)
 
-该接口提供 ``lambda`` 函数设置学习率的策略。 ``lr_lambda`` 为一个 ``lambda`` 函数，其通过 ``epoch`` 计算出一个因子，该因子会乘以当前学习率。
+该接口提供 ``lambda`` 函数设置学习率的策略。``lr_lambda`` 为一个 ``lambda`` 函数，其通过 ``epoch`` 计算出一个因子，该因子会乘以当前学习率。
 
 衰减过程可以参考以下代码：
 

@@ -15,7 +15,7 @@ Executor支持单GPU、多GPU以及CPU运行。
 参数
 ::::::::::::
 
-    - **place** (paddle.CPUPlace()|paddle.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本设置默认的运行设备。当安装的Paddle为CPU版时，默认运行设置会设置成 `CPUPlace()`，而当Paddle为GPU版时，默认运行设备会设置成 `CUDAPlace(0)` 。默认值为None。
+    - **place** (paddle.CPUPlace()|paddle.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本设置默认的运行设备。当安装的Paddle为CPU版时，默认运行设置会设置成 `CPUPlace()`，而当Paddle为GPU版时，默认运行设备会设置成 `CUDAPlace(0)`。默认值为None。
     
 
 .. note::
@@ -127,8 +127,8 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
 返回fetch_list中指定的变量值。
 
 .. note::
-     1. 如果是多卡训练，并且feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
-     2. 如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
+     1。如果是多卡训练，并且feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
+     2。如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
 
 
 **代码示例 1**
@@ -231,7 +231,7 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
 infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 '''''''''
 
-infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在分布式训练中，推进梯度将在infer_from_dataset中禁用。 infer_from_dataset（）可以非常容易地用于多线程中的评估。
+infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在分布式训练中，推进梯度将在infer_from_dataset中禁用。infer_from_dataset（）可以非常容易地用于多线程中的评估。
 
 **参数**
   
@@ -273,7 +273,7 @@ infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在�
 train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 '''''''''
 
-从预定义的数据集中训练。 数据集在paddle.fluid.dataset中定义。 给定程序（或编译程序），train_from_dataset将使用数据集中的所有数据样本。 输入范围可由用户给出。 默认情况下，范围是global_scope()。训练中的线程总数是thread。 训练中使用的线程数将是数据集中threadnum的最小值，同时也是此接口中线程的值。 可以设置debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。
+从预定义的数据集中训练。数据集在paddle.fluid.dataset中定义。给定程序（或编译程序），train_from_dataset将使用数据集中的所有数据样本。输入范围可由用户给出。默认情况下，范围是global_scope()。训练中的线程总数是thread。训练中使用的线程数将是数据集中threadnum的最小值，同时也是此接口中线程的值。可以设置debug，以便执行器显示所有算子的运行时间和当前训练任务的吞吐量。
 
 .. note::
 train_from_dataset将销毁每次运行在executor中创建的所有资源。
