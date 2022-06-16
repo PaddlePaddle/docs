@@ -3,7 +3,7 @@
 Model
 -------------------------------
 
-.. py:class:: paddle.Model()
+.. py:class:: paddle.Model(network, inputs=None, labels=None)
 
 ``Model`` 对象是一个具备训练、测试、推理的神经网络。该对象同时支持静态图和动态图模式，飞桨框架默认为动态图模式，通过 ``paddle.enable_static()`` 来切换到静态图模式。需要注意的是，需要在实例化 ``Model`` 对象之前完成切换。
 
@@ -232,7 +232,7 @@ dict, key是 ``prepare`` 时 Metric 的的名称，value 是该 Metric 的值。
 COPY-FROM: paddle.Model:code-example-evaluate
 
 
-predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=None)
+predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, verbose=1, callbacks=None)
 '''''''''
 
 在输入数据上，预测模型的输出。
@@ -243,6 +243,7 @@ predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=N
     - **batch_size** (int，可选) - 训练数据或评估数据的批大小，当 ``test_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：1。
     - **num_workers** (int，可选) - 启动子进程用于读取数据的数量。当 ``test_data`` 为 ``DataLoader`` 的实例时，该参数会被忽略。默认值：True。
     - **stack_outputs** (bool，可选) - 是否将输出进行堆叠。比如对于单个样本输出形状为 ``[X, Y]``，``test_data`` 包含 N 个样本的情况，如果 ``stack_outputs`` 设置为 True，那么输出的形状将会是 ``[N, X, Y]``，如果 ``stack_outputs`` 设置为 False，那么输出的形状将会是 ``[[X, Y], [X, Y], ..., [X, Y]]``。将 ``stack_outputs`` 设置为 False 适用于输出为 LoDTensor 的情况，如果输出不包含 LoDTensor，建议将其设置为 True。默认值：False。
+    - **verbose** (int，可选) - 可视化的模型，必须为 0，1，2。当设定为 0 时，不打印日志，设定为 1 时，使用进度条的方式打印日志，设定为 2 时，一行一行地打印日志。默认值：1。
     - **callbacks** (Callback|list[Callback]|None，可选) -  ``Callback`` 的一个实例或实例列表。默认值：None。
 
 **返回**
@@ -254,7 +255,7 @@ predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, callbacks=N
 COPY-FROM: paddle.Model:code-example-predict
 
 
-summary(input_size=None, batch_size=None, dtype=None)
+summary(input_size=None, dtype=None)
 '''''''''
 
 打印网络的基础结构和参数信息。
@@ -262,7 +263,7 @@ summary(input_size=None, batch_size=None, dtype=None)
 **参数**
 
     - **input_size** (tuple|InputSpec|list[tuple|InputSpec]，可选) - 输入张量的大小。如果网络只有一个输入，那么该值需要设定为 tuple 或 InputSpec。如果模型有多个输入。那么该值需要设定为 list[tuple|InputSpec]，包含每个输入的 shape 。如果该值没有设置，会将 ``self._inputs`` 作为输入。默认值：None。
-    - **dtypes** (str，可选) - 输入张量的数据类型，如果没有给定，默认使用 ``float32`` 类型。默认值：None。
+    - **dtype** (str，可选) - 输入张量的数据类型，如果没有给定，默认使用 ``float32`` 类型。默认值：None。
 
 **返回**
 
