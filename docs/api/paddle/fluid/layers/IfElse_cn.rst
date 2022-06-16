@@ -9,7 +9,7 @@ IfElse
 
 
 
-该类用于实现IfElse分支控制功能， IfElse包含两个Block，true_block，false_block，IfElse会将满足True或False条件的数据分别放入不同的block运行。    
+该类用于实现IfElse分支控制功能，IfElse包含两个Block，true_block，false_block，IfElse会将满足True或False条件的数据分别放入不同的block运行。    
 
 cond是一个shape为[N, 1]、数据类型为bool的2-D tensor，表示输入数据对应部分的执行条件。
 
@@ -66,7 +66,7 @@ IfElse OP同其他的OP在使用上有一定的区别，可能会对一些用户
 ::::::::::::
 
     - **cond** (Variable)- cond是一个shape为[N, 1]、数据类型为bool的2-D tensor，表示N个输入数据的对应的执行条件。数据类型为bool。
-    - **Name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **Name** (str，可选)- 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 **返回：**    
 

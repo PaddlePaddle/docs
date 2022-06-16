@@ -16,10 +16,10 @@ label_smooth
 
             \tilde{y_k} = (1 - \epsilon) * y_k + \epsilon * \mu_k,
 
-其中 :math:`1-\epsilon` 和 :math:`\epsilon` 分别是权重， :math:`\tilde{y_k}` 是平滑后的标签，通常 :math:`\mu` 使用均匀分布。
+其中 :math:`1-\epsilon` 和 :math:`\epsilon` 分别是权重，:math:`\tilde{y_k}` 是平滑后的标签，通常 :math:`\mu` 使用均匀分布。
 
 
-关于更多标签平滑的细节， `查看论文  <https://arxiv.org/abs/1512.00567>`_ 。
+关于更多标签平滑的细节，`查看论文  <https://arxiv.org/abs/1512.00567>`_ 。
 
 
 参数
@@ -33,7 +33,7 @@ label_smooth
 
 返回
 ::::::::::::
-为平滑后标签的 ``Tensor`` ，数据类型为dtype设置的数据类型，维度也与输入的label参数维度相同。
+为平滑后标签的 ``Tensor``，数据类型为dtype设置的数据类型，维度也与输入的label参数维度相同。
 
 返回类型
 ::::::::::::

@@ -40,7 +40,7 @@ ls_dir(fs_path)
 
 **返回**
 
-    - Tuple， 一个包含所有子目录和文件名的2-Tuple，格式形如: ([subdirname1, subdirname1, ...], [filename1, filename2, ...])。
+    - Tuple，一个包含所有子目录和文件名的2-Tuple，格式形如: ([subdirname1, subdirname1, ...], [filename1, filename2, ...])。
 
 **代码示例**
 
@@ -113,7 +113,7 @@ is_file(fs_path)
 
 **返回**
 
-    - Bool：若当前路径存在且是一个文件，返回 `True` ，反之则返回 `False` 。
+    - Bool：若当前路径存在且是一个文件，返回 `True`，反之则返回 `False` 。
 
 **代码示例**
 
@@ -140,7 +140,7 @@ is_dir(fs_path)
 
 **返回**
 
-    - Bool：若当前路径存在且是一个目录，返回 `True` ，反之则返回 `False` 。
+    - Bool：若当前路径存在且是一个目录，返回 `True`，反之则返回 `False` 。
 
 **代码示例**
 
@@ -167,7 +167,7 @@ is_exist(fs_path)
 
 **返回**
 
-    - Bool：若当前路径存在返回 `True` ，反之则返回 `False` 。
+    - Bool：若当前路径存在返回 `True`，反之则返回 `False` 。
 
 **代码示例**
 

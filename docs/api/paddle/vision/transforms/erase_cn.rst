@@ -16,7 +16,7 @@ erase
     - h (int) - 擦除区域的高。
     - w (int) - 擦除区域的宽。
     - v (paddle.Tensor|np.array) - 用于替换擦除区域中像素的值。当输入为np.array或者PIL.Image类型时，需要为np.array类型。
-    - inplace (bool, 可选) - 该变换是否在原地操作。默认值：False。
+    - inplace (bool，可选) - 该变换是否在原地操作。默认值：False。
 
 返回
 :::::::::

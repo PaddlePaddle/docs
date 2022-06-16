@@ -10,7 +10,7 @@ sequence_mask
 
 该层根据输入 ``x`` 和 ``maxlen`` 输出一个掩码，数据类型为 ``dtype`` 。
 
-假设 x 是一个形状为 ``[d_1, d_2，…, d_n]`` 的张量， 则输出 y 是一个形状为 ``[d_1, d_2，… ，d_n, maxlen]`` 的掩码，其中:
+假设 x 是一个形状为 ``[d_1, d_2，…, d_n]`` 的张量，则输出 y 是一个形状为 ``[d_1, d_2，… ，d_n, maxlen]`` 的掩码，其中:
 
 .. math::
 
@@ -42,7 +42,7 @@ sequence_mask
 
 返回
 :::::::::
-mask张量，Tensor，形状为 ``[d_1, d_2，… ，d_n, maxlen]`` ，数据类型由 ``dtype`` 指定，支持float32、float64、int32和int64，默认为int64。
+mask张量，Tensor，形状为 ``[d_1, d_2，… ，d_n, maxlen]``，数据类型由 ``dtype`` 指定，支持float32、float64、int32和int64，默认为int64。
 
 代码示例
 :::::::::

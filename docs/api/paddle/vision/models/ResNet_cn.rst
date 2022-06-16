@@ -12,7 +12,7 @@ ResNet
   - **Block** (BasicBlock|BottleneckBlock) - 模型的残差模块。
   - **depth** (int，可选) - resnet模型的深度。默认值：50。
   - **width** (int，可选) - resnet模型的基础宽度。默认值：64。
-  - **num_classes** (int, 可选) - 最后一个全连接层输出的维度。如果该值小于0，则不定义最后一个全连接层。默认值：1000。
+  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于0，则不定义最后一个全连接层。默认值：1000。
   - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值：True。
 
 返回

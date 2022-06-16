@@ -18,7 +18,7 @@ broadcast_tensors
 
 返回
 :::::::::
-``list(Tensor)`` ，一组Broadcast后的 ``Tensor``，其顺序与 ``input`` 一一对应。
+``list(Tensor)``，一组Broadcast后的 ``Tensor``，其顺序与 ``input`` 一一对应。
 
 代码示例
 :::::::::

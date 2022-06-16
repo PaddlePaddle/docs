@@ -5,7 +5,7 @@ RandomSampler
 
 .. py:class:: paddle.io.RandomSampler(data_source=None, replacement=False, num_samples=None, generator=None)
 
-随机迭代样本，产生重排下标，如果 ``replacement = False`` ，则会采样整个数据集；如果 ``replacement = True`` ，则会按照 ``num_samples`` 指定的样本数采集。
+随机迭代样本，产生重排下标，如果 ``replacement = False``，则会采样整个数据集；如果 ``replacement = True``，则会按照 ``num_samples`` 指定的样本数采集。
 
 参数
 :::::::::
@@ -16,7 +16,7 @@ RandomSampler
 
 返回
 :::::::::
-RandomSampler, 返回随机采样下标的采样器
+RandomSampler，返回随机采样下标的采样器
 
 
 代码示例

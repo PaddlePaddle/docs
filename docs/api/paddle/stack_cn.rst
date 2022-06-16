@@ -8,7 +8,7 @@ stack
 
 
 沿 axis 轴对输入 x 进行堆叠操作。要求所有输入 Tensor 有相同的 Shape 和数据类型。
-例如，输入 x 为 N 个 Shape 为 [A, B]的 Tensor，如果 ``axis==0`` ，则输出 Tensor 的 Shape 为 [N, A, B]；如果 ``axis==1`` ，则输出 Tensor 的 Shape 为 [A, N, B]；以此类推。
+例如，输入 x 为 N 个 Shape 为 [A, B]的 Tensor，如果 ``axis==0``，则输出 Tensor 的 Shape 为 [N, A, B]；如果 ``axis==1``，则输出 Tensor 的 Shape 为 [A, N, B]；以此类推。
 
 .. code-block:: text
 

@@ -19,7 +19,7 @@ TripletMarginLoss
     d(x_i, y_i) = \left\lVert {\bf x}_i - {\bf y}_i \right\rVert_p
 
 
-``p`` 为距离函数的范数。 ``margin`` 为（input，positive）与（input，negative）的距离间隔， ``swap`` 为True时，会比较（input，negative）和（positive，negative）的大小，并将（input，negative）换为其中较小的值，内容详见论文 `Learning shallow convolutional feature descriptors with triplet losses <http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf>`_。
+``p`` 为距离函数的范数。 ``margin`` 为（input，positive）与（input，negative）的距离间隔，``swap`` 为True时，会比较（input，negative）和（positive，negative）的大小，并将（input，negative）换为其中较小的值，内容详见论文 `Learning shallow convolutional feature descriptors with triplet losses <http://www.bmva.org/bmvc/2016/papers/paper119/paper119.pdf>`_。
 
 参数
 :::::::::
@@ -32,10 +32,10 @@ TripletMarginLoss
 
 形状
 :::::::::
-    - **input** (Tensor) - :math:`[N, *]` ，其中 N 是 batch_size， `*` 是任意其他维度。数据类型是 float32、float64。
-    - **positive** (Tensor) - :math:`[N, *]` ，标签 ``positive`` 的维度、数据类型与输入 ``input`` 相同。
-    - **negative** (Tensor) - :math:`[N, *]` ，标签 ``negative`` 的维度、数据类型与输入 ``input`` 相同。
-    - **output** (Tensor) - 输出的Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]` ，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[1]` 。
+    - **input** (Tensor) - :math:`[N, *]`，其中 N 是 batch_size， `*` 是任意其他维度。数据类型是 float32、float64。
+    - **positive** (Tensor) - :math:`[N, *]`，标签 ``positive`` 的维度、数据类型与输入 ``input`` 相同。
+    - **negative** (Tensor) - :math:`[N, *]`，标签 ``negative`` 的维度、数据类型与输入 ``input`` 相同。
+    - **output** (Tensor) - 输出的Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[1]` 。
 
 返回
 :::::::::

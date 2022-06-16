@@ -10,7 +10,7 @@ all
 参数
 :::::::::
     - **x** （Tensor）- 输入变量为多维Tensor，数据类型为bool。
-    - **axis** （int | list | tuple ，可选）- 计算逻辑与运算的维度。如果为None，则计算所有元素的逻辑与并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(x),rank(x)]` 范围内。如果 :math:`axis [i] <0` ，则维度将变为 :math:`rank+axis[i]` ，默认值为None。
+    - **axis** （int | list | tuple，可选）- 计算逻辑与运算的维度。如果为None，则计算所有元素的逻辑与并返回包含单个元素的Tensor变量，否则必须在  :math:`[−rank(x),rank(x)]` 范围内。如果 :math:`axis [i] <0`，则维度将变为 :math:`rank+axis[i]`，默认值为None。
     - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留减小的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

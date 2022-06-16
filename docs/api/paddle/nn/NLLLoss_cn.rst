@@ -5,9 +5,9 @@ NLLLoss
 
 .. py:class:: paddle.nn.NLLLoss(weight=None, ignore_index=-100, reduction='mean', name=None)
 
-该接口可创建一个NLLLoss可调用类，计算输入x和标签label间的 `negative log likelihood loss` 损失 ，可用于训练一个 `n` 类分类器。
+该接口可创建一个NLLLoss可调用类，计算输入x和标签label间的 `negative log likelihood loss` 损失，可用于训练一个 `n` 类分类器。
 
-如果提供 `weight` 参数的话，它是一个 `1-D` 的tensor, 里面的值对应类别的权重。当你的训练集样本
+如果提供 `weight` 参数的话，它是一个 `1-D` 的tensor，里面的值对应类别的权重。当你的训练集样本
 不均衡的话，使用这个参数是非常有用的。
 
 该损失函数的数学计算公式如下：
@@ -32,16 +32,16 @@ NLLLoss
 
 参数
 :::::::::
-    - **weight** (Tensor, 可选): - 手动指定每个类别的权重。其默认为 `None` 。如果提供该参数的话，长度必须为 `num_classes` 。数据类型为float32或float64。
-    - **ignore_index** (int64, 可选): - 指定一个忽略的标签值，此标签值不参与计算。默认值为-100。数据类型为int64。
-    - **reduction** (str, 可选): - 指定应用于输出结果的计算方式，可选值有: `none`, `mean`, `sum` 。默认为 `mean` ，计算 `mini-batch` loss均值。设置为 `sum` 时，计算 `mini-batch` loss的总和。设置为 `none` 时，则返回loss Tensor。数据类型为string。
+    - **weight** (Tensor，可选): - 手动指定每个类别的权重。其默认为 `None` 。如果提供该参数的话，长度必须为 `num_classes` 。数据类型为float32或float64。
+    - **ignore_index** (int64，可选): - 指定一个忽略的标签值，此标签值不参与计算。默认值为-100。数据类型为int64。
+    - **reduction** (str，可选): - 指定应用于输出结果的计算方式，可选值有: `none`, `mean`, `sum` 。默认为 `mean`，计算 `mini-batch` loss均值。设置为 `sum` 时，计算 `mini-batch` loss的总和。设置为 `none` 时，则返回loss Tensor。数据类型为string。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::
-    - **input** (Tensor): - 输入 `Tensor`, 其形状为 :math:`[N, C]` , 其中 `C` 为类别数。但是对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_K]` 。数据类型为float32或float64。
-    - **label** (Tensor): - 输入 `input` 对应的标签值。其形状为 :math:`[N,]` 或者 :math:`[N, d_1, d_2, ..., d_K]`, 数据类型为int64。
-    - **output** (Tensor): - 输入 `input` 和 `label` 间的 `negative log likelihood loss` 损失。如果 `reduction` 为 `'none'` ，则输出Loss形状为 `[N, *]` 。 如果 `reduction` 为 `'sum'` 或者 `'mean'` ，则输出Loss形状为 `'[1]'` 。
+    - **input** (Tensor): - 输入 `Tensor`，其形状为 :math:`[N, C]`，其中 `C` 为类别数。但是对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_K]` 。数据类型为float32或float64。
+    - **label** (Tensor): - 输入 `input` 对应的标签值。其形状为 :math:`[N,]` 或者 :math:`[N, d_1, d_2, ..., d_K]`，数据类型为int64。
+    - **output** (Tensor): - 输入 `input` 和 `label` 间的 `negative log likelihood loss` 损失。如果 `reduction` 为 `'none'`，则输出Loss形状为 `[N, *]` 。 如果 `reduction` 为 `'sum'` 或者 `'mean'`，则输出Loss形状为 `'[1]'` 。
 
 代码示例
 :::::::::

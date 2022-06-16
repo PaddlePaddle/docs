@@ -10,7 +10,7 @@ gather_nd
 .. math::
     output[(i_0, ..., i_{K-2})] = x[index[(i_0, ..., i_{K-2})]]
 
-显然， :code:`index.shape[-1] <= x.rank` 并且输出张量的维度是 :code:`index.shape[:-1] + x.shape[index.shape[-1]:]` 。 
+显然，:code:`index.shape[-1] <= x.rank` 并且输出张量的维度是 :code:`index.shape[:-1] + x.shape[index.shape[-1]:]` 。 
 
 示例：
 

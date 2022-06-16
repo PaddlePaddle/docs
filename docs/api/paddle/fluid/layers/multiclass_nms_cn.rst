@@ -41,7 +41,7 @@ multiclass_nms
 
     - **bboxes**  (Variable) – 支持两种类型的边界框（bounding box）:
 
-      1. （Tensor）形为[N，M，4 或 8、16、24、32]的3-D张量，表示将预测M个边界框的预测位置， N是批大小（batch size）。当边界框(bounding box)大小等于4时，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。数据类型为float32或float64。
+      1. （Tensor）形为[N，M，4 或 8、16、24、32]的3-D张量，表示将预测M个边界框的预测位置，N是批大小（batch size）。当边界框(bounding box)大小等于4时，每个边界框有四个坐标值，布局为[xmin，ymin，xmax，ymax]。数据类型为float32或float64。
       2. （LoDTensor）形状为[M，C，4] M是边界框的个数，C是类别个数。数据类型为float32或float64
 
     - **scores**  (Variable) – 支持两种类型的分数：
@@ -49,7 +49,7 @@ multiclass_nms
       1. （Tensor）具有形状[N，C，M]的3-D张量表示预测的置信度。 N是批量大小 batch size，C是种类数目，M是边界框bounding box的数量。对于每个类别，存在对应于M个边界框的总M个分数。请注意，M等于bboxes的第二维。数据类型为float32或float64。
       2. （LoDTensor）具有形状[M，C]的2-D LoDTensor。 M是bbox的数量，C是种类数目。在这种情况下，输入bboxes应该是形为[M，C，4]的第二种情况。数据类型为float32或float64。
 
-    - **background_label**  (int) – 背景标签（类别）的索引，如果设置为 0 ，则忽略背景标签（类别）。如果设置为 -1 ，则考虑所有类别。默认值：0
+    - **background_label**  (int) – 背景标签（类别）的索引，如果设置为 0，则忽略背景标签（类别）。如果设置为 -1，则考虑所有类别。默认值：0
     - **score_threshold**  (float) – 过滤掉低置信度分数的边界框的阈值。如果没有提供，请考虑所有边界框。
     - **nms_top_k**  (int) – 基于 score_threshold 的过滤检测后，根据置信度保留的最大检测次数。
     - **nms_threshold**  (float) – 在NMS中用于剔除检测框IOU的阈值，默认值：0.3 。

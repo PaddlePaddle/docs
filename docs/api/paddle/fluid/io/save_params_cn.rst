@@ -20,7 +20,7 @@ save_params
 参数
 ::::::::::::
 
- - **executor**  (Executor) – 用于保存参数的 ``executor`` ，详见 :ref:`api_guide_executor` 。
+ - **executor**  (Executor) – 用于保存参数的 ``executor``，详见 :ref:`api_guide_executor` 。
  - **dirname**  (str) – 指定保存参数的文件目录。
  - **main_program**  (Program，可选) – 需要保存参数的Program（ ``Program`` 含义详见 :ref:`api_guide_Program` ）。如果为None，则使用default_main_Program 。默认值为None。
  - **filename**  (str，可选) – 保存参数的文件名称。若需要将参数保存到多个独立的文件中，请设置 ``filename=None`` 。默认值为None。

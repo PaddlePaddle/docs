@@ -44,8 +44,8 @@ dynamic_lstmp
       - :math:`h_{t-1}, c_{t-1}, r_{t-1}` 分别表示前一个时间步的 hidden 状态，cell 状态和循环映射输出状态
       - :math:`\widetilde{c_t}` 表示候选的 cell 状态
       - :math:`i_t` ，:math:`f_t` 和 :math:`o_t` 分别为 input gate，forget gate，output gate
-      - :math:`W` 表示 weight （例如， :math:`W_{ix}` 是在计算 input gate :math:`i_t` 时，对输入 :math:`x_{t}` 做线性变换的 weight）
-      - :math:`b` 表示 bias （例如， :math:`b_{i}` 是 input gate 的 bias）
+      - :math:`W` 表示 weight （例如，:math:`W_{ix}` 是在计算 input gate :math:`i_t` 时，对输入 :math:`x_{t}` 做线性变换的 weight）
+      - :math:`b` 表示 bias （例如，:math:`b_{i}` 是 input gate 的 bias）
       - :math:`\sigma` 表示 gate 的非线性激活函数，默认为 sigmoid
       - :math:`act_g, act_h, \overline{act_h}` 分别表示 cell 输入 cell 输出和映射输出的非线性激活函数，默认为 tanh
       - :math:`\odot` 表示矩阵的 Hadamard product，即对两个维度相同的矩阵，将相同位置的元素相乘，得到另一个维度相同的矩阵
@@ -82,8 +82,8 @@ dynamic_lstmp
   - **proj_activation** (str，可选) - 投影输出的激活函数。可选值包括 sigmoid，tanh，relu，identity。默认值为 tanh。
   - **dtype** (str，可选) - 数据类型。可选值包括 float32，float64。默认值为 float32。
   - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-  - **h_0** ( :ref:`api_guide_Variable` ，可选) 维度为 :math:`[batch\_size, hidden\_size]` 的多维 Tensor。如果为 None，该OP会自动设置为全0的向量。默认值为None。
-  - **c_0** ( :ref:`api_guide_Variable` ，可选) 维度为 :math:`[batch\_size, hidden\_size]` 的多维 Tensor。如果为 None，该OP会自动设置为全0的向量；:math:`h_0, c_0` 如果要设置为None，必须同时为None。默认值为None。
+  - **h_0** ( :ref:`api_guide_Variable`，可选) 维度为 :math:`[batch\_size, hidden\_size]` 的多维 Tensor。如果为 None，该OP会自动设置为全0的向量。默认值为None。
+  - **c_0** ( :ref:`api_guide_Variable`，可选) 维度为 :math:`[batch\_size, hidden\_size]` 的多维 Tensor。如果为 None，该OP会自动设置为全0的向量；:math:`h_0, c_0` 如果要设置为None，必须同时为None。默认值为None。
   - **cell_clip** (float，可选) - 如果该参数不为None，则在单元输出激活之前，单元状态将被此值剪裁。默认值为None。
   - **proj_clip** (float，可选) - 如果 num_proj > 0 并且 proj_clip 不为None，那么将投影值沿元素方向剪切到[-proj_clip，proj_clip]内。默认值为None。
 

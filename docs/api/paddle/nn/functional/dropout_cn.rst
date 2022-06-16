@@ -5,22 +5,22 @@ dropout
 
 .. py:function:: paddle.nn.functional.dropout(x, p=0.5, axis=None, training=True, mode="upscale_in_train”, name=None)
 
-Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p` ，在训练过程中随机将一些神经元输出设置为0，通过阻止神经元节点间的相关性来减少过拟合。
+Dropout是一种正则化手段，该算子根据给定的丢弃概率 `p`，在训练过程中随机将一些神经元输出设置为0，通过阻止神经元节点间的相关性来减少过拟合。
 
 参数
 :::::::::
- - **x** (Tensor): 输入的多维 `Tensor` ，数据类型为：float32、float64。
+ - **x** (Tensor): 输入的多维 `Tensor`，数据类型为：float32、float64。
  - **p** (float): 将输入节点置0的概率，即丢弃概率。默认: 0.5。
  - **axis** (int|list): 指定对输入 `Tensor` 进行dropout操作的轴。默认: None。
  - **training** (bool): 标记是否为训练阶段。 默认: True。
  - **mode** (str): 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认: 'upscale_in_train'。计算方法如下:
 
-    1. upscale_in_train, 在训练时增大输出结果。
+    1. upscale_in_train，在训练时增大输出结果。
 
        - train: out = input * mask / ( 1.0 - p )
        - inference: out = input
 
-    2. downscale_in_infer, 在预测时减小输出结果
+    2. downscale_in_infer，在预测时减小输出结果
 
        - train: out = input * mask
        - inference: out = input * (1.0 - p)
@@ -50,7 +50,7 @@ axis参数的默认值为None。当 ``axis=None`` 时，dropout的功能为: 对
    将输入x和生成的mask点积，就得到了随机丢弃部分元素之后的结果:
    [[0 2 0]
     [4 0 6]]
-   假定dropout的概率使用默认值，即 ``p=0.5`` ，若mode参数使用默认值，即 ``mode='upscale_in_train'`` ，
+   假定dropout的概率使用默认值，即 ``p=0.5``，若mode参数使用默认值，即 ``mode='upscale_in_train'`` ，
    则在训练阶段，最终增大后的结果为:
    [[0 4 0 ]
     [8 0 12]]
@@ -80,7 +80,7 @@ axis参数的默认值为None。当 ``axis=None`` 时，dropout的功能为: 对
    假定x是形状为2*3的2维Tensor:
    [[1 2 3]
     [4 5 6]]
-   (1) 若 ``axis=[0]`` ， 则表示只在第0个维度做dropout。这时生成mask的形状为2*1。
+   (1) 若 ``axis=[0]``，则表示只在第0个维度做dropout。这时生成mask的形状为2*1。
      例如，我们可能会得到这样的mask:
      [[1]
       [0]]
@@ -92,7 +92,7 @@ axis参数的默认值为None。当 ``axis=None`` 时，dropout的功能为: 对
       [0 0 0]]
      之后依据其它参数的设置，得到最终的输出结果。
 
-   (2) 若 ``axis=[1]`` ，则表示只在第1个维度做dropout。这时生成的mask形状为1*3。
+   (2) 若 ``axis=[1]``，则表示只在第1个维度做dropout。这时生成的mask形状为1*3。
      例如，我们可能会得到这样的mask:
      [[1 0 1]]
      这个1*3的mask在和x做点积的时候，会首先广播成一个2*3的矩阵:
@@ -101,11 +101,11 @@ axis参数的默认值为None。当 ``axis=None`` 时，dropout的功能为: 对
      点积所得结果为:
      [[1 0 3]
       [4 0 6]]
-   (3) 若 ``axis=[0, 1]`` ，则表示在第0维和第1维上做dropout。此时与默认设置 ``axis=None`` 的作用一致。
+   (3) 若 ``axis=[0, 1]``，则表示在第0维和第1维上做dropout。此时与默认设置 ``axis=None`` 的作用一致。
 
-若输入x为4维张量，形状为 `NCHW` , 当设置 ``axis=[0,1]`` 时，则只会在通道 `N` 和 `C` 上做dropout，通道 `H` 和 `W` 的元素是绑定在一起的，即： ``paddle.nn.functional.dropout(x, p, axis=[0,1])`` ， 此时对4维张量中的某个2维特征图(形状 `HW` )，或者全部置0，或者全部保留，这便是dropout2d的实现。详情参考 :ref:`cn_api_nn_functional_dropout2d` 。
+若输入x为4维张量，形状为 `NCHW`，当设置 ``axis=[0,1]`` 时，则只会在通道 `N` 和 `C` 上做dropout，通道 `H` 和 `W` 的元素是绑定在一起的，即： ``paddle.nn.functional.dropout(x, p, axis=[0,1])``，此时对4维张量中的某个2维特征图(形状 `HW` )，或者全部置0，或者全部保留，这便是dropout2d的实现。详情参考 :ref:`cn_api_nn_functional_dropout2d` 。
 
-类似的，若输入x为5维张量，形状为 `NCDHW` , 当设置 ``axis=[0,1]`` 时，便可实现dropout3d。详情参考 :ref:`cn_api_nn_functional_dropout3d` 。
+类似的，若输入x为5维张量，形状为 `NCDHW`，当设置 ``axis=[0,1]`` 时，便可实现dropout3d。详情参考 :ref:`cn_api_nn_functional_dropout3d` 。
 
 .. note::
    关于广播(broadcasting)机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。

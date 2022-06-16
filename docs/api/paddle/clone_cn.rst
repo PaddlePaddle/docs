@@ -16,7 +16,7 @@ clone
 
 返回
 :::::::::
-``Tensor`` ，从输入拷贝的Tensor
+``Tensor``，从输入拷贝的Tensor
 
 代码示例
 :::::::::

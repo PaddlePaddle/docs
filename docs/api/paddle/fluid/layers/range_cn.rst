@@ -24,7 +24,7 @@ range
 返回
 ::::::::::::
 
-        Tensor: 以步长 ``step`` 均匀分割给定数值区间[``start``, ``end``)后得到的1-D Tensor, 数据类型为 ``dtype`` 。
+        Tensor: 以步长 ``step`` 均匀分割给定数值区间[``start``, ``end``)后得到的1-D Tensor，数据类型为 ``dtype`` 。
 
 抛出异常
 ::::::::::::

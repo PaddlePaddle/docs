@@ -18,7 +18,7 @@ Categorical
 
 上面公式中:
 
-  - :math:`[x = i]` 表示：如果 :math:`x==i` ，则表达式取值为1，否则取值为0。
+  - :math:`[x = i]` 表示：如果 :math:`x==i`，则表达式取值为1，否则取值为0。
 
 
 参数
@@ -176,7 +176,7 @@ probs(value)
 所选择类别的概率。
 如果 ``logtis`` 是2-D或更高阶的Tensor，那么其最后一个维度表示不同类别的概率，其它维度被看做不同的概率分布。
 同时，如果 ``value`` 是1-D Tensor，那么 ``value`` 会broadcast成与 ``logits`` 具有相同的概率分布数量。
-如果 ``value`` 为更高阶Tensor，那么 ``value`` 应该与 ``logits`` 具有相同的概率分布数量。也就是说， ``value[:-1] = logits[:-1]`` 。
+如果 ``value`` 为更高阶Tensor，那么 ``value`` 应该与 ``logits`` 具有相同的概率分布数量。也就是说，``value[:-1] = logits[:-1]`` 。
 
 **参数**
 

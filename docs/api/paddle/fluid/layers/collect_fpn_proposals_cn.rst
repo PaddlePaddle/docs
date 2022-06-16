@@ -19,8 +19,8 @@ collect_fpn_proposals
 参数
 ::::::::::::
 
-    - **multi_rois** (list) – 要收集的RoIs列表，列表中的元素为[N, 4]的2-D LoDTensor, 数据类型为float32或float64，其中N为RoI的个数。
-    - **multi_scores** (list) - 要收集的RoIs对应分数的列表，列表中的元素为[N, 1]的2-D LoDTensor, 数据类型为float32或float64，其中N为RoI的个数。
+    - **multi_rois** (list) – 要收集的RoIs列表，列表中的元素为[N, 4]的2-D LoDTensor，数据类型为float32或float64，其中N为RoI的个数。
+    - **multi_scores** (list) - 要收集的RoIs对应分数的列表，列表中的元素为[N, 1]的2-D LoDTensor，数据类型为float32或float64，其中N为RoI的个数。
     - **min_level** (int) - 要收集的FPN层的最低级
     - **max_level** (int) – 要收集的FPN层的最高级
     - **post_nms_top_n** (int) – 所选RoIs的数目

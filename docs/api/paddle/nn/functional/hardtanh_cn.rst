@@ -21,14 +21,14 @@ hardtanh激活层（Hardtanh Activation Operator）。计算公式如下：
 
 参数
 ::::::::::
-    - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
-    - min (float, 可选) - hardtanh激活计算公式中的min值。默认值为-1。
-    - max (float, 可选) - hardtanh激活计算公式中的max值。默认值为1。
+    - x (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+    - min (float，可选) - hardtanh激活计算公式中的min值。默认值为-1。
+    - max (float，可选) - hardtanh激活计算公式中的max值。默认值为1。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::
-    ``Tensor`` ，数据类型和形状同 ``x`` 一致。
+    ``Tensor``，数据类型和形状同 ``x`` 一致。
 
 代码示例
 :::::::::

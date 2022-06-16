@@ -102,7 +102,7 @@ entropy()
 
 **返回**
 
-Tensor, 正态分布的信息熵，数据类型为float32。
+Tensor，正态分布的信息熵，数据类型为float32。
 
 log_prob(value)
 '''''''''
