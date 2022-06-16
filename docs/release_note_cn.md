@@ -11,13 +11,13 @@
 
 - 新增 4 个自动微分 API，11 个线性代数 API，21 个概率分布类 API，更好地支持科学计算、强化学习等场景。
 
-- 新增 11 个 稀疏张量计算 API，支持创建 COO、CRS 格式的 Sparse Tensor 以及与 Tensor 互相转换等基础功能。
+- 新增 11 个 稀疏张量计算 API，支持创建 COO、CSR 格式的 Sparse Tensor 以及与 Tensor 互相转换等基础功能。
 
 - 新增 9 个框架性能分析 API，以`paddle.profiler.Profiler`为核心，提供对训练、推理过程中性能数据的收集、导出和统计的功能。
 
 - 新增 7 个硬件设备管理 API，更好支持硬件相关信息获取。
 
-- 新增多个视觉、文本领域 API，方便复用 MobileNetV3, ResNeXt等骨干网络，实现快速组网。
+- 新增多个视觉、文本领域 API，方便复用 MobileNetV3, ResNeXt 等骨干网络，实现快速组网。
 
 ### 飞桨高可复用算子库 PHI
 
@@ -256,7 +256,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
   
   - 新增 `paddle.vision.models.MobileNetV3Small`、 `paddle.vision.models.MobileNetV3Large`、`paddle.vision.models.mobilenet_v3_small`、`paddle.vision.models.mobilenet_v3_large`，支持直接使用 MobileNetV3 模型。([#38653](https://github.com/PaddlePaddle/Paddle/pull/38653)) 
   
-  - 新增 `paddle.vision.models.ResNeXt`、 `paddle.vision.models.resnext50_32x4d`、 `paddle.vision.models.resnext50_64x4d`、`paddle.vision.models.resnext101_32x4d`、`paddle.vision.models.resnext101_64x4d`、`paddle.vision.models.resnext152_32x4d`、`paddle.vision.models.resnext152_64x4d`，支持直接使用 ResNeXt 模型。([#36070](https://github.com/PaddlePaddle/Paddle/pull/36070)) 
+  - 新增 `paddle.vision.models.resnext50_32x4d`、 `paddle.vision.models.resnext50_64x4d`、`paddle.vision.models.resnext101_32x4d`、`paddle.vision.models.resnext101_64x4d`、`paddle.vision.models.resnext152_32x4d`、`paddle.vision.models.resnext152_64x4d`，支持直接使用 ResNeXt 模型。([#36070](https://github.com/PaddlePaddle/Paddle/pull/36070)) 
   
   - 新增 `paddle.vision.models.ShuffleNetV2`、 `paddle.vision.models.shufflenet_v2_x0_25`、`paddle.vision.models.shufflenet_v2_x0_33`、`paddle.vision.models.shufflenet_v2_x0_5`、`paddle.vision.models.shufflenet_v2_x1_0`、`paddle.vision.models.shufflenet_v2_x1_5`、`paddle.vision.models.shufflenet_v2_x2_0`、`paddle.vision.models.shufflenet_v2_swish`，支持直接使用 ShuffleNetV2 模型。([#36067](https://github.com/PaddlePaddle/Paddle/pull/36067)) 
   
@@ -272,7 +272,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
   
   - 新增 `paddle.text.ViterbiDecoder`、`paddle.text.viterbi_decode` Viterbi 解码 API，主要用于序列标注模型的预测。 ([#35778](https://github.com/PaddlePaddle/Paddle/pull/35778)) 
 
-- 新增 11 个 Sparse 类 API，支持创建 COO、CRS 格式的Sparse Tensor，与 Tensor 互相转换等基础功能： 
+- 新增 11 个 Sparse 类 API，支持创建 COO、CSR 格式的Sparse Tensor，与 Tensor 互相转换等基础功能： 
   
   - `paddle.sparse.sparse_coo_tensor`，创建 COO 格式的 Sparse Tensor。 ([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780)）
   
