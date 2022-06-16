@@ -11,7 +11,7 @@ unique为 ``x`` 返回一个unique张量和一个指向该unique张量的索引�
 ::::::::::::
 
     - **x** (Tensor) - 一个1维输入张量
-    - **dtype** (np.dtype|str，可选) – 索引张量的类型，应该为int32或者int64。默认：int32.
+    - **dtype** (np.dtype|str，可选) – 索引张量的类型，应该为int32或者int64。默认：int32。
 
 返回
 ::::::::::::

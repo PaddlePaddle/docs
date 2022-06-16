@@ -57,7 +57,7 @@ adaptive_pool3d
 
 
   - ``ValueError`` – ``pool_type`` 不是 ‘max’ 或 ‘avg’
-  - ``ValueError`` – 当 ``pool_type`` 是 ‘avg’ 时，错误地设置 ‘require_index’ 为true .
+  - ``ValueError`` – 当 ``pool_type`` 是 ‘avg’ 时，错误地设置 ‘require_index’ 为true 。
   - ``ValueError`` – ``pool_size`` 应为一个长度为3的列表或元组
 
 .. code-block:: python

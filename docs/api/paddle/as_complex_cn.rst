@@ -6,11 +6,11 @@ as_complex
 .. py:function:: paddle.as_complex(x, name=None)
 
 
-将实数 Tensor 转为复数 Tensor.
+将实数 Tensor 转为复数 Tensor。
 
-输入 Tensor 的数据类型是 'float32' 或者 'float64'，输出 Tensor 的数据类型相应为 'complex64' 或者 'complex128'.
+输入 Tensor 的数据类型是 'float32' 或者 'float64'，输出 Tensor 的数据类型相应为 'complex64' 或者 'complex128'。
 
-输入 Tensor 的形状是 ``(*, 2)`` (其中 ``*`` 表示任意形状)，亦即，输入的最后一维的大小必须是 2，这对应着复数的实部和虚部。输出 Tensor 的形状是 ``(*,)``.
+输入 Tensor 的形状是 ``(*, 2)`` (其中 ``*`` 表示任意形状)，亦即，输入的最后一维的大小必须是 2，这对应着复数的实部和虚部。输出 Tensor 的形状是 ``(*,)``。
 
 参数
 :::::::::

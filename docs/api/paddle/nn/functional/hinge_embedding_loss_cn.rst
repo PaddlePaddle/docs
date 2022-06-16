@@ -25,7 +25,7 @@ hinge_embedding_loss
         \operatorname{sum}(L),  & \text{if reduction} = \text{'sum'.}
     \end{cases}
 
-其中，:math:`L = \{l_1,\dots,l_N\}^\top`.
+其中，:math:`L = \{l_1,\dots,l_N\}^\top`。
 
 参数
 :::::::::

@@ -18,7 +18,7 @@ row_conv
     out_i = \sum_{j=i}^{i+context-1} X_{j} · W_{j-i}
 
 公式中：
-    - :math:`out_i` : 第i行输出变量形为[1, D].
+    - :math:`out_i` : 第i行输出变量形为[1, D]。
     - :math:`context` ： 下文（future context）大小
     - :math:`X_j` : 第j行输出变量，形为[1，D]
     - :math:`W_{j-i}` : 第(j-i)行参数，其形状为[1,D]。

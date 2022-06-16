@@ -225,13 +225,13 @@ lars_configs
 
 设置LARS优化器的参数。用户可以配置 lars_coeff，lars_weight_decay，epsilon，exclude_from_weight_decay 参数。
 
-**lars_coeff(float):** lars 系数，`原论文 <https://arxiv.org/abs/1708.03888>`__ 中的 trust coefficient。默认值是 0.001.
+**lars_coeff(float):** lars 系数，`原论文 <https://arxiv.org/abs/1708.03888>`__ 中的 trust coefficient。默认值是 0.001。
 
-**lars_weight_decay(float):** lars 公式中 weight decay 系数。默认值是 0.0005.
+**lars_weight_decay(float):** lars 公式中 weight decay 系数。默认值是 0.0005。
 
 **exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lars_weight_decay将被置为 0。默认值是 None。
 
-**epsilon(float):** 一个小的浮点值，目的是维持数值稳定性，避免 lars 公式中的分母为零。默认值是 0.
+**epsilon(float):** 一个小的浮点值，目的是维持数值稳定性，避免 lars 公式中的分母为零。默认值是 0。
 
 
 lamb
@@ -256,7 +256,7 @@ lamb_configs
 
 设置LAMB优化器的参数。用户可以配置 lamb_weight_decay，exclude_from_weight_decay 参数。
 
-**lamb_weight_decay(float):** lars 公式中 weight decay 系数。默认值是 0.01.
+**lamb_weight_decay(float):** lars 公式中 weight decay 系数。默认值是 0.01。
 
 **exclude_from_weight_decay(list[str]):** 不应用 weight decay 的 layers 的名字列表，某一layer 的name 如果在列表中，这一layer 的 lamb_weight_decay将被置为 0。默认值是 None。
 
@@ -439,9 +439,9 @@ sharding_configs
 
 设置sharding策略的参数。
 
-**sharding_segment_strategy(float, optional):** 选择sharding 中用来将前向反向program 切segments 的策略。目前可选策略有："segment_broadcast_MB" 和 "segment_anchors"。 segment 是sharding中引入的一个内部概念，目的是用来让通信和计算相互重叠掩盖（overlap）。默认值是 segment_broadcast_MB. 
+**sharding_segment_strategy(float, optional):** 选择sharding 中用来将前向反向program 切segments 的策略。目前可选策略有："segment_broadcast_MB" 和 "segment_anchors"。 segment 是sharding中引入的一个内部概念，目的是用来让通信和计算相互重叠掩盖（overlap）。默认值是 segment_broadcast_MB。
 
-**segment_broadcast_MB(float, optional):** 根据sharding 广播通信中的参数量来切segments，仅当 sharding_segment_strategy = segment_broadcast_MB时生效。sharding 会在前向和反向中引入参数广播，在该segment 策略下，每当参数广播量达到 “segment_broadcast_MB”时，在program 中切出一个segment。该参数是一个经验值，最优值会受模型大小和网咯拓扑的影响。默认值是 32. 
+**segment_broadcast_MB(float, optional):** 根据sharding 广播通信中的参数量来切segments，仅当 sharding_segment_strategy = segment_broadcast_MB时生效。sharding 会在前向和反向中引入参数广播，在该segment 策略下，每当参数广播量达到 “segment_broadcast_MB”时，在program 中切出一个segment。该参数是一个经验值，最优值会受模型大小和网咯拓扑的影响。默认值是 32。
 
 **segment_anchors(list):** 根据用户选定的锚点切割 segments，仅当 sharding_segment_strategy = segment_anchors 生效。该策略可以让用户更精确的控制program 的切分，目前还在实验阶段。
 

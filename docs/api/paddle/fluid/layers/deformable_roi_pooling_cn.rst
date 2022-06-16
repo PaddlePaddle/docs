@@ -45,7 +45,7 @@ deformable_roi_pooling
 
 返回类型
 ::::::::::::
- Variable，数据类型为float32.
+ Variable，数据类型为float32。
 
 代码示例
 ::::::::::::

@@ -15,7 +15,7 @@ rpn_target_assign
 - 在与一个ground-truth boxes相交的所有anchor中，IoU最高的anchor
 - 和任意一个ground-truth box的IoU超出了阈值 ``rpn_positive_overlap``
 
-负类别anchor是和任何ground-truth boxes的IoU都低于阈值 ``rpn_negative_overlap`` 的anchor.
+负类别anchor是和任何ground-truth boxes的IoU都低于阈值 ``rpn_negative_overlap`` 的anchor。
 
 正负anchors之外的anchors不会被选出来参与训练。
 

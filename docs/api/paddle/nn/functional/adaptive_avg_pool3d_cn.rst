@@ -30,7 +30,7 @@ adaptive_avg_pool3d
 
 参数
 :::::::::
-    - **x** (Tensor): 默认形状为（批大小，通道数，长度，高度，宽度），即NCDHW格式的5-D Tensor。其数据类型为float16, float32, float64, int32或int64.
+    - **x** (Tensor): 默认形状为（批大小，通道数，长度，高度，宽度），即NCDHW格式的5-D Tensor。其数据类型为float16, float32, float64, int32或int64。
     - **output_size** (int|list|turple): 算子输出特征图的尺寸，如果其是list或turple类型的数值，必须包含三个元素，D，H和W。D，H和W既可以是int类型值也可以是None，None表示与输入特征尺寸相同。
     - **data_format** (str): 输入和输出的数据格式，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，D是特征长度，H是特征高度，W是特征宽度。默认值："NCDHW"。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。

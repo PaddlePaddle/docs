@@ -19,7 +19,7 @@ Tensor形状为 ``(B, 1)``，则最终输出海森矩阵形状为 ``(B, M, M)``�
 维大小，``M`` 为展平并拼接后的输入大小。
 
 可以通过对 ``Hessian`` 对象多维索引获取整个矩阵或子矩阵的实际结果，子矩阵会以惰性求值方式计算，
-并且已经计算结果会被缓存，详细参考 :ref:`cn_api_paddle_incubate_autograd_Jacobian` .
+并且已经计算结果会被缓存，详细参考 :ref:`cn_api_paddle_incubate_autograd_Jacobian` 。
 
 .. note::
   当前暂不支持省略号索引。
@@ -32,11 +32,11 @@ Tensor形状为 ``(B, 1)``，则最终输出海森矩阵形状为 ``(B, M, M)``�
 
 - **func** (Callable) - Python函数，输入参数为 ``xs``，输出为只包含一个元素Tensor，即
   如果 ``is_batched=True``，输出形状为 ``(B, 1)`` , ``B`` 表示batch大小，
-  ``is_batched=False``，输出形状为 ``(1)`` .
+  ``is_batched=False``，输出形状为 ``(1)`` 。
 - **xs** (Tensor|Sequence[Tensor]） - 函数 ``func`` 的输入参数，数据类型为Tensor或
   Tensor序列。
 - **is_batched** (bool) - ``True`` 表示包含batch维，且默认第零维为batch维，``False`` 
-  表示不包含batch。默认值为 ``False`` .
+  表示不包含batch。默认值为 ``False`` 。
 
 返回
 :::::::::

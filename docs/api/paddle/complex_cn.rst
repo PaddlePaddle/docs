@@ -6,7 +6,7 @@ complex
 .. py:function:: paddle.complex(real, imag, name=None)
 
 
-给定实部和虚部，返回一个复数 Tensor.
+给定实部和虚部，返回一个复数 Tensor。
 
 
 参数

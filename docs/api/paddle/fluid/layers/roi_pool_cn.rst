@@ -22,7 +22,7 @@ Faster-RCNN使用了roi池化。roi池化的具体原理请参考 https://stacko
 参数
 ::::::::::::
 
-    - **input** (Variable) - 输入特征，维度为[N,C,H,W]的4D-Tensor，其中N为batch大小，C为输入通道数，H为特征高度，W为特征宽度。数据类型为float32或float64.
+    - **input** (Variable) - 输入特征，维度为[N,C,H,W]的4D-Tensor，其中N为batch大小，C为输入通道数，H为特征高度，W为特征宽度。数据类型为float32或float64。
     - **rois** (Variable) – 待池化的ROIs (Regions of Interest)，维度为[num_rois,4]的2D-LoDTensor，lod level 为1。给定如[[x1,y1,x2,y2], ...]，其中(x1,y1)为左上点坐标，(x2,y2)为右下点坐标。lod信息记录了每个roi所属的batch_id。
     - **pooled_height** (int，可选) - 数据类型为int32，池化输出的高度。默认值为1。
     - **pooled_width** (int，可选) -  数据类型为int32，池化输出的宽度。默认值为1。

@@ -33,7 +33,7 @@ batch_norm
     moving\_variance = moving\_variance * momentum + mini\_batch\_var * (1. - momentum)     
 
 moving_mean和moving_var是训练过程中统计得到的全局均值和方差，在预测或者评估中使用。
-`is_test` 参数只能用于测试或者评估阶段，如果想在训练阶段使用预训练模型的全局均值和方差的话，可以设置 `use_global_stats=True`.
+`is_test` 参数只能用于测试或者评估阶段，如果想在训练阶段使用预训练模型的全局均值和方差的话，可以设置 `use_global_stats=True`。
 
 当use_global_stats = True时，:math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 不是一个minibatch的统计数据。它们是全局（或运行）统计数据（moving_mean和moving_variance），通常来自预先训练好的模型。训练和测试（或预测）具有相同的行为：
 

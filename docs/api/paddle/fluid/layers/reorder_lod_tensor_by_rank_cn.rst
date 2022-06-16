@@ -25,7 +25,7 @@ reorder_lod_tensor_by_rank
 参数
 ::::::::::::
 
-    - **x** (Variable) - 待根据提供的 ``rank_table`` 进行排序的LoDTensor.
+    - **x** (Variable) - 待根据提供的 ``rank_table`` 进行排序的LoDTensor。
     - **rank_table** (Variable) - 提供对 ``x`` 重新排列的 ``LoDRankTable`` 类型的顺序信息。
 
 

@@ -29,11 +29,11 @@ Launch 模块是在每个节点运行，负责分布式协同和本地进程管�
 :::::::::
     - ``--master``: 主节点，支持缺省 http:// 和 etcd://，默认缺省 http://。例如 ``--master=127.0.0.1:8080``。默认值 ``--master=None``。
 
-    - ``--rank``: 节点序号，可以通过主节点进行分配。默认值 ``--rank=-1``.
+    - ``--rank``: 节点序号，可以通过主节点进行分配。默认值 ``--rank=-1``。
 
-    - ``--log_level``: 日志级别，可选值为 CRITICAL/ERROR/WARNING/INFO/DEBUG/NOTSET，不区分大小写。默认值 ``--log_level=INFO``.
+    - ``--log_level``: 日志级别，可选值为 CRITICAL/ERROR/WARNING/INFO/DEBUG/NOTSET，不区分大小写。默认值 ``--log_level=INFO``。
 
-    - ``--nnodes``: 节点数量，支持区间设定以开启弹性模式，比如 ``--nnodes=2:3``。默认值 ``--nnodes=1``.
+    - ``--nnodes``: 节点数量，支持区间设定以开启弹性模式，比如 ``--nnodes=2:3``。默认值 ``--nnodes=1``。
 
     - ``--nproc_per_node``: 每个节点启动的进程数，在 GPU 训练中，应该小于等于系统的 GPU 数量。例如 ``--nproc_per_node=8``
 
@@ -41,7 +41,7 @@ Launch 模块是在每个节点运行，负责分布式协同和本地进程管�
 
     - ``--run_mode``: 启动任务的运行模式，可选有 collective/ps/ps-heter。例如 ``--run_mode=ps``。默认值 ``--run_mode=collective``。
 
-    - ``--job_id``: 任务唯一标识，缺省将使用 default，会影响日志命名。例如 ``--job_id=job1``。默认值 ``--job_id=default``.
+    - ``--job_id``: 任务唯一标识，缺省将使用 default，会影响日志命名。例如 ``--job_id=job1``。默认值 ``--job_id=default``。
 
     - ``--devices``: 节点上的加速卡设备，支持 gpu/xpu/npu/mlu。例如 ``--devices=0,1,2,3``，这会启动 4 个进程，每个进程绑定到 1 个设备上。
 
@@ -71,18 +71,18 @@ Parameter-Server 参数
 
     - ``--heter_worker_num``: 在异构集群中启动单机模拟分布式任务，指定参数服务器异构训练节点的个数。
 
-    - ``--gloo_port``: 参数服务器模式中，用 Gloo 启动时设置的连接端口。同 http_port. Default ``--gloo_port=6767``.
+    - ``--gloo_port``: 参数服务器模式中，用 Gloo 启动时设置的连接端口。同 http_port. Default ``--gloo_port=6767``。
 
-    - ``--with_gloo``: 是否使用 gloo。默认值 ``--with_gloo=0``.
+    - ``--with_gloo``: 是否使用 gloo。默认值 ``--with_gloo=0``。
 
 
 Elastic 参数
 :::::::::
-    - ``--max_restart``: 最大重启次数。默认值 ``--max_restart=3``.
+    - ``--max_restart``: 最大重启次数。默认值 ``--max_restart=3``。
 
-    - ``--elastic_level``: 弹性级别设置，-1: 不开启，0: 错误节点退出，1: 节点内重启。默认值 ``--elastic_level=-1``.
+    - ``--elastic_level``: 弹性级别设置，-1: 不开启，0: 错误节点退出，1: 节点内重启。默认值 ``--elastic_level=-1``。
 
-    - ``--elastic_timeout``: 弹性超时时间，经过该时间达到最小节点数即开启训练。默认值 ``--elastic_timeout=30``.
+    - ``--elastic_timeout``: 弹性超时时间，经过该时间达到最小节点数即开启训练。默认值 ``--elastic_timeout=30``。
 
 返回
 :::::::::

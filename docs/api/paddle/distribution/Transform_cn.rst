@@ -37,9 +37,9 @@ Transform
 通过上述描述易知，变换 ``Transform`` 主要包含下述三个操作：
 
     #。正变换( ``forward`` ):
-       表示正向变换 :math:`x \rightarrow f(x)` .
+       表示正向变换 :math:`x \rightarrow f(x)` 。
     #。逆变换( ``inverse`` ):
-       表示逆向变换 :math:`y \rightarrow f^{-1}(y)` .
+       表示逆向变换 :math:`y \rightarrow f^{-1}(y)` 。
     #。雅可比行列式绝对值的对数( ``log_det_jacobian`` ):
        又可以细分为正变换雅可比行列式绝对值的对数 ``forward_log_det_jacobian`` 和逆变换雅
        可比行列式绝对值的对数 ``inverse_log_det_jacobian``，两者互为负数关系，只实现一种
@@ -97,7 +97,7 @@ forward_log_det_jacobian(x)
 
 计算正变换雅可比行列式绝对值的对数。
 
-如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` .
+如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` 。
 
 **参数**
 

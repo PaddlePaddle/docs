@@ -70,7 +70,7 @@ sample(shape=())
 
 **参数**
 
-- **shape** (Sequence[int]，可选)：采样次数。最终生成样本形状为 ``shape+batch_shape`` .
+- **shape** (Sequence[int]，可选)：采样次数。最终生成样本形状为 ``shape+batch_shape`` 。
 
 **返回**
 

@@ -15,7 +15,7 @@ Jacobian
 的输出为一个二维(不包含batch)或三维(包含batch，第零维为batch)的Tensor。
 
 例如，假设 ``is_batched=True``，输入Tensor经过展平并拼接后的形状为 ``(B, M)``，输出
-Tensor经过展平并拼接后的形状为 ``(B, N)``，则最终输出雅可比矩阵形状为 ``(B, M, N)`` . 
+Tensor经过展平并拼接后的形状为 ``(B, N)``，则最终输出雅可比矩阵形状为 ``(B, M, N)`` 。
 其中，``B`` 为batch维大小，``M`` 为展平并拼接后的输入大小，``N`` 为展平并拼接后的输出大小。
 
 ``Jacobian`` 对象被创建后，并没有发生实际的计算过程，而是采用惰性求值方法进行计算，可以通过
@@ -27,7 +27,7 @@ Tensor经过展平并拼接后的形状为 ``(B, N)``，则最终输出雅可比
 第 ``1`` 行到第 ``3`` 进行求值，并且 ``1`` 到 ``3`` 行的计算结果会以行的粒度进行缓存，下次再
 获取上述某一行或多行结果时不会发生重复计算。
 
-更多索引方式可以参考Paddle官网 `索引和切片 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_cn.html#suoyinheqiepian>`_ .
+更多索引方式可以参考Paddle官网 `索引和切片 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/basic_concept/tensor_introduction_cn.html#suoyinheqiepian>`_ 。
 
 .. note::
   当前暂不支持省略号索引。
@@ -42,7 +42,7 @@ Tensor经过展平并拼接后的形状为 ``(B, N)``，则最终输出雅可比
 - **xs** (Tensor|Sequence[Tensor]） - 函数 ``func`` 的输入参数，数据类型为Tensor或
   Tensor序列。
 - **is_batched** (bool) - ``True`` 表示包含batch维，且默认第零维为batch维，``False`` 
-  表示不包含batch。默认值为 ``False`` .
+  表示不包含batch。默认值为 ``False`` 。
 
 返回
 :::::::::

@@ -20,7 +20,7 @@ PixelShuffle
 
 形状
 :::::::::
-    - **x** (Tensor): 默认形状为（批大小，通道数，高度，宽度），即NCHW格式的4-D Tensor或NHWC格式的4-DTensor。其数据类型为float32, float64.
+    - **x** (Tensor): 默认形状为（批大小，通道数，高度，宽度），即NCHW格式的4-D Tensor或NHWC格式的4-DTensor。其数据类型为float32, float64。
     - **output** (Tensor): 默认形状为（批大小，通道数，输出特征高度，输出特征宽度），即NCHW格式或NHWC的4-D Tensor。其数据类型与输入相同。
 
 返回

@@ -16,7 +16,7 @@ glu
 
 ::::::::::
  - x (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
- - axis (int，可选) - 沿着该轴将输入二等分。D 为输入的维数，则 ``axis`` 应该在 [-D, D) 的范围内。如 ``axis`` 为负数，则相当于 ``axis +D``.
+ - axis (int，可选) - 沿着该轴将输入二等分。D 为输入的维数，则 ``axis`` 应该在 [-D, D) 的范围内。如 ``axis`` 为负数，则相当于 ``axis +D``。
  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

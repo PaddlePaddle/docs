@@ -45,7 +45,7 @@ COPY-FROM: paddle.profiler.make_scheduler:code-example1
 代码示例 2
 ::::::::::
 
-性能分析 batch [3,6], [9,12], [15, 18]... 
+性能分析 batch [3,6], [9,12], [15, 18]..。
 
 设定第0个batch跳过，第1个batch处于CLOSED，第2个batch处于READ，第[3 - 6]个batch处于RECORD，在第6个batch返回收集的性能数据。即第7个batch处于CLOSED，第8个batch处于READY,
 第[9-12]个batch处于RECORD，并在第12个batch返回第二轮所收集到的性能数据。以此类推，直到性能分析器结束。

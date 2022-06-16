@@ -21,7 +21,7 @@ deformable_conv op对输入4-D Tensor计算2-D可变形卷积。给定输入Tens
 
   :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k)}`
 
-其中 :math:`\Delta p_k` 和 :math:`\Delta m_k` 分别为第k个位置的可学习偏移和调制标量。在deformable_conv_v1中 :math:`\Delta m_k` 为1.
+其中 :math:`\Delta p_k` 和 :math:`\Delta m_k` 分别为第k个位置的可学习偏移和调制标量。在deformable_conv_v1中 :math:`\Delta m_k` 为1。
 
 具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable, Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_ 。
 

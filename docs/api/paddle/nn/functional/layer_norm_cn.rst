@@ -7,7 +7,7 @@ layer_norm
 
 推荐使用nn.LayerNorm。
 
-详情见 :ref:`cn_api_nn_LayerNorm` . 
+详情见 :ref:`cn_api_nn_LayerNorm` 。
 
 参数
 ::::::::::::

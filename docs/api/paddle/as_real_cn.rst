@@ -6,9 +6,9 @@ as_real
 .. py:function:: paddle.as_real(x, name=None)
 
 
-将复数 Tensor 转为实数 Tensor.
+将复数 Tensor 转为实数 Tensor。
 
-输入 Tensor 的数据类型是 'complex64' 或者 'complex128'，输出 Tensor 的数据类型相应为 'float32' 或者 'float64'.
+输入 Tensor 的数据类型是 'complex64' 或者 'complex128'，输出 Tensor 的数据类型相应为 'float32' 或者 'float64'。
 
 输入 Tensor 的形状是 ``(*,)`` (其中 ``*`` 表示任意形状)，输出 Tensor 的形状是 ``(*, 2)``，亦即，输出的形状是在输入形状后附加一个 ``2``，因为一个复数的实部和虚部分别表示为一个实数。
 
