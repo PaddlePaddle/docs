@@ -12,9 +12,9 @@ Model
 参数
 :::::::::
 
-    - **network** (paddle.nn.Layer): 是 ``paddle.nn.Layer`` 的一个实例
-    - **inputs** (InputSpec|list|tuple|dict|None，可选):  ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者是格式为 ``{name: InputSpec}`` 的 ``dict``，或者为 ``None``。默认值为 ``None``。
-    - **labels** (InputSpec|list|tuple|None，可选): ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者为 ``None``。 默认值为 ``None``。
+    - **network** (paddle.nn.Layer) - 是 ``paddle.nn.Layer`` 的一个实例。
+    - **inputs** (InputSpec|list|tuple|dict|None，可选) - ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者是格式为 ``{name: InputSpec}`` 的 ``dict``，或者为 ``None``。默认值为 ``None``。
+    - **labels** (InputSpec|list|tuple|None，可选) - ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者为 ``None``。 默认值为 ``None``。
       
 .. note::
 
@@ -37,7 +37,7 @@ COPY-FROM: paddle.Model:code-example2
 方法
 :::::::::
 
-train_batch(inputs, labels=None)
+train_batch(inputs, labels=None, update=True)
 '''''''''
 
 在一个批次的数据上进行训练。
@@ -113,7 +113,7 @@ save(path, training=True)
     
 **返回**
 
-None
+无。
 
 **代码示例**
 
@@ -134,7 +134,7 @@ load(path, skip_mismatch=False, reset_optimizer=False)
     
 **返回**
 
-None
+无。
 
 **代码示例**
 
@@ -194,7 +194,7 @@ fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_fr
 
 **返回**
 
-None
+无。
 
 **代码示例**
 
