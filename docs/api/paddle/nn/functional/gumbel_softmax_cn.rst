@@ -33,7 +33,7 @@ gumbel_softmax
     - temperature (float，可选) - 大于0的标量。默认值：1.0。
     - hard (bool，可选) - 如果是True，返回离散的one-hot向量。如果是False，返回软样本。默认值：False。
     - axis (int，可选) - 按照维度axis计算softmax。默认值：-1。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::

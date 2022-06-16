@@ -12,7 +12,7 @@ Model
 参数
 :::::::::
 
-    - **network** (paddle.nn.Layer): 是 ``paddle.nn.Layer`` 的一个实例
+    - **network** (paddle.nn.Layer)：是 ``paddle.nn.Layer`` 的一个实例
     - **inputs** (InputSpec|list|dict|None，可选):  ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者是格式为 ``{name: InputSpec}`` 的 ``dict``，或者为 ``None``。默认值为 ``None``。
     - **labels** (InputSpec|list|None，可选): ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者为 ``None``。默认值为 ``None``。
       
@@ -358,7 +358,7 @@ prepare(optimizer=None, loss=None, metrics=None, amp_configs=None)
     - **optimizer** (Optimizer) - 当训练模型的，该参数必须被设定。当评估或测试的时候，该参数可以不设定。默认值：None。
     - **loss** (Loss) - 当训练模型的，该参数必须被设定。默认值：None。
     - **metrics** (Metric|list[Metric]) - 当该参数被设定时，所有给定的评估方法会在训练和测试时被运行，并返回对应的指标。默认值：None。
-    - **amp_configs** (str|dict|None) - 混合精度训练的配置，通常是个dict，也可以是str。当使用自动混合精度训练或者纯float16训练时，``amp_configs`` 的key ``level`` 需要被设置为O1或者O2，float32训练时则默认为O0。除了 ``level``，还可以传入更多的和混合精度API一致的参数，例如：``init_loss_scaling`` 、 ``incr_ratio`` 、 ``decr_ratio`` 、 ``incr_every_n_steps`` 、 ``decr_every_n_nan_or_inf`` 、 ``use_dynamic_loss_scaling`` 、 ``custom_white_list`` 、 ``custom_black_list``，在静态图下还支持传入 ``custom_black_varnames`` 和 ``use_fp16_guard``。详细使用方法可以参考参考混合精度API的文档 :ref:`auto_cast <cn_api_amp_auto_cast>`  和 :ref:`GradScaler <cn_api_amp_GradScaler>`。为了方便起见，当不设置其他的配置参数时，也可以直接传入 ``'O1'`` 、``'O2'``。在使用float32训练时，该参数可以为None。默认值：None。
+    - **amp_configs** (str|dict|None) - 混合精度训练的配置，通常是个dict，也可以是str。当使用自动混合精度训练或者纯float16训练时，``amp_configs`` 的key ``level`` 需要被设置为O1或者O2，float32训练时则默认为O0。除了 ``level``，还可以传入更多的和混合精度API一致的参数，例如：``init_loss_scaling`` 、 ``incr_ratio`` 、 ``decr_ratio`` 、 ``incr_every_n_steps`` 、 ``decr_every_n_nan_or_inf`` 、 ``use_dynamic_loss_scaling`` 、 ``custom_white_list`` 、 ``custom_black_list``，在静态图下还支持传入 ``custom_black_varnames`` 和 ``use_fp16_guard``。详细使用方法可以参考参考混合精度API的文档：ref:`auto_cast <cn_api_amp_auto_cast>`  和：ref:`GradScaler <cn_api_amp_GradScaler>`。为了方便起见，当不设置其他的配置参数时，也可以直接传入 ``'O1'`` 、``'O2'``。在使用float32训练时，该参数可以为None。默认值：None。
 
 
 fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_freq=10, save_dir=None, save_freq=1, verbose=2, drop_last=False, shuffle=True, num_workers=0, callbacks=None)

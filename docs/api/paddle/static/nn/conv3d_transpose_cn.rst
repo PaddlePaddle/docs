@@ -19,25 +19,25 @@ conv3d_transpose
 
 如果参数bias_attr不为False，转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
 
-论文参考: https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf
+论文参考：https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf
 
-输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
+输入：math:`X` 和输出：math:`Out` 函数关系如下：
 
 .. math::
                         \\Out=\sigma (W*X+b)\\
 
 其中：
 
-    -  :math:`X` : 输入，具有NCDHW或NDHWC格式的5-D Tensor；
-    -  :math:`W` : 滤波器，具有NCDHW格式的5-D Tensor；
-    -  :math:`*` : 卷积操作（注意：转置卷积本质上的计算还是卷积）；
-    -  :math:`b` : 偏置（bias），2-D Tensor，形状为 ``[M,1]``；
-    -  :math:`σ` : 激活函数；
-    -  :math:`Out` : 输出值，NCDHW或NDHWC格式的5-D Tensor，和 ``X`` 的形状可能不同。
+    -  :math:`X`：输入，具有NCDHW或NDHWC格式的5-D Tensor；
+    -  :math:`W`：滤波器，具有NCDHW格式的5-D Tensor；
+    -  :math:`*`：卷积操作（注意：转置卷积本质上的计算还是卷积）；
+    -  :math:`b`：偏置（bias），2-D Tensor，形状为 ``[M,1]``；
+    -  :math:`σ`：激活函数；
+    -  :math:`Out`：输出值，NCDHW或NDHWC格式的5-D Tensor，和 ``X`` 的形状可能不同。
 
 **示例**
 
-输入:
+输入：
 
     输入的shape：:math:`（N,C_{in}, D_{in}, H_{in}, W_{in}）`
 
@@ -45,7 +45,7 @@ conv3d_transpose
 
 
 
-输出:
+输出：
 
     输出的shape：:math:`（N,C_{out}, D_{out}, H_{out}, W_{out}）`
 
@@ -77,8 +77,8 @@ conv3d_transpose
 
 .. note::
 
-如果output_size为None，则 :math:`D_{out}` = :math:`D^\prime_{out}` , :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}` ;
-否则，指定的output_size_depth（输出特征层的深度） :math:`D_{out}` 应当介于 :math:`D^\prime_{out}` 和 :math:`D^\prime_{out} + strides[0]` 之间（不包含 :math:`D^\prime_{out} + strides[0]` ），指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[1]` 之间（不包含 :math:`H^\prime_{out} + strides[1]` ），并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[2]` 之间（不包含 :math:`W^\prime_{out} + strides[2]` ）。
+如果output_size为None，则：math:`D_{out}` = :math:`D^\prime_{out}` , :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}` ;
+否则，指定的output_size_depth（输出特征层的深度） :math:`D_{out}` 应当介于：math:`D^\prime_{out}` 和：math:`D^\prime_{out} + strides[0]` 之间（不包含：math:`D^\prime_{out} + strides[0]` ），指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于：math:`H^\prime_{out}` 和：math:`H^\prime_{out} + strides[1]` 之间（不包含：math:`H^\prime_{out} + strides[1]` ），并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于：math:`W^\prime_{out}` 和：math:`W^\prime_{out} + strides[2]` 之间（不包含：math:`W^\prime_{out} + strides[2]` ）。
 
 由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
@@ -87,7 +87,7 @@ conv3d_transpose
 参数
 ::::::::::::
 
-  - **input** （Tensor）- 形状为 :math:`[N, C, D, H, W]` 或 :math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型：float32或float64。
+  - **input** （Tensor）- 形状为：math:`[N, C, D, H, W]` 或：math:`[N, D, H, W, C]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型：float32或float64。
   - **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数相同。
   - **output_size** (int|tuple，可选) - 输出图片的大小。如果output_size是一个元组，则必须包含三个整型数，（output_size_depth，output_size_height，output_size_width）。如果output_size=None，则内部会使用filter_size、padding和stride来计算output_size。如果output_size和filter_size是同时指定的，那么它们应满足上面的公式。默认：None。output_size和filter_size不能同时为None。
   - **filter_size** (int|tuple，可选) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，（filter_size_depth，filter_size_height, filter_size_width）。否则，filter_size_depth = filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， ``conv2d_transpose`` 内部会根据output_size、padding和stride计算出滤波器大小。默认：None。output_size和filter_size不能同时为None。
@@ -98,13 +98,13 @@ conv3d_transpose
     - (3)包含3个整数值：[pad_depth, pad_height, pad_width]，此时 pad_depth_front = pad_depth_back = pad_depth, pad_height_top = pad_height_bottom = pad_height, pad_width_left = pad_width_right = pad_width。若为一个整数，pad_depth = pad_height = pad_width = padding。默认值：0。
     
   - **stride** (int|tuple，可选) - 步长stride大小。滤波器和输入进行卷积计算时滑动的步长。如果stride是一个元组，那么元组的形式为(stride_depth，stride_height，stride_width)。否则，stride_depth = stride_height = stride_width = stride。默认：stride = 1。
-  - **dilation** (int|tuple，可选) - 膨胀比例dilation大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图 <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀比例dilation是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认:dilation= 1。
+  - **dilation** (int|tuple，可选) - 膨胀比例dilation大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图 <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀比例dilation是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认：dilation= 1。
   - **groups** (int，可选) - 三维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认：group = 1。
-  - **param_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv3d_transpose算子默认的权重初始化是Xavier。
-  - **bias_attr** （ParamAttr|False，可选）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv3d_transpose算子默认的偏置初始化是0.0。
+  - **param_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见：ref:`cn_api_fluid_ParamAttr` 。conv3d_transpose算子默认的权重初始化是Xavier。
+  - **bias_attr** （ParamAttr|False，可选）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见：ref:`cn_api_fluid_ParamAttr` 。conv3d_transpose算子默认的偏置初始化是0.0。
   - **use_cudnn** (bool，可选) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认：True。
   - **act** (str，可选) -  激活函数类型，如果设置为None，则不使用激活函数。默认：None。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCDHW"和"NDHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCDHW"。
 
 返回

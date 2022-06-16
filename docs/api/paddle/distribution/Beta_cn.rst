@@ -16,7 +16,7 @@ Beta
 
     f(x; \alpha, \beta) = \frac{1}{B(\alpha, \beta)}x^{\alpha-1}(1-x)^{\beta-1}
 
-其中，B为Beta函数，表示归一化因子:
+其中，B为Beta函数，表示归一化因子：
 
 .. math::
 
@@ -25,11 +25,11 @@ Beta
 参数
 :::::::::
 
-- **alpha** (float|Tensor) - 即上述公式中 :math:`\alpha` 参数，大于零，支持Broadcast
-  语义。当参数类型为Tensor时，表示批量创建多个不同参数的分布，``batch_shape`` (参考 :ref:`cn_api_distribution_Distribution` 基类) 为参数
+- **alpha** (float|Tensor) - 即上述公式中：math:`\alpha` 参数，大于零，支持Broadcast
+  语义。当参数类型为Tensor时，表示批量创建多个不同参数的分布，``batch_shape`` (参考：ref:`cn_api_distribution_Distribution` 基类) 为参数
   Broadcast后的形状。
-- **beta** (float|Tensor） - 即上述公式中 :math:`\beta` 参数，大于零，支持Broadcast语
-  义。当参数类型为Tensor时，表示批量创建多个不同参数的分布，``batch_shape`` (参考 :ref:`cn_api_distribution_Distribution` 基类) 为参数Broadcast
+- **beta** (float|Tensor） - 即上述公式中：math:`\beta` 参数，大于零，支持Broadcast语
+  义。当参数类型为Tensor时，表示批量创建多个不同参数的分布，``batch_shape`` (参考：ref:`cn_api_distribution_Distribution` 基类) 为参数Broadcast
   后的形状。
 
 代码示例
@@ -91,7 +91,7 @@ sample()
 
 **返回**
 
-- Tensor: 样本数据。
+- Tensor：样本数据。
 
 entropy()
 '''''''''

@@ -6,7 +6,7 @@ sequence_unpad
 
 .. py:function:: paddle.static.nn.sequence_unpad(x, length, name=None)
 
-:api_attr: 声明式编程模式（静态图)
+:api_attr：声明式编程模式（静态图)
 
 
 
@@ -39,7 +39,7 @@ sequence_unpad
 :::::::::
   - **x** (Tensor) – 包含填充元素的Tensor，其维度大小不能小于2，支持的数据类型：float32, float64,int32, int64。
   - **length** (Tensor) – 存储每个样本实际长度信息的1D Tesnor，该Tensor维度的第0维必须与x维度的第0维一致。支持的数据类型：int64。
-  - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+  - **name**  (str，可选) – 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 :::::::::

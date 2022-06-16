@@ -23,9 +23,9 @@ SeLU激活函数，其公式如下：
 ::::::::::::
 
   - **x** (Variable) - 输入变量，为数据类型为float32，float64的多维Tensor或者LoDTensor。
-  - **scale** (float，可选) – 可选，表示SeLU激活函数中的λ的值，其默认值为 1.0507009873554804934193349852946。详情请见： `Self-Normalizing Neural Networks <https://arxiv.org/abs/1706.02515.pdf>`_。
-  - **alpha** (float，可选) – 可选，表示SeLU激活函数中的α的值，其默认值为 1.6732632423543772848170429916717。详情请见： `Self-Normalizing Neural Networks <https://arxiv.org/abs/1706.02515.pdf>`_。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **scale** (float，可选) – 可选，表示SeLU激活函数中的λ的值，其默认值为 1.0507009873554804934193349852946。详情请见：`Self-Normalizing Neural Networks <https://arxiv.org/abs/1706.02515.pdf>`_。
+  - **alpha** (float，可选) – 可选，表示SeLU激活函数中的α的值，其默认值为 1.6732632423543772848170429916717。详情请见：`Self-Normalizing Neural Networks <https://arxiv.org/abs/1706.02515.pdf>`_。
+  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

@@ -11,7 +11,7 @@ linear_chain_crf
 
 线性链条件随机场（Linear Chain CRF）
 
-条件随机场定义间接概率图，节点代表随机变量，边代表两个变量之间的依赖。CRF学习条件概率 :math:`P\left ( Y|X \right )` ， :math:`X = \left ( x_{1},x_{2},...,x_{n} \right )` 是结构性输入，:math:`Y = \left ( y_{1},y_{2},...,y_{n} \right )` 为输入标签。
+条件随机场定义间接概率图，节点代表随机变量，边代表两个变量之间的依赖。CRF学习条件概率：math:`P\left ( Y|X \right )` ， :math:`X = \left ( x_{1},x_{2},...,x_{n} \right )` 是结构性输入，:math:`Y = \left ( y_{1},y_{2},...,y_{n} \right )` 为输入标签。
 
 线性链条件随机场（Linear Chain CRF)是特殊的条件随机场（CRF），有利于序列标注任务。序列标注任务不为输入设定许多条件依赖。唯一的限制是输入和输出必须是线性序列。因此类似CRF的图是一个简单的链或者线，也就是线性链随机场（linear chain CRF）。
 
@@ -30,15 +30,15 @@ linear_chain_crf
 线性链条件随机场最终输出每个batch训练样本的条件概率的对数
 
 
-  1. 这里 :math:`x` 代表Emission
+  1. 这里：math:`x` 代表Emission
 
-  2.Transition的第一维度值，代表起始权重，这里用 :math:`a` 表示
+  2.Transition的第一维度值，代表起始权重，这里用：math:`a` 表示
 
-  3.Transition的下一维值，代表末尾权重，这里用 :math:`b` 表示
+  3.Transition的下一维值，代表末尾权重，这里用：math:`b` 表示
 
-  4.Transition剩下的值，代表转移权重，这里用 :math:`w` 表示
+  4.Transition剩下的值，代表转移权重，这里用：math:`w` 表示
 
-  5.Label用 :math:`s` 表示
+  5.Label用：math:`s` 表示
 
 
 

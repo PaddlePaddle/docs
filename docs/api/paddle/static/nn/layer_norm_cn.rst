@@ -22,11 +22,11 @@ layer_norm
 
              \\y=f(\frac{g}{\sigma}(x-\mu) + b)\\
 
-- :math:`x` : 该层神经元的向量表示；
-- :math:`H` : 层中隐藏神经元个数；
-- :math:`\epsilon` : 添加较小的值到方差中以防止除零；
-- :math:`g` : 可训练的比例参数；
-- :math:`b` : 可训练的偏差参数。
+- :math:`x`：该层神经元的向量表示；
+- :math:`H`：层中隐藏神经元个数；
+- :math:`\epsilon`：添加较小的值到方差中以防止除零；
+- :math:`g`：可训练的比例参数；
+- :math:`b`：可训练的偏差参数。
 
 参数
 ::::::::::::
@@ -36,10 +36,10 @@ layer_norm
   - **shift** (bool，可选) - 指明是否在归一化后学习自适应偏差 ``b``。默认值：True。
   - **begin_norm_axis** (int，可选) - 指明归一化将沿着 ``begin_norm_axis`` 到 ``rank（input）`` 的维度执行。默认值：1。
   - **epsilon** (float，可选) - 指明在计算过程中是否添加较小的值到方差中以防止除零。默认值：1e-05。
-  - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-  - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-  - **act** (str，可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations`，默认值为None。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见：ref:`cn_api_fluid_ParamAttr` 。
+  - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见：ref:`cn_api_fluid_ParamAttr` 。
+  - **act** (str，可选) - 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考：ref:`api_guide_activations`，默认值为None。
+  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

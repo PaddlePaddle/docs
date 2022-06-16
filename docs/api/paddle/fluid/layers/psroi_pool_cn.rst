@@ -37,7 +37,7 @@ psroi_pool
     - **spatial_scale** (float) - 空间跨度因子，用于将 ``rois`` 中的坐标从其输入尺寸按比例映射到 ``input`` 特征图的尺寸
     - **pooled_height** (int) - 池化输出的高度
     - **pooled_width** (int) - 池化输出的宽度
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

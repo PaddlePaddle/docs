@@ -8,7 +8,7 @@ save
 
 该接口将传入的参数、优化器信息和网络描述保存到 ``model_path`` 。
 
-参数包含所有的可训练 :ref:`cn_api_fluid_Variable`，将保存到后缀为 ``.pdparams`` 的文件中。
+参数包含所有的可训练：ref:`cn_api_fluid_Variable`，将保存到后缀为 ``.pdparams`` 的文件中。
 
 优化器信息包含优化器使用的所有Tensor。对于Adam优化器，包含beta1、beta2、momentum等。
 所有信息将保存到后缀为 ``.pdopt`` 的文件中。（如果优化器没有需要保存的Tensor（如sgd），则不会生成）。

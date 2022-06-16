@@ -18,7 +18,7 @@ erf
 ::::::::::::
 
   - **x** (Tensor) - 输入的多维 Tensor，数据类型为 float16、float32 或 float64。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

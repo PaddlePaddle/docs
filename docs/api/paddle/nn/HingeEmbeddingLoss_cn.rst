@@ -9,7 +9,7 @@ HingeEmbeddingLoss
 
 该损失通常用于度量输入 input 和标签 label 是否相似或不相似，例如可以使用 L1 成对距离作为输入 input，通常用于学习非线性嵌入或半监督学习。
 
-对于有 :math:`n` 个样本的 mini-batch，该损失函数的数学计算公式如下：
+对于有：math:`n` 个样本的 mini-batch，该损失函数的数学计算公式如下：
 
 .. math::
     l_n = \begin{cases}
@@ -30,8 +30,8 @@ HingeEmbeddingLoss
 参数
 :::::::::
     - **margin** (float，可选): - 当 label 为 -1 时，该值决定了小于 `margin` 的 input 才需要纳入 `hinge embedding loss` 的计算。默认为 1.0 。
-    - **reduction** (str，可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'``。默认为 ``'mean'``，计算 `hinge embedding loss` 的均值；设置为 ``'sum'`` 时，计算 `hinge embedding loss` 的总和；设置为 ``'none'`` 时，则返回 `hinge embedding loss`。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **reduction** (str，可选): - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'``。默认为 ``'mean'``，计算 `hinge embedding loss` 的均值；设置为 ``'sum'`` 时，计算 `hinge embedding loss` 的总和；设置为 ``'none'`` 时，则返回 `hinge embedding loss`。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 输入
 :::::::::

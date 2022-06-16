@@ -34,8 +34,8 @@ fused_feedforward
     - **ln1_epsilon** (float，可选) - 一个很小的浮点数，被第一个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
     - **ln2_epsilon** (float，可选) - 一个很小的浮点数，被第二个layer_norm算子加到分母，避免出现除零的情况。默认值是1e-5。
     - **pre_layer_norm** (bool，可选) - 在预处理阶段加上layer_norm，或者在后处理阶段加上layer_norm。默认值是False。
-    - **training** (bool): 标记是否为训练阶段。默认: True。
-    - **mode** (str): 丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认: 'upscale_in_train'。计算方法如下:
+    - **training** (bool)：标记是否为训练阶段。默认：True。
+    - **mode** (str)：丢弃单元的方式，有两种'upscale_in_train'和'downscale_in_infer'，默认：'upscale_in_train'。计算方法如下：
 
         1. upscale_in_train，在训练时增大输出结果。
 
@@ -47,7 +47,7 @@ fused_feedforward
             - train: out = input * mask
             - inference: out = input * (1.0 - p)
 
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

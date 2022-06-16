@@ -25,15 +25,15 @@ scaled_dot_product_attention
 参数
 ::::::::::::
 
-    - **queries** （Variable） - 形状为 :math:`[N, L_q, d_k \times h]` 的三维Tensor，其中 :math:`N` 为batch_size， :math:`L_q` 为查询序列长度，:math:`d_k \times h` 为查询的特征维度大小，:math:`h` 为head数。数据类型为float32或float64。
-    - **keys** （Variable） - 形状为 :math:`[N, L_k, d_k \times h]` 的三维Tensor，其中 :math:`N` 为batch_size， :math:`L_k` 为键值序列长度，:math:`d_k \times h` 为键的特征维度大小，:math:`h` 为head数。数据类型与 ``queries`` 相同。
-    - **values** （Variable） - 形状为 :math:`[N, L_k, d_v \times h]` 的三维Tensor，其中 :math:`N` 为batch_size， :math:`L_k` 为键值序列长度，:math:`d_v \times h` 为值的特征维度大小，:math:`h` 为head数。数据类型与 ``queries`` 相同。
+    - **queries** （Variable） - 形状为：math:`[N, L_q, d_k \times h]` 的三维Tensor，其中：math:`N` 为batch_size， :math:`L_q` 为查询序列长度，:math:`d_k \times h` 为查询的特征维度大小，:math:`h` 为head数。数据类型为float32或float64。
+    - **keys** （Variable） - 形状为：math:`[N, L_k, d_k \times h]` 的三维Tensor，其中：math:`N` 为batch_size， :math:`L_k` 为键值序列长度，:math:`d_k \times h` 为键的特征维度大小，:math:`h` 为head数。数据类型与 ``queries`` 相同。
+    - **values** （Variable） - 形状为：math:`[N, L_k, d_v \times h]` 的三维Tensor，其中：math:`N` 为batch_size， :math:`L_k` 为键值序列长度，:math:`d_v \times h` 为值的特征维度大小，:math:`h` 为head数。数据类型与 ``queries`` 相同。
     - **num_heads** （int） - 指明所使用的head数。head数为1时不对输入进行线性变换。默认值为1。
     - **dropout_rate** （float） - 以指定的概率对要attention到的内容进行dropout。默认值为0，即不使用dropout。
 
 返回
 ::::::::::::
- 形状为 :math:`[N, L_q, d_v * h]` 的三维Tensor，其中 :math:`N` 为batch_size， :math:`L_q` 为查询序列长度，:math:`d_v * h` 为值的特征维度大小。与输入具有相同的数据类型。表示Multi-Head Attention的输出。
+ 形状为：math:`[N, L_q, d_v * h]` 的三维Tensor，其中：math:`N` 为batch_size， :math:`L_q` 为查询序列长度，:math:`d_v * h` 为值的特征维度大小。与输入具有相同的数据类型。表示Multi-Head Attention的输出。
 
 返回类型
 ::::::::::::

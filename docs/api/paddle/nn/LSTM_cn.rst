@@ -9,7 +9,7 @@ LSTM
 
 **长短期记忆网络**
 
-该OP是长短期记忆网络（LSTM），根据输出序列和给定的初始状态计算返回输出序列和最终状态。在该网络中的每一层对应输入的step，每个step根据当前时刻输入 :math:`x_{t}` 和上一时刻状态 :math:`h_{t-1}, c_{t-1}` 计算当前时刻输出 :math:`y_{t}` 并更新状态 :math:`h_{t}, c_{t}` 。
+该OP是长短期记忆网络（LSTM），根据输出序列和给定的初始状态计算返回输出序列和最终状态。在该网络中的每一层对应输入的step，每个step根据当前时刻输入：math:`x_{t}` 和上一时刻状态：math:`h_{t-1}, c_{t-1}` 计算当前时刻输出：math:`y_{t}` 并更新状态：math:`h_{t}, c_{t}` 。
 
 状态更新公式如下：
 
@@ -36,8 +36,8 @@ LSTM
 参数
 ::::::::::::
 
-    - **input_size** (int) - 输入 :math:`x` 的大小。
-    - **hidden_size** (int) - 隐藏状态 :math:`h` 大小。
+    - **input_size** (int) - 输入：math:`x` 的大小。
+    - **hidden_size** (int) - 隐藏状态：math:`h` 大小。
     - **num_layers** (int，可选) - 循环网络的层数。例如，将层数设为2，会将两层GRU网络堆叠在一起，第二层的输入来自第一层的输出。默认为1。
     - **direction** (str，可选) - 网络迭代方向，可设置为forward或bidirect（或bidirectional）。foward指从序列开始到序列结束的单向GRU网络方向，bidirectional指从序列开始到序列结束，又从序列结束到开始的双向GRU网络方向。默认为forward。
     - **time_major** (bool，可选) - 指定input的第一个维度是否是time steps。如果time_major为True，则Tensor的形状为[time_steps,batch_size,input_size]，否则为[batch_size,time_steps,input_size]。`time_steps` 指输入序列的长度。默认为False。

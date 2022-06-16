@@ -146,10 +146,10 @@ get_program(dygraph_func, *args, **kwargs)
 
 元组(main_program, startup_program, inputs, outputs)
 
-    - main_program: 转化后的main program。
-    - startup_program: 转化后的startup program。
-    - inputs: 输入Tensor的列表，这些Tensor可以在执行去feed。
-    - outputs: 输出Tensor的列表，这些Tensor可以在运行时被fetch。
+    - main_program：转化后的main program。
+    - startup_program：转化后的startup program。
+    - inputs：输入Tensor的列表，这些Tensor可以在执行去feed。
+    - outputs：输出Tensor的列表，这些Tensor可以在运行时被fetch。
 
 **代码示例**
 

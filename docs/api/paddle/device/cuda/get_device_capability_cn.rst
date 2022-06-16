@@ -14,7 +14,7 @@ get_device_capability
 
 返回
 ::::::::::
-tuple(int,int): 设备计算能力的主要和次要修订号。
+tuple(int,int)：设备计算能力的主要和次要修订号。
 
 
 代码示例

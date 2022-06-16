@@ -8,7 +8,7 @@ Metric
 
 评估器metric的基类。
 
-用法:
+用法：
     
     .. code-block:: text
 
@@ -17,7 +17,7 @@ Metric
             m.update(prediction, label)
         m.accumulate()
     
-`compute` 接口的进阶用法:
+`compute` 接口的进阶用法：
 
 在 `compute` 中可以使用PaddlePaddle内置的算子进行评估器的状态，而不是通过
 Python/NumPy，这样可以加速计算。`update` 接口将 `compute` 的输出作为
@@ -63,7 +63,7 @@ Python/NumPy，这样可以加速计算。`update` 接口将 `compute` 的输出
 代码示例 2
 ::::::::::::
 
-在 `compute` 中的计算，使用内置的算子(可以跑在GPU上，使得速度更快)。作为 `update` 的输入，该接口计算如下: 
+在 `compute` 中的计算，使用内置的算子(可以跑在GPU上，使得速度更快)。作为 `update` 的输入，该接口计算如下：
 
     .. code-block:: python
         
@@ -93,7 +93,7 @@ update(*args)
 '''''''''
 
 更新状态。如果定义了 `compute` ， `update` 的输入是 `compute` 的输出。如果没有定义，则输入是网络的输出**output**和标签**label**，
-如: `update(output1, output2, ..., label1, label2,...)` 。
+如：`update(output1, output2, ..., label1, label2,...)` 。
 
 也可以参考 `update` 。
 
@@ -123,7 +123,7 @@ compute()
 
 此接口可以通过PaddlePaddle内置的算子计算metric的状态，可以加速metric的计算，为可选的高阶接口。
 
-- 如果这个接口定义了，输入是网络的输出 **outputs** 和 标签 **labels**，定义如:`compute(output1, output2, ..., label1, label2,...)` 。
-- 如果这个接口没有定义，默认的行为是直接将输入参数返回给 `update`，则其定义如: `update(output1, output2, ..., label1, label2,...)` 。
+- 如果这个接口定义了，输入是网络的输出 **outputs** 和 标签 **labels**，定义如：`compute(output1, output2, ..., label1, label2,...)` 。
+- 如果这个接口没有定义，默认的行为是直接将输入参数返回给 `update`，则其定义如：`update(output1, output2, ..., label1, label2,...)` 。
 
 也可以参考 `compute` 。

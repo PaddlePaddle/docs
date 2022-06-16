@@ -14,7 +14,7 @@ Noam衰减的计算方式如下：
 
     new\_learning\_rate = learning\_rate * d_{model}^{-0.5} * min(epoch^{-0.5}, epoch * warmup\_steps^{-1.5})
 
-相关论文： `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ 。
+相关论文：`attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ 。
 
 参数
 ::::::::::::

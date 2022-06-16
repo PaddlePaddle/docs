@@ -74,7 +74,7 @@ sample(shape=())
 
 **返回**
 
-- Tensor: 样本数据。
+- Tensor：样本数据。
 
 entropy()
 '''''''''

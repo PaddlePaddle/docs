@@ -12,11 +12,11 @@ cuda_places
 该接口根据 ``device_ids`` 创建一个或多个 ``paddle.CUDAPlace`` 对象，并返回所创建的对象列表。
 
 如果 ``device_ids`` 为 ``None``，则首先检查 ``FLAGS_selected_gpus`` 标志。
-例如： ``FLAGS_selected_gpus=0,1,2``，则返回的列表将为 ``[paddle.CUDAPlace(0), paddle.CUDAPlace(1), paddle.CUDAPlace(2)]``。
+例如：``FLAGS_selected_gpus=0,1,2``，则返回的列表将为 ``[paddle.CUDAPlace(0), paddle.CUDAPlace(1), paddle.CUDAPlace(2)]``。
 如果未设置标志 ``FLAGS_selected_gpus``，则根据 ``CUDA_VISIBLE_DEVICES`` 环境变量，返回所有可见的 GPU places。
 
 如果 ``device_ids`` 不是 ``None``，它应该是使用的GPU设备ID的列表或元组。
-例如： ``device_id=[0,1,2]``，返回的列表将是 ``[paddle.CUDAPlace(0), paddle.CUDAPlace(1), paddle.CUDAPlace(2)]``。
+例如：``device_id=[0,1,2]``，返回的列表将是 ``[paddle.CUDAPlace(0), paddle.CUDAPlace(1), paddle.CUDAPlace(2)]``。
 
 参数
 :::::::::

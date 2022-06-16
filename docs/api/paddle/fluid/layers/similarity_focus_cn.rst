@@ -22,7 +22,7 @@ similarity_focus
 
 ::
 
-    例如 :
+    例如：
 
     给定四维张量 x 形为 (BatchSize, C, A, B)，其中C 为通道Channel数目，
     特征图（feature map）的形为（A,B）：
@@ -47,8 +47,8 @@ similarity_focus
                    [[0.0, 0.2],
                     [0.4, 0.7]]]]
 
-    给定轴: 1 (即channel轴)
-    给定索引: [0]
+    给定轴：1 (即channel轴)
+    给定索引：[0]
 
     于是我们得到一个与输入同形的四维输出张量：
         out.shape = (2, 3, 2, 2)

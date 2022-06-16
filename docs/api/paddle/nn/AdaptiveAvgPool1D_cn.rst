@@ -6,7 +6,7 @@ AdaptiveAvgPool1D
 
 .. py:class:: paddle.nn.AdaptiveAvgPool1D(output_size, name=None)
 
-根据 ``output_size`` 对一个输入 Tensor 计算 1D 的自适应平均池化。输入和输出都是以 NCL 格式表示的 3-D Tensor，其中 N 是批大小，C 是通道数而 L 是特征的长度。输出的形状是 :math:`[N, C, output\_size]`。
+根据 ``output_size`` 对一个输入 Tensor 计算 1D 的自适应平均池化。输入和输出都是以 NCL 格式表示的 3-D Tensor，其中 N 是批大小，C 是通道数而 L 是特征的长度。输出的形状是：math:`[N, C, output\_size]`。
 
 计算公式为
 
@@ -22,7 +22,7 @@ AdaptiveAvgPool1D
 参数
 :::::::::
     - **output_size** (int) - 输出特征的长度，数据类型为 int。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

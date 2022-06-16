@@ -24,7 +24,7 @@ ParallelExecutor
     需要设置该参数的情况：模型训练过程中需要进行模型测试，并且训练和测试都是采用数据并行模式，那么测试对应的ParallelExecutor在调用with_data_parallel时，需要将share_vars_from设置为训练所对应的ParallelExecutor。
     由于ParallelExecutor只有在第一次执行时才会将参数变量分发到其他设备上，因此share_vars_from指定的ParallelExecutor必须在当前ParallelExecutor之前运行。默认为：None。
     - **exec_strategy** (ExecutionStrategy) -  通过exec_strategy指定执行计算图过程可以调整的选项，例如线程池大小等。关于exec_strategy更多信息，请参阅 ``paddle.static.ExecutionStrategy``。默认为：None。
-    - **build_strategy** (BuildStrategy): 通过配置build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于build_strategy更多的信息，请参阅  ``paddle.static.BuildStrategy``。默认为：None。
+    - **build_strategy** (BuildStrategy)：通过配置build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于build_strategy更多的信息，请参阅  ``paddle.static.BuildStrategy``。默认为：None。
     - **num_trainers** (int) – 进行GPU分布式训练时需要设置该参数。如果该参数值大于1，NCCL将会通过多层级节点的方式来初始化。每个节点应有相同的GPU数目。默认为：1。
     - **trainer_id** (int) –  进行GPU分布式训练时需要设置该参数。该参数必须与num_trainers参数同时使用。trainer_id指明是当前所在节点的 “rank”（层级）。trainer_id从0开始计数。默认为：0。
     - **scope** (Scope) – 指定执行Program所在的作用域。默认为：paddle.static.global_scope()。
@@ -140,13 +140,13 @@ run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
     train_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
                                                main_program=train_program,
                                                loss_name=loss.name)
-    # 如果feed参数是dict类型:
+    # 如果feed参数是dict类型：
     # 图像会被split到设备中。假设有两个设备，那么每个设备将会处理形为 (5, 1)的图像
     x = numpy.random.random(size=(10, 1)).astype('float32')
     loss_data, = train_exe.run(feed={"X": x},
                                fetch_list=[loss.name])
 
-    # 如果feed参数是list类型:
+    # 如果feed参数是list类型：
     # 各设备挨个处理列表中的每个元素
     # 第一个设备处理形为 (10, 1) 的图像
     # 第二个设备处理形为 (9, 1) 的图像

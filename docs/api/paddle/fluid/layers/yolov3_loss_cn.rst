@@ -12,7 +12,7 @@ yolov3_loss
 
 yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用来指定网格(grid)大小。每个网格点预测S个边界框(bounding boxes)，S由每个尺度中 ``anchors`` 簇的个数指定。在第二维（表示通道的维度）中，C的值应为S *（class_num + 5），class_num是源数据集的对象种类数（如coco中为80），另外，除了存储4个边界框位置坐标x，y，w，h，还包括边界框以及每个anchor框的one-hot关键字的置信度得分。
 
-假设有四个表征位置的坐标为 :math:`t_x, t_y, t_w, t_h`，那么边界框的预测将会如下定义:
+假设有四个表征位置的坐标为：math:`t_x, t_y, t_w, t_h`，那么边界框的预测将会如下定义：
 
          $$
          b_x = \\sigma(t_x) + c_x
@@ -42,7 +42,7 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
          weight_{box} = 2.0 - t_w * t_h
          $$
 
-最后的loss值将如下计算:
+最后的loss值将如下计算：
 
          $$
          loss = (loss_{xy} + loss_{wh}) * weight_{box} + loss_{conf} + loss_{class}
@@ -68,7 +68,7 @@ yolov3 loss前的网络输出形状为[N，C，H，W]，H和W应该相同，用�
     - **downsample_ratio**  (int) – 网络输入到YOLOv3 loss输入的下采样率，因此第一，第二和第三个 loss 的下采样率应分别为32,16,8
     - **gt_score** （Variable） - 真实框的混合得分，形为[N，B]。默认None。数据类型为float32或float64。
     - **use_label_smooth** (bool） - 是否使用平滑标签。默认为True
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

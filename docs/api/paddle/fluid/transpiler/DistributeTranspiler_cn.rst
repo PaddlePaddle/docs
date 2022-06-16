@@ -89,7 +89,7 @@ transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_
     
     - **trainer_id** (int) – 当前Trainer worker的id，如果有n个Trainer worker, id 取值范围为0 ~ n-1
     - **program** (Program|None) – 待transpile（转译）的main program，默认为 ``fluid.default_main_program()`` 
-    - **pservers** (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
+    - **pservers** (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址：端口号* 
     - **trainers** (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
     - **sync_mode** (bool) – 是否做同步训练(synchronous training)，默认为True
     - **startup_program** (Program|None) – 待transpile（转译）的startup program，默认为 ``fluid.default_startup_program()``
@@ -116,7 +116,7 @@ get_trainer_program(wait_port=True)
 '''''''''
 
 
-该方法可以得到Trainer侧的program。Trainer侧的program相较于原始的单机执行的program，主要有以下不同:
+该方法可以得到Trainer侧的program。Trainer侧的program相较于原始的单机执行的program，主要有以下不同：
 
      - 删除了参数更新optimizer相关op，参数的更新由Pserver（参数服务器）执行
      - 在每个参数的反向梯度计算op后，添加了 ``Send_op`` 与 ``Recv_op``，用于发送参数的梯度与接受更新后的参数
@@ -149,7 +149,7 @@ get_pserver_program(endpoint)
 '''''''''
 
 
-该方法可以得到Pserver（参数服务器）侧的program。Pserver侧的program相较于原始的单机执行的program，主要有以下不同:
+该方法可以得到Pserver（参数服务器）侧的program。Pserver侧的program相较于原始的单机执行的program，主要有以下不同：
      
      - 仅包含参数更新optimizer相关op，与分布式通信相关op
      - 0号block仅包含变量的定义及 ``listen_and_serv_op`` 

@@ -8,7 +8,7 @@ adaptive_avg_pool2d
 该算子根据输入 `x` , `output_size` 等参数对一个输入Tensor计算2D的自适应平均池化。输入和输出都是4-D Tensor，
 默认是以 `NCHW` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`H` 是输入特征的高度，`H` 是输入特征的宽度。
 
-计算公式如下:
+计算公式如下：
 
 ..  math::
 
@@ -25,10 +25,10 @@ adaptive_avg_pool2d
 
 参数
 :::::::::
-    - **x** (Tensor): 默认形状为（批大小，通道数，高度，宽度），即NCHW格式的4-D Tensor。其数据类型为float16, float32, float64, int32或int64。
-    - **output_size** (int|list|turple): 算子输出特征图的尺寸，如果其是list或turple类型的数值，必须包含两个元素，H和W。H和W既可以是int类型值也可以是None，None表示与输入特征尺寸相同。
-    - **data_format** (str): 输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **x** (Tensor)：默认形状为（批大小，通道数，高度，宽度），即NCHW格式的4-D Tensor。其数据类型为float16, float32, float64, int32或int64。
+    - **output_size** (int|list|turple)：算子输出特征图的尺寸，如果其是list或turple类型的数值，必须包含两个元素，H和W。H和W既可以是int类型值也可以是None，None表示与输入特征尺寸相同。
+    - **data_format** (str)：输入和输出的数据格式，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

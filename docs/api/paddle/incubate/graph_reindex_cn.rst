@@ -39,7 +39,7 @@ graph_reindex
     - value_buffer (Tensor，可选) - 用于快速哈希索引的缓存Tensor，可加速重编号过程。数据类型为int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为True，则不可为空。默认值为None。
     - index_buffer (Tensor，可选) - 用于快速哈希索引的缓存Tensor，可加速重编号过程。数据类型为int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为True，则不可为空。默认值为None。
     - flag_buffer_hashtable (bool) - 是否采取快速哈希索引，默认为False。只适用于GPU版本的API。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

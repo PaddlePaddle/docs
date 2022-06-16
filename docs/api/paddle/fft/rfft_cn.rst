@@ -20,11 +20,11 @@ rfft
   须是 "forward"，"backward"，"ortho" 之一，默认值为 "backward"。三种缩放模式对应的行为
   如下：
 
-  - "backward": 正向和逆向变换的缩放系数分别为 ``1`` 和 ``1/n``;
-  - "forward": 正向和逆向变换的缩放系数分别为 ``1/n`` 和 ``1``;
-  - "ortho": 正向和逆向变换的缩放系数均为 ``1/sqrt(n)``;
+  - "backward"：正向和逆向变换的缩放系数分别为 ``1`` 和 ``1/n``;
+  - "forward"：正向和逆向变换的缩放系数分别为 ``1/n`` 和 ``1``;
+  - "ortho"：正向和逆向变换的缩放系数均为 ``1/sqrt(n)``;
             
-- **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+- **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

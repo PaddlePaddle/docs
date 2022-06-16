@@ -20,8 +20,8 @@ teacher q值存在时，点击时label为z'，否则为1 + z'。
     loss = max(x, 0) - x * z + log(1 + exp(-abs(x))) + max(x, 0) - x * z' + log(1 + exp(-abs(x)))
 
 其中：
-    - :math:`x` ：预测输入值。
-    - :math:`z` ：是否点击。
+    - :math:`x`：预测输入值。
+    - :math:`z`：是否点击。
     - :math:`z'` ：teacher q值。
 
 

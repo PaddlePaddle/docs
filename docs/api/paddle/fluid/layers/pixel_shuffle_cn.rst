@@ -19,7 +19,7 @@ pixel_shuffle
 参数
 ::::::::::::
 
-          - **x** （Variable）- 维度为 :math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
+          - **x** （Variable）- 维度为：math:`[N_1, N_2, ..., N_k, D]` 的多维Tensor，其中最后一维D是类别数目。数据类型为float32或float64。
           - **upscale_factor** （int）- 增大空间分辨率的增大因子
 
 

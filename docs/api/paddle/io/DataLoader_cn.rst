@@ -126,12 +126,12 @@ from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=T
 
 创建一个DataLoader对象用于加载Python生成器产生的数据。数据会由Python线程预先读取，并异步送入一个队列中。
 
-本方法创建的DataLoader对象提供了3个方法设置数据源，分别是 :code:`set_sample_generator` , :code:`set_sample_list_generator` 和
+本方法创建的DataLoader对象提供了3个方法设置数据源，分别是：code:`set_sample_generator` , :code:`set_sample_list_generator` 和
 :code:`set_batch_generator`。请查阅下述示例代码了解它们的使用方法。
 
 如果iterable = True，本方法创建的DataLoader对象是一个Python生成器，可以for-range的方法循环迭代。
 
-如果iterable = False，本方法创建的DataLoader对象提供 :code:`start()` 和 :code:`reset()` 方法控制数据读取过程。
+如果iterable = False，本方法创建的DataLoader对象提供：code:`start()` 和：code:`reset()` 方法控制数据读取过程。
 
 **参数**
 
@@ -141,7 +141,7 @@ from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=T
     - **iterable** (bool) - 所创建的DataLoader对象是否可迭代。
     - **return_list** (bool) - 每个设备上的数据是否以list形式返回。仅在iterable = True模式下有效。若return_list = False，每个设备上的返回数据均是str -> LoDTensor的映射表，其中映射表的key是每个输入变量的名称。若return_list = True，则每个设备上的返回数据均是list(LoDTensor)。推荐在静态图模式下使用return_list = False，在动态图模式下使用return_list = True。
     - **use_multiprocess** (bool) - 设置是否是用多进程加速动态图的数据载入过程。注意：该参数的设置仅在动态图模式下有效，在静态图模式下，该参数设置与否均无任何影响。默认值为False。
-    - **drop_last** (bool): 是否丢弃最后的不足CPU/GPU设备数的批次。默认值为True。在网络训练时，用户不能设置drop_last=False，此时所有CPU/GPU设备均应从DataLoader中读取到数据。在网络预测时，用户可以设置drop_last=False，此时最后不足CPU/GPU设备数的批次可以进行预测。
+    - **drop_last** (bool)：是否丢弃最后的不足CPU/GPU设备数的批次。默认值为True。在网络训练时，用户不能设置drop_last=False，此时所有CPU/GPU设备均应从DataLoader中读取到数据。在网络预测时，用户可以设置drop_last=False，此时最后不足CPU/GPU设备数的批次可以进行预测。
 
 **返回**
 

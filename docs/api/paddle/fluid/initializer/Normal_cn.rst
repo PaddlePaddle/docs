@@ -20,9 +20,9 @@ Normal
 
 上面的数学公式中：
 
-:math:`loc = \mu` : 平均值。
-:math:`scale = \sigma` : 标准差。
-:math:`Z`: 正态分布常量。
+:math:`loc = \mu`：平均值。
+:math:`scale = \sigma`：标准差。
+:math:`Z`：正态分布常量。
 
 参数
 ::::::::::::
@@ -60,7 +60,7 @@ Normal
     normal_b = Normal([0.5], [2.])
 
     sample = normal_a.sample([2])
-    # 一个由定义好的正太分布随机生成的张量，维度为: [2, 1]
+    # 一个由定义好的正太分布随机生成的张量，维度为：[2, 1]
     entropy = normal_a.entropy()
     # [1.4189385] with shape: [1]
     lp = normal_a.log_prob(value_tensor)

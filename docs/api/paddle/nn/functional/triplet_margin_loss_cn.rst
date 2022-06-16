@@ -5,7 +5,7 @@ triplet_margin_loss
 
 .. py:function:: paddle.nn.functional.triplet_margin_loss(input, positive, negative, margin: float = 1.0, p:float = 2.0, epsilon:float=1e-6, swap: bool = False, reduction: str = 'mean', name:str=None)
 
-该 api 计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失，测量 `input` 与 `positive examples` 和 `negative examples` 之间的相对相似性。所有输入张量的形状都为 :math:`(N, *)`，`*` 是任意其他维度。
+该 api 计算输入 `input` 和 `positive` 和 `negative` 间的 `triplet margin loss` 损失，测量 `input` 与 `positive examples` 和 `negative examples` 之间的相对相似性。所有输入张量的形状都为：math:`(N, *)`，`*` 是任意其他维度。
 
 
 损失函数按照下列公式计算
@@ -31,15 +31,15 @@ triplet_margin_loss
     - **p** (float，可选) - 手动指定范数，默认为2。
     - **epsilon** (float，可选) - 防止除数为零，默认为1e-6。
     - **swap** (bool，可选) - 默认为 False。
-    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有: ``'none'``， ``'mean'``， ``'sum'``。默认为 ``'mean'``，计算 Loss 的均值；设置为 ``'sum'`` 时，计算 Loss 的总和；设置为 ``'none'`` 时，则返回原始 Loss。
-    - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``， ``'mean'``， ``'sum'``。默认为 ``'mean'``，计算 Loss 的均值；设置为 ``'sum'`` 时，计算 Loss 的总和；设置为 ``'none'`` 时，则返回原始 Loss。
+    - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见：ref:`api_guide_Name` 。
 
 形状
 :::::::::
     - **input** (Tensor) - :math:`[N, * ]`，其中N是batch_size， `*` 是任意其他维度。数据类型是 float32、float64。
     - **positive** (Tensor) - :math:`[N, *]`，标签 ``positive`` 的维度、数据类型与输入 ``input`` 相同。
     - **negative** (Tensor) - :math:`[N, *]`，标签 ``negative`` 的维度、数据类型与输入 ``input`` 相同。
-    - **output** (Tensor) - 输出的Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[1]` 。
+    - **output** (Tensor) - 输出的Tensor。如果：attr:`reduction` 是 ``'none'``，则输出的维度为：math:`[N, *]`，与输入 ``input`` 的形状相同。如果：attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为：math:`[1]` 。
 
 返回
 :::::::::

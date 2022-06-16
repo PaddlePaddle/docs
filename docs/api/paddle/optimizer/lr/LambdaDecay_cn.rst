@@ -25,7 +25,7 @@ LambdaDecay
 
     - **learning_rate** （float） - 初始学习率，数据类型为Python float。
     - **lr_lambda** （function）：lr_lambda 为一个lambda函数，其通过 epoch 计算出一个因子，该因子会乘以初始学习率。
-    - **last_epoch** （int，可选）: 上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
+    - **last_epoch** （int，可选）：上一轮的轮数，重启训练时设置为上一轮的epoch数。默认值为 -1，则为初始学习率。
     - **verbose** （bool，可选）：如果是 ``True``，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
 
 返回

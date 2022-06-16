@@ -15,7 +15,7 @@ transpose
 
     - **x** (Tensor) - 输入：x:[N_1, N_2, ..., N_k, D]多维Tensor，可选的数据类型为bool, float16, float32, float64, int32, int64。
     - **perm** (list|tuple) - perm长度必须和X的维度相同，并依照perm中数据进行重排。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

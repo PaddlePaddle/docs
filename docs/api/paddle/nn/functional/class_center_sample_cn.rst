@@ -15,7 +15,7 @@ class_center_sample
 
 更多的细节信息，请参考论文《Partial FC: Training 10 Million Identities on a Single Machine》，arxiv: https://arxiv.org/abs/2010.05222
 
-提示:
+提示：
 
     如果正类别中心数量大于给定的 ``num_samples``，将保留所有的正类别中心，因此 ``sampled_class_center`` 的维度将是 [``num_positive_class_centers``]。
 

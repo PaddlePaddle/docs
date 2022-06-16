@@ -11,13 +11,13 @@ mod
         out = x \% y
 
 **注意**:
-        ``paddle.mod`` 支持广播。关于广播规则，请参考 :ref:`cn_user_guide_broadcasting`
+        ``paddle.mod`` 支持广播。关于广播规则，请参考：ref:`cn_user_guide_broadcasting`
 
 参数
 :::::::::
         - x（Tensor）- 多维Tensor。数据类型为float32 、float64、int32或int64。
         - y（Tensor）- 多维Tensor。数据类型为float32 、float64、int32或int64。
-        - name（str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+        - name（str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见：ref:`api_guide_Name`。
 
 返回
 :::::::::

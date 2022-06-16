@@ -9,7 +9,7 @@ OneCycleLR
 
 该策略将学习率从初始学习率调整到最大学习率，再从最大学习率调整到远小于初始学习率的最小学习率。
 
-相关论文： `Super-Convergence: Very Fast Training of Neural Networks Using Large Learning Rates <https://arxiv.org/abs/1708.07120>`_
+相关论文：`Super-Convergence: Very Fast Training of Neural Networks Using Large Learning Rates <https://arxiv.org/abs/1708.07120>`_
 
 注意，本调度器默认行为参考fastai仓库，其声称二阶段拥有比三阶段更好的效果。设置 ``three_phase=True`` 可以与论文中所描述的行为保持一致。
 

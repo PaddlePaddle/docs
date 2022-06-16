@@ -10,7 +10,7 @@ sequence_unpad
 
 
 .. note::
-    该OP的输入为Tensor，输出为LoDTensor。该OP用于移除填充元素，与之对应，还存在进行数据填充的OP sequence_pad，详情见： :ref:`cn_api_fluid_layers_sequence_pad`
+    该OP的输入为Tensor，输出为LoDTensor。该OP用于移除填充元素，与之对应，还存在进行数据填充的OP sequence_pad，详情见：:ref:`cn_api_fluid_layers_sequence_pad`
 
 该OP根据length的信息，将input中padding（填充）元素移除，并且返回一个LoDTensor。
 
@@ -39,7 +39,7 @@ sequence_unpad
 
   - **x** (Variable) – 包含填充元素的Tensor，其维度大小不能小于2，支持的数据类型：float32, float64,int32, int64。
   - **length** (Variable) – 存储每个样本实际长度信息的1D Tesnor，该Tensor维度的第0维必须与x维度的第0维一致。支持的数据类型：int64。
-  - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+  - **name**  (str，可选) – 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为None。
 
 返回
 ::::::::::::

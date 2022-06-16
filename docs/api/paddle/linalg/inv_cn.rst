@@ -11,7 +11,7 @@ inv
 参数
 :::::::::
   - **x** (Tensor) – 输入张量，最后两维的大小必须相等。如果输入张量的维数大于2，则被视为2-D矩阵的批次（batch）。支持的数据类型：float32，float64。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::

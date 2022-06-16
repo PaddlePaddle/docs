@@ -197,8 +197,8 @@ gradient_merge_configs
 
 **avg(bool):** 梯度的融合方式，有两种选择：
 
-- **sum**: 梯度求和
-- **avg**: 梯度求平均
+- **sum**：梯度求和
+- **avg**：梯度求平均
 
 
 lars

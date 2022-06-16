@@ -20,8 +20,8 @@ MultivariateNormalDiag
     
     Z = (2\pi )^{0.5k} |det(scale)|
 
-上面公式中:
-  - :math:`inv` 表示： 对矩阵求逆
+上面公式中：
+  - :math:`inv` 表示：对矩阵求逆
   - :math:`@` 表示：矩阵相乘
   - :math:`det` 表示：求行列式的值
 
@@ -29,8 +29,8 @@ MultivariateNormalDiag
 参数
 ::::::::::::
 
-    - **loc** (list|numpy.ndarray|Variable) - 形状为 :math:`[k]` 的多元高斯分布的均值列表。数据类型为float32。
-    - **scale** (list|numpy.ndarray|Variable) - 形状为 :math:`[k, k]` 的多元高斯分布的对角协方差矩阵，且除对角元素外，其他元素取值均为0。数据类型为float32。
+    - **loc** (list|numpy.ndarray|Variable) - 形状为：math:`[k]` 的多元高斯分布的均值列表。数据类型为float32。
+    - **scale** (list|numpy.ndarray|Variable) - 形状为：math:`[k, k]` 的多元高斯分布的对角协方差矩阵，且除对角元素外，其他元素取值均为0。数据类型为float32。
 
 代码示例
 ::::::::::::

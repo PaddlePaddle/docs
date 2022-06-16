@@ -22,7 +22,7 @@ Uniform
 
 :math:`low = a` 。
 :math:`high = b` 。
-:math:`Z`: 正态分布常量。
+:math:`Z`：正态分布常量。
 
 参数low和high的维度必须能够支持广播。
 
@@ -63,7 +63,7 @@ Uniform
     uniform = Uniform([0.], [2.])
 
     sample = uniform.sample([2])
-    # 一个由定义好的均匀分布随机生成的张量，维度为: [2, 1]
+    # 一个由定义好的均匀分布随机生成的张量，维度为：[2, 1]
     entropy = uniform.entropy()
     # [0.6931472] with shape: [1]
     lp = uniform.log_prob(value_tensor)

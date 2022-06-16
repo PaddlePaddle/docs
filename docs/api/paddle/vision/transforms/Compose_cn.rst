@@ -15,7 +15,7 @@ Compose
 返回
 :::::::::
 
-    一个可调用的Compose对象，它将依次调用每个给定的 :attr:`transforms`。
+    一个可调用的Compose对象，它将依次调用每个给定的：attr:`transforms`。
 
 代码示例
 :::::::::

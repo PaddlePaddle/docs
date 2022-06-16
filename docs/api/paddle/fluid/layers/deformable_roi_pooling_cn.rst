@@ -36,7 +36,7 @@ deformable_roi_pooling
     - **sample_per_part** （int）- 每个bin中的样本数量，设置值越大，采样结果越精细，但是更加消耗性能。默认为1。
     - **trans_std** （float）- 偏移系数，控制偏移量的大小，默认为0.1。
     - **position_sensitive** （bool）- 是否选择可变形位置敏感型感兴趣区域（PSROI）池化模式，数值类型为bool型。如果为False，输入维度和输出维度相等。如果为True，输入维度等于输出维度乘以pooled_width和pooled_height。默认为False。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

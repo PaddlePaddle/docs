@@ -15,7 +15,7 @@ cross
     - x (Tensor) – 第一个输入张量。
     - y (Tensor) – 第二个输入张量。
     - axis (int，可选) – 沿着此维进行向量积操作。默认值是9，意思是选取第一个长度为3的 ``axis`` 。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

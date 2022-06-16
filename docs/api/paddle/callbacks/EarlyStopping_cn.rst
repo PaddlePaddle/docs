@@ -16,7 +16,7 @@ EarlyStopping
   - **verbose** (int，可选) - 可以是0或者1.0代表不打印模型提前停止训练的日志，1代表打印日志。默认值：1。
   - **min_delta** (int|float，可选) - 监控量最小改变值。当evaluation的监控变量改变值小于 ``min_delta``，就认为模型没有变化。默认值：0。
   - **baseline** (int|float，可选) - 监控量的基线。如果模型在训练 ``patience`` 个epoch后效果对比基线没有提升，将会停止训练。如果是None，代表没有基线。默认值：None。
-  - **save_best_model** (bool，可选) - 是否保存效果最好的模型（监控量的值最优）。文件会保存在 ``fit`` 中传入的参数 ``save_dir`` 下，前缀名为best_model，默认值: True。
+  - **save_best_model** (bool，可选) - 是否保存效果最好的模型（监控量的值最优）。文件会保存在 ``fit`` 中传入的参数 ``save_dir`` 下，前缀名为best_model，默认值：True。
 
 代码示例
 ::::::::::::

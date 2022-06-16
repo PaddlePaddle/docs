@@ -5,7 +5,7 @@ SigmoidTransform
 
 .. py:class:: paddle.distribution.SigmoidTransform()
 
-Sigmoid变换 :math:`y = \frac{1}{1 + \exp(-x)}` , :math:`x = \text{logit}(y)`
+Sigmoid变换：math:`y = \frac{1}{1 + \exp(-x)}` , :math:`x = \text{logit}(y)`
 
 
 代码示例
@@ -19,11 +19,11 @@ COPY-FROM: paddle.distribution.SigmoidTransform
 forward(x)
 '''''''''
 
-计算正变换 :math:`y=f(x)` 的结果。
+计算正变换：math:`y=f(x)` 的结果。
 
 **参数**
 
-- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution` 
+- **x** (Tensor) - 正变换输入参数，通常为：ref:`cn_api_distribution_Distribution` 
   的随机采样结果。
     
 **返回**
@@ -34,7 +34,7 @@ forward(x)
 inverse(y)
 '''''''''
 
-计算逆变换 :math:`x = f^{-1}(y)`
+计算逆变换：math:`x = f^{-1}(y)`
 
 **参数**
 

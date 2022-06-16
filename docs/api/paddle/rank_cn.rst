@@ -13,7 +13,7 @@ rank
 参数
 ::::::::::::
 
-    - **input** (Tensor) — 输入input是shape为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor，数据类型可以任意类型。
+    - **input** (Tensor) — 输入input是shape为：math:`[N_1, N_2, ..., N_k]` 的多维Tensor，数据类型可以任意类型。
 
 返回
 ::::::::::::

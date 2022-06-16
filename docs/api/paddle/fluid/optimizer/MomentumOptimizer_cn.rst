@@ -25,12 +25,12 @@ MomentumOptimizer
     - **momentum** (float) - 动量因子。
     - **parameter_list** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为None，这时所有的参数都将被优化。
     - **use_nesterov** (bool，可选) - 赋能牛顿动量，默认值False。
-    - **regularization** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略: :ref:`cn_api_fluid_regularizer_L1Decay` 、 
-      :ref:`cn_api_fluid_regularizer_L2Decay`。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
-      如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
-    - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略： :ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
+    - **regularization** (WeightDecayRegularizer，可选) - 正则化方法。支持两种正则化策略：:ref:`cn_api_fluid_regularizer_L1Decay` 、 
+      :ref:`cn_api_fluid_regularizer_L2Decay`。如果一个参数已经在：ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
+      如果没有在：ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为None，表示没有正则化。
+    - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`cn_api_fluid_clip_GradientClipByGlobalNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByNorm` 、 :ref:`cn_api_fluid_clip_GradientClipByValue` 。
       默认值为None，此时将不进行梯度裁剪。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
 ::::::::::::
@@ -74,7 +74,7 @@ minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
 **参数**
 
     - **loss** (Variable) – 需要最小化的损失值变量
-    - **startup_program** (Program，可选) – 用于初始化parameter_list中参数的 :ref:`cn_api_fluid_Program`，默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program` 
+    - **startup_program** (Program，可选) – 用于初始化parameter_list中参数的：ref:`cn_api_fluid_Program`，默认值为None，此时将使用：ref:`cn_api_fluid_default_startup_program` 
     - **parameter_list** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表，默认值为None，此时将更新所有的Parameter
     - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None
         
@@ -174,7 +174,7 @@ set_lr()
         for i in range(5):
             adam.set_lr(lr_list[i])
             print("current lr is {}".format(adam.current_step_lr()))
-        # 打印结果:
+        # 打印结果：
         #    current lr is 0.2
         #    current lr is 0.3
         #    current lr is 0.4
@@ -186,7 +186,7 @@ set_lr()
         lr_var = fluid.layers.create_global_var(shape=[1], value=0.7, dtype='float32')
         adam.set_lr(lr_var)
         print("current lr is {}".format(adam.current_step_lr()))
-        # 打印结果:
+        # 打印结果：
         #    current lr is 0.7
 
 

@@ -23,6 +23,6 @@ export_protobuf
 代码示例
 ::::::::::
 
-用于 :ref:`性能分析器 <cn_api_profiler_profiler>` 的on_trace_ready参数。
+用于：ref:`性能分析器 <cn_api_profiler_profiler>` 的on_trace_ready参数。
 
 COPY-FROM: paddle.profiler.export_protobuf:code-example1

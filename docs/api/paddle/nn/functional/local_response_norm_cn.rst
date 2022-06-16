@@ -5,7 +5,7 @@ local_response_norm
 
 .. py:function:: paddle.nn.functional.local_response_norm(x, size, alpha=1e-4, beta=0.75, k=1., data_format="NCHW", name=None)
 
-局部响应正则化（Local Response Normalization）用于对局部输入区域进行正则化，执行一种侧向抑制（lateral inhibition）。更多详情参考： `ImageNet Classification with Deep Convolutional Neural Networks <https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf>`_
+局部响应正则化（Local Response Normalization）用于对局部输入区域进行正则化，执行一种侧向抑制（lateral inhibition）。更多详情参考：`ImageNet Classification with Deep Convolutional Neural Networks <https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf>`_
 
 其中 ``input`` 是mini-batch的输入特征。计算过程如下：
 
@@ -15,10 +15,10 @@ local_response_norm
 
 在以上公式中：
 
-  - :math:`size` ：累加的通道数
-  - :math:`k` ：位移
-  - :math:`\alpha` ： 缩放参数
-  - :math:`\beta` ： 指数参数
+  - :math:`size`：累加的通道数
+  - :math:`k`：位移
+  - :math:`\alpha`：缩放参数
+  - :math:`\beta`：指数参数
 
 参数
 :::::::::
@@ -28,7 +28,7 @@ local_response_norm
  - **beta** （float，可选）- 指数，正数。默认值为0.75。
  - **k** （float，可选）- 位移，正数。默认值为1.0。
  - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致。如果输入是三维 `Tensor`，该参数可以是"NCL"或"NLC"，其中N是批尺寸，C是通道数，L是特征长度。如果输入是四维 `Tensor`，该参数可以是"NCHW"或"NHWC"，其中N是批尺寸，C是通道数，H是特征高度，W是特征宽度。如果输入是五维 `Tensor`，该参数可以是"NCDHW"或"NDHWC"，其中N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。默认值："NCHW"。
- - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+ - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

@@ -21,8 +21,8 @@ load
 :::::::::
 tuple(dict, dict)，两个 ``dict``，即从文件中恢复的模型参数 ``dict`` 和优化器参数 ``dict``，如果只找到其中一个的存储文件，另一个返回None
 
-- param_dict: 从文件中恢复的模型参数 ``dict``
-- opt_dict: 从文件中恢复的优化器参数 ``dict``
+- param_dict：从文件中恢复的模型参数 ``dict``
+- opt_dict：从文件中恢复的优化器参数 ``dict``
   
 代码示例
 :::::::::

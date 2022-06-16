@@ -18,7 +18,7 @@ Pad2D
     填充输入边界值；``'circular'`` 为循环填充输入。默认值为 ``'constant'`` 。
   - **value** (float32) - 以 ``'constant'`` 模式填充区域时填充的值。默认值为0.0。
   - **data_format** (str)  - 指定输入的format，可为 ``'NCHW'`` 或者 ``'NHWC'``，默认值为 ``'NCHW'``。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

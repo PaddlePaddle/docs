@@ -5,13 +5,13 @@ AbsTransform
 
 .. py:class:: paddle.distribution.AbsTransform()
 
-取绝对值变换 :math:`y = |x|` 。
+取绝对值变换：math:`y = |x|` 。
 
 ``AbsTransform`` 不是双射变换，其逆变换处理逻辑如下：
 
-* 当 :math:`y \in (0, +\infty )` , ``AbsTransform.inverse(y)`` 返回元组 ``(-y, y)`` 。
-* 当 :math:`y=0` , ``AbsTransform.inverse(y)`` 返回 ``(0, 0)`` 。
-* 当 :math:`y \in (-\infty, 0)`，为了避免对 ``Tensor`` 数据进行判断带来性能下降，
+* 当：math:`y \in (0, +\infty )` , ``AbsTransform.inverse(y)`` 返回元组 ``(-y, y)`` 。
+* 当：math:`y=0` , ``AbsTransform.inverse(y)`` 返回 ``(0, 0)`` 。
+* 当：math:`y \in (-\infty, 0)`，为了避免对 ``Tensor`` 数据进行判断带来性能下降，
   ``AbsTransform.inverse(y)`` 仍返回 ``(-y, y)``，注意这本质上是一个错误结果，仅仅出于
   性能考虑。
 
@@ -27,11 +27,11 @@ COPY-FROM: paddle.distribution.AbsTransform
 forward(x)
 '''''''''
 
-计算正变换 :math:`y=f(x)` 的结果。
+计算正变换：math:`y=f(x)` 的结果。
 
 **参数**
 
-- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution` 
+- **x** (Tensor) - 正变换输入参数，通常为：ref:`cn_api_distribution_Distribution` 
   的随机采样结果。
     
 **返回**
@@ -42,7 +42,7 @@ forward(x)
 inverse(y)
 '''''''''
 
-计算逆变换 :math:`x = f^{-1}(y)`
+计算逆变换：math:`x = f^{-1}(y)`
 
 **参数**
 

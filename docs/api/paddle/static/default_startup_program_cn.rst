@@ -17,7 +17,7 @@ default_startup_program
 
 ``paddle.nn`` 中的函数将参数初始化OP追加到 ``startup program`` 中，运行 ``startup program`` 会完成参数的初始化。
 
-该函数将返回默认的或当前的 ``startup program``。用户可以使用 :ref:`cn_api_fluid_program_guard` 来切换 :ref:`cn_api_fluid_Program` 。
+该函数将返回默认的或当前的 ``startup program``。用户可以使用：ref:`cn_api_fluid_program_guard` 来切换：ref:`cn_api_fluid_Program` 。
 
 返回
 :::::::::

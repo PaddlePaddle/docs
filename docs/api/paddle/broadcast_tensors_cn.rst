@@ -9,12 +9,12 @@ broadcast_tensors
 输入应符合Broadcast规范
 
 .. note::
-    如想了解更多Broadcasting内容，请参见 :ref:`cn_user_guide_broadcasting` 。
+    如想了解更多Broadcasting内容，请参见：ref:`cn_user_guide_broadcasting` 。
 
 参数
 :::::::::
     - inputs (list(Tensor)|tuple(Tensor)) - 一组输入Tensor，数据类型为：bool、float32、float64、int32或int64。所有的输入Tensor均需要满足rank <= 5。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
@@ -32,4 +32,4 @@ broadcast_tensors
     x3 = paddle.rand([1, 1, 3, 1]).astype('float32')
 
     out1, out2, out3 = paddle.broadcast_tensors(input=[x1, x2, x3])
-    # out1, out2, out3: 分别对应x1, x2, x3 Broadcast的结果，其形状均为 [1,2,3,4]
+    # out1, out2, out3：分别对应x1, x2, x3 Broadcast的结果，其形状均为 [1,2,3,4]

@@ -16,7 +16,7 @@ data_norm
 1. NHWC [batch, in_height, in_width, in_channels]
 2. NCHW [batch, in_channels, in_height, in_width]
 
-:math:`input` 为一个mini-batch上的特征:
+:math:`input` 为一个mini-batch上的特征：
 
 .. math::
         \mu_{\beta} &\gets \frac{1}{m} \sum_{i=1}^{m} x_i \qquad &//\
@@ -36,7 +36,7 @@ data_norm
   - **param_attr** （ParamAttr，可选） - 参数比例的参数属性。默认值为None。
   - **data_layout** （str，可选） -  指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
   - **in_place** （bool，可选） - 是否使data_norm的输入和输出复用同一块内存，默认值为False。
-  - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
   - **moving_mean_name** （string，可选） - 存储全局Mean的moving_mean的名称。默认值为None。
   - **moving_variance_name** （string，可选） - 存储全局Variance的moving_variance的名称。默认值为None。
   - **do_model_average_for_mean_and_var** （bool，可选） - 是否为mean和variance进行模型平均。默认值为False。

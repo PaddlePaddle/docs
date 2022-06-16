@@ -17,13 +17,13 @@ SpectralNorm
     \mathbf{v} &:= \frac{\mathbf{W}^{T} \mathbf{u}}{\|\mathbf{W}^{T} \mathbf{u}\|_2}\\
     \mathbf{u} &:= \frac{\mathbf{W}^{T} \mathbf{v}}{\|\mathbf{W}^{T} \mathbf{v}\|_2}
 
-步骤3：计算 :math:`\sigma(\mathbf{W})` 并特征值值归一化。
+步骤3：计算：math:`\sigma(\mathbf{W})` 并特征值值归一化。
 
 .. math::
     \sigma(\mathbf{W}) &= \mathbf{u}^{T} \mathbf{W} \mathbf{v}\\
     \mathbf{W} &= \frac{\mathbf{W}}{\sigma(\mathbf{W})}
 
-可参考: `Spectral Normalization <https://arxiv.org/abs/1802.05957>`_
+可参考：`Spectral Normalization <https://arxiv.org/abs/1802.05957>`_
 
 参数
 :::::::::
@@ -32,14 +32,14 @@ SpectralNorm
     - **dim** (int，可选) - 将输入（weight）重塑为矩阵之前应排列到第一个的维度索引，如果input（weight）是fc层的权重，则应设置为0；如果input（weight）是conv层的权重，则应设置为1。默认值：0。
     - **power_iters** (int，可选) - 将用于计算的 ``SpectralNorm`` 功率迭代次数，默认值：1。
     - **eps** (float，可选) -  ``eps`` 用于保证计算规范中的数值稳定性，分母会加上 ``eps`` 防止除零。默认值：1e-12。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **dtype** (str，可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
 形状
 :::::::::
 
-- input: 任意形状的Tensor。
-- output: 和输入形状一样。
+- input：任意形状的Tensor。
+- output：和输入形状一样。
 
 代码示例
 :::::::::

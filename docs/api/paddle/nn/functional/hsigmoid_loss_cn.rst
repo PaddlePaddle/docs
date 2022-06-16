@@ -9,7 +9,7 @@ hsigmoid_loss
 
 该OP建立的二叉树中每个叶节点表示一个类别(单词)，每个非叶子节点代表一个二类别分类器（sigmoid）。对于每个类别（单词），都有一个从根节点到它的唯一路径，hsigmoid累加这条路径上每个非叶子节点的损失得到总损失。
 
-相较于传统softmax的计算复杂度 :math:`O(N)` ，hsigmoid可以将计算复杂度降至 :math:`O(logN)`，其中 :math:`N` 表示类别总数（字典大小）。
+相较于传统softmax的计算复杂度：math:`O(N)` ，hsigmoid可以将计算复杂度降至：math:`O(logN)`，其中：math:`N` 表示类别总数（字典大小）。
 
 若使用默认树结构，请参考 `Hierarchical Probabilistic Neural Network Language Model <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_ 。
 
@@ -33,7 +33,7 @@ hsigmoid_loss
     - **path_table** (Tensor，可选) – 存储每一批样本从类别（单词）到根节点的路径，按照从叶至根方向存储。数据类型为int64，形状为 ``[N, L]``，其中L为路径长度。``path_table`` 和 ``path_code`` 应具有相同的形状，对于每个样本i，path_table[i]为一个类似np.ndarray的结构，该数组内的每个元素都是其双亲结点权重矩阵的索引。默认值为None。
     - **path_code** (Tensor，可选) – 存储每一批样本从类别（单词）到根节点的路径编码，按从叶至根方向存储。数据类型为int64，形状为 ``[N, L]``。默认值为None。
     - **is_sparse** (bool，可选) – 是否使用稀疏更新方式。如果设置为True，W的梯度和输入梯度将会变得稀疏。默认值为False。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::

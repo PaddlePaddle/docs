@@ -24,10 +24,10 @@ RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs``，�
 参数
 ::::::::::::
 
-  - **rpn_rois** (Variable) – Shape为 ``[N, 4]`` 的2-D LoDTensor。其中，N为RoIs的个数。每个RoI以 :math:`[x_{min}, y_{min}, x_{max}, y_{max}]` 的格式表示，其中，:math:`x_{min}` 和 :math:`y_{min}` 为RoI的左上角坐标，:math:`x_{max}` 和 :math:`y_{max}` 为RoI的右下角坐标。数据类型支持float32和float64。
+  - **rpn_rois** (Variable) – Shape为 ``[N, 4]`` 的2-D LoDTensor。其中，N为RoIs的个数。每个RoI以：math:`[x_{min}, y_{min}, x_{max}, y_{max}]` 的格式表示，其中，:math:`x_{min}` 和：math:`y_{min}` 为RoI的左上角坐标，:math:`x_{max}` 和：math:`y_{max}` 为RoI的右下角坐标。数据类型支持float32和float64。
   - **gt_classes** (Variable) – Shape为 ``[M, 1]`` 的2-D LoDTensor，M为groundtruth boxes的数量。用于表示groundtruth boxes的类别ID。数据类型支持int32。
   - **is_crowd** (Variable) –Shape为 ``[M, 1]`` 的2-D LoDTensor，M为groundtruth boxes的数量。用于标记boxes是否是crowd。数据类型支持int32。
-  - **gt_boxes** (Variable) – Shape为 ``[M, 4]`` 的2-D LoDTensor，M为groundtruth boxes的数量。每个box以 :math:`[x_{min}, y_{min}, x_{max}, y_{max}]` 的格式表示。
+  - **gt_boxes** (Variable) – Shape为 ``[M, 4]`` 的2-D LoDTensor，M为groundtruth boxes的数量。每个box以：math:`[x_{min}, y_{min}, x_{max}, y_{max}]` 的格式表示。
   - **im_info** (Variable) - Shape为 ``[N，3]`` 的2-D张量，表示原始图像的大小信息。信息包含原始图像宽、高和 ``feature map`` 相对于原始图像缩放的比例。
   - **batch_size_per_im** (int，可选) – 整型数字。每张图片抽取出的的RoIs的数目。数据类型支持int32。缺省值为256。
   - **fg_fraction** (float，可选) – 浮点数值。在单张图片中，foreground boxes占所有boxes的比例。数据类型支持float32。缺省值为0.25。

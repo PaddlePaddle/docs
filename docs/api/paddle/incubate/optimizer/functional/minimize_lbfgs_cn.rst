@@ -10,7 +10,7 @@ minimize_lbfgs
 .. math::
     x_{k+1} = x_{k} + H_k \nabla{f_k}
 
-如果 :math:`H_k` 是函数 :math:`f` 在 :math:`x_k`的逆海森矩阵，此时就是牛顿法。如果 :math:`H_k` 满足对称性和正定性，用来作为逆海森矩阵的近似，则为高斯-牛顿法。在实际算法中，近似逆海森矩阵是通过整个或部分搜索历史的梯度计算得到，前者对应BFGS，后者对应于L-BFGS。
+如果：math:`H_k` 是函数：math:`f` 在：math:`x_k`的逆海森矩阵，此时就是牛顿法。如果：math:`H_k` 满足对称性和正定性，用来作为逆海森矩阵的近似，则为高斯-牛顿法。在实际算法中，近似逆海森矩阵是通过整个或部分搜索历史的梯度计算得到，前者对应BFGS，后者对应于L-BFGS。
 
 
 参考
@@ -30,15 +30,15 @@ minimize_lbfgs
     - **max_line_search_iters** (int，可选) - 线搜索的最大迭代次数。默认值：50。
     - **initial_step_length** (float，可选) - 线搜索中第一次迭代时的步长，不同的初始步长可能会产生不同的优化结果。对于高斯牛顿类方法初始的试验步长应该总是1。默认值：1.0。
     - **dtype** ('float32' | 'float64'，可选) - 在算法中使用的数据类型，输入参数的数据类型必须与dtype保持一致。默认值：'float32'。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
-    - is_converge (bool): 表示算法是否找到了满足容差的最小值。
-    - num_func_calls (int): 目标函数被调用的次数。
-    - position (Tensor): 最后一次迭代之后的位置，如果算法收敛，那么就是目标函数以初始位置开始迭代得到的最小值点。
-    - objective_value (Tensor): 迭代终止位置的函数值。
-    - objective_gradient (Tensor): 迭代终止位置的梯度。
+    - is_converge (bool)：表示算法是否找到了满足容差的最小值。
+    - num_func_calls (int)：目标函数被调用的次数。
+    - position (Tensor)：最后一次迭代之后的位置，如果算法收敛，那么就是目标函数以初始位置开始迭代得到的最小值点。
+    - objective_value (Tensor)：迭代终止位置的函数值。
+    - objective_gradient (Tensor)：迭代终止位置的梯度。
 
 代码示例
 ::::::::::

@@ -8,20 +8,20 @@ svd
 
 计算一个或一批矩阵的奇异值分解。
 
-记 :math:`X` 为一个矩阵，则计算的结果为2个矩阵 :math:`U`, :math:`VH` 和一个向量 :math:`S`。则分解后满足公式：
+记：math:`X` 为一个矩阵，则计算的结果为2个矩阵：math:`U`, :math:`VH` 和一个向量：math:`S`。则分解后满足公式：
 
 .. math::
     X = U * diag(S) * VH
 
-值得注意的是，:math:`S` 是向量，从大到小表示每个奇异值。而 :math:`VH` 则是V的共轭转置。
+值得注意的是，:math:`S` 是向量，从大到小表示每个奇异值。而：math:`VH` 则是V的共轭转置。
 
 
 参数
 ::::::::::::
 
-    - **x** (Tensor) : 输入的欲进行奇异值分解的一个或一批方阵，类型为 Tensor。 ``x`` 的形状应为 ``[*, M, N]``，其中 ``*`` 为零或更大的批次维度，数据类型支持float32， float64。
-    - **full_matrics** (bool) : 是否计算完整的U和V矩阵，类型为 bool 默认为 False。这个参数会影响U和V生成的Shape。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **x** (Tensor)：输入的欲进行奇异值分解的一个或一批方阵，类型为 Tensor。 ``x`` 的形状应为 ``[*, M, N]``，其中 ``*`` 为零或更大的批次维度，数据类型支持float32， float64。
+    - **full_matrics** (bool)：是否计算完整的U和V矩阵，类型为 bool 默认为 False。这个参数会影响U和V生成的Shape。
+    - **name** (str，可选) - 具体用法请参见：ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

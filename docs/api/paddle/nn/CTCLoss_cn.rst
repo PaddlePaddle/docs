@@ -11,7 +11,7 @@ CTCLoss
 参数
 :::::::::
     - **blank** (int，可选): - 空格标记的 ID 值，其取值范围为 [0，num_classes+1)。数据类型支持int32。默认值为0。
-    - **reduction** (string，可选): - 指定应用于输出结果的计算方式，可选值有: ``'none'``, ``'mean'``, ``'sum'``。设置为 ``'mean'`` 时，对 loss 值除以 label_lengths，并返回所得商的均值；设置为 ``'sum'`` 时，返回 loss 值的总和；设置为 ``'none'`` 时，则直接返回输出的 loss 值。默认值为 ``'mean'``。
+    - **reduction** (string，可选): - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'``。设置为 ``'mean'`` 时，对 loss 值除以 label_lengths，并返回所得商的均值；设置为 ``'sum'`` 时，返回 loss 值的总和；设置为 ``'none'`` 时，则直接返回输出的 loss 值。默认值为 ``'mean'``。
 
 形状
 :::::::::
@@ -22,7 +22,7 @@ CTCLoss
 
 返回
 :::::::::
-``Tensor``，输入 ``logits`` 和标签 ``labels`` 间的 `ctc loss`。如果 :attr:`reduction` 是 ``'none'``，则输出 loss 的维度为 [batch_size]。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出Loss的维度为 [1]。数据类型与输入 ``logits`` 一致。
+``Tensor``，输入 ``logits`` 和标签 ``labels`` 间的 `ctc loss`。如果：attr:`reduction` 是 ``'none'``，则输出 loss 的维度为 [batch_size]。如果：attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出Loss的维度为 [1]。数据类型与输入 ``logits`` 一致。
 
 代码示例
 :::::::::
