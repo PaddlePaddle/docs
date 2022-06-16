@@ -9,7 +9,7 @@
 ::::::::::::::::::::::
 
 .. image:: ../images/op_optimization_contributing_guides.png
-  :width: 1000
+  :width: 900
   :alt: op_optimization_contributing_guides
   :align: center
 
@@ -65,8 +65,8 @@
     "算子性能优化实现代码", "- `Paddle代码规范 <https://www.paddlepaddle.org.cn/documentation/docs/zh/dev_guides/style_guides_cn.html>`_
     - `C++ OP开发指南 <../api_contributing_guides/new_cpp_op_cn.html>`_
     - `OP Benchmark使用指南 <https://github.com/PaddlePaddle/benchmark/blob/master/api>`_
-    - `算子性能优化 验收规范 <./op_optimization_accpetance_criteria_cn.html>`_ 
     - `算子性能优化 优化方法 <./op_optimization_method_introduction_cn.html>`_ 
+    - `算子性能优化 验收规范 <./op_optimization_accpetance_criteria_cn.html>`_ 
     ", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
 
 
@@ -97,6 +97,5 @@
 ..  toctree::
     :hidden:
 
-    op_optimization_accpetance_criteria_cn.md
     op_optimization_method_introduction_cn.md
-
+    op_optimization_accpetance_criteria_cn.md
