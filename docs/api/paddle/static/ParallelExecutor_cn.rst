@@ -34,8 +34,8 @@ ParallelExecutor
 初始化后的 ``ParallelExecutor`` 对象。
 
 .. note::
-     1。如果只是进行多卡测试，不需要设置loss_name以及share_vars_from。
-     2。如果程序中既有模型训练又有模型测试，则构建模型测试所对应的ParallelExecutor时必须设置share_vars_from，否则模型测试和模型训练所使用的参数是不一致。
+     1. 如果只是进行多卡测试，不需要设置loss_name以及share_vars_from。
+     2. 如果程序中既有模型训练又有模型测试，则构建模型测试所对应的ParallelExecutor时必须设置share_vars_from，否则模型测试和模型训练所使用的参数是不一致。
 
 代码示例
 ::::::::::::
@@ -104,8 +104,8 @@ run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
 返回fetch_list中指定的变量值。
 
 .. note::
-     1。如果feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
-     2。如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
+     1. 如果feed参数为dict类型，输入数据将被均匀分配到不同的卡上，例如：使用2块GPU训练，输入样本数为3，即[0, 1, 2]，经过拆分之后，GPU0上的样本数为1，即[0]，GPU1上的样本数为2，即[1, 2]。如果样本数少于设备数，程序会报错，因此运行模型时，应额外注意数据集的最后一个batch的样本数是否少于当前可用的CPU核数或GPU卡数，如果是少于，建议丢弃该batch。
+     2. 如果可用的CPU核数或GPU卡数大于1，则fetch出来的结果为不同设备上的相同变量值（fetch_list中的变量）在第0维拼接在一起。
 
 **代码示例**
 

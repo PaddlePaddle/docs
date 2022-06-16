@@ -7,9 +7,9 @@ Variable
 
 
 .. note::
-  1。请不要直接调用 `Variable` 的构造函数，因为这会造成严重的错误发生！
+  1. 请不要直接调用 `Variable` 的构造函数，因为这会造成严重的错误发生！
 
-  2。请使用 `Block.create_var` 创建一个静态的 `Variable`，该静态的 `Variable` 在使用 :ref:`cn_api_fluid_executor` 执行前是没有实际数据的。
+  2. 请使用 `Block.create_var` 创建一个静态的 `Variable`，该静态的 `Variable` 在使用 :ref:`cn_api_fluid_executor` 执行前是没有实际数据的。
 
 在Paddle静态图模式中，OP的每个输入和输出都是 :ref:`api_guide_Variable`。多数情况下，:ref:`api_guide_Variable` 用于保存不同种类的数据或训练标签。
 

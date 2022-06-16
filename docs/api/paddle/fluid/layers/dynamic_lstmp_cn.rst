@@ -59,9 +59,9 @@ dynamic_lstmp
   - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
     说明:
-      1。隐藏状态到隐藏状态（Hidden-hidden）权重 = :math:`\{ W_{cr},W_{ir},W_{fr},W_{or} \}`，维度为 [P, 4*hidden_size] ，P是投影大小
+      1. 隐藏状态到隐藏状态（Hidden-hidden）权重 = :math:`\{ W_{cr},W_{ir},W_{fr},W_{or} \}`，维度为 [P, 4*hidden_size] ，P是投影大小
       
-      2。投影（Projection）权重 = :math:`\{ W_{rh} \}`，维度为 [D, P]
+      2. 投影（Projection）权重 = :math:`\{ W_{rh} \}`，维度为 [D, P]
 
   - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 

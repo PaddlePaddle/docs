@@ -15,7 +15,7 @@ crf_decoding
 
       1. ``Label`` 非 None 的情况，在实际训练中时常发生。此时本层会协同 :ref:`cn_api_fluid_layers_chunk_eval` 工作。在 LoDTensor 模式下，本层会返回一行形为 [N X 1]  的向量，在 padding 模式下，返回形状则为 [B x S]，其中值为 0 的部分代表该 label 不适合作为对应结点的标注，值为1的部分则反之。此类型的输出可以直接作为 :ref:`cn_api_fluid_layers_chunk_eval` 算子的输入；
 
-      2。当没有 ``Label`` 时，该函数会执行标准解码过程；
+      2. 当没有 ``Label`` 时，该函数会执行标准解码过程；
 
 （没有 ``Label`` 时）该运算返回一个形状为 [N X 1] 或 [B x S] 的向量，此处的形状取决于输入是 LoDTensor 还是普通 Tensor，其中元素取值范围为 0 ~ 最大标注个数-1，分别为预测出的标注（tag）所在的索引。
 

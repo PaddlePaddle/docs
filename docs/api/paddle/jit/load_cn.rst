@@ -10,10 +10,10 @@ load
 
 .. note::
     如果载入的模型是通过 ``paddle.static.save_inference_model`` 存储的，在使用它进行fine-tune训练时会存在一些局限：
-    1。命令式编程模式不支持 ``LoDTensor``，所有原先输入变量或者参数依赖于LoD信息的模型暂时无法使用；
-    2。所有存储模型的feed变量都需要被传入 ``Translatedlayer`` 的forward方法；
-    3。原模型变量的 ``stop_gradient`` 信息已丢失且无法准确恢复；
-    4。原模型参数的 ``trainable`` 信息已丢失且无法准确恢复。
+    1. 命令式编程模式不支持 ``LoDTensor``，所有原先输入变量或者参数依赖于LoD信息的模型暂时无法使用；
+    2. 所有存储模型的feed变量都需要被传入 ``Translatedlayer`` 的forward方法；
+    3. 原模型变量的 ``stop_gradient`` 信息已丢失且无法准确恢复；
+    4. 原模型参数的 ``trainable`` 信息已丢失且无法准确恢复。
 
 参数
 :::::::::

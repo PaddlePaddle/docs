@@ -23,9 +23,9 @@ elementwise_mod
         2. :math:`Y` 的 ``shape`` 是 :math:`X` 的连续子序列。
 
 对于情况2:
-        1。用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 是 :math:`Y` 在 :math:`X` 上的起始维度的位置。
-        2。如果 ``axis`` 为-1（默认值），则 :math:`axis= rank(X)-rank(Y)` 。
-        3。考虑到子序列，:math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
+        1. 用 :math:`Y` 匹配 :math:`X` 的形状（shape），其中 ``axis`` 是 :math:`Y` 在 :math:`X` 上的起始维度的位置。
+        2. 如果 ``axis`` 为-1（默认值），则 :math:`axis= rank(X)-rank(Y)` 。
+        3. 考虑到子序列，:math:`Y` 的大小为1的尾部维度将被忽略，例如shape（Y）=（2,1）=>（2）。
 
 例如：
 

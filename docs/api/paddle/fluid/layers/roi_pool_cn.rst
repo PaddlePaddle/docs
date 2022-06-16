@@ -13,9 +13,9 @@ roi_pool
 
 该OP的操作分三个步骤:
 
-    1。用pooled_width和pooled_height将每个proposal区域划分为大小相等的部分；
-    2。在每个部分中找到最大的值；
-    3。将这些最大值复制到输出缓冲区。
+    1. 用pooled_width和pooled_height将每个proposal区域划分为大小相等的部分；
+    2. 在每个部分中找到最大的值；
+    3. 将这些最大值复制到输出缓冲区。
 
 Faster-RCNN使用了roi池化。roi池化的具体原理请参考 https://stackoverflow.com/questions/43430056/what-is-roi-layer-in-fast-rcnn
 

@@ -66,8 +66,8 @@ num_iteration_per_drop_scope
 int型成员。该选项表示间隔多少次迭代之后清理一次临时变量。模型运行过程中，生成的中间临时变量将被放到local execution scope中，为了避免对临时变量频繁的申请与释放，通常将其设为较大的值（比如10或者100）。默认值为100。
 
 .. note::
-    1。如果你调用run的时候fetch了数据，ParallelExecutor将会在本轮迭代结束时清理临时变量。
-    2。在一些NLP模型中，这个策略可能会造成的GPU显存不足，此时需要减少num_iteration_per_drop_scope的值。
+    1. 如果你调用run的时候fetch了数据，ParallelExecutor将会在本轮迭代结束时清理临时变量。
+    2. 在一些NLP模型中，这个策略可能会造成的GPU显存不足，此时需要减少num_iteration_per_drop_scope的值。
 
 **代码示例**
 

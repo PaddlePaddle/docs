@@ -388,7 +388,7 @@ None
 
 **代码示例**
 
-    1。使用Dataset训练，并设置batch_size的例子。
+    1. 使用Dataset训练，并设置batch_size的例子。
 
     .. code-block:: python
 
@@ -427,7 +427,7 @@ None
                   save_dir='mnist_checkpoint')
 
 
-    2。使用Dataloader训练的例子。
+    2. 使用Dataloader训练的例子。
 
     .. code-block:: python
 

@@ -15,8 +15,8 @@ PaddlePaddle里Tensor的嵌套结构是指一个Tensor，或者Tensor的元组�
 
 .. note::
     1. ``true_fn`` 和 ``false_fn`` 返回的元组必须形状相同，但是里面的Tensor形状可以不同。
-    2。本接口在动态图和静态图模式下都可以运行，在动态图情况下就只会按 ``pred`` 条件运行其中一支分支。
-    3。静态图模式下，因为各个分支都要参与组网，因此不论运行哪个分支，在 ``true_fn`` 和 ``false_fn`` 内外创建的Tensor和Op都会组网，即PaddlePaddle并不是惰性语法（lazy semantics）。例如
+    2. 本接口在动态图和静态图模式下都可以运行，在动态图情况下就只会按 ``pred`` 条件运行其中一支分支。
+    3. 静态图模式下，因为各个分支都要参与组网，因此不论运行哪个分支，在 ``true_fn`` 和 ``false_fn`` 内外创建的Tensor和Op都会组网，即PaddlePaddle并不是惰性语法（lazy semantics）。例如
 
        .. code-block:: python
                   
