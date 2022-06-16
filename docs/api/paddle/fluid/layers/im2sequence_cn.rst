@@ -25,7 +25,7 @@ im2sequence
   - **filter_size** (int32 | List[int32]) - 滤波器大小。如果 `filter_size` 是一个List，它必须包含两个整数 `[filter_size_height, filter_size_width]`。如果 `filter_size` 是一个int32，则滤波器大小是 `[filter_size, filter_size]`，默认值为1。
   - **stride** (int32 | List[int32]) - 步长大小。如果stride是一个List，它必须包含两个整数 `[stride_height,stride_width]`。如果stride是一个int32，则步长大小是 `[stride, stride]`，默认值为1。
   - **padding** (int32 | List[int32]) - 填充大小。如果padding是一个List，它可以包含四个整数 `[padding_up, padding_left, padding_down, padding_right]`，当包含两个整数 `[padding_height, padding_width]` 时，可展开为 `[padding_height, padding_width, padding_height, padding_width]`。如果padding是一个int，可展开为 `[padding, padding, padding, padding]`。默认值为0。
-  - **input_image_size** (Variable，可选) - 2-D Tensor，输入图像的实际大小，它的维度为 `[batchsize，2]`。当该参数不为None时，可用于batch inference。默认值为None.
+  - **input_image_size** (Variable，可选) - 2-D Tensor，输入图像的实际大小，它的维度为 `[batchsize，2]`。当该参数不为None时，可用于batch inference。默认值为None。
   - **out_stride** (int32 | List[int32]) - 输出步长。只有当input_image_size不为None时才有效。如果out_stride是List，它必须包含 `[out_stride_height, out_stride_width]`，如果out_stride是int32，则可展开为 `[out_stride, out_stride]`，默认值为1。
   - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

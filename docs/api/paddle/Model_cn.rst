@@ -13,8 +13,8 @@ Model
 :::::::::
 
     - **network** (paddle.nn.Layer): 是 ``paddle.nn.Layer`` 的一个实例
-    - **inputs** (InputSpec|list|dict|None，可选):  ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者是格式为 ``{name: InputSpec}`` 的 ``dict``，或者为 ``None``。默认值为 ``None`` .
-    - **labels** (InputSpec|list|None，可选): ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者为 ``None``。默认值为 ``None`` .
+    - **inputs** (InputSpec|list|dict|None，可选):  ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者是格式为 ``{name: InputSpec}`` 的 ``dict``，或者为 ``None``。默认值为 ``None``。
+    - **labels** (InputSpec|list|None，可选): ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者为 ``None``。默认值为 ``None``。
       
 .. note::
 

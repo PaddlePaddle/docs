@@ -52,7 +52,7 @@ on_train_begin(logs=None)
 
 **参数**
 
-    - **logs** (dict|None): 日志信息是dict或None.
+    - **logs** (dict|None): 日志信息是dict或None。
 
 on_train_end(logs=None)
 '''''''''
@@ -174,7 +174,7 @@ on_predict_batch_begin(step, logs=None)
 **参数**
 
     - **step** (int): 推理步长或迭代次数。
-    - **logs** (dict|None): 日志信息是dict或None.
+    - **logs** (dict|None): 日志信息是dict或None。
 
 on_predict_batch_end(step, logs=None)
 '''''''''
@@ -184,4 +184,4 @@ on_predict_batch_end(step, logs=None)
 **参数**
 
     - **step** (int): 训练步长或迭代次数。
-    - **logs** (dict|None): 日志信息是dict或None.
+    - **logs** (dict|None): 日志信息是dict或None。
