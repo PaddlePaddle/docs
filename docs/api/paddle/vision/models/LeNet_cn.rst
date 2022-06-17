@@ -11,7 +11,7 @@ LeNet 模型，来自论文 `"Gradient-based learning applied to document recogn
 参数
 :::::::::
 
-  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。默认值：10。
+  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于等于 0，则不定义最后一个全连接层。默认值：10。
 
 返回
 :::::::::

@@ -13,7 +13,7 @@ ShuffleNetV2 模型，来自论文 `"ShuffleNet V2: Practical Guidelines for Eff
 
   - **scale** (float，可选) - 模型通道数的缩放比例。默认值：1.0。
   - **act** (str，可选) - 网络中使用的激活函数。默认值："relu"。
-  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于 0，则不定义最后一个全连接层。默认值：1000。
+  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于等于 0，则不定义最后一个全连接层。默认值：1000。
   - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值：True。
 
 返回
