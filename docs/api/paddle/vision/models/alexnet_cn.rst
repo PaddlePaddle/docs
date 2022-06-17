@@ -11,7 +11,7 @@ AlexNet 模型，来自论文 `"ImageNet Classification with Deep Convolutional 
 参数
 :::::::::
 
-  - **pretrained** (bool，可选) - 是否加载在 imagenet 数据集上的预训练权重。默认值：False。
+  - **pretrained** (bool，可选) - 是否加载在 ImageNet 数据集上的预训练权重。默认值：False。
   - **\*\*kwargs** (可选) - 附加的关键字参数，具体可选参数请参见 :ref:`AlexNet <cn_api_paddle_vision_models_AlexNet>`。
 
 返回

@@ -3,7 +3,7 @@
 AlexNet
 -------------------------------
 
-.. py:function:: paddle.vision.models.alexnet(pretrained=False, **kwargs)
+.. py:function:: paddle.vision.models.AlexNet(num_classes=1000)
 
 
 AlexNet 模型，来自论文 `"ImageNet Classification with Deep Convolutional Neural Networks" <https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf>`_ 。
@@ -11,7 +11,7 @@ AlexNet 模型，来自论文 `"ImageNet Classification with Deep Convolutional 
 参数
 :::::::::
 
-  - **pretrained** (bool，可选) - 是否加载在 imagenet 数据集上的预训练权重。默认值：False。
+  - **num_classes** (int，可选) - 类别数目，即最后一个全连接层输出的维度。默认值：1000。
 
 返回
 :::::::::

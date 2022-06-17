@@ -11,7 +11,7 @@ Inception v3 模型，来自论文 `"Rethinking the Inception Architecture for C
 参数
 :::::::::
 
-  - **pretrained** (bool，可选) - 是否加载在 imagenet 数据集上的预训练权重。默认值：False。
+  - **pretrained** (bool，可选) - 是否加载在 ImageNet 数据集上的预训练权重。默认值：False。
 
 返回
 :::::::::

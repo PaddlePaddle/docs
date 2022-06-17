@@ -3,7 +3,7 @@
 GoogLeNet
 -------------------------------
 
-.. py:function:: paddle.vision.models.googlenet(pretrained=False, **kwargs)
+.. py:function:: paddle.vision.models.googlenet(num_classes=1000, with_pool=True)
 
 
 GoogLeNet（Inception v1）模型，来自论文 `"Going Deeper with Convolutions" <https://arxiv.org/pdf/1409.4842.pdf>`_ 。
@@ -11,7 +11,8 @@ GoogLeNet（Inception v1）模型，来自论文 `"Going Deeper with Convolution
 参数
 :::::::::
 
-  - **pretrained** (bool，可选) - 是否加载在 imagenet 数据集上的预训练权重。默认值：False。
+  - **num_classes** (int，可选) - 类别数目，即最后一个全连接层输出的维度。默认值：1000。
+  - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值：True。
 
 返回
 :::::::::
