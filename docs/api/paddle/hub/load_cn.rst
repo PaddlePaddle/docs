@@ -15,7 +15,7 @@ load
     - **model** (str)- 模型的名字。
     - **source** (str，可选) - 指定repo托管的位置，支持github、gitee和local，默认值：github。
     - **force_reload** (bool，可选)  - 指定是否强制拉取，默认值: False。
-    - **kwargs** (any，可选) - 模型参数。
+    - **\*\*kwargs** (any，可选) - 模型参数。
 
 返回
 :::::::::
@@ -26,8 +26,4 @@ load
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    model = paddle.hub.help('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=True)    
-    print(model)
+COPY-FROM: paddle.hub.load
