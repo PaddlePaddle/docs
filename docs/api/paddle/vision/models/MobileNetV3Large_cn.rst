@@ -16,7 +16,7 @@ MobileNetV3Large模型，来自论文 `"Searching for MobileNetV3" <https://arxi
 
 返回
 :::::::::
-mobilenetv3 large模型，Layer的实例。
+mobilenetv3 large 模型，Layer 的实例。
 
 代码示例
 :::::::::

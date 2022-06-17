@@ -6,16 +6,16 @@ vgg19
 .. py:function:: paddle.vision.models.vgg19(pretrained=False, batch_norm=False, **kwargs)
 
 
-vgg19模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv.org/pdf/1409.1556.pdf>`_ 。
+vgg19 模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv.org/pdf/1409.1556.pdf>`_ 。
 
 参数
 :::::::::
-  - **pretrained** (bool，可选) - 是否加载在imagenet数据集上的预训练权重。默认值：False。
+  - **pretrained** (bool，可选) - 是否加载在 imagenet 数据集上的预训练权重。默认值：False。
   - **batch_norm** (bool，可选) - 是否在每个卷积层后添加批归一化层。默认值：False。
 
 返回
 :::::::::
-vgg19模型，Layer的实例。
+vgg19 模型，Layer 的实例。
 
 代码示例
 :::::::::

@@ -6,7 +6,7 @@ MobileNetV3Small
 .. py:class:: paddle.vision.models.MobileNetV3Small(scale=1.0, num_classes=1000, with_pool=True)
 
 
-MobileNetV3Small模型，来自论文 `"Searching for MobileNetV3" <https://arxiv.org/abs/1905.02244>`_ 。
+MobileNetV3Small 模型，来自论文 `"Searching for MobileNetV3" <https://arxiv.org/abs/1905.02244>`_ 。
 
 参数
 :::::::::
@@ -16,7 +16,7 @@ MobileNetV3Small模型，来自论文 `"Searching for MobileNetV3" <https://arxi
 
 返回
 :::::::::
-mobilenetv3 small模型，Layer的实例。
+mobilenetv3 small 模型，Layer 的实例。
 
 代码示例
 :::::::::

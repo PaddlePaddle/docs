@@ -16,7 +16,7 @@ MobileNetV1模型，来自论文 `"MobileNets: Efficient Convolutional Neural Ne
 
 返回
 :::::::::
-mobilenetv1模型，Layer的实例。
+mobilenetv1 模型，Layer的实例。
 
 代码示例
 :::::::::
