@@ -15,7 +15,7 @@ isfinite
 参数
 ::::::::::::
 
-  - **x(variable)** : 变量，包含被测试的 Tensor / LoDTensor。
+  - **x(variable)**：变量，包含被测试的 Tensor / LoDTensor。
 
 返回
 ::::::::::::

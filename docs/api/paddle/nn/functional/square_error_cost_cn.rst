@@ -22,7 +22,7 @@ square_error_cost
 
 返回
 ::::::::::::
-Tensor, 预测值和目标值的方差
+Tensor，预测值和目标值的方差
 
 
 代码示例

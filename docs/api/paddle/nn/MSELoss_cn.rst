@@ -27,7 +27,7 @@ MSELoss
 参数
 ::::::::::::
 
-    - **reduction** (str, 可选) - 约简方式，可以是 'none' | 'mean' | 'sum'。设为'none'时不使用约简，设为'mean'时返回loss的均值，设为'sum'时返回loss的和。
+    - **reduction** (str，可选) - 约简方式，可以是 'none' | 'mean' | 'sum'。设为'none'时不使用约简，设为'mean'时返回loss的均值，设为'sum'时返回loss的和。
 
 形状
 ::::::::::::
@@ -38,7 +38,7 @@ MSELoss
 
 返回
 ::::::::::::
-变量（Tensor）, 预测值和目标值的均方差, 数值类型与输入相同
+变量（Tensor），预测值和目标值的均方差，数值类型与输入相同
 
 
 代码示例

@@ -5,7 +5,6 @@
 > 注意：
 > - 请确保已经正确安装了[飞桨develop](https://github.com/PaddlePaddle/Paddle)最新版本
 > - 当前仅支持 `Linux`平台，示例中使用X86_64平台
-> - 支持飞桨已通过头文件开放函数式声明的Kernel自定义编码与注册
 
 ## 第一步：实现自定义 Runtime
 
@@ -269,7 +268,7 @@ include_directories(${PADDLE_INC_DIR} ${THIRD_PARTY_INC_DIR})
 link_directories(${PADDLE_LIB_DIR})
 
 add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)  # for out CustomContext
-add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid seperate
+add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid separate
 add_definitions(-DPADDLE_WITH_MKLDNN)  # for out MKLDNN compiling
 
 

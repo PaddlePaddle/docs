@@ -11,7 +11,7 @@ ChannelShuffle
 :::::::::
     - **groups** (int) – 要把通道分成的组数。
     - **data_format** (str，可选) – 数据格式，可选：NCHW 或 NHWC，默认为 NCHW，即（批大小，通道数，高度，宽度）的格式。
-    - **name** (str，可选) – 操作的名称（可选，默认值为 None），大多数情况下不需要设置此属性。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::

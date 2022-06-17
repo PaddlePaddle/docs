@@ -93,8 +93,8 @@ update(pred, label, *args)
 
 **参数**
     
-    - **preds** (numpy.array | Tensor): 一个shape为[batch_size, 2]的Numpy数组或Tensor，preds[i][j]表示第i个样本类别为j的概率。
-    - **labels** (numpy.array | Tensor): 一个shape为[batch_size, 1]的Numpy数组或Tensor，labels[i]是0或1，表示第i个样本的类别。
+    - **preds** (numpy.array | Tensor)：一个shape为[batch_size, 2]的Numpy数组或Tensor，preds[i][j]表示第i个样本类别为j的概率。
+    - **labels** (numpy.array | Tensor)：一个shape为[batch_size, 1]的Numpy数组或Tensor，labels[i]是0或1，表示第i个样本的类别。
 
 **返回** 
 

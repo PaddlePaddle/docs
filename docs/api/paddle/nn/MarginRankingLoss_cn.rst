@@ -27,15 +27,15 @@ MarginRankingLoss
 参数
 ::::::::
     - **margin** （float，可选）： - 用于加和的margin值，默认值为0。  
-    - **reduction** （string，可选）： - 指定应用于输出结果的计算方式，可选值有: ``'none'`` 、 ``'mean'`` 、 ``'sum'`` 。如果设置为 ``'none'`` ，则直接返回 最原始的 ``margin_rank_loss`` 。如果设置为 ``'sum'`` ，则返回 ``margin_rank_loss`` 的总和。如果设置为 ``'mean'`` ，则返回 ``margin_rank_loss`` 的平均值。默认值为 ``'none'`` 。
-    - **name** （str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **reduction** （string，可选）： - 指定应用于输出结果的计算方式，可选值有：``'none'`` 、 ``'mean'`` 、 ``'sum'``。如果设置为 ``'none'``，则直接返回 最原始的 ``margin_rank_loss``。如果设置为 ``'sum'``，则返回 ``margin_rank_loss`` 的总和。如果设置为 ``'mean'``，则返回 ``margin_rank_loss`` 的平均值。默认值为 ``'none'`` 。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 ::::::::
-    - **input** - N-D Tensor, 维度是[N，*] 其中N 是batch size，`*` 是任意数量的额外维度，数据类型为float32或float64。
+    - **input** - N-D Tensor，维度是[N，*] 其中N 是batch size，`*` 是任意数量的额外维度，数据类型为float32或float64。
     - **other** - 与 ``input`` 的形状、数据类型相同。
     - **label** - 与 ``input`` 的形状、数据类型相同。
-    - **output** - 如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'`` ，则形状为 :math:`[1]` ，否则shape和输入 `input` 保持一致 。数据类型与 ``input``、 ``other`` 相同。
+    - **output** - 如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'``，则形状为 :math:`[1]`，否则shape和输入 `input` 保持一致。数据类型与 ``input``、 ``other`` 相同。
 
 返回
 ::::::::

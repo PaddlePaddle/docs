@@ -59,9 +59,7 @@ API设计文档的目的是为了社区开发者更容易的参与开源项目�
 
 当设计文档评审&公示通过后，你的API设计文档将会合入至 `飞桨开发者社区仓库 <https://github.com/PaddlePaddle/community>`_ ，并在开源社区中同步。
 
-
 **6、提交API实现代码**
-
 
 当API设计文档合入后，开发者根据评审通过的API设计内容进行代码开发。此过程请参考相应的开发规范，并提交以下内容：
 
@@ -107,5 +105,6 @@ API设计文档的目的是为了社区开发者更容易的参与开源项目�
     api_design_guidelines_standard_cn.md
     new_python_api_cn.md
     new_cpp_op_cn.md
+    new_cpp_op_notes_cn.md
     api_docs_guidelines_cn.md
     api_accpetance_criteria_cn.md

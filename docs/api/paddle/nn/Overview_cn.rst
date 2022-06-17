@@ -127,6 +127,7 @@ Padding层
     " :ref:`paddle.nn.LogSoftmax <cn_api_nn_LogSoftmax>` ", "LogSoftmax激活层"
     " :ref:`paddle.nn.Maxout <cn_api_nn_Maxout>` ", "Maxout激活层"
     " :ref:`paddle.nn.PReLU <cn_api_nn_PReLU>` ", "PReLU激活层"
+    " :ref:`paddle.nn.RReLU <cn_api_nn_RReLU>` ", "RReLU激活层"
     " :ref:`paddle.nn.ReLU <cn_api_nn_ReLU>` ", "ReLU激活层"
     " :ref:`paddle.nn.ReLU6 <cn_api_nn_ReLU6>` ", "ReLU6激活层"
     " :ref:`paddle.nn.SELU <cn_api_nn_SELU>` ", "SELU激活层"
@@ -247,6 +248,7 @@ Loss层
 
     " :ref:`paddle.nn.BCELoss <cn_api_paddle_nn_BCELoss>` ", "BCELoss层"
     " :ref:`paddle.nn.BCEWithLogitsLoss <cn_api_paddle_nn_BCEWithLogitsLoss>` ", "BCEWithLogitsLoss层"
+    " :ref:`paddle.nn.CosineEmbeddingLoss <cn_api_nn_loss_CosineEmbeddingLoss>` ", "CosineEmbeddingLoss层"
     " :ref:`paddle.nn.CrossEntropyLoss <cn_api_nn_loss_CrossEntropyLoss>` ", "交叉熵损失层"
     " :ref:`paddle.nn.CTCLoss <cn_api_paddle_nn_CTCLoss>` ", "CTCLoss层"
     " :ref:`paddle.nn.HSigmoidLoss <cn_api_paddle_nn_HSigmoidLoss>` ", "层次sigmoid损失层"
@@ -256,6 +258,8 @@ Loss层
     " :ref:`paddle.nn.MSELoss <cn_api_paddle_nn_MSELoss>` ", "均方差误差损失层"
     " :ref:`paddle.nn.NLLLoss <cn_api_nn_loss_NLLLoss>` ", "NLLLoss层"
     " :ref:`paddle.nn.SmoothL1Loss <cn_api_paddle_nn_SmoothL1Loss>` ", "平滑L1损失层"
+    " :ref:`paddle.nn.TripletMarginLoss <cn_api_paddle_nn_TripletMarginLoss>` ", "TripletMarginLoss层"
+    " :ref:`paddle.nn.TripletMarginWithDistanceLoss <cn_api_paddle_nn_TripletMarginWithDistanceLoss>` ", "TripletMarginWithDistanceLoss层"
     
 .. _vision_layers:
 
@@ -268,6 +272,7 @@ Vision层
 
     " :ref:`paddle.nn.ChannelShuffle <cn_api_nn_ChannelShuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor按通道分成g组，得到形为[N, g, C/g, H, W]或[N, H, W, g, C/g]的Tensor，然后转置为[N, C/g, g, H, W]或[N, H, W, C/g, g]的形状，最后重新排列为原来的形状"
     " :ref:`paddle.nn.PixelShuffle <cn_api_nn_PixelShuffle>` ", "将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor重新排列成形为 [N, C/r**2, H*r, W*r]或 [N, H*r, W*r, C/r**2] 的Tensor"
+    " :ref:`paddle.nn.PixelUnshuffle <cn_api_nn_PixelUnshuffle>` ", "PixelShuffle的逆操作，将一个形为[N, C, H, W]或是[N, H, W, C]的Tensor重新排列成形为 [N, C*r*r, H/r, W/r] 或 [N, H/r, W/r, C*r*r] 的Tensor"
     " :ref:`paddle.nn.Upsample <cn_api_paddle_nn_Upsample>` ", "用于调整一个batch中图片的大小"
     " :ref:`paddle.nn.UpsamplingBilinear2D <cn_api_paddle_nn_UpsamplingBilinear2D>` ", "用于调整一个batch中图片的大小（使用双线性插值方法）"
     " :ref:`paddle.nn.UpsamplingNearest2D <cn_api_paddle_nn_UpsamplingNearest2D>` ", "用于调整一个batch中图片的大小（使用最近邻插值方法）"
@@ -380,6 +385,7 @@ Padding相关函数
     " :ref:`paddle.nn.functional.log_softmax <cn_api_nn_cn_log_softmax>` ", "log_softmax激活函数"
     " :ref:`paddle.nn.functional.maxout <cn_api_nn_cn_maxout>` ", "maxout激活函数"
     " :ref:`paddle.nn.functional.prelu <cn_api_nn_cn_prelu>` ", "prelu激活函数"
+    " :ref:`paddle.nn.functional.rrelu <cn_api_nn_cn_rrelu>` ", "rrelu激活函数"
     " :ref:`paddle.nn.functional.relu <cn_api_nn_cn_relu>` ", "relu激活函数"
     " :ref:`paddle.nn.functional.relu_ <cn_api_nn_cn_relu_>` ", "Inplace 版本的 :ref:`cn_api_nn_cn_relu` API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.nn.functional.relu6 <cn_api_nn_cn_relu6>` ", "relu6激活函数"
@@ -460,6 +466,7 @@ Embedding相关函数
 
     " :ref:`paddle.nn.functional.binary_cross_entropy <cn_api_nn_functional_binary_cross_entropy>` ", "二值交叉熵损失值"
     " :ref:`paddle.nn.functional.binary_cross_entropy_with_logits <cn_api_paddle_nn_functional_binary_cross_entropy_with_logits>` ", "logits二值交叉熵损失值"
+    " :ref:`paddle.nn.functional.cosine_embedding_loss <cn_paddle_nn_functional_cosine_embedding_loss>` ", "用于计算余弦相似度损失"
     " :ref:`paddle.nn.functional.ctc_loss <cn_paddle_nn_functional_loss_ctc>` ", "用于计算ctc损失"
     " :ref:`paddle.nn.functional.dice_loss <cn_api_fluid_layers_dice_loss>` ", "用于比较预测结果跟标签之间的相似度"
     " :ref:`paddle.nn.functional.hsigmoid_loss <cn_api_nn_functional_hsigmoid_loss>` ", "层次sigmoid损失函数"
@@ -474,6 +481,8 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.smooth_l1_loss <cn_paddle_nn_functional_loss_smooth_l1>` ", "用于计算平滑L1损失"
     " :ref:`paddle.nn.functional.softmax_with_cross_entropy <cn_api_fluid_layers_softmax_with_cross_entropy>` ", "将softmax操作、交叉熵损失函数的计算过程进行合并"
     " :ref:`paddle.nn.functional.margin_cross_entropy <cn_api_paddle_nn_functional_margin_cross_entropy>` ", "支持 ``Arcface``，``Cosface``，``Sphereface`` 的结合 Margin 损失函数"
+    " :ref:`paddle.nn.functional.triplet_margin_loss <cn_api_paddle_nn_functional_triplet_margin_loss>` ", "用于计算TripletMarginLoss"
+    " :ref:`paddle.nn.functional.triplet_margin_with_distance_loss <cn_api_paddle_nn_functional_triplet_margin_with_distance_loss>` ", "用户自定义距离函数用于计算triplet margin loss 损失"
     
 .. _common_functional:
 
@@ -491,6 +500,7 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.label_smooth <cn_api_paddle_nn_functional_common_label_smooth>` ", "标签平滑"
     " :ref:`paddle.nn.functional.one_hot <cn_api_nn_functional_one_hot>` ", "将输入'x'中的每个id转换为一个one-hot向量"
     " :ref:`paddle.nn.functional.pixel_shuffle <cn_api_nn_functional_pixel_shuffle>` ", "将Tensor重新排列"
+    " :ref:`paddle.nn.functional.pixel_unshuffle <cn_api_nn_functional_pixel_unshuffle>` ", "将Tensor重新排列，是pixel_shuffle的逆操作"
     " :ref:`paddle.nn.functional.square_error_cost <cn_api_fluid_layers_square_error_cost>` ", "用于计算预测值和目标值的方差估计"
     " :ref:`paddle.nn.functional.unfold <cn_api_fluid_layers_unfold>` ", "对每一个卷积核覆盖下的区域，将元素重新排成一列"
     " :ref:`paddle.nn.functional.fold <cn_api_nn_functional_fold>` ", "该Op用于将一个滑动局部块组合成一个大的张量,通常也被称为col2im。"
