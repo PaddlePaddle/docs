@@ -6,7 +6,7 @@ MobileNetV2
 .. py:class:: paddle.vision.models.MobileNetV2(scale=1.0, num_classes=1000, with_pool=True)
 
 
-MobileNetV2模型，来自论文 `"MobileNetV2: Inverted Residuals and Linear Bottlenecks" <https://arxiv.org/abs/1801.04381>`_ 。
+MobileNetV2 模型，来自论文 `"MobileNetV2: Inverted Residuals and Linear Bottlenecks" <https://arxiv.org/abs/1801.04381>`_ 。
 
 参数
 :::::::::
@@ -18,7 +18,7 @@ MobileNetV2模型，来自论文 `"MobileNetV2: Inverted Residuals and Linear Bo
 返回
 :::::::::
 
-mobilenetv2 模型，Layer 的实例。
+MobileNetV2 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

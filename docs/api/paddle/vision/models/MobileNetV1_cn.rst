@@ -6,7 +6,7 @@ MobileNetV1
 .. py:class:: paddle.vision.models.MobileNetV1(scale=1.0, num_classes=1000, with_pool=True)
 
 
-MobileNetV1模型，来自论文 `"MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications" <https://arxiv.org/abs/1704.04861>`_ 。
+MobileNetV1 模型，来自论文 `"MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications" <https://arxiv.org/abs/1704.04861>`_ 。
 
 参数
 :::::::::
@@ -18,7 +18,7 @@ MobileNetV1模型，来自论文 `"MobileNets: Efficient Convolutional Neural Ne
 返回
 :::::::::
 
-mobilenetv1 模型，Layer的实例。
+MobileNetV1 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

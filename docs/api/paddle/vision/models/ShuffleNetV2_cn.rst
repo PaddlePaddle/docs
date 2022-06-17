@@ -19,7 +19,7 @@ ShuffleNetV2 模型，来自论文 `"ShuffleNet V2: Practical Guidelines for Eff
 返回
 :::::::::
 
-ShuffleNetV2 模型，Layer 的实例。
+ShuffleNetV2 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

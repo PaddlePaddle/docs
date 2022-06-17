@@ -16,7 +16,7 @@ densenet121
 返回
 :::::::::
 
-densenet121 模型，Layer 的实例。
+121 层的 DenseNet 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

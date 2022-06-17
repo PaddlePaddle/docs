@@ -6,7 +6,7 @@ vgg11
 .. py:function:: paddle.vision.models.vgg11(pretrained=False, batch_norm=False, **kwargs)
 
 
-vgg11 模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv.org/pdf/1409.1556.pdf>`_ 。
+11 层的 VGG 模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale Image Recognition" <https://arxiv.org/pdf/1409.1556.pdf>`_ 。
 
 参数
 :::::::::
@@ -17,7 +17,7 @@ vgg11 模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale I
 返回
 :::::::::
 
-vgg11 模型，Layer 的实例。
+11 层的 VGG 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

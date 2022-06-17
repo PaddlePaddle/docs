@@ -6,7 +6,7 @@ inception_v3
 .. py:function:: paddle.vision.models.inception_v3(pretrained=False, **kwargs)
 
 
-InceptionV3 模型，来自论文 `"Rethinking the Inception Architecture for Computer Vision" <https://arxiv.org/pdf/1512.00567.pdf>`_ 。
+Inception v3 模型，来自论文 `"Rethinking the Inception Architecture for Computer Vision" <https://arxiv.org/pdf/1512.00567.pdf>`_ 。
 
 参数
 :::::::::
@@ -16,7 +16,7 @@ InceptionV3 模型，来自论文 `"Rethinking the Inception Architecture for Co
 返回
 :::::::::
 
-InceptionV3 模型，Layer 的实例。
+Inception v3 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

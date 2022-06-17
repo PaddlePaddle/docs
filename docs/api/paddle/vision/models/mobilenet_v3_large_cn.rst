@@ -6,7 +6,7 @@ mobilenet_v3_large
 .. py:function:: paddle.vision.models.mobilenet_v3_large(pretrained=False, scale=1.0, **kwargs)
 
 
-MobileNetV3Large  模型，来自论文 `"Searching for MobileNetV3" <https://arxiv.org/abs/1905.02244>`_ 。
+MobileNetV3 Large 架构模型，来自论文 `"Searching for MobileNetV3" <https://arxiv.org/abs/1905.02244>`_ 。
 
 参数
 :::::::::
@@ -17,7 +17,7 @@ MobileNetV3Large  模型，来自论文 `"Searching for MobileNetV3" <https://ar
 返回
 :::::::::
 
-mobilenetv3 large 模型，Layer 的实例。
+MobileNetV3 Large 架构模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

@@ -18,7 +18,7 @@ VGG 模型，来自论文 `"Very Deep Convolutional Networks For Large-Scale Ima
 返回
 :::::::::
 
-vgg 模型，Layer 的实例。
+VGG 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

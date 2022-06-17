@@ -6,7 +6,7 @@ squeezenet1_1
 .. py:function:: paddle.vision.models.squeezenet1_1(pretrained=False, **kwargs)
 
 
-squeezenet1_1 模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size" <https://arxiv.org/abs/1602.07360>`_ 。
+SqueezeNet v1.1 模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size" <https://arxiv.org/abs/1602.07360>`_ 。
 
 参数
 :::::::::
@@ -16,7 +16,7 @@ squeezenet1_1 模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 50
 返回
 :::::::::
 
-squeezenet1_1 模型，Layer 的实例。
+SqueezeNet v1.1 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

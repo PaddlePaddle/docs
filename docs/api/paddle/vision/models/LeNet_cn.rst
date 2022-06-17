@@ -13,6 +13,10 @@ LeNet 模型，来自论文 `"Gradient-based learning applied to document recogn
 
   - **num_classes** (int，可选) - 最后一个全连接层输出的维度。默认值：10。
 
+返回
+:::::::::
+
+LeNet 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

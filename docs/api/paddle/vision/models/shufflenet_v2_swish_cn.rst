@@ -6,7 +6,7 @@ shufflenet_v2_swish
 .. py:function:: paddle.vision.models.shufflenet_v2_swish(pretrained=False, **kwargs)
 
 
-使用 swish 进行激活的 ShuffleNetV2 模型，来自论文 `"ShuffleNet V2: Practical Guidelines for Ecient CNN Architecture Design" <https://arxiv.org/pdf/1807.11164.pdf>`_ 。
+使用 swish 作为激活函数的 ShuffleNetV2 模型，来自论文 `"ShuffleNet V2: Practical Guidelines for Ecient CNN Architecture Design" <https://arxiv.org/pdf/1807.11164.pdf>`_ 。
 
 参数
 :::::::::
@@ -16,7 +16,7 @@ shufflenet_v2_swish
 返回
 :::::::::
 
-shufflenet_v2_swish 模型，Layer 的实例。
+使用 swish 作为激活函数的 ShuffleNetV2 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

@@ -20,7 +20,7 @@ DenseNet 模型，来自论文 `"Densely Connected Convolutional Networks" <http
 返回
 :::::::::
 
-DenseNet 模型，Layer 的实例。
+DenseNet 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::

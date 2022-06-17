@@ -17,7 +17,7 @@ MobileNetV1 模型，来自论文 `"MobileNets: Efficient Convolutional Neural N
 返回
 :::::::::
 
-mobilenetv1 模型，Layer 的实例。
+MobileNetV1 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::
