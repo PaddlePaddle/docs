@@ -12,6 +12,7 @@ resnet50
 :::::::::
 
   - **pretrained** (bool，可选) - 是否加载预训练权重。如果为 True，则返回在 ImageNet 上预训练的模型。默认值：False。
+  - **\*\*kwargs** (可选) - 附加的关键字参数，具体可选参数请参见 :ref:`ResNet <cn_api_paddle_vision_models_ResNet>`。
 
 返回
 :::::::::
