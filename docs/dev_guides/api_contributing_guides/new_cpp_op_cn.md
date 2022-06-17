@@ -1,6 +1,6 @@
 # C++ OP 开发
 
-> 注：飞桨原生算子的开发范式正在进行重构与升级，升级后算子开发方式会大幅简化，我们会及时更新本文档内容，升级后的算子开发范式预计会在2.3版本正式上线。
+> 注：飞桨原生算子的开发范式正处在重构升级后的上线初期，如果在开发过程中遇到问题欢迎通过[issue](https://github.com/PaddlePaddle/Paddle/issues)向我们反馈。
 
 ## 1. 概念简介
 
@@ -23,7 +23,7 @@
 <tbody>
 <tr>
 <td>算子描述及定义</td>
-<td>paddle/fluid/operators/xxx_op.cc</td>
+<td>python/paddle/utils/code_gen/api.yaml & python/paddle/utils/code_gen/backward.yaml</td>
 </tr>
 <tr>
 <td>算子InferMeta</td>
@@ -46,147 +46,182 @@
 
 关于Python API所处位置，可以参考 [飞桨官方 API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html) ，了解各个目录存放API的性质，从而决定具体的放置目录。
 
-接下来，我们以Trace操作，计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果，即 [TraceOp](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/trace_op.cc) 为例来介绍如何新增算子。
+接下来，我们以Trace操作，计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果，即 [trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/trace_cn.html#trace) 为例来介绍如何新增算子。
 
 ## 2. 新增算子描述及定义
 
-算子描述及定义是定义运算的基本属性，本身是设备无关的。
+算子描述及定义是定义运算的基本属性，主要包括算子的输入、输出以及各项非计算逻辑的配置，这些都是设备无关的。
 
-首先简单介绍新增算子（以下简称Op）描述需要用到的基类。
+### 2.1 算子Yaml文件配置
+我们在`python/paddle/utils/code_gen/api.yaml`和`python/paddle/utils/code_gen/backward.yaml`文件中对算子进行描述及定义，在框架编译时会根据Yaml文件中的配置自动生成C++端的相关代码接口以及内部实现（可参考[Paddle基于Yaml配置的算子代码自动生成](new_cpp_op_notes_cn.md)），下面主要以Trace为例介绍算子的Yaml配置规则：
 
-- `framework::OpProtoAndCheckerMaker`：描述该Op的输入、输出、属性、注释。
-- `framework::OperatorBase`: Operator（简写，Op）基类。
-- `framework::OperatorWithKernel`：继承自OperatorBase，Op有计算函数，称作有Kernel。
-
-根据是否包含Kernel，可以将Op分为两种：包含Kernel的Op和不包含kernel的Op：
-
-- 包含 Kernel 的 Op 继承自 `OperatorWithKernel`：这类Op的功能实现与输入的数据类型、数据布局、数据所在的设备以及Op实现所调用第三方库等有关。比如ConvOp，如果使用CPU计算，一般通过调用mkl库中的矩阵乘操作实现，如果使用GPU计算，一般通过调用cublas库中的矩阵乘操作实现，或者直接调用cudnn库中的卷积操作。
-- 不包含 Kernel 的 Op 继承自 `OperatorBase`：因为这类Op的功能实现与设备以及输入的数据不相关。比如WhileOp、IfElseOp等。
-
-> 注：本教程仅介绍如何实现带有计算Kernel的算子，不带Kernel的算子主要用于特殊场景，一般没有需求。
-
-### 2.1 定义OpProtoMaker类
-
-Trace运算由一个输入，三个属性与一个输出组成。
-
-首先定义`ProtoMaker`来描述该Op的输入、输出、属性并添加注释：
-
-```cpp
-class TraceOpMaker : public framework::OpProtoAndCheckerMaker {
- public:
-  void Make() override {
-    AddInput("Input",
-             "(Tensor) The input tensor, from which the diagonals are taken.");
-    AddOutput("Out", "(Tensor) the sum along diagonals of the input tensor");
-    AddAttr<int>(
-        "offset",
-        R"DOC((int, default 0), offset of the diagonal from the main diagonal. Can be both positive and negative. Defaults to 0.
-        )DOC")
-        .SetDefault(0);
-    AddAttr<int>(
-        "axis1",
-        R"DOC((int, default 0), the first axis of the 2-D planes from which the diagonals should be taken.
-        Can be either positive or negative. Default: 0.
-        )DOC")
-        .SetDefault(0);
-    AddAttr<int>(
-        "axis2",
-        R"DOC((int, default 1), the second axis of the 2-D planes from which the diagonals should be taken.
-        Can be either positive or negative. Default: 1.
-        )DOC")
-        .SetDefault(1);
-    AddComment(R"DOC(
-Trace Operator.
-Return the sum along diagonals of the input tensor.
-The behavior of this operator is similar to how `numpy.trace` works.
-
-If Input is 2-D, returns the sum of diagonal.
-If Input has larger dimensions, then returns an tensor of diagonals sum, diagonals be taken from
-the 2-D planes specified by dim1 and dim2.
-
-)DOC");
-  }
-};
+python/paddle/utils/code_gen/api.yaml：
+```
+- api : trace
+  args : (Tensor x, int offset = 0, int axis1 = 0, int axis2 = 1)
+  output : Tensor(out)
+  infer_meta :
+    func : TraceInferMeta
+  kernel :
+    func : trace
+  backward : trace_grad
+```
+python/paddle/utils/code_gen/backward.yaml：
+```
+- backward_api : trace_grad
+  forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
+  args : (Tensor x, Tensor out_grad, int offset, int axis1, int axis2)
+  output : Tensor(x_grad)
+  infer_meta :
+    func : UnchangedInferMeta
+    param : [x]
+  kernel :
+    func : trace_grad
+    data_type : x
+  no_need_buffer : x
 ```
 
-[`TraceOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/befa78ea3fa9d0dae096a7de91f626b0c31daee8/paddle/fluid/operators/trace_op.cc#L29)继承自`framework::OpProtoAndCheckerMaker`。
+`api.yaml`和`backward.yaml`分别对算子的前向和反向进行配置，首先`api.yaml`中前向算子的配置规则如下：
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>配置内容及规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api</td>
+<td>算子名称，与该算子Python API函数名相同（命名方式为：全小写+下划线），示例中为trace</td>
+</tr>
+<tr>
+<td>args</td>
+<td>算子输入参数，与该算子Python API函数的输入参数对应（当前支持的输入数据类型包括：Tensor, Tensor[]/*Tensor数组*/, float, double, bool, int, int64_t, int[], int64_t[], str, Place, DataType, DataLayout, IntArray/*主要用于表示shape,index和axes等类型数据，可以直接使用Tensor或者普通整型数组构造，目前仍在测试阶段，如非必要暂不建议使用*/, Scalar/*标量，支持不同的普通数据类型*/）</td>
+</tr>
+<tr>
+<td>output</td>
+<td>算子输出类型，目前支持Tensor和Tensor[], 多个输出间用逗号“,”分隔开。可以使用”()”选择性标记输入的名字, 如未标记默认为'out'</td>
+</tr>
+<tr>
+<td>infer_meta</td>
+<td>InferMeta函数负责根据输入推断返回Tensor的维度与类型，这里是对算子使用的InferMeta函数进行配置</td>
+</tr>
+<tr>
+<td>infer_meta:func</td>
+<td>调用的InferMeta函数, 这里trace调用的是TraceInferMeta函数</td>
+</tr>
+<tr>
+<td>infer_meta:param</td>
+<td>InferMeta函数的输入参数，可以对args中的参数进行选择传入，未配置则默认传入args中的所有参数，示例中未配置本项，所以传入的参数为[x, offset, axis1, axis2]。output项中的参数作为输出无需配置会自动传入InferMeta函数中</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>算子的计算Kernel配置</td>
+</tr>
+<tr>
+<td>kernel:func</td>
+<td>算子对应kernel函数的注册名</td>
+</tr>
+<tr>
+<td>kernel:param</td>
+<td>kernel函数的输入参数，配置规则与InferMeta函数的param配置相同</td>
+</tr>
+<tr>
+<td>kernel:data_type</td>
+<td>根据指定参数推导调用kernel的data_type类型（对应kernel函数的模板参数'T'），默认不进行配置，会根据输入Tensor自动进行推导。如果kernel的data_type类型由某个输入的Tensor决定，需要将该Tensor参数的变量名填入该项。示例中未配置则kernel的data_type由输入变量'x'决定</td>
+</tr>
+<td>kernel:backend</td>
+<td>根据指定参数来选择调用kernel的Backend（Kernel执行的具体设备，如CPU、GPU等），默认不进行配置，会根据输入Tensor自动进行推导。如果kernel执行的backend类型由某个输入的Tensor决定，需要将该Tensor参数的变量名填入该项。示例中未配置则kernel执行的Backend与输入变量'x'的Backend相同</td>
+</tr>
+<tr>
+<td>backward</td>
+<td>算子对应的反向算子名称，如果没有反向则不需要配置，示例中trace算子的反向为trace_grad</td>
+</tr>
+<tr>
+<td colspan="2">特殊配置项（目前特殊配置项还处于不稳定阶段，后续可能会有调整更新）</td>
+</tr>
+<tr>
+<td>optional</td>
+<td>指定输入Tensor为可选输入，用法可参考dropout中seed_tensor(python/paddle/utils/code_gen/legacy_api.yaml中)</td>
+</tr>
+<tr>
+<td>inplace</td>
+<td>算子对指定的输入做原位处理并作为输出结果返回，使用格式：(x -> out)，具体用法可参考relu算子<br>
+特殊规则：如果api中算子名称有'_'后缀则只生成支持inplace功能的接口，如果算子名称没有'_'后缀，则会同时生成支持inplace操作的接口(自动添加'_'后缀)和不支持inplace的普通接口共两套接口
+</td>
+</tr>
+<tr>
+<td>view</td>
+<td>与inplace机制类似，区别在于view模式返回的结果只是与输入共享内存，并不是输入Tensor变量本身，使用格式：(x -> out)，具体用法可参考reshape算子</td>
+</tr>
+<tr>
+<td>intermediate</td>
+<td>标记前向计算中输出的用于反向计算的中间变量，不会出现在Python API的返回结果中，相关设计正在完善中，新增算子时不建议使用</td>
+</tr>
+</tbody>
+</table>
 
-开发者通过覆盖`framework::OpProtoAndCheckerMaker`中的`Make`函数来定义Op所对应的Proto，通过`AddInput`添加输入参数，通过`AddOutput`添加输出参数，通过`AddAttr`添加属性参数，通过`AddComment`添加Op的注释。这些函数会将对应内容添加到`OpProto`中。
 
-上面的代码在`TraceOp`中添加两个输入`X`和`Y`，添加了一个输出`Out`，并简要解释了各自含义，命名请遵守[命名规范](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/dev/name_convention.md)。
+`backward.yaml`中反向算子的配置规则如下：
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>配置内容及规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>backward_api</td>
+<td>反向算子名称，一般命名方式为：前向算子名称+'_grad'，二阶算子则为前向算子名称+'_double_grad'</td>
+</tr>
+<tr>
+<td>forward</td>
+<td>对应前向算子的名称、参数、返回值，需要与api.yaml中前向算子配置一致</td>
+</tr>
+<tr>
+<td>args</td>
+<td>反向算子输入参数, 示例中'x'表示将前向的'x'变量输入到反向，'out_grad'表示前向输出'out'对应的反向梯度<br>
+约束条件1：所有参数需要在forward配置项的参数中（输入、输出以及输出对应的反向梯度）找到对应（根据变量名匹配）<br>
+约束条件2：反向输入参数需要以：a.前向输入Tensor b.前向输出Tensor c.前向输出Tensor的反向梯度 d.前向非Tensor类型属性变量 的顺序排列，只需添加反向计算需要用到的前向参数<br>
+</td>
+</tr>
+<tr>
+<td>output</td>
+<td>反向算子输出，顺序需要与前向输入Tensor一致，比如前向输入(Tensor x, Tensor y)，则反向输出必须为Tensor(x_grad), Tensor(y_grad)</td>
+</tr>
+<tr>
+<td>infer_meta</td>
+<td>与前向配置规则相同</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>与前向配置规则相同</td>
+</tr>
+<tr>
+<td>backward</td>
+<td>反向算子对应的更高阶反向算子名称，如一阶反向算子的反向为二阶反向算子</td>
+</tr>
+<tr>
+<td colspan="2">特殊配置项（目前特殊配置项还处于不稳定阶段，后续可能会有调整更新）</td>
+</tr>
+<tr>
+<td>no_need_buffer</td>
+<td>可选配置，标记的Tensor变量在前向运行完成后，持有的内存或显存会被释放，以减少训练过程中的内存使用。trace_grad由于反向算子只需要前向变量'x'的维度信息，不需要内存数据，所以可以标记为no_need_buffer提前释放内存<br>
+注意：由于Tensor内存被释放后会影响dtype接口的使用，所以需要在kernel的data_type配置项中指定其他的Tensor来推导kernel的data_type</td>
+</tr>
+<tr>
+<td>optional</td>
+<td>与前向配置规则相同</td>
+</tr>
+<tr>
+<td>inplace</td>
+<td>与前向配置规则相同</td>
+</tr>
+</tbody>
+</table>
 
-> 注意：OpProtoMaker中不允许定义未使用的输入、输出或属性。
-
-### 2.2 定义GradOpMaker类
-
-通常情况下，大部分Op只有一个对应的反向Op，每个Op都会有一个对应的`GradOpMaker`。为方便代码编写，paddle为只有一个反向的Op提供了一个模板类[`SingleGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L188)。`TraceOp`的`GradOpMaker`需要继承这个模板类，并在`Apply()`方法中设置反向Op的输入、输出和属性。此外，paddle还提供了一个默认的`GradOpMaker`，
-[`DefaultGradOpMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/grad_op_desc_maker.h#L227)，该模板类会使用前向Op的全部输入(`Input`)输出(`Output`)以及输出变量所对应的梯度（`Output@Grad`）作为反向Op的输入，将前向Op的输入变量所对应的的梯度（`Input@Grad`）作为输出。
-
-**注意:**
-
-不要将反向Op不会用到的变量放到反向Op的输入列表中，这样会导致这些不会被反向Op用到的变量的空间不能够及时回收，进而有可能导致用到该Op的模型可以设置的batch_size较低。
-比如`relu`操作的前向操作为：`out.device(d) = x.cwiseMax(static_cast<T>(0));`反向操作为：`dx.device(d) = dout * (out > static_cast<T>(0)).template cast<T>();`。显然，反向操作中只是用到了`out`、`dout`、`dx`，没有用到`x`。因此，通常不建议使用默认的`DefaultGradOpMaker`。
-
-下面示例定义了`TraceOp`的`GradOpMaker`。
-
-```cpp
-template <typename T>
-class TraceGradOpMaker : public framework::SingleGradOpMaker<T> {
- public:
-  using framework::SingleGradOpMaker<T>::SingleGradOpMaker;
-
- protected:
-  void Apply(GradOpPtr<T> grad_op) const override {
-    grad_op->SetType("trace_grad");
-    grad_op->SetInput("Input", this->Input("Input"));
-    grad_op->SetInput(framework::GradVarName("Out"), this->OutputGrad("Out"));
-    grad_op->SetOutput(framework::GradVarName("Input"),
-                       this->InputGrad("Input"));
-    grad_op->SetAttrMap(this->Attrs());
-  }
-};
-```
-
-**注意：**
-
-- 有些Op的前向逻辑和反向逻辑是一样的，比如[`ScaleOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/scale_op.cc).这种情况下，前向Op和反向Op的Kernel可以为同一个。
-- 有些前向Op所对应的反向Op可能有多个，比如[`SumOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sum_op.cc)，这种情况下，`GradMaker`需要继承`framework::GradOpDescMakerBase`。
-- 有些Op的反向对应另一个Op的前向，比如[`SplitOp`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/split_op.h)，这种情况下，[`SplitGradMaker`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/split_op.h#L157)中定义的`SplitOp`反向Op的Type就是`concat`，
-- 为高效地同时支持命令式编程模式(动态图)和声明式编程模式(静态图)，`SingleGradOpMaker`是一个模板类，在注册Operator时需要同时注册`TraceOpGradMaker<OpDesc>`（静态图使用）和`TraceOpGradMaker<OpBase>`（动态图使用）。
-
-### 2.3 定义Op类
-
-下面实现了TraceOp的定义：
-
-```cpp
-class TraceOp : public framework::OperatorWithKernel {
- public:
-  using framework::OperatorWithKernel::OperatorWithKernel;
-};
-```
-
-[`TraceOp`](https://github.com/PaddlePaddle/Paddle/blob/bd4dc3be34584f9b273ecec07297fb05e1cf4c52/paddle/fluid/operators/trace_op.cc#L24)继承自`OperatorWithKernel`。`public`成员：
-
-```cpp
-using framework::OperatorWithKernel::OperatorWithKernel;
-```
-
-这句表示使用基类`OperatorWithKernel`的构造函数，也可写成：
-
-```cpp
-TraceOp(const std::string &type, const framework::VariableNameMap &inputs,
-        const framework::VariableNameMap &outputs,
-        const framework::AttributeMap &attrs)
-  : OperatorWithKernel(type, inputs, outputs, attrs) {}
-```
-
-此外，Operator类需要在有必要时重写`GetExpectedKernelType`接口。
-
-`GetExpectedKernelType`接口OperatorWithKernel类中用于获取指定设备（例如CPU，GPU）上指定数据类型（例如double，float）的OpKernel的方法。该方法的重写可见请参考 [原生算子开发注意事项](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/op_notes_cn.html#getexpectedkerneltype) 第4点 GetExpectedKernelType方法重写。
-
-通常`OpProtoMaker`和`Op`类的定义写在`.cc`文件中，和下面将要介绍的注册函数一起放在`.cc`中
-
-### 2.4 实现InferMeta函数
+### 2.2 实现InferMeta函数
 
 `InferMeta`函数是根据输入参数，推断算子输出Tensor基本信息的函数，推断的信息包括输出Tensor的`shape`、`data type`及`data layout`，同时它也承担了检查输入数据维度、类型等是否合法的功能。
 
@@ -408,25 +443,6 @@ void ConcatInferMeta(const std::vector<MetaTensor*>& x,
         }
       }
     ```
-
-### 2.5 注册Op
-
-在`xxx_op.cc`文件中声明InferShapeFunctor，并注册前向、反向Op。
-
-```cpp
-namespace ops = paddle::operators;
-DECLARE_INFER_SHAPE_FUNCTOR(trace, TraceInferShapeFunctor,
-                            PD_INFER_META(phi::TraceInferMeta));
-REGISTER_OPERATOR(trace, ops::TraceOp, ops::TraceOpMaker,
-                  ops::TraceGradOpMaker<paddle::framework::OpDesc>,
-                  ops::TraceGradOpMaker<paddle::imperative::OpBase>,
-                  TraceInferShapeFunctor);
-REGISTER_OPERATOR(trace_grad, ops::TraceOpGrad,
-                  ops::TraceGradNoNeedBufferVarsInferer);
-```
-
-在上面的代码中，首先使用`DECLARE_INFER_SHAPE_FUNCTOR`声明InferShapeFunctor，然后使用`REGISTER_OPERATOR`注册了`ops::TraceOp`类，算子名为`trace`，该类的`ProtoMaker`为`ops::TraceOpMaker`，其`GradOpMaker`分别是`ops::TraceOpGradMaker<paddle::framework::OpDesc>`（静态图模式使用）和`ops::TraceOpGradMaker<paddle::imperative::OpBase>`(动态图模式使用)，同时将前面声明的TraceInferShapeFunctor一并放入注册列表。
-前向算子注册完成后，再使用`REGISTER_OPERATOR`注册`ops::TraceGradOp`，类型名为`trace_grad`。
 
 ## 3. 新增算子Kernel
 
@@ -748,7 +764,10 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
     __check_input(input, offset, axis1, axis2)
 
-    if paddle.in_dynamic_mode():
+    if in_dygraph_mode():
+        return _C_ops.final_state_trace( x, offset, axis1, axis2 )
+
+    if _in_legacy_dygraph():
         return _C_ops.trace(x, 'offset', offset, 'axis1', axis1, 'axis2', axis2)
 
     inputs = {'Input': [x]}
@@ -771,8 +790,8 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 - Python API 实现要点
     - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
-    - 添加动态图分支调用，即 `if paddle.in_dynamic_mode()` 分支
-    - 添加静态图分支调用，即dygraph mode分支后剩余的代码
+    - 添加动态图分支调用，即 `if in_dygraph_mode` 新动态图分支和 `if _in_legacy_dygraph` 旧动态图分支
+    - 添加静态图分支调用，即dygraph分支后剩余的代码
 
 - Python API 放置位置
     - 根据 API 自身属性，结合现有目录分类情况，放置导致对应子目录中的相应文件中
@@ -800,6 +819,7 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
 
 
       ```python
+      import paddle
       import unittest
       import numpy as np
       from op_test import OpTest
@@ -808,14 +828,15 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
       class TestTraceOp(OpTest):
           def setUp(self):
               self.op_type = "trace"
+              self.python_api = paddle.trace
               self.init_config()
               self.outputs = {'Out': self.target}
 
           def test_check_output(self):
-              self.check_output()
+              self.check_output(check_eager=True)
 
           def test_check_grad(self):
-              self.check_grad(['Input'], 'Out')
+              self.check_grad(['Input'], 'Out', check_eager=True)
 
           def init_config(self):
               self.case = np.random.randn(20, 6).astype('float64')
@@ -827,6 +848,7 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
     上面的代码首先导入依赖的包，下面是对`setUp`函数中操作的重要变量的详细解释：
 
     - `self.op_type = "trace" ` : 定义类型，与operator注册时注册的类型一致。
+    - `self.python_api = paddle.trace` : 定义python api，与python调用接口一致。
     - `self.inputs` : 定义输入，类型为`numpy.array`，并初始化。
     - `self.outputs` : 定义输出，并在Python脚本中完成与operator同样的计算逻辑，返回Python端的计算结果。
 
@@ -837,6 +859,7 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
 - `test_check_grad`中调用`check_grad`使用数值法检测梯度正确性和稳定性。
   - 第一个参数`['Input']` : 指定对输入变量`Input`做梯度检测。
   - 第二个参数`'Out'` : 指定前向网络最终的输出目标变量`Out`。
+  - 第三个参数`check_eager` : `check_eager=True`表示开启新动态图（eager模式）单测，`check_eager`默认为`False`。
 
 - 对于存在多个输入的反向Op测试，需要指定只计算部分输入梯度的case
   - 例如，`test_elementwise_sub_op.py`中的`test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
