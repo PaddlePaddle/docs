@@ -1,6 +1,6 @@
 # C++ OP 开发
 
-> 注：飞桨原生算子的开发范式正处在重构升级后的上线初期，如果在开发过程中遇到问题欢迎通过[issue](https://github.com/PaddlePaddle/Paddle/issues)向我们反馈。
+> 注：飞桨原生算子的开发范式正处在重构升级后的上线初期，如果在开发过程中遇到问题欢迎通过[Issue](https://github.com/PaddlePaddle/Paddle/issues)向我们反馈。
 
 ## 1. 概念简介
 
@@ -53,10 +53,10 @@
 算子描述及定义是定义运算的基本属性，主要包括算子的输入、输出以及各项非计算逻辑的配置，这些都是设备无关的。
 
 ### 2.1 算子Yaml文件配置
-我们在`python/paddle/utils/code_gen/api.yaml`和`python/paddle/utils/code_gen/backward.yaml`文件中对算子进行描述及定义，在框架编译时会根据Yaml文件中的配置自动生成C++端的相关代码接口以及内部实现（可参考[Paddle基于Yaml配置的算子代码自动生成](new_cpp_op_notes_cn.md)），下面主要以Trace为例介绍算子的Yaml配置规则：
+我们在`python/paddle/utils/code_gen/api.yaml`和`python/paddle/utils/code_gen/backward.yaml`文件中对算子进行描述及定义，在框架编译时会根据Yaml文件中的配置自动生成C++端的相关代码接口以及内部实现（详见[Paddle基于Yaml配置的算子代码自动生成](new_cpp_op_notes_cn.md#paddleyaml)），下面主要以Trace为例介绍算子的Yaml配置规则：
 
 python/paddle/utils/code_gen/api.yaml：
-```
+```yaml
 - api : trace
   args : (Tensor x, int offset = 0, int axis1 = 0, int axis2 = 1)
   output : Tensor(out)
@@ -67,7 +67,7 @@ python/paddle/utils/code_gen/api.yaml：
   backward : trace_grad
 ```
 python/paddle/utils/code_gen/backward.yaml：
-```
+```yaml
 - backward_api : trace_grad
   forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
   args : (Tensor x, Tensor out_grad, int offset, int axis1, int axis2)
@@ -96,23 +96,23 @@ python/paddle/utils/code_gen/backward.yaml：
 </tr>
 <tr>
 <td>args</td>
-<td>算子输入参数，与该算子Python API函数的输入参数对应（当前支持的输入数据类型包括：Tensor, Tensor[]/*Tensor数组*/, float, double, bool, int, int64_t, int[], int64_t[], str, Place, DataType, DataLayout, IntArray/*主要用于表示shape,index和axes等类型数据，可以直接使用Tensor或者普通整型数组构造，目前仍在测试阶段，如非必要暂不建议使用*/, Scalar/*标量，支持不同的普通数据类型*/）</td>
+<td>算子输入参数，与该算子Python API函数的输入参数对应（当前支持的输入数据类型包括：Tensor, Tensor[]/*Tensor数组*/, float, double, bool, int, int64_t, int[], int64_t[], str, Place, DataType, DataLayout, IntArray/*主要用于表示shape,index和axes等类型数据，可以直接使用Tensor或者普通整型数组构造，目前仍在测试阶段，如非必要暂不建议使用*/, Scalar/*标量，支持不同的普通数据类型*/）。我们一般称这里Tensor类型的参数为Input(输入)，非Tensor类型的参数为Attribute(属性)</td>
 </tr>
 <tr>
 <td>output</td>
-<td>算子输出类型，目前支持Tensor和Tensor[], 多个输出间用逗号“,”分隔开。可以使用”()”选择性标记输入的名字, 如未标记默认为'out'</td>
+<td>算子输出类型(目前支持Tensor和Tensor[]类型)，多个输出间用逗号“,”分隔开。可以使用”()”选择性标记输入的名字，如未标记默认为'out'</td>
 </tr>
 <tr>
 <td>infer_meta</td>
-<td>InferMeta函数负责根据输入推断返回Tensor的维度与类型，这里是对算子使用的InferMeta函数进行配置</td>
+<td>InferMeta函数负责根据输入变量推断返回Tensor的维度与类型，这里是对算子使用的InferMeta函数进行配置</td>
 </tr>
 <tr>
 <td>infer_meta:func</td>
-<td>调用的InferMeta函数, 这里trace调用的是TraceInferMeta函数</td>
+<td>调用的InferMeta函数，这里trace调用的是TraceInferMeta函数</td>
 </tr>
 <tr>
 <td>infer_meta:param</td>
-<td>InferMeta函数的输入参数，可以对args中的参数进行选择传入，未配置则默认传入args中的所有参数，示例中未配置本项，所以传入的参数为[x, offset, axis1, axis2]。output项中的参数作为输出无需配置会自动传入InferMeta函数中</td>
+<td>InferMeta函数的输入参数，可以对args中的参数进行选择传入，未配置则默认传入args中的所有参数。示例中未配置本项，所以传入的参数为[x, offset, axis1, axis2]。output项中的参数作为输出无需配置会自动传入InferMeta函数中</td>
 </tr>
 <tr>
 <td>kernel</td>
@@ -124,21 +124,21 @@ python/paddle/utils/code_gen/backward.yaml：
 </tr>
 <tr>
 <td>kernel:param</td>
-<td>kernel函数的输入参数，配置规则与InferMeta函数的param配置相同</td>
+<td>kernel函数的输入参数，配置规则与InferMeta函数的param配置项相同</td>
 </tr>
 <tr>
 <td>kernel:data_type</td>
-<td>根据指定参数推导调用kernel的data_type类型（对应kernel函数的模板参数'T'），默认不进行配置，会根据输入Tensor自动进行推导。如果kernel的data_type类型由某个输入的Tensor决定，需要将该Tensor参数的变量名填入该项。示例中未配置则kernel的data_type由输入变量'x'决定</td>
+<td>根据指定参数推导调用kernel的data_type(对应kernel函数的模板参数'T')，默认不进行配置，会根据输入Tensor自动进行推导。如果kernel的data_type类型由某个输入Tensor决定，需要将该Tensor参数的变量名填入该项。示例中未配置则kernel的data_type由输入变量'x'决定</td>
 </tr>
 <td>kernel:backend</td>
-<td>根据指定参数来选择调用kernel的Backend（Kernel执行的具体设备，如CPU、GPU等），默认不进行配置，会根据输入Tensor自动进行推导。如果kernel执行的backend类型由某个输入的Tensor决定，需要将该Tensor参数的变量名填入该项。示例中未配置则kernel执行的Backend与输入变量'x'的Backend相同</td>
+<td>根据指定参数来选择调用kernel的Backend(Kernel执行的具体设备，如CPU、GPU等)，默认不进行配置，会根据输入Tensor自动进行推导。如果kernel执行的backend类型由某个输入Tensor决定，需要将该Tensor参数的变量名填入该项。示例中未配置则kernel执行的Backend与输入变量'x'的Backend相同</td>
 </tr>
 <tr>
 <td>backward</td>
 <td>算子对应的反向算子名称，如果没有反向则不需要配置，示例中trace算子的反向为trace_grad</td>
 </tr>
 <tr>
-<td colspan="2">特殊配置项（目前特殊配置项还处于不稳定阶段，后续可能会有调整更新）</td>
+<td colspan="2" style="text-align: center;"><b>特殊配置项</b>（目前特殊配置项还处于不稳定阶段，后续可能会有调整更新）</td>
 </tr>
 <tr>
 <td>optional</td>
@@ -183,7 +183,7 @@ python/paddle/utils/code_gen/backward.yaml：
 <td>args</td>
 <td>反向算子输入参数, 示例中'x'表示将前向的'x'变量输入到反向，'out_grad'表示前向输出'out'对应的反向梯度<br>
 约束条件1：所有参数需要在forward配置项的参数中（输入、输出以及输出对应的反向梯度）找到对应（根据变量名匹配）<br>
-约束条件2：反向输入参数需要以：a.前向输入Tensor b.前向输出Tensor c.前向输出Tensor的反向梯度 d.前向非Tensor类型属性变量 的顺序排列，只需添加反向计算需要用到的前向参数<br>
+约束条件2：反向输入参数需要以：a.前向输入Tensor b.前向输出Tensor c.前向输出Tensor的反向梯度 d.前向非Tensor类型属性变量(Attribute) 的顺序排列，反向计算中不需要使用的前向变量无须添加<br>
 </td>
 </tr>
 <tr>
@@ -203,7 +203,7 @@ python/paddle/utils/code_gen/backward.yaml：
 <td>反向算子对应的更高阶反向算子名称，如一阶反向算子的反向为二阶反向算子</td>
 </tr>
 <tr>
-<td colspan="2">特殊配置项（目前特殊配置项还处于不稳定阶段，后续可能会有调整更新）</td>
+<td colspan="2" style="text-align: center;"><b>特殊配置项（目前特殊配置项还处于不稳定阶段，后续可能会有调整更新）</b></td>
 </tr>
 <tr>
 <td>no_need_buffer</td>
@@ -580,7 +580,7 @@ void TraceKernel(const Context& dev_ctx,
 
 ```cpp
   // Tensor broadcast to 'out' and temp 'x_bst'
-  ScalarArray x_bst_dims(x_bst_dims_vec);
+  IntArray x_bst_dims(x_bst_dims_vec);
   DenseTensor x_bst = phi::Empty<T, Context>(dev_ctx, x_bst_dims);
   const T* x_bst_data = x_bst.data<T>();
   ExpandKernel<T, Context>(dev_ctx, x, x_bst_dims, &x_bst);

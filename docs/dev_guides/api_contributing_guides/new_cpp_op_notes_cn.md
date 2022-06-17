@@ -1,35 +1,36 @@
 # C++ OP 开发注意事项
 
 ## Paddle基于Yaml配置的算子代码自动生成
-Paddle支持动态图和静态图两种模式，在Yaml配置文件中完成算子基本属性的定义后，需要进行解析并分别生成动态图和静态图所对应的算子代码逻辑，从而将算子接入框架的执行体系。
-基于Yaml配置的算子代码自动生成示意图：![code_gen_by_yaml](./code_gen_by_yaml.png)
+Paddle支持动态图和静态图两种模式，在Yaml配置文件中完成算子基本属性的定义后，需要进行解析并分别生成动态图和静态图所对应的算子代码逻辑，从而将算子接入框架的执行体系。基于Yaml配置的算子代码自动生成示意图：
 
-- 其中Yaml配置文件为前向：`python/paddle/utils/code_gen/api.yaml`和反向：`python/paddle/utils/code_gen/backward.yaml`。
+<p style="text-align: center;"><img alt="code_gen_by_yaml" src="./code_gen_by_yaml.png" width="480" height=""></p>
+
+- 其中Yaml配置文件为前向：`python/paddle/utils/code_gen/api.yaml` 和反向：`python/paddle/utils/code_gen/backward.yaml`。
 - 动态图中自动生成的代码包括从Python API到计算Kernel间的各层调用接口实现，从底层往上分别为：
   - C++ API：一套与Python API参数对齐的C++接口（只做逻辑计算，不支持自动微分），内部封装了底层kernel的选择和调用等逻辑，供上层灵活使用。
     - 注：前向算子生成C++ API头文件和实现代码分别为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`，反向算子生成的头文件和实现代码分别为`paddle/phi/api/backward/backward_api.h`,`paddle/phi/api/lib/backward_api.cc`。
   - 动态图前向函数与反向节点（Autograd API）：在C++ API的基础上进行了封装，组成一个提供自动微分功能的C++函数接口。
-    - 注：生成的代码在`paddle/fluid/eager/api/generated/eager_generated`目录下
+    - 注：生成的相关代码在`paddle/fluid/eager/api/generated/eager_generated`目录下
   - Python-C 接口：将支持自动微分功能的C++的函数接口（Autograd API）暴露到Python层供Python API调用。
-    - 注：生成的代码在`paddle/fluid/pybind/eager_final_state_op_function_impl.h`中
+    - 注：生成的Python-C 接口代码在`paddle/fluid/pybind/eager_final_state_op_function_impl.h`中
 - 静态图的执行流程与动态图不同，所以生成的代码也与动态图有较大差异。静态图由于是先组网后计算，Python API主要负责组网，算子的调度和kernel计算由静态图执行器来完成，因此自动生成的代码是将配置文件中的算子信息注册到框架内供执行器调度，主要包括[OpMaker](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/op_proto_maker.h)（静态图中定义算子的输入、输出以及属性等信息）和`REGISTER_OPERATOR`(将算子名称以及OpMaker等信息进行注册)等静态图算子注册组件，具体的代码逻辑可参考`paddle/fluid/operators/generated_op.cc`
 
-注意：由于代码生成在编译时执行，所以查看上述生成代码需要先完成框架的编译。
+**注意：由于代码自动生成在编译时进行，所以查看上述生成代码需要先完成[框架的编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/fromsource.html)。**
 
 更多内容请参考: [C++ OP开发](new_cpp_op_cn.html)
 
 ## 写Op注意事项
 ### 1.Op兼容性问题
-对Op的修改需要考虑兼容性问题，要保证Op修改之后，之前的模型都能够正常加载及运行，即新版本的Paddle预测库能成功加载运行旧版本训练的模型。<font color="#FF0000">**所以，需要保证Op当前的所有输入输出参数不能被修改（文档除外）或删除，可以新增参数，但是新增的Tensor类型变量需要设置为optional,非Tensor变量需要设置默认值。更多详细内容请参考[OP修改规范：Input/Output/Attribute只能做兼容修改](https://github.com/PaddlePaddle/Paddle/wiki/OP-Input-Output-Attribute-Compatibility-Modification)**</font> 。
+对Op的修改需要考虑兼容性问题，要保证Op修改之后，之前的模型都能够正常加载及运行，即新版本的Paddle预测库能成功加载运行旧版本训练的模型。<font color="#FF0000">**所以，需要保证Op当前的所有输入输出参数不能被修改（文档除外）或删除，可以新增参数，但是新增的Tensor类型变量需要设置为optional，非Tensor变量需要设置默认值。更多详细内容请参考[OP修改规范：Input/Output/Attribute只能做兼容修改](https://github.com/PaddlePaddle/Paddle/wiki/OP-Input-Output-Attribute-Compatibility-Modification)**</font> 。
 
 ### 2.显存优化
 
 #### 2.1 为可原位计算的Op注册inplace
 有些Op的计算逻辑中，输出可以复用输入的显存空间，也可称为原位计算。例如[reshape](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/reshape_kernel.cc)中，输出`out`可以复用输入`x`的显存空间，因为该Op的计算逻辑不会改变`x`的实际数据，只是修改它的shape，输出和输入复用同一块显存空间不影响结果。对于这类OP，可以注册`inlace`，从而让框架在运行时自动地进行显存优化。
 
-注册方式为在算子的Yaml配置中添加inplace配置项，格式如：`(x -> out)`，详见[Yaml配置规则](new_cpp_op_cn.html)。示例：
+注册方式为在算子的Yaml配置中添加`inplace`配置项，格式如：`(x -> out)`，详见[Yaml配置规则](new_cpp_op_cn.html#yaml)。示例：
 
-```
+```yaml
 - api : reshape
   args : (Tensor x, IntArray shape)
   output : Tensor(out)
@@ -43,8 +44,8 @@ Paddle支持动态图和静态图两种模式，在Yaml配置文件中完成算�
 所以在定义反向Op时需要注意以下几点：
 
 - 如果反向不需要前向的某些输入或输出参数，则无需在args中设置。
-- 如果有些反向Op需要依赖前向Op的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的Buffer，且不能根据其他变量推断出该Shape和LoD，则可以通过`no_need_buffer`对该变量进行配置，可参考[Yaml配置规则](new_cpp_op_cn.html)。示例：
-```
+- 如果有些反向Op需要依赖前向Op的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的内存Buffer数据，且不能根据其他变量推断出该Shape和LoD，则可以通过`no_need_buffer`对该变量进行配置，详见[Yaml配置规则](new_cpp_op_cn.html#yaml)。示例：
+```yaml
 - backward_api : trace_grad
   forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
   args : (Tensor x, Tensor out_grad, int offset, int axis1, int axis2)
