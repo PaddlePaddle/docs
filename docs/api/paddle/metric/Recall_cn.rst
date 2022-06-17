@@ -85,8 +85,8 @@ update(preds, labels, *args)
 
 **参数**
 
-    - **preds** (numpy.array | Tensor): 预测输出结果通常是sigmoid函数的输出，是一个数据类型为float64或float32的向量。
-    - **labels** (numpy.array | Tensor): 真实标签的shape和:code: `preds` 相同，数据类型为int32或int64。
+    - **preds** (numpy.array | Tensor)：预测输出结果通常是sigmoid函数的输出，是一个数据类型为float64或float32的向量。
+    - **labels** (numpy.array | Tensor)：真实标签的shape和：code: `preds` 相同，数据类型为int32或int64。
 
 **返回**
 

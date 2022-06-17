@@ -27,7 +27,7 @@ StepDecay
 
     - **learning_rate** (float|int) - 初始化的学习率。可以是Python的float或int。
     - **step_size** (int) - 学习率每衰减一次的间隔。
-    - **decay_rate** (float, optional) - 学习率的衰减率。 ``new_lr = origin_lr * decay_rate`` 。其值应该小于1.0。默认：0.1。
+    - **decay_rate** (float, optional) - 学习率的衰减率。``new_lr = origin_lr * decay_rate``。其值应该小于1.0。默认：0.1。
 
 返回
 ::::::::::::
