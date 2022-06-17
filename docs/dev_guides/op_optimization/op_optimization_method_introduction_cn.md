@@ -1,6 +1,6 @@
 # 算子性能优化 方法介绍
 
-提供高性能的计算服务是飞桨的特色之一, 欢迎开发者为飞桨贡献高性能算子, 本文旨在提供一些快速实现高性能算子的方法。
+提供高性能的计算服务是飞桨的特色之一, 欢迎开发者为飞桨贡献高性能算子, 本文旨在向开发者提供一些快速实现高性能算子的方法。
 
 # 基本介绍
 
@@ -33,9 +33,10 @@ GPU Kernel直接影响了算子性能, 我们推荐采用以下等通用优化�
 
 我们推荐结合OP的使用场景设计对于的线程配置策略，如下图所示[IndexSample OP](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/index_sample_cn.html#index-sample)常用于处理2维数据, 因此使用[2维的线程配置策略](https://github.com/PaddlePaddle/Paddle/blob/30838aa698d6f3f3b0860b052f6a50ef53ac6784/paddle/phi/kernels/gpu/index_sample_kernel.cu#L82-L91)相对比1维配置策略，性能可提升20%左右。
 
-<p align="center"><img width=80% src="../images/index_sample.png"/><br/>
-图1. IndexSample OP 线程配置策略
-</p>
+<figure align="center">
+    <img src="../images/index_sample.png" width=80% height=80%/>
+    <figcaption><center>图1. IndexSample OP 线程配置策略</center></figcaption>
+</figure>
 
 优化GPU Kernel中的线程配置策略, 涵盖一维、二维、三维线程配置策略, 目前已经在`Elementwise`, `Stack`, `IndexSample`等OP中使用.
 
@@ -43,17 +44,19 @@ GPU Kernel直接影响了算子性能, 我们推荐采用以下等通用优化�
 
 飞桨内对上文中提到的**Warp级操作**进行了封装, 提供了简易的调用接口, 开发者可调用接口快速获得Warp内或者Block内的全部数据的求和、最大值、最小值.
 
-<p align="center"><img width=80% src="../images/cuda_math_utils.png"/><br/>
-图2. Warp级操作封装
-</p>
+<figure align="center">
+    <img src="../images/cuda_math_utils.png" width=80% height=80%/>
+    <figcaption><center>图2. Warp级操作封装</center></figcaption>
+</figure>
 
 ### 2.3 [索引计算优化](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/platform/fast_divmod.h):
 
 当GPU Kernel的索引计算中存在除法或取模操作, 将在导致汇编层面计算开销变大, 我们建议采用快速除法优化这部分的计算开销。飞桨内[Pooling OP](https://github.com/PaddlePaddle/Paddle/blob/890c73158f663b327be7664ed6c4d08fb2c236a9/paddle/phi/kernels/funcs/pooling.cu#L41-L101) 采用索引优化计算后, 性能提升1倍.
 
-<p align="center"><img width=50% src="../images/fast_divmod.png"/><br/>
-图2. 快速整型除法操作
-</p>
+<figure align="center">
+    <img src="../images/fast_divmod.png" width=50% height=50%/>
+    <figcaption><center>图3. 快速整型除法操作</center></figcaption>
+</figure>
 
 ### 2.4 [Kps优化工具库](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/kernel_primitive_api/index_cn.html)
 
