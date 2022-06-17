@@ -99,3 +99,4 @@
 
     op_optimization_method_introduction_cn.md
     op_optimization_accpetance_criteria_cn.md
+    kernel_primitive_api/index_cn.rst
