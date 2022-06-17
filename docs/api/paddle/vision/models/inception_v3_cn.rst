@@ -5,7 +5,8 @@ inception_v3
 
 .. py:function:: paddle.vision.models.inception_v3(pretrained=False, **kwargs)
 
- InceptionV3模型，来自论文 `"Rethinking the Inception Architecture for Computer Vision" <https://arxiv.org/pdf/1512.00567.pdf>`_ 。
+
+InceptionV3模型，来自论文 `"Rethinking the Inception Architecture for Computer Vision" <https://arxiv.org/pdf/1512.00567.pdf>`_ 。
 
 参数
 :::::::::

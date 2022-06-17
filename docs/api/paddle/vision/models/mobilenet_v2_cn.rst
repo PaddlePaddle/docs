@@ -5,7 +5,8 @@ mobilenet_v2
 
 .. py:function:: paddle.vision.models.mobilenet_v2(pretrained=False, scale=1.0, **kwargs)
 
- MobileNetV2模型，来自论文 `"MobileNetV2: Inverted Residuals and Linear Bottlenecks" <https://arxiv.org/abs/1801.04381>`_ 。
+
+MobileNetV2模型，来自论文 `"MobileNetV2: Inverted Residuals and Linear Bottlenecks" <https://arxiv.org/abs/1801.04381>`_ 。
 
 参数
 :::::::::
