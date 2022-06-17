@@ -22,5 +22,4 @@ Constant
 代码示例
 ::::::::::::
 
-.. code-block:: python
 COPY-FROM: paddle.nn.initializer.Constant:code-example1
