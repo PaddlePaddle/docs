@@ -11,7 +11,7 @@ vgg16
 参数
 :::::::::
 
-  - **pretrained** (bool，可选) - 是否加载在 ImageNet 数据集上的预训练权重。默认值：False。
+  - **pretrained** (bool，可选) - 是否加载预训练权重。如果为 True，则返回在 ImageNet 上预训练的模型。默认值：False。
   - **batch_norm** (bool，可选) - 是否在每个卷积层后添加批归一化层。默认值：False。
 
 返回
