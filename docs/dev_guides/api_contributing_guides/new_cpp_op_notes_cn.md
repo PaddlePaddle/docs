@@ -2,8 +2,7 @@
 
 ## Paddle基于Yaml配置的算子代码自动生成
 Paddle支持动态图和静态图两种模式，在Yaml配置文件中完成算子基本属性的定义后，需要进行解析并分别生成动态图和静态图所对应的算子代码逻辑，从而将算子接入框架的执行体系。基于Yaml配置的算子代码自动生成示意图：
-<p style="text-align: center;"><img alt="code_gen_by_yaml" src="
-../../_images/code_gen_by_yaml.png" width="480" height=""></p>
+![code_gen_by_yaml](./code_gen_by_yaml.png)
 
 - 其中Yaml配置文件为前向：`python/paddle/utils/code_gen/api.yaml` 和反向：`python/paddle/utils/code_gen/backward.yaml`。
 - 动态图中自动生成的代码包括从Python API到计算Kernel间的各层调用接口实现，从底层往上分别为：
