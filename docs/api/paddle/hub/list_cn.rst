@@ -26,8 +26,4 @@ list
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    models = paddle.hub.list('PaddlePaddle/PaddleClas:develop', source='github', force_reload=True)    
-    print(models)
+COPY-FROM: paddle.hub.list
