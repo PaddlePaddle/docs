@@ -8,7 +8,34 @@
 
 ## 性能测试
 
-性能测试建议采用OP Benchmark测试算子性能。经过性能优化，[OP Benchmark](https://github.com/PaddlePaddle/benchmark/tree/master/api)中全部case不能出现性能下降，需要通过列表，对比性能优化前后的OP性能情况。
+[OP Benchmark](https://github.com/PaddlePaddle/benchmark/tree/master/api)作为一套测试飞桨内算子性能的专业工具, 如下图所示能够输出各类case下的OP性能真实状态, 建议用其进行算子性能测试。经过性能优化，OP Benchmark中全部case不能出现性能下降，需要通过列表，对比性能优化前后的OP性能情况。
+
+```
+===========================================================================
+-- paddle version             : 0.0.0
+-- paddle commit              : 9b7126d05987b725ad3fb31f31298218c860b2f5
+-- benchmark commit           : a6ba32197d7b3adb1dcc95b803f8f0d7fa18322c
+-- benchmark last update time : Wed Jun 15 02:45:49 2022 +0000
+===========================================================================
+run command: nvprof --profile-from-start off /work/.virtualenvs_cuda10.2/paddle_py38/bin/python /work/benchmark/api/dynamic_tests_v2/adaptive_avg_pool2d.py --api_name adaptive_avg_pool2d --task speed --framework paddle --testing_mode dynamic --json_file /work/benchmark/api/tests_v2/configs/adaptive_avg_pool2d.json --config_id 0 --backward False --use_gpu True --repeat 1000 --allow_adaptive_repeat True --profiler nvprof
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  437.44ms      1000  437.44us  422.98us  472.29us  void phi::funcs::KernelPool2D<phi::funcs::AvgPool<float>, float>(int, phi::funcs::AvgPool<float> const *, int, int, int, int, int, int, int, int, int, int, int, phi::funcs::FastDivModForPooling, float, bool, bool, phi::funcs::KernelPool2D<phi::funcs::AvgPool<float>, float>*, bool)
+
+total gpu_time: 437.4400 ms
+
+W0615 14:55:43.819144 28877 gpu_resources.cc:61] Please NOTE: device: 0, GPU Compute Capability: 7.0, Driver API Version: 11.4, Runtime API Version: 10.2 , cuDNN Version: 7.6.
+
+[paddle][adaptive_avg_pool2d] adaptive_avg_pool2d {
+  run_tf: True
+  run_torch: True
+  data_format: NCHW
+  output_size: [32, 32]
+  x_shape: [4, 2048, 64, 128]
+  x_dtype: float32
+  atol: 1e-06
+}
+{"framework": "paddle", "version": "0.0.0", "name": "adaptive_avg_pool2d", "device": "GPU", "backward": false, "speed": {"repeat": 1000, "begin": 10, "end": 990, "total": 0.6467142883612185, "wall_time": 0, "total_include_wall_time": 0.6467142883612185, "gpu_time": 0.43744}, "parameters": "x (Variable) - dtype: float32, shape: [4, 2048, 64, 128]\ndata_format (string): NCHW\noutput_size (list): [32, 32]\n"}
+```
 
 ## PR内容描述要求
 
@@ -20,7 +47,7 @@
 
     3. PR性能优化方案概述
 
-    4. 性能优化对比表格
+    4. 优化前后算子性能对比表格
 
 ## OP测试内容及单元测试要求
 
