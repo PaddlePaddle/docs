@@ -1,4 +1,5 @@
-.. _cn_api_paddle_tensor_split
+.. _cn_api_paddle_tensor_split:
+
 split
 -------------------------------
 
