@@ -162,6 +162,7 @@ Methods
     log10
     log1p
     log2
+    logcumsumexp
     logical_and
     logical_not
     logical_or
@@ -175,6 +176,7 @@ Methods
     fmax
     mean
     median
+    nanmedian
     min
     minimum
     fmin

@@ -16,7 +16,7 @@ Auc
 参数
 ::::::::::::
 
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **curve** (str) - 将要计算的曲线名的详情，曲线包括ROC（默认）或者PR（Precision-Recall-curve）。
 
 返回

@@ -36,10 +36,10 @@ initialize(inits)
     
 **参数**
   
-  - **inits** - 调用方提供的参数。 
+  - **inits** - 调用方提供的参数。
     
 **返回**
-一个元组 :code:`(initial_inputs, initial_states, finished)` 。:code:`initial_inputs` 和 :code:`initial_states` 都是单个tensor变量或tensor变量组成的嵌套结构， :code:`finished` 是具有bool数据类型的tensor。
+一个元组 :code:`(initial_inputs, initial_states, finished)` 。:code:`initial_inputs` 和 :code:`initial_states` 都是单个tensor变量或tensor变量组成的嵌套结构，:code:`finished` 是具有bool数据类型的tensor。
 
 **返回类型**
 tuple
@@ -57,7 +57,7 @@ step(time, inputs, states, **kwargs)
   - **kwargs** - 附加的关键字参数，由调用者提供。
 
 **返回**
-一个元组 :code:`(outputs, next_states, next_inputs, finished)` 。:code:`next_states` 和 :code:`next_inputs` 都是单个tensor变量或tensor变量组成的嵌套结构，且结构、形状和数据类型均分别与输入参数中的 :code:`states` 和 :code:`inputs` 相同。 :code:`outputs` 是单个tensor变量或tensor变量组成的嵌套结构。 :code:`finished` 是一个bool类型的tensor变量。
+一个元组 :code:`(outputs, next_states, next_inputs, finished)` 。:code:`next_states` 和 :code:`next_inputs` 都是单个tensor变量或tensor变量组成的嵌套结构，且结构、形状和数据类型均分别与输入参数中的 :code:`states` 和 :code:`inputs` 相同。:code:`outputs` 是单个tensor变量或tensor变量组成的嵌套结构。:code:`finished` 是一个bool类型的tensor变量。
 
 **返回类型**
 tuple
@@ -69,8 +69,8 @@ finalize(self, outputs, final_states, sequence_lengths)
 
 **参数**
   
-  - **outputs** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。 其中每个tensor的形状均为 :math:`[time\_step，batch\_size，...]` ，是将所有解码步中与其对应的的输出进行堆叠的结果，这个过程由其调用者完成。 
-  - **final_states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。 它是 :code:`decoder.step` 在最后一个解码步返回的 :code:`next_states`， 因此具有与任何时间步的状态相同的结构，形状和数据类型。
+  - **outputs** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。其中每个tensor的形状均为 :math:`[time\_step，batch\_size，...]`，是将所有解码步中与其对应的的输出进行堆叠的结果，这个过程由其调用者完成。
+  - **final_states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。它是 :code:`decoder.step` 在最后一个解码步返回的 :code:`next_states`，因此具有与任何时间步的状态相同的结构，形状和数据类型。
   - **kwargs** - 命名关键字参数，由提供调用者。
 
 **返回**

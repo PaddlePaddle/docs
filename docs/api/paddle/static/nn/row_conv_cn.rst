@@ -10,22 +10,22 @@ row_conv
 
 该接口为行卷积（Row-convolution operator）或称之为超前卷积（lookahead convolution），最早介绍于DeepSpeech2论文中，双向的RNN在深度语音模型中很有用，它通过对整个序列执行正向和反向传递来学习序列的表示。
 
-然而，与单向RNNs不同的是，在线部署和低延迟设置中，双向RNNs具有难度。超前卷积将来自未来子序列的信息以一种高效的方式进行计算，以改进单向递归神经网络。 row convolution operator 与一维序列卷积不同，计算方法如下:
+然而，与单向RNNs不同的是，在线部署和低延迟设置中，双向RNNs具有难度。超前卷积将来自未来子序列的信息以一种高效的方式进行计算，以改进单向递归神经网络。row convolution operator 与一维序列卷积不同，计算方法如下：
 
-给定输入序列长度为 :math:`t` 的输入序列 :math:`X` 和输入维度 :math:`D` ，以及一个大小为 :math:`context * D` 的滤波器 :math:`W` ，输出序列卷积为:
+给定输入序列长度为 :math:`t` 的输入序列 :math:`X` 和输入维度 :math:`D`，以及一个大小为 :math:`context * D` 的滤波器 :math:`W`，输出序列卷积为：
 
 .. math::
     out_i = \sum_{j=i}^{i+context-1} X_{j} · W_{j-i}
 
 公式中：
-    - :math:`out_i` : 第i行输出变量形为[1, D].
-    - :math:`context` ： 下文（future context）大小
-    - :math:`X_j` : 第j行输出变量,形为[1，D]
-    - :math:`W_{j-i}` : 第(j-i)行参数，其形状为[1,D]。
+    - :math:`out_i`：第i行输出变量形为[1, D]。
+    - :math:`context`：下文（future context）大小
+    - :math:`X_j`：第j行输出变量，形为[1，D]
+    - :math:`W_{j-i}`：第(j-i)行参数，其形状为[1,D]。
 
-详细请参考 `设计文档 <https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_  。
+详细请参考 `设计文档 <https://github.com/PaddlePaddle/Paddle/issues/2228#issuecomment-303903645>`_ 。
 
-论文链接：`Deep Speech 2: End-to-End Speech Recognition in English and Mandarin <https://arxiv.org/pdf/1512.02595.pdf>`_。
+论文链接：`Deep Speech 2: End-to-End Speech Recognition in English and Mandarin <https://arxiv.org/pdf/1512.02595.pdf>`_ 。
     
 参数
 ::::::::::::

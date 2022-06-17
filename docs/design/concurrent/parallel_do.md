@@ -95,7 +95,7 @@ There are serial places we can make this parallel_do faster.
 ### forward: split input onto different devices
 
 If the input of the parallel_do is independent from any prior opeartors, we can avoid this step by
-prefetching the input onto different devices in a seperate background thread. And the python code
+prefetching the input onto different devices in a separate background thread. And the python code
 looks like this.
 ```python
 pd = ParallelDo(gpu_places)

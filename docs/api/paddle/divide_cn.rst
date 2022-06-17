@@ -6,15 +6,15 @@ divide
 .. py:function:: paddle.divide(x, y, name=None)
 
 该OP是逐元素相除算子，输入 ``x`` 与输入 ``y`` 逐元素相除，并将各个位置的输出元素保存到返回结果中。
-输入 ``x`` 与输入 ``y`` 必须可以广播为相同形状, 关于广播规则，请参考 :ref:`cn_user_guide_broadcasting`
+输入 ``x`` 与输入 ``y`` 必须可以广播为相同形状，关于广播规则，请参考 :ref:`cn_user_guide_broadcasting`
 
 等式为：
 
 .. math::
         Out = X / Y
 
-- :math:`X` ：多维Tensor。
-- :math:`Y` ：多维Tensor。
+- :math:`X`：多维Tensor。
+- :math:`Y`：多维Tensor。
 
 参数
 :::::::::
@@ -26,7 +26,7 @@ divide
 返回
 :::::::::
 
-   ``Tensor`` ，存储运算后的结果。如果x和y有不同的shape且是可以广播的，返回Tensor的shape是x和y经过广播后的shape。如果x和y有相同的shape，返回Tensor的shape与x，y相同。
+   ``Tensor``，存储运算后的结果。如果x和y有不同的shape且是可以广播的，返回Tensor的shape是x和y经过广播后的shape。如果x和y有相同的shape，返回Tensor的shape与x，y相同。
 
 
 

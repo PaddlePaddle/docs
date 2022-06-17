@@ -266,7 +266,7 @@ include_directories(${PADDLE_INC_DIR} ${THIRD_PARTY_INC_DIR})
 link_directories(${PADDLE_LIB_DIR})
 
 add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)  # for out CustomContext temporarily
-add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid seperate temporarily
+add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid separate temporarily
 
 ############ Compile plug-ins
 add_library(${PLUGIN_NAME} SHARED runtime.cc add_kernel.cc)

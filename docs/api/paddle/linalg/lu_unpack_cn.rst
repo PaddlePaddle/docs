@@ -24,7 +24,7 @@ lu_unpack
     - **y** (Tensor) - paddle.linalg.lu返回结果的pivot序列。
     - **unpack_ludata** (bool，可选) - 若为True，则对输入x(LU)进行展开得到L、U，否则。默认True。
     - **unpack_pivots** (bool，可选) - 若为True，则对输入y(pivots)序列进行展开，得到转换矩阵P。默认True。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

@@ -11,13 +11,13 @@ triu
 
 参数
 :::::::::
-    - **input** (Tensor) : 输入Tensor input，数据类型支持 `float32`, `float64`, `int32`, `int64` 。
-    - **diagonal** (int，可选) : 指定的对角线，默认值为0。如果diagonal = 0，表示主对角线; 如果diagonal是正数，表示主对角线之上的对角线; 如果diagonal是负数，表示主对角线之下的对角线。
-    - **name** (str，可选)- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **input** (Tensor)：输入Tensor input，数据类型支持 `float32`, `float64`, `int32`, `int64` 。
+    - **diagonal** (int，可选)：指定的对角线，默认值为0。如果diagonal = 0，表示主对角线；如果diagonal是正数，表示主对角线之上的对角线；如果diagonal是负数，表示主对角线之下的对角线。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
-Tensor, 数据类型与输入 `input` 数据类型一致。
+Tensor，数据类型与输入 `input` 数据类型一致。
 
 代码示例
 :::::::::

@@ -15,6 +15,7 @@
 - `曙光开发指南 <./sugon/index_cn.html>`_ : 曙光开发相关说明。
 - `自定义新硬件接入指南 <./custom_device_docs/index_cn.html>`_: 介绍如何通过自定义硬件功能为飞桨接入新硬件后端。
 - `文档贡献指南 <./docs_contributing_guides_cn.html>`_ : 飞桨文档贡献指南。
+- `算子性能优化贡献指南 <./op_optimization/op_optimization_contributing_guides_cn.html>`_ : 飞桨算子性能优化相关说明。
 
 ..  toctree::
     :hidden:
@@ -27,3 +28,4 @@
     sugon/index_cn.rst
     custom_device_docs/index_cn.rst
     docs_contributing_guides_cn.md
+    op_optimization/op_optimization_contributing_guides_cn.rst
