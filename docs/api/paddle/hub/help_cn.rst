@@ -26,8 +26,4 @@ help
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    docs = paddle.hub.help('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=True)    
-    print(docs)
+COPY-FROM: paddle.hub.help
