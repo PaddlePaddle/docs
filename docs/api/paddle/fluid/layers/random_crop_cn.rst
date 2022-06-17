@@ -14,7 +14,7 @@ random_crop
 ::::::::::::
 
     - **x(Variable)** - 多维Tensor。
-    - **shape(list(int))** - 裁剪后最后几维的形状，注意， ``shape`` 的个数小于 ``x`` 的秩。
+    - **shape(list(int))** - 裁剪后最后几维的形状，注意，``shape`` 的个数小于 ``x`` 的秩。
     - **seed(int|Variable，可选)** - 设置随机数种子，默认情况下，种子是[-65536,-65536)中一个随机数，如果类型是Variable，要求数据类型是int64，默认值：None。
 
 返回

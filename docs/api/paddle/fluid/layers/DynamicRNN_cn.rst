@@ -24,16 +24,16 @@ DynamicRNN的实现采用非padding的方式，每个时间步都会对输入数
 参数
 ::::::::::::
 
-    - **name** (str，可选) - 具体用法参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 成员函数列表：
-    - :ref:`cn_api_fluid_layers_DynamicRNN_step_input` ，设置输入变量
-    - :ref:`cn_api_fluid_layers_DynamicRNN_static_input` ，设置静态输入变量
-    - :ref:`cn_api_fluid_layers_DynamicRNN_block` ，定义每个时间步执行的运算
-    - :ref:`cn_api_fluid_layers_DynamicRNN_memory` ，创建用于在时间步之间传递信息的变量
-    - :ref:`cn_api_fluid_layers_DynamicRNN_update_memory` ，更新需要传递的时间步信息
-    - :ref:`cn_api_fluid_layers_DynamicRNN_output` ，设置时间步的输出变量
-    - :ref:`cn_api_fluid_layers_DynamicRNN_call` ，获取RNN的输出序列
+    - :ref:`cn_api_fluid_layers_DynamicRNN_step_input`，设置输入变量
+    - :ref:`cn_api_fluid_layers_DynamicRNN_static_input`，设置静态输入变量
+    - :ref:`cn_api_fluid_layers_DynamicRNN_block`，定义每个时间步执行的运算
+    - :ref:`cn_api_fluid_layers_DynamicRNN_memory`，创建用于在时间步之间传递信息的变量
+    - :ref:`cn_api_fluid_layers_DynamicRNN_update_memory`，更新需要传递的时间步信息
+    - :ref:`cn_api_fluid_layers_DynamicRNN_output`，设置时间步的输出变量
+    - :ref:`cn_api_fluid_layers_DynamicRNN_call`，获取RNN的输出序列
 
 
 .. _cn_api_fluid_layers_DynamicRNN_step_input:
@@ -93,14 +93,14 @@ step_input(x, level=0)
     - **level** (int，可选) - 用于拆分输入序列的LoD层级，取值范围是 :math:`[0, x.lod\_level)`，默认值是0。
 
 **返回**
- 输入序列每个时间步的数据。执行第 :code:`step_idx` 个时间步时，若输入 :code:`x` 中有 :code:`num_sequences` 个长度不小于 :code:`step_idx` 的序列，则这个时间步返回值中只包含了这 :code:`num_sequences` 个序列第 :code:`step_idx` 时间步的数据。数据类型和输入一致。如果 :code:`x.lod_level == 1` ，返回值的维度是 :math:`\{num\_sequences, x.shape[1], ...\}`。否则，返回值也是一个变长的LoDTensor。
+ 输入序列每个时间步的数据。执行第 :code:`step_idx` 个时间步时，若输入 :code:`x` 中有 :code:`num_sequences` 个长度不小于 :code:`step_idx` 的序列，则这个时间步返回值中只包含了这 :code:`num_sequences` 个序列第 :code:`step_idx` 时间步的数据。数据类型和输入一致。如果 :code:`x.lod_level == 1`，返回值的维度是 :math:`\{num\_sequences, x.shape[1], ...\}`。否则，返回值也是一个变长的LoDTensor。
 
 **返回类型**
 Variable
 
 **抛出异常**
 
-    - :code:`ValueError` ：当 :code:`step_input()` 接口在RNN :code:`block()` 接口外面被调用时。
+    - :code:`ValueError`：当 :code:`step_input()` 接口在RNN :code:`block()` 接口外面被调用时。
     - :code:`TypeError`：当输入x类型不是Variable时。
 
 
@@ -216,7 +216,7 @@ static_input(x)
     - **x** (Variable) - 静态输入序列LoDTensor，要求持有与输入LoDTensor（通过 :code:`step_input` 设置的输入）相同的序列个数。如果输入x的LoD信息为空，则会被当成由 :code:`x.shape[0]` 个长度为1序列组成。支持的数据类型有：bool，float16，float32，float64，int8，int16，int32，int64，uint8。
 
 **返回**
- 经过按照RNN输入LoD信息重排序、且收缩处理后的静态输入LoDTensor。执行第 :code:`step_idx` 个时间步时，如果输入序列中只有 :code:`num_sequences` 长度不小于 :code:`step_idx` 的序列，静态输入也会进行收缩处理，只返回对应的 :code:`num_sequences` 个序列对应的数据。数据类型和输入一致。如果 :code:`x.lod == None` ，返回值的维度是 :math:`\{num\_sequences, x.shape[1], ...\}` 。否则，返回值是一个变长的LoDTensor。
+ 经过按照RNN输入LoD信息重排序、且收缩处理后的静态输入LoDTensor。执行第 :code:`step_idx` 个时间步时，如果输入序列中只有 :code:`num_sequences` 长度不小于 :code:`step_idx` 的序列，静态输入也会进行收缩处理，只返回对应的 :code:`num_sequences` 个序列对应的数据。数据类型和输入一致。如果 :code:`x.lod == None`，返回值的维度是 :math:`\{num\_sequences, x.shape[1], ...\}`。否则，返回值是一个变长的LoDTensor。
 
 **返回类型**
 Variable
@@ -267,7 +267,7 @@ Variable
 block()
 '''''''''
 
-定义每个时间步执行的操作。 :code:`block` 语句里面定义的算子序列，将会被执行 :code:`max_sequence_len` 次（ :code:`max_sequence_len` 是输入序列中大的序列长度）。
+定义每个时间步执行的操作。:code:`block` 语句里面定义的算子序列，将会被执行 :code:`max_sequence_len` 次（ :code:`max_sequence_len` 是输入序列中大的序列长度）。
 
 **抛出异常**
 
@@ -430,7 +430,7 @@ Variable或Variable list
 
 **抛出异常**
 
-    - :code:`ValueError` ：当 :code:`__call__()` 接口在RNN :code:`block()` 定义之前被调用时。
+    - :code:`ValueError`：当 :code:`__call__()` 接口在RNN :code:`block()` 定义之前被调用时。
 
 **代码示例**
 

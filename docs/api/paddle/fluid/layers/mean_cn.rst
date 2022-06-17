@@ -14,12 +14,12 @@ mean
 ::::::::::::
 
         - **x** (Variable) : Tensor 或 LoDTensor。均值运算的输入。
-        - **name** (basestring | None) : 输出变量的名称。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
 
-        - Variable: 包含输出均值的 Tensor / LoDTensor。
+        - Variable：包含输出均值的 Tensor / LoDTensor。
 
 返回类型
 ::::::::::::

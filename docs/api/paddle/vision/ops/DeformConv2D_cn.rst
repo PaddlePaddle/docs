@@ -16,23 +16,23 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
 
   :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k)}`
 
-其中 :math:`\Delta p_k` 和 :math:`\Delta m_k` 分别为第k个位置的可学习偏移和调制标量。在deformable conv v1中 :math:`\Delta m_k` 为1.
+其中 :math:`\Delta p_k` 和 :math:`\Delta m_k` 分别为第k个位置的可学习偏移和调制标量。在deformable conv v1中 :math:`\Delta m_k` 为1。
 
 具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable, Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_ 。
 
 **示例**
      
 输入：
-    input 形状： :math:`(N, C_{in}, H_{in}, W_{in})`
+    input 形状：:math:`(N, C_{in}, H_{in}, W_{in})`
 
-    卷积核形状： :math:`(C_{out}, C_{in}, H_f, W_f)`
+    卷积核形状：:math:`(C_{out}, C_{in}, H_f, W_f)`
 
-    offset 形状： :math:`(N, 2 * H_f * W_f, H_{out}, W_{out})`
+    offset 形状：:math:`(N, 2 * H_f * W_f, H_{out}, W_{out})`
 
-    mask 形状： :math:`(N, H_f * W_f, H_{out}, W_{out})`
+    mask 形状：:math:`(N, H_f * W_f, H_{out}, W_{out})`
      
 输出：
-    输出形状： :math:`(N, C_{out}, H_{out}, W_{out})`
+    输出形状：:math:`(N, C_{out}, H_{out}, W_{out})`
 
 其中
 
@@ -58,13 +58,13 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
     
-形状:
+形状：
     - x: :math:`(N, C_{in}, H_{in}, W_{in})`
     - offset: :math:`(N, 2 * H_f * W_f, H_{out}, W_{out})`
     - mask: :math:`(N, H_f * W_f, H_{out}, W_{out})`
-    - 输出: :math:`(N, C_{out}, H_{out}, W_{out})`
+    - 输出：:math:`(N, C_{out}, H_{out}, W_{out})`
 
-    其中:
+    其中：
 
     .. math::
 

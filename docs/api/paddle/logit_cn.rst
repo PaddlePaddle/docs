@@ -10,7 +10,7 @@ logit
 .. math::
     logit(x) = ln(\frac{x}{1-x}) 
 
-其中，:math:`x`` 为输入的 Tensor, 且和eps有着如下关系：
+其中，:math:`x`` 为输入的 Tensor，且和eps有着如下关系：
 
 .. math::
     x_i=\left\{
@@ -27,13 +27,13 @@ logit
 ::::::::::::
 
 ::::::::::
- - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
- - eps (float, 可选) - 传入该参数后可将 ``x`` 的范围控制在[eps, 1-eps]，默认值为 None。
- - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+ - x (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+ - eps (float，可选) - 传入该参数后可将 ``x`` 的范围控制在[eps, 1-eps]，默认值为 None。
+ - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::
-    ``Tensor`` ，数据类型和形状同 ``x`` 一致。
+    ``Tensor``，数据类型和形状同 ``x`` 一致。
 
 代码示例
 ::::::::::

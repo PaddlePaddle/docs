@@ -190,6 +190,7 @@ paddle.max	.. _api_paddle_max:
 paddle.maximum	.. _api_paddle_maximum:
 paddle.mean	.. _api_paddle_mean:
 paddle.median	.. _api_paddle_median:
+paddle.nanmedian	.. _api_paddle_nanmedian:
 paddle.min	.. _api_paddle_min:
 paddle.minimum	.. _api_paddle_minimum:
 paddle.mm	.. _api_paddle_mm:
@@ -1010,6 +1011,8 @@ paddle.optimizer.lr.ReduceOnPlateau	.. _api_paddle_optimizer_lr_ReduceOnPlateau:
 paddle.optimizer.lr.StepDecay	.. _api_paddle_optimizer_lr_StepDecay:
 paddle.optimizer.lr.PolynomialDecay	.. _api_paddle_optimizer_lr_PolynomialDecay:
 paddle.optimizer.lr.NaturalExpDecay	.. _api_paddle_optimizer_lr_NaturalExpDecay:
+paddle.optimizer.lr.OneCycleLR .. _api_paddle_optimizer_lr_OneCycleLR:
+paddle.optimizer.lr.CyclicLR .. _api_paddle_optimizer_lr_CyclicLR:
 paddle.regularizer.L1Decay	.. _api_paddle_regularizer_L1Decay:
 paddle.regularizer.L2Decay	.. _api_paddle_regularizer_L2Decay:
 paddle.static.InputSpec	.. _api_paddle_static_InputSpec:

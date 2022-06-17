@@ -5,7 +5,7 @@ ReshapeTransform
 
 .. py:class:: paddle.distribution.ReshapeTransform(in_event_shape, out_event_shape)
 
-``ReshapeTransform`` 将输入Tensor的事件形状 ``in_event_shape`` 改变为 ``out_event_shape`` .
+``ReshapeTransform`` 将输入Tensor的事件形状 ``in_event_shape`` 改变为 ``out_event_shape`` 。
 其中，``in_event_shape`` 、 ``out_event_shape`` 需要包含相同的元素个数。
 
 
@@ -57,7 +57,7 @@ forward_log_det_jacobian(x)
 
 计算正变换雅可比行列式绝对值的对数。
 
-如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` .
+如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` 。
 
 **参数**
 

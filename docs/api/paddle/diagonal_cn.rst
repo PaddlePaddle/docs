@@ -6,7 +6,7 @@ diagonal
 .. py:function:: paddle.diagonal(x, offset=0, axis1=0, axis2=1, name=None)
 
 
-根据参数 `offset`、`axis1`、`axis2`,返回输入 `Tensor` 的局部视图。
+根据参数 `offset`、`axis1`、`axis2`，返回输入 `Tensor` 的局部视图。
 
 如果输入是 2D Tensor，则返回对角线元素。
 
@@ -20,15 +20,15 @@ diagonal
 
 参数
 :::::::::
-    - **x** (Tensor) : 输入变量，类型为Tensor, 支持bool、int32、int64、float16、float32、float64数据类型。
-    - **offset** （int ，可选）- 从指定的二维平面中获取对角线的位置，默认值为 0，既主对角线。
-    - **axis1** （int ， 可选）- 获取对角线的二维平面的第一维，默认值为 0。
-    - **axis2** （int ， 可选）- 获取对角线的二维平面的第二维，默认值为 1
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **x** (Tensor)：输入变量，类型为Tensor，支持bool、int32、int64、float16、float32、float64数据类型。
+    - **offset** （int，可选）- 从指定的二维平面中获取对角线的位置，默认值为 0，既主对角线。
+    - **axis1** （int，可选）- 获取对角线的二维平面的第一维，默认值为 0。
+    - **axis2** （int，可选）- 获取对角线的二维平面的第二维，默认值为 1
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     
 返回
 :::::::::
-    - Tensor (Tensor), 输入 `Tensor` 在指定二维平面的局部视图，数据类型和输入数据类型一致。
+    - Tensor (Tensor)，输入 `Tensor` 在指定二维平面的局部视图，数据类型和输入数据类型一致。
 
 
 代码示例

@@ -9,10 +9,10 @@ alpha_dropout是一种具有自归一化性质的dropout。均值为0，方差�
 
 参数
 :::::::::
- - **x** (Tensor): 输入的多维 `Tensor` ，数据类型为：float32、float64。
- - **p** (float): 将输入节点置0的概率，即丢弃概率。默认: 0.5。
- - **training** (bool): 标记是否为训练阶段。 默认: True。
- - **name** (str，可选): 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+ - **x** (Tensor)：输入的多维 `Tensor`，数据类型为：float32、float64。
+ - **p** (float)：将输入节点置0的概率，即丢弃概率。默认：0.5。
+ - **training** (bool)：标记是否为训练阶段。默认：True。
+ - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

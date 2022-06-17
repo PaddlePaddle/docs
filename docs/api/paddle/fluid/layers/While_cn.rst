@@ -25,7 +25,7 @@ While
 
     - **cond** (Variable) – 用于判断循环继续进行的条件，为数据类型bool型的Tensor，其shape必须为[1]。
     - **is_test** (bool，可选) – 用于表明是否在测试阶段执行，默认值为False。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例 1
 ::::::::::::
