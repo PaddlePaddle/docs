@@ -158,6 +158,12 @@ python/paddle/utils/code_gen/backward.yaml：
 <td>intermediate</td>
 <td>标记前向计算中输出的用于反向计算的中间变量，不会出现在Python API的返回结果中，相关设计正在完善中，新增算子时不建议使用</td>
 </tr>
+<tr>
+<td>invoke</td>
+<td>复用已有的算子接口或实现自定义的C++ API，配置时以函数调用的形式配置即可，使用invoke时则不需要配置infer_meta和kernel。<br>
+a. 如果是复用已有算子，需要被复用的算子为前向算子且两者的返回值类型相同，可参考zeros_like算子<br>
+b. 如果是实现自定义的C++ API，需要在'paddle/phi/api/lib/api_custom_impl.h'声明自定义实现函数并在'paddle/phi/api/lib/api_custom_impl.cc'中进行实现，具体可参考embedding算子</td>
+</tr>
 </tbody>
 </table>
 
