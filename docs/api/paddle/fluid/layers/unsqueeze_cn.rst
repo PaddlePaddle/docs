@@ -28,8 +28,8 @@ unsqueeze
 ::::::::::::
 
     - **input** (Variable)- 多维 ``Tensor``，数据类型为 ``float32``， ``float64``， ``int8``， ``int32``，或 ``int64``。
-    - **axes** (int|list|tuple|Variable) - 表示要插入维度的位置。数据类型是 ``int32`` 。如果 ``axes`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor`` 。如果 ``axes`` 的类型是 ``Variable``，则是1-D ``Tensor``。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值： ``None``。
+    - **axes** (int|list|tuple|Variable) - 表示要插入维度的位置。数据类型是 ``int32``。如果 ``axes`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor``。如果 ``axes`` 的类型是 ``Variable``，则是1-D ``Tensor``。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

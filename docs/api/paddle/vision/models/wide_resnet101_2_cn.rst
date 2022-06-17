@@ -5,30 +5,20 @@ wide_resnet101_2
 
 .. py:function:: paddle.vision.models.wide_resnet101_2(pretrained=False, **kwargs)
 
- 101层的wide_resnet模型，来自论文 `"Wide Residual Networks" <https://arxiv.org/pdf/1605.07146.pdf>`_ 。
+
+Wide ResNet-101-2 模型，来自论文 `"Wide Residual Networks" <https://arxiv.org/pdf/1605.07146.pdf>`_ 。
 
 参数
 :::::::::
-  - **pretrained** (bool，可选) - 是否加载在imagenet数据集上的预训练权重。默认值：False。
+
+  - **pretrained** (bool，可选) - 是否加载预训练权重。如果为 True，则返回在 ImageNet 上预训练的模型。默认值：False。
 
 返回
 :::::::::
-wide_resnet101_2模型，Layer的实例。
+
+Wide ResNet-101-2 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    from paddle.vision.models import wide_resnet101_2
-
-    # build model
-    model = wide_resnet101_2()
-
-    # build model and load imagenet pretrained weight
-    # model = wide_resnet101_2(pretrained=True)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.wide_resnet101_2

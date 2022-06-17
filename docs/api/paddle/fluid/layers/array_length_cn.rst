@@ -17,7 +17,7 @@ array_length
 
 返回
 ::::::::::::
-shape为[1]的1-D Tensor, 表示数组LoDTensorArray的长度，数据类型为int64
+shape为[1]的1-D Tensor，表示数组LoDTensorArray的长度，数据类型为int64
 
 返回类型
 ::::::::::::

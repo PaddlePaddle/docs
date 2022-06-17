@@ -10,15 +10,15 @@ DistributeTranspiler
 
 
 
-该类可以把fluid program转变为分布式数据并行计算的program, 有PServer和NCCL2两种模式。
-在Pserver（全称：parameter server）模式下， 通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于parameter server的分布式架构(即PServer,参数服务器)来进行训练的program。
-在NCCL2模式下, 通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于NCCL2的分布式架构来进行训练的program。在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID`` 。 调用 ``transpile_nccl2`` 后， 你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``Executor`` 来启动NCCL2分布式模式。 
+该类可以把fluid program转变为分布式数据并行计算的program，有PServer和NCCL2两种模式。
+在Pserver（全称：parameter server）模式下，通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于parameter server的分布式架构(即PServer，参数服务器)来进行训练的program。
+在NCCL2模式下，通过 ``transpile`` 将用于单机训练的 ``program``  转译为可用于NCCL2的分布式架构来进行训练的program。在NCCL2模式下，transpiler会在 ``startup_program`` 中附加一个 ``NCCL_ID`` 广播算子（broadcasting operators）来实现在该集群中所有工作结点共享``NCCL_ID``。调用 ``transpile_nccl2`` 后，你 **必须** 将 ``trainer_id`` , ``num_trainers`` 参数提供给 ``Executor`` 来启动NCCL2分布式模式。
 
 
 参数
 ::::::::::::
 
-        - **config** （DistributeTranspilerConfig） DistributeTranspiler属性配置实例，定义了program转变所需要的属性, 请参考：`DistributeTranspilerConfig` 相关文档。
+        - **config** （DistributeTranspilerConfig） DistributeTranspiler属性配置实例，定义了program转变所需要的属性，请参考：`DistributeTranspilerConfig` 相关文档。
 
 返回
 ::::::::::::
@@ -87,11 +87,11 @@ transpile(trainer_id, program=None, pservers='127.0.0.1:6174', trainers=1, sync_
 
 **参数**
     
-    - **trainer_id** (int) – 当前Trainer worker的id, 如果有n个Trainer worker, id 取值范围为0 ~ n-1
-    - **program** (Program|None) – 待transpile（转译）的main program, 默认为 ``fluid.default_main_program()`` 
-    - **pservers** (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址:端口号* 
+    - **trainer_id** (int) – 当前Trainer worker的id，如果有n个Trainer worker, id 取值范围为0 ~ n-1
+    - **program** (Program|None) – 待transpile（转译）的main program，默认为 ``fluid.default_main_program()`` 
+    - **pservers** (str) – 内容为Pserver列表的字符串，格式为：按逗号区分不同的Pserver，每个Pserver的格式为 *ip地址：端口号* 
     - **trainers** (int|str) – 在Pserver模式下，该参数指Trainer机的个数；在nccl2模式下，它是一个内容为Trainer终端列表的字符串
-    - **sync_mode** (bool) – 是否做同步训练(synchronous training), 默认为True
+    - **sync_mode** (bool) – 是否做同步训练(synchronous training)，默认为True
     - **startup_program** (Program|None) – 待transpile（转译）的startup program，默认为 ``fluid.default_startup_program()``
     - **current_endpoint** (str) – 当需要把program转译（transpile）至NCCL2模式时，需要将当前endpoint（终端）传入该参数。PServer模型下，当用户需要使用增量训练时，必须要指定该参数。
 
@@ -116,14 +116,14 @@ get_trainer_program(wait_port=True)
 '''''''''
 
 
-该方法可以得到Trainer侧的program。Trainer侧的program相较于原始的单机执行的program，主要有以下不同:
+该方法可以得到Trainer侧的program。Trainer侧的program相较于原始的单机执行的program，主要有以下不同：
 
      - 删除了参数更新optimizer相关op，参数的更新由Pserver（参数服务器）执行
-     - 在每个参数的反向梯度计算op后，添加了 ``Send_op`` 与 ``Recv_op`` ，用于发送参数的梯度与接受更新后的参数
+     - 在每个参数的反向梯度计算op后，添加了 ``Send_op`` 与 ``Recv_op``，用于发送参数的梯度与接受更新后的参数
 
 **参数**
 
-     - **wait_port** (bool,默认值True) - 是否等待参数服务器准备就绪后再返回program
+     - **wait_port** (bool，默认值True) - 是否等待参数服务器准备就绪后再返回program
 
 **返回**
     Trainer侧的program
@@ -149,7 +149,7 @@ get_pserver_program(endpoint)
 '''''''''
 
 
-该方法可以得到Pserver（参数服务器）侧的program。Pserver侧的program相较于原始的单机执行的program，主要有以下不同:
+该方法可以得到Pserver（参数服务器）侧的program。Pserver侧的program相较于原始的单机执行的program，主要有以下不同：
      
      - 仅包含参数更新optimizer相关op，与分布式通信相关op
      - 0号block仅包含变量的定义及 ``listen_and_serv_op`` 
@@ -185,7 +185,7 @@ get_pserver_programs(endpoint)
 '''''''''
 
 
-该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program`` 。该函数返回的 ``main_program`` 与函数 ``get_pserver_program`` 的返回值一致。
+该方法可以得到Pserver侧用于分布式训练的 ``main_program`` 和 ``startup_program``。该函数返回的 ``main_program`` 与函数 ``get_pserver_program`` 的返回值一致。
 
 **参数**
     
@@ -224,7 +224,7 @@ get_startup_program(endpoint, pserver_program=None, startup_program=None)
 **参数**
     
     - **endpoint** (str) – 当前Pserver终端
-    - **pserver_program** (Program) – 已停止使用。 先调用get_pserver_program
+    - **pserver_program** (Program) – 已停止使用。先调用get_pserver_program
     - **startup_program** (Program) – 已停止使用。应在初始化时传入startup_program
 
 **返回**

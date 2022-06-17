@@ -14,13 +14,13 @@ auc
 
 注：如果输入标注包含一种值，只有0或1两种情况，数据类型则强制转换成布尔值。
 
-相关定义可以在这里找到: https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve 
+相关定义可以在这里找到：https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve 
 
 有两种可能的曲线：
 
-1. ROC:受试者工作特征曲线
+1. ROC：受试者工作特征曲线
 
-2. PR:准确率召回率曲线
+2. PR：准确率召回率曲线
 
 参数
 ::::::::::::

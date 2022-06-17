@@ -18,11 +18,11 @@ var
       
    - **unbiased** (bool，可选) - 是否使用无偏估计来计算方差。使用 :math:`N` 来代表在 axis 上的维度，如果 ``unbiased`` 为 True，则在计算中使用 :math:`N - 1` 作为除数。为 False 时将使用 :math:`N` 作为除数。默认值为 True。
    - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留输入的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
-   - **name** (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::
-    ``Tensor`` ，沿着 ``axis`` 进行方差计算的结果，数据类型和 ``x`` 相同。
+    ``Tensor``，沿着 ``axis`` 进行方差计算的结果，数据类型和 ``x`` 相同。
 
 代码示例
 ::::::::::

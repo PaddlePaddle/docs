@@ -11,12 +11,12 @@ remove_weight_norm
 ::::::::::::
 
    - **layer** (paddle.nn.Layer) - 要添加权重归一化的层。
-   - **name** (str, 可选) - 权重参数的名字。默认：'weight'. 
+   - **name** (str，可选) - 权重参数的名字。默认值为 ``weight``。
 
 返回
 ::::::::::::
 
-   ``Layer`` , 移除权重归一化hook之后的层
+   ``Layer``，移除权重归一化hook之后的层
 
 代码示例
 ::::::::::::

@@ -10,7 +10,7 @@ one_hot
 
 **注意：此OP要求输入Tensor shape的最后一维必须为1。此OP将在未来的版本中被移除！推荐使用fluid.** :ref:`cn_api_fluid_one_hot` 。
 
-该OP将输入（input）中的每个id转换为一个one-hot向量，其长度为 ``depth`` ，该id对应的向量维度上的值为1，其余维度的值为0。
+该OP将输入（input）中的每个id转换为一个one-hot向量，其长度为 ``depth``，该id对应的向量维度上的值为1，其余维度的值为0。
 
 输出的Tensor（或LoDTensor）的shape是将输入shape的最后一维替换为depth的维度。
 
@@ -58,7 +58,7 @@ one_hot
     allow_out_of_range=False
 
   输出：抛出 Illegal value 的异常
-    X中第2维的值是5，超过了depth，而allow_out_of_range=False表示不允许超过，因此抛异常。  
+    X中第2维的值是5，超过了depth，而allow_out_of_range=False表示不允许超过，因此抛异常。
 
 
 参数
