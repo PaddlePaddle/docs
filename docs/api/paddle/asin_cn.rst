@@ -26,11 +26,4 @@ arcsine函数。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([-0.8183,  0.4912, -0.6444,  0.0371])
-        res = paddle.asin(x)
-        print(res)
-        # [-0.9585,  0.5135, -0.7003,  0.0372]
+COPY-FROM: paddle.asin

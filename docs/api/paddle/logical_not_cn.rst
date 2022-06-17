@@ -28,10 +28,4 @@ Tensor，与 ``x`` 维度相同，数据类型相同。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([True, False, True, False])
-    result = paddle.logical_not(x)
-    print(result) # [False, True, False, True]
+COPY-FROM: paddle.logical_not

@@ -22,18 +22,4 @@ guard
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-        with paddle.utils.unique_name.guard():
-            name_1 = paddle.utils.unique_name.generate('fc')
-        with paddle.utils.unique_name.guard():
-            name_2 = paddle.utils.unique_name.generate('fc')
-        print(name_1, name_2) # fc_0, fc_0
-
-        with paddle.utils.unique_name.guard('A'):
-            name_1 = paddle.utils.unique_name.generate('fc')
-        with paddle.utils.unique_name.guard('B'):
-            name_2 = paddle.utils.unique_name.generate('fc')
-        print(name_1, name_2) # Afc_0, Bfc_0
-
+COPY-FROM: paddle.utils.unique_name.guard

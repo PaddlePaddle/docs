@@ -44,15 +44,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-     
-    batch_size = 64
-    label = fluid.layers.data(
-              name="label", shape=[batch_size, 1], dtype="int64", append_batch_size=False)
-    similarity = fluid.layers.data(
-              name="similarity", shape=[batch_size, 1], dtype="float32", append_batch_size=False)
-    cost = fluid.layers.teacher_student_sigmoid_loss(input=similarity, label=label)
-
-
+COPY-FROM: paddle.fluid.layers.teacher_student_sigmoid_loss

@@ -10,13 +10,8 @@ uniform
 
 返回数值服从范围[``min``, ``max``)内均匀分布的随机Tensor，形状为 ``shape``，数据类型为 ``dtype``。
 
-.. code-block:: text
 
-    示例1:
-             给定：
-                 shape=[1,2]
-             则输出为：
-                 result=[[0.8505902, 0.8397286]]
+COPY-FROM: paddle.uniform
 
 参数
 ::::::::::::

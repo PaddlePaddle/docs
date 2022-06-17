@@ -20,14 +20,4 @@ tuple(int,int)：设备计算能力的主要和次要修订号。
 代码示例
 :::::::::
 
-        .. code-block:: python
-
-            # required: gpu
-            
-            import paddle
-
-            paddle.device.cuda.get_device_capability()
-
-            paddle.device.cuda.get_device_capability(0)
-
-            paddle.device.cuda.get_device_capability(paddle.CUDAPlace(0))
+COPY-FROM: paddle.device.cuda.get_device_capability

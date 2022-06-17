@@ -19,15 +19,4 @@ Tensor，输出矩阵的行列式值 Shape为 ``[*]`` 。
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-
-    import paddle
-
-    x =  paddle.randn([3,3,3])
-
-    A = paddle.linalg.det(x)
-
-    print(A)
-
-    # [ 0.02547996,  2.52317095, -6.15900707])
+COPY-FROM: paddle.linalg.det

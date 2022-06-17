@@ -22,7 +22,4 @@ set_default_dtype
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    paddle.set_default_dtype("float32")
+COPY-FROM: paddle.set_default_dtype

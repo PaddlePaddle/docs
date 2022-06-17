@@ -26,14 +26,4 @@ floor
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        data1 = paddle.full(shape=[3, 2], fill_value=2.5, dtype='float32') # [[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]]
-        data2 = paddle.full(shape=[2, 3], fill_value=-2.5, dtype='float64') # [[-2.5, -2.5, -2.5], [-2.5, -2.5, -2.5]]
-        result1 = paddle.floor(data1) # [[2., 2.], [2., 2.], [2., 2.]]
-        result2 = paddle.floor(data2) # [[-3., -3., -3.], [-3., -3., -3.]]
-        print(result1)
-        print(result2)
-
+COPY-FROM: paddle.floor

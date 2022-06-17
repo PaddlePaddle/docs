@@ -21,16 +21,4 @@ alpha_dropout是一种具有自归一化性质的dropout。均值为0，方差�
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x = np.array([[-1, 1], [-1, 1]]).astype('float32')
-    x = paddle.to_tensor(x)
-    y_train = paddle.nn.functional.alpha_dropout(x, 0.5)
-    y_test = paddle.nn.functional.alpha_dropout(x, 0.5, training=False)
-    print(x)
-    print(y_train)
-    # [[-0.10721093, 1.6655989 ], [-0.7791938, -0.7791938]] (randomly)
-    print(y_test)
+COPY-FROM: paddle.nn.functional.alpha_dropout

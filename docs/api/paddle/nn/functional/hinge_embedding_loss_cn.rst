@@ -48,25 +48,4 @@ hinge_embedding_loss
 代码示例
 :::::::::
 
-.. code-block:: python
-
-        import paddle
-        import paddle.nn.functional as F
-
-        input = paddle.to_tensor([[1, -2, 3], [0, -1, 2], [1, 0, 1]], dtype=paddle.float32)
-        # label的元素值在 {1., -1.} 中
-        label = paddle.to_tensor([[-1, 1, -1], [1, 1, 1], [1, -1, 1]], dtype=paddle.float32)
-
-        loss = F.hinge_embedding_loss(input, label, reduction='none')
-        print(loss)
-        # Tensor([[0., -2., 0.],
-        #         [0., -1., 2.],
-        #         [1., 1., 1.]])
-
-        loss = F.hinge_embedding_loss(input, label, reduction='mean')
-        print(loss)
-        # Tensor([0.22222222])
-
-        loss = F.hinge_embedding_loss(input, label, reduction='sum')
-        print(loss)
-        # Tensor([2.])
+COPY-FROM: paddle.nn.functional.hinge_embedding_loss

@@ -27,20 +27,4 @@ Tensor，激活函数的输出值，数据类型为float32。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.uniform(min=-3., max=3., shape=[3])
-    y = paddle.nn.functional.sigmoid(x)
-    print(x)
-    print(y)
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.nn.functional.sigmoid

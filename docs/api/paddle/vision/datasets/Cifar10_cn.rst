@@ -24,37 +24,4 @@ Cifar10
 代码示例
 :::::::::
 
-        .. code-block:: python
-
-            import paddle
-            import paddle.nn as nn
-            from paddle.vision.datasets import Cifar10
-            from paddle.vision.transforms import Normalize
-
-            class SimpleNet(paddle.nn.Layer):
-                def __init__(self):
-                    super(SimpleNet, self).__init__()
-                    self.fc = nn.Sequential(
-                        nn.Linear(3072, 10),
-                        nn.Softmax())
-
-                def forward(self, image, label):
-                    image = paddle.reshape(image, (1, -1))
-                    return self.fc(image), label
-
-
-            normalize = Normalize(mean=[0.5, 0.5, 0.5],
-                                std=[0.5, 0.5, 0.5],
-                                data_format='HWC')
-            cifar10 = Cifar10(mode='train', transform=normalize)
-
-            for i in range(10):
-                image, label = cifar10[i]
-                image = paddle.to_tensor(image)
-                label = paddle.to_tensor(label)
-
-                model = SimpleNet()
-                image, label = model(image, label)
-                print(image.numpy().shape, label.numpy().shape)
-
-    
+COPY-FROM: paddle.vision.datasets.Cifar10

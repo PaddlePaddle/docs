@@ -75,43 +75,4 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-   #deformable conv v2:
-
-   import paddle
-   input = paddle.rand((8, 1, 28, 28))
-   kh, kw = 3, 3
-   # offset shape should be [bs, 2 * kh * kw, out_h, out_w]
-   # mask shape should be [bs, hw * hw, out_h, out_w]
-   # In this case, for an input of 28, stride of 1
-   # and kernel size of 3, without padding, the output size is 26
-   offset = paddle.rand((8, 2 * kh * kw, 26, 26))
-   mask = paddle.rand((8, kh * kw, 26, 26))
-   deform_conv = paddle.vision.ops.DeformConv2D(
-       in_channels=1,
-       out_channels=16,
-       kernel_size=[kh, kw])
-   out = deform_conv(input, offset, mask)
-   print(out.shape)
-   # returns
-   [8, 16, 26, 26]
-
-   #deformable conv v1:
-
-   import paddle
-   input = paddle.rand((8, 1, 28, 28))
-   kh, kw = 3, 3
-   # offset shape should be [bs, 2 * kh * kw, out_h, out_w]
-   # mask shape should be [bs, hw * hw, out_h, out_w]
-   # In this case, for an input of 28, stride of 1
-   # and kernel size of 3, without padding, the output size is 26
-   offset = paddle.rand((8, 2 * kh * kw, 26, 26))
-   deform_conv = paddle.vision.ops.DeformConv2D(
-       in_channels=1,
-       out_channels=16,
-       kernel_size=[kh, kw])
-   out = deform_conv(input, offset)
-   print(out.shape)
-   # returns
-   [8, 16, 26, 26]
+COPY-FROM: paddle.vision.ops.DeformConv2D

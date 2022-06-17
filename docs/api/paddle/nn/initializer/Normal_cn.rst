@@ -23,23 +23,4 @@ Normal
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    data = paddle.ones(shape=[3, 1, 2], dtype='float32')
-    weight_attr = paddle.framework.ParamAttr(
-        name="linear_weight",
-        initializer=paddle.nn.initializer.Normal(mean=0.0, std=2.0))
-    bias_attr = paddle.framework.ParamAttr(
-        name="linear_bias",
-        initializer=paddle.nn.initializer.Normal(mean=0.0, std=2.0))
-    linear = paddle.nn.Linear(2, 2, weight_attr=weight_attr, bias_attr=bias_attr)
-    # linear.weight:  [[ 2.1973135 -2.2697184]
-    #                  [-1.9104223 -1.0541488]]
-    # linear.bias:  [ 0.7885926  -0.74719954]
-    
-    res = linear(data)
-    # res:  [[[ 1.0754838 -4.071067 ]]
-    #        [[ 1.0754838 -4.071067 ]]
-    #        [[ 1.0754838 -4.071067 ]]]
+COPY-FROM: paddle.nn.initializer.Normal

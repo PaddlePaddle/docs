@@ -90,21 +90,4 @@ Variable
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-            import paddle.fluid as fluid
-            data = fluid.layers.data(
-              name='data', shape=[-1, 3, 2, 2], dtype='float32')
-            fluid.layers.similarity_focus(input=data, axis=1, indexes=[0])
-
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.similarity_focus

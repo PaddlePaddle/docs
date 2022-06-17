@@ -43,9 +43,4 @@ shape层。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    x = paddle.randn((2,3))
-    print(paddle.shape(x)) # [2, 3]
-    
+COPY-FROM: paddle.shape

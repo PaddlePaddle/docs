@@ -41,21 +41,4 @@ margin rank loss（间隔排序损失）层。在排序问题中，它可以比�
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    label = fluid.layers.data(name="label", shape=[-1, 1], dtype="float32")
-    left = fluid.layers.data(name="left", shape=[-1, 1], dtype="float32")
-    right = fluid.layers.data(name="right", shape=[-1, 1], dtype="float32")
-    out = fluid.layers.margin_rank_loss(label, left, right)
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.margin_rank_loss

@@ -33,20 +33,4 @@ Mish激活函数。参考 `Mish: A Self Regularized Non-Monotonic Neural Activat
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-    import paddle.fluid as fluid
-    import numpy as np
-    DATATYPE='float32'
-    x_data = np.array([i for i in range(1,5)]).reshape([1,1,4]).astype(DATATYPE)
-    x = fluid.data(name="x", shape=[None,1,4], dtype=DATATYPE)
-    y = fluid.layers.mish(x)
-    place = fluid.CPUPlace()
-    # place = fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-    out, = exe.run(feed={'x':x_data}, fetch_list=[y.name])
-    print(out)  # [[0.66666667, 1.66666667, 3., 4.]]
-
-
+COPY-FROM: paddle.fluid.layers.mish

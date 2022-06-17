@@ -20,13 +20,4 @@ Tensor，输出正负号，数据的 shape 大小及数据类型和输入 ``x`` 
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import numpy as np
-    import paddle
-
-    data = np.array([3.0, 0.0, -2.0, 1.7], dtype='float32')
-    x = paddle.to_tensor(data)
-    out = paddle.sign(x=x)
-    print(out)  # [1.0, 0.0, -1.0, 1.0]
-
+COPY-FROM: paddle.sign

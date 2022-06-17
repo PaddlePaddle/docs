@@ -24,25 +24,4 @@ cross
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([[1.0, 1.0, 1.0],
-                                [2.0, 2.0, 2.0],
-                                [3.0, 3.0, 3.0]])
-        y = paddle.to_tensor([[1.0, 1.0, 1.0],
-                                [1.0, 1.0, 1.0],
-                                [1.0, 1.0, 1.0]])
-                                
-        z1 = paddle.cross(x, y)
-        # [[-1. -1. -1.]
-        #  [ 2.  2.  2.]
-        #  [-1. -1. -1.]]
-
-        z2 = paddle.cross(x, y, axis=1)
-        # [[0. 0. 0.]
-        #  [0. 0. 0.]
-        #  [0. 0. 0.]]
-
-
+COPY-FROM: paddle.cross

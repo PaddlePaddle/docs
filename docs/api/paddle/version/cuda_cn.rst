@@ -16,10 +16,4 @@ cuda
 代码示例：
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    paddle.version.cuda()
-    # '10.2'
-
+COPY-FROM: paddle.version.cuda

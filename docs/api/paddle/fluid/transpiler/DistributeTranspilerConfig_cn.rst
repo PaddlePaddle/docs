@@ -39,15 +39,4 @@ min_block_size (int)
 
 **代码示例**
 
-.. code-block:: python
-
-        from paddle.fluid.transpiler.ps_dispatcher import RoundRobin
-        import paddle.fluid as fluid
-
-        config = fluid.DistributeTranspilerConfig()
-        config.slice_var_up = True
-        config.split_method = RoundRobin
-        config.min_block_size = 81920
-
-
-
+COPY-FROM: paddle.fluid.transpiler.DistributeTranspilerConfig

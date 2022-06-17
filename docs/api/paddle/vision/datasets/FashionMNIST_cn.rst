@@ -24,14 +24,4 @@ FashionMNIST
 代码示例
 :::::::::
         
-        .. code-block:: python
-
-            from paddle.vision.datasets import FashionMNIST
-
-            mnist = FashionMNIST(mode='test')
-
-            for i in range(len(mnist)):
-                sample = mnist[i]
-                print(sample[0].size, sample[1])
-
-    
+COPY-FROM: paddle.vision.datasets.FashionMNIST

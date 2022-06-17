@@ -15,8 +15,4 @@ get_device
 代码示例
 ::::::::::::
 
-.. code-block:: python
-        
-    import paddle
-    
-    device = paddle.device.get_device()
+COPY-FROM: paddle.device.get_device

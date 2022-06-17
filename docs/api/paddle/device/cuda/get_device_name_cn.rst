@@ -20,14 +20,4 @@ str：设备的名称。
 代码示例
 ::::::::::
 
-        .. code-block:: python
-
-            # required: gpu
-            
-            import paddle
-
-            paddle.device.cuda.get_device_name()
-
-            paddle.device.cuda.get_device_name(0)
-
-            paddle.device.cuda.get_device_name(paddle.CUDAPlace(0))
+COPY-FROM: paddle.device.cuda.get_device_name

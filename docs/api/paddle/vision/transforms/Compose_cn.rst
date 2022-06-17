@@ -20,16 +20,4 @@ Compose
 代码示例
 :::::::::
     
-.. code-block:: python
-
-    from paddle.vision.datasets import Flowers
-    from paddle.vision.transforms import Compose, ColorJitter, Resize
-
-    transform = Compose([ColorJitter(), Resize(size=608)])
-    flowers = Flowers(mode='test', transform=transform)
-
-    for i in range(10):
-        sample = flowers[i]
-        print(sample[0].size, sample[1])
-
-    
+COPY-FROM: paddle.vision.transforms.Compose

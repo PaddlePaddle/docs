@@ -37,17 +37,4 @@ label_smooth
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-        import paddle
-        import numpy as np
-        
-        x_data = np.array([[[0, 1, 0],
-                            [ 1,  0, 1]]]).astype("float32")
-        print(x_data.shape)
-        x = paddle.to_tensor(x_data, stop_gradient=False)
-        output = paddle.nn.functional.label_smooth(x)
-        print(output)
-        
-        #[[[0.03333334 0.93333334 0.03333334]
-        #  [0.93333334 0.03333334 0.93333334]]]
+COPY-FROM: paddle.nn.functional.label_smooth

@@ -56,23 +56,4 @@ Variable(LoDTensor) 序列切片运算结果
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-  import paddle.fluid as fluid
-  import numpy as np
-  seqs = fluid.layers.data(name='x', shape=[10, 5],
-       dtype='float32', lod_level=1)
-  offset = fluid.layers.assign(input=np.array([[0, 1]]).astype("int32"))
-  length = fluid.layers.assign(input=np.array([[2, 1]]).astype("int32"))
-  subseqs = fluid.layers.sequence_slice(input=seqs, offset=offset,
-                length=length)
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.sequence_slice

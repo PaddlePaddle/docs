@@ -33,8 +33,4 @@ range
 
 代码示例：
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.layers.range(0, 10, 2, 'int32')
-    # [0, 2, 4, 6, 8]
+COPY-FROM: paddle.fluid.layers.range

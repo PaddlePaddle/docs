@@ -4,7 +4,7 @@ wait
 -------------------------------
 
 
-.. py:function:: wait(tensor, group=None, use_calc_stream=True)
+.. py:function:: paddle.distributed.wait(tensor, group=None, use_calc_stream=True)
 
 
 同步通信组

@@ -99,15 +99,4 @@ cross_entropy
 代码示例
 :::::::::
 
-..  code-block:: python
-
-        import paddle
-
-        input_data = paddle.rand(shape=[5, 100])
-        label_data = paddle.randint(0, 100, shape=[5,1], dtype="int64")
-        weight_data = paddle.rand([100])
-
-        loss = paddle.nn.functional.cross_entropy(input=input_data, label=label_data, weight=weight_data)
-        print(loss)
-
-
+COPY-FROM: paddle.nn.functional.cross_entropy

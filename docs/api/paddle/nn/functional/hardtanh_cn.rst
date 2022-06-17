@@ -33,11 +33,4 @@ hardtanh激活层（Hardtanh Activation Operator）。计算公式如下：
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-    import numpy as np
-
-    x = paddle.to_tensor(np.array([-1.5, 0.3, 2.5]))
-    out = F.hardtanh(x) # [-1., 0.3, 1.]
+COPY-FROM: paddle.nn.functional.hardtanh
