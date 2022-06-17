@@ -11,7 +11,7 @@ alexnet
 参数
 :::::::::
   - **pretrained** (bool，可选) - 是否加载在imagenet数据集上的预训练权重。默认值：False。
-  - **\*\*kwargs** (可选) - 附加的关键字参数，由调用者提供。
+  - **\*\*kwargs** (可选) - 附加的关键字参数，具体可选参数请参见 :ref:`AlexNet <cn_api_paddle_vision_models_AlexNet>`。
 返回
 :::::::::
 alexnet模型，Layer的实例。
