@@ -9,8 +9,8 @@ PSRoIPool
 
 参数
 :::::::::
-    - output_size (int|Tuple(int, int)) - 池化后输出的尺寸(H, W)，数据类型为int32。如果output_size是int类型，H和W都与其相等。
-    - spatial_scale (float) - 空间比例因子，用于将boxes中的坐标从其输入尺寸按比例映射到输入特征图的尺寸。
+    - **output_size** (int|Tuple(int, int)) - 池化后输出的尺寸(H, W), 数据类型为int32. 如果output_size是int类型，H和W都与其相等。
+    - **spatial_scale** (float，可选) - 空间比例因子，用于将boxes中的坐标从其输入尺寸按比例映射到输入特征图的尺寸。
 
 形状
 :::::::::
@@ -25,13 +25,4 @@ PSRoIPool
 
 代码示例
 :::::::::
-    
-..  code-block:: python
-
-    import paddle
-    
-    psroi_module = paddle.vision.ops.PSRoIPool(7, 1.0)
-    x = paddle.uniform([2, 490, 28, 28], dtype='float32')
-    boxes = paddle.to_tensor([[1, 5, 8, 10], [4, 2, 6, 7], [12, 12, 19, 21]], dtype='float32')
-    boxes_num = paddle.to_tensor([1, 2], dtype='int32')
-    pool_out = psroi_module(x, boxes, boxes_num)
+COPY-FROM: paddle.vision.ops.PSRoIPool:code-example1
