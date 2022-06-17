@@ -11,13 +11,13 @@ new_group
 
 参数
 :::::::::
-    - ranks (list): 用于新建通信组的全局 rank 列表
-    - backend (str): 用于新建通信组的后端支持，目前仅支持 nccl
+    - ranks (list)：用于新建通信组的全局 rank 列表
+    - backend (str)：用于新建通信组的后端支持，目前仅支持 nccl
 
 
 返回
 :::::::::
-Group: 新建的通信组对象
+Group：新建的通信组对象
 
 代码示例
 ::::::::::::

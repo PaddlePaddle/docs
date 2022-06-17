@@ -8,7 +8,7 @@ sparse_csr_tensor
 
 该API通过已知的非零元素的 ``crows`` , ``cols`` 和 ``values`` 来创建一个CSR(Compressed Sparse Row) 格式的稀疏tensor，tensor类型为 ``paddle.Tensor`` 。
 
-当前 ``sparse_csr_tensor`` 要求输入的 ``crows`` 中每个batch的数据是递增的， ``cols`` 也是递增的。
+当前 ``sparse_csr_tensor`` 要求输入的 ``crows`` 中每个batch的数据是递增的，``cols`` 也是递增的。
 
 ``crows`` 可以是 scalar，tuple，list，numpy\.ndarray，paddle\.Tensor。
 ``cols`` 可以是 scalar，tuple，list，numpy\.ndarray，paddle\.Tensor。

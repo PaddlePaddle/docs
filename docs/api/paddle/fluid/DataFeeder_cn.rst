@@ -12,7 +12,7 @@ DataFeeder
 
 
 ``DataFeeder`` 负责将reader(读取器)返回的数据转成一种特殊的数据结构，使它们可以输入到 ``Executor`` 和 ``ParallelExecutor`` 中。
-reader通常返回一个minibatch条目列表。在列表中每一条目都是一个样本（sample）,它是由具有一至多个特征的列表或元组组成的。
+reader通常返回一个minibatch条目列表。在列表中每一条目都是一个样本（sample），它是由具有一至多个特征的列表或元组组成的。
 
 
 以下是简单用法：
@@ -47,8 +47,8 @@ reader通常返回一个minibatch条目列表。在列表中每一条目都是�
 ::::::::::::
 
     - **feed_list** (list) – 向模型输入的变量表或者变量表名
-    - **place** (Place) – place表明是向GPU还是CPU中输入数据。如果想向GPU中输入数据, 请使用 ``fluid.CUDAPlace(i)`` (i 代表 the GPU id)；如果向CPU中输入数据, 请使用  ``fluid.CPUPlace()``
-    - **program** (Program) – 需要向其中输入数据的Program。如果为None, 会默认使用 ``default_main_program()``。 缺省值为None
+    - **place** (Place) – place表明是向GPU还是CPU中输入数据。如果想向GPU中输入数据，请使用 ``fluid.CUDAPlace(i)`` (i 代表 the GPU id)；如果向CPU中输入数据，请使用  ``fluid.CPUPlace()``
+    - **program** (Program) – 需要向其中输入数据的Program。如果为None，会默认使用 ``default_main_program()``。缺省值为None
 
 
 抛出异常
@@ -187,8 +187,8 @@ decorate_reader(reader, multi_devices, num_places=None, drop_last=True)
 
         - **reader** (fun) – 该参数是一个可以生成数据的函数
         - **multi_devices** (bool) – bool型，指明是否使用多个设备
-        - **num_places** (int) – 如果 ``multi_devices`` 为 ``True`` , 可以使用此参数来设置GPU数目。如果 ``multi_devices`` 为 ``None`` ，该函数默认使用当前训练机所有GPU设备。默认为None。
-        - **drop_last** (bool) – 如果最后一个batch的大小比 ``batch_size`` 要小，则可使用该参数来指明是否选择丢弃最后一个batch数据。 默认为 ``True``
+        - **num_places** (int) – 如果 ``multi_devices`` 为 ``True``，可以使用此参数来设置GPU数目。如果 ``multi_devices`` 为 ``None``，该函数默认使用当前训练机所有GPU设备。默认为None。
+        - **drop_last** (bool) – 如果最后一个batch的大小比 ``batch_size`` 要小，则可使用该参数来指明是否选择丢弃最后一个batch数据。默认为 ``True``
 
 **返回**
 转换结果

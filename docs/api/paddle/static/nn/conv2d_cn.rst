@@ -25,12 +25,12 @@ conv2d
 
 其中：
 
-    - :math:`X` ：输入值，NCHW或NHWC格式的4-D Tensor；
-    - :math:`W` ：滤波器值，MCHW格式的4-D Tensor；
-    - :math:`*` ：卷积操作；
-    - :math:`b` ：偏置值，2-D Tensor，形状为 ``[M,1]``；
-    - :math:`\sigma` ：激活函数；
-    - :math:`Out` ：输出值，NCHW或NHWC格式的4-D Tensor， 和 ``X`` 的形状可能不同。
+    - :math:`X`：输入值，NCHW或NHWC格式的4-D Tensor；
+    - :math:`W`：滤波器值，MCHW格式的4-D Tensor；
+    - :math:`*`：卷积操作；
+    - :math:`b`：偏置值，2-D Tensor，形状为 ``[M,1]``；
+    - :math:`\sigma`：激活函数；
+    - :math:`Out`：输出值，NCHW或NHWC格式的4-D Tensor，和 ``X`` 的形状可能不同。
 
 **示例**
 
@@ -38,11 +38,11 @@ conv2d
 
   输入形状：:math:`（N,C_{in},H_{in},W_{in}）`
 
-  滤波器形状： :math:`（C_{out},C_{in},H_{f},W_{f}）`
+  滤波器形状：:math:`（C_{out},C_{in},H_{f},W_{f}）`
 
 - 输出：
 
-  输出形状： :math:`（N,C_{out},H_{out},W_{out}）`
+  输出形状：:math:`（N,C_{out},H_{out},W_{out}）`
 
 其中
 
@@ -85,8 +85,8 @@ conv2d
     - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **use_cudnn** （bool，可选）- 是否使用cudnn内核。只有已安装cudnn库时才有效。默认值：True。
-    - **act** (str，可选) - 激活函数类型， 如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` 。如果设为None，则未添加激活函数。默认值：None。
-    - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值：None。
+    - **act** (str，可选) - 激活函数类型，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations`。如果设为None，则未添加激活函数。默认值：None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
 
 返回
