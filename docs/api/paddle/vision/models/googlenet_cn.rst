@@ -10,10 +10,12 @@ GoogLeNet（Inception v1）模型，来自论文 `"Going Deeper with Convolution
 
 参数
 :::::::::
+
   - **pretrained** (bool，可选) - 是否加载在 imagenet 数据集上的预训练权重。默认值：False。
 
 返回
 :::::::::
+
 GoogLeNet 模型，Layer 的实例。
 
 代码示例

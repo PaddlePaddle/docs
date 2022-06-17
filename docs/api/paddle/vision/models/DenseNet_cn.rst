@@ -10,6 +10,7 @@ DenseNet 模型，来自论文 `"Densely Connected Convolutional Networks" <http
 
 参数
 :::::::::
+
   - **layers** (int，可选) - densenet 的层数。默认值：121。
   - **bn_size** (int，可选) - 中间层 growth rate 的拓展倍数。默认值：4。
   - **dropout** (float，可选) - dropout rate。默认值：0.。
@@ -18,6 +19,7 @@ DenseNet 模型，来自论文 `"Densely Connected Convolutional Networks" <http
 
 返回
 :::::::::
+
 DenseNet 模型，Layer 的实例。
 
 代码示例
