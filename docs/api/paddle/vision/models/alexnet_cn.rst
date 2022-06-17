@@ -19,4 +19,4 @@ alexnet 模型，Layer 的实例。
 代码示例
 :::::::::
 
-COPY-FROM: paddle.vision.models.alexnet:code-example
+COPY-FROM: paddle.vision.models.alexnet

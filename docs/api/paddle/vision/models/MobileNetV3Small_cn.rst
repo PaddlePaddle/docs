@@ -21,15 +21,4 @@ mobilenetv3 small 模型，Layer 的实例。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    from paddle.vision.models import MobileNetV3Small
-
-    # build model
-    model = MobileNetV3Small(scale=1.0)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.MobileNetV3Small

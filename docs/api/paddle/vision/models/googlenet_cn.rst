@@ -18,18 +18,5 @@ GoogLeNet 模型，Layer 的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    from paddle.vision.models import googlenet
-
-    # build model
-    model = googlenet()
-
-    # build model and load imagenet pretrained weight
-    # model = googlenet(pretrained=True)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out, out1, out2 = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.googlenet

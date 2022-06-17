@@ -18,18 +18,5 @@ shufflenet_v2_x1_0 模型，Layer 的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    from paddle.vision.models import shufflenet_v2_x1_0
-
-    # build model
-    model = shufflenet_v2_x1_0()
-
-    # build model and load imagenet pretrained weight
-    # model = shufflenet_v2_x1_0(pretrained=True)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.shufflenet_v2_x1_0

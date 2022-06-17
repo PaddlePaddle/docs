@@ -1,6 +1,6 @@
-.. _cn_api_paddle_vision_models_alexnet:
+.. _cn_api_paddle_vision_models_AlexNet:
 
-alexnet
+AlexNet
 -------------------------------
 
 .. py:function:: paddle.vision.models.alexnet(pretrained=False, **kwargs)
@@ -18,18 +18,5 @@ alexnet 模型，Layer 的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    from paddle.vision.models import alexnet
-
-    # build model
-    model = alexnet()
-
-    # build model and load imagenet pretrained weight
-    # model = alexnet(pretrained=True)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.AlexNet

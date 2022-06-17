@@ -20,18 +20,4 @@ vgg16 模型，Layer 的实例。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    from paddle.vision.models import vgg16
-
-    # build model
-    model = vgg16()
-
-    # build vgg16 model with batch_norm
-    model = vgg16(batch_norm=True)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.vgg16

@@ -1,6 +1,6 @@
-.. _cn_api_paddle_vision_models_googlenet:
+.. _cn_api_paddle_vision_models_GoogLeNet:
 
-googlenet
+GoogLeNet
 -------------------------------
 
 .. py:function:: paddle.vision.models.googlenet(pretrained=False, **kwargs)
@@ -18,18 +18,5 @@ GoogLeNet 模型，Layer 的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    from paddle.vision.models import googlenet
-
-    # build model
-    model = googlenet()
-
-    # build model and load imagenet pretrained weight
-    # model = googlenet(pretrained=True)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out, out1, out2 = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.GoogLeNet

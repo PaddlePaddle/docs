@@ -18,18 +18,5 @@ InceptionV3 模型，Layer 的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    from paddle.vision.models import inception_v3
-
-    # build model
-    model = inception_v3()
-
-    # build model and load imagenet pretrained weight
-    # model = inception_v3(pretrained=True)
-
-    x = paddle.rand([1, 3, 299, 299])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.inception_v3

@@ -21,4 +21,4 @@ vgg 模型，Layer 的实例。
 代码示例
 :::::::::
 
-COPY-FROM: paddle.vision.models.VGG:code-example
+COPY-FROM: paddle.vision.models.VGG

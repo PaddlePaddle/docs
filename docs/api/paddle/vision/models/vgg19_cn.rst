@@ -20,18 +20,4 @@ vgg19 模型，Layer 的实例。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    from paddle.vision.models import vgg19
-
-    # build model
-    model = vgg19()
-
-    # build vgg19 model with batch_norm
-    model = vgg19(batch_norm=True)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.vgg19

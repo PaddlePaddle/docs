@@ -20,5 +20,6 @@ mobilenetv1 模型，Layer的实例。
 
 代码示例
 :::::::::
-COPY-FROM: paddle.vision.models.MobileNetV1:code-example1
+
+COPY-FROM: paddle.vision.models.MobileNetV1
 

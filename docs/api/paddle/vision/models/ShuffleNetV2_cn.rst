@@ -21,14 +21,5 @@ ShuffleNetV2 模型，Layer 的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    from paddle.vision.models import ShuffleNetV2
-
-    shufflenet_v2_swish = ShuffleNetV2(scale=1.0, act="swish")
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = shufflenet_v2_swish(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.ShuffleNetV2

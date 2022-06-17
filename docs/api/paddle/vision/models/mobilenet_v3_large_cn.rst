@@ -20,21 +20,4 @@ mobilenetv3 large 模型，Layer 的实例。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    from paddle.vision.models import mobilenet_v3_large
-
-    # build model
-    model = mobilenet_v3_large()
-
-    # build model and load imagenet pretrained weight
-    # model = mobilenet_v3_large(pretrained=True)
-
-    # build mobilenet v3 large model with scale=0.5
-    model = mobilenet_v3_large(scale=0.5)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.mobilenet_v3_large

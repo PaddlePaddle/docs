@@ -22,15 +22,5 @@ DenseNet 模型，Layer 的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    from paddle.vision.models import DenseNet
-
-    # build model
-    densenet = DenseNet()
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = densenet(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.DenseNet
