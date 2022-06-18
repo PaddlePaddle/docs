@@ -6,7 +6,7 @@ MNIST
 .. py:class:: paddle.vision.datasets.MNIST(image_path=None, label_path=None, mode='train', transform=None, download=True, backend=None)
 
 
-`MNIST <http://yann.lecun.com/exdb/mnist/>`_ 数据集。
+`MNIST <http://yann.lecun.com/exdb/mnist/>`_ 数据集的实现。
 
 参数
 :::::::::

@@ -6,7 +6,7 @@ Flowers
 .. py:class:: paddle.vision.datasets.Flowers(data_file=None, label_file=None, setid_file=None, mode='train', transform=None, download=True, backend=None)
 
 
-`Flowers102 <https://www.robots.ox.ac.uk/~vgg/data/flowers/>`_ 数据集。
+`Flowers102 <https://www.robots.ox.ac.uk/~vgg/data/flowers/>`_ 数据集的实现。
 
 参数
 :::::::::

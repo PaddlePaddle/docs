@@ -6,7 +6,7 @@ ImageFolder
 .. py:class:: paddle.vision.datasets.ImageFolder(root, loader=None, extensions=None, transform=None, is_valid_file=None)
 
 
-一种通用的数据加载方式，输入以如下的格式存放：
+一种通用的数据加载方式，数据需要以如下的格式存放：
 
 .. code-block:: text
     root/1.ext

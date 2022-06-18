@@ -6,7 +6,7 @@ FashionMNIST
 .. py:class:: paddle.vision.datasets.FashionMNIST(image_path=None, label_path=None, mode='train', transform=None, download=True, backend=None)
 
 
-`Fashion-MNIST <https://github.com/zalandoresearch/fashion-mnist>`_ 数据集。
+`Fashion-MNIST <https://github.com/zalandoresearch/fashion-mnist>`_ 数据集的实现。
 
 参数
 :::::::::
