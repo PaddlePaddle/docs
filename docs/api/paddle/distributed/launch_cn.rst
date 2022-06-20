@@ -84,6 +84,28 @@ Elastic 参数
 
     - ``--elastic_timeout``：弹性超时时间，经过该时间达到最小节点数即开启训练。默认值 ``--elastic_timeout=30``。
 
+IPU 参数
+:::::::::
+    IPU分布式训练只需要3个参数：``--devices``，``training_script`` 和 ``training_script_args``。对于IPU的参数说明如下：
+    ``--devices`` 表示设备个数，例如 ``--devices=4`` 表示当前的训练程序需要4个IPUs。
+    ``training_script`` 只允许设置为 ``ipu`` 。 
+    ``training_script_args`` 表示启动IPU分布式训练的相关参数。请参看如下各项参数说明。
+    请参考 ``Examples 10`` IPU分布式训练示例。
+    
+    - ``--hosts``：IPU分布式训练的主机ip，一个主机可包含多个进程。   
+    
+    - ``--nproc_per_host``： 每个主机的进程数量。一个进程可包含多个实例。
+    
+    - ``--ipus_per_replica``：每个实例包含的IPU数量。一个实例可包含多个IPUs。
+    
+    - ``--ipu_partition``：分布式训练中使用的IPU分区名称。
+    
+    - ``--vipu_server``：IPU设备管理服务的ip。
+    
+    - ``training_script``：分布式训练任务脚本的绝对路径，例如 ``training.py`` 。
+    
+    - ``training_script_args``：``training_script`` 的输入参数，与普通起任务时输入的参数一样，例如 ``--lr=0.1``。
+
 返回
 :::::::::
     ``None``
@@ -227,3 +249,15 @@ Elastic 参数
     python -m paddle.distributed.launch --master etcd://10.0.0.1:2379 --nnodes 2:4 train.py
     
     # 在训练过程中如果节点发生变化，上述逻辑不变。
+
+代码示例十 (ipu)
+:::::::::
+.. code-block:: bash
+    :name: code-block-example-bash10
+
+    # 使用如下命令启动IPU分布式训练
+    # 要求 `devices` 表示分布式训练的设备数量
+    # 要求 `training_script` 设置为 `ipu`
+    # 要求 `training_script_args` 表示IPU分布式训练相关参数，非训练运行脚本参数
+    # 请参看上述 `IPU 参数` 说明
+    python -m paddle.distributed.launch --devices 4 ipu --hosts=localhost --nproc_per_host=2 --ipus_per_replica=1 --ipu_partition=pod16 --vipu_server=127.0.0.1 train.py
