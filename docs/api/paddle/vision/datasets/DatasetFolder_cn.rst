@@ -27,6 +27,11 @@ DatasetFolder
   - **transform** (Callable，可选) - 图片数据的预处理，若为 ``None`` 即为不做预处理。默认值：``None``。
   - **is_valid_file** (Callable，可选) - 根据每条数据的路径来判断是否合法的一个函数。``extensions`` 和 ``is_valid_file`` 不可以同时设置。默认值：None。
 
+返回
+:::::::::
+
+DatasetFolder 实例。
+
 属性
 ::::::::::::
 
