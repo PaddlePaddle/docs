@@ -1,6 +1,6 @@
 # 代码风格检查指南
 
-Paddle 开发人员使用 [pre-commit](http://pre-commit.com/) 工具来管理 Git 预提交钩子。它可以帮助我们格式化源代码（C++，Python），在提交（commit）前自动检查一些基本事宜（如每个文件只有一个 EOL，Git 中不要添加大文件等）。
+Paddle 目前使用 [pre-commit](http://pre-commit.com/) 工具来进行代码风格检查。它可以帮助格式化源代码（C++，Python），在提交（commit）前自动检查一些基本事宜（如每个文件只有一个 EOL，Git 中不要添加大文件等）。代码风格检查能够帮助
 
 `pre-commit`测试是 CI 中单元测试的一部分，不满足测试的 PR 不能被提交到 Paddle，Paddle使用的pre-commit版本是 2.17.0。首先安装并在当前目录运行它：
 
