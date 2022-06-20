@@ -20,7 +20,7 @@ Cifar10
 返回
 :::::::::
 
-Cifar10 数据集实例。
+:ref:`cn_api_io_cn_Dataset`，Cifar10 数据集实例。
 
 代码示例
 :::::::::

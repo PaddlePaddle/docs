@@ -26,7 +26,7 @@ ImageFolder
 返回
 :::::::::
 
-ImageFolder 实例。
+:ref:`cn_api_io_cn_Dataset`，ImageFolder 实例。
 
 属性
 ::::::::::::

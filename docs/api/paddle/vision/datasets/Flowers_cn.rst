@@ -22,7 +22,7 @@ Flowers
 返回
 :::::::::
 
-Flowers 数据集实例。
+:ref:`cn_api_io_cn_Dataset`，Flowers 数据集实例。
 
 代码示例
 :::::::::

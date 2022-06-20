@@ -20,7 +20,7 @@ Cifar100
 返回
 :::::::::
 
-Cifar100 数据集实例。
+:ref:`cn_api_io_cn_Dataset`，Cifar100 数据集实例。
 
 代码示例
 :::::::::

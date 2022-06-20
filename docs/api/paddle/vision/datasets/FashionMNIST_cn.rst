@@ -21,7 +21,7 @@ FashionMNIST
 返回
 :::::::::
 
-FashionMNIST 数据集实例。
+:ref:`cn_api_io_cn_Dataset`，FashionMNIST 数据集实例。
 
 代码示例
 :::::::::

@@ -30,7 +30,7 @@ DatasetFolder
 返回
 :::::::::
 
-DatasetFolder 实例。
+:ref:`cn_api_io_cn_Dataset`，DatasetFolder 实例。
 
 属性
 ::::::::::::

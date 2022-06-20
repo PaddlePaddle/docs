@@ -21,7 +21,7 @@ MNIST
 返回
 :::::::::
 
-MNIST 数据集实例。
+:ref:`cn_api_io_cn_Dataset`，MNIST 数据集实例。
 
 代码示例
 :::::::::
