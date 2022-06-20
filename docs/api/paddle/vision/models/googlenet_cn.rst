@@ -17,7 +17,7 @@ GoogLeNet（Inception v1）模型，来自论文 `"Going Deeper with Convolution
 返回
 :::::::::
 
-GoogLeNet（Inception v1）模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
+:ref:`cn_api_fluid_dygraph_Layer`，GoogLeNet（Inception v1）模型实例。
 
 代码示例
 :::::::::

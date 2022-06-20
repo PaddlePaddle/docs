@@ -17,7 +17,7 @@ resnet18
 返回
 :::::::::
 
-18 层的 ResNet 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
+:ref:`cn_api_fluid_dygraph_Layer`，18 层的 ResNet 模型实例。
 
 代码示例
 :::::::::

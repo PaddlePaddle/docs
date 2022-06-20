@@ -18,7 +18,7 @@ MobileNetV3 Small 架构模型，来自论文 `"Searching for MobileNetV3" <http
 返回
 :::::::::
 
-MobileNetV3 Small 架构模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
+:ref:`cn_api_fluid_dygraph_Layer`，MobileNetV3 Small 架构模型实例。
 
 代码示例
 :::::::::

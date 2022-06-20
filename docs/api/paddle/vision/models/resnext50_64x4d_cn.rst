@@ -17,7 +17,7 @@ ResNeXt-50 64x4d 模型，来自论文 `"Aggregated Residual Transformations for
 返回
 :::::::::
 
-ResNeXt-50 64x4d 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
+:ref:`cn_api_fluid_dygraph_Layer`，ResNeXt-50 64x4d 模型实例。
 
 代码示例
 :::::::::

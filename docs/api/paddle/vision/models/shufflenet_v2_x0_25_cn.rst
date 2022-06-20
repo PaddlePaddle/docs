@@ -17,7 +17,7 @@ shufflenet_v2_x0_25
 返回
 :::::::::
 
-输出通道缩放比例为 0.25 的 ShuffleNetV2 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
+:ref:`cn_api_fluid_dygraph_Layer`，输出通道缩放比例为 0.25 的 ShuffleNetV2 模型实例。
 
 代码示例
 :::::::::
