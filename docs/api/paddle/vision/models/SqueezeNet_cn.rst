@@ -11,9 +11,9 @@ SqueezeNet 模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 50x f
 参数
 :::::::::
 
-  - **version** (str) - SqueezeNet 的版本，有 "1.0" 和 "1.1" 可选。默认值："1.1"。
-  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于等于 0，则不定义最后一个全连接层。默认值：1000。
-  - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值：True。
+  - **version** (str) - SqueezeNet 的版本，有 "1.0" 和 "1.1" 可选。默认值为 "1.1"。
+  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于等于 0，则不定义最后一个全连接层。默认值为 1000。
+  - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值为 True。
 
 返回
 :::::::::

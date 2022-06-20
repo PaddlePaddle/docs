@@ -11,7 +11,7 @@ AlexNet 模型，来自论文 `"ImageNet Classification with Deep Convolutional 
 参数
 :::::::::
 
-  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于等于 0，则不定义最后一个全连接层。默认值：1000。
+  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于等于 0，则不定义最后一个全连接层。默认值为 1000。
 
 返回
 :::::::::

@@ -11,8 +11,8 @@ MobileNetV2 模型，来自论文 `"MobileNetV2: Inverted Residuals and Linear B
 参数
 :::::::::
 
-  - **pretrained** (bool，可选) - 是否加载预训练权重。如果为 True，则返回在 ImageNet 上预训练的模型。默认值：False。
-  - **scale** (float，可选) - 模型通道数的缩放比例。默认值：1.0。
+  - **pretrained** (bool，可选) - 是否加载预训练权重。如果为 True，则返回在 ImageNet 上预训练的模型。默认值为 False。
+  - **scale** (float，可选) - 模型通道数的缩放比例。默认值为 1.0。
   - **\*\*kwargs** (可选) - 附加的关键字参数，具体可选参数请参见 :ref:`MobileNetV2 <cn_api_paddle_vision_models_MobileNetV2>`。
 
 返回
