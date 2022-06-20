@@ -90,7 +90,7 @@ IPU 参数
     ``--devices`` 表示设备个数，例如 ``--devices=4`` 表示当前的训练程序需要4个IPUs。
     ``training_script`` 只允许设置为 ``ipu`` 。 
     ``training_script_args`` 表示启动IPU分布式训练的相关参数。请参看如下各项参数说明。
-    请参考 ``Examples 10`` IPU分布式训练示例。
+    请参考 ``代码实例十``。
     
     - ``--hosts``：IPU分布式训练的主机ip，一个主机可包含多个进程。   
     
