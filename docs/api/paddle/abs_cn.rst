@@ -25,11 +25,4 @@ abs
 代码示例
 :::::::::
 
-.. code-block:: python
-
-        import paddle
-        
-        x = paddle.to_tensor([-1, -2, -3, -4], dtype='float32')
-        res = paddle.abs(x)
-        print(res)
-        # [1, 2, 3, 4]
+COPY-FROM: paddle.abs

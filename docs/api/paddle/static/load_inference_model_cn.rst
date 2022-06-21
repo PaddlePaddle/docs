@@ -33,38 +33,4 @@ load_inference_model
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    paddle.enable_static()
-
-    # 构建模型
-    startup_prog = paddle.static.default_startup_program()
-    main_prog = paddle.static.default_main_program()
-    with paddle.static.program_guard(main_prog, startup_prog):
-        image = paddle.static.data(name="img", shape=[64, 784])
-        w = paddle.create_parameter(shape=[784, 200], dtype='float32')
-        b = paddle.create_parameter(shape=[200], dtype='float32')
-        hidden_w = paddle.matmul(x=image, y=w)
-        hidden_b = paddle.add(hidden_w, b)
-    exe = paddle.static.Executor(paddle.CPUPlace())
-    exe.run(startup_prog)
-
-    # 保存预测模型
-    path_prefix = "./infer_model"
-    paddle.static.save_inference_model(path_prefix, [image], [hidden_b], exe)
-
-    [inference_program, feed_target_names, fetch_targets] = (
-        paddle.static.load_inference_model(path_prefix, exe))
-    tensor_img = np.array(np.random.random((64, 784)), dtype=np.float32)
-    results = exe.run(inference_program,
-                  feed={feed_target_names[0]: tensor_img},
-                  fetch_list=fetch_targets)
-
-    # 在上述示例中，inference program 被保存在 "./infer_model.pdmodel" 文件中，
-    # 参数被保存在 "./infer_model.pdiparams" 文件中。
-    # 加载 inference program 后，executor可使用 fetch_targets 和 feed_target_names，
-    # 执行Program，并得到预测结果。
-
+COPY-FROM: paddle.static.load_inference_model

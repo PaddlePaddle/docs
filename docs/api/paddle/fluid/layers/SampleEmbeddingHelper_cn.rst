@@ -20,29 +20,9 @@ SampleEmbeddingHelper是 :ref:`cn_api_fluid_layers_GreedyEmbeddingHelper` 的子
 代码示例
 ::::::::::::
 
-.. code-block:: python
 
-            import paddle.fluid as fluid
-            import paddle.fluid.layers as layers
+COPY-FROM: paddle.fluid.layers.SampleEmbeddingHelper
 
-            start_tokens = fluid.data(name="start_tokens",
-                                 shape=[None],
-                                 dtype="int64")
-            
-            trg_embeder = lambda x: fluid.embedding(
-                x, size=[10000, 128], param_attr=fluid.ParamAttr(name="trg_embedding"))
-            output_layer = lambda x: layers.fc(x,
-                                            size=10000,
-                                            num_flatten_dims=len(x.shape) - 1,
-                                            param_attr=fluid.ParamAttr(name=
-                                                                    "output_w"),
-                                            bias_attr=False)
-            helper = layers.SampleEmbeddingHelper(trg_embeder, start_tokens=start_tokens, end_token=1)
-            decoder_cell = layers.GRUCell(hidden_size=128)
-            decoder = layers.BasicDecoder(decoder_cell, helper, output_fn=output_layer)
-            outputs = layers.dynamic_decode(
-                decoder=decoder, inits=decoder_cell.get_initial_states(start_tokens))
-    
 方法
 ::::::::::::
 sample(time, outputs, states)

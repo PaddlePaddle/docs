@@ -31,21 +31,4 @@ batch_norm
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x = np.random.seed(123)
-    x = np.random.random(size=(2, 1, 2, 3)).astype('float32')
-    running_mean = np.random.random(size=1).astype('float32')
-    running_variance = np.random.random(size=1).astype('float32')
-    weight_data = np.random.random(size=1).astype('float32')
-    bias_data = np.random.random(size=1).astype('float32')
-    x = paddle.to_tensor(x)
-    rm = paddle.to_tensor(running_mean)
-    rv = paddle.to_tensor(running_variance)
-    w = paddle.to_tensor(weight_data)
-    b = paddle.to_tensor(bias_data)
-    batch_norm_out = paddle.nn.functional.batch_norm(x, rm, rv, w, b)
-    print(batch_norm_out)
+COPY-FROM: paddle.nn.functional.batch_norm

@@ -47,15 +47,4 @@ FusedMultiHeadAttention
 代码示例
 :::::::::
 
-.. code-block:: python
-
-   import paddle
-   from paddle.incubate.nn import FusedMultiHeadAttention
-
-   # input: [batch_size, sequence_length, embed_dim]
-   query = paddle.rand((2, 4, 128))
-   # self-attention mask: [batch_size, num_heads, query_len, query_len]
-   attn_mask = paddle.rand((2, 2, 4, 4))
-   multi_head_attn = FusedMultiHeadAttention(128, 2)
-   output = multi_head_attn(query, None, None, attn_mask=attn_mask)  # [2, 4, 128]
-
+COPY-FROM: paddle.incubate.nn.FusedMultiHeadAttention

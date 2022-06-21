@@ -49,11 +49,4 @@ layer_norm
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-    x = paddle.static.data(name='x', shape=[8, 32, 32], dtype='float32')
-    output = paddle.static.nn.layer_norm(input=x, begin_norm_axis=1)
-    print(output.shape)  # [8, 32, 32]
-
+COPY-FROM: paddle.static.nn.layer_norm

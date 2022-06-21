@@ -20,19 +20,4 @@ vector_to_parameters
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    weight_attr = paddle.ParamAttr(initializer=paddle.nn.initializer.Constant(3.))
-    linear1 = paddle.nn.Linear(10, 15, weight_attr)
-
-    vec = paddle.nn.utils.parameters_to_vector(linear1.parameters())
-
-    linear2 = paddle.nn.Linear(10, 15)
-    # copy weight of linear1 to linear2
-    paddle.nn.utils.vector_to_parameters(vec, linear2.parameters())
-    # weight: Tensor(shape=[10, 15], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-    #                 [[3. , ..., 3. ],
-    #                  [..., ..., ...],
-    #                  [3. , ..., 3. ]])
-    
+COPY-FROM: paddle.nn.utils.vector_to_parameters

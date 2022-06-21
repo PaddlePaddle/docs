@@ -56,23 +56,4 @@ logistic loss可通过下式计算：
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    input = fluid.layers.data(
-        name='data', shape=[10], dtype='float32')
-    label = fluid.layers.data(
-        name='data', shape=[10], dtype='float32')
-    loss = fluid.layers.sigmoid_cross_entropy_with_logits(
-        x=input,
-        label=label,
-        ignore_index=-1,
-        normalize=True) # or False
-    # loss = fluid.layers.reduce_sum(loss) # loss之和
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.sigmoid_cross_entropy_with_logits

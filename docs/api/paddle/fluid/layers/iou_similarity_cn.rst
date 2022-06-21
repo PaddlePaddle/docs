@@ -33,16 +33,4 @@ Variable
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-        import paddle.fluid as fluid
-
-        x = fluid.layers.data(name='x', shape=[4], dtype='float32')
-        y = fluid.layers.data(name='y', shape=[4], dtype='float32')
-        iou = fluid.layers.iou_similarity(x=x, y=y)
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.iou_similarity

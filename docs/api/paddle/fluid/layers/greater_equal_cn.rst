@@ -30,16 +30,4 @@ Variable，数据类型为bool类型。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-     import paddle.fluid as fluid
-     import paddle.fluid.layers as layers
-     import numpy as np
-     label = layers.assign(np.array([2, 2], dtype='int32'))
-     limit = layers.assign(np.array([2, 3], dtype='int32'))
-     out = fluid.layers.greater_equal(x=label, y=limit) #out=[True, False]
-     out_1 = label >= limit #out1=[True, False]
-
-
-
-
+COPY-FROM: paddle.fluid.layers.greater_equal

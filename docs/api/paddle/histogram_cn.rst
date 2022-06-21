@@ -23,12 +23,4 @@ Tensor，数据为 int64 类型，维度为(nbins,)。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    inputs = paddle.to_tensor([1, 2, 1])
-    result = paddle.histogram(inputs, bins=4, min=0, max=3)
-    print(result) # [0, 2, 1, 0]
-
-
+COPY-FROM: paddle.histogram

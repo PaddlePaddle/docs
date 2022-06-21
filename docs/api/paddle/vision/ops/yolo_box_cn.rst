@@ -49,22 +49,4 @@ yolo_box
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x = np.random.random([2, 14, 8, 8]).astype('float32')
-    img_size = np.ones((2, 2)).astype('int32')
-
-    x = paddle.to_tensor(x)
-    img_size = paddle.to_tensor(img_size)
-
-    boxes, scores = paddle.vision.ops.yolo_box(x,
-                                               img_size=img_size,
-                                               anchors=[10, 13, 16, 30],
-                                               class_num=2,
-                                               conf_thresh=0.01,
-                                               downsample_ratio=8,
-                                               clip_bbox=True,
-                                               scale_x_y=1.)
+COPY-FROM: paddle.vision.ops.yolo_box

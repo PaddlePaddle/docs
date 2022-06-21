@@ -26,11 +26,4 @@ arctangent函数。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([-0.8183,  0.4912, -0.6444,  0.0371])
-        res = paddle.atan(x)
-        print(res)
-        # [-0.6858,  0.4566, -0.5724,  0.0371]
+COPY-FROM: paddle.atan

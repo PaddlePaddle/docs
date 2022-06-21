@@ -42,11 +42,8 @@ LSTMCell类的实例对象。
 代码示例
 ::::::::::::
 
-.. code-block:: python
 
-    import paddle.fluid.layers as layers
-    cell = layers.LSTMCell(hidden_size=256)
-
+COPY-FROM: paddle.fluid.layers.LSTMCell
 
 方法
 ::::::::::::

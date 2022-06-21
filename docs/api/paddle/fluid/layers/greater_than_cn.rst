@@ -29,16 +29,4 @@ Tensor，数据类型为bool类型。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    label = paddle.to_tensor([2, 3], dtype='int32')
-    limit = paddle.to_tensor([3, 2], dtype='int32')
-    out1 = paddle.greater_than(x=label, y=limit) 
-    out2 = label > limit
-    print(out1) # out1=[False, True]
-    print(out2) # out2=[False, True]
-
-
-
+COPY-FROM: paddle.fluid.layers.greater_than

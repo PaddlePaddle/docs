@@ -38,14 +38,4 @@ Tensor，返回计算 `smooth_l1_loss` 后的损失值。
 代码示例
 :::::::::
 
-..  code-block:: python
-
-            import paddle
-            import numpy as np
-
-            input_data = np.random.rand(3,3).astype("float32")
-            label_data = np.random.rand(3,3).astype("float32")
-            input = paddle.to_tensor(input_data)
-            label = paddle.to_tensor(label_data)
-            output = paddle.nn.functional.smooth_l1_loss(input,label)
-            print(output)
+COPY-FROM: paddle.nn.functional.smooth_l1_loss

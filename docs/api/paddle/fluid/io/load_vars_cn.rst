@@ -35,41 +35,4 @@ load_vars
 代码示例
 ::::::::::::
 
-.. code-block:: python
-    
-    import paddle.fluid as fluid
-    main_prog = fluid.Program()
-    startup_prog = fluid.Program()
-    with fluid.program_guard(main_prog, startup_prog):
-        data = fluid.layers.data(name="img", shape=[64, 784], append_batch_size=False)
-        w = fluid.layers.create_parameter(shape=[784, 200], dtype='float32', name='fc_w')
-        b = fluid.layers.create_parameter(shape=[200], dtype='float32', name='fc_b')
-        hidden_w = fluid.layers.matmul(x=data, y=w)
-        hidden_b = fluid.layers.elementwise_add(hidden_w, b)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(startup_prog)
-
-    # 示例一：用vars来指定加载变量。
-    path = "./my_paddle_vars"
-    var_list = [w, b]
-    fluid.io.save_vars(executor=exe, dirname=path, vars=var_list,
-                       filename="vars_file")
-    fluid.io.load_vars(executor=exe, dirname=path, vars=var_list,
-                       filename="vars_file")
-    # 加载w和b。它们被保存在'var_file'的文件中，所在路径为 "./my_paddle_model" 。
-    
-    # 示例二：通过predicate来筛选加载变量。
-    def name_has_fc(var):
-        res = "fc" in var.name
-        return res
-    
-    param_path = "./my_paddle_model"
-    fluid.io.save_vars(executor=exe, dirname=param_path, main_program=main_prog, vars=None, predicate=name_has_fc)
-    fluid.io.load_vars(executor=exe, dirname=param_path, main_program=main_prog, vars=None, predicate=name_has_fc)
-    #加载 `main_program` 中变量名包含 ‘fc’ 的所有变量
-    #此前所有变量应该保存在不同文件中
-
- 
-
-
+COPY-FROM: paddle.fluid.io.load_vars

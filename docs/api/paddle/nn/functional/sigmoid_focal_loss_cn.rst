@@ -40,14 +40,4 @@ sigmoid_focal_loss
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    logit = paddle.to_tensor([[0.97, 0.91, 0.03], [0.55, 0.43, 0.71]], dtype='float32')
-    label = paddle.to_tensor([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]], dtype='float32')
-    one = paddle.to_tensor([1.], dtype='float32')
-    fg_label = paddle.greater_equal(label, one)
-    fg_num = paddle.sum(paddle.cast(fg_label, dtype='float32'))
-    output = paddle.nn.functional.sigmoid_focal_loss(logit, label, normalizer=fg_num)
-    print(output)  # [0.65782464]
+COPY-FROM: paddle.nn.functional.sigmoid_focal_loss

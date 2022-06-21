@@ -34,13 +34,4 @@ prelu激活函数
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([-1., 2., 3.])
-    param = paddle.ParamAttr(initializer=paddle.nn.initializer.Constant(0.2))
-    out = paddle.static.nn.prelu(x, 'all', param)
-    # [-0.2, 2., 3.]
-
-
+COPY-FROM: paddle.static.nn.prelu

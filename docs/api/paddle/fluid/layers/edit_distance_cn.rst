@@ -39,21 +39,4 @@ edit_distance
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-
-    # 使用 LoDTensor
-    x_lod = fluid.layers.data(name='x_lod', shape=[1], dtype='int64', lod_level=1)
-    y_lod = fluid.layers.data(name='y_lod', shape=[1], dtype='int64', lod_level=1)
-    distance_lod, seq_num_lod = fluid.layers.edit_distance(input=x_lod, label=y_lod)
-
-    # 使用 Tensor
-    x_seq_len = 5
-    y_seq_len = 6
-    x_pad = fluid.layers.data(name='x_pad', shape=[x_seq_len], dtype='int64')
-    y_pad = fluid.layers.data(name='y_pad', shape=[y_seq_len], dtype='int64')
-    x_len = fluid.layers.data(name='x_len', shape=[], dtype='int64')
-    y_len = fluid.layers.data(name='y_len', shape=[], dtype='int64')
-    distance_pad, seq_num_pad = fluid.layers.edit_distance(
-                    input=x_pad, label=y_pad, input_length=x_len, label_length=y_len)
+COPY-FROM: paddle.fluid.layers.edit_distance

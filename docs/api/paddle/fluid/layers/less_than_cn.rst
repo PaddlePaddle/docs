@@ -33,26 +33,4 @@ less_than
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy as np
-
-    # Graph Organizing
-    x = fluid.layers.data(name='x', shape=[2], dtype='float64')
-    y = fluid.layers.data(name='y', shape=[2], dtype='float64')
-    result = fluid.layers.less_than(x=x, y=y)
-    # The comment lists another available method.
-    # result = fluid.layers.fill_constant(shape=[2], dtype='float64', value=0)
-    # fluid.layers.less_than(x=x, y=y, cond=result)
-    
-    # Create an executor using CPU as example
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    # Execute
-    x_i = np.array([[1, 2], [3, 4]]).astype(np.float64)
-    y_i = np.array([[2, 2], [1, 3]]).astype(np.float64)
-    result_value, = exe.run(fluid.default_main_program(), feed={'x':x_i, 'y':y_i}, fetch_list=[result])
-    print(result_value) # [[True, False], [False, False]]
-
+COPY-FROM: paddle.fluid.layers.less_than

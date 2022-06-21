@@ -90,36 +90,4 @@ lod_reset
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy
-
-    # Graph Organizing
-    x = fluid.layers.data(name='x', shape=[6])
-    y = fluid.layers.data(name='y', shape=[6], lod_level=2)
-    output = fluid.layers.lod_reset(x=x, y=y)
-
-    # Create an executor using CPU as an example
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-
-    # Execute
-    x_tensor = fluid.core.LoDTensor()
-    x_tensor.set(numpy.ones([6]).astype(numpy.float32), place)
-    y_ndarray = numpy.ones([6]).astype(numpy.float32)
-    y_lod = [[2, 2], [2, 2, 1, 1]]
-    y_tensor = fluid.create_lod_tensor(y_ndarray, y_lod, place)
-
-    res, = exe.run(fluid.default_main_program(),
-                   feed={'x':x_tensor, 'y':y_tensor},
-                   fetch_list=[output],
-                   return_numpy=False)
-    print(res)
-    # Output Value:
-    # lod: [[0, 2, 4], [0, 2, 4, 5, 6]]
-    # dim: 6
-    # layout: NCHW
-    # dtype: float
-    # data: [1 1 1 1 1 1]
+COPY-FROM: paddle.fluid.layers.lod_reset

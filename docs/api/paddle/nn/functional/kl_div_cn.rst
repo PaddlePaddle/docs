@@ -37,33 +37,4 @@ Tensor KL散度损失。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-    import paddle.nn.functional as F
-
-    shape = (5, 20)
-    input = np.random.uniform(-10, 10, shape).astype('float32')
-    target = np.random.uniform(-10, 10, shape).astype('float32')
-
-    # 'batchmean' reduction, loss shape will be [N]
-    pred_loss = F.kl_div(paddle.to_tensor(input),
-                            paddle.to_tensor(target), reduction='batchmean')
-    # shape=[5]
-
-    # 'mean' reduction, loss shape will be [1]
-    pred_loss = F.kl_div(paddle.to_tensor(input),
-                            paddle.to_tensor(target), reduction='mean')
-    # shape=[1]
-
-    # 'sum' reduction, loss shape will be [1]
-    pred_loss = F.kl_div(paddle.to_tensor(input),
-                            paddle.to_tensor(target), reduction='sum')
-    # shape=[1]
-
-    # 'none' reduction, loss shape is same with input shape
-    pred_loss = F.kl_div(paddle.to_tensor(input),
-                            paddle.to_tensor(target), reduction='none')
-    # shape=[5, 20]
-
+COPY-FROM: paddle.nn.functional.kl_div

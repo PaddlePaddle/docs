@@ -14,14 +14,4 @@ LeNet
 
 代码示例
 :::::::::
-.. code-block:: python
-
-    import paddle
-    from paddle.vision.models import LeNet
-
-    model = LeNet()
-
-    x = paddle.rand([1, 1, 28, 28])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.LeNet

@@ -31,10 +31,4 @@ Tensor，对输入x进行rsqrt激活函数计算结果，数据shape、类型和
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([0.1, 0.2, 0.3, 0.4])
-        out = paddle.rsqrt(x)
-        # [3.16227766 2.23606798 1.82574186 1.58113883]
+COPY-FROM: paddle.rsqrt

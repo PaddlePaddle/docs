@@ -53,11 +53,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.layers.data(
-        name="data", shape=[3, 112, 112], dtype="float32")
-    lrn = fluid.layers.lrn(input=data)
-    print(lrn.shape)  # [-1, 3, 112, 112]
-    print(lrn.dtype)  # float32
+COPY-FROM: paddle.fluid.layers.lrn

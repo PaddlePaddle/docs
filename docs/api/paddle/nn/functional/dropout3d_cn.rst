@@ -24,15 +24,4 @@ dropout3d
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x = np.random.random(size=(2, 3, 4, 5, 6)).astype('float32')
-    x = paddle.to_tensor(x)
-    y_train = paddle.nn.functional.dropout3d(x)  #train
-    y_test = paddle.nn.functional.dropout3d(x, training=False)
-    print(x.numpy()[0,0,:,:,:])
-    print(y_train.numpy()[0,0,:,:,:])
-    print(y_test.numpy()[0,0,:,:,:])
+COPY-FROM: paddle.nn.functional.dropout3d

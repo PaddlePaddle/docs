@@ -28,11 +28,4 @@ logical_and
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-     import paddle
-
-     x = paddle.to_tensor([True])
-     y = paddle.to_tensor([True, False, True, False])
-     res = paddle.logical_and(x, y)
-     print(res) # [True False True False]
+COPY-FROM: paddle.logical_and

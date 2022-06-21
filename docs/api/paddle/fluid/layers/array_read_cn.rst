@@ -59,15 +59,4 @@ Variable
 
 **输出结果**
 
-.. code-block:: python
-
-    1569588169	The LoDTensor of the i-th position:	The place is:CPUPlace
-    Tensor[array_read_0.tmp_0]
-	    shape: [3,2,]
-	    dtype: l
-	    data: 5,5,5,5,5,5,
-
-    #输出了shape为[3,2]的Tensor
-    #dtype为对应C++数据类型，在不同环境下可能显示值不同，但本质一致
-    #例如：如果Tensor中数据类型是int64，则对应的C++数据类型为int64_t，所以dtype值为typeid(int64_t).name()，
-    #      其在MacOS下为'x'，linux下为'l'，Windows下为'__int64'，都表示64位整型变量
+COPY-FROM: paddle.fluid.layers.array_read
