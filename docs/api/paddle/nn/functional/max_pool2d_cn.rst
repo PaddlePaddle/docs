@@ -44,21 +44,4 @@ max_pool2d
 代码示例
 :::::::::
 
-.. code-block:: python
-
-
-          import paddle
-          import paddle.nn.functional as F
-          # max pool2d
-          input = paddle.uniform(shape=[1, 2, 32, 32], dtype='float32', min=-1, max=1)
-          output = F.max_pool2d(input,
-                                kernel_size=2,
-                                stride=2, padding=0)
-          # output.shape [1, 3, 16, 16]
-          # for return_mask=True
-          output, max_indices = F.max_pool2d(input,
-                                             kernel_size=2,
-                                             stride=2,
-                                             padding=0,
-                                             return_mask=True)
-          # output.shape [1, 3, 16, 16], max_indices.shape [1, 3, 16, 16],
+COPY-FROM: paddle.nn.functional.max_pool2d

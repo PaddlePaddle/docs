@@ -29,12 +29,4 @@ reciprocal 对输入Tensor取倒数
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([1, 2, 3, 4], dtype='float32')
-    result = paddle.reciprocal(x)
-    print(result)
-
-
+COPY-FROM: paddle.reciprocal

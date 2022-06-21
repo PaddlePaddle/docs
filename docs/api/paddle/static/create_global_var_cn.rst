@@ -28,17 +28,4 @@ Variable，创建的Tensor变量。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    var = paddle.static.create_global_var(shape=[2,3], value=1.0, dtype='float32',
-                                   persistable=True, force_cpu=True, name='new_var')
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.static.create_global_var

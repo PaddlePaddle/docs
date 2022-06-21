@@ -112,17 +112,4 @@ Tensor
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-
-    x_var = paddle.randn((2, 3, 8, 8, 8), dtype='float32')
-    w_var = paddle.randn((3, 6, 3, 3, 3), dtype='float32')
-
-    y_var = F.conv3d_transpose(x_var, w_var)
-    y_np = y_var.numpy()
-
-    print(y_np.shape)
-    # (2, 6, 10, 10, 10)
-
+COPY-FROM: paddle.nn.functional.conv3d_transpose

@@ -24,17 +24,4 @@ dropout2d
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x = np.random.random(size=(2, 3, 4, 5)).astype('float32')
-    x = paddle.to_tensor(x)
-    y_train = paddle.nn.functional.dropout2d(x)  #train
-    y_test = paddle.nn.functional.dropout2d(x, training=False) 
-    for i in range(2):
-        for j in range(3):
-            print(x.numpy()[i,j,:,:])
-            print(y_train.numpy()[i,j,:,:])
-            print(y_test.numpy()[i,j,:,:])
+COPY-FROM: paddle.nn.functional.dropout2d

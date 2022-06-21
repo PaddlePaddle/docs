@@ -17,28 +17,8 @@ CompositeMetric
 代码示例
 ::::::::::::
 
-.. code-block:: python
 
-        import paddle.fluid as fluid
-        import numpy as np
-        preds = [[0.1], [0.7], [0.8], [0.9], [0.2],
-                 [0.2], [0.3], [0.5], [0.8], [0.6]]
-        labels = [[0], [1], [1], [1], [1],
-                  [0], [0], [0], [0], [0]]
-        preds = np.array(preds)
-        labels = np.array(labels)
-
-        comp = fluid.metrics.CompositeMetric()
-        precision = fluid.metrics.Precision()
-        recall = fluid.metrics.Recall()
-        comp.add_metric(precision)
-        comp.add_metric(recall)
-        
-        comp.update(preds=preds, labels=labels)
-        numpy_precision, numpy_recall = comp.eval()
-        print("expect precision: %.2f, got %.2f" % ( 3. / 5, numpy_precision ) )
-        print("expect recall: %.2f, got %.2f" % (3. / 4, numpy_recall ) )
-
+COPY-FROM: paddle.fluid.metrics.CompositeMetric
 
 方法
 ::::::::::::

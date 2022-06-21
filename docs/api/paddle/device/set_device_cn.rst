@@ -20,12 +20,4 @@ Place，设置的Place。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-    
-    import paddle
-    
-    paddle.device.set_device("cpu")
-    x1 = paddle.ones(name='x1', shape=[1, 2], dtype='int32')
-    x2 = paddle.zeros(name='x2', shape=[1, 2], dtype='int32')
-    data = paddle.stack([x1,x2], axis=1)
-    
+COPY-FROM: paddle.device.set_device

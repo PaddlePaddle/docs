@@ -31,39 +31,4 @@ Dirac
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    
-    #1. For kernel_size is uneven number:
-    
-    attr = paddle.ParamAttr(initializer=paddle.nn.initializer.Dirac())
-    conv = paddle.nn.Conv1D(3, 2, 3, weight_attr=attr)
-    conv.weight
-    # Tensor(shape=[2, 3, 3], dtype=float32, place=CPUPlace, stop_gradient=False,
-    #       [[[0., 1., 0.],
-    #         [0., 0., 0.],
-    #         [0., 0., 0.]],
-    # 
-    #        [[0., 0., 0.],
-    #         [0., 1., 0.],
-    #         [0., 0., 0.]]])
-
-    input = paddle.rand([8, 3, 10])
-    output = conv(input)
-    output == input[:, 0:2, 1:9]  
-    # output.shape is [8, 2, 8], It means output is almost the same with input, 2 channels are reserved
-
-
-    #2. For kernel_size is even number:
-    attr = paddle.ParamAttr(initializer=paddle.nn.initializer.Dirac())
-    conv = paddle.nn.Conv1D(3, 2, 4, weight_attr=attr)
-    conv.weight
-    # Tensor(shape=[2, 3, 4], dtype=float32, place=CPUPlace, stop_gradient=False,
-    #       [[[0., 0., 1., 0.],
-    #         [0., 0., 0., 0.],
-    #         [0., 0., 0., 0.]],
-    # 
-    #        [[0., 0., 0., 0.],
-    #         [0., 0., 1., 0.],
-    #         [0., 0., 0., 0.]]])
+COPY-FROM: paddle.nn.initializer.Dirac

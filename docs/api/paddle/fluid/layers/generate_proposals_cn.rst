@@ -54,18 +54,4 @@ generate_proposals
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    scores = fluid.layers.data(name='scores', shape=[2, 4, 5, 5],
-                 append_batch_size=False, dtype='float32')
-    bbox_deltas = fluid.layers.data(name='bbox_deltas', shape=[2, 16, 5, 5],
-                 append_batch_size=False, dtype='float32')
-    im_info = fluid.layers.data(name='im_info', shape=[2, 3],
-                 append_batch_size=False, dtype='float32')
-    anchors = fluid.layers.data(name='anchors', shape=[5, 5, 4, 4],
-                 append_batch_size=False, dtype='float32')
-    variances = fluid.layers.data(name='variances', shape=[5, 5, 10, 4],
-                 append_batch_size=False, dtype='float32')
-    rois, roi_probs = fluid.layers.generate_proposals(scores, bbox_deltas,
-                 im_info, anchors, variances)
+COPY-FROM: paddle.fluid.layers.generate_proposals

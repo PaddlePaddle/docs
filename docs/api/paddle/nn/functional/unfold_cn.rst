@@ -58,16 +58,4 @@ Tensor,  unfold操作之后的结果，形状如上面所描述的[N, Cout, Lout
 代码示例
 ::::::::::::
 
-.. code-block:: python
-    
-    import paddle
-    import paddle.nn.functional as F
-
-    x = paddle.randn((100,3,224,224))
-    y = F.unfold(x, [3, 3], 1, 1, 1)
-
-
-
-
-
-
+COPY-FROM: paddle.nn.functional.unfold

@@ -52,13 +52,4 @@ BCELoss
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    input = paddle.to_tensor([0.5, 0.6, 0.7], dtype='float32')
-    label = paddle.to_tensor([1.0, 0.0, 1.0], dtype='float32')
-    bce_loss = paddle.nn.BCELoss()
-    output = bce_loss(input, label)
-    print(output)  # [0.65537095]
-
+COPY-FROM: paddle.nn.BCELoss

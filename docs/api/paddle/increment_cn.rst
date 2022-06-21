@@ -26,10 +26,4 @@ Tensor，形状和数据类型同输入 ``x`` 。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    data = paddle.zeros(shape=[1], dtype='float32')
-    counter = paddle.increment(data)
-    # [1.]
+COPY-FROM: paddle.increment

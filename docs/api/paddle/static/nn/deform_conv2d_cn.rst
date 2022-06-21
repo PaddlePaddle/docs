@@ -73,25 +73,4 @@ Tensor，可变形卷积输出的4-D Tensor，数据类型为float32或float64�
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    #deformable conv v2:
-    import paddle
-    paddle.enable_static()
-    C_in, H_in, W_in = 3, 32, 32
-    filter_size, deformable_groups = 3, 1
-    data = paddle.static.data(name='data', shape=[None, C_in, H_in, W_in], dtype='float32')
-    offset = paddle.static.data(name='offset', shape=[None, 2*deformable_groups*filter_size**2, H_in, W_in], dtype='float32')
-    mask = paddle.static.data(name='mask', shape=[None, deformable_groups*filter_size**2, H_in, W_in], dtype='float32')
-    out = paddle.static.nn.deform_conv2d(x=data, offset=offset, mask=mask,
-                                       num_filters=2, filter_size=filter_size, padding=1)
-    #deformable conv v1:
-    import paddle
-    paddle.enable_static()
-    C_in, H_in, W_in = 3, 32, 32
-    filter_size, deformable_groups = 3, 1
-    data = paddle.static.data(name='data', shape=[None, C_in, H_in, W_in], dtype='float32')
-    offset = paddle.static.data(name='offset', shape=[None, 2*deformable_groups*filter_size**2, H_in, W_in], dtype='float32')
-    out = paddle.static.nn.deform_conv2d(x=data, offset=offset, mask=None,
-                                             num_filters=2, filter_size=filter_size, padding=1)
-
+COPY-FROM: paddle.static.nn.deform_conv2d

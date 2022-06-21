@@ -28,12 +28,4 @@ ceil
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([[-1.5,6], [1,15.6]])
-        res = paddle.ceil(x)
-        print(res)
-        # [[-1.  6.]
-        # [ 1. 16.]]
+COPY-FROM: paddle.ceil

@@ -30,11 +30,4 @@ thresholded relu激活层。计算公式如下：
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-    import numpy as np
-
-    x = paddle.to_tensor(np.array([2., 0., 1.]))
-    out = F.thresholded_relu(x) # [2., 0., 0.]
+COPY-FROM: paddle.nn.functional.thresholded_relu

@@ -57,32 +57,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-	
-	import paddle.fluid as fluid
-	input0 = fluid.layers.fill_constant(shape=[2, 3], dtype='int64', value=5)
-	input1 = fluid.layers.fill_constant(shape=[2, 3], dtype='int64', value=3)
-	sum = fluid.layers.sum([input0, input1])
-
-	#用户可以通过executor打印出求和的结果
-	out = fluid.layers.Print(sum, message="the sum of input0 and input1: ")
-	exe = fluid.Executor(fluid.CPUPlace())
-	exe.run(fluid.default_main_program())
-
-	#打印出的数据为：
-	1570701754	the sum of input0 and input1: 	The place is:CPUPlace
-	Tensor[sum_0.tmp_0]
-		shape: [2,3,]
-		dtype: l
-		data: 8,8,8,8,8,8,
-
-	#输出了shape为[2,3]的Tensor，与输入的shape一致
-	#dtype为对应C++数据类型，在不同环境下可能显示值不同，但本质相同
-	#例如：如果Tensor中数据类型是int64，则对应的C++数据类型为int64_t，所以dtype值为typeid(int64_t).name()，
-	#      其在MacOS下为'x'，linux下为'l'，Windows下为'__int64'，都表示64位整型变量
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.sum

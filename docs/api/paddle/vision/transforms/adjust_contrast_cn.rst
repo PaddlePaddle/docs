@@ -21,16 +21,4 @@ adjust_contrast
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import numpy as np
-    from PIL import Image
-    from paddle.vision.transforms import functional as F
-
-    fake_img = (np.random.rand(256, 300, 3) * 255.).astype('uint8')
-
-    fake_img = Image.fromarray(fake_img)
-
-    converted_img = F.adjust_contrast(fake_img, 0.4)
-    print(converted_img.size)
-        
+COPY-FROM: paddle.vision.transforms.adjust_contrast

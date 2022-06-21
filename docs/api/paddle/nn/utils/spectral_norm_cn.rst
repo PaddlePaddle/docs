@@ -42,25 +42,4 @@ spectral_norm
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    from paddle.nn import Conv2D
-    from paddle.nn.utils import spectral_norm
-
-    conv = Conv2D(3, 1, 3)
-    sn_conv = spectral_norm(conv)
-    print(sn_conv)
-    # Conv2D(3, 1, kernel_size=[3, 3], data_format=NCHW)
-    print(sn_conv.weight)
-    # Tensor(shape=[1, 3, 3, 3], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-    #        [[[[-0.21090528,  0.18563725, -0.14127982],
-    #           [-0.02310637,  0.03197737,  0.34353802],
-    #           [-0.17117859,  0.33152047, -0.28408015]],
-    # 
-    #          [[-0.13336606, -0.01862637,  0.06959272],
-    #           [-0.02236020, -0.27091628, -0.24532901],
-    #           [ 0.27254242,  0.15516677,  0.09036587]],
-    # 
-    #          [[ 0.30169338, -0.28146112, -0.11768346],
-    #           [-0.45765871, -0.12504843, -0.17482486],
-    #           [-0.36866254, -0.19969313,  0.08783543]]]])
+COPY-FROM: paddle.nn.utils.spectral_norm

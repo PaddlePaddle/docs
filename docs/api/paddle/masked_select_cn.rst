@@ -24,20 +24,4 @@ masked_select
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-    
-    data = np.array([[1.0, 2.0, 3.0, 4.0],
-                        [5.0, 6.0, 7.0, 8.0],
-                        [9.0, 10.0, 11.0, 12.0]]).astype('float32')
-    
-    mask_data = np.array([[True, False, False, False],
-                    [True, True, False, False],
-                    [True, False, False, False]]).astype('bool')
-    x = paddle.to_tensor(data)
-    mask = paddle.to_tensor(mask_data)
-    out = paddle.masked_select(x, mask)
-    #[1.0 5.0 6.0 9.0]
-
+COPY-FROM: paddle.masked_select

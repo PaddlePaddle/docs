@@ -15,9 +15,4 @@ get_lib
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    include_dir = paddle.sysconfig.get_lib()
-    
+COPY-FROM: paddle.sysconfig.get_lib

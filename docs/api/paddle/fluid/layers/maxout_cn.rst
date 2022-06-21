@@ -48,11 +48,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    input = fluid.data(
-        name='data',
-        shape=[None, 256, 32, 32],
-        dtype='float32')
-    out = fluid.layers.maxout(input, groups=2)
+COPY-FROM: paddle.fluid.layers.maxout

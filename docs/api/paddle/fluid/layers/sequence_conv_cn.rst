@@ -77,15 +77,4 @@ Variable
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[10,10], append_batch_size=False, dtype='float32')
-    x_conved = fluid.layers.sequence_conv(x,2)
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.sequence_conv

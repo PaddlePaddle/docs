@@ -44,11 +44,4 @@ Variable
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    boxes = fluid.data(
-        name='boxes', shape=[None, 8, 4], dtype='float32', lod_level=1)
-    im_info = fluid.data(name='im_info', shape=[None, 3])
-    out = fluid.layers.box_clip(
-        input=boxes, im_info=im_info)
+COPY-FROM: paddle.fluid.layers.box_clip

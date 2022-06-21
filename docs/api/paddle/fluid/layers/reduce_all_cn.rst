@@ -29,24 +29,4 @@ Variable，数据类型为bool类型。
 代码示例
 ::::::::::::
 
-..  code-block:: python
-     
-     
-        import paddle.fluid as fluid
-        import paddle.fluid.layers as layers
-        import numpy as np
-
-        # x是一个布尔型Tensor，元素如下：
-        #    [[True, False]
-        #     [True, True]]
-        x = layers.assign(np.array([[1, 0], [1, 1]], dtype='int32'))
-        x = layers.cast(x, 'bool')
-
-        out = layers.reduce_all(x)  # False
-        out = layers.reduce_all(x, dim=0)  # [True, False]
-        out = layers.reduce_all(x, dim=-1)  # [False, True]
-        # keep_dim=False, x.shape=(2,2), out.shape=(2,)
-        
-        out = layers.reduce_all(x, dim=1, keep_dim=True)  # [[False], [True]]
-        # keep_dim=True, x.shape=(2,2), out.shape=(2,1)
-     
+COPY-FROM: paddle.fluid.layers.reduce_all

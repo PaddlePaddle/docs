@@ -31,18 +31,4 @@ save_dygraph
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-
-    with fluid.dygraph.guard():
-        emb = fluid.dygraph.Embedding([10, 10])
-
-        state_dict = emb.state_dict()
-        fluid.save_dygraph( state_dict, "paddle_dy") # 会保存为 paddle_dy.pdparams
-
-        adam = fluid.optimizer.Adam( learning_rate = fluid.layers.noam_decay( 100, 10000),
-                                     parameter_list = emb.parameters() )
-
-        state_dict = adam.state_dict()
-        fluid.save_dygraph( state_dict, "paddle_dy") # 会保存为 paddle_dy.pdopt
+COPY-FROM: paddle.fluid.dygraph.save_dygraph

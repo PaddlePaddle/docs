@@ -22,11 +22,4 @@ list[paddle.CPUPlace]， ``CPUPlace`` 的列表。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-    
-    paddle.enable_static()
-
-    cpu_places = static.cpu_places()
+COPY-FROM: paddle.static.cpu_places
