@@ -105,16 +105,4 @@ save
     paddle.save(prog.state_dict("param"), path_tensor)
 
 
-.. code-block:: python
-
-    # example 4: save program
-    import paddle
-
-    paddle.enable_static()
-
-    data = paddle.static.data(
-        name='x_static_save', shape=(None, 224), dtype='float32')
-    y_static = z = paddle.static.nn.fc(data, 10)
-    main_program = paddle.static.default_main_program()
-    path = "example/main_program.pdmodel"
-    paddle.save(main_program, path)
+COPY-FROM: paddle.save

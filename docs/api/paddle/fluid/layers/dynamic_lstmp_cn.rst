@@ -101,34 +101,4 @@ dynamic_lstmp
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    dict_dim, emb_dim = 128, 64
-    data = fluid.layers.data(name='sequence', shape=[1],
-                        dtype='int32', lod_level=1)
-    emb = fluid.layers.embedding(input=data, size=[dict_dim, emb_dim])
-    hidden_dim, proj_dim = 512, 256
-    fc_out = fluid.layers.fc(input=emb, size=hidden_dim * 4,
-                        act=None, bias_attr=None)
-    proj_out, cell = fluid.layers.dynamic_lstmp(input=fc_out,
-                                        size=hidden_dim * 4,
-                                        proj_size=proj_dim,
-                                        use_peepholes=False,
-                                        is_reverse=True,
-                                        cell_activation="tanh",
-                                        proj_activation="tanh")
-    proj_out.shape  # (-1, 256)
-    cell.shape  # (-1, 512)
-
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.dynamic_lstmp

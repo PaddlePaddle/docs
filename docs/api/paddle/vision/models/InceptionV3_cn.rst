@@ -18,14 +18,4 @@ InceptionV3模型，Layer的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
-
-    import paddle
-    from paddle.vision.models import InceptionV3
-
-    inception_v3 = InceptionV3()
-
-    x = paddle.rand([1, 3, 299, 299])
-    out = inception_v3(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.InceptionV3

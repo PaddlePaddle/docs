@@ -33,15 +33,4 @@ BReLU 激活函数
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy as np
-
-    input_brelu = np.array([[-1,6],[1,15.6]])
-    with fluid.dygraph.guard():
-        x = fluid.dygraph.to_variable(input_brelu)
-        y = fluid.layers.brelu(x, t_min=1.0, t_max=10.0)
-        print(y.numpy())
-        #[[ 1.  6.]
-        #[ 1. 10.]]
+COPY-FROM: paddle.fluid.layers.brelu

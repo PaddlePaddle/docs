@@ -33,14 +33,4 @@ divide
 代码示例
 :::::::::
 
-..  code-block:: python
-
-        import paddle
-        import numpy as np
-
-        np_x = np.array([2, 3, 4]).astype('float64')
-        np_y = np.array([1, 5, 2]).astype('float64')
-        x = paddle.to_tensor(np_x)
-        y = paddle.to_tensor(np_y)
-        z = paddle.divide(x, y)
-        print(z)  # [2., 0.6, 2.]
+COPY-FROM: paddle.divide

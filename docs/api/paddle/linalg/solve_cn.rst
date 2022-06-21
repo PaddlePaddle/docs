@@ -32,21 +32,4 @@ Tensor，这个（或这批）矩阵 ``x`` 与 ``y`` 经过运算后的结果，
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    # a square system of linear equations:
-    # 2*X0 + X1 = 9
-    # X0 + 2*X1 = 8
-
-    import paddle
-    import numpy as np
-  
-    np_x = np.array([[3, 1],[1, 2]])
-    np_y = np.array([9, 8])
-    x = paddle.to_tensor(np_x, dtype="float64")
-    y = paddle.to_tensor(np_y, dtype="float64")
-    out = paddle.linalg.solve(x, y)  
-
-    print(out)
-    # [2., 3.])  
-
+COPY-FROM: paddle.linalg.solve

@@ -42,17 +42,8 @@ Tensor，维度为[batch_size, size]的2D Tensor，数据类型与输入数据�
 代码示例
 ::::::::::::
 
-.. code-block:: python
 
-    import paddle
-    import numpy
-
-    layer1 = numpy.random.random((5, 5)).astype('float32')
-    layer2 = numpy.random.random((5, 4)).astype('float32')
-    bilinearTensorProduct = paddle.nn.BilinearTensorProduct(
-        input1_dim=5, input2_dim=4, output_dim=1000)
-    ret = bilinearTensorProduct(paddle.to_tensor(layer1),
-                                paddle.to_tensor(layer2))
+COPY-FROM: paddle.fluid.dygraph.BilinearTensorProduct
 
 属性
 ::::::::::::

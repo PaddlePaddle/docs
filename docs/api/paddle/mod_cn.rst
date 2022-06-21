@@ -26,11 +26,4 @@ mod
 代码示例
 :::::::::
 
-..  code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([2, 3, 8, 7])
-        y = paddle.to_tensor([1, 5, 3, 3])
-        z = paddle.mod(x, y)
-        print(z)  # [0, 3, 2, 1]
+COPY-FROM: paddle.mod

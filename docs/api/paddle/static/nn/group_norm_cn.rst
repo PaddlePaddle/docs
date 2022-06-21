@@ -28,11 +28,4 @@ Tensor，数据类型和格式与 `input` 一致。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    paddle.enable_static()
-    data = paddle.static.data(name='data', shape=[2, 8, 32, 32], dtype='float32')
-    x = paddle.static.nn.group_norm(input=data, groups=4)
-    print(x.shape) # [2, 8, 32, 32]
+COPY-FROM: paddle.static.nn.group_norm

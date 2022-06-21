@@ -28,13 +28,4 @@ Tensor，预测值和目标值的方差
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    input = paddle.to_tensor([1.1, 1.9])
-    label = paddle.to_tensor([1.0, 2.0])
-    output = paddle.nn.functional.square_error_cost(input, label)
-    print(output)
-    # [0.01, 0.01]
-
-
+COPY-FROM: paddle.nn.functional.square_error_cost

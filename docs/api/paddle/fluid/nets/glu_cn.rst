@@ -33,19 +33,4 @@ glu
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.layers.data(
-        name="words", shape=[-1, 6, 3, 9], dtype="float32")
-    # 输出的形状为[-1, 3, 3, 9]
-    output = fluid.nets.glu(input=data, dim=1)  
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.nets.glu

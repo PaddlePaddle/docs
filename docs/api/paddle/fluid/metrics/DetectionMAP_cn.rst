@@ -44,38 +44,8 @@ DetectionMAP
 代码示例
 ::::::::::::
 
-.. code-block:: python
 
-        import paddle.fluid as fluid
-         
-        batch_size = -1 # 可以为任意大小
-        image_boxs_num = 10
-        bounding_bboxes_num = 21
-         
-        pb = fluid.data(name='prior_box', shape=[image_boxs_num, 4],
-            dtype='float32')
-         
-        pbv = fluid.data(name='prior_box_var', shape=[image_boxs_num, 4],
-            dtype='float32')
-         
-        loc = fluid.data(name='target_box', shape=[batch_size, bounding_bboxes_num, 4],
-            dtype='float32')
-         
-        scores = fluid.data(name='scores', shape=[batch_size, bounding_bboxes_num, image_boxs_num],
-            dtype='float32')
-         
-        nmsed_outs = fluid.layers.detection_output(scores=scores,
-            loc=loc, prior_box=pb, prior_box_var=pbv)
-         
-        gt_box = fluid.data(name="gt_box", shape=[batch_size, 4], dtype="float32")
-        gt_label = fluid.data(name="gt_label", shape=[batch_size, 1], dtype="float32")
-        difficult = fluid.data(name="difficult", shape=[batch_size, 1], dtype="float32")
-        
-        exe = fluid.Executor(fluid.CUDAPlace(0))
-        map_evaluator = fluid.metrics.DetectionMAP(nmsed_outs, gt_label, gt_box, difficult, class_num = 3)
-        cur_map, accum_map = map_evaluator.get_map_var()
-
-
+COPY-FROM: paddle.fluid.metrics.DetectionMAP
 
 方法
 ::::::::::::

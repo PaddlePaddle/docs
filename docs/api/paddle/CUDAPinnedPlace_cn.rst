@@ -14,8 +14,4 @@ CUDAPinnedPlace
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-      import paddle
-      place = paddle.CUDAPinnedPlace()
-
+COPY-FROM: paddle.CUDAPinnedPlace

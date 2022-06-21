@@ -25,11 +25,4 @@ neg
 代码示例
 :::::::::
 
-.. code-block:: python
-
-        import paddle
-        
-        x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3], dtype='float32')
-        res = paddle.neg(x)
-        print(res)
-        # [0.4, 0.2, -0.1, -0.3]
+COPY-FROM: paddle.neg

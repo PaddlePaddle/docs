@@ -93,28 +93,4 @@ fc
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-         import paddle.fluid as fluid
-         # 当输入为单个张量时
-
-        data = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
-        fc = fluid.layers.fc(input=data, size=1000, act="tanh")
-
-        # 当输入为多个张量时
-        data_1 = fluid.layers.data(name="data_1", shape=[32, 32], dtype="float32")
-        data_2 = fluid.layers.data(name="data_2", shape=[24, 36], dtype="float32")
-        fc = fluid.layers.fc(input=[data_1, data_2], size=1000, act="tanh")
-
-
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.fc

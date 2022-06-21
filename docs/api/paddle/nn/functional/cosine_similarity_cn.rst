@@ -25,20 +25,4 @@ Tensor，余弦相似度的计算结果，数据类型与x1, x2相同。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    import numpy as np
-
-    np.random.seed(0)
-    x1 = np.random.rand(2,3)
-    x2 = np.random.rand(2,3)
-    x1 = paddle.to_tensor(x1)
-    x2 = paddle.to_tensor(x2)
-    result = paddle.nn.functional.cosine_similarity(x1, x2, axis=0)
-    print(result)
-    # [0.99806249 0.9817672  0.94987036]
-
-
-
+COPY-FROM: paddle.nn.functional.cosine_similarity

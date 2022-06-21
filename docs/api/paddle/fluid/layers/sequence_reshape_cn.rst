@@ -49,17 +49,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[2, 6], append_batch_size=False, dtype='float32', lod_level=1)
-    x_reshaped = fluid.layers.sequence_reshape(input=x, new_dim=4)
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.sequence_reshape

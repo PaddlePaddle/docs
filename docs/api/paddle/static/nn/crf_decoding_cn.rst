@@ -35,43 +35,4 @@ Tensor，解码结果具体内容根据 ``Label`` 参数是否提供而定，请
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-        import paddle
-        paddle.enable_static()
-
-        # LoDTensor-based example
-        num_labels = 10
-        feature = paddle.static.data(name='word_emb', shape=[-1, 784], dtype='float32', lod_level=1)
-        label = paddle.static.data(name='label', shape=[-1, 1], dtype='int64', lod_level=1)
-        emission = paddle.static.nn.fc(feature, size=num_labels)
-
-        crf_cost = paddle.fluid.layers.linear_chain_crf(input=emission, label=label,
-                    param_attr=paddle.ParamAttr(name="crfw"))
-        crf_decode = paddle.static.nn.crf_decoding(input=emission,
-                    param_attr=paddle.ParamAttr(name="crfw"))
-
-        # Common tensor example
-        num_labels, max_len = 10, 20
-        feature = paddle.static.data(name='word_emb_pad', shape=[-1, max_len, 784], dtype='float32')
-        label = paddle.static.data(name='label_pad', shape=[-1, max_len, 1], dtype='int64')
-        length = paddle.static.data(name='length', shape=[-1, 1], dtype='int64')
-        emission = paddle.static.nn.fc(feature, size=num_labels,
-                                    num_flatten_dims=2)
-
-        crf_cost = paddle.fluid.layers.linear_chain_crf(input=emission, label=label, length=length,
-                    param_attr=paddle.ParamAttr(name="crfw_pad"))
-        crf_decode = paddle.static.nn.crf_decoding(input=emission, length=length,
-                    param_attr=paddle.ParamAttr(name="crfw_pad"))
-
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.static.nn.crf_decoding

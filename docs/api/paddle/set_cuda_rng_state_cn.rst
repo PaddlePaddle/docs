@@ -23,8 +23,4 @@ set_cuda_rng_state
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    sts = paddle.get_cuda_rng_state()
-    paddle.set_cuda_rng_state(sts)
+COPY-FROM: paddle.set_cuda_rng_state

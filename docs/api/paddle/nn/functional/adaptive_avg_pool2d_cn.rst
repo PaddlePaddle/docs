@@ -38,29 +38,4 @@ adaptive_avg_pool2d
 代码示例
 :::::::::
 
-.. code-block:: python
-
-        # adaptive avg pool2d
-        # suppose input data in shape of [N, C, H, W], `output_size` is [m, n],
-        # output shape is [N, C, m, n], adaptive pool divide H and W dimensions
-        # of input data into m * n grids averagely and performs poolings in each
-        # grid to get output.
-        # adaptive avg pool performs calculations as follow:
-        #
-        #     for i in range(m):
-        #         for j in range(n):
-        #             hstart = floor(i * H / m)
-        #             hend = ceil((i + 1) * H / m)
-        #             wstart = floor(i * W / n)
-        #             wend = ceil((i + 1) * W / n)
-        #             output[:, :, i, j] = avg(input[:, :, hstart: hend, wstart: wend])
-        #
-        import paddle
-        import numpy as np
-        input_data = np.random.rand(2, 3, 32, 32)
-        x = paddle.to_tensor(input_data)
-        # x.shape is [2, 3, 32, 32]
-        pool_out = paddle.nn.functional.adaptive_avg_pool2d(
-                        x = x,
-                        output_size=[3, 3])
-        # pool_out.shape is [2, 3, 3, 3]
+COPY-FROM: paddle.nn.functional.adaptive_avg_pool2d
