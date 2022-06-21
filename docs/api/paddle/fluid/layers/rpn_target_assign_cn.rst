@@ -55,28 +55,4 @@ rpn_target_assign
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-        import paddle.fluid as fluid
-        bbox_pred = fluid.layers.data(name='bbox_pred', shape=[100, 4],
-                append_batch_size=False, dtype='float32')
-        cls_logits = fluid.layers.data(name='cls_logits', shape=[100, 1],
-                append_batch_size=False, dtype='float32')
-        anchor_box = fluid.layers.data(name='anchor_box', shape=[20, 4],
-                append_batch_size=False, dtype='float32')
-        anchor_var = fluid.layers.data(name='anchor_var', shape=[20, 4],	 	 
-                append_batch_size=False, dtype='float32')
-        gt_boxes = fluid.layers.data(name='gt_boxes', shape=[10, 4],
-                append_batch_size=False, dtype='float32')
-        is_crowd = fluid.layers.data(name='is_crowd', shape=[1],
-                    append_batch_size=False, dtype='float32')
-        im_info = fluid.layers.data(name='im_infoss', shape=[1, 3],
-                    append_batch_size=False, dtype='float32')
-        loc_pred, score_pred, loc_target, score_target, bbox_inside_weight=
-                fluid.layers.rpn_target_assign(bbox_pred, cls_logits,
-                        anchor_box, anchor_var, gt_boxes, is_crowd, im_info)
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.rpn_target_assign

@@ -15,8 +15,4 @@ get_cudnn_version
 代码示例
 ::::::::::::
 
-.. code-block:: python
-        
-    import paddle
-    
-    device = paddle.device.get_cudnn_version()
+COPY-FROM: paddle.device.get_cudnn_version

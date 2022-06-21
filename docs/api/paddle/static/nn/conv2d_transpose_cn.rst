@@ -108,12 +108,4 @@ conv2d_transpose
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    paddle.enable_static()
-    data = paddle.static.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
-    conv2d_transpose = paddle.static.nn.conv2d_transpose(input=data, num_filters=2, filter_size=3)
-    print(conv2d_transpose.shape) # [-1, 2, 34, 34]
-
-
+COPY-FROM: paddle.static.nn.conv2d_transpose

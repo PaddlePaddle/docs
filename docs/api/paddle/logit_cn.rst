@@ -38,14 +38,4 @@ logit
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([0.1, 0.2, 0.3, 0.4])
-    out1 = paddle.logit(x)
-    #[-2.19722462, -1.38629436, -0.84729779, -0.40546516] 
-    x = paddle.to_tensor([-0.1, 2, 0.3, 0.4])
-    out2 = paddle.logit(x)
-    #[-inf.      ,  inf.      , -0.84729779, -0.40546516] 
-
+COPY-FROM: paddle.logit

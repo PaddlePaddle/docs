@@ -73,33 +73,4 @@ ssd_loss
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-         import paddle.fluid as fluid
-         pb = fluid.layers.data(
-                           name='prior_box',
-                           shape=[10, 4],
-                           append_batch_size=False,
-                           dtype='float32')
-         pbv = fluid.layers.data(
-                           name='prior_box_var',
-                           shape=[10, 4],
-                           append_batch_size=False,
-                           dtype='float32')
-         loc = fluid.layers.data(name='target_box', shape=[10, 4], dtype='float32')
-         scores = fluid.layers.data(name='scores', shape=[10, 21], dtype='float32')
-         gt_box = fluid.layers.data(
-                 name='gt_box', shape=[4], lod_level=1, dtype='float32')
-         gt_label = fluid.layers.data(
-                 name='gt_label', shape=[1], lod_level=1, dtype='float32')
-         loss = fluid.layers.ssd_loss(loc, scores, gt_box, gt_label, pb, pbv)
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.ssd_loss

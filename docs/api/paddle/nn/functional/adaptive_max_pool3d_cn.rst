@@ -26,32 +26,4 @@ adaptive_max_pool3d
 代码示例
 :::::::::
 
-.. code-block:: python
-
-        # adaptive max pool3d
-        # suppose input data in the shape of [N, C, D, H, W], `output_size` is [l, m, n]
-        # output shape is [N, C, l, m, n], adaptive pool divide D, H and W dimensions
-        # of input data into m*n grids averagely and performs poolings in each
-        # grid to get output.
-        # adaptive max pool performs calculations as follow:
-        #
-        #     for i in range(l):
-        #         for j in range(m):
-        #             for k in range(n):
-        #                 dstart = floor(i * D / l)
-        #                 dend = ceil((i + 1) * D / l)
-        #                 hstart = floor(i * H / m)
-        #                 hend = ceil((i + 1) * H / m)
-        #                 wstart = floor(i * W / n)
-        #                 wend = ceil((i + 1) * W / n)
-        #             output[:, :, i, j, k] = max(input[:, :, dstart: dend, hstart: hend, wstart: wend])
-        #
-
-        import paddle
-        x = paddle.rand((2, 3, 8, 32, 32))
-        # x.shape is [2, 3, 8, 32, 32]
-        out = paddle.nn.functional.adaptive_max_pool3d(
-                        x = x,
-                        output_size=[3, 3, 3])
-        print(out.shape)
-        # out.shape is [2, 3, 3, 3, 3]
+COPY-FROM: paddle.nn.functional.adaptive_max_pool3d

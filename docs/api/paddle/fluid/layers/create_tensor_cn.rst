@@ -28,19 +28,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-    
-    """
-    使用print(tensor)打印结果如下：
-    type {
-    type: LOD_TENSOR
-    lod_tensor {
-        tensor {
-        data_type: FP32
-        }
-    }
-    }
-    persistable: false
-    """
-    import paddle.fluid as fluid
-    tensor = fluid.layers.create_tensor(dtype='float32')
+COPY-FROM: paddle.fluid.layers.create_tensor

@@ -32,24 +32,4 @@ Variable(LoDTensor)变量，:math:`[N, M]` 的2-D LoDTensor。如果 ``use_cvm=T
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    input = fluid.layers.data(name="input", shape=[-1, 1], lod_level=1, append_batch_size=False, dtype="int64")
-    label = fluid.layers.data(name="label", shape=[-1, 1], append_batch_size=False, dtype="int64")
-    embed = fluid.layers.embedding(
-                            input=input,
-                            size=[100, 11],
-                            dtype='float32')
-    label_shape = fluid.layers.shape(label)
-    ones = fluid.layers.fill_constant(shape=[label_shape[0], 1], dtype="int64", value=1)
-    show_clk = fluid.layers.cast(fluid.layers.concat([ones, label], axis=1), dtype='float32')
-    show_clk.stop_gradient = True
-    input_with_cvm = fluid.layers.continuous_value_model(embed, show_clk, True)
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.continuous_value_model

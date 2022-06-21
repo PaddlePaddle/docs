@@ -42,28 +42,4 @@ hsigmoid_loss
 代码示例
 ::::::::::
 
-..  code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-
-    paddle.set_device('cpu')
-
-    input = paddle.uniform([4, 3])
-    # [[0.45424712  -0.77296764  0.82943869] # random
-    #  [0.85062802  0.63303483  0.35312140] # random
-    #  [0.57170701  0.16627562  0.21588242] # random
-    #  [0.27610803  -0.99303514  -0.17114788]] # random
-    label = paddle.to_tensor([0, 1, 4, 5])
-    num_classes = 5
-    weight = paddle.uniform([num_classes-1, 3])
-    # [[-0.64477652  0.24821866  -0.17456549] # random
-    #  [-0.04635394  0.07473493  -0.25081766] # random
-    #  [ 0.05986035  -0.12185556  0.45153677] # random
-    #  [-0.66236806  0.91271877  -0.88088769]] # random
-
-    out = F.hsigmoid_loss(input, label, num_classes, weight)
-    # [[1.96709502]
-    #  [2.40019274]
-    #  [2.11009121]
-    #  [1.92374969]]
+COPY-FROM: paddle.nn.functional.hsigmoid_loss

@@ -38,21 +38,4 @@ Tensor，形状为 :math:`[batch\_size, *, out\_features]`，数据类型与输�
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.randn((3, 2), dtype="float32")
-    # x: [[-0.32342386 -1.200079  ]
-    #     [ 0.7979031  -0.90978354]
-    #     [ 0.40597573  1.8095392 ]]
-    weight = paddle.full(shape=[2, 4], fill_value="0.5", dtype="float32", name="weight")
-    # weight: [[0.5 0.5 0.5 0.5]
-    #          [0.5 0.5 0.5 0.5]]
-    bias = paddle.ones(shape=[4], dtype="float32", name="bias")
-    # bias: [1. 1. 1. 1.]
-    y = paddle.nn.functional.linear(x, weight, bias)
-    # y: [[0.23824859 0.23824859 0.23824859 0.23824859]
-    #     [0.9440598  0.9440598  0.9440598  0.9440598 ]
-    #     [2.1077576  2.1077576  2.1077576  2.1077576 ]]
-
+COPY-FROM: paddle.nn.functional.linear

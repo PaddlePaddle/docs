@@ -29,13 +29,4 @@ cos
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        x = paddle.to_tensor([[-1, np.pi], [1, 15.6]], dtype='float32')
-        res = paddle.cos(x)
-        print(res)
-        # [[ 0.54030231 -1.        ]
-        # [ 0.54030231 -0.99417763]]
+COPY-FROM: paddle.cos

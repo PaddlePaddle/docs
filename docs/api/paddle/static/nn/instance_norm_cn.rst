@@ -42,11 +42,4 @@ Tensor，在输入中运用instance normalization后的结果。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-    
-    import paddle
-    paddle.enable_static()
-    x = paddle.static.data(name='x', shape=[3, 7, 3, 7], dtype='float32')
-    hidden1 = paddle.static.nn.fc(x, size=200)
-    hidden2 = paddle.static.nn.instance_norm(hidden1)
-
+COPY-FROM: paddle.static.nn.instance_norm

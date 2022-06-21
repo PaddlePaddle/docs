@@ -60,21 +60,4 @@ RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs``，�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    rpn_rois = fluid.layers.data(name='rpn_rois', shape=[2, 4],
-                   append_batch_size=False, dtype='float32')
-    gt_classes = fluid.layers.data(name='gt_classes', shape=[8, 1],
-                   append_batch_size=False, dtype='float32')
-    is_crowd = fluid.layers.data(name='is_crowd', shape=[8, 1],
-                   append_batch_size=False, dtype='float32')
-    gt_boxes = fluid.layers.data(name='gt_boxes', shape=[8, 4],
-                   append_batch_size=False, dtype='float32')
-    im_info = fluid.layers.data(name='im_info', shape=[10, 3],
-                   append_batch_size=False, dtype='float32')
-    rois, labels, bbox, inside_weights,
-    outside_weights = fluid.layers.generate_proposal_labels(
-                   rpn_rois, gt_classes, is_crowd, gt_boxes, im_info,
-                   class_nums=10)
-
+COPY-FROM: paddle.fluid.layers.generate_proposal_labels

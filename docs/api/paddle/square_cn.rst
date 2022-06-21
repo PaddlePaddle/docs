@@ -26,17 +26,4 @@ square
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-	import paddle
-
-	x = paddle.rand(shape=[32, 784])
-	y = paddle.square(x)
-	print(y.shape)
-
-
-
-
-
-
-
+COPY-FROM: paddle.square

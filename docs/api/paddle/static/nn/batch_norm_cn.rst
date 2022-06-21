@@ -70,15 +70,4 @@ moving_mean和moving_var是训练过程中统计得到的全局均值和方差�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    
-    paddle.enable_static()
-    x = paddle.static.data(name='x', shape=[3, 7, 3, 7], dtype='float32')
-    hidden1 = paddle.static.nn.fc(x=x, size=200)
-    print(hidden1.shape)
-    # [3, 200]
-    hidden2 = paddle.static.nn.batch_norm(input=hidden1)
-    print(hidden2.shape)
-    # [3, 200]
+COPY-FROM: paddle.static.nn.batch_norm

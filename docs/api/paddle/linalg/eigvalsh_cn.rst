@@ -21,13 +21,4 @@ Tensor，输出矩阵的特征值，输出顺序按照从小到大进行排序�
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-   import numpy as np
-   import paddle
-
-   x_data = np.array([[1, -2j], [2j, 5]])
-   x = paddle.to_tensor(x_data)
-   out_value = paddle.linalg.eigh(x)
-   print(out_value)
-   #[0.17157288, 5.82842712]
+COPY-FROM: paddle.linalg.eigvalsh

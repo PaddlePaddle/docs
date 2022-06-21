@@ -36,11 +36,4 @@ Tensor，表示交叉熵结果的Tensor，数据类型与input相同。若soft_l
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-        import paddle.fluid as fluid
-        class_num = 7
-        x = fluid.layers.data(name='x', shape=[3, 10], dtype='float32')
-        label = fluid.layers.data(name='label', shape=[1], dtype='int64')
-        predict = fluid.layers.fc(input=x, size=class_num, act='softmax')
-        cost = fluid.layers.cross_entropy(input=predict, label=label)
+COPY-FROM: paddle.fluid.layers.cross_entropy

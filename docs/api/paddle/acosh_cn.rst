@@ -27,11 +27,4 @@ Arccosh函数。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([1., 3., 4., 5.])
-        out = paddle.acosh(x)
-        print(out)
-        # [0.        , 1.76274729, 2.06343699, 2.29243159]
+COPY-FROM: paddle.acosh

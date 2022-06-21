@@ -30,25 +30,4 @@ PReLU激活层（PReLU Activation Operator）。计算公式如下：
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    paddle.set_default_dtype("float64")
-
-    data = np.array([[[[-2.0,  3.0, -4.0,  5.0],
-                       [ 3.0, -4.0,  5.0, -6.0],
-                       [-7.0, -8.0,  8.0,  9.0]],
-                      [[ 1.0, -2.0, -3.0,  4.0],
-                       [-5.0,  6.0,  7.0, -8.0],
-                       [ 6.0,  7.0,  8.0,  9.0]]]], 'float64')
-    x = paddle.to_tensor(data)
-    m = paddle.nn.PReLU(1, 0.25)
-    out = m(x)
-    # [[[[-0.5 ,  3.  , -1.  ,  5.  ],
-    #    [ 3.  , -1.  ,  5.  , -1.5 ],
-    #    [-1.75, -2.  ,  8.  ,  9.  ]],
-    #   [[ 1.  , -0.5 , -0.75,  4.  ],
-    #    [-1.25,  6.  ,  7.  , -2.  ],
-    #    [ 6.  ,  7.  ,  8.  ,  9.  ]]]]
+COPY-FROM: paddle.nn.PReLU

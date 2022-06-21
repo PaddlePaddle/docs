@@ -32,19 +32,4 @@ l2_normalize
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.layers.data(name="data",
-                         shape=(3, 17, 13),
-                         dtype="float32")
-    normed = fluid.layers.l2_normalize(x=data, axis=1)
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.l2_normalize

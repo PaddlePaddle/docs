@@ -17,11 +17,4 @@ to_dlpack
 
 代码示例
 :::::::::
-.. code-block:: python
-
-    import paddle
-    x = paddle.to_tensor([[0.2, 0.3, 0.5, 0.9],
-                          [0.1, 0.2, 0.6, 0.7]])
-    dlpack = paddle.utils.dlpack.to_dlpack(x)
-    print(dlpack)
-    # <capsule object "dltensor" at 0x7f6103c681b0>
+COPY-FROM: paddle.utils.dlpack.to_dlpack

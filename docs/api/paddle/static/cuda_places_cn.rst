@@ -29,11 +29,4 @@ list[paddle.CUDAPlace]，创建的 ``paddle.CUDAPlace`` 列表。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-    
-    paddle.enable_static()
-
-    cuda_places = static.cuda_places()
+COPY-FROM: paddle.static.cuda_places

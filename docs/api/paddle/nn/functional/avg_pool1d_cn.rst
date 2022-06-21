@@ -34,11 +34,4 @@ avg_pool1d
 代码示例
 :::::::::
 
-.. code-block:: python
-
-        import paddle
-        import paddle.nn.functional as F
-
-        data = paddle.uniform(shape=[1, 2, 32], dtype='float32', min=-1, max=1)
-        pool_out = F.avg_pool1d(data, kernel_size=2, stride=2, padding=0)
-        # pool_out shape: [1, 3, 16]
+COPY-FROM: paddle.nn.functional.avg_pool1d

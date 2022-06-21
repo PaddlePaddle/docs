@@ -44,11 +44,4 @@ spectral_norm
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    paddle.enable_static()
-    weight = paddle.static.data(name='weight', shape=[2, 8, 32, 32], dtype='float32')
-    x = paddle.static.nn.spectral_norm(weight=weight, dim=1, power_iters=2)
-    print(x.shape) # [2, 8, 32, 32]
+COPY-FROM: paddle.static.nn.spectral_norm

@@ -33,12 +33,4 @@ mse_loss
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    y = fluid.data(name='y', shape=[1], dtype='float32')
-    y_predict = fluid.data(name='y_predict', shape=[1], dtype='float32')
-    cost = fluid.layers.mse_loss(input=y_predict, label=y)
-
-
-
+COPY-FROM: paddle.fluid.layers.mse_loss

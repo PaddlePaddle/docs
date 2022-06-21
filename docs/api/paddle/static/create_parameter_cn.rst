@@ -30,16 +30,4 @@ create_parameter
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    W = paddle.static.create_parameter(shape=[784, 200], dtype='float32')
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.static.create_parameter

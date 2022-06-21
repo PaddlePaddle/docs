@@ -39,11 +39,8 @@ GRUCell类的实例对象。
 代码示例
 ::::::::::::
 
-..  code-block:: python 
 
-    import paddle.fluid.layers as layers
-    cell = layers.GRUCell(hidden_size=256)
-
+COPY-FROM: paddle.fluid.layers.GRUCell
 
 方法
 ::::::::::::

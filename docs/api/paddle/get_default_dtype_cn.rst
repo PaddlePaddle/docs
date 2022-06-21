@@ -22,7 +22,4 @@ get_default_dtype
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    paddle.get_default_dtype()
+COPY-FROM: paddle.get_default_dtype

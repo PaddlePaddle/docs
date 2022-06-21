@@ -40,19 +40,4 @@ CrossEntropyLoss
 代码示例
 :::::::::
 
-..  code-block:: python
-
-    import paddle
-    import numpy as np
-    
-    input_data = paddle.uniform([5, 100], dtype="float64")
-    label_data = np.random.randint(0, 100, size=(5)).astype(np.int64)
-    weight_data = np.random.random([100]).astype("float64")
-    
-    input =  paddle.to_tensor(input_data)
-    label =  paddle.to_tensor(label_data)
-    weight = paddle.to_tensor(weight_data)
-    
-    ce_loss = paddle.nn.CrossEntropyLoss(weight=weight, reduction='mean')
-    output = ce_loss(input, label)
-    print(output)
+COPY-FROM: paddle.nn.CrossEntropyLoss

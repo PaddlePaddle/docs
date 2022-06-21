@@ -71,28 +71,4 @@ conv1d
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-    import numpy as np
-    x = np.array([[[4, 8, 1, 9],
-      [7, 2, 0, 9],
-      [6, 9, 2, 6]]]).astype(np.float32)
-    w=np.array(
-    [[[9, 3, 4],
-      [0, 0, 7],
-      [2, 5, 6]],
-     [[0, 3, 4],
-      [2, 9, 7],
-      [5, 6, 8]]]).astype(np.float32)
-    
-    x_var = paddle.to_tensor(x)
-    w_var = paddle.to_tensor(w)
-    y_var = F.conv1d(x_var, w_var)
-    y_np = y_var.numpy()
-    print(y_np)
-    
-    # [[[133. 238.]
-    #   [160. 211.]]]
-
+COPY-FROM: paddle.nn.functional.conv1d

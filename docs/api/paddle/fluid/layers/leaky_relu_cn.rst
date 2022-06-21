@@ -30,22 +30,4 @@ LeakyRelu激活函数
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy as np
-
-    # Graph Organizing
-    x = fluid.layers.data(name="x", shape=[2], dtype="float32")
-    res = fluid.layers.leaky_relu(x, alpha=0.1)
-
-    # Create an executor using CPU as an example
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    # Execute
-    x_i = np.array([[-1, 2], [3, -4]]).astype(np.float32)
-    res_val, = exe.run(fluid.default_main_program(), feed={'x':x_i}, fetch_list=[res])
-    print(res_val) # [[-0.1, 2], [3, -0.4]]
-
-
+COPY-FROM: paddle.fluid.layers.leaky_relu

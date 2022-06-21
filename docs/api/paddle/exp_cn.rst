@@ -26,13 +26,4 @@ exp
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-  import paddle
-
-  x = paddle.to_tensor([[-1.5,6],[1,15.6]])
-  y = paddle.exp(x)
-  print(y)
-  # [[2.23130160e-01 4.03428793e+02]
-  # [2.71828183e+00 5.95653801e+06]]
-
+COPY-FROM: paddle.exp

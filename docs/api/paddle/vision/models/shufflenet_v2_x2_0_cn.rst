@@ -20,5 +20,6 @@ shufflenet_v2_x2_0
 :ref:`cn_api_fluid_dygraph_Layer`，输出通道缩放比例为 2.0 的 ShuffleNetV2 模型实例。
 
 代码示例
+:::::::::
 
 COPY-FROM: paddle.vision.models.shufflenet_v2_x2_0

@@ -23,10 +23,4 @@ Tensor：和 ``x`` 具有相同形状的数值都为1的 Tensor，数据类型�
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([1,2,3])
-    out1 = paddle.ones_like(x) # [1., 1., 1.]
-    out2 = paddle.ones_like(x, dtype='int32') # [1, 1, 1]
+COPY-FROM: paddle.ones_like

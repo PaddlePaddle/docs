@@ -24,19 +24,4 @@ unique为 ``x`` 返回一个unique张量和一个指向该unique张量的索引�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle.fluid as fluid
-    x = fluid.layers.assign(np.array([2, 3, 3, 1, 5, 3], dtype='int32'))
-    out, index = fluid.layers.unique(x) # out is [2, 3, 1, 5]; index is [0, 1, 1, 2, 3, 1]
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.unique

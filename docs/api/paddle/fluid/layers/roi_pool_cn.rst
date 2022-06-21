@@ -40,37 +40,4 @@ Faster-RCNN使用了roi池化。roi池化的具体原理请参考 https://stacko
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-  import paddle.fluid as fluid
-  import numpy as np
-
-  DATATYPE='float32'
-
-  place = fluid.CPUPlace()
-  #place = fluid.CUDAPlace(0)
-
-  input_data = np.array([i for i in range(1,17)]).reshape(1,1,4,4).astype(DATATYPE)
-  roi_data =fluid.create_lod_tensor(np.array([[1., 1., 2., 2.], [1.5, 1.5, 3., 3.]]).astype(DATATYPE),[[2]], place)
-
-  x = fluid.layers.data(name='input', shape=[1, 4, 4], dtype=DATATYPE)
-  rois = fluid.layers.data(name='roi', shape=[4], lod_level=1, dtype=DATATYPE)
-
-  pool_out = fluid.layers.roi_pool(
-            input=x,
-            rois=rois,
-            pooled_height=1,
-            pooled_width=1,
-            spatial_scale=1.0)
-
-  exe = fluid.Executor(place)
-  out, = exe.run(feed={'input':input_data ,'roi':roi_data}, fetch_list=[pool_out.name])
-  print(out)   #array([[[[11.]]], [[[16.]]]], dtype=float32)
-  print(np.array(out).shape)  # (2, 1, 1, 1)
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.roi_pool

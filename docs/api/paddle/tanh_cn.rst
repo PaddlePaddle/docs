@@ -26,10 +26,4 @@ tanh的输出Tensor，和输入有着相同类型和shape。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-    y = paddle.tanh(x)
-    print(y) # y=[-0.37994900, -0.19737528, 0.09966799, 0.29131261]
+COPY-FROM: paddle.tanh

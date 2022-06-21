@@ -53,16 +53,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy as np
-    x = fluid.layers.data(name="x", shape=[32, 32], dtype="float32")
-    droped = fluid.layers.dropout(x, dropout_prob=0.5)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    np_x = np.random.random(size=(32, 32)).astype('float32')
-    output = exe.run(feed={"x": np_x}, fetch_list = [droped])
-    print(output)
-
+COPY-FROM: paddle.fluid.layers.dropout

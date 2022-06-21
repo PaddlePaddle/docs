@@ -84,20 +84,4 @@ im2sequence
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.layers.data(name='data', shape=[3, 32, 32],
-                             dtype='float32')
-    output = fluid.layers.im2sequence(
-        input=data, stride=[1, 1], filter_size=[2, 2])
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.im2sequence

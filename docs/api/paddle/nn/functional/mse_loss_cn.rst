@@ -37,13 +37,4 @@ mse_loss
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    
-    input = paddle.to_tensor(1.5)
-    label = paddle.to_tensor(1.7)
-    output = paddle.nn.functional.mse_loss(input, label)
-    print(output)
-    # [0.04000002]
-
+COPY-FROM: paddle.nn.functional.mse_loss
