@@ -72,7 +72,7 @@ GPU 强大的算力毋庸置疑可以提升集群的计算性能，但随之而�
     import paddle
     import paddle.distributed.fleet as fleet
 
-初始化训练环境，包括分布式环境及GPUPS环境：
+初始化训练环境，包括初始化分布式环境以及构造GPUPS对象：
 
 .. code-block:: python
 
@@ -83,13 +83,11 @@ GPU 强大的算力毋庸置疑可以提升集群的计算性能，但随之而�
 
     # 构造GPUPS对象
     psgpu = paddle.fluid.core.PSGPU()
-    # 初始化GPUPS的运行环境
-    # 启动时需要设置环境变量，指定运行的gpu，export FLAGS_selected_gpus="0,1,2,3"
-    gpus_env = os.getenv("FLAGS_selected_gpus")
-    psgpu.init_gpu_ps([int(s) for s in gpus_env.split(",")])
 
 2.2 加载模型
 """"""""""""
+
+GPUPS的加载模型部分与CPUPS相比无区别。
 
 .. code-block:: python
 
@@ -98,14 +96,10 @@ GPU 强大的算力毋庸置疑可以提升集群的计算性能，但随之而�
     model = WideDeepModel()
     model.net(is_train=True)
 
-    # 需要根据model设置使用sparse_embedding的slot及对应的mf_size
-    psgpu.set_slot_vector(model.slots_name)
-    psgpu.set_slot_dim_vector(model.slots_mf_size)
-
 2.3 构建dataset加载数据
 """"""""""""
 
-GPUPS的数据处理脚本reader.py与GPUPS相比无区别。
+GPUPS的数据处理脚本reader.py与CPUPS相比无区别。
 
 目前GPUPS仅支持InmemoryDataset，并且在dataset初始化之前，需要设置use_ps_gpu=True，框架会根据这个属性，优化GPUPS训练过程中加载数据的性能。
 
@@ -143,6 +137,7 @@ GPUPS的数据处理脚本reader.py与GPUPS相比无区别。
 在Fleet API中，用户可以使用 ``fleet.DistributedStrategy()`` 接口定义自己想要使用的分布式策略。
 
 在GPUPS模式下，需要配置 ``a_sync`` 选项为False，同时设置 ``a_sync_configs`` 中的 ``use_ps_gpu`` 为True
+
 .. code-block:: python
 
     strategy = fleet.DistributedStrategy()
@@ -182,6 +177,7 @@ GPUPS的数据处理脚本reader.py与GPUPS相比无区别。
         exe.run(paddle.static.default_startup_program())
 
         fleet.init_worker()
+        psgpu = paddle.fluid.core.PSGPU()
 
         # 创建dataset并将数据加载到内存
         dataset.load_into_memory()
@@ -193,7 +189,7 @@ GPUPS的数据处理脚本reader.py与GPUPS相比无区别。
                                    dataset,
                                    paddle.static.global_scope(), 
                                    debug=False, 
-                                   fetch_list=[train_model.cost],
+                                   fetch_list=[model.loss],
                                    fetch_info=["loss"],
                                    print_period=1)
         
