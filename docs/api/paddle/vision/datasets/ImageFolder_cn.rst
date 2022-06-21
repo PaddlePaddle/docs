@@ -9,6 +9,7 @@ ImageFolder
 一种通用的数据加载方式，数据需要以如下的格式存放：
 
 .. code-block:: text
+
     root/1.ext
     root/2.ext
     root/sub_dir/3.ext

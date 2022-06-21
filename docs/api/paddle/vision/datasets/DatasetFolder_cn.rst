@@ -9,6 +9,7 @@ DatasetFolder
 一种通用的数据加载方式，数据需要以如下的格式存放：
 
 .. code-block:: text
+
     root/class_a/1.ext
     root/class_a/2.ext
     root/class_a/3.ext
