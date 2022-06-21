@@ -4,10 +4,10 @@
 
 ## 开发 Python API代码
 
-这分为两种情况，Paddle 的 API 包含需要开发 c++ operator 的和不需要开发 operator 而仅使用现有 Python API 组合得到的两种，但两种情况下均有 Python 端的开发工作。
+这分为两种情况，Paddle 的 API 包含需要开发 c++ 算子的和不需要开发 c++ 算子而仅使用现有 Python API 组合得到的两种，但两种情况下均有 Python 端的开发工作。
 
-1. 包含 c++ operator 的开发的情况，需要在 Python 端添加相应 API 以调用对应的 operator;
-2. 不需要开发 c++ operator 的情况，需要在 Python 端添加相应 API 以调用其他 API 组合实现功能;
+1. 包含 c++ 算子的开发的情况，需要在 Python 端添加相应 API 以调用对应的算子;
+2. 不需要开发 c++ 算子的情况，需要在 Python 端添加相应 API 以调用其他 API 组合实现功能;
 
 ### 文件位置与 API 名称
 
@@ -76,7 +76,7 @@ from a import f # it's ok, too
 # Python/paddle/tensor/math.py
 def logsumexp(...):
 		...
-		
+
 # Python/paddle/tensor/__init__.py
 from .math import logsumexp
 
@@ -155,17 +155,19 @@ Python API 一般包含如下的部分：
 例子：
 
 ```Python
-def mm(input, mat2, name=None):  
-		# 为了突出重点，省略部分代码
-		
-		# 动态图，直接调用 op 对应的 CPython 函数
-		if paddle.in_dynamic_mode():
+def mm(input, mat2, name=None):
+	# 为了突出重点，省略部分代码
+	# 新动态图模式，直接调用 op 对应的 CPython 函数
+	if in_dygraph_mode():
+        return _C_ops.final_state_matmul(input, mat2, False, False)
+    # 旧动态图模式
+    elif _in_legacy_dygraph():
         return _C_ops.matmul_v2(input, mat2)
 
-		# 静态分支
+	# 静态分支
     ## 检测输入
-    __check_input(input, mat2) 
-		
+    __check_input(input, mat2)
+
     ## 构造输出，添加 op，返回输出
     helper = LayerHelper('mm', **locals())
     out = helper.create_variable_for_type_inference(dtype=input.dtype)
@@ -188,44 +190,56 @@ def ones(shape, dtype=None, name=None):
 
 因为 `fill_constant` 里已经处理了动态图和静态图的情况，所以直接调用即可。
 
-而如果 API 的实现中需要调用一个 op 时，则需要根据动态图和静态图使用不同的写法，用 `paddle.in_dynamic_mode()` 获取当前状态走不同的分支。
+而如果 API 的实现中需要调用一个C++算子时，则需要根据动态图和静态图使用不同的写法。
 
 #### 动静态图分支
+**动态图分支**
+由于目前动态图正处在重构升级阶段，所以需要为新旧动态图分别添加对应的代码分支。其中 `in_dygraph_mode()` 表示新动态图分支，`_in_legacy_dygraph()`表示旧动态图分支。
 
-参考前面 `paddle.nn.functional.kl_div` 的代码，动态图分支的写法一般是调用 API 对应的 CPython 函数。
+参考`paddle.trace` 的代码，动态图分支的写法一般是调用 API 对应的 CPython 函数。
 
 ```Python
-_C_ops.matmul_v2(input, mat2)
+# 新动态图模式
+if in_dygraph_mode():
+    return _C_ops.final_state_trace( x, offset, axis1, axis2 )
+
+# 旧动态图模式
+if _in_legacy_dygraph():
+    return _C_ops.trace(x, 'offset', offset, 'axis1', axis1, 'axis2', axis2)
 ```
 
-`_C_ops` 是 `Python/paddle/_C_ops.py`，其中从 paddle 编译得到的二进制文件中 import 了 c++ operator 对应的 Python C 函数，函数名和 operator 名一致。如希望调用名为 `matmul_v2` 的 operator，则使用 `_C_ops.matmul_v2`, 然后传入参数。
+`_C_ops` 是 `Python/paddle/_C_ops.py`，其中从 paddle 编译得到的二进制文件中 import 了 c++ 算子对应的 Python C 函数。
 
-其中参数分为两个部分，`Tensor` 对于 `Tensor` 类型的输入，直接按照定义 opmaker 时添加输入的次序，以按位置传参的方式传入。关于 opmaker 可以参考 [定义OpProtoMaker类](new_cpp_op_cn.html#opprotomaker)（本文中用 opmaker 简称 operator ）.
+- 在新动态图模式下，Python C 的调用函数名为`final_state_` + 算子名，然后将参数按照Yaml中定义的输入参数顺序传入即可。
+- 在旧动态图模式下，Python C 函数名和算子名一致。如希望调用名为 `trace` 的算子，则使用 `_C_ops.trace`, 然后传入参数。其中参数分为两个部分：
+  - 对于 `Tensor` 类型的输入，直接按照Yaml中的定义，按位置传参的方式传入
+  - 对于非 `Tensor` 类型的输入，则以 `attribute 名，attribute 值` 交替的方式传入，这类似 Python 中的按关键字传参的方式。然后返回调用函数得到的结果。
 
-而对于非 `Tensor` 类型的输入（对应 opmaker 中的 Attribute），则以 `attribute 名，attribute 值` 交替的方式传入，这类似 Python 中的按关键字传参的方式。然后返回调用函数得到的结果。
 
-而对于静态图，则一般分为创建输出 Tensor，添加 operator 两步。
+**静态图分支**
+对于静态图，一般分为创建输出 Tensor，添加 operator 两步。
 
 ```Python
-loss = _C_ops.kldiv_loss(input, label, 'reduction', 'none')
-
-# layerhelper 创建准备工作
-helper = LayerHelper('kl_div', **locals())
+# LayerHelper是一个用于创建op输出变量、向program中添加op的辅助工具类
+helper = LayerHelper('trace', **locals())
 
 # 创建输出 Tensor
-loss = helper.create_variable_for_type_inference(dtype=input.dtype)
+out = helper.create_variable_for_type_inference(dtype=x.dtype)
 
 # 将输入 Tensor，输出 Tensor, 非 Tensor 的 attributes 以三个字典的形式
 # 作为参数添加 operator
 helper.append_op(
-  type='kldiv_loss',
-  inputs={'X': input,
-          'Target': label},
-  outputs={'Loss': loss},
-  attrs={'reduction': 'none'})
+    type='trace',
+    inputs={'Input': [x]},
+    attrs={'offset': offset,
+           'axis1': axis1,
+           'axis2': axis2},
+    outputs={'Out': [out]})
+return out
 ```
+注意：在`append_op`添加的`inputs`和`outputs`项，其中的key值（静态图中变量名）一般为Yaml中定义的输入输出Tensor变量名的首字母大写格式，静态图中的变量名可以在`paddle/fluid/operators/generated_op.cc`（需要先开发C++算子的并完成编译）文件内对应算子的`OpMaker`中找到；`attrs`项的变量名与Yaml中相同。
+这里`trace`中的'Input'没有与Yaml配置的中'x'直接对应是由于为了兼容旧算子体系下`Trace`算子的`OpMaker`实现而做了额外的映射，新增算子时无需考虑这种情况。
 
-上述的代码中，动态图分支的 `input, label` 对应静态图分支中的 inputs 字典，其次序和 opmaker 中定义的有关。而静态图中的 attrs 字典在动态图分支中则以 `key, value` 交替的形式排列，如果有多个 attribute, 则依次排列。
 
 ## 开发单元测试代码
 
@@ -235,7 +249,7 @@ helper.append_op(
 
 单元测试相关的开发规范可以参考
 
- [C++ OP 开发（新增原生算子）](new_cpp_op_cn.html) ，[Op开发手册(Operator Development Manual)](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index).
+ [C++ 算子开发指南-添加单元测试](new_cpp_op_cn.html#tianjiadanyuanceshi) ，[Op开发手册(Operator Development Manual)](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index).
 
 在此不作展开，主要讲述 Python API 的单元测试。
 
@@ -267,7 +281,7 @@ helper.append_op(
            self.x_np = np.random.uniform(-3, 3, [10, 12]).astype('float32')
            self.place=paddle.CUDAPlace(0) if paddle.is_compiled_with_cuda() \
                else paddle.CPUPlace()
-   
+
        def test_static_api(self):
            paddle.enable_static()
            with paddle.static.program_guard(paddle.static.Program()):
@@ -280,7 +294,7 @@ helper.append_op(
            out_ref = ref_hardtanh(self.x_np)
            for r in res:
                self.assertEqual(np.allclose(out_ref, r), True)
-   
+
        def test_dygraph_api(self):
            paddle.disable_static(self.place)
            x = paddle.to_tensor(self.x_np)
@@ -290,7 +304,7 @@ helper.append_op(
            out_ref = ref_hardtanh(self.x_np)
            for r in [out1, out2]:
                self.assertEqual(np.allclose(out_ref, r.numpy()), True)
-   
+
            out1 = F.hardtanh(x, -2.0, 2.0)
            m = paddle.nn.Hardtanh(-2.0, 2.0)
            out2 = m(x)
@@ -306,7 +320,7 @@ helper.append_op(
             paddle.disable_static(place=paddle.fluid.CPUPlace())
             self.run_imperative()
             paddle.enable_static()
-        
+
             with fluid.program_guard(fluid.Program()):
                 self.run_static()
 

@@ -1,10 +1,10 @@
-# C++ OP 开发
+# C++ 算子开发指南
 
-> 注：飞桨原生算子的开发范式正处在重构升级后的上线初期，如果在开发过程中遇到问题欢迎通过[Issue](https://github.com/PaddlePaddle/Paddle/issues)向我们反馈。
+> 注：飞桨算子的开发范式正处在重构升级后的上线初期，如果在开发过程中遇到问题欢迎通过[Issue](https://github.com/PaddlePaddle/Paddle/issues)向我们反馈。
 
 ## 1. 概念简介
 
-本教程对新增原生算子的方法进行介绍，首先新增一个算子大概需要以下几个步骤：
+本教程对新增算子的方法进行介绍，首先新增一个算子大概需要以下几个步骤：
 
 1. 新增算子描述及定义：描述前反向算子的输入、输出、属性，实现InferMeta函数
 2. 新增算子Kernel：实现算子在各种设备上的计算逻辑
@@ -44,16 +44,14 @@
 </tbody>
 </table>
 
-关于Python API所处位置，可以参考 [飞桨官方 API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html) ，了解各个目录存放API的性质，从而决定具体的放置目录。
-
-接下来，我们以Trace操作，计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果，即 [trace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/trace_cn.html#trace) 为例来介绍如何新增算子。
+接下来，我们以Trace操作，计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果，即 [trace](../../api/paddle/trace_cn.html#trace) 为例来介绍如何新增算子。
 
 ## 2. 新增算子描述及定义
 
 算子描述及定义是定义运算的基本属性，主要包括算子的输入、输出以及各项非计算逻辑的配置，这些都是设备无关的。
 
 ### 2.1 算子Yaml文件配置
-我们在`python/paddle/utils/code_gen/api.yaml`和`python/paddle/utils/code_gen/backward.yaml`文件中对算子进行描述及定义，在框架编译时会根据Yaml文件中的配置自动生成C++端的相关代码接口以及内部实现（详见[Paddle基于Yaml配置的算子代码自动生成](new_cpp_op_notes_cn.md#paddleyaml)），下面主要以Trace为例介绍算子的Yaml配置规则：
+我们在`python/paddle/utils/code_gen/api.yaml`和`python/paddle/utils/code_gen/backward.yaml`文件中对算子进行描述及定义，在框架编译时会根据Yaml文件中的配置自动生成C++端的相关代码接口以及内部实现（详见[Paddle基于Yaml配置的算子代码自动生成](new_cpp_op_cn.md#paddleyaml)），下面主要以Trace为例介绍算子的Yaml配置规则：
 
 python/paddle/utils/code_gen/api.yaml：
 ```yaml
@@ -96,11 +94,15 @@ python/paddle/utils/code_gen/backward.yaml：
 </tr>
 <tr>
 <td>args</td>
-<td>算子输入参数，与该算子Python API函数的输入参数对应（当前支持的输入数据类型包括：Tensor, Tensor[]/*Tensor数组*/, float, double, bool, int, int64_t, int[], int64_t[], str, Place, DataType, DataLayout, IntArray/*主要用于表示shape,index和axes等类型数据，可以直接使用Tensor或者普通整型数组构造，目前仍在测试阶段，如非必要暂不建议使用*/, Scalar/*标量，支持不同的普通数据类型*/）。我们一般称这里Tensor类型的参数为Input(输入)，非Tensor类型的参数为Attribute(属性)</td>
+<td>算子输入参数，与该算子Python API函数的输入参数对应（当前支持的输入数据类型包括：Tensor, Tensor[], float, double, bool, int, int64_t, int[], int64_t[], str, Place, DataType, DataLayout, IntArray, Scalar）。我们一般称这里Tensor类型的参数为Input(输入)，非Tensor类型的参数为Attribute(属性)<br>
+注：Tensor[]表示Tensor数组；IntArray为int类型数组，主要用于表示shape,index和axes等类型数据，可以直接使用Tensor或者普通整型数组构造，目前仍在测试阶段，如非必要暂不建议使用；Scalar表示标量，可以支持不同的普通数据类型
+</td>
 </tr>
 <tr>
 <td>output</td>
-<td>算子输出类型(目前支持Tensor和Tensor[]类型)，多个输出间用逗号“,”分隔开。可以使用”()”选择性标记输入的名字，如未标记默认为'out'</td>
+<td>算子输出类型（目前支持Tensor和Tensor[]类型），多个输出间用逗号“,”分隔开。可以使用”()”选择性标记输入的名字，如未标记默认为'out'<br>
+注：当返回类型为Tensor[]时，由于数组的size要在kernel执行前推导完成，所以需要在Tensor[]后的'{}'内通过表达式指定返回数组的size，如：Tensor[](out){input.size()}
+</td>
 </tr>
 <tr>
 <td>infer_meta</td>
@@ -128,10 +130,10 @@ python/paddle/utils/code_gen/backward.yaml：
 </tr>
 <tr>
 <td>kernel:data_type</td>
-<td>根据指定参数推导调用kernel的data_type(对应kernel函数的模板参数'T')，默认不进行配置，会根据输入Tensor自动进行推导。如果kernel的data_type类型由某个输入Tensor决定，需要将该Tensor参数的变量名填入该项。示例中未配置则kernel的data_type由输入变量'x'决定</td>
+<td>根据指定参数推导调用kernel的data_type(对应kernel函数的模板参数'T')，默认不进行配置，会根据输入Tensor自动进行推导。如果kernel的data_type类型由某个输入参数（Tensor或者DataType参数），需要将该参数的变量名填入该项。示例中未配置则kernel的data_type由输入变量'x'决定</td>
 </tr>
 <td>kernel:backend</td>
-<td>根据指定参数来选择调用kernel的Backend(Kernel执行的具体设备，如CPU、GPU等)，默认不进行配置，会根据输入Tensor自动进行推导。如果kernel执行的backend类型由某个输入Tensor决定，需要将该Tensor参数的变量名填入该项。示例中未配置则kernel执行的Backend与输入变量'x'的Backend相同</td>
+<td>根据指定参数来选择调用kernel的Backend(Kernel执行的具体设备，如CPU、GPU等)，默认不进行配置，会根据输入Tensor自动进行推导。如果kernel执行的backend类型由某个输入参数（Tensor或者Backend参数）决定，需要将该参数的变量名填入该项。示例中未配置则kernel执行的Backend与输入变量'x'的Backend相同</td>
 </tr>
 <tr>
 <td>backward</td>
@@ -536,11 +538,40 @@ void TraceKernel(const Context& dev_ctx,
 
 > **特殊情况说明：**
 > 1. **特殊模板参数**：对于某些Kernel （如reshape ，copy），这些kernel不关注数据类型T， 可以省去第一个模板参数，即为：`template <typename Context>`
-> 2. **特殊输入类型**：对于某些特殊Kernel （如concat 和split kernel）的部分输入或输出是数组类型的DenseTensor（OpMaker中有`AsDuplicable`标记）, 此时输入类型为：`const std::vector<const DenseTensor*>&`; 输出类型为：`std::vector<DenseTensor*>`
+> 2. **特殊输入类型**：对于某些特殊Kernel （如concat 和split kernel）的部分输入或输出是数组类型的DenseTensor, 此时输入类型为：`const std::vector<const DenseTensor*>&`; 输出类型为：`std::vector<DenseTensor*>`
 
 #### 3.2.2 实现 Kernel 函数
 
-此处trace op的kernel属于前述第2中情况，即CPU与GPU Kernel需要分别实现。
+**复用已有Kernel实现设备无关Kernel函数**
+由于目前的Kernel复用机制为新推出的功能，暂未对已有算子进行升级改造，所以这里我们以一个不在框架中的linear算子(out = x * w + b)为例来介绍复用已有Kernel实现设备无关Kernel函数。（linear kernel 的实现源码需要放置在`paddle/phi/kernels/linear_kernel.cc`）
+
+`LinearKernel` 的实现代码如下：
+
+```cpp
+#include ...
+#include "paddle/phi/kernels/elementwise_add_kernel.h"
+#include "paddle/phi/kernels/elementwise_multiply_kernel.h"
+
+template <typename T, typename Context>
+void LinearKernel(const Context& dev_ctx,
+                  const DenseTensor& x,
+                  const DenseTensor& w,
+                  const DenseTensor& b,
+                  DenseTensor* out) {
+  dev_ctx.template Alloc<T>(out);         // 为 out 分配内存
+  MultiplyKernel<T>(dev_ctx, x, w, out);  // 复用 MultiplyKernel
+  AddKernel<T>(dev_ctx, out, b, out);     // 复用 AddKernel
+}
+```
+复用Kernel的流程包括：
+1. 在源文件中 include 要复用 Kernel 的头文件
+2. 直接调用相应的Kernel函数进行复用
+
+注意：设备无关Kernel实现时计算逻辑部分只能复用现有Kernel或设备无关的Functor，不能使用设备相关的语法或者函数接口（如cuda、cudnn等）进行计算处理
+
+**实现设备相关Kernel函数**
+
+此处 trace 算子的kernel属于前述第2中情况，即与设备相关，CPU和GPU Kernel需要分别实现。
 
 - cpu kernel实现位于：[paddle/phi/kernels/cpu/trace_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_kernel.cc)
 - gpu kernel实现位于：[paddle/phi/kernels/gpu/trace_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_kernel.cu)
@@ -571,9 +602,7 @@ void TraceKernel(const Context& dev_ctx,
 }
 ```
 
-**Kernel复用：**
-
-此处TraceKernel的实现并未复用其他Kernel，但如果有需要也是可以复用的，Kernel复用时，直接 include 相应Kernel头文件，在函数中调用即可，例如 [triangular_solve_kernel](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/triangular_solve_kernel.cc) 复用 empty和expand kernel。
+此处TraceKernel的实现并未复用其他Kernel，但如果有需要也是可以复用的，Kernel复用时，同样是直接 include 相应Kernel头文件，在函数中调用即可，例如 [triangular_solve_kernel](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/triangular_solve_kernel.cc) 复用 empty和expand kernel。
 
 首先在triangular_solve_kernel.cc头部include相应头文件：
 
@@ -592,6 +621,8 @@ void TraceKernel(const Context& dev_ctx,
   ExpandKernel<T, Context>(dev_ctx, x, x_bst_dims, &x_bst);
 ```
 
+补充：对于Kernel内部临时使用的`DenseTensor`目前推荐使用`Empty`、`EmptyLike`、`Full`和`FullLike`接口进行创建。
+
 反向Kernel的实现与前向是类似的，此处不再赘述，可以直接参考前述对应链接中的代码实现。
 
 **公共函数管理：**
@@ -604,38 +635,6 @@ void TraceKernel(const Context& dev_ctx,
 2. 有同设备多个kernel使用的辅助函数，在kernel所在的设备目录创建`.h`放置代码
 3. 有跨设备多个kernel使用的辅助函数，在`kernels/funcs`目录下创建`.h/cc/cu`管理代码
 4. 如果当前依赖的辅助函数可以直接归类到`kernels/funcs`目录下已有的文件中，则直接放过去，不用创建新的文件
-
-**反向Kernel参数映射函数添加**
-
-现阶段，反向Kernel除了实现外，还需要添加一个参数映射函数。
-
-仍然以trace op为例，首先在`paddle/phi/ops/compat`目录下新建`trace_sig.cc`文件，用于放置这里的映射函数。
-
-- 由于函数式kernel的一个最重要的特别就是参数顺序和类型（顺序和类型是关键，变量名称不影响），我们需要定义一个函数来做一个从OpMaker中如何获取信息，并且按照顺序传递给新的kernel函数； 这个模块就是OpArgumentMapping， trace反向op的OpArgumentMapping定义如下， KernelSignature共包含4个内容
-    1. kernel名称，这个是我们给kernel注册的时候的名称
-    2. input list： 这个要和OpMaker（或者GradOpMaker）中定义的Key要完全一致
-    3. attribute list： 这个要和OpMaker（或者GradOpMaker）中定义的Key要完全一致
-    4. output list： 这个要和OpMaker（或者GradOpMaker）中定义的Key要完全一致
-
-
-    ```cpp
-    #include "paddle/phi/core/compat/op_utils.h"
-
-    namespace phi {
-
-    KernelSignature TraceGradOpArgumentMapping(const ArgumentMappingContext& ctx) {
-      return KernelSignature("trace_grad",
-                             {GradVarName("Out"), "Input"},
-                             {"offset", "axis1", "axis2"},
-                             {GradVarName("Input")});
-    }
-
-    }  // namespace phi
-
-    PD_REGISTER_ARG_MAPPING_FN(trace_grad, phi::TraceGradOpArgumentMapping);
-    ```
-
->注：没有input list或attribute list的，相应花括号内留空，不能省略花括号
 
 #### 3.2.3 注册 Kernel 函数
 
@@ -794,17 +793,11 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 > 概念解释：LayerHelper是一个用于创建op输出变量、向program中添加op的辅助工具类
 
-- Python API 实现要点
+- Python API 实现要点（详见[飞桨API Python 端开发指南](./new_python_api_cn.html)）
     - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
     - 添加动态图分支调用，即 `if in_dygraph_mode` 新动态图分支和 `if _in_legacy_dygraph` 旧动态图分支
     - 添加静态图分支调用，即dygraph分支后剩余的代码
 
-- Python API 放置位置
-    - 根据 API 自身属性，结合现有目录分类情况，放置导致对应子目录中的相应文件中
-    - 可以参考 [飞桨官方 API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html) 中对各个子目录 **功能和包含的API** 的介绍
-
-- Python API 文档
-    - 参考示例格式进行添加，内容尽可能准确、翔实，详细规范请参考 [PaddlePaddle 文档](https://github.com/PaddlePaddle/docs/wiki)
 
 ## 5. 添加单元测试
 
@@ -881,6 +874,9 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
             ['X'], 'Out', max_relative_error=0.005, no_grad_set=set('Y'))
     ```
 
+### 5.3 Python API 单元测试
+Python API也需要编写相关的单测进行测试，详见[添加 Python API 单元测试](new_python_api_cn.html#id2)
+
 其他有关单元测试添加的注意事项请参考 [《Op开发手册》](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index) 及 [《Paddle单元测试规范》](https://github.com/PaddlePaddle/Paddle/wiki/PaddlePaddle-Unit-test-specification)。
 
 
@@ -902,15 +898,11 @@ make test ARGS="-R test_trace_op -V"
 ctest -R test_trace_op -V
 ```
 
-**注意事项：**
-
-- 注册Op时的类型名，需要和该Op的名字一样。即不允许在`A_op.cc`里面，注册`REGISTER_OPERATOR(B, ...)`等，这将会导致单元测试出错。
-
-## 6. 其他编码要点
+## 6. 开发算子注意事项
 
 ### 6.1 报错检查
 
-实现Op时检查数据的合法性需要使用PADDLE_ENFORCE以及PADDLE_ENFORCE_EQ等宏定义，基本格式如下：
+实现算子时检查数据的合法性需要使用PADDLE_ENFORCE以及PADDLE_ENFORCE_EQ等宏定义，基本格式如下：
 
 ```
 PADDLE_ENFORCE(表达式, 错误提示信息)
@@ -938,3 +930,150 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
     - 例如：`Suggested Fix:If your classifier expects one-hot encoding label,check your n_classes argument to the estimatorand/or the shape of your label.Otherwise, check the shape of your label.`
 
 更详细的报错检查规范介绍请参考 [《Paddle报错信息文案书写规范》](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-Error-Message-Writing-Specification)。
+
+### 6.2 算子兼容性问题
+对算子的修改需要考虑兼容性问题，要保证算子修改之后，之前的模型都能够正常加载及运行，即新版本的Paddle预测库能成功加载运行旧版本训练的模型。<font color="#FF0000">**所以，需要保证算子当前的所有输入输出参数不能被修改（文档除外）或删除，可以新增参数，但是新增的Tensor类型变量需要设置为optional，非Tensor变量需要设置默认值。更多详细内容请参考[OP修改规范：Input/Output/Attribute只能做兼容修改](https://github.com/PaddlePaddle/Paddle/wiki/OP-Input-Output-Attribute-Compatibility-Modification)**</font> 。
+
+### 6.3 显存优化
+
+#### 6.3.1 为可原位计算的算子注册inplace
+有些算子的计算逻辑中，输出可以复用输入的显存空间，也可称为原位计算。例如[reshape](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/reshape_kernel.cc)中，输出`out`可以复用输入`x`的显存空间，因为该算子的计算逻辑不会改变`x`的实际数据，只是修改它的shape，输出和输入复用同一块显存空间不影响结果。对于这类算子，可以注册`inlace`，从而让框架在运行时自动地进行显存优化。
+
+注册方式为在算子的Yaml配置中添加`inplace`配置项，格式如：`(x -> out)`，详见[Yaml配置规则](new_cpp_op_cn.html#yaml)。示例：
+
+```yaml
+- api : reshape
+  args : (Tensor x, IntArray shape)
+  output : Tensor(out)
+  ...
+  inplace : (x -> out)
+```
+
+#### 6.3.2 减少反向算子中的无关变量
+通常反向算子会依赖于前向算子的某些输入、输出Tensor，以供反向算子计算使用。但有些情况下，反向算子不需要前向Op的所有输入和输出；有些情况下，反向算子只需要前向算子的部分输入和输出；有些情况下，反向算子只需要使用前向算子中输入和输出变量的Shape和LoD信息。若开发者在注册反向算子时，将不必要的前向算子输入和输出作为反向算子的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
+
+所以在定义反向算子时需要注意以下几点：
+
+- 如果反向不需要前向的某些输入或输出参数，则无需在args中设置。
+- 如果有些反向算子需要依赖前向算子的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的内存Buffer数据，且不能根据其他变量推断出该Shape和LoD，则可以通过`no_need_buffer`对该变量进行配置，详见[Yaml配置规则](new_cpp_op_cn.html#yaml)。示例：
+```yaml
+- backward_api : trace_grad
+  forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
+  args : (Tensor x, Tensor out_grad, int offset, int axis1, int axis2)
+  output : Tensor(x_grad)
+  ...
+  no_need_buffer : x
+```
+
+### 6.4 性能优化
+#### 6.4.1 第三方库的选择
+在写算子过程中优先使用高性能（如cudnn、mkldnn、mklml、eigen等）中提供的操作，但是一定要做benchmark，有些库中的操作在深度学习任务中可能会比较慢。因为高性能库（如eigen等）中提供的操作为了更为通用，在性能方面可能并不是很好，通常深度学习模型中数据量较小，所以有些情况下可能高性能库中提供的某些操作速度较慢。比如Elementwise系列的所有算子（前向和反向），Elementwise操作在模型中调用的次数比较多，尤其是Elementwise_add，在很多操作之后都需要添加偏置项。在之前的实现中Elementwise_op直接调用Eigen库，由于Elementwise操作在很多情况下需要对数据做Broadcast，而实验发现Eigen库做Broadcast的速度比较慢，慢的原因在这个PR[#6229](https://github.com/PaddlePaddle/Paddle/pull/6229)中有描述。
+
+#### 6.4.2 算子性能优化
+算子的计算速度与输入的数据量有关，对于某些算子可以根据输入数据的Shape和算子的属性参数来选择不同的计算方式。比如concat_op，当axis>=1时，在对多个tensor做拼接过程中需要对每个tensor做很多次拷贝，如果是在GPU上，需要调用cudaMemCopy。相对CPU而言，GPU属于外部设备，所以每次调用GPU的操作都会有一定的额外开销，并且当需要拷贝的次数较多时，这种开销就更为凸现。目前concat_op的实现会根据输入数据的Shape以及axis值来选择不同的调用方式，如果输入的tensor较多，且axis不等于0，则将多次拷贝操作转换成一个CUDA Kernel来完成；如果输入tensor较少，且axis等于0，使用直接进行拷贝。相关实验过程在该PR（[#8669](https://github.com/PaddlePaddle/Paddle/pull/8669)）中有介绍。
+
+由于CUDA Kernel的调用有一定的额外开销，所以如果算子中出现多次调用CUDA Kernel，可能会影响算子的执行速度。比如之前的sequence_expand_op中包含很多CUDA Kernel，通常这些CUDA Kernel处理的数据量较小，所以频繁调用这样的Kernel会影响算子的计算速度，这种情况下最好将这些小的CUDA Kernel合并成一个。在优化sequence_expand_op过程（相关PR[#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)）中就是采用这种思路，优化后的sequence_expand_op比之前的实现平均快出约1倍左右，相关实验细节在该PR（[#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)）中有介绍。
+
+减少CPU与GPU之间的拷贝和同步操作的次数。比如fetch操作，在每个迭代之后都会对模型参数进行更新并得到一个loss，并且数据从GPU端到没有页锁定的CPU端的拷贝是同步的，所以频繁的fetch多个参数会导致模型训练速度变慢。
+
+### 6.5 稀疏梯度参数更新方法
+目前稀疏梯度在做更新的时候会先对梯度做merge，即对相同参数的梯度做累加，然后做参数以及附加参数（如velocity）的更新。
+
+### 6.6 混合设备调用
+由于GPU是异步执行的，当CPU调用返回之后，GPU端可能还没有真正的执行，所以如果在算子中创建了GPU运行时需要用到的临时变量，当GPU开始运行的时候，该临时变量可能在CPU端已经被释放，这样可能会导致GPU计算出错。
+
+关于GPU中的一些同步和异步操作：
+```
+The following device operations are asynchronous with respect to the host:
+    Kernel launches;
+    Memory copies within a single device's memory;
+    Memory copies from host to device of a memory block of 64 KB or less;
+    Memory copies performed by functions that are suffixed with Async;
+    Memory set function calls.
+```
+
+关于cudaMemCpy和cudaMemCpyAsync注意事项：
+
+- 如果数据传输是从GPU端到非页锁定的CPU端，数据传输将是同步，即使调用的是异步拷贝操作。
+- 如果数据传输是从CPU端到CPU端，数据传输将是同步的，即使调用的是异步拷贝操作。
+
+更多内容可参考：[Asynchronous Concurrent Execution](https://docs.nvidia.com/cuda/cuda-c-programming-guide/#asynchronous-concurrent-execution)，[API synchronization behavior](https://docs.nvidia.com/cuda/cuda-runtime-api/api-sync-behavior.html#api-sync-behavior)
+
+### 6.7 算子数值稳定性问题
+有些算子存在数值稳定性问题，出现数值稳定性的主要原因程序在多次运行时，对浮点型数据施加操作的顺序可能不同，进而导致最终计算结果不同。而GPU是通过多线程并行计算的方式来加速计算的，所以很容易出现对浮点数施加操作的顺序不固定现象。
+
+目前发现cudnn中的卷积操作、cudnn中的MaxPooling、CUDA中CudaAtomicXX、ParallelExecutor的Reduce模式下参数梯度的聚合等操作运行结果是非确定的。
+
+为此Paddle中添加了一些FLAGS，比如使用FLAGS_cudnn_deterministic来强制cudnn使用确定性算法、FLAGS_cpu_deterministic强制CPU端的计算使用确定性方法。
+
+### 6.8 算子的数学公式
+如果算子有数学公式，一定要在代码中将数学公式写明，并在Python API的Doc中显示，因为用户在对比不同框架的计算结果时可能需要了解Paddle对算子是怎么实现的。
+
+### 6.9 LoD 在算子内部的传导规范
+
+[LoD](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/lod_tensor.md) 是 Paddle 框架用来表示变长序列数据的属性，除了仅支持输入是 padding  data 的算子外，所有算子的实现都要考虑 LoD 的传导问题。
+
+根据算子的计算过程中是否用到 LoD，我们可以将涉及到 LoD 传导问题的算子分为两类: LoD-Transparent 与 LoD-Based。
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特点</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LoD-Transparent </td>
+<td>计算过程不依赖 LoD，输入是否有 LoD 不会影响计算的结果，通常是 position-wise 的计算 </td>
+<td>conv2d_op、batch_norm_op、dropout_op 等 </td>
+</tr>
+<tr>
+<td>LoD-Based </td>
+<td>计算以序列为单位， 计算过程依赖 LoD </td>
+<td> lstm_op、gru_op、sequence_ops 等 </td>
+</tr>
+</tbody>
+</table>
+
+这两类算子的 LoD 传导需要考虑前向和反向两个过程。
+
+#### 前向传导
+
+在前向传导过程，与输入的 LoD 相比较，算子输出的 LoD 可能出现不变、改变和消失这三种情况：
+
+  - 不变：适用于所有的 LoD-Transparent 算子与部分的 LoD-Based算子。可以在`InferMeta` 中调用 `ShareLoD()` 直接将输入 Var 的 LoD 共享给输出 Var, 可参考 [lstm_op](https://github.com/PaddlePaddle/Paddle/blob/a88a1faa48a42a8c3737deb0f05da968d200a7d3/paddle/fluid/operators/lstm_op.cc#L92); 如果有多个输入且都可能存在 LoD 的情况，通常默认共享第一个输入, 例如 [elementwise_ops forward](https://github.com/PaddlePaddle/Paddle/blob/5d6a1fcf16bcb48d2e66306b27d9994d9b07433c/paddle/fluid/operators/elementwise/elementwise_op.h#L69)；
+
+  - 改变：适用于部分 LoD-Based 算子。在实现 OpKernel 时需考虑输出 LoD 的正确计算，真实的 LoD 在前向计算结束后才能确定，此时仍需要在`InferMeta` 中调用 `ShareLoD()`，以确保CompileTime 时对 LoD Level 做了正确的传导，可参考 [sequence_expand_op](https://github.com/PaddlePaddle/Paddle/blob/565d30950138b9f831caa33904d9016cf53c6c2e/paddle/fluid/operators/sequence_ops/sequence_expand_op.cc)；
+
+  - 消失：适用于输出不再是序列数据的 LoD-Based 算子。此时不用再考虑前向的 LoD 传导问题，可参考 [sequence_pool_op](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/sequence_ops/sequence_pool_op.cc)；
+
+其它重要的注意事项：
+
+  - 实现 LoD-Based 算子时，需要处理好 LoD 传导的边界情况，例如对长度为零的输入的支持，并完善相应的单测，单测 case 覆盖空序列出现在 batch 开头、中间和末尾等位置的情况，可参考 [test_lstm_op.py](https://github.com/PaddlePaddle/Paddle/blob/4292bd8687ababc7737cffbddc0d38ead2138c00/python/paddle/fluid/tests/unittests/test_lstm_op.py#L203-L216)
+
+  - 对 LoD Level 有明确要求的算子，推荐的做法是在 `InferMeta` 中即完成 LoD Level的检查，例如 [sequence_pad_op](https://github.com/PaddlePaddle/Paddle/blob/4292bd8687ababc7737cffbddc0d38ead2138c00/paddle/fluid/operators/sequence_ops/sequence_pad_op.cc#L79)。
+
+
+#### 反向传导
+
+通常来讲，算子的某个输入 Var 所对应的梯度 GradVar 的 LoD 应该与 Var 自身相同，所以应直接将 Var 的 LoD 共享给 GradVar，可以参考 [elementwise ops 的 backward](https://github.com/PaddlePaddle/Paddle/blob/a88a1faa48a42a8c3737deb0f05da968d200a7d3/paddle/fluid/operators/elementwise/elementwise_op.h#L189-L196)
+
+
+## 7. 补充
+### 7.1 Paddle基于Yaml配置的算子代码自动生成
+Paddle支持动态图和静态图两种模式，在Yaml配置文件中完成算子基本属性的定义后，需要进行解析并分别生成动态图和静态图所对应的算子代码逻辑，从而将算子接入框架的执行体系。基于Yaml配置的算子代码自动生成示意图：
+![code_gen_by_yaml](./code_gen_by_yaml.png)
+
+- 其中Yaml配置文件为前向：`python/paddle/utils/code_gen/api.yaml` 和反向：`python/paddle/utils/code_gen/backward.yaml`。
+- 动态图中自动生成的代码包括从Python API到计算Kernel间的各层调用接口实现，从底层往上分别为：
+  - C++ API：一套与Python API参数对齐的C++接口（只做逻辑计算，不支持自动微分），内部封装了底层kernel的选择和调用等逻辑，供上层灵活使用。
+    - 注：前向算子生成C++ API头文件和实现代码分别为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`，反向算子生成的头文件和实现代码分别为`paddle/phi/api/backward/backward_api.h`,`paddle/phi/api/lib/backward_api.cc`。
+  - 动态图前向函数与反向节点（Autograd API）：在C++ API的基础上进行了封装，组成一个提供自动微分功能的C++函数接口。
+    - 注：生成的相关代码在`paddle/fluid/eager/api/generated/eager_generated`目录下
+  - Python-C 接口：将支持自动微分功能的C++的函数接口（Autograd API）暴露到Python层供Python API调用。
+    - 注：生成的Python-C 接口代码在`paddle/fluid/pybind/eager_final_state_op_function_impl.h`中
+- 静态图的执行流程与动态图不同，所以生成的代码也与动态图有较大差异。静态图由于是先组网后计算，Python API主要负责组网，算子的调度和kernel计算由静态图执行器来完成，因此自动生成的代码是将配置文件中的算子信息注册到框架内供执行器调度，主要包括[OpMaker](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/op_proto_maker.h)（静态图中定义算子的输入、输出以及属性等信息）和`REGISTER_OPERATOR`(将算子名称以及OpMaker等信息进行注册)等静态图算子注册组件，具体的代码逻辑可参考`paddle/fluid/operators/generated_op.cc`
+
+**注意：由于代码自动生成在编译时进行，所以查看上述生成代码需要先完成[框架的编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/fromsource.html)。**
