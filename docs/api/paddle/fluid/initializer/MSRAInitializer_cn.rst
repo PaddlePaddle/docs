@@ -3,7 +3,7 @@
 MSRAInitializer
 -------------------------------
 
-.. py:class:: paddle.fluid.initializer.MSRAInitializer(uniform=True, fan_in=None, seed=0)
+.. py:class:: paddle.fluid.initializer.MSRAInitializer(uniform=True, fan_in=None, seed=0, negative_slope=0.0, nonlinearity='relu')
 
 
 
