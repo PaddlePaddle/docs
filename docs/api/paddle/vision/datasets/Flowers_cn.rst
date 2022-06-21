@@ -26,15 +26,5 @@ Flowers
 
 代码示例
 :::::::::
-        
-        .. code-block:: python
 
-            from paddle.vision.datasets import Flowers
-
-            flowers = Flowers(mode='test')
-
-            for i in range(len(flowers)):
-                sample = flowers[i]
-                print(sample[0].size, sample[1])
-
-    
+COPY-FROM: paddle.vision.datasets.Flowers
