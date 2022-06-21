@@ -20,27 +20,27 @@ CPUPS流式训练示例
 1 模型组网
 
 为实现稀疏参数统计量自动统计，在组网时需要注意以下两点：
-1. embedding层需使用paddle.static.nn.sparse_embedding，该算子为大规模稀疏参数模型特定的embedding算子，支持对稀疏参数统计量自动统计。
-2. 稀疏参数的统计量，目前特指稀疏特征的展现量(show)和点击量(click)，在组网时定义两个变量，指明特征是否展现和点击，通常取值为0或者1，sparse_embedding中通过entry参数传入一个ShowClickEntry，指明这两个变量(show和click)的名字。
+1. embedding层需使用 ``paddle.static.nn.sparse_embedding`` ，该算子为大规模稀疏参数模型特定的embedding算子，支持对稀疏参数统计量自动统计。
+2. 稀疏参数的统计量，目前特指稀疏特征的展现量(show)和点击量(click)，在组网时定义两个变量，指明特征是否展现和点击，通常取值为0或者1， ``sparse_embedding`` 中通过entry参数传入一个 ``ShowClickEntry`` ，指明这两个变量(show和click)的名字。
 
 .. code-block:: python
 
-  # net.py
-  # 构造ShowClickEntry，指明展现和点击对应的变量名
-  self.entry = paddle.distributed.ShowClickEntry("show", "click")
-  emb = paddle.static.nn.sparse_embedding(
-      input=s_input,
-      size=[self.dict_dim, self.emb_dim],
-      padding_idx=0,
-      entry=self.entry,   # 在sparse_embedding中传入entry
-      param_attr=paddle.ParamAttr(name="embedding"))
+    # net.py
+    # 构造ShowClickEntry，指明展现和点击对应的变量名
+    self.entry = paddle.distributed.ShowClickEntry("show", "click")
+    emb = paddle.static.nn.sparse_embedding(
+        input=s_input,
+        size=[self.dict_dim, self.emb_dim],
+        padding_idx=0,
+        entry=self.entry,   # 在sparse_embedding中传入entry
+        param_attr=paddle.ParamAttr(name="embedding"))
 
-  # static_model.py
-  # 构造show/click对应的data，变量名需要与entry中的名称一致
-  show = paddle.static.data(
-      name="show", shape=[None, 1], dtype="int64")
-  label = paddle.static.data(
-      name="click", shape=[None, 1], dtype="int64")
+    # static_model.py
+    # 构造show/click对应的data，变量名需要与entry中的名称一致
+    show = paddle.static.data(
+        name="show", shape=[None, 1], dtype="int64")
+    label = paddle.static.data(
+        name="click", shape=[None, 1], dtype="int64")
 
 2 数据读取
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -90,43 +90,43 @@ CPUPS流式训练示例
 
 .. code-block:: python
 
-  # 该方法定义在tools/utils/static_ps/flow_helper.py中
-  def get_online_pass_interval(split_interval, split_per_pass,  
-                               is_data_hourly_placed):
-    split_interval = int(split_interval)
-    split_per_pass = int(split_per_pass)
-    splits_per_day = 24 * 60 // split_interval
-    pass_per_day = splits_per_day // split_per_pass
-    left_train_hour = 0
-    right_train_hour = 23
+    # 该方法定义在tools/utils/static_ps/flow_helper.py中
+    def get_online_pass_interval(split_interval, split_per_pass,  
+                                is_data_hourly_placed):
+        split_interval = int(split_interval)
+        split_per_pass = int(split_per_pass)
+        splits_per_day = 24 * 60 // split_interval
+        pass_per_day = splits_per_day // split_per_pass
+        left_train_hour = 0
+        right_train_hour = 23
 
-    start = 0
-    split_path = []
-    for i in range(splits_per_day):
-        h = start // 60
-        m = start % 60
-        if h < left_train_hour or h > right_train_hour:
+        start = 0
+        split_path = []
+        for i in range(splits_per_day):
+            h = start // 60
+            m = start % 60
+            if h < left_train_hour or h > right_train_hour:
+                start += split_interval
+                continue
+            if is_data_hourly_placed:
+                split_path.append("%02d" % h)
+            else:
+                split_path.append("%02d%02d" % (h, m))
             start += split_interval
-            continue
-        if is_data_hourly_placed:
-            split_path.append("%02d" % h)
-        else:
-            split_path.append("%02d%02d" % (h, m))
-        start += split_interval
 
-    start = 0
-    online_pass_interval = []
-    for i in range(pass_per_day):
-        online_pass_interval.append([])
-        for j in range(start, start + split_per_pass):
-            online_pass_interval[i].append(split_path[j])
-        start += split_per_pass
+        start = 0
+        online_pass_interval = []
+        for i in range(pass_per_day):
+            online_pass_interval.append([])
+            for j in range(start, start + split_per_pass):
+                online_pass_interval[i].append(split_path[j])
+            start += split_per_pass
 
-    return online_pass_interval
+        return online_pass_interval
 
-  # 根据split_interval和split_per_pass，在训练之前生成每个Pass所需要的数据分片列表
-  self.online_intervals = get_online_pass_interval(
-            self.split_interval, self.split_per_pass, False)
+    # 根据split_interval和split_per_pass，在训练之前生成每个Pass所需要的数据分片列表
+    self.online_intervals = get_online_pass_interval(
+              self.split_interval, self.split_per_pass, False)
 
 例如：split_interval配置为5，split_per_pass配置为2，即数据分片时间间隔为5分钟，每个Pass的训练数据包含2个分片，则online_intervals数组的具体值为：[[0000, 0005], [0005, 0010], ..., [2350, 2355]]。
 
@@ -144,38 +144,38 @@ CPUPS流式训练示例
 
 .. code-block:: python
 
-  # 该方法定义在tools/utils/static_ps/flow_helper.py中
-  def file_ls(path_array, client):
-    # 获取path数组下的所有文件
-    # 如果数据存在hdfs/afs上，需要使用hadoop_client
-    result = []
-    for path in path_array:
-        if is_local(path):
-            cur_path = os.listdir(path)
-        else:
-            cur_path = client.ls_dir(path)[1]
-        if len(cur_path) > 0:
-            result += [os.path.join(path, i) for i in cur_path]
-    logger.info("file ls result = {}".format(result))
-    return result
+    # 该方法定义在tools/utils/static_ps/flow_helper.py中
+    def file_ls(path_array, client):
+        # 获取path数组下的所有文件
+        # 如果数据存在hdfs/afs上，需要使用hadoop_client
+        result = []
+        for path in path_array:
+            if is_local(path):
+                cur_path = os.listdir(path)
+            else:
+                cur_path = client.ls_dir(path)[1]
+            if len(cur_path) > 0:
+                result += [os.path.join(path, i) for i in cur_path]
+        logger.info("file ls result = {}".format(result))
+        return result
 
-  cur_path = []
-  for i in self.online_intervals[pass_index - 1]:
-    # p为一个具体的数据分片目录，例如："data/20190720/0000"
-    p = os.path.join(train_data_path, day, str(i))
-    if self.data_donefile:
-      # 数据等待策略生效，如果目录下无data_donefile文件，需等待data_sleep_second后再探测
-      cur_donefile = os.path.join(p, self.data_donefile)
-      data_ready(cur_donefile, self.data_sleep_second,
-                self.hadoop_client)
-    # cur_path存储当前Pass下的所有数据目录，对应一个或多个数据分片文件夹
-    # 例如：["data/20190720/0000", "data/20190720/0005"]
-    cur_path.append(p)
+    cur_path = []
+    for i in self.online_intervals[pass_index - 1]:
+        # p为一个具体的数据分片目录，例如："data/20190720/0000"
+        p = os.path.join(train_data_path, day, str(i))
+        if self.data_donefile:
+          # 数据等待策略生效，如果目录下无data_donefile文件，需等待data_sleep_second后再探测
+          cur_donefile = os.path.join(p, self.data_donefile)
+          data_ready(cur_donefile, self.data_sleep_second,
+                    self.hadoop_client)
+        # cur_path存储当前Pass下的所有数据目录，对应一个或多个数据分片文件夹
+        # 例如：["data/20190720/0000", "data/20190720/0005"]
+        cur_path.append(p)
     
-  # 获取当前数据分片下的所有数据文件
-  global_file_list = file_ls(cur_path, self.hadoop_client)
-  # 将数据文件拆分到每个Worker上
-  my_file_list = fleet.util.get_file_shard(global_file_list)
+    # 获取当前数据分片下的所有数据文件
+    global_file_list = file_ls(cur_path, self.hadoop_client)
+    # 将数据文件拆分到每个Worker上
+    my_file_list = fleet.util.get_file_shard(global_file_list)
 
 2.4 数据读取
 """"""""""""
@@ -184,36 +184,243 @@ CPUPS流式训练示例
 
 .. code-block:: python
 
-  # 创建InMemoryDataset
-  dataset = paddle.distributed.InMemoryDataset()
+    # 创建InMemoryDataset
+    dataset = paddle.distributed.InMemoryDataset()
+    
+    # InMemoryDataset初始化
+    dataset.init(use_var=self.input_data, 
+                 pipe_command=self.pipe_command, 
+                 batch_size=batch_size, 
+                 thread_num=thread_num)
   
-  # InMemoryDataset初始化
-  dataset.init(use_var=self.input_data, 
-                pipe_command=self.pipe_command, 
-                batch_size=batch_size, 
-                thread_num=thread_num)
-  
-  # 设置文件列表为拆分到当前Worker的file_list
-  dataset.set_filelist(my_file_list)
-  
-  # 将训练数据加载到内存
-  dataset.load_into_memory()
-  # 数据全局打散
-  dataset.global_shuffle(fleet, shuffle_thread_num)
-  # 获取当前Worker在全局打散之后的训练数据样例数
-  shuffle_data_size = dataset.get_shuffle_data_size(fleet)
+    # 设置文件列表为拆分到当前Worker的file_list
+    dataset.set_filelist(my_file_list)
+    
+    # 将训练数据加载到内存
+    dataset.load_into_memory()
+    # 数据全局打散
+    dataset.global_shuffle(fleet, shuffle_thread_num)
+    # 获取当前Worker在全局打散之后的训练数据样例数
+    shuffle_data_size = dataset.get_shuffle_data_size(fleet)
 
-  # 省略具体的训练过程
+    # 省略具体的训练过程
 
-  # 在当前Pass训练结束后，InMemoryDataset需调用release_memory()方法释放内存
-  dataset.release_memory()
+    # 在当前Pass训练结束后，InMemoryDataset需调用release_memory()方法释放内存
+    dataset.release_memory()
   
 
 3 模型训练及预测
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+模型训练及预测使用 ``exe.train_from_dataset()`` 和 ``exe.infer_from_dataset()`` 接口即可，本章节讲解一下在训练和预测过程中计算分布式指标上的一些细节以及如何利用debug模式下的dump功能打印模型计算的中间结果。
+
+3.1 分布式指标计算
+""""""""""""
+
+在之前的参数服务器概述中曾经提到，由于参数服务器存在多个训练节点，因此在计算指标时，需要汇总所有节点的全量数据，进行全局指标计算。
+
+除此之外，分布式全局指标计算还需要注意以下两点：
+
+1. 参数服务器的训练节点一般会存在多个线程同时进行训练，而所有线程共享指标计算所需的中间变量，这就可能导致中间变量的累计计数不准确，因此需要让每个线程拥有自己独立的中间变量。
+2. 指标计算所需的中间变量在整个训练过程中会持续累计计数，因此需要在合适的位置进行清零操作，避免当前指标计算受之前累计计数的影响。
+
+同样是以AUC指标为例，全局AUC指标计算示例如下：
+
+.. code-block:: python
+
+    # 该方法定义在tools/utils/static_ps/metric_helper.py中
+    def set_zero(var_name,
+                 scope=fluid.global_scope(),
+                 place=fluid.CPUPlace(),
+                 param_type="int64"):
+        # 对变量进行清零操作
+        param = scope.var(var_name).get_tensor()
+        param_array = np.zeros(param._get_dims()).astype(param_type)
+        param.set(param_array, place)
+
+    # 组网阶段，AUC算子在计算auc指标同时，返回正负样例中间统计结果（stat_pos, stat_neg）
+    auc, batch_auc, [batch_stat_pos, batch_stat_neg, stat_pos, stat_neg] = \
+        paddle.static.auc(input=pred, label=label)
+
+    strategy = fleet.DistributedStrategy()
+    strategy.a_sync = True
+
+    # 获取计算指标所需的中间变量的name列表，并将其配置到strategy的stat_var_names选项中
+    stat_var_names = [stat_pos.name, stat_neg.name]
+    strategy.trainer_desc_configs = {"stat_var_names": stat_var_names}
+
+    # 省略具体训练过程
+    
+    # 训练结束后，利用AUC算子返回的中间计算结果，以及fleet提供的分布式指标计算接口，完成全局AUC计算。
+    global_auc = fleet.metrics.auc(stat_pos, stat_neg)
+
+    # 指标计算所需的中间变量清零
+    set_zero(stat_pos)
+    set_zero(stat_neg)
+
+3.2 Debug模式
+""""""""""""
+
+Debug模式下的dump功能主要为了解决以下两个问题：
+
+1. 在训练过程中希望打印模型计算的中间结果，用于监控模型是否收敛等情况。
+2. 为减轻线上推理服务的计算压力，在召回或者匹配模型中，一般需要将doc侧的向量预先计算出来，灌入向量搜索引擎（例如milvus）中。因此需要在流式训练过程中加入预测阶段打印doc侧的向量计算结果。
+
+.. code-block:: python
+
+    # 该方法定义在tools/utils/static_ps/program_helper.py中
+    def set_dump_config(program, dump_config):
+        # 配置dump相关信息
+        if dump_config.get("dump_fields_path") is not None:
+            # 打印出的中间结果存放路径
+            program._fleet_opt["dump_fields_path"] = dump_config.get(
+                "dump_fields_path")
+        if dump_config.get("dump_fields") is not None:
+            # 需要打印的中间层变量名
+            program._fleet_opt["dump_fields"] = dump_config.get("dump_fields")
+        if dump_config.get("dump_param") is not None:
+            # 需要打印的参数名
+            program._fleet_opt["dump_param"] = dump_config.get("dump_param")
+  
+    # dataset需要设置parse_ins_id和parse_content为True
+    # 同时，输入数据也需要在最前面增加ins_id和content两个字段，用来标识具体的样例
+    dataset.set_parse_ins_id(True)
+    dataset.set_parse_content(True)
+
+    # 在训练或者预测前配置dump信息
+    dump_fields_dir = "dump_data"
+    # dump出的中间结果存放路径
+    dump_fields_path = "{}/{}/{}".format(dump_fields_dir, day, pass_index)
+    # 需要dump的中间变量，具体定义参考static_model.py和net.py
+    dump_fields = [var.name for var in self.infer_dump_fields]
+    # 调用set_dump_config配置dump信息
+    set_dump_config(paddle.static.default_main_program(), {
+        "dump_fields_path": dump_fields_path,
+        "dump_fields": dump_fields
+    })
+  
+    # 预测
+    self.exe.infer_from_dataset(
+        program=paddle.static.default_main_program(),
+        dataset=cur_dataset,
+        fetch_list=fetch_vars,
+        fetch_info=fetch_info,
+        print_period=print_step,
+        debug=debug)
+
+
 4 模型保存
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+为实现流式训练中的增量训练及线上推理部署，在训练过程中，需要保存几种不同类型的模型。
+
+4.1 明文模型
+""""""""""""
+
+明文模型（checkpoint model）主要用于增量训练中的模型加载。在流式训练中，由于数据、资源等问题，一直在运行的训练程序可能会挂掉，这时候需要加载之前已经保存好的明文模型，再此基础上继续进行后续的增量训练。
+
+明文模型的保存，由0号节点发送保存请求给所有服务节点，服务节点以明文形式保存模型全量的稀疏参数和稠密参数以及优化器状态。
+
+另外，还有一种特殊的明文模型，叫作batch_model，通常在每天数据训练结束后保存，与明文模型最大的区别在于，保存batch_model之前一般需要调用 ``fleet.shrink()`` 方法，删除掉一些长久不出现或者出现频率极低的稀疏特征。
+
+.. code-block:: python
+
+    # 该方法定义在tools/utils/static_ps/flow_helper.py中 
+    def save_model(exe, output_path, day, pass_id, mode=0):
+        # 保存明文模型，具体目录为output_path/day/pass_id，例如：output_path/20190720/6
+        day = str(day)
+        pass_id = str(pass_id)
+        suffix_name = "/%s/%s/" % (day, pass_id)
+        model_path = output_path + suffix_name
+        fleet.save_persistables(exe, model_path, None, mode=mode)
+  
+    # 该方法定义在tools/utils/static_ps/flow_helper.py中
+    def save_batch_model(exe, output_path, day):
+        # 保存batch_model，具体目录为output_path/day/0，例如：output_path/20190721/0
+        day = str(day)
+        suffix_name = "/%s/0/" % day
+        model_path = output_path + suffix_name
+        fleet.save_persistables(exe, model_path, mode=3)
+
+    for pass_id in range(1, 1 + len(self.online_intervals)):
+        # 分Pass训练，省略具体训练过程
+
+        if fleet.is_first_worker() and pass_id % self.checkpoint_per_pass == 0:
+            # 在到达配置的Pass时，由0号节点调用save_model保存明文模型
+            save_model(self.exe, self.save_model_path, day, pass_id)
+        fleet.barrier_worker()
+    
+    # 一天数据训练完成
+    # 调用shrink删除某些稀疏参数
+    fleet.shrink()
+
+    if fleet.is_first_worker():
+        next_day = get_next_day(day)
+        # 由0号节点调用save_batch_model保存batch_model
+        save_batch_model(self.exe, self.save_model_path, next_day)
+    fleet.barrier_worker()
+
+4.2 推理模型
+""""""""""""
+
+推理模型（inference model）主要用于线上推理部署。整个推理模型由以下三个部分组成：
+
+1. 推理网络：由训练网络裁剪而来，一般来说，推理网络输入为embedding层的输出，网络输出为label的预估值，即推理网络中不包括embedding层，也不包括损失值和指标计算。
+2. 稠密参数：稠密参数由某个训练节点（一般是0号训练节点）以二进制方式保存在该节点的本地磁盘。
+3. 稀疏参数：由于搜索推荐场景下的稀疏参数通常量级巨大，因此一般配送到专用的KV存储中（例如cube、redis）。稀疏参数的保存由0号节点发送请求给所有服务节点，服务节点可将稀疏参数通过具体的converter保存成线上KV存储所需的格式。同时为节省线上推理所需的存储空间，保存的稀疏参数可能并非全量，有一定的过滤逻辑。
+
+稀疏参数进一步区分为base模型和delta模型。base模型通常一天保存一次，在base模型的基础上，在一天之内，每间隔一段时间保存一个delta模型。
+
+.. code-block:: python
+
+    # 该方法定义在tools/utils/static_ps/flow_helper.py中
+    def save_xbox_model(output_path, day, pass_id, exe, feed_vars, target_vars, client):
+        if pass_id != -1:
+            # mode=1，保存delta模型
+            mode = 1
+            suffix_name = "/%s/delta-%s/" % (day, pass_id)
+            model_path = output_path.rstrip("/") + suffix_name
+        else:
+            # mode=2，保存base模型
+            mode = 2
+            suffix_name = "/%s/base/" % day
+            model_path = output_path.rstrip("/") + suffix_name
+        fleet.save_inference_model(
+            exe,
+            model_path, [feed.name for feed in feed_vars],
+            target_vars,
+            mode=mode)
+        if not is_local(model_path):
+            client.upload("./dnn_plugin", model_path)
+      
+    # 定义推理裁剪网络的输入和输出，具体定义参考static_model.py和net.py
+    self.inference_feed_vars = model.inference_feed_vars
+    self.inference_target_var = model.inference_target_var
+    for pass_id in range(1, 1 + len(self.online_intervals)):
+        # 分Pass训练，省略具体训练过程
+
+        if fleet.is_first_worker() and pass_id % self.save_delta_frequency == 0:
+            # 在到达配置的Pass时，由0号节点调用save_xbox_model保存delta推理模型
+            save_xbox_model(self.save_model_path, day, pass_id,
+                            self.exe, self.inference_feed_vars,
+                            self.inference_target_var,
+                            self.hadoop_client)
+        fleet.barrier_worker()
+    
+    # 一天数据训练完成
+    # 调用shrink删除某些稀疏参数
+    fleet.shrink()
+
+    if fleet.is_first_worker():
+        next_day = get_next_day(day)
+        xbox_base_key = int(time.time())
+        # 由0号节点调用save_xbox_model保存base推理模型
+        save_xbox_model(self.save_model_path, next_day, -1,
+                        self.exe, self.inference_feed_vars,
+                        self.inference_target_var,
+                        self.hadoop_client)
+    fleet.barrier_worker()
+
 
 5 稀疏参数高级功能
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -224,8 +431,8 @@ CPUPS流式训练示例
 
 为使用高级功能，需要配置稀疏参数相应的table及accessor：
 
-|             名称              |     类型     |                           取值                            | 是否必须 |                               作用描述                               |
-| :---------------------------: | :----------: | :-------------------------------------------------------: | :------: | :------------------------------------------------------------------: |
+|             名称              |     类型     |               取值               | 是否必须 |               作用描述                |
+| :---------------------------: | :----------: | :------------------------------: | :------: | :-------------------------------: |
 |         table_class           |    string    |     MemorySparseTable           |    是    |        存储embedding的table名称     |
 |         accessor_class        |    string    |     SparseAccessor              |    是    |       获取embedding的accessor名称       |
 
@@ -254,13 +461,13 @@ score = click_coeff * click + noclick_coeff * (click - show)
 
 需要注意的是：
 
-1. 特征embedding的实际维度为1 + embedx_dim，即一维初始embedding + 扩展embedding。
+1. 特征embedding的实际维度（组网sparse_embedding层参数size第二维值）为1 + embedx_dim，即一维初始embedding + 扩展embedding。
 2. 特征总维度包括show和click，因此fea_dim = embedx_dim + 3。
 
 5.3 特征embedding淘汰
 """"""""""""
 
-为避免稀疏特征无限增加，一般每天的数据训练完成后，会调用shrink函数删除掉一些长久不出现或者出现频率极低的特征，具体涉及到的配置如下：
+为避免稀疏特征无限增加，一般每天的数据训练完成后，会调用 ``fleet.shrink()`` 方法，删除掉一些长久不出现或者出现频率极低的稀疏特征，具体涉及到的配置如下：
 
 |             名称              |     类型     |       取值            |      默认值   | 是否必须 |                               作用描述                               |
 | :---------------------------: | :----------: | :------------------: | :---------: | :------: | :------------------------------------------------------------------: |
@@ -295,20 +502,8 @@ score = click_coeff * click + noclick_coeff * (click - show)
 |       weight_bounds           |    list(float)    |    任意                  |    [-10.0, 10.0]    |    是    |    embedding在训练过程中的范围        |
 
 稠密参数优化算法配置：
-|             名称              |     类型     |                           取值                            | 是否必须 |                               作用描述                               |
-| :---------------------------: | :----------: | :-------------------------------------------------------: | :------: | :------------------------------------------------------------------: |
-|             adam_d2sum              |    bool    |    任意                        |    是    |       是否使用新的稠密参数优化算法                 |
+|             名称              |     类型     |       取值     |      默认值   | 是否必须 |       作用描述                |
+| :---------------------------: | :----------: | :------------: | :------: | :------: | :---------------------------------: |
+|           adam_d2sum         |     bool     |    任意        |    否    |    是    |       是否使用新的稠密参数优化算法        |
 
-DistributedStrategy：三个模式介绍
-distributed_optimizer：切图大体逻辑，增加pull和push算子
-
-数据处理：
-fleet.util.get_file_shard：数据拆分
-重点介绍InmemoryDataset：load_into_memory, release_memory, global_shuffle
-
-训练/预测：dump
-
-指标计算：是否解释stat_var_name
-
-模型保存：inference model需要与线上推理结合，稀疏参数入cube，模型裁剪
 
