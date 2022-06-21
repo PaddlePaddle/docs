@@ -25,14 +25,4 @@ equal_all
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-     import paddle
-
-     x = paddle.to_tensor([1.0, 2.0, 3.0])
-     y = paddle.to_tensor([1.0, 2.0, 3.0])
-     z = paddle.to_tensor([1.0, 4.0, 3.0])
-     result1 = paddle.equal_all(x, y)
-     print(result1) # result1 = [True ]
-     result2 = paddle.equal_all(x, z)
-     print(result2) # result2 = [False ]
+COPY-FROM: paddle.equal_all

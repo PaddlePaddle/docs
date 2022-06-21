@@ -67,37 +67,4 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    #deformable conv v2:
-
-    import paddle
-    input = paddle.rand((8, 1, 28, 28))
-    kh, kw = 3, 3
-    weight = paddle.rand((16, 1, kh, kw))
-    # offset shape should be [bs, 2 * kh * kw, out_h, out_w]
-    # mask shape should be [bs, hw * hw, out_h, out_w]
-    # In this case, for an input of 28, stride of 1
-    # and kernel size of 3, without padding, the output size is 26
-    offset = paddle.rand((8, 2 * kh * kw, 26, 26))
-    mask = paddle.rand((8, kh * kw, 26, 26))
-    out = paddle.vision.ops.deform_conv2d(input, offset, weight, mask=mask)
-    print(out.shape)
-    # returns
-    [8, 16, 26, 26]
-
-    #deformable conv v1:
-
-    import paddle
-    input = paddle.rand((8, 1, 28, 28))
-    kh, kw = 3, 3
-    weight = paddle.rand((16, 1, kh, kw))
-    # offset shape should be [bs, 2 * kh * kw, out_h, out_w]
-    # In this case, for an input of 28, stride of 1
-    # and kernel size of 3, without padding, the output size is 26
-    offset = paddle.rand((8, 2 * kh * kw, 26, 26))
-    out = paddle.vision.ops.deform_conv2d(input, offset, weight)
-    print(out.shape)
-    # returns
-    [8, 16, 26, 26]
-
+COPY-FROM: paddle.vision.ops.deform_conv2d

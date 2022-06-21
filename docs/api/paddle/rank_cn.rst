@@ -23,8 +23,4 @@ rank
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-       import paddle
-       input = paddle.rand((3, 100, 100))
-       rank = paddle.rank(input)
+COPY-FROM: paddle.rank

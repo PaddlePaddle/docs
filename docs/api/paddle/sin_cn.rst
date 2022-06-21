@@ -23,20 +23,4 @@ sin
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([0, 45, 90], dtype='float32')
-    y = paddle.sin(x)
-    print(y) # y=[0., 0.85090351, 0.89399666]
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.sin

@@ -21,10 +21,4 @@ numel
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-        
-    x = paddle.full(shape=[4, 5, 7], fill_value=0, dtype='int32')
-    numel = paddle.numel(x) # 140
-    
+COPY-FROM: paddle.numel

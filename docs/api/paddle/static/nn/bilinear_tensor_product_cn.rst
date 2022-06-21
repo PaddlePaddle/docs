@@ -42,13 +42,4 @@ bilinear_tensor_product
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-  import paddle
-  paddle.enable_static()
-  layer1 = paddle.static.data("t1", shape=[-1, 5], dtype="float32")
-  layer2 = paddle.static.data("t2", shape=[-1, 4], dtype="float32")
-  tensor = paddle.static.nn.bilinear_tensor_product(x=layer1, y=layer2, size=1000)
-
-
-
+COPY-FROM: paddle.static.nn.bilinear_tensor_product

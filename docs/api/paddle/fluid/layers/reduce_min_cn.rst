@@ -29,33 +29,4 @@ reduce_min
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-      import paddle.fluid as fluid
-      # x是一个Tensor，元素如下：
-      #    [[0.2, 0.3, 0.5, 0.9]
-      #     [0.1, 0.2, 0.6, 0.7]]
-      # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
-      x = fluid.data(name='x', shape=[2, 4], dtype='float32')
-      fluid.layers.reduce_min(x)  # [0.1]
-      fluid.layers.reduce_min(x, dim=0)  # [0.1, 0.2, 0.5, 0.7]
-      fluid.layers.reduce_min(x, dim=-1)  # [0.2, 0.1]
-      fluid.layers.reduce_min(x, dim=1, keep_dim=True)  # [[0.2], [0.1]]
-
-      # y是一个shape为[2, 2, 2]的Tensor元素如下：
-      #      [[[1.0, 2.0], [3.0, 4.0]],
-      #      [[5.0, 6.0], [7.0, 8.0]]]
-      # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
-      y = fluid.data(name='y', shape=[2, 2, 2], dtype='float32')
-      fluid.layers.reduce_min(y, dim=[1, 2]) # [1.0, 5.0]
-      fluid.layers.reduce_min(y, dim=[0, 1]) # [1.0, 2.0]
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.reduce_min

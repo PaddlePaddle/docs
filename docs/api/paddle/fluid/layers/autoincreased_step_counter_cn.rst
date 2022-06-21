@@ -29,17 +29,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    global_step = fluid.layers.autoincreased_step_counter(
-        counter_name='@LR_DECAY_COUNTER@', begin=0, step=1)
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.autoincreased_step_counter

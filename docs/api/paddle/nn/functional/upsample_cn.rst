@@ -157,12 +157,4 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-     import paddle
-     import paddle.nn.functional as F
-
-     input = paddle.rand(shape=(2,3,6,10))
-     output = F.upsample(x=input, size=[12,12])
-     print(output.shape)
-     # [2L, 3L, 12L, 12L]
+COPY-FROM: paddle.nn.functional.upsample

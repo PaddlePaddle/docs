@@ -65,21 +65,4 @@ Variable
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    import paddle.fluid.layers as layers
-     
-    input = fluid.data( name="x", shape=[3, 6], dtype='float32' )
-    index = fluid.data( name='index', shape=[12, 1], dtype='int64', lod_level=1)
-    updates = fluid.data( name='updates', shape=[12, 1], dtype='float32', lod_level=1)
-    output = fluid.layers.sequence_scatter(input, index, updates)
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.sequence_scatter

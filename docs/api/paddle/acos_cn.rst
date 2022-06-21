@@ -25,11 +25,4 @@ arccosine函数。
 
 代码示例
 :::::::::
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([-0.8183,  0.4912, -0.6444,  0.0371])
-        res = paddle.acos(x)
-        print(res)
-        # [2.5293, 1.0573, 2.2711, 1.5336]
+COPY-FROM: paddle.acos

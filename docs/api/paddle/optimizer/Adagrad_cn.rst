@@ -39,17 +39,4 @@ Adaptive Gradient 优化器（自适应梯度优化器，简称Adagrad）可以�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    inp = paddle.rand(shape=[10, 10])
-    linear = paddle.nn.Linear(10, 10)
-    out = linear(inp)
-    loss = paddle.mean(out)
-    adagrad = paddle.optimizer.Adagrad(learning_rate=0.1,
-            parameters=linear.parameters())
-    out.backward()
-    adagrad.step()
-    adagrad.clear_grad()
+COPY-FROM: paddle.optimizer.Adagrad

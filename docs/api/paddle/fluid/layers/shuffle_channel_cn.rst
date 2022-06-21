@@ -63,17 +63,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    input = fluid.layers.data(name='input', shape=[4,2,2], dtype='float32')
-    out = fluid.layers.shuffle_channel(x=input, group=2)
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.shuffle_channel

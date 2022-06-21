@@ -28,23 +28,4 @@ adaptive_max_pool1d
 代码示例
 :::::::::
 
-.. code-block:: python
-
-        # max adaptive pool1d
-        # suppose input data in shape of [N, C, L], `output_size` is m,
-        # output shape is [N, C, m], adaptive pool divide L dimension
-        # of input data into m grids averagely and performs poolings in each
-        # grid to get output.
-        # adaptive max pool performs calculations as follow:
-        #
-        #     for i in range(m):
-        #         lstart = floor(i * L / m)
-        #         lend = ceil((i + 1) * L / m)
-        #         output[:, :, i] = max(input[:, :, lstart: lend])
-        #
-        import paddle
-        import paddle.nn.functional as F
-
-        data = paddle.to_tensor(paddle.uniform(shape = [1, 3, 32], min = -1, max = 1, dtype = "float32"))
-        pool_out = F.adaptive_max_pool1d(data, output_size=16)
-        # pool_out shape: [1, 3, 16])
+COPY-FROM: paddle.nn.functional.adaptive_max_pool1d

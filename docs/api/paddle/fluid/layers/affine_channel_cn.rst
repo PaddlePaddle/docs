@@ -33,19 +33,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.layers.data(name='data', shape=[3, 32, 32],
-                             dtype='float32')
-    input_scale = fluid.layers.create_parameter(shape=[3],
-                             dtype="float32")
-    input_bias = fluid.layers.create_parameter(shape=[3],
-                             dtype="float32")
-    out = fluid.layers.affine_channel(data,scale=input_scale,
-                             bias=input_bias)
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.affine_channel

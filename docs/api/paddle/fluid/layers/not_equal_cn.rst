@@ -28,18 +28,4 @@ not_equal
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-     import paddle.fluid as fluid
-     import paddle.fluid.layers as layers
-     import numpy as np
-     label = layers.assign(np.array([2, 3], dtype='int32'))
-     limit = layers.assign(np.array([3, 2], dtype='int32'))
-     out = fluid.layers.not_equal(x=label, y=limit) #out=[True, True]
-     out1 = label != limit #out1=[True, True]
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.not_equal

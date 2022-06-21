@@ -29,11 +29,4 @@ list[paddle.XPUPlace]，创建的 ``paddle.XPUPlace`` 列表。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-    
-    paddle.enable_static()
-
-    xpu_places = static.xpu_places()
+COPY-FROM: paddle.static.xpu_places

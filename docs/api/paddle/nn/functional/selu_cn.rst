@@ -33,11 +33,4 @@ selu激活层
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-    import numpy as np
-
-    x = paddle.to_tensor(np.array([[0.0, 1.0],[2.0, 3.0]]))
-    out = F.selu(x) # [[0, 1.050701],[2.101402, 3.152103]]
+COPY-FROM: paddle.nn.functional.selu

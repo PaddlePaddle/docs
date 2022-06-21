@@ -26,17 +26,4 @@ Tensor，数据类型与 :code:`updates` 相同，形状是 :code:`shape` 。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-    index_data = np.array([[1, 1],
-                            [0, 1],
-                            [1, 3]]).astype(np.int64)
-    index = paddle.to_tensor(index_data)
-    updates = paddle.rand(shape=[3, 9, 10], dtype='float32')
-    shape = [3, 5, 9, 10]
-    output = paddle.scatter_nd(index, updates, shape)
-        
-
-
+COPY-FROM: paddle.scatter_nd

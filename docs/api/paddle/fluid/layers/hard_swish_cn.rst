@@ -34,27 +34,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy as np
-
-    DATATYPE='float32'
-    shape = [1,4]
-
-    x_data = np.array([i for i in range(1,5)]).reshape(shape).astype(DATATYPE)
-
-    x = fluid.layers.data(name="x", shape=shape, dtype=DATATYPE)
-    y = fluid.layers.hard_swish(x)
-
-    place = fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-    out, = exe.run(feed={'x':x_data}, fetch_list=[y.name])
-    print(out)  # [[0.66666667, 1.66666667,3., 4.]]
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.hard_swish

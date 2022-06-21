@@ -31,10 +31,4 @@ to_text
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    data = "paddlepaddle"
-    data = paddle.compat.to_text(data)
-    # paddlepaddle
+COPY-FROM: paddle.compat.to_text

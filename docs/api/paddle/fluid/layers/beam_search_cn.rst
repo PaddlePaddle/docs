@@ -48,41 +48,4 @@ tuple
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-
-    # 假设 `probs` 包含计算神经元所得的预测结果
-    # `pre_ids` 和 `pre_scores` 为beam_search之前时间步的输出
-    beam_size = 4
-    end_id = 1
-    pre_ids = fluid.layers.data(
-        name='pre_id', shape=[1], lod_level=2, dtype='int64')
-    pre_scores = fluid.layers.data(
-        name='pre_scores', shape=[1], lod_level=2, dtype='float32')
-    probs = fluid.layers.data(
-        name='probs', shape=[10000], dtype='float32')
-    topk_scores, topk_indices = fluid.layers.topk(probs, k=beam_size)
-    accu_scores = fluid.layers.elementwise_add(
-                                          x=fluid.layers.log(x=topk_scores),
-                                          y=fluid.layers.reshape(
-                                              pre_scores, shape=[-1]),
-                                          axis=0)
-    selected_ids, selected_scores = fluid.layers.beam_search(
-                                          pre_ids=pre_ids,
-                                          pre_scores=pre_scores,
-                                          ids=topk_indices,
-                                          scores=accu_scores,
-                                          beam_size=beam_size,
-                                          end_id=end_id)
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.beam_search
