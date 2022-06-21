@@ -156,15 +156,15 @@ Python API 一般包含如下的部分：
 
 ```Python
 def mm(input, mat2, name=None):
-	## 为了突出重点，省略部分代码
-	## 新动态图模式，直接调用 op 对应的 CPython 函数
-	if in_dygraph_mode():
+    # 为了突出重点，省略部分代码
+    # 新动态图模式，直接调用 op 对应的 CPython 函数
+    if in_dygraph_mode():
         return _C_ops.final_state_matmul(input, mat2, False, False)
-    ## 旧动态图模式
+    # 旧动态图模式
     elif _in_legacy_dygraph():
         return _C_ops.matmul_v2(input, mat2)
 
-	## 静态分支
+	# 静态分支
     ## 检测输入
     __check_input(input, mat2)
 
