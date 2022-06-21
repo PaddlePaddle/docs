@@ -4,7 +4,7 @@ conv3d_transpose
 -------------------------------
 
 
-.. py:function:: paddle.nn.functional.conv3d_transpose(x, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1, data_format='NCDHW', output_size=None, name=None)
+.. py:function:: paddle.nn.functional.conv3d_transpose(x, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1, output_size=None, data_format='NCDHW', name=None)
 
 
 
