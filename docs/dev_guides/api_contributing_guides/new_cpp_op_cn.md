@@ -543,6 +543,7 @@ void TraceKernel(const Context& dev_ctx,
 #### 3.2.2 实现 Kernel 函数
 
 **复用已有Kernel实现设备无关Kernel函数**
+
 由于目前的Kernel复用机制为新推出的功能，暂未对已有算子进行升级改造，所以这里我们以一个不在框架中的linear算子(out = x * w + b)为例来介绍复用已有Kernel实现设备无关Kernel函数。（linear kernel 的实现源码需要放置在`paddle/phi/kernels/linear_kernel.cc`）
 
 `LinearKernel` 的实现代码如下：
@@ -791,8 +792,6 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     return out
 ```
 
-> 概念解释：LayerHelper是一个用于创建op输出变量、向program中添加op的辅助工具类
-
 - Python API 实现要点（详见[飞桨API Python 端开发指南](./new_python_api_cn.html)）
     - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
     - 添加动态图分支调用，即 `if in_dygraph_mode` 新动态图分支和 `if _in_legacy_dygraph` 旧动态图分支
@@ -801,19 +800,19 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 ## 5. 添加单元测试
 
-单测包括对比前向Op不同设备(CPU、CUDA)的实现、对比反向OP不同设备(CPU、CUDA)的实现、反向Op的梯度测试。下面介绍介绍[`TraceOp`的单元测试](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_trace_op.py)。
+单测包括对比前向算子不同设备(CPU、CUDA)的实现、对比反向算子不同设备(CPU、CUDA)的实现、反向算子的梯度测试。下面介绍介绍[`TraceOp`的单元测试](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_trace_op.py)。
 
 **注意：**
 
 单测中的测试用例需要尽可能的覆盖Kernel中的所有分支。
 
-### 5.1 前向 Operator 单测
+### 5.1 前向算子单测
 
-Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里完成。测试Operator，需要：
+算子单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里完成。测试算子，需要：
 
 1. 在`setUp`函数定义输入、输出，以及相关的属性参数。
 2. 生成随机的输入数据。
-3. 在Python脚本中实现与前向operator相同的计算逻辑，得到输出值，与operator前向计算的输出进行对比。
+3. 在Python脚本中实现与前向算子相同的计算逻辑，得到输出值，与算子前向计算的输出进行对比。
 4. 反向计算已经自动集成进测试框架，直接调用相应接口即可。
 
 
@@ -846,12 +845,12 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
 
     上面的代码首先导入依赖的包，下面是对`setUp`函数中操作的重要变量的详细解释：
 
-    - `self.op_type = "trace" ` : 定义类型，与operator注册时注册的类型一致。
+    - `self.op_type = "trace" ` : 定义类型，与算子定义的名称相同。
     - `self.python_api = paddle.trace` : 定义python api，与python调用接口一致。
     - `self.inputs` : 定义输入，类型为`numpy.array`，并初始化。
-    - `self.outputs` : 定义输出，并在Python脚本中完成与operator同样的计算逻辑，返回Python端的计算结果。
+    - `self.outputs` : 定义输出，并在Python脚本中完成与算子同样的计算逻辑，返回Python端的计算结果。
 
-### 5.2 反向 operator 单测
+### 5.2 反向算子单测
 
 而反向测试中：
 
@@ -860,7 +859,7 @@ Op单元测试继承自`OpTest`。各项具体的单元测试在`TestTraceOp`里
   - 第二个参数`'Out'` : 指定前向网络最终的输出目标变量`Out`。
   - 第三个参数`check_eager` : `check_eager=True`表示开启新动态图（eager模式）单测，`check_eager`默认为`False`。
 
-- 对于存在多个输入的反向Op测试，需要指定只计算部分输入梯度的case
+- 对于存在多个输入的反向算子测试，需要指定只计算部分输入梯度的case
   - 例如，`test_elementwise_sub_op.py`中的`test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
   - 此处第三个参数max_relative_error：指定检测梯度时能容忍的最大错误值。
 

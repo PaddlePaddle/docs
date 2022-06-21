@@ -156,15 +156,15 @@ Python API 一般包含如下的部分：
 
 ```Python
 def mm(input, mat2, name=None):
-	# 为了突出重点，省略部分代码
-	# 新动态图模式，直接调用 op 对应的 CPython 函数
+	## 为了突出重点，省略部分代码
+	## 新动态图模式，直接调用 op 对应的 CPython 函数
 	if in_dygraph_mode():
         return _C_ops.final_state_matmul(input, mat2, False, False)
-    # 旧动态图模式
+    ## 旧动态图模式
     elif _in_legacy_dygraph():
         return _C_ops.matmul_v2(input, mat2)
 
-	# 静态分支
+	## 静态分支
     ## 检测输入
     __check_input(input, mat2)
 
@@ -194,6 +194,7 @@ def ones(shape, dtype=None, name=None):
 
 #### 动静态图分支
 **动态图分支**
+
 由于目前动态图正处在重构升级阶段，所以需要为新旧动态图分别添加对应的代码分支。其中 `in_dygraph_mode()` 表示新动态图分支，`_in_legacy_dygraph()`表示旧动态图分支。
 
 参考`paddle.trace` 的代码，动态图分支的写法一般是调用 API 对应的 CPython 函数。
@@ -217,6 +218,7 @@ if _in_legacy_dygraph():
 
 
 **静态图分支**
+
 对于静态图，一般分为创建输出 Tensor，添加 operator 两步。
 
 ```Python
@@ -237,7 +239,7 @@ helper.append_op(
     outputs={'Out': [out]})
 return out
 ```
-注意：在`append_op`添加的`inputs`和`outputs`项，其中的key值（静态图中变量名）一般为Yaml中定义的输入输出Tensor变量名的首字母大写格式，静态图中的变量名可以在`paddle/fluid/operators/generated_op.cc`（需要先开发C++算子的并完成编译）文件内对应算子的`OpMaker`中找到；`attrs`项的变量名与Yaml中相同。
+注意：在`append_op`添加的`inputs`和`outputs`项，其中的key值（静态图中变量名）一般为Yaml中定义的输入输出Tensor变量名的首字母大写格式，静态图中的变量名可以在`paddle/fluid/operators/generated_op.cc`（需要先开发C++算子并完成编译）文件内对应算子的`OpMaker`中找到；`attrs`项的变量名与Yaml中相同。
 这里`trace`中的'Input'没有与Yaml配置的中'x'直接对应是由于为了兼容旧算子体系下`Trace`算子的`OpMaker`实现而做了额外的映射，新增算子时无需考虑这种情况。
 
 
