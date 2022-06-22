@@ -66,7 +66,7 @@
     编译GPU版本的Paddle：
 
     ```
-    cmake .. -GNinja -DWITH_GPU=ON
+    cmake .. -GNinja -DWITH_GPU=ON 
     ```
 
     其他编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。
@@ -76,6 +76,10 @@
     > 2. 如果本机安装了多个Python，将使用最新安装的Python版本。若需要指定Python版本，则需要指定Python路径，例如：
     ```
     cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\Python38\python.exe -DPYTHON_INCLUDE_DIR=C:\Python38\include -DPYTHON_LIBRARY=C:\Python38\libs\python38.lib
+    ```
+    > 3. 如果遇到`fatal error LINK1248:映像大小超出映像大小......` 请尝试手动限制包括进二进制的CUBIN种类数量
+    ```
+    cmake .. -GNinja -DWITH_GPU=ON -DCUDA_ARCH_NAME="Manual" -DNEW_RELEASE_PYPI=ON -DCUDA_ARCH_BIN="61 72 75 86"
     ```
 
 7. 执行编译：
