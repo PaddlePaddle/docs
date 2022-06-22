@@ -9,23 +9,21 @@ Please refer to  `PaddlePaddle Github <https://github.com/PaddlePaddle/Paddle>`_
 
 Let's start with studying basic concept of PaddlePaddle:
 
-- `Model Development <./beginner/index_en.html>`_
-- `More Uses for Model Development <./advanced/index_en.html>`_
-- `Dygraph to Static Graph <./jit/index_en.html>`_ : Introduce the transformation of dygraph to static graph.
-- `Inference and Deployment <./infer/index_en.html>`_ : Introduce the method of using the trained model to inference.
-- `Distributed Training <./06_distributed_training/index_en.html>`_ : Introduce how the PaddlePaddle uses distributed training
-- `Performance Improving <./performance_improving/index_en.html>`_ : Introduce how to improve performance of PaddlePaddle.
-- `Model Convert <./model_convert/index_en.html>`_ : Introduce how to convert your model to PaddlePaddle.
-- `FLAGS <./flags/flags_en.html>`_ : Introduce the envirenment flags in paddle.
+- `Quick Start <./quick_start_en.html>`_ : Introduction of how to get start with PaddlePaddle through a classic example quickly.
+- `Datasets and DataLoader <./datasets_dataloader_en.html>`_ : Introduction of Dataset and DataLoader in Paddle.
+- `Processing <./processing_en.html>`_ : Introduction of data processing in Paddle.
+- `Build the Model <./build_model_en.html>`_ : Introduction of build the model in Paddle.
+- `Training and Evaluation <./training_en.html>`_: Introduction of training and evaluation in Paddle.
+- `Saving and Loading Model <./saving_loading_en.html>`_: Introduction of saving and loading model in Paddle.
+
 
 ..  toctree::
     :hidden:
     
-    beginner/index_en.rst
-    advanced/index_en.rst
-    jit/index_en.rst
-    infer/index_en.rst
-    06_distributed_training/index_en.rst
-    performance_improving/index_en.rst
-    model_convert/index_en.rst
-    flags/flags_en.rst
+    quick_start_en.md
+    datasets_dataloader_en.md
+    processing_en.md
+    build_model_en.md
+    training_en.md
+    saving_loading_en.md
+
