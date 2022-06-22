@@ -66,7 +66,7 @@
     编译GPU版本的Paddle：
 
     ```
-    cmake .. -GNinja -DWITH_GPU=ON 
+    cmake .. -GNinja -DWITH_GPU=ON
     ```
 
     其他编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。
