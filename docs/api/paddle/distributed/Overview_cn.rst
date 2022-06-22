@@ -5,6 +5,10 @@ paddle.distributed
 
 paddle.distributed目录包含的API支撑飞桨框架大规模分布式训练能力。具体如下：
 
+修改ci_start.sh 回归测试Docs Repo 的文档预览
+
+Test for Docs Repo Doc Review...
+
 -  :ref:`Fleet分布式高层API <01>`
 -  :ref:`环境配置和训练启动管理 <02>`
 -  :ref:`数据加载 <03>`
