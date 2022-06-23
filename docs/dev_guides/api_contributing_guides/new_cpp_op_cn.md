@@ -975,7 +975,7 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 
 减少CPU与GPU之间的拷贝和同步操作的次数。比如fetch操作，在每个迭代之后都会对模型参数进行更新并得到一个loss，并且数据从GPU端到没有页锁定的CPU端的拷贝是同步的，所以频繁的fetch多个参数会导致模型训练速度变慢。
       
-更多算子性能优化方法，请参考 [算子性能优化 方法介绍](../op_optimization/op_optimization_method_introduction_cn.html)。
+更多算子性能优化方法，请参考 [算子性能优化 方法介绍](../../op_optimization/op_optimization_method_introduction_cn.html)。
 
 ### 6.5 稀疏梯度参数更新方法
 目前稀疏梯度在做更新的时候会先对梯度做merge，即对相同参数的梯度做累加，然后做参数以及附加参数（如velocity）的更新。
