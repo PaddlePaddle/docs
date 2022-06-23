@@ -24,7 +24,7 @@ addmm
     - **y** (Tensor) - 输入 Tensor y，数据类型支持 float32、float64。
     - **alpha** (float，可选) - 乘以x*y的标量，数据类型支持float32、float64，默认值为1.0。
     - **beta** (float，可选) - 乘以input的标量，数据类型支持float32、float64，默认值为1.0。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -33,16 +33,4 @@ addmm
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.ones([2,2])
-    y = paddle.ones([2,2])
-    input = paddle.ones([2,2])
-
-    out = paddle.addmm( input=input, x=x, y=y, beta=0.5, alpha=5.0 )
-
-    print( out.numpy() )
-    # [[10.5 10.5]
-    # [10.5 10.5]]
+COPY-FROM: paddle.addmm

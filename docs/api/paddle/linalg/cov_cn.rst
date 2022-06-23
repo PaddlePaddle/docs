@@ -19,7 +19,7 @@ cov
     - **ddof** (bool，可选) - 若是True，返回无偏估计结果；若是False，返回普通平均值计算结果。默认True。
     - **fweights** (Tensor，可选) - 包含整数频率权重的1维Tensor，表示每一个观测向量的重复次数。其维度值应该与输入x的观测维度值相等，为None则不起作用，默认None。
     - **aweights** (Tensor，可选) - 包含整数观测权重的1维Tensor，表示每一个观测向量的重要性，重要性越高对应值越大。其维度值应该与输入x的观测维度值相等，为None则不起作用，默认None。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -29,17 +29,4 @@ Tensor，输入x的协方差矩阵。假设x是[m,n]的矩阵，rowvar=True，�
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    xt = paddle.rand((3,4))
-    paddle.linalg.cov(xt)
-
-    '''
-    Tensor(shape=[3, 3], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
-        [[0.07918842, 0.06127326, 0.01493049],
-            [0.06127326, 0.06166256, 0.00302668],
-            [0.01493049, 0.00302668, 0.01632146]])
-    '''
-    
+COPY-FROM: paddle.linalg.cov

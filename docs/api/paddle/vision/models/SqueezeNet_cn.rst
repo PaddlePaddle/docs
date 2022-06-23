@@ -19,18 +19,4 @@ SqueezeNet模型，Layer的实例。
 
 代码示例
 :::::::::
-.. code-block:: python
-
-    import paddle
-    from paddle.vision.models import SqueezeNet
-
-    # build v1.0 model
-    model = SqueezeNet(version='1.0')
-
-    # build v1.1 model
-    # model = SqueezeNet(version='1.1')
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.SqueezeNet

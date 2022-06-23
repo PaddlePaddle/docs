@@ -17,9 +17,9 @@ conv2d_transpose
 
 转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解转置卷积层细节，请参考下面的说明和论文细节。
 
-如果参数bias_attr不为False, 转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
+如果参数bias_attr不为False，转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
 
-论文参考: https://arxiv.org/pdf/1603.07285.pdf
+论文参考：https://arxiv.org/pdf/1603.07285.pdf
 
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
@@ -29,24 +29,24 @@ conv2d_transpose
 
 其中：
 
-    -  :math:`X` : 输入，具有NCHW或NHWC格式的4-D Tensor；
-    -  :math:`W` : 滤波器，具有NCHW格式的4-D Tensor；
-    -  :math:`*` : 卷积计算（注意：转置卷积本质上的计算还是卷积）；
-    -  :math:`b` : 偏置（bias），2-D Tensor，形状为 ``[M,1]``；
-    -  :math:`σ` : 激活函数；
-    -  :math:`Out` : 输出值，NCHW或NHWC格式的4-D Tensor， 和 ``X`` 的形状可能不同。
+    -  :math:`X`：输入，具有NCHW或NHWC格式的4-D Tensor；
+    -  :math:`W`：滤波器，具有NCHW格式的4-D Tensor；
+    -  :math:`*`：卷积计算（注意：转置卷积本质上的计算还是卷积）；
+    -  :math:`b`：偏置（bias），2-D Tensor，形状为 ``[M,1]``；
+    -  :math:`σ`：激活函数；
+    -  :math:`Out`：输出值，NCHW或NHWC格式的4-D Tensor，和 ``X`` 的形状可能不同。
 
 **示例**
 
 - 输入：
 
-    输入Tensor的形状： :math:`（N，C_{in}， H_{in}， W_{in}）`
+    输入Tensor的形状：:math:`（N，C_{in}， H_{in}， W_{in}）`
 
-    滤波器的形状 ： :math:`（C_{in}, C_{out}, H_f, W_f）`
+    滤波器的形状：:math:`（C_{in}, C_{out}, H_f, W_f）`
 
 - 输出：
 
-    输出Tensor的形状 ： :math:`（N，C_{out}, H_{out}, W_{out}）`
+    输出Tensor的形状：:math:`（N，C_{out}, H_{out}, W_{out}）`
 
 其中
 
@@ -71,7 +71,7 @@ conv2d_transpose
 
 .. note::
 如果output_size为None，则 :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}` ;
-否则，指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[0]` 之间（不包含 :math:`H^\prime_{out} + strides[0]` ）, 并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[1]` 之间（不包含 :math:`W^\prime_{out} + strides[1]` ）。
+否则，指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[0]` 之间（不包含 :math:`H^\prime_{out} + strides[0]` ），并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[1]` 之间（不包含 :math:`W^\prime_{out} + strides[1]` ）。
 
 由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
@@ -93,11 +93,11 @@ conv2d_transpose
   - **stride** (int|tuple，可选) - 步长stride大小。滤波器和输入进行卷积计算时滑动的步长。如果stride是一个元组，则必须包含两个整型数，形式为(stride_height，stride_width)。否则，stride_height = stride_width = stride。默认：stride = 1。
   - **dilation** (int|tuple，可选) - 膨胀比例(dilation)大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据 `可视化效果图 <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀比例dilation是一个元组，那么元组必须包含两个整型数，形式为(dilation_height, dilation_width)。否则，dilation_height = dilation_width = dilation。默认：dilation= 1。
   - **groups** (int，可选) - 二维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认：group = 1。
-  - **param_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv2d_transpose算子默认的权重初始化是Xavier。
+  - **param_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv2d_transpose算子默认的权重初始化是Xavier。
   - **bias_attr** （ParamAttr|False，可选）- 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。conv2d_transpose算子默认的偏置初始化是0.0。
   - **use_cudnn** (bool，可选) - 是否使用cudnn内核，只有已安装cudnn库时才有效。默认：True。
   - **act** (str，可选) -  激活函数类型，如果设置为None，则不使用激活函数。默认：None。
-  - **name** (str，可选) – 具体用法请参见 :ref:`cn_api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCHW"和"NHWC"。N是批尺寸，C是通道数，H是特征高度，W是特征宽度。默认值："NCHW"。
 
 返回
@@ -108,12 +108,4 @@ conv2d_transpose
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    paddle.enable_static()
-    data = paddle.static.data(name='data', shape=[None, 3, 32, 32], dtype='float32')
-    conv2d_transpose = paddle.static.nn.conv2d_transpose(input=data, num_filters=2, filter_size=3)
-    print(conv2d_transpose.shape) # [-1, 2, 34, 34]
-
-
+COPY-FROM: paddle.static.nn.conv2d_transpose

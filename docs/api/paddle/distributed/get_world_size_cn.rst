@@ -15,11 +15,4 @@ get_world_size
 
 代码示例
 :::::::::
-.. code-block:: python
-
-    import paddle
-    import paddle.distributed as dist
-
-    # execute this command in terminal: export PADDLE_TRAINERS_NUM=4
-    print("The world_size is %d" % dist.get_world_size())
-    # The world_size is 4
+COPY-FROM: paddle.distributed.get_world_size

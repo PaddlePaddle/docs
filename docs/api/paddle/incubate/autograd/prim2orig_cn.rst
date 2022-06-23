@@ -24,17 +24,4 @@ prim2orig
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    from paddle.incubate.autograd import enable_prim, prim_enabled, prim2orig
-    
-    paddle.enable_static()
-    enable_prim()
-    
-    x = paddle.ones(shape=[2, 2], dtype='float32')
-    x.stop_gradients = False
-    y = x * x
-    dy_dx = paddle.static.gradients(y, x)
-    if prim_enabled():
-        prim2orig()
+COPY-FROM: paddle.incubate.autograd.prim2orig

@@ -10,7 +10,7 @@ logit
 .. math::
     logit(x) = ln(\frac{x}{1-x}) 
 
-其中，:math:`x`` 为输入的 Tensor, 且和eps有着如下关系：
+其中，:math:`x`` 为输入的 Tensor，且和eps有着如下关系：
 
 .. math::
     x_i=\left\{
@@ -27,25 +27,15 @@ logit
 ::::::::::::
 
 ::::::::::
- - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
- - eps (float, 可选) - 传入该参数后可将 ``x`` 的范围控制在[eps, 1-eps]，默认值为 None。
- - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+ - x (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+ - eps (float，可选) - 传入该参数后可将 ``x`` 的范围控制在[eps, 1-eps]，默认值为 None。
+ - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::
-    ``Tensor`` ，数据类型和形状同 ``x`` 一致。
+    ``Tensor``，数据类型和形状同 ``x`` 一致。
 
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([0.1, 0.2, 0.3, 0.4])
-    out1 = paddle.logit(x)
-    #[-2.19722462, -1.38629436, -0.84729779, -0.40546516] 
-    x = paddle.to_tensor([-0.1, 2, 0.3, 0.4])
-    out2 = paddle.logit(x)
-    #[-inf.      ,  inf.      , -0.84729779, -0.40546516] 
-
+COPY-FROM: paddle.logit

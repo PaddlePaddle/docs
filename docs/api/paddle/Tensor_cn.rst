@@ -242,7 +242,7 @@ add(y, name=None)
 add_(y, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_tensor_add` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_tensor_add` API，对输入 `x` 采用 Inplace 策略。
 
 add_n(inputs, name=None)
 :::::::::
@@ -337,7 +337,7 @@ asin(name=None)
 astype(dtype)
 :::::::::
 
-将Tensor的类型转换为 ``dtype`` ，并返回一个新的Tensor。
+将Tensor的类型转换为 ``dtype``，并返回一个新的Tensor。
 
 参数：
     - **dtype** (str) - 转换后的dtype，支持'bool'，'float16'，'float32'，'float64'，'int8'，'int16'，
@@ -370,7 +370,7 @@ backward(grad_tensor=None, retain_graph=False)
 从当前Tensor开始计算反向的神经网络，传导并计算计算图中Tensor的梯度。
 
 参数：
-    - **grad_tensor** (Tensor, optional) - 当前Tensor的初始梯度值。如果 ``grad_tensor`` 是None， 当前Tensor 的初始梯度值将会是值全为1.0的Tensor；如果 ``grad_tensor`` 不是None，必须和当前Tensor有相同的长度。默认值：None。
+    - **grad_tensor** (Tensor, optional) - 当前Tensor的初始梯度值。如果 ``grad_tensor`` 是None，当前Tensor 的初始梯度值将会是值全为1.0的Tensor；如果 ``grad_tensor`` 不是None，必须和当前Tensor有相同的长度。默认值：None。
 
     - **retain_graph** (bool, optional) - 如果为False，反向计算图将被释放。如果在backward()之后继续添加OP，
       需要设置为True，此时之前的反向计算图会保留。将其设置为False会更加节省内存。默认值：False。
@@ -489,7 +489,7 @@ ceil(name=None)
 ceil_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_ceil` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_ceil` API，对输入 `x` 采用 Inplace 策略。
 
 cholesky(upper=False, name=None)
 :::::::::
@@ -547,7 +547,7 @@ clip(min=None, max=None, name=None)
 clip_(min=None, max=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_tensor_clip` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_tensor_clip` API，对输入 `x` 采用 Inplace 策略。
 
 clone()
 :::::::::
@@ -856,7 +856,7 @@ exp(name=None)
 exp_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_exp` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_exp` API，对输入 `x` 采用 Inplace 策略。
 
 expand(shape, name=None)
 :::::::::
@@ -890,7 +890,7 @@ exponential_(lam=1.0, name=None)
 参数：
     - **x** (Tensor) - 输入Tensor，数据类型为 float32/float64。
     - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
-    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回：原Tensor
@@ -923,7 +923,7 @@ fill_(x, value, name=None)
 参数：
     - **x** (Tensor) - 需要修改的原始Tensor。
     - **value** (float) - 以输入value值修改原始Tensor元素。
-    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回：修改原始Tensor x的所有元素为value以后的新的Tensor。
 
@@ -942,7 +942,7 @@ zero_(x, name=None)
 
 参数：
     - **x** (Tensor) - 需要修改的原始Tensor。
-    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回：修改原始Tensor x的所有元素为 0 以后的新的Tensor。
 
@@ -966,7 +966,7 @@ fill_diagonal_(x, value, offset=0, wrap=False, name=None)
     - **value** (float) - 以输入value值修改原始Tensor对角线元素。
     - **offset** (int, optional) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为0。
     - **wrap** (bool, optional) - 对于2维Tensor，height>width时是否循环填充，默认为False。
-    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回：修改原始Tensor x的对角线元素为value以后的新的Tensor。
 
@@ -986,7 +986,7 @@ fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 :::::::::
 将输入Tensor y填充到Tensor x的以dim1、dim2所指定对角线维度作为最后一个维度的局部子Tensor中，输入Tensor x其余维度作为该局部子Tensor的shape中的前几个维度。
 其中输入Tensor y的维度要求是：最后一个维度与dim1、dim2指定的对角线维度相同，其余维度与输入Tensor x其余维度相同，且先后顺序一致。
-例如，有输入Tensor x，x.shape = (2,3,4,5)时, 若dim1=2，dim2=3，则y.shape=(2,3,4); 若dim1=1，dim2=2，则y.shape=(2,5,3); 
+例如，有输入Tensor x，x.shape = (2,3,4,5)时，若dim1=2，dim2=3，则y.shape=(2,3,4)；若dim1=1，dim2=2，则y.shape=(2,5,3); 
 
 参数：
     - **x** (Tensor) - 需要填充局部对角线区域的原始Tensor。
@@ -994,7 +994,7 @@ fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
     - **offset** (int, optional) - 选取局部区域对角线位置相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为0。
     - **dim1** (int, optional) - 指定对角线所参考第一个维度，默认为0。
     - **dim2** (int, optional) - 指定对角线所参考第二个维度，默认为1。
-    - **name** (str, optional) - 该层名称（可选，默认为None）。具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回：将y的值填充到输入Tensor x对角线区域以后所组合成的新Tensor。
 
@@ -1010,7 +1010,7 @@ fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 fill_diagonal_tensor_(x, y, offset=0, dim1=0, dim2=1, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fill_diagonal_tensor` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fill_diagonal_tensor` API，对输入 `x` 采用 Inplace 策略。
 
 **代码示例**
     .. code-block:: python
@@ -1033,7 +1033,7 @@ flatten(start_axis=0, stop_axis=-1, name=None)
 flatten_(start_axis=0, stop_axis=-1, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_flatten` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_flatten` API，对输入 `x` 采用 Inplace 策略。
 
 flip(axis, name=None)
 :::::::::
@@ -1065,7 +1065,7 @@ floor(name=None)
 floor_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_floor` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_floor` API，对输入 `x` 采用 Inplace 策略。
 
 floor_divide(y, name=None)
 :::::::::
@@ -1738,7 +1738,7 @@ reciprocal(name=None)
 reciprocal_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_reciprocal` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_reciprocal` API，对输入 `x` 采用 Inplace 策略。
 
 register_hook(hook)
 :::::::::
@@ -1747,7 +1747,7 @@ register_hook(hook)
 
 该被注册的 hook 函数将会在每次当前 Tensor 的梯度 Tensor 计算完成时被调用。
 
-被注册的 hook 函数不会修改输入的梯度 Tensor ，但是 hook 可以返回一个新的临时梯度 Tensor 代替当前 Tensor 的梯度继续进行反向传播。
+被注册的 hook 函数不会修改输入的梯度 Tensor，但是 hook 可以返回一个新的临时梯度 Tensor 代替当前 Tensor 的梯度继续进行反向传播。
 
 输入的 hook 函数写法如下：
 
@@ -1852,7 +1852,7 @@ round(name=None)
 round_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_round` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_round` API，对输入 `x` 采用 Inplace 策略。
 
 rsqrt(name=None)
 :::::::::
@@ -1866,7 +1866,7 @@ rsqrt(name=None)
 rsqrt_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_rsqrt` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_rsqrt` API，对输入 `x` 采用 Inplace 策略。
 
 scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 :::::::::
@@ -1880,7 +1880,7 @@ scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 scale_(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采用 Inplace 策略。
 
 scatter(index, updates, overwrite=True, name=None)
 :::::::::
@@ -1894,7 +1894,7 @@ scatter(index, updates, overwrite=True, name=None)
 scatter_(index, updates, overwrite=True, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_cn_scatter` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_cn_scatter` API，对输入 `x` 采用 Inplace 策略。
 
 scatter_nd(updates, shape, name=None)
 :::::::::
@@ -2027,7 +2027,7 @@ sqrt(name=None)
 sqrt_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_sqrt` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_sqrt` API，对输入 `x` 采用 Inplace 策略。
 
 square(name=None)
 :::::::::
@@ -2050,7 +2050,7 @@ squeeze(axis=None, name=None)
 squeeze_(axis=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_squeeze` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_tensor_squeeze` API，对输入 `x` 采用 Inplace 策略。
 
 stack(axis=0, name=None)
 :::::::::
@@ -2100,7 +2100,7 @@ subtract(y, name=None)
 subtract_(y, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_subtract` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_tensor_subtract` API，对输入 `x` 采用 Inplace 策略。
 
 sum(axis=None, dtype=None, keepdim=False, name=None)
 :::::::::
@@ -2132,7 +2132,7 @@ tanh(name=None)
 tanh_(name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_tan` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_fluid_layers_tan` API，对输入 `x` 采用 Inplace 策略。
 
 tile(repeat_times, name=None)
 :::::::::
@@ -2227,15 +2227,15 @@ unbind(axis=0)
 uniform_(min=-1.0, max=1.0, seed=0, name=None)
 :::::::::
 
-Inplace版本的 :ref:`cn_api_tensor_uniform`, 返回一个从均匀分布采样的随机数填充的Tensor。输出Tensor将被置于输入x的位置。
+Inplace版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采样的随机数填充的Tensor。输出Tensor将被置于输入x的位置。
 
 参数：
     - **x** (Tensor) - 待被随机数填充的输入Tensor。
-    - **min** (float|int, optional) - 生成随机数的下界, min包含在该范围内。默认为-1.0。
+    - **min** (float|int, optional) - 生成随机数的下界，min包含在该范围内。默认为-1.0。
     - **max** (float|int, optional) - 生成随机数的上界，max不包含在该范围内。默认为1.0。
     - **seed** (int, optional) - 用于生成随机数的随机种子。如果seed为0，将使用全局默认生成器的种子（可通过paddle.seed设置）。
                                  注意如果seed不为0，该操作每次将生成同一个随机值。默认为0。
-    - **name** (str, optional) - 默认值为None。通常用户不需要设置这个属性。更多信息请参见 :ref:`api_guide_Name` 。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回：由服从范围在[min, max)的均匀分布的随机数所填充的输入Tensor x。
 
@@ -2275,7 +2275,7 @@ unsqueeze(axis, name=None)
 unsqueeze_(axis, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采用 Inplace 策略。
 
 unstack(axis=0, num=None)
 :::::::::
@@ -2345,7 +2345,7 @@ lerp(x, y, weight, name=None)
 lerp_(y, weight, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_lerp` API，对输入 `x` 采用 Inplace 策略 。
+Inplace 版本的 :ref:`cn_api_paddle_tensor_lerp` API，对输入 `x` 采用 Inplace 策略。
 
 
 is_complex()
@@ -2370,7 +2370,7 @@ is_integer()
 take_along_axis(arr, index, axis)
 :::::::::
 
-基于输入索引矩阵, 沿着指定axis从arr矩阵里选取1d切片。索引矩阵必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
+基于输入索引矩阵，沿着指定axis从arr矩阵里选取1d切片。索引矩阵必须和arr矩阵有相同的维度，需要能够broadcast与arr矩阵对齐。
 
 返回：计算后的Tensor
 
@@ -2381,7 +2381,7 @@ take_along_axis(arr, index, axis)
 put_along_axis(arr, index, value, axis, reduce="assign")
 :::::::::
 
-基于输入index矩阵, 将输入value沿着指定axis放置入arr矩阵。索引矩阵和value必须和arr矩阵有相同的维度, 需要能够broadcast与arr矩阵对齐。
+基于输入index矩阵，将输入value沿着指定axis放置入arr矩阵。索引矩阵和value必须和arr矩阵有相同的维度，需要能够broadcast与arr矩阵对齐。
 
 返回：计算后的Tensor
 
