@@ -56,7 +56,7 @@ train_batch(inputs, labels=None, update=True)
 
 **代码示例**
 
-COPY-FROM: paddle.Model:code-example-train-batch
+COPY-FROM: paddle.Model.train_batch
 
 
 eval_batch(inputs, labels=None)
@@ -77,7 +77,7 @@ list，如果没有定义评估函数，则返回包含了预测损失函数的�
 
 **代码示例**
 
-COPY-FROM: paddle.Model:code-example-eval-batch
+COPY-FROM: paddle.Model.eval_batch
 
 
 predict_batch(inputs)
@@ -96,7 +96,7 @@ predict_batch(inputs)
 
 **代码示例**
 
-COPY-FROM: paddle.Model:code-example-predict-batch
+COPY-FROM: paddle.Model.predict_batch
 
 
 save(path, training=True)
@@ -117,7 +117,7 @@ save(path, training=True)
 
 **代码示例**
 
-COPY-FROM: paddle.Model:code-example-save
+COPY-FROM: paddle.Model.save
 
 
 load(path, skip_mismatch=False, reset_optimizer=False)
@@ -138,7 +138,7 @@ load(path, skip_mismatch=False, reset_optimizer=False)
 
 **代码示例**
 
-COPY-FROM: paddle.Model:code-example-load
+COPY-FROM: paddle.Model.load
 
 
 parameters(*args, **kwargs)
@@ -152,7 +152,7 @@ parameters(*args, **kwargs)
 
 **代码示例**
 
-COPY-FROM: paddle.Model:code-example-parameters
+COPY-FROM: paddle.Model.parameters
 
 
 prepare(optimizer=None, loss=None, metrics=None, amp_configs=None)
@@ -200,12 +200,12 @@ fit(train_data=None, eval_data=None, batch_size=1, epochs=1, eval_freq=1, log_fr
 
     1. 使用 Dataset 训练，并设置 batch_size 的例子。
 
-    COPY-FROM: paddle.Model:code-example-fit-1
+    COPY-FROM: paddle.Model.fit:code-example1
 
 
     2. 使用 Dataloader 训练的例子.
 
-    COPY-FROM: paddle.Model:code-example-fit-2
+    COPY-FROM: paddle.Model.fit:code-example2
 
 
 evaluate(eval_data, batch_size=1, log_freq=10, verbose=2, num_workers=0, callbacks=None, num_iters=None)
@@ -229,7 +229,7 @@ dict, key是 ``prepare`` 时 Metric 的的名称，value 是该 Metric 的值。
 
 **代码示例**
 
-COPY-FROM: paddle.Model:code-example-evaluate
+COPY-FROM: paddle.Model.evaluate
 
 
 predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, verbose=1, callbacks=None)
@@ -252,7 +252,7 @@ predict(test_data, batch_size=1, num_workers=0, stack_outputs=False, verbose=1, 
 
 **代码示例**
 
-COPY-FROM: paddle.Model:code-example-predict
+COPY-FROM: paddle.Model.predict
 
 
 summary(input_size=None, dtype=None)
@@ -271,4 +271,4 @@ summary(input_size=None, dtype=None)
 
 **代码示例**
 
-COPY-FROM: paddle.Model:code-example-summary
+COPY-FROM: paddle.Model.summary
