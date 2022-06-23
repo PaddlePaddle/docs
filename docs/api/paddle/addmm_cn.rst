@@ -14,7 +14,9 @@ addmm
 计算过程的公式为：
 
 ..  math::
-    out = alpha * x * y + beta * input
+    \begin{equation}\label{eq1}
+        out = \alpha \times x * y + beta * input
+    \end{equation}
 
 参数
 ::::::::::::
@@ -22,7 +24,7 @@ addmm
     - **input** (Tensor) - 输入 Tensor input，数据类型支持 float32、float64。
     - **x** (Tensor) - 输入 Tensor x，数据类型支持 float32、float64。
     - **y** (Tensor) - 输入 Tensor y，数据类型支持 float32、float64。
-    - **alpha** (float，可选) - 乘以x*y的标量，数据类型支持float32、float64，默认值为1.0。
+    - **alpha** (float，可选) - :math:`\eqref{eq1}` 式中的 :math:`\alpha`，数据类型支持float32、float64，默认值为1.0。
     - **beta** (float，可选) - 乘以input的标量，数据类型支持float32、float64，默认值为1.0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
