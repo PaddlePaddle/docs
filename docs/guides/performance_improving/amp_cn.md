@@ -1,6 +1,6 @@
 # 自动混合精度训练（AMP）
 
-一般情况下，训练深度学习模型时默认使用的数据类型（dtype）是 float32，每个数据占用 32 位的存储空间。为了节约显存消耗，业界提出了 16 位的数据类型（如 GPU 支持的 float16、bfloat16），每个数据仅需要 16 位的存储空间，比 float32 节省一半的存储空间，并且一些芯片可以在 16 位的数据上获得更快的计算速度，比如按照 NVIDIA 的数据显示，GPU上 float16 的计算吞吐量是 float32 的 8 倍。
+一般情况下，训练深度学习模型时默认使用的数据类型（dtype）是 float32，每个数据占用 32 位的存储空间。为了节约显存消耗，业界提出了 16 位的数据类型（如 GPU 支持的 float16、bfloat16），每个数据仅需要 16 位的存储空间，比 float32 节省一半的存储空间，并且一些芯片可以在 16 位的数据上获得更快的计算速度，比如按照 NVIDIA 的数据显示，V100 GPU 上 矩阵乘和卷积计算在 float16 的计算速度最大可达 float32 的 8 倍。
 
 考虑到一些算子（OP）对数据精度的要求较高（如 softmax、cross_entropy），仍然需要采用 float32 进行计算；还有一些算子（如conv2d、matmul）对数据精度不敏感，可以采用 float16 / bfloat16 提升计算速度并降低存储空间，飞桨框架提供了**自动混合精度（Automatic Mixed Precision，以下简称为AMP）训练**的方法，可在模型训练时，自动为算子选择合适的数据计算精度（float32 或 float16 / bfloat16），在保持训练精度（accuracy）不损失的条件下，能够加速训练，可参考2018年百度与NVIDIA联合发表的论文：[MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf)。本文将介绍如何使用飞桨框架实现自动混合精度训练。
 
@@ -8,7 +8,7 @@
 
 ### 1.1 浮点数据类型
 
-[float16](https://en.wikipedia.org/wiki/Half-precision_floating-point_format) 和 [bfloat16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format)（brain floating point）都是一种半精度浮点数据类型，在计算机中使用 2 字节（16位）存储。与计算中常用的单精度浮点数（float32）和双精度浮点数（float64）类型相比，float16 及 bfloat16 更适于在精度要求不高的场景中使用。
+[Float16](https://en.wikipedia.org/wiki/Half-precision_floating-point_format) 和 [bfloat16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format)（brain floating point）都是一种半精度浮点数据类型，在计算机中使用 2 字节（16位）存储。与计算中常用的单精度浮点数（float32）和双精度浮点数（float64）类型相比，float16 及 bfloat16 更适于在精度要求不高的场景中使用。
 
 对比 float32 与 float16 / bfloat16 的浮点格式，如图1所示：
 
@@ -16,6 +16,12 @@
     <img src="./images/float.png" width="400" alt='missing'>
     <figcaption><center>图 1. 半精度和单精度数据格式示意图</center></figcaption>
 </figure>
+
+上述数据类型存在如下数值特点：
+
+- float32的指数位占8位，尾数位占23位，可表示的数据动态范围是[2^-126, 2^127]，是深度学习模型时默认使用的数据类型。
+- float16的指数位占5位，尾数位占10位，相比float32，可表示的数据动态范围更低，最小可表示的正数数值为2^-14，最大可表示的数据为65504，容易出现数值上溢出问题。
+- bfloat16的指数位8位，尾数为7位，其特点是牺牲精度从而获取更大的数据范围，可表示的数据范围与float32一致，但是与float16相比bfloat16可表示的数据精度更低，相比float16更易出现数值下溢出的问题。
 
 ### 1.2 AMP 计算过程
 
@@ -55,8 +61,7 @@
     </tr>
     <tr>
         <td>Intel CPU</td>
-        <td>float16</td>
-        <td>bfloat16</td>
+        <td colspan="2">bfloat16</td>
     </tr>
     <tr>
         <td>华为 NPU</td>
@@ -196,8 +201,8 @@ for epoch in range(epochs):
 
 print("loss:", train_loss)
 print("使用float32模式训练耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
-loss: [0.6486028]
-使用float32模式训练耗时:0.529 sec
+# loss: [0.6486028]
+# 使用float32模式训练耗时:0.529 sec
 ```
 
 > 注：如果该示例代码在你的机器上显示显存不足相关的错误，请尝试将`input_size`、`output_size`、`batch_size`调小。
@@ -239,8 +244,8 @@ for epoch in range(epochs):
 
 print("loss:", train_loss)
 print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
-loss: [0.6486219]
-使用AMP-O1模式耗时:0.118 sec
+# loss: [0.6486219]
+# 使用AMP-O1模式耗时:0.118 sec
 ```
 
 #### 2.1.3 动态图 AMP-O2 训练
@@ -285,8 +290,8 @@ for epoch in range(epochs):
 
 print("loss=", train_loss)
 print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
-loss= [0.6743]
-使用AMP-O2模式耗时:0.102 sec
+# loss= [0.6743]
+# 使用AMP-O2模式耗时:0.102 sec
 ```
 
 #### 2.1.4 对比不同模式下训练速度
@@ -300,7 +305,7 @@ loss= [0.6743]
 
 从上表统计结果可以看出，相比普通的 float32 训练模式， **AMP-O1** 模式训练速度提升约为 **4.5** 倍，**AMP-O2** 模式训练速度提升约为 **5.2** 倍。
 
-> 注：受机器环境影响，上述示例代码的训练耗时统计可能存在差异，该影响主要包括：GPU 利用率、CPU 利用率等，本示例的测试机器配置如下：
+> 注：上述实验构建了一个理想化的实验模型，其matmul算子占比较高，所以加速比较明显，实际模型的加速效果与模型特点有关，理论上数值计算如matmul、conv占比较高的模型加速效果更明显。此外，受机器环境影响，上述示例代码的训练耗时统计可能存在差异，该影响主要包括：GPU 利用率、CPU 利用率等，本示例的测试机器配置如下：
 
 | **Device**           | **MEM Clocks** | **SM Clocks** | **Running with CPU Clocks** |
 | -------------------- | -------------- | ------------- | --------------------------- |
@@ -383,8 +388,8 @@ for epoch in range(epochs):
 
 print("loss:", train_loss)
 print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
-loss: [0.6602017]
-使用AMP-O1模式耗时:0.113 sec
+# loss: [0.6602017]
+# 使用AMP-O1模式耗时:0.113 sec
 ```
 
 上面的例子中，每经过 `accumulate_batchs_num`个 batch 的训练步骤，进行1次参数更新。
@@ -440,8 +445,8 @@ for epoch in range(epochs):
 
 print("loss:", train_loss)
 print("使用FP32模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
-loss: [array([0.6486028], dtype=float32)]
-使用FP32模式耗时:0.531 sec
+# loss: [array([0.6486028], dtype=float32)]
+# 使用FP32模式耗时:0.531 sec
 ```
 
 #### 3.2.2 静态图 AMP-O1 训练
@@ -486,8 +491,8 @@ for epoch in range(epochs):
 
 print("loss:", train_loss)
 print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
-loss: [array([0.6486222], dtype=float32)]
-使用AMP-O1模式耗时:0.117 sec
+# loss: [array([0.6486222], dtype=float32)]
+# 使用AMP-O1模式耗时:0.117 sec
 ```
 
 `paddle.static.amp.CustomOpLists`用于自定义黑白名单，将 add 算子加入了白名单中，Linear 网络将全部执行在 float16 下。
@@ -537,8 +542,8 @@ for epoch in range(epochs):
 
 print("loss:", train_loss)
 print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
-loss: [array([0.6743], dtype=float16)]
-使用AMP-O2模式耗时:0.098 sec
+# loss: [array([0.6743], dtype=float16)]
+# 使用AMP-O2模式耗时:0.098 sec
 ```
 
 > 注：在 AMP-O2 模式下，网络参数将从 float32 转为 float16，输入数据需要相应输入 float16 类型数据，因此需要将`class RandomDataset`中初始化的数据类型设置为`float16`。
@@ -603,8 +608,8 @@ for epoch in range(epochs):
 
 print("loss:", train_loss)
 print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
-loss: [array([0.6691731], dtype=float32)]
-使用AMP-O2模式耗时:0.140 sec
+# loss: [array([0.6691731], dtype=float32)]
+# 使用AMP-O2模式耗时:0.140 sec
 ```
 
 #### 3.2.4 对比不同模式下训练速度
