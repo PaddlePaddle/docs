@@ -974,6 +974,8 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 由于CUDA Kernel的调用有一定的额外开销，所以如果算子中出现多次调用CUDA Kernel，可能会影响算子的执行速度。比如之前的sequence_expand_op中包含很多CUDA Kernel，通常这些CUDA Kernel处理的数据量较小，所以频繁调用这样的Kernel会影响算子的计算速度，这种情况下最好将这些小的CUDA Kernel合并成一个。在优化sequence_expand_op过程（相关PR[#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)）中就是采用这种思路，优化后的sequence_expand_op比之前的实现平均快出约1倍左右，相关实验细节在该PR（[#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)）中有介绍。
 
 减少CPU与GPU之间的拷贝和同步操作的次数。比如fetch操作，在每个迭代之后都会对模型参数进行更新并得到一个loss，并且数据从GPU端到没有页锁定的CPU端的拷贝是同步的，所以频繁的fetch多个参数会导致模型训练速度变慢。
+      
+更多算子性能优化方法，请参考 [算子性能优化 方法介绍](../op_optimization/op_optimization_method_introduction_cn.html)。
 
 ### 6.5 稀疏梯度参数更新方法
 目前稀疏梯度在做更新的时候会先对梯度做merge，即对相同参数的梯度做累加，然后做参数以及附加参数（如velocity）的更新。
