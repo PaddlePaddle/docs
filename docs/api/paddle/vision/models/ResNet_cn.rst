@@ -12,16 +12,16 @@ ResNet 模型，来自论文 `"Deep Residual Learning for Image Recognition" <ht
 :::::::::
 
   - **Block** (BasicBlock|BottleneckBlock) - 模型的残差模块。
-  - **depth** (int，可选) - ResNet 模型的深度。默认值：50。
-  - **width** (int，可选) - 各个卷积块的每个卷积组基础宽度。默认值：64。
-  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于 0，则不定义最后一个全连接层。默认值：1000。
-  - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值：True。
-  - **groups** (int，可选) - 各个卷积块的分组数。默认值：1。
+  - **depth** (int，可选) - ResNet 模型的深度。默认值为 50。
+  - **width** (int，可选) - 各个卷积块的每个卷积组基础宽度。默认值为 64。
+  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于等于 0，则不定义最后一个全连接层。默认值为 1000。
+  - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值为 True。
+  - **groups** (int，可选) - 各个卷积块的分组数。默认值为 1。
 
 返回
 :::::::::
 
-ResNet 模型，:ref:`cn_api_fluid_dygraph_Layer` 的实例。
+:ref:`cn_api_fluid_dygraph_Layer`，ResNet 模型实例。
 
 代码示例
 :::::::::
