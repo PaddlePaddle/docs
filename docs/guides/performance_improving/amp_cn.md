@@ -313,7 +313,7 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 
 ### 2.2 使用高层 API
 
-飞桨框架 2.0 开始全新推出高层 API，是对飞桨基础 API 的进一步封装与升级，提供了更加简洁易用的 API，提升了飞桨框架的易学易用性，并增强飞桨的功能。高层 API 下 AMP 使用示例如下，主要通过 [paddle.Model.prepare](../../api/paddle/Model_cn.html#prepare-optimizer-none-loss-none-metrics-none-amp-configs-none) 的 **amp_configs** 参数传入 AMP 相关配置**。**
+飞桨框架 2.0 开始全新推出高层 API，是对飞桨基础 API 的进一步封装与升级，提供了更加简洁易用的 API，提升了飞桨框架的易学易用性，并增强飞桨的功能。高层 API 下 AMP 使用示例如下，主要通过 [paddle.Model.prepare](../../api/paddle/Model_cn.html#prepare-optimizer-none-loss-none-metrics-none-amp-configs-none) 的 **amp_configs** 参数传入 AMP 相关配置。
 
 ```python
 import paddle
