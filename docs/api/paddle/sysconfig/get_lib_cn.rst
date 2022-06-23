@@ -1,4 +1,4 @@
-.. _cn_api_paddle_sysconfig_get_lib
+.. _cn_api_paddle_sysconfig_get_lib:
 
 get_lib
 -------------------------------
