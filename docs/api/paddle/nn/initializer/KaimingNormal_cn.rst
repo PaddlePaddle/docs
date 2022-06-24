@@ -3,7 +3,7 @@
 KaimingNormal
 -------------------------------
 
-.. py:class:: paddle.nn.initializer.KaimingNormal(fan_in=None)
+.. py:class:: paddle.nn.initializer.KaimingNormal(fan_in=None, negative_slope=0.0, nonlinearity='relu')
 
 
 
@@ -16,12 +16,14 @@ KaimingNormal
 
 .. math::
 
-    \sqrt{\frac{2.0}{fan\_in}}
+    \frac{gain}{\sqrt{{fan\_in}}}
 
 参数
 ::::::::::::
 
     - **fan_in** (float16|float32) - Kaiming Normal Initializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None
+    - **negative_slope** (float，可选): 只适用于使用leaky_relu作为激活函数时的negative_slope参数。默认值为0.0。
+    - **nonlinearity** (str，可选): 非线性激活函数。默认值为relu.
 
 返回
 ::::::::::::
