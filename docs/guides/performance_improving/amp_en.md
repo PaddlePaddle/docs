@@ -634,10 +634,9 @@ Open AMP for distributed training, please refer to the link of [distributed trai
 
 ## IV. Other precautions
 
-1. The AMP training is applicable to NVIDIA GPU with a computing Capability of at least 7.0.
+The fundamental reason why the Paddle AMP improves the training performance of the model is that: the Tensor Core is used to accelerate the ``matmul`` and ``conv`` under FP16. In order to obtain the best acceleration effect, the Tensor Core has certain use constraints on matrix multiplication and convolution operations. The constraints are as follows:
 
-2. The fundamental reason why the Paddle AMP improves the training performance of the model is that: the Tensor Core is used to accelerate the ``matmul`` and ``conv`` under FP16. In order to obtain the best acceleration effect, the Tensor Core has certain use constraints on matrix multiplication and convolution operations. The constraints are as follows:
-   2.1. General matrix multiplication (GEMM) is defined as: ``C = A * B + C``, of which:
+1. General matrix multiplication (GEMM) is defined as: ``C = A * B + C``, of which:
 
     - The dimension of matrix A is: M x K
     - The dimension of matrix B is: K x N
@@ -645,7 +644,7 @@ Open AMP for distributed training, please refer to the link of [distributed trai
 
     Suggestion for matrix multiplication is: According to the Tensor Core usage recommendations, when the matrix dimensions of M, N, and K are multiples of 8 (the A100 architecture GPU is 16) (FP16 data), the performance is optimal.
 
-   2.2. Convolution is defined as: ``NKPQ = NCHW * KCRS``, of which:
+2. Convolution is defined as: ``NKPQ = NCHW * KCRS``, of which:
 
     - N: batch size
     - K: Number of output channels
