@@ -26,17 +26,17 @@ z (4-D Tensor):  8 x 7 x 6 x 5
 
 若两个输入的维数相同，则输出的大小可直接用步骤2确定。以下是 `p` 取不同值时，范数的计算公式：
 
-当 `p = 0` ，定义 $0^0 = 0$，则 z 的零范数是 `z` 中非零元素的个数。
+当 `p = 0`，定义 $0^0 = 0$，则 z 的零范数是 `z` 中非零元素的个数。
 
 .. math::
     ||z||_{0}=\lim_{p \rightarrow 0}\sum_{i=1}^{m}|z_i|^{p}
 
-当 `p = inf` ，`z` 的无穷范数是 `z` 所有元素中的最大值。
+当 `p = inf` ，`z` 的无穷范数是 `z` 所有元素中的绝对值最大值。
 
 .. math::
     ||z||_\infty=\max_i |z_i|
 
-当 `p = -inf` ，`z` 的负无穷范数是 `z` 所有元素中的最小值。
+当 `p = -inf` ，`z` 的负无穷范数是 `z` 所有元素中的绝对值最小值。
 
 .. math::
     ||z||_{-\infty}=\min_i |z_i|
@@ -51,30 +51,13 @@ z (4-D Tensor):  8 x 7 x 6 x 5
 
   - **x** (Tensor): 1-D 到 6-D Tensor，数据类型为float32或float64。
   - **y** (Tensor): 1-D 到 6-D Tensor，数据类型为float32或float64。
-  - **p** (float，optional): 用于设置需要计算的范数，数据类型为float32或float64。默认值为2。
+  - **p** (float，optional)：用于设置需要计算的范数，数据类型为float32或float64。默认值为2。
 
 返回
 ::::::::::::
- `(x-y)` 的 `p` 范数。
+张量，`(x-y)` 的 `p` 范数。
 
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x = paddle.to_tensor(np.array([[3, 3],[3, 3]]), "float32")
-    y = paddle.to_tensor(np.array([[3, 3],[3, 1]]), "float32")
-    out = paddle.dist(x, y, 0)
-    print(out) # out = [1.]
-
-    out = paddle.dist(x, y, 2)
-    print(out) # out = [2.]
-
-    out = paddle.dist(x, y, float("inf"))
-    print(out) # out = [2.]
-
-    out = paddle.dist(x, y, float("-inf"))
-    print(out) # out = [0.]
+COPY-FROM: paddle.dist

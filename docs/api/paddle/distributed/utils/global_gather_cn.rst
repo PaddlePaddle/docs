@@ -38,12 +38,12 @@ global_gather发送数据的流程如下：
     - x (Tensor) - 输入Tensor。Tensor的数据类型必须是float16、float32、 float64、int32、int64。
     - local_count (Tensor) - 拥有n_expert * world_size个数据的Tensor，用于表示有多少数据接收。Tensor的数据类型必须是int64。
     - global_count (Tensor) - 拥有n_expert * world_size个数据的Tensor，用于表示有多少数据发送。Tensor的数据类型必须是int64。
-    - group (Group, 可选) - new_group返回的Group实例，或者设置为None表示默认地全局组。默认值：None。
+    - group (Group，可选) - new_group返回的Group实例，或者设置为None表示默认地全局组。默认值：None。
     - use_calc_stream (bool，可选) - 标识使用计算流还是通信流。默认值：True，表示用计算流。
 
 返回
 :::::::::
-Tensor， 从所有expert接收的数据。
+Tensor，从所有expert接收的数据。
 
 代码示例
 :::::::::

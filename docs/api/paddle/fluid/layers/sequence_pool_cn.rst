@@ -11,7 +11,7 @@ sequence_pool
 
 **注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用pool2d函数（fluid.layers.** :ref:`cn_api_fluid_layers_pool2d` **）。**
 
-该OP **仅支持LoDTensor类型的输入** ，将对输入的LoDTensor进行指定方式的池化（pooling）操作。通过指定pool_type参数，将输入的每个序列（sequence）在最后一层lod_level上或时间步（time-step）上对特征进行诸如sum、average、sqrt等池化操作。
+该OP **仅支持LoDTensor类型的输入**，将对输入的LoDTensor进行指定方式的池化（pooling）操作。通过指定pool_type参数，将输入的每个序列（sequence）在最后一层lod_level上或时间步（time-step）上对特征进行诸如sum、average、sqrt等池化操作。
 
 支持六种pool_type:
 
@@ -28,7 +28,7 @@ sequence_pool
 
     Case 1:
 
-        input是1-level的LoDTensor, 且pad_value = 0.0:
+        input是1-level的LoDTensor，且pad_value = 0.0:
             input.lod = [[0, 2, 5, 7, 7]]
             input.data = [[1.], [3.], [2.], [4.], [6.], [5.], [1.]]
             input.shape = [7, 1]
@@ -47,7 +47,7 @@ sequence_pool
 
     Case 2:
     
-        input是2-level的LoDTensor, 包含3个长度分别为[2, 0, 3]的序列，其中中间的0表示序列为空。
+        input是2-level的LoDTensor，包含3个长度分别为[2, 0, 3]的序列，其中中间的0表示序列为空。
         第一个长度为2的序列包含2个长度分别为[1, 2]的子序列；
         最后一个长度为3的序列包含3个长度分别为[1, 0, 3]的子序列。
             input.lod = [[0, 2, 2, 5], [0, 1, 3, 4, 4, 7]]
@@ -82,24 +82,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-
-    x = fluid.layers.data(name='x', shape=[7, 1], append_batch_size=False,
-                 dtype='float32', lod_level=1)
-    avg_x = fluid.layers.sequence_pool(input=x, pool_type='average')
-    sum_x = fluid.layers.sequence_pool(input=x, pool_type='sum')
-    sqrt_x = fluid.layers.sequence_pool(input=x, pool_type='sqrt')
-    max_x = fluid.layers.sequence_pool(input=x, pool_type='max')
-    last_x = fluid.layers.sequence_pool(input=x, pool_type='last')
-    first_x = fluid.layers.sequence_pool(input=x, pool_type='first')
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.sequence_pool

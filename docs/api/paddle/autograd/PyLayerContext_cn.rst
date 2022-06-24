@@ -37,7 +37,7 @@ PyLayerContext
 save_for_backward(self, *tensors)
 '''''''''
 
-用于暂存 ``backward`` 需要的  ``Tensor`` ，在 ``backward`` 中调用 ``saved_tensor`` 获取这些 ``Tensor`` 。
+用于暂存 ``backward`` 需要的  ``Tensor``，在 ``backward`` 中调用 ``saved_tensor`` 获取这些 ``Tensor`` 。
 
 .. note::
   这个API只能被调用一次，且只能在 ``forward`` 中调用。
@@ -83,7 +83,7 @@ saved_tensor(self, *tensors)
 
 **返回**
 
-如果调用 ``save_for_backward`` 暂存了一些 ``Tensor`` ，则返回这些 ``Tensor`` ，否则，返回 None。
+如果调用 ``save_for_backward`` 暂存了一些 ``Tensor``，则返回这些 ``Tensor``，否则，返回 None。
 
 **代码示例**
 

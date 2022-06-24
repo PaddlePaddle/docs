@@ -14,8 +14,4 @@ set_flags
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-
-    fluid.set_flags({'FLAGS_eager_delete_tensor_gb': 1.0})
+COPY-FROM: paddle.fluid.set_flags

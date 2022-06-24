@@ -8,9 +8,9 @@ KaimingUniform
 
 
 
-该接口实现Kaiming均匀分布方式的权重初始化
+该接口实现Kaiming均匀分布方式的权重初始化。
 
-该接口为权重初始化函数，方法来自Kaiming He，Xiangyu Zhang，Shaoqing Ren 和 Jian Sun所写的论文: `Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification <https://arxiv.org/abs/1502.01852>`_ 。这是一个鲁棒性特别强的初始化方法，并且适应了非线性激活函数（rectifier nonlinearities）。
+该接口为权重初始化函数，方法来自Kaiming He，Xiangyu Zhang，Shaoqing Ren 和 Jian Sun所写的论文：`Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification <https://arxiv.org/abs/1502.01852>`_ 。这是一个鲁棒性特别强的初始化方法，并且适应了非线性激活函数（rectifier nonlinearities）。
 
 在均匀分布中，范围为[-x,x]，其中：
 
@@ -24,22 +24,17 @@ KaimingUniform
     - **fan_in** (float16|float32，可选) - 可训练的Tensor的in_features值。如果设置为 None，程序会自动计算该值。如果你不想使用in_features，你可以自己设置这个值。默认值为None。
     - **negative_slope** (float，可选): 只适用于使用leaky_relu作为激活函数时的negative_slope参数。默认值为0.0。
     - **nonlinearity** (str，可选): 非线性激活函数。默认值为relu。
-    
-返回
-::::::::::::
-对象
 
 .. note:: 
 
-    在大多数情况下推荐设置fan_in为None
+    在大多数情况下推荐设置 fan_in 为 None。
+
+返回
+::::::::::::
+对象。
+
+
 
 代码示例
 ::::::::::::
-
-.. code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    linear = nn.Linear(2, 4, weight_attr=nn.initializer.KaimingUniform())
-    data = paddle.rand([30, 10, 2], dtype='float32')
-    res = linear(data)
+COPY-FROM: paddle.nn.initializer.KaimingUniform:code-example1

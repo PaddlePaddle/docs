@@ -25,26 +25,4 @@ set_global_initializer
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-
-    nn.initializer.set_global_initializer(nn.initializer.Uniform(), nn.initializer.Constant())
-    x_var = paddle.uniform((2, 4, 8, 8), dtype='float32', min=-1., max=1.)
-
-    # conv1的weight参数是通过Uniform来初始化
-    # conv1的bias参数是通过Constant来初始化
-    conv1 = nn.Conv2D(4, 6, (3, 3))
-    y_var1 = conv1(x_var)
-
-    # 如果同时设置了param_attr/bias_attr, 全局初始化将不会生效
-    # conv2的weight参数是通过Xavier来初始化
-    # conv2的bias参数是通过Normal来初始化
-    conv2 = nn.Conv2D(4, 6, (3, 3), 
-        weight_attr=nn.initializer.XavierUniform(),
-        bias_attr=nn.initializer.Normal())
-    y_var2 = conv2(x_var)
-    
-    # 取消全局参数初始化的设置
-    nn.initializer.set_global_initializer(None)
+COPY-FROM: paddle.nn.initializer.set_global_initializer

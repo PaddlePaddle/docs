@@ -37,8 +37,8 @@ Kronecker Product 算子。
 
   - **x** (Tensor) – Kron OP 的第一个输入。多维 Tensor，数据类型为 float16、float32、float64、int32 或 int64。
   - **y** (Tensor) – Kron OP 的第二个输入。多维 Tensor，数据类型为 float16、float32、float64、int32 或 int64，与 x 相同。
-  - **out**  (Tensor， 可选) -  指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。
-  - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
+  - **out**  (Tensor，可选) -  指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::

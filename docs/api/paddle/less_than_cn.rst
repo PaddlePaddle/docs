@@ -15,7 +15,7 @@ less_than
 
     - **x** (Tensor) - 输入Tensor，支持的数据类型包括 bool、float32、float64、int32、int64。
     - **y** (Tensor) - 输入Tensor，支持的数据类型包括 bool、float32、float64、int32、int64。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     
 
 返回
@@ -26,13 +26,4 @@ less_than
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([1, 2, 3])
-    y = paddle.to_tensor([1, 3, 2])
-    result = paddle.less_than(x, y)
-    print(result) # result = [False, True, False]
-
-
+COPY-FROM: paddle.less_than

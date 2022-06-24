@@ -8,7 +8,7 @@ strided_slice
 
 strided_slice算子。
 
-该OP沿多个轴生成 ``input`` 的切片，与numpy类似： https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html。该OP使用 ``axes`` 、 ``starts`` 和 ``ends`` 属性来指定轴列表中每个轴的起点和终点位置，并使用此信息来对 ``input`` 切片。如果向 ``starts`` 或 ``ends`` 传递负值如 :math:`-i`，则表示该轴的反向第 :math:`i-1` 个位置（这里以0为初始位置）， ``strides`` 表示切片的步长， ``strides`` 如果为负数，则按照反方向进行切片。如果传递给 ``starts`` 或 ``ends`` 的值大于n（维度中的元素数目），则表示n。当切片一个未知数量的维度时，建议传入 ``INT_MAX``。 ``axes`` 、 ``starts`` 和 ``ends`` 以及 ``strides`` 四个参数的元素数目必须相等。以下示例将解释切片如何工作：
+该OP沿多个轴生成 ``input`` 的切片，与numpy类似：https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html。该OP使用 ``axes`` 、 ``starts`` 和 ``ends`` 属性来指定轴列表中每个轴的起点和终点位置，并使用此信息来对 ``input`` 切片。如果向 ``starts`` 或 ``ends`` 传递负值如 :math:`-i`，则表示该轴的反向第 :math:`i-1` 个位置（这里以0为初始位置）， ``strides`` 表示切片的步长，``strides`` 如果为负数，则按照反方向进行切片。如果传递给 ``starts`` 或 ``ends`` 的值大于n（维度中的元素数目），则表示n。当切片一个未知数量的维度时，建议传入 ``INT_MAX``。 ``axes`` 、 ``starts`` 和 ``ends`` 以及 ``strides`` 四个参数的元素数目必须相等。以下示例将解释切片如何工作：
 
 ::
 
@@ -74,22 +74,4 @@ Variable。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    input = fluid.layers.data(
-        name="input", shape=[3, 4, 5, 6], dtype='float32', append_batch_size=False)
-    # example 1:
-    # attr starts is a list which doesn't contain tensor Variable.
-    axes = [1, 2, 3]
-    starts = [-3, 0, 2]
-    ends = [3, 2, 4]
-    strides_1 = [1, 1, 1]
-    strides_2 = [1, 1, 2]
-    sliced_1 = fluid.layers.strided_slice(input, axes=axes, starts=starts, ends=ends, strides=strides_1)
-    # sliced_1 is input[:, 0:3:1, 0:2:1, 2:4:1].
-    # example 2:
-    # attr starts is a list which contain tensor Variable.
-    minus_3 = fluid.layers.fill_constant([1], "int32", -3)
-    sliced_2 = fluid.layers.strided_slice(input, axes=axes, starts=[minus_3, 0, 2], ends=ends, strides=strides_2)
-    # sliced_2 is input[:, 0:3:1, 0:2:1, 2:4:2].
+COPY-FROM: paddle.fluid.layers.strided_slice

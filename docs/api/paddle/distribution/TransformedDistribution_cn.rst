@@ -57,10 +57,10 @@ sample(shape=())
 
 **参数**
 
-- **shape** (Sequence[int], 可选)：采样形状。
+- **shape** (Sequence[int]，可选)：采样形状。
 
 **返回**
 
-- Tensor: 样本数据。
+- Tensor：样本数据。
 
 

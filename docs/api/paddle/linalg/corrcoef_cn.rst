@@ -19,7 +19,7 @@ corrcoef
 :::::::::
     - **x** (Tensor) - 一个N(N<=2)维矩阵，包含多个变量。默认矩阵的每行是一个观测变量，由参数rowvar设置。
     - **rowvar** (bool，可选) - 若是True，则每行作为一个观测变量；若是False，则每列作为一个观测变量。默认True。
-    - **name** (str，可选) - 一般无需设置，默认值为None。用于为开发人员打印调试信息。具体用法请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

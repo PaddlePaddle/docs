@@ -40,9 +40,9 @@ scatter
 ::::::::::::
 
   - **input** （Variable） - 支持任意纬度的Tensor。支持的数据类型为float32。
-  - **index** （Variable） - 表示索引，仅支持1-D Tensor。 支持的数据类型为int32，int64。
+  - **index** （Variable） - 表示索引，仅支持1-D Tensor。支持的数据类型为int32，int64。
   - **updates** （Variable） - 根据索引的值将updates Tensor中的对应值更新到input Tensor中，updates Tensor的维度需要和input tensor保持一致，且除了第一维外的其他的维度的大小需要和input Tensor保持相同。支持的数据类型为float32。
-  - **name** （str，可选） - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
   - **overwrite** （bool，可选） - 如果index中的索引值有重复且overwrite 为True，旧更新值将被新的更新值覆盖；如果为False，新的更新值将同旧的更新值相加。默认值为True。
 
 返回

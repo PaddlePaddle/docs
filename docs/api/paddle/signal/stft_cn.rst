@@ -16,15 +16,15 @@ stft
                   \mathrm{window}[n]\ x[t \times H + n]\ 
                   \exp(-{2 \pi j f n}/{N})
 
-上式中符号的意义：  
+上式中符号的意义：
 
-- :math:`t`: 第 :math:`t` 帧输入信号；
-- :math:`f`: 傅里叶变换频域的自变量，如果 ``onesided=False`` , :math:`f` 
+- :math:`t`：第 :math:`t` 帧输入信号；
+- :math:`f`：傅里叶变换频域的自变量，如果 ``onesided=False`` , :math:`f` 
   取值范围是 :math:`0 \leq f < n\_fft` ,
   如果 `onesided=True`，取值范围是 
   :math:`0 \leq f < \lfloor n\_fft / 2 \rfloor + 1`； 
 - :math:`N`: ``n_fft`` 参数的值；
-- :math:`H`: ``hop_length`` 参数的值。  
+- :math:`H`: ``hop_length`` 参数的值。
 
 
 参数
@@ -48,8 +48,7 @@ stft
 - **onesided** (bool，可选) - 当输入为实信号时，选择是否只返回傅里叶变换结果的一半的频点
   值（输入信号和窗函数均为实数时，傅里叶变换结果具有共轭对称性）。如果输入的信号或者窗函数的
   数据类型是复数，则此时不能设置为 ``True``。默认为 ``True``；
-- **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试
-  信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 
+- **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

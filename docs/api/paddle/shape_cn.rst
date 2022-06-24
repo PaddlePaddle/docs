@@ -15,14 +15,14 @@ shape层。
 ::
 
     示例1:
-        输入是 N-D Tensor类型:
+        输入是 N-D Tensor类型：
             input = [ [1, 2, 3, 4], [5, 6, 7, 8] ]
 
         输出shape:
             input.shape = [2, 4]
 
     示例2:
-        输入是 SelectedRows类型:
+        输入是 SelectedRows类型：
             input.rows = [0, 4, 19]
             input.height = 20
             input.value = [ [1, 2], [3, 4], [5, 6] ]  # inner tensor
@@ -37,15 +37,10 @@ shape层。
 
 返回
 ::::::::::::
- Tensor, 表示输入Tensor或SelectedRows的shape。
+ Tensor，表示输入Tensor或SelectedRows的shape。
 
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    x = paddle.randn((2,3))
-    print(paddle.shape(x)) # [2, 3]
-    
+COPY-FROM: paddle.shape

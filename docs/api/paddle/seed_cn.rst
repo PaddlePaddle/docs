@@ -23,7 +23,4 @@ seed
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    paddle.seed(102)
+COPY-FROM: paddle.seed

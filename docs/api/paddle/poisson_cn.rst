@@ -12,8 +12,8 @@ poisson
 
 参数
 :::::::::
-    - **x** (Tensor) - Tensor的每个元素，对应泊松分布的 ``lambda`` 参数。数据类型为： float32、float64。
-    - **name** (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **x** (Tensor) - Tensor的每个元素，对应泊松分布的 ``lambda`` 参数。数据类型为：float32、float64。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
@@ -23,13 +23,4 @@ poisson
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    paddle.set_device('cpu')
-    paddle.seed(100)
-
-    x = paddle.uniform([2,3], min=1.0, max=5.0)
-    out = paddle.poisson(x)
-    #[[2., 5., 0.],
-    # [5., 1., 3.]]
+COPY-FROM: paddle.poisson
