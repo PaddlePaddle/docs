@@ -634,8 +634,9 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 ## 四、其他注意事项
 
 1. 混合精度训练适用于 NVIDIA GPU 计算能力至少为 7.0 的版本。
+
 2. 飞桨 AMP 提升模型训练性能的根本原因是：利用 Tensor Core 来加速 float16 下的`matmul`和`conv`等运算，为了获得最佳的加速效果，Tensor Core 对矩阵乘和卷积运算有一定的使用约束，约束如下：
-   1. 通用矩阵乘 (GEMM) 定义为：`C = A * B + C`，其中：
+   2.1. 通用矩阵乘 (GEMM) 定义为：`C = A * B + C`，其中：
 
     - A 维度为：M x K
     - B 维度为：K x N
@@ -643,7 +644,7 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 
     矩阵乘使用建议如下：根据Tensor Core使用建议，当矩阵维数 M、N、K 是8（A100架构GPU为16）的倍数时（FP16数据下），性能最优。
 
-   2. 卷积计算定义为：`NKPQ = NCHW * KCRS`，其中：
+   2.2. 卷积计算定义为：`NKPQ = NCHW * KCRS`，其中：
 
     - N 代表：batch size
     - K 代表：输出数据的通道数
