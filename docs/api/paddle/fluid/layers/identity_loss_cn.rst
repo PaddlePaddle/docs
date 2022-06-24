@@ -24,7 +24,7 @@ identity_loss
 ::::::::::::
 
     - **x** (Variable) - 输入张量。维度为[N, \*]的多维Tensor，其中N是批大小，\*表示任何数量的附加维度。数据类型在CPU上为float32或float64，在IPU上为float16或float32。
-    - **reduction** (str|int，可选) - 指定应用于输出结果的计算方式，可选的string值有: ``'none'``, ``'mean'``, ``'sum'`` ，对应的int值分别为2，1，0 。默认为 ``'none'``，直接返回输入loss的值；设置为 ``'sum'`` 时，计算输入loss的总和；设置为 ``'mean'`` 时，返回输入loss的均值。
+    - **reduction** (str|int，可选) - 指定应用于输出结果的计算方式，可选的string值有: ``'none'``, ``'sum'``, ``'mean'`` ，对应的int值分别为2，1，0 。默认为 ``'none'``，直接返回输入loss的值；设置为 ``'sum'`` 时，计算输入loss的总和；设置为 ``'mean'`` 时，返回输入loss的均值。
 
 返回
 ::::::::::::
