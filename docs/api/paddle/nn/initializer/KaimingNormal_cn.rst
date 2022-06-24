@@ -21,7 +21,7 @@ KaimingNormal
 参数
 ::::::::::::
 
-    - **fan_in** (float16|float32) - Kaiming Normal Initializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None
+    - **fan_in** (float16|float32，可选) - 可训练的Tensor的in_features值。如果设置为 None，程序会自动计算该值。如果你不想使用in_features，你可以自己设置这个值。默认值为None。
     - **negative_slope** (float，可选): 只适用于使用leaky_relu作为激活函数时的negative_slope参数。默认值为0.0。
     - **nonlinearity** (str，可选): 非线性激活函数。默认值为relu.
 
