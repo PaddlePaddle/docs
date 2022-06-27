@@ -131,7 +131,7 @@ GroupSharded 结合 amp （O2) + recompute，可以在 8 张 40GB A100 并行的
         print("=== step_id : {}    loss : {}".format(step_id, loss.numpy()))
 
     # save model and optimizer state_dict
-    save_group_sharded_model(model, optimizer, output=output_dir)
+    save_group_sharded_model(model, output_dir, optimizer)
 
 
 运行方式（需要保证当前机器有两张GPU）：
