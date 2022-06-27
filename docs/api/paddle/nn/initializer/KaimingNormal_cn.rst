@@ -35,4 +35,4 @@ KaimingNormal
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.nn.initializer.KaimingNormal:code-example1
+COPY-FROM: paddle.nn.initializer.KaimingNormal
