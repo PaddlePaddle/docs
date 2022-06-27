@@ -5,6 +5,7 @@
 --------------------
 
 在深度学习模型的训练过程中，通过梯度下降算法更新网络参数。一般地，梯度下降算法分为前向传播和反向更新两个阶段。
+
 - 在前向传播阶段，输入向量使用下列公式，从前往后，计算下一层每个神经元的值。其中，f为激活函数，W为权重，b为偏置。
 
 .. math::
@@ -235,9 +236,9 @@
       for t in range(100):
           idx = np.random.choice(total_data, batch_size, replace=False)
           x = paddle.to_tensor(x_data[idx,:])
-          y = paddle.to_tensor(y_data[idx,:])
-          y_pred = model(x)
-          loss = loss_fn(y_pred, y)
+          label = paddle.to_tensor(y_data[idx,:])
+          pred = model(x)
+          loss = loss_fn(pred, y)
           loss.backward()
           print("step: ", t, "    loss: ", loss.numpy())
           print("grad: ", model.linear1.weight.grad)
@@ -246,7 +247,8 @@
 
   train()
 
-未开启梯度裁剪时的部分日志如下，可以看到在loss和梯度都在逐渐增大，在第4步就已经达到正无穷大，变为nan。
+未开启梯度裁剪时的部分日志如下，由于linear1层权重加上了一个正值，导致计算出的loss和相应梯度特别大，并且随着迭代进行，放大效应逐渐累积，
+loss和模型的linear1层权重的梯度最终达到正无穷大，变为nan。事实上，网络各个隐藏层的权重都在增大。
 
 ::
   step:  0     loss:  [1075.6953]
