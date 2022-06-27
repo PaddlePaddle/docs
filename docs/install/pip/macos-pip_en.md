@@ -10,7 +10,7 @@
 
 * **Python version 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
-* **pip or pip3 版本 20.2.2 or above (64 bit)**
+* **pip or pip3 Version 20.2.2 or above (64 bit)**
 
 
 ### 1.2 How to check your environment
