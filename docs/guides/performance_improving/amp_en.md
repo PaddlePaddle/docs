@@ -668,6 +668,8 @@ The fundamental reason why the Paddle AMP improves the training performance of t
     - For the first layer of the network, setting the number of channels to 4 can obtain the best operation performance (NVIDIA provides a special implementation for the convolution of the first layer of the network, and the performance is better when using 4 channels)
     - Set the tensor layout in memory to NHWC format (if NCHW format is input, the Tesor Core will be automatically converted to NHWC. When the input and output values are large, the cost of this conversion is often greater)
 
+## V. AMP common problems and Solutions
+
 Common problems and treatment methods of Paddle AMP:
 
 1. No acceleration effect or speed decrease after AMP Training:
@@ -676,6 +678,17 @@ Common problems and treatment methods of Paddle AMP:
 
     Possible cause 2: The model is light computing and heavy scheduling, and the operations such as matmul and conv with large computing load account for a relatively low proportion. The utilization of GPU memory (Memory Usage and GPU_Util parameters) can be seen through nvidia-smi real-time production.
 
+    For the above reasons, it is recommended to turn off the hybrid accuracy training.
+
 2. Runtimeerror thrown when AMP-O2 is used together with distributed training: `For distributed AMP training, you should first use paddle.amp.decorate() to decotate origin model, and then call paddle.DataParallel get distributed model.`
 
     Cause: distributed training of AMP-O2 requires `paddle.amp.decorate` needs to be declared before the `paddle.Dataparallel` initializing the distributed training network.
+
+    The correct usage is as follows:
+
+```
+import paddle
+model = SimpleNet(input_size, output_size)  # Define loss calculation function
+model = paddle.amp.decorate(models=model, level='O2') # paddle.amp.decorate needs to be declared before the paddle.Dataparallel
+dp_model = paddle.DataParallel(model)
+```

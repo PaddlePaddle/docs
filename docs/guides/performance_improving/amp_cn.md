@@ -53,7 +53,7 @@
 1. 训练开始前，为loss_scaling设置一个较大的初始值init_loss_scaling，默认为2.^15，并设置4个用于动态调整loss_scaling大小的参数：incr_ratio=2.0、decr_ratio=0.5、incr_every_n_steps=1000、decr_every_n_nan_or_inf=2；
 2. 启动训练后，在每次计算完成梯度后，对所有的梯度之进行检查，判断是否存在nan/inf并记录连续出现nan/inf的次数或连续未出现nan/inf的次数；
 3. 当连续incr_every_n_step次迭代未出现nan/inf时，将loss_scaling乘incr_ratio；
-4. 当连续1000、decr_every_n_nan_or_inf次迭代出现nan/inf时，将loss_scaling乘decr_ratio；
+4. 当连续decr_every_n_nan_or_inf次迭代出现nan/inf时，将loss_scaling乘decr_ratio；
 
 ### 1.3 支持硬件说明
 
@@ -666,6 +666,8 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
     - 对于网络第一层，通道数设置为4可以获得最佳的运算性能（NVIDIA为网络的第一层卷积提供了特殊实现，使用4通道性能更优）
     - 设置内存中的张量布局为NHWC格式（如果输入NCHW格式，Tesor Core会自动转换为NHWC，当输入输出数值较大的时候，这种转置的开销往往更大）
 
+## 五、AMP 常见问题及处理方法
+
 飞桨 AMP 常见问题及处理方法如下：
 
 1. 开启AMP训练后无加速效果或速度下降
@@ -674,6 +676,17 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 
     可能原因2：模型是轻计算、重调度的类型，计算负载较大的matmul、conv等操作占比较低，可通过nvidia-smi实时产看显卡显存利用率（Memory Usage 及 GPU_Util 参数）。
 
+    针对上述原因，建议关闭混合精度训练。
+
 2. AMP-O2与分布式训练同时使用时抛出RuntimeError: `For distributed AMP training, you should first use paddle.amp.decorate() to decotate origin model, and then call paddle.DataParallel get distributed model.`
 
     原因：AMP-O2的分布式训练，要求`paddle.amp.decorate`需要声明在`paddle.DataParallel`初始化分布式训练的网络前。
+
+    正确用法如下：
+
+```
+import paddle
+model = SimpleNet(input_size, output_size)  # 定义SimpleNet模型
+model = paddle.amp.decorate(models=model, level='O2') # paddle.amp.decorate需要声明在paddle.DataParallel前
+dp_model = paddle.DataParallel(model)
+```
