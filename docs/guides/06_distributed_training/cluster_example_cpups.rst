@@ -11,15 +11,16 @@ CPUPS流式训练示例
 1. 在线上系统提供服务的过程中，训练程序一直运行，等待线上服务产生的数据，并在数据准备完成后进行增量训练。
 2. 数据一般按时间组织，每个Pass的训练数据对应一个或几个时间分片（文件夹），并在该时间分片的数据生成结束后，在对应时间分片的文件夹中添加一个空文件用于表示数据准备完成。
 3. 线上服务产生的数据不断进入训练系统，导致稀疏参数不断增加，在模型精度不受影响的情况下，为控制模型总存储，增加稀疏参数统计量自动统计、稀疏参数准入、退场、增量保存等功能。
-4. 
 
 在学习流式训练具体使用方法之前，建议先详细阅读参数服务器快速开始章节，了解参数服务器的基本使用方法。
 
 流式训练的完整代码示例参见：\ `PaddleRec流式训练 <https://github.com/PaddlePaddle/PaddleRec/blob/master/tools/static_ps_online_trainer.py>`_\，其中所使用到的模型及配置参见：\ `slot_dnn <https://github.com/PaddlePaddle/PaddleRec/tree/master/models/rank/slot_dnn>`_\，重点关注其中的流式训练配置文件config_online.yaml，及模型组网net.py和static_model.py。
 
 1 模型组网
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 为实现稀疏参数统计量自动统计，在组网时需要注意以下两点：
+
 1. embedding层需使用 ``paddle.static.nn.sparse_embedding`` ，该算子为大规模稀疏参数模型特定的embedding算子，支持对稀疏参数统计量自动统计。
 2. 稀疏参数的统计量，目前特指稀疏特征的展现量(show)和点击量(click)，在组网时定义两个变量，指明特征是否展现和点击，通常取值为0或者1， ``sparse_embedding`` 中通过entry参数传入一个 ``ShowClickEntry`` ，指明这两个变量(show和click)的名字。
 
@@ -48,19 +49,21 @@ CPUPS流式训练示例
 本章节主要讲解流式训练中的数据组织形式、数据等待方式、数据拆分方式等内容，涉及到的概念如下：
 
 1. 数据分片：将数据按照固定的时间间隔组织成多个分片，一段时间间隔中的所有训练数据称为一个数据分片。
-2. Pass：把当前训练集的所有数据全部跑一遍，通常一个Pass对应一个或多个数据分片。
+2. Pass：把当前训练集的所有数据全部训练一遍，通常一个Pass对应一个或多个数据分片。
 
 涉及到的具体配置如下：
 
-|             名称              |     类型     |     取值    | 是否必须 |                               作用描述                    |
-| :---------------------------: | :----------: | :--------: | :------: | :-----------------------------------------------------: |
-|        train_data_dir         |  string  |     任意       |    是    |       训练数据所在目录（如果数据存于afs或hdfs上，以afs:/或hdfs:/开头）      |
-|        split_interval         |  int     |     任意       |    是    |       数据落盘分片间隔时间（分钟）                          |
-|        split_per_pass         |  int     |     任意       |    是    |       训练一个Pass包含多少个分片的数据                      |
-|        start_day              |  string  |     任意       |    是    |       训练开始的日期（例：20190720）                       |
-|        end_day                |  string  |     任意       |    是    |       训练结束的日期（例：20190720）                       |
-|        data_donefile          |  string  |     任意       |    否    |       用于探测当前分片数据是否落盘完成的标识文件             |
-|        data_sleep_second      |  int     |     任意       |    否    |       当前分片数据尚未完成的等待时间                        |
+.. csv-table::
+    :header: "名称", "类型", "取值", "是否必须", "作用描述"
+    :widths: 10, 5, 5, 5, 30
+
+    "train_data_dir", "string", "任意", "是", "训练数据所在目录（如果数据存于afs或hdfs上，以afs:/或hdfs:/开头）"
+    "split_interval", "int", "任意", "是", "数据落盘分片间隔时间（分钟）"
+    "split_per_pass", "int", "任意", "是", "训练一个Pass包含多少个分片的数据"
+    "start_day", "string", "任意", "是", "训练开始的日期（例：20190720）"
+    "end_day", "string", "任意", "是", "训练结束的日期（例：20190720）"
+    "data_donefile", "string", "任意", "否", "用于探测当前分片数据是否落盘完成的标识文件"
+    "data_sleep_second", "int", "任意", "否", "当前分片数据尚未完成的等待时间"
 
 2.1 数据组织形式
 """"""""""""
@@ -68,7 +71,8 @@ CPUPS流式训练示例
 在训练数据目录下，再建立两层目录，第一层目录对应训练数据的日期（8位），第二层目录对应训练数据的具体时间（4位，前两位为小时，后两位为分钟），并且需要与配置文件中的split_interval配置对应。
 例如：train_data_dir配置为“data”目录，split_interval配置为5，则具体的目录结构如下：
 
-```txt
+.. code-block:: python
+
 ├── data
     ├── 20190720              # 训练数据的日期
         ├── 0000              # 训练数据的时间（第1个分片），0时0分-0时5分时间内的数据
@@ -84,7 +88,6 @@ CPUPS流式训练示例
         ├── 2355              # 训练数据的时间（该日期下最后1个分片），23时55分-24时时间内的数据
             ├── data_part1    # 具体的训练数据文件
             ├── ......
-```
 
 根据split_interval和split_per_pass这两个配置项，在训练之前生成每个Pass所需要的数据分片列表，具体实现如下：
 
@@ -431,20 +434,24 @@ Debug模式下的dump功能主要为了解决以下两个问题：
 
 为使用高级功能，需要配置稀疏参数相应的table及accessor：
 
-|             名称              |     类型     |               取值               | 是否必须 |               作用描述                |
-| :---------------------------: | :----------: | :------------------------------: | :------: | :-------------------------------: |
-|         table_class           |    string    |     MemorySparseTable           |    是    |        存储embedding的table名称     |
-|         accessor_class        |    string    |     SparseAccessor              |    是    |       获取embedding的accessor名称       |
+.. csv-table::
+    :header: "名称", "类型", "取值", "是否必须", "作用描述"
+    :widths: 10, 5, 5, 5, 30
+
+    "table_class", "string", "MemorySparseTable", "是", "存储embedding的table名称"
+    "accessor_class", "string", "SparseAccessor", "是", "获取embedding的accessor名称"
 
 5.1 特征频次计算
 """"""""""""
 
 server端会根据特征的show和click计算一个频次得分，用于判断该特征embedding是否可以扩展、保存等，具体涉及到的配置如下：
 
-|             名称              |     类型     |         取值         |      默认值   |是否必须 |                               作用描述                               |
-| :---------------------------: | :----------: | :--------------------| :---------: | :------: | :------------------------------------------------------------------: |
-|         nonclk_coeff         |    float    |           任意         |    0.1        |    是    |                            特征展现但未点击对应系数                            |
-|         click_coeff          |    float    |           任意         |    1.0       |    是    |                            特征点击对应系数                            |
+.. csv-table::
+    :header: "名称", "类型", "取值", "默认值", "是否必须", "作用描述"
+    :widths: 10, 5, 5, 5, 5, 30
+
+    "nonclk_coeff", "float", "任意","0.1", "是", "特征展现但未点击对应系数"
+    "click_coeff", "float", "任意", "1.0", "是", "特征点击对应系数"`
 
 具体频次score计算公式如下：  
 score = click_coeff * click + noclick_coeff * (click - show)
@@ -453,11 +460,14 @@ score = click_coeff * click + noclick_coeff * (click - show)
 """"""""""""
 
 特征embedding初始情况下，只会生成一维embedding，其余维度均为0，当特征的频次score大于等于扩展阈值时，才会扩展出剩余维度，具体涉及到的配置如下：
-|             名称              |     类型      |      取值         |      默认值                                      | 是否必须 |            作用描述                |
-| :---------------------------: | :----------: | :---------------: | :-----------------------------------------------: | :------: | :--------------------------: |
-|         embedx_threshold      |    int       |       任意         |    0                                            |    是    |    特征embedding扩展阈值       |
-|         embedx_dim            |    int       |       任意         |    组网sparse_embedding层参数size第二维值 - 1    |    是    |     特征embedding扩展维度         |
-|         fea_dim               |    int       |       任意         |    组网sparse_embedding层参数size第二维值 + 2    |    是    |     特征embedding总维度          |
+
+.. csv-table::
+    :header: "名称", "类型", "取值", "默认值", "是否必须", "作用描述"
+    :widths: 10, 5, 5, 5, 5, 30
+
+    "embedx_threshold", "int", "任意", "0", "是", "特征embedding扩展阈值"
+    "embedx_dim", "int", "任意", "组网sparse_embedding层参数size第二维值-1", "是", "特征embedding扩展维度"
+    "fea_dim", "int", "任意", "组网sparse_embedding层参数size第二维值+2", "是", "特征embedding总维度"
 
 需要注意的是：
 
@@ -469,41 +479,52 @@ score = click_coeff * click + noclick_coeff * (click - show)
 
 为避免稀疏特征无限增加，一般每天的数据训练完成后，会调用 ``fleet.shrink()`` 方法，删除掉一些长久不出现或者出现频率极低的稀疏特征，具体涉及到的配置如下：
 
-|             名称              |     类型     |       取值            |      默认值   | 是否必须 |                               作用描述                               |
-| :---------------------------: | :----------: | :------------------: | :---------: | :------: | :------------------------------------------------------------------: |
-|    show_click_decay_rate      |    float    |       [0, 1]           |    1    |    是    |   调用shrink函数时，show和click会根据该配置进行衰减               |
-|    delete_threshold           |    float    |       任意             |    0    |    是    |       特征频次score小于该阈值时，删除该特征                 |
-|    delete_after_unseen_days   |    int      |        >0             |    30    |    是    |       特征未出现天数大于该阈值时，删除该特征                 |
+.. csv-table::
+    :header: "名称", "类型", "取值", "默认值", "是否必须", "作用描述"
+    :widths: 10, 5, 5, 5, 5, 30
+
+    "show_click_decay_rate", "float", "[0,1]", "1", "是", "调用shrink函数时，show和click会根据该配置进行衰减"
+    "delete_threshold", "float", "任意", "0", "是", "特征频次score小于该阈值时，删除该特征"
+    "delete_after_unseen_days", "int", ">0", "30", "是", "特征未出现天数大于该阈值时，删除该特征"
 
 
 5.4 特征embedding保存
 """"""""""""
 
 为降低模型保存的磁盘占用及耗时，在保存base/delta模型时，可以去掉部分出现频率不高的特征，具体涉及到的配置如下：
-|             名称              |     类型     |       取值         |      默认值   | 是否必须 |                               作用描述                               |
-| :---------------------------: | :----------: | :----------------: | :---------: | :------: | :------------------------------------------------------------------: |
-|        base_threshold         |    float    |      任意            |    0    |    是    |       特征频次score大于等于该阈值才会在base模型中保存                            |
-|        delta_threshold        |    float    |      任意            |    0    |    是    |   从上一个delta模型到当前delta模型，<br>特征频次score大于等于该阈值才会在delta模型中保存        |
-|        delta_keep_days        |    int      |      任意            |    16    |    是    |   特征未出现天数小于等于该阈值才会在delta模型中保存               |
-|        converter              |    string    |     任意            |    ""    |    否   |   base/delta模型转换器（对接线上推理KV存储）            |
-|        deconverter            |    string    |     任意            |    ""    |    否    |   base/delta模型解压器               |
+
+.. csv-table::
+    :header: "名称", "类型", "取值", "默认值", "是否必须", "作用描述"
+    :widths: 10, 5, 5, 5, 5, 30
+
+    "base_threshold", "float", "任意", "0", "是", "特征频次score大于等于该阈值才会在base模型中保存"
+    "delta_threshold", "float", "任意", "0", "是", "从上一个delta模型到当前delta模型，<br>特征频次score大于等于该阈值才会在delta模型中保存"
+    "delta_keep_days", "int", "任意", "16", "是", "特征未出现天数小于等于该阈值才会在delta模型中保存"
+    "converter", "string", "任意", """", "否", "base/delta模型转换器（对接线上推理KV存储）"
+    "deconverter", "string", "任意", """", "否", "base/delta模型解压器"
 
 
 5.5 参数优化算法
 """"""""""""
 
 稀疏参数(sparse_embedding)优化算法配置，分为一维embedding的优化算法(embed_sgd_param)和扩展embedding的优化算法(embedx_sgd_param)：
-|             名称              |     类型     |                           取值                            |      默认值   | 是否必须 |                               作用描述                               |
-| :---------------------------: | :----------: | :-------------------------------------------------------: | :------: | :------: | :------------------------------------------------------------------: |
-|             name              |    string    |    SparseAdaGradSGDRule<br>SparseNaiveSGDRule<br>SparseAdamSGDRule<br>StdAdaGradSGDRule      |    SparseAdaGradSGDRule    |    是    |       优化算法名称                 |
-|       learning_rate           |    float    |    任意                  |    0.05   |    是    |       学习率                 |
-|       initial_g2sum           |    float    |    任意                  |    3.0    |    是    |       g2sum初始值                 |
-|       initial_range           |    float    |    任意                  |    0.0001    |    是    |       embedding初始化范围[-initial_range, initial_range]          |
-|       weight_bounds           |    list(float)    |    任意                  |    [-10.0, 10.0]    |    是    |    embedding在训练过程中的范围        |
+
+.. csv-table::
+    :header: "名称", "类型", "取值", "默认值", "是否必须", "作用描述"
+    :widths: 10, 5, 5, 5, 5, 30
+
+    "name", "string", "SparseAdaGradSGDRule<br>SparseNaiveSGDRule<br>SparseAdamSGDRule<br>StdAdaGradSGDRule", "SparseAdaGradSGDRule", "是", "优化算法名称"
+    "learning_rate", "float", "任意", "0.05", "是", "学习率"
+    "initial_g2sum", "float", "任意", "3.0", "是", "g2sum初始值"
+    "initial_range", "float", "任意", "0.0001", "是", "embedding初始化范围[-initial_range,initial_range]"
+    "weight_bounds", "list(float)", "任意", "[-10.0,10.0]", "是", "embedding在训练过程中的范围"
 
 稠密参数优化算法配置：
-|             名称              |     类型     |       取值     |      默认值   | 是否必须 |       作用描述                |
-| :---------------------------: | :----------: | :------------: | :------: | :------: | :---------------------------------: |
-|           adam_d2sum         |     bool     |    任意        |    否    |    是    |       是否使用新的稠密参数优化算法        |
+
+.. csv-table::
+    :header: "名称", "类型", "取值", "默认值", "是否必须", "作用描述"
+    :widths: 10, 5, 5, 5, 5, 30
+
+    "adam_d2sum", "bool", "任意", "否", "是", "是否使用新的稠密参数优化算法"
 
 
