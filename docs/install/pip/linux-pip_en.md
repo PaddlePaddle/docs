@@ -5,7 +5,7 @@
 ### 1.1 PREQUISITES
 
 * **Linux Version (64 bit)**
-  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2**)**
+  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2)**
   * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2)**
   * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2)**
   * **Ubuntu 20.04 (GPUVersion Supports CUDA 10.1/10.2/11.0/11.1/11.2)**
@@ -245,5 +245,5 @@ If `PaddlePaddle is installed successfully!` appears, to verify that the install
 
 Please use the following command to uninstall PaddlePaddle:
 
-- ***CPU version of PaddlePaddle\***: `python -m pip uninstall paddlepaddle`
-- ***GPU version of PaddlePaddle\***: `python -m pip uninstall paddlepaddle-gpu`
+- **CPU version of PaddlePaddle**: `python -m pip uninstall paddlepaddle`
+- **GPU version of PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu`
