@@ -103,7 +103,7 @@
         <td> unrar </td>
         <td>  </td>
         <td> </td>
-        <td> brew install unrar (For macOS), apt-get install unrar (For Ubuntu) </td>
+        <td> brew install rar (For macOS), apt-get install unrar (For Ubuntu) </td>
     </tr>
     </tbody>
 </table>
