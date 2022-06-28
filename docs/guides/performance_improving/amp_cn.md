@@ -48,7 +48,12 @@
 
 如 1.1 所述，半精度浮点数的表示范围远小于单精度浮点数的表示范围，在深度学习领域，参数、中间状态和梯度的值通常很小，因此以半精度浮点数参与计算时容易出现数值下溢（underflow）的情况，即接近零的值下溢为零值。为了避免这个问题，飞桨采用 **grad_scaler 策略**。主要内容是：对训练 loss 乘以一个称为 loss_scaling 的缩放值，根据链式法则，在反向传播过程中，参数梯度也等价于相应地乘以了 loss_scaling 的值，在参数更新时再将梯度值相应地除以 loss_scaling 的值。
 
-然而，在模型训练过程中，选择合适的 loss_scaling 值是个较大的挑战，因此，飞桨提供了 **动态loss_scaling** 的机制：用户为 loss_scaling 设置一个初始值（init_loss_scaling），在每一次反向传播计算得到参数梯度后，检查梯度值是否出现 nan 或 inf 值，当连续 incr_every_n_step 次迭代均未出现 nan 和 inf 值时，将 init_loss_scaling 的值乘以一个放大系数（incr_ratio）；当连续decr_every_n_step 次迭代均出现 nan 和 inf 值时，将 init_loss_scaling 的值乘以一个缩小系数（decr_ratio）。
+然而，在模型训练过程中，选择合适的 loss_scaling 值是个较大的挑战，因此，飞桨提供了 **动态loss_scaling** 的机制：
+
+1. 训练开始前，为设置一个较大的初始值init_loss_scaling，默认为2.^15，并设置4个用于动态调整loss_scaling大小的参数：incr_ratio=2.0、decr_ratio=0.5、incr_every_n_steps=1000、decr_every_n_nan_or_inf=2；
+2. 启动训练后，在每次计算完成梯度后，对所有的梯度之进行检查，判断是否存在nan/inf并记录连续出现nan/inf的次数或连续未出现nan/inf的次数；
+3. 当连续incr_every_n_step次迭代未出现nan/inf时，将loss_scaling乘incr_ratio；
+4. 当连续1000、decr_every_n_nan_or_inf次迭代出现nan/inf时，将loss_scaling乘decr_ratio；
 
 ### 1.3 支持硬件说明
 
