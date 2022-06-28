@@ -29,13 +29,5 @@ PixelShuffle
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    import paddle.nn as nn
-
-    x = paddle.rand((2, 9, 4, 4))
-    pixel_shuffle = nn.PixelShuffle(3)
-    out = pixel_shuffle(x)
-    print(out.shape)
-    # (2, 1, 12, 12)
+COPY-FROM: paddle.nn.PixelShuffle
