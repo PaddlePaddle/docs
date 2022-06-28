@@ -217,7 +217,7 @@ Install using Python official website
 
 #### 4. Before **compilation**, please confirm that the relevant dependencies mentioned in the [compilation dependency table](/documentation/docs/en/install/Tables_en.html/#third_party) are installed in your environment, otherwise we strongly recommend using `Homebrew` to install related dependencies.
 
-> Under macOS, if you have not modified or installed the dependencies mentioned in the "Compile Dependency Table", you only need to use `pip` to install `numpy`, `protobuf`, `wheel`, use `homebrew` to install `wget`, `swig`,then install `cmake`.
+> Under macOS, if you have not modified or installed the dependencies mentioned in the "Compile Dependency Table", you only need to use `pip` to install `numpy`, `protobuf`, `wheel`, use `Homebrew` to install `wget`, `swig`,then install `cmake`.
 
 - a. Here is a special description of the installation of **CMake**:
 
