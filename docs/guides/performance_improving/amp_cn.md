@@ -50,7 +50,7 @@
 
 然而，在模型训练过程中，选择合适的 loss_scaling 值是个较大的挑战，因此，飞桨提供了 **动态loss_scaling** 的机制：
 
-1. 训练开始前，为设置一个较大的初始值init_loss_scaling，默认为2.^15，并设置4个用于动态调整loss_scaling大小的参数：incr_ratio=2.0、decr_ratio=0.5、incr_every_n_steps=1000、decr_every_n_nan_or_inf=2；
+1. 训练开始前，为loss_scaling设置一个较大的初始值init_loss_scaling，默认为2.^15，并设置4个用于动态调整loss_scaling大小的参数：incr_ratio=2.0、decr_ratio=0.5、incr_every_n_steps=1000、decr_every_n_nan_or_inf=2；
 2. 启动训练后，在每次计算完成梯度后，对所有的梯度之进行检查，判断是否存在nan/inf并记录连续出现nan/inf的次数或连续未出现nan/inf的次数；
 3. 当连续incr_every_n_step次迭代未出现nan/inf时，将loss_scaling乘incr_ratio；
 4. 当连续1000、decr_every_n_nan_or_inf次迭代出现nan/inf时，将loss_scaling乘decr_ratio；

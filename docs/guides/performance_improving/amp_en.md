@@ -47,7 +47,12 @@ When the model parameters are stored in half precision floating-point format (fl
 
 As mentioned in 1.1, the representation range of half precision floating-point numbers is much smaller than that of single precision floating-point numbers. In deep learning, the values of parameters, intermediate states and gradients are usually very small. Therefore, when half precision floating-point numbers are used to participate in the calculation, it is easy to cause underflow, that is, the underflow of values close to zero is zero. Paddle use the **grad_scaler policy** to avoid this problem: multiply the training loss by a `loss_scaling` value. According to the chain rule, in the back propagation process, the parameter gradient is also equivalent to multiplying `loss_scaling`. When the parameter is updated, the gradient value is divided by `loss_scaling`.
 
-However, in the process of model training, select the appropriate `loss_scaling` value is a challenge, so Paddle provides **dynamic loss_scaling**: `loss_scaling` is setted to an initial value (`init_loss_scaling`). After each back propagation calculation obtains the parameter gradient, check whether the gradient value appears Nan or inf value. When the Nan and inf values do not appear in continuous `incr_every_n_step` step iterations, the `init_loss_scaling` is multiplied by `incr_ratio`; When the Nan and inf values appear in continuous `decr_every_n_step` step iterations, the `init_loss_scaling` is multiplied by `decr_ratio`.
+However, in the process of model training, select the appropriate `loss_scaling` value is a challenge, so Paddle provides **dynamic loss_scaling**: `loss_scaling`:
+
+1. Before the training, for loss_scaling set a large initial value init_loss_scaling, default is 2^15, and set 4 parameters for dynamic adjustment loss_scaling: incr_ratio=2.0, decr_ratio=0.5, incr_every_n_steps=1000, decr_every_n_nan_or_inf=2;
+2. After starting the training, after each calculation of the gradient, check all the gradients, judge whether there is nan/inf, and record the number of consecutive occurrences of nan/inf or the number of consecutive occurrences of nan/inf;
+3. when nan/inf does not appear for incr_every_n_step consecutive iterations, multiply loss_scaling by incr_ratio;
+4. when nan/inf occurs in decr_every_n_nan_or_inf consecutive iterations, multiply loss_scaling by decr_ratio;
 
 ### 1.3. AMP supported hardware
 
@@ -92,7 +97,7 @@ It mainly attributes to the features that NVIDIA Volta and NVIDIA Turing use FP1
 
 Starting from NVIDIA Ampere, GPU supports bfloat16, and its computing performance is the same as that of float16.
 
-> The ``nvidia-smi`` command can help you view NVIDIA GPU architecture information. In addition, if the amp training mode is enabled, PaddlePaddle will automatically help detect whether the hardware environment meets the above hardware conditions. If not, the following warning messages will be provided: ``UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.``.
+> The ``nvidia-smi`` command can help you view NVIDIA GPU architecture information. AMP only support NVIDIA GPU with Compute Capability 7.0 or higher. In addition, if the amp training mode is enabled, PaddlePaddle will automatically help detect whether the hardware environment meets the above hardware conditions. If not, the following warning messages will be provided: ``UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.``.
 
 ### 1.4. Description of applicable scenarios
 
@@ -355,6 +360,8 @@ if paddle.is_compiled_with_cuda():
 
 ## III. Other usage scenarios
 
+The previous article introduced the method of single card (GPU) training in dynamic graph mode, which is similar to it, [distributed training documents](https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/collective_performance/amp.html) and [dynamic graph to static graph](../jit/index_cn.html) can start AMP in the same way. Next, it mainly introduces the methods of starting AMP training in static graph modes and the advanced usage of AMP training, such as gradient accumulation.
+
 ### 3.1 Gradient Accumulation in dygraph graph mode
 
 Gradient accumulation means running a configured number of steps without updating the model variables. Until certain steps, use the accumulated gradients to update the variables. Limited by the size of the gpu memory, you may not be able to open a larger batch_size, you can increase batch_size by using gradient accumulation.
@@ -404,7 +411,7 @@ In the above example, after `accumulate_batchs_num` batch training steps, with o
 
 ### 3.2. AMP in Static Graph
 
-Paddle Static Graph provides a series of convenient APIs for AMP: ``paddle.static.amp.decorate``, ``paddle.static.amp.fp16_guard``.
+Paddle starts AMP training in Static Graph, the compute logic is similar to the dynamic diagram, except that the called interfaces are different. Paddle Static Graph provides a series of convenient APIs for AMP: ``paddle.static.amp.decorate``, ``paddle.static.amp.fp16_guard``.
 
 - ``paddle.static.amp.decorate``: Decorate the optimizer, add amp logic, and set the parameters of grad_scaler through this API.
 - ``paddle.static.amp.fp16_guard``: In AMP_O2 mode, the scope of float16 is controlled only in context manager ``fp16_guard``.
@@ -630,14 +637,6 @@ The comparison of accuracy and speed of Static Graph FP32 and AMP training is sh
 | **loss** | 0.6486028 | 0.6486222  | 0.6743     |
 
 It can be seen from the statistical results in the above table that the training speed in O1 mode is increased by about 4.5 times, and that in O2 mode is increased by about 5.4 times.
-
-### 3.3. AMP in Dygraph to Static Graph
-
-In addition to training in the dynamic graph mode and static graph mode, Paddle also supports dynamic to static training mode. That is, the dynamic graph code that is easier to develop and debug, and a small amount of code can be added to convert to the static graph mode with better performance. For the method of starting AMP in dygraph to static Graph, see [dynamic graph to static graph](../jit/index_cn.html).
-
-### 3.4. AMP in Distributed Training
-
-Open AMP for distributed training, please refer to the link of [distributed training documents](https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/collective_performance/amp.html).
 
 ## IV. Other precautions
 
