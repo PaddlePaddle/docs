@@ -36,7 +36,12 @@ Paddle adopts **auto_cast strategy** realizes the automatic conversion and use o
 
 The logic in the blue dashed box in the figure2 is the parameter accuracy conversion (cast) logic under the amp policy. Generally, the overhead brought by cast operation is limited. When the computational performance benefit obtained by using float16 / bfloat16 in the process of forward compute and back propagation is greater than the overhead brought by cast, enabling amp training will get better training performance.
 
-When the model parameters are stored in half precision floating-point format (float16 / bfloat16) before training, the cast operation in Figure 2 will be omitted in the training process, which can further improve the model training performance. However, it should be noted that the model parameters are stored in low precision data types, which may affect the final training accuracy of the model.
+When the model parameters are stored in half precision floating-point format (float16 / bfloat16) before training, the cast operation in Figure 2 will be omitted in the training process, which can further improve the model training performance. However, it should be noted that the model parameters are stored in low precision data types, which may affect the final training accuracy of the model. The calculation process is shown in Figure 3 below:
+
+<figure align="center">
+    <img src="./images/auto_cast_o2.png" width="400" alt='missing'>
+    <figcaption><center>Figure 3. float16 calculation process</center></figcaption>
+</figure>
 
 #### 1.2.2 grad_scaler
 
@@ -99,8 +104,8 @@ Using PaddlePaddle's API can realize automatic mixed precision training (AMP), w
 
 According to the use degree of FP16 in the model, the AMP is divided into two levels:
 
-- level = ’O1‘: The black&white operator list strategy is used for AMP. The op in the black list will be calculated by FP32, and the op in the white list will be calculated by FP16. During the training process, Paddle will automatically change the input data type of the op in the white list from FP32 to FP16. The operator list calculated by FP16 and FP32 can be found in this [document](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html).For an op that is not in the black&white list, Paddle will infer based on all the input data types of the op. when all the inputs are FP16, the op will directly use FP16 for calculation, otherwise FP32 for calculation.
-- level = ’O2‘: This mode adopts a more radical strategy than O1. Except ops that the Paddle does not support calculated by FP16, all other ops use FP16. Paddle will cast the neural network parameters from FP32 to FP16. Compared with O1, the training speed will be significantly improved, but there may be accuracy problems. Therefore, Paddle provides a user-defined blacklist through which you can specify some ops with accuracy problems to perform FP32 operations.
+- **level = ’O1‘**: The black&white operator list strategy is used for AMP. The op in the black list will be calculated by FP32, and the op in the white list will be calculated by FP16. During the training process, Paddle will automatically change the input data type of the op in the white list from FP32 to FP16. The operator list calculated by FP16 and FP32 can be found in this [document](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/amp/Overview_cn.html).For an op that is not in the black&white list, Paddle will infer based on all the input data types of the op. when all the inputs are FP16, the op will directly use FP16 for calculation, otherwise FP32 for calculation. Refer to figure 2 for calculation logic.
+- **level = ’O2‘**: This mode adopts a more radical strategy than O1. Except ops that the Paddle does not support calculated by FP16, all other ops use FP16. Paddle will cast the neural network parameters from FP32 to FP16. Compared with O1, the training speed will be significantly improved, but there may be accuracy problems. Therefore, Paddle provides a user-defined blacklist through which you can specify some ops with accuracy problems to perform FP32 operations. Refer to figure 3 for calculation logic.
 
 The dynamic graph training mode is recommended for Paddle. The following takes the dynamic graph single card (GPU) training code as an example to learn how to use Paddle basic API and the high-level API to realize AMP training.
 
@@ -184,7 +189,7 @@ train_time = 0 # Record total training duration
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # Record start time
-        label._to(place)
+        label._to(place) # Copy label to GPU
         # forward compute
         output = model(data)
         # loss compute
@@ -225,7 +230,7 @@ train_time = 0 # Record total training duration
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # Record start time
-        label._to(place)
+        label._to(place) # Copy label to GPU
         # logic 1: create a context environment of AMP, add elementwise_add op to custom_white_list so that all ops in forward will use float16
         with paddle.amp.auto_cast(custom_white_list={'elementwise_add'}, level='O1'):
             # forward compute
@@ -271,7 +276,7 @@ train_time = 0 # Record total training duration
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time()
-        label._to(place)
+        label._to(place) # Copy label to GPU
         # logic 2: create a context environment of AMP, all ops in forward will use float16
         with paddle.amp.auto_cast(level='O2'):
             # forward compute
@@ -352,7 +357,9 @@ if paddle.is_compiled_with_cuda():
 
 ### 3.1 Gradient Accumulation in dygraph graph mode
 
-Gradient accumulation means running a configured number of steps without updating the model variables. Until certain steps, use the accumulated gradients to update the variables. In automatic mixed precision training, gradient accumulation is also supported, and the usage is as follows:
+Gradient accumulation means running a configured number of steps without updating the model variables. Until certain steps, use the accumulated gradients to update the variables. Limited by the size of the gpu memory, you may not be able to open a larger batch_size, you can increase batch_size by using gradient accumulation.
+
+In automatic mixed precision training, gradient accumulation is also supported, and the usage is as follows:
 
 ```python
 mse = paddle.nn.MSELoss() # Define loss calculation function
@@ -368,7 +375,7 @@ train_time = 0
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # get start time
-        label._to(place)
+        label._to(place) # Copy label to GPU
          # create AMP context environment
         with paddle.amp.auto_cast(level='O1'):
             output = model(data)
@@ -661,3 +668,15 @@ The fundamental reason why the Paddle AMP improves the training performance of t
     - The number of input and output channels（C/K) to be divisible by 8 (for FP16)（Cudnn7.6.3 and above will be automatically filled if it is not a multiple of 8）
     - For the first layer of the network, setting the number of channels to 4 can obtain the best operation performance (NVIDIA provides a special implementation for the convolution of the first layer of the network, and the performance is better when using 4 channels)
     - Set the tensor layout in memory to NHWC format (if NCHW format is input, the Tesor Core will be automatically converted to NHWC. When the input and output values are large, the cost of this conversion is often greater)
+
+Common problems and treatment methods of Paddle AMP:
+
+1. No acceleration effect or speed decrease after AMP Training:
+
+    Possible cause 1: The used GPU does not support AMP acceleration. You can view the following warning information in the training log: `UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.`;
+
+    Possible cause 2: The model is light computing and heavy scheduling, and the operations such as matmul and conv with large computing load account for a relatively low proportion. The utilization of GPU memory (Memory Usage and GPU_Util parameters) can be seen through nvidia-smi real-time production.
+
+2. Runtimeerror thrown when AMP-O2 is used together with distributed training: `For distributed AMP training, you should first use paddle.amp.decorate() to decotate origin model, and then call paddle.DataParallel get distributed model.`
+
+    Cause: distributed training of AMP-O2 requires `paddle.amp.decorate` needs to be declared before the `paddle.Dataparallel` initializing the distributed training network.

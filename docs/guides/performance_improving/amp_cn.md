@@ -36,7 +36,12 @@
 
 上图中蓝色虚线框内的逻辑即是 AMP 策略下参数精度转换（cast）逻辑，通常 cast 操作所带来的开销是有限的，当使用 float16 / bfloat16 在前向计算（forward compute）及反向传播（backward propagation）过程中取得的计算性能收益大于 cast 所带来的开销时，开启 AMP 训练将得到更优的训练性能。
 
-当模型参数在训练前即使用半精度浮点格式存数时（float16 / bfloat16），训练过程中将省去图 2 中的 cast 操作，可进一步提升模型训练性能，但是需要注意模型参数采用低精度数据类型进行存储，可能对模型最终的训练精度带来影响。
+当模型参数在训练前即使用半精度浮点格式存数时（float16 / bfloat16），训练过程中将省去图 2 中的 cast 操作，可进一步提升模型训练性能，但是需要注意模型参数采用低精度数据类型进行存储，可能对模型最终的训练精度带来影响。计算过程如下图3所示：
+
+<figure align="center">
+    <img src="./images/auto_cast_o2.png" width="400" alt='missing'>
+    <figcaption><center>图 3. float16计算过程示意图</center></figcaption>
+</figure>
 
 
 #### 1.2.2 grad_scaler策略
@@ -100,8 +105,8 @@
 
 依据 float16 数据类型在模型中的使用程度划分，飞桨框架的混合精度策略分为两个等级：
 
-- **Level = ‘O1’**：采用黑白名单策略进行混合精度训练，黑名单中的 OP 将采用 float32 计算，白名单中的 OP 将采用 float16 计算，auto_cast策略会自动将白名单 OP 的输入参数数据类型从 float32 转为 float16。飞桨框架默认设置了 [黑白名单 OP 列表](../../api/paddle/amp/Overview_cn.html)，对于不在黑白名单中的 OP，会依据该 OP 的全部输入数据类型进行推断，当全部输入均为 float16 时，OP 将直接采用 float16 计算，否则采用 float32 计算。
-- **Level = ‘O2’**：采用了比 O1 更为激进的策略，除了框架不支持 float16 计算的 OP 以及 O2 模式下自定义黑名单中的 OP，其他全部采用 float16 计算，此外，飞桨框架提供了将网络参数从 float32 转换为 float16 的接口，相比 O1 将进一步减少 auto_cast 逻辑中的 cast 操作，训练速度会有更明显的提升，但可能影响训练精度。
+- **Level = ‘O1’**：采用黑白名单策略进行混合精度训练，黑名单中的 OP 将采用 float32 计算，白名单中的 OP 将采用 float16 计算，auto_cast策略会自动将白名单 OP 的输入参数数据类型从 float32 转为 float16。飞桨框架默认设置了 [黑白名单 OP 列表](../../api/paddle/amp/Overview_cn.html)，对于不在黑白名单中的 OP，会依据该 OP 的全部输入数据类型进行推断，当全部输入均为 float16 时，OP 将直接采用 float16 计算，否则采用 float32 计算。计算逻辑可参考图2。
+- **Level = ‘O2’**：采用了比 O1 更为激进的策略，除了框架不支持 float16 计算的 OP 以及 O2 模式下自定义黑名单中的 OP，其他全部采用 float16 计算，此外，飞桨框架提供了将网络参数从 float32 转换为 float16 的接口，相比 O1 将进一步减少 auto_cast 逻辑中的 cast 操作，训练速度会有更明显的提升，但可能影响训练精度。计算逻辑可参考图3。
 
 飞桨框架推荐使用动态图模式训练模型，下面以动态图模式下单卡（GPU）训练场景为例，分别介绍使用基础 API 和高层 API 开启 AMP 训练的不同使用方式。
 
@@ -185,7 +190,7 @@ train_time = 0 # 记录总训练时长
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # 记录开始训练时刻
-        label._to(place)
+        label._to(place) # 将label数据拷贝到gpu
         # 前向计算（9层Linear网络，每层由matmul、add算子组成）
         output = model(data)
         # loss计算
@@ -226,7 +231,7 @@ train_time = 0 # 记录总训练时长
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # 记录开始训练时刻
-        label._to(place)
+        label._to(place) # 将label数据拷贝到gpu
         # 逻辑1：创建 AMP-O1 auto_cast 环境，开启自动混合精度训练，将 add 算子添加到自定义白名单中（custom_white_list），
         # 因此前向计算过程中该算子将采用 float16 数据类型计算
         with paddle.amp.auto_cast(custom_white_list={'elementwise_add'}, level='O1'):
@@ -273,7 +278,7 @@ train_time = 0 # 记录总训练时长
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # 记录开始训练时刻
-        label._to(place)
+        label._to(place) # 将label数据拷贝到gpu
         # 逻辑2：创建 AMP-O2 auto_cast 环境，开启自动混合精度训练，前向计算过程中该算子将采用 float16 数据类型计算
         with paddle.amp.auto_cast(level='O2'):
             output = model(data) # 前向计算（9层Linear网络，每层由matmul、add算子组成）
@@ -351,7 +356,7 @@ if paddle.is_compiled_with_cuda():
 
 ### 3.1 动态图下使用梯度累加
 
-梯度累加是指在模型训练过程中，训练一个 batch 的数据得到梯度后，不立即用该梯度更新模型参数，而是继续下一个 batch 数据的训练，得到梯度后继续循环，多次循环后梯度不断累加，直至达到一定次数后，用累加的梯度更新参数，这样可以起到变相扩大 batch_size 的作用。
+梯度累加是指在模型训练过程中，训练一个 batch 的数据得到梯度后，不立即用该梯度更新模型参数，而是继续下一个 batch 数据的训练，得到梯度后继续循环，多次循环后梯度不断累加，直至达到一定次数后，用累加的梯度更新参数，这样可以起到变相扩大 batch_size 的作用。受限于显存大小，可能无法开到更大的 batch_size，使用梯度累加可以实现增大 batch_size 的作用。
 
 动态图模式天然支持梯度累加，即只要不调用梯度清零 `clear_grad` 方法，动态图的梯度会一直累积，在自动混合精度训练中，梯度累加的使用方式如下：
 
@@ -369,7 +374,7 @@ train_time = 0 # 记录总训练时长
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # 记录开始训练时刻
-        label._to(place)
+        label._to(place) # 将label数据拷贝到gpu
         # 创建 AMP-O2 auto_cast 环境，开启自动混合精度训练，前向计算过程中该算子将采用 float16 数据类型计算
         with paddle.amp.auto_cast(level='O1'):
             output = model(data)
@@ -660,3 +665,15 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
     - 输入/输出数据的通道数（C/K）可以被8整除（FP16），（cudnn7.6.3及以上的版本，如果不是8的倍数将会被自动填充）
     - 对于网络第一层，通道数设置为4可以获得最佳的运算性能（NVIDIA为网络的第一层卷积提供了特殊实现，使用4通道性能更优）
     - 设置内存中的张量布局为NHWC格式（如果输入NCHW格式，Tesor Core会自动转换为NHWC，当输入输出数值较大的时候，这种转置的开销往往更大）
+
+飞桨 AMP 常见问题及处理方法如下：
+
+1. 开启AMP训练后无加速效果或速度下降
+
+    可能原因1：所用显卡并不支持AMP加速，可在训练日志中查看如下warning信息：`UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.`；
+
+    可能原因2：模型是轻计算、重调度的类型，计算负载较大的matmul、conv等操作占比较低，可通过nvidia-smi实时产看显卡显存利用率（Memory Usage 及 GPU_Util 参数）。
+
+2. AMP-O2与分布式训练同时使用时抛出RuntimeError: `For distributed AMP training, you should first use paddle.amp.decorate() to decotate origin model, and then call paddle.DataParallel get distributed model.`
+
+    原因：AMP-O2的分布式训练，要求`paddle.amp.decorate`需要声明在`paddle.DataParallel`初始化分布式训练的网络前。
