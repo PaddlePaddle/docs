@@ -39,7 +39,7 @@
 以上检查完成后就会为您安装对应您系统的PaddlePaddle了，安装一般需要1~2分钟会根据您的网络来决定，请您耐心等待。
 
 
-### MacOS
+### macOS
 
 脚本会执行以下几步：
 
@@ -47,6 +47,6 @@
 我们为您提供2种版本：开发版和稳定版，推荐您选择测试验证过的稳定版
 
 2.	检查Python版本
-由于MacOS自带的Python通常依赖于系统环境，因此我们不支持MacOS自带的Python环境，请重新从Python.org安装Python，然后根据提示输入您希望使用的Python的路径
+由于 macOS 自带的 Python 通常依赖于系统环境，因此我们不支持 macOS 自带的 Python 环境，请重新从 Python.org 安装P ython，然后根据提示输入您希望使用的 Python 的路径
 
 3. 检查是否支持[AVX](https://zh.wikipedia.org/zh-hans/AVX指令集)指令集

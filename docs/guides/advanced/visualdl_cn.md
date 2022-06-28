@@ -11,7 +11,7 @@ VisualDL是飞桨可视化分析工具，以丰富的图表呈现训练参数变
 
 具体功能使用方式请参见**VisualDL使用指南**。项目正处于高速迭代中，敬请期待新组件的加入。
 
-VisualDL支持浏览器种类：Chrome（81和83）、Safari 13、FireFox（77和78）、Edge（Chromium版）。
+VisualDL支持浏览器种类：Chrome（81和83）、Safari 13、Firefox（77和78）、Edge（Chromium版）。
 
 VisualDL原生支持python的使用， 通过在模型的Python配置中添加几行代码，便可为训练过程提供丰富的可视化支持。
 

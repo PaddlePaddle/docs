@@ -10,7 +10,7 @@
 cd path_to_clone_PaddleClas
 git clone https://github.com/PaddlePaddle/PaddleClas.git
 ```
-也可以访问PaddleClas的 [Github Repo](https://github.com/PaddlePaddle/PaddleClas) 直接下载源码。请根据[数据说明](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.0/docs/zh_CN/tutorials/data.md)文档准备ImageNet1k数据集。
+也可以访问PaddleClas的 [GitHub Repo](https://github.com/PaddlePaddle/PaddleClas) 直接下载源码。请根据[数据说明](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.0/docs/zh_CN/tutorials/data.md)文档准备ImageNet1k数据集。
 
 **第二步**：运行训练
 
@@ -39,7 +39,7 @@ python -m paddle.distributed.launch --gpus="0,1,2,3" tools/train.py -c ./ppcls/c
 cd path_to_clone_PaddleDetection
 git clone https://github.com/PaddlePaddle/PaddleDetection.git
 ```
-也可以访问PaddleDetection的 [Github Repo](https://github.com/PaddlePaddle/PaddleDetection) 直接下载源码。
+也可以访问PaddleDetection的 [GitHub Repo](https://github.com/PaddlePaddle/PaddleDetection) 直接下载源码。
 
 **第二步**：准备 VOC 数据集
 

@@ -5,31 +5,31 @@
 
 # 2、环境配置：
 
-	因为需要将飞桨paddlepaddle框架的分布式与其他深度学习框架做功能对比，这里其他深度学习框架我选择了pytorch框架，所以首先需要安装飞桨paddlepaddle框架与pytorch框架，开发平台选择了曙光平台昆山超算。
+	因为需要将飞桨 PaddlePaddle 框架的分布式与其他深度学习框架做功能对比，这里其他深度学习框架我选择了 PyTorch 框架，所以首先需要安装飞桨 PaddlePaddle 框架与 PyTorch 框架，开发平台选择了曙光平台昆山超算。
 
-## 2.1、pytorch环境配置：
+## 2.1、PyTorch 环境配置：
 
 - 1、首先安装anaconda
-```python
+```bash
 bash Anaconda3-2020.07-Linux-x86_64.sh –u
 ```
 - 2、创建一个属于自己的环境并激活
-```python
+```bash
 conda create --name pytorch_1.9 python=3.7
 conda activate pytorch-1.9
 ```
-- 3、安装pytorch-1.9（适配rocm-4.0.1及以上）PyTorch1.8和PyTorch1.9安装wheel包在公共目录：
-```python
+- 3、安装 pytorch-1.9（适配rocm-4.0.1及以上）PyTorch1.8 和 PyTorch1.9 安装 wheel 包在公共目录：
+```bash
 /public/software/apps/DeepLearning/whl/rocm-4.0.1/
 ```
 - 安装指令如下：
-```python
+```bash
 module rm compiler/rocm/2.9
 module load compiler/rocm/4.0.1
 pip install /public/software/apps/DeepLearning/whl/rocm-4.0.1/torch-1.9.0+rocm4.0.1-cp36-cp36m-linux_x86_64.whl -i https://pypi.tuna.tsinghua.edu.cn/simple/
 ```
 - 对于torchverion的安装不能按照曙光官方帮助文档给定的方法来，否则torchvision在运行自定义算子时会出现错误，所以需要使用源码安装的方式，安装方法如下:
-```python
+```text
 1、本地下载对应的torchvision分支源码包：https://github.com/pytorch/vision上传集群，
 2、进入对应的conda环境，加载对应的rocm（这里rocm4.0.1）版本；
 3、conda install libpng -y 
@@ -38,10 +38,10 @@ pip install /public/software/apps/DeepLearning/whl/rocm-4.0.1/torch-1.9.0+rocm4.
 6、使用salloc申请计算结点，使用ssh登录至计算节点，并进入对应的conda环境加载rocm（这里rocm4.0.1），执行编译：CC=clang CXX=clang++ python setup.py install
 ```
 
-## 2.2、paddlepaddle环境配置：
+## 2.2、PaddlePaddle 环境配置：
 
-- Paddlepaddle的环境在曙光超算上需要使用镜像的方式进行安装，镜像添加，源镜像名称填：paddlepaddle/paddle，源镜像标签填：latest-dev-rocm4.0-miopen2.11。然后创建实例打开容器。因为Docker容器中不能连接网络，使用paddle官网给出的安装方式会出现网络连接的错误。
-```python
+- PaddlePaddle 的环境在曙光超算上需要使用镜像的方式进行安装，镜像添加，源镜像名称填：paddlepaddle/paddle，源镜像标签填：latest-dev-rocm4.0-miopen2.11。然后创建实例打开容器。因为Docker容器中不能连接网络，使用paddle官网给出的安装方式会出现网络连接的错误。
+```bash
 python -m pip install paddlepaddle-rocm==2.2.2.rocm401.miopen211 -f https://www.paddlepaddle.org.cn/whl/rocm/stable.whl
 ```
 - 故需要提前下载whl文件，下载链接如下，下载的版本为paddlepaddle_rocm-2.1.1.rocm401.miopen211-cp37-cp37m-linux_x86_64.whl。下载链接：
@@ -49,28 +49,28 @@ python -m pip install paddlepaddle-rocm==2.2.2.rocm401.miopen211 -f https://www.
 https://www.paddlepaddle.org.cn/whl/rocm/stable.whl	
 
 - 安装指令为
-```python
+```bash
 pip install paddlepaddle_rocm-2.1.1.rocm401.miopen211-cp37-cp37m-linux_x86_64.whl
 ```
 - 期间所需要的其他库都需要通过在曙光超算上通过EShell进行安装，需要设定清华镜像源，例如
-```python
+```bash
 pip install six -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 - 经过测试，测试指令为
-```python
+```bash
 python -c "import paddle; paddle.utils.run_check()"
 ```
 环境有效。
 
 ## 2.3、安装对比分析
 
-Pytorch的分布式环境在曙光平台安装时需要手动源码编译torchversion，这个过程比较慢，这一点上pytorch相对比较繁琐；但是pytorch的环境在曙光平台比较稳定，而paddlepaddle环境在曙光平台不太稳定。
+PyTorch 的分布式环境在曙光平台安装时需要手动源码编译 torchversion，这个过程比较慢，这一点上 PyTorch 相对比较繁琐；但是 PyTorch 的环境在曙光平台比较稳定，而 PaddlePaddle 环境在曙光平台不太稳定。
 
-# 3、Paddle单机与分布式：
+# 3、Paddle 单机与分布式：
 
-## 3.1、paddle单机
+## 3.1、Paddle 单机
 
-在图像处理中，关键点本质上是一种特征。它是对一个固定区域或者空间物理关系的抽象描述，描述的是一定邻域范围内的组合或上下文关系。它不仅仅是一个点信息，或代表一个位置，更代表着上下文与周围邻域的组合关系。关键点检测的目标就是通过计算机从图像中找出这些点的坐标，作为计算机视觉领域的一个基础任务，关键点的检测对于高级别任务，例如识别和分类具有至关重要的意义。任务选用的是人脸关键点检测，采用的方法是坐标点回归的方式进行，参考paddlepaddle网址如下：
+在图像处理中，关键点本质上是一种特征。它是对一个固定区域或者空间物理关系的抽象描述，描述的是一定邻域范围内的组合或上下文关系。它不仅仅是一个点信息，或代表一个位置，更代表着上下文与周围邻域的组合关系。关键点检测的目标就是通过计算机从图像中找出这些点的坐标，作为计算机视觉领域的一个基础任务，关键点的检测对于高级别任务，例如识别和分类具有至关重要的意义。任务选用的是人脸关键点检测，采用的方法是坐标点回归的方式进行，参考 PaddlePaddle 网址如下：
 https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/landmark_detection.html
 
 其思路如下：
@@ -96,7 +96,7 @@ https://www.paddlepaddle.org.cn/documentation/docs/zh/practices/cv/landmark_dete
 首先对于上述代码进行分析，在paddle.Model的底层可以发现其在对模型进行初始化的时候会判断是动态图的模式还是静态图的模式，即
 ```python
 if fluid.in_dygraph_mode():
-self._adapter = DynamicGraphAdapter(self)
+    self._adapter = DynamicGraphAdapter(self)
 else:
     self._adapter = StaticGraphAdapter(self)
 ```
@@ -861,7 +861,7 @@ Eval samples:  428
 | :------------ | ---------- | --------------- | ------ | ------|
 | 序号         | 核心步骤    |  完成情况（成功/不成功） | 遇到问题 |解决方法（无法解决请注明）|
 | 1   |  导入分布式训练所需要的依赖包                    | 完成 | 无 | 无 |
-| 2 |  初始化分布式环境   | 完成 | paddlepaddle安装有时候会有一些问题、NCCL初始化有问题![图片](https://user-images.githubusercontent.com/35827074/165877509-b84f5846-b175-4ab9-8ae3-eef66ed09047.png) | 使用export设置一些安装的库的环境变量，上述问题是rocm版本问题，需要使用rocm-4.0.1版本。 修改rocm版本的方法为. module switch compiler/rocm/4.0.1，再就是导入超算上的一些环境变量 export NCCL_IB_HCA=mlx5_0 export NCCL_SOCKET_IFNAME=eno1 export NCCL_IB_DISABLE=0 |
+| 2 |  初始化分布式环境   | 完成 | PaddlePaddle 安装有时候会有一些问题、NCCL初始化有问题![图片](https://user-images.githubusercontent.com/35827074/165877509-b84f5846-b175-4ab9-8ae3-eef66ed09047.png) | 使用export设置一些安装的库的环境变量，上述问题是rocm版本问题，需要使用rocm-4.0.1版本。 修改rocm版本的方法为. module switch compiler/rocm/4.0.1，再就是导入超算上的一些环境变量 export NCCL_IB_HCA=mlx5_0 export NCCL_SOCKET_IFNAME=eno1 export NCCL_IB_DISABLE=0 |
 | 3 | 设置分布式训练需要的优化器                    | 完成 | 无 | 无 |
 | 4 | 数据集拆分                     | 完成 | 示例里面没有数据集的拆分案例，不会使用数据集的拆分；使用DistributedBatchSampler采样器之后DataLoader中无法指定batchsize以及shuffle参数 | 分析paddle的分布式API底层以及结合其他深度学习框架分析，发现了DistributedBatchSampler API，然后分析其底层实现，发现可以应用；分析DataLoader底层的源码，发现在指定batch_sampler参数之后不能指定batchsize、shuffle以及drop_last参数，然后在DistributedBatchSampler构建采样器的过程中指定。分布式数据集拆分使用DistributedBatchSampler，通过使用DistributedBatchSampler构建一个分布式的采样器，其会将数据平均划分到多个设备中，然后将其输入到Dataloader函数中，参数为batch_sampler，案例的全部代码已经在附录中给出。关于拆分部分如下：train_sampler = DistributedBatchSampler(train_dataset, 32, shuffle=True)   train_loader = DataLoader(train_dataset, batch_sampler=train_sampler, num_workers=2)   val_sampler = DistributedBatchSampler(val_dataset, 32)   val_loader = DataLoader(val_dataset, batch_sampler=val_sampler, num_workers=2) |  
 | 5 | 构建训练代码               |   完成  |    无      | 无 | 
@@ -870,10 +870,10 @@ Eval samples:  428
 
 * 总结：上述单机转为分布式的过程中，总体来说感觉还是可以的，动态图下paddle单机转为分布式的代码还是比较方便的，也有一些官网上的参考文档用于学习，但是有一些是在其参考文档中没有介绍的，例如数据集的拆分等这些需要自己去思考。
 
-# 4、pytorch单机与分布式：
-## 4.1、Pytorch单机
+# 4、PyTorch 单机与分布式：
+## 4.1、PyTorch 单机
 
-Pytorch单机下的流程和paddle单机下的流程基本上是相似的，采用了和paddle单机下相同的模型，相同的优化器与损失函数，过程如下：
+PyTorch 单机下的流程和 Paddle 单机下的流程基本上是相似的，采用了和 Paddle 单机下相同的模型，相同的优化器与损失函数，过程如下：
 - 1、导入相关库
 - 2、构建数据集
 - 3、定义模型
@@ -881,9 +881,9 @@ Pytorch单机下的流程和paddle单机下的流程基本上是相似的，采�
 - 5、训练模型
 - 6、预测
 
-## 4.2、Pytorch分布式
+## 4.2、PyTorch 分布式
 
-Pytorch单机转为分布式的具体流程如下：
+PyTorch 单机转为分布式的具体流程如下：
 - 1、导入分布式所需要的依赖包
 ```python
 import torch.distributed as dist
@@ -948,20 +948,20 @@ for epoch in range(total_epoch):
     print("Eval samples: ", len(val_dataset))
 ```
 7、启动分布式任务
-Pytorch分布式下两种启动方式，我选择的是和paddle类似的一种方式即通过torch.distributed.launch进行启动，启动方式如下：
-```python
+PyTorch 分布式下两种启动方式，我选择的是和paddle类似的一种方式即通过torch.distributed.launch进行启动，启动方式如下：
+```bash
 python -m torch.distributed.launch --nproc_per_node=4 train_multi.py
 ```
 # 4、对比分析
 
-下面对paddlepaddle与pytorch单机转为分布式进行对比性分析：
+下面对 PaddlePaddle 与 PyTorch 单机转为分布式进行对比性分析：
 ## 相似点：
-paddlepaddle与pytorch单机转为分布式的流程基本上是相似的，基本上遵循如下流程：导入分布式相关的库、初始化分布式环境、构建分布式的模型、构建优化器与损失函数、同时进行分布式数据集的拆分，最后构建训练代码，其整个流程都比较相似，相对来说paddlepaddle与pytorch单机转为分布式都是比较方便的。
+PaddlePaddle 与 PyTorch 单机转为分布式的流程基本上是相似的，基本上遵循如下流程：导入分布式相关的库、初始化分布式环境、构建分布式的模型、构建优化器与损失函数、同时进行分布式数据集的拆分，最后构建训练代码，其整个流程都比较相似，相对来说 PaddlePaddle 与 PyTorch 单机转为分布式都是比较方便的。
 ## 不同点：
-- 1、paddlepaddle内部有许多封装好的类，例如paddle.Model类，其内部封装了好多函数，例如train_batch/fit等函数，还加入了一些回调函数例如EarlyStopping等，可以比较方便地进行训练、测试的过程，比较容易使用。
-- 2、对于单机转为分布式的过程，如果对数据集进行shuffle打乱时，pytorch需要在每个epoch训练开始时调用train_sampler.set_epoch函数即设置一下shuffle打乱的种子，但是paddlepaddle如果对数据集进行shuffle打乱时，可以选择并不需要设置，因为其内部在每次打乱时会将self.epoch进行加一的操作，即自动改变了其数据打乱的种子，使用起来更加方便。
-- 3、从使用方面来说，paddlepaddle的分布式初始化有时候会报错有时候能使用，其环境用起来感觉不太稳定，pytorch的分布式使用起来相对比较稳定，其初始化环境等功能实现都比较稳定。
-- 4、从官方文档来说，paddlepaddle的分布式示例文档中感觉不太完善，例如DistributedSampler等的API没有在分布式示例文档中展现，paddle.Model等API没有找到相关API文档的介绍；pytorch的分布式示例文档相对来说比较完善，包括其示例以及API的使用以及分布式通信的相关API都有其文档介绍。
+- 1、PaddlePaddle 内部有许多封装好的类，例如 paddle.Model 类，其内部封装了好多函数，例如train_batch/fit等函数，还加入了一些回调函数例如EarlyStopping等，可以比较方便地进行训练、测试的过程，比较容易使用。
+- 2、对于单机转为分布式的过程，如果对数据集进行shuffle打乱时，PyTorch 需要在每个epoch训练开始时调用train_sampler.set_epoch函数即设置一下shuffle打乱的种子，但是 PaddlePaddle 如果对数据集进行shuffle打乱时，可以选择并不需要设置，因为其内部在每次打乱时会将self.epoch进行加一的操作，即自动改变了其数据打乱的种子，使用起来更加方便。
+- 3、从使用方面来说，PaddlePaddle 的分布式初始化有时候会报错有时候能使用，其环境用起来感觉不太稳定，PyTorch 的分布式使用起来相对比较稳定，其初始化环境等功能实现都比较稳定。
+- 4、从官方文档来说，PaddlePaddle 的分布式示例文档中感觉不太完善，例如DistributedSampler等的API没有在分布式示例文档中展现，paddle.Model等API没有找到相关API文档的介绍；PyTorch 的分布式示例文档相对来说比较完善，包括其示例以及API的使用以及分布式通信的相关API都有其文档介绍。
 
 # 5、附录
 ## 单机示例转为分布式的代码

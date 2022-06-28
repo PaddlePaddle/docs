@@ -95,7 +95,7 @@ def vectorizer(input, label=None, length=2000):
 
 ### 2.2 载入预训练向量
 以下给出的文件较小，可以直接完全载入内存。对于大型的预训练向量，无法一次载入内存的，可以采用分批载入，并行处理的方式进行匹配。
-此外，AIStudio 中提供了 glove.6B 数据集挂载，用户可在 AIStudio 中直接载入数据集并解压。
+此外，AI Studio 中提供了 glove.6B 数据集挂载，用户可在 AI Studio 中直接载入数据集并解压。
 
 
 ```python
