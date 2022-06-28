@@ -1,13 +1,12 @@
 ##  How to reproduce the results using C++ approach (EnableMkldnnInt8 and enable_mkldnn_int8)
 
-Tutorial how to reproduce the results for old Python Quant2 approach can be found [here](./Python.md) 
+Tutorial how to reproduce the results for old Python Quant2 approach can be found [here](./Python.md)
 
 
-From release **Release 2.3.1** there is new approach to run QAT models with OneDNN. 
-Main idea is to run just one API function `EnableMkldnnInt8` from `AnalysisConfig`. 
+From release **Release 2.3.1** there is new approach to run QAT models with OneDNN.
+Main idea is to run just one API function `EnableMkldnnInt8` from `AnalysisConfig`.
 
-
-The steps below show, taking ResNet50 as an example, how to reproduce the above accuracy and performance results for Image Classification models. 
+The steps below show, taking ResNet50 as an example, how to reproduce the above accuracy and performance results for Image Classification models.
 
 ### Prepare dataset
 
@@ -51,12 +50,12 @@ To download other Quant models, set the `QUANT_MODEL_NAME` variable to on of the
 - `ResNet50_qat_channelwise`, with input/output scales in `fake_quantize_range_abs_max` operators and the `out_threshold` attributes, with weight scales in `fake_channel_wise_dequantize_max_abs` operators
 
 
-### Model convertion 
+### Model convertion
 
-To run this quantiozation approach, first you need to set `AnalysisConfig` first and use `EnableMkldnnInt8` function that converts fake-quant model to INT8 OneDNN one.   
-Examples: 
+To run this quantiozation approach, first you need to set `AnalysisConfig` first and use `EnableMkldnnInt8` function that converts fake-quant model to INT8 OneDNN one.  
+Examples:
 
-> C++ 
+> C++
 ```C++
 AnalysisConfig cfg;
 cfg.SetModel(model_path);
@@ -64,7 +63,7 @@ cfg.SwitchIrOptim(true);
 cfg.SetCpuMathLibraryNumThreads(FLAGS_cpu_num_threads);
 cfg.EnableMKLDNN();
 cfg.EnableMkldnnInt8();
-``` 
+```
 
 > Python
 ```Python
@@ -73,17 +72,17 @@ config.switch_ir_optim(True)
 config.set_cpu_math_library_num_threads(num_threads)
 config.enable_mkldnn()
 config.enable_mkldnn_int8()
-``` 
+```
 
-There is available an option to set operators that should be quantized. You can pass a list of strings that will represent operators name to quantize as an argument to `EnableMkldnnInt8` function. Example: 
+There is available an option to set operators that should be quantized. You can pass a list of strings that will represent operators name to quantize as an argument to `EnableMkldnnInt8` function. Example:
 ```C++
-cfg.EnableMkldnnInt8({"conv2d", "fc", "matmul"}); 
+cfg.EnableMkldnnInt8({"conv2d", "fc", "matmul"});
 ```
 
 ### Performance benchmark commands
 
-To reproduce the performance results, the environment variable `OMP_NUM_THREADS=1` and `--batch_size=1` option should be set. 
-For image classification models you can use `paddle/fluid/inference/tests/api/analyzer_quant_image_classification_tester.cc` tester with flag `enable_quant_int8=True`. 
+To reproduce the performance results, the environment variable `OMP_NUM_THREADS=1` and `--batch_size=1` option should be set.
+For image classification models you can use `paddle/fluid/inference/tests/api/analyzer_quant_image_classification_tester.cc` tester with flag `enable_quant_int8=True`.
 
 
    ```bash

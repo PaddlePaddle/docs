@@ -1,6 +1,6 @@
 ##  How to reproduce the results using Python approach (Quant2Int8MkldnnPass)
 
-The steps below show, taking ResNet50 as an example, how to reproduce the above accuracy and performance results for Image Classification models. 
+The steps below show, taking ResNet50 as an example, how to reproduce the above accuracy and performance results for Image Classification models.
 To reproduce NLP models results (Ernie), please follow [How to reproduce Ernie Quant results on MKL-DNN](https://github.com/PaddlePaddle/benchmark/tree/master/Inference/c%2B%2B/ernie/mkldnn/README.md).
 
 ### Prepare dataset
@@ -73,6 +73,7 @@ The following options are also accepted:
   * Sometimes it may be suboptimal to quantize all quantizable operators in the model (cf. *Notes* in the **Gathering scales** section above). To find the optimal configuration for this option, user can run benchmark a few times with different lists of quantized operators present in the model and compare the results. For Image Classification models mentioned above the list usually comprises of `conv2d` and `pool2d` operators.
 * `--op_ids_to_skip` - a comma-separated list of operator ids to skip in quantization. To get an id of a particular operator run the script with the `--debug` option first (see below for the description of the option), and having opened the generated file `int8_<some_number>_cpu_quantize_placement_pass.dot` find the id number written in parentheses next to the name of the operator.
 * `--debug` - add this option to generate a series of `*.dot` files containing the model graphs after each step of the transformation. For a description of the DOT format see [DOT]( https://graphviz.gitlab.io/_pages/doc/info/lang.html). The files will be saved in the current location. To open the `*.dot` files use any of the Graphviz tools available on your system (e.g. `xdot` tool on Linux or `dot` tool on Windows, for documentation see [Graphviz](http://www.graphviz.org/documentation/)).
+
 
 ```bash
 cd /PATH/TO/PADDLE
