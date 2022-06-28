@@ -108,10 +108,16 @@ git commit -m 'test=document_fix'
 
 #### PR-CI-Static-Check
 
-该CI主要的功能是检查代码风格是否符合规范，检测`develop`分支与当前`PR`分支的增量的API英文文档是否符合规范，以及当变更API或OP时需要TPM approval。
+该CI主要的功能是检查文档是否符合规范，检测`develop`分支与当前`PR`分支的增量的API英文文档是否符合规范，以及当变更API或OP时需要TPM approval。
 
 - 编译脚本：`paddle/scripts/paddle_build.sh build_and_check_cpu`
 - 示例文档检测脚本：`paddle/scripts/paddle_build.sh build_and_check_gpu`
+
+#### PR-CI-Codestyle-Check
+
+该CI主要的功能是检查提交代码是否符合规范，详细内容请参考[代码风格检查指南](./codestyle_check_guide_cn.html)。
+
+- 执行脚本：`paddle/scripts/paddle_build.sh build_and_check_gpu`
 
 #### PR-CI-infrt
 
