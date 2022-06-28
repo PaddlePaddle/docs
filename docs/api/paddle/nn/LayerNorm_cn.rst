@@ -10,11 +10,11 @@ LayerNorm
 计算公式如下
 
 .. math::
-            \\\mu=\frac{1}{H}\sum_{i=1}^{H}x_i\\
+    \\\mu &= \frac{1}{H}\sum_{i=1}^{H}x_i\\
 
-            \\\sigma=\sqrt{\frac{1}{H}\sum_i^H{(x_i-\mu)^2} + \epsilon}\\
+    \\\sigma &= \sqrt{\frac{1}{H}\sum_i^H{(x_i-\mu)^2} + \epsilon}\\
 
-             \\y=f(\frac{g}{\sigma}(x-\mu) + b)\\
+    \\y &= f(\frac{g}{\sigma}(x-\mu) + b)\\
 
 - :math:`x`：该层神经元的向量表示
 - :math:`H`：层中隐藏神经元个数
