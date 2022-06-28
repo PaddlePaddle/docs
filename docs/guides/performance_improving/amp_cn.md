@@ -4,7 +4,7 @@
 
 考虑到一些算子（OP）对数据精度的要求较高（如 softmax、cross_entropy），仍然需要采用 float32 进行计算；还有一些算子（如conv2d、matmul）对数据精度不敏感，可以采用 float16 / bfloat16 提升计算速度并降低存储空间，飞桨框架提供了**自动混合精度（Automatic Mixed Precision，以下简称为AMP）训练**的方法，可在模型训练时，自动为算子选择合适的数据计算精度（float32 或 float16 / bfloat16），在保持训练精度（accuracy）不损失的条件下，能够加速训练，可参考2018年百度与NVIDIA联合发表的论文：[MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf)。本文将介绍如何使用飞桨框架实现自动混合精度训练。
 
-## 一、概述：
+## 一、概述
 
 ### 1.1 浮点数据类型
 
@@ -98,7 +98,7 @@
 
 从 NVIDIA Ampere 架构开始，GPU 支持 bfloat16，其计算性能与 float16 持平。
 
-> 说明：通过`nvidia-smi`指令可帮助查看NVIDIA显卡架构信息。此外如果已开启自动混合精度训练，飞桨框架会自动检测硬件环境是否符合要求，如不符合则将提供类似如下的警告信息：`UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.`。
+> 说明：通过`nvidia-smi`指令可帮助查看NVIDIA显卡架构信息，混合精度训练适用的 NVIDIA GPU 计算能力至少为 7.0 的版本。此外如果已开启自动混合精度训练，飞桨框架会自动检测硬件环境是否符合要求，如不符合则将提供类似如下的警告信息：`UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.`。
 
 ### 1.4 适用场景说明
 
@@ -359,6 +359,8 @@ if paddle.is_compiled_with_cuda():
 
 ## 三、其他使用场景
 
+前文介绍了动态图模式下单卡（GPU）训练的方法，与之类似，[分布式训练](https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/collective_performance/amp.html) 和 [动转静训练](../jit/index_cn.html) 时可以采用同样的方法开启 AMP。接下来主要介绍不同的静态图模式下开启 AMP 训练的方法，以及 AMP 训练的进阶用法，如梯度累加。
+
 ### 3.1 动态图下使用梯度累加
 
 梯度累加是指在模型训练过程中，训练一个 batch 的数据得到梯度后，不立即用该梯度更新模型参数，而是继续下一个 batch 数据的训练，得到梯度后继续循环，多次循环后梯度不断累加，直至达到一定次数后，用累加的梯度更新参数，这样可以起到变相扩大 batch_size 的作用。受限于显存大小，可能无法开到更大的 batch_size，使用梯度累加可以实现增大 batch_size 的作用。
@@ -406,7 +408,7 @@ print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 
 ### 3.2 静态图训练开启 AMP
 
-飞桨框架在静态图模式下实现 AMP 训练，使用如下 API：`paddle.static.amp.decorate`、`paddle.static.amp.fp16_guard`。
+飞桨框架在静态图模式下实现 AMP 训练，功能逻辑与动态图类似，只是调用的接口有区别，使用如下 API：`paddle.static.amp.decorate`、`paddle.static.amp.fp16_guard`。
 
 - `paddle.static.amp.decorate`：对传入的优化器进行装饰，增添 AMP 逻辑，同时可通过该接口配置 grad_scaler 策略的相关参数。
 - `paddle.static.amp.fp16_guard`：在 AMP-O2 模式下，控制 float16 的作用域，只有在上下文管理器`fp16_guard`内部才会使用 float16 计算。
@@ -633,13 +635,6 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 
 从上表统计结果可以看出，使用自动混合精度训练 O1 模式训练速度提升约为 4.5 倍，O2 模式训练速度提升约为 5.4 倍。
 
-### 3.3 动转静训练开启 AMP
-
-除了动态图模式下训练和静态图模式下训练，飞桨框架还支持动转静训练，即仍然用更易于开发调试的动态图代码，加入少量代码即可在底层转为性能更优的静态图模式下训练。针对该场景下开启 AMP 的方法，请参见 [动态图转静态图](../jit/index_cn.html) 章节。
-
-### 3.4 分布式训练开启 AMP
-
-分布式训练开启AMP，请参见 [分布式训练文档链接](https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/collective_performance/amp.html)。
 
 ## 四、其他注意事项
 
