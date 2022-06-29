@@ -11,8 +11,8 @@
 飞桨提供了版本迁移工具，该工具按 Paddle 2.0 对于 Paddle 1.X的变化，能够自动实现以下功能：
 
 - 按照 :ref:`API映射表 <cn_guides_api_mapping>` ，将转换工具能否转换这列为True的API由Paddle 1.X 转为 Paddle 2.0，为False的API打印WARNING，提示手动升级。
-- 因为Paddle 2.0.0 默认开启动态图，所以删除用于开启动态图上下文的 ``with paddle.fluid.dygraph.guard(place)`` ，并修改该上下文的代码缩进；
-- 删除组网API中的 ``act`` 参数，并自动添加相关的激活函数；
+- 因为Paddle 2.0.0 默认开启动态图，所以删除用于开启动态图上下文的 ``with paddle.fluid.dygraph.guard(place)`` ，并修改该上下文的代码缩进。
+- 删除组网API中的 ``act`` 参数，并自动添加相关的激活函数。
 
 目前，版本迁移工具能够处理的API数量为X个，如果你有代码迁移的需求，使用转换工具能够节省你部分时间，帮助你快速完成代码迁移。
 
