@@ -12,8 +12,8 @@ alltoall_single
 :::::::::
     - in_tensor (Tensor) - 输入Tensor。数据类型必须是float16、float32、 float64、int32、int64。
     - out_tensor (Tensor) - 输出Tensor。数据类型要和 ``in_tensor`` 一致。
-    - in_split_sizes (list[int], 可选) – 拆分操作依赖的size列表；如果是 None 或空，输出张量的第0维必须能被 world size 整除。
-    - out_split_sizes (list[int], 可选) – 聚合操作依赖的size列表；如果是 None 或空，输出张量的第0维必须能被 world size 整除。
+    - in_split_sizes (list[int], 可选) – 拆分操作依赖的size列表；如果是None或空，输出张量的第0维必须能被world size整除。
+    - out_split_sizes (list[int], 可选) – 聚合操作依赖的size列表；如果是None或空，输出张量的第0维必须能被world size整除。
     - group (Group，可选) - new_group返回的Group实例，或者设置为None表示默认地全局组。默认值：None。
     - use_calc_stream (bool，可选) - 标识使用计算流还是通信流。默认值：True。
 
