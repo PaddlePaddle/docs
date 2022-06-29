@@ -48,6 +48,11 @@ HingeEmbeddingLoss
     - **label** (Tensor): - 标签，维度是 [N, *]，与 ``input`` 相同，应该只包含 1 和 -1。数据类型为：float32、float64。
     - **output** (Tensor): - 输入 ``input`` 和标签 ``label`` 间的 `hinge embedding loss` 损失。如果 `reduction` 是 ``'none'``，则输出 Loss 的维度为 [N, *]，与输入 ``input`` 相同。如果 `reduction` 是 ``'mean'`` 或 ``'sum'``，则输出 Loss 的维度为 [1]。
 
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 HingeEmbeddingLoss 的可调用对象。
+
 代码示例
 :::::::::
 

@@ -31,12 +31,10 @@ SmoothL1Loss
     - **input** (Tensor)：输入 `Tensor`，数据类型为float32。其形状为 :math:`[N, C]`，其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_k]`，k >= 1。
     - **label** (Tensor)：输入input对应的标签值，数据类型为float32。数据类型和input相同。
 
-
-
 返回
-:::::::::
-Tensor，计算 `SmoothL1Loss` 后的损失值。
+::::::::::::
 
+:ref:`cn_api_fluid_dygraph_Layer`，计算 SmoothL1Loss 的可调用对象。
 
 代码示例
 :::::::::

@@ -38,9 +38,9 @@ AdaptiveMaxPool3D
     - **output** (Tensor)：默认形状为（批大小，通道数，输出特征深度，高度，宽度），即NCDHW格式的5-D Tensor。其数据类型与输入x相同。
 
 返回
-:::::::::
-计算AdaptiveMaxPool3D的可调用对象
+::::::::::::
 
+:ref:`cn_api_fluid_dygraph_Layer`，计算 AdaptiveMaxPool3D 的可调用对象。
 
 代码示例
 :::::::::

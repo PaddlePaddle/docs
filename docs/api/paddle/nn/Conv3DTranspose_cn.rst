@@ -86,6 +86,11 @@ Conv3DTranspose
         & H'_{out} = (H_{in}-1)*strides[1] + dilations[1]*(kernel\_size[1]-1)+1\\
         & W'_{out} = (W_{in}-1)*strides[2] + dilations[2]*(kernel\_size[2]-1)+1 \\
 
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 Conv3DTranspose 的可调用对象。
+
 代码示例
 ::::::::::::
 

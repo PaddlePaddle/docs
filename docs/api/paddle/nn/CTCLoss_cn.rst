@@ -21,8 +21,9 @@ CTCLoss
     - **label_lengths** (Tensor): - 表示 label 中每个序列的长度，shape为 [batch_size]。数据类型支持int64。
 
 返回
-:::::::::
-``Tensor``，输入 ``logits`` 和标签 ``labels`` 间的 `ctc loss`。如果 :attr:`reduction` 是 ``'none'``，则输出 loss 的维度为 [batch_size]。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出Loss的维度为 [1]。数据类型与输入 ``logits`` 一致。
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 CTCLoss 的可调用对象。
 
 代码示例
 :::::::::

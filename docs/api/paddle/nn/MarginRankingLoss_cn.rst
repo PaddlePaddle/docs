@@ -38,8 +38,9 @@ MarginRankingLoss
     - **output** - 如果 :attr:`reduction` 为 ``'sum'`` 或者是 ``'mean'``，则形状为 :math:`[1]`，否则shape和输入 `input` 保持一致。数据类型与 ``input``、 ``other`` 相同。
 
 返回
-::::::::
-返回计算MarginRankingLoss的可调用对象。
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 MarginRankingLoss 的可调用对象。
 
 代码示例
 ::::::::

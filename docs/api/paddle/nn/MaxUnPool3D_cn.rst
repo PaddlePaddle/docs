@@ -42,11 +42,10 @@ MaxUnPool3D
     - **indices** (Tensor)：默认形状为（批大小，通道数，输出特征深度，输出特征高度，输出特征宽度），即NCDHW格式的5-D Tensor。其数据类型为int32。
     - **output** (Tensor)：默认形状为（批大小，通道数，输出特征深度，输出特征高度，输出特征宽度），即NCDHW格式的5-D Tensor。其数据类型与输入一致。
 
-
 返回
-:::::::::
-计算MaxUnPool3D的可调用对象
+::::::::::::
 
+:ref:`cn_api_fluid_dygraph_Layer`，计算 MaxUnPool3D 的可调用对象。
 
 代码示例
 :::::::::

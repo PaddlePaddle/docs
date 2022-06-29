@@ -76,7 +76,10 @@ bias
     .. math::
         L_{out} = \frac{\left ( L_{in} -\left ( dilation*\left ( kernel\_size-1 \right )+1 \right ) \right )}{stride}+1
 
+返回
+::::::::::::
 
+:ref:`cn_api_fluid_dygraph_Layer`，计算 Conv1D 的可调用对象。
 
 代码示例
 ::::::::::::

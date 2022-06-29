@@ -84,6 +84,10 @@ Conv2DTranspose
         & H'_{out} = (H_{in}-1)*strides[0] + dilations[0]*(kernel\_size[0]-1)+1\\
         & W'_{out} = (W_{in}-1)*strides[1] + dilations[1]*(kernel\_size[1]-1)+1 \\
 
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 Conv2DTranspose 的可调用对象。
 
 代码示例
 ::::::::::::

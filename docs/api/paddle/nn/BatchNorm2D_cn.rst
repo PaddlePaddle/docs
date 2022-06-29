@@ -46,11 +46,6 @@ BatchNorm2D
     - **data_format** (string，可选) - 指定输入数据格式，数据格式可以为"NCHW"。默认值：“NCHW”。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-
-返回
-::::::::::::
-无
-
 形状
 ::::::::::::
 
@@ -59,7 +54,11 @@ BatchNorm2D
 
 .. note:: 
 目前训练时设置track_running_stats为False是无效的，实际还是会按照True的方案保存全局均值和方差。之后的版本会修复此问题。
-    
+
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 BatchNorm2D 的可调用对象。
 
 代码示例
 ::::::::::::

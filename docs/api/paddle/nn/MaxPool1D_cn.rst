@@ -31,10 +31,9 @@ MaxPool1D
     - **output** (Tensor)：默认形状为（批大小，通道数，输出特征长度），即NCL格式的3-D Tensor。其数据类型与输入x相同。
 
 返回
-:::::::::
-计算MaxPool1D的可调用对象
+::::::::::::
 
-
+:ref:`cn_api_fluid_dygraph_Layer`，计算 MaxPool1D 的可调用对象。
 
 代码示例
 :::::::::

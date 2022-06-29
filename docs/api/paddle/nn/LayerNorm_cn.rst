@@ -16,11 +16,11 @@ LayerNorm
 
     \\y &= f(\frac{g}{\sigma}(x-\mu) + b)\\
 
-- :math:`x`：该层神经元的向量表示
-- :math:`H`：层中隐藏神经元个数
-- :math:`\epsilon`：添加较小的值到方差中以防止除零
-- :math:`g`：可训练的比例参数
-- :math:`b`：可训练的偏差参数
+- :math:`x`：该层神经元的向量表示。
+- :math:`H`：层中隐藏神经元个数。
+- :math:`\epsilon`：添加较小的值到方差中以防止除零。
+- :math:`g`：可训练的比例参数。
+- :math:`b`：可训练的偏差参数。
 
 
 参数
@@ -37,6 +37,11 @@ LayerNorm
 
     - input: 2-D, 3-D, 4-D或5D 的Tensor。
     - output：和输入形状一样。
+
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 LayerNorm 的可调用对象。
 
 代码示例
 ::::::::::::

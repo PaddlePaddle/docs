@@ -36,6 +36,10 @@ CrossEntropyLoss
     - **label** (Tensor): - 当soft_label=False时，输入input对应的标签值，数据类型为int64。其形状为 :math:`[N]`，每个元素符合条件：0 <= label[i] <= C-1。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k]` ，k >= 1；当soft_label=True时，输入形状应与input一致，数据类型为float32或float64且每个样本的各标签概率和应为1。
     - **output** (Tensor): - 计算 `CrossEntropyLoss` 交叉熵后的损失值。
 
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 CrossEntropyLoss 的可调用对象。
 
 代码示例
 :::::::::

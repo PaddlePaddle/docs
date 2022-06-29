@@ -38,8 +38,9 @@ TripletMarginLoss
     - **output** (Tensor) - 输出的Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[1]` 。
 
 返回
-:::::::::
-   返回计算TripletMarginLoss的可调用对象。
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 TripletMarginLoss 的可调用对象。
 
 代码示例
 :::::::::

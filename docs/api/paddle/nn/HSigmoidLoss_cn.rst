@@ -39,6 +39,11 @@ HSigmoidLoss
     - **label** (Tensor): - 标签，维度是[N, 1]。
     - **output** (Tensor): - 输入 ``input`` 和标签 ``label`` 间的 `hsigmoid loss` 损失。输出Loss的维度为[N, 1]。
 
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 HSigmoidLoss 的可调用对象。
+
 代码示例
 ::::::::::
 

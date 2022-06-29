@@ -26,6 +26,11 @@ GroupNorm
     - input：形状为(批大小，通道数，\*) 的Tensor。
     - output：和输入形状一样。
 
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 GroupNorm 的可调用对象。
+
 代码示例
 ::::::::::::
 

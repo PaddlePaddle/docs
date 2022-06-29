@@ -58,20 +58,10 @@ BatchNorm
 
 返回
 ::::::::::::
-无
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 BatchNorm 的可调用对象。
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x_data = np.random.random(size=(3, 10, 3, 7)).astype('float32')
-    x = paddle.to_tensor(x_data)
-    batch_norm = paddle.nn.BatchNorm(10)
-    batch_norm_out = batch_norm(x)
-
-    print(batch_norm_out.shape)
-    # [3, 10, 3, 7]
+COPY-FROM: paddle.nn.BatchNorm

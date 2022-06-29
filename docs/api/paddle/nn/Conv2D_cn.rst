@@ -86,7 +86,10 @@ bias
 
         W_{out} = \frac{\left ( W_{in} -\left ( dilation[1]*\left ( kernel\_size[1]-1 \right )+1 \right ) \right )}{stride[1]}+1
 
+返回
+::::::::::::
 
+:ref:`cn_api_fluid_dygraph_Layer`，计算 Conv2D 的可调用对象。
 
 代码示例
 ::::::::::::

@@ -42,7 +42,11 @@ Note:
 
 .. note::
 目前设置track_running_stats和momentum是无效的。之后的版本会修复此问题。
-    
+
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 InstanceNorm1D 的可调用对象。
 
 代码示例
 ::::::::::::

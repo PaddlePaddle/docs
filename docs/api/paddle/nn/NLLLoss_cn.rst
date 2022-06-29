@@ -43,6 +43,11 @@ NLLLoss
     - **label** (Tensor): - 输入 `input` 对应的标签值。其形状为 :math:`[N,]` 或者 :math:`[N, d_1, d_2, ..., d_K]`，数据类型为int64。
     - **output** (Tensor): - 输入 `input` 和 `label` 间的 `negative log likelihood loss` 损失。如果 `reduction` 为 `'none'`，则输出Loss形状为 `[N, *]`。如果 `reduction` 为 `'sum'` 或者 `'mean'`，则输出Loss形状为 `'[1]'` 。
 
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 NLLLoss 的可调用对象。
+
 代码示例
 :::::::::
 

@@ -18,18 +18,11 @@ Flatten
 
 返回
 ::::::::::::
-  无。
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 Flatten 的可调用对象。
 
 
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    import numpy as np
-
-    inp_np = np.ones([5, 2, 3, 4]).astype('float32')
-    inp_np = paddle.to_tensor(inp_np)
-    flatten = paddle.nn.Flatten(start_axis=1, stop_axis=2)
-    flatten_res = flatten(inp_np)
+COPY-FROM: paddle.nn.Flatten

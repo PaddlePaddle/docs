@@ -35,6 +35,11 @@ CosineEmbeddingLoss
     - **label** (Tensor): - 标签，维度是[N]，N是数组长度，数据类型为：float32、float64、int32、int64。
     - **output** (Tensor): - 输入 ``input1`` 、 ``input2`` 和标签 ``label`` 间的 `CosineEmbeddingLoss` 损失。如果 `reduction` 是 ``'none'``，则输出Loss的维度为 [N]，与输入 ``input1`` 和 ``input2`` 相同。如果 `reduction` 是 ``'mean'`` 或 ``'sum'``，则输出Loss的维度为 [1]。
 
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 CosineEmbeddingLoss 的可调用对象。
+
 代码示例
 :::::::::
 COPY-FROM: paddle.nn.CosineEmbeddingLoss:code-example1

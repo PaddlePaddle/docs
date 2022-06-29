@@ -25,9 +25,9 @@ AdaptiveAvgPool1D
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
-:::::::::
-用于计算 1D 自适应平均池化的可调用对象。
+::::::::::::
 
+:ref:`cn_api_fluid_dygraph_Layer`，计算 AdaptiveAvgPool1D 的可调用对象。
 
 代码示例
 :::::::::

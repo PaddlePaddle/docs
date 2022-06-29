@@ -71,6 +71,10 @@ Conv1DTranspose
     .. math::
         L'_{out} = (L_{in}-1)*stride + dilation*(kernel\_size-1)+1
 
+返回
+::::::::::::
+
+:ref:`cn_api_fluid_dygraph_Layer`，计算 Conv1DTranspose 的可调用对象。
 
 代码示例
 ::::::::::::
