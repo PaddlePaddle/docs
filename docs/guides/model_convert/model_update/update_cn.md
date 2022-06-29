@@ -5,7 +5,7 @@
 
  - 动态图功能完善，动态图模式下数据表示概念为`Tensor`，推荐使用动态图模式；
  - API目录体系调整，API的命名和别名进行了统一规范化，虽然兼容老版API，但请使用新API体系开发；
- - 数据处理、组网方式、模型训练、多卡启动、模型保存和推理等开发流程都有了对应优化，请对应查看说明；
+ - 数据处理、组网方式、模型训练、多卡启动、模型保存和推理等开发流程都有了对应优化，请对应查看说明。
 
 以上变化请仔细阅读本指南。对于已有模型的升级，飞桨还提供了2.0转换工具（见附录）提供更自动化的辅助。
 其他一些功能增加方面诸如动态图对量化训练、混合精度的支持、动静转换等方面不在本指南列出，具体可查看[Release Note](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/release_note_cn.html)或对应文档。
@@ -46,21 +46,21 @@ paddle.to_tensor(np.random.randn(3, 4))
 
 | 目录 | 功能和包含的API |
 | :--- | --------------- |
-| paddle.*          | paddle根目录下保留了常用API的别名，当前包括：paddle.tensor、paddle.framework和paddle.device目录下的所有API |
+| paddle.*          | paddle根目录下保留了常用API的别名，当前包括：paddle.tensor、paddle.framework和paddle.device目录下的所有API。 |
 | paddle.tensor     | tensor操作相关的API，例如创建 zeros 、矩阵运算 matmul 、变换 concat 、计算 add 、查找 argmax 等。|
 | paddle.framework  | 框架通用API和动态图模式的API，例如 no_grad 、 save 、 load 等。|
-| paddle.device     | 设备管理相关API，比如：set_device， get_device等                |
+| paddle.device     | 设备管理相关API，比如：set_device， get_device等。               |
 | paddle.amp        | paddle自动混合精度策略，包括 auto_cast 、 GradScaler 等。|
 | paddle.callbacks  | paddle日志回调类，包括 ModelCheckpoint 、 ProgBarLogger 等。|
 | paddle.nn         | 组网相关的API，例如 Linear 、卷积 Conv2D 、循环神经网络 LSTM 、损失函数 CrossEntropyLoss 、激活函数 ReLU 等。 |
-| paddle.static     | 静态图下基础框架相关API，比如：Variable, Program, Executor等 |
+| paddle.static     | 静态图下基础框架相关API，比如：Variable, Program, Executor等。 |
 | paddle.static.nn  | 静态图下组网专用API，例如全连接层 fc 、控制流 while_loop/cond 。|
 | paddle.optimizer  | 优化算法相关API，比如：SGD、Adagrad、Adam等。|
 | paddle.optimizer.lr  | 学习率衰减相关API，例如 NoamDecay 、 StepDecay 、 PiecewiseDecay 等。|
 | paddle.metric     | 评估指标计算相关的API，比如：Accuracy, Auc等。             |
-| paddle.io         | 数据输入输出相关API，比如：Dataset, DataLoader等 |
-| paddle.distributed      | 分布式相关基础API                                                |
-| paddle.distributed.fleet      | 分布式相关高层API                                         |
+| paddle.io         | 数据输入输出相关API，比如：Dataset, DataLoader等。 |
+| paddle.distributed      | 分布式相关基础API。                                                |
+| paddle.distributed.fleet      | 分布式相关高层API。                                         |
 | paddle.vision     | 视觉领域API，例如数据集 Cifar10 、数据处理 ColorJitter 、常用基础网络结构 ResNet 等。|
 | paddle.text       | 目前包括NLP领域相关的数据集，如 Imdb 、 Movielens 。|
 
@@ -496,10 +496,10 @@ paddle.jit.save(net, './simple_net')
 
 重要变化：
 
-- 命名空间从 `paddle` 变更为 `paddle_infer`
-- `PaddleTensor`, `PaddleBuf` 等被废弃，`ZeroCopyTensor` 变为默认 Tensor 类型，并更名为 `Tensor`
-- 新增 `PredictorPool` 工具类简化多线程 predictor 的创建，后续也会增加更多周边工具
-- `CreatePredictor` (原 `CreatePaddlePredictor`) 的返回值由 `unique_ptr` 变为 `shared_ptr` 以避免 Clone 后析构顺序出错的问题
+- 命名空间从 `paddle` 变更为 `paddle_infer`。
+- `PaddleTensor`, `PaddleBuf` 等被废弃，`ZeroCopyTensor` 变为默认 Tensor 类型，并更名为 `Tensor`。
+- 新增 `PredictorPool` 工具类简化多线程 predictor 的创建，后续也会增加更多周边工具。
+- `CreatePredictor` (原 `CreatePaddlePredictor`) 的返回值由 `unique_ptr` 变为 `shared_ptr` 以避免 Clone 后析构顺序出错的问题。
 
 API 变更
 
@@ -516,7 +516,7 @@ API 变更
 | `Predictor::GetOutputTensor` | `Predictor::GetOutputHandle` | 无                            |
 |                              | `PredictorPool`              | 简化创建多个 predictor 的支持 |
 
-使用新 C++ API 的流程与之前完全一致，只有命名变化
+使用新 C++ API 的流程与之前完全一致，只有命名变化。
 
 ```c++
 #include "paddle_infernce_api.h"
