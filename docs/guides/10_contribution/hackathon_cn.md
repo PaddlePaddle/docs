@@ -1,31 +1,29 @@
 # 活动介绍
 
-2022 PaddlePaddle Hackathon 飞桨黑客马拉松第二期正式上线，本次活动是面向全球开发者的深度学习领域编程活动，鼓励开发者了解与参与深度学习开源项目。
+2022 PaddlePaddle Hackathon 飞桨黑客马拉松第三期正式上线，本次活动是面向全球开发者的深度学习领域编程活动，鼓励开发者了解与参与深度学习开源项目。
 
-本次飞桨黑客马拉松由飞桨联合深度学习技术及应用国家工程实验室主办，分为热身活动和线上任务两部分。
+本次飞桨黑客马拉松由飞桨联合深度学习应用国家研究中心主办，以线上认领任务的形式进行。
 
-热身任务是飞桨框架文档与Paddle Lite文档的使用体验评估，详情可参考 [飞桨体验评测任务第二期](https://github.com/PaddlePaddle/Paddle/issues/40109)。
+你可以个人或组队报名（我们强烈推荐大家组队完成，组队完成提交后，将额外获得飞桨黑客松定制勋章）并认领相应任务，根据任务要求完成相应开发，参与项目共建，任务由 PaddlePaddle、Paddle Family、Paddle Friends、Paddle Insight 四个专区组成，并设有两个难度梯队，任你选择。
 
-线上任务以线上认领任务的形式进行，你可以个人或组队报名（我们强烈推荐大家组队完成，组队完成提交后，将额外获得飞桨黑客松定制勋章）并认领相应任务，根据任务要求完成相应开发，参与项目共建，任务由 PaddlePaddle、Paddle Family、Paddle Friends、Paddle Evaluation 四个专区组成，并有三个难度梯队，任你选择。
-
-对深度学习感兴趣的你，快来参加活动吧，更有机会获得现金奖励以及来自百度和开源社区技术大咖们的指导与经验分享，更多奖励等你来拿。
+对深度学习与开源贡献感兴趣的你，快来参加活动吧，更有机会获得现金奖励以及来自百度和开源社区技术大咖们的指导与经验分享，更多奖励等你来拿！
 
 
 ## 一、活动流程
 
 ### 1、本次活动整体流程如图，具体说明如下：
 
-![](https://github.com/PaddlePaddle/docs/blob/release/2.2/docs/guides/10_contribution/img/hackathon_process.png?raw=text)
+![](https://github.com/PaddlePaddle/docs/blob/release/2.2/docs/guides/10_contribution/img/hackathon#3_process.png?raw=text)
 
 - 1、活动报名：[点击报名](https://www.wjx.top/vj/t8yHphe.aspx?udsid=268437) 填写相关信息，完成活动报名（强烈推荐大家组队完成，组队完成提交后，将额外获得飞桨黑客松定制勋章，PS：该勋章仅该环节可获得）；报名成功后，你可以进入百度飞桨黑客松QQ交流群（群号：343734965），所有活动相关信息都会在群中及时同步；
-- 2、**任务认领** ：首先 fork 你想要认领的任务 ISSUE 所在 repo，然后在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234)** 按格式相应回复，**完成任务认领**；
-- 3、签署开源协议：将对于你贡献的源代码，你将拥有合法的知识产权，为了保护你的权益，你需要先签署一份[贡献者许可协议](https://cla-assistant.io/PaddlePaddle/Paddle?pullRequest=39047) 
-- 4、**RFC提交**：本次活动绝大多数任务（曙光OP适配除外）都需要先提交RFC（Request for Comments），再进行任务的开发：
+- 2、**任务认领** ：首先 fork 你想要认领的任务 ISSUE 所在 repo，然后在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/40234)** 按格式相应回复，**完成任务认领**；
+- 3、**RFC提交**：本次活动绝大多数任务（曙光OP适配除外）都需要先提交RFC（Request for Comments），再进行任务的开发：
     
     - 首先，请按照任务要求，在 [PaddlePaddle/community/rfc](https://github.com/PaddlePaddle/community) 对应的目录下新建RFC，并对任务进行技术方案设计；
     - 将 RFC 以 Pull Request(PR) 形式提交，并按 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，以及在 GitHub **[Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234)** 下回复；
     
     注： [RFC设计文档模板](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md)。
+- 4、签署开源协议：对于你贡献的源代码，你将拥有合法的知识产权，为了保护你的权益，你需要签署一份[贡献者许可协议](https://cla-assistant.io/PaddlePaddle/Paddle?pullRequest=39047) 
 - 5、设计文档评审&公示：设计文档将接受来自于飞桨专家和社区开发者的评审。    
     - 黑客松评审组将在每个任务提交的所有有效方案中选择一个最佳方案，确认为本任务的 Leading Developer，并在开发方向上进行一定的指导，完善后的技术方案将会同步给所有任务提交小组，推荐大家基于最佳方案进行相应开发；
 
@@ -64,9 +62,8 @@ PS：
 
 | **难度** | **标志** | **金额** |
 | --- | --- | --- |
-| 困难 | **⭐ ⭐ ⭐** | ￥10,000/任务 |
-| 中等 | **⭐ ⭐**   | ￥5,000/任务  |
-| 简单 | **⭐**     | ￥1,000/任务  |
+| 进阶 | **⭐ ⭐**   | ￥10,000/任务  |
+| 基础 | **⭐**     | ￥3,000/任务  |
 
 **特别说明：**
 
