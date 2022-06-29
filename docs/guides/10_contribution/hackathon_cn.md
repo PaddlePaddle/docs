@@ -13,7 +13,7 @@
 
 ### 1、本次活动整体流程如图，具体说明如下：
 
-![](https://github.com/PaddlePaddle/docs/blob/release/2.3/docs/guides/10_contribution/img/hackathon#3_process.png?raw=text)
+![](https://github.com/PaddlePaddle/docs/blob/release/2.3/docs/guides/10_contribution/img/hackathon%233_process.png?raw=text)
 
 整体会划分为四个阶段：
 
