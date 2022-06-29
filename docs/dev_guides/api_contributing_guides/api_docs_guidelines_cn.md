@@ -47,7 +47,7 @@
         Args:
             x (Tensor): the input tensor, it's data type should be float32, float64, int32, int64.
             y (Tensor): the input tensor, it's data type should be float32, float64, int32, int64.
-            name (str, optional): Name for the operation (optional, default is None). For more information, please refer to :ref:`api_guide_Name`.
+            name (str, optional): For details, please refer to :ref:`api_guide_Name`. Generally, no setting is required. Default: None.
 
         Returns:
             N-D Tensor. A location into which the result is stored. It’s dimension equals with $x$.
@@ -95,7 +95,7 @@
     :::::::::
         - x (Tensor) - 输入的Tensor，数据类型为：float32、float64、int32、int64。
         - y (Tensor) - 输入的Tensor，数据类型为：float32、float64、int32、int64。
-        - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     ..
       说明：API参数可优先copy常用文档写法中的参数，参数的描述要准确，还要重点描述参数的功能作用及使用场景。
 
@@ -237,7 +237,7 @@ API参数部分，要解释清楚每个参数的意义和使用场景。需要�
     :::::::::
         - x (Tensor) - 输入的Tensor，数据类型为：float32、float64、int32、int64。
         - y (Tensor) - 输入的Tensor，数据类型为：float32、float64、int32、int64。
-        - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 ### API 返回

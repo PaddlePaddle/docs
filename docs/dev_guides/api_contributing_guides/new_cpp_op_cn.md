@@ -724,7 +724,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
         offset(int, optional): Which diagonals in input tensor x will be taken. Default: 0 (main diagonals).
         axis1(int, optional): The first axis with respect to take diagonal. Default: 0.
         axis2(int, optional): The second axis with respect to take diagonal. Default: 1.
-        name (str, optional): Normally there is no need for user to set this property. For more information, please refer to :ref:`api_guide_Name`. Default: None.
+        name (str, optional): For details, please refer to :ref:`api_guide_Name`. Generally, no setting is required. Default: None.
 
     Returns:
         Tensor: the output data type is the same as input data type.
