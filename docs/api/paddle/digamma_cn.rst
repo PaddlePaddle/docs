@@ -15,7 +15,7 @@ digamma
 参数
 :::::::::
   - **x** (Tensor) – 输入Tensor。数据类型为float32，float64。
-  - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
@@ -24,14 +24,4 @@ digamma
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    data = paddle.to_tensor([[1, 1.5], [0, -2.2]], dtype='float32')
-    res = paddle.digamma(data)
-    print(res)
-    # Tensor(shape=[2, 2], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-    #       [[-0.57721591,  0.03648996],
-    #        [ nan       ,  5.32286835]])
-
+COPY-FROM: paddle.digamma

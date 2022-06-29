@@ -14,7 +14,7 @@ histogram
     - **bins** (int，可选) - 直方图 bins(直条)的个数，默认为100。
     - **min** (int，可选) - range的下边界(包含)，默认为0。
     - **max** (int，可选) - range的上边界(包含)，默认为0。
-    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -23,12 +23,4 @@ Tensor，数据为 int64 类型，维度为(nbins,)。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    inputs = paddle.to_tensor([1, 2, 1])
-    result = paddle.histogram(inputs, bins=4, min=0, max=3)
-    print(result) # [0, 2, 1, 0]
-
-
+COPY-FROM: paddle.histogram

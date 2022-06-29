@@ -8,7 +8,7 @@ PRelu
 
 
 
-该接口用于构建 ``PRelu`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。其中实现了 ``PRelu`` 激活函数的三种激活方式。
+该接口用于构建 ``PRelu`` 类的一个可调用对象，具体用法参照 ``代码示例``。其中实现了 ``PRelu`` 激活函数的三种激活方式。
 
 计算公式如下：
 
@@ -29,8 +29,8 @@ PRelu
 
     - **channel** (int，可选) - 通道数。该参数在mode参数为"channel"时是必须的。默认为None。
     - **input_shape** (int 或 list 或 tuple，可选) - 输入的维度。该参数在mode参数为"element"时是必须的。默认为None。
-    - **param_attr** (ParamAttr, 可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
+    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **dtype** (str，可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
 
 返回
 ::::::::::::

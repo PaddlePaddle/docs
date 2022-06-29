@@ -23,9 +23,4 @@ Tensor，维度与 ``x`` 相同，数据类型为 ``dtype``。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-  import paddle
-
-  x = paddle.to_tensor([2, 3, 4], 'float64')
-  y = paddle.cast(x, 'uint8')
+COPY-FROM: paddle.cast

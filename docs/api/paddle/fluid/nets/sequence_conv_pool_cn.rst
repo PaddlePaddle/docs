@@ -23,7 +23,7 @@ sequence_conv_pool
     - **act** (str|None，可选) - sequence_conv层的激活函数类型，字符串，可以是'relu', 'softmax', 'sigmoid'等激活函数的类型。如果设置为None，则不使用激活。默认值为'sigmoid'
     - **pool_type** (str，可选) - 池化类型，字符串。可以是'max', 'average', 'sum'或者'sqrt'。默认值为'max'
     - **bias_attr** (ParamAttr|bool，可选) – sequence_conv偏置的参数属性，类型可以是bool，ParamAttr或者None。如果设置为False，则不会向输出单元添加偏置。如果将参数设置为ParamAttr的None或one属性，sequence_conv将创建ParamAttr作为bias_attr。如果未设置bias_attr的初始化器，则初始化偏差为零。默认值为None
-    - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
+    - **name** (str|None，可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None
 
 返回
 ::::::::::::
@@ -37,24 +37,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    input_dim = 100 #len(word_dict)
-    emb_dim = 128
-    hid_dim = 512
-    data = fluid.layers.data( name="words", shape=[1], dtype="int64", lod_level=1)
-    emb = fluid.layers.embedding(input=data, size=[input_dim, emb_dim], is_sparse=True)
-    seq_conv = fluid.nets.sequence_conv_pool(input=emb,
-                                         num_filters=hid_dim,
-                                         filter_size=3,
-                                         act="tanh",
-                                         pool_type="sqrt")
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.nets.sequence_conv_pool

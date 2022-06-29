@@ -18,8 +18,8 @@ reciprocal 对输入Tensor取倒数
 ::::::::::::
 
 
-    - **x** - 输入的多维Tensor,支持的数据类型为float32，float64。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **x** - 输入的多维Tensor，支持的数据类型为float32，float64。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回
@@ -29,12 +29,4 @@ reciprocal 对输入Tensor取倒数
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([1, 2, 3, 4], dtype='float32')
-    result = paddle.reciprocal(x)
-    print(result)
-
-
+COPY-FROM: paddle.reciprocal

@@ -24,12 +24,4 @@ CUDAPlace
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-       import paddle
-
-       place = paddle.CUDAPlace(0)
-
-
-
-
+COPY-FROM: paddle.CUDAPlace

@@ -17,7 +17,7 @@ stop_profiler
 .. code-block:: python
 
   #使用新的接口替换该接口的使用方式
-  #1. 调用Profiler对象的stop接口
+  #1。调用Profiler对象的stop接口
   import paddle
   import paddle.profiler as profiler
   prof = profiler.Profiler()
@@ -30,7 +30,7 @@ stop_profiler
 
 .. code-block:: python
 
-  #2. 使用环境管理器的用法
+  #2。使用环境管理器的用法
   import paddle
   import paddle.profiler as profiler
   with profiler.Profiler() as prof:
@@ -45,7 +45,7 @@ stop_profiler
 ::::::::::::
 
   - **sorted_key** (str，可选) – 性能分析结果的打印顺序，取值为None、'call'、'total'、'max'、'min'、'ave'之一。默认值为None，表示按照第一次结束时间顺序打印；'call'表示按调用的数量进行排序；'total'表示按总执行时间排序；'max'表示按最大执行时间排序；'min'表示按最小执行时间排序；'ave'表示按平均执行时间排序。
-  - **profile_path** (str，可选) –  如果性能分析状态为'All', 将生成的时间轴信息写入profile_path，默认输出文件为 ``/tmp/profile`` 。
+  - **profile_path** (str，可选) –  如果性能分析状态为'All'，将生成的时间轴信息写入profile_path，默认输出文件为 ``/tmp/profile`` 。
 
 
 抛出异常

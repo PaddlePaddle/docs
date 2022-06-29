@@ -3,34 +3,24 @@
 SqueezeNet
 -------------------------------
 
-.. py:function:: paddle.vision.models.SqueezeNet(version, num_classes=1000)
+.. py:function:: paddle.vision.models.SqueezeNet(version, num_classes=1000, with_pool=True)
 
- SqueezeNet模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size" <https://arxiv.org/abs/1602.07360>`_ 。
+
+SqueezeNet 模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size" <https://arxiv.org/abs/1602.07360>`_ 。
 
 参数
 :::::::::
-  - **version** (str) - SqueezeNet的版本，有"1.0"和"1.1"可选。默认值："1.1"。
-  - **num_classes** (int，可选) - 分类的类别数目。默认值：1000。
-  - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值：True。
+
+  - **version** (str) - SqueezeNet 的版本，有 "1.0" 和 "1.1" 可选。默认值为 "1.1"。
+  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于等于 0，则不定义最后一个全连接层。默认值为 1000。
+  - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值为 True。
 
 返回
 :::::::::
-SqueezeNet模型，Layer的实例。
+
+:ref:`cn_api_fluid_dygraph_Layer`，SqueezeNet 模型实例。
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    from paddle.vision.models import SqueezeNet
-
-    # build v1.0 model
-    model = SqueezeNet(version='1.0')
-
-    # build v1.1 model
-    # model = SqueezeNet(version='1.1')
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = model(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.SqueezeNet

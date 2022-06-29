@@ -15,7 +15,7 @@ isfinite
 参数
 ::::::::::::
 
-  - **x(variable)** : 变量，包含被测试的 Tensor / LoDTensor。
+  - **x(variable)**：变量，包含被测试的 Tensor / LoDTensor。
 
 返回
 ::::::::::::
@@ -28,24 +28,4 @@ isfinite
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy
-
-    # Graph Organizing
-    var = fluid.layers.data(name="data", shape=(4, 6), dtype="float32")
-    output = fluid.layers.isfinite(var)
-
-    # Create an executor using CPU as an example
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    # Execute
-    img = numpy.array((4, 6)).astype(numpy.float32)
-    res, = exe.run(fluid.default_main_program(), feed={'data':img}, fetch_list=[output])
-    print(res)  # Output Value: [ True]
-
-
-
-
+COPY-FROM: paddle.fluid.layers.isfinite

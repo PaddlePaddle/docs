@@ -17,9 +17,4 @@ bool，支持GPU(ROCm)则为True，否则为False。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    support_rocm = paddle.device.is_compiled_with_rocm()
-
-
+COPY-FROM: paddle.device.is_compiled_with_rocm
