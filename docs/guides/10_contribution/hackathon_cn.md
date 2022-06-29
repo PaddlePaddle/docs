@@ -19,30 +19,29 @@
 
 （一）报名阶段
 
-- 1、**黑客松报名**：[点击报名](https://www.wjx.top/vj/t8yHphe.aspx?udsid=268437) 填写相关信息，完成活动报名（强烈推荐大家组队完成，组队完成任务提交后，将额外获得飞桨黑客松定制勋章，PS：该勋章需完成报名才可获得）；报名成功后，你可以进入百度飞桨黑客松QQ交流群（群号：343734965），所有活动相关信息都会在群中及时同步；
-- 2、**任务认领** ：首先 fork 你想要认领的任务 ISSUE 所在代码仓库，然后在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/40234)** 按格式相应回复，**完成任务认领**。
+- 1、**黑客松报名**：进入 [AIStudio](https://aistudio.baidu.com/aistudio/competition/detail/356/0/introduction) 点击【立即报名】（强烈推荐大家组队完成，组队完成任务提交后，将额外获得飞桨黑客松定制勋章，PS：该勋章需组队报名才可获得）。报名成功后，你可以进入百度飞桨黑客松 QQ 交流群（群号：343734965），所有活动相关信息都会在群中及时同步；
+- 2、**任务认领** ： fork 你想要认领的任务 ISSUE 所在代码仓库，在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 按格式回复【认领】，**完成任务认领**。
 
 （二）任务调研阶段
 
 - 1、**提交提案**：本次活动绝大多数任务都需要先提交提案，以功能设计文档（RFC，Request for Comments）的形式与飞桨专家和社区开发者确定开发方案后，再进行任务的开发：
     
-    - 首先，请按照任务要求，在 [PaddlePaddle/community/rfc](https://github.com/PaddlePaddle/community) 对应的目录下新建 RFC，并对任务进行技术方案设计；
-    - 将 RFC 以 Pull Request(PR) 形式提交，并按 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，以及在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/40234)** 下按格式回复【提交提案】；
+    - 首先，请按照任务要求，在 [PaddlePaddle/community/rfc](https://github.com/PaddlePaddle/community) 对应的目录下新建 RFC，参考 [RFC 设计文档模板](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md)，对任务进行技术方案设计；
+    - 将 RFC 以 Pull Request(PR) 形式提交，并按 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，以及在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 下按格式回复【提交提案】；
     
-    注： [RFC设计文档模板](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md)。
 - 2、签署开源协议：对于你贡献的源代码，你将拥有合法的知识产权，为了保护你的权益，你需要签署一份[贡献者许可协议](https://cla-assistant.io/PaddlePaddle/Paddle?pullRequest=39047)；
 - 3、提案评审&公示：设计文档将接受来自于飞桨专家和社区开发者的评审，并在 PR 中讨论开发方案的细节；  
 - 4、**产生任务 leader**：第一个通过设计文档评审的开发者将成为该任务的 leader，后续任务开发需按照设计文档进行；若其他开发者先于任务 leader 提交了作品，则他/她的作品需经过任务 leader 的确认，未按照设计文档开发的作品将不会进入评审阶段。
 
 （三）任务开发阶段
 
-- 1、任务开发：任务描述中要求 RFC 的任务，需在 RFC 通过评审后按照文档进行开发；未要求 RFC 的任务，可根据任务描述直接进行开发；此外，为了让更多开发者参与进来，API开发任务仅能获取一项任务奖金，建议你选择自己最感兴趣的任务进行开发；
-- 2、**提交作品**：确保**提交内容**完整后，以 Pull Request(PR) 形式提交至指定的代码仓库，待 CI 大部分通过后，依据 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，以及在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/40234)** 下按格式回复【提交作品】，启动技术评审。
+- 1、任务开发：任务描述中要求 RFC 的任务，需在 RFC 通过评审后按照文档进行开发；未要求 RFC 的任务，可根据任务描述直接进行开发；此外，为了让更多开发者参与进来，API 开发任务（含基础 API 与稀疏 API）仅能获取一项任务奖金，建议你选择自己最感兴趣的任务进行开发；
+- 2、**提交作品**：确保**提交内容**完整后，以 Pull Request(PR) 形式提交至指定的代码仓库，待 CI 大部分通过后，依据 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 下按格式回复【提交作品】，启动技术评审。
 
 （四）评审与验收阶段
 
-- 1、**作品技术评审**：技术评审启动后，你的作品会指定一位飞桨技术专家进行技术层面的评审与交流，你需要时刻关注反馈并与技术专家沟通作品细节，在通过技术评审后，你会获得技术approve；
-- 2、锁定冠军：拿到技术approve的开发者会被锁定冠军，即该任务不再接收新的作品提交，结果将公示在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/40234)** 中；
+- 1、**作品技术评审**：技术评审启动后，你的作品会指定一位飞桨技术专家进行技术层面的评审与交流，你需要时刻关注反馈并与技术专家沟通作品细节，在通过技术评审后，你会获得技术 approve；
+- 2、锁定冠军：拿到技术 approve 的开发者会被锁定冠军，即该任务不再接收新的作品提交，结果将公示在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 中；
 - 3、**作品验收**：锁定冠军的作品会依据任务要求，完成后续多个环节的验收，包括但不限于：测试验收、产品验收、负责人验收等，每一次验收通过相关人员均会给出 approve，但**要注意只有最终被 merge 才算正式通过作品验收，拿到最终的奖励。**
 
 
@@ -63,12 +62,6 @@
 
 根据任务难度划分，完成所选任务并通过黑客松评审组验收，将可获得对应金额现金奖励。
 
-PS：
-
-1. 若一个任务出现两个及以上作品提交，将根据提交 Pull Request 的最后一个 commit 的时间顺序进行验收，第一个通过验收的作品可获得奖金。
-2. 若该任务仅有一个作品提交，未100%完成但完成部分足够优质，经评审组评审后，可根据完成进度按照对应比例进行现金奖励发放。
-
-
 | **难度** | **标志** | **金额** |
 | --- | --- | --- |
 | 进阶 | **⭐ ⭐**   | ￥10,000/任务  |
@@ -76,13 +69,9 @@ PS：
 
 **特别说明：**
 
-如果一个任务，其他开发者完成了 RFC 的合入，你仍然可以继续报名这个任务，根据已经通过的 RFC 进行代码开发，并完成任务 leader review；当然，你也可以联系 RFC 作者，组队联合开发，效率更高；若你的代码逻辑和 RFC 不一致，将不会被 review 。
-
-- 若 RFC 合入，并且 PR 被合入：
-  - RFC 作者与 PR 作者不为同一人：RFC 作者获得该任务奖金的10%，PR 作者获得该任务奖金的90%
-  - RFC 作者与 PR 作者协作完成：奖金发给小组，自由分配
-  - RFC 作者与 PR 作者为一人：100%
-- 若 RFC 合入，但无 PR 提交：无奖金!
+1. 若一个任务出现两个及以上作品提交，将根据提交 Pull Request 的最后一个 commit 的时间顺序进行验收，第一个通过验收的作品可获得奖金；
+2. 若该任务仅有一个作品提交，未100%完成但完成部分足够优质，经评审组评审后，可根据完成进度按照对应比例进行现金奖励发放；
+3. 若一个任务的**提案**与**作品**非同一人提交，则提交的作品需基于提案设计完成开发，并拿到任务 leader（即通过提案的开发者）的 approve，奖金最终会发给作品通过验收的开发者。
 
 
 ### 2、特别奖项
@@ -96,13 +85,13 @@ PS：
 
 ### 3、其他奖励
 
-- 活动中完成任务的开发者，可获得百度招聘绿色通道
+- 活动中完成任务的开发者，可获得百度招聘绿色通道；
 
-- 活动中完成任务的开发者，均可获得百度开源证书奖励
+- 活动中完成任务的开发者，均可获得百度开源证书奖励。
 
 #### **特别注意：**
 
-**1. 以上所有提及金额均为税前金额。**
+**1. 以上所有提及金额均为税前金额；**
 
 **2. 任务奖项评定需开发者提供完整作品（包括任务对应提交内容以及活动总结等）及团队成员名单。**
 
@@ -120,7 +109,7 @@ PS：
 
 - 2、活动须知
 
-（1）支持以个人或团队的形式报名并认领任务，允许跨单位自由组队（强烈推荐大家组队完成，组队完成提交后，将额外获得飞桨黑客松定制勋章，PS：该勋章仅该环节可获得）；
+（1）支持以个人或团队的形式报名并认领任务，允许跨单位自由组队（强烈推荐大家组队完成，组队完成提交后，将额外获得飞桨黑客松定制勋章，PS：该勋章需组队报名才可获得）；
 
 （2）报名须保证所提供的个人信息真实、准确、有效。如发放奖金或礼品时发现报名人员填写的报名信息与个人身份不相符，组委会将保留停止发放奖金或礼品的权利。
 
@@ -128,21 +117,23 @@ PS：
 
 （1）2022年6月30日至2022年9月12日，首先在活动官网完成报名。若组队报名，则由队长统一填写报名信息，完成报名即可；
 
-（2）在GitHub 的 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234) 中，可以查看到本次活动的所有任务，选取感兴趣的任务，按格式回复 队名、任务序号、任务对应 fork 链接，即为完成任务认领。
+（2）在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 中，可以查看到本次活动的所有任务，选取感兴趣的任务，按格式回复 队名、任务序号、任务对应 fork 链接，即为完成任务认领。
 
 **补充信息**：
 
-（1）**组队报名方法**：需所有队员均填写 [报名问卷](https://www.wjx.top/vj/t8yHphe.aspx?udsid=268437) 中的报名信息。若报名信息有误，请联系工作人员进行组队；
+（1）**组队报名方法**：队长确认报名后，点击【复制链接邀请队员】，并将【您的好友邀请您组队参赛，详情查看：xxx】内容发送给**1名**即将加入队伍的队员，队员完善信息后可在“我的团队”中查看，此时表明队长已成功邀请**1名**队员加入战队。重复上述方法邀请更多队员加入战队，上限人数**3人**；
 
-（2）官方交流群 【飞桨黑客松QQ交流群】：343734965。
+（2）**组队报名注意**：邀请队员仅在**比赛报名截止前**有效，邀请链接仅用于**单名队员**加入。自比赛报名截止前一天起，队长不得转让队长身份、解散团队、移除队员，队员不得离开团队；
+
+（3）**官方交流群 【飞桨黑客松QQ交流群】**：343734965。
 
 - 4、任务开发
 
-当你完成相应开发后，相应的代码需要以 Pull Request 的形式上传到任务 ISSUE 所在仓库，并在 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234) 中，按格式回复相关的提交信息。黑客松评审组一般会在3个工作日内给出作品反馈，如果符合任务要求，则实时通报该任务已经被完成。
+当你完成相应开发后，相应的代码需要以 Pull Request 的形式上传到任务 ISSUE 所在仓库，并在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 中，按格式回复相关的提交信息。黑客松评审组一般会在3个工作日内给出作品反馈，如果符合任务要求，则实时通报该任务已经被完成。
 
 **注意**：
 
-（1）活动评审会会**按日更新**所有任务的状态信息到 [Pinned ISSUE](https://github.com/PaddlePaddle/Paddle/issues/40234) 中；
+（1）活动评审会会**按日更新**所有任务的状态信息到 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 中；
 
 （2）如果发现有恶意提交或抄袭等不正当行为，将会取消参与活动资格。
 
@@ -152,6 +143,7 @@ PS：
 
 ## 四、重磅福利
 
+（直播课内容待补充）
 为了帮助大家更快更好的完成任务内容开发，本次活动预计会有10+系列直播同步推出，针对通用开发流程、PaddlePaddle框架、基础API开发、曙光OP适配、Paddle Lite、Paddle2ONNX、PaddleDTX、飞桨科学计算等相关项目技术讲解、开源社区贡献等内容，都有来自百度等深耕该方向的工程师深入讲解，系列直播时间安排，敬请期待。
 
 
@@ -167,9 +159,9 @@ PS：
 
 ## 邮件模板
 
-### 提交 RFC
+### 提交提案
 
-标题： [Hackathon No.任务编号] RFC提交
+标题： [Hackathon No.任务编号] 提交提案
 
 内容：
 
@@ -179,13 +171,13 @@ PS：
 
 【序号】：任务编号
 
-【状态】：RFC提交
+【状态】：提交提案
 
-【PR链接】：你的PR链接
+【PR链接】：你的 PR 链接
 
 如：
 
-标题： [Hackathon No.100] RFC提交
+标题： [Hackathon No.100] 提交提案
 
 内容：
 
@@ -195,14 +187,14 @@ PS：
 
 【序号】：100
 
-【状态】：RFC提交
+【状态】：提交提案
 
 【PR链接】：https://github.com/PaddlePaddle/community/pull/1
 
 
-### 提交 PR
+### 提交作品
 
-标题： [Hackathon No.任务编号] PR提交
+标题： [Hackathon No.任务编号] 提交作品
 
 内容：
 
@@ -212,13 +204,13 @@ PS：
 
 【序号】：任务编号
 
-【状态】：PR提交
+【状态】：提交作品
 
-【PR链接】：你的PR链接
+【PR链接】：你的 PR 链接
 
 如：
 
-标题： [Hackathon No.100] PR提交
+标题： [Hackathon No.100] 提交作品
 
 内容：
 
@@ -228,6 +220,6 @@ PS：
 
 【序号】：100
 
-【状态】：PR提交
+【状态】：提交作品
 
 【PR链接】：https://github.com/PaddlePaddle/Paddle/pull/1
