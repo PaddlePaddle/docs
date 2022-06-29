@@ -1,0 +1,25 @@
+.. _cn_api_paddle_distributed_reduce_scatter:
+
+reduce_scatter
+-------------------------------
+
+
+.. py:function:: paddle.distributed.reduce_scatter(output, input_list, op=ReduceOp.SUM, group=None, use_calc_stream=True) 
+规约，然后将张量列表分散到组中的所有进程上
+
+参数
+:::::::::
+    - output (Tensor) – 输出的张量。
+    - input_list (list(Tensor)) – 归约和切分的张量列表。
+    - op (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.Min|ReduceOp.PROD) – 操作类型，默认ReduceOp.SUM。
+    - group: (Group, optional) – 通信组；如果是None，则使用默认通信组。
+    - use_calc_stream: (bool, optional) – 决定是在计算流还是通信流上做该通信操作；默认为True，表示在计算流。
+
+
+返回
+:::::::::
+返回Task。
+
+代码示例
+:::::::::
+COPY-FROM: paddle.distributed.reduce_scatter
