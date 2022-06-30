@@ -15,8 +15,4 @@ device_count
 代码示例
 ::::::::::::
 
-.. code-block:: python
-           
-    import paddle
-    
-    paddle.device.cuda.device_count()
+COPY-FROM: paddle.device.cuda.device_count

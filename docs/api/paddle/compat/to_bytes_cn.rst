@@ -1,4 +1,4 @@
-.. _cn_api_paddle_compat_to_bytes
+.. _cn_api_paddle_compat_to_bytes:
 
 to_bytes
 -------------------------------
@@ -31,10 +31,4 @@ to_bytes
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    data = "paddlepaddle"
-    data = paddle.compat.to_bytes(data)
-    # b'paddlepaddle'
+COPY-FROM: paddle.compat.to_bytes

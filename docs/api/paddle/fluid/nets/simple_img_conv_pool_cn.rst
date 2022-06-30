@@ -43,26 +43,4 @@ simple_img_conv_pool
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    # 输入 img.shape = [-1, 1, 28, 28]
-    # 使用该接口带如下参数的操作之后，输出conv_pool.shape = [-1, 20, 12, 12]
-    img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
-    conv_pool = fluid.nets.simple_img_conv_pool(input=img,
-                                            filter_size=5,
-                                            num_filters=20,
-                                            pool_size=2,
-                                            pool_stride=2,
-                                            act="relu")
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.nets.simple_img_conv_pool

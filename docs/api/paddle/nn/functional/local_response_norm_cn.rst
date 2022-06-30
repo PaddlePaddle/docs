@@ -37,10 +37,4 @@ local_response_norm
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.rand(shape=(3, 3, 112, 112), dtype="float32")
-    y = paddle.nn.functional.local_response_norm(x, size=5)
-    print(y.shape)  # [3, 3, 112, 112]
+COPY-FROM: paddle.nn.functional.local_response_norm

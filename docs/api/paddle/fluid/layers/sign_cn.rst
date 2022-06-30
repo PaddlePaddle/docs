@@ -23,11 +23,4 @@ Variable，数据类型和输入数据类型一致。
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy as np
-
-    data = fluid.layers.sign(np.array([3.0, 0.0, -2.0], dtype='float32'))
-    # data=[1.0, 0.0, -1.0]
-
+COPY-FROM: paddle.fluid.layers.sign

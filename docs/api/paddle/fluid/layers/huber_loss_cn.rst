@@ -42,21 +42,4 @@ huber_loss
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy as np
-
-    DATATYPE='float32'
-    input_data = np.array([[1.],[2.],[3.],[4.]]).astype(DATATYPE)
-    label_data = np.array([[3.],[3.],[4.],[4.]]).astype(DATATYPE)
-
-    x = fluid.layers.data(name='input', shape=[1], dtype=DATATYPE)
-    y = fluid.layers.data(name='label', shape=[1], dtype=DATATYPE)
-    loss = fluid.layers.huber_loss(input=x, label=y, delta=1.0)
-
-    place = fluid.CPUPlace()
-    #place = fluid.CUDAPlace(0)
-    exe = fluid.Executor(place)
-    HuberLoss, = exe.run(feed={'input':input_data ,'label':label_data}, fetch_list=[loss.name])
-    print(HuberLoss)  #[[1.5], [0.5], [0.5], [0. ]], dtype=float32
+COPY-FROM: paddle.fluid.layers.huber_loss

@@ -29,18 +29,4 @@ create_array
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-  import paddle.fluid as fluid
-  data = fluid.layers.create_array(dtype='float32') # 创建一个数据类型为float32的LoDTensorArray。
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.create_array

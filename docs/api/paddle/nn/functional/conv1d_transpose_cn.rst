@@ -90,21 +90,4 @@ conv1d_transpose
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-    import numpy as np
-    
-    # shape: (1, 2, 4)
-    x=np.array([[[4, 0, 9, 7],
-                 [8, 0, 9, 2,]]]).astype(np.float32)
-    # shape: (2, 1, 2)
-    w=np.array([[[7, 0]],
-                [[4, 2]]]).astype(np.float32)
-    x_var = paddle.to_tensor(x)
-    w_var = paddle.to_tensor(w)
-    y_var = F.conv1d_transpose(x_var, w_var)
-    print(y_var)
-    
-    # [[[60. 16. 99. 75.  4.]]]
+COPY-FROM: paddle.nn.functional.conv1d_transpose

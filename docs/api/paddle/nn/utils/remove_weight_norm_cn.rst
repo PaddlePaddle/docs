@@ -21,13 +21,4 @@ remove_weight_norm
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    from paddle.nn import Conv2D
-    from paddle.nn.utils import weight_norm, remove_weight_norm
-    conv = Conv2D(3, 5, 3)
-    wn = weight_norm(conv)
-    remove_weight_norm(conv)
-    # print(conv.weight_g)
-    # AttributeError: 'Conv2D' object has no attribute 'weight_g'
+COPY-FROM: paddle.nn.utils.remove_weight_norm

@@ -36,10 +36,4 @@ hardsigmoid激活层。sigmoid的分段线性逼近激活函数，速度比sigmo
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-
-    x = paddle.to_tensor([-4., 5., 1.])
-    out = F.hardsigmoid(x) # [0., 1., 0.666667]
+COPY-FROM: paddle.nn.functional.hardsigmoid

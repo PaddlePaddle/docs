@@ -19,10 +19,4 @@ parameters_to_vector
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    linear = paddle.nn.Linear(10, 15)
-
-    paddle.nn.utils.parameters_to_vector(linear.parameters())
-    # 1-D Tensor: [165]
+COPY-FROM: paddle.nn.utils.parameters_to_vector

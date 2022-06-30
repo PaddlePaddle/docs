@@ -24,29 +24,4 @@ affine_grid
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-   import paddle
-   import paddle.nn.functional as F
-   import numpy as np
-   # theta shape = [1, 2, 3]
-   theta = np.array([[[-0.7, -0.4, 0.3],
-                      [ 0.6,  0.5, 1.5]]]).astype("float32")
-   theta_t = paddle.to_tensor(theta)
-   y_t = F.affine_grid(
-           theta_t,
-           [1, 2, 3, 3],
-           align_corners=False)
-   print(y_t)
-   
-   #[[[[ 1.0333333   0.76666665]
-   #   [ 0.76666665  1.0999999 ]
-   #   [ 0.5         1.4333333 ]]
-   #
-   #  [[ 0.5666667   1.1666666 ]
-   #   [ 0.3         1.5       ]
-   #   [ 0.03333333  1.8333334 ]]
-   #
-   #  [[ 0.10000002  1.5666667 ]
-   #   [-0.16666666  1.9000001 ]
-   #   [-0.43333334  2.2333333 ]]]]
+COPY-FROM: paddle.nn.functional.affine_grid

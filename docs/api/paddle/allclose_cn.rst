@@ -29,33 +29,4 @@ allclose
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-    
-    np_x = np.array([10000., 1e-07]).astype("float32")
-    np_y = np.array([10000.1, 1e-08]).astype("float32")
-    x = paddle.to_tensor (np_x)
-    y = paddle.to_tensor (np_y)
-    result1 = paddle.allclose(x, y, rtol=1e-05, atol=1e-08,
-                            equal_nan=False, name="ignore_nan")
-    np_result1 = result1.numpy()
-    # [False]
-    result2 = paddle.allclose(x, y, rtol=1e-05, atol=1e-08,
-                                equal_nan=True, name="equal_nan")
-    np_result2 = result2.numpy()
-    # [False]
-
-    np_x = np.array([1.0, float('nan')]).astype("float32")
-    np_y = np.array([1.0, float('nan')]).astype("float32")
-    x = paddle.to_tensor (np_x)
-    y = paddle.to_tensor (np_y)
-    result1 = paddle.allclose(x, y, rtol=1e-05, atol=1e-08,
-                            equal_nan=False, name="ignore_nan")
-    np_result1 = result1.numpy()
-    # [False]
-    result2 = paddle.allclose(x, y, rtol=1e-05, atol=1e-08,
-                                equal_nan=True, name="equal_nan")
-    np_result2 = result2.numpy()
-    # [True]
+COPY-FROM: paddle.allclose

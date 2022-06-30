@@ -162,6 +162,48 @@ fleet.distributed_optimizer(...)：这一步则是为优化器添加分布式属
 
 .. code-block:: python
 
+
+    class ReshapeHelp(Layer):
+        def __init__(self, shape):
+            super(ReshapeHelp, self).__init__()
+            self.shape = shape
+
+        def forward(self, x):
+            return x.reshape(shape=self.shape)
+
+
+    class AlexNetPipeDesc(PipelineLayer):
+        def __init__(self, num_classes=10, **kwargs):
+            self.num_classes = num_classes
+            decs = [
+                LayerDesc(
+                    nn.Conv2D, 1, 64, kernel_size=11, stride=4, padding=5),
+                LayerDesc(nn.ReLU),
+                LayerDesc(
+                    nn.MaxPool2D, kernel_size=2, stride=2),
+                LayerDesc(
+                    nn.Conv2D, 64, 192, kernel_size=5, padding=2),
+                F.relu,
+                LayerDesc(
+                    nn.MaxPool2D, kernel_size=2, stride=2),
+                LayerDesc(
+                    nn.Conv2D, 192, 384, kernel_size=3, padding=1),
+                F.relu,
+                LayerDesc(
+                    nn.Conv2D, 384, 256, kernel_size=3, padding=1),
+                F.relu,
+                LayerDesc(
+                    nn.Conv2D, 256, 256, kernel_size=3, padding=1),
+                F.relu,
+                LayerDesc(
+                    nn.MaxPool2D, kernel_size=2, stride=2),
+                LayerDesc(
+                    ReshapeHelp, shape=[-1, 256]),
+                LayerDesc(nn.Linear, 256, self.num_classes),  # classifier
+            ]
+            super(AlexNetPipeDesc, self).__init__(
+                layers=decs, loss_fn=nn.CrossEntropyLoss(), **kwargs)
+
     model = AlexNetPipeDesc(num_stages=pipeline_parallel_size, topology=hcg._topo)
     scheduler = paddle.optimizer.lr.PiecewiseDecay(
             boundaries=[2], values=[0.001, 0.002], verbose=False

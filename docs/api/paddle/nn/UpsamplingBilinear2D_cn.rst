@@ -39,13 +39,4 @@ https://en.wikipedia.org/wiki/Bilinear_interpolation
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    
-    input_data = paddle.rand(shape=[2,3,6,10])
-    upsample_out  = paddle.nn.UpsamplingBilinear2D(size=[12,12])
-    output = upsample_out(input_data)
-    print(output.shape)
-    # [2L, 3L, 12L, 12L]
+COPY-FROM: paddle.nn.UpsamplingBilinear2D

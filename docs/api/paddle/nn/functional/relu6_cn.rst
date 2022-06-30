@@ -25,11 +25,4 @@ relu6激活层
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-    import numpy as np
-
-    x = paddle.to_tensor(np.array([-1, 0.3, 6.5]))
-    out = F.relu6(x) # [0, 0.3, 6]
+COPY-FROM: paddle.nn.functional.relu6

@@ -53,10 +53,4 @@ Tensor，是对输入数据进行正则化后的结果。
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    x = paddle.randn(shape=[32,100])
-    hidden2 = paddle.static.nn.data_norm(input=x)
+COPY-FROM: paddle.static.nn.data_norm

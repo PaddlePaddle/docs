@@ -29,33 +29,4 @@ reduce_max
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-      import paddle.fluid as fluid
-      # x是一个Tensor，元素如下：
-      #    [[0.2, 0.3, 0.5, 0.9]
-      #     [0.1, 0.2, 0.6, 0.7]]
-      # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
-      x = fluid.data(name='x', shape=[2, 4], dtype='float32')
-      fluid.layers.reduce_max(x)  # [0.9]
-      fluid.layers.reduce_max(x, dim=0)  # [0.2, 0.3, 0.6, 0.9]
-      fluid.layers.reduce_max(x, dim=-1)  # [0.9, 0.7]
-      fluid.layers.reduce_max(x, dim=1, keep_dim=True)  # [[0.9], [0.7]]
-
-      # y是一个shape为[2, 2, 2]的Tensor，元素如下：
-      #      [[[1.0, 2.0], [3.0, 4.0]],
-      #      [[5.0, 6.0], [7.0, 8.0]]]
-      # 接下来的示例中，我们在每处函数调用后面都标注出了它的结果张量。
-      y = fluid.data(name='y', shape=[2, 2, 2], dtype='float32')
-      fluid.layers.reduce_max(y, dim=[1, 2]) # [4.0, 8.0]
-      fluid.layers.reduce_max(y, dim=[0, 1]) # [7.0, 8.0]
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.reduce_max

@@ -44,13 +44,4 @@ Tensor，时序位移后的输出张量，维度和数据类型与输入 ``x`` �
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-
-    input = paddle.randn([6, 4, 2, 2])
-    out = F.temporal_shift(x=input, seg_num=2, shift_ratio=0.2)
-
-
-
+COPY-FROM: paddle.nn.functional.temporal_shift

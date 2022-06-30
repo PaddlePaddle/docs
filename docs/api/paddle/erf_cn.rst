@@ -29,10 +29,4 @@ erf
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-
-    x = paddle.rand([1,3],dtype = "float32")
-    y = paddle.erf(x)
+COPY-FROM: paddle.erf

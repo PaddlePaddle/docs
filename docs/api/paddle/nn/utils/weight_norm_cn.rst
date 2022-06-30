@@ -27,16 +27,4 @@ weight_norm
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-    from paddle.nn import Conv2D
-    from paddle.nn.utils import weight_norm
-    x = np.array([[[[0.3, 0.4], [0.3, 0.07]], [[0.83, 0.37], [0.18, 0.93]]]]).astype('float32')
-    conv = Conv2D(3, 5, 3)
-    wn = weight_norm(conv)
-    print(conv.weight_g.shape)
-    # [5]
-    print(conv.weight_v.shape)
-    # [5, 3, 3, 3]
+COPY-FROM: paddle.nn.utils.weight_norm

@@ -158,24 +158,4 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-    
-    # given out size
-    x = paddle.rand(shape=(2,3,6,10))
-    output_1 = F.interpolate(x=x, size=[12,12])
-    print(output_1.shape)
-    # [2L, 3L, 12L, 12L]
-    
-    # given scale
-    output_2 = F.interpolate(x=x, scale_factor=[2,1])
-    print(output_2.shape)
-    # [2L, 3L, 12L, 10L]
-    
-    # bilinear interp
-    output_3 = F.interpolate(x=x, scale_factor=[2,1], mode="bilinear")
-    print(output_2.shape)
-    # [2L, 3L, 12L, 10L]
-
+COPY-FROM: paddle.nn.functional.interpolate

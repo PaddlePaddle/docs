@@ -24,11 +24,4 @@ LogSigmoid激活层。计算公式如下：
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x = paddle.to_tensor(np.array([1.0, 2.0, 3.0, 4.0]))
-    m = paddle.nn.LogSigmoid()
-    out = m(x) # [-0.313262 -0.126928 -0.0485874 -0.0181499]
+COPY-FROM: paddle.nn.LogSigmoid

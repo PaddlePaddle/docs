@@ -13,30 +13,8 @@ EditDistance
 代码示例
 ::::::::::::
 
-.. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
-    
-    # 假设batch_size为128
-    batch_size = 128
-    
-    # 初始化编辑距离管理器
-    distance_evaluator = fluid.metrics.EditDistance("EditDistance")
-    # 生成128个序列对间的编辑距离，此处的最大距离是10
-    edit_distances_batch0 = np.random.randint(low = 0, high = 10, size = (batch_size, 1))
-    seq_num_batch0 = batch_size
-
-    distance_evaluator.update(edit_distances_batch0, seq_num_batch0)
-    avg_distance, wrong_instance_ratio = distance_evaluator.eval()
-    print("the average edit distance for batch0 is %.2f and the wrong instance ratio is %.2f " % (avg_distance, wrong_instance_ratio))
-    edit_distances_batch1 = np.random.randint(low = 0, high = 10, size = (batch_size, 1))
-    seq_num_batch1 = batch_size
-
-    distance_evaluator.update(edit_distances_batch1, seq_num_batch1)
-    avg_distance, wrong_instance_ratio = distance_evaluator.eval()
-    print("the average edit distance for batch0 and batch1 is %.2f and the wrong instance ratio is %.2f " % (avg_distance, wrong_instance_ratio))
-
+COPY-FROM: paddle.fluid.metrics.EditDistance
 
 方法
 ::::::::::::

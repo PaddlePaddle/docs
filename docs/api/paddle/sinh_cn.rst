@@ -29,11 +29,4 @@ sinh
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([-2.0, -1.0, 1.0, 2.0])
-        out = paddle.sinh(x)
-        print(out)
-        # [-3.62686038, -1.17520118,  1.17520118,  3.62686038]
+COPY-FROM: paddle.sinh

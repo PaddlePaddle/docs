@@ -22,24 +22,4 @@ quantile
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.randn((2,3))
-    #[[-1.28740597,  0.49533170, -1.00698614],
-    # [-1.11656201, -1.01010525, -2.23457789]])
-
-    y1 = paddle.quantile(x, q=0.5, axis=[0, 1])
-    # y1 = -1.06333363
-
-    y2 = paddle.quantile(x, q=0.5, axis=1)
-    # y2 = [-1.00698614, -1.11656201]
-
-    y3 = paddle.quantile(x, q=[0.3, 0.5], axis=1)
-    # y3 =[[-1.11915410, -1.56376839],
-    #      [-1.00698614, -1.11656201]]
-
-    y4 = paddle.quantile(x, q=0.8, axis=1, keepdim=True)
-    # y4 = [[-0.10559537],
-    #       [-1.05268800]])
+COPY-FROM: paddle.quantile

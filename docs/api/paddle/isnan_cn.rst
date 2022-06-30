@@ -19,12 +19,4 @@ isnan
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x_np = np.array([float('-inf'), -2, 3.6, float('inf'), 0, float('-nan'), float('nan')])
-    x = paddle.to_tensor(x_np)
-    out = paddle.isnan(x)
-    print(out)  # [False, False, False, False, False, True, True]
+COPY-FROM: paddle.isnan

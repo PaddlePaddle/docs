@@ -32,10 +32,4 @@ hardswish激活函数。在MobileNetV3架构中被提出，相较于swish函数�
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-
-    x = paddle.to_tensor([-4., 5., 1.])
-    out = F.hardswish(x) # [0., 5., 0.666667]
+COPY-FROM: paddle.nn.functional.hardswish

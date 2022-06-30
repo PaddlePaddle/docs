@@ -33,31 +33,4 @@ save_inference_model
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    paddle.enable_static()
-
-    path_prefix = "./infer_model"
-
-    # 用户定义网络，此处以softmax回归为例
-    image = paddle.static.data(name='img', shape=[None, 28, 28], dtype='float32')
-    label = paddle.static.data(name='label', shape=[None, 1], dtype='int64')
-    predict = paddle.static.nn.fc(image, 10, activation='softmax')
-
-    loss = paddle.nn.functional.cross_entropy(predict, label)
-    avg_loss = paddle.tensor.stat.mean(loss)
-
-    exe = paddle.static.Executor(paddle.CPUPlace())
-    exe.run(paddle.static.default_startup_program())
-
-    # 数据输入及训练过程
-
-    # 保存预测模型。注意，用于预测的模型网络结构不需要保存标签和损失。
-    paddle.static.save_inference_model(path_prefix, [image], [predict], exe)
-
-    # 在本示例中，save_inference_mode 将根据网络的输入（image）和输出（predict）修剪模型。
-    # 修剪得到的模型将被保存在 "./infer_model.pdmodel" 文件中，
-    # 模型参数将被保存在 "./infer_model.pdiparams" 文件中。
-
+COPY-FROM: paddle.static.save_inference_model

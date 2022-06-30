@@ -48,13 +48,4 @@ binary_cross_entropy
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-
-    input = paddle.to_tensor([0.5, 0.6, 0.7], dtype='float32')
-    label = paddle.to_tensor([1.0, 0.0, 1.0], dtype='float32')
-    output = F.binary_cross_entropy(input, label)
-    print(output)  # [0.65537095]
-
+COPY-FROM: paddle.nn.functional.binary_cross_entropy
