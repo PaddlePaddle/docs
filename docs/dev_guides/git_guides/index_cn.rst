@@ -1,19 +1,16 @@
 ############
-Git 操作指南
+规范和参考信息
 ############
 
-以下将简单介绍 Git 操作指南以及 Paddle CI 手册，以帮助你快速参与到飞桨的开发中。
+本章主要介绍飞桨代码开发的规范和一些公共的参考信息。
 
-- `本地开发指南 <./local_dev_guide_cn.html>`_ : 如何在本地进行 Paddle 开发。
-- `提交PR注意事项 <./submit_pr_guide_cn.html>`_ : 提交PR相关的注意事项。
-- `Code Review 约定 <./code_review_cn.html>`_ : 飞桨框架对于 Code Review 的一些约定介绍。
-- `Paddle CI手册 <./paddle_ci_manual_cn.html>`_ : Paddle CI 介绍说明。
+- `代码风格规范 <./style_guides_cn.html>`_ : Python 和 C++ 代码开发需遵循的风格规范。
+- `Paddle CI 测试详解 <./paddle_ci_manual_cn.html>`_ : Paddle CI 测试流水线中的测试项的详细介绍，以及 CI 失败的处理方法。
+
 
 
 ..  toctree::
     :hidden:
 
-    local_dev_guide_cn.md
-    submit_pr_guide_cn.md
-    code_review_cn.md
+    style_guides_cn.md
     paddle_ci_manual_cn.md
