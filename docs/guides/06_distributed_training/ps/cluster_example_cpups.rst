@@ -12,7 +12,7 @@ CPUPS流式训练示例
 2. 数据一般按时间组织，每个Pass的训练数据对应一个或几个时间分片（文件夹），并在该时间分片的数据生成结束后，在对应时间分片的文件夹中添加一个空文件用于表示数据准备完成。
 3. 线上服务产生的数据不断进入训练系统，导致稀疏参数不断增加，在模型精度不受影响的情况下，为控制模型总存储，增加稀疏参数统计量自动统计、稀疏参数准入、退场、增量保存等功能。
 
-在学习流式训练具体使用方法之前，建议先详细阅读参数服务器快速开始章节，了解参数服务器的基本使用方法。
+在学习流式训练具体使用方法之前，建议先详细阅读\ `参数服务器快速开始 <../cluster_quick_start_ps_cn.html>`_\章节，了解参数服务器的基本使用方法。
 
 流式训练的完整代码示例参见：\ `PaddleRec流式训练 <https://github.com/PaddlePaddle/PaddleRec/blob/master/tools/static_ps_online_trainer.py>`_\，其中所使用到的模型及配置参见：\ `slot_dnn <https://github.com/PaddlePaddle/PaddleRec/tree/master/models/rank/slot_dnn>`_\，重点关注其中的流式训练配置文件config_online.yaml，及模型组网net.py和static_model.py。
 
