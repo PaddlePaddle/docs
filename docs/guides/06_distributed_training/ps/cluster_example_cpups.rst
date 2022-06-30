@@ -450,8 +450,8 @@ server端会根据特征的show和click计算一个频次得分，用于判断�
     :header: "名称", "类型", "取值", "默认值", "是否必须", "作用描述"
     :widths: 10, 5, 5, 5, 5, 30
 
-    "nonclk_coeff", "float", "任意","0.1", "是", "特征展现但未点击对应系数"
-    "click_coeff", "float", "任意", "1.0", "是", "特征点击对应系数"`
+    "nonclk_coeff", "float", "任意", "0.1", "是", "特征展现但未点击对应系数"
+    "click_coeff", "float", "任意", "1.0", "是", "特征点击对应系数"
 
 具体频次score计算公式如下：  
 score = click_coeff * click + noclick_coeff * (click - show)
