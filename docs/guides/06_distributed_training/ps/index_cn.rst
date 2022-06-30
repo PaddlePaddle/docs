@@ -1,0 +1,16 @@
+#############
+数据并行
+#############
+
+您可以通过以下内容,了解飞桨参数服务器的特性和使用指南:
+
+- `参数服务器概述 <./cluster_overview_ps_cn.html>`_ : 飞桨参数服务器概述。
+- `GPUPS示例 <./cluster_exmaple_gpups_cn.html>`_ : 使用飞桨GPUPS进行分布式训练。
+- `CPUPS流式训练示例 <./cluster_exmaple_cpups_cn.html>`_ : 使用飞桨CPUPS进行分布式流式训练。
+
+..  toctree::
+    :hidden:
+
+    cluster_overview_ps_cn.rst
+    cluster_exmaple_gpups_cn.rst
+    cluster_exmaple_cpups_cn.rst

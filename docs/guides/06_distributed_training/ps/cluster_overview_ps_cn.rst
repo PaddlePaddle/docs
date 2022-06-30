@@ -9,7 +9,7 @@
 
 一个典型的推荐场景点击率预估模型的训练、推理全流程示意图如下：
 
-.. image:: ./images/whole_process.png
+.. image:: ../images/whole_process.png
   :width: 800
   :alt: whole_process
   :align: center
@@ -32,7 +32,7 @@
 
 因此对于存储超大规模模型参数的训练场景十分友好，常被用于训练拥有海量稀疏参数的搜索推荐领域模型。
 
-.. image:: ./images/ps.JPG
+.. image:: ../images/ps.JPG
   :width: 600
   :alt: ps
   :align: center
@@ -55,7 +55,7 @@ Server端为模型并行，采用双层哈希实现了大规模参数的存储�
 
 在异步训练模式下训练简单模型可以极大提升数据吞吐量，整体训练速度非常出色。
 
-.. image:: ./images/cpups.jpeg
+.. image:: ../images/cpups.jpeg
   :width: 600
   :alt: ps
   :align: center
@@ -73,7 +73,7 @@ SSD-MEM-HBM 三级存储允许全量参数使用 SSD 硬盘存储，高频参数
 
 RPC&NCCL 混合通信可以将部分稀疏参数采用 RPC 协议跨节点通信，其余参数采用卡间 NCCL 方式完成通信，充分利用带宽资源。
 
-.. image:: ./images/gpups.jpeg
+.. image:: ../images/gpups.jpeg
   :width: 600
   :alt: ps
   :align: center
@@ -88,7 +88,7 @@ RPC&NCCL 混合通信可以将部分稀疏参数采用 RPC 协议跨节点通信
 
 基于这两种解决方案，飞桨框架 2.0 版本创新性地推出了通用异构参数服务器功能(HeterPS)。一举解除了传统参数服务器模式下，Worker 节点必须严格使用同一种硬件型号的枷锁，使训练任务对硬件型号不敏感，即可以同时使用不同的硬件混合异构训练，如 CPU、AI 专用芯片（如百度昆仑 XPU）以及不同型号的 GPU 如 v100、P40、K40 等。同时还可以解决大规模稀疏特征模型训练场景下 IO 占比过高导致的芯片资源利用率过低的问题。通过异构参数服务器训练模式，用户可以在硬件异构集群中部署分布式训练任务，例如云服务器集群，高效利用不同算力芯片，为用户提供更高吞吐、更低资源消耗的训练能力。
 
-.. image:: ./images/heterps.jpeg
+.. image:: ../images/heterps.jpeg
   :width: 600
   :alt: ps
   :align: center
@@ -184,7 +184,7 @@ RPC&NCCL 混合通信可以将部分稀疏参数采用 RPC 协议跨节点通信
 
 Dataset是为多线程及全异步方式量身打造的数据读取方式，每个数据读取线程会与一个训练线程耦合，形成了多生产者-多消费者的模式，会极大的加速模型训练过程。
 
-.. image:: ./images/dataset.JPG
+.. image:: ../images/dataset.JPG
   :width: 600
   :alt: dataset
   :align: center

@@ -7,7 +7,7 @@
 1 原理简介
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-在开始使用纯GPU参数服务器之前，需要先了解参数服务器的基本知识，详细内容参见\ `参数服务器概述 <>`_\。
+在开始使用纯GPU参数服务器之前，需要先了解参数服务器的基本知识，详细内容参见\ `参数服务器概述 <https://>`_\。
 
 1.1 参数服务器解决的问题
 """"""""""""
@@ -39,7 +39,7 @@ GPU 强大的算力毋庸置疑可以提升集群的计算性能，但随之而�
 1. SSD-MEM-HBM 三级存储：允许全量参数使用 SSD 硬盘存储，高频参数存储于内存，当前 Pass 训练所用参数使用显存，并且同时支持 SSD 的参数在硬盘、内存、显存之间快速拷贝。
 2. RPC&NCCL 混合通信：将部分稀疏参数采用 RPC 协议跨节点通信，其余参数采用卡间 NCCL 方式完成通信，充分利用带宽资源。
 
-.. image:: ./images/gpups.jpeg
+.. image:: ../images/gpups.jpeg
   :width: 600
   :alt: ps
   :align: center
@@ -47,7 +47,7 @@ GPU 强大的算力毋庸置疑可以提升集群的计算性能，但随之而�
 2 使用方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-本节将采用推荐领域非常经典的wide&deep模型为例，介绍纯GPU参数服务器训练的使用方法，详细示例代码可参考：https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep_gpups。
+本节将采用推荐领域非常经典的wide&deep模型为例，介绍纯GPU参数服务器训练的使用方法，详细示例代码可参考：\ `GPUPS示例代码 <https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep_gpups>`_\。
 
 在编写分布式训练程序之前，用户需要确保已经安装PaddlePaddle develop GPU版本的飞桨开源框架。
 
@@ -145,7 +145,6 @@ GPUPS的数据处理脚本reader.py与CPUPS相比无区别。
     strategy.a_sync = False
     # 设置use_ps_gpu为True
     strategy.a_sync_configs = {"use_ps_gpu": True}
-
 
     optimizer = paddle.optimizer.SGD(learning_rate=0.0001)
     optimizer = fleet.distributed_optimizer(optimizer, strategy)
