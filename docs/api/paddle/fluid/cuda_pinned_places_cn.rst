@@ -36,11 +36,4 @@ list[fluid.CUDAPinnedPlace]
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    # 1）不设置任何环境变量，默认使用所有的GPU，8卡的机器则将创建8个CUDAPinnedPlace
-    # 2）export FLAGS_selected_gpus='0,1'，则创建2个CUDAPinnedPlace
-    cuda_pinned_places = fluid.cuda_pinned_places()
-    # 3）创建1个CUDAPinnedPlace
-    cuda_pinned_places = fluid.cuda_pinned_places(1)
+COPY-FROM: paddle.fluid.cuda_pinned_places

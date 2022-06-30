@@ -44,16 +44,4 @@ Lod为[1，1，1，1]，filter tags为[1]，从上面的定义中，带有标签
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid.layers as layers
-    ins = layers.data(name='Ins', shape=[-1,32], lod_level=0, dtype='float64')
-    ins_tag = layers.data(name='Ins_tag', shape=[-1,16], lod_level=0, dtype='int64')
-    filter_tag = layers.data(name='Filter_tag', shape=[-1,16], dtype='int64')
-    out, loss_weight = layers.filter_by_instag(ins,  ins_tag,  filter_tag, True)
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.filter_by_instag

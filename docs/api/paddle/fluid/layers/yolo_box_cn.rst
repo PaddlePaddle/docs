@@ -66,15 +66,4 @@ yolo_box
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[255, 13, 13], dtype='float32')
-    img_size = fluid.layers.data(name='img_size',shape=[2],dtype='int64')
-    anchors = [10, 13, 16, 30, 33, 23]
-    boxes, scores = fluid.layers.yolo_box(x=x, img_size=img_size, class_num=80, anchors=anchors,
-                                    conf_thresh=0.01, downsample_ratio=32)
-
-
-
-
+COPY-FROM: paddle.fluid.layers.yolo_box

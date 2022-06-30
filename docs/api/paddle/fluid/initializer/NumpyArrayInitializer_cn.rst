@@ -26,12 +26,4 @@ NumpyArrayInitializer
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy
-    x1 = fluid.data(name="x1", shape=[2, 1], dtype='float32')
-    fc = fluid.layers.fc(input=x1, size=10,
-        param_attr=fluid.initializer.NumpyArrayInitializer(numpy.array([1,2])))
-
-
+COPY-FROM: paddle.fluid.initializer.NumpyArrayInitializer

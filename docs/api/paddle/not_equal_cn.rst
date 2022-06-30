@@ -26,13 +26,4 @@ Tensor，shape 和输入一致，数据类型为 bool。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([1, 2, 3])
-    y = paddle.to_tensor([1, 3, 2])
-    result = paddle.not_equal(x, y)
-    print(result) # result = [False, True, True]
-
-
+COPY-FROM: paddle.not_equal

@@ -26,18 +26,4 @@ Variable，数据类型和输入数据类型一致。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        #  [3, 0, 0]
-        #  [0, 4, 0]
-        #  [0, 0, 5]
-
-        import paddle.fluid as fluid
-        import numpy as np
-        diagonal = np.arange(3, 6, dtype='int32')
-        data = fluid.layers.diag(diagonal)
-        # diagonal.shape=(3,) data.shape=(3, 3)
-
-
-
-
+COPY-FROM: paddle.fluid.layers.diag

@@ -157,42 +157,4 @@ https://en.wikipedia.org/wiki/Trilinear_interpolation
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-  import paddle.fluid as fluid
-  input = fluid.layers.data(name="input", shape=[3,6,9], dtype="float32")
-  # input.shape = [-1, 3, 6, 9], where -1 indicates batch size, and it will get the exact value in runtime.
-
-  out = fluid.layers.image_resize(input, out_shape=[12, 12], resample="NEAREST")
-  out0 = fluid.layers.image_resize(input, out_shape=[12, 12], resample="NEAREST")
-  # out0.shape = [-1, 3, 12, 12], it means out0.shape[0] = input.shape[0] in runtime.
-
-  # out_shape is a list in which each element is a integer or a tensor Variable
-  dim1 = fluid.layers.data(name="dim1", shape=[1], dtype="int32", append_batch_size=False)
-  out1 = fluid.layers.image_resize(input, out_shape=[12, dim1], resample="NEAREST")
-  # out1.shape = [-1, 3, 12, -1]
-
-  # out_shape is a 1-D tensor Variable
-  shape_tensor = fluid.layers.data(name="shape_tensor", shape=[2], dtype="int32", append_batch_size=False)
-  out2 = fluid.layers.image_resize(input, out_shape=shape_tensor, resample="NEAREST")
-  # out2.shape = [-1, 3, -1, -1]
-
-  # when use actual_shape
-  actual_shape_tensor = fluid.layers.data(name="actual_shape_tensor", shape=[2], dtype="int32", append_batch_size=False)
-  out3 = fluid.layers.image_resize(input, out_shape=[4, 4], resample="NEAREST", actual_shape=actual_shape_tensor)
-  # out3.shape = [-1, 3, 4, 4]
-
-  # scale is a Variable
-  scale_tensor = fluid.layers.data(name="scale", shape=[1], dtype="float32", append_batch_size=False)
-  out4 = fluid.layers.image_resize(input, scale=scale_tensor)
-  # out4.shape = [-1, 3, -1, -1]
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.image_resize

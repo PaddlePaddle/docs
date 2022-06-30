@@ -16,10 +16,4 @@ get_image_backend
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    from paddle.vision import get_image_backend
-
-    backend = get_image_backend()
-    print(backend)
-        
+COPY-FROM: paddle.vision.image.get_image_backend

@@ -43,20 +43,4 @@ row_conv
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-  import paddle
-  paddle.enable_static()
-
-  # LoDTensor input
-  x = paddle.static.data(name='x', shape=[9, 16],
-                        dtype='float32', lod_level=3)
-  out_x = paddle.static.nn.row_conv(input=x, future_context_size=2)
-
-  # Tensor input
-  y = paddle.static.data(name='y', shape=[9, 4, 16],
-                        dtype='float32')
-  out_y = paddle.static.nn.row_conv(input=y, future_context_size=2)
-
-
-
+COPY-FROM: paddle.static.nn.row_conv

@@ -26,11 +26,4 @@ get_program_parameter
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.data(name="img", shape=[64, 784])
-    w = fluid.layers.create_parameter(shape=[784, 200], dtype='float32', name='fc_w')
-    b = fluid.layers.create_parameter(shape=[200], dtype='float32', name='fc_b')
-    list_para  = fluid.io.get_program_parameter(  fluid.default_main_program() )
-
+COPY-FROM: paddle.fluid.io.get_program_parameter

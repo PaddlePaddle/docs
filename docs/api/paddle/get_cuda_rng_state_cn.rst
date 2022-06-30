@@ -20,7 +20,4 @@ get_cuda_rng_state
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    sts = paddle.get_cuda_rng_state()
+COPY-FROM: paddle.get_cuda_rng_state

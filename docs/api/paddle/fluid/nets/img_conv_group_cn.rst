@@ -38,28 +38,4 @@ Image Convolution Group由Convolution2d，BatchNorm，DropOut和Pool2d组成。�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy as np
-    img = fluid.layers.data(name='img', shape=[1, 28, 28], dtype='float32')
-    conv_pool = fluid.nets.img_conv_group(input=img,
-                                          conv_padding=1,
-                                          conv_num_filter=[3, 3],
-                                          conv_filter_size=3,
-                                          conv_act="relu",
-                                          pool_size=2,
-                                          pool_stride=2)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    np_x = np.random.random(size=(1, 1, 28, 28)).astype('float32')
-    output = exe.run(feed={"img": np_x}, fetch_list = [conv_pool])
-    print(output)
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.nets.img_conv_group

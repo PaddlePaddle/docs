@@ -21,14 +21,4 @@ moveaxis
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.ones([3, 2, 4])
-    paddle.moveaxis(x, [0, 1], [1, 2]).shape
-    # [4, 3, 2]
-
-    x = paddle.ones([2, 3])
-    paddle.moveaxis(x, 0, 1) # equivalent to paddle.t(x)
-    # [3, 2]
+COPY-FROM: paddle.moveaxis

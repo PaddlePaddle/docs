@@ -4,7 +4,7 @@ conv3d_transpose
 -------------------------------
 
 
-.. py:function:: paddle.nn.functional.conv3d_transpose(x, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1, data_format='NCHW', output_size=None, name=None)
+.. py:function:: paddle.nn.functional.conv3d_transpose(x, weight, bias=None, stride=1, padding=0, output_padding=0, groups=1, dilation=1, output_size=None, data_format='NCDHW', name=None)
 
 
 
@@ -112,17 +112,4 @@ Tensor
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-
-    x_var = paddle.randn((2, 3, 8, 8, 8), dtype='float32')
-    w_var = paddle.randn((3, 6, 3, 3, 3), dtype='float32')
-
-    y_var = F.conv3d_transpose(x_var, w_var)
-    y_np = y_var.numpy()
-
-    print(y_np.shape)
-    # (2, 6, 10, 10, 10)
-
+COPY-FROM: paddle.nn.functional.conv3d_transpose

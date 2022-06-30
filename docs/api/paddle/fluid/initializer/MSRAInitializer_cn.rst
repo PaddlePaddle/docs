@@ -3,7 +3,7 @@
 MSRAInitializer
 -------------------------------
 
-.. py:class:: paddle.fluid.initializer.MSRAInitializer(uniform=True, fan_in=None, seed=0)
+.. py:class:: paddle.fluid.initializer.MSRAInitializer(uniform=True, fan_in=None, seed=0, negative_slope=0.0, nonlinearity='relu')
 
 
 
@@ -16,20 +16,22 @@ MSRAInitializer
 
 .. math::
 
-    x = \sqrt{\frac{6.0}{fan\_in}}
+    x = gain \times \sqrt{\frac{3}{fan\_in}}
 
 在正态分布中，均值为0，标准差为：
 
 .. math::
 
-    \sqrt{\frac{2.0}{fan\_in}}
+    \frac{gain}{\sqrt{{fan\_in}}}
 
 参数
 ::::::::::::
 
-    - **uniform** (bool) - 为True表示使用均匀分布，为False表示使用正态分布
-    - **fan_in** (float16|float32) - MSRAInitializer的fan_in。如果为None，fan_in沿伸自变量，多设置为None
-    - **seed** (int32) - 随机种子
+    - **uniform** (bool，可选) - 为 True 表示使用均匀分布，为 False 表示使用正态分布。
+    - **fan_in** (float16|float32，可选) - 可训练的 Tensor 的 in_features 值。如果设置为 None，程序会自动计算该值。如果你不想使用 in_features，你可以自己设置这个值。默认值为 None。
+    - **seed** (int32，可选) - 随机种子。
+    - **negative_slope** (float，可选) - 只适用于使用leaky_relu作为激活函数时的negative_slope参数。默认值为 :math:`0.0`。
+    - **nonlinearity** (str，可选) - 非线性激活函数。默认值为relu。
 
 返回
 ::::::::::::
@@ -37,20 +39,9 @@ MSRAInitializer
 
 .. note:: 
 
-    在大多数情况下推荐设置fan_in为None
+    在大多数情况下推荐设置 fan_in 为 None。
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.fluid as fluid
-    paddle.enable_static()
-    x = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
-    fc = fluid.layers.fc(input=x, size=10, param_attr=fluid.initializer.MSRAInitializer(uniform=False))
-
-
-
-
-
+COPY-FROM: paddle.fluid.initializer.MSRAInitializer

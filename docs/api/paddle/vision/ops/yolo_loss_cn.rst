@@ -77,26 +77,4 @@ Tensor，yolov3损失的值，具有形状[N]的1-D Tensor。
 代码示例
 :::::::::
 
-.. code-block:: python
-    
-    import paddle
-    import numpy as np
-
-    x = np.random.random([2, 14, 8, 8]).astype('float32')
-    gt_box = np.random.random([2, 10, 4]).astype('float32')
-    gt_label = np.random.random([2, 10]).astype('int32')
-
-    x = paddle.to_tensor(x)
-    gt_box = paddle.to_tensor(gt_box)
-    gt_label = paddle.to_tensor(gt_label)
-
-    loss = paddle.vision.ops.yolo_loss(x,
-                                       gt_box=gt_box,
-                                       gt_label=gt_label,
-                                       anchors=[10, 13, 16, 30],
-                                       anchor_mask=[0, 1],
-                                       class_num=2,
-                                       ignore_thresh=0.7,
-                                       downsample_ratio=8,
-                                       use_label_smooth=True,
-                                       scale_x_y=1.)
+COPY-FROM: paddle.vision.ops.yolo_loss

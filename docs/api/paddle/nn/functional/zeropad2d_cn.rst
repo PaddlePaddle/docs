@@ -20,18 +20,4 @@ zeropad2d
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x_shape = (1, 1, 2, 3)
-    x = paddle.arange(np.prod(x_shape), dtype="float32").reshape(x_shape) + 1
-    y = paddle.nn.functional.zeropad2d(x, [1, 2, 1, 1])
-
-    # [[[[0. 0. 0. 0. 0. 0.]
-    #    [0. 1. 2. 3. 0. 0.]
-    #    [0. 4. 5. 6. 0. 0.]
-    #    [0. 0. 0. 0. 0. 0.]]]]
-
-
+COPY-FROM: paddle.nn.functional.zeropad2d

@@ -29,20 +29,4 @@ sqrt
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([0.0, 9.0, 36.0])
-    y = paddle.sqrt(x)
-    print(y) # y=[0., 3., 6.]
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.sqrt

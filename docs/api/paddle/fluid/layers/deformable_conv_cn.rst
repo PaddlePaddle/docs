@@ -82,29 +82,4 @@ ValueError – 如果input, filter_size, stride, padding和groups的大小不匹
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    #deformable conv v2:
-
-    import paddle.fluid as fluid
-    C_in, H_in, W_in = 3, 32, 32
-    filter_size, deformable_groups = 3, 1
-    data = fluid.layers.data(name='data', shape=[C_in, H_in, W_in], dtype='float32')
-    offset = fluid.layers.data(name='offset', shape=[2*deformable_groups*filter_size**2, H_in, W_in], dtype='float32')
-    mask = fluid.layers.data(name='mask', shape=[deformable_groups*filter_size**2, H_in, W_in], dtype='float32')
-    out = fluid.layers.deformable_conv(input=data, offset=offset, mask=mask,
-                                       num_filters=2, filter_size=filter_size, padding=1, modulated=True)
-
-    #deformable conv v1:
-
-    import paddle.fluid as fluid
-    C_in, H_in, W_in = 3, 32, 32
-    filter_size, deformable_groups = 3, 1
-    data = fluid.layers.data(name='data', shape=[C_in, H_in, W_in], dtype='float32')
-    offset = fluid.layers.data(name='offset', shape=[2*deformable_groups*filter_size**2, H_in, W_in], dtype='float32')
-    out = fluid.layers.deformable_conv(input=data, offset=offset, mask=None,
-                                       num_filters=2, filter_size=filter_size, padding=1, modulated=False)
-
-
-
-
+COPY-FROM: paddle.fluid.layers.deformable_conv
