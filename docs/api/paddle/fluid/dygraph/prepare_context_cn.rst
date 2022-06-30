@@ -13,7 +13,7 @@ prepare_context
 参数
 ::::::::::::
 
-  - **strategy** (ParallelStrategy, 可选) – 该参数是配置储存多进程多卡训练配置信息的结构体变量，其具体成员包括：trainer节点的个数，当前trainer节点的ID，所有trainer节点的endpoint，当前节点的endpoint。当输入为None时，会调用PallelStrategy构造函数初始化strategy，此时，strategy的属性值为PallelStrategy结构体的默认值，接着strategy的属性会被环境变量中的对应值覆盖。默认值为None。
+  - **strategy** (ParallelStrategy，可选) – 该参数是配置储存多进程多卡训练配置信息的结构体变量，其具体成员包括：trainer节点的个数，当前trainer节点的ID，所有trainer节点的endpoint，当前节点的endpoint。当输入为None时，会调用PallelStrategy构造函数初始化strategy，此时，strategy的属性值为PallelStrategy结构体的默认值，接着strategy的属性会被环境变量中的对应值覆盖。默认值为None。
 
 返回
 ::::::::::::
@@ -26,18 +26,4 @@ prepare_context
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid.dygraph as dygraph
-    import paddle.fluid as fluid
-    with fluid.dygraph.guard():
-        strategy=dygraph.parallel.prepare_context()
-        emb = fluid.dygraph.Embedding([10, 10])
-        emb = dygraph.parallel.DataParallel(emb, strategy)
-
-        state_dict = emb.state_dict()
-        fluid.save_dygraph( state_dict, "paddle_dy")
-
-        para_state_dict, _ = fluid.load_dygraph( "paddle_dy")
-
-        emb.set_dict( para_state_dict )
+COPY-FROM: paddle.fluid.dygraph.prepare_context

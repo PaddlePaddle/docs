@@ -18,7 +18,7 @@ to_tensor
 :::::::::
 
     - pic (PIL.Image|numpy.ndarray) - 输入的图像数据。
-    - data_format (str，可选): 返回的张量的格式，必须为 'HWC' 或 'CHW'。 默认值: 'CHW'。
+    - data_format (str，可选)：返回的张量的格式，必须为 'HWC' 或 'CHW'。默认值：'CHW'。
 
 返回
 :::::::::
@@ -28,16 +28,4 @@ to_tensor
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import numpy as np
-    from PIL import Image
-    from paddle.vision.transforms import functional as F
-
-    fake_img = (np.random.rand(256, 300, 3) * 255.).astype('uint8')
-
-    fake_img = Image.fromarray(fake_img)
-
-    tensor = F.to_tensor(fake_img)
-    print(tensor.shape)
-    
+COPY-FROM: paddle.vision.transforms.to_tensor

@@ -14,14 +14,4 @@ is_grad_enabled
 代码示例
 :::::::::
 
-.. code-block:: python
-    
-    import paddle
-
-    paddle.is_grad_enabled() # True
-
-    with paddle.set_grad_enabled(False):
-        paddle.is_grad_enabled() # False
-
-    paddle.enable_static()
-    paddle.is_grad_enabled() # False
+COPY-FROM: paddle.is_grad_enabled

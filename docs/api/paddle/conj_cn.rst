@@ -12,7 +12,7 @@ conj
 ::::::::::::
 
     - x (Tensor) - 输入的复数值的 Tensor，数据类型为：complex64、complex128、float32、float64、int32 或 int64。
-    - name (str，可选） - 默认值为 None。一般无需用户设置。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -23,15 +23,4 @@ conj
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-          import paddle
-          data=paddle.to_tensor([[1+1j, 2+2j, 3+3j], [4+4j, 5+5j, 6+6j]])
-          #Tensor(shape=[2, 3], dtype=complex64, place=CUDAPlace(0), stop_gradient=True,
-          #       [[(1+1j), (2+2j), (3+3j)],
-          #        [(4+4j), (5+5j), (6+6j)]])
-
-          conj_data=paddle.conj(data)
-          #Tensor(shape=[2, 3], dtype=complex64, place=CUDAPlace(0), stop_gradient=True,
-          #       [[(1-1j), (2-2j), (3-3j)],
-          #        [(4-4j), (5-5j), (6-6j)]])
+COPY-FROM: paddle.conj

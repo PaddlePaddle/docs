@@ -1,4 +1,4 @@
-.. _cn_api_paddle_compat_long_type
+.. _cn_api_paddle_compat_long_type:
 
 long_type
 -------------------------------

@@ -22,27 +22,12 @@ load_params
 
     - **executor**  (Executor) – 加载模型参数的 ``executor`` （详见 :ref:`api_guide_executor` ） 。
     - **dirname**  (str) – 模型参数的存储路径。
-    - **main_program**  (Program，可选) – 筛选模型参数变量所依据的 ``Program`` （详见 :ref:`api_guide_Program` ）。若为None, 则使用全局默认的  ``default_main_program`` 。默认值为None。
-    - **filename**  (str，可选) – 若模型参数是以若干文件形式存储在 ``dirname`` 指定的目录下，则设置 ``filename`` 值为None。反之，需要通过 ``filename`` 来指明单一模型参数存储文件的名称。 默认值为None。
+    - **main_program**  (Program，可选) – 筛选模型参数变量所依据的 ``Program`` （详见 :ref:`api_guide_Program` ）。若为None，则使用全局默认的  ``default_main_program``。默认值为None。
+    - **filename**  (str，可选) – 若模型参数是以若干文件形式存储在 ``dirname`` 指定的目录下，则设置 ``filename`` 值为None。反之，需要通过 ``filename`` 来指明单一模型参数存储文件的名称。默认值为None。
 
-**返回:** 无
+**返回：** 无
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-
-    exe = fluid.Executor(fluid.CPUPlace())
-    param_path = "./my_paddle_model"
-    prog = fluid.default_main_program()
-    fluid.io.load_params(executor=exe, dirname=param_path,
-                        main_program=None)
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.io.load_params

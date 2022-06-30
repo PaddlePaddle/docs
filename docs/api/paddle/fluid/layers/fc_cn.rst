@@ -30,17 +30,17 @@ fc
 
 
 上述等式中：
-  - :math:`N` ：输入的数目，如果输入是Tensor列表，N等于len(input)
-  - :math:`X_i` ：第i个输入的Tensor
-  - :math:`W_i` ：对应第i个输入张量的第i个权重矩阵
-  - :math:`b` ：该层创建的bias参数
+  - :math:`N`：输入的数目，如果输入是Tensor列表，N等于len(input)
+  - :math:`X_i`：第i个输入的Tensor
+  - :math:`W_i`：对应第i个输入张量的第i个权重矩阵
+  - :math:`b`：该层创建的bias参数
   - :math:`Act` ：activation function(激活函数)
-  - :math:`Out` ：输出Tensor
+  - :math:`Out`：输出Tensor
 
 ::
             
         Case 1： 
-            给定单个输入Tensor data_1, 且num_flatten_dims = 2:
+            给定单个输入Tensor data_1，且num_flatten_dims = 2:
                 data_1.data = [[[0.1, 0.2],
                                [0.3, 0.4]]]
                 data_1.shape = (1, 2, 2) # 1是batch_size
@@ -73,11 +73,11 @@ fc
 
   - **input** (Variable|list of Variable) – 维度为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor（或LoDTensor）或由多个Tensor（或LoDTensor）组成的list，输入Tensor的shape至少是2。数据类型为float32或float64。
   - **size** (int) – 全连接层输出单元的数目，即输出Tensor（或LoDTensor）特征维度。
-  - **num_flatten_dims** (int) – 输入可以接受维度大于2的Tensor。在计算时，输入首先会被扁平化（flatten）为一个二维矩阵，之后再与权重(weights)相乘。参数 ``num_flatten_dims`` 决定了输入Tensor的flatten方式: 前 ``num_flatten_dims`` (包含边界，从1开始数) 个维度会被扁平化为二维矩阵的第一维 (即为矩阵的高), 剩下的 :math:`rank(X) - num\_flatten\_dims` 维被扁平化为二维矩阵的第二维 (即矩阵的宽)。 例如， 假设X是一个五维的Tensor，其shape为(2, 3, 4, 5, 6), 若 :math:`num\_flatten\_dims = 3` ，则扁平化的矩阵shape为： :math:`(2 x 3 x 4, 5 x 6) = (24, 30)` ，最终输出Tensor的shape为 :math:`(2, 3, 4, size)` 。默认为1。
+  - **num_flatten_dims** (int) – 输入可以接受维度大于2的Tensor。在计算时，输入首先会被扁平化（flatten）为一个二维矩阵，之后再与权重(weights)相乘。参数 ``num_flatten_dims`` 决定了输入Tensor的flatten方式：前 ``num_flatten_dims`` (包含边界，从1开始数) 个维度会被扁平化为二维矩阵的第一维 (即为矩阵的高)，剩下的 :math:`rank(X) - num\_flatten\_dims` 维被扁平化为二维矩阵的第二维 (即矩阵的宽)。例如，假设X是一个五维的Tensor，其shape为(2, 3, 4, 5, 6)，若 :math:`num\_flatten\_dims = 3`，则扁平化的矩阵shape为：:math:`(2 x 3 x 4, 5 x 6) = (24, 30)`，最终输出Tensor的shape为 :math:`(2, 3, 4, size)`。默认为1。
   - **param_attr** (ParamAttr) – 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
   - **bias_attr** (ParamAttr) – 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-  - **act** (str) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **act** (str) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations`，默认值为None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回
@@ -93,28 +93,4 @@ fc
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-         import paddle.fluid as fluid
-         # 当输入为单个张量时
-
-        data = fluid.layers.data(name="data", shape=[32, 32], dtype="float32")
-        fc = fluid.layers.fc(input=data, size=1000, act="tanh")
-
-        # 当输入为多个张量时
-        data_1 = fluid.layers.data(name="data_1", shape=[32, 32], dtype="float32")
-        data_2 = fluid.layers.data(name="data_2", shape=[24, 36], dtype="float32")
-        fc = fluid.layers.fc(input=[data_1, data_2], size=1000, act="tanh")
-
-
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.fc

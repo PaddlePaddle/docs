@@ -20,7 +20,7 @@ fmax
 :::::::::
    - **x** （Tensor）- 输入的Tensor。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
    - **y** （Tensor）- 输入的Tensor。数据类型为 ``float32`` 、 ``float64`` 、 ``int32`` 或  ``int64`` 。
-   - **name** （str, 可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
@@ -30,33 +30,4 @@ fmax
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-
-    x = paddle.to_tensor([[1, 2], [7, 8]])
-    y = paddle.to_tensor([[3, 4], [5, 6]])
-    res = paddle.fmax(x, y)
-    print(res)
-    #    [[3, 4],
-    #     [7, 8]]
-
-    x = paddle.to_tensor([[1, 2, 3], [1, 2, 3]])
-    y = paddle.to_tensor([3, 0, 4])
-    res = paddle.fmax(x, y)
-    print(res)
-    #    [[3, 2, 4],
-    #     [3, 2, 4]]
-
-    x = paddle.to_tensor([2, 3, 5], dtype='float32')
-    y = paddle.to_tensor([1, np.nan, np.nan], dtype='float32')
-    res = paddle.fmax(x, y)
-    print(res)
-    #    [ 2., 3., 5.]
-
-    x = paddle.to_tensor([5, 3, np.inf], dtype='float32')
-    y = paddle.to_tensor([1, -np.inf, 5], dtype='float32')
-    res = paddle.fmax(x, y)
-    print(res)
-    #    [  5.,   3., inf.]
+COPY-FROM: paddle.fmax

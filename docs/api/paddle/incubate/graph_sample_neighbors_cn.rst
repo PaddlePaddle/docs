@@ -5,7 +5,7 @@ graph_sample_neighbors
 
 .. py:function:: paddle.incubate.graph_sample_neighbors(row, colptr, input_nodes, eids=None, perm_buffer=None, sample_size=-1, return_eids=False, flag_perm_buffer=False, name=None)
 
-主要应用于图学习领域，主要目的是提供高性能图邻居采样方法。通过输入图的CSC（Compressed Sparse Column，压缩列信息），分别对应 ``row`` 和 ``colptr`` ，从而将图转换为适用于邻居采样的格式，再输入需要进行采样的中心节点 ``input_nodes`` ，以及采样的邻居个数 ``sample_size`` ，从而可以获得对应中心节点采样后的邻居。另外，在GPU版本提供了Fisher-yates高性能图采样方法。
+主要应用于图学习领域，主要目的是提供高性能图邻居采样方法。通过输入图的CSC（Compressed Sparse Column，压缩列信息），分别对应 ``row`` 和 ``colptr``，从而将图转换为适用于邻居采样的格式，再输入需要进行采样的中心节点 ``input_nodes``，以及采样的邻居个数 ``sample_size``，从而可以获得对应中心节点采样后的邻居。另外，在GPU版本提供了Fisher-yates高性能图采样方法。
 
 参数
 :::::::::
@@ -17,7 +17,7 @@ graph_sample_neighbors
     - sample_size (int) - 采样邻居个数。默认值为-1，表示采样输入中心节点的所有邻居。
     - return_eids (bool) - 是否返回采样后对应的原始边编号信息，默认为False。
     - flag_perm_buffer (bool) - 是否采用Fisher-yates采样方法，默认为False。 
-    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
@@ -29,19 +29,4 @@ graph_sample_neighbors
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
- 
-    # edges: (3, 0), (7, 0), (0, 1), (9, 1), (1, 2), (4, 3), (2, 4),
-    #        (9, 5), (3, 5), (9, 6), (1, 6), (9, 8), (7, 8)
-    row = [3, 7, 0, 9, 1, 4, 2, 9, 3, 9, 1, 9, 7]
-    colptr = [0, 2, 4, 5, 6, 7, 9, 11, 11, 13, 13]
-    nodes = [0, 8, 1, 2]
-    sample_size = 2
-    row = paddle.to_tensor(row, dtype="int64")
-    colptr = paddle.to_tensor(colptr, dtype="int64")
-    nodes = paddle.to_tensor(nodes, dtype="int64")
-    out_neighbors, out_count = \
-        paddle.incubate.graph_sample_neighbors(row, colptr, nodes, 
-                                               sample_size=sample_size)
+COPY-FROM: paddle.incubate.graph_sample_neighbors

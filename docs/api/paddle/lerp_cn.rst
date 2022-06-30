@@ -24,22 +24,4 @@ lerp
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.arange(1., 5., dtype='float32')
-    y = paddle.empty([4], dtype='float32')
-    y.fill_(10.)
-    print(x)
-    # Tensor(shape=[4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-    #        [1., 2., 3., 4.])
-    print(y)
-    # Tensor(shape=[4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-    #        [10., 10., 10., 10.])
-    paddle.lerp(x, y, 0.5)
-    # Tensor(shape=[4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-    #        [5.5., 6., 6.5, 7.])
-    paddle.lerp(x, y, paddle.full_like(x, 0.5))
-    # Tensor(shape=[4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
-    #        [5.5., 6., 6.5, 7.])
+COPY-FROM: paddle.lerp

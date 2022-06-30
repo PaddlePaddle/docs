@@ -19,7 +19,14 @@
 1.1 任务介绍
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-本节将采用推荐领域非常经典的模型wide_and_deep为例，介绍如何使用飞桨分布式完成参数服务器训练任务，本次快速开始的完整示例代码位于 https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep_dataset。
+本节将采用推荐领域非常经典的模型wide_and_deep为例，介绍如何使用飞桨分布式完成参数服务器训练任务。
+
+参数服务器训练基于飞桨静态图，为方便用户理解，我们准备了一个wide_and_deep模型的单机静态图示例：\ `单机静态图示例 <https://github.com/PaddlePaddle/FleetX/tree/develop/eval/rec/wide_and_deep_single_static>`_\。
+
+在单机静态图示例基础上，通过1.2章节的操作方法，可以将其修改为参数服务器训练示例，本次快速开始的完整示例代码参考：\ `参数服务器完整示例 <https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep_dataset>`_\。
+
+同时，我们在AIStudio上建立了一个参数服务器快速开始的项目：\ `参数服务器快速开始 <https://aistudio.baidu.com/aistudio/projectdetail/4189047?channelType=0&channel=0>`_\，用户可以跳转到AIStudio上直接运行参数服务器的训练代码。
+
 在编写分布式训练程序之前，用户需要确保已经安装PaddlePaddle2.3及以上版本的飞桨开源框架。
 
 1.2 操作方法
@@ -76,8 +83,10 @@
 InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_and_deep_dataset/reader.py，与单机DataLoader相比，存在如下区别：
 
     1. 继承自 ``fleet.MultiSlotDataGenerator`` 基类。
-    2. 实现基类中的 ``generate_sample()`` 函数，逐行读取数据进行处理（不需要对数据文件进行操作），并返回一个可以迭代的reader方法。
-    3. reader方法需返回一个list，其中的每个元素都是一个元组，元组的第一个元素为特征名（string类型），第二个元素为特征值（list类型）
+    2. 复用单机reader中的 ``line_process()`` 方法，该方法将数据文件中一行的数据处理后生成特征数组并返回，特征数组不需要转成np.array格式。
+    3. 实现基类中的 ``generate_sample()`` 函数，调用 ``line_process()`` 方法逐行读取数据进行处理，并返回一个可以迭代的reader方法。
+    4. reader方法需返回一个list，其中的每个元素都是一个元组，具体形式为 ``(特征名，[特征值列表])`` ，元组的第一个元素为特征名（string类型，需要与模型中对应输入input的name对应），第二个元素为特征值列表（list类型）。
+    5. 在__main__作用域中调用 ``run_from_stdin()`` 方法，直接从标准输入流获取待处理数据，而不需要对数据文件进行操作。
 
 一个完整的reader.py伪代码如下：
 
@@ -91,8 +100,9 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
     class WideDeepDatasetReader(fleet.MultiSlotDataGenerator):
         def line_process(self, line):
             features = line.rstrip('\n').split('\t')
-            # 省略数据处理过程，具体可参考单机reader
+            # 省略数据处理过程，具体实现可参考单机reader的line_process()方法
             # 返回值为一个list，其中的每个元素均为一个list，不需要转成np.array格式
+            # 具体格式：[[dense_value1, dense_value2, ...], [sparse_value1], [sparse_value2], ..., [label]]
             return [dense_feature] + sparse_feature + [label]
         
         # 实现generate_sample()函数
@@ -110,12 +120,14 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 
                 # 返回一个list，其中的每个元素都是一个元组
                 # 元组的第一个元素为特征名（string类型），第二个元素为特征值（list类型）
+                # 具体格式：[('dense_input', [dense_value1, dense_value2, ...]), ('C1', [sparse_value1]), ('C2', [sparse_value2]), ..., ('label', [label])]
                 yield zip(feature_name, input_data)
             
             # generate_sample()函数需要返回一个可以迭代的reader方法
             return wd_reader
 
     if __name__ == "__main__":
+        # 调用run_from_stdin()方法，直接从标准输入流获取待处理数据
         my_data_generator = WideDeepDatasetReader()
         my_data_generator.run_from_stdin()
 
@@ -142,7 +154,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 备注：dataset更详细用法参见\ `使用InMemoryDataset/QueueDataset进行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/parameter_server/performance/dataset.html>`_\。
 
 
-1.2.5 定义同步训练 Strategy 及 Optimizer
+1.2.5 定义参数更新策略及优化器
 """"""""""""
 
 在Fleet API中，用户可以使用 ``fleet.DistributedStrategy()`` 接口定义自己想要使用的分布式策略。
@@ -154,9 +166,16 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
     # 定义异步训练
     dist_strategy = fleet.DistributedStrategy()
     dist_strategy.a_sync = True
+    
+用户需要使用 ``fleet.distributed_optimizer()`` 接口，将单机优化器转换成分布式优化器，并最小化模型的损失值。
 
+.. code-block:: python
+
+    # 定义单机优化器
     optimizer = paddle.optimizer.SGD(learning_rate=0.0001)
+    # 单机优化器转换成分布式优化器
     optimizer = fleet.distributed_optimizer(optimizer, dist_strategy)
+    # 使用分布式优化器最小化模型损失值model.loss，model.loss定义参见model.py
     optimizer.minimize(model.loss)
 
 1.2.6 开始训练
@@ -184,7 +203,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
                                    dataset,
                                    paddle.static.global_scope(), 
                                    debug=False, 
-                                   fetch_list=[train_model.cost],
+                                   fetch_list=[model.loss],
                                    fetch_info=["loss"],
                                    print_period=1)
     
@@ -196,7 +215,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 1.3 运行训练脚本
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-定义完训练脚本后，我们就可以用 ``fleetrun`` 指令运行分布式任务了。其中 ``server_num`` , ``worker_num`` 分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
+定义完训练脚本后，我们就可以用 ``fleetrun`` 指令运行分布式任务了。 ``fleetrun`` 是飞桨封装的分布式启动命令，命令参数 ``server_num`` , ``worker_num`` 分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
 
 .. code-block:: bash
 

@@ -13,7 +13,7 @@ guard
 参数
 ::::::::::::
 
-  - **new_generator** (str|bytes, 可选) - 新命名空间的名称。请注意，Python2中的str在Python3中被区分为str和bytes两种，因此这里有两种类型。 缺省值为None，若不为None，new_generator将作为前缀添加到generate接口产生的唯一名称中。
+  - **new_generator** (str|bytes，可选) - 新命名空间的名称。请注意，Python2中的str在Python3中被区分为str和bytes两种，因此这里有两种类型。缺省值为None，若不为None，new_generator将作为前缀添加到generate接口产生的唯一名称中。
 
 返回
 ::::::::::::
@@ -22,18 +22,4 @@ guard
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-        with paddle.utils.unique_name.guard():
-            name_1 = paddle.utils.unique_name.generate('fc')
-        with paddle.utils.unique_name.guard():
-            name_2 = paddle.utils.unique_name.generate('fc')
-        print(name_1, name_2) # fc_0, fc_0
-
-        with paddle.utils.unique_name.guard('A'):
-            name_1 = paddle.utils.unique_name.generate('fc')
-        with paddle.utils.unique_name.guard('B'):
-            name_2 = paddle.utils.unique_name.generate('fc')
-        print(name_1, name_2) # Afc_0, Bfc_0
-
+COPY-FROM: paddle.utils.unique_name.guard

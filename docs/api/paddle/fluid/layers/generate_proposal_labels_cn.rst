@@ -12,19 +12,19 @@ generate_proposal_labels
 
 该OP根据RPN预测产出的bounding boxes和groundtruth，抽取出用来计算loss的foreground boxes and background boxes。
 
-RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs`` ，即该OP的输入。然后，在该OP中按以下规则对 ``RPN RoIs`` 进行分类：
+RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs``，即该OP的输入。然后，在该OP中按以下规则对 ``RPN RoIs`` 进行分类：
 
-- 与某个groundtruth的重叠面积大于 ``fg_thresh`` ，则该box被标记为foreground box。
-- 与某个groundtruth的重叠面积大于 ``bg_thresh_lo`` 且小于 ``bg_thresh_hi`` ，则该box被标记为background box。
+- 与某个groundtruth的重叠面积大于 ``fg_thresh``，则该box被标记为foreground box。
+- 与某个groundtruth的重叠面积大于 ``bg_thresh_lo`` 且小于 ``bg_thresh_hi``，则该box被标记为background box。
 
 按上述规则筛选出一批boxes后，在对这些boxes做随机采样，以保证foreground boxes的数量不高于batch_size_per_im * fg_fraction。
 
-对最终得到的boxes, 我们给它们分配类别标签和回归目标(box label)，并产出 ``bboxInsideWeights`` 和 ``BboxOutsideWeights`` 。
+对最终得到的boxes，我们给它们分配类别标签和回归目标(box label)，并产出 ``bboxInsideWeights`` 和 ``BboxOutsideWeights`` 。
 
 参数
 ::::::::::::
 
-  - **rpn_rois** (Variable) – Shape为 ``[N, 4]`` 的2-D LoDTensor。 其中，N为RoIs的个数。每个RoI以 :math:`[x_{min}, y_{min}, x_{max}, y_{max}]` 的格式表示，其中，:math:`x_{min}` 和 :math:`y_{min}` 为RoI的左上角坐标，:math:`x_{max}` 和 :math:`y_{max}` 为RoI的右下角坐标。数据类型支持float32和float64。
+  - **rpn_rois** (Variable) – Shape为 ``[N, 4]`` 的2-D LoDTensor。其中，N为RoIs的个数。每个RoI以 :math:`[x_{min}, y_{min}, x_{max}, y_{max}]` 的格式表示，其中，:math:`x_{min}` 和 :math:`y_{min}` 为RoI的左上角坐标，:math:`x_{max}` 和 :math:`y_{max}` 为RoI的右下角坐标。数据类型支持float32和float64。
   - **gt_classes** (Variable) – Shape为 ``[M, 1]`` 的2-D LoDTensor，M为groundtruth boxes的数量。用于表示groundtruth boxes的类别ID。数据类型支持int32。
   - **is_crowd** (Variable) –Shape为 ``[M, 1]`` 的2-D LoDTensor，M为groundtruth boxes的数量。用于标记boxes是否是crowd。数据类型支持int32。
   - **gt_boxes** (Variable) – Shape为 ``[M, 4]`` 的2-D LoDTensor，M为groundtruth boxes的数量。每个box以 :math:`[x_{min}, y_{min}, x_{max}, y_{max}]` 的格式表示。
@@ -43,10 +43,10 @@ RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs`` ，
 
 返回
 ::::::::::::
-元组，格式为 ``(rois, labels_int32, bbox_targets, bbox_inside_weights, bbox_outside_weights)`` ，其中，各个元素解释如下：
+元组，格式为 ``(rois, labels_int32, bbox_targets, bbox_inside_weights, bbox_outside_weights)``，其中，各个元素解释如下：
 
-- **rois** - Shape为 ``[P, 4]`` 的2-D LoDTensor，P一般是 ``batch_size_per_im * batch_size`` 。每个RoIs以 ``[xmin, ymin, xmax, ymax]`` 的格式表示。数据类型与 ``rpn_rois`` 一致。
-- **labels_int32** - Shape为 ``[P, 1]`` 的2-D LoDTensor，P一般是 ``batch_size_per_im * batch_size`` 。表示每个RoI的类别ID。数据类型为int32。
+- **rois** - Shape为 ``[P, 4]`` 的2-D LoDTensor，P一般是 ``batch_size_per_im * batch_size``。每个RoIs以 ``[xmin, ymin, xmax, ymax]`` 的格式表示。数据类型与 ``rpn_rois`` 一致。
+- **labels_int32** - Shape为 ``[P, 1]`` 的2-D LoDTensor，P一般是 ``batch_size_per_im * batch_size``。表示每个RoI的类别ID。数据类型为int32。
 - **bbox_targets** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor，表示所有RoIs的回归目标（box label）。数据类型与 ``rpn_rois`` 一致。
 - **bbox_inside_weights** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor。foreground boxes回归loss的权重。数据类型与 ``rpn_rois`` 一致。
 - **bbox_outside_weights** - Shape为 ``[P, 4 * class_num]`` 的2-D LoDTensor。回归loss的权重。数据类型与 ``rpn_rois`` 一致。
@@ -60,21 +60,4 @@ RPN的输出经过 ``generate_proposals OP`` 的处理，产出 ``RPN RoIs`` ，
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    rpn_rois = fluid.layers.data(name='rpn_rois', shape=[2, 4],
-                   append_batch_size=False, dtype='float32')
-    gt_classes = fluid.layers.data(name='gt_classes', shape=[8, 1],
-                   append_batch_size=False, dtype='float32')
-    is_crowd = fluid.layers.data(name='is_crowd', shape=[8, 1],
-                   append_batch_size=False, dtype='float32')
-    gt_boxes = fluid.layers.data(name='gt_boxes', shape=[8, 4],
-                   append_batch_size=False, dtype='float32')
-    im_info = fluid.layers.data(name='im_info', shape=[10, 3],
-                   append_batch_size=False, dtype='float32')
-    rois, labels, bbox, inside_weights,
-    outside_weights = fluid.layers.generate_proposal_labels(
-                   rpn_rois, gt_classes, is_crowd, gt_boxes, im_info,
-                   class_nums=10)
-
+COPY-FROM: paddle.fluid.layers.generate_proposal_labels
