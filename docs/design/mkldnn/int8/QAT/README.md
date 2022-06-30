@@ -67,7 +67,7 @@ Notes:
 3. The longest sequence of consecutive quantizable operators in the model, the biggest performance boost can be achieved through quantization:
    ```... → conv2d → conv2d → pool2d → conv2d → conv2d → ...```
    Quantizing single operator separated from other quantizable operators can give no performance benefits or even slow down the inference:
-   ```... → swish → fc → softmax → ...`
+   ```... → swish → fc → softmax → ...```
 
 ### Removing fake operators
 
