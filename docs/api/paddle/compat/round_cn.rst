@@ -1,4 +1,4 @@
-.. _cn_api_paddle_compat_round
+.. _cn_api_paddle_compat_round:
 
 round
 -------------------------------

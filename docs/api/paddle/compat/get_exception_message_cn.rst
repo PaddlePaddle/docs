@@ -1,4 +1,4 @@
-.. _cn_api_paddle_compat_get_exception_message
+.. _cn_api_paddle_compat_get_exception_message:
 
 get_exception_message
 -------------------------------
