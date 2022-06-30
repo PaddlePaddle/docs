@@ -1,4 +1,4 @@
-.. _cn_api_paddle_compat_to_text
+.. _cn_api_paddle_compat_to_text:
 
 to_text
 -------------------------------
