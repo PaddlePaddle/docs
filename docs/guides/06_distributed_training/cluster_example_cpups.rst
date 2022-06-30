@@ -71,7 +71,7 @@ CPUPS流式训练示例
 在训练数据目录下，再建立两层目录，第一层目录对应训练数据的日期（8位），第二层目录对应训练数据的具体时间（4位，前两位为小时，后两位为分钟），并且需要与配置文件中的split_interval配置对应。
 例如：train_data_dir配置为“data”目录，split_interval配置为5，则具体的目录结构如下：
 
-.. code-block:: python
+.. code-block:: text
 
 ├── data
     ├── 20190720              # 训练数据的日期
@@ -487,7 +487,6 @@ score = click_coeff * click + noclick_coeff * (click - show)
     "delete_threshold", "float", "任意", "0", "是", "特征频次score小于该阈值时，删除该特征"
     "delete_after_unseen_days", "int", ">0", "30", "是", "特征未出现天数大于该阈值时，删除该特征"
 
-
 5.4 特征embedding保存
 """"""""""""
 
@@ -498,11 +497,10 @@ score = click_coeff * click + noclick_coeff * (click - show)
     :widths: 10, 5, 5, 5, 5, 30
 
     "base_threshold", "float", "任意", "0", "是", "特征频次score大于等于该阈值才会在base模型中保存"
-    "delta_threshold", "float", "任意", "0", "是", "从上一个delta模型到当前delta模型，<br>特征频次score大于等于该阈值才会在delta模型中保存"
+    "delta_threshold", "float", "任意", "0", "是", "从上一个delta模型到当前delta模型，特征频次score大于等于该阈值才会在delta模型中保存"
     "delta_keep_days", "int", "任意", "16", "是", "特征未出现天数小于等于该阈值才会在delta模型中保存"
-    "converter", "string", "任意", """", "否", "base/delta模型转换器（对接线上推理KV存储）"
-    "deconverter", "string", "任意", """", "否", "base/delta模型解压器"
-
+    "converter", "string", "任意", "", "否", "base/delta模型转换器（对接线上推理KV存储）"
+    "deconverter", "string", "任意", "", "否", "base/delta模型解压器"
 
 5.5 参数优化算法
 """"""""""""
@@ -513,7 +511,7 @@ score = click_coeff * click + noclick_coeff * (click - show)
     :header: "名称", "类型", "取值", "默认值", "是否必须", "作用描述"
     :widths: 10, 5, 5, 5, 5, 30
 
-    "name", "string", "SparseAdaGradSGDRule<br>SparseNaiveSGDRule<br>SparseAdamSGDRule<br>StdAdaGradSGDRule", "SparseAdaGradSGDRule", "是", "优化算法名称"
+    "name", "string", "SparseAdaGradSGDRule", "SparseAdaGradSGDRule", "是", "优化算法名称"
     "learning_rate", "float", "任意", "0.05", "是", "学习率"
     "initial_g2sum", "float", "任意", "3.0", "是", "g2sum初始值"
     "initial_range", "float", "任意", "0.0001", "是", "embedding初始化范围[-initial_range,initial_range]"
