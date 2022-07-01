@@ -1,4 +1,4 @@
-.. _cn_api_paddle_compat_to_bytes
+.. _cn_api_paddle_compat_to_bytes:
 
 to_bytes
 -------------------------------
