@@ -29,13 +29,4 @@ scope_guard
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy
-
-    new_scope = paddle.static.Scope()
-    with paddle.static.scope_guard(new_scope):
-         paddle.static.global_scope().var("data").get_tensor().set(numpy.ones((1, 2)), paddle.CPUPlace())
-    data = numpy.array(new_scope.find_var("data").get_tensor())
-    print(data)  # [[1. 1.]]
+COPY-FROM: paddle.static.scope_guard

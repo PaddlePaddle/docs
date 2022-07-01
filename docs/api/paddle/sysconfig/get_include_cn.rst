@@ -1,4 +1,4 @@
-.. _cn_api_paddle_sysconfig_get_include
+.. _cn_api_paddle_sysconfig_get_include:
 
 get_include
 -------------------------------
@@ -15,9 +15,4 @@ get_include
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    include_dir = paddle.sysconfig.get_include()
-    
+COPY-FROM: paddle.sysconfig.get_include

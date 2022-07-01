@@ -20,7 +20,7 @@ sigmoid的分段线性逼近激活函数，速度比sigmoid快，详细解释参
     - **x** (Variable) - 该OP的输入为多维Tensor。数据类型必须为float32或float64。
     - **slope** (float，可选) - 斜率。值必须为正数，默认值为0.2。
     - **offset** (float，可选) - 偏移量。默认值为0.5。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -33,8 +33,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.layers.fill_constant(shape=[3, 2], value=0.5, dtype='float32') # [[0.5, 0.5], [0.5, 0.5], [0.5, 0.5]]
-    result = fluid.layers.hard_sigmoid(data) # [[0.6, 0.6], [0.6, 0.6], [0.6, 0.6]]
+COPY-FROM: paddle.fluid.layers.hard_sigmoid

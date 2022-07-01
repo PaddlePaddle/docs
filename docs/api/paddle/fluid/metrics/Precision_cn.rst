@@ -8,36 +8,14 @@ Precision
 
 
 
-精确率Precision(也称为 positive predictive value,正预测值)是被预测为正样例中实际为正的比例。 https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers 该类管理二分类任务的precision分数。
+精确率Precision(也称为 positive predictive value，正预测值)是被预测为正样例中实际为正的比例。https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers 该类管理二分类任务的precision分数。
 
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
-
-    metric = fluid.metrics.Precision() 
-
-    # 生成预测值和标签
-
-    preds = [[0.1], [0.7], [0.8], [0.9], [0.2],
-             [0.2], [0.3], [0.5], [0.8], [0.6]]
-             
-    labels = [[0], [1], [1], [1], [1],
-              [0], [0], [0], [0], [0]]
-    
-    preds = np.array(preds)
-    labels = np.array(labels)
-    
-    metric.update(preds=preds, labels=labels) 
-    precision = metric.eval()
-    
-    print("expected precision: %.2f and got %.2f" % ( 3.0 / 5.0, precision))
-
-
+COPY-FROM: paddle.fluid.metrics.Precision
 
 方法
 ::::::::::::

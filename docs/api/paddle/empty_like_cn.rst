@@ -13,7 +13,7 @@ empty_like
 
     - **x** (Tensor) – 输入Tensor，输出Tensor和x具有相同的形状，x的数据类型可以是bool、float16、float32、float64、int32、int64。
     - **dtype** （np.dtype|str，可选）- 输出变量的数据类型，可以是bool、float16、float32、float64、int32、int64。若参数为None，则输出变量的数据类型和输入变量相同，默认值为None。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     
 返回
 ::::::::::::
@@ -22,14 +22,4 @@ empty_like
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    paddle.set_device("cpu")  # and use cpu device
-
-    x = paddle.randn([2, 3], 'float32')
-    output = paddle.empty_like(x)
-    #[[1.8491974e+20 1.8037303e+28 1.7443726e+28]     # uninitialized
-    # [4.9640171e+28 3.0186127e+32 5.6715899e-11]]    # uninitialized
+COPY-FROM: paddle.empty_like

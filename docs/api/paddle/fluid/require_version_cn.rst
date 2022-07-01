@@ -7,7 +7,7 @@ require_version
 
 
 
-该接口用于检查已安装的飞桨版本是否介于[``min_version``, ``max_version``]之间（包含 ``min_version`` 和 ``max_version`` ），如果已安装的版本低于 ``min_version`` 或者高于 ``max_version`` ，将会抛出异常。该接口无返回值。
+该接口用于检查已安装的飞桨版本是否介于[``min_version``, ``max_version``]之间（包含 ``min_version`` 和 ``max_version`` ），如果已安装的版本低于 ``min_version`` 或者高于 ``max_version``，将会抛出异常。该接口无返回值。
 
 参数
 ::::::::::::
@@ -33,13 +33,4 @@ require_version
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle.fluid as fluid
-
-        # 任何大于等于0.1.0的版本都可以接受
-        fluid.require_version('0.1.0')
-
-        # 只接受介于0.1.0和10.0.0之间的版本（包含0.1.0和10.0.0）
-        fluid.require_version(min_version='0.1.0', max_version='10.0.0')
-
+COPY-FROM: paddle.fluid.require_version

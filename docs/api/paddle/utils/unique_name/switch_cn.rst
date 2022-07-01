@@ -22,17 +22,4 @@ UniqueNameGenerator，先前的命名空间，一般无需操作该返回值。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-        name1 = paddle.utils.unique_name.generate('fc')
-        name2 = paddle.utils.unique_name.generate('fc')
-        print(name1, name2) # fc_0, fc_1
-
-        pre_generator, pre_dygraph_name_checker = paddle.utils.unique_name.switch() # switch to a new anonymous namespace.
-        name2 = paddle.utils.unique_name.generate('fc')
-        print(name2) # fc_0
-
-        paddle.utils.unique_name.switch(pre_generator, pre_dygraph_name_checker) # switch back to pre_generator.
-        name3 = paddle.utils.unique_name.generate('fc')
-        print(name3) # fc_2, since pre_generator has generated fc_0, fc_1.
+COPY-FROM: paddle.utils.unique_name.switch

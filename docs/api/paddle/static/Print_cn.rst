@@ -24,7 +24,7 @@ Print
     - **print_tensor_type** (bool，可选)-指明是否打印Tensor类型，默认为True。
     - **print_tensor_shape** (bool，可选)-指明是否打印Tensor维度信息，默认为True。
     - **print_tensor_lod** (bool，可选)-指明是否打印Tensor的LoD信息，默认为True。
-    - **print_phase** (str，可选)-指明打印的阶段，包括 ``forward`` , ``backward`` 和 ``both`` ，默认为 ``both`` 。设置为 ``forward`` 时，只打印Tensor的前向信息；设置为 ``backward`` 时，只打印Tensor的梯度信息；设置为 ``both`` 时，则同时打印Tensor的前向信息以及梯度信息。
+    - **print_phase** (str，可选)-指明打印的阶段，包括 ``forward`` , ``backward`` 和 ``both``，默认为 ``both``。设置为 ``forward`` 时，只打印Tensor的前向信息；设置为 ``backward`` 时，只打印Tensor的梯度信息；设置为 ``both`` 时，则同时打印Tensor的前向信息以及梯度信息。
 
 返回
 ::::::::::::
@@ -36,24 +36,4 @@ Print
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    paddle.enable_static()
-
-    x = paddle.full(shape=[2, 3], fill_value=3, dtype='int64')
-    out = paddle.static.Print(x, message="The content of input layer:")
-
-    main_program = paddle.static.default_main_program()
-    exe = paddle.static.Executor(place=paddle.CPUPlace())
-    res = exe.run(main_program, fetch_list=[out])
-    # Variable: fill_constant_1.tmp_0
-    #   - message: The content of input layer:
-    #   - lod: {}
-    #   - place: CPUPlace
-    #   - shape: [2, 3]
-    #   - layout: NCHW
-    #   - dtype: long
-    #   - data: [3 3 3 3 3 3]
-
+COPY-FROM: paddle.static.Print

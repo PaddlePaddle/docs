@@ -1,4 +1,4 @@
-.. _cn_api_paddle_compat_floor_division
+.. _cn_api_paddle_compat_floor_division:
 
 floor_division
 -------------------------------

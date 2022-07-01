@@ -15,7 +15,7 @@ graph_khop_sampler
     - sample_sizes (list | tuple) - 表示每一层需要采样的邻居个数，数据类型为int。
     - sorted_eids (Tensor，可选) - 输入原始图在CSC格式下的边编号信息。如果 ``return_eids`` 为True，则不能为空。数据类型应当与 ``row`` 一致。默认值为None，表示不需要返回边编号信息。
     - return_eids (bool) - 是否返回采样后对应的原始边编号信息，默认为False。
-    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
@@ -29,18 +29,4 @@ graph_khop_sampler
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    row = [3, 7, 0, 9, 1, 4, 2, 9, 3, 9, 1, 9, 7]
-    colptr = [0, 2, 4, 5, 6, 7, 9, 11, 11, 13, 13]
-    nodes = [0, 8, 1, 2]
-    sample_sizes = [2, 2]
-    row = paddle.to_tensor(row, dtype="int64")
-    colptr = paddle.to_tensor(colptr, dtype="int64")
-    nodes = paddle.to_tensor(nodes, dtype="int64")
-
-    edge_src, edge_dst, sample_index, reindex_nodes = \
-        paddle.incubate.graph_khop_sampler(row, colptr, nodes, sample_sizes)
-
+COPY-FROM: paddle.incubate.graph_khop_sampler

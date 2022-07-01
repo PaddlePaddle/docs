@@ -5,29 +5,14 @@ ExpTransform
 
 .. py:class:: paddle.distribution.ExpTransform()
 
-指数变换 :math:`y = exp(x)` .
+指数变换 :math:`y = exp(x)` 。
 
 
 代码示例
 :::::::::
 
-.. code-block:: python
 
-    import paddle
-    exp = paddle.distribution.ExpTransform()
-    print(exp.forward(paddle.to_tensor([1., 2., 3.])))
-    # Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
-    #        [2.71828175 , 7.38905621 , 20.08553696])
-    print(exp.inverse(paddle.to_tensor([1., 2., 3.])))
-    # Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
-    #        [0.        , 0.69314718, 1.09861231])
-    print(exp.forward_log_det_jacobian(paddle.to_tensor([1., 2., 3.])))
-    # Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
-    #        [1., 2., 3.])
-    print(exp.inverse_log_det_jacobian(paddle.to_tensor([1., 2., 3.])))
-    # Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
-    #        [ 0.        , -0.69314718, -1.09861231])
-
+COPY-FROM: paddle.distribution.ExpTransform
 
 方法
 :::::::::
@@ -65,7 +50,7 @@ forward_log_det_jacobian(x)
 
 计算正变换雅可比行列式绝对值的对数。
 
-如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` .
+如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` 。
 
 **参数**
 

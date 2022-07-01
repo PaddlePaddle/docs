@@ -14,7 +14,7 @@ StaticRNN
 参数
 ::::::::::::
 
-  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
 ::::::::::::
@@ -62,7 +62,7 @@ memory(init=None, shape=None, batch_ref=None, init_value=0.0, init_batch_dim_idx
 '''''''''
  
 为静态RNN创建一个内存变量。
-如果init不为None，则用init将初始化memory。 如果init为None，则必须设置shape和batch_ref，函数会使用shape和batch_ref创建新的Variable来初始化init。
+如果init不为None，则用init将初始化memory。如果init为None，则必须设置shape和batch_ref，函数会使用shape和batch_ref创建新的Variable来初始化init。
 
 **参数**
 

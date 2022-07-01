@@ -21,9 +21,4 @@ get_weights_path_from_url
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    from paddle.utils.download import get_weights_path_from_url
-
-    resnet18_pretrained_weight_url = 'https://paddle-hapi.bj.bcebos.com/models/resnet18.pdparams'
-    local_weight_path = get_weights_path_from_url(resnet18_pretrained_weight_url)
+COPY-FROM: paddle.utils.download.get_weights_path_from_url

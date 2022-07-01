@@ -5,7 +5,7 @@ ExponentialFamily
 
 .. py:class:: paddle.distribution.ExponentialFamily()
 
-指数型分布族的基类，继承 ``paddle.distribution.Distribution`` 。概率密度/质量函数满足下述
+指数型分布族的基类，继承 ``paddle.distribution.Distribution``。概率密度/质量函数满足下述
 形式
 
 .. math::

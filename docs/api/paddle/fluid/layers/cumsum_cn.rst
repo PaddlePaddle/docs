@@ -27,17 +27,4 @@ Variable(Tensor)。是累加的结果，即累加器的输出。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.layers.data(name="input", shape=[32, 784])
-    result = fluid.layers.cumsum(data, axis=0)
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.cumsum

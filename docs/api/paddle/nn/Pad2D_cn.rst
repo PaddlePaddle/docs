@@ -18,7 +18,7 @@ Pad2D
     填充输入边界值；``'circular'`` 为循环填充输入。默认值为 ``'constant'`` 。
   - **value** (float32) - 以 ``'constant'`` 模式填充区域时填充的值。默认值为0.0。
   - **data_format** (str)  - 指定输入的format，可为 ``'NCHW'`` 或者 ``'NHWC'``，默认值为 ``'NCHW'``。
-  - **name** (str, 可选) - 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，缺省值为None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -27,20 +27,4 @@ Pad2D
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle
-    import paddle.nn as nn
-    import numpy as np
-    input_shape = (1, 1, 2, 3)
-    pad = [1, 0, 1, 2]
-    mode = "constant"
-    data = paddle.arange(np.prod(input_shape), dtype="float32").reshape(input_shape) + 1
-    my_pad = nn.Pad2D(padding=pad, mode=mode)
-    result = my_pad(data)
-    print(result)
-    # [[[[0. 0. 0. 0.]
-    #    [0. 1. 2. 3.]
-    #    [0. 4. 5. 6.]
-    #    [0. 0. 0. 0.]
-    #    [0. 0. 0. 0.]]]]
+COPY-FROM: paddle.nn.Pad2D

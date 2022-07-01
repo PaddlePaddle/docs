@@ -22,7 +22,7 @@ rsqrt激活函数。
 ::::::::::::
 
     - **x** (Tensor) – 输入是多维Tensor，数据类型可以是float32和float64。 
-    - **name** (str，可选）— 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -31,10 +31,4 @@ Tensor，对输入x进行rsqrt激活函数计算结果，数据shape、类型和
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([0.1, 0.2, 0.3, 0.4])
-        out = paddle.rsqrt(x)
-        # [3.16227766 2.23606798 1.82574186 1.58113883]
+COPY-FROM: paddle.rsqrt

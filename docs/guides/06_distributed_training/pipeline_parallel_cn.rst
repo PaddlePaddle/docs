@@ -64,6 +64,38 @@
   import paddle.nn.functional as F
   import paddle.distributed as dist
   import random
+  from paddle.io import Dataset, BatchSampler, DataLoader
+
+
+创建数据集
+
+.. code-block:: python
+    BATCH_NUM = 20
+    BATCH_SIZE = 16
+    EPOCH_NUM = 4
+
+    IMAGE_SIZE = 784
+    CLASS_NUM = 10
+    MICRO_BATCH_SIZE = 2
+
+    class RandomDataset(Dataset):
+        def __init__(self, num_samples):
+            self.num_samples = num_samples
+
+        def __getitem__(self, idx):
+            image = np.random.random([1, 28, 28]).astype('float32')
+            label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+            return image, label
+
+        def __len__(self):
+            return self.num_samples
+
+    dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
+    train_reader = DataLoader(dataset,
+                    batch_size=BATCH_SIZE,
+                    shuffle=True,
+                    drop_last=True,
+                    num_workers=2)
 
 
 构建一个可以运行流水线的模型，模型的layer需要被LayerDesc或者继承了LayerDesc的SharedLayerDesc包裹，这里因为不需要共享参数，所以就使用LayerDesc
@@ -76,6 +108,97 @@
 
         def forward(self, x):
             return x.reshape(shape=self.shape)
+
+
+    class AlexNetPipeDesc(PipelineLayer):
+        def __init__(self, num_classes=CLASS_NUM, **kwargs):
+            self.num_classes = num_classes
+            decs = [
+                LayerDesc(
+                    nn.Conv2D, 1, 64, kernel_size=11, stride=4, padding=5),
+                LayerDesc(nn.ReLU),
+                LayerDesc(
+                    nn.MaxPool2D, kernel_size=2, stride=2),
+                LayerDesc(
+                    nn.Conv2D, 64, 192, kernel_size=5, padding=2),
+                F.relu,
+                LayerDesc(
+                    nn.MaxPool2D, kernel_size=2, stride=2),
+                LayerDesc(
+                    nn.Conv2D, 192, 384, kernel_size=3, padding=1),
+                F.relu,
+                LayerDesc(
+                    nn.Conv2D, 384, 256, kernel_size=3, padding=1),
+                F.relu,
+                LayerDesc(
+                    nn.Conv2D, 256, 256, kernel_size=3, padding=1),
+                F.relu,
+                LayerDesc(
+                    nn.MaxPool2D, kernel_size=2, stride=2),
+                LayerDesc(
+                    ReshapeHelp, shape=[-1, 256]),
+                LayerDesc(nn.Linear, 256, self.num_classes),  # classifier
+            ]
+            super(AlexNetPipeDesc, self).__init__(
+                layers=decs, loss_fn=nn.CrossEntropyLoss(), **kwargs)
+    
+然后初始化分布式环境，这一步主要是构建流水线通信组的拓扑
+
+.. code-block:: python
+
+    strategy = fleet.DistributedStrategy()
+    model_parallel_size = 1
+    data_parallel_size = 1
+    pipeline_parallel_size = 2
+    strategy.hybrid_configs = {
+        "dp_degree": data_parallel_size,
+        "mp_degree": model_parallel_size,
+        "pp_degree": pipeline_parallel_size
+    }
+    strategy.pipeline_configs = {
+        "accumulate_steps": BATCH_SIZE // MICRO_BATCH_SIZE,
+        "micro_batch_size": MICRO_BATCH_SIZE
+    }
+
+    fleet.init(is_collective=True, strategy=strategy)
+
+为了保证流水线并行参数初始化和普通模型初始化一致，需要在不同卡间设置不同的seed。
+
+.. code-block:: python
+
+    def set_random_seed(seed, dp_id, rank_id):
+        random.seed(seed)
+        np.random.seed(seed + dp_id)
+        paddle.seed(seed + dp_id + rank_id)
+        print("seed: ", seed)
+        print("rank_id: ", rank_id)
+        print("dp_id: ", dp_id)
+
+    hcg = fleet.get_hybrid_communicate_group()
+    world_size = hcg.get_model_parallel_world_size()
+    dp_id = hcg.get_data_parallel_rank()
+    pp_id = hcg.get_stage_id()
+    rank_id = dist.get_rank()
+    set_random_seed(1024, dp_id, rank_id)
+
+然后创建出流水线并行的模型，
+
+AlexNetPipeDesc(....)：这一步主要是在切分普通模型的layer，将属于当前卡的layer添加到模型里面
+
+fleet.distributed_model(....)：这一步则是真正进行流水线模型并行的初始化，会得到之前构建拓扑组已经组建好的流水线通信组，并且如果流水线并行混合了数据并行，模型并行，会对数据并行和模型并行相关参数进行broadcast
+
+fleet.distributed_optimizer(...)：这一步则是为优化器添加分布式属性，如果流水线并行混合了数据并行，group_sharded，就会对相应梯度进行all reduce
+
+.. code-block:: python
+
+    class ReshapeHelp(Layer):
+        def __init__(self, shape):
+            super(ReshapeHelp, self).__init__()
+            self.shape = shape
+
+        def forward(self, x):
+            return x.reshape(shape=self.shape)
+
 
     class AlexNetPipeDesc(PipelineLayer):
         def __init__(self, num_classes=10, **kwargs):
@@ -109,59 +232,6 @@
             super(AlexNetPipeDesc, self).__init__(
                 layers=decs, loss_fn=nn.CrossEntropyLoss(), **kwargs)
 
-然后初始化分布式环境，这一步主要是构建流水线通信组的拓扑
-
-.. code-block:: python
-
-    batch_size = 4
-    micro_batch_size = 2
-
-    strategy = fleet.DistributedStrategy()
-    model_parallel_size = 1
-    data_parallel_size = 1
-    pipeline_parallel_size = 2
-    strategy.hybrid_configs = {
-        "dp_degree": data_parallel_size,
-        "mp_degree": model_parallel_size,
-        "pp_degree": pipeline_parallel_size
-    }
-    strategy.pipeline_configs = {
-        "accumulate_steps": batch_size // micro_batch_size,
-        "micro_batch_size": micro_batch_size
-    }
-  
-  
-  fleet.init(is_collective=True, strategy=strategy)
-
-为了保证流水线并行参数初始化和普通模型初始化一致，需要在不同卡间设置不同的seed。
-
-.. code-block:: python
-
-    def set_random_seed(seed, dp_id, rank_id):
-        random.seed(seed)
-        np.random.seed(seed + dp_id)
-        paddle.seed(seed + dp_id + rank_id)
-        print("seed: ", seed)
-        print("rank_id: ", rank_id)
-        print("dp_id: ", dp_id)
-
-    hcg = fleet.get_hybrid_communicate_group()
-    world_size = hcg.get_model_parallel_world_size()
-    dp_id = hcg.get_data_parallel_rank()
-    pp_id = hcg.get_stage_id()
-    rank_id = dist.get_rank()
-    set_random_seed(1024, dp_id, rank_id)
-
-然后创建出流水线并行的模型，
-
-AlexNetPipeDesc(....)：这一步主要是在切分普通模型的layer，将属于当前卡的layer添加到模型里面
-
-fleet.distributed_model(....)：这一步则是真正进行流水线模型并行的初始化，会得到之前构建拓扑组已经组建好的流水线通信组，并且如果流水线并行混合了数据并行，模型并行，会对数据并行和模型并行相关参数进行broadcast
-
-fleet.distributed_optimizer(...)：这一步则是为优化器添加分布式属性，如果流水线并行混合了数据并行，group_sharded，就会对相应梯度进行all reduce
-
-.. code-block:: python
-
     model = AlexNetPipeDesc(num_stages=pipeline_parallel_size, topology=hcg._topo)
     scheduler = paddle.optimizer.lr.PiecewiseDecay(
             boundaries=[2], values=[0.001, 0.002], verbose=False
@@ -172,35 +242,16 @@ fleet.distributed_optimizer(...)：这一步则是为优化器添加分布式属
     optimizer = fleet.distributed_optimizer(optimizer)
 
 
-创建mnist数据集
-
-.. code-block:: python
-
-  train_reader = paddle.batch(
-          paddle.dataset.mnist.train(), batch_size=batch_size, drop_last=True
-  )
-
 开始训练
 
 model.train_batch(...)：这一步主要就是执行1F1B的流水线并行方式
 
 .. code-block:: python
 
-    for step_id, data in enumerate(train_reader()):
-        x_data = np.array([x[0] for x in data]).astype("float32").reshape(
-            batch_size, 1, 28, 28
-        )
-        y_data = np.array([x[1] for x in data]).astype("int64").reshape(
-            batch_size, 1
-        )
-        img = paddle.to_tensor(x_data)
-        label = paddle.to_tensor(y_data)
-        img.stop_gradient = True
-        label.stop_gradient = True
-        if step_id >= 5:
-            break 
-            
-        loss = model.train_batch([img, label], optimizer, scheduler)
+    for i, (image, label) in enumerate(train_reader()):
+        if i >= 5:
+            break
+        loss = model.train_batch([image, label], optimizer, scheduler)
         print("pp_loss: ", loss.numpy())
 
 运行方式（需要保证当前机器有两张GPU）：
@@ -210,7 +261,7 @@ model.train_batch(...)：这一步主要就是执行1F1B的流水线并行方式
   export CUDA_VISIBLE_DEVICES=0,1
   python -m paddle.distributed.launch alexnet_dygraph_pipeline.py # alexnet_dygraph_pipeline.py是用户运行动态图流水线的python文件
 
-基于AlexNet的流水线并行动态图代码：`alex <https://github.com/PaddlePaddle/FleetX/tree/develop/examples/pipeline>`_。
+基于AlexNet的完整的流水线并行动态图代码：`alex <https://github.com/PaddlePaddle/FleetX/tree/develop/examples/pipeline>`_。
 
 控制台输出信息如下：
 

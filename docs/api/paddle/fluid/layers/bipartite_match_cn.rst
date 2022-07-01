@@ -23,14 +23,14 @@ bipartite_match
                 - **dist_matrix** （Variable）- 维度为：[K,M]的2-D LoDTensor，数据类型为float32或float64。它是由每行和每列来表示实体之间的成对距离矩阵。例如，假设一个实体是具有形状[K]的A，另一个实体是具有形状[M]的B. dist_matrix [i] [j]是A[i]和B[j]之间的距离。距离越大，匹配越好。注意：此张量可以包含LoD信息以表示一批输入。该批次的一个实例可以包含不同数量的实体。
                 - **match_type** （str，可选）- 匹配方法的类型，应为'bipartite'或'per_prediction'。默认值为None，即'bipartite'。
                 - **dist_threshold** （float32，可选）- 如果match_type为'per_prediction'，则此阈值用于根据最大距离确定额外匹配的bbox，默认值为None，即0.5。
-                - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+                - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
 
 
-         - matched_indices（Variable）- 维度为[N，M]的2-D Tensor, 数据类型为int32。 N是批量大小。如果match_indices[i][j]为-1，则表示B[j]与第i个实例中的任何实体都不匹配。否则，这意味着在第i个实例中B[j]与行match_indices[i][j]匹配。第i个实>例的行号保存在match_indices[i][j]中。
-         - matched_distance（Variable）- 维度为[N，M]的2-D Tensor, 数据类型为float32，。 N是批量大小。如果match_indices[i][j]为-1，则match_distance[i][j]也为-1.0。否则，假设match_distance[i][j]=d，并且每个实例的行偏移称为LoD。然后match_distance[i][j]=dist_matrix[d]+ LoD[i]][j]。
+         - matched_indices（Variable）- 维度为[N，M]的2-D Tensor，数据类型为int32。 N是批量大小。如果match_indices[i][j]为-1，则表示B[j]与第i个实例中的任何实体都不匹配。否则，这意味着在第i个实例中B[j]与行match_indices[i][j]匹配。第i个实>例的行号保存在match_indices[i][j]中。
+         - matched_distance（Variable）- 维度为[N，M]的2-D Tensor，数据类型为float32，。 N是批量大小。如果match_indices[i][j]为-1，则match_distance[i][j]也为-1.0。否则，假设match_distance[i][j]=d，并且每个实例的行偏移称为LoD。然后match_distance[i][j]=dist_matrix[d]+ LoD[i]][j]。
 
 
 返回类型
@@ -41,10 +41,4 @@ Tuple
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-         import paddle.fluid as fluid
-         x = fluid.data(name='x', shape=[None, 4], dtype='float32')
-         y = fluid.data(name='y', shape=[None, 4], dtype='float32')
-         iou = fluid.layers.iou_similarity(x=x, y=y)
-         matched_indices, matched_dist = fluid.layers.bipartite_match(iou)
+COPY-FROM: paddle.fluid.layers.bipartite_match

@@ -11,11 +11,11 @@ arange
 
 参数
 ::::::::::
-        - **start** (float|int|Tensor) - 区间起点（且区间包括此值）。当 ``start`` 类型是 Tensor 时，是形状为[1]且数据类型为 int32、int64、float32、float64 的 Tensor。如果仅指定 ``start`` ，而 ``end`` 为 None，则区间为[0, ``start``)。默认值为0。
+        - **start** (float|int|Tensor) - 区间起点（且区间包括此值）。当 ``start`` 类型是 Tensor 时，是形状为[1]且数据类型为 int32、int64、float32、float64 的 Tensor。如果仅指定 ``start``，而 ``end`` 为 None，则区间为[0, ``start``)。默认值为0。
         - **end** (float|int|Tensor，可选) - 区间终点（且通常区间不包括此值）。当 ``end`` 类型是 Tensor 时，是形状为[1]且数据类型为 int32、int64、float32、float64 的 Tensor。默认值为 None。
         - **step** (float|int|Tensor，可选) - 均匀分割的步长。当 ``step`` 类型是 Tensor 时，是形状为[1]且数据类型为 int32、int64、float32、float64的Tensor。默认值为1。
-        - **dtype** (str|np.dtype，可选) - 输出 Tensor 的数据类型，支持 int32、int64、float32、float64。当该参数值为 None 时， 输出Tensor的数据类型为int64。默认值为None.
-        - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
+        - **dtype** (str|np.dtype，可选) - 输出 Tensor 的数据类型，支持 int32、int64、float32、float64。当该参数值为 None 时，输出Tensor的数据类型为int64。默认值为None。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::
@@ -25,20 +25,4 @@ arange
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    out1 = paddle.arange(5)
-    # [0, 1, 2, 3, 4]
-
-    out2 = paddle.arange(3, 9, 2.0)
-    # [3, 5, 7]
-
-    # use 4.999 instead of 5.0 to avoid floating point rounding errors
-    out3 = paddle.arange(4.999, dtype='float32')
-    # [0., 1., 2., 3., 4.]
-
-    start_var = paddle.to_tensor([3])
-    out4 = paddle.arange(start_var, 7)
-    # [3, 4, 5, 6]
+COPY-FROM: paddle.arange

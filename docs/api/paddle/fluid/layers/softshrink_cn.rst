@@ -34,20 +34,4 @@ Softshrink激活函数
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    data = fluid.layers.data(name="input", shape=[32, 784])
-    result = fluid.layers.softshrink(data)
-
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.softshrink

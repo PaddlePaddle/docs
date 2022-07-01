@@ -22,9 +22,9 @@ crf_decoding
 参数
 ::::::::::::
 
-    - **input** (Tensor) — 一个形为 [N x D] 的 LoDTensor，其中 N 是mini-batch的大小，D是标注（tag) 的总数； 或者形为 [B x S x D] 的普通 Tensor，B 是批次大小，S 是序列最大长度，D 是标注的总数。 该输入是 :ref:`cn_api_fluid_layers_linear_chain_crf`` 的 unscaled emission weight matrix （未标准化的发射权重矩阵）。数据类型为 float32 或者 float64。
-    - **param_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_guide_ParamAttr` 。
-    - **label** (Tensor，可选) —  形为 [N x 1] 的正确标注（ground truth）（LoDTensor 模式），或者形状为 [B x S]。 有关该参数的更多信息，请详见上述描述。数据类型为 int64。
+    - **input** (Tensor) — 一个形为 [N x D] 的 LoDTensor，其中 N 是mini-batch的大小，D是标注（tag) 的总数；或者形为 [B x S x D] 的普通 Tensor，B 是批次大小，S 是序列最大长度，D 是标注的总数。该输入是 :ref:`cn_api_fluid_layers_linear_chain_crf`` 的 unscaled emission weight matrix （未标准化的发射权重矩阵）。数据类型为 float32 或者 float64。
+    - **param_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_guide_ParamAttr` 。
+    - **label** (Tensor，可选) —  形为 [N x 1] 的正确标注（ground truth）（LoDTensor 模式），或者形状为 [B x S]。有关该参数的更多信息，请详见上述描述。数据类型为 int64。
     - **length** (Tensor，可选) —  形状为 [B x 1]，表示输入序列的真实长度。该输入非 None，表示该层工作在 padding 模式下，即 ``input`` 和 ``label`` 都是带 padding 的普通 Tensor。数据类型为 int64。
 
 返回
@@ -35,43 +35,4 @@ Tensor，解码结果具体内容根据 ``Label`` 参数是否提供而定，请
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-        import paddle
-        paddle.enable_static()
-
-        # LoDTensor-based example
-        num_labels = 10
-        feature = paddle.static.data(name='word_emb', shape=[-1, 784], dtype='float32', lod_level=1)
-        label = paddle.static.data(name='label', shape=[-1, 1], dtype='int64', lod_level=1)
-        emission = paddle.static.nn.fc(feature, size=num_labels)
-
-        crf_cost = paddle.fluid.layers.linear_chain_crf(input=emission, label=label,
-                    param_attr=paddle.ParamAttr(name="crfw"))
-        crf_decode = paddle.static.nn.crf_decoding(input=emission,
-                    param_attr=paddle.ParamAttr(name="crfw"))
-
-        # Common tensor example
-        num_labels, max_len = 10, 20
-        feature = paddle.static.data(name='word_emb_pad', shape=[-1, max_len, 784], dtype='float32')
-        label = paddle.static.data(name='label_pad', shape=[-1, max_len, 1], dtype='int64')
-        length = paddle.static.data(name='length', shape=[-1, 1], dtype='int64')
-        emission = paddle.static.nn.fc(feature, size=num_labels,
-                                    num_flatten_dims=2)
-
-        crf_cost = paddle.fluid.layers.linear_chain_crf(input=emission, label=label, length=length,
-                    param_attr=paddle.ParamAttr(name="crfw_pad"))
-        crf_decode = paddle.static.nn.crf_decoding(input=emission, length=length,
-                    param_attr=paddle.ParamAttr(name="crfw_pad"))
-
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.static.nn.crf_decoding
