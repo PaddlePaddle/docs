@@ -84,12 +84,6 @@ git commit -m 'test=document_fix'
 - 框架API测试脚本（[PaddlePaddle/PaddleTest](https://github.com/PaddlePaddle/PaddleTest)）：`PaddleTest/framework/api/run_paddle_ci.sh`
 - 预测API测试脚本（[PaddlePaddle/PaddleTest](https://github.com/PaddlePaddle/PaddleTest)）：`PaddleTest/inference/python_api_test/parallel_run.sh `
 
-#### PR-CI-ScienceTest
-
-该CI主要是为了科学计算相关的单测是否通过。此CI使用`PR-CI-Build`的编译产物，无需单独编译。
-
-- 测试脚本（[PaddlePaddle/PaddleScience](https://github.com/PaddlePaddle/PaddleScience)）：`PaddleScience/tests/test_examples/run.sh`
-
 #### PR-CI-OP-benchmark
 
 该CI主要的功能是PR中的修改是否会造成OP性能下降或者精度错误。此CI使用`PR-CI-Build`的编译产物，无需单独编译。
