@@ -1,9 +1,9 @@
-.. _cn_api_fluid_layers_identity_loss:
+.. _cn_api_incubate_identity_loss:
 
 identity_loss
 -------------------------------
 
-.. py:function::  paddle.fluid.layers.identity_loss(x, reduction='none')
+.. py:function::  paddle.incubate.identity_loss(x, reduction='none')
 
 
 用于在IPU动态图转静态图功能中标记网络的损失值，从而能够在IPU上为网络添加反向计算过程。算子以网络的损失值作为输入，并对输入做reduction:
@@ -33,4 +33,4 @@ Variable，根据 `reduction` 返回网络损失值的计算结果。
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.fluid.layers.identity_loss
+COPY-FROM: paddle.incubate.identity_loss
