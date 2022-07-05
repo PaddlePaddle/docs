@@ -30,7 +30,7 @@
 飞桨框架采用了 **auto_cast 策略**实现模型训练过程中计算精度的自动转换及使用。通常情况下，模型参数使用单精度浮点格式存储（float32），在训练过程中，将模型参数从单精度浮点数（float32）转换为半精度浮点数（float16 或 bfloat16）参与前向计算，并得到半精度浮点数表示中间状态，然后使用半精度浮点数计算参数梯度，最后将参数梯度转换为单精度浮点数格式后，更新模型参数。计算过程如下图2所示：
 
 <figure align="center">
-    <img src=".https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/auto_cast.png" width="400" alt='missing'>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/auto_cast.png" width="400" alt='missing'>
     <figcaption><center>图 2. 混合精度计算过程示意图</center></figcaption>
 </figure>
 
