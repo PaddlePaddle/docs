@@ -13,7 +13,7 @@ Both [float16](https://en.wikipedia.org/wiki/Half-precision_floating-point_forma
 Compare the floating-point formats of float32 and float16 / bfloat16, as shown in Figure 1:
 
 <figure align="center">
-    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/float.png?raw=true" width="400" alt='missing'>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/float.png?raw=true" width="600" alt='missing'/>
     <figcaption><center>Figure 1. Floating-point formats of float32 and float16 / bfloat16</center></figcaption>
 </figure>
 
@@ -30,7 +30,7 @@ The above data types have the following numerical characteristics:
 Paddle adopts **auto_cast strategy** realizes the automatic conversion and use of calculation accuracy during model training. Generally, the model parameters are stored in the single precision floating-point format (float32). In the training process, the model parameters are converted from float32 to the half precision floating-point number (float16 or bfloat16) to participate in the forward calculation, and the half precision floating-point number represents the intermediate state. Then the half precision floating-point number is used to calculate the parameter gradient, and finally the parameter gradient is converted to the single precision floating-point number format, Update model parameters. The calculation process is shown in Figure 2 below:
 
 <figure align="center">
-    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/auto_cast.png?raw=true" width="400" alt='missing'>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/auto_cast.png?raw=true" width="800" alt='missing'/>
     <figcaption><center>Figure 2. auto_cast calculation process</center></figcaption>
 </figure>
 
@@ -39,7 +39,7 @@ The logic in the blue dashed box in the figure2 is the parameter accuracy conver
 When the model parameters are stored in half precision floating-point format (float16 / bfloat16) before training, the cast operation in Figure 2 will be omitted in the training process, which can further improve the model training performance. However, it should be noted that the model parameters are stored in low precision data types, which may affect the final training accuracy of the model. The calculation process is shown in Figure 3 below:
 
 <figure align="center">
-    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/auto_cast_o2.png?raw=true" width="400" alt='missing'>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/auto_cast_o2.png?raw=true" width="800" alt='missing'/>
     <figcaption><center>Figure 3. float16 calculation process</center></figcaption>
 </figure>
 
