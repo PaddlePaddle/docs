@@ -113,13 +113,6 @@ git commit -m 'test=document_fix'
 
 - 执行脚本：`paddle/scripts/paddle_build.sh build_and_check_gpu`
 
-#### PR-CI-infrt
-
-该CI主要是为了检测infrt是否编译与单测通过
-
-- 编译脚本：`paddle/scripts/infrt_build.sh build_only`
-- 测试脚本：`paddle/scripts/infrt_build.sh test_only`
-
 #### PR-CI-CINN
 
 该CI主要是为了编译含CINN的Paddle，并运行Paddle-CINN对接的单测，保证训练框架进行CINN相关开发的正确性。
