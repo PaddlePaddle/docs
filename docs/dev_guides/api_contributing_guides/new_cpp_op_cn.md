@@ -1067,7 +1067,7 @@ The following device operations are asynchronous with respect to the host:
 Paddle支持动态图和静态图两种模式，在Yaml配置文件中完成算子基本属性的定义后，需要进行解析并分别生成动态图和静态图所对应的算子代码逻辑，从而将算子接入框架的执行体系。基于Yaml配置的算子代码自动生成示意图：
 ![code_gen_by_yaml](./code_gen_by_yaml.png)
 
-- 其中Yaml配置文件为前向：`[`paddle/phi/api/yaml/api.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml)` 和反向：`[`paddle/phi/api/yaml/backward.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)`。
+- 其中Yaml配置文件为前向：[`paddle/phi/api/yaml/api.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml) 和反向：[`paddle/phi/api/yaml/backward.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)。
 - 动态图中自动生成的代码包括从Python API到计算Kernel间的各层调用接口实现，从底层往上分别为：
   - C++ API：一套与Python API参数对齐的C++接口（只做逻辑计算，不支持自动微分），内部封装了底层kernel的选择和调用等逻辑，供上层灵活使用。
     - 注：前向算子生成C++ API头文件和实现代码分别为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`，反向算子生成的头文件和实现代码分别为`paddle/phi/api/backward/backward_api.h`,`paddle/phi/api/lib/backward_api.cc`。
