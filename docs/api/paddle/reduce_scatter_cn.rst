@@ -20,6 +20,10 @@ reduce_scatter
 :::::::::
 返回Task。
 
+注意
+:::::::::
+当前只支持动态图
+
 代码示例
 :::::::::
 COPY-FROM: paddle.distributed.reduce_scatter

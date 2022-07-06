@@ -16,6 +16,10 @@ batch_isend_irecv
 :::::::::
 返回Task列表。
 
+注意
+:::::::::
+当前只支持动态图
+
 代码示例
 :::::::::
 COPY-FROM: paddle.distributed.batch_isend_irecv
