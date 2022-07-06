@@ -43,7 +43,6 @@ paddle.distributed.alltoall	.. _api_paddle_distributed_alltoall:
 paddle.distributed.send	.. _api_paddle_distributed_send:
 paddle.distributed.isend	.. _api_paddle_distributed_isend:
 paddle.distributed.irecv	.. _api_paddle_distributed_irecv:
-paddle.distributed.batch_isend_irecv	.. _api_paddle_distributed_batch_isend_irecv:
 paddle.distributed.reduce_scatter	.. _api_paddle_distributed_reduce_scatter:
 paddle.distributed.QueueDataset	.. _api_paddle_distributed_QueueDataset:
 paddle.distributed.barrier	.. _api_paddle_distributed_barrier:
