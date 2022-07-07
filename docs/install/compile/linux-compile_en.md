@@ -4,10 +4,10 @@
 
 * **Linux version (64 bit)**
     * **CentOS 6 (not recommended, no official support for compilation problems)**
-    * **CentOS 7 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2**
+    * **CentOS 7 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2/11.6**
     * **Ubuntu 14.04 (not recommended, no official support for compilation problems)**
-    * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
-    * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
+    * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2/11.6)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2/11.6)**
 * **Python version 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 ## Choose CPU/GPU
@@ -20,6 +20,7 @@
     * **CUDA toolkit 11.0 with cuDNN v8.0.4(for multi card support, NCCL2.7 or higher)**
     * **CUDA toolkit 11.1 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
     * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
+    * **CUDA toolkit 11.6 with cuDNN v8.4.0(for multi card support, NCCL2.7 or higher)**
     * **Hardware devices with GPU computing power over 3.5**
 
         You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)

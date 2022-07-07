@@ -3,7 +3,7 @@
 ## Environment preparation
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-* **GPU Version support CUDA 10.1/10.2/11.0/11.1/11.2, and only support single GPU**
+* **GPU Version support CUDA 10.1/10.2/11.0/11.1/11.2/11.6, and only support single GPU**
 * **Python version 3.6+/3.7+/3.8+/3.9+/3.10+(64bit)**
 * **pip version 20.2.2 or above (64bit)**
 * **Visual Studio 2017**
@@ -17,6 +17,7 @@
     * **CUDA toolkit 11.0 with cuDNN v8.0.2**
     * **CUDA toolkit 11.1 with cuDNN v8.1.1**
     * **CUDA toolkit 11.2 with cuDNN v8.2.1**
+    * **CUDA toolkit 11.6 with cuDNN v8.4.0**
     * **GPU's computing capability exceeds 3.5**
 
 ## Installation steps
