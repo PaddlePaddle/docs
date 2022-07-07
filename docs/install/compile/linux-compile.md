@@ -4,10 +4,10 @@
 
 * **Linux 版本 (64 bit)**
     * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
-    * **CentOS 7 (GPU 版本支持CUDA 10.1/10.2/11.0/11.1/11.2)**
+    * **CentOS 7 (GPU 版本支持CUDA 10.1/10.2/11.0/11.1/11.2/11.6)**
     * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
-    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
-    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2/11.6)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2/11.6)**
 * **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 ## 选择CPU/GPU
@@ -20,6 +20,7 @@
     * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.1配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
+    * **CUDA 工具包11.6配合cuDNN v8.4.0(如需多卡支持，需配合NCCL2.7及更高)**
     * **GPU运算能力超过3.5的硬件设备**
 
         您可参考NVIDIA官方文档了解CUDA和CUDNN的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
@@ -512,7 +513,7 @@ mkdir build && cd build
     > 请注意PY_VERSION参数更换为您需要的python版本
 
 
-* 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA11.2/CUDA11.0/CUDA10.2/CUDA10.1)**)
+* 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA11.6/CUDA11.2/CUDA11.0/CUDA10.2/CUDA10.1)**)
 
     1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA10.2，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
