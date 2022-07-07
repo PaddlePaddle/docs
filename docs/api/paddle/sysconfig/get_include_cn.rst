@@ -1,4 +1,4 @@
-.. _cn_api_paddle_sysconfig_get_include
+.. _cn_api_paddle_sysconfig_get_include:
 
 get_include
 -------------------------------
