@@ -40,9 +40,7 @@ paddle.distributed.init_parallel_env	.. _api_paddle_distributed_init_parallel_en
 paddle.distributed.all_reduce	.. _api_paddle_distributed_all_reduce:
 paddle.distributed.scatter	.. _api_paddle_distributed_scatter:
 paddle.distributed.alltoall	.. _api_paddle_distributed_alltoall:
-paddle.distributed.alltoall_single	.. _api_paddle_distributed_alltoall_single:
 paddle.distributed.is_initialized	.. _api_paddle_distributed_is_initialized:
-paddle.distributed.destroy_process_group	.. _api_paddle_distributed_destroy_process_group:
 paddle.distributed.send	.. _api_paddle_distributed_send:
 paddle.distributed.isend	.. _api_paddle_distributed_isend:
 paddle.distributed.irecv	.. _api_paddle_distributed_irecv:
