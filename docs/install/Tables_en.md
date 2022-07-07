@@ -401,12 +401,12 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.3.1 </code> will i
         <td> macos-cpu-openblas-m1 </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp38-cp38-macosx_11_0_universal2.whl">
-        paddlepaddle-2.3.1-cp38-cp38-macosx_11_0_universal2.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp39-cp39-macosx_11_0_universal2.whl">
-        paddlepaddle-2.3.1-cp39-cp39-macosx_11_0_universal2.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp310-cp310-macosx_11_0_universal2.whl">
-        paddlepaddle-2.3.1-cp310-cp310-macosx_11_0_universal2.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp38-cp38-macosx_11_0_arm64.whl">
+        paddlepaddle-2.3.1-cp38-cp38-macosx_11_0_arm64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp39-cp39-macosx_11_0_arm64.whl">
+        paddlepaddle-2.3.1-cp39-cp39-macosx_11_0_arm64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp310-cp310-macosx_11_0_arm64.whl">
+        paddlepaddle-2.3.1-cp310-cp310-macosx_11_0_arm64.whl</a></td>
     </tr>
     <tr>
         <td> win-cpu-mkl-avx </td>
