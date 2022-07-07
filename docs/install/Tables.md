@@ -470,6 +470,19 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
         paddlepaddle_gpu-2.3.1.post112-cp310-cp310-linux_x86_64.whl</a></td>
     </tr>
     <tr>
+        <td> cuda11.6-cudnn8.4-mkl-gcc8.2-avx </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/linux/linux-gpu-cuda11.6-cudnn8.4.0-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.1.post116-cp36-cp36m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.1.post116-cp36-cp36m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/linux/linux-gpu-cuda11.6-cudnn8.4.0-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.1.post116-cp37-cp37m-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.1.post116-cp37-cp37m-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/linux/linux-gpu-cuda11.6-cudnn8.4.0-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.1.post116-cp38-cp38-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.1.post116-cp38-cp38-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/linux/linux-gpu-cuda11.6-cudnn8.4.0-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.1.post116-cp39-cp39-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.1.post116-cp39-cp39-linux_x86_64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/linux/linux-gpu-cuda11.6-cudnn8.4.0-mkl-gcc8.2-avx/paddlepaddle_gpu-2.3.1.post116-cp310-cp310-linux_x86_64.whl">
+        paddlepaddle_gpu-2.3.1.post116-cp310-cp310-linux_x86_64.whl</a></td>
+    </tr>
+    <tr>
         <td> macos-cpu-openblas </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas/paddlepaddle-2.3.1-cp36-cp36m-macosx_10_6_intel.whl">
         paddlepaddle-2.3.1-cp36-cp36m-macosx_10_6_intel.whl</a></td>
@@ -486,12 +499,12 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
         <td> macos-cpu-openblas-m1 </td>
         <td> - </td>
         <td> - </td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp38-cp38-macosx_11_0_universal2.whl">
-        paddlepaddle-2.3.1-cp38-cp38-macosx_11_0_universal2.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp39-cp39-macosx_11_0_universal2.whl">
-        paddlepaddle-2.3.1-cp39-cp39-macosx_11_0_universal2.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp310-cp310-macosx_11_0_universal2.whl">
-        paddlepaddle-2.3.1-cp310-cp310-macosx_11_0_universal2.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp38-cp38-macosx_11_0_arm64.whl">
+        paddlepaddle-2.3.1-cp38-cp38-macosx_11_0_arm64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp39-cp39-macosx_11_0_arm64.whl">
+        paddlepaddle-2.3.1-cp39-cp39-macosx_11_0_arm64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/macos/macos-cpu-openblas-m1/paddlepaddle-2.3.1-cp310-cp310-macosx_11_0_arm64.whl">
+        paddlepaddle-2.3.1-cp310-cp310-macosx_11_0_arm64.whl</a></td>
     </tr>
     <tr>
         <td> win-cpu-mkl-avx </td>
@@ -580,6 +593,14 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.1.post112-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.1.post112-cp38-cp38-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.1.post112-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.1.post112-cp39-cp39-win_amd64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/windows/windows-gpu-cuda11.2-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.1.post112-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.1.post112-cp310-cp310-win_amd64.whl</a></td>
+    </tr>
+    <tr>
+        <td> win-cuda11.6-cudnn8.4-mkl-vs2017-avx </td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/windows/windows-gpu-cuda11.6-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.1.post116-cp36-cp36m-win_amd64.whl"> paddlepaddle_gpu-2.3.1.post116-cp36-cp36m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/windows/windows-gpu-cuda11.6-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.1.post116-cp37-cp37m-win_amd64.whl"> paddlepaddle_gpu-2.3.1.post116-cp37-cp37m-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/windows/windows-gpu-cuda11.6-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.1.post116-cp38-cp38-win_amd64.whl"> paddlepaddle_gpu-2.3.1.post116-cp38-cp38-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/windows/windows-gpu-cuda11.6-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.1.post116-cp39-cp39-win_amd64.whl"> paddlepaddle_gpu-2.3.1.post116-cp39-cp39-win_amd64.whl</a></td>
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.3.1/windows/windows-gpu-cuda11.6-cudnn8-mkl-avx/paddlepaddle_gpu-2.3.1.post116-cp310-cp310-win_amd64.whl"> paddlepaddle_gpu-2.3.1.post116-cp310-cp310-win_amd64.whl</a></td>
     </tr>
    </tbody>
 </table>
