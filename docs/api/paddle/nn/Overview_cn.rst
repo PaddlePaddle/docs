@@ -508,6 +508,7 @@ Embedding相关函数
     " :ref:`paddle.nn.functional.fold <cn_api_nn_functional_fold>` ", "该Op用于将一个滑动局部块组合成一个大的张量,通常也被称为col2im。"
     " :ref:`paddle.nn.functional.gather_tree <cn_api_fluid_layers_gather_tree>` ", "整个束搜索结束后使用,获得每个时间步选择的的候选词 id 及其对应的在搜索树中的 parent 节点"
     " :ref:`paddle.nn.functional.glu <cn_api_nn_cn_glu>` ", "门控线性单元"
+    " :ref:`paddle.nn.functional.pairwise_distance <cn_api_nn_functional_pairwise_distance>` ", "计算两组向量之间pairwise的距离。"
     " :ref:`paddle.nn.functional.interpolate <cn_api_paddle_nn_functional_interpolate>` ", "用于调整一个batch中图片的大小"
     " :ref:`paddle.nn.functional.sequence_mask <cn_api_fluid_layers_sequence_mask>` ", "根据输入 x 和 maxlen 输出一个掩码，数据类型为 dtype"
     " :ref:`paddle.nn.functional.temporal_shift <cn_api_fluid_layers_temporal_shift>` ", "用于对输入X做时序通道T上的位移操作，为TSM中使用的操作"
