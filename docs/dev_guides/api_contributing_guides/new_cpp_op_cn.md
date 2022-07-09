@@ -23,7 +23,7 @@
 <tbody>
 <tr>
 <td>算子描述及定义</td>
-<td>python/paddle/utils/code_gen/api.yaml & python/paddle/utils/code_gen/backward.yaml</td>
+<td>paddle/phi/api/yaml/api.yaml & paddle/phi/api/yaml/backward.yaml</td>
 </tr>
 <tr>
 <td>算子InferMeta</td>
@@ -51,9 +51,9 @@
 算子描述及定义是定义运算的基本属性，主要包括算子的输入、输出以及各项非计算逻辑的配置，这些都是设备无关的。
 
 ### 2.1 算子 YAML 文件配置
-我们在`python/paddle/utils/code_gen/api.yaml`和`python/paddle/utils/code_gen/backward.yaml`文件中对算子进行描述及定义，在框架编译时会根据 YAML 文件中的配置自动生成C++端的相关代码接口以及内部实现（详见[Paddle 基于 YAML 配置的算子代码自动生成](new_cpp_op_cn.md#paddleyaml)），下面主要以Trace为例介绍算子的 YAML 配置规则：
+我们在 [`paddle/phi/api/yaml/api.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml) 和 [`paddle/phi/api/yaml/backward.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml) 文件中对算子进行描述及定义，在框架编译时会根据 YAML 文件中的配置自动生成 C++ 端的相关代码接口以及内部实现（详见 [Paddle 基于 YAML 配置的算子代码自动生成](new_cpp_op_cn.html#paddleyaml)），下面主要以 Trace 为例介绍算子的 YAML 配置规则：
 
-python/paddle/utils/code_gen/api.yaml：
+[`paddle/phi/api/yaml/api.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml)：
 ```yaml
 - api : trace
   args : (Tensor x, int offset = 0, int axis1 = 0, int axis2 = 1)
@@ -64,7 +64,7 @@ python/paddle/utils/code_gen/api.yaml：
     func : trace
   backward : trace_grad
 ```
-python/paddle/utils/code_gen/backward.yaml：
+[`paddle/phi/api/yaml/backward.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)：
 ```yaml
 - backward_api : trace_grad
   forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
@@ -974,7 +974,7 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 由于CUDA Kernel的调用有一定的额外开销，所以如果算子中出现多次调用CUDA Kernel，可能会影响算子的执行速度。比如之前的sequence_expand_op中包含很多CUDA Kernel，通常这些CUDA Kernel处理的数据量较小，所以频繁调用这样的Kernel会影响算子的计算速度，这种情况下最好将这些小的CUDA Kernel合并成一个。在优化sequence_expand_op过程（相关PR[#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)）中就是采用这种思路，优化后的sequence_expand_op比之前的实现平均快出约1倍左右，相关实验细节在该PR（[#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)）中有介绍。
 
 减少CPU与GPU之间的拷贝和同步操作的次数。比如fetch操作，在每个迭代之后都会对模型参数进行更新并得到一个loss，并且数据从GPU端到没有页锁定的CPU端的拷贝是同步的，所以频繁的fetch多个参数会导致模型训练速度变慢。
-      
+
 更多算子性能优化方法，请参考 [算子性能优化 方法介绍](../op_optimization/op_optimization_method_introduction_cn.html)。
 
 ### 6.5 稀疏梯度参数更新方法
@@ -1067,7 +1067,7 @@ The following device operations are asynchronous with respect to the host:
 Paddle 支持动态图和静态图两种模式，在 YAML 配置文件中完成算子基本属性的定义后，需要进行解析并分别生成动态图和静态图所对应的算子代码逻辑，从而将算子接入框架的执行体系。基于 YAML 配置的算子代码自动生成示意图：
 ![code_gen_by_yaml](./code_gen_by_yaml.png)
 
-- 其中 YAML 配置文件为前向：`python/paddle/utils/code_gen/api.yaml` 和反向：`python/paddle/utils/code_gen/backward.yaml`。
+- 其中 YAML 配置文件为前向：[`paddle/phi/api/yaml/api.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml) 和反向：[`paddle/phi/api/yaml/backward.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)。
 - 动态图中自动生成的代码包括从Python API到计算Kernel间的各层调用接口实现，从底层往上分别为：
   - C++ API：一套与Python API参数对齐的C++接口（只做逻辑计算，不支持自动微分），内部封装了底层kernel的选择和调用等逻辑，供上层灵活使用。
     - 注：前向算子生成C++ API头文件和实现代码分别为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`，反向算子生成的头文件和实现代码分别为`paddle/phi/api/backward/backward_api.h`,`paddle/phi/api/lib/backward_api.cc`。

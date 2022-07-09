@@ -37,21 +37,6 @@ Paddle 目前使用[Git流分支模型](http://nvie.com/posts/a-successful-git-b
 
 值得注意的是，在 checkout 之前，需要保持当前分支目录 clean，否则会把 untracked 的文件也带到新分支上，这可以通过 `git status` 查看。
 
-## 使用 `pre-commit` 钩子
-
-Paddle 开发人员使用 [pre-commit](http://pre-commit.com/) 工具来管理 Git 预提交钩子。 它可以帮助我们格式化源代码（C++，Python），在提交（commit）前自动检查一些基本事宜（如每个文件只有一个 EOL，Git 中不要添加大文件等）。
-
-`pre-commit`测试是 CI 中单元测试的一部分，不满足钩子的 PR 不能被提交到 Paddle，Paddle使用的pre-commit是1.10.4版本。首先安装并在当前目录运行它：
-
-```bash
-➜  pip install pre-commit==1.10.4
-➜  pre-commit install
-```
-
-Paddle 使用 `clang-format` 来调整 C/C++ 源代码格式，请确保 `clang-format` 版本是 3.8 。
-
-注：通过`pip install pre-commit`和`conda install -c conda-forge pre-commit`安装的`yapf`稍有不同的，Paddle 开发人员使用的是`pip install pre-commit`。
-
 ## 开始开发
 
 在本例中，我删除了 README.md 中的一行，并创建了一个新文件。
@@ -114,10 +99,10 @@ nothing added to commit but untracked files present (use "git add" to track)
 ➜  git add test
 ```
 
-Git 每次提交代码，都需要写提交说明，这可以让其他人知道这次提交做了哪些改变，这可以通过`git commit` 完成。
+Git 每次提交代码，都需要写提交说明，这可以让其他人知道这次提交做了哪些改变，这可以通过`git commit -m "This is description"` 完成。
 
 ```bash
-➜  git commit
+➜  git commit -m "This is description"
 CRLF end-lines remover...............................(no files to check)Skipped
 yapf.................................................(no files to check)Skipped
 Check for added large files..............................................Passed
@@ -125,12 +110,13 @@ Check for merge conflicts................................................Passed
 Check for broken symlinks................................................Passed
 Detect Private Key...................................(no files to check)Skipped
 Fix End of Files.....................................(no files to check)Skipped
-clang-formater.......................................(no files to check)Skipped
+clang-format.......................................(no files to check)Skipped
 [my-cool-stuff c703c041] add test file
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 233
 ```
 
+可以看到，在执行`git commit`后，输出了一些额外的信息。这是使用`pre-commmit`进行代码风格检查的结果，关于代码风格检查的使用问题请参考[代码风格检查指南](./codestyle_check_guide_cn.html)。
 
 ## 保持本地仓库最新
 

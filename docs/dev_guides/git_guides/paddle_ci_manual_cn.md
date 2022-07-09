@@ -84,12 +84,6 @@ git commit -m 'test=document_fix'
 - 框架API测试脚本（[PaddlePaddle/PaddleTest](https://github.com/PaddlePaddle/PaddleTest)）：`PaddleTest/framework/api/run_paddle_ci.sh`
 - 预测API测试脚本（[PaddlePaddle/PaddleTest](https://github.com/PaddlePaddle/PaddleTest)）：`PaddleTest/inference/python_api_test/parallel_run.sh `
 
-#### PR-CI-ScienceTest
-
-该CI主要是为了科学计算相关的单测是否通过。此CI使用`PR-CI-Build`的编译产物，无需单独编译。
-
-- 测试脚本（[PaddlePaddle/PaddleScience](https://github.com/PaddlePaddle/PaddleScience)）：`PaddleScience/tests/test_examples/run.sh`
-
 #### PR-CI-OP-benchmark
 
 该CI主要的功能是PR中的修改是否会造成OP性能下降或者精度错误。此CI使用`PR-CI-Build`的编译产物，无需单独编译。
@@ -108,17 +102,16 @@ git commit -m 'test=document_fix'
 
 #### PR-CI-Static-Check
 
-该CI主要的功能是检查代码风格是否符合规范，检测`develop`分支与当前`PR`分支的增量的API英文文档是否符合规范，以及当变更API或OP时需要TPM approval。
+该CI主要的功能是检查文档是否符合规范，检测`develop`分支与当前`PR`分支的增量的API英文文档是否符合规范，以及当变更API或OP时需要TPM approval。
 
 - 编译脚本：`paddle/scripts/paddle_build.sh build_and_check_cpu`
 - 示例文档检测脚本：`paddle/scripts/paddle_build.sh build_and_check_gpu`
 
-#### PR-CI-infrt
+#### PR-CI-Codestyle-Check
 
-该CI主要是为了检测infrt是否编译与单测通过
+该CI主要的功能是检查提交代码是否符合规范，详细内容请参考[代码风格检查指南](./codestyle_check_guide_cn.html)。
 
-- 编译脚本：`paddle/scripts/infrt_build.sh build_only`
-- 测试脚本：`paddle/scripts/infrt_build.sh test_only`
+- 执行脚本：`paddle/scripts/paddle_build.sh build_and_check_gpu`
 
 #### PR-CI-CINN
 
