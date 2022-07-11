@@ -66,12 +66,14 @@
     "2、API英文文档", "- `API文档书写规范 <https://github.com/PaddlePaddle/docs/wiki/%E9%A3%9E%E6%A1%A8API%E6%96%87%E6%A1%A3%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83>`_
     ", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
     "3、API中文文档", "- `API文档书写规范 <https://github.com/PaddlePaddle/docs/wiki/%E9%A3%9E%E6%A1%A8API%E6%96%87%E6%A1%A3%E4%B9%A6%E5%86%99%E8%A7%84%E8%8C%83>`_
-    - `中文文档贡献指南` <../docs_contributing_guides_cn.html>`_
+    - `中文文档贡献指南 <../docs_contributing_guides_cn.html>`_
     ", "`Github飞桨文档仓库 <https://github.com/PaddlePaddle/docs>`_"
-    "4、API单测代码", "- `API 验收标准 <./api_accpetance_criteria_cn.html>`_", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
+    "4、API单测代码", "- `API 验收标准 <./api_accpetance_criteria_cn.html>`_
+    ", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
     "5、算子不同数据类型性能对比", - `OP Benchmark使用指南 <https://github.com/PaddlePaddle/benchmark/blob/master/api>`_
-    - `算子性能优化 优化方法 <./op_optimization_method_introduction_cn.html>`_
+    - `算子性能优化 优化方法 <../op_optimization/op_optimization_method_introduction_cn.html>`_
     - `算子数据类型扩展 验收规范 <./op_dtype_extension_acceptance_criteria_cn.html>`_
+    ", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
 
 
 当你完成以上代码设计后，需要将代码提交至 `Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_ 和 `Github飞桨中文文档仓库 <https://github.com/PaddlePaddle/docs>`_ ，并根据 `本地开发指南 <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/git_guides/local_dev_guide_cn.html>`_ 提交PR、准备接受社区的评审。
