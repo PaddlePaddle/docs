@@ -6,7 +6,7 @@ is_initialized
 
 .. py:function:: paddle.distributed.is_initialized()
 
-检查默认通信组是否已经初始化
+检查分布式环境是否已经被初始化
 
 参数
 :::::::::
@@ -14,7 +14,7 @@ is_initialized
 
 返回
 :::::::::
-如果默认通信组已被初始化则返回True；反之则返回False。
+如果分布式环境初始化完成，默认通信组已完成建立，则返回True；反之则返回False。
 
 代码示例
 :::::::::
