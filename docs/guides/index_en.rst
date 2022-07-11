@@ -16,6 +16,7 @@ Let's start with studying basic concept of PaddlePaddle:
 - `Distributed Training <./06_distributed_training/index_en.html>`_ : Introduce how the PaddlePaddle uses distributed training
 - `Performance Improving <./performance_improving/index_en.html>`_ : Introduce how to improve performance of PaddlePaddle.
 - `Model Convert <./model_convert/index_en.html>`_ : Introduce how to convert your model to PaddlePaddle.
+- `Hardware Support <./hardware_support/index_en.html>`_ : Introduce supported hardware by PaddlePaddle.
 - `FLAGS <./flags/flags_en.html>`_ : Introduce the envirenment flags in paddle.
 
 ..  toctree::
@@ -28,4 +29,5 @@ Let's start with studying basic concept of PaddlePaddle:
     06_distributed_training/index_en.rst
     performance_improving/index_en.rst
     model_convert/index_en.rst
+    hardware_support/index_en.rst
     flags/flags_en.rst
