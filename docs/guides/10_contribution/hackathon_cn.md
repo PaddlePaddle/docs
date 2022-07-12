@@ -38,7 +38,7 @@
 - 1、任务开发：任务描述中要求 RFC 的任务，需在 RFC 通过评审后按照文档进行开发；未要求 RFC 的任务，可根据任务描述直接进行开发；此外，为了让更多开发者参与进来，**API 开发任务（含基础 API 与稀疏 API）每支队伍最多仅能获取一项任务奖金**，建议你选择自己最感兴趣的任务进行开发；
 - 2、**提交作品**：确保**提交内容**完整后，以 Pull Request(PR) 形式提交至指定的代码仓库，待 CI 大部分通过后，依据 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 下按格式回复【提交作品】，启动技术评审。
 
-注：如果你在开发过程中遇到算力资源限制，可以向 paddle-hack@baidu.com 发邮件说明情况，并附上自己提交通过的提案（RFC）链接，我们会根据实际情况为你提供线上开发环境。资源有限，请按需申请~
+**注**：如果你在开发过程中遇到开发环境限制限制，可以向 paddle-hack@baidu.com 发邮件说明情况，并附上自己提交通过的提案（RFC）链接，我们会根据实际情况为你提供线上开发环境（Linux CPU & Linux GPU）。资源有限，请按需申请~
 
 
 （四）评审与验收阶段
