@@ -52,14 +52,14 @@
 + **如果发现模型训练 CPU 向 GPU 调度不充分的情况下。**
 
   如下是模型训练时执行单个 step 的 timeline 示意图，框架通过 CPU 调度底层 Kernel 计算，在某些情况下，如果 CPU 调度时间过长，会导致 GPU 利用率不高（可终端执行watch -n 1 nvidia-smi观察）。
-  
+
   <figure align="center">
   <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/timeline_base.png" style="zoom:70%" />
   </figure>
   动态图和静态图在 CPU 调度层面存在差异：
-  
+
   + 动态图训练时，CPU 调度时间涉及 Python 到 C++ 的交互（Python 前端代码调起底层 C++ OP）和 C++ 代码调度；
-  
+
   + 静态图训练时，是统一编译 C++ 后执行，CPU 调度时间没有 Python 到 C++ 的交互时间，只有 C++ 代码调度，因此比动态图调度时间短。
 
   因此如果发现是 CPU 调度时间过长，导致的 GPU 利用率低的情况，便可以采用动转静训练提升性能。从应用层面看，如果模型任务本身的 Kernel 计算时间很长，相对来说调度到 Kernel 拉起造成的影响不大，这种情况一般用动态图训练即可，比如 Bert 等模型，反之如 HRNet 等模型则可以观察 GPU 利用率来决定是否使用动转静训练。
@@ -67,7 +67,7 @@
 + **如果想要进一步对计算图优化，以提升模型训练性能的情况下。**
 
   相对于动态图按一行行代码解释执行，动转静后飞桨能够获取模型的整张计算图，即拥有了全局视野，因此可以借助算子融合等技术对计算图进行局部改写，替换为更高效的计算单元，我们称之为“图优化”。
-  
+
   如下是应用了算子融合策略后，模型训练时执行单个 step 的 timeline 示意图。相对于图 2，飞桨框架获取了整张计算图，按照一定规则匹配到 OP3 和 OP4 可以融合为 Fuse_OP，因此可以减少 GPU 的空闲时间，提升执行效率。
 
 <figure align="center">
@@ -115,7 +115,7 @@ class LinearNet(nn.Layer):
     def __init__(self):
         super(LinearNet, self).__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
-    
+
     @paddle.jit.to_static       # <----在前向计算 forward 函数前添加一个装饰器
     def forward(self, x):
         return self._linear(x)
@@ -183,7 +183,7 @@ class LinearNet(nn.Layer):
     def __init__(self):
         super(LinearNet, self).__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
-    
+
     def forward(self, x):
         return self._linear(x)
 
@@ -299,14 +299,14 @@ class LinearNet(nn.Layer):
 
 1. 先执行了动转静。当然如果前面已经执行了动转静训练，则跳过这一步。在处理逻辑上，主要包含两个主要模块：
     + 模型结构层面：将动态图模型中被 ``@paddle.jit.to_static`` 装饰的函数转化为完整的静态图 Program。
-    
+
     + 模型参数层面：将动态图模型中的参数（Parameters 和 Buffers ）转为 ``Persistable=True``  的静态图模型参数 Variable。
 
 2. 再将静态图模型和参数导出为磁盘文件。Program 和 Variable 都可以直接序列化导出为磁盘文件，与前端代码完全解耦，导出的文件包括：
     + 后缀为 ``.pdmodel`` 的模型结构文件；
-    
+
     + 后缀为 ``.pdiparams`` 的模型参数文件；
-    
+
     + 后缀为 ``.pdiparams.info`` 的和参数状态有关的额外信息文件。
 
 类似的，使用 ``paddle.jit.load`` 加载模型，即将上述三个文件加载为静态图模型的 Program 和 Variable，可用于执行静态图模式下训练调优或验证推理效果。
@@ -531,7 +531,7 @@ loader = paddle.io.DataLoader(dataset,
 train(layer, loader, loss_fn, adam)
 ```
 
-#### 3.3.1 模型保存样例 
+#### 3.3.1 模型保存样例
 
 动态图模型训练完成后，保存为静态图模型用于推理部署，主要包括三个步骤：
 
@@ -546,8 +546,7 @@ train(layer, loader, loss_fn, adam)
     from paddle.static import InputSpec
     # 1.切换eval()模式
     layer.eval()
-    # 2.
-    构造InputSpec信息
+    # 2. 构造InputSpec信息
     input_spec = InputSpec([None, 784], 'float32', 'x')
     # 3.调用paddle.jit.save接口转为静态图模型
     path = "example.dy_model/linear"
@@ -566,7 +565,7 @@ linear.pdiparams.info   // 存放和参数状态有关的额外信息
 ```
 
 
-#### 3.3.2 模型加载样例 
+#### 3.3.2 模型加载样例
 
 动态图训练保存模型后，模型加载通常就是用于验证推理效果，使用 ``paddle.jit.load`` 载入。
 
@@ -666,12 +665,12 @@ pred = loaded_layer(x)
             super(LinearNet, self).__init__()
             self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
             self._linear_2 = nn.Linear(IMAGE_SIZE, CLASS_NUM)
-            
+
         # 装饰forward方法，InputSpec指定为None
         @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, IMAGE_SIZE], dtype='float32')])
         def forward(self, x):
             return self._linear(x)
-        
+
         # 装饰需要保存的非forward方法,InputSpec指定为None
         @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, IMAGE_SIZE], dtype='float32')])
         def another_forward(self, x):
@@ -900,7 +899,6 @@ net = SimpleNet()
 net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x')])
 paddle.jit.save(net, path='./simple_net')
 
-
 # 方式二：save inference model with use_act=True
 net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), True])
 paddle.jit.save(net, path='./simple_net')
@@ -1013,4 +1011,3 @@ paddle.jit.save(net, path='./simple_net')
 
 + 动转静训练：即动态图编码，转静态图训练。只需通过 ``@paddle.jit.to_static`` 装饰模型 Layer 类实例的 forward 函数即可实现。
 + 动转静模型保存和加载：既支持动转静训练后模型保存和加载，也支持动态图编码和训练，直接转为静态图模型文件，用于模型推理部署。直接使用 ``paddle.jit.save`` 保存即可，飞桨框架自动完成了动转静和保存操作。
-
