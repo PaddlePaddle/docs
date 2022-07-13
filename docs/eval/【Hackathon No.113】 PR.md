@@ -1,11 +1,11 @@
 
 # 1、任务描述：
 
-	飞桨框架于 2.0 正式版全面支持了动态图训练，并在2.1、2.2 两个大版本中不断完善分布式能力，同时大幅增强了训练功能。在本任务中，我们希望能收到你对于飞桨动态图分布式训练功能的使用感受，可以与其他深度学习框架做功能对比，并产出一份对应的评估报告。
+    飞桨框架于 2.0 正式版全面支持了动态图训练，并在2.1、2.2 两个大版本中不断完善分布式能力，同时大幅增强了训练功能。在本任务中，我们希望能收到你对于飞桨动态图分布式训练功能的使用感受，可以与其他深度学习框架做功能对比，并产出一份对应的评估报告。
 
 # 2、环境配置：
 
-	因为需要将飞桨 PaddlePaddle 框架的分布式与其他深度学习框架做功能对比，这里其他深度学习框架我选择了 PyTorch 框架，所以首先需要安装飞桨 PaddlePaddle 框架与 PyTorch 框架，开发平台选择了曙光平台昆山超算。
+    因为需要将飞桨 PaddlePaddle 框架的分布式与其他深度学习框架做功能对比，这里其他深度学习框架我选择了 PyTorch 框架，所以首先需要安装飞桨 PaddlePaddle 框架与 PyTorch 框架，开发平台选择了曙光平台昆山超算。
 
 ## 2.1、PyTorch 环境配置：
 
@@ -32,9 +32,9 @@ pip install /public/software/apps/DeepLearning/whl/rocm-4.0.1/torch-1.9.0+rocm4.
 ```text
 1、本地下载对应的torchvision分支源码包：https://github.com/pytorch/vision上传集群，
 2、进入对应的conda环境，加载对应的rocm（这里rocm4.0.1）版本；
-3、conda install libpng -y 
-4、conda install jpeg -y 
-5、pip3 install numpy pillow matplotlib ninja -i https://pypi.tuna.tsinghua.edu.cn/simple/ 
+3、conda install libpng -y
+4、conda install jpeg -y
+5、pip3 install numpy pillow matplotlib ninja -i https://pypi.tuna.tsinghua.edu.cn/simple/
 6、使用salloc申请计算结点，使用ssh登录至计算节点，并进入对应的conda环境加载rocm（这里rocm4.0.1），执行编译：CC=clang CXX=clang++ python setup.py install
 ```
 
@@ -46,7 +46,7 @@ python -m pip install paddlepaddle-rocm==2.2.2.rocm401.miopen211 -f https://www.
 ```
 - 故需要提前下载whl文件，下载链接如下，下载的版本为paddlepaddle_rocm-2.1.1.rocm401.miopen211-cp37-cp37m-linux_x86_64.whl。下载链接：
 
-https://www.paddlepaddle.org.cn/whl/rocm/stable.whl	
+https://www.paddlepaddle.org.cn/whl/rocm/stable.whl
 
 - 安装指令为
 ```bash
@@ -159,7 +159,7 @@ model = fleet.distributed_model(model)
 - 第四步：设置分布式所需要的优化器，优化器采用了Adam优化器，初始学习率为0.001，代码如下：
 ```python
 optim = paddle.optimizer.Adam(learning_rate=1e-3, parameters=model.parameters())
-	optim = fleet.distributed_optimizer(optim)
+    optim = fleet.distributed_optimizer(optim)
 ```
 - 第五步：数据集的拆分
 对于分布式的数据拆分，需要先构建其数据集的采样器，这里需要使用DistributedBatchSampler，其中参数为数据集dataset、batch_size、num_replicas、rank、shuffle、drop_last，这里我指定了dataset、batch_size、shuffle，设置了shuffle为True，即对数据进行打乱，其中的参数num_replicas如果不指定，其默认会获取当前环境中的ntasks，然后按照ntasks分配数据集。drop_last参数如果不指定会默认为False，也就是不会丢失最后一个batch的数据。构建完分布式采样器之后，使用DataLoader进行封装一下，这里指定一下batch_sampler为刚才构建的采样器，注意指定batch_sampler参数之后不需要再指定batch_size、shuffle以及drop_last参数。
@@ -197,22 +197,22 @@ python -m paddle.distributed.launch --gpus 0,1,2,3 train_multi_gpu.py
 -----------  Configuration Arguments -----------
 gpus: 0,1,2,3
 heter_worker_num: None
-heter_workers: 
+heter_workers:
 http_port: None
 ips: 127.0.0.1
 log_dir: log
 nproc_per_node: None
 run_mode: None
 server_num: None
-servers: 
+servers:
 training_script: train_multi_4.py
 training_script_args: []
 worker_num: None
-workers: 
+workers:
 ------------------------------------------------
 WARNING 2022-04-02 23:29:34,154 launch.py:359] Not found distinct arguments and compiled with cuda or xpu. Default use collective mode
 launch train in GPU mode!
-INFO 2022-04-02 23:29:34,156 launch_utils.py:510] Local start 4 processes. First process distributed environment info (Only For Debug): 
+INFO 2022-04-02 23:29:34,156 launch_utils.py:510] Local start 4 processes. First process distributed environment info (Only For Debug):
     +=======================================================================================+
     |                        Distributed Envs                      Value                    |
     +---------------------------------------------------------------------------------------+
@@ -238,7 +238,7 @@ W0402 23:30:20.059859 22388 device_context.cc:404] Please NOTE: device: 0, GPU C
 W0402 23:30:20.067070 22388 device_context.cc:417] device: 0, MIOpen Version: 2.11.0
 I0402 23:30:20.082139 22388 nccl_context.cc:107] init nccl context nranks: 4 local rank: 0 gpu id: 0 ring id: 10
 
-/public/home/ac48p2il5w/anaconda3/envs/paddle_wjc_task/lib/python3.7/site-packages/paddle/tensor/creation.py:125: DeprecationWarning: `np.object` is a deprecated alias for the builtin `object`. To silence this warning, use `object` by itself. Doing this will not modify any behavior and is safe. 
+/public/home/ac48p2il5w/anaconda3/envs/paddle_wjc_task/lib/python3.7/site-packages/paddle/tensor/creation.py:125: DeprecationWarning: `np.object` is a deprecated alias for the builtin `object`. To silence this warning, use `object` by itself. Doing this will not modify any behavior and is safe.
 Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
   if data.dtype == np.object:
 2022-04-02 23:32:10,565-INFO: [topology.py:152:__init__] HybridParallelInfo: rank_id: 0, dp_degree: 4, mp_degree: 1, pp_degree: 1, dp_group: [0, 1, 2, 3], mp_group: [0], pp_group: [0], check/clip group: [0]
@@ -435,22 +435,22 @@ python -m paddle.distributed.launch --ips="192.168.0.1,192.168.0.2" --gpus 0,1 t
 -----------  Configuration Arguments -----------
 gpus: 0,1
 heter_worker_num: None
-heter_workers: 
+heter_workers:
 http_port: None
 ips: 173.8.206.5,173.15.88.4
 log_dir: log
 nproc_per_node: None
 run_mode: None
 server_num: None
-servers: 
+servers:
 training_script: train_multi_4.py
 training_script_args: []
 worker_num: None
-workers: 
+workers:
 ------------------------------------------------
 INFO 2022-04-03 16:58:50,318 launch.py:348] Run collective mode. gpu arguments:['--ips'], cuda count:2
 launch train in GPU mode!
-INFO 2022-04-03 16:58:50,320 launch_utils.py:510] Local start 2 processes. First process distributed environment info (Only For Debug): 
+INFO 2022-04-03 16:58:50,320 launch_utils.py:510] Local start 2 processes. First process distributed environment info (Only For Debug):
     +=======================================================================================+
     |                        Distributed Envs                      Value                    |
     +---------------------------------------------------------------------------------------+
@@ -482,10 +482,10 @@ W0403 16:59:03.421044   226 device_context.cc:417] device: 0, MIOpen Version: 2.
 W0403 16:59:03.431119   342 device_context.cc:417] device: 0, MIOpen Version: 2.11.0
 I0403 16:59:03.452879   342 nccl_context.cc:107] init nccl context nranks: 4 local rank: 0 gpu id: 0 ring id: 10
 I0403 16:59:03.452358   226 nccl_context.cc:107] init nccl context nranks: 4 local rank: 2 gpu id: 0 ring id: 10
-/public/home/ac48p2il5w/anaconda3/envs/paddle_wjc_task/lib/python3.7/site-packages/paddle/tensor/creation.py:125: DeprecationWarning: `np.object` is a deprecated alias for the builtin `object`. To silence this warning, use `object` by itself. Doing this will not modify any behavior and is safe. 
+/public/home/ac48p2il5w/anaconda3/envs/paddle_wjc_task/lib/python3.7/site-packages/paddle/tensor/creation.py:125: DeprecationWarning: `np.object` is a deprecated alias for the builtin `object`. To silence this warning, use `object` by itself. Doing this will not modify any behavior and is safe.
 Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
   if data.dtype == np.object:
-/public/home/ac48p2il5w/anaconda3/envs/paddle_wjc_task/lib/python3.7/site-packages/paddle/tensor/creation.py:125: DeprecationWarning: `np.object` is a deprecated alias for the builtin `object`. To silence this warning, use `object` by itself. Doing this will not modify any behavior and is safe. 
+/public/home/ac48p2il5w/anaconda3/envs/paddle_wjc_task/lib/python3.7/site-packages/paddle/tensor/creation.py:125: DeprecationWarning: `np.object` is a deprecated alias for the builtin `object`. To silence this warning, use `object` by itself. Doing this will not modify any behavior and is safe.
 Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
   if data.dtype == np.object:
 2022-04-03 16:59:03,590-INFO: [topology.py:152:__init__] HybridParallelInfo: rank_id: 0, dp_degree: 4, mp_degree: 1, pp_degree: 1, dp_group: [0, 1, 2, 3], mp_group: [0], pp_group: [0], check/clip group: [0]
@@ -685,7 +685,7 @@ Eval begin...
 step 0 / 4 - loss: 0.00199
 step 0 / 4 - loss: 0.00195
 Eval samples:  428
-Epoch Eval samples:   17428 
+Epoch Eval samples:   17428
 /Epoch   3017
  / 30
 step 0 / 14 - loss: 0.00727
@@ -864,7 +864,7 @@ Eval samples:  428
 | 2 |  初始化分布式环境   | 完成 | PaddlePaddle 安装有时候会有一些问题、NCCL初始化有问题![图片](https://user-images.githubusercontent.com/35827074/165877509-b84f5846-b175-4ab9-8ae3-eef66ed09047.png) | 使用export设置一些安装的库的环境变量，上述问题是rocm版本问题，需要使用rocm-4.0.1版本。 修改rocm版本的方法为. module switch compiler/rocm/4.0.1，再就是导入超算上的一些环境变量 export NCCL_IB_HCA=mlx5_0 export NCCL_SOCKET_IFNAME=eno1 export NCCL_IB_DISABLE=0 |
 | 3 | 设置分布式训练需要的优化器                    | 完成 | 无 | 无 |
 | 4 | 数据集拆分                     | 完成 | 示例里面没有数据集的拆分案例，不会使用数据集的拆分；使用DistributedBatchSampler采样器之后DataLoader中无法指定batchsize以及shuffle参数 | 分析paddle的分布式API底层以及结合其他深度学习框架分析，发现了DistributedBatchSampler API，然后分析其底层实现，发现可以应用；分析DataLoader底层的源码，发现在指定batch_sampler参数之后不能指定batchsize、shuffle以及drop_last参数，然后在DistributedBatchSampler构建采样器的过程中指定。分布式数据集拆分使用DistributedBatchSampler，通过使用DistributedBatchSampler构建一个分布式的采样器，其会将数据平均划分到多个设备中，然后将其输入到Dataloader函数中，参数为batch_sampler，案例的全部代码已经在附录中给出。关于拆分部分如下：train_sampler = DistributedBatchSampler(train_dataset, 32, shuffle=True)   train_loader = DataLoader(train_dataset, batch_sampler=train_sampler, num_workers=2)   val_sampler = DistributedBatchSampler(val_dataset, 32)   val_loader = DataLoader(val_dataset, batch_sampler=val_sampler, num_workers=2) |  
-| 5 | 构建训练代码               |   完成  |    无      | 无 | 
+| 5 | 构建训练代码               |   完成  |    无      | 无 |
 | 6 | 单机多卡分布式训练                   |  完成  |   在曙光超算上使用SBATCH作业提交方式时有环境的问题  |  申请4个DCU，使用镜像的方式进行实现  |
 | 7 | 多机多卡分布式训练                |  完成  |   无  |  注意再进行多机多卡时先要两个机器之间互相ping一下  |
 
@@ -1137,45 +1137,3 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
-
-
-

@@ -226,15 +226,15 @@ paddle.summary(sim_model, input_size=(-1, length), dtypes='int64')
 ```
 
     ---------------------------------------------------------------------------
-     Layer (type)       Input Shape          Output Shape         Param #    
+     Layer (type)       Input Shape          Output Shape         Param #  
     ===========================================================================
-      Embedding-1       [[1, 2000]]         [1, 2000, 100]        514,700    
-       Conv1D-1       [[1, 2000, 100]]       [1, 998, 10]          5,010     
-        ReLU-1         [[1, 998, 10]]        [1, 998, 10]            0       
-      MaxPool1D-1      [[1, 998, 10]]        [1, 998, 5]             0       
-       Flatten-1       [[1, 998, 5]]          [1, 4990]              0       
-       Linear-1         [[1, 4990]]             [1, 2]             9,982     
-       Softmax-1          [[1, 2]]              [1, 2]               0       
+      Embedding-1       [[1, 2000]]         [1, 2000, 100]        514,700  
+       Conv1D-1       [[1, 2000, 100]]       [1, 998, 10]          5,010  
+        ReLU-1         [[1, 998, 10]]        [1, 998, 10]            0  
+      MaxPool1D-1      [[1, 998, 10]]        [1, 998, 5]             0  
+       Flatten-1       [[1, 998, 5]]          [1, 4990]              0  
+       Linear-1         [[1, 4990]]             [1, 2]             9,982  
+       Softmax-1          [[1, 2]]              [1, 2]               0  
     ===========================================================================
     Total params: 529,692
     Trainable params: 14,992
@@ -269,7 +269,7 @@ class DataReader(Dataset):
 
     def __len__(self):
         return len(self.data)
-        
+
 
 # 定义输入格式
 input_form = paddle.static.InputSpec(shape=[None, length], dtype='int64', name='input')
@@ -289,54 +289,54 @@ model.fit(train_data=DataReader(train_x[:-eval_length], train_y[:-eval_length], 
 
     The loss value printed in the log is the current step, and the metric is the average value of previous steps.
     Epoch 1/10
-    step 586/586 [==============================] - loss: 0.5608 - acc: 0.7736 - 5ms/step        
+    step 586/586 [==============================] - loss: 0.5608 - acc: 0.7736 - 5ms/step  
     Eval begin...
-    step 196/196 [==============================] - loss: 0.4902 - acc: 0.8000 - 4ms/step         
+    step 196/196 [==============================] - loss: 0.4902 - acc: 0.8000 - 4ms/step  
     Eval samples: 6250
     Epoch 2/10
-    step 586/586 [==============================] - loss: 0.4298 - acc: 0.8138 - 5ms/step        
+    step 586/586 [==============================] - loss: 0.4298 - acc: 0.8138 - 5ms/step  
     Eval begin...
-    step 196/196 [==============================] - loss: 0.4801 - acc: 0.8142 - 4ms/step         
+    step 196/196 [==============================] - loss: 0.4801 - acc: 0.8142 - 4ms/step  
     Eval samples: 6250
     Epoch 3/10
-    step 586/586 [==============================] - loss: 0.4947 - acc: 0.8298 - 6ms/step        
+    step 586/586 [==============================] - loss: 0.4947 - acc: 0.8298 - 6ms/step  
     Eval begin...
-    step 196/196 [==============================] - loss: 0.4568 - acc: 0.8230 - 4ms/step         
+    step 196/196 [==============================] - loss: 0.4568 - acc: 0.8230 - 4ms/step  
     Eval samples: 6250
     Epoch 4/10
-    step 586/586 [==============================] - loss: 0.4202 - acc: 0.8455 - 5ms/step        
+    step 586/586 [==============================] - loss: 0.4202 - acc: 0.8455 - 5ms/step  
     Eval begin...
-    step 196/196 [==============================] - loss: 0.4503 - acc: 0.8266 - 4ms/step         
+    step 196/196 [==============================] - loss: 0.4503 - acc: 0.8266 - 4ms/step  
     Eval samples: 6250
     Epoch 5/10
-    step 586/586 [==============================] - loss: 0.4847 - acc: 0.8564 - 5ms/step        
+    step 586/586 [==============================] - loss: 0.4847 - acc: 0.8564 - 5ms/step  
     Eval begin...
-    step 196/196 [==============================] - loss: 0.4647 - acc: 0.8280 - 4ms/step         
+    step 196/196 [==============================] - loss: 0.4647 - acc: 0.8280 - 4ms/step  
     Eval samples: 6250
     Epoch 6/10
-    step 586/586 [==============================] - loss: 0.4952 - acc: 0.8667 - 5ms/step        
+    step 586/586 [==============================] - loss: 0.4952 - acc: 0.8667 - 5ms/step  
     Eval begin...
-    step 196/196 [==============================] - loss: 0.4855 - acc: 0.8272 - 4ms/step         
+    step 196/196 [==============================] - loss: 0.4855 - acc: 0.8272 - 4ms/step  
     Eval samples: 6250
     Epoch 7/10
-    step 586/586 [==============================] - loss: 0.4016 - acc: 0.8704 - 5ms/step        
+    step 586/586 [==============================] - loss: 0.4016 - acc: 0.8704 - 5ms/step  
     Eval begin...
-    step 196/196 [==============================] - loss: 0.4764 - acc: 0.8248 - 4ms/step         
+    step 196/196 [==============================] - loss: 0.4764 - acc: 0.8248 - 4ms/step  
     Eval samples: 6250
     Epoch 8/10
-    step 586/586 [==============================] - loss: 0.4262 - acc: 0.8807 - 5ms/step        
+    step 586/586 [==============================] - loss: 0.4262 - acc: 0.8807 - 5ms/step  
     Eval begin...
-    step 196/196 [==============================] - loss: 0.4970 - acc: 0.8104 - 4ms/step         
+    step 196/196 [==============================] - loss: 0.4970 - acc: 0.8104 - 4ms/step  
     Eval samples: 6250
     Epoch 9/10
-    step 586/586 [==============================] - loss: 0.3585 - acc: 0.8862 - 6ms/step        
+    step 586/586 [==============================] - loss: 0.3585 - acc: 0.8862 - 6ms/step  
     Eval begin...
-    step 196/196 [==============================] - loss: 0.4614 - acc: 0.8272 - 4ms/step         
+    step 196/196 [==============================] - loss: 0.4614 - acc: 0.8272 - 4ms/step  
     Eval samples: 6250
     Epoch 10/10
-    step 586/586 [==============================] - loss: 0.3333 - acc: 0.8935 - 5ms/step        
+    step 586/586 [==============================] - loss: 0.3333 - acc: 0.8935 - 5ms/step  
     Eval begin...
-    step 196/196 [==============================] - loss: 0.4986 - acc: 0.8272 - 4ms/step         
+    step 196/196 [==============================] - loss: 0.4986 - acc: 0.8272 - 4ms/step  
     Eval samples: 6250
 
 
@@ -361,10 +361,10 @@ for index, y in enumerate(pred_y[0]):
 ```
 
     Eval begin...
-    step 782/782 [==============================] - loss: 0.4462 - acc: 0.8262 - 4ms/step        
+    step 782/782 [==============================] - loss: 0.4462 - acc: 0.8262 - 4ms/step  
     Eval samples: 25000
     Predict begin...
-    step 10/10 [==============================] - 4ms/step        
+    step 10/10 [==============================] - 4ms/step  
     Predict samples: 10
     原文本：albert and tom are brilliant as sir and his of course the play is brilliant to begin with and nothing can compare with the and of theatre and i think you listen better in theatre but on the screen we become more intimate were more than we are in the theatre we witness subtle changes in expression we see better as well as listen both the play and the movie are moving intelligent the story of the company of historical context of the two main characters and of the parallel characters in itself if you cannot get to see it in a theatre i dont imagine its produced much these days then please do yourself a favor and get the video
     预测的标签是：positive, 实际标签是：positive
@@ -386,4 +386,3 @@ for index, y in enumerate(pred_y[0]):
     预测的标签是：positive, 实际标签是：negative
     原文本：ive seen some bad things in my time a half dead trying to get out of high a head on between two cars a thousand on a kitchen floor human beings living like br but never in my life have i seen anything as bad as the cat in the br this film is worse than 911 worse than hitler worse than the worse than people who put in br it is the most disturbing film of all time br i used to think it was a joke some elaborate joke and that mike myers was maybe a high drug who lost a bet or br i
     预测的标签是：negative, 实际标签是：negative
-
