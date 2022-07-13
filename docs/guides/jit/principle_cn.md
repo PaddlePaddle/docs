@@ -10,24 +10,23 @@
 
 上图是动转静转换和训练执行的基本流程：
 
-1. AST 解析动态图代码。
+1. **AST 解析动态图代码**
+  + 当某个函数被 ``@to_static`` 装饰、或用 ``paddle.jit.to_static()`` 包裹时，飞桨会隐式地解析动态图的 Python 代码（即解析：抽象语法树，简称 AST）。
 
-  当某个函数被 ``@to_static`` 装饰、或用 ``paddle.jit.to_static()`` 包裹时，飞桨会隐式地解析动态图的 Python 代码（即解析：抽象语法树，简称 AST）。
-
-2. AST 转写，得到静态图代码。
+2. **AST 转写，得到静态图代码**
   + 函数转写：递归地对所有函数进行转写，实现用户仅需在最外层函数添加 @to_static 的体验效果。
   + 控制流转写：用户的代码中可能包含依赖 Tensor 的控制流代码，飞桨框架会自动且有选择性地将 if、for、while 转换为静态图对应的控制流。
   + 其他语法处理：包括 break、continue、assert、提前 return 等语法的处理。
 
-3. 生成静态图的 Program 和 Parameters。
+3. **生成静态图的 Program 和 Parameters**
   + 得到静态图代码后，根据用户指定的 ``InputSpec`` 信息（或训练时根据实际输入 Tensor 隐式创建的 InputSpec）作为输入，执行静态图代码生成 Program。每个被装饰的函数，都会被替换为一个 StaticFunction 对象，其持有此函数对应的计算图 Program，在执行 ``paddle.jit.save`` 时会被用到。
   + 对于 ``trainable=True`` 的 Buffers 变量，动转静会自动识别并将其和 Parameters 一起保存到 ``.pdiparams`` 文件中。
 
-4. 执行动转静训练。
+4. **执行动转静训练**
   + 使用执行引擎执行函数对应的 Program，返回输出 out。
   + 执行时会根据用户指定的 build_strategy 策略应用图优化技术，提升执行效率。
 
-5. 使用 ``paddle.jit.save`` 保存静态图模型。
+5. **使用 ``paddle.jit.save`` 保存静态图模型**
   + 使用 ``paddle.jit.save`` 时会遍历模型 net 中所有的函数，将每个的 StaticFunction 中的计算图 Program 和涉及到的 Parameters 序列化为磁盘文件。
 
 

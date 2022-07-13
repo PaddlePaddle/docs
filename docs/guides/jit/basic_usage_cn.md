@@ -25,14 +25,14 @@
 
 以上是飞桨框架推荐的使用方法，即『训练调优用动态图，推理部署用动转静』。但是在某些对模型训练性能有更高要求的场景，也可以使用动转静训练，即在动态图组网代码中添加一行装饰器 ``@to_static`` ，便可在底层转为性能更优的静态图模式下训练。
 
-本文即介绍动转静模块的相关用法：
+**本文即介绍动转静模块的相关用法：**
 
-+ 动转静训练：将动态图编程的模型，转换为静态图模型 ``（@to_static）`` 进行训练。
++ 动转静训练：将动态图编程的模型，转换为静态图模型 （[@to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/to_static_cn.html#to-static)）进行训练。
 
-+ 动转静模型保存和加载：既支持动转静训练的模型保存和加载，也支持将动态图训练好的模型，直接保存为静态图模型文件（ ``paddle.jit.save`` ），然后用于推理部署。
++ 动转静模型保存和加载：既支持动转静训练的模型保存和加载，也支持将动态图训练好的模型，直接保存为静态图模型文件（[paddle.jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/save_cn.html#save)），然后用于推理部署。
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/overall.png" style="zoom:50%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/overall.png" style="zoom:100%"/>
 </figure>
 
 
@@ -298,12 +298,10 @@ class LinearNet(nn.Layer):
 使用 ``paddle.jit.save`` 保存模型，通常是在后台执行了两个步骤：
 
 1. 先执行了动转静。当然如果前面已经执行了动转静训练，则跳过这一步。在处理逻辑上，主要包含两个主要模块：
-
   + 模型结构层面：将动态图模型中被 ``@paddle.jit.to_static`` 装饰的函数转化为完整的静态图 Program。
   + 模型参数层面：将动态图模型中的参数（Parameters 和 Buffers ）转为 ``Persistable=True``  的静态图模型参数 Variable。
 
 2. 再将静态图模型和参数导出为磁盘文件。Program 和 Variable 都可以直接序列化导出为磁盘文件，与前端代码完全解耦，导出的文件包括：
-
   + 后缀为 ``.pdmodel`` 的模型结构文件；
   + 后缀为 ``.pdiparams`` 的模型参数文件；
   + 后缀为 ``.pdiparams.info`` 的和参数状态有关的额外信息文件。
@@ -625,11 +623,32 @@ pred = loaded_layer(x)
             return self._linear(x)
     ```
 
-4. 动转静训练时，如果想保存多个函数，则需要用 ``@paddle.jit.to_static`` 装饰每一个待保存的函数。
+4. 前文中大多都是用 ``paddle.jit.save`` 保存的 ``Layer.forward`` 类实例，保存内容包括模型结构和参数。当保存单独的一个函数时， ``paddle.jit.save`` 只会保存这个函数对应的静态图模型结构 Program ，不会保存和这个函数相关的参数。如果你必须保存参数，请使用 Layer 类封装这个函数。 示例代码如下：
 
-  > 注：只有在 forward 之外还需要保存其他函数时才用这个特性，如果仅装饰非 forward 函数，而 forward 本身函数没有被装饰，是不符合规范的。当保存多个函数时， ``InputSpec`` 信息需要在各个函数的 ``@paddle.jit.to_static`` 里分别指定，并且 ``input_spec`` 参数必须为 None，因为此时 save 接口 input_spec 参数无法知道它应该配置给哪个函数。
+    ```python
+    # 定义一个函数
+    def fun(inputs):
+        return paddle.tanh(inputs)
 
-  + 示例代码如下：
+    path = 'func/model'
+    inps = paddle.rand([3, 6])
+    origin = fun(inps)
+
+    # 将函数对应的Program结构进行保存
+    paddle.jit.save(
+        fun,
+        path,
+        input_spec=[
+            InputSpec(
+                shape=[None, 6], dtype='float32', name='x'),
+        ])
+
+    # 载入保存后的fun并执行
+    load_func = paddle.jit.load(path)
+    load_result = load_func(inps)
+    ```
+
+5. 动转静训练时，如果想保存多个函数，则需要用 ``@paddle.jit.to_static`` 装饰每一个待保存的函数。示例代码如下：
 
     ```python
     import paddle
@@ -664,34 +683,12 @@ pred = loaded_layer(x)
     paddle.jit.save(layer, path)
     ```
 
+    > 注：只有在 forward 之外还需要保存其他函数时才用这个特性，如果仅装饰非 forward 函数，而 forward 本身函数没有被装饰，是不符合规范的。当保存多个函数时， ``InputSpec`` 信息需要在各个函数的 ``@paddle.jit.to_static`` 里分别指定，并且 ``input_spec`` 参数必须为 None，因为此时 save 接口 input_spec 参数无法知道它应该配置给哪个函数。
+    
   + 该场景下保存的模型命名规则如下：
 
     + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生5个文件： ``linear.another_forward.pdiparams`` 、 ``linear.pdiparams`` 、 ``linear.pdmodel`` 、 ``linear.another_forward.pdmodel`` 、``linear.pdiparams.info`` 。
 
-5. 前文中大多都是用 ``paddle.jit.save`` 保存的 ``Layer.forward`` 类实例，保存内容包括模型结构和参数。当保存单独的一个函数时， ``paddle.jit.save`` 只会保存这个函数对应的静态图模型结构 Program ，不会保存和这个函数相关的参数。如果你必须保存参数，请使用 Layer 类封装这个函数。 示例代码如下：
-
-    ```python
-    # 定义一个函数
-    def fun(inputs):
-        return paddle.tanh(inputs)
-
-    path = 'func/model'
-    inps = paddle.rand([3, 6])
-    origin = fun(inps)
-
-    # 将函数对应的Program结构进行保存
-    paddle.jit.save(
-        fun,
-        path,
-        input_spec=[
-            InputSpec(
-                shape=[None, 6], dtype='float32', name='x'),
-        ])
-
-    # 载入保存后的fun并执行
-    load_func = paddle.jit.load(path)
-    load_result = load_func(inps)
-    ```
 
 ### 3.5 ``InputSpec`` 的用法介绍
 <span id='35'></span>
