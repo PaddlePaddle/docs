@@ -45,7 +45,7 @@
 
 实际操作只需在待转化的函数前添加一个装饰器 [@paddle.jit.to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/to_static_cn.html#to-static)，框架便通过解析 Python 代码（抽象语法树，简称：AST）等方法自动完成动静转换。具体原理可参见 [转换原理](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/principle_cn.html) 章节。
 
-### 2.1 动态图转静态图应用场景
+### 2.1 动转静训练应用场景
 
 在如下场景时可以考虑使用动转静进行模型训练，带来的性能提升效果较明显：
 
