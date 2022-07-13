@@ -32,7 +32,7 @@
 + 动转静模型保存和加载：既支持动转静训练的模型保存和加载，也支持将动态图训练好的模型，直接保存为静态图模型文件（[paddle.jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/save_cn.html#save)），然后用于推理部署。
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/overall.png" style="zoom:100%"/>
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/overall.png" style="zoom:80%"/>
 </figure>
 
 
@@ -54,7 +54,7 @@
   如下是模型训练时执行单个 step 的 timeline 示意图，框架通过 CPU 调度底层 Kernel 计算，在某些情况下，如果 CPU 调度时间过长，会导致 GPU 利用率不高（可终端执行watch -n 1 nvidia-smi观察）。
   
   <figure align="center">
-  <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/timeline_base.png" style="zoom:80%" />
+  <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/timeline_base.png" style="zoom:70%" />
   </figure>
   动态图和静态图在 CPU 调度层面存在差异：
   
@@ -71,7 +71,7 @@
   如下是应用了算子融合策略后，模型训练时执行单个 step 的 timeline 示意图。相对于图 2，飞桨框架获取了整张计算图，按照一定规则匹配到 OP3 和 OP4 可以融合为 Fuse_OP，因此可以减少 GPU 的空闲时间，提升执行效率。
 
 <figure align="center">
-  <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/jit/images/timeline_d2s.png?raw=true" style="zoom:80%" />
+  <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/jit/images/timeline_d2s.png?raw=true" style="zoom:70%" />
 </figure>
 
   调用 ``@paddle.jit.to_static`` 进行动转静时可以使用 build_strategy 参数开启 ``fuse_elewise_add_act_op`` 、``enable_addto`` 等优化策略来对计算图进行优化，更多策略开关可以参考 [BuildStrategy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/BuildStrategy_cn.html#buildstrategy) 接口文档。图优化策略的使用样例请参考：[4.1 动转静训练计算图优化策略](#41)。
@@ -298,13 +298,16 @@ class LinearNet(nn.Layer):
 使用 ``paddle.jit.save`` 保存模型，通常是在后台执行了两个步骤：
 
 1. 先执行了动转静。当然如果前面已经执行了动转静训练，则跳过这一步。在处理逻辑上，主要包含两个主要模块：
-  + 模型结构层面：将动态图模型中被 ``@paddle.jit.to_static`` 装饰的函数转化为完整的静态图 Program。
-  + 模型参数层面：将动态图模型中的参数（Parameters 和 Buffers ）转为 ``Persistable=True``  的静态图模型参数 Variable。
+    + 模型结构层面：将动态图模型中被 ``@paddle.jit.to_static`` 装饰的函数转化为完整的静态图 Program。
+    
+    + 模型参数层面：将动态图模型中的参数（Parameters 和 Buffers ）转为 ``Persistable=True``  的静态图模型参数 Variable。
 
 2. 再将静态图模型和参数导出为磁盘文件。Program 和 Variable 都可以直接序列化导出为磁盘文件，与前端代码完全解耦，导出的文件包括：
-  + 后缀为 ``.pdmodel`` 的模型结构文件；
-  + 后缀为 ``.pdiparams`` 的模型参数文件；
-  + 后缀为 ``.pdiparams.info`` 的和参数状态有关的额外信息文件。
+    + 后缀为 ``.pdmodel`` 的模型结构文件；
+    
+    + 后缀为 ``.pdiparams`` 的模型参数文件；
+    
+    + 后缀为 ``.pdiparams.info`` 的和参数状态有关的额外信息文件。
 
 类似的，使用 ``paddle.jit.load`` 加载模型，即将上述三个文件加载为静态图模型的 Program 和 Variable，可用于执行静态图模式下训练调优或验证推理效果。
 
@@ -684,7 +687,7 @@ pred = loaded_layer(x)
     ```
 
     > 注：只有在 forward 之外还需要保存其他函数时才用这个特性，如果仅装饰非 forward 函数，而 forward 本身函数没有被装饰，是不符合规范的。当保存多个函数时， ``InputSpec`` 信息需要在各个函数的 ``@paddle.jit.to_static`` 里分别指定，并且 ``input_spec`` 参数必须为 None，因为此时 save 接口 input_spec 参数无法知道它应该配置给哪个函数。
-    
+
   + 该场景下保存的模型命名规则如下：
 
     + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生5个文件： ``linear.another_forward.pdiparams`` 、 ``linear.pdiparams`` 、 ``linear.pdmodel`` 、 ``linear.another_forward.pdmodel`` 、``linear.pdiparams.info`` 。
@@ -997,7 +1000,7 @@ paddle.jit.save(net, path='./simple_net')
 如下是动态图开启 AMP 训练后，执行单个 step 的 timeline 示意图。相对于FP32训练，开启AMP后，每个 GPU 的 Kernel 计算效率进一步提升，耗时更短（图中蓝框更窄了），但对 CPU 端的调度性能要求也更高了。
 
 <figure align="center">
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/timeline_d2s_amp.png" style="zoom:80%" />
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/timeline_d2s_amp.png" style="zoom:70%" />
 </figure>
 
 
