@@ -30,7 +30,7 @@ resize
 返回
 :::::::::
 
-    ``PIL.Image 或 numpy.ndarray``，调整大小后的图像数据。
+``PIL.Image`` 或 ``numpy.ndarray``，调整大小后的图像数据。
 
 代码示例
 :::::::::

@@ -19,7 +19,7 @@ normalize
 返回
 :::::::::
 
-    ``numpy array 或 paddle.Tensor``，归一化后的图像。
+``numpy array`` 或 ``paddle.Tensor``，归一化后的图像。
 
 代码示例
 :::::::::
