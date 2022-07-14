@@ -6,7 +6,7 @@
 
 在深度学习模型的训练过程中，通过梯度下降算法更新网络参数。一般地，梯度下降算法分为前向传播和反向更新两个阶段。
 
-- 在前向传播阶段，输入向量使用下列公式，从前往后，计算下一层每个神经元的值。其中，O为神经元的输入和输出，f为激活函数，W为权重，b为偏置。
+在 **前向传播阶段** ，输入向量使用下列公式，从前往后，计算下一层每个神经元的值。其中，O为神经元的输入和输出，f为激活函数，W为权重，b为偏置。
 
 .. math::
   O^k = f(W O^{k-1} + b)
@@ -16,7 +16,7 @@
 .. math::
   loss = \frac{1}{n} \sum_{i=1}^n(y_i-y_i')^2
 
-- 在得到损失后，进行一次反向传播，调整权重和偏差。为了更新网络参数，首先要计算损失函数对于参数的梯度 :math:`\frac{\partial loss}{\partial W_k}` ，然后使用某种梯度更新算法，执行一步梯度下降，以减小损失函数值。如下式，其中 :math:`\alpha`` 为学习率。
+在得到损失后，进入 **反向传播阶段** ，调整权重和偏差。为了更新网络参数，首先要计算损失函数对于参数的梯度 :math:`\frac{\partial loss}{\partial W_k}` ，然后使用某种梯度更新算法，执行一步梯度下降，以减小损失函数值。如下式，其中 :math:`\alpha`` 为学习率。
 
 .. math::
   W_{k+1} = W_k - \alpha(\frac{\partial loss}{\partial W_k})
@@ -28,10 +28,7 @@
 .. math::
   \nabla w_1 = \alpha \frac{\partial loss}{\partial W_2}  = \alpha \frac{\partial loss}{\partial f_4} \frac{\partial f_4}{\partial f_3} \frac{\partial f_3}{\partial f_2} \frac{\partial f_2}{\partial w_2}
 
-当出现下列情形时，可以认为发生了梯度爆炸：
-
-- 两次迭代间的参数变化剧烈
-- 模型参数和损失值变为NaN
+当出现下列情形时，可以认为发生了梯度爆炸：两次迭代间的参数变化剧烈，或者模型参数和损失值变为NaN。
 
 如果发生了 "梯度爆炸"，在网络学习过程中会直接跳过最优解，所以有必要进行梯度裁剪，防止网络在学习过程中越过最优解。Paddle提供了三种梯度裁剪方式：设置范围值裁剪、通过L2范数裁剪、通过全局L2范数裁剪。设置范围值裁剪方法简单，但是很难确定一个合适的阈值。通过L2范数裁剪和通过全局L2范数裁剪方法，都是用阈值限制梯度向量的L2范数，前者只对特定梯度进行裁剪，后者会对优化器的所有梯度进行裁剪。
 
@@ -43,7 +40,9 @@
 
 设定范围值裁剪：将参数的梯度限定在一个范围内，如果超出这个范围，则进行裁剪。
 
-使用方式：需要创建一个 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 类的实例，然后传入到优化器中，优化器会在更新参数前，对梯度进行裁剪。
+使用方式：
+
+    需要创建一个 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 类的实例，然后传入到优化器中，优化器会在更新参数前，对梯度进行裁剪。
 
 - **全部参数裁剪（默认）**
 
@@ -74,7 +73,9 @@
 
 通过L2范数裁剪：梯度作为一个多维Tensor，计算其L2范数，如果超过最大值则按比例进行裁剪，否则不裁剪。
 
-使用方式：需要创建一个 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 类的实例，然后传入到优化器中，优化器会在更新参数前，对梯度进行裁剪。
+使用方式：
+
+    需要创建一个 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 类的实例，然后传入到优化器中，优化器会在更新参数前，对梯度进行裁剪。
 
 裁剪公式如下：
 
@@ -121,7 +122,9 @@
 
 将优化器中全部参数的梯度组成向量，对该向量求解L2范数，如果超过最大值则按比例进行裁剪，否则不裁剪。
 
-使用方式：需要创建一个 :ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 类的实例，然后传入到优化器中，优化器会在更新参数前，对梯度进行裁剪。
+使用方式：
+
+    需要创建一个 :ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 类的实例，然后传入到优化器中，优化器会在更新参数前，对梯度进行裁剪。
 
 裁剪公式如下：
 
@@ -142,7 +145,7 @@
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(norm(X[i]))^2}\\
 
 
-其中 :math:`X_i` 为梯度向量，clip_norm 为设置的L2范数阈值， :math:`norm（X）` 代表 :math:`X` 的L2范数，global_norm 为所有梯度向量的L2范数的均方根值。
+:math:`X_i` 为梯度向量，clip_norm 为设置的L2范数阈值， :math:`norm（X）` 代表 :math:`X` 的L2范数，global_norm 为所有梯度向量的L2范数的均方根值。
 
 - **全部参数裁剪（默认）**
 
@@ -227,11 +230,11 @@
 
     model = Net(input_size, hidden_size)
 
-    clip = paddle.nn.ClipGradByNorm(clip_norm=1.0) # 使用L2范数裁剪
+    clip = paddle.nn.ClipGradByNorm(clip_norm=1.0) # 创建ClipGradByNorm类的实例，指定L2范数阈值
     loss_fn = paddle.nn.MSELoss(reduction='mean')
     optimizer = paddle.optimizer.SGD(learning_rate=0.01, 
                                     parameters=model.parameters(),
-                                    grad_clip=clip)
+                                    grad_clip=clip) # 将创建的ClipGradByNorm类的实例传入优化器SGD中
 
     def train():
         for t in range(100):
