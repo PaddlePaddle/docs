@@ -27,7 +27,7 @@ repos:
     -   id: remove-tabs
         files: \.md$|\.rst$
 -   repo: https://github.com/ShigureLab/dochooks
-    rev: b88c9f47ad85741d1b9b377a2cbefcd7f8ecc314
+    rev: v0.2.0
     hooks:
     -   id: check-whitespace-between-cn-and-en-char
         files: \.md$|\.rst$
