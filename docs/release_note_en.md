@@ -1,4 +1,120 @@
 
+# 2.3.1 Release Note
+
+## **1. Important Updates**
+
+- V2.3.1 is built on V2.3 by fixing known issues and releasing  precompiled binary that supports CUDA 11.6.
+
+## **2. Training Framework (distributed included)**
+
+### **(1) Function Optimization**
+
+#### API
+
+- Modify two initialization modes of `paddle.nn.initializer.KaimingUniform` and `paddle.nn.initializer.KaimingNormal`, to support multiple types of activation functions. ([#43721](https://github.com/PaddlePaddle/Paddle/pull/43721), [#43827](https://github.com/PaddlePaddle/Paddle/pull/43827))
+- Optimize the data pre-fetching function of `paddle.io.DataLoader`, so that it can support the setting of the `prefetch_factor` to set the cache size of pre-fetched data. This can avoid IO blocking when reading large blocks of data. ([#43674](https://github.com/PaddlePaddle/Paddle/pull/43674))
+
+#### **New dynamic graph execution mechanism**
+
+- Modify the initialization method of optional type Tensor in the new dynamic graph API logic to prevent data exceptions caused by early destruction. ([#42561](https://github.com/PaddlePaddle/Paddle/pull/42561))
+
+#### **New static graph executor**
+
+- Defer initialization of the thread pools in the  executor, to avoid creating thread pools for `programs` that execute only once (e.g.,`save, load, startup_program`, etc.). ([#43768](https://github.com/PaddlePaddle/Paddle/pull/43768))
+
+#### **Mixed precision training**
+
+- Disabling `state_dict` hook in `set_state_dict` in `paddle.nn.Layer`. ([#43407](https://github.com/PaddlePaddle/Paddle/pull/43407))
+
+#### **Distributed training**
+
+- Enabling tensor parallelism in `paddle.incubate.nn.functional.fused_attention` and `paddle.incubate.nn.functional.fused_feedforward`. ([#43505](https://github.com/PaddlePaddle/Paddle/pull/43505))
+
+#### **Others**
+
+- Adjust print format of the framework operator kernels to facilitate automated splitting and parsing. ([#42931](https://github.com/PaddlePaddle/Paddle/pull/42931))
+- Update the model quantization API to support the round-off in `rounding to nearest ties to even`, and support quantization in the range [-128, 127]. ([#43829](https://github.com/PaddlePaddle/Paddle/pull/43829))
+- Support AMP mixed precision training in quantization-aware training. ([#43689](https://github.com/PaddlePaddle/Paddle/pull/43689))
+- Add the `progress bar` at the beginning of quantization-aware training, so that it is easy to check the progress of quantization initialization. Skip the scale op when counting out_threshold to speed up the initialization process. ([#43454](https://github.com/PaddlePaddle/Paddle/pull/43454))
+- Support `conv` and `bn` fusion in the dynamic graph quantization training. Support the settings of skip_tensor_list in the static graph offline quantization, to skip some layers without quantization. ([#43301](https://github.com/PaddlePaddle/Paddle/pull/43301))
+
+### **(2) Performance Optimization**
+
+- Optimize`paddle.incubate.nn.functional.fused_attention` and `paddle.incubate.nn.functional.fused_feedforward`operators. Add `add_residual` property to control whether to perform add-`residual` operation in the last step. The performance of CAE model is improved by 7.7%. ([#43719](https://github.com/PaddlePaddle/Paddle/pull/43719))
+- Optimize `linspace` operator. Initialize three input Tensor of `start`,`stop` and `num` on CPU, to avoid GPU->CPU copy in the operator. This can speed up SOLOv2 model performance by 6%. ([#43746](https://github.com/PaddlePaddle/Paddle/pull/43746))
+
+### **(3) Bug Fix**
+
+#### API
+
+- Fix the error reported by `paddle.io.DataLoader` when `return_list=True` due to multi-thread conflict. ([#43691](https://github.com/PaddlePaddle/Paddle/pull/43691))
+- Fix the error that the `to` method reports NoneType does not have the device attribute when the `paddle.nn.Layer` parameter has the `None` type parameter. ([#43597](https://github.com/PaddlePaddle/Paddle/pull/43597))
+- Fix the bug that the calculation result of cumsum op is wrong in some `shape` settings. ([#42500](https://github.com/PaddlePaddle/Paddle/pull/42500), [#43777](https://github.com/PaddlePaddle/Paddle/pull/43777))
+- Fix the bug that the output result dimension of `Tensor.__getitem__` is 0 in the networking stage when using `bool` index in the static graph.([#43246](https://github.com/PaddlePaddle/Paddle/pull/43246))
+- Fix the bug occurred when `paddle.slice` and `paddle.strided_slice` handle negative parameters. ([#43432](https://github.com/PaddlePaddle/Paddle/pull/43432))
+- Fix the bug that the assignment result of set_value op is abnormal when the processing slice `step` is negative. ([#43694](https://github.com/PaddlePaddle/Paddle/pull/43694))
+- Fix the bug that the `copy` interface in C++ cannot copy between multiple cards. ([#43728](https://github.com/PaddlePaddle/Paddle/pull/43728))
+- Fix the bug in inference stage caused by attribute naming in `paddle.incubate.nn.functional.fused_attention`and `paddle.incubate.nn.functional.fused_feedforward` . ([#43505](https://github.com/PaddlePaddle/Paddle/pull/43505))
+- Fix an exception in ConditionalBlockGrad op when processing Tensor that does not require `grad`. ([#43034](https://github.com/PaddlePaddle/Paddle/pull/43034))
+- Fix the bug of device memory increase caused by einsum op in the speed optimization of backward computation. By default, this optimization is enabled. ([#43397](https://github.com/PaddlePaddle/Paddle/pull/43397))
+- Fix the bug that data fails to be fixed when `paddle.io.DataLoader` multi-process data reads the fixing random seeds under a single card. ([#43702](https://github.com/PaddlePaddle/Paddle/pull/43702))
+- Fix the bug that softmax op triggers CUDNN_STATUS_NOT_SUPPORT when the Tensor exceeds 2G. ([#43719](https://github.com/PaddlePaddle/Paddle/pull/43719))
+- Fix the bug that the trace op `Event` string is indistinguishable among different operators that cause the inconvenient performance analysis. ([#42789](https://github.com/PaddlePaddle/Paddle/pull/42789))
+
+#### **Others**
+
+- Fix the bug of overflowing device memory caused by multiple deepcopy and saving in case of dynamic-to-static. ([#43141](https://github.com/PaddlePaddle/Paddle/pull/43141))
+- Fix the bug that the device id introduced by the upgrade of PlaceType used in the custom operator is wrong in the multi-card scenario.([#43830](https://github.com/PaddlePaddle/Paddle/pull/43830))
+- Optimize the `paddle.profiler.Profiler` timeline visualization logic, move events customized in python scripts from C++ folding display to python folding display. ([#42790](https://github.com/PaddlePaddle/Paddle/pull/42790))
+
+## **3.** Deployment Direction (Paddle Inference)
+
+### **(1) New Features**
+
+#### **New functions**
+
+- Add the support of the PaddleSlim quantization model for ONNX Runtime backends on CPUs. ([#43774](https://github.com/PaddlePaddle/Paddle/pull/43774), [#43796](https://github.com/PaddlePaddle/Paddle/pull/43796))
+
+### **(2) Underlying Optimization**
+
+#### **CPU performance optimization**
+
+- Remove `gpu_cpu_reshape2_matmul_fuse_pass` from EnableMkldnn configuration to fix the bug of ResNet50 performance degradation. ([#43750](https://github.com/PaddlePaddle/Paddle/pull/43750))
+
+#### **GPU performance optimization**
+
+- Add the support of `bilinear_interp_v2` TensorRT convert. ([#43618](https://github.com/PaddlePaddle/Paddle/pull/43618))
+- Add `matmul_scale_fuse_pass` and `multihead_matmul_fuse_pass_v3` to GPU pass. ([#43765](https://github.com/PaddlePaddle/Paddle/pull/43765))
+- Add the support of the GPU handle deferred initialization. ([#43661](https://github.com/PaddlePaddle/Paddle/pull/43661))
+
+### **(3) Bug Fixing**
+
+#### **Framework and API fixing**
+
+- Fix the compile error problem when binding Paddle-Lite XPU. ([#43178](https://github.com/PaddlePaddle/Paddle/pull/43178))
+- Fix the bug of false trigger of ERNIE 3.0 pass. ([#43948](https://github.com/PaddlePaddle/Paddle/pull/43948))
+- Fix the bug that int8 quantization attribute in multihead op cannot be read. ([#43020](https://github.com/PaddlePaddle/Paddle/pull/43020))
+
+#### **Backend capability fixing**
+
+- Fix the bug that two ops of elementwise_mul and matmul in MKLDNN are crashed during quantitative inference. ([#43725](https://github.com/PaddlePaddle/Paddle/pull/43725))
+- Fix a bug where TensorRT subgraph serialization files are repeatedly generated for the same model during inference. ([#42945](https://github.com/PaddlePaddle/Paddle/pull/43945), [#42633](https://github.com/PaddlePaddle/Paddle/pull/42633))
+- Fix a conflict between the ONNX Runtime backend and the externally use of protobuf. ([#43159](https://github.com/PaddlePaddle/Paddle/pull/43159), [#43742](https://github.com/PaddlePaddle/Paddle/pull/43742))
+- Fix an error reported by python prediction library when using ONNX Runtime backend in case of multiple inputs. ([#43621](https://github.com/PaddlePaddle/Paddle/pull/43621))
+
+## **4. Environment Adaptation**
+
+### **Compile and install**
+
+- Complete verification and adaptation of CUDA 11.6, and release CUDA 11.6 precompiled binary. ([#43935](https://github.com/PaddlePaddle/Paddle/pull/43935), [#44005](https://github.com/PaddlePaddle/Paddle/pull/44005))
+- Fix a cub error when compiling with CUDA 11.6 on Windows. ([#43935](https://github.com/PaddlePaddle/Paddle/pull/43935), [#44005](https://github.com/PaddlePaddle/Paddle/pull/44005))
+- Fix the bug of long compilation time for elementwise and reduce op. ([#43202](https://github.com/PaddlePaddle/Paddle/pull/43202), [#42779](https://github.com/PaddlePaddle/Paddle/pull/42779), [#43205](https://github.com/PaddlePaddle/Paddle/pull/43205))
+
+### **New hardware adaptation**
+
+- Cambricon MLU supports PaddlePaddle Profiler. ([#42115](https://github.com/PaddlePaddle/Paddle/pull/42115))
+- GraphCore IPU supports visualization of compilation progress. ([#42078](https://github.com/PaddlePaddle/Paddle/pull/42078))
+
 # 2.3.0 Release Note
 
 ## 1. **Important Updates**

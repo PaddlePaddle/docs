@@ -134,6 +134,50 @@ disable_pattern(self, pattern)
 
 COPY-FROM: paddle.static.IpuStrategy.disable_pattern
 
+register_patch(self)
+'''''''''
+
+注册patch function以支持IPU上的动转静功能。该函数仅应在IPU动转静时使用，注册的函数会影响原动转静的逻辑，可通过``release_patch``释放注册的函数。
+
+**代码示例**
+
+COPY-FROM: paddle.static.IpuStrategy.register_patch
+
+release_patch(self)
+'''''''''
+
+释放IPU动转静所注册的函数。
+
+**代码示例**
+
+COPY-FROM: paddle.static.IpuStrategy.release_patch
+
+set_optimizer(self, optimizer)
+'''''''''
+
+该接口用于在IPU动转静时向IpuStrategy实例设置optimizer。
+
+**参数**
+
+    - **optimizer** (Optimizer)- 需要设置的Optimizer实例。
+
+**代码示例**
+
+COPY-FROM: paddle.static.IpuStrategy.set_optimizer
+
+parse_optimizer(self, optimizer)
+'''''''''
+
+该接口用于解析IPU动转静所需要的优化器参数，接收优化器实例并返回动转静所需要的优化器属性，当前仅支持解析学习率。
+
+**参数**
+
+    - **optimizer** (Optimizer)- 需要解析的Optimizer实例。
+
+**代码示例**
+
+COPY-FROM: paddle.static.IpuStrategy.parse_optimizer
+
 属性
 ::::::::::::
 num_ipus
