@@ -29,11 +29,6 @@ sequence_conv_pool
 ::::::::::::
 经过sequence_conv和sequence_pool两个操作之后的结果所表示的Tensor，数据类型与 ``input`` 相同
 
-
-返回类型
-::::::::::::
-Variable
-
 代码示例
 ::::::::::::
 
