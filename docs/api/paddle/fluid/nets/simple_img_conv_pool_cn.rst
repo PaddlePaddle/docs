@@ -34,7 +34,7 @@ simple_img_conv_pool
 
 返回
 ::::::::::::
- Tensor, 输入input经过conv2d和pool2d之后输入的结果，数据类型与input相同
+ Tensor， 输入input经过conv2d和pool2d之后输入的结果，数据类型与input相同
 
 代码示例
 ::::::::::::
