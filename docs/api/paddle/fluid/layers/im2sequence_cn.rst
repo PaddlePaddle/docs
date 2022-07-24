@@ -36,7 +36,7 @@ im2sequence
 返回类型
 ::::::::::::
  Variable
- 
+
 ::
 
   Given:
