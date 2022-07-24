@@ -30,6 +30,10 @@ py_reader
 ::::::::::::
 reader，从reader中可以获取feed的数据，其dtype和feed的数据dtype相同。
 
+返回类型
+::::::::::::
+Variable
+
 
 
 代码示例
