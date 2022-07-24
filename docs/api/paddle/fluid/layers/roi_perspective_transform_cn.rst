@@ -26,6 +26,10 @@ roi_perspective_transform
  - ``mask`` : ``ROIPerspectiveTransformOp`` 的掩码，4D-LoDTensor，形状是(num_rois,1,transformed_height,transformed_width)，lod_level为1
  - ``transform_matrix`` : ``ROIPerspectiveTransformOp`` 的转换矩阵，2D-LoDTensor，形状是(num_rois,9)，lod_level为1
 
+返回类型
+::::::::::::
+  元组
+  
 代码示例
 ::::::::::::
 
