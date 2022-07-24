@@ -90,7 +90,7 @@ ctc_greedy_decoder
 ::::::::::::
  Variable
 
- 
+
 代码示例
 ::::::::::::
 
