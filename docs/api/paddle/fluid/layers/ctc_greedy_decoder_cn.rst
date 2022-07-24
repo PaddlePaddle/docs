@@ -89,7 +89,6 @@ ctc_greedy_decoder
 返回类型
 ::::::::::::
  Variable
- 
 代码示例
 ::::::::::::
 
