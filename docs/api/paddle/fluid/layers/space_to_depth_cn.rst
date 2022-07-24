@@ -50,6 +50,10 @@ space_to_depth
 ::::::::::::
 输出，形状为 ``[batch, channel * blocksize * blocksize, height/blocksize, width/blocksize]``  的4维Tensor或LoD Tensor。数据类型与输入 ``x`` 一致。
 
+返回类型
+::::::::::::
+Variable
+
 抛出异常
 ::::::::::::
 
