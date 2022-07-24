@@ -33,6 +33,10 @@ im2sequence
 ::::::::::::
  数据类型为float32, `shape` 为 `{batch_size * output_height * output_width, filter_size_height * filter_size_width * input.channels}` 的 2-D LodTensor。
 
+返回类型
+::::::::::::
+ Variable
+ 
 ::
 
   Given:
