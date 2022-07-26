@@ -8,6 +8,9 @@ all_gather_object
 
 进程组内所有进程指定的picklable对象进行聚合操作，并返回给所有进程聚合的结果。和all_gather类似，但可以传入自定义的python对象。
 
+.. warning::
+  该API只支持动态图模式。
+
 参数
 :::::::::
     - object_list (list) - 操作的输出Object列表。
