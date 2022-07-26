@@ -17,8 +17,8 @@ all_gather
 
 参数
 :::::::::
-    - tensor_list (list) - 操作的输出Tensor列表。列表中的每个元素均为Tensor，每个Tensor的数据类型为：float16、float32、float64、int32、int64。
-    - tensor (Tensor) - 操作的输入Tensor。Tensor的数据类型为：float16、float32、float64、int32、int64。
+    - tensor_list (list) - 操作的输出Tensor列表。列表中的每个元素均为Tensor，每个Tensor的数据类型为：float16、float32、float64、int32、int64、uint8、bool、int8、complex64、complex128。
+    - tensor (Tensor) - 操作的输入Tensor。Tensor的数据类型为：float16、float32、float64、int32、int64、uint8，bool、int8、complex64、complex128。
     - group (int，可选) - 工作的进程组编号，默认为0。
 
 返回
