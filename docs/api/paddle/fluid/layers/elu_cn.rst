@@ -15,26 +15,22 @@ ELU激活层（ELU Activation Operator）
 .. math::
         \\out=max(0,x)+min(0,α∗(e^{x}−1))\\
 
-参数:
+参数
+::::::::::::
+
  - **x** (Variable) - 该OP的输入为多维Tensor。数据类型为float32或float64。
- - **alpha** (float, 可选) - ELU的alpha值，默认值为1.0。
- - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
+ - **alpha** (float，可选) - ELU的alpha值，默认值为1.0。
+ - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回: 输出为Tensor，与 ``x`` 维度相同、数据类型相同。
+返回
+::::::::::::
+ 输出为Tensor，与 ``x`` 维度相同、数据类型相同。
 
-返回类型： Variable
+返回类型
+::::::::::::
+ Variable
 
-**代码示例**
+代码示例
+::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy as np
-
-    input_elu = np.array([[-1,6],[1,15.6]])
-    with fluid.dygraph.guard():
-        x = fluid.dygraph.to_variable(input_elu)
-        y = fluid.layers.elu(x, alpha=0.2)
-        print(y.numpy())
-        # [[-0.12642411  6.        ]
-        # [ 1.          15.6       ]]
+COPY-FROM: paddle.fluid.layers.elu

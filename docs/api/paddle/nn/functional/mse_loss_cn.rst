@@ -25,25 +25,16 @@ mse_loss
        Out = \operatorname{sum}((input - label)^2)
 
 
-参数：
+参数
 :::::::::
     - **input** (Tensor) - 预测值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor。数据类型为float32或float64。
     - **label** (Tensor) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor。数据类型为float32或float64。
 
 返回
 :::::::::
-``Tensor``, 输入 ``input`` 和标签 ``label`` 间的 `mse loss` 损失。
+``Tensor``，输入 ``input`` 和标签 ``label`` 间的 `mse loss` 损失。
 
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    
-    input = paddle.to_tensor(1.5)
-    label = paddle.to_tensor(1.7)
-    output = paddle.nn.functional.mse_loss(input, label)
-    print(output)
-    # [0.04000002]
-
+COPY-FROM: paddle.nn.functional.mse_loss

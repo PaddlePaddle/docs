@@ -5,23 +5,26 @@ Auc
 
 .. py:class:: paddle.metric.Auc()
 
-**注意**：目前只用Python实现Auc，可能速度略慢
+.. note::
+目前只用Python实现Auc，可能速度略慢。
 
-该接口计算Auc，在二分类(binary classification)中广泛使用。相关定义参考 https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve 。
+该接口计算Auc，在二分类(binary classification)中广泛使用。
 
-该接口创建四个局部变量true_positives, true_negatives, false_positives和false_negatives，用于计算Auc。为了离散化AUC曲线，使用临界值的线性间隔来计算召回率和准确率的值。用false positive的召回值高度计算ROC曲线面积，用recall的准确值高度计算PR曲线面积。
+该接口创建四个局部变量true_positives，true_negatives，false_positives和false_negatives，用于计算Auc。为了离散化AUC曲线，使用临界值的线性间隔来计算召回率和准确率的值。用false positive的召回值高度计算ROC曲线面积，用recall的准确值高度计算PR曲线面积。
 
+参考链接：https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve
 
-参数：
-:::::::::
+参数
+::::::::::::
+
     - **curve** (str) - 将要计算的曲线名的模式，包括'ROC'（默认）或者'PR'（Precision-Recall-curve）。
     - **num_thresholds** (int) - 离散化AUC曲线的整数阈值数，默认是4095。
     - **name** (str，可选) – metric实例的名字，默认是'auc'。
 
-代码示例
-:::::::::
+代码示例 1
+::::::::::::
 
-**独立使用示例**
+独立使用示例
 
     .. code-block:: python
 
@@ -40,8 +43,10 @@ Auc
         m.update(preds=preds, labels=labels)
         res = m.accumulate()
 
+代码示例 2
+::::::::::::
 
-**在Model API中的示例**
+在Model API中的示例
         
     .. code-block:: python
 
@@ -79,38 +84,48 @@ Auc
         model.fit(data, batch_size=16)
     
 
+方法
+::::::::::::
 update(pred, label, *args)
-:::::::::
+'''''''''
 
 更新AUC计算的状态。
 
 **参数**
     
-    - **preds** (numpy.array | Tensor): 一个shape为[batch_size, 2]的Numpy数组或Tensor，preds[i][j]表示第i个样本类别为j的概率。
-    - **labels** (numpy.array | Tensor): 一个shape为[batch_size, 1]的Numpy数组或Tensor，labels[i]是0或1，表示第i个样本的类别。
+    - **preds** (numpy.array | Tensor)：一个shape为[batch_size, 2]的Numpy数组或Tensor，preds[i][j]表示第i个样本类别为j的概率。
+    - **labels** (numpy.array | Tensor)：一个shape为[batch_size, 1]的Numpy数组或Tensor，labels[i]是0或1，表示第i个样本的类别。
 
-**返回:** 无。
+**返回** 
+
+无。
 
 
 reset()
-:::::::::
+'''''''''
 
 清空状态和计算结果。
 
-返回：无
+**返回** 
+
+无。
 
 
 accumulate()
-:::::::::
+'''''''''
 
 累积的统计指标，计算和返回AUC值。
 
-返回：AUC值，一个标量。
+**返回** 
+
+AUC值，一个标量。
 
 
 name()
-:::::::::
+'''''''''
 
-返回Metric实例的名字, 参考上述的name，默认是'auc'。
+返回Metric实例的名字，参考上述的name，默认是'auc'。
 
-返回: 评估的名字，string类型。
+**返回** 
+
+ 评估的名字，string类型。

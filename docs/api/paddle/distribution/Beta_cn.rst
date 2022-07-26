@@ -7,7 +7,7 @@ Beta
 
 
 在概率论中，Beta分布是指一组定义在 [0,1] 区间的连续概率分布，有两个参数 
-:math:`\alpha,\beta>0`, 是狄利克雷(:ref:`cn_api_paddle_distribution_Dirichlet`)
+:math:`\alpha,\beta>0`，是狄利克雷(:ref:`cn_api_paddle_distribution_Dirichlet`)
 分布的一元形式。
 
 其概率密度函数（pdf）为：
@@ -16,7 +16,7 @@ Beta
 
     f(x; \alpha, \beta) = \frac{1}{B(\alpha, \beta)}x^{\alpha-1}(1-x)^{\beta-1}
 
-其中，B为Beta函数，表示归一化因子:
+其中，B为Beta函数，表示归一化因子：
 
 .. math::
 
@@ -26,7 +26,7 @@ Beta
 :::::::::
 
 - **alpha** (float|Tensor) - 即上述公式中 :math:`\alpha` 参数，大于零，支持Broadcast
-  语义。当参数类型为Tensor时，表示批量创建多个不同参数的分布， ``batch_shape`` (参考 :ref:`cn_api_distribution_Distribution` 基类) 为参数
+  语义。当参数类型为Tensor时，表示批量创建多个不同参数的分布，``batch_shape`` (参考 :ref:`cn_api_distribution_Distribution` 基类) 为参数
   Broadcast后的形状。
 - **beta** (float|Tensor） - 即上述公式中 :math:`\beta` 参数，大于零，支持Broadcast语
   义。当参数类型为Tensor时，表示批量创建多个不同参数的分布，``batch_shape`` (参考 :ref:`cn_api_distribution_Distribution` 基类) 为参数Broadcast
@@ -37,69 +37,63 @@ Beta
 
 COPY-FROM: paddle.distribution.Beta
 
+方法
+:::::::::
 
-.. py:function:: mean
+mean()
+'''''''''
 
 计算Beta分布均值。
 
 
-.. py:function:: variance
+variance()
+'''''''''
 
 计算Beta分布方差。
 
 
-.. py:function:: prob(value)
+prob(value)
+'''''''''
 
 计算value的概率。
 
-参数
-:::::::::
+**参数**
 
 - **value** (Tensor) - 待计算值。
     
-返回
-:::::::::
+**返回**
 
 - Tensor: value的概率。
 
 
-.. py:function:: log_prob(value)
+log_prob(value)
+'''''''''
 
 计算value的对数概率。
 
-参数
-:::::::::
+**参数**
 
 - **value** (Tensor) - 待计算值。
     
-返回
-:::::::::
+**返回**
 
 - Tensor: value的对数概率。
 
 
-.. py:function:: sample()
+sample()
+'''''''''
 
 从Beta分布中生成满足特定形状的样本数据。
 
-参数
-:::::::::
+**参数**
 
-- **shape** (Sequence[int], 可选)：采样次数。最终生成样本形状为 ``shape+batch_shape`` .
+- **shape** (Sequence[int]，可选)：采样次数。最终生成样本形状为 ``shape+batch_shape`` 。
 
-返回
-:::::::::
+**返回**
 
-- Tensor: 样本数据。
+- Tensor：样本数据。
 
-.. py:function:: entropy()
+entropy()
+'''''''''
 
 计算Beta分布的信息熵。
-
-
-
-
-
-
-
-

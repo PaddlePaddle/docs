@@ -6,20 +6,24 @@ Recall
 .. py:class:: paddle.metric.Recall()
 
 
-召回率Recall（也称为敏感度）是指得到的相关实例数占相关实例总数的比例。https://en.wikipedia.org/wiki/Precision_and_recall 该类管理二分类任务的召回率。
+召回率Recall（也称为敏感度）是指得到的相关实例数占相关实例总数的比例。该类管理二分类任务的召回率。
 
-**注意**：这个metric只能用来评估二分类。
+相关链接：https://en.wikipedia.org/wiki/Precision_and_recall
+
+.. note::
+这个metric只能用来评估二分类。
 
 
 参数
-:::::::::
+::::::::::::
+
     - **name** (str，可选) – metric实例的名字，默认是'recall'。
 
 
-代码示例
-:::::::::
+代码示例 1
+::::::::::::
 
-**独立使用示例**
+独立使用示例
         
     .. code-block:: python
 
@@ -34,7 +38,9 @@ Recall
         res = m.accumulate()
         print(res) # 2.0 / 3.0
 
-**在Model API中的示例**
+代码示例 2
+::::::::::::
+在Model API中的示例
         
     .. code-block:: python
 
@@ -70,39 +76,48 @@ Recall
         data = Data()
         model.fit(data, batch_size=16)
     
-
+方法
+::::::::::::
 update(preds, labels, *args)
-:::::::::
+'''''''''
 
 更新Recall的状态。
 
 **参数**
 
-    - **preds** (numpy.array | Tensor): 预测输出结果通常是sigmoid函数的输出，是一个数据类型为float64或float32的向量。
-    - **labels** (numpy.array | Tensor): 真实标签的shape和:code: `preds` 相同，数据类型为int32或int64。
+    - **preds** (numpy.array | Tensor)：预测输出结果通常是sigmoid函数的输出，是一个数据类型为float64或float32的向量。
+    - **labels** (numpy.array | Tensor)：真实标签的shape和：code: `preds` 相同，数据类型为int32或int64。
 
-返回: 无。
+**返回**
+
+ 无。
 
 
 reset()
-:::::::::
+'''''''''
 
 清空状态和计算结果。
 
-返回：无
+**返回**
+
+ 无。
 
 
 accumulate()
-:::::::::
+'''''''''
 
 累积的统计指标，计算和返回recall值。
 
-返回：precision值，一个标量。
+**返回**
+
+precision值，一个标量。
 
 
 name()
-:::::::::
+'''''''''
 
-返回Metric实例的名字, 参考上述的name，默认是'recall'。
+返回Metric实例的名字，参考上述的name，默认是'recall'。
 
-返回: 评估的名字，string类型。
+**返回**
+
+ 评估的名字，string类型。

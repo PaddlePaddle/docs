@@ -10,7 +10,7 @@ sequence_reverse
 
 **注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用reverse函数（fluid.layers.** :ref:`cn_api_fluid_layers_reverse` **）。**
 
-**该OP仅支持LoDTensor** ，对于输入的LoDTensor，在每个序列（sequence）上进行反转。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。该OP在构建反向 :ref:`cn_api_fluid_layers_DynamicRNN` 网络时十分有用。
+**该OP仅支持LoDTensor**，对于输入的LoDTensor，在每个序列（sequence）上进行反转。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。该OP在构建反向 :ref:`cn_api_fluid_layers_DynamicRNN` 网络时十分有用。
 
 ::
 
@@ -33,25 +33,21 @@ sequence_reverse
         out.shape = [5, 4]
 
 
-参数:
+参数
+::::::::::::
+
   - **x** (Variable) – 输入是LoD level为1的LoDTensor。目前仅支持对LoD层次(LoD level)为1的LoDTensor进行反转。数据类型为float32，float64，int8，int32或int64。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：输出在每个序列上反转后的LoDTensor，数据类型和输入类型一致。
+返回
+::::::::::::
+输出在每个序列上反转后的LoDTensor，数据类型和输入类型一致。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[2, 6], dtype='float32')
-    x_reversed = fluid.layers.sequence_reverse(x)
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.sequence_reverse

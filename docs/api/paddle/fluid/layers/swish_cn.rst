@@ -13,19 +13,26 @@ swish
 .. math::
          out = \frac{x}{1 + e^{- beta * x}}
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable) -  多维 Tensor 或 LoDTensor，数据类型为 float32，float64。
     - **beta** (float) - Swish operator 的常量 beta，默认值为 1.0。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：
+返回
+::::::::::::
+
     - Swish op 的结果，多维 Tensor 或 LoDTensor。数据类型为 float32 或 float64，数据类型以及形状和输入 x 一致。
 
-返回类型：
+返回类型
+::::::::::::
+
     - Variable
 
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
    
@@ -52,24 +59,4 @@ swish
     # array([[-0.2756806 ,  1.0610548 ,  0.01998957],
     #        [ 0.9193261 ,  0.01235299,  0.9276883 ]], dtype=float32)
   
-.. code-block:: python
-
-    # 动态图使用
-    import numpy as np
-    from paddle import fluid
-    import paddle.fluid.dygraph as dg
-    
-    data = np.random.randn(2, 3).astype("float32")
-    place = fluid.CPUPlace()
-    with dg.guard(place) as g:
-        x = dg.to_variable(data)
-        y = fluid.layers.swish(x)
-        y_np = y.numpy()
-    data
-    # array([[-0.0816701 ,  1.1603649 , -0.88325626],
-    #        [ 0.7522361 ,  1.0978601 ,  0.12987892]], dtype=float32)
-    y_np
-    # array([[-0.03916847,  0.8835007 , -0.25835553],
-    #        [ 0.51126915,  0.82324016,  0.06915068]], dtype=float32)
-  
-
+COPY-FROM: paddle.fluid.layers.swish

@@ -20,24 +20,26 @@ lu
 
 .. note::
 
-    pivot选项只在gpu下起作用, cpu下暂不支持为False，会报错。
+    pivot选项只在gpu下起作用，cpu下暂不支持为False，会报错。
 
 LU和pivot可以通过调用paddle.linalg.lu_unpack展开获得L、U、P矩阵。
 
-参数：
-:::::::::
+参数
+::::::::::::
+
     - **x** (Tensor) - 需要进行LU分解的输入矩阵x，x是维度大于2维的矩阵。
-    - **pivot** (bool, 可选) - LU分解时是否进行旋转。若为True则执行旋转操作，若为False则不执行旋转操作，该选项只在gpu下起作用, cpu下暂不支持为False，会报错。默认True。
-    - **get_infos** (bool, 可选) - 是否返回分解状态信息，若为True，则返回分解状态Tensor，否则不返回。默认False。
-    - **name** (str, 可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **pivot** (bool，可选) - LU分解时是否进行旋转。若为True则执行旋转操作，若为False则不执行旋转操作，该选项只在gpu下起作用，cpu下暂不支持为False，会报错。默认True。
+    - **get_infos** (bool，可选) - 是否返回分解状态信息，若为True，则返回分解状态Tensor，否则不返回。默认False。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：
-:::::::::
+返回
+::::::::::::
+
     - Tensor LU, LU分解结果矩阵LU，由L、U拼接组成。
-    - Tensor(dtype=int) Pivots, 旋转矩阵对应的旋转序列，详情见说明部分pivot部分, 对于输入[*,m,n]的x，Pivots shape为[*, m]。
-    - Tensor(dtype=int) Infos, 矩阵分解状态信息矩阵，对于输入[*,m,n], Infos shape为[*]。每个元素表示每组矩阵的LU分解是否成功，0表示分解成功。
+    - Tensor(dtype=int) Pivots，旋转矩阵对应的旋转序列，详情见说明部分pivot部分，对于输入[*,m,n]的x，Pivots shape为[*, m]。
+    - Tensor(dtype=int) Infos，矩阵分解状态信息矩阵，对于输入[*,m,n]，Infos shape为[*]。每个元素表示每组矩阵的LU分解是否成功，0表示分解成功。
 
-代码示例：
+代码示例
 ::::::::::
 
 .. code-block:: python

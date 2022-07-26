@@ -6,11 +6,11 @@ sequence_last_step
 
 .. py:function:: paddle.static.nn.sequence_last_step(input)
 
-:api_attr: 声明式编程模式（静态图)
 
+.. note::
+该API仅支持LoDTensor类型的输入。
 
-
-该OP **仅支持LoDTensor类型的输入** ，将对输入的LoDTensor，在最后一层lod_level上，选取其每个序列（sequence）的最后一个时间步（time-step）的特征向量作为池化后的输出向量。
+对输入的LoDTensor，在最后一层lod_level上，选取其每个序列（sequence）的最后一个时间步（time-step）的特征向量作为池化后的输出向量。
 
 ::
 
@@ -29,7 +29,7 @@ sequence_last_step
 
     Case 2:
     
-        input是2-level的LoDTensor, 包含3个长度分别为[2, 0, 3]的序列，其中中间的0表示序列为空。
+        input是2-level的LoDTensor，包含3个长度分别为[2, 0, 3]的序列，其中中间的0表示序列为空。
         第一个长度为2的序列包含2个长度分别为[1, 2]的子序列；
         最后一个长度为3的序列包含3个长度分别为[1, 0, 3]的子序列。
             input.lod = [[0, 2, 2, 5], [0, 1, 3, 4, 4, 7]]

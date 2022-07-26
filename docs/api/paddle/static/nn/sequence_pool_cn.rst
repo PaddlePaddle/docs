@@ -6,13 +6,12 @@ sequence_pool
 
 .. py:function:: paddle.static.nn.sequence_pool(input, pool_type, is_test=False, pad_value=0.0)
 
-:api_attr: 声明式编程模式（静态图)
 
 
+.. note::
+该API的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用 :ref:`paddle.nn.functional.avg_pool2d <cn_api_nn_functional_avg_pool2d>`  或 :ref:`paddle.nn.functional.max_pool2d <cn_api_nn_functional_max_pool2d>` 。
 
-**注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用 :ref:`paddle.nn.functional.avg_pool2d <cn_api_nn_functional_avg_pool2d>`  或 :ref:`paddle.nn.functional.max_pool2d <cn_api_nn_functional_max_pool2d>` .**
-
-该OP **仅支持LoDTensor类型的输入** ，将对输入的LoDTensor进行指定方式的池化（pooling）操作。通过指定pool_type参数，将输入的每个序列（sequence）在最后一层lod_level上或时间步（time-step）上对特征进行诸如sum、average、sqrt等池化操作。
+对输入的LoDTensor进行指定方式的池化（pooling）操作。通过指定pool_type参数，将输入的每个序列（sequence）在最后一层lod_level上或时间步（time-step）上对特征进行诸如sum、average、sqrt等池化操作。
 
 支持六种pool_type:
 
@@ -29,7 +28,7 @@ sequence_pool
 
     Case 1:
 
-        input是1-level的LoDTensor, 且pad_value = 0.0:
+        input是1-level的LoDTensor，且pad_value = 0.0:
             input.lod = [[0, 2, 5, 7, 7]]
             input.data = [[1.], [3.], [2.], [4.], [6.], [5.], [1.]]
             input.shape = [7, 1]
@@ -48,7 +47,7 @@ sequence_pool
 
     Case 2:
     
-        input是2-level的LoDTensor, 包含3个长度分别为[2, 0, 3]的序列，其中中间的0表示序列为空。
+        input是2-level的LoDTensor，包含3个长度分别为[2, 0, 3]的序列，其中中间的0表示序列为空。
         第一个长度为2的序列包含2个长度分别为[1, 2]的子序列；
         最后一个长度为3的序列包含3个长度分别为[1, 0, 3]的子序列。
             input.lod = [[0, 2, 2, 5], [0, 1, 3, 4, 4, 7]]
@@ -68,8 +67,8 @@ sequence_pool
 :::::::::
     - **input** (Tensor) - 类型为LoDTensor的输入序列，仅支持lod_level不超过2的LoDTensor，数据类型为float32。
     - **pool_type** (str) - 池化类型，支持average，sum，sqrt，max，last和first池化操作。
-    - **is_test** (bool, 可选) - 仅在pool_type取值为max时生效。当is_test为False时，则在池化操作过程中会创建maxIndex临时Tenosr，以记录最大特征值对应的索引信息，用于训练阶段的反向梯度计算。默认为False。
-    - **pad_value** (float, 可选) - 用于填充输入序列为空时的池化结果，默认为0.0。
+    - **is_test** (bool，可选) - 仅在pool_type取值为max时生效。当is_test为False时，则在池化操作过程中会创建maxIndex临时Tenosr，以记录最大特征值对应的索引信息，用于训练阶段的反向梯度计算。默认为False。
+    - **pad_value** (float，可选) - 用于填充输入序列为空时的池化结果，默认为0.0。
 
 返回
 :::::::::

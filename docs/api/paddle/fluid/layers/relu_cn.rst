@@ -13,25 +13,21 @@ ReLU（Rectified Linear Unit）激活函数
 .. math:: Out=max(0,x)
 
 
-参数:
-  - **x** (Variable) - 输入的多维 ``Tensor`` ，数据类型为：float32、float64。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+参数
+::::::::::::
 
-返回: 与 ``x`` 维度相同、数据类型相同的 ``Tensor`` 。
+  - **x** (Variable) - 输入的多维 ``Tensor``，数据类型为：float32、float64。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回类型: Variable
+返回
+::::::::::::
+ 与 ``x`` 维度相同、数据类型相同的 ``Tensor`` 。
 
-**代码示例**:
+返回类型
+::::::::::::
+ Variable
 
-..  code-block:: python
+代码示例
+::::::::::::
 
-  import paddle.fluid as fluid
-  import numpy as np
-
-  in1 = np.array([[-1,0],[1,2.6]])
-  with fluid.dygraph.guard():
-      x1 = fluid.dygraph.to_variable(in1)
-      out1 = fluid.layers.relu(x1)
-      print(out1.numpy())
-      # [[0.  0. ]
-      #  [1.  2.6]]
+COPY-FROM: paddle.fluid.layers.relu

@@ -24,7 +24,4 @@ Paddle默认在C++层面注册了系统信号处理方法，用于优化报错�
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    paddle.disable_signal_handler()
+COPY-FROM: paddle.disable_signal_handler

@@ -16,17 +16,12 @@ CUDAPlace
 可以通过 ``CUDA_VISIBLE_DEVICES`` 环境变量限制程序能够使用的 GPU 设备，程序启动时会遍历当前的可见设备，并从 0 开始为这些设备编号。
 如果没有设置 ``CUDA_VISIBLE_DEVICES``，则默认所有的设备都是可见的，此时逻辑编号与实际编号是相同的。
 
-参数：
+参数
+::::::::::::
+
   - **id** (int，可选) - GPU的设备ID。如果为 ``None``，则默认会使用 id 为 0 的设备。默认值为 ``None``。
 
-**代码示例**
+代码示例
+::::::::::::
 
-.. code-block:: python
-
-       import paddle
-
-       place = paddle.CUDAPlace(0)
-
-
-
-
+COPY-FROM: paddle.CUDAPlace

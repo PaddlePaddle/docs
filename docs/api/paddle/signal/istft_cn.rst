@@ -14,11 +14,11 @@ istft
 
     \sum_{t = -\infty}^{\infty}\text{window}^2[n - t \times H]\ \neq \ 0, \ \text{for } all \ n
 
-上式中符号的意义：  
+上式中符号的意义：
 
-- :math:`t`: 短时傅里叶变换中的第 :math:`t` 帧输入信号；
+- :math:`t`：短时傅里叶变换中的第 :math:`t` 帧输入信号；
 - :math:`N`: `n_fft` 参数的值；
-- :math:`H`: `hop_length` 参数的值。  
+- :math:`H`: `hop_length` 参数的值。
 
 
 ``paddle.signal.istft`` 的结果理论上是 ``paddle.signal.stft`` 的原始输入 ``x``，但
@@ -50,26 +50,7 @@ istft
 - **return_complex** (bool，可选) - 表示输出的重构信号是否为复信号。如果 
   ``return_complex`` 设为 ``True``， ``onesided`` 必须设为 ``False``，默认
   为 ``False``；
-- **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试
-  信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 
-
-抛出异常
-:::::::::
-
-- ``TypeError`` – 如果输入 ``x`` 的数据类型不是 ``complex64`` 或 ``complex128``.
-- ``ValueError``  – 如果输入的窗函数不满足NOLA条件.
-- ``AssertionError``  – 如果输入 ``x`` 的维度不为2D或者3D.
-- ``AssertionError``  – 如果 ``hop_length`` 小于或等于0，或者大于 ``win_length``.
-- ``AssertionError``  – 如果 ``win_length`` 小于或等于0或者大于 ``n_fft``.
-- ``AssertionError``  – 如果 ``onesided`` 为 ``True``，但 ``fft_size`` 不等于 
-  ``n_fft//2 + 1``.
-- ``AssertionError``  – 如果 ``onesided`` 为 ``False``，但 ``fft_size`` 不等于 
-  ``n_fft``.
-- ``AssertionError``  – 如果输入的窗函数的维度不为1D或者其长度不等于 ``win_length``.
-- ``AssertionError``  – 如果 ``return_complex`` 为 ``True``，但 ``onesided`` 
-  为 ``True``.
-- ``AssertionError``  – 如果 ``return_complex`` 为 ``False``，但窗函数的数据类型为
-  复数。
+- **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

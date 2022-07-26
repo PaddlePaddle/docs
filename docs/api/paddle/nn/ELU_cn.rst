@@ -22,23 +22,15 @@ ELU激活层（ELU Activation Operator）
 
 参数
 ::::::::::
-    - alpha (float, 可选) - ELU的alpha值，默认值为1.0。
-    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - alpha (float，可选) - ELU的alpha值，默认值为1.0。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状:
+形状：
 ::::::::::
-    - input: 任意形状的Tensor。
-    - output: 和input具有相同形状的Tensor。
+    - input：任意形状的Tensor。
+    - output：和input具有相同形状的Tensor。
 
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([[-1. ,6.], [1., 15.6]])
-    m = paddle.nn.ELU(0.2)
-    out = m(x)
-    # [[-0.12642411  6.        ]
-    #  [ 1.          15.6      ]]
+COPY-FROM: paddle.nn.ELU

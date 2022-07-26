@@ -16,20 +16,17 @@ scope_guard
 当用户需要创建同名的变量时，如果不希望同名的变量映射关系被覆盖，则需要通过该接口切换作用域。
 通过 ``with`` 语句切换后，``with`` 语句块中所有创建的变量都将分配给新的作用域。
 
-参数：
+参数
+::::::::::::
+
   - **scope** (Scope) - 新的作用域。
 
-返回：无
+返回
+::::::::::::
 
-**代码示例**
+无。
 
-.. code-block:: python
+代码示例
+::::::::::::
 
-    import paddle
-    import numpy
-
-    new_scope = paddle.static.Scope()
-    with paddle.static.scope_guard(new_scope):
-         paddle.static.global_scope().var("data").get_tensor().set(numpy.ones((1, 2)), paddle.CPUPlace())
-    data = numpy.array(new_scope.find_var("data").get_tensor())
-    print(data)  # [[1. 1.]]
+COPY-FROM: paddle.static.scope_guard

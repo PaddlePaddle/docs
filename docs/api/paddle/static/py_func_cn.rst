@@ -11,29 +11,31 @@ py_func
 
 PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Paddle中的Tensor与numpy数组可以方便的互相转换，从而可使用Python中的numpy API来自定义一个Python OP。
 
-该自定义的Python OP的前向函数是 ``func``, 反向函数是 ``backward_func`` 。 Paddle将在前向部分调用 ``func`` ，并在反向部分调用 ``backward_func`` （如果 ``backward_func`` 不是None)。 ``x`` 为 ``func`` 的输入，必须为Tensor类型； ``out``  为 ``func`` 的输出， 既可以是Tensor类型, 也可以是numpy数组。
+该自定义的Python OP的前向函数是 ``func``，反向函数是 ``backward_func`` 。 Paddle将在前向部分调用 ``func``，并在反向部分调用 ``backward_func`` （如果 ``backward_func`` 不是None)。 ``x`` 为 ``func`` 的输入，必须为Tensor类型；``out``  为 ``func`` 的输出，既可以是Tensor类型，也可以是numpy数组。
 
-反向函数 ``backward_func`` 的输入依次为：前向输入 ``x`` 、前向输出 ``out`` 、 ``out`` 的梯度。 如果 ``out`` 的某些输出没有梯度，则 ``backward_func`` 的相关输入为None。如果 ``x`` 的某些变量没有梯度，则用户应在 ``backward_func`` 中主动返回None。 
+反向函数 ``backward_func`` 的输入依次为：前向输入 ``x`` 、前向输出 ``out`` 、 ``out`` 的梯度。如果 ``out`` 的某些输出没有梯度，则 ``backward_func`` 的相关输入为None。如果 ``x`` 的某些变量没有梯度，则用户应在 ``backward_func`` 中主动返回None。 
 
 在调用该接口之前，还应正确设置 ``out`` 的数据类型和形状，而 ``out`` 和 ``x`` 对应梯度的数据类型和形状将自动推断而出。
 
 此功能还可用于调试正在运行的网络，可以通过添加没有输出的 ``py_func`` 运算，并在 ``func`` 中打印输入 ``x`` 。
 
-参数:
-:::::::::
-    - **func** （callable） - 所注册的Python OP的前向函数，运行网络时，将根据该函数与前向输入 ``x`` ，计算前向输出 ``out`` 。 在 ``func`` 建议先主动将Tensor转换为numpy数组，方便灵活的使用numpy相关的操作，如果未转换成numpy，则可能某些操作无法兼容。
+参数
+::::::::::::
+
+    - **func** （callable） - 所注册的Python OP的前向函数，运行网络时，将根据该函数与前向输入 ``x``，计算前向输出 ``out``。在 ``func`` 建议先主动将Tensor转换为numpy数组，方便灵活的使用numpy相关的操作，如果未转换成numpy，则可能某些操作无法兼容。
     - **x** (Tensor|tuple(Tensor)|list[Tensor]) -  前向函数 ``func`` 的输入，多个Tensor以tuple(Tensor)或list[Tensor]的形式传入。
     - **out** (T|tuple(T)|list[T]) -  前向函数 ``func`` 的输出，可以为T|tuple(T)|list[T]，其中T既可以为Tensor，也可以为numpy数组。由于Paddle无法自动推断 ``out`` 的形状和数据类型，必须应事先创建 ``out`` 。
-    - **backward_func** (callable，可选) - 所注册的Python OP的反向函数。默认值为None，意味着没有反向计算。若不为None，则会在运行网络反向时调用 ``backward_func`` 计算 ``x`` 的梯度。 
-    - **skip_vars_in_backward_input** (Tensor) -  ``backward_func`` 的输入中不需要的变量，可以是Tensor|tuple(Tensor)|list[Tensor]。 这些变量必须是 ``x`` 和 ``out`` 中的一个。默认值为None，意味着没有变量需要从 ``x`` 和 ``out`` 中去除。若不为None，则这些变量将不是 ``backward_func`` 的输入。该参数仅在 ``backward_func`` 不为None时有用。
+    - **backward_func** (callable，可选) - 所注册的Python OP的反向函数。默认值为None，意味着没有反向计算。若不为None，则会在运行网络反向时调用 ``backward_func`` 计算 ``x`` 的梯度。
+    - **skip_vars_in_backward_input** (Tensor) -  ``backward_func`` 的输入中不需要的变量，可以是Tensor|tuple(Tensor)|list[Tensor]。这些变量必须是 ``x`` 和 ``out`` 中的一个。默认值为None，意味着没有变量需要从 ``x`` 和 ``out`` 中去除。若不为None，则这些变量将不是 ``backward_func`` 的输入。该参数仅在 ``backward_func`` 不为None时有用。
 
-返回:
-:::::::::
+返回
+::::::::::::
+
 Tensor|tuple(Tensor)|list[Tensor]，前向函数的输出 ``out``
 
 
-**示例代码1**:
-:::::::::
+代码示例 1
+::::::::::::
 
 .. code-block:: python
 
@@ -93,8 +95,8 @@ Tensor|tuple(Tensor)|list[Tensor]，前向函数的输出 ``out``
     print(out)
 
 
-**示例代码2**:
-:::::::::
+代码示例 2
+::::::::::::
 
 ..  code-block:: python
     

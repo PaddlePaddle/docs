@@ -17,17 +17,23 @@ TracedLayer使用 ``Executor`` 和 ``CompiledProgram`` 运行静态图模型。�
 
 TracedLayer只能用于将data independent的动态图模型转换为静态图模型，即待转换的动态图模型不应随tensor数据或维度的变化而变化。
 
-.. py:staticmethod:: trace(layer, inputs)
+方法
+::::::::::::
+
+**static** trace(layer, inputs)
+'''''''''
 
 创建TracedLayer对象的唯一接口，该接口会调用 ``layer(*inputs)`` 方法运行动态图模型并将其转换为静态图模型。
 
-参数:
+**参数**
+
     - **layer** (dygraph.Layer) - 待追踪的动态图layer对象。
     - **inputs** (list(Variable)) - 动态图layer对象的输入变量列表。
 
-返回: 包含2个元素的tuple，其中第一个元素是 ``layer(*inputs)`` 的输出结果，第二个元素是转换后得到的TracedLayer对象。
+**返回**
 
-返回类型: tuple
+tuple，包含2个元素，其中第一个元素是 ``layer(*inputs)`` 的输出结果，第二个元素是转换后得到的TracedLayer对象。
+
 
 **代码示例**
 
@@ -55,15 +61,19 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
     # 将静态图模型保存为预测模型
     static_layer.save_inference_model(path='./saved_infer_model')
 
-.. py:method:: set_strategy(build_strategy=None, exec_strategy=None)
+set_strategy(build_strategy=None, exec_strategy=None)
+'''''''''
 
 设置构建和执行静态图模型的相关策略。
 
-参数:
-    - **build_strategy** (BuildStrategy, 可选) - TracedLayer内部 ``CompiledProgram`` 的构建策略。
-    - **exec_strategy** (ExecutionStrategy, 可选) - TracedLayer内部 ``CompiledProgram`` 的执行策略。
+**参数**
 
-返回: 无
+    - **build_strategy** (BuildStrategy，可选) - TracedLayer内部 ``CompiledProgram`` 的构建策略。
+    - **exec_strategy** (ExecutionStrategy，可选) - TracedLayer内部 ``CompiledProgram`` 的执行策略。
+
+**返回**
+
+ 无。
 
 **代码示例**
 
@@ -93,18 +103,22 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
     static_layer.set_strategy(build_strategy=build_strategy, exec_strategy=exec_strategy)
     out_static_graph = static_layer([in_var])
 
-.. py:method:: save_inference_model(path, feed=None, fetch=None)
+save_inference_model(path, feed=None, fetch=None)
+'''''''''
 
 将TracedLayer保存为用于预测部署的模型。保存的预测模型可被C++预测接口加载。
 
-``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``.pdmodel``,存储的持久参数变量文件的后缀为 ``.pdiparams``.
+``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``.pdmodel``，存储的持久参数变量文件的后缀为 ``.pdiparams``。
 
-参数:
+**参数**
+
     - **path** (str) - 存储模型的路径前缀。格式为 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
-    - **feed** (list(int), 可选) - 预测模型输入变量的索引。若为None，则TracedLayer的所有输入变量均会作为预测模型的输入。默认值为None。
-    - **fetch** (list(int), 可选) - 预测模型输出变量的索引。若为None，则TracedLayer的所有输出变量均会作为预测模型的输出。默认值为None。
+    - **feed** (list(int)，可选) - 预测模型输入变量的索引。若为None，则TracedLayer的所有输入变量均会作为预测模型的输入。默认值为None。
+    - **fetch** (list(int)，可选) - 预测模型输出变量的索引。若为None，则TracedLayer的所有输出变量均会作为预测模型的输出。默认值为None。
 
-返回: 无
+**返回**
+ 
+ 无。
 
 **代码示例**
 
