@@ -90,8 +90,8 @@ CPU分布式训练速度进一步提高的核心在于选择合适的分布式�
     import paddle.fluid.incubate.fleet.base.role_maker as role_maker
     from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler.distributed_strategy_factory import DistributedStrategyFactory
 
-然后指定CPU分布式运行的训练策略，目前可选配置有四种：同步训练（Sync）、异步训练（Async）、半异步训练（Half-Async）以及GEO训练。不同策略的细节，可以查看设计文档：
-https://github.com/PaddlePaddle/Fleet/blob/develop/markdown_doc/transpiler/transpiler_cpu.md
+然后指定CPU分布式运行的训练策略，目前可选配置有四种：同步训练（Sync）、异步训练（Async）、半异步训练（Half-Async）以及GEO训练。
+
 
 通过如下代码引入上述策略的默认配置，并进行CPU分布式训练：
 
