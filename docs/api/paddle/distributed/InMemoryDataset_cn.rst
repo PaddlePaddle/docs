@@ -4,7 +4,7 @@ InMemoryDataset
 -------------------------------
 
 
-.. py:class:: paddle.distributed.InMemoryDataset
+.. py:class:: paddle.distributed.InMemoryDataset()
 
 
 
@@ -13,11 +13,7 @@ InMemoryDataset，它将数据加载到内存中，并在训练前随机整理�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-    dataset = paddle.distributed.InMemoryDataset()
+COPY-FROM: paddle.distributed.InMemoryDataset
 
 方法
 ::::::::::::
@@ -49,54 +45,7 @@ None。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import os
-
-    paddle.enable_static()
-
-    with open("test_queue_dataset_run_a.txt", "w") as f:
-        data = "2 1 2 2 5 4 2 2 7 2 1 3\n"
-        data += "2 6 2 2 1 4 2 2 4 2 2 3\n"
-        data += "2 5 2 2 9 9 2 2 7 2 1 3\n"
-        data += "2 7 2 2 1 9 2 3 7 2 5 3\n"
-        f.write(data)
-    with open("test_queue_dataset_run_b.txt", "w") as f:
-        data = "2 1 2 2 5 4 2 2 7 2 1 3\n"
-        data += "2 6 2 2 1 4 2 2 4 2 2 3\n"
-        data += "2 5 2 2 9 9 2 2 7 2 1 3\n"
-        data += "2 7 2 2 1 9 2 3 7 2 5 3\n"
-        f.write(data)
-
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-
-    dataset = paddle.distributed.InMemoryDataset()
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    dataset.set_filelist(
-        ["test_queue_dataset_run_a.txt", "test_queue_dataset_run_b.txt"])
-    dataset.load_into_memory()
-
-    place = paddle.CPUPlace()
-    exe = paddle.static.Executor(place)
-    startup_program = paddle.static.Program()
-    main_program = paddle.static.Program()
-    exe.run(startup_program)
-
-    exe.train_from_dataset(main_program, dataset)
-
-    os.remove("./test_queue_dataset_run_a.txt")
-    os.remove("./test_queue_dataset_run_b.txt")
+COPY-FROM: paddle.distributed.InMemoryDataset.init
 
 _init_distributed_settings(**kwargs)
 '''''''''
@@ -125,24 +74,7 @@ None。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=[])
-    dataset._init_distributed_settings(
-        parse_ins_id=True,
-        parse_content=True,
-        fea_eval=True,
-        candidate_size=10000)
-
+COPY-FROM: paddle.distributed.InMemoryDataset._init_distributed_settings
 
 update_settings(**kwargs)
 '''''''''
@@ -178,24 +110,7 @@ None。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=[])
-    dataset._init_distributed_settings(
-        parse_ins_id=True,
-        parse_content=True,
-        fea_eval=True,
-        candidate_size=10000)
-    dataset.update_settings(batch_size=2)
+COPY-FROM: paddle.distributed.InMemoryDataset.update_settings
 
 load_into_memory()
 '''''''''
@@ -208,27 +123,7 @@ load_into_memory()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
+COPY-FROM: paddle.distributed.InMemoryDataset.load_into_memory
 
 preload_into_memory(thread_num=None)
 '''''''''
@@ -241,28 +136,7 @@ preload_into_memory(thread_num=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.preload_into_memory()
-    dataset.wait_preload_done()
+COPY-FROM: paddle.distributed.InMemoryDataset.preload_into_memory
 
 wait_preload_done()
 '''''''''
@@ -271,28 +145,7 @@ wait_preload_done()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.preload_into_memory()
-    dataset.wait_preload_done()
+COPY-FROM: paddle.distributed.InMemoryDataset.wait_preload_done
 
 local_shuffle()
 '''''''''
@@ -301,28 +154,7 @@ local_shuffle()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    dataset.local_shuffle()
+COPY-FROM: paddle.distributed.InMemoryDataset.local_shuffle
 
 global_shuffle(fleet=None, thread_num=12)
 '''''''''
@@ -331,28 +163,7 @@ global_shuffle(fleet=None, thread_num=12)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    dataset.global_shuffle()
+COPY-FROM: paddle.distributed.InMemoryDataset.global_shuffle
 
 **参数**
 
@@ -364,36 +175,7 @@ release_memory()
 
 当数据不再使用时，释放 InMemoryDataset 内存数据。
 
-**代码示例**
-
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    dataset.global_shuffle()
-    exe = paddle.static.Executor(paddle.CPUPlace())
-    startup_program = paddle.static.Program()
-    main_program = paddle.static.Program()
-    exe.run(startup_program)
-    exe.train_from_dataset(main_program, dataset)
-    dataset.release_memory()
+COPY-FROM: paddle.distributed.InMemoryDataset.release_memory
 
 get_memory_data_size(fleet=None)
 '''''''''
@@ -412,29 +194,7 @@ get_memory_data_size(fleet=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    print dataset.get_memory_data_size()
-
+COPY-FROM: paddle.distributed.InMemoryDataset.get_memory_data_size
 
 get_shuffle_data_size(fleet=None)
 '''''''''
@@ -453,30 +213,7 @@ shuffle 数据的大小。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    dataset = paddle.distributed.InMemoryDataset()
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    dataset.global_shuffle()
-    print dataset.get_shuffle_data_size()
+COPY-FROM: paddle.distributed.InMemoryDataset.get_shuffle_data_size
 
 slots_shuffle(slots)
 '''''''''
@@ -489,26 +226,4 @@ slots_shuffle(slots)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    dataset = paddle.distributed.InMemoryDataset()
-    dataset._init_distributed_settings(fea_eval=True)
-    slots = ["slot1", "slot2", "slot3", "slot4"]
-    slots_vars = []
-    for slot in slots:
-        var = paddle.static.data(
-            name=slot, shape=[None, 1], dtype="int64", lod_level=1)
-        slots_vars.append(var)
-    dataset.init(
-        batch_size=1,
-        thread_num=2,
-        input_type=1,
-        pipe_command="cat",
-        use_var=slots_vars)
-    filelist = ["a.txt", "b.txt"]
-    dataset.set_filelist(filelist)
-    dataset.load_into_memory()
-    dataset.slots_shuffle(['slot1'])
+COPY-FROM: paddle.distributed.InMemoryDataset.slots_shuffle

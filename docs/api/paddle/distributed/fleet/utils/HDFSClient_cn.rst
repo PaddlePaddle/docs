@@ -15,18 +15,7 @@ HDFSClient
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    client.ls_dir("hdfs:/test_hdfs_client")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient
 
 方法
 ::::::::::::
@@ -44,18 +33,7 @@ ls_dir(fs_path)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    subdirs, files = client.ls_dir("hdfs:/test_hdfs_client")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.ls_dir
 
 mkdirs(fs_path)
 '''''''''
@@ -67,18 +45,7 @@ mkdirs(fs_path)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    client.mkdirs("hdfs:/test_hdfs_client")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.mkdirs
 
 delete(fs_path)
 '''''''''
@@ -90,18 +57,7 @@ delete(fs_path)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    client.delete("hdfs:/test_hdfs_client")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.delete
 
 is_file(fs_path)
 '''''''''
@@ -117,18 +73,7 @@ is_file(fs_path)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    ret = client.is_file("hdfs:/test_hdfs_client")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.is_file
 
 is_dir(fs_path)
 '''''''''
@@ -144,18 +89,7 @@ is_dir(fs_path)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    ret = client.is_file("hdfs:/test_hdfs_client")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.is_dir
 
 is_exist(fs_path)
 '''''''''
@@ -171,18 +105,7 @@ is_exist(fs_path)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    ret = client.is_exist("hdfs:/test_hdfs_client")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.is_exist
 
 upload(local_path, fs_path)
 '''''''''
@@ -195,18 +118,7 @@ upload(local_path, fs_path)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    client.upload("test_hdfs_client", "hdfs:/test_hdfs_client")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.upload
 
 download(fs_path, local_path)
 '''''''''
@@ -219,19 +131,7 @@ download(fs_path, local_path)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    client.download("hdfs:/test_hdfs_client", "./")
-
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.download
 
 touch(fs_path, exist_ok=True)
 '''''''''
@@ -244,18 +144,7 @@ touch(fs_path, exist_ok=True)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    client.touch("hdfs:/test_hdfs_client")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.touch
 
 mv(fs_src_path, fs_dst_path, overwrite=False)
 '''''''''
@@ -269,18 +158,7 @@ HADOOP 系统文件移动。
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    client.mv("hdfs:/test_hdfs_client", "hdfs:/test_hdfs_client2")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.mv
 
 list_dirs(fs_path)
 '''''''''
@@ -296,15 +174,4 @@ list_dirs(fs_path)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import HDFSClient
-
-    hadoop_home = "/home/client/hadoop-client/hadoop/"
-    configs = {
-        "fs.default.name": "hdfs://xxx.hadoop.com:54310",
-        "hadoop.job.ugi": "hello,hello123"
-    }
-
-    client = HDFSClient(hadoop_home, configs)
-    subdirs = client.list_dirs("hdfs:/test_hdfs_client")
+COPY-FROM: paddle.distributed.fleet.utils.HDFSClient.list_dirs

@@ -28,57 +28,7 @@ Executor 支持单 GPU、多 GPU 以及 CPU 运行。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy
-    import os
-
-    # Executor 只能在静态图模式使用
-    paddle.enable_static()
-
-    # 显式设置运行设备
-    # use_cuda = True
-    # place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
-    # exe = paddle.static.Executor(place)
-
-    # 如果不显示设置运行设备，PaddlePaddle 会设置默认运行设备
-    exe = paddle.static.Executor()
-
-    train_program = paddle.static.Program()
-    startup_program = paddle.static.Program()
-    with paddle.static.program_guard(train_program, startup_program):
-        data = paddle.static.data(name='X', shape=[None, 1], dtype='float32')
-        hidden = paddle.static.nn.fc(data, 10)
-        loss = paddle.mean(hidden)
-        paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
-
-    # 仅运行一次 startup program
-    # 不需要优化/编译这个 startup program
-    startup_program.random_seed=1
-    exe.run(startup_program)
-
-    # 无需编译，直接运行 main program
-    x = numpy.random.random(size=(10, 1)).astype('float32')
-    loss_data, = exe.run(train_program, feed={"X": x}, fetch_list=[loss.name])
-
-    # 另一种方法是，编译这个 main program 然后运行。
-    # 参考 CompiledProgram 以获取更多信息。
-    # 注意：如果你使用 CPU 运行程序，需要具体设置 CPU_NUM，
-    # 否则 PaddlePaddle 会把逻辑核的所有数目设为 CPU_NUM，
-    # 在这种情况下，输入的 batch size 应大于 CPU_NUM，
-    # 否则程序会异常中断。
-
-    # 显式设置运行设备
-    # if not use_cuda:
-    #    os.environ['CPU_NUM'] = str(2)
-
-    # 未显示设置运行设备且安装的 Paddle 为 CPU 版本
-    os.environ['CPU_NUM'] = str(2)
-
-    compiled_prog = paddle.static.CompiledProgram(
-        train_program).with_data_parallel(loss_name=loss.name)
-    loss_data, = exe.run(compiled_prog, feed={"X": x}, fetch_list=[loss.name])
+COPY-FROM: paddle.static.Executor
 
 方法
 ::::::::::::
@@ -94,15 +44,7 @@ close()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    cpu = paddle.CPUPlace()
-    exe = paddle.static.Executor(cpu)
-    # 执行训练或测试过程
-    exe.close()
-
+COPY-FROM: paddle.static.Executor.close
 
 run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_name='fetch', scope=None, return_numpy=True, use_program_cache=False, return_merged=True, use_prune=False)
 '''''''''
@@ -133,100 +75,11 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
 
 **代码示例 1**
 
-.. code-block:: python
-
-            import paddle
-            import numpy
-
-            #首先创建执行引擎
-            paddle.enable_static()
-            place = paddle.CPUPlace()  # paddle.CUDAPlace(0)
-            exe = paddle.static.Executor(place)
-
-            data = paddle.static.data(name='X', shape=[None, 1], dtype='float32')
-            hidden = paddle.static.nn.fc(data, 10)
-            loss = paddle.mean(hidden)
-            adam = paddle.optimizer.Adam()
-            adam.minimize(loss)
-            i = paddle.zeros(shape=[1], dtype='int64')
-            array = paddle.fluid.layers.array_write(x=loss, i=i)
-
-            #仅运行 startup 程序一次
-            exe.run(paddle.static.default_startup_program())
-
-            x = numpy.random.random(size=(10, 1)).astype('float32')
-            loss_val, array_val = exe.run(feed={'X': x},
-                                          fetch_list=[loss.name, array.name])
-            print(array_val)
-            # [array([0.02153828], dtype=float32)]
+COPY-FROM: paddle.static.Executor.run:code-example-1
 
 **代码示例 2**
 
-.. code-block:: python
-
-            import paddle
-            import numpy as np
-
-            # 创建 Executor 对象
-            paddle.enable_static()
-            place = paddle.CUDAPlace(0)
-            exe = paddle.static.Executor(place)
-
-            data = paddle.static.data(name='X', shape=[None, 1], dtype='float32')
-            class_dim = 2
-            prediction = paddle.static.nn.fc(data, class_dim)
-            loss = paddle.mean(prediction)
-            adam = paddle.optimizer.Adam()
-            adam.minimize(loss)
-
-            # 运行且仅运行一次 startup program
-            exe.run(paddle.static.default_startup_program())
-            build_strategy = paddle.static.BuildStrategy()
-            binary = paddle.static.CompiledProgram(
-                paddle.static.default_main_program()).with_data_parallel(
-                    loss_name=loss.name, build_strategy=build_strategy)
-            batch_size = 6
-            x = np.random.random(size=(batch_size, 1)).astype('float32')
-
-            # 1) 设置 return_merged 参数为 False 以获取不合并的计算结果：
-            unmerged_prediction, = exe.run(binary,
-                                           feed={'X': x},
-                                           fetch_list=[prediction.name],
-                                           return_merged=False)
-            # 如果用户使用两个 GPU 卡来运行此 python 代码示例，输出结果将为(2, 3, class_dim)。
-            # 输出结果中第一个维度值代表所使用的 GPU 卡数，而第二个维度值代表 batch_size 和所使用
-            # 的 GPU 卡数之商。
-            print("The unmerged prediction shape: {}".format(
-                np.array(unmerged_prediction).shape))
-            print(unmerged_prediction)
-
-            # 2) 设置 return_merged 参数为 True 以获取合并的计算结果：
-            merged_prediction, = exe.run(binary,
-                                         feed={'X': x},
-                                         fetch_list=[prediction.name],
-                                         return_merged=True)
-
-            # 如果用户使用两个 GPU 卡来运行此 python 代码示例，输出结果将为(6, class_dim)。输出结果
-            # 中第一个维度值代表 batch_size 值。
-            print("The merged prediction shape: {}".format(
-                np.array(merged_prediction).shape))
-            print(merged_prediction)
-
-            # 输出：
-            # The unmerged prediction shape: (2, 3, 2)
-            # [array([[-0.37620035, -0.19752218],
-            #        [-0.3561043 , -0.18697084],
-            #        [-0.24129935, -0.12669306]], dtype=float32), array([[-0.24489994, -0.12858354],
-            #        [-0.49041364, -0.25748932],
-            #        [-0.44331917, -0.23276259]], dtype=float32)]
-            # The merged prediction shape: (6, 2)
-            # [[-0.37789783 -0.19921964]
-            #  [-0.3577645  -0.18863106]
-            #  [-0.24274671 -0.12814042]
-            #  [-0.24635398 -0.13003758]
-            #  [-0.49232286 -0.25939852]
-            #  [-0.44514108 -0.2345845 ]]
-
+COPY-FROM: paddle.static.Executor.run:code-example-2
 
 infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 '''''''''
@@ -250,25 +103,7 @@ infer_from_dataset 的文档与 train_from_dataset 几乎完全相同，只是�
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    paddle.enable_static()
-    place = paddle.CPUPlace() # 使用 GPU 时可设置 place = paddle.CUDAPlace(0)
-    exe = paddle.static.Executor(place)
-    x = paddle.static.data(name="x", shape=[None, 10, 10], dtype="int64")
-    y = paddle.static.data(name="y", shape=[None, 1], dtype="int64", lod_level=1)
-    dataset = paddle.fluid.DatasetFactory().create_dataset()
-    dataset.set_use_var([x, y])
-    dataset.set_thread(1)
-    # 您可以设置您自己的 filelist，如 filelist = ["dataA.txt"]
-    filelist = []
-    dataset.set_filelist(filelist)
-    exe.run(paddle.static.default_startup_program())
-    exe.infer_from_dataset(program=paddle.static.default_main_program(),
-                           dataset=dataset)
-
+COPY-FROM: paddle.static.Executor.infer_from_dataset
 
 train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False, fetch_list=None, fetch_info=None, print_period=100)
 '''''''''
@@ -295,21 +130,4 @@ train_from_dataset 将销毁每次运行在 executor 中创建的所有资源。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    paddle.enable_static()
-    place = paddle.CPUPlace() # 使用 GPU 时可设置 place = paddle.CUDAPlace(0)
-    exe = paddle.static.Executor(place)
-    x = paddle.static.data(name="x", shape=[None, 10, 10], dtype="int64")
-    y = paddle.static.data(name="y", shape=[None, 1], dtype="int64", lod_level=1)
-    dataset = paddle.fluid.DatasetFactory().create_dataset()
-    dataset.set_use_var([x, y])
-    dataset.set_thread(1)
-    # 您可以设置您自己的 filelist，如 filelist = ["dataA.txt"]
-    filelist = []
-    dataset.set_filelist(filelist)
-    exe.run(paddle.static.default_startup_program())
-    exe.train_from_dataset(program=paddle.static.default_main_program(),
-                           dataset=dataset)
+COPY-FROM: paddle.static.Executor.train_from_dataset

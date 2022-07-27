@@ -15,35 +15,7 @@ ParallelEnv
 代码示例
 :::::::::
 
-    .. code-block:: python
-
-        import paddle
-        import paddle.distributed as dist
-
-        def train():
-            # 1. initialize parallel environment
-            dist.init_parallel_env()
-
-            # 2. get current ParallelEnv
-            parallel_env = dist.ParallelEnv()
-            print("rank: ", parallel_env.rank)
-            print("world_size: ", parallel_env.world_size)
-
-            # print result in process 1:
-            # rank: 1
-            # world_size: 2
-            # print result in process 2:
-            # rank: 2
-            # world_size: 2
-
-        if __name__ == '__main__':
-            # 1. start by ``paddle.distributed.spawn`` (default)
-            dist.spawn(train, nprocs=2)
-            # 2. start by ``paddle.distributed.launch``
-            # train()
-
-属性
-::::::::::::
+COPY-FROM: paddle.distributed.ParallelEnv
 
 属性
 ::::::::::::
@@ -56,15 +28,7 @@ rank
 
 **代码示例**
 
-    .. code-block:: python
-
-        # execute this command in terminal: export PADDLE_TRAINER_ID=0
-        import paddle.distributed as dist
-
-        env = dist.ParallelEnv()
-        print("The rank is %d" % env.rank)
-        # The rank is 0
-
+COPY-FROM: paddle.distributed.ParallelEnv.rank
 
 world_size
 '''''''''
@@ -75,15 +39,7 @@ world_size
 
 **代码示例**
 
-    .. code-block:: python
-
-        # execute this command in terminal: export PADDLE_TRAINERS_NUM=4
-        import paddle.distributed as dist
-
-        env = dist.ParallelEnv()
-        print("The world_size is %d" % env.world_size)
-        # The world_size is 4
-
+COPY-FROM: paddle.distributed.ParallelEnv.world_size
 
 device_id
 '''''''''
@@ -94,15 +50,7 @@ device_id
 
 **代码示例**
 
-    .. code-block:: python
-
-        # execute this command in terminal: export FLAGS_selected_gpus=1
-        import paddle.distributed as dist
-
-        env = dist.ParallelEnv()
-        print("The device id are %d" % env.device_id)
-        # The device id are 1
-
+COPY-FROM: paddle.distributed.ParallelEnv.device_id
 
 current_endpoint
 '''''''''
@@ -113,15 +61,7 @@ current_endpoint
 
 **代码示例**
 
-    .. code-block:: python
-
-        # execute this command in terminal: export PADDLE_CURRENT_ENDPOINT=127.0.0.1:6170
-        import paddle.distributed as dist
-
-        env = dist.ParallelEnv()
-        print("The current endpoint are %s" % env.current_endpoint)
-        # The current endpoint are 127.0.0.1:6170
-
+COPY-FROM: paddle.distributed.ParallelEnv.current_endpoint
 
 trainer_endpoints
 '''''''''
@@ -132,11 +72,4 @@ trainer_endpoints
 
 **代码示例**
 
-    .. code-block:: python
-
-        # execute this command in terminal: export PADDLE_TRAINER_ENDPOINTS=127.0.0.1:6170,127.0.0.1:6171
-        import paddle.distributed as dist
-
-        env = dist.ParallelEnv()
-        print("The trainer endpoints are %s" % env.trainer_endpoints)
-        # The trainer endpoints are ['127.0.0.1:6170', '127.0.0.1:6171']
+COPY-FROM: paddle.distributed.ParallelEnv.trainer_endpoints

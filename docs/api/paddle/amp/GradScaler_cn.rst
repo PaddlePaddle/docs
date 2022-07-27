@@ -36,23 +36,7 @@ GradScaler 用于动态图模式下的"自动混合精度"的训练。它控制 
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    model = paddle.nn.Conv2D(3, 2, 3, bias_attr=True)
-    optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
-    scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
-    data = paddle.rand([10, 3, 32, 32])
-
-    with paddle.amp.auto_cast():
-        conv = model(data)
-        loss = paddle.mean(conv)
-
-    scaled = scaler.scale(loss)  # scale the loss
-    scaled.backward()            # do backward
-    scaler.minimize(optimizer, scaled)  # update parameters
-    optimizer.clear_grad()
+COPY-FROM: paddle.amp.GradScaler
 
 
 scale(var)
@@ -71,23 +55,7 @@ scale(var)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    model = paddle.nn.Conv2D(3, 2, 3, bias_attr=True)
-    optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
-    scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
-    data = paddle.rand([10, 3, 32, 32])
-
-    with paddle.amp.auto_cast():
-        conv = model(data)
-        loss = paddle.mean(conv)
-
-    scaled = scaler.scale(loss)  # scale the loss
-    scaled.backward()            # do backward
-    scaler.minimize(optimizer, scaled)  # update parameters
-    optimizer.clear_grad()
+COPY-FROM: paddle.amp.GradScaler.scale
 
 minimize(optimizer, *args, **kwargs)
 '''''''''
@@ -104,23 +72,7 @@ minimize(optimizer, *args, **kwargs)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    model = paddle.nn.Conv2D(3, 2, 3, bias_attr=True)
-    optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
-    scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
-    data = paddle.rand([10, 3, 32, 32])
-
-    with paddle.amp.auto_cast():
-        conv = model(data)
-        loss = paddle.mean(conv)
-
-    scaled = scaler.scale(loss)  # scale the loss
-    scaled.backward()            # do backward
-    scaler.minimize(optimizer, scaled)  # update parameters
-    optimizer.clear_grad()
+COPY-FROM: paddle.amp.GradScaler.minimize
 
 step(optimizer)
 '''''''''
@@ -135,22 +87,7 @@ step(optimizer)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    model = paddle.nn.Conv2D(3, 2, 3, bias_attr=True)
-    optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
-    scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
-    data = paddle.rand([10, 3, 32, 32])
-    with paddle.amp.auto_cast():
-        conv = model(data)
-        loss = paddle.mean(conv)
-    scaled = scaler.scale(loss)  # scale the loss
-    scaled.backward()            # do backward
-    scaler.step(optimizer)       # update parameters
-    scaler.update()              # update the loss scaling ratio
-    optimizer.clear_grad()
+COPY-FROM: paddle.amp.GradScaler.step
 
 update()
 '''''''''
@@ -159,22 +96,7 @@ update()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    model = paddle.nn.Conv2D(3, 2, 3, bias_attr=True)
-    optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
-    scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
-    data = paddle.rand([10, 3, 32, 32])
-    with paddle.amp.auto_cast():
-        conv = model(data)
-        loss = paddle.mean(conv)
-    scaled = scaler.scale(loss)  # scale the loss
-    scaled.backward()            # do backward
-    scaler.step(optimizer)       # update parameters
-    scaler.update()              # update the loss scaling ratio
-    optimizer.clear_grad()
+COPY-FROM: paddle.amp.GradScaler.update
 
 unscale_(optimizer)
 '''''''''
@@ -188,23 +110,7 @@ unscale_(optimizer)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    model = paddle.nn.Conv2D(3, 2, 3, bias_attr=True)
-    optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
-    scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
-    data = paddle.rand([10, 3, 32, 32])
-    with paddle.amp.auto_cast():
-        conv = model(data)
-        loss = paddle.mean(conv)
-    scaled = scaler.scale(loss)  # scale the loss
-    scaled.backward()            # do backward
-    scaler.unscale_(optimizer)    # unscale the parameter
-    scaler.step(optimizer)
-    scaler.update()
-    optimizer.clear_grad()
+COPY-FROM: paddle.amp.GradScaler.unscale_
 
 is_enable()
 '''''''''
@@ -217,18 +123,7 @@ bool，采用 loss scaling 策略返回 True，否则返回 False。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    enable = scaler.is_enable()
-    print(enable) # True
+COPY-FROM: paddle.amp.GradScaler.is_enable
 
 is_use_dynamic_loss_scaling()
 '''''''''
@@ -241,18 +136,7 @@ bool，动态调节 loss scaling 缩放比例返回 True，否则返回 False。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    use_dynamic_loss_scaling = scaler.is_use_dynamic_loss_scaling()
-    print(use_dynamic_loss_scaling) # True
+COPY-FROM: paddle.amp.GradScaler.is_use_dynamic_loss_scaling
 
 get_init_loss_scaling()
 '''''''''
@@ -265,18 +149,7 @@ float，初始化的 loss scaling 缩放比例。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    init_loss_scaling = scaler.get_init_loss_scaling()
-    print(init_loss_scaling) # 1024
+COPY-FROM: paddle.amp.GradScaler.get_init_loss_scaling
 
 set_init_loss_scaling(new_init_loss_scaling)
 '''''''''
@@ -289,20 +162,7 @@ set_init_loss_scaling(new_init_loss_scaling)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    print(scaler.get_init_loss_scaling()) # 1024
-    new_init_loss_scaling = 1000
-    scaler.set_init_loss_scaling(new_init_loss_scaling)
-    print(scaler.get_init_loss_scaling()) # 1000
+COPY-FROM: paddle.amp.GradScaler.set_init_loss_scaling
 
 get_incr_ratio()
 '''''''''
@@ -315,18 +175,7 @@ float，增大 loss scaling 时使用的乘数。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    incr_ratio = scaler.get_incr_ratio()
-    print(incr_ratio) # 2.0
+COPY-FROM: paddle.amp.GradScaler.get_incr_ratio
 
 set_incr_ratio(new_incr_ratio)
 '''''''''
@@ -339,20 +188,7 @@ set_incr_ratio(new_incr_ratio)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    print(scaler.get_incr_ratio()) # 2.0
-    new_incr_ratio = 3.0
-    scaler.set_incr_ratio(new_incr_ratio)
-    print(scaler.get_incr_ratio()) # 3.0
+COPY-FROM: paddle.amp.GradScaler.set_incr_ratio
 
 get_decr_ratio()
 '''''''''
@@ -365,18 +201,7 @@ float，缩小 loss scaling 时使用的乘数。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    decr_ratio = scaler.get_decr_ratio()
-    print(decr_ratio) # 0.5
+COPY-FROM: paddle.amp.GradScaler.get_decr_ratio
 
 set_decr_ratio(new_decr_ratio)
 '''''''''
@@ -389,20 +214,7 @@ set_decr_ratio(new_decr_ratio)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    print(scaler.get_decr_ratio()) # 0.5
-    new_decr_ratio = 0.1
-    scaler.set_decr_ratio(new_decr_ratio)
-    print(scaler.get_decr_ratio()) # 0.1
+COPY-FROM: paddle.amp.GradScaler.set_decr_ratio
 
 get_incr_every_n_steps()
 '''''''''
@@ -415,18 +227,7 @@ int，参数 incr_every_n_steps。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    incr_every_n_steps = scaler.get_incr_every_n_steps()
-    print(incr_every_n_steps) # 1000
+COPY-FROM: paddle.amp.GradScaler.get_incr_every_n_steps
 
 set_incr_every_n_steps(new_incr_every_n_steps)
 '''''''''
@@ -439,20 +240,7 @@ set_incr_every_n_steps(new_incr_every_n_steps)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    print(scaler.get_incr_every_n_steps()) # 1000
-    new_incr_every_n_steps = 2000
-    scaler.set_incr_every_n_steps(new_incr_every_n_steps)
-    print(scaler.get_incr_every_n_steps()) # 2000
+COPY-FROM: paddle.amp.GradScaler.set_incr_every_n_steps
 
 get_decr_every_n_nan_or_inf()
 '''''''''
@@ -465,18 +253,7 @@ int，参数 decr_every_n_nan_or_inf。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    decr_every_n_nan_or_inf = scaler.get_decr_every_n_nan_or_inf()
-    print(decr_every_n_nan_or_inf) # 2
+COPY-FROM: paddle.amp.GradScaler.get_decr_every_n_nan_or_inf
 
 set_decr_every_n_nan_or_inf(new_decr_every_n_nan_or_inf)
 '''''''''
@@ -489,20 +266,7 @@ set_decr_every_n_nan_or_inf(new_decr_every_n_nan_or_inf)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    print(scaler.get_decr_every_n_nan_or_inf()) # 2
-    new_decr_every_n_nan_or_inf = 3
-    scaler.set_decr_every_n_nan_or_inf(new_decr_every_n_nan_or_inf)
-    print(scaler.get_decr_every_n_nan_or_inf()) # 3
+COPY-FROM: paddle.amp.GradScaler.set_decr_every_n_nan_or_inf
 
 state_dict()
 '''''''''
@@ -515,18 +279,7 @@ dict，字典存储的参数包括：scale(tensor):loss scaling 因子、incr_ra
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    scaler_state = scaler.state_dict()
+COPY-FROM: paddle.amp.GradScaler.state_dict
 
 load_state_dict(state_dict)
 '''''''''
@@ -539,16 +292,4 @@ load_state_dict(state_dict)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    scaler = paddle.amp.GradScaler(enable=True,
-                                   init_loss_scaling=1024,
-                                   incr_ratio=2.0,
-                                   decr_ratio=0.5,
-                                   incr_every_n_steps=1000,
-                                   decr_every_n_nan_or_inf=2,
-                                   use_dynamic_loss_scaling=True)
-    scaler_state = scaler.state_dict()
-    scaler.load_state_dict(scaler_state)
+COPY-FROM: paddle.amp.GradScaler.load_state_dict

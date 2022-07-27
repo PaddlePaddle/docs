@@ -14,31 +14,7 @@ BuildStrategy，一个 BuildStrategy 的实例。
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import os
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    os.environ['CPU_NUM'] = str(2)
-    places = static.cpu_places()
-
-    data = static.data(name="x", shape=[None, 1], dtype="float32")
-    hidden = static.nn.fc(x=data, size=10)
-    loss = paddle.mean(hidden)
-    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
-
-    build_strategy = static.BuildStrategy()
-    build_strategy.enable_inplace = True
-    build_strategy.memory_optimize = True
-    build_strategy.reduce_strategy = static.BuildStrategy.ReduceStrategy.Reduce
-    program = static.CompiledProgram(static.default_main_program())
-    program = program.with_data_parallel(loss_name=loss.name,
-                                        build_strategy=build_strategy,
-                                        places=places)
-
+COPY-FROM: paddle.static.BuildStrategy
 
 属性
 ::::::::::::
@@ -49,15 +25,7 @@ str 类型。表示以 graphviz 格式向文件中写入计算图的路径，有
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    build_strategy = static.BuildStrategy()
-    build_strategy.debug_graphviz_path = "./graph"
+COPY-FROM: paddle.static.BuildStrategy.debug_graphviz_path
 
 
 enable_sequential_execution
@@ -67,16 +35,7 @@ bool 类型。如果设置为 True，则算子的执行顺序将与算子定义�
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    build_strategy = static.BuildStrategy()
-    build_strategy.enable_sequential_execution = True
-
+COPY-FROM: paddle.static.BuildStrategy.enable_sequential_execution
 
 fuse_broadcast_ops
 '''''''''
@@ -85,16 +44,7 @@ bool 类型。表明是否融合(fuse) broadcast ops。该选项指在 Reduce �
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    build_strategy = static.BuildStrategy()
-    build_strategy.fuse_broadcast_ops = True
-
+COPY-FROM: paddle.static.BuildStrategy.fuse_broadcast_ops
 
 fuse_elewise_add_act_ops
 '''''''''
@@ -103,16 +53,7 @@ bool 类型。表明是否融合(fuse) elementwise_add_op 和 activation_op。�
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    build_strategy = static.BuildStrategy()
-    build_strategy.fuse_elewise_add_act_ops = True
-
+COPY-FROM: paddle.static.BuildStrategy.fuse_elewise_add_act_ops
 
 fuse_relu_depthwise_conv
 '''''''''
@@ -121,15 +62,7 @@ bool 类型。表明是否融合(fuse) relu 和 depthwise_conv2d，节省 GPU �
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    build_strategy = static.BuildStrategy()
-    build_strategy.fuse_relu_depthwise_conv = True
+COPY-FROM: paddle.static.BuildStrategy.fuse_relu_depthwise_conv
 
 gradient_scale_strategy
 '''''''''
@@ -138,53 +71,7 @@ gradient_scale_strategy
 
 **代码示例**
 
-.. code-block:: python
-
-    import numpy
-    import os
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    use_cuda = True
-    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
-    exe = static.Executor(place)
-
-    # NOTE: If you use CPU to run the program, you need
-    # to specify the CPU_NUM, otherwise, paddle will use
-    # all the number of the logic core as the CPU_NUM,
-    # in that case, the batch size of the input should be
-    # greater than CPU_NUM, if not, the process will be
-    # failed by an exception.
-    if not use_cuda:
-        os.environ['CPU_NUM'] = str(2)
-        places = static.cpu_places()
-    else:
-        places = static.cuda_places()
-
-    data = static.data(name='X', shape=[None, 1], dtype='float32')
-    hidden = static.nn.fc(x=data, size=10)
-    loss = paddle.mean(hidden)
-    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
-
-    exe.run(static.default_startup_program())
-
-    build_strategy = static.BuildStrategy()
-    build_strategy.gradient_scale_strategy = \
-            static.BuildStrategy.GradientScaleStrategy.Customized
-    compiled_prog = static.CompiledProgram(
-            static.default_main_program()).with_data_parallel(
-                    loss_name=loss.name, build_strategy=build_strategy,
-                    places=places)
-
-    dev_count =  len(places)
-    x = numpy.random.random(size=(10, 1)).astype('float32')
-    loss_grad = numpy.ones((dev_count)).astype("float32") * 0.01
-    loss_grad_name = loss.name+"@GRAD"
-    loss_data = exe.run(compiled_prog,
-                        feed={"X": x, loss_grad_name : loss_grad},
-                        fetch_list=[loss.name, loss_grad_name])
+COPY-FROM: paddle.static.BuildStrategy.gradient_scale_strategy
 
 memory_optimize
 '''''''''
@@ -199,15 +86,7 @@ reduce_strategy
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    build_strategy = static.BuildStrategy()
-    build_strategy.reduce_strategy = static.BuildStrategy.ReduceStrategy.Reduce
+COPY-FROM: paddle.static.BuildStrategy.reduce_strategy
 
 remove_unnecessary_lock
 '''''''''
@@ -216,16 +95,7 @@ bool 类型。设置 True 会去除 GPU 操作中的一些锁操作，``Parallel
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    build_strategy = static.BuildStrategy()
-    build_strategy.remove_unnecessary_lock = True
-
+COPY-FROM: paddle.static.BuildStrategy.remove_unnecessary_lock
 
 sync_batch_norm
 '''''''''
@@ -234,12 +104,4 @@ bool 类型。表示是否使用同步的批正则化，即在训练阶段通过
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    build_strategy = static.BuildStrategy()
-    build_strategy.sync_batch_norm = True
+COPY-FROM: paddle.static.BuildStrategy.sync_batch_norm

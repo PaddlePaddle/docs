@@ -40,50 +40,7 @@ ParallelExecutor
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy
-    import os
-
-    use_cuda = True
-    paddle.enable_static()
-    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
-
-    # 注意：如果你使用 CPU 运行程序，需要具体设置 CPU_NUM，
-    # 否则 PaddlePaddle 会把逻辑核的所有数目设为 CPU_NUM，
-    # 在这种情况下，输入的 batch size 应大于 CPU_NUM，
-    # 否则程序会异常中断。
-    if not use_cuda:
-        os.environ['CPU_NUM'] = str(2)
-
-    exe = paddle.static.Executor(place)
-
-    train_program = paddle.static.Program()
-    startup_program = paddle.static.Program()
-    with paddle.static.program_guard(train_program, startup_program):
-        data = paddle.static.data(name='X', shape=[None, 1], dtype='float32')
-        hidden = paddle.static.nn.fc(data, 10)
-        loss = paddle.mean(hidden)
-        test_program = paddle.static.default_main_program().clone(for_test=True)
-        paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
-
-    exe.run(startup_program)
-
-    train_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
-                                               main_program=train_program,
-                                               loss_name=loss.name)
-    # 注意：如果此处不设置 share_vars_from=train_exe，测试过程中用的参数与训练使用的参数是不一致
-    test_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
-                                              main_program=test_program,
-                                              share_vars_from=train_exe)
-
-    x = numpy.random.random(size=(10, 1)).astype('float32')
-    loss_data, = train_exe.run(feed={"X": x},
-                               fetch_list=[loss.name])
-
-    loss_data, = test_exe.run(feed={"X": x},
-                              fetch_list=[loss.name])
+COPY-FROM: paddle.static.ParallelExecutor
 
 方法
 ::::::::::::
@@ -109,52 +66,7 @@ run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
 
 **代码示例**
 
-.. code-block:: python
-    import paddle
-    import numpy
-    import os
-
-    use_cuda = True
-    paddle.enable_static()
-    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
-
-    # 注意：如果你使用 CPU 运行程序，需要具体设置 CPU_NUM，
-    # 否则 PaddlePaddle 会把逻辑核的所有数目设为 CPU_NUM，
-    # 在这种情况下，输入的 batch size 应大于 CPU_NUM，
-    # 否则程序会异常中断。
-    if not use_cuda:
-        os.environ['CPU_NUM'] = str(2)
-
-    exe = paddle.static.Executor(place)
-
-    train_program = paddle.static.Program()
-    startup_program = paddle.static.Program()
-    with paddle.static.program_guard(train_program, startup_program):
-        data = paddle.static.data(name='X', shape=[None, 1], dtype='float32')
-        hidden = paddle.static.nn.fc(data, 10)
-        loss = paddle.mean(hidden)
-        paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
-
-    exe.run(startup_program)
-
-    train_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
-                                               main_program=train_program,
-                                               loss_name=loss.name)
-    # 如果 feed 参数是 dict 类型：
-    # 图像会被 split 到设备中。假设有两个设备，那么每个设备将会处理形为 (5, 1)的图像
-    x = numpy.random.random(size=(10, 1)).astype('float32')
-    loss_data, = train_exe.run(feed={"X": x},
-                               fetch_list=[loss.name])
-
-    # 如果 feed 参数是 list 类型：
-    # 各设备挨个处理列表中的每个元素
-    # 第一个设备处理形为 (10, 1) 的图像
-    # 第二个设备处理形为 (9, 1) 的图像
-    #
-    # 使用 exe.device_count 得到设备数目
-    x2 = numpy.random.random(size=(9, 1)).astype('float32')
-    loss_data, = train_exe.run(feed=[{"X": x}, {"X": x2}],
-                               fetch_list=[loss.name])
+COPY-FROM: paddle.static.ParallelExecutor.run
 
 drop_local_exe_scopes()
 '''''''''
@@ -167,38 +79,4 @@ drop_local_exe_scopes()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import numpy
-    import os
-
-    use_cuda = True
-    # 注意：如果你使用 CPU 运行程序，需要具体设置 CPU_NUM，
-    # 否则 PaddlePaddle 会把逻辑核的所有数目设为 CPU_NUM，
-    # 在这种情况下，输入的 batch size 应大于 CPU_NUM，
-    # 否则程序会异常中断。
-    if not use_cuda:
-        os.environ['CPU_NUM'] = str(2)
-
-    paddle.enable_static()
-    train_program = paddle.static.Program()
-    startup_program = paddle.static.Program()
-    with paddle.static.program_guard(train_program, startup_program):
-        data = paddle.static.data(name='X', shape=[None, 1], dtype='float32')
-        hidden = paddle.static.nn.fc(data, 10)
-        loss = paddle.mean(hidden)
-
-    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
-    exe = paddle.static.Executor(place)
-    exe.run(startup_program)
-
-    parallel_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
-                                                  main_program=train_program,
-                                                  loss_name=loss.name)
-
-    x = numpy.random.random(size=(10, 1)).astype('float32')
-    loss_data, = parallel_exe.run(feed={"X": x},
-                                  fetch_list=[loss.name])
-
-    parallel_exe.drop_local_exe_scopes()
+COPY-FROM: paddle.static.ParallelExecutor.drop_local_exe_scopes

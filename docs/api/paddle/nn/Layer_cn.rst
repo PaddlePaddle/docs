@@ -28,27 +28,7 @@ train()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class MyLayer(paddle.nn.Layer):
-        def __init__(self):
-            super(MyLayer, self).__init__()
-            self._linear = paddle.nn.Linear(1, 1)
-            self._dropout = paddle.nn.Dropout(p=0.5)
-
-        def forward(self, input):
-            temp = self._linear(input)
-            temp = self._dropout(temp)
-            return temp
-
-    x = paddle.randn([10, 1], 'float32')
-    mylayer = MyLayer()
-    mylayer.eval()  # set mylayer._dropout to eval mode
-    out = mylayer(x)
-    mylayer.train()  # set mylayer._dropout to train mode
-    out = mylayer(x)
+COPY-FROM: paddle.nn.Layer
 
 eval()
 '''''''''
@@ -60,26 +40,7 @@ eval()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class MyLayer(paddle.nn.Layer):
-        def __init__(self):
-            super(MyLayer, self).__init__()
-            self._linear = paddle.nn.Linear(1, 1)
-            self._dropout = paddle.nn.Dropout(p=0.5)
-
-        def forward(self, input):
-            temp = self._linear(input)
-            temp = self._dropout(temp)
-            return temp
-
-    x = paddle.randn([10, 1], 'float32')
-    mylayer = MyLayer()
-    mylayer.eval()  # set mylayer._dropout to eval mode
-    out = mylayer(x)
-    print(out)
+COPY-FROM: paddle.nn.Layer.eval
 
 full_name()
 '''''''''
@@ -91,20 +52,7 @@ str， Layer 的全名
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class LinearNet(paddle.nn.Layer):
-        def __init__(self):
-            super(LinearNet, self).__init__(name_scope = "demo_linear_net")
-            self._linear = paddle.nn.Linear(1, 1)
-
-        def forward(self, x):
-            return self._linear(x)
-
-    linear_net = LinearNet()
-    print(linear_net.full_name())   # demo_linear_net_0
+COPY-FROM: paddle.nn.Layer.full_name
 
 register_forward_pre_hook(hook)
 '''''''''
@@ -124,33 +72,7 @@ HookRemoveHelper，可通过调用 ``hook_remove_helper.remove()`` 来删除注�
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    # the forward_post_hook change the input of the layer: input = input * 2
-    def forward_pre_hook(layer, input):
-        # user can use layer and input for information statistis tasks
-        # change the input
-        input_return = (input[0] * 2)
-        return input_return
-
-    linear = paddle.nn.Linear(13, 5)
-    # register the hook
-    forward_pre_hook_handle = linear.register_forward_pre_hook(forward_pre_hook)
-    value0 = np.arange(26).reshape(2, 13).astype("float32")
-    in0 = paddle.to_tensor(value0)
-    out0 = linear(in0)
-
-    # remove the hook
-    forward_pre_hook_handle.remove()
-    value1 = value0 * 2
-    in1 = paddle.to_tensor(value1)
-    out1 = linear(in1)
-
-    # hook change the linear's input to input * 2, so out0 is equal to out1.
-    assert (out0.numpy() == out1.numpy()).any()
+COPY-FROM: paddle.nn.Layer.register_forward_pre_hook
 
 register_forward_post_hook(hook)
 '''''''''
@@ -170,30 +92,7 @@ HookRemoveHelper，可通过调用 ``hook_remove_helper.remove()`` 来删除注�
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    # the forward_post_hook change the output of the layer: output = output * 2
-    def forward_post_hook(layer, input, output):
-        # user can use layer, input and output for information statistis tasks
-        # change the output
-        return output * 2
-
-    linear = paddle.nn.Linear(13, 5)
-    # register the hook
-    forward_post_hook_handle = linear.register_forward_post_hook(forward_post_hook)
-    value1 = np.arange(26).reshape(2, 13).astype("float32")
-    in1 = paddle.to_tensor(value1)
-    out0 = linear(in1)
-
-    # remove the hook
-    forward_post_hook_handle.remove()
-    out1 = linear(in1)
-
-    # hook change the linear's output to output * 2, so out0 is equal to out1 * 2.
-    assert (out0.numpy() == (out1.numpy()) * 2).any()
+COPY-FROM: paddle.nn.Layer.register_forward_post_hook
 
 create_parameter(shape, attr=None, dtype="float32", is_bias=False, default_initializer=None)
 '''''''''
@@ -213,23 +112,7 @@ Tensor，创建的参数变量
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class MyLayer(paddle.nn.Layer):
-        def __init__(self):
-            super(MyLayer, self).__init__()
-            self._linear = paddle.nn.Linear(1, 1)
-            w_tmp = self.create_parameter([1,1])
-            self.add_parameter("w_tmp", w_tmp)
-
-        def forward(self, input):
-            return self._linear(input)
-
-    mylayer = MyLayer()
-    for name, param in mylayer.named_parameters():
-        print(name, param)      # will print w_tmp,_linear.weight,_linear.bias
+COPY-FROM: paddle.nn.Layer.create_parameter
 
 create_variable(name=None, persistable=None, dtype=None)
 '''''''''
@@ -247,24 +130,7 @@ Tensor，返回创建的 ``Tensor``
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class MyLinear(paddle.nn.Layer):
-        def __init__(self,
-                    in_features,
-                    out_features):
-            super(MyLinear, self).__init__()
-            self.linear = paddle.nn.Linear( 10, 10)
-
-            self.back_var = self.create_variable(name = "linear_tmp_0", dtype=self._dtype)
-
-        def forward(self, input):
-            out = self.linear(input)
-            paddle.assign( out, self.back_var)
-
-            return out
+COPY-FROM: paddle.nn.Layer.create_variable
 
 create_tensor(name=None, persistable=None, dtype=None)
 '''''''''
@@ -282,25 +148,7 @@ Tensor，返回创建的 ``Tensor``
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class MyLinear(paddle.nn.Layer):
-        def __init__(self,
-                    in_features,
-                    out_features):
-            super(MyLinear, self).__init__()
-            self.linear = paddle.nn.Linear( 10, 10)
-
-            self.back_var = self.create_tensor(name = "linear_tmp_0", dtype=self._dtype)
-
-        def forward(self, input):
-            out = self.linear(input)
-            paddle.assign( out, self.back_var)
-
-            return out
-
+COPY-FROM: paddle.nn.Layer.create_tensor
 
 parameters(include_sublayers=True)
 '''''''''
@@ -316,12 +164,7 @@ list，一个由当前层及其子层的所有参数组成的列表，列表中�
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    linear = paddle.nn.Linear(1,1)
-    print(linear.parameters())  # print linear_0.w_0 and linear_0.b_0
+COPY-FROM: paddle.nn.Layer.parameters
 
 children()
 '''''''''
@@ -333,17 +176,7 @@ iterator，子层的迭代器。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    linear1 = paddle.nn.Linear(10, 3)
-    linear2 = paddle.nn.Linear(3, 10, bias_attr=False)
-    model = paddle.nn.Sequential(linear1, linear2)
-
-    layer_list = list(model.children())
-
-    print(layer_list)   # [<paddle.nn.layer.common.Linear object at 0x7f7b8113f830>, <paddle.nn.layer.common.Linear object at 0x7f7b8113f950>]
+COPY-FROM: paddle.nn.Layer.children
 
 named_children()
 '''''''''
@@ -355,17 +188,7 @@ iterator，产出子层名称和子层的元组的迭代器。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    linear1 = paddle.nn.Linear(10, 3)
-    linear2 = paddle.nn.Linear(3, 10, bias_attr=False)
-    model = paddle.nn.Sequential(linear1, linear2)
-    for prefix, layer in model.named_children():
-        print(prefix, layer)
-        # ('0', <paddle.nn.layer.common.Linear object at 0x7fb61ed85830>)
-        # ('1', <paddle.nn.layer.common.Linear object at 0x7fb61ed85950>)
+COPY-FROM: paddle.nn.Layer.named_children
 
 sublayers(include_self=False)
 '''''''''
@@ -381,23 +204,7 @@ sublayers(include_self=False)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class MyLayer(paddle.nn.Layer):
-        def __init__(self):
-            super(MyLayer, self).__init__()
-            self._linear = paddle.nn.Linear(1, 1)
-            self._dropout = paddle.nn.Dropout(p=0.5)
-
-        def forward(self, input):
-            temp = self._linear(input)
-            temp = self._dropout(temp)
-            return temp
-
-    mylayer = MyLayer()
-    print(mylayer.sublayers())  # [<paddle.nn.layer.common.Linear object at 0x7f44b58977d0>, <paddle.nn.layer.common.Dropout object at 0x7f44b58978f0>]
+COPY-FROM: paddle.nn.Layer.sublayers
 
 clear_gradients()
 '''''''''
@@ -409,20 +216,7 @@ clear_gradients()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    value = np.arange(26).reshape(2, 13).astype("float32")
-    a = paddle.to_tensor(value)
-    linear = paddle.nn.Linear(13, 5)
-    adam = paddle.optimizer.Adam(learning_rate=0.01,
-                                parameters=linear.parameters())
-    out = linear(a)
-    out.backward()
-    adam.step()
-    linear.clear_gradients()
+COPY-FROM: paddle.nn.Layer.clear_gradients
 
 named_parameters(prefix='', include_sublayers=True)
 '''''''''
@@ -439,15 +233,7 @@ iterator，产出名称和参数的元组的迭代器。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    fc1 = paddle.nn.Linear(10, 3)
-    fc2 = paddle.nn.Linear(3, 10, bias_attr=False)
-    model = paddle.nn.Sequential(fc1, fc2)
-    for name, param in model.named_parameters():
-        print(name, param)
+COPY-FROM: paddle.nn.Layer.named_parameters
 
 named_sublayers(prefix='', include_self=False, layers_set=None)
 '''''''''
@@ -465,15 +251,7 @@ iterator，产出名称和子层的元组的迭代器。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    fc1 = paddle.nn.Linear(10, 3)
-    fc2 = paddle.nn.Linear(3, 10, bias_attr=False)
-    model = paddle.nn.Sequential(fc1, fc2)
-    for prefix, layer in model.named_sublayers():
-        print(prefix, layer)
+COPY-FROM: paddle.nn.Layer.named_sublayers
 
 register_buffer(name, tensor, persistable=True)
 '''''''''
@@ -495,17 +273,7 @@ None
 
 **代码示例**
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-
-    linear = paddle.nn.Linear(10, 3)
-    value = np.array([0]).astype("float32")
-    buffer = paddle.to_tensor(value)
-    linear.register_buffer("buf_name", buffer, persistable=True)
-    # get the buffer by attribute.
-    print(linear.buf_name)
+COPY-FROM: paddle.nn.Layer.register_buffer
 
 buffers(include_sublayers=True)
 '''''''''
@@ -521,17 +289,7 @@ list，一个由当前层及其子层的所有 buffers 组成的列表，列表�
 
 **代码示例**
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-
-    linear = paddle.nn.Linear(10, 3)
-    value = np.array([0]).astype("float32")
-    buffer = paddle.to_tensor(value)
-    linear.register_buffer("buf_name", buffer, persistable=True)
-
-    print(linear.buffers())     # == print([linear.buf_name])
+COPY-FROM: paddle.nn.Layer.buffers
 
 named_buffers(prefix='', include_sublayers=True)
 '''''''''
@@ -548,27 +306,7 @@ iterator，产出名称和 buffer 的元组的迭代器。
 
 **代码示例**
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-
-    fc1 = paddle.nn.Linear(10, 3)
-    buffer1 = paddle.to_tensor(np.array([0]).astype("float32"))
-    # register a tensor as buffer by specific `persistable`
-    fc1.register_buffer("buf_name_1", buffer1, persistable=True)
-
-    fc2 = paddle.nn.Linear(3, 10)
-    buffer2 = paddle.to_tensor(np.array([1]).astype("float32"))
-    # register a buffer by assigning an attribute with Tensor.
-    # The `persistable` can only be False by this way.
-    fc2.buf_name_2 = buffer2
-
-    model = paddle.nn.Sequential(fc1, fc2)
-
-    # get all named buffers
-    for name, buffer in model.named_buffers():
-        print(name, buffer)
+COPY-FROM: paddle.nn.Layer.named_buffers
 
 forward(*inputs, **kwargs)
 '''''''''
@@ -598,31 +336,7 @@ Layer，添加的子层
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class MySequential(paddle.nn.Layer):
-        def __init__(self, *layers):
-            super(MySequential, self).__init__()
-            if len(layers) > 0 and isinstance(layers[0], tuple):
-                for name, layer in layers:
-                    self.add_sublayer(name, layer)
-            else:
-                for idx, layer in enumerate(layers):
-                    self.add_sublayer(str(idx), layer)
-
-        def forward(self, input):
-            for layer in self._sub_layers.values():
-                input = layer(input)
-            return input
-
-    fc1 = paddle.nn.Linear(10, 3)
-    fc2 = paddle.nn.Linear(3, 10, bias_attr=False)
-    model = MySequential(fc1, fc2)
-    for prefix, layer in model.named_sublayers():
-        print(prefix, layer)
-
+COPY-FROM: paddle.nn.Layer.add_sublayer
 
 add_parameter(name, parameter)
 '''''''''
@@ -639,24 +353,7 @@ Parameter，传入的参数实例
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class MyLayer(paddle.nn.Layer):
-        def __init__(self):
-            super(MyLayer, self).__init__()
-            self._linear = paddle.nn.Linear(1, 1)
-            w_tmp = self.create_parameter([1,1])
-            self.add_parameter("w_tmp", w_tmp)
-
-        def forward(self, input):
-            return self._linear(input)
-
-    mylayer = MyLayer()
-    for name, param in mylayer.named_parameters():
-        print(name, param)      # will print w_tmp,_linear.weight,_linear.bias
-
+COPY-FROM: paddle.nn.Layer.add_parameter
 
 state_dict(destination=None, include_sublayers=True, use_hook=True)
 '''''''''
@@ -674,14 +371,7 @@ dict，包含所有参数和可持久行 buffers 的 dict
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    emb = paddle.nn.Embedding(10, 10)
-
-    state_dict = emb.state_dict()
-    paddle.save( state_dict, "paddle_dy.pdparams")
+COPY-FROM: paddle.nn.Layer.state_dict
 
 set_state_dict(state_dict, use_structured_name=True)
 '''''''''
@@ -698,16 +388,7 @@ set_state_dict(state_dict, use_structured_name=True)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    emb = paddle.nn.Embedding(10, 10)
-
-    state_dict = emb.state_dict()
-    paddle.save(state_dict, "paddle_dy.pdparams")
-    para_state_dict = paddle.load("paddle_dy.pdparams")
-    emb.set_state_dict(para_state_dict)
+COPY-FROM: paddle.nn.Layer.set_state_dict
 
 to(device=None, dtype=None, blocking=None)
 '''''''''
@@ -722,30 +403,4 @@ to(device=None, dtype=None, blocking=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    linear=paddle.nn.Linear(2, 2)
-    linear.weight
-    #Parameter containing:
-    #Tensor(shape=[2, 2], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
-    #       [[-0.32770029,  0.38653070],
-    #        [ 0.46030545,  0.08158520]])
-
-    linear.to(dtype='float64')
-    linear.weight
-    #Tenor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=False,
-    #       [[-0.32770029,  0.38653070],
-    #        [ 0.46030545,  0.08158520]])
-
-    linear.to(device='cpu')
-    linear.weight
-    #Tensor(shape=[2, 2], dtype=float64, place=CPUPlace, stop_gradient=False,
-    #       [[-0.32770029,  0.38653070],
-    #        [ 0.46030545,  0.08158520]])
-    linear.to(device=paddle.CUDAPinnedPlace(), blocking=False)
-    linear.weight
-    #Tensor(shape=[2, 2], dtype=float64, place=CUDAPinnedPlace, stop_gradient=False,
-    #       [[-0.04989364, -0.56889004],
-    #        [ 0.33960250,  0.96878713]])
+COPY-FROM: paddle.nn.Layer.to
