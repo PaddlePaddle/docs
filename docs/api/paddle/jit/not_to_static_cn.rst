@@ -37,4 +37,3 @@ callable，一个在动转静过程不会进行代码转写的函数。
     x = paddle.ones([1, 2], dtype='float32')
     out = func(x)
     print(out) # [[2. 2.]]
-

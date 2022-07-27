@@ -308,6 +308,3 @@ list_dirs(fs_path)
 
     client = HDFSClient(hadoop_home, configs)
     subdirs = client.list_dirs("hdfs:/test_hdfs_client")
-
-
-

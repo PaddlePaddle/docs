@@ -87,4 +87,3 @@ API Reference: :ref:`api_fluid_optimizer_FtrlOptimizer`
 :code:`ModelAverage` Optimizer accumulates history parameters through sliding window during the model training. We use averaged parameters at inference time to upgrade general accuracy of inference.
 
 API Reference: :ref:`api_fluid_optimizer_ModelAverage`
-

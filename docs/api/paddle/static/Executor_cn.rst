@@ -313,4 +313,3 @@ train_from_dataset将销毁每次运行在executor中创建的所有资源。
     exe.run(paddle.static.default_startup_program())
     exe.train_from_dataset(program=paddle.static.default_main_program(),
                            dataset=dataset)
-

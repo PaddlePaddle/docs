@@ -50,8 +50,3 @@ string
         server_endpoints=["127.0.0.1:36011", "127.0.0.1:36012"])
 
     role.to_string()
-
-
-
-
-

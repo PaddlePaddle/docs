@@ -86,5 +86,3 @@ fused_multi_head_attention 算子目前只支持在GPU下运行，其包含的�
 :::::::::
 
 COPY-FROM: paddle.incubate.nn.functional.fused_multi_head_attention
-
-

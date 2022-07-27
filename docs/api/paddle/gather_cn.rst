@@ -50,4 +50,3 @@ gather
     index = paddle.to_tensor(index_1)
     output = paddle.gather(input, index, axis=0)
     # expected output: [[1,2],[3,4]]
-

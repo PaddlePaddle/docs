@@ -88,5 +88,3 @@ API Reference 请参考 :ref:`cn_api_fluid_optimizer_FtrlOptimizer`
 :code:`ModelAverage` 优化器，在训练中通过窗口来累计历史 parameter，在预测时使用取平均值后的paramet，整体提高预测的精度。
 
 API Reference 请参考 :ref:`cn_api_fluid_optimizer_ModelAverage`
-
-

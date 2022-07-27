@@ -75,4 +75,3 @@ Tensor|list(Tensor)|tuple(Tensor)，如果 ``pred`` 是 ``True``，该API返回 
     # ret[0] = [[1 1]]
     # ret[1] = [[ True  True  True]
     #           [ True  True  True]]
-

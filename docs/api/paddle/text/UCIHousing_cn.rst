@@ -46,4 +46,3 @@ UCIHousing
         model = SimpleNet()
         feature, target = model(feature, target)
         print(feature.numpy().shape, target.numpy())
-

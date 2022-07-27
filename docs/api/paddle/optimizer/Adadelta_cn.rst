@@ -241,4 +241,3 @@ float，当前步骤的学习率。
         lr = adadelta.get_lr()
         scheduler.step()
         np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
-

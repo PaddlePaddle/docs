@@ -749,4 +749,3 @@ to(device=None, dtype=None, blocking=None)
     #Tensor(shape=[2, 2], dtype=float64, place=CUDAPinnedPlace, stop_gradient=False,
     #       [[-0.04989364, -0.56889004],
     #        [ 0.33960250,  0.96878713]])
-

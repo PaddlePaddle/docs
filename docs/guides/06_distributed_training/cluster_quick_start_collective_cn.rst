@@ -250,4 +250,3 @@
             train_with_fleet.py
 
 相关启动问题，可参考 `paddle.distributed.launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html#launch>`_。
-

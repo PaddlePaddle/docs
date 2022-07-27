@@ -175,4 +175,3 @@ We recommend the best memory optimization strategy as:
 - Enable Inplace strategy:set :code:`build_strategy.enable_inplace = True`, and set variables in fetch_list to persistable using :code:`var.persistable = True` when the version of PaddlePaddle < 1.6.
 
 **Since version 1.6+, the above optimal strategy have been enabled by default and setting variables in fetch_list to persistable is not needed.**
-

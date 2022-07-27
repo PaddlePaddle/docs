@@ -59,4 +59,3 @@ API Reference 请参考 :ref:`cn_api_fluid_nets_glu`
 该模块广泛使用在 `机器翻译 <https://zh.wikipedia.org/zh/机器翻译>`_ 的模型中，比如 `Transformer <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/neural_machine_translation/transformer>`_ 。
 
 API Reference 请参考 :ref:`cn_api_fluid_nets_scaled_dot_product_attention`
-

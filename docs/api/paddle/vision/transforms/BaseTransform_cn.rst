@@ -106,4 +106,3 @@ BaseTransform
     flip_transform = CustomRandomFlip(1.0, keys=('image', 'boxes', 'mask'))
     (converted_img, converted_boxes, converted_mask) = flip_transform((fake_img, fake_boxes, fake_mask))
     print('converted boxes', converted_boxes)
-

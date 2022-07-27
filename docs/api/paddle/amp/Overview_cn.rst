@@ -58,5 +58,3 @@ AMP相关API
     "sigmoid_cross_entropy_with_logits", "按元素的概率误差"
     "cross_entropy", "交叉熵"
     "cross_entropy2", "交叉熵"
-
-

@@ -148,5 +148,3 @@ set_lr(value)
 .. note::
 
 该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
-
-

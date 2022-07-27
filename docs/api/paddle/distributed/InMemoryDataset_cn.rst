@@ -512,6 +512,3 @@ slots_shuffle(slots)
     dataset.set_filelist(filelist)
     dataset.load_into_memory()
     dataset.slots_shuffle(['slot1'])
-
-
-

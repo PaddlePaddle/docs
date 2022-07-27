@@ -25,4 +25,3 @@
     model_cn.ipynb
     train_eval_predict_cn.rst
     model_save_load_cn.rst
-

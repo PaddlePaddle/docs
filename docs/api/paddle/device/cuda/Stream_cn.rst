@@ -121,4 +121,3 @@ record_event(event=None)
     import paddle
     s = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
     event = s.record_event()
-

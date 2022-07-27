@@ -59,4 +59,3 @@ Note:
     instance_norm_out = instance_norm(x)
 
     print(instance_norm_out)
-

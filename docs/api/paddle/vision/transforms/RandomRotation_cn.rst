@@ -54,4 +54,3 @@ RandomRotate
 
     fake_img = transform(fake_img)
     print(fake_img.size)
-

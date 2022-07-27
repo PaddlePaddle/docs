@@ -202,4 +202,3 @@ drop_local_exe_scopes()
                                   fetch_list=[loss.name])
 
     parallel_exe.drop_local_exe_scopes()
-

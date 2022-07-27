@@ -171,4 +171,3 @@ Tensor或至少包含一个Tensor的list/tuple
     data.stop_gradient = False
     # run custom Layer.
     z = cus_tanh.apply(data, func1=paddle.tanh)
-

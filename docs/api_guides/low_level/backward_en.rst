@@ -20,4 +20,3 @@ We do not recommend directly calling backpropagation-related APIs in  :code:`flu
 
 If you want to implement it by yourself, you can also use: :code:`callback` in :ref:`api_fluid_backward_append_backward` to define the customized gradient form of Operator.
 For more information, please refer to: :ref:`api_fluid_backward_append_backward`
-

@@ -84,5 +84,3 @@ Tensor, input映射后得到的Embedding Tensor，数据类型和词嵌入的定
    out=embedding(x)
    out.backward()
    adam.step()
-
-

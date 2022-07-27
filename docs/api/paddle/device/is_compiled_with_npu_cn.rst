@@ -15,4 +15,3 @@ bool，支持NPU则为True，否则为False。
 ::::::::::::
 
 COPY-FROM: paddle.device.is_compiled_with_npu
-

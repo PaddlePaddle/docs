@@ -53,4 +53,3 @@ Tensor经过展平并拼接后的形状为 ``(B, N)``，则最终输出雅可比
 :::::::::
 
 COPY-FROM: paddle.incubate.autograd.Jacobian
-

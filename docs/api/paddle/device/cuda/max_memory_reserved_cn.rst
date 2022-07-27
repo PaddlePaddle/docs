@@ -23,5 +23,3 @@ max_memory_reserved
 ::::::::
 
 COPY-FROM: paddle.device.cuda.max_memory_reserved
-
-

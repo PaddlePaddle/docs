@@ -77,4 +77,3 @@ paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的API�
 
     " :ref:`BatchSampler <cn_api_io_cn_BatchSampler>` ", "批采样器接口"
     " :ref:`DistributedBatchSampler <cn_api_io_cn_DistributedBatchSampler>` ", "分布式批采样器接口, 用于分布式多卡场景"
-

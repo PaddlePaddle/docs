@@ -37,4 +37,3 @@ rotate
 
     rotated_img = F.rotate(fake_img, 90)
     print(rotated_img.size)
-

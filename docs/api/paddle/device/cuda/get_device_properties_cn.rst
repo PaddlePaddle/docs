@@ -24,5 +24,3 @@ _gpuDeviceProperties：设备属性，包括标识设备的ASCII字符串、设�
 ::::::::
 
 COPY-FROM: paddle.device.cuda.get_device_properties
-
-

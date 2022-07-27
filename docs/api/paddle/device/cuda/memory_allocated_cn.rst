@@ -26,5 +26,3 @@ memory_allocated
 ::::::::
 
 COPY-FROM: paddle.device.cuda.memory_allocated
-
-

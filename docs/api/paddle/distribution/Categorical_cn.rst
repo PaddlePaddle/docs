@@ -232,4 +232,3 @@ log_prob(value)
     value = paddle.to_tensor([2,1,3])
     cat.log_prob(value)
     # [-5.10271 -2.22287 -1.31061]
-

@@ -172,5 +172,3 @@ GroupSharded 结合 amp （O2) + recompute，可以在 8 张 40GB A100 并行的
   [2022-05-18 09:35:15,566] [    INFO] - global step 4, epoch: 0, batch: 3, loss: 11.052285194, avg_reader_cost: 0.00022 sec, avg_batch_cost: 0.13303 sec, speed: 7.52 step/s, ips: 61579 tokens/s, learning rate: 2.34375e-07
   [2022-05-18 09:35:15,722] [    INFO] - global step 5, epoch: 0, batch: 4, loss: 11.028432846, avg_reader_cost: 0.00036 sec, avg_batch_cost: 0.15526 sec, speed: 6.44 step/s, ips: 52764 tokens/s, learning rate: 2.81250e-07
   [2022-05-18 09:35:15,880] [    INFO] - global step 6, epoch: 0, batch: 5, loss: 11.032807350, avg_reader_cost: 0.00021 sec, avg_batch_cost: 0.15763 sec, speed: 6.34 step/s, ips: 51971 tokens/s, learning rate: 3.28125e-07
-
-

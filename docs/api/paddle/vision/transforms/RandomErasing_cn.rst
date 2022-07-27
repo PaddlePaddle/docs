@@ -40,4 +40,3 @@ RandomErasing
     result = transform(fake_img)
 
     print(result)
-

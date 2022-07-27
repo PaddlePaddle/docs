@@ -62,12 +62,3 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
 代码示例
 :::::::::
 COPY-FROM: paddle.static.nn.sequence_expand_as
-
-
-
-
-
-
-
-
-

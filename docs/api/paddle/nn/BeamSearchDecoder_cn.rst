@@ -184,4 +184,3 @@ finalize(outputs, final_states, sequence_lengths)
 **返回**
 
 tuple，一个元组 :code:`(predicted_ids, final_states)`。:code:`predicted_ids` 是一个Tensor，形状为 :math:`[time\_step，batch\_size,beam\_size]`，数据类型为int64。:code:`final_states` 与输入参数 :code:`final_states` 相同。
-

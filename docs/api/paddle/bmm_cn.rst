@@ -29,4 +29,3 @@ Tensor，矩阵相乘后的结果。
 :::::::::
 
 COPY-FROM: paddle.bmm
-

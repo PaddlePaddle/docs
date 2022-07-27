@@ -438,4 +438,3 @@ from_dataset(dataset, places, drop_last=True)
     dataset.set_filelist(['a.txt', 'b.txt', 'c.txt'])
 
     loader = paddle.io.DataLoader.from_dataset(dataset, static.cpu_places())
-

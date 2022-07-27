@@ -86,4 +86,3 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 +-------------------------------+-------------------------------------------------------+
 | paddle.sparse                 | The Sparse domain API.                                |
 +-------------------------------+-------------------------------------------------------+
-

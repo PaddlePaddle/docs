@@ -69,4 +69,3 @@ Paddle提供了传统纯 CPU 参数服务器、纯 GPU 参数服务器以及异�
 * Yulong Ao, Zhihua Wu, Dianhai Yu, Weibao Gong, Zhiqing Kui, Minxu Zhang, Zilingfeng Ye, Liang Shen, Yanjun Ma, Tian Wu, Haifeng Wang, Wei Zeng, Chao Yang. `End-to-end Adaptive Distributed Training on PaddlePaddle <https://arxiv.org/abs/2112.02752>`__ .
 
 * Yang Xiang, Zhihua Wu, Weibao Gong, Siyu Ding, Xianjie Mo, Yuang Liu, Shuohuan Wang, Peng Liu, Yongshuai Hou, Long Li, Bin Wang, Shaohuai Shi, Yaqian Han, Yue Yu, Ge Li, Yu Sun, Yanjun Ma, Dianhai Yu. `Nebula-I: A General Framework for Collaboratively Training Deep Learning Models on Low-Bandwidth Cloud Clusters <https://arxiv.org/abs/2205.09470>`__ .
-

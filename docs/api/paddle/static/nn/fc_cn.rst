@@ -118,5 +118,3 @@ Tensor，形状为 :math:`[batch\_size, *, size]`，数据类型与输入Tensor�
         weight_attr=paddle.ParamAttr(initializer=paddle.nn.initializer.Constant(value=0.5)),
         bias_attr=paddle.ParamAttr(initializer=paddle.nn.initializer.Constant(value=1.0)))
     # out: [[1.8 1.8]]
-
-

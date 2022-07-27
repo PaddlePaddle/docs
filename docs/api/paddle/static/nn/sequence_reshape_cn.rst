@@ -46,12 +46,3 @@ sequence_reshape
 :::::::::
 
 COPY-FROM: paddle.static.nn.sequence_reshape
-
-
-
-
-
-
-
-
-

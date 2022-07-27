@@ -19,5 +19,3 @@ SortedKeys枚举类用来指定打印的统计 :ref:`表单 <cn_api_profiler_pro
     - **SortedKeys.GPUAvg**  - 按活动的GPU平均时间排序。
     - **SortedKeys.GPUMax**  - 按活动的GPU上最大时间排序。
     - **SortedKeys.GPUMin**  - 按活动的GPU上最小时间排序。
-
-

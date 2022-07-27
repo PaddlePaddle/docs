@@ -55,12 +55,3 @@ sequence_last_step
 代码示例
 :::::::::
 COPY-FROM: paddle.static.nn.sequence_last_step
-
-
-
-
-
-
-
-
-

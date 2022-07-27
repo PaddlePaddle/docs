@@ -59,4 +59,3 @@ sequence_softmax
 ::::::::::::
 
 COPY-FROM: paddle.static.nn.sequence_softmax
-

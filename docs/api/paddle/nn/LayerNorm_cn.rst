@@ -53,4 +53,3 @@ LayerNorm
     layer_norm_out = layer_norm(x)
 
     print(layer_norm_out)
-

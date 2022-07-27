@@ -103,4 +103,3 @@ inverse_shape(shape)
 **返回**
 
 - Sequence[int] - 逆变换输出的形状。
-

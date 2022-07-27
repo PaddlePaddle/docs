@@ -99,5 +99,3 @@ OCR
 * roi_perspective_transform：对输入roi做透视变换。API Reference 请参考 :ref:`cn_api_fluid_layers_roi_perspective_transform`
 
 * polygon_box_transform：对不规则检测框进行坐标变换。API Reference 请参考 :ref:`cn_api_fluid_layers_polygon_box_transform`
-
-

@@ -29,4 +29,3 @@ list[paddle.device.MLUPlace]，创建的 ``paddle.device.MLUPlace`` 列表。
 代码示例
 :::::::::
 COPY-FROM: paddle.static.mlu_places
-

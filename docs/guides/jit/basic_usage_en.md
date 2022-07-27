@@ -471,4 +471,3 @@ class SimpleNet(paddle.nn.Layer):
 总结一下 ``buffers`` 的用法：
 
 +  若某个非 ``Tensor`` 数据需要当做 ``Persistable`` 的变量序列化到磁盘，则最好在 ``__init__`` 中调用 ``self.XX= paddle.to_tensor(xx)`` 接口转为 ``buffer`` 变量
-

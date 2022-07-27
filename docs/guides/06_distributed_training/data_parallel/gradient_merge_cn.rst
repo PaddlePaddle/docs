@@ -44,4 +44,3 @@ size 训练效果的目的。具体来说，就是使用若干原有大小的bat
        if batch_id % k == 0:
            optimizer.minimize(avg_loss)
            model.clear_gradients()
-

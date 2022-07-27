@@ -473,4 +473,3 @@ sharding_configs
       "sharding_degree": 2,
       "gradient_merge_acc_step": 4,
       }
-

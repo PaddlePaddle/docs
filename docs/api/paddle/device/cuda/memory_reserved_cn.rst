@@ -23,5 +23,3 @@ memory_reserved
 ::::::::
 
 COPY-FROM: paddle.device.cuda.memory_reserved
-
-

@@ -788,5 +788,3 @@ minimize(loss, startup_program=None, parameter_list=None, no_grad_set=None)
 ::::::::::::
 util
 '''''''''
-
-

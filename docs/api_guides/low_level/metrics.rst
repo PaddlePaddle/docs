@@ -48,4 +48,3 @@
 - 编辑距离: :code:`EditDistance` ，用来衡量两个字符串的相似度。可以参考文档 `Edit_distance <https://en.wikipedia.org/wiki/Edit_distance>`_。
 
   API Reference 请参考 :ref:`cn_api_fluid_metrics_EditDistance`
-

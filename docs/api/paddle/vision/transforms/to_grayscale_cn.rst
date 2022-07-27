@@ -36,4 +36,3 @@ to_grayscale
 
     gray_img = F.to_grayscale(fake_img)
     print(gray_img.size)
-

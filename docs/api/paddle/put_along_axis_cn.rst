@@ -25,4 +25,3 @@ put_along_axis
 
 
 COPY-FROM: paddle.put_along_axis:code-example1
-

@@ -72,9 +72,3 @@ sequence_conv
 :::::::::
 
 COPY-FROM: paddle.static.nn.sequence_conv
-
-
-
-
-
-

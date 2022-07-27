@@ -69,4 +69,3 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
             padding=0,
             weight_attr=ParamAttr(regularizer=L2Decay(coeff=0.01)),
             bias_attr=False)
-

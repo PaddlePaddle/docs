@@ -58,12 +58,3 @@ output[i][j]的值取决于能否在index中第i+1个区间中找到对应的数
 代码示例
 :::::::::
 COPY-FROM: paddle.static.nn.sequence_scatter
-
-
-
-
-
-
-
-
-

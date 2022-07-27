@@ -44,4 +44,3 @@ Program，编译之后的 ``Program`` 对象。
 **代码示例**
 
 COPY-FROM: paddle.static.IpuCompiledProgram.compile
-

@@ -69,4 +69,3 @@ L1Decay实现L1权重衰减正则化，用于模型训练，使得权重矩阵�
                     padding=0,
                     weight_attr=ParamAttr(regularizer=L2Decay(coeff=0.01)),
                     bias_attr=False)
-

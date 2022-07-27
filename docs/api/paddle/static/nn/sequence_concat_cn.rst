@@ -45,13 +45,3 @@ Tensor，输出连接后的LoDTensor，数据类型和输入一致。
 :::::::::
 
 COPY-FROM: paddle.static.nn.sequence_concat
-
-
-
-
-
-
-
-
-
-

@@ -48,4 +48,3 @@ Tensor，进行Multiplex运算后的输出Tensor。
 
 
 COPY-FROM: paddle.multiplex:code-example1
-

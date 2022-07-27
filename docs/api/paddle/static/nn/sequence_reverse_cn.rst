@@ -46,10 +46,3 @@ sequence_reverse
 ::::::::::::
 
 COPY-FROM: paddle.static.nn.sequence_reverse
-
-
-
-
-
-
-

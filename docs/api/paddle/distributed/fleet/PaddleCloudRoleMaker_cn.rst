@@ -50,4 +50,3 @@ string
     import paddle.distributed.fleet as fleet
     role = fleet.PaddleCloudRoleMaker(is_collective=False)
     role.to_string()
-

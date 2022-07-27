@@ -31,4 +31,3 @@ full_like
     output = paddle.full_like(input, 2.0)
     # [[2. 2. 2.]
     #  [2. 2. 2.]]
-

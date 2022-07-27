@@ -54,12 +54,3 @@ sequence_first_step
 代码示例
 :::::::::
 COPY-FROM: paddle.static.nn.sequence_first_step
-
-
-
-
-
-
-
-
-

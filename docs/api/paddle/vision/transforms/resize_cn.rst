@@ -52,4 +52,3 @@ resize
     converted_img = F.resize(fake_img, (200, 150))
     print(converted_img.size)
     # (150, 200)
-

@@ -22,4 +22,3 @@ Tensor，数据类型与 ``x`` 相同。
 :::::::::
 
 COPY-FROM: paddle.expand_as
-

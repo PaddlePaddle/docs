@@ -22,4 +22,3 @@ Group：新建的通信组对象
 代码示例
 ::::::::::::
 COPY-FROM: paddle.distributed.new_group
-

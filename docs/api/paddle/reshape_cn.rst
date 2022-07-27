@@ -41,11 +41,3 @@ reshape
 
 
 COPY-FROM: paddle.reshape:code-example1
-
-
-
-
-
-
-
-

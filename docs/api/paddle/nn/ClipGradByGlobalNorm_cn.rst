@@ -53,4 +53,3 @@ ClipGradByGlobalNorm
     clip = paddle.nn.ClipGradByGlobalNorm(clip_norm=1.0)
     sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)
     sdg.step()
-

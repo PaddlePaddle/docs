@@ -26,5 +26,3 @@ max_memory_allocated
 ::::::::
 
 COPY-FROM: paddle.device.cuda.max_memory_allocated
-
-

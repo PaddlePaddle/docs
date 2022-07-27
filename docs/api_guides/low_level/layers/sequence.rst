@@ -109,4 +109,3 @@ API Reference 请参考 :ref:`cn_api_fluid_layers_sequence_pad`
 :code:`input` 的长度tensor通常可以直接用 :code:`sequence_pad` 返回的 :code:`Length`。
 
 API Reference 请参考 :ref:`cn_api_fluid_layers_sequence_mask`
-

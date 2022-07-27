@@ -31,4 +31,3 @@ Compose
     for i in range(10):
         sample = flowers[i]
         print(sample[0].size, sample[1])
-

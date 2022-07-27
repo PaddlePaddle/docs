@@ -77,5 +77,3 @@ Tensor, input映射后得到的Embedding Tensor，数据类型和权重定义的
 
     emb = nn.functional.embedding(
             x=x, weight=w, sparse=True, name="embedding")
-
-

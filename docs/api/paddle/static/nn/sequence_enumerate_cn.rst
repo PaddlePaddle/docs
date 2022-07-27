@@ -43,12 +43,3 @@ sequence_enumerate
 代码示例
 :::::::::
 COPY-FROM: paddle.static.nn.sequence_enumerate
-
-
-
-
-
-
-
-
-

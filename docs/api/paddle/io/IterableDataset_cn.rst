@@ -134,4 +134,3 @@ IterableDataset
     for data in dataloader:
         print(data)
     # outputs: [2, 5, 3, 6, 4, 7]
-

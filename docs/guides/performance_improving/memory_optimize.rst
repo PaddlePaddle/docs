@@ -155,4 +155,3 @@ Inplace策略适用于使用ParallelExecutor或CompiledProgram+with_data_paralle
 - 开启Inplace策略：设置 :code:`build_strategy.enable_inplace = True` ，并在<1.6版本中设置fetch_list中的 :code:`var.persistable = True` 。
 
 **在1.6+的版本中，上述最佳策略均已默认打开，无需手动配置，亦无需设置fetch_list变量为persistable。**
-

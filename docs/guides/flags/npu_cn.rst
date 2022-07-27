@@ -19,4 +19,3 @@ String型，取值范围:['force_fp32', 'force_fp16', 'allow_fp32_to_fp16', 'mus
 示例
 -------
 FLAGS_npu_precision_mode="allow_mix_precision" - 表示使用混合精度模式。
-

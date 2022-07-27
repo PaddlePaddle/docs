@@ -20,4 +20,3 @@ None
 代码示例
 ::::::::::::
 COPY-FROM: paddle.device.cuda.synchronize
-

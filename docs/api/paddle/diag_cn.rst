@@ -75,8 +75,3 @@ diag
         y = paddle.diag(x, offset=-1)
         print(y)
         # [4]
-
-
-
-
-

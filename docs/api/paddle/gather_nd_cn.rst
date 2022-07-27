@@ -66,5 +66,3 @@ shape 为index.shape[:-1] + x.shape[index.shape[-1]:]的Tensor，数据类型与
 ::::::::::::
 
 COPY-FROM: paddle.gather_nd
-
-

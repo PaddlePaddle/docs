@@ -70,4 +70,3 @@ fused_feedforward
     out = paddle.incubate.nn.functional.fused_feedforward(x, linear1_weight, linear2_weight)
     print(out.numpy().shape)
     # (1, 8, 8)
-

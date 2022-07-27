@@ -22,4 +22,3 @@ cuda
 
     paddle.version.cuda()
     # '10.2'
-
