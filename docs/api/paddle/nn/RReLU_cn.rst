@@ -32,7 +32,7 @@ RReLU激活层，应用随机纠正线性单元对神经元激活，参考论文
                     (lower + upper) * 0.5 * x, & & otherwise \\
                 \end{array}
             \right.
-    
+
 其中，:math:`x` 为输入的 Tensor，:math:`lower` 及 :math:`upper` 是随机均匀分布的上下边界。
 
 参数

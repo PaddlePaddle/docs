@@ -42,7 +42,7 @@ Note:
 
 .. note::
 目前设置track_running_stats和momentum是无效的。之后的版本会修复此问题。
-    
+
 
 代码示例
 ::::::::::::
@@ -54,7 +54,7 @@ Note:
 
     np.random.seed(123)
     x_data = np.random.random(size=(2, 2, 3)).astype('float32')
-    x = paddle.to_tensor(x_data) 
+    x = paddle.to_tensor(x_data)
     instance_norm = paddle.nn.InstanceNorm1D(2)
     instance_norm_out = instance_norm(x)
 

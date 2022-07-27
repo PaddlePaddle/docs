@@ -3,7 +3,7 @@
 LRScheduler
 -----------------------------------
 
-.. py:class:: paddle.optimizer.lr.LRScheduler(learning_rate=0.1, last_epoch=-1, verbose=False) 
+.. py:class:: paddle.optimizer.lr.LRScheduler(learning_rate=0.1, last_epoch=-1, verbose=False)
 
 学习率策略的基类。定义了所有学习率调整策略的公共接口。
 
@@ -105,7 +105,7 @@ step函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
 请参考 ``基类LRScheduler`` 的任意子类实现，这里以 ``StepLR`` 为例进行了示例：
 
 .. code-block:: python
-    
+
     import paddle
     import numpy as np
 

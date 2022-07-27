@@ -6,12 +6,12 @@ Best practices of distributed training on CPU
 
 To improve the training speed of CPU distributed training, we must consider two aspects:
 
-1. Improve the training speed mainly by improving utilization rate of CPU; 
+1. Improve the training speed mainly by improving utilization rate of CPU;
 2. Improve the communication speed mainly by reducing the amount of data transmitted in the communication;
 3. Improve the data IO speed by dataset API;
 4. Improve the distributed training speed by changing distributed training strategy.
 
-Improve CPU utilization 
+Improve CPU utilization
 =============================
 
 The CPU utilization mainly depends on :code:`ParallelExecutor`, which can make full use of the computing power of multiple CPUs to speed up the calculation.
@@ -129,7 +129,7 @@ The default configuration of the above policy is introduced by the following cod
     elif fleet.is_worker():
         fleet.init_worker()
         exe.run(fleet.startup_program)
-        # Do training 
+        # Do training
         exe.run(fleet.main_program)
         fleet.stop_worker()
 
@@ -140,8 +140,8 @@ PaddlePaddle supports adjusting the details of the training strategy:
 .. code-block:: python
 
     compiled_program = fluid.compiler.CompiledProgram(fleet.main_program).with_data_parallel(
-                                                                            loss_name=loss.name, 
-                                                                            build_strategy=strategy.get_build_strategy(), 
+                                                                            loss_name=loss.name,
+                                                                            build_strategy=strategy.get_build_strategy(),
                                                                             exec_strategy=strategy.get_execute_strategy())
 
 
@@ -150,13 +150,13 @@ PaddlePaddle supports adjusting the details of the training strategy:
 .. code-block:: python
 
     strategy = DistributedStrategyFactory.create_sync_strategy()
- 
+
     # Mode 1 (recommended)：
     config = strategy.get_program_config()
     config.min_block_size = 81920
-    
-    
-    # Mode 2 
+
+
+    # Mode 2
     config = DistributeTranspilerConfig()
     config.min_block_size = 81920
     # config = dict()

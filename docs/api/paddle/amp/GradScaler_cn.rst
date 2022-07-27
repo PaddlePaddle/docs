@@ -49,7 +49,7 @@ GradScaler用于动态图模式下的"自动混合精度"的训练。它控制lo
         conv = model(data)
         loss = paddle.mean(conv)
 
-    scaled = scaler.scale(loss)  # scale the loss 
+    scaled = scaler.scale(loss)  # scale the loss
     scaled.backward()            # do backward
     scaler.minimize(optimizer, scaled)  # update parameters
     optimizer.clear_grad()
@@ -84,7 +84,7 @@ scale(var)
         conv = model(data)
         loss = paddle.mean(conv)
 
-    scaled = scaler.scale(loss)  # scale the loss 
+    scaled = scaler.scale(loss)  # scale the loss
     scaled.backward()            # do backward
     scaler.minimize(optimizer, scaled)  # update parameters
     optimizer.clear_grad()
@@ -112,12 +112,12 @@ minimize(optimizer, *args, **kwargs)
     optimizer = paddle.optimizer.SGD(learning_rate=0.01, parameters=model.parameters())
     scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
     data = paddle.rand([10, 3, 32, 32])
-    
+
     with paddle.amp.auto_cast():
         conv = model(data)
         loss = paddle.mean(conv)
 
-    scaled = scaler.scale(loss)  # scale the loss 
+    scaled = scaler.scale(loss)  # scale the loss
     scaled.backward()            # do backward
     scaler.minimize(optimizer, scaled)  # update parameters
     optimizer.clear_grad()
@@ -146,7 +146,7 @@ step(optimizer)
     with paddle.amp.auto_cast():
         conv = model(data)
         loss = paddle.mean(conv)
-    scaled = scaler.scale(loss)  # scale the loss 
+    scaled = scaler.scale(loss)  # scale the loss
     scaled.backward()            # do backward
     scaler.step(optimizer)       # update parameters
     scaler.update()              # update the loss scaling ratio
@@ -170,7 +170,7 @@ update()
     with paddle.amp.auto_cast():
         conv = model(data)
         loss = paddle.mean(conv)
-    scaled = scaler.scale(loss)  # scale the loss 
+    scaled = scaler.scale(loss)  # scale the loss
     scaled.backward()            # do backward
     scaler.step(optimizer)       # update parameters
     scaler.update()              # update the loss scaling ratio
@@ -199,12 +199,12 @@ unscale_(optimizer)
     with paddle.amp.auto_cast():
         conv = model(data)
         loss = paddle.mean(conv)
-    scaled = scaler.scale(loss)  # scale the loss 
+    scaled = scaler.scale(loss)  # scale the loss
     scaled.backward()            # do backward
     scaler.unscale_(optimizer)    # unscale the parameter
     scaler.step(optimizer)
-    scaler.update()  
-    optimizer.clear_grad() 
+    scaler.update()
+    optimizer.clear_grad()
 
 is_enable()
 '''''''''

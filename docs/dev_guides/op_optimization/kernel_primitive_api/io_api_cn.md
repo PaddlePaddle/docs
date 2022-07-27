@@ -172,7 +172,7 @@ __device__ void ReadDataReduce(Tx* dst,
 > Rank ：原始输出数据的维度。</br>
 > IndexCal ：输入输出坐标映射规则。定义方式如下：</br>
 ```
-  struct IndexCal {  
+  struct IndexCal {
     __device__ inline int operator()(int index) const {
         return ...
     }

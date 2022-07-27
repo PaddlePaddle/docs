@@ -9,7 +9,7 @@ global_gather
 global_gather根据global_count将x的数据收集到n_expert * world_size个expert，然后根据local_count接收数据。
 其中expert是用户定义的专家网络，n_expert是指每张卡拥有的专家网络数目，world_size是指运行网络的显卡数目。
 
-如下图所示，world_size是2，n_expert是2，x的batch_size是4，local_count是[2, 0, 2, 0]，0卡的global_count是[2, 0, , ], 
+如下图所示，world_size是2，n_expert是2，x的batch_size是4，local_count是[2, 0, 2, 0]，0卡的global_count是[2, 0, , ],
 1卡的global_count是[2, 0, ,](因为篇幅问题，这里只展示在0卡运算的数据)，在global_gather算子里，
 global_count和local_count的意义与其在global_scatter里正好相反，
 global_count[i]代表向第 (i // n_expert)张卡的第 (i % n_expert)个expert发送local_expert[i]个数据，

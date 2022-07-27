@@ -30,4 +30,3 @@ group sharded配置后的model，optimizer和scaler
 代码示例
 :::::::::
 COPY-FROM: paddle.distributed.sharding.group_sharded_parallel
-     

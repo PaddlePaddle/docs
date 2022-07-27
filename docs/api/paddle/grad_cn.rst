@@ -74,7 +74,7 @@ tuple(Tensor)，其长度等于 `inputs` 中的变量个数，且第i个返回�
             x.stop_gradient = False
 
             y1 = x * x
-            y2 = x * 3 
+            y2 = x * 3
 
             # If grad_outputs=None, dy1 = [1], dy2 = [1].
             # If grad_outputs=[g1, g2], then:

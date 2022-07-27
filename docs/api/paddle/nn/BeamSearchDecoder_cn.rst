@@ -9,9 +9,9 @@ BeamSearchDecoder
 
 
 
-    
-带beam search解码策略的解码器。该接口包装一个cell来计算概率，然后执行一个beam search步骤计算得分，并为每个解码步骤选择候选输出。更多详细信息请参阅 `Beam search <https://en.wikipedia.org/wiki/Beam_search>`_ 
-    
+
+带beam search解码策略的解码器。该接口包装一个cell来计算概率，然后执行一个beam search步骤计算得分，并为每个解码步骤选择候选输出。更多详细信息请参阅 `Beam search <https://en.wikipedia.org/wiki/Beam_search>`_
+
 **注意** 在使用beam search解码时，cell的输入和状态将被扩展到 :math:`beam\_size`，得到 :math:`[batch\_size * beam\_size, ...]` 一样的形状，这个操作在BeamSearchDecoder中自动完成，因此，其他任何在 :code:`cell.call` 中使用的Tensor，如果形状为 :math:`[batch\_size, ...]`，都必须先手动使用 :code:`BeamSearchDecoder.tile_beam_merge_with_batch` 接口扩展。最常见的情况是带注意机制的编码器输出。
 
 参数
@@ -50,7 +50,7 @@ tile_beam_merge_with_batch(x, beam_size)
 
 Tensor，形状为 :math:`[batch\_size * beam\_size, ...]` 的Tensor，其数据类型与 :code:`x` 相同。
 
-    
+
 _split_batch_beams(x)
 '''''''''
 
@@ -138,16 +138,16 @@ tuple，一个元组 :code:`(initial_inputs, initial_states, finished)`。:code:
 
 _beam_search_step(time, logits, next_cell_states, beam_state)
 '''''''''
-    
+
 计算得分并选择候选id。
-  
+
 **参数**
 
   - **time** (Variable) - 调用者提供的形状为[1]的Tensor，表示当前解码的时间步长。其数据类型为int64。
   - **logits** (Variable) - 形状为 :math:`[batch\_size,beam\_size,vocab\_size]` 的Tensor，表示当前时间步的logits。其数据类型为float32。
   - **next_cell_states** (Variable) - 单个Tensor变量或Tensor变量组成的嵌套结构。它的结构，形状和数据类型与 :code:`initialize()` 的返回值 :code:`initial_states` 中的 :code:`cell_states` 相同。它代表该cell的下一个状态。
   - **beam_state** (Variable) - Tensor变量的结构。在第一个解码步骤与 :code:`initialize()` 返回的 :code:`initial_states` 同，其他步骤与 :code:`step()` 返回的 :code:`beam_search_state` 相同。
-  
+
 **返回**
 
 tuple，一个元组 :code:`(beam_search_output, beam_search_state)`。:code:`beam_search_output` 是Tensor变量的命名元组，字段为 :code:`scores，predicted_ids parent_ids`。其中 :code:`scores，predicted_ids，parent_ids` 都含有一个Tensor，形状为 :math:`[batch\_size,beam\_size]`，数据类型为float32 ，int64，int64。:code:`beam_search_state` 具有与输入参数 :code:`beam_state` 相同的结构，形状和数据类型。
@@ -157,14 +157,14 @@ step(time, inputs, states, **kwargs)
 '''''''''
 
 执行beam search解码步骤，该步骤使用 :code:`cell` 来计算概率，然后执行beam search步骤以计算得分并选择候选标记ID。
-  
+
 **参数**
 
   - **time** (Variable) - 调用者提供的形状为[1]的Tensor，表示当前解码的时间步长。其数据类型为int64。。
   - **inputs** (Variable) - Tensor变量。在第一个解码时间步时与由 :code:`initialize()` 返回的 :code:`initial_inputs` 相同，其他时间步与由 :code:`step()` 返回的 :code:`next_inputs` 相同。
   - **states** (Variable) - Tensor变量的结构。在第一个解码时间步时与 :code:`initialize()` 返回的 :code:`initial_states` 相同，其他时间步与由 :code:`step()` 返回的 :code:`beam_search_state` 相同。
   - **kwargs** - 附加的关键字参数，由调用者提供。
-  
+
 **返回**
 
 tuple，一个元组 :code:`(beam_search_output，beam_search_state，next_inputs，finish)` 。:code:`beam_search_state` 和参数 :code:`states` 具有相同的结构，形状和数据类型。:code:`next_inputs` 与输入参数 :code:`inputs` 具有相同的结构，形状和数据类型。:code:`beam_search_output` 是Tensor变量的命名元组(字段包括 :code:`scores，predicted_ids，parent_ids` )，其中 :code:`scores，predicted_ids，parent_ids` 都含有一个Tensor，形状为 :math:`[batch\_size,beam\_size]`，数据类型为float32 ，int64，int64。:code:`finished` 是一个bool类型的Tensor，形状为 :math:`[batch\_size,beam\_size]`。
@@ -172,15 +172,15 @@ tuple，一个元组 :code:`(beam_search_output，beam_search_state，next_input
 
 finalize(outputs, final_states, sequence_lengths)
 '''''''''
-    
+
 使用 :code:`gather_tree` 沿beam search树回溯并构建完整的预测序列。
-  
+
 **参数**
 
   - **outputs** (Variable) - Tensor变量组成的结构(命名元组)，该结构和数据类型与 :code:`output_dtype` 相同。Tensor将所有时间步的输出堆叠，因此具有形状 :math:`[time\_step，batch\_size,...]`。
   - **final_states** (Variable) - Tensor变量组成的结构(命名元组)。它是 :code:`decoder.step` 在最后一个解码步骤返回的 :code:`next_states`，因此具有与任何时间步的 :code:`state` 相同的结构、形状和数据类型。
   - **sequence_lengths** (Variable) - Tensor，形状为 :math:`[batch\_size,beam\_size]`，数据类型为int64。它包含解码期间确定的每个beam的序列长度。
-  
+
 **返回**
 
 tuple，一个元组 :code:`(predicted_ids, final_states)`。:code:`predicted_ids` 是一个Tensor，形状为 :math:`[time\_step，batch\_size,beam\_size]`，数据类型为int64。:code:`final_states` 与输入参数 :code:`final_states` 相同。

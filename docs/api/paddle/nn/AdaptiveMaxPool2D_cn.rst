@@ -19,13 +19,13 @@ AdaptiveMaxPool2D
     Output(i) &= max(Input[lstart:lend])
 
     hstart &= floor(i * H_{in} / H_{out})
-    
+
     hend &= ceil((i + 1) * H_{in} / H_{out})
-    
+
     wstart &= floor(j * W_{in} / W_{out})
-    
+
     wend &= ceil((j + 1) * W_{in} / W_{out})
-    
+
     Output(i ,j) &= max(Input[hstart:hend, wstart:wend])
 
 参数

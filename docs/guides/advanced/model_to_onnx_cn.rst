@@ -17,7 +17,7 @@ Paddle转ONNX协议由 `paddle2onnx <https://github.com/PaddlePaddle/paddle2onnx
 
     pip install paddle2onnx onnx onnxruntime // -i https://mirror.baidu.com/pypi/simple 如果网速不好，可以使用其他源下载
 
-二、模型导出为ONNX协议 
+二、模型导出为ONNX协议
 ##################
 
 2.1 动态图导出ONNX协议
@@ -41,7 +41,7 @@ Paddle动态图模型转换为ONNX协议，首先会将Paddle的动态图 ``padd
         def forward(self, x):
             return self._linear(x)
 
-    # export to ONNX 
+    # export to ONNX
     layer = LinearNet()
     save_path = 'onnx.save/linear_net'
     x_spec = InputSpec([None, 784], 'float32', 'x')
@@ -77,29 +77,29 @@ ONNX官方工具包提供了API可验证模型的正确性，主要包括两个�
 
     import numpy as np
     import onnxruntime
-    
+
     x = np.random.random((2, 784)).astype('float32')
-    
+
     # predict by ONNX Runtime
-    ort_sess = onnxruntime.InferenceSession(onnx_file)  
+    ort_sess = onnxruntime.InferenceSession(onnx_file)
     ort_inputs = {ort_sess.get_inputs()[0].name: x}
     ort_outs = ort_sess.run(None, ort_inputs)
-    
-    print("Exported model has been predicted by ONNXRuntime!") 
-    
+
+    print("Exported model has been predicted by ONNXRuntime!")
+
     # predict by Paddle
-    layer.eval() 
+    layer.eval()
     tensor_x = paddle.to_tensor(x)
     paddle_outs = layer(tensor_x)
-    
+
     # compare ONNX Runtime and Paddle results
     np.testing.assert_allclose(ort_outs[0], paddle_outs.numpy(), rtol=1.0, atol=1e-05)
-    
+
     print("The difference of results between ONNXRuntime and Paddle looks good!")
 
 
 五、相关链接
 ##################
 
- - `算子转换支持列表  <https://github.com/paddlepaddle/paddle2onnx/blob/develop/docs/zh/op_list.md>`_ 
- - `模型转换支持列表 <https://github.com/PaddlePaddle/paddle2onnx/blob/develop/docs/zh/model_zoo.md>`_ 
+ - `算子转换支持列表  <https://github.com/paddlepaddle/paddle2onnx/blob/develop/docs/zh/op_list.md>`_
+ - `模型转换支持列表 <https://github.com/PaddlePaddle/paddle2onnx/blob/develop/docs/zh/model_zoo.md>`_

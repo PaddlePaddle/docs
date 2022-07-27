@@ -354,7 +354,7 @@ astype(dtype)
         x = paddle.to_tensor(1.0)
         print("original tensor's dtype is: {}".format(x.dtype))
         print("new tensor's dtype is: {}".format(x.astype('float64').dtype))
-        
+
 atan(name=None)
 :::::::::
 
@@ -639,11 +639,11 @@ cpu()
     .. code-block:: python
 
         import paddle
-        
+
         if paddle.device.cuda.device_count() > 0:
             x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
             print(x.place)    # CUDAPlace(0)
-        
+
         x = paddle.to_tensor(1.0)
         y = x.cpu()
         print(y.place)    # CPUPlace
@@ -715,7 +715,7 @@ detach()
     .. code-block:: python
 
         import paddle
-        import numpy as np 
+        import numpy as np
 
         data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
         linear = paddle.nn.Linear(32, 64)
@@ -1662,7 +1662,7 @@ pin_memory(y, name=None)
     .. code-block:: python
 
         import paddle
-        
+
         if paddle.device.cuda.device_count() > 0:
             x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
             print(x.place)      # CUDAPlace(0)
@@ -1820,7 +1820,7 @@ reshape(shape, name=None)
 reshape_(shape, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_reshape` API，对输入 `x` 采用 Inplace 策略 
+Inplace 版本的 :ref:`cn_api_fluid_layers_reshape` API，对输入 `x` 采用 Inplace 策略
 
 reverse(axis, name=None)
 :::::::::
@@ -2247,7 +2247,7 @@ Inplace版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采�
         import paddle
         x = paddle.ones(shape=[3, 4])
         x.uniform_()
-        print(x)       
+        print(x)
         # result is random
         # Tensor(shape=[3, 4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
         #     [[ 0.97134161, -0.36784279, -0.13951409, -0.48410338],

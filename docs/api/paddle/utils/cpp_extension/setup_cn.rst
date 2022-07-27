@@ -23,7 +23,7 @@ setup
 
 .. code-block:: text
 
-    # setup.py 
+    # setup.py
 
     # 方式一：编译支持 CPU 和 GPU 的算子
     from paddle.utils.cpp_extension import CUDAExtension, setup

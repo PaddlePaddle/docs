@@ -22,7 +22,7 @@ add_n
             output.shape = [2, 3]
             output = [[1, 2, 3],
                     [4, 5, 6]]
-                    
+
     Case 2:
         输入：
         第一个输入：

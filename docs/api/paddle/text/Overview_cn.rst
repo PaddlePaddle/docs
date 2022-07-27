@@ -39,7 +39,7 @@ PaddleNLP 提供了在文本任务上简洁易用的全流程API，旨在为飞�
     pip install --upgrade paddlenlp -i https://pypi.org/simple
 
 
-可参考PaddleNLP `GitHub <https://github.com/PaddlePaddle/PaddleNLP>`_ 以及 `文档 <https://paddlenlp.readthedocs.io/zh/latest/index.html>`_ 
+可参考PaddleNLP `GitHub <https://github.com/PaddlePaddle/PaddleNLP>`_ 以及 `文档 <https://paddlenlp.readthedocs.io/zh/latest/index.html>`_
 
 .. csv-table::
     :header: "API模块", "功能简介", "API用法简单示例"

@@ -13,16 +13,16 @@ stft
 .. math::
 
     X_t[f] = \sum_{n = 0}^{N-1}
-                  \mathrm{window}[n]\ x[t \times H + n]\ 
+                  \mathrm{window}[n]\ x[t \times H + n]\
                   \exp(-{2 \pi j f n}/{N})
 
 上式中符号的意义：
 
 - :math:`t`：第 :math:`t` 帧输入信号；
-- :math:`f`：傅里叶变换频域的自变量，如果 ``onesided=False`` , :math:`f` 
+- :math:`f`：傅里叶变换频域的自变量，如果 ``onesided=False`` , :math:`f`
   取值范围是 :math:`0 \leq f < n\_fft` ,
-  如果 `onesided=True`，取值范围是 
-  :math:`0 \leq f < \lfloor n\_fft / 2 \rfloor + 1`； 
+  如果 `onesided=True`，取值范围是
+  :math:`0 \leq f < \lfloor n\_fft / 2 \rfloor + 1`；
 - :math:`N`: ``n_fft`` 参数的值；
 - :math:`H`: ``hop_length`` 参数的值。
 
@@ -33,13 +33,13 @@ stft
 - **x** (Tensor) - 输入数据，是维度为1D或者2D的Tensor，数据类型可为复数（复信号），其形状
   为 ``[..., seq_length]``；
 - **n_fft** (int) - 离散傅里叶变换的样本点个数；
-- **hop_length** (int，可选) - 对输入分帧时，相邻两帧偏移的样本点个数，默认为 ``None`` 
+- **hop_length** (int，可选) - 对输入分帧时，相邻两帧偏移的样本点个数，默认为 ``None``
   (为 ``n_fft//4``)；
 - **win_length** (int，可选) - 信号窗的长度，默认为 ``None`` (为 ``n_fft``)；
 - **window** (int，可选) - 维度为1D长度为 ``win_length`` 的Tensor，数据类型可为复数。
   如果 ``win_length < n_fft``，该Tensor将被补长至 ``n_fft``。默认为 ``None`` (长度
   为 ``win_length`` 幅值为1的矩形窗)；
-- **center** (bool，可选) - 选择是否将输入信号进行补长，使得第 
+- **center** (bool，可选) - 选择是否将输入信号进行补长，使得第
   :math:`t \times hop\_length` 个样本点在第 ``t`` 帧的中心，默认为 ``True``；
 - **pad_mode** (str，可选) - 当 ``center`` 为 ``True`` 时，确定padding的模式，模式
   的选项可以参考 ``paddle.nn.functional.pad``，默认为 "reflect"；

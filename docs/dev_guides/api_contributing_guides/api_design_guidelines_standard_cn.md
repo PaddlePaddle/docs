@@ -156,7 +156,7 @@
   paddle.optimizer.lr.LambdaDecay
   ```
 
-- 由多个单词组成的类名，最后一个单词应表示类型  
+- 由多个单词组成的类名，最后一个单词应表示类型
 
     ```python
     # SimpleRNNCell 继承自 RNNCellBase

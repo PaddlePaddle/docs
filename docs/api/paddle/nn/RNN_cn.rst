@@ -17,7 +17,7 @@ RNN
     - **cell** (RNNCellBase) - RNNCellBase类的一个实例。
     - **is_reverse** (bool，可选) - 指定遍历input的方向。默认为False
     - **time_major** (bool，可选) - 指定input的第一个维度是否是time steps。默认为False。
-    
+
 输入
 ::::::::::::
 
@@ -30,7 +30,7 @@ RNN
 
     - **outputs** (Tensor|list|tuple) - 输出。如果time_major为False，则Tensor的形状为[batch_size,time_steps,hidden_size]，如果time_major为True，则Tensor的形状为[time_steps,batch_size,hidden_size]。
     - **final_states** (Tensor|list|tuple) - cell的最终状态，嵌套结构，形状和数据类型都与初始状态相同。
-    
+
 .. Note::
     该类是一个封装rnn cell的低级api，用户在使用forward函数时须确保initial_states满足cell的要求。
 

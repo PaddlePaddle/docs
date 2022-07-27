@@ -110,7 +110,7 @@ drwxr-xr-x 1 root root 9032 Jun  2 07:26 ../lib/paddle_inference   第一步编�
 
 ```bash
 # 根据预编译库中的 version.txt 信息判断是否将以下标记打开
-WITH_MKL=ON  
+WITH_MKL=ON
 WITH_GPU=OFF # 注意这里需要关掉 WITH_GPU
 USE_TENSORRT=OFF
 

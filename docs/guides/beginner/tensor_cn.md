@@ -382,7 +382,7 @@ Tensor dtype from Python floating point: paddle.float32
 ```python
 ndim_2_Tensor = paddle.to_tensor([[(1+1j), (2+2j)],
                                   [(3+3j), (4+4j)]])
-print(ndim_2_Tensor)  
+print(ndim_2_Tensor)
 ```
 
 ```text

@@ -6,7 +6,7 @@ TransformedDistribution
 基于一个基础分布和一系列分布变换构建一个新的分布。
 
 .. py:class:: paddle.distribution.TransformedDistribution(base, transforms)
- 
+
 参数
 :::::::::
 
@@ -30,7 +30,7 @@ prob(value)
 **参数**
 
 - **value** (Tensor) - 待计算值。
-    
+
 **返回**
 
 - Tensor: value的概率。
@@ -44,7 +44,7 @@ log_prob(value)
 **参数**
 
 - **value** (Tensor) - 待计算值。
-    
+
 **返回**
 
 - Tensor: value的对数概率。

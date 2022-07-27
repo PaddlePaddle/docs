@@ -17,7 +17,7 @@ seed
 
 返回
 ::::::::::::
- 
+
      Generator：全局默认generator对象。
 
 代码示例

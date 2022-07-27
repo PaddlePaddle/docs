@@ -26,7 +26,7 @@ Grayscale
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
 
     import numpy as np
@@ -39,4 +39,3 @@ Grayscale
 
     fake_img = transform(fake_img)
     print(np.array(fake_img).shape)
-    

@@ -17,7 +17,7 @@ paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关�
 
 .. csv-table::
     :header: "API名称", "API功能"
-    
+
     " :ref:`paddle.incubate.autograd.enable_prim <cn_api_paddle_incubate_autograd_enable_prim>` ", "开启基于自动微分基础算子的自动微分机制"
     " :ref:`paddle.incubate.autograd.disable_prim <cn_api_paddle_incubate_autograd_disable_prim>` ", "关闭基于自动微分基础算子的自动微分机制"
     " :ref:`paddle.incubate.autograd.prim_enabled <cn_api_paddle_incubate_autograd_prim_enabled>` ", "显示是否开启了基于自动微分基础算子的自动微分机制"
@@ -30,7 +30,7 @@ paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关�
 
 .. csv-table::
     :header: "API名称", "API功能"
-    
+
     " :ref:`paddle.incubate.autograd.prim2orig <cn_api_paddle_incubate_autograd_prim2orig>` ", "自动微分基础算子转换为等价功能原生算子"
 
 
@@ -41,7 +41,7 @@ paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关�
 
 .. csv-table::
     :header: "API名称", "API功能"
-    
+
     " :ref:`paddle.incubate.autograd.jvp <cn_api_paddle_incubate_autograd_jvp>` ", "雅可比矩阵与向量乘积"
     " :ref:`paddle.incubate.autograd.vjp <cn_api_paddle_incubate_autograd_vjp>` ", "向量与雅可比矩阵乘积"
     " :ref:`paddle.incubate.autograd.Jacobian <cn_api_paddle_incubate_autograd_Jacobian>` ", "雅可比矩阵"
@@ -92,7 +92,7 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
     import numpy as np
     import paddle
     from paddle.incubate.autograd import enable_prim, prim_enabled, prim2orig
-    
+
     paddle.enable_static()
     enable_prim()
 
@@ -101,7 +101,7 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
 .. code-block:: python
 
     x = np.random.rand(2, 20)
-    
+
     # Set place and excutor
     place = paddle.CPUPlace()
     if paddle.device.is_compiled_with_cuda():
@@ -123,7 +123,7 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
             shape=[20, 2], dtype='float64', is_bias=False)
         params_bias = paddle.static.create_parameter(
             shape=[2], dtype='float64', is_bias=True)
-    
+
         # Build network
         y = paddle.tanh(paddle.matmul(input_x, params_w) + params_bias)
         dy_dx, = paddle.static.gradients([y], [input_x])
@@ -131,7 +131,7 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
         loss = paddle.norm(d2y_dx2, p=2)
         opt = paddle.optimizer.Adam(0.01)
         _, p_g = opt.minimize(loss)
-    
+
         # Do prim2orig transform.
         if prim_enabled():
             prim2orig()
@@ -153,18 +153,18 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
     import numpy as np
     import paddle
     from paddle.incubate.autograd import enable_prim, prim_enabled, prim2orig
-    
+
     paddle.enable_static()
     enable_prim()
-    
+
     x = np.random.rand(2, 20)
-    
+
     # Set place and excutor
     place = paddle.CPUPlace()
     if paddle.device.is_compiled_with_cuda():
         place = paddle.CUDAPlace(0)
     exe = paddle.static.Executor(place)
-    
+
     # Build program
     main = paddle.static.Program()
     startup = paddle.static.Program()
@@ -176,7 +176,7 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
             shape=[20, 2], dtype='float64', is_bias=False)
         params_bias = paddle.static.create_parameter(
             shape=[2], dtype='float64', is_bias=True)
-    
+
         # Build network
         y = paddle.tanh(paddle.matmul(input_x, params_w) + params_bias)
         dy_dx, = paddle.static.gradients([y], [input_x])
@@ -184,11 +184,11 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
         loss = paddle.norm(d2y_dx2, p=2)
         opt = paddle.optimizer.Adam(0.01)
         _, p_g = opt.minimize(loss)
-    
+
         # Do prim2orig transform.
         if prim_enabled():
             prim2orig()
-    
+
     # Run program
     exe.run(startup)
     p_g = exe.run(main,

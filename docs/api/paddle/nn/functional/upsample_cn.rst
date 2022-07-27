@@ -19,9 +19,9 @@ upsample
     TRILINEAR：三线性插值
 
     BICUBIC：双三次插值
-    
+
     LINEAR：线性插值
-    
+
     AREA：面积插值
 
 
@@ -39,7 +39,7 @@ Align_corners和align_mode是可选参数，插值的计算方法可以由它们
 
 ::
 
-      
+
       scale 计算方法：
 
         if align_corners = True && out_size > 1 :

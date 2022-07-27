@@ -32,16 +32,16 @@ Numpy.array|None：一个和 `input` 形状一致的numpy数组或None。
     import sys
     import numpy as np
     import os
-    
+
     os.environ["PADDLE_WITH_GLOO"] = "2"
-    
+
     def train():
         role = PaddleCloudRoleMaker(
             is_collective=False,
             init_gloo=True,
             path="./tmp_gloo")
         fleet.init(role)
-    
+
         if fleet.is_server():
             input = [1, 2]
             output = fleet.util.all_reduce(input, "sum", "server")
@@ -57,7 +57,7 @@ Numpy.array|None：一个和 `input` 形状一致的numpy数组或None。
         # [8, 12]
     if __name__ == "__main__":
         train()
-    
+
 barrier(comm_world="worker")
 '''''''''
 在指定的通信集合间进行阻塞操作，以实现集合间进度同步。
@@ -78,7 +78,7 @@ barrier(comm_world="worker")
     import os
 
     os.environ["PADDLE_WITH_GLOO"] = "2"
-    
+
     def train():
         role = PaddleCloudRoleMaker(
             is_collective=False,

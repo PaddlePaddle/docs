@@ -4,7 +4,7 @@ reduce_scatter
 -------------------------------
 
 
-.. py:function:: paddle.distributed.reduce_scatter(tensor, tensor_list, op=ReduceOp.SUM, group=None, use_calc_stream=True) 
+.. py:function:: paddle.distributed.reduce_scatter(tensor, tensor_list, op=ReduceOp.SUM, group=None, use_calc_stream=True)
 规约，然后将张量列表分散到组中的所有进程上
 
 参数

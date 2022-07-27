@@ -26,7 +26,7 @@ RandomHorizontalFlip
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
 
     import numpy as np

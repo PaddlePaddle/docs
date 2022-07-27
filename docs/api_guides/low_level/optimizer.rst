@@ -12,7 +12,7 @@
 ------------------
 
 :code:`SGD` 是实现 `随机梯度下降 <https://arxiv.org/pdf/1609.04747.pdf>`_ 的一个 :code:`Optimizer` 子类，是 `梯度下降 <https://zh.wikipedia.org/zh-hans/梯度下降法>`_ 大类中的一种方法。
-当需要训练大量样本的时候，往往选择 :code:`SGD` 来使损失函数更快的收敛。  
+当需要训练大量样本的时候，往往选择 :code:`SGD` 来使损失函数更快的收敛。
 
 API Reference 请参考 :ref:`cn_api_fluid_optimizer_SGDOptimizer`
 

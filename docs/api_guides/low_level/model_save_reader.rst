@@ -33,15 +33,15 @@
 
   API Reference 请参考 :ref:`cn_api_fluid_io_save_persistables`。
 
-- :code:`fluid.io.save_inference_model`：请参考  :ref:`api_guide_inference`。  
+- :code:`fluid.io.save_inference_model`：请参考  :ref:`api_guide_inference`。
 
 模型加载API介绍
 ====================
 
 - :code:`fluid.io.load_vars`：通过执行器（:code:`Executor`）加载指定目录中的变量。加载变量的方式有两种：
-  
+
   1）通过接口中的 :code:`vars` 指定需要加载的变量列表。
-  
+
   2）将一个已经存在的程序（:code:`Program`）赋值给接口中的 :code:`main_program`，然后这个程序中的所有变量都将被加载。
 
   第一种加载方式的优先级要高于第二种。

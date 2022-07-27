@@ -24,7 +24,7 @@ LAMB（Layer-wise Adaptive Moments optimizer for Batching training）优化器�
 
 其中 :math:`m` 表示第一个动量，:math:`v` 代表第二个动量，:math:`\eta` 代表学习率，:math:`\lambda` 代表LAMB的权重学习率。
 
-相关论文：`Large Batch Optimization for Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf>`_ 
+相关论文：`Large Batch Optimization for Deep Learning: Training BERT in 76 minutes <https://arxiv.org/pdf/1904.00962.pdf>`_
 
 参数
 ::::::::::::
@@ -103,7 +103,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
     - **startup_program** (Program，可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program`，默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
     - **parameters** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表，默认值为None，此时将更新所有的Parameter。
     - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成集合，默认值为None。
-        
+
 **返回**
 
  tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。

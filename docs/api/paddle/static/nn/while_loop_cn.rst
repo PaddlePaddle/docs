@@ -30,7 +30,7 @@ list|tuple，循环迭代之后 ``body`` 的返回值，和 ``loop_vars`` 具有
 :::::::::
 
 .. code-block:: python
-    
+
     import paddle
     paddle.enable_static()
 
@@ -47,7 +47,7 @@ list|tuple，循环迭代之后 ``body`` 的返回值，和 ``loop_vars`` 具有
         i = paddle.full(shape=[1], fill_value=0, dtype='int64')     # loop counter
         ten = paddle.full(shape=[1], fill_value=10, dtype='int64')  # loop length
         i, ten = paddle.static.nn.while_loop(cond, body, [i, ten])
-        
+
         exe = paddle.static.Executor(paddle.CPUPlace())
         res = exe.run(main_program, feed={}, fetch_list=[i])
         print(res) # [array([10])]

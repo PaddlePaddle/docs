@@ -6,10 +6,10 @@ cross
 .. py:function:: paddle.cross(x, y, axis=None, name=None)
 
 
-计算张量 ``x`` 和 ``y`` 在 ``axis`` 维度上的向量积（叉积）。 
+计算张量 ``x`` 和 ``y`` 在 ``axis`` 维度上的向量积（叉积）。
 
 ``x`` 和 ``y`` 必须有相同的形状，且指定的 ``axis`` 的长度必须为3。如果未指定 ``axis``，默认选取第一个长度为3的 ``axis`` 。
-        
+
 参数
 :::::::::
     - x (Tensor) – 第一个输入张量。

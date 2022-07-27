@@ -6,7 +6,7 @@ Beta
 .. py:class:: paddle.distribution.Beta(alpha, beta)
 
 
-在概率论中，Beta分布是指一组定义在 [0,1] 区间的连续概率分布，有两个参数 
+在概率论中，Beta分布是指一组定义在 [0,1] 区间的连续概率分布，有两个参数
 :math:`\alpha,\beta>0`，是狄利克雷(:ref:`cn_api_paddle_distribution_Dirichlet`)
 分布的一元形式。
 
@@ -20,7 +20,7 @@ Beta
 
 .. math::
 
-  B(\alpha, \beta) = \int_{0}^{1} t^{\alpha - 1} (1-t)^{\beta - 1}\mathrm{d}t 
+  B(\alpha, \beta) = \int_{0}^{1} t^{\alpha - 1} (1-t)^{\beta - 1}\mathrm{d}t
 
 参数
 :::::::::
@@ -60,7 +60,7 @@ prob(value)
 **参数**
 
 - **value** (Tensor) - 待计算值。
-    
+
 **返回**
 
 - Tensor: value的概率。
@@ -74,7 +74,7 @@ log_prob(value)
 **参数**
 
 - **value** (Tensor) - 待计算值。
-    
+
 **返回**
 
 - Tensor: value的对数概率。

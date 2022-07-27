@@ -12,7 +12,7 @@
 比较通用的方法，可以实现一个 cluster_reader, 根据训练进程数量以及进程序号决定读取哪些 example:
 
     .. code-block:: python
-        
+
         def cluster_reader(reader, trainers, trainer_id):
             def reader_creator():
                 for idx, data in enumerate(reader()):
@@ -54,7 +54,7 @@
                 if (idx + trainers) % trainers == trainer_id:
                     ret_list.append(f)
             return ret_list
-        
+
         trainers = int(os.getenv("PADDLE_TRAINERS", "1"))
         trainer_id = int(os.getenv("PADDLE_TRAINER_ID", "0"))
         files_pattern = "cluster/housing.data.*"

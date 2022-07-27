@@ -20,12 +20,12 @@ to_grayscale
 
     - 如果 output_channels == 1：返回一个单通道图像。
     - 如果 output_channels == 3：返回一个RBG格式的3通道图像。
-    
+
 代码示例
 :::::::::
-    
+
 .. code-block:: python
-    
+
     import numpy as np
     from PIL import Image
     from paddle.vision.transforms import functional as F
@@ -36,4 +36,4 @@ to_grayscale
 
     gray_img = F.to_grayscale(fake_img)
     print(gray_img.size)
-    
+

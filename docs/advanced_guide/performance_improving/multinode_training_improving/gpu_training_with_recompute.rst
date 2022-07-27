@@ -4,7 +4,7 @@
 
 背景
 ---------
- 
+
 随着训练数据规模的逐渐增加，训练更大、更深的深度学习模型成为一个主流趋势。目前的深度学习模型训练，通常要求保留前向计算的隐层结果，并且需要保存结果的数量会随着模型层数的增加线性增加，这对于目前能够使用的AI芯片的内存大小是个挑战。Forward Recomputation Backpropagation（FRB）可以在额外增加少量计算的情况下，显著增加模型的层数和宽度，同时也可以显著提升模型训练的batch大小。
 
 原理
@@ -18,7 +18,7 @@
 
 在前向计算过程中，前向算子会输出大量的中间计算结果，在Paddle中，使用
 Variable来存储这些隐层的中间结果。当模型层数加深时，其数量可达成千上万个，
-占据大量的内存。Paddle的 `显存回收机制 <https://paddlepaddle.org.cn/documentation/docs/zh/advanced_usage/best_practice/memory_optimize.html>`_ 
+占据大量的内存。Paddle的 `显存回收机制 <https://paddlepaddle.org.cn/documentation/docs/zh/advanced_usage/best_practice/memory_optimize.html>`_
 会及时清除无用的中间结果，以节省存储。
 然而，有些中间结果是反向算子的输入，这些Variable必须存储在内存中，直到相应的反向算子计算完毕。
 
@@ -33,7 +33,7 @@ Variable来存储这些隐层的中间结果。当模型层数加深时，其数
 其中 :math:`x, y, z` 为向量， :math:`W_1, W_2` 为矩阵。容易知道，求 :math:`W_2` 梯度的反向计算为：
 
 .. math::
-    W_{2}^{'} = z^{'} / y 
+    W_{2}^{'} = z^{'} / y
 
 可以看到反向计算中用到了前向计算生成的变量 :math:`y` ，因此变量 :math:`y` 必须存储在内存中，直到这个反向算子计算完毕。当模型加深时，我们会有大量的“ :math:`y` ”，占据了大量的内存。
 
@@ -71,10 +71,10 @@ Mitsuru Kusumoto  \ :sup:`[3]` 等提出了一种基于动态规划的算法，
 在多卡训练或者多机训练任务上建议您在Fleet API中使用Recompute。
 
 **1. 直接调用**
- 
+
 直接调用RecomputeOptimizer非常简单，首先要定义一个经典的Optimizer，比如Adam；
 然后在外面包一层RecomputeOptimizer；最后设置checkpoints即可。
- 
+
 .. code-block:: python
 
             import paddle.fluid as fluid
@@ -101,7 +101,7 @@ Recompute原则上适用于所有Optimizer。
 
 **2. 在Fleet API中使用Recompute**
 
-`Fleet API <https://github.com/PaddlePaddle/FleetX>`_ 
+`Fleet API <https://github.com/PaddlePaddle/FleetX>`_
 是基于Fluid的分布式计算高层API。在Fleet API中添加RecomputeOptimizer
 仅需要2步：
 
@@ -135,9 +135,9 @@ Q&A
 
 - **有没有更多Recompute的官方例子？**
 
-  更多Recompute的例子将更新在 `examples <https://github.com/PaddlePaddle/examples/tree/master/community_examples/recompute>`_ 
+  更多Recompute的例子将更新在 `examples <https://github.com/PaddlePaddle/examples/tree/master/community_examples/recompute>`_
   和 `Fleet <https://github.com/PaddlePaddle/FleetX>`_ 库下，欢迎关注。
-  
+
 - **有没有添加checkpoints的建议？**
 
   我们建议将子网络连接部分的变量添加为checkpoints，即：
@@ -151,10 +151,10 @@ Q&A
   帮助用户定位问题。
 
 [1] Tianqi Chen, Bing Xu, Chiyuan Zhang, and Carlos Guestrin . Training deep nets with sublinear memory cost.
-arXiv preprint, arXiv:1604.06174, 2016. 
+arXiv preprint, arXiv:1604.06174, 2016.
 
 [2] Audrunas Gruslys , Rémi Munos , Ivo Danihelka , Marc Lanctot , and Alex Graves. Memory efficient
 backpropagation through time. In Advances in Neural Information Processing Systems (NIPS), pages 4125 4133,
 2016.
 
-[3] Kusumoto, Mitsuru, et al. "A Graph Theoretic Framework of Recomputation Algorithms for Memory-Efficient Backpropagation." arXiv preprint arXiv:1905.11722 (2019). 
+[3] Kusumoto, Mitsuru, et al. "A Graph Theoretic Framework of Recomputation Algorithms for Memory-Efficient Backpropagation." arXiv preprint arXiv:1905.11722 (2019).

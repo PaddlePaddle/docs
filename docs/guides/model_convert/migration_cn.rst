@@ -157,14 +157,14 @@ Paddle 1.x的例子
                 np.random.seed(seed)
                 fluid.default_startup_program().random_seed = seed
                 fluid.default_main_program().random_seed = seed
- 
+
             if args.use_data_parallel:
                 strategy = fluid.dygraph.parallel.prepare_context()
             mnist = MNIST()
             adam = AdamOptimizer(learning_rate=0.001, parameter_list=mnist.parameters())
             if args.use_data_parallel:
                 mnist = fluid.dygraph.parallel.DataParallel(mnist, strategy)
- 
+
             train_reader = paddle.batch(
                 paddle.dataset.mnist.train(), batch_size=BATCH_SIZE, drop_last=True)
             if args.use_data_parallel:
@@ -186,7 +186,7 @@ paddle_upgrade_tool支持单文件的转化，你可以通过下方的命令直�
 
 .. code:: ipython3
 
-    $ paddle_upgrade_tool --inpath models/dygraph/mnist/train.py --write 
+    $ paddle_upgrade_tool --inpath models/dygraph/mnist/train.py --write
 
 此时，命令行会弹出下方的提示：
 

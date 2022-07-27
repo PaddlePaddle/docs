@@ -24,7 +24,7 @@ PaddlePaddle Fluid在图像检测任务中实现了多个特有的操作。以�
 * 对检测框进行后处理：
 
   * box_clip: 将检测框剪切到指定大小。API Reference 请参考 :ref:`cn_api_fluid_layers_box_clip`
-  
+
   * multiclass_nms: 对边界框和评分进行多类非极大值抑制。API Reference 请参考 :ref:`cn_api_fluid_layers_multiclass_nms`
 
 

@@ -133,7 +133,7 @@ summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_un
     - **sorted_by** ( :ref:`SortedKeys <cn_api_profiler_sortedkeys>`，可选) – 表单的数据项排列方式，默认值SortedKeys.CPUTotal。
     - **op_detail** (bool，可选) – 是否打印算子内各过程的详细信息，默认值True。
     - **thread_sep** (bool，可选) - 是否分线程打印，默认值False。
-    - **time_unit** (str，可选) - 表单数据的时间单位，默认为'ms'，可选's'、'us'、'ns'。 
+    - **time_unit** (str，可选) - 表单数据的时间单位，默认为'ms'，可选's'、'us'、'ns'。
 
 
 **代码示例**

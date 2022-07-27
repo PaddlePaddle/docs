@@ -16,11 +16,11 @@ Executor支持单GPU、多GPU以及CPU运行。
 ::::::::::::
 
     - **place** (paddle.CPUPlace()|paddle.CUDAPlace(N)|None) – 该参数表示Executor执行所在的设备，这里的N为GPU对应的ID。当该参数为 `None` 时，PaddlePaddle会根据其安装版本设置默认的运行设备。当安装的Paddle为CPU版时，默认运行设置会设置成 `CPUPlace()`，而当Paddle为GPU版时，默认运行设备会设置成 `CUDAPlace(0)`。默认值为None。
-    
+
 
 .. note::
-多卡训练初始化Executor时也只用传入一个Place或None，其他API会处理使用的多卡，见 `多卡使用方式 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/update_cn.html#danjiduokaqidong>`_ 
-  
+多卡训练初始化Executor时也只用传入一个Place或None，其他API会处理使用的多卡，见 `多卡使用方式 <https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/01_paddle2.0_introduction/update_cn.html#danjiduokaqidong>`_
+
 返回
 ::::::::::::
 初始化后的 ``Executor`` 对象。
@@ -29,7 +29,7 @@ Executor支持单GPU、多GPU以及CPU运行。
 ::::::::::::
 
 .. code-block:: python
-    
+
     import paddle
     import numpy
     import os
@@ -95,7 +95,7 @@ close()
 **代码示例**
 
 .. code-block:: python
-    
+
     import paddle
 
     cpu = paddle.CPUPlace()
@@ -110,7 +110,7 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
 执行指定的Program或者CompiledProgram。需要注意的是，执行器会执行Program或CompiledProgram中的所有算子，而不会根据fetch_list对Program或CompiledProgram中的算子进行裁剪。同时，需要传入运行该模型用到的scope，如果没有指定scope，执行器将使用全局scope，即paddle.static.global_scope()。
 
 **参数**
-  
+
   - **program** (Program|CompiledProgram) – 该参数为被执行的Program或CompiledProgram，如果未提供该参数，即该参数为None，在该接口内，main_program将被设置为paddle.static.default_main_program()。默认为：None。
   - **feed** (list|dict) – 该参数表示模型的输入变量。如果是单卡训练，``feed`` 为 ``dict`` 类型，如果是多卡训练，参数 ``feed`` 可以是 ``dict`` 或者 ``list`` 类型变量，如果该参数类型为 ``dict`` ，feed中的数据将会被分割(split)并分送给多个设备（CPU/GPU），即输入数据被均匀分配到不同设备上；如果该参数类型为 ``list``，则列表中的各个元素都会直接分别被拷贝到各设备中。默认为：None。
   - **fetch_list** (list) – 该参数表示模型运行之后需要返回的变量。默认为：None。
@@ -137,7 +137,7 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
 
             import paddle
             import numpy
-     
+
             #首先创建执行引擎
             paddle.enable_static()
             place = paddle.CPUPlace()  # paddle.CUDAPlace(0)
@@ -192,7 +192,7 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
             unmerged_prediction, = exe.run(binary,
                                            feed={'X': x},
                                            fetch_list=[prediction.name],
-                                           return_merged=False) 
+                                           return_merged=False)
             # 如果用户使用两个GPU卡来运行此python代码示例，输出结果将为(2, 3, class_dim)。
             # 输出结果中第一个维度值代表所使用的GPU卡数，而第二个维度值代表batch_size和所使用
             # 的GPU卡数之商。
@@ -234,7 +234,7 @@ infer_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False
 infer_from_dataset的文档与train_from_dataset几乎完全相同，只是在分布式训练中，推进梯度将在infer_from_dataset中禁用。infer_from_dataset（）可以非常容易地用于多线程中的评估。
 
 **参数**
-  
+
   - **program** (Program|CompiledProgram) – 需要执行的program，如果没有给定那么默认使用default_main_program (未编译的)。
   - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None。
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域。
@@ -279,7 +279,7 @@ train_from_dataset(program=None, dataset=None, scope=None, thread=0, debug=False
 train_from_dataset将销毁每次运行在executor中创建的所有资源。
 
 **参数**
-  
+
   - **program** (Program|CompiledProgram) – 需要执行的program，如果没有给定那么默认使用default_main_program (未编译的)。
   - **dataset** (paddle.fluid.Dataset) – 在此函数外创建的数据集，用户应当在调用函数前提供完整定义的数据集。必要时请检查Dataset文件。默认为None。
   - **scope** (Scope) – 执行这个program的域，用户可以指定不同的域。默认为全局域。

@@ -15,7 +15,7 @@ Upsample
     NEAREST：最近邻插值
 
     LINEAR：线性插值
-    
+
     BILINEAR：双线性插值
 
     TRILINEAR：三线性插值

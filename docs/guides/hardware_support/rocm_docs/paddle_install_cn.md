@@ -29,11 +29,11 @@ rocm-smi
 # 预期得到以下结果：
 ======================= ROCm System Management Interface =======================
 ================================= Concise Info =================================
-GPU  Temp   AvgPwr  SCLK     MCLK    Fan   Perf  PwrCap  VRAM%  GPU%  
-0    50.0c  23.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%  
-1    48.0c  25.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%  
-2    48.0c  24.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%  
-3    49.0c  27.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%  
+GPU  Temp   AvgPwr  SCLK     MCLK    Fan   Perf  PwrCap  VRAM%  GPU%
+0    50.0c  23.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%
+1    48.0c  25.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%
+2    48.0c  24.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%
+3    49.0c  27.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%
 ================================================================================
 ============================= End of ROCm SMI Log ==============================
 ```
@@ -76,11 +76,11 @@ rocm-smi
 # 预期得到以下结果：
 ======================= ROCm System Management Interface =======================
 ================================= Concise Info =================================
-GPU  Temp   AvgPwr  SCLK     MCLK    Fan   Perf  PwrCap  VRAM%  GPU%  
-0    50.0c  23.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%  
-1    48.0c  25.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%  
-2    48.0c  24.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%  
-3    49.0c  27.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%  
+GPU  Temp   AvgPwr  SCLK     MCLK    Fan   Perf  PwrCap  VRAM%  GPU%
+0    50.0c  23.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%
+1    48.0c  25.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%
+2    48.0c  24.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%
+3    49.0c  27.0W   1319Mhz  800Mhz  0.0%  auto  300.0W    0%   0%
 ================================================================================
 ============================= End of ROCm SMI Log ==============================
 ```

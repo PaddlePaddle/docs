@@ -7,7 +7,7 @@ eigvals
 计算一个（或一批）普通方阵的特征值。
 
 
-.. note::   
+.. note::
 该API的反向实现尚未完成，若你的代码需要对其进行反向传播，请使用ref:`cn_api_linalg_eig`。
 
 

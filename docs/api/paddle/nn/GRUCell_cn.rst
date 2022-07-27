@@ -28,7 +28,7 @@ GRUCell
 其中：
 
     - :math:`\sigma` ：sigmoid激活函数。
-   
+
 详情请参考论文：`An Empirical Exploration of Recurrent Network Architectures <http://proceedings.mlr.press/v37/jozefowicz15.pdf>`_ 。
 
 
@@ -50,7 +50,7 @@ GRUCell
     - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（3 * hidden_size, hidden_size）。对应公式中的 :math:`W_{hr}, W_{hz}, W_{hc}`。
     - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（3 * hidden_size, ）。对应公式中的 :math:`b_{ir}, b_{iz}, b_{ic}`。
     - **bias_hh** (Parameter) - hidden到hidden的变换矩阵的偏置。形状为（3 * hidden_size, ）。对应公式中的 :math:`b_{hr}, b_{hz}, b_{hc}`。
-    
+
 输入
 ::::::::::::
 
@@ -60,7 +60,7 @@ GRUCell
 输出：
     - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
     - **new_states** (Tensor) - 新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
-    
+
 .. Note::
     所有的变换矩阵的权重和偏置都默认初始化为Uniform(-std, std)，其中std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
 

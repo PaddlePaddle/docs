@@ -42,7 +42,7 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
 
    import paddle
    from paddle.nn import Transformer
-   
+
    # src: [batch_size, tgt_len, d_model]
    enc_input = paddle.rand((2, 4, 128))
    # tgt: [batch_size, src_len, d_model]
@@ -59,7 +59,7 @@ Transformer模型由一个 ``TransformerEncoder`` 实例和一个 ``TransformerD
                         enc_self_attn_mask,
                         dec_self_attn_mask,
                         cross_attn_mask)  # [2, 6, 128]
-   
+
 
 
 方法

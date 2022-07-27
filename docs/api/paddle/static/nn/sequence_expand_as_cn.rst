@@ -23,12 +23,12 @@ Sequence Expand As Layer，该OP根据输入 ``y`` 的第0级lod对输入 ``x`` 
         x.dims = [4, 1]
     和输入 y
         y.lod = [[3, 3, 1, 1]]    #为了便于理解这里用基于长度lod表示
-    
+
     经过sequence_expand_as运算，得到输出1级LoDTensor out
         out.lod =  [[0,            3,              6,  7,  8]]    #基于偏移的lod，等价于基于长度的[[3, 3, 1, 1]]
         out.data = [[a], [a], [a], [b], [b], [b], [c], [d]]
         out.dims = [8, 1]
-    
+
     可见，输出out将x扩展至和y具有相同的lod。
 
 ::

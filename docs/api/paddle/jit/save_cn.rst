@@ -14,7 +14,7 @@ save
 存储的模型能够被以下API完整地载入使用：
 
     - ``paddle.jit.load``
-    - ``paddle.static.load_inference_model`` 
+    - ``paddle.static.load_inference_model``
     - 其他预测库API
 
 .. note::

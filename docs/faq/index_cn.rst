@@ -12,7 +12,7 @@
 
 ..  toctree::
     :maxdepth: 1
- 
+
 
     2.0.md
 ..  toctree::

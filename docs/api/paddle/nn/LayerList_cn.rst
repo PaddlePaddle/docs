@@ -74,7 +74,7 @@ insert()
 .. code-block:: python
 
     import paddle
-    
+
     linears = paddle.nn.LayerList([paddle.nn.Linear(10, 10) for i in range(10)])
     another = paddle.nn.Linear(10, 10)
     linears.insert(3, another)
@@ -94,7 +94,7 @@ extend()
 .. code-block:: python
 
     import paddle
-    
+
     linears = paddle.nn.LayerList([paddle.nn.Linear(10, 10) for i in range(10)])
     another_list = paddle.nn.LayerList([paddle.nn.Linear(10, 10) for i in range(5)])
     linears.extend(another_list)

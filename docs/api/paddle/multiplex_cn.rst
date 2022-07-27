@@ -16,7 +16,7 @@ multiplex
 示例：
 
 .. code-block:: text
-        
+
         # 输入为4个shape为[4,4]的Tensor
         inputs = [[[0,0,3,4], [0,1,3,4], [0,2,4,4], [0,3,3,4]],
                   [[1,0,3,4], [1,1,7,8], [1,2,4,2], [1,3,3,4]],
@@ -25,7 +25,7 @@ multiplex
 
         # index为shape为[4,1]的Tensor
         index = [[3],[0],[1],[2]]
-        
+
         # 输出shape为[4,4]
         out = [[3,0,3,4]    // out[0] = inputs[index[0]][0] = inputs[3][0] = [3,0,3,4]
                [0,1,3,4]    // out[1] = inputs[index[1]][1] = inputs[0][1] = [0,1,3,4]

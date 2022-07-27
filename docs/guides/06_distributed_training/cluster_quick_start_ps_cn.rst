@@ -39,9 +39,9 @@
     3. 加载模型。
     4. 构建dataset加载数据
     5. 定义参数更新策略及优化器。
-    6. 开始训练。 
+    6. 开始训练。
 
-    
+
 下面将逐一进行讲解。
 
 1.2.1 导入依赖
@@ -104,14 +104,14 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
             # 返回值为一个list，其中的每个元素均为一个list，不需要转成np.array格式
             # 具体格式：[[dense_value1, dense_value2, ...], [sparse_value1], [sparse_value2], ..., [label]]
             return [dense_feature] + sparse_feature + [label]
-        
+
         # 实现generate_sample()函数
         # 该方法有一个名为line的参数，只需要逐行处理数据，不需要对数据文件进行操作
         def generate_sample(self, line):
             def wd_reader():
                 # 按行处理数据
                 input_data = self.line_process(line)
-                
+
                 # 构造特征名数组feature_name
                 feature_name = ["dense_input"]
                 for idx in categorical_range_:
@@ -122,7 +122,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
                 # 元组的第一个元素为特征名（string类型），第二个元素为特征值（list类型）
                 # 具体格式：[('dense_input', [dense_value1, dense_value2, ...]), ('C1', [sparse_value1]), ('C2', [sparse_value2]), ..., ('label', [label])]
                 yield zip(feature_name, input_data)
-            
+
             # generate_sample()函数需要返回一个可以迭代的reader方法
             return wd_reader
 
@@ -137,17 +137,17 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 
     dataset = paddle.distributed.QueueDataset()
     thread_num = 1
-    
+
     # use_var指定网络中的输入数据，pipe_command指定数据处理脚本
     # 要求use_var中输入数据的顺序与数据处理脚本输出的特征顺序一一对应
-    dataset.init(use_var=model.inputs, 
-                 pipe_command="python reader.py", 
-                 batch_size=batch_size, 
+    dataset.init(use_var=model.inputs,
+                 pipe_command="python reader.py",
+                 batch_size=batch_size,
                  thread_num=thread_num)
 
     train_files_list = [os.path.join(train_data_path, x)
                           for x in os.listdir(train_data_path)]
-    
+
     # set_filelist指定dataset读取的训练文件的列表
     dataset.set_filelist(train_files_list)
 
@@ -166,7 +166,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
     # 定义异步训练
     dist_strategy = fleet.DistributedStrategy()
     dist_strategy.a_sync = True
-    
+
 用户需要使用 ``fleet.distributed_optimizer()`` 接口，将单机优化器转换成分布式优化器，并最小化模型的损失值。
 
 .. code-block:: python
@@ -201,12 +201,12 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
         for epoch_id in range(1):
             exe.train_from_dataset(paddle.static.default_main_program(),
                                    dataset,
-                                   paddle.static.global_scope(), 
-                                   debug=False, 
+                                   paddle.static.global_scope(),
+                                   debug=False,
                                    fetch_list=[model.loss],
                                    fetch_info=["loss"],
                                    print_period=1)
-    
+
         fleet.stop_worker()
 
 备注：Paddle2.3版本及以后，ParameterServer训练将废弃掉dataloader + exe.run()方式，请切换到dataset + exe.train_from_dataset()方式。
@@ -224,7 +224,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 您将在执行终端看到如下日志信息：
 
 .. code-block:: bash
-    
+
     LAUNCH INFO 2022-05-18 11:27:17,761 -----------  Configuration  ----------------------
     LAUNCH INFO 2022-05-18 11:27:17,761 devices: None
     LAUNCH INFO 2022-05-18 11:27:17,761 elastic_level: -1
@@ -242,16 +242,16 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
     LAUNCH INFO 2022-05-18 11:27:17,762 rank: -1
     LAUNCH INFO 2022-05-18 11:27:17,762 run_mode: collective
     LAUNCH INFO 2022-05-18 11:27:17,762 server_num: 1
-    LAUNCH INFO 2022-05-18 11:27:17,762 servers: 
+    LAUNCH INFO 2022-05-18 11:27:17,762 servers:
     LAUNCH INFO 2022-05-18 11:27:17,762 trainer_num: 2
-    LAUNCH INFO 2022-05-18 11:27:17,762 trainers: 
+    LAUNCH INFO 2022-05-18 11:27:17,762 trainers:
     LAUNCH INFO 2022-05-18 11:27:17,762 training_script: train.py
     LAUNCH INFO 2022-05-18 11:27:17,762 training_script_args: []
     LAUNCH INFO 2022-05-18 11:27:17,762 with_gloo: 0
     LAUNCH INFO 2022-05-18 11:27:17,762 --------------------------------------------------
     LAUNCH INFO 2022-05-18 11:27:17,772 Job: default, mode ps, replicas 1[1:1], elastic False
     LAUNCH INFO 2022-05-18 11:27:17,775 Run Pod: evjsyn, replicas 3, status ready
-    LAUNCH INFO 2022-05-18 11:27:17,795 Watching Pod: evjsyn, replicas 3, status running    
+    LAUNCH INFO 2022-05-18 11:27:17,795 Watching Pod: evjsyn, replicas 3, status running
 
 同时，在log目录下，会生成服务节点和训练节点的日志文件。
 服务节点日志：default.evjsyn.ps.0.log，日志中须包含以下内容，证明服务节点启动成功，可以提供服务。

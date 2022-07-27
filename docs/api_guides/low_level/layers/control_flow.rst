@@ -11,7 +11,7 @@ IfElse
 
 条件分支，允许对同一个batch的输入，根据给定的条件，分别选择 :code:`true_block` 或 :code:`false_block` 中的逻辑进行执行，执行完成之后再将两个分支的输出合并为同一个输出。通常，条件表达式可由 :ref:`cn_api_fluid_layers_less_than`, :ref:`cn_api_fluid_layers_equal` 等逻辑比较 API 产生。
 
-请参考 :ref:`cn_api_fluid_layers_IfElse`            
+请参考 :ref:`cn_api_fluid_layers_IfElse`
 
 **注意：** 强烈建议您使用新的OP :ref:`cn_api_fluid_layers_cond` 而不是 ``IfElse``。:ref:`cn_api_fluid_layers_cond` 的使用方式更简单，并且调用该OP所用的代码更少且功能与 ``IfElse`` 一样。
 

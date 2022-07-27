@@ -51,7 +51,7 @@ sample(shape, seed=0)
 
     - **shape** (list) - 1维列表，指定生成样本的维度。数据类型为int32。
     - **seed** (int) - 长整型数。
-    
+
 **返回**
 
 Tensor，预先设计好维度的张量，数据类型为float32。
@@ -78,7 +78,7 @@ log_prob(value)
 **参数**
 
     - **value** (Tensor) - 输入张量。数据类型为float32或float64。
-    
+
 **返回**
 
 Tensor，对数概率，数据类型与value相同。
@@ -92,7 +92,7 @@ probs(value)
 **参数**
 
     - **value** (Tensor) - 输入张量。数据类型为float32或float64。
-    
+
 **返回**
 
 Tensor，概率，数据类型与value相同。

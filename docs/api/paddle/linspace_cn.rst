@@ -7,7 +7,7 @@ linspace
 
 返回一个Tensor，Tensor的值为在区间start和stop上均匀间隔的num个值，输出Tensor的长度为num。
 **注意：不进行梯度计算**
- 
+
 参数
 ::::::::::::
 

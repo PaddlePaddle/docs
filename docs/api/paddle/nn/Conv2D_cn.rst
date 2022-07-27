@@ -53,7 +53,7 @@ weight
 bias
 '''''''''
 本层的可学习偏置，类型为 ``Parameter``
-    
+
 形状
 ::::::::::::
     - 输入：:math:`(N, C_{in}, H_{in}, W_{in})`
@@ -61,7 +61,7 @@ bias
     - 卷积核：:math:`(C_{out}, C_{in}, K_{h}, K_{w})`
 
     - 偏置：:math:`(C_{out})`
-    
+
     - 输出：:math:`(N, C_{out}, H_{out}, W_{out})`
 
     其中：

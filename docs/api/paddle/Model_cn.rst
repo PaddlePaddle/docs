@@ -15,7 +15,7 @@ Model
     - **network** (paddle.nn.Layer) - 是 ``paddle.nn.Layer`` 的一个实例。
     - **inputs** (InputSpec|list|tuple|dict|None，可选) - ``network`` 的输入，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者是格式为 ``{name: InputSpec}`` 的 ``dict``，或者为 ``None``。默认值为 ``None``。
     - **labels** (InputSpec|list|tuple|None，可选) - ``network`` 的标签，可以是 ``InputSpec`` 的实例，或者是一个 ``InputSpec`` 的 ``list``，或者为 ``None``。 默认值为 ``None``。
-      
+
 .. note::
 
     在动态图中，``inputs`` 和 ``labels`` 都可以设置为 ``None``。但是，在静态图中，``input`` 不能设置为 ``None``。而如果损失函数需要标签（label）作为输入，则必须设置 ``labels``，否则，可以为 ``None``。
@@ -69,7 +69,7 @@ eval_batch(inputs, labels=None)
 
     - **inputs** (numpy.ndarray|Tensor|list) - 一批次的输入数据。它可以是一个 numpy 数组或 paddle.Tensor，或者是它们的列表（在模型具有多输入的情况下）。
     - **labels** (numpy.ndarray|Tensor|list，可选) - 一批次的标签。它可以是一个 numpy 数组或 paddle.Tensor，或者是它们的列表（在模型具有多输入的情况下）。如果无标签，请设置为 None。默认值：None。
-    
+
 **返回**
 
 list，如果没有定义评估函数，则返回包含了预测损失函数的值的列表；如果定义了评估函数，则返回一个元组（损失函数的列表，评估指标的列表）。
@@ -89,7 +89,7 @@ predict_batch(inputs)
 
 
     - **inputs** (numpy.ndarray|Tensor|list) - 一批次的输入数据。它可以是一个 numpy 数组或 paddle.Tensor，或者是它们的列表（在模型具有多输入的情况下）。
-    
+
 **返回**
 
 一个列表，包含了模型的输出。
@@ -110,7 +110,7 @@ save(path, training=True)
 
     - **path** (str) - 保存的文件名前缀。格式如 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
     - **training** (bool，可选) - 是否保存训练的状态，包括模型参数和优化器参数等。如果为 False，则只保存推理所需的参数与文件。默认值：True。
-    
+
 **返回**
 
 无。
@@ -131,7 +131,7 @@ load(path, skip_mismatch=False, reset_optimizer=False)
     - **path** (str) - 保存参数或优化器信息的文件前缀。格式如 ``path.pdparams`` 或者 ``path.pdopt`` ，后者是非必要的，如果不想恢复优化器信息。
     - **skip_mismatch** (bool，可选) - 是否需要跳过保存的模型文件中形状或名称不匹配的参数，设置为 ``False`` 时，当遇到不匹配的参数会抛出一个错误。默认值：False。
     - **reset_optimizer** (bool，可选) - 设置为 ``True`` 时，会忽略提供的优化器信息文件。否则会载入提供的优化器信息。默认值：False。
-    
+
 **返回**
 
 无。
@@ -145,7 +145,7 @@ parameters(*args, **kwargs)
 '''''''''
 
 返回一个包含模型所有参数的列表。
-    
+
 **返回**
 
 在静态图中返回一个包含 ``Parameter`` 的列表，在动态图中返回一个包含 ``ParamBase`` 的列表。

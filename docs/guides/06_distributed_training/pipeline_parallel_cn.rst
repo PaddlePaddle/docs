@@ -141,7 +141,7 @@
             ]
             super(AlexNetPipeDesc, self).__init__(
                 layers=decs, loss_fn=nn.CrossEntropyLoss(), **kwargs)
-    
+
 然后初始化分布式环境，这一步主要是构建流水线通信组的拓扑
 
 .. code-block:: python
@@ -257,7 +257,7 @@ model.train_batch(...)：这一步主要就是执行1F1B的流水线并行方式
 运行方式（需要保证当前机器有两张GPU）：
 
 .. code-block:: bash
-  
+
   export CUDA_VISIBLE_DEVICES=0,1
   python -m paddle.distributed.launch alexnet_dygraph_pipeline.py # alexnet_dygraph_pipeline.py是用户运行动态图流水线的python文件
 

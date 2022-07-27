@@ -57,7 +57,7 @@ docs/api
 |    |--utils
 |    |--vision
 |-- api_label                   # 英文API文档的标签，用于API文档的相互引用
-|-- display_doc_list  
+|-- display_doc_list
 |-- gen_alias_api.py            # 生成全量的API别名关系
 |-- gen_alias_mapping.sh        # 已废弃
 |-- gen_doc.py                  # 生成英文API文档目录树程序

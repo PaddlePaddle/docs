@@ -27,11 +27,11 @@ squeeze
         axis = 0
         Output:
         out.shape = [3, 1, 5]
-    
+
     Case 3:
 
         Input:
-        x.shape = [1, 3, 1, 5]  # If the dimension of one given axis (3) is not of size 1, the dimension remain unchanged. 
+        x.shape = [1, 3, 1, 5]  # If the dimension of one given axis (3) is not of size 1, the dimension remain unchanged.
         axis = [0, 2, 3]
         Output:
         out.shape = [3, 5]
@@ -39,7 +39,7 @@ squeeze
     Case 4:
 
         Input:
-        x.shape = [1, 3, 1, 5]  # If axis is negative, axis = axis + ndim (number of dimensions in x). 
+        x.shape = [1, 3, 1, 5]  # If axis is negative, axis = axis + ndim (number of dimensions in x).
         axis = [-2]
         Output:
         out.shape = [1, 3, 5]

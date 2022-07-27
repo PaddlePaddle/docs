@@ -4,7 +4,7 @@ irecv
 -------------------------------
 
 
-.. py:function:: paddle.distributed.irecv(tensor, src=None, group=None) 
+.. py:function:: paddle.distributed.irecv(tensor, src=None, group=None)
 异步接受发送来的tensor。
 
 参数

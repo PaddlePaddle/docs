@@ -244,4 +244,3 @@ update()
     #conv2d : Conv2D(4, 2, kernel_size=[4, 4], data_format=NCHW)
     #conv3d : Conv3D(4, 6, kernel_size=[3, 3, 3], data_format=NCDHW)
     #relu : ReLU()
-    

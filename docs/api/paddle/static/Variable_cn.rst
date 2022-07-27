@@ -153,7 +153,7 @@ Tensor， :ref:`api_guide_Variable` 的值。
 .. code-block:: python
 
       import paddle
-      import paddle.static as static 
+      import paddle.static as static
       import numpy as np
 
       paddle.enable_static()
@@ -198,7 +198,7 @@ set_value(value, scope=None)
 .. code-block:: python
 
       import paddle
-      import paddle.static as static 
+      import paddle.static as static
       import numpy as np
 
       paddle.enable_static()

@@ -26,7 +26,7 @@ paddle.linalg 目录下包含飞桨框架支持的线性代数相关API。具体
     " :ref:`paddle.linalg.norm <cn_api_linalg_norm>` ", "计算矩阵范数或向量范数"
     " :ref:`paddle.linalg.matrix_rank <cn_api_linalg_matrix_rank>` ", "计算矩阵的秩"
 
-    
+
 .. _about_matrix_functions:
 
 矩阵计算相关API

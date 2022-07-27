@@ -18,7 +18,7 @@ cross_entropy
 1. 硬标签（每个样本仅可分到一个类别）
 
    .. math::
-      \\loss_j=-\text{logits}_{label_j}+\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right) 
+      \\loss_j=-\text{logits}_{label_j}+\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right)
         , j = 1,...,N, N为样本数，C为类别数
 
 2. 软标签（每个样本以一定的概率被分配至多个类别中，概率和为1）
@@ -38,7 +38,7 @@ cross_entropy
 1.1。硬标签情况(soft_label = False)
 
      .. math::
-        \\loss_j=loss_j*weight[label_j] 
+        \\loss_j=loss_j*weight[label_j]
 
 1.2。软标签情况(soft_label = True)
 
@@ -47,11 +47,11 @@ cross_entropy
 
 2. reduction情况
 
-2.1 如果 ``reduction`` 参数为 ``none``  
+2.1 如果 ``reduction`` 参数为 ``none``
 
      则直接返回上一步结果
 
-2.2 如果 ``reduction`` 参数为 ``sum``  
+2.2 如果 ``reduction`` 参数为 ``sum``
 
      则返回上一步结果的和
 
@@ -60,7 +60,7 @@ cross_entropy
 
 2.3 如果 ``reduction`` 参数为 ``mean``，则根据 ``weight``  参数情况进行处理：
 
-2.3.1。如果 ``weight`` 参数为 ``None`` 
+2.3.1。如果 ``weight`` 参数为 ``None``
 
      则返回上一步结果的平均值
 
@@ -72,13 +72,13 @@ cross_entropy
     (1) 硬标签情况(soft_label = False)
 
      .. math::
-        \\loss=\sum_{j}loss_j/\sum_{j}weight[label_j] 
+        \\loss=\sum_{j}loss_j/\sum_{j}weight[label_j]
 
     (2)  软标签情况(soft_label = True)
 
      .. math::
         \\loss=\sum_{j}loss_j/\sum_{j}\left(\sum_{i}weight[label_i]\right)
- 
+
 参数
 :::::::::
     - **input** (Tensor) – 维度为 :math:`[N_1, N_2, ..., N_k, C]` 的多维Tensor，其中最后一维C是类别数目。数据类型为float32或float64。它需要未缩放的 ``input``。该OP不应该对softmax运算的输出进行操作，否则会产生错误的结果。

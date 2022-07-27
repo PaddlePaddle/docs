@@ -16,7 +16,7 @@ one_hot
     X.shape = [4]
     X.data = [1, 1, 3, 0]
     num_classes = 4
-  
+
   输出：
     Out.shape = [4, 4]
     Out.data = [[0., 1., 0., 0.],

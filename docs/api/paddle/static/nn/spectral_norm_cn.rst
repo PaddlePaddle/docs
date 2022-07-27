@@ -24,7 +24,7 @@ spectral_norm
     \sigma(\mathbf{W}) &= \mathbf{u}^{T} \mathbf{W} \mathbf{v}\\
     \mathbf{W} &= \frac{\mathbf{W}}{\sigma(\mathbf{W})}
 
-论文参考：`Spectral Normalization <https://arxiv.org/abs/1802.05957>`_ 
+论文参考：`Spectral Normalization <https://arxiv.org/abs/1802.05957>`_
 
 参数
 :::::::::

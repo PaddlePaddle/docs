@@ -46,7 +46,7 @@ PaddlePaddle Fluid支持在现代GPU [#]_ 服务器集群上完成高性能分�
 
 训练参数设置表
 
-..  csv-table:: 
+..  csv-table::
     :header: "选项", "类型", "默认值", "说明"
     :widths: 3, 3, 3, 5
 
@@ -102,7 +102,7 @@ PaddlePaddle Fluid支持在现代GPU [#]_ 服务器集群上完成高性能分�
 
 GPU多机多卡同步训练过程中存在慢trainer现象，即每步中训练快的trainer的同步通信需要等待训练慢的trainer。由于每步中慢trainer的rank具有随机性，因此我们使用局部异步训练的方式——LocalSGD，通过多步异步训练（无通信阻塞）实现慢trainer时间均摊，从而提升同步训练性能。Local SGD训练方式主要有三个参数，分别是：
 
-..  csv-table:: 
+..  csv-table::
     :header: "选项", "类型", "可选值", "说明"
     :widths: 3, 3, 3, 5
 

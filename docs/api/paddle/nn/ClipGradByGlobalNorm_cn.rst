@@ -7,7 +7,7 @@ ClipGradByGlobalNorm
 
 
 
- 
+
 将一个 Tensor列表 :math:`t\_list` 中所有Tensor的L2范数之和，限定在 ``clip_norm`` 范围内。
 
 - 如果范数之和大于 ``clip_norm``，则所有 Tensor 会乘以一个系数进行压缩
@@ -22,10 +22,10 @@ ClipGradByGlobalNorm
 
 .. math::
             \\t\_list[i]=t\_list[i]∗\frac{clip\_norm}{max(global\_norm,clip\_norm)}\\
-            
+
 其中：
 
-.. math::            
+.. math::
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(l2norm(t\_list[i]))^2}\\
 
 
@@ -37,14 +37,14 @@ ClipGradByGlobalNorm
 
 代码示例
 ::::::::::::
- 
+
 .. code-block:: python
 
     import paddle
 
     x = paddle.uniform([10, 10], min=-1.0, max=1.0, dtype='float32')
-    linear = paddle.nn.Linear(in_features=10, out_features=10, 
-                              weight_attr=paddle.ParamAttr(need_clip=True), 
+    linear = paddle.nn.Linear(in_features=10, out_features=10,
+                              weight_attr=paddle.ParamAttr(need_clip=True),
                               bias_attr=paddle.ParamAttr(need_clip=False))
     out = linear(x)
     loss = paddle.mean(out)
@@ -53,4 +53,4 @@ ClipGradByGlobalNorm
     clip = paddle.nn.ClipGradByGlobalNorm(clip_norm=1.0)
     sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)
     sdg.step()
-            
+

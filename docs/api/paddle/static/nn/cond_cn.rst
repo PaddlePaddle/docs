@@ -19,7 +19,7 @@ PaddlePaddle里Tensor的嵌套结构是指一个Tensor，或者Tensor的元组�
     3. 静态图模式下，因为各个分支都要参与组网，因此不论运行哪个分支，在 ``true_fn`` 和 ``false_fn`` 内外创建的Tensor和Op都会组网，即PaddlePaddle并不是惰性语法（lazy semantics）。例如
 
        .. code-block:: python
-                  
+
             import paddle
 
             a = paddle.zeros((1, 1))

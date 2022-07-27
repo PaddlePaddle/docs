@@ -5,7 +5,7 @@ unique_consecutive
 
 .. py:function:: paddle.unique_consecutive(x, return_inverse=False, return_counts=False, axis=None, dtype="int64", name=None)
 
-将Tensor中连续重复的元素进行去重，返回连续不重复的Tensor。 
+将Tensor中连续重复的元素进行去重，返回连续不重复的Tensor。
 
 参数
 ::::::::::::

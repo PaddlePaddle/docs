@@ -21,7 +21,7 @@ paddle.hub 是预训练模型库的集合，用来复用社区生产力，方便
     " :ref:`list <cn_api_paddle_hub_list>` ", "查看Repo支持的模型列表"
     " :ref:`help <cn_api_paddle_hub_help>` ", "查看指定模型的文档"
     " :ref:`load <cn_api_paddle_hub_load>` ", "加载指定模型"
-    
+
 
 .. _about_hub_repos:
 
@@ -90,13 +90,13 @@ paddle.hub 是预训练模型库的集合，用来复用社区生产力，方便
     import paddle
 
     # PaddleClas
-    models = paddle.hub.list('PaddlePaddle/PaddleClas:develop', source='github', force_reload=True,)    
+    models = paddle.hub.list('PaddlePaddle/PaddleClas:develop', source='github', force_reload=True,)
     print(models)
 
-    docs = paddle.hub.help('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=False,)    
+    docs = paddle.hub.help('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=False,)
     print(docs)
 
-    model = paddle.hub.load('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=False, pretrained=True)    
+    model = paddle.hub.load('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=False, pretrained=True)
     data = paddle.rand((1, 3, 224, 224))
     out = model(data)
     print(out.shape) # [1, 1000]

@@ -24,7 +24,7 @@ paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的API�
 
     " :ref:`DataLoader <cn_api_fluid_io_DataLoader>` ", "多进程数据读取器"
     " :ref:`get_worker_info <cn_api_io_cn_get_worker_info>` ", "获取当前子进程相关信息"
-    
+
 .. _about_dataset_define:
 
 数据集定义相关API
@@ -37,7 +37,7 @@ paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的API�
     " :ref:`Dataset <cn_api_io_cn_Dataset>` ", "映射式(map-style)数据集基类定义接口"
     " :ref:`IterableDataset <cn_api_io_cn_IterableDataset>` ", "迭代式(iterable-style)数据集基类定义接口"
     " :ref:`TensorDataset <cn_api_io_cn_TensorDataset>` ", "张量(Tensor)数据集基类定义接口"
-    
+
 .. _about_dataset_operate:
 
 数据集操作相关API
@@ -65,7 +65,7 @@ paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的API�
     " :ref:`SequenceSampler <cn_api_io_cn_SequenceSampler>` ", "顺序采样器接口"
     " :ref:`RandomSampler <cn_api_io_cn_RandomSampler>` ", "随机采样器接口"
     " :ref:`WeightedRandomSampler <cn_api_io_cn_WeightedRandomSampler>` ", "带权重随机采样器接口"
-    
+
 .. _about_batch_sampler:
 
 批采样器相关API
@@ -77,4 +77,4 @@ paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的API�
 
     " :ref:`BatchSampler <cn_api_io_cn_BatchSampler>` ", "批采样器接口"
     " :ref:`DistributedBatchSampler <cn_api_io_cn_DistributedBatchSampler>` ", "分布式批采样器接口, 用于分布式多卡场景"
-    
+

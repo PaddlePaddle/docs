@@ -32,13 +32,13 @@ We will introduce the obtaining, usage and theory of Paddle-TensorRT library in 
 When using AnalysisPredictor, we enable Paddle-TRT by setting
 
 ``` c++
-config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,  
-                        batch_size        /* max_batch_size*/,  
+config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
+                        batch_size        /* max_batch_size*/,
                         3                 /* min_subgraph_size*/,
                         AnalysisConfig::Precision::kFloat32 /* precision*/,
                         false             /* use_static*/,
                         false             /* use_calib_mode*/);
-```  
+```
 The details of this interface is as following:
 
 - **`workspace_size`**: type:int, default is 1 << 20. Sets the max workspace size of TRT. TensorRT will choose kernels under this constraint.
@@ -95,7 +95,7 @@ The details of this interface is as following:
 
     Please configure `run.sh` depending on your environment.
 
-4. Build and run the sample.  
+4. Build and run the sample.
 
     ``` shell
     sh run.sh
@@ -103,7 +103,7 @@ The details of this interface is as following:
 
 ## <a name="Paddle-TRT INT8 usage">Paddle-TRT INT8 usage</a>
 
-1. Paddle-TRT INT8 introduction  
+1. Paddle-TRT INT8 introduction
     The parameters of the neural network are redundant to some extent. In many tasks, we can turn the Float32 model into Int8 model on the premise of precision. At present, Paddle-TRT supports to turn the trained Float32 model into Int8 model off line. The specific processes are as follows:
 
     1）**Create the calibration table**. We prepare about 500 real input data, and input the data to the model. Paddle-TRT will count the range information of each op input and output value in the model, and record in the calibration table. The information can reduce the information loss during model transformation.
@@ -114,22 +114,22 @@ The details of this interface is as following:
 
     change the `mobilenet_test` in `run.sh` to `fluid_generate_calib_test` and run
 
-    ``` shell  
-    sh run.sh  
+    ``` shell
+    sh run.sh
     ```
 
     We generate 500 input data to simulate the process, and it's suggested that you use real example for experiment. After the running period, there will be a new file named trt_calib_* under the `SAMPLE_BASE_DIR/sample/paddle-TRT/build/mobilenetv1/_opt_cache` model directory, which is the calibration table.
 
     Then copy the model dir with calibration infomation to path
 
-    ``` shell  
-    cp -rf SAMPLE_BASE_DIR/sample/paddle-TRT/build/mobilenetv1/ SAMPLE_BASE_DIR/sample/paddle-TRT/mobilenetv1_calib  
+    ``` shell
+    cp -rf SAMPLE_BASE_DIR/sample/paddle-TRT/build/mobilenetv1/ SAMPLE_BASE_DIR/sample/paddle-TRT/mobilenetv1_calib
     ```
 
     change `fluid_generate_calib_test` in `run.sh` to `fluid_int8_test`, and change model dir path to `SAMPLE_BASE_DIR/sample/paddle-TRT/mobilenetv1_calib` and run
 
-    ``` shell  
-    sh run.sh  
+    ``` shell
+    sh run.sh
     ```
 
 ## <a name="Paddle-TRT subgraph operation principle">Paddle-TRT subgraph operation principle</a>

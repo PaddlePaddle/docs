@@ -113,7 +113,7 @@ kl_divergence(other)
 **参数**
 
     - **other** (Categorical) - 输入的另一个类别分布。数据类型为float32。
-    
+
 **返回**
 
 相对于另一个类别分布的KL散度，数据类型为float32。
@@ -147,7 +147,7 @@ entropy()
 '''''''''
 
 信息熵。
-    
+
 **返回**
 
 类别分布的信息熵，数据类型为float32。
@@ -232,4 +232,4 @@ log_prob(value)
     value = paddle.to_tensor([2,1,3])
     cat.log_prob(value)
     # [-5.10271 -2.22287 -1.31061]
-    
+

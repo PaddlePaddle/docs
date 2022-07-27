@@ -40,8 +40,8 @@ API设计文档的目的是为了社区开发者更容易的参与开源项目�
     :header: "提交内容", "参考文档", "提交位置"
     :widths: 10, 30,30
 
-    "1、API 设计文档", "- `API 设计及命名规范 <./api_design_guidelines_standard_cn.html>`_ 
-    - `API 设计文档模版 <https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs/api_design_template.md>`_ 
+    "1、API 设计文档", "- `API 设计及命名规范 <./api_design_guidelines_standard_cn.html>`_
+    - `API 设计文档模版 <https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs/api_design_template.md>`_
     - `API 设计文档示例 <https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/20200301_api_design_for_quantile.md>`_ ", "`Github开发者社区仓库 <https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs>`_"
 
 

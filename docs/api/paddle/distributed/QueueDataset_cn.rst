@@ -88,7 +88,7 @@ None。
         ["test_queue_dataset_run_a.txt", "test_queue_dataset_run_b.txt"])
 
     paddle.enable_static()
-    
+
     place = paddle.CPUPlace()
     exe = paddle.static.Executor(place)
     startup_program = paddle.static.Program()
@@ -96,7 +96,7 @@ None。
     exe.run(startup_program)
 
     exe.train_from_dataset(main_program, dataset)
-    
+
     os.remove("./test_queue_dataset_run_a.txt")
     os.remove("./test_queue_dataset_run_b.txt")
 
@@ -114,7 +114,7 @@ set_filelist(filelist)
     import os
 
     paddle.enable_static()
-    
+
     with open("test_queue_dataset_run_a.txt", "w") as f:
         data = "2 1 2 2 5 4 2 2 7 2 1 3\n"
         data += "2 6 2 2 1 4 2 2 4 2 2 3\n"

@@ -7,7 +7,7 @@ Hessian
 
 计算函数 ``func`` 在 ``xs`` 处的海森矩阵。
 
-其中，函数 ``func`` 的输入可以为Tensor或Tensor序列，输出要求为只包含单个元素的Tensor, 
+其中，函数 ``func`` 的输入可以为Tensor或Tensor序列，输出要求为只包含单个元素的Tensor,
 ``is_batched`` 表示是否支持batch, ``True`` 表示支持并默认第零维作为batch维。
 
 在计算海森矩阵时，所有输入Tensor会沿着batch维外的其它维度进行展平，且当输入为Tensor序列时，
@@ -35,7 +35,7 @@ Tensor形状为 ``(B, 1)``，则最终输出海森矩阵形状为 ``(B, M, M)``�
   ``is_batched=False``，输出形状为 ``(1)`` 。
 - **xs** (Tensor|Sequence[Tensor]） - 函数 ``func`` 的输入参数，数据类型为Tensor或
   Tensor序列。
-- **is_batched** (bool) - ``True`` 表示包含batch维，且默认第零维为batch维，``False`` 
+- **is_batched** (bool) - ``True`` 表示包含batch维，且默认第零维为batch维，``False``
   表示不包含batch。默认值为 ``False`` 。
 
 返回

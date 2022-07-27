@@ -13,17 +13,17 @@ AdaptiveMaxPool3D
 ..  math::
 
     dstart &= floor(i * D_{in} / D_{out})
-    
+
     dend &= ceil((i + 1) * D_{in} / D_{out})
-    
+
     hstart &= floor(j * H_{in} / H_{out})
-    
+
     hend &= ceil((j + 1) * H_{in} / H_{out})
-    
+
     wstart &= floor(k * W_{in} / W_{out})
-    
+
     wend &= ceil((k + 1) * W_{in} / W_{out})
-    
+
     Output(i ,j, k) &= max(Input[dstart:dend, hstart:hend, wstart:wend])
 
 参数

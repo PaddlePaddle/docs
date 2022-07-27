@@ -57,7 +57,7 @@
     loader = paddle.io.DataLoader(dataset,
         feed_list=[image, label],
         places=place,
-        batch_size=BATCH_SIZE, 
+        batch_size=BATCH_SIZE,
         shuffle=True,
         drop_last=True,
         num_workers=2)
@@ -66,7 +66,7 @@
     for data in loader():
         exe.run(
             fluid.default_main_program(),
-            feed=data, 
+            feed=data,
             fetch_list=[avg_loss])
 
 
@@ -214,7 +214,7 @@
     model_path = "fc.example.model.save_params"
     fluid.io.save_params(exe, model_path)
 
-    # load 
+    # load
     state_dict = paddle.load(model_path)
     print(state_dict)
 
@@ -230,7 +230,7 @@
     model_path = "fc.example.model.save_params_with_filename"
     fluid.io.save_params(exe, model_path, filename="__params__")
 
-    # load 
+    # load
     import os
     params_file_path = os.path.join(model_path, "__params__")
     var_list = fluid.default_main_program().all_parameters()
@@ -261,7 +261,7 @@
     path = os.path.join("test_static_save_load", "model")
     paddle.static.save(prog, path)
 
-    # load program 
+    # load program
     program=paddle.load(path + '.pdmodel')
 
     state_dict_param = paddle.load(path + '.pdparams')

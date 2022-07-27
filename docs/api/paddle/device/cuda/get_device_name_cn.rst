@@ -23,7 +23,7 @@ str：设备的名称。
         .. code-block:: python
 
             # required: gpu
-            
+
             import paddle
 
             paddle.device.cuda.get_device_name()

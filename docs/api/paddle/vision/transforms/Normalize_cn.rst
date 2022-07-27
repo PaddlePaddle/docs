@@ -9,7 +9,7 @@ normalize
 
 参数
 :::::::::
-    
+
     - img (PIL.Image|np.array|paddle.Tensor) - 用于归一化的数据。
     - mean (list|tuple) - 用于每个通道归一化的均值。
     - std (list|tuple) - 用于每个通道归一化的标准差值。

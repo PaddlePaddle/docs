@@ -11,7 +11,7 @@ XavierNormal
 该初始化函数用于保持所有层的梯度尺度几乎一致。所使用的正态分布的的均值为 :math:`0`，标准差为
 
 .. math::
-    
+
     x = \sqrt{\frac{2.0}{fan\_in+fan\_out}}.
 
 参数

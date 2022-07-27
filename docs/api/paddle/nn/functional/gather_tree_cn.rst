@@ -30,7 +30,7 @@ gather_tree
                         [0 1]]]
 
         结果：
-            gather_tree(ids, parents)  
+            gather_tree(ids, parents)
                         = [[[2 2]
                             [1 6]]
                            [[3 3]
@@ -45,7 +45,7 @@ gather_tree
 
     - **ids** (Tensor) - 形状为 :math:`[length, batch\_size, beam\_size]` 的三维 Tensor，数据类型是 int32 或 int64。包含了所有时间步选择的 id。
     - **parents** (Tensor) - 形状和数据类型均与 ``ids`` 相同的 Tensor。包含了束搜索中每一时间步所选 id 对应的 parent。
-    
+
 返回
 ::::::::::::
 和 ``ids`` 具有相同形状和数据类型的 Tensor。包含了根据 parent 回溯而收集产生的完整 id 序列。

@@ -10,7 +10,7 @@ L1Loss
 该损失函数的数学计算公式如下：
 
 当 `reduction` 设置为 ``'none'`` 时，
-    
+
     .. math::
         Out = \lvert input - label\rvert
 
@@ -20,7 +20,7 @@ L1Loss
        Out = MEAN(\lvert input - label\rvert)
 
 当 `reduction` 设置为 ``'sum'`` 时，
-    
+
     .. math::
        Out = SUM(\lvert input - label\rvert)
 

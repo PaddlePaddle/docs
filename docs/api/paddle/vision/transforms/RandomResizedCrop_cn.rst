@@ -11,7 +11,7 @@ RandomResizedCrop
 
 参数
 :::::::::
-        
+
     - size (int|list|tuple) - 输出图像大小，当为单个int值时，生成指定size大小的方形图片，为(height,width)格式的数组或元组时按照参数大小输出。
     - scale (list|tuple) - 相对于原图的尺寸，随机裁剪后图像大小的范围。默认值：（0.08，1.0）。
     - ratio (list|tuple) - 裁剪后的目标图像宽高比范围，默认值：(0.75, 1.33)。
@@ -31,7 +31,7 @@ RandomResizedCrop
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
 
     import numpy as np

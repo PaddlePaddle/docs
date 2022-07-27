@@ -45,4 +45,3 @@ Orthogonal
 
     linear = paddle.nn.Linear(15, 10, weight_attr=weight_attr)
     # linear.weight: X' * X = I
-    

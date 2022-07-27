@@ -25,12 +25,12 @@ RoIPool
 
 代码示例
 :::::::::
-    
+
 ..  code-block:: python
 
     import paddle
     from paddle.vision.ops import RoIPool
-    
+
     data = paddle.rand([1, 256, 32, 32])
     boxes = paddle.rand([3, 4])
     boxes[:, 2] += boxes[:, 0] + 3

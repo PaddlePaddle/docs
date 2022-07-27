@@ -4,7 +4,7 @@ Independent
 -------------------------------
 
 .. py:class:: paddle.distribution.Independent(base, reinterpreted_batch_rank)
- 
+
 将一个基础分布 ``base`` 的最右侧 ``reinterpreted_batch_rank`` 批维度转换为事件维度。
 
 
@@ -43,7 +43,7 @@ prob(value)
 **参数**
 
 - **value** (Tensor) - 待计算值。
-    
+
 **返回**
 
 - Tensor: value的概率。
@@ -57,7 +57,7 @@ log_prob(value)
 **参数**
 
 - **value** (Tensor) - 待计算值。
-    
+
 **返回**
 
 - Tensor: value的对数概率。

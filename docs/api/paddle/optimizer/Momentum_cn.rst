@@ -92,7 +92,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
     - **startup_program** (Program，可选) – 用于初始化parameters中参数的 :ref:`cn_api_fluid_Program`，默认值为None，此时将使用 :ref:`cn_api_fluid_default_startup_program`。
     - **parameters** (list，可选) – 待更新的Parameter或者Parameter.name组成的列表，默认值为None，此时将更新所有的Parameter。
     - **no_grad_set** (set，可选) – 不需要更新的Parameter或者Parameter.name组成的集合，默认值为None。
-         
+
 **返回**
 
  tuple(optimize_ops, params_grads)，其中optimize_ops为参数优化OP列表；param_grads为由(param, param_grad)组成的列表，其中param和param_grad分别为参数和参数的梯度。在静态图模式下，该返回值可以加入到 ``Executor.run()`` 接口的 ``fetch_list`` 参数中，若加入，则会重写 ``use_prune`` 参数为True，并根据 ``feed`` 和 ``fetch_list`` 进行剪枝，详见 ``Executor`` 的文档。
@@ -148,5 +148,5 @@ set_lr(value)
 .. note::
 
 该API只在 `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式下生效。
- 
+
 

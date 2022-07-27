@@ -13,7 +13,7 @@ gradients
 
 参数
 ::::::::::::
-  
+
   - **targets** (Tensor|list[Tensor]) – 目标 Tensor 或包含 Tensor 的列表。
   - **inputs** (Tensor|list[Tensor]) – 输入 Tensor 或包含 Tensor 的列表。
   - **target_gradients** (Tensor|list[Tensor]，可选) – 目标的梯度 Tensor，应与目标 Tensor 的形状相同；如果设置为None，则以 1 初始化所有梯度 Tensor。

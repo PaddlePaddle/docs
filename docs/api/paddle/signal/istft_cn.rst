@@ -32,13 +32,13 @@ istft
 - **x** (Tensor) - 输入数据，是维度为2D或者3D的Tensor，数据类型必须为复数（复信号），其
   形状为 ``[..., fft_size, num_frames]``；
 - **n_fft** (int) - 离散傅里叶变换的样本点个数；
-- **hop_length** (int，可选) - 对输入分帧时，相邻两帧偏移的样本点个数，默认为 ``None`` 
+- **hop_length** (int，可选) - 对输入分帧时，相邻两帧偏移的样本点个数，默认为 ``None``
   (为 ``n_fft//4``)；
 - **win_length** (int，可选) - 信号窗的长度，默认为 ``None`` (为 ``n_fft``)；
 - **window** (int，可选) - 维度为1D长度为 ``win_length`` 的Tensor，数据类型可为复数。
   如果 ``win_length < n_fft``，该Tensor将被补长至 ``n_fft``。默认为 ``None`` (长
   度为 ``win_length`` 幅值为1的矩形窗)；
-- **center** (bool，可选) - 选择是否将输入信号进行补长，使得第 
+- **center** (bool，可选) - 选择是否将输入信号进行补长，使得第
   :math:`t \times hop\_length` 个样本点在第 :math:`t` 帧的中心，默认为 ``True``；
 - **normalized** (bool，可选) - 是否将傅里叶变换的结果乘以值为 ``1/sqrt(n)`` 的缩放
   系数；
@@ -47,7 +47,7 @@ istft
   且设为 ``True``，则 ``paddle.signal.istft`` 将返回一个实信号，默认为 ``True``；
 - **length** (int，可选) - 指定输出信号的长度，该信号将从逆短时傅里叶变换的结果中截取。
   默认为 ``None`` (返回不截取的信号)；
-- **return_complex** (bool，可选) - 表示输出的重构信号是否为复信号。如果 
+- **return_complex** (bool，可选) - 表示输出的重构信号是否为复信号。如果
   ``return_complex`` 设为 ``True``， ``onesided`` 必须设为 ``False``，默认
   为 ``False``；
 - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

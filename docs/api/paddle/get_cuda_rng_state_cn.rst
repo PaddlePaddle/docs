@@ -14,7 +14,7 @@ get_cuda_rng_state
 
 返回
 ::::::::::::
- 
+
      GeneratorState：对象。
 
 代码示例

@@ -19,7 +19,7 @@ Compose
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
 
     from paddle.vision.datasets import Flowers
@@ -32,4 +32,3 @@ Compose
         sample = flowers[i]
         print(sample[0].size, sample[1])
 
-    

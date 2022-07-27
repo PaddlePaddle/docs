@@ -17,7 +17,7 @@ scatter_nd
     - **updates** (Tensor) - 输入的更新张量。形状必须是 :code:`index.shape[:-1] + shape[index.shape[-1]:]`。数据类型可以是float32，float64。
     - **shape** (tuple|list) - 要求输出张量的形状。类型是tuple或者list。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    
+
 返回
 ::::::::::::
 Tensor，数据类型与 :code:`updates` 相同，形状是 :code:`shape` 。

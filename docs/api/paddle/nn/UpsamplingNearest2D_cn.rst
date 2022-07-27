@@ -23,7 +23,7 @@ UpsamplingNearest2D
 
 ::
 
-      
+
       scale 计算方法：
 
         if align_corners = True && out_size > 1 :

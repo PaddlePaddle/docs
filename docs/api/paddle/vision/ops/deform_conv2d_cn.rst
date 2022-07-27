@@ -20,7 +20,7 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
 具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable, Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_ 。
 
 **示例**
-     
+
 输入：
 
     input 形状：:math:`(N, C_{in}, H_{in}, W_{in})`
@@ -30,7 +30,7 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     offset 形状：:math:`(N, 2 * H_f * W_f, H_{out}, W_{out})`
 
     mask 形状：:math:`(N, H_f * W_f, H_{out}, W_{out})`
-     
+
 输出：
 
     输出形状：:math:`(N, C_{out}, H_{out}, W_{out})`
@@ -58,11 +58,11 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     - **groups** (int，可选) - 二维卷积层的组数。根据Alex Krizhevsky的深度卷积神经网络（CNN）论文中的成组卷积：当group=n，输入和卷积核分别根据通道数量平均分为n组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第n组卷积核和第n组输入进行卷积计算。默认值：1。
     - **mask** (Tensor，可选) – 可变形卷积层的输入掩码，当使用可变形卷积算子v1时，请将mask设置为None，数据类型为float32或float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
- 
+
 返回
 ::::::::::::
 可变形卷积输出的4-D Tensor，数据类型为float32或float64。
-     
+
 
 代码示例
 ::::::::::::

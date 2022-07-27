@@ -26,9 +26,9 @@ RandomVerticalFlip
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
-    
+
     import numpy as np
     from PIL import Image
     from paddle.vision.transforms import RandomVerticalFlip

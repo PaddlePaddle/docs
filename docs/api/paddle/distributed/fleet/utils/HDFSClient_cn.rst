@@ -266,7 +266,7 @@ HADOOP系统文件移动。
     - **fs_src_path** (str)：移动前源文件路径名。
     - **fs_dst_path** (str)：移动后目标文件路径名。
     - **overwrite** (bool)：若目标文件已存在，是否删除进行重写，默认不重写并抛出异常。
- 
+
 **代码示例**
 
 .. code-block:: python

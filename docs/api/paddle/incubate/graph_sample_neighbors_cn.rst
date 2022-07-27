@@ -16,7 +16,7 @@ graph_sample_neighbors
     - perm_buffer (Tensor，可选) - Fisher-yates采样方法需要用到的缓存Tensor。如果 ``flag_perm_buffer`` 为True，则不能为空。数据类型应当与 ``row`` 一致，形状为[num_edges]，填充内容为0 至 num_edges的顺序递增序列。
     - sample_size (int) - 采样邻居个数。默认值为-1，表示采样输入中心节点的所有邻居。
     - return_eids (bool) - 是否返回采样后对应的原始边编号信息，默认为False。
-    - flag_perm_buffer (bool) - 是否采用Fisher-yates采样方法，默认为False。 
+    - flag_perm_buffer (bool) - 是否采用Fisher-yates采样方法，默认为False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

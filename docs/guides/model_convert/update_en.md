@@ -503,11 +503,11 @@ Important changes：
 
 - `PaddleTensor`, `PaddleBuf`, etc. are deprecated, `ZeroCopyTensor` becomes the default Tensor type and renamed to `Tensor`.
 
-- New `PredictorPool` tool class to simplify the creation of multi-threaded predictors, and more peripheral tools will be added 
+- New `PredictorPool` tool class to simplify the creation of multi-threaded predictors, and more peripheral tools will be added
 
 - Return value of `CreatePredictor` (formerly `CreatePaddlePredictor`) changed from `unique_ptr` to `shared_ptr` to avoid the problem of wrong decomposition order after Clone
 
-  
+
 
 API changes
 

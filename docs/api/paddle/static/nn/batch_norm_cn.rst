@@ -17,7 +17,7 @@ batch_norm
 
 - 2.NCHW[batch,in_channels,in_height,in_width]
 
-更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_ 
+更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 
 ``input`` 是mini-batch的输入。
 
@@ -29,8 +29,8 @@ batch_norm
     \hat{x_i}  &\gets \frac{x_i - \mu_\beta} {\sqrt{\sigma_{\beta}^{2} + \epsilon}}  \qquad &//\ normalize \\
     y_i &\gets \gamma \hat{x_i} + \beta  \qquad &//\ scale\ and\ shift
 
-    moving\_mean = moving\_mean * momentum + mini\_batch\_mean * (1. - momentum) \\          
-    moving\_variance = moving\_variance * momentum + mini\_batch\_var * (1. - momentum)     
+    moving\_mean = moving\_mean * momentum + mini\_batch\_mean * (1. - momentum) \\
+    moving\_variance = moving\_variance * momentum + mini\_batch\_var * (1. - momentum)
 
 moving_mean和moving_var是训练过程中统计得到的全局均值和方差，在预测或者评估中使用。
 `is_test` 参数只能用于测试或者评估阶段，如果想在训练阶段使用预训练模型的全局均值和方差的话，可以设置 `use_global_stats=True`。

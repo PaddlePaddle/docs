@@ -9,7 +9,7 @@ segment_sum
 分段求和函数。
 
 此运算符，将 ``segment_ids`` 中相同索引对应的 ``data`` 的元素，进行求和操作。其中 ``segment_ids`` 是一个单调非减序列。
-具体而言，该算子计算一个Tensor ``out``，使得 
+具体而言，该算子计算一个Tensor ``out``，使得
 
 .. math::
 

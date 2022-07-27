@@ -44,7 +44,7 @@ save_for_backward(self, *tensors)
 
 **参数**
 
- - **tensors** (list of Tensor) - 需要被暂存的 ``Tensor`` 
+ - **tensors** (list of Tensor) - 需要被暂存的 ``Tensor``
 
 
 **返回**

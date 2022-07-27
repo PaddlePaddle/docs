@@ -194,7 +194,7 @@ HookRemoveHelper，可通过调用 ``hook_remove_helper.remove()`` 来删除注�
 
     # hook change the linear's output to output * 2, so out0 is equal to out1 * 2.
     assert (out0.numpy() == (out1.numpy()) * 2).any()
-                
+
 create_parameter(shape, attr=None, dtype="float32", is_bias=False, default_initializer=None)
 '''''''''
 
@@ -243,7 +243,7 @@ create_variable(name=None, persistable=None, dtype=None)
     - **dtype** (str，可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 "float32" 。
 
 **返回**
-Tensor，返回创建的 ``Tensor`` 
+Tensor，返回创建的 ``Tensor``
 
 **代码示例**
 
@@ -257,13 +257,13 @@ Tensor，返回创建的 ``Tensor``
                     out_features):
             super(MyLinear, self).__init__()
             self.linear = paddle.nn.Linear( 10, 10)
-                
+
             self.back_var = self.create_variable(name = "linear_tmp_0", dtype=self._dtype)
-        
+
         def forward(self, input):
             out = self.linear(input)
             paddle.assign( out, self.back_var)
-            
+
             return out
 
 create_tensor(name=None, persistable=None, dtype=None)
@@ -278,7 +278,7 @@ create_tensor(name=None, persistable=None, dtype=None)
     - **dtype** (str，可选) - Layer中参数数据类型。如果设置为str，则可以是“bool”，“float16”，“float32”，“float64”，“int8”，“int16”，“int32”，“int64”，“uint8”或“uint16”。默认值为 "float32" 。
 
 **返回**
-Tensor，返回创建的 ``Tensor`` 
+Tensor，返回创建的 ``Tensor``
 
 **代码示例**
 
@@ -292,13 +292,13 @@ Tensor，返回创建的 ``Tensor``
                     out_features):
             super(MyLinear, self).__init__()
             self.linear = paddle.nn.Linear( 10, 10)
-                
+
             self.back_var = self.create_tensor(name = "linear_tmp_0", dtype=self._dtype)
-        
+
         def forward(self, input):
             out = self.linear(input)
             paddle.assign( out, self.back_var)
-            
+
             return out
 
 
@@ -499,7 +499,7 @@ None
 
     import numpy as np
     import paddle
-    
+
     linear = paddle.nn.Linear(10, 3)
     value = np.array([0]).astype("float32")
     buffer = paddle.to_tensor(value)
@@ -703,7 +703,7 @@ set_state_dict(state_dict, use_structured_name=True)
     import paddle
 
     emb = paddle.nn.Embedding(10, 10)
-    
+
     state_dict = emb.state_dict()
     paddle.save(state_dict, "paddle_dy.pdparams")
     para_state_dict = paddle.load("paddle_dy.pdparams")
@@ -725,20 +725,20 @@ to(device=None, dtype=None, blocking=None)
 .. code-block:: python
 
     import paddle
-    
+
     linear=paddle.nn.Linear(2, 2)
     linear.weight
     #Parameter containing:
     #Tensor(shape=[2, 2], dtype=float32, place=CUDAPlace(0), stop_gradient=False,
     #       [[-0.32770029,  0.38653070],
     #        [ 0.46030545,  0.08158520]])
-    
+
     linear.to(dtype='float64')
     linear.weight
     #Tenor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=False,
     #       [[-0.32770029,  0.38653070],
     #        [ 0.46030545,  0.08158520]])
-    
+
     linear.to(device='cpu')
     linear.weight
     #Tensor(shape=[2, 2], dtype=float64, place=CPUPlace, stop_gradient=False,
@@ -749,4 +749,4 @@ to(device=None, dtype=None, blocking=None)
     #Tensor(shape=[2, 2], dtype=float64, place=CUDAPinnedPlace, stop_gradient=False,
     #       [[-0.04989364, -0.56889004],
     #        [ 0.33960250,  0.96878713]])
-    
+

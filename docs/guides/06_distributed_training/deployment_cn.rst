@@ -9,7 +9,7 @@ PaddlePaddle 分布式对不同系统和硬件的支持情况如下表所示，
 
 .. list-table::
 
-   * - 
+   * -
      - CPU
      - GPU
      - 昆仑XPU
@@ -214,7 +214,7 @@ paddlejob 任务提交
 准备配置文件，
 
 .. code-block::
-    
+
     $ cat demo-wide-and-deep.yaml
     apiVersion: batch.paddlepaddle.org/v1
     kind: PaddleJob
@@ -252,7 +252,7 @@ paddlejob 任务提交
 提交任务: 使用 kubectl 提交 yaml 配置文件以创建任务，
 
 .. code-block::
-    
+
     $ kubectl -n paddle-system create -f demo-wide-and-deep.yaml
 
 示例 resnet
@@ -294,7 +294,7 @@ paddlejob 任务提交
             - name: dshm
               emptyDir:
                 medium: Memory
-        
+
 
 注意：
 
@@ -304,7 +304,7 @@ paddlejob 任务提交
 提交任务: 使用 kubectl 提交 yaml 配置文件以创建任务，
 
 .. code-block::
-    
+
     $ kubectl -n paddle-system create -f resnet.yaml
 
 卸载
@@ -324,7 +324,7 @@ paddlejob 任务提交
 在公有云上运行 PaddlePaddle 分布式建议通过选购容器引擎服务的方式，各大云厂商都推出了基于标准 kubernetes 的云产品，然后根据上节中的教程安装使用即可。
 
 .. list-table::
-  
+
   * - 云厂商
     - 容器引擎
     - 链接

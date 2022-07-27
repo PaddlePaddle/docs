@@ -46,7 +46,7 @@ LSTM
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh的参数。默认为None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih的参数。默认为None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh的参数。默认为None。
-    
+
 输入
 ::::::::::::
 

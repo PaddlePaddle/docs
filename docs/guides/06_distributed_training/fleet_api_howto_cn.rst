@@ -15,7 +15,7 @@ Fleet API快速上手示例
 API最常见的两种使用场景，用一个模型做示例，目的是让用户有快速上手体验的模板。
 
 
-* 
+*
   假设我们定义MLP网络如下：
 
   .. code-block:: python
@@ -30,7 +30,7 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
        avg_cost = paddle.static.nn.mean(x=cost)
        return avg_cost
 
-* 
+*
   定义一个在内存生成数据的Reader如下：
 
   .. code-block:: python
@@ -41,7 +41,7 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
          return {"x": np.random.random(size=(128, 32)).astype('float32'),
                  "y": np.random.randint(2, size=(128, 1)).astype('int64')}
 
-* 
+*
   单机Trainer定义
 
   .. code-block:: python
@@ -65,7 +65,7 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
        cost_val = exe.run(feed=gen_data(), fetch_list=[cost.name])
        print("step%d cost=%f" % (i, cost_val[0]))
 
-* 
+*
   Parameter Server训练方法
 
   参数服务器方法对于大规模数据，简单模型的并行训练非常适用，我们基于单机模型的定义给出使用Parameter Server进行训练的示例如下：
@@ -114,7 +114,7 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
         print("worker_index: %d, step%d cost = %f" %
              (fleet.worker_index(), i, cost_val[0]))
 
-* 
+*
   Collective训练方法
 
   Collective Training通常在GPU多机多卡训练中使用，一般在复杂模型的训练中比较常见，我们基于上面的单机模型定义给出使用Collective方法进行分布式训练的示例如下：
@@ -199,14 +199,14 @@ RoleMaker
 ^^^^^^^^^
 
 
-* 
+*
   PaddleCloudRoleMaker
 
 
-  * 
+  *
     描述：PaddleCloudRoleMaker是一个高级封装，支持使用paddle.distributed.launch或者paddle.distributed.launch_ps启动脚本
 
-  * 
+  *
     Parameter Server训练示例：
 
     .. code-block:: python
@@ -220,14 +220,14 @@ RoleMaker
        role = role_maker.PaddleCloudRoleMaker()
        fleet.init(role)
 
-  * 
+  *
     启动方法：
 
     .. code-block:: python
 
        python -m paddle.distributed.launch_ps --worker_num 2 --server_num 2 trainer.py
 
-  * 
+  *
     Collective训练示例：
 
     .. code-block:: python
@@ -241,21 +241,21 @@ RoleMaker
        role = role_maker.PaddleCloudRoleMaker(is_collective=True)
        fleet.init(role)
 
-  * 
+  *
     启动方法：
 
     .. code-block:: python
 
         python -m paddle.distributed.launch trainer.py
 
-* 
+*
   UserDefinedRoleMaker
 
 
-  * 
+  *
     描述：用户自定义节点的角色信息，IP和端口信息
 
-  * 
+  *
     示例：
 
     .. code-block:: python

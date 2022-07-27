@@ -86,7 +86,7 @@ None。
     dataset.set_filelist(
         ["test_queue_dataset_run_a.txt", "test_queue_dataset_run_b.txt"])
     dataset.load_into_memory()
-    
+
     place = paddle.CPUPlace()
     exe = paddle.static.Executor(place)
     startup_program = paddle.static.Program()
@@ -94,7 +94,7 @@ None。
     exe.run(startup_program)
 
     exe.train_from_dataset(main_program, dataset)
-    
+
     os.remove("./test_queue_dataset_run_a.txt")
     os.remove("./test_queue_dataset_run_b.txt")
 
@@ -212,7 +212,7 @@ load_into_memory()
 
     import paddle
     paddle.enable_static()
-    
+
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
     slots_vars = []
@@ -370,7 +370,7 @@ release_memory()
 
     import paddle
     paddle.enable_static()
-    
+
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
     slots_vars = []
@@ -457,7 +457,7 @@ shuffle数据的大小。
 
     import paddle
     paddle.enable_static()
-    
+
     dataset = paddle.distributed.InMemoryDataset()
     dataset = paddle.distributed.InMemoryDataset()
     slots = ["slot1", "slot2", "slot3", "slot4"]
@@ -493,7 +493,7 @@ slots_shuffle(slots)
 
     import paddle
     paddle.enable_static()
-    
+
     dataset = paddle.distributed.InMemoryDataset()
     dataset._init_distributed_settings(fea_eval=True)
     slots = ["slot1", "slot2", "slot3", "slot4"]

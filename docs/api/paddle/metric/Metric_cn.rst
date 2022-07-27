@@ -9,14 +9,14 @@ Metric
 评估器metric的基类。
 
 用法：
-    
+
     .. code-block:: text
 
         m = SomeMetric()
         for prediction, label in ...:
             m.update(prediction, label)
         m.accumulate()
-    
+
 `compute` 接口的进阶用法：
 
 在 `compute` 中可以使用PaddlePaddle内置的算子进行评估器的状态，而不是通过
@@ -50,9 +50,9 @@ Python/NumPy，这样可以加速计算。`update` 接口将 `compute` 的输出
 例如，预测结果包含10类，`pred` 的shape是[N, 10]，`label` 的shape是[N, 1]，N是batch size，我们需要计算top-1和top-5的准确率，
 可以在 `compute` 中计算每个样本的top-5得分，正确预测的矩阵的shape是[N, 5]。
 
-        
+
     .. code-block:: python
-    
+
         def compute(pred, label):
             # sort prediction and slice the top-5 scores
             pred = paddle.argsort(pred, descending=True)[:, :5]
@@ -66,7 +66,7 @@ Python/NumPy，这样可以加速计算。`update` 接口将 `compute` 的输出
 在 `compute` 中的计算，使用内置的算子(可以跑在GPU上，使得速度更快)。作为 `update` 的输入，该接口计算如下：
 
     .. code-block:: python
-        
+
         def update(self, correct):
             accs = []
             for i, k in enumerate(self.topk):

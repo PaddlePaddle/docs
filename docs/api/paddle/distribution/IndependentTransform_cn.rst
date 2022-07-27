@@ -13,9 +13,9 @@ IndependentTransform
 
 例如，假设基础变换为 ``ExpTransform``，其输入为一个随机采样结果 ``x``，形状
 为 ``(S=[4],B=[2,2],E=[3])`` , ``S`` 、``B`` 、``E`` 分别表示采样形状、批形状、事件形
-状，``reinterpreted_batch_rank=1``。则 ``IndependentTransform(ExpTransform)`` 
+状，``reinterpreted_batch_rank=1``。则 ``IndependentTransform(ExpTransform)``
 变换后，``x`` 的形状为 ``(S=[4],B=[2],E=[2,3])``，即将最右侧的批维度作为事件维度。
-此时 ``forward`` 和 ``inverse`` 输出形状仍是 ``(4,2,2,3)`` , 
+此时 ``forward`` 和 ``inverse`` 输出形状仍是 ``(4,2,2,3)`` ,
 但 ``forward_log_det_jacobian`` 以及 ``inverse_log_det_jacobian`` 输出形状
 为 ``(4, 2)`` 。
 
@@ -42,9 +42,9 @@ forward(x)
 
 **参数**
 
-- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution` 
+- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution`
   的随机采样结果。
-    
+
 **返回**
 
 - **y** (Tensor) - 正变换的计算结果。
@@ -58,7 +58,7 @@ inverse(y)
 **参数**
 
 - **y** (Tensor) - 逆变换的输入参数。
-    
+
 **返回**
 
 - **x** (Tensor) - 逆变换的计算结果。
@@ -73,7 +73,7 @@ forward_log_det_jacobian(x)
 **参数**
 
 - **x** (Tensor) - 输入参数。
-    
+
 **返回**
 
 - Tensor - 正变换雅可比行列式绝对值的对数。
@@ -89,7 +89,7 @@ inverse_log_det_jacobian(y)
 **参数**
 
 - **y** (Tensor) - 输入参数。
-    
+
 **返回**
 
 - Tensor - 逆变换雅可比行列式绝对值的对数。
@@ -103,7 +103,7 @@ forward_shape(shape)
 **参数**
 
 - **shape** (Sequence[int]) - 正变换输入的形状。
-    
+
 **返回**
 
 - Sequence[int] - 正变换输出的形状。
@@ -117,7 +117,7 @@ inverse_shape(shape)
 **参数**
 
 - **shape** (Sequence[int]) - 逆变换输入的形状。
-    
+
 **返回**
 
 - Sequence[int] - 逆变换输出的形状。

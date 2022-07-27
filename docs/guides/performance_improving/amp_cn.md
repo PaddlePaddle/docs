@@ -62,7 +62,7 @@
 <table>
     <tr>
         <td>硬件</td>
-        <td colspan="2">支持的混合精度</td>  
+        <td colspan="2">支持的混合精度</td>
     </tr>
     <tr>
         <td>Nvidia GPU</td>
@@ -75,15 +75,15 @@
     </tr>
     <tr>
         <td>华为 NPU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
     <tr>
         <td>昆仑芯 XPU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
     <tr>
         <td>寒武纪 MLU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
 </table>
 

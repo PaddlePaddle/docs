@@ -169,7 +169,7 @@ The data processing process is as follows:</br>
 > Rank: The dimension of the original output data. </br>
 > IndexCal: Input and output coordinate mapping rules. The definition is as follows:</br>
 ```
-  struct IndexCal {  
+  struct IndexCal {
     __device__ inline int operator()(int index) const {
         return ...
     }

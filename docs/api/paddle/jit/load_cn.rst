@@ -19,7 +19,7 @@ load
 :::::::::
     - **path** (str) - 载入模型的路径前缀。格式为 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
     - **config** (dict，可选) - 其他用于兼容的载入配置选项。这些选项将来可能被移除，如果不是必须使用，不推荐使用这些配置选项。默认为 ``None``。目前支持以下配置选项：
-        (1) model_filename (str) - paddle 1.x版本 ``save_inference_model`` 接口存储格式的预测模型文件名，原默认文件名为 ``__model__`` ； 
+        (1) model_filename (str) - paddle 1.x版本 ``save_inference_model`` 接口存储格式的预测模型文件名，原默认文件名为 ``__model__`` ；
         (2) params_filename (str) - paddle 1.x版本 ``save_inference_model`` 接口存储格式的参数文件名，没有默认文件名，默认将各个参数分散存储为单独的文件。
 
 返回
@@ -147,7 +147,7 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
 
             def __len__(self):
                 return self.num_samples
-                
+
         paddle.enable_static()
 
         image = static.data(name='image', shape=[None, 784], dtype='float32')
@@ -168,7 +168,7 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
         loader = paddle.io.DataLoader(dataset,
             feed_list=[image, label],
             places=place,
-            batch_size=BATCH_SIZE, 
+            batch_size=BATCH_SIZE,
             shuffle=True,
             drop_last=True,
             return_list=False,
@@ -178,7 +178,7 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
         for data in loader():
             exe.run(
                 static.default_main_program(),
-                feed=data, 
+                feed=data,
                 fetch_list=[avg_loss])
 
         model_path = "fc.example.model"

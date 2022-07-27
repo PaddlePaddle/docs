@@ -53,14 +53,14 @@ MoE
 构建一个可以正常训练的模型
 
 .. code-block:: python
-    
+
     num_experts = 8
     d_model = 512
     d_hidden = 2048
 
     class ExpertLayer(Layer):
         def __init__(self, d_model, d_hidden, name=None):
-            super(ExpertLayer, self).__init__()                
+            super(ExpertLayer, self).__init__()
             self.htoh4 = Linear(d_model, d_hidden)
             self.h4toh = Linear(d_hidden, d_model)
 
@@ -105,15 +105,15 @@ MoE
                                 recompute_interval=0)
 
         self.linear2 = Linear(d_model, d_model)
-        self.dropout = Dropout(p=0.1)   
-    
+        self.dropout = Dropout(p=0.1)
+
     def forward(self, x):
         x = self.linear1(x)
         x = self.moe_layer(x)
         x = self.linear2(x)
         x = self.dropout(x)
         return x
-    
+
     model = Model(d_model, d_hidden)
     optim = paddle.optimizer.SGD(parameters=model.parameters())
 

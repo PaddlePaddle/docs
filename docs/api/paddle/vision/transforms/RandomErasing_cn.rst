@@ -30,7 +30,7 @@ RandomErasing
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
 
     import paddle

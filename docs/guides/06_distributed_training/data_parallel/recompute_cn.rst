@@ -20,7 +20,7 @@
   :alt: forward_backward
   :align: center
 * Recompute-Offload 支持多卡并行训练， 当多卡并行时开启Offload，训练中同一节点上所有GPU 上的checkpoints 都将卸载到Host 内存中，会存在以下风险：
-  
+
     - PCIe 带宽瓶颈： 同一节点上的所有GPU 和Host 内存间共享一根PCIe 带宽，如同一节点上GPU 数量较多（单机8卡）容易因为PCIe 带宽限制让训练速度进一步减慢。
     - Host 内存溢出： 当同一节点上GPU 数量较多，且每张GPU checkpoints size 较大时，需要注意卸载量是否超出Host 内存大小。
 
@@ -36,7 +36,7 @@ batch size = seq * seq_max_len
 +==============+================+==========================+===============================+
 | batch size   | 18 * 512       | 180 * 512                | 258 * 512                     |
 +--------------+----------------+--------------------------+-------------------------------+
-| speed        | 23.94 sents/s  | 17.82 sents/s            | 15.47 sents/s                 | 
+| speed        | 23.94 sents/s  | 17.82 sents/s            | 15.47 sents/s                 |
 +--------------+----------------+--------------------------+-------------------------------+
 
 
@@ -86,10 +86,10 @@ batch size = seq * seq_max_len
                 block_name + "_fc_2",
                 paddle.nn.Linear(input_size, input_size, bias_attr=False)
             )
-        
+
         return block
-    
-    
+
+
     class Naive_fc_net(paddle.nn.Layer):
         def __init__(self, input_size=10,
                     recompute_blocks=[1, 3],
@@ -103,7 +103,7 @@ batch size = seq * seq_max_len
             self.runfunc3 = get_fc_block(3, input_size, is_last=False)
             self.runfunc4 = get_fc_block(4, input_size, is_last=True)
             self.total_func = [self.runfunc0, self.runfunc1, self.runfunc2, self.runfunc3, self.runfunc4]
-        
+
         def forward(self, inputs):
             nums = len(self.total_func)
             for i in range(nums):
@@ -125,7 +125,7 @@ batch size = seq * seq_max_len
         random.seed(10)
         if cuda_state:
             paddle.set_cuda_rng_state(cuda_state)
-        
+
         batch_size, input_size = 1, 10
         model = Naive_fc_net(
             input_size,
@@ -146,7 +146,7 @@ batch size = seq * seq_max_len
             param_.append(np.asarray(model.parameters()[9]).tolist())
             grad_.append(np.asarray(model.parameters()[3]._grad_ivar()).tolist())
             optimizer.clear_grad()
-        
+
         return loss_, param_, grad_
 
 3.4 执行运行程序，打印结果
@@ -161,7 +161,7 @@ batch size = seq * seq_max_len
     loss_ref, param_ref, grad_ref = run_model(
         cuda_state, recompute_block=[]
     )
-    
+
     loss, param, grad = run_model(cuda_state, recompute_block=[1, 2])
     print("normal_loss: {},\n recompute_loss: {}".format(loss_ref, loss))
 
@@ -187,7 +187,7 @@ recompute动态图代码：`代码示例 <https://github.com/PaddlePaddle/FleetX
 当结合使用数据并行和重计算时，建议采用如下方式：
 
 .. code:: python
-    
+
     from paddle.distributed.fleet.utils.hybrid_parallel_util import fused_allreduce_gradients
 
     def run_model(cuda_state, recompute_block=[], recompute_kwargs={}):
@@ -197,7 +197,7 @@ recompute动态图代码：`代码示例 <https://github.com/PaddlePaddle/FleetX
         random.seed(10)
         if cuda_state:
             paddle.set_cuda_rng_state(cuda_state)
-        
+
         batch_size, input_size = 1, 10
         model = Naive_fc_net(
             input_size,
@@ -207,7 +207,7 @@ recompute动态图代码：`代码示例 <https://github.com/PaddlePaddle/FleetX
 
         # Data parallel
         model = paddle.DataParallel(model)
-        
+
         loss_ = []
         param_ = []
         grad_ = []
@@ -227,5 +227,5 @@ recompute动态图代码：`代码示例 <https://github.com/PaddlePaddle/FleetX
             param_.append(np.asarray(model.parameters()[9]).tolist())
             grad_.append(np.asarray(model.parameters()[3]._grad_ivar()).tolist())
             optimizer.clear_grad()
-        
+
         return loss_, param_, grad_

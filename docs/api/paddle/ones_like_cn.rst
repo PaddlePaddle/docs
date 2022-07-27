@@ -13,7 +13,7 @@ ones_like
     - **x** (Tensor) – 输入的Tensor，数据类型可以是 bool，float16，float32，float64，int32，int64。
     - **dtype** (str|np.dtype，可选) - 输出 Tensor 的数据类型，支持 bool，float16, float32，float64，int32，int64。当该参数值为 None 时，输出 Tensor 的数据类型与 ``x`` 相同。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    
+
 返回
 ::::::::::
 

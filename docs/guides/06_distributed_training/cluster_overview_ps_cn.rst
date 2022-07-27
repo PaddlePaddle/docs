@@ -150,7 +150,7 @@ RPC&NCCL 混合通信可以将部分稀疏参数采用 RPC 协议跨节点通信
     3. 保存模型：
       a. Checkpoint Model：用于下次训练开始时的模型加载部分。
       b. Inference Model：用于线上推理部署。
-    
+
 完整训练示例代码请参考：\ `CPUPS示例 <https://>`_\、\ `GPUPS示例 <https://>`_\，本节只介绍飞桨参数服务器在训练过程中需要使用到的与单机不同的API。
 
 4.1 大规模稀疏参数
@@ -198,17 +198,17 @@ Dataset有两种不同的类型：
 
     dataset = paddle.distributed.QueueDataset()
     thread_num = 1
-    
+
     # use_var指定网络中的输入数据，pipe_command指定数据处理脚本
     # 要求use_var中输入数据的顺序与数据处理脚本输出的特征顺序一一对应
-    dataset.init(use_var=model.inputs, 
-                 pipe_command="python reader.py", 
-                 batch_size=batch_size, 
+    dataset.init(use_var=model.inputs,
+                 pipe_command="python reader.py",
+                 batch_size=batch_size,
                  thread_num=thread_num)
 
     train_files_list = [os.path.join(train_data_path, x)
                         for x in os.listdir(train_data_path)]
-    
+
     # set_filelist指定dataset读取的训练文件的列表
     dataset.set_filelist(train_files_list)
 
@@ -223,8 +223,8 @@ Dataset有两种不同的类型：
 
     exe.train_from_dataset(paddle.static.default_main_program(),
                           dataset,
-                          paddle.static.global_scope(), 
-                          debug=False, 
+                          paddle.static.global_scope(),
+                          debug=False,
                           fetch_list=[model.cost],
                           fetch_info=["loss"],
                           print_period=1)
@@ -235,8 +235,8 @@ Dataset有两种不同的类型：
 
     exe.infer_from_dataset(paddle.static.default_main_program(),
                           dataset,
-                          paddle.static.global_scope(), 
-                          debug=False, 
+                          paddle.static.global_scope(),
+                          debug=False,
                           fetch_list=[model.cost],
                           fetch_info=["loss"],
                           print_period=1)
@@ -288,7 +288,7 @@ Dataset有两种不同的类型：
 .. code-block:: python
 
     dirname = "/you/path/to/model"
-    
+
     # 加载checkpoint model
     fleet.load_model(dirname)
 

@@ -22,7 +22,7 @@ split
         :height: 350
         :alt: single_embedding
         :align: center
-    
+
     并行Embedding情况如下图所示
 
     .. image:: ./img/split_embedding_split.png

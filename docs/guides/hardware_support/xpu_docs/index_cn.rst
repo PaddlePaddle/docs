@@ -11,14 +11,14 @@
 
     - `飞桨对昆仑2代芯片的支持 <./paddle_2.0_xpu_cn.html>`_ : 飞桨支持昆仑2代芯片（R200、R300）运行
     - `飞桨框架昆仑2代芯片安装说明 <./paddle_install_cn.html>`_ : 飞桨框架昆仑2代芯片（R200、R300）安装说明
-    - `飞桨框架昆仑2代芯片训练示例 <./train_example_cn.html>`_ : 飞桨框架昆仑2代芯片（R200、R300）训练示例 
+    - `飞桨框架昆仑2代芯片训练示例 <./train_example_cn.html>`_ : 飞桨框架昆仑2代芯片（R200、R300）训练示例
 
 昆仑芯1代芯片：
 
     - `飞桨对昆仑1代芯片的支持 <./paddle_2.0_xpu_cn.html>`_ : 飞桨支持昆仑1代芯片（K100、K200）运行
     - `飞桨框架昆仑1代芯片安装说明 <./paddle_install_cn.html>`_ : 飞桨框架昆仑1代芯片（K100、K200）安装说明
     - `飞桨框架昆仑1代芯片训练示例 <./train_example_cn.html>`_ : 飞桨框架昆仑1代芯片（K100、K200）训练示例
-    - `飞桨预测库昆仑1代芯片安装及使用 <./inference_install_example_cn.html>`_ : 飞桨预测库昆仑1代芯片（K100、K200）版安装及使用示例    
+    - `飞桨预测库昆仑1代芯片安装及使用 <./inference_install_example_cn.html>`_ : 飞桨预测库昆仑1代芯片（K100、K200）版安装及使用示例
 
 ..  toctree::
     :hidden:

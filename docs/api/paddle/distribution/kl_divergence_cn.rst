@@ -7,9 +7,9 @@ kl_divergence
 
 计算分布p和q之间的KL散度。
 
-.. math:: 
-  
-  KL(p||q) = \int p(x)log\frac{p(x)}{q(x)} \mathrm{d}x 
+.. math::
+
+  KL(p||q) = \int p(x)log\frac{p(x)}{q(x)} \mathrm{d}x
 
 参数
 :::::::::

@@ -33,7 +33,7 @@ sparse_csr_tensor
       默认值为None，如果 ``values`` 为python浮点类型，则从
       :ref:`cn_api_paddle_framework_get_default_dtype` 获取类型，如果 ``values`` 为其他类型，
       则会自动推导类型。
-    - **place** (CPUPlace|CUDAPinnedPlace|CUDAPlace|str, optional) - 创建tensor的设备位置，可以是 
+    - **place** (CPUPlace|CUDAPinnedPlace|CUDAPlace|str, optional) - 创建tensor的设备位置，可以是
       CPUPlace, CUDAPinnedPlace, CUDAPlace。默认值为None，使用全局的place。
     - **stop_gradient** (bool, optional) - 是否阻断Autograd的梯度传导。默认值为True，此时不进行梯度传传导。
 

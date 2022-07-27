@@ -16,7 +16,7 @@ deserialize_persistables
 
   - **program** (Program) - 指定包含要反序列化的参数的名称的 program。
   - **data** (bytes) - 序列化之后的模型参数。
-  - **executor** (Executor) - 用来执行 load op 的 ``executor`` 。 
+  - **executor** (Executor) - 用来执行 load op 的 ``executor`` 。
 
 返回
 ::::::::::::

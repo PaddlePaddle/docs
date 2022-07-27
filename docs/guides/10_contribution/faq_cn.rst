@@ -22,7 +22,7 @@ FAQ
   * develop分支请添加 :code:`test=develop`
   * release分支请添加如 :code:`test=release/1.4` 来触发release/1.4分支
   * 文档预览请添加 :code:`test=document_preview`
-      
+
 * 该CI触发规则以commit为单位，即对同一个PR来说，不管前面的commit是否已经添加，如果新commit想继续触发CI，那么仍然需要添加。
 * 添加CI触发规则后，仍有部分CI没有触发：请关闭并重新开启本PR，来重新触发CI。
 

@@ -31,11 +31,11 @@ PaddlePaddle中有针对定长图像特征的二维(pool2d)、三维卷积(pool3
 -  ``use_cudnn``\ : 选项可以来选择是否使用cudnn来优化计算池化速度。
 
 -  ``ceil_mode``\ : 是否使用ceil函数计算输出高度和宽度。\ ``ceil mode``\ 意为天花板模式，是指会把特征图中不足\ ``filter size``\ 的边给保留下来，单独另算，或者也可以理解为在原来的数据上补充了值为-NAN的边。而floor模式则是直接把不足\ ``filter size``\ 的边给舍弃了。具体计算公式如下：
-    
+
     -  非\ ``ceil_mode``\ 下:\ ``输出大小 = (输入大小 - filter size + 2 * padding) / stride（步长） + 1``
-    
+
     -  ``ceil_mode``\ 下:\ ``输出大小 = (输入大小 - filter size + 2 * padding + stride - 1) / stride + 1``
-        
+
 
 
 api汇总：
@@ -54,7 +54,7 @@ api汇总：
 -  ``pooled_height`` 和 ``pooled_width``\ : 这里可以接受非正方的池化窗口大小
 
 -  ``spatial_scale``\ : 用作设定缩放RoI和原图缩放的比例，注意，这里的设定需要用户自行计算RoI和原图的实际缩放比例。
- 
+
 
 api汇总：
 

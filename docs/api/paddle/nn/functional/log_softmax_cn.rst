@@ -8,7 +8,7 @@ log_softmax
 
 .. math::
 
-    \begin{aligned} 
+    \begin{aligned}
     log\_softmax[i, j] &= log(softmax(x)) \\
     &= log(\frac{\exp(X[i, j])}{\sum_j(\exp(X[i, j])})
     \end{aligned}

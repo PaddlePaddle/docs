@@ -15,7 +15,7 @@ logcumsumexp
 .. math::
 
     logcumsumexp(x)_{ij} = log \sum_{i=0}^{j}exp(x_{ij})
-    
+
 参数
 :::::::::
     - **x** (Tensor) - 需要进行操作的Tensor。

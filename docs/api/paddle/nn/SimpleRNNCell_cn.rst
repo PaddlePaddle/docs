@@ -42,7 +42,7 @@ SimpleRNNCell
     - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（hidden_size, hidden_size）。对应公式中的 :math:`W_{hh}`。
     - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（hidden_size, ）。对应公式中的 :math:`b_{ih}`。
     - **bias_hh** (Parameter) - hidden到hidden的变换矩阵的偏置。形状为（hidden_size, ）。对应公式中的 :math:`b_{hh}`。
-    
+
 输入
 ::::::::::::
 
@@ -54,7 +54,7 @@ SimpleRNNCell
 
     - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
     - **new_states** (Tensor) - 新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
-    
+
 .. Note::
     所有的变换矩阵的权重和偏置都默认初始化为Uniform(-std, std)，其中std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
 

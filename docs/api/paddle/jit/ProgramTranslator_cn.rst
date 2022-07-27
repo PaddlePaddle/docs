@@ -203,7 +203,7 @@ get_code(dygraph_func)
         return x_v
 
 
-    prog_trans = paddle.jit.ProgramTranslator()    
+    prog_trans = paddle.jit.ProgramTranslator()
 
     code = prog_trans.get_code(func)
     print(type(code)) # <class 'str'>

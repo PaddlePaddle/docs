@@ -9,7 +9,7 @@ einsum
 
 Einstein 求和是一种采用 Einstein 标记法描述的张量求和，输入单个或多个张量，输出单个张量。
 
-如下的张量操作或运算均可视为 Einstein 求和的特例 
+如下的张量操作或运算均可视为 Einstein 求和的特例
 
     - 单操作数
         - 迹：trace
@@ -69,7 +69,7 @@ Einsum 求和过程理论上等价于如下四步，但实现中实际执行的�
 
 
     **equation** (str)：求和标记
-    
+
     **operands** (Tensor, [Tensor, ...])：输入张量
 
 返回

@@ -52,7 +52,7 @@ FLAGS_eager_delete_tensor_gb=0.0 - 垃圾占用大小达到0.0GB时释放内存�
 
 FLAGS_eager_delete_tensor_gb=1.0 - 垃圾占用内存大小达到1.0GB时释放内存垃圾。
 
-FLAGS_eager_delete_tensor_gb=-1.0 - 禁用垃圾回收策略。    
+FLAGS_eager_delete_tensor_gb=-1.0 - 禁用垃圾回收策略。
 
 注意
 -------
@@ -222,7 +222,7 @@ Double型，范围为[0.0, 1.0]，缺省值为1.0。
 -------
 FLAGS_memory_fraction_of_eager_deletion=0 - 保留所有临时变量，也就是禁用垃圾回收策略。
 
-FLAGS_memory_fraction_of_eager_deletion=1 - 释放所有临时变量。   
+FLAGS_memory_fraction_of_eager_deletion=1 - 释放所有临时变量。
 
 FLAGS_memory_fraction_of_eager_deletion=0.5 - 仅释放50%比例的占用内存最多的变量。
 

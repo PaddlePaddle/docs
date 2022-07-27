@@ -25,7 +25,7 @@ KaimingUniform
     - **negative_slope** (float，可选) -  只适用于使用 leaky_relu 作为激活函数时的 negative_slope 参数。默认值为 :math:`0.0`。
     - **nonlinearity** (str，可选) -  非线性激活函数。默认值为 relu。
 
-.. note:: 
+.. note::
 
     在大多数情况下推荐设置 fan_in 为 None。
 

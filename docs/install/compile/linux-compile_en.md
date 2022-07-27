@@ -549,7 +549,7 @@ After the installation is complete, you can use `python` or `python3` to enter t
 ```
 import paddle
 ```
-and then  
+and then
 ```
 paddle.utils.run_check()
 ```

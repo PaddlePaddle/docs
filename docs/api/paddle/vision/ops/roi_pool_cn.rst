@@ -25,7 +25,7 @@ roi_pool
 
 代码示例
 :::::::::
-    
+
 ..  code-block:: python
 
     import paddle

@@ -1,6 +1,6 @@
 .. _cn_api_incubate_softmax_mask_fuse:
 
-softmax_mask_fuse 
+softmax_mask_fuse
 -------------------------------
 
 .. py:function:: paddle.incubate.softmax_mask_fuse(x, mask, name=None)

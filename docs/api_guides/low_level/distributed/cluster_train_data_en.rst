@@ -12,7 +12,7 @@ Read datasets in distributed training by defining a cluster_reader
 Generally, you can implement a cluster_reader, regarding the number of training processes and the process serial number(i.e. trainer_id) to decide which data to read:
 
     .. code-block:: python
-        
+
         def cluster_reader(reader, trainers, trainer_id):
             def reader_creator():
                 for idx, data in enumerate(reader()):
@@ -54,7 +54,7 @@ After the data is split, you can define a file_dispatcher function that determin
                 if (idx + trainers) % trainers == trainer_id:
                     ret_list.append(f)
             return ret_list
-        
+
         trainers = int(os.getenv("PADDLE_TRAINERS", "1"))
         trainer_id = int(os.getenv("PADDLE_TRAINER_ID", "0"))
         files_pattern = "cluster/housing.data.*"

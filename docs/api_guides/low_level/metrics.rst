@@ -11,20 +11,20 @@
 
 - 准确率: :code:`Precision` ，用来衡量二分类中召回真值和召回值的比例。
 
-  API Reference 请参考 :ref:`cn_api_fluid_metrics_Precision` 
+  API Reference 请参考 :ref:`cn_api_fluid_metrics_Precision`
 
 - 正确率: :code:`Accuracy` ，用来衡量二分类中召回真值和总样本数的比例。需要注意的是，准确率和正确率的定义是不同的，可以类比于误差分析中的 :code:`Variance` 和 :code:`Bias` 。
 
-  API Reference 请参考 :ref:`cn_api_fluid_metrics_Accuracy` 
+  API Reference 请参考 :ref:`cn_api_fluid_metrics_Accuracy`
 
 
 - 召回率: :code:`Recall` ，用来衡量二分类中召回值和总样本数的比例。准确率和召回率的选取相互制约，实际模型中需要进行权衡，可以参考文档 `Precision_and_recall <https://en.wikipedia.org/wiki/Precision_and_recall>`_ 。
 
-  API Reference 请参考 :ref:`cn_api_fluid_metrics_Recall` 
+  API Reference 请参考 :ref:`cn_api_fluid_metrics_Recall`
 
 - AUC: :code:`Area Under Curve`， 适用于二分类的分类模型评估，用来计算 `ROC曲线的累积面积 <https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve>`_。:code:`Auc` 通过python计算实现，如果关注性能，可以使用 :code:`fluid.layers.auc` 代替。
 
-  API Reference 请参考 :ref:`cn_api_fluid_metrics_Auc` 
+  API Reference 请参考 :ref:`cn_api_fluid_metrics_Auc`
 
 - 平均准确度: :code:`Average Precision` ，常用在Faster R-CNN和SSD等物体检测任务中。在不同召回条件下，计算了准确率的平均值，具体可以参考文档 `Average-precision <https://sanchom.wordpress.com/tag/average-precision/>`_ 和 `SSD: Single Shot MultiBox Detector <https://arxiv.org/abs/1512.02325>`_。
 

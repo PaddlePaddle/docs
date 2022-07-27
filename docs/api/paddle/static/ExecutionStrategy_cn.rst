@@ -51,7 +51,7 @@ int型成员。该选项表示当前 ``Executor`` 的线程池(thread pool)的�
 **代码示例**
 
 .. code-block:: python
-                
+
     import paddle
     import paddle.static as static
 

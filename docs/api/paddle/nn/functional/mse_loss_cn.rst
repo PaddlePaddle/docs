@@ -10,7 +10,7 @@ mse_loss
 对于预测值input和目标值label，公式为：
 
 当 `reduction` 设置为 ``'none'`` 时，
-    
+
     .. math::
         Out = (input - label)^2
 
@@ -20,7 +20,7 @@ mse_loss
        Out = \operatorname{mean}((input - label)^2)
 
 当 `reduction` 设置为 ``'sum'`` 时，
-    
+
     .. math::
        Out = \operatorname{sum}((input - label)^2)
 

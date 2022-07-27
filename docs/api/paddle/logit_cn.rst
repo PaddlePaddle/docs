@@ -8,7 +8,7 @@ logit
 实现了logit层。若eps为默认值None，并且 ``x`` < 0 或者 ``x`` > 1，该函数将返回NaN，OP的计算公式如下：
 
 .. math::
-    logit(x) = ln(\frac{x}{1-x}) 
+    logit(x) = ln(\frac{x}{1-x})
 
 其中，:math:`x`` 为输入的 Tensor，且和eps有着如下关系：
 

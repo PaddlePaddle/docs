@@ -21,7 +21,7 @@ init(role_maker=None, is_collective=False, strategy=None)
 
     - **role_maker** (RoleMakerBase) 已初始化好的PaddleCloudRoleMaker或UserDefineRoleMaker
     - **is_collective** (bool) 在未指定role_maker的情况下，可由init方法自行初始化RoleMaker, is_collective为True则按照collective模式进行创建，is_collective=False则按照ParameterServer模式进行创建
-    - **strategy** (DistributedStrategy)：分布式训练的额外属性。详情请参阅paddle.distributed.fleet.DistributedStrategy。默认值：None。 
+    - **strategy** (DistributedStrategy)：分布式训练的额外属性。详情请参阅paddle.distributed.fleet.DistributedStrategy。默认值：None。
 
 **返回**
 None

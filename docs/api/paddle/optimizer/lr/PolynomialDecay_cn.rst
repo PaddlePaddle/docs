@@ -12,7 +12,7 @@ PolynomialDecay
 
 .. math::
 
-    decay\_steps & = decay\_steps * math.ceil(\frac{epoch}{decay\_steps}) 
+    decay\_steps & = decay\_steps * math.ceil(\frac{epoch}{decay\_steps})
 
     new\_learning\_rate & = (learning\_rate-end\_lr)*(1-\frac{epoch}{decay\_steps})^{power}+end\_lr
 
@@ -20,7 +20,7 @@ PolynomialDecay
 
 .. math::
 
-    epoch & = min(epoch, decay\_steps) 
+    epoch & = min(epoch, decay\_steps)
 
     new\_learning\_rate & = (learning\_rate-end\_lr)*(1-\frac{epoch}{decay\_steps})^{power}+end\_lr
 

@@ -125,7 +125,7 @@ CPU分布式训练速度进一步提高的核心在于选择合适的分布式�
     elif fleet.is_worker():
         fleet.init_worker()
         exe.run(fleet.startup_program)
-        # Do training 
+        # Do training
         exe.run(fleet.main_program)
         fleet.stop_worker()
 
@@ -137,8 +137,8 @@ paddlepaddle支持对训练策略中的细节进行调整：
 .. code-block:: python
 
     compiled_program = fluid.compiler.CompiledProgram(fleet.main_program).with_data_parallel(
-                                                                            loss_name=loss.name, 
-                                                                            build_strategy=strategy.get_build_strategy(), 
+                                                                            loss_name=loss.name,
+                                                                            build_strategy=strategy.get_build_strategy(),
                                                                             exec_strategy=strategy.get_execute_strategy())
 
 
@@ -147,12 +147,12 @@ paddlepaddle支持对训练策略中的细节进行调整：
 .. code-block:: python
 
     strategy = DistributedStrategyFactory.create_sync_strategy()
- 
+
     # 方式一（推荐）：
     config = strategy.get_program_config()
     config.min_block_size = 81920
-    
-    
+
+
     # 方式二：调用set_program_config修改组网相关配置，支持DistributeTranspilerConfig和dict两种数据类型
     config = DistributeTranspilerConfig()
     config.min_block_size = 81920

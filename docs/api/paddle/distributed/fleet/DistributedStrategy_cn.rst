@@ -46,7 +46,7 @@ execution_strategy
 
 `Post Local SGD <https://arxiv.org/abs/1808.07217>`__
 
-配置DistributedStrategy中的 `ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`_ 
+配置DistributedStrategy中的 `ExecutionStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/ExecutionStrategy_cn.html>`_
 
 **代码示例**
 
@@ -57,7 +57,7 @@ execution_strategy
   exe_strategy.num_threads = 10
   exe_strategy.num_iteration_per_drop_scope = 10
   exe_strategy.num_iteration_per_run = 10
-  
+
   strategy = paddle.distributed.fleet.DistributedStrategy()
   strategy.execution_strategy = exe_strategy
 
@@ -65,7 +65,7 @@ execution_strategy
 build_strategy
 '''''''''
 
-配置DistributedStrategy中的 `BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`_ 
+配置DistributedStrategy中的 `BuildStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fluid/compiler/BuildStrategy_cn.html>`_
 
 **代码示例**
 
@@ -81,7 +81,7 @@ build_strategy
   build_strategy.fuse_broadcast_ops = True
   build_strategy.fuse_all_optimizer_ops = True
   build_strategy.enable_inplace = True
-  
+
   strategy = paddle.distributed.fleet.DistributedStrategy()
   strategy.build_strategy = build_strategy
 
@@ -186,7 +186,7 @@ gradient_merge
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
   strategy.gradient_merge = True
-  strategy.gradient_merge_configs = {"k_steps": 4, "avg": True}  
+  strategy.gradient_merge_configs = {"k_steps": 4, "avg": True}
 
 gradient_merge_configs
 '''''''''
@@ -218,7 +218,7 @@ lars
     "lars_weight_decay": 0.0005,
     "epsilon": 0,
     "exclude_from_weight_decay": ["batch_norm", ".b"],
-  } 
+  }
 
 lars_configs
 '''''''''
@@ -263,11 +263,11 @@ lamb_configs
 
 localsgd
 '''''''''
-是否使用LocalSGD optimizer，默认值：False。更多的细节请参考 `Don't Use Large Mini-Batches, Use Local SGD <https://arxiv.org/pdf/1808.07217.pdf>`_ 
+是否使用LocalSGD optimizer，默认值：False。更多的细节请参考 `Don't Use Large Mini-Batches, Use Local SGD <https://arxiv.org/pdf/1808.07217.pdf>`_
 
 **代码示例**
 
-.. code-block:: python  
+.. code-block:: python
 
   import paddle.distributed.fleet as fleet
   strategy = fleet.DistributedStrategy()
@@ -294,7 +294,7 @@ localsgd_configs
 
 adaptive_localsgd
 '''''''''
-是否使用AdaptiveLocalSGD optimizer，默认值：False。更多的细节请参考`Adaptive Communication Strategies to Achieve the Best Error-Runtime Trade-off in Local-Update SGD <https://arxiv.org/pdf/1810.08313.pdf>`_ 
+是否使用AdaptiveLocalSGD optimizer，默认值：False。更多的细节请参考`Adaptive Communication Strategies to Achieve the Best Error-Runtime Trade-off in Local-Update SGD <https://arxiv.org/pdf/1810.08313.pdf>`_
 
 **代码示例**
 

@@ -40,7 +40,7 @@ Align_corners和align_mode是可选参数，插值的计算方法可以由它们
 
 ::
 
-      
+
       scale 计算方法：
 
         if align_corners = True && out_size > 1 :

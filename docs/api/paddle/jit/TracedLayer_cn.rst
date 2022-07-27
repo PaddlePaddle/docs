@@ -117,7 +117,7 @@ save_inference_model(path, feed=None, fetch=None)
     - **fetch** (list(int)，可选) - 预测模型输出变量的索引。若为None，则TracedLayer的所有输出变量均会作为预测模型的输出。默认值为None。
 
 **返回**
- 
+
  无。
 
 **代码示例**

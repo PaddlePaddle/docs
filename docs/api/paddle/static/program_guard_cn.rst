@@ -25,7 +25,7 @@ program_guard
 .. code-block:: python
 
     import paddle
-    
+
     paddle.enable_static()
     main_program = paddle.static.Program()
     startup_program = paddle.static.Program()

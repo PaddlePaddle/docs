@@ -24,7 +24,7 @@ deform_conv2d op对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor
 具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable, Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_ 。
 
 **示例**
-     
+
 输入：
 
     input 形状：:math:`(N, C_{in}, H_{in}, W_{in})`
@@ -34,7 +34,7 @@ deform_conv2d op对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor
     offset 形状：:math:`(N, 2 * deformable\_groups * H_f * H_w, H_{in}, W_{in})`
 
     mask 形状：:math:`(N, deformable\_groups * H_f * H_w, H_{in}, W_{in})`
-     
+
 输出：
 
     输出形状：:math:`(N, C_{out}, H_{out}, W_{out})`
@@ -46,7 +46,7 @@ deform_conv2d op对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor
     H_{out}&= \frac{(H_{in} + 2 * paddings[0] - (dilations[0] * (H_f - 1) + 1))}{strides[0]} + 1
 
     W_{out}&= \frac{(W_{in} + 2 * paddings[1] - (dilations[1] * (W_f - 1) + 1))}{strides[1]} + 1
-     
+
 
 参数
 ::::::::::::
@@ -65,11 +65,11 @@ deform_conv2d op对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor
     - **weight_attr** (ParamAttr，可选) – 可变形卷积的可学习权重的属性。如果将其设置为None或某种ParamAttr，可变形卷积将创建ParamAttr作为weight_attr。如果没有设置此weight_attr的Initializer，该参数将被Normal(0.0, std)初始化，且其中的std为 :math:`(\frac{2.0 }{filter\_elem\_num})^{0.5}`。默认值为None。
     - **bias_attr** (ParamAttr|bool，可选) – 可变形卷积层的偏置的参数属性。如果设为False，则输出单元不会加偏置。如果设为None或者某种ParamAttr，conv2d会创建ParamAttr作为bias_attr。如果不设置bias_attr的Initializer，偏置会被初始化为0。默认值为None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
- 
+
 返回
 ::::::::::::
 Tensor，可变形卷积输出的4-D Tensor，数据类型为float32或float64。
-     
+
 代码示例
 ::::::::::::
 

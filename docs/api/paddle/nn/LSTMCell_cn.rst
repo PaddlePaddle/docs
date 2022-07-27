@@ -15,20 +15,20 @@ LSTMCell
 
 ..  math::
 
-        i_{t} &= \sigma (W_{ii}x_{t} + b_{ii} + W_{hi}h_{t-1} + b_{hi})\\ 
-        f_{t} &= \sigma (W_{if}x_{t} + b_{if} + W_{hf}h_{t-1} + b_{hf})\\ 
-        o_{t} &= \sigma (W_{io}x_{t} + b_{io} + W_{ho}h_{t-1} + b_{ho})\\ 
-        g_{t} &= \tanh (W_{ig}x_{t} + b_{ig} + W_{hg}h_{t-1} + b_{hg})\\ 
-        c_{t} &= f_{t} * c_{t-1} + i_{t} * g_{t}\\ 
-        h_{t} &= o_{t} * \tanh (c_{t})\\ 
-        y_{t} &= h_{t} 
+        i_{t} &= \sigma (W_{ii}x_{t} + b_{ii} + W_{hi}h_{t-1} + b_{hi})\\
+        f_{t} &= \sigma (W_{if}x_{t} + b_{if} + W_{hf}h_{t-1} + b_{hf})\\
+        o_{t} &= \sigma (W_{io}x_{t} + b_{io} + W_{ho}h_{t-1} + b_{ho})\\
+        g_{t} &= \tanh (W_{ig}x_{t} + b_{ig} + W_{hg}h_{t-1} + b_{hg})\\
+        c_{t} &= f_{t} * c_{t-1} + i_{t} * g_{t}\\
+        h_{t} &= o_{t} * \tanh (c_{t})\\
+        y_{t} &= h_{t}
 
 
 
 其中：
 
     - :math:`\sigma` ：sigmoid激活函数。
-   
+
 详情请参考论文：`An Empirical Exploration of Recurrent Network Architectures <http://proceedings.mlr.press/v37/jozefowicz15.pdf>`_ 。
 
 
@@ -50,7 +50,7 @@ LSTMCell
     - **weight_hh** (Parameter) - hidden到hidden的变换矩阵的权重。形状为（4 * hidden_size, hidden_size）。对应公式中的 :math:`W_{hi}, W_{hf}, W_{hg}, W_{ho}`。
     - **bias_ih** (Parameter) - input到hidden的变换矩阵的偏置。形状为（4 * hidden_size, ）。对应公式中的 :math:`b_{ii}, b_{if}, b_{ig}, b_{io}`。
     - **bias_hh** (Parameter) - hidden到hidden的变换矩阵的偏置。形状为（4 * hidden_size, ）。对应公式中的 :math:`b_{hi}, b_{hf}, b_{hg}, b_{ho}`。
-    
+
 输入
 ::::::::::::
 
@@ -62,7 +62,7 @@ LSTMCell
 
     - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
     - **new_states** (tuple) - 一个包含两个Tensor的元组，每个Tensor的形状都为[batch_size, hidden_size]，新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}，c_{t}`。
-    
+
 .. Note::
     所有的变换矩阵的权重和偏置都默认初始化为Uniform(-std, std)，其中std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
 

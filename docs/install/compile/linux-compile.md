@@ -197,7 +197,7 @@ cd /paddle/build/python/dist
 #### 12. 在当前机器或目标机器安装编译好的`.whl`包：
 
 
-For Python3:  
+For Python3:
 ```
 pip3.7 install -U [whl包的名字]
 ```

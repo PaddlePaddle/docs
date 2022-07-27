@@ -141,7 +141,7 @@
 
 其中：
 
-.. math::  
+.. math::
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(norm(X[i]))^2}\\
 
 
@@ -232,7 +232,7 @@
 
     clip = paddle.nn.ClipGradByNorm(clip_norm=1.0) # 创建ClipGradByNorm类的实例，指定L2范数阈值
     loss_fn = paddle.nn.MSELoss(reduction='mean')
-    optimizer = paddle.optimizer.SGD(learning_rate=0.01, 
+    optimizer = paddle.optimizer.SGD(learning_rate=0.01,
                                     parameters=model.parameters(),
                                     grad_clip=clip) # 将创建的ClipGradByNorm类的实例传入优化器SGD中
 

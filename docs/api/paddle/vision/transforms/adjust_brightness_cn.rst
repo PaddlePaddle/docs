@@ -23,4 +23,4 @@ adjust_brightness
 
 COPY-FROM: paddle.vision.transforms.adjust_brightness
 
-        
+

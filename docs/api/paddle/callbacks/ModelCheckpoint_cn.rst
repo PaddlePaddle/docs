@@ -12,8 +12,8 @@ ModelCheckpoint
 参数
 ::::::::::::
 
-  - **save_freq** (int，可选) - 间隔多少个epoch保存模型。默认值：1。 
-  - **save_dir** (int，可选) - 保存模型的文件夹。如果不设定，将不会保存模型。默认值：None。 
+  - **save_freq** (int，可选) - 间隔多少个epoch保存模型。默认值：1。
+  - **save_dir** (int，可选) - 保存模型的文件夹。如果不设定，将不会保存模型。默认值：None。
 
 
 代码示例

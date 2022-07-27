@@ -116,11 +116,11 @@ cd /workspace/Paddle/paddle/phi/kernels
 
 ```bash
 # 例如原有误差阈值为0.01
-self.assertTrue(np.allclose(hist, prob, rtol=0.01), 
+self.assertTrue(np.allclose(hist, prob, rtol=0.01),
                 "actual: {}, expected: {}".format(hist, prob))
-                
+
 # 将其修改为新的误差阈值如 0.05
-self.assertTrue(np.allclose(hist, prob, rtol=0.05), 
+self.assertTrue(np.allclose(hist, prob, rtol=0.05),
                 "actual: {}, expected: {}".format(hist, prob))
 ```
 

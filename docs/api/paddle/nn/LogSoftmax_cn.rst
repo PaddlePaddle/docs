@@ -8,7 +8,7 @@ LogSoftmax激活层，计算公式如下：
 
 .. math::
 
-    \begin{aligned} 
+    \begin{aligned}
     Out[i, j] &= log(softmax(x)) \\
     &= log(\frac{\exp(X[i, j])}{\sum_j(\exp(X[i, j])})
     \end{aligned}

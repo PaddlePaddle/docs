@@ -36,7 +36,7 @@ fc
 - :math:`Act` ：activation function (激活函数)；
 - :math:`Out`：输出Tensor。
 
-           
+
 .. code-block:: text
 
     # Case 1, input is a single tensor:

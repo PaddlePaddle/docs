@@ -21,7 +21,7 @@ lstsq
 ::::::::::::
 
     Tuple，包含 ``solution``、``residuals``、``rank`` 和 ``singular_values``。
-    
+
     - ``solution`` 指最小二乘解，形状为 ``(*, N, K)`` 的 Tensor。
     - ``residuals`` 指最小二乘解对应的残差，形状为 ``(*, K)`` 的 Tensor；当 ``M > N`` 且 ``x`` 中所有矩阵均为满秩矩阵时，该值会被计算，否则返回空 Tensor。
     - ``rank`` 指 ``x`` 中矩阵的秩，形状为 ``(*)`` 的 Tensor；当 ``driver`` 为 'gelsy', 'gelsd', 'gelss' 时，该值会被计算，否则返回空 Tensor。

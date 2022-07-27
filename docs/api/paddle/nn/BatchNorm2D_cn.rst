@@ -6,7 +6,7 @@ BatchNorm2D
 .. py:class:: paddle.nn.BatchNorm2D(num_features, momentum=0.9, epsilon=1e-05, weight_attr=None, bias_attr=None, data_format='NCHW', name=None):
 
 
-该接口用于构建 ``BatchNorm2D`` 类的一个可调用对象，具体用法参照 ``代码示例``。可以处理4D的Tensor，实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_ 
+该接口用于构建 ``BatchNorm2D`` 类的一个可调用对象，具体用法参照 ``代码示例``。可以处理4D的Tensor，实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 
 当训练时 :math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 是minibatch的统计数据。计算公式如下：
 
@@ -57,9 +57,9 @@ BatchNorm2D
     - input：形状为（批大小，通道数，高度，宽度）的4-D Tensor 或（批大小，通道数，宽度，高度）的4-D Tensor。
     - output：和输入形状一样。
 
-.. note:: 
+.. note::
 目前训练时设置track_running_stats为False是无效的，实际还是会按照True的方案保存全局均值和方差。之后的版本会修复此问题。
-    
+
 
 代码示例
 ::::::::::::
@@ -71,7 +71,7 @@ BatchNorm2D
 
     np.random.seed(123)
     x_data = np.random.random(size=(2, 1, 2, 3)).astype('float32')
-    x = paddle.to_tensor(x_data) 
+    x = paddle.to_tensor(x_data)
     batch_norm = paddle.nn.BatchNorm2D(1)
     batch_norm_out = batch_norm(x)
 

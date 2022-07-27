@@ -13,7 +13,7 @@ CppExtension
 
 .. code-block:: text
 
-    # setup.py 
+    # setup.py
 
     # 编译仅支持 CPU 的算子
     from paddle.utils.cpp_extension import CppExtension, setup

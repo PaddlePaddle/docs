@@ -9,7 +9,7 @@ logspace
 
 .. note::
     ``paddle.logspace`` 不进行梯度计算。
- 
+
 参数
 ::::::::::::
 

@@ -67,7 +67,7 @@ list(Variable) | tuple(Variable）
 设置min_ratio和max_ratio
 
 ..  code-block:: python
-        
+
         import paddle
         paddle.enable_static()
 
@@ -97,7 +97,7 @@ list(Variable) | tuple(Variable）
 设置min_sizes和max_sizes
 
 ..  code-block:: python
-        
+
         import paddle
         paddle.enable_static()
 

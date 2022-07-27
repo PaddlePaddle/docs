@@ -15,7 +15,7 @@ BuildStrategy，一个BuildStrategy的实例。
 :::::::::
 
 .. code-block:: python
-    
+
     import os
     import paddle
     import paddle.static as static
@@ -80,7 +80,7 @@ bool类型。如果设置为True，则算子的执行顺序将与算子定义的
 
 fuse_broadcast_ops
 '''''''''
-     
+
 bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模式下有效，使程序运行更快。默认为False。
 
 **代码示例**
@@ -95,7 +95,7 @@ bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模�
     build_strategy = static.BuildStrategy()
     build_strategy.fuse_broadcast_ops = True
 
-     
+
 fuse_elewise_add_act_ops
 '''''''''
 

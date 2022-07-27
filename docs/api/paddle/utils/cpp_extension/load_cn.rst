@@ -24,7 +24,7 @@ load
 **使用样例如下：**
 
 .. code-block:: text
-   
+
    import paddle
    from paddle.utils.cpp_extension import load
 

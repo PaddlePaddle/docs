@@ -230,7 +230,7 @@ FLAGS_rpc_server_profile_path
 *******************************************
 since(v0.15.0)
 
-设置分析器输出日志文件路径前缀。完整路径为FLAGS_rpc_server_profile_path_listener_id，其中listener_id为随机数。 
+设置分析器输出日志文件路径前缀。完整路径为FLAGS_rpc_server_profile_path_listener_id，其中listener_id为随机数。
 
 取值范围
 ---------------
@@ -253,7 +253,7 @@ Bool型，缺省值为false。
 
 示例
 -------
-FLAGS_apply_pass_to_program=true - 当使用Fleet API时，在Program上使用IR Pass优化。 
+FLAGS_apply_pass_to_program=true - 当使用Fleet API时，在Program上使用IR Pass优化。
 
 
 FLAGS_allreduce_record_one_event

@@ -5,7 +5,7 @@ npair_loss
 
 .. py:function:: paddle.nn.functional.npair_loss(anchor, positive, labels, l2_reg=0.002)
 
-参考阅读 `Improved Deep Metric Learning with Multi class N pair Loss Objective <http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf>`_ 
+参考阅读 `Improved Deep Metric Learning with Multi class N pair Loss Objective <http://www.nec-labs.com/uploads/images/Department-Images/MediaAnalytics/papers/nips16_npairmetriclearning.pdf>`_
 
 NPair损失需要成对的数据。NPair损失分为两部分：第一部分是对嵌入向量进行L2正则化；第二部分是每一对数据的相似性矩阵的每一行和映射到ont-hot之后的标签的交叉熵损失的和。
 

@@ -128,7 +128,7 @@ def ForTensor(x):
 ```python
 # break 的使用样例
 def break_usage(x):
-    tensor_idx = -1  
+    tensor_idx = -1
     for idx, val in enumerate(x) :
         if val == 2.0 :
             tensor_idx = idx

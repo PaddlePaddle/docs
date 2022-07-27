@@ -159,7 +159,7 @@ class SimpleNet(paddle.nn.Layer):
         out = out + y
 
         mask = paddle.to_tensor(self.mask)  # <---- 每次都会调用 assign_op
-        out = out * mask  
+        out = out * mask
 
         return out
 ```
@@ -209,7 +209,7 @@ class SimpleNet(object):                       # <---- 继承 Object
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
-        out = out * self.mask  
+        out = out * self.mask
         return out
 ```
 
@@ -238,7 +238,7 @@ class SimpleNet(paddle.nn.Layer):
         out = self.linear(x)
         out = out + y
         # .... (略)
-        out = out * self.mask  
+        out = out * self.mask
         return out
 ```
 

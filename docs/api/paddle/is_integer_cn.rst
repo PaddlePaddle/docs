@@ -11,7 +11,7 @@ is_integer
 参数
 :::::::::
    - **x** (Tensor) - 输入 Tensor
-    
+
 
 返回
 :::::::::

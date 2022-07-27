@@ -9,7 +9,7 @@ MultiStepDecay
 
 衰减过程可以参考以下代码：
 
-.. code-block:: text 
+.. code-block:: text
 
     learning_rate = 0.5
     milestones = [30, 50]

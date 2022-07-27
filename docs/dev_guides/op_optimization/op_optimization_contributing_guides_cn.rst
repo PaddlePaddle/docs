@@ -40,7 +40,7 @@
     :header: "提交内容", "参考文档", "提交位置"
     :widths: 10, 30, 30
 
-    "算子性能优化设计文档", "- `算子性能优化设计文档 模版 <https://github.com/PaddlePaddle/community/tree/master/rfcs/OPs-Perf/op_optimization_template.md>`_ 
+    "算子性能优化设计文档", "- `算子性能优化设计文档 模版 <https://github.com/PaddlePaddle/community/tree/master/rfcs/OPs-Perf/op_optimization_template.md>`_
     - `算子性能优化设计文档 示例 <https://github.com/PaddlePaddle/community/blob/master/rfcs/OPs-Perf/op_optimization_example.md>`_ ", "`Github开发者社区仓库 <https://github.com/PaddlePaddle/community/tree/master/rfcs/OPs-Perf>`_"
 
 
@@ -65,8 +65,8 @@
     "算子性能优化实现代码", "- `Paddle代码规范 <https://www.paddlepaddle.org.cn/documentation/docs/zh/dev_guides/style_guides_cn.html>`_
     - `C++ OP开发指南 <../api_contributing_guides/new_cpp_op_cn.html>`_
     - `OP Benchmark使用指南 <https://github.com/PaddlePaddle/benchmark/blob/master/api>`_
-    - `算子性能优化 优化方法 <./op_optimization_method_introduction_cn.html>`_ 
-    - `算子性能优化 验收规范 <./op_optimization_accpetance_criteria_cn.html>`_ 
+    - `算子性能优化 优化方法 <./op_optimization_method_introduction_cn.html>`_
+    - `算子性能优化 验收规范 <./op_optimization_accpetance_criteria_cn.html>`_
     ", "`Github飞桨训练框架仓库 <https://github.com/PaddlePaddle/Paddle>`_"
 
 

@@ -272,7 +272,7 @@ def tanh(x):
 # 前向函数2：将两个2-D Tenosr相加，输入多个Tensor以list[Tensor]或tuple(Tensor)形式
 def element_wise_add(x, y):
     # 必须先手动将Tensor转换为numpy数组，否则无法支持numpy的shape操作
-    x = np.array(x)  
+    x = np.array(x)
     y = np.array(y)
 
     if x.shape != y.shape:

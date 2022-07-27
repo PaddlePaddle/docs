@@ -13,7 +13,7 @@ PaddlePaddle 通过py_func在Python端注册OP。py_func的设计原理在于Pad
 
 该自定义的Python OP的前向函数是 ``func``，反向函数是 ``backward_func`` 。 Paddle将在前向部分调用 ``func``，并在反向部分调用 ``backward_func`` （如果 ``backward_func`` 不是None)。 ``x`` 为 ``func`` 的输入，必须为Tensor类型；``out``  为 ``func`` 的输出，既可以是Tensor类型，也可以是numpy数组。
 
-反向函数 ``backward_func`` 的输入依次为：前向输入 ``x`` 、前向输出 ``out`` 、 ``out`` 的梯度。如果 ``out`` 的某些输出没有梯度，则 ``backward_func`` 的相关输入为None。如果 ``x`` 的某些变量没有梯度，则用户应在 ``backward_func`` 中主动返回None。 
+反向函数 ``backward_func`` 的输入依次为：前向输入 ``x`` 、前向输出 ``out`` 、 ``out`` 的梯度。如果 ``out`` 的某些输出没有梯度，则 ``backward_func`` 的相关输入为None。如果 ``x`` 的某些变量没有梯度，则用户应在 ``backward_func`` 中主动返回None。
 
 在调用该接口之前，还应正确设置 ``out`` 的数据类型和形状，而 ``out`` 和 ``x`` 对应梯度的数据类型和形状将自动推断而出。
 
@@ -57,7 +57,7 @@ Tensor|tuple(Tensor)|list[Tensor]，前向函数的输出 ``out``
     # 自定义的前向函数，可用于调试正在运行的网络（打印值）
     def debug_func(x):
         print(x)
-    
+
     def create_tmp_var(name, dtype, shape):
         return paddle.static.default_main_program().current_block().create_var(
             name=name, dtype=dtype, shape=shape)
@@ -99,16 +99,16 @@ Tensor|tuple(Tensor)|list[Tensor]，前向函数的输出 ``out``
 ::::::::::::
 
 ..  code-block:: python
-    
+
     # 该示例展示了如何将LoDTensor转化为numpy数组，并利用numpy API来自定义一个OP
     import paddle
     import numpy as np
 
     paddle.enable_static()
 
-    def element_wise_add(x, y): 
+    def element_wise_add(x, y):
         # 必须先手动将LodTensor转换为numpy数组，否则无法支持numpy的shape操作
-        x = np.array(x)    
+        x = np.array(x)
         y = np.array(y)
 
         if x.shape != y.shape:
@@ -132,7 +132,7 @@ Tensor|tuple(Tensor)|list[Tensor]，前向函数的输出 ``out``
         # 创建前向函数的输入变量
         x = paddle.static.data(name='x', shape=[2,3], dtype='int32')
         y = paddle.static.data(name='y', shape=[2,3], dtype='int32')
-        
+
         # 创建前向函数的输出变量，必须指明变量名称name/数据类型dtype/维度shape
         output = create_tmp_var('output','int32', [3,1])
 
@@ -145,7 +145,7 @@ Tensor|tuple(Tensor)|list[Tensor]，前向函数的输出 ``out``
         # 给program喂入numpy数组
         input1 = np.random.randint(1, 10, size=[2,3], dtype='int32')
         input2 = np.random.randint(1, 10, size=[2,3], dtype='int32')
-        out = exe.run(main_program, 
+        out = exe.run(main_program,
                     feed={'x':input1, 'y':input2},
                     fetch_list=[output.name])
         print("{0} + {1} = {2}".format(input1, input2, out))

@@ -21,7 +21,7 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
 具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable, Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_ 。
 
 **示例**
-     
+
 输入：
     input 形状：:math:`(N, C_{in}, H_{in}, W_{in})`
 
@@ -30,7 +30,7 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     offset 形状：:math:`(N, 2 * H_f * W_f, H_{out}, W_{out})`
 
     mask 形状：:math:`(N, H_f * W_f, H_{out}, W_{out})`
-     
+
 输出：
     输出形状：:math:`(N, C_{out}, H_{out}, W_{out})`
 
@@ -57,7 +57,7 @@ deform_conv2d 对输入4-D Tensor计算2-D可变形卷积。给定输入Tensor x
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为bool类型，只支持为False，表示没有偏置参数。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
-    
+
 形状：
     - x: :math:`(N, C_{in}, H_{in}, W_{in})`
     - offset: :math:`(N, 2 * H_f * W_f, H_{out}, W_{out})`

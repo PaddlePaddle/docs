@@ -41,7 +41,7 @@ diff
     y = paddle.to_tensor([7, 9])
     out = paddle.diff(x, append=y)
     print(out)
-    # out: 
+    # out:
     # [3, 1, -3, 5, 2]
     z = paddle.to_tensor([[1, 2, 3], [4, 5, 6]])
     out = paddle.diff(z, axis=0)

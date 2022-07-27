@@ -53,7 +53,7 @@
 
     * Windows 安装 GPU 版本
 
-        * Windows 7/8/10 支持 CUDA 10.1/10.2/11.2 单卡模式 
+        * Windows 7/8/10 支持 CUDA 10.1/10.2/11.2 单卡模式
         * 不支持 **nvidia-docker** 方式安装
     * Ubuntu 安装 GPU 版本
 
@@ -110,9 +110,9 @@
 3. 确认您需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
 
     使用以下命令输出 Python 路径，根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
-    
+
         在 Windows 环境下，输出 Python 路径的命令为：
-        
+
         ::
 
             where python
@@ -128,14 +128,14 @@
 
     使用以下命令确认是 3.6/3.7/3.8/3.9
     ::
-    
+
         python --version
 
-5. 检查 pip 的版本，确认是 20.2.2+  
+5. 检查 pip 的版本，确认是 20.2.2+
 
     ::
-    
-        python -m ensurepip 
+
+        python -m ensurepip
         python -m pip --version
 
 
@@ -148,11 +148,11 @@
 
 7. 如果您希望使用 `pip <https://pypi.org/project/pip/>`_ 进行安装PaddlePaddle可以直接使用以下命令:
 
-    (1). **CPU版本** ：如果您只是想安装CPU版本请参考如下命令安装 
+    (1). **CPU版本** ：如果您只是想安装CPU版本请参考如下命令安装
 
         安装CPU版本的命令为：
         ::
-    
+
             python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
 
             或
@@ -160,7 +160,7 @@
             python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 
-    (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装 
+    (2). **GPU版本** ：如果您想使用GPU版本请参考如下命令安装
 
         注意：
 
@@ -175,7 +175,7 @@
 
             python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-        
+
     请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
 8. 验证安装

@@ -14,7 +14,7 @@ instance_norm
 
 NCHW[batch,in_channels,in_height,in_width]
 
-更多详情请参考：`Instance Normalization: The Missing Ingredient for Fast Stylization <https://arxiv.org/pdf/1607.08022.pdf>`_ 
+更多详情请参考：`Instance Normalization: The Missing Ingredient for Fast Stylization <https://arxiv.org/pdf/1607.08022.pdf>`_
 
 ``input`` 是mini-batch的输入。
 

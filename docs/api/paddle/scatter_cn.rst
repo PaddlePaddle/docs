@@ -8,7 +8,7 @@ scatter
 通过基于 ``updates`` 来更新选定索引 ``index`` 上的输入来获得输出。具体行为如下：
 
     .. code-block:: python
-    
+
         import numpy as np
         #input:
         x = np.array([[1, 1], [2, 2], [3, 3]])
@@ -49,16 +49,16 @@ Tensor，与x有相同形状和数据类型。
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
-        
+
         import paddle
         import numpy as np
 
         x_data = np.array([[1, 1], [2, 2], [3, 3]]).astype(np.float32)
         index_data = np.array([2, 1, 0, 1]).astype(np.int64)
         updates_data = np.array([[1, 1], [2, 2], [3, 3], [4, 4]]).astype(np.float32)
-        
+
         x = paddle.to_tensor(x_data)
         index = paddle.to_tensor(index_data)
         updates = paddle.to_tensor(updates_data)

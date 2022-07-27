@@ -7,7 +7,7 @@ nms
 
 非极大抑制(non-maximum suppression, NMS)用于在目标检测应用对检测边界框(bounding box)中搜索局部最大值，即只保留处于同一检测目标位置处重叠的框中分数最大的一个框。IoU(Intersection Over Union) 被用于判断两个框是否重叠，该值大于门限值(iou_threshold)则被认为两个框重叠。其计算公式如下：
 
-.. math:: 
+.. math::
 
     IoU = \frac{intersection\_area(box1, box2)}{union\_area(box1, box2)}
 

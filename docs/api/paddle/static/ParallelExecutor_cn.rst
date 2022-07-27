@@ -48,8 +48,8 @@ ParallelExecutor
 
     use_cuda = True
     paddle.enable_static()
-    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace() 
-    
+    place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
+
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
     # 否则PaddlePaddle会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
@@ -72,7 +72,7 @@ ParallelExecutor
 
     train_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
                                                main_program=train_program,
-                                               loss_name=loss.name) 
+                                               loss_name=loss.name)
     # 注意：如果此处不设置share_vars_from=train_exe，测试过程中用的参数与训练使用的参数是不一致
     test_exe = paddle.static.ParallelExecutor(use_cuda=use_cuda,
                                               main_program=test_program,
@@ -117,7 +117,7 @@ run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
     use_cuda = True
     paddle.enable_static()
     place = paddle.CUDAPlace(0) if use_cuda else paddle.CPUPlace()
-     
+
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
     # 否则PaddlePaddle会把逻辑核的所有数目设为CPU_NUM，
     # 在这种情况下，输入的batch size应大于CPU_NUM，
@@ -172,7 +172,7 @@ drop_local_exe_scopes()
     import paddle
     import numpy
     import os
-    
+
     use_cuda = True
     # 注意：如果你使用CPU运行程序，需要具体设置CPU_NUM，
     # 否则PaddlePaddle会把逻辑核的所有数目设为CPU_NUM，

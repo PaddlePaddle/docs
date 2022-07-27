@@ -1,7 +1,7 @@
 .. _api_guide_large_scale_sparse_feature_training_en:
 
 ###################################################
-Training of Models with Large Scale Sparse Features  
+Training of Models with Large Scale Sparse Features
 ###################################################
 
 

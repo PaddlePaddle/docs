@@ -27,7 +27,7 @@ RandomRotate
     - center (2-tuple，可选) - 旋转的中心点坐标，原点是图片左上角，默认值是图像的中心点。
     - fill (int，可选) - 对图像扩展时填充的值。默认值：0。
     - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值：None。
-    
+
 形状
 :::::::::
 
@@ -41,9 +41,9 @@ RandomRotate
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
-    
+
     import numpy as np
     from PIL import Image
     from paddle.vision.transforms import RandomRotation
@@ -54,4 +54,4 @@ RandomRotate
 
     fake_img = transform(fake_img)
     print(fake_img.size)
-    
+

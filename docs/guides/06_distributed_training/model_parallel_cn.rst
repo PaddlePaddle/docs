@@ -97,7 +97,7 @@
 定义如下：
 
 .. code-block:: python
-   
+
    class VocabParallelEmbedding(Layer):
        def __init__(self,
                     num_embeddings,  # Embedding参数的行数
@@ -138,9 +138,9 @@
 下面的例子给出在两张卡上实现Embedding算子模型并行的示例。
 
 .. code-block:: python
-   
+
    import paddle.distributed.fleet as fleet
-   word_embeddings = fleet.meta_parallel.VocabParallelEmbedding(   
+   word_embeddings = fleet.meta_parallel.VocabParallelEmbedding(
        vocab_size,
        hidden_size,
        weight_attr=paddle.ParamAttr(initializer=nn.initializer.Normal(
@@ -159,10 +159,10 @@
    hcg = fleet.get_hybrid_communicate_group()
    global_rank = hcg.get_global_rank() # 全局rank
    mp_rank = hcg.get_model_parallel_rank() # 模型并行组rank
-   
+
 
 当结合使用模型并行和数据并行时，我们需要指定 ``dp_dgree`` 参数，设置数据并行的并行度。
-   
+
 
 如上文所述，对于Transformer模型，存在两种类型的Dropout：全局Dropout和局部Dropout；对于全局Dropout，需要在模型并行的所有卡上设置相同的种子，对于局部Dropout，则需要设置不同的种子。我们通过如下代码分别设置全局和局部种子：
 
@@ -239,7 +239,7 @@
                hidden_size,
                inner_size,
                gather_output=False,
-               has_bias=True)       
+               has_bias=True)
 
          self.linear2 = fleet.meta_parallel.RowParallelLinear(
                inner_size,
@@ -286,7 +286,7 @@
    }
    # 注意strategy是这里传递的，动态图只能这里，静态图还可以在distributed_optimizer里传
    fleet.init(is_collective=True, strategy=strategy)
-   
+
    hcg = fleet.get_hybrid_communicate_group()
    mp_id = hcg.get_model_parallel_rank()
    rank_id = dist.get_rank()
@@ -297,11 +297,11 @@
    optimizer = paddle.optimizer.SGD(learning_rate=0.001, parameters=model.parameters())
    model = fleet.distributed_model(model)
    optimizer = fleet.distributed_optimizer(optimizer)
-   
-   
+
+
    for _ in range(5):
       np_data = np.random.randint(0, vocab_size, (batch_size, seq_length, ))
-       
+
       output = model(paddle.to_tensor(np_data))
       loss = output.mean()
       loss.backward()

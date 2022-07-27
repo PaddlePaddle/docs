@@ -10,7 +10,7 @@ diag_embed
 
     该 OP 创建一个 Tensor，其在指定的 2D 平面（由 ``dim1`` 和 ``dim2`` 指定）上的对角线由输入 ``input`` 填充。
     默认的，指定的 2D 平面由返回 Tensor 的最后两维组成。
-    
+
     参数 ``offset`` 确定在指定的二维平面中填充对角线的位置：
 
     - 如果 offset = 0，则填充主对角线。
@@ -29,14 +29,14 @@ diag_embed
 ::::::::::::
  指定二维平面填充了对角线的 Tensor。数据类型和输入数据类型一致。
 
-代码示例 
+代码示例
 ::::::::::::
 
 ..  code-block:: python
 
     import paddle.nn.functional as F
     import numpy as np
-    
+
     diag_embed = np.random.randn(2, 3).astype('float32')
     # [[ 0.7545889 , -0.25074545,  0.5929117 ],
     #  [-0.6097662 , -0.01753256,  0.619769  ]]

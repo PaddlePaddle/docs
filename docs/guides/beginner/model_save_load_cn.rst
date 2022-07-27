@@ -47,7 +47,7 @@
     本教程着重介绍飞桨框架2.1的各个保存载入接口的关系及各种使用场景，不对接口参数进行详细介绍，如果需要了解具体接口参数的含义，请直接阅读对应API文档。
 
 
-`模型保存常见问题 <./../../faq/save_cn.html>`_ 
+`模型保存常见问题 <./../../faq/save_cn.html>`_
 
 
 二、训练调优场景的模型&参数保存载入
@@ -179,9 +179,9 @@
 参数保存时，先获取Program的state_dict，然后将state_dict保存至磁盘，示例如下（接前述示例）:
 
 .. code-block:: python
-    
+
     paddle.save(prog.state_dict(), "temp/model.pdparams")
-    
+
 
 如果想要保存整个静态图模型，除了state_dict还需要保存Program
 
@@ -376,7 +376,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
                 return out, avg_loss
             else:
                 return out
-            
+
 
 正确示例如下：
 
@@ -541,7 +541,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     # save
     path = "example.dy_model/linear"
     paddle.jit.save(
-        layer=layer, 
+        layer=layer,
         path=path,
         input_spec=[InputSpec(shape=[None, 784], dtype='float32')])
 
@@ -560,7 +560,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 .. code-block:: python
 
     paddle.jit.save(
-        layer=layer, 
+        layer=layer,
         path=path,
         input_spec=[InputSpec(shape=[None, 784], dtype='float32')])
 
@@ -571,7 +571,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 .. code-block:: python
 
     paddle.jit.save(
-        layer=layer, 
+        layer=layer,
         path=path,
         input_spec=[image])
 

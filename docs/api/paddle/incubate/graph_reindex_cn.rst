@@ -61,7 +61,7 @@ graph_reindex
     x = paddle.to_tensor(x, dtype="int64")
     neighbors = paddle.to_tensor(neighbors, dtype="int64")
     count = paddle.to_tensor(count, dtype="int32")
-    
+
     reindex_src, reindex_dst, out_nodes = \
         paddle.incubate.graph_reindex(x, neighbors, count)
     # reindex_src: [3, 4, 0, 5, 6, 7, 6]

@@ -27,4 +27,4 @@ Tensor，排序后的输出（与 ``x`` 维度相同、数据类型相同）。
 ::::::::::::
 
 COPY-FROM: paddle.sort:code-example1
-    
+

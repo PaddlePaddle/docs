@@ -2,14 +2,14 @@
 
 ####
 激活函数
-#### 
+####
 
 激活函数将非线性的特性引入到神经网络当中。
 
-PaddlePaddle Fluid 对大部分的激活函数进行了支持，其中有:        
+PaddlePaddle Fluid 对大部分的激活函数进行了支持，其中有:
 
 :ref:`cn_api_fluid_layers_relu`, :ref:`cn_api_fluid_layers_tanh`, :ref:`cn_api_fluid_layers_sigmoid`, :ref:`cn_api_fluid_layers_elu`, :ref:`cn_api_fluid_layers_relu6`, :ref:`cn_api_fluid_layers_pow`, :ref:`cn_api_fluid_layers_stanh`, :ref:`cn_api_fluid_layers_hard_sigmoid`, :ref:`cn_api_fluid_layers_swish`, :ref:`cn_api_fluid_layers_prelu`, :ref:`cn_api_fluid_layers_brelu`, :ref:`cn_api_fluid_layers_leaky_relu`, :ref:`cn_api_fluid_layers_soft_relu`, :ref:`cn_api_fluid_layers_thresholded_relu`, :ref:`cn_api_fluid_layers_maxout`, :ref:`cn_api_fluid_layers_logsigmoid`, :ref:`cn_api_fluid_layers_hard_shrink`, :ref:`cn_api_fluid_layers_softsign`, :ref:`cn_api_fluid_layers_softplus`, :ref:`cn_api_fluid_layers_tanh_shrink`, :ref:`cn_api_fluid_layers_softshrink`, :ref:`cn_api_fluid_layers_exp`。
- 
+
 
 **Fluid提供了两种使用激活函数的方式：**
 

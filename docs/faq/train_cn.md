@@ -170,7 +170,7 @@ export FLAGS_fraction_of_gpu_memory_to_use=0
 
 ----------
 
-##### 问题：预测时如何打印模型中每一步的耗时？  
+##### 问题：预测时如何打印模型中每一步的耗时？
 
 + 答复：可以在设置config时使用`config.enable_profile()`统计预测时每个算子和数据搬运的耗时。对于推理api的使用，可以参考官网文档[Python预测API介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/05_inference_deployment/inference/python_infer_cn.html)。示例代码：
 ```python

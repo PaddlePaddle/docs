@@ -32,7 +32,7 @@ with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, shar
 
 .. note::
     如果在构建CompiledProgram和调用with_data_parallel时都指定了build_strategy，在CompiledProgram中的build_strategy会被复写，因此，如果是数据并行训练，建议在调用with_data_parallel接口时设置build_strategy。
-     
+
 **参数**
 
     - **loss_name** （str） - 该参数为模型最后得到的损失变量的名字，**注意：如果是模型训练，必须设置loss_name，否则计算结果可能会有问题。** 默认为：None。

@@ -60,7 +60,7 @@ rank
 
         # execute this command in terminal: export PADDLE_TRAINER_ID=0
         import paddle.distributed as dist
-        
+
         env = dist.ParallelEnv()
         print("The rank is %d" % env.rank)
         # The rank is 0
@@ -79,7 +79,7 @@ world_size
 
         # execute this command in terminal: export PADDLE_TRAINERS_NUM=4
         import paddle.distributed as dist
-        
+
         env = dist.ParallelEnv()
         print("The world_size is %d" % env.world_size)
         # The world_size is 4
@@ -98,7 +98,7 @@ device_id
 
         # execute this command in terminal: export FLAGS_selected_gpus=1
         import paddle.distributed as dist
-        
+
         env = dist.ParallelEnv()
         print("The device id are %d" % env.device_id)
         # The device id are 1
@@ -114,10 +114,10 @@ current_endpoint
 **代码示例**
 
     .. code-block:: python
-            
+
         # execute this command in terminal: export PADDLE_CURRENT_ENDPOINT=127.0.0.1:6170
         import paddle.distributed as dist
-        
+
         env = dist.ParallelEnv()
         print("The current endpoint are %s" % env.current_endpoint)
         # The current endpoint are 127.0.0.1:6170
@@ -136,7 +136,7 @@ trainer_endpoints
 
         # execute this command in terminal: export PADDLE_TRAINER_ENDPOINTS=127.0.0.1:6170,127.0.0.1:6171
         import paddle.distributed as dist
-        
+
         env = dist.ParallelEnv()
         print("The trainer endpoints are %s" % env.trainer_endpoints)
         # The trainer endpoints are ['127.0.0.1:6170', '127.0.0.1:6171']

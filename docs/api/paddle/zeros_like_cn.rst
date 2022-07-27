@@ -13,7 +13,7 @@ zeros_like
     - **x** (Tensor) – 输入的多维Tensor，数据类型可以是bool，float16, float32，float64，int32，int64。输出Tensor的形状和 ``x`` 相同。如果 ``dtype`` 为None，则输出Tensor的数据类型与 ``x`` 相同。
     - **dtype** (str|np.dtype，可选) - 输出Tensor的数据类型，支持bool，float16, float32，float64，int32，int64。当该参数值为None时，输出Tensor的数据类型与 ``x`` 相同。默认值为None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    
+
 返回
 ::::::::::
     Tensor：和 ``x`` 具有相同的形状全零Tensor，数据类型为 ``dtype`` 或者和 ``x`` 相同。

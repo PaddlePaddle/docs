@@ -45,7 +45,7 @@ paddle.distributed.fleet是分布式训练的统一入口API，用于配置分�
 .. csv-table::
     :header: "API名称", "API功能"
     :widths: 20, 50
-    
+
 
     " :ref:`init_parallel_env <cn_api_distributed_init_parallel_env>` ", "初始化并行训练环境，支持动态图模式"
     " :ref:`launch <cn_api_distributed_launch>` ", "启动分布式训练进程，支持集合通信及参数服务器架构"
@@ -61,7 +61,7 @@ paddle.distributed.fleet是分布式训练的统一入口API，用于配置分�
 .. csv-table::
     :header: "API名称", "API功能"
     :widths: 20, 50
-    
+
 
     " :ref:`InMemoryDataset <cn_api_distributed_InMemoryDataset>` ", "数据加载到内存中，在训练前随机整理数据"
     " :ref:`QueueDataset <cn_api_distributed_QueueDataset>` ", "流式数据加载"
@@ -76,7 +76,7 @@ paddle.distributed.fleet是分布式训练的统一入口API，用于配置分�
 .. csv-table::
     :header: "API名称", "API功能"
     :widths: 20, 50
-    
+
 
     " :ref:`reduce <cn_api_distributed_reduce>` ", "规约，规约进程组内的tensor，返回结果至指定进程"
     " :ref:`ReduceOP <cn_api_distributed_ReduceOp>` ", "规约，指定逐元素规约操作"

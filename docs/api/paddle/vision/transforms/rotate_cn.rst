@@ -24,9 +24,9 @@ rotate
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
-        
+
     import numpy as np
     from PIL import Image
     from paddle.vision.transforms import functional as F
@@ -37,4 +37,4 @@ rotate
 
     rotated_img = F.rotate(fake_img, 90)
     print(rotated_img.size)
-    
+

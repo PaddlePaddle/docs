@@ -12,7 +12,7 @@ strided_slice算子。
 
 ::
 
-        
+
         示例1：
                 给定：
                      data=[[1,2,3,4],[5,6,7,8],]
@@ -32,7 +32,7 @@ strided_slice算子。
                      strides=[1,-1]
 
                 则：
-                     result=[[8,7,6],] 
+                     result=[[8,7,6],]
         示例3：
                 给定：
                      data=[[1,2,3,4],[5,6,7,8],]
@@ -42,12 +42,12 @@ strided_slice算子。
                      strides =[1,3]
                 则：
                      result=[[2],]
-                     
+
 
 参数
 ::::::::::::
 
-       
+
         - **x** （Tensor）- 多维 ``Tensor``，数据类型为 ``bool``, ``float32``，``float64``，``int32``，或 ``int64``。
         - **axes** （list|tuple）- 数据类型是 ``int32``。表示进行切片的轴。
         - **starts** （list|tuple|Tensor）- 数据类型是 ``int32``。如果 ``starts`` 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 ``Tensor``。如果 ``starts`` 的类型是 ``Tensor``，则是1-D ``Tensor``。表示在各个轴上切片的起始索引值。
