@@ -57,7 +57,7 @@ docs/api
 |    |--utils
 |    |--vision
 |-- api_label                   # 英文API文档的标签，用于API文档的相互引用
-|-- display_doc_list            
+|-- display_doc_list  
 |-- gen_alias_api.py            # 生成全量的API别名关系
 |-- gen_alias_mapping.sh        # 已废弃
 |-- gen_doc.py                  # 生成英文API文档目录树程序
@@ -103,9 +103,9 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ➜  git checkout  -- paddle/all_cn.rst
 ```
    恢复后重新进行修改并提交文件即可。
-   
+
 - pre-commit：提交修改说明前，需要对本次修改做一些格式化检查：
-   
+
 ```
 ➜  pre-commit
 yapf.................................................(no files to check)Skipped
@@ -143,7 +143,7 @@ convert-markdown-into-html...............................................Passed
 - 填写提交说明：Git 每次提交代码，都需要写提交说明，让其他人知道这次提交做了哪些改变，可以通过 ``git commit`` 完成：
 
 ```
-➜  git commit -m "fix all docs bugs" 
+➜  git commit -m "fix all docs bugs"
 ```
 
 ### 3.2 确保本地仓库是最新的
@@ -156,8 +156,8 @@ convert-markdown-into-html...............................................Passed
 ➜  git remote
 origin
 ➜  git remote -v
-origin	https://github.com/USERNAME/docs (fetch)
-origin	https://github.com/USERNAME/docs (push)
+origin  https://github.com/USERNAME/docs (fetch)
+origin  https://github.com/USERNAME/docs (push)
 ```
 
 这里 origin 是你 clone 的远程仓库的名字，也就是自己用户名下的 Paddle，接下来创建一个原始 Paddle 仓库的远程主机，命名为 upstream。

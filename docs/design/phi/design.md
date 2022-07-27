@@ -24,11 +24,11 @@
 
 1. 当一个Op去复用另一个Op的`Opkernel::Compute`方法，都需要先构造一个`ExecutionContext`，复用上是比较繁琐的
 
-	- 如果能直接调用一个函数形式的Kernel，就会方便很多
+    - 如果能直接调用一个函数形式的Kernel，就会方便很多
 
 2. 由于额外的数据结构构造及独立Op调度引入了开销，从计算性能的角度考虑，复用Op不如直接把计算代码copy过来，导致我们逐渐抛弃了早期反向Op复用前向Op的原则，开始为每个反向Op单独实现Kernel
 
-	- 只有Op之前复用的开销足够小，复用已有Op实现新Op才有可能被大范围推广
+    - 只有Op之前复用的开销足够小，复用已有Op实现新Op才有可能被大范围推广
 
 ### 1.1.2 执行调度的简洁性与细粒度化
 
@@ -94,32 +94,32 @@ Python 2.0 API项目规范了Paddle Python端API的参数列表，使其变得�
 
 - 在目录设计上支持算子库的各种拆分编译需求，包括
 
-	- 按运算设备拆分编译
-		- 例如：仅编译cpu的，或者仅编译cuda的
-	- 按训练和推理场景拆分编译
-		- 例如：推理不编译反向相关kernel，也不编译带有Intermediate输出的前向kernel
-	- 按移动端设备实际使用算子精准裁剪编译（目前尚未支持）
-		- 例如：一个模型只用了add和mul，极致情况下应该能裁到仅剩2个kernel
+    - 按运算设备拆分编译
+        - 例如：仅编译cpu的，或者仅编译cuda的
+    - 按训练和推理场景拆分编译
+        - 例如：推理不编译反向相关kernel，也不编译带有Intermediate输出的前向kernel
+    - 按移动端设备实际使用算子精准裁剪编译（目前尚未支持）
+        - 例如：一个模型只用了add和mul，极致情况下应该能裁到仅剩2个kernel
 - 长线上支持良好的kernel复用实现需求
-	- 解释：kernel复用实现时，能否通过简单的include引入对应函数，不会因为目录过于复杂而找不到复用的kernel
+    - 解释：kernel复用实现时，能否通过简单的include引入对应函数，不会因为目录过于复杂而找不到复用的kernel
 
 - 长线上支持跨设备kernel的写法统一需求，并且直观易用，不引入不必要的模板参数
-	- 解释：算子库下层还有Kernel Primitive API模块，其长线愿景是每个运算，只要一个kernel，能够适应多种设备，真正区分设备的代码，仅在Kernel Primitive API实现中；不希望未来的kernel在复用时从传入较复杂的模板参数，需要尽可能限制地简洁一些
+    - 解释：算子库下层还有Kernel Primitive API模块，其长线愿景是每个运算，只要一个kernel，能够适应多种设备，真正区分设备的代码，仅在Kernel Primitive API实现中；不希望未来的kernel在复用时从传入较复杂的模板参数，需要尽可能限制地简洁一些
 
 - 易用性上，开发者能精准理解自己新增Kernel应该放到什么位置，无歧义
-	- 解释：开发者新增一个API，不会困惑自己应该将对应kernel放在那个目录，也不会出现不同的人对于同一个kernel应该放在什么位置出现二义性的理解
+    - 解释：开发者新增一个API，不会困惑自己应该将对应kernel放在那个目录，也不会出现不同的人对于同一个kernel应该放在什么位置出现二义性的理解
 
 - 不引入大量的重复目录设计
-	- 解释：概念拆分是需要的，但也要有边界，避免在多个目录下有命名相同的子目录，容易混乱，比如不能cpu下面有eigen, funcs, math等，gpu下面也有。新算子库的目录设计以根据设备拆分为主，其他层次的目录拆分尽可能弱化，比如尽量不根据功能拆分，尽量不根据领域拆分等
+    - 解释：概念拆分是需要的，但也要有边界，避免在多个目录下有命名相同的子目录，容易混乱，比如不能cpu下面有eigen, funcs, math等，gpu下面也有。新算子库的目录设计以根据设备拆分为主，其他层次的目录拆分尽可能弱化，比如尽量不根据功能拆分，尽量不根据领域拆分等
 
 - 不造成迁移时的文件数目膨胀
-	- 解释：不能因为kernel设备拆分，导致kernel实现文件大规模增多
+    - 解释：不能因为kernel设备拆分，导致kernel实现文件大规模增多
 
 - 不引入层级过深的目录设计
-	- 解释：目录层级不应过深，理解和维护成本都较高
+    - 解释：目录层级不应过深，理解和维护成本都较高
 
 - 不引入过高的迁移成本
-	- 解释：迁移kernel时，不能要求对kernel本身做太多改动和拆分，否则迁移成本太高
+    - 解释：迁移kernel时，不能要求对kernel本身做太多改动和拆分，否则迁移成本太高
 
 ### 2.2.2 具体目录设计
 
@@ -128,8 +128,8 @@ Python 2.0 API项目规范了Paddle Python端API的参数列表，使其变得�
 ```
 paddle/phi
 ./api (对外暴露的高层API及其实现)
-	./include（对外暴露的高层API头文件）
-	./lib（对外暴露API的实现）
+    ./include（对外暴露的高层API头文件）
+    ./lib（对外暴露API的实现）
 ./common (内外部均会使用到的基础数据结构)
 ./core (基础组件，比如基础Tensor相关接口，kernel注册接口，管理单元等)
 ./backends (各设备及后端的基础组件，下设cpu，gpu等后端目录)
@@ -142,18 +142,18 @@ paddle/phi
 部分目录结构说明：
 
 - `api`：API模块，面向外部用户
-	- 直接使用类Python的C++ Tensor计算 API，和Python端形式高度一致
-	- 该部分可能反向依赖框架的DeviceContextPool等实现，所以单独管理
-	- 在该类API上，训练和预测也可能是不同的
+    - 直接使用类Python的C++ Tensor计算 API，和Python端形式高度一致
+    - 该部分可能反向依赖框架的DeviceContextPool等实现，所以单独管理
+    - 在该类API上，训练和预测也可能是不同的
 - `common`：phi内部及phi api目录均要使用的数据结构，这些数据结构既不属于phi core，也不属于api目录
 - `core`：phi内部会有一些自己需要的，公用的模块实现，比如基础DenseTensor、kernel注册及管理模块
 - `backends`：backends中组织后续需要为各个后端的新增的数据结构，比如CPUContext、GPUContext等
-	- core中放置对于算子库来讲通用的基础数据结构，而特定后端的专用数据结构不放在core中，且依赖关系严格保证backends依赖core，但core不能依赖backends
-	- 例1：Context如果有基类，则在core中，而继承的CPUContext在backends/cpu中，GPUContext在baackends/gpu中
-	- 例2：TensorBase在core中，DenseTensor给多数设备使用，也在core中，如果有MKLDNNTensor的话，因为它只给mkldnn用，应该在backends/dnnl中
+    - core中放置对于算子库来讲通用的基础数据结构，而特定后端的专用数据结构不放在core中，且依赖关系严格保证backends依赖core，但core不能依赖backends
+    - 例1：Context如果有基类，则在core中，而继承的CPUContext在backends/cpu中，GPUContext在baackends/gpu中
+    - 例2：TensorBase在core中，DenseTensor给多数设备使用，也在core中，如果有MKLDNNTensor的话，因为它只给mkldnn用，应该在backends/dnnl中
 - `infermeta`: infermeta函数的整理位置，infermeta函数相当于infershape+inferdtype+inferlayout等
 - `kernels`：各设备相关kernels
-	- `cpu, gpu, ...`
+    - `cpu, gpu, ...`
 - `ops`: ops中组织新形式的Op定义、以及兼容原有op的一些组件
 
 
@@ -176,29 +176,29 @@ paddle/phi/kernels
 目录结构说明如下：
 
 - kernels下主目录，放置设备无关的kernel.h和kernel.cc，原则上每个kernel一个.h和.cc
-	- 例如一个kernel是使用Primitive api实现的，或者是复用其他基础kernel实现的，那么不论在什么设备上，应该都只有一种实现，所以它的声明和实现均直接放置到kernels目录下即可（这是将来的理想状态）
-	- 目前我们大部分kernel都不具备跨设备实现统一的特征，但是kernel的输入参数返回值除了DeviceContext之外，应该是一致的，所以kernel参数声明头文件还放到主目录下（和原先的设计保持一致，DeviceContext和T作为模板参数），各设备的函数实现在相应的设备文件夹中
-		- 注意，这里跨设备实现统一，并不是指一个kernel的CPU和GPU实现就算统一了，而是在所有设备的实现都一样，目前至少包括CPU，GPU，XPU，MKLDNN，GPUDNN等
-	- 反向kernel如果不需要支持裁剪，可以做适当归并（但如果要为支持端侧训练留可能性，反向kernel可能也是裁剪的潜在目标）
+    - 例如一个kernel是使用Primitive api实现的，或者是复用其他基础kernel实现的，那么不论在什么设备上，应该都只有一种实现，所以它的声明和实现均直接放置到kernels目录下即可（这是将来的理想状态）
+    - 目前我们大部分kernel都不具备跨设备实现统一的特征，但是kernel的输入参数返回值除了DeviceContext之外，应该是一致的，所以kernel参数声明头文件还放到主目录下（和原先的设计保持一致，DeviceContext和T作为模板参数），各设备的函数实现在相应的设备文件夹中
+        - 注意，这里跨设备实现统一，并不是指一个kernel的CPU和GPU实现就算统一了，而是在所有设备的实现都一样，目前至少包括CPU，GPU，XPU，MKLDNN，GPUDNN等
+    - 反向kernel如果不需要支持裁剪，可以做适当归并（但如果要为支持端侧训练留可能性，反向kernel可能也是裁剪的潜在目标）
 - kernels下一级子目录，原则上按照backend分类按需新建，仅保留两个特殊的目录:
-	- funcs：为了兼容原先fluid operators中functor和function设计保留的目录，放置支持多种后端的function和functor，还按照原先的一个头文件，多个.cc(u)的方式组织（这部分代码在将来可能被移除，因为会逐渐被Kernel Primirive API及Kernel间复用替代，这里不做过度设计）
-		- 例1：一个公共函数XXXFunction在reduce CPU和reduce CUDA的kernel实现中都被调用，并且reduce CPU和reduce GPU的kernel实现是不一样的，那么这个XXXFunction应该在funcs目录中
-	- primitive：Kernel Primitive API，多设备统一kernel实现的一些基础工具
-	- impl：paddle目前的op kernel实现，有很多仍然是CPU和GPU复用同一份代码的，在大量的xx_op.h，这部分代码，不适合放在cpu或者gpu目录中，也不适合放在funcs目录中（会导致funcs目录中最终放置了相当一部分kernel实现，过于臃肿且混乱，funcs目录的定位是放置原先operators/math目录下那样的工具functor和function），也不适合放到kernels根目录下（并不是真正设备无关的实现，仅是cpu和gpu共用的实现），因此为了使这部分代码迁移时不需要做过多考虑，并且放置的位置也相对符合其实现性质，创建了impl这个目录
-		- impl目录下，仅放置跨部分设备实现一致的kernel函数，均为头文件，命名均以xxx_kernel_impl.h为后缀
-		- 例如：scale，fill_constant，fill_any_like这些kernel均属于此类情况
+    - funcs：为了兼容原先fluid operators中functor和function设计保留的目录，放置支持多种后端的function和functor，还按照原先的一个头文件，多个.cc(u)的方式组织（这部分代码在将来可能被移除，因为会逐渐被Kernel Primirive API及Kernel间复用替代，这里不做过度设计）
+        - 例1：一个公共函数XXXFunction在reduce CPU和reduce CUDA的kernel实现中都被调用，并且reduce CPU和reduce GPU的kernel实现是不一样的，那么这个XXXFunction应该在funcs目录中
+    - primitive：Kernel Primitive API，多设备统一kernel实现的一些基础工具
+    - impl：paddle目前的op kernel实现，有很多仍然是CPU和GPU复用同一份代码的，在大量的xx_op.h，这部分代码，不适合放在cpu或者gpu目录中，也不适合放在funcs目录中（会导致funcs目录中最终放置了相当一部分kernel实现，过于臃肿且混乱，funcs目录的定位是放置原先operators/math目录下那样的工具functor和function），也不适合放到kernels根目录下（并不是真正设备无关的实现，仅是cpu和gpu共用的实现），因此为了使这部分代码迁移时不需要做过多考虑，并且放置的位置也相对符合其实现性质，创建了impl这个目录
+        - impl目录下，仅放置跨部分设备实现一致的kernel函数，均为头文件，命名均以xxx_kernel_impl.h为后缀
+        - 例如：scale，fill_constant，fill_any_like这些kernel均属于此类情况
 - kernel迁移过来之后，首先创建对应kenrel头文件直接放置到kernels的根目录中，各后端的kernel实现放在相应的设备文件夹中
-	- 可参考原先op的归并程度，如matmul原先是单独的.h/.cc，那移过来之后保持，但activation相关的基本写在一个.h/.cc，移过来也仍然保持归并（后续有必要再进一步拆分）
-	- 例1：原先cast op的Kernel在cast_op.h中，迁移过来之后在根目录创建cast_kernel.h，cast_kernel.cc/cu根据使用的后端放到对应的目录，即cast_kernel.cc放置到cpu中，cast_kernel.cu放置到gpu中
-	- 例2：原先scale op的kernel使用eigen实现，CPU和GPU实现一致，迁移过来之后，公共实现应该在impl中的scale_kernel_impl.h中，公共头文件在kernels根目录下的scale_kernel.h中，scale_kernel.cc在cpu中，scale_kernel.cu在gpu中
+    - 可参考原先op的归并程度，如matmul原先是单独的.h/.cc，那移过来之后保持，但activation相关的基本写在一个.h/.cc，移过来也仍然保持归并（后续有必要再进一步拆分）
+    - 例1：原先cast op的Kernel在cast_op.h中，迁移过来之后在根目录创建cast_kernel.h，cast_kernel.cc/cu根据使用的后端放到对应的目录，即cast_kernel.cc放置到cpu中，cast_kernel.cu放置到gpu中
+    - 例2：原先scale op的kernel使用eigen实现，CPU和GPU实现一致，迁移过来之后，公共实现应该在impl中的scale_kernel_impl.h中，公共头文件在kernels根目录下的scale_kernel.h中，scale_kernel.cc在cpu中，scale_kernel.cu在gpu中
 - 迁移时，只有本kernel用到的辅助函数，一律和kernel实现放到同一个backend文件中，创建.h管理代码，不再单独在别处整理代码，除非这些辅助的函数实现是有多处使用的
-	- 即使有多处调用，如果仍然限于同一设备，直接建头文件放到同一个目录下
+    - 即使有多处调用，如果仍然限于同一设备，直接建头文件放到同一个目录下
 - 反向kernel与前向kernel实现放置在不同的文件中，文件后缀采用``*_grad_kernel.*``，便于cmake分离编译
-	- 不再为反向kernel单独创建目录，否则反向kernel目录下还要创建cpu/gpu等目录
-	- 二阶导、三阶导的实现统一也放到grad kernel实现文件中
+    - 不再为反向kernel单独创建目录，否则反向kernel目录下还要创建cpu/gpu等目录
+    - 二阶导、三阶导的实现统一也放到grad kernel实现文件中
 
 - 为什么目录名叫`gpu`而不是`cuda`和`hip`?
-	- cuda和hip代码重复度非常高，统一实现维护成本较低
+    - cuda和hip代码重复度非常高，统一实现维护成本较低
 
 
 ## 2.3 核心组件
@@ -380,26 +380,26 @@ void FullKernel(const Context& dev_ctx,
 #### 2.3.2.1 API Tensor接口
 
 - 最上层是API级别的Tensor接口封装，里面包含两个指针成员，TensorBase和AbstractAutogradMeta。
-	- 两个成员均使用了Interface设计，不会依赖于真实的Tensor和Autograd实现
-	- AutogradMeta仅在动态图API级别的Tensor中有意义，在具体的kernel计算中，不会被使用到，所以将其放到最上层的Tensor接口中
-	- 另外，这样设计也是为了方便数据共享，并且减少拷贝开销
-		- 当一个Tensor赋值给另一个Tensor，或者Tensor作为函数返回值时，实际上只会拷贝指针，不会产生真实的数据拷贝
+    - 两个成员均使用了Interface设计，不会依赖于真实的Tensor和Autograd实现
+    - AutogradMeta仅在动态图API级别的Tensor中有意义，在具体的kernel计算中，不会被使用到，所以将其放到最上层的Tensor接口中
+    - 另外，这样设计也是为了方便数据共享，并且减少拷贝开销
+        - 当一个Tensor赋值给另一个Tensor，或者Tensor作为函数返回值时，实际上只会拷贝指针，不会产生真实的数据拷贝
 
 - 最上层C++ Tensor与Python端Tensor扮演类似的角色，在接口设计上尽可能与Python端保持一致
-	- 包含基础的Tensor属性访问及数据访问方法
-		- shape, place, dtype, data
-	- 包含动态图Tensor需要的autograd方法
-		- gradient, backward
-	- 包含Tensor间的转换方法
-		- cpu, gpu, xpu等
-	- 包含tensor相关的计算方法（暂未添加）
-		- `paddle.tensor` 模块下所有方法
+    - 包含基础的Tensor属性访问及数据访问方法
+        - shape, place, dtype, data
+    - 包含动态图Tensor需要的autograd方法
+        - gradient, backward
+    - 包含Tensor间的转换方法
+        - cpu, gpu, xpu等
+    - 包含tensor相关的计算方法（暂未添加）
+        - `paddle.tensor` 模块下所有方法
 
 - 编译解耦：
 
-	- 这里带有的autograd信息，只是一个指针索引，默认为空
-		- `std::unique_ptr<AbstractAutogradMeta> autograd_meta_ = nullptr;`
-	- 而这里的AbstractAutogradMeta是一个抽象类接口，不会依赖autograd的任何模块，因此不会影响 phi 的独立编译，同时又兼顾了动态图Tensor需要持有反向信息的需求
+    - 这里带有的autograd信息，只是一个指针索引，默认为空
+        - `std::unique_ptr<AbstractAutogradMeta> autograd_meta_ = nullptr;`
+    - 而这里的AbstractAutogradMeta是一个抽象类接口，不会依赖autograd的任何模块，因此不会影响 phi 的独立编译，同时又兼顾了动态图Tensor需要持有反向信息的需求
 
 - 这里的AutogradMeta仅在动态图场景中才会设置，不需要的场景，比如静态图内就仅仅是个空指针而已
 
@@ -427,22 +427,22 @@ Tensor mkldnn() const;
 ```
 
 - 这个转换的过程可能是cast，也可能是copy
-	- 如果不需要进行数据拷贝，就是cast
-	- 如果需要进行数据拷贝，就是copy
-	- 转换通过函数式kernel去实现
+    - 如果不需要进行数据拷贝，就是cast
+    - 如果需要进行数据拷贝，就是copy
+    - 转换通过函数式kernel去实现
 
 - 在API场景中的使用
-	- 用户在完整训练场景中，使用API的时候，最初读入的数据一般是从磁盘读入，先放入CPU，然后再转换到具体执行设备上，比如DataLoader
+    - 用户在完整训练场景中，使用API的时候，最初读入的数据一般是从磁盘读入，先放入CPU，然后再转换到具体执行设备上，比如DataLoader
 
 #### 2.3.2.2 TensorBase
 
 - Tensor实现的接口类，接口中仅包含必要的纯虚Tensor方法，不包含有实际含义的成员，这里的方法在开发过程中也要严格控制
 
 - 为什么要在这一层用抽象类设计？
-	- 一方面是为了隔离Tensor API与Tensor具体实现，不产生过多依赖，如果将来Tensor API需要重新设计，或者说需要放弃掉autograd信息，只需要重新设计一个Tensor API即可，对于底层Tensor的实现几乎没有影响
-	- 另一方面是为了给异构化的Tensor保留充足的扩展空间，框架API层仅需要一个Tensor数据结构即可，不需要再暴露多种数据结构设计，这里其实做了一个大范围定义，框架内所有数据结构均是Tensor
-		- 对于内存布局基本一致，或者说Tensor描述基本一致的实现，可以基于一种DenseTensor的实现去继承
-		- 如果是异构化程度高的Tensor，可以直接从Interface继承去实现新的Tensor分支，比如只有一个Object的Tensor，确保在Tensor扩展灵活性上不会出现瓶颈
+    - 一方面是为了隔离Tensor API与Tensor具体实现，不产生过多依赖，如果将来Tensor API需要重新设计，或者说需要放弃掉autograd信息，只需要重新设计一个Tensor API即可，对于底层Tensor的实现几乎没有影响
+    - 另一方面是为了给异构化的Tensor保留充足的扩展空间，框架API层仅需要一个Tensor数据结构即可，不需要再暴露多种数据结构设计，这里其实做了一个大范围定义，框架内所有数据结构均是Tensor
+        - 对于内存布局基本一致，或者说Tensor描述基本一致的实现，可以基于一种DenseTensor的实现去继承
+        - 如果是异构化程度高的Tensor，可以直接从Interface继承去实现新的Tensor分支，比如只有一个Object的Tensor，确保在Tensor扩展灵活性上不会出现瓶颈
 
 #### 2.3.3.3 DenseTensor、SparseTensor
 
@@ -512,11 +512,11 @@ Tensor scale(const Tensor& x,
 **这个新建的C++ API体系目前主要用于什么场景？**
 
 1. 作为自定义算子开发时可调用的C++ API，提升易用性
-	- 例如现在用户在自定义算子中初始化一个Tensor需要循环遍历Tensor数据并赋值，有API之后可以直接调用`paddle::ones`，`paddle::fill`这些API
+    - 例如现在用户在自定义算子中初始化一个Tensor需要循环遍历Tensor数据并赋值，有API之后可以直接调用`paddle::ones`，`paddle::fill`这些API
 2. 作为新动态图的基础调用单元
-	- 新动态图会以API作为调度计算单元，不会再调用Op体系，以提升调度性能
+    - 新动态图会以API作为调度计算单元，不会再调用Op体系，以提升调度性能
 3. 作为反向Op复用前向Op进行开发的基础
-	- 现在反向op kernel需要单独实现，在API体系成型后，希望可以通过复用前向API完成反向Op实现
+    - 现在反向op kernel需要单独实现，在API体系成型后，希望可以通过复用前向API完成反向Op实现
 
 #### 2.3.3.2 C++ API自动生成
 
@@ -601,22 +601,22 @@ void Scale(const Context& dev_ctx,
 
 - 不同设备的kernel要有不同的函数实现，函数名采用**驼峰式命名**，除了首字母大写之外，命名尽可能和API函数名保持一致，同一个计算的函数命名保持一致，通过不同文件或者目录管理不同设备的函数
 - 一般有两个模板参数，T和Context（尽可能），用于运行时决定数据类型和设备类型
-	- 按照我们目前的体系，绝大多数的Kernel都是按照**特化DeviceContext和数据类型**这种方式缩减代码的，这与原先OpKernel的形式一致性比较强
-	- 形式要统一，将来如果Kernel层也作为细粒度API暴露的话，易用性有保障
+    - 按照我们目前的体系，绝大多数的Kernel都是按照**特化DeviceContext和数据类型**这种方式缩减代码的，这与原先OpKernel的形式一致性比较强
+    - 形式要统一，将来如果Kernel层也作为细粒度API暴露的话，易用性有保障
 - 函数输入参数规定：
-	- 以具体的DeviceContext作为第一个输入参数，如CPUContext，CUDAContext，用于满足运行时需要特定上下文信息的需求，如多stream需要传stream进来
-		- 暂不支持一个Kernel传入多个DeviceContext参数，目前认为这样的需求不太合理
-	- 参数列表和API保持一致，如果有其他的特殊信息需要传入Kernel，通过Context传递
-	- 随后是所有的输入Tensor与输入Attribute，均以const &方式传入，POD类型直接以值传入
-	- 输入的Tensor是具体的Tensor类型，如DenseTensor或SelectedRows，不是对外接口API那个Tensor
-	- 最后是函数的返回值Tensor，以指针形式传入
-	- 为了满足灵活性，让kernel可以适配更多的场景，后续会允许声明灵活类型的输入、输出和参数，参考tfrt的Argument（输入）, Attribute,（属性） Return（输出）等模板，以适配非Tensor的输入输出，以及Tensor类的Attribute，让机制更加灵活
+    - 以具体的DeviceContext作为第一个输入参数，如CPUContext，CUDAContext，用于满足运行时需要特定上下文信息的需求，如多stream需要传stream进来
+        - 暂不支持一个Kernel传入多个DeviceContext参数，目前认为这样的需求不太合理
+    - 参数列表和API保持一致，如果有其他的特殊信息需要传入Kernel，通过Context传递
+    - 随后是所有的输入Tensor与输入Attribute，均以const &方式传入，POD类型直接以值传入
+    - 输入的Tensor是具体的Tensor类型，如DenseTensor或SelectedRows，不是对外接口API那个Tensor
+    - 最后是函数的返回值Tensor，以指针形式传入
+    - 为了满足灵活性，让kernel可以适配更多的场景，后续会允许声明灵活类型的输入、输出和参数，参考tfrt的Argument（输入）, Attribute,（属性） Return（输出）等模板，以适配非Tensor的输入输出，以及Tensor类的Attribute，让机制更加灵活
 - 函数内部实现按需决定：
-	- 短期：
-		- 将现有OpKernel内实现，迁移到具体的设备Kernel内
-		- 将存在设备公用的OpKernel实现抽离为函数，由多个设备Kernel共同调用
-	- 长期：
-		- 复杂Kernel直接调用基础Kernel完成计算，鼓励Kernel复用，简化代码
+    - 短期：
+        - 将现有OpKernel内实现，迁移到具体的设备Kernel内
+        - 将存在设备公用的OpKernel实现抽离为函数，由多个设备Kernel共同调用
+    - 长期：
+        - 复杂Kernel直接调用基础Kernel完成计算，鼓励Kernel复用，简化代码
 
 > FAQ：
 
@@ -696,69 +696,69 @@ void SignKernel(const Context& dev_ctx,
 
 1. fluid的Kernel注册写法，有不少冗余信息，以scale为例，可以看到每个kernel除了最后的data type，前面函数名和DeviceContext特化的信息都是冗余的
 
-	```
-	REGISTER_OP_CPU_KERNEL(
-	    scale, ops::ScaleKernel<paddle::platform::CPUDeviceContext, float>,
-	    ops::ScaleKernel<paddle::platform::CPUDeviceContext, double>,
-	    ops::ScaleKernel<paddle::platform::CPUDeviceContext,
-	                     paddle::platform::bfloat16>,
-	    ops::ScaleKernel<paddle::platform::CPUDeviceContext, uint8_t>,
-	    ops::ScaleKernel<paddle::platform::CPUDeviceContext, int8_t>,
-	    ops::ScaleKernel<paddle::platform::CPUDeviceContext, int16_t>,
-	    ops::ScaleKernel<paddle::platform::CPUDeviceContext, int>,
-	    ops::ScaleKernel<paddle::platform::CPUDeviceContext, int64_t>);
-	```
+    ```
+    REGISTER_OP_CPU_KERNEL(
+        scale, ops::ScaleKernel<paddle::platform::CPUDeviceContext, float>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, double>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext,
+                         paddle::platform::bfloat16>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, uint8_t>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, int8_t>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, int16_t>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, int>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, int64_t>);
+    ```
 
 2. Paddle-Lite的kernel注册写法，为每一个Kernel都声明了输入输出信息，但由于每个数据类型的kernel都是不同的，也会造成写法上的冗余，如下代码可以看到，除了data type，其他的信息也基本是冗余的
 
-	```
-	#ifdef LITE_BUILD_EXTRA
-	using scale_int32_f =
-	    paddle::lite::kernels::arm::ScaleCompute<int, PRECISION(kFloat)>;
-	REGISTER_LITE_KERNEL(scale, kARM, kFloat, kNCHW, scale_int32_f, int32)
-	    .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
-	    .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
-	    .Finalize();
+    ```
+    #ifdef LITE_BUILD_EXTRA
+    using scale_int32_f =
+        paddle::lite::kernels::arm::ScaleCompute<int, PRECISION(kFloat)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kFloat, kNCHW, scale_int32_f, int32)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
+        .Finalize();
 
-	using scale_int64_f =
-	    paddle::lite::kernels::arm::ScaleCompute<int64_t, PRECISION(kFloat)>;
-	REGISTER_LITE_KERNEL(scale, kARM, kFloat, kNCHW, scale_int64_f, int64)
-	    .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
-	    .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
-	    .Finalize();
-	#endif  // LITE_BUILD_EXTRA
+    using scale_int64_f =
+        paddle::lite::kernels::arm::ScaleCompute<int64_t, PRECISION(kFloat)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kFloat, kNCHW, scale_int64_f, int64)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
+        .Finalize();
+    #endif  // LITE_BUILD_EXTRA
 
-	#ifdef ENABLE_ARM_FP16
-	using scale_float16 =
-	    paddle::lite::kernels::arm::ScaleCompute<float16_t, PRECISION(kFP16)>;
-	REGISTER_LITE_KERNEL(scale, kARM, kFP16, kNCHW, scale_float16, def)
-	    .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFP16))})
-	    .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFP16))})
-	    .Finalize();
+    #ifdef ENABLE_ARM_FP16
+    using scale_float16 =
+        paddle::lite::kernels::arm::ScaleCompute<float16_t, PRECISION(kFP16)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kFP16, kNCHW, scale_float16, def)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFP16))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFP16))})
+        .Finalize();
 
-	#endif  // ENABLE_ARM_FP16
+    #endif  // ENABLE_ARM_FP16
 
-	using scale_float =
-	    paddle::lite::kernels::arm::ScaleCompute<float, PRECISION(kFloat)>;
-	REGISTER_LITE_KERNEL(scale, kARM, kFloat, kNCHW, scale_float, def)
-	    .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFloat))})
-	    .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFloat))})
-	    .Finalize();
+    using scale_float =
+        paddle::lite::kernels::arm::ScaleCompute<float, PRECISION(kFloat)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kFloat, kNCHW, scale_float, def)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFloat))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFloat))})
+        .Finalize();
 
-	using scale_int32 =
-	    paddle::lite::kernels::arm::ScaleCompute<int, PRECISION(kInt32)>;
-	REGISTER_LITE_KERNEL(scale, kARM, kInt32, kNCHW, scale_int32, def)
-	    .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
-	    .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
-	    .Finalize();
+    using scale_int32 =
+        paddle::lite::kernels::arm::ScaleCompute<int, PRECISION(kInt32)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kInt32, kNCHW, scale_int32, def)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
+        .Finalize();
 
-	using scale_int64 =
-	    paddle::lite::kernels::arm::ScaleCompute<int64_t, PRECISION(kInt64)>;
-	REGISTER_LITE_KERNEL(scale, kARM, kInt64, kNCHW, scale_int64, def)
-	    .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
-	    .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
-	    .Finalize();
-	```
+    using scale_int64 =
+        paddle::lite::kernels::arm::ScaleCompute<int64_t, PRECISION(kInt64)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kInt64, kNCHW, scale_int64, def)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
+        .Finalize();
+    ```
 
 因此，本次设计，不希望继续保持目前这种冗余的写法，希望kernel注册方法足够简洁，同时还能够灵活地满足Kernel输入输出信息配置的需求。
 
@@ -1592,7 +1592,7 @@ class KernelContext {
 
 - 我们如何描述一个人？1. 他叫什么，长什么样；2. 他的工作、兴趣、爱好、特长、品质等
 - 我们如何描述一个物品？1. 它叫什么，长什么样；2. 它的用途和功能是什么
-	- 比如一个杯子：1. 它叫水杯，长这样；2. 它用来盛水的
+    - 比如一个杯子：1. 它叫水杯，长这样；2. 它用来盛水的
 
 简单说，我们描述一个对象，可以采用两段式结构：
 
@@ -1732,7 +1732,7 @@ phi期望的Op开发方式：**“完形填空”式算子描述实现 + “堆�
 ```
 template <typename T, typename Context>
 Fc(const Context& dev_ctx, const Tensor& x, const Tensor& w, const Tensor& b, Tensor* out) {
-	phi::add<T, Context>(phi::mul<T，Context>(x, w), b, out);
+    phi::add<T, Context>(phi::mul<T，Context>(x, w), b, out);
 }
 
 PT_REGISTE_KERNEL("fc", Fc, ...)

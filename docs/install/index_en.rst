@@ -58,7 +58,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 
     * Windows install GPU version
 
-        * Windows 7 / 8 / 10 support CUDA 10.1/10.2/11.2 single-card mode, but don't support CUDA 9.1/9.2/10.1		
+        * Windows 7 / 8 / 10 support CUDA 10.1/10.2/11.2 single-card mode, but don't support CUDA 9.1/9.2/10.1      
         * don't support install using **nvidia-docker** 
     * Ubuntu install GPU version
 
@@ -208,10 +208,10 @@ The second way to install: compile and install with source code
 - If you use PaddlePaddle only, we suggest you installation methods **pip** to install.
 - If you need to develop PaddlePaddle, please refer to `compile from source code <compile/fromsource_en.html>`_
 
-..	toctree::
-	:hidden:
+..  toctree::
+    :hidden:
 
-	pip/frompip_en.rst
-	compile/fromsource_en.rst
-	install_Kunlun_en.md
-	Tables_en.md
+    pip/frompip_en.rst
+    compile/fromsource_en.rst
+    install_Kunlun_en.md
+    Tables_en.md

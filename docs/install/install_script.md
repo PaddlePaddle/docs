@@ -8,17 +8,17 @@
 
 脚本会执行以下几步：
 
-1.	GPU检测
+1.  GPU检测
 
-	检测您的机器是否含有我们支持的GPU，如果有，会安装GPU版本的PaddlePaddle，否则会安装CPU版本。
-	（PaddlePaddle目前支持NVIDIA[官网](https://developer.nvidia.com/cuda-gpus#collapseOne)列出的，算力7.0以下的GPU和v100系列的GPU）
+    检测您的机器是否含有我们支持的GPU，如果有，会安装GPU版本的PaddlePaddle，否则会安装CPU版本。
+    （PaddlePaddle目前支持NVIDIA[官网](https://developer.nvidia.com/cuda-gpus#collapseOne)列出的，算力7.0以下的GPU和v100系列的GPU）
 
 2. CUDA，cuDNN检测
 
-	检测您的机器是否安装我们支持的CUDA，cuDNN，具体地：
+    检测您的机器是否安装我们支持的CUDA，cuDNN，具体地：
 
-	1. 在`/usr/local/` 及其子目录下寻找 `cuda10.1/cuda10.2/cuda11.0/cuda11.2` 目录下的`version.txt`文件（通常如果您以默认方式安装了CUDA）。 如果提示未找到CUDA请使用命令`find / -name version.txt`找到您所需要的CUDA目录下的“version.txt”路径，然后按照提示输入。
-	2.  在`/usr` 及其子目录下寻找文件 `cudnn.h`  , 如果您的cuDNN未安装在默认路径请使用命令`find / -name cudnn.h`寻找您希望使用的cuDNN版本的`cudnn.h`路径并按提示输入
+    1. 在`/usr/local/` 及其子目录下寻找 `cuda10.1/cuda10.2/cuda11.0/cuda11.2` 目录下的`version.txt`文件（通常如果您以默认方式安装了CUDA）。 如果提示未找到CUDA请使用命令`find / -name version.txt`找到您所需要的CUDA目录下的“version.txt”路径，然后按照提示输入。
+    2.  在`/usr` 及其子目录下寻找文件 `cudnn.h`  , 如果您的cuDNN未安装在默认路径请使用命令`find / -name cudnn.h`寻找您希望使用的cuDNN版本的`cudnn.h`路径并按提示输入
 
    如果未找到相应文件，则会安装CPU版本的PaddlePaddle
 
@@ -46,7 +46,7 @@
 1. 选择PaddlePaddle版本
 我们为您提供2种版本：开发版和稳定版，推荐您选择测试验证过的稳定版
 
-2.	检查Python版本
+2.  检查Python版本
 由于 macOS 自带的 Python 通常依赖于系统环境，因此我们不支持 macOS 自带的 Python 环境，请重新从 Python.org 安装 Python，然后根据提示输入您希望使用的 Python 的路径
 
 3. 检查是否支持[AVX](https://zh.wikipedia.org/zh-hans/AVX指令集)指令集

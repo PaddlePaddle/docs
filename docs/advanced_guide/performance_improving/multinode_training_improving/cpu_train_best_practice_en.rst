@@ -20,21 +20,21 @@ For detailed API usage, please refer to :ref:`api_fluid_ParallelExecutor` . A si
 
 .. code-block:: python
 
-	# Configure the execution strategy, mainly to set the number of threads
-	exec_strategy = fluid.ExecutionStrategy()
-	exec_strategy.num_threads = 8
+    # Configure the execution strategy, mainly to set the number of threads
+    exec_strategy = fluid.ExecutionStrategy()
+    exec_strategy.num_threads = 8
 
-	# Configure the composition strategy, for CPU training, you should use the Reduce mode for training.
-	build_strategy = fluid.BuildStrategy()
-	if int(os.getenv("CPU_NUM")) > 1:
-		build_strategy.reduce_strategy=fluid.BuildStrategy.ReduceStrategy.Reduce
+    # Configure the composition strategy, for CPU training, you should use the Reduce mode for training.
+    build_strategy = fluid.BuildStrategy()
+    if int(os.getenv("CPU_NUM")) > 1:
+        build_strategy.reduce_strategy=fluid.BuildStrategy.ReduceStrategy.Reduce
 
-	pe = fluid.ParallelExecutor(
-		use_cuda=False,
-		loss_name=avg_cost.name,
-		main_program=main_program,
-		build_strategy=build_strategy,
-		exec_strategy=exec_strategy)
+    pe = fluid.ParallelExecutor(
+        use_cuda=False,
+        loss_name=avg_cost.name,
+        main_program=main_program,
+        build_strategy=build_strategy,
+        exec_strategy=exec_strategy)
 
 Among the parameters above:
 
@@ -54,8 +54,8 @@ To reduce the amount of communication data and improve communication speed is ac
 
 .. code-block:: python
 
-	data = fluid.layers.data(name='ids', shape=[1], dtype='int64')
-	fc = fluid.layers.embedding(input=data, size=[dict_size, 16], is_sparse=True)
+    data = fluid.layers.data(name='ids', shape=[1], dtype='int64')
+    fc = fluid.layers.embedding(input=data, size=[dict_size, 16], is_sparse=True)
 
 Among the parameters above:
 

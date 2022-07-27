@@ -68,7 +68,7 @@
 - 常用的API可以在更高层级建立别名，当前规则如下：
    1. paddle.tensor目录下的API，均在paddle根目录建立别名，其他所有API在paddle根目录下均没有别名。
    2. paddle.nn目录下除了functional目录以外的所有API，在paddle.nn目录下均有别名。
-   
+
         ```python
         paddle.nn.functional.mse_loss # functional下的函数不建立别名，使用完整名称
         paddle.nn.Conv2D # 为paddle.nn.layer.conv.Conv2D建立的别名
@@ -156,7 +156,7 @@
   paddle.optimizer.lr.LambdaDecay
   ```
 
-- 由多个单词组成的类名，最后一个单词应表示类型	
+- 由多个单词组成的类名，最后一个单词应表示类型  
 
     ```python
     # SimpleRNNCell 继承自 RNNCellBase
@@ -176,7 +176,7 @@
     paddle.nn.functional.batch_norm
     paddle.nn.functional.log_softmax
     ```
-    
+
 - 但一些约定俗成的例子可以保持不加下划线
 
     ```python
@@ -195,10 +195,10 @@
     paddle.tensor.less_than
     # optimizer 不使用缩写
     paddle.optimizer.SGD
-    # parameter 不使用缩写 
+    # parameter 不使用缩写
     paddle.nn.create_parameter
     ```
-    
+
 - 在用于API命名时，常见的缩写列表如下：
 
     ```python
@@ -206,7 +206,7 @@
     ```
 
 - 在用于API命名时，以下建议使用全称，不推荐使用缩写
-    
+
     | 不规范命名 |   规范命名    |
     | :-------- | :----------- |
     |    div     |    divide     |
@@ -227,9 +227,9 @@
     |    img     |     image     |
     |    loc     |   location    |
     |    len     |    length     |
-    
-    
-    
+
+
+
 - API命名不应包含版本号
 
     ```python
@@ -238,7 +238,7 @@
     ```
 
 - 常见的数学计算API中的逐元素操作不需要加上elementwise前缀，按照某一轴操作不需要加上reduce前缀，一些例子如下
-    
+
     |  paddle2.0之前  | pytorch |  numpy   | tensorflow  |   paddle2.0之后   |
     | :------------- | :----- | :------ | :--------- | :--------------- |
     | elementwise_add |   add   |   add    |     add     |        add        |
@@ -255,8 +255,8 @@
     |   reduce_any    |   any   |   any    | reduce_any  |        any        |
     |   reduce_mean   |  mean   |   mean   | reduce_mean |       mean        |
 
-    
-    
+
+
 - 整数取模和取余
 
     目前整除和取余取模运算机器运算符重载在不同的语言和库中对应关系比较复杂混乱（取余运算中余数和被除数同号，取模运算中模和除数同号。取余整除是对商向 0 取整，取模整除是对商向负取整）
@@ -359,7 +359,7 @@
    | 逐元素乘      | mul/elementwise_mul |      |                                  |
    | 逐元素加      | add/elementwise_add |      |                                  |
    | 按轴求和      | reduce_sum          |      |                                  |
-   
+
 - 常用参数表
 
    | 中文名         | 推荐           | 不推荐写法                            | 示例                                                         | 备注                                                         |
@@ -1041,4 +1041,3 @@
 | 精确推断 | exact inference | |
 | 潜层 | latent layer | |
 | 知识图谱 | knowledge graph | |
-

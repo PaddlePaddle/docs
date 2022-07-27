@@ -199,11 +199,11 @@
 - 如果您有开发PaddlePaddle的需求，请参考：`从源码编译 <compile/fromsource.html>`_
 
 
-..	toctree::
-	:hidden:
+..  toctree::
+    :hidden:
 
-	pip/frompip.rst
-	compile/fromsource.rst
-	install_Kunlun_zh.md
-	install_ROCM_zh.md
-	Tables.md
+    pip/frompip.rst
+    compile/fromsource.rst
+    install_Kunlun_zh.md
+    install_ROCM_zh.md
+    Tables.md

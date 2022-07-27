@@ -17,12 +17,12 @@ PaddlePaddle Fluid 对大部分的激活函数进行了支持，其中有:
 
 .. code-block:: python
 
-	conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3, act="relu")
+    conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3, act="relu")
 
 
 - Fluid为每个Activation提供了接口，我们可以显式的对它们进行调用。
 
 .. code-block:: python
 
-	conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3)
-	relu1 = fluid.layers.relu(conv2d)
+    conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3)
+    relu1 = fluid.layers.relu(conv2d)

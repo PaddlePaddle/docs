@@ -10,7 +10,7 @@ shard_index
 ::
 
     shard_size = (index_num + nshards - 1) // nshards
-	
+    
 对于输入\ `input`\ 中的每个值\ `v`\，我们根据下面的公式设置它新的值：
 
 ::

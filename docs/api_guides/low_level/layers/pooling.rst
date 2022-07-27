@@ -35,7 +35,7 @@ PaddlePaddle中有针对定长图像特征的二维(pool2d)、三维卷积(pool3
     -  非\ ``ceil_mode``\ 下:\ ``输出大小 = (输入大小 - filter size + 2 * padding) / stride（步长） + 1``
     
     -  ``ceil_mode``\ 下:\ ``输出大小 = (输入大小 - filter size + 2 * padding + stride - 1) / stride + 1``
-    	
+        
 
 
 api汇总：

@@ -75,7 +75,7 @@ from a import f # it's ok, too
 ```Python
 # Python/paddle/tensor/math.py
 def logsumexp(...):
-		...
+        ...
 
 # Python/paddle/tensor/__init__.py
 from .math import logsumexp
@@ -164,7 +164,7 @@ def mm(input, mat2, name=None):
     elif _in_legacy_dygraph():
         return _C_ops.matmul_v2(input, mat2)
 
-	# 静态分支
+    # 静态分支
     ## 检测输入
     __check_input(input, mat2)
 

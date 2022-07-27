@@ -104,14 +104,14 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
   **如果你不想提交本次修改**，使用 ``git checkout -- <file>`` 取消上面对``guides/04_dygraph_to_static/debugging_cn.md``文件的提交，可以将它恢复至上一次提交的状态:
-   
+
 ```
 ➜  git checkout  -- guides/04_dygraph_to_static/debugging_cn.md
 ```
    恢复后重新进行修改并提交文件即可。
-   
+
 - pre-commit：提交修改说明前，需要对本次修改做一些格式化检查：
-   
+
 ```
 ➜  pre-commit
 CRLF end-lines remover...............................(no files to check)Skipped
@@ -151,7 +151,7 @@ copyright_checker........................................................Passed
 - 填写提交说明：Git 每次提交代码，都需要写提交说明，让其他人知道这次提交做了哪些改变，可以通过 ``git commit`` 完成：
 
 ```
-➜  git commit -m "fix docs bugs" 
+➜  git commit -m "fix docs bugs"
 ```
 
 ### 3.2 确保本地仓库是最新的
@@ -164,8 +164,8 @@ copyright_checker........................................................Passed
 ➜  git remote
 origin
 ➜  git remote -v
-origin	https://github.com/USERNAME/docs (fetch)
-origin	https://github.com/USERNAME/docs (push)
+origin  https://github.com/USERNAME/docs (fetch)
+origin  https://github.com/USERNAME/docs (push)
 ```
 
 这里 origin 是你 clone 的远程仓库的名字，也就是自己用户名下的 Paddle，接下来创建一个原始 Paddle 仓库的远程主机，命名为 upstream。

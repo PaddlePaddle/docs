@@ -80,7 +80,7 @@ Note
 -------
 This flag will work only when you are using py_reader.
 
-..	toctree::
-	:hidden:
+..  toctree::
+    :hidden:
 
-	check_nan_inf_en.md
+    check_nan_inf_en.md

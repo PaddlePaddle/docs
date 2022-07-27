@@ -81,7 +81,7 @@ FLAGS_reader_queue_speed_test_mode=True - 启用pyreader测试模式。
 -------
 仅当使用py_reader时该flag才有效。
 
-..	toctree::
-	:hidden:
+..  toctree::
+    :hidden:
 
-	check_nan_inf_cn.md
+    check_nan_inf_cn.md
