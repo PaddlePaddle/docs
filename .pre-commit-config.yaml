@@ -12,20 +12,20 @@ repos:
     -   id: detect-private-key
         files: (?!.*paddle)^.*$
     -   id: end-of-file-fixer
-        files: \.md$
+        files: \.md$|\.rst$
     -   id: trailing-whitespace
-        files: \.md$
+        files: \.md$|\.rst$
 -   repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.0.1
     hooks:
     -   id: forbid-crlf
-        files: \.md$
+        files: \.md$|\.rst$
     -   id: remove-crlf
-        files: \.md$
+        files: \.md$|\.rst$
     -   id: forbid-tabs
-        files: \.md$
+        files: \.md$|\.rst$
     -   id: remove-tabs
-        files: \.md$
+        files: \.md$|\.rst$
 -   repo: https://github.com/reyoung/pre-commit-hooks-jinja-compile.git
     rev: 4a369cc72a4a2b8d3813ab8cc17abb5f5b21ef6c
     hooks:
