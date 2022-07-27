@@ -20,6 +20,4 @@ Compose
 代码示例
 :::::::::
 
-.. code-block:: python
-
 COPY-FROM: paddle.vision.transforms.Compose
