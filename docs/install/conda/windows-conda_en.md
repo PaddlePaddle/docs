@@ -55,7 +55,7 @@ for Windows
 activate paddle_env
 ```
 
-for MacOS/Linux
+for macOS/Linux
 
 ```
 conda activate paddle_env
@@ -75,7 +75,7 @@ In a Windows environment, the command to get the Python path is:
 where python
 ```
 
-In a MacOS/Linux environment, the command to get the Python path is:
+In a macOS/Linux environment, the command to get the Python path is:
 
 ```
 which python

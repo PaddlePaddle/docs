@@ -63,9 +63,9 @@
 
       > 是的。我们的 Docker image 运行一个 [Bash 脚本](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/scripts/paddle_build.sh)。这个脚本调用`make -j$(nproc)` 来启动和 CPU 核一样多的进程来并行编译。
 
-- 在 Windows/MacOS 上编译很慢？
+- 在 Windows/macOS 上编译很慢？
 
-      > Docker 在 Windows 和 MacOS 都可以运行。不过实际上是运行在一个 Linux 虚拟机上。可能需要注意给这个虚拟机多分配一些 CPU 和内存，以保证编译高效。具体做法请参考[issue627](https://github.com/PaddlePaddle/Paddle/issues/627)。
+      > Docker 在 Windows 和 macOS 都可以运行。不过实际上是运行在一个 Linux 虚拟机上。可能需要注意给这个虚拟机多分配一些 CPU 和内存，以保证编译高效。具体做法请参考[issue627](https://github.com/PaddlePaddle/Paddle/issues/627)。
 
 - 磁盘不够？
 
@@ -89,7 +89,7 @@
 
 <a name="MACPRO"></a>
 
-- MacOS下安装PaddlePaddle后import paddle.fluid出现`Fatal Python error: PyThreadState_Get: no current thread running`错误
+- macOS 下安装 PaddlePaddle 后import paddle.fluid出现`Fatal Python error: PyThreadState_Get: no current thread running`错误
 
       - For Python2.7.x （install by brew): 请使用`export LD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7`
       - For Python2.7.x （install by Python.org): 请使用`export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7`

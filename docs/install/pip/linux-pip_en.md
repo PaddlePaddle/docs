@@ -86,7 +86,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA9 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
 
-  * **Centos system can refer to the following commands**
+  * **CentOS system can refer to the following commands**
 
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
 
