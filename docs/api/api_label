@@ -126,7 +126,8 @@ paddle.asin	.. _api_paddle_asin:
 paddle.atan	.. _api_paddle_atan:
 paddle.bmm	.. _api_paddle_bmm:
 paddle.broadcast_shape	.. _api_paddle_broadcast_shape:
-paddle.broadcast_to	.. _api_paddle_broadcast_to:
+paddle.broadcast_to .. _api_paddle_broadcast_to:
+paddle.bucketize .. _api_paddle_bucketize:
 paddle.cast	.. _api_paddle_cast:
 paddle.ceil	.. _api_paddle_ceil:
 paddle.Tensor.ceil_	.. _api_paddle_Tensor_ceil_:

@@ -88,6 +88,7 @@ Methods
     broadcast_shape
     broadcast_tensors
     broadcast_to
+    bucketize
     cast
     ceil
     ceil_
