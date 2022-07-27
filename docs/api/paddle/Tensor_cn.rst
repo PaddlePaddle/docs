@@ -480,9 +480,10 @@ bucketize(x, sorted_sequence, out_int32=False, right=False, name=None)
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回: Tensor(与 ``x`` 维度相同)，如果参数 ``out_int32`` 为False，则返回数据类型为int32的Tensor，否则将返回int64的Tensor。
-返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_bucketize` ，API功能相同。
+返回类型：Tensor。
+
+请参考 :ref:`cn_api_tensor_bucketize`
 
 cast(dtype)
 :::::::::
