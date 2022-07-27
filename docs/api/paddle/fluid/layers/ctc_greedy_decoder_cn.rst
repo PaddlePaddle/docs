@@ -84,7 +84,8 @@ ctc_greedy_decoder
 
 返回
 ::::::::::::
-对于输入为LoDTensor的情况，返回CTC贪婪解码器的结果，即2-D LoDTensor，形状为[Lp，1]，数据类型为int64。“Lp”是所有输出序列长度的总和。如果结果中的所有序列均为空，则结果LoDTensor将为[-1]，其中LoD为[[]]。对于输入为Tensor的情况，返回一个元组，(output, output_length)，其中，output是一个形状为 [batch_size, N]，类型为int64的Tensor。output_length是一个形状为[batch_size, 1]，类型为int64的Tensor，表示Tensor输入下，每个输出序列的长度。
+对于输入为LoDTensor的情况，返回CTC贪婪解码器的结果，即2-D LoDTensor，形状为[Lp，1]，数据类型为int64。“Lp”是所有输出序列长度的总和。如果结果中的所有序列均为空，则结果LoDTensor将为[-1]，其中LoD为[[]]。
+对于输入为Tensor的情况，返回一个元组，(output, output_length)，其中，output是一个形状为 [batch_size, N]，类型为int64的Tensor。output_length是一个形状为[batch_size, 1]，类型为int64的Tensor，表示Tensor输入下，每个输出序列的长度。
 
 返回类型
 ::::::::::::
