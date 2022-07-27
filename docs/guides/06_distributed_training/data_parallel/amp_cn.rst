@@ -206,4 +206,4 @@
    使用AMP模式耗时:
    共计耗时 = 1.222 sec
 
-上述例子存放在：\ `example/amp/amp_dygraph.py <https://github.com/PaddlePaddle/FleetX/blob/develop/examples/amp/amp_dygraph.py>`_\ 。
+上述例子存放在：\ `example/amp/amp_dygraph.py <https://github.com/PaddlePaddle/FleetX/blob/old_develop/examples/amp/amp_dygraph.py>`_\ 。

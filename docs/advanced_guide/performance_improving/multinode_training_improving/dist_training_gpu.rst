@@ -39,7 +39,7 @@ PaddlePaddle Fluid支持在现代GPU [#]_ 服务器集群上完成高性能分�
           data_loader.reset()
 
 
-另外，可以使用DALI库提升数据处理性能。DALI是NVIDIA开发的数据加载库，更多内容请参考 `官网文档 <https://docs.nvidia.com/deeplearning/dali/user-guide/docs/index.html>`_ 。飞桨中如何结合使用DALI库请参考 `使用示例 <https://github.com/PaddlePaddle/Fleet/tree/develop/benchmark/collective/resnet>`_ 。
+另外，可以使用DALI库提升数据处理性能。DALI是NVIDIA开发的数据加载库，更多内容请参考 `官网文档 <https://docs.nvidia.com/deeplearning/dali/user-guide/docs/index.html>`_ 。飞桨中如何结合使用DALI库请参考 `使用示例 <https://github.com/PaddlePaddle/FleetX/tree/old_develop/deprecated/benchmark/collective/resnet>`_ 。
 
 2、训练策略设置
 ===========
@@ -115,7 +115,7 @@ GPU多机多卡同步训练过程中存在慢trainer现象，即每步中训练�
 - Local SGD的warmup步长 :code:`local_sgd_is_warm_steps` 影响最终模型的泛化能力，一般需要等到模型参数稳定之后在进行Local SGD训练，经验值可以将学习率第一次下降时的epoch作为warmup步长，之后再进行Local SGD训练。
 - Local SGD步长 :code:`local_sgd_steps` ，一般该值越大，通信次数越少，训练速度越快，但随之而来的时模型精度下降。经验值设置为2或者4。
 
-具体的Local SGD的训练代码可以参考：https://github.com/PaddlePaddle/Fleet/tree/develop/examples/local_sgd/resnet
+具体的Local SGD的训练代码可以参考：https://github.com/PaddlePaddle/FleetX/tree/old_develop/deprecated/examples/local_sgd/resnet
 
 
 2、使用混合精度训练
