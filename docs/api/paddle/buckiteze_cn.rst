@@ -1,4 +1,4 @@
-.. _cn_api_tensor_cn_bucketize:
+.. _cn_api_tensor_bucketize:
 
 paddle.bucketize
 -------------------------------
