@@ -6,17 +6,17 @@ Precision
 .. py:class:: paddle.metric.Precision()
 
 
-精确率Precision(也称为 positive predictive value，正预测值)是被预测为正样例中实际为正的比例。该类管理二分类任务的precision分数。
+精确率 Precision(也称为 positive predictive value，正预测值)是被预测为正样例中实际为正的比例。该类管理二分类任务的 precision 分数。
 
 相关链接：https://en.wikipedia.org/wiki/Evaluation_of_binary_classifiers
 
 .. note::
-这个metric只能用来评估二分类。
+这个 metric 只能用来评估二分类。
 
 参数
 ::::::::::::
 
-    - **name** (str，可选) – metric实例的名字，默认是'precision'。
+    - **name** (str，可选) – metric 实例的名字，默认是'precision'。
 
 
 代码示例 1
@@ -40,7 +40,7 @@ Precision
 代码示例 2
 ::::::::::::
 
-在Model API中的示例
+在 Model API 中的示例
 
     .. code-block:: python
 
@@ -81,12 +81,12 @@ Precision
 update(preds, labels, *args)
 '''''''''
 
-更新Precision的状态。
+更新 Precision 的状态。
 
 **参数**
 
-    - **preds** (numpy.array | Tensor)：预测输出结果通常是sigmoid函数的输出，是一个数据类型为float64或float32的向量。
-    - **labels** (numpy.array | Tensor)：真实标签的shape和：code: `preds` 相同，数据类型为int32或int64。
+    - **preds** (numpy.array | Tensor)：预测输出结果通常是 sigmoid 函数的输出，是一个数据类型为 float64 或 float32 的向量。
+    - **labels** (numpy.array | Tensor)：真实标签的 shape 和：code: `preds` 相同，数据类型为 int32 或 int64。
 
 **返回**
 
@@ -105,18 +105,18 @@ reset()
 accumulate()
 '''''''''
 
-累积的统计指标，计算和返回precision值。
+累积的统计指标，计算和返回 precision 值。
 
 **返回**
 
-precision值，一个标量。
+precision 值，一个标量。
 
 
 name()
 '''''''''
 
-返回Metric实例的名字，参考上述的name，默认是'precision'。
+返回 Metric 实例的名字，参考上述的 name，默认是'precision'。
 
 **返回**
 
-评估的名字，string类型。
+评估的名字，string 类型。

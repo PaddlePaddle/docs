@@ -85,7 +85,7 @@ In order to make the API organization more concise and clear, the original direc
 - For operation by an axis, do not add reduce prefix
 - Conv, Pool, Dropout, BatchNorm, Pad networking APIs add 1D, 2D, 3D suffixes according to input data type
 
-  | Paddle 1.8  API Names | Paddle 2.0对应的名称|
+  | Paddle 1.8  API Names | Paddle 2.0 对应的名称|
   | --------------- | ------------------------ |
   | paddle.fluid.layers.elementwise_add | paddle.add               |
   | paddle.fluid.layers.elementwise_sub | paddle.subtract          |

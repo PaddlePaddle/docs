@@ -5,7 +5,7 @@ get_include
 
 .. py:function:: paddle.sysconfig.get_include()
 
-获取包含飞桨C++头文件的目录。
+获取包含飞桨 C++头文件的目录。
 
 返回
 ::::::::::

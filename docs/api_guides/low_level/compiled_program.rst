@@ -4,18 +4,18 @@
 CompiledProgram
 ################
 
-:ref:`cn_api_fluid_CompiledProgram` 用于把程序转化为不同的优化组合。例如，你可以使用with_data_parallel将程序转化为数据并行程序，使其能够运行在多个设备上。
+:ref:`cn_api_fluid_CompiledProgram` 用于把程序转化为不同的优化组合。例如，你可以使用 with_data_parallel 将程序转化为数据并行程序，使其能够运行在多个设备上。
 
 
 .. code-block:: python
 
     # 注释：
-    #   - 如果你想在ParallelExecutor中指定用于运行的GPU卡，需要在环境中定义
+    #   - 如果你想在 ParallelExecutor 中指定用于运行的 GPU 卡，需要在环境中定义
     #     CUDA_VISIBLE_DEVICES
-    #   - 如果你想在ParallelExecutor中使用多CPU来运行程序，需要在环境中定义
+    #   - 如果你想在 ParallelExecutor 中使用多 CPU 来运行程序，需要在环境中定义
     #     CPU_NUM
 
-    # 首先创建Executor。
+    # 首先创建 Executor。
     place = fluid.CUDAPlace(0) if use_cuda else fluid.CPUPlace()
     exe = fluid.Executor(place)
     # 运行启动程序仅一次。
@@ -40,6 +40,6 @@ CompiledProgram
                     feed=feed_dict,
                     fetch_list=[loss.name])
 
-- 相关API :
+- 相关 API :
 
  - :ref:`cn_api_fluid_CompiledProgram`

@@ -1,8 +1,8 @@
-# 飞桨框架昆仑2代芯片训练示例
+# 飞桨框架昆仑 2 代芯片训练示例
 
-使用XPU训练与CPU/GPU相同，只需要简单配置XPU，就可以执行在昆仑设备上。
+使用 XPU 训练与 CPU/GPU 相同，只需要简单配置 XPU，就可以执行在昆仑设备上。
 
-#### ResNet50下载并运行示例：
+#### ResNet50 下载并运行示例：
 
 1、 安装依赖：
 ```
@@ -12,7 +12,7 @@ python -m pip install -r requirements.txt
 ```
 
 2、下载数据集：
-基于CIFAR100数据集的ResNet50训练任务
+基于 CIFAR100 数据集的 ResNet50 训练任务
 ```
 cd dataset
 rm -rf ILSVRC2012
@@ -24,10 +24,10 @@ mv train.txt train_list.txt
 mv test.txt val_list.txt
 ```
 
-3、配置XPU进行训练的命令非常简单：
+3、配置 XPU 进行训练的命令非常简单：
 ```
 cd ../..
-#FLAGS指定单卡或多卡训练，此示例运行1个卡
+#FLAGS 指定单卡或多卡训练，此示例运行 1 个卡
 export FLAGS_selected_xpus=2
 export XPUSIM_DEVICE_MODEL=KUNLUN2
 #启动训练
@@ -36,7 +36,7 @@ python tools/train.py \
 -o Global.device=xpu
 ```
 
-#### YOLOv3-DarkNet53下载并运行示例：
+#### YOLOv3-DarkNet53 下载并运行示例：
 
 1、安装依赖：
 ```
@@ -54,9 +54,9 @@ python create_list.py
 cd ../..
 ```
 
-3、配置XPU进行训练的命令非常简单：
+3、配置 XPU 进行训练的命令非常简单：
 ```
-#FLAGS指定单卡或多卡训练，此示例运行1个卡
+#FLAGS 指定单卡或多卡训练，此示例运行 1 个卡
 export FLAGS_selected_xpus=2
 export XPUSIM_DEVICE_MODEL=KUNLUN2
 #启动训练

@@ -1,22 +1,22 @@
 
-使用FleetAPI进行分布式训练
+使用 FleetAPI 进行分布式训练
 ==========================
 
 FleetAPI 设计说明
 -----------------
 
-Fleet是PaddlePaddle分布式训练的高级API。Fleet的命名出自于PaddlePaddle，象征一个舰队中的多只双桨船协同工作。Fleet的设计在易用性和算法可扩展性方面做出了权衡。用户可以很容易从单机版的训练程序，通过添加几行代码切换到分布式训练程序。此外，分布式训练的算法也可以通过Fleet
-API接口灵活定义。
+Fleet 是 PaddlePaddle 分布式训练的高级 API。Fleet 的命名出自于 PaddlePaddle，象征一个舰队中的多只双桨船协同工作。Fleet 的设计在易用性和算法可扩展性方面做出了权衡。用户可以很容易从单机版的训练程序，通过添加几行代码切换到分布式训练程序。此外，分布式训练的算法也可以通过 Fleet
+API 接口灵活定义。
 
-Fleet API快速上手示例
+Fleet API 快速上手示例
 ---------------------
 
-下面会针对Fleet
-API最常见的两种使用场景，用一个模型做示例，目的是让用户有快速上手体验的模板。
+下面会针对 Fleet
+API 最常见的两种使用场景，用一个模型做示例，目的是让用户有快速上手体验的模板。
 
 
 *
-  假设我们定义MLP网络如下：
+  假设我们定义 MLP 网络如下：
 
   .. code-block:: python
 
@@ -31,7 +31,7 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
        return avg_cost
 
 *
-  定义一个在内存生成数据的Reader如下：
+  定义一个在内存生成数据的 Reader 如下：
 
   .. code-block:: python
 
@@ -42,7 +42,7 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
                  "y": np.random.randint(2, size=(128, 1)).astype('int64')}
 
 *
-  单机Trainer定义
+  单机 Trainer 定义
 
   .. code-block:: python
 
@@ -66,9 +66,9 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
        print("step%d cost=%f" % (i, cost_val[0]))
 
 *
-  Parameter Server训练方法
+  Parameter Server 训练方法
 
-  参数服务器方法对于大规模数据，简单模型的并行训练非常适用，我们基于单机模型的定义给出使用Parameter Server进行训练的示例如下：
+  参数服务器方法对于大规模数据，简单模型的并行训练非常适用，我们基于单机模型的定义给出使用 Parameter Server 进行训练的示例如下：
 
   .. code-block:: python
 
@@ -115,9 +115,9 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
              (fleet.worker_index(), i, cost_val[0]))
 
 *
-  Collective训练方法
+  Collective 训练方法
 
-  Collective Training通常在GPU多机多卡训练中使用，一般在复杂模型的训练中比较常见，我们基于上面的单机模型定义给出使用Collective方法进行分布式训练的示例如下：
+  Collective Training 通常在 GPU 多机多卡训练中使用，一般在复杂模型的训练中比较常见，我们基于上面的单机模型定义给出使用 Collective 方法进行分布式训练的示例如下：
 
   .. code-block:: python
 
@@ -155,45 +155,45 @@ API最常见的两种使用场景，用一个模型做示例，目的是让用�
             (fleet.worker_index(), i, cost_val[0]))
 
 
-Fleet API相关的接口说明
+Fleet API 相关的接口说明
 -----------------------
 
-Fleet API接口
+Fleet API 接口
 ^^^^^^^^^^^^^
 
 
 * init(role_maker=None)
 
-  * fleet初始化，需要在使用fleet其他接口前先调用，用于定义多机的环境配置
+  * fleet 初始化，需要在使用 fleet 其他接口前先调用，用于定义多机的环境配置
 
 * is_worker()
 
-  * Parameter Server训练中使用，判断当前节点是否是Worker节点，是则返回True，否则返回False
+  * Parameter Server 训练中使用，判断当前节点是否是 Worker 节点，是则返回 True，否则返回 False
 
 * is_server(model_dir=None)
 
-  * Parameter Server训练中使用，判断当前节点是否是Server节点，是则返回True，否则返回False
+  * Parameter Server 训练中使用，判断当前节点是否是 Server 节点，是则返回 True，否则返回 False
 
 * init_server()
 
-  * Parameter Server训练中，fleet加载model_dir中保存的模型相关参数进行parameter
-    server的初始化
+  * Parameter Server 训练中，fleet 加载 model_dir 中保存的模型相关参数进行 parameter
+    server 的初始化
 
 * run_server()
 
-  * Parameter Server训练中使用，用来启动server端服务
+  * Parameter Server 训练中使用，用来启动 server 端服务
 
 * init_worker()
 
-  * Parameter Server训练中使用，用来启动worker端服务
+  * Parameter Server 训练中使用，用来启动 worker 端服务
 
 * stop_worker()
 
-  * 训练结束后，停止worker
+  * 训练结束后，停止 worker
 
 * distributed_optimizer(optimizer, strategy=None)
 
-  * 分布式优化算法装饰器，用户可带入单机optimizer，并配置分布式训练策略，返回一个分布式的optimizer
+  * 分布式优化算法装饰器，用户可带入单机 optimizer，并配置分布式训练策略，返回一个分布式的 optimizer
 
 RoleMaker
 ^^^^^^^^^
@@ -204,10 +204,10 @@ RoleMaker
 
 
   *
-    描述：PaddleCloudRoleMaker是一个高级封装，支持使用paddle.distributed.launch或者paddle.distributed.launch_ps启动脚本
+    描述：PaddleCloudRoleMaker 是一个高级封装，支持使用 paddle.distributed.launch 或者 paddle.distributed.launch_ps 启动脚本
 
   *
-    Parameter Server训练示例：
+    Parameter Server 训练示例：
 
     .. code-block:: python
 
@@ -228,7 +228,7 @@ RoleMaker
        python -m paddle.distributed.launch_ps --worker_num 2 --server_num 2 trainer.py
 
   *
-    Collective训练示例：
+    Collective 训练示例：
 
     .. code-block:: python
 
@@ -253,7 +253,7 @@ RoleMaker
 
 
   *
-    描述：用户自定义节点的角色信息，IP和端口信息
+    描述：用户自定义节点的角色信息，IP 和端口信息
 
   *
     示例：

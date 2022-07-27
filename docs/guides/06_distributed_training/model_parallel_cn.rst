@@ -8,14 +8,14 @@
 一、原理介绍
 -----------------------
 
-张量模型并行需要解决两个问题：参数如何切分到不同设备（切分方式）；以及切分后，如何保证数学一致性（数学等价）。本文以NLP中的Transformer结构为例，介绍张量模型并行的切分方式和随机性控制。
+张量模型并行需要解决两个问题：参数如何切分到不同设备（切分方式）；以及切分后，如何保证数学一致性（数学等价）。本文以 NLP 中的 Transformer 结构为例，介绍张量模型并行的切分方式和随机性控制。
 
 
 1.1 切分方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-自2017年提出以来， `Transformer <https://arxiv.org/abs/1706.03762>`__ 及其变种模型成为自然语言类任务的常用模型，并于近年来被应用到图像视觉领域。Transformer模型的基础结构是由Attention和MLP组成的Encoder和Decoder，以及Embedding，如下图所示[1]。其中Attention和MLP的底层实现均为矩阵乘法运算，而Embedding是一种查找表实现。本文以NLP中的Transformer结构为例，介绍张量模型并行的切分方式和随机性控制。但总体上看核心思想都是利用分块矩阵的计算原理，实现其参数切分到不同的设备2 。下面详细介绍这三种层的切分方式。
+自 2017 年提出以来， `Transformer <https://arxiv.org/abs/1706.03762>`__ 及其变种模型成为自然语言类任务的常用模型，并于近年来被应用到图像视觉领域。Transformer 模型的基础结构是由 Attention 和 MLP 组成的 Encoder 和 Decoder，以及 Embedding，如下图所示[1]。其中 Attention 和 MLP 的底层实现均为矩阵乘法运算，而 Embedding 是一种查找表实现。本文以 NLP 中的 Transformer 结构为例，介绍张量模型并行的切分方式和随机性控制。但总体上看核心思想都是利用分块矩阵的计算原理，实现其参数切分到不同的设备 2 。下面详细介绍这三种层的切分方式。
 
 .. image:: ./images/transformer_overview.png
   :width: 200
@@ -27,9 +27,9 @@
 :::::::::::::::::::::::::
 
 
-对于Embedding操作，可以将其理解为一种查找表操作。即，将输入看做索引，将Embedding参数看做查找表，根据该索引查表得到相应的输出，如下图（a）所示。当采用模型并行时，Embedding的参数被均匀切分到多个卡上。假设Embedding参数的维度为N*D，并采用K张卡执行模型并行，那么模型并行模式下每张卡上的Embedding参数的维度为N//K*D。当参数的维度N不能被卡数K整除时，最后一张卡的参数维度值为(N//K+N%K)*D。以下图（b）为例，Embedding参数的维度为8*D，采用2张卡执行模型并行，那么每张卡上Embedding参数的维度为4*D。
+对于 Embedding 操作，可以将其理解为一种查找表操作。即，将输入看做索引，将 Embedding 参数看做查找表，根据该索引查表得到相应的输出，如下图（a）所示。当采用模型并行时，Embedding 的参数被均匀切分到多个卡上。假设 Embedding 参数的维度为 N*D，并采用 K 张卡执行模型并行，那么模型并行模式下每张卡上的 Embedding 参数的维度为 N//K*D。当参数的维度 N 不能被卡数 K 整除时，最后一张卡的参数维度值为(N//K+N%K)*D。以下图（b）为例，Embedding 参数的维度为 8*D，采用 2 张卡执行模型并行，那么每张卡上 Embedding 参数的维度为 4*D。
 
-为了便于说明，以下我们均假设Embedding的参数维度值D可以被模型并行的卡数D整除。此时，每张卡上Embeeding参数的索引值为[0, N/K)，逻辑索引值为[k*N/K, (k+1)*N/K)，其中k表示卡序号，0<=k<K。对于输入索引I，如果该索引在该卡表示的逻辑索引范围内，则返回该索引所表示的表项（索引值为I-k*N/K；否则，返回值为全0的虚拟表项。随后，通过AllReduce操作获取所有输出表项的和，即对应该Embeding操作的输出；整个查表过程如下图（b）所示。
+为了便于说明，以下我们均假设 Embedding 的参数维度值 D 可以被模型并行的卡数 D 整除。此时，每张卡上 Embeeding 参数的索引值为[0, N/K)，逻辑索引值为[k*N/K, (k+1)*N/K)，其中 k 表示卡序号，0<=k<K。对于输入索引 I，如果该索引在该卡表示的逻辑索引范围内，则返回该索引所表示的表项（索引值为 I-k*N/K；否则，返回值为全 0 的虚拟表项。随后，通过 AllReduce 操作获取所有输出表项的和，即对应该 Embeding 操作的输出；整个查表过程如下图（b）所示。
 
 .. image:: ./images/parallel_embedding.png
   :width: 600
@@ -41,23 +41,23 @@
 :::::::::::::::::::::::::
 
 
-对于矩阵乘操作，是按行或者列将矩阵切分K份。假设原始矩阵的维度为M*N，则按行切分后，各个卡上的矩阵维度为M/K*N；若按列切分，则各个卡上矩阵的维度值为M*N/K。
+对于矩阵乘操作，是按行或者列将矩阵切分 K 份。假设原始矩阵的维度为 M*N，则按行切分后，各个卡上的矩阵维度为 M/K*N；若按列切分，则各个卡上矩阵的维度值为 M*N/K。
 
-下图给出按列切分矩阵乘法的示例图。其中，图（a）给出单卡上的矩阵乘法。图（b）给出模型并行模式下的矩阵乘法，其中第二个矩阵按列切分到2张卡上；两张卡分别得到结果矩阵的一部分。最后，通过AllGather通信操作汇聚最终的结果。
+下图给出按列切分矩阵乘法的示例图。其中，图（a）给出单卡上的矩阵乘法。图（b）给出模型并行模式下的矩阵乘法，其中第二个矩阵按列切分到 2 张卡上；两张卡分别得到结果矩阵的一部分。最后，通过 AllGather 通信操作汇聚最终的结果。
 
 .. image:: ./images/col_parallel_matrix.png
   :width: 400
   :alt: column parallel matrix
   :align: center
 
-下图给出按行切分矩阵乘法的示例图。其中，图（a）给出单卡上的矩阵乘法。图（b）给出模型并行模式下的矩阵乘法，其中第二个矩阵按行切分到2张卡上；第一个矩阵需要按列切分，以满足矩阵乘法的维度要求；两张卡分别得到结果矩阵的一部分。最后，通过AllReduce通信操作按元素累加结果矩阵得到最终的结果。
+下图给出按行切分矩阵乘法的示例图。其中，图（a）给出单卡上的矩阵乘法。图（b）给出模型并行模式下的矩阵乘法，其中第二个矩阵按行切分到 2 张卡上；第一个矩阵需要按列切分，以满足矩阵乘法的维度要求；两张卡分别得到结果矩阵的一部分。最后，通过 AllReduce 通信操作按元素累加结果矩阵得到最终的结果。
 
 .. image:: ./images/row_parallel_matrix.png
   :width: 400
   :alt: row parallel matrix
   :align: center
 
-我们观察到，可以把上述按列切分矩阵乘法和按行切分矩阵乘法串联起来，从而省略掉一次AllGather通信操作，如下图所示。同时，我们注意到Transformer的Attention和MLP组件中各种两次矩阵乘法操作。因此，我们可以按照这种串联方式分别把Attention和MLP组件中的两次矩阵乘法串联起来，从而进一步优化性能。
+我们观察到，可以把上述按列切分矩阵乘法和按行切分矩阵乘法串联起来，从而省略掉一次 AllGather 通信操作，如下图所示。同时，我们注意到 Transformer 的 Attention 和 MLP 组件中各种两次矩阵乘法操作。因此，我们可以按照这种串联方式分别把 Attention 和 MLP 组件中的两次矩阵乘法串联起来，从而进一步优化性能。
 
 .. image:: ./images/parallel_matrix.png
   :width: 400
@@ -69,7 +69,7 @@
 :::::::::::::::::::::::::
 
 
-我们观察到，在模型并行模式下，Transformer的Attention组件中存在两种类型的Dropout操作，如下图所示[1]。第一类是softmax算子后的Dropout算子；其输入是按列切分矩阵乘法的部分结果，我们称为局部Dropout。直观理解，模型并行下，所有卡上的Dropout算子构成一个完整的Dropout算子，因此我们需要确保不同卡上该类Dropout算子的丢弃位置是不同。第二类是图中g操作之后的Dropout操作，对于此类Dropout，其输入均为完整且相同的输出，我们需要确保Dropout算子的输出也相同，即各个卡上该类Dropout算子选择的丢弃位置是相同的。我们称此类Dropout为全局Dropout。我们通常通过设置种子来控制两类Dropout的输出。具体地讲，对于局部Dropout，我们在不同的卡上为他们设置不同的种子，从而确保它们选择的丢弃位置是不同的。而对于全局Dropout算子，我们在不同的卡上为它们设置相同的种子，从而确它们在不同卡上选择的丢弃位置是相同的。
+我们观察到，在模型并行模式下，Transformer 的 Attention 组件中存在两种类型的 Dropout 操作，如下图所示[1]。第一类是 softmax 算子后的 Dropout 算子；其输入是按列切分矩阵乘法的部分结果，我们称为局部 Dropout。直观理解，模型并行下，所有卡上的 Dropout 算子构成一个完整的 Dropout 算子，因此我们需要确保不同卡上该类 Dropout 算子的丢弃位置是不同。第二类是图中 g 操作之后的 Dropout 操作，对于此类 Dropout，其输入均为完整且相同的输出，我们需要确保 Dropout 算子的输出也相同，即各个卡上该类 Dropout 算子选择的丢弃位置是相同的。我们称此类 Dropout 为全局 Dropout。我们通常通过设置种子来控制两类 Dropout 的输出。具体地讲，对于局部 Dropout，我们在不同的卡上为他们设置不同的种子，从而确保它们选择的丢弃位置是不同的。而对于全局 Dropout 算子，我们在不同的卡上为它们设置相同的种子，从而确它们在不同卡上选择的丢弃位置是相同的。
 
 .. image:: ./images/global_local_dropout.png
   :width: 400
@@ -87,7 +87,7 @@
 
 下面我们将分别介绍如何在动态图模式下使用飞桨框架进行模型并行训练。
 
-动态图中，我们提供了以下接口实现Embeeding和矩阵切分：
+动态图中，我们提供了以下接口实现 Embeeding 和矩阵切分：
 
 - paddle.distributed.fleet.meta_parallel.VocabParallelEmbedding
 - paddle.distributed.fleet.meta_parallel.ColumnParallelLinear
@@ -100,8 +100,8 @@
 
    class VocabParallelEmbedding(Layer):
        def __init__(self,
-                    num_embeddings,  # Embedding参数的行数
-                    embedding_dim,   # Embedding参数的列数
+                    num_embeddings,  # Embedding 参数的行数
+                    embedding_dim,   # Embedding 参数的列数
                     weight_attr=None,
                     name=None):
            super(VocabParallelEmbedding, self).__init__()
@@ -126,7 +126,7 @@
                     name=None):
 
 
-   RNG_STATE_TRACKER = RNGStatesTracker() # RNGStatesTracker是全局随机性控制器，用于保证张量模型并行的随机性
+   RNG_STATE_TRACKER = RNGStatesTracker() # RNGStatesTracker 是全局随机性控制器，用于保证张量模型并行的随机性
    def get_rng_state_tracker():
       return RNG_STATE_TRACKER
 
@@ -135,7 +135,7 @@
          self.states_ = {}     # 存储随机状态
          self.seeds_ = set()   # 可以设置多个随机种子
 
-下面的例子给出在两张卡上实现Embedding算子模型并行的示例。
+下面的例子给出在两张卡上实现 Embedding 算子模型并行的示例。
 
 .. code-block:: python
 
@@ -146,7 +146,7 @@
        weight_attr=paddle.ParamAttr(initializer=nn.initializer.Normal(
                      mean=0.0, std=initializer_range)))
 
-此外，我们还需要配置Fleet的选项，以使用模型并行功能。
+此外，我们还需要配置 Fleet 的选项，以使用模型并行功能。
 
 .. code-block:: python
 
@@ -157,14 +157,14 @@
    }
    fleet.init(is_collective=True, strategy=strategy)
    hcg = fleet.get_hybrid_communicate_group()
-   global_rank = hcg.get_global_rank() # 全局rank
-   mp_rank = hcg.get_model_parallel_rank() # 模型并行组rank
+   global_rank = hcg.get_global_rank() # 全局 rank
+   mp_rank = hcg.get_model_parallel_rank() # 模型并行组 rank
 
 
 当结合使用模型并行和数据并行时，我们需要指定 ``dp_dgree`` 参数，设置数据并行的并行度。
 
 
-如上文所述，对于Transformer模型，存在两种类型的Dropout：全局Dropout和局部Dropout；对于全局Dropout，需要在模型并行的所有卡上设置相同的种子，对于局部Dropout，则需要设置不同的种子。我们通过如下代码分别设置全局和局部种子：
+如上文所述，对于 Transformer 模型，存在两种类型的 Dropout：全局 Dropout 和局部 Dropout；对于全局 Dropout，需要在模型并行的所有卡上设置相同的种子，对于局部 Dropout，则需要设置不同的种子。我们通过如下代码分别设置全局和局部种子：
 
 .. code-block:: python
 
@@ -174,7 +174,7 @@
    tracker.add('global_seed', global_seed)
    tracker.add('local_seed', local_seed)
 
-上例只是一种示例实现，用户可以根据自己的需要实现不同的种子设置方式，但需要确保同一模型并行组内，全局Dropout的种子是一致的，而局部Dropout的种子是不同的。
+上例只是一种示例实现，用户可以根据自己的需要实现不同的种子设置方式，但需要确保同一模型并行组内，全局 Dropout 的种子是一致的，而局部 Dropout 的种子是不同的。
 
 在使用 ``Dropout`` 接口时，我们还需要根据其类型设置其种子，如下例所示：
 
@@ -203,7 +203,7 @@
 
 动态图的例子代码主要使用上面提到的三种类
 
-下面代码在Paddle2.0以上可以运行，建议将Paddle版本升级到最新版
+下面代码在 Paddle2.0 以上可以运行，建议将 Paddle 版本升级到最新版
 
 首先导入需要的包
 
@@ -284,7 +284,7 @@
       "mp_degree": model_parallel_size,
       "pp_degree": 1
    }
-   # 注意strategy是这里传递的，动态图只能这里，静态图还可以在distributed_optimizer里传
+   # 注意 strategy 是这里传递的，动态图只能这里，静态图还可以在 distributed_optimizer 里传
    fleet.init(is_collective=True, strategy=strategy)
 
    hcg = fleet.get_hybrid_communicate_group()
@@ -312,7 +312,7 @@
 模型并行的动态图代码：`example/model_parallelism/mp_dygraph.py <https://github.com/PaddlePaddle/FleetX/tree/old_develop/examples/model_parallelism>`_。
 
 
-运行方式（需要保证当前机器有两张gpu）：
+运行方式（需要保证当前机器有两张 gpu）：
 
 .. code-block:: bash
 
@@ -351,7 +351,7 @@
    LAUNCH INFO 2022-05-31 02:35:16,957 Run Pod: jbvsbv, replicas 2, status ready
    LAUNCH INFO 2022-05-31 02:35:16,984 Watching Pod: jbvsbv, replicas 2, status running
 
-日志信息位于log目录下, loss的输出信息:
+日志信息位于 log 目录下, loss 的输出信息:
 
 .. code-block:: bash
 

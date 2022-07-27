@@ -4,7 +4,7 @@ get_cuda_rng_state
 -------------------------------
 .. py:function:: paddle.get_cuda_rng_state()
 
-获取cuda随机数生成器的状态信息。
+获取 cuda 随机数生成器的状态信息。
 
 
 参数

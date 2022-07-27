@@ -116,7 +116,7 @@ The default configuration of the above policy is introduced by the following cod
     fleet.init(role)
 
     # step3: get distributed training program
-    optimizer = fluid.optimizer.SGD(learning_rate) # 以SGD优化器为例
+    optimizer = fluid.optimizer.SGD(learning_rate) # 以 SGD 优化器为例
     optimizer = fleet.distributed_optimizer(optimizer, strategy)
     optimizer.minimize(loss)
 

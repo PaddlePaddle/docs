@@ -105,7 +105,7 @@ In addition, if there are environmental problems with the pre-built wheel packag
 - **CPU: Phytium,FT-2000+/64**
 - **OS version: Kylin release V10 (SP1)/(Tercel)-aarch64-Build04/20200711**
 - **Python version: 3.6/3.7 (64 bit)**
-- **pip或pip3 version:  9.0.1+ (64 bit)**
+- **pip 或 pip3 version:  9.0.1+ (64 bit)**
 - **cmake version: 3.15+**
 - **gcc/g++ version: 8.2+**
 

@@ -9,7 +9,7 @@ get_worker_info
 
 ``num_workers``：子进程数。
 
-``id``：子进程逻辑序号，从0到 ``num_workers - 1``
+``id``：子进程逻辑序号，从 0 到 ``num_workers - 1``
 
 ``dataset``：各子进程中数据集实例。
 

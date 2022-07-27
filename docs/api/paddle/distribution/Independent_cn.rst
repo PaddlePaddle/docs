@@ -38,7 +38,7 @@ property variance
 prob(value)
 '''''''''
 
-计算value的概率。
+计算 value 的概率。
 
 **参数**
 
@@ -46,13 +46,13 @@ prob(value)
 
 **返回**
 
-- Tensor: value的概率。
+- Tensor: value 的概率。
 
 
 log_prob(value)
 '''''''''
 
-计算value的对数概率。
+计算 value 的对数概率。
 
 **参数**
 
@@ -60,13 +60,13 @@ log_prob(value)
 
 **返回**
 
-- Tensor: value的对数概率。
+- Tensor: value 的对数概率。
 
 
 sample(shape=())
 '''''''''
 
-从Beta分布中生成满足特定形状的样本数据。
+从 Beta 分布中生成满足特定形状的样本数据。
 
 **参数**
 

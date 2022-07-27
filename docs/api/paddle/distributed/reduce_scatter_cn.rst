@@ -11,14 +11,14 @@ reduce_scatter
 :::::::::
     - tensor (Tensor) – 输出的张量。
     - tensor_list (list(Tensor)) – 归约和切分的张量列表。
-    - op (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.Min|ReduceOp.PROD) – 操作类型，默认ReduceOp.SUM。
-    - group: (Group, optional) – 通信组；如果是None，则使用默认通信组。
-    - use_calc_stream: (bool, optional) – 决定是在计算流还是通信流上做该通信操作；默认为True，表示在计算流。
+    - op (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.Min|ReduceOp.PROD) – 操作类型，默认 ReduceOp.SUM。
+    - group: (Group, optional) – 通信组；如果是 None，则使用默认通信组。
+    - use_calc_stream: (bool, optional) – 决定是在计算流还是通信流上做该通信操作；默认为 True，表示在计算流。
 
 
 返回
 :::::::::
-返回Task。
+返回 Task。
 
 注意
 :::::::::

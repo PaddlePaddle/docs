@@ -21,7 +21,7 @@ deserialize_persistables
 返回
 ::::::::::::
 
-  - Program：包含反序列化后的参数的program。
+  - Program：包含反序列化后的参数的 program。
 
 代码示例
 ::::::::::::

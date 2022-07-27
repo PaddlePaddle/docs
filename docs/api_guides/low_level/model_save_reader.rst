@@ -4,7 +4,7 @@
 模型保存与加载
 #########
 
-模型的保存与加载主要涉及到如下八个API：
+模型的保存与加载主要涉及到如下八个 API：
 :code:`fluid.io.save_vars`、:code:`fluid.io.save_params`、:code:`fluid.io.save_persistables`、:code:`fluid.io.save_inference_model`、:code:`fluid.io.load_vars`、:code:`fluid.io.load_params`、:code:`fluid.io.load_persistables` 和 :code:`fluid.io.load_inference_model`。
 
 变量、持久性变量和参数
@@ -12,7 +12,7 @@
 
 在 :code:`Paddle` 中，算子(:code:`Operator`)的每一个输入和输出都是一个变量（:code:`Variable`），而参数（:code:`Parameter`）是变量（:code:`Variable`）的子类。持久性变量（:code:`Persistables`）是一种在每次迭代结束后均不会被删除的变量。参数是一种持久性变量，其在每次迭代后都会被优化器（:ref:`api_guide_optimizer`）更新。训练神经网络本质上就是在更新参数。
 
-模型保存API介绍
+模型保存 API 介绍
 ====================
 
 - :code:`fluid.io.save_vars`：通过执行器（:ref:`api_guide_executor`）保存变量到指定的目录中。保存变量的方式有两种：
@@ -35,7 +35,7 @@
 
 - :code:`fluid.io.save_inference_model`：请参考  :ref:`api_guide_inference`。
 
-模型加载API介绍
+模型加载 API 介绍
 ====================
 
 - :code:`fluid.io.load_vars`：通过执行器（:code:`Executor`）加载指定目录中的变量。加载变量的方式有两种：

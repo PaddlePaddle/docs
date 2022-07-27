@@ -26,7 +26,7 @@ The convolution needs to be determined according to stride, padding, filter size
 
 - Depthwise Separable Convolution:
 
-  Depthwise Separable Convolution contains depthwise convolution和pointwise convolution. The interfaces of these two convolutions are the same as the above normal convolutional interfaces. The former can be performed by setting groups for ordinary convolutions. The latter can be realised by setting the size of the convolution kernel filters to 1x1. Depthwise Separable Convolution reduces the parameters as well as the volume of computation.
+  Depthwise Separable Convolution contains depthwise convolution 和 pointwise convolution. The interfaces of these two convolutions are the same as the above normal convolutional interfaces. The former can be performed by setting groups for ordinary convolutions. The latter can be realised by setting the size of the convolution kernel filters to 1x1. Depthwise Separable Convolution reduces the parameters as well as the volume of computation.
 
   For depthwise convolution, you can set groups equal to the number of input channels. At this time, the convolution kernel shape of the 2D convolution is [C_o, 1, f_h, f_w]. For pointwise convolution, the shape of the convolution kernel is [C_o, C_in, 1, 1].
 

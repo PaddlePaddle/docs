@@ -163,7 +163,7 @@ A simple model expresses the process :
 
 - PaddlePaddle integrates TensorRT with subgraph, model[link](https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models)。
 - PyTorch uses original kernels, model[link1](https://github.com/pytorch/vision/tree/master/torchvision/models), [link2](https://github.com/marvis/pytorch-mobilenet)。
-- We tested TF original and TF-TRT**对TF—TRT的测试并没有达到预期的效果，后期会对其进行补充**, model[link](https://github.com/tensorflow/models)。
+- We tested TF original and TF-TRT**对 TF—TRT 的测试并没有达到预期的效果，后期会对其进行补充**, model[link](https://github.com/tensorflow/models)。
 
 
 #### ResNet50

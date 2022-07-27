@@ -5,15 +5,15 @@ ReshapeTransform
 
 .. py:class:: paddle.distribution.ReshapeTransform(in_event_shape, out_event_shape)
 
-``ReshapeTransform`` 将输入Tensor的事件形状 ``in_event_shape`` 改变为 ``out_event_shape`` 。
+``ReshapeTransform`` 将输入 Tensor 的事件形状 ``in_event_shape`` 改变为 ``out_event_shape`` 。
 其中，``in_event_shape`` 、 ``out_event_shape`` 需要包含相同的元素个数。
 
 
 参数
 :::::::::
 
-- **in_event_shape** (Sequence[int]) - Reshape前的事件形状。
-- **out_event_shape** (float|Tensor） - Reshape后的事件形状。
+- **in_event_shape** (Sequence[int]) - Reshape 前的事件形状。
+- **out_event_shape** (float|Tensor） - Reshape 后的事件形状。
 
 
 代码示例

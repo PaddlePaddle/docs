@@ -11,7 +11,7 @@ Variable
 
   2. 请使用 `Block.create_var` 创建一个静态的 `Variable`，该静态的 `Variable` 在使用 :ref:`cn_api_fluid_executor` 执行前是没有实际数据的。
 
-在Paddle静态图模式中，OP的每个输入和输出都是 :ref:`api_guide_Variable`。多数情况下，:ref:`api_guide_Variable` 用于保存不同种类的数据或训练标签。
+在 Paddle 静态图模式中，OP 的每个输入和输出都是 :ref:`api_guide_Variable`。多数情况下，:ref:`api_guide_Variable` 用于保存不同种类的数据或训练标签。
 
 :ref:`api_guide_Variable` 总是属于某一个 :ref:`api_guide_Block`。所有 :ref:`api_guide_Variable` 都有其自己的 ``name``，不同 :ref:`api_guide_Block` 中的两个 :ref:`api_guide_Variable` 可以具有相同的名称。如果使用的 **不是** `Dygraph <../../user_guides/howto/dygraph/DyGraph.html>`_ 模式，那么同一个 :ref:`api_guide_Block` 中的两个或更多 :ref:`api_guide_Variable` 拥有相同 ``name`` 将意味着他们会共享相同的内容。通常我们使用这种方式来实现 **参数共享**。
 
@@ -43,7 +43,7 @@ to_string(throw_on_error, with_details=True)
 **参数：**
 
  - **throw_on_error** (bool) - 是否在没有设置必需字段时抛出异常。
- - **with_details** (bool) - 值为true时，打印更多关于 :ref:`api_guide_Variable` 的信息，如 ``error_clip`` , ``stop_gradient`` 等。
+ - **with_details** (bool) - 值为 true 时，打印更多关于 :ref:`api_guide_Variable` 的信息，如 ``error_clip`` , ``stop_gradient`` 等。
 
 **返回**
 
@@ -227,7 +227,7 @@ set_value(value, scope=None)
 size(self)
 '''''''''
 
-返回该 :ref:`api_guide_Variable` 中的数据元素数量，结果是一个shape为[1]的int64的 ``Variable`` 。
+返回该 :ref:`api_guide_Variable` 中的数据元素数量，结果是一个 shape 为[1]的 int64 的 ``Variable`` 。
 
 **返回**
 
@@ -241,7 +241,7 @@ COPY-FROM: paddle.static.Variable.size
 ndimension(self)
 '''''''''
 
-返回该 :ref:`api_guide_Variable` 的维度，也称作rank。
+返回该 :ref:`api_guide_Variable` 的维度，也称作 rank。
 
 **返回**
 
@@ -262,7 +262,7 @@ ndimension(self)
 dim(self)
 '''''''''
 
-返回该 :ref:`api_guide_Variable` 的维度，也称作rank。
+返回该 :ref:`api_guide_Variable` 的维度，也称作 rank。
 
 **返回**
 ``Variable`` 的维度。
@@ -285,7 +285,7 @@ persistable
 '''''''''
 
 .. note::
-1. 该属性我们即将废弃，此介绍仅为了帮助用户理解概念，1.6版本后用户可以不再关心该属性
+1. 该属性我们即将废弃，此介绍仅为了帮助用户理解概念，1.6 版本后用户可以不再关心该属性
 2. 该属性除参数以外默认值为 ``False``，而参数的该属性默认值为 ``True`` 。
 
 此 :ref:`api_guide_Variable` 是否是长期存活的 :ref:`api_guide_Variable`。
@@ -329,7 +329,7 @@ type
 .. note::
 该属性是只读属性。
 
-此 :ref:`api_guide_Variable` 的内存模型，例如是：:ref:`api_fluid_LoDTensor`，或者SelectedRows。
+此 :ref:`api_guide_Variable` 的内存模型，例如是：:ref:`api_fluid_LoDTensor`，或者 SelectedRows。
 
 ndim
 '''''''''
@@ -337,4 +337,4 @@ ndim
 .. note::
 该属性是只读属性。
 
-此 :ref:`api_guide_Variable` 的维度，也称作rank。
+此 :ref:`api_guide_Variable` 的维度，也称作 rank。

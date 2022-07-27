@@ -7,10 +7,10 @@
 一、保存载入体系简介
 ##################
 
-1.1 基础API保存载入体系
+1.1 基础 API 保存载入体系
 --------------------
 
-飞桨框架2.1对模型与参数的保存与载入相关接口进行了梳理：对于训练调优场景，我们推荐使用paddle.save/load保存和载入模型；对于推理部署场景，我们推荐使用paddle.jit.save/load（动态图）和paddle.static.save/load_inference_model（静态图）保存载入模型。
+飞桨框架 2.1 对模型与参数的保存与载入相关接口进行了梳理：对于训练调优场景，我们推荐使用 paddle.save/load 保存和载入模型；对于推理部署场景，我们推荐使用 paddle.jit.save/load（动态图）和 paddle.static.save/load_inference_model（静态图）保存载入模型。
 
 飞桨保存载入相关接口包括：
 
@@ -34,17 +34,17 @@
 
 .. image:: images/paddle_jit_save_load_2.1.png
 
-1.2 高阶API保存载入体系
+1.2 高阶 API 保存载入体系
 --------------------
 
 - paddle.Model.fit (训练接口，同时带有参数保存的功能)
 - paddle.Model.save
 - paddle.Model.load
 
-飞桨框架2.0高阶API仅有一套Save/Load接口，表意直观，体系清晰，若有需要，建议直接阅读相关API文档，此处不再赘述。
+飞桨框架 2.0 高阶 API 仅有一套 Save/Load 接口，表意直观，体系清晰，若有需要，建议直接阅读相关 API 文档，此处不再赘述。
 
 .. note::
-    本教程着重介绍飞桨框架2.1的各个保存载入接口的关系及各种使用场景，不对接口参数进行详细介绍，如果需要了解具体接口参数的含义，请直接阅读对应API文档。
+    本教程着重介绍飞桨框架 2.1 的各个保存载入接口的关系及各种使用场景，不对接口参数进行详细介绍，如果需要了解具体接口参数的含义，请直接阅读对应 API 文档。
 
 
 `模型保存常见问题 <./../../faq/save_cn.html>`_
@@ -56,7 +56,7 @@
 2.1 动态图参数保存载入
 -------------------
 
-若仅需要保存/载入模型的参数，可以使用 ``paddle.save/load`` 结合Layer和Optimizer的state_dict达成目的，此处state_dict是对象的持久参数的载体，dict的key为参数名，value为参数真实的numpy array值。
+若仅需要保存/载入模型的参数，可以使用 ``paddle.save/load`` 结合 Layer 和 Optimizer 的 state_dict 达成目的，此处 state_dict 是对象的持久参数的载体，dict 的 key 为参数名，value 为参数真实的 numpy array 值。
 
 结合以下简单示例，介绍参数保存和载入的方法，以下示例完成了一个简单网络的训练过程：
 
@@ -126,7 +126,7 @@
 2.1.1 参数保存
 -------------
 
-参数保存时，先获取目标对象（Layer或者Optimzier）的state_dict，然后将state_dict保存至磁盘，示例如下（接前述示例）:
+参数保存时，先获取目标对象（Layer 或者 Optimzier）的 state_dict，然后将 state_dict 保存至磁盘，示例如下（接前述示例）:
 
 .. code-block:: python
 
@@ -138,7 +138,7 @@
 2.1.2 参数载入
 -------------
 
-参数载入时，先从磁盘载入保存的state_dict，然后通过set_state_dict方法配置到目标对象中，示例如下（接前述示例）：
+参数载入时，先从磁盘载入保存的 state_dict，然后通过 set_state_dict 方法配置到目标对象中，示例如下（接前述示例）：
 
 .. code-block:: python
 
@@ -152,7 +152,7 @@
 
 2.2 静态图模型&参数保存载入
 -----------------------
-若仅需要保存/载入模型的参数，可以使用 ``paddle.save/load`` 结合Program的state_dict达成目的，此处state_dict与动态图state_dict概念类似，dict的key为参数名，value为参数真实的值。若想保存整个模型，需要使用``paddle.save``将Program和state_dict都保存下来。
+若仅需要保存/载入模型的参数，可以使用 ``paddle.save/load`` 结合 Program 的 state_dict 达成目的，此处 state_dict 与动态图 state_dict 概念类似，dict 的 key 为参数名，value 为参数真实的值。若想保存整个模型，需要使用``paddle.save``将 Program 和 state_dict 都保存下来。
 
 结合以下简单示例，介绍参数保存和载入的方法：
 
@@ -176,14 +176,14 @@
 2.2.1 静态图模型&参数保存
 ---------------------
 
-参数保存时，先获取Program的state_dict，然后将state_dict保存至磁盘，示例如下（接前述示例）:
+参数保存时，先获取 Program 的 state_dict，然后将 state_dict 保存至磁盘，示例如下（接前述示例）:
 
 .. code-block:: python
 
     paddle.save(prog.state_dict(), "temp/model.pdparams")
 
 
-如果想要保存整个静态图模型，除了state_dict还需要保存Program
+如果想要保存整个静态图模型，除了 state_dict 还需要保存 Program
 
 .. code-block:: python
 
@@ -193,14 +193,14 @@
 2.2.2 静态图模型&参数载入
 ---------------------
 
-如果只保存了state_dict，可以跳过此段代码，直接载入state_dict。如果模型文件中包含Program和state_dict，请先载入Program，示例如下（接前述示例）:
+如果只保存了 state_dict，可以跳过此段代码，直接载入 state_dict。如果模型文件中包含 Program 和 state_dict，请先载入 Program，示例如下（接前述示例）:
 
 .. code-block:: python
 
     prog = paddle.load("temp/model.pdmodel")
 
 
-参数载入时，先从磁盘载入保存的state_dict，然后通过set_state_dict方法配置到Program中，示例如下（接前述示例）：
+参数载入时，先从磁盘载入保存的 state_dict，然后通过 set_state_dict 方法配置到 Program 中，示例如下（接前述示例）：
 
 .. code-block:: python
 
@@ -227,7 +227,7 @@
 3.1.1.1 动转静训练 + 模型&参数保存
 ``````````````````````````````
 
-动转静训练相比直接使用动态图训练具有更好的执行性能，训练完成后，直接将目标Layer传入 ``paddle.jit.save`` 保存即可。：
+动转静训练相比直接使用动态图训练具有更好的执行性能，训练完成后，直接将目标 Layer 传入 ``paddle.jit.save`` 保存即可。：
 
 一个简单的网络训练示例如下：
 
@@ -306,9 +306,9 @@
 
 通过动转静训练后保存模型&参数，有以下三项注意点：
 
-(1) Layer对象的forward方法需要经由 ``paddle.jit.to_static`` 装饰
+(1) Layer 对象的 forward 方法需要经由 ``paddle.jit.to_static`` 装饰
 
-经过 ``paddle.jit.to_static`` 装饰forward方法后，相应Layer在执行时，会先生成描述模型的Program，然后通过执行Program获取计算结果，示例如下：
+经过 ``paddle.jit.to_static`` 装饰 forward 方法后，相应 Layer 在执行时，会先生成描述模型的 Program，然后通过执行 Program 获取计算结果，示例如下：
 
 .. code-block:: python
 
@@ -327,7 +327,7 @@
         def forward(self, x):
             return self._linear(x)
 
-若最终需要生成的描述模型的Program支持动态输入，可以同时指明模型的 ``InputSepc`` ，示例如下：
+若最终需要生成的描述模型的 Program 支持动态输入，可以同时指明模型的 ``InputSepc`` ，示例如下：
 
 .. code-block:: python
 
@@ -348,9 +348,9 @@
             return self._linear(x)
 
 
-(2) 请确保Layer.forward方法中仅实现预测功能，避免将训练所需的loss计算逻辑写入forward方法
+(2) 请确保 Layer.forward 方法中仅实现预测功能，避免将训练所需的 loss 计算逻辑写入 forward 方法
 
-Layer更准确的语义是描述一个具有预测功能的模型对象，接收输入的样本数据，输出预测的结果，而loss计算是仅属于模型训练中的概念。将loss计算的实现放到Layer.forward方法中，会使Layer在不同场景下概念有所差别，并且增大Layer使用的复杂性，这不是良好的编码行为，同时也会在最终保存预测模型时引入剪枝的复杂性，因此建议保持Layer实现的简洁性，下面通过两个示例对比说明：
+Layer 更准确的语义是描述一个具有预测功能的模型对象，接收输入的样本数据，输出预测的结果，而 loss 计算是仅属于模型训练中的概念。将 loss 计算的实现放到 Layer.forward 方法中，会使 Layer 在不同场景下概念有所差别，并且增大 Layer 使用的复杂性，这不是良好的编码行为，同时也会在最终保存预测模型时引入剪枝的复杂性，因此建议保持 Layer 实现的简洁性，下面通过两个示例对比说明：
 
 错误示例如下：
 
@@ -401,7 +401,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 (3) 如果你需要保存多个方法，需要用 ``paddle.jit.to_static`` 装饰每一个需要被保存的方法。
 
 .. note::
-    只有在forward之外还需要保存其他方法时才用这个特性，如果仅装饰非forward的方法，而forward没有被装饰，是不符合规范的。此时 ``paddle.jit.save`` 的 ``input_spec`` 参数必须为None。
+    只有在 forward 之外还需要保存其他方法时才用这个特性，如果仅装饰非 forward 的方法，而 forward 没有被装饰，是不符合规范的。此时 ``paddle.jit.save`` 的 ``input_spec`` 参数必须为 None。
 
 示例代码如下：
 
@@ -436,10 +436,10 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     path = "example.model/linear"
     paddle.jit.save(layer, path)
 
-保存的模型命名规则：forward的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的pdmodel和pdiparams的文件，所有函数共用pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生5个文件：
+保存的模型命名规则：forward 的模型名字为：模型名+后缀，其他函数的模型名字为：模型名+函数名+后缀。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 pdiparams.info。上述代码将在 ``example.model`` 文件夹下产生 5 个文件：
 ``linear.another_forward.pdiparams、 linear.pdiparams、 linear.pdmodel、 linear.another_forward.pdmodel、 linear.pdiparams.info``
 
-(4) 当使用 ``jit.save`` 保存函数时，``jit.save`` 只保存这个函数对应的静态图 `Program` ，不会保存和这个函数相关的参数。如果你必须保存参数，请使用Layer封装这个函数。
+(4) 当使用 ``jit.save`` 保存函数时，``jit.save`` 只保存这个函数对应的静态图 `Program` ，不会保存和这个函数相关的参数。如果你必须保存参数，请使用 Layer 封装这个函数。
 
 示例代码如下：
 
@@ -547,15 +547,15 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 动态图训练后使用 ``paddle.jit.save`` 保存模型和参数注意点如下：
 
-(1) 相比动转静训练，Layer对象的forward方法不需要额外装饰，保持原实现即可
+(1) 相比动转静训练，Layer 对象的 forward 方法不需要额外装饰，保持原实现即可
 
-(2) 与动转静训练相同，请确保Layer.forward方法中仅实现预测功能，避免将训练所需的loss计算逻辑写入forward方法
+(2) 与动转静训练相同，请确保 Layer.forward 方法中仅实现预测功能，避免将训练所需的 loss 计算逻辑写入 forward 方法
 
-(3) 在最后使用 ``paddle.jit.save`` 时，需要指定Layer的 ``InputSpec`` ，Layer对象forward方法的每一个参数均需要对应的 ``InputSpec`` 进行描述，不能省略。这里的 ``input_spec`` 参数支持两种类型的输入：
+(3) 在最后使用 ``paddle.jit.save`` 时，需要指定 Layer 的 ``InputSpec`` ，Layer 对象 forward 方法的每一个参数均需要对应的 ``InputSpec`` 进行描述，不能省略。这里的 ``input_spec`` 参数支持两种类型的输入：
 
 - ``InputSpec`` 列表
 
-使用InputSpec描述forward输入参数的shape，dtype和name，如前述示例（此处示例中name省略，name省略的情况下会使用forward的对应参数名作为name，所以这里的name为 ``x`` ）：
+使用 InputSpec 描述 forward 输入参数的 shape，dtype 和 name，如前述示例（此处示例中 name 省略，name 省略的情况下会使用 forward 的对应参数名作为 name，所以这里的 name 为 ``x`` ）：
 
 .. code-block:: python
 
@@ -566,7 +566,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 - Example Tensor 列表
 
-除使用InputSpec之外，也可以直接使用forward训练时的示例输入，此处可以使用前述示例中迭代DataLoader得到的 ``image`` ，示例如下：
+除使用 InputSpec 之外，也可以直接使用 forward 训练时的示例输入，此处可以使用前述示例中迭代 DataLoader 得到的 ``image`` ，示例如下：
 
 .. code-block:: python
 
@@ -578,7 +578,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 3.1.2 动态图模型&参数载入
 ----------------------
 
-载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个Layer的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有Layer具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。
+载入模型参数，使用 ``paddle.jit.load`` 载入即可，载入后得到的是一个 Layer 的派生类对象 ``TranslatedLayer`` ， ``TranslatedLayer`` 具有 Layer 具有的通用特征，支持切换 ``train`` 或者 ``eval`` 模式，可以进行模型调优或者预测。
 
 .. note::
     为了规避变量名字冲突，载入之后会重命名变量。
@@ -655,7 +655,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
     paddle.jit.save(loaded_layer, "fine-tune.model/linear", input_spec=[x])
 
 
-此外， ``paddle.jit.save`` 同时保存了模型和参数，如果你只需要从存储结果中载入模型的参数，可以使用 ``paddle.load`` 接口载入，返回所存储模型的state_dict，示例如下：
+此外， ``paddle.jit.save`` 同时保存了模型和参数，如果你只需要从存储结果中载入模型的参数，可以使用 ``paddle.load`` 接口载入，返回所存储模型的 state_dict，示例如下：
 
 .. code-block:: python
 
@@ -714,7 +714,7 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 
 3.2.1 静态图推理模型&参数保存
 -------------------------
-静态图导出推理模型需要指定导出路径、输入、输出变量以及执行器。 ``save_inference_model`` 会裁剪Program的冗余部分，并导出两个文件： ``path_prefix.pdmodel`` 、 ``path_prefix.pdiparams`` 。示例如下（接前述示例）：
+静态图导出推理模型需要指定导出路径、输入、输出变量以及执行器。 ``save_inference_model`` 会裁剪 Program 的冗余部分，并导出两个文件： ``path_prefix.pdmodel`` 、 ``path_prefix.pdiparams`` 。示例如下（接前述示例）：
 
 .. code-block:: python
 
@@ -740,4 +740,4 @@ Layer更准确的语义是描述一个具有预测功能的模型对象，接收
 四、旧保存格式兼容载入
 ###################
 
-如果你是从飞桨框架1.x切换到2.1，曾经使用飞桨框架1.x的fluid相关接口保存模型或者参数，飞桨框架2.1也对这种情况进行了兼容性支持，请参考 :ref:`兼容载入旧格式模型 <cn_guides_load_old_format_model>`
+如果你是从飞桨框架 1.x 切换到 2.1，曾经使用飞桨框架 1.x 的 fluid 相关接口保存模型或者参数，飞桨框架 2.1 也对这种情况进行了兼容性支持，请参考 :ref:`兼容载入旧格式模型 <cn_guides_load_old_format_model>`

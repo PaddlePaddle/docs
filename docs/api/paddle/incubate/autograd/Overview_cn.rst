@@ -3,20 +3,20 @@
 paddle.incubate.autograd
 ---------------------
 
-paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关的一些探索性API。具体如下：
+paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关的一些探索性 API。具体如下：
 
--  :ref:`自动微分机制切换API <mode_switching_apis>`
--  :ref:`自动微分基础算子与原生算子转换API <transform_apis>`
--  :ref:`函数式自动微分API <functional_apis>`
+-  :ref:`自动微分机制切换 API <mode_switching_apis>`
+-  :ref:`自动微分基础算子与原生算子转换 API <transform_apis>`
+-  :ref:`函数式自动微分 API <functional_apis>`
 
 
 .. _mode_switching_apis:
 
-自动微分机制切换API
+自动微分机制切换 API
 ==========================
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
 
     " :ref:`paddle.incubate.autograd.enable_prim <cn_api_paddle_incubate_autograd_enable_prim>` ", "开启基于自动微分基础算子的自动微分机制"
     " :ref:`paddle.incubate.autograd.disable_prim <cn_api_paddle_incubate_autograd_disable_prim>` ", "关闭基于自动微分基础算子的自动微分机制"
@@ -25,22 +25,22 @@ paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关�
 
 .. _transform_apis:
 
-自动微分基础算子与原生算子转换API
+自动微分基础算子与原生算子转换 API
 ==========================
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
 
     " :ref:`paddle.incubate.autograd.prim2orig <cn_api_paddle_incubate_autograd_prim2orig>` ", "自动微分基础算子转换为等价功能原生算子"
 
 
 .. _functional_apis:
 
-函数式自动微分API
+函数式自动微分 API
 ==========================
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
 
     " :ref:`paddle.incubate.autograd.jvp <cn_api_paddle_incubate_autograd_jvp>` ", "雅可比矩阵与向量乘积"
     " :ref:`paddle.incubate.autograd.vjp <cn_api_paddle_incubate_autograd_vjp>` ", "向量与雅可比矩阵乘积"
@@ -67,7 +67,7 @@ paddle.incubate.autograd 目录下包含飞桨框架提供的自动微分相关�
 
 原生算子体系和自动微分基础算子体系之间的转化：
 一方面，原生算子体系中的算子语义往往比较复杂，需要拆分为多个自动微分基础算子的组合。
-另一方面，自动微分基础算子由于没有kernel实现，不能直接执行，在进行完自动微分变换之后，需要转化为同语义的原生算子才可以执行。
+另一方面，自动微分基础算子由于没有 kernel 实现，不能直接执行，在进行完自动微分变换之后，需要转化为同语义的原生算子才可以执行。
 通过定义原生算子和自动微分基础算子之间的转化规则，在程序变换 orig2prim 和 prim2orig 中应用对应的规则，分别完成原生算子到自动微分基础算子和自动微分基础算子到原生算子之间的转化。
 
 自动微分规则及其对应的程序变换：
@@ -200,9 +200,9 @@ linearize 和 transpose 程序变换的想法来自 `JAX <https://github.com/goo
 ==========================
 目前基于自动微分基础算子的自动微分机制还在积极演进阶段，可预见的工作包括：
 
-- 提供前向微分相关API
-- 适配函数式自动微分API
-- 功能覆盖更多的组网API
+- 提供前向微分相关 API
+- 适配函数式自动微分 API
+- 功能覆盖更多的组网 API
 - 支持控制流
 - 支持动态图模式
 

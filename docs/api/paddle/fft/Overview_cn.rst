@@ -3,7 +3,7 @@
 paddle.fft
 ---------------------
 
-paddle.fft 目录下包含飞桨框架支持的快速傅里叶变换的相关API。具体如下：
+paddle.fft 目录下包含飞桨框架支持的快速傅里叶变换的相关 API。具体如下：
 
 -  :ref:`标准快速傅里叶变换 <standard_ffts>`
 -  :ref:`实数傅里叶变换 <real_ffts>`
@@ -16,7 +16,7 @@ paddle.fft 目录下包含飞桨框架支持的快速傅里叶变换的相关API
 ==========================
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
 
     " :ref:`paddle.fft.fft <cn_api_paddle_fft_fft>` ", "一维离散傅里叶变换"
     " :ref:`paddle.fft.ifft <cn_api_paddle_fft_ifft>` ", "一维逆向离散傅里叶变换"
@@ -31,7 +31,7 @@ paddle.fft 目录下包含飞桨框架支持的快速傅里叶变换的相关API
 ==========================
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
 
     " :ref:`paddle.fft.rfft <cn_api_paddle_fft_rfft>` ", "一维离散实数傅里叶变换"
     " :ref:`paddle.fft.irfft <cn_api_paddle_fft_irfft>` ", "一维离散实数傅里叶变换的逆变换"
@@ -46,7 +46,7 @@ paddle.fft 目录下包含飞桨框架支持的快速傅里叶变换的相关API
 ==========================
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
 
     " :ref:`paddle.fft.hfft <cn_api_paddle_fft_hfft>` ", "一维离散厄米特傅里叶变换"
     " :ref:`paddle.fft.ihfft <cn_api_paddle_fft_ihfft>` ", "一维离散厄米特傅里叶变换的逆变换"
@@ -61,7 +61,7 @@ paddle.fft 目录下包含飞桨框架支持的快速傅里叶变换的相关API
 ==========================
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
 
     " :ref:`paddle.fft.fftfreq <cn_api_paddle_fft_fftfreq>` ", "计算傅里叶变换采样频率"
     " :ref:`paddle.fft.rfftfreq <cn_api_paddle_fft_rfftfreq>` ", "计算傅里叶变换采样频率，用于 ``rfft``, ``irfft``"

@@ -5,13 +5,13 @@ StackTransform
 
 .. py:class:: paddle.distribution.StackTransform(transforms, axis=0)
 
-``StackTransform`` 将一系列变换沿着某个特定轴作用于一个输入Tensor上。
+``StackTransform`` 将一系列变换沿着某个特定轴作用于一个输入 Tensor 上。
 
 参数
 :::::::::
 
 - **transforms** (Sequence[Transform]) - 变换序列。
-- **axis** (int，可选） - 待变换的轴，默认值：0，表示沿着第0个轴变换。
+- **axis** (int，可选） - 待变换的轴，默认值：0，表示沿着第 0 个轴变换。
 
 代码示例
 :::::::::

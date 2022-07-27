@@ -25,7 +25,7 @@ COPY-FROM: paddle.distribution.TransformedDistribution
 prob(value)
 '''''''''
 
-计算value的概率。
+计算 value 的概率。
 
 **参数**
 
@@ -33,13 +33,13 @@ prob(value)
 
 **返回**
 
-- Tensor: value的概率。
+- Tensor: value 的概率。
 
 
 log_prob(value)
 '''''''''
 
-计算value的对数概率。
+计算 value 的对数概率。
 
 **参数**
 
@@ -47,7 +47,7 @@ log_prob(value)
 
 **返回**
 
-- Tensor: value的对数概率。
+- Tensor: value 的对数概率。
 
 
 sample(shape=())

@@ -5,7 +5,7 @@ PyLayer
 
 .. py:class:: paddle.autograd.PyLayer
 
-Paddle通过创建 ``PyLayer`` 子类的方式实现Python端自定义算子，这个子类必须遵守以下规则：
+Paddle 通过创建 ``PyLayer`` 子类的方式实现 Python 端自定义算子，这个子类必须遵守以下规则：
 
 1. 子类必须包含静态的 ``forward`` 和 ``backward`` 函数，它们的第一个参数必须是 :ref:`cn_api_autograd_PyLayerContext`，如果 ``backward`` 的某个返回值在 ``forward`` 中对应的 ``Tensor`` 是需要梯度，这个返回值必须为 ``Tensor`` 。
 
@@ -67,7 +67,7 @@ forward(ctx, *args, **kwargs)
 
 **返回**
 
-Tensor或至少包含一个Tensor的list/tuple
+Tensor 或至少包含一个 Tensor 的 list/tuple
 
 **代码示例**
 
@@ -141,7 +141,7 @@ apply(cls, *args, **kwargs)
 
 **返回**
 
-Tensor或至少包含一个Tensor的list/tuple
+Tensor 或至少包含一个 Tensor 的 list/tuple
 
 **代码示例**
 

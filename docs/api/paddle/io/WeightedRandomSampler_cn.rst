@@ -10,9 +10,9 @@ WeightedRandomSampler
 参数
 :::::::::
 
-    - **weights** (numpy.ndarray|paddle.Tensor|tuple|list) - 权重序列，需要是numpy数组，paddle.Tensor，list或者tuple类型。
+    - **weights** (numpy.ndarray|paddle.Tensor|tuple|list) - 权重序列，需要是 numpy 数组，paddle.Tensor，list 或者 tuple 类型。
     - **num_samples** (int) - 采样样本数。
-    - **replacement** (bool) - 是否采用有放回的采样，默认值为True
+    - **replacement** (bool) - 是否采用有放回的采样，默认值为 True
 
 返回
 :::::::::

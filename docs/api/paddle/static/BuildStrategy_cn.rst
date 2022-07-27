@@ -9,7 +9,7 @@ BuildStrategy
 
 返回
 :::::::::
-BuildStrategy，一个BuildStrategy的实例。
+BuildStrategy，一个 BuildStrategy 的实例。
 
 代码示例
 :::::::::
@@ -45,7 +45,7 @@ BuildStrategy，一个BuildStrategy的实例。
 debug_graphviz_path
 '''''''''
 
-str类型。表示以graphviz格式向文件中写入计算图的路径，有利于调试。默认值为空字符串。
+str 类型。表示以 graphviz 格式向文件中写入计算图的路径，有利于调试。默认值为空字符串。
 
 **代码示例**
 
@@ -63,7 +63,7 @@ str类型。表示以graphviz格式向文件中写入计算图的路径，有利
 enable_sequential_execution
 '''''''''
 
-bool类型。如果设置为True，则算子的执行顺序将与算子定义的执行顺序相同。默认为False。
+bool 类型。如果设置为 True，则算子的执行顺序将与算子定义的执行顺序相同。默认为 False。
 
 **代码示例**
 
@@ -81,7 +81,7 @@ bool类型。如果设置为True，则算子的执行顺序将与算子定义的
 fuse_broadcast_ops
 '''''''''
 
-bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模式下有效，使程序运行更快。默认为False。
+bool 类型。表明是否融合(fuse) broadcast ops。该选项指在 Reduce 模式下有效，使程序运行更快。默认为 False。
 
 **代码示例**
 
@@ -99,7 +99,7 @@ bool类型。表明是否融合(fuse) broadcast ops。该选项指在Reduce模�
 fuse_elewise_add_act_ops
 '''''''''
 
-bool类型。表明是否融合(fuse) elementwise_add_op和activation_op。这会使整体执行过程更快。默认为False。
+bool 类型。表明是否融合(fuse) elementwise_add_op 和 activation_op。这会使整体执行过程更快。默认为 False。
 
 **代码示例**
 
@@ -117,7 +117,7 @@ bool类型。表明是否融合(fuse) elementwise_add_op和activation_op。这�
 fuse_relu_depthwise_conv
 '''''''''
 
-bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存并可能加速执行过程。此选项仅适用于GPU设备。默认为False。
+bool 类型。表明是否融合(fuse) relu 和 depthwise_conv2d，节省 GPU 内存并可能加速执行过程。此选项仅适用于 GPU 设备。默认为 False。
 
 **代码示例**
 
@@ -134,7 +134,7 @@ bool类型。表明是否融合(fuse) relu和depthwise_conv2d，节省GPU内存�
 gradient_scale_strategy
 '''''''''
 
-``paddle.static.BuildStrategy.GradientScaleStrategy`` 类型。在 ``ParallelExecutor`` 中，存在三种定义loss对应梯度( *loss@grad* )的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下，``ParallelExecutor`` 根据设备数目来设置 *loss@grad*。如果用户需要自定义 *loss@grad*，可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
+``paddle.static.BuildStrategy.GradientScaleStrategy`` 类型。在 ``ParallelExecutor`` 中，存在三种定义 loss 对应梯度( *loss@grad* )的方式，分别为 ``CoeffNumDevice``, ``One`` 与 ``Customized``。默认情况下，``ParallelExecutor`` 根据设备数目来设置 *loss@grad*。如果用户需要自定义 *loss@grad*，可以选择 ``Customized`` 方法。默认为 ``CoeffNumDevice`` 。
 
 **代码示例**
 
@@ -189,7 +189,7 @@ gradient_scale_strategy
 memory_optimize
 '''''''''
 
-bool类型或None。设为True时可用于减少总内存消耗，False表示不使用，None表示框架会自动选择使用或者不使用优化策略。当前，None意味着当GC不能使用时，优化策略将被使用。默认为None。
+bool 类型或 None。设为 True 时可用于减少总内存消耗，False 表示不使用，None 表示框架会自动选择使用或者不使用优化策略。当前，None 意味着当 GC 不能使用时，优化策略将被使用。默认为 None。
 
 reduce_strategy
 '''''''''
@@ -212,7 +212,7 @@ reduce_strategy
 remove_unnecessary_lock
 '''''''''
 
-bool类型。设置True会去除GPU操作中的一些锁操作，``ParallelExecutor`` 将运行得更快，默认为True。
+bool 类型。设置 True 会去除 GPU 操作中的一些锁操作，``ParallelExecutor`` 将运行得更快，默认为 True。
 
 **代码示例**
 
@@ -230,7 +230,7 @@ bool类型。设置True会去除GPU操作中的一些锁操作，``ParallelExecu
 sync_batch_norm
 '''''''''
 
-bool类型。表示是否使用同步的批正则化，即在训练阶段通过多个设备同步均值和方差。当前的实现不支持FP16训练和CPU。并且目前**仅支持**仅在一台机器上进行同步式批正则。默认为 False。
+bool 类型。表示是否使用同步的批正则化，即在训练阶段通过多个设备同步均值和方差。当前的实现不支持 FP16 训练和 CPU。并且目前**仅支持**仅在一台机器上进行同步式批正则。默认为 False。
 
 **代码示例**
 

@@ -48,7 +48,7 @@ add_n
 
 返回
 ::::::::::::
-Tensor，输入 ``inputs`` 求和后的结果，shape和数据类型与 ``inputs`` 一致。
+Tensor，输入 ``inputs`` 求和后的结果，shape 和数据类型与 ``inputs`` 一致。
 
 
 代码示例

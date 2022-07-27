@@ -5,13 +5,13 @@
 自定义 Runtime 为 PaddlePaddle 提供了一种插件式注册新硬件 Runtime 的方式。 DeviceManager 管理 PaddlePaddle 的硬件设备以及 Runtime/Driver 接口，向上提供统一的接口供框架调用硬件功能，向下暴露一系列接口用于注册自定义 Runtime ，通过 C API 形式保证二进制兼容性。这些接口可以在 `device_ext.h <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/device_ext.h>`_ 文件中查看，开发者只需要实现这些接口即可为 PaddlePaddle 添加自定义 Runtime 。
 
 - `数据类型 <./runtime_data_type_cn.html>`_ : 介绍自定义 Runtime 的数据类型定义。
-- `Device接口 <./device_api_cn.html>`_ : 介绍Device接口的定义和功能。
-- `Memory接口 <./memory_api_cn.html>`_ : 介绍Memory接口的定义和功能。
-- `Stream接口 <./stream_api_cn.html>`_ : 介绍Stream接口的定义和功能。
-- `Event接口 <./event_api_cn.html>`_ : 介绍Event接口的定义和功能。
+- `Device 接口 <./device_api_cn.html>`_ : 介绍 Device 接口的定义和功能。
+- `Memory 接口 <./memory_api_cn.html>`_ : 介绍 Memory 接口的定义和功能。
+- `Stream 接口 <./stream_api_cn.html>`_ : 介绍 Stream 接口的定义和功能。
+- `Event 接口 <./event_api_cn.html>`_ : 介绍 Event 接口的定义和功能。
 
 
-Device接口
+Device 接口
 ############
 
 +------------------------+--------------------------+
@@ -43,7 +43,7 @@ Device接口
 +------------------------+--------------------------+
 
 
-Memory接口
+Memory 接口
 ############
 
 +---------------------------+------------------------------+
@@ -95,41 +95,41 @@ Memory接口
 +---------------------------+------------------------------+
 
 
-Stream接口
+Stream 接口
 ############
 
 +---------------------+----------------------------------------+
 |      接口名称       |                功能简介                |
 +=====================+========================================+
-| create_stream       | 创建一个stream对象。                   |
+| create_stream       | 创建一个 stream 对象。                   |
 +---------------------+----------------------------------------+
-| destroy_stream      | 销毁一个stream对象。                   |
+| destroy_stream      | 销毁一个 stream 对象。                   |
 +---------------------+----------------------------------------+
-| query_stream        | 查询stream上任务是否完成。             |
+| query_stream        | 查询 stream 上任务是否完成。             |
 +---------------------+----------------------------------------+
-| synchronize_stream  | 同步stream，等待stream上所有任务完成。 |
+| synchronize_stream  | 同步 stream，等待 stream 上所有任务完成。 |
 +---------------------+----------------------------------------+
-| stream_add_callback | 添加一个主机回调到stream上。           |
+| stream_add_callback | 添加一个主机回调到 stream 上。           |
 +---------------------+----------------------------------------+
-| stream_wait_event   | 等待stream上的一个event完成。          |
+| stream_wait_event   | 等待 stream 上的一个 event 完成。          |
 +---------------------+----------------------------------------+
 
 
-Event接口
+Event 接口
 ############
 
 +-------------------+----------------------------+
 |     接口名称      |          功能简介          |
 +===================+============================+
-| create_event      | 创建一个event对象。        |
+| create_event      | 创建一个 event 对象。        |
 +-------------------+----------------------------+
-| destroy_event     | 销毁一个event对象。        |
+| destroy_event     | 销毁一个 event 对象。        |
 +-------------------+----------------------------+
-| record_event      | 在stream上记录event。      |
+| record_event      | 在 stream 上记录 event。      |
 +-------------------+----------------------------+
-| query_event       | 查询event是否完成。        |
+| query_event       | 查询 event 是否完成。        |
 +-------------------+----------------------------+
-| synchronize_event | 同步event，等待event完成。 |
+| synchronize_event | 同步 event，等待 event 完成。 |
 +-------------------+----------------------------+
 
 

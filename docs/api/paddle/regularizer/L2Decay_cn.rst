@@ -6,7 +6,7 @@ L2Decay
 .. py:attribute::   paddle.regularizer.L2Decay(coeff=0.0)
 
 
-L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模型对训练数据过拟合。
+L2Decay 实现 L2 权重衰减正则化，用于模型训练，有助于防止模型对训练数据过拟合。
 
 该类生成的实例对象，需要设置在 :ref:`cn_api_paddle_ParamAttr` 或者 ``optimizer``
 (例如 :ref:`cn_api_paddle_optimizer_Momentum` )中，在 ``ParamAttr`` 中设置时，
@@ -15,7 +15,7 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
 ``ParamAttr`` 中定义了正则化，那么会忽略 ``optimizer`` 中的正则化；否则会使用 ``optimizer``中的
 正则化。
 
-具体实现中，L2权重衰减正则化的损失函数计算如下：
+具体实现中，L2 权重衰减正则化的损失函数计算如下：
 
 .. math::
             \\loss = 0.5 * coeff * reduce\_sum(square(x))\\
@@ -23,7 +23,7 @@ L2Decay实现L2权重衰减正则化，用于模型训练，有助于防止模�
 参数
 ::::::::::::
 
-  - **coeff** (float) – 正则化系数，默认值为0.0。
+  - **coeff** (float) – 正则化系数，默认值为 0.0。
 
 代码示例 1
 ::::::::::::

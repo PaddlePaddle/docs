@@ -5,7 +5,7 @@ TanhTransform
 
 .. py:class:: paddle.distribution.TanhTransform()
 
-Tanh变换 :math:`y = tanh(x)`
+Tanh 变换 :math:`y = tanh(x)`
 
 
 代码示例

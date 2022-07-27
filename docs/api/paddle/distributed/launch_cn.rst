@@ -55,13 +55,13 @@ Collective 参数
 
 Parameter-Server 参数
 :::::::::
-    - ``--servers``：多机分布式任务中，指定参数服务器服务节点的IP和端口，例如 ``--servers="192.168.0.16:6170,192.168.0.17:6170"``。
+    - ``--servers``：多机分布式任务中，指定参数服务器服务节点的 IP 和端口，例如 ``--servers="192.168.0.16:6170,192.168.0.17:6170"``。
 
-    - ``--trainers``：多机分布式任务中，指定参数服务器训练节点的IP和端口，也可只指定IP，例如 ``--trainers="192.168.0.16:6171,192.168.0.16:6172,192.168.0.17:6171,192.168.0.17:6172"``。
+    - ``--trainers``：多机分布式任务中，指定参数服务器训练节点的 IP 和端口，也可只指定 IP，例如 ``--trainers="192.168.0.16:6171,192.168.0.16:6172,192.168.0.17:6171,192.168.0.17:6172"``。
 
     - ``--workers``: [DEPRECATED] 同 trainers。
 
-    - ``--heter_workers``：在异构集群中启动分布式任务，指定参数服务器异构训练节点的IP和端口，例如 ``--heter_workers="192.168.0.16:6172,192.168.0.17:6172"``。
+    - ``--heter_workers``：在异构集群中启动分布式任务，指定参数服务器异构训练节点的 IP 和端口，例如 ``--heter_workers="192.168.0.16:6172,192.168.0.17:6172"``。
 
     - ``--trainer_num``：指定参数服务器训练节点的个数。
 
@@ -86,21 +86,21 @@ Elastic 参数
 
 IPU 参数
 :::::::::
-    IPU分布式训练只需要3个参数：``--devices``，``training_script`` 和 ``training_script_args``。对于IPU的参数说明如下：
-    ``--devices`` 表示设备个数，例如 ``--devices=4`` 表示当前的训练程序需要4个IPUs。
+    IPU 分布式训练只需要 3 个参数：``--devices``，``training_script`` 和 ``training_script_args``。对于 IPU 的参数说明如下：
+    ``--devices`` 表示设备个数，例如 ``--devices=4`` 表示当前的训练程序需要 4 个 IPUs。
     ``training_script`` 只允许设置为 ``ipu`` 。
-    ``training_script_args`` 表示启动IPU分布式训练的相关参数。请参看如下各项参数说明。
+    ``training_script_args`` 表示启动 IPU 分布式训练的相关参数。请参看如下各项参数说明。
     请参考 ``代码实例十``。
 
-    - ``--hosts``：IPU分布式训练的主机ip，一个主机可包含多个进程。
+    - ``--hosts``：IPU 分布式训练的主机 ip，一个主机可包含多个进程。
 
     - ``--nproc_per_host``： 每个主机的进程数量。一个进程可包含多个实例。
 
-    - ``--ipus_per_replica``：每个实例包含的IPU数量。一个实例可包含多个IPUs。
+    - ``--ipus_per_replica``：每个实例包含的 IPU 数量。一个实例可包含多个 IPUs。
 
-    - ``--ipu_partition``：分布式训练中使用的IPU分区名称。
+    - ``--ipu_partition``：分布式训练中使用的 IPU 分区名称。
 
-    - ``--vipu_server``：IPU设备管理服务的ip。
+    - ``--vipu_server``：IPU 设备管理服务的 ip。
 
     - ``training_script``：分布式训练任务脚本的绝对路径，例如 ``training.py`` 。
 
@@ -142,7 +142,7 @@ IPU 参数
 .. code-block:: bash
     :name: code-block-example-bash1
 
-    # 启动单机4卡任务
+    # 启动单机 4 卡任务
 
     python -m paddle.distributed.launch --devices=0,1,2,3 train.py --lr=0.01
 
@@ -175,7 +175,7 @@ IPU 参数
 .. code-block:: bash
     :name: code-block-example-bash4
 
-    # 在多机上启动，例如在 192.168.0.16, 192.168.0.17 分别启动1个 server 和2个 trainer
+    # 在多机上启动，例如在 192.168.0.16, 192.168.0.17 分别启动 1 个 server 和 2 个 trainer
 
     # On 192.168.0.16:
 
@@ -255,9 +255,9 @@ IPU 参数
 .. code-block:: bash
     :name: code-block-example-bash10
 
-    # 使用如下命令启动IPU分布式训练
+    # 使用如下命令启动 IPU 分布式训练
     # 要求 `devices` 表示分布式训练的设备数量
     # 要求 `training_script` 设置为 `ipu`
-    # 要求 `training_script_args` 表示IPU分布式训练相关参数，非训练运行脚本参数
+    # 要求 `training_script_args` 表示 IPU 分布式训练相关参数，非训练运行脚本参数
     # 请参看上述 `IPU 参数` 说明
     python -m paddle.distributed.launch --devices 4 ipu --hosts=localhost --nproc_per_host=2 --ipus_per_replica=1 --ipu_partition=pod16 --vipu_server=127.0.0.1 train.py

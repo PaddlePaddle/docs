@@ -28,7 +28,7 @@ Multinomial
 
 - **total_count** (int) - 实验次数。
 - **probs** (Tensor） - 每个类别发生的概率。最后一维为事件维度，其它维为批维度。``probs`` 中
-  的每个元素取值范围为 ``[0,1]``。如果输入数据大于1，会沿着最后一维进行归一化操作。
+  的每个元素取值范围为 ``[0,1]``。如果输入数据大于 1，会沿着最后一维进行归一化操作。
 
 代码示例
 :::::::::
@@ -56,7 +56,7 @@ variance
 prob(value)
 '''''''''
 
-计算value的概率。
+计算 value 的概率。
 
 **参数**
 
@@ -64,13 +64,13 @@ prob(value)
 
 **返回**
 
-- Tensor: value的概率。
+- Tensor: value 的概率。
 
 
 log_prob(value)
 '''''''''
 
-计算value的对数概率。
+计算 value 的对数概率。
 
 **参数**
 
@@ -78,7 +78,7 @@ log_prob(value)
 
 **返回**
 
-- Tensor: value的对数概率。
+- Tensor: value 的对数概率。
 
 
 sample(shape=())

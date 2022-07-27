@@ -5,7 +5,7 @@ SigmoidTransform
 
 .. py:class:: paddle.distribution.SigmoidTransform()
 
-Sigmoid变换 :math:`y = \frac{1}{1 + \exp(-x)}` , :math:`x = \text{logit}(y)`
+Sigmoid 变换 :math:`y = \frac{1}{1 + \exp(-x)}` , :math:`x = \text{logit}(y)`
 
 
 代码示例
