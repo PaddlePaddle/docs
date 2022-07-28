@@ -71,7 +71,7 @@ paddle.distributed.fleet 是分布式训练的统一入口 API，用于配置分
 集合通信算法 API
 ::::::::::::::::::::::
 
-在集群上，对多设备的进程组的参数数据 tensor 进行计算处理。
+在集群上，对多设备的进程组的参数数据 tensor 或 object 进行计算处理。
 
 .. csv-table::
     :header: "API 名称", "API 功能"
@@ -82,6 +82,7 @@ paddle.distributed.fleet 是分布式训练的统一入口 API，用于配置分
     " :ref:`ReduceOP <cn_api_distributed_ReduceOp>` ", "规约，指定逐元素规约操作"
     " :ref:`all_reduce <cn_api_distributed_all_reduce>` ", "组规约，规约进程组内的 tensor，结果广播至每个进程"
     " :ref:`all_gather <cn_api_distributed_all_gather>` ", "组聚合，聚合进程组内的 tensor，结果广播至每个进程"
+    " :ref:`all_gather_object <cn_api_distributed_all_gather_object>` ", "组聚合，聚合进程组内的 object，结果广播至每个进程"
     " :ref:`broadcast <cn_api_distributed_broadcast>` ", "广播一个 tensor 到每个进程"
     " :ref:`scatter <cn_api_distributed_scatter>` ", "分发 tensor 到每个进程"
     " :ref:`split <cn_api_distributed_split>` ", "切分参数到多个设备"
