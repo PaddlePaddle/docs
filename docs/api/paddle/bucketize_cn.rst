@@ -16,7 +16,7 @@ paddle.bucketize
 
 返回
 ::::::::::
-Tensor(与 ``x`` 维度相同)，如果参数 ``out_int32`` 为False，则返回数据类型为int32的Tensor，否则将返回int64的Tensor。
+Tensor(与 ``x`` 维度相同)，如果参数 ``out_int32`` 为False，则返回数据类型为int64的Tensor，否则将返回int32的Tensor。
 
 代码示例
 ::::::::::
