@@ -50,6 +50,7 @@ tensor 数学操作
     " :ref:`paddle.conj <cn_api_tensor_conj>` ", "逐元素计算 Tensor 的共轭运算"
     " :ref:`paddle.cos <cn_api_fluid_layers_cos>` ", "余弦函数"
     " :ref:`paddle.cosh <cn_api_fluid_layers_cosh>` ", "双曲余弦函数"
+    " :ref:`paddle.count_nonzero <cn_api_tensor_cn_count_nonzero>` ", "沿给定的轴 axis 统计非零元素的数量"
     " :ref:`paddle.cumsum <cn_api_tensor_cn_cumsum>` ", "沿给定 axis 计算张量 x 的累加和"
     " :ref:`paddle.cumprod <cn_api_tensor_cn_cumprod>` ", "沿给定 dim 计算张量 x 的累乘"
     " :ref:`paddle.digamma <cn_api_paddle_digamma>` ", "逐元素计算输入 x 的 digamma 函数值"
