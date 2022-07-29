@@ -233,7 +233,7 @@ x    x
 - 将每个序列concat 为规则的mini-batch表示
 
 ## 参考文献
-[Tensorflow Bucketing](https://www.tensorflow.org/versions/r0.12/api_docs/python/contrib.training/bucketing)
+[TensorFlow Bucketing](https://www.tensorflow.org/versions/r0.12/api_docs/python/contrib.training/bucketing)
 
 [mxnet Bucketing](http://mxnet.io/how_to/bucketing.html)
 

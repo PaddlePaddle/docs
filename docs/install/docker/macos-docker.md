@@ -1,10 +1,10 @@
-# **MacOS下的Docker安装**
+# **macOS下的Docker安装**
 
 [Docker](https://docs.docker.com/install/)是一个开源的应用容器引擎。使用Docker，既可以将PaddlePaddle的安装&使用与系统环境隔离，也可以与主机共享GPU、网络等资源
 
 ## 环境准备
 
-- MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)
+- macOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)
 
 - 在本地主机上[安装Docker](https://hub.docker.com/search/?type=edition&offering=community)
 

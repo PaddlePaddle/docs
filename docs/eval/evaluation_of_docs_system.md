@@ -835,7 +835,7 @@ Paddle 当前文档中的 Tutorial，特别是初级内容部分，都很好的�
 
 想为飞桨开源项目增加功能的用户，可以参考 [自定义算子](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/index_cn.html) 了解如何增加算子，以及 [参与开发](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/10_contribution/index_cn.html) 了解提交 PR 的流程。
 
-不过，其它框架，一般会有文档介绍它组件中的设计理念和原理，如 Pytorch 的这篇 [autograd](https://pytorch.org/docs/stable/notes/autograd.html)，OneFlow 的一些 [技术博客](https://zhuanlan.zhihu.com/p/337851255)，以及 MindSpore 的 [设计文档](https://www.mindspore.cn/docs/programming_guide/zh-CN/r1.6/design/technical_white_paper.html) （这个信息量偏薄弱点）。
+不过，其它框架，一般会有文档介绍它组件中的设计理念和原理，如 PyTorch 的这篇 [autograd](https://pytorch.org/docs/stable/notes/autograd.html)，OneFlow 的一些 [技术博客](https://zhuanlan.zhihu.com/p/337851255)，以及 MindSpore 的 [设计文档](https://www.mindspore.cn/docs/programming_guide/zh-CN/r1.6/design/technical_white_paper.html) （这个信息量偏薄弱点）。
 
 在 Paddle 的文档体系中，好像没有找到类似的内容，这对于想学习 Paddle 底层原理甚至参与开源建设的爱好者，是一种遗憾。希望可以考虑推出。
 

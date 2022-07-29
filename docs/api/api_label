@@ -139,6 +139,7 @@ paddle.concat	.. _api_paddle_concat:
 paddle.conj	.. _api_paddle_conj:
 paddle.cos	.. _api_paddle_cos:
 paddle.cosh	.. _api_paddle_cosh:
+paddle.count_nonzero	.. _api_paddle_count_nonzero:
 paddle.cross	.. _api_paddle_cross:
 paddle.cumsum	.. _api_paddle_cumsum:
 paddle.dist	.. _api_paddle_dist:

@@ -30,7 +30,7 @@
   * 第1处改动，import库`import paddle.distributed as dist`
   * 第2处改动，初始化并行环境`dist.init_parallel_env()`
   * 第3处改动，对模型增加paddle.DataParallel封装 `net = paddle.DataParallel(paddle.vision.models.LeNet())`
-修改完毕就可以使用 `python3 -m paddle.distributed.launch --gpus="1, 3" xxx `来启动了。可参考[AIstudio项目示例](https://aistudio.baidu.com/aistudio/projectdetail/1222066)
+修改完毕就可以使用 `python3 -m paddle.distributed.launch --gpus="1, 3" xxx `来启动了。可参考[AI Studio 项目示例](https://aistudio.baidu.com/aistudio/projectdetail/1222066)
 
 ----------
 

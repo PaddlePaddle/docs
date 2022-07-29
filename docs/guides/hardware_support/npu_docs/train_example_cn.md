@@ -17,7 +17,7 @@ python setup.py install
 pip install -r requirements.txt
 ```
 
-也可以访问PaddleDetection的 [Github Repo](https://github.com/PaddlePaddle/PaddleDetection) 下载 develop 分支的源码。
+也可以访问PaddleDetection的 [GitHub Repo](https://github.com/PaddlePaddle/PaddleDetection) 下载 develop 分支的源码。
 
 **第二步**：准备 VOC 训练数据集
 

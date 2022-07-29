@@ -634,6 +634,15 @@ cosh(name=None)
         print(out)
         # [1.08107237 1.02006674 1.00500417 1.04533851]
 
+count_nonzero(axis=None, keepdim=False, name=None)
+:::::::::
+
+返回：沿给定的轴 ``axis`` 统计输入Tensor ``x`` 中非零元素的个数。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_cn_count_nonzero`
+
 cpu()
 :::::::::
 
