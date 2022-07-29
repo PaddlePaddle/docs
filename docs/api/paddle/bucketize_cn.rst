@@ -8,8 +8,8 @@ paddle.bucketize
 
 参数
 ::::::::::
-    - **x** (Tensor) - 输入的N维Tensor，支持的数据类型：float32、float64、int32、int64。
-    - **sorted_sequence** (Tensor) - 输入的一维Tensor，支持的数据类型：float32、float64、int32、int64。该Tensor的数值在其最后一个维度递增。
+    - **x** (Tensor) - 输入的N维Tensor，支持的数据类型：int32、int64、float32、float64。
+    - **sorted_sequence** (Tensor) - 输入的一维Tensor，支持的数据类型：int32、int64、float32、float64。该Tensor的数值在其最后一个维度递增。
     - **out_int32** (bool，可选) - 输出的数据类型支持int32、int64。默认值为False，表示默认的输出数据类型为int64。
     - **right** (bool，可选) - 根据给定 ``x`` 在 ``sorted_sequence`` 查找对应的上边界或下边界。如果 ``sorted_sequence``的值为nan或inf，则返回最内层维度的大小。默认值为False，表示在 ``sorted_sequence`` 的查找给定 ``x`` 的下边界。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
