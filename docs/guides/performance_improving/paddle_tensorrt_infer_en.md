@@ -159,16 +159,16 @@ A simple model expresses the process :
 - models: ResNet50，MobileNet，ResNet101, Inception V3.
 
 ### Test set
-**PaddlePaddle, Pytorch, Tensorflow**
+**PaddlePaddle, PyTorch, TensorFlow**
 
 - PaddlePaddle integrates TensorRT with subgraph, model[link](https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models)。
-- Pytorch uses original kernels, model[link1](https://github.com/pytorch/vision/tree/master/torchvision/models), [link2](https://github.com/marvis/pytorch-mobilenet)。
+- PyTorch uses original kernels, model[link1](https://github.com/pytorch/vision/tree/master/torchvision/models), [link2](https://github.com/marvis/pytorch-mobilenet)。
 - We tested TF original and TF-TRT**对TF—TRT的测试并没有达到预期的效果，后期会对其进行补充**, model[link](https://github.com/tensorflow/models)。
 
 
 #### ResNet50
 
-|batch_size|PaddlePaddle(ms)|Pytorch(ms)|TensorFlow(ms)|
+|batch_size|PaddlePaddle(ms)|PyTorch(ms)|TensorFlow(ms)|
 |---|---|---|---|
 |1|4.64117 |16.3|10.878|
 |5|6.90622| 22.9 |20.62|
@@ -176,7 +176,7 @@ A simple model expresses the process :
 
 #### MobileNet
 
-|batch_size|PaddlePaddle(ms)|Pytorch(ms)|TensorFlow(ms)|
+|batch_size|PaddlePaddle(ms)|PyTorch(ms)|TensorFlow(ms)|
 |---|---|---|---|
 |1| 1.7541 | 7.8 |2.72|
 |5| 3.04666 | 7.8 |3.19|
@@ -184,7 +184,7 @@ A simple model expresses the process :
 
 #### ResNet101
 
-|batch_size|PaddlePaddle(ms)|Pytorch(ms)|TensorFlow(ms)|
+|batch_size|PaddlePaddle(ms)|PyTorch(ms)|TensorFlow(ms)|
 |---|---|---|---|
 |1|8.95767| 22.48 |18.78|
 |5|12.9811 | 33.88 |34.84|
@@ -193,7 +193,7 @@ A simple model expresses the process :
 
 #### Inception v3
 
-|batch_size|PaddlePaddle(ms)|Pytorch(ms)|TensorFlow(ms)|
+|batch_size|PaddlePaddle(ms)|PyTorch(ms)|TensorFlow(ms)|
 |---|---|---|---|
 |1|15.1613 | 24.2 |19.1|
 |5|18.5373 | 34.8 |27.2|

@@ -6,11 +6,11 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 - 预测模型转换
   - 支持Caffe/TensorFlow/ONNX/PyTorch的模型一键转为飞桨的预测模型，并使用PaddleInference/PaddleLite进行CPU/GPU/Arm等设备的部署
 - PyTorch训练项目转换
-  - 支持PyTorch项目Python代码（包括训练、预测）一键转为基于飞桨框架的项目代码，帮助开发者快速迁移项目，并可享受AIStudio平台对于飞桨框架提供的海量免费计算资源
+  - 支持PyTorch项目Python代码（包括训练、预测）一键转为基于飞桨框架的项目代码，帮助开发者快速迁移项目，并可享受 AI Studio 平台对于飞桨框架提供的海量免费计算资源
 - API映射文档
   - 详细的API文档对比分析，帮助开发者快速从PyTorch框架的使用迁移至飞桨框架的使用，大大降低学习成本
 
-详细的项目信息与使用方法参考X2Paddle在Github上的开源项目: https://github.com/PaddlePaddle/X2Paddle
+详细的项目信息与使用方法参考 X2Paddle 在 GitHub 上的开源项目: https://github.com/PaddlePaddle/X2Paddle
 
 ## API映射表目录
 
@@ -178,13 +178,13 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1    | [torch.nn.L1Loss](https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html?highlight=l1loss#torch.nn.L1Loss) | [paddle.nn.L1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/loss/L1Loss_cn.html#l1loss) | 功能一致，PyTroch存在废弃参数`size_average`和`reduce`。      |
-| 2    | [torch.nn.MSELoss](https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss) | [paddle.nn.MSELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MSELoss_cn.html#mseloss) | 功能一致，PyTroch存在废弃参数`size_average`和`reduce`。      |
+| 1    | [torch.nn.L1Loss](https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html?highlight=l1loss#torch.nn.L1Loss) | [paddle.nn.L1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/loss/L1Loss_cn.html#l1loss) | 功能一致，PyTorch存在废弃参数`size_average`和`reduce`。      |
+| 2    | [torch.nn.MSELoss](https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss) | [paddle.nn.MSELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MSELoss_cn.html#mseloss) | 功能一致，PyTorch存在废弃参数`size_average`和`reduce`。      |
 | 3    | [torch.nn.CrossEntropyLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/layer/loss/CrossEntropyLoss_cn.html#crossentropyloss) | [paddle.nn.CrossEntropyLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/CrossEntropyLoss_cn.html#crossentropyloss) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/loss/torch.nn.CrossEntropyLoss.md)                |
 | 4    | [torch.nn.KLDivLoss](https://pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html?highlight=kldivloss#torch.nn.KLDivLoss) | [paddle.nn.KLDivLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/KLDivLoss_cn.html#kldivloss) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/loss/torch.nn.KLDivLoss.md)                       |
-| 5    | [torch.nn.BCELoss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss) | [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCELoss_cn.html#bceloss) | 功能一致，PyTroch存在废弃参数`size_average`和`reduce`。      |
-| 6    | [torch.nn.BCEWithLogitsLoss](https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html?highlight=bcewithlogitsloss#torch.nn.BCEWithLogitsLoss) | [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCEWithLogitsLoss_cn.html#bcewithlogitsloss) | 功能一致，PyTroch存在废弃参数`size_average`和`reduce`。      |
-| 7    | [torch.nn.SmoothL1Loss](https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html?highlight=torch%20nn%20smoothl1loss#torch.nn.SmoothL1Loss) | [paddle.nn.SmoothL1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/SmoothL1Loss_cn.html#smoothl1loss) | 功能一致，参数名不一致，PyTroch存在废弃参数`size_average`和`reduce`。 |
+| 5    | [torch.nn.BCELoss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss) | [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCELoss_cn.html#bceloss) | 功能一致，PyTorch存在废弃参数`size_average`和`reduce`。      |
+| 6    | [torch.nn.BCEWithLogitsLoss](https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html?highlight=bcewithlogitsloss#torch.nn.BCEWithLogitsLoss) | [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCEWithLogitsLoss_cn.html#bcewithlogitsloss) | 功能一致，PyTorch存在废弃参数`size_average`和`reduce`。      |
+| 7    | [torch.nn.SmoothL1Loss](https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html?highlight=torch%20nn%20smoothl1loss#torch.nn.SmoothL1Loss) | [paddle.nn.SmoothL1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/SmoothL1Loss_cn.html#smoothl1loss) | 功能一致，参数名不一致，PyTorch存在废弃参数`size_average`和`reduce`。 |
 
 
 ***持续更新...***

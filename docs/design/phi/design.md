@@ -527,12 +527,12 @@ Tensor scale(const Tensor& x,
 
 **如何自动生成C++ API？**
 
- C++ API的自动生成是通过解析Yaml配置文件来进行生成的，Yaml配置文件分为：
+ C++ API的自动生成是通过解析 YAML 配置文件来进行生成的，YAML 配置文件分为：
 
  - 前向API配置文件(`Python/paddle/utils/code_gen/api.yaml`，解析后生成代码文件为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`)
  - 反向API配置文件(`Python/paddle/utils/code_gen/backward.yaml`，解析后生成的代码文件为`paddle/phi/api/backward/backward_api.h`和`paddle/phi/api/lib/backward_api.cc`)。
 
-C++ API生成的关键在于Yaml文件的配置，以matmul为例，其前向和反向的配置文件如下：
+C++ API生成的关键在于 YAML 文件的配置，以matmul为例，其前向和反向的配置文件如下：
 
 ```
 # 前向API配置
@@ -567,9 +567,9 @@ C++ API生成的关键在于Yaml文件的配置，以matmul为例，其前向和
  - func：kernel函数的注册名（REGISTER使用的name，非函数名），默认输入为args项的所有参数和output参数
 - backward：（可选）对应的反向函数名称，没有则生成纯前向API。
 
-Yaml解析脚本将根据上述配置项自动生成对应的C++ API，生成的代码中会完成包括Kernel自动选择、Tensor转换、Data Transform、InferMeta以及Kernel调用等相关处理逻辑，具体可参考生成的`api.cc`内代码。
+YAML 解析脚本将根据上述配置项自动生成对应的C++ API，生成的代码中会完成包括Kernel自动选择、Tensor转换、Data Transform、InferMeta以及Kernel调用等相关处理逻辑，具体可参考生成的`api.cc`内代码。
 
-由于C++ API数量较多，且有着各种各样的形式与功能，为此在Yaml配置机制上也提供了很多更为灵活的配置项，如`invoke`等。
+由于C++ API数量较多，且有着各种各样的形式与功能，为此在 YAML 配置机制上也提供了很多更为灵活的配置项，如`invoke`等。
 
 ### 2.3.4 Kernel形式、注册及管理
 

@@ -223,7 +223,7 @@ uname -m && cat /etc/*release
 
 #### 2. Update the system source
 
-* Centos system
+* CentOS system
 
     Update the source of `yum`: `yum update`, and add the necessary yum source:
     ```
@@ -242,7 +242,7 @@ uname -m && cat /etc/*release
 * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA10.2 and cuDNN7. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
 
 
-    * **Centos system can refer to the following commands**
+    * **CentOS system can refer to the following commands**
 
         ```
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
@@ -271,7 +271,7 @@ uname -m && cat /etc/*release
 
 #### 4. Install the necessary tools
 
-* Centos system
+* CentOS system
 
     `bzip2` and `make`:
     ```
