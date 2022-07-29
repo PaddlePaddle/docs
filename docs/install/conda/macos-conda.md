@@ -1,4 +1,4 @@
-# MacOS下的Conda安装
+# macOS下的Conda安装
 
 [Anaconda](https://www.anaconda.com/)是一个免费开源的Python和R语言的发行版本，用于计算科学，Anaconda致力于简化包管理和部署。Anaconda的包使用软件包管理系统Conda进行管理。Conda是一个开源包管理系统和环境管理系统，可在Windows、macOS和Linux上运行。
 
@@ -6,7 +6,7 @@
 
 在进行PaddlePaddle安装之前请确保您的Anaconda软件环境已经正确安装。软件下载和安装参见Anaconda官网(https://www.anaconda.com/)。在您已经正确安装Anaconda的情况下请按照下列步骤安装PaddlePaddle。
 
-* MacOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)
+* macOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持GPU版本)
 * conda 版本 4.8.3+ (64 bit)
 
 ### 1.1 创建虚拟环境
@@ -72,7 +72,7 @@ conda config --set show_channel_urls yes
 
 ### 首先请您选择您的版本
 
-* 目前在MacOS环境仅支持CPU版PaddlePaddle
+* 目前在 macOS 环境仅支持 CPU 版 PaddlePaddle
 
 ### 根据版本进行安装
 

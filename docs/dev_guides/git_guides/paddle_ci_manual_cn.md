@@ -26,7 +26,7 @@ git commit -m 'test=document_fix'
 
 ### CLA
 
-贡献者许可证协议[Contributor License Agreements](https://cla-assistant.io/PaddlePaddle/Paddle)是指当你要给Paddle贡献代码的时候，需要签署的一个协议。如果不签署那么你贡献给 Paddle 项目的修改，即`PR`会被 Github 标志为不可被接受，签署了之后，这个`PR`就是可以在 review 之后被接受了。
+贡献者许可证协议[Contributor License Agreements](https://cla-assistant.io/PaddlePaddle/Paddle)是指当你要给Paddle贡献代码的时候，需要签署的一个协议。如果不签署那么你贡献给 Paddle 项目的修改，即`PR`会被 GitHub 标志为不可被接受，签署了之后，这个`PR`就是可以在 review 之后被接受了。
 
 ### CheckPRTemplate
 
