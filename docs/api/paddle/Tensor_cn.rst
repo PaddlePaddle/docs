@@ -629,7 +629,7 @@ cosh(name=None)
 count_nonzero(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：沿给定的轴 ``axis`` 统计输入Tensor ``x`` 中非零元素的个数。
+返回：沿给定的轴 ``axis`` 统计输入 Tensor ``x`` 中非零元素的个数。
 
 返回类型：Tensor
 
