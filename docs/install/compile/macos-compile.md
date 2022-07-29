@@ -1,16 +1,16 @@
-# **MacOS下从源码编译**
+# **macOS下从源码编译**
 
 ## 环境准备
 
-* **MacOS 版本 10.x/11.x (64 bit) (不支持GPU版本)**
+* **macOS 版本 10.x/11.x (64 bit) (不支持GPU版本)**
 * **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
 
 ## 选择CPU/GPU
 
-* 目前仅支持在MacOS环境下编译安装CPU版本的PaddlePaddle
+* 目前仅支持在 macOS 环境下编译安装 CPU 版本的 PaddlePaddle
 
 ## 安装步骤
-在MacOS系统下有2种编译方式，推荐使用Docker编译。
+在 macOS 系统下有2种编译方式，推荐使用Docker编译。
 Docker环境中已预装好编译Paddle需要的各种依赖，相较本机编译环境更简单。
 
 * [Docker源码编译](#compile_from_docker)
@@ -116,7 +116,7 @@ apt install patchelf
 
 #### 10. 执行cmake：
 
-*  对于需要编译**CPU版本PaddlePaddle**的用户（我们目前不支持MacOS下GPU版本PaddlePaddle的编译）：
+*  对于需要编译**CPU版本PaddlePaddle**的用户（我们目前不支持 macOS 下 GPU 版本 PaddlePaddle 的编译）：
 
     ```
     cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release
@@ -167,7 +167,7 @@ uname -m
 
 #### 2. 安装Python以及pip：
 
-> **请不要使用MacOS中自带Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.6.x、python3.7.x、python3.8、python3.9), pip以及其他的依赖，这将会使您高效编译。
+> **请不要使用 macOS 中自带Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装python(对于**Python3**请使用python[官方下载](https://www.python.org/downloads/mac-osx/)python3.6.x、python3.7.x、python3.8、python3.9), pip以及其他的依赖，这将会使您高效编译。
 
 使用Python官网安装
 
@@ -209,11 +209,11 @@ uname -m
     ```
     （这里[python-ld-path]为[python-bin-path]的上一级目录)
 
-- g. (可选）如果您是在MacOS 10.14上编译PaddlePaddle，请保证您已经安装了[对应版本](http://developer.apple.com/download)的Xcode。
+- g. (可选）如果您是在 macOS 10.14上编译 PaddlePaddle，请保证您已经安装了[对应版本](http://developer.apple.com/download)的Xcode。
 
 #### 4. **执行编译前**请您确认您的环境中安装有[编译依赖表](/documentation/docs/zh/install/Tables.html#third_party)中提到的相关依赖，否则我们强烈推荐使用`Homebrew`安装相关依赖。
 
-> MacOS下如果您未自行修改或安装过“编译依赖表”中提到的依赖，则仅需要使用`pip`安装`numpy，protobuf，wheel`，使用`homebrew`安装`wget，swig, unrar`，另外安装`cmake`即可
+> macOS 下如果您未自行修改或安装过“编译依赖表”中提到的依赖，则仅需要使用`pip`安装`numpy，protobuf，wheel`，使用`Homebrew`安装`wget，swig, unrar`，另外安装`cmake`即可
 
 - a. 这里特别说明一下**CMake**的安装：
 

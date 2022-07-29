@@ -67,21 +67,21 @@ NLP模型的公开且影响力大数据集较少，Bert和Transformer模型都�
 测试结果
 ========
 
-本教程对比相同环境下的Fluid1.4, Pytorch1.1.0和TensorFlow1.12.0的性能表现。
+本教程对比相同环境下的 Fluid1.4, Pytorch1.1.0 和 TensorFlow1.12.0 的性能表现。
 硬件环境为 CPU: Intel(R) Xeon(R) Gold 6148 CPU @ 2.40GHz, GPU: Tesla v100(volta) 21729MiB x 1, Nvidia-Driver 384.66。
-系统环境为Ubuntu 16.04.3 LTS, 本文中采用了docker环境，系统版本为nvidia-docker17.05.0-ce。
-测试的Fluid版本为[v.1.4.1](https://github.com/PaddlePaddle/Paddle/tree/v1.4.1) 。
-TensorFlow版本为[v.1.12.0-rc2](https://github.com/tensorflow/tensorflow/tree/v1.12.0-rc2)。
-Pytorch版本为[v.1.1.0](https://github.com/pytorch/pytorch/tree/v1.1.0)。
+系统环境为 Ubuntu 16.04.3 LTS, 本文中采用了 docker 环境，系统版本为 nvidia-docker17.05.0-ce。
+测试的 Fluid 版本为[v.1.4.1](https://github.com/PaddlePaddle/Paddle/tree/v1.4.1) 。
+TensorFlow 版本为[v.1.12.0-rc2](https://github.com/tensorflow/tensorflow/tree/v1.12.0-rc2)。
+PyTorch 版本为[v.1.1.0](https://github.com/pytorch/pytorch/tree/v1.1.0)。
 使用的脚本和配置见[benchmark](https://github.com/PaddlePaddle/Paddle/tree/develop/benchmark/fluid) 。
-SE-ResNeXt50对比的框架是Pytorch，因为tensorflow上没有对应的模型。
-图表中统计单位为samples/秒。
+SE-ResNeXt50 对比的框架是 PyTorch，因为 TensorFlow 上没有对应的模型。
+图表中统计单位为 samples/秒。
 
 
 
 - GPU 单机单卡测试结果
 
-  Model|Fluid GPU|  TensorFlow/Pytorch GPU
+  Model|Fluid GPU|  TensorFlow/PyTorch GPU
   :---:|:--:|:---:
   CycleGAN|              7.3 samples/s|               6.1 samples/s
   SE-ResNeXt50|             169.4 samples/s  |              153.1 samples/s
