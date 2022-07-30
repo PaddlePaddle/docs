@@ -136,6 +136,7 @@ tensor数学操作
     " :ref:`paddle.acosh <cn_api_fluid_layers_acosh>` ", "反双曲余弦函数"
     " :ref:`paddle.asinh <cn_api_fluid_layers_asinh>` ", "反双曲正弦函数"
     " :ref:`paddle.atanh <cn_api_fluid_layers_atanh>` ", "反双曲正切函数"
+    " :ref:`paddle.take <cn_api_tensor_take>` ", "输出给定索引处的输入元素，结果与 index 的形状相同" 
 
 
 .. _tensor_logic:

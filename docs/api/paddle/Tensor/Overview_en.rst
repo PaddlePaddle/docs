@@ -245,6 +245,7 @@ Methods
     subtract_
     sum
     t
+    take
     tanh
     tanh_
     tile

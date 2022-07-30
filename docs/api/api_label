@@ -245,6 +245,7 @@ paddle.subtract	.. _api_paddle_subtract:
 paddle.Tensor.subtract_	.. _api_paddle_Tensor_subtract_:
 paddle.sum	.. _api_paddle_sum:
 paddle.t	.. _api_paddle_t:
+paddle.take	.. _api_paddle_take:
 paddle.tanh	.. _api_paddle_tanh:
 paddle.tanh_	.. _api_paddle_tanh_:
 paddle.tile	.. _api_paddle_tile:
