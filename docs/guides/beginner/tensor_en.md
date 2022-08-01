@@ -512,7 +512,7 @@ PaddlePaddle provides broadcasting semantics in some APIs like other deep learni
 In General, broadcast is the rule how the smaller tensor is “broadcast” across the larger tsnsor so that they have same shapes.
 Note that no copies happened while broadcasting.  
 
-In Paddlepaddle, tensors are broadcastable when following rulrs hold(ref [Numpy Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)):
+In PaddlePaddle, tensors are broadcastable when following rulrs hold(ref [Numpy Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)):
 
 1. there should be at least one dimention in each tensor
 2. when comparing their shapes element-wise from backward to forward, two dimensions are compatible when

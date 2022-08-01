@@ -789,7 +789,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 - Python API 实现要点（详见[飞桨API Python 端开发指南](./new_python_api_cn.html)）
     - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
     - 添加动态图分支调用，即 `if in_dygraph_mode` 进入动态图调用分支
-    - 添加静态图分支调用，即dygraph分支后剩余的代码
+    - 添加静态图分支调用，即动态图分支后剩余的代码
 
 
 ## 5. 添加单元测试

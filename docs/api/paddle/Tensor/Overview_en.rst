@@ -104,6 +104,7 @@ Methods
     copy_
     cos
     cosh
+    count_nonzero
     cpu
     cross
     cuda

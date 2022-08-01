@@ -1,4 +1,4 @@
-# MacOS下的PIP安装
+# macOS 下的PIP安装
 
 ## 一、环境准备
 
@@ -72,7 +72,7 @@
 
 ### 首先请您选择您的版本
 
-* 目前在MacOS环境仅支持CPU版PaddlePaddle
+* 目前在 macOS 环境仅支持 CPU 版 PaddlePaddle
 
 
 ### 根据版本进行安装
@@ -86,10 +86,10 @@
 
 
 * 注:
-* MacOS上您需要安装unrar以支持PaddlePaddle，可以使用命令`brew install unrar`
+* macOS上您需要安装 unrar 以支持 PaddlePaddle，可以使用命令 `brew install rar`
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 * 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](https://www.paddlepaddle.org.cn/install/quick/zh/1.8.5-windows-pip)
-* 使用MacOS中自带Python可能会导致安装失败。请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的python3.6.x、python3.7.x、python3.8.x 或python3.9.x。
+* 使用 macOS 中自带Python可能会导致安装失败。请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的python3.6.x、python3.7.x、python3.8.x 或python3.9.x。
 
 ## **三、验证安装**
 

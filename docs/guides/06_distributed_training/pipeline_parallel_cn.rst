@@ -261,7 +261,7 @@ model.train_batch(...)：这一步主要就是执行1F1B的流水线并行方式
   export CUDA_VISIBLE_DEVICES=0,1
   python -m paddle.distributed.launch alexnet_dygraph_pipeline.py # alexnet_dygraph_pipeline.py是用户运行动态图流水线的python文件
 
-基于AlexNet的完整的流水线并行动态图代码：`alex <https://github.com/PaddlePaddle/FleetX/tree/develop/examples/pipeline>`_。
+基于AlexNet的完整的流水线并行动态图代码：`alex <https://github.com/PaddlePaddle/FleetX/tree/old_develop/examples/pipeline>`_。
 
 控制台输出信息如下：
 

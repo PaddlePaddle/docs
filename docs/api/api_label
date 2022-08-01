@@ -138,6 +138,7 @@ paddle.concat	.. _api_paddle_concat:
 paddle.conj	.. _api_paddle_conj:
 paddle.cos	.. _api_paddle_cos:
 paddle.cosh	.. _api_paddle_cosh:
+paddle.count_nonzero	.. _api_paddle_count_nonzero:
 paddle.cross	.. _api_paddle_cross:
 paddle.cumsum	.. _api_paddle_cumsum:
 paddle.dist	.. _api_paddle_dist:
@@ -949,6 +950,7 @@ paddle.nn.functional.conv1d_transpose	.. _api_paddle_nn_functional_conv1d_transp
 paddle.nn.functional.conv3d_transpose	.. _api_paddle_nn_functional_conv3d_transpose:
 paddle.nn.functional.pixel_shuffle	.. _api_paddle_nn_functional_pixel_shuffle:
 paddle.nn.functional.softmax_	.. _api_paddle_nn_functional_softmax_:
+paddle.nn.functional.pairwise_distance	.. _api_paddle_nn_functional_pairwise_distance:
 paddle.nn.functional.log_sigmoid	.. _api_paddle_nn_functional_log_sigmoid:
 paddle.nn.functional.softshrink	.. _api_paddle_nn_functional_softshrink:
 paddle.nn.functional.embedding	.. _api_paddle_nn_functional_embedding:

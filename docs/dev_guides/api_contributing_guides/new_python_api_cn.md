@@ -111,7 +111,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
         return _C_ops.final_state_trace( x, offset, axis1, axis2 )
 ```
 _C_ops 是 Python/paddle/_C_ops.py，其中从 paddle 编译得到的二进制文件中 import 了 C++ 算子对应的 Python C 函数。
-- 在新动态图模式下，Python C 的调用函数名为final_state_ + 算子名，然后将参数按照 Yaml 配置文件中定义的输入参数顺序传入即可。
+- 在新动态图模式下，Python C 的调用函数名为final_state_ + 算子名，然后将参数按照 YAML 配置文件中定义的输入参数顺序传入即可。
 
 （2）静态图分支
 
@@ -232,8 +232,6 @@ from .tensor.math import logsumexp
 将 API 名字加入 `__all__` 列表的时候需要遵循上述的规则，仅将 API 名字加入正式名称对应的包或者模块的 `__all__` 列表中。
 
 Tip: 当出现类似把一个元素放入一个集中管理的列表的操作时，可以考虑按照字母表顺序插入列表中的合适位置。因为如果有多人同时新增 API 时，这样的方式比直接加在末尾更不容易出现冲突。
-
-
 
 
 ## 开发单元测试代码

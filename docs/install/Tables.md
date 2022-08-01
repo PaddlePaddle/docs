@@ -27,9 +27,9 @@
         <td>  </td>
     </tr>
     <tr>
-        <td> Clang (MacOS Only) </td>
+        <td> Clang (macOS Only) </td>
         <td> 9.0及以上 </td>
-        <td> 通常使用MacOS 10.11及以上的系统对应的Clang版本即可 </td>
+        <td> 通常使用 macOS 10.11及以上的系统对应的Clang版本即可 </td>
         <td>  </td>
     </tr>
         <tr>
@@ -102,7 +102,7 @@
         <td> unrar </td>
         <td>  </td>
         <td> </td>
-        <td> brew install unrar (For MacOS), apt-get install unrar (For Ubuntu) </td>
+        <td> brew install rar (For macOS), apt-get install unrar (For Ubuntu) </td>
     </tr>
     </tbody>
 </table>

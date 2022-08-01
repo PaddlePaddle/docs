@@ -219,7 +219,7 @@ uname -m && cat /etc/*release
 
 #### 2. 更新系统源
 
-* Centos 环境
+* CentOS 环境
 
     更新`yum`的源：
 
@@ -246,7 +246,7 @@ uname -m && cat /etc/*release
 
 * 如果您需要使用GPU多卡，请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA10.2，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
-    * **Centos 系统可以参考以下命令**
+    * **CentOS 系统可以参考以下命令**
 
         ```
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
@@ -280,7 +280,7 @@ uname -m && cat /etc/*release
 
 #### 4. 安装必要的工具
 
-* Centos 环境
+* CentOS 环境
 
     `bzip2`以及`make`：
 
@@ -504,7 +504,7 @@ mkdir build && cd build
 
     1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA10.2，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
-    * **Centos 系统可以参考以下命令**
+    * **CentOS 系统可以参考以下命令**
 
         ```
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm

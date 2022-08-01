@@ -11,7 +11,7 @@ You will learn how to develop programs in local environment under the guidelines
 The following guidiance tells you how to submit code.
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-Transfer to the home page of Github [PaddlePaddle](https://github.com/PaddlePaddle/Paddle) ,and then click button `Fork`  to generate the git under your own file directory,such as <https://github.com/USERNAME/Paddle>。
+Transfer to the home page of GitHub [PaddlePaddle](https://github.com/PaddlePaddle/Paddle) ,and then click button `Fork`  to generate the git under your own file directory,such as <https://github.com/USERNAME/Paddle>。
 
 ## Clone
 
