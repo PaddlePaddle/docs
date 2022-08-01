@@ -96,7 +96,7 @@ NVIDIA PaddlePaddle 容器针对与 NVIDIA GPU 一起使用进行了优化，并
 
 *	`NVIDIA Data Loading Library (DALI) <https://developer.nvidia.com/dali>`_
 
-*	`TensorRT <https://developer.nvidia.com/tensorrt>`_
+*	`TensorRT <https://developer.nvidia.com/tensorrt>`__
 
 *	`PaddlePaddle with TensorRT (Paddle-TRT) <https://github.com/PaddlePaddle/Paddle-Inference-Demo/blob/master/docs/optimize/paddle_trt_en.rst>`_
 
