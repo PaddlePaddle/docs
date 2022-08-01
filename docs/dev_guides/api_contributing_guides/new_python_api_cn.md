@@ -34,6 +34,140 @@ Python API 的文件位置遵循功能相似的放在一起的原则。大的功
 
 写新的 API 的时候可以参考该 API 的功能和哪一类更为相似，如果有不确定的情况，请 [新建 ISSUE](https://github.com/PaddlePaddle/Paddle/issues/new?assignees=&labels=type%2Ffeature-request%2Cstatus%2Fnew-issue&template=2_feature-request.yml) 说明。
 
+
+### Python API 的代码开发示例
+先看一个简单的 Python API 的代码样例，如图 1 所示，可以看到主要包括以下几部分：
+- 函数定义：定义 Python 接口函数
+- 英文文档：API 的英文文档与直接写在 .py 文件中，如下图所示；API 的中文文档则写到 [PaddlePaddle/docs](https://github.com/PaddlePaddle/docs) repo 中
+- 代码示例：该 API 的使用示例代码
+- 函数主体代码：包括输入参数的检查、调用算子的执行逻辑等内容
+
+![zeros_example](./images/zeros_python_api.png)
+<center>图1 Python API 代码样例</center>
+
+
+下面介绍 paddle Python API 开发的一些惯例，以及用到的主要函数类的接口。
+
+这类的接口需要兼容动态图和静态图。在动态图下，函数会被多次执行；而在静态图下，函数仅在组网时被调用，真正被多次执行的是组网得到的结果。但 API 在动态图和静态图下的行为是保持一致的。
+
+关于 API 的命名，参数命名等的一般规范，可以参考 [飞桨API的设计和命名规范](api_design_guidelines_standard_cn.html#id2)。
+
+接下来介绍 Python API 的函数主体代码开发的一些惯例，以及用到的主要函数类的接口。
+>注：因为飞桨框架同时支持动态图和静态图，因此通常情况下，飞桨原生算子 API 需要实现动态图分支和静态图分支，不同分支下的行为是保持一致的，并且对外统一成一个 API 接口。
+
+#### 代码示例一（组合其他 Python API ）
+如图 1 所示，zeros 函数是通过组合 fill_constant实现的，并且fill_constant 里已经处理了动态图和静态图的情况，所以直接调用即可。这就是组合其他 Python API 实现的例子。
+```Python
+def zeros(shape, dtype=None, name=None):
+    # 为了突出重点，省略中间的文档和示例部分
+    if dtype is None:
+        dtype = 'float32'
+    return fill_constant(value=0.0, shape=shape, dtype=dtype, name=name)
+```
+而如果 API 的实现中需要调用一个 C++ 算子时，则需要根据动态图和静态图使用不同的写法，具体见示例二。
+
+
+#### 代码示例二（调用 C++ 算子接口）
+
+接下来是一个实现动态图分支和静态图分支调用 C++ 算子的例子。
+
+下面以paddle.trace的实现代码为例，分别介绍动态图分支和静态图分支的开发要点：
+```Python
+def trace(x, offset=0, axis1=0, axis2=1, name=None):
+    # 为了突出重点，省略部分代码
+    # 新动态图模式，直接调用算子对应的 Python C 函数
+    if in_dygraph_mode():
+        return _C_ops.final_state_trace( x, offset, axis1, axis2 )
+    # 旧动态图模式
+    if _in_legacy_dygraph():
+        return _C_ops.trace(x, 'offset', offset, 'axis1', axis1, 'axis2', axis2)
+
+    # 静态图分支
+    ## 输入参数检查
+    __check_input(input, offset, axis1, axis2)
+
+    ## 构造输出，添加 op，返回输出
+    helper = LayerHelper('trace', **locals())
+    out = helper.create_variable_for_type_inference(dtype=x.dtype)
+
+    helper.append_op(
+        type='trace',
+        inputs={'Input': [x]},
+        attrs={'offset': offset,
+               'axis1': axis1,
+               'axis2': axis2},
+        outputs={'Out': [out]})
+    return out
+```
+
+（1）动态图分支
+
+由于目前动态图正处在重构升级阶段，所以现有的算子会分别有新旧动态图两个代码分支，其中 in_dygraph_mode() 表示新动态图分支，_in_legacy_dygraph()表示旧动态图分支，**在新增算子时无需添加旧动态图分支代码**。
+
+截取上面示例中相关代码如下，动态图分支的写法一般是调用 API 对应的 Python C 函数。
+```Python
+    # 新动态图模式，直接调用算子对应的 Python C 函数
+    if in_dygraph_mode():
+        return _C_ops.final_state_trace( x, offset, axis1, axis2 )
+```
+_C_ops 是 Python/paddle/_C_ops.py，其中从 paddle 编译得到的二进制文件中 import 了 C++ 算子对应的 Python C 函数。
+- 在新动态图模式下，Python C 的调用函数名为final_state_ + 算子名，然后将参数按照 Yaml 配置文件中定义的输入参数顺序传入即可。
+
+（2）静态图分支
+
+对于静态图，一般分为输入参数检查、创建输出 Tensor、添加 OP 几个步骤。
+```Python
+    ## 输入参数检查
+    __check_input(input, offset, axis1, axis2)
+
+    ## 构造输出，添加 OP，返回输出
+    # LayerHelper是一个用于创建op输出变量、向program中添加op的辅助工具类
+    helper = LayerHelper('trace', **locals())
+    # 创建输出 Tensor
+    out = helper.create_variable_for_type_inference(dtype=x.dtype)
+    # 将输入 Tensor，输出 Tensor, 非 Tensor 的 attributes 以三个字典的形式
+    # 作为参数添加 operator
+    helper.append_op(
+        type='trace',
+        inputs={'Input': [x]},
+        attrs={'offset': offset,
+               'axis1': axis1,
+               'axis2': axis2},
+        outputs={'Out': [out]})
+    return out
+```
+
+  - 在 `append_op` 添加的 `inputs` 和 `outputs` 项，其中的 key 值（静态图中变量名）一般与 Python 接口中定义的输入输出 Tensor 变量名的命名相同。（注意：这里 `trace` 中的 `Input` 没有与 Python 接口中 `x` 直接对应是由于为了兼容旧算子体系下 `trace` 算子的定义实现而做了额外的映射，新增算子时无需考虑这种情况）
+  - 输入数据类型的检查一般仅在静态图分支中使用。主要原因是静态图下该函数仅被执行一次，发生在组网时，而动态图下该函数会被多次执行，Python 端过多的输入检查会影响执行效率。并且由于动态图即时执行的优势，如果发生错误也可以通过分析 c++ 端的报错信息定位问题。这里输入参数检查的代码逻辑比较复杂并且仅用于 `trace` 函数，因此在该函数内定义一个检查输入参数的函数 `__check_input`，代码如下所示：
+  > 输入参数检查包括必要的类型检查、值检查、输入 Tensor 的形状、dtype 等检查，确保组网能正常运行等。其中检测 Tensor 的数据类型可以用 `check_variable_and_dtype` 和 `check_type` 函数进行检测。
+```Python
+def __check_input(input, offset, dim1, dim2):
+        check_dtype(x.dtype, 'Input',
+                    ['int32', 'int64', 'float16', 'float32', 'float64'],
+                    'trace')
+
+        input_shape = list(x.shape)
+        assert len(input_shape) >= 2,                     \
+                "The x must be at least 2-dimensional, "   \
+                "But received Input x's dimensional: %s.\n" %  \
+                len(input_shape)
+
+        axis1_ = axis1 if axis1 >= 0 else len(input_shape) + axis1
+        axis2_ = axis2 if axis2 >= 0 else len(input_shape) + axis2
+
+        assert ((0 <= axis1_) and (axis1_ < len(input_shape))),     \
+            "The argument axis1 is out of range (expected to be in range of [%d, %d], but got %d).\n"  \
+            % (-(len(input_shape)), len(input_shape) - 1, axis1)
+
+        assert ((0 <= axis2_) and (axis2_ < len(input_shape))),   \
+            "The argument axis2 is out of range (expected to be in range of [%d, %d], but got %d).\n"   \
+            % (-(len(input_shape)), len(input_shape) - 1, axis2)
+
+
+        assert  axis1_ != axis2_,   \
+               "axis1 and axis2 cannot be the same axis." \
+                "But received axis1 = %d, axis2 = %d\n"%(axis1, axis2)
+```
 ### 将 API 绑定为 Tensor 的方法
 
 在 paddle 中的许多计算函数，既能够作为独立函数使用，也能作为 `Tensor` 的方法使用。作为 `Tensor` 方法使用则可以更方便地链式调用。例子如下：
@@ -99,148 +233,7 @@ from .tensor.math import logsumexp
 
 Tip: 当出现类似把一个元素放入一个集中管理的列表的操作时，可以考虑按照字母表顺序插入列表中的合适位置。因为如果有多人同时新增 API 时，这样的方式比直接加在末尾更不容易出现冲突。
 
-### Python API 的一般写法
 
-下面介绍 paddle Python API 开发的一些惯例，主要函数类的接口。
-
-这类的接口需要兼容动态图和静态图。在动态图下，函数会被多次执行；而在静态图下，函数仅在组网时被调用，真正被多次执行的是组网得到的结果。但 API 在动态图和静态图下的行为是保持一致的。
-
-关于 API 的命名，参数命名等的一般规范，可以参考 [飞桨API的设计和命名规范](api_design_guidelines_standard_cn.html#id2)。
-
-Python API 一般包含如下的部分：
-
-#### 输入参数检查
-
-这一步包括必要的类型检查、值检查、输入 Tensor 的形状、dtype 等检查，确保组网能正常运行等。其中检测 Tensor 的数据类型可以用 `check_variable_and_dtype` 和 `check_type` 函数进行检测。
-
-如果输入参数检查的代码逻辑比较复杂但仅用于某个函数，可以在该函数内定义一个检查输入参数的内函数，比如 `paddle.mm` 中定义的内函数 [ `__check_input`](https://github.com/PaddlePaddle/Paddle/blob/a8be9b6d8c4646dd107ff06a3ea728ca0b84ace5/Python/paddle/tensor/math.py#L1189).
-
-```Python
-    def __check_input(x, y):
-        var_names = {'x': x, 'y': y}
-        for name, val in var_names.items():
-            check_variable_and_dtype(val, name,
-                                     ['float16', 'float32', 'float64'], 'mm')
-        x_shape = list(x.shape)
-        y_shape = list(y.shape)
-        if len(x_shape) == 1:
-            x_shape = [1] + x_shape
-        if len(y_shape) == 1:
-            y_shape = y_shape + [1]
-
-        # check the inner 2 dimensions
-        if x_shape[-1] != y_shape[-2]:
-            if not ((x_shape[-1] == -1) or (y_shape[-2] == -1)):
-                raise ValueError(
-                    "After performing an optional transpose, Input X's width should be "
-                    "equal to Y's width for multiplication "
-                    "prerequisites. But received X's shape: %s, Y's shape: %s\n"
-                    % (x_shape, y_shape))
-
-        if len(y_shape) > 2 and len(x_shape) > 2:
-            for i, dim_x in enumerate(x_shape[:-2]):
-                # don't check neg shape
-                if dim_x < 0 or y_shape[i] < 0:
-                    continue
-                if dim_x != y_shape[i]:
-                    raise ValueError(
-                        "When the matrix is larger than 2 dimensions, the higher "
-                        "dimensional values of the two matrices need to be equal. "
-                        "But received x_shape[%d] != y_shape[%d]. X's shape: %s, "
-                        "Y's shape: %s.\n" % (i, i, x_shape, y_shape))
-```
-
-注意：输入数据类型的检查一般仅在静态图分支中使用。主要原因是静态图下该函数仅被执行一次，发生在组网时，而动态图下该函数会被多次执行，Python 端过多的输入检查会影响执行效率。并且由于动态图即时执行的优势，如果发生错误也可以通过分析 c++ 端的报错信息定位问题。
-
-例子：
-
-```Python
-def mm(input, mat2, name=None):
-    # 为了突出重点，省略部分代码
-    # 新动态图模式，直接调用 op 对应的 CPython 函数
-    if in_dygraph_mode():
-        return _C_ops.final_state_matmul(input, mat2, False, False)
-    # 旧动态图模式
-    elif _in_legacy_dygraph():
-        return _C_ops.matmul_v2(input, mat2)
-
-	# 静态分支
-    ## 检测输入
-    __check_input(input, mat2)
-
-    ## 构造输出，添加 op，返回输出
-    helper = LayerHelper('mm', **locals())
-    out = helper.create_variable_for_type_inference(dtype=input.dtype)
-    helper.append_op(
-        type='matmul_v2', inputs={'X': input,
-                               'Y': mat2}, outputs={'Out': out})
-    return out
-```
-
-#### 执行计算
-
-如果是调用现有的 Python API 组合来实现功能，那么因为 paddle 的大多数 Python API 兼容动态图和静态图，所以一般不需要像上述代码那样区分动态图和静态图，直接调用所需的 API 即可。例：
-
-```Python
-def ones(shape, dtype=None, name=None):
-    if dtype is None:
-        dtype = 'float32'
-    return fill_constant(value=1.0, shape=shape, dtype=dtype, name=name)
-```
-
-因为 `fill_constant` 里已经处理了动态图和静态图的情况，所以直接调用即可。
-
-而如果 API 的实现中需要调用一个C++算子时，则需要根据动态图和静态图使用不同的写法。
-
-#### 动静态图分支
-**动态图分支**
-
-由于目前动态图正处在重构升级阶段，所以需要为新旧动态图分别添加对应的代码分支。其中 `in_dygraph_mode()` 表示新动态图分支，`_in_legacy_dygraph()`表示旧动态图分支。
-
-参考`paddle.trace` 的代码，动态图分支的写法一般是调用 API 对应的 CPython 函数。
-
-```Python
-# 新动态图模式
-if in_dygraph_mode():
-    return _C_ops.final_state_trace( x, offset, axis1, axis2 )
-
-# 旧动态图模式
-if _in_legacy_dygraph():
-    return _C_ops.trace(x, 'offset', offset, 'axis1', axis1, 'axis2', axis2)
-```
-
-`_C_ops` 是 `Python/paddle/_C_ops.py`，其中从 paddle 编译得到的二进制文件中 import 了 c++ 算子对应的 Python C 函数。
-
-- 在新动态图模式下，Python C 的调用函数名为`final_state_` + 算子名，然后将参数按照Yaml中定义的输入参数顺序传入即可。
-- 在旧动态图模式下，Python C 函数名和算子名一致。如希望调用名为 `trace` 的算子，则使用 `_C_ops.trace`, 然后传入参数。其中参数分为两个部分：
-  - 对于 `Tensor` 类型的输入，直接按照Yaml中的定义，按位置传参的方式传入
-  - 对于非 `Tensor` 类型的输入，则以 `attribute 名，attribute 值` 交替的方式传入，这类似 Python 中的按关键字传参的方式。然后返回调用函数得到的结果。
-
-
-**静态图分支**
-
-对于静态图，一般分为创建输出 Tensor，添加 operator 两步。
-
-```Python
-# LayerHelper是一个用于创建op输出变量、向program中添加op的辅助工具类
-helper = LayerHelper('trace', **locals())
-
-# 创建输出 Tensor
-out = helper.create_variable_for_type_inference(dtype=x.dtype)
-
-# 将输入 Tensor，输出 Tensor, 非 Tensor 的 attributes 以三个字典的形式
-# 作为参数添加 operator
-helper.append_op(
-    type='trace',
-    inputs={'Input': [x]},
-    attrs={'offset': offset,
-           'axis1': axis1,
-           'axis2': axis2},
-    outputs={'Out': [out]})
-return out
-```
-注意：在`append_op`添加的`inputs`和`outputs`项，其中的key值（静态图中变量名）一般为Yaml中定义的输入输出Tensor变量名的首字母大写格式，静态图中的变量名可以在`paddle/fluid/operators/generated_op.cc`（需要先开发C++算子并完成编译）文件内对应算子的`OpMaker`中找到；`attrs`项的变量名与Yaml中相同。
-这里`trace`中的'Input'没有与Yaml配置的中'x'直接对应是由于为了兼容旧算子体系下`Trace`算子的`OpMaker`实现而做了额外的映射，新增算子时无需考虑这种情况。
 
 
 ## 开发单元测试代码
@@ -338,15 +331,28 @@ return out
 
 ### 运行单元测试
 
+代码开发完成后，需要从源码编译 Paddle，并调试开发的功能。
+
+(1) 本地编译并安装 Paddle
+
+ 编译方法请参见 [从源码编译](../../install/compile/fromsource.html) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
+
+> 注意：编译必须打开WITH_TESTING选项（`-DWITH_TESTING=ON`），以确保新增的单元测试文件（python/paddle/fluid/tests/unittests/ 目录下test_*.py文件）自动加入工程进行编译。
 运行单元测试需要在 `build` 目录下，以 `ctest ${test_name}` 的命令运行。其中 `test_name` 指的是所需运行测试 target 的名字，和上述添加的单元测试文件名字相同，但不带 `.py` 后缀。
 
-比如运行 `Python/paddle/fluid/tests/unittests/test_logsumexp.py` 就可以用 `ctest test_logsumexp` 运行。
+(2) 执行单元测试
 
-这需要在 cmake 生成构建方案的时候加入选项 `-DWITH_TESTING=ON`，这样单元测试就会生成对应的测试 target.
+编译成功后，在 `build` 目录下执行 `ctest ${test_name}` 命令来运行单元测试，并确保单元测试通过。其中 `test_name` 指的是所需运行测试 `target` 的名字，和上述添加的单元测试文件名字相同，但不带 .py 后缀。
 
-对于需要开发 c++ operator 的 API，可以把 operator 的单元测试与 Python API 的单元测试写在一个文件中，也可以分开两个文件，分别测试 operator 和 Python API.
+比如运行 `python/paddle/fluid/tests/unittests/test_logsumexp.py` 的命令如下：
+```
+ctest test_logsumexp
+```
+> 注意：执行单测一定要用 `ctest` 命令，不可直接 `python test_*.py`。
 
-ctest 还可以批量运行名字匹配某个正则表达式的测试 target, 通过 `-R` 参数传入正则表达式。比如通过 `ctest -R test_logsumexp` 就可以运行所有以 `test_logsumexp` 开头的单测 target.
+对于需要开发 c++ 算子的 API，可以把 c++ 算子的单元测试与 Python API 的单元测试写在一个文件中。
+
+`ctest` 还可以批量运行名字匹配某个正则表达式的测试 `target`, 通过 `-R` 参数传入正则表达式。比如通过 `ctest -R test_logsumexp` 就可以运行所有以 `test_logsumexp` 开头的单测 target.
 
 此外，需要单元测试输出更详细的信息以便 debug 时，可以在运行 `ctest` 时传入 `-V` 或者 `-VV` 选项以查看更详细的输出，如 `ctest -V -R test_logsumexp`。
 
@@ -362,17 +368,13 @@ https://github.com/PaddlePaddle/docs/pull/4418
 ![图片](http://agroup.baidu-int.com/file/stream/bj/bj-41da879af878100c52ce7d97b3695e55ec9cb6c0)
 
 
-## CI 系统相关说明
+## 确保通过 CI 测试
+提交 PR 后会触发 CI（Continuous Integration，持续集成）测试，并且之后每提交一次代码合入（`git push`）都会触发一次 CI 测试。CI 测试可尽可能保障代码质量，详细测试内容可参见 [Paddle CI 测试详解](../git_guides/paddle_ci_manual_cn.html)，包括 CI 失败的一些处理建议。
+当添加新的 API 时需要通过 CI 中所有的 Required 的测试项才能合入代码。
+> 注意：其中 `PR-CI-APPROVAL`  和 `PR-CI-Static-Check` 这两个 CI 测试项需要飞桨相关开发者 approve 才能通过，除了这两个之外的 CI 测试项通过后，可以联系飞桨开发者提醒他们评审代码。
 
-当添加新的 API 时需要通过所有的 `Required` 流水线才能 merge 代码。
-
-注意：其中 `PR-CI-APPROVAL`  和 `PR-CI-Static-Check` 这两个 CI 流水线会有需要特定开发者 approve 才能通过的机制，在除了这两个之外的流水线通过后，可以联系开发者提醒他们 review 代码。
-
-[TODO 遇到不明原因的 CI 失败怎么办？]
-
-## 其他 Tips
-
-### 调试 Python 代码时减少重编译
+## 其他注意事项
+### 调试 Python 代码时减少重编译的方法
 
 如果你的修改不涉及 c++ 代码，那么一般不需要重新编译就可以重新运行测试，以验证刚发生的修改是否解决了问题。
 
@@ -380,7 +382,8 @@ paddle 编译过程中，对于 Python 代码的处理方式是，先把它们 c
 
 比如 `Python/paddle/fluid/tests/unittests/test_bmm_op.py` copy 到 build 目录后位置是 `build/Python/paddle/fluid/tests/unittests/test_bmm_op.py`. 并且通过 ctest 运行单元测试时，会把 `build/Python` 这个目录加入 `PYTHONPATH`, 因此它所调用的单元测试文件 和 Python API 代码文件也是 build 目录里的那一份。
 
-如果你的修改没有涉及任何 c++ 文件，那么你也可以直接在 build 目录下修改对应的文件，直到确保问题解决，然后，把文件 copy 回去覆盖 `Paddle` 目录的对应文件。（注意：不要忘记这一步，因为重新 build 的时候，会再次从 `Paddle` 目录 copy Python 文件，如果最后忘了 copy 到 `Paddle` 目录，那么你的修改会因为再次的编译而被覆盖。）
+如果你的修改没有涉及任何 c++ 文件，那么你也可以直接在 build 目录下修改对应的文件，直到问题解决，然后把文件拷贝回去覆盖 `Paddle` 目录的对应文件。
+> 特别提醒：不要忘记拷贝回去这一步，因为重新 build 的时候，会再次从 `Paddle` 目录拷贝 `Python` 文件，如果最后忘了拷贝回 `Paddle` 目录，那么你的修改会因为再次的编译而被覆盖。
 
 
 

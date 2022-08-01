@@ -773,13 +773,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     if in_dygraph_mode():
         return _C_ops.final_state_trace( x, offset, axis1, axis2 )
 
-    if _in_legacy_dygraph():
-        return _C_ops.trace(x, 'offset', offset, 'axis1', axis1, 'axis2', axis2)
-
-    inputs = {'Input': [x]}
-    attrs = {'offset': offset, 'axis1': axis1, 'axis2': axis2}
     helper = LayerHelper('trace', **locals())
-
     out = helper.create_variable_for_type_inference(dtype=x.dtype)
 
     helper.append_op(
@@ -794,7 +788,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 - Python API 实现要点（详见[飞桨API Python 端开发指南](./new_python_api_cn.html)）
     - 对输入参数进行合法性检查，即 `__check_input(input, offset, axis1, axis2)`
-    - 添加动态图分支调用，即 `if in_dygraph_mode` 新动态图分支和 `if _in_legacy_dygraph` 旧动态图分支
+    - 添加动态图分支调用，即 `if in_dygraph_mode` 进入动态图调用分支
     - 添加静态图分支调用，即dygraph分支后剩余的代码
 
 
