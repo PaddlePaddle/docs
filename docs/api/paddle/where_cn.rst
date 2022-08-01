@@ -36,4 +36,4 @@ Tensor，形状与 ``condition`` 相同，数据类型与 ``x`` 和 ``y`` 相同
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.where:where-example
+COPY-FROM: paddle.where
