@@ -8,7 +8,7 @@ NGC PaddlePaddle 容器安装指南
   整体介绍
 ----------------------
 
-NGC PaddlePaddle 容器针对 NVIDIA GPU 加速进行了优化，并包含一组经过验证的库，可启用和优化NVIDIA GPU 性能。此容器还可能包含对 PaddlePaddle 源代码的修改，以最大限度地提高性能和兼容性。此容器还包含用于加速 ETL (`DALI <https://developer.nvidia.com/dali/>`_, `RAPIDS <https://rapids.ai/>`_),、训练(`cuDNN <https://developer.nvidia.com/cudnn>`_, `NCCL <https://developer.nvidia.com/nccl>`_)和推理(`TensorRT <https://docs.nvidia.com/deeplearning/frameworks/tf-trt-user-guide/index.html>`_)工作负载的软件。
+NGC PaddlePaddle 容器针对 NVIDIA GPU 加速进行了优化，并包含一组经过验证的库，可启用和优化 NVIDIA GPU 性能。此容器还可能包含对 PaddlePaddle 源代码的修改，以最大限度地提高性能和兼容性。此容器还包含用于加速 ETL (`DALI <https://developer.nvidia.com/dali/>`_, `RAPIDS <https://rapids.ai/>`_),、训练(`cuDNN <https://developer.nvidia.com/cudnn>`_, `NCCL <https://developer.nvidia.com/nccl>`_)和推理(`TensorRT <https://docs.nvidia.com/deeplearning/frameworks/tf-trt-user-guide/index.html>`_)工作负载的软件。
 
 ----------------------
   环境准备
@@ -16,13 +16,13 @@ NGC PaddlePaddle 容器针对 NVIDIA GPU 加速进行了优化，并包含一组
 
 使用 NGC PaddlePaddle 容器需要主机系统安装以下内容：
 
-*	`Docker引擎 <https://docs.docker.com/get-docker/>`_
+* `Docker 引擎 <https://docs.docker.com/get-docker/>`_
 
-*	`NVIDIA GPU 驱动程序 <https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html>`_
+* `NVIDIA GPU 驱动程序 <https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html>`_
 
-*	`NVIDIA 容器工具包 <https://github.com/NVIDIA/nvidia-docker>`_
+* `NVIDIA 容器工具包 <https://github.com/NVIDIA/nvidia-docker>`_
 
-有关支持的版本，请参阅 `NVIDIA框架容器支持矩阵 <https://docs.nvidia.com/deeplearning/frameworks/support-matrix/index.html>`_ 和 `NVIDIA 容器工具包文档 <https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html>`_。
+有关支持的版本，请参阅 `NVIDIA 框架容器支持矩阵 <https://docs.nvidia.com/deeplearning/frameworks/support-matrix/index.html>`_ 和 `NVIDIA 容器工具包文档 <https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html>`_。
 
 不需要其他安装、编译或依赖管理。 无需安装 NVIDIA CUDA Toolkit。
 
@@ -47,7 +47,7 @@ NGC PaddlePaddle 容器针对 NVIDIA GPU 加速进行了优化，并包含一组
 
 
 其中:
-*	22.07 是容器版本。
+* 22.07 是容器版本。
 PaddlePaddle 通过将其作为 Python 模块导入来运行：
 
     ::
@@ -79,26 +79,26 @@ PaddlePaddle 通过将其作为 Python 模块导入来运行：
 在 docker run 命令中。
 
 ----------------------
-  NGC容器介绍
+  NGC 容器介绍
 ----------------------
 
 有关内容的完整列表，请参阅 `NVIDIA PaddlePaddle 容器发行说明 <https://docs.nvidia.com/deeplearning/frameworks/paddle-paddle-release-notes/index.html>`_。
 此容器映像包含 NVIDIA 版 PaddlePaddle 的完整源代码，位于 /opt/paddle/paddle。它是作为系统 Python 模块预构建和安装的。
 NVIDIA PaddlePaddle 容器针对与 NVIDIA GPU 一起使用进行了优化，并包含以下用于 GPU 加速的软件：
 
-*	`CUDA <https://developer.nvidia.com/cuda-toolkit>`_
+* `CUDA <https://developer.nvidia.com/cuda-toolkit>`_
 
-*	`cuBLAS <https://developer.nvidia.com/cublas>`_
+* `cuBLAS <https://developer.nvidia.com/cublas>`_
 
-*	`NVIDIA cuDNN <https://developer.nvidia.com/cudnn>`_
+* `NVIDIA cuDNN <https://developer.nvidia.com/cudnn>`_
 
-*	`NVIDIA NCCL <https://developer.nvidia.com/nccl>`_ (optimized for `NVLink <http://www.nvidia.com/object/nvlink.html>`_ ) 
+* `NVIDIA NCCL <https://developer.nvidia.com/nccl>`_ (optimized for `NVLink <http://www.nvidia.com/object/nvlink.html>`_ )
 
-*	`NVIDIA Data Loading Library (DALI) <https://developer.nvidia.com/dali>`_
+* `NVIDIA Data Loading Library (DALI) <https://developer.nvidia.com/dali>`_
 
-*	`TensorRT <https://developer.nvidia.com/tensorrt>`__
+* `TensorRT <https://developer.nvidia.com/tensorrt>`__
 
-*	`PaddlePaddle with TensorRT (Paddle-TRT) <https://github.com/PaddlePaddle/Paddle-Inference-Demo/blob/master/docs/optimize/paddle_trt_en.rst>`_
+* `PaddlePaddle with TensorRT (Paddle-TRT) <https://github.com/PaddlePaddle/Paddle-Inference-Demo/blob/master/docs/optimize/paddle_trt_en.rst>`_
 
 此容器中的软件堆栈已经过兼容性验证，不需要最终用户进行任何额外的安装或编译。此容器可以帮助您从端到端加速深度学习工作流程。
 
@@ -107,6 +107,4 @@ NVIDIA PaddlePaddle 容器针对与 NVIDIA GPU 一起使用进行了优化，并
   NGC PaddlePaddle 容器软件许可协议
 --------------------------------------------
 
-当您下载或使用NGC PaddlePaddle 容器时，即表示您已经同意并接受此 `最终用户许可协议 <https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license>`_ 的条款及其对应约束。
-
-
+当您下载或使用 NGC PaddlePaddle 容器时，即表示您已经同意并接受此 `最终用户许可协议 <https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license>`_ 的条款及其对应约束。
