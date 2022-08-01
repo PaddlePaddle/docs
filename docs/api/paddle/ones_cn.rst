@@ -3,7 +3,7 @@
 ones
 -------------------------------
 
-.. py:function:: paddle.ones(shape, dtype=None)
+.. py:function:: paddle.ones(shape, dtype=None, name=None)
 
 
 

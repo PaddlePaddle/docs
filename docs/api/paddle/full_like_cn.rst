@@ -21,14 +21,8 @@ full_like
 返回一个根据 ``x`` 、``fill_value`` 、 ``dtype`` 创建的 Tensor。
 
 
-    **代码示例**：
+代码示例
+::::::::::::
 
-.. code-block:: python
 
-    import paddle
-    
-    input = paddle.full(shape=[2, 3], fill_value=0.0, dtype='float32', name='input')
-    output = paddle.full_like(input, 2.0)
-    # [[2. 2. 2.]
-    #  [2. 2. 2.]]
-
+COPY-FROM: paddle.full_like
