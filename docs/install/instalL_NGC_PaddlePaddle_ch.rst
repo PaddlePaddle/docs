@@ -18,11 +18,9 @@ NGC PaddlePaddle 容器针对 NVIDIA GPU 加速进行了优化，并包含一组
 
 *	`Docker引擎 <https://docs.docker.com/get-docker/>`_
 
-* `CUDA <https://docs.nvidia.com/cuda/cuda-installation-guide-windows/>`_
-
 *	`NVIDIA GPU 驱动程序 <https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html>`_
 
-*	`NVIDIA 容器工具包 <https://docs.docker.com/get-docker/>`_
+*	`NVIDIA 容器工具包 <https://github.com/NVIDIA/nvidia-docker>`_
 
 有关支持的版本，请参阅 `NVIDIA框架容器支持矩阵 <https://docs.nvidia.com/deeplearning/frameworks/support-matrix/index.html>`_ 和 `NVIDIA 容器工具包文档 <https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html>`_。
 
