@@ -209,7 +209,9 @@ upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 
 选择目标分支:
 
-![img](images/compare_pull_request2.png)
+
+![img](./images/compare_pull_request2.png)
+
 
 添加必要的评论信息，然后单击 `Create pull request` 按钮。
 
