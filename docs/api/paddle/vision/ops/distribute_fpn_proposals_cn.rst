@@ -31,9 +31,9 @@ distribute_fpn_proposals
 返回
 ::::::::::::
 
-- **multi_rois**（List）- 长度为（max_level-min_level+1）的列表，其中元素为Variable，维度为[M, 4]的2-D LoDTensor，M为每个级别proposal的个数，数据类型为float32或float64。表示每个FPN级别包含的proposals。
-- **restore_ind**（Tensor）- 维度为[N，1]的Tensor，N是总rois的数量。数据类型为int32。它用于恢复fpn_rois的顺序。
-- **rois_num_per_level** (List) : 一个包含1-D Tensor的List。其中每个元素是每张图在对应层级上的RoI数量。数据类型为int32。
+- **multi_rois** (List) - 长度为（max_level-min_level+1）的列表，其中元素为Variable，维度为[M, 4]的2-D LoDTensor，M为每个级别proposal的个数，数据类型为float32或float64。表示每个FPN级别包含的proposals。
+- **restore_ind** (Tensor) - 维度为[N，1]的Tensor，N是总rois的数量。数据类型为int32。它用于恢复fpn_rois的顺序。
+- **rois_num_per_level** (List) - 一个包含1-D Tensor的List。其中每个元素是每张图在对应层级上的RoI数量。数据类型为int32。
 
 代码示例
 ::::::::::::
