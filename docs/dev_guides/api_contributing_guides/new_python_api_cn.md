@@ -4,10 +4,10 @@
 
 ## 开发 Python API代码
 
-这分为两种情况，Paddle 的 API 包含需要开发 c++ 算子的和不需要开发 c++ 算子而仅使用现有 Python API 组合得到的两种，但两种情况下均有 Python 端的开发工作。
+这分为两种情况，Paddle 的 API 包含需要开发 C++ 算子的和不需要开发 C++ 算子而仅使用现有 Python API 组合得到的两种，但两种情况下均有 Python 端的开发工作。
 
-1. 包含 c++ 算子的开发的情况，需要在 Python 端添加相应 API 以调用对应的算子;
-2. 不需要开发 c++ 算子的情况，需要在 Python 端添加相应 API 以调用其他 API 组合实现功能;
+1. 包含 C++ 算子的开发的情况，需要在 Python 端添加相应 API 以调用对应的算子;
+2. 不需要开发 C++ 算子的情况，需要在 Python 端添加相应 API 以调用其他 API 组合实现功能;
 
 ### 文件位置与 API 名称
 
@@ -136,7 +136,7 @@ _C_ops 是 Python/paddle/_C_ops.py，其中从 paddle 编译得到的二进制�
 ```
 
   - 在 `append_op` 添加的 `inputs` 和 `outputs` 项，其中的 key 值（静态图中变量名）一般与 Python 接口中定义的输入输出 Tensor 变量名的命名相同。（注意：这里 `trace` 中的 `Input` 没有与 Python 接口中 `x` 命名直接对应是由于为了兼容旧算子体系下 `trace` 算子的定义实现而做了额外的映射，新增算子时无需考虑这种情况）
-  - 输入数据类型的检查一般仅在静态图分支中使用。主要原因是静态图下该函数仅被执行一次，发生在组网时，而动态图下该函数会被多次执行，Python 端过多的输入检查会影响执行效率。并且由于动态图即时执行的优势，如果发生错误也可以通过分析 c++ 端的报错信息定位问题。这里输入参数检查的代码逻辑比较复杂并且仅用于 `trace` 函数，因此在该函数内定义一个检查输入参数的函数 `__check_input`，代码如下所示：
+  - 输入数据类型的检查一般仅在静态图分支中使用。主要原因是静态图下该函数仅被执行一次，发生在组网时，而动态图下该函数会被多次执行，Python 端过多的输入检查会影响执行效率。并且由于动态图即时执行的优势，如果发生错误也可以通过分析 C++ 端的报错信息定位问题。这里输入参数检查的代码逻辑比较复杂并且仅用于 `trace` 函数，因此在该函数内定义一个检查输入参数的函数 `__check_input`，代码如下所示：
   > 输入参数检查包括必要的类型检查、值检查、输入 Tensor 的形状、dtype 等检查，确保组网能正常运行等。其中检测 Tensor 的数据类型可以用 `check_variable_and_dtype` 和 `check_type` 函数进行检测。
 ```Python
 def __check_input(input, offset, dim1, dim2):
@@ -236,7 +236,7 @@ Tip: 当出现类似把一个元素放入一个集中管理的列表的操作时
 
 ### 添加 Operator 单元测试
 
-如果开发了 c++ operator, 那么需要添加 operator 的单元测试，需要继承 `OpTest` 写作测试用例。文件位置在 `Python/paddle/fluid/tests/unittests/`，一般以 `test_${op_name}_op.py` 的形式命名。
+如果开发了 C++ operator, 那么需要添加 operator 的单元测试，需要继承 `OpTest` 写作测试用例。文件位置在 `Python/paddle/fluid/tests/unittests/`，一般以 `test_${op_name}_op.py` 的形式命名。
 
 单元测试相关的开发规范可以参考
 
@@ -246,13 +246,13 @@ Tip: 当出现类似把一个元素放入一个集中管理的列表的操作时
 
 ### 添加 Python API 单元测试
 
-无论是否开发了 c++ operator，对于 Python API 都需要添加单元测试，文件路径在 `Python/paddle/fluid/tests/unittests/`，一般以 `test_${api_name}.py` 的形式命名。
+无论是否开发了 C++ operator，对于 Python API 都需要添加单元测试，文件路径在 `Python/paddle/fluid/tests/unittests/`，一般以 `test_${api_name}.py` 的形式命名。
 
-如果为这个 API 也开发了对应的 c++ operator，那么也可以把对 API 的单元测试和 operator 的单元测试写在同一个文件中，文件位置在 `Python/paddle/fluid/tests/unittests/`，一般以 `test_${op_name}_op.py` 的形式命名。
+如果为这个 API 也开发了对应的 C++ operator，那么也可以把对 API 的单元测试和 operator 的单元测试写在同一个文件中，文件位置在 `Python/paddle/fluid/tests/unittests/`，一般以 `test_${op_name}_op.py` 的形式命名。
 
 对 Python API 的单元测试直接继承 `UnitTest.TestCase`，一般来说需要用 numpy/scipy 中的对应功能作为参考，如果 numpy/scipy 中没有现成的对应函数，可以用 numpy/scipy 实现一个作为参考，并以这个为基准对新增的 paddle Python API 进行测试，如 [test_softmax_op](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_softmax_op.py#L29)。
 
-如果新增的 API 没有使用新增的 c++ operator, 可以不必测试反向功能（因为 operator 的新增本身要求 operator 单元测试，这本身就会测试反向功能）。常见的流程是构建相同的输入，调用参考的实现和新增的 Python API，对比结果是否一致。一般用 `self.assertTrue(numpy.allclose(actual, desired))` 或者 `numpy.testing.assert_allclose(actual, desired)` 来进行数值对比。
+如果新增的 API 没有使用新增的 C++ operator, 可以不必测试反向功能（因为 operator 的新增本身要求 operator 单元测试，这本身就会测试反向功能）。常见的流程是构建相同的输入，调用参考的实现和新增的 Python API，对比结果是否一致。一般用 `self.assertTrue(numpy.allclose(actual, desired))` 或者 `numpy.testing.assert_allclose(actual, desired)` 来进行数值对比。
 
 其中，`numpy.testing.assert_allclose` 相对误差和绝对误差是 `rtol=1e-07, atol=0`；`numpy.allclose` 的相对误差和绝对误差是 `rtol=1e-05, atol=1e-08`，前者比后者更严格。一般进行单元测试的时候，都使用默认的误差阈值，如需设置自定义的阈值，需要说明原因。
 
@@ -346,7 +346,7 @@ ctest test_logsumexp
 ```
 > 注意：执行单测一定要用 `ctest` 命令，不可直接 `python test_*.py`。
 
-对于需要开发 c++ 算子的 API，可以把 c++ 算子的单元测试与 Python API 的单元测试写在一个文件中。
+对于需要开发 C++ 算子的 API，可以把 C++ 算子的单元测试与 Python API 的单元测试写在一个文件中。
 
 `ctest` 还可以批量运行名字匹配某个正则表达式的测试 `target`, 通过 `-R` 参数传入正则表达式。比如通过 `ctest -R test_logsumexp` 就可以运行所有以 `test_logsumexp` 开头的单测 target.
 
@@ -372,13 +372,13 @@ https://github.com/PaddlePaddle/docs/pull/4418
 ## 其他注意事项
 ### 调试 Python 代码时减少重编译的方法
 
-如果你的修改不涉及 c++ 代码，那么一般不需要重新编译就可以重新运行测试，以验证刚发生的修改是否解决了问题。
+如果你的修改不涉及 C++ 代码，那么一般不需要重新编译就可以重新运行测试，以验证刚发生的修改是否解决了问题。
 
 paddle 编译过程中，对于 Python 代码的处理方式是，先把它们 copy 到 build 目录，对于 Python API 和 Python 单元测试所在的文件也是如此处理。
 
 比如 `Python/paddle/fluid/tests/unittests/test_bmm_op.py` copy 到 build 目录后位置是 `build/Python/paddle/fluid/tests/unittests/test_bmm_op.py`. 并且通过 ctest 运行单元测试时，会把 `build/Python` 这个目录加入 `PYTHONPATH`, 因此它所调用的单元测试文件 和 Python API 代码文件也是 build 目录里的那一份。
 
-如果你的修改没有涉及任何 c++ 文件，那么你也可以直接在 build 目录下修改对应的文件，直到问题解决，然后把文件拷贝回去覆盖 `Paddle` 目录的对应文件。
+如果你的修改没有涉及任何 C++ 文件，那么你也可以直接在 build 目录下修改对应的文件，直到问题解决，然后把文件拷贝回去覆盖 `Paddle` 目录的对应文件。
 > 特别提醒：不要忘记拷贝回去这一步，因为重新 build 的时候，会再次从 `Paddle` 目录拷贝 `Python` 文件，如果最后忘了拷贝回 `Paddle` 目录，那么你的修改会因为再次的编译而被覆盖。
 
 
