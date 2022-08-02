@@ -1,6 +1,6 @@
 # 贡献前阅读
 
-本章主要介绍开发飞桨原生算子 API 的方法，可先参见通用的 [代码贡献流程](.\code_contributing_path_cn.html) 章节，再结合本文介绍的 API 开发要点，即可掌握飞桨原生算子 API 开发方法和流程。
+本章主要介绍开发飞桨原生算子 API 的方法，可先参见通用的 [代码贡献流程](../code_contributing_path_cn.html) 章节，再结合本文介绍的 API 开发要点，即可掌握飞桨原生算子 API 开发方法和流程。
 
 ## 一、飞桨原生算子 API 开发解读
 
@@ -11,7 +11,8 @@
 - 使用 C++ 定义算子，开发门槛较高，需有一定 C++ 或 CUDA 等软件栈开发基础，但是具有性能优势；
 - 使用 Python API 组合方式，只需 Python 编码，代码实现相对简单灵活，但会引入 Python 调度开销，影响性能；如果当前飞桨框架提供的基础算子 API 无法满足需求，仍然需要使用 C++ 实现算子。
 
-<center><img src="images/paddle_api.png" width="700" ></center>
+![img](images/paddle_api.png)
+
 
 ## 二、飞桨 API 设计文档提交说明
 
@@ -35,13 +36,13 @@
 
 值得注意的是，代码开发完成后，请确保通过了单元测试和 CI 测试。
 
-<center><img src="images/paddle_api_dev_flow.png" width="500" ></center>
+![img](images/paddle_api_dev_flow.png)
 
 ## 四、飞桨 API 代码开发规范说明
 
 请遵循如下开发规范和测试要求：
 
-- [代码风格规范](.\style_guide_and_references\style_guides_cn.html)
+- [代码风格规范](../style_guide_and_references/style_guides_cn.html)
 - [飞桨 API 设计和命名规范](api_design_guidelines_standard_cn.html)
 - [飞桨 API 单元测试及验收规范](api_accpetance_criteria_cn.html)
-- [Paddle CI 测试详解](.\style_guide_and_references\paddle_ci_manual_cn.html)
+- [Paddle CI 测试详解](../style_guide_and_references/paddle_ci_manual_cn.html)

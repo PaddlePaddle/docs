@@ -12,9 +12,9 @@
 
 请提前阅读贡献流程、代码规范、单元测试规范等信息，以确保您提交的代码符合飞桨的相关准则，尽可能高效地合入代码。
 
-通常你需要提前阅读本章节，以及通用的 [规范和参考信息](style_guide_and_references/index_cn.html)，然后根据贡献内容阅读对应模块的指南，比如需要贡献一个新的 API，则需阅读 [新增 API 贡献指南](api_contributing_guides/index_cn.html)，后续飞桨也将提供其他的如功能增强、性能优化等相关贡献指南，当然也欢迎开发者贡献这些指南。
+通常你需要提前阅读本章节，以及通用的 [规范和参考信息](style_guide_and_references/index_cn.html)，然后根据贡献内容阅读对应模块的指南，比如需要贡献一个新的 API，则需阅读 [新增 API 贡献指南](api_contributing_guides/api_contributing_guides_cn.html)，后续飞桨也将提供其他的如功能增强、性能优化等相关贡献指南，当然也欢迎开发者贡献这些指南。
 
-> 说明：文档的贡献流程与代码有所不同，可直接阅读 [文档贡献指南](docs_contributing_guides/index_cn.html) 即可。
+> 说明：文档的贡献流程与代码有所不同，可直接阅读 [文档贡献指南](docs_contributing_guides_cn.html) 即可。
 
 ### 1.3 签署 CLA
 
@@ -73,7 +73,7 @@ Paddle 使用的 pre-commit 是 1.10.4 版本，首先安装并在本地仓库�
 
 （2）开发代码
 
-可根据贡献内容，参考对应模块的贡献指南开发代码，如 [新增 API 贡献指南](api_contributing_guides/index_cn.html)，包括：
+可根据贡献内容，参考对应模块的贡献指南开发代码，如 [新增 API 贡献指南](api_contributing_guides/api_contributing_guides_cn.html)，包括：
 
 - 功能实现代码
 - 单元测试代码
@@ -91,12 +91,12 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   README.md
+    modified:   README.md
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	test.md
+    test.md
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -136,7 +136,7 @@ On branch my-cool-stuff
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	test.md
+    test.md
 
 nothing added to commit but untracked files present (use "git add" to track)
 ➜  git add test.md
@@ -169,8 +169,8 @@ clang-formater.......................................(no files to check)Skipped
 
 ```bash
 ➜  git remote -v
-origin	https://github.com/USERNAME/Paddle (fetch)
-origin	https://github.com/USERNAME/Paddle (push)
+origin    https://github.com/USERNAME/Paddle (fetch)
+origin    https://github.com/USERNAME/Paddle (push)
 ```
 
 这里命名为 origin 的远程仓库是之前 Fork 到自己用户名下的 Paddle 仓库。
@@ -180,10 +180,10 @@ origin	https://github.com/USERNAME/Paddle (push)
 ```bash
 ➜  git remote add upstream https://github.com/PaddlePaddle/Paddle
 ➜  git remote -v
-origin	https://github.com/USERNAME/Paddle.git (fetch)
-origin	https://github.com/USERNAME/Paddle.git (push)
-upstream	https://github.com/PaddlePaddle/Paddle.git (fetch)
-upstream	https://github.com/PaddlePaddle/Paddle.git (push)
+origin    https://github.com/USERNAME/Paddle.git (fetch)
+origin    https://github.com/USERNAME/Paddle.git (push)
+upstream    https://github.com/PaddlePaddle/Paddle.git (fetch)
+upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 ```
 
 获取原始 Paddle 仓库的最新代码并更新当前分支。
@@ -213,7 +213,7 @@ upstream	https://github.com/PaddlePaddle/Paddle.git (push)
 
 添加必要的评论信息，然后单击 `Create pull request` 按钮。
 
-（5）签署 CLA 
+（5）签署 CLA
 
 如果之前未签署 CLA(Contributor License Agreement) 协议，在首次向 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 提交 Pull Request 时，会提示需要签署，以保证你的代码可以被合入。如果已经签署，则跳过此步骤。
 
@@ -285,7 +285,7 @@ CI 测试通过后，接下来请等待 Code Review，一般会在三个工作�
 
 （1）请注意 commit 的数量不要过多。
 
-- - 原因：如果仅仅修改一个文件但提交了十几个 commit，每个 commit 只做了少量的修改，这会给评审人带来很大困扰。评审人需要逐一查看每个 commit 才能知道做了哪些修改，且不排除 commit 之间的修改存在相互覆盖的情况。
+  - 原因：如果仅仅修改一个文件但提交了十几个 commit，每个 commit 只做了少量的修改，这会给评审人带来很大困扰。评审人需要逐一查看每个 commit 才能知道做了哪些修改，且不排除 commit 之间的修改存在相互覆盖的情况。
   - 建议：每次提交时，保持尽量少的 commit。可以通过`git rebase -i HEAD~3`将最新的 3 个 commit 合并成一个（可以根据实际情况修改该数值），再 Push 到远程仓库，可以参考 [rebase 用法](https://docs.github.com/cn/get-started/using-git/about-git-rebase)。
 
 （2）请注意每个 commit 的名称，应能反映当前 commit 的内容，不能太随意。
@@ -302,12 +302,12 @@ CI 测试通过后，接下来请等待 Code Review，一般会在三个工作�
 
 （1）评审人的每个意见都必须回复（这是开源社区礼貌，别人帮了忙，应该说谢谢）：
 
-- - 同意评审意见并完成修改，请给出确认答复，如 "Done"；
+  - 同意评审意见并完成修改，请给出确认答复，如 "Done"；
   - 不同意评审意见，请给出自己的理由，方便进一步交流探讨。
 
 （2）如果评审意见比较多：
 
-- - 请给出总体的修改情况说明。
+  - 请给出总体的修改情况说明。
   - 请采用 [start a review](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/) 的方式在对应意见条目下进行回复，而非直接在 PR 评论框中回复。后者每次回复都会发送一封邮件，造成邮件灾难。
 
 > 说明：相对应地，如果作为评审人给其他 PR 反馈评审意见时，也请采用  [start a review](https://help.github.com/articles/reviewing-proposed-changes-in-a-pull-request/) 方式提交评审意见，减少不必要的邮件。
