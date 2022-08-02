@@ -50,8 +50,8 @@
 
 算子描述及定义是定义运算的基本属性，主要包括算子的输入、输出以及各项非计算逻辑的配置，这些都是设备无关的。
 
-### 2.1 算子Yaml文件配置
-我们在[`paddle/phi/api/yaml/api.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml)和[`paddle/phi/api/yaml/backward.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)文件中对算子进行描述及定义，在框架编译时会根据Yaml文件中的配置自动生成C++端的相关代码接口以及内部实现（详见[Paddle基于Yaml配置的算子代码自动生成](new_cpp_op_cn.html#paddleyaml)），下面主要以Trace为例介绍算子的Yaml配置规则：
+### 2.1 算子YAML文件配置
+我们在[`paddle/phi/api/yaml/api.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml)和[`paddle/phi/api/yaml/backward.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)文件中对算子进行描述及定义，在框架编译时会根据YAML文件中的配置自动生成C++端的相关代码接口以及内部实现（详见[Paddle基于YAML配置的算子代码自动生成](new_cpp_op_cn.html#paddleyaml)），下面主要以Trace为例介绍算子的YAML配置规则：
 
 [`paddle/phi/api/yaml/api.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml)：
 ```yaml
@@ -932,7 +932,7 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 #### 6.3.1 为可原位计算的算子注册inplace
 有些算子的计算逻辑中，输出可以复用输入的显存空间，也可称为原位计算。例如[reshape](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/reshape_kernel.cc)中，输出`out`可以复用输入`x`的显存空间，因为该算子的计算逻辑不会改变`x`的实际数据，只是修改它的shape，输出和输入复用同一块显存空间不影响结果。对于这类算子，可以注册`inlace`，从而让框架在运行时自动地进行显存优化。
 
-注册方式为在算子的Yaml配置中添加`inplace`配置项，格式如：`(x -> out)`，详见[Yaml配置规则](new_cpp_op_cn.html#yaml)。示例：
+注册方式为在算子的YAML配置中添加`inplace`配置项，格式如：`(x -> out)`，详见[YAML配置规则](new_cpp_op_cn.html#yaml)。示例：
 
 ```yaml
 - api : reshape
@@ -948,7 +948,7 @@ PADDLE_ENFORCE_EQ(比较对象A, 比较对象B, 错误提示信息)
 所以在定义反向算子时需要注意以下几点：
 
 - 如果反向不需要前向的某些输入或输出参数，则无需在args中设置。
-- 如果有些反向算子需要依赖前向算子的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的内存Buffer数据，且不能根据其他变量推断出该Shape和LoD，则可以通过`no_need_buffer`对该变量进行配置，详见[Yaml配置规则](new_cpp_op_cn.html#yaml)。示例：
+- 如果有些反向算子需要依赖前向算子的输入或输出变量的的Shape或LoD，但不依赖于变量中Tensor的内存Buffer数据，且不能根据其他变量推断出该Shape和LoD，则可以通过`no_need_buffer`对该变量进行配置，详见[YAML配置规则](new_cpp_op_cn.html#yaml)。示例：
 ```yaml
 - backward_api : trace_grad
   forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
@@ -1057,11 +1057,11 @@ The following device operations are asynchronous with respect to the host:
 
 
 ## 7. 补充
-### 7.1 Paddle基于Yaml配置的算子代码自动生成
-Paddle支持动态图和静态图两种模式，在Yaml配置文件中完成算子基本属性的定义后，需要进行解析并分别生成动态图和静态图所对应的算子代码逻辑，从而将算子接入框架的执行体系。基于Yaml配置的算子代码自动生成示意图：
+### 7.1 Paddle基于YAML配置的算子代码自动生成
+Paddle支持动态图和静态图两种模式，在YAML配置文件中完成算子基本属性的定义后，需要进行解析并分别生成动态图和静态图所对应的算子代码逻辑，从而将算子接入框架的执行体系。基于YAML配置的算子代码自动生成示意图：
 ![code_gen_by_yaml](./code_gen_by_yaml.png)
 
-- 其中Yaml配置文件为前向：[`paddle/phi/api/yaml/api.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml) 和反向：[`paddle/phi/api/yaml/backward.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)。
+- 其中YAML配置文件为前向：[`paddle/phi/api/yaml/api.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml) 和反向：[`paddle/phi/api/yaml/backward.yaml`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)。
 - 动态图中自动生成的代码包括从Python API到计算Kernel间的各层调用接口实现，从底层往上分别为：
   - C++ API：一套与Python API参数对齐的C++接口（只做逻辑计算，不支持自动微分），内部封装了底层kernel的选择和调用等逻辑，供上层灵活使用。
     - 注：前向算子生成C++ API头文件和实现代码分别为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`，反向算子生成的头文件和实现代码分别为`paddle/phi/api/backward/backward_api.h`,`paddle/phi/api/lib/backward_api.cc`。

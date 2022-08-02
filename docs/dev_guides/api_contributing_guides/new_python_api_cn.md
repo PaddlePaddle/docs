@@ -46,7 +46,7 @@ Python API 的文件位置遵循功能相似的放在一起的原则。大的功
 <center>图1 Python API 代码样例</center>
 
 
-下面介绍 paddle Python API 开发的一些惯例，以及用到的主要函数类的接口。
+下面介绍飞桨 Python API 开发的一些惯例，以及用到的主要函数类的接口。
 
 这类的接口需要兼容动态图和静态图。在动态图下，函数会被多次执行；而在静态图下，函数仅在组网时被调用，真正被多次执行的是组网得到的结果。但 API 在动态图和静态图下的行为是保持一致的。
 
@@ -71,7 +71,7 @@ def zeros(shape, dtype=None, name=None):
 
 接下来是一个实现动态图分支和静态图分支调用 C++ 算子的例子。
 
-下面以paddle.trace的实现代码为例，分别介绍动态图分支和静态图分支的开发要点：
+下面以 `paddle.trace` 的实现代码为例，分别介绍动态图分支和静态图分支的开发要点：
 ```Python
 def trace(x, offset=0, axis1=0, axis2=1, name=None):
     # 为了突出重点，省略部分代码
@@ -111,7 +111,8 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
         return _C_ops.final_state_trace( x, offset, axis1, axis2 )
 ```
 _C_ops 是 Python/paddle/_C_ops.py，其中从 paddle 编译得到的二进制文件中 import 了 C++ 算子对应的 Python C 函数。
-- 在新动态图模式下，Python C 的调用函数名为final_state_ + 算子名，然后将参数按照 YAML 配置文件中定义的输入参数顺序传入即可。
+
+在新动态图模式下，Python C 的调用函数名为final_state_ + 算子名，然后将参数按照 YAML 配置文件中定义的输入参数顺序传入即可。
 
 （2）静态图分支
 
@@ -121,7 +122,7 @@ _C_ops 是 Python/paddle/_C_ops.py，其中从 paddle 编译得到的二进制�
     __check_input(input, offset, axis1, axis2)
 
     ## 构造输出，添加 OP，返回输出
-    # LayerHelper是一个用于创建op输出变量、向program中添加op的辅助工具类
+    # LayerHelper是一个用于创建 OP 输出变量、向program中添加 OP 的辅助工具类
     helper = LayerHelper('trace', **locals())
     # 创建输出 Tensor
     out = helper.create_variable_for_type_inference(dtype=x.dtype)
@@ -137,7 +138,7 @@ _C_ops 是 Python/paddle/_C_ops.py，其中从 paddle 编译得到的二进制�
     return out
 ```
 
-  - 在 `append_op` 添加的 `inputs` 和 `outputs` 项，其中的 key 值（静态图中变量名）一般与 Python 接口中定义的输入输出 Tensor 变量名的命名相同。（注意：这里 `trace` 中的 `Input` 没有与 Python 接口中 `x` 直接对应是由于为了兼容旧算子体系下 `trace` 算子的定义实现而做了额外的映射，新增算子时无需考虑这种情况）
+  - 在 `append_op` 添加的 `inputs` 和 `outputs` 项，其中的 key 值（静态图中变量名）一般与 Python 接口中定义的输入输出 Tensor 变量名的命名相同。（注意：这里 `trace` 中的 `Input` 没有与 Python 接口中 `x` 命名直接对应是由于为了兼容旧算子体系下 `trace` 算子的定义实现而做了额外的映射，新增算子时无需考虑这种情况）
   - 输入数据类型的检查一般仅在静态图分支中使用。主要原因是静态图下该函数仅被执行一次，发生在组网时，而动态图下该函数会被多次执行，Python 端过多的输入检查会影响执行效率。并且由于动态图即时执行的优势，如果发生错误也可以通过分析 c++ 端的报错信息定位问题。这里输入参数检查的代码逻辑比较复杂并且仅用于 `trace` 函数，因此在该函数内定义一个检查输入参数的函数 `__check_input`，代码如下所示：
   > 输入参数检查包括必要的类型检查、值检查、输入 Tensor 的形状、dtype 等检查，确保组网能正常运行等。其中检测 Tensor 的数据类型可以用 `check_variable_and_dtype` 和 `check_type` 函数进行检测。
 ```Python
@@ -331,7 +332,7 @@ Tip: 当出现类似把一个元素放入一个集中管理的列表的操作时
 
 代码开发完成后，需要从源码编译 Paddle，并调试开发的功能。
 
-(1) 本地编译并安装 Paddle
+(1) 本地编译 Paddle
 
  编译方法请参见 [从源码编译](../../install/compile/fromsource.html) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
 
