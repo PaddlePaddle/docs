@@ -31,47 +31,9 @@ diag
 代码示例 1
 :::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([1, 2, 3])
-        y = paddle.diag(x)
-        print(y)
-        # [[1 0 0]
-        #  [0 2 0]
-        #  [0 0 3]]
-
-        y = paddle.diag(x, offset=1)
-        print(y)
-        # [[0 1 0 0]
-        #  [0 0 2 0]
-        #  [0 0 0 3]
-        #  [0 0 0 0]]
-
-        y = paddle.diag(x, padding_value=6)
-        print(y)
-        # [[1 6 6]
-        #  [6 2 6]
-        #  [6 6 3]]
-
+COPY-FROM: paddle.diag:code-example-1
 
 代码示例 2
 :::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([[1, 2, 3], [4, 5, 6]])
-        y = paddle.diag(x)
-        print(y)
-        # [1 5]
-
-        y = paddle.diag(x, offset=1)
-        print(y)
-        # [2 6]
-
-        y = paddle.diag(x, offset=-1)
-        print(y)
-        # [4]
+COPY-FROM: paddle.diag:code-example-2
