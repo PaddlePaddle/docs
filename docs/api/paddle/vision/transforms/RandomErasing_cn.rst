@@ -31,12 +31,4 @@ RandomErasing
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    fake_img = paddle.randn((3, 10, 10)).astype(paddle.float32)
-    transform = paddle.vision.transforms.RandomErasing()
-    result = transform(fake_img)
-
-    print(result)
+COPY-FROM: paddle.vision.transforms.RandomErasing

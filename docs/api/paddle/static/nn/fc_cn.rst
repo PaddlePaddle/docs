@@ -87,34 +87,4 @@ Tensor，形状为 :math:`[batch\_size, *, size]`，数据类型与输入 Tensor
 代码示例
 :::::::::
 
-
-.. code-block:: python
-
-    import paddle
-    paddle.enable_static()
-
-    # When input is a single tensor
-    x = paddle.static.data(name="x", shape=[1, 2, 2], dtype="float32")
-    # x: [[[0.1 0.2]
-    #      [0.3 0.4]]]
-    out = paddle.static.nn.fc(
-        x=x,
-        size=1,
-        num_flatten_dims=2,
-        weight_attr=paddle.ParamAttr(initializer=paddle.nn.initializer.Constant(value=0.5)),
-        bias_attr=paddle.ParamAttr(initializer=paddle.nn.initializer.Constant(value=1.0)))
-    # out: [[[1.15]
-    #        [1.35]]]
-
-    # When input is multiple tensors
-    x0 = paddle.static.data(name="x0", shape=[1, 2, 2], dtype="float32")
-    # x0: [[[0.1 0.2]
-    #       [0.3 0.4]]]
-    x1 = paddle.static.data(name="x1", shape=[1, 1, 3], dtype="float32")
-    # x1: [[[0.1 0.2 0.3]]]
-    out = paddle.static.nn.fc(
-        x=[x0, x1],
-        size=2,
-        weight_attr=paddle.ParamAttr(initializer=paddle.nn.initializer.Constant(value=0.5)),
-        bias_attr=paddle.ParamAttr(initializer=paddle.nn.initializer.Constant(value=1.0)))
-    # out: [[1.8 1.8]]
+COPY-FROM: paddle.static.nn.fc

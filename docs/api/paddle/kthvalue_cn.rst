@@ -3,7 +3,7 @@
 kthvalue
 -------------------------------
 
-.. py:function:: paddle.kthvalue（x, k, axis=None, keepdim=False, name=None）
+.. py:function:: paddle.kthvalue(x, k, axis=None, keepdim=False, name=None)
 
 在指定的轴上查找第 k 小的元素和其对应所在的索引信息。
 
@@ -22,4 +22,4 @@ tuple（Tensor），返回第 k 小的元素和对应的索引信息。结果的
 代码示例
 :::::::::
 
-COPY-FROM: paddle.kthvalue（x,
+COPY-FROM: paddle.kthvalue

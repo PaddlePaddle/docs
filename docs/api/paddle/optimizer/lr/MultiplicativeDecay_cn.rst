@@ -35,25 +35,7 @@ MultiplicativeDecay
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    # train on default dynamic graph mode
-    linear = paddle.nn.Linear(10, 10)
-    scheduler = paddle.optimizer.lr.MultiplicativeDecay(learning_rate=0.5, lr_lambda=lambda x:0.95, verbose=True)
-    sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameters=linear.parameters())
-    for epoch in range(20):
-        for batch_id in range(2):
-            x = paddle.uniform([10, 10])
-            out = linear(x)
-            loss = paddle.mean(out)
-            loss.backward()
-            sgd.minimize(loss)
-            linear.clear_gradients()
-            scheduler.step()    # If you update learning rate each step
-      # scheduler.step()        # If you update learning rate each epoch
+COPY-FROM: paddle.optimizer.lr.MultiplicativeDecay
 
 方法
 ::::::::::::

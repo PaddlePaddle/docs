@@ -70,44 +70,4 @@ Tensor，输入 X 基于输入网格的双线性插值计算结果，维度为 :
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-    import numpy as np
-
-    # shape=[1, 1, 3, 3]
-    x = np.array([[[[-0.6,  0.8, -0.5],
-                    [-0.5,  0.2,  1.2],
-                    [ 1.4,  0.3, -0.2]]]]).astype("float64")
-
-    # grid shape = [1, 3, 4, 2]
-    grid = np.array(
-                  [[[[ 0.2,  0.3],
-                    [-0.4, -0.3],
-                    [-0.9,  0.3],
-                    [-0.9, -0.6]],
-                    [[ 0.4,  0.1],
-                    [ 0.9, -0.8],
-                    [ 0.4,  0.5],
-                    [ 0.5, -0.2]],
-                    [[ 0.1, -0.8],
-                    [-0.3, -1. ],
-                    [ 0.7,  0.4],
-                    [ 0.2,  0.8]]]]).astype("float64")
-
-
-    x = paddle.to_tensor(x)
-    grid = paddle.to_tensor(grid)
-    y_t = F.grid_sample(
-        x,
-        grid,
-        mode='bilinear',
-        padding_mode='border',
-        align_corners=True)
-    print(y_t)
-
-    # output shape = [1, 1, 3, 4]
-    # [[[[ 0.34   0.016  0.086 -0.448]
-    #    [ 0.55  -0.076  0.35   0.59 ]
-    #    [ 0.596  0.38   0.52   0.24 ]]]]
+COPY-FROM: paddle.nn.functional.grid_sample

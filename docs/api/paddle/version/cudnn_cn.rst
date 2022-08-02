@@ -16,9 +16,4 @@ cudnn
 代码示例：
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    paddle.version.cudnn()
-    # '7.6.5'
+COPY-FROM: paddle.version.cudnn

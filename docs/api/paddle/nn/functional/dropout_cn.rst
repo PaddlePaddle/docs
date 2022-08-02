@@ -113,21 +113,4 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x = np.array([[1,2,3], [4,5,6]]).astype('float32')
-    x = paddle.to_tensor(x)
-    y_train = paddle.nn.functional.dropout(x, 0.5)
-    y_test = paddle.nn.functional.dropout(x, 0.5, training=False) #test
-    y_0 = paddle.nn.functional.dropout(x, axis=0)
-    y_1 = paddle.nn.functional.dropout(x, axis=1)
-    y_01 = paddle.nn.functional.dropout(x, axis=[0,1])
-    print(x)
-    print(y_train)
-    print(y_test)
-    print(y_0)
-    print(y_1)
-    print(y_01)
+COPY-FROM: paddle.nn.functional.dropout

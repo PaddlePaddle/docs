@@ -34,10 +34,4 @@ round
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([1.2, -0.9, 3.4, 0.9], dtype='float32')
-    result = paddle.round(x)
-    print(result) # result=[1., -1., 3., 1.]
+COPY-FROM: paddle.round

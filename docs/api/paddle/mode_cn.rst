@@ -3,7 +3,7 @@
 mode
 -------------------------------
 
-.. py:function:: paddle.mode（x, axis=-1, keepdim=False,  name=None):
+.. py:function:: paddle.mode(x, axis=-1, keepdim=False,  name=None):
 
 沿着可选的 ``axis`` 查找对应轴上的众数和结果所在的索引信息。
 
@@ -22,4 +22,4 @@ tuple（Tensor），返回检索到的众数结果和对应索引信息。结果
 :::::::::
 
 
-COPY-FROM: paddle.mode（x,
+COPY-FROM: paddle.mode

@@ -26,15 +26,4 @@ roi_pool
 代码示例
 :::::::::
 
-..  code-block:: python
-
-    import paddle
-    from paddle.vision.ops import roi_pool
-
-    data = paddle.rand([1, 256, 32, 32])
-    boxes = paddle.rand([3, 4])
-    boxes[:, 2] += boxes[:, 0] + 3
-    boxes[:, 3] += boxes[:, 1] + 4
-    boxes_num = paddle.to_tensor([3]).astype('int32')
-    pool_out = roi_pool(data, boxes, boxes_num=boxes_num, output_size=3)
-    assert pool_out.shape == [3, 256, 3, 3], ''
+COPY-FROM: paddle.vision.ops.roi_pool

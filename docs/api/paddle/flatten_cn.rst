@@ -54,17 +54,4 @@ flatten
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    image_shape=(2, 3, 4, 4)
-    x = paddle.arange(end=image_shape[0] * image_shape[1] * image_shape[2] * image_shape[3])
-    img = paddle.reshape(x, image_shape) / 100
-
-    out = paddle.flatten(img, start_axis=1, stop_axis=2)
-    # out shape is [2, 12, 4]
-
-    # 在动态图模式下，输出 out 与输入 img 共享数据
-    img[0, 0, 0, 0] = -1
-    print(out[0, 0, 0]) # [-1]
+COPY-FROM: paddle.flatten

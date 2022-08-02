@@ -96,26 +96,4 @@ softmax
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-    import numpy as np
-
-    x = np.array([[[2.0, 3.0, 4.0, 5.0],
-                    [3.0, 4.0, 5.0, 6.0],
-                    [7.0, 8.0, 8.0, 9.0]],
-                    [[1.0, 2.0, 3.0, 4.0],
-                    [5.0, 6.0, 7.0, 8.0],
-                    [6.0, 7.0, 8.0, 9.0]]], 'float32')
-    x = paddle.to_tensor(x)
-    out1 = F.softmax(x)
-    out2 = F.softmax(x, dtype='float64')
-    # out1's data type is float32; out2's data type is float64
-    # out1 and out2's value is as follows:
-    # [[[0.0320586 , 0.08714432, 0.23688282, 0.64391426],
-    #   [0.0320586 , 0.08714432, 0.23688282, 0.64391426],
-    #   [0.07232949, 0.19661193, 0.19661193, 0.53444665]],
-    # [[0.0320586 , 0.08714432, 0.23688282, 0.64391426],
-    #   [0.0320586 , 0.08714432, 0.23688282, 0.64391426],
-    #   [0.0320586 , 0.08714432, 0.23688282, 0.64391426]]]
+COPY-FROM: paddle.nn.functional.softmax

@@ -51,14 +51,4 @@ Tensor，转换后的 one_hot Tensor，数据类型为 float32。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    label = paddle.to_tensor([1, 1, 3, 0], dtype='int64')
-    # label.shape = [4]
-    one_hot_label = paddle.nn.functional.one_hot(label, num_classes=4)
-    # one_hot_label.shape = [4, 4]
-    # one_hot_label = [[0., 1., 0., 0.],
-    #                  [0., 1., 0., 0.],
-    #                  [0., 0., 0., 1.],
-    #                  [1., 0., 0., 0.]]
+COPY-FROM: paddle.nn.functional.one_hot
