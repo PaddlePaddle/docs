@@ -46,5 +46,4 @@ Tensor，进行 Multiplex 运算后的输出 Tensor。
 代码示例
 ::::::::::::
 
-
-COPY-FROM: paddle.multiplex:code-example1
+COPY-FROM: paddle.multiplex

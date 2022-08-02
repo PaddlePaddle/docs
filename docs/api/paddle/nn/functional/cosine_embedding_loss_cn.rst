@@ -38,4 +38,5 @@ cosine_embedding_loss
 
 代码示例
 :::::::::
-COPY-FROM: paddle.nn.functional.cosine_embedding_loss:code-example1
+
+COPY-FROM: paddle.nn.functional.cosine_embedding_loss

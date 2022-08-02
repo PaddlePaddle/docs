@@ -18,4 +18,5 @@ Python float 数，推荐的增益值。
 
 代码示例
 :::::::::
-COPY-FROM: paddle.nn.initializer.calculate_gain:code-example1
+
+COPY-FROM: paddle.nn.initializer.calculate_gain

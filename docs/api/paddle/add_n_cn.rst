@@ -53,4 +53,5 @@ Tensor，输入 ``inputs`` 求和后的结果，shape 和数据类型与 ``input
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.add_n:code-example1
+
+COPY-FROM: paddle.add_n

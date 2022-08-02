@@ -34,4 +34,5 @@ heaviside
 
 代码示例
 ::::::::::
-COPY-FROM: paddle.heaviside:heaviside-example
+
+COPY-FROM: paddle.heaviside

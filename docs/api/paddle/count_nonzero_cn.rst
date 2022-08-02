@@ -21,4 +21,5 @@ count_nonzero
 
 代码示例
 ::::::::::
-COPY-FROM: paddle.count_nonzero:count_nonzero-example
+
+COPY-FROM: paddle.count_nonzero

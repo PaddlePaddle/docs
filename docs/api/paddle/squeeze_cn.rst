@@ -56,4 +56,5 @@ squeeze
 
 代码示例
 :::::::::
-COPY-FROM: paddle.squeeze:code-example1
+
+COPY-FROM: paddle.squeeze

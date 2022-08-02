@@ -20,4 +20,5 @@ nanmedian
 
 代码示例
 ::::::::::
-COPY-FROM: paddle.nanmedian:nanmedian-example
+
+COPY-FROM: paddle.nanmedian

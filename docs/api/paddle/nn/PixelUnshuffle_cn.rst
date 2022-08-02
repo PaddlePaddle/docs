@@ -25,4 +25,5 @@ PixelUnshuffle
 
 代码示例
 :::::::::
-COPY-FROM: paddle.nn.PixelUnshuffle:PixelUnshuffle-example
+
+COPY-FROM: paddle.nn.PixelUnshuffle

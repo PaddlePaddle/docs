@@ -70,4 +70,5 @@ crop
 
 代码示例
 :::::::::
-COPY-FROM: paddle.crop:code-example1
+
+COPY-FROM: paddle.crop

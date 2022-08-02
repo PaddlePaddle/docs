@@ -25,4 +25,5 @@ PSRoIPool
 
 代码示例
 :::::::::
-COPY-FROM: paddle.vision.ops.PSRoIPool:code-example1
+
+COPY-FROM: paddle.vision.ops.PSRoIPool

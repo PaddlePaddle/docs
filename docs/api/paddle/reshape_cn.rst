@@ -39,5 +39,4 @@ reshape
 代码示例
 ::::::::::::
 
-
-COPY-FROM: paddle.reshape:code-example1
+COPY-FROM: paddle.reshape

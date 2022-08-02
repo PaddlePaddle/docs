@@ -22,4 +22,5 @@ argmin
 
 示例代码
 ::::::::
-COPY-FROM: paddle.argmin:code-example1
+
+COPY-FROM: paddle.argmin

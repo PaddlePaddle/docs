@@ -28,4 +28,5 @@ XavierNormal
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.nn.initializer.XavierNormal:initializer_XavierNormal-example
+
+COPY-FROM: paddle.nn.initializer.XavierNormal

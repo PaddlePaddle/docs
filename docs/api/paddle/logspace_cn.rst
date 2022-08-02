@@ -28,4 +28,5 @@ logspace
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.logspace:logspace-example
+
+COPY-FROM: paddle.logspace

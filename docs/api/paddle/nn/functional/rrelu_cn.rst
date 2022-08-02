@@ -50,4 +50,5 @@ rrelu 激活函数，应用随机纠正线性单元对神经元激活，参考�
 
 代码示例
 :::::::::
-COPY-FROM: paddle.nn.functional.rrelu:rrelu-example
+
+COPY-FROM: paddle.nn.functional.rrelu

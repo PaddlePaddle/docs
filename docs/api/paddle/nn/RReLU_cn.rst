@@ -48,4 +48,5 @@ RReLU 激活层，应用随机纠正线性单元对神经元激活，参考论�
 
 代码示例
 :::::::::
-COPY-FROM: paddle.nn.RRelu:RRelu-example
+
+COPY-FROM: paddle.nn.RRelu

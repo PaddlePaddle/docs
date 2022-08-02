@@ -25,4 +25,4 @@ full
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.full:code-example1
+COPY-FROM: paddle.full

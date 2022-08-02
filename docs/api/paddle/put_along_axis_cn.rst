@@ -23,5 +23,4 @@ put_along_axis
 代码示例
 :::::::::
 
-
-COPY-FROM: paddle.put_along_axis:code-example1
+COPY-FROM: paddle.put_along_axis

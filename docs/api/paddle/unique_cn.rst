@@ -29,4 +29,5 @@ unique
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.unique:code-example1
+
+COPY-FROM: paddle.unique

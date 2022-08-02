@@ -26,4 +26,5 @@ RoI Align 是在指定输入的感兴趣区域上执行双线性插值以获得�
 
 代码示例
 :::::::::
-COPY-FROM: paddle.vision.ops.roi_align:code-example1
+
+COPY-FROM: paddle.vision.ops.roi_align

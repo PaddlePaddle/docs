@@ -25,4 +25,5 @@ Tensor，形状为(num_boxes, channels, pooled_h, pooled_w)。
 
 代码示例
 :::::::::
-COPY-FROM: paddle.vision.ops.RoIAlign:code-example1
+
+COPY-FROM: paddle.vision.ops.RoIAlign

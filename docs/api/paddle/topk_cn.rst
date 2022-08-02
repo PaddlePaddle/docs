@@ -24,4 +24,5 @@ tuple(Tensor)， 返回 topk 的结果和结果的索引信息。结果的数据
 
 代码示例
 :::::::::
-COPY-FROM: paddle.topk:code-example1
+
+COPY-FROM: paddle.topk

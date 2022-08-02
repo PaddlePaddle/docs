@@ -26,4 +26,4 @@ Tensor，二维矩阵的下三角矩阵行坐标和列坐标。数据类型和�
 代码示例
 :::::::::
 
-COPY-FROM: paddle.tril_indices:tril_indices-example
+COPY-FROM: paddle.tril_indices

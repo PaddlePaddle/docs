@@ -21,4 +21,5 @@ Uniform
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.nn.initializer.Uniform:initializer_Uniform-example
+
+COPY-FROM: paddle.nn.initializer.Uniform

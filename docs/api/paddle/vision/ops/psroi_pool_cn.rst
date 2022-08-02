@@ -25,4 +25,5 @@ PSROIPooling 由 R-FCN 提出。更多详细信息，请参阅 https://arxiv.org
 
 代码示例
 :::::::::
-COPY-FROM: paddle.vision.ops.psroi_pool:code-example1
+
+COPY-FROM: paddle.vision.ops.psroi_pool

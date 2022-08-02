@@ -28,4 +28,4 @@ set_config
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.incubate.autotune.set_config:auto-tuning
+COPY-FROM: paddle.incubate.autotune.set_config
