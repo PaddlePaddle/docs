@@ -1,4 +1,120 @@
 
+# 2.3.1 Release Note
+
+## 1. 重要更新
+
+- 2.3.1 版本是在 2.3 版本的基础上修复了已知问题，并且发布了支持 CUDA 11.6 的安装包。
+
+## 2. 训练框架（含分布式）
+
+### （1）功能优化
+
+#### API
+
+- 修改`paddle.nn.initializer.KaimingUniform`和`paddle.nn.initializer.KaimingNormal` 两种初始化方式，使其支持多种类型的激活函数。([#43721](https://github.com/PaddlePaddle/Paddle/pull/43721), [#43827](https://github.com/PaddlePaddle/Paddle/pull/43827))
+- 优化 `paddle.io.DataLoader` 的数据预读取功能，使其支持设置了 `prefetch_factor` 设定的预读取数据的缓存数量，避免在读取大块数据时出现 IO 阻塞。([#43674](https://github.com/PaddlePaddle/Paddle/pull/43674) )
+
+#### 新动态图执行机制
+
+- 修改新动态图 API 逻辑中 optional 类型 Tensor 的初始化方法，防止被提前析构导致数据异常。([#42561](https://github.com/PaddlePaddle/Paddle/pull/42561))
+
+#### 全新静态图执行器
+
+- 延迟初始化执行器中的线程池，避免只执行一轮的 `program`（如 `save、load、startup_program`等）创建线程池。([#43768](https://github.com/PaddlePaddle/Paddle/pull/43768))
+
+#### 混合精度训练
+
+- 设置 `paddle.nn.Layer` 中 `set_state_dict`中禁用 `state_dict` hook。([#43407](https://github.com/PaddlePaddle/Paddle/pull/43407))
+
+#### 分布式训练
+
+- 使 `paddle.incubate.nn.functional.fused_attention`和 `paddle.incubate.nn.functional.fused_feedforward`支持张量模型并行。([#43505](https://github.com/PaddlePaddle/Paddle/pull/43505))
+
+#### 其他
+
+- 调整框架算子内核打印字符串的格式，便于进行自动化拆分解析。([#42931](https://github.com/PaddlePaddle/Paddle/pull/42931))
+- 更新模型量化 API，支持`rounding to nearest ties to even`的四舍五入方式，支持量化取值范围 [-128, 127]。([#43829](https://github.com/PaddlePaddle/Paddle/pull/43829))
+- 量化感知训练适配支持 AMP 混合精度训练。([#43689](https://github.com/PaddlePaddle/Paddle/pull/43689))
+- 量化感知训练在启动时新增 `progress bar`，便于查看量化初始化进度，统计 out_threshold 时跳过 scale op，加速初始化过程。([#43454](https://github.com/PaddlePaddle/Paddle/pull/43454))
+- 动态图量化训练支持 `conv` 和 `bn` 融合，静态图离线量化支持设置 `skip_tensor_list` 来跳过某些层不做量化。([#43301](https://github.com/PaddlePaddle/Paddle/pull/43301))
+
+### （2）性能优化
+
+- 优化`paddle.incubate.nn.functional.fused_attention`和`paddle.incubate.nn.functional.fused_feedforward`算子，增加`add_residual`属性，用以控制最后一步是否进行加`residual`操作，CAE 模型性能提升 7.7%。([#43719](https://github.com/PaddlePaddle/Paddle/pull/43719))
+- 优化 `linspace` 算子，将 `start`、`stop`、`num`三个输入 Tensor 初始化在 CPU 上，避免在算子中进行 GPU -> CPU 拷贝，SOLOv2 模型性能提升6%。([#43746](https://github.com/PaddlePaddle/Paddle/pull/43746))
+
+### （3）问题修复
+
+#### API
+
+- 修复 `paddle.io.DataLoader`在 `return_list=True` 时因多线程冲突小概率报错问题。([#43691](https://github.com/PaddlePaddle/Paddle/pull/43691))
+- 修复 `paddle.nn.Layer`的参数存在 `None`类型参数时 `to`方法报 NoneType 不存在 device 属性的错误。([#43597](https://github.com/PaddlePaddle/Paddle/pull/43597))
+- 修复 cumsum op 在某些 `shape`下计算结果出错的问题。 ([#42500](https://github.com/PaddlePaddle/Paddle/pull/42500), [#43777](https://github.com/PaddlePaddle/Paddle/pull/43777))
+- 修复静态图下 `Tensor.__getitem__`在使用 `bool`索引时组网阶段输出结果维度为 0 的问题。 ([#43246](https://github.com/PaddlePaddle/Paddle/pull/43246))
+- 修复 `paddle.slice` 和 `paddle.strided_slice` 处理参数为负数时出现异常的问题。([#43432](https://github.com/PaddlePaddle/Paddle/pull/43432))
+- 修复 set_value op 在处理切片 `step`为负数时赋值结果异常的问题。 ([#43694](https://github.com/PaddlePaddle/Paddle/pull/43694))
+- 修复 C++ 端 `copy`接口不能在多卡设备间拷贝的问题。([#43728](https://github.com/PaddlePaddle/Paddle/pull/43728))
+- 修改 `paddle.incubate.nn.functional.fused_attention`和 `paddle.incubate.nn.functional.fused_feedforward` 中属性命名引发的推理时的问题。([#43505](https://github.com/PaddlePaddle/Paddle/pull/43505))
+- 修复 ConditionalBlockGrad op 处理不需要 `grad`的 Tensor 时异常的问题。([#43034](https://github.com/PaddlePaddle/Paddle/pull/43034))
+- 解决 C++ 的 einsum op 反向速度优化引起的显存增加问题，并将反向优化默认打开。([#43397](https://github.com/PaddlePaddle/Paddle/pull/43397))
+- 修复单卡下 `paddle.io.DataLoader`多进程数据读取在固定随机种子时数据无法固定的问题。([#43702](https://github.com/PaddlePaddle/Paddle/pull/43702))
+- 修复 softmax op 在 Tensor 元素超过 2G 时，触发 CUDNN_STATUS_NOT_SUPPORT 的错误。([#43719](https://github.com/PaddlePaddle/Paddle/pull/43719))
+- 修复 trace op `Event` 字符串在不同算子无区分，导致性能分析不便利的问题。([#42789](https://github.com/PaddlePaddle/Paddle/pull/42789))
+
+#### 其他
+
+- 修复动转静多次 deepcopy 并保存导致的显存溢出问题。([#43141](https://github.com/PaddlePaddle/Paddle/pull/43141))
+- 修复自定义算子中使用的 PlaceType 类型升级引入的 device id 在多卡场景中出错的问题。([#43830](https://github.com/PaddlePaddle/Paddle/pull/43830))
+- 优化 `paddle.profiler.Profiler` timeline 可视化逻辑，将在 python 脚本中自定义的事件从 C++ 折叠层显示移动至 python 折叠层显示。([#42790](https://github.com/PaddlePaddle/Paddle/pull/42790))
+
+## 3. 部署方向（Paddle Inference）
+
+### （1）新增特性
+
+#### 新增功能
+
+- CPU 上 ONNX Runtime 后端新增 PaddleSlim 量化模型支持。 ([#43774](https://github.com/PaddlePaddle/Paddle/pull/43774), [#43796](https://github.com/PaddlePaddle/Paddle/pull/43796))
+
+### （2）底层优化
+
+#### CPU性能优化
+
+- EnableMkldnn 配置中移除 `gpu_cpu_reshape2_matmul_fuse_pass`，修复 ResNet50 性能下降的问题。 ([#43750](https://github.com/PaddlePaddle/Paddle/pull/43750))
+
+#### GPU 性能优化
+
+- 添加 `bilinear_interp_v2` TensorRT convert 支持。 ([#43618](https://github.com/PaddlePaddle/Paddle/pull/43618))
+- 添加 `matmul_scale_fuse_pass`、`multihead_matmul_fuse_pass_v3`到 GPU pass，并添加单测。([#43765](https://github.com/PaddlePaddle/Paddle/pull/43765))
+- 添加 GPU handle 延迟初始化支持。 ([#43661](https://github.com/PaddlePaddle/Paddle/pull/43661))
+
+### （3）问题修复
+
+#### 框架及API修复
+
+- 修复联编 Paddle-Lite XPU 时的编译报错问题。([#43178](https://github.com/PaddlePaddle/Paddle/pull/43178))
+- 修复 ERNIE 3.0 pass误触发的问题。([#43948](https://github.com/PaddlePaddle/Paddle/pull/43948))
+- 修复 multihead op 中 int8 量化属性读不到的问题。([#43020](https://github.com/PaddlePaddle/Paddle/pull/43020))
+
+#### 后端能力修复
+
+- 修复 MKLDNN 中 elementwise_mul 和 matmul 两个 op 在运行量化推理过程中崩溃的问题。 ([#43725](https://github.com/PaddlePaddle/Paddle/pull/43725))
+- 修复同一模型在推理时 TensorRT 子图序列化文件反复生成的问题。([#42945](https://github.com/PaddlePaddle/Paddle/pull/43945), [#42633](https://github.com/PaddlePaddle/Paddle/pull/42633))
+- 修复 ONNX Runtime 后端与外部使用的 protobuf 冲突问题。([#43159](https://github.com/PaddlePaddle/Paddle/pull/43159), [#43742](https://github.com/PaddlePaddle/Paddle/pull/43742))
+- 修复 python 预测库 ONNX Runtime 后端在多输入情况下推理报错问题。 ([#43621](https://github.com/PaddlePaddle/Paddle/pull/43621))
+
+## 4. 环境适配
+
+### 编译安装
+
+- 完成对 CUDA 11.6 的验证和适配，并在官网发布 CUDA 11.6 的安装包。([#43935](https://github.com/PaddlePaddle/Paddle/pull/43935), [#44005](https://github.com/PaddlePaddle/Paddle/pull/44005))
+- 修复在 Windows 上使用 CUDA 11.6 编译时的 cub 报错问题。([#43935](https://github.com/PaddlePaddle/Paddle/pull/43935), [#44005](https://github.com/PaddlePaddle/Paddle/pull/44005))
+- 修复 elementwise、reduce op 编译时间较长的问题。([#43202](https://github.com/PaddlePaddle/Paddle/pull/43202), [#42779](https://github.com/PaddlePaddle/Paddle/pull/42779), [#43205](https://github.com/PaddlePaddle/Paddle/pull/43205))
+
+### 新硬件适配
+
+- 寒武纪 MLU 支持飞桨 Profiler。([#42115](https://github.com/PaddlePaddle/Paddle/pull/42115))
+- GraphCore IPU 支持显示编译进度。([#42078](https://github.com/PaddlePaddle/Paddle/pull/42078))
+
 # 2.3.0 Release Note
 
 ## 1. 重要更新

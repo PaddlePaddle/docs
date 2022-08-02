@@ -50,7 +50,7 @@ PaddleSlim是飞桨深度学习模型压缩工具，Paddle Inference可联动Pad
 
 ### 支持X2Paddle转换得到的模型
 
-除支持飞桨训练的模型外，也支持用 X2Paddle 工具从第三方框架（比如 TensorFlow、Pytorch 或者 Caffe 等）产出的模型。
+除支持飞桨训练的模型外，也支持用 X2Paddle 工具从第三方框架（比如 TensorFlow、PyTorch 或者 Caffe 等）产出的模型。
 
 ## 多场景适配
 
@@ -60,7 +60,7 @@ PaddleSlim是飞桨深度学习模型压缩工具，Paddle Inference可联动Pad
 
 ### 主流、国产操作系统全适配
 
-适配主流操作系统Linux、Windows、MacOS，同时适配麒麟OS、统信OS、普华OS、中科方德等国产操作系统
+适配主流操作系统Linux、Windows、macOS，同时适配麒麟OS、统信OS、普华OS、中科方德等国产操作系统
 
 ### 多语言接口支持
 
@@ -68,7 +68,7 @@ PaddleSlim是飞桨深度学习模型压缩工具，Paddle Inference可联动Pad
 
 ## 交流与反馈
 
-- 欢迎您通过Github Issues来提交问题、报告与建议
+- 欢迎您通过 GitHub Issues 来提交问题、报告与建议
 - 微信公众号：飞桨PaddlePaddle
 - 微信群: 部署交流群
 

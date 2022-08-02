@@ -211,9 +211,9 @@ if _in_legacy_dygraph():
 
 `_C_ops` 是 `Python/paddle/_C_ops.py`，其中从 paddle 编译得到的二进制文件中 import 了 c++ 算子对应的 Python C 函数。
 
-- 在新动态图模式下，Python C 的调用函数名为`final_state_` + 算子名，然后将参数按照Yaml中定义的输入参数顺序传入即可。
+- 在新动态图模式下，Python C 的调用函数名为`final_state_` + 算子名，然后将参数按照 YAML 中定义的输入参数顺序传入即可。
 - 在旧动态图模式下，Python C 函数名和算子名一致。如希望调用名为 `trace` 的算子，则使用 `_C_ops.trace`, 然后传入参数。其中参数分为两个部分：
-  - 对于 `Tensor` 类型的输入，直接按照Yaml中的定义，按位置传参的方式传入
+  - 对于 `Tensor` 类型的输入，直接按照 YAML 中的定义，按位置传参的方式传入
   - 对于非 `Tensor` 类型的输入，则以 `attribute 名，attribute 值` 交替的方式传入，这类似 Python 中的按关键字传参的方式。然后返回调用函数得到的结果。
 
 
@@ -239,8 +239,8 @@ helper.append_op(
     outputs={'Out': [out]})
 return out
 ```
-注意：在`append_op`添加的`inputs`和`outputs`项，其中的key值（静态图中变量名）一般为Yaml中定义的输入输出Tensor变量名的首字母大写格式，静态图中的变量名可以在`paddle/fluid/operators/generated_op.cc`（需要先开发C++算子并完成编译）文件内对应算子的`OpMaker`中找到；`attrs`项的变量名与Yaml中相同。
-这里`trace`中的'Input'没有与Yaml配置的中'x'直接对应是由于为了兼容旧算子体系下`Trace`算子的`OpMaker`实现而做了额外的映射，新增算子时无需考虑这种情况。
+注意：在`append_op`添加的`inputs`和`outputs`项，其中的key值（静态图中变量名）一般为 YAML 中定义的输入输出Tensor变量名的首字母大写格式，静态图中的变量名可以在`paddle/fluid/operators/generated_op.cc`（需要先开发C++算子并完成编译）文件内对应算子的`OpMaker`中找到；`attrs`项的变量名与 YAML 中相同。
+这里`trace`中的'Input'没有与 YAML 配置的中'x'直接对应是由于为了兼容旧算子体系下`Trace`算子的`OpMaker`实现而做了额外的映射，新增算子时无需考虑这种情况。
 
 
 ## 开发单元测试代码

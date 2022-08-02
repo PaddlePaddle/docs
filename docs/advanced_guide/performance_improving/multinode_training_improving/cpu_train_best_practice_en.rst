@@ -94,8 +94,8 @@ First, we need to introduce relevant libraries into the code:
     import paddle.fluid.incubate.fleet.base.role_maker as role_maker
     from paddle.fluid.incubate.fleet.parameter_server.distribute_transpiler.distributed_strategy_factory import DistributedStrategyFactory
 
-At present, there are four kinds of training strategies: synchronous training, asynchronous, half asynchronous training and GEO training. For details of different strategies, you can view the design documents:
-https://github.com/PaddlePaddle/Fleet/blob/develop/markdown_doc/transpiler/transpiler_cpu.md
+At present, there are four kinds of training strategies: synchronous training, asynchronous, half asynchronous training and GEO training.
+
 
 The default configuration of the above policy is introduced by the following code:
 
