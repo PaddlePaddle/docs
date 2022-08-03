@@ -6,7 +6,7 @@
 
 - `代码风格规范 <../style_guides_cn.html>`_ : Python 和 C++ 代码开发需遵循的风格规范。
 - `代码风格检查指南 <../git_guides/codestyle_check_guide_cn.html>`_ : Paddle 进行代码风格检查相关工具和说明。
-- `Paddle CI 测试详解 <./paddle_ci_manual_cn.html>`_ : Paddle CI 测试流水线中的测试项的详细介绍，以及 CI 失败的处理方法。
+- `Paddle CI 测试详解 <../git_guides/paddle_ci_manual_cn.html>`_ : Paddle CI 测试流水线中的测试项的详细介绍，以及 CI 失败的处理方法。
 
 
 
@@ -15,4 +15,4 @@
 
     ../style_guides_cn.md
     ../git_guides/codestyle_check_guide_cn.md
-    paddle_ci_manual_cn.md
+    ../git_guides/paddle_ci_manual_cn.md
