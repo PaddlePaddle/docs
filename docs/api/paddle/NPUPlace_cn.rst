@@ -3,7 +3,7 @@
 NPUPlace
 -------------------------------
 
-.. py:function:: paddle.NPUPlace
+.. py:class:: paddle.NPUPlace
 
 ``NPUPlace`` 是一个设备描述符，表示一个分配或将要分配 ``Tensor`` 或 ``LoDTensor`` 的 NPU 设备。
 每个 ``NPUPlace`` 有一个 ``dev_id`` （设备id）来表明当前的 ``NPUPlace`` 所代表的显卡编号，编号从 0 开始。
