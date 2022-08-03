@@ -5,7 +5,7 @@ smooth_l1_loss
 
 .. py:function:: paddle.nn.functional.smooth_l1_loss(input, label, reduction='mean', delta=1.0, name=None)
 
-该OP计算输入input和标签label间的SmoothL1损失，如果逐个元素的绝对误差低于1，则创建使用平方项的条件
+计算输入input和标签label间的SmoothL1损失，如果逐个元素的绝对误差低于1，则创建使用平方项的条件
 ，否则为L1损失。在某些情况下，它可以防止爆炸梯度，也称为Huber损失，该损失函数的数学计算公式如下：
 
     .. math::
