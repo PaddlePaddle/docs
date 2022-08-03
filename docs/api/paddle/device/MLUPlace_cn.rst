@@ -3,7 +3,7 @@
 MLUPlace
 -------------------------------
 
-.. py:class:: paddle.device.MLUPlace
+.. py:function:: paddle.device.MLUPlace(dev_id)
 
 
 
