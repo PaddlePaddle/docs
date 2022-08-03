@@ -17,4 +17,5 @@ NPUPlace
 
 代码示例
 ::::::::::::
+
 COPY-FROM: paddle.NPUPlace
