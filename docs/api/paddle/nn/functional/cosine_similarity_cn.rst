@@ -5,15 +5,15 @@ cosine_similarity
 
 .. py:function:: paddle.nn.functional.cosine_similarity(x1, x2, axis=1, eps=1e-8)
 
-该OP用于计算x1与x2沿axis维度的余弦相似度。
+用于计算x1与x2沿axis维度的余弦相似度。
 
 参数
 ::::::::::::
 
   - **x1** (Tensor) - Tensor，数据类型支持float32, float64。
   - **x2** (Tensor) - Tensor，数据类型支持float32, float64。
-  - **axis** (int) - 指定计算的维度，会在该维度上计算余弦相似度，默认值为1。
-  - **eps** (float) - 很小的值，防止计算时分母为0，默认值为1e-8。
+  - **axis** (int，可选) - 指定计算的维度，会在该维度上计算余弦相似度，默认值为1。
+  - **eps** (float，可选) - 很小的值，防止计算时分母为0，默认值为1e-8。
   
   
 返回
