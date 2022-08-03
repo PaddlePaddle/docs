@@ -1,6 +1,6 @@
 .. _cn_api_tensor_cn_nanmean:
 
-paddle.nanmean
+nanmean
 -------------------------------
 
 .. py:function:: paddle.nanmean(x, axis=None, keepdim=False, name=None)
