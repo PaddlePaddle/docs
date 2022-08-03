@@ -14,7 +14,7 @@
 
 通常你需要提前阅读本章节，以及通用的 [规范和参考信息](style_guide_and_references/index_cn.html)，然后根据贡献内容阅读对应模块的指南，比如需要贡献一个新的 API，则需阅读 [新增 API 贡献指南](api_contributing_guides/api_contributing_guides_cn.html)，后续飞桨也将提供其他的如功能增强、性能优化等相关贡献指南，当然也欢迎开发者贡献这些指南。
 
-> 说明：文档的贡献流程与代码有所不同，可直接阅读 [文档贡献指南](docs_contributing_guides_cn.html) 即可。
+> 说明：文档的贡献流程与代码有所不同，直接阅读 [文档贡献指南](docs_contributing_guides_cn.html) 即可。
 
 ### 1.3 签署 CLA
 
@@ -32,7 +32,7 @@
 
 （2）将远程仓库 Clone 到本地
 
-```bash
+```
 # Clone Paddle 仓库到本地并进入 Paddle 文件夹
 ➜  git clone https://github.com/USERNAME/Paddle
 ➜  cd Paddle
@@ -70,6 +70,8 @@ Paddle 使用的 pre-commit 是 1.10.4 版本，首先安装并在本地仓库�
 （1）提交设计文档（可选）
 
 针对比较复杂/重要的变更，如新增 API、算子性能优化等，建议你先向 [PaddlePaddle/community](https://github.com/PaddlePaddle/community) 中的 `rfcs`对应的目录，按 [模板](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md) 提交 RFC，待社区讨论通过后，再进行下一步的功能开发。
+
+> 说明：如果仅有设计思路或不确定是否可以贡献，可以先向 Paddle 仓库提 issue，提前和飞桨团队沟通大致内容。[飞桨社区活动总览](https://github.com/PaddlePaddle/Paddle/issues/42410) 以及 [PFCC-Roadmap 总览](https://github.com/PaddlePaddle/Paddle/issues/42571) 中的任务是已经经过确认的，可以直接提交设计文档。
 
 （2）开发代码
 
@@ -238,13 +240,14 @@ upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 - 测试项后出现绿色的对勾，表示本条测试项通过。
 - 测试项后出现红色的叉号，并且后面显示 `Required`，则表示本条测试项不通过（不显示 `Required` 的任务未通过，也不影响代码合入，可不处理）。在这种情况下，请点击 `detail` 查看报错详情，优先自行解决报错问题，无法解决的情况，以评论的方式添加到评论区中，飞桨团队相关人员将和你一起查看。
 
-CI 测试通过后，接下来请等待 Code Review，一般会在三个工作日内回复。如果有需要修改的地方，参照前面提交代码的步骤更新即可。
+> 注意：`PR-CI-APPROVAL` 和 `PR-CI-Static-Check` 这两个 CI 测试项可能需要飞桨相关开发者 approve 才能通过，除此之外请确保其他每一项都通过，如果没有通过，请通过报错信息自查代码。
+
+CI 测试通过后，接下来请等待 Code Review，一般会在三个工作日内回复。但是若 CI 测试不通过，评审人一般不做评审。
 
 ### 2.5 回复 Code Review 意见并修改代码
 
 收到 Code Review 意见后，请参考 [Code Review注意事项](#CodeReview) 回复评审人的意见，并根据意见修改代码。
 
-> 注意：请确保 CI 测试中每一项都通过，如果没过，说明提交的代码存在问题，评审人一般不做评审。
 
 ### 2.6 PR Merge 后本次贡献结束
 
@@ -253,7 +256,7 @@ CI 测试通过后，接下来请等待 Code Review，一般会在三个工作�
 - 如果测试通过，恭喜你贡献流程已经全部完成；
 - 如果测试不通过，我们会在 GitHub 发 Issue 联系你进行代码修复，请及时关注 GitHub 上的最新动态。
 
-> 说明：代码合入 Paddle develop 分支后的第二天，即可从飞桨官网下载 develop 版本的编译安装包体验此功能。飞桨后续也会将此功能纳入正式版的发版计划。
+> 说明：代码合入 Paddle develop 分支后的第二天，即可从飞桨官网下载 develop 版本的编译安装包体验此功能。通过测试的代码会被纳入正式版的发版计划。
 
 ### 2.7 下一次贡献
 
