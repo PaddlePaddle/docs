@@ -3,7 +3,7 @@
 IPUPlace
 -------------------------------
 
-.. py:function:: paddle.device.IPUPlace
+.. py:class:: paddle.device.IPUPlace
 
 
 
