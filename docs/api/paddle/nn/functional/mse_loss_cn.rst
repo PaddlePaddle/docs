@@ -30,9 +30,11 @@ mse_loss
     - **input** (Tensor) - 预测值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor。数据类型为float32或float64。
     - **label** (Tensor) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维Tensor。数据类型为float32或float64。
     - **reduction** (string, optional) - 输出的归约方法可以是'none'、'mean'或'sum'。
-        如果 :attr:`reduction` 是 ``'mean'``，则返回减少的平均损失。
-        如果 :attr:`reduction` 是 ``'sum'``，则返回减少的总损失。
-        如果 :attr: `reduction` 为 `'none'`，返回未减少的损失。默认为 `'mean'`。
+    
+        - 如果 :attr:`reduction` 是 ``'mean'``，则返回减少的平均损失。
+        - 如果 :attr:`reduction` 是 ``'sum'``，则返回减少的总损失。
+        - 如果 :attr: `reduction` 为 `'none'`，返回未减少的损失。默认为 `'mean'`。
+        
     - **name** (str, optional) - 操作的名称（可选，默认为None）。 更多信息请参考:ref:`api_guide_Name`。
 
 返回
