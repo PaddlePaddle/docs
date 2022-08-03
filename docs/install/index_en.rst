@@ -214,5 +214,5 @@ The second way to install: compile and install with source code
 	pip/frompip_en.rst
 	compile/fromsource_en.rst
 	install_Kunlun_en.md
-	install_NGC_PaddlePaddle_eg.rst
+	install_NGC_PaddlePaddle_en.rst
 	Tables_en.md
