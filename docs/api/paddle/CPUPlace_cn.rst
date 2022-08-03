@@ -3,7 +3,7 @@
 CPUPlace
 -------------------------------
 
-.. py:class:: paddle.CPUPlace
+.. py:function:: paddle.CPUPlace
 
 
 
