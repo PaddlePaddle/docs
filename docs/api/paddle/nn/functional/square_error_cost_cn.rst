@@ -6,7 +6,7 @@ square_error_cost
 .. py:function:: paddle.nn.functional.square_error_cost(input,label)
 
 
-该 OP 用于计算预测值和目标值的方差估计。
+用于计算预测值和目标值的方差估计。
 
 对于预测值 input 和目标值 label，公式为：
 
