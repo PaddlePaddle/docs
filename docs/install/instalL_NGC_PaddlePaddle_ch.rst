@@ -2,7 +2,11 @@
 
 ================================
 <<<<<<< HEAD
+<<<<<<< HEAD
 NGC 飞桨容器安装指南
+=======
+NGC飞桨容器安装指南
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
 =======
 NGC飞桨容器安装指南
 >>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
@@ -13,7 +17,11 @@ NGC飞桨容器安装指南
 ----------------------
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 NGC 飞桨容器针对 NVIDIA GPU 加速进行了优化，并包含一组经过验证的库，可启用和优化 NVIDIA GPU 性能。此容器还可能包含对 PaddlePaddle 源代码的修改，以最大限度地提高性能和兼容性。此容器还包含用于加速 ETL (`DALI <https://developer.nvidia.com/dali/>`_, `RAPIDS <https://rapids.ai/>`_),、训练(`cuDNN <https://developer.nvidia.com/cudnn>`_, `NCCL <https://developer.nvidia.com/nccl>`_)和推理(`TensorRT <https://docs.nvidia.com/deeplearning/frameworks/tf-trt-user-guide/index.html>`_)工作负载的软件。
+=======
+NGC飞桨容器针对 NVIDIA GPU 加速进行了优化，并包含一组经过验证的库，可启用和优化NVIDIA GPU 性能。此容器还可能包含对 PaddlePaddle 源代码的修改，以最大限度地提高性能和兼容性。此容器还包含用于加速 ETL (`DALI <https://developer.nvidia.com/dali/>`_, `RAPIDS <https://rapids.ai/>`_),、训练(`cuDNN <https://developer.nvidia.com/cudnn>`_, `NCCL <https://developer.nvidia.com/nccl>`_)和推理(`TensorRT <https://docs.nvidia.com/deeplearning/frameworks/tf-trt-user-guide/index.html>`_)工作负载的软件。
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
 =======
 NGC飞桨容器针对 NVIDIA GPU 加速进行了优化，并包含一组经过验证的库，可启用和优化NVIDIA GPU 性能。此容器还可能包含对 PaddlePaddle 源代码的修改，以最大限度地提高性能和兼容性。此容器还包含用于加速 ETL (`DALI <https://developer.nvidia.com/dali/>`_, `RAPIDS <https://rapids.ai/>`_),、训练(`cuDNN <https://developer.nvidia.com/cudnn>`_, `NCCL <https://developer.nvidia.com/nccl>`_)和推理(`TensorRT <https://docs.nvidia.com/deeplearning/frameworks/tf-trt-user-guide/index.html>`_)工作负载的软件。
 >>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
@@ -23,7 +31,11 @@ NGC飞桨容器针对 NVIDIA GPU 加速进行了优化，并包含一组经过�
 ----------------------
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 使用 NGC 飞桨容器需要主机系统安装以下内容：
+=======
+使用 NGC飞桨容器需要主机系统安装以下内容：
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
 =======
 使用 NGC飞桨容器需要主机系统安装以下内容：
 >>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
@@ -95,7 +107,11 @@ PaddlePaddle 通过将其作为 Python 模块导入来运行：
 ----------------------
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 有关内容的完整列表，请参阅 `NGC 飞桨容器发行说明 <https://docs.nvidia.com/deeplearning/frameworks/paddle-paddle-release-notes/index.html>`_。
+=======
+有关内容的完整列表，请参阅 `NGC飞桨容器发行说明 <https://docs.nvidia.com/deeplearning/frameworks/paddle-paddle-release-notes/index.html>`_。
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
 =======
 有关内容的完整列表，请参阅 `NGC飞桨容器发行说明 <https://docs.nvidia.com/deeplearning/frameworks/paddle-paddle-release-notes/index.html>`_。
 >>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
@@ -121,6 +137,7 @@ NVIDIA PaddlePaddle 容器针对与 NVIDIA GPU 一起使用进行了优化，并
 
 --------------------------------------------
 <<<<<<< HEAD
+<<<<<<< HEAD
   NGC 飞桨容器软件许可协议
 --------------------------------------------
 
@@ -129,6 +146,11 @@ NVIDIA PaddlePaddle 容器针对与 NVIDIA GPU 一起使用进行了优化，并
   NGC飞桨容器软件许可协议
 --------------------------------------------
 
+=======
+  NGC飞桨容器软件许可协议
+--------------------------------------------
+
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
 当您下载或使用NGC飞桨容器时，即表示您已经同意并接受此 `最终用户许可协议 <https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license>`_ 的条款及其对应约束。
 
 

@@ -17,17 +17,23 @@ The PaddlePaddle NGC Container is optimized for GPU acceleration, and contains a
 Using the PaddlePaddle NGC Container requires the host system to have the following installed:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 * `Docker Engine <https://docs.docker.com/get-docker/>`_
 
 * `NVIDIA GPU Drivers <https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html>`_
 
 * `NVIDIA Container Toolkit <https://github.com/NVIDIA/nvidia-docker>`_
 =======
+=======
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
 *	`Docker Engine <https://docs.docker.com/get-docker/>`_
 
 *	`NVIDIA GPU Drivers <https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html>`_
 
 *	`NVIDIA Container Toolkit <https://github.com/NVIDIA/nvidia-docker>`_
+<<<<<<< HEAD
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
+=======
 >>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
 
 For supported versions, see the `Framework Containers Support Matrix <https://docs.nvidia.com/deeplearning/frameworks/support-matrix/index.html>`_ and the `NVIDIA Container Toolkit Documentation <https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html>`_ .
@@ -59,7 +65,11 @@ If you have Docker 19.02 or earlier, a typical command to launch the container i
 Where:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 * 22.07 is the container version.
+=======
+*	22.07 is the container version.
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
 =======
 *	22.07 is the container version.
 >>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
@@ -109,6 +119,7 @@ The NVIDIA PaddlePaddle Container is optimized for use with NVIDIA GPUs, and con
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 * `CUDA <https://developer.nvidia.com/cuda-toolkit>`_
 
 * `cuBLAS <https://developer.nvidia.com/cublas>`_
@@ -123,6 +134,8 @@ The NVIDIA PaddlePaddle Container is optimized for use with NVIDIA GPUs, and con
 
 * `PaddlePaddle with TensorRT (Paddle-TRT) <https://github.com/PaddlePaddle/Paddle-Inference-Demo/blob/master/docs/optimize/paddle_trt_en.rst>`_
 =======
+=======
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
 *	`CUDA <https://developer.nvidia.com/cuda-toolkit>`_
 
 *	`cuBLAS <https://developer.nvidia.com/cublas>`_
@@ -136,6 +149,9 @@ The NVIDIA PaddlePaddle Container is optimized for use with NVIDIA GPUs, and con
 *	`TensorRT <https://developer.nvidia.com/tensorrt>`__
 
 *	`PaddlePaddle with TensorRT (Paddle-TRT) <https://github.com/PaddlePaddle/Paddle-Inference-Demo/blob/master/docs/optimize/paddle_trt_en.rst>`_
+<<<<<<< HEAD
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
+=======
 >>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
 
 The software stack in this container has been validated for compatibility, and does not require any additional installation or compilation from the end user. This container can help accelerate your deep learning workflow from end to end.
