@@ -16,7 +16,7 @@ unique
     - **return_counts** (bool，可选) - 如果为 True，则还返回每个独有元素在输入 Tensor 中的个数。
     - **axis** (int，可选) - 指定选取独有元素的轴。默认值为 None，将输入平铺为 1-D 的 Tensor 后再选取独有元素。
     - **dtype** (np.dtype|str，可选) - 用于设置 ``index`` ， ``inverse`` 或者 ``counts`` 的类型，应该为 int32 或者 int64。默认：int64。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 返回

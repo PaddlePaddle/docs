@@ -131,7 +131,7 @@ TensorFlow 的文档规划，比较直接地匹配了本文所介绍的分类标
     - Masking and padding wiht Keras
     - Writing your own callbacks
     - Transfer learning and fine-tuning
-    - Traing Keras models with TensorFlow Cloud
+    - Training Keras models with TensorFlow Cloud
 - TensorFlow in depth
     - Tensor slicing
     - Advanced autodiff
