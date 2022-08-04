@@ -32,7 +32,7 @@ triplet_margin_with_distance_loss
     - **margin** (float，可选) - 手动指定间距，默认为1。
     - **swap** (bool，可选) - 默认为 False。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``， ``'mean'``， ``'sum'``。默认为 ``'mean'``，计算 Loss 的均值；设置为 ``'sum'`` 时，计算 Loss 的总和；设置为 ``'none'`` 时，则返回原始 Loss。
-    - **name** (str，可选) - 操作的名称（可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::
