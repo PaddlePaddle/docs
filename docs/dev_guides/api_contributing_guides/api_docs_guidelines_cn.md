@@ -81,7 +81,7 @@
 
     .. py:function:: paddle.add(x, y, name=None)
 
-    该OP是逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。计算公式为：
+    逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。计算公式为：
 
     .. math::
         out = x + y
@@ -93,9 +93,9 @@
 
     参数
     :::::::::
-        - x (Tensor) - 输入的Tensor，数据类型为：float32、float64、int32、int64。
-        - y (Tensor) - 输入的Tensor，数据类型为：float32、float64、int32、int64。
-        - name (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+        - **x** (Tensor) - 输入的Tensor，数据类型为：float32、float64、int32、int64。
+        - **y** (Tensor) - 输入的Tensor，数据类型为：float32、float64、int32、int64。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     ..
       说明：API参数可优先copy常用文档写法中的参数，参数的描述要准确，还要重点描述参数的功能作用及使用场景。
 
@@ -159,7 +159,7 @@ API功能描述部分只需要尽可能简单的描述出API的功能作用即�
 
  - 功能作用：描述该API文档的功能作用；**由于用户没有对应的背景**，所以需要补充必要的细节，比如是不是element_wise的，如 ``paddle.add``：
 
-        该OP是逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。
+        逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。
 
  - 计算公式：给出该API的计算公式，由于公式中每个变量都对应API的参数，所以不需要做额外的说明，如 ``paddle.add``:
 
@@ -182,7 +182,7 @@ API功能描述部分只需要尽可能简单的描述出API的功能作用即�
 中文：
 
     .. note::
-        ``paddle.add`` 遵守broadcasting,如您想了解更多, 请参见 :ref:`cn_user_guide_broadcasting` .
+        ``paddle.add`` 遵守broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
 英文：
 
     **Note**:
@@ -191,7 +191,7 @@ API功能描述部分只需要尽可能简单的描述出API的功能作用即�
 
 **总结：paddle.add的描述如下**
 
-    该OP是逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。计算公式为：
+    逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。计算公式为：
 
     .. math::
         out = x + y
