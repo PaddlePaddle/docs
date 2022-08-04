@@ -1,20 +1,20 @@
 ..  _install_NGC_PaddlePaddle_container introduction:
 
 ================================
-NGC PaddlePaddle 容器安装指南
+NGC 飞桨容器安装指南
 ================================
 
 ----------------------
   整体介绍
 ----------------------
 
-NGC PaddlePaddle 容器针对 NVIDIA GPU 加速进行了优化，并包含一组经过验证的库，可启用和优化 NVIDIA GPU 性能。此容器还可能包含对 PaddlePaddle 源代码的修改，以最大限度地提高性能和兼容性。此容器还包含用于加速 ETL (`DALI <https://developer.nvidia.com/dali/>`_, `RAPIDS <https://rapids.ai/>`_),、训练(`cuDNN <https://developer.nvidia.com/cudnn>`_, `NCCL <https://developer.nvidia.com/nccl>`_)和推理(`TensorRT <https://docs.nvidia.com/deeplearning/frameworks/tf-trt-user-guide/index.html>`_)工作负载的软件。
+NGC 飞桨容器针对 NVIDIA GPU 加速进行了优化，并包含一组经过验证的库，可启用和优化 NVIDIA GPU 性能。此容器还可能包含对 PaddlePaddle 源代码的修改，以最大限度地提高性能和兼容性。此容器还包含用于加速 ETL (`DALI <https://developer.nvidia.com/dali/>`_, `RAPIDS <https://rapids.ai/>`_),、训练(`cuDNN <https://developer.nvidia.com/cudnn>`_, `NCCL <https://developer.nvidia.com/nccl>`_)和推理(`TensorRT <https://docs.nvidia.com/deeplearning/frameworks/tf-trt-user-guide/index.html>`_)工作负载的软件。
 
 ----------------------
   环境准备
 ----------------------
 
-使用 NGC PaddlePaddle 容器需要主机系统安装以下内容：
+使用 NGC 飞桨容器需要主机系统安装以下内容：
 
 * `Docker 引擎 <https://docs.docker.com/get-docker/>`_
 
@@ -82,7 +82,7 @@ PaddlePaddle 通过将其作为 Python 模块导入来运行：
   NGC 容器介绍
 ----------------------
 
-有关内容的完整列表，请参阅 `NVIDIA PaddlePaddle 容器发行说明 <https://docs.nvidia.com/deeplearning/frameworks/paddle-paddle-release-notes/index.html>`_。
+有关内容的完整列表，请参阅 `NGC 飞桨容器发行说明 <https://docs.nvidia.com/deeplearning/frameworks/paddle-paddle-release-notes/index.html>`_。
 此容器映像包含 NVIDIA 版 PaddlePaddle 的完整源代码，位于 /opt/paddle/paddle。它是作为系统 Python 模块预构建和安装的。
 NVIDIA PaddlePaddle 容器针对与 NVIDIA GPU 一起使用进行了优化，并包含以下用于 GPU 加速的软件：
 
@@ -104,7 +104,7 @@ NVIDIA PaddlePaddle 容器针对与 NVIDIA GPU 一起使用进行了优化，并
 
 
 --------------------------------------------
-  NGC PaddlePaddle 容器软件许可协议
+  NGC 飞桨容器软件许可协议
 --------------------------------------------
 
-当您下载或使用 NGC PaddlePaddle 容器时，即表示您已经同意并接受此 `最终用户许可协议 <https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license>`_ 的条款及其对应约束。
+当您下载或使用 NGC 飞桨容器时，即表示您已经同意并接受此 `最终用户许可协议 <https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license>`_ 的条款及其对应约束。
