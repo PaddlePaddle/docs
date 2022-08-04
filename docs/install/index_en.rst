@@ -211,8 +211,16 @@ The second way to install: compile and install with source code
 ..  toctree::
     :hidden:
 
+<<<<<<< HEAD
     pip/frompip_en.rst
     compile/fromsource_en.rst
     install_Kunlun_en.md
     install_NGC_PaddlePaddle_en.rst
     Tables_en.md
+=======
+	pip/frompip_en.rst
+	compile/fromsource_en.rst
+	install_Kunlun_en.md
+	install_NGC_PaddlePaddle_en.rst
+	Tables_en.md
+>>>>>>> 87e7cf49 (Update install_NGC_PaddlePaddle_ch.rst and add  install_NGC_PaddlePaddle_en.rst  (#5105))
