@@ -468,6 +468,14 @@ broadcast_to(shape, name=None)
 
 请参考 :ref:`cn_api_tensor_expand` ，API功能相同。
 
+bucketize(sorted_sequence, out_int32=False, right=False, name=None)
+:::::::::
+返回: 根据给定的一维Tensor ``sorted_sequence`` ，输入 ``x`` 对应的桶索引。
+
+返回类型：Tensor。
+
+请参考 :ref:`cn_api_tensor_bucketize`
+
 cast(dtype)
 :::::::::
 
