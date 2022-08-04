@@ -27,8 +27,8 @@ Normal
 参数
 ::::::::::::
 
-    - **loc** (int|float|list|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为int、float、list、numpy.ndarray或Tensor。
-    - **scale** (int|float|list|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为int、float、list、numpy.ndarray或Tensor。
+    - **loc** (int|float|list|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为 int、float、list、numpy.ndarray 或 Tensor。
+    - **scale** (int|float|list|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为 int、float、list、numpy.ndarray 或 Tensor。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
@@ -47,12 +47,12 @@ sample(shape, seed=0)
 
 **参数**
 
-    - **shape** (list) - 1维列表，指定生成样本的维度。数据类型为int32。
+    - **shape** (list) - 1 维列表，指定生成样本的维度。数据类型为 int32。
     - **seed** (int) - 长整型数。
 
 **返回**
 
-Tensor，预先设计好维度的Tensor，数据类型为float32。
+Tensor，预先设计好维度的 Tensor，数据类型为 float32。
 
 entropy()
 '''''''''
@@ -71,7 +71,7 @@ entropy()
 
 **返回**
 
-Tensor，正态分布的信息熵，数据类型为float32。
+Tensor，正态分布的信息熵，数据类型为 float32。
 
 log_prob(value)
 '''''''''
@@ -80,11 +80,11 @@ log_prob(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为float32或float64。
+    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
 
 **返回**
 
-Tensor，对数概率，数据类型与value相同。
+Tensor，对数概率，数据类型与 value 相同。
 
 probs(value)
 '''''''''
@@ -93,16 +93,16 @@ probs(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为float32或float64。
+    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
 
 **返回**
 
-Tensor，概率，数据类型与value相同。
+Tensor，概率，数据类型与 value 相同。
 
 kl_divergence(other)
 '''''''''
 
-两个正态分布之间的KL散度。
+两个正态分布之间的 KL 散度。
 
 数学公式：
 
@@ -125,8 +125,8 @@ kl_divergence(other)
 
 **参数**
 
-    - **other** (Normal) - Normal的实例。
+    - **other** (Normal) - Normal 的实例。
 
 **返回**
 
-Tensor，两个正态分布之间的KL散度，数据类型为float32。
+Tensor，两个正态分布之间的 KL 散度，数据类型为 float32。

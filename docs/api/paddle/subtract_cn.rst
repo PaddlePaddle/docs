@@ -14,7 +14,7 @@ subtract
         out = x - y
 
 .. note::
-   ``paddle.subtract`` 遵守broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+   ``paddle.subtract`` 遵守 broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
 
 参数
 :::::::::

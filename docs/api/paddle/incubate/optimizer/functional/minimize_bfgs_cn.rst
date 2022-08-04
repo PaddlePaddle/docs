@@ -12,7 +12,7 @@ minimize_bfgs
     x_{k+1} = x_{k} + H_k \nabla{f_k}
 
 
-如果 :math:`H_k` 是函数 :math:`f` 在 :math:`x_k`的逆海森矩阵，此时就是牛顿法。如果 :math:`H_k` 满足对称性和正定性，用来作为逆海森矩阵的近似，则为高斯-牛顿法。在实际算法中，近似逆海森矩阵是通过整个或部分搜索历史的梯度计算得到，前者对应BFGS，后者对应于L-BFGS。
+如果 :math:`H_k` 是函数 :math:`f` 在 :math:`x_k`的逆海森矩阵，此时就是牛顿法。如果 :math:`H_k` 满足对称性和正定性，用来作为逆海森矩阵的近似，则为高斯-牛顿法。在实际算法中，近似逆海森矩阵是通过整个或部分搜索历史的梯度计算得到，前者对应 BFGS，后者对应于 L-BFGS。
 
 
 参考
@@ -21,16 +21,16 @@ minimize_bfgs
 
 参数
 :::::::::
-    - **objective_func** (callable) - 待优化的目标函数，接受1维 Tensor 并返回一个标量。
+    - **objective_func** (callable) - 待优化的目标函数，接受 1 维 Tensor 并返回一个标量。
     - **initial_position** (Tensor) - 迭代的初始位置，与 ``objective_func`` 的输入形状相同。
-    - **max_iters** (int，可选) - BFGS迭代的最大次数。默认值：50。
+    - **max_iters** (int，可选) - BFGS 迭代的最大次数。默认值：50。
     - **tolerance_grad** (float，可选) - 当梯度的范数小于该值时，终止迭代。当前使用正无穷范数。默认值：1e-7。
-    - **tolerance_change** (float，可选) - 当函数值/x值/其他参数 两次迭代的改变量小于该值时，终止迭代。默认值：1e-9。
-    - **initial_inverse_hessian_estimate** (Tensor，可选) - 函数在初始位置时的近似逆海森矩阵，必须满足对称性和正定性。当为None时，将使用N阶单位矩阵，其中N为 ``initial_position`` 的size。默认值：None。
+    - **tolerance_change** (float，可选) - 当函数值/x 值/其他参数 两次迭代的改变量小于该值时，终止迭代。默认值：1e-9。
+    - **initial_inverse_hessian_estimate** (Tensor，可选) - 函数在初始位置时的近似逆海森矩阵，必须满足对称性和正定性。当为 None 时，将使用 N 阶单位矩阵，其中 N 为 ``initial_position`` 的 size。默认值：None。
     - **line_search_fn** (str，可选) - 指定要使用的线搜索方法，目前只支持值为'strong wolfe'方法，未来将支持'Hager Zhang'方法。默认值：'strong wolfe'。
     - **max_line_search_iters** (int，可选) - 线搜索的最大迭代次数。默认值：50。
-    - **initial_step_length** (float，可选) - 线搜索中第一次迭代时的步长，不同的初始步长可能会产生不同的优化结果。对于高斯牛顿类方法初始的试验步长应该总是1。默认值：1.0。
-    - **dtype** ('float32' | 'float64'，可选) - 在算法中使用的数据类型，输入参数的数据类型必须与dtype保持一致。默认值：'float32'。
+    - **initial_step_length** (float，可选) - 线搜索中第一次迭代时的步长，不同的初始步长可能会产生不同的优化结果。对于高斯牛顿类方法初始的试验步长应该总是 1。默认值：1.0。
+    - **dtype** ('float32' | 'float64'，可选) - 在算法中使用的数据类型，输入参数的数据类型必须与 dtype 保持一致。默认值：'float32'。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

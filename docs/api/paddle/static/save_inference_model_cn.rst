@@ -23,7 +23,7 @@ save_inference_model
 
       - **program** - 自定义一个 program，默认使用 default_main_program。
 
-      - **clip_extra** - 如果你想为每个算子附加额外的信息，则设置为True。
+      - **clip_extra** - 如果你想为每个算子附加额外的信息，则设置为 True。
 
 
 返回

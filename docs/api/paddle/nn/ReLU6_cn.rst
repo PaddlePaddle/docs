@@ -4,7 +4,7 @@ ReLU6
 -------------------------------
 .. py:class:: paddle.nn.ReLU6(name=None)
 
-ReLU6激活层
+ReLU6 激活层
 
 .. math::
 
@@ -18,8 +18,8 @@ ReLU6激活层
 
 形状：
 ::::::::::
-    - input：任意形状的Tensor。
-    - output：和input具有相同形状的Tensor。
+    - input：任意形状的 Tensor。
+    - output：和 input 具有相同形状的 Tensor。
 
 代码示例
 :::::::::

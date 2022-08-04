@@ -21,9 +21,9 @@ prod
 返回
 ::::::::::::
 输入 Tensor 在指定 axis 上的累乘的结果。
-    
-    
+
+
 代码示例
 ::::::::::::
-    
+
 COPY-FROM: paddle.prod

@@ -19,10 +19,10 @@ normalize
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入可以是N-D Tensor。数据类型为：float32、float64。
+    - **x** (Tensor) - 输入可以是 N-D Tensor。数据类型为：float32、float64。
     - **p** (float|int，可选) - 范数公式中的指数值。默认值：2
-    - **axis** (int，可选）- 要进行归一化的轴。如果 ``x`` 是1-D Tensor，轴固定为0。如果 `axis < 0`，轴为 `x.ndim + axis`。-1表示最后一维。
-    - **epsilon** (float，可选) - 添加到分母上的值以防止分母除0。默认值为1e-12。
+    - **axis** (int，可选）- 要进行归一化的轴。如果 ``x`` 是 1-D Tensor，轴固定为 0。如果 `axis < 0`，轴为 `x.ndim + axis`。-1 表示最后一维。
+    - **epsilon** (float，可选) - 添加到分母上的值以防止分母除 0。默认值为 1e-12。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

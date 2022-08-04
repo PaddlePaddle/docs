@@ -5,7 +5,7 @@ mish
 
 .. py:function:: paddle.nn.functional.mish(x, name=None)
 
-mish激活层。计算公式如下：
+mish 激活层。计算公式如下：
 
 .. math::
 

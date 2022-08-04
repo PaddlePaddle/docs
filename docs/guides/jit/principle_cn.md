@@ -1,6 +1,6 @@
 # 转换原理
 
-在飞桨框架内部，动转静模块在转换上主要包括对输入数据的 InputSpec 的处理，对函数调用的递归转写，对IfElse、For、While 控制语句的转写，以及 Layer 的 Parameters 和 Buffers 变量的转换。下面将介绍动转静模块的转换过程。
+在飞桨框架内部，动转静模块在转换上主要包括对输入数据的 InputSpec 的处理，对函数调用的递归转写，对 IfElse、For、While 控制语句的转写，以及 Layer 的 Parameters 和 Buffers 变量的转换。下面将介绍动转静模块的转换过程。
 
 ## 一、 概述
 
@@ -176,7 +176,7 @@ def add_two(x, y):
 + **并非**所有动态图中的 ``if/for/while`` 都会转写为 ``cond_op/while_op``
 + **只有**控制流的判断条件 **依赖了``Tensor``**（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
 
-这是因为模型代码中不依赖 Tensor 的 ``if/for/while`` 会正常按照 Python 原生的语法逻辑去执行；而依赖 Tensor 的 ``if/for/while`` 才会调用 [paddle.static.cond](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/cond_cn.html#cond) 和 [paddle.static.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/while_loop_cn.html#while-loop) 两个飞桨的控制流API。
+这是因为模型代码中不依赖 Tensor 的 ``if/for/while`` 会正常按照 Python 原生的语法逻辑去执行；而依赖 Tensor 的 ``if/for/while`` 才会调用 [paddle.static.cond](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/cond_cn.html#cond) 和 [paddle.static.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/while_loop_cn.html#while-loop) 两个飞桨的控制流 API。
 
 #### 3.2.1 IfElse
 
@@ -184,7 +184,7 @@ def add_two(x, y):
 
 **示例一：不依赖 Tensor 的控制流**
 
-如下代码样例中的 `if label is not None`, 此判断只依赖于 `label` 是否为 `None`（存在性），并不依赖 `label` 的Tensor值（数值性），因此属于**不依赖 Tensor 的控制流**。
+如下代码样例中的 `if label is not None`, 此判断只依赖于 `label` 是否为 `None`（存在性），并不依赖 `label` 的 Tensor 值（数值性），因此属于**不依赖 Tensor 的控制流**。
 
 ```python
 def not_depend_tensor_if(x, label=None):
@@ -216,7 +216,7 @@ def not_depend_tensor_if(x, label=None):
 
 **示例二：依赖 Tensor 的控制流**
 
-如下代码样例中的 `if paddle.mean(x) > 5`, 此判断直接依赖 `paddle.mean(x)` 返回的Tensor值（数值性），因此属于**依赖 Tensor 的控制流**。
+如下代码样例中的 `if paddle.mean(x) > 5`, 此判断直接依赖 `paddle.mean(x)` 返回的 Tensor 值（数值性），因此属于**依赖 Tensor 的控制流**。
 
 ```python
 def depend_tensor_if(x):
@@ -255,7 +255,7 @@ def depend_tensor_if(x):
  out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (out,))
   ^          ^                   ^             ^           ^        ^      ^      ^
   |          |                   |             |           |        |      |      |
- 输出   convert_ifelse          判断条件       true分支   false分支  分支输入 分支输入 输出
+ 输出   convert_ifelse          判断条件       true 分支   false 分支  分支输入 分支输入 输出
 ```
 
 
@@ -348,7 +348,7 @@ def depend_tensor_while(x):
 
 ## 四、 生成静态图的 Program 和 Parameters
 
-静态图模式下，神经网络会被描述为 Program 的数据结构，并对 Program 进行编译优化，再调用执行器获得计算结果。另外静态图的变量是 Variable 类型（动态图是 Tensor类型），因此要运行静态图模型，需要生成静态图的 Program 和 Parameters。
+静态图模式下，神经网络会被描述为 Program 的数据结构，并对 Program 进行编译优化，再调用执行器获得计算结果。另外静态图的变量是 Variable 类型（动态图是 Tensor 类型），因此要运行静态图模型，需要生成静态图的 Program 和 Parameters。
 
 ### 4.1 动态图 layer 生成 Program
 
@@ -397,7 +397,7 @@ class Linear(...):
         with param_guard(self._parameters), param_guard(self._buffers):
             # ... forward_pre_hook 逻辑
 
-            outputs = self.forward(*inputs, **kwargs) # 此处为forward函数
+            outputs = self.forward(*inputs, **kwargs) # 此处为 forward 函数
 
             # ... forward_post_hook 逻辑
 

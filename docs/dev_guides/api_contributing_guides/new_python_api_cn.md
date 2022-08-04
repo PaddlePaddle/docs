@@ -1,8 +1,8 @@
-# 飞桨API Python 端开发指南
+# 飞桨 API Python 端开发指南
 
 本文将介绍为 Paddle 开发新的 API 时需要在 Python 端完成的内容以及注意事项。
 
-## 开发 Python API代码
+## 开发 Python API 代码
 
 这分为两种情况，Paddle 的 API 包含需要开发 C++ 算子的和不需要开发 C++ 算子而仅使用现有 Python API 组合得到的两种，但两种情况下均有 Python 端的开发工作。
 
@@ -11,7 +11,7 @@
 
 ### 文件位置与 API 名称
 
-Python API 的文件位置遵循功能相似的放在一起的原则。大的功能分类可以参考 [API目录结构规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/api_design_guidelines_standard_cn.md#api目录结构规范)。
+Python API 的文件位置遵循功能相似的放在一起的原则。大的功能分类可以参考 [API 目录结构规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/api_design_guidelines_standard_cn.md#api 目录结构规范)。
 
 大部分常用的数组运算 API（在 numpy 中有功能相似的 `numpy.***` API ）放在 `paddle/tensor` 目录下。具体的功能细分如下：
 
@@ -43,20 +43,20 @@ Python API 的文件位置遵循功能相似的放在一起的原则。大的功
 - 函数主体代码：包括输入参数的检查、调用算子的执行逻辑等内容
 
 ![zeros_example](./images/zeros_python_api.png)
-<center>图1 Python API 代码样例</center>
+<center>图 1 Python API 代码样例</center>
 
 
 下面介绍飞桨 Python API 开发的一些惯例，以及用到的主要函数类的接口。
 
 这类的接口需要兼容动态图和静态图。在动态图下，函数会被多次执行；而在静态图下，函数仅在组网时被调用，真正被多次执行的是组网得到的结果。但 API 在动态图和静态图下的行为是保持一致的。
 
-关于 API 的命名，参数命名等的一般规范，可以参考 [飞桨API的设计和命名规范](api_design_guidelines_standard_cn.html#id2)。
+关于 API 的命名，参数命名等的一般规范，可以参考 [飞桨 API 的设计和命名规范](api_design_guidelines_standard_cn.html#id2)。
 
 接下来介绍 Python API 的函数主体代码开发的一些惯例，以及用到的主要函数类的接口。
 >注：因为飞桨框架同时支持动态图和静态图，因此通常情况下，飞桨原生算子 API 需要实现动态图分支和静态图分支，不同分支下的行为是保持一致的，并且对外统一成一个 API 接口。
 
 #### 代码示例一（组合其他 Python API ）
-如图 1 所示，zeros 函数是通过组合 fill_constant实现的，并且fill_constant 里已经处理了动态图和静态图的情况，所以直接调用即可。这就是组合其他 Python API 实现的例子。
+如图 1 所示，zeros 函数是通过组合 fill_constant 实现的，并且 fill_constant 里已经处理了动态图和静态图的情况，所以直接调用即可。这就是组合其他 Python API 实现的例子。
 ```Python
 def zeros(shape, dtype=None, name=None):
     # 为了突出重点，省略中间的文档和示例部分
@@ -107,7 +107,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 ```
 _C_ops 是 Python/paddle/_C_ops.py，其中从 paddle 编译得到的二进制文件中 import 了 C++ 算子对应的 Python C 函数。
 
-在动态图模式下，Python C 的调用函数名为final_state_ + 算子名，然后将参数按照 YAML 配置文件中定义的输入参数顺序传入即可。
+在动态图模式下，Python C 的调用函数名为 final_state_ + 算子名，然后将参数按照 YAML 配置文件中定义的输入参数顺序传入即可。
 
 > 注意：由于目前动态图正处在重构升级阶段，所以现有算子的代码会分别有新旧动态图两个代码分支，其中 `in_dygraph_mode()` 表示新动态图分支（默认），`_in_legacy_dygraph()`为旧动态图分支，**在新增算子时无需添加旧动态图分支代码**。
 
@@ -119,7 +119,7 @@ _C_ops 是 Python/paddle/_C_ops.py，其中从 paddle 编译得到的二进制�
     __check_input(input, offset, axis1, axis2)
 
     ## 构造输出，添加 OP，返回输出
-    # LayerHelper是一个用于创建 OP 输出变量、向program中添加 OP 的辅助工具类
+    # LayerHelper 是一个用于创建 OP 输出变量、向 program 中添加 OP 的辅助工具类
     helper = LayerHelper('trace', **locals())
     # 创建输出 Tensor
     out = helper.create_variable_for_type_inference(dtype=x.dtype)
@@ -207,7 +207,7 @@ from a import f # it's ok, too
 ```Python
 # Python/paddle/tensor/math.py
 def logsumexp(...):
-		...
+        ...
 
 # Python/paddle/tensor/__init__.py
 from .math import logsumexp
@@ -240,7 +240,7 @@ Tip: 当出现类似把一个元素放入一个集中管理的列表的操作时
 
 单元测试相关的开发规范可以参考
 
- [C++ 算子开发指南-添加单元测试](new_cpp_op_cn.html#tianjiadanyuanceshi) ，[Op开发手册(Operator Development Manual)](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index).
+ [C++ 算子开发指南-添加单元测试](new_cpp_op_cn.html#tianjiadanyuanceshi) ，[Op 开发手册(Operator Development Manual)](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index).
 
 在此不作展开，主要讲述 Python API 的单元测试。
 
@@ -333,7 +333,7 @@ Tip: 当出现类似把一个元素放入一个集中管理的列表的操作时
 
  编译方法请参见 [从源码编译](../../install/compile/fromsource.html) 章节，推荐使用 Docker 编译的方式。Docker 环境中已预装好编译 Paddle 需要的各种依赖，相较本机编译更便捷。
 
-> 注意：编译必须打开WITH_TESTING选项（`-DWITH_TESTING=ON`），以确保新增的单元测试文件（python/paddle/fluid/tests/unittests/ 目录下test_*.py文件）自动加入工程进行编译。
+> 注意：编译必须打开 WITH_TESTING 选项（`-DWITH_TESTING=ON`），以确保新增的单元测试文件（python/paddle/fluid/tests/unittests/ 目录下 test_*.py 文件）自动加入工程进行编译。
 运行单元测试需要在 `build` 目录下，以 `ctest ${test_name}` 的命令运行。其中 `test_name` 指的是所需运行测试 target 的名字，和上述添加的单元测试文件名字相同，但不带 `.py` 后缀。
 
 (2) 执行单元测试
@@ -385,8 +385,8 @@ paddle 编译过程中，对于 Python 代码的处理方式是，先把它们 c
 
 ## 参考资料
 
-1. [Op开发手册(Operator Development Manual)](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index)
-2. [飞桨API的设计和命名规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/api_design_guidelines_standard_cn.md#api目录结构规范)
-3. [新增API 测试及验收规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/api_accpetance_criteria_cn.md)
+1. [Op 开发手册(Operator Development Manual)](https://github.com/PaddlePaddle/Paddle/wiki/Operator-Development-Manual-Index)
+2. [飞桨 API 的设计和命名规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/api_design_guidelines_standard_cn.md#api 目录结构规范)
+3. [新增 API 测试及验收规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/api_accpetance_criteria_cn.md)
 4. [文档贡献指南](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/docs_contributing_guides_cn.html)
-5. [飞桨API文档书写规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/api_docs_guidelines_cn.md)
+5. [飞桨 API 文档书写规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/api_docs_guidelines_cn.md)

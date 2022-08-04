@@ -21,4 +21,3 @@ We introduce the transformation of dygraph to static graph in the following link
 
     grammar_list_en.md
     debugging_en.md
-

@@ -5,7 +5,7 @@ tanhshrink
 
 .. py:function:: paddle.nn.functional.tanhshrink(x, name=None)
 
-tanhshrink激活层
+tanhshrink 激活层
 
 .. math::
 

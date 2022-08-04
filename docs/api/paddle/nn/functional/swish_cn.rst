@@ -5,7 +5,7 @@ swish
 
 .. py:function:: paddle.nn.functional.swish(x, name=None)
 
-swish激活层。计算公式如下：
+swish 激活层。计算公式如下：
 
 .. math::
 

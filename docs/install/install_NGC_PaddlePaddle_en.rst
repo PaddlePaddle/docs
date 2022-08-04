@@ -16,11 +16,11 @@ The PaddlePaddle NGC Container is optimized for GPU acceleration, and contains a
 
 Using the PaddlePaddle NGC Container requires the host system to have the following installed:
 
-*	`Docker Engine <https://docs.docker.com/get-docker/>`_
+* `Docker Engine <https://docs.docker.com/get-docker/>`_
 
-*	`NVIDIA GPU Drivers <https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html>`_
+* `NVIDIA GPU Drivers <https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html>`_
 
-*	`NVIDIA Container Toolkit <https://github.com/NVIDIA/nvidia-docker>`_
+* `NVIDIA Container Toolkit <https://github.com/NVIDIA/nvidia-docker>`_
 
 For supported versions, see the `Framework Containers Support Matrix <https://docs.nvidia.com/deeplearning/frameworks/support-matrix/index.html>`_ and the `NVIDIA Container Toolkit Documentation <https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html>`_ .
 
@@ -50,7 +50,7 @@ If you have Docker 19.02 or earlier, a typical command to launch the container i
 
 Where:
 
-*	22.07 is the container version.
+* 22.07 is the container version.
 
 PaddlePaddle is run by importing it as a Python module:
 
@@ -96,19 +96,19 @@ This container image contains the complete source of the NVIDIA version of Paddl
 The NVIDIA PaddlePaddle Container is optimized for use with NVIDIA GPUs, and contains the following software for GPU acceleration:
 
 
-*	`CUDA <https://developer.nvidia.com/cuda-toolkit>`_
+* `CUDA <https://developer.nvidia.com/cuda-toolkit>`_
 
-*	`cuBLAS <https://developer.nvidia.com/cublas>`_
+* `cuBLAS <https://developer.nvidia.com/cublas>`_
 
-*	`NVIDIA cuDNN <https://developer.nvidia.com/cudnn>`_
+* `NVIDIA cuDNN <https://developer.nvidia.com/cudnn>`_
 
-*	`NVIDIA NCCL <https://developer.nvidia.com/nccl>`_ (optimized for `NVLink <http://www.nvidia.com/object/nvlink.html>`_ ) 
+* `NVIDIA NCCL <https://developer.nvidia.com/nccl>`_ (optimized for `NVLink <http://www.nvidia.com/object/nvlink.html>`_ )
 
-*	`NVIDIA Data Loading Library (DALI) <https://developer.nvidia.com/dali>`_
+* `NVIDIA Data Loading Library (DALI) <https://developer.nvidia.com/dali>`_
 
-*	`TensorRT <https://developer.nvidia.com/tensorrt>`__
+* `TensorRT <https://developer.nvidia.com/tensorrt>`__
 
-*	`PaddlePaddle with TensorRT (Paddle-TRT) <https://github.com/PaddlePaddle/Paddle-Inference-Demo/blob/master/docs/optimize/paddle_trt_en.rst>`_
+* `PaddlePaddle with TensorRT (Paddle-TRT) <https://github.com/PaddlePaddle/Paddle-Inference-Demo/blob/master/docs/optimize/paddle_trt_en.rst>`_
 
 The software stack in this container has been validated for compatibility, and does not require any additional installation or compilation from the end user. This container can help accelerate your deep learning workflow from end to end.
 

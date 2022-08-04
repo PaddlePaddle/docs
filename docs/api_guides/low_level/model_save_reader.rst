@@ -4,7 +4,7 @@
 模型保存与加载
 #########
 
-模型的保存与加载主要涉及到如下八个API：
+模型的保存与加载主要涉及到如下八个 API：
 :code:`fluid.io.save_vars`、:code:`fluid.io.save_params`、:code:`fluid.io.save_persistables`、:code:`fluid.io.save_inference_model`、:code:`fluid.io.load_vars`、:code:`fluid.io.load_params`、:code:`fluid.io.load_persistables` 和 :code:`fluid.io.load_inference_model`。
 
 变量、持久性变量和参数
@@ -12,7 +12,7 @@
 
 在 :code:`Paddle` 中，算子(:code:`Operator`)的每一个输入和输出都是一个变量（:code:`Variable`），而参数（:code:`Parameter`）是变量（:code:`Variable`）的子类。持久性变量（:code:`Persistables`）是一种在每次迭代结束后均不会被删除的变量。参数是一种持久性变量，其在每次迭代后都会被优化器（:ref:`api_guide_optimizer`）更新。训练神经网络本质上就是在更新参数。
 
-模型保存API介绍
+模型保存 API 介绍
 ====================
 
 - :code:`fluid.io.save_vars`：通过执行器（:ref:`api_guide_executor`）保存变量到指定的目录中。保存变量的方式有两种：
@@ -33,15 +33,15 @@
 
   API Reference 请参考 :ref:`cn_api_fluid_io_save_persistables`。
 
-- :code:`fluid.io.save_inference_model`：请参考  :ref:`api_guide_inference`。  
+- :code:`fluid.io.save_inference_model`：请参考  :ref:`api_guide_inference`。
 
-模型加载API介绍
+模型加载 API 介绍
 ====================
 
 - :code:`fluid.io.load_vars`：通过执行器（:code:`Executor`）加载指定目录中的变量。加载变量的方式有两种：
-  
+
   1）通过接口中的 :code:`vars` 指定需要加载的变量列表。
-  
+
   2）将一个已经存在的程序（:code:`Program`）赋值给接口中的 :code:`main_program`，然后这个程序中的所有变量都将被加载。
 
   第一种加载方式的优先级要高于第二种。

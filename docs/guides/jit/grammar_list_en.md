@@ -52,7 +52,7 @@ While In the dynamic diagram, the code is interpreted and executed line by line,
 
 However,  In the static graph, the control flow is realized through the `cond` operators. Each branch is represented by `true_fn` and `false_fn` respectively .  Under this circumstance, the `false_fn` will be executed to build the computation graph.
 
-When the condition variables in `If` are `Tensor`,  `if-else` will be transformed to a `cond` operators.  
+When the condition variables in `If` are `Tensor`,  `if-else` will be transformed to a `cond` operators.
 
 When the condition variables in `If` aren't `Tensor`,  `if-else` will be executed as a python `if-else` code.
 
@@ -117,7 +117,7 @@ The current dynamic-to-static supports adding break and continue statements in f
 ```python
 # break usage example :
 def break_usage(x):
-    tensor_idx = -1  
+    tensor_idx = -1
     for idx, val in enumerate(x) :
         if val == 2.0 :
             tensor_idx = idx

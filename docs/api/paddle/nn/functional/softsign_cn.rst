@@ -5,7 +5,7 @@ softsign
 
 .. py:function:: paddle.nn.functional.softsign(x, name=None)
 
-softsign激活层
+softsign 激活层
 
 .. math::
 

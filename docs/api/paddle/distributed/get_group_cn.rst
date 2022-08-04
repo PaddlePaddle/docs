@@ -18,4 +18,3 @@ Group 通信组实例
 代码示例
 ::::::::::::
 COPY-FROM: paddle.distributed.get_group
-

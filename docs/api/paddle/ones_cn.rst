@@ -23,4 +23,5 @@ Tensor，每个元素都是 1，形状为 ``shape``，数据类型为 ``dtype``�
 
 代码示例
 :::::::::
-COPY-FROM: paddle.ones:ones-example
+
+COPY-FROM: paddle.ones

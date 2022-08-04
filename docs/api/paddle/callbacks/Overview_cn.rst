@@ -3,17 +3,17 @@
 paddle.callbacks
 ---------------------
 
-paddle.callbacks 目录下包含飞桨框架支持的回调函数相关的API。具体如下：
+paddle.callbacks 目录下包含飞桨框架支持的回调函数相关的 API。具体如下：
 
--  :ref:`回调函数相关API <about_callbacks>`
+-  :ref:`回调函数相关 API <about_callbacks>`
 
 .. _about_callbacks:
 
-回调函数相关API
+回调函数相关 API
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
     :widths: 10, 30
 
     " :ref:`Callback <cn_api_paddle_callbacks_Callback>` ", "回调函数的基类，用于自定义回调函数"
