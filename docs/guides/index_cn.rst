@@ -11,7 +11,7 @@
 - `模型开发入门 <./beginner/index_cn.html>`_
 - `模型开发更多用法 <./advanced/index_cn.html>`_
 - `动态图转静态图 <./jit/index_cn.html>`_
-- `预测部署 <./infer/index_cn.html>`_ 
+- `预测部署 <./infer/index_cn.html>`_
 - `分布式训练 <./06_distributed_training/index_cn.html>`_
 - `性能调优 <./performance_improving/index_cn.html>`_
 - `模型迁移 <./model_convert/index_cn.html>`_

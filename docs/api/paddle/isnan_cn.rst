@@ -5,7 +5,7 @@ isnan
 
 .. py:function:: paddle.isnan(x, name=None)
 
-返回输入tensor的每一个值是否为 `+/-NaN` 。
+返回输入 tensor 的每一个值是否为 `+/-NaN` 。
 
 参数
 :::::::::
@@ -14,7 +14,7 @@ isnan
 
 返回
 :::::::::
-``Tensor``，每个元素是一个bool值，表示输入 `x` 的每个元素是否为 `+/-NaN` 。
+``Tensor``，每个元素是一个 bool 值，表示输入 `x` 的每个元素是否为 `+/-NaN` 。
 
 代码示例
 :::::::::

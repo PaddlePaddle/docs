@@ -46,7 +46,7 @@ class LoDTensorBlockingQueue {
 };
 
 class LoDTensorBlockingQueueHolder {
- public:  
+ public:
   // Call the constructor of `LoDTensorBlockingQueue` to create queue_
   // `InitOnce` can only called once, otherwise an exception would raise
   void InitOnce(size_t capacity, const std::vector<framework::DDim>& dims) {
@@ -125,6 +125,6 @@ def py_reader(capacity, shapes):
   out = create_var()
   create_py_reader_op_with_queue_name(
       inputs={'blocking_queue': queue_name},
-      outputs={'Out':[out]})  
+      outputs={'Out':[out]})
   return out, feed_queue
 ```

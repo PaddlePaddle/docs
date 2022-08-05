@@ -15,10 +15,10 @@ multiply
 .. math::
         Out = X \odot Y
 
-- :math:`X`：多维Tensor。
-- :math:`Y`：维度必须小于等于X维度的Tensor。
+- :math:`X`：多维 Tensor。
+- :math:`Y`：维度必须小于等于 X 维度的 Tensor。
 
-对于这个运算算子有2种情况：
+对于这个运算算子有 2 种情况：
 
         1. :math:`Y` 的 ``shape`` 与 :math:`X` 相同。
         2. :math:`Y` 的 ``shape`` 是 :math:`X` 的连续子序列。
@@ -34,7 +34,7 @@ multiply
 
 返回
 :::::::::
-   ``Tensor``，存储运算后的结果。如果x和y有不同的shape且是可以广播的，返回Tensor的shape是x和y经过广播后的shape。如果x和y有相同的shape，返回Tensor的shape与x，y相同。
+   ``Tensor``，存储运算后的结果。如果 x 和 y 有不同的 shape 且是可以广播的，返回 Tensor 的 shape 是 x 和 y 经过广播后的 shape。如果 x 和 y 有相同的 shape，返回 Tensor 的 shape 与 x，y 相同。
 
 
 代码示例

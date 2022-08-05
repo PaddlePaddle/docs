@@ -1,14 +1,14 @@
 # 运行时设备切换
 
-Paddle提供了[fluid.CUDAPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CUDAPlace_cn.html)以及[fluid.CPUPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CPUPlace_cn.html)用于指定运行时的设备。这两个接口用于指定全局的设备，从1.8版本开始，Paddle提供了[device_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/fluid_cn/device_guard_cn.html)接口，用于指定部分OP的运行设备，此教程会介绍device_guard的使用场景，以及如何使用该接口对模型进行优化。
+Paddle 提供了[fluid.CUDAPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CUDAPlace_cn.html)以及[fluid.CPUPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/fluid_cn/CPUPlace_cn.html)用于指定运行时的设备。这两个接口用于指定全局的设备，从 1.8 版本开始，Paddle 提供了[device_guard](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/fluid_cn/device_guard_cn.html)接口，用于指定部分 OP 的运行设备，此教程会介绍 device_guard 的使用场景，以及如何使用该接口对模型进行优化。
 
-如果使用了`fluid.CUDAPlace`设置了全局的执行设备，框架将尽可能地将OP设置在GPU上执行，因此有可能会遇到显存不够的情况。`device_guard`可以用于设置OP的执行设备，如果将部分层设置在CPU上运行，就能够充分利用CPU大内存的优势，避免显存超出。
+如果使用了`fluid.CUDAPlace`设置了全局的执行设备，框架将尽可能地将 OP 设置在 GPU 上执行，因此有可能会遇到显存不够的情况。`device_guard`可以用于设置 OP 的执行设备，如果将部分层设置在 CPU 上运行，就能够充分利用 CPU 大内存的优势，避免显存超出。
 
-有时尽管指定了全局的执行设备为GPU，但框架在自动分配OP执行设备时，可能会将部分OP设置在CPU上执行。另外，个别OP会将输出存储在CPU上。在以上的场景中，常常会发生不同设备间的数据传输，可能会影响模型的性能。使用`device_guard`可以避免模型运行中不必要的数据传输。在下面的内容中，将会详细介绍如何通过[profile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/profiler_cn.html)工具分析数据传输开销，以及如何使用`device_guard`避免不必要的数据传输，从而提升模型性能。
+有时尽管指定了全局的执行设备为 GPU，但框架在自动分配 OP 执行设备时，可能会将部分 OP 设置在 CPU 上执行。另外，个别 OP 会将输出存储在 CPU 上。在以上的场景中，常常会发生不同设备间的数据传输，可能会影响模型的性能。使用`device_guard`可以避免模型运行中不必要的数据传输。在下面的内容中，将会详细介绍如何通过[profile](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api_cn/profiler_cn.html)工具分析数据传输开销，以及如何使用`device_guard`避免不必要的数据传输，从而提升模型性能。
 
 ## 如何避免显存超出
 
-下面示例代码中的`embedding`层，其参数`size`包含两个元素，第一个元素为`vocab_size` (词表大小), 第二个为`emb_size`（`embedding`层维度）。实际场景中，词表可能会非常大。示例代码中，词表大小被设置为10000000。如果在GPU模式下运行，该层创建的权重矩阵的大小为(10000000, 150)，仅这一层就需要5.59G的显存，如果词表大小继续增加，极有可能会导致显存超出。
+下面示例代码中的`embedding`层，其参数`size`包含两个元素，第一个元素为`vocab_size` (词表大小), 第二个为`emb_size`（`embedding`层维度）。实际场景中，词表可能会非常大。示例代码中，词表大小被设置为 10000000。如果在 GPU 模式下运行，该层创建的权重矩阵的大小为(10000000, 150)，仅这一层就需要 5.59G 的显存，如果词表大小继续增加，极有可能会导致显存超出。
 
 ```python
 import paddle.fluid as fluid
@@ -29,7 +29,7 @@ exe.run(fluid.default_startup_program())
 result = exe.run(fluid.default_main_program(), fetch_list=[avg_cost])
 ```
 
-`embedding`是根据`input`中的`id`信息从`embedding`矩阵中查询对应`embedding`信息，在CPU上进行计算，其速度也是可接受的。因此，可以参考如下代码，使用`device_guard`将`embedding`层设置在CPU上，以利用CPU内存资源。那么，除了`embedding`层，其他各层都会在GPU上运行。
+`embedding`是根据`input`中的`id`信息从`embedding`矩阵中查询对应`embedding`信息，在 CPU 上进行计算，其速度也是可接受的。因此，可以参考如下代码，使用`device_guard`将`embedding`层设置在 CPU 上，以利用 CPU 内存资源。那么，除了`embedding`层，其他各层都会在 GPU 上运行。
 
 ```python
 import paddle.fluid as fluid
@@ -54,7 +54,7 @@ result = exe.run(fluid.default_main_program(), fetch_list=[avg_cost])
 在显存足够的情况下，可不必进行这样的设置。
 
 ## 如何减少数据传输
-### 使用profile工具确认是否发生了数据传输
+### 使用 profile 工具确认是否发生了数据传输
 首先对模型的性能数据进行分析，找到发生数据传输的原因。如下列代码所示，可以利用[profile](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/profiler_cn.html)工具进行分析。
 
 ```python
@@ -76,7 +76,7 @@ with profiler.profiler('All', 'total') as prof:
         result = exe.run(program=compiled_prog, fetch_list=[out])
 ```
 
-在程序运行结束后，将会自动地打印出profile report。在下面的profile report中，可以看到    `GpuMemCpy Summary`中给出了2项数据传输的调用耗时。在OP执行过程中，如果输入Tensor所在的设备与OP执行的设备不同，就会发生`GpuMemcpySync`，通常我们可以直接优化的就是这一项。进一步分析，可以看到`slice`和`crop_tensor`执行中都发生了`GpuMemcpySync`。尽管我们在程序中设置了GPU模式运行，但是框架中有些OP，例如shape，会将输出结果放在CPU上。
+在程序运行结束后，将会自动地打印出 profile report。在下面的 profile report 中，可以看到    `GpuMemCpy Summary`中给出了 2 项数据传输的调用耗时。在 OP 执行过程中，如果输入 Tensor 所在的设备与 OP 执行的设备不同，就会发生`GpuMemcpySync`，通常我们可以直接优化的就是这一项。进一步分析，可以看到`slice`和`crop_tensor`执行中都发生了`GpuMemcpySync`。尽管我们在程序中设置了 GPU 模式运行，但是框架中有些 OP，例如 shape，会将输出结果放在 CPU 上。
 
 ```text
 ------------------------->     Profiling Report     <-------------------------
@@ -113,12 +113,12 @@ eager_deletion                                              30          0.287236
 ScopeBufferedMonitor::pre_local_exec_scopes_process         10          0.047864    0.047864 (1.000000)     0.000000 (0.000000)     0.003668    0.011592    0.0047864   0.00179718
 InitLocalVars                                               1           0.022981    0.022981 (1.000000)     0.000000 (0.000000)     0.022981    0.022981    0.022981    0.000862883
 ```
-### 通过log查看发生数据传输的具体位置
+### 通过 log 查看发生数据传输的具体位置
 
-以上的示例程序比较简单，我们只用看profile report就能知道具体是哪些算子发生了数据传输。但是当模型比较复杂时，可能需要去查看更加详细的调试信息，可以打印出运行时的log去确定发生数据传输的具体位置。依然以上述程序为例，执行`GLOG_vmodule=operator=3 python test_case.py`，会得到如下log信息，会发现发生了2次数据传输：
+以上的示例程序比较简单，我们只用看 profile report 就能知道具体是哪些算子发生了数据传输。但是当模型比较复杂时，可能需要去查看更加详细的调试信息，可以打印出运行时的 log 去确定发生数据传输的具体位置。依然以上述程序为例，执行`GLOG_vmodule=operator=3 python test_case.py`，会得到如下 log 信息，会发现发生了 2 次数据传输：
 
-- `shape`输出的结果在CPU上，在`slice`运行时，`shape`的输出被拷贝到GPU上
-- `slice`执行完的结果在GPU上，当`crop_tensor`执行时，它会被拷贝到CPU上。
+- `shape`输出的结果在 CPU 上，在`slice`运行时，`shape`的输出被拷贝到 GPU 上
+- `slice`执行完的结果在 GPU 上，当`crop_tensor`执行时，它会被拷贝到 CPU 上。
 
 ```text
 I0406 14:56:23.286592 17516 operator.cc:180] CUDAPlace(0) Op(shape), inputs:{Input[fill_constant_1.tmp_0:float[1, 3, 5, 5]({})]}, outputs:{Out[shape_0.tmp_0:int[4]({})]}.
@@ -133,9 +133,9 @@ I0406 14:56:23.287220 17516 tensor_util.cu:129] TensorCopySync 4 from CUDAPlace(
 I0406 14:56:23.287473 17516 operator.cc:180] CUDAPlace(0) Op(crop_tensor), inputs:{Offsets[], OffsetsTensor[], Shape[slice_0.tmp_0:int[4]({})], ShapeTensor[], X[fill_constant_0.tmp_0:float[1, 3, 8, 8]({})]}, outputs:{Out[crop_tensor_0.tmp_0:float[1, 3, 5, 5]({})]}.
 ```
 
-### 使用device_guard避免不必要的数据传输
+### 使用 device_guard 避免不必要的数据传输
 
-在上面的例子中，`shape`输出的是一个1-D的Tensor，因此对于`slice`而言计算量很小。这种情况下如果将`slice`设置在CPU上运行，就可以避免2次数据传输。修改后的程序如下：
+在上面的例子中，`shape`输出的是一个 1-D 的 Tensor，因此对于`slice`而言计算量很小。这种情况下如果将`slice`设置在 CPU 上运行，就可以避免 2 次数据传输。修改后的程序如下：
 
 ```python
 import paddle.fluid as fluid
@@ -156,7 +156,7 @@ with profiler.profiler('All', 'total') as prof:
     for i in range(10):
         result = exe.run(program=compiled_prog, fetch_list=[out])
 ```
-再次观察profile report中`GpuMemCpy Summary`的内容，可以看到`GpuMemCpySync`已经被消除。在实际的模型中，若`GpuMemCpySync` 调用耗时占比较大，并且可以通过设置`device_guard`避免，那么就能够带来一定的性能提升。
+再次观察 profile report 中`GpuMemCpy Summary`的内容，可以看到`GpuMemCpySync`已经被消除。在实际的模型中，若`GpuMemCpySync` 调用耗时占比较大，并且可以通过设置`device_guard`避免，那么就能够带来一定的性能提升。
 
 ```text
 ------------------------->     Profiling Report     <-------------------------
@@ -193,7 +193,7 @@ ScopeBufferedMonitor::pre_local_exec_scopes_process         10          0.032231
 
 ### 总结
 
-- 使用profile工具对模型进行分析，看是否存在GpuMemcpySync的调用耗时。若存在，则进一步分析发生数据传输的原因。
-- 可以通过profile report找到发生GpuMemcpySync的OP。如果需要，可以通过打印log，找到GpuMemcpySync发生的具体位置。
-- 尝试使用`device_guard`设置部分OP的运行设备，来减少GpuMemcpySync的调用。
-- 最后可以通过比较修改前后模型的profile report，或者其他用来衡量性能的指标，确认修改后是否带来了性能提升。
+- 使用 profile 工具对模型进行分析，看是否存在 GpuMemcpySync 的调用耗时。若存在，则进一步分析发生数据传输的原因。
+- 可以通过 profile report 找到发生 GpuMemcpySync 的 OP。如果需要，可以通过打印 log，找到 GpuMemcpySync 发生的具体位置。
+- 尝试使用`device_guard`设置部分 OP 的运行设备，来减少 GpuMemcpySync 的调用。
+- 最后可以通过比较修改前后模型的 profile report，或者其他用来衡量性能的指标，确认修改后是否带来了性能提升。

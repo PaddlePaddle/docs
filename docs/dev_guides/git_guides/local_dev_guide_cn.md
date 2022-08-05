@@ -11,7 +11,7 @@
 以下教程将指导你提交代码。
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 <https://github.com/USERNAME/Paddle>。
+跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub 首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 <https://github.com/USERNAME/Paddle>。
 
 ## 克隆（Clone）
 
@@ -25,7 +25,7 @@
 
 ## 创建本地分支
 
-Paddle 目前使用[Git流分支模型](http://nvie.com/posts/a-successful-git-branching-model/)进行开发，测试，发行和维护，具体请参考 [Paddle 分支规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/others/releasing_process.md)。
+Paddle 目前使用[Git 流分支模型](http://nvie.com/posts/a-successful-git-branching-model/)进行开发，测试，发行和维护，具体请参考 [Paddle 分支规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/others/releasing_process.md)。
 
 所有的 feature 和 bug fix 的开发工作都应该在一个新的分支上完成，一般从 `develop` 分支上创建新分支。
 
@@ -50,12 +50,12 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   README.md
+    modified:   README.md
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	test
+    test
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -72,7 +72,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 - **运行单元测试测时需要编译整个工程**，并且编译时需要打开`WITH_TESTING`。
 
-- **执行单测一定要用ctest命令**，<font color="#FF0000">不可直接`python test_*.py`</font>。
+- **执行单测一定要用 ctest 命令**，<font color="#FF0000">不可直接`python test_*.py`</font>。
 
 参考上述[编译](#编译)过程，编译成功后，在`build`目录下执行下面的命令来运行单元测试：
 
@@ -93,7 +93,7 @@ On branch test
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	test
+    test
 
 nothing added to commit but untracked files present (use "git add" to track)
 ➜  git add test
@@ -128,8 +128,8 @@ clang-format.......................................(no files to check)Skipped
 ➜  git remote
 origin
 ➜  git remote -v
-origin	https://github.com/USERNAME/Paddle (fetch)
-origin	https://github.com/USERNAME/Paddle (push)
+origin  https://github.com/USERNAME/Paddle (fetch)
+origin  https://github.com/USERNAME/Paddle (push)
 ```
 
 这里 origin 是我们 clone 的远程仓库的名字，也就是自己用户名下的 Paddle，接下来我们创建一个原始 Paddle 仓库的远程主机，命名为 upstream。

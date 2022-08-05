@@ -18,7 +18,7 @@ To be conductive to analyze the characteristics of data, detect errors, and opti
 
 ## Toolkits of adding data
 
-The six components (scalar, histogram, image, text, audio and high dimensional) are used to add data during program running. Class LogWriter must be initialized before adding data, in order to set the storage path and synchronization cycle. The input parameters of each components will be saved as log file in disk, after that the log file will be loaded into front end to display.  
+The six components (scalar, histogram, image, text, audio and high dimensional) are used to add data during program running. Class LogWriter must be initialized before adding data, in order to set the storage path and synchronization cycle. The input parameters of each components will be saved as log file in disk, after that the log file will be loaded into front end to display.
 
 ### LogWriter
 
@@ -30,9 +30,9 @@ The definition of LogWriter :
 class LogWriter(dir, sync_cycle)
 ```
 
-> :param dir : the directory path to the saved log files.  
-> :param sync_cycle : specify how often should the system store data into the file system, that is, system will save the data into the file system once operations count reaches sync_cycle.  
-> :return: a new LogWriter instance.  
+> :param dir : the directory path to the saved log files.
+> :param sync_cycle : specify how often should the system store data into the file system, that is, system will save the data into the file system once operations count reaches sync_cycle.
+> :return: a new LogWriter instance.
 
 Demo 1.  Create a LogWriter instance
 
@@ -43,8 +43,8 @@ log_writer = LogWriter("./log", sync_cycle=10)
 
 class LogWriter include the following member functions:
 
-* `mode()`  
-* `scalar()`, `histogram()`, `image()`, `text()`, `audio()`, `embedding()`  
+* `mode()`
+* `scalar()`, `histogram()`, `image()`, `text()`, `audio()`, `embedding()`
 
 The member function mode() is used to specify the phase of program running. The input string is customized, such as `test`, `validation`, `test`, `conv_layer1`. Components with same mode are grouped together, so users can choose different modes to display on the frontend webpage.
 
@@ -68,24 +68,24 @@ The <a name="1">scalar</a> component is used to draw line charts. By passing sca
 
 The first step of using scalar component is initializing the member function scalar() of LogWriter instance, then you can add data through the member function add_record() of ScalarWriter instance.
 
-* The member function `scalar()` of LogWriter instance :  
+* The member function `scalar()` of LogWriter instance :
 
 ```python
-def scalar(tag, type)  
-```  
-
-> :param tag : The scalar writer will label the data with tag.  
-> :param type : Data type, optional choice is limited to “float”, "double", "int", the default setting is "float".  
-> :return : A ScalarWriter instance to handle step and value records.  
-
-* The member function `add_record()` of ScalarWriter instance :  
-
-```python
-def add_record(step, value)  
+def scalar(tag, type)
 ```
 
-> :param step : Step number.  
-> :param value : Input data.  
+> :param tag : The scalar writer will label the data with tag.
+> :param type : Data type, optional choice is limited to “float”, "double", "int", the default setting is "float".
+> :return : A ScalarWriter instance to handle step and value records.
+
+* The member function `add_record()` of ScalarWriter instance :
+
+```python
+def add_record(step, value)
+```
+
+> :param step : Step number.
+> :param value : Input data.
 
 Demo 3. scalar demo program [GitHub](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/scalar_test.py)
 
@@ -128,11 +128,11 @@ Figure 1. scalar component displays line charts <br/>
 
 The right sidebar of VisualDL has adjustment options for each component, take scalar component as example:
 
-* Smoothing : To adjust the smoothness of the line charts.  
-* X-axis : The horizontal ordinate of line charts, optional choice : Step, Relative, Wall Time.  
-* Tooltip sorting : Sorting method of tag, optional choice : default, descending, ascending, nearest.  
+* Smoothing : To adjust the smoothness of the line charts.
+* X-axis : The horizontal ordinate of line charts, optional choice : Step, Relative, Wall Time.
+* Tooltip sorting : Sorting method of tag, optional choice : default, descending, ascending, nearest.
 
-There is also a ``RUNNING`` button at the bottom of the right sidebar, the frontend webpage will send request to the flask server for data synchronization. Switching to ``Stopped``, it will pause the data update.  
+There is also a ``RUNNING`` button at the bottom of the right sidebar, the frontend webpage will send request to the flask server for data synchronization. Switching to ``Stopped``, it will pause the data update.
 
 ### histogram -- component to display data distribution
 
@@ -143,22 +143,22 @@ The first step of using histogram component is initializing the member function 
 * The member function histogram() of LogWriter instance :
 
 ```python
-def histogram(tag, num_buckets, type)  
+def histogram(tag, num_buckets, type)
 ```
 
-> :param tag : The histogram writer will label the data with tag.  
-> :param num_buckets : The number of pillar in the histogram.  
-> :param type : Data type, optional choice is limited to “float”, "double", "int", the default setting is "float".  
-> :return : A HistogramWriter instance to record distribution.  
+> :param tag : The histogram writer will label the data with tag.
+> :param num_buckets : The number of pillar in the histogram.
+> :param type : Data type, optional choice is limited to “float”, "double", "int", the default setting is "float".
+> :return : A HistogramWriter instance to record distribution.
 
 * The member function add_record() of HistogramWriter instance :
 
 ```python
-def add_record(step, value)  
+def add_record(step, value)
 ```
 
-> :param step : Step number.  
-> :param value : Input data, type is list[].  
+> :param step : Step number.
+> :param value : Input data, type is list[].
 
 Demo 4. histogram demo program [GitHub](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/histogram_test.py)
 
@@ -207,13 +207,13 @@ The first step of using image component is initializing the member function imag
 * The member function image() of LogWriter instance :
 
 ```python
-def image(tag, num_samples, step_cycle)  
+def image(tag, num_samples, step_cycle)
 ```
 
-> :param tag : The image writer will label the image with tag.  
-> :param num_samples : Appoint the number of samples to take in a step.  
-> :param step_cycle : Store every `step_cycle` as a record, the default value is 1.  
-> :return:  A ImageWriter instance to sample images.  
+> :param tag : The image writer will label the image with tag.
+> :param num_samples : Appoint the number of samples to take in a step.
+> :param step_cycle : Store every `step_cycle` as a record, the default value is 1.
+> :return:  A ImageWriter instance to sample images.
 
 * Start a new sampling cycle, allocate memory space for the sampled data
 
@@ -230,17 +230,17 @@ def is_sample_taken()
 * Add image data :
 
 ```python
-def set_sample(index, image_shape, image_data)  
-```  
+def set_sample(index, image_shape, image_data)
+```
 
-> :param index : Combined with tag, used to determine the sub-frame of the image display.  
-> :param image_shape : The shape of image, [weight, height, channel(RGB is 3, GrayScale is 1)].  
-> :param image_data : Image data with type numpy.ndarray, member function flatten() can turn the shape to row vector.  
+> :param index : Combined with tag, used to determine the sub-frame of the image display.
+> :param image_shape : The shape of image, [weight, height, channel(RGB is 3, GrayScale is 1)].
+> :param image_data : Image data with type numpy.ndarray, member function flatten() can turn the shape to row vector.
 
 * End the current sampling period, load the sampled data into disk, and release the memory space :
 
 ```python
-def finish_sample()  
+def finish_sample()
 ```
 
 Demo 5. image demo program [GitHub](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/image_test.py)
@@ -317,22 +317,22 @@ The <a name="4">text</a> component is used to visualize the text data. By passin
 
 The first step of using text component is initializing the member function text() of LogWriter instance, then you can add data through the member function add_record() of TextWriter instance.
 
-* The member function text() of LogWriter instance :  
+* The member function text() of LogWriter instance :
 
 ```python
 def text(tag)
 ```
 
-> :param tag : Combined with tag, used to determine the sub-frame of the image display.  
+> :param tag : Combined with tag, used to determine the sub-frame of the image display.
 
-* The member function add_record() of TextWriter instance :  
+* The member function add_record() of TextWriter instance :
 
 ```python
 def add_record(step, str)
 ```
 
-> :param step : Step number.  
-> :param value : Input data, type is string.  
+> :param step : Step number.
+> :param value : Input data, type is string.
 
 Demo 6. text demo program [GitHub](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/pr_curve_test.py)
 
@@ -370,20 +370,20 @@ Each subgraph has a horizontal axis which can be dragged to display text of diff
 
 ### audio -- component to play audio
 
-The <a name="5"> audio</a> component is used to play audio. By passing the audio data (type numpy.ndarray) into the audio() function, users can play audio directly, or choose to download.  
+The <a name="5"> audio</a> component is used to play audio. By passing the audio data (type numpy.ndarray) into the audio() function, users can play audio directly, or choose to download.
 
 The first step of using audio component is initializing the member function audio() of LogWriter instance. Then you can add data through the member functions start_sampling(), is_sample_taken(), set_sample(), and finish_sample() of AudioWriter instance.
 
 * The member function audio() of LogWriter instance :
 
-```python  
-def audio(tag, num_samples, step_cycle)  
+```python
+def audio(tag, num_samples, step_cycle)
 ```
 
-> :param tag : The audio writer will label the audio with tag.  
-> :param num_samples : Appoint the number of samples to take in a step.  
-> :param step_cycle : Store every `step_cycle` as a record, the default value is 1.  
-> :return:  An AudioWriter instance to sample images.  
+> :param tag : The audio writer will label the audio with tag.
+> :param num_samples : Appoint the number of samples to take in a step.
+> :param step_cycle : Store every `step_cycle` as a record, the default value is 1.
+> :return:  An AudioWriter instance to sample images.
 
 * Start a new sampling cycle, allocate memory space for the sampled data :
 
@@ -403,14 +403,14 @@ def is_sample_taken()
 def set_sample(index, audio_params, audio_data)
 ```
 
-> :param index : Combined with tag, used to determine the sub-frame of the audio.  
-> :param audio_params : The parameters of audio, [sample rate, sample width, channels].  
-> :param audio_data : Audio data with type numpy.ndarray, member function flatten() can turn the shape to row vector.  
+> :param index : Combined with tag, used to determine the sub-frame of the audio.
+> :param audio_params : The parameters of audio, [sample rate, sample width, channels].
+> :param audio_data : Audio data with type numpy.ndarray, member function flatten() can turn the shape to row vector.
 
 * End the current sampling period, load the sampled data into disk, and release the memory space :
 
 ```python
-def finish_sample()  
+def finish_sample()
 ```
 
 Demo 7. audio demo program [GitHub](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/audio_test.py)
@@ -497,8 +497,8 @@ The role of <a name="6">high dimensional</a> component is to map data into 2D or
 
 The high dimensional component supports the following two dimensionality reduction algorithms :
 
-* PCA    : Principle Component Analysis  
-* [t-SNE](https://lvdmaaten.github.io/tsne/)  : t-distributed stochastic neighbor embedding  
+* PCA    : Principle Component Analysis
+* [t-SNE](https://lvdmaaten.github.io/tsne/)  : t-distributed stochastic neighbor embedding
 
 The first step of using audio component is initializing the member function embedding() of LogWriter instance. Then you can add data through the member functions add_embeddings_with_word_dict() of EmbeddingWriter instance.
 
@@ -506,17 +506,17 @@ The first step of using audio component is initializing the member function embe
 * The member function embedding() of LogWriter instance
 
 ```python
-def embedding()  
+def embedding()
 ```
 
 * The member function add_embeddings_with_word_dict() of EmbeddingWriter instance :
 
 ```python
-def add_embeddings_with_word_dict(data, Dict)  
+def add_embeddings_with_word_dict(data, Dict)
 ```
 
-> :param data : input data , type List[List(float)].  
-> :param Dict : dictionary， type Dict[str, int].  
+> :param data : input data , type List[List(float)].
+> :param Dict : dictionary， type Dict[str, int].
 
 Demo 8. high dimensional demo program [GitHub](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/high_dimensional_test.py)
 
@@ -532,8 +532,8 @@ log_writer = LogWriter("./log", sync_cycle=10)
 with log_writer.mode("train") as logger:
     train_embedding = logger.embedding()
 
-# Initialize data List[List(float)]  
-hot_vectors = np.random.uniform(1, 2, size=(10, 3))  
+# Initialize data List[List(float)]
+hot_vectors = np.random.uniform(1, 2, size=(10, 3))
 word_dict = {
     "label_1": 5,
     "label_2": 4,
@@ -619,7 +619,7 @@ fluid.io.save_inference_model(
     executor=exe)
 ```
 
-After running the demo program above, you can start the flask server with command ``visualdl`` :  
+After running the demo program above, you can start the flask server with command ``visualdl`` :
 
 ```shell
 visualdl --logdir ./log --host 0.0.0.0 --port 8080 --model_pb paddle_lenet_5_model

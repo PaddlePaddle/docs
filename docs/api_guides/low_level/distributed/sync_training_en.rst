@@ -13,15 +13,15 @@ For API Reference, please refer to :ref:`DistributeTranspiler`. A simple example
 
 .. code-block:: python
 
-	config = fluid.DistributeTranspilerConfig()
-	#Configuring policy config
-	config.slice_var_up = False
-	t = fluid.DistributeTranspiler(config=config)
-	t.transpile(trainer_id,
-				program=main_program,
-				pservers="192.168.0.1:6174,192.168.0.2:6174",
-				trainers=1,
-				sync_mode=True)
+    config = fluid.DistributeTranspilerConfig()
+    #Configuring policy config
+    config.slice_var_up = False
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id,
+                program=main_program,
+                pservers="192.168.0.1:6174,192.168.0.2:6174",
+                trainers=1,
+                sync_mode=True)
 
 Among parameters above:
 
@@ -29,8 +29,8 @@ Among parameters above:
 - :code:`program` : The :code:`program` to transpile, where :code:`fluid.default_main_program()` is used by default.
 - :code:`pservers` : list of IP ports of the pserver nodes in the current training task.
 - :code:`trainers` : int type, the number of trainer nodes in the current training task. Please note:
-	* In pserver mode, the number of trainer nodes can be different from the number of pserver nodes, such as 20 pservers and 50 trainers. In practical training tasks, you can get the best performance by adjusting the number of pserver nodes and trainer nodes.
-	* In NCCL2 mode, this parameter is a string specifying the IP port list of the trainer nodes.
+    * In pserver mode, the number of trainer nodes can be different from the number of pserver nodes, such as 20 pservers and 50 trainers. In practical training tasks, you can get the best performance by adjusting the number of pserver nodes and trainer nodes.
+    * In NCCL2 mode, this parameter is a string specifying the IP port list of the trainer nodes.
 - :code:`sync_mode` : Whether it is in synchronous training mode, the default is True. Even though this parameter is not set, it is the synchronous training mode by default.
 
 
@@ -63,14 +63,14 @@ Use the following code to convert the current :code:`Program` to a Fluid :code:`
 
 .. code-block:: python
 
-	Config = fluid.DistributeTranspilerConfig()
-	Config.mode = "nccl2"
-	t = fluid.DistributeTranspiler(config=config)
-	t.transpile(trainer_id,
-				program=main_program,
-				startup_program=startup_program,
-				trainers="192.168.0.1:6174,192.168.0.2:6174",
-				current_endpoint="192.168.0.1:6174")
+    Config = fluid.DistributeTranspilerConfig()
+    Config.mode = "nccl2"
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id,
+                program=main_program,
+                startup_program=startup_program,
+                trainers="192.168.0.1:6174,192.168.0.2:6174",
+                current_endpoint="192.168.0.1:6174")
 
 Among them:
 

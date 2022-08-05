@@ -11,7 +11,7 @@ set_image_backend
 :::::::::
 
     - backend (str) - 加载图像的后端，必须为 ``pil`` 或者 ``cv2`` 。
-    
+
 
 代码示例
 :::::::::

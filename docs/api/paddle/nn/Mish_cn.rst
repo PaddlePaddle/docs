@@ -4,7 +4,7 @@ Mish
 -------------------------------
 .. py:class:: paddle.nn.Mish(name=None)
 
-Mish激活层
+Mish 激活层
 
 .. math::
 
@@ -22,8 +22,8 @@ Mish激活层
 
 形状：
 ::::::::::
-    - input：任意形状的Tensor。
-    - output：和input具有相同形状的Tensor。
+    - input：任意形状的 Tensor。
+    - output：和 input 具有相同形状的 Tensor。
 
 代码示例
 :::::::::

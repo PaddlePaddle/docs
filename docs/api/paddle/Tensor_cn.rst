@@ -6,16 +6,16 @@ Tensor
 .. py:class:: paddle.Tensor
 
 
-``Tensor`` 是Paddle中最为基础的数据结构，有几种创建Tensor的不同方式：
+``Tensor`` 是 Paddle 中最为基础的数据结构，有几种创建 Tensor 的不同方式：
 
-- 用预先存在的 ``data`` 数据创建1个Tensor，请参考 :ref:`cn_api_paddle_to_tensor`
-- 创建一个指定 ``shape`` 的Tensor，请参考 :ref:`cn_api_tensor_ones` 、 :ref:`cn_api_tensor_zeros`、 :ref:`cn_api_tensor_full`
-- 创建一个与其他Tensor具有相同 ``shape`` 与 ``dtype`` 的Tensor，请参考 :ref:`cn_api_tensor_ones_like` 、 :ref:`cn_api_tensor_zeros_like` 、 :ref:`cn_api_tensor_full_like`
+- 用预先存在的 ``data`` 数据创建 1 个 Tensor，请参考 :ref:`cn_api_paddle_to_tensor`
+- 创建一个指定 ``shape`` 的 Tensor，请参考 :ref:`cn_api_tensor_ones` 、 :ref:`cn_api_tensor_zeros`、 :ref:`cn_api_tensor_full`
+- 创建一个与其他 Tensor 具有相同 ``shape`` 与 ``dtype`` 的 Tensor，请参考 :ref:`cn_api_tensor_ones_like` 、 :ref:`cn_api_tensor_zeros_like` 、 :ref:`cn_api_tensor_full_like`
 
 clear_grad
 :::::::::
 
-将当前Tensor的梯度设为0。仅适用于具有梯度的Tensor，通常我们将其用于参数，因为其他临时Tensor没有梯度。
+将当前 Tensor 的梯度设为 0。仅适用于具有梯度的 Tensor，通常我们将其用于参数，因为其他临时 Tensor 没有梯度。
 
 **代码示例**
 
@@ -33,12 +33,12 @@ clear_grad
 clear_gradient
 :::::::::
 
-与clear_grad功能相同，请参考：clear_grad
+与 clear_grad 功能相同，请参考：clear_grad
 
 dtype
 :::::::::
 
-查看一个Tensor的数据类型，支持：'bool'，'float16'，'float32'，'float64'，'uint8'，'int8'，'int16'，'int32'，'int64' 类型。
+查看一个 Tensor 的数据类型，支持：'bool'，'float16'，'float32'，'float64'，'uint8'，'int8'，'int16'，'int32'，'int64' 类型。
 
 **代码示例**
 
@@ -51,7 +51,7 @@ dtype
 grad
 :::::::::
 
-查看一个Tensor的梯度，数据类型为numpy\.ndarray。
+查看一个 Tensor 的梯度，数据类型为 numpy\.ndarray。
 
 **代码示例**
 
@@ -67,8 +67,8 @@ grad
 is_leaf
 :::::::::
 
-判断Tensor是否为叶子Tensor。对于stop_gradient为True的Tensor，它将是叶子Tensor。对于stop_gradient为False的Tensor，
-如果它是由用户创建的，它也会是叶子Tensor。
+判断 Tensor 是否为叶子 Tensor。对于 stop_gradient 为 True 的 Tensor，它将是叶子 Tensor。对于 stop_gradient 为 False 的 Tensor，
+如果它是由用户创建的，它也会是叶子 Tensor。
 
 **代码示例**
 
@@ -92,7 +92,7 @@ is_leaf
 item(*args)
 :::::::::
 
-将Tensor中特定位置的元素转化为Python标量，如果未指定位置，则该Tensor必须为单元素Tensor。
+将 Tensor 中特定位置的元素转化为 Python 标量，如果未指定位置，则该 Tensor 必须为单元素 Tensor。
 
 **代码示例**
 
@@ -123,7 +123,7 @@ item(*args)
 name
 :::::::::
 
-查看一个Tensor的name，Tensor的name是其唯一标识符，为python的字符串类型。
+查看一个 Tensor 的 name，Tensor 的 name 是其唯一标识符，为 python 的字符串类型。
 
 **代码示例**
 
@@ -136,7 +136,7 @@ name
 ndim
 :::::::::
 
-查看一个Tensor的维度，也称作rank。
+查看一个 Tensor 的维度，也称作 rank。
 
 **代码示例**
 
@@ -149,7 +149,7 @@ ndim
 persistable
 :::::::::
 
-查看一个Tensor的persistable属性，该属性为True时表示持久性变量，持久性变量在每次迭代之后都不会删除。模型参数、学习率等Tensor，都是
+查看一个 Tensor 的 persistable 属性，该属性为 True 时表示持久性变量，持久性变量在每次迭代之后都不会删除。模型参数、学习率等 Tensor，都是
 持久性变量。
 
 **代码示例**
@@ -164,8 +164,8 @@ persistable
 place
 :::::::::
 
-查看一个Tensor的设备位置，Tensor可能的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，
-其与GPU之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，
+查看一个 Tensor 的设备位置，Tensor 可能的设备位置有三种：CPU/GPU/固定内存，其中固定内存也称为不可分页内存或锁页内存，
+其与 GPU 之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，
 因为其减少了用于存储虚拟内存数据的可分页内存。
 
 **代码示例**
@@ -179,7 +179,7 @@ place
 shape
 :::::::::
 
-查看一个Tensor的shape，shape是Tensor的一个重要的概念，其描述了tensor在每个维度上的元素数量。
+查看一个 Tensor 的 shape，shape 是 Tensor 的一个重要的概念，其描述了 tensor 在每个维度上的元素数量。
 
 **代码示例**
 
@@ -192,8 +192,8 @@ shape
 stop_gradient
 :::::::::
 
-查看一个Tensor是否计算并传播梯度，如果stop_gradient为True，则该Tensor不会计算梯度，并会阻绝Autograd的梯度传播。
-反之，则会计算梯度并传播梯度。用户自行创建的的Tensor，默认是True，模型参数的stop_gradient都为False。
+查看一个 Tensor 是否计算并传播梯度，如果 stop_gradient 为 True，则该 Tensor 不会计算梯度，并会阻绝 Autograd 的梯度传播。
+反之，则会计算梯度并传播梯度。用户自行创建的的 Tensor，默认是 True，模型参数的 stop_gradient 都为 False。
 
 **代码示例**
 
@@ -206,7 +206,7 @@ stop_gradient
 abs(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -215,7 +215,7 @@ abs(name=None)
 angle(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -224,7 +224,7 @@ angle(name=None)
 acos(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -233,7 +233,7 @@ acos(name=None)
 add(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -247,7 +247,7 @@ Inplace 版本的 :ref:`cn_api_tensor_add` API，对输入 `x` 采用 Inplace �
 add_n(inputs, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -256,7 +256,7 @@ add_n(inputs, name=None)
 addmm(x, y, beta=1.0, alpha=1.0, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -265,7 +265,7 @@ addmm(x, y, beta=1.0, alpha=1.0, name=None)
 all(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -274,7 +274,7 @@ all(axis=None, keepdim=False, name=None)
 allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -283,7 +283,7 @@ allclose(y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 isclose(x, y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -292,7 +292,7 @@ isclose(x, y, rtol=1e-05, atol=1e-08, equal_nan=False, name=None)
 any(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -301,7 +301,7 @@ any(axis=None, keepdim=False, name=None)
 argmax(axis=None, keepdim=False, dtype=int64, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -310,7 +310,7 @@ argmax(axis=None, keepdim=False, dtype=int64, name=None)
 argmin(axis=None, keepdim=False, dtype=int64, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -319,7 +319,7 @@ argmin(axis=None, keepdim=False, dtype=int64, name=None)
 argsort(axis=-1, descending=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -328,7 +328,7 @@ argsort(axis=-1, descending=False, name=None)
 asin(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -337,13 +337,13 @@ asin(name=None)
 astype(dtype)
 :::::::::
 
-将Tensor的类型转换为 ``dtype``，并返回一个新的Tensor。
+将 Tensor 的类型转换为 ``dtype``，并返回一个新的 Tensor。
 
 参数：
-    - **dtype** (str) - 转换后的dtype，支持'bool'，'float16'，'float32'，'float64'，'int8'，'int16'，
+    - **dtype** (str) - 转换后的 dtype，支持'bool'，'float16'，'float32'，'float64'，'int8'，'int16'，
       'int32'，'int64'，'uint8'。
 
-返回：类型转换后的新的Tensor
+返回：类型转换后的新的 Tensor
 
 返回类型：Tensor
 
@@ -354,11 +354,11 @@ astype(dtype)
         x = paddle.to_tensor(1.0)
         print("original tensor's dtype is: {}".format(x.dtype))
         print("new tensor's dtype is: {}".format(x.astype('float64').dtype))
-        
+
 atan(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -367,13 +367,13 @@ atan(name=None)
 backward(grad_tensor=None, retain_graph=False)
 :::::::::
 
-从当前Tensor开始计算反向的神经网络，传导并计算计算图中Tensor的梯度。
+从当前 Tensor 开始计算反向的神经网络，传导并计算计算图中 Tensor 的梯度。
 
 参数：
-    - **grad_tensor** (Tensor, optional) - 当前Tensor的初始梯度值。如果 ``grad_tensor`` 是None，当前Tensor 的初始梯度值将会是值全为1.0的Tensor；如果 ``grad_tensor`` 不是None，必须和当前Tensor有相同的长度。默认值：None。
+    - **grad_tensor** (Tensor, optional) - 当前 Tensor 的初始梯度值。如果 ``grad_tensor`` 是 None，当前 Tensor 的初始梯度值将会是值全为 1.0 的 Tensor；如果 ``grad_tensor`` 不是 None，必须和当前 Tensor 有相同的长度。默认值：None。
 
-    - **retain_graph** (bool, optional) - 如果为False，反向计算图将被释放。如果在backward()之后继续添加OP，
-      需要设置为True，此时之前的反向计算图会保留。将其设置为False会更加节省内存。默认值：False。
+    - **retain_graph** (bool, optional) - 如果为 False，反向计算图将被释放。如果在 backward()之后继续添加 OP，
+      需要设置为 True，此时之前的反向计算图会保留。将其设置为 False 会更加节省内存。默认值：False。
 
 返回：无
 
@@ -408,7 +408,7 @@ backward(grad_tensor=None, retain_graph=False)
 bincount(weights=None, minlength=0)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -453,7 +453,7 @@ bitwise_xor(y, out=None, name=None)
 bmm(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -462,16 +462,24 @@ bmm(y, name=None)
 broadcast_to(shape, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_tensor_expand` ，API功能相同。
+请参考 :ref:`cn_api_tensor_expand` ，API 功能相同。
+
+bucketize(sorted_sequence, out_int32=False, right=False, name=None)
+:::::::::
+返回: 根据给定的一维 Tensor ``sorted_sequence`` ，输入 ``x`` 对应的桶索引。
+
+返回类型：Tensor。
+
+请参考 :ref:`cn_api_tensor_bucketize`
 
 cast(dtype)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -480,7 +488,7 @@ cast(dtype)
 ceil(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -494,7 +502,7 @@ Inplace 版本的 :ref:`cn_api_fluid_layers_ceil` API，对输入 `x` 采用 Inp
 cholesky(upper=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -503,7 +511,7 @@ cholesky(upper=False, name=None)
 chunk(chunks, axis=0, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -512,7 +520,7 @@ chunk(chunks, axis=0, name=None)
 clear_gradient()
 :::::::::
 
-清除当前Tensor的梯度。
+清除当前 Tensor 的梯度。
 
 返回：无
 
@@ -538,7 +546,7 @@ clear_gradient()
 clip(min=None, max=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -552,9 +560,9 @@ Inplace 版本的 :ref:`cn_api_tensor_clip` API，对输入 `x` 采用 Inplace �
 clone()
 :::::::::
 
-复制当前Tensor，并且保留在原计算图中进行梯度传导。
+复制当前 Tensor，并且保留在原计算图中进行梯度传导。
 
-返回：clone后的Tensor
+返回：clone 后的 Tensor
 
 **代码示例**
     .. code-block:: python
@@ -583,7 +591,7 @@ clone()
 concat(axis=0, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -592,7 +600,7 @@ concat(axis=0, name=None)
 conj(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -601,7 +609,7 @@ conj(name=None)
 cos(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -610,7 +618,7 @@ cos(name=None)
 cosh(name=None)
 :::::::::
 
-对该Tensor中的每个元素求双曲余弦。
+对该 Tensor 中的每个元素求双曲余弦。
 
 返回类型：Tensor
 
@@ -629,7 +637,7 @@ cosh(name=None)
 count_nonzero(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：沿给定的轴 ``axis`` 统计输入Tensor ``x`` 中非零元素的个数。
+返回：沿给定的轴 ``axis`` 统计输入 Tensor ``x`` 中非零元素的个数。
 
 返回类型：Tensor
 
@@ -638,21 +646,21 @@ count_nonzero(axis=None, keepdim=False, name=None)
 cpu()
 :::::::::
 
-将当前Tensor的拷贝到CPU上，且返回的Tensor不保留在原计算图中。
+将当前 Tensor 的拷贝到 CPU 上，且返回的 Tensor 不保留在原计算图中。
 
-如果当前Tensor已经在CPU上，则不会发生任何拷贝。
+如果当前 Tensor 已经在 CPU 上，则不会发生任何拷贝。
 
-返回：拷贝到CPU上的Tensor
+返回：拷贝到 CPU 上的 Tensor
 
 **代码示例**
     .. code-block:: python
 
         import paddle
-        
+
         if paddle.device.cuda.device_count() > 0:
             x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
             print(x.place)    # CUDAPlace(0)
-        
+
         x = paddle.to_tensor(1.0)
         y = x.cpu()
         print(y.place)    # CPUPlace
@@ -660,7 +668,7 @@ cpu()
 cross(y, axis=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -669,15 +677,15 @@ cross(y, axis=None, name=None)
 cuda(device_id=None, blocking=False)
 :::::::::
 
-将当前Tensor的拷贝到GPU上，且返回的Tensor不保留在原计算图中。
+将当前 Tensor 的拷贝到 GPU 上，且返回的 Tensor 不保留在原计算图中。
 
-如果当前Tensor已经在GPU上，且device_id为None，则不会发生任何拷贝。
+如果当前 Tensor 已经在 GPU 上，且 device_id 为 None，则不会发生任何拷贝。
 
 参数：
-    - **device_id** (int, optional) - 目标GPU的设备Id，默认为None，此时为当前Tensor的设备Id，如果当前Tensor不在GPU上，则为0。
-    - **blocking** (bool, optional) - 如果为False并且当前Tensor处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为False。
+    - **device_id** (int, optional) - 目标 GPU 的设备 Id，默认为 None，此时为当前 Tensor 的设备 Id，如果当前 Tensor 不在 GPU 上，则为 0。
+    - **blocking** (bool, optional) - 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为 False。
 
-返回：拷贝到GPU上的Tensor
+返回：拷贝到 GPU 上的 Tensor
 
 **代码示例**
     .. code-block:: python
@@ -696,7 +704,7 @@ cuda(device_id=None, blocking=False)
 cumsum(axis=None, dtype=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -707,7 +715,7 @@ deg2rad(x, name=None)
 
 将元素从度的角度转换为弧度
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -716,15 +724,15 @@ deg2rad(x, name=None)
 detach()
 :::::::::
 
-返回一个新的Tensor，从当前计算图分离。
+返回一个新的 Tensor，从当前计算图分离。
 
-返回：与当前计算图分离的Tensor。
+返回：与当前计算图分离的 Tensor。
 
 **代码示例**
     .. code-block:: python
 
         import paddle
-        import numpy as np 
+        import numpy as np
 
         data = np.random.uniform(-1, 1, [30, 10, 32]).astype('float32')
         linear = paddle.nn.Linear(32, 64)
@@ -735,7 +743,7 @@ detach()
 diagonal(offset=0, axis1=0, axis2=1, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -744,7 +752,7 @@ diagonal(offset=0, axis1=0, axis2=1, name=None)
 digamma(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -753,7 +761,7 @@ digamma(name=None)
 dim()
 :::::::::
 
-查看一个Tensor的维度，也称作rank。
+查看一个 Tensor 的维度，也称作 rank。
 
 **代码示例**
 
@@ -766,7 +774,7 @@ dim()
 dist(y, p=2)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -775,7 +783,7 @@ dist(y, p=2)
 divide(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -784,7 +792,7 @@ divide(y, name=None)
 dot(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -793,7 +801,7 @@ dot(y, name=None)
 diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -802,9 +810,9 @@ diff(x, n=1, axis=-1, prepend=None, append=None, name=None)
 element_size()
 :::::::::
 
-返回Tensor单个元素在计算机中所分配的 ``bytes`` 数量。
+返回 Tensor 单个元素在计算机中所分配的 ``bytes`` 数量。
 
-返回：整数int
+返回：整数 int
 
 **代码示例**
     .. code-block:: python
@@ -829,7 +837,7 @@ element_size()
 equal(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -838,7 +846,7 @@ equal(y, name=None)
 equal_all(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -847,7 +855,7 @@ equal_all(y, name=None)
 erf(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -856,7 +864,7 @@ erf(name=None)
 exp(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -870,7 +878,7 @@ Inplace 版本的 :ref:`cn_api_fluid_layers_exp` API，对输入 `x` 采用 Inpl
 expand(shape, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -879,7 +887,7 @@ expand(shape, name=None)
 expand_as(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -888,7 +896,7 @@ expand_as(y, name=None)
 exponential_(lam=1.0, name=None)
 :::::::::
 
-该OP为inplace形式，通过 ``指数分布`` 随机数来填充该Tensor。
+该 OP 为 inplace 形式，通过 ``指数分布`` 随机数来填充该 Tensor。
 
 ``lam`` 是 ``指数分布`` 的 :math:`\lambda` 参数。随机数符合以下概率密度函数：
 
@@ -897,12 +905,12 @@ exponential_(lam=1.0, name=None)
     f(x) = \lambda e^{-\lambda x}
 
 参数：
-    - **x** (Tensor) - 输入Tensor，数据类型为 float32/float64。
+    - **x** (Tensor) - 输入 Tensor，数据类型为 float32/float64。
     - **lam** (float) - 指数分布的 :math:`\lambda` 参数。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
-返回：原Tensor
+返回：原 Tensor
 
 **代码示例**
     .. code-block:: python
@@ -927,14 +935,14 @@ eigvals(y, name=None)
 
 fill_(x, value, name=None)
 :::::::::
-以value值填充Tensor x中所有数据。对x的原地Inplace修改。
+以 value 值填充 Tensor x 中所有数据。对 x 的原地 Inplace 修改。
 
 参数：
-    - **x** (Tensor) - 需要修改的原始Tensor。
-    - **value** (float) - 以输入value值修改原始Tensor元素。
+    - **x** (Tensor) - 需要修改的原始 Tensor。
+    - **value** (float) - 以输入 value 值修改原始 Tensor 元素。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：修改原始Tensor x的所有元素为value以后的新的Tensor。
+返回：修改原始 Tensor x 的所有元素为 value 以后的新的 Tensor。
 
 **代码示例**
     .. code-block:: python
@@ -947,13 +955,13 @@ fill_(x, value, name=None)
 
 zero_(x, name=None)
 :::::::::
-以 0 值填充Tensor x中所有数据。对x的原地Inplace修改。
+以 0 值填充 Tensor x 中所有数据。对 x 的原地 Inplace 修改。
 
 参数：
-    - **x** (Tensor) - 需要修改的原始Tensor。
+    - **x** (Tensor) - 需要修改的原始 Tensor。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：修改原始Tensor x的所有元素为 0 以后的新的Tensor。
+返回：修改原始 Tensor x 的所有元素为 0 以后的新的 Tensor。
 
 **代码示例**
     .. code-block:: python
@@ -966,18 +974,18 @@ zero_(x, name=None)
 
 fill_diagonal_(x, value, offset=0, wrap=False, name=None)
 :::::::::
-以value值填充输入Tensor x的对角线元素值。对x的原地Inplace修改。
-输入Tensor x维度至少是2维，当维度大于2维时要求所有维度值相等。
-当维度等于2维时，两个维度可以不等，且此时wrap选项生效，详见wrap参数说明。
+以 value 值填充输入 Tensor x 的对角线元素值。对 x 的原地 Inplace 修改。
+输入 Tensor x 维度至少是 2 维，当维度大于 2 维时要求所有维度值相等。
+当维度等于 2 维时，两个维度可以不等，且此时 wrap 选项生效，详见 wrap 参数说明。
 
 参数：
-    - **x** (Tensor) - 需要修改对角线元素值的原始Tensor。
-    - **value** (float) - 以输入value值修改原始Tensor对角线元素。
-    - **offset** (int, optional) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为0。
-    - **wrap** (bool, optional) - 对于2维Tensor，height>width时是否循环填充，默认为False。
+    - **x** (Tensor) - 需要修改对角线元素值的原始 Tensor。
+    - **value** (float) - 以输入 value 值修改原始 Tensor 对角线元素。
+    - **offset** (int, optional) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
+    - **wrap** (bool, optional) - 对于 2 维 Tensor，height>width 时是否循环填充，默认为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：修改原始Tensor x的对角线元素为value以后的新的Tensor。
+返回：修改原始 Tensor x 的对角线元素为 value 以后的新的 Tensor。
 
 **代码示例**
     .. code-block:: python
@@ -993,19 +1001,19 @@ fill_diagonal_(x, value, offset=0, wrap=False, name=None)
 
 fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 :::::::::
-将输入Tensor y填充到Tensor x的以dim1、dim2所指定对角线维度作为最后一个维度的局部子Tensor中，输入Tensor x其余维度作为该局部子Tensor的shape中的前几个维度。
-其中输入Tensor y的维度要求是：最后一个维度与dim1、dim2指定的对角线维度相同，其余维度与输入Tensor x其余维度相同，且先后顺序一致。
-例如，有输入Tensor x，x.shape = (2,3,4,5)时，若dim1=2，dim2=3，则y.shape=(2,3,4)；若dim1=1，dim2=2，则y.shape=(2,5,3)；
+将输入 Tensor y 填充到 Tensor x 的以 dim1、dim2 所指定对角线维度作为最后一个维度的局部子 Tensor 中，输入 Tensor x 其余维度作为该局部子 Tensor 的 shape 中的前几个维度。
+其中输入 Tensor y 的维度要求是：最后一个维度与 dim1、dim2 指定的对角线维度相同，其余维度与输入 Tensor x 其余维度相同，且先后顺序一致。
+例如，有输入 Tensor x，x.shape = (2,3,4,5)时，若 dim1=2，dim2=3，则 y.shape=(2,3,4)；若 dim1=1，dim2=2，则 y.shape=(2,5,3)；
 
 参数：
-    - **x** (Tensor) - 需要填充局部对角线区域的原始Tensor。
-    - **y** (Tensor) - 需要被填充到原始Tensor x对角线区域的输入Tensor。
-    - **offset** (int, optional) - 选取局部区域对角线位置相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为0。
-    - **dim1** (int, optional) - 指定对角线所参考第一个维度，默认为0。
-    - **dim2** (int, optional) - 指定对角线所参考第二个维度，默认为1。
+    - **x** (Tensor) - 需要填充局部对角线区域的原始 Tensor。
+    - **y** (Tensor) - 需要被填充到原始 Tensor x 对角线区域的输入 Tensor。
+    - **offset** (int, optional) - 选取局部区域对角线位置相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
+    - **dim1** (int, optional) - 指定对角线所参考第一个维度，默认为 0。
+    - **dim2** (int, optional) - 指定对角线所参考第二个维度，默认为 1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：将y的值填充到输入Tensor x对角线区域以后所组合成的新Tensor。
+返回：将 y 的值填充到输入 Tensor x 对角线区域以后所组合成的新 Tensor。
 
 **代码示例**
     .. code-block:: python
@@ -1033,7 +1041,7 @@ Inplace 版本的 :ref:`cn_api_fill_diagonal_tensor` API，对输入 `x` 采用 
 flatten(start_axis=0, stop_axis=-1, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1047,7 +1055,7 @@ Inplace 版本的 :ref:`cn_api_paddle_flatten` API，对输入 `x` 采用 Inplac
 flip(axis, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1056,7 +1064,7 @@ flip(axis, name=None)
 rot90(k=1, axis=[0, 1], name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1065,7 +1073,7 @@ rot90(k=1, axis=[0, 1], name=None)
 floor(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1079,7 +1087,7 @@ Inplace 版本的 :ref:`cn_api_fluid_layers_floor` API，对输入 `x` 采用 In
 floor_divide(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1088,16 +1096,16 @@ floor_divide(y, name=None)
 floor_mod(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
-mod函数的别名，请参考 :ref:`cn_api_tensor_mod`
+mod 函数的别名，请参考 :ref:`cn_api_tensor_mod`
 
 gather(index, axis=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1106,7 +1114,7 @@ gather(index, axis=None, name=None)
 gather_nd(index, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1117,16 +1125,16 @@ gcd(x, y, name=None)
 
 计算两个输入的按元素绝对值的最大公约数
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_gcd`
 
 gradient()
 :::::::::
 
-与 ``Tensor.grad`` 相同，查看一个Tensor的梯度，数据类型为numpy\.ndarray。
+与 ``Tensor.grad`` 相同，查看一个 Tensor 的梯度，数据类型为 numpy\.ndarray。
 
-返回：该Tensor的梯度
+返回：该 Tensor 的梯度
 返回类型：numpy\.ndarray
 
 **代码示例**
@@ -1142,7 +1150,7 @@ gradient()
 greater_equal(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1151,7 +1159,7 @@ greater_equal(y, name=None)
 greater_than(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1160,7 +1168,7 @@ greater_than(y, name=None)
 heaviside(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1169,7 +1177,7 @@ heaviside(y, name=None)
 histogram(bins=100, min=0, max=0)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1178,7 +1186,7 @@ histogram(bins=100, min=0, max=0)
 imag(name=None)
 :::::::::
 
-返回：包含原复数Tensor的虚部数值
+返回：包含原复数 Tensor 的虚部数值
 
 返回类型：Tensor
 
@@ -1187,7 +1195,7 @@ imag(name=None)
 is_floating_point(x)
 :::::::::
 
-返回：判断输入Tensor的数据类型是否为浮点类型
+返回：判断输入 Tensor 的数据类型是否为浮点类型
 
 返回类型：bool
 
@@ -1196,7 +1204,7 @@ is_floating_point(x)
 increment(value=1.0, in_place=True)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1205,7 +1213,7 @@ increment(value=1.0, in_place=True)
 index_sample(index)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1214,7 +1222,7 @@ index_sample(index)
 index_select(index, axis=0, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1223,7 +1231,7 @@ index_select(index, axis=0, name=None)
 repeat_interleave(repeats, axis=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1232,7 +1240,7 @@ repeat_interleave(repeats, axis=None, name=None)
 inv(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1241,7 +1249,7 @@ inv(name=None)
 is_empty(cond=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1250,7 +1258,7 @@ is_empty(cond=None)
 isfinite(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1259,7 +1267,7 @@ isfinite(name=None)
 isinf(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1268,7 +1276,7 @@ isinf(name=None)
 isnan(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1277,7 +1285,7 @@ isnan(name=None)
 kthvalue(k, axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1286,7 +1294,7 @@ kthvalue(k, axis=None, keepdim=False, name=None)
 kron(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1297,14 +1305,14 @@ lcm(x, y, name=None)
 
 计算两个输入的按元素绝对值的最小公倍数
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_lcm`
 
 less_equal(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1313,7 +1321,7 @@ less_equal(y, name=None)
 less_than(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1322,7 +1330,7 @@ less_than(y, name=None)
 lgamma(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1331,7 +1339,7 @@ lgamma(name=None)
 log(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1340,7 +1348,7 @@ log(name=None)
 log10(name=None)
 :::::::::
 
-返回：以10为底数，对当前Tensor逐元素计算对数。
+返回：以 10 为底数，对当前 Tensor 逐元素计算对数。
 
 返回类型：Tensor
 
@@ -1349,7 +1357,7 @@ log10(name=None)
 log2(name=None)
 :::::::::
 
-返回：以2为底数，对当前Tensor逐元素计算对数。
+返回：以 2 为底数，对当前 Tensor 逐元素计算对数。
 
 返回类型：Tensor
 
@@ -1358,7 +1366,7 @@ log2(name=None)
 log1p(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1367,7 +1375,7 @@ log1p(name=None)
 logcumsumexp(x, axis=None, dtype=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1376,7 +1384,7 @@ logcumsumexp(x, axis=None, dtype=None, name=None)
 logical_and(y, out=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1385,7 +1393,7 @@ logical_and(y, out=None, name=None)
 logical_not(out=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1394,7 +1402,7 @@ logical_not(out=None, name=None)
 logical_or(y, out=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1403,7 +1411,7 @@ logical_or(y, out=None, name=None)
 logical_xor(y, out=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1412,7 +1420,7 @@ logical_xor(y, out=None, name=None)
 logsumexp(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1421,7 +1429,7 @@ logsumexp(axis=None, keepdim=False, name=None)
 masked_select(mask, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1430,7 +1438,7 @@ masked_select(mask, name=None)
 matmul(y, transpose_x=False, transpose_y=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1439,7 +1447,7 @@ matmul(y, transpose_x=False, transpose_y=False, name=None)
 matrix_power(x, n, name=None)
 :::::::::
 
-返回：经过矩阵幂运算后的Tensor
+返回：经过矩阵幂运算后的 Tensor
 
 返回类型：Tensor
 
@@ -1448,7 +1456,7 @@ matrix_power(x, n, name=None)
 max(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1457,7 +1465,7 @@ max(axis=None, keepdim=False, name=None)
 amax(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1466,7 +1474,7 @@ amax(axis=None, keepdim=False, name=None)
 maximum(y, axis=-1, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1475,7 +1483,7 @@ maximum(y, axis=-1, name=None)
 mean(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1493,7 +1501,7 @@ median(axis=None, keepdim=False, name=None)
 nanmedian(axis=None, keepdim=True, name=None)
 :::::::::
 
-返回：沿着 ``axis`` 忽略NAN元素进行中位数计算的结果
+返回：沿着 ``axis`` 忽略 NAN 元素进行中位数计算的结果
 
 返回类型：Tensor
 
@@ -1502,7 +1510,7 @@ nanmedian(axis=None, keepdim=True, name=None)
 min(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1511,7 +1519,7 @@ min(axis=None, keepdim=False, name=None)
 amin(axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1520,7 +1528,7 @@ amin(axis=None, keepdim=False, name=None)
 minimum(y, axis=-1, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1529,7 +1537,7 @@ minimum(y, axis=-1, name=None)
 mm(mat2, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1538,7 +1546,7 @@ mm(mat2, name=None)
 mod(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1547,7 +1555,7 @@ mod(y, name=None)
 mode(axis=-1, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1556,7 +1564,7 @@ mode(axis=-1, keepdim=False, name=None)
 multiplex(index)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1565,7 +1573,7 @@ multiplex(index)
 multiply(y, axis=-1, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1574,7 +1582,7 @@ multiply(y, axis=-1, name=None)
 mv(vec, name=None)
 :::::::::
 
-返回：当前Tensor向量 ``vec`` 的乘积
+返回：当前 Tensor 向量 ``vec`` 的乘积
 
 返回类型：Tensor
 
@@ -1583,7 +1591,7 @@ mv(vec, name=None)
 ndimension()
 :::::::::
 
-查看一个Tensor的维度，也称作rank。
+查看一个 Tensor 的维度，也称作 rank。
 
 **代码示例**
 
@@ -1596,7 +1604,7 @@ ndimension()
 neg(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1605,7 +1613,7 @@ neg(name=None)
 nonzero(as_tuple=False)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1614,7 +1622,7 @@ nonzero(as_tuple=False)
 norm(p=fro, axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1623,7 +1631,7 @@ norm(p=fro, axis=None, keepdim=False, name=None)
 not_equal(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1632,7 +1640,7 @@ not_equal(y, name=None)
 numel(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1641,9 +1649,9 @@ numel(name=None)
 numpy()
 :::::::::
 
-将当前Tensor转化为numpy\.ndarray。
+将当前 Tensor 转化为 numpy\.ndarray。
 
-返回：Tensor转化成的numpy\.ndarray。
+返回：Tensor 转化成的 numpy\.ndarray。
 返回类型：numpy\.ndarray
 
 **代码示例**
@@ -1661,17 +1669,17 @@ numpy()
 pin_memory(y, name=None)
 :::::::::
 
-将当前Tensor的拷贝到固定内存上，且返回的Tensor不保留在原计算图中。
+将当前 Tensor 的拷贝到固定内存上，且返回的 Tensor 不保留在原计算图中。
 
-如果当前Tensor已经在固定内存上，则不会发生任何拷贝。
+如果当前 Tensor 已经在固定内存上，则不会发生任何拷贝。
 
-返回：拷贝到固定内存上的Tensor
+返回：拷贝到固定内存上的 Tensor
 
 **代码示例**
     .. code-block:: python
 
         import paddle
-        
+
         if paddle.device.cuda.device_count() > 0:
             x = paddle.to_tensor(1.0, place=paddle.CUDAPlace(0))
             print(x.place)      # CUDAPlace(0)
@@ -1682,7 +1690,7 @@ pin_memory(y, name=None)
 pow(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1691,7 +1699,7 @@ pow(y, name=None)
 prod(axis=None, keepdim=False, dtype=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1700,7 +1708,7 @@ prod(axis=None, keepdim=False, dtype=None, name=None)
 quantile(q, axis=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1711,7 +1719,7 @@ rad2deg(x, name=None)
 
 将元素从弧度的角度转换为度
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1720,7 +1728,7 @@ rad2deg(x, name=None)
 rank()
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1729,7 +1737,7 @@ rank()
 real(name=None)
 :::::::::
 
-返回：Tensor，包含原复数Tensor的实部数值
+返回：Tensor，包含原复数 Tensor 的实部数值
 
 返回类型：Tensor
 
@@ -1738,7 +1746,7 @@ real(name=None)
 reciprocal(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1811,16 +1819,16 @@ register_hook(hook)
 remainder(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
-mod函数的别名，请参考 :ref:`cn_api_tensor_mod`
+mod 函数的别名，请参考 :ref:`cn_api_tensor_mod`
 
 reshape(shape, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1829,12 +1837,12 @@ reshape(shape, name=None)
 reshape_(shape, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_fluid_layers_reshape` API，对输入 `x` 采用 Inplace 策略 
+Inplace 版本的 :ref:`cn_api_fluid_layers_reshape` API，对输入 `x` 采用 Inplace 策略
 
 reverse(axis, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1843,7 +1851,7 @@ reverse(axis, name=None)
 roll(shifts, axis=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1852,7 +1860,7 @@ roll(shifts, axis=None, name=None)
 round(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1866,7 +1874,7 @@ Inplace 版本的 :ref:`cn_api_fluid_layers_round` API，对输入 `x` 采用 In
 rsqrt(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1880,7 +1888,7 @@ Inplace 版本的 :ref:`cn_api_fluid_layers_rsqrt` API，对输入 `x` 采用 In
 scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1894,7 +1902,7 @@ Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采�
 scatter(index, updates, overwrite=True, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1908,7 +1916,7 @@ Inplace 版本的 :ref:`cn_api_paddle_cn_scatter` API，对输入 `x` 采用 Inp
 scatter_nd(updates, shape, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1917,7 +1925,7 @@ scatter_nd(updates, shape, name=None)
 scatter_nd_add(index, updates, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1926,10 +1934,10 @@ scatter_nd_add(index, updates, name=None)
 set_value(value)
 :::::::::
 
-设置当前Tensor的值。
+设置当前 Tensor 的值。
 
 参数：
-    - **value** (Tensor|np.ndarray) - 需要被设置的值，类型为Tensor或者numpy\.array。
+    - **value** (Tensor|np.ndarray) - 需要被设置的值，类型为 Tensor 或者 numpy\.array。
 
 **代码示例**
     .. code-block:: python
@@ -1945,7 +1953,7 @@ set_value(value)
         linear.weight.set_value(custom_weight)  # change existing weight
         out = linear(input)  # call with different weight
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 shard_index(index_num, nshards, shard_id, ignore_value=-1)
 :::::::::
@@ -1958,7 +1966,7 @@ shard_index(index_num, nshards, shard_id, ignore_value=-1)
 sign(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1967,7 +1975,7 @@ sign(name=None)
 sin(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -1976,7 +1984,7 @@ sin(name=None)
 sinh(name=None)
 :::::::::
 
-对该Tensor中逐个元素求双曲正弦。
+对该 Tensor 中逐个元素求双曲正弦。
 
 **代码示例**
     .. code-block:: python
@@ -1991,7 +1999,7 @@ sinh(name=None)
 size()
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2000,7 +2008,7 @@ size()
 slice(axes, starts, ends)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2009,7 +2017,7 @@ slice(axes, starts, ends)
 sort(axis=-1, descending=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2018,7 +2026,7 @@ sort(axis=-1, descending=False, name=None)
 split(num_or_sections, axis=0, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2027,7 +2035,7 @@ split(num_or_sections, axis=0, name=None)
 sqrt(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2041,7 +2049,7 @@ Inplace 版本的 :ref:`cn_api_fluid_layers_sqrt` API，对输入 `x` 采用 Inp
 square(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2050,7 +2058,7 @@ square(name=None)
 squeeze(axis=None, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2064,7 +2072,7 @@ Inplace 版本的 :ref:`cn_api_paddle_tensor_squeeze` API，对输入 `x` 采用
 stack(axis=0, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2073,7 +2081,7 @@ stack(axis=0, name=None)
 stanh(scale_a=0.67, scale_b=1.7159, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2082,7 +2090,7 @@ stanh(scale_a=0.67, scale_b=1.7159, name=None)
 std(axis=None, unbiased=True, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2091,7 +2099,7 @@ std(axis=None, unbiased=True, keepdim=False, name=None)
 strided_slice(axes, starts, ends, strides)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2100,7 +2108,7 @@ strided_slice(axes, starts, ends, strides)
 subtract(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2114,7 +2122,7 @@ Inplace 版本的 :ref:`cn_api_paddle_tensor_subtract` API，对输入 `x` 采�
 sum(axis=None, dtype=None, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2123,7 +2131,7 @@ sum(axis=None, dtype=None, keepdim=False, name=None)
 t(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2132,7 +2140,7 @@ t(name=None)
 tanh(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2146,7 +2154,7 @@ Inplace 版本的 :ref:`cn_api_fluid_layers_tan` API，对输入 `x` 采用 Inpl
 tile(repeat_times, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2155,7 +2163,7 @@ tile(repeat_times, name=None)
 tolist()
 :::::::::
 
-返回：Tensor对应结构的list
+返回：Tensor 对应结构的 list
 
 返回类型：python list
 
@@ -2164,7 +2172,7 @@ tolist()
 topk(k, axis=None, largest=True, sorted=True, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2173,7 +2181,7 @@ topk(k, axis=None, largest=True, sorted=True, name=None)
 trace(offset=0, axis1=0, axis2=1, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2182,7 +2190,7 @@ trace(offset=0, axis1=0, axis2=1, name=None)
 transpose(perm, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2191,7 +2199,7 @@ transpose(perm, name=None)
 triangular_solve(b, upper=True, transpose=False, unitriangular=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2200,7 +2208,7 @@ triangular_solve(b, upper=True, transpose=False, unitriangular=False, name=None)
 trunc(name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2209,7 +2217,7 @@ trunc(name=None)
 frac(name=None)
 :::::::::
 
-返回：计算后的tensor
+返回：计算后的 tensor
 
 返回类型：Tensor
 
@@ -2218,7 +2226,7 @@ frac(name=None)
 tensordot(y, axes=2, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2227,7 +2235,7 @@ tensordot(y, axes=2, name=None)
 unbind(axis=0)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2236,17 +2244,17 @@ unbind(axis=0)
 uniform_(min=-1.0, max=1.0, seed=0, name=None)
 :::::::::
 
-Inplace版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采样的随机数填充的Tensor。输出Tensor将被置于输入x的位置。
+Inplace 版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采样的随机数填充的 Tensor。输出 Tensor 将被置于输入 x 的位置。
 
 参数：
-    - **x** (Tensor) - 待被随机数填充的输入Tensor。
-    - **min** (float|int, optional) - 生成随机数的下界，min包含在该范围内。默认为-1.0。
-    - **max** (float|int, optional) - 生成随机数的上界，max不包含在该范围内。默认为1.0。
-    - **seed** (int, optional) - 用于生成随机数的随机种子。如果seed为0，将使用全局默认生成器的种子（可通过paddle.seed设置）。
-                                 注意如果seed不为0，该操作每次将生成同一个随机值。默认为0。
+    - **x** (Tensor) - 待被随机数填充的输入 Tensor。
+    - **min** (float|int, optional) - 生成随机数的下界，min 包含在该范围内。默认为-1.0。
+    - **max** (float|int, optional) - 生成随机数的上界，max 不包含在该范围内。默认为 1.0。
+    - **seed** (int, optional) - 用于生成随机数的随机种子。如果 seed 为 0，将使用全局默认生成器的种子（可通过 paddle.seed 设置）。
+                                 注意如果 seed 不为 0，该操作每次将生成同一个随机值。默认为 0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回：由服从范围在[min, max)的均匀分布的随机数所填充的输入Tensor x。
+返回：由服从范围在[min, max)的均匀分布的随机数所填充的输入 Tensor x。
 
 返回类型：Tensor
 
@@ -2256,7 +2264,7 @@ Inplace版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采�
         import paddle
         x = paddle.ones(shape=[3, 4])
         x.uniform_()
-        print(x)       
+        print(x)
         # result is random
         # Tensor(shape=[3, 4], dtype=float32, place=CUDAPlace(0), stop_gradient=True,
         #     [[ 0.97134161, -0.36784279, -0.13951409, -0.48410338],
@@ -2266,7 +2274,7 @@ Inplace版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采�
 unique(return_index=False, return_inverse=False, return_counts=False, axis=None, dtype=int64, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2275,7 +2283,7 @@ unique(return_index=False, return_inverse=False, return_counts=False, axis=None,
 unsqueeze(axis, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2289,7 +2297,7 @@ Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采�
 unstack(axis=0, num=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2298,7 +2306,7 @@ unstack(axis=0, num=None)
 var(axis=None, unbiased=True, keepdim=False, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2307,7 +2315,7 @@ var(axis=None, unbiased=True, keepdim=False, name=None)
 where(y, name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2316,7 +2324,7 @@ where(y, name=None)
 multi_dot(x, name=None)
 :::::::::
 
-返回：多个矩阵相乘后的Tensor
+返回：多个矩阵相乘后的 Tensor
 
 返回类型：Tensor
 
@@ -2325,7 +2333,7 @@ multi_dot(x, name=None)
 solve(x, y name=None)
 :::::::::
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2334,7 +2342,7 @@ solve(x, y name=None)
 logit(eps=None, name=None)
 :::::::::
 
-返回：计算logit后的Tensor
+返回：计算 logit 后的 Tensor
 
 返回类型：Tensor
 
@@ -2345,7 +2353,7 @@ lerp(x, y, weight, name=None)
 
 基于给定的 weight 计算 x 与 y 的线性插值
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2379,9 +2387,9 @@ is_integer()
 take_along_axis(arr, index, axis)
 :::::::::
 
-基于输入索引矩阵，沿着指定axis从arr矩阵里选取1d切片。索引矩阵必须和arr矩阵有相同的维度，需要能够broadcast与arr矩阵对齐。
+基于输入索引矩阵，沿着指定 axis 从 arr 矩阵里选取 1d 切片。索引矩阵必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2390,9 +2398,9 @@ take_along_axis(arr, index, axis)
 put_along_axis(arr, index, value, axis, reduce="assign")
 :::::::::
 
-基于输入index矩阵，将输入value沿着指定axis放置入arr矩阵。索引矩阵和value必须和arr矩阵有相同的维度，需要能够broadcast与arr矩阵对齐。
+基于输入 index 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
 
-返回：计算后的Tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
@@ -2401,7 +2409,7 @@ put_along_axis(arr, index, value, axis, reduce="assign")
 erfinv(x, name=None)
 :::::::::
 
-对输入x进行逆误差函数计算
+对输入 x 进行逆误差函数计算
 
 请参考 :ref:`cn_api_paddle_tensor_erfinv`
 
