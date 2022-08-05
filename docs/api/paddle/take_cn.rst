@@ -3,7 +3,7 @@
 take
 -------------------------------
 
-.. py:function:: paddle.take(input, index, name)
+.. py:function:: paddle.take(input, index, name=None)
 
 返回一个新的 Tensor，其中包含给定索引处的输入元素。
 将输入 Tensor 视为一维 Tensor，返回指定索引上的元素集合，返回结果与 `index` 的形状相同。
@@ -18,7 +18,7 @@ take
 返回
 :::::::::
 
-- `Tensor` - 返回一个新的 Tensor，其中包含给定索引处的输入元素。结果与 `index` 的形状相同。
+- Tensor - 返回一个新的 Tensor，其中包含给定索引处的输入元素。结果与 index 的形状相同。
 
 代码示例
 :::::::::
