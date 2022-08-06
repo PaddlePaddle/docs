@@ -223,7 +223,7 @@ uname -m && cat /etc/*release
 
 #### 2. Update the system source
 
-* Centos system
+* CentOS system
 
     Update the source of `yum`: `yum update`, and add the necessary yum source:
     ```
@@ -242,7 +242,7 @@ uname -m && cat /etc/*release
 * If you need to use multi card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here is the installation instructions of nccl2 under CUDA10.2 and cuDNN7. For more version of installation information, please refer to NVIDIA[official website](https://developer.nvidia.com/nccl)):
 
 
-    * **Centos system can refer to the following commands**
+    * **CentOS system can refer to the following commands**
 
         ```
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
@@ -271,7 +271,7 @@ uname -m && cat /etc/*release
 
 #### 4. Install the necessary tools
 
-* Centos system
+* CentOS system
 
     `bzip2` and `make`:
     ```
@@ -507,7 +507,7 @@ mkdir build && cd build
 
 
         ```
-        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
         ```
 
 
@@ -549,7 +549,7 @@ After the installation is complete, you can use `python` or `python3` to enter t
 ```
 import paddle
 ```
-and then  
+and then
 ```
 paddle.utils.run_check()
 ```

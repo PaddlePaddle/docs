@@ -16,7 +16,7 @@ double_buffer
 
     - **reader** (Variable) – 需要wrap的reader变量Reader。
     - **place** (Place，可选) – 目标数据的位置，比如CPU，GPU，GPU需要指明是哪张卡。默认是executor执行样本的位置。
-    - **name** (str，可选) – 变量的名字。该参数供开发人员打印调试信息时使用，具体用法参见 :ref:`api_guide_Name`，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 
@@ -32,24 +32,4 @@ Variable(Reader)。双缓冲队列的reader。
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    reader = fluid.layers.py_reader(capacity=64,
-                                    shapes=[(-1, 1, 28, 28), (-1, 1)],
-                                    dtypes=['float32', 'int64'],
-                                    use_double_buffer=False)
-    reader = fluid.layers.double_buffer(reader)
-    image, label = fluid.layers.read_file(reader)
-
-
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.double_buffer

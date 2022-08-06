@@ -31,11 +31,11 @@ PaddlePaddle has two-dimensional (pool2d), three-dimensional convolution (pool3d
 - The ``use_cudnn`` : This option allows you to choose whether or not to use cudnn to accelerate pooling.
 
 - ``ceil_mode`` : Whether to use the ceil function to calculate the output height and width.  ``ceil mode`` means ceiling mode, which means that, in the feature map, the edge parts that are smaller than ``filter size`` will be retained, and separately calculated. It can be understood as supplementing the original data with edge with a value of -NAN. By contrast, The floor mode directly discards the edges smaller than the ``filter size``. The specific calculation formula is as follows:
-   
+
   * Non ``ceil_mode`` :  ``Output size = (input size - filter size + 2 * padding) / stride (stride size) + 1``
-    
+
   * ``ceil_mode`` : ``Output size = (input size - filter size + 2 * padding + stride - 1) / stride + 1``
-    
+
 
 
 related API:
@@ -54,7 +54,7 @@ related API:
 - ``pooled_height`` and ``pooled_width`` : accept non-square pooling box sizes
 
 - ``spatial_scale`` : Used to set the scale of scaling the RoI and the original image. Note that the settings here require the user to manually calculate the actual scaling of the RoI and the original image.
- 
+
 
 related API:
 

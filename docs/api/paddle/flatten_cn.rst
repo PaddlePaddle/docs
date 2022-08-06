@@ -11,7 +11,7 @@ flatten
 根据给定的 start_axis 和 stop_axis 将连续的维度展平。
 
 .. note::
-  在动态图模式下，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。如果不希望输入与输出共享数据，请使用 ``Tensor.clone`` ，例如 ``flatten_clone_x = x.flatten().clone()`` 。
+  在动态图模式下，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。如果不希望输入与输出共享数据，请使用 ``Tensor.clone``，例如 ``flatten_clone_x = x.flatten().clone()`` 。
 
 例如：
 
@@ -25,7 +25,7 @@ flatten
         start_axis = 1
         stop_axis = 2
 
-      得到:
+      得到：
         Out.shape = (3, 100 * 100, 4)
 
     Case 2:
@@ -36,16 +36,16 @@ flatten
         start_axis = 0
         stop_axis = -1
 
-      得到:
+      得到：
         Out.shape = (3 * 100 * 100 * 4)
 
 参数
 ::::::::::::
 
-  - **x** (Tensor) - 多维 Tensor，数据类型可以为float32、float64、int8、int32或int64。
+  - **x** (Tensor) - 多维 Tensor，数据类型可以为 float32、float64、int8、int32 或 int64。
   - **start_axis** (int) - flatten 展开的起始维度。
   - **stop_axis** (int) - flatten 展开的结束维度。
-  - **name** (str，可选) - 操作的名称(可选，默认值为None)。更多信息请参见 :ref:`api_guide_Name`。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -54,19 +54,4 @@ flatten
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    image_shape=(2, 3, 4, 4)
-    x = paddle.arange(end=image_shape[0] * image_shape[1] * image_shape[2] * image_shape[3])
-    img = paddle.reshape(x, image_shape) / 100
-    
-    out = paddle.flatten(img, start_axis=1, stop_axis=2)
-    # out shape is [2, 12, 4]
-
-    # 在动态图模式下，输出out与输入img共享数据
-    img[0, 0, 0, 0] = -1
-    print(out[0, 0, 0]) # [-1]
-
-
+COPY-FROM: paddle.flatten

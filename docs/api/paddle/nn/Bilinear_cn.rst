@@ -7,7 +7,7 @@ Bilinear
 
 该层对两个输入执行双线性张量积。
 
-例如:
+例如：
 
 .. math::
 
@@ -17,21 +17,21 @@ Bilinear
 
 在这个公式中：
 
-  - :math:`x1`: 第一个输入，包含 :in1_features个元素，形状为 [batch_size, in1_features]。
-  - :math:`x2`: 第二个输入，包含 :in2_features个元素，形状为 [batch_size, in2_features]。
-  - :math:`W_{i}`: 第 :i个被学习的权重，形状是 [in1_features, in2_features], 而完整的W（即可训练的参数W）的形状为[out_features, in1_features, in2_features]。
-  - :math:`out_{i}`: 输出的第 :i个元素，形状是 [batch_size]， 而完整的out的形状为[batch_size, out_features]。
-  - :math:`b`: 被学习的偏置参数，形状是 [1, out_features]。
+  - :math:`x1`：第一个输入，包含：in1_features 个元素，形状为 [batch_size, in1_features]。
+  - :math:`x2`：第二个输入，包含：in2_features 个元素，形状为 [batch_size, in2_features]。
+  - :math:`W_{i}`：第：i 个被学习的权重，形状是 [in1_features, in2_features]，而完整的 W（即可训练的参数 W）的形状为[out_features, in1_features, in2_features]。
+  - :math:`out_{i}`：输出的第：i 个元素，形状是 [batch_size]，而完整的 out 的形状为[batch_size, out_features]。
+  - :math:`b`：被学习的偏置参数，形状是 [1, out_features]。
   - :math:`x2^\mathrm{T}`: :math:`x2` 的转置。
 
 参数
 :::::::::
-  - **in1_features** (int): 每个 **x1** 元素的维度。
-  - **in2_features** (int): 每个 **x2** 元素的维度。
-  - **out_features** (int): 输出张量的维度。
-  - **weight_attr** (ParamAttr，可选) ：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。
-  - **bias_attr** (ParamAttr，可选) : 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性，此时bias的元素会被初始化成0。如果设置成False，则不会有bias加到output结果上。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
+  - **in1_features** (int)：每个 **x1** 元素的维度。
+  - **in2_features** (int)：每个 **x2** 元素的维度。
+  - **out_features** (int)：输出张量的维度。
+  - **weight_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。
+  - **bias_attr** (ParamAttr，可选)：指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性，此时 bias 的元素会被初始化成 0。如果设置成 False，则不会有 bias 加到 output 结果上。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 属性
 :::::::::
@@ -45,15 +45,4 @@ Bilinear
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy
-
-    layer1 = numpy.random.random((5, 5)).astype('float32')
-    layer2 = numpy.random.random((5, 4)).astype('float32')
-    bilinear = paddle.nn.Bilinear(
-        in1_features=5, in2_features=4, out_features=1000)
-    result = bilinear(paddle.to_tensor(layer1),
-                    paddle.to_tensor(layer2))     # result shape [5, 1000]
-
+COPY-FROM: paddle.nn.Bilinear

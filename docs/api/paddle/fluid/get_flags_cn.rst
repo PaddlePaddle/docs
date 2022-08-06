@@ -14,11 +14,4 @@ get_flags
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-
-    flags = ['FLAGS_eager_delete_tensor_gb', 'FLAGS_check_nan_inf']
-    res = fluid.get_flags(flags)
-    print(res)
-    # {'FLAGS_eager_delete_tensor_gb': 0.0, 'FLAGS_check_nan_inf': False}
+COPY-FROM: paddle.fluid.get_flags

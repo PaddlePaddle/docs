@@ -9,10 +9,10 @@ Conv3DTranspose
 
 
 
-该接口用于构建 ``Conv3DTranspose`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。3D卷积转置层（Convlution3D transpose layer)根据输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW格式。其中 ``N`` 为batch大小， ``C`` 为通道数（channel）, ``D``  为特征深度, ``H`` 为特征高度， ``W`` 为特征宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_ 。如果参数bias_attr不为False, 转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
+该接口用于构建 ``Conv3DTranspose`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。3D卷积转置层（Convlution3D transpose layer)根据输入（input）、滤波器（filter）和卷积核膨胀（dilations）、步长（stride）、填充来计算输出特征层大小或者通过output_size指定输出特征层大小。输入(Input)和输出(Output)为NCDHW格式。其中 ``N`` 为batch大小，``C`` 为通道数（channel）, ``D``  为特征深度，``H`` 为特征高度，``W`` 为特征宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 参考文献_。如果参数bias_attr不为False，转置卷积计算会添加偏置项。如果act不为None，则转置卷积计算之后添加相应的激活函数。
 
 
-.. _参考文献: https://arxiv.org/abs/1603.07285
+.. _参考文献：https://arxiv.org/abs/1603.07285
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
 
@@ -20,22 +20,22 @@ Conv3DTranspose
                         \\Out=\sigma (W*X+b)\\
 
 其中：
-    -  :math:`X` : 输入图像，具有NCDHW格式的张量（Tensor）
+    -  :math:`X`：输入图像，具有NCDHW格式的张量（Tensor）
 
-    -  :math:`W` : 滤波器，具有NCDHW格式的张量（Tensor）
+    -  :math:`W`：滤波器，具有NCDHW格式的张量（Tensor）
 
-    -  :math:`*` : 卷积操作（注意：转置卷积本质上的计算还是卷积）
+    -  :math:`*`：卷积操作（注意：转置卷积本质上的计算还是卷积）
 
-    -  :math:`b` : 偏置(bias)，维度为 :math:`[M,1]` 的2D Tensor
+    -  :math:`b`：偏置(bias)，维度为 :math:`[M,1]` 的2D Tensor
 
-    -  :math:`σ` : 激活函数
+    -  :math:`σ`：激活函数
 
-    -  :math:`Out` : 输出值， ``Out`` 和 ``X`` 的 shape可能不一样
+    -  :math:`Out`：输出值，``Out`` 和 ``X`` 的 shape可能不一样
 
 
 **样例**
 
-输入:
+输入：
 
     输入Tensor的维度：:math:`[N,C_{in}, D_{in}, H_{in}, W_{in}]`
 
@@ -43,7 +43,7 @@ Conv3DTranspose
 
 
 
-输出:
+输出：
 
     输出Tensor的维度：:math:`[N,C_{out}, D_{out}, H_{out}, W_{out}]`
 
@@ -61,11 +61,11 @@ Conv3DTranspose
 
 
 **注意** :
-    如果output_size为None，则 :math:`D_{out}` = :math:`D^\prime_{out}` , :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}` ;否则，指定的output_size_depth（输出特征层的深度） :math:`D_{out}` 应当介于 :math:`D^\prime_{out}` 和 :math:`D^\prime_{out} + strides[0]` 之间（不包含 :math:`D^\prime_{out} + strides[0]` ），指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[1]` 之间（不包含 :math:`H^\prime_{out} + strides[1]` ）, 并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[2]` 之间（不包含 :math:`W^\prime_{out} + strides[2]` ）。 
+    如果output_size为None，则 :math:`D_{out}` = :math:`D^\prime_{out}` , :math:`H_{out}` = :math:`H^\prime_{out}` , :math:`W_{out}` = :math:`W^\prime_{out}`；否则，指定的output_size_depth（输出特征层的深度） :math:`D_{out}` 应当介于 :math:`D^\prime_{out}` 和 :math:`D^\prime_{out} + strides[0]` 之间（不包含 :math:`D^\prime_{out} + strides[0]` ），指定的output_size_height（输出特征层的高） :math:`H_{out}` 应当介于 :math:`H^\prime_{out}` 和 :math:`H^\prime_{out} + strides[1]` 之间（不包含 :math:`H^\prime_{out} + strides[1]` ），并且指定的output_size_width（输出特征层的宽） :math:`W_{out}` 应当介于 :math:`W^\prime_{out}` 和 :math:`W^\prime_{out} + strides[2]` 之间（不包含 :math:`W^\prime_{out} + strides[2]` ）。 
 
     由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
-    如果指定了output_size， 其可以自动计算滤波器的大小。
+    如果指定了output_size，其可以自动计算滤波器的大小。
 
 
 参数
@@ -73,18 +73,18 @@ Conv3DTranspose
 
       - **num_channels** (int) - 输入图像的通道数。
       - **num_filters** (int) - 滤波器（卷积核）的个数，与输出的图片的通道数相同。
-      - **filter_size** (int|tuple) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，（filter_size_depth，filter_size_height, filter_size_width）。否则，filter_size_depth = filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size， 其会根据output_size、padding和stride计算出滤波器大小。
-      - **output_size** (int|tuple，可选) - 输出图片的大小。如果 ``output_size`` 是一个元组（tuple），则该元形式为（image_H,image_W),这两个值必须为整型。如果未设置,则内部会使用filter_size、padding和stride来计算output_size。如果 ``output_size`` 和 ``filter_size`` 是同时指定的，那么它们应满足上面的公式。默认值为None。output_size和filter_size不能同时为None。
+      - **filter_size** (int|tuple) - 滤波器大小。如果filter_size是一个元组，则必须包含三个整型数，（filter_size_depth，filter_size_height, filter_size_width）。否则，filter_size_depth = filter_size_height = filter_size_width = filter_size。如果filter_size=None，则必须指定output_size，其会根据output_size、padding和stride计算出滤波器大小。
+      - **output_size** (int|tuple，可选) - 输出图片的大小。如果 ``output_size`` 是一个元组（tuple），则该元形式为（image_H,image_W)，这两个值必须为整型。如果未设置，则内部会使用filter_size、padding和stride来计算output_size。如果 ``output_size`` 和 ``filter_size`` 是同时指定的，那么它们应满足上面的公式。默认值为None。output_size和filter_size不能同时为None。
       - **padding** (int|tuple，可选) - 填充padding大小。padding参数在输入特征层每边添加 ``dilation * (kernel_size - 1) - padding`` 个0。如果padding是一个元组，它必须包含三个整数(padding_depth，padding_height，padding_width)。否则，padding_depth = padding_height = padding_width = padding。默认值为0。
       - **stride** (int|tuple，可选) - 步长stride大小。滤波器和输入进行卷积计算时滑动的步长。如果stride是一个元组，那么元组的形式为(stride_depth，stride_height，stride_width)。否则，stride_depth = stride_height = stride_width = stride。默认值为1。
-      - **dilation** (int|tuple，可选) - 膨胀比例dilation大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据  `可视化效果图  <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_  较好理解。如果膨胀比例dilation是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认值为1。
+      - **dilation** (int|tuple，可选) - 膨胀比例dilation大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据  `可视化效果图  <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀比例dilation是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认值为1。
       - **groups** (int，可选) - 三维转置卷积层的组数。从Alex Krizhevsky的CNN Deep论文中的群卷积中受到启发，当group=2时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认值为1。
       - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
       - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
       - **use_cudnn** (bool，可选) - 是否使用cudnn内核，只有安装Paddle GPU版时才有效。默认值为True。
       - **act** (str，可选) -  激活函数类型，如果设置为None，则不使用激活函数。默认值为None。
-      - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
-      - **dtype** (str, 可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
+      - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+      - **dtype** (str，可选) - 数据类型，可以为"float32"或"float64"。默认值为"float32"。
 
 
 返回

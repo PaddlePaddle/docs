@@ -55,7 +55,7 @@ class FileReader : public ReaderBase {
 
 A file reader binds with a single file and reads one data instance at a time. Each type of file reader shall implement its own `ReadNextImpl()`, `HasNext()` and `ReInit()`.
 
-The `ReadNextImpl()` is invoked by `ReadNext()`. Besides invoking `ReadNextImpl()`, `ReadNext()` is also responsible for checking the output, making sure that each shape of `LoDTensor` in `*out` is consistent with the one in `dims_`.  
+The `ReadNextImpl()` is invoked by `ReadNext()`. Besides invoking `ReadNextImpl()`, `ReadNext()` is also responsible for checking the output, making sure that each shape of `LoDTensor` in `*out` is consistent with the one in `dims_`.
 
 ### DecoratedReader
 

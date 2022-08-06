@@ -1,11 +1,47 @@
 # 转换原理
 
-在框架内部，动转静模块在转换上主要包括对InputSpec的处理，对函数调用的递归转写，对IfElse、For、While控制语句的转写，以及Layer的Parameters和Buffers变量的转换。下面将从这四个方面介绍动转静模块的转换原理。
+在飞桨框架内部，动转静模块在转换上主要包括对输入数据的 InputSpec 的处理，对函数调用的递归转写，对 IfElse、For、While 控制语句的转写，以及 Layer 的 Parameters 和 Buffers 变量的转换。下面将介绍动转静模块的转换过程。
 
-## 一、 设置 Placeholder 信息
+## 一、 概述
+
+<figure align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/pricinple.png" style="zoom:50%"/>
+</figure>
+
+上图是动转静转换和训练执行的基本流程：
+
+1. **AST 解析动态图代码**
+    + 当某个函数被 ``@to_static`` 装饰、或用 ``paddle.jit.to_static()`` 包裹时，飞桨会隐式地解析动态图的 Python 代码（即解析：抽象语法树，简称 AST）。
+
+2. **AST 转写，得到静态图代码**
+    + 函数转写：递归地对所有函数进行转写，实现用户仅需在最外层函数添加 @to_static 的体验效果。
+
+    + 控制流转写：用户的代码中可能包含依赖 Tensor 的控制流代码，飞桨框架会自动且有选择性地将 if、for、while 转换为静态图对应的控制流。
+
+    + 其他语法处理：包括 break、continue、assert、提前 return 等语法的处理。
+
+3. **生成静态图的 Program 和 Parameters**
+    + 得到静态图代码后，根据用户指定的 ``InputSpec`` 信息（或训练时根据实际输入 Tensor 隐式创建的 InputSpec）作为输入，执行静态图代码生成 Program。每个被装饰的函数，都会被替换为一个 StaticFunction 对象，其持有此函数对应的计算图 Program，在执行 ``paddle.jit.save`` 时会被用到。
+
+    + 对于 ``trainable=True`` 的 Buffers 变量，动转静会自动识别并将其和 Parameters 一起保存到 ``.pdiparams`` 文件中。
+
+4. **执行动转静训练**
+    + 使用执行引擎执行函数对应的 Program，返回输出 out。
+
+    + 执行时会根据用户指定的 build_strategy 策略应用图优化技术，提升执行效率。
+
+5. **使用 ``paddle.jit.save`` 保存静态图模型**
+    + 使用 ``paddle.jit.save`` 时会遍历模型 net 中所有的函数，将每个的 StaticFunction 中的计算图 Program 和涉及到的 Parameters 序列化为磁盘文件。
 
 
-静态图下，模型起始的 Placeholder 信息是通过 ``paddle.static.data`` 来指定的，并以此作为编译期的 ``InferShape`` 推导起点，即用于推导输出 Tensor 的 shape。
+
+## 二、设置输入数据的 ``InputSpec`` 信息
+
+``InputSpec`` 用于表示模型输入数据的 shape、dtype、name 信息，是辅助动静转换的必要描述信息。
+
+在静态图模式下，飞桨框架会将神经网络描述为 Program 的数据结构，并对 Program 进行编译优化，再调用执行器获得计算结果。可以看到静态图模式下运行，在调用执行器前并不执行实际操作（这个阶段一般称为“组网阶段”或者“编译阶段”），因此也并不读入实际数据，所以在静态图中还需要一种特殊的变量来表示输入数据，一般称为“占位符”，动转静提供了 ``InputSpec`` 接口配置该“占位符”，用于表示输入数据的描述信息。
+
+如下静态图的示例代码中，模型的 “占位符” 信息是通过 ``paddle.static.data`` 来指定的，并以此作为编译期的 InferShape 推导起点，即用于推导输出 Tensor 的 shape。
 
 ```python
 import paddle
@@ -21,7 +57,7 @@ out = paddle.add(out, y)
 ```
 
 
-动转静代码示例，通过 ``InputSpec`` 设置 ``Placeholder`` 信息：
+动转静代码示例，通过 ``InputSpec`` 设置 “占位符” 信息：
 
 ```python
 import paddle
@@ -54,10 +90,11 @@ net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
 + 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度
 + 可以指定 Placeholder 的 ``name`` ，方面预测时根据 ``name`` 输入数据
 
-> 注：InputSpec 接口的高阶用法，请参看 [【使用InputSpec指定模型输入Tensor信息】](./basic_usage_cn.html#inputspec)
+> 注：``InputSpec`` 接口的详细用法，请参见 [InputSpec 的用法介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/basic_usage_cn.html#inputspec)。
 
 
-## 二、函数转写
+### 三、动转静代码转写（AST 转写）
+### 3.1 函数转写
 
 在 NLP、CV 领域中，一个模型常包含层层复杂的子函数调用，动转静中是如何实现**只需装饰最外层的 ``forward`` 函数**，就能递归处理所有的函数。
 
@@ -126,25 +163,28 @@ def add_two(x, y):
 
 即使函数定义分布在不同的文件中， ``convert_call`` 函数也会递归地处理和转写所有嵌套的子函数。
 
-## 三、控制流转写
+### 3.2 控制流转写
 
 控制流 ``if/for/while`` 的转写和处理是动转静中比较重要的模块，也是动态图模型和静态图模型实现上差别最大的一部分。如下图所示，对于控制流的转写分为两个阶段：转写期和执行期。在转写期，动转静模块将控制流语句转写为统一的形式；在执行期，根据控制流是否依赖 ``Tensor`` 来决定是否将控制流转写为相应的 ``cond_op/while_op`` 。
 
-<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/04_dygraph_to_static/images/convert_cond.png" style="zoom:80%" />
+<figure align="center">
+<img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/convert_cond.png" style="zoom:50%" />
+</figure>
 
 **转写上有两个基本原则：**
 
 + **并非**所有动态图中的 ``if/for/while`` 都会转写为 ``cond_op/while_op``
 + **只有**控制流的判断条件 **依赖了``Tensor``**（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
 
+这是因为模型代码中不依赖 Tensor 的 ``if/for/while`` 会正常按照 Python 原生的语法逻辑去执行；而依赖 Tensor 的 ``if/for/while`` 才会调用 [paddle.static.cond](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/cond_cn.html#cond) 和 [paddle.static.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/while_loop_cn.html#while-loop) 两个飞桨的控制流 API。
 
-### 3.1 IfElse
+#### 3.2.1 IfElse
 
 无论是否会转写为 ``cond_op`` ，动转静都会首先对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**
 
 **示例一：不依赖 Tensor 的控制流**
 
-如下代码样例中的 `if label is not None`, 此判断只依赖于 `label` 是否为 `None`（存在性），并不依赖 `label` 的Tensor值（数值性），因此属于**不依赖 Tensor 的控制流**。
+如下代码样例中的 `if label is not None`, 此判断只依赖于 `label` 是否为 `None`（存在性），并不依赖 `label` 的 Tensor 值（数值性），因此属于**不依赖 Tensor 的控制流**。
 
 ```python
 def not_depend_tensor_if(x, label=None):
@@ -176,7 +216,7 @@ def not_depend_tensor_if(x, label=None):
 
 **示例二：依赖 Tensor 的控制流**
 
-如下代码样例中的 `if paddle.mean(x) > 5`, 此判断直接依赖 `paddle.mean(x)` 返回的Tensor值（数值性），因此属于**依赖 Tensor 的控制流**。
+如下代码样例中的 `if paddle.mean(x) > 5`, 此判断直接依赖 `paddle.mean(x)` 返回的 Tensor 值（数值性），因此属于**依赖 Tensor 的控制流**。
 
 ```python
 def depend_tensor_if(x):
@@ -215,7 +255,7 @@ def depend_tensor_if(x):
  out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (out,))
   ^          ^                   ^             ^           ^        ^      ^      ^
   |          |                   |             |           |        |      |      |
- 输出   convert_ifelse          判断条件       true分支   false分支  分支输入 分支输入 输出
+ 输出   convert_ifelse          判断条件       true 分支   false 分支  分支输入 分支输入 输出
 ```
 
 
@@ -232,7 +272,7 @@ def convert_ifelse(pred, true_fn, false_fn, true_args, false_args, return_vars):
 ```
 
 
-### 3.2 For/While
+#### 3.2.2 For/While
 
 ``For/While`` 也会先进行代码层面的规范化，在逐行执行用户代码时，才会决定是否转为 ``while_op``。
 
@@ -306,14 +346,15 @@ def depend_tensor_while(x):
 
 ``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Tensor``** 来决定是否转为 ``while_op``
 
-## 四、 Parameters 与 Buffers
+## 四、 生成静态图的 Program 和 Parameters
+
+静态图模式下，神经网络会被描述为 Program 的数据结构，并对 Program 进行编译优化，再调用执行器获得计算结果。另外静态图的变量是 Variable 类型（动态图是 Tensor 类型），因此要运行静态图模型，需要生成静态图的 Program 和 Parameters。
 
 ### 4.1 动态图 layer 生成 Program
 
-文档开始的样例中 ``forward`` 函数包含两行组网代码： ``Linear`` 和 ``add`` 操作。以 ``Linear`` 为例，在 Paddle 的框架底层，每个 Paddle 的组网 API 的实现包括两个分支：
+文档开始的样例中 ``forward`` 函数包含两行组网代码： ``Linear`` 和 ``add`` 操作。以 ``Linear`` 为例，在飞桨框架底层，每个组网 API 的实现包括两个分支：动态图分支和静态图分支。
 
 ```python
-
 class Linear(...):
     def __init__(self, ...):
         # ...(略)
@@ -337,7 +378,7 @@ class Linear(...):
 
 上面提到，所有的组网代码都会在静态图模式下执行，以生成完整的 ``Program`` 。**但静态图 ``append_op`` 有一个前置条件必须满足：**
 
-> **前置条件**：append_op() 时，所有的 inputs，outputs 必须都是静态图的 Variable 类型，不能是动态图的 Tensor 类型。
+> **前置条件**： ``append_op()`` 时，所有的 inputs，outputs 必须都是静态图的 Variable 类型，不能是动态图的 Tensor 类型。
 
 
 **原因**：静态图下，操作的都是**描述类单元**：计算相关的 ``OpDesc`` ，数据相关的 ``VarDesc`` 。可以分别简单地理解为 ``Program`` 中的 ``Op`` 和 ``Variable`` 。
@@ -356,7 +397,7 @@ class Linear(...):
         with param_guard(self._parameters), param_guard(self._buffers):
             # ... forward_pre_hook 逻辑
 
-            outputs = self.forward(*inputs, **kwargs) # 此处为forward函数
+            outputs = self.forward(*inputs, **kwargs) # 此处为 forward 函数
 
             # ... forward_post_hook 逻辑
 

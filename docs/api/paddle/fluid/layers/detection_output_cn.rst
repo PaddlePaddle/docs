@@ -10,9 +10,9 @@ detection_output
 
 给定回归位置偏移、置信度以及先验框信息计算检测的输出，执行步骤如下：
 
-    1.根据先验框(``prior_box``)信息和回归位置偏移解码出预测框坐标。
+    1. 根据先验框(``prior_box``)信息和回归位置偏移解码出预测框坐标。
 
-    2.通过多类非极大值抑制(NMS)获得最终检测输出。
+    2. 通过多类非极大值抑制(NMS)获得最终检测输出。
 
 请注意，该操作符没有将最终输出边界框clip至图像大小。
 
@@ -42,20 +42,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-    
-    import paddle.fluid as fluid
-    pb = fluid.data(name='prior_box', shape=[10, 4], dtype='float32')
-    pbv = fluid.data(name='prior_box_var', shape=[10, 4], dtype='float32')
-    loc = fluid.data(name='target_box', shape=[2, 21, 4], dtype='float32')
-    scores = fluid.data(name='scores', shape=[2, 21, 10], dtype='float32')
-    nmsed_outs = fluid.layers.detection_output(scores=scores,
-                           loc=loc,
-                           prior_box=pb,
-                           prior_box_var=pbv)
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.detection_output

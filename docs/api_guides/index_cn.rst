@@ -1,8 +1,8 @@
 ===========
-API功能分类
+API 功能分类
 ===========
 
-本模块分功能向您介绍PaddlePaddle Fluid的API体系和用法，提高您的查找效率，帮助您快速了解PaddlePaddle Fluid API的全貌，包括以下几个模块：
+本模块分功能向您介绍 PaddlePaddle Fluid 的 API 体系和用法，提高您的查找效率，帮助您快速了解 PaddlePaddle Fluid API 的全貌，包括以下几个模块：
 
 ..  toctree::
     :maxdepth: 1

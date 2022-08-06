@@ -25,7 +25,7 @@ heaviside
 :::::::::
    - **x** （Tensor）- 赫维赛德阶跃函数的输入 Tensor。数据类型为 float32、float64、int32 或 int64。
    - **y** （Tensor）- 决定了一个赫维赛德阶跃函数的 Tensor。数据类型为 float32、float64、int32 或 int64。
-   - **name** （str，可选）- 操作的名称（可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
+   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
@@ -34,4 +34,5 @@ heaviside
 
 代码示例
 ::::::::::
-COPY-FROM: paddle.heaviside:heaviside-example
+
+COPY-FROM: paddle.heaviside

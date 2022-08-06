@@ -4,7 +4,7 @@ ReLU6
 -------------------------------
 .. py:class:: paddle.nn.ReLU6(name=None)
 
-ReLU6激活层
+ReLU6 激活层
 
 .. math::
 
@@ -14,21 +14,14 @@ ReLU6激活层
 
 参数
 ::::::::::
-    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状:
+形状：
 ::::::::::
-    - input: 任意形状的Tensor。
-    - output: 和input具有相同形状的Tensor。
+    - input：任意形状的 Tensor。
+    - output：和 input 具有相同形状的 Tensor。
 
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    import numpy as np
-
-    x = paddle.to_tensor(np.array([-1, 0.3, 6.5]))
-    m = paddle.nn.ReLU6()
-    out = m(x) # [0, 0.3, 6]
+COPY-FROM: paddle.nn.ReLU6

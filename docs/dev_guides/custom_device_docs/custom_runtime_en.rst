@@ -4,7 +4,7 @@ Custom Runtime
 
 Custom Runtime offers a new method to register the runtime of new devices via plug-ins. Responsible for the management of PaddlePaddle devices and Runtime/Driver API, DeviceManager provides a uniform API for the framework to invoke device capabilities, offers a series of APIs to register Custom Runtime, and ensure that the binary system is compatible through C API. The APIs can be found in  `device_ext.h <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/device_ext.h>`_ . Developers can add custom runtime for PaddlePaddle only by implementing these APIs.
 
-- `Data type <./runtime_data_type_en.html>`_ : to introduce definitions of data types of custom runtime. 
+- `Data type <./runtime_data_type_en.html>`_ : to introduce definitions of data types of custom runtime.
 - `Device API <./device_api_en.html>`_ : to introduce definitions and functions of Device APIs.
 - `Memory API <./memory_api_en.html>`_ : to introduce definitions and functions of Memory APIs.
 - `Stream API <./stream_api_en.html>`_ : to introduce definitions and functions of Stream APIs.
@@ -39,7 +39,7 @@ Device APIs
 +------------------------+----------------------------------------+
 | get_runtime_version    | To get the runtime version             |
 +------------------------+----------------------------------------+
-| get_driver_version     | To get the driver version              | 
+| get_driver_version     | To get the driver version              |
 +------------------------+----------------------------------------+
 
 
@@ -111,7 +111,7 @@ Stream APIs
 +---------------------+-------------------------------------------------------------------+
 | stream_add_callback | To add a host and call it back on the stream                      |
 +---------------------+-------------------------------------------------------------------+
-| stream_wait_event   | To wait for the completion of an event on the stream              |                 
+| stream_wait_event   | To wait for the completion of an event on the stream              |
 +---------------------+-------------------------------------------------------------------+
 
 
@@ -141,4 +141,3 @@ Event APIs
     memory_api_en.md
     stream_api_en.md
     event_api_en.md
-

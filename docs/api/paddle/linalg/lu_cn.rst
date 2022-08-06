@@ -5,11 +5,11 @@ lu
 
 .. py:function:: paddle.linalg.lu(x, pivot=True, get_infos=False, name=None)
 
-对输入的N维(N>=2)矩阵x进行LU分解。
+对输入的 N 维(N>=2)矩阵 x 进行 LU 分解。
 
-返回LU分解矩阵L、U和旋转矩阵P。L是下三角矩阵，U是上三角矩阵，拼接成单个矩阵LU，函数直接返回LU。
+返回 LU 分解矩阵 L、U 和旋转矩阵 P。L 是下三角矩阵，U 是上三角矩阵，拼接成单个矩阵 LU，函数直接返回 LU。
 
-如果pivot为True则返回旋转矩阵P对应序列pivot，序列pivot转换到矩阵P可以经如下伪代码实现：
+如果 pivot 为 True 则返回旋转矩阵 P 对应序列 pivot，序列 pivot 转换到矩阵 P 可以经如下伪代码实现：
 
 .. code-block:: text
 
@@ -20,63 +20,26 @@ lu
 
 .. note::
 
-    pivot选项只在gpu下起作用，cpu下暂不支持为False，会报错。
+    pivot 选项只在 gpu 下起作用，cpu 下暂不支持为 False，会报错。
 
-LU和pivot可以通过调用paddle.linalg.lu_unpack展开获得L、U、P矩阵。
+LU 和 pivot 可以通过调用 paddle.linalg.lu_unpack 展开获得 L、U、P 矩阵。
 
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 需要进行LU分解的输入矩阵x，x是维度大于2维的矩阵。
-    - **pivot** (bool，可选) - LU分解时是否进行旋转。若为True则执行旋转操作，若为False则不执行旋转操作，该选项只在gpu下起作用，cpu下暂不支持为False，会报错。默认True。
-    - **get_infos** (bool，可选) - 是否返回分解状态信息，若为True，则返回分解状态Tensor，否则不返回。默认False。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **x** (Tensor) - 需要进行 LU 分解的输入矩阵 x，x 是维度大于 2 维的矩阵。
+    - **pivot** (bool，可选) - LU 分解时是否进行旋转。若为 True 则执行旋转操作，若为 False 则不执行旋转操作，该选项只在 gpu 下起作用，cpu 下暂不支持为 False，会报错。默认 True。
+    - **get_infos** (bool，可选) - 是否返回分解状态信息，若为 True，则返回分解状态 Tensor，否则不返回。默认 False。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
 
-    - Tensor LU, LU分解结果矩阵LU，由L、U拼接组成。
-    - Tensor(dtype=int) Pivots，旋转矩阵对应的旋转序列，详情见说明部分pivot部分，对于输入[*,m,n]的x，Pivots shape为[*, m]。
-    - Tensor(dtype=int) Infos，矩阵分解状态信息矩阵，对于输入[*,m,n]，Infos shape为[*]。每个元素表示每组矩阵的LU分解是否成功，0表示分解成功。
+    - Tensor LU, LU 分解结果矩阵 LU，由 L、U 拼接组成。
+    - Tensor(dtype=int) Pivots，旋转矩阵对应的旋转序列，详情见说明部分 pivot 部分，对于输入[*,m,n]的 x，Pivots shape 为[*, m]。
+    - Tensor(dtype=int) Infos，矩阵分解状态信息矩阵，对于输入[*,m,n]，Infos shape 为[*]。每个元素表示每组矩阵的 LU 分解是否成功，0 表示分解成功。
 
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle 
-
-    x = paddle.to_tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]]).astype('float64')
-    lu,p,info = paddle.linalg.lu(x, get_infos=True)
-
-    # >>> lu:
-    # Tensor(shape=[3, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
-    #    [[5.        , 6.        ],
-    #        [0.20000000, 0.80000000],
-    #        [0.60000000, 0.50000000]])
-    # >>> p
-    # Tensor(shape=[2], dtype=int32, place=CUDAPlace(0), stop_gradient=True,
-    #    [3, 3])
-    # >>> info
-    # Tensor(shape=[], dtype=int32, place=CUDAPlace(0), stop_gradient=True,
-    #    0)
-    
-    P,L,U = paddle.linalg.lu_unpack(lu,p)
-
-    # >>> P
-    # (Tensor(shape=[3, 3], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
-    # [[0., 1., 0.],
-    # [0., 0., 1.],
-    # [1., 0., 0.]]), 
-    # >>> L
-    # Tensor(shape=[3, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
-    # [[1.        , 0.        ],
-    # [0.20000000, 1.        ],
-    # [0.60000000, 0.50000000]]), 
-    # >>> U
-    # Tensor(shape=[2, 2], dtype=float64, place=CUDAPlace(0), stop_gradient=True,
-    # [[5.        , 6.        ],
-    # [0.        , 0.80000000]]))
-    
-
-    # one can verify : X = P @ L @ U ;  
+COPY-FROM: paddle.linalg.lu

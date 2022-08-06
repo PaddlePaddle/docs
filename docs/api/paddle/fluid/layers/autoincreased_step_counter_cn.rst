@@ -14,7 +14,7 @@ autoincreased_step_counter
 参数
 ::::::::::::
 
-    - **counter_name** (str, 可选) - 该计数器的名称，默认为 ``@STEP_COUNTER@`` 。
+    - **counter_name** (str，可选) - 该计数器的名称，默认为 ``@STEP_COUNTER@`` 。
     - **begin** (int) - 该计数器返回的第一个值。
     - **step** (int) - 累加步长。
 
@@ -29,17 +29,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    global_step = fluid.layers.autoincreased_step_counter(
-        counter_name='@LR_DECAY_COUNTER@', begin=0, step=1)
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.autoincreased_step_counter

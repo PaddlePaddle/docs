@@ -1,13 +1,13 @@
 .. _TensorFlow-Fluid:
 
 ###############################
-TensorFlow-Fluid常用接口对应表
+TensorFlow-Fluid 常用接口对应表
 ###############################
 
-本文档基于TensorFlow v1.13梳理了常用API与PaddlePaddle API对应关系和差异分析。根据文档对应关系，有TensorFlow使用经验的用户，可根据对应关系，快速熟悉PaddlePaddle的接口使用。 
+本文档基于 TensorFlow v1.13 梳理了常用 API 与 PaddlePaddle API 对应关系和差异分析。根据文档对应关系，有 TensorFlow 使用经验的用户，可根据对应关系，快速熟悉 PaddlePaddle 的接口使用。
 
-..  csv-table:: 
-    :header: "序号", "TensorFlow接口", "Fluid接口", "备注"
+..  csv-table::
+    :header: "序号", "TensorFlow 接口", "Fluid 接口", "备注"
     :widths: 1, 8, 8, 3
 
     "1", "`tf.abs <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/abs>`_", ":ref:`cn_api_fluid_layers_abs`", "功能一致"
@@ -31,7 +31,7 @@ TensorFlow-Fluid常用接口对应表
     "19", "`tf.contrib.layers.softmax <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/contrib/layers/softmax>`_", ":ref:`cn_api_fluid_layers_softmax`", "功能一致"
     "20", "`tf.contrib.layers.xavier_initializer <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/contrib/layers/xavier_initializer>`_", ":ref:`cn_api_fluid_initializer_Xavier`", "功能一致"
     "21", "`tf.nn.rnn.GRUCell <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/rnn_cell/GRUCell>`_", ":ref:`cn_api_fluid_layers_gru_unit`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.rnn.GRUCell.md>`_"
-    "22", "`tf.nn.rnn.MultiRNNCell <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/rnn_cell/MultiRNNCell>`_", "无相应接口", "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.rnn_cell.MultiRNNCell.md>`_"
+    "22", "`tf.nn.rnn.MultiRNNCell <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/rnn_cell/MultiRNNCell>`_", "无相应接口", "`Fluid 实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.rnn_cell.MultiRNNCell.md>`_"
     "23", "`tf.nn.rnn.static_rnn <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/static_rnn>`_", ":ref:`cn_api_fluid_layers_DynamicRNN`", "功能一致"
     "24", "`tf.convert_to_tensor <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/convert_to_tensor>`_", ":ref:`cn_api_fluid_layers_assign`", "功能一致"
     "25", "`tf.cos <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/cos>`_", ":ref:`cn_api_fluid_layers_cos`", "功能一致"
@@ -74,7 +74,7 @@ TensorFlow-Fluid常用接口对应表
     "62", "`tf.multiply <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/multiply>`_", ":ref:`cn_api_fluid_layers_elementwise_mul`", "功能一致"
     "63", "`tf.nn.avg_pool <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/avg_pool>`_", ":ref:`cn_api_fluid_layers_pool2d`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.avg_pool.md>`_"
     "64", "`tf.nn.batch_normalization <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/batch_normalization>`_", ":ref:`cn_api_fluid_layers_batch_norm`", "功能一致"
-    "65", "`tf.nn.bidirectional_dynamic_rnn <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/bidirectional_dynamic_rnn>`_", "无相应接口", "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.bidirectional_dynamic_rnn.md>`_"
+    "65", "`tf.nn.bidirectional_dynamic_rnn <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/bidirectional_dynamic_rnn>`_", "无相应接口", "`Fluid 实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.bidirectional_dynamic_rnn.md>`_"
     "66", "`tf.nn.conv2d <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/conv2d>`_", ":ref:`cn_api_fluid_layers_conv2d`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.conv2d.md>`_"
     "67", "`tf.nn.conv2d_transpose <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/conv2d_transpose>`_", ":ref:`cn_api_fluid_layers_conv2d_transpose`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.conv2d_transpose.md>`_"
     "68", "`tf.nn.conv3d_transpose <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/conv3d_transpose>`_", ":ref:`cn_api_fluid_layers_conv3d_transpose`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.conv3d_transpose.md>`_"
@@ -87,7 +87,7 @@ TensorFlow-Fluid常用接口对应表
     "75", "`tf.nn.relu <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/relu>`_", ":ref:`cn_api_fluid_layers_relu`", "功能一致"
     "76", "`tf.nn.relu6 <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/relu6>`_", ":ref:`cn_api_fluid_layers_relu6`", "功能一致"
     "77", "`tf.nn.rnn_cell.LSTMCell <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/rnn_cell/LSTMCell>`_", ":ref:`cn_api_fluid_layers_lstm_unit`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.rnn_cell.LSTMCell.md>`_"
-    "78", "`tf.nn.separable_conv2d <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/separable_conv2d>`_", "无相应接口", "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.separable_conv2d.md>`_"
+    "78", "`tf.nn.separable_conv2d <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/separable_conv2d>`_", "无相应接口", "`Fluid 实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.separable_conv2d.md>`_"
     "79", "`tf.nn.sigmoid <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/sigmoid>`_", ":ref:`cn_api_fluid_layers_sigmoid`", "功能一致"
     "80", "`tf.nn.sigmoid_cross_entropy_with_logits <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/sigmoid_cross_entropy_with_logits>`_", ":ref:`cn_api_fluid_layers_sigmoid_cross_entropy_with_logits`", "功能一致"
     "81", "`tf.nn.softmax <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/nn/softmax>`_", ":ref:`cn_api_fluid_layers_softmax`", "功能一致"
@@ -107,7 +107,7 @@ TensorFlow-Fluid常用接口对应表
     "95", "`tf.random_normal_initializer <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/initializers/random_normal>`_", ":ref:`cn_api_fluid_initializer_Normal`", "功能一致"
     "96", "`tf.random_uniform <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/random/uniform>`_", ":ref:`cn_api_fluid_layers_uniform_random`", "功能一致"
     "97", "`tf.random_uniform_initializer <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/initializers/random_uniform>`_", ":ref:`cn_api_fluid_initializer_UniformInitializer`", "功能一致"
-    "98", "`tf.reduce_logsumexp <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/reduce_logsumexp>`_", "无相应接口", "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.reduce_logsumexp.md>`_"
+    "98", "`tf.reduce_logsumexp <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/reduce_logsumexp>`_", "无相应接口", "`Fluid 实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.nn.reduce_logsumexp.md>`_"
     "99", "`tf.reduce_max <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/reduce_max>`_", ":ref:`cn_api_fluid_layers_reduce_max`", "功能一致"
     "100", "`tf.reduce_mean <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/reduce_mean>`_", ":ref:`cn_api_fluid_layers_reduce_mean`", "功能一致"
     "101", "`tf.reduce_min <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/reduce_min>`_", ":ref:`cn_api_fluid_layers_reduce_min`", "功能一致"
@@ -128,10 +128,10 @@ TensorFlow-Fluid常用接口对应表
     "116", "`tf.split <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/split>`_", ":ref:`cn_api_fluid_layers_split`", "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.split.md>`_"
     "117", "`tf.sqrt <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/sqrt>`_", ":ref:`cn_api_fluid_layers_sqrt`", "功能一致"
     "118", "`tf.square <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/square>`_", ":ref:`cn_api_fluid_layers_square`", "功能一致"
-    "119", "`tf.squared_difference <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/squared_difference>`_", "无相应接口", "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.squared_difference.md>`_"
+    "119", "`tf.squared_difference <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/squared_difference>`_", "无相应接口", "`Fluid 实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.squared_difference.md>`_"
     "120", "`tf.squeeze <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/squeeze>`_", ":ref:`cn_api_fluid_layers_squeeze`", "功能一致"
     "121", "`tf.stack <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/stack>`_", ":ref:`cn_api_fluid_layers_stack`", "功能一致"
-    "122", "`tf.stop_gradient <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/stop_gradient>`_", "无相应接口", "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.stop_gradient.md>`_"
+    "122", "`tf.stop_gradient <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/stop_gradient>`_", "无相应接口", "`Fluid 实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/tensorflow2fluid/doc/tf.stop_gradient.md>`_"
     "123", "`tf.subtract <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/subtract>`_", ":ref:`cn_api_fluid_layers_elementwise_sub`", "功能一致"
     "124", "`tf.tanh <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/math/tanh>`_", ":ref:`cn_api_fluid_layers_tanh`", "功能一致"
     "125", "`tf.tile <https://www.tensorflow.org/versions/r1.13/api_docs/python/tf/tile>`_", ":ref:`cn_api_fluid_layers_expand`", "功能一致"

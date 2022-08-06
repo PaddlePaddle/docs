@@ -16,7 +16,7 @@ Auc
 参数
 ::::::::::::
 
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **curve** (str) - 将要计算的曲线名的详情，曲线包括ROC（默认）或者PR（Precision-Recall-curve）。
 
 返回
@@ -30,29 +30,8 @@ Auc
 代码示例
 ::::::::::::
 
-.. code-block:: python
 
-    import paddle.fluid as fluid
-    import numpy as np
-    # 初始化auc度量
-    auc_metric = fluid.metrics.Auc("ROC")
-
-    # 假设batch_size为128
-    batch_num = 100
-    batch_size = 128
-
-    for batch_id in range(batch_num):
-        
-        class0_preds = np.random.random(size = (batch_size, 1))
-        class1_preds = 1 - class0_preds
-         
-        preds = np.concatenate((class0_preds, class1_preds), axis=1)
-         
-        labels = np.random.randint(2, size = (batch_size, 1))
-        auc_metric.update(preds = preds, labels = labels)
-        
-        # 应为一个接近0.5的值，因为preds是随机指定的
-        print("auc for iteration %d is %.2f" % (batch_id, auc_metric.eval()))
+COPY-FROM: paddle.fluid.metrics.Auc
 
 方法
 ::::::::::::

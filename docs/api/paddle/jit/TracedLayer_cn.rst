@@ -9,13 +9,13 @@ TracedLayer
 
 
 
-TracedLayer用于将前向动态图模型转换为静态图模型，主要用于将动态图保存后做在线C++预测。除此以外，用户也可使用转换后的静态图模型在Python端做预测，通常比原先的动态图性能更好。
+TracedLayer 用于将前向动态图模型转换为静态图模型，主要用于将动态图保存后做在线 C++预测。除此以外，用户也可使用转换后的静态图模型在 Python 端做预测，通常比原先的动态图性能更好。
 
-TracedLayer使用 ``Executor`` 和 ``CompiledProgram`` 运行静态图模型。转换后的静态图模型与原动态图模型共享参数。
+TracedLayer 使用 ``Executor`` 和 ``CompiledProgram`` 运行静态图模型。转换后的静态图模型与原动态图模型共享参数。
 
-所有的TracedLayer对象均不应通过构造函数创建，而应通过调用静态方法 ``TracedLayer.trace(layer, inputs)`` 创建。
+所有的 TracedLayer 对象均不应通过构造函数创建，而应通过调用静态方法 ``TracedLayer.trace(layer, inputs)`` 创建。
 
-TracedLayer只能用于将data independent的动态图模型转换为静态图模型，即待转换的动态图模型不应随tensor数据或维度的变化而变化。
+TracedLayer 只能用于将 data independent 的动态图模型转换为静态图模型，即待转换的动态图模型不应随 tensor 数据或维度的变化而变化。
 
 方法
 ::::::::::::
@@ -23,43 +23,21 @@ TracedLayer只能用于将data independent的动态图模型转换为静态图�
 **static** trace(layer, inputs)
 '''''''''
 
-创建TracedLayer对象的唯一接口，该接口会调用 ``layer(*inputs)`` 方法运行动态图模型并将其转换为静态图模型。
+创建 TracedLayer 对象的唯一接口，该接口会调用 ``layer(*inputs)`` 方法运行动态图模型并将其转换为静态图模型。
 
 **参数**
 
-    - **layer** (dygraph.Layer) - 待追踪的动态图layer对象。
-    - **inputs** (list(Variable)) - 动态图layer对象的输入变量列表。
+    - **layer** (dygraph.Layer) - 待追踪的动态图 layer 对象。
+    - **inputs** (list(Variable)) - 动态图 layer 对象的输入变量列表。
 
 **返回**
 
-tuple，包含2个元素，其中第一个元素是 ``layer(*inputs)`` 的输出结果，第二个元素是转换后得到的TracedLayer对象。
+tuple，包含 2 个元素，其中第一个元素是 ``layer(*inputs)`` 的输出结果，第二个元素是转换后得到的 TracedLayer 对象。
 
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class ExampleLayer(paddle.nn.Layer):
-        def __init__(self):
-            super(ExampleLayer, self).__init__()
-            self._fc = paddle.nn.Linear(3, 10)
-
-        def forward(self, input):
-            return self._fc(input)
-
-    layer = ExampleLayer()
-    in_var = paddle.uniform(shape=[2, 3], dtype='float32')
-    out_dygraph, static_layer = paddle.jit.TracedLayer.trace(layer, inputs=[in_var])
-
-    # 内部使用Executor运行静态图模型
-    out_static_graph = static_layer([in_var])
-    print(len(out_static_graph)) # 1
-    print(out_static_graph[0].shape) # (2, 10)
-
-    # 将静态图模型保存为预测模型
-    static_layer.save_inference_model(path='./saved_infer_model')
+COPY-FROM: paddle.jit.TracedLayer.trace
 
 set_strategy(build_strategy=None, exec_strategy=None)
 '''''''''
@@ -68,8 +46,8 @@ set_strategy(build_strategy=None, exec_strategy=None)
 
 **参数**
 
-    - **build_strategy** (BuildStrategy, 可选) - TracedLayer内部 ``CompiledProgram`` 的构建策略。
-    - **exec_strategy** (ExecutionStrategy, 可选) - TracedLayer内部 ``CompiledProgram`` 的执行策略。
+    - **build_strategy** (BuildStrategy，可选) - TracedLayer 内部 ``CompiledProgram`` 的构建策略。
+    - **exec_strategy** (ExecutionStrategy，可选) - TracedLayer 内部 ``CompiledProgram`` 的执行策略。
 
 **返回**
 
@@ -77,76 +55,25 @@ set_strategy(build_strategy=None, exec_strategy=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    class ExampleLayer(paddle.nn.Layer):
-        def __init__(self):
-            super(ExampleLayer, self).__init__()
-            self._fc = paddle.nn.Linear(3, 10)
-
-        def forward(self, input):
-            return self._fc(input)
-
-    layer = ExampleLayer()
-    in_var = paddle.uniform(shape=[2, 3], dtype='float32')
-
-    out_dygraph, static_layer = paddle.jit.TracedLayer.trace(layer, inputs=[in_var])
-
-    build_strategy = paddle.static.BuildStrategy()
-    build_strategy.enable_inplace = True
-
-    exec_strategy = paddle.static.ExecutionStrategy()
-    exec_strategy.num_threads = 2
-
-    static_layer.set_strategy(build_strategy=build_strategy, exec_strategy=exec_strategy)
-    out_static_graph = static_layer([in_var])
+COPY-FROM: paddle.jit.TracedLayer.set_strategy
 
 save_inference_model(path, feed=None, fetch=None)
 '''''''''
 
-将TracedLayer保存为用于预测部署的模型。保存的预测模型可被C++预测接口加载。
+将 TracedLayer 保存为用于预测部署的模型。保存的预测模型可被 C++预测接口加载。
 
-``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``.pdmodel``,存储的持久参数变量文件的后缀为 ``.pdiparams``.
+``path`` 是存储目标的前缀，存储的模型结构 ``Program`` 文件的后缀为 ``.pdmodel``，存储的持久参数变量文件的后缀为 ``.pdiparams``。
 
 **参数**
 
     - **path** (str) - 存储模型的路径前缀。格式为 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
-    - **feed** (list(int), 可选) - 预测模型输入变量的索引。若为None，则TracedLayer的所有输入变量均会作为预测模型的输入。默认值为None。
-    - **fetch** (list(int), 可选) - 预测模型输出变量的索引。若为None，则TracedLayer的所有输出变量均会作为预测模型的输出。默认值为None。
+    - **feed** (list(int)，可选) - 预测模型输入变量的索引。若为 None，则 TracedLayer 的所有输入变量均会作为预测模型的输入。默认值为 None。
+    - **fetch** (list(int)，可选) - 预测模型输出变量的索引。若为 None，则 TracedLayer 的所有输出变量均会作为预测模型的输出。默认值为 None。
 
 **返回**
- 
+
  无。
 
 **代码示例**
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-
-    class ExampleLayer(paddle.nn.Layer):
-        def __init__(self):
-            super(ExampleLayer, self).__init__()
-            self._fc = paddle.nn.Linear(3, 10)
-
-        def forward(self, input):
-            return self._fc(input)
-
-    save_dirname = './saved_infer_model'
-    in_np = np.random.random([2, 3]).astype('float32')
-    in_var = paddle.to_tensor(in_np)
-    layer = ExampleLayer()
-    out_dygraph, static_layer = paddle.jit.TracedLayer.trace(layer, inputs=[in_var])
-    static_layer.save_inference_model(save_dirname, feed=[0], fetch=[0])
-
-    paddle.enable_static()
-    place = paddle.CPUPlace()
-    exe = paddle.static.Executor(place)
-    program, feed_vars, fetch_vars = paddle.static.load_inference_model(save_dirname,
-                                        exe)
-
-    fetch, = exe.run(program, feed={feed_vars[0]: in_np}, fetch_list=fetch_vars)
-    print(fetch.shape) # (2, 10)
+COPY-FROM: paddle.jit.TracedLayer.save_inference_model

@@ -24,12 +24,12 @@ matmul
 参数
 ::::::::::::
 
-    - **x** (Variable) : 输入变量，类型为 Tensor 或 LoDTensor。
-    - **y** (Variable) : 输入变量，类型为 Tensor 或 LoDTensor。
-    - **transpose_x** (bool) : 相乘前是否转置 x。
-    - **transpose_y** (bool) : 相乘前是否转置 y。
-    - **alpha** (float) : 输出比例，默认为 1.0。
-    - **name** (str|None) : 该层名称（可选），如果设置为空，则自动为该层命名。
+    - **x** (Variable)：输入变量，类型为 Tensor 或 LoDTensor。
+    - **y** (Variable)：输入变量，类型为 Tensor 或 LoDTensor。
+    - **transpose_x** (bool)：相乘前是否转置 x。
+    - **transpose_y** (bool)：相乘前是否转置 y。
+    - **alpha** (float)：输出比例，默认为 1.0。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -82,30 +82,4 @@ matmul
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    import numpy
-
-    # Graph Organizing
-    x = fluid.layers.data(name='x', shape=[2, 3], dtype='float32')
-    y = fluid.layers.data(name='y', shape=[3, 2], dtype='float32')
-    output = fluid.layers.matmul(x, y, True, True)
-
-    # Create an executor using CPU as an example
-    exe = fluid.Executor(fluid.CPUPlace())
-    exe.run(fluid.default_startup_program())
-
-    # Execute
-    input_x = numpy.ones([2, 3]).astype(numpy.float32)
-    input_y = numpy.ones([3, 2]).astype(numpy.float32)
-    res, = exe.run(fluid.default_main_program(),
-                   feed={'x':input_x, 'y':input_y},
-                   fetch_list=[output])
-    print(res)
-    '''
-    Output Value:
-    [[2. 2. 2.]
-     [2. 2. 2.]
-     [2. 2. 2.]]
-    '''
+COPY-FROM: paddle.fluid.layers.matmul

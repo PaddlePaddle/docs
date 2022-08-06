@@ -9,4 +9,3 @@ Model Development
     :hidden:
 
     tensor_en.md
-

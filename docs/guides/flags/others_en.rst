@@ -81,4 +81,3 @@ String. The default value is ("gperf").
 Example
 -------
 FLAGS_tracer_profile_fname="gperf_profile_file" will set the profiler filename for imperative tracer to "gperf_profile_file".
-

@@ -13,8 +13,8 @@ cast
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入多维Tensor，支持的数据类型为：bool、float16、float32、float64、uint8、int32、int64。
-    - **dtype** (str|np.dtype) - 输出Tensor的数据类型。支持的数据类型为：bool、float16、float32、float64、int8、int32、int64、uint8。
+    - **x** (Tensor) - 输入多维 Tensor，支持的数据类型为：bool、float16、float32、float64、uint8、int32、int64。
+    - **dtype** (str|np.dtype) - 输出 Tensor 的数据类型。支持的数据类型为：bool、float16、float32、float64、int8、int32、int64、uint8。
 
 返回
 ::::::::::::
@@ -23,9 +23,4 @@ Tensor，维度与 ``x`` 相同，数据类型为 ``dtype``。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-  import paddle
-
-  x = paddle.to_tensor([2, 3, 4], 'float64')
-  y = paddle.cast(x, 'uint8')
+COPY-FROM: paddle.cast

@@ -16,13 +16,13 @@ smooth_l1
 
         - **x** (Tensor|LoDTensor) - 数据类型为float32，rank至少为2的张量。smooth L1损失函数的输入，shape为[batch_size, dim1，…，dimN]。
         - **y** (Tensor|LoDTensor) - 数据类型为float32，rank至少为2的张量。与 ``x`` shape相同的目标值。
-        - **inside_weight** (Tensor|None) - 数据类型为float32，rank至少为2的张量。这个输入是可选的，与x的shape应该相同。如果给定， ``(x - y)`` 的结果将乘以这个张量元素。
-        - **outside_weight** (Tensor|None) - 数据类型为float32，一个rank至少为2的张量。这个输入是可选的，它的shape应该与 ``x`` 相同。 smooth L1 loss的输出会乘以这个张量。
+        - **inside_weight** (Tensor|None) - 数据类型为float32，rank至少为2的张量。这个输入是可选的，与x的shape应该相同。如果给定，``(x - y)`` 的结果将乘以这个张量元素。
+        - **outside_weight** (Tensor|None) - 数据类型为float32，一个rank至少为2的张量。这个输入是可选的，它的shape应该与 ``x`` 相同。smooth L1 loss的输出会乘以这个张量。
         - **sigma** (float|NoneType) - smooth L1 loss layer的超参数。标量，默认值为1.0。
 
 返回
 ::::::::::::
- smooth L1损失的输出值, shape为 [batch_size, 1]
+ smooth L1损失的输出值，shape为 [batch_size, 1]
 
 返回类型
 ::::::::::::
@@ -31,34 +31,4 @@ Variable（Tensor），数据类型为float32的Tensor。
 代码示例
 ::::::::::::
 
-..  code-block:: python
-    
-    import paddle.fluid as fluid
-    import numpy as np
-    data = fluid.layers.data(name="x", shape=[-1, 3], dtype="float32")
-    label = fluid.layers.data(name="y", shape=[-1, 3], dtype="float32")
-    result = fluid.layers.smooth_l1(data,label)
-    place = fluid.CPUPlace()
-    exe = fluid.Executor(place)
-    exe.run(fluid.default_startup_program())
-    x = np.random.rand(3,3).astype("float32")
-    y = np.random.rand(3,3).astype("float32")
-    output= exe.run(feed={"x":x, "y":y},
-                     fetch_list=[result])
-    print(output)
-    """
-    output:
-    [array([[0.08220536],
-           [0.36652038],
-           [0.20541131]], dtype=float32)]
-    """
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.smooth_l1

@@ -1,9 +1,8 @@
-.. _cn_api_paddle_compat_long_type
+.. _cn_api_paddle_compat_long_type:
 
 long_type
 -------------------------------
 
 .. py:function:: paddle.compat.long_type()
 
-builtins.int的别名
-
+builtins.int 的别名

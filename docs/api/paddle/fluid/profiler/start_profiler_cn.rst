@@ -17,7 +17,7 @@ start_profiler
 .. code-block:: python
 
   #使用新的接口替换该接口的使用方式
-  #1. 创建Profiler对象，并调用start接口
+  #1。创建Profiler对象，并调用start接口
   import paddle
   import paddle.profiler as profiler
   prof = profiler.Profiler()
@@ -29,7 +29,7 @@ start_profiler
 
 .. code-block:: python
 
-  #2. 使用环境管理器的用法
+  #2。使用环境管理器的用法
   import paddle
   import paddle.profiler as profiler
   with profiler.Profiler() as prof:
@@ -40,8 +40,8 @@ start_profiler
 参数
 ::::::::::::
 
-  - **state** (str) –  性能分析状态, 取值为 'CPU' 或 'GPU' 或 'All'。'CPU'表示只分析CPU上的性能；'GPU'表示同时分析CPU和GPU上的性能；'All'表示除了同时分析CPU和GPU上的性能外，还将生成性能分析的时间轴信息 :ref:`fluid_timeline` 。
-  - **tracer_option** (str，可选) –   性能分析选项取值为 'Default' 或 'OpDetail' 或 'AllOpDetail', 此选项用于设置性能分析层次并打印不同层次的性能分析结果， `Default` 选项打印不同Op类型的性能分析结果， `OpDetail` 则会打印不同OP类型更详细的性能分析结果，比如compute和data transform。 `AllOpDetail` 和 `OpDetail` 类似，但是打印的是不同Op名字的性能分析结果。
+  - **state** (str) –  性能分析状态，取值为 'CPU' 或 'GPU' 或 'All'。'CPU'表示只分析CPU上的性能；'GPU'表示同时分析CPU和GPU上的性能；'All'表示除了同时分析CPU和GPU上的性能外，还将生成性能分析的时间轴信息 :ref:`fluid_timeline` 。
+  - **tracer_option** (str，可选) –   性能分析选项取值为 'Default' 或 'OpDetail' 或 'AllOpDetail'，此选项用于设置性能分析层次并打印不同层次的性能分析结果，`Default` 选项打印不同Op类型的性能分析结果，`OpDetail` 则会打印不同OP类型更详细的性能分析结果，比如compute和data transform。 `AllOpDetail` 和 `OpDetail` 类似，但是打印的是不同Op名字的性能分析结果。
 
 抛出异常
 ::::::::::::

@@ -7,9 +7,9 @@ IterableDataset
 
 概述迭代式数据集的方法和行为的抽象类。
 
-迭代式(iterable style)数据集需要继承这个基类，迭代式数据集为只能依次迭代式获取样本的数据集，类似Python中的迭代器，所有迭代式数据集须实现以下方法：
+迭代式(iterable style)数据集需要继承这个基类，迭代式数据集为只能依次迭代式获取样本的数据集，类似 Python 中的迭代器，所有迭代式数据集须实现以下方法：
 
-``__iter__``: 依次返回数据赝本。
+``__iter__``：依次返回数据赝本。
 
 .. note::
     迭代式数据集不需要实现 ``__getitem__`` 和 ``__len__``，也不可以调用迭代式数据集的这两个方法。
@@ -23,18 +23,18 @@ IterableDataset
 
     import numpy as np
     from paddle.io import IterableDataset
-    
+
     # define a random dataset
     class RandomDataset(IterableDataset):
         def __init__(self, num_samples):
             self.num_samples = num_samples
-    
+
         def __iter__(self):
             for i in range(self.num_samples):
                 image = np.random.random([784]).astype('float32')
                 label = np.random.randint(0, 9, (1, )).astype('int64')
                 yield image, label
-    
+
     dataset = RandomDataset(10)
     for img, lbl in dataset:
         print(img, lbl)
@@ -130,8 +130,7 @@ IterableDataset
         batch_size=1,
         drop_last=True,
         worker_init_fn=worker_init_fn)
-    
+
     for data in dataloader:
         print(data)
     # outputs: [2, 5, 3, 6, 4, 7]
-

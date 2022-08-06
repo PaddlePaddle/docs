@@ -5,18 +5,14 @@ device_count
 
 .. py:function:: paddle.device.cuda.device_count()
 
-返回值是int，表示当前程序可用的GPU数量。
+返回值是 int，表示当前程序可用的 GPU 数量。
 
 返回
 ::::::::::::
- 返回一个整数，表示当前程序可用的GPU数量。
+ 返回一个整数，表示当前程序可用的 GPU 数量。
 
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
-           
-    import paddle
-    
-    paddle.device.cuda.device_count()
+COPY-FROM: paddle.device.cuda.device_count

@@ -30,7 +30,7 @@ box_clip
 
     - **input** (Variable)  – 维度为[N_1, N_2, ..., N_k, 4]的多维Tensor，其中最后一维为box坐标维度。数据类型为float32或float64。
     - **im_info** (Variable)  – 维度为[N, 3]的2-D Tensor，N为输入图片个数。具有（高度height，宽度width，比例scale）图像的信息，其中高度和宽度是输入大小，比例是输入大小和原始大小的比率。数据类型为float32或float64。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -44,11 +44,4 @@ Variable
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    boxes = fluid.data(
-        name='boxes', shape=[None, 8, 4], dtype='float32', lod_level=1)
-    im_info = fluid.data(name='im_info', shape=[None, 3])
-    out = fluid.layers.box_clip(
-        input=boxes, im_info=im_info)
+COPY-FROM: paddle.fluid.layers.box_clip

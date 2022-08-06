@@ -10,10 +10,10 @@ Distribution
 参数
 :::::::::
 
-- **batch_shape** - 概率分布参数批量形状。一元分布 ``batch_shape=param.shape`` , 多元分
-  布 ``batch_shape=param.shape[:-1]`` , 其中param表示分布参数，支持broadcast语义。
-- **event_shape** - 多元概率分布维数形状。一元分布 ``event_shape=()`` , 多元分布
-  ``event_shape=param.shape[-1:]``, 其中param表示分布参数，支持broadcast语义。
+- **batch_shape** - 概率分布参数批量形状。一元分布 ``batch_shape=param.shape``，多元分
+  布 ``batch_shape=param.shape[:-1]``，其中 param 表示分布参数，支持 broadcast 语义。
+- **event_shape** - 多元概率分布维数形状。一元分布 ``event_shape=()``，多元分布
+  ``event_shape=param.shape[-1:]``，其中 param 表示分布参数，支持 broadcast 语义。
 
 
 方法
@@ -50,8 +50,8 @@ probs(value)
 kl_divergence(other)
 '''''''''
 
-两个分布之间的KL散度。
+两个分布之间的 KL 散度。
 
 **参数**
 
-    - **other** (Distribution) - Distribution的实例。
+    - **other** (Distribution) - Distribution 的实例。

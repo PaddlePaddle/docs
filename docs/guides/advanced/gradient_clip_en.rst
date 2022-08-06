@@ -21,7 +21,7 @@ By default, Gradients of all parameters in SGD optimizer will be clipped:
 .. code:: ipython3
 
     import paddle
-    
+
     linear = paddle.nn.Linear(10, 10)
     clip = paddle.nn.ClipGradByValue(min=-1, max=1)
     sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)
@@ -109,7 +109,7 @@ The formula is as follow:
 
 where:
 
-.. math::  
+.. math::
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(norm(X[i]))^2}\\
 
 
@@ -124,7 +124,7 @@ By default, Gradients of all parameters in SGD optimizer will be clipped:
     linear = paddle.nn.Linear(10, 10)
     clip = paddle.nn.ClipGradByGloabalNorm(clip_norm=1.0)
     sdg = paddle.optimizer.SGD(learning_rate=0.1, parameters=linear.parameters(), grad_clip=clip)
-    
+
 You can also clip gradients of a part of parameters as follow:
 
 **b. Clip a part of gradients**
