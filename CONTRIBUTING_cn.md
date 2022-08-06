@@ -30,7 +30,7 @@ API 文档是飞桨框架的 API 文档，包含了飞桨框架 API 的说明介
 
 ### 应用实践
 
-这部分内容分为源代码与官网文档两部分，源代码的部分以 notebook 的形式，存放在 [book/paddle2.0_docs](https://github.com/PaddlePaddle/book/tree/develop/paddle2.0_docs) 目录下，你可以提交你的 notebook 格式的源码于该目录中；在你的 notebook 文件被合入后，我们会将其转为 md 文件，存储在[docs/docs/tutorial](https://github.com/PaddlePaddle/docs/tree/develop/docs/tutorial)中，然后呈现到官网。具体信息请参考：[[Call for Contribution] Tutorials for PaddlePaddle 2.0](https://github.com/PaddlePaddle/book/issues/905).
+这部分内容分为源代码与官网文档两部分，源代码的部分以 notebook 的形式，存放在 [book/paddle2.0_docs](https://github.com/PaddlePaddle/book/tree/develop/paddle2.0_docs) 目录下，你可以提交你的 notebook 格式的源码于该目录中；在你的 notebook 文件被合入后，我们会将其转为 md 文件，存储在[docs/docs/tutorial](https://github.com/PaddlePaddle/docs/tree/develop/docs/tutorial)中，然后呈现到官网。具体信息请参考：[[Call for Contribution] Tutorials for PaddlePaddle 2.0](https://github.com/PaddlePaddle/book/issues/905)。
 
 ### API 文档
 
@@ -38,4 +38,4 @@ API 文档是飞桨框架的 API 文档，包含了飞桨框架 API 的说明介
 
 ## 提交 PR
 
-你对于飞桨文档的任何修改，都应该通过提交 PR 的方式来完成，具体的方法可以参考[提交 PR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/08_contribution/local_dev_guide.html)
+你对于飞桨文档的任何修改，都应该通过提交 PR 的方式来完成，具体的方法可以参考[提交 PR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/08_contribution/local_dev_guide.html)。
