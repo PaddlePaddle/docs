@@ -11,8 +11,8 @@
 
 #### API
 
-- 修改`paddle.nn.initializer.KaimingUniform`和`paddle.nn.initializer.KaimingNormal` 两种初始化方式，使其支持多种类型的激活函数。([#43721](https://github.com/PaddlePaddle/Paddle/pull/43721), [#43827](https://github.com/PaddlePaddle/Paddle/pull/43827))
-- 优化 `paddle.io.DataLoader` 的数据预读取功能，使其支持设置了 `prefetch_factor` 设定的预读取数据的缓存数量，避免在读取大块数据时出现 IO 阻塞。([#43674](https://github.com/PaddlePaddle/Paddle/pull/43674) )
+- 修改 `paddle.nn.initializer.KaimingUniform` 和 `paddle.nn.initializer.KaimingNormal` 两种初始化方式，使其支持多种类型的激活函数。([#43721](https://github.com/PaddlePaddle/Paddle/pull/43721), [#43827](https://github.com/PaddlePaddle/Paddle/pull/43827))
+- 优化 `paddle.io.DataLoader` 的数据预读取功能，使其支持设置了 `prefetch_factor` 设定的预读取数据的缓存数量，避免在读取大块数据时出现 IO 阻塞。([#43674](https://github.com/PaddlePaddle/Paddle/pull/43674))
 
 #### 新动态图执行机制
 
@@ -20,41 +20,41 @@
 
 #### 全新静态图执行器
 
-- 延迟初始化执行器中的线程池，避免只执行一轮的 `program`（如 `save、load、startup_program`等）创建线程池。([#43768](https://github.com/PaddlePaddle/Paddle/pull/43768))
+- 延迟初始化执行器中的线程池，避免只执行一轮的 `program`（如 `save、load、startup_program` 等）创建线程池。([#43768](https://github.com/PaddlePaddle/Paddle/pull/43768))
 
 #### 混合精度训练
 
-- 设置 `paddle.nn.Layer` 中 `set_state_dict`中禁用 `state_dict` hook。([#43407](https://github.com/PaddlePaddle/Paddle/pull/43407))
+- 设置 `paddle.nn.Layer` 中 `set_state_dict` 中禁用 `state_dict` hook。([#43407](https://github.com/PaddlePaddle/Paddle/pull/43407))
 
 #### 分布式训练
 
-- 使 `paddle.incubate.nn.functional.fused_attention`和 `paddle.incubate.nn.functional.fused_feedforward`支持张量模型并行。([#43505](https://github.com/PaddlePaddle/Paddle/pull/43505))
+- 使 `paddle.incubate.nn.functional.fused_attention` 和 `paddle.incubate.nn.functional.fused_feedforward` 支持张量模型并行。([#43505](https://github.com/PaddlePaddle/Paddle/pull/43505))
 
 #### 其他
 
 - 调整框架算子内核打印字符串的格式，便于进行自动化拆分解析。([#42931](https://github.com/PaddlePaddle/Paddle/pull/42931))
-- 更新模型量化 API，支持`rounding to nearest ties to even`的四舍五入方式，支持量化取值范围 [-128, 127]。([#43829](https://github.com/PaddlePaddle/Paddle/pull/43829))
+- 更新模型量化 API，支持 `rounding to nearest ties to even` 的四舍五入方式，支持量化取值范围 [-128, 127]。([#43829](https://github.com/PaddlePaddle/Paddle/pull/43829))
 - 量化感知训练适配支持 AMP 混合精度训练。([#43689](https://github.com/PaddlePaddle/Paddle/pull/43689))
 - 量化感知训练在启动时新增 `progress bar`，便于查看量化初始化进度，统计 out_threshold 时跳过 scale op，加速初始化过程。([#43454](https://github.com/PaddlePaddle/Paddle/pull/43454))
 - 动态图量化训练支持 `conv` 和 `bn` 融合，静态图离线量化支持设置 `skip_tensor_list` 来跳过某些层不做量化。([#43301](https://github.com/PaddlePaddle/Paddle/pull/43301))
 
 ### （2）性能优化
 
-- 优化`paddle.incubate.nn.functional.fused_attention`和`paddle.incubate.nn.functional.fused_feedforward`算子，增加`add_residual`属性，用以控制最后一步是否进行加`residual`操作，CAE 模型性能提升 7.7%。([#43719](https://github.com/PaddlePaddle/Paddle/pull/43719))
-- 优化 `linspace` 算子，将 `start`、`stop`、`num`三个输入 Tensor 初始化在 CPU 上，避免在算子中进行 GPU -> CPU 拷贝，SOLOv2 模型性能提升 6%。([#43746](https://github.com/PaddlePaddle/Paddle/pull/43746))
+- 优化 `paddle.incubate.nn.functional.fused_attention` 和`paddle.incubate.nn.functional.fused_feedforward` 算子，增加 `add_residual` 属性，用以控制最后一步是否进行加 `residual` 操作，CAE 模型性能提升 7.7%。([#43719](https://github.com/PaddlePaddle/Paddle/pull/43719))
+- 优化 `linspace` 算子，将 `start`、`stop`、`num` 三个输入 Tensor 初始化在 CPU 上，避免在算子中进行 GPU -> CPU 拷贝，SOLOv2 模型性能提升 6%。([#43746](https://github.com/PaddlePaddle/Paddle/pull/43746))
 
 ### （3）问题修复
 
 #### API
 
-- 修复 `paddle.io.DataLoader`在 `return_list=True` 时因多线程冲突小概率报错问题。([#43691](https://github.com/PaddlePaddle/Paddle/pull/43691))
-- 修复 `paddle.nn.Layer`的参数存在 `None`类型参数时 `to`方法报 NoneType 不存在 device 属性的错误。([#43597](https://github.com/PaddlePaddle/Paddle/pull/43597))
-- 修复 cumsum op 在某些 `shape`下计算结果出错的问题。 ([#42500](https://github.com/PaddlePaddle/Paddle/pull/42500), [#43777](https://github.com/PaddlePaddle/Paddle/pull/43777))
-- 修复静态图下 `Tensor.__getitem__`在使用 `bool`索引时组网阶段输出结果维度为 0 的问题。 ([#43246](https://github.com/PaddlePaddle/Paddle/pull/43246))
+- 修复 `paddle.io.DataLoader` 在 `return_list=True` 时因多线程冲突小概率报错问题。([#43691](https://github.com/PaddlePaddle/Paddle/pull/43691))
+- 修复 `paddle.nn.Layer` 的参数存在 `None` 类型参数时 `to` 方法报 NoneType 不存在 device 属性的错误。([#43597](https://github.com/PaddlePaddle/Paddle/pull/43597))
+- 修复 cumsum op 在某些 `shape`下计算结果出错的问题。([#42500](https://github.com/PaddlePaddle/Paddle/pull/42500), [#43777](https://github.com/PaddlePaddle/Paddle/pull/43777))
+- 修复静态图下 `Tensor.__getitem__`在使用 `bool`索引时组网阶段输出结果维度为 0 的问题。([#43246](https://github.com/PaddlePaddle/Paddle/pull/43246))
 - 修复 `paddle.slice` 和 `paddle.strided_slice` 处理参数为负数时出现异常的问题。([#43432](https://github.com/PaddlePaddle/Paddle/pull/43432))
-- 修复 set_value op 在处理切片 `step`为负数时赋值结果异常的问题。 ([#43694](https://github.com/PaddlePaddle/Paddle/pull/43694))
-- 修复 C++ 端 `copy`接口不能在多卡设备间拷贝的问题。([#43728](https://github.com/PaddlePaddle/Paddle/pull/43728))
-- 修改 `paddle.incubate.nn.functional.fused_attention`和 `paddle.incubate.nn.functional.fused_feedforward` 中属性命名引发的推理时的问题。([#43505](https://github.com/PaddlePaddle/Paddle/pull/43505))
+- 修复 set_value op 在处理切片 `step`为负数时赋值结果异常的问题。([#43694](https://github.com/PaddlePaddle/Paddle/pull/43694))
+- 修复 C++ 端 `copy` 接口不能在多卡设备间拷贝的问题。([#43728](https://github.com/PaddlePaddle/Paddle/pull/43728))
+- 修改 `paddle.incubate.nn.functional.fused_attention` 和 `paddle.incubate.nn.functional.fused_feedforward` 中属性命名引发的推理时的问题。([#43505](https://github.com/PaddlePaddle/Paddle/pull/43505))
 - 修复 ConditionalBlockGrad op 处理不需要 `grad`的 Tensor 时异常的问题。([#43034](https://github.com/PaddlePaddle/Paddle/pull/43034))
 - 解决 C++ 的 einsum op 反向速度优化引起的显存增加问题，并将反向优化默认打开。([#43397](https://github.com/PaddlePaddle/Paddle/pull/43397))
 - 修复单卡下 `paddle.io.DataLoader`多进程数据读取在固定随机种子时数据无法固定的问题。([#43702](https://github.com/PaddlePaddle/Paddle/pull/43702))
@@ -73,7 +73,7 @@
 
 #### 新增功能
 
-- CPU 上 ONNX Runtime 后端新增 PaddleSlim 量化模型支持。 ([#43774](https://github.com/PaddlePaddle/Paddle/pull/43774), [#43796](https://github.com/PaddlePaddle/Paddle/pull/43796))
+- CPU 上 ONNX Runtime 后端新增 PaddleSlim 量化模型支持。([#43774](https://github.com/PaddlePaddle/Paddle/pull/43774), [#43796](https://github.com/PaddlePaddle/Paddle/pull/43796))
 
 ### （2）底层优化
 
@@ -83,9 +83,9 @@
 
 #### GPU 性能优化
 
-- 添加 `bilinear_interp_v2` TensorRT convert 支持。 ([#43618](https://github.com/PaddlePaddle/Paddle/pull/43618))
+- 添加 `bilinear_interp_v2` TensorRT convert 支持([#43618](https://github.com/PaddlePaddle/Paddle/pull/43618))
 - 添加 `matmul_scale_fuse_pass`、`multihead_matmul_fuse_pass_v3`到 GPU pass，并添加单测。([#43765](https://github.com/PaddlePaddle/Paddle/pull/43765))
-- 添加 GPU handle 延迟初始化支持。 ([#43661](https://github.com/PaddlePaddle/Paddle/pull/43661))
+- 添加 GPU handle 延迟初始化支持。([#43661](https://github.com/PaddlePaddle/Paddle/pull/43661))
 
 ### （3）问题修复
 
@@ -100,7 +100,7 @@
 - 修复 MKLDNN 中 elementwise_mul 和 matmul 两个 op 在运行量化推理过程中崩溃的问题。 ([#43725](https://github.com/PaddlePaddle/Paddle/pull/43725))
 - 修复同一模型在推理时 TensorRT 子图序列化文件反复生成的问题。([#42945](https://github.com/PaddlePaddle/Paddle/pull/43945), [#42633](https://github.com/PaddlePaddle/Paddle/pull/42633))
 - 修复 ONNX Runtime 后端与外部使用的 protobuf 冲突问题。([#43159](https://github.com/PaddlePaddle/Paddle/pull/43159), [#43742](https://github.com/PaddlePaddle/Paddle/pull/43742))
-- 修复 python 预测库 ONNX Runtime 后端在多输入情况下推理报错问题。 ([#43621](https://github.com/PaddlePaddle/Paddle/pull/43621))
+- 修复 python 预测库 ONNX Runtime 后端在多输入情况下推理报错问题。([#43621](https://github.com/PaddlePaddle/Paddle/pull/43621))
 
 ## 4. 环境适配
 
@@ -129,7 +129,7 @@
 
 - 新增 11 个 稀疏张量计算 API，支持创建 COO、CSR 格式的 Sparse Tensor 以及与 Tensor 互相转换等基础功能。
 
-- 新增 9 个框架性能分析 API，以`paddle.profiler.Profiler`为核心，提供对训练、推理过程中性能数据的收集、导出和统计的功能。
+- 新增 9 个框架性能分析 API，以 `paddle.profiler.Profiler` 为核心，提供对训练、推理过程中性能数据的收集、导出和统计的功能。
 
 - 新增 7 个硬件设备管理 API，更好支持硬件相关信息获取。
 
@@ -169,11 +169,11 @@
 
 ## 2. 不兼容升级
 
-- 预编译安装包中移除 CUDA sm35 ARCH： 受到包体积大小的影响，在预编译的安装包中移除了 CUDA sm35 架构。 ([#41754](https://github.com/PaddlePaddle/Paddle/pull/41754))
+- 预编译安装包中移除 CUDA sm35 ARCH： 受到包体积大小的影响，在预编译的安装包中移除了 CUDA sm35 架构。([#41754](https://github.com/PaddlePaddle/Paddle/pull/41754))
 
 - `paddle.to_tensor` 将一个 python int scalar 转换为 Tensor 时，在 Windows 上的默认数据类型由 int32 变为 int64，从而与 Linux/Mac 保持对齐。([#39662](https://github.com/PaddlePaddle/Paddle/pull/39662))
 
-- 为了与 python3 下的除法行为保持一致，除法符号 `/` 从 rounding divide 变成 true divide，计算输出结果的数据类型从 int 切换成 float。 ([#40890](https://github.com/PaddlePaddle/Paddle/pull/40890))
+- 为了与 python3 下的除法行为保持一致，除法符号 `/` 从 rounding divide 变成 true divide，计算输出结果的数据类型从 int 切换成 float。([#40890](https://github.com/PaddlePaddle/Paddle/pull/40890))
 
 <table>
 <tr>
@@ -382,7 +382,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - 新增`paddle.vision.ops.nms` API，支持单类别和多类别非极大抑制(non-maximum supression, nms)算法，用于目标检测预测任务加速。([#40962](https://github.com/PaddlePaddle/Paddle/pull/40962))
 
-  - 新增`paddle.vision.ops.roi_pool` 和 `paddle.vision.ops.RoIPool`，支持检测任务中 RoI 区域池化操作。 ([#36154](https://github.com/PaddlePaddle/Paddle/pull/36154))
+  - 新增`paddle.vision.ops.roi_pool` 和 `paddle.vision.ops.RoIPool`，支持检测任务中 RoI 区域池化操作。([#36154](https://github.com/PaddlePaddle/Paddle/pull/36154))
 
   - 新增`paddle.vision.ops.roi_align` 和 `paddle.vision.ops.RoIAlign`，支持检测任务中 RoI Align 操作。 ([#35102](https://github.com/PaddlePaddle/Paddle/pull/36154))
 
@@ -390,27 +390,27 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 - 新增 11 个 Sparse 类 API，支持创建 COO、CSR 格式的 Sparse Tensor，与 Tensor 互相转换等基础功能：
 
-  - `paddle.sparse.sparse_coo_tensor`，创建 COO 格式的 Sparse Tensor。 ([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780)）
+  - `paddle.sparse.sparse_coo_tensor`，创建 COO 格式的 Sparse Tensor。([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780))
 
-  - `paddle.sparse.sparse_csr_tensor`，创建 CSR 格式的 Sparse Tensor。 ([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780)）
+  - `paddle.sparse.sparse_csr_tensor`，创建 CSR 格式的 Sparse Tensor。([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780))
 
-  - `paddle.sparse.ReLU`，支持 SparseCooTensor 的 ReLU 激活层。（[#40959](https://github.com/PaddlePaddle/Paddle/pull/40959))
+  - `paddle.sparse.ReLU`，支持 SparseCooTensor 的 ReLU 激活层。#40959](https://github.com/PaddlePaddle/Paddle/pull/40959))
 
-  - `paddle.sparse.functional.relu`，支持 SparseCooTensor 的 ReLU 函数。（[#40959](https://github.com/PaddlePaddle/Paddle/pull/40959))
+  - `paddle.sparse.functional.relu`，支持 SparseCooTensor 的 ReLU 函数。([#40959](https://github.com/PaddlePaddle/Paddle/pull/40959))
 
-  - `Tensor.values()`，获取 SparseCooTensor 或者 SparseCsrTensor 的非零元素方法。（[#40608](https://github.com/PaddlePaddle/Paddle/pull/40608)）
+  - `Tensor.values()`，获取 SparseCooTensor 或者 SparseCsrTensor 的非零元素方法。([#40608](https://github.com/PaddlePaddle/Paddle/pull/40608))
 
-  - `Tensor.indices()`，获取 SparseCooTensor 的坐标信息的方法。（[#40608](https://github.com/PaddlePaddle/Paddle/pull/40608)）
+  - `Tensor.indices()`，获取 SparseCooTensor 的坐标信息的方法。([#40608](https://github.com/PaddlePaddle/Paddle/pull/40608))
 
-  - `Tensor.crows()`，获取 SparseCsrTensor 的压缩行信息的方法。（[#40608](https://github.com/PaddlePaddle/Paddle/pull/40608)）
+  - `Tensor.crows()`，获取 SparseCsrTensor 的压缩行信息的方法。([#40608](https://github.com/PaddlePaddle/Paddle/pull/40608))
 
-  - `Tensor.cols()`，获取 SparseCsrTensor 的列信息的方法。（[#40608](https://github.com/PaddlePaddle/Paddle/pull/40608)）
+  - `Tensor.cols()`，获取 SparseCsrTensor 的列信息的方法。([#40608](https://github.com/PaddlePaddle/Paddle/pull/40608))
 
-  - `Tensor.to_sparse_coo()`，将 DenseTensor 或者 SparseCsrTensor 转换为 SparseCooTensor。 ([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780)）
+  - `Tensor.to_sparse_coo()`，将 DenseTensor 或者 SparseCsrTensor 转换为 SparseCooTensor。([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780))
 
-  - `Tensor.to_sparse_csr()`，将 DenseTensor 或者 SparseCooTensor 转换为 SparseCsrTensor。([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780)）
+  - `Tensor.to_sparse_csr()`，将 DenseTensor 或者 SparseCooTensor 转换为 SparseCsrTensor。([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780))
 
-  - `Tensor.to_dense()`，将 SparseCooTensor 或者 SparseCsrTensor 转换为 DenseTensor。([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780)）
+  - `Tensor.to_dense()`，将 SparseCooTensor 或者 SparseCsrTensor 转换为 DenseTensor。([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780))
 
 - 新增硬件相关 API
 
@@ -424,7 +424,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - 新增 `paddle.nansum`，沿 `axis` 对输入 Tensor 求和，且忽略掉 `NaNs` 值。([#38137](https://github.com/PaddlePaddle/Paddle/pull/38137))
 
-  - 新增 `paddle.nanmean`，沿 `axis`对输入 Tensor 求平均，且忽略掉 `NaNs` 值。（[#40472](https://github.com/PaddlePaddle/Paddle/pull/40472)）
+  - 新增 `paddle.nanmean`，沿 `axis`对输入 Tensor 求平均，且忽略掉 `NaNs` 值。([#40472](https://github.com/PaddlePaddle/Paddle/pull/40472))
 
   - 新增 `paddle.clone`，返回输入 Tensor 的拷贝，并且提供梯度计算。([#38020](https://github.com/PaddlePaddle/Paddle/pull/38020))
 
@@ -452,7 +452,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - 新增 `paddle.lerp` 和 `paddle.Tensor.lerp`，根据给定权重计算输入 Tensor 间的线性插值。([#37253](https://github.com/PaddlePaddle/Paddle/pull/37253))
 
-  - 新增 `paddle.angle`，用于计算复数 Tensor 的相位角。 ([#37689](https://github.com/PaddlePaddle/Paddle/pull/37689))
+  - 新增 `paddle.angle`，用于计算复数 Tensor 的相位角。([#37689](https://github.com/PaddlePaddle/Paddle/pull/37689))
 
   - 新增`paddle.rad2deg`和`paddle.Tensor.rad2deg`，将元素从弧度的角度转换为度。([#37598](https://github.com/PaddlePaddle/Paddle/pull/37598))
 
@@ -476,13 +476,13 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - 新增 `paddle.diff`，用于计算沿给定维度的第 n 个前向差值，目前支持 n=1。([#37441](https://github.com/PaddlePaddle/Paddle/pull/37441))
 
-  - 新增 `paddle.asinh`、`paddle.acosh`、`paddle.atanh` 反双曲函数类 API。 ([#37076](https://github.com/PaddlePaddle/Paddle/pull/37076))
+  - 新增 `paddle.asinh`、`paddle.acosh`、`paddle.atanh` 反双曲函数类 API。([#37076](https://github.com/PaddlePaddle/Paddle/pull/37076))
 
   - 新增 `paddle.as_real`，`paddle.as_complex` 用于实数 Tensor 和复数 Tensor 之间的转换。 ([#37784](https://github.com/PaddlePaddle/Paddle/pull/37784))
 
-  - 新增 `paddle.complex` 用于给定实部和虚部构造复数 Tensor。 ([#37918](https://github.com/PaddlePaddle/Paddle/pull/37918), [#38272](https://github.com/PaddlePaddle/Paddle/pull/38272))
+  - 新增 `paddle.complex` 用于给定实部和虚部构造复数 Tensor。([#37918](https://github.com/PaddlePaddle/Paddle/pull/37918), [#38272](https://github.com/PaddlePaddle/Paddle/pull/38272))
 
-  - 新增 `paddle.det` 与 `paddle.slogdet`，用于计算矩阵的行列式和行列式的自然对数。 ([#34992](https://github.com/PaddlePaddle/Paddle/pull/34992))
+  - 新增 `paddle.det` 与 `paddle.slogdet`，用于计算矩阵的行列式和行列式的自然对数。([#34992](https://github.com/PaddlePaddle/Paddle/pull/34992))
 
   - 新增`paddle.nn.utils.parameters_to_vector`，可以将输入的多个 parameter 展平并连接为 1 个 1-D Tensor。([#38020](https://github.com/PaddlePaddle/Paddle/pull/38020))
 
@@ -558,7 +558,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 - Pass 开发
 
-  - 新增基于 NVIDIA cuBlasLt Epilogue 的 FC + [relu|gelu] 的前向与反向融合。([#39437](https://github.com/PaddlePaddle/Paddle/pull/39437)）
+  - 新增基于 NVIDIA cuBlasLt Epilogue 的 FC + [relu|gelu] 的前向与反向融合。([#39437](https://github.com/PaddlePaddle/Paddle/pull/39437))
 
 - Kernel Primitive API
 
@@ -590,7 +590,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 - 为优化器 `state_dict` 方法添加存储 `master weight` 参数。([#39121](https://github.com/PaddlePaddle/Paddle/pull/39121))
 
-- 添加支持 op CUDA bfloat16 混合精度训练，支持 O1、O2 模式，通过 `paddle.amp.auto_cast`可开启上述训练模式。([#39029](https://github.com/PaddlePaddle/Paddle/pull/39029), [#39815](https://github.com/PaddlePaddle/Paddle/pull/39815))
+- 添加支持 op CUDA bfloat16 混合精度训练，支持 O1、O2 模式，通过 `paddle.amp.auto_cast` 可开启上述训练模式。([#39029](https://github.com/PaddlePaddle/Paddle/pull/39029), [#39815](https://github.com/PaddlePaddle/Paddle/pull/39815))
 
 - 为如下 ops 添加 bfloat16 CUDA Kernel：matmul、concat、split、dropout、reshape、slice、squeeze、stack、transpose、unbind、elementwize_max、elementwize_add、elementwize_mul、elementwize_sub、scale、sum、layer_norm、p_norm、reduce_sum、softmax、log_softmax、sigmoid、sqrt、softplus、square、gaussian_random、fill_constant、fill_any_like。([#39485](https://github.com/PaddlePaddle/Paddle/pull/39485), [#39380](https://github.com/PaddlePaddle/Paddle/pull/39380), [#39395](https://github.com/PaddlePaddle/Paddle/pull/39380), [#39402](https://github.com/PaddlePaddle/Paddle/pull/39402), [#39457](https://github.com/PaddlePaddle/Paddle/pull/39457), [#39461](https://github.com/PaddlePaddle/Paddle/pull/39461), [#39602](https://github.com/PaddlePaddle/Paddle/pull/39602), [#39716](https://github.com/PaddlePaddle/Paddle/pull/39716), [#39683](https://github.com/PaddlePaddle/Paddle/pull/39683), [#39843](https://github.com/PaddlePaddle/Paddle/pull/39843), [#39999](https://github.com/PaddlePaddle/Paddle/pull/39999), [#40004](https://github.com/PaddlePaddle/Paddle/pull/40004), [#40027](https://github.com/PaddlePaddle/Paddle/pull/40027))
 
@@ -616,37 +616,37 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 针对飞桨框架原算子库存在的算子接口不清晰、算子复用成本较高、调用性能不够快的问题，我们重构了飞桨框架的算子库，设计了灵活、高效的函数式算子库 PHI，可以通过对函数式算子接口组合调用的方式实现新算子。新算子库提供了 200 余个跟 python 开发接口保持一致的 C++ 运算类 API，以及近 500 个可供组合调用的前、反向函数式算子内核 Kernel，可大幅降低框架原生算子和自定义算子的开发成本。新算子库支持 Primitive API 方式开发算子内核，可支持不同硬件（比如 GPU 和 XPU）的算子内核复用。新算子库支持以插件方式接入硬件（比如 NPU）的加速库，实现低成本复用硬件加速库。主要可分为以下几部分工作：
 
-- **算子库基础架构、核心组件与机制实现**：合理规划新算子库的目录结构，设计实现了新算子库的公共基础数据结构、新的函数式 InferMeta 和 Kernel 开发范式以及相应的注册和管理组件，并且支持 Kernel 文件的自动化编译对象生成及编译依赖关系生成，使开发者仅需关注函数式 Kernel 的实现，开发范式简洁清晰。([#34425](https://github.com/PaddlePaddle/Paddle/pull/34425), [#37107](https://github.com/PaddlePaddle/Paddle/pull/37107), [#36946](https://github.com/PaddlePaddle/Paddle/pull/36946), [#36948](https://github.com/PaddlePaddle/Paddle/pull/36948), [#37876](https://github.com/PaddlePaddle/Paddle/pull/37876), [#37916](https://github.com/PaddlePaddle/Paddle/pull/37916), [#37977](https://github.com/PaddlePaddle/Paddle/pull/37977), [38078](https://github.com/PaddlePaddle/Paddle/pull/38078), [#38861](https://github.com/PaddlePaddle/Paddle/pull/38861), [#39123](https://github.com/PaddlePaddle/Paddle/pull/39123), [#39131](https://github.com/PaddlePaddle/Paddle/pull/39131), [#39748](https://github.com/PaddlePaddle/Paddle/pull/39748), [#39790](https://github.com/PaddlePaddle/Paddle/pull/39790), [#39941](https://github.com/PaddlePaddle/Paddle/pull/39941), [#40239](https://github.com/PaddlePaddle/Paddle/pull/40239), [#40635](https://github.com/PaddlePaddle/Paddle/pull/40635), [#41091](https://github.com/PaddlePaddle/Paddle/pull/41091), [#37409](https://github.com/PaddlePaddle/Paddle/pull/37409), [#37942](https://github.com/PaddlePaddle/Paddle/pull/37942), [#39002](https://github.com/PaddlePaddle/Paddle/pull/39002), [#38109](https://github.com/PaddlePaddle/Paddle/pull/38109), [#37881](https://github.com/PaddlePaddle/Paddle/pull/37881), [#37517](https://github.com/PaddlePaddle/Paddle/pull/37517), [#39870](https://github.com/PaddlePaddle/Paddle/pull/39870), [#40975](https://github.com/PaddlePaddle/Paddle/pull/40975), [#39475](https://github.com/PaddlePaddle/Paddle/pull/39475), [#37304](https://github.com/PaddlePaddle/Paddle/pull/37304), #36910, #37120, #37146, #37215, #37255, #37369, #38258, #38257, #38355, #38853, #38937, #38977, #38946, #39085, #39153, #39228, #38301, #38275, #38506, #38607, #38473, #38632, #38811, #38880, #38996, #38914, #39101)
+- **算子库基础架构、核心组件与机制实现**：合理规划新算子库的目录结构，设计实现了新算子库的公共基础数据结构、新的函数式 InferMeta 和 Kernel 开发范式以及相应的注册和管理组件，并且支持 Kernel 文件的自动化编译对象生成及编译依赖关系生成，使开发者仅需关注函数式 Kernel 的实现，开发范式简洁清晰。([#34425](https://github.com/PaddlePaddle/Paddle/pull/34425), [#37107](https://github.com/PaddlePaddle/Paddle/pull/37107), [#36946](https://github.com/PaddlePaddle/Paddle/pull/36946), [#36948](https://github.com/PaddlePaddle/Paddle/pull/36948), [#37876](https://github.com/PaddlePaddle/Paddle/pull/37876), [#37916](https://github.com/PaddlePaddle/Paddle/pull/37916), [#37977](https://github.com/PaddlePaddle/Paddle/pull/37977), [#38078](https://github.com/PaddlePaddle/Paddle/pull/38078), [#38861](https://github.com/PaddlePaddle/Paddle/pull/38861), [#39123](https://github.com/PaddlePaddle/Paddle/pull/39123), [#39131](https://github.com/PaddlePaddle/Paddle/pull/39131), [#39748](https://github.com/PaddlePaddle/Paddle/pull/39748), [#39790](https://github.com/PaddlePaddle/Paddle/pull/39790), [#39941](https://github.com/PaddlePaddle/Paddle/pull/39941), [#40239](https://github.com/PaddlePaddle/Paddle/pull/40239), [#40635](https://github.com/PaddlePaddle/Paddle/pull/40635), [#41091](https://github.com/PaddlePaddle/Paddle/pull/41091), [#37409](https://github.com/PaddlePaddle/Paddle/pull/37409), [#37942](https://github.com/PaddlePaddle/Paddle/pull/37942), [#39002](https://github.com/PaddlePaddle/Paddle/pull/39002), [#38109](https://github.com/PaddlePaddle/Paddle/pull/38109), [#37881](https://github.com/PaddlePaddle/Paddle/pull/37881), [#37517](https://github.com/PaddlePaddle/Paddle/pull/37517), [#39870](https://github.com/PaddlePaddle/Paddle/pull/39870), [#40975](https://github.com/PaddlePaddle/Paddle/pull/40975), [#39475](https://github.com/PaddlePaddle/Paddle/pull/39475), [#37304](https://github.com/PaddlePaddle/Paddle/pull/37304), #36910, #37120, #37146, #37215, #37255, #37369, #38258, #38257, #38355, #38853, #38937, #38977, #38946, #39085, #39153, #39228, #38301, #38275, #38506, #38607, #38473, #38632, #38811, #38880, #38996, #38914, #39101)
 
 - **算子库 C++ API 体系建设**：设计实现了基于 yaml 配置文件的算子定义范式、自动生成了 200 余个 C++运算类 API，供内外部开发者复用，降低了基础运算的重复开发成本。([#37668](https://github.com/PaddlePaddle/Paddle/pull/37668), [#36938](https://github.com/PaddlePaddle/Paddle/pull/36938), [#38172](https://github.com/PaddlePaddle/Paddle/pull/38172), [#38182](https://github.com/PaddlePaddle/Paddle/pull/38182), [#38311](https://github.com/PaddlePaddle/Paddle/pull/38311), [#38438](https://github.com/PaddlePaddle/Paddle/pull/38438), [#39057](https://github.com/PaddlePaddle/Paddle/pull/39057), [#39229](https://github.com/PaddlePaddle/Paddle/pull/39229), [#39281](https://github.com/PaddlePaddle/Paddle/pull/39281), [#39263](https://github.com/PaddlePaddle/Paddle/pull/39263), [#39408](https://github.com/PaddlePaddle/Paddle/pull/39408), [#39436](https://github.com/PaddlePaddle/Paddle/pull/39436), [#39482](https://github.com/PaddlePaddle/Paddle/pull/39482), [#39497](https://github.com/PaddlePaddle/Paddle/pull/39497), [#39651](https://github.com/PaddlePaddle/Paddle/pull/39651), [#39521](https://github.com/PaddlePaddle/Paddle/pull/39521), [#39760](https://github.com/PaddlePaddle/Paddle/pull/39760), [#40060](https://github.com/PaddlePaddle/Paddle/pull/40060), [#40196](https://github.com/PaddlePaddle/Paddle/pull/40196), [#40218](https://github.com/PaddlePaddle/Paddle/pull/40218), [#40640](https://github.com/PaddlePaddle/Paddle/pull/40640), [#40732](https://github.com/PaddlePaddle/Paddle/pull/40732), [#40729](https://github.com/PaddlePaddle/Paddle/pull/40729), [#40840](https://github.com/PaddlePaddle/Paddle/pull/40840), [#40867](https://github.com/PaddlePaddle/Paddle/pull/40867), [#41025](https://github.com/PaddlePaddle/Paddle/pull/41025), [#41368](https://github.com/PaddlePaddle/Paddle/pull/41368))
 
 - **算子库兼容各执行体系**：实现新的 InferMeta 及 Kernel 接入原动静态图执行体系、支持原 OpKernel 注册安全移除并迁移为新的 Kernel 形式。([#34425](https://github.com/PaddlePaddle/Paddle/pull/34425), [#38825](https://github.com/PaddlePaddle/Paddle/pull/38825), [#38837](https://github.com/PaddlePaddle/Paddle/pull/38837), [#38842](https://github.com/PaddlePaddle/Paddle/pull/38842), [#38976](https://github.com/PaddlePaddle/Paddle/pull/38976), [#39134](https://github.com/PaddlePaddle/Paddle/pull/39134), [#39140](https://github.com/PaddlePaddle/Paddle/pull/39140), [#39135](https://github.com/PaddlePaddle/Paddle/pull/39135), [#39252](https://github.com/PaddlePaddle/Paddle/pull/39252), [#39222](https://github.com/PaddlePaddle/Paddle/pull/39222), [#39351](https://github.com/PaddlePaddle/Paddle/pull/39351))
 
-- **算子库底层数据结构及工具函数与框架解耦**：解除 Phi 在核心数据结构上对 框架的依赖，为后续 Phi 独立编译奠定基础，支持 infrt、自定义 Kernel 等一系列基于 Phi 的建设工作 ([#38583](https://github.com/PaddlePaddle/Paddle/pull/38583), [#39188](https://github.com/PaddlePaddle/Paddle/pull/39188), [#39560](https://github.com/PaddlePaddle/Paddle/pull/39560), [#39931](https://github.com/PaddlePaddle/Paddle/pull/39931), [#39169](https://github.com/PaddlePaddle/Paddle/pull/39169), [#38951](https://github.com/PaddlePaddle/Paddle/pull/38951), [#38898](https://github.com/PaddlePaddle/Paddle/pull/38898), [#38873](https://github.com/PaddlePaddle/Paddle/pull/38873), [#38696](https://github.com/PaddlePaddle/Paddle/pull/38696), [#38651](https://github.com/PaddlePaddle/Paddle/pull/38651), [#39359](https://github.com/PaddlePaddle/Paddle/pull/39359), [#39305](https://github.com/PaddlePaddle/Paddle/pull/39305), [#39234](https://github.com/PaddlePaddle/Paddle/pull/39234), [#39098](https://github.com/PaddlePaddle/Paddle/pull/39098), [#39120](https://github.com/PaddlePaddle/Paddle/pull/39120), [#38979](https://github.com/PaddlePaddle/Paddle/pull/38979), [#38899](https://github.com/PaddlePaddle/Paddle/pull/38899), [#38844](https://github.com/PaddlePaddle/Paddle/pull/38844), [#39714](https://github.com/PaddlePaddle/Paddle/pull/39714), [#39729](https://github.com/PaddlePaddle/Paddle/pull/39729), [#39889](https://github.com/PaddlePaddle/Paddle/pull/39889), [#39587](https://github.com/PaddlePaddle/Paddle/pull/39587), [#39558](https://github.com/PaddlePaddle/Paddle/pull/39558), [#39514](https://github.com/PaddlePaddle/Paddle/pull/39514), [#39502](https://github.com/PaddlePaddle/Paddle/pull/39502), [#39300](https://github.com/PaddlePaddle/Paddle/pull/39300), [#39246](https://github.com/PaddlePaddle/Paddle/pull/39246), [#39124](https://github.com/PaddlePaddle/Paddle/pull/39124))
+- **算子库底层数据结构及工具函数与框架解耦**：解除 Phi 在核心数据结构上对 框架的依赖，为后续 Phi 独立编译奠定基础，支持 infrt、自定义 Kernel 等一系列基于 Phi 的建设工作。([#38583](https://github.com/PaddlePaddle/Paddle/pull/38583), [#39188](https://github.com/PaddlePaddle/Paddle/pull/39188), [#39560](https://github.com/PaddlePaddle/Paddle/pull/39560), [#39931](https://github.com/PaddlePaddle/Paddle/pull/39931), [#39169](https://github.com/PaddlePaddle/Paddle/pull/39169), [#38951](https://github.com/PaddlePaddle/Paddle/pull/38951), [#38898](https://github.com/PaddlePaddle/Paddle/pull/38898), [#38873](https://github.com/PaddlePaddle/Paddle/pull/38873), [#38696](https://github.com/PaddlePaddle/Paddle/pull/38696), [#38651](https://github.com/PaddlePaddle/Paddle/pull/38651), [#39359](https://github.com/PaddlePaddle/Paddle/pull/39359), [#39305](https://github.com/PaddlePaddle/Paddle/pull/39305), [#39234](https://github.com/PaddlePaddle/Paddle/pull/39234), [#39098](https://github.com/PaddlePaddle/Paddle/pull/39098), [#39120](https://github.com/PaddlePaddle/Paddle/pull/39120), [#38979](https://github.com/PaddlePaddle/Paddle/pull/38979), [#38899](https://github.com/PaddlePaddle/Paddle/pull/38899), [#38844](https://github.com/PaddlePaddle/Paddle/pull/38844), [#39714](https://github.com/PaddlePaddle/Paddle/pull/39714), [#39729](https://github.com/PaddlePaddle/Paddle/pull/39729), [#39889](https://github.com/PaddlePaddle/Paddle/pull/39889), [#39587](https://github.com/PaddlePaddle/Paddle/pull/39587), [#39558](https://github.com/PaddlePaddle/Paddle/pull/39558), [#39514](https://github.com/PaddlePaddle/Paddle/pull/39514), [#39502](https://github.com/PaddlePaddle/Paddle/pull/39502), [#39300](https://github.com/PaddlePaddle/Paddle/pull/39300), [#39246](https://github.com/PaddlePaddle/Paddle/pull/39246), [#39124](https://github.com/PaddlePaddle/Paddle/pull/39124))
 
 - **自定义算子机制与 Phi 整合并完善**：支持在自定义算子编写时调用 Phi 自动生成的 200 余个 C++运算类 API，降低自定义算子开发成本，并进行一系列问题修复。([#37122](https://github.com/PaddlePaddle/Paddle/pull/37122), [#37276](https://github.com/PaddlePaddle/Paddle/pull/37276), [#37281](https://github.com/PaddlePaddle/Paddle/pull/37281), [#37262](https://github.com/PaddlePaddle/Paddle/pull/37281), [#37415](https://github.com/PaddlePaddle/Paddle/pull/37415), [#37423](https://github.com/PaddlePaddle/Paddle/pull/37423), [#37583](https://github.com/PaddlePaddle/Paddle/pull/37683), [#38776](https://github.com/PaddlePaddle/Paddle/pull/38776), [#39353](https://github.com/PaddlePaddle/Paddle/pull/39353), [#41072](https://github.com/PaddlePaddle/Paddle/pull/41072))
 
 - **算子规模化迁移改写**：迁移了约 250 个高频算子的前、反向算子内核 Kernel 至新算子库，改写为函数式，支持在 C++端通过调用多个基础 Kernel 函数封装，快速组合实现高性能算子；同时，添加相应的 yaml 算子定义，并接入新动态图执行体系，提升 python API 调度性能。迁移改写的算子包括：
 
-  - sqrt （[#40727](https://github.com/PaddlePaddle/Paddle/pull/40727)）
+  - sqrt ([#40727](https://github.com/PaddlePaddle/Paddle/pull/40727))
 
-  - square（[#40727](https://github.com/PaddlePaddle/Paddle/pull/40727)）
+  - square ([#40727](https://github.com/PaddlePaddle/Paddle/pull/40727))
 
   - sin ([#40175](https://github.com/PaddlePaddle/Paddle/pull/40175))
 
   - sinh ([#40175](https://github.com/PaddlePaddle/Paddle/pull/40175))
 
-  - elementwise_fmax（[#40140](https://github.com/PaddlePaddle/Paddle/pull/40140)）
+  - elementwise_fmax ([#40140](https://github.com/PaddlePaddle/Paddle/pull/40140))
 
-  - elementwise_fmin（[#40140](https://github.com/PaddlePaddle/Paddle/pull/40140)）
+  - elementwise_fmin ([#40140](https://github.com/PaddlePaddle/Paddle/pull/40140))
 
-  - pool2d（[#40208](https://github.com/PaddlePaddle/Paddle/pull/40208), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053)）
+  - pool2d ([#40208](https://github.com/PaddlePaddle/Paddle/pull/40208), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053))
 
-  - max_pool2d_with_index（[#40208](https://github.com/PaddlePaddle/Paddle/pull/40208), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053)）
+  - max_pool2d_with_index ([#40208](https://github.com/PaddlePaddle/Paddle/pull/40208), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053))
 
-  - pool3d（[#40208](https://github.com/PaddlePaddle/Paddle/pull/40208), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053)）
+  - pool3d ([#40208](https://github.com/PaddlePaddle/Paddle/pull/40208), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053))
 
-  - max_pool3d_with_index（[#40208](https://github.com/PaddlePaddle/Paddle/pull/40208), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053)）
+  - max_pool3d_with_index ([#40208](https://github.com/PaddlePaddle/Paddle/pull/40208), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053))
 
   - fill_constant ([#36930](https://github.com/PaddlePaddle/Paddle/pull/36930), [#39465](https://github.com/PaddlePaddle/Paddle/pull/39465))
 
@@ -654,15 +654,15 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - fill_constant_batch_size_like ([#40784](https://github.com/PaddlePaddle/Paddle/pull/40784))
 
-  - conv2d（[#39354](https://github.com/PaddlePaddle/Paddle/pull/39354)）
+  - conv2d ([#39354](https://github.com/PaddlePaddle/Paddle/pull/39354))
 
-  - conv2d_transpose（[#40675](https://github.com/PaddlePaddle/Paddle/pull/40675), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053)）
+  - conv2d_transpose ([#40675](https://github.com/PaddlePaddle/Paddle/pull/40675), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053))
 
-  - conv3d（[#39354](https://github.com/PaddlePaddle/Paddle/pull/39354)）
+  - conv3d ([#39354](https://github.com/PaddlePaddle/Paddle/pull/39354))
 
-  - conv3d_transpose（[#40675](https://github.com/PaddlePaddle/Paddle/pull/40675), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053)）
+  - conv3d_transpose ([#40675](https://github.com/PaddlePaddle/Paddle/pull/40675), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053))
 
-  - mish（[#40727](https://github.com/PaddlePaddle/Paddle/pull/40727)）
+  - mish ([#40727](https://github.com/PaddlePaddle/Paddle/pull/40727))
 
   - gather_nd ([#40090](https://github.com/PaddlePaddle/Paddle/pull/40090), [#40043](https://github.com/PaddlePaddle/Paddle/pull/40043))
 
@@ -672,25 +672,25 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - scatter_nd_add ([#40090](https://github.com/PaddlePaddle/Paddle/pull/40090), [#40043](https://github.com/PaddlePaddle/Paddle/pull/40043))
 
-  - sgd（[40045](https://github.com/PaddlePaddle/Paddle/pull/40045)）
+  - sgd ([40045](https://github.com/PaddlePaddle/Paddle/pull/40045))
 
   - momentum ([#41319](https://github.com/PaddlePaddle/Paddle/pull/41319))
 
   - rmsprop（[#40994](https://github.com/PaddlePaddle/Paddle/pull/40994)）
 
-  - index_sample（[#38130](https://github.com/PaddlePaddle/Paddle/pull/38130), [#38459](https://github.com/PaddlePaddle/Paddle/pull/38459),[#39905](https://github.com/PaddlePaddle/Paddle/pull/39905)）
+  - index_sample ([#38130](https://github.com/PaddlePaddle/Paddle/pull/38130), [#38459](https://github.com/PaddlePaddle/Paddle/pull/38459),[#39905](https://github.com/PaddlePaddle/Paddle/pull/39905))
 
   - adam ([#40351](https://github.com/PaddlePaddle/Paddle/pull/40351))
 
-  - layer_norm（[#40193](https://github.com/PaddlePaddle/Paddle/pull/40193)）
+  - layer_norm ([#40193](https://github.com/PaddlePaddle/Paddle/pull/40193))
 
-  - adagrad（[#40994](https://github.com/PaddlePaddle/Paddle/pull/40994/)）
+  - adagrad ([#40994](https://github.com/PaddlePaddle/Paddle/pull/40994/))
 
   - adamax ([#40173](https://github.com/PaddlePaddle/Paddle/pull/40173))
 
   - adadelta ([#40173](https://github.com/PaddlePaddle/Paddle/pull/40173))
 
-  - clip（[#40602](https://github.com/PaddlePaddle/Paddle/pull/40602), [#41661](https://github.com/PaddlePaddle/Paddle/pull/41661), [#41675](https://github.com/PaddlePaddle/Paddle/pull/41675)）
+  - clip ([#40602](https://github.com/PaddlePaddle/Paddle/pull/40602), [#41661](https://github.com/PaddlePaddle/Paddle/pull/41661), [#41675](https://github.com/PaddlePaddle/Paddle/pull/41675))
 
   - ceil ([#40913](https://github.com/PaddlePaddle/Paddle/pull/40913))
 
@@ -758,7 +758,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - log_loss ([#39976](https://github.com/PaddlePaddle/Paddle/pull/39976), [#40200](https://github.com/PaddlePaddle/Paddle/pull/40200))
 
-  - one_hot_v2（[39876](https://github.com/PaddlePaddle/Paddle/pull/39876)）
+  - one_hot_v2 ([39876](https://github.com/PaddlePaddle/Paddle/pull/39876))
 
   - sigmoid_cross_entropy_with_logits ([#39976](https://github.com/PaddlePaddle/Paddle/pull/39976), [#40200](https://github.com/PaddlePaddle/Paddle/pull/40200))
 
@@ -772,7 +772,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - segment_pool ([#40099](https://github.com/PaddlePaddle/Paddle/pull/40099))
 
-  - frobenius_norm（[#40707](https://github.com/PaddlePaddle/Paddle/pull/40707), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053)）
+  - frobenius_norm ([#40707](https://github.com/PaddlePaddle/Paddle/pull/40707), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053))
 
   - dist ([#40178](https://github.com/PaddlePaddle/Paddle/pull/40178))
 
@@ -792,15 +792,15 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - logical_xor ([#39942](https://github.com/PaddlePaddle/Paddle/pull/39942))
 
-  - less_than（[#39970](https://github.com/PaddlePaddle/Paddle/pull/39970)）
+  - less_than ([#39970](https://github.com/PaddlePaddle/Paddle/pull/39970))
 
-  - not_equal（[#39970](https://github.com/PaddlePaddle/Paddle/pull/39970)）
+  - not_equal ([#39970](https://github.com/PaddlePaddle/Paddle/pull/39970)）
 
-  - equal（[#39970](https://github.com/PaddlePaddle/Paddle/pull/39970)）
+  - equal ([#39970](https://github.com/PaddlePaddle/Paddle/pull/39970))
 
-  - less_equal（[#39970](https://github.com/PaddlePaddle/Paddle/pull/39970)）
+  - less_equal ([#39970](https://github.com/PaddlePaddle/Paddle/pull/39970))
 
-  - equal_all（[#39970](https://github.com/PaddlePaddle/Paddle/pull/39970)）
+  - equal_all ([#39970](https://github.com/PaddlePaddle/Paddle/pull/39970))
 
   - uniform_random ([#39937](https://github.com/PaddlePaddle/Paddle/pull/39937))
 
@@ -842,35 +842,35 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - set_value ([#40195](https://github.com/PaddlePaddle/Paddle/pull/40195), [#40478](https://github.com/PaddlePaddle/Paddle/pull/40478), [#40636](https://github.com/PaddlePaddle/Paddle/pull/40636))
 
-  - bitwise_and （[#40031](https://github.com/PaddlePaddle/Paddle/pull/40031)）
+  - bitwise_and ([#40031](https://github.com/PaddlePaddle/Paddle/pull/40031))
 
-  - bitwise_not（[#40031](https://github.com/PaddlePaddle/Paddle/pull/40031)）
+  - bitwise_not ([#40031](https://github.com/PaddlePaddle/Paddle/pull/40031))
 
-  - bitwise_or（[#40031](https://github.com/PaddlePaddle/Paddle/pull/40031)）
+  - bitwise_or ([#40031](https://github.com/PaddlePaddle/Paddle/pull/40031))
 
-  - poisson（[#39814](https://github.com/PaddlePaddle/Paddle/pull/39814)）
+  - poisson ([#39814](https://github.com/PaddlePaddle/Paddle/pull/39814))
 
-  - cholesky_solve（[#40387](https://github.com/PaddlePaddle/Paddle/pull/40387)）
+  - cholesky_solve ([#40387](https://github.com/PaddlePaddle/Paddle/pull/40387))
 
-  - bitwise_xor（[#40031](https://github.com/PaddlePaddle/Paddle/pull/40031)）
+  - bitwise_xor ([#40031](https://github.com/PaddlePaddle/Paddle/pull/40031))
 
-  - triangular_solve（[#40417](https://github.com/PaddlePaddle/Paddle/pull/40417)）
+  - triangular_solve ([#40417](https://github.com/PaddlePaddle/Paddle/pull/40417))
 
   - sigmoid ([#40626](https://github.com/PaddlePaddle/Paddle/pull/40626))
 
   - atanh ([#40175](https://github.com/PaddlePaddle/Paddle/pull/40175))
 
-  - softsign（[#40727](https://github.com/PaddlePaddle/Paddle/pull/40727)）
+  - softsign ([#40727](https://github.com/PaddlePaddle/Paddle/pull/40727))
 
   - thresholded_relu ([#40385](https://github.com/PaddlePaddle/Paddle/pull/40385))
 
   - tanh_shrink ([#40565](https://github.com/PaddlePaddle/Paddle/pull/40565))
 
-  - stanh（[#40727](https://github.com/PaddlePaddle/Paddle/pull/40727)）
+  - stanh ([#40727](https://github.com/PaddlePaddle/Paddle/pull/40727))
 
   - reduce_mean ([#37559](https://github.com/PaddlePaddle/Paddle/pull/37559))
 
-  - reduce_max（[#40225](https://github.com/PaddlePaddle/Paddle/pull/40225)）
+  - reduce_max ([#40225](https://github.com/PaddlePaddle/Paddle/pull/40225))
 
   - reduce_min ([#40374](https://github.com/PaddlePaddle/Paddle/pull/40374))
 
@@ -882,25 +882,25 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - logsumexp ([#40790](https://github.com/PaddlePaddle/Paddle/pull/40790))
 
-  - softshrink（[#40565](https://github.com/PaddlePaddle/Paddle/pull/40565)）
+  - softshrink ([#40565](https://github.com/PaddlePaddle/Paddle/pull/40565))
 
   - range ([#41265](https://github.com/PaddlePaddle/Paddle/pull/41265), [#40581](https://github.com/PaddlePaddle/Paddle/pull/40851))
 
-  - stack（[#40581](https://github.com/PaddlePaddle/Paddle/pull/40851)）
+  - stack ([#40581](https://github.com/PaddlePaddle/Paddle/pull/40851))
 
   - tile ([#40371](https://github.com/PaddlePaddle/Paddle/pull/40371))
 
-  - unique（[#40581](https://github.com/PaddlePaddle/Paddle/pull/40851)）
+  - unique ([#40581](https://github.com/PaddlePaddle/Paddle/pull/40851))
 
-  - unstack（[#40581](https://github.com/PaddlePaddle/Paddle/pull/40851)）
+  - unstack ([#40581](https://github.com/PaddlePaddle/Paddle/pull/40851))
 
-  - slice（[#40736](https://github.com/PaddlePaddle/Paddle/pull/40736)）
+  - slice ([#40736](https://github.com/PaddlePaddle/Paddle/pull/40736))
 
-  - transpose2（[#39327](https://github.com/PaddlePaddle/Paddle/pull/39327)）
+  - transpose2 ([#39327](https://github.com/PaddlePaddle/Paddle/pull/39327))
 
-  - unsqueeze2（ [#40596](https://github.com/PaddlePaddle/Paddle/pull/40596)）
+  - unsqueeze2 ([#40596](https://github.com/PaddlePaddle/Paddle/pull/40596))
 
-  - squeeze2（ [#40596](https://github.com/PaddlePaddle/Paddle/pull/40596)）
+  - squeeze2 ([#40596](https://github.com/PaddlePaddle/Paddle/pull/40596))
 
   - strided_slice ([#40708](https://github.com/PaddlePaddle/Paddle/pull/40708))
 
@@ -920,23 +920,23 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - psroi_pool ([#40353](https://github.com/PaddlePaddle/Paddle/pull/40353), [#41173](https://github.com/PaddlePaddle/Paddle/pull/41173))
 
-  - kthvalue（[#40575](https://github.com/PaddlePaddle/Paddle/pull/40575)）
+  - kthvalue（[#40575](https://github.com/PaddlePaddle/Paddle/pull/40575))
 
   - mode ([#40571](https://github.com/PaddlePaddle/Paddle/pull/40571))
 
-  - yolo_box（[#40112](https://github.com/PaddlePaddle/Paddle/pull/40112)）
+  - yolo_box ([#40112](https://github.com/PaddlePaddle/Paddle/pull/40112))
 
-  - yolov3_loss ([#40944](https://github.com/PaddlePaddle/Paddle/pull/40944)）
+  - yolov3_loss ([#40944](https://github.com/PaddlePaddle/Paddle/pull/40944))
 
-  - temporal_shift（[#40727](https://github.com/PaddlePaddle/Paddle/pull/40727)）
+  - temporal_shift ([#40727](https://github.com/PaddlePaddle/Paddle/pull/40727))
 
-  - depthwise_conv2d（[#39354](https://github.com/PaddlePaddle/Paddle/pull/39354)）
+  - depthwise_conv2d ([#39354](https://github.com/PaddlePaddle/Paddle/pull/39354))
 
   - pad3d ([#40701](https://github.com/PaddlePaddle/Paddle/pull/40701))
 
-  - pad（ [#40012](https://github.com/PaddlePaddle/Paddle/pull/40012)）
+  - pad ([#40012](https://github.com/PaddlePaddle/Paddle/pull/40012))
 
-  - greater_equal（[#39970](https://github.com/PaddlePaddle/Paddle/pull/39970)）
+  - greater_equal ([#39970](https://github.com/PaddlePaddle/Paddle/pull/39970))
 
   - kldiv_loss ([#39770](https://github.com/PaddlePaddle/Paddle/pull/39770))
 
@@ -946,9 +946,9 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - unfold ([#39778](https://github.com/PaddlePaddle/Paddle/pull/39778))
 
-  - batch_norm（[39347](https://github.com/PaddlePaddle/Paddle/pull/39347)）
+  - batch_norm ([39347](https://github.com/PaddlePaddle/Paddle/pull/39347))
 
-  - norm（[#39324](https://github.com/PaddlePaddle/Paddle/pull/39324)）
+  - norm ([#39324](https://github.com/PaddlePaddle/Paddle/pull/39324))
 
   - roi_pool ([#40574](https://github.com/PaddlePaddle/Paddle/pull/40574), [#40682](https://github.com/PaddlePaddle/Paddle/pull/40682), [#41173](https://github.com/PaddlePaddle/Paddle/pull/41173))
 
@@ -962,7 +962,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - grid_sampler ([#40585](https://github.com/PaddlePaddle/Paddle/pull/40585))
 
-  - greater_than（[#39970](https://github.com/PaddlePaddle/Paddle/pull/39970)）
+  - greater_than ([#39970](https://github.com/PaddlePaddle/Paddle/pull/39970))
 
   - pixel_shuffle ([#39949](https://github.com/PaddlePaddle/Paddle/pull/39949), [#39712](https://github.com/PaddlePaddle/Paddle/pull/39712))
 
@@ -978,21 +978,21 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - trace ([#39510](https://github.com/PaddlePaddle/Paddle/pull/39510))
 
-  - kron（[#40427](https://github.com/PaddlePaddle/Paddle/pull/40427)）
+  - kron ([#40427](https://github.com/PaddlePaddle/Paddle/pull/40427))
 
-  - accuracy（[#39982](https://github.com/PaddlePaddle/Paddle/pull/39982)）
+  - accuracy ([#39982](https://github.com/PaddlePaddle/Paddle/pull/39982))
 
   - gather_tree ([#40082](https://github.com/PaddlePaddle/Paddle/pull/40082), [#39844](https://github.com/PaddlePaddle/Paddle/pull/39844))
 
-  - dropout（[#40148](https://github.com/PaddlePaddle/Paddle/pull/40148)）
+  - dropout ([#40148](https://github.com/PaddlePaddle/Paddle/pull/40148))
 
   - bincount ([#39947](https://github.com/PaddlePaddle/Paddle/pull/39947))
 
   - warpctc ([#41389](https://github.com/PaddlePaddle/Paddle/pull/41389), [#40023](https://github.com/PaddlePaddle/Paddle/pull/https://github.com/PaddlePaddle/Paddle/pull/40023))
 
-  - multiplex（[#40007](https://github.com/PaddlePaddle/Paddle/pull/40007), [#40102](https://github.com/PaddlePaddle/Paddle/pull/40102)）
+  - multiplex ([#40007](https://github.com/PaddlePaddle/Paddle/pull/40007), [#40102](https://github.com/PaddlePaddle/Paddle/pull/40102))
 
-  - qr（[#40007](https://github.com/PaddlePaddle/Paddle/pull/40007), [#40007](https://github.com/PaddlePaddle/Paddle/pull/40007)）
+  - qr ([#40007](https://github.com/PaddlePaddle/Paddle/pull/40007), [#40007](https://github.com/PaddlePaddle/Paddle/pull/40007))
 
   - assign_value ([#40967](https://github.com/PaddlePaddle/Paddle/pull/40967))
 
@@ -1000,7 +1000,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - cast ([#37610](https://github.com/PaddlePaddle/Paddle/pull/37610))
 
-  - tril_triu（[#40007](https://github.com/PaddlePaddle/Paddle/pull/40007), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053)）
+  - tril_triu ([#40007](https://github.com/PaddlePaddle/Paddle/pull/40007), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053))
 
   - where_index ([#40255](https://github.com/PaddlePaddle/Paddle/pull/40255))
 
@@ -1018,9 +1018,9 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - eye ([#39712](https://github.com/PaddlePaddle/Paddle/pull/39712), [#40105](https://github.com/PaddlePaddle/Paddle/pull/40105), [#41476](https://github.com/PaddlePaddle/Paddle/pull/41476))
 
-  - lookup_table_v2（[#39901](https://github.com/PaddlePaddle/Paddle/pull/39901)）
+  - lookup_table_v2 ([#39901](https://github.com/PaddlePaddle/Paddle/pull/39901))
 
-  - searchsorted（[#40520](https://github.com/PaddlePaddle/Paddle/pull/40520), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053)）
+  - searchsorted ([#40520](https://github.com/PaddlePaddle/Paddle/pull/40520), [#41053](https://github.com/PaddlePaddle/Paddle/pull/41053))
 
   - adamw ([#40351](https://github.com/PaddlePaddle/Paddle/pull/40351))
 
@@ -1036,17 +1036,17 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - huber_loss ([#39761](https://github.com/PaddlePaddle/Paddle/pull/39761))
 
-  - hierarchical_sigmoid（[#40553](https://github.com/PaddlePaddle/Paddle/pull/40553)）
+  - hierarchical_sigmoid ([#40553](https://github.com/PaddlePaddle/Paddle/pull/40553))
 
   - nll_loss ([#39936](https://github.com/PaddlePaddle/Paddle/pull/https://github.com/PaddlePaddle/Paddle/pull/39936))
 
   - graph_send_recv ([#40092](https://github.com/PaddlePaddle/Paddle/pull/40092), [#40320](https://github.com/PaddlePaddle/Paddle/pull/40320))
 
-  - abs（[#39492](https://github.com/PaddlePaddle/Paddle/pull/39492), [#39762](https://github.com/PaddlePaddle/Paddle/pull/39762)）
+  - abs ([#39492](https://github.com/PaddlePaddle/Paddle/pull/39492), [#39762](https://github.com/PaddlePaddle/Paddle/pull/39762))
 
-  - exp（[#40727](https://github.com/PaddlePaddle/Paddle/pull/40727)）
+  - exp ([#40727](https://github.com/PaddlePaddle/Paddle/pull/40727))
 
-  - rsqrt（[#40727](https://github.com/PaddlePaddle/Paddle/pull/40727)）
+  - rsqrt ([#40727](https://github.com/PaddlePaddle/Paddle/pull/40727))
 
   - viterbi_decode ([#40186](https://github.com/PaddlePaddle/Paddle/pull/40186))
 
@@ -1080,11 +1080,11 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - erfinv ([#39949](https://github.com/PaddlePaddle/Paddle/pull/39949), [#39712](https://github.com/PaddlePaddle/Paddle/pull/39712))
 
-  - broadcast_tensors（[#40047](https://github.com/PaddlePaddle/Paddle/pull/40047)）
+  - broadcast_tensors ([#40047](https://github.com/PaddlePaddle/Paddle/pull/40047))
 
-  - gumbel_softmax（[#39873](https://github.com/PaddlePaddle/Paddle/pull/39873)）
+  - gumbel_softmax ([#39873](https://github.com/PaddlePaddle/Paddle/pull/39873))
 
-  - diagonal （[#39575](https://github.com/PaddlePaddle/Paddle/pull/39575)）
+  - diagonal ([#39575](https://github.com/PaddlePaddle/Paddle/pull/39575))
 
   - trunc ([#39543](https://github.com/PaddlePaddle/Paddle/pull/39543), [#39772](https://github.com/PaddlePaddle/Paddle/pull/39772))
 
@@ -1092,9 +1092,9 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - matrix_power ([#40231](https://github.com/PaddlePaddle/Paddle/pull/40231))
 
-  - digamma（[#39240](https://github.com/PaddlePaddle/Paddle/pull/39240)）
+  - digamma ([#39240](https://github.com/PaddlePaddle/Paddle/pull/39240))
 
-  - masked_select（[#39193](https://github.com/PaddlePaddle/Paddle/pull/39193)）
+  - masked_select ([#39193](https://github.com/PaddlePaddle/Paddle/pull/39193))
 
   - determinant ([#40539](https://github.com/PaddlePaddle/Paddle/pull/40539))
 
@@ -1104,11 +1104,11 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - shape ([#40248](https://github.com/PaddlePaddle/Paddle/pull/40248))
 
-  - reduce_sum（[#37559](https://github.com/PaddlePaddle/Paddle/pull/37559), [#41295](https://github.com/PaddlePaddle/Paddle/pull/41295)）
+  - reduce_sum ([#37559](https://github.com/PaddlePaddle/Paddle/pull/37559), [#41295](https://github.com/PaddlePaddle/Paddle/pull/41295))
 
   - reduce_prod ([#39844](https://github.com/PaddlePaddle/Paddle/pull/39844))
 
-  - histogram（[#39496](https://github.com/PaddlePaddle/Paddle/pull/39496)）
+  - histogram ([#39496](https://github.com/PaddlePaddle/Paddle/pull/39496))
 
   - meshgrid ([#41411](https://github.com/PaddlePaddle/Paddle/pull/41411))
 
@@ -1122,9 +1122,9 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - expand_v2 ([#39471](https://github.com/PaddlePaddle/Paddle/pull/39471))
 
-  - top_k_v2（[#40064](https://github.com/PaddlePaddle/Paddle/pull/40064)）
+  - top_k_v2 ([#40064](https://github.com/PaddlePaddle/Paddle/pull/40064))
 
-  - expand_as_v2（[#40373](https://github.com/PaddlePaddle/Paddle/pull/40373)）
+  - expand_as_v2 ([#40373](https://github.com/PaddlePaddle/Paddle/pull/40373))
 
   - swish ([#40913](https://github.com/PaddlePaddle/Paddle/pull/40913))
 
@@ -1198,7 +1198,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 - 调度逻辑：优化执行器中算子的调度方法，支持多 stream 的多线程异步调度机制，将数据类型、设备、布局等转换改为算子调度以提升性能，支持缓存算子 Kernel 选择，支持选择全新 Phi 算子等。（[#35024](https://github.com/PaddlePaddle/Paddle/pull/35024), [#34922](https://github.com/PaddlePaddle/Paddle/pull/34922), [#35711](https://github.com/PaddlePaddle/Paddle/pull/35711), [#35928](https://github.com/PaddlePaddle/Paddle/pull/35928), [#39458](https://github.com/PaddlePaddle/Paddle/pull/39458)，[#36899](https://github.com/PaddlePaddle/Paddle/pull/36899)）。
 
-- 接口兼容：兼容原执行器的用户接口和功能，如对齐 python 端 Executor.run()、支持 Scope 中管理 Tensor 等，确保用户可以无感知地切换新执行器。 ([#37278](https://github.com/PaddlePaddle/Paddle/pull/37278), [#37379](https://github.com/PaddlePaddle/Paddle/pull/37379), [#37445](https://github.com/PaddlePaddle/Paddle/pull/37445), [#37510](https://github.com/PaddlePaddle/Paddle/pull/37510), [#40955](https://github.com/PaddlePaddle/Paddle/pull/40955), [#41778](https://github.com/PaddlePaddle/Paddle/pull/41178), [#41058](https://github.com/PaddlePaddle/Paddle/pull/41058), [#38584](https://github.com/PaddlePaddle/Paddle/pull/38584), [#37957](https://github.com/PaddlePaddle/Paddle/pull/37957), [#37672](https://github.com/PaddlePaddle/Paddle/pull/37672), [#37474](https://github.com/PaddlePaddle/Paddle/pull/37474), [#37085](https://github.com/PaddlePaddle/Paddle/pull/37085), [#37061](https://github.com/PaddlePaddle/Paddle/pull/37061), [#36945](https://github.com/PaddlePaddle/Paddle/pull/36945))
+- 接口兼容：兼容原执行器的用户接口和功能，如对齐 python 端 Executor.run()、支持 Scope 中管理 Tensor 等，确保用户可以无感知地切换新执行器。([#37278](https://github.com/PaddlePaddle/Paddle/pull/37278), [#37379](https://github.com/PaddlePaddle/Paddle/pull/37379), [#37445](https://github.com/PaddlePaddle/Paddle/pull/37445), [#37510](https://github.com/PaddlePaddle/Paddle/pull/37510), [#40955](https://github.com/PaddlePaddle/Paddle/pull/40955), [#41778](https://github.com/PaddlePaddle/Paddle/pull/41178), [#41058](https://github.com/PaddlePaddle/Paddle/pull/41058), [#38584](https://github.com/PaddlePaddle/Paddle/pull/38584), [#37957](https://github.com/PaddlePaddle/Paddle/pull/37957), [#37672](https://github.com/PaddlePaddle/Paddle/pull/37672), [#37474](https://github.com/PaddlePaddle/Paddle/pull/37474), [#37085](https://github.com/PaddlePaddle/Paddle/pull/37085), [#37061](https://github.com/PaddlePaddle/Paddle/pull/37061), [#36945](https://github.com/PaddlePaddle/Paddle/pull/36945))
 
 - 增强多线程场景下调试和报错功能，将子线程的报错捕获到主线程中统一抛出，以提升用户体验。([#36692](https://github.com/PaddlePaddle/Paddle/pull/36692)，[#36802](https://github.com/PaddlePaddle/Paddle/pull/36802))
 
@@ -1211,7 +1211,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 - 集合通信多机多卡训练基础功能
 
-  - 新增弹性功能（含节点故障、扩容、缩容），提升分布式的容错能力。 ([#36684](https://github.com/PaddlePaddle/Paddle/pull/36684), [#37177](https://github.com/PaddlePaddle/Paddle/pull/37177), [#37781](https://github.com/PaddlePaddle/Paddle/pull/37781))
+  - 新增弹性功能（含节点故障、扩容、缩容），提升分布式的容错能力。([#36684](https://github.com/PaddlePaddle/Paddle/pull/36684), [#37177](https://github.com/PaddlePaddle/Paddle/pull/37177), [#37781](https://github.com/PaddlePaddle/Paddle/pull/37781))
 
   - Launch 启动模块，重构并新增 `master` 协同和节点个数 `nnodes` 定义 ，提升分布式启动易用性。 ([#40086](https://github.com/PaddlePaddle/Paddle/pull/40086), [#40568](https://github.com/PaddlePaddle/Paddle/pull/40568), [#40782](https://github.com/PaddlePaddle/Paddle/pull/40782), [#40844](https://github.com/PaddlePaddle/Paddle/pull/40844), [#40936](https://github.com/PaddlePaddle/Paddle/pull/40936), [#41190](https://github.com/PaddlePaddle/Paddle/pull/41190), [#41314](https://github.com/PaddlePaddle/Paddle/pull/41314))
 
@@ -1241,7 +1241,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - 为 seed op 增加 `force_cpu` 可选参数，使 dropout 可以直接从 CPU 读取 seed 的值。([#35820](https://github.com/PaddlePaddle/Paddle/pull/35820))
 
-  - 完善 Automatic Sparsity (ASP)sharding 策略，支持根据 program 选择 sharding 策略。(#[#40028](https://github.com/PaddlePaddle/Paddle/pull/40028)）
+  - 完善 Automatic Sparsity (ASP)sharding 策略，支持根据 program 选择 sharding 策略。(#[#40028](https://github.com/PaddlePaddle/Paddle/pull/40028))
 
 - 自动并行
 
@@ -1317,19 +1317,19 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 - C++层重构 Profiler 底层基础设施
 
-  - 重构 Profiler 的控制器架构。（[#38826](https://github.com/PaddlePaddle/Paddle/pull/38826), [#39230](https://github.com/PaddlePaddle/Paddle/pull/39230), [#39779](https://github.com/PaddlePaddle/Paddle/pull/39779) ）
+  - 重构 Profiler 的控制器架构。([#38826](https://github.com/PaddlePaddle/Paddle/pull/38826), [#39230](https://github.com/PaddlePaddle/Paddle/pull/39230), [#39779](https://github.com/PaddlePaddle/Paddle/pull/39779))
 
-  - 新增 Host Tracer，收集主机侧性能指标。（[#37629](https://github.com/PaddlePaddle/Paddle/pull/39629), [#37766](https://github.com/PaddlePaddle/Paddle/pull/37766), [#37944](https://github.com/PaddlePaddle/Paddle/pull/37944), [#38280](https://github.com/PaddlePaddle/Paddle/pull/38280), [#39975](https://github.com/PaddlePaddle/Paddle/pull/39975), [#40460](https://github.com/PaddlePaddle/Paddle/pull/40460)）
+  - 新增 Host Tracer，收集主机侧性能指标。([#37629](https://github.com/PaddlePaddle/Paddle/pull/39629), [#37766](https://github.com/PaddlePaddle/Paddle/pull/37766), [#37944](https://github.com/PaddlePaddle/Paddle/pull/37944), [#38280](https://github.com/PaddlePaddle/Paddle/pull/38280), [#39975](https://github.com/PaddlePaddle/Paddle/pull/39975), [#40460](https://github.com/PaddlePaddle/Paddle/pull/40460))
 
-  - 新增 CUDA Tracer，收集设备侧性能指标。（[#39488](https://github.com/PaddlePaddle/Paddle/pull/39488)）
+  - 新增 CUDA Tracer，收集设备侧性能指标。([#39488](https://github.com/PaddlePaddle/Paddle/pull/39488))
 
-  - Profiler 支持分级。（[#39926](https://github.com/PaddlePaddle/Paddle/pull/39926)）
+  - Profiler 支持分级。([#39926](https://github.com/PaddlePaddle/Paddle/pull/39926))
 
 - 修改新动态图下 op 的打点名称和类型。（[#41771](https://github.com/PaddlePaddle/Paddle/pull/41771/)
 
-- 添加 Kernel 表单，以及优化表单内容的展示方式。 （[#41989](https://github.com/PaddlePaddle/Paddle/pull/41989)
+- 添加 Kernel 表单，以及优化表单内容的展示方式。([#41989](https://github.com/PaddlePaddle/Paddle/pull/41989))
 
-- 消除 Profiler 关闭情况下对模型前向计算造成性能下降的影响。（[#42142](https://github.com/PaddlePaddle/Paddle/pull/42142)）
+- 消除 Profiler 关闭情况下对模型前向计算造成性能下降的影响。([#42142](https://github.com/PaddlePaddle/Paddle/pull/42142))
 
 #### CINN 编译器接入
 
@@ -1339,57 +1339,57 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - 子图 op 相关：
 
-    - 添加从计算图中找到并生成 CINN 子图的功能。（[#36345](https://github.com/PaddlePaddle/Paddle/pull/36345)）
+    - 添加从计算图中找到并生成 CINN 子图的功能。([#36345](https://github.com/PaddlePaddle/Paddle/pull/36345))
 
-    - 新增 cinn_launch op 作为运行时接入 CINN 的入口，负责调度 CINN 对子图进行编译、初始化数据空间、调度生成 Kernel 的执行。（[#36600](https://github.com/PaddlePaddle/Paddle/pull/36600)）
+    - 新增 cinn_launch op 作为运行时接入 CINN 的入口，负责调度 CINN 对子图进行编译、初始化数据空间、调度生成 Kernel 的执行。([#36600](https://github.com/PaddlePaddle/Paddle/pull/36600))
 
-    - 为 cinn_launch op 的 Kernel 实现添加辅助类 CinnLaunchContext 管理子图编译、运行的中间数据，提升可扩展性和代码可读性。（[#37938](https://github.com/PaddlePaddle/Paddle/pull/37938)）
+    - 为 cinn_launch op 的 Kernel 实现添加辅助类 CinnLaunchContext 管理子图编译、运行的中间数据，提升可扩展性和代码可读性。([#37938](https://github.com/PaddlePaddle/Paddle/pull/37938))
 
-    - 为 CINN 子图添加额外的 fetch 结点，从而保证 CINN 外部结点能取到待 fetch 变量的值。（[#37172](https://github.com/PaddlePaddle/Paddle/pull/37172), [#37190](https://github.com/PaddlePaddle/Paddle/pull/37190)）
+    - 为 CINN 子图添加额外的 fetch 结点，从而保证 CINN 外部结点能取到待 fetch 变量的值。([#37172](https://github.com/PaddlePaddle/Paddle/pull/37172), [#37190](https://github.com/PaddlePaddle/Paddle/pull/37190))
 
-    - 添加对 CINN 子图符号化的功能，符号化用于拓扑排序子图并返回 CINN 执行序列。（[#36417](https://github.com/PaddlePaddle/Paddle/pull/36417)
+    - 添加对 CINN 子图符号化的功能，符号化用于拓扑排序子图并返回 CINN 执行序列。([#36417](https://github.com/PaddlePaddle/Paddle/pull/36417))
 
-    - 新增 CinnCompiler 类，用于调用 CINN 编译模型中可使用 CINN 算子替换的子图。 （[#36562](https://github.com/PaddlePaddle/Paddle/pull/36562), [#36975](https://github.com/PaddlePaddle/Paddle/pull/36975)）
+    - 新增 CinnCompiler 类，用于调用 CINN 编译模型中可使用 CINN 算子替换的子图。([#36562](https://github.com/PaddlePaddle/Paddle/pull/36562), [#36975](https://github.com/PaddlePaddle/Paddle/pull/36975))
 
-    - 为 CINN 符号化类新增获取子图 fetch 变量名的接口，防止编译优化中将 fetch 变量融合消除。（[#37218](https://github.com/PaddlePaddle/Paddle/pull/37218)）
+    - 为 CINN 符号化类新增获取子图 fetch 变量名的接口，防止编译优化中将 fetch 变量融合消除。([#37218](https://github.com/PaddlePaddle/Paddle/pull/37218))
 
   - 程序开发检查、debug、API 变更相关：
 
-    - 同步更新 CINN 中 NetBuilder API 名称的变化。（[#40392](https://github.com/PaddlePaddle/Paddle/pull/40392)）
+    - 同步更新 CINN 中 NetBuilder API 名称的变化。([#40392](https://github.com/PaddlePaddle/Paddle/pull/40392))
 
-    - 为 Paddle-CINN 添加必要的用于 debug 的日志信息。（[#36867](https://github.com/PaddlePaddle/Paddle/pull/36867)）
+    - 为 Paddle-CINN 添加必要的用于 debug 的日志信息。([#36867](https://github.com/PaddlePaddle/Paddle/pull/36867))
 
-    - 添加 Paddle desc 与 CINN desc 互转函数。（[#36100](https://github.com/PaddlePaddle/Paddle/pull/36100)）
+    - 添加 Paddle desc 与 CINN desc 互转函数。([#36100](https://github.com/PaddlePaddle/Paddle/pull/36100))
 
-    - 相比 Paddle，CINN 中实现的算子可能存在未使用到某些输入变量，因此在 cinn_launch op 中去除对输入变量必须被使用的检查。（[#37119](https://github.com/PaddlePaddle/Paddle/pull/37119)）
+    - 相比 Paddle，CINN 中实现的算子可能存在未使用到某些输入变量，因此在 cinn_launch op 中去除对输入变量必须被使用的检查。([#37119](https://github.com/PaddlePaddle/Paddle/pull/37119))
 
-    - 新增 cinn_instruction_run op 用于调用 CINN 执行单个生成指令，便于 Paddle 侧构建 Graph 调度运行子图。（[#39435](https://github.com/PaddlePaddle/Paddle/pull/39435), [#39576](https://github.com/PaddlePaddle/Paddle/pull/39576)）
+    - 新增 cinn_instruction_run op 用于调用 CINN 执行单个生成指令，便于 Paddle 侧构建 Graph 调度运行子图。([#39435](https://github.com/PaddlePaddle/Paddle/pull/39435), [#39576](https://github.com/PaddlePaddle/Paddle/pull/39576))
 
-    - 在 Paddle 中添加编译 CINN 所需的 CUDA/CUBLAS/MKL/CINN pass 应用等控制宏。（[#37066](https://github.com/PaddlePaddle/Paddle/pull/37066), [#36660](https://github.com/PaddlePaddle/Paddle/pull/36660)）
+    - 在 Paddle 中添加编译 CINN 所需的 CUDA/CUBLAS/MKL/CINN pass 应用等控制宏。([#37066](https://github.com/PaddlePaddle/Paddle/pull/37066), [#36660](https://github.com/PaddlePaddle/Paddle/pull/36660))
 
-    - 增加 FLAGS_allow_cinn_ops 和 FLAGS_deny_cinn_ops 两个控制标记，用于控制 Paddle 训练中使用 CINN 算子代替原生算子的种类。（[#36842](https://github.com/PaddlePaddle/Paddle/pull/36842)）
+    - 增加 FLAGS_allow_cinn_ops 和 FLAGS_deny_cinn_ops 两个控制标记，用于控制 Paddle 训练中使用 CINN 算子代替原生算子的种类。([#36842](https://github.com/PaddlePaddle/Paddle/pull/36842))
 
 - 性能优化：
 
   - 速度优化
 
-    - 优化 CinnCacheKey 的计算耗时。（[#37786](https://github.com/PaddlePaddle/Paddle/pull/37786), [#37317](https://github.com/PaddlePaddle/Paddle/pull/37317)）
+    - 优化 CinnCacheKey 的计算耗时。([#37786](https://github.com/PaddlePaddle/Paddle/pull/37786), [#37317](https://github.com/PaddlePaddle/Paddle/pull/37317))
 
-    - 缓存 CINN 编译子图的变量 scope，降低运行参数构造开销。（[#37983](https://github.com/PaddlePaddle/Paddle/pull/37983)）
+    - 缓存 CINN 编译子图的变量 scope，降低运行参数构造开销。([#37983](https://github.com/PaddlePaddle/Paddle/pull/37983))
 
-    - 子图编译时接入 CINN 自动调优，支持通过 flag 启用，便于后续进一步调优训练性能。（[#41795](https://github.com/PaddlePaddle/Paddle/pull/41795)）
+    - 子图编译时接入 CINN 自动调优，支持通过 flag 启用，便于后续进一步调优训练性能。([#41795](https://github.com/PaddlePaddle/Paddle/pull/41795))
 
-    - 重构子图编译时对编译结果的正确性校验，避免运行时重复检查，降低调度开销。（[#41777](https://github.com/PaddlePaddle/Paddle/pull/41777)）
+    - 重构子图编译时对编译结果的正确性校验，避免运行时重复检查，降低调度开销。([#41777](https://github.com/PaddlePaddle/Paddle/pull/41777))
 
-    - 在 Paddle-CINN 训练功能中默认启用 TransposeFolding 和 GemmRewriter 优化 pass。（[#41084](https://github.com/PaddlePaddle/Paddle/pull/41084)）
+    - 在 Paddle-CINN 训练功能中默认启用 TransposeFolding 和 GemmRewriter 优化 pass。([#41084](https://github.com/PaddlePaddle/Paddle/pull/41084))
 
-    - 将 Paddle 中创建的 cuda stream 传入 CINN，使得 Paddle 和 CINN 执行计算时共用同一个 CUDA stream。（[#37337](https://github.com/PaddlePaddle/Paddle/pull/37337)）
+    - 将 Paddle 中创建的 cuda stream 传入 CINN，使得 Paddle 和 CINN 执行计算时共用同一个 CUDA stream。([#37337](https://github.com/PaddlePaddle/Paddle/pull/37337))
 
-    - 将 CINN 优化 pass 应用逻辑从 Paddle 中移动到 CINN 中。（[#42047](https://github.com/PaddlePaddle/Paddle/pull/42047), [#42070](https://github.com/PaddlePaddle/Paddle/pull/42070)）
+    - 将 CINN 优化 pass 应用逻辑从 Paddle 中移动到 CINN 中。([#42047](https://github.com/PaddlePaddle/Paddle/pull/42047), [#42070](https://github.com/PaddlePaddle/Paddle/pull/42070))
 
   - 显存优化
 
-    - 为 cinn_launch op 添加 NoNeedBufferVars 声明无须 buffer 的输入变量列表，以便显存优化提前释放无效空间。（[#38367](https://github.com/PaddlePaddle/Paddle/pull/38367)）
+    - 为 cinn_launch op 添加 NoNeedBufferVars 声明无须 buffer 的输入变量列表，以便显存优化提前释放无效空间。([#38367](https://github.com/PaddlePaddle/Paddle/pull/38367))
 
     - 传入子图外部变量的引用计数信息，便于 cinn_launch 内子图复用显存优化 pass，降低使用 CINN 的显存开销。（[#39209](https://github.com/PaddlePaddle/Paddle/pull/39209), [#39622](https://github.com/PaddlePaddle/Paddle/pull/39622)）
 
