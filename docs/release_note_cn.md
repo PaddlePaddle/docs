@@ -2256,13 +2256,13 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 #### 后端能力修复
 
-- 修复预测时 cuDNN 默认算法选择配置，使用非 deterministic 策略。 ([#41491](https://github.com/PaddlePaddle/Paddle/pull/41491))
+- 修复预测时 cuDNN 默认算法选择配置，使用非 deterministic 策略。([#41491](https://github.com/PaddlePaddle/Paddle/pull/41491))
 
-- 修复 deformable_conv op 在 TensorRT plugin 资源回收处理错误的问题。 ([#38374](https://github.com/PaddlePaddle/Paddle/pull/38374))
+- 修复 deformable_conv op 在 TensorRT plugin 资源回收处理错误的问题。([#38374](https://github.com/PaddlePaddle/Paddle/pull/38374))
 
-- 修复 deformable_conv op 在 TensorRT plugin 序列化错误问题。 ([#38057](https://github.com/PaddlePaddle/Paddle/pull/38057))
+- 修复 deformable_conv op 在 TensorRT plugin 序列化错误问题。([#38057](https://github.com/PaddlePaddle/Paddle/pull/38057))
 
-- 适配 TensorRT 8.0 新的构建引擎和系列化 API。 ([#36769](https://github.com/PaddlePaddle/Paddle/pull/36769))
+- 适配 TensorRT 8.0 新的构建引擎和系列化 API。([#36769](https://github.com/PaddlePaddle/Paddle/pull/36769))
 
 - 修复 Flatten2MatmulFusePass、Squeeze2MatmulFusePass、Reshape2MatmulFusePass 没有生效问题。([#37644](https://github.com/PaddlePaddle/Paddle/pull/37644))
 
@@ -2270,7 +2270,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 - 增加输入维度错误时的报错信息。([#38962](https://github.com/PaddlePaddle/Paddle/pull/38962))
 
-- 修复 EmbEltwiseLayernorm 输出类型错误的问题。 ([#40015](https://github.com/PaddlePaddle/Paddle/pull/40015))
+- 修复 EmbEltwiseLayernorm 输出类型错误的问题。([#40015](https://github.com/PaddlePaddle/Paddle/pull/40015))
 
 - 删除 conv_affine_channel_fuse_pass 以及对应的单元测试。([#39817](https://github.com/PaddlePaddle/Paddle/pull/39817))
 
@@ -2416,6 +2416,6 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 ## Thanks to our Contributors
 
-This release contains contributions from the project core team as well as :
+This release contains contributions from the project core team as well as:
 
 Adam Osewski, Allen Guo, arlesniak, chenenquan, chenyanlann, fengkuangxiaxia, fuqianya, fwenguang, guguguzi, helen88, houj04, Jacek Czaja, jakpiase, jianghaicheng, joanna.wozna.intel, joeqiao12, Leo Chen, Leo Guo, Li-fAngyU, lidanqing, Liyulingyue, Matsumoto GAO, maxhuiy, Ming-Xu Huang, Nyakku Shigure, piotrekobi, piotrekobiIntel, QingshuChen, qipengh, Skr Bang, Sylwester Fraczek, Sławomir Siwek, taixiurong, tanzhipeng, Tomasz Socha, TTerror, Webbley, yaozhixin, ykkk2333, yujun, Zhangjingyu06, zhangxiaoci, zhangyikun02, zhangyk0314, zlsh80826, zn, Zuza
