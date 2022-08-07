@@ -24,4 +24,8 @@ normalize
 代码示例
 :::::::::
 
+<<<<<<< HEAD
 COPY-FROM: paddle.vision.transforms.normalize
+=======
+COPY-FROM: paddle.vision.transforms.normalize
+>>>>>>> a9a9e5f1bae68111466de92475d57e81a866bb5f
