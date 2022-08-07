@@ -1,7 +1,7 @@
 .. _cn_api_paddle_tensor_take:
 
 take
--------------------------------
+--------------------------------
 
 .. py:function:: paddle.take(input, index, name=None)
 
