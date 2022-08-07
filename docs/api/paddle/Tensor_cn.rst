@@ -2416,7 +2416,7 @@ erfinv(x, name=None)
 take(index, name=None)
 :::::::::
 
-返回：一个新的 Tensor，其中包含给定索引处的输入元素。结果与 `index` 的形状相同
+返回：一个新的 Tensor，其中包含给定索引处的输入元素。结果与 :attr:`index` 的形状相同
 
 返回类型：Tensor
 
