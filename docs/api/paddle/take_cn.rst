@@ -1,7 +1,7 @@
 .. _cn_api_paddle_tensor_take:
 
 take
---------------------------------
+-------------------------------
 
 .. py:function:: paddle.take(input, index, name=None)
 
@@ -22,6 +22,5 @@ Tensor，其中包含给定索引处的输入元素。与 index 的形状相同�
 
 代码示例
 :::::::::
-
 
 COPY-FROM: paddle.take
