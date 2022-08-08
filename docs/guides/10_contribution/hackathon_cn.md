@@ -30,7 +30,7 @@
     - 将 RFC 以 Pull Request(PR) 形式提交，并按 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，以及在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 下按格式回复【提交提案】；
     
 - 2、签署开源协议：对于你贡献的源代码，你将拥有合法的知识产权，为了保护你的权益，你需要签署一份[贡献者许可协议](https://cla-assistant.io/PaddlePaddle/Paddle?pullRequest=39047)；
-- 3、提案评审&公示：设计文档将接受来自于飞桨专家和社区开发者的评审，并在 PR 中讨论开发方案的细节；  
+- 3、提案评审&公示：设计文档将接受来自于飞桨专家和社区开发者的评审，并在 PR 中讨论开发方案的细节；
 - 4、**产生任务 leader**：第一个通过设计文档评审的开发者将成为该任务的 leader，后续任务开发需按照设计文档进行；若其他开发者先于任务 leader 提交了作品，则他/她的作品需经过任务 leader 的确认（自@任务 leader review 后，7个自然日内无回复默认通过），未按照设计文档开发的作品将不会进入评审阶段。
 
 （三）任务开发阶段
