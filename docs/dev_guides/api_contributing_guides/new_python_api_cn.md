@@ -342,7 +342,7 @@ Tip: 当出现类似把一个元素放入一个集中管理的列表的操作时
 
 比如运行 `python/paddle/fluid/tests/unittests/test_logsumexp.py` 的命令如下：
 ```
-ctest test_logsumexp
+ctest -R test_logsumexp
 ```
 > 注意：执行单测一定要用 `ctest` 命令，不可直接 `python test_*.py`。
 
