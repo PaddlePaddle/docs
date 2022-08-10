@@ -83,4 +83,4 @@ step 2：
     x = paddle.static.data(name='x', shape=[3, 10, 32, 32], dtype='float32')
     theta = paddle.static.data(name='theta', shape=[2, 2, 3], dtype='float32')
     grid = paddle.nn.functional.affine_grid(theta=theta, out_shape=[3, 10, 32, 32])
-    out = paddle.nn.functional.grid_sampler(x=x, grid=grid)
+    out = paddle.nn.functional.grid_sample(x=x, grid=grid)
