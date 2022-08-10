@@ -8,7 +8,7 @@ affine_grid
 
 
 
-该 OP 用于生成仿射变换前后的 feature maps 的坐标映射关系。在视觉应用中，根据该 OP 得到的映射关系，将输入 feature map 的像素点变换到对应的坐标，就得到了经过仿射变换的 feature map。
+用于生成仿射变换前后的 feature maps 的坐标映射关系。在视觉应用中， 根据得到的映射关系，将输入 feature map 的像素点变换到对应的坐标，就得到了经过仿射变换的 feature map。
 
 参数
 ::::::::::::
