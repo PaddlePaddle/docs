@@ -7,46 +7,46 @@
 但在每个进程上处理不同的数据。因此，数据并行非常适合单卡已经能够放得下完整的模型和参数，但希望通过并行来增大
 全局数据(global batch)大小来提升训练的吞吐量。
 
-本节将采用自定义卷积网络和Paddle内置的CIFAR-10数据集来介绍如何使用 `Fleet API <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/Overview_cn.html#fleetapi>`_ (paddle.distributed.fleet) 进行数据并行训练。
+本节将采用自定义卷积网络和 Paddle 内置的 CIFAR-10 数据集来介绍如何使用 `Fleet API <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/Overview_cn.html#fleetapi>`_ (paddle.distributed.fleet) 进行数据并行训练。
 
 1.1 版本要求
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-在编写分布式训练程序之前，用户需要确保已经安装GPU版的PaddlePaddle 2.3.0及以上版本。
+在编写分布式训练程序之前，用户需要确保已经安装 GPU 版的 PaddlePaddle 2.3.0 及以上版本。
 
-1.2 具体步骤 
+1.2 具体步骤
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-与单机单卡的普通模型训练相比，数据并行训练只需要按照如下5个步骤对代码进行简单调整即可：
+与单机单卡的普通模型训练相比，数据并行训练只需要按照如下 5 个步骤对代码进行简单调整即可：
 
-    1. 导入分布式训练依赖包 
-    2. 初始化Fleet环境 
-    3. 构建分布式训练使用的网络模型 
-    4. 构建分布式训练使用的优化器 
-    5. 构建分布式训练使用的数据加载器 
+    1. 导入分布式训练依赖包
+    2. 初始化 Fleet 环境
+    3. 构建分布式训练使用的网络模型
+    4. 构建分布式训练使用的优化器
+    5. 构建分布式训练使用的数据加载器
 
 下面将逐一进行讲解。
 
 1.2.1 导入分布式训练依赖包
 """"""""""""""""""""""""""""
 
-导入飞桨分布式训练专用包Fleet。
+导入飞桨分布式训练专用包 Fleet。
 
 .. code-block:: python
 
-    # 导入分布式专用Fleet API
+    # 导入分布式专用 Fleet API
     from paddle.distributed import fleet
-    # 导入分布式训练数据所需API
+    # 导入分布式训练数据所需 API
     from paddle.io import DataLoader, DistributedBatchSampler
-    # 设置GPU环境
+    # 设置 GPU 环境
     paddle.set_device('gpu')
 
-1.2.2 初始化Fleet环境
+1.2.2 初始化 Fleet 环境
 """"""""""""""""""""""""""
 
 分布式初始化需要：
 
-    1. 设置is_collective为True，表示分布式训练采用Collective模式。
+    1. 设置 is_collective 为 True，表示分布式训练采用 Collective 模式。
     2. [可选] 设置分布式策略 `DistributedStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/fleet/DistributedStrategy_cn.html>`_，跳过将使用缺省配置。
 
 .. code-block:: python
@@ -64,7 +64,7 @@
 
 .. code-block:: python
 
-    # 等号右边model为原始串行网络模型
+    # 等号右边 model 为原始串行网络模型
     model = fleet.distributed_model(model)
 
 1.2.4 构建分布式训练使用的优化器
@@ -73,7 +73,7 @@
 
 .. code-block:: python
 
-    # 等号右边optimizer为原始串行网络模型
+    # 等号右边 optimizer 为原始串行网络模型
     optimizer = fleet.distributed_optimizer(optimizer)
 
 1.2.5 构建分布式训练使用的数据加载器
@@ -83,8 +83,8 @@
 
 .. code-block:: python
 
-    # 构建分布式数据采样器 
-    # 注意：需要保证batch中每个样本数据shape相同，若原尺寸不一，需进行预处理
+    # 构建分布式数据采样器
+    # 注意：需要保证 batch 中每个样本数据 shape 相同，若原尺寸不一，需进行预处理
     train_sampler = DistributedBatchSampler(train_dataset, 32, shuffle=True, drop_last=True)
     val_sampler = DistributedBatchSampler(val_dataset, 32)
 
@@ -103,11 +103,11 @@
     import paddle
     import paddle.nn.functional as F
     from paddle.vision.transforms import ToTensor
-    # 一、导入分布式专用Fleet API
+    # 一、导入分布式专用 Fleet API
     from paddle.distributed import fleet
-    # 构建分布式数据加载器所需API
+    # 构建分布式数据加载器所需 API
     from paddle.io import DataLoader, DistributedBatchSampler
-    # 设置GPU环境
+    # 设置 GPU 环境
     paddle.set_device('gpu')
 
     class MyNet(paddle.nn.Layer):
@@ -152,7 +152,7 @@
     val_loss_history = []
 
     def train():
-        # 二、初始化Fleet环境
+        # 二、初始化 Fleet 环境
         fleet.init(is_collective=True)
 
         model = MyNet(num_classes=10)
@@ -219,20 +219,20 @@
 1.4 分布式启动
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-准备好分布式训练脚本后，就可以通过paddle.distributed.launch在集群上启动分布式训练：
+准备好分布式训练脚本后，就可以通过 paddle.distributed.launch 在集群上启动分布式训练：
 
 - 单机多卡训练
-    假设只使用集群的一个节点，节点上可使用的GPU卡数为4，那么只需要在节点终端运行如下命令：
+    假设只使用集群的一个节点，节点上可使用的 GPU 卡数为 4，那么只需要在节点终端运行如下命令：
 
     .. code-block:: bash
 
         python -m paddle.distributed.launch --gpus=0,1,2,3 train_with_fleet.py
 
 - 多机多卡训练
-    假设集群包含两个节点，每个节点上可使用的GPU卡数为4，IP地址分别为192.168.1.2和192.168.1.3，那么需要在两个节点的终端上分别运行如下命令：
+    假设集群包含两个节点，每个节点上可使用的 GPU 卡数为 4，IP 地址分别为 192.168.1.2 和 192.168.1.3，那么需要在两个节点的终端上分别运行如下命令：
 
-    在192.168.1.2节点运行：
-    
+    在 192.168.1.2 节点运行：
+
         .. code-block:: bash
 
             python -m paddle.distributed.launch \
@@ -240,7 +240,7 @@
             --ips=192.168.1.2,192.168.1.3 \
             train_with_fleet.py
 
-    在192.168.1.3节点运行相同命令：
+    在 192.168.1.3 节点运行相同命令：
 
         .. code-block:: bash
 
@@ -250,4 +250,3 @@
             train_with_fleet.py
 
 相关启动问题，可参考 `paddle.distributed.launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html#launch>`_。
-

@@ -5,7 +5,7 @@ silu
 
 .. py:function:: paddle.nn.functional.silu(x, name=None)
 
-silu激活层。计算公式如下：
+silu 激活层。计算公式如下：
 
 .. math::
 

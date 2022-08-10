@@ -11,20 +11,20 @@ lcm
 
     lcm(0,0)=0, lcm(0, y)=0
 
-    如果x和y的shape不一致，会对两个shape进行广播操作，得到一致的shape（并作为输出结果的shape），
+    如果 x 和 y 的 shape 不一致，会对两个 shape 进行广播操作，得到一致的 shape（并作为输出结果的 shape），
     请参见 :ref:`cn_user_guide_broadcasting` 。
 
 参数
 :::::::::
 
-- **x**  (Tensor) - 输入的Tensor，数据类型为：int32，int64。
-- **y**  (Tensor) - 输入的Tensor，数据类型为：int32，int64。
-- **name**  (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+- **x**  (Tensor) - 输入的 Tensor，数据类型为：int32，int64。
+- **y**  (Tensor) - 输入的 Tensor，数据类型为：int32，int64。
+- **name**  (str，可选） - 操作的名称(可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
 
 返回
 :::::::::
 
-输出Tensor，与输入数据类型相同。
+输出 Tensor，与输入数据类型相同。
 
 代码示例
 :::::::::

@@ -77,7 +77,7 @@
 
 
 
-> 注：InputSpec 接口的高阶用法，请参看 [【使用InputSpec指定模型输入Tensor信息】](./basic_usage_cn.html#inputspec)
+> 注：InputSpec 接口的高阶用法，请参看 [【使用 InputSpec 指定模型输入 Tensor 信息】](./basic_usage_cn.html#inputspec)
 
 ## 三、内嵌 Numpy 操作？
 
@@ -159,7 +159,7 @@ class SimpleNet(paddle.nn.Layer):
         out = out + y
 
         mask = paddle.to_tensor(self.mask)  # <---- 每次都会调用 assign_op
-        out = out * mask  
+        out = out * mask
 
         return out
 ```
@@ -177,7 +177,7 @@ class SimpleNet(paddle.nn.Layer):
         out = self.linear(x)
         out = out + y
 
-        out = out * self.mask              # <--- 省去重复的assign_op，性能更佳
+        out = out * self.mask              # <--- 省去重复的 assign_op，性能更佳
 
         return out
 ```
@@ -209,7 +209,7 @@ class SimpleNet(object):                       # <---- 继承 Object
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
-        out = out * self.mask  
+        out = out * self.mask
         return out
 ```
 
@@ -238,7 +238,7 @@ class SimpleNet(paddle.nn.Layer):
         out = self.linear(x)
         out = out + y
         # .... (略)
-        out = out * self.mask  
+        out = out * self.mask
         return out
 ```
 
@@ -273,9 +273,9 @@ jit.save(mode, model_path)
 
 此 flag 继承自 ``nn.Layer`` ，因此可通过 ``model.train()`` 和 ``model.eval()`` 来全局切换所有 sublayers 的分支状态。
 
-## 七、非forward函数导出
+## 七、非 forward 函数导出
 
-`@to_static` 与 `jit.save` 接口搭配也支持导出非forward 的其他函数，具体使用方式如下：
+`@to_static` 与 `jit.save` 接口搭配也支持导出非 forward 的其他函数，具体使用方式如下：
 
 ```python
 class SimpleNet(paddle.nn.Layer):
@@ -340,7 +340,7 @@ def false_fn_0(out):
 out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (out,))
 ^          ^                   ^             ^           ^        ^      ^      ^
 |          |                   |             |           |        |      |      |
-输出   convert_ifelse          判断条件       true分支   false分支  分支输入 分支输入 输出
+输出   convert_ifelse          判断条件       true 分支   false 分支  分支输入 分支输入 输出
 ```
 
 
@@ -422,7 +422,7 @@ def forward(x):
 
 ```python
 def forward(self, x)：
-    bs = paddle.shape(x)[0]        # <---- x.shape[0] 表示 batch_size，动态shape
+    bs = paddle.shape(x)[0]        # <---- x.shape[0] 表示 batch_size，动态 shape
     outs = []
     for i in range(bs):
         outs.append(x)

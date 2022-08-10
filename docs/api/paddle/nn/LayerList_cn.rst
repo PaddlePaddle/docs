@@ -8,7 +8,7 @@ LayerList
 
 
 
-LayerList用于保存子层列表，它包含的子层将被正确地注册和添加。列表中的子层可以像常规python列表一样被索引。
+LayerList 用于保存子层列表，它包含的子层将被正确地注册和添加。列表中的子层可以像常规 python 列表一样被索引。
 
 参数
 ::::::::::::
@@ -41,7 +41,7 @@ LayerList用于保存子层列表，它包含的子层将被正确地注册和�
 append()
 '''''''''
 
-添加一个子层到整个list的最后。
+添加一个子层到整个 list 的最后。
 
 **参数**
 
@@ -62,7 +62,7 @@ append()
 insert()
 '''''''''
 
-向list中插入一个子层，到给定的index前面。
+向 list 中插入一个子层，到给定的 index 前面。
 
 **参数**
 
@@ -74,7 +74,7 @@ insert()
 .. code-block:: python
 
     import paddle
-    
+
     linears = paddle.nn.LayerList([paddle.nn.Linear(10, 10) for i in range(10)])
     another = paddle.nn.Linear(10, 10)
     linears.insert(3, another)
@@ -83,7 +83,7 @@ insert()
 extend()
 '''''''''
 
-添加多个子层到整个list的最后。
+添加多个子层到整个 list 的最后。
 
 **参数**
 
@@ -94,7 +94,7 @@ extend()
 .. code-block:: python
 
     import paddle
-    
+
     linears = paddle.nn.LayerList([paddle.nn.Linear(10, 10) for i in range(10)])
     another_list = paddle.nn.LayerList([paddle.nn.Linear(10, 10) for i in range(5)])
     linears.extend(another_list)

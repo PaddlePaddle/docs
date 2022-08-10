@@ -8,9 +8,9 @@
 
 - `概述 <./Overview_cn.html>`_ : 贡献指南概述。
 - `代码规范 <./style_guides_cn.html>`_ : 代码规范说明。
-- `Git 操作指南 <./git_guides/index_cn.html>`_ : Git 操作相关说明与Paddle CI 手册。
-- `编译安装 <https://www.paddlepaddle.org.cn/documentation/docs/zh/install/compile/fromsource.html>`_ : 如何从源码编译安装Paddle。
-- `API开发指南 <./api_contributing_guides/api_contributing_guides_cn.html>`_ : API开发相关说明。
+- `Git 操作指南 <./git_guides/index_cn.html>`_ : Git 操作相关说明与 Paddle CI 手册。
+- `编译安装 <https://www.paddlepaddle.org.cn/documentation/docs/zh/install/compile/fromsource.html>`_ : 如何从源码编译安装 Paddle。
+- `API 开发指南 <./api_contributing_guides/api_contributing_guides_cn.html>`_ : API 开发相关说明。
 - `算子性能优化贡献指南 <./op_optimization/op_optimization_contributing_guides_cn.html>`_ : 飞桨算子性能优化相关说明。
 - `算子数据类型扩展贡献指南 <./op_dtype_extension/op_dtype_extension_contributing_guides_cn.html>`_ : 飞桨算子数据类型扩展相关说明。
 - `曙光开发指南 <./sugon/index_cn.html>`_ : 曙光开发相关说明。
@@ -30,4 +30,3 @@
     sugon/index_cn.rst
     custom_device_docs/index_cn.rst
     docs_contributing_guides_cn.md
-

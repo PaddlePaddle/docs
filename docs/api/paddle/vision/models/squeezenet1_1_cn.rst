@@ -23,4 +23,3 @@ SqueezeNet v1.1 模型，来自论文 `"SqueezeNet: AlexNet-level accuracy with 
 :::::::::
 
 COPY-FROM: paddle.vision.models.squeezenet1_1
-

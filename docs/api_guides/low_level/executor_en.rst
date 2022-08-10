@@ -29,6 +29,3 @@ For simple example please refer to `basics_fit_a_line <../../beginners_guide/bas
 
 - Related API :
  - :ref:`api_fluid_Executor`
-
-
-

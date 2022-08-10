@@ -1,14 +1,14 @@
-# 飞桨框架ROCm版预测示例
+# 飞桨框架 ROCm 版预测示例
 
-使用海光CPU/DCU进行预测与使用Intel CPU/Nvidia GPU预测相同，支持飞桨原生推理库(Paddle Inference)，适用于高性能服务器端、云端推理。当前Paddle ROCm版本完全兼容Paddle CUDA版本的 C++/Python API，直接使用原有的GPU预测命令和参数即可。
+使用海光 CPU/DCU 进行预测与使用 Intel CPU/Nvidia GPU 预测相同，支持飞桨原生推理库(Paddle Inference)，适用于高性能服务器端、云端推理。当前 Paddle ROCm 版本完全兼容 Paddle CUDA 版本的 C++/Python API，直接使用原有的 GPU 预测命令和参数即可。
 
 ## C++预测部署
 
-**注意**：更多C++预测API使用说明请参考 [Paddle Inference - C++ API](https://paddleinference.paddlepaddle.org.cn/api_reference/cxx_api_index.html)
+**注意**：更多 C++预测 API 使用说明请参考 [Paddle Inference - C++ API](https://paddleinference.paddlepaddle.org.cn/api_reference/cxx_api_index.html)
 
-**第一步**：源码编译C++预测库
+**第一步**：源码编译 C++预测库
 
-当前 Paddle ROCm版只支持通过源码编译的方式提供C++预测库。编译环境准备请参考 [飞桨框架ROCm版安装说明：通过源码编译安装](./paddle_install_cn.html)。
+当前 Paddle ROCm 版只支持通过源码编译的方式提供 C++预测库。编译环境准备请参考 [飞桨框架 ROCm 版安装说明：通过源码编译安装](./paddle_install_cn.html)。
 
 ```bash
 # 下载源码，切换到 release/2.1 分支
@@ -18,7 +18,7 @@ cd Paddle
 # 创建编译目录
 mkdir build && cd build
 
-# 执行cmake，注意这里需打开预测优化选项 ON_INFER
+# 执行 cmake，注意这里需打开预测优化选项 ON_INFER
 cmake .. -DPY_VERSION=3.7 -DWITH_ROCM=ON -DWITH_TESTING=OFF -DON_INFER=ON \
          -DWITH_MKL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
@@ -60,7 +60,7 @@ build/paddle_inference_install_dir
 └── version.txt
 ```
 
-其中 `version.txt` 文件中记录了该预测库的版本信息，包括Git Commit ID、使用OpenBlas或MKL数学库、ROCm/MIOPEN版本号，如：
+其中 `version.txt` 文件中记录了该预测库的版本信息，包括 Git Commit ID、使用 OpenBlas 或 MKL 数学库、ROCm/MIOPEN 版本号，如：
 
 ```bash
 GIT COMMIT ID: e75412099f97a49701324788b468d80391293ea9
@@ -110,7 +110,7 @@ drwxr-xr-x 1 root root 9032 Jun  2 07:26 ../lib/paddle_inference   第一步编�
 
 ```bash
 # 根据预编译库中的 version.txt 信息判断是否将以下标记打开
-WITH_MKL=ON  
+WITH_MKL=ON
 WITH_GPU=OFF # 注意这里需要关掉 WITH_GPU
 USE_TENSORRT=OFF
 
@@ -143,13 +143,13 @@ I0602 04:12:04.106670 52627 resnet50_test.cc:88] 800 : 3.85254e-25
 I0602 04:12:04.106683 52627 resnet50_test.cc:88] 900 : 1.52391e-30
 ```
 
-## Python预测部署示例
+## Python 预测部署示例
 
-**注意**：更多Python预测API使用说明请参考 [Paddle Inference - Python API](https://paddleinference.paddlepaddle.org.cn/api_reference/python_api_index.html)
+**注意**：更多 Python 预测 API 使用说明请参考 [Paddle Inference - Python API](https://paddleinference.paddlepaddle.org.cn/api_reference/python_api_index.html)
 
 **第一步**：安装 Python 预测库
 
-Paddle ROCm 版的 Python 预测库请参考 [飞桨框架ROCm版安装说明](./paddle_install_cn.html) 进行安装或编译。
+Paddle ROCm 版的 Python 预测库请参考 [飞桨框架 ROCm 版安装说明](./paddle_install_cn.html) 进行安装或编译。
 
 **第二步**：准备预测部署模型
 
@@ -195,13 +195,13 @@ def main():
     input_handle.reshape([args.batch_size, 3, 318, 318])
     input_handle.copy_from_cpu(fake_input)
 
-    # 运行predictor
+    # 运行 predictor
     predictor.run()
 
     # 获取输出
     output_names = predictor.get_output_names()
     output_handle = predictor.get_output_handle(output_names[0])
-    output_data = output_handle.copy_to_cpu() # numpy.ndarray类型
+    output_data = output_handle.copy_to_cpu() # numpy.ndarray 类型
     print("Output data size is {}".format(output_data.size))
     print("Output data shape is {}".format(output_data.shape))
 
@@ -219,7 +219,7 @@ if __name__ == "__main__":
 **第四步**：执行预测程序
 
 ```bash
-# 参数输入为本章节第2步中下载的 ResNet50 模型
+# 参数输入为本章节第 2 步中下载的 ResNet50 模型
 python python_demo.py --model_file ./resnet50/inference.pdmodel \
                       --params_file ./resnet50/inference.pdiparams \
                       --batch_size 2

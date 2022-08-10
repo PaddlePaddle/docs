@@ -1,23 +1,23 @@
 # 算子数据类型扩展 验收规范
 
-## 通过CI验证
+## 通过 CI 验证
 
-提交至 Paddle repo 的 Pull Request（简称 PR），涉及到的相关检测CI必须全部 Pass。用来验证对之前功能点的兼容和影响，保障新合入代码对历史代码不产生影响。
+提交至 Paddle repo 的 Pull Request（简称 PR），涉及到的相关检测 CI 必须全部 Pass。用来验证对之前功能点的兼容和影响，保障新合入代码对历史代码不产生影响。
 
-新增代码必须要有相应的单测保障测试覆盖率达到准入要求（行覆盖率达到90%）。
+新增代码必须要有相应的单测保障测试覆盖率达到准入要求（行覆盖率达到 90%）。
 
 ## 通过精度验证
 
 扩展数据类型后需要添加对应数据类型的单元测试，并通过算子的精度检查。单元测试需要注意以下规范：
-- [OP单测必须使用大尺寸输入](https://github.com/PaddlePaddle/Paddle/wiki/OP-test-input-shape-requirements)
-- [反向Op必须调用check_grad](https://github.com/PaddlePaddle/Paddle/wiki/Gradient-Check-Is-Required-for-Op-Test)
-- [单测精度中atol, rtol, eps, max_relative_error, 不允许自行放大阈值](https://github.com/PaddlePaddle/Paddle/wiki/OP-test-accuracy-requirements)
+- [OP 单测必须使用大尺寸输入](https://github.com/PaddlePaddle/Paddle/wiki/OP-test-input-shape-requirements)
+- [反向 Op 必须调用 check_grad](https://github.com/PaddlePaddle/Paddle/wiki/Gradient-Check-Is-Required-for-Op-Test)
+- [单测精度中 atol, rtol, eps, max_relative_error, 不允许自行放大阈值](https://github.com/PaddlePaddle/Paddle/wiki/OP-test-accuracy-requirements)
 
 ## 通过性能验证
 
-深度学习框架通常支持多种数据类型的输入，其中低精度运算不仅能够减少显存占用，还可以加快计算的效率。在一些特定硬件上，使用半精度浮点数FP16的峰值计算能力最高可达单精度浮点数FP32的数倍，基于此原理实现的混合精度训练策略对模型也可以实现数倍加速。在完成数据类型的扩展后，可以使用飞桨的[OP Benchmark](https://github.com/PaddlePaddle/benchmark/tree/master/api)算子性能测试专业工具对算子性能进行测试对比，例如对于FP16数据类型，验收的基本要求是算子性能要明显优于使用FP32数据类型，同时我们也鼓励开发者针对FP16类型实现极致的加速。如下图所示，OP Benchmark 测试不同数据类型输入下的OP性能真实状态。
+深度学习框架通常支持多种数据类型的输入，其中低精度运算不仅能够减少显存占用，还可以加快计算的效率。在一些特定硬件上，使用半精度浮点数 FP16 的峰值计算能力最高可达单精度浮点数 FP32 的数倍，基于此原理实现的混合精度训练策略对模型也可以实现数倍加速。在完成数据类型的扩展后，可以使用飞桨的[OP Benchmark](https://github.com/PaddlePaddle/benchmark/tree/master/api)算子性能测试专业工具对算子性能进行测试对比，例如对于 FP16 数据类型，验收的基本要求是算子性能要明显优于使用 FP32 数据类型，同时我们也鼓励开发者针对 FP16 类型实现极致的加速。如下图所示，OP Benchmark 测试不同数据类型输入下的 OP 性能真实状态。
 
-- Conv2d算子，使用FP32数据类型：
+- Conv2d 算子，使用 FP32 数据类型：
 ```
 ===========================================================================
 -- paddle version             : 0.0.0
@@ -53,7 +53,7 @@ W0706 08:37:25.901605 20400 gpu_context.cc:306] device: 0, cuDNN Version: 8.2.
 }
 ```
 
-- Conv2d算子，使用FP16数据类型：
+- Conv2d 算子，使用 FP16 数据类型：
 ```
 ===========================================================================
 -- paddle version             : 0.0.0
@@ -89,20 +89,20 @@ W0706 08:37:25.901605 20400 gpu_context.cc:306] device: 0, cuDNN Version: 8.2.
 }
 ```
 
-## PR内容描述要求
+## PR 内容描述要求
 
-单元测试内容需要和开发代码放在同一个PR提交，后续修改也需要基于此PR。PR内容描述测试部分需要明确描述下列内容：
+单元测试内容需要和开发代码放在同一个 PR 提交，后续修改也需要基于此 PR。PR 内容描述测试部分需要明确描述下列内容：
 
-1. 针对低精度数据类型的支持方法描述：概要说明计算精度是否对不同数据类型敏感，如Transpose算子的计算精度与数据类型无关
+1. 针对低精度数据类型的支持方法描述：概要说明计算精度是否对不同数据类型敏感，如 Transpose 算子的计算精度与数据类型无关
 
-2. 扩展数据类型后算子的性能状况：给出不同数据类型下算子性能，如FP32和FP16的性能对比
+2. 扩展数据类型后算子的性能状况：给出不同数据类型下算子性能，如 FP32 和 FP16 的性能对比
 
-3. PR性能优化方案概述：如果扩展数据类型时，还对算子进行了性能优化，则需要描述优化方案
+3. PR 性能优化方案概述：如果扩展数据类型时，还对算子进行了性能优化，则需要描述优化方案
 
 ## 交流与改进
 
-PR的单测部分必须通过 Paddle 测试人员 review，确保完整覆盖了待测功能点后，会给予 approved。如果 review 过程中发现测试缺失和遗漏的测试点，会通过 GitHub 代码行 Comment 的和 Request Changes 的方式交流改进，待PR修改完毕后给予 approved。
+PR 的单测部分必须通过 Paddle 测试人员 review，确保完整覆盖了待测功能点后，会给予 approved。如果 review 过程中发现测试缺失和遗漏的测试点，会通过 GitHub 代码行 Comment 的和 Request Changes 的方式交流改进，待 PR 修改完毕后给予 approved。
 
 ## 后续维护
 
-代码成功合入后，如果发现对框架造成了精度和性能下降影响，或者和部分功能存在严重冲突导致Bug，会对代码进行 Revert 并通过 ISSUE 告知相关的开发者，请提交 PR 修复问题，并重新合入。
+代码成功合入后，如果发现对框架造成了精度和性能下降影响，或者和部分功能存在严重冲突导致 Bug，会对代码进行 Revert 并通过 ISSUE 告知相关的开发者，请提交 PR 修复问题，并重新合入。

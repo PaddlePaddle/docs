@@ -24,4 +24,3 @@ MobileNetV1 模型，来自论文 `"MobileNets: Efficient Convolutional Neural N
 :::::::::
 
 COPY-FROM: paddle.vision.models.MobileNetV1
-

@@ -7,7 +7,7 @@ prim2orig
 
 .. note::
     只支持在静态图模式下使用。
-    参数block必须是None或者是主program的当前block。
+    参数 block 必须是 None 或者是主 program 的当前 block。
 
 对目标程序块中的所有算子进行处理：如果算子是自动微分基础算子，则把该算子替换为一个或者一系列具备等价功能的原生算子，以支持后续执行。
 

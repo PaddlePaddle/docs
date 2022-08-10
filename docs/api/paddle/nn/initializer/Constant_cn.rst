@@ -13,7 +13,7 @@ Constant
 参数
 ::::::::::::
 
- - **value** (float16|float32，可选) - 用于初始化输入变量的值，默认值为0。
+ - **value** (float16|float32，可选) - 用于初始化输入变量的值，默认值为 0。
 
 返回
 ::::::::::::
@@ -22,4 +22,4 @@ Constant
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.nn.initializer.Constant:code-example1
+COPY-FROM: paddle.nn.initializer.Constant

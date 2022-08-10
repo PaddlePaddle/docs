@@ -5,7 +5,7 @@ log_sigmoid
 
 .. py:function:: paddle.nn.functional.log_sigmoid(x, name=None)
 
-log_sigmoid激活层。计算公式如下：
+log_sigmoid 激活层。计算公式如下：
 
 .. math::
 
