@@ -32,7 +32,7 @@
 
 （2）将远程仓库 Clone 到本地
 
-```
+```bash
 # Clone Paddle 仓库到本地并进入 Paddle 文件夹
 ➜  git clone https://github.com/USERNAME/Paddle
 ➜  cd Paddle
