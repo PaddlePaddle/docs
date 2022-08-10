@@ -140,7 +140,7 @@ C_CCLRootId 的类型定义详见 [device_ext.h](https://github.com/PaddlePaddle
 
 集合通讯根节点 unique_id 。
 
-## C_CCLComm;
+## C_CCLComm
 
 ### 类型定义
 
