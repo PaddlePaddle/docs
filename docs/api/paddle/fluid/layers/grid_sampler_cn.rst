@@ -57,10 +57,8 @@ step 2：
 参数
 ::::::::::::
 
-  - **x** (Variable)：输入张量，维度为 :math:`[N, C, H, W]` 的 4-D Tensor 或维度为 :math:`[N, C, D, H, W]` 的 5-D Tensor，N 为批尺寸，C 是通道数，
-                      D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 float32 或 float64。
-  - **grid** (Variable)：输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的 4-D Tensor 或维度为 :math:`[N, D, H, W, 3]` 的 5-D Tensor，N 为批尺寸，
-                      C 是通道数，D 是特征深度， H 是特征高度，W 是特征宽度，数据类型为 float32 或 float64。
+  - **x** (Variable)：输入张量，维度为 :math:`[N, C, H, W]` 的 4-D Tensor 或维度为 :math:`[N, C, D, H, W]` 的 5-D Tensor，N 为批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 float32 或 float64。
+  - **grid** (Variable)：输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的 4-D Tensor 或维度为 :math:`[N, D, H, W, 3]` 的 5-D Tensor，N 为批尺寸，C 是通道数，D 是特征深度， H 是特征高度，W 是特征宽度，数据类型为 float32 或 float64。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
