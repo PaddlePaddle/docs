@@ -20,14 +20,14 @@ LeakyReLU 激活层
 
 参数
 ::::::::::
-    - negative_slope (float，可选) - :math:`x < 0` 时的斜率。默认值为0.01。
+    - negative_slope (float，可选) - :math:`x < 0` 时的斜率。默认值为 0.01。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
 :::::::::
 
-    - input：任意形状的Tensor。
-    - output：和input具有相同形状的Tensor。
+    - input：任意形状的 Tensor。
+    - output：和 input 具有相同形状的 Tensor。
 
 代码示例
 :::::::::

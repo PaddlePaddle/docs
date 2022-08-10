@@ -9,10 +9,9 @@ is_compiled_with_npu
 
 返回
 ::::::::::::
-bool，支持NPU则为True，否则为False。
+bool，支持 NPU 则为 True，否则为 False。
 
 代码示例
 ::::::::::::
 
 COPY-FROM: paddle.device.is_compiled_with_npu
-

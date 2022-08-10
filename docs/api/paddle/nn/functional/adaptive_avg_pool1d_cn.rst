@@ -25,4 +25,5 @@ Tensor，计算 1D 自适应平均池化的结果，数据类型与输入相同�
 
 代码示例
 :::::::::
-COPY-FROM: paddle.nn.functional.adaptive_avg_pool1d:adaptive_avg_pool1d-example
+
+COPY-FROM: paddle.nn.functional.adaptive_avg_pool1d

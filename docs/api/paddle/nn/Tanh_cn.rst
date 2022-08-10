@@ -4,7 +4,7 @@ Tanh
 -------------------------------
 .. py:class:: paddle.nn.Tanh(name=None)
 
-Tanh激活层
+Tanh 激活层
 
 .. math::
     Tanh(x) = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}
@@ -17,8 +17,8 @@ Tanh激活层
 形状
 ::::::::::
 
-    - input：任意形状的Tensor。
-    - output：和input具有相同形状的Tensor。
+    - input：任意形状的 Tensor。
+    - output：和 input 具有相同形状的 Tensor。
 
 代码示例
 ::::::::::

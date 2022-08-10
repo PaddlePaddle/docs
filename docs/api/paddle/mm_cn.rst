@@ -10,7 +10,7 @@ mm
 
 用于两个输入矩阵的相乘。
 
-两个输入的形状可为任意维度，但当任一输入维度大于3时，两个输入的维度必须相等。
+两个输入的形状可为任意维度，但当任一输入维度大于 3 时，两个输入的维度必须相等。
 
 如果原始 Tensor input 或 mat2 的秩为 1 且未转置，则矩阵相乘后的前置或附加维度 1 将移除。
 
@@ -19,7 +19,7 @@ mm
 
     - **input** (Tensor)：输入变量，类型为 Tensor 或 LoDTensor。
     - **mat2** (Tensor)：输入变量，类型为 Tensor 或 LoDTensor。
-    - **out** (Tensor，可选) – 指定存储运算结果的Tensor。如果设置为None或者不设置，将创建新的Tensor存储运算结果，默认值为None。
+    - **out** (Tensor，可选) – 指定存储运算结果的 Tensor。如果设置为 None 或者不设置，将创建新的 Tensor 存储运算结果，默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

@@ -11,7 +11,7 @@
 
 + 静态图编程： 采用先编译后执行的方式。需先在代码中预定义完整的神经网络结构，飞桨框架会将神经网络描述为 Program 的数据结构，并对 Program 进行编译优化，再调用执行器获得计算结果。
 
-动态图编程体验更佳、更易调试，但是因为采用 Python 实时执行的方式，开销较大，在性能方面与 C++ 有一定差距；静态图调试难度大，但是将前端 Python 编写的神经网络预定义为 Program描述，转到 C++ 端重新解析执行，脱离了 Python 依赖，往往执行性能更佳，并且预先拥有完整网络结构也更利于全局优化。
+动态图编程体验更佳、更易调试，但是因为采用 Python 实时执行的方式，开销较大，在性能方面与 C++ 有一定差距；静态图调试难度大，但是将前端 Python 编写的神经网络预定义为 Program 描述，转到 C++ 端重新解析执行，脱离了 Python 依赖，往往执行性能更佳，并且预先拥有完整网络结构也更利于全局优化。
 
 想了解动态图和静态图的详细对比介绍，可参见 [动态图和静态图的差异](https://www.paddlepaddle.org.cn/tutorials/projectdetail/4047189)。
 
@@ -51,7 +51,7 @@
 
 + **如果发现模型训练 CPU 向 GPU 调度不充分的情况下。**
 
-  如下是模型训练时执行单个 step 的 timeline 示意图，框架通过 CPU 调度底层 Kernel 计算，在某些情况下，如果 CPU 调度时间过长，会导致 GPU 利用率不高（可终端执行watch -n 1 nvidia-smi观察）。
+  如下是模型训练时执行单个 step 的 timeline 示意图，框架通过 CPU 调度底层 Kernel 计算，在某些情况下，如果 CPU 调度时间过长，会导致 GPU 利用率不高（可终端执行 watch -n 1 nvidia-smi 观察）。
 
   <figure align="center">
   <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/timeline_base.png" style="zoom:70%" />
@@ -244,7 +244,7 @@ class LinearNet(nn.Layer):
     @paddle.jit.to_static
     def forward(self, x, label=None):
         out = self._linear(x)
-        # 不规范写法，forward中包括对loss进行计算
+        # 不规范写法，forward 中包括对 loss 进行计算
         if label:
             loss = nn.functional.cross_entropy(out, label)
             avg_loss = nn.functional.mean(loss)
@@ -266,7 +266,7 @@ class LinearNet(nn.Layer):
     def __init__(self):
         super(LinearNet, self).__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
-    # 规范写法，forward中仅实现预测功能
+    # 规范写法，forward 中仅实现预测功能
     @paddle.jit.to_static
     def forward(self, x):
         return self._linear(x)
@@ -320,9 +320,9 @@ class LinearNet(nn.Layer):
 接前文动转静训练的示例代码，训练完成后，使用 ``paddle.jit.save`` 对模型和参数进行存储：
 
 ```python
-# 如果保存模型用于推理部署，则需切换eval()模式
+# 如果保存模型用于推理部署，则需切换 eval()模式
 # layer.eval()
-# 使用paddle.jit.save保存训练好的静态图模型
+# 使用 paddle.jit.save 保存训练好的静态图模型
 path = "example.model/linear"
 paddle.jit.save(layer, path)
 ```
@@ -341,7 +341,7 @@ linear.pdmodel         // 存放模型的网络结构
 linear.pdiparams.info   // 存放和参数状态有关的额外信息
 ```
 
-导出的模型可用于在云、边、端不同的硬件环境中部署，可以支持不同语言环境部署，如 C++、Java、Python等。飞桨提供了服务器端部署的 Paddle Inference、移动端/IoT端部署的 Paddle Lite、服务化部署的 Paddle Serving 等，以实现模型的快速部署上线。具体介绍可参见 [推理部署](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/infer/index_cn.html) 章节。
+导出的模型可用于在云、边、端不同的硬件环境中部署，可以支持不同语言环境部署，如 C++、Java、Python 等。飞桨提供了服务器端部署的 Paddle Inference、移动端/IoT 端部署的 Paddle Lite、服务化部署的 Paddle Serving 等，以实现模型的快速部署上线。具体介绍可参见 [推理部署](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/infer/index_cn.html) 章节。
 
 
 #### 3.2.2 模型加载样例
@@ -372,7 +372,7 @@ EPOCH_NUM = 4
 IMAGE_SIZE = 784
 CLASS_NUM = 10
 
-# 载入paddle.jit.save保存的模型
+# 载入 paddle.jit.save 保存的模型
 path = "example.model/linear"
 loaded_layer = paddle.jit.load(path)
 ```
@@ -452,11 +452,11 @@ class LinearNet(nn.Layer):
 # 创建一个网络
 layer = LinearNet()
 
-# 载入paddle.jit.save保存好的参数
+# 载入 paddle.jit.save 保存好的参数
 path = "example.model/linear"
 state_dict = paddle.load(path)
 
-# 将加载后的参数赋给layer并进行预测
+# 将加载后的参数赋给 layer 并进行预测
 layer.set_state_dict(state_dict, use_structured_name=False)
 layer.eval()
 x = paddle.randn([1, IMAGE_SIZE], 'float32')
@@ -519,7 +519,7 @@ loss_fn = nn.CrossEntropyLoss()
 # 设置优化器
 adam = opt.Adam(learning_rate=0.001, parameters=layer.parameters())
 
-# 构建DataLoader数据读取器
+# 构建 DataLoader 数据读取器
 dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
 loader = paddle.io.DataLoader(dataset,
     batch_size=BATCH_SIZE,
@@ -535,7 +535,7 @@ train(layer, loader, loss_fn, adam)
 
 动态图模型训练完成后，保存为静态图模型用于推理部署，主要包括三个步骤：
 
-1. **切换 ``eval()`` 模式：** 类似 Dropout 、LayerNorm 等接口在 train() 和 eval() 的行为存在较大的差异，在模型导出前，请务必确认模型已切换到正确的模式，否则导出的模型在预测阶段可能出现输出结果不符合预期的情况。用于推理部署切换到eval()模式，用于后续训练调优则切换到train()模式。
+1. **切换 ``eval()`` 模式：** 类似 Dropout 、LayerNorm 等接口在 train() 和 eval() 的行为存在较大的差异，在模型导出前，请务必确认模型已切换到正确的模式，否则导出的模型在预测阶段可能出现输出结果不符合预期的情况。用于推理部署切换到 eval()模式，用于后续训练调优则切换到 train()模式。
 
 2. **构造 ``InputSpec`` 信息：** ``InputSpec`` 用于表示模型输入数据的 shape、dtype、name 信息，是辅助动静转换的必要描述信息。这是由于静态图模型在调用执行器前并不执行实际操作，因此也并不读入实际数据，需要设置 “占位符” 表示输入数据。详细请参见 [InputSpec 的用法介绍](#35) 。
 
@@ -544,11 +544,11 @@ train(layer, loader, loss_fn, adam)
 
     ```python
     from paddle.static import InputSpec
-    # 1.切换eval()模式
+    # 1.切换 eval()模式
     layer.eval()
-    # 2. 构造InputSpec信息
+    # 2. 构造 InputSpec 信息
     input_spec = InputSpec([None, 784], 'float32', 'x')
-    # 3.调用paddle.jit.save接口转为静态图模型
+    # 3.调用 paddle.jit.save 接口转为静态图模型
     path = "example.dy_model/linear"
     paddle.jit.save(
         layer=layer,
@@ -584,7 +584,7 @@ EPOCH_NUM = 4
 IMAGE_SIZE = 784
 CLASS_NUM = 10
 
-# 载入paddle.jit.save保存的模型
+# 载入 paddle.jit.save 保存的模型
 path = "example.model/linear"
 loaded_layer = paddle.jit.load(path)
 ```
@@ -619,7 +619,7 @@ pred = loaded_layer(x)
         def __init__(self):
             super(LinearNet, self).__init__()
             self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
-        # 输入数据是动态输入（shape中有一个维度是可变的），因此需要添加InputSpec
+        # 输入数据是动态输入（shape 中有一个维度是可变的），因此需要添加 InputSpec
         @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, 784], dtype='float32')])
         def forward(self, x):
             return self._linear(x)
@@ -636,7 +636,7 @@ pred = loaded_layer(x)
     inps = paddle.rand([3, 6])
     origin = fun(inps)
 
-    # 将函数对应的Program结构进行保存
+    # 将函数对应的 Program 结构进行保存
     paddle.jit.save(
         fun,
         path,
@@ -645,7 +645,7 @@ pred = loaded_layer(x)
                 shape=[None, 6], dtype='float32', name='x'),
         ])
 
-    # 载入保存后的fun并执行
+    # 载入保存后的 fun 并执行
     load_func = paddle.jit.load(path)
     load_result = load_func(inps)
     ```
@@ -666,12 +666,12 @@ pred = loaded_layer(x)
             self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
             self._linear_2 = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
-        # 装饰forward方法，InputSpec指定为None
+        # 装饰 forward 方法，InputSpec 指定为 None
         @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, IMAGE_SIZE], dtype='float32')])
         def forward(self, x):
             return self._linear(x)
 
-        # 装饰需要保存的非forward方法,InputSpec指定为None
+        # 装饰需要保存的非 forward 方法,InputSpec 指定为 None
         @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, IMAGE_SIZE], dtype='float32')])
         def another_forward(self, x):
             return self._linear_2(x)
@@ -689,7 +689,7 @@ pred = loaded_layer(x)
 
   + 该场景下保存的模型命名规则如下：
 
-    + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生5个文件： ``linear.another_forward.pdiparams`` 、 ``linear.pdiparams`` 、 ``linear.pdmodel`` 、 ``linear.another_forward.pdmodel`` 、``linear.pdiparams.info`` 。
+    + forward 的模型名字为：**模型名+后缀** ，其他函数的模型名字为：**模型名+函数名+后缀** 。每个函数有各自的 pdmodel 和 pdiparams 的文件，所有函数共用 `pdiparams.info` 。上述示例代码将在 `example.model` 文件夹下产生 5 个文件： ``linear.another_forward.pdiparams`` 、 ``linear.pdiparams`` 、 ``linear.pdmodel`` 、 ``linear.another_forward.pdmodel`` 、``linear.pdiparams.info`` 。
 
 
 ### 3.5 ``InputSpec`` 的用法介绍
@@ -743,7 +743,7 @@ print(x_spec)  # InputSpec(shape=(2, 2), dtype=VarType.FP32, name=x)
 import paddle
 from paddle.static import InputSpec
 # 省略动态图训练代码
-# 保存时将输入数据传入input_spec参数
+# 保存时将输入数据传入 input_spec 参数
 paddle.jit.save(
     layer=layer,
     path=path,
@@ -784,7 +784,7 @@ class SimpleNet(Layer):
     def __init__(self):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
-    # 在装饰器中调用InputSpec
+    # 在装饰器中调用 InputSpec
     @to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')])
     def forward(self, x, y):
         out = self.linear(x)
@@ -917,9 +917,9 @@ paddle.jit.save(net, path='./simple_net')
 
 如下是一个 ResNet50 模型动转静训练时，通过在 ``to_static`` 函数中配置 ``build_strategy`` 参数来开启算子融合 ``fuse_elewise_add_act_ops`` 和 ``enable_addto`` 图优化策略的使用样例。不同的模型可应用的优化策略不同，比如算子融合策略一般与模型中用到的 API 有关系：
 
-+ 若存在 elementwise_ad d后跟 relu等激活函数，则可以尝试开启 ``fuse_elewise_add_act_ops``
++ 若存在 elementwise_ad d 后跟 relu 等激活函数，则可以尝试开启 ``fuse_elewise_add_act_ops``
 
-+ 若存在 relu后跟 depthwise_conv2 函数，则可以尝试开启 ``fuse_relu_depthwise_conv``
++ 若存在 relu 后跟 depthwise_conv2 函数，则可以尝试开启 ``fuse_relu_depthwise_conv``
 
 + 若存在较多的 conv2dAPI 的调用，则可以尝试开启 ``enable_addto`` ，更多策略开关可以参考 [BuildStrategy](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/BuildStrategy_cn.html#buildstrategy) 接口文档。
 
@@ -979,7 +979,7 @@ paddle.jit.save(net, path='./simple_net')
     # 设置优化器
     adam = opt.Adam(learning_rate=0.001, parameters=layer.parameters())
 
-    # 构建DataLoader数据读取器
+    # 构建 DataLoader 数据读取器
     dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
     loader = paddle.io.DataLoader(dataset,
         batch_size=BATCH_SIZE,
@@ -995,7 +995,7 @@ paddle.jit.save(net, path='./simple_net')
 
 **自动混合精度（Automatic Mixed Precision，AMP）** 训练的方法，可在模型训练时，自动为算子选择合适的数据计算精度（float32 或 float16 / bfloat16），在保持训练精度（accuracy）不损失的条件下，能够加速训练。
 
-如下是动态图开启 AMP 训练后，执行单个 step 的 timeline 示意图。相对于FP32训练，开启AMP后，每个 GPU 的 Kernel 计算效率进一步提升，耗时更短（图中蓝框更窄了），但对 CPU 端的调度性能要求也更高了。
+如下是动态图开启 AMP 训练后，执行单个 step 的 timeline 示意图。相对于 FP32 训练，开启 AMP 后，每个 GPU 的 Kernel 计算效率进一步提升，耗时更短（图中蓝框更窄了），但对 CPU 端的调度性能要求也更高了。
 
 <figure align="center">
 <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/timeline_d2s_amp.png" style="zoom:70%" />

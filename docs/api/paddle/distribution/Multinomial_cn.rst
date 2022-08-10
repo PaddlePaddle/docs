@@ -7,7 +7,7 @@ Multinomial
 
 ``Multinomial`` 表示实验次数为 ``total_count``，概率为 ``probs`` 的多项分布。
 
-在概率论中，多项分布是二项分布的多元推广，表示具有 :math:`k` 个类别的事件重复实验 :math:`n` 
+在概率论中，多项分布是二项分布的多元推广，表示具有 :math:`k` 个类别的事件重复实验 :math:`n`
 次，每个类别出现次数的概率。当 :math:`k=2` 且 :math:`n=1` 时，为伯努利分布，当 :math:`k=2` 且 :math:`n>1` 时，为二项分布，当 :math:`k>2` 且 :math:`n=1` 时，为分类分布。
 
 多项分布概率密度函数如下：
@@ -22,14 +22,14 @@ Multinomial
  :math:`x_i` 表示第 :math:`i` 个分类出现的次数。
 
 
- 
+
 参数
 :::::::::
 
 - **total_count** (int) - 实验次数。
 - **probs** (Tensor） - 每个类别发生的概率。最后一维为事件维度，其它维为批维度。``probs`` 中
-  的每个元素取值范围为 ``[0,1]``。如果输入数据大于1，会沿着最后一维进行归一化操作。
- 
+  的每个元素取值范围为 ``[0,1]``。如果输入数据大于 1，会沿着最后一维进行归一化操作。
+
 代码示例
 :::::::::
 
@@ -56,29 +56,29 @@ variance
 prob(value)
 '''''''''
 
-计算value的概率。
+计算 value 的概率。
 
 **参数**
 
 - **value** (Tensor) - 待计算值。
-    
+
 **返回**
 
-- Tensor: value的概率。
+- Tensor: value 的概率。
 
 
 log_prob(value)
 '''''''''
 
-计算value的对数概率。
+计算 value 的对数概率。
 
 **参数**
 
 - **value** (Tensor) - 待计算值。
-    
+
 **返回**
 
-- Tensor: value的对数概率。
+- Tensor: value 的对数概率。
 
 
 sample(shape=())
@@ -93,5 +93,3 @@ sample(shape=())
 **返回**
 
 - Tensor：样本数据。
-
-

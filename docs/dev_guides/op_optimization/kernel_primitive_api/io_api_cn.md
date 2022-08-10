@@ -26,7 +26,7 @@ __device__ void ReadData(Ty* dst, const Tx* src, int size_nx, int size_ny, int s
 
 ### 函数参数
 
-> dst ：输出寄存器指针，数据类型为Ty，大小为 NX * NY。</br>
+> dst ：输出寄存器指针，数据类型为 Ty，大小为 NX * NY。</br>
 > src ：当前 Block 的输入数据指针，数据类型为 Tx。</br>
 > size_nx ：当前 Block 在最低维最多偏移 size_nx 个元素，参数仅在 IsBoundary = true 时参与计算。</br>
 > size_ny ：当前 Block 在最低维最多偏移 size_ny 个元素，参数仅在 IsBoundary = true 时参与计算。</br>
@@ -172,7 +172,7 @@ __device__ void ReadDataReduce(Tx* dst,
 > Rank ：原始输出数据的维度。</br>
 > IndexCal ：输入输出坐标映射规则。定义方式如下：</br>
 ```
-  struct IndexCal {  
+  struct IndexCal {
     __device__ inline int operator()(int index) const {
         return ...
     }
@@ -193,7 +193,7 @@ __device__ void ReadDataReduce(Tx* dst,
 > stride_nx ：最低维每读取 1 个元素需要跳转 stride_nx 列。</br>
 > stride_ny ：最高维每读取 1 个元素需要跳转 stride_ny 行。</br>
 > func : 输入数据存储到寄存器前做的数据变换，如：dst[i] = SquareFunctor<Tx>(src[i])。
-> reduce_last_dim：原始输入数据的最低维是否进行reduce，当reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。</br>
+> reduce_last_dim：原始输入数据的最低维是否进行 reduce，当 reduce_last_dim = true 按照 threadIdx.x 进行索引，否则使用 threadIdx.y。</br>
 
 ## [WriteData](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/primitive/datamover_primitives.h#L495)
 
@@ -215,7 +215,7 @@ __device__ void WriteData(T* dst, T* src, int num);
 
 > T ：元素类型。</br>
 > NX ：每个线程连续读取 NX 列数据。</br>
-> NY ：每个线程读取 NY 行数据，当前仅支持为NY = 1。</br>
+> NY ：每个线程读取 NY 行数据，当前仅支持为 NY = 1。</br>
 > BlockSize ：设备属性，标识当前设备线程索引方式。对于 GPU，threadIdx.x 用作线程索引，当前该参数暂不支持。</br>
 > IsBoundary ：标识是否进行访存边界判断。当 Block 处理的数据总数小于 NX * NY * blockDim.x 时，需要进行边界判断以避免访存越界。</br>
 

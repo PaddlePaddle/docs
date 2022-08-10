@@ -30,4 +30,3 @@
     custom_device_docs/index_cn.rst
     docs_contributing_guides_cn.md
     style_guide_and_references/index_cn.rst
-

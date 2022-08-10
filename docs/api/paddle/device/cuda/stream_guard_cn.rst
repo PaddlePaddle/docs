@@ -5,13 +5,13 @@ stream_guard
 
 .. py:function:: paddle.device.cuda.stream_guard(stream)
 
-可以切换当前的CUDA stream为输入指定的stream。
+可以切换当前的 CUDA stream 为输入指定的 stream。
 
 
 参数
 ::::::::::::
 
-    - **stream** (paddle.device.cuda.Stream) - 指定的CUDA stream。如果为None，则不进行stream流切换。
+    - **stream** (paddle.device.cuda.Stream) - 指定的 CUDA stream。如果为 None，则不进行 stream 流切换。
 
 代码示例
 ::::::::::::

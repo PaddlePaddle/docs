@@ -23,4 +23,5 @@ channel_shuffle
 
 代码示例
 :::::::::
-COPY-FROM: paddle.nn.functional.channel_shuffle:channel_shuffle-example
+
+COPY-FROM: paddle.nn.functional.channel_shuffle

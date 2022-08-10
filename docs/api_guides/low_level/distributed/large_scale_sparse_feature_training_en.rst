@@ -1,7 +1,7 @@
 .. _api_guide_large_scale_sparse_feature_training_en:
 
 ###################################################
-Training of Models with Large Scale Sparse Features  
+Training of Models with Large Scale Sparse Features
 ###################################################
 
 
@@ -23,11 +23,11 @@ Parameter :code:`dict_size` defines the total number of ids in the data. The id 
 .. code-block:: python
 
   emb = fluid.layers.embedding(
-	  is_distributed=True,
-	  input=input,
-	  size=[dict_size, embedding_width],
-	  is_sparse=True,
-	  is_distributed=True)
+      is_distributed=True,
+      input=input,
+      size=[dict_size, embedding_width],
+      is_sparse=True,
+      is_distributed=True)
 
 
 Model storage and inference

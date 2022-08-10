@@ -1,9 +1,9 @@
 # 示例 - Model
 ## 模型运行说明
 + 在 GPU 平台上默认使用 Kernel Primitive API 编写的算子。
-+ 在昆仑芯 2 代（XPU2）平台上使用 Kernel Primitive API 编写的算子需要开启FLAGS\_run\_kp\_kernel环境变量。
++ 在昆仑芯 2 代（XPU2）平台上使用 Kernel Primitive API 编写的算子需要开启 FLAGS\_run\_kp\_kernel 环境变量。
 
-### XPU Kernel Primitive API Paddle模型运行
+### XPU Kernel Primitive API Paddle 模型运行
 
 以 resnet50 为例展示昆仑芯 2 代（XPU2）平台 KP 模型运行的基本流程。</br>
 + 1. 安装 PaddlePaddle XPU2 KP 安装包，当前仅支持 python3.7</br>

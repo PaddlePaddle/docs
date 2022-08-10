@@ -1,16 +1,16 @@
 # 使用昆仑预测
 
-百度的昆仑芯⽚是⼀款⾼性能的AI SoC芯⽚，⽀持推理和训练。昆仑芯⽚采⽤百度的先进AI架构，⾮常适合常⽤的深度学习和机器学习算法的云端计算需求，并能适配诸如⾃然语⾔处理、⼤规模语⾳识别、⾃动驾驶、⼤规模推荐等多种终端场景的计算需求。
+百度的昆仑芯⽚是⼀款⾼性能的 AI SoC 芯⽚，⽀持推理和训练。昆仑芯⽚采⽤百度的先进 AI 架构，⾮常适合常⽤的深度学习和机器学习算法的云端计算需求，并能适配诸如⾃然语⾔处理、⼤规模语⾳识别、⾃动驾驶、⼤规模推荐等多种终端场景的计算需求。
 
-Paddle Inference集成了[Paddle-Lite预测引擎](https://paddle-lite.readthedocs.io/zh/latest/demo_guides/baidu_xpu.html)在昆仑xpu上进行预测部署。
+Paddle Inference 集成了[Paddle-Lite 预测引擎](https://paddle-lite.readthedocs.io/zh/latest/demo_guides/baidu_xpu.html)在昆仑 xpu 上进行预测部署。
 
 ## 编译注意事项
 
-请确保编译的时候设置了WITH_LITE=ON，且XPU_SDK_ROOT设置了正确的路径。
+请确保编译的时候设置了 WITH_LITE=ON，且 XPU_SDK_ROOT 设置了正确的路径。
 
 ## 使用介绍
 
-在使用Predictor时，我们通过配置Config中的接口，在XPU上运行。
+在使用 Predictor 时，我们通过配置 Config 中的接口，在 XPU 上运行。
 
 ```c++
 config->EnableLiteEngine(
@@ -21,12 +21,12 @@ config->EnableLiteEngine(
 )
 ```
 
-- **`precision_mode`**，类型：`enum class PrecisionType {kFloat32 = 0, kHalf, kInt8,};`, 默认值为`PrecisionType::kFloat32`。指定lite子图的运行精度。
-- **`zero_copy`**，类型：bool，lite子图与Paddle之间的数据传递是否是零拷贝模式。
+- **`precision_mode`**，类型：`enum class PrecisionType {kFloat32 = 0, kHalf, kInt8,};`, 默认值为`PrecisionType::kFloat32`。指定 lite 子图的运行精度。
+- **`zero_copy`**，类型：bool，lite 子图与 Paddle 之间的数据传递是否是零拷贝模式。
 - **`passes_filter`**，类型：`std::vector<std::string>`，默认为空，扩展借口，暂不使用。
-- **`ops_filer`**，类型：`std::vector<std::string>`，默认为空，显示指定哪些op不使用lite子图运行。
+- **`ops_filer`**，类型：`std::vector<std::string>`，默认为空，显示指定哪些 op 不使用 lite 子图运行。
 
-Python接口如下：
+Python 接口如下：
 
 ```python
 config.enable_lite_engine(
@@ -39,9 +39,9 @@ config.enable_lite_engine(
 
 ### Python demo
 
-因目前Paddle-Inference目前未将xpu sdk打包到whl包内，所以需要用户下载xpu sdk，并加入到环境变量中，之后会考虑解决该问题。
+因目前 Paddle-Inference 目前未将 xpu sdk 打包到 whl 包内，所以需要用户下载 xpu sdk，并加入到环境变量中，之后会考虑解决该问题。
 
-下载[xpu_tool_chain](https://paddle-inference-dist.bj.bcebos.com/inference_demo/xpu_tool_chain.tgz)，解压后将shlib加入到LD_LIBRARY_PATH
+下载[xpu_tool_chain](https://paddle-inference-dist.bj.bcebos.com/inference_demo/xpu_tool_chain.tgz)，解压后将 shlib 加入到 LD_LIBRARY_PATH
 
 ```
 tar xzf xpu_tool_chain.tgz
@@ -56,7 +56,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/output/XTDK/shlib/:$PWD/output/XTDK
 python resnet50_subgraph.py --model_file ./ResNet50/model --params_file ./ResNet50/params
 ```
 
-resnet50_subgraph.py的内容是：
+resnet50_subgraph.py 的内容是：
 
 ```
 import argparse

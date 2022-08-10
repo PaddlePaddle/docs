@@ -86,7 +86,7 @@ Method                                                 Accuracy(baseline: 70.91%
 Knowledge Distillation(ResNet50)                       +1.06%                       -
 Knowledge Distillation(ResNet50) + int8 quantization   +1.10%                       -71.76%
 Pruning(FLOPs-50%) + int8 quantization                 -1.71%                       -86.47%
-=====================================================  ===========================  ============================ 
+=====================================================  ===========================  ============================
 
 Object Detection
 +++++++++++++++++
@@ -95,7 +95,7 @@ Dataset: Pascal VOC; Model: MobileNet-V1-YOLOv3
 
 
 ==============================================================  =====================  ===========================
-Method                                                          mAP(baseline: 76.2%)   Model Size(baseline: 94MB)  
+Method                                                          mAP(baseline: 76.2%)   Model Size(baseline: 94MB)
 ==============================================================  =====================  ===========================
 Knowledge Distillation(ResNet34-YOLOv3)                         +2.8%                  -
 Pruning(FLOPs -52.88%)                                          +1.4%                  -67.76%
