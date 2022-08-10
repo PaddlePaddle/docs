@@ -77,6 +77,7 @@ step 2：
     import paddle
     import paddle.fluid as fluid
 
+    paddle.enable_static()
     # 一般与 affine_grid 组合使用
     # 4-D Tensor
     x = paddle.static.data(name='x', shape=[3, 10, 32, 32], dtype='float32')
