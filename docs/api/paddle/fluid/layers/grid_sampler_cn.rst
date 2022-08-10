@@ -8,8 +8,10 @@ grid_sampler
 
 
 
-该OP基于flow field网格的对输入X进行双线性插值采样。网格通常由affine_grid生成，shape为[N, H, W, 2]，是shape为[N, H, W]的采样点张量的(x, y)坐标。
+该OP基于flow field网格的对输入X进行双线性插值采样。网格通常由affine_grid生成，当输入X为4维时，网格shape为[N, H, W, 2]，是shape为[N, H, W]的采样点张量的(x, y)坐标。
 其中，x坐标是对输入数据X的第四个维度(宽度维度)的索引，y坐标是第三维度(高维度)的索引，最终输出采样值为采样点的4个最接近的角点的双线性插值结果，输出张量的shape为[N, C, H, W]。
+当输入X为5维时，网格shape为[N, D, H, W, 3]，是shape为[N, D, H, W]的采样点张量的(x, y, z)坐标。其中，x坐标是对输入数据X的第五个维度(宽度维度)的索引，y坐标是第四维度
+(高度维度)的索引，z坐标是对输入数据X的第三个维度(深度维度)的索引，最终输出采样值为采样点的8个最接近的角点的双线性插值结果，输出张量的shape为[N, C, D, H, W]。
 
 step 1：
 
@@ -55,13 +57,15 @@ step 2：
 参数
 ::::::::::::
 
-  - **x** (Variable)：输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float32或float64。
-  - **grid** (Variable)：输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度，数据类型为float32或float64。
+  - **x** (Variable)：输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor或维度为 :math:`[N, C, D, H, W]` 的5-D Tensor，N为批尺寸，C是通道数，
+                      D是特征深度，H是特征高度，W是特征宽度，数据类型为float32或float64。
+  - **grid** (Variable)：输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的4-D Tensor或维度为 :math:`[N, D, H, W, 3]` 的5-D Tensor，N为批尺寸，
+                      C是通道数，D是特征深度， H是特征高度，W是特征宽度，数据类型为float32或float64。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
- Variable(Tensor)：输入X基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的4-D Tensor
+ Variable(Tensor)：输入X基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的4-D Tensor或维度为 :math:`[N, C, D, H, W]` 的5-D Tensor 
 
 返回类型
 ::::::::::::
@@ -75,11 +79,17 @@ step 2：
     import paddle.fluid as fluid
 
     # 一般与 affine_grid 组合使用
-    x = fluid.data(name='x', shape=[None, 10, 32, 32], dtype='float32')
+    # 4-D Tensor
+    x = fluid.data(name='x', shape=[3, 10, 32, 32], dtype='float32')
     theta = fluid.layers.data(name='theta', shape=[2, 3], dtype='float32')
     grid = fluid.layers.affine_grid(theta=theta, out_shape=[3, 10, 32, 32])
     out = fluid.layers.grid_sampler(x=x, grid=grid)
 
+    # 5-D Tensor
+    x = fluid.data(name='x', shape=[3, 10, 12, 12, 12], dtype='float32')
+    theta = fluid.layers.data(name='theta', shape=[2, 3, 4], dtype='float32')
+    grid = fluid.layers.affine_grid(theta=theta, out_shape=[3, 10, 12, 12, 12])
+    out = fluid.layers.grid_sampler(x=x, grid=grid)
 
 
 
