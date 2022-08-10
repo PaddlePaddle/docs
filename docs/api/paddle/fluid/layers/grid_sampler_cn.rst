@@ -78,15 +78,9 @@ step 2：
     import paddle.fluid as fluid
 
     paddle.enable_static()
+
     # 一般与 affine_grid 组合使用
-    # 4-D Tensor
     x = paddle.static.data(name='x', shape=[3, 10, 32, 32], dtype='float32')
     theta = paddle.static.data(name='theta', shape=[2, 3], dtype='float32')
     grid = paddle.nn.functional.affine_grid(theta=theta, out_shape=[3, 10, 32, 32])
-    out = paddle.nn.functional.grid_sampler(x=x, grid=grid)
-
-    # 5-D Tensor
-    x = paddle.static.data(name='x', shape=[3, 10, 12, 12, 12], dtype='float32')
-    theta = paddle.static.data(name='theta', shape=[2, 3, 4], dtype='float32')
-    grid = paddle.nn.functional.affine_grid(theta=theta, out_shape=[3, 10, 12, 12, 12])
     out = paddle.nn.functional.grid_sampler(x=x, grid=grid)
