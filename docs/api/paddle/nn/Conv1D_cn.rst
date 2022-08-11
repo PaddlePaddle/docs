@@ -26,7 +26,7 @@ Conv1D
     
 可学习参数
 ::::::::::::
-    - **Conv1D.weight** (Tensor) - 与 :ref:`cn_api_nn_functional_conv1d` 的同名参数对应，形状为 :math:`[\mathrm{out\_channels}, \mathrm{in\_channels}/\mathrm{groups},\mathrm{kernel\_size}]`。
+    - **Conv1D.weight** (Tensor) - 与 :ref:`cn_api_nn_functional_conv1d` 的同名参数对应，形状为 :math:`[\texttt{out_channels}, \mathrm{in\_channels}/\mathrm{groups},\mathrm{kernel\_size}]`。
     - **Conv1D.bias** (Tensor) - 与 :ref:`cn_api_nn_functional_conv1d` 的同名参数对应，形状为 :math:`[\mathrm{out\_channels}]`，在 :attr:`bias_attr` 为 False 时所有元素的值都是 :math:`0.0`。
 
 
