@@ -1,4 +1,4 @@
-# Tensor介绍
+# Tensor 介绍
 
 
 ## 一、Tensor 的概念介绍
@@ -19,7 +19,7 @@ def train(model):
             print("x_data: ", x_data[0][0][0][0]) # 打印神经网络的输入：批数据中的第一个数据的第一个元素
             predicts = model(x_data)
             print("predicts: ", predicts[0]) # 打印神经网络的输出：批数据中的第一个数据的第一个元素
-            print("weight: ", model.linear1.weight[0][0]) # 打印神经网络的权重：linear1层的weight中的第一个元素
+            print("weight: ", model.linear1.weight[0][0]) # 打印神经网络的权重：linear1 层的 weight 中的第一个元素
             loss = F.cross_entropy(predicts, y_data)
             acc = paddle.metric.accuracy(predicts, y_data)
             loss.backward()
@@ -39,7 +39,7 @@ predicts:  Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=Fa
 weight:  Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=False,
        [0.02227839])
 ```
-以上示例代码来源 [使用LeNet在MNIST数据集实现图像分类](../../../practices/cv/image_classification) 任务 5.1 小节（篇幅原因仅截取部分），分别打印了神经网络的输入、输出数据和网络中的参数，可以看到均采用了 Tensor 数据结构。
+以上示例代码来源 [使用 LeNet 在 MNIST 数据集实现图像分类](../../../practices/cv/image_classification) 任务 5.1 小节（篇幅原因仅截取部分），分别打印了神经网络的输入、输出数据和网络中的参数，可以看到均采用了 Tensor 数据结构。
 
 ## 二、Tensor 的创建
 
@@ -121,7 +121,7 @@ Tensor(shape=[2, 2, 5], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_2.0.png?raw=true" width="800" ></center>
-<br><center>图1 不同维度的Tensor可视化表示</center>
+<br><center>图 1 不同维度的 Tensor 可视化表示</center>
 
 需要注意的是，Tensor 必须形如矩形，即在任何一个维度上，元素的数量必须相等，否则会抛出异常，示例如下：
 
@@ -160,8 +160,8 @@ Tensor(shape=[2, 3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
 
 如果要在指定区间内创建 Tensor，可以使用[paddle.arrange](../../../api/paddle/arrange_cn.html)、 [paddle.linspace](../../../api/paddle/linspace_cn.html)  实现。
 ```python
-paddle.arange(start, end, step)  # 创建以步长step均匀分隔区间[start, end)的Tensor
-paddle.linspace(start, end, num) # 创建以元素个数num均匀分隔区间[start, end)的Tensor
+paddle.arange(start, end, step)  # 创建以步长 step 均匀分隔区间[start, end)的 Tensor
+paddle.linspace(start, end, num) # 创建以元素个数 num 均匀分隔区间[start, end)的 Tensor
 ```
 示例如下：
 
@@ -178,7 +178,7 @@ Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 >  * **创建一个空 Tensor**，即根据 shape 和 dtype 创建尚未初始化元素值的 Tensor，可通过 [paddle.empty](../../../api/paddle/empty_cn.html) 实现。
 >  * **创建一个与其他 Tensor 具有相同 shape 与 dtype 的 Tensor**，可通过  [paddle.ones_like](../../../api/paddle/ones_like_cn.html) 、 [paddle.zeros_like](../../../api/paddle/zeros_like_cn.html) 、 [paddle.full_like](../../../api/paddle/full_like_cn.html) 、[paddle.empty_like](../../../api/paddle/empty_like_cn.html) 实现。
 >  * **拷贝并创建一个与其他 Tensor 完全相同的 Tensor**，可通过 [paddle.clone](../../../api/paddle/clone_cn.html) 实现。
->  * **创建一个满足特定分布的Tensor**，如 [paddle.rand](../../../api/paddle/rand_cn.html),  [paddle.randn](../../../api/paddle/randn_cn.html) , [paddle.randint](../../../api/paddle/randint_cn.html) 等。
+>  * **创建一个满足特定分布的 Tensor**，如 [paddle.rand](../../../api/paddle/rand_cn.html),  [paddle.randn](../../../api/paddle/randn_cn.html) , [paddle.randint](../../../api/paddle/randint_cn.html) 等。
 >  * **通过设置随机种子创建 Tensor**，可每次生成相同元素值的随机数 Tensor，可通过 [paddle.seed](../../../api/paddle/seed_cn.html) 和  [paddle.rand](../../../api/paddle/rand_cn.html) 组合实现。
 
 
@@ -187,7 +187,7 @@ Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 
 在常见深度学习任务中，数据样本可能是图片（image）、文本（text）、语音（audio）等多种类型，在送入神经网络训练或推理前，这些数据和对应的标签均需要创建为 Tensor。以下是图像场景和 NLP 场景中手动转换 Tensor 方法的介绍。
 
-* 对于图像场景，可使用 [paddle.vision.transforms.ToTensor](../../../api/paddle/vision/transforms/ToTensor_cn.html) 直接将 PIL.Image 格式的数据转为 Tensor，使用 [paddle.to_tensor](../../../api/paddle/to_tensor_cn.html)  将图像的标签（Label，通常是Python 或 Numpy 格式的数据）转为 Tensor。
+* 对于图像场景，可使用 [paddle.vision.transforms.ToTensor](../../../api/paddle/vision/transforms/ToTensor_cn.html) 直接将 PIL.Image 格式的数据转为 Tensor，使用 [paddle.to_tensor](../../../api/paddle/to_tensor_cn.html)  将图像的标签（Label，通常是 Python 或 Numpy 格式的数据）转为 Tensor。
 * 对于文本场景，需将文本数据解码为数字后，再通过 [paddle.to_tensor](../../../api/paddle/to_tensor_cn.html) 转为 Tensor。不同文本任务标签形式不一样，有的任务标签也是文本，有的则是数字，均需最终通过 paddle.to_tensor 转为 Tensor。
 
 下面以图像场景为例介绍，以下示例代码中将随机生成的图片转换为 Tensor。
@@ -200,7 +200,7 @@ import paddle.vision.transforms.functional as F
 
 fake_img = Image.fromarray((np.random.rand(224, 224, 3) * 255.).astype(np.uint8)) # 创建随机图片
 transform = T.ToTensor()
-tensor = transform(fake_img) # 使用ToTensor()将图片转换为Tensor
+tensor = transform(fake_img) # 使用 ToTensor()将图片转换为 Tensor
 print(tensor)
 ```
 
@@ -216,7 +216,7 @@ Tensor(shape=[3, 224, 224], dtype=float32, place=Place(gpu:0), stop_gradient=Tru
 
 ### <span id="newtensor5">2.5 自动创建 Tensor 的功能介绍</span>
 
-除了手动创建 Tensor 外，实际在飞桨框架中有一些 API 封装了 Tensor 创建的操作，从而无需用户手动创建 Tensor。例如 [paddle.io.DataLoader](../../../api/paddle/io/DataLoader_cn.html) 能够基于原始 Dataset，返回读取 Dataset 数据的迭代器，迭代器返回的数据中的每个元素都是一个 Tensor。另外在一些高层API，如 [paddle.Model.fit](../../../api/paddle/Model_cn.html) 、[paddle.Model.predict](../../../api/paddle/Model_cn.html) ，如果传入的数据不是 Tensor，会自动转为 Tensor 再进行模型训练或推理。
+除了手动创建 Tensor 外，实际在飞桨框架中有一些 API 封装了 Tensor 创建的操作，从而无需用户手动创建 Tensor。例如 [paddle.io.DataLoader](../../../api/paddle/io/DataLoader_cn.html) 能够基于原始 Dataset，返回读取 Dataset 数据的迭代器，迭代器返回的数据中的每个元素都是一个 Tensor。另外在一些高层 API，如 [paddle.Model.fit](../../../api/paddle/Model_cn.html) 、[paddle.Model.predict](../../../api/paddle/Model_cn.html) ，如果传入的数据不是 Tensor，会自动转为 Tensor 再进行模型训练或推理。
 > **说明：**
 >
 > paddle.Model.fit、paddle.Model.predict 等高层 API 支持传入 Dataset 或 DataLoader，如果传入的是 Dataset，那么会用 DataLoader 封装转为 Tensor 数据；如果传入的是 DataLoader，则直接从  DataLoader 迭代读取 Tensor 数据送入模型训练或推理。因此即使没有写将数据转为 Tensor 的代码，也能正常执行，提升了编程效率和容错性。
@@ -232,17 +232,17 @@ transform = Compose([Normalize(mean=[127.5],
                                data_format='CHW')])
 
 test_dataset = paddle.vision.datasets.MNIST(mode='test', transform=transform)
-print(test_dataset[0][1]) # 打印原始数据集的第一个数据的label
+print(test_dataset[0][1]) # 打印原始数据集的第一个数据的 label
 loader = paddle.io.DataLoader(test_dataset)
 for data in enumerate(loader):
     x, label = data[1]
-    print(label) # 打印由DataLoader返回的迭代器中的第一个数据的label
+    print(label) # 打印由 DataLoader 返回的迭代器中的第一个数据的 label
     break
 ```
 ```text
-[7] # 原始数据中label为Python list
+[7] # 原始数据中 label 为 Python list
 Tensor(shape=[1, 1], dtype=int64, place=Place(gpu_pinned), stop_gradient=True,
-       [[7]]) # 由DataLoader转换后，label为Tensor
+       [[7]]) # 由 DataLoader 转换后，label 为 Tensor
 ```
 
 ## 三、Tensor 的属性
@@ -253,14 +253,14 @@ Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
        [2., 3., 4.])
 ```
 
-### 3.1 Tensor的形状（shape）
+### 3.1 Tensor 的形状（shape）
 
 **（1）形状的介绍**
 
 形状是  Tensor 的一个重要的基础属性，可以通过  [Tensor.shape](../../../api/paddle/Tensor_cn.html#shape) 查看一个 Tensor 的形状，以下为相关概念：
 
  * shape：描述了 Tensor 每个维度上元素的数量。
- * ndim： Tensor 的维度数量，例如向量的维度为 1，矩阵的维度为2，Tensor 可以有任意数量的维度。
+ * ndim： Tensor 的维度数量，例如向量的维度为 1，矩阵的维度为 2，Tensor 可以有任意数量的维度。
  * axis 或者 dimension：Tensor 的轴，即某个特定的维度。
  * size：Tensor 中全部元素的个数。
 
@@ -271,7 +271,7 @@ ndim_4_Tensor = paddle.ones([2, 3, 4, 5])
 
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Axis_2.0.png?raw=true" width="800" ></center>
-<br><center>图2 Tensor的shape、axis、dimension、ndim之间的关系</center>
+<br><center>图 2 Tensor 的 shape、axis、dimension、ndim 之间的关系</center>
 
 ```python
 print("Data Type of every element:", ndim_4_Tensor.dtype)
@@ -312,10 +312,10 @@ After reshape: [1, 3]
 通过几个例子来详细了解：
 ```text
 origin:[3, 2, 5] reshape:[3, 10]      actual: [3, 10] # 直接指定目标 shape
-origin:[3, 2, 5] reshape:[-1]         actual: [30] # 转换为1维，维度根据元素总数推断出来是3*2*5=30
-origin:[3, 2, 5] reshape:[-1, 5]      actual: [6, 5] # 转换为2维，固定一个维度5，另一个维度根据元素总数推断出来是30÷5=6
-origin:[3, 2, 5] reshape:[0, -1]         actual: [3, 6] # reshape:[0, -1]中0的索引值为0，按照规则，转换后第0维的元素数量与原始Tensor第0维的元素数量相同，为3；第1维的元素数量根据元素总值计算得出为30÷3=10。
-origin:[3, 2] reshape:[3, 1, 0]          error： # reshape:[3, 1, 0]中0的索引值为2，但原Tensor只有2维，无法找到与第3维对应的元素数量，因此出错。
+origin:[3, 2, 5] reshape:[-1]         actual: [30] # 转换为 1 维，维度根据元素总数推断出来是 3*2*5=30
+origin:[3, 2, 5] reshape:[-1, 5]      actual: [6, 5] # 转换为 2 维，固定一个维度 5，另一个维度根据元素总数推断出来是 30÷5=6
+origin:[3, 2, 5] reshape:[0, -1]         actual: [3, 6] # reshape:[0, -1]中 0 的索引值为 0，按照规则，转换后第 0 维的元素数量与原始 Tensor 第 0 维的元素数量相同，为 3；第 1 维的元素数量根据元素总值计算得出为 30÷3=10。
+origin:[3, 2] reshape:[3, 1, 0]          error： # reshape:[3, 1, 0]中 0 的索引值为 2，但原 Tensor 只有 2 维，无法找到与第 3 维对应的元素数量，因此出错。
 ```
 
 从上面的例子可以看到，通过 reshape:[-1] ，可以很方便地将 Tensor 按其在计算机上的内存分布展平为一维。
@@ -335,9 +335,9 @@ Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 1
 
 **（3）原位（Inplace）操作和非原位操作的区别**
 
-飞桨框架的 API 有原位（Inplace）操作和非原位操作之分，原位操作即在原 Tensor 上保存操作结果，输出 Tensor 将与输入Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。非原位操作则不会修改原 Tensor，而是返回一个新的 Tensor。通过 API 名称区分两者，如 [paddle.reshape](../../../api/paddle/reshape_cn.html) 是非原位操作，[paddle.reshape_](../../../api/paddle/reshape__cn.html) 是原位操作。
+飞桨框架的 API 有原位（Inplace）操作和非原位操作之分，原位操作即在原 Tensor 上保存操作结果，输出 Tensor 将与输入 Tensor 共享数据，并且没有 Tensor 数据拷贝的过程。非原位操作则不会修改原 Tensor，而是返回一个新的 Tensor。通过 API 名称区分两者，如 [paddle.reshape](../../../api/paddle/reshape_cn.html) 是非原位操作，[paddle.reshape_](../../../api/paddle/reshape__cn.html) 是原位操作。
 
-下面以 reshape 为例说明，通过对比Tensor的 name （每个 Tensor 创建时都会有一个独一无二的 name），判断是否为同一个Tensor。
+下面以 reshape 为例说明，通过对比 Tensor 的 name （每个 Tensor 创建时都会有一个独一无二的 name），判断是否为同一个 Tensor。
 ```python
 origin_tensor = paddle.to_tensor([1, 2, 3])
 new_tensor = paddle.reshape(origin_tensor, [1, 3]) # 非原位操作
@@ -348,11 +348,11 @@ print("same_tensor name: ", same_tensor.name)
 ```
 ```text
 origin_tensor name:  generated_tensor_0
-new_tensor name:  auto_0_ # 非原位操作后产生的Tensor与原始Tensor的名称不同
-same_tensor name:  generated_tensor_0 # 原位操作后产生的Tensor与原始Tensor的名称相同
+new_tensor name:  auto_0_ # 非原位操作后产生的 Tensor 与原始 Tensor 的名称不同
+same_tensor name:  generated_tensor_0 # 原位操作后产生的 Tensor 与原始 Tensor 的名称相同
 ```
 
-### 3.2 Tensor的数据类型（dtype）
+### 3.2 Tensor 的数据类型（dtype）
 **（1）指定数据类型的介绍**
 
 Tensor 的数据类型 dtype 可以通过  [Tensor.dtype](../../../api/paddle/Tensor_cn.html#dtype) 查看，支持类型包括：`bool`、`float16`、`float32`、`float64`、`uint8`、`int8`、`int16`、`int32`、`int64`、`complex64`、`complex128`。
@@ -364,10 +364,10 @@ Tensor 的数据类型 dtype 可以通过  [Tensor.dtype](../../../api/paddle/Te
     * 对于 Python 整型数据，默认会创建 `int64` 型 Tensor；
     * 对于 Python 浮点型数据，默认会创建 `float32` 型 Tensor，并且可以通过 [paddle.set_default_dtype](../../../api/paddle/set_default_dtype_cn.html) 来调整浮点型数据的默认类型。
 ```python
-# 创建Tensor时指定dtype
+# 创建 Tensor 时指定 dtype
 ndim_1_tensor = paddle.to_tensor([2.0, 3.0, 4.0], dtype='float64')
 print("Tensor dtype of ndim_1_tensor:", ndim_1_tensor.dtype)
-# 创建Tensor时不指定dtype，自动选择对应的默认类型
+# 创建 Tensor 时不指定 dtype，自动选择对应的默认类型
 print("Tensor dtype from Python integers:", paddle.to_tensor(1).dtype)
 print("Tensor dtype from Python floating point:", paddle.to_tensor(1.0).dtype)
 ```
@@ -382,7 +382,7 @@ Tensor dtype from Python floating point: paddle.float32
 ```python
 ndim_2_Tensor = paddle.to_tensor([[(1+1j), (2+2j)],
                                   [(3+3j), (4+4j)]])
-print(ndim_2_Tensor)  
+print(ndim_2_Tensor)
 ```
 
 ```text
@@ -406,16 +406,16 @@ print("Tensor after cast to int64:", int64_Tensor.dtype)
 Tensor after cast to float64: paddle.float64
 Tensor after cast to int64: paddle.int64
 ```
-### 3.3 Tensor的设备位置（place）
+### 3.3 Tensor 的设备位置（place）
 初始化 Tensor 时可以通过 [Tensor.place](../../../api/paddle/Tensor_cn.html#place) 来指定其分配的设备位置，可支持的设备位置有：CPU、GPU、固定内存、XPU（Baidu Kunlun）、NPU（Huawei）、MLU（寒武纪）、IPU（Graphcore）等。其中固定内存也称为不可分页内存或锁页内存，其与 GPU 之间具有更高的读写效率，并且支持异步传输，这对网络整体性能会有进一步提升，但其缺点是分配空间过多时可能会降低主机系统的性能，因为其减少了用于存储虚拟内存数据的可分页内存。
 > **说明：**
 >
 > * 当未指定 place 时，Tensor 默认设备位置和安装的飞桨框架版本一致。如安装了 GPU 版本的飞桨，则设备位置默认为 GPU，即 Tensor 的`place` 默认为 [paddle.CUDAPlace](../../../api/paddle/CUDAPlace_cn.html)。
 > * 使用 [paddle.device.set_device](../../../api/paddle/device/set_device_cn.html) 可设置全局默认的设备位置。Tensor.place 的指定值优先级高于全局默认值。
 
-以下示例分别创建了CPU、GPU和固定内存上的 Tensor，并通过 `Tensor.place` 查看 Tensor 所在的设备位置：
+以下示例分别创建了 CPU、GPU 和固定内存上的 Tensor，并通过 `Tensor.place` 查看 Tensor 所在的设备位置：
 
-* **创建CPU上的Tensor**
+* **创建 CPU 上的 Tensor**
 ```python
 cpu_Tensor = paddle.to_tensor(1, place=paddle.CPUPlace())
 print(cpu_Tensor.place)
@@ -425,17 +425,17 @@ print(cpu_Tensor.place)
 Place(cpu)
 ```
 
-* **创建GPU上的Tensor**
+* **创建 GPU 上的 Tensor**
 ```python
 gpu_Tensor = paddle.to_tensor(1, place=paddle.CUDAPlace(0))
-print(gpu_Tensor.place) # 显示Tensor位于GPU设备的第 0 张显卡上
+print(gpu_Tensor.place) # 显示 Tensor 位于 GPU 设备的第 0 张显卡上
 ```
 
 ```text
 Place(gpu:0)
 ```
 
-* **创建固定内存上的Tensor**
+* **创建固定内存上的 Tensor**
 ```python
 pin_memory_Tensor = paddle.to_tensor(1, place=paddle.CUDAPinnedPlace())
 print(pin_memory_Tensor.place)
@@ -445,9 +445,9 @@ print(pin_memory_Tensor.place)
 Place(gpu_pinned)
 ```
 
-### 3.4 Tensor的名称（name）
+### 3.4 Tensor 的名称（name）
 
-Tensor 的名称是其唯一的标识符，为 Python 字符串类型，查看一个 Tensor 的名称可以通过 Tensor.name 属性。默认地，在每个Tensor 创建时，会自定义一个独一无二的名称。
+Tensor 的名称是其唯一的标识符，为 Python 字符串类型，查看一个 Tensor 的名称可以通过 Tensor.name 属性。默认地，在每个 Tensor 创建时，会自定义一个独一无二的名称。
 
 ```python
 print("Tensor name:", paddle.to_tensor(1).name)
@@ -456,7 +456,7 @@ print("Tensor name:", paddle.to_tensor(1).name)
 Tensor name: generated_tensor_0
 ```
 ### 3.5 Tensor 的 stop_gradient 属性
-stop_gradient 表示是否停止计算梯度，默认值为 True，表示停止计算梯度，梯度不再回传。在设计网络时，如不需要对某些参数进行训练更新，可以将参数的stop_gradient设置为True。可参考以下代码直接设置 stop_gradient 的值。
+stop_gradient 表示是否停止计算梯度，默认值为 True，表示停止计算梯度，梯度不再回传。在设计网络时，如不需要对某些参数进行训练更新，可以将参数的 stop_gradient 设置为 True。可参考以下代码直接设置 stop_gradient 的值。
 
 ```python
 eg = paddle.to_tensor(1)
@@ -469,7 +469,7 @@ Tensor stop_gradient: True
 Tensor stop_gradient: False
 ```
 
-## 四、Tensor的操作
+## 四、Tensor 的操作
 
 ### 4.1 索引和切片
 通过索引或切片方式可访问或修改 Tensor。飞桨框架使用标准的 Python 索引规则与 Numpy 索引规则，与 [Indexing a list or a string in Python](https://docs.python.org/3/tutorial/introduction.html#strings) 类似。具有以下特点：
@@ -481,8 +481,8 @@ Tensor stop_gradient: False
 * 针对一维  Tensor，仅有单个维度上的索引或切片：
 ```python
 ndim_1_Tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
-print("Origin Tensor:", ndim_1_Tensor.numpy()) # 原始1维Tensor
-print("First element:", ndim_1_Tensor[0].numpy()) # 取Tensor第一个元素的值？
+print("Origin Tensor:", ndim_1_Tensor.numpy()) # 原始 1 维 Tensor
+print("First element:", ndim_1_Tensor[0].numpy()) # 取 Tensor 第一个元素的值？
 print("Last element:", ndim_1_Tensor[-1].numpy())
 print("All element:", ndim_1_Tensor[:].numpy())
 print("Before 3:", ndim_1_Tensor[:3].numpy())
@@ -566,7 +566,7 @@ x[1] = paddle.ones([3])       # x : [[1., 2., 3.], [1., 1., 1.]]
 
 ---
 
-同时，飞桨还提供了丰富的 Tensor 操作的 API，包括数学运算、逻辑运算、线性代数等100余种 API，这些 API 调用有两种方法：
+同时，飞桨还提供了丰富的 Tensor 操作的 API，包括数学运算、逻辑运算、线性代数等 100 余种 API，这些 API 调用有两种方法：
 ```python
 x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]], dtype="float64")
 y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]], dtype="float64")
@@ -594,7 +594,7 @@ x.ceil()                      #逐元素向上取整
 x.floor()                     #逐元素向下取整
 x.round()                     #逐元素四舍五入
 x.exp()                       #逐元素计算自然常数为底的指数
-x.log()                       #逐元素计算x的自然对数
+x.log()                       #逐元素计算 x 的自然对数
 x.reciprocal()                #逐元素求倒数
 x.square()                    #逐元素计算平方
 x.sqrt()                      #逐元素计算平方根
@@ -624,33 +624,33 @@ x ** y -> x.pow(y)            #逐元素幂运算
 
 ### 4.3 逻辑运算
 ```python
-x.isfinite()                  #判断Tensor中元素是否是有限的数字，即不包括inf与nan
-x.equal_all(y)                #判断两个Tensor的全部元素是否相等，并返回形状为[1]的布尔类Tensor
-x.equal(y)                    #判断两个Tensor的每个元素是否相等，并返回形状相同的布尔类Tensor
-x.not_equal(y)                #判断两个Tensor的每个元素是否不相等
-x.less_than(y)                #判断Tensor x的元素是否小于Tensor y的对应元素
-x.less_equal(y)               #判断Tensor x的元素是否小于或等于Tensor y的对应元素
-x.greater_than(y)             #判断Tensor x的元素是否大于Tensor y的对应元素
-x.greater_equal(y)            #判断Tensor x的元素是否大于或等于Tensor y的对应元素
-x.allclose(y)                 #判断Tensor x的全部元素是否与Tensor y的全部元素接近，并返回形状为[1]的布尔类Tensor
+x.isfinite()                  #判断 Tensor 中元素是否是有限的数字，即不包括 inf 与 nan
+x.equal_all(y)                #判断两个 Tensor 的全部元素是否相等，并返回形状为[1]的布尔类 Tensor
+x.equal(y)                    #判断两个 Tensor 的每个元素是否相等，并返回形状相同的布尔类 Tensor
+x.not_equal(y)                #判断两个 Tensor 的每个元素是否不相等
+x.less_than(y)                #判断 Tensor x 的元素是否小于 Tensor y 的对应元素
+x.less_equal(y)               #判断 Tensor x 的元素是否小于或等于 Tensor y 的对应元素
+x.greater_than(y)             #判断 Tensor x 的元素是否大于 Tensor y 的对应元素
+x.greater_equal(y)            #判断 Tensor x 的元素是否大于或等于 Tensor y 的对应元素
+x.allclose(y)                 #判断 Tensor x 的全部元素是否与 Tensor y 的全部元素接近，并返回形状为[1]的布尔类 Tensor
 ```
 
 同样地，飞桨框架对 Python 逻辑比较相关的魔法函数进行了重写，以下操作与上述结果相同。
 ```text
-x == y  -> x.equal(y)         #判断两个Tensor的每个元素是否相等
-x != y  -> x.not_equal(y)     #判断两个Tensor的每个元素是否不相等
-x < y   -> x.less_than(y)     #判断Tensor x的元素是否小于Tensor y的对应元素
-x <= y  -> x.less_equal(y)    #判断Tensor x的元素是否小于或等于Tensor y的对应元素
-x > y   -> x.greater_than(y)  #判断Tensor x的元素是否大于Tensor y的对应元素
-x >= y  -> x.greater_equal(y) #判断Tensor x的元素是否大于或等于Tensor y的对应元素
+x == y  -> x.equal(y)         #判断两个 Tensor 的每个元素是否相等
+x != y  -> x.not_equal(y)     #判断两个 Tensor 的每个元素是否不相等
+x < y   -> x.less_than(y)     #判断 Tensor x 的元素是否小于 Tensor y 的对应元素
+x <= y  -> x.less_equal(y)    #判断 Tensor x 的元素是否小于或等于 Tensor y 的对应元素
+x > y   -> x.greater_than(y)  #判断 Tensor x 的元素是否大于 Tensor y 的对应元素
+x >= y  -> x.greater_equal(y) #判断 Tensor x 的元素是否大于或等于 Tensor y 的对应元素
 ```
 
-以下操作仅针对 bool 型Tensor：
+以下操作仅针对 bool 型 Tensor：
 ```python
-x.logical_and(y)              #对两个布尔类型Tensor逐元素进行逻辑与操作
-x.logical_or(y)               #对两个布尔类型Tensor逐元素进行逻辑或操作
-x.logical_xor(y)              #对两个布尔类型Tensor逐元素进行逻辑亦或操作
-x.logical_not(y)              #对两个布尔类型Tensor逐元素进行逻辑非操作
+x.logical_and(y)              #对两个布尔类型 Tensor 逐元素进行逻辑与操作
+x.logical_or(y)               #对两个布尔类型 Tensor 逐元素进行逻辑或操作
+x.logical_xor(y)              #对两个布尔类型 Tensor 逐元素进行逻辑亦或操作
+x.logical_not(y)              #对两个布尔类型 Tensor 逐元素进行逻辑非操作
 ```
 
 ### 4.4 线性代数
@@ -658,7 +658,7 @@ x.logical_not(y)              #对两个布尔类型Tensor逐元素进行逻辑�
 x.t()                         #矩阵转置
 x.transpose([1, 0])           #交换第 0 维与第 1 维的顺序
 x.norm('fro')                 #矩阵的弗罗贝尼乌斯范数
-x.dist(y, p=2)                #矩阵（x-y）的2范数
+x.dist(y, p=2)                #矩阵（x-y）的 2 范数
 x.matmul(y)                   #矩阵乘法
 ```
 
@@ -670,7 +670,7 @@ x.matmul(y)                   #矩阵乘法
 ## 五、Tensor 的广播机制
 
 在深度学习任务中，有时需要使用较小形状的 Tensor 与较大形状的 Tensor 执行计算，广播机制就是将较小形状的 Tensor 扩展到与较大形状的 Tensor 一样的形状，便于匹配计算，同时又没有对较小形状 Tensor 进行数据拷贝操作，从而提升算法实现的运算效率。
-飞桨框架提供的一些API支持广播（broadcasting）机制，允许在一些运算时使用不同形状的 Tensor。
+飞桨框架提供的一些 API 支持广播（broadcasting）机制，允许在一些运算时使用不同形状的 Tensor。
 飞桨 Tensor 的广播机制主要遵循如下规则（参考 [Numpy 广播机制](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)）：
 
 * 每个 Tensor 至少为一维 Tensor
@@ -679,24 +679,24 @@ x.matmul(y)                   #矩阵乘法
 举例如下：
 
 ```python
-# 可以广播的例子1
+# 可以广播的例子 1
 x = paddle.ones((2, 3, 4))
 y = paddle.ones((2, 3, 4))
-# 两个Tensor 形状一致，可以广播
+# 两个 Tensor 形状一致，可以广播
 z = x + y
 print(z.shape)
 # [2, 3, 4]
 ```
 ```python
-# 可以广播的例子2
+# 可以广播的例子 2
 x = paddle.ones((2, 3, 1, 5))
 y = paddle.ones((3, 4, 1))
 # 从最后一个维度向前依次比较：
-# 第一次：y的维度大小是1
-# 第二次：x的维度大小是1
-# 第三次：x和y的维度大小相等
-# 第四次：y的维度不存在
-# 所以 x和y是可以广播的
+# 第一次：y 的维度大小是 1
+# 第二次：x 的维度大小是 1
+# 第三次：x 和 y 的维度大小相等
+# 第四次：y 的维度不存在
+# 所以 x 和 y 是可以广播的
 z = x + y
 print(z.shape)
 # [2, 3, 4, 5]
@@ -705,29 +705,29 @@ print(z.shape)
 # 不可广播的例子
 x = paddle.ones((2, 3, 4))
 y = paddle.ones((2, 3, 6))
-# 此时x和y是不可广播的，因为第一次比较：4不等于6
+# 此时 x 和 y 是不可广播的，因为第一次比较：4 不等于 6
 # z = x + y
 # ValueError: (InvalidArgument) Broadcast dimension mismatch.
 ```
 
-在了解两个 Tensor 在什么情况下可以广播的规则后，两个Tensor进行广播语义后的结果Tensor的形状计算规则如下：
+在了解两个 Tensor 在什么情况下可以广播的规则后，两个 Tensor 进行广播语义后的结果 Tensor 的形状计算规则如下：
 
-* 如果两个Tensor的形状的长度不一致，会在较小长度的形状矩阵前部添加1，直到两个Tensor的形状长度相等。
-* 保证两个Tensor形状相等之后，每个维度上的结果维度就是当前维度上的较大值。
+* 如果两个 Tensor 的形状的长度不一致，会在较小长度的形状矩阵前部添加 1，直到两个 Tensor 的形状长度相等。
+* 保证两个 Tensor 形状相等之后，每个维度上的结果维度就是当前维度上的较大值。
 
 
 举例如下：
 ```python
 x = paddle.ones((2, 1, 4))
-y = paddle.ones((3, 1)) # y的形状长度为2，小于x的形状长度3，因此会在y的形状前部添加1，结果就是y的形状变为[1, 3, 1]
+y = paddle.ones((3, 1)) # y 的形状长度为 2，小于 x 的形状长度 3，因此会在 y 的形状前部添加 1，结果就是 y 的形状变为[1, 3, 1]
 z = x + y
 print(z.shape)
-# z的形状: [2,3,4]，z的每一维度上的尺寸，将取x和y对应维度上尺寸的较大值，如第0维x的尺寸为2，y的尺寸为1，则z的第0维尺寸为2
+# z 的形状: [2,3,4]，z 的每一维度上的尺寸，将取 x 和 y 对应维度上尺寸的较大值，如第 0 维 x 的尺寸为 2，y 的尺寸为 1，则 z 的第 0 维尺寸为 2
 ```
 
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/01_paddle2.0_introduction/basic_concept/images/Tensor_broadcast.png?raw=true" width="800" ></center>
-<br><center>图3 Tensor 广播示例</center>
+<br><center>图 3 Tensor 广播示例</center>
 
 ## <span id="newtensor6">六、Tensor 与 Numpy 数组相互转换</span>
 

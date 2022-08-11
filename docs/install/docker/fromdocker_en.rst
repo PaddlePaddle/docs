@@ -2,7 +2,7 @@
 **Install via docker**
 ==============================
 
-..	toctree::
-	
+..  toctree::
 
-	macos-docker_en.md
+
+    macos-docker_en.md

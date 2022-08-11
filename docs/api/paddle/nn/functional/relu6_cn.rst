@@ -5,7 +5,7 @@ relu6
 
 .. py:function:: paddle.nn.functional.relu6(x, name=None)
 
-relu6激活层
+relu6 激活层
 
 .. math::
 

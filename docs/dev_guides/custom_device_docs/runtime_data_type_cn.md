@@ -36,7 +36,7 @@ typedef struct C_Device_st { int id; } * C_Device;
 
 ### 说明
 
-描述一个device对象。
+描述一个 device 对象。
 
 ## C_Stream
 
@@ -48,7 +48,7 @@ typedef struct C_Stream_st* C_Stream;
 
 ### 说明
 
-描述一个stream对象，stream是框架内部用于执行异步任务的任务队列，同一stream中的任务按顺序执行。
+描述一个 stream 对象，stream 是框架内部用于执行异步任务的任务队列，同一 stream 中的任务按顺序执行。
 
 ## C_Event
 
@@ -60,7 +60,7 @@ typedef struct C_Event_st* C_Event;
 
 ### 说明
 
-描述一个event对象，event被框架内部用于同步不同stream之间的任务。
+描述一个 event 对象，event 被框架内部用于同步不同 stream 之间的任务。
 
 ## C_Callback
 
@@ -75,7 +75,7 @@ typedef void (*C_Callback)(C_Device device,
 
 ### 说明
 
-主机回调函数类型，具有4个参数，使用的设备，使用的stream，用户数据，以及返回值。
+主机回调函数类型，具有 4 个参数，使用的设备，使用的 stream，用户数据，以及返回值。
 
 ## CustomRuntimeParams
 
@@ -129,3 +129,35 @@ C_DeviceInterface 的类型定义详见 [device_ext.h](https://github.com/Paddle
 ### 说明
 
 自定义 Runtime 回调接口集合。
+
+## C_CCLRootId
+
+### 类型定义
+
+C_CCLRootId 的类型定义详见 [device_ext.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/device_ext.h)。
+
+### 说明
+
+集合通讯根节点 unique_id 。
+
+## C_CCLComm
+
+### 类型定义
+
+```c++
+typedef struct C_CCLComm_st* C_CCLComm;
+```
+
+### 说明
+
+集合通讯 communicator 数据结构。
+
+## C_CCLReduceOp
+
+### 类型定义
+
+C_CCLReduceOp 的类型定义详见 [device_ext.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/device_ext.h)。
+
+### 说明
+
+集合通讯 Reduce 操作类型。

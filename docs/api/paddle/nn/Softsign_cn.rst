@@ -4,7 +4,7 @@ Softsign
 -------------------------------
 .. py:class:: paddle.nn.Softsign(name=None)
 
-Softsign激活层
+Softsign 激活层
 
 .. math::
 
@@ -18,8 +18,8 @@ Softsign激活层
 
 形状：
 ::::::::::
-    - input：任意形状的Tensor。
-    - output：和input具有相同形状的Tensor。
+    - input：任意形状的 Tensor。
+    - output：和 input 具有相同形状的 Tensor。
 
 代码示例
 :::::::::

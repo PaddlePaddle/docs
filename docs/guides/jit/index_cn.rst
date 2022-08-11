@@ -20,7 +20,7 @@
 ..  toctree::
     :hidden:
 
-    basic_usage_cn.rst    
+    basic_usage_cn.rst
     principle_cn.md
     grammar_list_cn.md
     case_analysis_cn.md

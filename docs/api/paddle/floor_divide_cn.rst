@@ -13,14 +13,14 @@ floor_divide
 .. math::
         Out = X // Y
 
-- :math:`X`：多维Tensor。
-- :math:`Y`：多维Tensor。
+- :math:`X`：多维 Tensor。
+- :math:`Y`：多维 Tensor。
 
 参数
 :::::::::
-        - x（Tensor）- 多维Tensor。数据类型为int32或int64。
-        - y（Tensor）- 多维Tensor。数据类型为int32或int64。
-        - name（str，可选）- 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+        - x（Tensor）- 多维 Tensor。数据类型为 int32 或 int64。
+        - y（Tensor）- 多维 Tensor。数据类型为 int32 或 int64。
+        - name（str，可选）- 操作的名称(可选，默认值为 None）。更多信息请参见 :ref:`api_guide_Name`。
 
 
 返回

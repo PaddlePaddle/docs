@@ -7,7 +7,7 @@ get_world_size
 
 返回参与当前任务的进程数。
 
-当前进程数等于环境变量 ``PADDLE_TRAINERS_NUM`` 的值，默认值为1。
+当前进程数等于环境变量 ``PADDLE_TRAINERS_NUM`` 的值，默认值为 1。
 
 返回
 :::::::::

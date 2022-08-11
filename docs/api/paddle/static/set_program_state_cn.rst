@@ -17,7 +17,7 @@ set_program_state
 ::::::::::::
 
     - **program** (Program) - 需要被设置的 ``Program`` 。
-    - **state_dict** (dict) - 存储参数和优化器信息的dict；dict中key的类型为Tensor的名称，value为np.ndarray类型的数据。
+    - **state_dict** (dict) - 存储参数和优化器信息的 dict；dict 中 key 的类型为 Tensor 的名称，value 为 np.ndarray 类型的数据。
 
 返回
 ::::::::::::

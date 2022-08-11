@@ -13,7 +13,7 @@ set_default_dtype
 ::::::::::::
 
 
-     - **d** (string|np.dtype) - 设为默认值的dtype。它仅支持float16、float32和float64。
+     - **d** (string|np.dtype) - 设为默认值的 dtype。它仅支持 float16、float32 和 float64。
 
 返回
 ::::::::::::

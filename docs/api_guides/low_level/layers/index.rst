@@ -18,4 +18,3 @@
     data_feeder.rst
     learning_rate_scheduler.rst
     tensor.rst
-

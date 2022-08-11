@@ -48,7 +48,7 @@ To be more detailed, we introduce our design of DCGAN as following:
 class DCGAN(object):
   def __init__(self, y_dim=None):
 
-    # hyper parameters  
+    # hyper parameters
     self.y_dim = y_dim # conditional gan or not
     self.batch_size = 100
     self.z_dim = z_dim # input noise dimension

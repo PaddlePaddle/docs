@@ -1,12 +1,12 @@
-# 飞桨框架IPU版预测示例
+# 飞桨框架 IPU 版预测示例
 
-飞桨框架IPU版支持飞桨原生推理库(Paddle Inference)，适用于云端推理。
+飞桨框架 IPU 版支持飞桨原生推理库(Paddle Inference)，适用于云端推理。
 
 ## C++预测示例
 
-**第一步**：源码编译C++预测库
+**第一步**：源码编译 C++预测库
 
-当前Paddle IPU版只支持通过源码编译的方式提供C++预测库，编译环境准备请参考 [飞桨框架IPU版安装说明](./paddle_install_cn.html)。
+当前 Paddle IPU 版只支持通过源码编译的方式提供 C++预测库，编译环境准备请参考 [飞桨框架 IPU 版安装说明](./paddle_install_cn.html)。
 
 ```
 # 下载源码
@@ -33,7 +33,7 @@ make -j$(nproc)
 git clone https://github.com/PaddlePaddle/Paddle-Inference-Demo
 ```
 
-将获得的C++预测库拷贝并重命名一份到 `Paddle-Inference-Demo/c++/lib/paddle_inference`。
+将获得的 C++预测库拷贝并重命名一份到 `Paddle-Inference-Demo/c++/lib/paddle_inference`。
 
 ```
 cd Paddle-Inference-Demo/c++/paddle-ipu

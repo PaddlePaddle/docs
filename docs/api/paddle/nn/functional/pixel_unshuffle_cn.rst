@@ -23,4 +23,5 @@ pixel_unshuffle
 
 代码示例
 :::::::::
-COPY-FROM: paddle.nn.functional.pixel_unshuffle:pixel_unshuffle-example
+
+COPY-FROM: paddle.nn.functional.pixel_unshuffle
