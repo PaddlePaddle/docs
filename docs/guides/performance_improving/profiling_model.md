@@ -85,7 +85,7 @@ prof.summary(sorted_by=SortedKeys.GPUTotal,
 - **thread_sep**：是否将不同线程的事件分开打印。
 - **time_unit**: 指定表单统计时所显示的时间单位。
 
-### 1.3 查看性能数据的统计表单
+### 1.2 查看性能数据的统计表单
 
 飞桨 Profiler 提供了多个维度的性能数据呈现方式，方便深入分析模型性能瓶颈，主要包括：
 
