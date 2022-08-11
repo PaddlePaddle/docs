@@ -230,7 +230,3 @@ git config –local user.name 你的名字
 由于网络代理、机器不稳定等原因，有时候 CI 的失败也并不是你的`PR`自身的原因，这时候你只需要 rerun 此 CI 即可（你需要将你的 GitHub 授权于效率云 CI 平台）。
 
 ![rerun.png](../images/rerun.png)
-
-如果 CI 失败你无法判断原因，请联系 @[lelelelelez](https://github.com/lelelelelez)。
-
-若遇到其他问题，请联系 @[lelelelelez](https://github.com/lelelelelez)。

@@ -102,6 +102,7 @@ API 设计文档的目的是为了社区开发者更容易的参与开源项目�
 ..  toctree::
     :hidden:
 
+    read_before_contributing_cn.md
     api_design_guidelines_standard_cn.md
     new_python_api_cn.md
     new_cpp_op_cn.md
