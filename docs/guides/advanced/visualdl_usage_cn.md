@@ -1,768 +1,499 @@
-# 模型可视化
+# 使用 VisualDL 可视化模型，数据和训练
 
-### 概述
+在[构建手写数字识别模型](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/beginner/quick_start_cn.html)教学案例中，介绍了如何使用飞桨的 paddle.io 进行数据处理，通过 paddle.nn 构建模型，以及如何在训练数据上进行模型的训练和在测试数据上对模型效果进行评估。为了了解模型的训练过程，之前通过打印损失函数 loss 的值来观察发生的变化，但是这种观测方式非常不直观。本文将详细介绍如何使用飞桨的可视化工具 VisualDL 来提高训练神经网络的体验。
 
-VisualDL 是一个面向深度学习任务设计的可视化工具。VisualDL 利用了丰富的图表来展示数据，用户可以更直观、清晰地查看数据的特征与变化趋势，有助于分析数据、及时发现错误，进而改进神经网络模型的设计。
+在本教程中，可以学习：
 
-目前，VisualDL 支持 scalar, image, audio, graph, histogram, pr curve, high dimensional 七个组件，项目正处于高速迭代中，敬请期待新组件的加入。
+1. 设置 VisualDL
+2. 写入数据并可视化
 
-|                      组件名称                       |  展示图表  | 作用                                                         |
-| :-------------------------------------------------: | :--------: | :----------------------------------------------------------- |
-|            [ Scalar](#Scalar--标量组件)             |   折线图   | 动态展示损失函数值、准确率等标量数据                         |
-|           [Image](#Image--图片可视化组件)           | 图片可视化 | 显示图片，可显示输入图片和处理后的结果，便于查看中间过程的变化 |
-|            [Audio](#Audio--音频播放组件)            |  音频播放  | 播放训练过程中的音频数据，监控语音识别与合成等任务的训练过程 |
-|            [Graph](#Graph--网络结构组件)            |  网络结构  | 展示网络结构、节点属性及数据流向，辅助学习、优化网络结构     |
-|         [Histogram](#Histogram--直方图组件)         |   直方图   | 展示训练过程中权重、梯度等张量的分布                         |
-|          [PR Curve](#PR-Curve--PR 曲线组件)          |   折线图   | 权衡精度与召回率之间的平衡关系，便于选择最佳阈值             |
-| [High Dimensional](#High-Dimensional--数据降维组件) |  数据降维  | 将高维数据映射到 2D/3D 空间来可视化嵌入，便于观察不同数据的相关性 |
+具体来说，在第 2 点可以看到：
 
-## Scalar -- 折线图组件
+- 如何检查训练数据
+- 在训练模型时如何跟踪其表现
+- 在训练后如何评估模型的表现
 
-### 介绍
-
-Scalar 组件的输入数据类型为标量，该组件的作用是将训练参数以折线图形式呈现。将损失函数值、准确率等标量数据作为参数传入 scalar 组件，即可画出折线图，便于观察变化趋势。
-
-### 记录接口
-
-Scalar 组件的记录接口如下：
+本教程基于前文“构建手写数字识别模型”案例的样板代码进行说明。该案例的详细讲解，请参考“[十分钟快速上手飞桨](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/beginner/quick_start_cn.html)”。
 
 ```python
-add_scalar(tag, value, step, walltime=None)
-```
+import os
+import random
 
-接口参数说明如下：
-
-| 参数     | 格式   | 含义                                        |
-| -------- | ------ | ------------------------------------------- |
-| tag      | string | 记录指标的标志，如`train/loss`，不能含有`%` |
-| value    | float  | 要记录的数据值                              |
-| step     | int    | 记录的步数                                  |
-| walltime | int    | 记录数据的时间戳，默认为当前时间戳          |
-
-### Demo
-
-- 基础使用
-
-下面展示了使用 Scalar 组件记录数据的示例，代码文件请见[Scalar 组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/scalar_test.py)
-
-```python
-from visualdl import LogWriter
-
-if __name__ == '__main__':
-    value = [i/1000.0 for i in range(1000)]
-    # 初始化一个记录器
-    with LogWriter(logdir="./log/scalar_test/train") as writer:
-        for step in range(1000):
-            # 向记录器添加一个 tag 为`acc`的数据
-            writer.add_scalar(tag="acc", step=step, value=value[step])
-            # 向记录器添加一个 tag 为`loss`的数据
-            writer.add_scalar(tag="loss", step=step, value=1/(value[step] + 1))
-```
-
-运行上述程序后，在命令行执行
-
-```shell
-visualdl --logdir ./log --port 8080
-```
-
-接着在浏览器打开`http://127.0.0.1:8080`，即可查看以下折线图。
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/82397559-478c6d00-9a83-11ea-80db-a0844dcaca35.png" width="100%"/>
-</p>
-
-
-
-- 多组实验对比
-
-下面展示了使用 Scalar 组件实现多组实验对比
-
-多组实验对比的实现分为两步：
-
-1. 创建子日志文件储存每组实验的参数数据
-2. 将数据写入 scalar 组件时，**使用相同的 tag**，即可实现对比**不同实验**的**同一类型参数**
-
-```python
-from visualdl import LogWriter
-
-if __name__ == '__main__':
-    value = [i/1000.0 for i in range(1000)]
-    # 步骤一：创建父文件夹：log 与子文件夹：scalar_test
-    with LogWriter(logdir="./log/scalar_test") as writer:
-        for step in range(1000):
-            # 步骤二：向记录器添加一个 tag 为`train/acc`的数据
-            writer.add_scalar(tag="train/acc", step=step, value=value[step])
-            # 步骤二：向记录器添加一个 tag 为`train/loss`的数据
-            writer.add_scalar(tag="train/loss", step=step, value=1/(value[step] + 1))
-    # 步骤一：创建第二个子文件夹 scalar_test2
-    value = [i/500.0 for i in range(1000)]
-    with LogWriter(logdir="./log/scalar_test2") as writer:
-        for step in range(1000):
-            # 步骤二：在同样名为`train/acc`下添加 scalar_test2 的 accuracy 的数据
-            writer.add_scalar(tag="train/acc", step=step, value=value[step])
-            # 步骤二：在同样名为`train/loss`下添加 scalar_test2 的 loss 的数据
-            writer.add_scalar(tag="train/loss", step=step, value=1/(value[step] + 1))
-```
-
-运行上述程序后，在命令行执行
-
-```shell
-visualdl --logdir ./log --port 8080
-```
-
-接着在浏览器打开`http://127.0.0.1:8080`，即可查看以下折线图，对比「scalar_test」和「scalar_test2」的 Accuracy 和 Loss。
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84644158-5efb3080-af31-11ea-8e64-bbe4078425f4.png" width="100%"/>
-</p>
-
-
-*多组实验对比的应用案例可参考 AI Studio 项目：[VisualDL 2.0--眼疾识别训练可视化](https://aistudio.baidu.com/aistudio/projectdetail/502834)
-
-
-### 功能操作说明
-
-* 支持数据卡片「最大化」、「还原」、「坐标系转化」（y 轴对数坐标）、「下载」折线图
-
-<p align="center">
-  <img src="http://visualdl.bj.bcebos.com/images/scalar-icon.png" width="55%"/>
-</p>
-
-
-
-
-
-* 数据点 Hover 展示详细信息
-
-<p align="center">
-  <img src="http://visualdl.bj.bcebos.com/images/scalar-tooltip.png" width="60%"/>
-</p>
-
-
-
-
-
-* 可搜索卡片标签，展示目标图像
-
-<p align="center">
-  <img src="http://visualdl.bj.bcebos.com/images/scalar-searchlabel.png" width="90%"/>
-</p>
-
-
-
-
-
-* 可搜索打点数据标签，展示特定数据
-
-<p align="center">
-  <img src="http://visualdl.bj.bcebos.com/images/scalar-searchstream.png" width="40%"/>
-</p>
-
-
-
-
-* X 轴有三种衡量尺度
-
-1. Step：迭代次数
-2. Walltime：训练绝对时间
-3. Relative：训练时长
-
-<p align="center">
-  <img src="http://visualdl.bj.bcebos.com/images/x-axis.png" width="40%"/>
-</p>
-
-
-* 可调整曲线平滑度，以便更好的展现参数整体的变化趋势
-
-<p align="center">
-  <img src="http://visualdl.bj.bcebos.com/images/scalar-smooth.png" width="37%"/>
-</p>
-
-
-
-
-## Image -- 图片可视化组件
-
-### 介绍
-
-Image 组件用于显示图片数据随训练的变化。在模型训练过程中，将图片数据传入 Image 组件，就可在 VisualDL 的前端网页查看相应图片。
-
-### 记录接口
-
-Image 组件的记录接口如下：
-
-```python
-add_image(tag, img, step, walltime=None)
-```
-
-接口参数说明如下：
-
-| 参数     | 格式          | 含义                                        |
-| -------- | ------------- | ------------------------------------------- |
-| tag      | string        | 记录指标的标志，如`train/loss`，不能含有`%` |
-| img      | numpy.ndarray | 以 ndarray 格式表示的图片                     |
-| step     | int           | 记录的步数                                  |
-| walltime | int           | 记录数据的时间戳，默认为当前时间戳          |
-
-### Demo
-
-下面展示了使用 Image 组件记录数据的示例，代码文件请见[Image 组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/image_test.py)
-
-```python
 import numpy as np
-from PIL import Image
-from visualdl import LogWriter
+# 加载飞桨相关库
+import paddle
+from paddle.nn import Conv2D, MaxPool2D, Linear
+import paddle.nn.functional as F
+
+# 数据载入
+class MNISTDataset():
+  def __init__(self, mode='train'):
+    self.mnist_data = paddle.vision.datasets.MNIST(mode=mode)
+
+  def __getitem__(self, idx):
+    data, label = self.mnist_data[idx]
+    data = np.reshape(data, [1, 28, 28]).astype('float32') / 255
+    label = np.reshape(label, [1]).astype('int64')
+    return (data, label)
+
+  def __len__(self):
+    return len(self.mnist_data)
+
+train_loader = paddle.io.DataLoader(MNISTDataset(mode='train'),
+                                    batch_size=16,
+                                    shuffle=True)
+
+test_loader = paddle.io.DataLoader(MNISTDataset(mode='test'),
+                                    batch_size=16,
+                                    shuffle=False)
+
+# 定义 mnist 数据识别网络模型结构
+class MNIST(paddle.nn.Layer):
+     def __init__(self):
+         super(MNIST, self).__init__()
+
+         # 定义卷积层，输出特征通道 out_channels 设置为 20，卷积核的大小 kernel_size 为 5，卷积步长 stride=1，padding=2
+         self.conv1 = Conv2D(in_channels=1, out_channels=20, kernel_size=5, stride=1, padding=2)
+         # 定义池化层，池化核的大小 kernel_size 为 2，池化步长为 2
+         self.max_pool1 = MaxPool2D(kernel_size=2, stride=2)
+         # 定义卷积层，输出特征通道 out_channels 设置为 20，卷积核的大小 kernel_size 为 5，卷积步长 stride=1，padding=2
+         self.conv2 = Conv2D(in_channels=20, out_channels=20, kernel_size=5, stride=1, padding=2)
+         # 定义池化层，池化核的大小 kernel_size 为 2，池化步长为 2
+         self.max_pool2 = MaxPool2D(kernel_size=2, stride=2)
+         # 定义一层全连接层，输出维度是 10
+         self.fc = Linear(in_features=980, out_features=10)
+
+   # 定义网络前向计算过程，卷积后紧接着使用池化层，最后使用全连接层计算最终输出
+   # 卷积层激活函数使用 Relu，全连接层激活函数使用 softmax
+     def forward(self, inputs):
+         x = self.conv1(inputs)
+         x = F.relu(x)
+         x = self.max_pool1(x)
+         x = self.conv2(x)
+         x = F.relu(x)
+         x = self.max_pool2(x)
+         x = paddle.reshape(x, [x.shape[0], -1])
+         x = self.fc(x)
+         return x
+
+#创建模型
+model = MNIST()
 
 
-def random_crop(img):
-    """获取图片的随机 100x100 分片
-    """
-    img = Image.open(img)
-    w, h = img.size
-    random_w = np.random.randint(0, w - 100)
-    random_h = np.random.randint(0, h - 100)
-    r = img.crop((random_w, random_h, random_w + 100, random_h + 100))
-    return np.asarray(r)
+#设置优化器
+opt = paddle.optimizer.SGD(learning_rate=0.001, parameters=model.parameters())
+EPOCH_NUM = 10
+for epoch_id in range(EPOCH_NUM):
+    model.train()
+    for batch_id, data in enumerate(train_loader()):
+        #准备数据
+        images, labels = data
 
+        #前向计算的过程
+        predicts = model(images)
 
-if __name__ == '__main__':
-    # 初始化一个记录器
-    with LogWriter(logdir="./log/image_test/train") as writer:
-        for step in range(6):
-            # 添加一个图片数据
-            writer.add_image(tag="eye",
-                             img=random_crop("../../docs/images/eye.jpg"),
-                             step=step)
+        #计算损失，取一个批次样本损失的平均值
+        loss = F.cross_entropy(predicts, labels)
+        avg_loss = paddle.mean(loss)
+
+        #每训练了 100 批次的数据，打印下当前 Loss 的情况
+        if batch_id % 200 == 0:
+            print("epoch: {}, batch: {}, loss is: {}".format(epoch_id, batch_id, avg_loss.numpy()))
+
+        #后向传播，更新参数的过程
+        avg_loss.backward()
+        # 最小化 loss,更新参数
+        opt.step()
+        # 清除梯度
+        opt.clear_grad()
+
+    # evaluate model after one epoch
+    model.eval()
+    accuracies = []
+    losses = []
+    for batch_id, data in enumerate(test_loader):
+        #准备数据
+        images, labels = data
+        #前向计算的过程
+        predicts = model(images)
+        #计算损失
+        loss = F.cross_entropy(predicts, labels)
+        #计算准确率
+        acc = paddle.metric.accuracy(predicts, labels)
+        accuracies.append(acc.numpy())
+        losses.append(loss.numpy())
+
+    avg_acc, avg_loss = np.mean(accuracies), np.mean(losses)
+    print("[validation]After epoch {}: accuracy/loss: {}/{}".format(epoch_id, avg_acc, avg_loss))
+
+#保存模型参数
+paddle.save(model.state_dict(), 'mnist.pdparams')
 ```
 
-运行上述程序后，在命令行执行
+通过以上代码，完成 MNIST 数据集载入、构建了简单的卷积神经网络模型、使用 SGD 优化器在训练数据上优化了 10 个 epoch 的模型参数，并且将训练后的模型参数进行了保存。
 
-```shell
-visualdl --logdir ./log --port 8080
+接下来，只需要在前面代码的合适位置添加一些 VisualDL 接口（下文有详细解释并在代码块中注释提醒）以及简单的设置，就可以实现模型的 VisualDL 可视化开发。
+
+VisualDL 以丰富的图表呈现训练参数变化趋势、模型结构、数据样本、高维数据分布等，可以帮助用户更清晰直观地理解深度学习模型训练过程及模型结构，进而实现高效的模型优化。
+
+添加 VisualDL 接口后的完整代码，可点击[链接](https://aistudio.baidu.com/aistudio/projectdetail/4188061?contributionType=1)在线运行。代码运行完成后，点击左侧的可视化图标📈即可查看可视化图像。
+
+接下来，将介绍如何使用 VisualDL 进行模型开发可视化。
+
+## 一、环境准备
+
+### 1.1 安装 VisualDL
+
+如果还没有安装 visualdl，可以使用 pip 进行安装。
+
+```bash
+pip install visualdl
 ```
 
-在浏览器输入`http://127.0.0.1:8080`，即可查看图片数据。
+安装完成后，打开命令行，如果可以执行如下命令代表安装成功。
 
-<p align="center">
-  <img src="http://visualdl.bj.bcebos.com/images/image-static.png" width="100%"/>
-</p>
+```bash
+visualdl --version
+```
 
+### 1.2 设置 VisualDL
 
+VisualDL 通常分为“写”和“读”两部分：
 
+- “写”数据：通过在训练程序中加入代码，将所要监控的数据记录到日志文件；
+- “读”数据：启动 VisualDL 的服务、解析日志文件中的数据、并在浏览器中以图表的形式呈现，从而实现可视化。
 
-### 功能操作说明
+使用 VisualDL 写数据，需要先导入 visualdl 库的 LogWriter 类。所有写入数据的操作都将基于 LogWriter 的对象进行。
 
-可搜索图片标签显示对应图片数据
-
-<p align="center">
-  <img src="http://visualdl.bj.bcebos.com/images/image-search.png" width="90%"/>
-</p>
-
-
-
-
-支持滑动 Step/迭代次数查看不同迭代次数下的图片数据
-
-<p align="center">
-  <img src="http://visualdl.bj.bcebos.com/images/image-eye.gif" width="60%"/>
-</p>
-
-
-
-
-## Audio--音频播放组件
-
-### 介绍
-
-Audio 组件实时查看训练过程中的音频数据，监控语音识别与合成等任务的训练过程。
-
-### 记录接口
-
-Audio 组件的记录接口如下：
+可以按照下列方式在文件头部导入 visualdl 库，并使用 LogWriter 类。
 
 ```python
-add_audio(tag, audio_array, step, sample_rate)
-```
+import os
+import random
 
-接口参数说明如下：
-
-| 参数        | 格式          | 含义                                       |
-| ----------- | ------------- | ------------------------------------------ |
-| tag         | string        | 记录指标的标志，如`audio_tag`，不能含有`%` |
-| audio_arry  | numpy.ndarray | 以 ndarray 格式表示的音频                    |
-| step        | int           | 记录的步数                                 |
-| sample_rate | int           | 采样率，**注意正确填写对应音频的原采样率** |
-
-### Demo
-
-下面展示了使用 Audio 组件记录数据的示例，代码文件请见[Audio 组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/audio_test.py)
-
-```python
-from visualdl import LogWriter
 import numpy as np
-import wave
-
-
-def read_audio_data(audio_path):
-    """
-    Get audio data.
-    """
-    CHUNK = 4096
-    f = wave.open(audio_path, "rb")
-    wavdata = []
-    chunk = f.readframes(CHUNK)
-    while chunk:
-        data = np.frombuffer(chunk, dtype='uint8')
-        wavdata.extend(data)
-        chunk = f.readframes(CHUNK)
-    # 8k sample rate, 16bit frame, 1 channel
-    shape = [8000, 2, 1]
-    return shape, wavdata
-
-
-if __name__ == '__main__':
-    with LogWriter(logdir="./log") as writer:
-        audio_shape, audio_data = read_audio_data("./testing.wav")
-        audio_data = np.array(audio_data)
-        writer.add_audio(tag="audio_tag",
-                         audio_array=audio_data,
-                         step=0,
-                         sample_rate=8000)
-```
-
-运行上述程序后，在命令行执行
-
-```shell
-visualdl --logdir ./log --port 8080
-```
-
-在浏览器输入`http://127.0.0.1:8080`，即可查看音频数据。
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/87659138-b4746880-c78f-11ea-965b-c33804e7c296.png" width="100%"/>
-</p>
-
-
-
-### 功能操作说明
-
-- 可搜索音频标签显示对应音频数据
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/87661431-29956d00-c793-11ea-833b-172d8fc1b221.png" width="100%"/>
-</p>
-
-
-
-- 支持滑动 Step/迭代次数试听不同迭代次数下的音频数据
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/87661089-a07e3600-c792-11ea-8740-cbe99a64d830.png" width="60%"/>
-</p>
-
-
-
-- 支持播放/暂停音频数据
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/87661130-b3910600-c792-11ea-9f9f-2ae66132e9de.png" width="60%"/>
-</p>
-
-
-
-- 支持音量调节
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/87661497-49c52c00-c793-11ea-9eeb-471543cd2a0b.png" width="60%"/>
-</p>
-
-
-
-- 支持音频下载
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/87661166-c277b880-c792-11ea-8ad7-5c60bb08379b.png" width="60%"/>
-</p>
-
-
-
-
-## Graph--网络结构组件
-
-### 介绍
-
-Graph 组件一键可视化模型的网络结构。用于查看模型属性、节点信息、节点输入输出等，并进行节点搜索，协助开发者们快速分析模型结构与了解数据流向。
-
-### Demo
-
-共有两种启动方式：
-
-- 前端模型文件拖拽上传：
-
-  - 如只需使用 Graph 组件，则无需添加任何参数，在命令行执行`visualdl`后即可启动面板进行上传。
-  - 如果同时需使用其他功能，在命令行指定日志文件路径（以`./log`为例）即可启动面板进行上传：
-
-  ```shell
-  visualdl --logdir ./log --port 8080
-  ```
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84487396-44c31780-acd1-11ea-831a-1632e636613d.png" width="80%"/>
-</p>
-
-
-
-- 后端启动 Graph：
-
-  - 在命令行加入参数`--model`并指定**模型文件**路径（非文件夹路径），即可启动并查看网络结构可视化：
-
-  ```shell
-  visualdl --model ./log/model --port 8080
-  ```
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84490149-51e20580-acd5-11ea-9663-1f156892c0e0.png" width="100%"/>
-</p>
-
-
-
-### 功能操作说明
-
-- 一键上传模型
-  - 支持模型格式：PaddlePaddle、ONNX、Keras、Core ML、Caffe、Caffe2、Darknet、MXNet、ncnn、TensorFlow Lite
-  - 实验性支持模型格式：TorchScript、PyTorch、Torch、 ArmNN、BigDL、Chainer、CNTK、Deeplearning4j、MediaPipe、ML.NET、MNN、OpenVINO、Scikit-learn、Tengine、TensorFlow.js、TensorFlow
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84487396-44c31780-acd1-11ea-831a-1632e636613d.png" width="80%"/>
-</p>
-
-
-
-- 支持上下左右任意拖拽模型、放大和缩小模型
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/89163601-6ab9b980-d5a8-11ea-9c6d-2dc5eaed0d41.gif" width="100%"/>
-</p>
-
-
-
-- 搜索定位到对应节点
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84487694-b9965180-acd1-11ea-8214-34f3febc1828.png" width="30%"/>
-</p>
-
-
-
-- 点击查看模型属性
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84487751-cadf5e00-acd1-11ea-9ce2-4fdfeeea9c5a.png" width="30%"/>
-</p>
-
-
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84487759-d03ca880-acd1-11ea-9294-520ef7f9e0b1.png" width="30%"/>
-</p>
-
-
-
-- 支持选择模型展示的信息
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84487829-ee0a0d80-acd1-11ea-8563-6682a15483d9.png" width="23%"/>
-</p>
-
-
-
-- 支持以 PNG、SVG 格式导出模型结构图
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84487884-ff531a00-acd1-11ea-8b12-5221db78683e.png" width="30%"/>
-</p>
-
-
-
-- 点击节点即可展示对应属性信息
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84487941-13971700-acd2-11ea-937d-42fb524b9ee1.png" width="30%"/>
-</p>
-
-
-
-- 支持一键更换模型
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/84487998-27db1400-acd2-11ea-83d7-5d75832ef41d.png" width="25%"/>
-</p>
-
-
-
-## Histogram--直方图组件
-
-### 介绍
-
-Histogram 组件以直方图形式展示 Tensor（weight、bias、gradient 等）数据在训练过程中的变化趋势。深入了解模型各层效果，帮助开发者精准调整模型结构。
-
-### 记录接口
-
-Histogram 组件的记录接口如下：
-
-```python
-add_histogram(tag, values, step, walltime=None, buckets=10)
-```
-
-接口参数说明如下：
-
-| 参数     | 格式                  | 含义                                        |
-| -------- | --------------------- | ------------------------------------------- |
-| tag      | string                | 记录指标的标志，如`train/loss`，不能含有`%` |
-| values   | numpy.ndarray or list | 以 ndarray 或 list 格式表示的数据               |
-| step     | int                   | 记录的步数                                  |
-| walltime | int                   | 记录数据的时间戳，默认为当前时间戳          |
-| buckets  | int                   | 生成直方图的分段数，默认为 10                |
-
-### Demo
-
-下面展示了使用 Histogram 组件记录数据的示例，代码文件请见[Histogram 组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/histogram_test.py)
-
-```python
+# 加载飞桨相关库
+import paddle
+from paddle.nn import Conv2D, MaxPool2D, Linear
+import paddle.nn.functional as F
+
+# 从 visualdl 库中引入 LogWriter 类
 from visualdl import LogWriter
-import numpy as np
-
-
-if __name__ == '__main__':
-    values = np.arange(0, 1000)
-    with LogWriter(logdir="./log/histogram_test/train") as writer:
-        for index in range(1, 101):
-            interval_start = 1 + 2 * index / 100.0
-            interval_end = 6 - 2 * index / 100.0
-            data = np.random.uniform(interval_start, interval_end, size=(10000))
-            writer.add_histogram(tag='default tag',
-                                 values=data,
-                                 step=index,
-                                 buckets=10)
+# 创建 LogWriter 对象，指定 logdir 参数，如果指定路径不存在将会创建一个文件夹
+logwriter = LogWriter(logdir='./runs/mnist_experiment')
 ```
 
-运行上述程序后，在命令行执行
+运行该代码后，将会创建一个./runs/mnist_experiment 文件夹，用于存储写入到 VisualDL 的数据。
 
-```shell
-visualdl --logdir ./log --port 8080
+可以在训练程序执行前、中、后任意一个阶段，启动 VisualDL 的可视化服务、读取数据、并进入浏览器查看。启动命令为：
+
+```bash
+visualdl --logdir ./runs/mnist_experiment --model ./runs/mnist_experiment/model.pdmodel --host 0.0.0.0 --port 8040
 ```
 
-在浏览器输入`http://127.0.0.1:8080`，即可查看训练参数直方图。
+--logdir：与使用 LogWriter 时指定的参数相同。
 
-### 功能操作说明
+--model：（可选）为保存的网络模型结构文件。
 
-- 支持数据卡片「最大化」、直方图「下载」
+--host：指定服务的 IP 地址。
 
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86535351-42d82700-bf12-11ea-89f0-171280e7c526.png" width="60%"/>
-  </p>
+--port：指定服务的端口地址。
 
-- 可选择 Offset 或 Overlay 模式
+在命令行中输入上述命令启动服务后，可以在浏览器中输入 [http://localhost:8040](http://localhost:8040/) (也可以查看 ip 地址，将 localhost 换成 ip)进行查看。
 
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86535413-c134c900-bf12-11ea-9ad6-f0ad8eafa76f.png" width="30%"/>
-  </p>
+如果是在[AI Studio](https://aistudio.baidu.com/aistudio/projectdetail/4188061?contributionType=1)上训练程序，可以在模型训练结束后，参考如下界面设置日志文件所在目录和模型文件，启动 VisualDL 的可视化服务。
 
-
-  - Offset 模式
-
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86536435-2b9d3780-bf1a-11ea-9981-92f837d22ae5.png" width="60%"/>
-  </p>
+![img](http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=d128bd9ff9f047f6beb471476e44f43c)
 
 
 
-  - Overlay 模式
+## 二、写入数据并可视化
 
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86536458-5ab3a900-bf1a-11ea-985e-05f06c1b762b.png" width="60%"/>
-  </p>
+创建了 LogWriter 对象之后，就可以写入想要观察的数据了。需要监控的数据通常包含以下几类：
 
+查看训练数据、查看网络模型结构、查看训练过程网络中模型参数的变化、查看训练过程中损失函数值的变化，以及测试集上损失函数值和准确率的变化。
 
-- 数据点 Hover 展示参数值、训练步数、频次
+下面依次说明如何添加对这些数据的监控。
 
-  - 在第 240 次训练步数时，权重为-0.0031，且出现的频次是 2734 次
+### 2.1 检查训练数据
 
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86536482-80d94900-bf1a-11ea-9e12-5bea9f382b34.png" width="60%"/>
-  </p>
+#### 2.1.1 查看输入图像
 
-- 可搜索卡片标签，展示目标直方图
-
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86536503-baaa4f80-bf1a-11ea-80ab-cd988617d018.png" width="30%"/>
-  </p>
-
-- 可搜索打点数据标签，展示特定数据流
-
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86536639-b894c080-bf1b-11ea-9ee5-cf815dd4bbd7.png" width="30%"/>
-  </p>
-
-## PR Curve--PR 曲线组件
-
-### 介绍
-
-PR Curve 以折线图形式呈现精度与召回率的权衡分析，清晰直观了解模型训练效果，便于分析模型是否达到理想标准。
-
-### 记录接口
-
-PR Curve 组件的记录接口如下：
+如果想知道训练或测试数据集中的输入图像是什么样的，可以按如下方式使用[add_image_matrix](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/components/README.md#Image--Image-Visualization)接口将输入图像列表写入 VisualDL，VisualDL 会自动将图像排列成网格进行展示。
 
 ```python
-add_pr_curve(tag, labels, predictions, step=None, num_thresholds=10)
+# 数据载入
+class MNISTDataset():
+  def __init__(self, mode='train'):
+    self.mnist_data = paddle.vision.datasets.MNIST(mode=mode)
+
+  def __getitem__(self, idx):
+    data, label = self.mnist_data[idx]
+    data = np.reshape(data, [1, 28, 28]).astype('float32') / 255
+    label = np.reshape(label, [1]).astype('int64')
+    return (data, label)
+
+  def __len__(self):
+    return len(self.mnist_data)
+
+# 查看 9 张输入的训练图像的样例
+dataset = MNISTDataset(mode='train')
+image_matrix = []
+for i in range(9):
+  image, label = dataset[i]
+  # 将 dataset 中的 CHW 排列的图像转换成 HWC 排列再写入 VisualDL
+  image_matrix.append(image.transpose([1,2,0]))
+# 将九张输入图像合成长宽相同的图像网格，即 3X3 的图像网格
+logwriter.add_image_matrix(tag='input_images', step=1, imgs=image_matrix, rows=-1)
 ```
 
-接口参数说明如下：
+“样本数据·图像”页面显示了通过 add_image_matrix 接口写入的图像列表，可以看到写入的 9 张图像按照 3*3 的排列方式展示了出来，用于训练的数据是手写字体的数字。
 
-| 参数           | 格式                  | 含义                                        |
-| -------------- | --------------------- | ------------------------------------------- |
-| tag            | string                | 记录指标的标志，如`train/loss`，不能含有`%` |
-| labels         | numpy.ndarray or list | 以 ndarray 或 list 格式表示的实际类别           |
-| predictions    | numpy.ndarray or list | 以 ndarray 或 list 格式表示的预测类别           |
-| step           | int                   | 记录的步数                                  |
-| num_thresholds | int                   | 阈值设置的个数，默认为 10，最大值为 127       |
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_1.png?raw=text)
 
-### Demo
+图 1：查看输入图像
 
-下面展示了使用 PR Curve 组件记录数据的示例，代码文件请见[PR Curve 组件](#https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/pr_curve_test.py)
+还可以进一步查看输入数据映射到低维空间时的关系。使用[add_embeddings](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/components/README.md#High-Dimensional--Data-Dimensionality-Reduction)接口将输入图像列表写入 VisualDL。
 
 ```python
-from visualdl import LogWriter
-import numpy as np
-
-with LogWriter("./log/pr_curve_test/train") as writer:
-    for step in range(3):
-        labels = np.random.randint(2, size=100)
-        predictions = np.random.rand(100)
-        writer.add_pr_curve(tag='pr_curve',
-                            labels=labels,
-                            predictions=predictions,
-                            step=step,
-                            num_thresholds=5)
+# 将九张输入图像以向量的形式写入 embeddings，查看数据降维后的关系
+tags = ['image_{}'.format(i) for i in range(9)]
+logwriter.add_embeddings('input_image_embeddings', mat=[img.reshape(-1) for img in image_matrix], metadata=tags)
 ```
 
-运行上述程序后，在命令行执行
+“数据降维”页面显示了通过 add_embeddings 接口写入的向量降维后的位置关系。一般来说，越相似的图像投射到低维空间的距离就会越相近。
 
-```shell
-visualdl --logdir ./log --port 8080
-```
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_2.png)
 
-接着在浏览器打开`http://127.0.0.1:8080`，即可查看 PR Curve
+图 2：查看数据降维的结果
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/48054808/86738774-ee46c000-c067-11ea-90d2-a98aac445cca.png" width="100%"/>
-</p>
+#### 2.1.2 查看网络结构
 
-
-
-### 功能操作说明
-
-- 支持数据卡片「最大化」，「还原」、「下载」PR 曲线
-
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86740067-f18e7b80-c068-11ea-96bf-52cb7da1f799.png" width="60%"/>
-  </p>
-
-- 数据点 Hover 展示详细信息：阈值对应的 TP、TN、FP、FN
-
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86740477-43370600-c069-11ea-93f0-f4d05445fbab.png" width="70%"/>
-  </p>
-
-- 可搜索卡片标签，展示目标图表
-
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86740670-66fa4c00-c069-11ea-9ee3-0a22e2d0dbec.png" width="50%"/>
-  </p>
-
-- 可搜索打点数据标签，展示特定数据
-
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86740817-809b9380-c069-11ea-9453-6531e3ff5f43.png" width="50%"/>
-  </p>
-
-
-- 支持查看不同训练步数下的 PR 曲线
-
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86741057-b04a9b80-c069-11ea-9fef-2dcc16f9cd46.png" width="50%"/>
-  </p>
-
-- X 轴-时间显示类型有三种衡量尺度
-
-  - Step：迭代次数
-  - Walltime：训练绝对时间
-  - Relative：训练时长
-
-  <p align="center">
-    <img src="https://user-images.githubusercontent.com/48054808/86741304-db34ef80-c069-11ea-86eb-787b49ed3705.png" width="50%"/>
-  </p>
-
-## High Dimensional -- 数据降维组件
-
-### 介绍
-
-High Dimensional 组件将高维数据进行降维展示，用于深入分析高维数据间的关系。目前支持以下两种降维算法：
-
- - PCA : Principle Component Analysis 主成分分析
- - t-SNE : t-distributed stochastic neighbor embedding t-分布式随机领域嵌入
-
-### 记录接口
-
-High Dimensional 组件的记录接口如下：
+如果是通过飞桨组建的网络结构，可以使用[paddle.jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/jit/save_cn.html)接口将网络结构保存下来，然后使用 VisualDL 进行查看。
 
 ```python
-add_embeddings(tag, labels, hot_vectors, walltime=None)
+#创建模型
+model = MNIST()
+#保存模型，获取模型结构文件
+paddle.jit.save(model, './runs/mnist_experiment/model', [paddle.static.InputSpec([-1,1,28,28])])
 ```
 
-接口参数说明如下：
+该代码会在./runs/mnist_experiment/目录下生成模型结构文件 model.pdmodel。
 
-| 参数        | 格式                | 含义                                                 |
-| ----------- | ------------------- | ---------------------------------------------------- |
-| tag         | string              | 记录指标的标志，如`default`，不能含有`%`             |
-| labels      | numpy.array 或 list | 一维数组表示的标签，每个元素是一个 string 类型的字符串 |
-| hot_vectors | numpy.array or list | 与 labels 一一对应，每个元素可以看作是某个标签的特征   |
-| walltime    | int                 | 记录数据的时间戳，默认为当前时间戳                   |
+“网络结构”页面显示了使用飞桨搭建的网络结构。可以清晰的看到其拓扑连接方式以及每个结构单元的详细信息。通过网络结构图，可以分析自己搭建的网络拓扑是否符合设计时的预期，辅助做网络搭建的调试；以及查看每个节点输出的变量的形状，并通过此形状评估参数量的大小。
 
-### Demo
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_3.png)
 
-下面展示了使用 High Dimensional 组件记录数据的示例，代码文件请见[High Dimensional 组件](https://github.com/PaddlePaddle/VisualDL/blob/develop/demo/components/high_dimensional_test.py)
+图 3：查看网络结构
+
+#### 2.1.3 记录训练时的超参数配置
+
+通过[add_hparams](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/components/README.md#hyperparameters--hyperparameter-visualization)接口记录下当前实验的超参数配置信息，比如学习率 lr、batch、所用的优化器等信息，并且关联该超参数配置下记录过的曲线的名称，方便进行多个不同超参数设定下实验的对比。
+
+比如第一次实验设置学习率为 1e-3，并使用 sgd 优化器，记录相关超参数的配置情况。
 
 ```python
-from visualdl import LogWriter
-
-
-if __name__ == '__main__':
-    hot_vectors = [
-        [1.3561076367500755, 1.3116267195134017, 1.6785401875616097],
-        [1.1039614644440658, 1.8891609992484688, 1.32030488587171],
-        [1.9924524852447711, 1.9358920727142739, 1.2124401279391606],
-        [1.4129542689796446, 1.7372166387197474, 1.7317806077076527],
-        [1.3913371800587777, 1.4684674577930312, 1.5214136352476377]]
-
-    labels = ["label_1", "label_2", "label_3", "label_4", "label_5"]
-    # 初始化一个记录器
-    with LogWriter(logdir="./log/high_dimensional_test/train") as writer:
-        # 将一组 labels 和对应的 hot_vectors 传入记录器进行记录
-        writer.add_embeddings(tag='default',
-                              labels=labels,
-                              hot_vectors=hot_vectors)
+logwriter.add_hparams(hparams_dict={'lr': 0.001, 'batch_size': 16, 'opt': 'sgd'},
+                           metrics_list=['train_avg_loss', 'test_avg_loss', 'test_avg_acc'])
 ```
 
-运行上述程序后，在命令行执行
+为了比较不同超参数设置对实验的影响，进行第二次实验，并设置学习率为 1e-4，选用 adam 作为优化器。
 
-```shell
-visualdl --logdir ./log --port 8080
+```python
+logwriter.add_hparams(hparams_dict={'lr': 0.0001, 'batch_size': 16, 'opt': 'adam'},
+                           metrics_list=['train_avg_loss', 'test_avg_loss', 'test_avg_acc'])
 ```
 
-接着在浏览器打开`http://127.0.0.1:8080`，即可查看降维后的可视化数据。
 
-<p align="center">
-  <img src="http://visualdl.bj.bcebos.com/images/dynamic_high_dimensional.gif" width="100%"/>
-</p>
+
+“超参可视化”页面会显示通过 add_hparams 接口记录这两次不同实验的超参数信息，并对关联的曲线进行对比。通过表格视图，平行坐标图和散点图三种图，可以发现在学习率为 1e-4，优化器为 adam 的时候，训练的平均损失值更低，测试集上的测试精度更高。
+
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_4.png)
+
+图 4：超参实验对比-表格视图
+
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_5.png)
+
+图 5：超参实验对比-平行坐标图
+
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_6.png)
+
+图 6：超参实验对比-散点图
+
+回到“标量数据”页面，查看 test_avg_acc 曲线。同样可以发现，学习率为 1e-4、优化器为 adam 的测试准确率曲线，在学习率为 1e-3、优化器为 sgd 对应的曲线之上。通过此对比，可以直观了解超参实验结果。
+
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_7.png)
+
+图 7：查看测试准确率曲线
+
+### 2.2 跟踪模型训练
+
+#### 2.2.1 查看网络模型参数变化
+
+在网络模型训练的过程中，模型的参数会随着优化算法的更新而不断变化。通过将模型参数写入 VisualDL，可以了解模型参数的值的分布是如何随着训练过程而发生改变的。使用[add_histogram](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/components/README.md#Histogram--Distribution-of-Tensors)接口可以写入模型参数。
+
+```python
+  for epoch_id in range(EPOCH_NUM):
+      model.train()
+      train_batchs_per_epoch = len(train_loader)
+      for batch_id, data in enumerate(train_loader):
+          #准备数据
+          images, labels = data
+
+          #前向计算的过程
+          predicts = model(images)
+
+          #计算损失，取一个批次样本损失的平均值
+          loss = F.cross_entropy(predicts, labels)
+          avg_loss = paddle.mean(loss)
+
+          #记录当前训练 Loss 到 VisualDL
+          logwriter.add_scalar("train_avg_loss", value=avg_loss.numpy(), step=batch_id+epoch_id*(train_batchs_per_epoch))
+
+          #记录网络中最后一个 fc 层的参数到 VisualDL
+          logwriter.add_histogram("fc_weight", values=model.fc.weight.numpy(), step=batch_id+epoch_id*(train_batchs_per_epoch))
+
+          #每训练了 100 批次的数据，打印下当前 Loss 的情况
+          if batch_id % 200 == 0:
+              print("epoch: {}, batch: {}, loss is: {}".format(epoch_id, batch_id, avg_loss.numpy()))
+
+          #后向传播，更新参数的过程
+          avg_loss.backward()
+          # 最小化 loss,更新参数
+          opt.step()
+          # 清除梯度
+          opt.clear_grad()
+```
+
+“直方图”页面显示了 add_histogram 接口写入的模型参数。直方图的横坐标是值的大小，纵坐标是 step，高度代表值对应的元素数量。一般正常训练过程的参数分布变化，即向下图一样，由较大的方差向较小方差变化，从类似均匀分布偏向类似高斯分布。
+
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_8.png)
+
+图 8：查看网络模型参数变化
+
+#### 2.2.2 查看训练过程损失函数值变化
+
+网络模型的训练即是目标损失函数的优化过程。通常损失函数的值会随着优化算法的迭代不断变小，但是也可能会因为梯度爆炸或者不收敛等原因并没有达到预期的效果，可以通过[add_scalar](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/components/README.md#Scalar--Line-Chart)接口将训练过程的损失函数的值记录下来观察变化。
+
+```python
+for epoch_id in range(EPOCH_NUM):
+      model.train()
+      train_batchs_per_epoch = len(train_loader)
+      for batch_id, data in enumerate(train_loader):
+          #准备数据
+          images, labels = data
+
+          #前向计算的过程
+          predicts = model(images)
+
+          #计算损失，取一个批次样本损失的平均值
+          loss = F.cross_entropy(predicts, labels)
+          avg_loss = paddle.mean(loss)
+
+          #记录当前训练 Loss 到 VisualDL
+          logwriter.add_scalar("train_avg_loss", value=avg_loss.numpy(), step=batch_id+epoch_id*(train_batchs_per_epoch))
+
+          #记录网络中最后一个 fc 层的参数到 VisualDL
+          logwriter.add_histogram("fc_weight", values=model.fc.weight.numpy(), step=batch_id+epoch_id*(train_batchs_per_epoch))
+
+          #每训练了 100 批次的数据，打印下当前 Loss 的情况
+          if batch_id % 200 == 0:
+              print("epoch: {}, batch: {}, loss is: {}".format(epoch_id, batch_id, avg_loss.numpy()))
+
+          #后向传播，更新参数的过程
+          avg_loss.backward()
+          # 最小化 loss,更新参数
+          opt.step()
+          # 清除梯度
+          opt.clear_grad()
+```
+
+“标量数据”页面显示了 add_scalar 接口写入的每个 step 的损失函数值。可以看到随着网络的训练，损失函数的值趋势是先快速下降，然后缓慢下降并趋于稳定，说明模型的训练过程正常并且最后收敛了。
+
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_9.png)
+
+图 9：查看训练过程中损失函数值变化
+
+### 2.3 评估模型训练效果
+
+#### 2.3.1 查看测试集的损失函数值和准确率
+
+网络模型训练完成后，需要在测试集上验证其效果。可以使用 add_scalar 接口记录测试集上损失函数值和准确率是如何随着训练迭代的深入而发生变化的。
+
+```python
+for batch_id, data in enumerate(test_loader):
+      #准备数据
+      images, labels = data
+      #前向计算的过程
+      predicts = model(images)
+      #计算损失
+      loss = F.cross_entropy(predicts, labels)
+      #计算准确率
+      acc = paddle.metric.accuracy(predicts, labels)
+      accuracies.append(acc.numpy())
+      losses.append(loss.numpy())
+
+avg_acc, avg_loss = np.mean(accuracies), np.mean(losses)
+print("[validation]After epoch {}: accuracy/loss: {}/{}".format(epoch_id, avg_acc, avg_loss))
+#记录当前测试集平均 Loss 和准确率到 VisualDL
+logwriter.add_scalar("test_avg_loss", value=avg_acc, step=epoch_id)
+logwriter.add_scalar("test_avg_acc", value=avg_loss, step=epoch_id)
+```
+
+add_scalar 接口写入的测试集的损失函数值和准确率的值，同样可以在“标量数据”页面看到。可以看到随着模型的训练，测试集上的损失函数值也在下降并且预测准确率在不断的升高，同样说明了模型的训练符合我们想要的预期。
+
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_10.png)
+
+图 10：查看测试集的准确率值变化
+
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_11.png)
+
+图 11：查看测试集的损失函数值变化
+
+#### 2.3.2 查看 pr 曲线
+
+VisualDL 可以在每个训练的 epoch 结束后，在测试集上画出对应的 pr 曲线，参照下述代码，使用[add_pr_curve](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/components/README.md#Scalar--Line-Chart)接口记录每个类别的 pr 曲线。
+
+```python
+# evaluate model after one epoch
+    model.eval()
+    accuracies = []
+    losses = []
+    class_probs = []
+    class_preds = []
+    for batch_id, data in enumerate(test_loader):
+        #准备数据
+        images, labels = data
+        #前向计算的过程
+        predicts = model(images)
+        #计算损失
+        loss = F.cross_entropy(predicts, labels)
+        #计算准确率
+        acc = paddle.metric.accuracy(predicts, labels)
+        accuracies.append(acc.numpy())
+        losses.append(loss.numpy())
+        #记录用于画 pr 曲线需要的预测概率和类别
+        class_probs_batch = [F.softmax(predict, axis=0) for predict in predicts]
+        class_preds_batch = paddle.argmax(predicts, 1)
+
+        class_probs.append(class_probs_batch)
+        class_preds.append(class_preds_batch)
+
+    test_probs = paddle.concat([paddle.stack(batch) for batch in class_probs]).numpy()
+    test_preds = paddle.concat(class_preds).numpy()
+
+    for i in range(10):
+      logwriter.add_pr_curve('class_{}'.format(i), labels=(test_preds == i),predictions=test_probs[:,i], step=epoch_id)
+```
+
+在“更多·PR 曲线”页面显示了所计算的每个类别的 PR 曲线。可以观察测试集上的 PR 曲线随着训练过程的变化情况，以及对比不同类别下 PR 曲线的差异。
+
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_12.png)
+
+图 12：查看 PR 曲线
+
+
+
+### 2.4 更多用法
+
+以上介绍了如何结合 VisualDL 可视化工具来辅助您进行网络模型的训练。还可以根据自己的需要，加入任何想要观察的数据。更多的写入接口说明可以参考[VisualDL 的官方文档](https://github.com/PaddlePaddle/VisualDL)。此外，可以在 Paddle 官网体验 VisualDL 全功能展示的[demo](https://www.paddlepaddle.org.cn/paddle/visualdl/demo/)。
