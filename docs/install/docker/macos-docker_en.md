@@ -1,10 +1,10 @@
-# **Install on MacOS via Docker**
+# **Install on macOS via Docker**
 
 [Docker](https://docs.docker.com/install/) is an open source application container engine. Using docker, you can not only isolate the installation and use of paddlepaddle from the system environment, but also share GPU, network and other resources with the host
 
 ## Environment preparation
 
-- MacOS version 10.11/10.12/10.13/10.14 (64 bit)(not support GPU version)
+- macOS version 10.11/10.12/10.13/10.14 (64 bit)(not support GPU version)
 
 - On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
 

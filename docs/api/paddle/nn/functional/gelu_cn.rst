@@ -5,9 +5,9 @@ gelu
 
 .. py:function:: paddle.nn.functional.gelu(x, approximate=False, name=None)
 
-gelu激活层（GELU Activation Operator）
+gelu 激活层（GELU Activation Operator）
 
-逐元素计算 gelu激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv.org/abs/1606.08415>`_ 。
+逐元素计算 gelu 激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv.org/abs/1606.08415>`_ 。
 
 如果使用近似计算：
 

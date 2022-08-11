@@ -20,4 +20,5 @@ TruncatedNormal
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.nn.initializer.TruncatedNormal:initializer_TruncatedNormal-example
+
+COPY-FROM: paddle.nn.initializer.TruncatedNormal

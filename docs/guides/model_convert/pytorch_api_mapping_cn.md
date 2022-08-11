@@ -1,29 +1,29 @@
-# PyTorch 1.8 与 Paddle 2.0 API映射表
-本文档基于[X2Paddle](https://github.com/PaddlePaddle/X2Paddle)研发过程梳理了PyTorch（v1.8.1)常用API与PaddlePaddle 2.0.0 API对应关系与差异分析。通过本文档，帮助开发者快速迁移PyTorch使用经验，完成模型的开发与调优。
+# PyTorch 1.8 与 Paddle 2.0 API 映射表
+本文档基于[X2Paddle](https://github.com/PaddlePaddle/X2Paddle)研发过程梳理了 PyTorch（v1.8.1)常用 API 与 PaddlePaddle 2.0.0 API 对应关系与差异分析。通过本文档，帮助开发者快速迁移 PyTorch 使用经验，完成模型的开发与调优。
 
-## X2Paddle介绍
-X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞桨框架，目前提供三大功能
+## X2Paddle 介绍
+X2Paddle 致力于帮助其它主流深度学习框架开发者快速迁移至飞桨框架，目前提供三大功能
 - 预测模型转换
-  - 支持Caffe/TensorFlow/ONNX/PyTorch的模型一键转为飞桨的预测模型，并使用PaddleInference/PaddleLite进行CPU/GPU/Arm等设备的部署
-- PyTorch训练项目转换
-  - 支持PyTorch项目Python代码（包括训练、预测）一键转为基于飞桨框架的项目代码，帮助开发者快速迁移项目，并可享受AIStudio平台对于飞桨框架提供的海量免费计算资源
-- API映射文档
-  - 详细的API文档对比分析，帮助开发者快速从PyTorch框架的使用迁移至飞桨框架的使用，大大降低学习成本
+  - 支持 Caffe/TensorFlow/ONNX/PyTorch 的模型一键转为飞桨的预测模型，并使用 PaddleInference/PaddleLite 进行 CPU/GPU/Arm 等设备的部署
+- PyTorch 训练项目转换
+  - 支持 PyTorch 项目 Python 代码（包括训练、预测）一键转为基于飞桨框架的项目代码，帮助开发者快速迁移项目，并可享受 AI Studio 平台对于飞桨框架提供的海量免费计算资源
+- API 映射文档
+  - 详细的 API 文档对比分析，帮助开发者快速从 PyTorch 框架的使用迁移至飞桨框架的使用，大大降低学习成本
 
-详细的项目信息与使用方法参考X2Paddle在Github上的开源项目: https://github.com/PaddlePaddle/X2Paddle
+详细的项目信息与使用方法参考 X2Paddle 在 GitHub 上的开源项目: https://github.com/PaddlePaddle/X2Paddle
 
-## API映射表目录
+## API 映射表目录
 
 | 类别         | 简介 |
 | ---------- | ------------------------- |
-| [基础操作类](#id1) | 主要为`torch.XX`类API |
-| [组网类](#id2)    | 主要为`torch.nn.XX`类下组网相关的API |
-| [Loss类](#lossapi) |主要为`torch.nn.XX`类下loss相关的API    |
-| [工具类](#id3)   | 主要为`torch.nn.XX`类下分布式相关的API和`torch.utils.XX`类API|
-| [视觉类](#id4)  | 主要为`torchvision.XX`类API |
+| [基础操作类](#id1) | 主要为`torch.XX`类 API |
+| [组网类](#id2)    | 主要为`torch.nn.XX`类下组网相关的 API |
+| [Loss 类](#lossapi) |主要为`torch.nn.XX`类下 loss 相关的 API    |
+| [工具类](#id3)   | 主要为`torch.nn.XX`类下分布式相关的 API 和`torch.utils.XX`类 API|
+| [视觉类](#id4)  | 主要为`torchvision.XX`类 API |
 
-## 基础操作类API映射列表
-梳理了基础操作的PyTorch-PaddlePaddle API映射列表，主要包括了构造Tensor、数学计算、逻辑计算相关的API。
+## 基础操作类 API 映射列表
+梳理了基础操作的 PyTorch-PaddlePaddle API 映射列表，主要包括了构造 Tensor、数学计算、逻辑计算相关的 API。
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -69,57 +69,57 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 | 40   | [torch.randperm](https://pytorch.org/docs/stable/generated/torch.randperm.html?highlight=randperm#torch.randperm) | [paddle.randperm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randperm_cn.html#randperm) | 功能一致，[参数不一致](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.randperm.md)                |
 | 41   | [torch.save](https://pytorch.org/docs/stable/generated/torch.save.html?highlight=save#torch.save) | [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/save_cn.html#save) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.save.md)                                |
 | 42   | [torch.load](https://pytorch.org/docs/stable/generated/torch.load.html?highlight=load#torch.load) | [paddle.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/load_cn.html#load) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.load.md)                                |
-| 43   | [torch.abs](https://pytorch.org/docs/stable/generated/torch.abs.html?highlight=abs#torch.abs) | [paddle.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/abs_cn.html#abs) | 功能一致，PaddlePaddle未定义`out`参数代表输出Tensor          |
-| 44   | [torch.absolute](https://pytorch.org/docs/stable/generated/torch.absolute.html?highlight=absolute#torch.absolute) | [paddle.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/abs_cn.html#abs) | 功能一致，PaddlePaddle未定义`out`参数代表输出Tensor          |
-| 45   | [torch.acos](https://pytorch.org/docs/stable/generated/torch.acos.html?highlight=torch%20acos#torch.acos) | [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acos_cn.html#acos) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 46   | [torch.arccos](https://pytorch.org/docs/stable/generated/torch.arccos.html?highlight=arccos#torch.arccos) | [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acos_cn.html#acos) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 47   | [torch.add](https://pytorch.org/docs/stable/generated/torch.add.html?highlight=add#torch.add) | [padle.add](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/add_cn.html#add) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 48   | [torch.asin](https://pytorch.org/docs/stable/generated/torch.asin.html?highlight=asin#torch.asin) | [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asin_cn.html#asin) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 49   | [torch.arcsin](https://pytorch.org/docs/stable/generated/torch.arcsin.html?highlight=arcsin#torch.arcsin) | [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asin_cn.html#asin) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 50   | [torch.atan](https://pytorch.org/docs/stable/generated/torch.atan.html?highlight=atan#torch.atan) | [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 51   | [torch.arctan](https://pytorch.org/docs/stable/generated/torch.arctan.html?highlight=arctan#torch.arctan) | [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 52   | [torch.ceil](https://pytorch.org/docs/stable/generated/torch.ceil.html?highlight=ceil#torch.ceil) | [paddle.ceil](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ceil_cn.html#ceil) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 53   | [torch.clamp](https://pytorch.org/docs/stable/generated/torch.clamp.html#torch.clamp) | [paddle.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/clip_cn.html#clip) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 54   | [torch.conj](https://pytorch.org/docs/stable/generated/torch.conj.html?highlight=conj#torch.conj) | [paddle.conj](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/conj_cn.html#conj) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 55   | [torch.cos](https://pytorch.org/docs/stable/generated/torch.cos.html?highlight=cos#torch.cos) | [paddle.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cos_cn.html#cos) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 56   | [torch.cosh](https://pytorch.org/docs/stable/generated/torch.cosh.html?highlight=cosh#torch.cosh) | [paddle.cosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cosh_cn.html#cosh) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
+| 43   | [torch.abs](https://pytorch.org/docs/stable/generated/torch.abs.html?highlight=abs#torch.abs) | [paddle.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/abs_cn.html#abs) | 功能一致，PaddlePaddle 未定义`out`参数代表输出 Tensor          |
+| 44   | [torch.absolute](https://pytorch.org/docs/stable/generated/torch.absolute.html?highlight=absolute#torch.absolute) | [paddle.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/abs_cn.html#abs) | 功能一致，PaddlePaddle 未定义`out`参数代表输出 Tensor          |
+| 45   | [torch.acos](https://pytorch.org/docs/stable/generated/torch.acos.html?highlight=torch%20acos#torch.acos) | [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acos_cn.html#acos) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 46   | [torch.arccos](https://pytorch.org/docs/stable/generated/torch.arccos.html?highlight=arccos#torch.arccos) | [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acos_cn.html#acos) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 47   | [torch.add](https://pytorch.org/docs/stable/generated/torch.add.html?highlight=add#torch.add) | [padle.add](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/add_cn.html#add) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 48   | [torch.asin](https://pytorch.org/docs/stable/generated/torch.asin.html?highlight=asin#torch.asin) | [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asin_cn.html#asin) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 49   | [torch.arcsin](https://pytorch.org/docs/stable/generated/torch.arcsin.html?highlight=arcsin#torch.arcsin) | [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asin_cn.html#asin) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 50   | [torch.atan](https://pytorch.org/docs/stable/generated/torch.atan.html?highlight=atan#torch.atan) | [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 51   | [torch.arctan](https://pytorch.org/docs/stable/generated/torch.arctan.html?highlight=arctan#torch.arctan) | [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 52   | [torch.ceil](https://pytorch.org/docs/stable/generated/torch.ceil.html?highlight=ceil#torch.ceil) | [paddle.ceil](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ceil_cn.html#ceil) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 53   | [torch.clamp](https://pytorch.org/docs/stable/generated/torch.clamp.html#torch.clamp) | [paddle.clip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/clip_cn.html#clip) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 54   | [torch.conj](https://pytorch.org/docs/stable/generated/torch.conj.html?highlight=conj#torch.conj) | [paddle.conj](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/conj_cn.html#conj) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 55   | [torch.cos](https://pytorch.org/docs/stable/generated/torch.cos.html?highlight=cos#torch.cos) | [paddle.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cos_cn.html#cos) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 56   | [torch.cosh](https://pytorch.org/docs/stable/generated/torch.cosh.html?highlight=cosh#torch.cosh) | [paddle.cosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cosh_cn.html#cosh) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
 | 57   | [torch.div](https://pytorch.org/docs/stable/generated/torch.div.html?highlight=div#torch.div) | [paddle.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/divide_cn.html#divide) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.div.md)                                 |
 | 58   | [torch.divide](https://pytorch.org/docs/stable/generated/torch.divide.html?highlight=divide#torch.divide) | [paddle.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/divide_cn.html#divide) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/ops/torch.divide.md)                              |
-| 59   | [torch.erf](https://pytorch.org/docs/stable/generated/torch.erf.html?highlight=erf#torch.erf) | [paddle.erf](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/erf_cn.html#erf) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 60   | [torch.exp](https://pytorch.org/docs/stable/generated/torch.exp.html?highlight=exp#torch.exp) | [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/exp_cn.html#exp) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 61   | [torch.floor](https://pytorch.org/docs/stable/generated/torch.floor.html?highlight=floor#torch.floor) | [paddle.floor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_cn.html#floor) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 62   | [torch.floor_divide](https://pytorch.org/docs/stable/generated/torch.floor_divide.html?highlight=floor_divide#torch.floor_divide) | [paddle.floor_divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_divide_cn.html#floor-divide) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 63   | [torch.fmod](https://pytorch.org/docs/stable/generated/torch.fmod.html?highlight=fmod#torch.fmod) | [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mod_cn.html#mod) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 64   | [torch.log](https://pytorch.org/docs/stable/generated/torch.log.html?highlight=log#torch.log) | [paddle.log](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log_cn.html#log) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 65   | [torch.log10](https://pytorch.org/docs/stable/generated/torch.log10.html?highlight=log10#torch.log10) | [paddle.log10](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log10_cn.html#log10) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 66   | [torch.log1p](https://pytorch.org/docs/stable/generated/torch.log1p.html?highlight=log1p#torch.log1p) | [paddle.log1p](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log1p_cn.html#log1p) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 67   | [torch.log2](https://pytorch.org/docs/stable/generated/torch.log2.html?highlight=log2#torch.log2) | [paddle.log2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log2_cn.html#log2) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
+| 59   | [torch.erf](https://pytorch.org/docs/stable/generated/torch.erf.html?highlight=erf#torch.erf) | [paddle.erf](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/erf_cn.html#erf) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 60   | [torch.exp](https://pytorch.org/docs/stable/generated/torch.exp.html?highlight=exp#torch.exp) | [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/exp_cn.html#exp) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 61   | [torch.floor](https://pytorch.org/docs/stable/generated/torch.floor.html?highlight=floor#torch.floor) | [paddle.floor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_cn.html#floor) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 62   | [torch.floor_divide](https://pytorch.org/docs/stable/generated/torch.floor_divide.html?highlight=floor_divide#torch.floor_divide) | [paddle.floor_divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_divide_cn.html#floor-divide) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 63   | [torch.fmod](https://pytorch.org/docs/stable/generated/torch.fmod.html?highlight=fmod#torch.fmod) | [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mod_cn.html#mod) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 64   | [torch.log](https://pytorch.org/docs/stable/generated/torch.log.html?highlight=log#torch.log) | [paddle.log](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log_cn.html#log) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 65   | [torch.log10](https://pytorch.org/docs/stable/generated/torch.log10.html?highlight=log10#torch.log10) | [paddle.log10](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log10_cn.html#log10) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 66   | [torch.log1p](https://pytorch.org/docs/stable/generated/torch.log1p.html?highlight=log1p#torch.log1p) | [paddle.log1p](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log1p_cn.html#log1p) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 67   | [torch.log2](https://pytorch.org/docs/stable/generated/torch.log2.html?highlight=log2#torch.log2) | [paddle.log2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log2_cn.html#log2) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
 | 68   | [torch.logical_and](https://pytorch.org/docs/stable/generated/torch.logical_and.html?highlight=logical_and#torch.logical_and) | [paddle.logical_and](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_and_cn.html#logical-and) | 功能一致，参数名不一致                                       |
 | 69   | [torch.logical_not](https://pytorch.org/docs/stable/generated/torch.logical_not.html?highlight=logical_not#torch.logical_not) | [paddle.logical_not](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_not_cn.html#logical-not) | 功能一致，参数名不一致                                       |
 | 70   | [torch.logical_or](https://pytorch.org/docs/stable/generated/torch.logical_or.html?highlight=logical_or#torch.logical_or) | [paddle.logical_or](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_or_cn.html#logical-or) | 功能一致，参数名不一致                                       |
 | 71   | [torch.logical_xor](https://pytorch.org/docs/stable/generated/torch.logical_xor.html?highlight=logical_xor#torch.logical_xor) | [paddle.logical_xor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_xor_cn.html#logical-xor) | 功能一致，参数名不一致                                       |
-| 72   | [torch.mul](https://pytorch.org/docs/stable/generated/torch.mul.html?highlight=torch%20mul#torch.mul) | [paddle.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/multiply_cn.html#multiply) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 73   | [torch.multiply](https://pytorch.org/docs/stable/generated/torch.multiply.html?highlight=multiply#torch.multiply) | [paddle.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/multiply_cn.html#multiply) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 74   | [torch.pow](https://pytorch.org/docs/stable/generated/torch.pow.html?highlight=pow#torch.pow) | [paddle.pow](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/pow_cn.html#pow) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
+| 72   | [torch.mul](https://pytorch.org/docs/stable/generated/torch.mul.html?highlight=torch%20mul#torch.mul) | [paddle.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/multiply_cn.html#multiply) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 73   | [torch.multiply](https://pytorch.org/docs/stable/generated/torch.multiply.html?highlight=multiply#torch.multiply) | [paddle.multiply](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/multiply_cn.html#multiply) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 74   | [torch.pow](https://pytorch.org/docs/stable/generated/torch.pow.html?highlight=pow#torch.pow) | [paddle.pow](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/pow_cn.html#pow) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
 | 75   | [torch.real](https://pytorch.org/docs/stable/generated/torch.real.html?highlight=real#torch.real) | [paddle.real](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/real_cn.html#real) | 功能一致，参数名不一致                                       |
-| 76   | [torch.reciprocal](https://pytorch.org/docs/stable/generated/torch.reciprocal.html?highlight=reciprocal#torch.reciprocal) | [paddle.reciprocal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reciprocal_cn.html#reciprocal) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 77   | [torch.remainder](https://pytorch.org/docs/stable/generated/torch.remainder.html?highlight=remainder#torch.remainder) | [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mod_cn.html#mod) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 78   | [torch.round](https://pytorch.org/docs/stable/generated/torch.round.html?highlight=round#torch.round) | [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/round_cn.html#round) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 79   | [torch.rsqrt](https://pytorch.org/docs/stable/generated/torch.rsqrt.html?highlight=rsqrt#torch.rsqrt) | [paddle.rsqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rsqrt_cn.html#rsqrt) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 80   | [torch.sign](https://pytorch.org/docs/stable/generated/torch.sign.html?highlight=sign#torch.sign) | [paddle.sign](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sign_cn.html#sign) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 81   | [torch.sin](https://pytorch.org/docs/stable/generated/torch.sin.html?highlight=sin#torch.sin) | [paddle.sin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sin_cn.html#sin) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 82   | [torch.sinh](https://pytorch.org/docs/stable/generated/torch.sinh.html?highlight=sinh#torch.sinh) | [paddle.sinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sinh_cn.html#sinh) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 83   | [torch.sqrt](https://pytorch.org/docs/stable/generated/torch.sqrt.html?highlight=sqrt#torch.sqrt) | [paddle.sqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sqrt_cn.html#sqrt) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
+| 76   | [torch.reciprocal](https://pytorch.org/docs/stable/generated/torch.reciprocal.html?highlight=reciprocal#torch.reciprocal) | [paddle.reciprocal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reciprocal_cn.html#reciprocal) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 77   | [torch.remainder](https://pytorch.org/docs/stable/generated/torch.remainder.html?highlight=remainder#torch.remainder) | [paddle.mod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mod_cn.html#mod) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 78   | [torch.round](https://pytorch.org/docs/stable/generated/torch.round.html?highlight=round#torch.round) | [paddle.round](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/round_cn.html#round) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 79   | [torch.rsqrt](https://pytorch.org/docs/stable/generated/torch.rsqrt.html?highlight=rsqrt#torch.rsqrt) | [paddle.rsqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rsqrt_cn.html#rsqrt) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 80   | [torch.sign](https://pytorch.org/docs/stable/generated/torch.sign.html?highlight=sign#torch.sign) | [paddle.sign](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sign_cn.html#sign) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 81   | [torch.sin](https://pytorch.org/docs/stable/generated/torch.sin.html?highlight=sin#torch.sin) | [paddle.sin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sin_cn.html#sin) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 82   | [torch.sinh](https://pytorch.org/docs/stable/generated/torch.sinh.html?highlight=sinh#torch.sinh) | [paddle.sinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sinh_cn.html#sinh) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 83   | [torch.sqrt](https://pytorch.org/docs/stable/generated/torch.sqrt.html?highlight=sqrt#torch.sqrt) | [paddle.sqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sqrt_cn.html#sqrt) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
 | 84   | [torch.argmax](https://pytorch.org/docs/stable/generated/torch.argmax.html?highlight=argmax#torch.argmax) | [paddle.argmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/argmax_cn.html#argmax) | 功能一致，参数名不一致                                       |
 | 85   | [torch.argmin](https://pytorch.org/docs/stable/generated/torch.argmin.html?highlight=argmin#torch.argmin) | [paddle.argmin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/argmin_cn.html#argmin) | 功能一致，参数名不一致                                       |
-| 86   | [torch.max](https://pytorch.org/docs/stable/generated/torch.max.html?highlight=max#torch.max) | [paddle.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/max_cn.html#max) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
-| 87   | [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html?highlight=min#torch.min) | [paddle.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/min_cn.html#min) | 功能一致，参数名不一致，PaddlePaddle未定义`out`参数代表输出Tensor |
+| 86   | [torch.max](https://pytorch.org/docs/stable/generated/torch.max.html?highlight=max#torch.max) | [paddle.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/max_cn.html#max) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
+| 87   | [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html?highlight=min#torch.min) | [paddle.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/min_cn.html#min) | 功能一致，参数名不一致，PaddlePaddle 未定义`out`参数代表输出 Tensor |
 
 ***持续更新...***
 
-## 组网类API映射列表
+## 组网类 API 映射列表
 
-梳理了与构造网络相关的PyTorch-PaddlePaddle API映射列表。
+梳理了与构造网络相关的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -163,34 +163,34 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 | 38   | [torch.nn.LSTM](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html?highlight=lstm#torch.nn.LSTM) | [paddle.nn.LSTM](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LSTM_cn.html#lstm) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.LSTM.md)                              |
 | 39   | [torch.nn.GRU](https://pytorch.org/docs/stable/generated/torch.nn.GRU.html?highlight=torch%20nn%20gru#torch.nn.GRU) | [paddle.nn.GRU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/GRU_cn.html#gru) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.GRU.md)                               |
 | 40   | [torch.nn.Embedding](https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html?highlight=embedding#torch.nn.Embedding) | [paddle.nn.Embedding](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Embedding_cn.html#embedding) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/nn/torch.nn.Embedding.md)                         |
-| 41   | [torch.nn.ELU](https://pytorch.org/docs/stable/generated/torch.nn.ELU.html?highlight=elu#torch.nn.ELU) | [paddle.nn.ELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ELU_cn.html#elu) | 功能一致，PaddlePaddle未定义`inplace`参数表示在不更改变量的内存地址的情况下，直接修改变量的值 |
-| 42   | [torch.nn.Hardsigmoid](https://pytorch.org/docs/stable/generated/torch.nn.Hardsigmoid.html?highlight=hardsigmoid#torch.nn.Hardsigmoid) | [paddle.nn.Hardsigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Hardsigmoid_cn.html#hardsigmoid) | 功能一致，PaddlePaddle未定义`inplace`参数表示在不更改变量的内存地址的情况下，直接修改变量的值 |
-| 43   | [torch.nn.LeakyReLU](https://pytorch.org/docs/stable/generated/torch.nn.LeakyReLU.html?highlight=leakyrelu#torch.nn.LeakyReLU) | [paddle.nn.LeakyReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LeakyReLU_cn.html#leakyrelu) | 功能一致，PaddlePaddle未定义`inplace`参数表示在不更改变量的内存地址的情况下，直接修改变量的值 |
+| 41   | [torch.nn.ELU](https://pytorch.org/docs/stable/generated/torch.nn.ELU.html?highlight=elu#torch.nn.ELU) | [paddle.nn.ELU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ELU_cn.html#elu) | 功能一致，PaddlePaddle 未定义`inplace`参数表示在不更改变量的内存地址的情况下，直接修改变量的值 |
+| 42   | [torch.nn.Hardsigmoid](https://pytorch.org/docs/stable/generated/torch.nn.Hardsigmoid.html?highlight=hardsigmoid#torch.nn.Hardsigmoid) | [paddle.nn.Hardsigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Hardsigmoid_cn.html#hardsigmoid) | 功能一致，PaddlePaddle 未定义`inplace`参数表示在不更改变量的内存地址的情况下，直接修改变量的值 |
+| 43   | [torch.nn.LeakyReLU](https://pytorch.org/docs/stable/generated/torch.nn.LeakyReLU.html?highlight=leakyrelu#torch.nn.LeakyReLU) | [paddle.nn.LeakyReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LeakyReLU_cn.html#leakyrelu) | 功能一致，PaddlePaddle 未定义`inplace`参数表示在不更改变量的内存地址的情况下，直接修改变量的值 |
 | 44   | [torch.nn.PReLU](https://pytorch.org/docs/stable/generated/torch.nn.PReLU.html?highlight=prelu#torch.nn.PReLU) | [paddle.nn.PReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/PReLU_cn.html#prelu) | 功能一致                                                     |
-| 45   | [torch.nn.ReLU](https://pytorch.org/docs/stable/generated/torch.nn.ReLU.html?highlight=relu#torch.nn.ReLU) | [paddle.nn.ReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ReLU_cn.html#relu) | 功能一致，PaddlePaddle未定义`inplace`参数表示在不更改变量的内存地址的情况下，直接修改变量的值 |
+| 45   | [torch.nn.ReLU](https://pytorch.org/docs/stable/generated/torch.nn.ReLU.html?highlight=relu#torch.nn.ReLU) | [paddle.nn.ReLU](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ReLU_cn.html#relu) | 功能一致，PaddlePaddle 未定义`inplace`参数表示在不更改变量的内存地址的情况下，直接修改变量的值 |
 | 46   | [torch.nn.Softmax](https://pytorch.org/docs/stable/generated/torch.nn.Softmax.html?highlight=softmax#torch.nn.Softmax) | [paddle.nn.Softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Softmax_cn.html#softmax) | 功能一致，参数名不一致  |
 
 
 ***持续更新...***
 
-## Loss类API映射列表
-梳理了计算loss相关的PyTorch-PaddlePaddle API映射列表。
+## Loss 类 API 映射列表
+梳理了计算 loss 相关的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1    | [torch.nn.L1Loss](https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html?highlight=l1loss#torch.nn.L1Loss) | [paddle.nn.L1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/loss/L1Loss_cn.html#l1loss) | 功能一致，PyTroch存在废弃参数`size_average`和`reduce`。      |
-| 2    | [torch.nn.MSELoss](https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss) | [paddle.nn.MSELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MSELoss_cn.html#mseloss) | 功能一致，PyTroch存在废弃参数`size_average`和`reduce`。      |
+| 1    | [torch.nn.L1Loss](https://pytorch.org/docs/stable/generated/torch.nn.L1Loss.html?highlight=l1loss#torch.nn.L1Loss) | [paddle.nn.L1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/loss/L1Loss_cn.html#l1loss) | 功能一致，PyTorch 存在废弃参数`size_average`和`reduce`。      |
+| 2    | [torch.nn.MSELoss](https://pytorch.org/docs/stable/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss) | [paddle.nn.MSELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MSELoss_cn.html#mseloss) | 功能一致，PyTorch 存在废弃参数`size_average`和`reduce`。      |
 | 3    | [torch.nn.CrossEntropyLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/layer/loss/CrossEntropyLoss_cn.html#crossentropyloss) | [paddle.nn.CrossEntropyLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/CrossEntropyLoss_cn.html#crossentropyloss) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/loss/torch.nn.CrossEntropyLoss.md)                |
 | 4    | [torch.nn.KLDivLoss](https://pytorch.org/docs/stable/generated/torch.nn.KLDivLoss.html?highlight=kldivloss#torch.nn.KLDivLoss) | [paddle.nn.KLDivLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/KLDivLoss_cn.html#kldivloss) | [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/loss/torch.nn.KLDivLoss.md)                       |
-| 5    | [torch.nn.BCELoss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss) | [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCELoss_cn.html#bceloss) | 功能一致，PyTroch存在废弃参数`size_average`和`reduce`。      |
-| 6    | [torch.nn.BCEWithLogitsLoss](https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html?highlight=bcewithlogitsloss#torch.nn.BCEWithLogitsLoss) | [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCEWithLogitsLoss_cn.html#bcewithlogitsloss) | 功能一致，PyTroch存在废弃参数`size_average`和`reduce`。      |
-| 7    | [torch.nn.SmoothL1Loss](https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html?highlight=torch%20nn%20smoothl1loss#torch.nn.SmoothL1Loss) | [paddle.nn.SmoothL1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/SmoothL1Loss_cn.html#smoothl1loss) | 功能一致，参数名不一致，PyTroch存在废弃参数`size_average`和`reduce`。 |
+| 5    | [torch.nn.BCELoss](https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss) | [paddle.nn.BCELoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCELoss_cn.html#bceloss) | 功能一致，PyTorch 存在废弃参数`size_average`和`reduce`。      |
+| 6    | [torch.nn.BCEWithLogitsLoss](https://pytorch.org/docs/stable/generated/torch.nn.BCEWithLogitsLoss.html?highlight=bcewithlogitsloss#torch.nn.BCEWithLogitsLoss) | [paddle.nn.BCEWithLogitsLoss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/BCEWithLogitsLoss_cn.html#bcewithlogitsloss) | 功能一致，PyTorch 存在废弃参数`size_average`和`reduce`。      |
+| 7    | [torch.nn.SmoothL1Loss](https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html?highlight=torch%20nn%20smoothl1loss#torch.nn.SmoothL1Loss) | [paddle.nn.SmoothL1Loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/SmoothL1Loss_cn.html#smoothl1loss) | 功能一致，参数名不一致，PyTorch 存在废弃参数`size_average`和`reduce`。 |
 
 
 ***持续更新...***
 
-## 工具类API映射列表
-梳理了与数据处理、分布式处理等相关的PyTorch-PaddlePaddle API映射列表。
+## 工具类 API 映射列表
+梳理了与数据处理、分布式处理等相关的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -206,9 +206,9 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 
 ***持续更新...***
 
-## 视觉类API映射列表
+## 视觉类 API 映射列表
 
-梳理了与视觉处理相关的PyTorch-PaddlePaddle API映射列表。
+梳理了与视觉处理相关的 PyTorch-PaddlePaddle API 映射列表。
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                    |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
@@ -228,6 +228,6 @@ X2Paddle致力于帮助其它主流深度学习框架开发者快速迁移至飞
 | 14   | [torchvision.transforms.RandomVerticalFlip](https://pytorch.org/vision/stable/transforms.html?highlight=randomverticalflip#torchvision.transforms.RandomVerticalFlip) | [paddle.vision.transforms.RandomVerticalFlip](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/vision/transforms/RandomVerticalFlip_cn.html#randomverticalflip) | 功能一致                                                |
 | 15   | [torchvision.transforms.Lambda](https://pytorch.org/vision/stable/transforms.html?highlight=lambda#torchvision.transforms.Lambda) | 无对应实现                                                   | [组合实现](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.transforms.Lambda.md)     |
 | 17   | [torchvision.utils.save_image](https://pytorch.org/vision/stable/utils.html?highlight=save_image#torchvision.utils.save_image) | 无对应实现                                                   | [组合实现](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.utils.save_image.md)      |
-| 18   | [torchvision.models 系列模型](https://pytorch.org/vision/stable/models.html?highlight=torchvision%20models) | X2Paddle提供                                                 | [使用方式](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.models.md)                                                |
+| 18   | [torchvision.models 系列模型](https://pytorch.org/vision/stable/models.html?highlight=torchvision%20models) | X2Paddle 提供                                                 | [使用方式](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/vision/torchvision.models.md)                                                |
 
 ***持续更新...***

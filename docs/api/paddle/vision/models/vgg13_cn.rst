@@ -24,4 +24,3 @@ vgg13
 :::::::::
 
 COPY-FROM: paddle.vision.models.vgg13
-

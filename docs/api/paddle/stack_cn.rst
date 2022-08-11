@@ -55,9 +55,9 @@ stack
 参数
 :::::::::
 
-        - **x** (list[Tensor]|tuple[Tensor]) – 输入 x 是多个 Tensor，且这些Tensor的维度和数据类型必须相同。支持的数据类型：float32、float64、int32、int64。
+        - **x** (list[Tensor]|tuple[Tensor]) – 输入 x 是多个 Tensor，且这些 Tensor 的维度和数据类型必须相同。支持的数据类型：float32、float64、int32、int64。
 
-        - **axis** (int，可选) – 指定对输入 Tensor 进行堆叠运算的轴，有效 axis 的范围是：[−(R+1),R+1]，R是输入中第一个 Tensor 的维数。如果 axis < 0，则 axis=axis+R+1。默认值为0。
+        - **axis** (int，可选) – 指定对输入 Tensor 进行堆叠运算的轴，有效 axis 的范围是：[−(R+1),R+1]，R 是输入中第一个 Tensor 的维数。如果 axis < 0，则 axis=axis+R+1。默认值为 0。
 
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
@@ -69,26 +69,4 @@ stack
 代码示例
 ::::::::::::
 
-.. code-block:: python
-   
-    import paddle
-    
-    x1 = paddle.to_tensor([[1.0, 2.0]])
-    x2 = paddle.to_tensor([[3.0, 4.0]])
-    x3 = paddle.to_tensor([[5.0, 6.0]])
-    
-    out = paddle.stack([x1, x2, x3], axis=0)
-    print(out.shape)  # [3, 1, 2]
-    print(out)
-    # [[[1., 2.]],
-    #  [[3., 4.]],
-    #  [[5., 6.]]]
-
-    out = paddle.stack([x1, x2, x3], axis=-2)
-    print(out.shape)  # [1, 3, 2]
-    print(out)
-    # [[[1., 2.],
-    #   [3., 4.],
-    #   [5., 6.]]]
-    
-    
+COPY-FROM: paddle.stack

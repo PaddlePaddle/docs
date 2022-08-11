@@ -8,7 +8,7 @@ LayerDict
 
 
 
-LayerDict用于保存子层到有序字典中，它包含的子层将被正确地注册和添加。列表中的子层可以像常规python 有序字典一样被访问。
+LayerDict 用于保存子层到有序字典中，它包含的子层将被正确地注册和添加。列表中的子层可以像常规 python 有序字典一样被访问。
 
 参数
 ::::::::::::
@@ -58,7 +58,7 @@ LayerDict用于保存子层到有序字典中，它包含的子层将被正确�
 clear()
 '''''''''
 
-清除LayerDict 中所有的子层。
+清除 LayerDict 中所有的子层。
 
 **参数**
 
@@ -88,11 +88,11 @@ clear()
 pop()
 '''''''''
 
-移除LayerDict 中的键 并且返回该键对应的子层。
+移除 LayerDict 中的键 并且返回该键对应的子层。
 
 **参数**
 
-    - **key** (str) - 要移除的key。
+    - **key** (str) - 要移除的 key。
 
 **代码示例**
 
@@ -118,7 +118,7 @@ pop()
 keys()
 '''''''''
 
-返回LayerDict 中键的可迭代对象。
+返回 LayerDict 中键的可迭代对象。
 
 **参数**
 
@@ -149,7 +149,7 @@ keys()
 items()
 '''''''''
 
-返回LayerDict 中键/值对的可迭代对象。
+返回 LayerDict 中键/值对的可迭代对象。
 
 **参数**
 
@@ -180,7 +180,7 @@ items()
 values()
 '''''''''
 
-返回LayerDict 中值的可迭代对象。
+返回 LayerDict 中值的可迭代对象。
 
 **参数**
 
@@ -211,7 +211,7 @@ values()
 update()
 '''''''''
 
-更新子层中的键/值对到LayerDict中，会覆盖已经存在的键。
+更新子层中的键/值对到 LayerDict 中，会覆盖已经存在的键。
 
 **参数**
 
@@ -244,4 +244,3 @@ update()
     #conv2d : Conv2D(4, 2, kernel_size=[4, 4], data_format=NCHW)
     #conv3d : Conv3D(4, 6, kernel_size=[3, 3, 3], data_format=NCDHW)
     #relu : ReLU()
-    

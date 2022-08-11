@@ -28,9 +28,9 @@
         <td>  </td>
     </tr>
     <tr>
-        <td> Clang (MacOS Only) </td>
+        <td> Clang (macOS Only) </td>
         <td> 9.0 and above </td>
-        <td> Usually use the clang version of MacOS 10.11 and above </td>
+        <td> Usually use the clang version of macOS 10.11 and above </td>
         <td>  </td>
     </tr>
         <tr>
@@ -103,7 +103,7 @@
         <td> unrar </td>
         <td>  </td>
         <td> </td>
-        <td> brew install unrar (For MacOS), apt-get install unrar (For Ubuntu) </td>
+        <td> brew install rar (For macOS), apt-get install unrar (For Ubuntu) </td>
     </tr>
     </tbody>
 </table>
@@ -200,7 +200,7 @@ PaddlePaddle can be compiled and run using any version after cuDNN v5.1, but try
 
 PaddePaddle implements references to various BLAS/CUDA/cuDNN libraries by specifying paths at compile time. When cmake compiles, it first searches the system paths ( `/usr/liby` and `/usr/local/lib` ) for these libraries, and also reads the relevant path variables for searching. Can be set by using the `-D` command, for example:
 
-> `Cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCUDNN_ROOT=/opt/cudnnv5`
+> `cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCUDNN_ROOT=/opt/cudnnv5`
 
 **Note**: The settings introduced here for these compilation options are only valid for the first cmake. If you want to reset it later, it is recommended to clean up the entire build directory ( rm -rf ) and then specify it.
 

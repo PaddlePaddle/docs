@@ -5,7 +5,7 @@ tolist
 
 .. py:function:: paddle.tolist(x)
 
-将paddle Tensor转化为python list，注意：只适用于动态图。
+将 paddle Tensor 转化为 python list，注意：只适用于动态图。
 
 .. code-block:: text
 
@@ -18,20 +18,11 @@ tolist
 
 返回
 :::::::::
-Tensor对应结构的list。
+Tensor 对应结构的 list。
 
 
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    
-    t = paddle.to_tensor([0,1,2,3,4])
-    expectlist = t.tolist()
-    print(expectlist)   #[0, 1, 2, 3, 4]
-    
-    expectlist = paddle.tolist(t)
-    print(expectlist)   #[0, 1, 2, 3, 4]
+COPY-FROM: paddle.tolist

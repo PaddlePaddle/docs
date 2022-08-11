@@ -2,7 +2,7 @@
 
 In general, the default datatype (dtype) of training deep learning model is float32, and each data occupies 32 bits of storage space. In order to save the consumption of memory, the industry has proposed 16 bit data types (such as float16 and bfloat16 supported by GPU). Each data only needs 16 bits storage space, saving half the storage space compared with float32. Some chips can obtain faster computing speed on 16 bit data. For example, according to the data of NVIDIA, On a V100 GPU, matrix multiply and convolution operations can be speeded up to 8x in float16 over their float32 equivalents.
 
-Considering that some operators (OPS) require high data accuracy (such as softmax and cross_entropy), this kind of operator still needs to be calculated with float32. Some operators (such as conv2d and matmul) are not sensitive to data accuracy, float16 / bfloat16 can be used to improve the calculation speed and reduce the storage space, Paddle provides **Automatic Mixed Precision (AMP)**, during model training, the appropriate data calculation accuracy (float32 or float16 / bfloat16) is automatically selected for the operator, which can accelerate the training without losing the training accuracy. Please refer to the papers jointly released by Baidu and NVIDIA in 2018: [MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf). This tutorial will introduce how to use automatic mixed precision training with PaddlePaddle.  
+Considering that some operators (OPS) require high data accuracy (such as softmax and cross_entropy), this kind of operator still needs to be calculated with float32. Some operators (such as conv2d and matmul) are not sensitive to data accuracy, float16 / bfloat16 can be used to improve the calculation speed and reduce the storage space, Paddle provides **Automatic Mixed Precision (AMP)**, during model training, the appropriate data calculation accuracy (float32 or float16 / bfloat16) is automatically selected for the operator, which can accelerate the training without losing the training accuracy. Please refer to the papers jointly released by Baidu and NVIDIA in 2018: [MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf). This tutorial will introduce how to use automatic mixed precision training with PaddlePaddle.
 
 ## I. overview
 
@@ -61,7 +61,7 @@ Paddle AMP supports following hardware, and the data type supported by different
 <table>
     <tr>
         <td>硬件</td>
-        <td colspan="2">支持的混合精度</td>  
+        <td colspan="2">支持的混合精度</td>
     </tr>
     <tr>
         <td>Nvidia GPU</td>
@@ -74,15 +74,15 @@ Paddle AMP supports following hardware, and the data type supported by different
     </tr>
     <tr>
         <td>华为 NPU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
     <tr>
         <td>昆仑芯 XPU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
     <tr>
         <td>寒武纪 MLU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
 </table>
 

@@ -1,10 +1,10 @@
-# Kernel函数声明
+# Kernel 函数声明
 
-飞桨通过头文件发布函数式Kernel声明，框架内外一致。
+飞桨通过头文件发布函数式 Kernel 声明，框架内外一致。
 
-编写自定义Kernel需基于具体的Kernel函数声明，头文件位于飞桨安装路径的`include/paddle/phi/kernels/`下。
+编写自定义 Kernel 需基于具体的 Kernel 函数声明，头文件位于飞桨安装路径的`include/paddle/phi/kernels/`下。
 
-Kernel函数声明的格式如下：
+Kernel 函数声明的格式如下：
 
 ```c++
 template <typename T, typename Context>
@@ -18,10 +18,10 @@ void KernelNameKernel(const Context& dev_ctx,
 
 1. 模板参数：固定写法，第一个模板参数为数据类型`T`，第二个模板参数为设备上下文`Context`。
 2. 函数返回：固定为`void`。
-3. 函数命名：Kernel名称+Kernel后缀，驼峰式命名，如`SoftmaxKernel`。
-4. 函数参数：依次为设备上下文参数，输入Tensor参数（InputTensor），属性参数（Attribute）和输出Tensor参数（OutTensor）。其中：
+3. 函数命名：Kernel 名称+Kernel 后缀，驼峰式命名，如`SoftmaxKernel`。
+4. 函数参数：依次为设备上下文参数，输入 Tensor 参数（InputTensor），属性参数（Attribute）和输出 Tensor 参数（OutTensor）。其中：
 - 设备上下文参数：固定为`const Context&`类型；
-    - 自定义Kernel对应`CustomContext`类型，请参照[custom_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/custom/custom_context.h)
+    - 自定义 Kernel 对应`CustomContext`类型，请参照[custom_context.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/custom/custom_context.h)
 - InputTensor：数量>=0，支持的类型包括：
     - `const DenseTensor&` 请参照[dense_tensor.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/dense_tensor.h)
     - `const SelectedRows&` 请参照[selected_rows.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/selected_rows.h)
@@ -58,7 +58,7 @@ void KernelNameKernel(const Context& dev_ctx,
     - `std::vector<SparseCooTensor*>`
     - `std::vector<SparseCsrTensor*>`
 
-示例，如`softmax`的Kernel函数位于`softmax_kernel.h`中，具体如下：
+示例，如`softmax`的 Kernel 函数位于`softmax_kernel.h`中，具体如下：
 
 ```c++
 // Softmax 内核函数
@@ -79,5 +79,5 @@ void SoftmaxKernel(const Context& dev_ctx,
 ```
 
 > 注意：
-> 1. Kernel函数声明是自定义Kernel能够被注册和框架调用的基础，由框架发布，需要严格遵守
-> 2. Kernel函数声明与头文件可能不完全对应，可以按照函数命名约定等查找所需Kernel函数声明
+> 1. Kernel 函数声明是自定义 Kernel 能够被注册和框架调用的基础，由框架发布，需要严格遵守
+> 2. Kernel 函数声明与头文件可能不完全对应，可以按照函数命名约定等查找所需 Kernel 函数声明

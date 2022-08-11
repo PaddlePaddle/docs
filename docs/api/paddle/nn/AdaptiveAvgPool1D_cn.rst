@@ -31,4 +31,5 @@ AdaptiveAvgPool1D
 
 代码示例
 :::::::::
-COPY-FROM: paddle.nn.AdaptiveAvgPool1D:AdaptiveAvgPool1D-example
+
+COPY-FROM: paddle.nn.AdaptiveAvgPool1D

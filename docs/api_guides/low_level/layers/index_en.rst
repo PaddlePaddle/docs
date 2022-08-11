@@ -18,4 +18,3 @@ Neural Network Layer
     data_feeder_en.rst
     learning_rate_scheduler_en.rst
     tensor_en.rst
-
