@@ -43,7 +43,7 @@
 你需要创建一个新的分支来开发代码，一般从 Paddle 的 `develop` 分支上创建新分支。
 
 ```bash
-# 创建并切换到一个名为my-cool-stuff的分支
+# 创建并切换到一个名为 my-cool-stuff 的分支
 ➜  git checkout -b my-cool-stuff
 ```
 
@@ -246,7 +246,7 @@ CI 测试通过后，接下来请等待 Code Review，一般会在三个工作�
 
 ### 2.5 回复 Code Review 意见并修改代码
 
-收到 Code Review 意见后，请参考 [Code Review注意事项](#CodeReview) 回复评审人的意见，并根据意见修改代码。
+收到 Code Review 意见后，请参考 [Code Review 注意事项](#CodeReview) 回复评审人的意见，并根据意见修改代码。
 
 
 ### 2.6 PR Merge 后本次贡献结束

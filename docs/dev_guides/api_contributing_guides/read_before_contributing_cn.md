@@ -29,7 +29,7 @@
 
 当 API 设计文档合入后，开发者即可进行代码开发。此过程请参考相应的开发规范，包括如下步骤：
 
-- 如果新增 API 不需要开发新的 C++ OP，可以用其他 Python API 组合得到新的 API，请参考 [飞桨API Python 端开发指南](new_python_api_cn.html) 章节完成，包括开发 Python 代码、单元测试代码和 API 文档等步骤。
+- 如果新增 API 不需要开发新的 C++ OP，可以用其他 Python API 组合得到新的 API，请参考 [飞桨 API Python 端开发指南](new_python_api_cn.html) 章节完成，包括开发 Python 代码、单元测试代码和 API 文档等步骤。
 - 如果新增 API 需要开发新的 C++ OP，请参考 [C++ 算子开发指南](new_cpp_op_cn.html) 章节完成，包括开发 OP 实现代码、封装 Python API 代码、单元测试代码和 API 文档等步骤。
   - 在 paddle/phi/kernels 目录下存放了飞桨框架已经实现的不同硬件的算子内核，可供开发 C++ OP 时调用。
   - 有时也需要自己开发新的算子内核（OP Kernel），这时可能需要使用硬件支持的软件栈（如 CUDA）来实现，或者使用飞桨框架提供的 Kernel Primitive API 来实现，后者具体介绍请参见 [Kernel Primitive API](../op_optimization/kernel_primitive_api/index_cn.html) 章节。
