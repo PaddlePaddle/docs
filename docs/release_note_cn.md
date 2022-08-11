@@ -83,7 +83,7 @@
 
 #### GPU 性能优化
 
-- 添加 `bilinear_interp_v2` TensorRT convert 支持([#43618](https://github.com/PaddlePaddle/Paddle/pull/43618))
+- 添加 `bilinear_interp_v2` TensorRT convert 支持。([#43618](https://github.com/PaddlePaddle/Paddle/pull/43618))
 - 添加 `matmul_scale_fuse_pass`、`multihead_matmul_fuse_pass_v3`到 GPU pass，并添加单测。([#43765](https://github.com/PaddlePaddle/Paddle/pull/43765))
 - 添加 GPU handle 延迟初始化支持。([#43661](https://github.com/PaddlePaddle/Paddle/pull/43661))
 
@@ -394,7 +394,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
   - `paddle.sparse.sparse_csr_tensor`，创建 CSR 格式的 Sparse Tensor。([#40780](https://github.com/PaddlePaddle/Paddle/pull/40780))
 
-  - `paddle.sparse.ReLU`，支持 SparseCooTensor 的 ReLU 激活层。#40959](https://github.com/PaddlePaddle/Paddle/pull/40959))
+  - `paddle.sparse.ReLU`，支持 SparseCooTensor 的 ReLU 激活层。([#40959](https://github.com/PaddlePaddle/Paddle/pull/40959))
 
   - `paddle.sparse.functional.relu`，支持 SparseCooTensor 的 ReLU 函数。([#40959](https://github.com/PaddlePaddle/Paddle/pull/40959))
 
