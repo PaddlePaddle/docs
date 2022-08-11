@@ -89,9 +89,9 @@ prof.summary(sorted_by=SortedKeys.GPUTotal,
 
 飞桨 Profiler 提供了多个维度的性能数据呈现方式，方便深入分析模型性能瓶颈，主要包括：
 
-- 可查看主机侧（CPU）和设备侧（GPU，MLU）在不同线程或 stream 下的事件发生的时间线，具体参见 [Timeline 展示](#timelinezhanshi)；
-- 当 Profiler 的 timer_only 设置为 False 时，调用 summary 能够打印统计表单，通过不同角度的表单呈现性能数据，具体参见 [统计表单展示](#tongjibiaodanzhanshi)；
-- 当 Profiler 的 timer_only 设置为 True 时，仅展示模型的吞吐量以及时间开销，打印的统计表单请参见 [Benchmark 信息](#Benchmarkxinxi)。
+- 可查看主机侧（CPU）和设备侧（GPU，MLU）在不同线程或 stream 下的事件发生的时间线，具体参见 [Timeline 展示](#31-timeline-展示)；
+- 当 Profiler 的 timer_only 设置为 False 时，调用 summary 能够打印统计表单，通过不同角度的表单呈现性能数据，具体参见 [统计表单展示](#32-统计表单展示)；
+- 当 Profiler 的 timer_only 设置为 True 时，仅展示模型的吞吐量以及时间开销，打印的统计表单请参见 [Benchmark 信息](#33-benchmark-信息展示)。
 
 ## 二、使用 Profiler 调试模型性能示例
 
@@ -260,7 +260,7 @@ p = profiler.Profiler(scheduler = [3,14], on_trace_ready=my_on_trace_ready, time
 
 性能分析器会收集程序在第 3 到 14 次（不包括 14）训练迭代过程中的性能数据，并在 `profiler_demo`文件夹中输出一个 json 格式的文件，用于展示程序执行过程的 timeline，可通过 chrome 浏览器的 `chrome://tracing` 插件打开这个文件进行查看。
 
-![img](http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=69dfe8d66759414c97bd261c93cb4458)
+![img](images/profile_image_0.png)
 
 性能分析器还会直接在终端打印统计表单（建议运行程序时使用 `>`重定向符写入到文件中查看），这里重点分析程序输出的 `Model Summary` 表单
 
@@ -299,7 +299,7 @@ train_loader = paddle.io.DataLoader(cifar10_train,
 
 重新对程序进行性能分析，新的 timeline 和 Model Summary 如下所示：
 
-![img](http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=8f959bccdcf04f3eb6cc3213e5652411)
+![img](images/profile_image_1.png)
 
 可以看到，**从 Dataloader 中取数据的时间大大减少，变成了平均只占一个 step 的 2%，并且平均一个 step 所需要的时间也相应减少了。**
 
@@ -336,7 +336,7 @@ Time Unit: s, IPS Unit: steps/s
 
 对于采集的性能数据，导出为 chrome tracing timeline 格式的文件后，可以进行可视化分析。当前，所采用的可视化工具为 chrome 浏览器里的 [tracing 插件](chrome://tracing)，可以按照如下方式进行查看：
 
-![img](http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=f73a2fde51f34ce980caed05dc0672b6)
+![img](images/profile_image_2.gif)
 
 
 目前 Timeline 提供以下特性：
@@ -370,9 +370,10 @@ GPU Utilization = Current process GPU time / elapsed time.
 
 DeviceSummary 提供 CPU 和 GPU 的平均利用率信息。其中
 
-- - **CPU(Process)**：指的是进程的 CPU 平均利用率，算的是从 Profiler 开始记录数据到结束这一段过程，进程所利用到的 **cpu core 的总时间**与**该段时间**的占比。因此如果是多核的情况，对于进程来说 CPU 平均利用率是有可能超过 100%的，因为同时用到的多个 core 的时间进行了累加。
+  - **CPU(Process)**：指的是进程的 CPU 平均利用率，算的是从 Profiler 开始记录数据到结束这一段过程，进程所利用到的 **cpu core 的总时间**与**该段时间**的占比。因此如果是多核的情况，对于进程来说 CPU 平均利用率是有可能超过 100%的，因为同时用到的多个 core 的时间进行了累加。
   - **CPU(System)**：指的是整个系统的 CPU 平均利用率，算的是从 Profiler 开始记录数据到结束这一段过程，整个系统所有进程利用到的**cpu core 总时间**与**该段时间乘以 cpu core 的数量**的占比。可以当成是从 CPU 的视角来算的利用率。
   - **GPU**: 指的是进程的 GPU 平均利用率，算的是从 Profiler 开始记录数据到结束这一段过程，进程在 GPU 上所调用的**kernel 的执行时间**与**该段时间**的占比。
+
 - **Overview Summary**
 
 ```plain
@@ -452,7 +453,7 @@ ProfileStep                4945.15                    100.00
 
 Distribution Summary 用于展示分布式训练中通信 (Communication)、计算 (Computation) 以及这两者 Overlap 的时间。
 
-- - **Communication**：所有和通信有关活动的时间，包括和分布式相关的算子 (op) 以及 GPU 上的 kernel 的时间等。
+  - **Communication**：所有和通信有关活动的时间，包括和分布式相关的算子 (op) 以及 GPU 上的 kernel 的时间等。
   - **Computation**：所有 kernel 在 GPU 上的执行时间，但是去除了和通信相关的 kernel 的时间。
   - **Overlap：**Communication 和 Computation 的重叠时间。
 
