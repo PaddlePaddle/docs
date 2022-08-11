@@ -203,7 +203,7 @@ visualdl --logdir ./runs/mnist_experiment --model ./runs/mnist_experiment/model.
 
 如果是在[AI Studio](https://aistudio.baidu.com/aistudio/projectdetail/4188061?contributionType=1)上训练程序，可以在模型训练结束后，参考如下界面设置日志文件所在目录和模型文件，启动 VisualDL 的可视化服务。
 
-![img](http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=d128bd9ff9f047f6beb471476e44f43c)
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_0.png)
 
 
 
