@@ -203,7 +203,7 @@ visualdl --logdir ./runs/mnist_experiment --model ./runs/mnist_experiment/model.
 
 如果是在[AI Studio](https://aistudio.baidu.com/aistudio/projectdetail/4188061?contributionType=1)上训练程序，可以在模型训练结束后，参考如下界面设置日志文件所在目录和模型文件，启动 VisualDL 的可视化服务。
 
-![img](http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=d128bd9ff9f047f6beb471476e44f43c)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_0.png)
 
 
 
@@ -249,7 +249,7 @@ logwriter.add_image_matrix(tag='input_images', step=1, imgs=image_matrix, rows=-
 
 “样本数据·图像”页面显示了通过 add_image_matrix 接口写入的图像列表，可以看到写入的 9 张图像按照 3*3 的排列方式展示了出来，用于训练的数据是手写字体的数字。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_1.png?raw=text)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_1.png)
 
 图 1：查看输入图像
 
@@ -263,7 +263,7 @@ logwriter.add_embeddings('input_image_embeddings', mat=[img.reshape(-1) for img 
 
 “数据降维”页面显示了通过 add_embeddings 接口写入的向量降维后的位置关系。一般来说，越相似的图像投射到低维空间的距离就会越相近。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_2.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_2.png)
 
 图 2：查看数据降维的结果
 
@@ -282,7 +282,7 @@ paddle.jit.save(model, './runs/mnist_experiment/model', [paddle.static.InputSpec
 
 “网络结构”页面显示了使用飞桨搭建的网络结构。可以清晰的看到其拓扑连接方式以及每个结构单元的详细信息。通过网络结构图，可以分析自己搭建的网络拓扑是否符合设计时的预期，辅助做网络搭建的调试；以及查看每个节点输出的变量的形状，并通过此形状评估参数量的大小。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_3.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_3.png)
 
 图 3：查看网络结构
 
@@ -308,21 +308,21 @@ logwriter.add_hparams(hparams_dict={'lr': 0.0001, 'batch_size': 16, 'opt': 'adam
 
 “超参可视化”页面会显示通过 add_hparams 接口记录这两次不同实验的超参数信息，并对关联的曲线进行对比。通过表格视图，平行坐标图和散点图三种图，可以发现在学习率为 1e-4，优化器为 adam 的时候，训练的平均损失值更低，测试集上的测试精度更高。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_4.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_4.png)
 
 图 4：超参实验对比-表格视图
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_5.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_5.png)
 
 图 5：超参实验对比-平行坐标图
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_6.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_6.png)
 
 图 6：超参实验对比-散点图
 
 回到“标量数据”页面，查看 test_avg_acc 曲线。同样可以发现，学习率为 1e-4、优化器为 adam 的测试准确率曲线，在学习率为 1e-3、优化器为 sgd 对应的曲线之上。通过此对比，可以直观了解超参实验结果。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_7.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_7.png)
 
 图 7：查看测试准确率曲线
 
@@ -367,7 +367,7 @@ logwriter.add_hparams(hparams_dict={'lr': 0.0001, 'batch_size': 16, 'opt': 'adam
 
 “直方图”页面显示了 add_histogram 接口写入的模型参数。直方图的横坐标是值的大小，纵坐标是 step，高度代表值对应的元素数量。一般正常训练过程的参数分布变化，即向下图一样，由较大的方差向较小方差变化，从类似均匀分布偏向类似高斯分布。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_8.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_8.png)
 
 图 8：查看网络模型参数变化
 
@@ -410,7 +410,7 @@ for epoch_id in range(EPOCH_NUM):
 
 “标量数据”页面显示了 add_scalar 接口写入的每个 step 的损失函数值。可以看到随着网络的训练，损失函数的值趋势是先快速下降，然后缓慢下降并趋于稳定，说明模型的训练过程正常并且最后收敛了。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_9.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_9.png)
 
 图 9：查看训练过程中损失函数值变化
 
@@ -442,11 +442,11 @@ logwriter.add_scalar("test_avg_acc", value=avg_loss, step=epoch_id)
 
 add_scalar 接口写入的测试集的损失函数值和准确率的值，同样可以在“标量数据”页面看到。可以看到随着模型的训练，测试集上的损失函数值也在下降并且预测准确率在不断的升高，同样说明了模型的训练符合我们想要的预期。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_10.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_10.png)
 
 图 10：查看测试集的准确率值变化
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_11.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_11.png)
 
 图 11：查看测试集的损失函数值变化
 
@@ -488,7 +488,7 @@ VisualDL 可以在每个训练的 epoch 结束后，在测试集上画出对应�
 
 在“更多·PR 曲线”页面显示了所计算的每个类别的 PR 曲线。可以观察测试集上的 PR 曲线随着训练过程的变化情况，以及对比不同类别下 PR 曲线的差异。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_12.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_12.png)
 
 图 12：查看 PR 曲线
 
