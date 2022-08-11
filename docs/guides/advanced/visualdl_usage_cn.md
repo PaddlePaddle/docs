@@ -322,7 +322,7 @@ logwriter.add_hparams(hparams_dict={'lr': 0.0001, 'batch_size': 16, 'opt': 'adam
 
 回到“标量数据”页面，查看 test_avg_acc 曲线。同样可以发现，学习率为 1e-4、优化器为 adam 的测试准确率曲线，在学习率为 1e-3、优化器为 sgd 对应的曲线之上。通过此对比，可以直观了解超参实验结果。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_7.png)
+![img](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/advanced/images/visualdl_guide_image_7.png)
 
 图 7：查看测试准确率曲线
 
