@@ -5,7 +5,7 @@
 ### 1.1 目前飞桨支持的环境
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
-* **GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2，且仅支持单卡**
+* **GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6，且仅支持单卡**
 * **Python 版本 3.6+/3.7+/3.8+/3.9+ (64 bit)**
 * **pip 版本 20.2.2 或更高版本 (64 bit)**
 
@@ -53,15 +53,15 @@
 
   * **CUDA 工具包 10.1/10.2 配合 cuDNN v7.6.5+**
 
-  * **CUDA 工具包 11.0 配合 cuDNN v8.0.2**
-
   * **CUDA 工具包 11.1 配合 cuDNN v8.1.1**
 
   * **CUDA 工具包 11.2 配合 cuDNN v8.2.1**
 
+  * **CUDA 工具包 11.6 配合 cuDNN v8.4.0**
+
   * **GPU 运算能力超过 3.5 的硬件设备**
 
-  * 注：目前官方发布的 windows 安装包仅包含 CUDA 10.1/10.2/11.0/11.1/11.2，如需使用其他 cuda 版本，请通过源码自行编译。您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+  * 注：目前官方发布的 windows 安装包仅包含 CUDA 10.1/10.2/11.1/11.2/11.6，如需使用其他 cuda 版本，请通过源码自行编译。您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
 
@@ -97,15 +97,7 @@
   ```
 
 
-2.2.3 CUDA11.0 的 PaddlePaddle
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
-  ```
-
-
-2.2.4 CUDA11.1 的 PaddlePaddle
+2.2.3 CUDA11.1 的 PaddlePaddle
 
 
   ```
@@ -113,13 +105,17 @@
   ```
 
 
-2.2.5 CUDA11.2 的 PaddlePaddle
+2.2.4 CUDA11.2 的 PaddlePaddle
 
   ```
   python -m pip install paddlepaddle-gpu==0.0.0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
   ```
 
+2.2.5 CUDA11.6 的 PaddlePaddle
 
+  ```
+  python -m pip install paddlepaddle-gpu==0.0.0.post116 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  ```
 注：
 
 * 如果你使用的是安培架构的 GPU，推荐使用 CUDA11.2。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。

@@ -5,7 +5,7 @@
 ### 1.1 PREQUISITES
 
 * **Windows 7/8/10 Pro/Enterprise (64bit)**
-* **GPU Version support CUDA 10.1/10.2/11.0/11.1/11.2, and only support single GPU**
+* **GPU Version support CUDA 10.1/10.2/11.1/11.2/11.6 and only support single GPU**
 * **Python version 3.6+/3.7+/3.8+/3.9+(64bit)**
 * **pip version 20.2.2 or above (64bit)**
 
@@ -52,11 +52,11 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
   * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5+**
 
-  * **CUDA toolkit 11.0 with cuDNN v8.0.2**
-
   * **CUDA toolkit 11.1 with cuDNN v8.1.1**
 
   * **CUDA toolkit 11.2 with cuDNN v8.2.1**
+
+  * **CUDA toolkit 11.6 with cuDNN v8.4.0**
 
   * **GPU CUDA capability over 3.5**
 
@@ -94,15 +94,7 @@ You can choose the following version of PaddlePaddle to start installation:
   python -m pip install paddlepaddle-gpu==0.0.0.post102 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
   ```
 
-2.2.3 If you are using CUDA 11.0
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
-  ```
-
-
-2.2.4 If you are using CUDA 11.1
+2.2.3 If you are using CUDA 11.1
 
 
   ```
@@ -110,10 +102,18 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.5 If you are using CUDA 11.2
+2.2.4 If you are using CUDA 11.2
+
 
   ```
   python -m pip install paddlepaddle-gpu==0.0.0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  ```
+
+
+2.2.5 If you are using CUDA 11.6
+
+  ```
+  python -m pip install paddlepaddle-gpu==0.0.0.post116 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
   ```
 
 Note：

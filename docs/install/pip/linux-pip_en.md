@@ -5,9 +5,9 @@
 ### 1.1 PREQUISITES
 
 * **Linux Version (64 bit)**
-  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.2**)**
-  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.2)**
-  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.2)**
+  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6**)**
+  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6)**
+  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6)**
 
 * **Python Version: 3.6/3.7/3.8/3.9 (64 bit)**
 
@@ -78,7 +78,9 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
   * **CUDA toolkit 10.1/10.2 with cuDNN v7.6+(for multi card support, NCCL2.7 or higher)**
 
-  * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
+  * **CUDA toolkit 11.1/11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
+
+  * **CUDA toolkit 11.6 with cuDNN v8.4.0(for multi card support, NCCL2.7 or higher)**
 
   * **Hardware devices with GPU computing power over 3.5**
 
@@ -154,15 +156,7 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-2.2.3 If you are using CUDA 11.0
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
-  ```
-
-
-2.2.4 If you are using CUDA 11.1
+2.2.3 If you are using CUDA 11.1
 
 
   ```
@@ -170,14 +164,19 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
-
-2.2.5 If you are using CUDA 11.2
+2.2.4 If you are using CUDA 11.2
 
 
   ```
   python -m pip install paddlepaddle-gpu==0.0.0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
   ```
 
+2.2.5 If you are using CUDA 11.6
+
+
+  ```
+  python -m pip install paddlepaddle-gpu==0.0.0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
+  ```
 
 
 Note：
