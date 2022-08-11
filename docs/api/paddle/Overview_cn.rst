@@ -107,6 +107,7 @@ tensor 数学操作
     " :ref:`paddle.rsqrt <cn_api_fluid_layers_rsqrt>` ", "rsqrt 激活函数"
     " :ref:`paddle.scale <cn_api_fluid_layers_scale>` ", "缩放算子"
     " :ref:`paddle.sign <cn_api_tensor_sign>` ", "对输入 x 中每个元素进行正负判断"
+    " :ref:`paddle.sgn <cn_api_tensor_sgn>` ", "对输入 x 中每个元素进行正负判断，对于复数则输出单位向量"
     " :ref:`paddle.sin <cn_api_fluid_layers_sin>` ", "计算输入的正弦值"
     " :ref:`paddle.sinh <cn_api_fluid_layers_sinh>` ", "双曲正弦函数"
     " :ref:`paddle.sqrt <cn_api_fluid_layers_sqrt>` ", "计算输入的算数平方根"

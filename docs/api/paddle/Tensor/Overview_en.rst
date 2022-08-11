@@ -227,6 +227,7 @@ Methods
     set_value
     shard_index
     sign
+    sgn
     sin
     sinh
     slice
