@@ -249,7 +249,7 @@ logwriter.add_image_matrix(tag='input_images', step=1, imgs=image_matrix, rows=-
 
 “样本数据·图像”页面显示了通过 add_image_matrix 接口写入的图像列表，可以看到写入的 9 张图像按照 3*3 的排列方式展示了出来，用于训练的数据是手写字体的数字。
 
-![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_1.png)
+![img](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/advanced/images/visualdl_guide_image_1.png?raw=text)
 
 图 1：查看输入图像
 
