@@ -18,4 +18,4 @@
     layer_and_model_cn.md
     customize_cn.ipynb
     gradient_clip_cn.rst
-    model_to_onnx_cn.rst
+    model_to_onnx_cn.md
