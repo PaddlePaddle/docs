@@ -352,228 +352,226 @@ Time Unit: s, IPS Unit: steps/s
 
 - **Device Summary**
 
-```plain
--------------------Device Summary-------------------
-------------------------------  --------------------
-Device                          Utilization (%)
-------------------------------  --------------------
-CPU(Process)                    77.13
-CPU(System)                     25.99
-GPU2                            55.50
-------------------------------  --------------------
-Note:
-CPU(Process) Utilization = Current process CPU time over all cpu cores / elapsed time, so max utilization can be reached 100% * number of cpu cores.
-CPU(System) Utilization = All processes CPU time over all cpu cores(busy time) / (busy time + idle time).
-GPU Utilization = Current process GPU time / elapsed time.
-----------------------------------------------------
-```
+  ```plain
+  -------------------Device Summary-------------------
+  ------------------------------  --------------------
+  Device                          Utilization (%)
+  ------------------------------  --------------------
+  CPU(Process)                    77.13
+  CPU(System)                     25.99
+  GPU2                            55.50
+  ------------------------------  --------------------
+  Note:
+  CPU(Process) Utilization = Current process CPU time over all cpu cores / elapsed time, so max utilization can be reached 100% * number of cpu cores.
+  CPU(System) Utilization = All processes CPU time over all cpu cores(busy time) / (busy time + idle time).
+  GPU Utilization = Current process GPU time / elapsed time.
+  ----------------------------------------------------
+  ```
 
-DeviceSummary 提供 CPU 和 GPU 的平均利用率信息。其中
-
+  DeviceSummary 提供 CPU 和 GPU 的平均利用率信息。其中
   - **CPU(Process)**：指的是进程的 CPU 平均利用率，算的是从 Profiler 开始记录数据到结束这一段过程，进程所利用到的 **cpu core 的总时间**与**该段时间**的占比。因此如果是多核的情况，对于进程来说 CPU 平均利用率是有可能超过 100%的，因为同时用到的多个 core 的时间进行了累加。
   - **CPU(System)**：指的是整个系统的 CPU 平均利用率，算的是从 Profiler 开始记录数据到结束这一段过程，整个系统所有进程利用到的**cpu core 总时间**与**该段时间乘以 cpu core 的数量**的占比。可以当成是从 CPU 的视角来算的利用率。
   - **GPU**: 指的是进程的 GPU 平均利用率，算的是从 Profiler 开始记录数据到结束这一段过程，进程在 GPU 上所调用的**kernel 的执行时间**与**该段时间**的占比。
 
 - **Overview Summary**
 
-```plain
----------------------------------------------Overview Summary---------------------------------------------
-Time unit: ms
--------------------------  -------------------------  -------------------------  -------------------------
-Event Type                 Calls                      CPU Time                   Ratio (%)
--------------------------  -------------------------  -------------------------  -------------------------
-ProfileStep                8                          4945.15                    100.00
-  CudaRuntime              28336                      2435.63                    49.25
-  UserDefined              486                        2280.54                    46.12
-  Dataloader               8                          1819.15                    36.79
-  Forward                  8                          1282.64                    25.94
-  Operator                 8056                       1244.41                    25.16
-  OperatorInner            21880                      374.18                     7.57
-  Backward                 8                          160.43                     3.24
-  Optimization             8                          102.34                     2.07
--------------------------  -------------------------  -------------------------  -------------------------
-                          Calls                      GPU Time                   Ratio (%)
--------------------------  -------------------------  -------------------------  -------------------------
-  Kernel                   13688                      2744.61                    55.50
-  Memcpy                   496                        29.82                      0.60
-  Memset                   104                        0.12                       0.00
-  Communication            784                        257.23                     5.20
--------------------------  -------------------------  -------------------------  -------------------------
-Note:
-In this table, We sum up all collected events in terms of event type.
-The time of events collected on host are presented as CPU Time, and as GPU Time if on device.
-Events with different types may overlap or inclusion, e.g. Operator includes OperatorInner, so the sum of ratios is not 100%.
-The time of events in the same type with overlap will not calculate twice, and all time is summed after merged.
-Example:
-Thread 1:
-  Operator: |___________|     |__________|
-Thread 2:
-  Operator:   |____________|     |___|
-After merged:
-  Result:   |______________|  |__________|
+  ```plain
+  ---------------------------------------------Overview Summary---------------------------------------------
+  Time unit: ms
+  -------------------------  -------------------------  -------------------------  -------------------------
+  Event Type                 Calls                      CPU Time                   Ratio (%)
+  -------------------------  -------------------------  -------------------------  -------------------------
+  ProfileStep                8                          4945.15                    100.00
+    CudaRuntime              28336                      2435.63                    49.25
+    UserDefined              486                        2280.54                    46.12
+    Dataloader               8                          1819.15                    36.79
+    Forward                  8                          1282.64                    25.94
+    Operator                 8056                       1244.41                    25.16
+    OperatorInner            21880                      374.18                     7.57
+    Backward                 8                          160.43                     3.24
+    Optimization             8                          102.34                     2.07
+  -------------------------  -------------------------  -------------------------  -------------------------
+                            Calls                      GPU Time                   Ratio (%)
+  -------------------------  -------------------------  -------------------------  -------------------------
+    Kernel                   13688                      2744.61                    55.50
+    Memcpy                   496                        29.82                      0.60
+    Memset                   104                        0.12                       0.00
+    Communication            784                        257.23                     5.20
+  -------------------------  -------------------------  -------------------------  -------------------------
+  Note:
+  In this table, We sum up all collected events in terms of event type.
+  The time of events collected on host are presented as CPU Time, and as GPU Time if on device.
+  Events with different types may overlap or inclusion, e.g. Operator includes OperatorInner, so the sum of ratios is not 100%.
+  The time of events in the same type with overlap will not calculate twice, and all time is summed after merged.
+  Example:
+  Thread 1:
+    Operator: |___________|     |__________|
+  Thread 2:
+    Operator:   |____________|     |___|
+  After merged:
+    Result:   |______________|  |__________|
 
-----------------------------------------------------------------------------------------------------------
-```
+  ----------------------------------------------------------------------------------------------------------
+  ```
 
-Overview Summary 用于展示每种类型的 Event 一共分别消耗了多少时间，对于多线程或多 stream 下，如果同一类型的 Event 有重叠的时间段，采取取并集操作，不对重叠的时间进行重复计算。**该表单可以帮助了解各种类型的事件在程序执行过程中的时间消耗占比，如 Kernel 类型的事件代表了在 GPU 上执行的计算时间。**
+  Overview Summary 用于展示每种类型的 Event 一共分别消耗了多少时间，对于多线程或多 stream 下，如果同一类型的 Event 有重叠的时间段，采取取并集操作，不对重叠的时间进行重复计算。**该表单可以帮助了解各种类型的事件在程序执行过程中的时间消耗占比，如 Kernel 类型的事件代表了在 GPU 上执行的计算时间。**
 
 - **Model Summary**
 
-```plain
---------------------------------------------------Model Summary--------------------------------------------------
-Time unit: ms
----------------  ------  -------------------------------------------  -------------------------------------------
-Name             Calls   CPU Total / Avg / Max / Min / Ratio(%)       GPU Total / Avg / Max / Min / Ratio(%)
----------------  ------  -------------------------------------------  -------------------------------------------
-ProfileStep      8       4945.15 / 618.14 / 839.15 / 386.34 / 100.00  2790.80 / 348.85 / 372.39 / 344.60 / 100.00
-  Dataloader     8       1819.15 / 227.39 / 451.69 / 0.32 / 36.79     0.00 / 0.00 / 0.00 / 0.00 / 0.00
-  Forward        8       1282.64 / 160.33 / 161.49 / 159.19 / 25.94   1007.64 / 125.96 / 126.13 / 125.58 / 35.90
-  Backward       8       160.43 / 20.05 / 21.00 / 19.21 / 3.24        1762.11 / 220.26 / 243.83 / 216.05 / 62.49
-  Optimization   8       102.34 / 12.79 / 13.42 / 12.47 / 2.07        17.03 / 2.13 / 2.13 / 2.13 / 0.60
-  Others         -       1580.59 / - / - / - / 31.96                  28.22 / - / - / - / 1.00
----------------  ------  -------------------------------------------  -------------------------------------------
-```
+  ```plain
+  --------------------------------------------------Model Summary--------------------------------------------------
+  Time unit: ms
+  ---------------  ------  -------------------------------------------  -------------------------------------------
+  Name             Calls   CPU Total / Avg / Max / Min / Ratio(%)       GPU Total / Avg / Max / Min / Ratio(%)
+  ---------------  ------  -------------------------------------------  -------------------------------------------
+  ProfileStep      8       4945.15 / 618.14 / 839.15 / 386.34 / 100.00  2790.80 / 348.85 / 372.39 / 344.60 / 100.00
+    Dataloader     8       1819.15 / 227.39 / 451.69 / 0.32 / 36.79     0.00 / 0.00 / 0.00 / 0.00 / 0.00
+    Forward        8       1282.64 / 160.33 / 161.49 / 159.19 / 25.94   1007.64 / 125.96 / 126.13 / 125.58 / 35.90
+    Backward       8       160.43 / 20.05 / 21.00 / 19.21 / 3.24        1762.11 / 220.26 / 243.83 / 216.05 / 62.49
+    Optimization   8       102.34 / 12.79 / 13.42 / 12.47 / 2.07        17.03 / 2.13 / 2.13 / 2.13 / 0.60
+    Others         -       1580.59 / - / - / - / 31.96                  28.22 / - / - / - / 1.00
+  ---------------  ------  -------------------------------------------  -------------------------------------------
+  ```
 
-Model Summary 用于展示模型训练或者推理过程中，dataloader、forward、backward、optimization 所消耗的时间。其中 GPU Time 对应着在该段过程内所发起的 GPU 侧活动的时间。**该表单比较直观的展示了训练或推理过程各个阶段的时间和占比，当 Dataloader 读取数据没有得到优化时能够在此得到明显的体现。**
+  Model Summary 用于展示模型训练或者推理过程中，dataloader、forward、backward、optimization 所消耗的时间。其中 GPU Time 对应着在该段过程内所发起的 GPU 侧活动的时间。**该表单比较直观的展示了训练或推理过程各个阶段的时间和占比，当 Dataloader 读取数据没有得到优化时能够在此得到明显的体现。**
 
 - **Distributed Summary**
 
-```plain
------------------------------Distribution Summary------------------------------
-Time unit: ms
--------------------------  -------------------------  -------------------------
-Name                       Total Time                 Ratio (%)
--------------------------  -------------------------  -------------------------
-ProfileStep                4945.15                    100.00
-  Communication            257.23                     5.20
-  Computation              2526.52                    51.09
-  Overlap                  39.13                      0.79
--------------------------  -------------------------  -------------------------
-```
+  ```plain
+  -----------------------------Distribution Summary------------------------------
+  Time unit: ms
+  -------------------------  -------------------------  -------------------------
+  Name                       Total Time                 Ratio (%)
+  -------------------------  -------------------------  -------------------------
+  ProfileStep                4945.15                    100.00
+    Communication            257.23                     5.20
+    Computation              2526.52                    51.09
+    Overlap                  39.13                      0.79
+  -------------------------  -------------------------  -------------------------
+  ```
 
-Distribution Summary 用于展示分布式训练中通信 (Communication)、计算 (Computation) 以及这两者 Overlap 的时间。
-
+  Distribution Summary 用于展示分布式训练中通信 (Communication)、计算 (Computation) 以及这两者 Overlap 的时间。
   - **Communication**：所有和通信有关活动的时间，包括和分布式相关的算子 (op) 以及 GPU 上的 kernel 的时间等。
   - **Computation**：所有 kernel 在 GPU 上的执行时间，但是去除了和通信相关的 kernel 的时间。
   - **Overlap**：Communication 和 Computation 的重叠时间。
 
-**该表单可以辅助分布式程序的开发人员了解当前计算和通信的并行程度，结合 Timeline 可以辅助开发人员朝着提高并行性的方向优化。**
+  **该表单可以辅助分布式程序的开发人员了解当前计算和通信的并行程度，结合 Timeline 可以辅助开发人员朝着提高并行性的方向优化。**
 
 - **Operator Summary**
 
-```plain
-(由于原始表单较长，这里截取一部分进行展示)
-----------------------------------------------------------------Operator Summary----------------------------------------------------------------
-Time unit: ms
-----------------------------------------------------  ------  ----------------------------------------  ----------------------------------------
-Name                                                  Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)
-----------------------------------------------------  ------  ----------------------------------------  ----------------------------------------
------------------------------------------------------------Thread: All threads merged-----------------------------------------------------------
-conv2d_grad grad_node                                 296     53.70 / 0.18 / 0.40 / 0.14 / 4.34         679.11 / 2.29 / 5.75 / 0.24 / 24.11
-  conv2d_grad::infer_shape                            296     0.44 / 0.00 / 0.00 / 0.00 / 0.81          0.00 / 0.00 / 0.00 / 0.00 / 0.00
-  conv2d_grad::compute                                296     44.09 / 0.15 / 0.31 / 0.10 / 82.10        644.39 / 2.18 / 5.75 / 0.24 / 94.89
-    cudnn::maxwell::gemm::computeWgradOffsetsKern...  224     - / - / - / - / -                         0.50 / 0.00 / 0.00 / 0.00 / 0.08
-    void scalePackedTensor_kernel<float, float>(c...  224     - / - / - / - / -                         0.79 / 0.00 / 0.01 / 0.00 / 0.12
-    cudnn::maxwell::gemm::computeBOffsetsKernel(c...  464     - / - / - / - / -                         0.95 / 0.00 / 0.01 / 0.00 / 0.15
-    maxwell_scudnn_128x32_stridedB_splitK_large_nn    8       - / - / - / - / -                         15.70 / 1.96 / 1.97 / 1.96 / 2.44
-    cudnn::maxwell::gemm::computeOffsetsKernel(cu...  240     - / - / - / - / -                         0.54 / 0.00 / 0.00 / 0.00 / 0.08
-    maxwell_scudnn_128x32_stridedB_interior_nn        8       - / - / - / - / -                         9.53 / 1.19 / 1.19 / 1.19 / 1.48
-    maxwell_scudnn_128x64_stridedB_splitK_interio...  8       - / - / - / - / -                         28.67 / 3.58 / 3.59 / 3.58 / 4.45
-    maxwell_scudnn_128x64_stridedB_interior_nn        8       - / - / - / - / -                         5.53 / 0.69 / 0.70 / 0.69 / 0.86
-    maxwell_scudnn_128x128_stridedB_splitK_interi...  184     - / - / - / - / -                         167.03 / 0.91 / 2.28 / 0.19 / 25.92
-    maxwell_scudnn_128x128_stridedB_interior_nn       200     - / - / - / - / -                         105.10 / 0.53 / 0.97 / 0.09 / 16.31
-    MEMSET                                            104     - / - / - / - / -                         0.12 / 0.00 / 0.00 / 0.00 / 0.02
-    maxwell_scudnn_128x128_stridedB_small_nn          24      - / - / - / - / -                         87.58 / 3.65 / 4.00 / 3.53 / 13.59
-    void cudnn::winograd_nonfused::winogradWgradD...  72      - / - / - / - / -                         15.66 / 0.22 / 0.36 / 0.09 / 2.43
-    void cudnn::winograd_nonfused::winogradWgradD...  72      - / - / - / - / -                         31.64 / 0.44 / 0.75 / 0.19 / 4.91
-    maxwell_sgemm_128x64_nt                           72      - / - / - / - / -                         62.03 / 0.86 / 1.09 / 0.75 / 9.63
-    void cudnn::winograd_nonfused::winogradWgradO...  72      - / - / - / - / -                         14.45 / 0.20 / 0.49 / 0.04 / 2.24
-    void cudnn::winograd::generateWinogradTilesKe...  48      - / - / - / - / -                         1.78 / 0.04 / 0.06 / 0.02 / 0.28
-    maxwell_scudnn_winograd_128x128_ldg1_ldg4_til...  24      - / - / - / - / -                         45.94 / 1.91 / 1.93 / 1.90 / 7.13
-    maxwell_scudnn_winograd_128x128_ldg1_ldg4_til...  24      - / - / - / - / -                         40.93 / 1.71 / 1.72 / 1.69 / 6.35
-    maxwell_scudnn_128x32_stridedB_splitK_interio...  24      - / - / - / - / -                         9.91 / 0.41 / 0.77 / 0.15 / 1.54
-  GpuMemcpyAsync:CPU->GPU                             64      0.68 / 0.01 / 0.02 / 0.01 / 1.27          0.09 / 0.00 / 0.00 / 0.00 / 0.01
-    MEMCPY_HtoD                                       64      - / - / - / - / -                         0.09 / 0.00 / 0.00 / 0.00 / 100.00
-  void phi::funcs::ConcatKernel_<float>(float con...  16      - / - / - / - / -                         2.84 / 0.18 / 0.36 / 0.06 / 0.42
-  void phi::funcs::ForRangeElemwiseOp<paddle::imp...  16      - / - / - / - / -                         1.33 / 0.08 / 0.16 / 0.01 / 0.20
-  ncclAllReduceRingLLKernel_sum_f32(ncclColl)         16      - / - / - / - / -                         26.35 / 1.65 / 3.14 / 0.20 / 3.88
-  void phi::funcs::SplitKernel_<float>(float cons...  16      - / - / - / - / -                         2.49 / 0.16 / 0.37 / 0.06 / 0.37
-  void axpy_kernel_val<float, float>(cublasAxpyPa...  16      - / - / - / - / -                         1.63 / 0.10 / 0.14 / 0.07 / 0.24
-sync_batch_norm_grad grad_node                        376     37.90 / 0.10 / 0.31 / 0.08 / 3.07         670.62 / 1.78 / 39.29 / 0.13 / 23.81
-  sync_batch_norm_grad::infer_shape                   376     1.60 / 0.00 / 0.01 / 0.00 / 4.22          0.00 / 0.00 / 0.00 / 0.00 / 0.00
-  sync_batch_norm_grad::compute                       376     23.26 / 0.06 / 0.10 / 0.06 / 61.37        555.96 / 1.48 / 39.29 / 0.13 / 82.90
-    void paddle::operators::KeBackwardLocalStats<...  376     - / - / - / - / -                         129.62 / 0.34 / 1.83 / 0.04 / 23.32
-    ncclAllReduceRingLLKernel_sum_f32(ncclColl)       376     - / - / - / - / -                         128.00 / 0.34 / 37.70 / 0.01 / 23.02
-    void paddle::operators::KeBNBackwardScaleBias...  376     - / - / - / - / -                         126.37 / 0.34 / 1.84 / 0.03 / 22.73
-    void paddle::operators::KeBNBackwardData<floa...  376     - / - / - / - / -                         171.97 / 0.46 / 2.58 / 0.04 / 30.93
-  GpuMemcpyAsync:CPU->GPU                             64      0.71 / 0.01 / 0.02 / 0.01 / 1.88          0.08 / 0.00 / 0.00 / 0.00 / 0.01
-    MEMCPY_HtoD                                       64      - / - / - / - / -                         0.08 / 0.00 / 0.00 / 0.00 / 100.00
-  void phi::funcs::ConcatKernel_<float>(float con...  16      - / - / - / - / -                         6.40 / 0.40 / 0.53 / 0.34 / 0.95
-  void phi::funcs::ForRangeElemwiseOp<paddle::imp...  16      - / - / - / - / -                         6.23 / 0.39 / 0.56 / 0.27 / 0.93
-  ncclAllReduceRingLLKernel_sum_f32(ncclColl)         16      - / - / - / - / -                         95.02 / 5.94 / 7.56 / 4.75 / 14.17
-  void phi::funcs::SplitKernel_<float>(float cons...  16      - / - / - / - / -                         6.93 / 0.43 / 0.76 / 0.34 / 1.03
-```
+  ```plain
+  (由于原始表单较长，这里截取一部分进行展示)
+  ----------------------------------------------------------------Operator Summary----------------------------------------------------------------
+  Time unit: ms
+  ----------------------------------------------------  ------  ----------------------------------------  ----------------------------------------
+  Name                                                  Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)
+  ----------------------------------------------------  ------  ----------------------------------------  ----------------------------------------
+  -----------------------------------------------------------Thread: All threads merged-----------------------------------------------------------
+  conv2d_grad grad_node                                 296     53.70 / 0.18 / 0.40 / 0.14 / 4.34         679.11 / 2.29 / 5.75 / 0.24 / 24.11
+    conv2d_grad::infer_shape                            296     0.44 / 0.00 / 0.00 / 0.00 / 0.81          0.00 / 0.00 / 0.00 / 0.00 / 0.00
+    conv2d_grad::compute                                296     44.09 / 0.15 / 0.31 / 0.10 / 82.10        644.39 / 2.18 / 5.75 / 0.24 / 94.89
+      cudnn::maxwell::gemm::computeWgradOffsetsKern...  224     - / - / - / - / -                         0.50 / 0.00 / 0.00 / 0.00 / 0.08
+      void scalePackedTensor_kernel<float, float>(c...  224     - / - / - / - / -                         0.79 / 0.00 / 0.01 / 0.00 / 0.12
+      cudnn::maxwell::gemm::computeBOffsetsKernel(c...  464     - / - / - / - / -                         0.95 / 0.00 / 0.01 / 0.00 / 0.15
+      maxwell_scudnn_128x32_stridedB_splitK_large_nn    8       - / - / - / - / -                         15.70 / 1.96 / 1.97 / 1.96 / 2.44
+      cudnn::maxwell::gemm::computeOffsetsKernel(cu...  240     - / - / - / - / -                         0.54 / 0.00 / 0.00 / 0.00 / 0.08
+      maxwell_scudnn_128x32_stridedB_interior_nn        8       - / - / - / - / -                         9.53 / 1.19 / 1.19 / 1.19 / 1.48
+      maxwell_scudnn_128x64_stridedB_splitK_interio...  8       - / - / - / - / -                         28.67 / 3.58 / 3.59 / 3.58 / 4.45
+      maxwell_scudnn_128x64_stridedB_interior_nn        8       - / - / - / - / -                         5.53 / 0.69 / 0.70 / 0.69 / 0.86
+      maxwell_scudnn_128x128_stridedB_splitK_interi...  184     - / - / - / - / -                         167.03 / 0.91 / 2.28 / 0.19 / 25.92
+      maxwell_scudnn_128x128_stridedB_interior_nn       200     - / - / - / - / -                         105.10 / 0.53 / 0.97 / 0.09 / 16.31
+      MEMSET                                            104     - / - / - / - / -                         0.12 / 0.00 / 0.00 / 0.00 / 0.02
+      maxwell_scudnn_128x128_stridedB_small_nn          24      - / - / - / - / -                         87.58 / 3.65 / 4.00 / 3.53 / 13.59
+      void cudnn::winograd_nonfused::winogradWgradD...  72      - / - / - / - / -                         15.66 / 0.22 / 0.36 / 0.09 / 2.43
+      void cudnn::winograd_nonfused::winogradWgradD...  72      - / - / - / - / -                         31.64 / 0.44 / 0.75 / 0.19 / 4.91
+      maxwell_sgemm_128x64_nt                           72      - / - / - / - / -                         62.03 / 0.86 / 1.09 / 0.75 / 9.63
+      void cudnn::winograd_nonfused::winogradWgradO...  72      - / - / - / - / -                         14.45 / 0.20 / 0.49 / 0.04 / 2.24
+      void cudnn::winograd::generateWinogradTilesKe...  48      - / - / - / - / -                         1.78 / 0.04 / 0.06 / 0.02 / 0.28
+      maxwell_scudnn_winograd_128x128_ldg1_ldg4_til...  24      - / - / - / - / -                         45.94 / 1.91 / 1.93 / 1.90 / 7.13
+      maxwell_scudnn_winograd_128x128_ldg1_ldg4_til...  24      - / - / - / - / -                         40.93 / 1.71 / 1.72 / 1.69 / 6.35
+      maxwell_scudnn_128x32_stridedB_splitK_interio...  24      - / - / - / - / -                         9.91 / 0.41 / 0.77 / 0.15 / 1.54
+    GpuMemcpyAsync:CPU->GPU                             64      0.68 / 0.01 / 0.02 / 0.01 / 1.27          0.09 / 0.00 / 0.00 / 0.00 / 0.01
+      MEMCPY_HtoD                                       64      - / - / - / - / -                         0.09 / 0.00 / 0.00 / 0.00 / 100.00
+    void phi::funcs::ConcatKernel_<float>(float con...  16      - / - / - / - / -                         2.84 / 0.18 / 0.36 / 0.06 / 0.42
+    void phi::funcs::ForRangeElemwiseOp<paddle::imp...  16      - / - / - / - / -                         1.33 / 0.08 / 0.16 / 0.01 / 0.20
+    ncclAllReduceRingLLKernel_sum_f32(ncclColl)         16      - / - / - / - / -                         26.35 / 1.65 / 3.14 / 0.20 / 3.88
+    void phi::funcs::SplitKernel_<float>(float cons...  16      - / - / - / - / -                         2.49 / 0.16 / 0.37 / 0.06 / 0.37
+    void axpy_kernel_val<float, float>(cublasAxpyPa...  16      - / - / - / - / -                         1.63 / 0.10 / 0.14 / 0.07 / 0.24
+  sync_batch_norm_grad grad_node                        376     37.90 / 0.10 / 0.31 / 0.08 / 3.07         670.62 / 1.78 / 39.29 / 0.13 / 23.81
+    sync_batch_norm_grad::infer_shape                   376     1.60 / 0.00 / 0.01 / 0.00 / 4.22          0.00 / 0.00 / 0.00 / 0.00 / 0.00
+    sync_batch_norm_grad::compute                       376     23.26 / 0.06 / 0.10 / 0.06 / 61.37        555.96 / 1.48 / 39.29 / 0.13 / 82.90
+      void paddle::operators::KeBackwardLocalStats<...  376     - / - / - / - / -                         129.62 / 0.34 / 1.83 / 0.04 / 23.32
+      ncclAllReduceRingLLKernel_sum_f32(ncclColl)       376     - / - / - / - / -                         128.00 / 0.34 / 37.70 / 0.01 / 23.02
+      void paddle::operators::KeBNBackwardScaleBias...  376     - / - / - / - / -                         126.37 / 0.34 / 1.84 / 0.03 / 22.73
+      void paddle::operators::KeBNBackwardData<floa...  376     - / - / - / - / -                         171.97 / 0.46 / 2.58 / 0.04 / 30.93
+    GpuMemcpyAsync:CPU->GPU                             64      0.71 / 0.01 / 0.02 / 0.01 / 1.88          0.08 / 0.00 / 0.00 / 0.00 / 0.01
+      MEMCPY_HtoD                                       64      - / - / - / - / -                         0.08 / 0.00 / 0.00 / 0.00 / 100.00
+    void phi::funcs::ConcatKernel_<float>(float con...  16      - / - / - / - / -                         6.40 / 0.40 / 0.53 / 0.34 / 0.95
+    void phi::funcs::ForRangeElemwiseOp<paddle::imp...  16      - / - / - / - / -                         6.23 / 0.39 / 0.56 / 0.27 / 0.93
+    ncclAllReduceRingLLKernel_sum_f32(ncclColl)         16      - / - / - / - / -                         95.02 / 5.94 / 7.56 / 4.75 / 14.17
+    void phi::funcs::SplitKernel_<float>(float cons...  16      - / - / - / - / -                         6.93 / 0.43 / 0.76 / 0.34 / 1.03
+  ```
 
-Operator Summary 用于展示框架中算子 (op) 的执行信息。对于每一个 Op，可以通过打印表单时候的 op_detail 选项控制是否打印出 Op 执行过程里面的子过程。同时展示每个子过程中的 GPU 上的活动，且子过程的活动算时间占比时以上层的时间为总时间。**该表单可以辅助框架 Op 的开发人员了解算子的耗时，当某个 Op 计算时间超出预期时可以想办法进行优化。**
+  Operator Summary 用于展示框架中算子 (op) 的执行信息。对于每一个 Op，可以通过打印表单时候的 op_detail 选项控制是否打印出 Op 执行过程里面的子过程。同时展示每个子过程中的 GPU 上的活动，且子过程的活动算时间占比时以上层的时间为总时间。**该表单可以辅助框架 Op 的开发人员了解算子的耗时，当某个 Op 计算时间超出预期时可以想办法进行优化。**
 
 - **Kernel Summary**
 
-```plain
-(由于原始表单较长，这里截取一部分进行展示)
----------------------------------------------------------------Kernel Summary---------------------------------------------------------------
-Time unit: ms
-------------------------------------------------------------------------------------------  ------  ----------------------------------------
-Name                                                                                        Calls   GPU Total / Avg / Max / Min / Ratio(%)
-------------------------------------------------------------------------------------------  ------  ----------------------------------------
-void paddle::operators::KeNormAffine<float, (paddle::experimental::DataLayout)2>            376     362.11 / 0.96 / 5.43 / 0.09 / 12.97
-ncclAllReduceRingLLKernel_sum_f32(ncclColl)                                                 784     257.23 / 0.33 / 37.70 / 0.01 / 9.22
-maxwell_scudnn_winograd_128x128_ldg1_ldg4_tile418n_nt                                       72      176.84 / 2.46 / 3.35 / 1.90 / 6.34
-void paddle::operators::KeBNBackwardData<float, (paddle::experimental::DataLayout)2>        376     171.97 / 0.46 / 2.58 / 0.04 / 6.16
-maxwell_scudnn_128x128_stridedB_splitK_interior_nn                                          184     167.03 / 0.91 / 2.28 / 0.19 / 5.99
-void paddle::operators::KeBackwardLocalStats<float, 256, (paddle::experimental::DataLay...  376     129.62 / 0.34 / 1.83 / 0.04 / 4.64
-void paddle::operators::KeBNBackwardScaleBias<float, 256, (paddle::experimental::DataLa...  376     126.37 / 0.34 / 1.84 / 0.03 / 4.53
-void phi::funcs::VectorizedElementwiseKernel<float, phi::funcs::CudaReluGradFunctor<flo...  216     115.61 / 0.54 / 2.31 / 0.07 / 4.14
-void paddle::operators::math::KernelDepthwiseConvFilterGradSp<float, 1, 1, 3, (paddle::...  72      113.87 / 1.58 / 2.04 / 1.36 / 4.08
-maxwell_scudnn_128x128_stridedB_interior_nn                                                 200     105.10 / 0.53 / 0.97 / 0.09 / 3.77
-maxwell_scudnn_128x128_relu_interior_nn                                                     184     103.17 / 0.56 / 0.98 / 0.12 / 3.70
-maxwell_scudnn_winograd_128x128_ldg1_ldg4_tile228n_nt                                       48      90.87 / 1.89 / 2.09 / 1.69 / 3.26
-maxwell_scudnn_128x128_stridedB_small_nn                                                    24      87.58 / 3.65 / 4.00 / 3.53 / 3.14
-```
+  ```plain
+  (由于原始表单较长，这里截取一部分进行展示)
+  ---------------------------------------------------------------Kernel Summary---------------------------------------------------------------
+  Time unit: ms
+  ------------------------------------------------------------------------------------------  ------  ----------------------------------------
+  Name                                                                                        Calls   GPU Total / Avg / Max / Min / Ratio(%)
+  ------------------------------------------------------------------------------------------  ------  ----------------------------------------
+  void paddle::operators::KeNormAffine<float, (paddle::experimental::DataLayout)2>            376     362.11 / 0.96 / 5.43 / 0.09 / 12.97
+  ncclAllReduceRingLLKernel_sum_f32(ncclColl)                                                 784     257.23 / 0.33 / 37.70 / 0.01 / 9.22
+  maxwell_scudnn_winograd_128x128_ldg1_ldg4_tile418n_nt                                       72      176.84 / 2.46 / 3.35 / 1.90 / 6.34
+  void paddle::operators::KeBNBackwardData<float, (paddle::experimental::DataLayout)2>        376     171.97 / 0.46 / 2.58 / 0.04 / 6.16
+  maxwell_scudnn_128x128_stridedB_splitK_interior_nn                                          184     167.03 / 0.91 / 2.28 / 0.19 / 5.99
+  void paddle::operators::KeBackwardLocalStats<float, 256, (paddle::experimental::DataLay...  376     129.62 / 0.34 / 1.83 / 0.04 / 4.64
+  void paddle::operators::KeBNBackwardScaleBias<float, 256, (paddle::experimental::DataLa...  376     126.37 / 0.34 / 1.84 / 0.03 / 4.53
+  void phi::funcs::VectorizedElementwiseKernel<float, phi::funcs::CudaReluGradFunctor<flo...  216     115.61 / 0.54 / 2.31 / 0.07 / 4.14
+  void paddle::operators::math::KernelDepthwiseConvFilterGradSp<float, 1, 1, 3, (paddle::...  72      113.87 / 1.58 / 2.04 / 1.36 / 4.08
+  maxwell_scudnn_128x128_stridedB_interior_nn                                                 200     105.10 / 0.53 / 0.97 / 0.09 / 3.77
+  maxwell_scudnn_128x128_relu_interior_nn                                                     184     103.17 / 0.56 / 0.98 / 0.12 / 3.70
+  maxwell_scudnn_winograd_128x128_ldg1_ldg4_tile228n_nt                                       48      90.87 / 1.89 / 2.09 / 1.69 / 3.26
+  maxwell_scudnn_128x128_stridedB_small_nn                                                    24      87.58 / 3.65 / 4.00 / 3.53 / 3.14
+  ```
 
-Kernel Summary 用于展示在 GPU 执行的 kernel 的信息。**该表单可以辅助设备侧 kernel 的开发人员了解所实现 kernel 的执行性能，对计算耗时过长的 kernel 进行优化。**
+  Kernel Summary 用于展示在 GPU 执行的 kernel 的信息。**该表单可以辅助设备侧 kernel 的开发人员了解所实现 kernel 的执行性能，对计算耗时过长的 kernel 进行优化。**
 
 - **Memory Manipulation Summary**
 
-```plain
--------------------------------------------------Memory Manipulation Summary-------------------------------------------------
-Time unit: ms
----------------------------------  ------  ----------------------------------------  ----------------------------------------
-Name                               Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)
----------------------------------  ------  ----------------------------------------  ----------------------------------------
-GpuMemcpySync:GPU->CPU             48      1519.87 / 31.66 / 213.82 / 0.02 / 30.73   0.07 / 0.00 / 0.00 / 0.00 / 0.00
-GpuMemcpyAsync:CPU->GPU            216     2.85 / 0.01 / 0.04 / 0.01 / 0.06          0.29 / 0.00 / 0.00 / 0.00 / 0.01
-GpuMemcpyAsync(same_gpu):GPU->GPU  168     3.61 / 0.02 / 0.05 / 0.01 / 0.07          0.33 / 0.00 / 0.01 / 0.00 / 0.01
-GpuMemcpySync:CUDAPinned->GPU      40      713.89 / 17.85 / 85.79 / 0.04 / 14.44     29.11 / 0.73 / 3.02 / 0.00 / 1.03
-BufferedReader:MemoryCopy          6       40.17 / 6.69 / 7.62 / 5.87 / 0.81         0.00 / 0.00 / 0.00 / 0.00 / 0.00
----------------------------------  ------  ----------------------------------------  ----------------------------------------
-```
+  ```plain
+  -------------------------------------------------Memory Manipulation Summary-------------------------------------------------
+  Time unit: ms
+  ---------------------------------  ------  ----------------------------------------  ----------------------------------------
+  Name                               Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)
+  ---------------------------------  ------  ----------------------------------------  ----------------------------------------
+  GpuMemcpySync:GPU->CPU             48      1519.87 / 31.66 / 213.82 / 0.02 / 30.73   0.07 / 0.00 / 0.00 / 0.00 / 0.00
+  GpuMemcpyAsync:CPU->GPU            216     2.85 / 0.01 / 0.04 / 0.01 / 0.06          0.29 / 0.00 / 0.00 / 0.00 / 0.01
+  GpuMemcpyAsync(same_gpu):GPU->GPU  168     3.61 / 0.02 / 0.05 / 0.01 / 0.07          0.33 / 0.00 / 0.01 / 0.00 / 0.01
+  GpuMemcpySync:CUDAPinned->GPU      40      713.89 / 17.85 / 85.79 / 0.04 / 14.44     29.11 / 0.73 / 3.02 / 0.00 / 1.03
+  BufferedReader:MemoryCopy          6       40.17 / 6.69 / 7.62 / 5.87 / 0.81         0.00 / 0.00 / 0.00 / 0.00 / 0.00
+  ---------------------------------  ------  ----------------------------------------  ----------------------------------------
+  ```
 
-Memory Manipulation Summary 用于展示框架中调用内存操作所花费的时间。**该表单可以帮助了解程序执行过程中存储操作发生的次数和时间，结合 timeline，可以分析程序中是否有不必要同步内存拷贝操作，提高内存操作和计算的并行性。**
+  Memory Manipulation Summary 用于展示框架中调用内存操作所花费的时间。**该表单可以帮助了解程序执行过程中存储操作发生的次数和时间，结合 timeline，可以分析程序中是否有不必要同步内存拷贝操作，提高内存操作和计算的并行性。**
 
 - **UserDefined Summary**
 
-```plain
-------------------------------------------UserDefined Summary------------------------------------------
-Time unit: ms
------------  ------  ----------------------------------------  ----------------------------------------
-Name         Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)
------------  ------  ----------------------------------------  ----------------------------------------
---------------------------------------Thread: All threads merged---------------------------------------
-MyRecord     8       0.15 / 0.02 / 0.02 / 0.02 / 0.00          0.00 / 0.00 / 0.00 / 0.00 / 0.00
------------  ------  ----------------------------------------  ----------------------------------------
-```
+  ```plain
+  ------------------------------------------UserDefined Summary------------------------------------------
+  Time unit: ms
+  -----------  ------  ----------------------------------------  ----------------------------------------
+  Name         Calls   CPU Total / Avg / Max / Min / Ratio(%)    GPU Total / Avg / Max / Min / Ratio(%)
+  -----------  ------  ----------------------------------------  ----------------------------------------
+  --------------------------------------Thread: All threads merged---------------------------------------
+  MyRecord     8       0.15 / 0.02 / 0.02 / 0.02 / 0.00          0.00 / 0.00 / 0.00 / 0.00 / 0.00
+  -----------  ------  ----------------------------------------  ----------------------------------------
+  ```
 
-UserDefined Summary 用于展示用户自定义记录的 Event 所花费的时间。**通过 RecordEvent 接口所定义的事件将会展示在这里，用来分析目标代码片段的执行时间。**
+  UserDefined Summary 用于展示用户自定义记录的 Event 所花费的时间。**通过 RecordEvent 接口所定义的事件将会展示在这里，用来分析目标代码片段的执行时间。**
 
 ### 3.3 Benchmark 信息展示
 
