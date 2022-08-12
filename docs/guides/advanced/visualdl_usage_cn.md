@@ -219,7 +219,7 @@ visualdl --logdir ./runs/mnist_experiment --model ./runs/mnist_experiment/model.
 
 #### 2.1.1 查看输入图像
 
-如果想知道训练或测试数据集中的输入图像是什么样的，可以按如下方式使用[add_image_matrix](#Image--Image-Visualization)接口将输入图像列表写入 VisualDL，VisualDL 会自动将图像排列成网格进行展示。
+如果想知道训练或测试数据集中的输入图像是什么样的，可以按如下方式使用[add_image_matrix](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/components/README.md#Image--Image-Visualization)接口将输入图像列表写入 VisualDL，VisualDL 会自动将图像排列成网格进行展示。
 
 ```python
 # 数据载入
@@ -330,7 +330,7 @@ logwriter.add_hparams(hparams_dict={'lr': 0.0001, 'batch_size': 16, 'opt': 'adam
 
 #### 2.2.1 查看网络模型参数变化
 
-在网络模型训练的过程中，模型的参数会随着优化算法的更新而不断变化。通过将模型参数写入 VisualDL，可以了解模型参数的值的分布是如何随着训练过程而发生改变的。使用[add_histogram](#Histogram--Distribution-of-Tensors)接口可以写入模型参数。
+在网络模型训练的过程中，模型的参数会随着优化算法的更新而不断变化。通过将模型参数写入 VisualDL，可以了解模型参数的值的分布是如何随着训练过程而发生改变的。使用[add_histogram](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/components/README.md#Histogram--Distribution-of-Tensors)接口可以写入模型参数。
 
 ```python
   for epoch_id in range(EPOCH_NUM):
@@ -373,7 +373,7 @@ logwriter.add_hparams(hparams_dict={'lr': 0.0001, 'batch_size': 16, 'opt': 'adam
 
 #### 2.2.2 查看训练过程损失函数值变化
 
-网络模型的训练即是目标损失函数的优化过程。通常损失函数的值会随着优化算法的迭代不断变小，但是也可能会因为梯度爆炸或者不收敛等原因并没有达到预期的效果，可以通过[add_scalar](#Scalar--Line-Chart)接口将训练过程的损失函数的值记录下来观察变化。
+网络模型的训练即是目标损失函数的优化过程。通常损失函数的值会随着优化算法的迭代不断变小，但是也可能会因为梯度爆炸或者不收敛等原因并没有达到预期的效果，可以通过[add_scalar](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/components/README.md#Scalar--Line-Chart)接口将训练过程的损失函数的值记录下来观察变化。
 
 ```python
 for epoch_id in range(EPOCH_NUM):
@@ -452,7 +452,7 @@ add_scalar 接口写入的测试集的损失函数值和准确率的值，同样
 
 #### 2.3.2 查看 pr 曲线
 
-VisualDL 可以在每个训练的 epoch 结束后，在测试集上画出对应的 pr 曲线，参照下述代码，使用[add_pr_curve](#Scalar--Line-Chart)接口记录每个类别的 pr 曲线。
+VisualDL 可以在每个训练的 epoch 结束后，在测试集上画出对应的 pr 曲线，参照下述代码，使用[add_pr_curve](https://github.com/PaddlePaddle/VisualDL/blob/develop/docs/components/README.md#Scalar--Line-Chart)接口记录每个类别的 pr 曲线。
 
 ```python
 # evaluate model after one epoch
