@@ -116,7 +116,7 @@ import paddle
 # 随机生成输入，用于验证 Paddle 和 ONNX 的推理结果是否一致
 x = np.random.random((1, 3, 224, 224)).astype('float32')
 
-# predict by ONNX Runtime
+# predict by ONNXRuntime
 ort_sess = onnxruntime.InferenceSession("model.onnx")
 ort_inputs = {ort_sess.get_inputs()[0].name: x}
 ort_outs = ort_sess.run(None, ort_inputs)
@@ -131,7 +131,7 @@ paddle_outs = model(paddle_input)
 
 print("Original model has been predicted by Paddle!")
 
-# compare ONNX Runtime and Paddle results
+# compare ONNXRuntime and Paddle results
 np.testing.assert_allclose(ort_outs[0], paddle_outs.numpy(), rtol=1.0, atol=1e-05)
 
 print("The difference of results between ONNXRuntime and Paddle looks good!")
@@ -147,9 +147,9 @@ ONNXRuntime 的 API 和相关文档请查阅：[ONNXRuntime 文档](https://onnx
 
 ### 4.4 使用 ONNX 模型进行推理
 
-导出的 ONNX 模型可以用支持 ONNX 模型的推理引擎进行推理，比如 ONNX Runtime 或 TensorRT 等。本节将用 ONNX Runtime 和 4.2 节导出的 ONNX 模型来进行展示如何使用 ONNX Runtime 对 ONNX 模型进行推理预测。
+导出的 ONNX 模型可以用支持 ONNX 模型的推理引擎进行推理，比如 ONNXRuntime 或 TensorRT 等。本节将用 ONNXRuntime 和 4.2 节导出的 ONNX 模型来进行展示如何使用 ONNXRuntime 对 ONNX 模型进行推理预测。
 
-为了使用 ONNX Runtime 运行模型，需要使用所选配置参数为模型创建一个推理会话（这里我们使用默认配置）。可以使用如下命令，安装依赖、下载推理脚本和测试图片。
+为了使用 ONNXRuntime 运行模型，需要使用所选配置参数为模型创建一个推理会话（这里我们使用默认配置）。可以使用如下命令，安装依赖、下载推理脚本和测试图片。
 
 ```
 # 安装 ONNXRuntime 用于 ONNX 模型的推理
@@ -175,7 +175,7 @@ result, = sess.run(None, {"inputs": data})
 postprocess(result)
 ```
 
-使用如下命令运行脚本，使用 ONNX Runtime 推理。
+使用如下命令运行脚本，使用 ONNXRuntime 推理。
 
 ```
 # 使用 ONNX 模型和 ONNXRuntime 推理，对图片进行分类
@@ -207,7 +207,7 @@ TopK Scores:  [0.4966848  0.25181034 0.15389322 0.01496286 0.01342606]
 python -m pip show onnxruntime
 ```
 
-该命令的输出如下，Version 则为 ONNX Runtime 的版本：
+该命令的输出如下，Version 则为 ONNXRuntime 的版本：
 
 <p align="center">
 <img src="./images/paddle2onnx4.png" width="70%"/>
