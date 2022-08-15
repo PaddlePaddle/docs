@@ -7,7 +7,7 @@
 
 没有 ONNX 模型之前，采用各个框架训练的模型只能通过特定的转换工具进行转换。有了 ONNX 协议后，无论使用何种框架训练模型，训练完毕后都可以将模型转换为 ONNX 这种统一的格式进行存储。这就大大方便了算法及模型在不同框架之间的迁移。
 
-目前官方支持加载 ONNX 模型并进行推理的深度学习框架，除飞桨外，还有 PyTorch, MXNet， Caffe2, ML.NET，TensorRT 和 Microsoft CNTK 等主流框架都对 ONNX 有着不同程度的支持；并且 TensorFlow 也非官方的支持 ONNX。除深度学习框架外，大多推理引擎或者国产硬件，比如如 RK、地平线、鲲云等也都支持加载 ONNX 模型进行推理，如果需要在这类硬件上部署，可通过 Paddle2ONNX 将 Paddle 模型导出成 ONNX 后进行部署。
+目前官方支持加载 ONNX 模型并进行推理的深度学习框架，除飞桨外，还有 PyTorch、MXNet、Caffe2、ML.NET、TensorRT 和 Microsoft CNTK 等主流框架都对 ONNX 有着不同程度的支持；并且 TensorFlow 也非官方的支持 ONNX。除深度学习框架外，大多推理引擎或者国产硬件，比如如 RK、地平线、鲲云等也都支持加载 ONNX 模型进行推理，如果需要在这类硬件上部署，可通过 Paddle2ONNX 将 Paddle 模型导出成 ONNX 后进行部署。
 
 ## 二、Paddle2ONNX 安装
 Paddle2ONNX 作为 Paddle 提供的模型转换工具，可以将 Paddle 模型转换为 ONNX 格式，Paddle2ONNX 的安装非常简单，只需要输入以下命令就可以完成 Paddle2ONNX 的安装。
@@ -31,7 +31,6 @@ Paddle2ONNX 目前提供了包括图像分类、图像分割、目标检测、�
 
 ```
 import paddle
-import numpy as np
 from paddle.vision.transforms import Normalize
 
 transform = Normalize(mean=[127.5], std=[127.5], data_format='CHW')
@@ -56,7 +55,7 @@ model.evaluate(test_dataset, batch_size=64, verbose=1)
 完成以上代码，就可以训练这个模型。请注意，此模型未完全训练以获得良好的准确性，此处仅用于演示目的。
 使用 Paddle 完成模型训练之后，要导出模型，需要调用 paddle.onnx.export 接口，在导出模型时我们需要使用 paddle.static.InputSpec API 指定输入的 shape，如果输入中某一维为动态的，可以将该维指定为 None，在本例中我们设置第一维为动态，表示推理过程中该维可变。
 
-使用 Paddle 完成模型训练之后，转换成 ONNX 协议只需要调用 paddle.onnx.export 接口，便会在指定的路径下生成 ONNX 模型。关于 paddle.onnx.export 接口更详细的使用方法，请参考 [API](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/onnx/export_cn.html) 。
+使用 Paddle 完成模型训练之后，转换成 ONNX 协议只需要调用 paddle.onnx.export 接口，便会在指定的路径下生成 ONNX 模型。关于 paddle.onnx.export 接口更详细的使用方法，请参考 [API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/onnx/export_cn.html) 。
 添加如下脚本，可以在 onnx.save 下生成 lenet.onnx 模型。
 ```
 # export to ONNX
