@@ -39,4 +39,3 @@
         entry: python .pre-commit-hooks/convert_markdown_into_html.py
         language: system
         files: .+README(\.cn)?\.md$
-

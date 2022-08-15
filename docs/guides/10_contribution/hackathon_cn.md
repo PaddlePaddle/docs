@@ -25,17 +25,17 @@
 （二）任务调研阶段
 
 - 1、**提交提案**：本次活动绝大多数任务都需要先提交提案，以功能设计文档（RFC，Request for Comments）的形式与飞桨专家和社区开发者确定开发方案后，再进行任务的开发：
-    
+
     - 首先，请按照任务要求，在 [PaddlePaddle/community/rfc](https://github.com/PaddlePaddle/community) 对应的目录下新建 RFC，参考 [RFC 设计文档模板](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md)，对任务进行技术方案设计；
     - 将 RFC 以 Pull Request(PR) 形式提交，并按 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，以及在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 下按格式回复【提交提案】；
-    
+
 - 2、签署开源协议：对于你贡献的源代码，你将拥有合法的知识产权，为了保护你的权益，你需要签署一份[贡献者许可协议](https://cla-assistant.io/PaddlePaddle/Paddle?pullRequest=39047)；
 - 3、提案评审&公示：设计文档将接受来自于飞桨专家和社区开发者的评审，并在 PR 中讨论开发方案的细节；
 - 4、**产生任务 leader**：第一个通过设计文档评审的开发者将成为该任务的 leader，后续任务开发需按照设计文档进行；若其他开发者先于任务 leader 提交了作品，则他/她的作品需经过任务 leader 的确认（自@任务 leader review 后，7个自然日内无回复默认通过），未按照设计文档开发的作品将不会进入评审阶段。
 
 （三）任务开发阶段
 
-- 1、任务开发：任务描述中要求 RFC 的任务，需在 RFC 通过评审后按照文档进行开发；未要求 RFC 的任务，可根据任务描述直接进行开发；此外，为了让更多开发者参与进来，**API 开发任务（含基础 API 与稀疏 API）每支队伍最多仅能获取一项任务奖金**，建议你选择自己最感兴趣的任务进行开发；
+- 1、任务开发：任务描述中要求 RFC 的任务，需在 RFC 通过评审后按照文档进行开发；未要求 RFC 的任务，可根据任务描述直接进行开发；此外，为了让更多开发者参与进来，**基础 API 开发任务每支队伍最多仅能获取一项任务奖金**，建议你选择自己最感兴趣的任务进行开发；
 - 2、**提交作品**：确保**提交内容**完整后，以 Pull Request(PR) 形式提交至指定的代码仓库，待 CI 大部分通过后，依据 [参考模板](https://www.paddlepaddle.org.cn/contributionguide?docPath=hackathon_cn#youjianmuban) 发送邮件至 paddle-hack@baidu.com，在 GitHub ISSUE **[【PaddlePaddle Hackathon 第三期】任务总览](https://github.com/PaddlePaddle/Paddle/issues/43938)** 下按格式回复【提交作品】，启动技术评审。
 
 **注**：如果你在开发过程中遇到开发环境限制，可以向 paddle-hack@baidu.com 发邮件说明情况，并附上自己提交通过的提案（RFC）链接，我们会根据实际情况为你提供线上开发环境（Linux CPU & Linux GPU）。资源有限，请按需申请~
@@ -52,7 +52,7 @@
 | **时间**                   | **日程**                                                     |
 | -------------------------- | ------------------------------------------------------------ |
 | **2022/07/04 20:00 GMT+8** | 活动开启（报名开启，任务认领、作品提交通道同步开启） |
-| **2022/08/15 20:30 GMT+8** | 中期大会（所有开发者和飞桨产研共同交流）                   |
+| **2022/08/15 19:00 GMT+8** | 中期大会（所有开发者和飞桨产研共同交流）                   |
 | **2022/09/12 23:59 GMT+8** | 提案截止 & 报名截止（任务提案提交截止，本次活动报名通道关闭） |
 | **2022/09/19 23:59 GMT+8** | 最终评估（任务认领、作品提交通道关闭，作品进入最终评估环节） |
 | **2022/09/29 23:59 GMT+8** | 结果公示（作品以及获奖团队/个人公布） |
