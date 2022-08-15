@@ -44,7 +44,7 @@
 
 ## 邮件格式
 
-标题： [Hackathon 热身打卡] 
+标题： [Hackathon 热身打卡]
 
 内容：
 
@@ -58,7 +58,7 @@
 
 如：
 
-标题： [Hackathon 热身打卡] 
+标题： [Hackathon 热身打卡]
 
 内容：
 
@@ -70,14 +70,15 @@
 
 【打卡截图】：
 
-| 硬件               | ![img](https://ku.baidu-int.com/wiki/attach/image/api/imageDownloadAddress?attachId=54c82827d5274003ab5486956e991077&docGuid=yBAJCUfUKrwXRJ) |
+| 硬件               | ![](./img/hackathon%233_warming_up_1.png) |
 | ------------------ | ------------------------------------------------------------ |
 | 编译方式           | 参考【Linux下从源码编译】文档的【使用Docker编译】（[源码编译文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/fromsource.html) 有多种编译方式，请大家填写本次编译参考的文档） |
-| cmake命令和时间    | 命令：`time cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF`时间：注意要将commit号截图进来哦![img](https://ku.baidu-int.com/wiki/attach/image/api/imageDownloadAddress?attachId=158d3879bf194a33816c68f9c5ffc1a6&docGuid=yBAJCUfUKrwXRJ) |
-| 初次编译命令和时间 | 命令：`time make -j20` （写一下大家用几核哦）时间：以下时间仅作为示例，不代表真实的初次编译时间![img](https://ku.baidu-int.com/wiki/attach/image/api/imageDownloadAddress?attachId=e409e0810a594ceb9ba787adae8e74b8&docGuid=yBAJCUfUKrwXRJ) |
-| 二次编译时间       | 时间：以下时间仅作为示例，不代表真实的二次编译时间paddle/fluid/platform/enforce.h![img](https://ku.baidu-int.com/wiki/attach/image/api/imageDownloadAddress?attachId=7f9bf604c9174133a12e5ec522f15950&docGuid=yBAJCUfUKrwXRJ)paddle/fluid/operators/center_loss_op.cc![img](https://ku.baidu-int.com/wiki/attach/image/api/imageDownloadAddress?attachId=92d54f1f20054a0a89b1e54e782b1696&docGuid=yBAJCUfUKrwXRJ)python/paddle/tensor/math.py![img](https://ku.baidu-int.com/wiki/attach/image/api/imageDownloadAddress?attachId=f4eda6b0fa6a4c75b916c47f6482d992&docGuid=yBAJCUfUKrwXRJ) |
-| 安装whl包          | ![img](https://ku.baidu-int.com/wiki/attach/image/api/imageDownloadAddress?attachId=33f8613ba7bd450789790aa3cd3366a9&docGuid=yBAJCUfUKrwXRJ) |
-| 运行单元测试       | ![img](https://ku.baidu-int.com/wiki/attach/image/api/imageDownloadAddress?attachId=6b1cee4eb53742ed970a8a8a9c896e53&docGuid=yBAJCUfUKrwXRJ) |
+| cmake命令和时间    | 命令：`time cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF`</br>时间：注意要将commit号截图进来哦</br>![](./img/hackathon%233_warming_up_2.png) |
+| 初次编译命令和时间 | 命令：`time make -j20` （写一下大家用几核哦）</br>时间：以下时间仅作为示例，不代表真实的初次编译时间</br>![](./img/hackathon%233_warming_up_3.png) |
+| 二次编译时间       | 时间：以下时间仅作为示例，不代表真实的二次编译时间</br>paddle/fluid/platform/enforce.h</br>![](./img/hackathon%233_warming_up_4.png)</br>paddle/fluid/operators/center_loss_op.cc</br>![](./img/hackathon%233_warming_up_5.png)</br>python/paddle/tensor/math.py</br>![](./img/hackathon%233_warming_up_6.png) |
+| 安装whl包          | ![](./img/hackathon%233_warming_up_7.png) |
+| 运行单元测试       | ![](./img/hackathon%233_warming_up_8.png) |
+
 
 
 
