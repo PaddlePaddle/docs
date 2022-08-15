@@ -6,7 +6,7 @@
 
 - 是否签署 CLA 协议。
 - PR 描述是否符合规范。
-- 是否通过不同平台`（Linux/Mac/Windows/XPU/NPU/DCU等）`的编译与单测（单元测试）。
+- 是否通过不同平台`（Linux/Mac/Windows/XPU/NPU/DCU 等）`的编译与单测（单元测试）。
 - 是否通过静态代码扫描工具的检测。
 
 CI 测试包含的具体测试任务和执行顺序如下图所示：
@@ -30,83 +30,83 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 
 ### **license/cla**
 
-- **【条目描述】** 首次为 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 仓库贡献时，需要签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)，才可以合入代码。
-- **【触发条件】** 自动触发。
+- **【条目描述】**首次为 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 仓库贡献时，需要签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)，才可以合入代码。
+- **【触发条件】**自动触发。
 
 ### CheckPRTemplate
 
-- **【条目描述】** 检查PR描述信息是否按照模板填写，模板如下：
+- **【条目描述】**检查 PR 描述信息是否按照模板填写，模板如下：
 
 ```md
 ### PR types
 <!-- One of [ New features | Bug fixes | Function optimization | Performance optimization | Breaking changes | Others ] -->
-(必填)从上述选项中，选择并填写PR类型
+(必填)从上述选项中，选择并填写 PR 类型
 ### PR changes
 <!-- One of [ OPs | APIs | Docs | Others ] -->
-(必填)从上述选项中，选择并填写PR所修改的内容
+(必填)从上述选项中，选择并填写 PR 所修改的内容
 ### Describe
 <!-- Describe what this PR does -->
-(必填)请填写PR的具体修改内容
+(必填)请填写 PR 的具体修改内容
 ```
 
-- **【触发条件】** 自动触发。
-- **【注意事项】** 通常 10 秒内检查完成，如遇长时间未更新状态，请编辑一下 PR 描述以重新触发。
+- **【触发条件】**自动触发。
+- **【注意事项】**通常 10 秒内检查完成，如遇长时间未更新状态，请编辑一下 PR 描述以重新触发。
 
 ### Linux 平台测试项
 
 #### PR-CI-Clone
 
-- **【条目描述】** 将当前 PR 的代码从 GitHub Clone 到 CI 测试执行的机器，方便后续的 CI 直接使用。
-- **【触发条件】** 自动触发。
+- **【条目描述】**将当前 PR 的代码从 GitHub Clone 到 CI 测试执行的机器，方便后续的 CI 直接使用。
+- **【触发条件】**自动触发。
 
 #### PR-CI-Build
 
-- **【条目描述】** 生成当前 PR 的编译产物，并将编译产物上传到 BOS（百度智能云对象存储）中，方便后续的 CI 可以直接复用该编译产物。
-- **【执行脚本】** `paddle/scripts/paddle_build.sh build_pr_dev`
+- **【条目描述】**生成当前 PR 的编译产物，并将编译产物上传到 BOS（百度智能云对象存储）中，方便后续的 CI 可以直接复用该编译产物。
+- **【执行脚本】**`paddle/scripts/paddle_build.sh build_pr_dev`
 - **【触发条件】**
   - `PR-CI-Clone`通过后自动触发。
-  - 当PR-CI-Py3任务失败时，会取消当前任务（因PR-CI-Py3失败，当前任务成功也无法进行代码合并，需要先排查PR-CI-Py3失败原因）。
+  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
 
 #### PR-CE-Framework
 
-- **【条目描述】** 检测框架 API 与预测 API 的核心测试用例是否通过。
+- **【条目描述】**检测框架 API 与预测 API 的核心测试用例是否通过。
 - **【执行脚本】**
   - [框架 API 测试](https://github.com/PaddlePaddle/PaddleTest)：`PaddleTest/framework/api/run_paddle_ci.sh`
   - [预测 API 测试](https://github.com/PaddlePaddle/PaddleTest)：`PaddleTest/inference/python_api_test/parallel_run.sh `
-- **【触发条件】** `PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
+- **【触发条件】**`PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
 
 #### PR-CI-Model-benchmark
 
-- **【条目描述】** 检测 PR 中的修改是否会导致模型性能下降或者运行报错。
-- **【执行脚本】** `tools/ci_model_benchmark.sh run_all`
-- **【触发条件】** `PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
-- **【注意事项】** 本条 CI 测试不通过的处理方法可查阅 [PR-CI-Model-benchmark Manual](https://github.com/PaddlePaddle/Paddle/wiki/PR-CI-Model-benchmark-Manual)。
+- **【条目描述】**检测 PR 中的修改是否会导致模型性能下降或者运行报错。
+- **【执行脚本】**`tools/ci_model_benchmark.sh run_all`
+- **【触发条件】**`PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
+- **【注意事项】**本条 CI 测试不通过的处理方法可查阅 [PR-CI-Model-benchmark Manual](https://github.com/PaddlePaddle/Paddle/wiki/PR-CI-Model-benchmark-Manual)。
 
 #### PR-CI-OP-benchmark
 
-- **【条目描述】** 检测 PR 中的修改是否会造成 OP 性能下降或者精度错误。
-- **【执行脚本】** `tools/ci_op_benchmark.sh run_op_benchmark`
-- **【触发条件】** `PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
-- **【注意事项】** 本条 CI 测试不通过的处理方法可查阅 [PR-CI-OP-benchmark Manual](https://github.com/PaddlePaddle/Paddle/wiki/PR-CI-OP-benchmark-Manual)。
+- **【条目描述】**检测 PR 中的修改是否会造成 OP 性能下降或者精度错误。
+- **【执行脚本】**`tools/ci_op_benchmark.sh run_op_benchmark`
+- **【触发条件】**`PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
+- **【注意事项】**本条 CI 测试不通过的处理方法可查阅 [PR-CI-OP-benchmark Manual](https://github.com/PaddlePaddle/Paddle/wiki/PR-CI-OP-benchmark-Manual)。
 
 #### PR-CI-Py3
 
-- **【条目描述】** 检测当前 PR 在 CPU、Python3 版本的编译与单测是否通过。
-- **【执行脚本】** `paddle/scripts/paddle_build.sh cicheck_py37`
-- **【触发条件】** `PR-CI-Clone`通过后自动触发。
+- **【条目描述】**检测当前 PR 在 CPU、Python3 版本的编译与单测是否通过。
+- **【执行脚本】**`paddle/scripts/paddle_build.sh cicheck_py37`
+- **【触发条件】**`PR-CI-Clone`通过后自动触发。
 
 #### PR-CI-Coverage
 
-- **【条目描述】** 检测当前 PR 在 GPU、Python3 版本的编译与单测是否通过，同时增量代码需满足行覆盖率大于 90% 的要求。可在 PR 页面点击该 CI 后的 details 查看覆盖率，如下图所示：
+- **【条目描述】**检测当前 PR 在 GPU、Python3 版本的编译与单测是否通过，同时增量代码需满足行覆盖率大于 90% 的要求。可在 PR 页面点击该 CI 后的 details 查看覆盖率，如下图所示：
 
 
-- **【条目描述】** 检测当前 PR 的 C++ 代码是否通过 [静态代码扫描](https://clang-analyzer.llvm.org/)。
-- **【触发条件】** 自动触发。
+- **【条目描述】**检测当前 PR 的 C++ 代码是否通过 [静态代码扫描](https://clang-analyzer.llvm.org/)。
+- **【触发条件】**自动触发。
 
 #### PR-CI-iScan-Python
 
-- **【条目描述】** 检测当前 PR 的 Python 代码是否通过 [静态代码扫描](https://pylint.pycqa.org/)。
-- **【触发条件】** 自动触发。
+- **【条目描述】**检测当前 PR 的 Python 代码是否通过 [静态代码扫描](https://pylint.pycqa.org/)。
+- **【触发条件】**自动触发。
 
 ## 三、CI 失败如何处理
 
@@ -120,8 +120,8 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 建议在提交 PR 前设置：
 
 ```plain
-git config --local user.email 你的GitHub邮箱
-git config --local user.name 你的GitHub名字
+git config --local user.email 你的 GitHub 邮箱
+git config --local user.name 你的 GitHub 名字
 ```
 
 ### 3.2 CheckPRTemplate 失败
