@@ -1,19 +1,21 @@
 # 飞桨高可复用算子库 PHI 设计文档
 
-飞桨高可复用算子库 PHI (Paddle HIgh reusability operator library)，或者我们也称之为函数式算子库，支持组合式算子功能复用、Primitive 算子内核复用、插件式硬件加速库复用。针对飞桨框架原算子库存在的算子接口不清晰、算子复用成本较高、调用性能不够快等问题，我们重构了飞桨框架的算子库，设计了灵活、高效的函数式算子库 PHI，可以通过对函数式算子接口组合调用的方式实现新算子。新算子库提供了 200 余个跟 Python 开发接口保持一致的 C++ 运算类 API，以及近 500 个可供组合调用的前、反向函数式算子内核，可大幅降低框架原生算子和自定义算子的开发成本。新算子库支持基于 Primitive API 开发算子内核，可支持不同硬件（比如 GPU 和 XPU）的算子内核复用。新算子库支持以插件方式接入硬件（比如 NPU）的加速库，实现低成本复用硬件加速库。
+飞桨高可复用算子库 PHI (Paddle HIgh reusability operator library)，或者我们也称之为函数式算子库，支持基于已有的算子内核以及 Kernel Primitives API 组合实现新的算子，支持插件式接入新硬件或者新加速库。
+
+针对飞桨框架原算子库存在的算子接口不清晰、算子复用成本较高、调用性能差等问题，我们重构了飞桨框架的算子库，设计了灵活、高效的函数式算子库 PHI，可以通过对函数式算子接口组合调用的方式实现新算子。新算子库提供了 200 余个跟 Python 开发接口保持一致的 C++ 运算类 API，以及近 500 个可供组合调用的前、反向函数式算子内核，可大幅降低框架原生算子和自定义算子的开发成本。
 
 ## 一、背景与目标
 
-> 介绍设计并建设 phi 算子库要解决的问题
+> 介绍设计并建设 PHI 算子库要解决的问题
 
 
-最初启动 phi 算子库项目仅是为了支撑飞桨动态图架构重构以降低调度开销、并提升 OpKernel 开发的复用能力而提出来的，但后续决定借此机会，建立能够同时在训练和推理场景（包括服务器端和移动端场景）中使用的“训推一体”算子库，长远上降低 paddle 生态中各基础设施开发及维护算子的成本，逐渐扩充了项目的目标范围，目前 phi 已经承载了多维度的意义。
+最初启动 PHI 算子库项目仅是为了支撑飞桨动态图架构重构以降低调度开销、并提升 OpKernel 开发的复用能力而提出来的，但后续决定借此机会，建立能够同时在训练和推理场景（包括服务器端和移动端场景）中使用的“训推一体”算子库，长远上降低 paddle 生态中各基础设施开发及算子维护的成本，逐渐扩充了项目的目标范围，目前 PHI 已经承载了多维度的意义。
 
-> 关于算子库的命名，开发过程中有过迭代：初期算子库目录名为 pten ，意为 paddle Tensor 运算库 (Paddle Tensor Operation Library)，因此一些历史 PR 以 PTen 为前缀，后期经内部协商统一更名为 phi
+> 关于算子库的命名，开发过程中有过迭代：初期算子库目录名为 PTEN ，意为 paddle Tensor 运算库 (Paddle Tensor Operation Library)，因此一些历史 PR 以 PTen 为前缀，后期经内部协商统一更名为 PHI
 
 ### 1.1 背景问题
 
-具体地，phi 算子库项目，承载着解决 Paddle 以下问题的期望：
+具体地，PHI 算子库项目，承载着解决 Paddle 以下问题的期望。
 
 #### 1.1.1 Op&OpKernel 之间可复用性差，冗余代码较多
 
@@ -59,11 +61,11 @@ Paddle 2.0 发布之后，多次收到内外部用户反馈动态图在小模型
 
 #### 1.1.5 推理新 Runtime 设计 infrt 的适配
 
-推理设计了新的 runtime infrt，预计要统一 paddle-inference 和 paddle-lite 的执行体系，需要直接调用本次共建的 phi 算子库中的算子，因此在设计时需要考虑对 infrt 的适配（目前 infrt 项目暂时处于停滞状态）。
+推理设计了新的 runtime infrt，预计要统一 paddle-inference 和 paddle-lite 的执行体系，需要直接调用本次共建的 PHI 算子库中的算子，因此在设计时需要考虑对 infrt 的适配（目前 infrt 项目暂时处于停滞状态）。
 
 #### 1.1.6 Op 及 Kernel 参数规范化
 
-2020 年的 Python 2.0 API 项目规范了 Paddle Python 端 API 的参数列表，使其变得简洁、易用、标准，但是当时出于成本考虑，Op 层面的参数列表并没有规范化，因此会有不少早期开发的算子和 Python API 参数相差较多，例如 conv op 这种，Python API 仅有 8 个参数，但相应的 C++ Conv Op 却有 30+ 个参数的分裂情况。 API 和 Op 本质上是同一层的概念，都是对一个运算的描述，参数应该是一致的。推理为了解决此问题，发起算子定义增强项目，为部分不需要的参数添加了 AsExtra 以及 AsQuant 的声明，但并未从根本上解决问题，这也是 phi 算子库构建希望重点去解决的。
+2020 年的 Python 2.0 API 项目规范了 Paddle Python 端 API 的参数列表，使其变得简洁、易用、标准，但是当时出于成本考虑，Op 层面的参数列表并没有规范化，因此会有不少早期开发的算子和 Python API 参数相差较多，例如 conv op 这种，Python API 仅有 8 个参数，但相应的 C++ Conv Op 却有 30+ 个参数的分裂情况。 API 和 Op 本质上是同一层的概念，都是对一个运算的描述，参数应该是一致的。推理为了解决此问题，发起算子定义增强项目，为部分不需要的参数添加了 AsExtra 以及 AsQuant 的声明，但并未从根本上解决问题，这也是 PHI 算子库构建希望重点去解决的。
 
 我们希望能做到，Python API -> Op(C++ API) -> Kernel API 三层参数一致，使整体架构清晰，每一层复用关系也足够清晰，维护一套 Python API 官方文档，基本能够满足三层 API 的共同参考需求，不再着重维护额外的文档体系，降低维护成本。
 
@@ -73,17 +75,17 @@ Paddle 2.0 发布之后，多次收到内外部用户反馈动态图在小模型
 
 - 目标范围：
 
-  - phi 算子库初期构建更关注 Kernel“迁移”，出于时间和人力成本的考虑，原 OpKernel 逻辑迁移时暂不强制升级为“组合式”写法，前反向 Kernel 均如此
-  - phi 算子库提供的"组合式 Kernel 二次开发"能力初期先服务于后续增量的新算子，已有算子仍然保持其原先的编码实现，降低迁移成本
-  - phi 算子库提供的“新硬件扩展能力”初期仅在新硬件自身范围内提供，比如 XPU 已经实现了 50 个 Kernel，后续其可以基于 50 个 Kernel 去组合新的 Kernel，但这仅限于 XPU 范围内，其实现不和 CPU、CUDA 等实现通用
-  - phi 算子库项目重点关注“Kernel 函数化 & Op 规范化”的工作，Kernel 改为函数式，C++API 与 Op 命名及参数列表在尽可能确保兼容性的前提下与逐渐规范化为与 Python API 一致
+  - PHI 算子库初期构建更关注 Kernel“迁移”，出于时间和人力成本的考虑，原 OpKernel 逻辑迁移时暂不强制升级为“组合式”写法，前反向 Kernel 均如此
+  - PHI 算子库提供的"组合式 Kernel 二次开发"能力初期先服务于后续增量的新算子，已有算子仍然保持其原先的编码实现，降低迁移成本
+  - PHI 算子库提供的“新硬件扩展能力”初期仅在新硬件自身范围内提供，比如 XPU 已经实现了 50 个 Kernel，后续其可以基于 50 个 Kernel 去组合新的 Kernel，但这仅限于 XPU 范围内，其实现不和 CPU、CUDA 等实现通用
+  - PHI 算子库项目重点关注“Kernel 函数化 & Op 规范化”的工作，Kernel 改为函数式，C++API 与 Op 命名及参数列表在尽可能确保兼容性的前提下与逐渐规范化为与 Python API 一致
 
 
 ## 二、设计概览
 
 ### 2.1 命名及位置
 
-飞桨高可复用算子库 (Paddle HIgh reusability operator library)，简称 PHI(phi)，phi 代码目录在 paddle 目录下，和 fluid 平级，而不是放在 fluid 目录下，这样放置的原因是：phi 是一个由 fluid，lite，infrt 等多种上层 runtime 共同调用的基础组件，后续会作为单独编译的动态库存在，因此不适合作为 fluid 的子模块。
+飞桨高可复用算子库 (Paddle HIgh reusability operator library)，简称 PHI(phi)，PHI 代码目录在 paddle 目录下，和 fluid 平级，而不是放在 fluid 目录下，这样放置的原因是：phi 是一个由 fluid，lite，infrt 等多种上层 runtime 共同调用的基础组件，后续会作为单独编译的动态库存在，因此不适合作为 fluid 的子模块。
 
 ### 2.2 目录结构
 
@@ -149,7 +151,7 @@ paddle/phi
     - 该部分可能反向依赖框架的 DeviceContextPool 等实现，所以单独管理
     - 在该类 API 上，训练和预测也可能是不同的
 - `capi`: C API 模块，目前主要服务于插件式硬件接入功能
-- `common`：phi 内部及 phi api 目录均要使用的数据结构，这些数据结构既不属于 phi core，也不属于 api 目录
+- `common`：phi 内部及 PHI api 目录均要使用的数据结构，这些数据结构既不属于 PHI core，也不属于 api 目录
 - `core`：phi 内部会有一些自己需要的，公用的模块实现，比如基础 DenseTensor、kernel 注册及管理模块
 - `backends`：backends 中组织后续需要为各个后端的新增的数据结构，比如 CPUContext、GPUContext 等
     - core 中放置对于算子库来讲通用的基础数据结构，而特定后端的专用数据结构不放在 core 中，且依赖关系严格保证 backends 依赖 core，但 core 不能依赖 backends
@@ -323,7 +325,7 @@ enum class DataLayout {
   // See Note [ Why we need ALL in basic kernel key member? ]
   ALL_LAYOUT = UNDEFINED,
 
-  // Note: Unify phi DataLayout and fluid::framework::DataLayout,
+  // Note: Unify PHI DataLayout and fluid::framework::DataLayout,
   // for compatible with fluid DataLayout, here need prefix `k`
 
   // Note: The original `kAnyLayout (enum value 2)` is a strange design.
@@ -387,7 +389,7 @@ enum class DataType {
 
 - 这里什么不使用原先 fluid 的 VarType？
     - 理由 1：原先 fluid 的 DataType 和 VarType 是同级概念，设计是比较混乱的，例如 LoDTensor 和 FLOAT32 是同级概念，但这两者显然不是的，我们不希望继承原先有明显缺陷的设计
-    - 理由 2：和 fluid 解耦依赖，便于后续 phi 可以独立编译
+    - 理由 2：和 fluid 解耦依赖，便于后续 PHI 可以独立编译
 
 ##### 2.3.1.4 Scalar
 
@@ -450,7 +452,7 @@ void FullKernel(const Context& dev_ctx,
 
     - 这里带有的 autograd 信息，只是一个指针索引，默认为空
         - `std::unique_ptr<AbstractAutogradMeta> autograd_meta_ = nullptr;`
-    - 而这里的 AbstractAutogradMeta 是一个抽象类接口，不会依赖 autograd 的任何模块，因此不会影响 phi 的独立编译，同时又兼顾了动态图 Tensor 需要持有反向信息的需求
+    - 而这里的 AbstractAutogradMeta 是一个抽象类接口，不会依赖 autograd 的任何模块，因此不会影响 PHI 的独立编译，同时又兼顾了动态图 Tensor 需要持有反向信息的需求
 
 - 这里的 AutogradMeta 仅在动态图场景中才会设置，不需要的场景，比如静态图内就仅仅是个空指针而已
 
@@ -672,7 +674,7 @@ void Scale(const Context& dev_ctx,
 > FAQ：
 
 >- 为什么第一个参数需要是 DeviceContext？为什么不能不传？
-    - phi kernel 要求是纯函数形式，即函数内使用的变量均通过参数传入，或者在函数内部创建，不允许在函数内部使用全局单例，为了适配多样的 kernel 需求，像 DeviceContext 这种存储上下文信息的参数是必要的
+    - PHI kernel 要求是纯函数形式，即函数内使用的变量均通过参数传入，或者在函数内部创建，不允许在函数内部使用全局单例，为了适配多样的 kernel 需求，像 DeviceContext 这种存储上下文信息的参数是必要的
 >- 为什么需要两个模板参数？
     - 为了支持高效的设备无关 kernel 的复用，假如我们要实现一个傅里叶变换 fft kernel，假设这个 kernel 能够使用基础 kernel 组合得出，通过 `Xxx<T, Device>()` 这种形式避免再次动态分发设备
 
@@ -709,7 +711,7 @@ class SignKernel : public framework::OpKernel<T> {
 };
 ```
 
-迁移后的 phi sign kernel：
+迁移后的 PHI sign kernel：
 
 ```
 template <typename T, typename Context>
@@ -729,7 +731,7 @@ void SignKernel(const Context& dev_ctx,
 除了 kernel 形式从结构体变为函数式之外，还有两处主要变化：
 
 1. 由于参数都是具体的输入，所以不需要再到 context 里取输入输出，相关代码移除
-2. phi kernel 中要求输出 Tensor 的内存申请统一使用`ctx.Alloc`或者`ctx.HostAlloc`方法，不能再使用原先的`mutable_data`申请内存
+2. PHI kernel 中要求输出 Tensor 的内存申请统一使用`ctx.Alloc`或者`ctx.HostAlloc`方法，不能再使用原先的`mutable_data`申请内存
 
 > FAQ
 > 1. 为什么 mutable_data 要替换成 ctx.Alloc？
@@ -877,7 +879,7 @@ using KernelFn = void (*)(KernelContext* ctx);
 
 ##### 2.3.5.1 Kernel 编译
 
-原 OpKernel 迁移至 phi 之后，phi 在编译时自动扫描所有相关的 cc(cu) 文件，按设备编译成的整体的 target，不需要逐个声明 Kernel 的编译对象，例如：
+原 OpKernel 迁移至 PHI 之后，phi 在编译时自动扫描所有相关的 cc(cu) 文件，按设备编译成的整体的 target，不需要逐个声明 Kernel 的编译对象，例如：
 
 ```
 file(
@@ -914,13 +916,13 @@ phi kernel 整体改为了函数式，本意就是让 kernel 之间可以更加�
 
 #### 2.3.6 InferMeta(Shape)抽象整合
 
-原先 fluid Op 的 InferShape 和 OpKernel 一样，存在重复开发的问题，因为不同 Op 的 InferShape 函数无法复用，因此即使不同 Op 的 InferShape 逻辑一样或者类似，也都是重写一遍，本次 phi 的重构也需要解决此问题。
+原先 fluid Op 的 InferShape 和 OpKernel 一样，存在重复开发的问题，因为不同 Op 的 InferShape 函数无法复用，因此即使不同 Op 的 InferShape 逻辑一样或者类似，也都是重写一遍，本次 PHI 的重构也需要解决此问题。
 
 我们将 InferShape 同样改写为函数式，支持不同的 Op 可以调用同一个 InferShape 函数，提升易用性，降低维护成本。
 
 > FAQ：
 > 1. 为什么要叫 InferMeta，而不是继续叫 InferShape？
-> 答：InferMeta 的 Meta 来源于 DenseTensor 中的 meta 成员，在 phi 中，一个 op 有两大组件，InferMeta 和 Kernel。这里 InferMeta 覆盖了 InferShape 的功能，但又不限于 InferShape，除了对 dims 和 lod 的推断，InferMeta 中也会承担 dtype 和 layout 的推断，这一点和原先是不一样的。
+> 答：InferMeta 的 Meta 来源于 DenseTensor 中的 meta 成员，在 PHI 中，一个 op 有两大组件，InferMeta 和 Kernel。这里 InferMeta 覆盖了 InferShape 的功能，但又不限于 InferShape，除了对 dims 和 lod 的推断，InferMeta 中也会承担 dtype 和 layout 的推断，这一点和原先是不一样的。
 
 ##### 2.3.6.1 InferMeta 相关设计
 
@@ -990,7 +992,7 @@ class MetaTensor {
 };
 ```
 
-基类的 MetaTensor 中有一个 TensorBase 的指针成员，因此在 phi 中可以兼容 DenseTensor，SelectedRows，SparseCsrTensor 等多种类型。
+基类的 MetaTensor 中有一个 TensorBase 的指针成员，因此在 PHI 中可以兼容 DenseTensor，SelectedRows，SparseCsrTensor 等多种类型。
 
 ##### 2.3.6.2 InferMeta 注册管理
 
@@ -1183,7 +1185,7 @@ REGISTER_OPERATOR(sign, ops::SignOp, ops::SignOpMaker<float>,
 
 ```
 
-至此，实现原 Op 的 InferShape 函数迁移至 phi InferMeta 之后，可以重新注册回 fluid 中被调用，从而实现 InferShape 的函数化复用与全局统一。
+至此，实现原 Op 的 InferShape 函数迁移至 PHI InferMeta 之后，可以重新注册回 fluid 中被调用，从而实现 InferShape 的函数化复用与全局统一。
 
 ### 2.4 动静态图执行兼容适配
 
@@ -1200,14 +1202,14 @@ REGISTER_OPERATOR(sign, ops::SignOp, ops::SignOpMaker<float>,
 
 对于一些原先就相对规范的算子，它的 OpMaker 参数和 Python api 参数本就是对应的，这种标准的情况，不存在需要选参数的需求，对于这部分算子，根据 OpProto 中输入输出属性的注册顺序，跳过标记为 Extra 和 Quant 的成员，可以解决一部分 Op 和 Kernel 的参数匹配问题；然而对于一些不太规范，或者说是 fluid 时代遗留的算子，比如像 conv，就需要这样的映射函数，且这个映射函数根据 op 不同，可能存在非常复杂的判断逻辑，因此现阶段没有办法可以自动化处理。
 
-为此，目前设计了 ArgumentMapping 函数映射的体系，在 phi/ops/compat 目录下，实现相应的映射函数并注册，然后在 phi kernel 执行适配时，会调用对应的 ArgumentMapping 函数，得到 phi kernel 需要的参数，例如 scale op 的映射函数如下：
+为此，目前设计了 ArgumentMapping 函数映射的体系，在 phi/ops/compat 目录下，实现相应的映射函数并注册，然后在 PHI kernel 执行适配时，会调用对应的 ArgumentMapping 函数，得到 PHI kernel 需要的参数，例如 scale op 的映射函数如下：
 
 ```
 /**
  * Note [ Why does the ArgumentMapping function need to be so complicated? ]
  *
  * In order to meet the requirements of infrt, the function used to match Op
- * and Kernel parameters, need to be placed in phi as a compatible component,
+ * and Kernel parameters, need to be placed in PHI as a compatible component,
  * and does not depend on fluid.
  *
  * Because infrt not only needs to dynamically call this argument mapping
@@ -1269,7 +1271,7 @@ class ArgumentMappingContext {
   virtual bool HasOutput(const std::string& name) const = 0;
   virtual bool HasAttr(const std::string& name) const = 0;
 
-  // now we can't use Attribute here, it will cause phi relay on
+  // now we can't use Attribute here, it will cause PHI relay on
   // boost::variant and BlockDesc
   virtual paddle::any Attr(const std::string& name) const = 0;
 
@@ -1412,9 +1414,9 @@ class ProtoArgumentMappingContext : public phi::ArgumentMappingContext {
 };
 ```
 
-#### 2.4.2 phi Kernel 兼容调度执行
+#### 2.4.2 PHI Kernel 兼容调度执行
 
-目前 phi kernel 可以兼容地在老 Executor，ParallelExecutor，动态图的 Tracer，Engine，推理的 Predictor，以及新执行器 InterpreterCore 等在执行体系中被调度执行。
+目前 PHI kernel 可以兼容地在老 Executor，ParallelExecutor，动态图的 Tracer，Engine，推理的 Predictor，以及新执行器 InterpreterCore 等在执行体系中被调度执行。
 
 具体地，在动静态图调用 OpKernel 之前，判断对于当前计算，比如`scale`是否有新形式的 Kernel 已经被注册，如果已经注册了，则调用新形式的 Kernel 去执行，如果没找到合适的 Kernel，仍然执行之前已有的 OpKernel。
 
@@ -1499,11 +1501,11 @@ class ProtoArgumentMappingContext : public phi::ArgumentMappingContext {
     }
 ```
 
-对于 phi kernel 的执行，有两个关键函数
+对于 PHI kernel 的执行，有两个关键函数
 
 **GetExpectedPhiKernelArgs**
 
-- 在调用 phi kernel 时，要完成多属性到少属性的匹配，这里就需要调用前述的 ArgumentMapping 函数，从而得到 phi kernel 的参数列表，GetExpectedPhiKernelArgs 实现如下：
+- 在调用 PHI kernel 时，要完成多属性到少属性的匹配，这里就需要调用前述的 ArgumentMapping 函数，从而得到 PHI kernel 的参数列表，GetExpectedPhiKernelArgs 实现如下：
 
 ```
 KernelSignature OperatorWithKernel::GetExpectedPhiKernelArgs(
@@ -1516,7 +1518,7 @@ KernelSignature OperatorWithKernel::GetExpectedPhiKernelArgs(
 
 **BuildPhiKernelContext**
 
-- 要调用 phi kernel，需要准备 phi kernel 需要的 Context，PhiKernelContext 和原先的 RuntimeContext 及 ExecutionContext 不同之处在于，PhiKernelContext 中是以 SmallVector 存储输入输出及属性，访问效率上要比原先的 map 高一些
+- 要调用 PHI kernel，需要准备 PHI kernel 需要的 Context，PhiKernelContext 和原先的 RuntimeContext 及 ExecutionContext 不同之处在于，PhiKernelContext 中是以 SmallVector 存储输入输出及属性，访问效率上要比原先的 map 高一些
 - PhiKernelContext 中不存储输入输出及属性的 name，要求这几项顺次存储，和 kernel 的参数列表顺序一致
 
 PHI KernelContext 的基本设计如下：
@@ -1629,11 +1631,11 @@ class KernelContext {
 
 ### 2.5 产品目标及后续规划
 
-目前，phi 算子库仍然处在 Kernel 体系的建设阶段，Kernel 尚未完全迁移，且仍然存在诸多完善点，但将来 phi 算子库会更好地将“算子”的概念纳入进来，这还需要比较长的时间和比较大的人力投入。
+目前，phi 算子库仍然处在 Kernel 体系的建设阶段，Kernel 尚未完全迁移，且仍然存在诸多完善点，但将来 PHI 算子库会更好地将“算子”的概念纳入进来，这还需要比较长的时间和比较大的人力投入。
 
 #### 2.5.1 新算子开发范式：完形填空 + 拼积木
 
-phi 期望的 Op 开发方式：**“完形填空”式算子描述实现 + “堆积木”式算子执行实现** ，目前还在建设中。
+PHI 期望的 Op 开发方式：**“完形填空”式算子描述实现 + “堆积木”式算子执行实现** ，目前还在建设中。
 
 **Op 实现：**
 
@@ -1681,21 +1683,21 @@ mul 和 add 操作的拼接，代码量很少，再加一个注册声明。
 
 - 剩余 fluid 算子中的必要的算子需要逐渐迁移至 phi（去除不合规的、历史废弃的算子等）
 - 所有必要算子的异构设备 Kernel 实现迁移至 phi，包括 mkldnn，xpu 等
-- 扩展机制向上支持更灵活的功能性算子开发，例如通信算子、调度算子，可能不迁入 phi 但需要能够在框架中开发
+- 扩展机制向上支持更灵活的功能性算子开发，例如通信算子、调度算子，可能不迁入 PHI 但需要能够在框架中开发
 
 2. 独立性相关工作
 
-- phi 源码及依赖组件与 fluid 彻底解耦，目前仍有大量底层组件需迁移改写
-- phi 独立编译成库，优化 fluid 与 phi 的各处编译依赖关系
+- PHI 源码及依赖组件与 fluid 彻底解耦，目前仍有大量底层组件需迁移改写
+- PHI 独立编译成库，优化 fluid 与 PHI 的各处编译依赖关系
 
 3. 降本增效相关工作：
 
-- phi 中间层 API 扩充，提升 kernel 间复用便利性
+- PHI 中间层 API 扩充，提升 kernel 间复用便利性
 - 探索高层组合算子开发模式，支持 C++ API/autograd API 复用开发，支持高阶自动微分，避免反向 Kernel 均单独开发
 
 4. 融合度相关工作：
 
-- 新静态图执行器配合 phi kernel 特性，优化兼容态调度开销，提升性能
+- 新静态图执行器配合 PHI kernel 特性，优化兼容态调度开销，提升性能
 
 5. 规范度相关工作：
 
@@ -1710,4 +1712,4 @@ mul 和 add 操作的拼接，代码量很少，再加一个注册声明。
 
 7. 对外开放相关工作：
 
-- yaml 及一系列生成机制封装可供外部插件式使用，支持 yaml + phi kernel 在外部增量开发，统一内外部算子开发范式
+- yaml 及一系列生成机制封装可供外部插件式使用，支持 yaml + PHI kernel 在外部增量开发，统一内外部算子开发范式
