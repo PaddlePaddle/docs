@@ -22,6 +22,8 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - 测试项后出现绿色的对勾，表示本条测试项通过。
 - 测试项后出现红色的叉号，并且后面显示 `Required`，则表示本条测试项不通过（不显示 `Required` 的任务未通过，也不影响代码合入，可不处理）。
 
+> 注意：PR-CI-APPROVAL 和 PR-CI-Static-Check 这两个 CI 测试项可能需要飞桨相关开发者 approve 才能通过，除此之外请确保其他每一项都通过，如果没有通过，请通过报错信息自查代码。
+
 为了便于理解和处理 CI 测试问题，本文将逐条介绍各个 CI 测试项，并提供 CI 测试不通过的参考解决方法。
 
 ## 二、CI 测试项介绍
@@ -99,9 +101,134 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 
 - **【条目描述】** 检测当前 PR 在 GPU、Python3 版本的编译与单测是否通过，同时增量代码需满足行覆盖率大于 90% 的要求。可在 PR 页面点击该 CI 后的 details 查看覆盖率，如下图所示：
 
+![img](http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=2825f909bfe246cc8c1445c59b5560ac)
+
+- **【执行脚本】**
+  - 编译脚本：`paddle/scripts/paddle_build.sh cpu_cicheck_coverage`
+  - 测试脚本：`paddle/scripts/paddle_build.sh gpu_cicheck_coverage`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
+
+#### PR-CI-CINN
+
+- **【条目描述】** 编译含 CINN（Compiler Infrastructure for Neural Networks，飞桨自研深度学习编译器）的 Paddle，并运行 Paddle 训练框架与 CINN 对接的单测，保证训练框架进行 CINN 相关开发的正确性。
+- **【执行脚本】**
+  - 编译脚本：`paddle/scripts/paddle_build.sh build_only`
+  - 测试脚本：`paddle/scripts/paddle_build.sh test`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
+
+#### PR-CI-Inference
+
+- **【条目描述】** 检测当前 PR 对 C++ 预测库编译和单测是否通过。
+- **【执行脚本】**
+  - 编译脚本：`paddle/scripts/paddle_build.sh build_inference`
+  - 测试脚本：`paddle/scripts/paddle_build.sh gpu_inference`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
+
+#### PR-CI-Static-Check
+
+- **【条目描述】** 检测`develop`分支与当前`PR`分支的增量 API 英文文档是否符合规范，以及当变更 API 或 OP 时检测是否经过了 TPM 审批（Approval）。
+- **【执行脚本】**
+  - 编译脚本：`paddle/scripts/paddle_build.sh build_and_check_cpu`
+  - 测试脚本：`paddle/scripts/paddle_build.sh build_and_check_gpu`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
+
+#### PR-CI-GpuPS
+
+- **【条目描述】** 检测 GPUBOX 相关代码合入后编译是否通过。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh build_gpubox`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
+
+#### PR-CI-Codestyle-Check
+
+- **【条目描述】** 该 CI 主要的功能是检查提交代码是否符合规范，详细内容请参考[代码风格检查指南](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/dev_guides/git_guides/codestyle_check_guide_cn.html)。
+- **【执行脚本】** `tools/codestyle/pre_commit.sh`
+- **【触发条件】** `PR-CI-Clone`通过后自动触发。
+- **【注意事项】** 此 CI 需要检查代码风格，建议在提交 PR 之前安装 [pre-commit](https://pre-commit.com/)，可以在提交之前进行代码规范检查。
+
+#### PR-CI-APPROVAL
+
+- **【条目描述】** 检测 PR 中的修改是否通过了审批（Approval）。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh assert_file_approvals`
+- **【触发条件】** `PR-CI-Clone`通过后自动触发。
+- **【注意事项】** 在其他 CI 项通过前，无需过多关注该 CI，其他 CI 通过后飞桨团队相关人员会进行审批。
+
+### MAC 平台测试项
+
+#### PR-CI-Mac-Python3
+
+- **【条目描述】** 检测当前 PR 在 MAC 系统下 Python 3.5 版本的编译与单测是否通过，并检测当前 PR 分支相比`develop`分支是否新增单测代码，如有不同，提示需要审批（Approval）。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh maccheck_py35`
+- **【触发条件】** `PR-CI-Clone`通过后自动触发。
+
+### Windows 平台测试项
+
+#### PR-CI-Windows
+
+- **【条目描述】** 检测当前 PR 在 Windows GPU 环境下编译与单测是否通过，并检测当前 PR 分支相比`develop`分支是否新增单测代码，如有不同，提示需要审批（Approval）。
+- **【执行脚本】** `paddle/scripts/paddle_build.bat wincheck_mkl`
+- **【触发条件】**
+  - 自动触发。
+  - 当 PR-CI-Windows-OPENBLAS 任务失败时，会取消当前任务（因 OPENBLAS 失败，当前任务成功也无法进行代码合并，需要先排查 OPENBLAS 失败原因）。
+
+#### PR-CI-Windows-OPENBLAS
+
+- **【条目描述】** 检测当前 PR 在 Windows CPU 系统下编译与单测是否通过。
+- **【执行脚本】** `paddle/scripts/paddle_build.bat wincheck_openblas`
+- **【触发条件】** 自动触发。
+
+#### PR-CI-Windows-Inference
+
+- **【条目描述】** 检测当前 PR 在 Windows 系统下预测模块的编译与单测是否通过。
+- **【执行脚本】** `paddle/scripts/paddle_build.bat wincheck_inference`
+- **【触发条件】**
+  - 自动触发。
+  - 当 PR-CI-Windows-OPENBLAS 任务失败时，会取消当前任务（因 OPENBLAS 失败，当前任务成功也无法进行代码合并，需要先排查 OPENBLAS 失败原因）。
+
+### 昆仑芯 XPU 测试项
+
+#### PR-CI-Kunlun
+
+- **【条目描述】** 检测 PR 中的修改能否在昆仑芯 XPU 上编译与单测通过。
+- **【执行脚本】** `paddle/scripts/paddle_build.sh check_xpu_coverage`
+- **【触发条件】** `PR-CI-Clone`通过后自动触发。
+
+### 华为 NPU 测试项
+
+#### PR-CI-NPU
+
+- **【条目描述】** 检测 PR 中的修改能否在华为昇腾 910 NPU 芯片上编译与单测通过。
+- **【执行脚本】**
+  - 编译脚本：`paddle/scripts/paddle_build.sh build_only`
+  - 测试脚本：`paddle/scripts/paddle_build.sh gpu_cicheck_py35`
+- **【触发条件】**
+  - `PR-CI-Clone`通过后自动触发。
+  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
+
+### 海光 DCU 测试项
+
+#### PR-CI-ROCM-Compile
+
+- **【条目描述】** 检测 PR 中的修改能否在海光 DCU 芯片上编译通过。
+- **【执行脚本】** `paddle/scripts/musl_build/build_paddle.sh build_only`
+- **【触发条件】** `PR-CI-Clone`通过后自动触发。
+
+### 静态代码扫描
+
+#### PR-CI-iScan-C
 
 - **【条目描述】** 检测当前 PR 的 C++ 代码是否通过 [静态代码扫描](https://clang-analyzer.llvm.org/)。
 - **【触发条件】** 自动触发。
+
 
 #### PR-CI-iScan-Python
 
