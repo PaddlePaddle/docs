@@ -151,9 +151,9 @@ ONNXRuntime 的 API 和相关文档请查阅：[ONNXRuntime 文档](https://onnx
 # 安装 ONNXRuntime 用于 ONNX 模型的推理
 pythom -m pip install onnxruntime
 # 下载推理用的 infer.py 脚本
-wget https://github.com/PaddlePaddle/Paddle2ONNX/blob/develop/model_zoo/classification/infer.py
+wget https://raw.githubusercontent.com/PaddlePaddle/Paddle2ONNX/develop/model_zoo/classification/infer.py
 # 下载测试用的图片
-wget https://github.com/PaddlePaddle/Paddle2ONNX/blob/develop/model_zoo/classification/images/ILSVRC2012_val_00000010.jpeg
+wget https://github.com/PaddlePaddle/Paddle2ONNX/raw/develop/model_zoo/classification/images/ILSVRC2012_val_00000010.jpeg
 ```
 
 以下脚本是 ONNX Runtme 使用 ONNX 模型推理的必要步骤，只需将前后处理改为实际应用场景下的逻辑便可使用，4.1 中的手写数字识别模型导出为 ONNX 协议之后，只需将图像前后处理逻辑加入进来便可用于部署。
@@ -193,9 +193,11 @@ TopK Scores:  [0.4966848  0.25181034 0.15389322 0.01496286 0.01342606]
 
 ## 五、注意事项
 
-1. 目前 Paddle2ONNX 已经支持 170 多个 Paddle OP，多数 Paddle 的模型都可顺利导出为 ONNX 格式，如果在转换中遇到不支持的 OP，请到 Paddle2ONNX Repo 下提 Issue，我们都会尽快支持。如果量化模型转换问题可以先参考文档，如果还是不能解决，也请到 Paddle2ONNX 下提 Issue：[量化模型导出说明](https://github.com/PaddlePaddle/Paddle2ONNX/blob/develop/docs/zh/quantize.md)。
+1. 目前 Paddle2ONNX 已经支持 170 多个 Paddle OP，多数 Paddle 的模型都可顺利导出为 ONNX 格式，如果在转换中遇到不支持的 OP，请到 Paddle2ONNX Repo 下提 Issue，我们都会尽快支持。
 
-2. 使用 ONNXRuntime 验证转换模型, 请注意安装最新版本，最低要求 1.10.0 版本。查询 ONNXRuntime 版本可以使用如下命令：
+2. PaddleSlim 量化模型导出 ONNX，参考量化导出说明文档：[量化模型导出说明](https://github.com/PaddlePaddle/Paddle2ONNX/blob/develop/docs/zh/quantize.md)，如在导出 ONNX 过程遇到问题，欢迎通过[Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX)开源项目 Issue 方式反馈。
+
+3. 使用 ONNXRuntime 验证转换模型, 请注意安装最新版本，最低要求 1.10.0 版本。查询 ONNXRuntime 版本可以使用如下命令：
 
 ```
 python -m pip show onnxruntime
@@ -205,4 +207,4 @@ python -m pip show onnxruntime
 
 ![ORT 版本查看](./images/paddle2onnx4.png)
 
-1. 模型转换过程会将 Paddle 的算子逐一转换为 ONNX 的算子。由于 ONNX 的算子随版本迭代不断升级，不同的推理引擎对 ONNX 算子版本支持也不完全一致，因此，使用 Paddle2ONNX 对 Paddle 模型进行转换时，需要指定 ONNX 的算子版本，此参数应根据待部署的推理引擎进行设置，在转换中可以使用 Paddle2ONNX 的 opset_version 选项进行指定，具体设置方法请参见参数选项。
+4. 模型转换过程会将 Paddle 的算子逐一转换为 ONNX 的算子。由于 ONNX 的算子随版本迭代不断升级，不同的推理引擎对 ONNX 算子版本支持也不完全一致，因此，使用 Paddle2ONNX 对 Paddle 模型进行转换时，需要指定 ONNX 的算子版本，此参数应根据待部署的推理引擎进行设置，在转换中可以使用 Paddle2ONNX 的 opset_version 选项进行指定，具体设置方法请参见[参数选项](https://github.com/PaddlePaddle/Paddle2ONNX#%E5%8F%82%E6%95%B0%E9%80%89%E9%A1%B9)。
