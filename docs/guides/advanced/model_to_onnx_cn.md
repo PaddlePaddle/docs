@@ -3,9 +3,7 @@
 ## 一、ONNX 简介
 开放神经网络交换（Open Neural Network Exchange，简称 ONNX），是一种针对机器学习所设计的开放式的文件格式，用于存储训练好的模型。借助它支持不同的人工智能框架（如 Pytorch, MXNet）采用相同格式存储模型数据并交互。
 
-<p align="center">
-  <img src="./images/paddle2onnx1.png" width="70%"/>
-</p>
+![ONNX 简介](./images/paddle2onnx1.png)
 
 没有 ONNX 模型之前，采用各个框架训练的模型只能通过特定的转换工具进行转换。有了 ONNX 协议后，无论使用何种框架训练模型，训练完毕后都可以将模型转换为 ONNX 这种统一的格式进行存储。这就大大方便了算法及模型在不同框架之间的迁移。
 
@@ -139,9 +137,7 @@ print("The difference of results between ONNXRuntime and Paddle looks good!")
 
 运行结果如下，可以看到 Paddle 模型和导出的 ONNX 模型在输入相同时计算结果一致：
 
-<p align="center">
-  <img src="./images/paddle2onnx2.png" width="70%"/>
-</p>
+![结果验证](./images/paddle2onnx2.png)
 
 ONNXRuntime 的 API 和相关文档请查阅：[ONNXRuntime 文档](https://onnxruntime.ai/docs/)。
 
@@ -184,9 +180,7 @@ python infer.py --model model.onnx --image_path images/ILSVRC2012_val_00000010.j
 
 输入图片和最终的推理结果如下，可以看到准确的预测出输入的图片是一只贵宾犬。
 
-<p align="center">
-  <img src="./images/paddle2onnx3.png" width="70%"/>
-</p>
+![识别结果](./images/paddle2onnx3.png)
 
 ```
 # 分类出的前 5 个类别
@@ -209,8 +203,6 @@ python -m pip show onnxruntime
 
 该命令的输出如下，Version 则为 ONNXRuntime 的版本：
 
-<p align="center">
-<img src="./images/paddle2onnx4.png" width="70%"/>
-</p>
+![ORT 版本查看](./images/paddle2onnx4.png)
 
 1. 模型转换过程会将 Paddle 的算子逐一转换为 ONNX 的算子。由于 ONNX 的算子随版本迭代不断升级，不同的推理引擎对 ONNX 算子版本支持也不完全一致，因此，使用 Paddle2ONNX 对 Paddle 模型进行转换时，需要指定 ONNX 的算子版本，此参数应根据待部署的推理引擎进行设置，在转换中可以使用 Paddle2ONNX 的 opset_version 选项进行指定，具体设置方法请参见参数选项。
