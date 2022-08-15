@@ -101,7 +101,7 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 
 - **【条目描述】** 检测当前 PR 在 GPU、Python3 版本的编译与单测是否通过，同时增量代码需满足行覆盖率大于 90% 的要求。可在 PR 页面点击该 CI 后的 details 查看覆盖率，如下图所示：
 
-![img](http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=2825f909bfe246cc8c1445c59b5560ac)
+![ci-coverage.png](../images/ci-coverage.png)
 
 - **【执行脚本】**
   - 编译脚本：`paddle/scripts/paddle_build.sh cpu_cicheck_coverage`
