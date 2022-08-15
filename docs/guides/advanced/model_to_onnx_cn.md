@@ -1,7 +1,7 @@
 # Paddle 模型导出 ONNX 协议
 
 ## 一、ONNX 简介
-开放神经网络交换（Open Neural Network Exchange，简称 ONNX），是一种针对机器学习所设计的开放式的文件格式，用于存储训练好的模型。借助它支持不同的人工智能框架（如 Pytorch, MXNet）采用相同格式存储模型数据并交互。
+开放神经网络交换（Open Neural Network Exchange，简称 ONNX），是一种针对机器学习所设计的开放式的文件格式，用于存储训练好的模型。借助它支持不同的人工智能框架（如 Pytorch、MXNet）采用相同格式存储模型数据并交互。
 
 ![ONNX 简介](./images/paddle2onnx1.png)
 
