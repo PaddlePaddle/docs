@@ -106,13 +106,13 @@ Paddle 2.0 发布之后，多次收到内外部用户反馈动态图在小模型
     - 解释：kernel 复用实现时，能否通过简单的 include 引入对应函数，不会因为目录过于复杂而找不到复用的 kernel
 
 - 长线上支持跨设备 kernel 的写法统一需求，并且直观易用，不引入不必要的模板参数
-    - 解释：算子库下层还有 Kernel Primitive API 模块，其长线愿景是每个运算，只要一个 kernel，能够适应多种设备，真正区分设备的代码，仅在 Kernel Primitive API 实现中；不希望未来的 kernel 在复用时从传入较复杂的模板参数，需要尽可能限制地简洁一些
+    - 解释：算子库下层还有 Kernel Primitive API 模块，其长线愿景是每个运算，只用一个 kernel，就能够适应多种设备，真正区分设备的代码，仅在 Kernel Primitive API 实现中；未来复用 kernel 传入较复杂的模板参数时，需要限制参数尽可能地简洁
 
 - 易用性上，开发者能精准理解自己新增的 Kernel 应该放到什么位置，无歧义
     - 解释：开发者新增一个 API，不会困惑自己应该将对应 kernel 放在那个目录，也不会出现不同的人对于同一个 kernel 应该放在什么位置出现二义性的理解
 
 - 不引入大量的重复目录设计
-    - 解释：概念拆分是需要的，但也要有边界，避免在多个目录下有命名相同的子目录，容易混乱，比如不能 cpu 下面有 eigen, funcs, math 等，gpu 下面也有。新算子库的目录设计以根据设备拆分为主，其他层次的目录拆分尽可能弱化，比如尽量不根据功能拆分，尽量不根据领域拆分等
+    - 解释：概念拆分是需要的，但也要有边界，避免在多个目录下有命名相同的子目录，容易混乱，比如不能 cpu 下面有 eigen, funcs, math 等，gpu 下面也有。新算子库的目录设计，主要根据设备做拆分，其他层次的目录拆分尽可能弱化，比如尽量不根据功能拆分，尽量不根据领域拆分等
 
 - 不造成迁移时的文件数目膨胀
     - 解释：不能因为 kernel 设备拆分，导致 kernel 实现文件大规模增多
@@ -155,7 +155,7 @@ paddle/phi
 - `core`：phi 内部会有一些自己需要的，公用的模块实现，比如基础 DenseTensor、kernel 注册及管理模块
 - `backends`：backends 中组织后续需要为各个后端的新增的数据结构，比如 CPUContext、GPUContext 等
     - core 中放置对于算子库来讲通用的基础数据结构，而特定后端的专用数据结构不放在 core 中，且依赖关系严格保证 backends 依赖 core，但 core 不能依赖 backends
-    - 例 1：Context 如果有基类，则在 core 中，而继承的 CPUContext 在 backends/cpu 中，GPUContext 在 baackends/gpu 中
+    - 例 1：Context 如果有基类，则在 core 中，而继承的 CPUContext 在 backends/cpu 中，GPUContext 在 backends/gpu 中
     - 例 2：TensorBase 在 core 中，DenseTensor 给多数设备使用，也在 core 中，如果有 ONEDNNTensor 的话，因为它只给 ONEDNN 用，应该在 backends/onednn 中
 - `infermeta`: infermeta 函数的整理位置，infermeta 函数相当于 infershape + inferdtype + inferlayout 等
 - `kernels`：各设备相关 kernels
