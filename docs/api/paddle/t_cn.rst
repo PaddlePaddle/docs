@@ -21,15 +21,15 @@ Tensor，0 维和 1 维 Tensor 返回本身，2 维 Tensor 返回转置 Tensor�
 
 .. code-block:: text
 
-        # 例1 (0-D tensor)
+        # 例 1 (0-D tensor)
         x = tensor([0.79])
         paddle.t(x) = tensor([0.79])
 
-        # 例2 (1-D tensor)
+        # 例 2 (1-D tensor)
         x = tensor([0.79, 0.84, 0.32])
         paddle.t(x) = tensor([0.79, 0.84, 0.32])
 
-        # 例3 (2-D tensor)
+        # 例 3 (2-D tensor)
         x = tensor([0.79, 0.84, 0.32],
                     [0.64, 0.14, 0.57])
         paddle.t(x) = tensor([0.79, 0.64],
