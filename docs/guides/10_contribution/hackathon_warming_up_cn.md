@@ -70,14 +70,14 @@
 
 【打卡截图】：
 
-| 硬件               | ![](./img/hackathon%233_warming_up_1.png) |
+| 硬件               | ![](https://github.com/PaddlePaddle/docs/blob/release/2.3/docs/guides/10_contribution/img/hackathon%233_warming_up_1.png?raw=text) |
 | ------------------ | ------------------------------------------------------------ |
 | 编译方式           | 参考【Linux下从源码编译】文档的【使用Docker编译】（[源码编译文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/fromsource.html) 有多种编译方式，请大家填写本次编译参考的文档） |
-| cmake命令和时间    | 命令：`time cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF`</br>时间：注意要将commit号截图进来哦</br>![](./img/hackathon%233_warming_up_2.png) |
-| 初次编译命令和时间 | 命令：`time make -j20` （写一下大家用几核哦）</br>时间：以下时间仅作为示例，不代表真实的初次编译时间</br>![](./img/hackathon%233_warming_up_3.png) |
-| 二次编译时间       | 时间：以下时间仅作为示例，不代表真实的二次编译时间</br>paddle/fluid/platform/enforce.h</br>![](./img/hackathon%233_warming_up_4.png)</br>paddle/fluid/operators/center_loss_op.cc</br>![](./img/hackathon%233_warming_up_5.png)</br>python/paddle/tensor/math.py</br>![](./img/hackathon%233_warming_up_6.png) |
-| 安装whl包          | ![](./img/hackathon%233_warming_up_7.png) |
-| 运行单元测试       | ![](./img/hackathon%233_warming_up_8.png) |
+| cmake命令和时间    | 命令：`time cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF`</br>时间：注意要将commit号截图进来哦</br>![](https://github.com/PaddlePaddle/docs/blob/release/2.3/docs/guides/10_contribution/img/hackathon%233_warming_up_2.png?raw=text) |
+| 初次编译命令和时间 | 命令：`time make -j20` （写一下大家用几核哦）</br>时间：以下时间仅作为示例，不代表真实的初次编译时间</br>![](https://github.com/PaddlePaddle/docs/blob/release/2.3/docs/guides/10_contribution/img/hackathon%233_warming_up_3.png?raw=text) |
+| 二次编译时间       | 时间：以下时间仅作为示例，不代表真实的二次编译时间</br>paddle/fluid/platform/enforce.h</br>![](https://github.com/PaddlePaddle/docs/blob/release/2.3/docs/guides/10_contribution/img/hackathon%233_warming_up_4.png?raw=text)</br>paddle/fluid/operators/center_loss_op.cc</br>![](https://github.com/PaddlePaddle/docs/blob/release/2.3/docs/guides/10_contribution/img/hackathon%233_warming_up_5.png?raw=text)</br>python/paddle/tensor/math.py</br>![](https://github.com/PaddlePaddle/docs/blob/release/2.3/docs/guides/10_contribution/img/hackathon%233_warming_up_6.png?raw=text) |
+| 安装whl包          | ![](https://github.com/PaddlePaddle/docs/blob/release/2.3/docs/guides/10_contribution/img/hackathon%233_warming_up_7.png?raw=text) |
+| 运行单元测试       | ![](https://github.com/PaddlePaddle/docs/blob/release/2.3/docs/guides/10_contribution/img/hackathon%233_warming_up_8.png?raw=text) |
 
 
 
