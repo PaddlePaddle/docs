@@ -116,7 +116,7 @@ C_Status (*unified_memory_deallocate)(const C_Device device, void** ptr, size_t 
 
 device - 使用的设备。
 
-ptr - 需要释放的统一地址空间内存地址。。
+ptr - 需要释放的统一地址空间内存地址。
 
 size - 需要释放的内存大小（字节形式）。
 

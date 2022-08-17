@@ -164,12 +164,12 @@ apt install patchelf
 
 * 对于需要编译**CPU 版本 PaddlePaddle**的用户：
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF
     ```
 
 * 对于需要编译**GPU 版本 PaddlePaddle**的用户：
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON
     ```
 - 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
@@ -493,7 +493,7 @@ mkdir build && cd build
 
     ```
     cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
-    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
     ```
 
     > 如果遇到`Could NOT find PROTOBUF (missing:  PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`可以重新执行一次 cmake 指令。
@@ -535,7 +535,7 @@ mkdir build && cd build
     2. 如果您已经正确安装了`nccl2`，就可以开始 cmake 了：(*For Python3: 请给 PY_VERSION 参数配置正确的 python 版本*)
 
         ```
-        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON
         ```
 
 注意：以上涉及 Python3 的命令，用 Python3.7 来举例，如您的 Python 版本为 3.6/3.8/3.9，请将上述命令中的 Python3.7 改成 Python3.6/Python3.8/Python3.9

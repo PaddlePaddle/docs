@@ -228,6 +228,7 @@ paddle.scatter_nd	.. _api_paddle_scatter_nd:
 paddle.scatter_nd_add	.. _api_paddle_scatter_nd_add:
 paddle.shard_index	.. _api_paddle_shard_index:
 paddle.sign	.. _api_paddle_sign:
+paddle.sgn	.. _api_paddle_sgn:
 paddle.sin	.. _api_paddle_sin:
 paddle.sinh	.. _api_paddle_sinh:
 paddle.slice	.. _api_paddle_slice:

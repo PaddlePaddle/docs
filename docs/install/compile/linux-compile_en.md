@@ -170,12 +170,12 @@ apt install patchelf
 * For users who need to compile the **CPU version PaddlePaddle**:
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF
     ```
 
 * For users who need to compile the **GPU version PaddlePaddle**:
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON
     ```
 
 - For details on the compilation options, see the [compilation options table](https://www.paddlepaddle.org.cn/documentation/docs/en/develop/install/Tables.html#Compile).
@@ -479,7 +479,7 @@ mkdir build && cd build
 
     ```
     cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
-    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
     ```
 
 
@@ -507,7 +507,7 @@ mkdir build && cd build
 
 
         ```
-        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON
         ```
 
 
