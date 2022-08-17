@@ -107,3 +107,142 @@ saved_tensor(self, *tensors)
             y, = ctx.saved_tensor()
             grad = dy * (1 - paddle.square(y))
             return grad
+
+
+mark_not_inplace(self, *args)
+'''''''''
+
+标记一些输入是不需要inplace的。
+这个函数最多只能在 ``forward`` 调用一次,并且所有的参数必须是 ``forward`` 输入的 ``Tensor`` 。
+如果 ``forward`` 的输入输出是同一个 ``Tensor`` ，并且这个 ``Tensor`` 被标记为not_inplace的。Paddle会替用户创建一个新的Tensor作为输出。
+这样可以防止输入的 ``Tensor`` 的auto grad信息被错误的篡改。
+
+
+**返回**
+
+None
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    class Exp(paddle.autograd.PyLayer):
+        @staticmethod
+        def forward(ctx, x):
+            ctx.mark_not_inplace(x)
+            return x
+        
+        @staticmethod
+        def backward(ctx, grad_output):
+            out = grad_output.exp()
+            return out
+
+    x = paddle.randn((1, 1))
+    x.stop_gradient = False
+    attn_layers = []
+    for idx in range(0, 2):
+        attn_layers.append(Exp())
+    
+    for step in range(0, 2):
+        a = x
+        for j in range(0,2):
+            a = attn_layers[j].apply(x)
+        a.backward()
+
+
+mark_non_differentiable(self, *args)
+'''''''''
+
+标记一些输出是不需要反向的。
+这个函数最多只能在 ``forward`` 调用一次,并且所有的参数必须是 ``forward`` 输出的 ``Tensor`` 。
+如果 ``forward`` 的输入输出是同一个 ``Tensor`` ，并且这个 ``Tensor`` 被标记为not_inplace的。Paddle会替用户创建一个新的Tensor作为输出。
+将不需要反向的 ``Tensor`` 标记为non-differentiable，可以提升反向的性能。但是你在 ``backward`` 函数的输入参数中，仍要为其留有反向梯度的位置。
+只是这个反向梯度是1个全为0的、shape和 ``forward`` 的输出一样的 ``Tensor`` .
+
+
+**返回**
+
+None
+
+**代码示例**
+
+.. code-block:: python
+
+    import os
+    os.environ['FLAGS_enable_eager_mode'] = '1'
+    import paddle
+    from paddle.autograd import PyLayer
+    import numpy as np
+
+    class Tanh(PyLayer):
+        @staticmethod
+        def forward(ctx, x):
+            a = x + x
+            b = x + x + x
+            ctx.mark_non_differentiable(a)
+            return a, b
+
+        @staticmethod
+        def backward(ctx, grad_a, grad_b):
+            assert np.equal(grad_a.numpy(), paddle.zeros([1]).numpy())
+            assert np.equal(grad_b.numpy(), paddle.ones([1], dtype="float64").numpy())
+            return grad_b
+
+    x = paddle.ones([1], dtype="float64")
+    x.stop_gradient = False
+    a, b = Tanh.apply(x)
+    b.sum().backward()
+
+set_materialize_grads(self, value: bool)
+'''''''''
+
+设置是否要框架来初始化未初始化的反向梯度。默认是True。
+这个函数最多只能在 ``forward`` 中调用。
+如果设置为True，框架会将未初始化的反向梯度数据初始化为0，然后再调用 ``backward`` 函数。
+如果设置为False，框架会将未初始化的反向梯度以None向 ``backward`` 函数传递。
+
+
+**返回**
+
+None
+
+**代码示例**
+
+.. code-block:: python
+
+    import os
+    os.environ['FLAGS_enable_eager_mode'] = '1'
+    import paddle
+    from paddle.autograd import PyLayer
+    import numpy as np
+
+    class Tanh(PyLayer):
+        @staticmethod
+        def forward(ctx, x):
+            return x+x+x, x+x
+
+        @staticmethod
+        def backward(ctx, grad, grad2):
+            assert np.equal(grad2.numpy(), paddle.zeros([1]).numpy())
+            return grad
+
+    class Tanh2(PyLayer):
+        @staticmethod
+        def forward(ctx, x):
+            ctx.set_materialize_grads(False)
+            return x+x+x, x+x
+
+        @staticmethod
+        def backward(ctx, grad, grad2):
+            assert grad2==None
+            return grad
+
+    x = paddle.ones([1], dtype="float64")
+    x.stop_gradient = False
+    Tanh.apply(x)[0].backward()
+
+    x2 = paddle.ones([1], dtype="float64")
+    x2.stop_gradient = False
+    Tanh2.apply(x2)[0].backward()
