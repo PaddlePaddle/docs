@@ -187,13 +187,13 @@ paddle/phi/kernels
         - 注意，这里跨设备实现统一，并不是指一个 kernel 的 CPU 和 GPU 实现就算统一了，而是在所有设备的实现都一样，目前至少包括 CPU，GPU，XPU，ONEDNN，GPUDNN 等
     - 反向 kernel 如果不需要支持裁剪，可以做适当归并（但如果要为支持端侧训练留可能性，反向 kernel 可能也是裁剪的潜在目标）
 - kernels 下一级子目录，原则上按照 backend 分类按需新建，仅保留两个特殊的目录:
-    - funcs：为了兼容原先 fluid/operators 目录中的 functor 和 function 设计保留的目录，放置支持多种后端的 function 和 functor，还按照原先的一个头文件，多个.cc(u)的方式组织（这部分代码在将来可能被移除，因为会逐渐被 Kernel Primirive API 及 Kernel 间复用替代，这里不做过度设计）
+    - funcs：为了兼容原先 fluid/operators 目录中的 functor 和 function 设计保留的目录，放置支持多种后端的 function 和 functor，还按照原先的一个头文件，多个.cc(u)的方式组织（这部分代码在将来可能被移除，因为会逐渐被 Kernel Primitive API 及 Kernel 间复用替代，这里不做过度设计）
         - 例 1：一个公共函数 XXXFunction 在 reduce CPU 和 reduce CUDA 的 kernel 实现中都被调用，并且 reduce CPU 和 reduce GPU 的 kernel 实现是不一样的，那么这个 XXXFunction 应该在 funcs 目录中
     - primitive：Kernel Primitive API，多设备统一 kernel 实现的一些基础工具
     - impl：paddle 目前的 op kernel 实现，有很多仍然是 CPU 和 GPU 复用同一份代码的，在大量的 xx_op.h 中，这部分代码，不适合放在 cpu 或者 gpu 目录中，也不适合放在 funcs 目录中（放在 funcs 目录中会导致 funcs 目录中最终放置了相当一部分 kernel 实现，过于臃肿且混乱，funcs 目录的定位是放置原先 operators/math 目录下那样的工具 functor 和 function），也不适合放到 kernels 根目录下（并不是真正设备无关的实现，仅是 cpu 和 gpu 共用的实现），因此为了使这部分代码迁移时不需要做过多考虑，并且放置的位置也相对符合其实现性质，创建了 impl 这个目录
         - impl 目录下，仅放置跨部分设备实现一致的 kernel 函数，均为头文件，命名均以 xxx_kernel_impl.h 为后缀
         - 例如：scale，fill_constant，fill_any_like 这些 kernel 均属于此类情况
-- kernel 迁移过来之后，首先创建对应 kenrel 头文件直接放置到 kernels 的根目录中，各后端的 kernel 实现放在相应的设备文件夹中
+- kernel 迁移过来之后，首先创建对应 kernel 头文件直接放置到 kernels 的根目录中，各后端的 kernel 实现放在相应的设备文件夹中
     - 可参考原先 op 的归并程度，如 matmul 原先是单独的.h/.cc，那移过来之后保持，但 activation 相关的基本写在一个.h/.cc，移过来也仍然保持归并（后续有必要再进一步拆分）
     - 例 1：原先 cast op 的 Kernel 在 cast_op.h 中，迁移过来之后在根目录创建 cast_kernel.h，cast_kernel.cc/cu 根据使用的后端放到对应的目录，即 cast_kernel.cc 放置到 cpu 中，cast_kernel.cu 放置到 gpu 中
     - 例 2：原先 scale op 的 kernel 使用 eigen 实现，CPU 和 GPU 实现一致，迁移过来之后，公共实现应该在 impl 中的 scale_kernel_impl.h 中，公共头文件在 kernels 根目录下的 scale_kernel.h 中，scale_kernel.cc 在 cpu 中，scale_kernel.cu 在 gpu 中
@@ -256,7 +256,7 @@ enum class Backend : uint8_t {
    * [ Why we need ALL in baisc kernel key member? ]
    *
    * For Tensor, ALL represents an illegal Backend, but for Kernel, some
-   * kernels may be device-independent by nature, such as reshape; and when
+   * kernels may be device-independent by nature, such as reshape; 
    * and some kernels are also device-independent when implemented based on
    * primitive API.
    *
