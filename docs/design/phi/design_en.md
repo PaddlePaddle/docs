@@ -181,12 +181,254 @@ paddle/phi/kernels
 
 The directory structure is described as follows:
 
-- The main directory under kernels includes device-independent kernel.h and kernel.cc. In principle, each kernel has one .h and .cc
+- The root directory under kernels includes device-independent kernel.h and kernel.cc. In principle, each kernel has one .h and .cc
     - For example, if a kernel is implemented using Primitive api, or is implemented by reusing other basic kernels, there should be only one implementation for all devices, so its declaration and implementation can be placed directly in the kernels directory. (This is the ideal state in the future.)
     - At present, most of our kernels do not have the feature of unity implementation across devices, but the input parameters and return values of the kernel should be consistent except for `DeviceContext`, so the kernel parameter declaration header file is also placed in the current directory (consistent with the original design, `DeviceContext` and `T` are used as template parameters), The functions implementation of each device are placed in the corresponding device folder.
         - Note that the unity implementation across devices here does not mean that the CPU and GPU implementations of a kernel are unified, but the implementations of all devices are the same. Currently, it includes at least CPU, GPU, XPU, ONEDNN, GPUDNN, etc.
     - If the backward kernel does not need to support cropping, it can be merged appropriately (but if you want to leave the possibility of supporting end-to-side training, the backward kernel may also be a potential target for cropping)
 - The next-level subdirectory of kernels, in principle, is created according to the backend classification, and only two special directories are reserved:
-    - funcs: In order to be compatible with the directories of functor and function in the original fluid/operators directory, when placing functions and functors that support multiple backends, we organize them according to the original design that one header file corresponding to multiple .cc(u) (This part of the code may be removed in the future, because it will be gradually replaced by Kernel Primirive API and reuse between Kernels, so no over-design here.)
-        - 
-    
+    - `funcs`: In order to be compatible with the directories of functor and function in the original fluid/operators directory, when placing functions and functors that support multiple backends, we organize them according to the original design that one header file corresponding to multiple .cc(u) (This part of the code may be removed in the future, because it will be gradually replaced by Kernel Primitive API and reuse between Kernels, so no over-design here.)
+        - Example 1: A common function XXXFunction is called in both reduce CPU and reduce CUDA kernel implementations, and the reduce CPU and reduce GPU kernel implementations are different, then XXXFunction should be in the `funcs` directory.
+    - `primitive`: Kernel Primitive API, some basic tools for multi-device unified kernel implementation.
+    - `impl`: Paddle's current op kernel implementation, many of them reuse the same code for CPU and GPU, and they are in a large number of xx_op.h. This part of the code is not suitable to be placed in the `cpu` or `gpu` directory, nor in the `funcs` directory (putting it in the `funcs` directory will cause a considerable part of the kernel implementation to be placed in the `funcs` directory, which is too bloated and confusing. The `funcs` directory is created to place the `functor` and `function` tools as in the original operators/math directory) This part of the code is also not suitable to be placed in the root directory of `kernels` (it is not a device-independent implementation, only an implementation shared by cpu and gpu). Therefore, in order not to overthink this part of the code when migrating, and the location of the placement is relatively consistent with its implementation nature, the `impl` directory was created.
+        - In the `impl` directory, only the kernel functions that are consistent across some devices are placed. They are all header files, and the names are all suffixed with xxx_kernel_impl.h
+        - For example: `scale`, `fill_constant`, `fill_any_like` kernels are all such cases.
+- After the kernel is migrated, first create the corresponding kernel header file and put it directly in the root directory of kernels, and put the kernel implementation of each backend in the corresponding device folder.
+    - You can refer to the degree of merging of the original op. For example, `matmul` originally had both .h and .cc, then it will be maintained after it is migrated. The activation-related ops are basically written in single file . h or .cc, then it will still remain single file when it is migrated (Split it up in the future if necessary)
+    - Example 1: The original `cast` op Kernel is in cast_op.h. After migration, cast_kernel.h is created in the root directory, and cast_kernel.cc/cu is placed in the corresponding directory according to the backend used, that is, cast_kernel.cc is placed in the cpu, cast_kernel.cu is placed in the gpu
+    - Example 2: The original `scale` op's kernel is implemented using eigen, and the CPU and GPU implementations are the same. After migration, the public implementation should be in scale_kernel_impl.h in impl, and the public header file scale_kernel.h is in the root directory of kernels, scale_kernel.cc is in cpu, scale_kernel.cu is in gpu.
+- When migrating the auxiliary functions that are only used by the current kernel, they are always placed in the same backend folder as the kernel implementation, and the .h file is used to manage the code. Auxiliary function codes are no longer placed elsewhere, unless their implementations are used in multiple places.
+    - Even if there are multiple calls, if it is still limited to the same device, directly build the header file and put it in the same directory.
+- The implementation of the backward kernel and the forward kernel are placed in different files, and the file suffix is `*_grad_kernel.*`, which is convenient for cmake to separate and compile.
+    - No more directories are created for the backward kernel, otherwise directories such as cpu/gpu will also be created under the backward kernel directory.
+    - The implementation of the second-order derivative and the third-order derivative is also placed in the grad kernel implementation file.
+
+- Why is the directory named `gpu` instead of `cuda` and `hip`?
+    - The code of `cuda` and `hip` is very repetitive, and the unified implementation is easier to maintain.
+
+
+### 2.3 Core Components
+
+#### 2.3.1 Common basic data structure
+
+##### 2.3.1.1 Backend
+
+```
+/**
+ * [ Why need Backend? ]
+ *
+ * Backend not only means place. Backend is a superset of place.
+ *
+ * Place cannot indicate the difference in calculation methods on the device,
+ * but in order to make the boundary of the kernel clearer and the function
+ * more specific, we need to distinguish the calculation method.
+ *
+ * Such as the kernel for CPU device, it can be a native CPU kernel,
+ * or a kernel implemented by MKLDNN library.
+ *
+ * Note(chenweihang): HIP is not needed now, we can added it if needed
+ * in the future
+ */
+enum class Backend : uint8_t {
+  UNDEFINED = 0,
+
+  // basic kernel backend
+  CPU,
+
+  // various acceleration devices' backends
+  GPU,
+  XPU,  // XPU currently does not exist at the same time as CUDA
+  NPU,  // NPU currently does not exist at the same time as CUDA
+  MLU,  // MLU currently does not exist at the same time as CUDA
+  IPU,
+
+  // the third library backend
+  ONEDNN,
+  GPUDNN,  // cuDNN and hipDNN
+
+  // paddle kernel primitives backend
+  KPS,
+
+  // end of backend types
+  NUM_BACKENDS,
+
+  /**
+   * [ Why we need ALL in baisc kernel key member? ]
+   *
+   * For Tensor, ALL represents an illegal Backend, but for Kernel, some
+   * kernels may be device-independent by nature, such as reshape; 
+   * and some kernels are also device-independent when implemented based on
+   * primitive API.
+   *
+   * In this case, we need to provide a more concise registration method,
+   * instead of registering the kernels for each device with almost
+   * repetitive code, we need one registration covers all situations,
+   * so if we provide the ALL field with Register the kernel in this statement.
+   *
+   * Of course, we have also considered solving this problem through different
+   * named macros, for example, if we define
+   *
+   * PD_REGISTER_KERNEL_FOR_ALL_BACKEND
+   *
+   * Based on this design pattern, the dtype and layout also have the same
+   * requirements, this cause we need to define a series of macros
+   *
+   * PD_REGISTER_KERNEL_FOR_ALL_DTYPE
+   * PD_REGISTER_KERNEL_FOR_ALL_LAYOUT
+   * PD_REGISTER_KERNEL_FOR_ALL_BACKEND_AND_LAYOUT
+   * PD_REGISTER_KERNEL_FOR_ALL_BACKEND_AND_DTYPE
+   * PD_REGISTER_KERNEL_FOR_ALL_LAYOUT_AND_DTYPE
+   * PD_REGISTER_KERNEL_FOR_ALL_BACKEND_AND_LAYOUT_AND_DTYPE
+   *
+   * It makes the system of registering macros more complicated, we think
+   * this is not a simple design, so we still adopt the design of providing
+   * the ALL field.
+   *
+   * Note: ALL_BACKEND only used for Kernel registration and selection
+   */
+  ALL_BACKEND = UNDEFINED,
+};
+```
+
+##### 2.3.1.2 DataLayout
+
+```
+// Note: The original design of paddle DataLayout is confusing.
+// It contains two levels of "layout", one is the data layout
+// at the Tensor level, including Dense, Sparse, etc., and the other
+// is the format at the data level, including NHWC, NCHW, etc.,
+// these should belong to the concept of "data format".
+// The concepts of these two levels are mixed into an enumeration class,
+// which leads to some strange execution scheduling logic.
+// It needs to be refactored in the future.
+// In order to maintain compatibility, we still use the design of the
+// original framework here.
+
+// Note: Here the DataLayout is public api for external users, the prefix `k`
+// maybe confuse users, so we use all uppercase names
+
+enum class DataLayout {
+  UNDEFINED = 0,
+  // TODO(chenweihang): keep ANY for compatibility, remove it later
+  ANY = UNDEFINED,
+  NHWC,
+  NCHW,
+  NCDHW,
+  NDHWC,
+  MKLDNN,
+  SPARSE_COO,
+  SPARSE_CSR,
+  PSTRING_UNION,
+
+  NUM_DATA_LAYOUTS,
+
+  // See Note [ Why we need ALL in basic kernel key member? ]
+  ALL_LAYOUT = UNDEFINED,
+
+  // Note: Unify PHI DataLayout and fluid::framework::DataLayout,
+  // for compatible with fluid DataLayout, here need prefix `k`
+
+  // Note: The original `kAnyLayout (enum value 2)` is a strange design.
+  // `kAnyLayout` originally cannot represent any kind of Layout,
+  // at the same time, it can also represent any Layout.
+  // Strictly, it means "default" or "undefined" layout,
+  // and should not be mixed with other meaningful layouts
+
+  kAnyLayout = ANY,
+  kNHWC = NHWC,
+  kNCHW = NCHW,
+  kMKLDNN = MKLDNN,  // all layouts supported by MKLDNN internally
+  kNDHWC = NDHWC,
+  kNCDHW = NCDHW,
+};
+```
+
+##### 2.3.1.3 DataType
+
+```
+enum class DataType {
+  UNDEFINED = 0,
+
+  BOOL,
+
+  UINT8,  // BYte
+  INT8,   // Char
+  UINT16,
+  INT16,
+  UINT32,
+  INT32,
+  UINT64,
+  INT64,
+
+  FLOAT32,
+  FLOAT64,
+
+  COMPLEX64,
+  COMPLEX128,
+
+  // In Paddle 2.3, we add a new type of Tensor, StringTensor, which is designed
+  // for string data management. We design the dtype of StringTensor, pstring.
+  // In order to express a unique data dtype of StringTensor, we add
+  // DataType::PSTRING.
+  PSTRING,
+
+  // IEEE754 half-precision floating-point format (16 bits wide).
+  // This format has 1 sign bit, 5 exponent bits, and 10 mantissa bits.
+  FLOAT16,
+
+  // Non-IEEE floating-point format based on IEEE754 single-precision
+  // floating-point number truncated to 16 bits.
+  // This format has 1 sign bit, 8 exponent bits, and 7 mantissa bits.
+  BFLOAT16,
+
+  NUM_DATA_TYPES,
+  // See Note [ Why we need ALL in baisc kernel key member? ]
+  ALL_DTYPE = UNDEFINED,
+};
+```
+
+- What doesn't use the VarType of the original fluid here?
+    - Reason 1: The original dataType and VarType of fluid are the same level concepts, and the design is relatively confusing. For example, LoDTensor and FLOAT32 are the same level concepts, but these two are obviously not. We do not want to inherit the original design with obvious defects.
+    - Reason 2: Decouple dependencies from fluid, so that PHI can be compiled independently in the future.
+
+##### 2.3.1.4 Scalar
+
+Scalar is used to uniformly represent variables with different basic data types (float, double, int, bool, etc.). (Currently, Tensor scalars representing 1 element are also supported, but support for this feature may be dropped in the future)
+
+Take `ScaleKernel` as an example, the `scale` parameter can be passed in int, float, double and other basic data types. If you do not use `Scalar` to represent, you need to create a separate functional interface for each data type, which will greatly increase the amount of code when developing Kernel, so `Scalar` is mainly applied to the parameter with different data types, which avoids implementing multiple overloaded functions.
+
+```
+template <typename T, typename Context>
+void ScaleKernel(const Context& dev_ctx,
+                 const DenseTensor& x,
+                 const Scalar& scale,
+                 float bias,
+                 bool bias_after_scale,
+                 DenseTensor* out);
+```
+
+##### 2.3.1.5 IntArray
+
+IntArray is an integer type array that can be constructed from `vector<int>`, `Tensor` and `vector<Tensor>`. Currently, it is mainly used to represent dimension index variables such as `shape`, `index` and `aixs`.
+
+Taking FullKernel as an example, the shape parameter is used to indicate the dimension information of the returned Tensor (e.g. [2, 8, 8]). When calling FullKernel, the parameters of `vector<int>`, `Tensor` and `vector<Tensor>` type variables can be used to complete the call. Using IntArray avoids the problem of writing a separate overloaded function for each shape type.
+
+```
+template <typename T, typename Context>
+void FullKernel(const Context& dev_ctx,
+                const IntArray& shape,
+                const Scalar& val,
+                DenseTensor* out);
+```
+
+#### 2.3.2 Tensor Design
+
+The overall design is as follows
+
+![tensor-design.png](./images/tensor-design.png)
+
+
+The following will introduce them in turn.
+
+##### 2.3.2.1 API Tensor interface
+
