@@ -103,7 +103,7 @@ If you want to create a **Tensor** of specific interval, you can use API below:
 
 ```python
 paddle.arange(start, end, step)  # create Tensor within interval [start, end) evenly separated by step
-paddle.linspace(start, end, num) # create Tensor within interval [start, end) evenly separated by elements number
+paddle.linspace(start, stop, num) # create Tensor within interval [start, stop) evenly separated by elements number
 ```
 For example, the output of `paddle.arange(start=1, end=5, step=1)` is：
 ```text
