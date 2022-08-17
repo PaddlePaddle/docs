@@ -4,8 +4,6 @@ Pad3D
 -------------------------------
 .. py:class:: paddle.nn.Pad3D(padding, mode="constant", value=0.0, data_format="NCDHW", name=None)
 
-**Pad3D**
-
 按照 padding、mode 和 value 属性对输入进行填充。
 
 参数
@@ -19,8 +17,8 @@ Pad3D
      - ``'replicate'`` 表示填充输入边界值；
      - ``'circular'`` 为循环填充输入。
 
-  - **value** (float，可选) - 以 ``'constant'`` 模式填充区域时填充的值。默认值为:math:`0.0`。
-  - **data_format** (str，可选)  - 指定输入的数据格式，可为``'NCDHW'``或者``'NDHWC'``，默认值为``'NCDHW'``。
+  - **value** (float，可选) - 以 ``'constant'`` 模式填充区域时填充的值。默认值为 :math:`0.0`。
+  - **data_format** (str，可选)  - 指定输入的数据格式，可为 ``'NCDHW'`` 或者 ``'NDHWC'``，默认值为 ``'NCDHW'``。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
