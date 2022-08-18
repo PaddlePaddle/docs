@@ -11,7 +11,7 @@ Therefore, we are gradually migrating the Ops associated with the operation API 
 The migration work is to rewrite the OpKernel implementation of the corresponding heterogeneous device or third-party library originally implemented in the `paddle/fluid/operators` directory into a functional Kernel in the form of PHI Kernel, and place it in the `paddle/phi/kernels` directory or the kernels directory of the external CustomDevice repo. Specifically, taking `log_softmax` Op as an example, for different device backends, the objects to be migrated and their placement positions are as follows:
 
 - XPU: `paddle/fluid/operators/log_softmax_op_xpu.cc` modified and migrated to `paddle/phi/kernels/xpu/log_softmax_kernel.cc & log_softmax_grad_kernel.cc`
-- MKLDNN: `paddle/fluid/operators/mkldnn/`log_softmax_mkldnn_op`.cc` modified and migrated to `paddle/phi/kernels/onednn/log_softmax_kernel.cc`
+- MKLDNN: `paddle/fluid/operators/mkldnn/log_softmax_mkldnn_op.cc` modified and migrated to `paddle/phi/kernels/onednn/log_softmax_kernel.cc`
 - NPU: `paddle/fluid/operators/log_softmax_op_npu.cc` modified and migrated to external CustomDevice repo `PaddleCustomDevice/backends/npu/kernels/log_softmax_kernel.cc`
 - MLU: `paddle/fluid/operators/log_softmax_op_mlu.cc` modified and migrated to the plug-in hardware adaptation repo corresponding to the external MLU
 

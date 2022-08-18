@@ -11,7 +11,7 @@
 迁移工作是将原先在 `paddle/fluid/operators` 目录下实现的相应异构设备或者第三方库的 OpKernel 实现，改写为 PHI 形式的函数式 Kernel，并放置到 `paddle/phi/kernels` 目录或者外部 CustomDevice repo 的 kernels 目录。具体地，以 `log_softmax` Op 为例，对于不同设备后端来讲，迁移的对象及放置位置如下：
 
 - XPU：`paddle/fluid/operators/log_softmax_op_xpu.cc` 修改并迁移至 `paddle/phi/kernels/xpu/log_softmax_kernel.cc & log_softmax_grad_kernel.cc`
-- MKLDNN：`paddle/fluid/operators/mkldnn/`log_softmax_mkldnn_op`.cc` 修改并迁移至 `paddle/phi/kernels/onednn/log_softmax_kernel.cc`
+- MKLDNN：`paddle/fluid/operators/mkldnn/log_softmax_mkldnn_op.cc` 修改并迁移至 `paddle/phi/kernels/onednn/log_softmax_kernel.cc`
 - NPU：`paddle/fluid/operators/log_softmax_op_npu.cc` 修改并迁移至外部 CustomDevice repo `PaddleCustomDevice/backends/npu/kernels/log_softmax_kernel.cc`
 - MLU：`paddle/fluid/operators/log_softmax_op_mlu.cc` 修改并迁移至外部 MLU 对应的插件式硬件适配 repo 中
 
