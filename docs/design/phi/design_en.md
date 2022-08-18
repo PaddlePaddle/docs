@@ -432,3 +432,565 @@ The following will introduce them in turn.
 
 ##### 2.3.2.1 API Tensor interface
 
+- The top-level is the API-level Tensor interface, which contains two pointer members, TensorBase and AbstractAutogradMeta.
+    - Both members are designed as Interface and do not depend on real Tensor and Autograd implementations.
+    - AutogradMeta is only meaningful in the dynamic graph API-level Tensor, it will not be used in the specific kernel calculation, so put it in the top-level Tensor interface.
+    - In addition, such a design facilitates data sharing and reduces copy overhead.
+        - When a Tensor is assigned to another Tensor, or Tensor is used as a function return value, only the pointer is actually copied, and no real data copy is performed.
+
+- The top-level C++ Tensor plays a similar role as the Python-side Tensor, and the interface design is as consistent as possible with the Python-side.
+    - Contain basic property access and data access methods of Tensor.
+        - shape, place, dtype, data.
+    - Contain the autograd methods required by the dynamic graph Tensor.
+        - gradient, backward.
+    - Contain conversion methods between Tensors.
+        - cpu, gpu, xpu etc.
+    - Contain calculation methods related to Tensor (not added yet).
+        - All methods of the `paddle.tensor` module.
+
+- Compilation decoupling:
+
+    - The autograd information here is just a pointer index, which is empty by default.
+        - `std::unique_ptr<AbstractAutogradMeta> autograd_meta_ = nullptr;`
+    - AbstractAutogradMeta is an abstract class interface that does not depend on any module of autograd, so it will not affect the independent compilation of PHI, and at the same time takes into account the need for dynamic graph Tensor to hold backward information.
+
+- AutogradMeta is only set in the dynamic graph scenario. For unneeded scenarios, such as in static graphs, AutogradMeta is just a null pointer.
+
+Devices judgment and conversion of Tensor.
+
+- The judgement method of Tensor device and type.
+
+```
+bool is_cpu() const;
+bool is_gpu() const;
+bool is_xpu() const;
+bool is_dense_tensor() const;
+bool is_selected_rows() const;
+bool is_opencl() const; // 待添加
+bool is_metal() const;  // 待添加
+```
+
+- The type conversion method between Tensors, which is implemented through the same API as the Python side (to be added)【没看懂】
+
+```
+Tensor cpu() const; // 转换为 cpu tensor
+Tensor gpu() const; // 转换为 gpu tensor
+Tensor xpu() const;
+Tensor ondnn() const;
+```
+
+- This conversion process may be `cast` or `copy`:
+    - `cast` if no data copy required.
+    - `copy` if data copy required.
+    - Transformations are implemented by functional kernels.
+
+- Usage in API Scenarios
+    - In a complete training scenario, when a user uses an API, such as DataLoader, the data is generally read from the disk, put it into the CPU, and then converted to the specific execution device.
+
+##### 2.3.2.2 TensorBase
+
+- The interface implemented by Tensor only contains the necessary pure virtual Tensor methods, and does not contain members with real meaning. The methods here should also be strictly monitored during the development process.
+
+- Why use abstract class design at this level?
+    - On the one hand, it is to isolate the Tensor API from the specific implementation of Tensor without generating too many dependencies. If the Tensor API needs to be redesigned in the future, or the autograd information needs to be abandoned, only the Tensor API needs to be redesigned, which has little effect on the implementation of the underlying Tensor.
+    - On the other hand, in order to reserve sufficient expansion space for heterogeneous Tensors, the framework-level API only needs one Tensor data structure, and there is no need to expose multiple data structures. In fact, a large-scale definition is made here: all data structures in the framework are Tensors.
+        - For a basically consistent memory layout, or a basically consistent implementation of Tensor descriptions, it can be inherited based on an implementation of DenseTensor.
+        - For Tensors with a high degree of heterogeneity, new Tensor classes (such as Tensors with only one Object) can be directly inherited from Interface. This ensures that Tensor has no bottlenecks in scaling flexibility.
+
+##### 2.3.3.3 DenseTensor、SparseTensor
+
+- Corresponding to the LoDTensor class in the original fluid, it is the base class implementation of Tensor, and Allocation is the existing Allocation, including the basic members of the existing Tensor.
+- SparseCsrTensor and SparseCooTensor are newly designed sparse Tensor types, see code implementation for details.
+
+> In order to be compatible with the original framework scheduling and operators, we have also migrated SelectedRows as a basic Tensor type. If it can be replaced by a new sparse Tensor in the future, it will be removed.
+
+##### 2.3.3.4 Other Heterogeneous Tensors
+
+- If the existing Allocation cannot meet the Tensor memory requirements of some third-party libraries, you can use the new Allocation implementation after inheriting TensorBase.
+- This kind of Tensor is not essentially out of the scope of general Tensor, but the memory access method is different, it still needs other TensorMeta information.
+- To build a custom Tensor, you can define a special TensorAllocation description class, such as MetalTensor.
+
+```
+template <typename AllocationType>
+class SpatialTensor : public TensorBase {
+ public:
+  SpatialTensor(std::shared_ptr<AllocationType> allocation,
+                std::unique_ptr<DenseTensorMeta> meta)
+      : allocation_(std::move(allocation)),
+        meta_(std::move(meta)) {}
+
+ private:
+  std::shared_ptr<AllocationType> allocation_;
+  std::unique_ptr<TensorMeta> meta_;
+};
+
+template <typename AllocationType>
+class MetalTensor : public SpatialTensor<AllocationType> {};
+
+template <typename AllocationType>
+class OpenCLTensor : public SpatialTensor<AllocationType> {};
+```
+
+- In this way, no matter how special the needs of Tensor are, it can be internally adapted on the premise of keeping the external API consistent.
+
+Inherit other Tensors with high degrees of freedom: directly inherit TensorBase.
+
+- TensorBase is an abstract class, which leaves a lot of room for the description of specific Tensor. If the description of traditional Tensor cannot meet the requirements, a specialized Tensor implementation can be designed.
+
+
+#### 2.3.3 C++ API
+
+##### 2.3.3.1 C++ API form
+
+> Highlights of this section:
+> 1. The C++ API corresponds to the Python 2.0 API: the function name, parameter name, parameter order, and return value are the same.
+
+After investigation, we found that very few framework products are designed with the ease of use of the C++ API in mind. For the long-term consideration, if we want to attract more developers to build the paddle ecology, it is also very important to provide a standardized and easy-to-use C++ API system. At the same time, the Python 2.0 API project has laid a good reference foundation for the C++ API, and we can directly inherit its achievements.
+
+Therefore, currently we expect the C++ API declaration form of the Tensor computing library to be as follows:
+
+```
+Tensor mean(const Tensor& x);
+
+Tensor scale(const Tensor& x,
+             const Scalar& scale,
+             float bias,
+             bool bias_after_scale);
+```
+
+Described as follows:
+
+- It should be as consistent as possible with the attributes of the Python API, and the function name, parameter list, and return value should be consistent, so that users will not have any additional learning costs in the switch between Python and C++ (if they must be inconsistent, new C++ APIs can be added, the existing Python operation API need to correspond one-to-one with C++ APIs).
+
+**What scenarios is this new C++ API system mainly used for?**【体系应该翻译成system吗？还是Architecture？】
+
+1. As a C++ API that can be called when developing custom operators, it improves ease of use.
+    - For example, the user needs to initialize a Tensor in a custom operator, loop through the Tensor data and assign values, then you can directly call `paddle::ones`, `paddle::full` APIs.
+2. The system serves as the basic calling unit of the new dynamic graph.
+    - The new dynamic graph will use the API as the scheduling calculation unit, and will no longer call the Op system, thus improving the scheduling performance.
+3. As a basis for the development of backward Op reuse forward Op.
+    - Now the backward op kernel needs to be implemented separately. After the API system is completed, it is hoped that the backward op implementation can be completed by reusing the forward API.
+
+##### 2.3.3.2 C++ API auto-generate
+
+**Why auto-generate C++ API?**
+
+- The implementation code of the C++ API is relatively fixed in form, and can theoretically be implemented in an auto-generate way.
+- Using automatic code generation can effectively reduce the development cost of C++ API, and it is easy to modify and maintain.
+
+**How to automatically generate C++ API?**
+
+The automatic generation of the C++ API is generated by parsing the YAML configuration file. The YAML configuration file is divided into:
+
+- Forward API configuration file(`paddle/phi/api/yaml/api.yaml`. After parsing, the generated code file is `paddle/phi/api/include/api.h` and `paddle/phi/api/lib/api.cc`)
+- Backward API configuration file(`paddle/phi/api/yaml/backward.yaml`. After parsing, the generated code file is `paddle/phi/api/backward/backward_api.h` and `paddle/phi/api/lib/backward_api.cc`)
+
+The key to C++ API generation lies in the configuration of the YAML file. Taking matmul as an example, the forward and backward configuration are as follows:
+
+```
+## Forward API configuration
+- api : matmul
+  args : (Tensor x, Tensor y, bool transpose_x=false, bool transpose_y=false)
+  output : Tensor
+  infer_meta :
+    func : MatmulInferMeta
+  kernel :
+    func : matmul
+  backward : matmul_grad
+
+## Backward API configuration
+- backward_api : matmul_grad
+  forward : matmul (Tensor x, Tensor y, bool transpose_x, bool transpose_y) -> Tensor(out)
+  args : (Tensor x, Tensor y, Tensor out_grad, bool transpose_x=false, bool transpose_y=false)
+  output : Tensor(x_grad), Tensor(y_grad)
+  infer_meta :
+    func : MatmulGradInferMeta
+  kernel :
+    func : matmul_grad
+```
+
+The meaning of each configuration parameter:
+
+- api: function name, which must be the same as the function name registered by PHI Kernel.
+- args: the function parameters. Their order and data type must be exactly the same as the PHI Kernel function of the same name, and the Attributes type must be ranked after the Tensor type.
+- output: the output type. If there are multiple outputs, then separate them by commas (","). You can optionally mark the name of each input with "()" after the type (e.g. `Tensor(out)`). If there is no mark, the default markers is out0, out1, ...
+- infer_meta: calculate the dimension and type of the returned Tensor (see the introduction of the InferMeta function for details).
+    - func: the called InferMeta function. It's default input is all the parameters of the args item and the output parameter of api, the Tensor type variable in it will be automatically replaced with MetaTensor.
+- kernel: the specific Kernel function called by the API.
+    - func: the registered name of the kernel function (the name used by REGISTER, not the function name). It's default input is all the parameters of the args item and the output parameter of api.
+- backward: (optional). The corresponding backward function name, if not set only the forward API will be generated.
+
+The YAML parsing script will automatically generate the corresponding C++ API according to the above configuration items. The generated code includes the relevant processing logic such as Kernel automatic selection, Tensor transformation, Data Transform, InferMeta and Kernel calling. For details, please refer to the generated code in `api.cc` .
+
+Due to the large number of C++ APIs and their various forms and functions, some more flexible configuration items are also provided in the YAML configuration mechanism, such as `invoke`, etc. In the future, it is expected that some new configuration items will be added as needed.
+
+#### 2.3.4 Kernel form, registration and management
+
+##### 2.3.4.1 Kernel form
+
+> Highlights of this section:
+> 1. Notes on Kernel Function Form:
+> (1) Data type T and DeviceContext (abbreviated as Context) as template parameters;
+> (2) Context is the first parameter of Kernel;
+> (3) The return value Tensor takes the form of a pointer as an input parameter, and the return value of Kernel itself is void.
+
+This part includes the specific Kernel. The functions implemented in this part will be registered in the framework as Kernel for unified search and scheduling by the framework.
+
+Currently we expect this part to be of the following form, using `scale` as an example:
+
+```
+template <typename T, typename Context>
+void Scale(const Context& dev_ctx,
+           const DenseTensor& x,
+           float scale,
+           float bias,
+           bool bias_after_scale,
+           DenseTensor* out) {
+  ...
+}
+```
+
+Described as follows:
+
+- The kernels of different devices must have different function implementations. The function names are named in **camel case**. Except for the capitalization of the first letter, the naming should be as consistent as possible with the API function name. The function names of the same calculation are kept the same, and the functions of different devices are managed through different files or directories.
+- There are generally two template parameters, T and Context, which are used to determine the data type and device type at runtime.
+    - According to our current system, the vast majority of Kernels reduce the code in the way of **specialized DeviceContext and data type**, which is consistent with the original OpKernel form.
+    - The form should be unified. If the Kernel level is also exposed as a fine-grained API in the future, the ease of use is guaranteed.
+- Specification of function input parameters:
+    - Take a specific DeviceContext (such as CPUContext, CUDAContext) as the first input parameter to meet the needs of specific context information required at runtime. Pass the stream in if there are multiple streams.
+        - Currently, it is not supported to pass multiple DeviceContext parameters to one Kernel. At present, such a requirement is considered unreasonable.
+    - The parameter list is consistent with the API. If there is other special information that needs to be passed into the Kernel, pass it through the Context.
+    - Then all input Tensors and input Attributes are passed in with const &, and POD types are passed in directly by value.
+    - The input Tensor is a specific Tensor type, such as DenseTensor or SelectedRows, not the Tensor of the external interface API.
+    - Finally, the Tensor return value of the function, passed in as a pointer.
+    - In order to make the mechanism more flexible and allow the kernel to adapt to more scenarios, the declaration of flexible types of input, output and parameters will be allowed subsequently to adapt to non-Tensor input and output, as well as Tensor class Attribute.【此处确认】
+- The internal implementation of the function is determined on demand:
+    - Short term:
+        - Migrate the implementation of the existing OpKernel to the specific device Kernel.
+        - Abstract the implementation of OpKernel with common devices into functions, which are called by multiple device Kernels.
+    - Long term:
+        - The complex kernel directly calls the basic kernel to complete the calculation, encourages kernel reuse, thus simplifies the code.
+
+> FAQ:
+
+>- Why does the first parameter need to be DeviceContext? Why must this parameter be passed in?
+    - The PHI kernel requires a pure function form. The variables used in the function are passed in through parameters or created inside the function, global singletons are not allowed inside the function. In order to adapt to various kernel requirements, the DeviceContext parameter that stores context information is necessary.
+>- Why are two template parameters needed?
+    - In order to efficiently support the reusing of device-independent kernels. If we want to implement a Fourier transform fft kernel, assuming that the kernel can be derived by combining the basic kernels, the form of `Xxx<T, Device>()` can avoid dynamically redistributing devices.
+
+##### 2.3.4.3 Kernel implementation
+
+> Highlights of this section:
+> 1. Kernel focuses on expressing computing logic without mixing scheduling logic.
+> 2. Kernel is fine-grained enough, with clear boundaries, no optional parameters, easy to reuse.
+
+The existing Kernel introduces scheduling logic because the Op parameter is too complex, for example:
+
+- Use `use_cudnn` to determine whether to execute the cudnn branch. In the new Tensor calculation library, the use of cudnn calculation is a separate Kernel.
+
+In order to reduce costs, the Phi Kernel implementation will inherit the original OpKernel implementation as much as possible. Most Kernel implementations only need to remove the Input and Output logic from the original OpKernel and modify some key points. Take sign as an example:
+
+Original sign OpKernel:
+
+```
+template <typename DeviceContext, typename T>
+class SignKernel : public framework::OpKernel<T> {
+ public:
+  virtual void Compute(const framework::ExecutionContext& context) const {
+    auto* out = context.Output<framework::Tensor>("Out");
+    auto* in = context.Input<framework::Tensor>("X");
+    out->mutable_data<T>(in->place());
+
+    auto eigen_out = framework::EigenVector<T>::Flatten(*out);
+    auto eigen_in = framework::EigenVector<T>::Flatten(*in);
+    auto& place =
+        *context.template device_context<DeviceContext>().eigen_device();
+    EigenSign<std::decay_t<decltype(place)>, T>::Eval(place, eigen_out,
+                                                      eigen_in);
+  }
+};
+```
+【名词确认：迁移：migrate or transfer；反向：backward or reverse】
+Migrated PHI sign kernel:
+
+```
+template <typename T, typename Context>
+void SignKernel(const Context& dev_ctx,
+                const DenseTensor& x,
+                DenseTensor* out) {
+  dev_ctx.template Alloc<T>(out);
+  auto eigen_out = EigenVector<T>::Flatten(*out);
+  auto eigen_x = EigenVector<T>::Flatten(x);
+
+  auto& dev = *dev_ctx.eigen_device();
+  funcs::EigenSign<std::decay_t<decltype(dev)>, T>::Eval(
+      dev, eigen_out, eigen_x);
+}
+```
+
+In addition to the change of kernel form from structure to functional, there are two major changes:
+
+1. Since the parameters are all specific inputs, there is no need to take the input and output from the context, the relevant code is removed.
+2. In the PHI kernel, the memory application of the output Tensor is required to use the `ctx.Alloc` or `ctx.HostAlloc` method, and no longer use the original `mutable_data` to apply for memory.
+
+> FAQ
+> 1. Why is `mutable_data` replaced by `ctx.Alloc`?
+> Answer: Because the global method `memory::AllocShared` called in the original `mutable_data` method uses a global singleton for memory allocation, which does not conform to the pure function design principle mentioned above. In terms of business requirements, if a single instance is used in the kernel to determine the way of memory allocation, in the multi-threaded environment of inference, different threads will not be able to flexibly specify different memory allocation ways.
+
+
+##### 2.3.4.4 Kernel registration
+
+> Highlights of this section:
+> 1. Kernel needs to expose all its key information to the framework and record its input, output and attribute information, otherwise it will lead to unclear boundaries between framework scheduling and Kernel calculation.
+
+When fluid Kernel is registered, only the place, layout, dtype, input and output of the Kernel are recorded and managed by ExecutionContext, and there is no corresponding information record. Now the kernel needs to be changed to a functional type. The input, output and attributes of each function are clear. We hope to record the information of each input and output here, which is also compatible with paddle-lite scheduling.
+
+Meanwhile, we need to simplify the writing method of Kernel registration. The existing writing methods are not concise enough:
+
+1. There is a lot of redundant information in the Kernel registration method of fluid. Taking scale as an example, you can see that in addition to the last data type of each kernel, the preceding function names and DeviceContext specialization information are redundant.
+
+    ```
+    REGISTER_OP_CPU_KERNEL(
+        scale, ops::ScaleKernel<paddle::platform::CPUDeviceContext, float>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, double>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext,
+                         paddle::platform::bfloat16>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, uint8_t>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, int8_t>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, int16_t>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, int>,
+        ops::ScaleKernel<paddle::platform::CPUDeviceContext, int64_t>);
+    ```
+
+2. Paddle-Lite's kernel registration method declares input and output information for each Kernel, but since the kernel of each data type is different, it will also cause redundancy in the writing method. As you can see in the following code, except for the data type, other information is basically redundant.
+
+    ```
+    #ifdef LITE_BUILD_EXTRA
+    using scale_int32_f =
+        paddle::lite::kernels::arm::ScaleCompute<int, PRECISION(kFloat)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kFloat, kNCHW, scale_int32_f, int32)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
+        .Finalize();
+
+    using scale_int64_f =
+        paddle::lite::kernels::arm::ScaleCompute<int64_t, PRECISION(kFloat)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kFloat, kNCHW, scale_int64_f, int64)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
+        .Finalize();
+    #endif  // LITE_BUILD_EXTRA
+
+    #ifdef ENABLE_ARM_FP16
+    using scale_float16 =
+        paddle::lite::kernels::arm::ScaleCompute<float16_t, PRECISION(kFP16)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kFP16, kNCHW, scale_float16, def)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFP16))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFP16))})
+        .Finalize();
+
+    #endif  // ENABLE_ARM_FP16
+
+    using scale_float =
+        paddle::lite::kernels::arm::ScaleCompute<float, PRECISION(kFloat)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kFloat, kNCHW, scale_float, def)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFloat))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kFloat))})
+        .Finalize();
+
+    using scale_int32 =
+        paddle::lite::kernels::arm::ScaleCompute<int, PRECISION(kInt32)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kInt32, kNCHW, scale_int32, def)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt32))})
+        .Finalize();
+
+    using scale_int64 =
+        paddle::lite::kernels::arm::ScaleCompute<int64_t, PRECISION(kInt64)>;
+    REGISTER_LITE_KERNEL(scale, kARM, kInt64, kNCHW, scale_int64, def)
+        .BindInput("X", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
+        .BindOutput("Out", {LiteType::GetTensorTy(TARGET(kARM), PRECISION(kInt64))})
+        .Finalize();
+    ```
+
+Therefore, in this design, we do not want to continue to maintain this redundant writing method. We hope that the writing method of kernel registration is concise enough, and at the same time, it can flexibly meet the requirements of Kernel input and output information configuration.
+
+The key point of this problem is that the kernel needs to specify its own device, layout and dtype as its own key information, and most of the kernel input and output Tensor's device, layout and dtype are consistent with the kernel itself. For this kind of kernel, there is no need to declare through BindInput and BindOutput, we can automatically generate information to fill each input and output according to the information of the kernel. We only need to configure special information for the input and output that is inconsistent with the kernel information.
+
+The new kernel registration form is as follows:
+
+```
+PT_REGISTER_KERNEL("sign", CPU, NCHW, pt::Sign, float, double) {}
+
+PT_REGISTER_KERNEL("mean", CPU, NCHW, pt::Mean, float, double) {}
+
+PT_REGISTER_KERNEL("scale", CPU, NCHW, pt::Scale, float, double, bfloat16,
+                   uint8_t, int8_t, int16_t, int, int64_t) {}
+
+PT_REGISTER_KERNEL("scale_host", CPU, NCHW, pt::ScaleHost, float, double, bfloat16,
+                   uint8_t, int8_t, int16_t, int, int64_t) {
+   kernel->InputAt(1).SetBackend(pt::Backend::kCPU);
+}
+```
+
+Described as follows:
+
+- A large amount of redundant information in the previous registration method is removed, and the scale kernel registration of 8 data types can be completed with one line of code, and the information of each input and output is recorded by default according to the kernel information.
+- For a kernel with dynamic attr input such as `ScaleTensor`, you can configure the Backend, Layout and Dtype information of specific parameters in the function body; if there is no such requirement, the function body can be empty.
+
+In addition, in the `PT_REGISTER_KERNEL` macro, the function form of the Kernel function is normalized through template deduction.
+
+The kernels with different input parameter lists are unified into the following form, so that they can be stored in the Kernel data structure below as a unified function pointer:
+
+```
+using KernelFn = void (*)(KernelContext* ctx);
+```
+
+Auto-derivation by wrapping `PT_KERNEL` around the Kernel function
+
+```
+##define PT_KERNEL(...) \
+  ::pt::KernelImpl<decltype(&__VA_ARGS__), &__VA_ARGS__>::Compute
+```
+
+In addition, only basic template adaptation has been implemented at present, and we will add them as needed in the future to make the overall mechanism more flexible and applicable to a wider range.
+
+##### 2.3.4.4 Kernel management
+
+> Highlights of this section:
+> 1. Introduce the design of the current Kernel management components
+
+For the management of the new form of Kernel, the current design is as follows:
+
+![kernel-design.png](./images/kernel-design.png)
+
+Described as follows:
+
+- `KernelFactory` is a global singleton data structure for managing Kernel. Similar to OpKernelMap of fluid, it is a two-level map. The first-level mapping finds the Kernel set according to the name, and the second-level mapping finds the specific Kernel according to the KernelKey.
+- `KernelKey` is similar to the original OpKernelType, but the palce and library_type fields are combined into one and called Backend, because the original LibraryType is a limited enumeration class, which is strongly related to place, the splitting increases the cost of understanding instead.
+- `Kernel` holds more information than the original OpKernel. In addition to the Function during execution, it also holds information about specific parameters, namely `KernelArgsDef`. For input and output of Tensor class, it saves Tensor type information, Device, data Type, data layout. For input and output of Attribute class, it saves type information.
+
+
+#### 2.3.5 Kernel compilation and dependencies
+
+> Highlights of this section:
+> 1. Introduce the compilation design of the kernel.
+> 2. Introduce the establishment of kernel dependencies.
+
+##### 2.3.5.1 Kernel compilation
+
+After the original OpKernel is migrated to PHI, phi automatically scans all relevant cc(cu) files during compilation, and compiles the overall target according to the device, without declaring the Kernel compilation objects one by one, for example:
+
+```
+file(
+  GLOB
+  kernel_cu
+  "gpu/*.cu"
+  "gpu/*.cu.cc"
+  "gpudnn/*.cu"
+  "kps/*.cu"
+  "selected_rows/gpu/*.cu"
+  "sparse/gpu/*.cu"
+  "strings/*.cu"
+  "strings/gpu/*.cu")
+
+add_library(phi_cpu ${kernel_cc})
+kernel_declare("${kernel_cc}")
+target_link_libraries(phi_cpu ${COMMON_KERNEL_DEPS})
+```
+
+By calling the `kernel_declare` method, the registration unit in the kernel source file is extracted, and a unified symbol declaration is automatically generated to avoid manual maintenance of the kernel declaration. The generated declaration is in the `paddle/phi/kernels/declarations.h` file in the build directory, the generated declaration code example is as follows:
+
+```
+PD_DECLARE_KERNEL(argsort, CPU, ALL_LAYOUT);
+PD_DECLARE_KERNEL(as_complex, CPU, ALL_LAYOUT);
+PD_DECLARE_KERNEL(as_real, CPU, ALL_LAYOUT);
+...
+```
+
+For the specific implementation of `kernel_declare`, please refer to the function implementation in `camke/phi.cmake`, which will not be introduced here.
+
+##### 2.3.5.2 Kernel dependencies
+
+The phi kernel has been changed to a functional type, and the original intention is to make it easier to reuse between kernels, but reusing kernels will introduce compilation dependencies between kernels. We compile all kernels as a whole unit, which can avoid maintaining dependencies between individual kernels. Therefore, if you need to reuse the Kernel during development, you only need to include the corresponding header file correctly.
+
+#### 2.3.6 InferMeta(Shape) abstract integration
+
+The original InferShape of fluid Op is the same as OpKernel, has the problem of repeated development: because the InferShape functions of different Ops cannot be reused, even if the InferShape logic of different Ops is the same or similar, they needs to be rewritten again. The refactor of PHI needs to address this issue.
+
+We also rewrite InferShape into a functional form, which supports different Ops to call the same InferShape function, which improves ease of use and reduces maintenance costs.
+
+> FAQ:
+> 1. Why call it InferMeta instead of continuing to call it InferShape?
+> Answer: The Meta of InferMeta comes from the meta member in DenseTensor. In PHI, an op has two components, InferMeta and Kernel. InferMeta covers the functions of InferShape, but it is not limited to InferShape. In addition to the inference of dims and lod, InferMeta also infers dtype and layout, which is different from the original.
+
+##### 2.3.6.1 InferMeta related design
+
+InferMeta is also functional form, a few examples are as follows:
+
+```
+void UnchangedInferMeta(const MetaTensor& x, MetaTensor* out) {
+  out->share_meta(x);
+}
+
+void CastInferMeta(const MetaTensor& x, DataType out_dtype, MetaTensor* out) {
+  out->set_dims(x.dims());
+  out->set_dtype(out_dtype);
+  out->set_layout(x.layout());
+}
+
+void CreateLikeInferMeta(const MetaTensor& x,
+                         DataType dtype,
+                         DataLayout layout,
+                         MetaTensor* out) {
+  out->set_dims(x.dims());
+  out->set_dtype(dtype == DataType::UNDEFINED ? x.dtype() : dtype);
+  out->set_layout(layout == DataLayout::UNDEFINED ? x.layout() : layout);
+}
+
+void ConcatInferMeta(const std::vector<MetaTensor>& x,
+                     const Scalar& axis_scalar,
+                     MetaTensor* out,
+                     MetaConfig config = MetaConfig());
+```
+
+The features are introduced as follows:
+
+1. The function is named `[FunctionDesc|OpName]InferMeta`
+2. The function form is similar to Kernel, the function parameters are MetaTensor input, Attribute, MetaTensor output in turn, and the return value is empty. In principle, there is a one-to-one correspondence between the parameter list of the InferMeta function and its corresponding Kernel function. The difference is only the Tensor parameter type. The Tensor parameter of the InferMeta function is MetaTensor, and the Tensor parameter of the Kernel function is DenseTensor, SparseTensor, etc.
+3. For some InferMeta functions that need to distinguish between compile time and execution time, add the MetaConfig parameter at the end. There is a bool member is_runtime in config, and the structure is used to facilitate the subsequent expansion of other flag members.
+
+The purpose of using MetaTensor is to mask multiple Tensor types, and to be compatible with the original fluid's VarDesc and Variable. One op corresponds to one InferMeta function. If the type is not masked, the InferMeta function will be overloaded multiple times for different input types.
+
+The basic design of MetaTensor is as follows:
+
+```
+class MetaTensor {
+ public:
+  explicit MetaTensor(TensorBase* tensor) : tensor_(tensor) {}
+
+  MetaTensor() = default;
+  MetaTensor(const MetaTensor&) = default;
+  MetaTensor(MetaTensor&&) = default;
+  MetaTensor& operator=(const MetaTensor&) = delete;
+  MetaTensor& operator=(MetaTensor&&) = delete;
+
+  virtual ~MetaTensor() = default;
+
+  virtual int64_t numel() const;
+  virtual DDim dims() const;
+  virtual DataType dtype() const;
+  virtual DataLayout layout() const;
+  virtual void set_dims(const DDim& dims);
+  virtual void set_dtype(DataType dtype);
+  virtual void set_layout(DataLayout layout);
+  virtual void share_lod(const MetaTensor& meta_tensor);
+
+ private:
+  const LoD& lod() const;
+  TensorBase* tensor_;
+};
+```
+
+There is a pointer member TensorBase in the base class MetaTensor, so it can be compatible with DenseTensor, SelectedRows, SparseCsrTensor and other types in PHI.
+
