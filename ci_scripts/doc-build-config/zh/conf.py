@@ -47,9 +47,6 @@ MarkdownParser.github_doc_root = github_doc_root
 
 os.environ['PADDLE_BUILD_DOC'] = '1'
 
-# disable inherit docstrings
-autodoc_inherit_docstrings = False
-
 # Add any Sphinx extension moduleexclude_patterns names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones
 extensions = [
