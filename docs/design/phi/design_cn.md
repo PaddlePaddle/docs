@@ -867,7 +867,7 @@ using KernelFn = void (*)(KernelContext* ctx);
 说明如下：
 
 - `KernelFactory`作为管理 Kernel 的全局单例数据结构，和 fluid 的 OpKernelMap 类似，两级 map，第一层根据 name 找到 Kernel 集合，第二层根据 KernelKey 找到具体的 Kernel
-- `KernelKey`和原先的 OpKernelType 类似，但将 palce 和 library_type 字段合二为一称之为 Backend，因为原先的 LibraryType 是一个有局限的枚举类，原本就和 place 是强相关的，拆分反而增加了理解成本
+- `KernelKey`和原先的 OpKernelType 类似，但将 place 和 library_type 字段合二为一称之为 Backend，因为原先的 LibraryType 是一个有局限的枚举类，原本就和 place 是强相关的，拆分反而增加了理解成本
 - `Kernel`相比原先的 OpKernel 持有了更多信息，除了执行时的 Function，还持有了具体参数的信息，即`KernelArgsDef`，对于 Tensor 类输入输出，保存了 Tensor 类型信息、Device，数据类型、数据布局，对于 Attribute 类输入输出，保存了类型信息
 
 
