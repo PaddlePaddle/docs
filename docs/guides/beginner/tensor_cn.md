@@ -710,7 +710,7 @@ y = paddle.ones((2, 3, 6))
 # ValueError: (InvalidArgument) Broadcast dimension mismatch.
 ```
 
-在了解两个 Tensor 在什么情况下可以广播的规则后，两个 Tensor 进行广播语义后的结果 Tensor 的形状计算规则如下：
+在了解两个 Tensor 在什么情况下可以广播的规则后，两个 Tensor 进行广播后的结果 Tensor 的形状计算规则如下：
 
 * 如果两个 Tensor 的形状的长度不一致，会在较小长度的形状矩阵前部添加 1，直到两个 Tensor 的形状长度相等。
 * 保证两个 Tensor 形状相等之后，每个维度上的结果维度就是当前维度上的较大值。
