@@ -149,7 +149,7 @@ void LogSoftmaxKernel(const Context& dev_ctx,
 
 Secondly, it is necessary to replace some of the types or functions that were only used in fluid in the original function implementation with the corresponding types or functions in PHI. The mapping relationship of some replacements are as follows:
 
-| fluid 写法 | phi 写法 |
+| fluid writing | phi writing |
 |---|---|
 | `farmework::Tensor` | `DenseTensor` |
 | `farmework::LoDTensor` | `DenseTensor` |
