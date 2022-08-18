@@ -147,7 +147,7 @@ void LogSoftmaxKernel(const Context& dev_ctx,
 }
 ```
 
-需要将原先函数实现中部分仅在 fluid 中使用的类型或函数，替换为 PHI 中对应的类型或函数，一些替换的映射关系如下：
+其次，需要将原先函数实现中部分仅在 fluid 中使用的类型或函数，替换为 PHI 中对应的类型或函数，一些替换的映射关系如下：
 
 | fluid 写法 | phi 写法 |
 |---|---|
@@ -313,7 +313,7 @@ PHI Kernel 的优先级高于 fluid OpKernel ，因此编译通过后，可以�
 
 ### 3.4 移除原 OpKernel 文件
 
-前序步骤完成之后，需要移除原先 OpKernel 实现以及注册代码。一般来讲，可以直接删除原先 fluid operators 目录以下相应文件，继续以 `log_softmax_mkldnn_op` 为例，需要移除 `paddle/fluid/operators/mkldnn/`log_softmax_mkldnn_op`.cc` ，不维护冗余的代码。
+前序步骤完成之后，需要移除原先 OpKernel 实现以及注册代码。一般来讲，可以直接删除原先 fluid operators 目录以下相应文件，继续以 `log_softmax_mkldnn_op` 为例，需要移除 `paddle/fluid/operators/mkldnn/log_softmax_mkldnn_op.cc` ，不维护冗余的代码。
 
 > 注意，如果出现找不到符号的报错，可能需要将部分 C++单测中的 `USE_OP(fluid_op_type)` 手动改为 `USE_OP_ITSELF(fluid_op_type)` ，以及将 `USE_OP_DEVICE_KERNEL(fluid_op_type, MKLDNN)` 改为 `PD_DECLARE_KERNEL(phi_kernel_name, OneDNN, ALL_LAYOUT)`。
 
