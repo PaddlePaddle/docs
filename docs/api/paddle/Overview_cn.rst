@@ -115,7 +115,7 @@ tensor 数学操作
     " :ref:`paddle.stanh <cn_api_fluid_layers_stanh>` ", "stanh 激活函数"
     " :ref:`paddle.std <cn_api_tensor_cn_std>` ", "沿给定的轴 axis 计算 x 中元素的标准差"
     " :ref:`paddle.subtract <cn_api_paddle_tensor_subtract>` ", "逐元素相减算子"
-    " :ref:`paddle.remainder <cn_api_paddle_tensor_remainder>` ", "逐元素取余算子"
+    " :ref:`paddle.remainder <cn_api_tensor_mod>` ", "逐元素取模算子"
     " :ref:`paddle.sum <cn_api_tensor_sum>` ", "对指定维度上的 Tensor 元素进行求和运算"
     " :ref:`paddle.tan <cn_api_fluid_layers_tan>` ", "三角函数 tangent"
     " :ref:`paddle.tanh <cn_api_tensor_tanh>` ", "tanh 激活函数"
