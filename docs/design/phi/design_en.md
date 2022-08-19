@@ -466,15 +466,15 @@ bool is_gpu() const;
 bool is_xpu() const;
 bool is_dense_tensor() const;
 bool is_selected_rows() const;
-bool is_opencl() const; // 待添加
-bool is_metal() const;  // 待添加
+bool is_opencl() const; // To be added
+bool is_metal() const;  // To be added
 ```
 
-- The type conversion method between Tensors, which is implemented through the same API as the Python side (to be added)【没看懂】
+- The type conversion method between Tensors, which is implemented through the API consistent with the Python side (to be added).
 
 ```
-Tensor cpu() const; // 转换为 cpu tensor
-Tensor gpu() const; // 转换为 gpu tensor
+Tensor cpu() const; // Convert to cpu tensor
+Tensor gpu() const; // Convert to gpu tensor
 Tensor xpu() const;
 Tensor ondnn() const;
 ```
