@@ -83,7 +83,7 @@
 
 
   ```
-  python -m pip install paddlepaddle==2.3.1 -i https://mirror.baidu.com/pypi/simple
+  python -m pip install paddlepaddle==2.3.2 -i https://mirror.baidu.com/pypi/simple
   ```
 
 
