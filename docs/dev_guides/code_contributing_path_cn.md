@@ -53,10 +53,10 @@
 
 飞桨使用 [pre-commit](https://pre-commit.com/) 的 git 钩子（git hooks），用于格式化源代码（C/C++，Python），并在调用 `git commit` 命令时进行基础的代码预检测，如每个文件只有一个 EOL（End of Line），不允许添加大文件等。并且 pre-commit 测试也是 [CI 测试](#CItest) 的一部分，不满足钩子的 Pull Request 不能被提交到 Paddle。
 
-Paddle 使用的 pre-commit 是 1.10.4 版本，首先安装并在本地仓库的目录下运行它：
+Paddle 使用的 pre-commit 是 2.17.0 版本，首先安装并在本地仓库的目录下运行它：
 
 ```bash
-➜  pip install pre-commit==1.10.4
+➜  pip install pre-commit==2.17.0
 ➜  pre-commit install
 ```
 
