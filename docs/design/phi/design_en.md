@@ -624,7 +624,7 @@ The YAML parsing script will automatically generate the corresponding C++ API ac
 
 Due to the large number of C++ APIs and their various forms and functions, some more flexible configuration items are also provided in the YAML configuration mechanism, such as `invoke`, etc. In the future, it is expected that some new configuration items will be added as needed.
 
-#### 2.3.4 Kernel form, registration and management
+#### 2.3.4 Kernel Form, Registration and Management
 
 ##### 2.3.4.1 Kernel form
 
@@ -871,7 +871,7 @@ Described as follows:
 - `Kernel` holds more information than the original OpKernel. In addition to the Function during execution, it also holds information about specific parameters, namely `KernelArgsDef`. For input and output of Tensor class, it saves Tensor type information, Device, data Type, data layout. For input and output of Attribute class, it saves type information.
 
 
-#### 2.3.5 Kernel compilation and dependencies
+#### 2.3.5 Kernel Compilation and Dependencies
 
 > Highlights of this section:
 > 1. Introduce the compilation design of the kernel.
@@ -914,7 +914,7 @@ For the specific implementation of `kernel_declare`, please refer to the functio
 
 The phi kernel has been changed to a functional type, and the original intention is to make it easier to reuse between kernels, but reusing kernels will introduce compilation dependencies between kernels. We compile all kernels as a whole unit, which can avoid maintaining dependencies between individual kernels. Therefore, if you need to reuse the Kernel during development, you only need to include the corresponding header file correctly.
 
-#### 2.3.6 InferMeta(Shape) abstract integration
+#### 2.3.6 InferMeta(Shape) Abstract Integration
 
 The original InferShape of fluid Op is the same as OpKernel, has the problem of repeated development: because the InferShape functions of different Ops cannot be reused, even if the InferShape logic of different Ops is the same or similar, they needs to be rewritten again. The refactor of PHI needs to address this issue.
 
@@ -994,3 +994,637 @@ class MetaTensor {
 
 There is a pointer member TensorBase in the base class MetaTensor, so it can be compatible with DenseTensor, SelectedRows, SparseCsrTensor and other types in PHI.
 
+##### 2.3.6.2 InferMeta registration management
+
+In order to support the unified calling of the InferMeta function, the InferMeta function also performs unified registration management.
+
+First of all, we define `PT_INFER_META`, similar to the `PT_KERTNEL` macro that normalizes the Kernel, we also implement InferMetaContext like KernelContext. (The implementation is not expanded, only some fragments are placed, see `phi/core/infermeta_utils.h` for details)
+
+```
+class InferMetaContext {
+ public:
+  InferMetaContext() = default;
+ ...
+};
+
+##define PT_INFER_META(...) \
+  ::phi::InferMetaFnImpl<decltype(&__VA_ARGS__), &__VA_ARGS__>::Call
+
+template <typename Fn, Fn fn>
+struct InferMetaFnImpl;
+
+template <typename Return, typename... Args, Return (*infer_meta_fn)(Args...)>
+struct InferMetaFnImpl<Return (*)(Args...), infer_meta_fn> {
+  static void Call(InferMetaContext* ctx) {
+    InferMetaFnCallHelper<Args..., InferMetaTypeTag<int>>::template Call<0, 0, 0>(ctx);
+  }
+
+ private:
+  template <typename... RemainingArgs>
+  struct InferMetaFnCallHelper;
+
+  ...
+};
+```
+
+Then design the corresponding singleton class to store MetaFn.
+
+```
+class MetaFnFactory {
+ public:
+  static MetaFnFactory& Instance();
+
+  bool Contains(const std::string& kernel_name_prefix) const {
+    return meta_fn_map_.count(kernel_name_prefix) > 0;
+  }
+
+  void Insert(std::string kernel_name_prefix, InferMetaFn infer_meta_fn) {
+    PADDLE_ENFORCE_NE(
+        Contains(kernel_name_prefix),
+        true,
+        phi::errors::AlreadyExists(
+            "`%s`'s Series Kernel's InferMetaFn has been registered.",
+            kernel_name_prefix));
+    meta_fn_map_.insert(
+        {std::move(kernel_name_prefix), std::move(infer_meta_fn)});
+  }
+
+  const InferMetaFn& Get(const std::string& kernel_name_prefix) const {
+    auto it = meta_fn_map_.find(kernel_name_prefix);
+    PADDLE_ENFORCE_NE(
+        it,
+        meta_fn_map_.end(),
+        phi::errors::NotFound(
+            "`%s`'s Series Kernel's InferMetaFn is not registered.",
+            kernel_name_prefix));
+    return it->second;
+  }
+
+ private:
+  MetaFnFactory() = default;
+
+  /**
+   * [ Why use kernel name prefix? ]
+   *
+   * one op -> a matrix of kernels
+   *
+   * such as, scale op, it may correspond to the following kernels:
+   *
+   * - scale, scale_sr, scale_onednn
+   * - scale_raw, scale_raw_sr, scale_raw_onednn
+   *
+   * All the kernels in each row correspond to the same infershape function,
+   * the number of kernel arguments in the same row is the same, and only
+   * the tensor types in the arguments are different.
+   */
+  paddle::flat_hash_map<std::string, InferMetaFn> meta_fn_map_;
+
+  DISABLE_COPY_AND_ASSIGN(MetaFnFactory);
+};
+```
+
+Encapsulate the corresponding registration macro for InferMeta registration. The registration writing example is as follows:
+
+```
+PT_REGISTER_INFER_META_FN(sign, phi::UnchangedInferMeta);
+```
+
+For the registration of InferMeta, developers generally do not need to write by hand. We automatically generate the corresponding registration entries through the mapping relationship between api name and InferMeta in yaml.
+
+##### 2.3.6.3 InferMeta compatible with fluid InferShape
+
+In fluid, inherit MetaTensor to implement CompatMetaTensor, and rewrite the corresponding member methods to make the InferMeta function compatible with the input of VarDesc and Variable. Taking dims as an example, the dims implementation of CompatMetaTensor is:
+
+```
+class CompatMetaTensor : public phi::MetaTensor {
+ public:
+  CompatMetaTensor(InferShapeVarPtr var, bool is_runtime)
+      : var_(std::move(var)), is_runtime_(is_runtime) {}
+
+  CompatMetaTensor() = default;
+  CompatMetaTensor(const CompatMetaTensor&) = default;
+  CompatMetaTensor(CompatMetaTensor&&) = default;
+  CompatMetaTensor& operator=(const CompatMetaTensor&) = delete;
+  CompatMetaTensor& operator=(CompatMetaTensor&&) = delete;
+
+  ...
+
+  DDim dims() const override {
+    if (is_runtime_) {
+      auto* var = BOOST_GET_CONST(Variable*, var_);
+      if (var->IsType<phi::DenseTensor>()) {
+        return var->Get<phi::DenseTensor>().dims();
+      } else if (var->IsType<phi::SelectedRows>()) {
+        return var->Get<phi::SelectedRows>().dims();
+      } else {
+        PADDLE_THROW(platform::errors::Unimplemented(
+            "Currently, only can get dims from DenseTensor or SelectedRows."));
+      }
+    } else {
+      auto* var = BOOST_GET_CONST(VarDesc*, var_);
+      return make_ddim(var->GetShape());
+    }
+  }
+  ...
+};
+```
+
+Then, in order to transplant the functional InferMeta back to the Op system of fluid, it is necessary to normalize the functional InferMeta to the functor form.
+
+Normalize the function form through the PT_INFER_META macro, and then wrap `PT_INFER_META(***InferMeta)` into a functor. The functor first converts the InferShapeContext to InferMetaContext, then calls the corresponding InferMeta function, and manages the code uniformly through a macro.
+
+```
+##define DELCARE_INFER_SHAPE_FUNCTOR(op_type, functor_name, fn)      \
+  struct functor_name : public paddle::framework::InferShapeBase {  \
+    void operator()(                                                \
+        paddle::framework::InferShapeContext* ctx) const override { \
+      auto infer_meta_context =                                     \
+          paddle::framework::BuildInferMetaContext(ctx, #op_type);  \
+      fn(&infer_meta_context);                                      \
+    }                                                               \
+  }
+```
+
+The key function is `BuildInferMetaContext`, which will take out the parameters required by the InferMeta function from the InferShapeContext, put them into the InferMetaContext. The parameters required by InferMeta is obtained through the ArgumentMapping function (details are introduced in Section `2.4 Compatible Adaptation of Dynamic and Static Graphs`).
+
+Then the functor can be maintained in the corresponding OpInfo when the Op is registered, and the InferShape implementation of the original Op can be deleted. The example is as follows:
+
+```
+// Original implementation
+class SignOp : public framework::OperatorWithKernel {
+ public:
+  using framework::OperatorWithKernel::OperatorWithKernel;
+
+  void InferShape(framework::InferShapeContext *ctx) const override {
+    OP_INOUT_CHECK(ctx->HasInput("X"), "Input", "X", "sign");
+    OP_INOUT_CHECK(ctx->HasOutput("Out"), "Output", "Out", "sign");
+
+    ctx->SetOutputDim("Out", ctx->GetInputDim("X"));
+    ctx->ShareLoD("X", /*->*/ "Out");
+  }
+};
+
+namespace ops = paddle::operators;
+
+REGISTER_OPERATOR(sign, ops::SignOp, ops::SignOpMaker<float>,
+                  ops::SignGradMaker<paddle::framework::OpDesc>,
+                  ops::SignGradMaker<paddle::imperative::OpBase>);
+
+// Implementation after upgrade
+class SignOp : public framework::OperatorWithKernel {
+ public:
+  using framework::OperatorWithKernel::OperatorWithKernel;
+};
+
+DELCARE_INFER_SHAPE_FUNCTOR(
+    sign, SignInferShapeFunctor, PT_INFER_META(phi::UnchangedInferMetaNew));
+REGISTER_OPERATOR(sign, ops::SignOp, ops::SignOpMaker<float>,
+                  ops::SignGradMaker<paddle::framework::OpDesc>,
+                  ops::SignGradMaker<paddle::imperative::OpBase>,
+                  SignInferShapeFunctor);
+
+```
+
+So far, after the original Op's InferShape function has been migrated to PHI InferMeta, it can be re-registered back to fluid to be called, thereby realizing the functional reuse and global unification of InferShape.
+
+### 2.4 Compatible Adaptation of Dynamic and Static Graphs
+
+> Highlights of this section:
+> 1. Support the new form of Kernel to be called in the existing static graph and dynamic graph system, the difficulty lies in solving the matching problem of multi-parameter Op to few-parameter Kernel.
+
+#### 2.4.1 ArgumentMapping Architecture Design
+
+The parameter list of the new form of Kernel is aligned with the Python API, which is different from the parameter list registered in the original OpMaker, this makes it difficult to match when the new form of Kernel is called in the original fluid system.
+
+For example, conv2d op has 4 Inputs, 1 Output, and 26 Attributes registered in its OpMaker, while the Python API of conv2d has only 8 parameters in total (not counting name, 3 Tensor inputs, 5 Attribute inputs).
+
+At runtime, before calling the new Kernel, select the Kernel parameters from the parameters registered by OpMaker, and then pass them to the new Kernel.
+
+For some relatively standardized operators, their OpMaker parameters and Python api parameters are consistent. In such standard situation, there is no need to select parameters. For these operators, according to the registration order of input and output attributes in OpProto, skip the members marked as Extra and Quant, can solve some parameter matching problems of Op and Kernel. However, for some operators that are not standardized or left over from fluid, such as conv, such a mapping function is required, and this mapping function may have very complex judgment logic depending on the op. Therefore, there is no way to automate it at this stage.
+
+At present, the ArgumentMapping function mapping system is designed. In the phi/ops/compat directory, the corresponding mapping functions are implemented and registered. Then when the PHI kernel performs adaptation, the corresponding ArgumentMapping function will be called to obtain the parameters required by the PHI kernel. For example, the mapping function of scale op is as follows:
+
+```
+/**
+ * Note [ Why does the ArgumentMapping function need to be so complicated? ]
+ *
+ * In order to meet the requirements of infrt, the function used to match Op
+ * and Kernel parameters, need to be placed in PHI as a compatible component,
+ * and does not depend on fluid.
+ *
+ * Because infrt not only needs to dynamically call this argument mapping
+ * function at runtime, but also needs to statically declare all possible
+ * results of the function before running without any information.
+ *
+ * The infrt declare like:
+ *
+ * def PDKEL_Reshape_to_CPU : Pat<
+ *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr), // OpMaker arguements
+ *     (PDKEL_ReshapeKernelAttr $x, fn($shape_attr)>;  // Kernel arguments
+ * def PDKEL_Reshape_to_CPU : Pat<
+ *     (PD_ReshapeOp $x, $shape_tensor， $shape_attr),
+ *     (PDKEL_ReshapeKernelAttr $x, fn($shape_tensor)>;
+ *
+ * Therefore, we need to write out each result of the argument mapping function,
+ * like `KernelSignature("full", {}, {"ShapeTensor", "value"}, {"Out"})`, it
+ * cannot contains variable, only can contains const char* string.
+ *
+ * Infrt will parse all results before running for the generation of the above
+ * static declare, which leads to some functions being written in a long way,
+ * and the complicated ones may have hundreds of lines, which has certain side
+ * effects on the programming experience.
+ */
+KernelSignature ScaleOpArgumentMapping(const ArgumentMappingContext& ctx) {
+  if (ctx.IsDenseTensorInput("X")) {
+    if (ctx.HasInput("ScaleTensor")) {
+      return KernelSignature(
+          "scale", {"X"}, {"ScaleTensor", "bias", "bias_after_scale"}, {"Out"});
+    } else {
+      return KernelSignature(
+          "scale", {"X"}, {"scale", "bias", "bias_after_scale"}, {"Out"});
+    }
+  } else if (ctx.IsSelectedRowsInput("X")) {
+    if (ctx.HasInput("ScaleTensor")) {
+      return KernelSignature("scale_sr",
+                             {"X"},
+                             {"ScaleTensor", "bias", "bias_after_scale"},
+                             {"Out"});
+    } else {
+      return KernelSignature(
+          "scale_sr", {"X"}, {"scale", "bias", "bias_after_scale"}, {"Out"});
+    }
+  } else {
+    return KernelSignature("unregistered", {}, {}, {});
+  }
+}
+```
+
+The basic interface design of ArgumentMappingContext is as follows:
+
+```
+// TODO(chenweihang): Add more methods if needed in future
+class ArgumentMappingContext {
+ public:
+  virtual ~ArgumentMappingContext() = default;
+
+  virtual bool HasInput(const std::string& name) const = 0;
+  virtual bool HasOutput(const std::string& name) const = 0;
+  virtual bool HasAttr(const std::string& name) const = 0;
+
+  // now we can't use Attribute here, it will cause PHI relay on
+  // boost::variant and BlockDesc
+  virtual paddle::any Attr(const std::string& name) const = 0;
+
+  virtual size_t InputSize(const std::string& name) const = 0;
+  virtual size_t OutputSize(const std::string& name) const = 0;
+
+  virtual bool IsDenseTensorInput(const std::string& name) const = 0;
+  virtual bool IsSelectedRowsInput(const std::string& name) const = 0;
+
+  virtual bool IsDenseTensorOutput(const std::string& name) const = 0;
+  virtual bool IsSelectedRowsOutput(const std::string& name) const = 0;
+};
+```
+
+No matter whether ScaleOpArgumentMapping is used in fluid or infrt, as long as the ArgumentMappingContext of a specific frame can be constructed, the corresponding parameter mapping relationship can be obtained.
+
+**1) Adaptation to fluid**
+
+In fluid, functions need to be used in both static graphs and dynamic graphs. A straightforward idea is to construct ArgumentMappingContext directly through ExecutionContext, and then call it when op is executed, for example: 
+
+```
+// TODO(chenweihang): split impl based OpProto or Dygraph if needed
+class ExecutionArgumentMappingContext : public phi::ArgumentMappingContext {
+ public:
+  ExecutionArgumentMappingContext(const ExecutionContext& ctx) : ctx_(ctx) {}
+
+  bool HasInput(const std::string& name) const override {
+    return ctx_.HasInput(name);
+  }
+
+  bool HasOutput(const std::string& name) const override {
+    return ctx_.HasOutput(name);
+  }
+
+  bool HasAttr(const std::string& name) const override {
+    return ctx_.HasAttr(name);
+  }
+
+  size_t InputSize(const std::string& name) const override {
+    return ctx_.InputSize(name);
+  }
+
+  size_t OutputSize(const std::string& name) const override {
+    return ctx_.OutputSize(name);
+  }
+
+  bool IsDenseTensorInput(const std::string& name) const override {
+    return ctx_.InputVar(name)->IsType<framework::Tensor>() ||
+      ctx_.InputVar(name)->IsType<framework::LoDTensor>();
+  }
+
+  bool IsSelectedRowsInput(const std::string& name) const override {
+    return ctx_.InputVar(name)->IsType<framework::SelectedRows>();
+  }
+
+ private:
+  const ExecutionContext& ctx_;
+};
+```
+
+**2) Adaptation to infrt**
+
+【第一句确认】If the infrt only has the training and stored reasoning program, that is, only the information of the Proto layer, then the corresponding Context can be constructed through the Proto information. **The information in proto is currently complete to support parameter matching**, for example: 
+
+```
+class ProtoArgumentMappingContext : public phi::ArgumentMappingContext {
+ public:
+  ProtoArgumentMappingContext(proto::OpProto* op, proto::BlockDesc* block) : op_(op), block_(block) {}
+
+  bool HasInput(const std::string& name) const override {
+    // simple search
+    for (int i = 0; i < proto_->input_size(); ++i) {
+      auto& in = proto_->inputs()[i];
+      if (in.name() == name) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool HasOutput(const std::string& name) const override {
+    // simple search
+    for (int i = 0; i < proto_->output_size(); ++i) {
+      auto& out = proto_->outputs()[i];
+      if (out.name() == name) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool HasAttr(const std::string& name) const override {
+    // simple search
+    for (int i = 0; i < proto_->attrs_size(); ++i) {
+      auto& attr = proto_->attrs()[i];
+      if (attr.name() == name) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  size_t InputSize(const std::string& name) const override {
+    return proto_->input_size();
+  }
+
+  size_t OutputSize(const std::string& name) const override {
+    return proto_->output_size();
+  }
+
+  bool IsDenseTensorInput(const std::string& name) const override {
+    for (int i = 0; i < block_.vars_size(); ++i) {
+      auto& var = block_.vars()[i];
+      if (var.name() == name) {
+        if (var.type() == proto::VarType::LOD_TENSOR) {
+          return true;
+        }
+      }
+    }
+    // TODO(chenweihang): throw error when cannot found
+    return false;
+  }
+
+  bool IsSelectedRowsInput(const std::string& name) const override {
+    for (int i = 0; i < block_.vars_size(); ++i) {
+      auto& var = block_.vars()[i];
+      if (var.name() == name) {
+        if (var.type() == proto::VarType::SELECTED_ROWS) {
+          return true;
+        }
+      }
+    }
+    // TODO(chenweihang): throw error when cannot found
+    return false;
+  }
+
+ private:
+  proto::OpProto op_*;
+  proto::BlockDesc block_*;
+};
+```
+
+#### 2.4.2 PHI Kernel Compatible with Scheduled Execution
+
+At present, the PHI kernel can be compatibly scheduled and executed in the following execution systems: old Executor, ParallelExecutor, the Tracer and the Engine of dynamic graph, the Predictor of inference, and new executor InterpreterCore, etc.
+
+Specifically, before calling OpKernel for dynamic and static graphs, judge the current calculation, such as whether `scale` has a new form of Kernel registered: if it has been registered, call the new form of Kernel to execute, otherwise if no suitable Kernel is found, the previously existing OpKernel is executed.
+
+```
+  if (phi::KernelFactory::Instance().HasCompatiblePhiKernel(type_)) {
+    if (pt_kernel_signature_ == nullptr || pt_kernel_ == nullptr) {
+      pt_kernel_signature_.reset(new KernelSignature(
+          std::move(GetExpectedPhiKernelArgs(exe_ctx))));
+      VLOG(6) << *pt_kernel_signature_.get();
+
+      kernel_type_.reset(
+          new OpKernelType(std::move(InnerGetExpectedKernelType(exe_ctx))));
+      dev_ctx = pool.Get(kernel_type_->place_);
+
+      pt_kernel_name = pt_kernel_signature_->name;
+      pt_kernel_key = TransOpKernelTypeToPhiKernelKey(*kernel_type_.get());
+      pt_kernel_.reset(
+          new phi::Kernel(phi::KernelFactory::Instance().SelectKernel(
+              pt_kernel_name, pt_kernel_key)));
+
+      if (pt_kernel_->IsValid()) {
+        VLOG(6) << "Static mode ChoosePhiKernel - kernel name: "
+                << pt_kernel_name << " | kernel key: " << pt_kernel_key
+                << " | kernel: " << *pt_kernel_;
+      } else {
+        VLOG(6) << "Static mode ChoosePhiKernel - kernel `" << pt_kernel_name
+                << "` not found.";
+      }
+    }
+    if (pt_kernel_->IsValid()) {
+      run_phi_kernel_ = true;
+    } else {
+      auto& all_op_kernels = AllOpKernels();
+      auto kernels_iter = all_op_kernels.find(type_);
+      if (kernels_iter == all_op_kernels.end() ||
+          kernels_iter->second.find(*kernel_type_.get()) ==
+              kernels_iter->second.end()
+##ifdef PADDLE_WITH_XPU
+          ||
+          paddle::platform::is_xpu_place(kernel_type_->place_) &&  // NOLINT
+              !paddle::platform::is_xpu_support_op(
+                  type_, *kernel_type_.get())  // NOLINT
+          || paddle::platform::is_in_xpu_black_list(type_)
+##endif
+              ) {
+        auto pt_cpu_kernel_key =
+            FallBackToCpu(*kernel_type_.get(), pt_kernel_key, *this);
+        pt_kernel_.reset(
+            new phi::Kernel(phi::KernelFactory::Instance().SelectKernel(
+                pt_kernel_name, pt_cpu_kernel_key)));
+
+        dev_ctx = pool.Get(platform::CPUPlace());
+        if (pt_kernel_->IsValid()) {
+          VLOG(6) << "Static mode PrepareImpl - kernel name: " << pt_kernel_name
+                  << " | kernel key: " << pt_cpu_kernel_key
+                  << " | kernel: " << *pt_kernel_;
+          run_phi_kernel_ = true;
+        }
+      }
+    }
+  }
+  if (!run_phi_kernel_) {
+    if (kernel_type_.get() == nullptr || kernel_func_.get() == nullptr) {
+      ChooseKernel(exe_ctx);
+      dev_ctx = pool.Get(kernel_type_->place_);
+    }
+  }
+
+...
+
+    if (run_phi_kernel_) {
+      phi::KernelContext pt_kernel_context;
+      // Do data transform before building KernelContext
+      // TODO(zhiqiu): support TransferInplaceVarsBack
+      PreparePhiData(exec_scope, *pt_kernel_, *pt_kernel_signature_,
+                      runtime_ctx);
+      BuildPhiKernelContext(*runtime_ctx, dev_ctx, &pt_kernel_context);
+      (*pt_kernel_)(&pt_kernel_context);
+    } else {
+      (*kernel_func_)(
+          ExecutionContext(*this, exec_scope, *dev_ctx, *runtime_ctx));
+    }
+```
+
+The execution of the PHI kernel has two key functions.
+
+**GetExpectedPhiKernelArgs**
+
+When calling the PHI kernel, to complete the matching of multiple attributes to less attributes, it is necessary to call the aforementioned ArgumentMapping function to obtain the parameter list of the PHI kernel. The implementation of GetExpectedPhiKernelArgs is as follows:
+
+```
+KernelSignature OperatorWithKernel::GetExpectedPhiKernelArgs(
+    const ExecutionContext& ctx) const {
+  ExecutionArgumentMappingContext arg_mapping_ctx(ctx);
+  return phi::OpUtilsMap::Instance().GetArgumentMappingFn(Type())(
+      arg_mapping_ctx);
+}
+```
+
+**BuildPhiKernelContext**
+
+- To call the PHI kernel, you need to prepare the Context required by the PHI kernel. The difference between PhiKernelContext and the original RuntimeContext and ExecutionContext is that PhiKernelContext uses SmallVector to store input, output and attributes, and the access efficiency is higher than the original map.
+- PhiKernelContext does not store the names of input, output and attributes. These items are required to be stored in sequence, which is consistent with the parameter list of the kernel.
+
+The basic design of PHI KernelContext is as follows:
+
+```
+/**
+ * Note: KernelContext doesn't manage the life of DeviceContext and Tensor
+ *
+ * Note: KernelContext does not couple the concept of framework,
+ *       its constructor can only take the members it needs as parameters,
+ *       not Scope, RuntimeContext, etc. as parameters
+ */
+class KernelContext {
+ public:
+  KernelContext() = default;
+  explicit KernelContext(DeviceContext* dev_ctx) : dev_ctx_(dev_ctx) {}
+
+  void SetDeviceContext(DeviceContext* dev_ctx) { dev_ctx_ = dev_ctx; }
+
+  template <typename CtxType>
+  const CtxType& GetDeviceContext() const {
+    return static_cast<const CtxType&>(*dev_ctx_);
+  }
+
+  void EmplaceBackInput(const TensorBase* input);
+
+  void EmplaceBackInputWithoutSetRange(const TensorBase* input);
+
+  void EmplaceBackInputs(paddle::small_vector<const TensorBase*> inputs);
+
+  void EmplaceBackOutput(TensorBase* output);
+
+  void EmplaceBackOutputWithoutSetRange(TensorBase* output);
+
+  void EmplaceBackOutputs(paddle::small_vector<TensorBase*> outputs);
+
+  void EmplaceBackAttr(paddle::any attr);
+
+  const std::pair<int, int>& InputRangeAt(size_t idx) const;
+
+  const std::pair<int, int>& OutputRangeAt(size_t idx) const;
+
+  void AssignInputRange(std::pair<int, int>&& range, size_t idx);
+
+  void AssignOutputRange(std::pair<int, int>&& range, size_t idx);
+
+  template <typename TensorType>
+  const TensorType& InputAt(size_t idx) const {
+    return static_cast<const TensorType&>(*(inputs_.at(idx)));
+  }
+
+  template <typename TensorType>
+  paddle::optional<const TensorType&> OptionalInputAt(size_t idx) const {
+    const auto& input = inputs_.at(idx);
+    return input ? paddle::optional<const TensorType&>{static_cast<
+                       const TensorType&>(*input)}
+                 : paddle::optional<const TensorType&>{paddle::none};
+  }
+
+  template <typename TensorType>
+  std::vector<TensorType> MoveInputsBetween(size_t start, size_t end) {
+    std::vector<TensorType> v;
+    for (size_t i = start; i < end; ++i) {
+      auto t = static_cast<const TensorType*>(inputs_.at(i));
+      v.emplace_back(*t);
+      inputs_[i] = nullptr;
+    }
+    return v;
+  }
+
+  template <typename TensorType>
+  TensorType* MutableOutputAt(size_t idx) {
+    return static_cast<TensorType*>(outputs_.at(idx));
+  }
+
+  template <typename TensorType>
+  std::vector<TensorType*> MutableOutputBetween(size_t start, size_t end) {
+    std::vector<TensorType*> v;
+    for (size_t i = start; i < end; ++i) {
+      v.emplace_back(static_cast<TensorType*>(outputs_.at(i)));
+    }
+    return v;
+  }
+
+  template <typename AttrType>
+  AttrType AttrAt(size_t idx) const {
+    try {
+      return paddle::any_cast<AttrType>(attrs_.at(idx));
+    } catch (paddle::bad_any_cast&) {
+      PADDLE_THROW(phi::errors::InvalidArgument(
+          "Attribute cast error in Op Kernel Context."));
+    }
+  }
+
+  size_t InputsSize() const { return inputs_.size(); }
+  size_t OutputsSize() const { return outputs_.size(); }
+  size_t AttrsSize() const { return attrs_.size(); }
+
+ private:
+  DeviceContext* dev_ctx_;
+
+  paddle::small_vector<const TensorBase*> inputs_;
+  paddle::small_vector<TensorBase*> outputs_;
+  paddle::small_vector<paddle::any> attrs_;
+
+  paddle::small_vector<std::pair<int, int>> input_range_;
+  paddle::small_vector<std::pair<int, int>> output_range_;
+};
+```
