@@ -36,7 +36,7 @@ If you have Docker 19.03 or later, a typical command to launch the container is:
 
     ::
 
-        docker run --gpus all -it --rm nvcr.io/nvidia/paddlepaddle:22.07-py3
+        docker run --gpus all --shm-sz=lg --ulimit memlock=-1 -it --rm nvcr.io/nvidia/paddlepaddle:22.07-py3
 
 
 If you have Docker 19.02 or earlier, a typical command to launch the container is:
@@ -44,7 +44,7 @@ If you have Docker 19.02 or earlier, a typical command to launch the container i
 
     ::
 
-        nvidia-docker run -it --rm nvcr.io/nvidia/paddlepaddle:22.07-py3
+        nvidia-docker run --shm-sz=lg --ulimit memlock=-1 -it --rm nvcr.io/nvidia/paddlepaddle:22.07-py3
 
 
 
