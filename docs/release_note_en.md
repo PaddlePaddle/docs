@@ -1,3 +1,26 @@
+# 2.3.2 Release Note
+V2.3.2 fixed known bugs, and added a tiny set of features.
+
+## Training Framework (distributed included)
+
+- Profiler collects input tensors' shape for static graph and dynamic graph operators. ([#44245](https://github.com/PaddlePaddle/Paddle/pull/44245), [#44384](https://github.com/PaddlePaddle/Paddle/pull/44384), [#44654](https://github.com/PaddlePaddle/Paddle/pull/44654))
+- Fixed failed unit tests in CUDA 11.7. ([#44785](https://github.com/PaddlePaddle/Paddle/pull/44785), [#44796](https://github.com/PaddlePaddle/Paddle/pull/44796))
+- Fixed scale name incosistency issue when being used in post training quantization and quantization aware training. ([#44903](https://github.com/PaddlePaddle/Paddle/pull/44903))
+- Fixed ContextPool in PHI uninitialized issue when PHI's C++ APIs are being used to compile a standalone executable. ([#43910](https://github.com/PaddlePaddle/Paddle/pull/43910))
+- Fixed the compiled output core_(no)avx.so's so name is not consistent with the actual file name issue, so libpaddle_pybind.so could be linked correctly. ([#43977](https://github.com/PaddlePaddle/Paddle/pull/43977))
+- Fixed the issue that `Tensor.stream()` is not returning the correct stream when being used in a customized operator. ([#44500](https://github.com/PaddlePaddle/Paddle/pull/44500))
+- Fixed iniput attribute type parsing error when customized operator is being executed in new dynamic graph mode. ([#44938](https://github.com/PaddlePaddle/Paddle/pull/44938))
+- Fixed the issue that profiler's performence data collector is missing data caused by thread local variables not being freed correctly. ([#44384](https://github.com/PaddlePaddle/Paddle/pull/44384))
+- Fixed issue of supporting new format of PACT context aware training; Improved quatization new format C++ kernel computation logic; support Reduce Max operator quatization. ([#44876](https://github.com/PaddlePaddle/Paddle/pull/44872))
+
+## Deployment Direction (Paddle Inference)
+
+- FusedMultiTransformer added normalize_before=False, which supports layer_norm to compute the Transformer structure after attention and feed forward. ([#44931](https://github.com/PaddlePaddle/Paddle/pull/44931))
+- Added NVCC_LAZY operators loaded by demand option, which could be enabled by setting `export CUDA_MODULE_LOADING=LAZY`. ([#44957](https://github.com/PaddlePaddle/Paddle/pull/44957), [#44997](https://github.com/PaddlePaddle/Paddle/pull/44997))
+- ONNX Runtime backends added support for partial_sum, partial_concat, bilinear_interp, conv3d, pool3d, multiclass_nms convert. ([#44791](https://github.com/PaddlePaddle/Paddle/pull/44791))
+- Optimized ONNX Runtime backend support: support Clone interface, support getting input mutable data, reduce memory consumption. ([#44766](https://github.com/PaddlePaddle/Paddle/pull/44766))
+- Added squeeze2, unsqueeze2, cast, slice TensorRT convert. ([#44887](https://github.com/PaddlePaddle/Paddle/pull/44887), [#44837](https://github.com/PaddlePaddle/Paddle/pull/44837), [#44757](https://github.com/PaddlePaddle/Paddle/pull/44757))
+- Fixed skip layernorm fp16 kernel computation error. ([#45041](https://github.com/PaddlePaddle/Paddle/pull/45041))
 
 # 2.3.1 Release Note
 
