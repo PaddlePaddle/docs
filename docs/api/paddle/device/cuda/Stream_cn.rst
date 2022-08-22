@@ -17,7 +17,14 @@ CUDA stream 的句柄。
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.device.cuda.Stream
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s1 = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s2 = paddle.device.cuda.Stream(0, 1)
+    s3 = paddle.device.cuda.Stream()
+
 
 
 
@@ -34,7 +41,13 @@ wait_event(event)
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Stream.wait_event
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
+    event = paddle.device.cuda.Event()
+    s.wait_event(event)
 
 
 wait_stream(stream)
@@ -49,7 +62,13 @@ wait_stream(stream)
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Stream.wait_stream
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s1 = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s2 = paddle.device.cuda.Stream(0, 1)
+    s1.wait_stream(s2)
 
 
 query()
@@ -62,7 +81,12 @@ query()
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Stream.query
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
+    is_done = s.query()
 
 synchronize()
 '''''''''
@@ -71,7 +95,12 @@ synchronize()
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Stream.synchronize
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
+    s.synchronize()
 
 record_event(event=None)
 '''''''''
@@ -87,4 +116,9 @@ record_event(event=None)
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Stream.record_event
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    s = paddle.device.cuda.Stream(paddle.CUDAPlace(0), 1)
+    event = s.record_event()

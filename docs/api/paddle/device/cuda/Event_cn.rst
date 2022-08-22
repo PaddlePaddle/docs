@@ -21,7 +21,11 @@ None
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.device.cuda.Event
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    event = paddle.device.cuda.Event()
 
 
 方法
@@ -37,7 +41,12 @@ record(CUDAStream=None)
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Event.record
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    event = paddle.device.cuda.Event()
+    event.record()
 
 query()
 '''''''''
@@ -50,7 +59,12 @@ query()
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Event.query
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    event = paddle.device.cuda.Event()
+    is_done = event.query()
 
 
 synchronize()
@@ -60,4 +74,9 @@ synchronize()
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Event.synchronize
+.. code-block:: python
+
+    # required: gpu
+    import paddle
+    event = paddle.device.cuda.Event()
+    event.synchronize()
