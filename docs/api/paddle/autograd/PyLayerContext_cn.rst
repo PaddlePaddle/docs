@@ -218,7 +218,7 @@ set_materialize_grads(self, value)
 
 **参数**
 
- - **value** (bool) - 否要框架来初始化未初始化的反向梯度
+ - **value** (bool) - 是否要框架来初始化未初始化的反向梯度
 
 
 **返回**
