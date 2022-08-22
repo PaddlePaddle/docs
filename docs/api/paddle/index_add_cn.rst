@@ -7,14 +7,14 @@ index_add
 
 
 
-沿着指定轴 ``axis`` 将 ``index`` 中指定位置的 ``x`` 与 ``add_value`` 相加，并写入到结果张量中的对应位置。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的 Tensor 其余维度大小和输入 ``x`` 相等，``axis`` 维度的大小等于 ``index`` 的大小。
+沿着指定轴 ``axis`` 将 ``index`` 中指定位置的 ``x`` 与 ``add_value`` 相加，并写入到结果张量中的对应位置。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的 Tensor 其余维度大小和输入 ``x`` 相等， ``axis`` 维度的大小等于 ``index`` 的大小。
 
 参数
 :::::::::
 
     - **x** （Tensor）– 输入 Tensor。 ``x`` 的数据类型可以是 float16, float32，float64，int32，int64。
-    - **index** （Tensor）– 包含索引下标的 1-D Tensor。
-    - **add_value** （Tensor）– 与 ``x`` 相加的 Tensor。 ``add_value`` 的数据类型同 ``x`` 。 
+    - **index** （Tensor）– 包含索引下标的 1-D Tensor。数据类型为 int32 或者 int64。
+    - **add_value** （Tensor）– 与 ``x`` 相加的 Tensor。 ``add_value`` 的数据类型同 ``x`` 。
     - **axis**    (int，可选) – 索引轴，若未指定，则默认选取第 0 维。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
