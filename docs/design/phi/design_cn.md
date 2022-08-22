@@ -256,7 +256,7 @@ enum class Backend : uint8_t {
    * [ Why we need ALL in baisc kernel key member? ]
    *
    * For Tensor, ALL represents an illegal Backend, but for Kernel, some
-   * kernels may be device-independent by nature, such as reshape; 
+   * kernels may be device-independent by nature, such as reshape;
    * and some kernels are also device-independent when implemented based on
    * primitive API.
    *
