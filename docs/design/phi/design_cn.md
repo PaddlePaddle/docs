@@ -151,8 +151,8 @@ paddle/phi
     - 该部分可能反向依赖框架的 DeviceContextPool 等实现，所以单独管理
     - 在该类 API 上，训练和预测也可能是不同的
 - `capi`: C API 模块，目前主要服务于插件式硬件接入功能
-- `common`：phi 内部及 PHI api 目录均要使用的数据结构，这些数据结构既不属于 PHI core，也不属于 api 目录
-- `core`：phi 内部会有一些自己需要的，公用的模块实现，比如基础 DenseTensor、kernel 注册及管理模块
+- `common`：PHI core 及 PHI api 目录均要使用的数据结构，这些数据结构既不属于 PHI core，也不属于 api 目录
+- `core`：PHI 内部会有一些自己需要的，公用的模块实现，比如基础 DenseTensor、kernel 注册及管理模块
 - `backends`：backends 中组织后续需要为各个后端的新增的数据结构，比如 CPUContext、GPUContext 等
     - core 中放置对于算子库来讲通用的基础数据结构，而特定后端的专用数据结构不放在 core 中，且依赖关系严格保证 backends 依赖 core，但 core 不能依赖 backends
     - 例 1：Context 如果有基类，则在 core 中，而继承的 CPUContext 在 backends/cpu 中，GPUContext 在 backends/gpu 中
@@ -1334,7 +1334,7 @@ class ExecutionArgumentMappingContext : public phi::ArgumentMappingContext {
 
 **2）对 infrt 的适配**
 
-若在 infrt 中，infrt 只有训练存储的推理 program，也就是只有 Proto 这一层的信息，那么可以通过 Proto 信息去构造对应的 Context 使用，**proto 中的信息目前在支持参数匹配上是完备的**，例如
+若在 infrt 中，infrt 只需要训练结束后存储的推理 program，也就是只有 Proto 这一层的信息，那么可以通过 Proto 信息去构造对应的 Context 使用，**proto 中的信息目前在支持参数匹配上是完备的**，例如
 
 ```
 class ProtoArgumentMappingContext : public phi::ArgumentMappingContext {
