@@ -1,4 +1,28 @@
 
+# 2.3.2 Release Note
+2.3.2 版本修复了已知问题，并新增了少量功能。
+
+## 训练框架（含分布式）
+
+- 性能分析器增加对静态图和动态图的算子的输入张量的input shape的采集。（[#44245](https://github.com/PaddlePaddle/Paddle/pull/44245)、 [#44384](https://github.com/PaddlePaddle/Paddle/pull/44384)、 [#44654](https://github.com/PaddlePaddle/Paddle/pull/44654)）
+- 修复部分单测在CUDA 11.7环境失败的问题。（[#44785](https://github.com/PaddlePaddle/Paddle/pull/44785)、 [#44796](https://github.com/PaddlePaddle/Paddle/pull/44796)）
+- 修复量化后训练与量化感知训练时，部分 scale 命名不统一问题。（[#44903](https://github.com/PaddlePaddle/Paddle/pull/44903)）
+- 修复在外部基于paddle开放的PHI C++ API，编写C++程序并且编译为可执行文件使用的场景中，因为PHI中ContextPool没有初始化而报错的问题。（[#43910](https://github.com/PaddlePaddle/Paddle/pull/43910)）
+- 修复paddle编译产出的core_(no)avx.so动态库so name与实际文件名不一致，导致外部链接的时候报错找不到 libpaddle_pybind.so的问题。（[#43977](https://github.com/PaddlePaddle/Paddle/pull/43977)）
+- 修复自定义算子中调用`Tensor.stream()`获取的stream与实际运行时stream不一致的问题。（[#44500](https://github.com/PaddlePaddle/Paddle/pull/44500)）
+- 修复在新动态图模式下执行自定义算子出现输入属性类型解析错误的问题。（[#44938](https://github.com/PaddlePaddle/Paddle/pull/44938)）
+- 修复性能数据采集器因为线程局部变量被释放而丢失数据的问题。（[#44384](https://github.com/PaddlePaddle/Paddle/pull/44384)）
+- 修复PACT感知量化训练中支持量化新格式的问题；增强量化新格式C++ kernel计算逻辑；支持Reduce Max算子量化。（[#44876](https://github.com/PaddlePaddle/Paddle/pull/44872)）
+
+## 部署方向（Paddle Inference）
+
+- FusedMultiTransformer 新增 normalize_before=False 功能，支持 layer_norm 计算在 attention 和 feed forward 后的 Transformer 结构。（[#44931](https://github.com/PaddlePaddle/Paddle/pull/44931)）
+- 新增 NVCC_LAZY 算子按需加载选项，通过 `export CUDA_MODULE_LOADING=LAZY`，即可实现算子按需加载。（[#44957](https://github.com/PaddlePaddle/Paddle/pull/44957) [#44997](https://github.com/PaddlePaddle/Paddle/pull/44997)）
+- ONNX Runtime后端新增支持partial_sum、partial_concat、bilinear_interp、conv3d、pool3d、multiclass_nms convert。（[#44791](https://github.com/PaddlePaddle/Paddle/pull/44791)）
+- 优化ONNX Runtime后端：支持Clone接口、支持获取输入mutable data，降低内存消耗。（[#44766](https://github.com/PaddlePaddle/Paddle/pull/44766)）
+- 新增 squeeze2、unsqueeze2、cast、slice TensorRT convert 支持。（[#44887](https://github.com/PaddlePaddle/Paddle/pull/44887)、[#44837](https://github.com/PaddlePaddle/Paddle/pull/44837)、[#44757](https://github.com/PaddlePaddle/Paddle/pull/44757)）
+- 修复skip layernorm fp16 kernel计算错误的问题。（[#45041](https://github.com/PaddlePaddle/Paddle/pull/45041)）
+
 # 2.3.1 Release Note
 
 ## 1. 重要更新
