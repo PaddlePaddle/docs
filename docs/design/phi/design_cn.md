@@ -499,7 +499,7 @@ Tensor ondnn() const;
 
 ##### 2.3.3.3 DenseTensor、SparseTensor
 
-- 对应原 fluid 内的 LoDTensor 类，是 Tensor 的基类实现，Allocation 就是现有 Allocation，包含现有 Tensor 的基础成员
+- DenseTensor 对应原 fluid 内的 LoDTensor 类，是 Tensor 的基础实现，DenseTensor 内的 DenseTensorMeta 包含描述 Tensor 信息的基础成员，DenseTensor 内的 Allocation 就是 fluid 原有的 Allocation
 - SparseCsrTensor、SparseCooTensor 是新设计的稀疏 Tensor 类型，详见代码实现
 
 > 为了兼容原先框架调度及算子，SelectedRows 我们也迁移过来作为一种基础 Tensor 类型，后续如果能够被新的稀疏 Tensor 替代，长期会移除
