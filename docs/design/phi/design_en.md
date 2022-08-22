@@ -93,7 +93,7 @@ The PHI code directory is inside the paddle directory, which is at the same leve
 
 Training and inference require a clear operator library directory structure:
 
-- The directory design should support various split compilation requirements of the operator library, which including: 
+- The directory design should support various split compilation requirements of the operator library, which including:
 
     - Split and compile according to the computing device.
         - For example, compile for cpu only, or compile for gpu only.
@@ -104,12 +104,12 @@ Training and inference require a clear operator library directory structure:
 
 - In the long run, support the requirement of easily reusing kernel implementation.
     - Explanation: When reusing the kernel, the corresponding function implementation should be introduced through `include` easily, rather than cannot find the kernel because of the complex directory structure.
-    
+
 - In the long run, support the requirement of the unified writing method among cross-device kernels, and the writing method is intuitive and easy to use, without introducing unnecessary template parameters.
     - Explanation: Kernel Primitive API module is at the lower layer of the operator library. Its long-term vision is that each operation uses only one kernel to adapt to various devices, the code that truly distinguishes the device is only in the implementation of the Kernel Primitive API. In the future, the template parameters should be limited to as concise as possible when passing complex parameters into the reused kernel.
 
 - In terms of ease of use, developers can accurately understand where the newly added kernel should be placed, without ambiguity.
-    - Explanation: When developers add an API, they will not be confused about which directory they should put the corresponding kernel in. Moreover, different people should have no ambiguous understanding of where the same kernel should be placed. 
+    - Explanation: When developers add an API, they will not be confused about which directory they should put the corresponding kernel in. Moreover, different people should have no ambiguous understanding of where the same kernel should be placed.
 
 - Do not introduce a lot of duplicate directory design.
     - Explanation: Concept splitting is needed, but also with boundaries. Avoid subdirectories with the same name occurring in multiple directories. For example, if `eigen`, `funcs`, `math` directories are placed under the cpu directory, then they shouldn't be placed under the gpu directory. The directory design of the new operator library is mainly divided according to the device, and the directory splitting at other levels should be weakened as much as possible. For example, try not to split based on functions, try not to split based on fields, etc.
@@ -256,7 +256,7 @@ enum class Backend : uint8_t {
    * [ Why we need ALL in baisc kernel key member? ]
    *
    * For Tensor, ALL represents an illegal Backend, but for Kernel, some
-   * kernels may be device-independent by nature, such as reshape; 
+   * kernels may be device-independent by nature, such as reshape;
    * and some kernels are also device-independent when implemented based on
    * primitive API.
    *
@@ -1290,7 +1290,7 @@ No matter whether `ScaleOpArgumentMapping` is used in fluid or infrt, as long as
 
 **1) Adaptation to fluid**
 
-In fluid, functions need to be used in both static graphs and dynamic graphs. A straightforward idea is to construct `ArgumentMappingContext` directly through `ExecutionContext`, and then call it when op is executed, for example: 
+In fluid, functions need to be used in both static graphs and dynamic graphs. A straightforward idea is to construct `ArgumentMappingContext` directly through `ExecutionContext`, and then call it when op is executed, for example:
 
 ```
 // TODO(chenweihang): split impl based OpProto or Dygraph if needed
@@ -1334,7 +1334,7 @@ class ExecutionArgumentMappingContext : public phi::ArgumentMappingContext {
 
 **2) Adaptation to infrt**
 
-If infrt only needs the inference program stored after training, that is, only the information of the `Proto` layer, then the corresponding `Context` can be constructed through the `Proto` information. **The information in proto is currently complete to support parameter matching**, for example: 
+If infrt only needs the inference program stored after training, that is, only the information of the `Proto` layer, then the corresponding `Context` can be constructed through the `Proto` information. **The information in proto is currently complete to support parameter matching**, for example:
 
 ```
 class ProtoArgumentMappingContext : public phi::ArgumentMappingContext {
