@@ -3,14 +3,11 @@
 embedding
 -------------------------------
 
-
 .. py:function:: paddle.nn.functional.embedding(x, weight, padding_idx=None, sparse=False, name=None)
 
 
 
-嵌入层(Embedding Layer)
-
-该 OP 根据 input 中的 id 信息从 embedding 矩阵中查询对应 embedding 信息，并会根据输入的 size (vocab_size, emb_size)和 dtype 自动构造一个二维 embedding 矩阵。
+嵌入层(Embedding Layer)，根据 input 中的 id 信息从 embedding 矩阵中查询对应 embedding 信息，并会根据输入的 size (vocab_size, emb_size)和 dtype 自动构造一个二维 embedding 矩阵。
 
 输出的 Tensor 的 shape 是将输入 Tensor shape 后追加一维 emb_size。
 
@@ -42,8 +39,8 @@ embedding
 
     - **input** (Tensor) - 存储 id 信息的 Tensor，数据类型必须为：int32/int64。input 中的 id 必须满足 ``0 =< id < size[0]`` 。
     - **weight** (Tensor) - 存储词嵌入权重参数的 Tensor，形状为(num_embeddings, embedding_dim)。
-    - **sparse** (bool) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新能够获得更快的训练速度及更小的内存/显存占用。
-    - **padding_idx** (int|long|None) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0]``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。
+    - **sparse** (bool，可选) - 是否使用稀疏更新，在词嵌入权重较大的情况下，使用稀疏更新能够获得更快的训练速度及更小的内存/显存占用。
+    - **padding_idx** (int|long|None，可选) - padding_idx 的配置区间为 ``[-weight.shape[0], weight.shape[0]``，如果配置了 padding_idx，那么在训练过程中遇到此 id 时，其参数及对应的梯度将会以 0 进行填充。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
