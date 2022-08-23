@@ -11,7 +11,8 @@ embedding
 
 输出的 Tensor 的 shape 是将输入 Tensor shape 后追加一维 emb_size。
 
-注：input 中的 id 必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
+.. note::
+   input 中的 id 必须满足 ``0 =< id < size[0]``，否则程序会抛异常退出。
 
 
 .. code-block:: text
