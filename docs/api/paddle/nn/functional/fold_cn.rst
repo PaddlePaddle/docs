@@ -6,10 +6,11 @@ fold
 .. py:function:: paddle.nn.functional.fold(x, output_sizes, kernel_sizes, strides=1, paddings=0, dilations=1, name=None)
 
 
-该 Op 用于将一个滑动局部块组合成一个大的张量。通常也被称为 col2im，用于批处理二维图像张量。Fold 通过对所有包含块的值求和来计算结果中的每个大张量的组合值。
+将一个滑动局部块组合成一个大的张量。通常也被称为 col2im，用于批处理二维图像张量。Fold 通过对所有包含块的值求和来计算结果中的每个大张量的组合值。
 
 
 对于输入 x，如果形状为[N, C_in, L]，其输出形状[N, C_out, H_out, W_out]，计算过程如下：
+
 .. math::
 
     H_out &=  output_size[0]
