@@ -11,15 +11,14 @@ triu_indices
 参数
 :::::::::
     - **row** (int) - 输入x是描述矩阵的行数的一个int类型数值。
-    - **col** (int) - 输入x是描述矩阵的列数的一个int类型数值，
-        col输入默认为None，此时将col设置为row的取值，代表输入为正方形矩阵。
+    - **col** (int，可选) - 输入x是描述矩阵的列数的一个int类型数值，col输入默认为None，此时将col设置为row的取值，代表输入为正方形矩阵。
     - **offset** (int，可选) - 确定所要考虑的对角线的位置，默认值为0。
 
         + 如果 offset = 0，取主对角线。
         + 如果 offset > 0，取主对角线右上的对角线，所包含的元素减少。
         + 如果 offset < 0，取主对角线左下的对角线，所排除的元素减少。
 
-    - **dtype** (str|np.dtype|paddle.dtype，可选) - 指定输出张量的数据类型，默认值为 int64。
+    - **dtype** (str|np.dtype|paddle.dtype，可选) - 指定输出张量的数据类型，可以是int32，int64，默认值为 int64。
 
 返回
 :::::::::
