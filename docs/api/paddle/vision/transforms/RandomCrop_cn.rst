@@ -34,9 +34,10 @@ RandomCrop
     import numpy as np
     from PIL import Image
     from paddle.vision.transforms import RandomCrop
+    from paddle.vision.transforms import Pad
 
     transform = RandomCrop(224)
-
+    transform = Pad(2)
     fake_img = Image.fromarray((np.random.rand(324, 300, 3) * 255.).astype(np.uint8))
 
     fake_img = transform(fake_img)
