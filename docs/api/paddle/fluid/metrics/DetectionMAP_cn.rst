@@ -8,7 +8,7 @@ DetectionMAP
 
 
 
-该OP用于计算检测网络的平均精度（mAP）。 mAP是衡量object detectors精度的指标，比如 Faster R-CNN,SSD等。它不同于召回率，它是最大精度的平均值。
+用于计算检测网络的平均精度（mAP）。 mAP是衡量object detectors精度的指标，比如 Faster R-CNN,SSD等。它不同于召回率，它是最大精度的平均值。
 
 通常步骤如下：
 

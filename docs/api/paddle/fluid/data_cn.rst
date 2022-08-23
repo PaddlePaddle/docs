@@ -9,7 +9,7 @@ data
 
 
 
-该OP会在全局block中创建变量（Variable），该全局变量可被计算图中的算子（operator）访问。该变量可作为占位符用于数据输入。例如用执行器（Executor）feed数据进该变量
+在全局block中创建变量（Variable），该全局变量可被计算图中的算子（operator）访问。该变量可作为占位符用于数据输入。例如用执行器（Executor）feed数据进该变量
 
 注意：
 

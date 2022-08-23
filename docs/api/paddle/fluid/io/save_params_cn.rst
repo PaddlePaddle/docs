@@ -9,7 +9,7 @@ save_params
 
 
 
-该OP从 ``main_program`` 中取出所有参数，然后将它们保存到 ``dirname`` 目录下或名为 ``filename`` 的文件中。
+从 ``main_program`` 中取出所有参数，然后将它们保存到 ``dirname`` 目录下或名为 ``filename`` 的文件中。
 
 ``dirname`` 用于指定保存参数的目标路径。若想将参数保存到多个独立文件中，设置 ``filename=None``；若想将所有参数保存在单个文件中，请设置 ``filename`` 来指定该文件的名称。
 
