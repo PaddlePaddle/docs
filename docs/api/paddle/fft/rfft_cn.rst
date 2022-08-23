@@ -5,7 +5,7 @@ rfft
 
 .. py:function:: paddle.fft.rfft(x, n=None, axis=-1, norm="backward", name=None)
 
-通过快速傅里叶变换(FFT)算法计算一维实数傅里叶变换。、
+通过快速傅里叶变换(FFT)算法计算一维实数傅里叶变换。
 
 当输入是实数时，输出是厄米特对称的。由于该函数不计算负频率项，因此输出的变换轴长度为 ``n//2 + 1`` 。
 
