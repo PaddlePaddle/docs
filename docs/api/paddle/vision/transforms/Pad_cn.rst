@@ -36,7 +36,7 @@ Pad
     from paddle.vision.transforms import Pad
     
     transform = Pad(2)
-    
+    transform = Pad(2)
     fake_img = Image.fromarray((np.random.rand(224, 224, 3) * 255.).astype(np.uint8))
     
     fake_img = transform(fake_img)
