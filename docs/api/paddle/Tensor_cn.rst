@@ -2413,7 +2413,7 @@ erfinv(x, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_erfinv`
 
-take(index, name=None)
+take(index, mode='raise', name=None)
 :::::::::
 
 返回：一个新的 Tensor，其中包含给定索引处的输入元素。结果与 :attr:`index` 的形状相同
