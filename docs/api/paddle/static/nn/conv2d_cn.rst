@@ -9,7 +9,7 @@ conv2d
 
 
 
-该 OP 是二维卷积层（convolution2D layer），根据输入、滤波器、步长（stride）、填充（padding）、膨胀比例（dilations）一组参数计算输出特征层大小。
+是二维卷积层（convolution2D layer），根据输入、滤波器、步长（stride）、填充（padding）、膨胀比例（dilations）一组参数计算输出特征层大小。
 
 输入和输出是 NCHW 或 NHWC 格式，其中 N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度。滤波器是 MCHW 格式，M 是输出图像通道数，C 是输入图像通道数，H 是滤波器高度，W 是滤波器宽度。
 
