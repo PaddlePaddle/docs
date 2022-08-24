@@ -7,7 +7,7 @@ require_version
 
 
 
-检查已安装的飞桨版本是否介于[``min_version``, ``max_version``]之间（包含 ``min_version`` 和 ``max_version`` ），如果已安装的版本低于 ``min_version`` 或者高于 ``max_version``，将会抛出异常。该接口无返回值。
+该接口用于检查已安装的飞桨版本是否介于[``min_version``, ``max_version``]之间（包含 ``min_version`` 和 ``max_version`` ），如果已安装的版本低于 ``min_version`` 或者高于 ``max_version``，将会抛出异常。该接口无返回值。
 
 参数
 ::::::::::::
