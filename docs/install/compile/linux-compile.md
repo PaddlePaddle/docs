@@ -4,10 +4,10 @@
 
 * **Linux 版本 (64 bit)**
     * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
-    * **CentOS 7 (GPU 版本支持CUDA 10.1/10.2/11.0/11.1/11.2/11.6)**
+    * **CentOS 7 (GPU 版本支持CUDA 10.1/10.2/11.1/11.2/11.6)**
     * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
-    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2/11.6)**
-    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2/11.6)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6)**
 * **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 ## 选择CPU/GPU
@@ -17,7 +17,6 @@
 * 如果您的计算机有NVIDIA® GPU，请确保满足以下条件以编译GPU版PaddlePaddle
 
     * **CUDA 工具包10.1/10.2配合cuDNN 7 (cuDNN版本>=7.6.5, 如需多卡支持，需配合NCCL2.7及更高)**
-    * **CUDA 工具包11.0配合cuDNN v8.0.4(如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.1配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.2配合cuDNN v8.1.1(如需多卡支持，需配合NCCL2.7及更高)**
     * **CUDA 工具包11.6配合cuDNN v8.4.0(如需多卡支持，需配合NCCL2.7及更高)**
@@ -171,12 +170,12 @@ apt install patchelf
 
 * 对于需要编译**CPU版本PaddlePaddle**的用户：
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF
     ```
 
 * 对于需要编译**GPU版本PaddlePaddle**的用户：
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON
     ```
 - 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
@@ -506,14 +505,14 @@ mkdir build && cd build
 
     ```
     cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
-    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
     ```
 
     > 如果遇到`Could NOT find PROTOBUF (missing:  PROTOBUF_LIBRARY PROTOBUF_INCLUDE_DIR)`可以重新执行一次cmake指令。
     > 请注意PY_VERSION参数更换为您需要的python版本
 
 
-* 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA11.6/CUDA11.2/CUDA11.0/CUDA10.2/CUDA10.1)**)
+* 对于需要编译**GPU版本PaddlePaddle**的用户：(**仅支持CentOS7（CUDA11.6/CUDA11.2/CUDA11.1/CUDA10.2/CUDA10.1)**)
 
     1. 请确保您已经正确安装nccl2，或者按照以下指令安装nccl2（这里提供的是CUDA10.2，cuDNN7下nccl2的安装指令，更多版本的安装信息请参考NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
@@ -548,7 +547,7 @@ mkdir build && cd build
     2. 如果您已经正确安装了`nccl2`，就可以开始cmake了：(*For Python3: 请给PY_VERSION参数配置正确的python版本*)
 
         ```
-        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的Python3的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的PYTHON_LIBRARY] -DWITH_GPU=ON
         ```
 
 注意：以上涉及Python3的命令，用Python3.7来举例，如您的Python版本为3.6/3.8/3.9/3.10，请将上述命令中的Python3.7改成Python3.6/Python3.8/Python3.9/Python3.10
