@@ -7,7 +7,7 @@ load
 .. py:function:: paddle.fluid.dygraph.load_dygraph(model_path, **configs)
 
 
-该接口用于从磁盘中加载Layer和Optimizer的 ``state_dict``，该接口会同时加载 ``model_path + ".pdparams"`` 和 ``model_path + ".pdopt"`` 中的内容。
+从磁盘中加载Layer和Optimizer的 ``state_dict``，该接口会同时加载 ``model_path + ".pdparams"`` 和 ``model_path + ".pdopt"`` 中的内容。
 
 .. note::
     如果从 ``paddle.static.save_inference_model`` 的存储结果中载入 ``state_dict``，动态图模式下参数的结构性变量名将无法被恢复。并且在将载入的 ``state_dict`` 配置到当前Layer中时，需要配置 ``Layer.set_state_dict`` 的参数 ``use_structured_name=False`` 。
