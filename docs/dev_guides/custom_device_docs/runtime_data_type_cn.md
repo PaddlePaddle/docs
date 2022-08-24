@@ -129,3 +129,35 @@ C_DeviceInterface 的类型定义详见 [device_ext.h](https://github.com/Paddle
 ### 说明
 
 自定义 Runtime 回调接口集合。
+
+## C_CCLRootId
+
+### 类型定义
+
+C_CCLRootId 的类型定义详见 [device_ext.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/device_ext.h)。
+
+### 说明
+
+集合通讯根节点 unique_id 。
+
+## C_CCLComm
+
+### 类型定义
+
+```c++
+typedef struct C_CCLComm_st* C_CCLComm;
+```
+
+### 说明
+
+集合通讯 communicator 数据结构。
+
+## C_CCLReduceOp
+
+### 类型定义
+
+C_CCLReduceOp 的类型定义详见 [device_ext.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/backends/device_ext.h)。
+
+### 说明
+
+集合通讯 Reduce 操作类型。
