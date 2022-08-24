@@ -19,6 +19,7 @@ Accuracy
 **独立使用示例:**
 
     .. code-block:: python
+
         import numpy as np
         import paddle
         x = paddle.to_tensor(np.array([
@@ -37,6 +38,7 @@ Accuracy
 **在 Model API 中的示例**
 
     .. code-block:: python
+
         import paddle
         from paddle.static import InputSpec
         import paddle.vision.transforms as T
@@ -68,7 +70,9 @@ compute(pred, label, *args)
     - **pred** (Tensor) - 预测结果为是 float64 或 float32 类型的 Tensor。shape 为[batch_size, d0, ..., dN].
     - **label** (Tensor) - 真实的标签值是一个 int64 类型的 Tensor，shape 为[batch_size, d0, ..., 1] 或 one hot 表示的形状[batch_size, d0, ..., num_classes].
 
-**返回**: Tensor，shape 是[batch_size, d0, ..., topk], 值为 0 或 1，1 表示预测正确.
+**返回**
+
+Tensor，shape 是[batch_size, d0, ..., topk], 值为 0 或 1，1 表示预测正确.
 
 
 update(pred, label, *args)
@@ -76,12 +80,13 @@ update(pred, label, *args)
 
 更新 metric 的状态（正确预测的个数和总个数），以便计算累积的准确率。返回当前 step 的准确率。
 
-**参数:**
+**参数**
 
     - **correct** (numpy.array | Tensor): 一个值为 0 或 1 的 Tensor，shape 是[batch_size, d0, ..., topk]。
 
-**返回:** 当前 step 的准确率。
+**返回**
 
+当前 step 的准确率。
 
 reset()
 :::::::::
@@ -93,7 +98,9 @@ accumulate()
 
 累积的统计指标，计算和返回准确率。
 
-**返回:** 准确率，一般是个标量 或 多个标量，和 topk 的个数一致。
+**返回**
+
+准确率，一般是个标量 或 多个标量，和 topk 的个数一致。
 
 
 name()
@@ -101,4 +108,6 @@ name()
 
 返回 Metric 实例的名字, 参考上述 name，默认是'acc'。
 
-**返回:** 评估的名字，string 类型。
+**返回**
+
+评估的名字，string 类型。
