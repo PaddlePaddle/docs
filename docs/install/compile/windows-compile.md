@@ -8,14 +8,14 @@
 
 * **Windows 7/8/10 专业版/企业版 (64bit)**
 
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 * **Visual Studio 2017/2019 社区版/专业版/企业版**
 
 ## 选择CPU/GPU
 
 * 如果你的计算机硬件没有 NVIDIA® GPU，请编译CPU版本的PaddlePaddle
 
-* 如果你的计算机硬件有 NVIDIA® GPU，推荐编译 GPU 版本的 PaddlePaddle，建议安装 **CUDA 10.1/10.2/11.0/11.1/11.2/11.6**
+* 如果你的计算机硬件有 NVIDIA® GPU，推荐编译 GPU 版本的 PaddlePaddle，建议安装 **CUDA 10.1/10.2//11.1/11.2/11.6**
 
 ## 本机编译过程
 
