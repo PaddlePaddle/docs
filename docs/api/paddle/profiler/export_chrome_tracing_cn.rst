@@ -5,7 +5,7 @@ export_chrome_tracing
 
 .. py:function:: paddle.profiler.export_chrome_tracing(dir_name: str, worker_name: Optional[str]=None)
 
-该接口返回一个回调函数，用于将采集的性能数据保存到 google chrome tracing 格式的文件。
+返回一个回调函数，用于将采集的性能数据保存到 google chrome tracing 格式的文件。
 输出的文件将会保存在目录 ``dir_name`` 中，文件名的前缀将会被设置成 ``worker_name`` 。
 如果 ``worker_name`` 没有被设置，默认名字为 [hostname]_[pid]。
 

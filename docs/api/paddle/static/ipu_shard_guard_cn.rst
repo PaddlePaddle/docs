@@ -6,7 +6,7 @@ ipu_shard_guard
 .. py:function:: paddle.static.ipu_shard_guard(index=-1, stage=-1)
 
 
-该接口用于对模型进行切分。用于指定 Op 在哪个 ipu 上进行计算以及模型被切分之后的计算顺序。
+对模型进行切分。用于指定 Op 在哪个 ipu 上进行计算以及模型被切分之后的计算顺序。
 
 .. note:
 

@@ -5,7 +5,7 @@ sparse_attention
 .. py:function:: paddle.nn.functional.sparse_attention(query, key, value, sparse_csr_offset, sparse_csr_columns, name=None)
 
 
-该 OP 对 Transformer 模块中的 Attention 矩阵进行了稀疏化，从而减少内存消耗和计算量。
+对 Transformer 模块中的 Attention 矩阵进行了稀疏化，从而减少内存消耗和计算量。
 
 其稀疏数据排布通过 CSR 格式表示，CSR 格式包含两个参数，``offset`` 和 ``colunms``。计算公式为：
 
