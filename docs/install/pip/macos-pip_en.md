@@ -10,7 +10,7 @@
 
 * **Python version 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
-* **pip or pip3 版本 20.2.2 or above (64 bit)**
+* **pip or pip3 Version 20.2.2 or above (64 bit)**
 
 
 ### 1.2 How to check your environment
@@ -81,7 +81,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 ```
-python -m pip install paddlepaddle==2.3.0 -i https://mirror.baidu.com/pypi/simple
+python -m pip install paddlepaddle==2.3.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 Note：
