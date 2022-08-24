@@ -51,8 +51,7 @@ extensions = [
     'sphinx_markdown_tables',
     'breathe',
     'exhale',
-    'sphinx.ext.autosectionlabel',
-    'sphinx_design',
+    'sphinx.ext.autosectionlabel'
 ]
 
 exhale_args = {
