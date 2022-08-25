@@ -62,13 +62,13 @@ out = paddle.add(out, y)
 ```python
 import paddle
 from paddle.jit import to_static
+from paddle.static import InputSpec
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
-    @to_static
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
