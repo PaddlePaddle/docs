@@ -970,7 +970,6 @@ paddle.jit.save(net, path='./simple_net')
         build_strategy.enable_addto = True
         os.environ['FLAGS_max_inplace_grad_add'] = "8"
         build_strategy.fuse_elewise_add_act_ops = True
-
         return build_strategy
 
     # 构建神经网络
