@@ -10,8 +10,8 @@ Accuracy
 
 参数：
 :::::::::
-    - **topk** (list[int]|tuple[int]) - 计算准确率的 top 个数，默认是(1,)。
-    - **name** (str, optional) - metric 实例的名字。默认值为 None，表示使用默认名字 'acc'。
+    - **topk** (list[int]|tuple[int]，可选) - 计算准确率的 top 个数，默认值为 (1,)。
+    - **name** (str，可选) - metric 实例的名字。默认值为 None，表示使用默认名字 'acc'。
 
 代码示例
 :::::::::
@@ -75,7 +75,7 @@ compute(pred, label, *args)
 Tensor，shape 是[batch_size, d0, ..., topk], 值为 0 或 1，1 表示预测正确.
 
 
-update(pred, label, *args)
+update(correct, *args)
 :::::::::
 
 更新 metric 的状态（正确预测的个数和总个数），以便计算累积的准确率。返回当前 step 的准确率。
