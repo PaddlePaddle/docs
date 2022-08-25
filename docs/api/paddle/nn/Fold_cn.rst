@@ -12,9 +12,7 @@ Fold
 .. math::
 
     H_{out} &= \text{output_size}[0] \\
-    
     W_{out} &= \text{output_size}[1] \\
-    
     C_{out} &= \frac{C_{in}}{kernel\_sizes[0]\times kernel\_sizes[1]} \\
 
 .. note::
