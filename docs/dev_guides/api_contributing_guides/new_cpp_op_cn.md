@@ -574,8 +574,8 @@ void LinearKernel(const Context& dev_ctx,
 
 此处 trace 算子的 kernel 属于与设备相关的情况，CPU 和 GPU kernel 需要分别实现。
 
-- CPU kernel 实现位于：[paddle/phi/kernels/cpu/trace_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_kernel.cc)
-- GPU kernel 实现位于：[paddle/phi/kernels/gpu/trace_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_kernel.cu)
+  - CPU kernel 实现位于：[paddle/phi/kernels/cpu/trace_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_kernel.cc)
+  - GPU kernel 实现位于：[paddle/phi/kernels/gpu/trace_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_kernel.cu)
 
 下面为 `TraceKernel` 的 CPU 实现为例介绍：
 
@@ -628,22 +628,24 @@ void TraceKernel(const Context& dev_ctx,
 
 反向 kernel 的实现与前向是类似的，此处不再赘述，可以直接参考对应链接中的代码实现。
 
+
   - [paddle/phi/kernels/trace_grad_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)
   - [paddle/phi/kernels/cpu/trace_grad_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_grad_kernel.cc)
   - [paddle/phi/kernels/gpu/trace_grad_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_grad_kernel.cu)
+
 
 **（4）公共函数管理：**
 
 如果有一些函数会被多个 kernel 调用，可以创建非 kernel 的文件管理代码，规则如下：
 
-  - 仅有当前 kernel 使用的辅助函数（具体到设备，比如 trace 的 cpu kernel），一律和 kernel 实现放到同一个设备文件夹中
 
+  - 仅有当前 kernel 使用的辅助函数（具体到设备，比如 trace 的 cpu kernel），一律和 kernel 实现放到同一个设备文件夹中
     - 如果辅助函数相关代码较少，就直接和 kernel 实现放到同一个`.cc/cu`中
     - 如果辅助函数相关代码较多，就在 kernel 所在的设备目录创建`.h`管理代码
-
   - 有同设备多个 kernel 使用的辅助函数，在 kernel 所在的设备目录创建`.h`放置代码
   - 有跨设备多个 kernel 使用的辅助函数，在`kernels/funcs`目录下创建`.h/cc/cu`管理代码
   - 如果当前依赖的辅助函数可以直接归类到`kernels/funcs`目录下已有的文件中，则直接放过去，不用创建新的文件
+
 
 #### 4.2.3 注册 Kernel 函数
 
@@ -1069,7 +1071,7 @@ Paddle 支持动态图和静态图两种模式，在 YAML 配置文件中完成�
 
 > 说明：当开发者添加一个新的 C++ 算子时，只需要完成下图中 Kernel、算子定义 Yaml 配置文件和 Python API 三个绿色框中的代码开发，其余橙色部分都会通过自动代码生成来完成，从而将新增算子接入飞桨框架中。
 
-<center><img src="./images/code_gen_by_yaml.png" width="700px" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/code_gen_by_yaml.png?raw=true" width="700px" ></center>
 
 如前文所述，算子开发时通过 YAML 配置文件对算子进行描述及定义，包括前向 [paddle/phi/api/yaml/api.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml) 和反向 [paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)。动态图和静态图两种模式的执行流程不同，具体如下所示：
 
