@@ -105,7 +105,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -173,7 +173,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -396,7 +396,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -487,7 +487,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -585,7 +585,7 @@ IMAGE_SIZE = 784
 CLASS_NUM = 10
 
 # 载入 paddle.jit.save 保存的模型
-path = "example.model/linear"
+path = "example.dy_model/linear"
 loaded_layer = paddle.jit.load(path)
 ```
 
