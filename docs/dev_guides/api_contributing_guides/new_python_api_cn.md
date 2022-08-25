@@ -77,7 +77,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     # 为了突出重点，省略部分代码
     # 动态图分支，直接调用算子对应的 Python C 函数
     if in_dygraph_mode():
-        return _C_ops.final_state_trace( x, offset, axis1, axis2 )
+        return _C_ops.trace( x, offset, axis1, axis2 )
 
     # 静态图分支
     ## 输入参数检查
@@ -103,11 +103,11 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 ```Python
     # 动态图分支，直接调用算子对应的 Python C 函数
     if in_dygraph_mode():
-        return _C_ops.final_state_trace( x, offset, axis1, axis2 )
+        return _C_ops.trace( x, offset, axis1, axis2 )
 ```
 _C_ops 是 Python/paddle/_C_ops.py，其中从 paddle 编译得到的二进制文件中 import 了 C++ 算子对应的 Python C 函数。
 
-在动态图模式下，Python C 的调用函数名为 final_state_ + 算子名，然后将参数按照 YAML 配置文件中定义的输入参数顺序传入即可。
+在动态图模式下，Python C 的调用函数名为 算子名，然后将参数按照 YAML 配置文件中定义的输入参数顺序传入即可。
 
 > 注意：由于目前动态图正处在重构升级阶段，所以现有算子的代码会分别有新旧动态图两个代码分支，其中 `in_dygraph_mode()` 表示新动态图分支（默认），`_in_legacy_dygraph()`为旧动态图分支，**在新增算子时无需添加旧动态图分支代码**。
 
