@@ -10,8 +10,8 @@ Resize
 参数
 :::::::::
 
-    - size (int|list|tuple) - 输出图像大小。如果 size 是一个序列，例如（h，w），输出大小将与此匹配。如果 size 为 int，图像的较小边缘将与此数字匹配，即如果 height > width，则图像将重新缩放为(size * height / width, size)。
-    - interpolation (int|str，可选) - 插值的方法，默认值: 'bilinear'。
+    - **size** (int|list|tuple) - 输出图像大小。如果 size 是一个序列，例如（h，w），输出大小将与此匹配。如果 size 为 int，图像的较小边缘将与此数字匹配，即如果 height > width，则图像将重新缩放为(size * height / width, size)。
+    - **interpolation** (int|str，可选) - 插值的方法，默认值: 'bilinear'。
 
         - 当使用 ``pil`` 作为后端时，支持的插值方法如下
 
@@ -30,7 +30,7 @@ Resize
             + "bicubic": cv2.INTER_CUBIC,
             + "lanczos": cv2.INTER_LANCZOS4。
 
-    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值: None。
+    - **keys** (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值: None。
 
 形状
 :::::::::

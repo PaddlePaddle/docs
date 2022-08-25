@@ -10,11 +10,11 @@ Normalize
 参数
 :::::::::
 
-    - mean (list|tuple，可选) - 用于每个通道归一化的均值。
-    - std (list|tuple，可选) - 用于每个通道归一化的标准差值。
-    - data_format (str，可选) - 数据的格式，必须为 'HWC' 或 'CHW'。 默认值为 'CHW'。
-    - to_rgb (bool，可选) - 是否转换为 ``rgb`` 的格式。默认值为 False。
-    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值为 None。
+    - **mean** (list|tuple，可选) - 用于每个通道归一化的均值。
+    - **std** (list|tuple，可选) - 用于每个通道归一化的标准差值。
+    - **data_format** (str，可选) - 数据的格式，必须为 'HWC' 或 'CHW'。 默认值为 'CHW'。
+    - **to_rgb** (bool，可选) - 是否转换为 ``rgb`` 的格式。默认值为 False。
+    - **keys** (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值为 None。
 
 形状
 :::::::::
