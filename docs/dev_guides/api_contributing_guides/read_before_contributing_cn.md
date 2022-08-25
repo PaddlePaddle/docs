@@ -13,7 +13,7 @@
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/paddle_api.png?raw=true" width="800" ></center>
 
-## 二、飞桨 API 设计文档提交说明
+## <span id="apiDesignDoc">二、飞桨 API 设计文档提交说明</span>
 
 设计文档，通常也叫 RFC（Request for Comment）文档，可方便开发者与飞桨核心团队、其他社区开发者充分交流设计思路，以便进一步完善设计方案，并确保与飞桨设计理念一致。请参考如下步骤完成 API 设计文档的提交：
 
