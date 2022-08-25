@@ -11,9 +11,9 @@ Fold
 
 .. math::
 
-    H_out &= output_size[0]
-    W_out &= output_size[1]
-    C_out &= C_in / kernel\_sizes[0] / kernel\_sizes[1]
+    H_{out} &= \text{output_size}[0]
+    W_{out} &= \text{output_size}[1]
+    C_{out} &= \frac{C_in}{kernel\_sizes[0]\times kernel\_sizes[1]}
 
 .. note::
    对应的 `functional 方法` 请参考：:ref:`cn_api_nn_functional_fold` 。
