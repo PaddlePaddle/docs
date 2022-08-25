@@ -36,7 +36,7 @@
 值得注意的是，代码开发完成后，请确保通过了单元测试和 CI 测试。
 
 
-<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/paddle_api_dev_flow.png?raw=true" width="800" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/paddle_api_dev_flow.png?raw=true" width="500" ></center>
 
 ## 四、飞桨 API 代码开发规范说明
 
