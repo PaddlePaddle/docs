@@ -88,7 +88,7 @@ net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
 
 
 + 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度
-+ 可以指定 Placeholder 的 ``name`` ，方面预测时根据 ``name`` 输入数据
++ 可以指定 Placeholder 的 ``name`` ，方便预测时根据 ``name`` 输入数据
 
 > 注：``InputSpec`` 接口的详细用法，请参见 [InputSpec 的用法介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/basic_usage_cn.html#inputspec)。
 
