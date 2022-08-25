@@ -17,7 +17,7 @@
 
 设计文档，通常也叫 RFC（Request for Comment）文档，可方便开发者与飞桨核心团队、其他社区开发者充分交流设计思路，以便进一步完善设计方案，并确保与飞桨设计理念一致。请参考如下步骤完成 API 设计文档的提交：
 
-1. 阅读 [飞桨 API 设计和命名规范](api_design_guidelines_standard_cn.html)，确保新增 API 符合飞桨相关规范。
+1. 阅读 [API 设计和命名规范](api_design_guidelines_standard_cn.html)，确保新增 API 符合飞桨相关规范。
 2. 根据 [API 设计文档模版](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md)，填写必要的设计内容。另外可参考 [API 设计文档样例](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/20200301_api_design_for_quantile.md)。
 3. 将设计文档提交 Pull Request （PR）到 [community/rfcs/APIs/ ](https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs) 目录下。
 4. 等待文档接受评审和讨论，并根据各方意见修改文档。通常飞桨团队会在三个工作日内回复，如果 API 功能较复杂，还将发起评审会议，并提前在 PR 的评论区公布会议时间、会议地址、参与人、议题等内容，请及时关注 PR 中最新动态。
@@ -28,8 +28,8 @@
 
 当 API 设计文档合入后，开发者即可进行代码开发。此过程请参考相应的开发规范，包括如下步骤：
 
-- 如果新增 API 不需要开发新的 C++ OP，可以用其他 Python API 组合得到新的 API，请参考 [飞桨 API Python 端开发指南](new_python_api_cn.html) 章节完成，包括开发 Python 代码、单元测试代码和 API 文档等步骤。
-- 如果新增 API 需要开发新的 C++ OP，请参考 [C++ 算子开发指南](new_cpp_op_cn.html) 章节完成，包括开发 OP 实现代码、封装 Python API 代码、单元测试代码和 API 文档等步骤。
+- 如果新增 API 不需要开发新的 C++ OP，可以用其他 Python API 组合得到新的 API，请参考 [开发 API Python 端](new_python_api_cn.html) 章节完成，包括开发 Python 代码、单元测试代码和 API 文档等步骤。
+- 如果新增 API 需要开发新的 C++ OP，请参考 [开发 C++ 算子](new_cpp_op_cn.html) 章节完成，包括开发 OP 实现代码、封装 Python API 代码、单元测试代码和 API 文档等步骤。
   - 在 paddle/phi/kernels 目录下存放了飞桨框架已经实现的不同硬件的算子内核，可供开发 C++ OP 时调用。
   - 有时也需要自己开发新的算子内核（OP Kernel），这时可能需要使用硬件支持的软件栈（如 CUDA）来实现，或者使用飞桨框架提供的 Kernel Primitive API 来实现，后者具体介绍请参见 [Kernel Primitive API](../op_optimization/kernel_primitive_api/index_cn.html) 章节。
 
@@ -42,7 +42,7 @@
 
 请遵循如下开发规范和测试要求：
 
-- [代码风格规范](../style_guide_and_references/style_guides_cn.html)
-- [飞桨 API 设计和命名规范](api_design_guidelines_standard_cn.html)
-- [飞桨 API 单元测试及验收规范](api_accpetance_criteria_cn.html)
-- [Paddle CI 测试详解](../style_guide_and_references/paddle_ci_manual_cn.html)
+- [代码风格规范](../git_guides/codestyle_check_guide_cn.html)
+- [API 设计和命名规范](api_design_guidelines_standard_cn.html)
+- [API 单元测试及验收规范](api_accpetance_criteria_cn.html)
+- [Paddle CI 测试详解](../git_guides/paddle_ci_manual_cn.html)
