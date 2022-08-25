@@ -12,7 +12,6 @@ fold
 对于输入 x，如果形状为[N, C_in, L]，其输出形状[N, C_out, H_out, W_out]，计算过程如下：
 
 .. math::
-
     H_out &=  output_size[0]
     W_out &=  output_size[1]
     C_out &=  C_in / kernel\_sizes[0] / kernel\_sizes[1]
@@ -32,7 +31,7 @@ fold
 
 形状
 :::::::::
- - **输出** : Tensor,  fold 操作之后的结果，形状如上面所描述的[N, Cout, H_out, W_out]，数据类型与 ``x`` 相同
+ - **输出** ：Tensor，fold 操作之后的结果，形状如上面所描述的[N, Cout, H_out, W_out]，数据类型与 ``x`` 相同
 
 
 代码示例
