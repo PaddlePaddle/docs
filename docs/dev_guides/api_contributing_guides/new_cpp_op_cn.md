@@ -771,7 +771,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     __check_input(input, offset, axis1, axis2)
 
     if in_dygraph_mode():
-        return _C_ops.final_state_trace( x, offset, axis1, axis2 )
+        return _C_ops.trace( x, offset, axis1, axis2 )
 
     helper = LayerHelper('trace', **locals())
     out = helper.create_variable_for_type_inference(dtype=x.dtype)
@@ -1068,7 +1068,7 @@ Paddle 支持动态图和静态图两种模式，在 YAML 配置文件中完成�
   - 动态图前向函数与反向节点（Autograd API）：在 C++ API 的基础上进行了封装，组成一个提供自动微分功能的 C++函数接口。
     - 注：生成的相关代码在`paddle/fluid/eager/api/generated/eager_generated`目录下
   - Python-C 接口：将支持自动微分功能的 C++的函数接口（Autograd API）暴露到 Python 层供 Python API 调用。
-    - 注：生成的 Python-C 接口代码在`paddle/fluid/pybind/eager_final_state_op_function_impl.h`中
+    - 注：生成的 Python-C 接口代码在`paddle/fluid/pybind/eager_op_function.cc`中
 - 静态图的执行流程与动态图不同，所以生成的代码也与动态图有较大差异。静态图由于是先组网后计算，Python API 主要负责组网，算子的调度和 kernel 计算由静态图执行器来完成，因此自动生成的代码是将配置文件中的算子信息注册到框架内供执行器调度，主要包括[OpMaker](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/op_proto_maker.h)（静态图中定义算子的输入、输出以及属性等信息）和`REGISTER_OPERATOR`(将算子名称以及 OpMaker 等信息进行注册)等静态图算子注册组件，具体的代码逻辑可参考`paddle/fluid/operators/generated_op.cc`
 
 **注意：由于代码自动生成在编译时进行，所以查看上述生成代码需要先完成[框架的编译](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/fromsource.html)。**
