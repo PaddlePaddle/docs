@@ -964,17 +964,19 @@ paddle.jit.save(net, path='./simple_net')
                 print("Epoch {} batch {}: loss = {}".format(
                     epoch_id, batch_id, np.mean(loss.numpy())))
 
-    def set_build_strategy():
+    def get_build_strategy():
         build_strategy = paddle.static.BuildStrategy()
         # addto 策略常搭配 FLAGS_max_inplace_grad_add 变量使用
         build_strategy.enable_addto = True
         os.environ['FLAGS_max_inplace_grad_add'] = "8"
         build_strategy.fuse_elewise_add_act_ops = True
 
+        return build_strategy
+
     # 构建神经网络
     model = resnet50()
     # 动转静，并设置计算图优化策略
-    model = paddle.jit.to_static(model, build_strategy=set_build_strategy())
+    model = paddle.jit.to_static(model, build_strategy=get_build_strategy())
     # 设置损失函数
     loss_fn = nn.CrossEntropyLoss()
     # 设置优化器
