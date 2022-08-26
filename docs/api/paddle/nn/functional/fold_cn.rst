@@ -13,9 +13,9 @@ fold
 
 .. math::
 
-    H_out &= output_size[0]
-    W_out &= output_size[1]
-    C_out &= C_in / kernel\_sizes[0] / kernel\_sizes[1]
+    H_{out} &= output\_size[0] \\
+    W_{out} &= output\_size[1] \\
+    C_{out} &= \frac{C_{in}}{kernel\_sizes[0]\times kernel\_sizes[1]} \\
 
 
 参数
