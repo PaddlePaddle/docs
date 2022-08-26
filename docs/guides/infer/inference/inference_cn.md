@@ -7,7 +7,7 @@ Paddle Inference 是飞桨的原生推理库， 作用于服务器端和云端�
 Paddle Inference 功能特性丰富，性能优异，针对不同平台不同的应用场景进行了深度的适配优化，做到高吞吐、低时延，保证了飞桨模型在服务器端即训即用，快速部署。
 
 一些常见的文档链接如下：
-- 完整使用文档位于：[Paddle Inference文档](https://paddle-inference.readthedocs.io/en/latest/index.html)
+- 完整使用文档位于：[Paddle Inference文档](https://www.paddlepaddle.org.cn/inference/product_introduction/inference_intro.html)
 - 代码示例位于[inference demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo)
 - 点此 [安装与编译Linux预测库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html)
 - 点此 [安装与编译Windows预测库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html#windows)
