@@ -167,9 +167,11 @@ def and(x, y):
 <span id='6'></span>
 **主要逻辑：**
 
-动态图中可以直接用 Python 的类型转化语法来转化 Tensor 类型。如若 x 是 Tensor 时，float(x)可以将 x 的类型转化为 float。
+动态图中可以直接用 Python 的类型转化语法来转化 Tensor 类型。如若 x 是 Tensor 时（只支持含有一个元素的Tensor），
 
-动转静在运行时判断 x 是否是 Tensor，若是，则在动转静时使用静态图`cast`接口转化相应的 Tensor 类型。
+float(x)可以将 x 的类型转化为 float。动转静在运行时判断 x 是否是 Tensor，若是，则在动转静时使用静态图`cast`接口
+
+转化相应的 Tensor 类型。
 
 **使用样例**：
 
