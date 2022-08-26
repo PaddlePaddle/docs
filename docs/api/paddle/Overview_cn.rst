@@ -404,5 +404,5 @@ device 相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`paddle.sparse.sparse_coo_tensor<cn_api_paddle_sparse_coo_tensor>` ", "创建一个 COO(Coordinate)格式的稀疏 Tensor"
-    " :ref:`paddle.sparse.sparse_csr_tensor<cn_api_paddle_sparse_csr_tensor>` ", "创建一个 CSR(Compressed Sparse Row)格式的稀疏 Tensor"
+    " :ref:`paddle.incubate.sparse.sparse_coo_tensor<cn_api_paddle_incubate_sparse_coo_tensor>` ", "创建一个 COO(Coordinate)格式的稀疏 Tensor"
+    " :ref:`paddle.incubate.sparse.sparse_csr_tensor<cn_api_paddle_incubate_sparse_csr_tensor>` ", "创建一个 CSR(Compressed Sparse Row)格式的稀疏 Tensor"
