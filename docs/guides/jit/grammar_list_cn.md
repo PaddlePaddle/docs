@@ -241,7 +241,7 @@ def recur_call(x):
 def list_example(x, y):
      a = [ x ]   # < ------ 支持直接创建
      a.append(x) # < ------ 支持调用 append、pop 操作
-     a[1] = y    # < ------ 支持下标修改 append
+     a[1] = y    # < ------ 支持下标修改 
      return a[0] # < ------ 支持下标获取
 ```
 
