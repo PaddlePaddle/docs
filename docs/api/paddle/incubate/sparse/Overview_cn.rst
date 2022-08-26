@@ -17,8 +17,8 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
 .. csv-table::
     :header: "API 名称", "API 功能"
     
-    " :ref:`paddle.incubate.sparse.sparse_coo_tensor <cn_api_paddle_incubate_sparse_coo_tensor>` ", "构造COO格式的SparseTensor"
-    " :ref:`paddle.incubate.sparse.sparse_csr_tensor <cn_api_paddle_incubate_sparse_csr_tensor>` ", "构造CSR格式的SparseTensor"
+    " :ref:`paddle.incubate.sparse.sparse_coo_tensor <cn_api_paddle_incubate_sparse_coo_tensor>` ", "创建一个COO格式的SparseTensor"
+    " :ref:`paddle.incubate.sparse.sparse_csr_tensor <cn_api_paddle_incubate_sparse_csr_tensor>` ", "创建一个CSR格式的SparseTensor"
 
 
 .. _about_sparse_math:
