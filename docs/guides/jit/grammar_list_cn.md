@@ -135,9 +135,9 @@ def break_usage(x):
             break  # <------- jump out of while loop when break ;
     return tensor_idx
 ```
-当时输入 x = Tensor([1.0, 2.0 ,3.0]) 时，输出的 tensor_idx 是 Tensor([1])。
+当输入 x = Tensor([1.0, 2.0 ,3.0]) 时，输出的 tensor_idx 是 Tensor([1])。
 
-> 注：这里虽然 idx 是-1，但是返回值还是 Tensor。因为`tensor_idx` 在 while loop 中转化为了`Tensor`。
+> 注：这里虽然 tensor_idx 初始值是-1，但是返回值还是 Tensor。因为`idx` 在 while loop 中转化为了只含一个索引值的`Tensor`。
 
 
 ### 3.5 与、或、非
