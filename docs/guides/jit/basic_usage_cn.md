@@ -105,7 +105,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -173,7 +173,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -396,7 +396,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -487,7 +487,7 @@ class RandomDataset(paddle.io.Dataset):
 
     def __getitem__(self, idx):
         image = np.random.random([IMAGE_SIZE]).astype('float32')
-        label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+        label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
         return image, label
 
     def __len__(self):
@@ -585,7 +585,7 @@ IMAGE_SIZE = 784
 CLASS_NUM = 10
 
 # 载入 paddle.jit.save 保存的模型
-path = "example.model/linear"
+path = "example.dy_model/linear"
 loaded_layer = paddle.jit.load(path)
 ```
 
@@ -929,14 +929,15 @@ paddle.jit.save(net, path='./simple_net')
     import paddle
     import numpy as np
     import paddle.optimizer as opt
+    from paddle import nn
     from paddle.vision.models import resnet50
 
     BATCH_SIZE = 16
     BATCH_NUM = 4
     EPOCH_NUM = 4
 
-    IMAGE_SIZE = 784
-    CLASS_NUM = 10
+    IMAGE_SIZE = 224
+    CLASS_NUM = 1000
 
     # 定义一个随机数数据集
     class RandomDataset(paddle.io.Dataset):
@@ -944,8 +945,8 @@ paddle.jit.save(net, path='./simple_net')
             self.num_samples = num_samples
 
         def __getitem__(self, idx):
-            image = np.random.random([IMAGE_SIZE]).astype('float32')
-            label = np.random.randint(0, CLASS_NUM - 1, (1, )).astype('int64')
+            image = np.random.random([3, IMAGE_SIZE, IMAGE_SIZE]).astype('float32')
+            label = np.random.randint(0, CLASS_NUM, (1, )).astype('int64')
             return image, label
 
         def __len__(self):
@@ -954,30 +955,31 @@ paddle.jit.save(net, path='./simple_net')
     # 定义训练过程
     def train(layer, loader, loss_fn, opt):
         for epoch_id in range(EPOCH_NUM):
-            for batch_id, (image, label) in enumerate(loader()):
-                out = layer(image)
-                loss = loss_fn(out, label)
+            for batch_id, (images, labels) in enumerate(loader()):
+                out = layer(images)
+                loss = loss_fn(out, labels)
                 loss.backward()
                 opt.step()
                 opt.clear_grad()
                 print("Epoch {} batch {}: loss = {}".format(
                     epoch_id, batch_id, np.mean(loss.numpy())))
 
-    def set_build_strategy():
+    def get_build_strategy():
         build_strategy = paddle.static.BuildStrategy()
         # addto 策略常搭配 FLAGS_max_inplace_grad_add 变量使用
         build_strategy.enable_addto = True
-        os.environ['FLAGS_max_inplace_grad_add'] = 8
+        os.environ['FLAGS_max_inplace_grad_add'] = "8"
         build_strategy.fuse_elewise_add_act_ops = True
+        return build_strategy
 
     # 构建神经网络
     model = resnet50()
     # 动转静，并设置计算图优化策略
-    model = paddle.jit.to_static(model, build_strategy=set_build_strategy())
+    model = paddle.jit.to_static(model, build_strategy=get_build_strategy())
     # 设置损失函数
     loss_fn = nn.CrossEntropyLoss()
     # 设置优化器
-    adam = opt.Adam(learning_rate=0.001, parameters=layer.parameters())
+    adam = opt.Adam(learning_rate=0.001, parameters=model.parameters())
 
     # 构建 DataLoader 数据读取器
     dataset = RandomDataset(BATCH_NUM * BATCH_SIZE)
@@ -988,7 +990,7 @@ paddle.jit.save(net, path='./simple_net')
         num_workers=2)
 
     # 开始训练
-    train(layer, loader, loss_fn, adam)
+    train(model, loader, loss_fn, adam)
     ```
 
 ### 4.2 动转静训练开启 AMP

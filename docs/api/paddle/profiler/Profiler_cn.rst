@@ -123,7 +123,7 @@ COPY-FROM: paddle.profiler.Profiler.export:code-example7
 
 .. _cn_api_profiler_profiler_summary:
 
-summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms')
+summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_unit='ms', views=None)
 '''''''''
 
 统计性能数据并打印表单。当前支持从总览、模型、分布式、算子、内存操作、自定义六个角度来对性能数据进行统计。
@@ -134,6 +134,7 @@ summary(sorted_by=SortedKeys.CPUTotal, op_detail=True, thread_sep=False, time_un
     - **op_detail** (bool，可选) – 是否打印算子内各过程的详细信息，默认值 True。
     - **thread_sep** (bool，可选) - 是否分线程打印，默认值 False。
     - **time_unit** (str，可选) - 表单数据的时间单位，默认为'ms'，可选's'、'us'、'ns'。
+    - **views** (SummaryView|list[SummaryView]，可选) - 打印的表单列表，默认值为 None, 表示打印所有表单。
 
 
 **代码示例**
