@@ -479,28 +479,35 @@ paddle/phi/kernels
 
 - 新增与设备无关的 kernel
 
-该类 kernel 实现与所有硬件设备无关，只需要一份代码实现，可参考 [reshape kernel](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/reshape_kernel.cc)。其新增文件及目录包括：
+  该类 kernel 实现与所有硬件设备无关，只需要一份代码实现，可参考 [reshape kernel](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/reshape_kernel.cc)。其新增文件及目录包括：
 
   - `paddle/phi/kernels/xxx_kernel.h`
+
   - `paddle/phi/kernels/xxx_kernel.cc`
 
-如果是反向 kernel，则使用 `grad_kernel` 后缀即可：
+  如果是反向 kernel，则使用 `grad_kernel` 后缀即可：
 
   - `paddle/phi/kernels/xxx_grad_kernel.h`
+
   - `paddle/phi/kernels/xxx_grad_kernel.cc`
+
 - 新增与设备相关、且 CPU & GPU 分别实现的 kernel
 
-还有部分 kernel 的实现，CPU 和 GPU 上逻辑不同，此时没有共同实现的代码，需要区分 CPU 和 GPU 硬件。
-CPU 的实现位于`paddle/phi/kernels/cpu` 目录下； GPU 的实现位于`paddle/phi/kernels/gpu` 下，可参考 [dot kernel](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/dot_kernel.cu)，[cast kernel](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/cast_kernel.cu) 等。其新增文件及目录包括：
+  还有部分 kernel 的实现，CPU 和 GPU 上逻辑不同，此时没有共同实现的代码，需要区分 CPU 和 GPU 硬件。
+  CPU 的实现位于`paddle/phi/kernels/cpu` 目录下； GPU 的实现位于`paddle/phi/kernels/gpu` 下，可参考 [dot kernel](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/dot_kernel.cu)，[cast kernel](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/cast_kernel.cu) 等。其新增文件及目录包括：
 
   - `paddle/phi/kernels/xxx_kernel.h`
+
   - `paddle/phi/kernels/cpu/xxx_kernel.cc`
+
   - `paddle/phi/kernels/gpu/xxx_kernel.cu`
 
-相应地，反向 kernel 新增文件为：
+    相应地，反向 kernel 新增文件为：
 
   - `paddle/phi/kernels/xxx_grad_kernel.h`
+
   - `paddle/phi/kernels/cpu/xxx_grad_kernel.cc`
+
   - `paddle/phi/kernels/gpu/xxx_grad_kernel.cu`
 
 ### 4.2 Kernel 写法
@@ -670,17 +677,17 @@ PD_REGISTER_KERNEL(trace,
 
 字段说明：
 
-1. `trace`: kernel 名称，和算子的名称一致
-2. `CPU`: backend 名称， 一般主要就是 CPU 和 GPU
-3. `ALL_LAYOUT`: kernel 支持的 Tensor 布局，一般为 ALL_LAYOUT，及支持所有布局类型
-4. `phi::TraceKernel`: kernel 的函数名称，记得带上 namespace phi
-5. 剩余的均为 kernel 支持的数据类型
+- `trace`: kernel 名称，和算子的名称一致
+- `CPU`: backend 名称， 一般主要就是 CPU 和 GPU
+- `ALL_LAYOUT`: kernel 支持的 Tensor 布局，一般为 ALL_LAYOUT，及支持所有布局类型
+- `phi::TraceKernel`: kernel 的函数名称，记得带上 namespace phi
+- 剩余的均为 kernel 支持的数据类型
 
 > 注意：
 >
-> 1. 如果忘记添加注册相关的头文件，会给出一个 error: expected constructor, destructor, or type conversion before ‘(’ token 的错误，如果遇到，请检查 include 的头文件；
-> 2. phi 下的注册宏后边是带函数体{ }，不是直接加分号，此处与旧的注册宏方式有小区别；
-> 3. 注册 kernel 的宏声明需要在 global namespace。
+> - 如果忘记添加注册相关的头文件，会给出一个 error: expected constructor, destructor, or type conversion before ‘(’ token 的错误，如果遇到，请检查 include 的头文件；
+> - phi 下的注册宏后边是带函数体{ }，不是直接加分号，此处与旧的注册宏方式有小区别；
+> - 注册 kernel 的宏声明需要在 global namespace。
 
 ### 4.3 编译测试
 
@@ -857,26 +864,33 @@ class TestTraceOp(OpTest):
   - `self.python_api = paddle.trace` : 定义 python api，与 python 调用接口一致。
   - `self.inputs` : 定义输入，类型为`numpy.array`，并初始化。
   - `self.outputs` : 定义输出，并在 Python 脚本中完成与算子同样的计算逻辑，返回 Python 端的计算结果。
+
 - **前向算子单测**
+
   - test_check_output 中会对算子的前向计算结果进行测试，对比参考的结果为 setUp 中 `self.outputs`提供的数据。`check_eager=True`表示开启新动态图（eager 模式）单测，`check_eager`默认为`False`
+
 - **反向算子单测**
+
   - `test_check_grad`中调用`check_grad`使用数值法检测梯度正确性和稳定性。
     - 第一个参数`['Input']` : 指定对输入变量`Input`做梯度检测。
     - 第二个参数`'Out'` : 指定前向网络最终的输出目标变量`Out`。
-    - 第三个参数`check_eager` : `check_eager=True`表示开启新动态图（eager 模式）单测，`check_eager`默认为`False`。
+    - 第三个参数`check_eager` : `check_eager=True` 表示开启新动态图（eager 模式）单测，`check_eager` 默认为`False`。
   - 对于存在多个输入的反向算子测试，需要指定只计算部分输入梯度的 case
     - 例如，[test_elementwise_sub_op.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_elementwise_sub_op.py) 中的`test_check_grad_ingore_x`和`test_check_grad_ingore_y`分支用来测试只需要计算一个输入梯度的情况
     - 此处第三个参数 max_relative_error：指定检测梯度时能容忍的最大错误值。
 
-```python
-def test_check_grad_ingore_x(self):
-    self.check_grad(
-        ['Y'], 'Out', max_relative_error=0.005, no_grad_set=set("X"))
+  ```python
+  def test_check_grad_ingore_x(self):
+      self.check_grad(
+          ['Y'], 'Out', max_relative_error=0.005, no_grad_set=set("X"))
 
-def test_check_grad_ingore_y(self):
-    self.check_grad(
-        ['X'], 'Out', max_relative_error=0.005, no_grad_set=set('Y'))
-```
+  def test_check_grad_ingore_y(self):
+      self.check_grad(
+          ['X'], 'Out', max_relative_error=0.005, no_grad_set=set('Y'))
+  ```
+
+
+
 
 ### 6.2 Python API 单元测试
 
@@ -1080,13 +1094,13 @@ Paddle 支持动态图和静态图两种模式，在 YAML 配置文件中完成�
 
 - 动态图中自动生成的代码包括从 Python API 到计算 Kernel 间的各层调用接口实现，从底层往上分别为：
   - **C++ API**：一套与 Python API 参数对齐的 C++ 接口（只做逻辑计算，不支持自动微分），内部封装了底层 kernel 的选择和调用等逻辑，供上层灵活使用。
-    - 注：前向算子生成 C++ API 头文件和实现代码分别为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`，反向算子生成的头文件和实现代码分别为`paddle/phi/api/backward/backward_api.h`,`paddle/phi/api/lib/backward_api.cc`。
+    - 注：前向算子生成 C++ API 头文件和实现代码分别为 `paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`，反向算子生成的头文件和实现代码分别为 `paddle/phi/api/backward/backward_api.h`,`paddle/phi/api/lib/backward_api.cc`。
   - **动态图前向函数与反向节点（Autograd API）**：在 C++ API 的基础上进行了封装，组成一个提供自动微分功能的 C++函数接口。
-    - 注：生成的相关代码在`paddle/fluid/eager/api/generated/eager_generated`目录下。
-  - **Python-C 函数**：将支持自动微分功能的 C++的函数接口（Autograd API）暴露到 Python 层供 Python API 调用。
-    - 注：生成的 Python-C 接口代码在`paddle/fluid/pybind/eager_op_function.cc`中。
+    - 注：生成的相关代码在 `paddle/fluid/eager/api/generated/eager_generated` 目录下。
+  - **Python-C 函数**：将支持自动微分功能的 C++ 的函数接口（Autograd API）暴露到 Python 层供 Python API 调用。
+    - 注：生成的 Python-C 接口代码在 `paddle/fluid/pybind/eager_op_function.cc` 中。
 - 静态图的执行流程与动态图不同，所以生成的代码也与动态图有较大差异。
 
-静态图由于是先组网后计算，Python API 主要负责组网，算子的调度和 kernel 计算由静态图执行器来完成，因此自动生成的代码是将配置文件中的算子信息注册到框架内供执行器调度，主要包括 [OpMaker](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/op_proto_maker.h)（静态图中定义算子的输入、输出以及属性等信息）和`REGISTER_OPERATOR`（将算子名称以及 OpMaker 等信息进行注册）等静态图算子注册组件，具体的代码逻辑可参考`paddle/fluid/operators/generated_op.cc`。
+静态图由于是先组网后计算，Python API 主要负责组网，算子的调度和 kernel 计算由静态图执行器来完成，因此自动生成的代码是将配置文件中的算子信息注册到框架内供执行器调度，主要包括 [OpMaker](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/op_proto_maker.h)（静态图中定义算子的输入、输出以及属性等信息）和`REGISTER_OPERATOR`（将算子名称以及 OpMaker 等信息进行注册）等静态图算子注册组件，具体的代码逻辑可参考 `paddle/fluid/operators/generated_op.cc`。
 
 > **注意：由于代码自动生成在编译时进行，所以查看上述生成代码需要先完成** [**框架的编译**](../../install/compile/fromsource.html)**。**
