@@ -6,7 +6,7 @@
 
 飞桨框架 API 前端采用 Python 语言，以便获得更好的编程体验；后端的计算逻辑实现采用 C++ 语言，调用底层算子内核 （kernel）函数实现计算逻辑，以便获得更好的运行性能，如下图所示。
 
-开发一个新的飞桨原生算子（Operator，OP），通常需要先开发 C++ OP，即通过 Yaml 配置定义算子描述、C++ 开发算子 kernel，再封装 Python API；如果要新增的算子可以用其他 Python API 组合得到，则可以只开发 Python API 代码。
+开发一个新的飞桨原生算子，通常需要先开发 C++ 算子，即通过 Yaml 配置定义算子描述、C++ 开发算子 kernel，再封装 Python API；如果要新增的算子可以用其他 Python API 组合得到，则可以只开发 Python API 代码。
 
 - 使用 C++ 定义算子，开发门槛较高，需有一定 C++ 或 CUDA 等软件栈开发基础，但是具有性能优势；
 - 使用 Python API 组合方式，只需 Python 编码，代码实现相对简单灵活，但会引入 Python 调度开销，影响性能；如果当前飞桨框架提供的基础算子 API 无法满足需求，仍然需要使用 C++ 实现算子。
@@ -28,10 +28,10 @@
 
 当 API 设计文档合入后，开发者即可进行代码开发。此过程请参考相应的开发规范，包括如下步骤：
 
-- 如果新增 API 不需要开发新的 C++ OP，可以用其他 Python API 组合得到新的 API，请参考 [开发 API Python 端](new_python_api_cn.html) 章节完成，包括开发 Python 代码、单元测试代码和 API 文档等步骤。
-- 如果新增 API 需要开发新的 C++ OP，请参考 [开发 C++ 算子](new_cpp_op_cn.html) 章节完成，包括开发 OP 实现代码、封装 Python API 代码、单元测试代码和 API 文档等步骤。
-  - 在 paddle/phi/kernels 目录下存放了飞桨框架已经实现的不同硬件的算子内核，可供开发 C++ OP 时调用。
-  - 有时也需要自己开发新的算子内核（OP Kernel），这时可能需要使用硬件支持的软件栈（如 CUDA）来实现，或者使用飞桨框架提供的 Kernel Primitive API 来实现，后者具体介绍请参见 [Kernel Primitive API](../op_optimization/kernel_primitive_api/index_cn.html) 章节。
+- 如果新增 API 不需要开发新的 C++ 算子，可以用其他 Python API 组合得到新的 API，请参考 [开发 API Python 端](new_python_api_cn.html) 章节完成，包括开发 Python 代码、单元测试代码和 API 文档等步骤。
+- 如果新增 API 需要开发新的 C++ 算子，请参考 [开发 C++ 算子](new_cpp_op_cn.html) 章节完成，包括开发算子实现代码、封装 Python API 代码、单元测试代码和 API 文档等步骤。
+  - 在 paddle/phi/kernels 目录下存放了飞桨框架已经实现的不同硬件的算子内核，可供开发 C++ 算子 时调用。
+  - 有时也需要自己开发新的算子内核，这时可能需要使用硬件支持的软件栈（如 CUDA）来实现，或者使用飞桨框架提供的 Kernel Primitive API 来实现，后者具体介绍请参见 [Kernel Primitive API](../op_optimization/kernel_primitive_api/index_cn.html) 章节。
 
 值得注意的是，代码开发完成后，请确保通过了单元测试和 CI 测试。
 

@@ -2,8 +2,8 @@
 
 新增飞桨 API 主要包含两种情况：
 
-1. 不需要开发新的 C++ 算子（Operator，OP），可以用其他 Python API 组合得到新的 API，只写 Python 代码即可。
-2. 需要开发新的 C++ 算子，需要用 C++ 开发 OP 实现代码、再封装 Python API 代码。
+1. 不需要开发新的 C++ 算子，可以用其他 Python API 组合得到新的 API，只写 Python 代码即可。
+2. 需要开发新的 C++ 算子，需要用 C++ 开发算子实现代码、再封装 Python API 代码。
 
 两种情况下均有 Python 端的开发工作。本文将介绍开发新的飞桨 API 时，需要完成的 Python 端开发内容以及注意事项。
 
@@ -81,14 +81,14 @@ def zeros(shape, dtype=None, name=None):
 
 如果 API 的实现中需要调用 C++ 算子，则需要分别实现动态图分支和静态图分支的代码。
 
-接下来以 [paddle.trace](../../api/paddle/trace_cn.html) API 的实现代码为例（示例代码路径：[python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py#L2790)），分别介绍动态图分支和静态图分支的开发要点：
+接下来以 [paddle.trace](../../api/paddle/trace_cn.html) API 的实现代码为例（示例代码路径：[python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py#L2784)），分别介绍动态图分支和静态图分支的开发要点：
 
 ```python
 def trace(x, offset=0, axis1=0, axis2=1, name=None):
     # 为了突出重点，省略部分代码
     # 动态图分支，直接调用算子对应的 Python C 函数
     if in_dygraph_mode():
-        return _C_ops.final_state_trace( x, offset, axis1, axis2 )
+        return _C_ops.trace( x, offset, axis1, axis2 )
 
     # 静态图分支
     ## 输入参数检查
@@ -115,13 +115,13 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 ```python
     # 动态图分支，直接调用算子对应的 Python C 函数
     if in_dygraph_mode():
-        return _C_ops.final_state_trace( x, offset, axis1, axis2 )
+        return _C_ops.trace( x, offset, axis1, axis2 )
 ```
 
-动态图分支的写法一般是调用 C++ 算子对应的 Python C 函数，示例中调用名为 `trace` 的 算子，使用 `_C_ops.final_state_trace`，然后传入参数。
+动态图分支的写法一般是调用 C++ 算子对应的 Python C 函数，示例中调用名为 `trace` 的 算子，使用 `_C_ops.trace`，然后传入参数。
 
   - `_C_ops` 是 [python/paddle/_C_ops.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/_C_ops.py)，其实现了从 Paddle 编译得到的二进制文件中 import  C++ 算子对应的 Python C 函数。
-  - `final_state_trace`是 `trace` 算子的 Python C 函数名。Python C 函数的命名方式为 `final_state_ + 算子名`。
+  - `trace` 是算子的 Python C 函数名。Python C 函数的命名直接采用算子名。
   - 参数 `( x, offset, axis1, axis2 )`需按照 [YAML 配置文件](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml#L185) 中定义的输入参数顺序传入，C++ 算子的输入、输出和属性等描述是通过 YAML 配置文件定义的，具体可参见 [开发 C++ 算子](new_cpp_op_cn.html) 章节介绍。
 
 > 注意：由于目前飞桨动态图正处在重构升级阶段，所以现有算子的代码会分别有新旧动态图两个代码分支，其中 `in_dygraph_mode()` 表示新动态图分支（默认），`_in_legacy_dygraph()`为旧动态图分支，**在新增算子时无需添加旧动态图分支代码**。
@@ -253,7 +253,7 @@ from a import f # it's ok, too
 
 **（2）具体做法**
 
-  - 一些常用的 Paddle API 可先参考上述方法建立别名，比如前文示例中  `paddle.trace `  API 的 `trace` 函数定义在 [Python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py#L2790) 中，又在 [Python/paddle/tensor/__init__.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/__init__.py) 中被 import，并且也在 [Python/paddle/__init__.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py) 中被 import。
+  - 一些常用的 Paddle API 可先参考上述方法建立别名，比如前文示例中  `paddle.trace `  API 的 `trace` 函数定义在 [Python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py#L2784) 中，又在 [Python/paddle/tensor/__init__.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/__init__.py) 中被 import，并且也在 [Python/paddle/__init__.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/__init__.py) 中被 import。
 
 ```python
 # Python/paddle/tensor/math.py
@@ -376,28 +376,30 @@ class TestHardtanhAPI(unittest.TestCase):
 **开发要点：**
 
 
-  - 无论是用其他 Python API 组合得到新的 API，还是封装新开发 C++ OP 得到的新 API，都必须添加动态图和静态图的测试用例，确保对应情况工作正常，结果符合预期。
-  - 通常情况下新增 Python API 的单元测试，可以不必测试反向计算功能，因为在 C++ OP 的单元测试中会包含反向算子功能的测试。
+  - 无论是用其他 Python API 组合得到新的 API，还是封装新开发 C++ 算子得到的新 API，都必须添加动态图和静态图的测试用例，确保对应情况工作正常，结果符合预期。
+  - 通常情况下新增 Python API 的单元测试，可以不必测试反向计算功能，因为在 C++ 算子的单元测试中会包含反向算子功能的测试。
   - 用 NumPy/SciPy 的实现对比时，一般用 `self.assertTrue(numpy.allclose(actual, desired))` 或者 `numpy.testing.assert_allclose(actual, desired)` 来进行数值对比。其中，`numpy.testing.assert_allclose` 相对误差和绝对误差是 `rtol=1e-07, atol=0`；`numpy.allclose` 的相对误差和绝对误差是 `rtol=1e-05, atol=1e-08`，前者比后者更严格。一般进行单元测试的时候，都使用默认的误差阈值，如需设置自定义的阈值，需要说明原因。
   - 因为单元测试各个 case 的运行次序是不确定的，为了保证不同的测试 case 运行在正确的运行模式（动态图/静态图）上，常见的做法有：
     - 在每个测试 case 的起始部分，显式切换 paddle 的运行模式，用`paddle.enable_static` 和 `paddle.disable_static` 分别激活和取消静态图模式。如前文代码所示，在 `test_static_api` 和 `test_dygraph_api` 的开头分别切换了状态。
+
     - 将静态图和动态图测试定义为不以 `test` 开头的函数（如 [test_l1_loss.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_l1_loss.py#L77) 中定义为 `run_imperative`、`run_static` 函数)，然后定义一个 test 开头的函数，切换不同的状态去运行它。
 
 
-```python
- def test_cpu(self):
-     # 关闭静态图模式，测试动态图模式
-     paddle.disable_static(place=paddle.fluid.CPUPlace())
-     self.run_imperative()
-     # 开启静态图模式，测试静态图模式
-     paddle.enable_static()
+      ```python
+       def test_cpu(self):
+           # 关闭静态图模式，测试动态图模式
+           paddle.disable_static(place=paddle.fluid.CPUPlace())
+           self.run_imperative()
+           # 开启静态图模式，测试静态图模式
+           paddle.enable_static()
 
-     with fluid.program_guard(fluid.Program()):
-         self.run_static()
-```
+           with fluid.program_guard(fluid.Program()):
+               self.run_static()
+      ```
 
-  - 将动态图和静态图的测试 case 分在不同的 Python 文件中，`import paddle` 后在模块级别设置 paddle 的运行模式。比如 [test_rnn_cells.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/rnn/test_rnn_cells.py) 和 [test_rnn_cells_static.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/rnn/test_rnn_cells_static.py) 的做法。
-  - 在测试模块级别设定 paddle 的运行模式为静态图（一般是在一个模块的开始，而不是写在 `if __name__=="__main__":` 里)。然后在需要使用动态图的 case 里，将动态图部分的代码至于 `dygraph.guard` 上下文管理器内。这是老式的写法，目前不再推荐这么写，但已有的代码库中也存在这样的模式。
+    - 将动态图和静态图的测试 case 分在不同的 Python 文件中，`import paddle` 后在模块级别设置 paddle 的运行模式。比如 [test_rnn_cells.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/rnn/test_rnn_cells.py) 和 [test_rnn_cells_static.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/rnn/test_rnn_cells_static.py) 的做法。
+
+    - 在测试模块级别设定 paddle 的运行模式为静态图（一般是在一个模块的开始，而不是写在 `if __name__=="__main__":` 里)。然后在需要使用动态图的 case 里，将动态图部分的代码至于 `dygraph.guard` 上下文管理器内。这是老式的写法，目前不再推荐这么写，但已有的代码库中也存在这样的模式。
 
 
 ### 3.3 运行单元测试

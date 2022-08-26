@@ -2,26 +2,29 @@
 
 新增飞桨 API 主要包含两种情况：
 
-1. 不需要开发新的 C++ 算子（Operator，OP），可以用其他 Python API 组合得到新的 API，只写 Python 代码即可。
-2. 需要开发新的 C++ 算子，需要用 C++ 开发 OP 实现代码、再封装 Python API 代码。
+1. 不需要开发新的 C++ 算子，可以用其他 Python API 组合得到新的 API，只写 Python 代码即可。
+2. 需要开发新的 C++ 算子，需要用 C++ 开发算子实现代码、再封装 Python API 代码。
 
-针对第二种情况，可参考本文完成 C++ OP 的开发，并参考 [飞桨 API Python 端开发指南](new_python_api_cn.html) 章节完成 Python 端的开发。
+针对第二种情况，可参考本文完成 C++ 算子的开发，并参考 [开发 API Python 端](new_python_api_cn.html) 章节完成 Python 端的开发。
 
-> 注：飞桨 C++ OP 的开发范式正处在重构升级后的上线初期，如果在开发过程中遇到问题欢迎通过 [Issue](https://github.com/PaddlePaddle/Paddle/issues) 向我们反馈。
+> 注：飞桨 C++ 算子的开发范式正处在重构升级后的上线初期，如果在开发过程中遇到问题欢迎通过 [Issue](https://github.com/PaddlePaddle/Paddle/issues) 向我们反馈。
 
 ## 一、开发前准备
 
 开发代码前请确认：
 
 - 已签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)；
-- 已阅读 [代码贡献流程](..\code_contributing_path_cn.html)、[贡献前阅读](read_before_contributing_cn.html) 和相关规范；
-- 已根据 [飞桨 API 设计和命名规范](api_design_guidelines_standard_cn.html) 确定了新增 API 的名称和存放位置；
+- 已阅读 [代码贡献流程](..\code_contributing_path_cn.html)、[贡献前阅读](read_before_contributing_cn.html) 和相关代码规范；
+
+- 已根据 [API 设计和命名规范](api_design_guidelines_standard_cn.html) 确定了新增 API 的名称和存放位置；
+
 - 已提交 [API 设计文档](read_before_contributing_cn.html#apiDesignDoc) 并通过评审；
+
 - 已将 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 仓库的代码获取到本地，准备好了 Paddle 开发环境。
 
 ## 二、开发流程介绍
 
-新增一个 C++ OP 大概需要以下几个步骤：
+新增一个 C++ 算子大概需要以下几个步骤：
 
 1. **新增算子描述及定义**：描述前反向算子的输入、输出、属性，实现 InferMeta 函数；
 2. **新增算子 Kernel**：实现算子在各种设备上的计算逻辑；
@@ -38,7 +41,7 @@
 | Python API     | [python/paddle](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle) 目录下的相应子目录中的 .py 文件，遵循相似功能的 API 放在同一文件夹的原则 |
 | 单元测试       | [python/paddle/fluid/tests/unittests](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle/fluid/tests/unittests) 目录下的相应文件中：<br/>test_xxx_op.py |
 
-接下来以 trace op 操作，计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果，即以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例来介绍如何新增算子。
+接下来以 trace 算子操作，计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果，即以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例来介绍如何新增算子。
 
 ## 三、新增算子描述及定义
 
@@ -46,7 +49,7 @@
 
 ### 3.1 算子 Yaml 文件配置
 
-在 `paddle/phi/api/yaml/api.yaml` 和 `paddle/phi/api/yaml/backward.yaml` 文件中对算子进行描述及定义，在框架编译时会根据 YAML 文件中的配置自动生成 C++ 端的相关代码接口以及内部实现（详见 [Paddle 基于 Yaml 配置自动生成算子代码的逻辑解读](#paddleyaml)），下面主要以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例介绍算子的 Yaml 配置规则：
+在 `paddle/phi/api/yaml/api.yaml` 和 `paddle/phi/api/yaml/backward.yaml` 文件中对算子进行描述及定义，在框架编译时会根据 YAML 文件中的配置自动生成 C++ 端的相关代码接口以及内部实现（详见下文 [8.1 Paddle 基于 Yaml 配置自动生成算子代码的逻辑解读](#paddleyaml) 小节的介绍），下面主要以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例介绍算子的 Yaml 配置规则：
 
 [paddle/phi/api/yaml/api.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml) 中 trace 相关配置：
 
@@ -233,7 +236,7 @@ b. 如果是实现自定义的 C++ API，需要在'paddle/phi/api/lib/api_custom
 
 > 说明：InferMeta 与 kernel 共同组成了一个算子的运算过程。InferMeta 在 kernel 前执行，用于维度、数据类型等信息的计算处理，这些信息在没有具体数据时依然可以通过输入参数完成输出结果的信息推导（例如两个维度为 2x3 的张量相加，输出结果的维度也一定是 2x3），可以利用这些信息优化训练过程中资源的分配和使用，kernel 中也不再需要专门推导这些信息。kernel 则用于具体数据的逻辑计算，为 InferMeta 函数推导得到的张量填充具体的结果值。
 
-[TraceOp 的 InferMeta 函数](https://github.com/PaddlePaddle/Paddle/blob/befa78ea3fa9d0dae096a7de91f626b0c31daee8/paddle/phi/infermeta/unary.cc#L721) 实现如下：
+[trace 算子的 InferMeta 函数](https://github.com/PaddlePaddle/Paddle/blob/befa78ea3fa9d0dae096a7de91f626b0c31daee8/paddle/phi/infermeta/unary.cc#L721) 实现如下：
 
 ```cpp
 void TraceInferMeta(
@@ -302,7 +305,7 @@ InferMeta 的文件放置规则（[paddle/phi/infermeta](https://github.com/Padd
 - `binary.h`：有两个输入 Tensor 参数的函数
 - `ternary.h`：有三个输入 Tensor 参数的函数
 - `multiary.h`：有三个以上输入 Tensor 或者输入为`vector<Tensor>`的函数
-- `backward.h`：反向 op 的 InferMeta 函数一律在此文件中，不受前序规则限制
+- `backward.h`：反向算子的 InferMeta 函数一律在此文件中，不受前序规则限制
 
 **InferMeta 的编译时与运行时**
 
@@ -310,7 +313,7 @@ InferMeta 的文件放置规则（[paddle/phi/infermeta](https://github.com/Padd
 
 对于此类 InferMeta 函数，需要在 InferMeta 函数声明的参数列表末尾增加 `MetaConfig` 参数，例如：
 
-```plain
+```cpp
 void ConcatInferMeta(const std::vector<MetaTensor*>& x,
                      const Scalar& axis_scalar,
                      MetaTensor* out,
@@ -504,7 +507,7 @@ CPU 的实现位于`paddle/phi/kernels/cpu` 目录下； GPU 的实现位于`pad
 
 #### 4.2.1 声明 Kernel 函数
 
-以 trace OP 为例，首先在`paddle/phi/kernels`目录下新建 [trace_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h) 文件，用于放置前向 kernel 函数声明。
+以 trace 算子为例，首先在`paddle/phi/kernels`目录下新建 [trace_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h) 文件，用于放置前向 kernel 函数声明。
 
 > 注意：
 >
@@ -667,7 +670,7 @@ PD_REGISTER_KERNEL(trace,
 
 字段说明：
 
-1. `trace`: kernel 名称，和 OP 的名称一致
+1. `trace`: kernel 名称，和算子的名称一致
 2. `CPU`: backend 名称， 一般主要就是 CPU 和 GPU
 3. `ALL_LAYOUT`: kernel 支持的 Tensor 布局，一般为 ALL_LAYOUT，及支持所有布局类型
 4. `phi::TraceKernel`: kernel 的函数名称，记得带上 namespace phi
@@ -681,7 +684,7 @@ PD_REGISTER_KERNEL(trace,
 
 ### 4.3 编译测试
 
-实现完 OP kernel 之后，建议先编译测试一下，编译成功之后，再继续后面的步骤。
+实现完算子 kernel 之后，建议先编译测试一下，编译成功之后，再继续后面的步骤。
 
 详细的编译环境准备和执行流程可参考 [从源码编译](../../install/compile/fromsource.html)，下面简单介绍几个主要步骤。
 在 `Paddle` 代码目录下创建并切换到 build 目录：
@@ -702,11 +705,11 @@ cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Rel
 make -j$(nproc)
 ```
 
-> **注意：**新增 OP 后请重新执行`cmake`命令，然后再执行`make`命令编译 paddle。
+> **注意：**新增算子后请重新执行`cmake`命令，然后再执行`make`命令编译 paddle。
 
 ## 五、封装 Python API
 
-飞桨框架会对新增的 OP Kernel 自动绑定 Python，并链接到生成的 lib 库中，然后开发者需要在 Python 端定义相应的 API，在 API 内调用新增算子，并添加相应的中英文文档描述即可。
+飞桨框架会对新增的算子 kernel 自动绑定 Python，并链接到生成的 lib 库中，然后开发者需要在 Python 端定义相应的 API，在 API 内调用新增算子，并添加相应的中英文文档描述即可。
 
  `paddle.trace`  的 Python API 实现位于 [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/bd4dc3be34584f9b273ecec07297fb05e1cf4c52/python/paddle/tensor/math.py#L2277) 中，具体实现如下：
 
@@ -782,7 +785,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
     __check_input(input, offset, axis1, axis2)
 
     if in_dygraph_mode():
-        return _C_ops.final_state_trace( x, offset, axis1, axis2 )
+        return _C_ops.trace( x, offset, axis1, axis2 )
 
     helper = LayerHelper('trace', **locals())
     out = helper.create_variable_for_type_inference(dtype=x.dtype)
@@ -804,11 +807,11 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 ## 六、添加单元测试
 
-单测包括对比前向算子不同设备 (CPU、GPU) 的实现、对比反向算子不同设备 (CPU、GPU) 的实现、反向算子的梯度测试。下面介绍[TraceOp 的单元测试](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_trace_op.py)。
+单测包括对比前向算子不同设备 (CPU、GPU) 的实现、对比反向算子不同设备 (CPU、GPU) 的实现、反向算子的梯度测试。下面介绍[trace 算子的单元测试](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_trace_op.py)。
 
-**单测文件存放路径和命名方式：**在 [python/paddle/fluid/tests/unittests](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle/fluid/tests/unittests) 目录下，一般以 `test_*${op_name}*_op.py` 的形式命名，与 Python API 的单元测试文件命名为相同的前缀。
+单测文件存放路径和命名方式：在 [python/paddle/fluid/tests/unittests](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle/fluid/tests/unittests) 目录下，一般以 `test_xxx_op.py` 的形式命名（假设算子名为`xxx`），与 Python API 的单元测试文件命名为相同的前缀。
 
-> **注意：**单测中的测试用例需要尽可能地覆盖 kernel 中的所有分支。
+> 注意：单测中的测试用例需要尽可能地覆盖 kernel 中的所有分支。
 
 ### 6.1 C++ 算子单元测试
 
@@ -951,7 +954,7 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 ```
 
 #### 7.3.2 减少反向算子中的无关变量
-通常反向算子会依赖于前向算子的某些输入、输出 Tensor，以供反向算子计算使用。但有些情况下，反向算子不需要前向 Op 的所有输入和输出；有些情况下，反向算子只需要前向算子的部分输入和输出；有些情况下，反向算子只需要使用前向算子中输入和输出变量的 Shape 和 LoD 信息。若开发者在注册反向算子时，将不必要的前向算子输入和输出作为反向算子的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
+通常反向算子会依赖于前向算子的某些输入、输出 Tensor，以供反向算子计算使用。但有些情况下，反向算子不需要前向算子的所有输入和输出；有些情况下，反向算子只需要前向算子的部分输入和输出；有些情况下，反向算子只需要使用前向算子中输入和输出变量的 Shape 和 LoD 信息。若开发者在注册反向算子时，将不必要的前向算子输入和输出作为反向算子的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
 
 所以在定义反向算子时需要注意以下几点：
 
@@ -1081,7 +1084,7 @@ Paddle 支持动态图和静态图两种模式，在 YAML 配置文件中完成�
   - **动态图前向函数与反向节点（Autograd API）**：在 C++ API 的基础上进行了封装，组成一个提供自动微分功能的 C++函数接口。
     - 注：生成的相关代码在`paddle/fluid/eager/api/generated/eager_generated`目录下。
   - **Python-C 函数**：将支持自动微分功能的 C++的函数接口（Autograd API）暴露到 Python 层供 Python API 调用。
-    - 注：生成的 Python-C 接口代码在`paddle/fluid/pybind/eager_final_state_op_function_impl.h`中。
+    - 注：生成的 Python-C 接口代码在`paddle/fluid/pybind/eager_op_function.cc`中。
 - 静态图的执行流程与动态图不同，所以生成的代码也与动态图有较大差异。
 
 静态图由于是先组网后计算，Python API 主要负责组网，算子的调度和 kernel 计算由静态图执行器来完成，因此自动生成的代码是将配置文件中的算子信息注册到框架内供执行器调度，主要包括 [OpMaker](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/op_proto_maker.h)（静态图中定义算子的输入、输出以及属性等信息）和`REGISTER_OPERATOR`（将算子名称以及 OpMaker 等信息进行注册）等静态图算子注册组件，具体的代码逻辑可参考`paddle/fluid/operators/generated_op.cc`。
