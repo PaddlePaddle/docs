@@ -187,27 +187,29 @@ def add_two(x, y):
 如下代码样例中的 `if label is not None`, 此判断只依赖于 `label` 是否为 `None`（存在性），并不依赖 `label` 的 Tensor 值（数值性），因此属于**不依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def not_depend_tensor_if(x, label=None):
     out = x + 1
     if label is not None:              # <----- python bool 类型
         out = paddle.nn.functional.cross_entropy(out, label)
     return out
 
-print(to_static(not_depend_tensor_ifw).code)
+print(to_static(not_depend_tensor_if).code)
 # 转写后的代码：
 """
 def not_depend_tensor_if(x, label=None):
     out = x + 1
 
-    def true_fn_1(label, out):  # true 分支
+    def true_fn_0(label, out):  # true 分支
         out = paddle.nn.functional.cross_entropy(out, label)
         return out
 
-    def false_fn_1(out):        # false 分支
+    def false_fn_0(out):        # false 分支
         return out
 
-    out = paddle.jit.dy2static.convert_ifelse(label is not None, true_fn_1,
-        false_fn_1, (label, out), (out,), (out,))
+    out = paddle.jit.dy2static.convert_ifelse(label is not None, true_fn_0,
+        false_fn_0, (label, out), (out,), (out,))
 
     return out
 """
