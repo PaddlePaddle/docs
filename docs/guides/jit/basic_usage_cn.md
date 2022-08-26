@@ -19,9 +19,9 @@
 
 飞桨框架在设计时，考虑同时兼顾动态图的高易用性和静态图的高性能优势，采用『动静统一』的方案：
 
-+ 在模型开发和训练时，推荐采用动态图编程。 可获得更好的编程体验、更易用的接口、更友好的调试交互机制。
++ 在模型开发和训练时，推荐采用**动态图编程**。 可获得更好的编程体验、更易用的接口、更友好的调试交互机制。
 
-+ 在模型推理部署时，推荐采用**动态图转静态图（以下简称：动转静）**。平滑衔接将训好的动态图模型自动保存为静态图模型，可获得更好的模型运行性能。
++ 在模型推理部署时，推荐采用**动态图转静态图（以下简称：动转静）**。平滑衔接将训练好的动态图模型自动保存为静态图模型，可获得更好的模型运行性能。
 
 以上是飞桨框架推荐的使用方法，即『训练调优用动态图，推理部署用动转静』。但是在某些对模型训练性能有更高要求的场景，也可以使用动转静训练，即在动态图组网代码中添加一行装饰器 ``@to_static`` ，便可在底层转为性能更优的静态图模式下训练。
 
@@ -43,7 +43,7 @@
 
 **在飞桨框架中，通常情况下使用动态图训练，即可满足大部分场景需求。** 飞桨经过多个版本的持续优化，动态图模型训练的性能已经可以和静态图媲美。如果在某些场景下确实需要使用静态图模式训练，则可以使用**动转静训练功能，即仍然采用更易用的动态图编程，添加少量代码，便可在底层转为静态图训练。**
 
-实际操作只需在待转化的函数前添加一个装饰器 [@paddle.jit.to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/to_static_cn.html#to-static)，框架便通过解析 Python 代码（抽象语法树，简称：AST）等方法自动完成动静转换。具体原理可参见 [转换原理](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/principle_cn.html) 章节。
+实际操作只需在待转化的函数前添加一个装饰器 [@paddle.jit.to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/to_static_cn.html#to-static)，框架通过解析 Python 代码（抽象语法树，简称：AST）等方法自动完成动静转换。具体原理可参见 [转换原理](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/principle_cn.html) 章节。
 
 ### 2.1 动转静训练应用场景
 
@@ -56,6 +56,9 @@
   <figure align="center">
   <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/timeline_base.png" style="zoom:70%" />
   </figure>
+  
+$$图2$$
+  
   动态图和静态图在 CPU 调度层面存在差异：
 
   + 动态图训练时，CPU 调度时间涉及 Python 到 C++ 的交互（Python 前端代码调起底层 C++ OP）和 C++ 代码调度；
@@ -66,7 +69,7 @@
 
 + **如果想要进一步对计算图优化，以提升模型训练性能的情况下。**
 
-  相对于动态图按一行行代码解释执行，动转静后飞桨能够获取模型的整张计算图，即拥有了全局视野，因此可以借助算子融合等技术对计算图进行局部改写，替换为更高效的计算单元，我们称之为“图优化”。
+  相对于动态图按一行行代码解释执行，动转静后飞桨框架能够获取模型的整张计算图，即拥有了全局视野，因此可以借助算子融合等技术对计算图进行局部改写，替换为更高效的计算单元，我们称之为“图优化”。
 
   如下是应用了算子融合策略后，模型训练时执行单个 step 的 timeline 示意图。相对于图 2，飞桨框架获取了整张计算图，按照一定规则匹配到 OP3 和 OP4 可以融合为 Fuse_OP，因此可以减少 GPU 的空闲时间，提升执行效率。
 
@@ -284,7 +287,7 @@ class LinearNet(nn.Layer):
 
 ## 三、动转静模型保存和加载
 
-采用动态图模式将模型训练好后，如果需要将模型的结构和参数持久化保存到磁盘文件中，用于后续推理部署，则可以使用 [paddle.jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/save_cn.html#save) 实现动转静模型保存。保存的模型可使用 [paddle.jit.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/load_cn.html#load) 载入用于验证推理效果。
+采用动态图模式将模型训练好后，如果需要将模型的结构和参数持久化保存到磁盘文件中用于后续推理部署，则可以使用 [paddle.jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/save_cn.html#save) 实现动转静模型保存。保存的模型可使用 [paddle.jit.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/jit/load_cn.html#load) 载入用于验证推理效果。
 
 
 ### 3.1 保存和加载机制介绍
