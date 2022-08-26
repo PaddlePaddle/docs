@@ -137,7 +137,7 @@ def break_usage(x):
 ```
 当输入 x = Tensor([1.0, 2.0 ,3.0]) 时，输出的 tensor_idx 是 Tensor([1])。
 
-> 注：这里虽然 tensor_idx 初始值是-1，但是返回值还是 Tensor。因为`idx` 在 while loop 中转化为了只含一个索引值的`Tensor`。
+> 注：这里虽然 tensor_idx 初始值是-1，但是返回值还是 Tensor。因为 `idx` 在 while loop 中转化为了只含一个索引值的 `Tensor`。
 
 
 ### 3.5 与、或、非
@@ -167,9 +167,9 @@ def and(x, y):
 <span id='6'></span>
 **主要逻辑：**
 
-动态图中可以直接用 Python 的类型转化语法来转化 Tensor 类型。如若 x 是 Tensor 时（只支持含有一个元素的Tensor），
+动态图中可以直接用 Python 的类型转化语法来转化 Tensor 类型。如若 x 是 Tensor 时（只支持含有一个元素的 Tensor ），
 
-float(x)可以将 x 的类型转化为 float。动转静在运行时判断 x 是否是 Tensor，若是，则在动转静时使用静态图`cast`接口
+float(x) 可以将 x 的类型转化为 float。动转静在运行时判断 x 是否是 Tensor，若是，则在动转静时使用静态图 `cast` 接口
 
 转化相应的 Tensor 类型。
 
