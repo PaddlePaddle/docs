@@ -11,8 +11,7 @@
 - 使用 C++ 定义算子，开发门槛较高，需有一定 C++ 或 CUDA 等软件栈开发基础，但是具有性能优势；
 - 使用 Python API 组合方式，只需 Python 编码，代码实现相对简单灵活，但会引入 Python 调度开销，影响性能；如果当前飞桨框架提供的基础算子 API 无法满足需求，仍然需要使用 C++ 实现算子。
 
-![img](images/paddle_api.png)
-
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/paddle_api.png?raw=true" width="800" ></center>
 
 ## 二、飞桨 API 设计文档提交说明
 
@@ -36,7 +35,8 @@
 
 值得注意的是，代码开发完成后，请确保通过了单元测试和 CI 测试。
 
-![img](images/paddle_api_dev_flow.png)
+
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/paddle_api_dev_flow.png?raw=true" width="500" ></center>
 
 ## 四、飞桨 API 代码开发规范说明
 
