@@ -6,7 +6,7 @@ PaddlePaddle 的文档存储于 [PaddlePaddle/docs](https://github.com/PaddlePad
 | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | [文档/安装说明](https://www.paddlepaddle.org.cn/documentation/docs/zh/install/index_cn.html)    | [docs/docs/install](https://github.com/PaddlePaddle/docs/tree/develop/docs/install)                       |
 | [文档/使用教程](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html)     | [docs/docs/guides](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides)                         |
-| [文档/应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/tutorial/index_cn.html)   | [docs/docs/practices]()                                                                                   |
+| [文档/应用实践](https://www.paddlepaddle.org.cn/documentation/docs/zh/tutorial/index_cn.html)   | [docs/docs/practices](https://github.com/PaddlePaddle/docs/tree/develop/docs/practices)       
 | [文档/API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html)        | [docs/docs/api](https://github.com/PaddlePaddle/docs/tree/develop/docs/api)                               |
 | [文档/常见问题与解答](https://www.paddlepaddle.org.cn/documentation/docs/zh/faq/index_cn.html)  | [docs/docs/faq](https://github.com/PaddlePaddle/docs/tree/develop/docs/faq)                               |
 | [文档/Release Note](https://www.paddlepaddle.org.cn/documentation/docs/zh/release_note_cn.html) | [docs/docs/release_note_cn.md](https://github.com/PaddlePaddle/docs/blob/develop/docs/release_note_cn.md) |
