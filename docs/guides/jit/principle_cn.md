@@ -221,6 +221,8 @@ def not_depend_tensor_if(x, label=None):
 如下代码样例中的 `if paddle.mean(x) > 5`, 此判断直接依赖 `paddle.mean(x)` 返回的 Tensor 值（数值性），因此属于**依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def depend_tensor_if(x):
     if paddle.mean(x) > 5.:         # <---- Bool Tensor 类型
         out = x - 1
@@ -232,7 +234,7 @@ print(to_static(depend_tensor_if).code)
 # 转写后的代码：
 """
 def depend_tensor_if(x):
-    out = paddle.jit.dy2static.data_layer_not_check(name='out', shape=[-1],
+    out = paddle.jit.dy2static.data_layer_not_check(name='out_0', shape=[-1],
         dtype='float32')
 
     def true_fn_0(x):      # true 分支
