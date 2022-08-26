@@ -170,7 +170,7 @@ b. 如果是实现自定义的 C++ API，需要在'paddle/phi/api/lib/api_custom
 </tr>
 </tbody>
 </table>
-`backward.yaml`中反向算子的配置规则如下：
+`backward.yaml` 中反向算子的配置规则如下：
 
 <table>
 <thead>
@@ -309,7 +309,7 @@ InferMeta 的文件放置规则（[paddle/phi/infermeta](https://github.com/Padd
 
 **InferMeta 的编译时与运行时**
 
-在静态图模型中，`InferMeta`操作在 [编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md#让我们在 fluid 程序实例中区分编译时和运行时) 都会被调用，在 compile time 时，由于真实的维度未知，框架内部用 -1 来表示，在 run time 时，用实际的维度表示，因此维度的值在 compile time 和 run time 时可能不一致，如果存在维度的判断和运算操作，InferMeta 就需要区分 compile time 和 run time。
+在静态图模型中，`InferMeta`操作在  [编译时(compile time)和运行时(run time)](https://github.com/PaddlePaddle/docs/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md) 都会被调用，在 compile time 时，由于真实的维度未知，框架内部用 -1 来表示，在 run time 时，用实际的维度表示，因此维度的值在 compile time 和 run time 时可能不一致，如果存在维度的判断和运算操作，InferMeta 就需要区分 compile time 和 run time。
 
 对于此类 InferMeta 函数，需要在 InferMeta 函数声明的参数列表末尾增加 `MetaConfig` 参数，例如：
 
@@ -637,7 +637,7 @@ void TraceKernel(const Context& dev_ctx,
   - [paddle/phi/kernels/gpu/trace_grad_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_grad_kernel.cu)
 
 
-**（4）公共函数管理：**
+**（4）公共函数管理**
 
 如果有一些函数会被多个 kernel 调用，可以创建非 kernel 的文件管理代码，规则如下：
 
@@ -959,7 +959,7 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 所以在定义反向算子时需要注意以下几点：
 
 - 如果反向不需要前向的某些输入或输出参数，则无需在 args 中设置。
-- 如果有些反向算子需要依赖前向算子的输入或输出变量的的 Shape 或 LoD，但不依赖于变量中 Tensor 的内存 Buffer 数据，且不能根据其他变量推断出该 Shape 和 LoD，则可以通过`no_need_buffer`对该变量进行配置，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
+- 如果有些反向算子需要依赖前向算子的输入或输出变量的的 Shape 或 LoD，但不依赖于变量中 Tensor 的内存 Buffer 数据，且不能根据其他变量推断出该 Shape 和 LoD，则可以通过 `no_need_buffer` 对该变量进行配置，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
 ```yaml
 - backward_api : trace_grad
   forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
@@ -971,12 +971,12 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 
 ### 7.4 性能优化
 #### 7.4.1 第三方库的选择
-在写算子过程中优先使用高性能（如 cudnn、mkldnn、mklml、eigen 等）中提供的操作，但是一定要做 benchmark，有些库中的操作在深度学习任务中可能会比较慢。因为高性能库（如 eigen 等）中提供的操作为了更为通用，在性能方面可能并不是很好，通常深度学习模型中数据量较小，所以有些情况下可能高性能库中提供的某些操作速度较慢。比如 Elementwise 系列的所有算子（前向和反向），Elementwise 操作在模型中调用的次数比较多，尤其是 Elementwise_add，在很多操作之后都需要添加偏置项。在之前的实现中 Elementwise_op 直接调用 Eigen 库，由于 Elementwise 操作在很多情况下需要对数据做 Broadcast，而实验发现 Eigen 库做 Broadcast 的速度比较慢，慢的原因在这个 PR[#6229](https://github.com/PaddlePaddle/Paddle/pull/6229)中有描述。
+在写算子过程中优先使用高性能（如 cudnn、mkldnn、mklml、eigen 等）中提供的操作，但是一定要做 benchmark，有些库中的操作在深度学习任务中可能会比较慢。因为高性能库（如 eigen 等）中提供的操作为了更为通用，在性能方面可能并不是很好，通常深度学习模型中数据量较小，所以有些情况下可能高性能库中提供的某些操作速度较慢。比如 Elementwise 系列的所有算子（前向和反向），Elementwise 操作在模型中调用的次数比较多，尤其是 Elementwise_add，在很多操作之后都需要添加偏置项。在之前的实现中 Elementwise_op 直接调用 Eigen 库，由于 Elementwise 操作在很多情况下需要对数据做 Broadcast，而实验发现 Eigen 库做 Broadcast 的速度比较慢，慢的原因在这个 PR ([#6229](https://github.com/PaddlePaddle/Paddle/pull/6229)) 中有描述。
 
 #### 7.4.2 算子性能优化
-算子的计算速度与输入的数据量有关，对于某些算子可以根据输入数据的 Shape 和算子的属性参数来选择不同的计算方式。比如 concat_op，当 axis>=1 时，在对多个 tensor 做拼接过程中需要对每个 tensor 做很多次拷贝，如果是在 GPU 上，需要调用 cudaMemCopy。相对 CPU 而言，GPU 属于外部设备，所以每次调用 GPU 的操作都会有一定的额外开销，并且当需要拷贝的次数较多时，这种开销就更为凸现。目前 concat_op 的实现会根据输入数据的 Shape 以及 axis 值来选择不同的调用方式，如果输入的 tensor 较多，且 axis 不等于 0，则将多次拷贝操作转换成一个 CUDA Kernel 来完成；如果输入 tensor 较少，且 axis 等于 0，使用直接进行拷贝。相关实验过程在该 PR（[#8669](https://github.com/PaddlePaddle/Paddle/pull/8669)）中有介绍。
+算子的计算速度与输入的数据量有关，对于某些算子可以根据输入数据的 Shape 和算子的属性参数来选择不同的计算方式。比如 concat_op，当 axis>=1 时，在对多个 tensor 做拼接过程中需要对每个 tensor 做很多次拷贝，如果是在 GPU 上，需要调用 cudaMemCopy。相对 CPU 而言，GPU 属于外部设备，所以每次调用 GPU 的操作都会有一定的额外开销，并且当需要拷贝的次数较多时，这种开销就更为凸现。目前 concat_op 的实现会根据输入数据的 Shape 以及 axis 值来选择不同的调用方式，如果输入的 tensor 较多，且 axis 不等于 0，则将多次拷贝操作转换成一个 CUDA Kernel 来完成；如果输入 tensor 较少，且 axis 等于 0，使用直接进行拷贝。相关实验过程在该 PR ([#8669](https://github.com/PaddlePaddle/Paddle/pull/8669)) 中有介绍。
 
-由于 CUDA Kernel 的调用有一定的额外开销，所以如果算子中出现多次调用 CUDA Kernel，可能会影响算子的执行速度。比如之前的 sequence_expand_op 中包含很多 CUDA Kernel，通常这些 CUDA Kernel 处理的数据量较小，所以频繁调用这样的 Kernel 会影响算子的计算速度，这种情况下最好将这些小的 CUDA Kernel 合并成一个。在优化 sequence_expand_op 过程（相关 PR[#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)）中就是采用这种思路，优化后的 sequence_expand_op 比之前的实现平均快出约 1 倍左右，相关实验细节在该 PR（[#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)）中有介绍。
+由于 CUDA Kernel 的调用有一定的额外开销，所以如果算子中出现多次调用 CUDA Kernel，可能会影响算子的执行速度。比如之前的 sequence_expand_op 中包含很多 CUDA Kernel，通常这些 CUDA Kernel 处理的数据量较小，所以频繁调用这样的 Kernel 会影响算子的计算速度，这种情况下最好将这些小的 CUDA Kernel 合并成一个。在优化 sequence_expand_op 过程中就是采用这种思路，相关 PR ([#9289](https://github.com/PaddlePaddle/Paddle/pull/9289))，优化后的 sequence_expand_op 比之前的实现平均快出约 1 倍左右，相关实验细节在该 PR ([#9289](https://github.com/PaddlePaddle/Paddle/pull/9289)) 中有介绍。
 
 减少 CPU 与 GPU 之间的拷贝和同步操作的次数。比如 fetch 操作，在每个迭代之后都会对模型参数进行更新并得到一个 loss，并且数据从 GPU 端到没有页锁定的 CPU 端的拷贝是同步的，所以频繁的 fetch 多个参数会导致模型训练速度变慢。
 
@@ -1064,7 +1064,7 @@ The following device operations are asynchronous with respect to the host:
 
 **（2）反向传导**
 
-通常来讲，算子的某个输入 Var 所对应的梯度 GradVar 的 LoD 应该与 Var 自身相同，所以应直接将 Var 的 LoD 共享给 GradVar，可以参考 [elementwise ops 的 backward](https://github.com/PaddlePaddle/Paddle/blob/a88a1faa48a42a8c3737deb0f05da968d200a7d3/paddle/fluid/operators/elementwise/elementwise_op.h#L189-L196)
+通常来讲，算子的某个输入 Var 所对应的梯度 GradVar 的 LoD 应该与 Var 自身相同，所以应直接将 Var 的 LoD 共享给 GradVar，可以参考 [elementwise ops 的 backward](https://github.com/PaddlePaddle/Paddle/blob/a88a1faa48a42a8c3737deb0f05da968d200a7d3/paddle/fluid/operators/elementwise/elementwise_op.h#L189-L196)。
 
 ## 八、更多信息
 
