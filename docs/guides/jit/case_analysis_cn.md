@@ -41,7 +41,7 @@
 
 + 建议模型搭建时，尽量考虑将预测主逻辑放到 ``forward`` 函数中
     + 将训练独有的逻辑放到 子函数 中，通过 ``if self.training`` 来控制
-    + 最大程度抽离 训练和预测 的逻辑为 **公共子函数**
+    + 最大程度抽离 **训练和预测** 的逻辑为 **公共子函数**
 
 
 ## 二、何时指定 InputSpec?
@@ -129,7 +129,7 @@ def forward(self, x):
 
 ## 四、to_tensor() 的使用
 
-``paddle.to_tensor()`` 接口是动态图模型代码中使用比较频繁的一个接口。 ``to_tensor``  功能强大，将可以将一个 ``scalar`` ， ``list`` ，``tuple`` ， ``numpy.ndarray`` 转为 ``paddle.Tensor`` 类型。
+``paddle.to_tensor()`` 接口是动态图模型代码中使用比较频繁的一个接口。 ``to_tensor``  功能强大，可以将一个 ``scalar`` ， ``list`` ，``tuple`` ， ``numpy.ndarray`` 转为 ``paddle.Tensor`` 类型。
 
 此接口是动态图独有的接口，在动转静时，会转换为 ``assign`` 接口：
 
@@ -191,7 +191,7 @@ class SimpleNet(paddle.nn.Layer):
 ## 五、 建议都继承 nn.Layer
 
 
-动态图模型常常包含很多嵌套的子网络，建议各个自定义的子网络 ``sublayer`` **无论是否包含了参数，都继承 ``nn.Layer`` .**
+动态图模型常常包含很多嵌套的子网络，建议各个自定义的子网络 ``sublayer`` **无论是否包含了参数，都继承 ``nn.Layer`` **。
 
 从 **Parameters 和 Buffers**  章节可知，有些 ``paddle.to_tensor`` 接口转来的 ``Tensor`` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 ``.pdiparams`` 文件中。
 
@@ -215,7 +215,7 @@ class SimpleNet(object):                       # <---- 继承 Object
 
 同时，所有继承 ``nn.Layer`` 的 ``sublayer`` 都建议：
 
-+ 重写 ``forward`` 函数，尽量避免重写 ``__call__``` 函数
++ 重写 ``forward`` 函数，尽量避免重写 ``__call__`` 函数
 > ``__call__`` 函数通常会包含框架层面的一些通用的处理逻辑，比如 ``pre_hook`` 和 ``post_hook`` 。重写此函数可能会覆盖框架层面的逻辑。
 
 +  尽量将 ``forward`` 函数作为 sublayers 的调用入口
@@ -311,8 +311,8 @@ net = paddle.jit.save(static_func, path='another_func')
 
 使用上的区别主要在于：
 
-+ **`@to_static` 装饰**：导出其他函数时需要显式地用 `@to_static` 装饰，以告知动静转换模块将其识别、并转为静态图 Program；
-+ **`save`接口参数**：调用`jit.save`接口时，需将上述被`@to_static` 装饰后的函数作为**参数**；
++ **`@to_static` 装饰**：导出其他函数时需要显式地用 `@to_static` 装饰，以告知动静转换模块将其识别、并转为静态图 Program
++ **`save`接口参数**：调用`jit.save`接口时，需将上述被`@to_static` 装饰后的函数作为**参数**
 
 执行上述代码样例后，在当前目录下会生成三个文件：
 ```
