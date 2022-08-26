@@ -284,6 +284,8 @@ def convert_ifelse(pred, true_fn, false_fn, true_args, false_args, return_vars):
 如下代码样例中的 `while a < 10`, 此循环条件中的 `a` 是一个 `int` 类型，并不是 Tensor 类型，因此属于**不依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def not_depend_tensor_while(x):
     a = 1
 
@@ -319,10 +321,12 @@ def not_depend_tensor_while(x):
 如下代码样例中的 `for i in range(bs)`, 此循环条件中的 `bs` 是一个 `paddle.shape` 返回的 Tensor 类型，且将其 Tensor 值作为了循环的终止条件，因此属于**依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def depend_tensor_while(x):
     bs = paddle.shape(x)[0]
 
-    for i in range(bs):       # <---- bas is a Tensor
+    for i in range(bs):       # <---- bs is a Tensor
         x = x + 1
 
     return x
