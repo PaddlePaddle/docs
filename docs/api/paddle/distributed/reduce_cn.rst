@@ -19,7 +19,7 @@ reduce
 :::::::::
     - tensor (Tensor) - 操作的输入 Tensor，结果返回至目标进程号的 Tensor 中。Tensor 的数据类型为：float16、float32、float64、int32、int64。
     - dst (int) - 返回操作结果的目标进程编号。
-    - op (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.Min|ReduceOp.PROD，可选) - 归约的具体操作，比如求和，取最大值，取最小值和求乘积，默认为求和归约。
+    - op (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.MIN|ReduceOp.PROD，可选) - 归约的具体操作，比如求和，取最大值，取最小值和求乘积，默认为求和归约。
     - group (int，可选) - 工作的进程组编号，默认为 0。
 
 返回
