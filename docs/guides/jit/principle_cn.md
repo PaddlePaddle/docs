@@ -14,7 +14,7 @@
     + 当某个函数被 ``@to_static`` 装饰、或用 ``paddle.jit.to_static()`` 包裹时，飞桨会隐式地解析动态图的 Python 代码（即解析：抽象语法树，简称 AST）。
 
 2. **AST 转写，得到静态图代码**
-    + 函数转写：递归地对所有函数进行转写，实现用户仅需在最外层函数添加 @to_static 的体验效果。
+    + 函数转写：使用递归对所有函数进行转写，实现用户仅需在最外层函数添加 @to_static 的体验效果。
 
     + 控制流转写：用户的代码中可能包含依赖 Tensor 的控制流代码，飞桨框架会自动且有选择性地将 if、for、while 转换为静态图对应的控制流。
 
@@ -31,7 +31,7 @@
     + 执行时会根据用户指定的 build_strategy 策略应用图优化技术，提升执行效率。
 
 5. **使用 ``paddle.jit.save`` 保存静态图模型**
-    + 使用 ``paddle.jit.save`` 时会遍历模型 net 中所有的函数，将每个的 StaticFunction 中的计算图 Program 和涉及到的 Parameters 序列化为磁盘文件。
+    + 使用 ``paddle.jit.save`` 时会遍历模型 net 中所有的函数，将每个 StaticFunction 中的计算图 Program 和涉及到的 Parameters 序列化为磁盘文件。
 
 
 
@@ -87,8 +87,8 @@ net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
 在导出模型时，需要显式地指定输入 ``Tensor`` 的**签名信息**，优势是：
 
 
-+ 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度
-+ 可以指定 Placeholder 的 ``name`` ，方便预测时根据 ``name`` 输入数据
++ 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度；
++ 可以指定 Placeholder 的 ``name`` ，方便预测时根据 ``name`` 输入数据。
 
 > 注：``InputSpec`` 接口的详细用法，请参见 [InputSpec 的用法介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/basic_usage_cn.html#inputspec)。
 
@@ -96,7 +96,7 @@ net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
 ### 三、动转静代码转写（AST 转写）
 ### 3.1 函数转写
 
-在 NLP、CV 领域中，一个模型常包含层层复杂的子函数调用，动转静中是如何实现**只需装饰最外层的 ``forward`` 函数**，就能递归处理所有的函数。
+在 NLP、CV 领域中，一个模型常包含层层复杂的子函数调用，动转静中是如何实现**只需装饰最外层的 ``forward`` 函数**，就能递归处理所有的函数？
 
 如下是一个模型样例：
 
@@ -173,14 +173,14 @@ def add_two(x, y):
 
 **转写上有两个基本原则：**
 
-+ **并非**所有动态图中的 ``if/for/while`` 都会转写为 ``cond_op/while_op``
-+ **只有**控制流的判断条件 **依赖了``Tensor``**（如 ``shape`` 或 ``value`` ），才会转写为对应 Op
++ **并非**所有动态图中的 ``if/for/while`` 都会转写为 ``cond_op/while_op``；
++ **只有**控制流的判断条件 **依赖了``Tensor``**（如 ``shape`` 或 ``value`` ），才会转写为对应 Op。
 
-这是因为模型代码中不依赖 Tensor 的 ``if/for/while`` 会正常按照 Python 原生的语法逻辑去执行；而依赖 Tensor 的 ``if/for/while`` 才会调用 [paddle.static.cond](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/cond_cn.html#cond) 和 [paddle.static.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/while_loop_cn.html#while-loop) 两个飞桨的控制流 API。
+这是因为模型代码中不依赖 Tensor 的 ``if/for/while`` 会正常按照 Python 原生的语法逻辑去执行；而依赖 Tensor 的 ``if/for/while`` 才会调用 [paddle.static.cond](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/cond_cn.html#cond) 和 [paddle.static.while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/while_loop_cn.html#while-loop) 两个飞桨框架的控制流 API。
 
 #### 3.2.1 IfElse
 
-无论是否会转写为 ``cond_op`` ，动转静都会首先对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**
+无论是否会转写为 ``cond_op`` ，动转静都会首先对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**。
 
 **示例一：不依赖 Tensor 的控制流**
 
@@ -277,6 +277,7 @@ def convert_ifelse(pred, true_fn, false_fn, true_args, false_args, return_vars):
 ``For/While`` 也会先进行代码层面的规范化，在逐行执行用户代码时，才会决定是否转为 ``while_op``。
 
 **示例一：不依赖 Tensor 的控制流**
+
 如下代码样例中的 `while a < 10`, 此循环条件中的 `a` 是一个 `int` 类型，并不是 Tensor 类型，因此属于**不依赖 Tensor 的控制流**。
 
 ```python
@@ -344,7 +345,7 @@ def depend_tensor_while(x):
 ```
 
 
-``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Tensor``** 来决定是否转为 ``while_op``
+``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Tensor``** 来决定是否转为 ``while_op``。
 
 ## 四、 生成静态图的 Program 和 Parameters
 
