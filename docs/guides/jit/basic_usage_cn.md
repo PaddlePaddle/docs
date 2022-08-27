@@ -882,6 +882,9 @@ class SimpleNet(Layer):
 若被装饰函数的参数列表除了 Tensor 类型，还包含其他如 Int、 String 等非 Tensor 类型时，推荐在函数中使用 kwargs 形式定义非 Tensor 参数，如下述样例中的 ``use_act`` 参数。
 
 ```python
+import paddle
+from paddle.jit import to_static
+
 class SimpleNet(Layer):
     def __init__(self, ):
         super(SimpleNet, self).__init__()
@@ -896,11 +899,11 @@ class SimpleNet(Layer):
 
 net = SimpleNet()
 # 方式一：save inference model with use_act=False
-net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x')])
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x')])
 paddle.jit.save(net, path='./simple_net')
 
 # 方式二：save inference model with use_act=True
-net = to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), True])
+net = to_static(net, input_spec=[InputSpec(shape=[None, 10], name='x'), True])
 paddle.jit.save(net, path='./simple_net')
 ```
 
