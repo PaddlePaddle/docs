@@ -96,10 +96,10 @@
 def forward(self, x):
     out = self.linear(x)  # [bs, 3]
 
-    # 以下将 tensor 转为了 numpy 进行一系列操作
+    # 以下将 tensor 转为了 numpy array 进行一系列操作
     x_data = x.numpy().astype('float32')  # [bs, 10]
-    weight = np.random.randn([10,3])
-    mask = paddle.to_tensor(x_data * weight)  # 此处又转回了 Tensor
+    weight = np.random.randn(10, 3)
+    mask = paddle.to_tensor(x_data @ weight)  # 此处又转回了 Tensor
 
     out = out * mask
     return out
@@ -113,7 +113,7 @@ def forward(self, x):
     out = self.linear(x)  # [bs, 3]
 
     weight = paddle.randn([10,3], 'float32')
-    mask = x * weight
+    mask = paddle.matmul(x, weight)
 
     out = out * mask
     return out
