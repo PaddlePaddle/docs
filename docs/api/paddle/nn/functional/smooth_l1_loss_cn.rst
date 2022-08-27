@@ -11,7 +11,7 @@ smooth_l1_loss
     .. math::
          loss(x,y) = \frac{1}{n}\sum_{i}z_i
 
-`z_i`的计算公式如下：
+:math:`z_i`的计算公式如下：
 
     .. math::
 

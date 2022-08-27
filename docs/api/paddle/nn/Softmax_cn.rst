@@ -4,7 +4,7 @@ Softmax
 -------------------------------
 .. py:class:: paddle.nn.Softmax(axis=-1, name=None)
 
-Softmax 激活层，OP 的计算过程如下：
+Softmax 激活层，计算过程如下：
 
 步骤 1：输入 ``x`` 的 ``axis`` 维会被置换到最后一维；
 
@@ -22,7 +22,7 @@ Softmax 激活层，OP 的计算过程如下：
 
 .. math::
 
-    Softmax[i, j] = \frac{\exp(x[i, j])}{\sum_j(exp(x[i, j])}
+    softmax[i, j] = \frac{\exp(x[i, j])}{\sum_j(exp(x[i, j])}
 
 - 示例 1（矩阵一共有三维。axis = -1，表示沿着最后一维（即第三维）做 softmax 操作）
 

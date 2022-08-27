@@ -8,7 +8,7 @@ Softplus 激活层
 
 .. math::
 
-    Softplus(x) = \frac{1}{beta} * \log(1 + e^{beta * x}) \\
+    softplus(x) = \frac{1}{beta} * \log(1 + e^{beta * x}) \\
     \text{为了保证数值稳定性，当}\,beta * x > threshold\,\text{时，函数转变为线性函数 x}。
 
 其中，:math:`x` 为输入的 Tensor

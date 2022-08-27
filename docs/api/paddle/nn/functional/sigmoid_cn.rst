@@ -11,7 +11,7 @@ sigmoid
 sigmoid 激活函数
 
 .. math::
-    out = \frac{1}{1 + e^{-x}}
+    sigmoid(x) = \\frac{1}{1 + e^{-x}}
 
 
 参数
