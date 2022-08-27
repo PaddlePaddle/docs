@@ -884,6 +884,8 @@ class SimpleNet(Layer):
 ```python
 import paddle
 from paddle.jit import to_static
+from paddle.nn import Layer
+from paddle.static import InputSpec
 
 class SimpleNet(Layer):
     def __init__(self, ):
