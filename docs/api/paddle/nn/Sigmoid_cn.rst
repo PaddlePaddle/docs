@@ -9,7 +9,7 @@ Sigmoid
 
     .. math::
 
-        sigmoid(x) = \\frac{1}{1 + e^{-x}}
+        sigmoid(x) = \frac{1}{1 + e^{-x}}
 
 参数
 ::::::::
