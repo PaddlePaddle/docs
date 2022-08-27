@@ -34,7 +34,7 @@ save
 代码示例
 :::::::::
 
-```python
+    ```python
 # example 1: save layer
 import numpy as np
 import paddle
@@ -102,9 +102,9 @@ train(layer, loader, loss_fn, adam)
 # save
 path = "example_model/linear"
 paddle.jit.save(layer, path)
-```
+    ```
 
-```python
+    ```python
 # example 2: save function
 import paddle
 from paddle.static import InputSpec
@@ -126,4 +126,4 @@ def save_function():
     print((load_result - origin).abs().max() < 1e-10)
 
 save_function()
-```
+    ```
