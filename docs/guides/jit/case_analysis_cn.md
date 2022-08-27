@@ -193,7 +193,7 @@ class SimpleNet(paddle.nn.Layer):
 
 动态图模型常常包含很多嵌套的子网络，建议各个自定义的子网络 ``sublayer`` **无论是否包含了参数，都继承 ``nn.Layer`` .**
 
-从 **Parameters 和 Buffers**  章节可知，有些 ``paddle.to_tensor`` 接口转来的 ``Tensor`` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 ``.pdiparams`` 文件中。
+从 [**Parameters 和 Buffers**](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/principle_cn.html#buffer)  章节可知，有些 ``paddle.to_tensor`` 接口转来的 ``Tensor`` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 ``.pdiparams`` 文件中。
 
 > **原因**： 若某个 sublayer 包含了 buffer Variables，但却没有继承 ``nn.Layer`` ，则可能导致保存的 ``.pdiparams`` 文件缺失部分重要参数。
 
