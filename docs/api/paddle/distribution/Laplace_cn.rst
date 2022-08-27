@@ -64,11 +64,11 @@ sample(shape)
 
 **参数**
 
-    - **shape** (tuple) - 1 维元组，指定生成样本的维度。数据类型为 int32。默认为()。
+- **shape** (tuple) - 1 维元组，指定生成样本的维度，默认为()。
 
 **返回**
 
-Tensor，预先设计好维度的 Tensor，数据类型为 float32。
+- Tensor: 样本数据。
 
 entropy()
 '''''''''
@@ -87,7 +87,7 @@ entropy()
 
 **返回**
 
-Tensor，Laplace的信息熵，数据类型为 float32。
+- Tensor: 信息熵。
 
 log_prob(value)
 '''''''''
@@ -96,11 +96,11 @@ log_prob(value)
 
 **参数**
 
-    - **value** (Tensor|Scalar) - 待计算值。数据类型为 float32 或 float64。
+- **value** (Tensor|Scalar) - 待计算值。
 
 **返回**
 
-Tensor，对数概率，数据类型与 value 相同。
+- Tensor: 对数概率。
 
 probs(value)
 '''''''''
@@ -109,7 +109,7 @@ probs(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
+- **value** (Tensor|Scalar) - 输入张量。
 
 **返回**
 
@@ -118,7 +118,7 @@ Tensor，概率，数据类型与 value 相同。
 kl_divergence(other)
 '''''''''
 
-两个Laplace分布之间的 KL 散度。
+两个 Laplace 分布之间的 KL 散度。
 
 数学公式：
 
@@ -141,8 +141,8 @@ kl_divergence(other)
 
 **参数**
 
-    - **other** (Laplace) - Laplace 的实例。
+- **other** (Laplace) - Laplace 的实例。
 
 **返回**
 
-Tensor，两个拉普拉斯分布之间的 KL 散度，数据类型为 float32。
+- Tensor: 两个拉普拉斯分布之间的 KL 散度。
