@@ -309,8 +309,8 @@ x_spec = InputSpec(shape=[None, 10], dtype='float32', name='x')
 # step 3: @to_static 装饰
 static_func = to_static(net.another_func, input_spec=[x_spec])
 
-# step 4: 调用 jit.save 接口
-net = paddle.jit.save(static_func, path='another_func')
+# step 4: 调用 paddle.jit.save 接口
+paddle.jit.save(static_func, path='another_func')
 ```
 
 使用上的区别主要在于：
