@@ -215,7 +215,7 @@ class SimpleNet(object):                       # <---- 继承 object
 
 同时，所有继承 ``nn.Layer`` 的 ``sublayer`` 都建议：
 
-+ 重写 ``forward`` 函数，尽量避免重写 ``__call__``` 函数
++ 重写 ``forward`` 函数，尽量避免重写 __call__ 函数
 > ``__call__`` 函数通常会包含框架层面的一些通用的处理逻辑，比如 ``pre_hook`` 和 ``post_hook`` 。重写此函数可能会覆盖框架层面的逻辑。
 
 +  尽量将 ``forward`` 函数作为 sublayers 的调用入口
