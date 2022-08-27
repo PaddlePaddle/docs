@@ -265,7 +265,7 @@ def forward(self, x):
 model = SimpleNet()
 model.eval()           # <---- 一键切换分支，则只会导出 eval 相关的预测分支
 
-jit.save(mode, model_path)
+paddle.jit.save(model, model_path)
 ```
 
 
