@@ -12,9 +12,8 @@ Laplace
 
 .. math::
 
-    
-    pdf(x; \mu, \sigma) = \frac{1}{Z}e^ \frac {-|x - \mu|}  \sigma
 
+    pdf(x; \mu, \sigma) = \frac{1}{Z}e^ \frac {-|x - \mu|}  \sigma
     Z = 2 \sigma
 
 上面的数学公式中：
