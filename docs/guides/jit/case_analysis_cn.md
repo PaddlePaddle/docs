@@ -129,7 +129,7 @@ def forward(self, x):
 
 ## 四、to_tensor() 的使用
 
-``paddle.to_tensor()`` 接口是动态图模型代码中使用比较频繁的一个接口。 ``to_tensor``  功能强大，将可以将一个 ``scalar`` ， ``list`` ，``tuple`` ， ``numpy.ndarray`` 转为 ``paddle.Tensor`` 类型。
+``paddle.to_tensor()`` 接口是动态图模型代码中使用比较频繁的一个接口。 ``to_tensor``  功能强大，可以将一个 ``scalar`` ， ``list`` ，``tuple`` ， ``numpy.ndarray`` 转为 ``paddle.Tensor`` 类型。
 
 此接口是动态图独有的接口，在动转静时，会转换为 ``assign`` 接口：
 
