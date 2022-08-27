@@ -200,7 +200,7 @@ class SimpleNet(paddle.nn.Layer):
 **举个例子：**
 
 ```python
-class SimpleNet(object):                       # <---- 继承 Object
+class SimpleNet(object):                       # <---- 继承 object
     def __init__(self, mask):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)  # <---- Linear 参数永远都不会被更新
