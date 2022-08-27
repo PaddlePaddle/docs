@@ -271,13 +271,17 @@ paddle.jit.save(model, model_path)
 
 推荐使用 ``self.training`` 或其他非 Tensor 类型的 bool 值进行区分。
 
-此 flag 继承自 ``nn.Layer`` ，因此可通过 ``model.train()`` 和 ``model.eval()`` 来全局切换所有 sublayers 的分支状态。
+此 flag 继承自 ``paddle.nn.Layer`` ，因此可通过 ``model.train()`` 和 ``model.eval()`` 来全局切换所有 sublayers 的分支状态。
 
 ## 七、非 forward 函数导出
 
-`@to_static` 与 `jit.save` 接口搭配也支持导出非 forward 的其他函数，具体使用方式如下：
+`@paddle.jit.to_static` 与 `paddle.jit.save` 接口搭配也支持导出非 forward 的其他函数，具体使用方式如下：
 
 ```python
+import paddle
+from paddle.jit import to_static
+from paddle.static import InputSpec
+
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
         super(SimpleNet, self).__init__()
@@ -300,7 +304,7 @@ net = SimpleNet()
 net.eval()
 
 # step 2: 定义 InputSpec 信息 （同上）
-x_spec = InputSpec(shape=[None, 3], dtype='float32', name='x')
+x_spec = InputSpec(shape=[None, 10], dtype='float32', name='x')
 
 # step 3: @to_static 装饰
 static_func = to_static(net.another_func, input_spec=[x_spec])
@@ -312,12 +316,12 @@ net = paddle.jit.save(static_func, path='another_func')
 使用上的区别主要在于：
 
 + **`@to_static` 装饰**：导出其他函数时需要显式地用 `@to_static` 装饰，以告知动静转换模块将其识别、并转为静态图 Program；
-+ **`save`接口参数**：调用`jit.save`接口时，需将上述被`@to_static` 装饰后的函数作为**参数**；
++ **`save`接口参数**：调用`paddle.jit.save`接口时，需将上述被`@to_static` 装饰后的函数作为**参数**；
 
 执行上述代码样例后，在当前目录下会生成三个文件：
 ```
 another_func.pdiparams        // 存放模型中所有的权重数据
-another_func.pdimodel         // 存放模型的网络结构
+another_func.pdmodel         // 存放模型的网络结构
 another_func.pdiparams.info   // 存放额外的其他信息
 ```
 
