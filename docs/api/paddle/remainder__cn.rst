@@ -1,6 +1,6 @@
 .. _cn_api_tensor_remainder_:
 
-remainder
+remainder_
 -------------------------------
 
 .. py:function:: paddle.remainder(x, y, name=None)
