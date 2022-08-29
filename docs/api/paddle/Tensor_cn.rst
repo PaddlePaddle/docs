@@ -1228,6 +1228,15 @@ index_select(index, axis=0, name=None)
 
 请参考 :ref:`cn_api_tensor_search_index_select`
 
+index_add(index, axis, value, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_index_add`
+
 repeat_interleave(repeats, axis=None, name=None)
 :::::::::
 
