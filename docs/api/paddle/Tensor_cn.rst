@@ -1235,7 +1235,7 @@ index_add(index, axis, value, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_index_add`
+请参考 :ref:`cn_api_tensor_index_add`
 
 repeat_interleave(repeats, axis=None, name=None)
 :::::::::
