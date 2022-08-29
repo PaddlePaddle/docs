@@ -55,7 +55,7 @@ on_train_begin(logs=None)
 on_train_end(logs=None)
 '''''''''
 
-在训练的结束调用。
+在训练的结束调用。Test for GPU CI...
 
 参数：
     - **logs** (dict|None): 日志信息是dict或None. 通过paddle.Model传递的dict包含的字段有'loss', 评估指标metric的名字，以及'batch_size'。
