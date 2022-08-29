@@ -62,13 +62,13 @@ out = paddle.add(out, y)
 ```python
 import paddle
 from paddle.jit import to_static
+from paddle.static import InputSpec
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
         super(SimpleNet, self).__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
-    @to_static
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
@@ -88,12 +88,12 @@ net = paddle.jit.to_static(net, input_spec=[x_spec, y_spec])  # 动静转换
 
 
 + 可以指定某些维度为 ``None`` ， 如 ``batch_size`` ，``seq_len`` 维度
-+ 可以指定 Placeholder 的 ``name`` ，方面预测时根据 ``name`` 输入数据
++ 可以指定 Placeholder 的 ``name`` ，方便预测时根据 ``name`` 输入数据
 
 > 注：``InputSpec`` 接口的详细用法，请参见 [InputSpec 的用法介绍](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/basic_usage_cn.html#inputspec)。
 
 
-### 三、动转静代码转写（AST 转写）
+## 三、动转静代码转写（AST 转写）
 ### 3.1 函数转写
 
 在 NLP、CV 领域中，一个模型常包含层层复杂的子函数调用，动转静中是如何实现**只需装饰最外层的 ``forward`` 函数**，就能递归处理所有的函数。
@@ -187,27 +187,29 @@ def add_two(x, y):
 如下代码样例中的 `if label is not None`, 此判断只依赖于 `label` 是否为 `None`（存在性），并不依赖 `label` 的 Tensor 值（数值性），因此属于**不依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def not_depend_tensor_if(x, label=None):
     out = x + 1
     if label is not None:              # <----- python bool 类型
         out = paddle.nn.functional.cross_entropy(out, label)
     return out
 
-print(to_static(not_depend_tensor_ifw).code)
+print(to_static(not_depend_tensor_if).code)
 # 转写后的代码：
 """
 def not_depend_tensor_if(x, label=None):
     out = x + 1
 
-    def true_fn_1(label, out):  # true 分支
+    def true_fn_0(label, out):  # true 分支
         out = paddle.nn.functional.cross_entropy(out, label)
         return out
 
-    def false_fn_1(out):        # false 分支
+    def false_fn_0(out):        # false 分支
         return out
 
-    out = paddle.jit.dy2static.convert_ifelse(label is not None, true_fn_1,
-        false_fn_1, (label, out), (out,), (out,))
+    out = paddle.jit.dy2static.convert_ifelse(label is not None, true_fn_0,
+        false_fn_0, (label, out), (out,), (out,))
 
     return out
 """
@@ -219,6 +221,8 @@ def not_depend_tensor_if(x, label=None):
 如下代码样例中的 `if paddle.mean(x) > 5`, 此判断直接依赖 `paddle.mean(x)` 返回的 Tensor 值（数值性），因此属于**依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def depend_tensor_if(x):
     if paddle.mean(x) > 5.:         # <---- Bool Tensor 类型
         out = x - 1
@@ -230,7 +234,7 @@ print(to_static(depend_tensor_if).code)
 # 转写后的代码：
 """
 def depend_tensor_if(x):
-    out = paddle.jit.dy2static.data_layer_not_check(name='out', shape=[-1],
+    out = paddle.jit.dy2static.data_layer_not_check(name='out_0', shape=[-1],
         dtype='float32')
 
     def true_fn_0(x):      # true 分支
@@ -280,6 +284,8 @@ def convert_ifelse(pred, true_fn, false_fn, true_args, false_args, return_vars):
 如下代码样例中的 `while a < 10`, 此循环条件中的 `a` 是一个 `int` 类型，并不是 Tensor 类型，因此属于**不依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def not_depend_tensor_while(x):
     a = 1
 
@@ -315,10 +321,12 @@ def not_depend_tensor_while(x):
 如下代码样例中的 `for i in range(bs)`, 此循环条件中的 `bs` 是一个 `paddle.shape` 返回的 Tensor 类型，且将其 Tensor 值作为了循环的终止条件，因此属于**依赖 Tensor 的控制流**。
 
 ```python
+from paddle.jit import to_static
+
 def depend_tensor_while(x):
     bs = paddle.shape(x)[0]
 
-    for i in range(bs):       # <---- bas is a Tensor
+    for i in range(bs):       # <---- bs is a Tensor
         x = x + 1
 
     return x
