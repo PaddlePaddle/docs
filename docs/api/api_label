@@ -159,7 +159,7 @@ paddle.floor	.. _api_paddle_floor:
 paddle.Tensor.floor_	.. _api_paddle_Tensor_floor_:
 paddle.floor_divide	.. _api_paddle_floor_divide:
 paddle.mod	.. _api_paddle_mod:
-paddle.remainder	.. _cn_api_tensor_remainder:
+paddle.remainder	.. _api_tensor_remainder:
 paddle.gather	.. _api_paddle_gather:
 paddle.gather_nd	.. _api_paddle_gather_nd:
 paddle.greater_equal	.. _api_paddle_greater_equal:
