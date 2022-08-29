@@ -1832,7 +1832,7 @@ remainder_(y, name=None)
 
 返回类型：Tensor
 
-Inplace 版本的 :ref:`cn_api_tensor_remainder` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_tensor_remainder_` API，对输入 `x` 采用 Inplace 策略。
 
 reshape(shape, name=None)
 :::::::::
