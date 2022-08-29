@@ -122,7 +122,7 @@
 
 注：
 
-* 如果你使用的是安培架构的 GPU，推荐使用 CUDA11.2。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。
+* 如果你使用的是安培架构的 GPU，推荐使用 CUDA11.2。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。请参考: [GPU架构对照表](https://www.paddlepaddle.org.cn/documentation/docs/zh/install/Tables.html#nvidia-gpu)
 
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境，可能需要将上述命令行中所有 `python` 替换为具体的 `Python 解释器` 路径（例如 C:\Python37\python.exe）。
 
