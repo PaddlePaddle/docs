@@ -13,7 +13,7 @@
 
 动态图编程体验更佳、更易调试，但是因为采用 Python 实时执行的方式，开销较大，在性能方面与 C++ 有一定差距；静态图调试难度大，但是将前端 Python 编写的神经网络预定义为 Program 描述，转到 C++ 端重新解析执行，脱离了 Python 依赖，往往执行性能更佳，并且预先拥有完整网络结构也更利于全局优化。
 
-想了解动态图和静态图的详细对比介绍，可参见 [动态图和静态图的差异](https://www.paddlepaddle.org.cn/tutorials/projectdetail/4047189)。
+想了解动态图和静态图的详细对比介绍，可参见 [动态图和静态图的差异](https://www.paddlepaddle.org.cn/tutorials/projectdetail/4047189#anchor-8)。
 
 ### 1.2 动态图转静态图应用场景
 
@@ -56,6 +56,9 @@
   <figure align="center">
   <img src="https://raw.githubusercontent.com/PaddlePaddle/docs/develop/docs/guides/jit/images/timeline_base.png" style="zoom:70%" />
   </figure>
+  
+  $$图2$$
+  
   动态图和静态图在 CPU 调度层面存在差异：
 
   + 动态图训练时，CPU 调度时间涉及 Python 到 C++ 的交互（Python 前端代码调起底层 C++ OP）和 C++ 代码调度；
@@ -917,7 +920,7 @@ paddle.jit.save(net, path='./simple_net')
 
 如下是一个 ResNet50 模型动转静训练时，通过在 ``to_static`` 函数中配置 ``build_strategy`` 参数来开启算子融合 ``fuse_elewise_add_act_ops`` 和 ``enable_addto`` 图优化策略的使用样例。不同的模型可应用的优化策略不同，比如算子融合策略一般与模型中用到的 API 有关系：
 
-+ 若存在 elementwise_ad d 后跟 relu 等激活函数，则可以尝试开启 ``fuse_elewise_add_act_ops``
++ 若存在 elementwise_add 后跟 relu 等激活函数，则可以尝试开启 ``fuse_elewise_add_act_ops``
 
 + 若存在 relu 后跟 depthwise_conv2 函数，则可以尝试开启 ``fuse_relu_depthwise_conv``
 
