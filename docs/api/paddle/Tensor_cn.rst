@@ -2421,3 +2421,12 @@ erfinv(x, name=None)
 对输入 x 进行逆误差函数计算
 
 请参考 :ref:`cn_api_paddle_tensor_erfinv`
+
+take(index, mode='raise', name=None)
+:::::::::
+
+返回：一个新的 Tensor，其中包含给定索引处的输入元素。结果与 :attr:`index` 的形状相同
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_take`
