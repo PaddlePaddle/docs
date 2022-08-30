@@ -255,13 +255,13 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
     [operator < conv2d > error]
 ```
 此类问题的原因一般是：
-> 执行到报错所在行的 Paddle API 时，某些输入或者 weight 的类型还是动态图的 Tensor，而非静态图的 Variable 或者 Parameter.
+> 执行到报错所在行的 Paddle API 时，某些输入或者 weight 的类型还是动态图的 Tensor，而非静态图的 Variable 或者 Parameter。
 
 **排查建议：**
 
 - 首先确认代码所在的 sublayer 是否继承了 nn.Layer
 - 此行代码所在函数是否绕开了 forward 函数，单独调用的（2.1 版本之前）
-- 如何查看是 Tensor 还是 Variable 类型，可以通过 pdb 交互式调试
+- 查看是 Tensor 还是 Variable 类型，可以通过 pdb 交互式调试
 
 ### 3.2 Expected input_dims[i] == input_dims[0]
 **报错信息大致如下：**
