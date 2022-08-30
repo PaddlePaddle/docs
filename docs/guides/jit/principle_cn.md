@@ -180,7 +180,7 @@ def add_two(x, y):
 
 #### 3.2.1 IfElse
 
-无论是否会转写为 ``cond_op`` ，动转静都会首先对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**
+无论是否会转写为 ``cond_op`` ，动转静都会首先对代码进行处理，**转写为 ``cond`` 接口可以接受的写法**。
 
 **示例一：不依赖 Tensor 的控制流**
 
@@ -281,6 +281,7 @@ def convert_ifelse(pred, true_fn, false_fn, true_args, false_args, return_vars):
 ``For/While`` 也会先进行代码层面的规范化，在逐行执行用户代码时，才会决定是否转为 ``while_op``。
 
 **示例一：不依赖 Tensor 的控制流**
+
 如下代码样例中的 `while a < 10`, 此循环条件中的 `a` 是一个 `int` 类型，并不是 Tensor 类型，因此属于**不依赖 Tensor 的控制流**。
 
 ```python
@@ -352,7 +353,7 @@ def depend_tensor_while(x):
 ```
 
 
-``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Tensor``** 来决定是否转为 ``while_op``
+``convert_while_loop`` 的底层的逻辑同样会根据 **判断条件是否为``Tensor``** 来决定是否转为 ``while_op``。
 
 ## 四、 生成静态图的 Program 和 Parameters
 
@@ -438,7 +439,7 @@ class Linear(...):
 + 动态图 ``Tensor`` 转为静态图 ``Variable`` ，并确保编译期的 ``InferShape`` 正确执行
 
 
-### 4.3 Buffer 变量
+### 4.3 Buffers 变量
 
 **什么是 ``Buffers`` 变量？**
 
@@ -489,6 +490,6 @@ class SimpleNet(paddle.nn.Layer):
 ```
 
 
-总结一下 ``buffers`` 的用法：
+总结一下 ``Buffers`` 的用法：
 
 +  若某个非 ``Tensor`` 数据需要当做 ``Persistable`` 的变量序列化到磁盘，则最好在 ``__init__`` 中调用 ``self.XX= paddle.to_tensor(xx)`` 接口转为 ``buffer`` 变量
