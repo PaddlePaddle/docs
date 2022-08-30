@@ -12,7 +12,7 @@ remainder
         \\out = x \% y\\
 
 .. note::
-   ``paddle.remainder`` 遵守 broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+   ``paddle.remainder`` 支持广播，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
 
 参数
 :::::::::
