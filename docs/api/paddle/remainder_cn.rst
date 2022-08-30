@@ -5,16 +5,18 @@ remainder
 
 .. py:function:: paddle.remainder(x, y, name=None)
 
+
 逐元素取模算子。公式为：
 
 .. math::
-        out = x \% y
+        \\out = x \% y\\
 
 **注意**:
         ``paddle.remainder`` 支持广播。关于广播规则，请参考 :ref:`cn_user_guide_broadcasting`
 
 参数
 :::::::::
+
         - **x**（Tensor）- 多维 Tensor。数据类型为 float32 、float64、int32 或 int64。
         - **y**（Tensor）- 多维 Tensor。数据类型为 float32 、float64、int32 或 int64。
         - **name**（str，可选） - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
