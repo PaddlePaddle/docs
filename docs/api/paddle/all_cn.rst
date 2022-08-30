@@ -5,7 +5,7 @@ all
 
 .. py:function:: paddle.all(x, axis=None, keepdim=False, name=None)
 
-对指定维度上的 Tensor 元素进行逻辑与运算，并输出相应的计算结果。
+高丁对指定维度上的 Tensor 元素进行逻辑与运算，并输出相应的计算结果。
 
 参数
 :::::::::
