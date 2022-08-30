@@ -14,7 +14,25 @@ CPUPS流式训练示例
 
 在学习流式训练具体使用方法之前，建议先详细阅读\ `参数服务器快速开始 <../cluster_quick_start_ps_cn.html>`_\章节，了解参数服务器的基本使用方法。
 
-流式训练的完整代码示例参见：\ `PaddleRec流式训练 <https://github.com/PaddlePaddle/PaddleRec/blob/master/tools/static_ps_online_trainer.py>`_\，其中所使用到的模型及配置参见：\ `slot_dnn <https://github.com/PaddlePaddle/PaddleRec/tree/master/models/rank/slot_dnn>`_\，重点关注其中的流式训练配置文件config_online.yaml，及模型组网net.py和static_model.py。
+流式训练的完整代码示例参见：\ `PaddleRec <https://github.com/PaddlePaddle/PaddleRec>`_\，具体的目录结构如下：
+
+.. code-block:: text
+
+    ├── tools
+        ├── static_ps_online_trainer.py      # 流式训练主脚本
+        ├── utils                            # 流式训练所需各种工具函数封装
+            ├── static_ps
+                ├── flow_helper.py           # 流式训练所需utils，包括保存、加载等
+                ├── metric_helper.py         # 分布式指标计算所需utils
+                ├── time_helper.py           # 训练耗时计算所需utils
+                ├── program_helper.py        # 模型引入、分布式strategy生成所需util
+    ├── models                               # 存放具体模型组网和配置            
+        ├── rank
+            ├── slot_dnn                     # 模型示例目录
+                ├── net.py                   # mlp具体组网
+                ├── static_model.py          # 静态图训练调用（在net.py基础上封装）
+                ├── config_online.yaml       # 流式训练配置文件
+                ├── queuedataset_reader.py   # 数据处理脚本
 
 1 模型组网
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -26,16 +44,6 @@ CPUPS流式训练示例
 
 .. code-block:: python
 
-    # net.py
-    # 构造ShowClickEntry，指明展现和点击对应的变量名
-    self.entry = paddle.distributed.ShowClickEntry("show", "click")
-    emb = paddle.static.nn.sparse_embedding(
-        input=s_input,
-        size=[self.dict_dim, self.emb_dim],
-        padding_idx=0,
-        entry=self.entry,   # 在sparse_embedding中传入entry
-        param_attr=paddle.ParamAttr(name="embedding"))
-
     # static_model.py
     # 构造show/click对应的data，变量名需要与entry中的名称一致
     show = paddle.static.data(
@@ -43,6 +51,21 @@ CPUPS流式训练示例
     label = paddle.static.data(
         name="click", shape=[None, 1], dtype="int64")
 
+    # net.py
+    # ShowClickEntry接收的show/click变量数据类型为float32，需做cast处理
+    show_cast = paddle.cast(show, dtype='float32')
+    click_cast = paddle.cast(click, dtype='float32')
+
+    # 构造ShowClickEntry，指明展现和点击对应的变量名
+    self.entry = paddle.distributed.ShowClickEntry(show_cast.name,
+                                                   click_cast.name)
+    emb = paddle.static.nn.sparse_embedding(
+        input=s_input,
+        size=[self.dict_dim, self.emb_dim],
+        padding_idx=0,
+        entry=self.entry,   # 在sparse_embedding中传入entry
+        param_attr=paddle.ParamAttr(name="embedding"))
+    
 2 数据读取
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -64,6 +87,7 @@ CPUPS流式训练示例
     "end_day", "string", "任意", "是", "训练结束的日期（例：20190720）"
     "data_donefile", "string", "任意", "否", "用于探测当前分片数据是否落盘完成的标识文件"
     "data_sleep_second", "int", "任意", "否", "当前分片数据尚未完成的等待时间"
+    "prefetch", "bool", "任意", "否", "是否开启数据prefetch，即在当前pass训练过程中预读取下一个pass的数据"
 
 2.1 数据组织形式
 """"""""""""
@@ -211,6 +235,14 @@ CPUPS流式训练示例
     # 在当前Pass训练结束后，InMemoryDataset需调用release_memory()方法释放内存
     dataset.release_memory()
   
+2.5 数据预读取
+""""""""""""
+
+由于数据读取是IO密集型任务，而模型训练是计算密集型任务，为进一步提升整体训练性能，可以将数据读取和模型训练两个阶段做overlap处理，即在上一个pass训练过程中预读取下一个pass的数据。
+
+具体地，可以使用dataset的以下两个API进行数据预读取操作：
+1. ``preload_into_memory()`` ：创建dataset后，使用该API替换 ``load_into_memory()`` ，在当前pass的训练过程中，预读取下一个pass的训练数据。
+2. ``wait_preload_done()`` ：在下一个pass训练之前，调用 ``wait_preload_done()`` ，等待pass训练数据全部读取完毕，进行训练。
 
 3 模型训练及预测
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -258,10 +290,10 @@ CPUPS流式训练示例
     global_auc = fleet.metrics.auc(stat_pos, stat_neg)
 
     # 指标计算所需的中间变量清零
-    set_zero(stat_pos)
-    set_zero(stat_neg)
+    set_zero(stat_pos.name)
+    set_zero(stat_neg.name)
 
-3.2 Debug模式
+3.2 Dump功能
 """"""""""""
 
 Debug模式下的dump功能主要为了解决以下两个问题：
@@ -348,20 +380,17 @@ Debug模式下的dump功能主要为了解决以下两个问题：
     for pass_id in range(1, 1 + len(self.online_intervals)):
         # 分Pass训练，省略具体训练过程
 
-        if fleet.is_first_worker() and pass_id % self.checkpoint_per_pass == 0:
-            # 在到达配置的Pass时，由0号节点调用save_model保存明文模型
+        if pass_id % self.checkpoint_per_pass == 0:
+            # 在到达配置的Pass时，调用save_model保存明文模型
             save_model(self.exe, self.save_model_path, day, pass_id)
-        fleet.barrier_worker()
     
     # 一天数据训练完成
     # 调用shrink删除某些稀疏参数
     fleet.shrink()
 
-    if fleet.is_first_worker():
-        next_day = get_next_day(day)
-        # 由0号节点调用save_batch_model保存batch_model
-        save_batch_model(self.exe, self.save_model_path, next_day)
-    fleet.barrier_worker()
+    next_day = get_next_day(day)
+    # 调用save_batch_model保存batch_model
+    save_batch_model(self.exe, self.save_model_path, next_day)
 
 4.2 推理模型
 """"""""""""
@@ -377,7 +406,7 @@ Debug模式下的dump功能主要为了解决以下两个问题：
 .. code-block:: python
 
     # 该方法定义在tools/utils/static_ps/flow_helper.py中
-    def save_xbox_model(output_path, day, pass_id, exe, feed_vars, target_vars, client):
+    def save_inference_model(output_path, day, pass_id, exe, feed_vars, target_vars, client):
         if pass_id != -1:
             # mode=1，保存delta模型
             mode = 1
@@ -393,8 +422,9 @@ Debug模式下的dump功能主要为了解决以下两个问题：
             model_path, [feed.name for feed in feed_vars],
             target_vars,
             mode=mode)
-        if not is_local(model_path):
-            client.upload("./dnn_plugin", model_path)
+        if not is_local(model_path) and fleet.is_first_worker():
+            client.upload_dir("./dnn_plugin", model_path)
+        fleet.barrier_worker()
       
     # 定义推理裁剪网络的输入和输出，具体定义参考static_model.py和net.py
     self.inference_feed_vars = model.inference_feed_vars
@@ -402,28 +432,23 @@ Debug模式下的dump功能主要为了解决以下两个问题：
     for pass_id in range(1, 1 + len(self.online_intervals)):
         # 分Pass训练，省略具体训练过程
 
-        if fleet.is_first_worker() and pass_id % self.save_delta_frequency == 0:
-            # 在到达配置的Pass时，由0号节点调用save_xbox_model保存delta推理模型
-            save_xbox_model(self.save_model_path, day, pass_id,
-                            self.exe, self.inference_feed_vars,
-                            self.inference_target_var,
-                            self.hadoop_client)
-        fleet.barrier_worker()
+        if pass_id % self.save_delta_frequency == 0:
+            # 在到达配置的Pass时，调用save_xbox_model保存delta推理模型
+            save_inference_model(self.save_model_path, day, pass_id,
+                                 self.exe, self.inference_feed_vars,
+                                 self.inference_target_var,
+                                 self.hadoop_client)
     
     # 一天数据训练完成
     # 调用shrink删除某些稀疏参数
     fleet.shrink()
 
-    if fleet.is_first_worker():
-        next_day = get_next_day(day)
-        xbox_base_key = int(time.time())
-        # 由0号节点调用save_xbox_model保存base推理模型
-        save_xbox_model(self.save_model_path, next_day, -1,
-                        self.exe, self.inference_feed_vars,
-                        self.inference_target_var,
-                        self.hadoop_client)
-    fleet.barrier_worker()
-
+    next_day = get_next_day(day)
+    # 由0号节点调用save_xbox_model保存base推理模型
+    save_inference_model(self.save_model_path, next_day, -1,
+                         self.exe, self.inference_feed_vars,
+                         self.inference_target_var,
+                         self.hadoop_client)
 
 5 稀疏参数高级功能
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
