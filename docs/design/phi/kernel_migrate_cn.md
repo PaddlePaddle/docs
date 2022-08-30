@@ -33,7 +33,7 @@
 
 首先，根据当前迁移的 Kernel 所属的设备，确定迁移后 Kernel 文件所应该放置的子目录，例如 xpu kernel 迁移后放置到 `paddle/phi/kernels/xpu` 子目录，mkldnn kernel 迁移后放置到 `paddle/phi/kernels/onednn` 子目录。
 
-然后，在相应子目录中创建 `xxx_kernel.cc` 和 `xxx_grad_kernel.cc` 文件，创建文件后在文件头部添加 License，include 必要的头文件，一般来讲至少需要 include 以下两个头文件（NPU和MLU不需要添加kernel.h头文件）：
+然后，在相应子目录中创建 `xxx_kernel.cc` 和 `xxx_grad_kernel.cc` 文件，创建文件后在文件头部添加 License，include 必要的头文件，一般来讲至少需要 include 以下两个头文件（NPU 和 MLU 不需要添加 kernel.h 头文件）：
 
 > 注意：在 phi/kernels 子目录下，前向和反向的 kernel 是分不同文件放置的，此处和迁移前不同
 
