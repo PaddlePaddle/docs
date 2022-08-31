@@ -7,7 +7,7 @@ fc
 .. py:function::  paddle.static.nn.fc(x, size, num_flatten_dims=1, weight_attr=None, bias_attr=None, activation=None, name=None)
 
 
-将在神经网络中构建一个全连接层。其输入可以是一个 Tensor 或多个 Tensor 组成的 list（详见参数说明）。该 OP 会为每个输入 Tensor 创建一个权重（weight）参数，即一个从每个输入单元到每个输出单元的全连接权重矩阵。
+在神经网络中构建一个全连接层。其输入可以是一个 Tensor 或多个 Tensor 组成的 list（详见参数说明）。为每个输入 Tensor 创建一个权重（weight）参数，即一个从每个输入单元到每个输出单元的全连接权重矩阵。
 每个输入 Tensor 和其对应的权重（weight）相乘得到形状为 :math:`[batch\_size, *, size]` 输出 Tensor，其中 :math:`*` 表示可以为任意个额外的维度。
 如果有多个输入 Tensor，则多个形状为 :math:`[batch\_size, *, size]` 的 Tensor 计算结果会被累加起来，作为最终输出。如果 :attr:`bias_attr` 非空，则会创建一个偏置（bias）参数，并把它累加到输出 Tensor 中。
 如果 :attr:`activation` 非空，将会在输出结果上应用相应的激活函数。
