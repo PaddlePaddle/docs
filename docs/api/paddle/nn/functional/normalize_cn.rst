@@ -5,7 +5,7 @@ normalize
 
 .. py:function:: paddle.nn.functional.normalize(x, p=2, axis=1, epsilon=1e-12, name=None)
 
-该接口使用 :math:`L_p` 范数沿维度 ``axis`` 对 ``x`` 进行归一化。计算公式如下：
+使用 :math:`L_p` 范数沿维度 ``axis`` 对 ``x`` 进行归一化。计算公式如下：
 
 .. math::
 

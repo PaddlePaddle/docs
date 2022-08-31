@@ -5,7 +5,7 @@ softmax
 .. py:function:: paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None)
 
 
-该 OP 实现了 softmax 层。OP 的计算过程如下：
+实现了 softmax 层。OP 的计算过程如下：
 
 步骤 1：输入 ``x`` 的 ``axis`` 维会被置换到最后一维；
 
