@@ -18,7 +18,7 @@ GPU1 卡的 out_tensor_list 包含 0_1 和 1_1。
 
 参数
 :::::::::
-    - **in_tensor_list** (list) - 包含所有输入 Tensors 的一个列表。在列表里面的所有元素都必须是一个 Tensor，Tensor 的数据类型必须是 float16、float32、 float64、int32、int64。
+    - **in_tensor_list** (list) - 包含所有输入 Tensors 的一个列表。在列表里面的所有元素都必须是一个 Tensor，Tensor 的数据类型必须是 float16、float32、float64、int32、int64、int8、uint8、bool。
     - **out_tensor_list** (Tensor) - 包含所有输出 Tensors 的一个列表。在列表里面的所有元素数据类型要和输入的 Tensors 数据类型一致。
     - **group** (Group，可选) - new_group 返回的 Group 实例，或者设置为 None 表示默认地全局组。默认值：None。
     - **use_calc_stream** (bool，可选) - 标识使用计算流还是通信流。默认值：True。

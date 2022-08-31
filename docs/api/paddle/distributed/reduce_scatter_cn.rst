@@ -9,11 +9,11 @@ reduce_scatter
 
 参数
 :::::::::
-    - **tensor** (Tensor) - 输出的张量。
-    - **tensor_list** (list[Tensor]) - 归约和切分的张量列表。
-    - **op** (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.Min|ReduceOp.PROD) - 操作类型，默认 ReduceOp.SUM。
-    - **group** (Group，可选) - 通信组；如果是 None，则使用默认通信组。
-    - **use_calc_stream** (bool，可选) - 决定是在计算流还是通信流上做该通信操作；默认为 True，表示在计算流。
+    - **tensor** (Tensor) – 输出的张量。
+    - **tensor_list** (list(Tensor)) – 归约和切分的张量列表。
+    - **op** (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.MIN|ReduceOp.PROD) – 操作类型，默认 ReduceOp.SUM。
+    - **group**: (Group, 可选) – 通信组；如果是 None，则使用默认通信组。
+    - **use_calc_stream**: (bool, 可选) – 决定是在计算流还是通信流上做该通信操作；默认为 True，表示在计算流。
 
 
 返回
