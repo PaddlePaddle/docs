@@ -9,7 +9,7 @@ program_guard
 
 
 
-应配合使用 python 的 ``with`` 语句来将 ``with`` block 里的算子和变量添加进指定的全局主程序（main program）和启动程序（startup program）。
+配合使用 python 的 ``with`` 语句来将 ``with`` block 里的算子和变量添加进指定的全局主程序（main program）和启动程序（startup program）。
 
 ``with`` 语句块下的各接口将在新的 main program（主程序）中添加 operators（算子）和 Tensors（张量）。
 
