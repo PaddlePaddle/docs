@@ -11,8 +11,8 @@
 中文时：
 
     形状:
-          - **input** - 形状为（批大小，通道数，高度，宽度），即，HCHW 格式的 4-D Tensor。
-          - **output** - 形状为（批大小，卷积核个数，输出图像的高度，输出图像的高度）的 4-D Tensor。
+          - **input** (Tensor)：形状为（批大小，通道数，高度，宽度），即，HCHW 格式的 4-D Tensor。
+          - **output** (Tensor)：形状为（批大小，卷积核个数，输出图像的高度，输出图像的高度）的 4-D Tensor。
 
 英文时：
 
@@ -208,9 +208,9 @@ API 参数部分，要解释清楚每个参数的意义和使用场景。需要�
 
     参数
     :::::::::
-        - x (Tensor) - 输入的 Tensor，数据类型为：float32、float64、int32、int64。
-        - y (Tensor) - 输入的 Tensor，数据类型为：float32、float64、int32、int64。
-        - name (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+        - **x** (Tensor) - 输入的 Tensor，数据类型为：float32、float64、int32、int64。
+        - **y** (Tensor) - 输入的 Tensor，数据类型为：float32、float64、int32、int64。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 ### API 返回
@@ -306,21 +306,7 @@ API 的属性用来描述 API 所包含的属性。如果 API 有属性，每个
 
     **代码示例**
 
-    .. code-block:: python
-
-        import paddle
-        prog = paddle.default_main_program()
-        random_seed = prog.random_seed
-        x_var = paddle.data(name="X", shape=[3,3], dtype="float32")
-        print(random_seed)
-        # 0
-        # default random seed is 0
-        # Here we need to set random seed before we use dropout
-        prog.random_seed = 1
-        z_var = paddle.nn.functional.dropout(x_var, 0.7)
-        print(prog.random_seed)
-        # 1
-        # the random seed is change to 1
+    COPY-FROM: paddle.Program.random_seed
 
 
 ### API 方法
@@ -349,24 +335,7 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
 
     **代码示例**
 
-    .. code-block:: python
-
-        import paddle
-
-        startup_prog = paddle.Program()
-        main_prog = paddle.Program()
-        with paddle.program_guard(startup_prog, main_prog):
-            x = paddle.data(name='X', shape=[1000, 784], dtype='float32')
-            y = paddle.data(name='Y', shape=[784, 100], dtype='float32')
-            z = paddle.mul(x=x, y=y)
-
-            binary_str = paddle.default_main_program().desc.serialize_to_string()
-            prog_restored = paddle.default_main_program().parse_from_string(binary_str)
-
-            print(paddle.default_main_program())
-            print(prog_restored)
-
-            # The two Programs printed here should be same
+    COPY_FROM: paddle.Program.parse_from_string
 
 ### 注解
 注解部分描述一些用户使用该 API 时需要额外注意的一些注意事项，可以出现在任意需要提示用户的地方；可以是当前版本存在的一些问题，如例 1；也可以是该 API 使用上的一些注意事项，如例 2；
