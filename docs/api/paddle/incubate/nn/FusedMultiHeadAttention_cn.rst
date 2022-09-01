@@ -36,10 +36,9 @@ FusedMultiHeadAttention
 
 形状
 :::::::::
-    - **x** (Tensor)：默认形状为 ``[batch_size, sequence_length, embed_dim]``，其数据类型为 float32，float64 或者 float16。
-    - **output** (Tensor)：其形状和数据类型与输入 x 相同。
+    - x (Tensor)：默认形状为 ``[batch_size, sequence_length, embed_dim]``，其数据类型为 float32，float64 或者 float16。
+    - output (Tensor)：其形状和数据类型与输入 x 相同。
 
-返回
 :::::::::
 计算 FusedMultiHeadAttention 的可调用对象
 

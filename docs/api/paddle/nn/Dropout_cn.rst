@@ -32,10 +32,9 @@ Dropout 是一种正则化手段，该算子根据给定的丢弃概率 `p`，�
 
 形状
 :::::::::
- - **输入** : N-D `Tensor` 。
- - **输出** : N-D `Tensor`，形状与输入相同。
+ - 输入 : N-D `Tensor` 。
+ - 输出 : N-D `Tensor`，形状与输入相同。
 
-代码示例
 :::::::::
 
 COPY-FROM: paddle.nn.Dropout

@@ -34,11 +34,10 @@ AdaptiveAvgPool3D
 
 形状
 :::::::::
-    - **x** (Tensor)：默认形状为（批大小，通道数，长度，高度，宽度），即 NCDHW 格式的 5-D Tensor。其数据类型为 float16, float32, float64, int32 或 int64。
-    - **output** (Tensor)：默认形状为（批大小，通道数，输出特征长度，输出特征高度，输出特征宽度），即 NCDHW 格式的 5-D Tensor。其数据类型与输入相同。
+    - x (Tensor)：默认形状为（批大小，通道数，长度，高度，宽度），即 NCDHW 格式的 5-D Tensor。其数据类型为 float16, float32, float64, int32 或 int64。
+    - output (Tensor)：默认形状为（批大小，通道数，输出特征长度，输出特征高度，输出特征宽度），即 NCDHW 格式的 5-D Tensor。其数据类型与输入相同。
 
 
-返回
 :::::::::
 计算 AdaptiveAvgPool3D 的可调用对象
 

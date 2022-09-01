@@ -32,10 +32,9 @@ fold
 
 形状
 :::::::::
- - **输出** ：Tensor，fold 操作之后的结果，形状如上面所描述的[N, Cout, H_out, W_out]，数据类型与 ``x`` 相同
+ - 输出 ：Tensor，fold 操作之后的结果，形状如上面所描述的[N, Cout, H_out, W_out]，数据类型与 ``x`` 相同
 
 
-代码示例
 :::::::::
 
 COPY-FROM: paddle.nn.functional.fold

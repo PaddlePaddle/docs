@@ -15,10 +15,9 @@ ChannelShuffle
 
 形状
 :::::::::
-    - **x** (Tensor) – 默认形状为（批大小，通道数，高度，宽度），即 NCHW 格式的 4-D Tensor。其数据类型为 float32 或 float64。
-    - **out** (Tensor) – 其形状与数据类型均和输入相同。
+    - x (Tensor) – 默认形状为（批大小，通道数，高度，宽度），即 NCHW 格式的 4-D Tensor。其数据类型为 float32 或 float64。
+    - out (Tensor) – 其形状与数据类型均和输入相同。
 
-返回
 :::::::::
 计算 ChannelShuffle 的可调用对象。
 

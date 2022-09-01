@@ -35,12 +35,11 @@ MaxUnPool2D
 
 形状
 :::::::::
-    - **x** (Tensor)：默认形状为（批大小，通道数，高度，宽度），即 NCHW 格式的 4-D Tensor。其数据类型为 float32 或 float64。
-    - **indices** (Tensor)：默认形状为（批大小，通道数，输出特征高度，输出特征宽度），即 NCHW 格式的 4-D Tensor。其数据类型为 int32。
-    - **output** (Tensor)：默认形状为（批大小，通道数，输出特征高度，输出特征宽度），即 NCHW 格式的 4-D Tensor。其数据类型与输入一致。
+    - x (Tensor)：默认形状为（批大小，通道数，高度，宽度），即 NCHW 格式的 4-D Tensor。其数据类型为 float32 或 float64。
+    - indices (Tensor)：默认形状为（批大小，通道数，输出特征高度，输出特征宽度），即 NCHW 格式的 4-D Tensor。其数据类型为 int32。
+    - output (Tensor)：默认形状为（批大小，通道数，输出特征高度，输出特征宽度），即 NCHW 格式的 4-D Tensor。其数据类型与输入一致。
 
 
-返回
 :::::::::
 计算 MaxUnPool2D 的可调用对象
 

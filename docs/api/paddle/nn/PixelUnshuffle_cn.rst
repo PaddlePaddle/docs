@@ -20,10 +20,9 @@ PixelUnshuffle
 
 形状
 :::::::::
-    - **x** (Tensor) – 形状为 :math:`[N, C, H, W]` 或 :math:`[N, C, H, W]` 的 4-D Tensor。
-    - **out** (Tensor) – 形状为 :math:`[N, r^2C, H/r, W/r]` 或 :math:`[N, H/r, W/r, r^2C]` 的 4-D Tensor，这里 :math:`r` 就是 :attr:`downscale_factor`。
+    - x (Tensor) – 形状为 :math:`[N, C, H, W]` 或 :math:`[N, C, H, W]` 的 4-D Tensor。
+    - out (Tensor) – 形状为 :math:`[N, r^2C, H/r, W/r]` 或 :math:`[N, H/r, W/r, r^2C]` 的 4-D Tensor，这里 :math:`r` 就是 :attr:`downscale_factor`。
 
-代码示例
 :::::::::
 
 COPY-FROM: paddle.nn.PixelUnshuffle

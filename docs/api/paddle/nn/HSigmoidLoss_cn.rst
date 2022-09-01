@@ -35,11 +35,10 @@ HSigmoidLoss
 
 形状
 :::::::::
-    - **input** (Tensor): - 输入的 Tensor，维度是[N, D]，其中 N 是 batch size， D 是特征尺寸。
-    - **label** (Tensor): - 标签，维度是[N, 1]。
-    - **output** (Tensor): - 输入 ``input`` 和标签 ``label`` 间的 `hsigmoid loss` 损失。输出 Loss 的维度为[N, 1]。
+    - input (Tensor): - 输入的 Tensor，维度是[N, D]，其中 N 是 batch size， D 是特征尺寸。
+    - label (Tensor): - 标签，维度是[N, 1]。
+    - output (Tensor): - 输入 ``input`` 和标签 ``label`` 间的 `hsigmoid loss` 损失。输出 Loss 的维度为[N, 1]。
 
-代码示例
 ::::::::::
 
 COPY-FROM: paddle.nn.HSigmoidLoss

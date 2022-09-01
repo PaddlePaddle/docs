@@ -32,12 +32,11 @@ MaxUnPool1D
 
 形状
 :::::::::
-    - **x** (Tensor)：默认形状为（批大小，通道数，长度），即 NCL 格式的 3-D Tensor。其数据类型为 float32 或 float64。
-    - **indices** (Tensor)：默认形状为（批大小，通道数，输出特征长度），即 NCL 格式的 3-D Tensor。其数据类型为 int32。
-    - **output** (Tensor)：默认形状为（批大小，通道数，输出特征长度），即 NCL 格式的 3-D Tensor。其数据类型与输入一致。
+    - x (Tensor)：默认形状为（批大小，通道数，长度），即 NCL 格式的 3-D Tensor。其数据类型为 float32 或 float64。
+    - indices (Tensor)：默认形状为（批大小，通道数，输出特征长度），即 NCL 格式的 3-D Tensor。其数据类型为 int32。
+    - output (Tensor)：默认形状为（批大小，通道数，输出特征长度），即 NCL 格式的 3-D Tensor。其数据类型与输入一致。
 
 
-返回
 :::::::::
 计算 MaxUnPool1D 的可调用对象
 
