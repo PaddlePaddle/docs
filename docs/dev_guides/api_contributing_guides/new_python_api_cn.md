@@ -40,7 +40,7 @@
 | manipulation.py | 非算术运算类的数组元素操作，比如拼接 `concat`，堆叠`stack`，转置`transpose` 等 |
 | math.py         | 逐元素算术运算，比如加减乘除，三角函数等；规约类算术运算，比如 `sum`；扫描类算术运算，比如 `cumsum` |
 | random.py       | 随机数发生类函数，比如 `randn`, `uniform`，注意和 creation 中的区别 |
-| search.py       | 搜索，排序，比如 `argsoft`, `argmin`                         |
+| search.py       | 搜索，排序，比如 `argsort`, `argmin`                         |
 | stat.py         | 统计类，比如 `mean`, `var`, `std`                            |
 | to_string.py    | Tensor 的打印相关功能                                        |
 

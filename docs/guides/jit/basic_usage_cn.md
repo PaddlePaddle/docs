@@ -917,7 +917,7 @@ paddle.jit.save(net, path='./simple_net')
 
 如下是一个 ResNet50 模型动转静训练时，通过在 ``to_static`` 函数中配置 ``build_strategy`` 参数来开启算子融合 ``fuse_elewise_add_act_ops`` 和 ``enable_addto`` 图优化策略的使用样例。不同的模型可应用的优化策略不同，比如算子融合策略一般与模型中用到的 API 有关系：
 
-+ 若存在 elementwise_ad d 后跟 relu 等激活函数，则可以尝试开启 ``fuse_elewise_add_act_ops``
++ 若存在 elementwise_add 后跟 relu 等激活函数，则可以尝试开启 ``fuse_elewise_add_act_ops``
 
 + 若存在 relu 后跟 depthwise_conv2 函数，则可以尝试开启 ``fuse_relu_depthwise_conv``
 
