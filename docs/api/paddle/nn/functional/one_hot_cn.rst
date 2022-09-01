@@ -4,7 +4,7 @@ one_hot
 -------------------------------
 
 .. py:function:: paddle.nn.functional.one_hot(x, num_classes, name=None)
-该 OP 将输入'x'中的每个 id 转换为一个 one-hot 向量，其长度为 ``num_classes``，该 id 对应的向量维度上的值为 1，其余维度的值为 0。
+将输入'x'中的每个 id 转换为一个 one-hot 向量，其长度为 ``num_classes``，该 id 对应的向量维度上的值为 1，其余维度的值为 0。
 
 输出的 Tensor 的 shape 是在输入 shape 的最后一维后面添加了 num_classes 的维度。
 

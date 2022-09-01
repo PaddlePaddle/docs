@@ -5,7 +5,7 @@ gumbel_softmax
 .. py:function:: paddle.nn.functional.gumbel_softmax(x, temperature = 1.0, hard = False, axis = -1, name = None)
 
 
-该 OP 实现了按 Gumbel-Softmax 分布进行采样的功能，通过 hard 可选择是否离散化。
+实现了按 Gumbel-Softmax 分布进行采样的功能，通过 hard 可选择是否离散化。
 记 temperature 为 t，涉及到的等式如下：
 
 1. 产生 gumbel 噪声

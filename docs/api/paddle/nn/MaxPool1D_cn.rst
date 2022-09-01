@@ -6,7 +6,7 @@ MaxPool1D
 
 .. py:function:: paddle.nn.MaxPool1D(kernel_size, stride=None, padding=0, return_mask=False, ceil_mode=False, name=None)
 
-该算子根据输入 `x` , `kernel_size` 等参数对一个输入 Tensor 计算 1D 的最大值池化。输入和输出都是 3-D Tensor，
+根据输入 `x` , `kernel_size` 等参数对一个输入 Tensor 计算 1D 的最大值池化。输入和输出都是 3-D Tensor，
 默认是以 `NCL` 格式表示的，其中 `N` 是 batch size, `C` 是通道数，`L` 是输入特征的长度。
 
 假设输入形状是(N, C, L)，输出形状是 (N, C, L_{out})，卷积核尺寸是 k, 1d 最大值池化计算公式如下：
