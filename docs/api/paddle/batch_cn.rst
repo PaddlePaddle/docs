@@ -5,7 +5,7 @@ batch
 
 .. py:function:: paddle.batch(reader, batch_size, drop_last=False)
 
-该接口是一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据（batched data）。
+一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据（batched data）。
 
 .. warning::
     不推荐使用这个 API，如有数据加载需求推荐使用支持多进程并发加速的 ``paddle.io.DataLoader``

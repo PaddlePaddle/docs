@@ -6,7 +6,7 @@ spectral_norm
 .. py:function:: paddle.nn.utils.spectral_norm(layer, name='weight', n_power_iterations=1, eps=1e-12, dim=None)
 
 
-该接口根据以下步骤对传入的 ``layer`` 中的权重参数进行谱归一化：
+根据以下步骤对传入的 ``layer`` 中的权重参数进行谱归一化：
 
 步骤 1：生成形状为[H]的向量 U，以及形状为[W]的向量 V，其中 H 是输入权重张量的第 ``dim`` 个维度，W 是剩余维度的乘积。
 

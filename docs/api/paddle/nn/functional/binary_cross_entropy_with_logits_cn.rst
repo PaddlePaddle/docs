@@ -5,7 +5,7 @@ binary_cross_entropy_with_logits
 
 .. py:function:: paddle.nn.functional.binary_cross_entropy_with_logits(logit, label, weight=None, reduction='mean', pos_weight=None, name=None)
 
-该 OP 用于计算输入 `logit` 和标签 `label` 间的 `binary cross entropy with logits loss` 损失。
+计算输入 `logit` 和标签 `label` 间的 `binary cross entropy with logits loss` 损失。
 
 该 OP 结合了 `sigmoid` 操作和 :ref:`api_nn_loss_BCELoss` 操作。同时，我们也可以认为该 OP 是 ``sigmoid_cross_entrop_with_logits`` 和一些 `reduce` 操作的组合。
 

@@ -33,8 +33,7 @@
   - 在 paddle/phi/kernels 目录下存放了飞桨框架已经实现的不同硬件的算子内核，可供开发 C++ 算子 时调用。
   - 有时也需要自己开发新的算子内核，这时可能需要使用硬件支持的软件栈（如 CUDA）来实现，或者使用飞桨框架提供的 Kernel Primitive API 来实现，后者具体介绍请参见 [Kernel Primitive API](../op_optimization/kernel_primitive_api/index_cn.html) 章节。
 
-值得注意的是，代码开发完成后，请确保通过了单元测试和 CI 测试。
-
+值得注意的是，代码开发完成后，请确保通过了全部单元测试和 CI 测试，才能合入代码。
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/paddle_api_dev_flow.png?raw=true" width="500" ></center>
 

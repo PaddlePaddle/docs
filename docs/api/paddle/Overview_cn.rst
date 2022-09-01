@@ -115,6 +115,8 @@ tensor 数学操作
     " :ref:`paddle.stanh <cn_api_fluid_layers_stanh>` ", "stanh 激活函数"
     " :ref:`paddle.std <cn_api_tensor_cn_std>` ", "沿给定的轴 axis 计算 x 中元素的标准差"
     " :ref:`paddle.subtract <cn_api_paddle_tensor_subtract>` ", "逐元素相减算子"
+    " :ref:`paddle.remainder <cn_api_tensor_remainder>` ", "逐元素取模算子"
+    " :ref:`paddle.remainder_ <cn_api_tensor_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sum <cn_api_tensor_sum>` ", "对指定维度上的 Tensor 元素进行求和运算"
     " :ref:`paddle.tan <cn_api_fluid_layers_tan>` ", "三角函数 tangent"
     " :ref:`paddle.tanh <cn_api_tensor_tanh>` ", "tanh 激活函数"
@@ -137,6 +139,7 @@ tensor 数学操作
     " :ref:`paddle.acosh <cn_api_fluid_layers_acosh>` ", "反双曲余弦函数"
     " :ref:`paddle.asinh <cn_api_fluid_layers_asinh>` ", "反双曲正弦函数"
     " :ref:`paddle.atanh <cn_api_fluid_layers_atanh>` ", "反双曲正切函数"
+    " :ref:`paddle.take <cn_api_tensor_take>` ", "输出给定索引处的输入元素，结果与 index 的形状相同"
 
 
 .. _tensor_logic:
@@ -330,6 +333,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.as_complex <cn_api_paddle_as_complex>` ", "将实数 Tensor 转为复数 Tensor"
     " :ref:`paddle.as_real <cn_api_paddle_as_real>` ", "将复数 Tensor 转为实数 Tensor"
     " :ref:`paddle.repeat_interleave <cn_api_tensor_repeat_interleave>` ", "沿 axis 轴对输入 x 的元素进行复制"
+    " :ref:`paddle.index_add <cn_api_tensor_index_add>` ", "沿着指定轴 axis 将 index 中指定位置的 x 与 value 相加，并写入到结果张量中的对应位置"
 
 .. einsum:
 

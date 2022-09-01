@@ -40,7 +40,7 @@
 | manipulation.py | 非算术运算类的数组元素操作，比如拼接 `concat`，堆叠`stack`，转置`transpose` 等 |
 | math.py         | 逐元素算术运算，比如加减乘除，三角函数等；规约类算术运算，比如 `sum`；扫描类算术运算，比如 `cumsum` |
 | random.py       | 随机数发生类函数，比如 `randn`, `uniform`，注意和 creation 中的区别 |
-| search.py       | 搜索，排序，比如 `argsoft`, `argmin`                         |
+| search.py       | 搜索，排序，比如 `argsort`, `argmin`                         |
 | stat.py         | 统计类，比如 `mean`, `var`, `std`                            |
 | to_string.py    | Tensor 的打印相关功能                                        |
 
@@ -153,7 +153,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 对于静态图，一般分为输入参数检查、创建输出 Tensor、添加 OP 几个步骤。
 
-- **输入参数检查：**包括必要的类型检查、值检查，以及输入 Tensor 的 shape、dtype 等检查，确保组网能正常运行等。
+- **输入参数检查：** 包括必要的类型检查、值检查，以及输入 Tensor 的 shape、dtype 等检查，确保组网能正常运行等。
   - 输入参数的检查一般仅在静态图分支中使用。主要原因是静态图下该函数仅被执行一次，发生在组网时，而动态图下该函数会被多次执行，Python 端过多的输入检查会影响执行效率。并且由于动态图即时执行的优势，如果发生错误也可以通过分析 C++ 端的报错信息定位问题。
   - 示例中输入参数检查的代码逻辑比较复杂但仅用于 `trace` 函数，因此在该函数内定义一个检查输入参数的函数 `__check_input`，代码见下文。
 - **创建输出 Tensor ，添加 OP：**
