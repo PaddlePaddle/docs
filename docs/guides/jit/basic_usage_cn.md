@@ -430,7 +430,7 @@ paddle.jit.save(loaded_layer, "fine-tune.model/linear", input_spec=[x])
 
 ##### 3.2.2.2 使用 ``paddle.load`` 加载
 
-``paddle.jit.save`` 同时保存了模型和参数，如果你已有组网代码，只需要从存储结果中载入模型的参数，则可以使用 ``paddle.load`` 接口载入，返回所存储模型的 ``state_dict`` ，并使用 ``set_state_dict`` 方法将模型参数与 Layer 关联。示例如下：
+``paddle.jit.save`` 同时保存了模型和参数，如果已有组网代码，只需要从存储结果中载入模型的参数，则可以使用 ``paddle.load`` 接口载入，返回所存储模型的 ``state_dict`` ，并使用 ``set_state_dict`` 方法将模型参数与 Layer 关联。示例如下：
 
 ```python
 import paddle
@@ -625,7 +625,7 @@ pred = loaded_layer(x)
             return self._linear(x)
     ```
 
-4. 前文中大多都是用 ``paddle.jit.save`` 保存的 ``Layer.forward`` 类实例，保存内容包括模型结构和参数。当保存单独的一个函数时， ``paddle.jit.save`` 只会保存这个函数对应的静态图模型结构 Program ，不会保存和这个函数相关的参数。如果你必须保存参数，请使用 Layer 类封装这个函数。 示例代码如下：
+4. 前文中大多都是用 ``paddle.jit.save`` 保存的 ``Layer.forward`` 类实例，保存内容包括模型结构和参数。当保存单独的一个函数时， ``paddle.jit.save`` 只会保存这个函数对应的静态图模型结构 Program ，不会保存和这个函数相关的参数。如果必须保存参数，请使用 Layer 类封装这个函数。 示例代码如下：
 
     ```python
     # 定义一个函数
