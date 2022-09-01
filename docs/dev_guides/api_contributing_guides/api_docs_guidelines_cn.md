@@ -11,8 +11,8 @@
 中文时：
 
     形状:
-          - input: 形状为（批大小, 通道数，高度，宽度），即，HCHW 格式的 4-D Tensor。
-          - output: 形状为（批大小, 卷积核个数，输出图像的高度，输出图像的高度）的 4-D Tensor。
+          - **input** - 形状为（批大小，通道数，高度，宽度），即，HCHW 格式的 4-D Tensor。
+          - **output** - 形状为（批大小，卷积核个数，输出图像的高度，输出图像的高度）的 4-D Tensor。
 
 英文时：
 
@@ -109,7 +109,7 @@
 ### API 名称
 API 名称直接写 API 的名字即可，不需要将全路径写全；
 
-**如 paddle.add **
+**如 paddle.add**
 
     add
     ---------
@@ -158,7 +158,7 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
         ``paddle.add`` 遵守 broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
 英文：
 
-    **Note**:
+    Note:
         ``paddle.add`` supports broadcasting. If you want know more about broadcasting, please refer to :ref:`user_guide_broadcasting` .
 
 
@@ -224,19 +224,7 @@ API 参数部分，要解释清楚每个参数的意义和使用场景。需要�
     ``Tensor``，维度和数据类型都与 ``x`` 相同，存储运算后的结果。
 
 ### API 抛出异常
-API 抛出异常部分，不做强制要求，可以在一些特殊的场景下给出抛出异常的信息，如：
-
-**场景 1：API 使用有先后依赖关系**
-如：[paddle.fluid.layers.DynamicRNN.update_memory()](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/DynamicRNN_cn.html#update-memory-ex-mem-new-mem 'update_memory')框中的部分:
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-2a1cbab0eb4c76208a5f1e0a0cc6a19bb0d85f1a)
-
-**场景 2：多个参数相互影响**
-如[paddle.layers.pool2d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/pool2d_cn.html#id4 'pool2d')框出的部分:
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-ce7f6e6f0bc3ccae564b47ff47007f4d518204a0)
-
-**场景 3：该 API 的使用场景有特殊限制**
-如[paddle.fluid.layers.DynamicRNN.step_input()](https://www.paddlepaddle.org.cn/documentation/docs/zh/api_cn/layers_cn/DynamicRNN_cn.html#step-input-x-level-0 'step_input')框出的部分：
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-5fef53592710f7638d0902b2a816570d8ac6beea)
+API 抛出异常部分，由于历史原因写在文档中，建议在源码的 warning 中做提示，不在文档中展开。
 
 ### API 代码示例（重要）
 代码示例是 API 文档的核心部分之一，毕竟 talk is cheap，show me the code。所以，在 API 代码示例中，应该对前文描述的 API 使用中的各种场景，尽可能的在一个示例中给出，并用注释给出对应的结果。
@@ -288,13 +276,7 @@ API 抛出异常部分，不做强制要求，可以在一些特殊的场景下�
     代码示例
     ::::::::::
 
-    ..  code-block:: python
-
-            import paddle
-            x = paddle.to_tensor([2, 3, 4], 'float64')
-            y = paddle.to_tensor([1, 5, 2], 'float64')
-            z = paddle.add(x, y)
-            print(z)  # [3., 8., 6. ]
+    COPY-FROM: paddle.add
 
 ### API 属性
 API 的属性用来描述 API 所包含的属性。如果 API 有属性，每个属性需要分为四个部分描述：
@@ -303,7 +285,7 @@ API 的属性用来描述 API 所包含的属性。如果 API 有属性，每个
  - 注意：列举出使用该属性时应注意的一些问题，如果没有可以不填；如不同的版本、是否是只读属性、使用的一些 tricks 等等，如``Program``的``rand_seed``：
 
         .. note::
-        必须在相关 OP 被添加之前设置。
+            必须在相关 OP 被添加之前设置。
 
  - 描述：API 功能描述部分要求一致；
  - 返回：API 返回部分要求一致；
@@ -315,12 +297,12 @@ API 的属性用来描述 API 所包含的属性。如果 API 有属性，每个
     ''''''''''''
 
     ..note:
-    必须在相关 OP 被添加之前设置。
+        必须在相关 OP 被添加之前设置。
 
     程序中随机运算符的默认随机种子。0 意味着随机生成随机种子。
 
     **返回**
-    int64，返回该 Program 中当前正在使用的 random seed。。
+    int64，返回该 Program 中当前正在使用的 random seed。
 
     **代码示例**
 
@@ -348,7 +330,7 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
  - 声明：与 API 声明的要求一致。
  - 参数：与 API 参数的要求一致。
  - 描述：与 API 功能描述的要求一致。
- - 返回：与 API 返回的要求一致。。
+ - 返回：与 API 返回的要求一致。
  - 代码示例：与 API 代码示例的要求一致。
 
 **总结：paddle.Program.parse_from_string**
@@ -393,24 +375,24 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
 中文：
 
     .. note::
-    多卡任务请先使用 FLAGS_selected_gpus 环境变量设置可见的 GPU 设备，下个版本将会修正 CUDA_VISIBLE_DEVICES 环境变量无效的问题。
+        多卡任务请先使用 FLAGS_selected_gpus 环境变量设置可见的 GPU 设备，下个版本将会修正 CUDA_VISIBLE_DEVICES 环境变量无效的问题。
 
 英文：
 
-    **Note**:
-    For multi-card tasks, please use `FLAGS_selected_gpus` environment variable to set the visible GPU device.
-    The next version will fix the problem with `CUDA_VISIBLE_DEVICES` environment variable.
+    Note:
+        For multi-card tasks, please use `FLAGS_selected_gpus` environment variable to set the visible GPU device.
+        The next version will fix the problem with `CUDA_VISIBLE_DEVICES` environment variable.
 
 **例 2 paddle.sqrt**
 中文：
 
     .. note::
-    请确保输入中的数值是非负数。
+        请确保输入中的数值是非负数。
 
 英文：
 
-    **Note**:
-    input value must be greater than or equal to zero.
+    Note:
+        input value must be greater than or equal to zero.
 
 ### 警告
 警告部分需要慎重使用，一般是不推荐用户使用的 API 方法（例 1），或者是已经有计划要废弃的 API（例 2），需要用警告来说明。
@@ -419,7 +401,7 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
 中文：
 
     .. warning::
-    目前不支持在 DynamicRNN 的 block 中任何层上配置 is_sparse = True 。
+        目前不支持在 DynamicRNN 的 block 中任何层上配置 is_sparse = True 。
 英文：
 
     Warning:
@@ -430,7 +412,7 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
 中文：
 
     .. warning::
-    此 API 对位置使用的要求较高，其必须位于组建网络之后， ``minimize`` 之前，因此在未来版本中可能被删除，故不推荐使用。推荐在 ``optimizer`` 初始化时设置梯度裁剪。 有三种裁剪策略： ``GradientClipByGlobalNorm`` 、 ``GradientClipByNorm`` 、 ``GradientClipByValue``。 如果在 ``optimizer`` 中设置过梯度裁剪，又使用了 ``set_gradient_clip`` ，``set_gradient_clip`` 将不会生效。
+        此 API 对位置使用的要求较高，其必须位于组建网络之后， ``minimize`` 之前，因此在未来版本中可能被删除，故不推荐使用。推荐在 ``optimizer`` 初始化时设置梯度裁剪。 有三种裁剪策略： ``GradientClipByGlobalNorm`` 、 ``GradientClipByNorm`` 、 ``GradientClipByValue``。 如果在 ``optimizer`` 中设置过梯度裁剪，又使用了 ``set_gradient_clip`` ，``set_gradient_clip`` 将不会生效。
 
 英文：
 
