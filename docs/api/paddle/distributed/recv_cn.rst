@@ -6,7 +6,7 @@ recv
 
 .. py:function:: paddle.distributed.recv(tensor, src=0, group=None, use_calc_stream=True)
 
-发送 tensor 到指定接收者。
+接收一个来自指定发送者的 tensor。
 
 参数
 :::::::::

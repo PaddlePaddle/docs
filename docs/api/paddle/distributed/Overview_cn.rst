@@ -53,6 +53,8 @@ paddle.distributed.fleet 是分布式训练的统一入口 API，用于配置分
     " :ref:`spawn <cn_api_distributed_spawn>` ", "启动分布式训练进程，仅支持集合通信架构"
     " :ref:`get_rank <cn_api_distributed_get_rank>` ", "获取当前进程的 rank 值"
     " :ref:`get_world_size <cn_api_distributed_get_world_size>` ", "获取当前进程数"
+    " :ref:`new_group <cn_api_distributed_new_group>` ", "创建分布式通信组"
+    " :ref:`destroy_process_group <cn_api_distributed_destroy_process_group>` ", "销毁分布式通信组"
 
 .. _03:
 
@@ -80,14 +82,20 @@ paddle.distributed.fleet 是分布式训练的统一入口 API，用于配置分
 
 
     " :ref:`reduce <cn_api_distributed_reduce>` ", "规约，规约进程组内的 tensor，返回结果至指定进程"
-    " :ref:`ReduceOP <cn_api_distributed_ReduceOp>` ", "规约，指定逐元素规约操作"
+    " :ref:`ReduceOp <cn_api_distributed_ReduceOp>` ", "规约，指定逐元素规约操作"
     " :ref:`all_reduce <cn_api_distributed_all_reduce>` ", "组规约，规约进程组内的 tensor，结果广播至每个进程"
     " :ref:`all_gather <cn_api_distributed_all_gather>` ", "组聚合，聚合进程组内的 tensor，结果广播至每个进程"
     " :ref:`all_gather_object <cn_api_distributed_all_gather_object>` ", "组聚合，聚合进程组内的 object，结果广播至每个进程"
+    " :ref:`alltoall <cn_api_distributed_alltoall>` ", "分发 tensor 列表到每个进程并进行聚合"
     " :ref:`broadcast <cn_api_distributed_broadcast>` ", "广播一个 tensor 到每个进程"
     " :ref:`scatter <cn_api_distributed_scatter>` ", "分发 tensor 到每个进程"
     " :ref:`split <cn_api_distributed_split>` ", "切分参数到多个设备"
     " :ref:`barrier <cn_api_distributed_barrier>` ", "同步路障，进行阻塞操作，实现组内所有进程的同步"
+    " :ref:`send <cn_api_distributed_send>` ", "发送一个 tensor 到指定的接收者"
+    " :ref:`recv <cn_api_distributed_recv>` ", "接收一个来自指定发送者的 tensor"
+    " :ref:`isend <cn_api_distributed_isend>` ", "异步发送一个 tensor 到指定的接收者"
+    " :ref:`irecv <cn_api_distributed_irecv>` ", "异步接收一个来自指定发送者的 tensor"
+    " :ref:`reduce_scatter <cn_api_paddle_distributed_reduce_scatter>` ", "规约，然后将 tensor 列表分散到组中的所有进程上"
 
 .. _05:
 
