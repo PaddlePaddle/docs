@@ -22,8 +22,8 @@ SmoothL1Loss
 
 参数
 ::::::::::
-    - **reduction** (string，可选): - 指定应用于输出结果的计算方式，数据类型为 string，可选值有：`none`, `mean`, `sum`。默认为 `mean`，计算 `mini-batch` loss 均值。设置为 `sum` 时，计算 `mini-batch` loss 的总和。设置为 `none` 时，则返回 loss Tensor。
-    - **delta** (string，可选): SmoothL1Loss 损失的阈值参数，用于控制 Huber 损失对线性误差或平方误差的侧重。数据类型为 float32。默认值= 1.0。
+    - **reduction** (str，可选): - 指定应用于输出结果的计算方式，数据类型为 string，可选值有：`none`, `mean`, `sum`。默认为 `mean`，计算 `mini-batch` loss 均值。设置为 `sum` 时，计算 `mini-batch` loss 的总和。设置为 `none` 时，则返回 loss Tensor。
+    - **delta** (str，可选): SmoothL1Loss 损失的阈值参数，用于控制 Huber 损失对线性误差或平方误差的侧重。数据类型为 float32。默认值= 1.0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 输入
