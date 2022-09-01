@@ -55,21 +55,12 @@
             .. code-block:: python
 
                 import paddle
-                import numpy as np
 
-                paddle.enable_imperative()
-                np_x = np.array([2, 3, 4]).astype('float64')
-                np_y = np.array([1, 5, 2]).astype('float64')
-                x = paddle.imperative.to_variable(np_x)
-                y = paddle.imperative.to_variable(np_y)
-
+                x = paddle.to_tensor([2, 3, 4], 'float64')
+                y = paddle.to_tensor([1, 5, 2], 'float64')
                 z = paddle.add(x, y)
-                np_z = z.numpy()
-                # [3., 8., 6. ]
+                print(z)  # [3., 8., 6. ]
 
-                z = paddle.add(x, y, alpha=10)
-                np_z = z.numpy()
-                # [12., 53., 24. ]
         """
 
 ## 中文模板
@@ -106,25 +97,8 @@
 
     代码示例
     ::::::::::
-
-    .. code-block:: python
-
-        import paddle
-        import numpy as np
-
-        paddle.enable_imperative()
-        np_x = np.array([2, 3, 4]).astype('float64')
-        np_y = np.array([1, 5, 2]).astype('float64')
-        x = paddle.imperative.to_variable(np_x)
-        y = paddle.imperative.to_variable(np_y)
-
-        z = paddle.add(x, y)
-        np_z = z.numpy()
-        # [3., 8., 6. ]
-
-        z = paddle.add(x, y, alpha=10)
-        np_z = z.numpy()
-        # [12., 53., 24. ]
+    
+    COPY-FROM: paddle.add
 
     ..
       尽量不使用 random 的输入；
