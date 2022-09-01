@@ -32,11 +32,10 @@ MSELoss
 形状
 ::::::::::::
 
-    - **input** (Tensor) - 预测值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维 Tensor。数据类型为 float32 或 float64。
-    - **label** (Tensor) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维 Tensor。数据类型为 float32 或 float64。
+    - input (Tensor) - 预测值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维 Tensor。数据类型为 float32 或 float64。
+    - label (Tensor) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维 Tensor。数据类型为 float32 或 float64。
 
 
-返回
 ::::::::::::
 变量（Tensor），预测值和目标值的均方差，数值类型与输入相同
 

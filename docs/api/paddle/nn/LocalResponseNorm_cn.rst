@@ -21,10 +21,9 @@ LocalResponseNorm
 
 形状
 :::::::::
- - **输入**  - 三维/四维/五维 `Tensor` 。
- - **输出**  - 数据类型及维度和输入相同的 `Tensor` 。
+ - 输入  - 三维/四维/五维 `Tensor` 。
+ - 输出  - 数据类型及维度和输入相同的 `Tensor` 。
 
-代码示例
 :::::::::
 
 COPY-FROM: paddle.nn.LocalResponseNorm

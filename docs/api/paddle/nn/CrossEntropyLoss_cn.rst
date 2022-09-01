@@ -32,12 +32,11 @@ CrossEntropyLoss
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 形状
 :::::::::
-    - **input** (Tensor): - 输入 `Tensor`，数据类型为 float32 或 float64。其形状为 :math:`[N, C]`，其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k, C]` ，k >= 1。
-    - **label** (Tensor): - 当 soft_label=False 时，输入 input 对应的标签值，数据类型为 int64。其形状为 :math:`[N]`，每个元素符合条件：0 <= label[i] <= C-1。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k]` ，k >= 1；当 soft_label=True 时，输入形状应与 input 一致，数据类型为 float32 或 float64 且每个样本的各标签概率和应为 1。
-    - **output** (Tensor): - 计算 `CrossEntropyLoss` 交叉熵后的损失值。
+    - input (Tensor): - 输入 `Tensor`，数据类型为 float32 或 float64。其形状为 :math:`[N, C]`，其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k, C]` ，k >= 1。
+    - label (Tensor): - 当 soft_label=False 时，输入 input 对应的标签值，数据类型为 int64。其形状为 :math:`[N]`，每个元素符合条件：0 <= label[i] <= C-1。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k]` ，k >= 1；当 soft_label=True 时，输入形状应与 input 一致，数据类型为 float32 或 float64 且每个样本的各标签概率和应为 1。
+    - output (Tensor): - 计算 `CrossEntropyLoss` 交叉熵后的损失值。
 
 
-代码示例
 :::::::::
 
 COPY-FROM: paddle.nn.CrossEntropyLoss

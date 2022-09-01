@@ -39,11 +39,10 @@ unfold
 
 形状
 :::::::::
- - **输入** : 4-D Tensor，形状为[N, C, H, W]，数据类型为 float32 或者 float64
- - **输出**：形状如上面所描述的[N, Cout, Lout]，Cout 每一个滑动 block 里面覆盖的元素个数，Lout 是滑动 block 的个数，数据类型与 ``x`` 相同
+ - 输入 : 4-D Tensor，形状为[N, C, H, W]，数据类型为 float32 或者 float64
+ - 输出：形状如上面所描述的[N, Cout, Lout]，Cout 每一个滑动 block 里面覆盖的元素个数，Lout 是滑动 block 的个数，数据类型与 ``x`` 相同
 
 
-代码示例
 ::::::::::::
 
 COPY-FROM: paddle.nn.Unfold

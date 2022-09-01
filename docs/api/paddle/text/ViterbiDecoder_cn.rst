@@ -14,10 +14,9 @@ ViterbiDecoder
 
 形状
 :::::::::
-    - **potentials (Tensor)** 发射概率。形状为[batch_size, sequence_length, num_tags]，数据类型为 float32 或 float64。
-    - **lengths (Tensor)** 序列真实长度。形状为[batch_size]，数据类型为 int64。
+    - potentials (Tensor) 发射概率。形状为[batch_size, sequence_length, num_tags]，数据类型为 float32 或 float64。
+    - lengths (Tensor) 序列真实长度。形状为[batch_size]，数据类型为 int64。
 
-返回
 :::::::::
     - **scores (Tensor)** Viterbi 路径的最高得分。形状为[batch_size]，数据类型为 float32 或 float64。
     - **paths (Tensor)** Viterbi 路径。形状为[batch_size, sequence_length]，数据类型为 int64。

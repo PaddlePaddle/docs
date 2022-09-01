@@ -20,10 +20,9 @@ Dropout3D
 
 形状
 :::::::::
- - **输入** : 5-D `Tensor` 。
- - **输出** : 5-D `Tensor`，形状与输入相同。
+ - 输入 : 5-D `Tensor` 。
+ - 输出 : 5-D `Tensor`，形状与输入相同。
 
-代码示例
 :::::::::
 
 COPY-FROM: paddle.nn.Dropout3D
