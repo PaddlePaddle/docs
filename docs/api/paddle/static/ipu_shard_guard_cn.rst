@@ -8,7 +8,7 @@ ipu_shard_guard
 
 对模型进行切分。用于指定 Op 在哪个 ipu 上进行计算以及模型被切分之后的计算顺序。
 
-.. note:
+.. note::
 
 仅支持当 enable_manual_shard=True，index 设置才有效。请参阅 :ref:`cn_api_fluid_IpuStrategy` 。
 仅支持当 enable_pipelining=True，stage 设置才有效。请参阅 :ref:`cn_api_fluid_IpuStrategy` 。
