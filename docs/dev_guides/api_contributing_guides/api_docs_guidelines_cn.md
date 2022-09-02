@@ -1,12 +1,12 @@
 # API 文档书写规范
 
 1. **至关重要:** **API 文档对该 API 的描述，一定要与 API 的行为保持一致。中英文文档的内容要严格一致。**
-2. **API 文档的字段:** API 名称、API 功能描述、API 参数、API 返回、API 代码示例、API 属性(class)、API 方法(methods)等。API 抛出异常的情况，不需要在文档中提现。
+2. **API 文档的字段:** API 名称、API 功能描述、API 参数、API 返回、API 代码示例、API 属性(class)、API 方法(methods)等。API 抛出异常的情况，不需要在文档中体现。
 3. **API 功能描述:** 请注意，看文档的用户没有和开发同学一样的知识背景。因此，请提示用户在什么场景下使用该 API。请使用深度学习领域通用的词汇和说法。([深度学习常用术语表](https://github.com/PaddlePaddle/FluidDoc/wiki/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD%E8%A1%A8))。
 4. **API 参数:** 写清楚对输入参数的要求，写清楚在不同情况下的行为区别（例默认值时的行为）。同类性质的参数（如：输入 tensor `x`，每个 API 中的`name` 参数），可以直接从这里 copy 内容：**[常用文档写法](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/templates/common_docs.py)**。
 5. **API 代码示例:** 中英文文档当中的代码示例完全一致(means identical, comments 可不用翻译)，中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步。代码示例使用 2.0 版本中的 API，可运行。尽量不用 random 输入，注释形式给出输出值。构造输入数据时，尽量使用 paddle 提供的 API，如:`paddle.zeros, paddle.ones, paddle.full, paddle.arange, paddle.rand, paddle.randn, paddle.randint, paddle.normal, paddle.uniform`，尽量不要引入第三方库（如 numpy）。
 6. **其他:** 2.0 中的 API，对于``Variable、LodTensor、Tensor``，统一使用``Tensor``。`to_variable`也统一改为`to_tensor`。
-7. 对于`Linear`, `Conv2D`, `L1Loss` 这些 class 形式的 API，需要写清楚当这个`callable`被调用时的输入输出的形状。（i,e.`forward`函数的参数）。位置放在现在的 Parameters/参数这个 block 后面，具体为：
+7. 对于`Linear`, `Conv2D`, `L1Loss` 这些 class 形式的 API，需要写清楚当这个`callable`被调用时的输入输出的形状。（如 `forward` 函数的参数）。位置放在现在的 Parameters/参数这个 block 后面，具体为：
 
 中文时：
 
