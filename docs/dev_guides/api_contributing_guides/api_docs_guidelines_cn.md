@@ -6,7 +6,7 @@
 4. **API 参数**：写清楚对输入参数的要求，写清楚在不同情况下的行为区别（例默认值时的行为）。同类性质的参数（如：输入 Tensor `x`，每个 API 中的 `name` 参数），可以直接从这里复制内容：**[常用文档写法](https://github.com/PaddlePaddle/docs/blob/develop/docs/templates/common_docs.py)**。
 5. **API 代码示例**：中英文文档当中的代码示例完全一致（means identical, comments 可不用翻译），中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步。代码示例使用 2.0 版本中的 API，可运行。尽量不用随机输入，注释形式给出输出值。构造输入数据时，尽量使用 paddle 提供的 API，如:  `paddle.zeros`、`paddle.ones`、`paddle.full`、`paddle.arange`、`paddle.rand`、`paddle.randn`、`paddle.randint`、`paddle.normal`、`paddle.uniform`，尽量不要引入第三方库（如 NumPy）。
 6. **其他**：2.0 中的 API，对于 `Variable`、`LodTensor`、`Tensor`，统一使用 `Tensor`。`to_variable` 也统一改为 `to_tensor`。
-7. 对于 `Linear`、`Conv2D`、`L1Loss` 这些 class 形式的 API，需要写清楚当这个 `callable` 被调用时的输入输出的形状。（如 `forward` 函数的参数）。位置放在现在的 `Parameters` / `参数`这个 block 后面，具体为：
+7. 对于 `Linear`、`Conv2D`、`L1Loss` 这些 class 形式的 API，需要写清楚当这个 `callable` 被调用时的输入输出的形状（如 `forward` 方法的参数）。位置放在现在的 `Parameters` / `参数`这个 block 后面，具体为：
 
 中文时：
 
