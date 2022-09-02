@@ -71,7 +71,7 @@
 
     .. py:function:: paddle.add(x, y, name=None)
 
-    逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。计算公式为：
+    逐元素相加算子，输入 :attr:`x` 与输入 :attr:`y` 逐元素相加，并将各个位置的输出元素保存到返回结果中。计算公式为：
 
     .. math::
         out = x + y
@@ -91,7 +91,7 @@
 
     返回
     :::::::::
-    ``Tensor``，维度和数据类型都与 ``x`` 相同，存储运算后的结果。
+    ``Tensor``，维度和数据类型都与 :attr:`x` 相同，存储运算后的结果。
     ..
       返回为 返回类型 + 描述的格式即可。
 
@@ -136,7 +136,7 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 
 - 功能作用：描述该 API 文档的功能作用；**由于用户没有对应的背景**，所以需要补充必要的细节，比如是不是逐元素的，如 `paddle.add`：
 
-      逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。
+      逐元素相加算子，输入 :attr:`x` 与输入 :attr:`y` 逐元素相加，并将各个位置的输出元素保存到返回结果中。
 
 - 计算公式：给出该 API 的计算公式，由于公式中每个变量都对应 API 的参数，所以不需要做额外的说明，如 `paddle.add`：
 
@@ -168,7 +168,7 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 
 **总结：paddle.add 的描述如下**
 
-    逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。计算公式为：
+    逐元素相加算子，输入 :attr:`x` 与输入 :attr:`y` 逐元素相加，并将各个位置的输出元素保存到返回结果中。计算公式为：
 
     .. math::
         out = x + y
@@ -227,7 +227,7 @@ API 参数部分，要解释清楚每个参数的意义和使用场景。需要�
     返回
     :::::::::
 
-    ``Tensor``，维度和数据类型都与 ``x`` 相同，存储运算后的结果。
+    ``Tensor``，维度和数据类型都与 :attr:`x` 相同，存储运算后的结果。
 
 ### API 抛出异常
 
@@ -335,7 +335,7 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
     ''''''''''''
 
     .. py:function:: paddle.Program.parse_from_string(binary_str_type)
-    通过对 protobuf 的反序列化，转换成``Program``
+    通过对 protobuf 的反序列化，转换成 ``Program``
 
     **参数**
     binary_str_type (**str**) – protobuf 二进制字符串
@@ -397,7 +397,7 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
 中文：
 
     .. warning::
-        此 API 对位置使用的要求较高，其必须位于组建网络之后， ``minimize`` 之前，因此在未来版本中可能被删除，故不推荐使用。推荐在 ``optimizer`` 初始化时设置梯度裁剪。 有三种裁剪策略： ``GradientClipByGlobalNorm`` 、 ``GradientClipByNorm`` 、 ``GradientClipByValue``。 如果在 ``optimizer`` 中设置过梯度裁剪，又使用了 ``set_gradient_clip`` ，``set_gradient_clip`` 将不会生效。
+        此 API 对位置使用的要求较高，其必须位于组建网络之后，``minimize`` 之前，因此在未来版本中可能被删除，故不推荐使用。推荐在 ``optimizer`` 初始化时设置梯度裁剪。有三种裁剪策略：``GradientClipByGlobalNorm``、``GradientClipByNorm``、``GradientClipByValue``。如果在 ``optimizer`` 中设置过梯度裁剪，又使用了 ``set_gradient_clip``，``set_gradient_clip`` 将不会生效。
 
 英文：
 
