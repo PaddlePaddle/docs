@@ -17,7 +17,8 @@ vsplit
 
 返回
 :::::::::
-分割后的 Tensor 列表。
+
+list[Tensor]，分割后的 Tensor 列表。
 
 
 代码示例
