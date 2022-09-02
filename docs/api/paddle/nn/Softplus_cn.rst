@@ -15,12 +15,14 @@ Softplus 激活层
 
 参数
 ::::::::::
-    - **beta** (float，可选) - Softplus 激活计算公式中的 beta 值。默认值为 1。
-    - **threshold** (float，可选) - Softplus 激活计算公式中的 threshold 值。默认值为 20。
+
+    - **beta** (float，可选) - Softplus 激活计算公式中的 :math:`beta` 值。默认值为 1。
+    - **threshold** (float，可选) - Softplus 激活计算公式中的 :math:`threshold` 值。默认值为 20。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状：
 ::::::::::
+
     - input：任意形状的 Tensor。
     - output：和 input 具有相同形状的 Tensor。
 
