@@ -243,7 +243,7 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 - 示例代码需要与当前版本及推荐用法保持一致：**develop 分支下 fluid namespace 以外的 API，不能再有 fluid 关键字，只需要提供动态图的示例代码。**
 - 尽量不用 random 输入，需要以注释形式给出输出值。
 - 中英文示例代码，不做任何翻译，保持相同（means identical）。
-- 原则上，所有提供的 API 都需要提供示例代码，对于 `class member methods`、`abstract API`、`callback`，等情况，可以在提交 PR 时说明相应的使用方法的文档的位置或文档计划后，通过白名单审核机制通过 CI 检查。
+- 原则上，所有提供的 API 都需要提供示例代码，对于 `class member methods`、`abstract API`、`callback` 等情况，可以在提交 PR 时说明相应的使用方法的文档的位置或文档计划后，通过白名单审核机制通过 CI 检查。
 - 对于仅为 GPU 环境提供的 API，当该示例代码在 CPU 上运行时，运行后给出含有 “Not compiled with CUDA” 的错误提示，也可认为该 API 行为正确。
 
 英文 API 代码示例格式规范如下：
