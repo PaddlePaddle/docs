@@ -20,7 +20,7 @@ Silu 激活层。计算公式如下：
 形状：
 ::::::::::
 
-    - input (Tensor)：任意形状的 Tensor。
+    - input：任意形状的 Tensor。
     - output：和 input 具有相同形状的 Tensor。
 
 代码示例
