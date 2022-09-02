@@ -153,7 +153,7 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 1. 写作 API 文档中，请使用深度学习领域通用的词汇和说法。（[深度学习常用术语表](https://github.com/PaddlePaddle/docs/wiki/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD%E8%A1%A8)）。
 2. 文档中的**前后说明要一致**，比如维度的说明，统一使用 4-D Tensor 的格式，不确定的写“多维”。
 3. 文档相互引用的方式：[如何让文档相互引用](https://github.com/PaddlePaddle/docs/wiki/%E9%A3%9E%E6%A1%A8%E6%96%87%E6%A1%A3%E7%9B%B8%E4%BA%92%E5%BC%95%E7%94%A8)。
-4. 功能描述中涉及到的专有数据结构如 `Tensor`、`LoDTensor` 或 `Variable`，中英文都统一使用 `Tensor` 无需翻译。
+4. 功能描述中涉及到的专有数据结构如 `Tensor`、`LoDTensor` 和 `Variable`，中英文都统一使用 `Tensor`，无需翻译。
 5. 如果涉及到一些通用的知识，如 broadcasting，可以 Note 的方式写出来，示例如下：
 
 中文：
