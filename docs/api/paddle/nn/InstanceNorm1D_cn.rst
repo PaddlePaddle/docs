@@ -17,7 +17,7 @@ InstanceNorm1D
     y_i &\gets \gamma \hat{x_i} + \beta                                                      \quad &// scale-and-shift
 
 
-Note:
+.. note::
 
     `H` 是高度，`W` 是宽度。
 
