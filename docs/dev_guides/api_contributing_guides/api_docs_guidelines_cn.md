@@ -49,7 +49,7 @@
             name (str, optional): For details, please refer to :ref:`api_guide_Name`. Generally, no setting is required. Default: None.
 
         Returns:
-            N-D Tensor. A location into which the result is stored. It’s dimension equals with :math:`x`.
+            N-D Tensor. A location into which the result is stored. It’s dimension equals with :attr:`x`.
 
         Examples:
             .. code-block:: python
@@ -77,7 +77,7 @@
         out = x + y
 
     .. note::
-       ``paddle.add`` 遵守 broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+       ``paddle.add`` 遵守广播机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
     ..
       说明：以上为 API 描述部分，只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。这个 case 可以拆解为 3 个部分，功能作用 + 计算公式 + 注解部分。
 
@@ -187,19 +187,19 @@ API 参数部分，要解释清楚每个参数的意义和使用场景。需要�
 
 如 `stop_gradient` 的对比，要添加默认值为 True 的行为，即**表示停止计算梯度**。
 
-    stop_gradient (bool，可选) - 提示是否应该停止计算梯度，默认值为 False。
-    # wrong
+    stop_gradient (bool，可选) - 提示是否应该停止计算梯度，默认值为 True。
+    # 错误写法
 
     stop_gradient (bool，可选) - 提示是否应该停止计算梯度，默认值为 True，表示停止计算梯度。
-    # right
+    # 正确写法
 
 或者如 `return_numpy` 的对比：
 
     return_numpy (bool) – 该变量表示是否将 fetched tensor 转换为 NumPy 数据。默认值为 True。
-    # wrong
+    # 错误写法
 
     return_numpy (bool) – 该参数表示是否将返回的计算结果（fetch list 中指定的变量）转化为 NumPy 数据；如果为 False，则每个变量返回的类型为 Tensor，否则返回变量的类型为 numpy.ndarray。默认为：True。
-    # right
+    # 正确写法
 
 可以看出，第二行的 `return_numpy` 的描述更为清晰，分别描述了 True 和 False 的两种情况。而第一行的说明过于简单。
 
