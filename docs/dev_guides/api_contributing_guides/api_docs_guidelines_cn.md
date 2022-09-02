@@ -4,7 +4,7 @@
 2. **API 文档的字段:** API 名称、API 功能描述、API 参数、API 返回、API 代码示例、API 属性(class)、API 方法(methods)等。API 抛出异常的情况，不需要在文档中提现。
 3. **API 功能描述:** 请注意，看文档的用户没有和开发同学一样的知识背景。因此，请提示用户在什么场景下使用该 API。请使用深度学习领域通用的词汇和说法。([深度学习常用术语表](https://github.com/PaddlePaddle/FluidDoc/wiki/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD%E8%A1%A8))。
 4. **API 参数:** 写清楚对输入参数的要求，写清楚在不同情况下的行为区别（例默认值时的行为）。同类性质的参数（如：输入 tensor `x`，每个 API 中的`name` 参数），可以直接从这里 copy 内容：**[常用文档写法](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/templates/common_docs.py)**。
-5. **API 代码示例:** 中英文文档当中的代码示例完全一致(means identical, comments 可不用翻译)，中文文档建议使用COPY-FROM的方式与英文文档做同步。代码示例使用 2.0 版本中的 API，可运行。尽量不用 random 输入，注释形式给出输出值。构造输入数据时，尽量使用 paddle 提供的 API，如:`paddle.zeros, paddle.ones, paddle.full, paddle.arange, paddle.rand, paddle.randn, paddle.randint, paddle.normal, paddle.uniform`，尽量不要引入第三方库（如 numpy）。
+5. **API 代码示例:** 中英文文档当中的代码示例完全一致(means identical, comments 可不用翻译)，中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步。代码示例使用 2.0 版本中的 API，可运行。尽量不用 random 输入，注释形式给出输出值。构造输入数据时，尽量使用 paddle 提供的 API，如:`paddle.zeros, paddle.ones, paddle.full, paddle.arange, paddle.rand, paddle.randn, paddle.randint, paddle.normal, paddle.uniform`，尽量不要引入第三方库（如 numpy）。
 6. **其他:** 2.0 中的 API，对于``Variable、LodTensor、Tensor``，统一使用``Tensor``。`to_variable`也统一改为`to_tensor`。
 7. 对于`Linear`, `Conv2D`, `L1Loss` 这些 class 形式的 API，需要写清楚当这个`callable`被调用时的输入输出的形状。（i,e.`forward`函数的参数）。位置放在现在的 Parameters/参数这个 block 后面，具体为：
 
@@ -79,7 +79,7 @@
     .. note::
        ``paddle.add`` 遵守 broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
     ..
-      说明：以上为 API 描述部分，只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。这个 case 可以拆解为 3 个部分，功能作用 + 计算公式 + 注解部分；
+      说明：以上为 API 描述部分，只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。这个 case 可以拆解为 3 个部分，功能作用 + 计算公式 + 注解部分。
 
     参数
     :::::::::
@@ -101,8 +101,9 @@
     COPY-FROM: paddle.add
 
     ..
-      尽量不使用 random 的输入；
+      尽量不使用 random 的输入，尽量不引入第三方库（如 numpy）；
       优先使用动态图，在一个代码示例中给出多个使用场景；
+      中文文档优先使用 COPY-FROM 的方式与英文文档做同步。
 
 ## API 文档各模块写作说明
 
@@ -126,7 +127,7 @@ API 的声明部分，要给出 API 的声明信息；
     .. py:class:: paddle.nn.Conv2d(num_channels, num_filters, filter_size, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format="NCHW", dtype="float32")
 
 ### API 功能描述
-API 功能描述部分只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。如``paddle.add[https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/math/add_cn.html#add]``:
+API 功能描述部分只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。如 paddle.add[https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/math/add_cn.html#add]:
 
 可以拆解为 3 个部分，功能作用 + 计算公式 + 注解部分，其中：
 
@@ -146,11 +147,10 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 
 **注意事项：**
 1. 写作 API 文档中，请使用深度学习领域通用的词汇和说法。([深度学习常用术语表](https://github.com/PaddlePaddle/FluidDoc/wiki/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD%E8%A1%A8))。
-2. 文档中的**前后说明要一致**，比如维度的说明，统一使用 4-D Tensor 的格式，不确定的写“多维”，示例如下：
-![图片](https://agroup-bos-bj.cdn.bcebos.com/bj-836a496baa91882d77fde5ad1259a098d408afce)
-3. 文档相互引用的方式：[如何让文档相互引用](https://github.com/PaddlePaddle/FluidDoc/wiki/%E9%A3%9E%E6%A1%A8%E6%96%87%E6%A1%A3%E7%9B%B8%E4%BA%92%E5%BC%95%E7%94%A8)
+2. 文档中的**前后说明要一致**，比如维度的说明，统一使用 4-D Tensor 的格式，不确定的写“多维”。
+3. 文档相互引用的方式：[如何让文档相互引用](https://github.com/PaddlePaddle/FluidDoc/wiki/%E9%A3%9E%E6%A1%A8%E6%96%87%E6%A1%A3%E7%9B%B8%E4%BA%92%E5%BC%95%E7%94%A8)。
 4. 功能描述中涉及到的专有数据结构如``Tensor``、``LoDTensor``或``Variable``，中英文都统一使用``Tensor``无需翻译。
-5. 如果涉及到一些通用的知识，如 broadcasting，可以以 Note 的方式写出来，示例如下：
+5. 如果涉及到一些通用的知识，如 broadcasting，可以 Note 的方式写出来，示例如下：
 
 中文：
 
@@ -396,7 +396,7 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
 ## 文档测试
 
  - 中文文档、英文文档齐全，内容一一对应。
- - 文档清晰可读，易于用户使用
+ - 文档清晰可读，易于用户使用。
  - 给出易于理解的 api 介绍，文字描述，公式描述。
  - 参数命名通俗易懂无歧义，明确给出传参类型，对参数含义以及使用方法进行详细说明，对返回值进行详细说明。
  - 异常类型和含义进行详细说明。
