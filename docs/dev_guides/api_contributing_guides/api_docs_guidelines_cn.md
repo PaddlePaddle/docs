@@ -2,11 +2,11 @@
 
 1. **至关重要:** **API 文档对该 API 的描述，一定要与 API 的行为保持一致。中英文文档的内容要严格一致。**
 2. **API 文档的字段:** API 名称、API 功能描述、API 参数、API 返回、API 代码示例、API 属性（class）、API 方法（methods）等。API 抛出异常的情况，不需要在文档中体现。
-3. **API 功能描述:** 请注意，看文档的用户没有和开发同学一样的知识背景。因此，请提示用户在什么场景下使用该 API。请使用深度学习领域通用的词汇和说法。([深度学习常用术语表](https://github.com/PaddlePaddle/FluidDoc/wiki/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD%E8%A1%A8))。
-4. **API 参数:** 写清楚对输入参数的要求，写清楚在不同情况下的行为区别（例默认值时的行为）。同类性质的参数（如：输入 tensor `x`，每个 API 中的`name` 参数），可以直接从这里 copy 内容：**[常用文档写法](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/templates/common_docs.py)**。
-5. **API 代码示例:** 中英文文档当中的代码示例完全一致(means identical, comments 可不用翻译)，中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步。代码示例使用 2.0 版本中的 API，可运行。尽量不用 random 输入，注释形式给出输出值。构造输入数据时，尽量使用 paddle 提供的 API，如:`paddle.zeros, paddle.ones, paddle.full, paddle.arange, paddle.rand, paddle.randn, paddle.randint, paddle.normal, paddle.uniform`，尽量不要引入第三方库（如 numpy）。
-6. **其他:** 2.0 中的 API，对于``Variable、LodTensor、Tensor``，统一使用``Tensor``。`to_variable`也统一改为`to_tensor`。
-7. 对于`Linear`, `Conv2D`, `L1Loss` 这些 class 形式的 API，需要写清楚当这个`callable`被调用时的输入输出的形状。（如 `forward` 函数的参数）。位置放在现在的 Parameters / 参数这个 block 后面，具体为：
+3. **API 功能描述:** 请注意，看文档的用户没有和开发同学一样的知识背景。因此，请提示用户在什么场景下使用该 API。请使用深度学习领域通用的词汇和说法。（[深度学习常用术语表](https://github.com/PaddlePaddle/docs/wiki/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%B8%B8%E7%94%A8%E6%9C%AF%E8%AF%AD%E8%A1%A8)）。
+4. **API 参数:** 写清楚对输入参数的要求，写清楚在不同情况下的行为区别（例默认值时的行为）。同类性质的参数（如：输入 tensor `x`，每个 API 中的 `name` 参数），可以直接从这里 copy 内容：**[常用文档写法](https://github.com/PaddlePaddle/docs/blob/develop/docs/templates/common_docs.py)**。
+5. **API 代码示例:** 中英文文档当中的代码示例完全一致（means identical, comments 可不用翻译），中文文档建议使用 [COPY-FROM](https://github.com/PaddlePaddle/docs/wiki/%E4%B8%AD%E6%96%87API%E6%96%87%E6%A1%A3%E5%A4%8D%E5%88%B6%E8%8B%B1%E6%96%87API%E6%96%87%E6%A1%A3%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81) 的方式与英文文档做同步。代码示例使用 2.0 版本中的 API，可运行。尽量不用 random 输入，注释形式给出输出值。构造输入数据时，尽量使用 paddle 提供的 API，如:  `paddle.zeros` 、 `paddle.ones` 、 `paddle.full` 、 `paddle.arange` 、 `paddle.rand` 、 `paddle.randn` 、 `paddle.randint` 、 `paddle.normal` 、 `paddle.uniform` ，尽量不要引入第三方库（如 numpy）。
+6. **其他:** 2.0 中的 API，对于 `Variable` 、 `LodTensor` 、 `Tensor` ，统一使用 `Tensor`。`to_variable` 也统一改为 `to_tensor`。
+7. 对于`Linear` 、 `Conv2D` 、 `L1Loss` 这些 class 形式的 API，需要写清楚当这个 `callable` 被调用时的输入输出的形状。（如 `forward` 函数的参数）。位置放在现在的 Parameters / 参数这个 block 后面，具体为：
 
 中文时：
 
@@ -127,7 +127,7 @@ API 的声明部分，要给出 API 的声明信息；
     .. py:class:: paddle.nn.Conv2d(num_channels, num_filters, filter_size, padding=0, stride=1, dilation=1, groups=None, param_attr=None, bias_attr=None, use_cudnn=True, act=None, name=None, data_format="NCHW", dtype="float32")
 
 ### API 功能描述
-API 功能描述部分只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。如 paddle.add[https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/math/add_cn.html#add]:
+API 功能描述部分只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。如 paddle.add[https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/math/add_cn.html#add]：
 
 可以拆解为 3 个部分，功能作用 + 计算公式 + 注解部分，其中：
 
@@ -135,7 +135,7 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 
         逐元素相加算子，输入 ``x`` 与输入 ``y`` 逐元素相加，并将各个位置的输出元素保存到返回结果中。
 
- - 计算公式：给出该 API 的计算公式，由于公式中每个变量都对应 API 的参数，所以不需要做额外的说明，如 ``paddle.add``:
+ - 计算公式：给出该 API 的计算公式，由于公式中每个变量都对应 API 的参数，所以不需要做额外的说明，如 ``paddle.add``：
 
         计算公式为：
 
@@ -180,7 +180,7 @@ API 参数部分，要解释清楚每个参数的意义和使用场景。需要�
 
 **1、**对于有**默认值**的参数，至少要讲清楚在默认值下的逻辑，而不仅仅是介绍这个参数是什么以及默认值是什么；
 
-如``stop_gradient``的对比，要添加默认值为 True 的行为，即**表示停止计算梯度** 。
+如 ``stop_gradient`` 的对比，要添加默认值为 True 的行为，即**表示停止计算梯度** 。
 
     stop_gradient (bool，可选) - 提示是否应该停止计算梯度，默认值为 False。
     # wrong
@@ -188,7 +188,7 @@ API 参数部分，要解释清楚每个参数的意义和使用场景。需要�
     stop_gradient (bool，可选) - 提示是否应该停止计算梯度，默认值为 True，表示停止计算梯度。
     # right
 
-或者如``return_numpy``的对比：
+或者如 ``return_numpy`` 的对比：
 
     return_numpy (bool) – 该变量表示是否将 fetched tensor 转换为 numpy。默认为：True。
     # wrong
@@ -198,7 +198,7 @@ API 参数部分，要解释清楚每个参数的意义和使用场景。需要�
 
 可以看出，第二行的 return_numpy 的描述更为清晰，分别描述了 True 和 False 的两种情况。而第一行的说明过于简单。
 
-**2、** 在讲清楚每个 API 参数是什么的同时，还需要描述清楚每个参数的具体作用是什么。如再如``feeded_var_names``：
+**2、** 在讲清楚每个 API 参数是什么的同时，还需要描述清楚每个参数的具体作用是什么。如再如 ``feeded_var_names``：
 
     feeded_var_names (list[str]) – 字符串列表，包含着 Inference Program 预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
     target_vars (list[Variable]) – Variable （详见 基础概念 ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
@@ -235,7 +235,7 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
  - 示例代码需要与当前版本及推荐用法保持一致：**develop 分支下 fluid namespace 以外的 API，不能再有 fluid 关键字，只需要提供动态图的示例代码。**
  - 尽量不用 random 输入，需要以注释形式给出输出值。
  - 中英文示例代码，不做任何翻译，保持相同（means identical）。
- - 原则上，所有提供的 API 都需要提供示例代码，对于``class member methods, abstract API, callback``，等情况，可以在提交 PR 时说明相应的使用方法的文档的位置或文档计划后，通过白名单审核机制通过 CI 检查。
+ - 原则上，所有提供的 API 都需要提供示例代码，对于 `class member methods` 、 `abstract API` 、 `callback` ，等情况，可以在提交 PR 时说明相应的使用方法的文档的位置或文档计划后，通过白名单审核机制通过 CI 检查。
  - 对于仅为 GPU 环境提供的 API，当该示例代码在 CPU 上运行时，运行后给出含有 ”Not compiled with CUDA” 的错误提示，也可认为该 API 行为正确。
 
 英文 API 代码示例格式规范如下：
@@ -252,7 +252,7 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
             示例代码位置 (存在多个示例代码)
       """
 
-英文格式如 ``paddle.multiply``：
+英文格式如 ``paddle.multiply`` ：
 
     def multiply(x, y, axis=-1, name=None):
       """
@@ -271,7 +271,7 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
                 res = paddle.multiply(x, y)
                 print(res) # [[2, 4, 6], [2, 4, 6]]]
 
-中文格式如``paddle.add``：
+中文格式如 ``paddle.add`` ：
 
     代码示例
     ::::::::::
@@ -282,7 +282,7 @@ API 抛出异常部分，由于历史原因写在文档中，建议在源码的 
 API 的属性用来描述 API 所包含的属性。如果 API 有属性，每个属性需要分为四个部分描述：
 
  - 名称：属性名称直接写属性的名字即可，不需要将全路径写全；
- - 注意：列举出使用该属性时应注意的一些问题，如果没有可以不填；如不同的版本、是否是只读属性、使用的一些 tricks 等等，如``Program``的``rand_seed``：
+ - 注意：列举出使用该属性时应注意的一些问题，如果没有可以不填；如不同的版本、是否是只读属性、使用的一些 tricks 等等，如 ``Program`` 的 ``rand_seed`` ：
 
         .. note::
             必须在相关 OP 被添加之前设置。
@@ -397,7 +397,7 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
 
  - 中文文档、英文文档齐全，内容一一对应。
  - 文档清晰可读，易于用户使用。
- - 给出易于理解的 api 介绍，文字描述，公式描述。
+ - 给出易于理解的 API 介绍，文字描述，公式描述。
  - 参数命名通俗易懂无歧义，明确给出传参类型，对参数含义以及使用方法进行详细说明，对返回值进行详细说明。
  - 异常类型和含义进行详细说明。
  - 示例代码需要做到复制粘贴即可运行，并且需要明确给出预期运行结果（如果可以）。
