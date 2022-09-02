@@ -178,7 +178,7 @@ API 功能描述部分只需要尽可能简单的描述出 API 的功能作用�
 
 ### API 参数（重要）
 
-**注意**：一些通用的参数说明，直接 copy [**常用文档写法**](https://github.com/PaddlePaddle/docs/blob/develop/docs/templates/common_docs.py) 中的描述即可。
+**注意**：一些通用的参数说明，直接复制 [**常用文档写法**](https://github.com/PaddlePaddle/docs/blob/develop/docs/templates/common_docs.py) 中的描述即可。
 
 
 API 参数部分，要解释清楚每个参数的意义和使用场景。需要注意以下两点：
