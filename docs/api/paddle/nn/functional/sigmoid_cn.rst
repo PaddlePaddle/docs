@@ -10,7 +10,7 @@ sigmoid
 sigmoid 激活函数
 
 .. math::
-    sigmoid(x) = \frac{1}{1 + e^{-x}}
+    sigmoid(x) = \frac{1}{1 + \mathrm{e}^{-x}}
 
 
 参数
