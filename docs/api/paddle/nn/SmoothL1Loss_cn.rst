@@ -29,7 +29,7 @@ SmoothL1Loss
 输入
 ::::::::::
 
-    - **input** (Tensor)：输入 `Tensor`，数据类型为 float32。其形状为 :math:`[N, C]`，其中 :math:`C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_k]`，k >= 1。
+    - **input** (Tensor)：输入 `Tensor`，数据类型为 float32。其形状为 :math:`[N, C]`，其中 :math:`C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_k]`，:math:`k \geqslant 1`。
     - **label** (Tensor)：输入 :attr:`input` 对应的标签值，数据类型和 :attr:`input` 相同。
 
 返回
