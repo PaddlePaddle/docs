@@ -32,7 +32,7 @@ Varible here is actually a Symbol. Every basic Symbol will correspond to one Nod
 
 Symbol contains a data member, std::vector<NodeEntry> outputs, and NodeEntry cantains a poniter to Node. We can follow the Node pointer to get all the Graph.
 
-And Symbol can be saved to a Json file.
+And Symbol can be saved to a JSON file.
 
 Here is a detailed example:
 
@@ -78,7 +78,7 @@ Attrs:
 ### TensorFlow
 
 
-The core concept of symbolic API is `Tensor`. Tensorflow defines `Tensor` in Python. Please refer to the comments in TensorFlow:
+The core concept of symbolic API is `Tensor`. TensorFlow defines `Tensor` in Python. Please refer to the comments in TensorFlow:
 
 A `Tensor` is a symbolic handle to one of the outputs of an `Operation`. It does not hold the values of that operation's output, but instead provides a means of computing those values in a TensorFlow [Session](https://www.tensorflow.org/api_docs/python/tf/Session).
 

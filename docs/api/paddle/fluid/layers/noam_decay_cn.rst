@@ -26,7 +26,7 @@ noam衰减的numpy实现如下：
                            np.power(current_steps, -0.5),
                            np.power(warmup_steps, -1.5) * current_steps])
 
-请参照 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_
+请参照 `attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ 
 
 参数
 ::::::::::::

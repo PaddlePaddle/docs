@@ -4,28 +4,19 @@ is_floating_point
 -------------------------------
 
 .. py:function:: paddle.is_floating_point(x)
-判断输入Tensor的数据类型是否为浮点类型。
+判断输入 Tensor 的数据类型是否为浮点类型。
 
 参数
 :::::::::
 
-- **x**  (Tensor) - 输入的Tensor。
+- **x**  (Tensor) - 输入的 Tensor。
 
 返回
 :::::::::
 
-输入Tensor是否为浮点类型。
+输入 Tensor 是否为浮点类型。
 
 代码示例
 :::::::::
 
-.. code-block:: python
-    
-    import paddle
-
-    x = paddle.arange(1., 5., dtype='float32')
-    y = paddle.arange(1, 5, dtype='int32')
-    print(paddle.is_floating_point(x))
-    # True
-    print(paddle.is_floating_point(y))
-    # False
+COPY-FROM: paddle.is_floating_point

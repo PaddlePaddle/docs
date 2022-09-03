@@ -11,8 +11,8 @@ frac
 
 参数
 :::::::::
-    - **x** (Tensor) : 输入变量，类型为 Tensor, 支持int32、int64、float32、float64数据类型。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **x** (Tensor)：输入变量，类型为 Tensor，支持 int32、int64、float32、float64 数据类型。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::

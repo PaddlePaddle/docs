@@ -9,14 +9,9 @@ is_compiled_with_cinn
 
 返回
 ::::::::::::
-bool，支持CINN则为True，否则为False。
+bool，支持 CINN 则为 True，否则为 False。
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    support_cinn = paddle.device.is_compiled_with_cinn()
-
-
+COPY-FROM: paddle.device.is_compiled_with_cinn

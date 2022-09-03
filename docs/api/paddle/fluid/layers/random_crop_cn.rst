@@ -14,7 +14,7 @@ random_crop
 ::::::::::::
 
     - **x(Variable)** - 多维Tensor。
-    - **shape(list(int))** - 裁剪后最后几维的形状，注意， ``shape`` 的个数小于 ``x`` 的秩。
+    - **shape(list(int))** - 裁剪后最后几维的形状，注意，``shape`` 的个数小于 ``x`` 的秩。
     - **seed(int|Variable，可选)** - 设置随机数种子，默认情况下，种子是[-65536,-65536)中一个随机数，如果类型是Variable，要求数据类型是int64，默认值：None。
 
 返回
@@ -28,18 +28,4 @@ Variable
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-   import paddle.fluid as fluid
-   img = fluid.data("img", [None, 3, 256, 256])
-   # cropped_img的shape: [-1, 3, 224, 224]
-   cropped_img = fluid.layers.random_crop(img, shape=[3, 224, 224])
-   
-   # cropped_img2的shape: [-1, 2, 224, 224]
-   # cropped_img2 = fluid.layers.random_crop(img, shape=[2，224, 224])
-   
-   # cropped_img3的shape: [-1, 3, 128, 224]
-   # cropped_img3 = fluid.layers.random_crop(img, shape=[128, 224])
-
-
-
+COPY-FROM: paddle.fluid.layers.random_crop

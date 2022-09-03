@@ -16,7 +16,7 @@ Dropout层可以删除，提高执行效率。
     - **seed** (int，可选) - 整型数据，用于创建随机种子。如果该参数设为None，则使用随机种子。注：如果给定一个整型种子，始终丢弃相同的输出单元。训练过程中勿用固定不变的种子。默认值：None。
     - **dropout_implementation** (str，可选) - 丢弃单元的方式，有两种'downgrade_in_infer'和'upscale_in_train'两种选择，默认：'downgrade_in_infer'。具体作用可以参考一下描述。
 
-      1. downgrade_in_infer(default), 在预测时减小输出结果
+      1. downgrade_in_infer(default)，在预测时减小输出结果
 
          - train: out = input * mask
 
@@ -24,7 +24,7 @@ Dropout层可以删除，提高执行效率。
 
          (mask是一个张量，维度和输入维度相同，值为0或1，值为0的比例即为 ``p`` )
 
-      2. upscale_in_train, 增加训练时的结果
+      2. upscale_in_train，增加训练时的结果
 
          - train: out = input * mask / ( 1.0 - p )
 
@@ -41,18 +41,4 @@ Dropout层可以删除，提高执行效率。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    from paddle.fluid.dygraph.base import to_variable
-    import numpy as np
-
-    x = np.random.random(size=(3, 10, 3, 7)).astype('float32')
-    with fluid.dygraph.guard():
-        x = to_variable(x)
-        m = fluid.dygraph.Dropout(p=0.5)
-        droped_train = m(x)
-        # 切换到 eval 模式
-        m.eval()
-        droped_eval = m(x)
-
+COPY-FROM: paddle.fluid.dygraph.Dropout

@@ -5,7 +5,7 @@ graph_reindex
 
 .. py:function:: paddle.incubate.graph_reindex(x, neighbors, count, value_buffer=None, index_buffer=None, flag_buffer_hashtable=False, name=None)
 
-主要应用于图学习领域，需要与图采样相关的API配合使用。其主要目的是对输入的中心节点信息和邻居信息进行从0开始的重新编号，以方便后续的图模型子图训练。
+主要应用于图学习领域，需要与图采样相关的 API 配合使用。其主要目的是对输入的中心节点信息和邻居信息进行从 0 开始的重新编号，以方便后续的图模型子图训练。
 
 .. code-block:: text
 
@@ -36,10 +36,10 @@ graph_reindex
     - x (Tensor) - 输入的中心节点原始编号，数据类型为：int32、int64。
     - neighbors (Tensor) - 中心节点的邻居节点编号，数据类型为：int32、int64。
     - count (Tensor) - 中心节点各自的邻居数目，数据类型为：int32。
-    - value_buffer (Tensor，可选) - 用于快速哈希索引的缓存Tensor，可加速重编号过程。数据类型为int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为True，则不可为空。默认值为None。
-    - index_buffer (Tensor，可选) - 用于快速哈希索引的缓存Tensor，可加速重编号过程。数据类型为int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为True，则不可为空。默认值为None。
-    - flag_buffer_hashtable (bool) - 是否采取快速哈希索引，默认为False。只适用于GPU版本的API。
-    - name (str，可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name` 。
+    - value_buffer (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为 True，则不可为空。默认值为 None。
+    - index_buffer (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为 True，则不可为空。默认值为 None。
+    - flag_buffer_hashtable (bool) - 是否采取快速哈希索引，默认为 False。只适用于 GPU 版本的 API。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
@@ -51,19 +51,4 @@ graph_reindex
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = [0, 1, 2]
-    neighbors = [8, 9, 0, 4, 7, 6, 7]
-    count = [2, 3, 2]
-    x = paddle.to_tensor(x, dtype="int64")
-    neighbors = paddle.to_tensor(neighbors, dtype="int64")
-    count = paddle.to_tensor(count, dtype="int32")
-    
-    reindex_src, reindex_dst, out_nodes = \
-        paddle.incubate.graph_reindex(x, neighbors, count)
-    # reindex_src: [3, 4, 0, 5, 6, 7, 6]
-    # reindex_dst: [0, 0, 1, 1, 1, 2, 2]
-    # out_nodes: [0, 1, 2, 8, 9, 4, 7, 6]
+COPY-FROM: paddle.incubate.graph_reindex

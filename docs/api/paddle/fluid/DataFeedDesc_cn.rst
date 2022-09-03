@@ -38,7 +38,7 @@ DataFeedDesc
     f.close()
     data_feed = fluid.DataFeedDesc('data.proto')
 
-用户需要了解DataFeedDesc中每个字段的含义，以便自定义字段的值。例如:
+用户需要了解DataFeedDesc中每个字段的含义，以便自定义字段的值。例如：
 
 .. code-block:: python
 
@@ -55,7 +55,7 @@ DataFeedDesc
 参数
 ::::::::::::
 
-  - **proto_file** (string) : 包含数据描述的protobuf message的磁盘文件
+  - **proto_file** (string)：包含数据描述的protobuf message的磁盘文件
 
 
 方法
@@ -63,7 +63,7 @@ DataFeedDesc
 set_batch_size(batch_size)
 '''''''''
 
-该接口用于设置DataFeedDesc中的 :code:`batch_size` 。可以在训练期间调用修改 :code:`batch_size` 。
+该接口用于设置DataFeedDesc中的 :code:`batch_size`。可以在训练期间调用修改 :code:`batch_size` 。
 
 **代码示例**
 
@@ -146,7 +146,7 @@ set_use_slots(use_slots_name)
 
 **参数**
 
-  - **use_slots_name** (list) : 将在训练中使用的slot名列表，类型为list，其中每个元素为一个字符串
+  - **use_slots_name** (list)：将在训练中使用的slot名列表，类型为list，其中每个元素为一个字符串
 
 **代码示例**
 

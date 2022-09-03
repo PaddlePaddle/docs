@@ -6,7 +6,7 @@ max_unpool3d
 
 .. py:function:: paddle.nn.functional.max_unpool3d(x, indices, kernel_size, stride=None, padding=0, data_format="NCDHW", output_size=None, name=None)
 
-这个API实现了 `3D最大反池化` 操作
+这个 API 实现了 `3D 最大反池化` 操作
 
 .. note::
    更多细节请参考对应的 `Class` 请参考 :ref:`cn_api_nn_MaxUnPool3D` 。
@@ -31,14 +31,14 @@ max_unpool3d
 
 参数
 :::::::::
-    - **x** (Tensor)：形状为 `[N,C,D,H,W]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型为float32或float64。
-    - **indices** (Tensor): 形状为 `[N,C,D,H,W]` 的5-D Tensor，N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度，数据类型为int32。
-    - **kernel_size** (int|list|tuple): 反池化的滑动窗口大小。
+    - **x** (Tensor)：形状为 `[N,C,D,H,W]` 的 5-D Tensor，N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 float32 或 float64。
+    - **indices** (Tensor)：形状为 `[N,C,D,H,W]` 的 5-D Tensor，N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 int32。
+    - **kernel_size** (int|list|tuple)：反池化的滑动窗口大小。
     - **stride** (int|list|tuple，可选)：池化层的步长。如果它是一个元组或列表，它必须是三个相等的整数，(pool_stride_Depth, pool_stride_Height, pool_stride_Width)，默认值：None。
-    - **padding** (string|int|list|tuple，可选) 池化填充,默认值：0。
-    - **output_size** (list|tuple, 可选): 目标输出尺寸。 如果 output_size 没有被设置，则实际输出尺寸会通过(input_shape, kernel_size, stride, padding)自动计算得出，默认值：None。
-    - **data_format** (str, 可选)： 输入和输出的数据格式，只能是"NCDHW"。N是批尺寸，C是通道数，D是特征深度，H是特征高度，W是特征宽度。默认值："NCDHW"
-    - **name** (str，可选)：函数的名字，默认为None.
+    - **padding** (string|int|list|tuple，可选) 池化填充，默认值：0。
+    - **output_size** (list|tuple，可选)：目标输出尺寸。如果 output_size 没有被设置，则实际输出尺寸会通过(input_shape, kernel_size, stride, padding)自动计算得出，默认值：None。
+    - **data_format** (str，可选)：输入和输出的数据格式，只能是"NCDHW"。N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度。默认值："NCDHW"
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 

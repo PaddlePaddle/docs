@@ -5,7 +5,7 @@ make_scheduler
 
 .. py:function:: paddle.profiler.make_scheduler(*, closed: int, ready: int, record: int, repeat: int=0, skip_first: int=0)
 
-该接口用于生成性能分析器状态(详情见 :ref:`状态说明 <cn_api_profiler_profilerstate>` )的调度器函数，可根据设置的参数来调度性能分析器的状态。
+生成性能分析器状态(详情见 :ref:`状态说明 <cn_api_profiler_profilerstate>` )的调度器函数，可根据设置的参数来调度性能分析器的状态。
 调度器用于调度如下状态转换过程：
 
 .. code-block:: text
@@ -21,16 +21,16 @@ make_scheduler
 参数
 :::::::::
 
-    - **closed** (int) - 处于ProfilerState.CLOSED状态的step数量。
-    - **ready** (int) - 处于ProfilerState.CLOSED状态的step数量。
-    - **record** (int) - 处于ProfilerState.RECORD状态的step数量, record的最后一个step会处于ProfilerState.RECORD_AND_RETURN状态。
-    - **repeat** (int，可选) - 调度器重复该状态调度过程的次数, 默认值为0, 意味着一直重复该调度过程直到性能分析器结束。
-    - **skip_first** (int，可选) - 跳过前skip_first个step，不参与状态调度，并处于ProfilerState.CLOSED状态，默认值为0。
+    - **closed** (int) - 处于 ProfilerState.CLOSED 状态的 step 数量。
+    - **ready** (int) - 处于 ProfilerState.CLOSED 状态的 step 数量。
+    - **record** (int) - 处于 ProfilerState.RECORD 状态的 step 数量，record 的最后一个 step 会处于 ProfilerState.RECORD_AND_RETURN 状态。
+    - **repeat** (int，可选) - 调度器重复该状态调度过程的次数，默认值为 0，意味着一直重复该调度过程直到性能分析器结束。
+    - **skip_first** (int，可选) - 跳过前 skip_first 个 step，不参与状态调度，并处于 ProfilerState.CLOSED 状态，默认值为 0。
 
 返回
 :::::::::
 
-调度函数（callable)，该函数会接收一个参数step_num，并计算返回相应的ProfilerState。调度函数会根据上述状态转换过程进行调度。
+调度函数（callable)，该函数会接收一个参数 step_num，并计算返回相应的 ProfilerState。调度函数会根据上述状态转换过程进行调度。
 
 
 代码示例 1
@@ -38,16 +38,16 @@ make_scheduler
 
 性能分析 batch [2, 5]。
 
-设定第0个batch处于CLOSED， 第1个batch处于READY，第[2 - 5]个batch处于RECORD，在第5个batch返回收集的性能数据。
+设定第 0 个 batch 处于 CLOSED，第 1 个 batch 处于 READY，第[2 - 5]个 batch 处于 RECORD，在第 5 个 batch 返回收集的性能数据。
 
 COPY-FROM: paddle.profiler.make_scheduler:code-example1
 
 代码示例 2
 ::::::::::
 
-性能分析 batch [3,6], [9,12], [15, 18]... 
+性能分析 batch [3,6], [9,12], [15, 18]..。
 
-设定第0个batch跳过， 第1个batch处于CLOSED，第2个batch处于READ，第[3 - 6]个batch处于RECORD，在第6个batch返回收集的性能数据。即第7个batch处于CLOSED，第8个batch处于READY,
-第[9-12]个batch处于RECORD，并在第12个batch返回第二轮所收集到的性能数据。以此类推，直到性能分析器结束。
+设定第 0 个 batch 跳过，第 1 个 batch 处于 CLOSED，第 2 个 batch 处于 READ，第[3 - 6]个 batch 处于 RECORD，在第 6 个 batch 返回收集的性能数据。即第 7 个 batch 处于 CLOSED，第 8 个 batch 处于 READY,
+第[9-12]个 batch 处于 RECORD，并在第 12 个 batch 返回第二轮所收集到的性能数据。以此类推，直到性能分析器结束。
 
 COPY-FROM: paddle.profiler.make_scheduler:code-example2

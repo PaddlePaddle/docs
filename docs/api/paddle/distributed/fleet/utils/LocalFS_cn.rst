@@ -8,12 +8,8 @@ LocalFS
 
 代码示例
 ::::::::::::
-.. code-block:: python
 
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    subdirs, files = client.ls_dir("./")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS
 
 方法
 ::::::::::::
@@ -23,20 +19,15 @@ ls_dir(fs_path)
 
 **参数**
 
-    - **fs_path** (str): 本地文件路径。
+    - **fs_path** (str)：本地文件路径。
 
 **返回**
 
-    - Tuple， 一个包含所有子目录和文件名的2-Tuple，格式形如: ([subdirname1, subdirname1, ...], [filename1, filename2, ...])。
+    - Tuple，一个包含所有子目录和文件名的 2-Tuple，格式形如：([subdirname1, subdirname1, ...], [filename1, filename2, ...])。
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    subdirs, files = client.ls_dir("./")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS.ls_dir
 
 mkdirs(fs_path)
 '''''''''
@@ -44,17 +35,11 @@ mkdirs(fs_path)
 
 **参数**
 
-    - **fs_path** (str): 本地文件路径。
+    - **fs_path** (str)：本地文件路径。
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    client.mkdirs("test_mkdirs")
-    client.delete("test_mkdirs")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS.mkdirs
 
 rename(fs_src_path, fs_dst_path)
 '''''''''
@@ -67,17 +52,7 @@ rename(fs_src_path, fs_dst_path)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    client.touch("test_rename_src")
-    print(client.is_exists("test_rename_src")) # True
-    client.rename("test_rename_src", "test_rename_dst")
-    print(client.is_exists("test_rename_src")) # False
-    print(client.is_exists("test_rename_dst")) # True
-    client.delete("test_rename_dst")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS.rename
 
 delete(fs_path)
 '''''''''
@@ -85,17 +60,11 @@ delete(fs_path)
 
 **参数**
 
-    - **fs_path** (str): 本地文件路径。
+    - **fs_path** (str)：本地文件路径。
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    client.mkdirs("test_localFS_mkdirs")
-    client.delete("test_localFS_mkdirs")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS.delete
 
 is_file(fs_path)
 '''''''''
@@ -103,22 +72,15 @@ is_file(fs_path)
 
 **参数**
 
-    - **fs_path** (str): 本地文件路径。
+    - **fs_path** (str)：本地文件路径。
 
 **返回**
 
-    - Bool：若当前路径存在且是一个文件，返回 `True` ，反之则返回 `False` 。
+    - Bool：若当前路径存在且是一个文件，返回 `True`，反之则返回 `False` 。
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    client.touch("test_is_file")
-    print(client.is_file("test_is_file")) # True
-    client.delete("test_is_file")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS.is_file
 
 is_dir(fs_path)
 '''''''''
@@ -126,22 +88,15 @@ is_dir(fs_path)
 
 **参数**
 
-    - **fs_path** (str): 本地文件路径。
+    - **fs_path** (str)：本地文件路径。
 
 **返回**
 
-    - Bool：若当前路径存在且是一个目录，返回 `True` ，反之则返回 `False` 。
+    - Bool：若当前路径存在且是一个目录，返回 `True`，反之则返回 `False` 。
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    client.mkdirs("test_is_dir")
-    print(client.is_dir("test_is_file")) # True
-    client.delete("test_is_dir")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS.is_dir
 
 is_exist(fs_path)
 '''''''''
@@ -149,20 +104,15 @@ is_exist(fs_path)
 
 **参数**
 
-    - **fs_path** (str): 本地文件路径。
+    - **fs_path** (str)：本地文件路径。
 
 **返回**
 
-    - Bool：若当前路径存在返回 `True` ，反之则返回 `False` 。
+    - Bool：若当前路径存在返回 `True`，反之则返回 `False` 。
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    ret = local_fs.is_exist("test_is_exist")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS.is_exist
 
 touch(fs_path, exist_ok=True)
 '''''''''
@@ -170,18 +120,12 @@ touch(fs_path, exist_ok=True)
 
 **参数**
 
-    - **fs_path** (str): 本地文件路径。
-    - **exist_ok** (bool): 文件路径已存在时程序是否报错。若 `exist_ok = True`，则直接返回，反之则抛出文件存在的异常，默认不抛出异常。
+    - **fs_path** (str)：本地文件路径。
+    - **exist_ok** (bool)：文件路径已存在时程序是否报错。若 `exist_ok = True`，则直接返回，反之则抛出文件存在的异常，默认不抛出异常。
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    client.touch("test_touch")
-    client.delete("test_touch")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS.touch
 
 mv(src_path, dst_path, overwrite=False)
 '''''''''
@@ -189,20 +133,13 @@ mv(src_path, dst_path, overwrite=False)
 
 **参数**
 
-    - **src_path** (str): 移动前源文件路径名。
-    - **dst_path** (str): 移动后目标文件路径名。
-    - **overwrite** (bool): 若目标文件已存在，是否删除进行重写，默认不重写并抛出异常。
- 
+    - **src_path** (str)：移动前源文件路径名。
+    - **dst_path** (str)：移动后目标文件路径名。
+    - **overwrite** (bool)：若目标文件已存在，是否删除进行重写，默认不重写并抛出异常。
+
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    client.touch("test_mv_src")
-    client.mv("test_mv_src", "test_mv_dst")
-    client.delete("test_mv_dst")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS.mv
 
 list_dirs(fs_path)
 '''''''''
@@ -210,17 +147,12 @@ list_dirs(fs_path)
 
 **参数**
 
-    - **fs_path** (str): 本地文件路径。
+    - **fs_path** (str)：本地文件路径。
 
 **返回**
 
-    - List: 该路径下所有的子目录名。
+    - List：该路径下所有的子目录名。
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.distributed.fleet.utils import LocalFS
-
-    client = LocalFS()
-    subdirs = client.list_dirs("./")
+COPY-FROM: paddle.distributed.fleet.utils.LocalFS.list_dirs

@@ -8,7 +8,7 @@ Categorical
 
 
 
-类别分布是一种离散概率分布，其随机变量可以取K个相互独立类别的其中一个。
+类别分布是一种离散概率分布，其随机变量可以取 K 个相互独立类别的其中一个。
 
 概率质量函数（pmf）为：
 
@@ -16,16 +16,16 @@ Categorical
 
     pmf(k; p_i) =\prod_{i=1}^{k} p_i^{[x=i]}
 
-上面公式中:
+上面公式中：
 
-  - :math:`[x = i]` 表示：如果 :math:`x==i` ，则表达式取值为1，否则取值为0。
+  - :math:`[x = i]` 表示：如果 :math:`x==i`，则表达式取值为 1，否则取值为 0。
 
 
 参数
 ::::::::::::
 
-    - **logits** (list|numpy.ndarray|Tensor) - 类别分布对应的logits。数据类型为float32或float64。
-    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **logits** (list|numpy.ndarray|Tensor) - 类别分布对应的 logits。数据类型为 float32 或 float64。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
 ::::::::::::
@@ -108,15 +108,15 @@ sample(shape)
 kl_divergence(other)
 '''''''''
 
-相对于另一个类别分布的KL散度。
+相对于另一个类别分布的 KL 散度。
 
 **参数**
 
-    - **other** (Categorical) - 输入的另一个类别分布。数据类型为float32。
-    
+    - **other** (Categorical) - 输入的另一个类别分布。数据类型为 float32。
+
 **返回**
 
-相对于另一个类别分布的KL散度，数据类型为float32。
+相对于另一个类别分布的 KL 散度，数据类型为 float32。
 
 **代码示例**
 
@@ -147,10 +147,10 @@ entropy()
 '''''''''
 
 信息熵。
-    
+
 **返回**
 
-类别分布的信息熵，数据类型为float32。
+类别分布的信息熵，数据类型为 float32。
 
 **代码示例**
 
@@ -174,13 +174,13 @@ probs(value)
 '''''''''
 
 所选择类别的概率。
-如果 ``logtis`` 是2-D或更高阶的Tensor，那么其最后一个维度表示不同类别的概率，其它维度被看做不同的概率分布。
-同时，如果 ``value`` 是1-D Tensor，那么 ``value`` 会broadcast成与 ``logits`` 具有相同的概率分布数量。
-如果 ``value`` 为更高阶Tensor，那么 ``value`` 应该与 ``logits`` 具有相同的概率分布数量。也就是说， ``value[:-1] = logits[:-1]`` 。
+如果 ``logtis`` 是 2-D 或更高阶的 Tensor，那么其最后一个维度表示不同类别的概率，其它维度被看做不同的概率分布。
+同时，如果 ``value`` 是 1-D Tensor，那么 ``value`` 会 broadcast 成与 ``logits`` 具有相同的概率分布数量。
+如果 ``value`` 为更高阶 Tensor，那么 ``value`` 应该与 ``logits`` 具有相同的概率分布数量。也就是说，``value[:-1] = logits[:-1]`` 。
 
 **参数**
 
-    - **value** (Tensor) - 输入张量，表示选择的类别下标。数据类型为int32或int64。
+    - **value** (Tensor) - 输入张量，表示选择的类别下标。数据类型为 int32 或 int64。
 
 **返回**
 
@@ -210,7 +210,7 @@ log_prob(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量，表示选择的类别下标。数据类型为int32或int64。
+    - **value** (Tensor) - 输入张量，表示选择的类别下标。数据类型为 int32 或 int64。
 
 **返回**
 
@@ -232,4 +232,3 @@ log_prob(value)
     value = paddle.to_tensor([2,1,3])
     cat.log_prob(value)
     # [-5.10271 -2.22287 -1.31061]
-    

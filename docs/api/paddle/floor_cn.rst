@@ -16,24 +16,14 @@ floor
 参数
 ::::::::::::
 
-    - **x** - 输入为多维Tensor。数据类型必须为float32或float64。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **x** - 输入为多维 Tensor。数据类型必须为 float32 或 float64。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
-输出为Tensor，与 ``x`` 维度相同、数据类型相同。
+输出为 Tensor，与 ``x`` 维度相同、数据类型相同。
 
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        data1 = paddle.full(shape=[3, 2], fill_value=2.5, dtype='float32') # [[2.5, 2.5], [2.5, 2.5], [2.5, 2.5]]
-        data2 = paddle.full(shape=[2, 3], fill_value=-2.5, dtype='float64') # [[-2.5, -2.5, -2.5], [-2.5, -2.5, -2.5]]
-        result1 = paddle.floor(data1) # [[2., 2.], [2., 2.], [2., 2.]]
-        result2 = paddle.floor(data2) # [[-3., -3., -3.], [-3., -3., -3.]]
-        print(result1)
-        print(result2)
-
+COPY-FROM: paddle.floor

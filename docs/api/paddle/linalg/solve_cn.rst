@@ -15,38 +15,21 @@ solve
 
 特别地，
 
-- 如果 ``X`` 不可逆 ， 则线性方程组不可解。
+- 如果 ``X`` 不可逆，则线性方程组不可解。
 
 
 参数
 :::::::::
-    - **x** (Tensor) : 输入的欲进行线性方程组求解的一个或一批方阵（系数矩阵）， 类型为 Tensor。 ``x`` 的形状应为 ``[*, M, M]``， 其中 ``*`` 为零或更大的批次维度， 数据类型为float32， float64。
-    - **y** (Tensor) : 输入的欲进行线性方程组求解的右值， 类型为 Tensor。 ``y`` 的形状应为 ``[*, M, K]``， 其中 ``*`` 为零或更大的批次维度， 数据类型和 ``x`` 相同。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **x** (Tensor)：输入的欲进行线性方程组求解的一个或一批方阵（系数矩阵），类型为 Tensor。 ``x`` 的形状应为 ``[*, M, M]``，其中 ``*`` 为零或更大的批次维度，数据类型为 float32， float64。
+    - **y** (Tensor)：输入的欲进行线性方程组求解的右值，类型为 Tensor。 ``y`` 的形状应为 ``[*, M, K]``，其中 ``*`` 为零或更大的批次维度，数据类型和 ``x`` 相同。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
 
-Tensor， 这个（或这批）矩阵 ``x`` 与 ``y`` 经过运算后的结果， 数据类型和输入 ``x`` 的一致。
+Tensor，这个（或这批）矩阵 ``x`` 与 ``y`` 经过运算后的结果，数据类型和输入 ``x`` 的一致。
 
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    # a square system of linear equations:
-    # 2*X0 + X1 = 9
-    # X0 + 2*X1 = 8
-
-    import paddle
-    import numpy as np
-  
-    np_x = np.array([[3, 1],[1, 2]])
-    np_y = np.array([9, 8])
-    x = paddle.to_tensor(np_x, dtype="float64")
-    y = paddle.to_tensor(np_y, dtype="float64")
-    out = paddle.linalg.solve(x, y)  
-
-    print(out)
-    # [2., 3.])  
-
+COPY-FROM: paddle.linalg.solve

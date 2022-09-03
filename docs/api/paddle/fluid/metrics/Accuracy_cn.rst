@@ -12,7 +12,7 @@ Accuracy
 参数
 ::::::::::::
 
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
@@ -25,27 +25,8 @@ Accuracy
 代码示例
 ::::::::::::
 
-.. code-block:: python
 
-        import paddle.fluid as fluid
-        # 假设有batch_size = 128
-        batch_size=128
-        accuracy_manager = fluid.metrics.Accuracy()
-        # 假设第一个batch的准确率为0.9
-        batch1_acc = 0.9
-        accuracy_manager.update(value = batch1_acc, weight = batch_size)
-        print("expect accuracy: %.2f, get accuracy: %.2f" % (batch1_acc, accuracy_manager.eval()))
-        # 假设第二个batch的准确率为0.8
-        batch2_acc = 0.8
-        accuracy_manager.update(value = batch2_acc, weight = batch_size)
-        #batch1和batch2的联合准确率为(batch1_acc * batch_size + batch2_acc * batch_size) / batch_size / 2
-        print("expect accuracy: %.2f, get accuracy: %.2f" % ((batch1_acc * batch_size + batch2_acc * batch_size) / batch_size / 2, accuracy_manager.eval()))
-        #重置accuracy_manager
-        accuracy_manager.reset()
-        #假设第三个batch的准确率为0.8
-        batch3_acc = 0.8
-        accuracy_manager.update(value = batch3_acc, weight = batch_size)
-        print("expect accuracy: %.2f, get accuracy: %.2f" % (batch3_acc, accuracy_manager.eval()))
+COPY-FROM: paddle.fluid.metrics.Accuracy
 
 方法
 ::::::::::::

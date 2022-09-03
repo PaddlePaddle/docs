@@ -23,7 +23,7 @@ Intensive system optimization and low-latency inference library (details in \[[1
 We roughly break down the project into 14 tasks:
 
 1. Develop an **audio data provider**:
-    - Json filelist generator.
+    - JSON filelist generator.
     - Audio file format transformer.
     - Spectrogram feature extraction, power normalization etc.
     - Batch data reader with SortaGrad.

@@ -6,28 +6,24 @@ help
 .. py:function:: paddle.hub.help(repo_dir, model, source='github', force_reload=False)
 
 
-用于查看repo提供的功能/模型的文档
+用于查看 repo 提供的功能/模型的文档。
 
 
 参数
 :::::::::
 
-    - **repo_dir** （str）: repo地址，支持git地址形式和local地址。git地址由repo拥有者/repo名字:repo分支组成，实例：PaddlePaddle/PaddleClas:develop；local地址为repo的本地路径
-    - **model** （str）: 模型的名字
-    - **source** （str | 可选）: 指定repo托管的位置，支持github和local，默认值：github
-    - **force_reload** （bool | 可选） : 指定是否强制拉取，默认值: False
+    - **repo_dir** (str) - repo 地址，支持 git 地址形式和 local 地址。git 地址由 repo 拥有者/repo 名字:repo 分支组成，实例：PaddlePaddle/PaddleClas:develop；local 地址为 repo 的本地路径。
+    - **model** (str) - 模型的名字。
+    - **source** (str，可选) - 指定 repo 托管的位置，支持 github、gitee 和 local，默认值：github。
+    - **force_reload** (bool，可选) - 指定是否强制拉取，默认值: False。
 
 返回
 :::::::::
 
-    ``str`` ，repo提供的指定模型的文档
+    ``str`` ，repo 提供的指定模型的文档。
 
 
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import paddle
-    docs = paddle.hub.help('PaddlePaddle/PaddleClas:develop', 'alexnet', source='github', force_reload=True)    
-    print(docs)
+COPY-FROM: paddle.hub.help

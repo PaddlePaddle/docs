@@ -1,4 +1,4 @@
-# Memory接口
+# Memory 接口
 
 ## device_memory_allocate 【required】
 
@@ -116,7 +116,7 @@ C_Status (*unified_memory_deallocate)(const C_Device device, void** ptr, size_t 
 
 device - 使用的设备。
 
-ptr - 需要释放的统一地址空间内存地址。。
+ptr - 需要释放的统一地址空间内存地址。
 
 size - 需要释放的内存大小（字节形式）。
 
@@ -226,7 +226,7 @@ C_Status (*async_memory_copy_h2d)(const C_Device device, C_Stream stream, void* 
 
 device - 使用的设备。
 
-stream - 在该stream上执行。
+stream - 在该 stream 上执行。
 
 dst - 目的设备内存地址。
 
@@ -250,7 +250,7 @@ C_Status (*async_memory_copy_d2h)(const C_Device device, C_Stream stream, void* 
 
 device - 使用的设备。
 
-stream - 在该stream上执行。
+stream - 在该 stream 上执行。
 
 dst - 目的主机内存地址。
 
@@ -274,7 +274,7 @@ C_Status (*async_memory_copy_d2d)(const C_Device device, C_Stream stream, void* 
 
 device - 使用的设备。
 
-stream - 使用的stream。
+stream - 使用的 stream。
 
 dst - 目的设备内存地址。
 
@@ -300,7 +300,7 @@ dst_device - 目的设备。
 
 src_device - 源设备。
 
-stream - 使用的stream。
+stream - 使用的 stream。
 
 dst - 目的设备内存地址。
 
@@ -414,7 +414,7 @@ C_Status (*device_extra_padding_size)(C_Device device, size_t* size)
 
 ### 接口说明
 
-分配设备内存需要的额外填充字节，如果没有实现，则默认为0。为避免频繁调用硬件 API 申请/释放内存， PaddlePaddle 会自行管理设备内存，申请内存时优先从 PaddlePaddle 管理的内存中分配。申请 size 大小的内存时，会分配 size + extra_padding_size 大小的内存，并按 min_chunk_size 对齐。
+分配设备内存需要的额外填充字节，如果没有实现，则默认为 0。为避免频繁调用硬件 API 申请/释放内存， PaddlePaddle 会自行管理设备内存，申请内存时优先从 PaddlePaddle 管理的内存中分配。申请 size 大小的内存时，会分配 size + extra_padding_size 大小的内存，并按 min_chunk_size 对齐。
 
 ### 参数
 

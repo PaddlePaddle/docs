@@ -9,7 +9,7 @@ ctc_greedy_decoder
 
 
 
-该OP用于贪婪策略解码序列，步骤如下:
+该OP用于贪婪策略解码序列，步骤如下：
     1. 获取输入中的每一行的最大值索引，也就是numpy.argmax(input, axis=0)。
     2. 对于step1结果中的每个序列，合并两个空格之间的重复部分并删除所有空格。
 
@@ -78,13 +78,15 @@ ctc_greedy_decoder
 参数
 ::::::::::::
 
-        - **input** (Variable) — 变长序列的概率， 在输入为LoDTensor情况下，它是具有LoD信息的二维LoDTensor。 形状为[Lp，num_classes +1]，其中Lp是所有输入序列的长度之和，num_classes是真实的类数。 在输入为Tensor情况下，它是带有填充的3-D张量，其形状为[batch_size，N，num_classes +1]。 （不包括空白标签）。 数据类型可以是float32或float64。
-        - **blank** (int) — Connectionist Temporal Classification (CTC) loss空白标签索引,  其数值属于半开区间[0,num_classes + 1）
-        - **name** (str) — (str|None，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
+        - **input** (Variable) — 变长序列的概率，在输入为LoDTensor情况下，它是具有LoD信息的二维LoDTensor。形状为[Lp，num_classes +1]，其中Lp是所有输入序列的长度之和，num_classes是真实的类数。在输入为Tensor情况下，它是带有填充的3-D张量，其形状为[batch_size，N，num_classes +1]。 （不包括空白标签）。数据类型可以是float32或float64。
+        - **blank** (int) — Connectionist Temporal Classification (CTC) loss空白标签索引，其数值属于半开区间[0,num_classes + 1）
+        - **name** (str) — (str|None，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为None
 
 返回
 ::::::::::::
-对于输入为LoDTensor的情况，返回CTC贪婪解码器的结果，即2-D LoDTensor，形状为[Lp，1]，数据类型为int64。 “ Lp”是所有输出序列长度的总和。 如果结果中的所有序列均为空，则结果LoDTensor将为[-1]，其中LoD为[[]]。对于输入为Tensor的情况，返回一个元组，(output, output_length), 其中，output是一个形状为 [batch_size, N]，类型为int64的Tensor。output_length是一个形状为[batch_size, 1]，类型为int64的Tensor，表示Tensor输入下，每个输出序列的长度。
+对于输入为LoDTensor的情况，返回CTC贪婪解码器的结果，即2-D LoDTensor，形状为[Lp，1]，数据类型为int64。“Lp”是所有输出序列长度的总和。如果结果中的所有序列均为空，则结果LoDTensor将为[-1]，其中LoD为[[]]。
+
+对于输入为Tensor的情况，返回一个元组，(output, output_length)，其中，output是一个形状为 [batch_size, N]，类型为int64的Tensor。output_length是一个形状为[batch_size, 1]，类型为int64的Tensor，表示Tensor输入下，每个输出序列的长度。
 
 返回类型
 ::::::::::::
@@ -94,19 +96,4 @@ ctc_greedy_decoder
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    # for lod mode
-    import paddle.fluid as fluid
-    x = fluid.data(name='x', shape=[None, 8], dtype='float32', lod_level=1)
-    cost = fluid.layers.ctc_greedy_decoder(input=x, blank=0)
-    # for padding mode
-    x_pad = fluid.data(name='x_pad', shape=[10, 4, 8], dtype='float32')
-    x_pad_len = fluid.data(name='x_pad_len', shape=[10, 1], dtype='int64')
-    out, out_len = fluid.layers.ctc_greedy_decoder(input=x_pad, blank=0,
-                input_length=x_pad_len)
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.ctc_greedy_decoder

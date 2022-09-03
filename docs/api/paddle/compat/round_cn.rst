@@ -1,11 +1,11 @@
-.. _cn_api_paddle_compat_round
+.. _cn_api_paddle_compat_round:
 
 round
 -------------------------------
 
 .. py:function:: paddle.compat.round(x, d=0)
 
-等价于Python3中的round函数。
+等价于 Python3 中的 round 函数。
 
 参数
 ::::::::::

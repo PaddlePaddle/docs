@@ -13,9 +13,4 @@ CPUPlace
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-        import paddle
-        cpu_place = paddle.CPUPlace()
-
-
+COPY-FROM: paddle.CPUPlace

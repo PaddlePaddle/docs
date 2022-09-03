@@ -8,7 +8,7 @@ image_resize_short
 
 
 
-该OP用于调整一批图片的大小。输入图像的短边将被调整为给定的out_short_len 。输入图像的长边按比例调整大小，最终图像的长宽比保持不变。
+该OP用于调整一批图片的大小。输入图像的短边将被调整为给定的out_short_len。输入图像的长边按比例调整大小，最终图像的长宽比保持不变。
 
 参数
 ::::::::::::
@@ -28,9 +28,4 @@ image_resize_short
 代码示例
 ::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    input = fluid.layers.data(name="input", shape=[3,6,9], dtype="float32")
-    out = fluid.layers.image_resize_short(input, out_short_len=3)
-
+COPY-FROM: paddle.fluid.layers.image_resize_short

@@ -8,7 +8,7 @@ shuffle_channel
 
 
 
-该OP将输入 ``x`` 的通道混洗重排。 它将每个组中的输入通道分成 ``group`` 个子组，并通过逐一从每个子组中选择元素来获得新的顺序。
+该OP将输入 ``x`` 的通道混洗重排。它将每个组中的输入通道分成 ``group`` 个子组，并通过逐一从每个子组中选择元素来获得新的顺序。
 
 请参阅 https://arxiv.org/pdf/1707.01083.pdf
 
@@ -48,7 +48,7 @@ shuffle_channel
 参数
 ::::::::::::
 
-  - **x** (Variable) – 输入Tensor。 维度为[N，C，H，W]的4-D Tensor。
+  - **x** (Variable) – 输入Tensor。维度为[N，C，H，W]的4-D Tensor。
   - **group** (int) – 表示子组的数目，它应该整除通道数。
 
 返回
@@ -63,17 +63,4 @@ Variable
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    input = fluid.layers.data(name='input', shape=[4,2,2], dtype='float32')
-    out = fluid.layers.shuffle_channel(x=input, group=2)
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.shuffle_channel

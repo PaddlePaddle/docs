@@ -9,7 +9,7 @@ linear_lr_warmup
 
 
 
-该OP使用学习率优化策略-线性学习率热身(warm up)对学习率进行初步调整。在正常调整学习率之前，先逐步增大学习率，具体原理可参考： `Bag of Tricks for Image Classification with Convolutional Neural Networks <https://arxiv.org/abs/1812.01187>`_
+该OP使用学习率优化策略-线性学习率热身(warm up)对学习率进行初步调整。在正常调整学习率之前，先逐步增大学习率，具体原理可参考：`Bag of Tricks for Image Classification with Convolutional Neural Networks <https://arxiv.org/abs/1812.01187>`_ 
 
 当训练步数（global_step）小于热身步数（warmup_steps）时，学习率lr按如下方式更新：
 

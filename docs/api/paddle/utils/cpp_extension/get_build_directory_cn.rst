@@ -15,9 +15,4 @@ get_build_directory
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    from paddle.utils.cpp_extension import get_build_directory
-
-    build_dir = get_build_directory()
-    print(build_dir)
+COPY-FROM: paddle.utils.cpp_extension.get_build_directory

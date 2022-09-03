@@ -11,11 +11,11 @@ is_complex
 参数
 :::::::::
    - **x** (Tensor) - 输入 Tensor
-    
+
 
 返回
 :::::::::
-bool, 如果输入 tensor 的数据类型为复数类型则为 True，反之为 False
+bool，如果输入 tensor 的数据类型为复数类型则为 True，反之为 False
 
 
 代码示例
