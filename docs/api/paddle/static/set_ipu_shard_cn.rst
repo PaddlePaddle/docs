@@ -8,11 +8,11 @@ set_ipu_shard
 
 通过设置输入的函数或计算层内每个算子的流水线属性实现对模型的切分。
 
-.. note:
+.. note::
 
-仅支持当 enable_manual_shard=True，index 设置才有效。请参阅 :ref:`cn_api_fluid_IpuStrategy` 。
-仅支持当 enable_pipelining=True，stage 设置才有效。请参阅 :ref:`cn_api_fluid_IpuStrategy` 。
-一个 index 支持对应 None stage 或一个 stage，一个 stage 仅支持对应一个新的 index 或者一个重复的 index。
+    仅支持当 enable_manual_shard=True，index 设置才有效。请参阅 :ref:`cn_api_fluid_IpuStrategy` 。
+    仅支持当 enable_pipelining=True，stage 设置才有效。请参阅 :ref:`cn_api_fluid_IpuStrategy` 。
+    一个 index 支持对应 None stage 或一个 stage，一个 stage 仅支持对应一个新的 index 或者一个重复的 index。
 
 参数
 :::::::::

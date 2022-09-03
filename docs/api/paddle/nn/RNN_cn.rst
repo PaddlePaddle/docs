@@ -31,7 +31,7 @@ RNN
     - **outputs** (Tensor|list|tuple) - 输出。如果 time_major 为 False，则 Tensor 的形状为[batch_size,time_steps,hidden_size]，如果 time_major 为 True，则 Tensor 的形状为[time_steps,batch_size,hidden_size]。
     - **final_states** (Tensor|list|tuple) - cell 的最终状态，嵌套结构，形状和数据类型都与初始状态相同。
 
-.. Note::
+.. note::
     该类是一个封装 rnn cell 的低级 api，用户在使用 forward 函数时须确保 initial_states 满足 cell 的要求。
 
 
