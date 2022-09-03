@@ -23,7 +23,7 @@ smooth_l1_loss
 参数
 ::::::::::
 
-    - **input** (Tensor) - 输入 `Tensor`，数据类型为 float32。其形状为 :math:`[N, C]`，其中 :math:`C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_k]`，k >= 1。
+    - **input** (Tensor) - 输入 `Tensor`，数据类型为 float32。其形状为 :math:`[N, C]`，其中 :math:`C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, C, d_1, d_2, ..., d_k]`，:math:`k \geqslant 1`。
     - **label** (Tensor) - 输入 :attr:`input` 对应的标签值，数据类型和 :attr:`input` 相同。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，数据类型为 string，可选值有 ``none``、``mean``、``sum``。默认为 ``mean``，计算 ``mini-batch`` loss 均值。设置为 ``sum`` 时，计算 ``mini-batch`` loss 的总和。设置为 ``none`` 时，则返回 loss Tensor。
     - **delta** (str，可选) - SmoothL1Loss 损失的阈值参数，用于控制 Huber 损失对线性误差或平方误差的侧重。数据类型为 float32。默认值为 1.0。
