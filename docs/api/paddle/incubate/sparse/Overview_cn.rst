@@ -19,6 +19,7 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
 
     " :ref:`paddle.incubate.sparse.sparse_coo_tensor <cn_api_paddle_incubate_sparse_coo_tensor>` ", "创建一个 COO 格式的 SparseTensor"
     " :ref:`paddle.incubate.sparse.sparse_csr_tensor <cn_api_paddle_incubate_sparse_csr_tensor>` ", "创建一个 CSR 格式的 SparseTensor"
+    " :ref:`paddle.incubate.sparse.is_same_shape <cn_api_paddle_incubate_sparse_is_same_shape>` ", "判断两个 Tensor 的形状是否相同, 支持 DenseTensor 与 SparseTensor 相互比较"
 
 
 .. _about_sparse_math:
@@ -34,6 +35,10 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
     " :ref:`paddle.incubate.sparse.asin` ", "arcsine 函数"
     " :ref:`paddle.incubate.sparse.asinh` ", "反双曲正弦函数"
     " :ref:`paddle.incubate.sparse.atan` ", "反双曲正切函数"
+    " :ref:`paddle.incubate.sparse.add` ", "逐元素加法"
+    " :ref:`paddle.incubate.sparse.subtract` ", "逐元素减法"
+    " :ref:`paddle.incubate.sparse.multiply` ", "逐元素乘法"
+    " :ref:`paddle.incubate.sparse.divide` ", "逐元素除法"
 
 
 .. _about_sparse_nn:

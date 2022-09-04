@@ -1,4 +1,4 @@
-.. _cn_api_incubate_sparse_subtract:
+.. _cn_api_paddle_incubate_sparse_subtract:
 
 subtract
 -------------------------------

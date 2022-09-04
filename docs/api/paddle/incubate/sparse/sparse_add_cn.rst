@@ -1,4 +1,4 @@
-.. _cn_api_incubate_sparse_add:
+.. _cn_api_paddle_incubate_sparse_add:
 
 add
 -------------------------------
