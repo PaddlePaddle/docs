@@ -154,7 +154,7 @@ entropy()
 
 .. math::
 
-    entropy(\sigma) = 1 + log(2 * \sigma)
+    entropy() = 1 + log(2 * \sigma)
 
 上面的数学公式中：
 
