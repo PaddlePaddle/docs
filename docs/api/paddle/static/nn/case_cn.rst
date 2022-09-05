@@ -7,7 +7,7 @@ case
 .. py:function:: paddle.static.nn.case(pred_fn_pairs, default=None, name=None)
 
 
-该 OP 的运行方式类似于 python 的 if-elif-elif-else。
+运行方式类似于 python 的 if-elif-elif-else。
 
 参数
 ::::::::::::

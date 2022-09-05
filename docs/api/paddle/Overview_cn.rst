@@ -115,6 +115,8 @@ tensor 数学操作
     " :ref:`paddle.stanh <cn_api_fluid_layers_stanh>` ", "stanh 激活函数"
     " :ref:`paddle.std <cn_api_tensor_cn_std>` ", "沿给定的轴 axis 计算 x 中元素的标准差"
     " :ref:`paddle.subtract <cn_api_paddle_tensor_subtract>` ", "逐元素相减算子"
+    " :ref:`paddle.remainder <cn_api_tensor_remainder>` ", "逐元素取模算子"
+    " :ref:`paddle.remainder_ <cn_api_tensor_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sum <cn_api_tensor_sum>` ", "对指定维度上的 Tensor 元素进行求和运算"
     " :ref:`paddle.tan <cn_api_fluid_layers_tan>` ", "三角函数 tangent"
     " :ref:`paddle.tanh <cn_api_tensor_tanh>` ", "tanh 激活函数"
@@ -406,5 +408,5 @@ device 相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`paddle.sparse.sparse_coo_tensor<cn_api_paddle_sparse_coo_tensor>` ", "创建一个 COO(Coordinate)格式的稀疏 Tensor"
-    " :ref:`paddle.sparse.sparse_csr_tensor<cn_api_paddle_sparse_csr_tensor>` ", "创建一个 CSR(Compressed Sparse Row)格式的稀疏 Tensor"
+    " :ref:`paddle.incubate.sparse.sparse_coo_tensor<cn_api_paddle_incubate_sparse_coo_tensor>` ", "创建一个 COO(Coordinate)格式的稀疏 Tensor"
+    " :ref:`paddle.incubate.sparse.sparse_csr_tensor<cn_api_paddle_incubate_sparse_csr_tensor>` ", "创建一个 CSR(Compressed Sparse Row)格式的稀疏 Tensor"
