@@ -35,10 +35,10 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
     " :ref:`paddle.incubate.sparse.asin` ", "arcsine 函数"
     " :ref:`paddle.incubate.sparse.asinh` ", "反双曲正弦函数"
     " :ref:`paddle.incubate.sparse.atan` ", "反双曲正切函数"
-    " :ref:`paddle.incubate.sparse.add` ", "逐元素加法"
-    " :ref:`paddle.incubate.sparse.subtract` ", "逐元素减法"
-    " :ref:`paddle.incubate.sparse.multiply` ", "逐元素乘法"
-    " :ref:`paddle.incubate.sparse.divide` ", "逐元素除法"
+    " :ref:`paddle.incubate.sparse.add <cn_api_paddle_incubate_sparse_add>` ", "逐元素加法"
+    " :ref:`paddle.incubate.sparse.subtract <cn_api_paddle_incubate_sparse_subtract>` ", "逐元素减法"
+    " :ref:`paddle.incubate.sparse.multiply <cn_api_paddle_incubate_sparse_multiply>` ", "逐元素乘法"
+    " :ref:`paddle.incubate.sparse.divide <cn_api_paddle_incubate_sparse_divide>` ", "逐元素除法"
 
 
 .. _about_sparse_nn:
