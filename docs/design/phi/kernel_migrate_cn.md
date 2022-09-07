@@ -282,9 +282,12 @@ PD_REGISTER_KERNEL(log_softmax,
 3. phi::LogSoftmaxKernel: Kernel 函数的名称，记得带上 namespace phi
 4. 剩余的均为数据类型，注册的数据类型对齐原有 Kernel 即可。
 
+
 > 注意
 > 1. phi Kernel 的注册宏末尾是函数体  { }，不是直接加分号，此处与旧的注册宏有区别
 > 2. 注册 Kernel 的宏声明需要在 global namespace
+> 3. 少数Op迁移需要注意迁移到PHI下注册的kernel名称。比如Fluid下reshape2这个算子，Kernel迁移到PHI下后注册更名为了reshape，这里存在一个reshape2到reshape的映射关系，通过`paddle/phi/ops/compat/reshape_sig.cc`文件里的 PD_REGISTER_BASE_KERNEL_NAME(reshape2, reshape)来体现。在迁移算子的过程中，如果未在PHI下找到对应名称的 CPU&GPU kernel，可能是名字进行了映射，可以在xxx_sig.cc里找一下映射关系。
+> 4. 在名字进行了映射的情况下，如果Fluid下存在和映射后PHI名字一样的Op，那么这个Op是我们废弃的Op，不需要迁移。比如Fluid下reshape2算子迁移到PHI下变成了reshape，那么Fluid下reshape算子就是废弃算子，不需要迁移。
 
 对于在外部 CustomDevice 注册 Kernel，注册写法略有不同，以 log_softmax_op_npu(ascend) 为例，注册写法如下：
 
@@ -301,6 +304,63 @@ PD_REGISTER_PLUGIN_KERNEL(log_softmax,
 不同之处包括：
 1. 注册宏的名称不一样，此处是 PD_REGISTER_PLUGIN_KERNEL
 2. Backend 的名称是用户注册的 CustomDevice 的名称，此处是 ascend。
+
+对于Fluid下通过宏 REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE 注册的kernel，迁移后按照正常PHI下所使用的宏注册就行，需要注意的是，如果Fluid下注册的kernel模板参数有俩个类型，由于PHI下注册的Kernel只支持一个类型，PHI注册使用第一个类型。比如Fluid下的这个例子：
+
+```c++
+
+// Fluid Register
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    U8,
+                                    ops::kConvMKLDNNINT8,
+                                    ops::ConvMKLDNNOpKernel<uint8_t, float>);
+
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    U8WS8,
+                                    ops::kConvMKLDNNINT8WS8,
+                                    ops::ConvMKLDNNOpKernel<uint8_t, int8_t>);
+
+// PHI Register
+PD_REGISTER_KERNEL(conv2d,
+                   OneDNN,
+                   ALL_LAYOUT,
+                   phi::ConvKernel,
+                   uint8_t) {}
+```
+这个例子中，原Fluid中对Kernel选用 <uint8_t, float> 还是 <uint8_t, int8_t> 是在kernel选择中完成的。迁移到PHI后，我们Kernel只有一个模板参数uint8_t，所以在选择了uint8_t的Kernel后，进一步选择float还是int8_t需要根据conv的选择逻辑在Kernel里实现，伪代码如下：
+
+```c++
+
+template <typename T, typename K, typename Context>
+void ConvImpl(const Context& dev_ctx,
+            const DenseTensor& input,
+            const DenseTensor& filter,
+            ... 其他参数省略,
+            DenseTensor* out) {
+    return;
+}
+
+template <typename T, typename Context>
+void ConvKernel(const Context& dev_ctx,
+                const DenseTensor& input,
+                const DenseTensor& filter,
+                ... 其他参数省略,
+                DenseTensor* out) {
+
+    if (std::is_same<T, uint8_t>::value) {
+        if (filter.dtype() == DataType::INT8) {
+            ConvImpl<T, int8_t>(dev_ctx, input, filter, ... , out);
+        }
+        else {
+            ConvImpl<T, float>(dev_ctx, input, filter, ... ,out);
+        } 
+    }
+}
+```
 
 ### 3.3 编译并通过单元测试
 
