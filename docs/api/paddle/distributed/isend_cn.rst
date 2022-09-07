@@ -9,7 +9,7 @@ isend
 
 参数
 :::::::::
-    - **tensor** (Tensor) - 要发送的张量。其数据类型应为 float16、float32、float64、int32、int64、int8、uint8、bool。
+    - **tensor** (Tensor) - 要发送的张量。其数据类型应为 float16、float32、float64、int32、int64、int8、uint8、bool、bfloat16。
     - **dst** (int) - 目标节点的全局 rank 号。
     - **group** (Group，可选) - new_group 返回的 Group 实例，或者设置为 None 表示默认的全局组。默认值：None。
 
