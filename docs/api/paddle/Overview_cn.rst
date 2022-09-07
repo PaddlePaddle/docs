@@ -164,6 +164,7 @@ tensor 属性相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`paddle.iinfo <cn_api_paddle_iinfo>` ", "返回一个 iinfo 对象，该对象包含了输入的整数类 paddle.dtype 的各种相关的数值信息"
     " :ref:`paddle.imag <cn_api_tensor_imag>` ", "返回一个包含输入复数 Tensor 的虚部数值的新 Tensor"
     " :ref:`paddle.real <cn_api_tensor_real>` ", "返回一个包含输入复数 Tensor 的实部数值的新 Tensor"
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入 Tensor 或 SelectedRows 的 shape"
