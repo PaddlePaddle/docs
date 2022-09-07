@@ -4,22 +4,19 @@ Laplace
 -------------------------------
 
 .. py:class:: paddle.distribution.Laplace(loc, scale, name=None)
-
-
 拉普拉斯分布
 
 数学公式：
 
 .. math::
-
-
     pdf(x; \mu, \sigma) = \frac{1}{Z} * e^{\frac {-|x - \mu|}{\sigma}}
     Z = 2 * \sigma
-
 上面的数学公式中：
 
 :math:`loc = \mu`：拉普拉斯分布位置参数。
+
 :math:`scale = \sigma`：拉普拉斯分布尺度参数。
+
 :math:`Z`：拉普拉斯分布常量。
 
 参数
@@ -27,13 +24,12 @@ Laplace
 
     - **loc** (int|float|Tensor) - 拉普拉斯分布位置参数。数据类型为 int、float 或 Tensor。
     - **scale** (int|float|Tensor) - 拉普拉斯分布尺度参数。数据类型为 int、float 或 Tensor。
+    - **name**  (str) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
 代码示例
 ::::::::::::
 
-
 COPY-FROM: paddle.distribution.Laplace
-
 
 属性
 :::::::::
@@ -49,11 +45,12 @@ variance
 方差
 
 数学公式：
-.. math::
 
+.. math::
     variance = (2**0.5) * \sigma
 
 上面的数学公式中：
+
 :math:`scale = \sigma`：拉普拉斯分布尺度参数。
 
 stddev
@@ -62,11 +59,12 @@ stddev
 标准差
 
 数学公式：
-.. math::
 
+.. math::
     stddev = ((2**0.5) * \sigma) ** 2
 
 上面的数学公式中：
+
 :math:`scale = \sigma`：拉普拉斯分布尺度参数。
 
 
@@ -82,11 +80,12 @@ cdf(value)
     - **value** (Tensor) - 输入张量。
 
 数学公式：
-.. math::
 
+.. math::
     cdf(value) = 0.5 - 0.5 * sign(value - \mu) * e^\frac{-|(\mu - \sigma)|}{\sigma}
 
 上面的数学公式中：
+
 :math:`loc = \mu`：拉普拉斯分布位置参数。
 :math:`scale = \sigma`：拉普拉斯分布尺度参数。
 
@@ -104,11 +103,13 @@ icdf(value)
     - **value** (Tensor) - 输入张量。
 
 数学公式：
+
 .. math::
 
     cdf^{-1}(value)= \mu - \sigma * sign(value - 0.5) * ln(1 - 2 * |value-0.5|)
 
 上面的数学公式中：
+
 :math:`loc = \mu`：拉普拉斯分布位置参数。
 :math:`scale = \sigma`：拉普拉斯分布尺度参数。
 
@@ -153,7 +154,6 @@ entropy()
 数学公式：
 
 .. math::
-
     entropy() = 1 + log(2 * \sigma)
 
 上面的数学公式中：
@@ -177,9 +177,10 @@ log_prob(value)
 数学公式：
 
 .. math::
-    log_prob(value) = \frac{-log(2 * \sigma) - |value - \mu|}{\sigma}
+    log\_prob(value) = \frac{-log(2 * \sigma) - |value - \mu|}{\sigma}
 
 上面的数学公式中：
+
 :math:`loc = \mu`：拉普拉斯分布位置参数。
 :math:`scale = \sigma`：拉普拉斯分布尺度参数.
 
@@ -203,6 +204,7 @@ prob(value)
     prob(value) = e^{\frac{-log(2 * \sigma) - |value - \mu|}{\sigma}}
 
 上面的数学公式中：
+
 :math:`loc = \mu`：拉普拉斯分布位置参数。
 :math:`scale = \sigma`：拉普拉斯分布尺度参数.
 
@@ -224,11 +226,8 @@ kl_divergence(other)
 数学公式：
 
 .. math::
-
     KL\_divergence(\mu_0, \sigma_0; \mu_1, \sigma_1) = 0.5 (ratio^2 + (\frac{diff}{\sigma_1})^2 - 1 - 2 \ln {ratio})
-
     ratio = \frac{\sigma_0}{\sigma_1}
-
     diff = \mu_1 - \mu_0
 
 上面的数学公式中：
