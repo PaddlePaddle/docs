@@ -286,7 +286,7 @@ PD_REGISTER_KERNEL(log_softmax,
 > 注意
 > 1. phi Kernel 的注册宏末尾是函数体  { }，不是直接加分号，此处与旧的注册宏有区别
 > 2. 注册 Kernel 的宏声明需要在 global namespace
-> 3. 少数算子迁移需要注意迁移到PHI下注册的 kernel 名称。比如 Fluid 下 reshape2 这个算子， Kernel 迁移到 PHI 下后注册更名为了 reshape ，这里存在一个reshape2到reshape的映射关系，通过`paddle/phi/ops/compat/reshape_sig.cc`文件里的 PD_REGISTER_BASE_KERNEL_NAME(reshape2, reshape)来体现。在迁移算子的过程中，如果未在 PHI 下找到对应名称的 CPU&GPU kernel ，可能是名字进行了映射，可以在 xxx_sig.cc 里找一下映射关系。
+> 3. 少数算子迁移需要注意迁移到 PHI 下注册的 kernel 名称。比如 Fluid 下 reshape2 这个算子， Kernel 迁移到 PHI 下后注册更名为了  reshape ，这里存在一个 reshape2 到 reshape 的映射关系，通过`paddle/phi/ops/compat/reshape_sig.cc`文件里的 PD_REGISTER_BASE_KERNEL_NAME(reshape2, reshape)来体现。在迁移算子的过程中，如果未在 PHI 下找到对应名称的 CPU&GPU kernel ，可能是名字进行了映射，可以在 xxx_sig.cc 里找一下映射关系。
 > 4. 在名字进行了映射的情况下，如果 Fluid 下存在和映射后 PHI 名字一样的算子，那么这个算子是我们废弃的算子，不需要迁移。比如 Fluid 下 reshape2 算子迁移到 PHI 下变成了 reshape ，那么 Fluid 下 reshape 算子就是废弃算子，不需要迁移。
 
 对于在外部 CustomDevice 注册 Kernel，注册写法略有不同，以 log_softmax_op_npu(ascend) 为例，注册写法如下：
@@ -305,7 +305,7 @@ PD_REGISTER_PLUGIN_KERNEL(log_softmax,
 1. 注册宏的名称不一样，此处是 PD_REGISTER_PLUGIN_KERNEL
 2. Backend 的名称是用户注册的 CustomDevice 的名称，此处是 ascend。
 
-对于 Fluid 下通过宏 REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE 注册的 kernel ，迁移后按照正常PHI下所使用的宏注册就行，需要注意的是，如果 Fluid 下注册的 kernel 模板参数有俩个类型，由于 PHI 下注册的 Kernel 只支持一个类型，PHI注册使用第一个类型。比如 Fluid 下的这个例子：
+对于 Fluid 下通过宏 REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE 注册的 kernel ，迁移后按照正常 PHI 下所使用的宏注册就行，需要注意的是，如果 Fluid 下注册的 kernel 模板参数有俩个类型，由于 PHI 下注册的 Kernel 只支持一个类型， PHI 注册使用第一个类型。比如 Fluid 下的这个例子：
 
 ```c++
 
@@ -364,7 +364,7 @@ PD_REGISTER_KERNEL(conv2d,
                    uint8_t,
                    int8_t) {}
 ```
-这个例子中，原 Fluid 中对 Kernel 模板参数中第二个类型参数的选择是在 kernel 选择中完成的。迁移到PHI后，我们 Kernel 只有一个类型模板参数，所以在选择了 Kernel 后，对第二个模板参数的选择需要根据 conv2d 的逻辑在 Kernel 里实现，伪代码如下：
+这个例子中，原 Fluid 中对 Kernel 模板参数中第二个类型参数的选择是在 kernel 选择中完成的。迁移到 PHI 后，我们 Kernel 只有一个类型模板参数，所以在选择了 Kernel 后，对第二个模板参数的选择需要根据 conv2d 的逻辑在 Kernel 里实现，伪代码如下：
 
 ```c++
 
