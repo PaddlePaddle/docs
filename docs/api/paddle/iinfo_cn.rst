@@ -11,7 +11,7 @@ iinfo
 
 只能是整数类型的 ``paddle.dtype`` 。
 
-其功能类似 [numpy.iinfo](https://numpy.org/doc/stable/reference/generated/numpy.iinfo.html#numpy-iinfo) 。
+其功能类似 `numpy.iinfo <https://numpy.org/doc/stable/reference/generated/numpy.iinfo.html#numpy-iinfo>`_ 。
 
 
 参数
