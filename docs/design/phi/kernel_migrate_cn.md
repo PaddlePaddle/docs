@@ -286,8 +286,8 @@ PD_REGISTER_KERNEL(log_softmax,
 > 注意
 > 1. phi Kernel 的注册宏末尾是函数体  { }，不是直接加分号，此处与旧的注册宏有区别
 > 2. 注册 Kernel 的宏声明需要在 global namespace
-> 3. 少数Op迁移需要注意迁移到PHI下注册的kernel名称。比如Fluid下reshape2这个算子，Kernel迁移到PHI下后注册更名为了reshape，这里存在一个reshape2到reshape的映射关系，通过`paddle/phi/ops/compat/reshape_sig.cc`文件里的 PD_REGISTER_BASE_KERNEL_NAME(reshape2, reshape)来体现。在迁移算子的过程中，如果未在PHI下找到对应名称的 CPU&GPU kernel，可能是名字进行了映射，可以在xxx_sig.cc里找一下映射关系。
-> 4. 在名字进行了映射的情况下，如果Fluid下存在和映射后PHI名字一样的Op，那么这个Op是我们废弃的Op，不需要迁移。比如Fluid下reshape2算子迁移到PHI下变成了reshape，那么Fluid下reshape算子就是废弃算子，不需要迁移。
+> 3. 少数算子迁移需要注意迁移到PHI下注册的 kernel 名称。比如 Fluid 下 reshape2 这个算子， Kernel 迁移到 PHI 下后注册更名为了 reshape ，这里存在一个reshape2到reshape的映射关系，通过`paddle/phi/ops/compat/reshape_sig.cc`文件里的 PD_REGISTER_BASE_KERNEL_NAME(reshape2, reshape)来体现。在迁移算子的过程中，如果未在 PHI 下找到对应名称的 CPU&GPU kernel ，可能是名字进行了映射，可以在 xxx_sig.cc 里找一下映射关系。
+> 4. 在名字进行了映射的情况下，如果 Fluid 下存在和映射后 PHI 名字一样的算子，那么这个算子是我们废弃的算子，不需要迁移。比如 Fluid 下 reshape2 算子迁移到 PHI 下变成了 reshape ，那么 Fluid 下 reshape 算子就是废弃算子，不需要迁移。
 
 对于在外部 CustomDevice 注册 Kernel，注册写法略有不同，以 log_softmax_op_npu(ascend) 为例，注册写法如下：
 
@@ -305,11 +305,26 @@ PD_REGISTER_PLUGIN_KERNEL(log_softmax,
 1. 注册宏的名称不一样，此处是 PD_REGISTER_PLUGIN_KERNEL
 2. Backend 的名称是用户注册的 CustomDevice 的名称，此处是 ascend。
 
-对于Fluid下通过宏 REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE 注册的kernel，迁移后按照正常PHI下所使用的宏注册就行，需要注意的是，如果Fluid下注册的kernel模板参数有俩个类型，由于PHI下注册的Kernel只支持一个类型，PHI注册使用第一个类型。比如Fluid下的这个例子：
+对于 Fluid 下通过宏 REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE 注册的 kernel ，迁移后按照正常PHI下所使用的宏注册就行，需要注意的是，如果 Fluid 下注册的 kernel 模板参数有俩个类型，由于 PHI 下注册的 Kernel 只支持一个类型，PHI注册使用第一个类型。比如 Fluid 下的这个例子：
 
 ```c++
 
 // Fluid Register
+
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    FP32,
+                                    ops::kConvMKLDNNFP32,
+                                    ops::ConvMKLDNNOpKernel<float, float>);
+
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    BF16,
+                                    ops::kConvMKLDNNFP32,
+                                    ops::ConvMKLDNNOpKernel<paddle::platform::bfloat16, float>);
+
 REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
                                     MKLDNN,
                                     ::paddle::platform::CPUPlace,
@@ -324,14 +339,32 @@ REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
                                     ops::kConvMKLDNNINT8WS8,
                                     ops::ConvMKLDNNOpKernel<uint8_t, int8_t>);
 
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    S8,
+                                    ops::kConvMKLDNNINT8,
+                                    ops::ConvMKLDNNOpKernel<int8_t, float>);
+
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    S8WS8,
+                                    ops::kConvMKLDNNINT8WS8,
+                                    ops::ConvMKLDNNOpKernel<int8_t, int8_t>);
+
+
 // PHI Register
 PD_REGISTER_KERNEL(conv2d,
                    OneDNN,
                    ALL_LAYOUT,
                    phi::ConvKernel,
-                   uint8_t) {}
+                   float,
+                   phi::dtype::bfloat16,
+                   uint8_t,
+                   int8_t) {}
 ```
-这个例子中，原Fluid中对Kernel选用 <uint8_t, float> 还是 <uint8_t, int8_t> 是在kernel选择中完成的。迁移到PHI后，我们Kernel只有一个模板参数uint8_t，所以在选择了uint8_t的Kernel后，进一步选择float还是int8_t需要根据conv的选择逻辑在Kernel里实现，伪代码如下：
+这个例子中，原 Fluid 中对 Kernel 模板参数中第二个类型参数的选择是在 kernel 选择中完成的。迁移到PHI后，我们 Kernel 只有一个类型模板参数，所以在选择了 Kernel 后，对第二个模板参数的选择需要根据 conv2d 的逻辑在 Kernel 里实现，伪代码如下：
 
 ```c++
 
@@ -350,14 +383,16 @@ void ConvKernel(const Context& dev_ctx,
                 const DenseTensor& filter,
                 ... 其他参数省略,
                 DenseTensor* out) {
-
-    if (std::is_same<T, uint8_t>::value) {
+    if (std::is_same<T, int8_t>::value || std::is_same<T, uint8_t>::value) {
         if (filter.dtype() == DataType::INT8) {
             ConvImpl<T, int8_t>(dev_ctx, input, filter, ... , out);
         }
         else {
-            ConvImpl<T, float>(dev_ctx, input, filter, ... ,out);
+            ConvImpl<T, float>(dev_ctx, input, filter, ... , out);
         } 
+    }
+    else {
+        ConvImpl<T, float>(dev_ctx, input, filter, ... , out);
     }
 }
 ```
@@ -380,9 +415,8 @@ PHI Kernel 的优先级高于 fluid OpKernel ，因此编译通过后，可以�
 
 ## 四、注意事项
 
-1. 通过宏 REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE 注册的 Kernel 暂时不支持迁移至 phi，后续我们会扩展机制支持
-2. Kernel 注册时 Layout 字段目前不太准确，例如对于 OneDNN 来讲，它 Kernel 的 Layout 应该是 ONEDNN，但是目前仍然声明是 ALL_LAYOUT，后续我们也会扩展这里的机制
-3. 迁移的时候，尽可能避免对原 Kernel 实现的逻辑改动，如果觉得它原来写得不好，想要优化，可以拆分 PR 进行（担心出现性能变化，CI 又发现不了，后续导致 CE 模型性能下降）
-4. 按照编程风格指南，迁移后 kernel.cc 文件中对应的 kernel.h 需要在最前面 include
-5. 注意迁移 Kernel 之后，DenseTensor*的输出参数，仍然是返回值的定位，所以在 kernel 内注意只能写该参数的成员值，而不能读它的值用作逻辑判断，可能会出错
-6. 异构设备 Kernel 迁移时，一些写法不确定的地方可以参考已有的 CPU&GPU Kernel
+1. Kernel 注册时 Layout 字段目前不太准确，例如对于 OneDNN 来讲，它 Kernel 的 Layout 应该是 ONEDNN，但是目前仍然声明是 ALL_LAYOUT，后续我们也会扩展这里的机制
+2. 迁移的时候，尽可能避免对原 Kernel 实现的逻辑改动，如果觉得它原来写得不好，想要优化，可以拆分 PR 进行（担心出现性能变化，CI 又发现不了，后续导致 CE 模型性能下降）
+3. 按照编程风格指南，迁移后 kernel.cc 文件中对应的 kernel.h 需要在最前面 include
+4. 注意迁移 Kernel 之后，DenseTensor*的输出参数，仍然是返回值的定位，所以在 kernel 内注意只能写该参数的成员值，而不能读它的值用作逻辑判断，可能会出错
+5. 异构设备 Kernel 迁移时，一些写法不确定的地方可以参考已有的 CPU&GPU Kernel
