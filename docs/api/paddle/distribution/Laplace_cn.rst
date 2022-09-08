@@ -9,15 +9,14 @@ Laplace
 数学公式：
 
 .. math::
-    pdf(x; \mu, \sigma) = \frac{1}{Z} * e^{\frac {-|x - \mu|}{\sigma}}
-    Z = 2 * \sigma
+    pdf(x; \mu, \sigma) = \frac{1}{2 * \sigma} * e^{\frac {-|x - \mu|}{\sigma}}
+
 上面的数学公式中：
 
 :math:`loc = \mu`：拉普拉斯分布位置参数。
 
 :math:`scale = \sigma`：拉普拉斯分布尺度参数。
 
-:math:`Z`：拉普拉斯分布常量。
 
 参数
 ::::::::::::
@@ -47,7 +46,7 @@ variance
 数学公式：
 
 .. math::
-    variance = (2**0.5) * \sigma
+    variance = 2 * \sigma^2
 
 上面的数学公式中：
 
@@ -61,7 +60,7 @@ stddev
 数学公式：
 
 .. math::
-    stddev = ((2**0.5) * \sigma) ** 2
+    stddev = \sqrt{2} * \sigma
 
 上面的数学公式中：
 
@@ -87,6 +86,7 @@ cdf(value)
 上面的数学公式中：
 
 :math:`loc = \mu`：拉普拉斯分布位置参数。
+
 :math:`scale = \sigma`：拉普拉斯分布尺度参数。
 
 **返回**
@@ -111,6 +111,7 @@ icdf(value)
 上面的数学公式中：
 
 :math:`loc = \mu`：拉普拉斯分布位置参数。
+
 :math:`scale = \sigma`：拉普拉斯分布尺度参数。
 
 **返回**
@@ -182,6 +183,7 @@ log_prob(value)
 上面的数学公式中：
 
 :math:`loc = \mu`：拉普拉斯分布位置参数。
+
 :math:`scale = \sigma`：拉普拉斯分布尺度参数.
 
 **返回**
@@ -206,6 +208,7 @@ prob(value)
 上面的数学公式中：
 
 :math:`loc = \mu`：拉普拉斯分布位置参数。
+
 :math:`scale = \sigma`：拉普拉斯分布尺度参数.
 
 **返回**
@@ -227,16 +230,25 @@ kl_divergence(other)
 
 .. math::
     KL\_divergence(\mu_0, \sigma_0; \mu_1, \sigma_1) = 0.5 (ratio^2 + (\frac{diff}{\sigma_1})^2 - 1 - 2 \ln {ratio})
+
+.. math::
     ratio = \frac{\sigma_0}{\sigma_1}
+
+.. math::
     diff = \mu_1 - \mu_0
 
 上面的数学公式中：
 
 :math:`loc = \mu_0`：当前拉普拉斯分布的位置参数。
+
 :math:`scale = \sigma_0`：当前拉普拉斯分布的尺度参数。
+
 :math:`loc = \mu_1`：另一个拉普拉斯分布的位置参数。
+
 :math:`scale = \sigma_1`：另一个拉普拉斯分布的尺度参数.
+
 :math:`ratio`：两个尺度参数之间的比例。
+
 :math:`diff`：两个位置参数之间的差值。
 
 **返回**
