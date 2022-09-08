@@ -17,7 +17,6 @@ Laplace
 
 :math:`scale = \sigma`：拉普拉斯分布尺度参数。
 
-:math:`Z`：拉普拉斯分布常量。
 
 参数
 ::::::::::::
@@ -47,7 +46,7 @@ variance
 数学公式：
 
 .. math::
-    variance = (2**0.5) * \sigma
+    variance = 2 * \sigma^2
 
 上面的数学公式中：
 
@@ -61,7 +60,7 @@ stddev
 数学公式：
 
 .. math::
-    stddev = ((2**0.5) * \sigma) ** 2
+    stddev = \sqrt{2} * \sigma
 
 上面的数学公式中：
 
