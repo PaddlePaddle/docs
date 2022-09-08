@@ -285,6 +285,8 @@ Field Description:
 > Note
 > 1. The end of the registration macro of phi Kernel is the function body `{}`, instead of adding a `;` directly, which is different from the old registration macro.
 > 2. The macro declaration of the registered Kernel needs to be in the global namespace.
+> 3. A few operator migrations need to pay attention to the kernel name registered under the PHI. For example, the registered kernel `reshape2` in fluid is renamed to `reshape` when the kernel is migrated to PHI. There is a mapping relationship from `reshape2` to `reshape`. In file `paddle/phi/ops/compat/reshape_sig.cc`, the macro `PD_REGISTER_BASE_KERNEL_NAME(reshape2, reshape)` reflect this mapping relation. In the process of migrating operators, if the CPU & GPU kernel's name in Fluid is not found under the PHI, it may be that the name has been mapped. You can try to find the mapping relationship in `xxx_sig.cc`.
+> 4. In the case of name mapping, if there is a kernel under the Fluid with the same name as the kernel(the name is mapped) in PHI, then this kernel is abandoned and does not need to be migrated. For example, the `reshape2` under fluid migrates to PHI and becomes `reshape`, so the `reshape` kernel under Fluid is an abandoned kernel and does not need to be migrated.
 
 For registering Kernel in an external CustomDevice, the registration method is slightly different. Taking `log_softmax_op_npu(ascend)` as an example, the registration method is as follows:
 
@@ -301,6 +303,101 @@ PD_REGISTER_PLUGIN_KERNEL(log_softmax,
 Differences include:
 1. The name of the registered macro is different, here is `PD_REGISTER_PLUGIN_KERNEL`.
 2. The name of the Backend is the name of the CustomDevice registered by the user, here is `ascend`.
+
+The kernel that registerd by REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE in Fluid is also registered using `PD_REGISTER_KERNEL` or `PD_REGISTER_PLUGIN_KERNEL` in PHI. It should be noted that if there are two types of kernel template parameters registered in fluid, since the kernel registered in PHI only supports one type, the first type is used in PHI registration. For example, the example under fluid:
+
+```c++
+
+// Fluid Register
+
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    FP32,
+                                    ops::kConvMKLDNNFP32,
+                                    ops::ConvMKLDNNOpKernel<float, float>);
+
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    BF16,
+                                    ops::kConvMKLDNNFP32,
+                                    ops::ConvMKLDNNOpKernel<paddle::platform::bfloat16, float>);
+
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    U8,
+                                    ops::kConvMKLDNNINT8,
+                                    ops::ConvMKLDNNOpKernel<uint8_t, float>);
+
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    U8WS8,
+                                    ops::kConvMKLDNNINT8WS8,
+                                    ops::ConvMKLDNNOpKernel<uint8_t, int8_t>);
+
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    S8,
+                                    ops::kConvMKLDNNINT8,
+                                    ops::ConvMKLDNNOpKernel<int8_t, float>);
+
+REGISTER_OP_KERNEL_WITH_CUSTOM_TYPE(conv2d,
+                                    MKLDNN,
+                                    ::paddle::platform::CPUPlace,
+                                    S8WS8,
+                                    ops::kConvMKLDNNINT8WS8,
+                                    ops::ConvMKLDNNOpKernel<int8_t, int8_t>);
+
+
+// PHI Register
+PD_REGISTER_KERNEL(conv2d,
+                   OneDNN,
+                   ALL_LAYOUT,
+                   phi::ConvKernel,
+                   float,
+                   phi::dtype::bfloat16,
+                   uint8_t,
+                   int8_t) {}
+```
+
+In this example, in Fluid, the selection of the second template parameter in the kernel is completed in the kernel selection. After migrating to Phi, our kernel only has one template parameter for type, so after selecting the kernel, the selection of the second template parameter needs to be completed in the kernel according to the logic of conv2d. The pseudo code is as follows:
+
+
+```c++
+
+template <typename T, typename K, typename Context>
+void ConvImpl(const Context& dev_ctx,
+            const DenseTensor& input,
+            const DenseTensor& filter,
+            ... other params omit,
+            DenseTensor* out) {
+    return;
+}
+
+template <typename T, typename Context>
+void ConvKernel(const Context& dev_ctx,
+                const DenseTensor& input,
+                const DenseTensor& filter,
+                ... other params omit,
+                DenseTensor* out) {
+    if (std::is_same<T, int8_t>::value || std::is_same<T, uint8_t>::value) {
+        if (filter.dtype() == DataType::INT8) {
+            ConvImpl<T, int8_t>(dev_ctx, input, filter, ... , out);
+        }
+        else {
+            ConvImpl<T, float>(dev_ctx, input, filter, ... , out);
+        }
+    }
+    else {
+        ConvImpl<T, float>(dev_ctx, input, filter, ... , out);
+    }
+}
+
+```
 
 ### 3.3 Compile and pass unit tests
 
