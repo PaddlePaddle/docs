@@ -389,7 +389,7 @@ void ConvKernel(const Context& dev_ctx,
         }
         else {
             ConvImpl<T, float>(dev_ctx, input, filter, ... , out);
-        } 
+        }
     }
     else {
         ConvImpl<T, float>(dev_ctx, input, filter, ... , out);
