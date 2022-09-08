@@ -9,9 +9,8 @@ Laplace
 数学公式：
 
 .. math::
-    pdf(x; \mu, \sigma) = \frac{1}{Z} * e^{\frac {-|x - \mu|}{\sigma}}
-    
-    Z = 2 * \sigma
+    pdf(x; \mu, \sigma) = \frac{1}{2 * \sigma} * e^{\frac {-|x - \mu|}{\sigma}}
+
 上面的数学公式中：
 
 :math:`loc = \mu`：拉普拉斯分布位置参数。
