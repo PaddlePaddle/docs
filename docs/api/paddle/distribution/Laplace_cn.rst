@@ -10,6 +10,7 @@ Laplace
 
 .. math::
     pdf(x; \mu, \sigma) = \frac{1}{Z} * e^{\frac {-|x - \mu|}{\sigma}}
+    
     Z = 2 * \sigma
 上面的数学公式中：
 
@@ -232,8 +233,10 @@ kl_divergence(other)
 .. math::
     KL\_divergence(\mu_0, \sigma_0; \mu_1, \sigma_1) = 0.5 (ratio^2 + (\frac{diff}{\sigma_1})^2 - 1 - 2 \ln {ratio})
     
+.. math::
     ratio = \frac{\sigma_0}{\sigma_1}
-    
+
+.. math::
     diff = \mu_1 - \mu_0
 
 上面的数学公式中：
