@@ -166,6 +166,7 @@ paddle.gather_nd	.. _api_paddle_gather_nd:
 paddle.greater_equal	.. _api_paddle_greater_equal:
 paddle.greater_than	.. _api_paddle_greater_than:
 paddle.histogram	.. _api_paddle_histogram:
+paddle.iinfo .. _api_paddle_iinfo:
 paddle.imag	.. _api_paddle_imag:
 paddle.increment	.. _api_paddle_increment:
 paddle.index_sample	.. _api_paddle_index_sample:
@@ -236,6 +237,7 @@ paddle.sinh	.. _api_paddle_sinh:
 paddle.slice	.. _api_paddle_slice:
 paddle.sort	.. _api_paddle_sort:
 paddle.split	.. _api_paddle_split:
+paddle.vsplit	.. _api_paddle_vsplit:
 paddle.sqrt	.. _api_paddle_sqrt:
 paddle.Tensor.sqrt_	.. _api_paddle_Tensor_sqrt_:
 paddle.square	.. _api_paddle_square:

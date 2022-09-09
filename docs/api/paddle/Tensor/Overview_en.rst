@@ -234,6 +234,7 @@ Methods
     solve
     sort
     split
+    vsplit
     sqrt
     sqrt_
     square
