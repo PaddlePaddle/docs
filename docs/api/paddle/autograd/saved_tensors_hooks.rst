@@ -1,12 +1,12 @@
-.. _cn_api_autograd_SavedTensorsHooks:
+.. _cn_api_autograd_saved_tensors_hooks:
 
-SavedTensorsHooks
+saved_tensors_hooks
 -------------------------------
 
-.. py:class:: paddle.autograd.SavedTensorsHooks
+.. py:class:: paddle.autograd.saved_tensors_hooks
 
 在前向训练时，通常需要保存一些 Tensor，用于反向梯度计算使用。因而会导致显存使用量非常大。
-SavedTensorsHooks 用于动态图，注册一对 pack / unpack hook，用于临时存放和取回 Tensor，
+saved_tensors_hooks 用于动态图，注册一对 pack / unpack hook，用于临时存放和取回 Tensor，
 这个些 Tensor 就是前向保存用于反向使用的 Tensor。
 
 **参数**
@@ -42,7 +42,7 @@ None
     b = paddle.ones([3,3]) * 2
     a.stop_gradient = False
     b.stop_gradient = False
-    with paddle.autograd.SavedTensorsHooks(pack_hook, unpack_hook):
+    with paddle.autograd.saved_tensors_hooks(pack_hook, unpack_hook):
         y = paddle.multiply(a, b)
     y.sum().backward()
 
@@ -76,6 +76,6 @@ None
     b = paddle.ones([3,3]) * 2
     a.stop_gradient = False
     b.stop_gradient = False
-    with paddle.autograd.SavedTensorsHooks(pack_hook, unpack_hook):
+    with paddle.autograd.saved_tensors_hooks(pack_hook, unpack_hook):
         y = cus_tanh.apply(a, b)
     y.sum().backward()
