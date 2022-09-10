@@ -666,8 +666,8 @@ x.matmul(y)                   #矩阵乘法
 >
 > 以上计算 API 也有原位（inplace）操作和非原位操作之分，如`x.add(y)`是非原位操作，`x.add_(y)`为原位操作。
 
-.. _cn_user_guide_broadcasting:
 
+(cn_user_guide_broadcasting)=
 ## 五、Tensor 的广播机制
 
 在深度学习任务中，有时需要使用较小形状的 Tensor 与较大形状的 Tensor 执行计算，广播机制就是将较小形状的 Tensor 扩展到与较大形状的 Tensor 一样的形状，便于匹配计算，同时又没有对较小形状 Tensor 进行数据拷贝操作，从而提升算法实现的运算效率。
