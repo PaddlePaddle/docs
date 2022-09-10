@@ -506,6 +506,8 @@ Tensor(shape=[2], dtype=float64, place=Place(gpu:0), stop_gradient=True,
 ```
 The created **Tensor** will have the same shape and dtype with the original Numpy array.
 
+.. _user_guide_broadcasting:
+
 ## Chapter5. Broadcasting of Tensor
 
 PaddlePaddle provides broadcasting semantics in some APIs like other deep learning frameworks, which allows using tensors with different shapes while operating.

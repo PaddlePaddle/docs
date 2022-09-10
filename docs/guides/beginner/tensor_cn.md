@@ -666,6 +666,7 @@ x.matmul(y)                   #矩阵乘法
 >
 > 以上计算 API 也有原位（inplace）操作和非原位操作之分，如`x.add(y)`是非原位操作，`x.add_(y)`为原位操作。
 
+.. _cn_user_guide_broadcasting:
 
 ## 五、Tensor 的广播机制
 
