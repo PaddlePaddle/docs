@@ -20,6 +20,7 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
     " :ref:`paddle.incubate.sparse.sparse_coo_tensor <cn_api_paddle_incubate_sparse_coo_tensor>` ", "创建一个 COO 格式的 SparseTensor"
     " :ref:`paddle.incubate.sparse.sparse_csr_tensor <cn_api_paddle_incubate_sparse_csr_tensor>` ", "创建一个 CSR 格式的 SparseTensor"
     " :ref:`paddle.incubate.sparse.is_same_shape <cn_api_paddle_incubate_sparse_is_same_shape>` ", "判断两个 Tensor 的形状是否相同, 支持 DenseTensor 与 SparseTensor 相互比较"
+    " :ref:`paddle.incubate.sparse.transpose <cn_api_paddle_incubate_sparse_transpose>` ", "在不改变数据的情况下改变 ``x`` 的维度顺序, 支持 COO 格式的多维 SparseTensor 以及 COO 格式的2维和3维 SparseTensor"
 
 
 .. _about_sparse_math:
