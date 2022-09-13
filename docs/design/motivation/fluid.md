@@ -101,7 +101,7 @@ for i in xrange(1000):
     x = m["sentence"]
     for t in xrange x.len():
         h[t] = the_step(x[t])
-```  
+```
 
 With Fluid, the training loop and the RNN in the above program are not really Python loops, but just a "loop structure" provided by Fluid and implemented in C++ as the following:
 
@@ -113,7 +113,7 @@ with train_loop.block():
   rnn = layers.While(...)
   with rnn.block():
     h[t] = the_step(input[t])
-```  
+```
 
 An actual Fluid example is described  [here](https://github.com/PaddlePaddle/Paddle/blob/bde090a97564b9c61a6aaa38b72ccc4889d102d9/python/paddle/fluid/tests/unittests/test_while_op.py#L50-L58).
 

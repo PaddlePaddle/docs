@@ -41,6 +41,10 @@ paddle.distributed.all_reduce	.. _api_paddle_distributed_all_reduce:
 paddle.distributed.scatter	.. _api_paddle_distributed_scatter:
 paddle.distributed.alltoall	.. _api_paddle_distributed_alltoall:
 paddle.distributed.send	.. _api_paddle_distributed_send:
+paddle.distributed.is_initialized	.. _api_paddle_distributed_is_initialized:
+paddle.distributed.isend	.. _api_paddle_distributed_isend:
+paddle.distributed.irecv	.. _api_paddle_distributed_irecv:
+paddle.distributed.reduce_scatter	.. _api_paddle_distributed_reduce_scatter:
 paddle.distributed.QueueDataset	.. _api_paddle_distributed_QueueDataset:
 paddle.distributed.barrier	.. _api_paddle_distributed_barrier:
 paddle.distributed.CountFilterEntry	.. _api_paddle_distributed_CountFilterEntry:
@@ -123,6 +127,7 @@ paddle.atan	.. _api_paddle_atan:
 paddle.bmm	.. _api_paddle_bmm:
 paddle.broadcast_shape	.. _api_paddle_broadcast_shape:
 paddle.broadcast_to	.. _api_paddle_broadcast_to:
+paddle.bucketize	.. _api_paddle_bucketize:
 paddle.cast	.. _api_paddle_cast:
 paddle.ceil	.. _api_paddle_ceil:
 paddle.Tensor.ceil_	.. _api_paddle_Tensor_ceil_:
@@ -134,6 +139,7 @@ paddle.concat	.. _api_paddle_concat:
 paddle.conj	.. _api_paddle_conj:
 paddle.cos	.. _api_paddle_cos:
 paddle.cosh	.. _api_paddle_cosh:
+paddle.count_nonzero	.. _api_paddle_count_nonzero:
 paddle.cross	.. _api_paddle_cross:
 paddle.cumsum	.. _api_paddle_cumsum:
 paddle.dist	.. _api_paddle_dist:
@@ -153,11 +159,14 @@ paddle.floor	.. _api_paddle_floor:
 paddle.Tensor.floor_	.. _api_paddle_Tensor_floor_:
 paddle.floor_divide	.. _api_paddle_floor_divide:
 paddle.mod	.. _api_paddle_mod:
+paddle.remainder	.. _api_tensor_remainder:
+paddle.remainder_	.. _api_tensor_remainder_:
 paddle.gather	.. _api_paddle_gather:
 paddle.gather_nd	.. _api_paddle_gather_nd:
 paddle.greater_equal	.. _api_paddle_greater_equal:
 paddle.greater_than	.. _api_paddle_greater_than:
 paddle.histogram	.. _api_paddle_histogram:
+paddle.iinfo .. _api_paddle_iinfo:
 paddle.imag	.. _api_paddle_imag:
 paddle.increment	.. _api_paddle_increment:
 paddle.index_sample	.. _api_paddle_index_sample:
@@ -222,11 +231,13 @@ paddle.scatter_nd	.. _api_paddle_scatter_nd:
 paddle.scatter_nd_add	.. _api_paddle_scatter_nd_add:
 paddle.shard_index	.. _api_paddle_shard_index:
 paddle.sign	.. _api_paddle_sign:
+paddle.sgn	.. _api_paddle_sgn:
 paddle.sin	.. _api_paddle_sin:
 paddle.sinh	.. _api_paddle_sinh:
 paddle.slice	.. _api_paddle_slice:
 paddle.sort	.. _api_paddle_sort:
 paddle.split	.. _api_paddle_split:
+paddle.vsplit	.. _api_paddle_vsplit:
 paddle.sqrt	.. _api_paddle_sqrt:
 paddle.Tensor.sqrt_	.. _api_paddle_Tensor_sqrt_:
 paddle.square	.. _api_paddle_square:
@@ -240,6 +251,7 @@ paddle.subtract	.. _api_paddle_subtract:
 paddle.Tensor.subtract_	.. _api_paddle_Tensor_subtract_:
 paddle.sum	.. _api_paddle_sum:
 paddle.t	.. _api_paddle_t:
+paddle.take	.. _api_paddle_take:
 paddle.tanh	.. _api_paddle_tanh:
 paddle.tanh_	.. _api_paddle_tanh_:
 paddle.tile	.. _api_paddle_tile:
@@ -945,6 +957,7 @@ paddle.nn.functional.conv1d_transpose	.. _api_paddle_nn_functional_conv1d_transp
 paddle.nn.functional.conv3d_transpose	.. _api_paddle_nn_functional_conv3d_transpose:
 paddle.nn.functional.pixel_shuffle	.. _api_paddle_nn_functional_pixel_shuffle:
 paddle.nn.functional.softmax_	.. _api_paddle_nn_functional_softmax_:
+paddle.nn.functional.pairwise_distance	.. _api_paddle_nn_functional_pairwise_distance:
 paddle.nn.functional.log_sigmoid	.. _api_paddle_nn_functional_log_sigmoid:
 paddle.nn.functional.softshrink	.. _api_paddle_nn_functional_softshrink:
 paddle.nn.functional.embedding	.. _api_paddle_nn_functional_embedding:

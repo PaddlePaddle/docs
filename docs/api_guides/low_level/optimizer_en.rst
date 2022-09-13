@@ -12,7 +12,7 @@ With `forward computing and back propagation <https://zh.wikipedia.org/zh-hans/b
 ------------------
 
 :code:`SGD` is an offspring class of :code:`Optimizer` implementing `Random Gradient Descent <https://arxiv.org/pdf/1609.04747.pdf>`_ which is a method of `Gradient Descent <https://zh.wikipedia.org/zh-hans/gradient_descent_algorithm>`_ .
-When it needs to train a large number of samples, we usually choose :code:`SGD` to make loss function converge more quickly.  
+When it needs to train a large number of samples, we usually choose :code:`SGD` to make loss function converge more quickly.
 
 API Reference: :ref:`api_fluid_optimizer_SGDOptimizer`
 
@@ -87,4 +87,3 @@ API Reference: :ref:`api_fluid_optimizer_FtrlOptimizer`
 :code:`ModelAverage` Optimizer accumulates history parameters through sliding window during the model training. We use averaged parameters at inference time to upgrade general accuracy of inference.
 
 API Reference: :ref:`api_fluid_optimizer_ModelAverage`
-

@@ -59,7 +59,7 @@
 
 - Why use Docker?
 
-    > Installing the tools and configurations in a Docker image standardizes the build environment. This way, if you encounter problems, others can reproduce the problem to help. In addition, for developers accustomed to using Windows and MacOS, there is no need to configure a cross-compilation environment using Docker.
+    > Installing the tools and configurations in a Docker image standardizes the build environment. This way, if you encounter problems, others can reproduce the problem to help. In addition, for developers accustomed to using Windows and macOS, there is no need to configure a cross-compilation environment using Docker.
 
 - Can I choose not to use Docker?
 
@@ -86,9 +86,9 @@
 
     > If you develop with your own computer, you will naturally have admin privileges (sudo). If you are developing from a public computer, you need to ask the administrator to install and configure Docker. In addition, the PaddlePaddle project is working hard to support other container technologies that don't require sudo, such as rkt.
 
-- Is compiling slow on Windows/MacOS?
+- Is compiling slow on Windows/macOS?
 
-    > Docker runs on both Windows and MacOS. However, it is actually running on a Linux virtual machine. It may be necessary to pay attention to allocate more CPU and memory to this virtual machine to ensure efficient compilation. Please refer to [issue627](https://github.com/PaddlePaddle/Paddle/issues/627) for details.
+    > Docker runs on both Windows and macOS. However, it is actually running on a Linux virtual machine. It may be necessary to pay attention to allocate more CPU and memory to this virtual machine to ensure efficient compilation. Please refer to [issue627](https://github.com/PaddlePaddle/Paddle/issues/627) for details.
 
 - Not enough disk?
 
@@ -109,7 +109,7 @@
     > The main reason for this problem is that your graphics card driver is lower than the corresponding CUDA version. Please ensure that your graphics card driver supports the CUDA version used.
 
 
-- `Fatal Python error: PyThreadState_Get: no current thread running` error occurs when importing paddle.fluid after installing PaddlePaddle on MacOS.
+- `Fatal Python error: PyThreadState_Get: no current thread running` error occurs when importing paddle.fluid after installing PaddlePaddle on macOS.
 
 
     - For Python2.7.x (install by brew): Please use `export LD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/usr/ Local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7`

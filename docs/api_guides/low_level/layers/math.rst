@@ -4,7 +4,7 @@
 数学操作
 #########
 
-Paddle提供了丰富的数学操作，以下列出的数学操作都是对目标张量进行逐元素的操作。其中，如果二元操作的两个输入有不同形状，会先进行 :code:`broadcast`. 部分数学操作还支持数学操作符，比如： :code:`+`,  :code:`-`, :code:`*`, :code:`/` 等。数学操作符不仅支持张量，还支持标量。
+Paddle 提供了丰富的数学操作，以下列出的数学操作都是对目标张量进行逐元素的操作。其中，如果二元操作的两个输入有不同形状，会先进行 :code:`broadcast`. 部分数学操作还支持数学操作符，比如： :code:`+`,  :code:`-`, :code:`*`, :code:`/` 等。数学操作符不仅支持张量，还支持标量。
 
 
 一元操作
@@ -98,7 +98,7 @@ API Reference 请参考 :ref:`cn_api_fluid_layers_reciprocal`
 reduce
 ------------------
 
-对输入 :code:`Tensor` 在指定的若干轴上做reduce操作，包括：min, max, sum, mean, product
+对输入 :code:`Tensor` 在指定的若干轴上做 reduce 操作，包括：min, max, sum, mean, product
 
 API Reference 请参考:
 :ref:`cn_api_fluid_layers_reduce_min`

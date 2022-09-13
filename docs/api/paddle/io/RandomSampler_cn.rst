@@ -9,10 +9,10 @@ RandomSampler
 
 参数
 :::::::::
-    - **data_source** (Dataset) - 此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例或实现了 ``__len__`` 的Python对象，用于生成样本下标。默认值为None。
+    - **data_source** (Dataset) - 此参数必须是 ``paddle.io.Dataset`` 或 ``paddle.io.IterableDataset`` 的一个子类实例或实现了 ``__len__`` 的 Python 对象，用于生成样本下标。默认值为 None。
     - **replacement** (bool) - 如果为 ``False`` 则会采样整个数据集，如果为 ``True`` 则会按 ``num_samples`` 指定的样本数采集。默认值为 ``False`` 。
-    - **num_samples** (int) - 如果 ``replacement`` 设置为 ``True`` 则按此参数采集对应的样本数。默认值为None。
-    - **generator** (Generator) - 指定采样 ``data_source`` 的采样器。默认值为None。
+    - **num_samples** (int) - 如果 ``replacement`` 设置为 ``True`` 则按此参数采集对应的样本数。默认值为 None。
+    - **generator** (Generator) - 指定采样 ``data_source`` 的采样器。默认值为 None。
 
 返回
 :::::::::

@@ -17,7 +17,7 @@ where
     y_i, & \text{if}  \ condition_i \  \text{is} \ False \\
     \end{cases}.
 
-.. note:: 
+.. note::
     ``numpy.where(condition)`` 功能与 ``paddle.nonzero(condition, as_tuple=True)`` 相同，可以参考 :ref:`cn_api_tensor_search_nonzero`。
 
 参数
@@ -36,4 +36,4 @@ Tensor，形状与 ``condition`` 相同，数据类型与 ``x`` 和 ``y`` 相同
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.where:where-example
+COPY-FROM: paddle.where

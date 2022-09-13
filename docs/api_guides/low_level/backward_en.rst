@@ -18,6 +18,5 @@ You could refer to `back propagation algorithm <http://deeplearning.stanford.edu
 
 We do not recommend directly calling backpropagation-related APIs in  :code:`fluid` , as these are very low-level APIs. Consider using the relevant APIs in :ref:`api_guide_optimizer_en` instead. When you use optimizer APIs, Fluid automatically calculates the complex back-propagation for you.
 
-If you want to implement it by yourself, you can also use: :code:`callback` in :ref:`api_fluid_backward_append_backward` to define the customized gradient form of Operator. 
+If you want to implement it by yourself, you can also use: :code:`callback` in :ref:`api_fluid_backward_append_backward` to define the customized gradient form of Operator.
 For more information, please refer to: :ref:`api_fluid_backward_append_backward`
- 

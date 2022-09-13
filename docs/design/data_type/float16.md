@@ -96,7 +96,7 @@ float half_to_float(float16 h);
 which provides one-to-one conversion between float32 and float16. These twos functions will do different conversion routines based on the current hardware. CUDA/ARM instrinsics will be used when the corresonding hardware is available. If the hardware or compiler level does not support float32 to float16 conversion, software emulation will be performed to do the conversion.
 
 ## float16 inference
-In Fluid, a neural network is represented as a protobuf message called [ProgramDesc](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/program.md), whose Python wrapper is a [Program](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md#program). The basic structure of a program is some nested [blocks](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md#block), where each block consists of some [variable](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md#variable) definitions and a sequence of [operators](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md#operator). An [executor](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/executor.md) will run a given program desc by executing the sequence of operators in the entrance block of the program one by one.  
+In Fluid, a neural network is represented as a protobuf message called [ProgramDesc](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/program.md), whose Python wrapper is a [Program](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md#program). The basic structure of a program is some nested [blocks](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md#block), where each block consists of some [variable](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md#variable) definitions and a sequence of [operators](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md#operator). An [executor](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/executor.md) will run a given program desc by executing the sequence of operators in the entrance block of the program one by one.
 
 ### Operator level requirement
 Each operator has many kernels for different data types, devices, and library types. The operator will select the appropriate kernel to run based on, among other things, the data type of the input variables. By default, every Fluid operator has a float data type kernel that takes float variables as input and generates float output.
@@ -118,7 +118,7 @@ The following code demonstrates how to do the tensor conversion.
 ```Python
 # var is the variable of float weights
 # tensor is a numpy array of data copied from the tensor data in var
-# fp16_var is the variable that will contain float16 weights converted from var  
+# fp16_var is the variable that will contain float16 weights converted from var
 tensor = numpy.array(var.get_tensor())
 fp16_tensor = fp16_var.get_tensor()
 
@@ -126,13 +126,13 @@ fp16_tensor = fp16_var.get_tensor()
 # view(numpy.uint16) is used so that the internal memory of the numpy array
 # will be reinterpreted to be of uint16 data type, which is binded to
 # Fluid float16 class via pybind with the help of uint16_t built-in c++ type
-fp16_tensor.set(tensor.astype(numpy.float16).view(numpy.uint16), GPUPlace)  
+fp16_tensor.set(tensor.astype(numpy.float16).view(numpy.uint16), GPUPlace)
 ```
 
 ### Consistent API requirement
 The basic inference in float16 mode requires users to feed input and obtain output both of float16 data type. However, in this way, the inference APIs are not consistent between float16 mode and float mode, and users may find it confusing and diffcult to use float16 inference since they need to do extra steps to provide float16 input data and convert float16 output data back to float. To have consistent API for different inference modes, we need to transpile the program desc in some way so that we can run float16 inference by feeding and fetching variables of float data type.
 
-This problem can be solved by introducing a type-casting operator which takes an input variable of certain data type, cast it to another specified data type, and put the casted data into the output variable. Insert cast operator where needed can make a program internally run in float16 mode.  
+This problem can be solved by introducing a type-casting operator which takes an input variable of certain data type, cast it to another specified data type, and put the casted data into the output variable. Insert cast operator where needed can make a program internally run in float16 mode.
 
 ### float16 transpiler
 Put all the above requirements in mind, we designed a float16 inference transpiler that can tranpile a float32 mode inference program desc to a float16 mode one.

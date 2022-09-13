@@ -15,5 +15,5 @@ get_exception_message
 
 返回
 ::::::::::
-    
-    exec的错误消息
+
+    exec 的错误消息

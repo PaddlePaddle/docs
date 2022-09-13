@@ -16,12 +16,3 @@ ExponentialFamily
 归一化函数。
 
 属于指数型分布族的概率分布列表参考 https://en.wikipedia.org/wiki/Exponential_family
-
-
-
-
-
-
-
-
-

@@ -20,7 +20,7 @@ Let's start with studying basic concept of PaddlePaddle:
 
 ..  toctree::
     :hidden:
-    
+
     beginner/index_en.rst
     advanced/index_en.rst
     jit/index_en.rst

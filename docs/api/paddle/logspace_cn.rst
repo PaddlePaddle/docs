@@ -9,7 +9,7 @@ logspace
 
 .. note::
     ``paddle.logspace`` 不进行梯度计算。
- 
+
 参数
 ::::::::::::
 
@@ -28,4 +28,5 @@ logspace
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.logspace:logspace-example
+
+COPY-FROM: paddle.logspace

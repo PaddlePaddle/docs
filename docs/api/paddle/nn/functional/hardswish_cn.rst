@@ -5,7 +5,7 @@ hardswish
 
 .. py:function:: paddle.nn.functional.hardswish(x, name=None)
 
-hardswish激活函数。在MobileNetV3架构中被提出，相较于swish函数，具有数值稳定性好，计算速度快等优点，具体原理请参考：https://arxiv.org/pdf/1905.02244.pdf
+hardswish 激活函数。在 MobileNetV3 架构中被提出，相较于 swish 函数，具有数值稳定性好，计算速度快等优点，具体原理请参考：https://arxiv.org/pdf/1905.02244.pdf
 
 .. math::
 
