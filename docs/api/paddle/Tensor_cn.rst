@@ -2059,6 +2059,15 @@ split(num_or_sections, axis=0, name=None)
 
 请参考 :ref:`cn_api_fluid_layers_split`
 
+vsplit(num_or_sections, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_vsplit`
+
 sqrt(name=None)
 :::::::::
 

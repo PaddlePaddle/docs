@@ -237,6 +237,7 @@ paddle.sinh	.. _api_paddle_sinh:
 paddle.slice	.. _api_paddle_slice:
 paddle.sort	.. _api_paddle_sort:
 paddle.split	.. _api_paddle_split:
+paddle.vsplit	.. _api_paddle_vsplit:
 paddle.sqrt	.. _api_paddle_sqrt:
 paddle.Tensor.sqrt_	.. _api_paddle_Tensor_sqrt_:
 paddle.square	.. _api_paddle_square:
