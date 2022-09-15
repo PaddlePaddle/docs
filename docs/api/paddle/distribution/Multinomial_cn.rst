@@ -18,8 +18,7 @@ Multinomial
 
 
 其中，:math:`n` 表示实验次数，:math:`k` 表示类别数，:math:`p_i` 表示一次实验中，实验结果
-为第 :math:`i` 个类别的概率，需要满足 :math:`{\textstyle \sum_{i=1}^{k}p_i=1}, p_i \ge 0` ,
- :math:`x_i` 表示第 :math:`i` 个分类出现的次数。
+为第 :math:`i` 个类别的概率，需要满足 :math:`{\textstyle \sum_{i=1}^{k}p_i=1}, p_i \ge 0` , :math:`x_i` 表示第 :math:`i` 个分类出现的次数。
 
 
 
@@ -27,7 +26,7 @@ Multinomial
 :::::::::
 
 - **total_count** (int) - 实验次数。
-- **probs** (Tensor） - 每个类别发生的概率。最后一维为事件维度，其它维为批维度。``probs`` 中
+- **probs** （Tensor） - 每个类别发生的概率。最后一维为事件维度，其它维为批维度。``probs`` 中
   的每个元素取值范围为 ``[0,1]``。如果输入数据大于 1，会沿着最后一维进行归一化操作。
 
 代码示例

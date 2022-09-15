@@ -117,10 +117,15 @@ kl_divergence(other)
 上面的数学公式中：
 
 :math:`loc = \mu_0`：当前正态分布的平均值。
+
 :math:`scale = \sigma_0`：当前正态分布的标准差。
+
 :math:`loc = \mu_1`：另一个正态分布的平均值。
+
 :math:`scale = \sigma_1`：另一个正态分布的标准差。
+
 :math:`ratio`：两个标准差之间的比例。
+
 :math:`diff`：两个平均值之间的差值。
 
 **参数**

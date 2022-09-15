@@ -12,19 +12,18 @@ IndependentTransform
  ``forward_log_det_jacobian`` 以及 ``inverse_log_det_jacobian`` 计算结果沿着扩展的维度进行求和。
 
 例如，假设基础变换为 ``ExpTransform``，其输入为一个随机采样结果 ``x``，形状
-为 ``(S=[4],B=[2,2],E=[3])`` , ``S`` 、``B`` 、``E`` 分别表示采样形状、批形状、事件形
-状，``reinterpreted_batch_rank=1``。则 ``IndependentTransform(ExpTransform)``
+为 ``(S=[4],B=[2,2],E=[3])`` , ``S`` 、``B`` 、``E`` 分别表示采样形状、批形状、事件形状，
+``reinterpreted_batch_rank=1``。则 ``IndependentTransform(ExpTransform)``
 变换后，``x`` 的形状为 ``(S=[4],B=[2],E=[2,3])``，即将最右侧的批维度作为事件维度。
 此时 ``forward`` 和 ``inverse`` 输出形状仍是 ``(4,2,2,3)`` ,
-但 ``forward_log_det_jacobian`` 以及 ``inverse_log_det_jacobian`` 输出形状
-为 ``(4, 2)`` 。
+但 ``forward_log_det_jacobian`` 以及 ``inverse_log_det_jacobian`` 输出形状为 ``(4, 2)`` 。
 
 
 参数
 :::::::::
 
 - **base** (Transform) - 基础变换。
-- **reinterpreted_batch_rank** (int) - 被扩展为事件维度的最右侧批维度数量。
+- **reinterpreted_batch_rank** (int) - 被扩展为事件维度的最右侧批维度数量，需大于 0。
 
 
 代码示例

@@ -26,6 +26,8 @@ forward(x)
 
 计算正变换 :math:`y=f(x)` 的结果。
 
+有助于将一个随机结果变成另一个随机结果。
+
 **参数**
 
 - **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution`
@@ -39,7 +41,7 @@ forward(x)
 inverse(y)
 '''''''''
 
-计算逆变换 :math:`x = f^{-1}(y)`
+计算逆变换 :math:`x = f^{-1}(y)`。
 
 **参数**
 
