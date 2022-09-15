@@ -19,7 +19,8 @@ step 1：
 
 .. code-block:: text
 
-  grid_x = 0.5 * (grid[:, :, :, 0] + 1) * (W - 1) grid_y = 0.5 * (grid[:, :, :, 1] + 1) * (H - 1)
+  grid_x = 0.5 * (grid[:, :, :, 0] + 1) * (W - 1)
+  grid_y = 0.5 * (grid[:, :, :, 1] + 1) * (H - 1)
 
 step 2：
 
@@ -66,8 +67,7 @@ step 2：
 
 返回
 ::::::::::::
-Tensor，输入 X 基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的 4-D Tensor 或维度为 :math:`[N, C, D, H, W]` 的 5-D Tensor，
-数据类型与 ``x`` 一致。
+Tensor，输入 X 基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的 4-D Tensor 或维度为 :math:`[N, C, D, H, W]` 的 5-D Tensor， grid_H 是 grid 的特征高度， grid_W 是 grid 的特征深度，数据类型与 ``x`` 一致。
 
 
 代码示例
