@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_frexp:
+.. _cn_api_paddle_tensor_math_frexp:
 
 frexp
 -------------------------------
@@ -21,4 +21,4 @@ frexp
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.frexp
+COPY-FROM: paddle.tensor.math.frexp
