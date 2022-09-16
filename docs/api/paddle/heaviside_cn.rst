@@ -6,7 +6,7 @@ heaviside
 .. py:function:: paddle.heaviside(x, y, name=None)
 
 
-逐元素地对 Tensor `x` 计算由 Tensor `y` 中的对应元素决定的赫维赛德阶跃函数，其计算公式为
+为 `x` 中的每个元素计算由 `y` 中相对应元素决定的赫维赛德阶跃函数，其计算公式为
 
 .. math::
    \mathrm{heaviside}(x, y)=
@@ -19,7 +19,7 @@ heaviside
       \right.
 
 .. note::
-   ``paddle.heaviside`` 遵守广播机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting`。
+   ``paddle.heaviside`` 遵守广播机制，如您想了解更多，请参见 :ref:`broadcast_cn.html`。
 
 参数
 :::::::::
