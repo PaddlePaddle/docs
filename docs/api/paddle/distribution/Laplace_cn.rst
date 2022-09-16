@@ -3,7 +3,7 @@
 Laplace
 -------------------------------
 
-.. py:class:: paddle.distribution.Laplace(loc, scale, name=None)
+.. py:class:: paddle.distribution.Laplace(loc, scale)
 拉普拉斯分布
 
 数学公式：
@@ -23,7 +23,6 @@ Laplace
 
     - **loc** (int|float|Tensor) - 拉普拉斯分布位置参数。数据类型为 int、float 或 Tensor。
     - **scale** (int|float|Tensor) - 拉普拉斯分布尺度参数。数据类型为 int、float 或 Tensor。
-    - **name**  (str) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
 代码示例
 ::::::::::::
