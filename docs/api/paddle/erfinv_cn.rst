@@ -3,7 +3,7 @@
 erfinv
 -------------------------------
 
-.. py:function:: paddle.erfinv(x,Name=None)
+.. py:function:: paddle.erfinv(x, name=None)
 计算输入矩阵 x 的逆误差函数。
 请参考 erf 计算公式 :ref:`cn_api_fluid_layers_erf`
 
