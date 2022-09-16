@@ -19,7 +19,7 @@ heaviside
       \right.
 
 .. note::
-   ``paddle.heaviside`` 遵守广播机制，如您想了解更多，请参见 :ref:`broadcast_cn.html`。
+   ``paddle.heaviside`` 遵守广播机制，如您想了解更多，请参见 :ref:`cn_api_paddle_distributed_broadcast`。
 
 参数
 :::::::::
