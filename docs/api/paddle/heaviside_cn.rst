@@ -19,7 +19,7 @@ heaviside
       \right.
 
 .. note::
-   ``paddle.heaviside`` 遵守广播机制，如您想了解更多，请参见 :ref:`cn_api_paddle_distributed_broadcast`。
+   ``paddle.heaviside`` 遵守广播机制，如您想了解更多，请参见 :ref:`https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/beginner/tensor_cn.html#id7`。
 
 参数
 :::::::::
