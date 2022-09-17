@@ -11,7 +11,7 @@ StackTransform
 :::::::::
 
 - **transforms** (Sequence[Transform]) - 变换序列。
-- **axis** (int，可选) - 待变换的轴，默认值：0，表示沿着第 0 个轴变换。
+- **axis** (int，可选) - 待变换的轴，默认值为 0，表示沿着第 0 个轴变换。
 
 代码示例
 :::::::::
@@ -28,8 +28,7 @@ forward(x)
 
 **参数**
 
-- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution`
-  的随机采样结果。
+- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution` 的随机采样结果。
 
 **返回**
 
