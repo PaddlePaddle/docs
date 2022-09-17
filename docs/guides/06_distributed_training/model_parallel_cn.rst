@@ -309,7 +309,7 @@
       optimizer.clear_grad()
       print("loss", loss.numpy())
 
-模型并行的动态图代码：`example/model_parallelism/mp_dygraph.py <https://github.com/PaddlePaddle/FleetX/tree/old_develop/examples/model_parallelism>`_。
+模型并行的动态图代码：`example/model_parallelism/mp_dygraph.py <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/examples/model_parallelism>`_。
 
 
 运行方式（需要保证当前机器有两张 gpu）：
