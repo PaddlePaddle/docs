@@ -20,15 +20,15 @@ Normal
 
 上面的数学公式中：
 
-:math:`loc = \mu`：平均值。
-:math:`scale = \sigma`：标准差。
-:math:`Z`：正态分布常量。
+- :math:`loc = \mu`：平均值。
+- :math:`scale = \sigma`：标准差。
+- :math:`Z`：正态分布常量。
 
 参数
 ::::::::::::
 
-    - **loc** (int|float|list|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为 int、float、list、numpy.ndarray 或 Tensor。
-    - **scale** (int|float|list|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为 int、float、list、numpy.ndarray 或 Tensor。
+    - **loc** (int|float|list|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为 float32 或 float64。
+    - **scale** (int|float|list|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为 float32 或 float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
@@ -116,17 +116,12 @@ kl_divergence(other)
 
 上面的数学公式中：
 
-:math:`loc = \mu_0`：当前正态分布的平均值。
-
-:math:`scale = \sigma_0`：当前正态分布的标准差。
-
-:math:`loc = \mu_1`：另一个正态分布的平均值。
-
-:math:`scale = \sigma_1`：另一个正态分布的标准差。
-
-:math:`ratio`：两个标准差之间的比例。
-
-:math:`diff`：两个平均值之间的差值。
+- :math:`loc = \mu_0`：当前正态分布的平均值；
+- :math:`scale = \sigma_0`：当前正态分布的标准差；
+- :math:`loc = \mu_1`：另一个正态分布的平均值；
+- :math:`scale = \sigma_1`：另一个正态分布的标准差；
+- :math:`ratio`：两个标准差之间的比例；
+- :math:`diff`：两个平均值之间的差值。
 
 **参数**
 
