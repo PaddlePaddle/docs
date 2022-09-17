@@ -5,7 +5,7 @@ LayerNorm
 
 .. py:class:: paddle.nn.LayerNorm(normalized_shape, epsilon=1e-05, weight_attr=None, bias_attr=None, name=None)
 
-该接口用于构建 ``LayerNorm`` 类的一个可调用对象，具体用法参照 ``代码示例``。其中实现了层归一化层（Layer Normalization Layer）的功能，其可以应用于小批量输入数据。更多详情请参考：`Layer Normalization <https://arxiv.org/pdf/1607.06450v1.pdf>`_
+构建 ``LayerNorm`` 类的一个可调用对象，具体用法参照 ``代码示例``。其中实现了层归一化层（Layer Normalization Layer）的功能，其可以应用于小批量输入数据。更多详情请参考：`Layer Normalization <https://arxiv.org/pdf/1607.06450v1.pdf>`_
 
 计算公式如下
 

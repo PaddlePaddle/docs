@@ -6,7 +6,7 @@ BatchNorm1D
 .. py:class:: paddle.nn.BatchNorm1D(num_features, momentum=0.9, epsilon=1e-05, weight_attr=None, bias_attr=None, data_format='NCL', name=None)
 
 
-该接口用于构建 ``BatchNorm1D`` 类的一个可调用对象，具体用法参照 ``代码示例``。可以处理 2D 或者 3D 的 Tensor，实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
+构建 ``BatchNorm1D`` 类的一个可调用对象，具体用法参照 ``代码示例``。可以处理 2D 或者 3D 的 Tensor，实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考：`Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_
 
 当训练时 :math:`\mu_{\beta}` 和 :math:`\sigma_{\beta}^{2}` 是 minibatch 的统计数据。计算公式如下：
 
