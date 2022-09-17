@@ -31,12 +31,11 @@ forward(x)
 
 **参数**
 
-- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution`
-  的随机采样结果。
+- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution` 的随机采样结果。
 
 **返回**
 
-- **y** (Tensor) - 正变换的计算结果。
+Tensor，正变换的计算结果。
 
 
 inverse(y)
@@ -50,7 +49,7 @@ inverse(y)
 
 **返回**
 
-- **x** (Tensor) - 逆变换的计算结果。
+Tensor，逆变换的计算结果。
 
 forward_log_det_jacobian(x)
 '''''''''
@@ -65,7 +64,7 @@ forward_log_det_jacobian(x)
 
 **返回**
 
-- Tensor - 正变换雅可比行列式绝对值的对数。
+Tensor，正变换雅可比行列式绝对值的对数。
 
 
 inverse_log_det_jacobian(y)
@@ -81,7 +80,7 @@ inverse_log_det_jacobian(y)
 
 **返回**
 
-- Tensor - 逆变换雅可比行列式绝对值的对数。
+Tensor，逆变换雅可比行列式绝对值的对数。
 
 
 forward_shape(shape)
@@ -95,7 +94,7 @@ forward_shape(shape)
 
 **返回**
 
-- Sequence[int] - 正变换输出的形状。
+Sequence[int]，正变换输出的形状。
 
 
 inverse_shape(shape)
@@ -109,4 +108,4 @@ inverse_shape(shape)
 
 **返回**
 
-- Sequence[int] - 逆变换输出的形状。
+Sequence[int]，逆变换输出的形状。
