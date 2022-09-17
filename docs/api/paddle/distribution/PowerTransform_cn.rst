@@ -5,7 +5,7 @@ PowerTransform
 
 .. py:class:: paddle.distribution.PowerTransform(power)
 
-幂变换 :math:`y = x^{power}` 。
+幂变换 :math:`y = x^{power}`。
 
 参数
 :::::::::
@@ -56,7 +56,7 @@ forward_log_det_jacobian(x)
 
 计算正变换雅可比行列式绝对值的对数。
 
-如果变换不是一一映射，则雅可比矩阵不存在，返回 ``NotImplementedError`` 。
+如果变换不是一一映射，则雅可比矩阵不存在，抛出 ``NotImplementedError`` 。
 
 **参数**
 
