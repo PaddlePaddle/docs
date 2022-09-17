@@ -33,7 +33,7 @@ graph_reindex
 
 参数
 :::::::::
-    - **x** (Tensor) 输入的中心节点原始编号，数据类型为：int32、int64。
+    - **x** (Tensor) - 输入的中心节点原始编号，数据类型为：int32、int64。
     - neighbors (Tensor) - 中心节点的邻居节点编号，数据类型为：int32、int64。
     - count (Tensor) - 中心节点各自的邻居数目，数据类型为：int32。
     - value_buffer (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。如果 ``flag_buffer_hashtable`` 为 True，则不可为空。默认值为 None。

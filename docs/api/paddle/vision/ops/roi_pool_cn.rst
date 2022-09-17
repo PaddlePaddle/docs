@@ -10,7 +10,7 @@ roi_pool
 
 参数
 :::::::::
-    - **x** (Tensor) 输入的特征图，形状为(N, C, H, W)。
+    - **x** (Tensor) - 输入的特征图，形状为(N, C, H, W)。
     - boxes (Tensor) - 待执行池化的 ROIs(Regions of Interest，感兴趣区域)的框坐标。它应当是一个形状为(num_rois, 4)的 2-D Tensor，以[[x1, y1, x2, y2], ...]的形式给出。其中(x1, y1)是左上角的坐标值，(x2, y2)是右下角的坐标值。
     - boxes_num (Tensor) - 该 batch 中每一张图所包含的框数量。
     - output_size (int|Tuple(int, int)) - 池化后输出的尺寸(H, W)，数据类型为 int32。如果 output_size 是 int 类型，H 和 W 都与其相等。

@@ -71,7 +71,7 @@ split
 
 参数
 :::::::::
-    - **x** (Tensor) 输入 Tensor。Tensor 的数据类型为：float16、float32、float64、int32、int64。
+    - **x** (Tensor) - 输入 Tensor。Tensor 的数据类型为：float16、float32、float64、int32、int64。
     - size (list|tuple) - 指定参数形状的列表或元组，包含 2 个元素。
     - operation (str) - 指定操作名称，当前支持的操作名称为'embedding'或'linear'。
     - axis (int，可选) - 指定沿哪个维度切分参数。默认值：0。
