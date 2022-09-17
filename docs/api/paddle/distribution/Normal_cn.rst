@@ -7,7 +7,6 @@ Normal
 
 
 
-
 正态分布
 
 数学公式：
@@ -20,8 +19,8 @@ Normal
 
 上面的数学公式中：
 
-- :math:`loc = \mu`：平均值。
-- :math:`scale = \sigma`：标准差。
+- :math:`loc = \mu`：平均值；
+- :math:`scale = \sigma`：标准差；
 - :math:`Z`：正态分布常量。
 
 参数
@@ -97,7 +96,7 @@ probs(value)
 
 **返回**
 
-Tensor，概率，数据类型与 value 相同。
+Tensor，概率，数据类型与 :attr:`value` 相同。
 
 kl_divergence(other)
 '''''''''
