@@ -17,7 +17,7 @@ conj
 返回
 ::::::::::::
 
-    - out (Tensor) - 输入的共轭。形状和数据类型与输入一致。如果 Tensor 元素是实数类型，如 float32、float64、int32、或者 int64，返回值和输入相同。
+Tensor，输入的共轭。形状和数据类型与输入一致。如果 Tensor 元素是实数类型，如 float32、float64、int32、或者 int64，返回值和输入相同。
 
 
 代码示例

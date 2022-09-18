@@ -26,7 +26,7 @@ logit
 参数
 ::::::::::::
     - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
-    - eps (float，可选) - 传入该参数后可将 ``x`` 的范围控制在[eps, 1-eps]，默认值为 None。
+    - **eps** (float，可选) - 传入该参数后可将 ``x`` 的范围控制在 :math:`[eps, 1-eps]`，默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

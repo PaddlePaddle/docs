@@ -30,8 +30,8 @@ gumbel_softmax
 参数
 ::::::::::
     - **x** (Tensor) 一个 N-D Tensor，前 N-1 维用于独立分布 batch 的索引，最后一维表示每个类别的概率，dtype 类型为 float，double。
-    - temperature (float，可选) - 大于 0 的标量。默认值：1.0。
-    - hard (bool，可选) - 如果是 True，返回离散的 one-hot 向量。如果是 False，返回软样本。默认值：False。
+    - **temperature** (float，可选) - 大于 0 的标量。默认值：1.0。
+    - **hard** (bool，可选) - 如果是 True，返回离散的 one-hot 向量。如果是 False，返回软样本。默认值：False。
     - **axis** (int，可选) - 按照维度 axis 计算 softmax。默认值：-1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

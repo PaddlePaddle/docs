@@ -10,11 +10,11 @@ ColorJitter
 参数
 :::::::::
 
-    - brightness(float) - 亮度调整范围大小，会从给定参数后的均匀分布[max(0，1 - brightness), 1 + brightness]中随机选择进行实际调整，不能是负数。
-    - contrast(float) - 对比度调整范围大小，，会从给定参数后的均匀分布[max(0，1 - contrast), 1 + contrast]中随机选择进行实际调整，不能是负数。
-    - saturation(float) - 饱和度调整范围大小，，会从给定参数后的均匀分布[max(0，1 - saturation), 1 + saturation]中随机选择进行实际调整，不能是负数。
-    - hue(float) - 色调调整范围大小，会从给定参数后的均匀分布[-hue, hue]中随机选择进行实际调整，参数值需要在 0 到 0.5 之间。
-    - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值：None。
+    - **brightness** (float) - 亮度调整范围大小，会从给定参数后的均匀分布[max(0，1 - brightness), 1 + brightness]中随机选择进行实际调整，不能是负数。
+    - **contrast** (float) - 对比度调整范围大小，，会从给定参数后的均匀分布[max(0，1 - contrast), 1 + contrast]中随机选择进行实际调整，不能是负数。
+    - **saturation** (float) - 饱和度调整范围大小，，会从给定参数后的均匀分布[max(0，1 - saturation), 1 + saturation]中随机选择进行实际调整，不能是负数。
+    - **hue** (float) - 色调调整范围大小，会从给定参数后的均匀分布[-hue, hue]中随机选择进行实际调整，参数值需要在 0 到 0.5 之间。
+    - **keys** (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值：None。
 
 形状
 :::::::::
