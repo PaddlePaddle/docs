@@ -38,12 +38,12 @@ PaddlePaddle Fluid supports most of the activation functions, including:
 
 .. code-block:: python
 
-	conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3, act="relu")
+    conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3, act="relu")
 
 
 - Fluid provides an interface for each Activation, and we can explicitly call it.
 
 .. code-block:: python
 
-	conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3)
-	relu1 = fluid.layers.relu(conv2d)
+    conv2d = fluid.layers.conv2d(input=data, num_filters=2, filter_size=3)
+    relu1 = fluid.layers.relu(conv2d)

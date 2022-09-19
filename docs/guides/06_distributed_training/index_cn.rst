@@ -12,7 +12,7 @@
 - `张量模型并行 <./model_parallel_cn.html>`_ : 使用飞桨框架完成张量模型并行训练。
 - `流水线并行 <./pipeline_parallel_cn.html>`_ : 使用飞桨框架完成流水线并行训练。
 - `分组切分并行 <./group_sharded_parallel_cn.html>`_ : 使用飞桨框架完成分组切分并行训练。
-- `MoE <./moe_cn.html>`_ : 使用飞桨框架完成MoE模型训练。
+- `MoE <./moe_cn.html>`_ : 使用飞桨框架完成 MoE 模型训练。
 
 ..  toctree::
     :hidden:

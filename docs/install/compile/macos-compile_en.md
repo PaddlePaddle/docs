@@ -1,8 +1,8 @@
-# **Compile on MacOS from Source Code**
+# **Compile on macOS from Source Code**
 
 ## Environment preparation
 
-* **MacOS version 10.x/11.x (64 bit) (not support GPU version)**
+* **macOS version 10.x/11.x (64 bit) (not support GPU version)**
 * **Python version 3.6/3.7/3.8/3.9 (64 bit)**
 
 ## Choose CPU/GPU
@@ -10,7 +10,7 @@
 * Currently, only PaddlePaddle for CPU is supported.
 
 ## Installation steps
-There are two compilation methods in MacOS system. It's recommended to use Docker to compile.
+There are two compilation methods in macOS system. It's recommended to use Docker to compile.
 The dependencies required for compiling Paddle are pre-installed in the Docker environment, which is simpler than the native compiling environment.
 
 * [Compile with Docker](#compile_from_docker)
@@ -119,10 +119,10 @@ apt install patchelf
 
 #### 10. Execute cmake:
 
-* For users who need to compile the **CPU version PaddlePaddle** (We currently do not support the compilation of the GPU version PaddlePaddle under MacOS):
+* For users who need to compile the **CPU version PaddlePaddle** (We currently do not support the compilation of the GPU version PaddlePaddle under macOS):
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DWITH_AVX=OFF -DCMAKE_BUILD_TYPE=Release
+    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF
     ```
 > For details on the compilation options, see the [compilation options table](/documentation/docs/en/install/Tables_en.html/#Compile).
 
@@ -168,7 +168,7 @@ We used Python3.7 command as an example above, if the version of your Python is 
 
 #### 2. Install python and pip:
 
-> **Please do not use the Python initially given by MacOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.6.x, python3.7.x, python3.8, python3.9), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
+> **Please do not use the Python initially given by macOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.6.x, python3.7.x, python3.8, python3.9), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
 
 Install using Python official website
 
@@ -212,12 +212,12 @@ Install using Python official website
     ```
     (here [python-ld-path] is the [python-bin-path]'s parent directory )
 
-- g. (Optional) If you are compiling PaddlePaddle on MacOS 10.14, make sure you have the [appropriate version](http://developer.apple.com/download) of Xcode installed.
+- g. (Optional) If you are compiling PaddlePaddle on macOS 10.14, make sure you have the [appropriate version](http://developer.apple.com/download) of Xcode installed.
 
 
 #### 4. Before **compilation**, please confirm that the relevant dependencies mentioned in the [compilation dependency table](/documentation/docs/en/install/Tables_en.html/#third_party) are installed in your environment, otherwise we strongly recommend using `Homebrew` to install related dependencies.
 
-> Under MacOS, if you have not modified or installed the dependencies mentioned in the "Compile Dependency Table", you only need to use `pip` to install `numpy`, `protobuf`, `wheel`, use `homebrew` to install `wget`, `swig`,then install `cmake`.
+> Under macOS, if you have not modified or installed the dependencies mentioned in the "Compile Dependency Table", you only need to use `pip` to install `numpy`, `protobuf`, `wheel`, use `Homebrew` to install `wget`, `swig`,then install `cmake`.
 
 - a. Here is a special description of the installation of **CMake**:
 
@@ -263,7 +263,7 @@ mkdir build && cd build
 
     ```
     cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
-    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_FLUID_ONLY=ON -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
+    -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
     ```
 
 - ``-DPY_VERSION=3.7`` Please change to the Python version of the installation environment.

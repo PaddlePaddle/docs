@@ -19,15 +19,15 @@
 1.1 任务介绍
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-本节将采用推荐领域非常经典的模型wide_and_deep为例，介绍如何使用飞桨分布式完成参数服务器训练任务。
+本节将采用推荐领域非常经典的模型 wide_and_deep 为例，介绍如何使用飞桨分布式完成参数服务器训练任务。
 
-参数服务器训练基于飞桨静态图，为方便用户理解，我们准备了一个wide_and_deep模型的单机静态图示例：\ `单机静态图示例 <https://github.com/PaddlePaddle/FleetX/tree/develop/eval/rec/wide_and_deep_single_static>`_\。
+参数服务器训练基于飞桨静态图，为方便用户理解，我们准备了一个 wide_and_deep 模型的单机静态图示例：\ `单机静态图示例 <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/eval/rec/wide_and_deep_single_static>`_\。
 
-在单机静态图示例基础上，通过1.2章节的操作方法，可以将其修改为参数服务器训练示例，本次快速开始的完整示例代码参考：\ `参数服务器完整示例 <https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep_dataset>`_\。
+在单机静态图示例基础上，通过 1.2 章节的操作方法，可以将其修改为参数服务器训练示例，本次快速开始的完整示例代码参考：\ `参数服务器完整示例 <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/examples/wide_and_deep_dataset>`_\。
 
-同时，我们在AIStudio上建立了一个参数服务器快速开始的项目：\ `参数服务器快速开始 <https://aistudio.baidu.com/aistudio/projectdetail/4189047?channelType=0&channel=0>`_\，用户可以跳转到AIStudio上直接运行参数服务器的训练代码。
+同时，我们在 AIStudio 上建立了一个参数服务器快速开始的项目：\ `参数服务器快速开始 <https://aistudio.baidu.com/aistudio/projectdetail/4522337>`_\，用户可以跳转到 AIStudio 上直接运行参数服务器的训练代码。
 
-在编写分布式训练程序之前，用户需要确保已经安装PaddlePaddle2.3及以上版本的飞桨开源框架。
+在编写分布式训练程序之前，用户需要确保已经安装 PaddlePaddle2.3 及以上版本的飞桨开源框架。
 
 1.2 操作方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -37,17 +37,17 @@
     1. 导入分布式训练需要的依赖包。
     2. 定义分布式模式并初始化分布式训练环境。
     3. 加载模型。
-    4. 构建dataset加载数据
+    4. 构建 dataset 加载数据
     5. 定义参数更新策略及优化器。
-    6. 开始训练。 
+    6. 开始训练。
 
-    
+
 下面将逐一进行讲解。
 
 1.2.1 导入依赖
 """"""""""""
 
-导入必要的依赖，例如分布式训练专用的Fleet API(paddle.distributed.fleet)。
+导入必要的依赖，例如分布式训练专用的 Fleet API(paddle.distributed.fleet)。
 
 .. code-block:: python
 
@@ -57,7 +57,7 @@
 1.2.2 定义分布式模式并初始化分布式训练环境
 """"""""""""
 
-通过 ``fleet.init()`` 接口，用户可以定义训练相关的环境，注意此环境是用户预先在环境变量中配置好的，包括：训练节点个数，服务节点个数，当前节点的序号，服务节点完整的IP:PORT列表等。
+通过 ``fleet.init()`` 接口，用户可以定义训练相关的环境，注意此环境是用户预先在环境变量中配置好的，包括：训练节点个数，服务节点个数，当前节点的序号，服务节点完整的 IP:PORT 列表等。
 
 .. code-block:: python
 
@@ -75,89 +75,89 @@
     model = WideDeepModel()
     model.net(is_train=True)
 
-1.2.4 构建dataset加载数据
+1.2.4 构建 dataset 加载数据
 """"""""""""
 
-由于搜索推荐场景涉及到的训练数据通常较大，为提升训练中的数据读取效率，参数服务器采用InMemoryDataset/QueueDataset进行高性能的IO。
+由于搜索推荐场景涉及到的训练数据通常较大，为提升训练中的数据读取效率，参数服务器采用 InMemoryDataset/QueueDataset 进行高性能的 IO。
 
-InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_and_deep_dataset/reader.py，与单机DataLoader相比，存在如下区别：
+InMemoryDataset/QueueDataset 所对应的数据处理脚本参考 examples/wide_and_deep_dataset/reader.py，与单机 DataLoader 相比，存在如下区别：
 
     1. 继承自 ``fleet.MultiSlotDataGenerator`` 基类。
-    2. 复用单机reader中的 ``line_process()`` 方法，该方法将数据文件中一行的数据处理后生成特征数组并返回，特征数组不需要转成np.array格式。
-    3. 实现基类中的 ``generate_sample()`` 函数，调用 ``line_process()`` 方法逐行读取数据进行处理，并返回一个可以迭代的reader方法。
-    4. reader方法需返回一个list，其中的每个元素都是一个元组，具体形式为 ``(特征名，[特征值列表])`` ，元组的第一个元素为特征名（string类型，需要与模型中对应输入input的name对应），第二个元素为特征值列表（list类型）。
+    2. 复用单机 reader 中的 ``line_process()`` 方法，该方法将数据文件中一行的数据处理后生成特征数组并返回，特征数组不需要转成 np.array 格式。
+    3. 实现基类中的 ``generate_sample()`` 函数，调用 ``line_process()`` 方法逐行读取数据进行处理，并返回一个可以迭代的 reader 方法。
+    4. reader 方法需返回一个 list，其中的每个元素都是一个元组，具体形式为 ``(特征名，[特征值列表])`` ，元组的第一个元素为特征名（string 类型，需要与模型中对应输入 input 的 name 对应），第二个元素为特征值列表（list 类型）。
     5. 在__main__作用域中调用 ``run_from_stdin()`` 方法，直接从标准输入流获取待处理数据，而不需要对数据文件进行操作。
 
-一个完整的reader.py伪代码如下：
+一个完整的 reader.py 伪代码如下：
 
 .. code-block:: python
 
     import paddle
-    # 导入所需要的fleet依赖
+    # 导入所需要的 fleet 依赖
     import paddle.distributed.fleet as fleet
 
-    # 需要继承fleet.MultiSlotDataGenerator
+    # 需要继承 fleet.MultiSlotDataGenerator
     class WideDeepDatasetReader(fleet.MultiSlotDataGenerator):
         def line_process(self, line):
             features = line.rstrip('\n').split('\t')
-            # 省略数据处理过程，具体实现可参考单机reader的line_process()方法
-            # 返回值为一个list，其中的每个元素均为一个list，不需要转成np.array格式
+            # 省略数据处理过程，具体实现可参考单机 reader 的 line_process()方法
+            # 返回值为一个 list，其中的每个元素均为一个 list，不需要转成 np.array 格式
             # 具体格式：[[dense_value1, dense_value2, ...], [sparse_value1], [sparse_value2], ..., [label]]
             return [dense_feature] + sparse_feature + [label]
-        
-        # 实现generate_sample()函数
-        # 该方法有一个名为line的参数，只需要逐行处理数据，不需要对数据文件进行操作
+
+        # 实现 generate_sample()函数
+        # 该方法有一个名为 line 的参数，只需要逐行处理数据，不需要对数据文件进行操作
         def generate_sample(self, line):
             def wd_reader():
                 # 按行处理数据
                 input_data = self.line_process(line)
-                
-                # 构造特征名数组feature_name
+
+                # 构造特征名数组 feature_name
                 feature_name = ["dense_input"]
                 for idx in categorical_range_:
                     feature_name.append("C" + str(idx - 13))
                 feature_name.append("label")
 
-                # 返回一个list，其中的每个元素都是一个元组
-                # 元组的第一个元素为特征名（string类型），第二个元素为特征值（list类型）
+                # 返回一个 list，其中的每个元素都是一个元组
+                # 元组的第一个元素为特征名（string 类型），第二个元素为特征值（list 类型）
                 # 具体格式：[('dense_input', [dense_value1, dense_value2, ...]), ('C1', [sparse_value1]), ('C2', [sparse_value2]), ..., ('label', [label])]
                 yield zip(feature_name, input_data)
-            
-            # generate_sample()函数需要返回一个可以迭代的reader方法
+
+            # generate_sample()函数需要返回一个可以迭代的 reader 方法
             return wd_reader
 
     if __name__ == "__main__":
-        # 调用run_from_stdin()方法，直接从标准输入流获取待处理数据
+        # 调用 run_from_stdin()方法，直接从标准输入流获取待处理数据
         my_data_generator = WideDeepDatasetReader()
         my_data_generator.run_from_stdin()
 
-在训练脚本中，构建dataset加载数据：
+在训练脚本中，构建 dataset 加载数据：
 
 .. code-block:: python
 
     dataset = paddle.distributed.QueueDataset()
     thread_num = 1
-    
-    # use_var指定网络中的输入数据，pipe_command指定数据处理脚本
-    # 要求use_var中输入数据的顺序与数据处理脚本输出的特征顺序一一对应
-    dataset.init(use_var=model.inputs, 
-                 pipe_command="python reader.py", 
-                 batch_size=batch_size, 
+
+    # use_var 指定网络中的输入数据，pipe_command 指定数据处理脚本
+    # 要求 use_var 中输入数据的顺序与数据处理脚本输出的特征顺序一一对应
+    dataset.init(use_var=model.inputs,
+                 pipe_command="python reader.py",
+                 batch_size=batch_size,
                  thread_num=thread_num)
 
     train_files_list = [os.path.join(train_data_path, x)
                           for x in os.listdir(train_data_path)]
-    
-    # set_filelist指定dataset读取的训练文件的列表
+
+    # set_filelist 指定 dataset 读取的训练文件的列表
     dataset.set_filelist(train_files_list)
 
-备注：dataset更详细用法参见\ `使用InMemoryDataset/QueueDataset进行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/parameter_server/performance/dataset.html>`_\。
+备注：dataset 更详细用法参见\ `使用 InMemoryDataset/QueueDataset 进行训练 <https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/parameter_server/performance/dataset.html>`_\。
 
 
 1.2.5 定义参数更新策略及优化器
 """"""""""""
 
-在Fleet API中，用户可以使用 ``fleet.DistributedStrategy()`` 接口定义自己想要使用的分布式策略。
+在 Fleet API 中，用户可以使用 ``fleet.DistributedStrategy()`` 接口定义自己想要使用的分布式策略。
 
 其中 ``a_sync`` 选项用于定义参数服务器相关的策略，当其被设定为 ``False`` 时，分布式训练将在同步的模式下进行。反之，当其被设定成 ``True`` 时，分布式训练将在异步的模式下进行。
 
@@ -166,7 +166,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
     # 定义异步训练
     dist_strategy = fleet.DistributedStrategy()
     dist_strategy.a_sync = True
-    
+
 用户需要使用 ``fleet.distributed_optimizer()`` 接口，将单机优化器转换成分布式优化器，并最小化模型的损失值。
 
 .. code-block:: python
@@ -175,7 +175,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
     optimizer = paddle.optimizer.SGD(learning_rate=0.0001)
     # 单机优化器转换成分布式优化器
     optimizer = fleet.distributed_optimizer(optimizer, dist_strategy)
-    # 使用分布式优化器最小化模型损失值model.loss，model.loss定义参见model.py
+    # 使用分布式优化器最小化模型损失值 model.loss，model.loss 定义参见 model.py
     optimizer.minimize(model.loss)
 
 1.2.6 开始训练
@@ -201,21 +201,21 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
         for epoch_id in range(1):
             exe.train_from_dataset(paddle.static.default_main_program(),
                                    dataset,
-                                   paddle.static.global_scope(), 
-                                   debug=False, 
+                                   paddle.static.global_scope(),
+                                   debug=False,
                                    fetch_list=[model.loss],
                                    fetch_info=["loss"],
                                    print_period=1)
-    
+
         fleet.stop_worker()
 
-备注：Paddle2.3版本及以后，ParameterServer训练将废弃掉dataloader + exe.run()方式，请切换到dataset + exe.train_from_dataset()方式。
+备注：Paddle2.3 版本及以后，ParameterServer 训练将废弃掉 dataloader + exe.run()方式，请切换到 dataset + exe.train_from_dataset()方式。
 
 
 1.3 运行训练脚本
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-定义完训练脚本后，我们就可以用 ``fleetrun`` 指令运行分布式任务了。 ``fleetrun`` 是飞桨封装的分布式启动命令，命令参数 ``server_num`` , ``worker_num`` 分别为服务节点和训练节点的数量。在本例中，服务节点有1个，训练节点有2个。
+定义完训练脚本后，我们就可以用 ``fleetrun`` 指令运行分布式任务了。 ``fleetrun`` 是飞桨封装的分布式启动命令，命令参数 ``server_num`` , ``worker_num`` 分别为服务节点和训练节点的数量。在本例中，服务节点有 1 个，训练节点有 2 个。
 
 .. code-block:: bash
 
@@ -224,7 +224,7 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
 您将在执行终端看到如下日志信息：
 
 .. code-block:: bash
-    
+
     LAUNCH INFO 2022-05-18 11:27:17,761 -----------  Configuration  ----------------------
     LAUNCH INFO 2022-05-18 11:27:17,761 devices: None
     LAUNCH INFO 2022-05-18 11:27:17,761 elastic_level: -1
@@ -242,18 +242,18 @@ InMemoryDataset/QueueDataset所对应的数据处理脚本参考examples/wide_an
     LAUNCH INFO 2022-05-18 11:27:17,762 rank: -1
     LAUNCH INFO 2022-05-18 11:27:17,762 run_mode: collective
     LAUNCH INFO 2022-05-18 11:27:17,762 server_num: 1
-    LAUNCH INFO 2022-05-18 11:27:17,762 servers: 
+    LAUNCH INFO 2022-05-18 11:27:17,762 servers:
     LAUNCH INFO 2022-05-18 11:27:17,762 trainer_num: 2
-    LAUNCH INFO 2022-05-18 11:27:17,762 trainers: 
+    LAUNCH INFO 2022-05-18 11:27:17,762 trainers:
     LAUNCH INFO 2022-05-18 11:27:17,762 training_script: train.py
     LAUNCH INFO 2022-05-18 11:27:17,762 training_script_args: []
     LAUNCH INFO 2022-05-18 11:27:17,762 with_gloo: 0
     LAUNCH INFO 2022-05-18 11:27:17,762 --------------------------------------------------
     LAUNCH INFO 2022-05-18 11:27:17,772 Job: default, mode ps, replicas 1[1:1], elastic False
     LAUNCH INFO 2022-05-18 11:27:17,775 Run Pod: evjsyn, replicas 3, status ready
-    LAUNCH INFO 2022-05-18 11:27:17,795 Watching Pod: evjsyn, replicas 3, status running    
+    LAUNCH INFO 2022-05-18 11:27:17,795 Watching Pod: evjsyn, replicas 3, status running
 
-同时，在log目录下，会生成服务节点和训练节点的日志文件。
+同时，在 log 目录下，会生成服务节点和训练节点的日志文件。
 服务节点日志：default.evjsyn.ps.0.log，日志中须包含以下内容，证明服务节点启动成功，可以提供服务。
 
 .. code-block:: bash

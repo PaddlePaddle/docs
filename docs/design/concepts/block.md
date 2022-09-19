@@ -153,7 +153,7 @@ with rnn.step():
   h = rnn.memory(init = m)
   h_prev = rnn.previous_memory(h)
   a = layer.fc(W, x)
-  b = layer.fc(U, h_prev)  
+  b = layer.fc(U, h_prev)
   s = pd.add(a, b)
   act = pd.sigmoid(s)
   rnn.update_memory(h, act)

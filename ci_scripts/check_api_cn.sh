@@ -11,7 +11,7 @@ function filter_cn_api_files() {
     local __resultvar=$2
     local need_check_files=""
     for file in `echo $git_files`;do
-        grep "code-block" ../docs/$file > /dev/null
+        grep 'code-block:: python' ../docs/$file > /dev/null
         if [ $? -eq 0 ] ;then 
             api_file=`echo $file | sed 's#api/##g'`
             grep -w "${api_file}" ${DIR_PATH}/api_white_list.txt > /dev/null

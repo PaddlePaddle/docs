@@ -5,5 +5,4 @@ long_type
 
 .. py:function:: paddle.compat.long_type()
 
-builtins.int的别名
-
+builtins.int 的别名

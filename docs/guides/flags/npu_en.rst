@@ -19,4 +19,3 @@ Please refer to `here <https://support.huawei.com/enterprise/en/doc/EDOC11002066
 Example
 -------
 FLAGS_npu_precision_mode="allow_mix_precision" will allow mixed precision.
-

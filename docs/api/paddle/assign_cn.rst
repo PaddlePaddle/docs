@@ -23,4 +23,5 @@ Tensor，形状、数据类型和值与 ``x`` 一致。
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.assign:assign-example
+
+COPY-FROM: paddle.assign

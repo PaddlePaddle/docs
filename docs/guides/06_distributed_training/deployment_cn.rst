@@ -9,12 +9,12 @@ PaddlePaddle 分布式对不同系统和硬件的支持情况如下表所示，
 
 .. list-table::
 
-   * - 
+   * -
      - CPU
      - GPU
-     - 昆仑XPU
-     - 海光DCU
-     - 昇腾NPU
+     - 昆仑 XPU
+     - 海光 DCU
+     - 昇腾 NPU
    * - Linux
      - PS/Collective
      - PS/Collective
@@ -34,7 +34,7 @@ PaddlePaddle 分布式对不同系统和硬件的支持情况如下表所示，
 * 当机器数量多于 5 台且长期使用时，建议使用 :ref:`Kubernetes 部署` 或其他类似集群管理工具使用
 
 
-裸机及Docker化部署
+裸机及 Docker 化部署
 ^^^^^^^^^^^^^^^^^^^^^^
 
 paddle 环境安装
@@ -214,7 +214,7 @@ paddlejob 任务提交
 准备配置文件，
 
 .. code-block::
-    
+
     $ cat demo-wide-and-deep.yaml
     apiVersion: batch.paddlepaddle.org/v1
     kind: PaddleJob
@@ -243,7 +243,7 @@ paddlejob 任务提交
 
 * 提交命名需要唯一，如果存在冲突请先删除原 paddlejob 确保已经删除再提交;
 * ps 模式时需要同时配置 ps 和 worker，collective 模式时只需要配置 worker 即可；
-* withGloo 可选配置为 0 不启用， 1 只启动 worker 端， 2 启动全部(worker端和Server端)， 建议设置 1；
+* withGloo 可选配置为 0 不启用， 1 只启动 worker 端， 2 启动全部(worker 端和 Server 端)， 建议设置 1；
 * cleanPodPolicy 可选配置为 Always/Never/OnFailure/OnCompletion，表示任务终止（失败或成功）时，是否删除 pod，调试时建议 Never，生产时建议 OnCompletion；
 * intranet 可选配置为 Service/PodIP，表示 pod 间的通信方式，用户可以不配置, 默认使用 PodIP；
 * ps 和 worker 的内容为 podTemplateSpec，用户可根据需要遵从 kubernetes 规范添加更多内容, 如 GPU 的配置.
@@ -252,7 +252,7 @@ paddlejob 任务提交
 提交任务: 使用 kubectl 提交 yaml 配置文件以创建任务，
 
 .. code-block::
-    
+
     $ kubectl -n paddle-system create -f demo-wide-and-deep.yaml
 
 示例 resnet
@@ -294,7 +294,7 @@ paddlejob 任务提交
             - name: dshm
               emptyDir:
                 medium: Memory
-        
+
 
 注意：
 
@@ -304,7 +304,7 @@ paddlejob 任务提交
 提交任务: 使用 kubectl 提交 yaml 配置文件以创建任务，
 
 .. code-block::
-    
+
     $ kubectl -n paddle-system create -f resnet.yaml
 
 卸载
@@ -324,7 +324,7 @@ paddlejob 任务提交
 在公有云上运行 PaddlePaddle 分布式建议通过选购容器引擎服务的方式，各大云厂商都推出了基于标准 kubernetes 的云产品，然后根据上节中的教程安装使用即可。
 
 .. list-table::
-  
+
   * - 云厂商
     - 容器引擎
     - 链接
@@ -339,7 +339,7 @@ paddlejob 任务提交
     - https://www.huaweicloud.com/product/cce.html
 
 
-更为方便的是使用百度提供的全功能AI开发平台 `BML <https://cloud.baidu.com/product/bml>`_  来使用，详细的使用方式请参考 `BML文档 <https://ai.baidu.com/ai-doc/BML/pkhxhgo5v>`_ 。
+更为方便的是使用百度提供的全功能 AI 开发平台 `BML <https://cloud.baidu.com/product/bml>`_  来使用，详细的使用方式请参考 `BML 文档 <https://ai.baidu.com/ai-doc/BML/pkhxhgo5v>`_ 。
 
 FAQ
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -421,4 +421,3 @@ GPU 分布式不生效？ 节点数不对？
 * 设置 nnodes 需要设置范围，例如 2:4
 
 * 检查超时设置是否过长
-
