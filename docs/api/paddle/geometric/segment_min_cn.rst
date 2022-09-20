@@ -3,7 +3,7 @@
 segment_min
 -------------------------------
 
-.. py:function:: paddle.geometric.segment_min((data, segment_ids, name=None)
+.. py:function:: paddle.geometric.segment_min(data, segment_ids, name=None)
 
 
 分段求最小值函数。

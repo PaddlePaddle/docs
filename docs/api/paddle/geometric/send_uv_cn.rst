@@ -1,6 +1,6 @@
 .. _cn_api_geometric_send_uv:
 
-send_ue_recv
+send_uv
 -------------------------------
 
 .. py:function:: paddle.geometric.send_uv(x, y, src_index, dst_index, message_op="add", name=None)

@@ -3,7 +3,7 @@
 segment_mean
 -------------------------------
 
-.. py:function:: paddle.geometric.segment_mean((data, segment_ids, name=None)
+.. py:function:: paddle.geometric.segment_mean(data, segment_ids, name=None)
 
 
 分段求均值函数。
