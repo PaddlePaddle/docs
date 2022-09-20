@@ -3,19 +3,16 @@
 transpose
 -------------------------------
 
-.. py:function:: paddle.incubate.sparse.transpose(x, dims, name=None)
+.. py:function:: paddle.incubate.sparse.transpose(x, perm, name=None)
 
 
-
-将输入 :attr:`x` 的维度按照 :attr:`dims` 给定的顺序进行重排，不改变数据值。
-
-输入 :attr:`x` 的维度与输入 :attr:`dims` 的长度必须相同，且输入 :attr:`dims` 必须包含全部维度。
-
+根据 :attr:`perm` 对输入的多维 Tensor 进行数据重排。
+返回多维 Tensor 的第 i 维对应输入 Tensor 的 perm[i]维。
 
 参数
 :::::::::
     - **x** (Tensor) - 输入的 Tensor，数据类型为 float32、float64、int32 或 int64。
-    - **dims** (list|tuple) - 给定的重排顺序。
+    - **perm** (list|tuple) - :attr:`perm` 长度必须和 :attr:`x` 的维度相同，并依照 :attr:`perm` 中数据进行重排。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
