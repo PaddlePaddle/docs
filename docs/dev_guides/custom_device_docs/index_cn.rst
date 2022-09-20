@@ -6,8 +6,8 @@
 
 自定义硬件接入功能由自定义 Runtime 与自定义 Kernel 两个主要组件构成，基于这两个组件，用户可按需完成自定义新硬件接入飞桨。
 
-- `自定义Runtime <./custom_runtime_cn.html>`_ : 飞桨框架自定义Runtime介绍
-- `自定义Kernel <./custom_kernel_cn.html>`_ : 飞桨框架自定义Kernel介绍
+- `自定义 Runtime <./custom_runtime_cn.html>`_ : 飞桨框架自定义 Runtime 介绍
+- `自定义 Kernel <./custom_kernel_cn.html>`_ : 飞桨框架自定义 Kernel 介绍
 - `新硬件接入示例 <./custom_kernel_cn.html>`_ : 通过示例介绍自定义新硬件接入飞桨的步骤
 
 ..  toctree::

@@ -4,9 +4,9 @@
 
 
 这里提供了一些自然语言处理的示例：
-    
-     - `N-Gram <./n_gram_model.html>`_ ：介绍使用 PaddlePaddle 实现N-Gram 模型。
-     - `文本分类 <./imdb_bow_classification.html>`_ ：介绍使用 PaddlePaddle 在IMDB数据集上完成文本分类。
+
+     - `N-Gram <./n_gram_model.html>`_ ：介绍使用 PaddlePaddle 实现 N-Gram 模型。
+     - `文本分类 <./imdb_bow_classification.html>`_ ：介绍使用 PaddlePaddle 在 IMDB 数据集上完成文本分类。
      - `情感分类 <./pretrained_word_embeddings.html>`_ ：介绍使用预训练词向量完成情感分类。
      - `文本翻译 <./seq2seq_with_attention.html>`_ ：介绍使用 PaddlePaddle 实现文本翻译。
      - `数字加法 <./addition_rnn.html>`_ : 介绍使用 PaddlePaddle 实现数字加法。

@@ -25,8 +25,8 @@ load_inference_model
 ::::::::::::
 该接口返回一个包含三个元素的列表 [program，feed_target_names, fetch_targets]。它们的含义描述如下：
 
-  - **program** （Program）– ``Program`` （详见 :ref:`api_guide_Program` ）类的实例。此处它被用于预测，因此可被称为Inference Program。
-  - **feed_target_names** （list）– 字符串列表，包含着Inference Program预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
+  - **program** （Program）– ``Program`` （详见 :ref:`api_guide_Program` ）类的实例。此处它被用于预测，因此可被称为 Inference Program。
+  - **feed_target_names** （list）– 字符串列表，包含着 Inference Program 预测时所需提供数据的所有变量名称（即所有输入变量的名称）。
   - **fetch_targets** （list）– ``Variable`` （详见 :ref:`api_guide_Program` ）类型列表，包含着模型的所有输出变量。通过这些输出变量即可得到模型的预测结果。
 
 

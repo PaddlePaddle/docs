@@ -2,8 +2,8 @@
 Custom Kernel
 ####################
 
-The custom kernel is the implementation of corresponding operators of the kernel function (or kernel). The PaddlePaddle framework provides the custom kernel for the external device registered by the custom runtime, achieving the compiling, registration, and automatic loading of the kernel independent of the framework. 
-The implementation of the custom kernel is based on the public kernel statement of PaddlePaddle, and public C++ API and register macro. 
+The custom kernel is the implementation of corresponding operators of the kernel function (or kernel). The PaddlePaddle framework provides the custom kernel for the external device registered by the custom runtime, achieving the compiling, registration, and automatic loading of the kernel independent of the framework.
+The implementation of the custom kernel is based on the public kernel statement of PaddlePaddle, and public C++ API and register macro.
 
 
 - `Kernel function statement <./custom_kernel_docs/kernel_declare_en.html>`_ : to introduce the kernel statement of PaddlePaddle

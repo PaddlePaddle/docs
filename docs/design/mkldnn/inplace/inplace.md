@@ -3,7 +3,7 @@
 PaddlePaddle is implementing concept of in-place execution of some of operators.
 The idea of in-place execution is present on following picture:
 
-![](images/inplace.svg)  
+![](images/inplace.svg)
 
 Exemplary graph presents three operators where one of them (type of elementwise_add) is to be performing in-place computation. In-place computation means that input variable (Tensor) is used for both input and output. This means that one of inputs will be overwritten with computational results. In presented picture in-place operator (elementwise_add) is
 having two input nodes: *b* and *d* and output *b*. So *b* is used for input and output and underneath it is represented by a one, shared Tensor. So this means that variable *b* is initially holding some input data and after the operator computation, input data is lost and replaced by computation's result.
@@ -61,7 +61,7 @@ are checked by oneDNN in-place pass:
 1. If input node to in-place operator is also an input to different operator, then in-place computation cannot be performed, as there is a risk that other operator consuming in-placed op operator will be executed after in-placed operator and therefore get invalid input data (overwritten by in-place computation).
 2. If after in-placed operator there is another operator that is reusing in-place op's input var then in-place cannot happen unless next op can perform in-place computation. Next picture presents the idea.
 
-![](images/unwanted-inplace.svg)  
+![](images/unwanted-inplace.svg)
 
 In the picture we are seeing that in-place pass is considering to enable in-place execution for softmax oneDNN kernel. All is fine, but next operator after softmax is layer norm (non-oneDNN). Layer norm is already reusing input of softmax due to some earlier memory optimization pass being applied. If we make softmax op to perform in-place computation, then
 it will also make layer norm to work in-place (b -> a). The thing is that layer norm cannot work in-place (InplaceInferer is not present), so if we force it do so layer norm will produce invalid result.
@@ -76,7 +76,7 @@ When sub-graph is aligned with restrictions then in-place computation can be ena
    in-place computation.
 5. if there are multiple operators after our in-place operator then we need to update all of them (their input vars). Idea is presented in the following picture:
 
-![](images/multi-output-inplace.svg)  
+![](images/multi-output-inplace.svg)
 
 We can see that there are two *top_k* operators after *elementwise_add* operator that is set to work in-placed. Each of *top_k* is having its own list of input vars, so we need to rename relevant input var to new name. As in-place pattern
 consists of: input node -> in-place op -> output node -> next op -> next op's output. For presented graph, there will be 8 patterns detected:

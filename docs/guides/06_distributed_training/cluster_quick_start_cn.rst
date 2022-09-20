@@ -8,5 +8,5 @@
 
 
 
-二、ParameterServer训练快速开始
+二、ParameterServer 训练快速开始
 -------------------------------

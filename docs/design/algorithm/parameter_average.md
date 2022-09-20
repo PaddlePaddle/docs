@@ -41,7 +41,7 @@ We can add the ParameterAverageOptimizer op to the graph through Python API. Usi
     - Makes it easy for the users to customize and extend the framework.
 
     **Disadvantages**:
-    - Implementation requires re-writing the averaging methodology in Python.  
+    - Implementation requires re-writing the averaging methodology in Python.
 
 ### Low-Level implementation
 

@@ -28,4 +28,5 @@ XavierUniform
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.nn.initializer.XavierUniform:initializer_XavierUniform-example
+
+COPY-FROM: paddle.nn.initializer.XavierUniform

@@ -22,7 +22,7 @@ add_n
             output.shape = [2, 3]
             output = [[1, 2, 3],
                     [4, 5, 6]]
-                    
+
     Case 2:
         输入：
         第一个输入：
@@ -48,9 +48,10 @@ add_n
 
 返回
 ::::::::::::
-Tensor，输入 ``inputs`` 求和后的结果，shape和数据类型与 ``inputs`` 一致。
+Tensor，输入 ``inputs`` 求和后的结果，shape 和数据类型与 ``inputs`` 一致。
 
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.add_n:code-example1
+
+COPY-FROM: paddle.add_n

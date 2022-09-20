@@ -1,4 +1,4 @@
-# Guide of submitting PR to Github
+# Guide of submitting PR to GitHub
 
 ## Tthe submit of Pull Request
 

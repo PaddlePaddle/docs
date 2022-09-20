@@ -1,9 +1,9 @@
 # 基本用法
 
 
-## 一、 @to_static概览
+## 一、 @to_static 概览
 
-动静转换（@to_static）通过解析 Python代码（抽象语法树，下简称：AST） 实现一行代码即可转为静态图功能，即只需在待转化的函数前添加一个装饰器 ``@paddle.jit.to_static`` 。
+动静转换（@to_static）通过解析 Python 代码（抽象语法树，下简称：AST） 实现一行代码即可转为静态图功能，即只需在待转化的函数前添加一个装饰器 ``@paddle.jit.to_static`` 。
 
 如下是一个使用 @to_static 装饰器的 ``Model`` 示例：
 
@@ -83,7 +83,7 @@ class Linear(...):
         with param_guard(self._parameters), param_guard(self._buffers):
             # ... forward_pre_hook 逻辑
 
-            outputs = self.forward(*inputs, **kwargs) # 此处为forward函数
+            outputs = self.forward(*inputs, **kwargs) # 此处为 forward 函数
 
             # ... forward_post_hook 逻辑
 
@@ -328,7 +328,7 @@ def depend_tensor_if(x):
  out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (out,))
   ^          ^                   ^             ^           ^        ^      ^      ^
   |          |                   |             |           |        |      |      |
- 输出   convert_ifelse          判断条件       true分支   false分支  分支输入 分支输入 输出
+ 输出   convert_ifelse          判断条件       true 分支   false 分支  分支输入 分支输入 输出
 ```
 
 
@@ -471,4 +471,3 @@ class SimpleNet(paddle.nn.Layer):
 总结一下 ``buffers`` 的用法：
 
 +  若某个非 ``Tensor`` 数据需要当做 ``Persistable`` 的变量序列化到磁盘，则最好在 ``__init__`` 中调用 ``self.XX= paddle.to_tensor(xx)`` 接口转为 ``buffer`` 变量
-
