@@ -47,7 +47,7 @@ GPU 强大的算力毋庸置疑可以提升集群的计算性能，但随之而�
 2 使用方法
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-本节将采用推荐领域非常经典的 wide&deep 模型为例，介绍纯 GPU 参数服务器训练的使用方法，详细示例代码可参考：\ `GPUPS 示例代码 <https://github.com/PaddlePaddle/FleetX/tree/develop/examples/wide_and_deep_gpups>`_\。
+本节将采用推荐领域非常经典的 wide&deep 模型为例，介绍纯 GPU 参数服务器训练的使用方法，详细示例代码可参考：\ `GPUPS 示例代码 <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/examples/wide_and_deep_gpups>`_\。
 
 在编写分布式训练程序之前，用户需要确保已经安装 PaddlePaddle develop GPU 版本的飞桨开源框架。
 
