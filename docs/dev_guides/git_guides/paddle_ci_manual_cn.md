@@ -274,3 +274,23 @@ git config --local user.name 你的 GitHub 名字
 之后会跳转到日志查看页面，通常在运行日志的末尾会提示 CI 失败的原因，参考提示信息解决即可。由于网络代理、机器不稳定等原因，有时候 CI 的失败也并不是 PR 自身的原因，此时只需要`重新构建`此 CI 即可（需要将你的 GitHub 授权于效率云 CI 平台），如下图所示。
 
 ![rerun.png](../images/rerun.png)
+
+### 3.3.1 失败原因
+
+#### 网络原因
+
+Paddle 编译、测试时需要下载一些第三方依赖，由于网络原因，可能会下载失败，导致编译、测试失败（如下图所示）。遇到 timeout 、访问 503 情况可以尝试重新触发该条 CI 。
+
+![network_error.png](../images/network_error.png)
+
+#### 合并代码失败
+
+提交的代码较老，没有 Merge develop 分支，可能会存在修改同一文件同一行情况，导致 CI 无法进行 Merge develop ，从而导致 CI 任务失败（如下图所示）。遇到该情况请本地执行 `git merge upstream develop` 再重新提交代码。
+
+![merge_develop.png](../images/merge_develop.png)
+
+#### 取消任务
+
+每条 CI 任务都设置有超时时间，如果任务失败并且页面显示灰色，应该是任务被取消。取消情况有三种：1.超时取消 2.当前 PR 有提交新的 commit ，在运行或排队中的，旧 commit 任务全部取消  3.关联流水线取消，PR-CI-Py3 任务失败会取消关联流水线，详细可见[ CI 测试项介绍](#ci)
+
+![cancel.png](../images/cancel.png)
