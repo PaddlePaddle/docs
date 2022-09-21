@@ -9,10 +9,10 @@ scatter
 
     .. code-block:: python
 
-        import numpy as np
+        import paddle
         #input:
-        x = np.array([[1, 1], [2, 2], [3, 3]])
-        index = np.array([2, 1, 0, 1])
+        x = paddle.to_tensor([[1, 1], [2, 2], [3, 3]])
+        index = paddle.to_tensor([2, 1, 0, 1])
         # shape of updates should be the same as x
         # shape of updates with dim > 1 should be the same as input
         updates = np.array([[1, 1], [2, 2], [3, 3], [4, 4]])
@@ -27,7 +27,7 @@ scatter
             else:
                 x[index[i]] += updates[i]
         # output:
-        out = np.array([[3, 3], [6, 6], [1, 1]])
+        out = paddle.to_tensor([[3, 3], [6, 6], [1, 1]])
         out.shape # [3, 2]
 
 **Notice：**
@@ -53,15 +53,10 @@ Tensor，与 x 有相同形状和数据类型。
 .. code-block:: python
 
         import paddle
-        import numpy as np
 
-        x_data = np.array([[1, 1], [2, 2], [3, 3]]).astype(np.float32)
-        index_data = np.array([2, 1, 0, 1]).astype(np.int64)
-        updates_data = np.array([[1, 1], [2, 2], [3, 3], [4, 4]]).astype(np.float32)
-
-        x = paddle.to_tensor(x_data)
-        index = paddle.to_tensor(index_data)
-        updates = paddle.to_tensor(updates_data)
+        x_data = paddle.to_tensor([[1, 1], [2, 2], [3, 3]])
+        index_data = paddle.to_tensor([2, 1, 0, 1])
+        updates_data = paddle.to_tensor([[1, 1], [2, 2], [3, 3], [4, 4]])
 
         output1 = paddle.scatter(x, index, updates, overwrite=False)
         # [[3., 3.],
