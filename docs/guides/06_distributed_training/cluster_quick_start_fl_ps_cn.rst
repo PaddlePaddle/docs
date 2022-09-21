@@ -76,7 +76,7 @@ FL-PS 训练主要包括如下几个部分：
             raise ValueError(
                 "Set static_benchmark.example_count_method for example / word for example count."
             )
-        self.fl_client.set_train_example_num(example_nums) 
+        self.fl_client.set_train_example_num(example_nums)
 
 1.2.2 配置文件
 """"""""""""
@@ -92,9 +92,9 @@ FL-PS 训练主要包括如下几个部分：
         split_file_list: True # 可选, bool, 若每个节点上都拥有全量数据，则需设置为 True
         thread_num: 1 # 多线程配置
 
-        # reader类型，分布式下推荐 QueueDataset
+        # reader 类型，分布式下推荐 QueueDataset
         reader_type: "QueueDataset" # DataLoader / QueueDataset / RecDataset
-        pipe_command: "python queuedataset_reader.py" # QueueDataset 模式下的数据pipe命令
+        pipe_command: "python queuedataset_reader.py" # QueueDataset 模式下的数据 pipe 命令
         dataset_debug: False # QueueDataset 模式下 Profiler 开关
 
         train_data_dir: "../../../datasets/movielens_pinterest_NCF/fl_data/fl_train_data"
@@ -105,14 +105,14 @@ FL-PS 训练主要包括如下几个部分：
         use_gpu: False
         epochs: 2
         print_interval: 50
-        
+
         test_data_dir: "../../../datasets/movielens_pinterest_NCF/fl_data/fl_test_data"
         infer_reader_path: "movielens_reader"  # importlib format
         infer_batch_size: 1
         infer_load_path: "output_model_ncf"
         infer_start_epoch: 2
         infer_end_epoch: 3
-        
+
         need_dump: True
         dump_fields_path: "/home/wangbin/the_one_ps/ziyoujiyi_PaddleRec/PaddleRec/models/recall/ncf"
         dump_fields: ['item_input', 'user_input']
@@ -121,7 +121,7 @@ FL-PS 训练主要包括如下几个部分：
         remote_sparse: ['embedding_1.w_0']
 
     hyper_parameters:
-        optimizer: 
+        optimizer:
             class: adam
             learning_rate: 0.001
         num_users: 6040
@@ -224,7 +224,7 @@ FL-PS 训练主要包括如下几个部分：
     2）在 Paddle 根目录下，新建 build 目录
     3）cd build
     4）cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DCMAKE_BUILD_TYPE=Release -DWITH_DISTRIBUTE=ON -DWITH_PSCORE=ON -WITH_AVX=OFF -DWITH_TESTING=OFF -DWITH_FLPS=ON
-    5) make -j 
+    5) make -j
     6）python -m pip install python/dist/paddlepaddle-0.0.0-cp37-cp37m-linux_x86_64.whl -U
 
 
@@ -242,6 +242,6 @@ FL-PS 训练主要包括如下几个部分：
 备注：本教程主要介绍了横向联邦 PS 的使用方法，关于纵向联邦 PS 的使用，请参考\ `https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/ps/test_fl_ps.py`_\，使用 1.3.1 节的编译命令，再执行下述命令即可
 
 .. code-block:: bash
-    ctest -R test_fl_ps -V 
+    ctest -R test_fl_ps -V
 
 由于该单测需要从网上下载数据集，运行时请确保数据成功下载下来。
