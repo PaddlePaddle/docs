@@ -9,11 +9,11 @@ Note: English version API docs are generaly docstrings in [PaddlePaddle/Paddle](
 
 ## Codebase structure
 
-- [docs](docs): PaddlePaddle 2.0 & above docs source file,
-- [docs/api](docs/api): PaddlePaddle API docs
-- [docs/guides](docs/guides): PaddlePaddle guides docs
-- [docs/tutorial](docs/tutorial): PaddlePaddle tutorial docs
-- [ci_scripts](ci_scripts): docs CI scripts
+- [docs](docs): PaddlePaddle 2.0 & above docs source file.
+- [docs/api](docs/api): PaddlePaddle API docs.
+- [docs/guides](docs/guides): PaddlePaddle guides docs.
+- [docs/tutorial](docs/tutorial): PaddlePaddle tutorial docs.
+- [ci_scripts](ci_scripts): docs CI scripts.
 
 ## How to build
 

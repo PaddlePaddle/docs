@@ -16,7 +16,7 @@ InstanceNorm2D
     \hat{x_i}          &\gets \frac{x_i - \mu_\beta} {\sqrt{\sigma_{\beta}^{2} + \epsilon}}  \quad &// normalize \\
     y_i &\gets \gamma \hat{x_i} + \beta                                                      \quad &// scale-and-shift
 
-Note:
+.. note::
 
     `H` 是高度，`W` 是宽度。
 
