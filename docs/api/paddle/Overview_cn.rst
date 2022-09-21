@@ -166,6 +166,7 @@ tensor 属性相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`paddle.iinfo <cn_api_paddle_iinfo>` ", "返回一个 iinfo 对象，该对象包含了输入的整数类 paddle.dtype 的各种相关的数值信息"
     " :ref:`paddle.imag <cn_api_tensor_imag>` ", "返回一个包含输入复数 Tensor 的虚部数值的新 Tensor"
     " :ref:`paddle.real <cn_api_tensor_real>` ", "返回一个包含输入复数 Tensor 的实部数值的新 Tensor"
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入 Tensor 或 SelectedRows 的 shape"
@@ -315,7 +316,8 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.scatter_nd_add <cn_api_fluid_layers_scatter_nd_add>` ", "通过对 Tensor 中的单个值或切片应用稀疏加法，从而得到输出的 Tensor"
     " :ref:`paddle.shard_index <cn_api_fluid_layers_shard_index>` ", "根据分片（shard）的偏移量重新计算分片的索引"
     " :ref:`paddle.slice <cn_api_paddle_slice>` ", "沿多个轴生成 input 的切片"
-    " :ref:`paddle.split <cn_api_distributed_split>` ", "将输入 Tensor 分割成多个子 Tensor"
+    " :ref:`paddle.split <cn_api_paddle_tensor_split>` ", "将输入 Tensor 分割成多个子 Tensor"
+    " :ref:`paddle.vsplit <cn_api_paddle_tensor_vsplit>` ", "将输入 Tensor 沿第一个维度分割成多个子 Tensor"
     " :ref:`paddle.squeeze <cn_api_paddle_tensor_squeeze>` ", "删除输入 Tensor 的 Shape 中尺寸为 1 的维度"
     " :ref:`paddle.squeeze_ <cn_api_paddle_tensor_squeeze_>` ", "Inplace 版本的 squeeze API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.stack <cn_api_paddle_tensor_stack>` ", "沿 axis 轴对输入 x 进行堆叠操作"

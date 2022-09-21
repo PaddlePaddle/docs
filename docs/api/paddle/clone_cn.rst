@@ -5,7 +5,7 @@ clone
 
 .. py:function:: paddle.clone(x, name=None)
 
-对输入 Tensor ``x`` 进行拷贝，并返回一个新的 Tensor。
+对输入 Tensor :attr:`x` 进行拷贝，并返回一个新的 Tensor。
 
 除此之外，该 API 提供梯度计算，在计算反向时，输出 Tensor 的梯度将会回传给输入 Tensor。
 
@@ -16,7 +16,8 @@ clone
 
 返回
 :::::::::
-``Tensor``，从输入拷贝的 Tensor
+
+``Tensor``，从输入 :attr:`x` 拷贝的 Tensor。
 
 代码示例
 :::::::::
