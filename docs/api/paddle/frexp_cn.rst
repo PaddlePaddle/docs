@@ -1,4 +1,4 @@
-.. _cn_api_paddle_tensor_math_frexp:
+.. _cn_api_paddle_frexp:
 
 frexp
 -------------------------------

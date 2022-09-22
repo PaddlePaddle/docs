@@ -2465,4 +2465,4 @@ frexp(x)
 
 返回类型：Tensor, Tensor
 
-请参考 :ref:`_cn_api_paddle_tensor_math_frexp`
+请参考 :ref:`_cn_api_paddle_frexp`
