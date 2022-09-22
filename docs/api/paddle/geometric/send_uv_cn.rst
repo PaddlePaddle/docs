@@ -27,10 +27,10 @@ send_uv
 
 参数
 :::::::::
-    - x (Tensor) - 输入的节点特征Tensor，数据类型为：float32、float64、int32、int64。另外，我们在 GPU 计算中支持 float16。
-    - src_index (Tensor) - 1-D Tensor，数据类型为：int32、int64。
-    - dst_index (Tensor) - 1-D Tensor，数据类型为：int32、int64。注意：``dst_index`` 的形状应当与 ``src_index`` 一致。
-    - message_op (str) - 不同计算方式，包括 add、sub、mul、div。默认值为 add。
+    - **x** (Tensor) - 输入的节点特征Tensor，数据类型为：float32、float64、int32、int64。另外，我们在 GPU 计算中支持 float16。
+    - **src_index** (Tensor) - 1-D Tensor，数据类型为：int32、int64。
+    - **dst_index** (Tensor) - 1-D Tensor，数据类型为：int32、int64。注意：``dst_index`` 的形状应当与 ``src_index`` 一致。
+    - **message_op** (str) - 不同计算方式，包括 add、sub、mul、div。默认值为 add。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

@@ -18,11 +18,11 @@ reindex_graph
 
 参数
 :::::::::
-    - x (Tensor) - 输入的中心节点原始编号，数据类型为：int32、int64。
-    - neighbors (Tensor) - 中心节点的邻居节点编号，数据类型为：int32、int64。
-    - count (Tensor) - 中心节点各自的邻居数目，数据类型为：int32。
-    - value_buffer (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。默认值为 None。
-    - index_buffer (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。默认值为 None。如果需要使用加速重编号过程，则 ``value_buffer`` 和 ``index_buffer`` 均不可为空。
+    - **x** (Tensor) - 输入的中心节点原始编号，数据类型为：int32、int64。
+    - **neighbors** (Tensor) - 中心节点的邻居节点编号，数据类型为：int32、int64。
+    - **count** (Tensor) - 中心节点各自的邻居数目，数据类型为：int32。
+    - **value_buffer** (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。默认值为 None。
+    - **index_buffer** (Tensor，可选) - 用于快速哈希索引的缓存 Tensor，可加速重编号过程。数据类型为 int32，并且应当事先填充为-1。默认值为 None。如果需要使用加速重编号过程，则 ``value_buffer`` 和 ``index_buffer`` 均不可为空。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

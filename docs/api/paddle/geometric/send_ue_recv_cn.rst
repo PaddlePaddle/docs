@@ -33,13 +33,13 @@ send_ue_recv
 
 参数
 :::::::::
-    - x (Tensor) - 输入的节点特征Tensor，数据类型为：float32、float64、int32、int64。另外，我们在 GPU 计算中支持 float16。
-    - y (Tensor) - 输入的边特征 Tensor，数据类型为：float32、float64、int32、int64。数据类型需与 ``x`` 相同。另外，我们在 GPU 计算中支持 float16。
-    - src_index (Tensor) - 1-D Tensor，数据类型为：int32、int64。
-    - dst_index (Tensor) - 1-D Tensor，数据类型为：int32、int64。注意：``dst_index`` 的形状应当与 ``src_index`` 一致。
-    - message_op (str) - 不同计算方式，包括 add、sub、mul、div。默认值为 add。
-    - reduce_op (str) - 不同更新方式，包括 sum、mean、max、min。默认值为 sum。
-    - out_size (int64 | Tensor | None) - 可以通过根据实际需求设置 ``out_size`` 来改变实际输出形状。默认值为 None，表示这个参数将不会被使用。注意，``out_size`` 的值必须等于或大于 ``max(dst_index) + 1`` 。
+    - **x** (Tensor) - 输入的节点特征Tensor，数据类型为：float32、float64、int32、int64。另外，我们在 GPU 计算中支持 float16。
+    - **y** (Tensor) - 输入的边特征 Tensor，数据类型为：float32、float64、int32、int64。数据类型需与 ``x`` 相同。另外，我们在 GPU 计算中支持 float16。
+    - **src_index** (Tensor) - 1-D Tensor，数据类型为：int32、int64。
+    - **dst_index** (Tensor) - 1-D Tensor，数据类型为：int32、int64。注意：``dst_index`` 的形状应当与 ``src_index`` 一致。
+    - **message_op** (str) - 不同计算方式，包括 add、sub、mul、div。默认值为 add。
+    - **reduce_op** (str) - 不同更新方式，包括 sum、mean、max、min。默认值为 sum。
+    - **out_size** (int64 | Tensor | None) - 可以通过根据实际需求设置 ``out_size`` 来改变实际输出形状。默认值为 None，表示这个参数将不会被使用。注意，``out_size`` 的值必须等于或大于 ``max(dst_index) + 1`` 。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
