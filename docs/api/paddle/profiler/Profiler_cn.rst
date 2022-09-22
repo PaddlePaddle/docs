@@ -3,7 +3,7 @@
 Profiler
 ---------------------
 
-.. py:class:: paddle.profiler.Profiler(*, targets: Optional[Iterable[ProfilerTarget]]=None, scheduler: Union[Callable[[int], ProfilerState], tuple, None]=None, on_trace_ready: Optional[Callable[..., Any]]=None, timer_only: Optional[bool]=False)
+.. py:class:: paddle.profiler.Profiler(*, targets: Optional[Iterable[ProfilerTarget]]=None, scheduler: Union[Callable[[int], ProfilerState], tuple, None]=None, on_trace_ready: Optional[Callable[..., Any]]=None, record_shapes: Optional[bool] = False, profile_memory: Optional[bool] = False, timer_only: Optional[bool]=False)
 
 性能分析器，该类负责管理性能分析的启动、关闭，以及性能数据的导出和统计分析。
 
