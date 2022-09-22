@@ -29,7 +29,7 @@ COPY-FROM: paddle.static.IpuCompiledProgram
 compile(self, feed_list, fetch_list)
 '''''''''
 
-该接口用于将 Program 进行编译，以便在 ipu 上运行。用户可以通过 `feed_list` 、`fetch_list` 传入计算图输入和输出的名字。
+将 Program 进行编译，以便在 ipu 上运行。用户可以通过 `feed_list` 、`fetch_list` 传入计算图输入和输出的名字。
 
 **参数**
 
