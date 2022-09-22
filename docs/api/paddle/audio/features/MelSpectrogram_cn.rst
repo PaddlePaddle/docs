@@ -21,7 +21,7 @@ MelSpectrogram
     - **n_mels** (int) - mel bins的数目.
     - **f_min** (float, optional) - 最小频率(hz),默认50.0.
     - **f_max** (float, optional) - 最大频率(hz),默认为None.
-    - **htk** (bool, optional) - 在计算fbank矩阵时是否用在HTK公式.
+    - **htk** (bool, optional) - 在计算fbank矩阵时是否用在HTK公式缩放.
     - **norm** (Union[str, float], optional) -计算fbank矩阵时正则化的种类,默认是'slaney',你也可以norm=0.5,使用p-norm正则化.
     - **dtype**  ('float32') - 输入和窗的数据类型,默认是'float32'.
 
