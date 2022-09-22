@@ -41,6 +41,17 @@
 | Python API     | [python/paddle](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle) 目录下的相应子目录中的 .py 文件，遵循相似功能的 API 放在同一文件夹的原则 |
 | 单元测试       | [python/paddle/fluid/tests/unittests](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle/fluid/tests/unittests) 目录下的相应文件中：<br/>test_xxx_op.py |
 
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/api_op_kernel.png?raw=true" width="800" ></center>
+
+Python API、算子 Yaml 配置、算子 InferMeta 函数 和算子 Kernel 之间的关系如上图所示，最上层为用户使用的飞桨 Python API 接口，Python API 执行时会进入到 C++ 端由框架进行调度并执行相应的算子逻辑，算子的执行主要包括两个过程：
+
+（1）执行算子 InferMeta 函数完成输出结果的维度、数据类型等静态信息的推导。
+
+（2）根据输入变量的设备信息选择对应的硬件设备来执行算子 Kernel，完成输出结果的数值计算。
+
+Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部分的逻辑代码主要通过算子 Yaml 配置中的信息自动生成，也可以理解为算子 Yaml 配置的作用是通过自动代码生成将上层 Python API 与底层算子的 Kernel 建立连接。
+
+
 接下来以 trace 算子操作，计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果，即以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例来介绍如何新增算子。
 
 ## 三、新增算子描述及定义

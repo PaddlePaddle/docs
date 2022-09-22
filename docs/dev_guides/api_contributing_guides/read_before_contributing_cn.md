@@ -13,6 +13,9 @@
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/paddle_api.png?raw=true" width="800" ></center>
 
+> 补充：一般来说 C++ 相比 Python 有着明显的性能优势，所以为了做到模型训练和推理的高效，除了常用的 API 之外，其他包括框架的执行器调度逻辑，算子的 Kernel 实现等都在 C++ 端完成。并且由于目前像 GPU，NPU，XPU 这样的硬件设备有着比 CPU 更强的计算能力，所以深度学习框架也会把算子运算逻辑的 Kernel 在这些硬件设备上进行实现来达到更好的训练和推理性能，但要在这些硬件上开发一些复杂算子的 Kernel 实现成本还是比较高的，因此我们也提供了组合算子的机制（组合式算子）通过复用已有算子 Kernel 来降低新算子 Kernel 的开发成本。
+
+
 ## <span id="apiDesignDoc">二、飞桨 API 设计文档提交说明</span>
 
 设计文档，通常也叫 RFC（Request for Comment）文档，可方便开发者与飞桨核心团队、其他社区开发者充分交流设计思路，以便进一步完善设计方案，并确保与飞桨设计理念一致。请参考如下步骤完成 API 设计文档的提交：
