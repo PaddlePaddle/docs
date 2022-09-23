@@ -3,7 +3,7 @@
 frexp
 -------------------------------
 
-.. py:function:: paddle.frexp(x)
+.. py:function:: paddle.frexp(x, name)
 
 
 用于把一个浮点数分解为尾数和指数的函数, 返回一个尾数 Tensor 和一个指数 Tensor
@@ -15,10 +15,11 @@ frexp
 返回
 ::::::::::
     mantissa（Tensor）：分解后的尾数，类型为 Tensor，形状和原输入的形状一致。
+
     exponent（Tensor）：分解后的指数，类型为 Tensor，形状和原输入的形状一致。
 
 
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.tensor.math.frexp
+COPY-FROM: paddle.frexp
