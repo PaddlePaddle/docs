@@ -11,7 +11,7 @@ frexp
 参数
 ::::::::::
     - **x** (Tensor) – 输入是一个多维的 Tensor，它的数据类型可以是 float32，float64。
-
+    - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 返回
 ::::::::::
     mantissa（Tensor）：分解后的尾数，类型为 Tensor，形状和原输入的形状一致。
