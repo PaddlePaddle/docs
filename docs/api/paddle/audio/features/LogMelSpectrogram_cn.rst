@@ -1,4 +1,4 @@
-.. _cn_api_audio_features_Spectrogram:
+.. _cn_api_audio_features_LogMelSpectrogram:
 
 LogMelSpectrogram
 -------------------------------

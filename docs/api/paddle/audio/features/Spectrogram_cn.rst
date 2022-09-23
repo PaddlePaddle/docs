@@ -3,7 +3,7 @@
 Spectrogram
 -------------------------------
 
-.. py:class::paddle.audio.features.Spectrogram(n_fft=512, hop_length=512, win_length=None, window='hann', power=1.0, center=True, pad_mode='reflect', dtype='float32')
+.. py:class:: paddle.audio.features.Spectrogram(n_fft=512, hop_length=512, win_length=None, window='hann', power=1.0, center=True, pad_mode='reflect', dtype='float32')
 
 通过给定信号的短时傅里叶变换得到频谱。
 

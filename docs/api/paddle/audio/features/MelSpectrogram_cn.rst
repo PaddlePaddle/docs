@@ -1,9 +1,9 @@
-.. _cn_api_audio_features_Spectrogram:
+.. _cn_api_audio_features_MelSpectrogram:
 
 MelSpectrogram
 -------------------------------
 
-.. py:class::paddle.audio.features.MelSpectrogram(sr=22050, n_fft=2048, hop_length=512, win_length=None, window='hann', power=2.0, center=True, pad_mode='reflect', n_mels=64, f_min=50.0, f_max=None, htk=False, norm='slaney', dtype='float32')
+.. py:class:: paddle.audio.features.MelSpectrogram(sr=22050, n_fft=2048, hop_length=512, win_length=None, window='hann', power=2.0, center=True, pad_mode='reflect', n_mels=64, f_min=50.0, f_max=None, htk=False, norm='slaney', dtype='float32')
 
 求得给定信号的Mel谱。
 
