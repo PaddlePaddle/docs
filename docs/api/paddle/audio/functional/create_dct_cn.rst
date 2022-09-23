@@ -3,22 +3,22 @@
 create_dct
 -------------------------------
 
-.. py:function::paddle.audio.functional.create_dct(n_mfcc, n_mels, norm='ortho', dtype='float32')
+.. py:function:: paddle.audio.functional.create_dct(n_mfcc, n_mels, norm='ortho', dtype='float32')
 
-计算离散余弦变换矩阵.
+计算离散余弦变换矩阵。
 
 参数
 ::::::::::::
 
-    - **n_mfcc** (float) - mel倒谱系数数目.
-    - **n_mels** (int) - mel的fliterbank数.
-    - **norm** (float) - 正则化类型,默认值是'ortho'.
-    - **dtype** (str) - 默认'float32'.
+    - **n_mfcc** (float) - mel倒谱系数数目。
+    - **n_mels** (int) - mel的fliterbank数。
+    - **norm** (float) - 正则化类型, 默认值是'ortho'。
+    - **dtype** (str) - 默认'float32'。
 
 返回
 :::::::::
 
-``paddle.Tensor``,Tensor shape (n_mels, n_mfcc).
+``paddle.Tensor``,Tensor shape (n_mels, n_mfcc)。
 
 代码示例
 :::::::::

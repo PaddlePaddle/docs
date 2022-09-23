@@ -3,20 +3,20 @@
 hz_to_mel
 -------------------------------
 
-.. py:function::paddle.audio.functional.hz_to_mel(feq, htk=False)
+.. py:function:: paddle.audio.functional.hz_to_mel(feq, htk=False)
 
-转换Hz为Mels.
+转换Hz为Mels。
 
 参数
 ::::::::::::
 
-    - **freq** (Tensor, float) - 输入tensor.
-    - **htk** (bool) - 是否使用htk缩放,默认False.
+    - **freq** (Tensor, float) - 输入tensor。
+    - **htk** (bool) - 是否使用htk缩放, 默认False。
 
 返回
 :::::::::
 
-``paddle.Tensor或float``,mels值.
+``paddle.Tensor或float``, mels值。
 
 代码示例
 :::::::::
