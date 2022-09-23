@@ -50,7 +50,7 @@ Paddle 中的报错提示文案均推荐按照以下结构书写，具体包括�
 #### 1.1.3 第三段：修改建议（尽可能提供）
 
 - 写明此处的错误可能是由什么导致的，应该如何修改
-  - 示例：`Suggested Fix: If your classifier expects one-hot encoding label,check your n_classes argument to the estimatorand/or the shape of your label.Otherwise, check the shape of your label.`
+  - 示例：`Suggested Fix: If your classifier expects one-hot encoding label, check your n_classes argument to the estimatorand/or the shape of your label.Otherwise, check the shape of your label.`
 
 - 本段注意事项：
   - 可以写明修改建议的情况一般适用于一些共性问题，例如
