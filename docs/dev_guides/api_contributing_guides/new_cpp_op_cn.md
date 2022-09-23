@@ -43,6 +43,8 @@
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/api_op_kernel.png?raw=true" width="800" ></center>
 
+用户使用飞桨开发神经网络模型时使用的 Python 接口(如 paddle.add(), paddle.relu()等) 我们一般称都为飞桨的 Python API，每个运算类的 Python API 在框架内部都会对应到一个或者多个 C++ 端算子，每个算子在不同硬件设备上（CPU, GPU 等）实现的运算逻辑代码又被称为 Kernel, 这里主要是由于不同硬件设备提供的编程接口不同，所以虽然同一个算子的不同硬件设备 Kernel 都实现了相同的数学运算逻辑，但在代码实现上却有所差异。算子 InferMeta 函数是在算子 kernel 执行前先将输出结果的维度、数据类型等信息进行处理，由于计算量较小所以可以直接在 CPU 上计算，因此每个算子只需要实现一个 InferMeta 函数，而不必像 Kernel 一样在不同硬件上实现多个。
+
 Python API、算子 Yaml 配置、算子 InferMeta 函数 和算子 Kernel 之间的关系如上图所示，最上层为用户使用的飞桨 Python API 接口，Python API 执行时会进入到 C++ 端由框架进行调度并执行相应的算子逻辑，算子的执行主要包括两个过程：
 
 （1）执行算子 InferMeta 函数完成输出结果的维度、数据类型等静态信息的推导。
@@ -979,12 +981,12 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 ```
 
 #### 7.3.2 减少反向算子中的无关变量
-通常反向算子会依赖于前向算子的某些输入、输出 Tensor，以供反向算子计算使用。但有些情况下，反向算子不需要前向算子的所有输入和输出；有些情况下，反向算子只需要前向算子的部分输入和输出；有些情况下，反向算子只需要使用前向算子中输入和输出变量的 Shape 和 LoD 信息。若开发者在注册反向算子时，将不必要的前向算子输入和输出作为反向算子的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
+通常反向算子会依赖于前向算子的某些输入、输出 Tensor，以供反向算子计算使用。但有些情况下，反向算子不需要前向算子的所有输入和输出；有些情况下，反向算子只需要前向算子的部分输入和输出；有些情况下，反向算子只需要使用前向算子中输入和输出变量的 Shape 和 [LoD](new_cpp_op_cn.html#lod) 信息。若开发者在注册反向算子时，将不必要的前向算子输入和输出作为反向算子的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
 
 所以在定义反向算子时需要注意以下几点：
 
 - 如果反向不需要前向的某些输入或输出参数，则无需在 args 中设置。
-- 如果有些反向算子需要依赖前向算子的输入或输出变量的的 Shape 或 LoD，但不依赖于变量中 Tensor 的内存 Buffer 数据，且不能根据其他变量推断出该 Shape 和 LoD，则可以通过 `no_need_buffer` 对该变量进行配置，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
+- 如果有些反向算子需要依赖前向算子的输入或输出变量的的 Shape 或 [LoD](new_cpp_op_cn.html#lod)，但不依赖于变量中 Tensor 的内存 Buffer 数据，且不能根据其他变量推断出该 Shape 和 [LoD](new_cpp_op_cn.html#lod)，则可以通过 `no_need_buffer` 对该变量进行配置，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
 ```yaml
 - backward_op : trace_grad
   forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
