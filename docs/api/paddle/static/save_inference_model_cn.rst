@@ -23,7 +23,7 @@ save_inference_model
 
       - **program** - 自定义一个 program，默认使用 default_main_program。
 
-      - **clip_extra** - 保存模型 program 时是否对每个算子附加额外的参数进行裁剪，默认值为 True，即默认会裁剪掉算子非标准定义的参数。
+      - **clip_extra** - 保存模型 program 时是否对每个算子附加额外的参数进行裁剪，默认值为 True（即默认会裁剪掉算子非标准定义的参数）。
 
 
 返回
