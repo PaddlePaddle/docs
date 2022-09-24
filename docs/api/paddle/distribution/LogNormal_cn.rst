@@ -1,40 +1,46 @@
 .. _cn_api_distribution_Normal:
 
-Normal
+LogNormal
 -------------------------------
 
-.. py:class:: paddle.distribution.Normal(loc, scale, name=None)
+.. py:class:: paddle.distribution.LogNormal(loc, scale, name=None)
 
-
-
-正态分布
-
-数学公式：
+对数正态分布
 
 .. math::
 
-    pdf(x; \mu, \sigma) = \frac{1}{Z}e^{\frac {-0.5 (x - \mu)^2}  {\sigma^2} }
+    X \sim Normal(\mu, \sigma)
 
-    Z = (2 \pi \sigma^2)^{0.5}
+    Y = exp(X) \sim LogNormal(\mu, \sigma)
+
+
+:math:`Normal(\mu, \sigma)` 是 :math:`LogNormal(\mu, \sigma)` 的基础分布
+
+数学公式：
+
+概率密度函数
+
+.. math::
+    
+    pdf(x; \mu, \sigma) = \frac{1}{\sigma x \sqrt{2\pi}}e^{(-\frac{(ln(x) - \mu)^2}{2\sigma^2})}
 
 上面的数学公式中：
 
-- :math:`loc = \mu`：平均值；
-- :math:`scale = \sigma`：标准差；
-- :math:`Z`：正态分布常量。
+- :math:`loc = \mu`：基础正态分布的平均值；
+- :math:`scale = \sigma`：基础正态分布的标准差；
 
 参数
 ::::::::::::
 
-    - **loc** (int|float|list|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为 float32 或 float64。
-    - **scale** (int|float|list|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为 float32 或 float64。
+    - **loc** (int|float|list|numpy.ndarray|Tensor) - 基础正态分布的平均值。数据类型为 float32 或 float64。
+    - **scale** (int|float|list|numpy.ndarray|Tensor) - 基础正态分布的标准差。数据类型为 float32 或 float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
 ::::::::::::
 
 
-COPY-FROM: paddle.distribution.Normal
+COPY-FROM: paddle.distribution.LogNormal
 
 
 属性
@@ -43,12 +49,12 @@ COPY-FROM: paddle.distribution.Normal
 mean
 '''''''''
 
-正态分布的均值
+对数正态分布的均值
 
 variance
 '''''''''
 
-正态分布的方差
+对数正态分布的方差
 
 
 方法
@@ -91,7 +97,7 @@ entropy()
 
 .. math::
 
-    entropy(\sigma) = 0.5 \log (2 \pi e \sigma^2)
+    entropy(\sigma) = 0.5 \log (2 \pi e \sigma^2) + \mu
 
 上面的数学公式中：
 
@@ -99,7 +105,7 @@ entropy()
 
 **返回**
 
-Tensor，正态分布的信息熵，数据类型为 float32。
+Tensor，对数正态分布的信息熵，数据类型为 float32。
 
 log_prob(value)
 '''''''''
@@ -130,7 +136,7 @@ Tensor，概率，数据类型与 :attr:`value` 相同。
 kl_divergence(other)
 '''''''''
 
-两个正态分布之间的 KL 散度。
+两个对数正态分布之间的 KL 散度。
 
 数学公式：
 
@@ -144,17 +150,18 @@ kl_divergence(other)
 
 上面的数学公式中：
 
-- :math:`loc = \mu_0`：当前正态分布的平均值；
-- :math:`scale = \sigma_0`：当前正态分布的标准差；
-- :math:`loc = \mu_1`：另一个正态分布的平均值；
-- :math:`scale = \sigma_1`：另一个正态分布的标准差；
+- :math:`loc = \mu_0`：当前对数分布对应的基础分布的平均值；
+- :math:`scale = \sigma_0`：当前对数分布对应的基础分布的标准差；
+- :math:`loc = \mu_1`：另一个对数分布对应的基础分布的平均值；
+- :math:`scale = \sigma_1`：另一个对数分布对应的基础分布的标准差；
 - :math:`ratio`：两个标准差之间的比例；
 - :math:`diff`：两个平均值之间的差值。
 
 **参数**
 
-    - **other** (Normal) - Normal 的实例。
+    - **other** (LogNormal) - LogNormal 的实例。
 
 **返回**
 
-Tensor，两个正态分布之间的 KL 散度，数据类型为 float32。
+Tensor，两个对数正态分布之间的 KL 散度，数据类型为 float32。
+
