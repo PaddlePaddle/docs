@@ -26,8 +26,8 @@ Normal
 参数
 ::::::::::::
 
-    - **loc** (int|float|list|tuple||numpy.ndarray|Tensor) - 正态分布平均值。数据类型为 float32 或 float64。
-    - **scale** (int|float|list|tuple||numpy.ndarray|Tensor) - 正态分布标准差。数据类型为 float32 或 float64。
+    - **loc** (int|float|list|tuple|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为 float32 或 float64。
+    - **scale** (int|float|list|tuple|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为 float32 或 float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
