@@ -32,8 +32,8 @@ LogNormal
 参数
 ::::::::::::
 
-    - **loc** (int|float|list|numpy.ndarray|Tensor) - 基础正态分布的平均值。数据类型为 float32 或 float64。
-    - **scale** (int|float|list|numpy.ndarray|Tensor) - 基础正态分布的标准差。数据类型为 float32 或 float64。
+    - **loc** (int|float|list|tuple|numpy.ndarray|Tensor) - 基础正态分布的平均值。数据类型为 float32 或 float64。
+    - **scale** (int|float|list|tuple|numpy.ndarray|Tensor) - 基础正态分布的标准差。数据类型为 float32 或 float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
@@ -60,28 +60,28 @@ variance
 方法
 :::::::::
 
-sample(shape, seed=0)
+sample(shape=(), seed=0)
 '''''''''
 
 生成指定维度的样本。
 
 **参数**
 
-    - **shape** (list) - 1 维列表，指定生成样本的维度。数据类型为 int32。
+    - **shape** (Sequence[int], 可选)：采样形状。
     - **seed** (int) - 长整型数。
 
 **返回**
 
 Tensor，预先设计好维度的 Tensor，数据类型为 float32。
 
-rsample(shape, seed=0)
+rsample(shape=(), seed=0)
 '''''''''
 
 重参数化采样，生成指定维度的样本。
 
 **参数**
 
-    - **shape** (list) - 1 维列表，指定生成样本的维度。数据类型为 int32。
+    - **shape** (Sequence[int], 可选)：采样形状。
     - **seed** (int) - 长整型数。
 
 **返回**
