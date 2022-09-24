@@ -61,7 +61,7 @@ sample(shape, seed=0)
 
 **参数**
 
-    - **shape** ((Sequence[int], 可选) - 采样形状。
+    - **shape** ((Sequence[int], 可选) - 指定生成样本的维度。
     - **seed** (int) - 长整型数。
 
 **返回**
@@ -75,7 +75,7 @@ rsample(shape, seed=0)
 
 **参数**
 
-    - **shape** ((Sequence[int], 可选) - 采样形状。
+    - **shape** ((Sequence[int], 可选) - 指定生成样本的维度。
     - **seed** (int) - 长整型数。
 
 **返回**
