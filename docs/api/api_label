@@ -84,6 +84,7 @@ paddle.distribution.Distribution	.. _api_paddle_distribution_Distribution:
 paddle.distribution.Uniform	.. _api_paddle_distribution_Uniform:
 paddle.distribution.Categorical	.. _api_paddle_distribution_Categorical:
 paddle.distribution.Normal	.. _api_paddle_distribution_Normal:
+paddle.distribution.Laplace     .. _api_paddle_distribution_Laplace:
 paddle.ParamAttr	.. _api_paddle_ParamAttr:
 paddle.static.save	.. _api_paddle_static_save:
 paddle.fluid.data_feed_desc.DataFeedDesc	.. _api_paddle_fluid_data_feed_desc_DataFeedDesc:
@@ -166,6 +167,7 @@ paddle.gather_nd	.. _api_paddle_gather_nd:
 paddle.greater_equal	.. _api_paddle_greater_equal:
 paddle.greater_than	.. _api_paddle_greater_than:
 paddle.histogram	.. _api_paddle_histogram:
+paddle.iinfo .. _api_paddle_iinfo:
 paddle.imag	.. _api_paddle_imag:
 paddle.increment	.. _api_paddle_increment:
 paddle.index_sample	.. _api_paddle_index_sample:
@@ -236,6 +238,7 @@ paddle.sinh	.. _api_paddle_sinh:
 paddle.slice	.. _api_paddle_slice:
 paddle.sort	.. _api_paddle_sort:
 paddle.split	.. _api_paddle_split:
+paddle.vsplit	.. _api_paddle_vsplit:
 paddle.sqrt	.. _api_paddle_sqrt:
 paddle.Tensor.sqrt_	.. _api_paddle_Tensor_sqrt_:
 paddle.square	.. _api_paddle_square:
