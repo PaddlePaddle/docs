@@ -61,7 +61,7 @@ sample(shape, seed=0)
 
 **参数**
 
-    - **shape** (list) - 1 维列表，指定生成样本的维度。数据类型为 int32。
+    - **shape** ((Sequence[int], 可选) - 采样形状。
     - **seed** (int) - 长整型数。
 
 **返回**
@@ -75,7 +75,7 @@ rsample(shape, seed=0)
 
 **参数**
 
-    - **shape** (list) - 1 维列表，指定生成样本的维度。数据类型为 int32。
+    - **shape** ((Sequence[int], 可选) - 采样形状。
     - **seed** (int) - 长整型数。
 
 **返回**
