@@ -155,9 +155,6 @@ keep_warnings = True
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
-# disable inherit docstrings
-autodoc_inherit_docstrings = False
-
 # -- Options for HTML output ----------------------------------------------
 html_context = {
     'display_github': True,
