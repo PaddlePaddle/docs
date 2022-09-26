@@ -17,12 +17,12 @@ paddle.geometric 目录下包含飞桨框架支持的图领域的相关 API。�
 .. csv-table::
     :header: "API 名称", "API 功能"
 
-    " :ref:`paddle.geometric.send_u_recv <cn_api_paddle_geometric_send_u_recv>` ", "源节点特征消息传递"
+    " :ref:`paddle.geometric.send_u_recv <cn_api_paddle_geometric_send_u_recv>` ", "节点特征消息传递"
     " :ref:`paddle.geometric.send_ue_recv <cn_api_paddle_geometric_send_ue_recv>` ", "节点融合边特征消息传递"
-    " :ref:`paddle.geometric.send_uv <cn_api_paddle_geometric_send_uv>` ", "节点特征消息发送"
-    " :ref:`paddle.geometric.message_passing.send_u_recv <cn_api_paddle_geometric_message_passing_send_u_recv>` ", "源节点特征消息传递"
+    " :ref:`paddle.geometric.send_uv <cn_api_paddle_geometric_send_uv>` ", "源节点与目标节点消息发送并计算"
+    " :ref:`paddle.geometric.message_passing.send_u_recv <cn_api_paddle_geometric_message_passing_send_u_recv>` ", "节点特征消息传递"
     " :ref:`paddle.geometric.message_passing.send_ue_recv <cn_api_paddle_geometric_message_passing_send_ue_recv>` ", "节点融合边特征消息传递"
-    " :ref:`paddle.geometric.message_passing.send_uv <cn_api_paddle_geometric_message_passing_send_uv>` ", "节点特征消息发送"
+    " :ref:`paddle.geometric.message_passing.send_uv <cn_api_paddle_geometric_message_passing_send_uv>` ", "源节点与目标节点消息发送并计算"
 
 .. _faster_graph_sampling:
 
