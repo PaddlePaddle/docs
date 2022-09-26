@@ -27,13 +27,13 @@ LogNormal
 上面的数学公式中：
 
 - :math:`loc = \mu`：基础正态分布的平均值；
-- :math:`scale = \sigma`：基础正态分布的标准差；
+- :math:`scale = \sigma`：基础正态分布的标准差。
 
 参数
 ::::::::::::
 
-    - **loc** (int|float|list|tuple|numpy.ndarray|Tensor) - 基础正态分布的平均值。数据类型为 float32 或 float64。
-    - **scale** (int|float|list|tuple|numpy.ndarray|Tensor) - 基础正态分布的标准差。数据类型为 float32 或 float64。
+    - **loc** (int|float|list|tuple|numpy.ndarray|Tensor) - 基础正态分布的平均值。
+    - **scale** (int|float|list|tuple|numpy.ndarray|Tensor) - 基础正态分布的标准差。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
@@ -72,7 +72,7 @@ sample(shape=(), seed=0)
 
 **返回**
 
-Tensor，预先设计好维度的 Tensor，数据类型为 float32。
+Tensor，预先设计好维度的样本数据。
 
 rsample(shape=(), seed=0)
 '''''''''
@@ -86,7 +86,7 @@ rsample(shape=(), seed=0)
 
 **返回**
 
-Tensor，预先设计好维度的 Tensor，数据类型为 float32。
+Tensor，预先设计好维度的样本数据。
 
 entropy()
 '''''''''
@@ -101,11 +101,12 @@ entropy()
 
 上面的数学公式中：
 
-:math:`scale = \sigma`：标准差。
+- :math:`loc = \mu`：基础正态分布的平均值；
+- :math:`scale = \sigma`：基础正态分布的标准差。
 
 **返回**
 
-Tensor，对数正态分布的信息熵，数据类型为 float32。
+Tensor，对数正态分布的信息熵。
 
 log_prob(value)
 '''''''''
@@ -114,11 +115,11 @@ log_prob(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
+    - **value** (Tensor) - 输入张量。
 
 **返回**
 
-Tensor，对数概率，数据类型与 value 相同。
+Tensor，对数概率，数据类型与 :attr:`value` 相同。
 
 probs(value)
 '''''''''
@@ -127,7 +128,7 @@ probs(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
+    - **value** (Tensor) - 输入张量。
 
 **返回**
 
@@ -163,5 +164,5 @@ kl_divergence(other)
 
 **返回**
 
-Tensor，两个对数正态分布之间的 KL 散度，数据类型为 float32。
+Tensor，两个对数正态分布之间的 KL 散度。
 

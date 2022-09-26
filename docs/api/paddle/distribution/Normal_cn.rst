@@ -112,7 +112,7 @@ log_prob(value)
 
 **返回**
 
-Tensor，对数概率，数据类型与 value 相同。
+Tensor，对数概率，数据类型与 :attr:`value` 相同。
 
 probs(value)
 '''''''''
