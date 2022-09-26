@@ -1,10 +1,10 @@
-.. _cn_api_paddle_sparse_csr_tensor:
+.. _cn_api_paddle_incubate_sparse_csr_tensor:
 
 sparse_csr_tensor
 -------------------------------
 
 
-.. py:function:: paddle.sparse.sparse_csr_tensor(crows, cols, values, shape, dtype=None, place=None, stop_gradient=True)
+.. py:function:: paddle.incubate.sparse.sparse_csr_tensor(crows, cols, values, shape, dtype=None, place=None, stop_gradient=True)
 
 该 API 通过已知的非零元素的 ``crows`` , ``cols`` 和 ``values`` 来创建一个 CSR(Compressed Sparse Row) 格式的稀疏 tensor，tensor 类型为 ``paddle.Tensor`` 。
 
@@ -43,4 +43,4 @@ sparse_csr_tensor
 
 **代码示例**
 
-COPY-FROM: paddle.sparse.sparse_csr_tensor
+COPY-FROM: paddle.incubate.sparse.sparse_csr_tensor

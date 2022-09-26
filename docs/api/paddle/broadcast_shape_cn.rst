@@ -10,8 +10,8 @@ broadcast_shape
 
 参数
 :::::::::
-    - x_shape (list[int]|tuple[int]) - 输入 Tensor 的 shape。
-    - y_shape (list[int]|tuple[int]) - 输入 Tensor 的 shape。
+    - **x_shape** (list[int]|tuple[int]) - 输入 Tensor 的 shape。
+    - **y_shape** (list[int]|tuple[int]) - 输入 Tensor 的 shape。
 
 返回
 :::::::::
