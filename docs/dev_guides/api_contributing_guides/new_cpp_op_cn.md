@@ -947,7 +947,7 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 
     - 例如：`Suggested Fix:If your classifier expects one-hot encoding label,check your n_classes argument to the estimatorand/or the shape of your label.Otherwise, check the shape of your label.`
 
-更详细的报错检查规范介绍请参考 [《Paddle 报错信息文案书写规范》](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-Error-Message-Writing-Specification)。
+更详细的报错检查规范介绍请参考 [《Paddle 报错信息文案书写规范》](../style_guide_and_references/error_message_writing_specification_cn.md)。
 
 ### 7.2 算子兼容性问题
 对算子的修改需要考虑兼容性问题，要保证算子修改之后，之前的模型都能够正常加载及运行，即新版本的 Paddle 预测库能成功加载运行旧版本训练的模型。<font color="#FF0000">**所以，需要保证算子当前的所有输入输出参数不能被修改（文档除外）或删除，可以新增参数，但是新增的 Tensor 类型变量需要设置为 optional，非 Tensor 变量需要设置默认值。更多详细内容请参考 [OP 修改规范：Input/Output/Attribute 只能做兼容修改](https://github.com/PaddlePaddle/Paddle/wiki/OP-Input-Output-Attribute-Compatibility-Modification)**</font> 。
