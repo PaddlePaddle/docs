@@ -9,8 +9,8 @@
 - `GPUPS 示例 <./cluster_example_gpups_cn.html>`_ : 使用飞桨 GPUPS 进行分布式训练。
 
 ..  toctree::
-   :hidden:
-
-   cluster_overview_ps_cn.rst
-   cluster_example_gpups_cn.rst
-   cluster_example_cpups_cn.rst
+    :hidden:
+ 
+    cluster_overview_ps_cn.rst
+    cluster_example_gpups_cn.rst
+    cluster_example_cpups_cn.rst
