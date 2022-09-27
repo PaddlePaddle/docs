@@ -47,21 +47,21 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 
     * Windows install GPU version
 
-        * Windows 7 / 8 / 10 support CUDA 10.1/10.2/11.1/11.2/11.6 single-card mode, but don't support CUDA 9.1/9.2/10.1
+        * Windows 7 / 8 / 10 support CUDA 10.1/10.2/11.1/11.2/11.6/11.7 single-card mode, but don't support CUDA 9.1/9.2/10.1
         * don't support install using **nvidia-docker**
     * Ubuntu install GPU version
 
-        * Ubuntu 16.04 / 18.04 / 20.04 supports CUDA 10.1/10.2/11.1/11.2/11.6
-        * If you install using **nvidia-docker** , it supports CUDA 10.2/11.2
+        * Ubuntu 16.04 / 18.04 / 20.04 supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7
+        * If you install using **nvidia-docker** , it supports CUDA 10.2/11.2/11.7
     * CentOS install GPU version
 
         * If you install using native **pip** :
 
-            * CentOS 7 supports CUDA 10.1/10.2/11.1/11.2/11.6
+            * CentOS 7 supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7
         * If you compile and install using native source code:
 
-            * CentOS 7 supports CUDA 10.1/10.2/11.1/11.2/11.6
-        * If you install using  **nvidia-docker** , CentOS 7 supports CUDA 10.2/11.2
+            * CentOS 7 supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7
+        * If you install using  **nvidia-docker** , CentOS 7 supports CUDA 10.2/11.2/11.7
     * MacOS isn't supported: PaddlePaddle has no GPU support in Mac OS platform
 
 Please make sure your environment meets the above conditions. If you have other requirements, please refer to `Appendix <Tables_en.html#ciwhls-release>`_ .

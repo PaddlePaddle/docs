@@ -36,6 +36,9 @@ For domestic users, when downloading docker is slow due to network problems, you
     ```
     nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.2-cudnn8.1-trt8.0
     ```
+    ```
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.7-cudnn8.4-trt8.4
+    ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
 
@@ -55,6 +58,9 @@ If your machine is not in mainland China, you can pull the image directly from D
     ```
     ```
     nvidia-docker pull paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.2-cudnn8.1-trt8.0
+    ```
+    ```
+    nvidia-docker pull paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.7-cudnn8.4-trt8.4
     ```
 
 You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get more images.
@@ -149,12 +155,16 @@ Now you have successfully used Docker to install PaddlePaddle. For more informat
         <td> CPU image of paddle version 2.4.0rc0 is installed, and jupyter is pre-installed in the image. Start the docker to run the jupyter service </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.2-cudnn8.1-trt8.0 </td>
-        <td> GPU image of paddle version 2.4.0rc0 is installed, cuda version is 11.2, cudnn version is 8.1 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.7-cudnn8.4-trt8.4 </td>
+        <td> GPU image of paddle version 2.4.0rc0 is installed, cuda version is 11.7, cudnn version is 8.4, trt version is 8.4 </td>
     </tr>
-        <tr>
+    <tr>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.2-cudnn8.1-trt8.0 </td>
+        <td> GPU image of paddle version 2.4.0rc0 is installed, cuda version is 11.2, cudnn version is 8.1, trt version is 8.0 </td>
+    </tr>
+    <tr>
         <td> registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda10.2-cudnn7.6-trt7.0 </td>
-        <td> GPU image of paddle version 2.4.0rc0 is installed, cuda version is 10.2, cudnn version is 7.6 </td>
+        <td> GPU image of paddle version 2.4.0rc0 is installed, cuda version is 10.2, cudnn version is 7.6, trt version is 7.0 </td>
     </tr>
    </tbody>
 </table>

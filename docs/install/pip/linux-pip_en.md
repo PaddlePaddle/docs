@@ -5,10 +5,10 @@
 ### 1.1 PREQUISITES
 
 * **Linux Version (64 bit)**
-  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6)**
-  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6)**
-  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6)**
-  * **Ubuntu 20.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6)**
+  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
+  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
+  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
+  * **Ubuntu 20.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
 
 * **Python Version: 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
@@ -84,6 +84,8 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
   * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
 
   * **CUDA toolkit 11.6 with cuDNN v8.4.0(for multi card support, NCCL2.7 or higher)**
+
+  * **CUDA toolkit 11.7 with cuDNN v8.4.1(for multi card support, NCCL2.7 or higher)**
 
   * **Hardware devices with GPU computing power over 3.5**
 
@@ -179,6 +181,13 @@ You can choose the following version of PaddlePaddle to start installation:
 
   ```
   python -m pip install paddlepaddle-gpu==2.4.0rc0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
+
+2.2.6 If you are using CUDA 11.7
+
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 Note：

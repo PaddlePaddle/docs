@@ -36,6 +36,9 @@
     ```
     nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.2-cudnn8.1-trt8.0
     ```
+    ```
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.7-cudnn8.4-trt8.4
+    ```
 
 如果您的机器不在中国大陆地区，可以直接从 DockerHub 拉取镜像：
 
@@ -55,6 +58,9 @@
     ```
     ```
     nvidia-docker pull paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.2-cudnn8.1-trt8.0
+    ```
+    ```
+    nvidia-docker pull paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.7-cudnn8.4-trt8.4
     ```
 
 您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取更多镜像。
@@ -120,7 +126,7 @@
 
     - `-v $PWD:/paddle`：指定将当前路径（PWD 变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 
-    - `registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda10.2-cudnn7.6-trt7.0`：指定需要使用的 image 名称，如果您希望使用 CUDA 11.2 的镜像，也可以将其替换成`registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.2-cudnn8.1-trt8.0`。您可以通过`docker images`命令查看镜像。/bin/bash 是在 Docker 中要执行的命令
+    - `registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda10.2-cudnn7.6-trt7.0`：指定需要使用的 image 名称，如果您希望使用 CUDA 11.2 或 CUDA 11.7 的镜像，也可以将其替换成`registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.2-cudnn8.1-trt8.0` 或 `registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.7-cudnn8.4-trt8.4`。您可以通过`docker images`命令查看镜像。/bin/bash 是在 Docker 中要执行的命令
 
 
 
@@ -147,12 +153,16 @@
         <td> 安装了 2.4.0rc0 版本 paddle 的 CPU 镜像，且镜像中预装好了 jupyter，启动 docker 即运行 jupyter 服务 </td>
     </tr>
     <tr>
-        <td> registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.2-cudnn8.1-trt8.0 </td>
-        <td> 安装了 2.4.0rc0 版本 paddle 的 GPU 镜像，cuda 版本为 11.2，cudnn 版本为 8.1 </td>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.7-cudnn8.4-trt8.4 </td>
+        <td> 安装了 2.4.0rc0 版本 paddle 的 GPU 镜像，cuda 版本为 11.7，cudnn 版本为 8.4，trt 版本为 8.4 </td>
     </tr>
-        <tr>
+    <tr>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda11.2-cudnn8.1-trt8.0 </td>
+        <td> 安装了 2.4.0rc0 版本 paddle 的 GPU 镜像，cuda 版本为 11.2，cudnn 版本为 8.1，trt 版本为 8.0 </td>
+    </tr>
+    <tr>
         <td> registry.baidubce.com/paddlepaddle/paddle:2.4.0rc0-gpu-cuda10.2-cudnn7.6-trt7.0 </td>
-        <td> 安装了 2.4.0rc0 版本 paddle 的 GPU 镜像，cuda 版本为 10.2，cudnn 版本为 7.6 </td>
+        <td> 安装了 2.4.0rc0 版本 paddle 的 GPU 镜像，cuda 版本为 10.2，cudnn 版本为 7.6，trt 版本为 7.0 </td>
     </tr>
    </tbody>
 </table>

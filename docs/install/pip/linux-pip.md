@@ -6,10 +6,10 @@
 
 * **Linux 版本 (64 bit)**
 
-  * **CentOS 7 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6)**
-  * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6)**
-  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6)**
-  * **Ubuntu 20.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6)**
+  * **CentOS 7 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
+  * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
+  * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
+  * **Ubuntu 20.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
 
 * **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
@@ -84,6 +84,8 @@
   * **CUDA 工具包 11.2 配合 cuDNN v8.1.1(如需多卡支持，需配合 NCCL2.7 及更高)**
 
   * **CUDA 工具包 11.6 配合 cuDNN v8.4.0(如需多卡支持，需配合 NCCL2.7 及更高)**
+
+  * **CUDA 工具包 11.7 配合 cuDNN v8.4.1(如需多卡支持，需配合 NCCL2.7 及更高)**
 
   * **GPU 运算能力超过 3.5 的硬件设备**
 
@@ -174,6 +176,12 @@
   python -m pip install paddlepaddle-gpu==2.4.0rc0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
+2.2.6 CUDA11.7 的 PaddlePaddle
+
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
 
 
 注：
