@@ -14,7 +14,7 @@
 **1. 操作系统要求：**
 
 * Windows 7 / 8 / 10，专业版 / 企业版
-* Ubuntu 16.04 / 18.04 / 20.04
+* Ubuntu 16.04 / 18.04 / 20.04 / 22.04
 * CentOS 7
 * MacOS 10.11 / 10.12 / 10.13 / 10.14
 * 操作系统要求是 64 位版本
@@ -45,7 +45,7 @@
         * 不支持 **nvidia-docker** 方式安装
     * Ubuntu 安装 GPU 版本
 
-        * Ubuntu 16.04/18.04/20.04 支持 CUDA 10.1/10.2/11.1/11.2/11.6/11.7
+        * Ubuntu 16.04/18.04/20.04/22.04 支持 CUDA 10.1/10.2/11.1/11.2/11.6/11.7
         * 如果您是使用 **nvidia-docker** 安装，支持 CUDA 10.2/11.2/11.7
     * CentOS 安装 GPU 版本
 
@@ -68,7 +68,7 @@
     * 不支持 NCCL
 * Ubuntu 支持情况
 
-    * Ubuntu 16.04/18.04/20.04:
+    * Ubuntu 16.04/18.04/20.04/22.04:
 
         * CUDA10.1 下支持 NCCL v2.4.2-v2.4.8
 * CentOS 支持情况
@@ -183,14 +183,14 @@
 - 如果您有开发 PaddlePaddle 的需求，请参考：`从源码编译 <compile/fromsource.html>`_
 
 
-..	toctree::
-	:hidden:
+..    toctree::
+    :hidden:
 
-	pip/frompip.rst
-	conda/fromconda.rst
-	docker/fromdocker.rst
-	compile/fromsource.rst
-	install_Kunlun_zh.md
-	install_ROCM_zh.md
-	install_NGC_PaddlePaddle_ch.rst
-	Tables.md
+    pip/frompip.rst
+    conda/fromconda.rst
+    docker/fromdocker.rst
+    compile/fromsource.rst
+    install_Kunlun_zh.md
+    install_ROCM_zh.md
+    install_NGC_PaddlePaddle_ch.rst
+    Tables.md

@@ -6,9 +6,7 @@
 
 * **Linux Version (64 bit)**
   * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
-  * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
-  * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
-  * **Ubuntu 20.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
+  * **Ubuntu 16.04/18.04/20.04/22.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
 
 * **Python Version: 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
