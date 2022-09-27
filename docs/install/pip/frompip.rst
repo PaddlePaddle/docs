@@ -2,7 +2,7 @@
 **Pip 安装**
 ===========================
 
-..  toctree::
+..    toctree::
     :maxdepth: 1
 
     linux-pip.md

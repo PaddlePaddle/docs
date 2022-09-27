@@ -3,8 +3,8 @@
 ## Environment preparation
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-* **GPU Version support CUDA 10.1/10.2/11.0/11.1/11.2, and only support single GPU**
-* **Python version 3.6+/3.7+/3.8+/3.9+(64bit)**
+* **GPU Version support CUDA 10.1/10.2/11.1/11.2/11.6, and only support single GPU**
+* **Python version 3.6+/3.7+/3.8+/3.9+/3.10+(64bit)**
 * **pip version 20.2.2 or above (64bit)**
 * **Visual Studio 2017**
 
@@ -13,10 +13,10 @@
 * If your computer doesn't have NVIDIA® GPU, please install CPU version of PaddlePaddle
 
 * If your computer has NVIDIA® GPU, and the following conditions are met，GPU version of PaddlePaddle is recommended.
-    * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5+**
-    * **CUDA toolkit 11.0 with cuDNN v8.0.2+**
-    * **CUDA toolkit 11.1 with cuDNN v8.1.1+**
+    * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5**
+    * **CUDA toolkit 11.1 with cuDNN v8.1.1**
     * **CUDA toolkit 11.2 with cuDNN v8.2.1**
+    * **CUDA toolkit 11.6 with cuDNN v8.4.0**
     * **GPU's computing capability exceeds 3.5**
 
 ## Installation steps
@@ -65,13 +65,18 @@ There is one compilation methods in Windows system:
     cd Paddle
     ```
 
-3. Switch to `develop` branch for compilation:
+3. Switch to a more stable release branch for compilation:
 
     ```
-    git checkout develop
+    git checkout [name of the branch]
     ```
 
-    Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1
+    For example：
+    ```
+    git checkout release/2.3
+    ```
+
+    Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1, python3.10 version started supporting from release/2.3
 
 4. Create a directory called build and enter it:
 
