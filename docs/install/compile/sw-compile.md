@@ -34,19 +34,29 @@
 
 3. Paddle 依赖 cmake 进行编译构建，需要 cmake 版本>=3.15，检查操作系统源提供 cmake 的版本，使用源的方式直接安装 cmake, `apt install cmake`, 检查 cmake 版本, `cmake --version`, 如果 cmake >= 3.15 则不需要额外的操作，否则请修改 Paddle 主目录的`CMakeLists.txt`, `cmake_minimum_required(VERSION 3.15)` 修改为 `cmake_minimum_required(VERSION 3.0)`.
 
-4. 申威支持 openblas，使用 `yum` 安装 openblas 及其相关的依赖（如果安装失败，需要联系厂商解决安装问题）。
-   安装 openblas，得到 openblas 库文件及头文件 cblas.h；
-   安装 lapack：
-   ```
-   yum install lapack-devel.sw_64
-   ```
-   lapack 的搜索地址与 openblas 相同。
+4. 由于申威暂不支持 openblas，所以在此使用 blas + cblas 的方式，在此需要源码编译 blas 和 cblas。
 
-   编译时出现以下 log 信息，表明 openblas 库链接成功：
-   ```
-   -- Found OpenBLAS (include: /usr/include/openblas, library: /usr/lib/libopenblas.so)
-   -- Found lapack in OpenBLAS (include: /usr/include)
-   ```
+    ```
+    pushd /opt
+    wget http://www.netlib.org/blas/blas-3.8.0.tgz
+    wget http://www.netlib.org/blas/blast-forum/cblas.tgz
+    tar xzf blas-3.8.0.tgz
+    tar xzf cblas.tgz
+    pushd BLAS-3.8.0
+    make
+    popd
+    pushd CBLAS
+    # 修改 Makefile.in 中 BLLIB 为 BLAS-3.8.0 的编译产物 blas_LINUX.a
+    make
+    pushd lib
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD
+    ln -s cblas_LINUX.a libcblas.a
+    cp ../../BLAS-3.8.0/blas_LINUX.a .
+    ln -s blas_LINUX.a libblas.a
+    popd
+    popd
+    popd
+    ```
 
 5. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装 Python 依赖库，注意在申威系统中一般无法直接使用 pip 或源码编译安装 python 依赖包，建议使用源的方式安装，如果遇到部分依赖包无法安装的情况，请联系操作系统服务商提供支持。此外也可以通过 pip 安装的时候加--no-deps 的方式来避免依赖包的安装，但该种方式可能导致包由于缺少依赖不可用。
 
@@ -66,13 +76,17 @@
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
+    ```
+    CBLAS_ROOT=/opt/CBLAS
+    ```
+
     For Python2:
     ```
-    cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON -DWITH_XBYAK=OFF  -DWITH_SW=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" -DWITH_RCCL=OFF
+    cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON -DREFERENCE_CBLAS_ROOT=${CBLAS_ROOT} -DWITH_CRYPTO=OFF -DWITH_XBYAK=OFF -DWITH_SW=ON -DCMAKE_CXX_FLAGS="-Wno-error -w"
     ```
     For Python3:
     ```
-    cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON -DWITH_XBYAK=OFF -DWITH_SW=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" -DWITH_RCCL=OFF
+    cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON -DREFERENCE_CBLAS_ROOT=${CBLAS_ROOT} -DWITH_CRYPTO=OFF -DWITH_XBYAK=OFF -DWITH_SW=ON -DCMAKE_CXX_FLAGS="-Wno-error -w"
     ```
 
 9. 编译。

@@ -4,11 +4,11 @@
 
 * **Linux 版本 (64 bit)**
     * **CentOS 6 (不推荐，不提供编译出现问题时的官方支持)**
-    * **CentOS 7 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
+    * **CentOS 7 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6)**
     * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
-    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
-    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+    * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6)**
+    * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2/11.6)**
+* **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 ## 选择 CPU/GPU
 
@@ -17,9 +17,9 @@
 * 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件以编译 GPU 版 PaddlePaddle
 
     * **CUDA 工具包 10.1/10.2 配合 cuDNN 7 (cuDNN 版本>=7.6.5, 如需多卡支持，需配合 NCCL2.7 及更高)**
-    * **CUDA 工具包 11.0 配合 cuDNN v8.0.4(如需多卡支持，需配合 NCCL2.7 及更高)**
     * **CUDA 工具包 11.1 配合 cuDNN v8.1.1(如需多卡支持，需配合 NCCL2.7 及更高)**
     * **CUDA 工具包 11.2 配合 cuDNN v8.1.1(如需多卡支持，需配合 NCCL2.7 及更高)**
+    * **CUDA 工具包 11.6 配合 cuDNN v8.4.0(如需多卡支持，需配合 NCCL2.7 及更高)**
     * **GPU 运算能力超过 3.5 的硬件设备**
 
         您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
@@ -129,13 +129,19 @@ cd Paddle
 cd /paddle
 ```
 
-#### 6. 切换到 develop 版本进行编译：
+#### 6. 切换到较稳定版本下进行编译：
 
 ```
-git checkout develop
+git checkout [分支名]
 ```
 
-注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持
+例如：
+
+```
+git checkout release/2.3
+```
+
+注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
 
 #### 7. 创建并进入/paddle/build 路径下：
 
@@ -151,7 +157,7 @@ mkdir -p /paddle/build && cd /paddle/build
 pip3.7 install protobuf
 ```
 
-注意：以上用 Python3.7 命令来举例，如您的 Python 版本为 3.6/3.8/3.9，请将上述命令中的 pip3.7 改成 pip3.6/pip3.8/pip3.9
+注意：以上用 Python3.7 命令来举例，如您的 Python 版本为 3.6/3.8/3.9/3.10，请将上述命令中的 pip3.7 改成 pip3.6/pip3.8/pip3.9/pip3.10
 
 - 安装 patchelf，PatchELF 是一个小而实用的程序，用于修改 ELF 可执行文件的动态链接器和 RPATH。
 
@@ -203,7 +209,7 @@ pip3.7 install -U [whl 包的名字]
 ```
 
 注意：
-以上用 Python3.7 命令来举例，如您的 Python 版本为 3.6/3.8/3.9，请将上述命令中的 pip3.7 改成 pip3.6/pip3.8/pip3.9。
+以上用 Python3.7 命令来举例，如您的 Python 版本为 3.6/3.8/3.9/3.10，请将上述命令中的 pip3.7 改成 pip3.6/pip3.8/pip3.9/pip3.10。
 
 #### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 
@@ -219,7 +225,7 @@ uname -m && cat /etc/*release
 
 #### 2. 更新系统源
 
-* CentOS 环境
+* Centos 环境
 
     更新`yum`的源：
 
@@ -246,7 +252,7 @@ uname -m && cat /etc/*release
 
 * 如果您需要使用 GPU 多卡，请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA10.2，cuDNN7 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
-    * **CentOS 系统可以参考以下命令**
+    * **Centos 系统可以参考以下命令**
 
         ```
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
@@ -280,7 +286,7 @@ uname -m && cat /etc/*release
 
 #### 4. 安装必要的工具
 
-* CentOS 环境
+* Centos 环境
 
     `bzip2`以及`make`：
 
@@ -378,13 +384,13 @@ uname -m && cat /etc/*release
 
     (请参照 Python 官方流程安装, 并保证拥有 20.2.2 及以上的 pip3 版本，请注意，python3.6 及以上版本环境下，pip3 并不一定对应 python 版本，如 python3.7 下默认只有 pip3.7）
 
-* c.（Only For Python3）设置 Python3 相关的环境变量，这里以 python3.7 版本示例，请替换成您使用的版本（3.6、3.8、3.9）：
+* c.（Only For Python3）设置 Python3 相关的环境变量，这里以 python3.7 版本示例，请替换成您使用的版本（3.6、3.8、3.9、3.10）：
 
     1. 首先使用
         ```
         find `dirname $(dirname $(which python3))` -name "libpython3.so"
         ```
-        找到 Python lib 的路径，如果是 3.6、3.7、3.8、3.9，请将`python3`改成`python3.6`、`python3.7`、`python3.8`、`python3.9`，然后将下面[python-lib-path]替换为找到文件路径
+        找到 Python lib 的路径，如果是 3.6、3.7、3.8、3.9、3.10，请将`python3`改成`python3.6`、`python3.7`、`python3.8`、`python3.9`、`python3.10`，然后将下面[python-lib-path]替换为找到文件路径
 
     2. 设置 PYTHON_LIBRARIES：
         ```
@@ -408,7 +414,7 @@ uname -m && cat /etc/*release
         ```
         （这里将[python-lib-path]的最后两级目录替换为/bin/)
 
-* d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应 python 版本的 pip3 的命令，如 pip3.6、pip3.7、pip3.8、pip3.9)
+* d. 安装虚环境`virtualenv`以及`virtualenvwrapper`并创建名为`paddle-venv`的虚环境：(请注意对应 python 版本的 pip3 的命令，如 pip3.6、pip3.7、pip3.8、pip3.9、pip3.10)
 
     1. 安装`virtualenv`
         ```
@@ -472,10 +478,16 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 9. 切换到 develop 分支进行编译：
+#### 9. 切换到较稳定 release 分支下进行编译：
 
 ```
-git checkout develop
+git checkout [分支名]
+```
+
+例如：
+
+```
+git checkout release/2.3
 ```
 
 #### 10. 并且请创建并进入一个叫 build 的目录下：
@@ -500,11 +512,11 @@ mkdir build && cd build
     > 请注意 PY_VERSION 参数更换为您需要的 python 版本
 
 
-* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(**仅支持 CentOS7（CUDA11.2/CUDA11.0/CUDA10.2/CUDA10.1)**)
+* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(**仅支持 CentOS7（CUDA11.6/CUDA11.2/CUDA11.1/CUDA10.2/CUDA10.1)**)
 
     1. 请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA10.2，cuDNN7 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
-    * **CentOS 系统可以参考以下命令**
+    * **Centos 系统可以参考以下命令**
 
         ```
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
@@ -538,7 +550,7 @@ mkdir build && cd build
         cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON
         ```
 
-注意：以上涉及 Python3 的命令，用 Python3.7 来举例，如您的 Python 版本为 3.6/3.8/3.9，请将上述命令中的 Python3.7 改成 Python3.6/Python3.8/Python3.9
+注意：以上涉及 Python3 的命令，用 Python3.7 来举例，如您的 Python 版本为 3.6/3.8/3.9/3.10，请将上述命令中的 Python3.7 改成 Python3.6/Python3.8/Python3.9/Python3.10
 
 
 

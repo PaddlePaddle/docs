@@ -1,12 +1,14 @@
-# macOS 下的 PIP 安装
+# MacOS 下的 PIP 安装
 
 ## 一、环境准备
 
 ### 1.1 目前飞桨支持的环境
 
-* **macOS 版本 10.11/10.12/10.13/10.14 (64 bit) (不支持 GPU 版本)**
+* **macOS 版本 10.x/11.x (64 bit) (不支持 GPU 版本)**
 
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **mac 机器上支持 mac M1 芯片、Intel 芯片**
+
+* **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 * **pip 或 pip3 版本 20.2.2 或更高版本 (64 bit)**
 
@@ -33,7 +35,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.6/3.7/3.8/3.9
+  * 使用以下命令确认是 3.6/3.7/3.8/3.9/3.10
 
     ```
     python --version
@@ -52,7 +54,7 @@
 
 
 
-* 需要确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构，目前 PaddlePaddle 不支持 arm64 架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
+* 需要确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构 或 arm64 架构（paddle 已原生支持 Mac M1 芯片）：
 
     ```
     python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
@@ -62,7 +64,7 @@
 
 * 默认提供的安装包需要计算机支持 MKL
 
-* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/docs/blob/develop/docs/install/install_script.md)。
+* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
 
 
 
@@ -70,9 +72,9 @@
 
 本文档为您介绍 pip 安装方式
 
-### 首先请您选择您的版本
+### 首先请选择您的版本
 
-* 目前在 macOS 环境仅支持 CPU 版 PaddlePaddle
+* 目前在 MacOS 环境仅支持 CPU 版 PaddlePaddle
 
 
 ### 根据版本进行安装
@@ -81,15 +83,15 @@
 
 
   ```
-  python -m pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/mac/cpu/develop.html
+  python -m pip install paddlepaddle==2.3.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
-* 注:
-* macOS 上您需要安装 unrar 以支持 PaddlePaddle，可以使用命令 `brew install rar`
+注:
+* MacOS 上您需要安装 unrar 以支持 PaddlePaddle，可以使用命令`brew install unrar`
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
-* 默认下载最新稳定版的安装包，如需获取开发版安装包，请参考[这里](https://www.paddlepaddle.org.cn/install/quick/zh/1.8.5-windows-pip)
-* 使用 macOS 中自带 Python 可能会导致安装失败。请使用[Python.org](https://www.python.org/downloads/mac-osx/)提供的 python3.6.x、python3.7.x、python3.8.x 或 python3.9.x。
+* 默认下载最新稳定版的安装包，如需获取 develop 版本 nightly build 的安装包，请参考[这里](https://www.paddlepaddle.org.cn/install/quick/zh/1.8.5-windows-pip)
+* 使用 MacOS 中自带 Python 可能会导致安装失败。请使用[python 官网](https://www.python.org/downloads/mac-osx/)提供的 python3.6.x、python3.7.x、python3.8.x、python3.9.x、python3.10.x。
 
 ## **三、验证安装**
 
