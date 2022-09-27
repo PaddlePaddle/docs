@@ -7,9 +7,8 @@ LazyGuard
 
 
 
-LazyGuard 是一个用于触发 `nn.Layer` 中参数延迟初始化的上下文管理器，在 `with LazyGuard():` 代码块下所有的 `nn.Layer` 在构造时，其内部的参数均不会立即申请内存空间。
+LazyGuard 是一个用于触发模型（继承自`nn.Layer`） 中参数（即`Parameter`）延迟初始化的上下文管理器。配合使用 python 的 ``with`` 语句来将 ``with LazyGuard():`` 代码块下所有模型在实例化时，其内部的参数均不会立即申请内存空间。
 
-输入范围是 `(-inf, inf)`，输出范围是 `[-1,1]`。
 
 代码示例
 ::::::::::::
