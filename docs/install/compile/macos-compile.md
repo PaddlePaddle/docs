@@ -94,7 +94,7 @@ git checkout [分支名]
 例如：
 
 ```
-git checkout release/2.3
+git checkout release/2.4
 ```
 
 注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
@@ -253,7 +253,7 @@ git checkout [分支名]
 例如：
 
 ```
-git checkout release/2.3
+git checkout release/2.4
 ```
 
 注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持

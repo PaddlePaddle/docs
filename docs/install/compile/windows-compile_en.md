@@ -73,7 +73,7 @@ There is one compilation methods in Windows system:
 
     For example：
     ```
-    git checkout release/2.3
+    git checkout release/2.4
     ```
 
     Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1, python3.10 version started supporting from release/2.3
