@@ -51,21 +51,19 @@
 
 * 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件并且安装 GPU 版 PaddlePaddle
 
-  * **CUDA 工具包 10.1 配合 cuDNN v7.6.5**
+  * **CUDA 工具包 10.1/10.2 配合 cuDNN v7.6.5**
 
-  * **CUDA 工具包 10.2 配合 cuDNN v7.6.5(如需使用 PaddleTensorRT 推理，需配合 TensorRT7.0.0.11)**
+  * **CUDA 工具包 11.1 配合 cuDNN v8.1.1**
 
-  * **CUDA 工具包 11.1 配合 cuDNN v8.1.1(如需使用 PaddleTensorRT 推理，需配合 TensorRT8.0.3.4)**
+  * **CUDA 工具包 11.2 配合 cuDNN v8.2.1**
 
-  * **CUDA 工具包 11.2 配合 cuDNN v8.2.1(如需使用 PaddleTensorRT 推理，需配合 TensorRT8.2.4.2)**
+  * **CUDA 工具包 11.6 配合 cuDNN v8.4.0**
 
-  * **CUDA 工具包 11.6 配合 cuDNN v8.4.0(如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.0.6)**
-
-  * **CUDA 工具包 11.7 配合 cuDNN v8.4.1(如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.2.4)**
+  * **CUDA 工具包 11.7 配合 cuDNN v8.4.1**
 
   * **GPU 运算能力超过 3.5 的硬件设备**
 
-  * 注：目前官方发布的 windows 安装包仅包含 CUDA 10.1/10.2/11.1/11.2/11.6/11.7，如需使用其他 cuda 版本，请通过源码自行编译。您可参考 NVIDIA 官方文档了解 CUDA、CUDNN 和 TensorRT 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/nvidia-tensorrt-download)
+  * 注：目前官方发布的 windows 安装包仅包含 CUDA 10.1/10.2/11.1/11.2/11.6/11.7，如需使用其他 cuda 版本，请通过源码自行编译。您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
 
@@ -78,7 +76,7 @@
 
 
   ```
-  python -m pip install paddlepaddle==2.3.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python -m pip install paddlepaddle==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 #### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
@@ -89,7 +87,7 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.3.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
@@ -97,28 +95,34 @@
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.3.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python -m pip install paddlepaddle-gpu==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
 2.2.3 CUDA11.1 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.3.2.post111 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post111 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
 2.2.4 CUDA11.2 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.3.2.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
 2.2.5 CUDA11.6 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.3.2.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  ```
+
+2.2.6 CUDA11.7 的 PaddlePaddle
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
@@ -135,25 +139,25 @@
   * cpu、mkl 版本 noavx 机器安装：
 
   ```
-  python -m pip download paddlepaddle==2.3.2 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * cpu、openblas 版本 noavx 机器安装：
 
   ```
-  python -m pip download paddlepaddle==2.3.2 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index --no-deps
   ```
 
   * gpu 版本 cuda10.1 noavx 机器安装：
 
   ```
-  python -m pip download paddlepaddle-gpu==2.3.2.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle-gpu==2.4.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * gpu 版本 cuda10.2 noavx 机器安装：
 
   ```
-  python -m pip download paddlepaddle-gpu==2.3.2 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle-gpu==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。
@@ -161,10 +165,10 @@
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
-  python -m pip download paddlepaddle==2.3.2 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
   ```
 
-
+* 如果你想安装联编`tensorrt`的 Paddle 包，可以参考[下载安装 Windows 预测库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html#windows)。
 
 
 

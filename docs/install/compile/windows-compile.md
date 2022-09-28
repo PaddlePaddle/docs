@@ -15,7 +15,7 @@
 
 * 如果你的计算机硬件没有 NVIDIA® GPU，请编译 CPU 版本的 PaddlePaddle
 
-* 如果你的计算机硬件有 NVIDIA® GPU，推荐编译 GPU 版本的 PaddlePaddle，建议安装 **CUDA 10.1/10.2//11.1/11.2/11.6/11.7**
+* 如果你的计算机硬件有 NVIDIA® GPU，推荐编译 GPU 版本的 PaddlePaddle，建议安装 **CUDA 10.1/10.2/11.1/11.2/11.6/11.7**
 
 ## 本机编译过程
 
@@ -51,7 +51,7 @@
 5. 切换到 2.2 分支下进行编译：
 
     ```
-    git checkout release/2.3
+    git checkout release/2.4
     ```
 
 6. 创建名为 build 的目录并进入：
