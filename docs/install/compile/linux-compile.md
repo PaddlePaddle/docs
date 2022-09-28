@@ -24,7 +24,7 @@
     * **CUDA 工具包 11.7 配合 cuDNN v8.4.1(如需多卡支持，需配合 NCCL2.7 及更高；如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.2.4)**
     * **GPU 运算能力超过 3.5 的硬件设备**
 
-        您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，
+        您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/nvidia-tensorrt-download)
 
 
 ## 安装步骤

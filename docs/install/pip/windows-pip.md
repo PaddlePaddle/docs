@@ -167,6 +167,7 @@
 
 
 
+
 ## **三、验证安装**
 
 安装完成后您可以使用 `python` 进入 python 解释器，输入`import paddle` ，再输入 `paddle.utils.run_check()`
