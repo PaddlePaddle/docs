@@ -5,12 +5,12 @@
 ### 1.1 PREQUISITES
 
 * **Linux Version (64 bit)**
-  * **CentOS 7 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
-  * **Ubuntu 16.04/18.04/20.04/22.04 (GPUVersion Supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
+  * **CentOS 7**
+  * **Ubuntu 16.04/18.04/20.04/22.04**
 
 * **Python Version: 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
-* **pip or pip3 Version 20.2.2 or above (64 bit)**
+* **pip3 Version 20.2.2 or above (64 bit)**
 
 ### 1.2 How to check your environment
 
@@ -27,7 +27,7 @@
   * Use the following command to output Python path. Depending on the environment, you may need to replace Python in all command lines in the description with specific Python path
 
     ```
-    which python
+    which python3
     ```
 
 
@@ -36,17 +36,17 @@
 
   * Use the following command to confirm that it is 3.6/3.7/3.8/3.9/3.10
 
-        python --version
+        python3 --version
 
 * It is required to confirm whether the version of pip meets the requirements. The version of pip is required to be 20.2.2 or above
 
 
     ```
-    python -m ensurepip
+    python3 -m ensurepip
     ```
 
     ```
-    python -m pip --version
+    python3 -m pip --version
     ```
 
 
@@ -54,7 +54,7 @@
 * You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
 
     ```
-    python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+    python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
 
@@ -66,8 +66,6 @@
 
 
 ## INSTALLATION
-
-If you installed Python via Homebrew or the Python website, `pip` was installed with it. If you installed Python 3.x, then you will be using the command `pip3`.
 
 ### Choose CPU/GPU
 
@@ -135,7 +133,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python3 -m pip install paddlepaddle==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
@@ -148,7 +146,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.4.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -157,14 +155,14 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python3 -m pip install paddlepaddle-gpu==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 2.2.3 If you are using CUDA 11.1
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.4.0rc0.post111 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post111 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -172,7 +170,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.4.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -180,55 +178,55 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.4.0rc0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 2.2.6 If you are using CUDA 11.7
 
 
   ```
-  python -m pip install paddlepaddle-gpu==2.4.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 Note：
 
 * If you are using ampere-based GPU, CUDA 11 above version is recommended; otherwise CUDA 10.2 is recommended for better performance.
 
-* Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
+* Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace python3 in all command lines in the instructions with specific Python path.
 
 * If you want to use the tsinghua pypi, you can use the following command:
 
   ```
-   python -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
+   python3 -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 * The above commands install the `avx` package by default. If your machine does not support `avx`, you need to install the Paddle package of `noavx`, you can use the following command to install，noavx version paddle wheel only support python3.8：
 
-  First use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
+  First use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
    * cpu and mkl version installed on noavx machine：
 
    ```
-   python -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
+   python3 -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
    ```
 
    * cpu and openblas version installed on noavx machine：
 
    ```
-   python -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/noavx/stable.html --no-index --no-deps
+   python3 -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/noavx/stable.html --no-index --no-deps
    ```
 
 
    * GPU cuda10.1 version install on noavx machine：
 
    ```
-   python -m pip download paddlepaddle-gpu==2.4.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
+   python3 -m pip download paddlepaddle-gpu==2.4.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
    ```
 
    * GPU cuda10.2 version install on noavx machine：
 
    ```
-   python -m pip download paddlepaddle-gpu==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
+   python3 -m pip download paddlepaddle-gpu==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
    ```
 
    To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
@@ -236,17 +234,17 @@ Note：
    cat /proc/cpuinfo | grep -i avx
    ```
 
-* If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
+* If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
   ```
-  python -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
 
 
 
 ## Verify installation
 
-After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
+After the installation is complete, you can use `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
 
 If `PaddlePaddle is installed successfully!` appears, to verify that the installation was successful.
 
@@ -254,5 +252,5 @@ If `PaddlePaddle is installed successfully!` appears, to verify that the install
 
 Please use the following command to uninstall PaddlePaddle:
 
-- **CPU version of PaddlePaddle**: `python -m pip uninstall paddlepaddle`
-- **GPU version of PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu`
+- **CPU version of PaddlePaddle**: `python3 -m pip uninstall paddlepaddle`
+- **GPU version of PaddlePaddle**: `python3 -m pip uninstall paddlepaddle-gpu`
