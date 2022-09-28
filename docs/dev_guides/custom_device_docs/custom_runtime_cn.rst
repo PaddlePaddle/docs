@@ -10,6 +10,7 @@
 - `Stream 接口 <./stream_api_cn.html>`_ : 介绍 Stream 接口的定义和功能。
 - `Event 接口 <./event_api_cn.html>`_ : 介绍 Event 接口的定义和功能。
 - `集合通讯接口 <./ccl_api_cn.html>`_ : 介绍集合通讯接口的定义和功能。
+- `Profiler 接口 <./profiler_api_cn.html>`_ : 介绍 Profiler 接口的定义和功能。
 
 
 Device 接口
@@ -167,6 +168,27 @@ Event 接口
 | xccl_recv               | 集合通讯 Recv 操作。          |
 +-------------------------+-------------------------------+
 
+
+Profiler 接口
+############
+
++-----------------------------+-----------------------+
+|          接口名称           |       功能简介        |
++=============================+=======================+
+| profiler_initialize         | 初始化硬件 Profiler   |
++-----------------------------+-----------------------+
+| profiler_finalize           | 去初始化硬件 Profiler |
++-----------------------------+-----------------------+
+| profiler_prepare_tracing    | Profiler 准备收集数据 |
++-----------------------------+-----------------------+
+| profiler_start_tracing      | Profiler 开始收集数据 |
++-----------------------------+-----------------------+
+| profiler_stop_tracing       | Profiler 停止收集数据 |
++-----------------------------+-----------------------+
+| profiler_collect_trace_data | Profiler 数据转换     |
++-----------------------------+-----------------------+
+
+
 ..  toctree::
     :hidden:
 
@@ -176,3 +198,4 @@ Event 接口
     stream_api_cn.md
     event_api_cn.md
     ccl_api_cn.md
+    profiler_api_cn.md

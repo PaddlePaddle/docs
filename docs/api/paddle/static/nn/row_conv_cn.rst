@@ -8,7 +8,7 @@ row_conv
 
 
 
-该接口为行卷积（Row-convolution operator）或称之为超前卷积（lookahead convolution），最早介绍于 DeepSpeech2 论文中，双向的 RNN 在深度语音模型中很有用，它通过对整个序列执行正向和反向传递来学习序列的表示。
+行卷积（Row-convolution operator）或称之为超前卷积（lookahead convolution），最早介绍于 DeepSpeech2 论文中，双向的 RNN 在深度语音模型中很有用，它通过对整个序列执行正向和反向传递来学习序列的表示。
 
 然而，与单向 RNNs 不同的是，在线部署和低延迟设置中，双向 RNNs 具有难度。超前卷积将来自未来子序列的信息以一种高效的方式进行计算，以改进单向递归神经网络。row convolution operator 与一维序列卷积不同，计算方法如下：
 

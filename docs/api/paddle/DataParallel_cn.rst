@@ -39,7 +39,7 @@ DataParallel
 ::::::::::::
 COPY-FROM: paddle.DataParallel:dp-example
 
-.. Note::
+.. note::
     目前数据并行不支持 PyLayer 自定义算子。如有此类需求，推荐先使用 no_sync 接口暂停多卡通信，然后在优化器前手动实现梯度同步；具体实现过程可参考下述示例。
 
 代码示例
