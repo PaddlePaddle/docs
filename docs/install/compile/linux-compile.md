@@ -140,7 +140,7 @@ git checkout [分支名]
 例如：
 
 ```
-git checkout release/2.4
+git checkout release/2.3
 ```
 
 注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
@@ -489,7 +489,7 @@ git checkout [分支名]
 例如：
 
 ```
-git checkout release/2.4
+git checkout release/2.3
 ```
 
 #### 10. 并且请创建并进入一个叫 build 的目录下：
@@ -514,7 +514,7 @@ mkdir build && cd build
     > 请注意 PY_VERSION 参数更换为您需要的 python 版本
 
 
-* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(**仅支持 CentOS7（CUDA11.7/CUDA11.6/CUDA11.2/CUDA11.1/CUDA10.2/CUDA10.1)**)
+* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(**仅支持 CentOS7（CUDA11.6/CUDA11.2/CUDA11.1/CUDA10.2/CUDA10.1)**)
 
     1. 请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA10.2，cuDNN7 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
