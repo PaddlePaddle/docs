@@ -5,7 +5,7 @@ MaxUnPool2D
 
 .. py:function:: paddle.nn.MaxUnPool2D(kernel_size, stride=None,padding=0,data_format="NCHW",output_size=None,name=None)
 
-该接口用于构建 `MaxUnPool2D` 类的一个可调用对象，根据输入的 input 和最大值位置计算出池化的逆结果。所有非最大值设置为零。
+构建 `MaxUnPool2D` 类的一个可调用对象，根据输入的 input 和最大值位置计算出池化的逆结果。所有非最大值设置为零。
 
 输入：
     X 形状：:math:`(N, C, H_{in}, W_{in})`

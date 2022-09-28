@@ -5,7 +5,7 @@ MultiLabelSoftMarginLoss
 
 .. py:class:: paddle.nn.MultiLabelSoftMarginLoss(weight:Optional=None, reduction: str = 'mean', name:str=None)
 
-该接口用于创建一个 MultiLabelSoftMarginLoss 的可调用类，MultiLabelSoftMarginLoss 计算输入 `input` 和 `label` 间的 `margin-based loss` 损失。
+创建一个 MultiLabelSoftMarginLoss 的可调用类，MultiLabelSoftMarginLoss 计算输入 `input` 和 `label` 间的 `margin-based loss` 损失。
 
 
 损失函数按照下列公式计算

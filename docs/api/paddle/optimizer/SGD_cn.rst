@@ -5,7 +5,7 @@ SGD
 
 .. py:class:: paddle.optimizer.SGD(learning_rate=0.001, parameters=None, weight_decay=None, grad_clip=None, name=None)
 
-该接口实现随机梯度下降算法的优化器。
+随机梯度下降算法的优化器。
 
 .. math::
             \\param\_out=param-learning\_rate*grad\\

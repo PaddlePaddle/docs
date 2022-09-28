@@ -5,7 +5,7 @@ l1_loss
 
 .. py:function:: paddle.nn.functional.l1_loss(input, label, reduction='mean', name=None)
 
-该接口计算输入 ``input`` 和标签 ``label`` 间的 `L1 loss` 损失。
+计算输入 ``input`` 和标签 ``label`` 间的 `L1 loss` 损失。
 
 该损失函数的数学计算公式如下：
 

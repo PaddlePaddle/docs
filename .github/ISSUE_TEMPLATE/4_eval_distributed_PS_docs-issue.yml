@@ -1,12 +1,12 @@
-name:  📝 分布式文档——Parameter Sever快速开始体验评估 Eval Issue
-description: 第三期分布式文档——Parameter Sever快速开始体验评估报告。
+name:  📝 分布式文档——参数服务器(Parameter Sever)快速开始体验评估 Eval Issue
+description: 第六期分布式文档——参数服务器(Parameter Sever)快速开始体验评估报告。
 labels: [distributed_ps_eval]
 
 body:
 - type: markdown
   attributes:
     value: >
-      #### 此模板用于第三期分布式文档（Parameter Sever快速开始）评估工作小组成员，向飞桨团队反馈文档问题。如非工作小组成员，请使用 「📚文档」模板，感谢配合~
+      #### 此模板用于第六期分布式文档-参数服务器(Parameter Sever)快速开始评估工作小组成员，向飞桨团队反馈文档问题。如非工作小组成员，请使用 「📚文档」模板，感谢配合~
 
       #### This template is used by members of the distributed document evaluation working group to report documentation issues to the Paddle Team. If you are not a member of the working group, please use the "📚 Documentation Issue" template, thank you for your cooperation~
 
@@ -26,7 +26,7 @@ body:
 - type: markdown
   attributes:
     value: >
-      # Parameter Sever任务一 体验评估报告
+      # 参数服务器(Parameter Sever)任务一 体验评估报告
 
 
 - type: textarea
@@ -104,9 +104,9 @@ body:
 - type: textarea
   id: distributed_ps_eval5
   attributes:
-    label: 5.定义同步训练 Strategy 及 Optimizer	
+    label: 5.定义参数更新策略及优化器
     description: |
-      针对 定义同步训练 Strategy 及 Optimizer 这一环节，请回答以下内容
+      针对 定义参数更新策略及优化器 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：
@@ -150,7 +150,7 @@ body:
 - type: markdown
   attributes:
     value: >
-      # Parameter Sever任务二 体验评估报告
+      # 参数服务器(Parameter Sever)任务二 体验评估报告
 
 
 - type: textarea
@@ -228,9 +228,9 @@ body:
 - type: textarea
   id: distributed_ps_eval15
   attributes:
-    label: 5.定义同步训练 Strategy 及 Optimizer	
+    label: 5.定义参数更新策略及优化器
     description: |
-      针对 定义同步训练 Strategy 及 Optimizer 这一环节，请回答以下内容
+      针对 定义参数更新策略及优化器 这一环节，请回答以下内容
     value: |
       - 完成情况（成功/不成功) ：
       - 遇到问题：

@@ -5,7 +5,7 @@ cross_entropy
 
 .. py:function:: paddle.nn.functional.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_label=False, axis=-1, name=None)
 
-该 OP 实现了 softmax 交叉熵损失函数。该函数会将 softmax 操作、交叉熵损失函数的计算过程进行合并，从而提供了数值上更稳定的计算。
+实现了 softmax 交叉熵损失函数。该函数会将 softmax 操作、交叉熵损失函数的计算过程进行合并，从而提供了数值上更稳定的计算。
 
 该 OP 默认会对结果进行求 mean 计算，您也可以影响该默认行为，具体参考 reduction 参数说明。
 

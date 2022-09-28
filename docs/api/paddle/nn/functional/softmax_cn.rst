@@ -5,7 +5,7 @@ softmax
 .. py:function:: paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None)
 
 
-该 OP 实现了 softmax 层。OP 的计算过程如下：
+实现了 softmax 层。OP 的计算过程如下：
 
 步骤 1：输入 ``x`` 的 ``axis`` 维会被置换到最后一维；
 
@@ -84,9 +84,9 @@ softmax
 
 参数
 ::::::::::
-    - x (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
-    - axis (int，可选) - 指定对输入 ``x`` 进行运算的轴。``axis`` 的有效范围是[-D, D)，D 是输入 ``x`` 的维度，``axis`` 为负值时与 :math:`axis + D` 等价。默认值为-1。
-    - dtype (str，可选) - 输出 `Tensor` 的数据类型，支持 float32、float64。
+    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+    - **axis** (int，可选) - 指定对输入 ``x`` 进行运算的轴。``axis`` 的有效范围是[-D, D)，D 是输入 ``x`` 的维度，``axis`` 为负值时与 :math:`axis + D` 等价。默认值为-1。
+    - **dtype** (str，可选) - 输出 `Tensor` 的数据类型，支持 float32、float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

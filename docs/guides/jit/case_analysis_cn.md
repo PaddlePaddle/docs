@@ -215,7 +215,7 @@ class SimpleNet(object):                       # <---- 继承 Object
 
 同时，所有继承 ``nn.Layer`` 的 ``sublayer`` 都建议：
 
-+ 重写 ``forward`` 函数，尽量避免重写 ``__call__``` 函数
++ 重写 ``forward`` 函数，尽量避免重写 ``__call__`` 函数
 > ``__call__`` 函数通常会包含框架层面的一些通用的处理逻辑，比如 ``pre_hook`` 和 ``post_hook`` 。重写此函数可能会覆盖框架层面的逻辑。
 
 +  尽量将 ``forward`` 函数作为 sublayers 的调用入口
@@ -326,7 +326,7 @@ another_func.pdiparams.info   // 存放额外的其他信息
 
 ## 八、再谈控制流
 
-前面[【控制流转写】(./basic_usage_cn.html#sikongzhiliuzhuanxie)]提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
+前面[【控制流转写】](./principle_cn.html#kongzhiliuzhuanxie)提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
 
 ```python
 def true_fn_0(out):
