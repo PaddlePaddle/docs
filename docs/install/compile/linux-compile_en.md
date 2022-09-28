@@ -23,7 +23,7 @@
     * **CUDA toolkit 11.7 with cuDNN v8.4.1(for multi card support, NCCL2.7 or higher)**
     * **Hardware devices with GPU computing power over 3.5**
 
-        You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+        You can refer to NVIDIA official documents for installation process and configuration method of CUDA, cuDNN and TensorRT. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/nvidia-tensorrt-download)
 
 
 ## Installation steps
