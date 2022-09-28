@@ -53,7 +53,7 @@ The details of this interface is as following:
 ## <a name="Paddle-TRT example compiling test">Paddle-TRT example compiling test</a>
 
 1. Download or compile Paddle Inference with TensorRT support, refer to [Install and Compile C++ Inference Library](../../inference_deployment/inference/build_and_install_lib_en.html).
-2. Download NVIDIA TensorRT(with consistent version of cuda and cudnn in local environment) from [NVIDIA TensorRT](https://developer.nvidia.com/nvidia-tensorrt-download) with an NVIDIA developer account.
+2. Download NVIDIA TensorRT(with consistent version of cuda and cudnn in local environment) from [NVIDIA TensorRT](https://developer.nvidia.com/tensorrt) with an NVIDIA developer account.
 3. Download [Paddle Inference sample](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.7.tar.gz) and uncompress, and enter `sample/paddle-TRT` directory.
 
     `paddle-TRT` directory structure is as following:

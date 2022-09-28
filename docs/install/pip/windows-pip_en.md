@@ -50,7 +50,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 10.1 with cuDNN v7.6.5**
+  * **CUDA toolkit 10.1 with cuDNN v7.6.5(TensorRT is not supported)**
 
   * **CUDA toolkit 10.2 with cuDNN v7.6.5(for PaddleTensorRT deployment, TensorRT7.0.0.11)**
 
@@ -64,7 +64,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
   * **GPU CUDA capability over 3.5**
 
-    You can refer to NVIDIA official documents for installation process and configuration method of CUDA, cuDNN and TensorRT. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/nvidia-tensorrt-download)
+    You can refer to NVIDIA official documents for installation process and configuration method of CUDA, cuDNN and TensorRT. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)
 
 
 ## Installation Step

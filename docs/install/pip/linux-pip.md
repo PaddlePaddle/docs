@@ -1,5 +1,7 @@
 # Linux 下的 PIP 安装
 
+The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持分布式训练（多机多卡）、TensorRT 推理功能；PyPI 下载详见 PyPI 官网（PyPI 官网设置链接：https://pypi.org/）。
+
 ## 一、环境准备
 
 ### 1.1 目前飞桨支持的环境
@@ -75,7 +77,7 @@
 
 * 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件并且安装[GPU 版 PaddlePaddle](#gpu)
 
-  * **CUDA 工具包 10.1 配合 cuDNN 7 (cuDNN 版本>=7.6.5, 如需多卡支持，需配合 NCCL2.7 及更高)**
+  * **CUDA 工具包 10.1 配合 cuDNN 7 (cuDNN 版本>=7.6.5, 如需多卡支持，需配合 NCCL2.7 及更高; 不支持使用 TensorRT)**
 
   * **CUDA 工具包 10.2 配合 cuDNN 7 (cuDNN 版本>=7.6.5, 如需多卡支持，需配合 NCCL2.7 及更高；如需使用 PaddleTensorRT 推理，需配合 TensorRT7.0.0.11)**
 
@@ -89,7 +91,7 @@
 
   * **GPU 运算能力超过 3.5 的硬件设备**
 
-    您可参考 NVIDIA 官方文档了解 CUDA、CUDNN 和 TensorRT 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/nvidia-tensorrt-download)
+    您可参考 NVIDIA 官方文档了解 CUDA、CUDNN 和 TensorRT 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)
 
 * 如果您需要使用多卡环境请确保您已经正确安装 nccl2，或者按照以下指令安装 nccl2（这里提供的是 CUDA10.2，cuDNN7 下 nccl2 的安装指令，更多版本的安装信息请参考 NVIDIA[官方网站](https://developer.nvidia.com/nccl)）:
 
@@ -163,9 +165,14 @@
 
 2.2.4 CUDA11.2 的 PaddlePaddle
 
-
+  cuDNN8.1.1:
   ```
   python -m pip install paddlepaddle-gpu==2.4.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  ```
+
+  如果你想使用 PaddleTensorRT 进行推理，cudnn8.2.1 与 TensorRT8.0.3.4 联编的安装包能够获得更优的推理性能，安装命令如下：
+  ```
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/cuda11.2-cudnn8.2-tensorrt8.html
   ```
 
 
@@ -235,8 +242,6 @@
   ```
   python -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
-
-* 如果你想在`cuda11.2`环境下，获得更好的`PaddleTensorRT`推理性能，需配合`cudnn8.2.1`，并安装联编`tensorrt8.0.3.4`的 Paddle 包，可以参考[下载安装 Linux 预测库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html)。
 
 
 

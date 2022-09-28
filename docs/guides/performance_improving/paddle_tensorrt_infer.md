@@ -60,7 +60,7 @@ config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
 ## <a name="Paddle-TRT 样例编译测试">Paddle-TRT 样例编译测试</a>
 
 1. 下载或编译带有 TensorRT 的 paddle 预测库，参考[安装与编译 C++预测库](../../inference_deployment/inference/build_and_install_lib_cn.html)。
-2. 从[NVIDIA 官网](https://developer.nvidia.com/nvidia-tensorrt-download)下载对应本地环境中 cuda 和 cudnn 版本的 TensorRT，需要登陆 NVIDIA 开发者账号。
+2. 从[NVIDIA 官网](https://developer.nvidia.com/tensorrt)下载对应本地环境中 cuda 和 cudnn 版本的 TensorRT，需要登陆 NVIDIA 开发者账号。
 3. 下载[预测样例](https://paddle-inference-dist.bj.bcebos.com/tensorrt_test/paddle_inference_sample_v1.7.tar.gz)并解压，进入`sample/paddle-TRT`目录下。
 
     `paddle-TRT` 文件夹目录结构如下：

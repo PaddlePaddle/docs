@@ -1,5 +1,7 @@
 # MacOS 下的 PIP 安装
 
+The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式。PyPI 下载详见 PyPI 官网（PyPI 官网设置链接：https://pypi.org/）。
+
 ## 一、环境准备
 
 ### 1.1 目前飞桨支持的环境
