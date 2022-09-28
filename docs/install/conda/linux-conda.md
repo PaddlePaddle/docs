@@ -1,6 +1,6 @@
 # Linux 下的 Conda 安装
 
-[Anaconda](https://www.anaconda.com/)是一个免费开源的 Python 和 R 语言的发行版本，用于计算科学，Anaconda 致力于简化包管理和部署。Anaconda 的包使用软件包管理系统 Conda 进行管理。Conda 是一个开源包管理系统和环境管理系统，可在 Windows、macOS 和 Linux 上运行。
+[Anaconda](https://www.anaconda.com/)是一个免费开源的 Python 和 R 语言的发行版本，用于计算科学，Anaconda 致力于简化包管理和部署。Anaconda 的包使用软件包管理系统 Conda 进行管理。Conda 是一个开源包管理系统和环境管理系统，可在 Windows、macOS 和 Linux 上运行。本文档为你介绍 Anaconda 安装方式，飞桨提供的 Anaconda 安装包支持分布式训练（多机多卡）、TensorRT 推理功能。
 
 
 ## 一、环境准备

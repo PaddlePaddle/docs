@@ -1,5 +1,7 @@
 # Windows 下的 PIP 安装
 
+The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持分布式训练（多机多卡）、TensorRT 推理功能；PyPI 下载详见 PyPI 官网（PyPI 官网设置链接：https://pypi.org/）。
+
 ## 一、环境准备
 
 ### 1.1 目前飞桨支持的环境
@@ -51,7 +53,7 @@
 
 * 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件并且安装 GPU 版 PaddlePaddle
 
-  * **CUDA 工具包 10.1 配合 cuDNN v7.6.5**
+  * **CUDA 工具包 10.1 配合 cuDNN v7.6.5(不支持使用 TensorRT)**
 
   * **CUDA 工具包 10.2 配合 cuDNN v7.6.5(如需使用 PaddleTensorRT 推理，需配合 TensorRT7.0.0.11)**
 
@@ -65,7 +67,7 @@
 
   * **GPU 运算能力超过 3.5 的硬件设备**
 
-  * 注：目前官方发布的 windows 安装包仅包含 CUDA 10.1/10.2/11.1/11.2/11.6/11.7，如需使用其他 cuda 版本，请通过源码自行编译。您可参考 NVIDIA 官方文档了解 CUDA、CUDNN 和 TensorRT 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/nvidia-tensorrt-download)
+  * 注：目前官方发布的 windows 安装包仅包含 CUDA 10.1/10.2/11.1/11.2/11.6/11.7，如需使用其他 cuda 版本，请通过源码自行编译。您可参考 NVIDIA 官方文档了解 CUDA、CUDNN 和 TensorRT 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)
 
 
 

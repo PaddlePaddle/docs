@@ -75,7 +75,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 10.1 with cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher)**
+  * **CUDA toolkit 10.1 with cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher; TensorRT is not supported)**
 
   * **CUDA toolkit 10.2 with cuDNN 7 (cuDNN version>=7.6.5, for multi card support, NCCL2.7 or higher；for PaddleTensorRT deployment, TensorRT7.0.0.11)**
 
@@ -89,7 +89,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
   * **Hardware devices with GPU computing power over 3.5**
 
-    You can refer to NVIDIA official documents for installation process and configuration method of CUDA, cuDNN and TensorRT. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/nvidia-tensorrt-download)
+    You can refer to NVIDIA official documents for installation process and configuration method of CUDA, cuDNN and TensorRT. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)
 
 * If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA10.2 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
 
