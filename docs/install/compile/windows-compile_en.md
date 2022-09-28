@@ -3,7 +3,7 @@
 ## Environment preparation
 
 * **Windows 7/8/10 Pro/Enterprise(64bit)**
-* **GPU Version support CUDA 10.1/10.2/11.1/11.2/11.6, and only support single GPU**
+* **GPU Version support CUDA 10.1/10.2/11.1/11.2/11.6/11.7, and only support single GPU**
 * **Python version 3.6+/3.7+/3.8+/3.9+/3.10+(64bit)**
 * **pip version 20.2.2 or above (64bit)**
 * **Visual Studio 2017**
@@ -17,6 +17,7 @@
     * **CUDA toolkit 11.1 with cuDNN v8.1.1**
     * **CUDA toolkit 11.2 with cuDNN v8.2.1**
     * **CUDA toolkit 11.6 with cuDNN v8.4.0**
+    * **CUDA toolkit 11.7 with cuDNN v8.4.1**
     * **GPU's computing capability exceeds 3.5**
 
 ## Installation steps
@@ -73,7 +74,7 @@ There is one compilation methods in Windows system:
 
     For example：
     ```
-    git checkout release/2.3
+    git checkout release/2.4
     ```
 
     Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1, python3.10 version started supporting from release/2.3

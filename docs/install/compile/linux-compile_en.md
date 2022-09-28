@@ -4,10 +4,10 @@
 
 * **Linux version (64 bit)**
     * **CentOS 6 (not recommended, no official support for compilation problems)**
-    * **CentOS 7 (GPU version supports CUDA 10.1/10.2/11.1/11.2/11.6**
+    * **CentOS 7 (GPU version supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7**
     * **Ubuntu 14.04 (not recommended, no official support for compilation problems)**
-    * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.1/11.2/11.6)**
-    * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.1/11.2/11.6)**
+    * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
+    * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.1/11.2/11.6/11.7)**
 * **Python version 3.6/3.7/3.8/3.9/3.10 (64 bit)**
 
 ## Choose CPU/GPU
@@ -20,6 +20,7 @@
     * **CUDA toolkit 11.1 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
     * **CUDA toolkit 11.2 with cuDNN v8.1.1(for multi card support, NCCL2.7 or higher)**
     * **CUDA toolkit 11.6 with cuDNN v8.4.0(for multi card support, NCCL2.7 or higher)**
+    * **CUDA toolkit 11.7 with cuDNN v8.4.1(for multi card support, NCCL2.7 or higher)**
     * **Hardware devices with GPU computing power over 3.5**
 
         You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
@@ -144,7 +145,7 @@ git checkout [name of the branch]
 For example：
 
 ```
-git checkout release/2.3
+git checkout release/2.4
 ```
 
 Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch
@@ -474,7 +475,7 @@ git checkout [name of target branch]
 For example:
 
 ```
-git checkout release/2.3
+git checkout release/2.4
 ```
 
 #### 10. And please create and enter a directory called build:
