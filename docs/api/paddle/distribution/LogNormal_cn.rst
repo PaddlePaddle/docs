@@ -74,7 +74,7 @@ sample(shape=(), seed=0)
 
 Tensor，预先设计好维度的样本数据。
 
-rsample(shape=(), seed=0)
+rsample(shape=())
 '''''''''
 
 重参数化采样，生成指定维度的样本。
@@ -82,7 +82,6 @@ rsample(shape=(), seed=0)
 **参数**
 
     - **shape** (Sequence[int], 可选) - 指定生成样本的维度。
-    - **seed** (int) - 长整型数。
 
 **返回**
 
