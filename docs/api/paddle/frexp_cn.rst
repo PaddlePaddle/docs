@@ -3,7 +3,7 @@
 frexp
 -------------------------------
 
-.. py:function:: paddle.frexp(x, name)
+.. py:function::  paddle.frexp(x, name)
 
 
 用于把一个浮点数分解为尾数和指数的函数, 返回一个尾数 Tensor 和一个指数 Tensor

@@ -3,7 +3,7 @@
 paddle
 ---------------------
 
-paddle 目录下包含 tensor、device、framework 相关 API 以及某些高层 API。具体如下：
+paddle  目录下包含 tensor、device、framework 相关 API 以及某些高层 API。具体如下：
 
 -  :ref:`tensor 数学操作 <tensor_math>`
 -  :ref:`tensor 逻辑操作 <tensor_logic>`
