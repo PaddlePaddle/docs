@@ -18,7 +18,7 @@ Before performing PaddlePaddle installation, please make sure that your Anaconda
 
 #### 1.1.1 Create the Anaconda Virtual Environment
 
-Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports the following four Python installation environments.
+Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports the following Python installation environments.
 
 
 If you want to use python version 3.6:
@@ -43,6 +43,12 @@ If you want to use python version 3.9:
 
 ```
 conda create -n paddle_env python=3.9
+```
+
+If you want to use python version 3.10:
+
+```
+conda create -n paddle_env python=3.10
 ```
 
 

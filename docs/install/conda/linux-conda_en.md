@@ -16,7 +16,7 @@ Before performing PaddlePaddle installation, please make sure that your Anaconda
 
 #### 1.1.1 Create the Anaconda Virtual Environment
 
-Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports the following four Python installation environments.
+Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports the following Python installation environments.
 
 
 If you want to use python version 3.6:
@@ -43,6 +43,12 @@ If you want to use python version 3.9:
 conda create -n paddle_env python=3.9
 ```
 
+If you want to use python version 3.10:
+
+```
+conda create -n paddle_env python=3.10
+```
+
 #### 1.1.2 Enter the Anaconda Virtual Environment
 
 ```
@@ -57,12 +63,12 @@ Confirm that your conda virtual environment and the Python loaction which is pre
 
 #### 1.2.1 Confirm the installation path of python
 
-Depending on your environment, you may need to replace python in all command lines in the instructions with specific Python path.
+Depending on your environment, you may need to replace python3 in all command lines in the instructions with specific Python path.
 
 The command to get the Python path is:
 
 ```
-which python
+which python3
 ```
 
 
@@ -73,7 +79,7 @@ which python
 Use the following command to confirm it's version is 3.6/3.7/3.8/3.9
 
 ```
-python --version
+python3 --version
 ```
 
 
@@ -84,7 +90,7 @@ Confirm that Python and pip are 64bit, and the processor architecture is x86_64 
 
 
 ```
-python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 ```
 
 
@@ -157,6 +163,6 @@ You can refer to NVIDIA official documents for installation process and configur
 
 ## Verify installation
 
-After the installation is complete, you can use `python` or `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
+After the installation is complete, you can use `python3` to enter the Python interpreter and then use `import paddle` and `paddle.utils.run_check()`
 
 If `PaddlePaddle is installed successfully!` appears, to verify that the installation was successful.
