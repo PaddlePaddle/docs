@@ -71,7 +71,7 @@ API 作为用户使用飞桨框架的接口，承接着实现用户模型开发�
 
 #### 2.2.1 代码示例一（组合其他 Python API ）
 
-如图 1 所示，[zeros](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L552) 函数是通过组合 [fill_constant](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layers/tensor.py#L719) 实现的，并且 fill_constant 里已经处理了动态图和静态图的情况，所以直接调用即可。这就是组合其他 Python API 实现的例子。
+如图 1 所示，zeros 函数是通过组合 fill_constant 实现的，并且 fill_constant 里已经处理了动态图和静态图的情况，所以直接调用即可。这就是组合其他 Python API 实现的例子。
 
 ```python
 def zeros(shape, dtype=None, name=None):
@@ -80,12 +80,19 @@ def zeros(shape, dtype=None, name=None):
         dtype = 'float32'
     return fill_constant(value=0.0, shape=shape, dtype=dtype, name=name)
 ```
+【代码仓库链接】
+
+- [zeros 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L612)
+- [fill_constant 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layers/tensor.py#L718)
 
 #### 2.2.2 代码示例二（调用 C++ 算子接口）
 
 如果 API 的实现中需要调用 C++ 算子，则需要分别实现动态图分支和静态图分支的代码（由于飞桨框架同时支持动态图和静态图两种训练模式，动态图和静态图在执行逻辑上有所差异，需要在 Python 端根据当前的运行模式选择进入到对应的执行分支去处理）。
 
-接下来以 [paddle.trace](../../api/paddle/trace_cn.html) API 的实现代码为例（示例代码路径：[python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py#L2784)），分别介绍动态图分支和静态图分支的开发要点：
+接下来以 [paddle.trace](../../api/paddle/trace_cn.html) API 的实现代码为例，分别介绍动态图分支和静态图分支的开发要点。
+
+【代码仓库链接】[trace 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py#L2910)
+
 
 ```python
 def trace(x, offset=0, axis1=0, axis2=1, name=None):
