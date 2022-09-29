@@ -203,9 +203,12 @@
    python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
-* 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的 Paddle 包，可以通过以下命令安装，仅支持 python3.8：
+* 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的 Paddle 包，判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
+  ```
+  cat /proc/cpuinfo | grep -i avx
+  ```
 
-  首先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
+  首先使用如下命令将 wheel 包下载到本地：
 
   * cpu、mkl 版本 noavx 机器安装：
 
@@ -231,19 +234,15 @@
   ```
   python3 -m pip download paddlepaddle-gpu==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
   ```
+  
+  再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）。
 
-  判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
-  ```
-  cat /proc/cpuinfo | grep -i avx
-  ```
 
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
   python3 -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
-
-
 
 
 ## **三、验证安装**
