@@ -5,7 +5,7 @@ multi_margin_loss
 
 .. py:function:: paddle.nn.functional.multi_margin_loss(input, label, p:int = 1, margin: float = 1.0, weight=None, reduction: str = 'mean', name:str=None)
 
-该 api 计算输入 `input` 和 `label` 间的多分类问题的 `hinge loss` 损失，。
+计算输入 `input` 和 `label` 间的多分类问题的 `hinge loss` 损失。
 
 
 损失函数如果在没有的权重下计算每一个 mini-batch 的 loss 按照下列公式计算
