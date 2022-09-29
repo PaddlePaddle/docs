@@ -10,7 +10,7 @@
 
 传统的压缩方式有低比特量化、知识蒸馏、稀疏化和模型结构搜索等。传统的模型压缩技术门槛比较高，其难度主要来源于三点：模型压缩算法依赖训练过程、调参难度大和依赖部署环境。
 
-相比于传统手工压缩，飞桨提供了模型自动化压缩工具（Auto Compression Toolkit，ACT），具备以下特征：
+为了解决以上问题，PaddleSlim推出一套模型自动化压缩工具（Auto Compression Toolkit，ACT），相比于传统手工压缩，ACT具备以下特征：
 
 - **『解耦训练代码』** ：开发者无需了解或修改模型源码，直接使用导出的预测模型进行压缩。
 - **『全流程自动优化』** ：开发者简单配置即可启动压缩，ACT 工具会自动优化得到最好预测模型。
@@ -75,11 +75,11 @@ ACT 相比传统的模型压缩方法，具备以下优势：
 | [目标检测](https://github.com/PaddlePaddle/PaddleSlim/blob/develop/example/auto_compression/detection) | PP-YOLOE-s               | 43.1                        | 42.6                        | 6.51                      | 2.12                      | **3.07**        | NVIDIA Tesla T4    |
 | [图像分类](https://github.com/PaddlePaddle/PaddleSlim/blob/develop/example/auto_compression/image_classification) | MobileNetV1 (TensorFlow) | 71.0                        | 70.22                       | 30.45                     | 15.86                     | **1.92**        | SDMM865（骁龙 865） |
 
-# 二、模型压缩操作指导
+## 二、模型压缩操作指导
 
 本节以 ImageNet 数据集、图像分类任务作为示例，详细描述使用 ACT 进行模型自动压缩的步骤。
 
-## 2.1 准备工作
+### 2.1 准备工作
 
 - 安装飞桨最新版本：（可以参考[飞桨官网安装文档](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/install/pip/linux-pip.html)下载安装）
 
