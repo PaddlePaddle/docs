@@ -36,5 +36,16 @@ LogMelSpectrogram
 
 代码示例
 :::::::::
+::
+    import paddle
+    from paddle.audio.features import LogMelSpectrogram
+    
+    sample_rate = 16000 
+    wav_duration = 0.5
+    num_channels = 1
+    num_frames = 
+    wav_data = paddle.linspace(-1.0, 1.0, num_frames) * 0.1
+    waveform = wav_data.tile([num_channels, 1])
 
-COPY-FROM: paddle.audio.features.LogMelSpectrogram
+    feature_extractor = LogMelSpectrogram(sr=sample_rate, n_fft=512, window = 'hann')
+    feats = feature_extractor(waveform)
