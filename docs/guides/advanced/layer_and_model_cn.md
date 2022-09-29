@@ -31,7 +31,7 @@ paddle.nn.Layer 是飞桨定义的一个非常重要的类，是飞桨所有神�
 
 
 > 说明：
-> 本教程基于“基于手写数字识别（MNIST）任务”作为样板代码进行说明，通过本节的学习，用户将进一步掌握使用 paddle.nn.Layer 改进模型、层与参数的方法。
+> 本教程基于[基于手写数字识别（MNIST）任务](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/beginner/quick_start_cn.html)作为样板代码进行说明，通过本节的学习，用户将进一步掌握使用 paddle.nn.Layer 改进模型、层与参数的方法。
 
 以下内容假定你已经完成了飞桨的安装以及熟悉了一些基本的飞桨操作。
 
