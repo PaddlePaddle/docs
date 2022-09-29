@@ -18,12 +18,12 @@
 
 ## <span id="apiDesignDoc">二、飞桨 API 设计文档提交说明</span>
 
-设计文档，通常也叫 RFC（Request for Comment）文档，可方便开发者与飞桨核心团队、其他社区开发者充分交流设计思路，以便进一步完善设计方案，并确保与飞桨设计理念一致。请参考如下步骤完成 API 设计文档的提交：
+设计文档，通常也叫 RFC（Request for Comment）文档，可方便飞桨社区开发者充分交流设计思路，以便进一步完善设计方案，并确保与飞桨设计理念一致。请参考如下步骤完成 API 设计文档的提交：
 
 1. 阅读 [API 设计和命名规范](api_design_guidelines_standard_cn.html)，确保新增 API 符合飞桨相关规范。
 2. 根据 [API 设计文档模版](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md)，填写必要的设计内容。另外可参考 [API 设计文档样例](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/20200301_api_design_for_quantile.md)。
 3. 将设计文档提交 Pull Request （PR）到 [community/rfcs/APIs/ ](https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs) 目录下。
-4. 等待文档接受评审和讨论，并根据各方意见修改文档。通常飞桨团队会在三个工作日内回复，如果 API 功能较复杂，还将发起评审会议，并提前在 PR 的评论区公布会议时间、会议地址、参与人、议题等内容，请及时关注 PR 中最新动态。
+4. 等待文档接受评审和讨论，并根据各方意见修改文档。通常飞桨开发者会在三个工作日内回复，如果 API 功能较复杂，还将发起评审会议，并提前在 PR 的评论区公布会议时间、会议地址、参与人、议题等内容，请及时关注 PR 中最新动态。
 
 当设计文档通过评审后，将会合入到  [community/rfcs/APIs/ ](https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs) 目录下。
 
