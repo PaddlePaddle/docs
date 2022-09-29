@@ -10,21 +10,21 @@ MultiMarginLoss
 损失函数如果在没有权重下计算每一个 mini-batch 的 loss 按照下列公式计算
 
 .. math::
-    \text{loss}(x, y) = \frac{\sum_i \max(0, \text{margin} - x[y] + x[i])^p}{\text{C}}
+    \text{loss}(input_i, label_i) = \frac{\sum_{j} \max(0, \text{margin} - input_i[label_i] + input_i[j])^p}{\text{C}}
 
 
-其中 x 为 `input`，y 为 'label'， C 为类别数量。
+其中 C 为类别数量。
 
 如果含有权重则损失函数按以下公式计算
 
 .. math::
-    \text{loss}(x, y) = \frac{\sum_i \max(0, w[y] * (\text{margin} - x[y] + x[i]))^p}{\text{C}}
+    \text{loss}(input_i, label_i) = \frac{\sum_{j} \max(0, weight[label_i] * (\text{margin} - input_i[label_i] + input_i[j]))^p}{\text{C}}
 
 
 参数
 :::::::::
+    - **p** (int，可选) - 手动指定幂次方指数大小，默认为 1。
     - **margin** (float，可选) - 手动指定间距，默认为 1。
-    - **p** (int，可选) - 手动指定范数，默认为 1。
     - **weight** (Tensor，可选) - 权重值，默认为 None。 如果给定权重则形状为 :math:`[C, ]`
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``、``'mean'``、``'sum'``。默认为 ``'mean'``，计算 Loss 的均值；设置为 ``'sum'`` 时，计算 Loss 的总和；设置为 ``'none'`` 时，则返回原始 Loss。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
