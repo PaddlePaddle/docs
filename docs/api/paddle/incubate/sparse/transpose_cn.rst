@@ -6,8 +6,12 @@ transpose
 .. py:function:: paddle.incubate.sparse.transpose(x, perm, name=None)
 
 
-根据 :attr:`perm` 对输入的多维 Tensor 进行数据重排。
-返回多维 Tensor 的第 i 维对应输入 Tensor 的 perm[i]维。
+根据 :attr:`perm` 对输入的 :attr:`x` 维度进行重排，但不改变数据，
+返回多维 Tensor 的第 i 维对应输入 Tensor 的 perm[i]维，
+:attr:`x` 必须是多维 SparseTensor 或 COO 格式的2维或3维 SparseTensor。
+
+.. math::
+    out = transpose(x, perm)
 
 参数
 :::::::::
@@ -17,7 +21,7 @@ transpose
 
 返回
 :::::::::
-多维稀疏 Tensor, 数据类型和压缩格式与 :attr:`x` 相同。
+转置后的稀疏张量, 数据类型和压缩格式与 :attr:`x` 相同。
 
 
 代码示例
