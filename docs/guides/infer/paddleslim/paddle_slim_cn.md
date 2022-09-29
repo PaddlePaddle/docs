@@ -1,10 +1,10 @@
-# 模型自动化压缩工具（ACT）
+# 模型自动化压缩工具 — ACT
 
 模型压缩技术，一般是指在基础模型结构的基础上，通过精简模型结构、减少模型参数量或者降低模型存储量化位数，从而减小计算量，降低所需存储资源，提升模型推理速度。
 
-# 一、**模型压缩简介**
+## 一、**模型压缩简介**
 
-## **1.1 模型压缩背景**
+### **1.1 模型压缩背景**
 
 端侧设备相关场景要求响应速度快、内存占用少和能耗低，模型压缩可以有效提升模型推理速度、减少模型所需存储空间和降低模型能耗。在超大模型落地应用场景中，模型压缩可以降本增效和低碳环保，从而提升产品竞争力。
 
@@ -18,7 +18,7 @@
 
 > **说明：**[PaddleSlim](https://github.com/PaddlePaddle/PaddleSlim)是一个专注于深度学习模型压缩的工具库，提供低比特量化、知识蒸馏、稀疏化和模型结构搜索等模型压缩策略，帮助开发者快速实现模型的小型化。支持飞桨、PyTorch 等模型的压缩。
 
-## 1.2 核心技术方案
+### 1.2 核心技术方案
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/infer/images/paddleslim1.png?raw=true" width="900" ></center>
 
@@ -42,7 +42,7 @@
 
 在选定组合压缩算法后，如何针对每个压缩算法自动调参，则是另一个难点。压缩算法的参数设定与部署环境密切相关，需要考虑芯片特性、推理库的优化程度等各种因素。在模型结构多样化和部署环境多样化的背景下，靠人工经验或简单的公式，无法准确评估压缩参数与推理速度的关系。该功能利用数据表结合深度学习模型的方式，对影响推理速度的因素进行建模，为组合算法的参数设置提供指导信息。
 
-## 1.3 **模型压缩效果展示**
+### 1.3 **模型压缩效果展示**
 
 ACT 相比传统的模型压缩方法，具备以下优势：
 
@@ -98,9 +98,9 @@ pip install paddleslim
 
 
 
-## 2.2 操作步骤
+### 2.2 操作步骤
 
-###  **2.2.1 下载数据集**
+####  **2.2.1 下载数据集**
 
 本案例默认以 ImageNet1k 数据进行自动压缩实验，如数据集为非 ImageNet1k 格式数据， 请参考[PaddleClas 数据准备文档](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.3/docs/zh_CN/data_preparation/classification_dataset.md)。将下载好的数据集放在当前目录下`./ILSVRC2012`。
 
@@ -110,7 +110,7 @@ wget https://sys-p0.bj.bcebos.com/slim_ci/ILSVRC2012_data_demo.tar.gz
 tar -xf ILSVRC2012_data_demo.tar.gz
 ```
 
-### 2.2.2 准备预测模型
+#### 2.2.2 准备预测模型
 
 预测模型的格式为：`model.pdmodel` 和 `model.pdiparams`两个，带`pdmodel`的是模型文件，带`pdiparams`后缀的是权重文件。
 
@@ -124,7 +124,7 @@ wget https://paddle-imagenet-models-name.bj.bcebos.com/dygraph/inference/MobileN
 tar -xf MobileNetV1_infer.tar
 ```
 
-### **2.2.3 导入依赖包及数据处理**
+#### **2.2.3 导入依赖包及数据处理**
 
 以下代码首先定义了读取数据的 DataLoader。
 
@@ -164,7 +164,7 @@ image = paddle.static.data(
 train_loader = paddle.io.DataLoader(train_dataset, feed_list=[image], batch_size=32, return_list=False)
 ```
 
-### 2.2.4  自动压缩并产出模型
+#### 2.2.4  自动压缩并产出模型
 
 `调用自动化压缩接口`AutoCompression 对模型进行量化训练和蒸馏，配置完成后便可开始自动压缩。
 
@@ -198,9 +198,9 @@ AutoCompression 接口参数说明：
 - `calibration_table.txt`：量化后校准表
 - `quant_model.onnx`：量化后转出的 ONNX 模型
 
-## 2.3 测试压缩后的模型
+### 2.3 测试压缩后的模型
 
-### 2.3.1 测试模型精度
+#### 2.3.1 测试模型精度
 
 测试压缩前模型的精度:
 
@@ -217,7 +217,7 @@ CUDA_VISIBLE_DEVICES=0 python ./image_classification/eval.py --model_dir='Mobile
 
 对比模型压缩前后 Eval Top1 精度指标发现，模型几乎精度无损。由于是使用的超参搜索的方法来选择的量化参数，所以每次运行得到的量化模型精度会有些许波动。
 
-### 2.3.2 测试模型速度
+#### 2.3.2 测试模型速度
 
 压缩后模型速度的测试依赖推理库的支持，所以确保安装的是带有 TensorRT 的飞桨框架。以下示例和展示的测试结果是基于 Tesla V100、CUDA 10.2、python3.7 得到的。
 
@@ -288,7 +288,7 @@ python ./image_classification/infer.py --model_dir=./MobileNetV1_quant/ --use_in
 
 > **提示：**如果要压缩的模型参数是存储在各自分离的文件中，需要先通过[convert.py](https://github.com/PaddlePaddle/PaddleSlim/blob/develop/example/auto_compression/convert.py)脚本将其保存成一个单独的二进制文件。
 
-## 2.4 后续处理
+### 2.4 后续处理
 
 ACT 可以自动处理常见的预测模型，如果有更特殊的改造需求，可以参考[ACT 超参配置教程](https://github.com/PaddlePaddle/PaddleSlim/blob/develop/example/auto_compression/hyperparameter_tutorial.md)来进行单独配置压缩策略。
 
