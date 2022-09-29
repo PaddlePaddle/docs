@@ -11,16 +11,14 @@ multi_margin_loss
 损失函数如果在没有的权重下计算每一个 mini-batch 的 loss 按照下列公式计算
 
 .. math::
-    \text{loss}(x, y) = \frac{\sum_i \max(0, \text{margin} - x[y] + x[i])^p}{\text{C}}
+    \text{loss}(input_i, label_i) = \frac{\sum_{j} \max(0, \text{margin} - input_i[label_i] + input_i[j])^p}{\text{C}}
 
-其中 x 为 `input`，y 为 'label'， C 为类别数量。
+其中 C 为类别数量。
 
-如果含有权重则损失函数按以下公式计算
+如果含有权重 `weight` 则损失函数按以下公式计算
 
 .. math::
-    \text{loss}(x, y) = \frac{\sum_i \max(0, w[y] * (\text{margin} - x[y] + x[i]))^p}{\text{C}}
-
-其中 w 为权重 `weight`。
+    \text{loss}(input_i, label_i) = \frac{\sum_{j} \max(0, weight[label_i] * (\text{margin} - input_i[label_i] + input_i[j]))^p}{\text{C}}
 
 参数
 :::::::::
