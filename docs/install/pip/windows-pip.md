@@ -55,15 +55,15 @@
 
   * **CUDA 工具包 10.1 配合 cuDNN v7.6.5(不支持使用 TensorRT)**
 
-  * **CUDA 工具包 10.2 配合 cuDNN v7.6.5(如需使用 PaddleTensorRT 推理，需配合 TensorRT7.0.0.11)**
+  * **CUDA 工具包 10.2 配合 cuDNN v7.6.5，如需使用 PaddleTensorRT 推理，需配合 TensorRT7.0.0.11**
 
-  * **CUDA 工具包 11.1 配合 cuDNN v8.1.1(如需使用 PaddleTensorRT 推理，需配合 TensorRT8.0.3.4)**
+  * **CUDA 工具包 11.1 配合 cuDNN v8.1.1，如需使用 PaddleTensorRT 推理，需配合 TensorRT8.0.3.4**
 
-  * **CUDA 工具包 11.2 配合 cuDNN v8.2.1(如需使用 PaddleTensorRT 推理，需配合 TensorRT8.2.4.2)**
+  * **CUDA 工具包 11.2 配合 cuDNN v8.2.1，如需使用 PaddleTensorRT 推理，需配合 TensorRT8.2.4.2**
 
-  * **CUDA 工具包 11.6 配合 cuDNN v8.4.0(如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.0.6)**
+  * **CUDA 工具包 11.6 配合 cuDNN v8.4.0，如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.0.6**
 
-  * **CUDA 工具包 11.7 配合 cuDNN v8.4.1(如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.2.4)**
+  * **CUDA 工具包 11.7 配合 cuDNN v8.4.1，如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.2.4**
 
   * **GPU 运算能力超过 3.5 的硬件设备**
 
@@ -136,10 +136,10 @@
 
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
-* 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的 Paddle 包，可以通过以下命令安装，仅支持 python3.8：
+* 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的 Paddle 包。判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。 
 
-  首先使用如下命令将 wheel 包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
-
+  首先使用如下命令将 wheel 包下载到本地，仅支持python3.8
+  
   * cpu、mkl 版本 noavx 机器安装：
 
   ```
@@ -163,8 +163,8 @@
   ```
   python -m pip download paddlepaddle-gpu==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
-
-  判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。
+  
+  再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）
 
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
