@@ -66,11 +66,11 @@ activate paddle_env
 输出 Python 路径的命令为:
 
 ```
-where python3
+where python
 ```
 
 
-根据您的环境，您可能需要将说明中所有命令行中的 python3 替换为具体的 Python 路径
+根据您的环境，您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
 
 
 
@@ -79,7 +79,7 @@ where python3
 使用以下命令确认版本(应对应 3.6/3.7/3.8/3.9)
 
 ```
-python3 --version
+python --version
 ```
 
 
@@ -90,7 +90,7 @@ python3 --version
 
 
 ```
-python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
 ```
 
 
@@ -161,7 +161,7 @@ conda install paddlepaddle==2.4.0rc0 --channel https://mirrors.tuna.tsinghua.edu
 
 ## **三、验证安装**
 
-安装完成后您可以使用 `python3` 进入 python 解释器，输入`import paddle` ，再输入
+安装完成后您可以使用 `python` 或 `python3` 进入 python 解释器，输入`import paddle` ，再输入
  `paddle.utils.run_check()`
 
 如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。

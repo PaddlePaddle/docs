@@ -1,6 +1,6 @@
 # Windows 下的 PIP 安装
 
-The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持分布式训练（多机多卡）、TensorRT 推理功能；PyPI 下载详见 PyPI 官网（PyPI 官网设置链接：https://pypi.org/）。
+[The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持分布式训练（多机多卡）、TensorRT 推理功能。
 
 ## 一、环境准备
 
@@ -18,24 +18,24 @@ The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍
   * 使用以下命令确认是 3.6/3.7/3.8/3.9/3.10
 
     ```
-    python3 --version
+    python --version
     ```
 
 * 需要确认 pip 的版本是否满足要求，要求 pip 版本为 20.2.2 或更高版本
 
     ```
-    python3 -m ensurepip
+    python -m ensurepip
     ```
 
     ```
-    python3 -m pip --version
+    python -m pip --version
     ```
 
 
 * 需要确认 Python 和 pip 是 64bit，并且处理器架构是 x86_64（或称作 x64、Intel 64、AMD64）架构。下面的第一行输出的是"64bit"，第二行输出的是"x86_64"、"x64"或"AMD64"即可：
 
     ```
-    python3 -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
+    python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
     ```
 
 
@@ -44,6 +44,8 @@ The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍
 
 
 ## 二、开始安装
+
+本文档为您介绍 pip 安装方式
 
 ### 首先请您选择您的版本
 
@@ -78,7 +80,7 @@ The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍
 
 
   ```
-  python3 -m pip install paddlepaddle==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python -m pip install paddlepaddle==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 #### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
@@ -89,7 +91,7 @@ The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
@@ -97,34 +99,34 @@ The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python -m pip install paddlepaddle-gpu==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
 2.2.3 CUDA11.1 的 PaddlePaddle
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post111 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post111 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
 2.2.4 CUDA11.2 的 PaddlePaddle
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
 2.2.5 CUDA11.6 的 PaddlePaddle
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 2.2.6 CUDA11.7 的 PaddlePaddle
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  python -m pip install paddlepaddle-gpu==2.4.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
@@ -132,42 +134,42 @@ The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍
 
 * 如果你使用的是安培架构的 GPU，推荐使用 CUDA11 以上。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。
 
-* 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python3 替换为具体的 Python 路径。
+* 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
 * 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的 Paddle 包，可以通过以下命令安装，仅支持 python3.8：
 
-  首先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
+  首先使用如下命令将 wheel 包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   * cpu、mkl 版本 noavx 机器安装：
 
   ```
-  python3 -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * cpu、openblas 版本 noavx 机器安装：
 
   ```
-  python3 -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/noavx/stable.html --no-index --no-deps
   ```
 
   * gpu 版本 cuda10.1 noavx 机器安装：
 
   ```
-  python3 -m pip download paddlepaddle-gpu==2.4.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle-gpu==2.4.0rc0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * gpu 版本 cuda10.2 noavx 机器安装：
 
   ```
-  python3 -m pip download paddlepaddle-gpu==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle-gpu==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。
 
-* 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
+* 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
-  python3 -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
+  python -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
   ```
 
 
@@ -183,6 +185,6 @@ The Python Package Index(PyPI)是 Python 的包管理器。本文档为你介绍
 
 请使用以下命令卸载 PaddlePaddle：
 
-* **CPU 版本的 PaddlePaddle**: `python3 -m pip uninstall paddlepaddle`
+* **CPU 版本的 PaddlePaddle**: `python -m pip uninstall paddlepaddle`
 
-* **GPU 版本的 PaddlePaddle**: `python3 -m pip uninstall paddlepaddle-gpu`
+* **GPU 版本的 PaddlePaddle**: `python -m pip uninstall paddlepaddle-gpu`
