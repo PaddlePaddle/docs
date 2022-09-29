@@ -195,7 +195,7 @@
 
 * 如果你使用的是安培架构的 GPU，推荐使用 CUDA11 以上。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。
 
-* 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python3 替换为具体的 Python 路径。
+* 飞桨对于主流各python 版本均提供了对应的安装包，而您环境中可能有多个 Python，请确认你想使用的python 版本并下载对应的paddlepaddle 安装包。例如您想使用python3.7 的环境，则安装命令为python3.7 -m pip install paddlepaddle。
 
 * 如果您需要使用清华源，可以通过以下命令
 
