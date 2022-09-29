@@ -14,7 +14,7 @@ LogNormal
     Y = exp(X) \sim LogNormal(\mu, \sigma)
 
 
-:math:`Normal(\mu, \sigma)` 是 :math:`LogNormal(\mu, \sigma)` 的基础分布
+由于对数正态分布是基于正态分布的变换得到的分布，一般称 :math:`Normal(\mu, \sigma)` 是 :math:`LogNormal(\mu, \sigma)` 的基础分布。
 
 数学公式：
 
