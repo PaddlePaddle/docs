@@ -22,7 +22,7 @@
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/infer/images/paddleslim1.png?raw=true" width="900" ></center>
 
-<br><center>图 传统手工压缩与自动化压缩 ACT 对比</center>
+<center>图 1 传统手工压缩与自动化压缩 ACT 对比</center>
 
 总结来说，相比传统手工压缩，ACT 的“自动”主要体现在 4 个方面：
 
@@ -51,6 +51,7 @@ ACT 相比传统的模型压缩方法，具备以下优势：
 - 自动化压缩后的推理性能收益与手工压缩持平，相比压缩前，推理速度可以提升 1.4~7.1 倍。
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/infer/images/paddleslim2.png?raw=true" width="900" ></center>
+<center>图 2 模型压缩效果对比</center>
 
 **模型压缩效果 Benchmark**
 
