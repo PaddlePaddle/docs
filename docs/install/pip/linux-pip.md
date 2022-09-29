@@ -73,19 +73,21 @@
 
 * 如果您的计算机没有 NVIDIA® GPU，请安装[CPU 版的 PaddlePaddle](#cpu)
 
-* 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件并且安装[GPU 版 PaddlePaddle](#gpu)
+* 如果您的计算机有 NVIDIA® GPU，请确保满足以下条件并且安装[GPU 版 PaddlePaddle](#gpu)，依赖库环境版本要求如下：
 
-  * **CUDA 工具包 10.1 配合 cuDNN 7 (cuDNN 版本>=7.6.5, 如需多卡支持，需配合 NCCL2.7 及更高; 不支持使用 TensorRT)**
+  * **CUDA 工具包 10.1 配合 cuDNN 7 (cuDNN 版本>=7.6.5）, 不支持使用 TensorRT**
 
-  * **CUDA 工具包 10.2 配合 cuDNN 7 (cuDNN 版本>=7.6.5, 如需多卡支持，需配合 NCCL2.7 及更高；如需使用 PaddleTensorRT 推理，需配合 TensorRT7.0.0.11)**
+  * **CUDA 工具包 10.2 配合 cuDNN 7 (cuDNN 版本>=7.6.5）, 如需使用 PaddleTensorRT 推理，需配合 TensorRT7.0.0.11**
 
-  * **CUDA 工具包 11.1 配合 cuDNN v8.1.1(如需多卡支持，需配合 NCCL2.7 及更高；如需使用 PaddleTensorRT 推理，需配合 TensorRT7.2.3.4)**
+  * **CUDA 工具包 11.1 配合 cuDNN v8.1.1, 如需使用 PaddleTensorRT 推理，需配合 TensorRT7.2.3.4**
 
-  * **CUDA 工具包 11.2 配合 cuDNN v8.1.1(如需多卡支持，需配合 NCCL2.7 及更高；如需使用 PaddleTensorRT 推理，需配合 TensorRT8.0.3.4)**
+  * **CUDA 工具包 11.2 配合 cuDNN v8.1.1, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.0.3.4**
 
-  * **CUDA 工具包 11.6 配合 cuDNN v8.4.0(如需多卡支持，需配合 NCCL2.7 及更高；如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.0.6)**
+  * **CUDA 工具包 11.6 配合 cuDNN v8.4.0, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.0.6**
 
-  * **CUDA 工具包 11.7 配合 cuDNN v8.4.1(如需多卡支持，需配合 NCCL2.7 及更高；如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.2.4)**
+  * **CUDA 工具包 11.7 配合 cuDNN v8.4.1, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.4.2.4**
+
+  * **如需使用分布式多卡环境，需配合 NCCL>=2.7 **
 
   * **GPU 运算能力超过 3.5 的硬件设备**
 
