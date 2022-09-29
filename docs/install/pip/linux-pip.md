@@ -165,7 +165,7 @@
 
 2.2.4 CUDA11.2 的 PaddlePaddle
 
-  cuDNN8.1.1:
+  如果您只进行训练，可使用cuDNN8.1.1 版本的飞桨:
   ```
   python3 -m pip install paddlepaddle-gpu==2.4.0rc0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
