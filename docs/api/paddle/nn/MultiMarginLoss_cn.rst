@@ -15,7 +15,7 @@ MultiMarginLoss
 
 其中 C 为类别数量。
 
-如果含有权重则损失函数按以下公式计算
+如果含有权重 `weight` 则损失函数按以下公式计算
 
 .. math::
     \text{loss}(input_i, label_i) = \frac{\sum_{j} \max(0, weight[label_i] * (\text{margin} - input_i[label_i] + input_i[j]))^p}{\text{C}}
