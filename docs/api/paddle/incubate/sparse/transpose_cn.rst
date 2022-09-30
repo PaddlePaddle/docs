@@ -12,6 +12,7 @@ transpose
 .. math::
     out = transpose(x, perm)
 
+
 参数
 :::::::::
     - **x** (Tensor) - 输入的 Tensor，数据类型为 float32、float64、int32 或 int64。
