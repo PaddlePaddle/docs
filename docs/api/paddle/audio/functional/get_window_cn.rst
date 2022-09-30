@@ -1,0 +1,36 @@
+.. _cn_api_audio_functional_get_window:
+
+get_window
+-------------------------------
+
+.. py:function:: paddle.audio.functional.get_window(window, win_length, fftbins=True, dtype='float64')
+
+根据参数给出对应长度和类型的窗函数。
+
+参数
+::::::::::::
+
+    - **window** (str 或者 Tuple[str, float]) - 窗函数类型,或者(窗参数类型, 窗函数参数), 支持的窗函数类型'hamming', 'hann', 'kaiser', 'gaussian', 'exponential', 'triang', 'bohman', 'blackman', 'cosine', 'tukey', 'taylor'。
+    - **win_length** (int) - 采样点数。
+    - **fftbins** (bool) -  如果是True,给出一个周期性的窗, 如果是False给出一个对称性的窗,默认是True。
+    - **dtype** (str) - 默认'float64'。
+
+返回
+:::::::::
+
+``paddle.Tensor``,对应窗表征的Tensor 。
+
+代码示例
+:::::::::
+
+::
+
+    import paddle
+
+    n_fft = 512
+
+    cosine_window = paddle.audio.functional.get_window('cosine', n_fft)
+
+    std = 7
+
+    gussian_window = paddle.audio.functional.get_window(('gussain',std), n_fft)
