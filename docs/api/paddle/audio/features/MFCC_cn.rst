@@ -36,7 +36,6 @@ MFCC
 
 代码示例
 :::::::::
-::
     import paddle
     from paddle.audio.features import MFCC
     
