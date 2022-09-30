@@ -24,6 +24,7 @@
 
 <center>图 1 传统手工压缩与自动化压缩 ACT 对比</center>
 
+<br/> 
 总结来说，相比传统手工压缩，ACT 的“自动”主要体现在 4 个方面：
 
 - **解耦训练代码**
@@ -52,6 +53,7 @@ ACT 相比传统的模型压缩方法，具备以下优势：
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/infer/images/paddleslim2.png?raw=true" width="900" ></center>
 <center>图 2 模型压缩效果对比</center>
+<br/> 
 
 **模型压缩效果 Benchmark**
 
