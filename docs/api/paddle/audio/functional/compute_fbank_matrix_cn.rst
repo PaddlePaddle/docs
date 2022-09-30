@@ -27,4 +27,12 @@ compute_fbank_matrix
 代码示例
 :::::::::
 
-COPY-FROM: paddle.audio.functional.compute_fbank_matrix
+::
+
+    import paddle
+    
+    n_mfcc = 23
+
+    n_mels = 51 
+
+    paddle_dct = paddle.audio.functional.create_dct(n_mfcc, n_mels)

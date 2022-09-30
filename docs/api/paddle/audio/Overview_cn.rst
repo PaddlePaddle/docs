@@ -17,8 +17,8 @@ paddle.audio 目录是飞桨在语音领域的高层 API。具体如下：
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`LogMelSpectrogram <cn_api_paddle_audio_features_LogMelSpectrogram>` ", "计算语音特征LogMelSpectrogram" 
-    " :ref:`MelSpectrogram <cn_api_paddle_audio_features_MelSpectrogram>` ", "计算语音特征MelSpectrogram"
+    " :ref:`LogMelSpectrogram <cn_api_audio_features_LogMelSpectrogram>` ", "计算语音特征LogMelSpectrogram" 
+    " :ref:`MelSpectrogram <cn_api_audio_features_MelSpectrogram>` ", "计算语音特征MelSpectrogram"
     " :ref:`MFCC <cn_api_audio_features_MFCC>` ", "计算语音特征MFCC"
     " :ref:`Spectrogram <cn_api_audio_features_Spectrogram>` ", "计算语音特征Spectrogram"
 

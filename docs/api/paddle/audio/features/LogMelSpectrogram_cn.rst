@@ -48,7 +48,7 @@ LogMelSpectrogram
 
    num_channels = 1
 
-   num_frames = 
+   num_frames = wav_duration * sample_rate
 
    wav_data = paddle.linspace(-1.0, 1.0, num_frames) * 0.1
 
