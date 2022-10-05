@@ -8,7 +8,7 @@ SmoothL1Loss
 计算输入 :attr:`input` 和标签 :attr:`label` 间的 SmoothL1 损失，如果逐个元素的绝对误差低于 1，则创建使用平方项的条件，否则为 L1 损失。在某些情况下，它可以防止爆炸梯度，也称为 Huber 损失，该损失函数的数学计算公式如下：
 
 .. math::
-    loss(x,y) = \frac{1}{n}\sum_{i}z_i
+    loss(x, y) = \frac{1}{n}\sum_{i}z_i
 
 :math:`z_i` 的计算公式如下：
 
