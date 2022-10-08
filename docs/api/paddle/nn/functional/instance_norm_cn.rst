@@ -3,7 +3,7 @@
 instance_norm
 -------------------------------
 
-.. py:class:: paddle.nn.functional.instance_norm(x, running_mean=None, running_var=None, weight=None, bias=None, training=False, epsilon=1e-05, momentum=0.9, use_input_stats=True, data_format='NCHW', name=None):
+.. py:class:: paddle.nn.functional.instance_norm(x, running_mean=None, running_var=None, weight=None, bias=None, eps=1e-05, momentum=0.9, use_input_stats=True, data_format='NCHW', name=None):
 
 推荐使用 nn.InstanceNorm1D，nn.InstanceNorm2D，nn.InstanceNorm3D，由内部调用此方法。
 
@@ -17,7 +17,7 @@ instance_norm
     - **running_var** (Tensor，可选) - 方差的 Tensor。
     - **weight** (Tensor，可选) - 权重的 Tensor。
     - **bias** (Tensor，可选) - 偏置的 Tensor。
-    - **epsilon** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
+    - **eps** (float，可选) - 为了数值稳定加在分母上的值。默认值：1e-05。
     - **momentum** (float，可选) - 此值用于计算 ``moving_mean`` 和 ``moving_var``。默认值：0.9。更新公式如上所示。
     - **use_input_stats** (bool，可选) - 默认是 True。
     - **data_format** (string，可选) - 指定输入数据格式，数据格式可以为“NC", "NCL", "NCHW" 或者"NCDHW"。默认值："NCHW"。
