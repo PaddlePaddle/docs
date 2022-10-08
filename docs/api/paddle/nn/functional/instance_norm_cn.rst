@@ -3,7 +3,7 @@
 instance_norm
 -------------------------------
 
-.. py:class:: paddle.nn.functional.instance_norm(x, running_mean=None, running_var=None, weight=None, bias=None, eps=1e-05, momentum=0.9, use_input_stats=True, data_format='NCHW', name=None):
+.. py:class:: paddle.nn.functional.instance_norm(x, running_mean=None, running_var=None, weight=None, bias=None, use_input_stats=True, momentum=0.9, eps=1e-05, data_format='NCHW', name=None):
 
 推荐使用 nn.InstanceNorm1D，nn.InstanceNorm2D，nn.InstanceNorm3D，由内部调用此方法。
 
