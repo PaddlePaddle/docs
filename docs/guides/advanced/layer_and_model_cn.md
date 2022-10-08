@@ -6,7 +6,7 @@
 
 在具体操作之前，让我们先了解与之相关的基本概念。
 
-# 一、概念介绍
+## 一、概念介绍
 
 **1. 模型**
 
@@ -35,9 +35,9 @@ paddle.nn.Layer 是飞桨定义的一个非常重要的类，是飞桨所有神�
 
 以下内容假定你已经完成了飞桨的安装以及熟悉了一些基本的飞桨操作。
 
-# 二、数据处理
+## 二、数据处理
 
-## 2.1 加载 Mnist 数据集
+### 2.1 加载 Mnist 数据集
 
 相信根据前面的内容，你已经知道如何使用 paddle.Dataset 和 paddle.DataLoader 处理想要的数据了，如果你还有问题可以参考[数据读取](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/beginner/data_load_cn.html)文档，这里采用前面讲到的方法使用 Mnist 数据集。
 
@@ -55,7 +55,7 @@ train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=transform)
 
 
 
-## 2.2 对数据集进行预处理
+### 2.2 对数据集进行预处理
 
 为演示方便先从这个训练集中取出一条数据，简单测试下后面搭建的网络，同时为了方便训练对该数据进行形状的变换。
 
@@ -69,11 +69,11 @@ print("x_data's shape is:", x_data.shape)
 x_data's shape is: [1, 784]
 ```
 
-# 三、搭建一个完整的深度学习网络
+## 三、搭建一个完整的深度学习网络
 
 接下来仅利用飞桨最基本的 Tensor 功能快速完成一个深度学习网络的搭建。
 
-## 3.1 参数初始化
+### 3.1 参数初始化
 
 首先， 需要通过 paddle.randn 函数或者 paddle.zeros 函数来创建随机数填充或者全零填充的一个参数（Weight）（模型训练中会被更新的部分），和一个偏置项（Bias）。
 
@@ -88,7 +88,7 @@ bias.stop_gradient=False
 
 参数初始化完成后，就可以开始准备神经网络了。
 
-## 3.2 准备网络结构
+### 3.2 准备网络结构
 
 网络结构是深度学习模型关键要素之一，相当于模型的假设空间，即实现模型从输入到输出的映射过程（前向计算）。
 
@@ -102,7 +102,7 @@ def model(x):
     return log_softmax(paddle.matmul(x, weights) + bias)
 ```
 
-## 3.3 前向计算
+### 3.3 前向计算
 
 通常训练都是针对一个 batch 进行的，可以从之前的数据中按照 batch_size=64 取出一部分进行一轮的前向执行。由于本轮利用随机初始化的参数进行前向计算，那么计算的结果也就和一个随机的网络差不多。
 
@@ -129,7 +129,7 @@ y[0]: Tensor(shape=[10], dtype=float32, place=Place(gpu:0), stop_gradient=False,
 y.shape: [64, 10]
 ```
 
-## 3.4 反向传播
+### 3.4 反向传播
 
 这里我们会发现，y 的信息中包含一项 StopGradient=False。这意味着我们可以通过 y 来进行 BP（反向传播），同时可以定义自己的损失函数。以一个简单的 nll_loss 来演示，写法上如同写一段简单的 Python 代码。
 
@@ -146,7 +146,7 @@ loss:  Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=False,
        [2.85819387])
 ```
 
-## 3.5 计算 ACC 观察模型收敛情况
+### 3.5 计算 ACC 观察模型收敛情况
 
 同样，也可以实现一个简单的计算 accuracy 的方法来验证模型收敛情况。
 
@@ -161,7 +161,7 @@ accuracy: Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=Tru
        [0.09375000])
 ```
 
-## 3.6 使用自动微分功能计算网络的梯度并更新参数
+### 3.6 使用自动微分功能计算网络的梯度并更新参数
 
 接下来我们将利用飞桨的自动微分功能计算网络的梯度，并且利用该梯度和参数完成一轮参数更新（需要注意的是，在更新参数的阶段我们并不希望进行微分的逻辑，只需要使用 paddle.no_grad 禁用相关功能即可）。
 
@@ -218,11 +218,11 @@ bias after optimize:  Tensor(shape=[10], dtype=float32, place=Place(cpu), stop_g
 
 
 
-# 四、使用 paddle.nn.Layer 构建深度学习网络
+## 四、使用 paddle.nn.Layer 构建深度学习网络
 
 paddle.nn.Layer 是飞桨定义的一个类，它代表所有可以用层表示的网络结构。对本文前面这个例子来说，我们需要构建线性网络的参数 weight，bias，以及矩阵乘法，加法，log_softmax 也可以看成是一个层。换句话说 ，我们可以把任意的网络结构看成是一个层，层是网络结构的一个封装。
 
-## 4.1 使用 Layer 改造线性层
+### 4.1 使用 Layer 改造线性层
 
 首先，可以定义自己的线性层：
 
@@ -241,7 +241,7 @@ class MyLayer(paddle.nn.Layer):
 
 那么通过继承 paddle.nn.Layer 构建层有什么好处呢？
 
-### 4.1.1 子类调用父类的构造函数
+#### 4.1.1 子类调用父类的构造函数
 
 首先，我们会发现，在这个继承的子类当中需要去调用一下父类的构造函数：
 
@@ -250,7 +250,7 @@ class MyLayer(paddle.nn.Layer):
         super(MyLayer, self).__init__()
 ```
 
-### 4.1.2 完成一系列的初始化
+#### 4.1.2 完成一系列的初始化
 
 这个时候飞桨会完成一系列初始化操作，其目的是为了记录所有定义在该层的状态，包括参数，call_back, 子层等信息。
 
@@ -261,7 +261,7 @@ class MyLayer(paddle.nn.Layer):
         self.bias = self.create_parameter([10], is_bias=True, default_initializer=paddle.nn.initializer.Constant(value=0.0))
 ```
 
-## 4.2 访问并自动记录参数的更新过程
+### 4.2 访问并自动记录参数的更新过程
 
 这里我们调用的 create_parameter 函数就来自于 paddle.nn.Layer 类，这个函数帮助我们简单的创建并初始化参数。最简单的我们仅仅传入希望的参数形状即可（如 weight），这时候 create_parameter 会通过默认的方式初始化参数（默认是参数而不是 bias，使用 UniformRandom 来初始化参数，详情可以参考 create_parameter）；或者可以通过诸多参数来定义你自己希望的初始化参数的方式（如 bias），可以限定其初始化方式是全零的常数项（更多初始化方式可以参考 paddle.nn.initializer）。
 
@@ -291,11 +291,11 @@ Tensor(shape=[10], dtype=float32, place=Place(gpu:0), stop_gradient=False,
        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
 ```
 
-## 4.3 执行已定义的层
+### 4.3 执行已定义的层
 
 下面可以看看如何使用我们定义好的层。
 
-### 4.3.1 进入训练阶段并执行
+#### 4.3.1 进入训练阶段并执行
 
 首先, 我们通过构造函数构造了一个层，并且设置其执行模式为 train（训练）模式（通常你并不需要显式调用，因为默认是训练模式，这里仅仅为了演示），这样做是因为如 Dropout，BatchNorm 等计算，在训练和评估阶段的行为往往有区别，因此飞桨提供了方便的接口对整层设置该属性，如果层包含相关操作，可以通过这个设置改变他们在不同阶段的行为。
 
@@ -315,7 +315,7 @@ y[0] Tensor(shape=[10], dtype=float32, place=Place(gpu:0), stop_gradient=False,
         -5.03897095, -1.63698268, -0.70400816, -6.44660282, -2.51351619])
 ```
 
-### 4.3.2 计算 loss
+#### 4.3.2 计算 loss
 
 同样调用 paddle.nn.functional.nll_loss 来计算 nll_loss。
 
@@ -326,7 +326,7 @@ loss = loss_func(y, y_standard)
 print("loss: ", loss)
 ```
 
-### 4.3.3 构建 SGD 优化器、参数传递及计算
+#### 4.3.3 构建 SGD 优化器、参数传递及计算
 
 与此同时，可以利用飞桨提供的 API 完成之前的操作。
 
@@ -347,7 +347,7 @@ loss:  Tensor(shape=[1], dtype=float32, place=Place(gpu:0), stop_gradient=False,
 
 这样，我们就利用 paddle.nn.Layer 完成了网络的改造。可以发现，paddle.nn.Layer 对大部分的网络场景提供了简单的网络状态控制和网络信息处理的方法。
 
-## 4.4 使用 paddle.nn.Linear 改造预定义的层
+### 4.4 使用 paddle.nn.Linear 改造预定义的层
 
 此外，飞桨基于 paddle.nn.Layer 构建了一系列层，这些层都可以通过简单的方式被复用在我们自定义网络中，上述例子中的 MyLayer 可以用飞桨定义的 paddle.nn.Linear 来改造。
 
@@ -365,7 +365,7 @@ class MyLayer(paddle.nn.Layer):
 
 可以看到，利用线性层替换了之前的矩阵乘法和加法（而这也正是线性层的定义）。只需要定义好自己的隐层大小，以及参数的初始化方式，就可以利用 paddle.nn.Linear 建立我们的线性层，此方式可节省自定义参数和运算的成本。
 
-## 4.5 总结
+### 4.5 总结
 
 至此，我们完成了如何用飞桨层的概念和 paddle.nn.Layer 来完成一个简单的训练任务。可点击此[链接](https://aistudio.baidu.com/aistudio/projectdetail/4508657?contributionType=1)获取完整代码。
 
@@ -373,11 +373,11 @@ paddle.nn.Layer 的功能远不止于此，利用 paddle.nn.Layer 还可以进�
 
 
 
-# 五、利用 paddle.nn.Layer 进行子层的访问
+## 五、利用 paddle.nn.Layer 进行子层的访问
 
 本节继续基于前面的手写数字识别任务，介绍如何使用 paddle.nn.layer 进行子层的访问。
 
-## 5.1 查看模型的所有层
+### 5.1 查看模型的所有层
 
 如果想要访问或修改一个模型中定义的层，则可以调用**SubLayer**相关的接口。
 
@@ -400,7 +400,7 @@ for item in mylayer.named_sublayers():
 
 而遍历 mylayer`.named_sublayers()` 时，每一轮循环会拿到一组 ( 子层名称('flatten')，子层对象(paddle.nn.Flatten) )的元组。
 
-## 5.2 向模型添加一个子层
+### 5.2 向模型添加一个子层
 
 接下来如果想要进一步添加一个子层，则可以调用 `add_sublayer()` 接口。例如可以通过这个接口在前面做好的线性网络中再加入一个子层。
 
@@ -414,7 +414,7 @@ print(my_layer.sublayers())
 
 可以看到 my_layer.add_sublayer() 向模型中添加了一个 10*3 的 paddle.nn.Linear 子层，这样模型中总共有两个 paddle.nn.Linear 的子层。
 
-## 5.3 自定义函数并批量作用在所有子层
+### 5.3 自定义函数并批量作用在所有子层
 
 通过上述方法可以在模型中添加成千上万个子层。当模型中子层数量较多时，如何高效地对所有子层进行统一修改呢？Paddle 提供了 apply() 接口。通过这个接口，可以自定义一个函数，然后将该函数批量作用在所有子层上。
 
@@ -433,7 +433,7 @@ MyLayer(
 
 当前例子，定义了一个以 layer 作为参数的函数 function，用来打印传入的 layer 信息。通过调用 model.apply() 接口，将 function 作用在模型的所有子层中，输出信息打印 model 中所有子层的信息。
 
-## 5.4 循环访问所有子层
+### 5.4 循环访问所有子层
 
 另外一个批量访问子层的接口是 children() 或者 named_children() 。这两个接口通过 Iterator 的方式访问每个子层。
 
@@ -450,9 +450,9 @@ Linear(in_features=10, out_features=3, dtype=float32)
 
 可以看到，遍历 model.children() 时，每一轮循环都可以按照子层注册顺序拿到对应 paddle.nn.Layer 的对象。
 
-# 六、修改 paddle.nn.Layer 层的成员变量
+## 六、修改 paddle.nn.Layer 层的成员变量
 
-## 6.1 批量添加参数变量
+### 6.1 批量添加参数变量
 
 和我们在前面演示的一样，你可以通过 create_parameter 来为当前层加入参数，这对于只有几个参数的层是比较简单的。但是，当我们需要很多参数的时候就比较麻烦了，尤其是希望使用一些 container 来处理这些参数，这时候就需要使用 add_parameter，让层感知需要增加的参数。
 
@@ -470,7 +470,7 @@ for name, item in my_layer.named_parameters():
     print(name)
 ```
 
-## 6.2 添加临时中间变量
+### 6.2 添加临时中间变量
 
 刚刚的 Minst 的例子中，仅仅使用参数 weight，bias。参数变量往往需要参与梯度更新，但很多情况下只是需要一个临时变量甚至一个常量。比如在模型执行过程中想将一个中间变量保存下来，这时需要调用 create_tensor() 接口。
 
@@ -493,7 +493,7 @@ class Model(paddle.nn.Layer):
 
 这里调用 `self.create_tensor()` 创造一个临时变量，并将其记录在模型的 `self.saved_tensor` 中。在模型执行时，调用 `paddle.assign` 用该临时变量记录变量**y**的数值。
 
-## 6.3 添加 Buffer 变量完成动转静
+### 6.3 添加 Buffer 变量完成动转静
 
 Buffer 的概念仅仅影响动态图向静态图的转换过程。在上一节中创建了一个临时变量用来临时存储中间变量的值。但这个临时变量在动态图向静态图转换的过程中并不会被记录在静态的计算图当中。如果希望该变量成为静态图的一部分，就需要进一步调用 register_buffers() 接口。
 
@@ -528,7 +528,7 @@ for item in model.named_buffers():
 ('saved_tensor', Tensor(Not initialized))
 ```
 
-# 七、存储模型的参数
+## 七、存储模型的参数
 
 参考前面的操作完成 Layer 自定义和修改之后，可以参考以下操作进行保存。
 
@@ -554,6 +554,6 @@ model.set_state_dict(state_dict)
 
 
 
-# 八、总结
+## 八、总结
 
 至此，本文介绍了如何使用 paddle.nn.Layer 来辅助您构造深度学习网络模型，并展示了如何使用 paddle.nn.Layer 进行层的查看、修改。还可以根据自己的需要进一步探索 Layer 的更多用法。此外，如果在使用 paddle.nn.Layer 的过程中遇到任何问题及建议，欢迎在飞桨 Github 中进行提问和反馈。
