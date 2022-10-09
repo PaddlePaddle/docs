@@ -1,4 +1,4 @@
-# 飞桨模型导出 ONNX 协议
+# 飞桨模型转ONNX模型
 
 ## 一、ONNX 简介
 开放神经网络交换（Open Neural Network Exchange，简称 ONNX），是一种针对机器学习所设计的开放式的文件格式，用于存储训练好的模型。借助它支持不同的人工智能框架（如 Pytorch、MXNet）采用相同格式存储模型数据并交互。
@@ -21,11 +21,11 @@ Paddle2ONNX 目前提供了包括图像分类、图像分割、目标检测、�
 
 ## 四、飞桨转 ONNX 教程
 在本教程中，我们将描述如何将飞桨模型转换为 ONNX 格式，然后使用 ONNXRuntime 运行它。具体操作分以下两种场景：
-* 如果使用飞桨训练模型，并将其导出为 ONNX 协议，请参考 4.1 节导出为 ONNX 模型。
+* 如果使用飞桨训练模型，并将其导出为 ONNX 格式，请参考 4.1 节导出为 ONNX 模型。
 * 如果是从 PaddleOCR、PaddleClas 或 PaddleHub 等 Repo 中下载的部署模型，或者是通过飞桨训练好并保存的部署模型，则参考 4.2 节转换为 ONNX 模型。
 
-### 4.1 飞桨训练模型导出为 ONNX 协议
-本小节以 MNIST 手写数字识别网络作为例子，展示如何将训练模型导出为 ONNX 协议。
+### 4.1 飞桨训练模型导出为 ONNX 模型
+本小节以 MNIST 手写数字识别网络作为例子，展示如何将训练模型导出为 ONNX 模型。
 
 『手写数字识别任务』比较简单，普通的神经网络就能达到很高的精度，以下代码直接来自前面的[手写数字识别任务](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/beginner/quick_start_cn.html)，无需修改。
 
@@ -55,7 +55,7 @@ model.evaluate(test_dataset, batch_size=64, verbose=1)
 完成以上代码，就可以训练这个模型。请注意，此模型未完全训练以获得良好的准确性，此处仅用于演示目的。
 使用飞桨完成模型训练之后，要导出模型，需要调用 paddle.onnx.export 接口，在导出模型时我们需要使用 paddle.static.InputSpec API 指定输入的 shape，如果输入中某一维为动态的，可以将该维指定为 None，在本例中我们设置第一维为动态，表示推理过程中该维可变。
 
-使用飞桨完成模型训练之后，转换成 ONNX 协议只需要调用 paddle.onnx.export 接口，便会在指定的路径下生成 ONNX 模型。关于 paddle.onnx.export 接口更详细的使用方法，请参考 [API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/onnx/export_cn.html) 。
+使用飞桨完成模型训练之后，转换成 ONNX 格式只需要调用 paddle.onnx.export 接口，便会在指定的路径下生成 ONNX 模型。关于 paddle.onnx.export 接口更详细的使用方法，请参考 [API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/onnx/export_cn.html) 。
 添加如下脚本，可以在 onnx.save 下生成 lenet.onnx 模型。
 ```
 # export to ONNX
@@ -64,7 +64,7 @@ x_spec = paddle.static.InputSpec([None, 1, 28, 28], 'float32', 'x') # 为模型�
 paddle.onnx.export(lenet, save_path, input_spec=[x_spec], opset_version=11)
 ```
 
-### 4.2 飞桨部署模型转为 ONNX 协议
+### 4.2 飞桨部署模型转为 ONNX 模型
 如果模型是从 PaddleOCR、PaddleClas 或 PaddleHub 等 Repo 中下载的部署模型，或者将飞桨模型保存为部署模型，均可以使用 Paddle2ONNX 的命令行进行转换。
 
 本小节以 PaddleClas 提供的 MobileNetV3 分类模型作为例子，演示转换的过程。
@@ -155,7 +155,7 @@ wget https://raw.githubusercontent.com/PaddlePaddle/Paddle2ONNX/develop/model_zo
 wget https://github.com/PaddlePaddle/Paddle2ONNX/raw/develop/model_zoo/classification/images/ILSVRC2012_val_00000010.jpeg
 ```
 
-以下脚本是 ONNX Runtme 使用 ONNX 模型推理的必要步骤，只需将前后处理改为实际应用场景下的逻辑便可使用，4.1 中的手写数字识别模型导出为 ONNX 协议之后，只需将图像前后处理逻辑加入进来便可用于部署。
+以下脚本是 ONNX Runtme 使用 ONNX 模型推理的必要步骤，只需将前后处理改为实际应用场景下的逻辑便可使用，4.1 中的手写数字识别模型导出为 ONNX 格式之后，只需将图像前后处理逻辑加入进来便可用于部署。
 
 ```
 # 导入 ONNX 包
