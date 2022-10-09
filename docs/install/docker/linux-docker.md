@@ -8,7 +8,41 @@
 
 - 在本地主机上[安装 Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
-- 如需在 Linux 开启 GPU 支持，请[安装 nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+- 如需在 Linux 开启 GPU 支持, 需提前[安装 nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-docker)
+  * 请通过 docker -v 检查 Docker 版本。对于 19.03 之前的版本，您需要使用 nvidia-docker 和 nvidia-docker 命令；对于 19.03 及之后的版本，您将需要使用 nvidia-container-toolkit 软件包和 --gpus all 命令。这两个选项都记录在上面链接的网页上。
+
+注 nvidia-container-toolkit 安装方法:
+  * Ubuntu 系统可以参考以下命令
+    * 添加存储库和密钥
+    ```bash
+    distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+    && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
+    && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+    ```
+    * 安装 nvidia-container-toolkit
+    ```bash
+    sudo apt update
+    sudo apt install nvidia-container-toolkit
+    ```
+    * 重启 docker
+    ```bash
+    sudo systemctl restart docker
+    ```
+  * centos 系统可以参考以下命令
+    * 添加存储库和密钥
+    ```bash
+    distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+    curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | sudo tee /etc/yum.repos.d/nvidia-docker.repo
+    ```
+    * 安装 nvidia-container-toolkit
+    ```bash
+    sudo yun update
+    sudo yum install -y nvidia-container-toolkit
+    ```
+    * 重启 docker
+    ```bash
+    sudo systemctl restart docker
+    ```
 
 ## 安装步骤
 
@@ -56,8 +90,6 @@
 
     * 使用 CPU 版本的 PaddlePaddle：
 
-
-
         ```
         docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
         ```
@@ -101,9 +133,8 @@
     * 使用 GPU 版本的 PaddlePaddle：
 
 
-
         ```
-        nvidia-docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
+        docker run --gpus all --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
         ```
 
         > --name [Name of container] 设定 Docker 的名称；
