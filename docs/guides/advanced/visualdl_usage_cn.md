@@ -496,4 +496,4 @@ VisualDL 可以在每个训练的 epoch 结束后，在测试集上画出对应�
 
 ### 2.4 更多用法
 
-以上介绍了如何结合 VisualDL 可视化工具来辅助您进行网络模型的训练。还可以根据自己的需要，加入任何想要观察的数据。更多的写入接口说明可以参考[VisualDL 的官方文档](https://github.com/PaddlePaddle/VisualDL)。此外，可以在 Paddle 官网体验 VisualDL 全功能展示的[demo](https://www.paddlepaddle.org.cn/paddle/visualdl/demo/)。
+以上介绍了如何结合 VisualDL 可视化工具来辅助您进行网络模型的训练。还可以根据自己的需要，加入任何想要观察的数据。更多的写入接口说明可以参考[VisualDL 的官方文档](https://github.com/PaddlePaddle/VisualDL)。此外，可以在飞桨官网体验 VisualDL 全功能展示的[demo](https://www.paddlepaddle.org.cn/paddle/visualdl/demo/)。
