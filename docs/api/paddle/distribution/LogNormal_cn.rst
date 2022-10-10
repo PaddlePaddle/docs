@@ -5,6 +5,7 @@ LogNormal
 
 .. py:class:: paddle.distribution.LogNormal(loc, scale, name=None)
 
+
 对数正态分布
 
 .. math::
@@ -21,7 +22,7 @@ LogNormal
 概率密度函数
 
 .. math::
-    
+
     pdf(x; \mu, \sigma) = \frac{1}{\sigma x \sqrt{2\pi}}e^{(-\frac{(ln(x) - \mu)^2}{2\sigma^2})}
 
 上面的数学公式中：
@@ -163,4 +164,3 @@ kl_divergence(other)
 **返回**
 
 Tensor，两个对数正态分布之间的 KL 散度。
-

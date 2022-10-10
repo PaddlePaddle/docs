@@ -6,7 +6,6 @@ Normal
 .. py:class:: paddle.distribution.Normal(loc, scale, name=None)
 
 
-
 正态分布
 
 数学公式：
