@@ -1,7 +1,7 @@
 # Limitations
 
 
-飞桨动转静（[@to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/basic_usage_cn.html)）目前已支持大多数 [Python语法](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/grammar_list_cn.html)，实现动态图模型一键转为静态图训练和部署。但由于 Python 语法的灵活性，飞桨动转静在某些场景下存在一定的局限性，需要用户按照一定的规范和准则编写模型代码。
+飞桨动转静（[@to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/basic_usage_cn.html)）目前已支持大多数 [Python 语法](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/grammar_list_cn.html)，实现动态图模型一键转为静态图训练和部署。但由于 Python 语法的灵活性，飞桨动转静在某些场景下存在一定的局限性，需要用户按照一定的规范和准则编写模型代码。
 
 本文档将通过具体的代码样例对飞桨动转静的局限性（即 Limitations）进行阐释，并给出规范性代码写法。若在使用动转静遇到了类似问题，可查阅此文档中的指南和建议，可以让动转静过程更加的高效。主要包括如下几个场景：
 
@@ -10,7 +10,6 @@
 3. **语法类**：主要涉及动态图代码中包含动转静尚不支持语法的场景；
 
 ## 一、控制流
-
 ### 1. if...else 语句
 
 #### 1.1 变量在不同分支类型须保持一致
@@ -28,10 +27,10 @@ def func(x, y):
     if x > y:
         y = paddle.to_tensor(3)  # <--- b 是 Tensor 类型
     else:
-        y = True                 # <--- b 是内建bool类型
-    
+        y = True                 # <--- b 是内建 bool 类型
+
     if y == True:   # 此处对 y 进行判断，将在动转静时引发错误
-	    x = x + 1
+        x = x + 1
     return x, y
 
 x = paddle.to_tensor(1)
@@ -56,7 +55,7 @@ def func(x, y):
         flag = True
 
     if flag == True:
-	   x = x + 1
+        x = x + 1
     return x, y
 
 x = paddle.to_tensor(1)
@@ -67,7 +66,7 @@ out = func(x, y)
 
 ### 1.2 张量在不同分支 Shape 须保持一致
 
-依赖控制流的 if...else 语句在动转静生成中间表示 Program 时，要求两个分支中同名张量的 Shape 必须保持一致，因为静态图下会对两个分支的输出进行动态 `select input` 操作，故须保证无论条件变量 x > y取何值，选取的张量 Shape 都是一致的。否则在后续组网或者训练时，出现因 Shape 不同而报错。
+依赖控制流的 if...else 语句在动转静生成中间表示 Program 时，要求两个分支中同名张量的 Shape 必须保持一致，因为静态图下会对两个分支的输出进行动态 `select input` 操作，故须保证无论条件变量 `x > y` 取何值，选取的张量 Shape 都是一致的。否则在后续组网或者训练时，出现因 Shape 不同而报错。
 
 如下是一个典型的代码样例：
 
@@ -83,7 +82,7 @@ def fun(x, y):
         y = paddle.randn([2, 2])          # <--- y.shape 是[2, 2]
     else:
         y = paddle.randn([4, 5])          # <--- y.shape 是[4, 5]
-    
+
     out = paddle.concat([y, z], axis=-1)  # <--- y 与 z 不能保证始终能 concat
     return out
 
@@ -96,7 +95,7 @@ out = fun(x, y)
 
 **规范性写法**：调整依赖控制流的 if...else 不同分支同名张量的代码逻辑，确保 shape 保持一致
 
-### 2. for、while语句
+### 2. for、while 语句
 
 #### 2.1 条件变量类型须保持不变
 
@@ -111,7 +110,7 @@ from paddle.jit import to_static
 @to_static
 def func(x : paddle.Tensor):
     t = 2
-    while t < 10:               # <--- 初始为bool类型，循环一次后为 Tensor类型
+    while t < 10:               # <--- 初始为 bool 类型，循环一次后为 Tensor 类型
         t = paddle.shape(x)[0]  # <--- t 变为了 Tensor 类型
         x = paddle.concat([x, x])
     return x
@@ -129,7 +128,7 @@ out = func(x)
 def func(x : paddle.Tensor):
     t = 2
     while t < 10:
-        t = x.shape[0]   # <--- 借助x.shape 获取 int 类型值
+        t = x.shape[0]   # <--- 借助 x.shape 获取 int 类型值
         x = paddle.concat([x, x])
     return x
 ```
@@ -168,7 +167,7 @@ def func(x : paddle.Tensor):
         else:
             y = x + cache
         cache = y              # <--- cache 循环后为 Tensor
-        
+
     return y
 
 x = paddle.to_tensor(1.)
@@ -191,14 +190,14 @@ def func(x : paddle.Tensor):
     while y.mean() < 10:
         y = x + cache
         cache = y
-        
+
     return y
 
 x = paddle.to_tensor(1.)
 out = func(x)                  # <--- 动转静执行结果与动态图一致
 ```
 
-#### 2.3 迭代变量Shape须保持不变
+#### 2.3 迭代变量 Shape 须保持不变
 
 while 循环体中迭代变量的值可以变化，但是其 shape 须保持不变，否则可能导致隐式的错误（精度对不齐、结果错误之类）。若无法避免，可以通过动态 shape 来解决。
 
@@ -214,7 +213,7 @@ def func(x, y):
         x = paddle.concat([x, y], axis=0)
 
     print(x.shape)    # <--- 动态图下返回 [8, 3], 静态图下返回[4, 3]
-    # .....           # <--- 若此处存在依赖x.shape[0] 的代码逻辑，存在隐式错误
+    # .....           # <--- 若此处存在依赖 x.shape[0] 的代码逻辑，存在隐式错误
     return x
 
 x = paddle.randn([2, 3])
@@ -223,7 +222,7 @@ out = func(x, y)
 print(out.shape)
 ```
 
-上述代码可以正确转写，但是有风险。转写成功之后 `x` 的编译期 shape 会与执行期的 shape 有所差别，可能会影响后续的组网。若模型中存在类似 `x = paddle.concat([x, y], axis=0)` 之类的对 `x.shape` 进行改写的操作，建议提前给 `x` 的shape全部变为 -1，以防止组网错误。
+上述代码可以正确转写，但是有风险。转写成功之后 `x` 的编译期 shape 会与执行期的 shape 有所差别，可能会影响后续的组网。若模型中存在类似 `x = paddle.concat([x, y], axis=0)` 之类的对 `x.shape` 进行改写的操作，建议提前给 `x` 的 shape 全部变为 -1，以防止组网错误。
 
 ```python
 import paddle
@@ -231,7 +230,7 @@ from paddle.jit import to_static
 
 @to_static
 def func(x, y):
-    x = paddle.reshape(x, paddle.shape(x)) # <--- 将x.shape变为了(-1, -1, -1)可以防止组网错误
+    x = paddle.reshape(x, paddle.shape(x)) # <--- 将 x.shape 变为了(-1, -1, -1)可以防止组网错误
     for i in range(paddle.to_tensor(3)):
         x = paddle.concat([x, y], axis=0)
     return x
@@ -252,7 +251,7 @@ print(out.shape)
 | **无变长操作** | 支持元素修改，但 Value 必须可 Tensor 化 | 支持所有场景 |
 
 1. **变长操作**，对 list 而言包含：append、push、del 等会改变容器结构的操作；对于 dict 而言，还包含插入一个之前未包含的 key（进入控制流和退出控制流结构对比）
-2. **可Tensor化**，表示当前的 Tensor 存在对应的静态图结构，比如 int、float、double、bool 等会转化为 Tensor；用户自定义的类无法 Tensor 化
+2. **可 Tensor 化**，表示当前的 Tensor 存在对应的静态图结构，比如 int、float、double、bool 等会转化为 Tensor；用户自定义的类无法 Tensor 化
 
 如果模型代码中容器的结构本身会发生变化，动转静时会将其对应的 list 转写为[静态图的 TensorArray 数据结构](https://www.paddlepaddle.org.cn/documentation/docs/zh/2.4rc/guides/jit/case_analysis_cn.html#list-lodtensorarray)。
 
@@ -260,7 +259,7 @@ print(out.shape)
 
 #### 1.1 不支持多层 list 嵌套
 
-在依赖 Tensor 的控制流中，涉及 append、pop操作的 list 会被转为 TensorArray。由于目前飞桨框架的 TensorArray 仅能表示单层语义，故当前的动转静不支持对嵌套的 list 进行变长处理。
+在依赖 Tensor 的控制流中，涉及 append、pop 操作的 list 会被转为 TensorArray。由于目前飞桨框架的 TensorArray 仅能表示单层语义，故当前的动转静不支持对嵌套的 list 进行变长处理。
 
 如下是一个暂未支持的使用样例：
 
@@ -271,9 +270,9 @@ from paddle.jit import to_static
 @to_static
 def func(x):
     t = paddle.shape(x)[0]
-    out = [[1,2], [2, 3]]  # <--- out 是嵌套的list
-    for i in range(t):     # <--- 依赖Tensor的控制流 
-        out.append(i)      # <--- 变长的list，会触发转写为tensor array，导出报错：不支持嵌套
+    out = [[1,2], [2, 3]]  # <--- out 是嵌套的 list
+    for i in range(t):     # <--- 依赖 Tensor 的控制流
+        out.append(i)      # <--- 变长的 list，会触发转写为 tensor array，导出报错：不支持嵌套
 
     return out
 
@@ -317,7 +316,7 @@ out = func(x)
 print(out)
 ```
 
-> 注：对于类型不同，导致无法转成同一类型Tensor的情况，比如[1, "NCHW"]。建议不要将此类对象放入到依赖Tensor的控制流中。
+> 注：对于类型不同，导致无法转成同一类型 Tensor 的情况，比如[1, "NCHW"]。建议不要将此类对象放入到依赖 Tensor 的控制流中。
 
 #### 1.2 仅支持 list 有限操作
 在依赖控制流的场景下，目前动转静仅支持 list 的高频用法，建议使用如下的接口来操作 list：
@@ -326,7 +325,7 @@ print(out)
 2. 支持 getitem，比如 `x[0]`
 3. 支持 int、Tensor 作为 index 的 setitem ，比如 `x[0] = 1`
 4. 支持 slice， 比如 `x[0:3]`
-5. 暂不支持del内部元素，比如 `del x[0]`
+5. 暂不支持 del 内部元素，比如 `del x[0]`
 6. 暂不支持 slice 作为 index 的 setitem，比如 `x[0:2] = 1`
 
 **一个完整的例子如下：**
@@ -336,20 +335,20 @@ import paddle
 from paddle.jit import to_static
 
 @to_static
-def func(x): 
-	res = []
-	for i in range(x):  # <--- 依赖Tensor的控制流
-		res.append(1)   # <--- 支持。因为 res 隐式转换为 TensorArray
-		res.append(x)   # <--- 支持
-		res.pop(-1)     # <--- 支持。删除最后一个元素
-		res[0] = 12     # <--- 支持。覆写第0个元素为12
+def func(x):
+    res = []
+    for i in range(x):  # <--- 依赖 Tensor 的控制流
+        res.append(1)   # <--- 支持。因为 res 隐式转换为 TensorArray
+        res.append(x)   # <--- 支持
+        res.pop(-1)     # <--- 支持。删除最后一个元素
+        res[0] = 12     # <--- 支持。覆写第 0 个元素为 12
         # del res[0]    # <--- 不支持。建议使用 a.pop(0) 替代
-		# res[0:1] = 12 # <--- 不支持。不支持slice作为setitem的索引，只支持简单的 int / Tensor 索引，请使用 pop 等来进行组合操作达到目的。
-	
+        # res[0:1] = 12 # <--- 不支持。不支持 slice 作为 setitem 的索引，只支持简单的 int / Tensor 索引，请使用 pop 等来进行组合操作达到目的。
+
     out = 0.
-	for i in res:       # <--- 支持。无嵌套的list支持迭代，可以依次取到所有的值，for变为了依赖Tensor的控制流
-		out += i
-	return out          # <--- 最后的s是所有a中的元素的sum
+    for i in res:       # <--- 支持。无嵌套的 list 支持迭代，可以依次取到所有的值，for 变为了依赖 Tensor 的控制流
+        out += i
+    return out          # <--- 最后的 s 是所有 a 中的元素的 sum
 
 x = paddle.to_tensor(3)
 out = func(x)
@@ -360,7 +359,7 @@ print(out) # 返回值为 14.0
 
 + **为控制流场景**。for 是一个依赖 Tensor 的控制流；
 + **必须满足非嵌套 list**。如变量 `res` ；
-+ **支持高频 list 操作**，如只支持：赋值、append、pop操作，不支持 del 等操作，有其他复杂操作请组合上述有限操作来实现；
++ **支持高频 list 操作**，如只支持：赋值、append、pop 操作，不支持 del 等操作，有其他复杂操作请组合上述有限操作来实现；
 
 #### 1.3 有限支持 dict 等其他容器
 
@@ -373,44 +372,44 @@ import paddle
 from paddle.jit import to_static
 
 @to_static
-def func(x): 
-	res = { 'a': 1 }
+def func(x):
+    res = { 'a': 1 }
     t = paddle.shape(x)[0]
-	for i in range(t): # <--- 依赖Tensor的控制流
-		res['b'] = i   # <--- 不支持。因为在一个依赖Tensor的控制流中修改了dict结构
-	return res
+    for i in range(t): # <--- 依赖 Tensor 的控制流
+        res['b'] = i   # <--- 不支持。因为在一个依赖 Tensor 的控制流中修改了 dict 结构
+    return res
 
 x = paddle.randn([2, 3])
 out = func(x)
 print(out)
 ```
 
-上述代码在动转静时会报错：`ValueError: var range_0.tmp_0_slice_0 not in this block。因为变量res在for循环之前的keys是 {'a'}，而for 循环之后是 {'a', 'b'}.` 。
+上述代码在动转静时会报错：`ValueError: var range_0.tmp_0_slice_0 not in this block。因为变量 res 在 for 循环之前的 keys 是 {'a'}，而 for 循环之后是 {'a', 'b'}.` 。
 
 **修改建议：**
 
 + 先判断是否可以消除控制流对 Tensor 的依赖，调整为不依赖 Tensor 的控制流，则 dict 等容器的操作都是支持的
 + 可以让 dict 的结构（keys）在进入控制流之前固定，且不在控制流中进行 keys 的增删操作
 
-对于修改方法1，规范性代码写法为：
+对于修改方法 1，规范性代码写法为：
 
 ```python
-def func(x): 
+def func(x):
     res = { 'a': 1 }
     t = x.shape[0]
-    for i in range(t): # <--- 不依赖Tensor的控制流，即Python控制流
+    for i in range(t): # <--- 不依赖 Tensor 的控制流，即 Python 控制流
         res['b'] = i   # <--- 支持
     return res
 ```
 
-对于修改方法2，规范性代码写法为：
+对于修改方法 2，规范性代码写法为：
 
 ```python
-def func(x): 
+def func(x):
     res = { 'a': 1, 'b': -1 } # <--- 使用一个占位符，提前占位
     t = paddle.shape(x)[0]
-    for i in range(t):        # <--- 依赖Tensor的控制流
-        res['b'] = i          # <--- 支持。for循环前后a的value变化了，但是a的结构 （keys）没有发生变化，都是{'a', 'b'}
+    for i in range(t):        # <--- 依赖 Tensor 的控制流
+        res['b'] = i          # <--- 支持。for 循环前后 a 的 value 变化了，但是 a 的结构 （keys）没有发生变化，都是{'a', 'b'}
     return res
 ```
 
@@ -421,23 +420,23 @@ def func(x):
 主要针对依赖 Tensor 的控制流场景，确保代码中存在显式地对容器的赋值语义。如下代码，我们在依赖 Tensor 的控制流中修改了变量 `res` 的值，必须给与一个赋值语义才能保证结果的正确性。所以按照第二段代码修改添加类似 `res = res` 赋值语句即可。
 
 ```python
-def func(x): 
-	re = { 'a': 1 }
-	t = paddle.shape(x)[0]
-	for i in range(t):        # <--- 依赖Tensor的控制流
-		a['a'] = i            # <--- 不支持，修改了 res 的元素，如果想要正确转换成功，比如给 res 添加一个赋值语义。
-	return a 
+def func(x):
+    re = { 'a': 1 }
+    t = paddle.shape(x)[0]
+    for i in range(t):        # <--- 依赖 Tensor 的控制流
+        a['a'] = i            # <--- 不支持，修改了 res 的元素，如果想要正确转换成功，比如给 res 添加一个赋值语义。
+    return a
 ```
 
 **规范性写法：**
 ```python
-def func(x): 
+def func(x):
     re = { 'a': 1 }
     t = paddle.shape(x)[0]
-    for i in range(t):        # <--- 依赖Tensor的控制流
-        res = res             # <--- 给 res 容器一个赋值语义，表明在for中修改了 res 的元素。
+    for i in range(t):        # <--- 依赖 Tensor 的控制流
+        res = res             # <--- 给 res 容器一个赋值语义，表明在 for 中修改了 res 的元素。
         a['a'] = i
-    return a 
+    return a
 ```
 
 #### 2.2 分离可变与常量字段
@@ -449,32 +448,32 @@ def func(x):
 ```python
 # 错误例子
 def generation(self, input_ids, ...):
-	model_kwargs = {'a': 1, 'use_cache': True} # <--- 字典中的a参与组网。而 use_cache是一个用户设置，不参与组网
-	while flag_tensor:
-		outs = self.forward(model_kwargs)     
-		model_kwargs = update_kwargs(model_kwargs, outs)  # <--- 利用forward的结果更新字典中的a，由此触发了整个字典内容的转换
-		if model_kwargs['use_cache'] is True:  # <--- use_cache被转写之后不再是true， 而是Tensor类型，导致下面的判断结果为False
-			pass
+    model_kwargs = {'a': 1, 'use_cache': True} # <--- 字典中的 a 参与组网。而 use_cache 是一个用户设置，不参与组网
+    while flag_tensor:
+        outs = self.forward(model_kwargs)
+        model_kwargs = update_kwargs(model_kwargs, outs)  # <--- 利用 forward 的结果更新字典中的 a，由此触发了整个字典内容的转换
+        if model_kwargs['use_cache'] is True:  # <--- use_cache 被转写之后不再是 true， 而是 Tensor 类型，导致下面的判断结果为 False
+            pass
 ```
 **规范性写法**：可根据 keys 对应的 value 是否可变，将 dict 拆分为两部分。对于不会变化的常量数据，可以单独定义或放到 `class.__init__` 提前定义。
 
 ```python
 # 修改例子
 def generation(self, input_ids, ...):
-	model_immutable = {'use_cache': True}  # <--- dict 中常量字段
-	model_mutable = {'a': 1}               # <--- dict 中可变字段
-	while flag_tensor:
-		out = self.forward(dict(**model_mutable, **model_immutable))
-		model_mutable = update_kwargs(model_mutable, out) # <--- 仅update记录了可变数据的字典，即可避免不必要的转换
-		if model_kwargs['use_cache'] == True:
-			pass
+    model_immutable = {'use_cache': True}  # <--- dict 中常量字段
+    model_mutable = {'a': 1}               # <--- dict 中可变字段
+    while flag_tensor:
+        out = self.forward(dict(**model_mutable, **model_immutable))
+        model_mutable = update_kwargs(model_mutable, out) # <--- 仅 update 记录了可变数据的字典，即可避免不必要的转换
+        if model_kwargs['use_cache'] == True:
+            pass
 ```
 
 ## 三、语法类
 
 ### 1. 使用 paddle 代替 numpy 接口
 
-动转静组网时，所有的张量都被转换为静态图 Tensor 类型，其在组网编译期是没有数据区的。故此时numpy API 无法对静态图 Tensor 进行数值计算，建议将使用 paddle API 进行替换，以生成正确的中间表示 Program。
+动转静组网时，所有的张量都被转换为静态图 Tensor 类型，其在组网编译期是没有数据区的。故此时 numpy API 无法对静态图 Tensor 进行数值计算，建议将使用 paddle API 进行替换，以生成正确的中间表示 Program。
 
 如下是一个典型的使用样例：
 
@@ -485,8 +484,8 @@ from paddle.jit import to_static
 
 # 错误例子
 @to_static
-def func(x): 
-    out = np.sum(x.numpy())  # <--- numpy 操作无法记录到Program中
+def func(x):
+    out = np.sum(x.numpy())  # <--- numpy 操作无法记录到 Program 中
     return out
 
 x = paddle.to_tensor(3)
@@ -502,7 +501,7 @@ import numpy as np
 from paddle.jit import to_static
 
 @to_static
-def func(x): 
+def func(x):
     out = paddle.sum(x)  # <--- 替换为 paddle.sum
     return out
 
@@ -580,15 +579,15 @@ def func(x):
     b = None
     if a > 1:    # <--- 依赖 Tensor 的控制流
         b = 1    # <--- b 被隐式转为 Tensor
-    else: 
+    else:
         b = -1   # <--- b 被隐式转为 Tensor
-    
-    # 动转静后，b 将是一个 Tensor 而非int，可能导致错误
+
+    # 动转静后，b 将是一个 Tensor 而非 int，可能导致错误
     if isinstance(b, int):
         print ("b is int")
-    else : 
+    else :
         print ("b is not int")
-    
+
     return b
 
 x = paddle.to_tensor([3])
@@ -599,7 +598,7 @@ out = func(x)
 
 #### 4. super 的使用
 
-在Python 3.x 中，super 的使用有两种：
+在 Python 3.x 中，super 的使用有两种：
 
 + `super(Class, self).__init__()`
 + `super().__init__()`
@@ -612,12 +611,12 @@ out = func(x)
 import paddle
 
 class BaseLayer(paddle.nn.Layer):
-	def forward(self):
-		do_somthing()
+    def forward(self):
+        do_somthing()
 
 class MyLayer(BaseLayer):
-	def forward(self):
-		super().forward()    # <--- 暂不支持 super().xxx
+    def forward(self):
+        super().forward()    # <--- 暂不支持 super().xxx
 ```
 
 **规范性写法**：推荐使用 `super(Class, self).__init__()` 语法形式，后续会支持新的 super 语法。
@@ -625,17 +624,17 @@ class MyLayer(BaseLayer):
 import paddle
 
 class BaseLayer(paddle.nn.Layer):
-	def forward(self):
-		do_somthing()
+    def forward(self):
+        do_somthing()
 
 class MyLayer(BaseLayer):
-	def forward(self):
-		super(MyLayer, self).forward()  # <--- 推荐使用 super(xx, self).xxx 形式
+    def forward(self):
+        super(MyLayer, self).forward()  # <--- 推荐使用 super(xx, self).xxx 形式
 ```
 
-#### 5. 暂未支持PyLayer
+#### 5. 暂未支持 PyLayer
 
 目前动转静暂不支持动态图下[自定义 PyLayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayer_cn.html#pylayer) 的语法，将在近期支持，敬请期待。推荐使用[自定算子的方式](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/custom_op/new_cpp_op_cn.html)代替，动转静已完备支持。
-#### 6. 暂未支持TensorHook
+#### 6. 暂未支持 TensorHook
 
 目前动转静暂不支持动态图下对 Tensor 调用 register_hook ，将在近期支持，敬请期待。
