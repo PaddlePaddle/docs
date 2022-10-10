@@ -1,9 +1,9 @@
 # Limitations
 
 
-飞桨动转静（[@to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/basic_usage_cn.html)）目前已支持大多数 [Python 语法](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/grammar_list_cn.html)，实现动态图模型一键转为静态图训练和部署。但由于 Python 语法的灵活性，飞桨动转静在某些场景下存在一定的局限性，需要用户按照一定的规范和准则编写模型代码。
+飞桨动转静（[@to_static](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/basic_usage_cn.html)）目前已支持大多数 [Python 语法](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/grammar_list_cn.html)，实现了动态图模型一键转为静态图训练和部署。但因 Python 语法极大的灵活性，飞桨动转静在某些场景下尚存在一定的局限性，需要用户按照一定的规范编写模型代码，以提升转写成功率。
 
-本文档将通过具体的代码样例对飞桨动转静的局限性（即 Limitations）进行阐释，并给出规范性代码写法。若在使用动转静遇到了类似问题，可查阅此文档中的指南和建议，可以让动转静过程更加的高效。主要包括如下几个场景：
+本文档将结合具体的代码样例，对飞桨动转静的局限性（即 Limitations）进行阐释，并给出规范性代码推荐写法。若在使用动转静遇到了类似问题，可查阅此文档中的指南和建议，让模型动转静更加的流畅，主要包括如下几个场景：
 
 1. **控制流**：主要涉及动态图代码中存在 [if...else](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/principle_cn.html#ifelse) 和 [for/while](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/principle_cn.html#for-while) 的场景；
 2. **容器类**：主要涉及动态图代码中搭配控制流使用 Python 容器的场景；
@@ -14,7 +14,7 @@
 
 #### 1.1 变量在不同分支类型须保持一致
 
-模型代码中的 if...else 语句在动转静之后，会被转换成统一的范式。当依赖的条件变量（如下样例中的 `x > y` ）是一个 Tensor 类型时，if...else 分支中所有的变量类型须保持一致。当类型不一致时，后续的类型检查将抛出异常。
+模型代码中的 if...else 语句在动转静之后，会被[转换成统一的范式](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/principle_cn.html#ifelse)。当依赖的条件变量（如下样例中的 `x > y` ）是一个 Tensor 类型时，if...else 分支中所有的变量类型须保持一致。当类型不一致时，后续的类型检查将抛出异常。
 
 如下是一个典型的代码样例：
 
@@ -29,7 +29,7 @@ def func(x, y):
     else:
         y = True                 # <--- b 是内建 bool 类型
 
-    if y == True:   # 此处对 y 进行判断，将在动转静时引发错误
+    if y == True:                # <--- 对 y 进行判断，将在动转静时引发错误
         x = x + 1
     return x, y
 
@@ -64,9 +64,9 @@ out = func(x, y)
 ```
 
 
-### 1.2 张量在不同分支 Shape 须保持一致
+#### 1.2 张量在不同分支 shape 须保持一致
 
-依赖控制流的 if...else 语句在动转静生成中间表示 Program 时，要求两个分支中同名张量的 Shape 必须保持一致，因为静态图下会对两个分支的输出进行动态 `select input` 操作，故须保证无论条件变量 `x > y` 取何值，选取的张量 Shape 都是一致的。否则在后续组网或者训练时，出现因 Shape 不同而报错。
+依赖控制流的 if...else 语句在动转静生成中间表示 Program 时，要求两个分支中同名张量的 shape 必须保持一致，因为静态图下会对两个分支的输出进行动态 `select input` 操作，故须保证无论条件变量 `x > y` 取何值，选取的张量 shape 都是一致的。否则在后续组网或者训练时，出现因 shape 不同而报错。
 
 如下是一个典型的代码样例：
 
@@ -83,7 +83,7 @@ def fun(x, y):
     else:
         y = paddle.randn([4, 5])          # <--- y.shape 是[4, 5]
 
-    out = paddle.concat([y, z], axis=-1)  # <--- y 与 z 不能保证始终能 concat
+    out = paddle.concat([y, z], axis=-1)  # <--- y 与 z 不能保证始终能 concat 成功
     return out
 
 x = paddle.to_tensor(1)
@@ -99,7 +99,7 @@ out = fun(x, y)
 
 #### 2.1 条件变量类型须保持不变
 
-While 的条件变量在循环过程中的类型应保持不变，因为循环变量的类型将会决定其是保持 Python 语法运行，或是转为飞桨的 [while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/while_loop_cn.html#while-loop) API。保持条件变量类型不变才能确保模型正确地被动转静。
+While 的条件变量在循环过程中的类型应保持不变，因为[循环变量的类型](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/principle_cn.html#for-while)将会决定其是保持 Python 语法运行，或是转为飞桨的 [while_loop](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/static/nn/while_loop_cn.html#while-loop) API。保持条件变量类型不变才能确保模型正确地被动转静。
 
 如下是一个典型的代码样例：
 
@@ -118,11 +118,11 @@ def func(x : paddle.Tensor):
 x = paddle.randn([2, 3])
 out = func(x)
 ```
-如上述样例在执行循环体后，条件变量从 Python 的 bool 类型变为了 Tensor 类型，动转静报错机制会捕捉并抛出异常：`Dygraph2StaticException: python while pred change from bool to Tensor. ` 。
+如上述样例在执行循环体后，条件变量 `t < 10` 从 Python 的 bool 类型变为了 Tensor 类型，动转静报错机制会捕捉并抛出异常：`Dygraph2StaticException: python while pred change from bool to Tensor. ` 。
 
 此处根据期望模型代码运行的效果，**有如下两种「规范性」的写法：**
 
-* 若此处是一个循环次数固定的 while，则应避免 `t` 的类型变化，调整方式为：
+* 若此处是一个循环次数固定的 while，则应避免 `t` 的类型变化，规范性写法为：
 
 ```python
 def func(x : paddle.Tensor):
@@ -133,7 +133,7 @@ def func(x : paddle.Tensor):
     return x
 ```
 
-+ 若此处是一个循环次数不固定的 while，则可以将 `t` 的类型提前转为 Tensor，调整方式为：
++ 若此处是一个循环次数不固定的 while，则可以将 `t` 的类型提前转为 Tensor，规范性写法为：
 
 ```python
 def func(x : paddle.Tensor):
@@ -282,12 +282,12 @@ print(out) # 动态图下为[[1, 2], [2, 3], 0, 1]，静态图下报错
 ```
 
 动转静会报错，报错信息如下：
-```bash
+```python
 TypeError: In transformed code:
 
     File "test.py", line 5, in func
-        t = paddle.shape(x[0]
-        a = [[1,2], [2,3]]
+        t = paddle.shape(x[0])
+        out = [[1,2], [2,3]]
         for i in range(t):
         ~~~~~~~~~~~~~~~~~~ <--- HERE
             out.append(i)
@@ -359,7 +359,7 @@ print(out) # 返回值为 14.0
 
 + **为控制流场景**。for 是一个依赖 Tensor 的控制流；
 + **必须满足非嵌套 list**。如变量 `res` ；
-+ **支持高频 list 操作**，如只支持：赋值、append、pop 操作，不支持 del 等操作，有其他复杂操作请组合上述有限操作来实现；
++ **支持高频 list 操作**。如只支持：赋值、append、pop 操作，不支持 del 等操作，有其他复杂操作请组合上述有限操作来实现；
 
 #### 1.3 有限支持 dict 等其他容器
 
@@ -375,8 +375,8 @@ from paddle.jit import to_static
 def func(x):
     res = { 'a': 1 }
     t = paddle.shape(x)[0]
-    for i in range(t): # <--- 依赖 Tensor 的控制流
-        res['b'] = i   # <--- 不支持。因为在一个依赖 Tensor 的控制流中修改了 dict 结构
+    for i in range(t):      # <--- 依赖 Tensor 的控制流
+        res['b'] = i        # <--- 不支持。因为在一个依赖 Tensor 的控制流中修改了 dict 结构
     return res
 
 x = paddle.randn([2, 3])
@@ -557,7 +557,7 @@ class mylayer(paddle.nn.Layer):
         return self.linear(x)
 ```
 
-#### 3. 检查 isinstanse 的使用
+### 3. 检查 isinstanse 的使用
 
 在动转静中，组网相关的变量有可能被转换为静态图 Tensor，因此使用 isinstance 对变量类型进行判断存在一定风险，请留意下列变量有可能转化为 Tensor：
 
@@ -596,7 +596,7 @@ out = func(x)
 
 因此若在[调试时](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/jit/debugging_cn.html#ertiaoshifangfa)发现某个变量因为动转静转写为 Tensor 而导致了错误，可以通过修改 isinstance 语句来解决。
 
-#### 4. super 的使用
+### 4. super 的使用
 
 在 Python 3.x 中，super 的使用有两种：
 
@@ -632,7 +632,7 @@ class MyLayer(BaseLayer):
         super(MyLayer, self).forward()  # <--- 推荐使用 super(xx, self).xxx 形式
 ```
 
-#### 5. 暂未支持 PyLayer
+### 5. 暂未支持 PyLayer
 
 目前动转静暂不支持动态图下[自定义 PyLayer](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/autograd/PyLayer_cn.html#pylayer) 的语法，将在近期支持，敬请期待。推荐使用[自定算子的方式](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/custom_op/new_cpp_op_cn.html)代替，动转静已完备支持。
 #### 6. 暂未支持 TensorHook
