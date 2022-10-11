@@ -99,10 +99,10 @@ RPC API
     :widths: 20, 50
 
 
-    " :ref:`rpc.init_rpc <cn_api_distributed_rpc>` ", "初始化 RPC "
-    " :ref:`rpc.rpc_sync <cn_api_distributed_rpc>` ", "发起一个阻塞的 RPC 调用"
-    " :ref:`rpc.rpc_async <cn_api_distributed_rpc>` ", "发起一个非阻塞的 RPC 调用"
-    " :ref:`rpc.shutdown <cn_api_distributed_rpc>` ", "关闭 RPC "
-    " :ref:`rpc.get_worker_info <cn_api_distributed_rpc>` ", "获取 worker 信息"
-    " :ref:`rpc.get_all_worker_infos <cn_api_distributed_rpc>` ", "获取所有 worker 的信息"
-    " :ref:`rpc.get_current_worker_info <cn_api_distributed_rpc>` ", "获取当前 worker 的信息"
+    " :ref:`rpc.init_rpc <cn_api_distributed_rpc_rpc>` ", "初始化 RPC "
+    " :ref:`rpc.rpc_sync <cn_api_distributed_rpc_rpc>` ", "发起一个阻塞的 RPC 调用"
+    " :ref:`rpc.rpc_async <cn_api_distributed_rpc_rpc>` ", "发起一个非阻塞的 RPC 调用"
+    " :ref:`rpc.shutdown <cn_api_distributed_rpc_rpc>` ", "关闭 RPC "
+    " :ref:`rpc.get_worker_info <cn_api_distributed_rpc_rpc>` ", "获取 worker 信息"
+    " :ref:`rpc.get_all_worker_infos <cn_api_distributed_rpc_rpc>` ", "获取所有 worker 的信息"
+    " :ref:`rpc.get_current_worker_info <cn_api_distributed_rpc_rpc>` ", "获取当前 worker 的信息"
