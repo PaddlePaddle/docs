@@ -9,6 +9,7 @@ paddle.distributed 目录包含的 API 支撑飞桨框架大规模分布式训�
 -  :ref:`环境配置和训练启动管理 <02>`
 -  :ref:`数据加载 <03>`
 -  :ref:`集合通信算法 API <04>`
+-  :ref:`RPC API <05>`
 
 .. _01:
 
@@ -87,3 +88,21 @@ paddle.distributed.fleet 是分布式训练的统一入口 API，用于配置分
     " :ref:`scatter <cn_api_distributed_scatter>` ", "分发 tensor 到每个进程"
     " :ref:`split <cn_api_distributed_split>` ", "切分参数到多个设备"
     " :ref:`barrier <cn_api_distributed_barrier>` ", "同步路障，进行阻塞操作，实现组内所有进程的同步"
+
+.. _05:
+
+RPC API
+::::::::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 20, 50
+
+
+    " :ref:`rpc.init_rpc <cn_api_distributed_rpc>` ", "初始化 RPC "
+    " :ref:`rpc.rpc_sync <cn_api_distributed_rpc>` ", "发起一个阻塞的 RPC 调用"
+    " :ref:`rpc.rpc_async <cn_api_distributed_rpc>` ", "发起一个非阻塞的 RPC 调用"
+    " :ref:`rpc.shutdown <cn_api_distributed_rpc>` ", "关闭 RPC "
+    " :ref:`rpc.get_worker_info <cn_api_distributed_rpc>` ", "获取 worker 信息"
+    " :ref:`rpc.get_all_worker_infos <cn_api_distributed_rpc>` ", "获取所有 worker 的信息"
+    " :ref:`rpc.get_current_worker_info <cn_api_distributed_rpc>` ", "获取当前 worker 的信息"
