@@ -3,7 +3,8 @@
 Conv3D
 -------------------------------
 
-.. py:class:: paddle.incubate.sparse.nn.Conv3D(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, padding_mode='zeros', weight_attr=None, bias_attr=None, data_format="NCDHW")
+.. py:class:: paddle.incubate.sparse.nn.Conv3D(in_channels, out_channels,
+kernel_size, stride=1, padding=0, dilation=1, groups=1, padding_mode='zeros', weight_attr=None, bias_attr=None, data_format="NDHWC")
 
 **稀疏三维卷积层**
 
