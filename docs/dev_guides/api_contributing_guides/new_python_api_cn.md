@@ -1,5 +1,9 @@
 # 开发 API Python 端
 
+## 新增飞桨 API 的场景与意义
+API 作为用户使用飞桨框架的接口，承接着实现用户模型开发需求的重要作用。虽然目前飞桨已经提供了一千多个 API 用于支持各类场景下的模型开发，但在某些前沿邻域模型的探索中仍然可能会遇到框架已提供的 API 不足以支撑开发需求的情况，此时就可以通过在飞桨框架中新增 API 来解决这类问题。
+开发飞桨 API 可以加深对深度学习框架底层架构的理解，提升技术视野，同时也是在为深度学习框架开源社区的发展提供助力，让更多的 AI 开发者享受到 AI 基础设施带来的便利。
+
 新增飞桨 API 主要包含两种情况：
 
 1. 不需要开发新的 C++ 算子，可以用其他 Python API 组合得到新的 API，只写 Python 代码即可。
@@ -67,7 +71,7 @@
 
 #### 2.2.1 代码示例一（组合其他 Python API ）
 
-如图 1 所示，[zeros](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L552) 函数是通过组合 [fill_constant](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layers/tensor.py#L719) 实现的，并且 fill_constant 里已经处理了动态图和静态图的情况，所以直接调用即可。这就是组合其他 Python API 实现的例子。
+如图 1 所示，zeros 函数是通过组合 fill_constant 实现的，并且 fill_constant 里已经处理了动态图和静态图的情况，所以直接调用即可。这就是组合其他 Python API 实现的例子。
 
 ```python
 def zeros(shape, dtype=None, name=None):
@@ -76,12 +80,19 @@ def zeros(shape, dtype=None, name=None):
         dtype = 'float32'
     return fill_constant(value=0.0, shape=shape, dtype=dtype, name=name)
 ```
+【代码仓库链接】
+
+- [zeros 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/creation.py#L612)
+- [fill_constant 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layers/tensor.py#L718)
 
 #### 2.2.2 代码示例二（调用 C++ 算子接口）
 
-如果 API 的实现中需要调用 C++ 算子，则需要分别实现动态图分支和静态图分支的代码。
+如果 API 的实现中需要调用 C++ 算子，则需要分别实现动态图分支和静态图分支的代码（由于飞桨框架同时支持动态图和静态图两种训练模式，动态图和静态图在执行逻辑上有所差异，需要在 Python 端根据当前的运行模式选择进入到对应的执行分支去处理）。
 
-接下来以 [paddle.trace](../../api/paddle/trace_cn.html) API 的实现代码为例（示例代码路径：[python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py#L2784)），分别介绍动态图分支和静态图分支的开发要点：
+接下来以 [paddle.trace](../../api/paddle/trace_cn.html) API 的实现代码为例，分别介绍动态图分支和静态图分支的开发要点。
+
+【代码仓库链接】[trace 示例代码](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/tensor/math.py#L2910)
+
 
 ```python
 def trace(x, offset=0, axis1=0, axis2=1, name=None):
@@ -153,11 +164,11 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 对于静态图，一般分为输入参数检查、创建输出 Tensor、添加 OP 几个步骤。
 
-- **输入参数检查：** 包括必要的类型检查、值检查，以及输入 Tensor 的 shape、dtype 等检查，确保组网能正常运行等。
-  - 输入参数的检查一般仅在静态图分支中使用。主要原因是静态图下该函数仅被执行一次，发生在组网时，而动态图下该函数会被多次执行，Python 端过多的输入检查会影响执行效率。并且由于动态图即时执行的优势，如果发生错误也可以通过分析 C++ 端的报错信息定位问题。
+- **输入参数检查：** 包括必要的类型检查、值检查，以及输入 Tensor 的 shape、dtype 等检查，确保组网能正常运行等，这里的参数检查可以帮助用户尽早的暴露问题并修正，从而降低模型的开发调试成本。
+  - 输入参数的检查一般仅在静态图分支中使用。主要原因是静态图下该函数仅在模型组网时执行一次，运行期不会再执行；而动态图下该函数会被多次执行，Python 端过多的输入检查会影响执行效率。并且由于动态图即时执行的优势，如果发生错误也可以通过分析 C++ 端的报错信息定位问题。
   - 示例中输入参数检查的代码逻辑比较复杂但仅用于 `trace` 函数，因此在该函数内定义一个检查输入参数的函数 `__check_input`，代码见下文。
 - **创建输出 Tensor ，添加 OP：**
-  - 先创建 LayerHelper 对象，再使用 LayerHelper 对象创建输出 Tensor（LayerHelper 是一个用于创建 OP 输出变量、向 静态图 Program 中添加 OP 的辅助工具类）。
+  - 先创建 LayerHelper 对象，再使用 LayerHelper 对象创建输出 Tensor（[LayerHelper](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/layer_helper.py) 是一个用于创建 OP 输出变量、向 静态图 Program 中添加 OP 的辅助工具类）。
   - 在 `append_op` 添加 `inputs` 和 `outputs` 项，其中的 key 值（静态图中变量名）一般与 Python 接口中定义的输入输出 Tensor 变量名的命名相同。（注意：这里 `trace` 中的 `Input` 没有与 Python 接口中 `x` 命名直接对应是由于为了兼容旧算子体系下 `trace` 算子的定义实现而做了额外的映射，新增算子时无需考虑这种情况。）
 
 输入参数检查的 `__check_input` 函数代码如下所示，其中检测 Tensor 的数据类型可以用 [check_variable_and_dtype](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/data_feeder.py#L80) 或 [check_type](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/data_feeder.py#L128) 函数进行检测。

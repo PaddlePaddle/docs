@@ -271,3 +271,4 @@ Methods
     zero_
     is_complex
     is_integer
+    frexp

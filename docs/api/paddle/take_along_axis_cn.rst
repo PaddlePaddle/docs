@@ -16,7 +16,7 @@ take_along_axis
 返回
 :::::::::
 
-- **out** (Tensor) - 输出 Tensor，包含 indeces 矩阵选定的元素，与 ``arr`` 数据类型相同。
+输出 Tensor，包含 indeces 矩阵选定的元素，与 ``arr`` 数据类型相同。
 
 代码示例
 :::::::::

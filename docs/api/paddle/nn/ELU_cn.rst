@@ -22,7 +22,7 @@ ELU 激活层（ELU Activation Operator）
 
 参数
 ::::::::::
-    - alpha (float，可选) - ELU 的 alpha 值，默认值为 1.0。
+    - **alpha** (float，可选) - ELU 的 alpha 值，默认值为 1.0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状：

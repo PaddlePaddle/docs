@@ -10,7 +10,7 @@ hflip
 参数
 :::::::::
 
-    - img (PIL.Image|numpy.ndarray) - 输入的图像。
+    - **img** (PIL.Image|numpy.ndarray) - 输入的图像。
 
 返回
 :::::::::
