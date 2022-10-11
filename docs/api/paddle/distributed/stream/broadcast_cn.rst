@@ -10,7 +10,7 @@ broadcast
 
 参见 `paddle.distributed.broadcast`。
 
-.. warning::
+.. note::
   该 API 只支持动态图模式。
 
 参数
@@ -23,7 +23,7 @@ broadcast
 
 返回
 :::::::::
-返回 Task 实例。
+``Task``，显示执行状态，并可以用于调度异步操作。
 
 代码示例
 :::::::::

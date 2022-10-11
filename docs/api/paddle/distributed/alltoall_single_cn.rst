@@ -6,10 +6,10 @@ alltoall_single
 
 .. py:function:: paddle.distributed.alltoall_single(in_tensor, out_tensor, in_split_sizes=None, out_split_sizes=None, group=None, sync_op=True)
 
-.. warning::
-  该 API 只支持动态图模式。
-
 将输入的 tensor 分发到每个进程，随后在每个进程上将分发结果聚合到 out_tensor 中。
+
+.. note::
+  该 API 只支持动态图模式。
 
 参数
 :::::::::
@@ -22,7 +22,7 @@ alltoall_single
 
 返回
 :::::::::
-若为同步操作，无返回值；若为异步操作，返回 Task 实例。
+若为同步操作，无返回值；若为异步操作，返回``Task``，显示执行状态，并可以用于调度异步操作。
 
 代码示例
 :::::::::

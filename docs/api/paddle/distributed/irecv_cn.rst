@@ -6,10 +6,10 @@ irecv
 
 .. py:function:: paddle.distributed.irecv(tensor, src=None, group=None)
 
-.. warning::
-  该 API 只支持动态图模式。
-
 异步接收一个来自指定进程的 tensor。
+
+.. note::
+  该 API 只支持动态图模式。
 
 参数
 :::::::::
@@ -20,7 +20,7 @@ irecv
 
 返回
 :::::::::
-返回 Task 实例。
+``Task``，显示执行状态，并可以用于调度异步操作。
 
 代码示例
 :::::::::
