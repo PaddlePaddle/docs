@@ -8,7 +8,7 @@ send
 
 发送一个 tensor 到指定进程。
 
-参见 `paddle.distributed.send`。
+参见 :ref:`paddle.distributed.send<cn_api_distributed_send>`。
 
 .. note::
   该 API 只支持动态图模式。

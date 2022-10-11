@@ -8,7 +8,7 @@ all_gather
 
 聚合进程组内的指定 tensor，随后将聚合结果发送到每个进程。
 
-参见 `paddle.distributed.all_gather`。
+参见 :ref:`paddle.distributed.all_gather<cn_api_distributed_all_gather>`。
 
 .. note::
   该 API 只支持动态图模式。
