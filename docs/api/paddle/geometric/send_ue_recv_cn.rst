@@ -33,7 +33,7 @@ send_ue_recv
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入的节点特征Tensor，数据类型为：float32、float64、int32、int64。另外，我们在 GPU 计算中支持 float16。
+    - **x** (Tensor) - 输入的节点特征 Tensor，数据类型为：float32、float64、int32、int64。另外，我们在 GPU 计算中支持 float16。
     - **y** (Tensor) - 输入的边特征 Tensor，数据类型为：float32、float64、int32、int64。数据类型需与 ``x`` 相同。另外，我们在 GPU 计算中支持 float16。
     - **src_index** (Tensor) - 1-D Tensor，数据类型为：int32、int64。
     - **dst_index** (Tensor) - 1-D Tensor，数据类型为：int32、int64。注意：``dst_index`` 的形状应当与 ``src_index`` 一致。
