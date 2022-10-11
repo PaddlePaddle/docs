@@ -6,12 +6,12 @@ recv
 
 .. py:function:: paddle.distributed.stream.recv(tensor, src=0, group=None, sync_op=True, use_calc_stream=False)
 
-.. warning::
-  该 API 只支持动态图模式。
-
 接收一个来自指定进程的 tensor。
 
 参见 `paddle.distributed.recv`。
+
+.. warning::
+  该 API 只支持动态图模式。
 
 参数
 :::::::::

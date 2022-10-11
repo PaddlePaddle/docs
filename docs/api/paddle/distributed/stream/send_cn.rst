@@ -6,12 +6,12 @@ send
 
 .. py:function:: paddle.distributed.stream.send(tensor, dst=0, group=None, sync_op=True, use_calc_stream=False)
 
-.. warning::
-  该 API 只支持动态图模式。
-
 发送一个 tensor 到指定进程。
 
 参见 `paddle.distributed.send`。
+
+.. warning::
+  该 API 只支持动态图模式。
 
 参数
 :::::::::

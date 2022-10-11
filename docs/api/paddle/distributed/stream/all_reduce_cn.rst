@@ -6,12 +6,12 @@ all_reduce
 
 .. py:function:: paddle.distributed.stream.all_reduce(tensor, op=ReduceOp.SUM, group=None, sync_op=True, use_calc_stream=False)
 
-.. warning::
-  该 API 只支持动态图模式。
-
-组规约，规约进程组内的一个 tensor，随后将结果发送到每个进程。
+规约进程组内的一个 tensor，随后将结果发送到每个进程。
 
 参见 `paddle.distributed.all_reduce`。
+
+.. warning::
+  该 API 只支持动态图模式。
 
 参数
 :::::::::

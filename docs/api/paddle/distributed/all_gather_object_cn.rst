@@ -6,11 +6,11 @@ all_gather_object
 
 .. py:function:: paddle.distributed.all_gather_object(object_list, obj, group=None)
 
-.. warning::
-  该 API 只支持动态图模式。
-
 组聚合，聚合进程组内指定的 picklable 对象，随后将聚合后的对象列表发送到每个进程。
 过程与 ``all_gather`` 类似，但可以传入自定义的 python 对象。
+
+.. warning::
+  该 API 只支持动态图模式。
 
 参数
 :::::::::

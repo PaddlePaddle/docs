@@ -6,10 +6,10 @@ reduce_scatter
 
 .. py:function:: paddle.distributed.reduce_scatter(tensor, tensor_list, op=ReduceOp.SUM, group=None, sync_op=True)
 
+规约一组 tensor，随后将规约结果分发到每个进程。
+
 .. warning::
   该 API 只支持动态图模式。
-
-规约一组 tensor，随后将规约结果分发到每个进程。
 
 参数
 :::::::::

@@ -6,19 +6,19 @@ reduce_scatter
 
 .. py:function:: paddle.distributed.stream.reduce_scatter(tensor, tensor_or_tensor_list, op=ReduceOp.SUM, group=None, sync_op=True, use_calc_stream=False)
 
-.. warning::
-  该 API 只支持动态图模式。
-
 规约一组 tensor，随后将规约结果分发到每个进程。
 
 参见 `paddle.distributed.reduce`。
+
+.. warning::
+  该 API 只支持动态图模式。
 
 参数
 :::::::::
     - **tensor** (Tensor) – 用于接收数据的 tensor，数据类型必须与输入保持一致。
     - **tensor_or_tensor_list** (Tensor|List[Tensor]) - 输入的数据，可以是一个 tensor 或 tensor 列表。
-    若为 tensor，该 tensor 的大小必须与所有用于接收数据的 tensor 沿 dim[0] 拼接后的大小相同。
-    支持的数据类型包括：float16、float32、float64、int32、int64、int8、uint8、bool、bfloat16。
+      - 若为 tensor，该 tensor 的大小必须与所有用于接收数据的 tensor 沿 dim[0] 拼接后的大小相同。
+      - 支持的数据类型包括：float16、float32、float64、int32、int64、int8、uint8、bool、bfloat16。
     - **op** (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.MIN|ReduceOp.PROD，可选) - 归约的操作类型，包括求和、取最大值、取最小值和求乘积。默认为求和。
     - **group** (Group，可选) - 执行该操作的进程组实例（通过 ``new_group`` 创建）。默认为 None，即使用全局默认进程组。
     - **sync_op** (bool，可选) - 该操作是否为同步操作。默认为 True，即同步操作。

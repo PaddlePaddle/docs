@@ -82,12 +82,12 @@ paddle.distributed.fleet 是分布式训练的统一入口 API，用于配置分
     :widths: 20, 50
 
     " :ref:`ReduceOp <cn_api_distributed_ReduceOp>` ", "规约操作的类型"
-    " :ref:`reduce <cn_api_distributed_reduce>` ", "规约，规约进程组内的一个 tensor，随后将结果发送到指定进程"
-    " :ref:`all_reduce <cn_api_distributed_all_reduce>` ", "组规约，规约进程组内的 tensor，随后将结果发送到每个进程"
-    " :ref:`all_gather <cn_api_distributed_all_gather>` ", "组聚合，聚合进程组内的 tensor，随后将结果发送到每个进程"
-    " :ref:`all_gather_object <cn_api_distributed_all_gather_object>` ", "组聚合，聚合进程组内的 object，随后将结果发送到每个进程"
+    " :ref:`reduce <cn_api_distributed_reduce>` ", "规约进程组内的 tensor，随后将结果发送到指定进程"
+    " :ref:`all_reduce <cn_api_distributed_all_reduce>` ", "规约进程组内的 tensor，随后将结果发送到每个进程"
+    " :ref:`all_gather <cn_api_distributed_all_gather>` ", "聚合进程组内的 tensor，随后将结果发送到每个进程"
+    " :ref:`all_gather_object <cn_api_distributed_all_gather_object>` ", "聚合进程组内的 object，随后将结果发送到每个进程"
     " :ref:`alltoall <cn_api_distributed_alltoall>` ", "将一组 tensor 分发到每个进程并进行聚合"
-    " :ref:`alltoall_single <cn_api_distributed_alltoall_single>` ", "将一个 tensor 分发到每个进程并聚合到目标 tensor"
+    " :ref:`alltoall_single <cn_api_distributed_alltoall_single>` ", "将一个 tensor 分发到每个进程并进行聚合"
     " :ref:`broadcast <cn_api_distributed_broadcast>` ", "将一个 tensor 发送到每个进程"
     " :ref:`scatter <cn_api_distributed_scatter>` ", "将一组 tensor 分发到每个进程"
     " :ref:`reduce_scatter <cn_api_distributed_reduce_scatter>` ", "规约一组 tensor，随后将规约结果分发到每个进程"
@@ -106,14 +106,14 @@ paddle.distributed.stream 在集合通信 API 的基础上，提供更统一的�
 
 .. csv-table::
     :header: "API 名称", "API 功能"
-    :widths: 30, 50
+    :widths: 25, 50
 
 
-    " :ref:`stream.reduce <cn_api_distributed_stream_reduce>` ", "规约，规约进程组内的 tensor，随后将结果发送到指定进程"
-    " :ref:`stream.all_reduce <cn_api_distributed_stream_all_reduce>` ", "组规约，规约进程组内的 tensor，随后将结果发送到每个进程"
-    " :ref:`stream.all_gather <cn_api_distributed_stream_all_gather>` ", "组聚合，聚合进程组内的 tensor，随后将结果发送到每个进程"
+    " :ref:`stream.reduce <cn_api_distributed_stream_reduce>` ", "规约进程组内的 tensor，随后将结果发送到指定进程"
+    " :ref:`stream.all_reduce <cn_api_distributed_stream_all_reduce>` ", "规约进程组内的 tensor，随后将结果发送到每个进程"
+    " :ref:`stream.all_gather <cn_api_distributed_stream_all_gather>` ", "聚合进程组内的 tensor，随后将结果发送到每个进程"
     " :ref:`stream.alltoall <cn_api_distributed_stream_alltoall>` ", "分发一组 tensor 到每个进程并进行聚合"
-    " :ref:`stream.alltoall_single <cn_api_distributed_stream_alltoall_single>` ", "分发一个 tensor 到每个进程并聚合到目标 tensor"
+    " :ref:`stream.alltoall_single <cn_api_distributed_stream_alltoall_single>` ", "分发一个 tensor 到每个进程并进行聚合"
     " :ref:`stream.broadcast <cn_api_distributed_stream_broadcast>` ", "发送一个 tensor 到每个进程"
     " :ref:`stream.scatter <cn_api_distributed_stream_scatter>` ", "分发一个 tensor 到每个进程"
     " :ref:`stream.reduce_scatter <cn_api_distributed_stream_reduce_scatter>` ", "规约一组 tensor，随后将规约结果分发到每个进程"

@@ -6,12 +6,12 @@ broadcast
 
 .. py:function:: paddle.distributed.stream.broadcast(tensor, src=0, group=None, sync_op=True, use_calc_stream=False)
 
-.. warning::
-  该 API 只支持动态图模式。
-
 将一个 tensor 发送到每个进程。
 
 参见 `paddle.distributed.broadcast`。
+
+.. warning::
+  该 API 只支持动态图模式。
 
 参数
 :::::::::
