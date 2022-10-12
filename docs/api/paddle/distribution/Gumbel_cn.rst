@@ -1,4 +1,4 @@
-.. _cn_api_distribution_Normal:
+.. _cn_api_distribution_Gumbel:
 
 Gumbel
 -------------------------------
@@ -114,7 +114,7 @@ rsample(shape)
 prob(value)
 '''''''''
 
-Gumbel分布的概率密度函数。
+耿贝尔分布的概率密度函数。
 
 **参数**
 
@@ -128,16 +128,18 @@ Gumbel分布的概率密度函数。
 
 上面数学公式中：
 
-μ：Gumbel分布位置参数； β：Gumbel分布尺度参数。
+:math:`loc = \mu`：耿贝尔分布位置参数。
+
+:math:`scale = \beta`：耿贝尔分布尺度参数。
 
 **返回**
 
-    - **Tensor** - value在Gumbel分布下的概率值。
+    - **Tensor** - value在耿贝尔分布下的概率值。
 
 log_prob(value)
 '''''''''
 
-Gumbel分布的对数概率密度函数。
+耿贝尔分布的对数概率密度函数。
 
 **参数**
 
@@ -158,16 +160,16 @@ Gumbel分布的对数概率密度函数。
 
 **返回**
 
-    - **Tensor** - value在Gumbel分布下的对数概率值。
+    - **Tensor** - value 在耿贝尔分布下的对数概率值。
 
 entropy(scale)
 '''''''''
 
-Gumbel分布的信息熵。
+耿贝尔分布的信息熵。
 
 **参数**
 
-    - **scale** (int|float|Tensor) - Gumbel分布的尺度参数。
+    - **scale** (int|float|Tensor) - 耿贝尔分布的尺度参数。
 
 数学公式：
 
