@@ -16,13 +16,15 @@ Gumbel
 
 上面数学公式中：
 
-loc = μ：Gumbel分布位置参数；scale = β：Gumbel分布尺度参数。
+:math:`loc = \mu`：耿贝尔分布位置参数。
+
+:math:`scale = \beta`：耿贝尔分布尺度参数。
 
 参数
 ::::::::::::
 
-    - **loc** (int|float|Tensor) - Gumbel分布平均值。数据类型为 int、float、Tensor。
-    - **scale** (int|float|Tensor) - Gumbel分布标准差。数据类型为 int、float、Tensor。
+    - **loc** (int|float|Tensor) - 耿贝尔分布位置参数。数据类型为 int、float、Tensor。
+    - **scale** (int|float|Tensor) - 耿贝尔分布尺度参数。数据类型为 int、float、Tensor。
 
 代码示例
 ::::::::::::
@@ -45,7 +47,7 @@ mean
 
 上面数学公式中：
 
-γ：欧拉常数
+:math:`\gamma`：欧拉常数。
 
 variance
 '''''''''
@@ -59,7 +61,7 @@ variance
 
 上面数学公式中：
 
-β：Gumbel分布的尺度参数。
+:math:`scale = \beta`：耿贝尔分布尺度参数。
 
 
 stddev
@@ -73,7 +75,7 @@ stddev
 
 上面数学公式中：
 
-β：Gumbel分布的尺度参数。
+:math:`scale = \beta`：耿贝尔分布尺度参数。
 
 方法
 :::::::::
@@ -150,7 +152,9 @@ Gumbel分布的对数概率密度函数。
 
 上面数学公式中：
 
-μ：Gumbel分布位置参数； β：Gumbel分布尺度参数。
+:math:`loc = \mu`：耿贝尔分布位置参数。
+
+:math:`scale = \beta`：耿贝尔分布尺度参数。
 
 **返回**
 
@@ -173,5 +177,7 @@ Gumbel分布的信息熵。
 
 上面数学公式中：
 
-β：Gumbel分布尺度参数；γ：欧拉常数。
+:math:`scale = \beta`：耿贝尔分布尺度参数。
+
+:math:`\gamma`：欧拉常数。
 
