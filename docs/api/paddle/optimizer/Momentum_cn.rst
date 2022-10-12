@@ -6,7 +6,7 @@ Momentum
 .. py:class:: paddle.optimizer.Momentum(learning_rate=0.001, momentum=0.9, parameters=None, use_nesterov=False, weight_decay=None, grad_clip=None, name=None)
 
 
-该接口实现含有速度状态的 Simple Momentum 优化器。
+含有速度状态的 Simple Momentum 优化器。
 
 该优化器含有牛顿动量标志，公式更新如下：
 

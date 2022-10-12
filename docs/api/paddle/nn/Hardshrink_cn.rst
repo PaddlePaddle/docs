@@ -21,7 +21,7 @@ Hardshrink 激活层
 
 参数
 ::::::::::
-    - threshold (float，可选) - Hardshrink 激活计算公式中的 threshold 值。默认值为 0.5。
+    - **threshold** (float，可选) - Hardshrink 激活计算公式中的 threshold 值。默认值为 0.5。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
