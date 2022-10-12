@@ -28,4 +28,4 @@ scatter
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.stream.scatter
+COPY-FROM: paddle.distributed.communication.stream.scatter

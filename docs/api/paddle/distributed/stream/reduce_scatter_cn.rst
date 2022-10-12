@@ -29,4 +29,4 @@ reduce_scatter
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.stream.reduce_scatter
+COPY-FROM: paddle.distributed.communication.stream.reduce_scatter

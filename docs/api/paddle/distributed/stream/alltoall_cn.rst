@@ -27,4 +27,4 @@ alltoall
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.stream.alltoall
+COPY-FROM: paddle.distributed.communication.stream.alltoall

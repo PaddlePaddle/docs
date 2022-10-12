@@ -27,4 +27,4 @@ all_gather
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.stream.all_gather
+COPY-FROM: paddle.distributed.communication.stream.all_gather

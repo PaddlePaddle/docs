@@ -27,4 +27,4 @@ send
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.stream.send
+COPY-FROM: paddle.distributed.communication.stream.send

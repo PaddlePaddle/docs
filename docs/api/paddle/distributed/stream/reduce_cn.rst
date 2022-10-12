@@ -28,4 +28,4 @@ reduce
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.stream.reduce
+COPY-FROM: paddle.distributed.communication.stream.reduce

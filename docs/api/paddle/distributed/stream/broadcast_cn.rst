@@ -27,4 +27,4 @@ broadcast
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.stream.broadcast
+COPY-FROM: paddle.distributed.communication.stream.broadcast

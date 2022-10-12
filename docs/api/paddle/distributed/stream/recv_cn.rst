@@ -27,4 +27,4 @@ recv
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.stream.recv
+COPY-FROM: paddle.distributed.communication.stream.recv

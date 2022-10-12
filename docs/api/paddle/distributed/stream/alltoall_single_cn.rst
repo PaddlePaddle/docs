@@ -29,4 +29,4 @@ alltoall_single
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.stream.alltoall_single
+COPY-FROM: paddle.distributed.communication.stream.alltoall_single

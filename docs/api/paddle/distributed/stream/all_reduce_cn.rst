@@ -27,4 +27,4 @@ all_reduce
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.stream.all_reduce
+COPY-FROM: paddle.distributed.communication.stream.all_reduce
