@@ -13,7 +13,7 @@ MultiMarginLoss
     \text{loss}(input_i, label_i) = \frac{\sum_{j} \max(0, \text{margin} - input_i[label_i] + input_i[j])^p}{\text{C}}
 
 
-其中 :math:`0 \leq j \leq \text{C}-1`, 且 :math:`j \neq label_i`, :math:`0 \leq i \leq \text{N}-1` N 为 batch 数量, C 为类别数量。
+其中 :math:`0 \leq j \leq \text{C}-1`, 且 :math:`j \neq label_i`， :math:`0 \leq i \leq \text{N}-1` N 为 batch 数量, C 为类别数量。
 
 如果含有权重 `weight` 则损失函数按以下公式计算
 
