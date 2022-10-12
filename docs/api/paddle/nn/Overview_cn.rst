@@ -262,6 +262,7 @@ Loss 层
     " :ref:`paddle.nn.TripletMarginLoss <cn_api_paddle_nn_TripletMarginLoss>` ", "TripletMarginLoss 层"
     " :ref:`paddle.nn.TripletMarginWithDistanceLoss <cn_api_paddle_nn_TripletMarginWithDistanceLoss>` ", "TripletMarginWithDistanceLoss 层"
     " :ref:`paddle.nn.MultiLabelSoftMarginLoss <cn_api_paddle_nn_MultiLabelSoftMarginLoss>` ", "多标签 Hinge 损失层"
+    " :ref:`paddle.nn.MultiMarginLoss <cn_api_paddle_nn_MultiMarginLoss>` ", "MultiMarginLoss 层"
 
 
 .. _vision_layers:
@@ -488,6 +489,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.triplet_margin_loss <cn_api_paddle_nn_functional_triplet_margin_loss>` ", "用于计算 TripletMarginLoss"
     " :ref:`paddle.nn.functional.triplet_margin_with_distance_loss <cn_api_paddle_nn_functional_triplet_margin_with_distance_loss>` ", "用户自定义距离函数用于计算 triplet margin loss 损失"
     " :ref:`paddle.nn.functional.multi_label_soft_margin_loss <cn_api_nn_functional_multi_label_soft_margin_loss>` ", "用于计算多分类的 hinge loss 损失函数"
+    " :ref:`paddle.nn.functional.multi_margin_loss <cn_api_paddle_nn_functional_multi_margin_loss>` ", "用于计算 multi margin loss 损失函数"
 
 
 .. _common_functional:
