@@ -54,7 +54,7 @@ pip install paddlepaddle_rocm-2.1.1.rocm401.miopen211-cp37-cp37m-linux_x86_64.wh
 ```
 - 期间所需要的其他库都需要通过在曙光超算上通过 EShell 进行安装，需要设定清华镜像源，例如
 ```bash
-pip install six -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install requests -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 - 经过测试，测试指令为
 ```bash
