@@ -1,6 +1,6 @@
 # 飞桨对昆仑 2 代芯片的支持
 
-飞桨自 2.4rc 版本起支持在昆仑 2 代芯片上（R200，R300，R200-8F，R200-8FS，RG800）运行，经验证的模型训练的支持情况如下：
+飞桨自 2.4rc 版本起支持在昆仑芯第2代芯片上（R200，R300，R200-8F，R200-8FS，RG800）运行，经验证的模型训练的支持情况如下：
 
 ## 训练支持
 
@@ -73,4 +73,4 @@
 | OCR | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) | [dygraph](https://github.com/PaddlePaddle/PaddleOCR/tree/dygraph) |
 | 推荐  | [PaddleREC](https://github.com/PaddlePaddle/PaddleRec) | [master](https://github.com/PaddlePaddle/PaddleRec/tree/master) |
 
-- 注：支持基于 Kermel Primitive 算子的昆仑 2 代芯片支持，[点击这里](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/kernel_primitive_api/index_cn.html)。
+
