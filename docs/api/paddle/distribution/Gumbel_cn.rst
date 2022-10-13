@@ -99,7 +99,7 @@ prob(value)
 
 **返回**
 
-    - **Tensor** - value在耿贝尔分布下的概率值。
+    - **Tensor** - value 在耿贝尔分布下的概率值。
 
 log_prob(value)
 '''''''''
@@ -193,12 +193,3 @@ rsample(shape)
 **返回**
 
     - **Tensor** - 预先设计好维度的样本数据。
-
-
-
-
-
-
-
-
-
