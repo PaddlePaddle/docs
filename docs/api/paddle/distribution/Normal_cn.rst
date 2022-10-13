@@ -6,7 +6,6 @@ Normal
 .. py:class:: paddle.distribution.Normal(loc, scale, name=None)
 
 
-
 正态分布
 
 数学公式：
@@ -26,8 +25,8 @@ Normal
 参数
 ::::::::::::
 
-    - **loc** (int|float|list|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为 float32 或 float64。
-    - **scale** (int|float|list|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为 float32 或 float64。
+    - **loc** (int|float|list|tuple|numpy.ndarray|Tensor) - 正态分布平均值。数据类型为 float32 或 float64。
+    - **scale** (int|float|list|tuple|numpy.ndarray|Tensor) - 正态分布标准差。数据类型为 float32 或 float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 代码示例
@@ -35,6 +34,21 @@ Normal
 
 
 COPY-FROM: paddle.distribution.Normal
+
+
+属性
+:::::::::
+
+mean
+'''''''''
+
+正态分布的均值
+
+variance
+'''''''''
+
+正态分布的方差
+
 
 方法
 :::::::::
@@ -46,8 +60,21 @@ sample(shape, seed=0)
 
 **参数**
 
-    - **shape** (list) - 1 维列表，指定生成样本的维度。数据类型为 int32。
+    - **shape** ((Sequence[int], 可选) - 指定生成样本的维度。
     - **seed** (int) - 长整型数。
+
+**返回**
+
+Tensor，预先设计好维度的 Tensor，数据类型为 float32。
+
+rsample(shape)
+'''''''''
+
+重参数化采样，生成指定维度的样本。
+
+**参数**
+
+    - **shape** ((Sequence[int], 可选) - 指定生成样本的维度。
 
 **返回**
 
@@ -83,7 +110,7 @@ log_prob(value)
 
 **返回**
 
-Tensor，对数概率，数据类型与 value 相同。
+Tensor，对数概率，数据类型与 :attr:`value` 相同。
 
 probs(value)
 '''''''''
