@@ -185,7 +185,7 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
             sgd = paddle.optimizer.SGD(learning_rate=1e-3)
             sgd.minimize(avg_loss)
 
-1. 如果分别运行 train Program 和 test Program，则可以不使用 clone。
+2. 如果分别运行 train Program 和 test Program，则可以不使用 clone。
 
 .. code-block:: python
 
