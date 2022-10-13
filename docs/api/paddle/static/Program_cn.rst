@@ -122,16 +122,14 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
 
 .. code-block:: python
 
-    import six
-
     def print_prog(prog):
-        for name, value in sorted(six.iteritems(prog.block(0).vars)):
+        for name, value in sorted(prog.block(0).vars.items()):
             print(value)
         for op in prog.block(0).ops:
             print("op type is {}".format(op.type))
             print("op inputs are {}".format(op.input_arg_names))
             print("op outputs are {}".format(op.output_arg_names))
-            for key, value in sorted(six.iteritems(op.all_attrs())):
+            for key, value in sorted(op.all_attrs().items()):
                 if key not in ['op_callstack', 'op_role_var']:
                     print(" [ attrs: {}:   {} ]".format(key, value))
 
@@ -139,7 +137,6 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
 
 .. code-block:: python
 
-    import six
     import paddle
     import paddle.static as static
     import paddle.utils as utils
@@ -148,13 +145,13 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
     paddle.enable_static()
 
     def print_prog(prog):
-        for name, value in sorted(six.iteritems(prog.block(0).vars)):
+        for name, value in sorted(prog.block(0).vars.items()):
             print(value)
         for op in prog.block(0).ops:
             print("op type is {}".format(op.type))
             print("op inputs are {}".format(op.input_arg_names))
             print("op outputs are {}".format(op.output_arg_names))
-            for key, value in sorted(six.iteritems(op.all_attrs())):
+            for key, value in sorted(op.all_attrs().items()):
                 if key not in ['op_callstack', 'op_role_var']:
                     print(" [ attrs: {}:   {} ]".format(key, value))
 
@@ -188,11 +185,10 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
             sgd = paddle.optimizer.SGD(learning_rate=1e-3)
             sgd.minimize(avg_loss)
 
-2. 如果分别运行 train Program 和 test Program，则可以不使用 clone。
+1. 如果分别运行 train Program 和 test Program，则可以不使用 clone。
 
 .. code-block:: python
 
-    import six
     import paddle
     import paddle.static as static
     import paddle.utils as utils
@@ -201,13 +197,13 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
     paddle.enable_static()
 
     def print_prog(prog):
-        for name, value in sorted(six.iteritems(prog.block(0).vars)):
+        for name, value in sorted(prog.block(0).vars.items()):
             print(value)
         for op in prog.block(0).ops:
             print("op type is {}".format(op.type))
             print("op inputs are {}".format(op.input_arg_names))
             print("op outputs are {}".format(op.output_arg_names))
-            for key, value in sorted(six.iteritems(op.all_attrs())):
+            for key, value in sorted(op.all_attrs().items()):
                 if key not in ['op_callstack', 'op_role_var']:
                     print(" [ attrs: {}:   {} ]".format(key, value))
 
