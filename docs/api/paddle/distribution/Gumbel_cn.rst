@@ -4,21 +4,19 @@ Gumbel
 -------------------------------
 
 .. py:class:: paddle.distribution.Gumbel(loc, scale)
-
 耿贝尔分布
 
 数学公式：
 
 .. math::
-
     F(x; \mu, \beta) = e^{-e^{\frac {-(x-\mu)} {\beta}}}
-
 
 上面数学公式中：
 
 :math:`loc = \mu`：耿贝尔分布位置参数。
 
 :math:`scale = \beta`：耿贝尔分布尺度参数。
+
 
 参数
 ::::::::::::
@@ -28,7 +26,6 @@ Gumbel
 
 代码示例
 ::::::::::::
-
 
 COPY-FROM: paddle.distribution.Gumbel
 
@@ -63,9 +60,9 @@ variance
 
 :math:`scale = \beta`：耿贝尔分布尺度参数。
 
-
 stddev
 '''''''''
+
 标准差
 
 数学公式：
@@ -77,39 +74,9 @@ stddev
 
 :math:`scale = \beta`：耿贝尔分布尺度参数。
 
+
 方法
 :::::::::
-
-
-sample(shape)
-'''''''''
-
-随机采样，生成指定维度的样本。
-
-**参数**
-
-    - **shape** (tuple[int]) - 1 维元组，指定样本的维度。
-
-**返回**
-
-    - **Tensor** - 预先设计好维度的样本数据。
-
-
-
-rsample(shape)
-'''''''''
-
-重参数化采样。
-
-**参数**
-
-    - **shape** (tuple[int]) - 1 维元组，指定样本的维度。
-
-**返回**
-
-    - **Tensor** - 预先设计好维度的样本数据。
-
-
 
 prob(value)
 '''''''''
@@ -162,6 +129,30 @@ log_prob(value)
 
     - **Tensor** - value 在耿贝尔分布下的对数概率值。
 
+cdf(value)
+'''''''''
+累积分布函数
+
+**参数**
+
+    - **value** (Tensor) - 输入张量。
+
+数学公式：
+
+.. math::
+    cdf(value) = e^{-e^{\frac {-(value-\mu)} {\beta}}}
+
+上面的数学公式中：
+
+:math:`loc = \mu`：耿贝尔分布位置参数。
+
+:math:`scale = \beta`：耿贝尔分布尺度参数。
+
+**返回**
+
+    - Tensor: value 对应 Gumbel 累积分布函数下的值。
+
+
 entropy(scale)
 '''''''''
 
@@ -182,4 +173,41 @@ entropy(scale)
 :math:`scale = \beta`：耿贝尔分布尺度参数。
 
 :math:`\gamma`：欧拉常数。
+
+
+sample(shape)
+'''''''''
+
+随机采样，生成指定维度的样本。
+
+**参数**
+
+    - **shape** (tuple[int]) - 1 维元组，指定样本的维度。
+
+**返回**
+
+    - **Tensor** - 预先设计好维度的样本数据。
+
+
+
+rsample(shape)
+'''''''''
+
+重参数化采样。
+
+**参数**
+
+    - **shape** (tuple[int]) - 1 维元组，指定样本的维度。
+
+**返回**
+
+    - **Tensor** - 预先设计好维度的样本数据。
+
+
+
+
+
+
+
+
 
