@@ -80,13 +80,11 @@ stddev
 
 prob(value)
 '''''''''
-
 耿贝尔分布的概率密度函数。
 
 **参数**
 
     - **value** (Tensor|Scalar) - 待计算的值。
-
 
 数学公式：
 
@@ -105,13 +103,11 @@ prob(value)
 
 log_prob(value)
 '''''''''
-
 耿贝尔分布的对数概率密度函数。
 
 **参数**
 
     - **value** (Tensor|Scalar) - 待计算的值。
-
 
 数学公式：
 
@@ -152,10 +148,8 @@ cdf(value)
 
     - Tensor: value 对应 Gumbel 累积分布函数下的值。
 
-
 entropy(scale)
 '''''''''
-
 耿贝尔分布的信息熵。
 
 **参数**
@@ -177,27 +171,24 @@ entropy(scale)
 
 sample(shape)
 '''''''''
-
 随机采样，生成指定维度的样本。
 
 **参数**
 
-    - **shape** (tuple[int]) - 1 维元组，指定样本的维度。
+    - **shape** (list[int]) - 1 维列表，指定样本的维度。
 
 **返回**
 
     - **Tensor** - 预先设计好维度的样本数据。
 
 
-
 rsample(shape)
 '''''''''
-
 重参数化采样。
 
 **参数**
 
-    - **shape** (tuple[int]) - 1 维元组，指定样本的维度。
+    - **shape** (list[int]) - 1 维列表，指定样本的维度。
 
 **返回**
 
