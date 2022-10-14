@@ -3,8 +3,6 @@
 is_same_shape
 -------------------------------
 
-
-
 .. py:function:: paddle.incubate.sparse.is_same_shape(x, y)
 
 返回两个 Tensor 形状比较的结果，判断输入 :attr:`x` 与输入 :attr:`y` 的形状是否相同，支持 DenseTensor、SparseCsrTensor 与 SparseCooTensor 之间任意两种的形状比较。
