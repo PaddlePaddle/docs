@@ -10,13 +10,13 @@ Spectrogram
 参数
 ::::::::::::
 
-    - **n_fft** (int) - 离散傅里叶变换中频率窗大小，默认512。
-    - **hop_length**  (int，可选) - 帧移，默认512。
-    - **win_length**  (int，可选) - 短时FFT的窗长，默认为None。
+    - **n_fft** (int) - 离散傅里叶变换中频率窗大小，默认 512。
+    - **hop_length**  (int，可选) - 帧移，默认 512。
+    - **win_length**  (int，可选) - 短时 FFT 的窗长，默认为 None。
     - **window**  (str) - 窗函数名，默认'hann'。
     - **power**  (float) - 幅度谱的指数。
-    - **center**  (bool) - 对输入信号填充，如果True，那么t以t*hop_length为中心，如果为False，则t以t*hop_length开始。
-    - **pad_mode**  (str) - 如果center是True，选择填充的方式.默认值是'reflect'。
+    - **center**  (bool) - 对输入信号填充，如果 True，那么 t 以 t*hop_length 为中心，如果为 False，则 t 以 t*hop_length 开始。
+    - **pad_mode**  (str) - 如果 center 是 True，选择填充的方式.默认值是'reflect'。
     - **dtype**  (str) - 输入和窗的数据类型，默认是'float32'。
 
 

@@ -5,18 +5,18 @@ compute_fbank_matrix
 
 .. py:function:: paddle.audio.functional.compute_fbank_matrix(sr, n_fft, n_mels=64, f_min=0.0, f_max=None, htk=False, nrom='slaney', dtype='float32')
 
-计算mel变换矩阵。
+计算 mel 变换矩阵。
 
 参数
 ::::::::::::
 
     - **sr** (int) - 采样率。
-    - **n_fft** (int) - fft bins的数目。
-    - **n_mels** (float) - mels bins的数目。
+    - **n_fft** (int) - fft bins 的数目。
+    - **n_mels** (float) - mels bins 的数目。
     - **f_min** (float) - 最小频率(hz)。
     - **f_max** (Optional[float]) -最大频率(hz)。
-    - **htk** (bool) -是否使用htk缩放。
-    - **norm** (Union[str，float]) -norm的类型，默认是'slaney'。
+    - **htk** (bool) -是否使用 htk 缩放。
+    - **norm** (Union[str，float]) -norm 的类型，默认是'slaney'。
     - **dtype** (str) - 返回矩阵的数据类型，默认'float32'。
 
 返回
@@ -30,9 +30,9 @@ compute_fbank_matrix
 ::
 
     import paddle
-    
+
     n_mfcc = 23
 
-    n_mels = 51 
+    n_mels = 51
 
     paddle_dct = paddle.audio.functional.create_dct(n_mfcc, n_mels)
