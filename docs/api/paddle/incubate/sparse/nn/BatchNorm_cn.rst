@@ -65,4 +65,4 @@ BatchNorm
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.nn.BatchNorm3D
+COPY-FROM: paddle.incubate.sparse.nn.BatchNorm3D

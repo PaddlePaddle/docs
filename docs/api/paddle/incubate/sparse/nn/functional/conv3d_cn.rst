@@ -73,4 +73,4 @@ Tensor。
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.nn.functional.conv3d
+COPY-FROM: paddle.incubate.sparse.nn.functional.conv3d
