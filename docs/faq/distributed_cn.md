@@ -4,7 +4,7 @@
 
 ##### 问题：怎样了解飞桨分布式 Fleet API 用法?
 
-+ 答复：可查看覆盖高低阶应用的[分布式用户文档](https://github.com/PaddlePaddle/fleetx)和[分布式 API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/Overview_cn.html)
++ 答复：可查看覆盖高低阶应用的[分布式用户文档](https://github.com/PaddlePaddle/PaddleFleetX)和[分布式 API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/Overview_cn.html)
 
 ----------
 

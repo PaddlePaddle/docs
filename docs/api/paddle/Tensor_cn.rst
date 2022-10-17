@@ -2457,3 +2457,12 @@ take(index, mode='raise', name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_tensor_take`
+
+frexp(x)
+:::::::::
+用于把一个浮点数分解为尾数和指数的函数
+返回：一个尾数 Tensor 和一个指数 Tensor
+
+返回类型：Tensor, Tensor
+
+请参考 :ref:`_cn_api_paddle_frexp`
