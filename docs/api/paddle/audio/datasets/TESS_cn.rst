@@ -12,11 +12,11 @@ TESS
 :::::::::
 
   - **mode** (str，可选) - ``'train'`` 或 ``'dev'`` 模式两者之一，默认值为 ``'train'``。
-  - **seed** (int) - 默认是0，指定随机数来对数据进行重新排序。
-  - **n_folds** (int) - 默认是5，指定把数据集分为的文件夹数目， 1个文件夹是dev，其他是train。
-  - **split** (int) - 默认是1，指定dev的文件夹。
-  - **feat_type** (str) - 默认是raw，raw是原始语音，支持mfcc，spectrogram，melspectrogram，logmelspectrogram。指定从音频提取的语音特征。
-  - **archive** (dict) - 默认是None，类中已经设置默认archive，指定数据集的下载链接和md5值。
+  - **seed** (int) - 默认是 0，指定随机数来对数据进行重新排序。
+  - **n_folds** (int) - 默认是 5，指定把数据集分为的文件夹数目， 1 个文件夹是 dev，其他是 train。
+  - **split** (int) - 默认是 1，指定 dev 的文件夹。
+  - **feat_type** (str) - 默认是 raw，raw 是原始语音，支持 mfcc，spectrogram，melspectrogram，logmelspectrogram。指定从音频提取的语音特征。
+  - **archive** (dict) - 默认是 None，类中已经设置默认 archive，指定数据集的下载链接和 md5 值。
 
 返回
 :::::::::

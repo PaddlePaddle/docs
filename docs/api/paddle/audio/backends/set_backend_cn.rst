@@ -5,13 +5,13 @@ set_backend
 
 .. py:function:: paddle.audio.backends.set_backend(backend_name: str)
 
-设置处理语音I/O的后端。
+设置处理语音 I/O 的后端。
 
 参数
 ::::::::::::
 
-    - **backend_name** (str) - 语音I/O后端名称，现支持‘wave_backend’,如果安装了paddleaudio >=1.0.2,则也支持‘soundfile’。
-  
+    - **backend_name** (str) - 语音 I/O 后端名称，现支持‘wave_backend’,如果安装了 paddleaudio >=1.0.2,则也支持‘soundfile’。
+
 返回
 :::::::::
 

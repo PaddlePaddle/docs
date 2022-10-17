@@ -13,9 +13,9 @@ save
     - **filepath** (str 或者 Path) - 保存音频路径。
     - **src** (paddle.Tensor) - 音频数据。
     - **sample_rate** (int) - 采样率。
-    - **channels_first** (bool) - 如果是True，那么src的Tensor形状是[channel，time]，如果是False，则是[time, channel]。
-    - **encoding** (Optional[str]) - 默认是None，编码信息。
-    - **bits_per_sample** (Optional[int]) - 默认是16。编码位长。
+    - **channels_first** (bool) - 如果是 True，那么 src 的 Tensor 形状是[channel，time]，如果是 False，则是[time, channel]。
+    - **encoding** (Optional[str]) - 默认是 None，编码信息。
+    - **bits_per_sample** (Optional[int]) - 默认是 16。编码位长。
 返回
 :::::::::
 
