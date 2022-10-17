@@ -5,7 +5,7 @@ save
 
 .. py:function:: paddle.audio.backends.save(filepath: str, src: paddle.Tensor, sample_rate: int, channels_first: bool = True, encoding: Optional[str] = None, bits_per_sample: Optional[int] = 16)
 
-获取音频的相关信息，如采用率，通道数等。
+保存音频数据。
 
 参数
 ::::::::::::

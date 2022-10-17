@@ -5,7 +5,7 @@ load
 
 .. py:function:: paddle.audio.backends.load(filepath: Union[str, Path], frame_offset: int = 0, num_frames: int = -1, normalize: bool = True, channels_first: bool = True)
 
-获取音频的相关信息，如采用率，通道数等。
+获取音频数据。
 
 参数
 ::::::::::::
