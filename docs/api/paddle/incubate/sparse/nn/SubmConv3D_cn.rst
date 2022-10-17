@@ -18,11 +18,11 @@ NDHWC 格式，其中 N 是批尺寸，C 是通道数，D 是特征层深度，H
 
 其中：
 
-    - :math:`X`：输入值，NDHWC 格式的 5-D Tensor
-    - :math:`W`：卷积核值，DHWCM 格式的 5-D Tensor
-    - :math:`*`：子流形稀疏卷积操作的定义参考论文：https://arxiv.org/abs/1706.01307
-    - :math:`b`：偏置值，1-D Tensor，形为 ``[M]``
-    - :math:`Out`：输出值，NDHWC 格式的 5-D Tensor，和 ``X`` 的形状可能不同
+    - :math:`X` ：输入值，NDHWC 格式的 5-D Tensor
+    - :math:`W` ：卷积核值，DHWCM 格式的 5-D Tensor
+    - :math:`*` ：子流形稀疏卷积操作的定义参考论文：https://arxiv.org/abs/1706.01307
+    - :math: `b` ：偏置值，1-D Tensor，形为 ``[M]``
+    - :math:`Out` ：输出值，NDHWC 格式的 5-D Tensor，和 ``X`` 的形状可能不同
 
 参数
 ::::::::::::
@@ -33,14 +33,14 @@ NDHWC 格式，其中 N 是批尺寸，C 是通道数，D 是特征层深度，H
     - **stride** (int|list|tuple，可选) - 步长大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积沿着深度，高和宽的步长。如果为单个整数，表示沿着高和宽的步长都等于该整数。默认值：1。
     - **padding** (int|list|tuple|str，可选) - 填充大小。如果它是一个字符串，可以是 "VALID" 或者 "SAME" ，表示填充算法，计算细节可参考上述 ``padding`` = "SAME" 或  ``padding`` = "VALID" 时的计算公式。如果它是一个元组或列表，它可以有 3 种格式：
 
-        - (1)包含 5 个二元组：当 ``data_format`` 为"NCDHW"时为 [[0,0], [0,0], [padding_depth_front, padding_depth_back], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right]]，当 ``data_format`` 为"NDHWC"时为[[0,0], [padding_depth_front, padding_depth_back], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right], [0,0]]；
+        - (1)包含 5 个二元组：当 ``data_format`` 为 "NCDHW" 时为 [[0,0], [0,0], [padding_depth_front, padding_depth_back], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right]]，当 ``data_format`` 为 "NDHWC" 时为[[0,0], [padding_depth_front, padding_depth_back], [padding_height_top, padding_height_bottom], [padding_width_left, padding_width_right], [0,0]]；
         - (2)包含 6 个整数值：[padding_depth_front, padding_depth_back, padding_height_top, padding_height_bottom, padding_width_left, padding_width_right]；
         - (3)包含 3 个整数值：[padding_depth, padding_height, padding_width]，此时 padding_depth_front = padding_depth_back = padding_depth, padding_height_top = padding_height_bottom = padding_height, padding_width_left = padding_width_right = padding_width。若为一个整数，padding_depth = padding_height = padding_width = padding。默认值：0。
 
     - **dilation** (int|list|tuple，可选) - 空洞大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核中的元素沿着深度，高和宽的空洞。如果为单个整数，表示深度，高和宽的空洞都等于该整数。默认值：1。
     - **groups** (int，可选) - 三维卷积层的组数。根据 Alex Krizhevsky 的深度卷积神经网络（CNN）论文中的成组卷积：当 group = n ，输入和卷积核分别根据通道数量平均分为 n 组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第 n 组卷积核和第 n 组输入进行卷积计算。默认值：1。
-    - **padding_mode** (str，可选) - 填充模式。包括 ``'zeros'``, ``'reflect'``, ``'replicate'`` 或者 ``'circular'``。默认值：``'zeros'`` 。
-    - **key** (str, 可选): 这个 key 是用来保存或者使用相同的rulebook，rulebook的定义参考论文：https://pdfs.semanticscholar.org/5125/a16039cabc6320c908a4764f32596e018ad3.pdf。 默认是None。
+    - **padding_mode** (str，可选) - 填充模式。包括 ``'zeros'``, ``'reflect'``, ``'replicate'`` 或者 ``'circular'`` 。默认值：``'zeros'`` 。
+    - **key** (str, 可选): 这个 key 是用来保存或者使用相同的 rulebook ，rulebook 的定义参考论文：https://pdfs.semanticscholar.org/5125/a16039cabc6320c908a4764f32596e018ad3.pdf。 默认是 None。
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为 bool 类型，只支持为 False，表示没有偏置参数。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 "NCDHW" 和 "NDHWC" 。N 是批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度。默认值："NDHWC" 。 当前只支持 "NDHWC" 。
