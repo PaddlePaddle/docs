@@ -11,7 +11,7 @@ subm_conv3d
 
 .. math::
 
-    Out = W * X + b 
+    Out = W * X + b
 
 其中：
 
