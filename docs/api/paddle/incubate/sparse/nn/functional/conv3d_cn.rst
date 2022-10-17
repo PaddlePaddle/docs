@@ -7,7 +7,7 @@ conv3d
 
 稀疏三维卷积层（convolution3D layer），根据输入、卷积核、步长（stride）、填充（padding）、空洞大小（dilations）一组参数计算得到输出特征层大小。输入和输出是 NCDHW 或 NDHWC 格式，其中 N 是批尺寸，C 是通道数，D 是特征层深度，H 是特征层高度，W 是特征层宽度。如果 bias_attr 不为 False，卷积计算会添加偏置项。
 
-对每个输入 X，有等式：
+对每个输入 X ，有等式：
 
 .. math::
 
@@ -15,11 +15,11 @@ conv3d
 
 其中：
 
-    - :math:`X`：输入值，NCDHW 或 NDHWC 格式的 5-D Tensor
-    - :math:`W`：卷积核值，MCDHW 格式的 5-D Tensor
-    - :math:`*`：卷积操作
-    - :math:`b`：偏置值，1-D Tensor，形为 ``[M]``
-    - :math:`Out`：输出值，NCDHW 或 NDHWC 格式的 5-D Tensor，和 ``X`` 的形状可能不同
+    - :math:`X` ：输入值，NCDHW 或 NDHWC 格式的 5-D Tensor
+    - :math:`W` ：卷积核值，MCDHW 格式的 5-D Tensor
+    - :math:`*` ：卷积操作
+    - :math:`b` ：偏置值，1-D Tensor，形为 ``[M]``
+    - :math:`Out` ：输出值，NCDHW 或 NDHWC 格式的 5-D Tensor，和 ``X`` 的形状可能不同
 
 **示例**
 
@@ -36,7 +36,7 @@ conv3d
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入是形状为 :math:`[N, D, H, W, C]` 的 5-D SparseCooTensor，N 是批尺寸，C 是通道数，D 是特征层深度，H 是特征高度，W 是特征宽度，数据类型为 float16, float32 或 float64。
+    - **x** (Tensor) - 输入是形状为 :math:`[N, D, H, W, C]` 的 5-D SparseCooTensor，N 是批尺寸，C 是通道数，D 是特征层深度，H 是特征高度，W 是特征宽度，数据类型为 float16, float32 或 float64 。
     - **weight** (Tensor) - 形状为 :math:`[kD, kH, kW, C/g, M]` 的卷积核（卷积核）。 M 是输出通道数，g 是分组的个数，kH 是卷积核的高度，kW 是卷积核的宽度。
     - **bias** (Tensor，可选) - 偏置项，形状为：:math:`[M]` 。
     - **stride** (int|list|tuple，可选) - 步长大小。卷积核和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含三个整型数：（stride_depth, stride_height,stride_width）。若为一个整数，stride_depth = stride_height = stride_width = stride。默认值：1。
@@ -46,11 +46,11 @@ conv3d
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr|bool，可选）- 指定偏置参数属性的对象。若 ``bias_attr`` 为 bool 类型，只支持为 False，表示没有偏置参数。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCDHW"和"NDHWC"。N 是批尺寸，C 是通道数，D 是特征层深度，H 是特征高度，W 是特征宽度。默认值："NCDHW"。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
-5-D Tensor，数据类型与 ``input`` 一致。返回卷积计算的结果。
+5-D Tensor ，数据类型与 ``input`` 一致。返回卷积计算的结果。
 
 返回类型
 ::::::::::::

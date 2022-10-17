@@ -15,11 +15,11 @@ subm_conv3d
 
 其中：
 
-    - :math:`X`：输入值，NCDHW 或 NDHWC 格式的 5-D Tensor
-    - :math:`W`：卷积核值，MCDHW 格式的 5-D Tensor
-    - :math:`*`：卷积操作
-    - :math:`b`：偏置值，1-D Tensor，形为 ``[M]``
-    - :math:`Out`：输出值，NCDHW 或 NDHWC 格式的 5-D Tensor，和 ``X`` 的形状可能不同
+    - :math:`X` ：输入值，NCDHW 或 NDHWC 格式的 5-D Tensor
+    - :math:`W` ：卷积核值，MCDHW 格式的 5-D Tensor
+    - :math:`*` ：卷积操作
+    - :math:`b` ：偏置值，1-D Tensor，形为 ``[M]``
+    - :math:`Out` ：输出值，NCDHW 或 NDHWC 格式的 5-D Tensor，和 ``X`` 的形状可能不同
 
 **示例**
 
