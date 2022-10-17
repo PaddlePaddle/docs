@@ -18,8 +18,8 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
 .. csv-table::
     :header: "API 名称", "API 功能"
 
-    " :ref:`paddle.incubate.sparse.sparse_coo_tensor <cn_api_paddle_incubate_sparse_coo_tensor>` ", "创建一个 COO 格式的稀疏 Tensor"
-    " :ref:`paddle.incubate.sparse.sparse_csr_tensor <cn_api_paddle_incubate_sparse_csr_tensor>` ", "创建一个 CSR 格式的稀疏 Tensor"
+    " :ref:`paddle.incubate.sparse.sparse_coo_tensor <cn_api_paddle_incubate_sparse_coo_tensor>` ", "创建一个 COO 格式的 SparseTensor"
+    " :ref:`paddle.incubate.sparse.sparse_csr_tensor <cn_api_paddle_incubate_sparse_csr_tensor>` ", "创建一个 CSR 格式的 SparseTensor"
 
 .. _about_sparse_math:
 
@@ -56,6 +56,7 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
     " :ref:`paddle.incubate.sparse.multiply <cn_api_paddle_incubate_sparse_multiply>` ", "对稀疏 Tensor 逐元素相乘"
     " :ref:`paddle.incubate.sparse.divide <cn_api_paddle_incubate_sparse_divide>` ", "对稀疏 Tensor 逐元素相除"
     " :ref:`paddle.incubate.sparse.is_same_shape <cn_api_paddle_incubate_sparse_is_same_shape>` ", "判断两个稀疏 Tensor 或稠密 Tensor 的 shape 是否一致"
+    " :ref:`paddle.incubate.sparse.reshape <cn_api_paddle_incubate_sparse_reshape>` ", "改变一个 SparseTensor 的形状"
 
 .. _about_sparse_nn:
 
