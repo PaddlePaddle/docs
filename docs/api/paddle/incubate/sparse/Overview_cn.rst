@@ -55,8 +55,6 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
     " :ref:`paddle.incubate.sparse.subtract <cn_api_paddle_incubate_sparse_subtract>` ", "对稀疏 Tensor 逐元素相减"
     " :ref:`paddle.incubate.sparse.multiply <cn_api_paddle_incubate_sparse_multiply>` ", "对稀疏 Tensor 逐元素相乘"
     " :ref:`paddle.incubate.sparse.divide <cn_api_paddle_incubate_sparse_divide>` ", "对稀疏 Tensor 逐元素相除"
-    " :ref:`paddle.incubate.sparse.transpose <cn_api_paddle_incubate_sparse_transpose>` ", "对稀疏 Tensor 根据 perm 进行数据重排"
-    " :ref:`paddle.incubate.sparse.coalesce ` ", "对 SparseCooTensor 进行排序与合并操作"
     " :ref:`paddle.incubate.sparse.is_same_shape <cn_api_paddle_incubate_sparse_is_same_shape>` ", "判断两个稀疏 Tensor 或稠密 Tensor 的 shape 是否一致"
 
 .. _about_sparse_nn:
@@ -71,11 +69,7 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
     " :ref:`paddle.incubate.sparse.nn.ReLU6 <cn_api_paddle_incubate_sparse_nn_ReLU6>` ", "激活层"
     " :ref:`paddle.incubate.sparse.nn.LeakyReLU <cn_api_paddle_incubate_sparse_nn_LeakyReLU>` ", "激活层"
     " :ref:`paddle.incubate.sparse.nn.Softmax <cn_api_paddle_incubate_sparse_nn_Softmax>` ", "激活层"
-    " :ref:`paddle.incubate.sparse.nn.BatchNorm ` ", "稀疏的批归一化层"
-    " :ref:`paddle.incubate.sparse.nn.SyncBatchNorm ` ", "同步批归一化层"
     " :ref:`paddle.incubate.sparse.nn.Conv3D <cn_api_paddle_incubate_sparse_nn_Conv3D>` ", "三维卷积层"
-    " :ref:`paddle.incubate.sparse.nn.SubmConv3D ` ", "三维的 submanifold 卷积层"
-    " :ref:`paddle.incubate.sparse.nn.MaxPool3D ` ", "三维最大池化层"
 
 .. _about_sparse_nn_functional:
 
@@ -85,9 +79,6 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
 .. csv-table::
     :header: "API 名称", "API 功能"
 
-    " :ref:`paddle.incubate.sparse.nn.functional.conv3d ` ", "三维卷积函数"
-    " :ref:`paddle.incubate.sparse.nn.functional.subm_conv3d ` ", "三维的 submanifold 卷积函数"
-    " :ref:`paddle.incubate.sparse.nn.functional.max_pool3d ` ", "三维最大池化层"
     " :ref:`paddle.incubate.sparse.nn.functional.relu <cn_api_paddle_incubate_sparse_nn_functional_relu>` ", "激活函数"
     " :ref:`paddle.incubate.sparse.nn.functional.relu6 <cn_api_paddle_incubate_sparse_nn_functional_relu6>` ", "激活函数"
     " :ref:`paddle.incubate.sparse.nn.functional.leaky_relu <cn_api_paddle_incubate_sparse_nn_functional_leaky_relu>` ", "激活函数"
