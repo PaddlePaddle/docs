@@ -21,13 +21,13 @@
 | deeplabv3          | 图像分割 | 动态图  | X86（Intel） | 支持     | -      |
 | HRNet              | 图像分割 | 动态图  | X86（Intel） | 支持     | -      |
 | PP-LiteSeq         | 图像分割 | 动态图  | X86（Intel） | 支持     | -      |
-| pp-humansegv2      | 图像分割 | 动态图  | X86（Intel） | 支持     | -      |
-| pp-mating          | 图像分割 | 动态图  | X86（Intel） | 支持     | -      |
+| PP-humansegv2      | 图像分割 | 动态图  | X86（Intel） | 支持     | -      |
+| PP-mating          | 图像分割 | 动态图  | X86（Intel） | 支持     | -      |
 | MaskRcnn           | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
 | FasterRcnn         | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
 | fairmot            | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
 | Yolov3-DarkNet53   | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
-| SSD-ResNet34       | 目标检测 | 动态图  | X86（Intel） | 支持     | 支持     |
+| SSD-ResNet34       | 目标检测 | 动态图  | X86（Intel） | 支持     | 支持    |
 | Yolov3-mobileNetv1 | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
 | PPYoloE            | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
 | deepsort           | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
@@ -60,7 +60,7 @@
 | MADDPG             | 强化学习 | 动态图  | X86（Intel） | 支持     | -      |
 | CQL                | 强化学习 | 动态图  | X86（Intel） | 支持     | -      |
 | ES                 | 强化学习 | 动态图  | X86（Intel） | 支持     | -      |
-| pp-tsm             | 视频分类 | 动态图  | X86（Intel） | 支持     | -      |
+| PP-tsm             | 视频分类 | 动态图  | X86（Intel） | 支持     | -      |
 
 模型放置在飞桨模型套件中，作为 github.com/PaddlePaddle 下的独立 repo 存在，git clone 下载即可获取所需的模型文件：
 
@@ -72,5 +72,3 @@
 | NLP  | [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP)             | [develop](https://github.com/PaddlePaddle/PaddleNLP/tree/develop)       |
 | OCR  | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)             | [dygraph](https://github.com/PaddlePaddle/PaddleOCR/tree/dygraph)       |
 | 推荐   | [PaddleREC](https://github.com/PaddlePaddle/PaddleRec)             | [master](https://github.com/PaddlePaddle/PaddleRec/tree/master)         |
-
-- 
