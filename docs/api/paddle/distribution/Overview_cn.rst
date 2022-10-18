@@ -32,6 +32,7 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
     " :ref:`TransfomedDistribution <cn_api_paddle_distribution_TransformedDistribution>` ", "TransformedDistribution 概率分布类"
     " :ref:`Laplace <cn_api_distribution_Laplace>`", "Laplace 概率分布类"
     " :ref:`LogNormal <cn_api_distribution_LogNormal>` ", "LogNormal 概率分布类"
+    " :ref:`Gumbel <cn_api_distribution_Gumbel>` ", "Gumbel 概率分布类"
 
 .. _about_distribution_transform:
 
