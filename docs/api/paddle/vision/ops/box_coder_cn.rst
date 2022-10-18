@@ -44,9 +44,9 @@ box_coder
         - **prior_box** (Tensor) - 维度为 [M, 4] 的 2-D Tensor ， M 表示存储 M 个框，数据类型为 float32 或 float64 。先验框，每个框代表 [xmin, ymin, xmax, ymax] ， [xmin, ymin] 是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。 [xmax,ymax] 是先验框的右底点坐标。
         - **prior_box_var** (List|Tensor|None) - 支持三种输入类型，一是维度为 [M, 4] 的 2-D Tensor ，存储 M 个先验框的 variance ，数据类型为 float32 或 float64 。另一种是一个长度为 4 的列表，所有先验框共用这个列表中的 variance ，数据类型为 float32 或 float64 。为 None 时不参与计算。
         - **target_box** (Tensor) - 数据类型为 float32 或 float64 的 Tensor ，当 code_type 为 `encode_center_size` ，输入是 2-D Tensor ，维度为 [N, 4] ， N 为目标框的个数，目标框的格式与先验框相同。当 code_type 为 `decode_center_size` ，输入为 3-D Tensor ，维度为 [N, M, 4]。通常 N 表示产生检测框的个数， M 表示类别数。此时目标框为偏移量。
-        - **code_type** (str) - 编码类型用目标框，可以是 `encode_center_size` 或 `decode_center_size` ，默认值为 `encode_center_size` 。
-        - **box_normalized** (bool) - 先验框坐标是否正则化，即是否在 [0, 1] 区间内。默认值为 True 。
-        - **axis** (int) - 在 PriorBox 中为 axis 指定的轴 broadcast 以进行框解码，例如，如果 axis 为 0 ， TargetBox 具有形状 [N, M, 4] 且 PriorBox 具有形状 [M, 4] ，则 PriorBox 将 broadcast 到 [N, M, 4] 用于解码。仅在 code_type 为 `decode_center_size` 时有效。默认值为 0 。
+        - **code_type** (str，可选) - 编码类型用目标框，可以是 `encode_center_size` 或 `decode_center_size` ，默认值为 `encode_center_size` 。
+        - **box_normalized** (bool，可选) - 先验框坐标是否正则化，即是否在 [0, 1] 区间内。默认值为 True 。
+        - **axis** (int，可选) - 在 PriorBox 中为 axis 指定的轴 broadcast 以进行框解码，例如，如果 axis 为 0 ， TargetBox 具有形状 [N, M, 4] 且 PriorBox 具有形状 [M, 4] ，则 PriorBox 将 broadcast 到 [N, M, 4] 用于解码。仅在 code_type 为 `decode_center_size` 时有效。默认值为 0 。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None 。
 
 
