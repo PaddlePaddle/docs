@@ -13,13 +13,13 @@ prior_box
         - **input** (Tensor) - 形状为 [N, C, H, W] 的 4-D Tensor ，数据类型为 float32 或 float64 。
         - **image** (Tensor) - 输入图像数据，形状为 [N, C, H, W] 的 4-D Tensor ，数据类型为 float32 或 float64 。
         - **min_sizes** (list|tuple|float) - 生成的候选框的最小尺寸。
-        - **max_sizes** (list|tuple|None) - 生成的候选框的最大尺寸。默认值为 None 。
-        - **aspect_ratios** (list|tuple|float) - 生成的候选框的长宽比。默认值为 [1.] 。
-        - **variance** (list|tuple) - 在候选框中解码的方差。默认值为 [0.1, 0.1, 0.2, 0.2] 。
+        - **max_sizes** (list|tuple|None，可选) - 生成的候选框的最大尺寸。默认值为 None 。
+        - **aspect_ratios** (list|tuple|float，可选) - 生成的候选框的长宽比。默认值为 [1.] 。
+        - **variance** (list|tuple，可选) - 在候选框中解码的方差。默认值为 [0.1, 0.1, 0.2, 0.2] 。
         - **flip** (bool，可选) - 是否翻转。默认值为 False 。
         - **clip** (bool，可选) - 是否裁剪。默认值为 False 。
-        - **step** (list|tuple) - 候选框在 width 和 height 上的步长。如果 step[0] 等于 0.0 或者 step[1] 等于 0.0 ，则自动计算候选框在宽度和高度上的步长。默认值为 [0., 0.] 。
-        - **offset** (float) - 候选框中心位移。默认值为 0.5 。
+        - **steps** (list|tuple，可选) - 候选框在 width 和 height 上的步长。如果 steps[0] 等于 0.0 或者 steps[1] 等于 0.0 ，则自动计算候选框在宽度和高度上的步长。默认值为 [0., 0.] 。
+        - **offset** (float，可选) - 候选框中心位移。默认值为 0.5 。
         - **min_max_aspect_ratios_order** (bool) - 若设为 True ，候选框的输出以 [min, max, aspect_ratios] 的顺序输出，和 Caffe 保持一致。请注意，该顺序会影响后面卷基层的权重顺序，但不影响最后的检测结果。默认值为 False 。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None 。
 
