@@ -23,14 +23,4 @@ get_window
 代码示例
 :::::::::
 
-::
-
-    import paddle
-
-    n_fft = 512
-
-    cosine_window = paddle.audio.functional.get_window('cosine', n_fft)
-
-    std = 7
-
-    gussian_window = paddle.audio.functional.get_window(('gussain',std), n_fft)
+COPY-FROM: paddle.audio.functional.get_window

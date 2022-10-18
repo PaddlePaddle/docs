@@ -21,13 +21,4 @@ mel_to_hz
 代码示例
 :::::::::
 
-::
-
-    import paddle
-
-    val = 3.0
-
-    htk_flag = True
-
-    mel_paddle_tensor = paddle.audio.functional.mel_to_hz(
-        paddle.to_tensor(val), htk_flag)
+COPY-FROM: paddle.audio.functional.mel_to_hz
