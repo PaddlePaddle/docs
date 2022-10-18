@@ -3,7 +3,6 @@
 sparse_coo_tensor
 -------------------------------
 
-
 .. py:function:: paddle.incubate.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=None, stop_gradient=True)
 
 该 API 通过已知的非零元素的 ``indices`` 和 ``values`` 来创建一个 coordinate 格式的稀疏 tensor，tensor 类型为 ``paddle.Tensor`` 。
