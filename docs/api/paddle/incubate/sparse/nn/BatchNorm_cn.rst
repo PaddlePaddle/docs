@@ -32,9 +32,9 @@ BatchNorm
     \hat{x_i} &\gets \frac{x_i - \mu_\beta} {\sqrt{\sigma_{\beta}^{2} + \epsilon}} \quad &// normalize \\
     y_i &\gets \gamma \hat{x_i} + \beta \quad &// scale-and-shift \\
 
-- :math: `\epsilon` ：添加较小的值到方差中以防止除零
-- :math: `\gamma` ：可训练的比例参数
-- :math: `\beta` ：可训练的偏差参数
+- :math:`\epsilon` ：添加较小的值到方差中以防止除零
+- :math:`\gamma` ：可训练的比例参数
+- :math:`\beta` ：可训练的偏差参数
 
 参数
 ::::::::::::
