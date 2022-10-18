@@ -3,7 +3,7 @@
 TESS
 -------------------------------
 
-.. py:class:: paddle.audio.datasets.TESS(mode: str = 'train', seed = 0, n_folds = 5, split = 1, feat_type = 'raw', archive=None, **kwargs)
+.. py:class:: paddle.audio.datasets.TESS(mode: str = 'train', n_folds = 5, split = 1, feat_type = 'raw', archive=None, **kwargs)
 
 
 `TESS <https://tspace.library.utoronto.ca/handle/1807/24487>`_ 数据集的实现。
@@ -12,7 +12,6 @@ TESS
 :::::::::
 
   - **mode** (str，可选) - ``'train'`` 或 ``'dev'`` 模式两者之一，默认值为 ``'train'``。
-  - **seed** (int) - 默认是 0，指定随机数来对数据进行重新排序。
   - **n_folds** (int) - 默认是 5，指定把数据集分为的文件夹数目， 1 个文件夹是 dev，其他是 train。
   - **split** (int) - 默认是 1，指定 dev 的文件夹。
   - **feat_type** (str) - 默认是 raw，raw 是原始语音，支持 mfcc，spectrogram，melspectrogram，logmelspectrogram。指定从音频提取的语音特征。
