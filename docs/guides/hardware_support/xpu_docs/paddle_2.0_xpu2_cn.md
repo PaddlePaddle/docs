@@ -33,12 +33,12 @@
 | deepsort           | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
 | ssd-mv1            | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
 | ssd-vgg16          | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
-| pp-picoDet         | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
-| ppyolov2           | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
+| PP-picoDet         | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
+| PPyolov2           | 目标检测 | 动态图  | X86（Intel） | 支持     | -      |
 | OCR-DB             | 文字检测 | 动态图  | X86（Intel） | 支持     | -      |
 | orc-crnn           | 文字检测 | 动态图  | X86（Intel） | 支持     | -      |
-| ppocr-v2           | 文字检测 | 动态图  | X86（Intel） | 支持     | -      |
-| ppocr-v3           | 文字检测 | 动态图  | X86（Intel） | 支持     | -      |
+| PPOCR-v2           | 文字检测 | 动态图  | X86（Intel） | 支持     | -      |
+| PPOCR-v3           | 文字检测 | 动态图  | X86（Intel） | 支持     | -      |
 | Bert-Base          | NLP  | 静态图  | X86（Intel） | 支持     | 支持     |
 | Transformer        | NLP  | 静态图  | X86（Intel） | 支持     | 支持     |
 | GPT-2              | NLP  | 动态图  | X86（Intel） | 支持     | -      |
