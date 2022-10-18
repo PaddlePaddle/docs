@@ -57,6 +57,7 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
     " :ref:`paddle.incubate.sparse.divide <cn_api_paddle_incubate_sparse_divide>` ", "对稀疏 Tensor 逐元素相除"
     " :ref:`paddle.incubate.sparse.is_same_shape <cn_api_paddle_incubate_sparse_is_same_shape>` ", "判断两个稀疏 Tensor 或稠密 Tensor 的 shape 是否一致"
     " :ref:`paddle.incubate.sparse.reshape <cn_api_paddle_incubate_sparse_reshape>` ", "改变一个 SparseTensor 的形状"
+    " :ref:`paddle.incubate.sparse.coalesce<cn_api_paddle_incubate_sparse_coalesce>` ", "对SparseCooTensor进行排序并合并"
 
 .. _about_sparse_nn:
 
@@ -71,6 +72,10 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
     " :ref:`paddle.incubate.sparse.nn.LeakyReLU <cn_api_paddle_incubate_sparse_nn_LeakyReLU>` ", "激活层"
     " :ref:`paddle.incubate.sparse.nn.Softmax <cn_api_paddle_incubate_sparse_nn_Softmax>` ", "激活层"
     " :ref:`paddle.incubate.sparse.nn.Conv3D <cn_api_paddle_incubate_sparse_nn_Conv3D>` ", "三维卷积层"
+    " :ref:`paddle.incubate.sparse.nn.SubmConv3D <cn_api_paddle_incubate_sparse_nn_SubmConv3D>` ", "子流形三维卷积层"
+    " :ref:`paddle.incubate.sparse.nn.BatchNorm<cn_api_paddle_incubate_sparse_nn_BatchNorm>` ", "Batch Normalization层" 
+    " :ref:`paddle.incubate.sparse.nn.SyncBatchNorm<cn_api_paddle_incubate_sparse_nn_SyncBatchNorm>` ", "Synchronized Batch Normalization层"
+    " :ref:`paddle.incubate.sparse.nn.MaxPool3D<cn_api_paddle_incubate_sparse_nn_MaxPool3D>` ", "三维最大池化层"
 
 .. _about_sparse_nn_functional:
 
@@ -85,3 +90,6 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
     " :ref:`paddle.incubate.sparse.nn.functional.leaky_relu <cn_api_paddle_incubate_sparse_nn_functional_leaky_relu>` ", "激活函数"
     " :ref:`paddle.incubate.sparse.nn.functional.softmax <cn_api_paddle_incubate_sparse_nn_functional_softmax>` ", "激活函数"
     " :ref:`paddle.incubate.sparse.nn.functional.attention <cn_api_paddle_incubate_sparse_nn_functional_attention>` ", "稀疏 attention 函数"
+    " :ref:`paddle.incubate.sparse.nn.functional.conv3d <cn_api_paddle_incubate_sparse_nn_functional_conv3d>` ", "三维卷积函数"
+    " :ref:`paddle.incubate.sparse.nn.functional.subm_conv3d <cn_api_paddle_incubate_sparse_nn_functional_subm_conv3d>` ", "子流形三维卷积函数"
+    " :ref:`paddle.incubate.sparse.nn.functional.max_pool3d <cn_api_paddle_incubate_sparse_nn_functional_max_pool3d>` ", "三维最大池化函数"
