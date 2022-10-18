@@ -11,25 +11,25 @@ box_coder
 
     .. math::
 
-        ox = (tx - px) / pw / pxv
+        ox &= (tx - px) / pw / pxv
 
-        oy = (ty - py) / ph / pyv
+        oy &= (ty - py) / ph / pyv
 
-        ow = \log(\abs(tw / pw)) / pwv
+        ow &= log(abs(tw / pw)) / pwv
 
-        oh = \log(\abs(th / ph)) / phv
+        oh &= log(abs(th / ph)) / phv
 
 解码规则描述如下：
 
     .. math::
 
-        ox = (pw * pxv * tx * + px) - tw / 2
+        ox &= (pw * pxv * tx * + px) - tw / 2
 
-        oy = (ph * pyv * ty * + py) - th / 2
+        oy &= (ph * pyv * ty * + py) - th / 2
 
-        ow = \exp(pwv * tw) * pw + tw / 2
+        ow &= exp(pwv * tw) * pw + tw / 2
 
-        oh = \exp(phv * th) * ph + th / 2
+        oh &= exp(phv * th) * ph + th / 2
 
 
 其中 [tx, ty, tw, th] 分别表示目标框的中心坐标、宽度和高度。同样地， [px, py, pw, ph] 表示先验框的中心坐标、宽度和高度。 [pxv, pyv, pwv, phv] 表示先验框变量， [ox, oy, ow, oh] 表示编码/解码坐标、宽度和高度。
