@@ -1,6 +1,6 @@
-# 飞桨对昆仑 2 代芯片的支持
+# 飞桨对昆仑芯 2 代芯片的支持
 
-飞桨自 2.4rc 版本起支持在昆仑 2 代芯片上（R200，R300，R200-8F，R200-8FS，RG800）运行，经验证的模型训练的支持情况如下：
+飞桨自 2.4rc 版本起支持在昆仑芯 2 代芯片上（R200，R300，R200-8F，R200-8FS，RG800）运行，经验证的模型训练的支持情况如下：
 
 ## 训练支持
 
@@ -21,8 +21,8 @@
 | deeplabv3 | 图像分割 | 动态图 | X86（Intel） | 支持  | -   |
 | HRNet | 图像分割 | 动态图 | X86（Intel） | 支持  | -   |
 | PP-LiteSeq | 图像分割 | 动态图 | X86（Intel） | 支持  | -   |
-| pp-humansegv2 | 图像分割 | 动态图 | X86（Intel） | 支持  | -   |
-| pp-mating | 图像分割 | 动态图 | X86（Intel） | 支持  | -   |
+| PP-humansegv2 | 图像分割 | 动态图 | X86（Intel） | 支持  | -   |
+| PP-mating | 图像分割 | 动态图 | X86（Intel） | 支持  | -   |
 | MaskRcnn | 目标检测 | 动态图 | X86（Intel） | 支持  | -   |
 | FasterRcnn | 目标检测 | 动态图 | X86（Intel） | 支持  | -   |
 | fairmot | 目标检测 | 动态图 | X86（Intel） | 支持  | -   |
@@ -33,12 +33,12 @@
 | deepsort | 目标检测 | 动态图 | X86（Intel） | 支持  | -   |
 | ssd-mv1 | 目标检测 | 动态图 | X86（Intel） | 支持  | -   |
 | ssd-vgg16 | 目标检测 | 动态图 | X86（Intel） | 支持  | -   |
-| pp-picoDet | 目标检测 | 动态图 | X86（Intel） | 支持  | -   |
-| ppyolov2 | 目标检测 | 动态图 | X86（Intel） | 支持  | -   |
+| PP-picoDet | 目标检测 | 动态图 | X86（Intel） | 支持  | -   |
+| PPYolov2 | 目标检测 | 动态图 | X86（Intel） | 支持  | -   |
 | OCR-DB | 文字检测 | 动态图 | X86（Intel） | 支持  | -   |
-| orc-crnn | 文字检测 | 动态图 | X86（Intel） | 支持  | -   |
-| ppocr-v2 | 文字检测 | 动态图 | X86（Intel） | 支持  | -   |
-| ppocr-v3 | 文字检测 | 动态图 | X86（Intel） | 支持  | -   |
+| OCR-crnn | 文字检测 | 动态图 | X86（Intel） | 支持  | -   |
+| PPOCR-v2 | 文字检测 | 动态图 | X86（Intel） | 支持  | -   |
+| PPOCR-v3 | 文字检测 | 动态图 | X86（Intel） | 支持  | -   |
 | Bert-Base | NLP | 静态图 | X86（Intel） | 支持  | 支持  |
 | Transformer | NLP | 静态图 | X86（Intel） | 支持  | 支持  |
 | GPT-2 | NLP | 动态图 | X86（Intel） | 支持  | -   |
@@ -72,5 +72,3 @@
 | NLP | [PaddleNLP](https://github.com/PaddlePaddle/PaddleNLP) | [develop](https://github.com/PaddlePaddle/PaddleNLP/tree/develop) |
 | OCR | [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) | [dygraph](https://github.com/PaddlePaddle/PaddleOCR/tree/dygraph) |
 | 推荐  | [PaddleREC](https://github.com/PaddlePaddle/PaddleRec) | [master](https://github.com/PaddlePaddle/PaddleRec/tree/master) |
-
-- 注：支持基于 Kermel Primitive 算子的昆仑 2 代芯片支持，[点击这里](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/07_new_op/kernel_primitive_api/index_cn.html)。
