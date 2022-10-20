@@ -23,4 +23,4 @@ load
 代码示例
 :::::::::
 
-COPY-FROM: paddle.audio.backends.load
+COPY-FROM: paddle.audio.load

@@ -1,9 +1,9 @@
-.. _cn_api_audio_backends_info:
+.. _cn_api_audio_info:
 
 info
 -------------------------------
 
-.. py:function:: paddle.audio.backends.info(filepath:str)
+.. py:function:: paddle.audio.info(filepath:str)
 
 获取音频的相关信息，如采用率，通道数等。
 
@@ -19,4 +19,4 @@ info
 代码示例
 :::::::::
 
-COPY-FROM: paddle.audio.backends.info
+COPY-FROM: paddle.audio.info

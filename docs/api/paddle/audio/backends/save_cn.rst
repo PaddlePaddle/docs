@@ -1,9 +1,9 @@
-.. _cn_api_audio_backends_save:
+.. _cn_api_audio_save:
 
 save
 -------------------------------
 
-.. py:function:: paddle.audio.backends.save(filepath: str, src: paddle.Tensor, sample_rate: int, channels_first: bool = True, encoding: Optional[str] = None, bits_per_sample: Optional[int] = 16)
+.. py:function:: paddle.audio.save(filepath: str, src: paddle.Tensor, sample_rate: int, channels_first: bool = True, encoding: Optional[str] = None, bits_per_sample: Optional[int] = 16)
 
 保存音频数据。
 
@@ -22,4 +22,4 @@ save
 代码示例
 :::::::::
 
-COPY-FROM: paddle.audio.backends.save
+COPY-FROM: paddle.audio.save
