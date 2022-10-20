@@ -73,8 +73,8 @@ paddle.incubate.sparse 目录包含飞桨框架支持稀疏数据存储和计算
     " :ref:`paddle.incubate.sparse.nn.Softmax <cn_api_paddle_incubate_sparse_nn_Softmax>` ", "激活层"
     " :ref:`paddle.incubate.sparse.nn.Conv3D <cn_api_paddle_incubate_sparse_nn_Conv3D>` ", "三维卷积层"
     " :ref:`paddle.incubate.sparse.nn.SubmConv3D <cn_api_paddle_incubate_sparse_nn_SubmConv3D>` ", "子流形三维卷积层"
-    " :ref:`paddle.incubate.sparse.nn.BatchNorm<cn_api_paddle_incubate_sparse_nn_BatchNorm>` ", "Batch Normalization 层" 
-    " :ref:`paddle.incubate.sparse.nn.SyncBatchNorm<cn_api_paddle_incubate_sparse_nn_SyncBatchNorm>` ", "Synchronized Batch Normalization 层"
+    " :ref:`paddle.incubate.sparse.nn.BatchNorm<cn_api_paddle_incubate_sparse_nn_BatchNorm>` ", " Batch Normalization 层"
+    " :ref:`paddle.incubate.sparse.nn.SyncBatchNorm<cn_api_paddle_incubate_sparse_nn_SyncBatchNorm>` ", " Synchronized Batch Normalization 层"
     " :ref:`paddle.incubate.sparse.nn.MaxPool3D<cn_api_paddle_incubate_sparse_nn_MaxPool3D>` ", "三维最大池化层"
 
 .. _about_sparse_nn_functional:
