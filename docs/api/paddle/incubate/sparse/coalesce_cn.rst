@@ -18,4 +18,4 @@ coalesce 操作包含排序和合并相同 indices 两步，执行 coalesce 后�
 代码示例
 :::::::::
 
-COPY-FROM: paddle.incubate.sparse.add
+COPY-FROM: paddle.incubate.sparse.coalesce
