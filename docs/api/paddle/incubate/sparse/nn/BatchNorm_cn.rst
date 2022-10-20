@@ -8,7 +8,7 @@ BatchNorm
 
 构建稀疏 ``BatchNorm`` 类的一个可调用对象，具体用法参照 ``代码示例`` 。可以处理 4D SparseCooTensor ，实现了批归一化层（Batch Normalization Layer）的功能，可用作卷积和全连接操作的批归一化函数，根据当前批次数据按通道计算的均值和方差进行归一化。更多详情请参考： `Batch Normalization : Accelerating Deep Network Training by Reducing Internal Covariate Shift <https://arxiv.org/pdf/1502.03167.pdf>`_ 。
 
-当训练时 :math: `\mu_{\beta}` 和 :math: `\sigma_{\beta}^{2}` 是 minibatch 的统计数据。计算公式如下：
+当 use_global_stats = False 时 :math: `\mu_{\beta}` 和 :math: `\sigma_{\beta}^{2}` 是 minibatch 的统计数据。计算公式如下：
 
 .. math::
 
@@ -18,7 +18,7 @@ BatchNorm
 - :math: `x` ：批输入数据
 - :math: `m` ：当前批次数据的大小
 
-当预测时，track_running_stats = True :math: `\mu_{\beta}` 和 :math: `\sigma_{\beta}^{2}` 是全局（或运行）统计数据（moving_mean 和 moving_variance），通常来自预先训练好的模型。计算公式如下：
+当 use_global_stats = True :math: `\mu_{\beta}` 和 :math: `\sigma_{\beta}^{2}` 是全局（或运行）统计数据（moving_mean 和 moving_variance），通常来自预先训练好的模型。计算公式如下：
 
 .. math::
 
@@ -58,10 +58,6 @@ BatchNorm
 
     - input：形状为（批大小，维度，高度，宽度，通道数）的 5-D SparseCooTensor。
     - output：和输入形状一样。
-
-.. note::
-目前训练时设置 track_running_stats 为 False 是无效的，实际还是会按照 True 的方案保存全局均值和方差。之后的版本会修复此问题。
-
 
 代码示例
 ::::::::::::
