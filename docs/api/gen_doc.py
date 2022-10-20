@@ -779,6 +779,7 @@ class EnDocGenerator(object):
                 'paddle.nn',
                 'paddle.incubate.nn',
                 'paddle.incubate.sparse.nn',
+                'paddle.audio',
         ]:
             if self.api_name.startswith(m):
                 tmpl = 'no-inherited'
