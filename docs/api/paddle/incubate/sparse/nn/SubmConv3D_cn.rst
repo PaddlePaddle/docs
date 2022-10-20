@@ -21,7 +21,7 @@ NDHWC 格式，其中 N 是批尺寸，C 是通道数，D 是特征层深度，H
     - :math:`X` ：输入值，NDHWC 格式的 5-D Tensor
     - :math:`W` ：卷积核值，DHWCM 格式的 5-D Tensor
     - :math:`*` ：子流形稀疏卷积操作的定义参考论文：https://arxiv.org/abs/1706.01307
-    - :math: `b` ：偏置值，1-D Tensor，形为 ``[M]``
+    - :math:`b` ：偏置值，1-D Tensor，形为 ``[M]``
     - :math:`Out` ：输出值，NDHWC 格式的 5-D Tensor，和 ``X`` 的形状可能不同
 
 参数
