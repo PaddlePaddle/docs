@@ -15,8 +15,8 @@ BatchNorm
     \mu_{\beta}        &\gets \frac{1}{m} \sum_{i=1}^{m} x_i                                 \quad &// mini-batch-mean \\
     \sigma_{\beta}^{2} &\gets \frac{1}{m} \sum_{i=1}^{m}(x_i - \mu_{\beta})^2               \quad &// mini-batch-variance \\
 
-- :math: `x` ：批输入数据
-- :math: `m` ：当前批次数据的大小
+- :math:`x` ：批输入数据
+- :math:`m` ：当前批次数据的大小
 
 当 use_global_stats = True :math: `\mu_{\beta}` 和 :math: `\sigma_{\beta}^{2}` 是全局（或运行）统计数据（moving_mean 和 moving_variance），通常来自预先训练好的模型。计算公式如下：
 
