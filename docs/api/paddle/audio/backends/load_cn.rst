@@ -1,9 +1,9 @@
-.. _cn_api_audio_backends_load:
+.. _cn_api_audio_load:
 
 load
 -------------------------------
 
-.. py:function:: paddle.audio.backends.load(filepath: Union[str, Path], frame_offset: int = 0, num_frames: int = -1, normalize: bool = True, channels_first: bool = True)
+.. py:function:: paddle.audio.load(filepath: Union[str, Path], frame_offset: int = 0, num_frames: int = -1, normalize: bool = True, channels_first: bool = True)
 
 获取音频数据。
 
