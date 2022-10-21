@@ -137,11 +137,11 @@
         docker run --gpus all --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
         ```
 
+        > --gpus 指定 gpu 设备 ('"device=0,2"':代表使用 0 和 2 号 GPU; all: 代表使用所有 GPU), 可以参考[Docker 官方文档](https://docs.docker.com/engine/reference/commandline/run/#access-an-nvidia-gpu);
+
         > --name [Name of container] 设定 Docker 的名称；
 
-
         > -it 参数说明容器已和本机交互式运行；
-
 
         > -v $PWD:/paddle 指定将当前路径（PWD 变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 
