@@ -13,7 +13,7 @@ Paddle MLU 版的 Python 预测库请参考 [飞桨框架 MLU 版安装说明](.
 
 ```bash
 cd path_to_clone_PaddleClas
-git clone -b mlu-int32-label https://github.com/ShawnNew/PaddleClas
+git clone https://github.com/PaddlePaddle/PaddleClas.git
 ```
 也可以访问 PaddleClas 的 [GitHub Repo](https://github.com/PaddlePaddle/PaddleClas) 直接下载源码。请根据[数据说明](https://github.com/PaddlePaddle/PaddleClas/blob/release/2.4/docs/zh_CN/data_preparation/classification_dataset.md)文档准备 ImageNet1k 数据集。
 
