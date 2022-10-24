@@ -11,12 +11,6 @@ paddle.callbacks.ReduceLROnPlateau	.. _api_paddle_callbacks_ReduceLROnPlateau:
 paddle.callbacks.Callback	.. _api_paddle_callbacks_Callback:
 paddle.callbacks.VisualDL	.. _api_paddle_callbacks_VisualDL:
 paddle.callbacks.ModelCheckpoint	.. _api_paddle_callbacks_ModelCheckpoint:
-paddle.compat.to_text	.. _api_paddle_compat_to_text:
-paddle.compat.to_bytes	.. _api_paddle_compat_to_bytes:
-paddle.compat.floor_division	.. _api_paddle_compat_floor_division:
-paddle.compat.get_exception_message	.. _api_paddle_compat_get_exception_message:
-paddle.compat.long_type	.. _api_paddle_compat_long_type:
-paddle.compat.round	.. _api_paddle_compat_round:
 paddle.is_compiled_with_xpu	.. _api_paddle_is_compiled_with_xpu:
 paddle.is_compiled_with_npu	.. _api_paddle_is_compiled_with_npu:
 paddle.set_device	.. _api_paddle_set_device:
