@@ -311,6 +311,7 @@ API 的属性用来描述 API 所包含的属性。如果 API 有属性，每个
     程序中随机运算符的默认随机种子。0 意味着随机生成随机种子。
 
     **返回**
+
     int64，返回该 Program 中当前正在使用的 random seed。
 
     **代码示例**
@@ -335,12 +336,15 @@ API 的方法用来描述 API 所包含的方法，一些类的 API 会有这个
     ''''''''''''
 
     .. py:function:: paddle.Program.parse_from_string(binary_str_type)
+
     通过对 protobuf 的反序列化，转换成 ``Program``
 
     **参数**
-    binary_str_type (**str**) – protobuf 二进制字符串
+
+    - **binary_str_type** (str) – protobuf 二进制字符串
 
     **返回**
+
     ``Program``，反序列化后的 ``Program``
 
     **代码示例**
