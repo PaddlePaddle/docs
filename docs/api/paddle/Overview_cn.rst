@@ -401,15 +401,3 @@ device 相关
     " :ref:`paddle.Model <cn_api_paddle_Model>` ", "一个具备训练、测试、推理的神经网络"
     " :ref:`paddle.summary <cn_api_paddle_summary>` ", "打印网络的基础结构和参数信息"
     " :ref:`paddle.flops <cn_api_paddle_flops>` ", "打印网络的基础结构和参数信息"
-
-.. _about_sparse_api:
-
-稀疏 API 相关
-::::::::::::::::::::
-
-.. csv-table::
-    :header: "API 名称", "API 功能"
-    :widths: 10, 30
-
-    " :ref:`paddle.incubate.sparse.sparse_coo_tensor<cn_api_paddle_incubate_sparse_coo_tensor>` ", "创建一个 COO(Coordinate)格式的稀疏 Tensor"
-    " :ref:`paddle.incubate.sparse.sparse_csr_tensor<cn_api_paddle_incubate_sparse_csr_tensor>` ", "创建一个 CSR(Compressed Sparse Row)格式的稀疏 Tensor"
