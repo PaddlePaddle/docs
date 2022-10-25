@@ -134,7 +134,7 @@ Padding 层
     " :ref:`paddle.nn.Sigmoid <cn_api_nn_layer_Sigmoid>` ", "Sigmoid 激活层"
     " :ref:`paddle.nn.Silu <cn_api_nn_Silu>` ", "Silu 激活层"
     " :ref:`paddle.nn.Softmax <cn_api_nn_Softmax>` ", "Softmax 激活层"
-    " :ref:`paddle.nn.Softmax2D <cn_api_nn_Softmax2D>` ", "Softmax2D激活层"
+    " :ref:`paddle.nn.Softmax2D <cn_api_nn_Softmax2D>` ", "Softmax2D 激活层"
     " :ref:`paddle.nn.Softplus <cn_api_nn_Softplus>` ", "Softplus 激活层"
     " :ref:`paddle.nn.Softshrink <cn_api_nn_Softshrink>` ", "Softshrink 激活层"
     " :ref:`paddle.nn.Softsign <cn_api_nn_Softsign>` ", "Softsign 激活层"
