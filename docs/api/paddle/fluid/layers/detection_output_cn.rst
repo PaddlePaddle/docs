@@ -10,13 +10,15 @@ detection_output
 
 给定回归位置偏移、置信度以及先验框信息计算检测的输出，执行步骤如下：
 
-    1.根据先验框(``prior_box``)信息和回归位置偏移解码出预测框坐标。
+    1. 根据先验框(``prior_box``)信息和回归位置偏移解码出预测框坐标。
 
-    2.通过多类非极大值抑制(NMS)获得最终检测输出。
+    2. 通过多类非极大值抑制(NMS)获得最终检测输出。
 
 请注意，该操作符没有将最终输出边界框clip至图像大小。
 
-参数：
+参数
+::::::::::::
+
     - **loc** (Variable) - 3-D Tensor，数据类型为float32或float64，表示回归位置偏移。维度为[N,M,4]，M是输入的预测bounding box的个数，N是batch size，每个bounding box有四个坐标值，格式为[xmin,ymin,xmax,ymax]，[xmin,ymin]是左上角坐标，[xmax,ymax]是右下角坐标。
     - **scores** (Variable) - 3-D Tensor，数据类型为float32或float64，表示未归一化的置信度。维度为[N,M,C]，N和M的含义同上，C是类别数。
     - **prior_box** (Variable) - 2-D Tensor，表示先验框。维度为[M,4]，M是提取的先验框个数，格式为[xmin,ymin,xmax,ymax]。
@@ -28,27 +30,16 @@ detection_output
     - **score_threshold** (float) - 置信度得分阈值（Threshold），在NMS之前用来过滤低置信数的边界框（bounding box）。若未提供，则考虑所有框。默认值是0.001。
     - **nms_eta** (float) - 一种adaptive NMS的参数，仅当该值小于1.0时才起作用。默认值是1.0。
 
-返回：
+返回
+::::::::::::
+
   输出是2-D LoDTensor，形状为[No,6]。每行有6个值：[label,confidence,xmin,ymin,xmax,ymax]。No是该mini-batch总的检测框数。LoD的层级数为1，如果采用偏移的LoD表示，则第i个图像有 ``LoD[i+1] - LoD[i]`` 个检测结果，如果等于0，则表示无检测结果。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
-.. code-block:: python
-    
-    import paddle.fluid as fluid
-    pb = fluid.data(name='prior_box', shape=[10, 4], dtype='float32')
-    pbv = fluid.data(name='prior_box_var', shape=[10, 4], dtype='float32')
-    loc = fluid.data(name='target_box', shape=[2, 21, 4], dtype='float32')
-    scores = fluid.data(name='scores', shape=[2, 21, 10], dtype='float32')
-    nmsed_outs = fluid.layers.detection_output(scores=scores,
-                           loc=loc,
-                           prior_box=pb,
-                           prior_box_var=pbv)
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.detection_output

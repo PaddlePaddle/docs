@@ -8,15 +8,13 @@ is_compiled_with_rocm
 
 
 
-检查 ``whl`` 包是否可以被用来在AMD或海光GPU(ROCm)上运行模型
+检查 ``whl`` 包是否可以被用来在 AMD 或海光 GPU(ROCm)上运行模型。
 
-返回：bool，支持GPU(ROCm)则为True，否则为False。
+返回
+::::::::::::
+bool，支持 GPU(ROCm)则为 True，否则为 False。
 
-**示例代码**
+代码示例
+::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    support_rocm = paddle.device.is_compiled_with_rocm()
-
-
+COPY-FROM: paddle.device.is_compiled_with_rocm

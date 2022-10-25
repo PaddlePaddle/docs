@@ -5,35 +5,21 @@ eye
 
 .. py:function:: paddle.eye(num_rows, num_columns=None, dtype=None, name=None)
 
-该OP用来构建二维Tensor(主对角线元素为1，其他元素为0)。
+构建二维 Tensor(主对角线元素为 1，其他元素为 0)。
 
-参数：
-    - **num_rows** (int) - 生成2-D Tensor的行数，数据类型为非负int32。
-    - **num_columns** (int，可选) - 生成2-D Tensor的列数，数据类型为非负int32。若为None，则默认等于num_rows。
-    - **dtype** (np.dtype|str， 可选) - 返回Tensor的数据类型，可为float16，float32，float64， int32， int64。若为None, 则默认等于float32。
-    - **name** （str， 可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+参数
+::::::::::::
 
-返回： ``shape`` 为 [num_rows, num_columns]的Tensor。
+    - **num_rows** (int) - 生成 2-D Tensor 的行数，数据类型为非负 int32。
+    - **num_columns** (int，可选) - 生成 2-D Tensor 的列数，数据类型为非负 int32。若为 None，则默认等于 num_rows。
+    - **dtype** (np.dtype|str，可选) - 返回 Tensor 的数据类型，可为 float16、float32、float64、int32、int64。若为 None，则默认等于 float32。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
+返回
+::::::::::::
+ ``shape`` 为 [num_rows, num_columns]的 Tensor。
 
-抛出异常：
-    - ``TypeError``: - 如果 ``dtype`` 的类型不是float16， float32， float64， int32， int64其中之一。
-    - ``TypeError``: - 如果 ``num_columns`` 不是非负整数或者 ``num_rows`` 不是非负整数。
+代码示例
+::::::::::::
 
-**代码示例**：
-
-.. code-block:: python
-
-    import paddle
-    
-    data = paddle.eye(3, dtype='int32')
-    # [[1 0 0]
-    #  [0 1 0]
-    #  [0 0 1]]
-    data = paddle.eye(2, 3, dtype='int32')
-    # [[1 0 0]
-    #  [0 1 0]]
-
-
-
-
+COPY-FROM: paddle.eye

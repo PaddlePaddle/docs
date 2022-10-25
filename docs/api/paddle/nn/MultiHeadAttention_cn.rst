@@ -14,28 +14,20 @@ MultiHeadAttention
 细节可参考论文 `Attention is all you need <https://arxiv.org/pdf/1706.03762.pdf>`_ 。
 
 
-参数：
+参数
+::::::::::::
+
     - **embed_dim** (int) - 输入输出的维度。
-    - **num_heads** (int) - 多头注意力机制的Head数量。
-    - **dropout** (float，可选) - 注意力目标的随机失活率。0表示不加dropout。默认值：0。
-    - **kdim** (int，可选) - 键值对中key的维度。如果为 ``None`` 则 ``kdim = embed_dim``。默认值：``None``。
-    - **vdim** (int，可选) - 键值对中value的维度。如果为 ``None`` 则 ``kdim = embed_dim``。默认值：``None``。
-    - **need_weights** (bool, 可选) - 表明是否返回注意力权重。默认值：``False``。
+    - **num_heads** (int) - 多头注意力机制的 Head 数量。
+    - **dropout** (float，可选) - 注意力目标的随机失活率。0 表示不加 dropout。默认值：0。
+    - **kdim** (int，可选) - 键值对中 key 的维度。如果为 ``None`` 则 ``kdim = embed_dim``。默认值：``None``。
+    - **vdim** (int，可选) - 键值对中 value 的维度。如果为 ``None`` 则 ``kdim = embed_dim``。默认值：``None``。
+    - **need_weights** (bool，可选) - 表明是否返回注意力权重。默认值：``False``。
     - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值：``None``，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **bias_attr** （ParamAttr，可选）- 指定偏置参数属性的对象。默认值：``None``，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
-.. code-block:: python
-
-   import paddle
-   from paddle.nn import MultiHeadAttention
-
-   # encoder input: [batch_size, sequence_length, d_model]
-   query = paddle.rand((2, 4, 128))
-   # self-attention mask: [batch_size, num_heads, query_len, query_len]
-   attn_mask = paddle.rand((2, 2, 4, 4))
-   multi_head_attn = MultiHeadAttention(128, 2)
-   output = multi_head_attn(query, None, None, attn_mask=attn_mask)  # [2, 4, 128]
-
+COPY-FROM: paddle.nn.MultiHeadAttention

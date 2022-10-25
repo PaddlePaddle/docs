@@ -11,7 +11,7 @@
 以下教程将指导你提交代码。
 ## [Fork](https://help.github.com/articles/fork-a-repo/)
 
-跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 <https://github.com/USERNAME/Paddle>。
+跳转到[PaddlePaddle](https://github.com/PaddlePaddle/Paddle) GitHub 首页，然后单击 `Fork` 按钮，生成自己目录下的仓库，比如 <https://github.com/USERNAME/Paddle>。
 
 ## 克隆（Clone）
 
@@ -25,7 +25,7 @@
 
 ## 创建本地分支
 
-Paddle 目前使用[Git流分支模型](http://nvie.com/posts/a-successful-git-branching-model/)进行开发，测试，发行和维护，具体请参考 [Paddle 分支规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/others/releasing_process.md)。
+Paddle 目前使用[Git 流分支模型](http://nvie.com/posts/a-successful-git-branching-model/)进行开发，测试，发行和维护，具体请参考 [Paddle 分支规范](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/others/releasing_process.md)。
 
 所有的 feature 和 bug fix 的开发工作都应该在一个新的分支上完成，一般从 `develop` 分支上创建新分支。
 
@@ -36,21 +36,6 @@ Paddle 目前使用[Git流分支模型](http://nvie.com/posts/a-successful-git-b
 ```
 
 值得注意的是，在 checkout 之前，需要保持当前分支目录 clean，否则会把 untracked 的文件也带到新分支上，这可以通过 `git status` 查看。
-
-## 使用 `pre-commit` 钩子
-
-Paddle 开发人员使用 [pre-commit](http://pre-commit.com/) 工具来管理 Git 预提交钩子。 它可以帮助我们格式化源代码（C++，Python），在提交（commit）前自动检查一些基本事宜（如每个文件只有一个 EOL，Git 中不要添加大文件等）。
-
-`pre-commit`测试是 CI 中单元测试的一部分，不满足钩子的 PR 不能被提交到 Paddle，Paddle使用的pre-commit是1.10.4版本。首先安装并在当前目录运行它：
-
-```bash
-➜  pip install pre-commit==1.10.4
-➜  pre-commit install
-```
-
-Paddle 使用 `clang-format` 来调整 C/C++ 源代码格式，请确保 `clang-format` 版本是 3.8 。
-
-注：通过`pip install pre-commit`和`conda install -c conda-forge pre-commit`安装的`yapf`稍有不同的，Paddle 开发人员使用的是`pip install pre-commit`。
 
 ## 开始开发
 
@@ -65,12 +50,12 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   README.md
+    modified:   README.md
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	test
+    test
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -87,7 +72,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 - **运行单元测试测时需要编译整个工程**，并且编译时需要打开`WITH_TESTING`。
 
-- **执行单测一定要用ctest命令**，<font color="#FF0000">不可直接`python test_*.py`</font>。
+- **执行单测一定要用 ctest 命令**，<font color="#FF0000">不可直接`python test_*.py`</font>。
 
 参考上述[编译](#编译)过程，编译成功后，在`build`目录下执行下面的命令来运行单元测试：
 
@@ -108,16 +93,16 @@ On branch test
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	test
+    test
 
 nothing added to commit but untracked files present (use "git add" to track)
 ➜  git add test
 ```
 
-Git 每次提交代码，都需要写提交说明，这可以让其他人知道这次提交做了哪些改变，这可以通过`git commit` 完成。
+Git 每次提交代码，都需要写提交说明，这可以让其他人知道这次提交做了哪些改变，这可以通过`git commit -m "This is description"` 完成。
 
 ```bash
-➜  git commit
+➜  git commit -m "This is description"
 CRLF end-lines remover...............................(no files to check)Skipped
 yapf.................................................(no files to check)Skipped
 Check for added large files..............................................Passed
@@ -125,12 +110,13 @@ Check for merge conflicts................................................Passed
 Check for broken symlinks................................................Passed
 Detect Private Key...................................(no files to check)Skipped
 Fix End of Files.....................................(no files to check)Skipped
-clang-formater.......................................(no files to check)Skipped
+clang-format.......................................(no files to check)Skipped
 [my-cool-stuff c703c041] add test file
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 233
 ```
 
+可以看到，在执行`git commit`后，输出了一些额外的信息。这是使用`pre-commmit`进行代码风格检查的结果，关于代码风格检查的使用问题请参考[代码风格检查指南](./codestyle_check_guide_cn.html)。
 
 ## 保持本地仓库最新
 
@@ -142,8 +128,8 @@ clang-formater.......................................(no files to check)Skipped
 ➜  git remote
 origin
 ➜  git remote -v
-origin	https://github.com/USERNAME/Paddle (fetch)
-origin	https://github.com/USERNAME/Paddle (push)
+origin  https://github.com/USERNAME/Paddle (fetch)
+origin  https://github.com/USERNAME/Paddle (push)
 ```
 
 这里 origin 是我们 clone 的远程仓库的名字，也就是自己用户名下的 Paddle，接下来我们创建一个原始 Paddle 仓库的远程主机，命名为 upstream。

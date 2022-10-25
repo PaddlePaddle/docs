@@ -24,36 +24,25 @@ beam_search_decode
 
         fluid/tests/book/test_machine_translation.py
 
-参数:
+参数
+::::::::::::
+
     - **id** (Variable) - 保存了每个时间步选择的id（beam_search OP的输出）的LoDTensorArray。其中每个LoDTensor的数据类型为int64，LoD level为2，LoD中保存了搜索路径信息。
     - **score** (Variable) - 保存了每个时间步选择的id所对应累积得分（beam_search OP的输出）的LoDTensorArray，和 ``id`` 具有相同大小。其中每个LoDTensor要和 ``id`` 中相应LoDTensor具有相同的形状和LoD，表示其对应的累积得分。数据类型为float32。
     - **beam_size** (int) - 指示束搜索中波束的宽度。
     - **end_id** (int) - 指明标识序列结束的id。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回： Variable的二元组， 包含了完整id序列和对应的累积得分两个LodTensor，数据类型分别为int64和float32，形状相同且均展开为1维，LoD相同且level均为2。根据两层LoD可分别得到每个源句（样本）有多少个生成序列和每个序列有多少个id。
+返回
+::::::::::::
+ Variable的二元组，包含了完整id序列和对应的累积得分两个LodTensor，数据类型分别为int64和float32，形状相同且均展开为1维，LoD相同且level均为2。根据两层LoD可分别得到每个源句（样本）有多少个生成序列和每个序列有多少个id。
 
-返回类型: tuple
-
-
-**代码示例**
-
-.. code-block:: python
-
-       import paddle.fluid as fluid
-
-       # 假设 `ids` 和 `scores` 为LoDTensorArray类型的Variable，它们保留了
-       # 所有时间步选择出的id和score
-       ids = fluid.layers.create_array(dtype='int64')
-       scores = fluid.layers.create_array(dtype='float32')
-       finished_ids, finished_scores = fluid.layers.beam_search_decode(
-                ids, scores, beam_size=5, end_id=0)
+返回类型
+::::::::::::
+ tuple
 
 
+代码示例
+::::::::::::
 
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.beam_search_decode

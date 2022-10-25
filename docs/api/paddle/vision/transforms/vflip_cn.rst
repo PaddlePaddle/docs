@@ -10,7 +10,7 @@ vflip
 参数
 :::::::::
 
-    - img (PIL.Image|numpy.ndarray) - 输入的图像。
+    - **img** (PIL.Image|numpy.ndarray) - 输入的图像。
 
 返回
 :::::::::
@@ -20,16 +20,4 @@ vflip
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import numpy as np
-    from PIL import Image
-    from paddle.vision.transforms import functional as F
-
-    fake_img = (np.random.rand(256, 300, 3) * 255.).astype('uint8')
-
-    fake_img = Image.fromarray(fake_img)
-
-    flpped_img = F.vflip(fake_img)
-    print(flpped_img.size)
-    
+COPY-FROM: paddle.vision.transforms.vflip

@@ -17,6 +17,7 @@ import subprocess
 import multiprocessing
 import platform
 import extract_api_from_docs
+from queue import Queue
 """
 generate api_info_dict.json to describe all info about the apis.
 """
@@ -143,8 +144,8 @@ def process_module(m, attr="__all__"):
                         if (not name.startswith("_")):
                             try:
                                 method_full_name = full_name + '.' + name  # value.__name__
-                                if name and value and isinstance(value,
-                                                                 property):
+                                if name and value and isinstance(
+                                        value, property):
                                     method_api_info = insert_api_into_dict(
                                         method_full_name, 'class_property')
                                     if method_api_info is not None:
@@ -233,8 +234,8 @@ def parse_module_file(mod):
         src_file = mod.__file__
         mod_name = mod.__name__
         if not (isinstance(src_file, str) and isinstance(src_file, str)):
-            logger.error('%s: mod_name=%s, src_file=%s',
-                         str(mod), mod_name, src_file)
+            logger.error('%s: mod_name=%s, src_file=%s', str(mod), mod_name,
+                         src_file)
             return
         logger.debug("parsing %s:%s", mod_name, src_file)
         if len(mod_name) >= 6 and mod_name[:6] == 'paddle':
@@ -243,11 +244,11 @@ def parse_module_file(mod):
                 mod_ast = ast.parse(open(src_file, "r").read())
                 for node in mod_ast.body:
                     short_names = []
-                    if ((isinstance(node, ast.ClassDef) or
-                         isinstance(node, ast.FunctionDef)) and
-                            hasattr(node, 'name') and
-                            hasattr(sys.modules[mod_name],
-                                    node.name) and node.name[0] != '_'):
+                    if ((isinstance(node, ast.ClassDef)
+                         or isinstance(node, ast.FunctionDef))
+                            and hasattr(node, 'name')
+                            and hasattr(sys.modules[mod_name], node.name)
+                            and node.name[0] != '_'):
                         short_names.append(node.name)
                     elif isinstance(node, ast.Assign):
                         for target in node.targets:
@@ -275,8 +276,8 @@ def parse_module_file(mod):
                             api_info_dict[obj_id]["src_file"] = src_file[
                                 src_file_start_ind:]
                             api_info_dict[obj_id][
-                                "doc_filename"] = obj_full_name.replace('.',
-                                                                        '/')
+                                "doc_filename"] = obj_full_name.replace(
+                                    '.', '/')
                             api_info_dict[obj_id]["full_name"] = obj_full_name
                             api_info_dict[obj_id]["short_name"] = short_name
                             api_info_dict[obj_id]["module_name"] = mod_name
@@ -316,8 +317,8 @@ def parse_module_file(mod):
                             api_info_dict[obj_id]["short_name"] = short_name
                             api_info_dict[obj_id]["module_name"] = mod_name
                             api_info_dict[obj_id][
-                                "doc_filename"] = obj_full_name.replace('.',
-                                                                        '/')
+                                "doc_filename"] = obj_full_name.replace(
+                                    '.', '/')
                         else:
                             logger.debug("%s omitted", obj_full_name)
 
@@ -336,8 +337,11 @@ def gen_functions_args_str(node):
                 str_args_list[defarg_ind_start + defarg_ind] += '=' + str(
                     node.args.defaults[defarg_ind].id)
             elif isinstance(node.args.defaults[defarg_ind], ast.Constant):
-                str_args_list[defarg_ind_start + defarg_ind] += '=' + str(
-                    node.args.defaults[defarg_ind].value)
+                defarg_val = str(node.args.defaults[defarg_ind].value)
+                if isinstance(node.args.defaults[defarg_ind].value, str):
+                    defarg_val = f"'{defarg_val}'"
+                str_args_list[defarg_ind_start +
+                              defarg_ind] += '=' + defarg_val
         if node.args.vararg is not None:
             str_args_list.append('*' + node.args.vararg.arg)
         if len(node.args.kwonlyargs) > 0:
@@ -400,58 +404,81 @@ def set_display_attr_of_apis():
                 logger.info("set {} display to False".format(id_api))
 
 
+def check_module_in_black_list(module_name):
+    black_module_list = [
+        'paddle.fluid',
+    ]
+    for i in black_module_list:
+        if i in module_name:
+            return True
+    return False
+
+
+def get_all_modules():
+    """
+    get all modules from paddle
+    :return: module list
+    """
+    module_str_queue = Queue()
+    module_str_queue.put('paddle')
+
+    MODULE_CLS = type(paddle)
+    module_list = []
+    while not module_str_queue.empty():
+        module_name = module_str_queue.get()
+        try:
+            module = importlib.import_module(module_name)
+            module_list.append(module)
+            for sub_module_str in dir(module):
+                if sub_module_str.startswith('_'):
+                    continue
+                full_sub_module_path = '.'.join([module_name, sub_module_str])
+                sub_module = eval(full_sub_module_path)
+                if isinstance(sub_module, MODULE_CLS):
+                    module_str_queue.put(full_sub_module_path)
+        except Exception as e:
+            continue
+
+    return module_list
+
+
+def get_public_modules():
+    """
+    get public modules from paddle
+    :return: module list
+    """
+    public_module_list = []
+    all_modules = get_all_modules()
+    for module in all_modules:
+        if check_module_in_black_list(module.__name__):
+            logger.info('module %s in black module list', module.__name__)
+            continue
+        if hasattr(module, '__all__'):
+            api_in_module = module.__all__
+            if len(api_in_module) == 0:
+                logger.info('API in module %s is empty', module.__name__)
+                continue
+            public_module_list.append(module)
+    return public_module_list
+
+
+def get_api_from_module(module):
+    """
+    get api list from module
+    :param module: module object
+    :return: api list
+    """
+    if not hasattr(module, '__all__'):
+        return []
+    return module.__all__
+
+
 def set_api_sketch():
     """
     set the in_api_sktech attr. may replace the set_display_attr_of_apis.
     """
     global api_info_dict
-    modulelist = [  #noqa
-        paddle,
-        paddle.amp,
-        paddle.nn,
-        paddle.nn.functional,
-        paddle.nn.initializer,
-        paddle.nn.utils,
-        paddle.static,
-        paddle.static.nn,
-        paddle.signal,
-        paddle.io,
-        paddle.jit,
-        paddle.metric,
-        paddle.distribution,
-        paddle.optimizer,
-        paddle.optimizer.lr,
-        paddle.regularizer,
-        paddle.text,
-        paddle.utils,
-        paddle.utils.download,
-        paddle.utils.profiler,
-        paddle.utils.cpp_extension,
-        paddle.utils.unique_name,
-        paddle.utils.dlpack,
-        paddle.sysconfig,
-        paddle.vision,
-        paddle.vision.datasets,
-        paddle.vision.models,
-        paddle.vision.transforms,
-        paddle.vision.ops,
-        paddle.distributed,
-        paddle.distributed.fleet,
-        paddle.distributed.fleet.utils,
-        paddle.distributed.parallel,
-        paddle.distributed.utils,
-        paddle.callbacks,
-        paddle.hub,
-        paddle.autograd,
-        paddle.incubate,
-        paddle.inference,
-        paddle.onnx,
-        paddle.device,
-        paddle.device.cuda,
-        paddle.linalg,
-        paddle.fft,
-        paddle.version
-    ]
+    modulelist = get_public_modules()
 
     alldict = {}
     for module in modulelist:
@@ -620,14 +647,14 @@ def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
                     cf = file.replace(en_suffix, cn_suffix)
                     if not osp_exists(osp_join(root, cf)):
                         fo.write(
-                            tmpl.format(
-                                osp_join(root, file), osp_join(root, cf)))
+                            tmpl.format(osp_join(root, file),
+                                        osp_join(root, cf)))
                 elif file.endswith(cn_suffix):
                     ef = file.replace(cn_suffix, en_suffix)
                     if not osp_exists(osp_join(root, ef)):
                         fo.write(
-                            tmpl.format(
-                                osp_join(root, file), osp_join(root, ef)))
+                            tmpl.format(osp_join(root, file),
+                                        osp_join(root, ef)))
 
 
 class EnDocGenerator(object):
@@ -675,8 +702,8 @@ class EnDocGenerator(object):
         elif isinstance(self.object, types.FunctionType):
             self.print_function()
         else:
-            logger.warning("%s: not supported type %s",
-                           str(self.api_name), type(self.object))
+            logger.warning("%s: not supported type %s", str(self.api_name),
+                           type(self.object))
 
     def print_header_reminder(self):
         """
@@ -751,6 +778,7 @@ class EnDocGenerator(object):
                 'paddle.io',
                 'paddle.nn',
                 'paddle.incubate.nn',
+                'paddle.audio',
         ]:
             if self.api_name.startswith(m):
                 tmpl = 'no-inherited'
@@ -790,10 +818,10 @@ class EnDocGenerator(object):
             logger.warning("attribute error for %s ", str(self.api_info))
             return None, None
         else:
-            if (not isinstance(self.object, type)) and (
-                    not isinstance(self.object, types.FunctionType)):
-                logger.warning("%s: not supported type %s",
-                               str(self.api_name), type(self.object))
+            if (not isinstance(self.object, type)) and (not isinstance(
+                    self.object, types.FunctionType)):
+                logger.warning("%s: not supported type %s", str(self.api_name),
+                               type(self.object))
                 return None, None
         if self.api_name:
             filename = self.api_info['doc_filename'] + en_suffix
@@ -978,8 +1006,8 @@ def extract_code_blocks_from_docstr(docstr):
                 # docstring end
                 if lineno == lastlineindex:
                     mo = re.search(r"\S", linecont)
-                    if mo is not None and cb_info[
-                            'cb_cur_indent'] <= mo.start():
+                    if mo is not None and cb_info['cb_cur_indent'] <= mo.start(
+                    ):
                         cb_info['cb_cur'].append(linecont)
                     if len(cb_info['cb_cur']):
                         _append_code_block()
@@ -1127,8 +1155,9 @@ def run_a_sample_code(sc_filename):
         retstr = 'Error: fail to parse python version!'
         logger.warning(retstr)
         succ = False
-    subprc = subprocess.Popen(
-        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    subprc = subprocess.Popen(cmd,
+                              stdout=subprocess.PIPE,
+                              stderr=subprocess.PIPE)
     output, error = subprc.communicate()
     msg = "".join(output.decode(encoding='utf-8'))
     err = "".join(error.decode(encoding='utf-8'))
@@ -1160,8 +1189,8 @@ def run_all_sample_codes(threads=1):
             err_files.append(fn)
             logger.warning(results[i][1])
     if len(err_files):
-        logger.info('there are %d sample codes run error.\n%s',
-                    len(err_files), "\n".join(err_files))
+        logger.info('there are %d sample codes run error.\n%s', len(err_files),
+                    "\n".join(err_files))
         return False
     else:
         logger.info('all sample codes run successfully')
@@ -1204,17 +1233,20 @@ def parse_args():
     """
     global arguments
     parser = argparse.ArgumentParser(
-        description='generate the api_info json and generate the English api_doc reST files.'
+        description=
+        'generate the api_info json and generate the English api_doc reST files.'
     )
     parser.add_argument('--debug', dest='debug', action="store_true")
-    parser.add_argument(
-        '--run-sample-codes',
-        dest='run_sample_codes',
-        action="store_true",
-        help='run all the smaple codes')
+    parser.add_argument('--run-sample-codes',
+                        dest='run_sample_codes',
+                        action="store_true",
+                        help='run all the smaple codes')
     for item in arguments:
-        parser.add_argument(
-            item[0], dest=item[1], help=item[4], type=item[2], default=item[3])
+        parser.add_argument(item[0],
+                            dest=item[1],
+                            help=item[4],
+                            type=item[2],
+                            default=item[3])
 
     args = parser.parse_args()
     return args
@@ -1237,9 +1269,9 @@ if __name__ == "__main__":
 
     get_all_equippted_devices()
     need_run_sample_codes = False
-    if args.run_sample_codes or (
-            'RUN_SAMPLE_CODES' in os.environ and
-            os.environ['RUN_SAMPLE_CODES'].lower() in ['yes', '1', 'on']):
+    if args.run_sample_codes or ('RUN_SAMPLE_CODES' in os.environ
+                                 and os.environ['RUN_SAMPLE_CODES'].lower()
+                                 in ['yes', '1', 'on']):
         need_run_sample_codes = True
     if args.threads == 1 and ('RUN_SAMPLE_CODES_THREADS' in os.environ and
                               int(os.environ['RUN_SAMPLE_CODES_THREADS']) > 1):
@@ -1282,8 +1314,8 @@ if __name__ == "__main__":
         set_referenced_from_attr()
         set_api_sketch()
         insert_suggested_names()
-        if ('__all__' not in realattrs) or ('__all__' in realattrs and
-                                            realattr == '__all__'):
+        if ('__all__' not in realattrs) or ('__all__' in realattrs
+                                            and realattr == '__all__'):
             if args.gen_rst:
                 gen_en_files()
                 check_cn_en_match()

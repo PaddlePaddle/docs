@@ -23,13 +23,13 @@
     <tr>
         <td> GCC (Linux Only) </td>
         <td> 5.4 / 8.2 </td>
-        <td>  推荐使用CentOS的devtools2 </td>
+        <td>  推荐使用 CentOS 的 devtools2 </td>
         <td>  </td>
     </tr>
     <tr>
-        <td> Clang (MacOS Only) </td>
-        <td> 9.0及以上 </td>
-        <td> 通常使用MacOS 10.11及以上的系统对应的Clang版本即可 </td>
+        <td> Clang (macOS Only) </td>
+        <td> 9.0 及以上 </td>
+        <td> 通常使用 macOS 10.11 及以上的系统对应的 Clang 版本即可 </td>
         <td>  </td>
     </tr>
         <tr>
@@ -84,7 +84,7 @@
         <td> patchELF </td>
         <td> any </td>
         <td>  </td>
-        <td> <code> apt install patchelf </code> 或参见github <a href="https://gist.github.com/ruario/80fefd174b3395d34c14">patchELF 官方文档</a></td>
+        <td> <code> apt install patchelf </code> 或参见 github <a href="https://gist.github.com/ruario/80fefd174b3395d34c14">patchELF 官方文档</a></td>
     </tr>
     <tr>
         <td> go </td>
@@ -102,7 +102,7 @@
         <td> unrar </td>
         <td>  </td>
         <td> </td>
-        <td> brew install unrar (For MacOS), apt-get install unrar (For Ubuntu) </td>
+        <td> brew install rar (For macOS), apt-get install unrar (For Ubuntu) </td>
     </tr>
     </tbody>
 </table>
@@ -125,22 +125,22 @@
     <tbody>
     <tr>
         <td> WITH_GPU </td>
-        <td> 是否支持CUDA </td>
+        <td> 是否支持 CUDA </td>
         <td> ON </td>
     </tr>
     <tr>
         <td> WITH_ROCM </td>
-        <td> 是否支持ROCM </td>
+        <td> 是否支持 ROCM </td>
         <td> OFF </td>
     </tr>
     <tr>
         <td> WITH_AVX </td>
-        <td> 是否编译含有AVX指令集的PaddlePaddle二进制文件 </td>
+        <td> 是否编译含有 AVX 指令集的 PaddlePaddle 二进制文件 </td>
         <td> ON </td>
     </tr>
     <tr>
         <td> WITH_PYTHON </td>
-        <td> 是否内嵌PYTHON解释器 </td>
+        <td> 是否内嵌 PYTHON 解释器 </td>
         <td> ON </td>
     </tr>
     <tr>
@@ -150,12 +150,12 @@
     </tr>
     <tr>
         <td> WITH_MKL </td>
-        <td> 是否使用MKL数学库，如果为否则是用OpenBLAS </td>
+        <td> 是否使用 MKL 数学库，如果为否则是用 OpenBLAS </td>
         <td> ON </td>
     </tr>
     <tr>
         <td> WITH_SYSTEM_BLAS </td>
-        <td> 是否使用系统自带的BLAS </td>
+        <td> 是否使用系统自带的 BLAS </td>
         <td> OFF </td>
     </tr>
     <tr>
@@ -165,7 +165,7 @@
     </tr>
     <tr>
         <td> WITH_BRPC_RDMA </td>
-        <td> 是否使用BRPC RDMA作为RPC协议 </td>
+        <td> 是否使用 BRPC RDMA 作为 RPC 协议 </td>
         <td> OFF </td>
     </tr>
         <tr>
@@ -176,14 +176,14 @@
     <tr>
         <tr>
         <td> CUDA_ARCH_NAME </td>
-        <td> 是否只针对当前CUDA架构编译 </td>
-        <td> All:编译所有可支持的CUDA架构 可选：Auto 自动识别当前环境的架构编译 </td>
+        <td> 是否只针对当前 CUDA 架构编译 </td>
+        <td> All:编译所有可支持的 CUDA 架构 可选：Auto 自动识别当前环境的架构编译 </td>
     </tr>
     <tr>
         <tr>
         <td> TENSORRT_ROOT </td>
-        <td> 指定TensorRT路径 </td>
-        <td> Windows下默认值为'/'，Linux下默认值为 '/usr/' </td>
+        <td> 指定 TensorRT 路径 </td>
+        <td> Windows 下默认值为'/'，Linux 下默认值为 '/usr/' </td>
     </tr>
    </tbody>
 </table>
@@ -195,23 +195,23 @@
 
 **BLAS**
 
-PaddlePaddle支持 [MKL](https://software.intel.com/en-us/mkl) 和 [OpenBlAS](http://www.openblas.net) 两种BLAS库。默认使用MKL。如果使用MKL并且机器含有AVX2指令集，还会下载MKL-DNN数学库，详细参考[这里](https://github.com/PaddlePaddle/Paddle/tree/release/0.11.0/doc/design/mkldnn#cmake) 。
+PaddlePaddle 支持 [MKL](https://software.intel.com/en-us/mkl) 和 [OpenBlAS](http://www.openblas.net) 两种 BLAS 库。默认使用 MKL。如果使用 MKL 并且机器含有 AVX2 指令集，还会下载 MKL-DNN 数学库，详细参考[这里](https://github.com/PaddlePaddle/Paddle/tree/release/0.11.0/doc/design/mkldnn#cmake) 。
 
-如果关闭MKL，则会使用OpenBLAS作为BLAS库。
+如果关闭 MKL，则会使用 OpenBLAS 作为 BLAS 库。
 
 **CUDA/cuDNN**
 
-PaddlePaddle在编译时/运行时会自动找到系统中安装的CUDA和cuDNN库进行编译和执行。 使用参数 `-DCUDA_ARCH_NAME=Auto` 可以指定开启自动检测SM架构，加速编译。
+PaddlePaddle 在编译时/运行时会自动找到系统中安装的 CUDA 和 cuDNN 库进行编译和执行。 使用参数 `-DCUDA_ARCH_NAME=Auto` 可以指定开启自动检测 SM 架构，加速编译。
 
-PaddlePaddle可以使用cuDNN v5.1之后的任何一个版本来编译运行，但尽量请保持编译和运行使用的cuDNN是同一个版本。 我们推荐使用最新版本的cuDNN。
+PaddlePaddle 可以使用 cuDNN v5.1 之后的任何一个版本来编译运行，但尽量请保持编译和运行使用的 cuDNN 是同一个版本。 我们推荐使用最新版本的 cuDNN。
 
 **编译选项的设置**
 
-PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。cmake编译时，首先在系统路径（ `/usr/lib` 和 `/usr/local/lib` ）中搜索这几个库，同时也会读取相关路径变量来进行搜索。 通过使用`-D`命令可以设置，例如：
+PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库。cmake 编译时，首先在系统路径（ `/usr/lib` 和 `/usr/local/lib` ）中搜索这几个库，同时也会读取相关路径变量来进行搜索。 通过使用`-D`命令可以设置，例如：
 
 > `cmake .. -DWITH_GPU=ON -DWITH_TESTING=OFF -DCUDNN_ROOT=/opt/cudnnv5`
 
-**注意**：这几个编译选项的设置，只在第一次cmake的时候有效。如果之后想要重新设置，推荐清理整个编译目录（ rm -rf ）后，再指定。
+**注意**：这几个编译选项的设置，只在第一次 cmake 的时候有效。如果之后想要重新设置，推荐清理整个编译目录（ rm -rf ）后，再指定。
 
 
 <a name="whls"></a>
@@ -229,25 +229,25 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
     <tbody>
     <tr>
         <td> paddlepaddle==[版本号] 例如 paddlepaddle==2.2.1 </td>
-        <td> 只支持CPU对应版本的PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
+        <td> 只支持 CPU 对应版本的 PaddlePaddle，具体版本请参见<a href=https://pypi.org/project/paddlepaddle/#history>Pypi</a> </td>
     </tr>
     <tr>
         <td> paddlepaddle-gpu==[版本号] 例如 paddlepaddle-gpu==2.2.1 </td>
-        <td> 默认安装支持CUDA 10.2和cuDNN 7的对应[版本号]的PaddlePaddle安装包 </td>
+        <td> 默认安装支持 CUDA 10.2 和 cuDNN 7 的对应[版本号]的 PaddlePaddle 安装包 </td>
     </tr>
    </tbody>
 </table>
 </p>
 
-您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到PaddlePaddle-gpu的各个发行版本。
-> 其中`postXX` 对应的是CUDA和cuDNN的版本，`postXX`之前的数字代表Paddle的版本
+您可以在 [Release History](https://pypi.org/project/paddlepaddle-gpu/#history) 中找到 PaddlePaddle-gpu 的各个发行版本。
+> 其中`postXX` 对应的是 CUDA 和 cuDNN 的版本，`postXX`之前的数字代表 Paddle 的版本
 
-需要注意的是，命令中<code> paddlepaddle-gpu==2.2.1 </code> 在windows环境下，会默认安装支持CUDA 10.2和cuDNN 7的对应[版本号]的PaddlePaddle安装包
+需要注意的是，命令中<code> paddlepaddle-gpu==2.2.1 </code> 在 windows 环境下，会默认安装支持 CUDA 10.2 和 cuDNN 7 的对应[版本号]的 PaddlePaddle 安装包
 
 <a name="ciwhls-release"></a>
 </br></br>
 
-## **多版本whl包列表-Release**
+## **多版本 whl 包列表-Release**
 
 <p align="center">
 <table>
@@ -456,30 +456,30 @@ PaddePaddle通过编译时指定路径来实现引用各种BLAS/CUDA/cuDNN库。
 
 - 纵轴
 
-cpu-mkl: 支持CPU训练和预测，使用Intel mkl数学库
+cpu-mkl: 支持 CPU 训练和预测，使用 Intel mkl 数学库
 
-cuda10_cudnn7-mkl: 支持GPU训练和预测，使用Intel mkl数学库
+cuda10_cudnn7-mkl: 支持 GPU 训练和预测，使用 Intel mkl 数学库
 
 
 - 横轴
 
 一般是类似于“cp37-cp37m”的形式，其中：
 
-37:python tag,指python3.7，类似的还有“36”、“38”、“39”等
+37:python tag,指 python3.7，类似的还有“36”、“38”、“39”等
 
-mu:指unicode版本python，若为m则指非unicode版本python
+mu:指 unicode 版本 python，若为 m 则指非 unicode 版本 python
 
 - 安装包命名规则
 
-每个安装包都有一个专属的名字，它们是按照Python的官方规则 来命名的，形式如下：
+每个安装包都有一个专属的名字，它们是按照 Python 的官方规则 来命名的，形式如下：
 
 {distribution}-{version}(-{build tag})?-{python tag}-{abi tag}-{platform tag}.whl
 
-其中build tag可以缺少，其他部分不能缺少
+其中 build tag 可以缺少，其他部分不能缺少
 
-distribution: wheel名称version: 版本，例如0.14.0 (要求必须是数字格式)
+distribution: wheel 名称 version: 版本，例如 0.14.0 (要求必须是数字格式)
 
-python tag: 类似'py36', 'py37', 'py38', 'py39'，用于标明对应的python版本
+python tag: 类似'py36', 'py37', 'py38', 'py39'，用于标明对应的 python 版本
 
 abi tag:  类似'cp33m', 'abi3', 'none'
 
@@ -487,7 +487,7 @@ platform tag: 类似 'linux_x86_64', 'any'
 
 <a name="ciwhls"></a>
 </br></br>
-## **多版本whl包列表-develop**
+## **多版本 whl 包列表-develop**
 <p align="center">
 <table>
     <thead>
@@ -644,10 +644,10 @@ platform tag: 类似 'linux_x86_64', 'any'
 
 </br></br>
 
-## 在Docker中执行PaddlePaddle训练程序
+## 在 Docker 中执行 PaddlePaddle 训练程序
 
 
-假设您已经在当前目录（比如在/home/work）编写了一个PaddlePaddle的程序: `train.py` （可以参考
+假设您已经在当前目录（比如在/home/work）编写了一个 PaddlePaddle 的程序: `train.py` （可以参考
 [PaddlePaddleBook](https://github.com/PaddlePaddle/book/blob/develop/01.fit_a_line/README.cn.md)
 编写），就可以使用下面的命令开始执行训练：
 
@@ -659,10 +659,10 @@ docker run -it -v $PWD:/work registry.baidubce.com/paddlepaddle/paddle /work/tra
 ```
 
 上述命令中，`-it` 参数说明容器已交互式运行；`-v $PWD:/work`
-指定将当前路径（Linux中PWD变量会展开为当前路径的绝对路径）挂载到容器内部的:`/work`
+指定将当前路径（Linux 中 PWD 变量会展开为当前路径的绝对路径）挂载到容器内部的:`/work`
 目录: `registry.baidubce.com/paddlepaddle/paddle` 指定需要使用的容器； 最后`/work/train.py`为容器内执行的命令，即运行训练程序。
 
-当然，您也可以进入到Docker容器中，以交互式的方式执行或调试您的代码：
+当然，您也可以进入到 Docker 容器中，以交互式的方式执行或调试您的代码：
 
 ```
 docker run -it -v $PWD:/work registry.baidubce.com/paddlepaddle/paddle /bin/bash
@@ -674,19 +674,19 @@ cd /work
 python train.py
 ```
 
-**注：PaddlePaddle Docker镜像为了减小体积，默认没有安装vim，您可以在容器中执行** `apt-get install -y vim` **安装后，在容器中编辑代码。**
+**注：PaddlePaddle Docker 镜像为了减小体积，默认没有安装 vim，您可以在容器中执行** `apt-get install -y vim` **安装后，在容器中编辑代码。**
 
 </br></br>
 
-## 使用Docker启动PaddlePaddle Book教程
+## 使用 Docker 启动 PaddlePaddle Book 教程
 
 
-使用Docker可以快速在本地启动一个包含了PaddlePaddle官方Book教程的Jupyter Notebook，可以通过网页浏览。
-PaddlePaddle Book是为用户和开发者制作的一个交互式的Jupyter Notebook。
-如果您想要更深入了解deep learning，可以参考PaddlePaddle Book。
+使用 Docker 可以快速在本地启动一个包含了 PaddlePaddle 官方 Book 教程的 Jupyter Notebook，可以通过网页浏览。
+PaddlePaddle Book 是为用户和开发者制作的一个交互式的 Jupyter Notebook。
+如果您想要更深入了解 deep learning，可以参考 PaddlePaddle Book。
 大家可以通过它阅读教程，或者制作和分享带有代码、公式、图表、文字的交互式文档。
 
-我们提供可以直接运行PaddlePaddle Book的Docker镜像，直接运行：
+我们提供可以直接运行 PaddlePaddle Book 的 Docker 镜像，直接运行：
 
 ```
 docker run -p 8888:8888 registry.baidubce.com/paddlepaddle/book
@@ -706,18 +706,18 @@ http://localhost:8888/
 
 
 </br></br>
-## 使用Docker执行GPU训练
+## 使用 Docker 执行 GPU 训练
 
 
-为了保证GPU驱动能够在镜像里面正常运行，我们推荐使用
+为了保证 GPU 驱动能够在镜像里面正常运行，我们推荐使用
 [nvidia-docker](https://github.com/NVIDIA/nvidia-docker)来运行镜像。
-请不要忘记提前在物理机上安装GPU最新驱动。
+请不要忘记提前在物理机上安装 GPU 最新驱动。
 
 ```
 nvidia-docker run -it -v $PWD:/work registry.baidubce.com/paddlepaddle/paddle:latest-gpu /bin/bash
 ```
 
-**注: 如果没有安装nvidia-docker，可以尝试以下的方法，将CUDA库和Linux设备挂载到Docker容器内：**
+**注: 如果没有安装 nvidia-docker，可以尝试以下的方法，将 CUDA 库和 Linux 设备挂载到 Docker 容器内：**
 
 ```
 export CUDA_SO="$(\ls /usr/lib64/libcuda* | xargs -I{} echo '-v {}:{}') \

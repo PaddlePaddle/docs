@@ -20,12 +20,15 @@ While
     在 ``While`` 中创建的局部变量类似于C++中的while，无法被外部引用，因此无法通过 ``Executor`` 中的 ``fetch_list`` 来获取。
     若想实现该功能，PaddlePaddle提供了 ``assign`` 接口将局部变量赋值到外部，请参考示例代码2 或参考 `issue#22724 <https://github.com/PaddlePaddle/Paddle/issues/22724>`_ 。
 
-参数：
+参数
+::::::::::::
+
     - **cond** (Variable) – 用于判断循环继续进行的条件，为数据类型bool型的Tensor，其shape必须为[1]。
     - **is_test** (bool，可选) – 用于表明是否在测试阶段执行，默认值为False。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-**代码示例 1**
+代码示例 1
+::::::::::::
 
 .. code-block:: python
 
@@ -50,7 +53,8 @@ While
     print(res) # [array([10])]
 
 
-**代码示例 2**
+代码示例 2
+::::::::::::
 
 .. code-block:: python
 

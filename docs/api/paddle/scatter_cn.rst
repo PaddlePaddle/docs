@@ -8,7 +8,7 @@ scatter
 通过基于 ``updates`` 来更新选定索引 ``index`` 上的输入来获得输出。具体行为如下：
 
     .. code-block:: python
-    
+
         import numpy as np
         #input:
         x = np.array([[1, 1], [2, 2], [3, 3]])
@@ -36,29 +36,29 @@ scatter
 
 参数
 :::::::::
-    - **x** (Tensor) - ndim> = 1的输入N-D张量。 数据类型可以是float32，float64。
-    - **index** （Tensor）- 一维Tensor。 数据类型可以是int32，int64。 ``index`` 的长度不能超过 ``updates`` 的长度，并且 ``index`` 中的值不能超过输入的长度。
-    - **updates** （Tensor）- 根据 ``index`` 使用 ``update`` 参数更新输入 ``x`` 。 形状应与输入 ``x`` 相同，并且dim>1的dim值应与输入 ``x`` 相同。
-    - **overwrite** （bool，可选）- 指定索引 ``index`` 相同时，更新输出的方式。如果为True，则使用覆盖模式更新相同索引的输出，如果为False，则使用累加模式更新相同索引的输出。默认值为True。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **x** (Tensor) - ndim> = 1 的输入 N-D 张量。数据类型可以是 float32，float64。
+    - **index** （Tensor）- 一维 Tensor。数据类型可以是 int32，int64。 ``index`` 的长度不能超过 ``updates`` 的长度，并且 ``index`` 中的值不能超过输入的长度。
+    - **updates** （Tensor）- 根据 ``index`` 使用 ``update`` 参数更新输入 ``x``。形状应与输入 ``x`` 相同，并且 dim>1 的 dim 值应与输入 ``x`` 相同。
+    - **overwrite** （bool，可选）- 指定索引 ``index`` 相同时，更新输出的方式。如果为 True，则使用覆盖模式更新相同索引的输出，如果为 False，则使用累加模式更新相同索引的输出。默认值为 True。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
-Tensor，与x有相同形状和数据类型。
+Tensor，与 x 有相同形状和数据类型。
 
 
 代码示例
 :::::::::
-    
+
 .. code-block:: python
-        
+
         import paddle
         import numpy as np
 
         x_data = np.array([[1, 1], [2, 2], [3, 3]]).astype(np.float32)
         index_data = np.array([2, 1, 0, 1]).astype(np.int64)
         updates_data = np.array([[1, 1], [2, 2], [3, 3], [4, 4]]).astype(np.float32)
-        
+
         x = paddle.to_tensor(x_data)
         index = paddle.to_tensor(index_data)
         updates = paddle.to_tensor(updates_data)

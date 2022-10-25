@@ -11,7 +11,7 @@ sequence_concat
 
 **注意：该OP的输入只能是LoDTensor，如果您需要处理的输入是Tensor类型，请使用concat函数（fluid.layers.** :ref:`cn_api_fluid_layers_concat` **）。**
 
-**该OP仅支持LoDTensor** ，通过LoDTensor的LoD信息将输入的多个LoDTensor进行连接（concat），输出连接后的LoDTensor。
+**该OP仅支持LoDTensor**，通过LoDTensor的LoD信息将输入的多个LoDTensor进行连接（concat），输出连接后的LoDTensor。
 
 ::
 
@@ -33,30 +33,22 @@ sequence_concat
         out.shape = [9, 1]
 
 
-参数:
+参数
+::::::::::::
+
         - **input** (list of Variable) – 多个LoDTensor组成的list，要求每个输入LoDTensor的LoD长度必须一致。数据类型为float32，float64或int64。
-        - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回: 输出连接后的LoDTensor，数据类型和输入一致。
+返回
+::::::::::::
+ 输出连接后的LoDTensor，数据类型和输入一致。
 
-返回类型: Variable
-
-
-**代码示例**
-
-..  code-block:: python
-
-        import paddle.fluid as fluid
-        x = fluid.layers.data(name='x', shape=[10], dtype='float32')
-        y = fluid.layers.data(name='y', shape=[10], dtype='float32')
-        out = fluid.layers.sequence_concat(input=[x, y])
+返回类型
+::::::::::::
+ Variable
 
 
+代码示例
+::::::::::::
 
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.sequence_concat

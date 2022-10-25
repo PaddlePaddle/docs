@@ -6,19 +6,21 @@ seed
 .. py:function:: paddle.seed(seed)
 
 
-设置全局默认generator的随机种子。
+设置全局默认 generator 的随机种子。
 
 
-参数:
+参数
+::::::::::::
+
 
      - **seed** (int) - 要设置的的随机种子，推荐使用较大的整数。
 
-返回: 
-     Generator：全局默认generator对象。
+返回
+::::::::::::
 
-**代码示例**：
+     Generator：全局默认 generator 对象。
 
-.. code-block:: python
+代码示例
+::::::::::::
 
-    import paddle
-    paddle.seed(102)
+COPY-FROM: paddle.seed

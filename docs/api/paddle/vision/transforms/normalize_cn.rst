@@ -1,49 +1,27 @@
 .. _cn_api_vision_transforms_normalize:
 
-Normalize
+normalize
 -------------------------------
 
-.. py:class:: paddle.vision.transforms.Normalize(mean=0.0, std=1.0, data_format='CHW', to_rgb=False, keys=None)
+.. py:function:: paddle.vision.transforms.normalize(img, mean, std, data_format='CHW', to_rgb=False)
 
-用均值和标准差归一化输入数据。给定n个通道的均值(M1,...,Mn)和方差(S1,..,Sn)，Normalize会在每个通道归一化输入数据。output[channel] = (input[channel] - mean[channel]) / std[channel]
+用均值和标准差归一化输入数据。
 
 参数
 :::::::::
-    
-    - mean (list|tuple) - 用于每个通道归一化的均值。
-    - std (list|tuple) - 用于每个通道归一化的标准差值。
-    - data_format (str, optional): 数据的格式，必须为 'HWC' 或 'CHW'。 默认值: 'CHW'。
-    - to_rgb (bool, optional) - 是否转换为 ``rgb`` 的格式。默认值：False。
 
-形状
-:::::::::
-
-    - img (PIL.Image|np.ndarray|paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
-    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回归一化后的图像数据。
+    - **img** (PIL.Image|np.array|paddle.Tensor) - 用于归一化的数据。
+    - **mean** (list|tuple) - 用于每个通道归一化的均值。
+    - **std** (list|tuple) - 用于每个通道归一化的标准差值。
+    - **data_format** (str，可选) - 数据的格式，必须为 'HWC' 或 'CHW'。默认值：'CHW'。
+    - **to_rgb** (bool，可选) - 是否转换为 ``rgb`` 的格式。默认值：False。
 
 返回
 :::::::::
 
-    计算 ``Normalize`` 的可调用对象。
+``numpy array`` 或 ``paddle.Tensor``，归一化后的图像。
 
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    import numpy as np
-    from PIL import Image
-    from paddle.vision.transforms import Normalize
-
-    normalize = Normalize(mean=[127.5, 127.5, 127.5],
-                          std=[127.5, 127.5, 127.5],
-                          data_format='HWC')
-
-    fake_img = Image.fromarray((np.random.rand(300, 320, 3) * 255.).astype(np.uint8))
-
-    fake_img = normalize(fake_img)
-    print(fake_img.shape)
-    # (300, 320, 3)
-    print(fake_img.max(), fake_img.min())
-    # 0.99215686 -1.0
-    
+COPY-FROM: paddle.vision.transforms.normalize

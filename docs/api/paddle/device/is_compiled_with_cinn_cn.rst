@@ -7,13 +7,11 @@ is_compiled_with_cinn
 
 检查 ``whl`` 包是否可以被用来在 CINN 上运行模型。
 
-返回：bool，支持CINN则为True，否则为False。
+返回
+::::::::::::
+bool，支持 CINN 则为 True，否则为 False。
 
-**示例代码**
+代码示例
+::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    support_cinn = paddle.device.is_compiled_with_cinn()
-
-
+COPY-FROM: paddle.device.is_compiled_with_cinn

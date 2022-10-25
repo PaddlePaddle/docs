@@ -18,9 +18,9 @@ diagflat
 
 参数
 :::::::::
-    - x（Tensor）：输入的 `Tensor`。它的形状可以是任意维度。其数据类型应为float32，float64，int32，int64。
-    - offset（int，可选）：对角线偏移量。正值表示上对角线，0表示主对角线，负值表示下对角线。
-    - name (str，可选）：操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **x** (Tensor) - 输入的 `Tensor`。它的形状可以是任意维度。其数据类型应为 float32，float64，int32，int64。
+    - **offset** (int，可选) - 对角线偏移量。正值表示上对角线，0 表示主对角线，负值表示下对角线。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
@@ -30,64 +30,9 @@ diagflat
 代码示例 1
 :::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([1, 2, 3])
-        y = paddle.diagflat(x)
-        print(y.numpy())
-        # [[1 0 0]
-        #  [0 2 0]
-        #  [0 0 3]]
-
-        y = paddle.diagflat(x, offset=1)
-        print(y.numpy())
-        # [[0 1 0 0]
-        #  [0 0 2 0]
-        #  [0 0 0 3]
-        #  [0 0 0 0]]
-
-        y = paddle.diagflat(x, offset=-1)
-        print(y.numpy())
-        # [[0 0 0 0]
-        #  [1 0 0 0]
-        #  [0 2 0 0]
-        #  [0 0 3 0]]
-
+COPY-FROM: paddle.diagflat:code-example-1
 
 代码示例 2
 :::::::::
 
-.. code-block:: python
-
-        import paddle
-
-        x = paddle.to_tensor([[1, 2], [3, 4]])
-        y = paddle.diagflat(x)
-        print(y.numpy())
-        # [[1 0 0 0]
-        #  [0 2 0 0]
-        #  [0 0 3 0]
-        #  [0 0 0 4]]
-
-        y = paddle.diagflat(x, offset=1)
-        print(y.numpy())
-        # [[0 1 0 0 0]
-        #  [0 0 2 0 0]
-        #  [0 0 0 3 0]
-        #  [0 0 0 0 4]
-        #  [0 0 0 0 0]]
-
-        y = paddle.diagflat(x, offset=-1)
-        print(y.numpy())
-        # [[0 0 0 0 0]
-        #  [1 0 0 0 0]
-        #  [0 2 0 0 0]
-        #  [0 0 3 0 0]
-        #  [0 0 0 4 0]]
-
-
-
-
-
+COPY-FROM: paddle.diagflat:code-example-2

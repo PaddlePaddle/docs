@@ -6,26 +6,17 @@ det
 .. py:function:: paddle.linalg.det(x)
 计算批量矩阵的行列式值。
 
-参数：
-:::::::::
-    - **x** (Tensor) : 输入一个或批量矩阵。 ``x`` 的形状应为 ``[*, M, M]``， 其中 ``*`` 为零或更大的批次维度， 数据类型支持float32， float64。
+参数
+::::::::::::
 
-返回：
-:::::::::
-- Tensor out_value， 输出矩阵的行列式值 Shape为。 ``[*]`` 。
+    - **x** (Tensor)：输入一个或批量矩阵。``x`` 的形状应为 ``[*, M, M]``，其中 ``*`` 为零或更大的批次维度，数据类型支持 float32、float64。
 
-代码示例：
+返回
+::::::::::::
+
+Tensor，输出矩阵的行列式值 Shape 为 ``[*]`` 。
+
+代码示例
 ::::::::::
 
-.. code-block:: python
-
-
-    import paddle
-
-    x =  paddle.randn([3,3,3])
-
-    A = paddle.linalg.det(x)
-
-    print(A)
-
-    # [ 0.02547996,  2.52317095, -6.15900707])
+COPY-FROM: paddle.linalg.det

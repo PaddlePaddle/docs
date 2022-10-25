@@ -5,11 +5,12 @@ PaddleCloudRoleMaker
 
 .. py:class:: paddle.distributed.fleet.PaddleCloudRoleMaker
 
-PaddleCloudRoleMaker是基于从环境变量中获取分布式相关信息进行分布式配置初始化的接口.
-它会自动根据用户在环境变量中的配置进行分布式训练环境初始化，目前PaddleCloudRoleMaker支持ParameterServer分布式训练及Collective分布式训练两种模式的初始化。
+PaddleCloudRoleMaker 是基于从环境变量中获取分布式相关信息进行分布式配置初始化的接口。
+它会自动根据用户在环境变量中的配置进行分布式训练环境初始化，目前 PaddleCloudRoleMaker 支持 ParameterServer 分布式训练及 Collective 分布式训练两种模式的初始化。
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -29,17 +30,23 @@ PaddleCloudRoleMaker是基于从环境变量中获取分布式相关信息进行
 
     fleet.PaddleCloudRoleMaker(is_collective=False)
 
-.. py:method:: to_string()
+方法
+::::::::::::
+
+to_string()
+'''''''''
+
 将当前环境变量以字符串的形式输出
 
-返回: string
+**返回**
+
+string
 
 
-**代码示例**:
+**代码示例**
 
 .. code-block:: python
 
     import paddle.distributed.fleet as fleet
     role = fleet.PaddleCloudRoleMaker(is_collective=False)
     role.to_string()
-

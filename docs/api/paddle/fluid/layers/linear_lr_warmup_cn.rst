@@ -9,7 +9,7 @@ linear_lr_warmup
 
 
 
-该OP使用学习率优化策略-线性学习率热身(warm up)对学习率进行初步调整。在正常调整学习率之前，先逐步增大学习率，具体原理可参考： `Bag of Tricks for Image Classification with Convolutional Neural Networks <https://arxiv.org/abs/1812.01187>`_
+该OP使用学习率优化策略-线性学习率热身(warm up)对学习率进行初步调整。在正常调整学习率之前，先逐步增大学习率，具体原理可参考：`Bag of Tricks for Image Classification with Convolutional Neural Networks <https://arxiv.org/abs/1812.01187>`_ 
 
 当训练步数（global_step）小于热身步数（warmup_steps）时，学习率lr按如下方式更新：
 
@@ -28,18 +28,25 @@ linear_lr_warmup
 
 其中learning_rate为热身之后的学习率。
 
-参数：
+参数
+::::::::::::
+
     - **learning_rate** （Variable|float） - 热身之后的学习率，它可以是数据类型为float32的1D-Tensor或单个浮点数。
     - **warmup_steps** （int） - 进行warm up过程的步数。
     - **start_lr** （float） - warm up的起始学习率。
     - **end_lr** （float） - warm up的最终学习率。
 
-返回：进行热身衰减后的学习率，数据类型与learning_rate相同。
+返回
+::::::::::::
+进行热身衰减后的学习率，数据类型与learning_rate相同。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
 
-**示例代码**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

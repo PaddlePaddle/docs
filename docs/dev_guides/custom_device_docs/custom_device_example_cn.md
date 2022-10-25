@@ -3,9 +3,8 @@
 本教程介绍如何为 PaddlePaddle 实现一个 CustomDevice 插件，添加一个名为 CustomCPU 的新硬件后端，并进行编译，打包，安装和使用。
 
 > 注意：
-> - 请确保已经正确安装了[飞桨develop](https://github.com/PaddlePaddle/Paddle)最新版本
-> - 当前仅支持 `Linux`平台
-> - 支持飞桨已通过头文件开放函数式声明的Kernel自定义编码与注册
+> - 请确保已经正确安装了[飞桨 develop](https://github.com/PaddlePaddle/Paddle)最新版本
+> - 当前仅支持 `Linux`平台，示例中使用 X86_64 平台
 
 ## 第一步：实现自定义 Runtime
 
@@ -59,9 +58,11 @@ void InitPlugin(CustomRuntimeParams *params) {
 - params->device_type ： 硬件后端名，具有同名的插件已经注册时，则不会注册 Runtime 。
 - params->sub_device_type ： 硬件后端子类型名。
 
-最后，插件需要填充 params->interface 中的回调接口（至少实现 Required 接口，否则 Runtime 不会被注册），完成自定义 Runtime 的初始化。具体API的说明详见[自定义 Runtime 文档](./custom_runtime_cn.html)。
+最后，插件需要填充 params->interface 中的回调接口（至少实现 Required 接口，否则 Runtime 不会被注册），完成自定义 Runtime 的初始化。具体 API 的说明详见[自定义 Runtime 文档](./custom_runtime_cn.html)。
 
 ```c++
+#include <malloc.h>
+
 static size_t global_total_mem_size = 1 * 1024 * 1024 * 1024UL;
 static size_t global_free_mem_size = global_total_mem_size;
 
@@ -146,7 +147,7 @@ C_Status stream_wait_event(const C_Device device, C_Stream stream, C_Event event
 
 C_Status memstats(const C_Device device, size_t *total_memory, size_t *free_memory) {
   *total_memory = global_total_mem_size;
-  *free_memory = global_free_mem_size
+  *free_memory = global_free_mem_size;
   return C_SUCCESS;
 }
 
@@ -162,9 +163,9 @@ C_Status get_min_chunk_size(const C_Device device, size_t *size) {
 
 例子：
 
-### 1.确定Kernel声明
+### 1.确定 Kernel 声明
 
-查找飞桨发布的头文件`math_kernel.h`中，其Kernel函数声明如下：
+查找飞桨发布的头文件`math_kernel.h`中，其 Kernel 函数声明如下：
 
 ```c++
 // Add 内核函数
@@ -183,30 +184,30 @@ void AddKernel(const Context& dev_ctx,
 
 ```
 
-### 2.Kernel实现与注册
+### 2.Kernel 实现与注册
 
 ```c++
 // add_kernel.cc
 
-#include "paddle/phi/extension.h" // 自定义Kernel依赖头文件
+#include "paddle/phi/extension.h" // 自定义 Kernel 依赖头文件
 
 namespace custom_cpu {
 
-// Kernel函数体实现
+// Kernel 函数体实现
 template <typename T, typename Context>
 void AddKernel(const Context& dev_ctx,
                const phi::DenseTensor& x,
                const phi::DenseTensor& y,
                phi::DenseTensor* out) {
-  // 使用dev_ctx的Alloc API为输出参数out分配模板参数T数据类型的内存空间
+  // 使用 dev_ctx 的 Alloc API 为输出参数 out 分配模板参数 T 数据类型的内存空间
   dev_ctx.template Alloc<T>(out);
-  // 使用DenseTensor的numel API获取Tensor元素数量
+  // 使用 DenseTensor 的 numel API 获取 Tensor 元素数量
   auto numel = x.numel();
-  // 使用DenseTensor的data API获取输入参数x的模板参数T类型的数据指针
+  // 使用 DenseTensor 的 data API 获取输入参数 x 的模板参数 T 类型的数据指针
   auto x_data = x.data<T>();
-  // 使用DenseTensor的data API获取输入参数y的模板参数T类型的数据指针
+  // 使用 DenseTensor 的 data API 获取输入参数 y 的模板参数 T 类型的数据指针
   auto y_data = y.data<T>();
-  // 使用DenseTensor的data API获取输出参数out的模板参数T类型的数据指针
+  // 使用 DenseTensor 的 data API 获取输出参数 out 的模板参数 T 类型的数据指针
   auto out_data = out->data<T>();
   // 完成计算逻辑
   for (auto i = 0; i < numel; ++i) {
@@ -216,12 +217,12 @@ void AddKernel(const Context& dev_ctx,
 
 } // namespace custom_cpu
 
-// 全局命名空间内使用注册宏完成Kernel注册
-// CustomCPU的AddKernel注册
-// 参数： add - Kernel名称
+// 全局命名空间内使用注册宏完成 Kernel 注册
+// CustomCPU 的 AddKernel 注册
+// 参数： add - Kernel 名称
 //       CustomCPU - 后端名称
 //       ALL_LAYOUT - 内存布局
-//       custom_cpu::AddKernel - Kernel函数名
+//       custom_cpu::AddKernel - Kernel 函数名
 //       int - 数据类型名
 //       int64_t - 数据类型名
 //       float - 数据类型名
@@ -242,7 +243,7 @@ PD_REGISTER_PLUGIN_KERNEL(add,
 
 ### CMake 编译
 
-**编写CMakeLists.txt**
+**编写 CMakeLists.txt**
 
 ```
 cmake_minimum_required(VERSION 3.10)
@@ -250,24 +251,26 @@ cmake_minimum_required(VERSION 3.10)
 project(paddle-custom_cpu CXX C)
 
 set(PLUGIN_NAME        "paddle_custom_cpu")
-set(PLUGIN_VERSION      "0.0.1")
+set(PLUGIN_VERSION     "0.0.1")
 
-set(PADDLE_PLUGIN_DIR  "/opt/conda/lib/python3.7/site-packages/paddle-plugins/")
-set(PADDLE_INC_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/include/")
-set(PADDLE_LIB_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/fluid/")
+set(PADDLE_PLUGIN_DIR  "/path/to/site-packages/paddle-plugins/")
+set(PADDLE_INC_DIR     "/path/to/site-packages/paddle/include/")
+set(PADDLE_LIB_DIR     "/path/to/site-packages/paddle/fluid/")
 
-############ 三方依赖
+############ 三方依赖，本示例中使用 Paddle 相同依赖
 set(BOOST_INC_DIR      "/path/to/Paddle/build/third_party/boost/src/extern_boost")
 set(GFLAGS_INC_DIR     "/path/to/Paddle/build/third_party/install/gflags/include")
 set(GLOG_INC_DIR       "/path/to/Paddle/build/third_party/install/glog/include")
-set(THREAD_INC_DIR     "/path/to/Paddle/build/third_party/threadpool/src/extern_threadpool")
-set(THIRD_PARTY_INC_DIR ${BOOST_INC_DIR} ${GFLAGS_INC_DIR} ${GLOG_INC_DIR} ${THREAD_INC_DIR})
+set(MKLDNN_INC_DIR     "/path/to/Paddle/build/third_party/install/mkldnn/include")
+set(THIRD_PARTY_INC_DIR ${BOOST_INC_DIR} ${GFLAGS_INC_DIR} ${GLOG_INC_DIR} ${MKLDNN_INC_DIR})
 
 include_directories(${PADDLE_INC_DIR} ${THIRD_PARTY_INC_DIR})
 link_directories(${PADDLE_LIB_DIR})
 
-add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)  # for out CustomContext temporarily
-add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid seperate temporarily
+add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)  # for out CustomContext
+add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid separate
+add_definitions(-DPADDLE_WITH_MKLDNN)  # for out MKLDNN compiling
+
 
 ############ 编译插件
 add_library(${PLUGIN_NAME} SHARED runtime.cc add_kernel.cc)
@@ -294,7 +297,7 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/python/.timestamp
 add_custom_target(python_package ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/python/.timestamp)
 ```
 
-**编写setup.py.in**
+**编写 setup.py.in**
 
 CMake 根据 setup.py.in 生成 setup.py，再使用 setuptools 将插件封装成 wheel 包。
 
@@ -346,7 +349,7 @@ setup(
 ```bash
 $ mkdir build
 $ cd build
-$ cmake .. -DWITH_KERNELS=ON
+$ cmake ..
 $ make
 ```
 
@@ -354,11 +357,11 @@ $ make
 
 ### setuptools 编译
 
-**编写setup.py**
+**编写 setup.py**
 
 setuptools 也可以用于编译插件，并直接打包
 
-```
+```python
 from setuptools import setup, Distribution, Extension
 from setuptools.command.build_ext import build_ext
 import os
@@ -376,11 +379,26 @@ for pkg_dir in ['build/python/paddle-plugins/']:
         shutil.rmtree(pkg_dir)
     os.makedirs(pkg_dir)
 
+include_dirs = [
+    '/path/to/site-packages/paddle/include',
+    "/path/to/Paddle/build/third_party/boost/src/extern_boost",
+    "/path/to/Paddle/build/third_party/install/gflags/include",
+    "/path/to/Paddle/build/third_party/install/glog/include",
+    "/path/to/Paddle/build/third_party/install/mkldnn/include",
+    ]
+
+extra_compile_args = [
+    '-DPADDLE_WITH_CUSTOM_KERNEL',
+    '-DPADDLE_WITH_CUSTOM_DEVICE',
+    '-DPADDLE_WITH_MKLDNN',
+    ]
+
 ext_modules = [Extension(name='paddle-plugins.libpaddle_custom_cpu',
                          sources=['runtime.cc', 'add_kernel.cc'],
-                         include_dirs=['/opt/conda/lib/python3.7/site-packages/paddle/include/'],
-                         library_dirs=['/opt/conda/lib/python3.7/site-packages/paddle/fluid/'],
-                         libraries=['core_avx.so'])]
+                         include_dirs=include_dirs,
+                         library_dirs=['/path/to/site-packages/paddle/fluid/'],
+                         libraries=[':core_avx.so'],
+                         extra_compile_args=extra_compile_args)]
 
 setup(
     name='paddle-custom_cpu',
@@ -418,18 +436,18 @@ setup(
 
 通过如下命令完成插件编译。
 
-```
+```bash
 $ python setup.py bdist_wheel
 ```
 
-编译完成后在以及 dist 目录下生成wheel包。
+编译完成后在以及 dist 目录下生成 wheel 包。
 
 ### pip 安装
 
 通过 pip 安装 wheel 包。
 
-```
-$ pip install build/dist/paddle_custom_cpu-0.0.1-cp37-cp37m-linux_aarch64.whl
+```bash
+$ pip install build/dist/paddle_custom_cpu*.whl
 ```
 
 ## 第四步：加载与使用
@@ -438,20 +456,20 @@ $ pip install build/dist/paddle_custom_cpu-0.0.1-cp37-cp37m-linux_aarch64.whl
 
 首先，需要查看 PaddlePaddle 目前已注册的自定义硬件。
 
-```
+```bash
 >>> paddle.device.get_all_custom_device_type()
 ['CustomCPU']
 ```
 
 接下来设置要使用的硬件后端。
 
-```
+```bash
 >>> paddle.set_device('CustomCPU')
 ```
 
 最后， 使用新硬件后端用于执行计算任务。
 
-```
+```bash
 >>> x = paddle.to_tensor([1])
 >>> x
 Tensor(shape=[1], dtype=int64, place=Place(CustomCPU:0), stop_gradient=True,

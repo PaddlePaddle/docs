@@ -12,20 +12,20 @@ Data types
 PaddlePaddle defines the following Tensor types:
 
 ======================================= ===========================================
-Data type                               dtype                                      
+Data type                               dtype
 ======================================= ===========================================
-32-bit floating point                   ``paddle.float32``                         
-64-bit floating point                   ``paddle.float64``                         
-16-bit floating point                   ``paddle.float16``                         
-16-bit floating point                   ``paddle.bfloat16``                         
-64-bit complex                          ``paddle.complex64``                         
-128-bit complex                         ``paddle.complex128``                         
-8-bit integer (unsigned)                ``paddle.uint8``                         
-8-bit integer (signed)                  ``paddle.int8``                         
-16-bit integer (signed)                 ``paddle.int16``                         
-32-bit integer (signed)                 ``paddle.int32``                         
-64-bit integer (signed)                 ``paddle.int64``                         
-Boolean                                 ``paddle.bool``                         
+32-bit floating point                   ``paddle.float32``
+64-bit floating point                   ``paddle.float64``
+16-bit floating point                   ``paddle.float16``
+16-bit floating point                   ``paddle.bfloat16``
+64-bit complex                          ``paddle.complex64``
+128-bit complex                         ``paddle.complex128``
+8-bit integer (unsigned)                ``paddle.uint8``
+8-bit integer (signed)                  ``paddle.int8``
+16-bit integer (signed)                 ``paddle.int16``
+32-bit integer (signed)                 ``paddle.int32``
+64-bit integer (signed)                 ``paddle.int64``
+Boolean                                 ``paddle.bool``
 ======================================= ===========================================
 
 Tensor class reference
@@ -38,7 +38,7 @@ Properties
 ~~~~~~~~~~~~~~~~~~~~~~
 
 ======================================= ===========================================
-``T``                                   The transpose of ``Tensor``. See :ref:`paddle.transpose <api_paddle_transpose>` .                            
+``T``                                   The transpose of ``Tensor``. See :ref:`paddle.transpose <api_paddle_transpose>` .
 ``block``                               Tensor's block.
 ``dtype``                               Tensor's data type.
 ``grad``                                The value of Tensor's grad.
@@ -88,6 +88,7 @@ Methods
     broadcast_shape
     broadcast_tensors
     broadcast_to
+    bucketize
     cast
     ceil
     ceil_
@@ -104,6 +105,7 @@ Methods
     copy_
     cos
     cosh
+    count_nonzero
     cpu
     cross
     cuda
@@ -162,6 +164,7 @@ Methods
     log10
     log1p
     log2
+    logcumsumexp
     logical_and
     logical_not
     logical_or
@@ -175,6 +178,7 @@ Methods
     fmax
     mean
     median
+    nanmedian
     min
     minimum
     fmin
@@ -223,12 +227,14 @@ Methods
     set_value
     shard_index
     sign
+    sgn
     sin
     sinh
     slice
     solve
     sort
     split
+    vsplit
     sqrt
     sqrt_
     square
@@ -242,6 +248,7 @@ Methods
     subtract_
     sum
     t
+    take
     tanh
     tanh_
     tile
@@ -250,6 +257,7 @@ Methods
     trace
     transpose
     trunc
+    frac
     unbind
     uniform_
     unique
@@ -263,3 +271,4 @@ Methods
     zero_
     is_complex
     is_integer
+    frexp

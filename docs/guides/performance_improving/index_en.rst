@@ -1,7 +1,11 @@
-###############
-Practice Improving
-###############
+#######################
+Performance Improving
+#######################
+
+
+- `AMP <./amp_en.html>`_
 
 ..  toctree::
-    :maxdepth: 1
+    :hidden:
 
+    amp_en.md

@@ -13,8 +13,7 @@ fftshift
 
 - **x** (Tensor) - 输入 Tensor，数据类型为实数或复数。
 - **axes** (int，可选) - 进行移动的轴。如果没有指定，默认使用输入 Tensor 中全部的轴。
-- **name** (str，可选) - 输出的名字。一般无需设置，默认值为None。该参数供开发人员打印调试
-  信息时使用，具体用法请参见 :ref:`api_guide_Name` 。 
+- **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
