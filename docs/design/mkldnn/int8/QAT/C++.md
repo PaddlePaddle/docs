@@ -12,6 +12,7 @@ The steps below show, taking ResNet50 as an example, how to reproduce the above 
 
 Download the dataset for image classification models benchmarking by executing:
 
+
 ```bash
 cd /PATH/TO/PADDLE
 python paddle/fluid/inference/tests/api/full_ILSVRC2012_val_preprocess.py
@@ -52,7 +53,7 @@ To download other Quant models, set the `QUANT_MODEL_NAME` variable to on of the
 
 ### Model convertion
 
-To run this quantiozation approach, first you need to set `AnalysisConfig` first and use `EnableMkldnnInt8` function that converts fake-quant model to INT8 OneDNN one.  
+To run this quantiozation approach, first you need to set `AnalysisConfig` first and use `EnableMkldnnInt8` function that converts fake-quant model to INT8 OneDNN one.
 Examples:
 
 > C++
