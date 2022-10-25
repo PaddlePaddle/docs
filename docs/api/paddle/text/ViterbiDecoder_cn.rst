@@ -4,7 +4,7 @@ ViterbiDecoder
 -------------------------------
 .. py:class:: paddle.text.ViterbiDecoder(transitions, include_bos_eos_tag=True, name=None)
 
-该接口用于构建一个 ``ViterbiDecoder`` 类的可调用对象。请参见 :ref:`cn_api_paddle_text_viterbi_decode` API。
+构建一个 ``ViterbiDecoder`` 类的可调用对象。请参见 :ref:`cn_api_paddle_text_viterbi_decode` API。
 
 参数
 :::::::::

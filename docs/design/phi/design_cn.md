@@ -582,7 +582,7 @@ Tensor scale(const Tensor& x,
 
  C++ API 的自动生成是通过解析 YAML 配置文件来进行生成的，YAML 配置文件分为：
 
- - 前向 API 配置文件(`paddle/phi/api/yaml/api.yaml`，解析后生成代码文件为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`)
+ - 前向 API 配置文件(`paddle/phi/api/yaml/ops.yaml`，解析后生成代码文件为`paddle/phi/api/include/api.h`和`paddle/phi/api/lib/api.cc`)
  - 反向 API 配置文件(`paddle/phi/api/yaml/backward.yaml`，解析后生成的代码文件为`paddle/phi/api/backward/backward_api.h`和`paddle/phi/api/lib/backward_api.cc`)。
 
 C++ API 生成的关键在于 YAML 文件的配置，以 matmul 为例，其前向和反向的配置文件如下：
@@ -1642,7 +1642,7 @@ PHI 期望的 Op 开发方式：**“完形填空”式算子描述实现 + “�
 需要写的内容如下：
 
 ```
-## 配置文件 api.yaml
+## 配置文件 ops.yaml
 - api : add
   args : (const Tensor& x, const Tensor& y)
   output : Tensor

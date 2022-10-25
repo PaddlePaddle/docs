@@ -171,7 +171,7 @@ batch size = seq * seq_max_len
 
     python recompute_dygraph.py
 
-recompute 动态图代码：`代码示例 <https://github.com/PaddlePaddle/FleetX/tree/old_develop/examples/recompute>`__。
+recompute 动态图代码：`代码示例 <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/examples/recompute>`__。
 
 输出:
 

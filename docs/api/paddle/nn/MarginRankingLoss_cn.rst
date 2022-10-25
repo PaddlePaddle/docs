@@ -5,7 +5,7 @@ MarginRankingLoss
 
 .. py:class:: paddle.nn.MarginRankingLoss(margin=0.0, reduction='mean', name=None)
 
-该接口用于创建一个 ``MarginRankingLoss`` 的可调用类，计算输入 input，other 和 标签 label 间的 `margin rank loss` 损失。
+创建一个 ``MarginRankingLoss`` 的可调用类，计算输入 input，other 和 标签 label 间的 `margin rank loss` 损失。
 
 该损失函数的数学计算公式如下：
 

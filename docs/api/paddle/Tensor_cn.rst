@@ -1228,6 +1228,15 @@ index_select(index, axis=0, name=None)
 
 请参考 :ref:`cn_api_tensor_search_index_select`
 
+index_add(index, axis, value, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_index_add`
+
 repeat_interleave(repeats, axis=None, name=None)
 :::::::::
 
@@ -1823,7 +1832,16 @@ remainder(y, name=None)
 
 返回类型：Tensor
 
-mod 函数的别名，请参考 :ref:`cn_api_tensor_mod`
+mod 函数的别名，请参考 :ref:`cn_api_tensor_remainder`
+
+remainder_(y, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+Inplace 版本的 :ref:`cn_api_tensor_remainder` API，对输入 `x` 采用 Inplace 策略。
 
 reshape(shape, name=None)
 :::::::::
@@ -2040,6 +2058,15 @@ split(num_or_sections, axis=0, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_fluid_layers_split`
+
+vsplit(num_or_sections, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_vsplit`
 
 sqrt(name=None)
 :::::::::
@@ -2421,3 +2448,21 @@ erfinv(x, name=None)
 对输入 x 进行逆误差函数计算
 
 请参考 :ref:`cn_api_paddle_tensor_erfinv`
+
+take(index, mode='raise', name=None)
+:::::::::
+
+返回：一个新的 Tensor，其中包含给定索引处的输入元素。结果与 :attr:`index` 的形状相同
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_take`
+
+frexp(x)
+:::::::::
+用于把一个浮点数分解为尾数和指数的函数
+返回：一个尾数 Tensor 和一个指数 Tensor
+
+返回类型：Tensor, Tensor
+
+请参考 :ref:`_cn_api_paddle_frexp`

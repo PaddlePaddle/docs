@@ -234,6 +234,7 @@ Methods
     solve
     sort
     split
+    vsplit
     sqrt
     sqrt_
     square
@@ -247,6 +248,7 @@ Methods
     subtract_
     sum
     t
+    take
     tanh
     tanh_
     tile
@@ -269,3 +271,4 @@ Methods
     zero_
     is_complex
     is_integer
+    frexp
