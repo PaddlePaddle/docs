@@ -4,7 +4,7 @@ Softmax2D
 -------------------------------
 .. py:class:: paddle.nn.Softmax2D(name=None)
 
-Softmax2D 是 Softmax 的变体，其针对 3D 或者 4D 的 `Tensor` 在空间维度上计算softmax。具体来说，输出的 `Tensor` 的每个空间维度 :math:`(channls, h_i, w_j)` 求和为1。
+Softmax2D 是 Softmax 的变体，其针对 3D 或者 4D 的 `Tensor` 在空间维度上计算 softmax。具体来说，输出的 `Tensor` 的每个空间维度 :math:`(channls, h_i, w_j)` 求和为1。
 
 Softmax 的详细介绍请参考 :ref:`cn_api_nn_Softmax`
 
