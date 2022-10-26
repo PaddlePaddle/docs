@@ -24,22 +24,22 @@
 
 
 
-* 确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python
+* 确认需要安装 PaddlePaddle 的 python 是您预期的位置，因为您计算机可能有多个 python
 
-  * 根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径
+  * 根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 python 路径
 
     ```
     which python
     ```
 
 
-* 需要确认python的版本是否满足要求
+* 需要确认 python 的版本是否满足要求
 
   * 使用以下命令确认是 3.6/3.7/3.8/3.9
 
         python --version
 
-* 需要确认pip的版本是否满足要求，要求pip版本为20.2.2或更高版本
+* 需要确认 pip 的版本是否满足要求，要求 pip 版本为20.2.2或更高版本
 
     ```
     python -m ensurepip
@@ -62,7 +62,7 @@
 
 * 默认提供的安装包需要计算机支持MKL
 
-* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
+* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/docs/blob/develop/docs/install/install_script.md)。
 
 
 
