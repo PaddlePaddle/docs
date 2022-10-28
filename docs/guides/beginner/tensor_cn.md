@@ -331,7 +331,7 @@ Tensor flattened to Vector: [1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 1
 >  * [paddle.squeeze](../../../api/paddle/squeeze_cn.html)，可实现 Tensor 的降维操作，即把 Tensor 中尺寸为 1 的维度删除。
 >  * [paddle.unsqueeze](../../../api/paddle/unsqueeze_cn.html)，可实现 Tensor 的升维操作，即向 Tensor 中某个位置插入尺寸为 1 的维度。
 >  * [paddle.flatten](../../../api/paddle/flatten_cn.html)，将 Tensor 的数据在指定的连续维度上展平。
->  * [transpose](../../../api/paddle/transpose_cn.html)，对 Tensor 的数据进行重排。
+>  * [paddle.transpose](../../../api/paddle/transpose_cn.html)，对 Tensor 的数据进行重排。
 
 **（3）原位（Inplace）操作和非原位操作的区别**
 
@@ -545,7 +545,7 @@ Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
 
 #### 4.1.2 修改 Tensor
 
-与访问 Tensor 类似，修改 Tensor 可以在单个或多个维度上通过索引或切片操作。同时，支持将多种类型的数据赋值给该 Tensor，当前支持的数据类型有：`int`，`float`，`numpy.ndarray`，`omplex`，`Tensor`。
+与访问 Tensor 类似，修改 Tensor 可以在单个或多个维度上通过索引或切片操作。同时，支持将多种类型的数据赋值给该 Tensor，当前支持的数据类型有：`int`，`float`，`numpy.ndarray`，`complex`，`Tensor`。
 > **注意：**
 >
 > 请慎重通过索引或切片修改 Tensor，该操作会**原地**修改该 Tensor 的数值，且原值不会被保存。如果被修改的 Tensor 参与梯度计算，仅会使用修改后的数值，这可能会给梯度计算引入风险。飞桨框架会自动检测不当的原位（inplace）使用并报错。
@@ -673,7 +673,7 @@ x.matmul(y)                   #矩阵乘法
 飞桨框架提供的一些 API 支持广播（broadcasting）机制，允许在一些运算时使用不同形状的 Tensor。
 飞桨 Tensor 的广播机制主要遵循如下规则（参考 [Numpy 广播机制](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)）：
 
-* 每个 Tensor 至少为一维 Tensor
+* 每个 Tensor 至少为一维 Tensor。
 * 从最后一个维度向前开始比较两个 Tensor 的形状，需要满足如下条件才能进行广播：两个 Tensor 的维度大小相等；或者其中一个 Tensor 的维度等于 1；或者其中一个 Tensor 的维度不存在。
 
 举例如下：
