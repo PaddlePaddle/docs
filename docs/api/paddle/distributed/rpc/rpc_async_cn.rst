@@ -4,7 +4,7 @@ rpc_async
 -------------------------------
 
 
-.. py:function:: paddle.distributed.rpc.rpc_async(to, fn, args=None, kwargs=None, timeout=_DEFAULT_RPC_TIMEOUT)
+.. py:function:: paddle.distributed.rpc.rpc_async(to, fn, args=None, kwargs=None, timeout=-1)
 
 发起一个非阻塞的 RPC 调用，在 to 上运行函数 fn
 
