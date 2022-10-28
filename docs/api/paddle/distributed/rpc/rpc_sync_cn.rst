@@ -3,7 +3,7 @@
 rpc_sync
 -------------------------------
 
-.. py:function:: paddle.distributed.rpc.rpc_sync(to, fn, args=None, kwargs=None, timeout=_DEFAULT_RPC_TIMEOUT)
+.. py:function:: paddle.distributed.rpc.rpc_sync(to, fn, args=None, kwargs=None, timeout=-1)
 
 发起一个阻塞的 RPC 调用，在 to 上运行函数 fn
 
