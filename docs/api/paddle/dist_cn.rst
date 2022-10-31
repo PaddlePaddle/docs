@@ -20,6 +20,7 @@ x (4-D Tensor):  8 x 1 x 6 x 1
 
 y (4-D Tensor):  1 x 7 x 1 x 5
 
+
 (2) 确定输出 `z` 每一维度的大小：从两个输入的维度中选取最大值。
 
 z (4-D Tensor):  8 x 7 x 6 x 5
@@ -52,6 +53,8 @@ z (4-D Tensor):  8 x 7 x 6 x 5
   - **x** (Tensor) - 1-D 到 6-D Tensor，数据类型为 float32 或 float64。
   - **y** (Tensor) - 1-D 到 6-D Tensor，数据类型为 float32 或 float64。
   - **p** (float，可选) - 用于设置需要计算的范数，数据类型为 float32 或 float64。默认值为 2。
+
+
 
 返回
 ::::::::::::
