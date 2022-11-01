@@ -9,8 +9,8 @@ Paddle Inference 功能特性丰富，性能优异，针对不同平台不同的
 一些常见的文档链接如下：
 - 完整使用文档位于：[Paddle Inference文档](https://paddle-inference.readthedocs.io/en/latest/index.html)
 - 代码示例位于[inference demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo)
-- 点此 [安装与编译Linux预测库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html)
-- 点此 [安装与编译Windows预测库](https://paddleinference.paddlepaddle.org.cn/user_guides/download_lib.html#windows)
+- 点此 [下载安装 Linux 预测库](https://www.paddlepaddle.org.cn/inference/v2.2/user_guides/download_lib.html)
+- 点此 [下载安装 Windows 预测库](https://www.paddlepaddle.org.cn/inference/v2.2/user_guides/download_lib.html)
 
 ## 与主框架model.predict区别
 
