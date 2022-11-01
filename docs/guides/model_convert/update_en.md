@@ -368,8 +368,6 @@ $ python -m paddle.distributed.launch train.py
 Launch method need to start multiple processes as a file. You need to call ``paddle.distributed.launch`` at launch time with a higher process management requirements. PaddlePaddle framework 2.0 added ``spawn`` launch method, for better controlling the process and more friendly in the log printing and training exit. Usage examples are as follows.
 
 ```python
-from __future__ import print_function
-
 import paddle
 import paddle.nn as nn
 import paddle.optimizer as opt
@@ -435,8 +433,6 @@ if __name__ == '__main__':
 # {0,1,2,3,4,5,6,7}, but you do not have the right to configure CUDA_VISIBLE_DEVICES, then you can
 # Specify the parameter selected_gpus to select the card you wish to use, e.g. selected_gpus='4,5'.
 # You can specify the use of card #4 and card #5
-
-Translated with www.DeepL.com/Translator (free version)
 if __name__ == '__main__':
     dist.spawn(train, nprocs=2, selected_gpus='4,5')
 
