@@ -1597,6 +1597,17 @@ mv(vec, name=None)
 
 请参考 :ref:`cn_api_tensor_mv`
 
+nan_to_num()
+:::::::::
+
+替换 x 中的 NaN、+inf、-inf 为指定值
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_nan_to_num`
+
 ndimension()
 :::::::::
 
