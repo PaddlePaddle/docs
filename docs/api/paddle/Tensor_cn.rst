@@ -1546,7 +1546,7 @@ nan_to_num()
 
 替换 x 中的 NaN、+inf、-inf 为指定值
 
-返回：计算后的tensor
+返回：计算后的 Tensor
 
 返回类型：Tensor
 
