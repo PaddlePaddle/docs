@@ -16,7 +16,7 @@ PaddlePaddle 的文档存储于 [PaddlePaddle/docs](https://github.com/PaddlePad
 
 ### 1.1 Fork
 先跳转到  [PaddlePaddle/docs](https://github.com/PaddlePaddle/docs) GitHub 首页，然后单击 Fork 按钮，生成自己仓库下的目录，比如你的 GitHub 用户名为 USERNAME，则生成： https://github.com/USERNAME/docs。
-![图片](http://bos.bj.bce-internal.sdns.baidu.com/agroup-bos-bj/bj-adbd631fa37a3bb3a313e723b17fe634764eebfe)
+
 
 ### 1.2 Clone
 将你目录下的远程仓库 clone 到本地。
