@@ -75,12 +75,15 @@ Date:   xxx
 |检查工具名称 | 作用 | 当前版本 |
 |---|---|---|
 |[pre-commit](https://github.com/pre-commit/pre-commit) | hook 管理工具 | 2.17.0
-|[remove-crlf](https://github.com/Lucas-C/pre-commit-hooks.git) | 将 CRLF 改为 LF | 1.1.14
 |[pre-commit-hooks](https://github.com/Lucas-C/pre-commit-hooks.git) | pre-commit 自带的 hook，执行一些通用检查 | 4.1.0
+|[remove-crlf](https://github.com/Lucas-C/pre-commit-hooks.git) | 将 CRLF 改为 LF | 1.1.14
 |[cpplint]((https://github.com/cpplint/cpplint)) |C++代码风格检查 | 1.6.0
-|[clang-format]((https://releases.llvm.org/download.html)) | C++代码格式化 | 13.0.0
-|[pylint]((https://github.com/PyCQA/pylint/))| python 代码风格检查，仅用于检查示例代码 | 2.12.0
-|[yapf]((https://github.com/pre-commit/mirrors-yapf))| python 代码格式化 | 0.32.0
+|[clang-format](https://releases.llvm.org/download.html) | C++代码格式化 | 13.0.0
+|[pylint](https://github.com/PyCQA/pylint/)| python 代码风格检查，仅用于检查示例代码 | 2.12.0
+|[black](https://github.com/psf/black)| python 代码风格检查 | 22.8.0
+|[autoflake](https://github.com/PyCQA/autoflake)| removes unused imports and unused variables from Python code. | 22.8.0
+
+Note: 这些工具可能会更新，详细配置请查看： [https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml)。
 
 ## FAQ
 1. pre-commit==2.17.0 要求 Python>=3.6.1，建议使用较高版本的 Python。
