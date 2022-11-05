@@ -84,14 +84,14 @@ Date:   xxx
 | [pre-commit/pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks) | pre-commit 官方支持的 hook，执行一些通用检查 | 4.1.0 |
 | [Lucas-C/pre-commit-hooks](https://github.com/Lucas-C/pre-commit-hooks.git) | 社区维护的一些通用的 hook，含将 CRLF 改为 LF、移除 Tab 等 hook | 1.1.14 |
 | [copyright_checker](https://github.com/PaddlePaddle/Paddle/blob/develop/tools/codestyle/pylint_pre_commit.hook) | Copyright 检查 | 本地脚本 |
-| [black](https://github.com/psf/black) | Python 代码格式化工具 | 22.8.0 |
-| [flake8](https://github.com/PyCQA/flake8) | Python 代码风格检查工具 | 4.0.1 |
-| [autoflake](https://github.com/PyCQA/autoflake) | Python Flake8 部分错误码自动修复工具 | 1.7.7 |
-| [pylint](https://github.com/PyCQA/pylint/) | Python 代码风格检查工具，目前仅用于检查示例代码 | 2.12.0 |
-| [clang-format](https://github.com/llvm/llvm-project/tree/main/clang/tools/clang-format) | C++ 代码格式化工具 | 13.0.0 |
-| [cpplint](https://github.com/cpplint/cpplint) | C++ 代码风格检查工具 | 1.6.0 |
-| [cmake-format](https://github.com/cheshirekow/cmake-format-precommit) | CMake 代码格式化工具 | 0.6.13 |
-| [cmake-lint](https://github.com/cmake-lint/cmake-lint)| CMake 代码风格检查工具 | 1.4.2 |
+| [black](https://github.com/psf/black) | Python 代码格式化 | 22.8.0 |
+| [flake8](https://github.com/PyCQA/flake8) | Python 代码风格检查 | 4.0.1 |
+| [autoflake](https://github.com/PyCQA/autoflake) | Python Flake8 部分错误码自动修复 | 1.7.7 |
+| [pylint](https://github.com/PyCQA/pylint/) | Python 代码风格检查，目前仅用于检查示例代码 | 2.12.0 |
+| [clang-format](https://github.com/llvm/llvm-project/tree/main/clang/tools/clang-format) | C++ 代码格式化 | 13.0.0 |
+| [cpplint](https://github.com/cpplint/cpplint) | C++ 代码风格检查 | 1.6.0 |
+| [cmake-format](https://github.com/cheshirekow/cmake-format-precommit) | CMake 代码格式化 | 0.6.13 |
+| [cmake-lint](https://github.com/cmake-lint/cmake-lint)| CMake 代码风格检查 | 1.4.2 |
 
 > 注：这些工具可能会更新，详细配置请查看：[https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml)。
 
