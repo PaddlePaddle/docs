@@ -11,7 +11,7 @@ Paddle 目前使用的 pre-commit 版本是 2.17.0。首先安装并在当前目
 ➜  pre-commit install
 ```
 
-> 注：通过 `pip install pre-commit` 和 `conda install -c conda-forge pre-commit` 安装的 `pre-commit` 稍有不同的，Paddle 开发人员使用的是 `pip install pre-commit`。
+> 注：通过 `pip install pre-commit` 和 `conda install -c conda-forge pre-commit` 安装的 `pre-commit` 稍有不同，Paddle 开发人员使用的是 `pip install pre-commit`。
 
 在使用 `git commit` 提交修改时，pre-commit 将自动检查修改文件的代码规范，并对不符合规范的文件进行格式化。此时，`git commit` 并未执行成功，需要将 pre-commit 对文件的修改添加到暂存区，再次 commit，直到 pre-commit 代码检查通过后，本次提交才算完成。
 例如，对 `Paddle/paddle/phi/kernels/abs_kernel.h` 修改后，提交 commit，通过 `git diff` 查看，会发现 clang-format 修改了该文件，需要添加修改后，再次 `git commit`，完成本次提交。
@@ -93,7 +93,7 @@ Date:   xxx
 | [cmake-format](https://github.com/cheshirekow/cmake-format-precommit) | CMake 代码格式化工具 | 0.6.13 |
 | [cmake-lint](https://github.com/cmake-lint/cmake-lint)| CMake 代码风格检查工具 | 1.4.2 |
 
-Note: 这些工具可能会更新，详细配置请查看： [https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml)。
+> 注：这些工具可能会更新，详细配置请查看：[https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/.pre-commit-config.yaml)。
 
 ## FAQ
 1. pre-commit==2.17.0 要求 Python>=3.6.1，建议使用较高版本的 Python。
@@ -102,5 +102,4 @@ Note: 这些工具可能会更新，详细配置请查看： [https://github.com
 ```bash
 ➜  pip install --upgrade pip
 ➜  pip config set global.index-url https://pypi.python.org/simple
-
 ```
