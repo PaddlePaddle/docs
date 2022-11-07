@@ -51,7 +51,6 @@ Paddle 使用 clang-format 来调整 C/C++ 源代码格式，请确保 clang-for
 docs/api
 |--paddle                      # 存放中文 API 文档，文件名为 api_name_cn.rst,路径为暴露的路径
 |    |--amp
-|    |--compat
 |    |--device
 ...
 |    |--utils

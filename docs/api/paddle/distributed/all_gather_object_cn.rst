@@ -13,9 +13,9 @@ all_gather_object
 
 参数
 :::::::::
-    - object_list (list) - 操作的输出 Object 列表。
-    - object (Any) - 操作的输入 Object，需要保证输入自定义的 Object 是 picklable 的。
-    - group (int，可选) - 工作的进程组编号，默认为 0。
+    - **object_list** (list) - 操作的输出 Object 列表。
+    - **object** (Any) - 操作的输入 Object，需要保证输入自定义的 Object 是 picklable 的。
+    - **group** (int，可选) - 工作的进程组编号，默认为 0。
 
 返回
 :::::::::

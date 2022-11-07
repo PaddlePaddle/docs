@@ -367,8 +367,6 @@ $ python -m paddle.distributed.launch train.py
 launch 方式启动训练，以文件为单位启动多进程，需要在启动时调用 ``paddle.distributed.launch`` ，对于进程的管理要求较高。飞桨框架 2.0 版本增加了 ``spawn`` 启动方式，可以更好地控制进程，在日志打印、训练退出时更友好。使用示例如下：
 
 ```python
-from __future__ import print_function
-
 import paddle
 import paddle.nn as nn
 import paddle.optimizer as opt

@@ -98,6 +98,7 @@ tensor 数学操作
     " :ref:`paddle.outer <cn_api_tensor_outer>` ", "计算两个输入矩阵的外积"
     " :ref:`paddle.multiplex <cn_api_fluid_layers_multiplex>` ", "从每个输入 Tensor 中选择特定行构造输出 Tensor"
     " :ref:`paddle.multiply <cn_api_fluid_layers_multiply>` ", "逐元素相乘算子"
+    " :ref:`paddle.nan_to_num <cn_api_tensor_nan_to_num>` ", "替换 x 中的 NaN、+inf、-inf 为指定值"
     " :ref:`paddle.neg <cn_api_paddle_neg>` ", "计算输入 x 的相反数并返回"
     " :ref:`paddle.not_equal <cn_api_tensor_not_equal>` ", "逐元素地返回 x!=y 的逻辑值"
     " :ref:`paddle.pow <cn_api_paddle_tensor_math_pow>` ", "指数算子，逐元素计算 x 的 y 次幂"
@@ -115,6 +116,8 @@ tensor 数学操作
     " :ref:`paddle.stanh <cn_api_fluid_layers_stanh>` ", "stanh 激活函数"
     " :ref:`paddle.std <cn_api_tensor_cn_std>` ", "沿给定的轴 axis 计算 x 中元素的标准差"
     " :ref:`paddle.subtract <cn_api_paddle_tensor_subtract>` ", "逐元素相减算子"
+    " :ref:`paddle.remainder <cn_api_tensor_remainder>` ", "逐元素取模算子"
+    " :ref:`paddle.remainder_ <cn_api_tensor_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sum <cn_api_tensor_sum>` ", "对指定维度上的 Tensor 元素进行求和运算"
     " :ref:`paddle.tan <cn_api_fluid_layers_tan>` ", "三角函数 tangent"
     " :ref:`paddle.tanh <cn_api_tensor_tanh>` ", "tanh 激活函数"
@@ -137,6 +140,8 @@ tensor 数学操作
     " :ref:`paddle.acosh <cn_api_fluid_layers_acosh>` ", "反双曲余弦函数"
     " :ref:`paddle.asinh <cn_api_fluid_layers_asinh>` ", "反双曲正弦函数"
     " :ref:`paddle.atanh <cn_api_fluid_layers_atanh>` ", "反双曲正切函数"
+    " :ref:`paddle.take <cn_api_tensor_take>` ", "输出给定索引处的输入元素，结果与 index 的形状相同"
+    " :ref:`paddle.frexp <cn_api_paddle_frexp>` ", "用于把一个浮点数分解为尾数和指数的函数"
 
 
 .. _tensor_logic:
@@ -163,6 +168,7 @@ tensor 属性相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
+    " :ref:`paddle.iinfo <cn_api_paddle_iinfo>` ", "返回一个 iinfo 对象，该对象包含了输入的整数类 paddle.dtype 的各种相关的数值信息"
     " :ref:`paddle.imag <cn_api_tensor_imag>` ", "返回一个包含输入复数 Tensor 的虚部数值的新 Tensor"
     " :ref:`paddle.real <cn_api_tensor_real>` ", "返回一个包含输入复数 Tensor 的实部数值的新 Tensor"
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入 Tensor 或 SelectedRows 的 shape"
@@ -279,6 +285,7 @@ tensor 线性代数相关
     " :ref:`paddle.t <cn_api_paddle_tensor_t>` ", "对小于等于 2 维的 Tensor 进行数据转置"
     " :ref:`paddle.tril <cn_api_tensor_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为 0"
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为 0"
+    " :ref:`paddle.triu_indices <_cn_api_tensor_triu_indices>` ", "返回输入矩阵在给定对角线右上三角部分元素坐标"
 
 .. _tensor_manipulation:
 
@@ -311,7 +318,8 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.scatter_nd_add <cn_api_fluid_layers_scatter_nd_add>` ", "通过对 Tensor 中的单个值或切片应用稀疏加法，从而得到输出的 Tensor"
     " :ref:`paddle.shard_index <cn_api_fluid_layers_shard_index>` ", "根据分片（shard）的偏移量重新计算分片的索引"
     " :ref:`paddle.slice <cn_api_paddle_slice>` ", "沿多个轴生成 input 的切片"
-    " :ref:`paddle.split <cn_api_distributed_split>` ", "将输入 Tensor 分割成多个子 Tensor"
+    " :ref:`paddle.split <cn_api_paddle_tensor_split>` ", "将输入 Tensor 分割成多个子 Tensor"
+    " :ref:`paddle.vsplit <cn_api_paddle_tensor_vsplit>` ", "将输入 Tensor 沿第一个维度分割成多个子 Tensor"
     " :ref:`paddle.squeeze <cn_api_paddle_tensor_squeeze>` ", "删除输入 Tensor 的 Shape 中尺寸为 1 的维度"
     " :ref:`paddle.squeeze_ <cn_api_paddle_tensor_squeeze_>` ", "Inplace 版本的 squeeze API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.stack <cn_api_paddle_tensor_stack>` ", "沿 axis 轴对输入 x 进行堆叠操作"
@@ -329,6 +337,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.as_complex <cn_api_paddle_as_complex>` ", "将实数 Tensor 转为复数 Tensor"
     " :ref:`paddle.as_real <cn_api_paddle_as_real>` ", "将复数 Tensor 转为实数 Tensor"
     " :ref:`paddle.repeat_interleave <cn_api_tensor_repeat_interleave>` ", "沿 axis 轴对输入 x 的元素进行复制"
+    " :ref:`paddle.index_add <cn_api_tensor_index_add>` ", "沿着指定轴 axis 将 index 中指定位置的 x 与 value 相加，并写入到结果张量中的对应位置"
 
 .. einsum:
 
@@ -393,15 +402,3 @@ device 相关
     " :ref:`paddle.Model <cn_api_paddle_Model>` ", "一个具备训练、测试、推理的神经网络"
     " :ref:`paddle.summary <cn_api_paddle_summary>` ", "打印网络的基础结构和参数信息"
     " :ref:`paddle.flops <cn_api_paddle_flops>` ", "打印网络的基础结构和参数信息"
-
-.. _about_sparse_api:
-
-稀疏 API 相关
-::::::::::::::::::::
-
-.. csv-table::
-    :header: "API 名称", "API 功能"
-    :widths: 10, 30
-
-    " :ref:`paddle.sparse.sparse_coo_tensor<cn_api_paddle_sparse_coo_tensor>` ", "创建一个 COO(Coordinate)格式的稀疏 Tensor"
-    " :ref:`paddle.sparse.sparse_csr_tensor<cn_api_paddle_sparse_csr_tensor>` ", "创建一个 CSR(Compressed Sparse Row)格式的稀疏 Tensor"

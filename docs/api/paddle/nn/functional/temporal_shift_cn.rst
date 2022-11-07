@@ -5,7 +5,7 @@ temporal_shift
 .. py:function:: paddle.nn.functional.temporal_shift(x, seg_num, shift_ratio=0.25, name=None, data_format="NCHW")
 
 
-该 OP 用于对输入 X 做时序通道 T 上的位移操作，为 TSM(Temporal Shift Module)中使用的操作。
+对输入 X 做时序通道 T 上的位移操作，为 TSM(Temporal Shift Module)中使用的操作。
 
 输入（X）的形状应为[N*T, C, H, W]或[N*T, H, W, C]，N 是批大小，T 是 ``seg_num`` 指定的时间段号，C 是通道号，H 和 W 是特征的高度和宽度。
 

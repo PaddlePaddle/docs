@@ -35,19 +35,19 @@ NGC 飞桨容器针对 NVIDIA GPU 加速进行了优化，并包含一组经过�
 
     ::
 
-        docker run --gpus all -it --rm nvcr.io/nvidia/paddlepaddle:22.07-py3
+        docker run --gpus all --shm-size=1g --ulimit memlock=-1 -it --rm nvcr.io/nvidia/paddlepaddle:yy.mm-py3
 
 
 如果您有 Docker 19.02 或更早版本，启动容器的典型命令是：
 
     ::
 
-        nvidia-docker run -it --rm nvcr.io/nvidia/paddlepaddle:22.07-py3
+        nvidia-docker run --shm-size=1g --ulimit memlock=-1 -it --rm nvcr.io/nvidia/paddlepaddle:yy.mm-py3
 
 
 
 其中:
-* 22.07 是容器版本。
+* yy.mm 是容器版本，例如，2022 年 9 月发布的版本为 22.09。
 PaddlePaddle 通过将其作为 Python 模块导入来运行：
 
     ::
