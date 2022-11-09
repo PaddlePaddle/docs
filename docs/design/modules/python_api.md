@@ -166,7 +166,7 @@ class Parameter(Variable):
                  trainable,       # bool
                  initialize_op_attrs,
                  optimize_op_attrs):
-        super(Parameter, self).__init__(block, name, shape, dtype, lod_level)
+        super().__init__(block, name, shape, dtype, lod_level)
         self.trainable = trainable
         self.optimize_op_attrs = optimize_op_attrs
         block.prepend(Operator(block,  # Block

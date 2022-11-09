@@ -104,7 +104,7 @@
                     embedding_dim,   # Embedding 参数的列数
                     weight_attr=None,
                     name=None):
-           super(VocabParallelEmbedding, self).__init__()
+           super().__init__()
 
    class RowParallelLinear(Layer):
        def __init__(self,
@@ -114,7 +114,7 @@
                     has_bias=True,
                     input_is_parallel=False, #输入是否是并行输入，为否的话需要按列切分输入参数
                     name=None):
-           super(RowParallelLinear, self).__init__()
+           super().__init__()
 
    class ColumnParallelLinear(Layer):
        def __init__(self,
@@ -234,7 +234,7 @@
 
    class SimpleMPNet(fluid.dygraph.Layer):
       def __init__(self, vocab_size, hidden_size, inner_size, output_size):
-         super(SimpleMPNet, self).__init__()
+         super().__init__()
          self.linear1 = fleet.meta_parallel.ColumnParallelLinear(
                hidden_size,
                inner_size,

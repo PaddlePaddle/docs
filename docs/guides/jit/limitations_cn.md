@@ -522,7 +522,7 @@ from paddle.jit import to_static
 
 class mylayer(paddle.nn.Layer):
     def __init__(self):
-        super(mylayer, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(5, 2)
 
     @to_static
@@ -544,7 +544,7 @@ from paddle.jit import to_static
 
 class mylayer(paddle.nn.Layer):
     def __init__(self):
-        super(mylayer, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(5, 2)
 
         old_dict = self.state_dict()   # <--- 如果代码只需要执行一次，可以放在 __init__ 中
@@ -600,7 +600,7 @@ out = func(x)
 
 在 Python 3.x 中，super 的使用有两种：
 
-+ `super(Class, self).__init__()`
++ `super().__init__()`
 + `super().__init__()`
 
 后者实质是用局部变量 `__class__` 作为 super 的第一个参数。目前飞桨动转静支持前者，暂不支持在 @to_static 装饰的函数中使用`super().__init__()`，但`__init__()`中的使用不受影响。
@@ -619,7 +619,7 @@ class MyLayer(BaseLayer):
         super().forward()    # <--- 暂不支持 super().xxx
 ```
 
-**规范性写法**：推荐使用 `super(Class, self).__init__()` 语法形式，后续会支持新的 super 语法。
+**规范性写法**：推荐使用 `super().__init__()` 语法形式，后续会支持新的 super 语法。
 ```python
 import paddle
 
@@ -629,7 +629,7 @@ class BaseLayer(paddle.nn.Layer):
 
 class MyLayer(BaseLayer):
     def forward(self):
-        super(MyLayer, self).forward()  # <--- 推荐使用 super(xx, self).xxx 形式
+        super().forward()  # <--- 推荐使用 super().xxx 形式
 ```
 
 ### 5. 暂未支持 PyLayer

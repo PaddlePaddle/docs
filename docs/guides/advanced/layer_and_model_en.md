@@ -19,7 +19,7 @@ Now let us construct a model using ``paddle.nn.Layer``:
 class Model(paddle.nn.Layer):
 
     def __init__(self):
-        super(Model, self).__init__()
+        super().__init__()
         self.flatten = paddle.nn.Flatten()
 
     def forward(self, inputs):
@@ -116,7 +116,7 @@ We can use the combination of ``create_parameter()`` and ``add_parameter()`` to 
 class Model(paddle.nn.Layer):
 
     def __init__(self):
-        super(Model, self).__init__()
+        super().__init__()
         img = self.create_parameter([1,3,256,256])
         self.add_parameter("img", img)
         self.flatten = paddle.nn.Flatten()
@@ -169,7 +169,7 @@ Parameters actively participate in the training process and gets updated regular
 class Model(paddle.nn.Layer):
 
     def __init__(self):
-        super(Model, self).__init__()
+        super().__init__()
         self.saved_tensor = self.create_tensor(name="saved_tensor0")
         self.flatten = paddle.nn.Flatten()
         self.fc = paddle.nn.Linear(10, 100)
@@ -192,7 +192,7 @@ The concept of **Buffer** only influence the transformation from dynamic graph t
 class Model(paddle.nn.Layer):
 
     def __init__(self):
-        super(Model, self).__init__()
+        super().__init__()
         saved_tensor = self.create_tensor(name="saved_tensor0")
         self.register_buffer("saved_tensor", saved_tensor, persistable=True)
         self.flatten = paddle.nn.Flatten()
@@ -236,7 +236,7 @@ After all the configurations, let's say we finally settled down a model as follo
 class Model(paddle.nn.Layer):
 
     def __init__(self):
-        super(Model, self).__init__()
+        super().__init__()
         self.flatten = paddle.nn.Flatten()
 
     def forward(self, inputs):
