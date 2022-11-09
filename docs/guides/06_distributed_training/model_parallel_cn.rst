@@ -130,7 +130,7 @@
    def get_rng_state_tracker():
       return RNG_STATE_TRACKER
 
-   class RNGStatesTracker(object):
+   class RNGStatesTracker:
       def __init__(self):
          self.states_ = {}     # 存储随机状态
          self.seeds_ = set()   # 可以设置多个随机种子

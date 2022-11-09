@@ -111,7 +111,7 @@ class Block(objects):
 The `Operator` class fills in the `OpDesc` message and calls the C++ function `InferShape` to infer the output shapes from the input shapes.
 
 ```python
-class Operator(object):
+class Operator:
     def __init__(self,
                  block,  # Block
                  type,   # string
@@ -133,7 +133,7 @@ class Operator(object):
 Operators take Variables as its inputs and outputs.
 
 ```python
-class Variable(object):
+class Variable:
     def __init__(self,
                  block=None,      # Block
                  name=None,       # string
@@ -286,7 +286,7 @@ We not only use the fewer lines of code to write `fc_layer` but also make the co
 We just keep all parameters of a layer function as a dictionary in layer helper as a private data member. Every method of layer helper will look up the dictionary after it is invoked. In that way, we can implement a layer helper for all layer functions even some layer does not contain some operator. For example, The `activation` is used by the FullyConnected layer or convolution layers, but a cross-entropy layer does not use it. The example code of `add_activation` are:
 
 ```python
-class LayerHelper(object):
+class LayerHelper:
   def __init__(self, **kwargs):  # kwargs is short for `keyword arguments`
     self.kwargs = kwargs
 
