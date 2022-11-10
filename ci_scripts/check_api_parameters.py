@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from __future__ import print_function
 import json
 import argparse
 import os.path as osp
@@ -51,8 +50,11 @@ def parse_args():
     parser = argparse.ArgumentParser(description='check api parameters')
     parser.add_argument('--debug', dest='debug', action="store_true")
     for item in arguments:
-        parser.add_argument(
-            item[0], dest=item[1], help=item[4], type=item[2], default=item[3])
+        parser.add_argument(item[0],
+                            dest=item[1],
+                            help=item[4],
+                            type=item[2],
+                            default=item[3])
 
     args = parser.parse_args()
     return args
