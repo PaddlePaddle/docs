@@ -1,20 +1,17 @@
-.. _cn_api_distributed_all_reduce:
+.. _cn_api_distributed_stream_all_reduce:
 
 all_reduce
 -------------------------------
 
 
-.. py:function:: paddle.distributed.all_reduce(tensor, op=ReduceOp.SUM, group=None, sync_op=True)
+.. py:function:: paddle.distributed.stream.all_reduce(tensor, op=ReduceOp.SUM, group=None, sync_op=True, use_calc_stream=False)
 
 规约进程组内的一个 tensor，随后将结果发送到每个进程。
 
-如下图所示，4 个 GPU 分别开启 1 个进程，进程拥有的数据用其在组内的 rank 表示，规约操作为求和。
-规约操作后，每个进程都会得到所有进程数据的总和。
+参见 :ref:`paddle.distributed.all_reduce<cn_api_distributed_all_reduce>`。
 
-.. image:: ./img/allreduce.png
-  :width: 800
-  :alt: all_reduce
-  :align: center
+.. note::
+  该 API 只支持动态图模式。
 
 参数
 :::::::::
@@ -22,6 +19,7 @@ all_reduce
     - **op** (ReduceOp.SUM|ReduceOp.MAX|ReduceOp.MIN|ReduceOp.PROD，可选) - 归约的操作类型，包括求和、取最大值、取最小值和求乘积。默认为求和。
     - **group** (Group，可选) - 执行该操作的进程组实例（通过 ``new_group`` 创建）。默认为 None，即使用全局默认进程组。
     - **sync_op** (bool，可选) - 该操作是否为同步操作。默认为 True，即同步操作。
+    - **use_calc_stream** (bool，可选) - 该操作是否在计算流上进行。默认为 False，即不在计算流上进行。该参数旨在提高同步操作的性能，请确保在充分了解其含义的情况下调整该参数的值。
 
 返回
 :::::::::
@@ -29,4 +27,4 @@ all_reduce
 
 代码示例
 :::::::::
-COPY-FROM: paddle.distributed.all_reduce
+COPY-FROM: paddle.distributed.communication.stream.all_reduce
