@@ -8,7 +8,7 @@
 
 - 在本地主机上[安装 Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
-- 如需在 Linux 开启 GPU 支持, 需提前[安装 nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-docker)
+- 如需在 Linux 开启 GPU 支持, 需提前[安装 nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-docker) 和 [GPU 驱动](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)
   * 请通过 docker -v 检查 Docker 版本。对于 19.03 之前的版本，您需要使用 nvidia-docker 和 nvidia-docker 命令；对于 19.03 及之后的版本，您将需要使用 nvidia-container-toolkit 软件包和 --gpus all 命令。这两个选项都记录在上面链接的网页上。
 
 注 nvidia-container-toolkit 安装方法:
