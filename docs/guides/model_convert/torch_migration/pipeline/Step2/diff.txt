@@ -1,0 +1,63 @@
+[2022/10/28 16:46:36] root INFO: length: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_0_input_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_0_token_type_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_0_labels: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_1_input_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_1_token_type_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_1_labels: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_2_input_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_2_token_type_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_2_labels: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_3_input_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_3_token_type_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_3_labels: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_4_input_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_4_token_type_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataset_4_labels: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_0_input_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_0_token_type_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_0_labels: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_1_input_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_1_token_type_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_1_labels: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_2_input_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_2_token_type_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_2_labels: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_3_input_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_3_token_type_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_3_labels: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_4_input_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_4_token_type_ids: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: dataloader_4_labels: 
+[2022/10/28 16:46:36] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/28 16:46:36] root INFO: diff check passed

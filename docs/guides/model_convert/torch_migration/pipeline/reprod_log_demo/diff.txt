@@ -1,0 +1,5 @@
+[2021/11/18 09:29:31] root INFO: demo_test_1: 
+[2021/11/18 09:29:31] root INFO: 	mean diff: check passed: True, value: 0.0
+[2021/11/18 09:29:31] root INFO: demo_test_2: 
+[2021/11/18 09:29:31] root INFO: 	mean diff: check passed: False, value: 0.33387675881385803
+[2021/11/18 09:29:31] root INFO: diff check failed

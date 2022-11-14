@@ -1,0 +1,31 @@
+[2022/10/20 15:22:23] root INFO: step_100_linear_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_300_linear_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_500_linear_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_700_linear_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_900_linear_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_100_cosine_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_300_cosine_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_500_cosine_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: False, value: 9.35605818719964e-06
+[2022/10/20 15:22:23] root INFO: step_700_cosine_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: False, value: 1.3681476625617212e-05
+[2022/10/20 15:22:23] root INFO: step_900_cosine_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: False, value: 1.8924391285779562e-05
+[2022/10/20 15:22:23] root INFO: step_100_polynomial_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_300_polynomial_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_500_polynomial_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_700_polynomial_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: step_900_polynomial_lr: 
+[2022/10/20 15:22:23] root INFO: 	mean diff: check passed: True, value: 0.0
+[2022/10/20 15:22:23] root INFO: diff check failed
