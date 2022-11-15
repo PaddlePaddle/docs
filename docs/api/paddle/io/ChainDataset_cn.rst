@@ -3,11 +3,11 @@
 ChainDataset
 -------------------------------
 
-.. py:class:: paddle.io.ChainDataset
+.. py:class:: paddle.io.ChainDataset(datasets)
 
 将多个流式数据集级联的数据集。
 
-用于级联的数据集须都是 ``paddle.io.IterableDataset`` 数据集，将各流式数据集按顺序级联为一个数据集。
+用于级联的数据集须都是 :ref:`cn_api_io_cn_IterableDataset` 数据集，将各流式数据集按顺序级联为一个数据集。
 
 参数
 ::::::::::::
