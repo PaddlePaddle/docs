@@ -144,7 +144,7 @@ place = paddle.CUDAPlace(0)
 # 定义神经网络 SimpleNet，该网络由九层 Linear 组成
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         # 九层 Linear，每层 Linear 网络由 matmul 算子及 add 算子组成
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
@@ -567,7 +567,7 @@ print("使用 AMP-O2 模式耗时:{:.3f} sec".format(train_time/(epochs*nums_bat
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
 

@@ -1317,7 +1317,7 @@ custom_ops = load(
 
 class LeNet(nn.Layer):
     def __init__(self):
-        super(LeNet, self).__init__()
+        super().__init__()
         self.conv1 = nn.Conv2D(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
         self.max_pool1 = nn.MaxPool2D(kernel_size=2,  stride=2)
         self.conv2 = nn.Conv2D(in_channels=6, out_channels=16, kernel_size=5, stride=1)
@@ -1405,7 +1405,7 @@ custom_ops = load(
 
 class LeNet(nn.Layer):
     def __init__(self):
-        super(LeNet, self).__init__()
+        super().__init__()
         self.conv1 = nn.Conv2D(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
         self.max_pool1 = nn.MaxPool2D(kernel_size=2,  stride=2)
         self.conv2 = nn.Conv2D(in_channels=6, out_channels=16, kernel_size=5, stride=1)

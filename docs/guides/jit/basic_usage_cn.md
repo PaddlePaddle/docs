@@ -113,7 +113,7 @@ class RandomDataset(paddle.io.Dataset):
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     @paddle.jit.to_static       # <----在前向计算 forward 函数前添加一个装饰器
@@ -181,7 +181,7 @@ class RandomDataset(paddle.io.Dataset):
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     def forward(self, x):
@@ -238,7 +238,7 @@ CLASS_NUM = 10
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     @paddle.jit.to_static
@@ -264,7 +264,7 @@ CLASS_NUM = 10
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
     # 规范写法，forward 中仅实现预测功能
     @paddle.jit.to_static
@@ -442,7 +442,7 @@ CLASS_NUM = 10
 # 网络定义
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     @paddle.jit.to_static
@@ -495,7 +495,7 @@ class RandomDataset(paddle.io.Dataset):
 # 定义神经网络
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     def forward(self, x):
@@ -617,7 +617,7 @@ pred = loaded_layer(x)
     # 网络定义
     class LinearNet(nn.Layer):
         def __init__(self):
-            super(LinearNet, self).__init__()
+            super().__init__()
             self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
         # 输入数据是动态输入（shape 中有一个维度是可变的），因此需要添加 InputSpec
         @paddle.jit.to_static(input_spec=[InputSpec(shape=[None, 784], dtype='float32')])
@@ -662,7 +662,7 @@ pred = loaded_layer(x)
 
     class LinearNet(nn.Layer):
         def __init__(self):
-            super(LinearNet, self).__init__()
+            super().__init__()
             self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
             self._linear_2 = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
@@ -782,7 +782,7 @@ from paddle.static import InputSpec
 
 class SimpleNet(Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
     # 在装饰器中调用 InputSpec
     @to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')])
@@ -812,7 +812,7 @@ paddle.jit.save(net, './simple_net')
 ```python
 class SimpleNet(Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     def forward(self, x, y):
@@ -845,7 +845,7 @@ paddle.jit.save(net, './simple_net')
 
 class SimpleNet(Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     @to_static(input_spec=[[InputSpec(shape=[None, 10], name='x'), InputSpec(shape=[3], name='y')]])
@@ -863,7 +863,7 @@ class SimpleNet(Layer):
 ```python
 class SimpleNet(Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     @to_static(input_spec=[InputSpec(shape=[None, 10], name='x'), {'x': InputSpec(shape=[3], name='bias')}])
@@ -884,7 +884,7 @@ class SimpleNet(Layer):
 ```python
 class SimpleNet(Layer):
     def __init__(self, ):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.relu = paddle.nn.ReLU()
 

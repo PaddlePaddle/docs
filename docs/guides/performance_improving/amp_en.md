@@ -143,7 +143,7 @@ place = paddle.CUDAPlace(0)
 # build a network composed of nine layers of linear
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         # nine layers of linear, each layer is composed of matmul and add operator
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
@@ -570,7 +570,7 @@ Add code to model definition `fp16_guard` control part of network execution unde
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
 
