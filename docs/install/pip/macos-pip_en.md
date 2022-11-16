@@ -2,18 +2,7 @@
 
 ## Environmental preparation
 
-### 1.1 PREQUISITES
-
-* **MacOS version 10.x/11.x (64 bit) (not support GPU version)**
-
-* **Mac machine supports Mac M1 chip, Intel chip**
-
-* **Python version 3.6/3.7/3.8/3.9/3.10 (64 bit)**
-
-* **pip or pip3 Version 20.2.2 or above (64 bit)**
-
-
-### 1.2 How to check your environment
+### 1.1 How to check your environment
 
 * You can use the following commands to view the local operating system and bit information
 
@@ -77,7 +66,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 ```
-python3 -m pip install paddlepaddle==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+python3 -m pip install paddlepaddle==2.4.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 Note：
@@ -89,7 +78,7 @@ Note：
   First use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
    ```
-   python3 -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/avx/stable.html --no-index --no-deps
+   python3 -m pip download paddlepaddle==2.4.0 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/avx/stable.html --no-index --no-deps
    ```
 
    To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:

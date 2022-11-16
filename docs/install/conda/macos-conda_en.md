@@ -6,13 +6,6 @@
 
 ## Environmental preparation
 
-Before performing PaddlePaddle installation, please make sure that your Anaconda software environment is properly installed. For software download and installation, see Anaconda's official website (https://www.anaconda.com/). If you have installed Anaconda correctly, follow these steps to install PaddlePaddle.
-
-* MacOS version 10.x/11.x (64 bit)(not support GPU version)
-* conda version 4.8.3+ (64 bit)
-
-
-
 ### 1.1 Create Virtual Environment
 
 #### 1.1.1 Create the Anaconda Virtual Environment
@@ -121,7 +114,7 @@ conda config --set show_channel_urls yes
 * Currently, only the CPU version of PaddlePaddle is supported in the MacOS environment. Please use the following command to install PaddlePaddle：
 
   ```
-  conda install paddlepaddle==2.4.0rc0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle==2.4.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 

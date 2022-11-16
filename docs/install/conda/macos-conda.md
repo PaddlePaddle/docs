@@ -4,11 +4,6 @@
 
 ## 一、环境准备
 
-在进行 PaddlePaddle 安装之前请确保您的 Anaconda 软件环境已经正确安装。软件下载和安装参见 Anaconda 官网(https://www.anaconda.com/)。在您已经正确安装 Anaconda 的情况下请按照下列步骤安装 PaddlePaddle。
-
-* MacOS 版本 10.x/11.x (64 bit) (不支持 GPU 版本)
-* conda 版本 4.8.3+ (64 bit)
-
 ### 1.1 创建虚拟环境
 
 #### 1.1.1 安装环境
@@ -115,7 +110,7 @@ python3 -c "import platform;print(platform.architecture()[0]);print(platform.mac
 * 目前在 MacOS 环境仅支持 CPU 版 PaddlePaddle，请参考如下命令安装 Paddle:
 
   ```
-  conda install paddlepaddle==2.4.0rc0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
+  conda install paddlepaddle==2.4.0 --channel https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/
   ```
 
 ## **三、验证安装**
