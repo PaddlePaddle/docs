@@ -83,8 +83,8 @@ x_data's shape is: [1, 784]
 注意：这里可通过 [Xavier](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/initializer/Xavier_cn.html) (XavierInitializer 的别名) 初始化方式初始化参数，即对产生的随机数除以 sqrt（n）(n 是第零维的大小)。
 
 ```python
-weights = paddle.randn([784, 10]) * (1/math.sqrt(784))
-weights.stop_gradient=False
+weight = paddle.randn([784, 10]) * (1/math.sqrt(784))
+weight.stop_gradient=False
 bias = paddle.zeros(shape=[10])
 bias.stop_gradient=False
 ```
@@ -102,7 +102,7 @@ def log_softmax(x):
     return x - x.exp().sum(-1).log().unsqueeze(-1)
 
 def model(x):
-    return log_softmax(paddle.matmul(x, weights) + bias)
+    return log_softmax(paddle.matmul(x, weight) + bias)
 ```
 
 ### 3.3 前向计算
