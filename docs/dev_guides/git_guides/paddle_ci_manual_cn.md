@@ -222,19 +222,6 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】** `paddle/scripts/musl_build/build_paddle.sh build_only`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
 
-### 静态代码扫描
-
-#### PR-CI-iScan-C
-
-- **【条目描述】** 检测当前 PR 的 C++ 代码是否通过 [静态代码扫描](https://clang-analyzer.llvm.org/)。
-- **【触发条件】** 自动触发。
-
-
-#### PR-CI-iScan-Python
-
-- **【条目描述】** 检测当前 PR 的 Python 代码是否通过 [静态代码扫描](https://pylint.pycqa.org/)。
-- **【触发条件】** 自动触发。
-
 ## 三、CI 失败如何处理
 
 ### 3.1 CLA 失败

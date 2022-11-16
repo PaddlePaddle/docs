@@ -162,7 +162,7 @@ auto gpu_tensor = paddle::full({3, 4}, 1.0, paddle::DataType::FLOAT64, paddle::G
 
 （2） `Tensor` 成员方法
 
-此外 `paddle::Tensor` 自身目前提供了一些基础的功能 API，在定义算子最后那个常用的包括：
+此外 `paddle::Tensor` 自身提供了一些基础的功能 API，常用的包括：
 
 - 设备、数据类型获取 API：
     - `const Place& place() const`：获取 `Tensor` 所在的设备
@@ -1068,7 +1068,7 @@ setup(
 )
 ```
 
-其中 `paddle.utils.cpp_extension.setup` 能够自动搜索和检查本地的 `cc(Linux)` 、 `cl.exe(Windows)` 和 `nvcc` 编译命令和版本环境，根据用户指定的 `Extension` 类型，完成 CPU 或 CPU 设备的算子编译安装。
+其中 `paddle.utils.cpp_extension.setup` 能够自动搜索和检查本地的 `cc(Linux)` 、 `cl.exe(Windows)` 和 `nvcc` 编译命令和版本环境，根据用户指定的 `Extension` 类型，完成 CPU 或 GPU 设备的算子编译安装。
 
 执行 `python setup_cpu.py install` 或者 `python setup_cuda.py install` 即可一键完成自定义算子的编译和安装。
 
@@ -1284,7 +1284,7 @@ tanh_out = custom_ops.custom_tanh(x)
 
 ### ABI 兼容性检查
 
-以上两种方式，编译前均会执行 ABI 兼容性检查 。对于 Linux，会检查 cc 命令对应的 GCC 版本是否与所安装的 `PaddlePaddle` 的 GCC 版本一致。例如对于 CUDA 10.1 以上的 `PaddlePaddle` 默认使用 GCC 8.2 编译，则本地 cc 对应的编译器版本也需为 8.2。对于 Windows，则会检查本地的 Visual Studio 版本是否与所安装的 `PaddlePaddle` 的 Visual Studio 版本一致（>=2017）。如果上述版本不一致，则会打印出相应 warning，且可能由于引发自定义 OP 编译执行报错。
+以上两种方式，编译前均会执行 ABI 兼容性检查 。对于 Linux，会检查 cc 命令对应的 GCC 版本是否与所安装的 `PaddlePaddle` 的 GCC 版本一致。例如对于 CUDA 10.1 以上的 `PaddlePaddle` 默认使用 GCC 8.2 编译，则本地 cc 对应的编译器版本也需为 8.2。对于 Windows，则会检查本地的 Visual Studio 版本是否与所安装的 `PaddlePaddle` 的 Visual Studio 版本一致（>=2017）。如果上述版本不一致，则会打印出相应 warning，且可能引发自定义 OP 编译执行报错。
 
 ## 在模型中使用自定义算子
 
@@ -1317,7 +1317,7 @@ custom_ops = load(
 
 class LeNet(nn.Layer):
     def __init__(self):
-        super(LeNet, self).__init__()
+        super().__init__()
         self.conv1 = nn.Conv2D(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
         self.max_pool1 = nn.MaxPool2D(kernel_size=2,  stride=2)
         self.conv2 = nn.Conv2D(in_channels=6, out_channels=16, kernel_size=5, stride=1)
@@ -1405,7 +1405,7 @@ custom_ops = load(
 
 class LeNet(nn.Layer):
     def __init__(self):
-        super(LeNet, self).__init__()
+        super().__init__()
         self.conv1 = nn.Conv2D(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
         self.max_pool1 = nn.MaxPool2D(kernel_size=2,  stride=2)
         self.conv2 = nn.Conv2D(in_channels=6, out_channels=16, kernel_size=5, stride=1)

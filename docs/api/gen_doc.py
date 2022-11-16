@@ -657,7 +657,7 @@ def check_cn_en_match(path="./paddle", diff_file="en_cn_files_diff"):
                                         osp_join(root, ef)))
 
 
-class EnDocGenerator(object):
+class EnDocGenerator:
     """
     skip
     """

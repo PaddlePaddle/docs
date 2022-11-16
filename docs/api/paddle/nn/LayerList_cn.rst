@@ -26,7 +26,7 @@ LayerList 用于保存子层列表，它包含的子层将被正确地注册和�
 
     class MyLayer(paddle.nn.Layer):
         def __init__(self):
-            super(MyLayer, self).__init__()
+            super().__init__()
             self.linears = paddle.nn.LayerList(
                 [paddle.nn.Linear(10, 10) for i in range(10)])
 

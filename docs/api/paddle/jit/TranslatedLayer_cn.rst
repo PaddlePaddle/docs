@@ -42,7 +42,7 @@ TranslatedLayer
 
         class LinearNet(nn.Layer):
             def __init__(self):
-                super(LinearNet, self).__init__()
+                super().__init__()
                 self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
             @paddle.jit.to_static
@@ -142,7 +142,7 @@ Program
 
         class LinearNet(nn.Layer):
             def __init__(self):
-                super(LinearNet, self).__init__()
+                super().__init__()
                 self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
             @paddle.jit.to_static

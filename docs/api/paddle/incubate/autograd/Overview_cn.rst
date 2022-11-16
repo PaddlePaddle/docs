@@ -28,7 +28,7 @@ _________________________
 
         class MyNet(paddle.nn.Layer):
             def __init__(self):
-                super(MyNet, self).__init__()
+                super().__init__()
                 self.weight = self.create_parameter(shape=(2,2), dtype='float32', is_bias=False)
                 self.bias = self.create_parameter(shape=(2,2), dtype='float32', is_bias=True)
                 self.add_parameter("weight", self.weight)
@@ -280,7 +280,7 @@ RoadMap
 
         class MyNet(paddle.nn.Layer):
             def __init__(self):
-                super(MyNet, self).__init__()
+                super().__init__()
                 self.weight = self.create_parameter(shape=(2,2), dtype='float32', is_bias=False)
                 self.bias = self.create_parameter(shape=(2,), dtype='float32', is_bias=True)
                 self.add_parameter("weight", self.weight)
