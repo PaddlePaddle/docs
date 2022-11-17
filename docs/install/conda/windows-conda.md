@@ -144,6 +144,12 @@ conda install paddlepaddle==2.4.0 --channel https://mirrors.tuna.tsinghua.edu.cn
   conda install paddlepaddle-gpu==2.4.0 cudatoolkit=11.6 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
   ```
 
+*  对于 `CUDA 11.7`，需要搭配 cuDNN 8.4.1，安装命令为:
+
+  ```
+  conda install paddlepaddle-gpu==2.4.0 cudatoolkit=11.7 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/Paddle/ -c conda-forge
+  ```
+
 您可参考 NVIDIA 官方文档了解 CUDA 和 CUDNN 的安装流程和配置方法，请见[CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
 
 
