@@ -8,7 +8,8 @@
 
 - On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
-- To enable GPU support on Linux, please [Install nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-docker) and [GPU driver](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html) 
+- To enable GPU support on Linux, please [Install nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-docker) and [GPU driver](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)
+
   * Please check the Docker version with docker -v. For versions prior to 19.03, You need to use the nvidia-docker and nvidia-docker commands; For versions 19.03 and later, you will need to use the nvidia-container-toolkit package and the --gpus all command. Both of these options are documented on the page linked above.
 
 Note nvidia-container-toolkit installation method:
