@@ -1,6 +1,6 @@
 # Windows 下的 PIP 安装
 
-[The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持TensorRT 推理功能。
+[The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持 TensorRT 推理功能。
 
 ## 一、环境准备
 
@@ -110,10 +110,10 @@
 
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
-* 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的 Paddle 包。判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。 
+* 上述命令默认安装`avx`的包。如果你的机器不支持`avx`，需要安装`noavx`的 Paddle 包。判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。
 
-  首先使用如下命令将 wheel 包下载到本地，仅支持python3.8
-  
+  首先使用如下命令将 wheel 包下载到本地，仅支持 python3.8
+
   * cpu、mkl 版本 noavx 机器安装：
 
   ```
@@ -131,7 +131,7 @@
   ```
   python -m pip download paddlepaddle-gpu==2.4.0 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/noavx/stable.html --no-index --no-deps
   ```
-  
+
   再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）
 
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：

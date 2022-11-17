@@ -1,6 +1,6 @@
 # MacOS 下的 PIP 安装
 
-[The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持TensorRT 推理功能。
+[The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持 TensorRT 推理功能。
 
 ## 一、环境准备
 
