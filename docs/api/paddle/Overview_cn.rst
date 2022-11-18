@@ -98,6 +98,7 @@ tensor 数学操作
     " :ref:`paddle.outer <cn_api_tensor_outer>` ", "计算两个输入矩阵的外积"
     " :ref:`paddle.multiplex <cn_api_fluid_layers_multiplex>` ", "从每个输入 Tensor 中选择特定行构造输出 Tensor"
     " :ref:`paddle.multiply <cn_api_fluid_layers_multiply>` ", "逐元素相乘算子"
+    " :ref:`paddle.nan_to_num <cn_api_tensor_nan_to_num>` ", "替换 x 中的 NaN、+inf、-inf 为指定值"
     " :ref:`paddle.neg <cn_api_paddle_neg>` ", "计算输入 x 的相反数并返回"
     " :ref:`paddle.not_equal <cn_api_tensor_not_equal>` ", "逐元素地返回 x!=y 的逻辑值"
     " :ref:`paddle.pow <cn_api_paddle_tensor_math_pow>` ", "指数算子，逐元素计算 x 的 y 次幂"
@@ -140,6 +141,7 @@ tensor 数学操作
     " :ref:`paddle.asinh <cn_api_fluid_layers_asinh>` ", "反双曲正弦函数"
     " :ref:`paddle.atanh <cn_api_fluid_layers_atanh>` ", "反双曲正切函数"
     " :ref:`paddle.take <cn_api_tensor_take>` ", "输出给定索引处的输入元素，结果与 index 的形状相同"
+    " :ref:`paddle.frexp <cn_api_paddle_frexp>` ", "用于把一个浮点数分解为尾数和指数的函数"
 
 
 .. _tensor_logic:
@@ -400,15 +402,3 @@ device 相关
     " :ref:`paddle.Model <cn_api_paddle_Model>` ", "一个具备训练、测试、推理的神经网络"
     " :ref:`paddle.summary <cn_api_paddle_summary>` ", "打印网络的基础结构和参数信息"
     " :ref:`paddle.flops <cn_api_paddle_flops>` ", "打印网络的基础结构和参数信息"
-
-.. _about_sparse_api:
-
-稀疏 API 相关
-::::::::::::::::::::
-
-.. csv-table::
-    :header: "API 名称", "API 功能"
-    :widths: 10, 30
-
-    " :ref:`paddle.incubate.sparse.sparse_coo_tensor<cn_api_paddle_incubate_sparse_coo_tensor>` ", "创建一个 COO(Coordinate)格式的稀疏 Tensor"
-    " :ref:`paddle.incubate.sparse.sparse_csr_tensor<cn_api_paddle_incubate_sparse_csr_tensor>` ", "创建一个 CSR(Compressed Sparse Row)格式的稀疏 Tensor"

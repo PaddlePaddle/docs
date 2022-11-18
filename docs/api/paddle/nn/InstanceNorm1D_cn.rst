@@ -6,7 +6,7 @@ InstanceNorm1D
 .. py:class:: paddle.nn.InstanceNorm1D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=None, bias_attr=None, data_format="NCL", name=None):
 
 
-该接口用于构建 ``InstanceNorm1D`` 类的一个可调用对象，具体用法参照 ``代码示例``。可以处理 2D 或者 3D 的 Tensor，实现了实例归一化层（Instance Normalization Layer）的功能。更多详情请参考：Instance Normalization: The Missing Ingredient for Fast Stylization 。
+构建 ``InstanceNorm1D`` 类的一个可调用对象，具体用法参照 ``代码示例``。可以处理 2D 或者 3D 的 Tensor，实现了实例归一化层（Instance Normalization Layer）的功能。更多详情请参考：Instance Normalization: The Missing Ingredient for Fast Stylization 。
 
 ``input`` 是 mini-batch 的输入。
 
@@ -16,10 +16,7 @@ InstanceNorm1D
     \hat{x_i}          &\gets \frac{x_i - \mu_\beta} {\sqrt{\sigma_{\beta}^{2} + \epsilon}}  \quad &// normalize \\
     y_i &\gets \gamma \hat{x_i} + \beta                                                      \quad &// scale-and-shift
 
-
-.. note::
-
-    `H` 是高度，`W` 是宽度。
+其中 `H` 是高度，`W` 是宽度。
 
 
 参数

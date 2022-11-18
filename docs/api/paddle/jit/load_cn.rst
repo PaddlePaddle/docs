@@ -60,7 +60,7 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
 
         class LinearNet(nn.Layer):
             def __init__(self):
-                super(LinearNet, self).__init__()
+                super().__init__()
                 self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
             @paddle.jit.to_static

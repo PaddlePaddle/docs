@@ -13,14 +13,17 @@
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/paddle_api.png?raw=true" width="800" ></center>
 
+> 说明：一般来说 C++ 相比 Python 有着明显的性能优势，所以为了做到模型训练和推理的高效，除了常用的 API 之外，其他包括框架的执行器调度逻辑，算子的 Kernel 实现等都在 C++ 端完成。并且由于目前像 GPU，NPU，XPU 这样的硬件设备有着比 CPU 更强的计算能力，所以深度学习框架也会把算子运算逻辑的 Kernel 在这些硬件设备上进行实现来达到更好的训练和推理性能，但要在这些硬件上开发一些复杂算子的 Kernel 实现成本还是比较高的，因此我们也提供了组合算子的机制（组合式算子）通过复用已有算子 Kernel 来降低新算子 Kernel 的开发成本。
+
+
 ## <span id="apiDesignDoc">二、飞桨 API 设计文档提交说明</span>
 
-设计文档，通常也叫 RFC（Request for Comment）文档，可方便开发者与飞桨核心团队、其他社区开发者充分交流设计思路，以便进一步完善设计方案，并确保与飞桨设计理念一致。请参考如下步骤完成 API 设计文档的提交：
+设计文档，通常也叫 RFC（Request for Comment）文档，可方便飞桨社区开发者充分交流设计思路，以便进一步完善设计方案，并确保与飞桨设计理念一致。请参考如下步骤完成 API 设计文档的提交：
 
 1. 阅读 [API 设计和命名规范](api_design_guidelines_standard_cn.html)，确保新增 API 符合飞桨相关规范。
 2. 根据 [API 设计文档模版](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md)，填写必要的设计内容。另外可参考 [API 设计文档样例](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/20200301_api_design_for_quantile.md)。
 3. 将设计文档提交 Pull Request （PR）到 [community/rfcs/APIs/ ](https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs) 目录下。
-4. 等待文档接受评审和讨论，并根据各方意见修改文档。通常飞桨团队会在三个工作日内回复，如果 API 功能较复杂，还将发起评审会议，并提前在 PR 的评论区公布会议时间、会议地址、参与人、议题等内容，请及时关注 PR 中最新动态。
+4. 等待文档接受评审和讨论，并根据各方意见修改文档。通常飞桨开发者会在三个工作日内回复，如果 API 功能较复杂，还将发起评审会议，并提前在 PR 的评论区公布会议时间、会议地址、参与人、议题等内容，请及时关注 PR 中最新动态。
 
 当设计文档通过评审后，将会合入到  [community/rfcs/APIs/ ](https://github.com/PaddlePaddle/community/tree/master/rfcs/APIs) 目录下。
 

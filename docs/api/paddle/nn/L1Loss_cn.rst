@@ -5,7 +5,7 @@ L1Loss
 
 .. py:class:: paddle.nn.L1Loss(reduction='mean', name=None)
 
-该接口用于创建一个 L1Loss 的可调用类，L1Loss 计算输入 input 和标签 label 间的 `L1 loss` 损失。
+创建一个 L1Loss 的可调用类，L1Loss 计算输入 input 和标签 label 间的 `L1 loss` 损失。
 
 该损失函数的数学计算公式如下：
 

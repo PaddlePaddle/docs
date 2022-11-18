@@ -101,7 +101,7 @@ Recompute 原则上适用于所有 Optimizer。
 
 **2. 在 Fleet API 中使用 Recompute**
 
-`Fleet API <https://github.com/PaddlePaddle/FleetX>`_
+`Fleet API <https://github.com/PaddlePaddle/PaddleFleetX>`_
 是基于 Fluid 的分布式计算高层 API。在 Fleet API 中添加 RecomputeOptimizer
 仅需要 2 步：
 
@@ -121,7 +121,7 @@ Recompute 原则上适用于所有 Optimizer。
 为了帮助您快速地用 Fleet API 使用 Recompute 任务，我们提供了一些例子，
 并且给出了这些例子的计算速度、效果和显存节省情况：
 
-- 用 Recompute 做 Bert Fine-tuning:  `source <https://github.com/PaddlePaddle/FleetX/tree/old_develop/deprecated/examples/recompute/bert>`_
+- 用 Recompute 做 Bert Fine-tuning:  `source <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/deprecated/examples/recompute/bert>`_
 
 - 用 Recompute 做目标检测：开发中.
 
@@ -136,7 +136,7 @@ Q&A
 - **有没有更多 Recompute 的官方例子？**
 
   更多 Recompute 的例子将更新在 `examples <https://github.com/PaddlePaddle/examples/tree/master/community_examples/recompute>`_
-  和 `Fleet <https://github.com/PaddlePaddle/FleetX>`_ 库下，欢迎关注。
+  和 `Fleet <https://github.com/PaddlePaddle/PaddleFleetX>`_ 库下，欢迎关注。
 
 - **有没有添加 checkpoints 的建议？**
 

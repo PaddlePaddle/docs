@@ -117,7 +117,7 @@ class MyDataset(Dataset):
         """
         步骤二：实现构造函数，定义数据读取方式，划分训练和测试数据集
         """
-        super(MyDataset, self).__init__()
+        super().__init__()
 
         if mode == 'train':
             self.data = [
@@ -190,7 +190,7 @@ import paddle
 # Layer 类继承方式组网
 class Mnist(paddle.nn.Layer):
     def __init__(self):
-        super(Mnist, self).__init__()
+        super().__init__()
 
         self.flatten = paddle.nn.Flatten()
         self.linear_1 = paddle.nn.Linear(784, 512)
@@ -367,8 +367,6 @@ $ python -m paddle.distributed.launch train.py
 launch 方式启动训练，以文件为单位启动多进程，需要在启动时调用 ``paddle.distributed.launch`` ，对于进程的管理要求较高。飞桨框架 2.0 版本增加了 ``spawn`` 启动方式，可以更好地控制进程，在日志打印、训练退出时更友好。使用示例如下：
 
 ```python
-from __future__ import print_function
-
 import paddle
 import paddle.nn as nn
 import paddle.optimizer as opt
@@ -376,7 +374,7 @@ import paddle.distributed as dist
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear1 = nn.Linear(10, 10)
         self._linear2 = nn.Linear(10, 1)
 
@@ -470,7 +468,7 @@ from paddle.static import InputSpec
 
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     # 第 1 处改动

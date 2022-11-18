@@ -6,19 +6,19 @@ triangular_solve
 .. py:function:: paddle.linalg.triangular_solve(x, y, upper=True, transpose=False, unitriangular=False, name=None)
 
 
-计算具有唯一解的线性方程组解，其中系数矩阵 `x` 是上(下)三角系数矩阵，`y` 是方程右边。
+计算具有唯一解的线性方程组解，其中参数 `x` 是上(下)三角系数矩阵，`y` 为线性方程组右边的矩阵。
 
-记 :math:`X` 表示一个或一批方阵，:math:`Y` 表示一个或一批矩阵。
+记 :math:`x` 表示一个或一批方阵，:math:`y` 表示一个或一批矩阵。
 
 则方程组为：
 
 .. math::
-    X * Out = Y
+    x * Out = y
 
 方程组的解为：
 
 .. math::
-    Out = X ^ {-1} * Y
+    Out = x ^ {-1} * y
 
 特别地，
 

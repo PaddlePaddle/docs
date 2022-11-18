@@ -35,13 +35,37 @@
 
 | **内容**       | **新增文件位置**                                             |
 | -------------- | ------------------------------------------------------------ |
-| 算子描述及定义 | 前向算子：[paddle/phi/api/yaml/api.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml) <br/>反向算子：[paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml) |
+| 算子描述及定义 | 前向算子定义：[paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml) <br/>反向算子定义：[paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml) |
 | 算子 InferMeta | [paddle/phi/infermeta](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/infermeta) 目录下的相应文件中 |
 | 算子 Kernel    | [paddle/phi/kernels](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/kernels) 目录下的如下文件：（一般情况）<br/>xxx_kernel.h<br/>xxx_kernel.cc<br/>xxx_grad_kernel.h<br/>xxx_grad_kernel.cc |
 | Python API     | [python/paddle](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle) 目录下的相应子目录中的 .py 文件，遵循相似功能的 API 放在同一文件夹的原则 |
 | 单元测试       | [python/paddle/fluid/tests/unittests](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle/fluid/tests/unittests) 目录下的相应文件中：<br/>test_xxx_op.py |
 
+
+用户使用飞桨开发神经网络模型时使用的 Python 接口(如 paddle.add(), paddle.relu()等) 我们一般称都为飞桨的 Python API，每个运算类的 Python API 在框架内部都会对应到一个或者多个 C++ 端算子，每个算子在不同硬件设备上（CPU, GPU 等）实现的运算逻辑代码又被称为 Kernel, 这里主要是由于不同硬件设备提供的编程接口不同，所以虽然同一个算子的不同硬件设备 Kernel 都实现了相同的数学运算逻辑，但在代码实现上却有所差异。算子 InferMeta 函数是在算子 kernel 执行前先将输出结果的维度、数据类型等信息进行处理，由于计算量较小所以可以直接在 CPU 上计算，因此每个算子只需要实现一个 InferMeta 函数，而不必像 Kernel 一样在不同硬件上实现多个。
+
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/api_op_kernel.png?raw=true" width="550" ></center>
+
+Python API、算子 Yaml 配置、算子 InferMeta 函数 和算子 Kernel 之间的关系如上图所示，最上层为用户使用的飞桨 Python API 接口，Python API 执行时会进入到 C++ 端由框架进行调度并执行相应的算子逻辑，算子的执行主要包括两个过程：
+
+（1）执行算子 InferMeta 函数完成输出结果的维度、数据类型等静态信息的推导。
+
+（2）根据输入变量的设备信息选择对应的硬件设备来执行算子 Kernel，完成输出结果的数值计算。
+
+Python API 到算子 InferMeta 函数和 Kernel 调用之间的框架调度部分的逻辑代码主要通过算子 Yaml 配置中的信息自动生成，也可以理解为算子 Yaml 配置的作用是通过自动代码生成将上层 Python API 与底层算子的 Kernel 建立连接。
+
+
 接下来以 trace 算子操作，计算输入 Tensor 在指定平面上的对角线元素之和，并输出相应的计算结果，即以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例来介绍如何新增算子。
+
+
+| **内容**       | **trace 示例代码仓库链接**                                             |
+| -------------- | ------------------------------------------------------------ |
+| 算子描述及定义 | [paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml) <br/>[paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml) |
+| 算子 InferMeta | [paddle/phi/infermeta/unary.cc](https://github.com/PaddlePaddle/Paddle/blob/befa78ea3fa9d0dae096a7de91f626b0c31daee8/paddle/phi/infermeta/unary.cc#L721) |
+| 算子 Kernel    | [paddle/phi/kernels](https://github.com/PaddlePaddle/Paddle/tree/develop/paddle/phi/kernels) 目录下的如下文件：<br/>[/trace_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)<br/>[/cpu/trace_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_kernel.cc)<br/>[/gpu/trace_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_kernel.cu)<br/>[/trace_grad_kernel.h](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/trace_kernel.h)<br/>[/cpu/trace_grad_kernel.cc](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/cpu/trace_grad_kernel.cc)<br/>[/gpu/trace_grad_kernel.cu](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/kernels/gpu/trace_grad_kernel.cu) |
+| Python API     | [python/paddle/tensor/math.py](https://github.com/PaddlePaddle/Paddle/blob/bd4dc3be34584f9b273ecec07297fb05e1cf4c52/python/paddle/tensor/math.py#L2277) |
+| 单元测试       | [python/paddle/fluid/tests/unittests/test_trace_op.py](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_trace_op.py) |
+
 
 ## 三、新增算子描述及定义
 
@@ -49,12 +73,12 @@
 
 ### 3.1 算子 Yaml 文件配置
 
-在 `paddle/phi/api/yaml/api.yaml` 和 `paddle/phi/api/yaml/backward.yaml` 文件中对算子进行描述及定义，在框架编译时会根据 YAML 文件中的配置自动生成 C++ 端的相关代码接口以及内部实现（详见下文 [8.1 Paddle 基于 Yaml 配置自动生成算子代码的逻辑解读](#paddleyaml) 小节的介绍），下面主要以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例介绍算子的 Yaml 配置规则：
+在 `paddle/phi/api/yaml/ops.yaml` 和 `paddle/phi/api/yaml/backward.yaml` 文件中对算子进行描述及定义，在框架编译时会根据 YAML 文件中的配置自动生成 C++ 端的相关代码接口以及内部实现（详见下文 [8.1 Paddle 基于 Yaml 配置自动生成算子代码的逻辑解读](#paddleyaml) 小节的介绍），下面主要以 [paddle.trace](../../api/paddle/trace_cn.html#trace) 为例介绍算子的 Yaml 配置规则：
 
-[paddle/phi/api/yaml/api.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml) 中 trace 相关配置：
+[paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml) 中 trace 相关配置：
 
 ```yaml
-- api : trace
+- op : trace
   args : (Tensor x, int offset = 0, int axis1 = 0, int axis2 = 1)
   output : Tensor(out)
   infer_meta :
@@ -67,7 +91,7 @@
 [paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml) 中 trace 相关配置：
 
 ```yaml
-- backward_api : trace_grad
+- backward_op : trace_grad
   forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
   args : (Tensor x, Tensor out_grad, int offset, int axis1, int axis2)
   output : Tensor(x_grad)
@@ -80,7 +104,7 @@
   no_need_buffer : x
 ```
 
-`api.yaml` 和 `backward.yaml` 分别对算子的前向和反向进行配置，首先 `api.yaml` 中前向算子的配置规则如下：
+`ops.yaml` 和 `backward.yaml` 分别对算子的前向和反向进行配置，首先 `ops.yaml` 中前向算子的配置规则如下：
 
 <table>
 <thead>
@@ -146,7 +170,7 @@
 </tr>
 <tr>
 <td>optional</td>
-<td>指定输入 Tensor 为可选输入，用法可参考 dropout 中 seed_tensor(python/paddle/utils/code_gen/legacy_api.yaml 中)</td>
+<td>指定输入 Tensor 为可选输入，用法可参考 dropout 中 seed_tensor(python/paddle/utils/code_gen/legacy_ops.yaml 中)</td>
 </tr>
 <tr>
 <td>inplace</td>
@@ -181,12 +205,12 @@ b. 如果是实现自定义的 C++ API，需要在'paddle/phi/api/lib/api_custom
 </thead>
 <tbody>
 <tr>
-<td>backward_api</td>
+<td>backward_op</td>
 <td>反向算子名称，一般命名方式为：前向算子名称+'_grad'，二阶算子则为前向算子名称+'_double_grad'</td>
 </tr>
 <tr>
 <td>forward</td>
-<td>对应前向算子的名称、参数、返回值，需要与 api.yaml 中前向算子配置一致</td>
+<td>对应前向算子的名称、参数、返回值，需要与 ops.yaml 中前向算子配置一致</td>
 </tr>
 <tr>
 <td>args</td>
@@ -814,7 +838,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
 
 ## 六、添加单元测试
 
-单测包括对比前向算子不同设备 (CPU、GPU) 的实现、对比反向算子不同设备 (CPU、GPU) 的实现、反向算子的梯度测试。下面介绍[trace 算子的单元测试](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_trace_op.py)。
+单测包括对比前向算子不同设备 (CPU、GPU) 的实现、对比反向算子不同设备 (CPU、GPU) 的实现、反向算子的梯度测试。下面介绍 [trace 算子的单元测试](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/fluid/tests/unittests/test_trace_op.py)。
 
 单测文件存放路径和命名方式：在 [python/paddle/fluid/tests/unittests](https://github.com/PaddlePaddle/Paddle/tree/develop/python/paddle/fluid/tests/unittests) 目录下，一般以 `test_xxx_op.py` 的形式命名（假设算子名为`xxx`），与 Python API 的单元测试文件命名为相同的前缀。
 
@@ -947,7 +971,7 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 
     - 例如：`Suggested Fix:If your classifier expects one-hot encoding label,check your n_classes argument to the estimatorand/or the shape of your label.Otherwise, check the shape of your label.`
 
-更详细的报错检查规范介绍请参考 [《Paddle 报错信息文案书写规范》](https://github.com/PaddlePaddle/Paddle/wiki/Paddle-Error-Message-Writing-Specification)。
+更详细的报错检查规范介绍请参考 [《Paddle 报错信息文案书写规范》](../style_guide_and_references/error_message_writing_specification_cn.md)。
 
 ### 7.2 算子兼容性问题
 对算子的修改需要考虑兼容性问题，要保证算子修改之后，之前的模型都能够正常加载及运行，即新版本的 Paddle 预测库能成功加载运行旧版本训练的模型。<font color="#FF0000">**所以，需要保证算子当前的所有输入输出参数不能被修改（文档除外）或删除，可以新增参数，但是新增的 Tensor 类型变量需要设置为 optional，非 Tensor 变量需要设置默认值。更多详细内容请参考 [OP 修改规范：Input/Output/Attribute 只能做兼容修改](https://github.com/PaddlePaddle/Paddle/wiki/OP-Input-Output-Attribute-Compatibility-Modification)**</font> 。
@@ -960,7 +984,7 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 注册方式为在算子的 YAML 配置中添加`inplace`配置项，格式如：`(x -> out)`，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
 
 ```yaml
-- api : reshape
+- op : reshape
   args : (Tensor x, IntArray shape)
   output : Tensor(out)
   ...
@@ -968,14 +992,14 @@ PADDLE_ENFORCE_EQ(比较对象 A, 比较对象 B, 错误提示信息)
 ```
 
 #### 7.3.2 减少反向算子中的无关变量
-通常反向算子会依赖于前向算子的某些输入、输出 Tensor，以供反向算子计算使用。但有些情况下，反向算子不需要前向算子的所有输入和输出；有些情况下，反向算子只需要前向算子的部分输入和输出；有些情况下，反向算子只需要使用前向算子中输入和输出变量的 Shape 和 LoD 信息。若开发者在注册反向算子时，将不必要的前向算子输入和输出作为反向算子的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
+通常反向算子会依赖于前向算子的某些输入、输出 Tensor，以供反向算子计算使用。但有些情况下，反向算子不需要前向算子的所有输入和输出；有些情况下，反向算子只需要前向算子的部分输入和输出；有些情况下，反向算子只需要使用前向算子中输入和输出变量的 Shape 和 [LoD](new_cpp_op_cn.html#lod) 信息。若开发者在注册反向算子时，将不必要的前向算子输入和输出作为反向算子的输入，会导致这部分显存无法被框架现有的显存优化策略优化，从而导致模型显存占用过高。
 
 所以在定义反向算子时需要注意以下几点：
 
 - 如果反向不需要前向的某些输入或输出参数，则无需在 args 中设置。
-- 如果有些反向算子需要依赖前向算子的输入或输出变量的的 Shape 或 LoD，但不依赖于变量中 Tensor 的内存 Buffer 数据，且不能根据其他变量推断出该 Shape 和 LoD，则可以通过 `no_need_buffer` 对该变量进行配置，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
+- 如果有些反向算子需要依赖前向算子的输入或输出变量的的 Shape 或 [LoD](new_cpp_op_cn.html#lod)，但不依赖于变量中 Tensor 的内存 Buffer 数据，且不能根据其他变量推断出该 Shape 和 [LoD](new_cpp_op_cn.html#lod)，则可以通过 `no_need_buffer` 对该变量进行配置，详见[YAML 配置规则](new_cpp_op_cn.html#yaml)。示例：
 ```yaml
-- backward_api : trace_grad
+- backward_op : trace_grad
   forward : trace (Tensor x, int offset, int axis1, int axis2) -> Tensor(out)
   args : (Tensor x, Tensor out_grad, int offset, int axis1, int axis2)
   output : Tensor(x_grad)
@@ -1090,7 +1114,7 @@ Paddle 支持动态图和静态图两种模式，在 YAML 配置文件中完成�
 
 <center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/api_contributing_guides/images/code_gen_by_yaml.png?raw=true" width="700px" ></center>
 
-如前文所述，算子开发时通过 YAML 配置文件对算子进行描述及定义，包括前向 [paddle/phi/api/yaml/api.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/api.yaml) 和反向 [paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)。动态图和静态图两种模式的执行流程不同，具体如下所示：
+如前文所述，算子开发时通过 YAML 配置文件对算子进行描述及定义，包括前向 [paddle/phi/api/yaml/ops.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml) 和反向 [paddle/phi/api/yaml/backward.yaml](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/backward.yaml)。动态图和静态图两种模式的执行流程不同，具体如下所示：
 
 - 动态图中自动生成的代码包括从 Python API 到计算 Kernel 间的各层调用接口实现，从底层往上分别为：
   - **C++ API**：一套与 Python API 参数对齐的 C++ 接口（只做逻辑计算，不支持自动微分），内部封装了底层 kernel 的选择和调用等逻辑，供上层灵活使用。

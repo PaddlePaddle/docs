@@ -28,7 +28,7 @@ COPY-FROM: paddle.static.CompiledProgram
 with_data_parallel(loss_name=None, build_strategy=None, exec_strategy=None, share_vars_from=None, places=None)
 '''''''''
 
-该接口用于将输入的 Program 或 Graph 进行转换，以便通过数据并行模式运行该模型。用户可以通过 `build_strategy` 和 `exec_strategy` 设置计算图构建和计算图执行过程中可以进行的一些优化，例如：将梯度聚合的 AllReduce 操作进行融合、指定计算图运行过程中使用的线程池大小等。
+将输入的 Program 或 Graph 进行转换，以便通过数据并行模式运行该模型。用户可以通过 `build_strategy` 和 `exec_strategy` 设置计算图构建和计算图执行过程中可以进行的一些优化，例如：将梯度聚合的 AllReduce 操作进行融合、指定计算图运行过程中使用的线程池大小等。
 
 .. note::
     如果在构建 CompiledProgram 和调用 with_data_parallel 时都指定了 build_strategy，在 CompiledProgram 中的 build_strategy 会被复写，因此，如果是数据并行训练，建议在调用 with_data_parallel 接口时设置 build_strategy。

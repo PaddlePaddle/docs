@@ -43,8 +43,8 @@ bias
 形状
 :::::::::
 
-- 输入：形状为 :math:`[batch\_size, *, in\_features]` 的多维 Tensor。
-- 输出：形状为 :math:`[batch\_size, *, out\_features]` 的多维 Tensor。
+- 输入：形状为 :math:`[batch\_size, *, in\_features]` 的多维 Tensor。其数据类型为 float16, float32, float64, 默认为 float32。
+- 输出：形状为 :math:`[batch\_size, *, out\_features]` 的多维 Tensor。其数据类型与输入相同。
 
 代码示例
 :::::::::

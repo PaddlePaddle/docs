@@ -19,11 +19,11 @@ sparse_attention
 
 参数
 :::::::::
-  - query (Tensor) - 输入的 Tensor，代表注意力模块中的 ``query``，这是一个 4 维 Tensor，形状为：[batch_size, num_heads, seq_len, head_dim]，数据类型为 float32 或 float64。
-  - key (Tensor) - 输入的 Tensor，代表注意力模块中的 ``key``，这是一个 4 维 Tensor，形状为：[batch_size, num_heads, seq_len, head_dim]，数据类型为 float32 或 float64。
-  - value (Tensor) - 输入的 Tensor，代表注意力模块中的 ``value``，这是一个 4 维 Tensor，形状为：[batch_size, num_heads, seq_len, head_dim]，数据类型为 float32 或 float64。
-  - sparse_csr_offset (Tensor) - 输入的 Tensor，注意力模块中的稀疏特性，稀疏特性使用 CSR 格式表示，``offset`` 代表矩阵中每一行非零元的数量。这是一个 3 维 Tensor，形状为：[batch_size, num_heads, seq_len + 1]，数据类型为 int32。
-  - sparse_csr_columns (Tensor) - 输入的 Tensor，注意力模块中的稀疏特性，稀疏特性使用 CSR 格式表示，``colunms`` 代表矩阵中每一行非零元的列索引值。这是一个 3 维 Tensor，形状为：[batch_size, num_heads, sparse_nnz]，数据类型为 int32。
+  - **query** (Tensor) - 输入的 Tensor，代表注意力模块中的 ``query``，这是一个 4 维 Tensor，形状为：[batch_size, num_heads, seq_len, head_dim]，数据类型为 float32 或 float64。
+  - **key** (Tensor) - 输入的 Tensor，代表注意力模块中的 ``key``，这是一个 4 维 Tensor，形状为：[batch_size, num_heads, seq_len, head_dim]，数据类型为 float32 或 float64。
+  - **value** (Tensor) - 输入的 Tensor，代表注意力模块中的 ``value``，这是一个 4 维 Tensor，形状为：[batch_size, num_heads, seq_len, head_dim]，数据类型为 float32 或 float64。
+  - **sparse_csr_offset** (Tensor) - 输入的 Tensor，注意力模块中的稀疏特性，稀疏特性使用 CSR 格式表示，``offset`` 代表矩阵中每一行非零元的数量。这是一个 3 维 Tensor，形状为：[batch_size, num_heads, seq_len + 1]，数据类型为 int32。
+  - **sparse_csr_columns** (Tensor) - 输入的 Tensor，注意力模块中的稀疏特性，稀疏特性使用 CSR 格式表示，``colunms`` 代表矩阵中每一行非零元的列索引值。这是一个 3 维 Tensor，形状为：[batch_size, num_heads, sparse_nnz]，数据类型为 int32。
 
 返回
 :::::::::

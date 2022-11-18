@@ -104,7 +104,7 @@
                     embedding_dim,   # Embedding 参数的列数
                     weight_attr=None,
                     name=None):
-           super(VocabParallelEmbedding, self).__init__()
+           super().__init__()
 
    class RowParallelLinear(Layer):
        def __init__(self,
@@ -114,7 +114,7 @@
                     has_bias=True,
                     input_is_parallel=False, #输入是否是并行输入，为否的话需要按列切分输入参数
                     name=None):
-           super(RowParallelLinear, self).__init__()
+           super().__init__()
 
    class ColumnParallelLinear(Layer):
        def __init__(self,
@@ -130,7 +130,7 @@
    def get_rng_state_tracker():
       return RNG_STATE_TRACKER
 
-   class RNGStatesTracker(object):
+   class RNGStatesTracker:
       def __init__(self):
          self.states_ = {}     # 存储随机状态
          self.seeds_ = set()   # 可以设置多个随机种子
@@ -234,7 +234,7 @@
 
    class SimpleMPNet(fluid.dygraph.Layer):
       def __init__(self, vocab_size, hidden_size, inner_size, output_size):
-         super(SimpleMPNet, self).__init__()
+         super().__init__()
          self.linear1 = fleet.meta_parallel.ColumnParallelLinear(
                hidden_size,
                inner_size,
@@ -309,7 +309,7 @@
       optimizer.clear_grad()
       print("loss", loss.numpy())
 
-模型并行的动态图代码：`example/model_parallelism/mp_dygraph.py <https://github.com/PaddlePaddle/FleetX/tree/old_develop/examples/model_parallelism>`_。
+模型并行的动态图代码：`example/model_parallelism/mp_dygraph.py <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/examples/model_parallelism>`_。
 
 
 运行方式（需要保证当前机器有两张 gpu）：

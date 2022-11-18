@@ -83,7 +83,7 @@
    class SimpleNet(nn.Layer):
 
       def __init__(self, input_size, output_size):
-         super(SimpleNet, self).__init__()
+         super().__init__()
          self.linear1 = nn.Linear(input_size, output_size)
          self.relu1 = nn.ReLU()
          self.linear2 = nn.Linear(input_size, output_size)
@@ -206,4 +206,4 @@
    使用 AMP 模式耗时:
    共计耗时 = 1.222 sec
 
-上述例子存放在：\ `example/amp/amp_dygraph.py <https://github.com/PaddlePaddle/FleetX/blob/old_develop/examples/amp/amp_dygraph.py>`_\ 。
+上述例子存放在：\ `example/amp/amp_dygraph.py <https://github.com/PaddlePaddle/PaddleFleetX/blob/old_develop/examples/amp/amp_dygraph.py>`_\ 。

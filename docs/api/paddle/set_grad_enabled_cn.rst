@@ -11,7 +11,7 @@ set_grad_enabled
 
 参数
 :::::::::
-    - mode (bool) - 启用（True）或禁用（False）动态图梯度计算。
+    - **mode** (bool) - 启用（True）或禁用（False）动态图梯度计算。
 
 
 返回

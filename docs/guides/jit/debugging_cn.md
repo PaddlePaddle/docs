@@ -313,7 +313,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
     ```python
     class MyLayer(paddle.nn.Layer):
         def __init__(self, num_stacked_param):
-            super(MyLayer, self).__init__()
+            super().__init__()
 
             w1 = paddle.create_parameter(shape=[2, 2], dtype='float32')
             w2 = paddle.create_parameter(shape=[2], dtype='float32')
@@ -328,7 +328,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
     ```python
     class MyLayer(paddle.nn.Layer):
         def __init__(self):
-            super(MyLayer, self).__init__()
+            super().__init__()
 
             layer1 = paddle.nn.Linear(10, 10)
             layer2 = paddle.nn.Linear(10, 16)

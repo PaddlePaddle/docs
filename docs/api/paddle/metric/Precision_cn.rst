@@ -51,7 +51,7 @@ Precision
 
         class Data(paddle.io.Dataset):
             def __init__(self):
-                super(Data, self).__init__()
+                super().__init__()
                 self.n = 1024
                 self.x = np.random.randn(self.n, 10).astype('float32')
                 self.y = np.random.randint(2, size=(self.n, 1)).astype('float32')
