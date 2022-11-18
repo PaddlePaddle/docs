@@ -8,7 +8,42 @@
 
 - On the local host [Install Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
-- To enable GPU support on Linux, please [Install nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+- To enable GPU support on Linux, please [Install nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-docker) and [GPU driver](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)
+
+  * Please check the Docker version with docker -v. For versions prior to 19.03, You need to use the nvidia-docker and nvidia-docker commands; For versions 19.03 and later, you will need to use the nvidia-container-toolkit package and the --gpus all command. Both of these options are documented on the page linked above.
+
+Note nvidia-container-toolkit installation method:
+  * Ubuntu
+    * Adding Repositories and Keys
+    ```bash
+    distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+    && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
+    && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+    ```
+    * install nvidia-container-toolkit
+    ```bash
+    sudo apt update
+    sudo apt install nvidia-container-toolkit
+    ```
+    * restart docker
+    ```bash
+    sudo systemctl restart docker
+    ```
+  * Centos
+    * Adding Repositories and Keys
+    ```bash
+    distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+    curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | sudo tee /etc/yum.repos.d/nvidia-docker.repo
+    ```
+    * install nvidia-container-toolkit
+    ```bash
+    sudo yun update
+    sudo yum install -y nvidia-container-toolkit
+    ```
+    * restart docker
+    ```bash
+    sudo systemctl restart docker
+    ```
 
 ## Installation steps
 
@@ -78,8 +113,10 @@
 
 
         ```
-        nvidia-docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
+        docker run --gpus all --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
         ```
+
+        > --gpus Specify the gpu device ('"device=0,2"':Represents the use of GPUs 0 and 2; all: Represents the use of all GPUs), please see [Docker docs](https://docs.docker.com/engine/reference/commandline/run/#access-an-nvidia-gpu);
 
         > --name [Name of container] set name of Docker;
 
