@@ -278,7 +278,7 @@ class MyLayer(paddle.nn.Layer):
 
 ### 4.2 访问并自动记录参数的更新过程
 
-这里我们调用的 create_parameter 函数就来自于 [paddle.nn.Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html) 类，这个函数帮助我们简单的创建并初始化参数。最简单的我们仅仅传入希望的参数形状即可（如 weight），这时候 create_parameter会通过默认的方式初始化参数（默认是参数而不是 bias，使用 UniformRandom 来初始化参数，详情可以参考 create_parameter）；或者可以通过诸多参数来定义你自己希望的初始化参数的方式（如 bias），可以限定其初始化方式是全零的常数项（更多初始化方式可以参考 paddle.nn.initializer）。
+这里我们调用的 create_parameter 函数就来自于 [paddle.nn.Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html) 类，这个函数帮助我们简单的创建并初始化参数。最简单的我们仅仅传入希望的参数形状即可（如 weight），这时候 create_parameter 会通过默认的方式初始化参数（默认是参数而不是 bias，使用 UniformRandom 来初始化参数，详情可以参考 create_parameter）；或者可以通过诸多参数来定义你自己希望的初始化参数的方式（如 bias），可以限定其初始化方式是全零的常数项（更多初始化方式可以参考 paddle.nn.initializer）。
 
 完成参数初始化后，不同于我们直接使用 Python 时利用临时变量 weight 和 bias，这里可以利用 [paddle.nn.Layer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Layer_cn.html) 自动将定义的参数记录下来，并且随时通过 self.named_parameters 访问。
 
