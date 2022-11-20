@@ -5,9 +5,6 @@ abs
 
 .. py:function:: paddle.abs(x, name=None)
 
-
-
-
 绝对值函数。
 
 .. math::
