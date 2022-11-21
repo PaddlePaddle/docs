@@ -16,7 +16,7 @@ BaseTransform
     else:
         _get_params -> _apply_*() for * in keys
 
-如果你想要定义自己的图像变化方法，需要重写子类中的 ``_apply_*`` 方法。
+如果你想要定义自己的图像变化方法，需要重写子类中的 ``_apply_*`` 方法，否则将引发NotImplementedError错误。
 
 参数
 :::::::::
