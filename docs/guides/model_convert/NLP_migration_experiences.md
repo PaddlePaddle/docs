@@ -13,7 +13,9 @@
 
 本章节从模型训练和推理需要的基本操作出发，对迁移工作进行任务分解，如下图所示。同时对每个环节进行对齐验证，检查每个环节飞桨和 Pytorch 模型在同样输入下的输出是否一致，以便快速发现问题，降低问题定位的难度。
 
-![img](https://rte.weiyun.baidu.com/wiki/attach/image/api/imageDownloadAddress?attachId=0e145e8925cd43b6843a41e699a9a7eb&docGuid=41FFgAQ2MUY3Tq)
+
+![](./pictures/process.png)
+
 
 
 
@@ -1133,8 +1135,8 @@ paddle.where(b, paddle.zeros(c.shape), c)
 
 内存泄漏和显存泄漏相似，并不能立即察觉，而是在使用 `top` 命令时，观察到内存显著增加，最后会因为 `can't allocate memory` 的错误而程序终止，如图所示是 `top` 命令下观察内存变化需要检查的字段。
 
-![img](https://ku.baidu-int.com/wiki/attach/image/api/imageDownloadAddress?attachId=e493f191f8804650b9f91552fb6478a6&docGuid=qB0aodlYtMLiJl)
 
+![](./pictures/information.png)
 
 
 **【可能原因】**

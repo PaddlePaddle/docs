@@ -285,25 +285,25 @@ PyTorch模块通常继承`torch.nn.Module`，飞桨模块通常继承`paddle.nn.
 
 - [BertEmbedding](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class BertEmbeddings)：定义了BERT输入的分布式表示。输入嵌入是Token嵌入、Segment嵌入和Position嵌入的总和。
 
-![img](https://rte.weiyun.baidu.com/wiki/attach/image/api/imageDownloadAddress?attachId=aa48b2e182a54b8696c8377472025510&docGuid=ZQ7HZrNJIfBAcy)
+![](./pictures/embedding.png)
 
 图 BertEmbedding 模块
 
 - [EncoderLayer](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class TransformerEncoderLayer)：继承自 `torch.nn.Layer`，是Bert网络中基本模块，由MultiHeadAttention、FeedForward组成。后者由LayerNorm，Dropout，Linear层和激活函数构成。
 
-![img](https://rte.weiyun.baidu.com/wiki/attach/image/api/imageDownloadAddress?attachId=8ff782471d884ba29f36e9474ce278f9&docGuid=ZQ7HZrNJIfBAcy)
+![](./pictures/encoder.png)
 
 图 EncoderLayer模块
 
 SelfAttention层的K,Q,V矩阵用于计算单词之间的相关性分数，他们由Linear层组成。
 
-![img](https://rte.weiyun.baidu.com/wiki/attach/image/api/imageDownloadAddress?attachId=3e3f3dec6df34dca8f0d0ee9dd532b91&docGuid=ZQ7HZrNJIfBAcy)
+![](./pictures/kqv.png)
 
 图 SelfAttention层
 
 - [MultiHeadAttention](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class MultiHeadAttention()：由SelfAttention层和Softmax函数构成。
 
-![img](https://rte.weiyun.baidu.com/wiki/attach/image/api/imageDownloadAddress?attachId=37622b41392a4775a86d26bc11767571&docGuid=ZQ7HZrNJIfBAcy)
+![](./pictures/malti-head.png)
 
 图 MultiHeadAttention模块
 
@@ -1515,7 +1515,7 @@ python check_step4.py
 
 验证脚本的执行过程可用以下框图表示：
 
-![img](https://ku.baidu-int.com/wiki/attach/image/api/imageDownloadAddress?attachId=8f4216da3dea4df9a2837c4ae5565aa8&docGuid=qB0aodlYtMLiJl)
+![](./pictures/compare.png)
 
 
 
