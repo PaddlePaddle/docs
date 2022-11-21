@@ -60,13 +60,13 @@
     编译 CPU 版本的 Paddle：
 
     ```
-    cmake .. -GNinja -DWITH_GPU=OFF
+    cmake .. -GNinja -DWITH_GPU=OFF -DWITH_UNITY_BUILD=ON
     ```
 
     编译 GPU 版本的 Paddle：
 
     ```
-    cmake .. -GNinja -DWITH_GPU=ON
+    cmake .. -GNinja -DWITH_GPU=ON -DWITH_UNITY_BUILD=ON
     ```
 
     其他编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)。
@@ -76,11 +76,12 @@
     ```
     set CUDA_TOOLKIT_ROOT_DIR=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2
     set PATH=%CUDA_TOOLKIT_ROOT_DIR:/=\%\bin;%CUDA_TOOLKIT_ROOT_DIR:/=\%\libnvvp;%PATH%
-    cmake .. -GNinja -DWITH_GPU=ON -DCUDA_TOOLKIT_ROOT_DIR="%CUDA_TOOLKIT_ROOT_DIR%"
+    cmake .. -GNinja -DWITH_GPU=ON -DCUDA_TOOLKIT_ROOT_DIR="%CUDA_TOOLKIT_ROOT_DIR%" -DWITH_UNITY_BUILD=ON
     ```
-    > 2. 如果本机安装了多个 Python，将使用最新安装的 Python 版本。若需要指定 Python 版本，则需要指定 Python 路径，例如：
+    > 2. 如果本机安装了多个 Python，将自动使用最新安装的 Python 版本。若需要指定 Python 版本，则需要指定 Python 路径，例如：
     ```
     cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\Python38\python.exe -DPYTHON_INCLUDE_DIR=C:\Python38\include -DPYTHON_LIBRARY=C:\Python38\libs\python38.lib
+    -DWITH_UNITY_BUILD=ON
     ```
 
 7. 执行编译：
