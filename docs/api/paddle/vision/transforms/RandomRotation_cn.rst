@@ -1,6 +1,6 @@
 .. _cn_api_vision_transforms_RandomRotation:
 
-RandomRotate
+RandomRotation
 -------------------------------
 
 .. py:class:: paddle.vision.transforms.RandomRotation(degrees, interpolation='nearest', expand=False, center=None, fill=0, keys=None)

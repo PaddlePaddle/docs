@@ -7,6 +7,9 @@ adjust_hue
 
 对输入图像进行色调的调整。
 
+通过将图像转换为HSV和周期性调整色调通道（H）的强度。然后将图像转换为原始图像模式。
+
+``hue_factor`` 是H通道的位移量，必须在 ``[-0.5, 0.5]`` 之间。
 参数
 :::::::::
 
@@ -16,7 +19,7 @@ adjust_hue
 返回
 :::::::::
 
-    ``PIL.Image 或 numpy.ndarray 或 paddle.Tensor``，调整后的图像。
+    ``PIL.Image`` 或 ``numpy.ndarray`` 或 ``paddle.Tensor``，调整后的图像。
 
 代码示例
 :::::::::
