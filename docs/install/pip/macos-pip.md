@@ -1,21 +1,10 @@
 # MacOS 下的 PIP 安装
 
-[The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持分布式训练（多机多卡）、TensorRT 推理功能。
+[The Python Package Index(PyPI)](https://pypi.org/)是 Python 的包管理器。本文档为你介绍 PyPI 安装方式，飞桨提供的 PyPI 安装包支持 TensorRT 推理功能。
 
 ## 一、环境准备
 
-### 1.1 目前飞桨支持的环境
-
-* **macOS 版本 10.x/11.x (64 bit) (不支持 GPU 版本)**
-
-* **mac 机器上支持 mac M1 芯片、Intel 芯片**
-
-* **Python 版本 3.6/3.7/3.8/3.9/3.10 (64 bit)**
-
-* **pip 或 pip3 版本 20.2.2 或更高版本 (64 bit)**
-
-
-### 1.2 如何查看您的环境
+### 1.1 如何查看您的环境
 
 * 可以使用以下命令查看本机的操作系统和位数信息：
 
@@ -81,7 +70,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==2.4.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python3 -m pip install paddlepaddle==2.4.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
@@ -95,7 +84,7 @@
   首先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
-  python3 -m pip download paddlepaddle==2.4.0rc0 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/avx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle==2.4.0 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/avx/stable.html --no-index --no-deps
   ```
 
   判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
