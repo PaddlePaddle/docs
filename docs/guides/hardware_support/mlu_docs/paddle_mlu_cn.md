@@ -44,10 +44,10 @@
 
 | 模型               | 领域     | 模型链接                                                   | 编程范式      |  训练单机多卡支持  | 训练多机多卡支持  | 推理支持 |
 | ----------------- | -------- | ------------------------------------------------------------ | ------------- | -------------- | -------------- | -------------- |
-| OCR-DB | 文本检测 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/develop/doc/doc_ch/detection.md) |  动态图  | 支持 | 支持 | 支持 |
-| CRNN-CTC | 文本识别 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/develop/doc/doc_ch/recognition.md) |  动态图  | 支持 | 支持 | 支持 |
-| OCR-Clas | 角度分类 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/develop/doc/doc_ch/angle_class.md) |  动态图  | 支持 | 支持 | 支持 |
-| OCR-E2E | 字符识别 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/develop/doc/doc_ch/pgnet.md) |  动态图  | 支持 | 支持 | 支持 |
+| OCR-DB | 文本检测 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/dygraph/doc/doc_ch/detection.md) |  动态图  | 支持 | 支持 | 支持 |
+| CRNN-CTC | 文本识别 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/dygraph/doc/doc_ch/recognition.md) |  动态图  | 支持 | 支持 | 支持 |
+| OCR-Clas | 角度分类 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/dygraph/doc/doc_ch/angle_class.md) |  动态图  | 支持 | 支持 | 支持 |
+| OCR-E2E | 字符识别 | [模型链接](https://github.com/PaddlePaddle/PaddleOCR/blob/dygraph/doc/doc_ch/pgnet.md) |  动态图  | 支持 | 支持 | 支持 |
 
 
 ## 模型套件
@@ -60,4 +60,4 @@
 | 目标检测     | PaddleDetection | develop          |
 | 图像分割     | PaddleSeg       | develop          |
 | 自然语言处理  | PaddleNLP       | develop          |
-| 字符识别     | PaddleOCR       | develop          |
+| 字符识别     | PaddleOCR       | dygraph          |

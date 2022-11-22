@@ -1,6 +1,6 @@
 # 飞桨框架寒武纪 MLU 版安装说明
 
-飞桨框架支持基于 python 的训练和原生预测，当前最新版本为 2.3，提供两种安装方式：
+飞桨框架支持基于 python 的训练和原生预测，当前最新版本为 2.4.0，提供两种安装方式：
 
 - 通过预编译的 wheel 包安装
 - 通过源代码编译安装
@@ -77,7 +77,7 @@ Sat Oct  8 11:22:22 2022
 **第一步**：下载 Python3.7 wheel 安装包
 
 ```bash
-pip install paddlepaddle-mlu==0.0.0 -f https://paddle-device.bj.bcebos.com/develop/mlu/develop.html
+pip install https://paddle-device.bj.bcebos.com/mlu/paddlepaddle_mlu-2.4.0-cp37-cp37m-linux_x86_64.whl
 ```
 
 **第二步**：验证安装包
@@ -96,14 +96,15 @@ python -c "import paddle; paddle.utils.run_check()"
 
 ```bash
 # 下载源码，默认 develop 分支
-git clone https://github.com/PaddlePaddle/Paddle.git
+git clone -b release/2.4 https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 
 # 创建编译目录
 mkdir build && cd build
 
 # 执行 cmake
-cmake .. -DPY_VERSION=3.7 -DWITH_MLU=ON -DWITH_TESTING=ON -DCMAKE_BUILD_TYPE=Release -DWITH_DISTRIBUTE=ON -DWITH_CNCL=ON
+export PADDLE_VERSION=2.4.0
+cmake .. -DPY_VERSION=3.7 -DWITH_MLU=ON -DCMAKE_BUILD_TYPE=Release -DWITH_DISTRIBUTE=ON -DWITH_CNCL=ON
 
 # 使用以下命令来编译
 make -j$(nproc)
@@ -115,7 +116,7 @@ make -j$(nproc)
 
 ```bash
 # 安装命令
-python -m pip install -U paddlepaddle_mlu-0.0.0-cp37-cp37-linux_x86_64.whl
+python -m pip install -U paddlepaddle_mlu-2.4.0-cp37-cp37m-linux_x86_64.whl
 
 # 验证命令
 python -c "import paddle; paddle.utils.run_check()"
