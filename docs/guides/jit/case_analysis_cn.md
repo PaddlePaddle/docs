@@ -150,7 +150,7 @@ x = paddle.assign(np.array([2,3,4]))
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.mask = np.array(mask) # 假设为 [0, 1, 1]
 
@@ -169,7 +169,7 @@ class SimpleNet(paddle.nn.Layer):
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.mask = paddle.to_tensor(mask) # <---- 转为 buffers
 
@@ -200,9 +200,9 @@ class SimpleNet(paddle.nn.Layer):
 **举个例子：**
 
 ```python
-class SimpleNet(object):                       # <---- 继承 Object
+class SimpleNet:                               # <---- 默认继承自 object
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)  # <---- Linear 参数永远都不会被更新
         self.mask = paddle.to_tensor(mask)     # <---- mask 可能未保存到 .pdiparams 文件中
 
@@ -230,7 +230,7 @@ class SimpleNet(object):                       # <---- 继承 Object
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.mask = paddle.to_tensor(mask)
 
@@ -280,7 +280,7 @@ jit.save(mode, model_path)
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     def forward(self, x, y):
@@ -449,7 +449,7 @@ CLASS_NUM = 10
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     def forward(self, x):

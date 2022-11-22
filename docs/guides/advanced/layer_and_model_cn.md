@@ -229,7 +229,7 @@ paddle.nn.Layer 是飞桨定义的一个类，它代表所有可以用层表示�
 ```python
 class MyLayer(paddle.nn.Layer):
     def __init__(self):
-        super(MyLayer, self).__init__()
+        super().__init__()
         self.weight = self.create_parameter([784,10])
         self.bias = self.create_parameter([10], is_bias=True, default_initializer=paddle.nn.initializer.Constant(value=0.0))
 
@@ -247,7 +247,7 @@ class MyLayer(paddle.nn.Layer):
 
 ```python
     def __init__(self):
-        super(MyLayer, self).__init__()
+        super().__init__()
 ```
 
 #### 4.1.2 完成一系列的初始化
@@ -256,7 +256,7 @@ class MyLayer(paddle.nn.Layer):
 
 ```python
     def __init__(self):
-        super(MyLayer, self).__init__()
+        super().__init__()
         self.weight = self.create_parameter([784,10])
         self.bias = self.create_parameter([10], is_bias=True, default_initializer=paddle.nn.initializer.Constant(value=0.0))
 ```
@@ -356,7 +356,7 @@ paddle.nn.Linear 的改造主要包含替换线性层、调节参数初始化方
 ```python
 class MyLayer(paddle.nn.Layer):
     def __init__(self):
-        super(MyLayer, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(784, 10, bias_attr=paddle.ParamAttr(initializer=paddle.nn.initializer.Constant(value=0.0)))
 
     def forward(self, inputs):
@@ -459,7 +459,7 @@ Linear(in_features=10, out_features=3, dtype=float32)
 ```python
 class MyLayer(paddle.nn.Layer):
     def __init__(self):
-        super(MyLayer, self).__init__()
+        super().__init__()
         for i in range(10):
             self.add_parameter("param_" + str(i), self.create_parameter([784,10]))
     def forward(inputs):
@@ -478,7 +478,7 @@ for name, item in my_layer.named_parameters():
 class Model(paddle.nn.Layer):
 
     def __init__(self):
-        super(Model, self).__init__()
+        super().__init__()
         self.saved_tensor = self.create_tensor(name="saved_tensor0")
         self.flatten = paddle.nn.Flatten()
         self.fc = paddle.nn.Linear(10, 100)
@@ -501,7 +501,7 @@ Buffer 的概念仅仅影响动态图向静态图的转换过程。在上一节�
 class Model(paddle.nn.Layer):
 
     def __init__(self):
-        super(Model, self).__init__()
+        super().__init__()
         saved_tensor = self.create_tensor(name="saved_tensor0")
         self.register_buffer("saved_tensor", saved_tensor, persistable=True)
         self.flatten = paddle.nn.Flatten()

@@ -45,7 +45,7 @@ To be more detailed, we introduce our design of DCGAN as following:
 - Set up hyper-parameters, including condtional dimension, noise dimension, batch size and so forth.
 - Declare and define all the model variables. All the discriminator parameters are included in the list self.theta_D and all the generator parameters are included in the list self.theta_G.
 ```python
-class DCGAN(object):
+class DCGAN:
   def __init__(self, y_dim=None):
 
     # hyper parameters
@@ -77,7 +77,7 @@ class DCGAN(object):
 - Concatenation, batch-norm, FC operations required;
 - Deconv layer required, which is missing now...
 ```python
-class DCGAN(object):
+class DCGAN:
   def generator(self, z, y = None):
     # input z: the random noise
     # input y: input data label (optional)
@@ -103,7 +103,7 @@ class DCGAN(object):
 - Given a noisy input z, returns a fake image.
 - Concatenation, Convolution, batch-norm, FC, Leaky-ReLU operations required;
 ```python
-class DCGAN(object):
+class DCGAN:
   def discriminator(self, image):
     # input image: either generated images or real ones
     # output D_h2: binary logit of the label
@@ -126,7 +126,7 @@ class DCGAN(object):
 - Define two training losses for discriminator and generator, respectively.
 If we have execution dependency engine to back-trace all tensors, the module building our GAN model will be like this:
 ```python
-class DCGAN(object):
+class DCGAN:
   def build_model(self):
     if self.y_dim:
         self.y = pd.data(pd.float32, [self.batch_size, self.y_dim])
@@ -158,7 +158,7 @@ class DCGAN(object):
 
 If we do not have dependency engine but blocks, the module building our GAN model will be like this:
 ```python
-class DCGAN(object):
+class DCGAN:
   def build_model(self, default_block):
     # input data in the default block
     if self.y_dim:
