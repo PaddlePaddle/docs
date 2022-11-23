@@ -34,8 +34,6 @@ append()
 
 **代码示例**
 
-.. code-block:: python
-
 COPY-FROM: paddle.nn.LayerList.append
 
 
@@ -51,8 +49,6 @@ insert()
 
 **代码示例**
 
-.. code-block:: python
-
 COPY-FROM: paddle.nn.LayerList.insert
 
 extend()
@@ -65,7 +61,5 @@ extend()
     - **sublayers** (iterable of Layer) - 要添加的所有子层。
 
 **代码示例**
-
-.. code-block:: python
 
 COPY-FROM: paddle.nn.LayerList.extend
