@@ -80,7 +80,7 @@ x_data's shape is: [1, 784]
 
 首先， 需要通过 [paddle.randn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randn_cn.html) 函数或者 [paddle.zeros](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/zeros_cn.html) 函数来创建随机数填充或者全零填充的一个参数（Weight）（模型训练中会被更新的部分），和一个偏置项（Bias）。
 
-注意：这里可通过 [Xavier](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/initializer/Xavier_cn.html) (XavierInitializer 的别名) 初始化方式初始化参数，即对产生的随机数除以 sqrt（n）(n 是第零维的大小)。
+注意：这里可通过 Xavier (XavierInitializer 的别名) 初始化方式初始化参数，即对产生的随机数除以 sqrt（n）(n 是第零维的大小)。
 
 ```python
 weight = paddle.randn([784, 10]) * (1/math.sqrt(784))
