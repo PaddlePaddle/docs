@@ -12,7 +12,9 @@ lcm
     lcm(0,0)=0, lcm(0, y)=0
 
     如果 x 和 y 的 shape 不一致，会对两个 shape 进行广播操作，得到一致的 shape（并作为输出结果的 shape），
-    请参见 :ref:`cn_user_guide_broadcasting` 。
+    请参见 `Tensor 介绍`_ .
+    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
+    。
 
 参数
 :::::::::

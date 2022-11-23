@@ -108,7 +108,9 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
 类似的，若输入 x 为 5 维张量，形状为 `NCDHW`，当设置 ``axis=[0,1]`` 时，便可实现 dropout3d。详情参考 :ref:`cn_api_nn_functional_dropout3d` 。
 
 .. note::
-   关于广播(broadcasting)机制，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+   关于广播(broadcasting)机制，如您想了解更多，请参见 `Tensor 介绍`_ .
+    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
+    。
 
 代码示例
 :::::::::
