@@ -44,7 +44,7 @@ insert()
 
 **参数**
 
-    - **index ** (int) - 要插入的位置。
+    - **index** (int) - 要插入的位置。
     - **sublayers** (Layer) - 要插入的子层。
 
 **代码示例**
