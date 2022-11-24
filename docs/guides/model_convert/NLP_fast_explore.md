@@ -283,47 +283,53 @@ PyTorch 模块通常继承`torch.nn.Module`，飞桨模块通常继承`paddle.nn
 
 分析 Bert 网络代码，主要分为以下几个模块：
 
-- [BertEmbedding](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class BertEmbeddings)：定义了 BERT 输入的分布式表示。输入嵌入是 Token 嵌入、Segment 嵌入和 Position 嵌入的总和。
+- [BertEmbedding](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class%20BertEmbeddings)：定义了 BERT 输入的分布式表示。输入嵌入是 Token 嵌入、Segment 嵌入和 Position 嵌入的总和。
 
-![](./pictures/embedding.png)
 
-图 BertEmbedding 模块
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/embedding.png"   align="middle"  width="500" />
+</p>
 
-- [EncoderLayer](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class TransformerEncoderLayer)：继承自 `torch.nn.Layer`，是 Bert 网络中基本模块，由 MultiHeadAttention、FeedForward 组成。后者由 LayerNorm，Dropout，Linear 层和激活函数构成。
 
-![](./pictures/encoder.png)
+- [EncoderLayer](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class%20TransformerEncoderLayer)：继承自 `torch.nn.Layer`，是 Bert 网络中基本模块，由 MultiHeadAttention、FeedForward 组成。后者由 LayerNorm，Dropout，Linear 层和激活函数构成。
 
-图 EncoderLayer 模块
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/encoder.png" align="middle"  width="500" />
+</p>
+
 
 SelfAttention 层的 K,Q,V 矩阵用于计算单词之间的相关性分数，他们由 Linear 层组成。
 
-![](./pictures/kqv.png)
 
-图 SelfAttention 层
-
-- [MultiHeadAttention](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class MultiHeadAttention()：由 SelfAttention 层和 Softmax 函数构成。
-
-![](./pictures/malti-head.png)
-
-图 MultiHeadAttention 模块
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/kqv.png" align="middle"  width="500" />
+</p>
 
 
+- [MultiHeadAttention](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class%20MultiHeadAttention)：由 SelfAttention 层和 Softmax 函数构成。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/malti-head.png" align="middle"  width="500" />
+</p>
 
 
 
-- [Pooler](https://github.com/PaddlePaddle/PaddleNLP/blob/122824885ce1dc553496ec775b407ce1944283e6/paddlenlp/transformers/bert/modeling.py#L97:~:text=class BertPooler(Layer)%3A)模块：pooler 模块在最后一层 encoder 之后，是对最后一层 encoder 输出的池化操作。
+
+
+
+- [Pooler](https://github.com/PaddlePaddle/PaddleNLP/blob/122824885ce1dc553496ec775b407ce1944283e6/paddlenlp/transformers/bert/modeling.py#L97:~:text=class%20BertPooler(Layer)%3A)模块：pooler 模块在最后一层 encoder 之后，是对最后一层 encoder 输出的池化操作。
 - [Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Linear_cn.html#linear)模块：将从 encoder 模块得到的单词表示用于最后一步的分类 classify。
-- [BertForSequenceClassification](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class BertForSequenceClassification)：定义了整体网络架构。封装了[BertEmbedding](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class BertEmbeddings),[EncoderLayer](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class TransformerEncoderLayer)模块以及 [Pooler](https://github.com/PaddlePaddle/PaddleNLP/blob/122824885ce1dc553496ec775b407ce1944283e6/paddlenlp/transformers/bert/modeling.py#L97:~:text=class BertPooler(Layer)%3A),[Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Linear_cn.html#linear)模块。
+- [BertForSequenceClassification](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class20%BertForSequenceClassification)：定义了整体网络架构。封装了[BertEmbedding](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class20%BertEmbeddings),[EncoderLayer](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class20%TransformerEncoderLayer)模块以及 [Pooler](https://github.com/PaddlePaddle/PaddleNLP/blob/122824885ce1dc553496ec775b407ce1944283e6/paddlenlp/transformers/bert/modeling.py#L97:~:text=class20%BertPoolerLayer),[Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Linear_cn.html#linear)模块。
 
 **【转换步骤】**
 
 基于以上子网划分，参考 PyTorch 与飞桨 API 映射表，完成上述模块的转换：
 
-1. 对于 [BertEmbedding](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class BertEmbeddings) 模块，需要将继承的基类由 `torch.nn.Module`改成`paddle.nn.Layer`，并且 PyTorch 模型参数形式是由 config 字典传入参数,而 Paddle 需要传入该模块对应参数即可
-2. 对于 [MultiHeadAttention](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class MultiHeadAttention()模块，需要将继承的基类由 `torch.nn.Module`改成`paddle.nn.Layer`，并且 PyTorch 模型参数形式是由 config 字典传入参数,而 Paddle 需要传入该模块对应参数即可
+1. 对于 [BertEmbedding](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class20%BertEmbeddings) 模块，需要将继承的基类由 `torch.nn.Module`改成`paddle.nn.Layer`，并且 PyTorch 模型参数形式是由 config 字典传入参数,而 Paddle 需要传入该模块对应参数即可
+2. 对于 [MultiHeadAttention](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/transformer.py#:~:text=class20%MultiHeadAttention)模块，需要将继承的基类由 `torch.nn.Module`改成`paddle.nn.Layer`，并且 PyTorch 模型参数形式是由 config 字典传入参数,而 Paddle 需要传入该模块对应参数即可
 3. 对于 [Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Linear_cn.html#linear)模块，需要注意 Paddle `bias`默认为 True
-4. 对于[LayerNorm](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/norm.py#:~:text=class LayerNorm(Layer)%3A)模块，要注意 Paddle 和 PyTorch 对于参数 epsilon 默认值不同
-5. 对于[BertForSequenceClassification](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class BertForSequenceClassification)，需要将继承的基类由 `torch.nn.Module`改成`paddle.nn.Layer`，由于飞桨的 `nn.Hardswish` 和 `nn.Dropout`不提供 `inplace`参数，因此需要将 PyTorch 代码中的 `inplace=True`参数删去。
+4. 对于[LayerNorm](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/norm.py#:~:text=class20%LayerNormLayer))模块，要注意 Paddle 和 PyTorch 对于参数 epsilon 默认值不同
+5. 对于[BertForSequenceClassification](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class20%BertForSequenceClassification)，需要将继承的基类由 `torch.nn.Module`改成`paddle.nn.Layer`，由于飞桨的 `nn.Hardswish` 和 `nn.Dropout`不提供 `inplace`参数，因此需要将 PyTorch 代码中的 `inplace=True`参数删去。
 6. 权重初始化。
 
 飞桨的权重初始化定义方式与 PyTorch 存在区别。
