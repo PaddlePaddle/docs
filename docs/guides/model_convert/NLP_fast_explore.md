@@ -121,11 +121,9 @@ for batch in data_loader:
 需要注意的是对于部分网络，使用相同的硬件环境和脚本代码，由于数据增广、模型初始化的随机性，最终达到的收敛精度和性能也可能与原项目的结果有细微差别，这属于正常的波动范围。
 
 - 论文：https://arxiv.org/abs/1810.04805
-- Pytorch 源代码：
+- Pytorch 源代码：https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_bert.py
 
-https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/modeling_bert.py
-
-**说明：**
+**说明**：
 
 Hugging Face 开发的基于 PyTorch 的 Transformers 项目，是目前 NLP 领域比较好用和便捷的开源库，因此本次迁移使用的是 Hugging Face 中 Transformers 代码。
 
@@ -135,7 +133,7 @@ Hugging Face 开发的基于 PyTorch 的 Transformers 项目，是目前 NLP 领
 
 - **模型组网对齐**：PyTorch 的大部分 API 在飞桨中可找到对应 API，可以参考 [PyTorch-PaddlePaddle API 映射表](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/08_api_mapping/pytorch_api_mapping_cn.html)，模型组网部分代码直接进行手动转换即可；为了判断转换后的 飞桨模型组网能获得和 Pytorch 参考实现同样的输出，可将两个模型参数固定，并输入相同伪数据，观察两者的产出差异是否在阈值内。
 - **数据读取对齐**：相同的神经网络使用不同的数据训练和测试得到的结果往往会存在较大差异。为了能完全复现原始的模型，需要保证使用的数据完全相同，包括数据集的版本、使用的数据增强方式。
-- **模型训练对齐：**为了验证迁移后的模型能达到相同的精度，需要确保迁移模型使用的评价指标、损失函数与原模型相同，以便原模型与迁移后的模型对比。
+- **模型训练对齐**：为了验证迁移后的模型能达到相同的精度，需要确保迁移模型使用的评价指标、损失函数与原模型相同，以便原模型与迁移后的模型对比。
   - **评估指标对齐**：飞桨提供了一系列 Metric 计算类，而 PyTorch 中目前可以通过组合的方式实现。应确保使用的指标与原代码含义一致，以便对照精度。
   - **损失函数对齐**：训练迁移后的模型时，需要使用与原代码相同的损失函数。飞桨与 PyTorch 均提供了常用的损失函数，二者的 API 对应关系可参考 [Loss 类 API 映射列表](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/model_convert/pytorch_api_mapping_cn.html#lossapi)。
   - **超参对齐**：训练过程中需要保证学习率、优化器、正则化系统等超参对齐。飞桨中的 optimizer 有`paddle.optimizer`等一系列实现，PyTorch 中则有`torch.optim`等一系列实现。对照[PaddlePaddle 正则化 API 文档](https://gitee.com/link?target=https%3A%2F%2Fwww.paddlepaddle.org.cn%2Fdocumentation%2Fdocs%2Fzh%2Fapi%2Fpaddle%2Fregularizer%2FL2Decay_cn.html)与参考代码的优化器实现进行对齐，用之后的反向梯度对齐统一验证该模块的正确性。
@@ -147,9 +145,7 @@ Hugging Face 开发的基于 PyTorch 的 Transformers 项目，是目前 NLP 领
 
 **【迁移任务结果】**
 
-迁移后的飞桨实现：
-
-https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration
+迁移后的飞桨实现：https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration
 
 ## 二、迁移准备工作
 
@@ -159,7 +155,7 @@ https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration
 
 准备环境包括安装飞桨、安装 PyTorch 和安装差异核验工具 reprod_log。
 
-1. 安装飞桨
+1.安装飞桨
 
 ```plain
 # 安装 GPU 版本的 PaddlePaddle，使用下面的命令
@@ -181,8 +177,7 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 ```
 
 
-
-2. 安装 Pytorch
+2.安装 Pytorch
 
 对于 PyTorch 的安装，请参阅 [PyTorch 官网](https://pytorch.org/get-started/locally/)，选择操作系统和 CUDA 版本，使用相应的命令安装。
 
@@ -198,7 +193,7 @@ print(torch.Tensor([1.0]).cuda())
 
 
 
-3. 安装差异核验工具 reprod_log
+3.安装差异核验工具 reprod_log
 
 在对齐验证的流程中，依靠 差异核验工具 reprod_log 查看飞桨和 PyTorch 同样输入下的输出是否相同，这样的查看方式具有标准统一，比较过程方便等优势。
 
@@ -231,9 +226,7 @@ def gen_fake_data():
 
 需在特定设备(CPU/GPU)上，利用少量伪数据，跑通参考代码的预测过程(前向)以及至少 2 轮(iteration)迭代过程，用于生成和迁移代码进行对比的结果。
 
-PyTorch 的实现：
-
-[bert_torch](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration/pipeline/Step5/bert_torch)
+PyTorch 的实现：[bert_torch](https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration/pipeline/Step5/bert_torch)
 
 项目的目录结构如下：
 
@@ -298,7 +291,7 @@ PyTorch 模块通常继承`torch.nn.Module`，飞桨模块通常继承`paddle.nn
 </p>
 
 
-SelfAttention 层的 K,Q,V 矩阵用于计算单词之间的相关性分数，他们由 Linear 层组成。
+       SelfAttention 层的 K,Q,V 矩阵用于计算单词之间的相关性分数，他们由 Linear 层组成。
 
 
 <p align="center">
@@ -422,7 +415,7 @@ torch.save(hf_model.state_dict(), PATH)
 
 
 
-1. 执行 [torch2paddle.py](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/examples/torch_migration/pipeline/weights/torch2paddle.py)进行权重转换。
+2. 执行 [torch2paddle.py](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/examples/torch_migration/pipeline/weights/torch2paddle.py)进行权重转换。
 
 运行完成之后，会在当前目录生成`model_state.pdparams`文件，即为转换后的 PaddlePaddle 预训练模型。
 
@@ -518,7 +511,7 @@ def gen_fake_data():
     np.save("fake_label.npy", fake_label)
 ```
 
-1. 保存输出：
+2. 保存输出：
 
 PaddlePaddle/PyTorch：dict，key 为 tensor 的 name（自定义），value 为 tensor 的值。最后将 dict 保存到文件中。
 
@@ -622,7 +615,7 @@ diff_helper.report(path="forward_diff.log")
 
 
 
-1. 查看日志文件 `Step1/forward_diff.log`。
+2. 查看日志文件 `Step1/forward_diff.log`。
 
 ```bash
 [2022/10/20 15:58:01] root INFO: logits:
