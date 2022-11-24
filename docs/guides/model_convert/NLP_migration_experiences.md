@@ -14,9 +14,10 @@
 本章节从模型训练和推理需要的基本操作出发，对迁移工作进行任务分解，如下图所示。同时对每个环节进行对齐验证，检查每个环节飞桨和 Pytorch 模型在同样输入下的输出是否一致，以便快速发现问题，降低问题定位的难度。
 
 
-![](./pictures/process.png)
 
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/porcess.png" align="middle"  width="500" />
+</p>
 
 
 1. **迁移准备**：迁移工作首先需要安装必要的软件和工具（包括飞桨、PyTorch 或 TensorFlow 的安装、差异核验工具的安装等），然后准备要迁移的模型以及使用的数据集，同时了解源代码结构、跑通模型训练，最后对源代码进行解析，统计缺失算子。
@@ -1134,8 +1135,9 @@ paddle.where(b, paddle.zeros(c.shape), c)
 内存泄漏和显存泄漏相似，并不能立即察觉，而是在使用 `top` 命令时，观察到内存显著增加，最后会因为 `can't allocate memory` 的错误而程序终止，如图所示是 `top` 命令下观察内存变化需要检查的字段。
 
 
-![](./pictures/information.png)
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ymyjl/docs/torch_migrate/docs/guides/model_convert/pictures/information.png" align="middle"  width="500" />
+</p>
 
 **【可能原因】**
 
