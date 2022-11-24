@@ -27,10 +27,10 @@
 5. **损失函数对齐**：损失函数是训练模型时的优化目标，使用的损失函数会影响模型的精度。在模型迁移时，需要保证迁移后模型训练时使用的损失函数与原始代码中使用的损失函数一致，以便二者对照。飞桨与 PyTorch 均提供了常用的损失函数。
 6. **模型训练超参对齐**：模型的训练超参包括学习率、优化器、正则化策略等。这些超参数指定了模型训练过程中网络参数的更新方式，训练超参数的设置会影响到模型的收敛速度及收敛精度。同样地，在模型迁移时，需要保证迁移前后模型使用的训练超参数一致，以便对照二者的收敛情况。飞桨中的 optimizer 有`paddle.optimizer`等一系列实现，PyTorch 中则有`torch.optim`等一系列实现。完成超参对齐后，可以使用反向梯度对齐统一验证该模块的正确性。
 7. **反向梯度对齐**：在完成前向对齐的基础上，还需进行反向梯度对齐。反向梯度对齐的目的是确保迁移后的模型反向传播以及权重更新的行为与原始模型一致，同时也是对上一步*模型训练超参对齐*的验证。具体的检验方法是通过两次（或以上）迭代训练进行检查，若迁移前后的模型第二轮训练的 loss 一致，则可以认为二者反向已对齐。
-8. **训练集数据读取对齐：**相同的神经网络使用不同的数据训练和测试得到的结果往往会存在差异。因此，为了能复现原始代码的精度，需要保证使用的数据完全相同，包括数据集的版本、使用的数据预处理方法和流程、使用的数据增强方式等。
-9. **网络初始化对齐：**对于不同的深度学习框架，网络初始化在大多情况下，即使值的分布完全一致，也无法保证值完全一致，这里也是模型迁移不确定性比较大的地方。CNN 对于模型初始化相对来说没有那么敏感，在迭代轮数与数据集足够的情况下，最终精度指标基本接近。而 transformer 系列模型、超分模型、领域自适应算法对于初始化比较敏感，需要对初始化进行重点检查。如果十分怀疑初始化导致的问题，建议将参考的初始化权重转成飞桨模型权重，加载该初始化模型训练，检查收敛精度。
+8. **训练集数据读取对齐**：相同的神经网络使用不同的数据训练和测试得到的结果往往会存在差异。因此，为了能复现原始代码的精度，需要保证使用的数据完全相同，包括数据集的版本、使用的数据预处理方法和流程、使用的数据增强方式等。
+9. **网络初始化对齐**：对于不同的深度学习框架，网络初始化在大多情况下，即使值的分布完全一致，也无法保证值完全一致，这里也是模型迁移不确定性比较大的地方。CNN 对于模型初始化相对来说没有那么敏感，在迭代轮数与数据集足够的情况下，最终精度指标基本接近。而 transformer 系列模型、超分模型、领域自适应算法对于初始化比较敏感，需要对初始化进行重点检查。如果十分怀疑初始化导致的问题，建议将参考的初始化权重转成飞桨模型权重，加载该初始化模型训练，检查收敛精度。
 10. **训练精度对齐**：模型训练的最终结果是为了得到一个精度达标的模型。不同的框架版本、是否为分布式训练等可能会对训练精度有影响，在迁移前需要分析清楚对标的框架、硬件等信息。对比迁移前后模型的训练精度，若二者的差值在可以接受的误差范围内，则精度对齐完成。同时，如果在相同的硬件条件下，迁移前后的模型训练速度应接近。若二者差异非常大，则需要排查原因。
-11. **模型预测验证：**模型训练完成之后，需要使用测试集对该模型基于训练引擎进行预测，确认预测结果与实际一致。
+11. **模型预测验证**：模型训练完成之后，需要使用测试集对该模型基于训练引擎进行预测，确认预测结果与实际一致。
 
 其中，2~5 是迁移的重点，其他模块比如：反向梯度、优化器、学习率生成等，要么本身结构单一，要么依赖已开发完成的网络结果才能和对标脚本形成对比。而且这些模块的脚本开发难度更小一些。
 
@@ -86,7 +86,7 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 
 **【FAQ】**
 
-1. 如何安装飞桨的 develop 版本？
+如何安装飞桨的 develop 版本？
 
 在飞桨修复了框架的问题或者新增了 API 和功能之后，若需要立即使用，可以采用以下方式安装最新的 develop 版本：
 
@@ -434,12 +434,12 @@ https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration/
 
 1. 准备输入：fake data
 
-- - 使用参考代码的 dataloader，生成一个 batch 的数据，保存下来，在前向对齐时，直接从文件中读入。
+  - 使用参考代码的 dataloader，生成一个 batch 的数据，保存下来，在前向对齐时，直接从文件中读入。
   - 固定随机数种子，生成 numpy 随机矩阵，转化 tensor
 
 1. 保存输出：
 
-- - PaddlePaddle/PyTorch：dict，key 为 tensor 的 name（自定义），value 为 tensor 的值。最后将 dict 保存到文件中。建议命名为`forward_paddle.npy`和`forward_torch.npy`。
+  - PaddlePaddle/PyTorch：dict，key 为 tensor 的 name（自定义），value 为 tensor 的值。最后将 dict 保存到文件中。建议命名为`forward_paddle.npy`和`forward_torch.npy`。
 
 1. 自测：使用 reprod_log 加载 2 个文件，使用 report 功能，记录结果到日志文件中，建议命名为`forward_diff_log.txt`，观察 diff，二者 diff 小于特定的阈值即可。
 2. 提交内容：新建文件夹，将`forward_paddle.npy`、`forward_torch.npy`与`forward_diff_log.txt`文件放在文件夹中，后续的输出结果和自查日志也放在该文件夹中，一并打包上传即可。
@@ -461,7 +461,7 @@ https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration/
 
 输出 diff 可以使用`np.mean(np.abs(o1 - o2))`进行计算，一般小于 1e-6 的话，可以认为前向没有问题。如果最终输出结果 diff 较大，可以用以下两种方法排查：
 
-- - 可以按照模块排查问题，比如依次获取 backbone、neck、head 输出等，看下问题具体出现在哪个子模块，再进到子模块详细排查。
+  - 可以按照模块排查问题，比如依次获取 backbone、neck、head 输出等，看下问题具体出现在哪个子模块，再进到子模块详细排查。
   - 如果最终输出结果差值较大，使用二分的方法进行排查，比如说 BERT，有 BertEmbeddings, 12 层的 Transformer 层 BertLayer（其中又有 BertAttention, BertIntermediate）以及最后的 BertPooler 层，那么完成模型组网和权重转换之后，如果模型输出没有对齐，可以尝试输出中间某一层输出的 tensor 进行对比，如果相同，则向后进行排查；如果不同，则继续向前进行排查，以此类推，直到找到导致没有对齐的操作。
 
 1. 飞桨已经有了对于经典模型结构的实现，我还要重新实现一遍么？
@@ -474,7 +474,7 @@ https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration/
 
 对于一个数据集，一般有以下一些信息需要重点关注：
 
-- - 数据集名称、下载地址
+  - 数据集名称、下载地址
   - 训练集/验证集/测试集
   - 数据集通用的预处理方法
 
@@ -515,7 +515,7 @@ Q：还有其他导致不能对齐的因素么？
 
 A：可以能存在以下因素：
 
-- - 预处理方法顺序不一致：预处理的方法相同，顺序不同，比如先 padding 再做归一化与先做归一化再 padding，得到的结果可能是不同的。
+  - 预处理方法顺序不一致：预处理的方法相同，顺序不同，比如先 padding 再做归一化与先做归一化再 padding，得到的结果可能是不同的。
   - 没有关闭 shuffle：在评估指标对齐时，需要固定 batch size，关闭 Dataloader 的 shuffle 操作。
 
 ## 四、评估指标对齐
@@ -541,13 +541,13 @@ A：可以能存在以下因素：
 1. 输入：dataloader, model
 2. 输出：
 
-- - 飞桨/PyTorch：dict，key 为 tensor 的 name（自定义），value 为具体评估指标的值。最后将 dict 使用 reprod_log 保存到各自的文件中，建议命名为`metric_paddle.npy`和`metric_pytorch.npy`。
+ - 飞桨/PyTorch：dict，key 为 tensor 的 name（自定义），value 为具体评估指标的值。最后将 dict 使用 reprod_log 保存到各自的文件中，建议命名为`metric_paddle.npy`和`metric_pytorch.npy`。
   - 自测：使用 reprod_log 加载 2 个文件，使用 report 功能，记录结果到日志文件中，建议命名为`metric_diff_log.txt`，观察 diff，二者 diff 小于特定的阈值即可。
 
 1. 提交内容：将`metric_paddle.npy`、`metric_pytorch.npy`与`metric_diff_log.txt`文件备份到`result`和`result/log`新建的文件夹中，后续的输出结果和自查日志也对应放在文件夹中，一并打包上传即可。
 2. 注意：
 
-- - 这部分需要使用真实数据
+  - 这部分需要使用真实数据
   - 需要检查 PyTorch 项目是否只是抽取了验证集/测试集中的部分文件。如果是的话，则需要保证飞桨和参考代码中 dataset 使用的数据集一致。
 
 **【FAQ】**
@@ -636,7 +636,7 @@ A：`paddle.nn.CrossEntropyLoss` 默认是在最后一维(axis=-1)计算损失�
 
 1. 有没有什么其他影响优化不对齐的原因？
 
-- - 有些模型训练时，会使用梯度累加策略，即累加到一定 step 数量之后才进行参数更新，这时在实现上需要注意对齐。
+  - 有些模型训练时，会使用梯度累加策略，即累加到一定 step 数量之后才进行参数更新，这时在实现上需要注意对齐。
   - 在文本分类领域，大多数 Transformer 模型都采用了 AdamW 优化器，并且会设置 weigh decay，同时部分参数设置为 no weight decay，例如位置编码的参数通常设置为 no weight decay，no weight decay 参数设置不正确，最终会有明显的精度损失，需要特别注意。一般可以通过分析模型权重来发现该问题，分别计算官方模型和复现模型每层参数权重的平均值、方差，对每一层依次对比，有显著差异的层可能存在问题，因为在 weight decay 的作用下，参数权重数值会相对较小，而未正确设置 no weight decay，则会造成该层参数权重数值异常偏小设置 no weight decay 可以参照[这里](https://github.com/PaddlePaddle/PaddleClas/blob/release%2F2.3/ppcls/arch/backbone/model_zoo/resnest.py#L72)。
   - 在 OCR 识别等任务中，`Adadelta`优化器常常被使用，该优化器与 PyTorch 实现目前稍有不同，但是不影响模型训练精度对齐。在做前反向对齐时，可以将该优化器替换为 Adam 等优化器（飞桨与参考代码均需要替换）；对齐完成之后，再使用`Adadelta`优化器进行完整的训练精度对齐。
 
@@ -646,7 +646,7 @@ A：`paddle.nn.CrossEntropyLoss` 默认是在最后一维(axis=-1)计算损失�
 
 1. 飞桨的学习率策略对不齐怎么办？
 
-- - 飞桨中参数的学习率受到优化器学习率和`ParamAttr`中设置的学习率影响，在对齐时也需要保证这个部分的行为一致。
+  - 飞桨中参数的学习率受到优化器学习率和`ParamAttr`中设置的学习率影响，在对齐时也需要保证这个部分的行为一致。
   - 有些网络的学习率策略比较细致，比如带 warmup 的学习率策略，这里需要保证起始学习率等参数都完全一致。
 
 ## 七、反向梯度对齐
@@ -672,12 +672,12 @@ A：`paddle.nn.CrossEntropyLoss` 默认是在最后一维(axis=-1)计算损失�
 1. 输入：fake data & label
 2. 输出：
 
-- - 飞桨/PyTorch：dict，key 为 tensor 的 name（自定义），value 为具体 loss 的值。最后将 dict 使用 reprod_log 保存到各自的文件中，建议命名为`losses_paddle.npy`和`losses_pytorch.npy`。
+  - 飞桨/PyTorch：dict，key 为 tensor 的 name（自定义），value 为具体 loss 的值。最后将 dict 使用 reprod_log 保存到各自的文件中，建议命名为`losses_paddle.npy`和`losses_pytorch.npy`。
 
 1. 自测：使用 reprod_log 加载 2 个文件，使用 report 功能，记录结果到日志文件中，建议命名为`losses_diff_log.txt`，观察 diff，二者 diff 小于特定的阈值即可。
 2. 注意：
 
-- - loss 需要保存至少 2 轮以上。
+  - loss 需要保存至少 2 轮以上。
   - 在迭代的过程中，需要保证模型的 batch size 等超参数完全相同
   - 在迭代的过程中，需要设置`model.eval()`，使用固定的假数据，同时加载相同权重的预训练模型。
 
@@ -685,7 +685,7 @@ A：`paddle.nn.CrossEntropyLoss` 默认是在最后一维(axis=-1)计算损失�
 
 1. 怎么打印反向梯度？
 
-- - 飞桨打印反向和参数更新，可以参考[代码实例](https://github.com/jerrywgz/PaddleDetection/blob/63783c25ca12c8a7e1d4d5051d0888b64588e43c/ppdet/modeling/backbones/resnet.py#L598)。
+ - 飞桨打印反向和参数更新，可以参考[代码实例](https://github.com/jerrywgz/PaddleDetection/blob/63783c25ca12c8a7e1d4d5051d0888b64588e43c/ppdet/modeling/backbones/resnet.py#L598)。
   - PyTorch 打印反向和参数更新，可以参考[代码实例](https://github.com/jerrywgz/mmdetection/blob/ca9b8ef3e3770c4ad268a2fad6c55eb5d066e1b4/mmdet/models/backbones/resnet.py#L655)。
 
 1. 反向没有对齐怎么办？
@@ -802,7 +802,7 @@ random.seed(config.SEED)
 
 1. 数据读取无法对齐怎么办？
 
-- - 如果是全量数据使用，对结果不会有影响，如果是按照比例选取子集进行训练，则建议重新根据参考代码实现数据读取部分，保证子集完全一致。
+  - 如果是全量数据使用，对结果不会有影响，如果是按照比例选取子集进行训练，则建议重新根据参考代码实现数据读取部分，保证子集完全一致。
   - 如果数据处理过程中涉及到随机数生成，建议固定 seed (`np.random.seed(0)`, `random.seed(0)`)，查看迁移代码和参考代码处理后的数据是否有 diff。
   - 对文本进行 tokenizer 处理时，需要确定文本的截断策略，padding 策略。
 
@@ -873,6 +873,7 @@ if isinstance(m, nn.Layer):
   - 基于参考代码随机生成一份预训练模型，转化为 PaddlePaddle 的模型，并使用 PaddlePaddle 加载训练，对比二者的收敛曲线与最终结果，排查初始化影响。
   - 使用参考代码的 Dataloader 生成的数据，进行模型训练，排查 train dataloader 的影响。
 
+
 **【实战】**
 
 本部分可以参考文档：[训练对齐操作文档](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/examples/torch_migration/pipeline/Step5/README.md)。
@@ -884,21 +885,21 @@ if isinstance(m, nn.Layer):
 1. 输入：train/eval dataloader, model
 2. 输出：
 
-- - PaddlePaddle：dict，key 为保存值的 name（自定义），value 为具体评估指标的值。最后将 dict 使用 reprod_log 保存到文件中，建议命名为`train_align_paddle.npy`。
+  - PaddlePaddle：dict，key 为保存值的 name（自定义），value 为具体评估指标的值。最后将 dict 使用 reprod_log 保存到文件中，建议命名为`train_align_paddle.npy`。
   - benchmark：dict，key 为保存值的 name（自定义），value 为模型迁移的评估指标要求的值。最后将 dict 使用 reprod_log 保存到文件中，建议命名为`train_align_benchmark.npy`。
 
-1. 自测：使用 reprod_log 加载 2 个文件，使用 report 功能，记录结果到日志文件中，建议命名为`train_align_diff_log.txt`，观察 diff，二者 diff 小于特定的阈值即可。
+自测：使用 reprod_log 加载 2 个文件，使用 report 功能，记录结果到日志文件中，建议命名为`train_align_diff_log.txt`，观察 diff，二者 diff 小于特定的阈值即可。
 
 **【FAQ】**
 
 1. 训练过程怎么更好地对齐呢？
 
-- - 有条件的话，迁移工作之前最好先基于 PyTorch 代码完成训练，保证与 PyTorch 的代码训练精度符合预期，并且将训练策略和训练过程中的关键指标记录保存下来，比如每个 epoch 的学习率、Train Loss、Eval Loss、Eval Acc 等，在迁移网络的训练过程中，将关键指标保存下来，这样可以将 Paddle 与 PyTorch 训练中关键指标的变化曲线绘制出来，能够很方便地进行对比；
+  - 有条件的话，迁移工作之前最好先基于 PyTorch 代码完成训练，保证与 PyTorch 的代码训练精度符合预期，并且将训练策略和训练过程中的关键指标记录保存下来，比如每个 epoch 的学习率、Train Loss、Eval Loss、Eval Acc 等，在迁移网络的训练过程中，将关键指标保存下来，这样可以将 Paddle 与 PyTorch 训练中关键指标的变化曲线绘制出来，能够很方便地进行对比；
   - 如果训练较大的数据集，1 次完整训练的成本比较高，此时可以隔一段时间查看一下，如果精度差异比较大，建议先停掉实验，排查原因。
 
 1. 如果训练过程中出现不收敛的情况，怎么办？
 
-- - 简化网络和数据，实验是否收敛；
+  - 简化网络和数据，实验是否收敛；
   - 如果是基于原有实现进行改动，可以尝试控制变量法，每次做一个改动，逐个排查；
   - 检查学习率是否过大、优化器设置是否合理，排查下 weight decay 是否设置正确；
   - 保存不同 step 之间的模型参数，观察模型参数是否更新。
@@ -910,7 +911,7 @@ if isinstance(m, nn.Layer):
    4. 该问题也可能是某个 API 的数值越界导致的，可以测试较小的输入是否还会出现 nan。
 2. 其他细分场景下有什么导致训练不对齐的原因？
 
-- - 小数据上指标波动可能比较大，时间允许的话，可以跑多次实验，取平均值。
+  - 小数据上指标波动可能比较大，时间允许的话，可以跑多次实验，取平均值。
   - Transformer 系列模型，在模型量级比较小的情况下，使用更大的 batch size 以及对应的学习率进行训练往往会获得更高的精度，在迁移时，建议保证 batch size 和学习率完全一致，否则即使精度对齐了，也可能会隐藏其他没有对齐的风险项。
   - 目标检测、图像分割等任务中，训练通常需要加载 backbone 的权重作为预训练模型，注意在训练对齐时，需要加载转换过来的 backbone 权重。
   - 生成任务中，训练时经常需要固定一部分网络参数。对于一个参数`param`，可以通过`param.trainable = False`来固定。

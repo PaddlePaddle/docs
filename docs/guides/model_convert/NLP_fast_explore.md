@@ -291,7 +291,7 @@ PyTorch 模块通常继承`torch.nn.Module`，飞桨模块通常继承`paddle.nn
 </p>
 
 
-       SelfAttention 层的 K,Q,V 矩阵用于计算单词之间的相关性分数，他们由 Linear 层组成。
+- SelfAttention 层的 K,Q,V 矩阵用于计算单词之间的相关性分数，他们由 Linear 层组成。
 
 
 <p align="center">
@@ -323,9 +323,9 @@ PyTorch 模块通常继承`torch.nn.Module`，飞桨模块通常继承`paddle.nn
 3. 对于 [Linear](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Linear_cn.html#linear)模块，需要注意 Paddle `bias`默认为 True
 4. 对于[LayerNorm](https://github.com/PaddlePaddle/Paddle/blob/develop/python/paddle/nn/layer/norm.py#:~:text=class20%LayerNormLayer))模块，要注意 Paddle 和 PyTorch 对于参数 epsilon 默认值不同
 5. 对于[BertForSequenceClassification](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/paddlenlp/transformers/bert/modeling.py#:~:text=class20%BertForSequenceClassification)，需要将继承的基类由 `torch.nn.Module`改成`paddle.nn.Layer`，由于飞桨的 `nn.Hardswish` 和 `nn.Dropout`不提供 `inplace`参数，因此需要将 PyTorch 代码中的 `inplace=True`参数删去。
-6. 权重初始化。
+6. 权重初始化
 
-飞桨的权重初始化定义方式与 PyTorch 存在区别。
+飞桨的权重初始化定义方式与 PyTorch 存在区别
 
 PyTorch 初始化包含一些其他配置
 
@@ -423,7 +423,7 @@ torch.save(hf_model.state_dict(), PATH)
 
 **paddle_model_path** 则定义了转换后的 `state dict` 和模型文件路径；代码中 **keys_dict** 定义了两者 keys 的映射关系（可以通过上面的表格对比得到）。
 
-下一步就是最关键的 *paddle_state_dict* 的构建，我们对 *torch_state_dict* 里的每一个 key 都进行映射，得到对应的 *paddle_state_dict* 的 key。获取 *paddle_state_dict* 的 key 之后我们需要对 *torch_state_dict* 的 value 进行转换，如果 key 对应的结构是 `nn.Linear` 模块的话，我们还需要进行 value 的 transpose 操作。
+下一步就是最关键的 `paddle_state_dict` 的构建，我们对 `torch_state_dict` 里的每一个 key 都进行映射，得到对应的 `paddle_state_dict` 的 key。获取 `paddle_state_dict` 的 key 之后我们需要对 `torch_state_dict` 的 value 进行转换，如果 key 对应的结构是 `nn.Linear` 模块的话，我们还需要进行 value 的 transpose 操作。
 
 最后我们保存得到的 *paddle_state_dict* 就能得到对应的 Paddle 模型。至此我们已经完成了模型的转换工作，得到了 Paddle 框架下的模型`"model_state.pdparams"` 。
 
@@ -473,7 +473,9 @@ def convert_pytorch_checkpoint_to_paddle(
 
 使用脚本：
 
-https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration/pipeline/Step1，运行如下命令，验证 BERT 模型前向对齐效果。
+https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration/pipeline/Step1
+
+运行如下命令，验证 BERT 模型前向对齐效果。
 
 ```bash
 # 进入文件夹并生成 torch 的 bert 模型权重
@@ -498,7 +500,7 @@ python check_step1.py
 
 1. 准备输入：fake data
 
-- - 使用参考代码的 dataloader，生成一个 batch 的数据，保存下来，在前向对齐时，直接从文件中读入。
+ - 使用参考代码的 dataloader，生成一个 batch 的数据，保存下来，在前向对齐时，直接从文件中读入。
   - 固定随机数种子，生成 numpy 随机矩阵，转化 tensor
 
 可以参考 2.2“准备数据”章节生成的伪数据 (fake_data.npy 和 fake_label.npy)
@@ -513,9 +515,7 @@ def gen_fake_data():
 
 2. 保存输出：
 
-PaddlePaddle/PyTorch：dict，key 为 tensor 的 name（自定义），value 为 tensor 的值。最后将 dict 保存到文件中。
-
-将准备好的数据送入 Pytorch 模型获取输出。
+- PaddlePaddle/PyTorch：dict，key 为 tensor 的 name（自定义），value 为 tensor 的值。最后将 dict 保存到文件中。将准备好的数据送入 Pytorch 模型获取输出。
 
 ```bash
 import sys
@@ -1089,7 +1089,7 @@ if __name__ == "__main__":
 
 **【转换前】**
 
-PyTorch 实现的损失函数[代码](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/examples/torch_migration/pipeline/Step3/torch_loss.py#:~:text=criterion %3D nn.CrossEntropyLoss())：
+PyTorch 实现的损失函数[代码](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/examples/torch_migration/pipeline/Step3/torch_loss.py#:~:text=criterion%20%3D%20nn.CrossEntropyLoss)：
 
 ```python
 loss = torch.nn.CrossEntropyLoss(
@@ -1101,7 +1101,7 @@ loss = torch.nn.CrossEntropyLoss(
 
 **【转换后】**
 
-转换后的飞桨[实现](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/examples/torch_migration/pipeline/Step3/paddle_loss.py#:~:text=criterion %3D nn.CrossEntropyLoss())：
+转换后的飞桨[实现](https://github.com/PaddlePaddle/PaddleNLP/blob/develop/examples/torch_migration/pipeline/Step3/paddle_loss.py#:~:text=criterion%20%3D%20nn.CrossEntropyLoss)：
 
 ```python
 loss = paddle.nn.CrossEntropyLoss(
