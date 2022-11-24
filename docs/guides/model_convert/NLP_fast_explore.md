@@ -182,7 +182,7 @@ PaddlePaddle is installed successfully! Let's start deep learning with PaddlePad
 
 
 
-1. 安装 Pytorch
+2. 安装 Pytorch
 
 对于 PyTorch 的安装，请参阅 [PyTorch 官网](https://pytorch.org/get-started/locally/)，选择操作系统和 CUDA 版本，使用相应的命令安装。
 
@@ -198,7 +198,7 @@ print(torch.Tensor([1.0]).cuda())
 
 
 
-\3. 安装差异核验工具 reprod_log
+3. 安装差异核验工具 reprod_log
 
 在对齐验证的流程中，依靠 差异核验工具 reprod_log 查看飞桨和 PyTorch 同样输入下的输出是否相同，这样的查看方式具有标准统一，比较过程方便等优势。
 
@@ -215,7 +215,7 @@ pip3 install reprod_log --force-reinstall
 ### 2.2 准备数据
 
 - 了解该模型输入输出格式：Bert 句子分类任务为例，模型输入为句子组，也就是维度为`[batch_size, sequence_length]`的 tensor，而其中具体的值单词需要通过 tokenizer 转换为数字 id， 类型为 int64，label 为`[batch_size, ]`的 label，类型为`int64`。
-- 准备伪输入数据（fake input data）以及伪标签（fake label）：通过运行生成伪数据的参考代码：https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration/pipeline/fake_data/gen_fake_data.py，生成和模型输入 shape、type 等保持一致的伪数据，并保存在本地，用于后续模型前反向对齐时同时作为两个模型的输入。这样的方式能够使保证模型对齐不会受到输入数据的影响，有助于将模型结构对齐和数据对齐解耦，更为方便地排查问题。伪数据可以通过如下代码生成。
+- 准备伪输入数据（fake input data）以及伪标签（fake label）：通过运行生成伪数据的参考代码：https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/torch_migration/pipeline/fake_data/gen_fake_data.py ，生成和模型输入 shape、type 等保持一致的伪数据，并保存在本地，用于后续模型前反向对齐时同时作为两个模型的输入。这样的方式能够使保证模型对齐不会受到输入数据的影响，有助于将模型结构对齐和数据对齐解耦，更为方便地排查问题。伪数据可以通过如下代码生成。
 
 ```plain
 def gen_fake_data():
