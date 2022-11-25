@@ -71,7 +71,7 @@ which python3
 
 #### 1.2.2 检查 Python 版本
 
-使用以下命令确认版本(Python 应对应 3.6/3.7/3.8/3.9)
+使用以下命令确认版本
 
 ```
 python3 --version
