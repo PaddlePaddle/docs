@@ -9,37 +9,10 @@
 
 #### 1.1.1 安装环境
 
-首先根据具体的 Python 版本创建 Anaconda 虚拟环境，PaddlePaddle 的 Anaconda 安装支持以下 Python 安装环境。
-
-
-如果您想使用的 python 版本为 3.6:
+首先根据具体的 Python 版本创建 Anaconda 虚拟环境，PaddlePaddle 的 Anaconda 安装支持 3.6 - 3.10 版本的 Python 安装环境。
 
 ```
-conda create -n paddle_env python=3.6
-```
-
-如果您想使用的 python 版本为 3.7:
-
-```
-conda create -n paddle_env python=3.7
-```
-
-如果您想使用的 python 版本为 3.8:
-
-```
-conda create -n paddle_env python=3.8
-```
-
-如果您想使用的 python 版本为 3.9:
-
-```
-conda create -n paddle_env python=3.9
-```
-
-如果您想使用的 python 版本为 3.10:
-
-```
-conda create -n paddle_env python=3.10
+conda create -n paddle_env python=YOUR_PY_VER
 ```
 
 
@@ -71,7 +44,7 @@ which python3
 
 #### 1.2.2 检查 Python 版本
 
-使用以下命令确认版本(Python 应对应 3.6/3.7/3.8/3.9)
+使用以下命令确认版本
 
 ```
 python3 --version

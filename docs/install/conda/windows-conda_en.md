@@ -10,37 +10,10 @@
 
 #### 1.1.1 Create the Anaconda Virtual Environment
 
-Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports the following Python installation environments.
-
-
-If you want to use python version 3.6:
+Create virtual environment First create the Anaconda virtual environment according to the specific Python version. The Anaconda installation of PaddlePaddle supports Python version of 3.6 - 3.10.
 
 ```
-conda create -n paddle_env python=3.6
-```
-
-If you want to use python version 3.7:
-
-```
-conda create -n paddle_env python=3.7
-```
-
-If you want to use python version 3.8:
-
-```
-conda create -n paddle_env python=3.8
-```
-
-If you want to use python version 3.9:
-
-```
-conda create -n paddle_env python=3.9
-```
-
-If you want to use python version 3.10:
-
-```
-conda create -n paddle_env python=3.10
+conda create -n paddle_env python=YOUR_PY_VER
 ```
 
 
@@ -71,7 +44,7 @@ where python
 
 #### 1.2.2 Check the version of Python
 
-Use the following command to confirm it's version is 3.6/3.7/3.8/3.9
+Use the following command to confirm it's version
 
 ```
 python --version
