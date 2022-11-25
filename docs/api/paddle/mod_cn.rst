@@ -10,7 +10,7 @@ mod
 .. math::
         out = x \% y
 
-**注意**:
+.. note::
         ``paddle.mod`` 支持广播。关于广播规则，请参见 `Tensor 介绍`_ .
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 

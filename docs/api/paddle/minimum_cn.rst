@@ -16,7 +16,6 @@ minimum
 .. note::
    ``paddle.minimum`` 遵守 broadcasting，如你想了解更多，请参见 `Tensor 介绍`_ .
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
-    。
 
 参数
 :::::::::
