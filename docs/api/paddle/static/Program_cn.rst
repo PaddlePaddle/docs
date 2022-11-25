@@ -122,16 +122,14 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
 
 .. code-block:: python
 
-    import six
-
     def print_prog(prog):
-        for name, value in sorted(six.iteritems(prog.block(0).vars)):
+        for name, value in sorted(prog.block(0).vars.items()):
             print(value)
         for op in prog.block(0).ops:
             print("op type is {}".format(op.type))
             print("op inputs are {}".format(op.input_arg_names))
             print("op outputs are {}".format(op.output_arg_names))
-            for key, value in sorted(six.iteritems(op.all_attrs())):
+            for key, value in sorted(op.all_attrs().items()):
                 if key not in ['op_callstack', 'op_role_var']:
                     print(" [ attrs: {}:   {} ]".format(key, value))
 
@@ -139,7 +137,6 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
 
 .. code-block:: python
 
-    import six
     import paddle
     import paddle.static as static
     import paddle.utils as utils
@@ -148,13 +145,13 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
     paddle.enable_static()
 
     def print_prog(prog):
-        for name, value in sorted(six.iteritems(prog.block(0).vars)):
+        for name, value in sorted(prog.block(0).vars.items()):
             print(value)
         for op in prog.block(0).ops:
             print("op type is {}".format(op.type))
             print("op inputs are {}".format(op.input_arg_names))
             print("op outputs are {}".format(op.output_arg_names))
-            for key, value in sorted(six.iteritems(op.all_attrs())):
+            for key, value in sorted(op.all_attrs().items()):
                 if key not in ['op_callstack', 'op_role_var']:
                     print(" [ attrs: {}:   {} ]".format(key, value))
 
@@ -192,7 +189,6 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
 
 .. code-block:: python
 
-    import six
     import paddle
     import paddle.static as static
     import paddle.utils as utils
@@ -201,13 +197,13 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
     paddle.enable_static()
 
     def print_prog(prog):
-        for name, value in sorted(six.iteritems(prog.block(0).vars)):
+        for name, value in sorted(prog.block(0).vars.items()):
             print(value)
         for op in prog.block(0).ops:
             print("op type is {}".format(op.type))
             print("op inputs are {}".format(op.input_arg_names))
             print("op outputs are {}".format(op.output_arg_names))
-            for key, value in sorted(six.iteritems(op.all_attrs())):
+            for key, value in sorted(op.all_attrs().items()):
                 if key not in ['op_callstack', 'op_role_var']:
                     print(" [ attrs: {}:   {} ]".format(key, value))
 
@@ -481,8 +477,8 @@ state_dict(mode='all', scope=None)
 
 **参数**
 
-    - mode (str，可选) - 获取何种持久性变量。目前支持以下选项：(1) 'opt'：获得优化器的持久性变量放在 dict 结构中；(2) 'param'：获得组网中的持久性变量放在 dict 结构中，不包含优化器中的持久性变量；(3) 'all'：获得组网和优化器中的持久性变量放在 dict 结构中；默认值为'all'。
-    - scope (Scope，可选) - 如果 scope 为 ``None``，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 ``state_dict``；否则从指定的 ``scope`` 获取 ``state_dict``。默认值为 ``None`` 。
+    - **mode** (str，可选) - 获取何种持久性变量。目前支持以下选项：(1) 'opt'：获得优化器的持久性变量放在 dict 结构中；(2) 'param'：获得组网中的持久性变量放在 dict 结构中，不包含优化器中的持久性变量；(3) 'all'：获得组网和优化器中的持久性变量放在 dict 结构中；默认值为'all'。
+    - **scope** (Scope，可选) - 如果 scope 为 ``None``，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 ``state_dict``；否则从指定的 ``scope`` 获取 ``state_dict``。默认值为 ``None`` 。
 
 **返回**
 
@@ -516,8 +512,8 @@ set_state_dict(state_dict, scope=None)
 
 **参数**
 
-    - state_dict (dict) - 包含持久性变量的字典。键值是持久性变量的名字，值为持久性变量。
-    - scope (Scope，可选) - 如果 scope 为 ``None``，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并将 ``state_dict`` 中久性变量设置到这个作用域中；否则将 ``state_dict`` 设置到指定的 ``scope`` 中。默认值为 ``None`` 。
+    - **state_dict** (dict) - 包含持久性变量的字典。键值是持久性变量的名字，值为持久性变量。
+    - **scope** (Scope，可选) - 如果 scope 为 ``None``，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并将 ``state_dict`` 中久性变量设置到这个作用域中；否则将 ``state_dict`` 设置到指定的 ``scope`` 中。默认值为 ``None`` 。
 
 **返回**
 

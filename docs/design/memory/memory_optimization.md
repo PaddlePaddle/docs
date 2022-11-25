@@ -145,7 +145,7 @@ write_to_array
 We can transfer all the operators and variables in ProgramDesc to build a control flow graph.
 
 ```python
-class ControlFlowGraph(object):
+class ControlFlowGraph:
     def __init__(self, Program):
         self._sucessors = defaultdict(set)
         self._presucessors = defaultdict(set)

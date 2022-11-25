@@ -7,7 +7,7 @@ UpsamplingNearest2D
 
 
 
-该 OP 用于调整一个 batch 中图片的大小。
+调整一个 batch 中图片的大小。
 
 输入为 4-D Tensor 时形状为(num_batches, channels, in_h, in_w)或者(num_batches, in_h, in_w, channels)，调整大小只适用于高度和宽度对应的维度。
 

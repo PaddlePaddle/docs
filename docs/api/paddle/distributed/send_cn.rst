@@ -4,20 +4,22 @@ send
 -------------------------------
 
 
-.. py:function:: paddle.distributed.send(tensor, dst=0, group=None, use_calc_stream=True)
+.. py:function:: paddle.distributed.send(tensor, dst=0, group=None, sync_op=True)
 
-发送 tensor 到指定接收者。
+发送一个 tensor 到指定进程。
 
 参数
 :::::::::
-    - tensor (Tensor) - 需要发送的 Tensor。数据类型为：float16、float32、float64、int32、int64。
-    - dst (int) - 接收者的标识符。
-    - group (Group，可选) - new_group 返回的 Group 实例，或者设置为 None 表示默认地全局组。默认值：None。
-    - use_calc_stream (bool，可选) - 标识使用计算流还是通信流。默认值：True。
+    - **tensor** (Tensor) - 待发送的 Tensor。支持的数据类型包括：float16、float32、float64、int32、int64、int8、uint8、bool、bfloat16。
+    - **dst** (int，可选) - 目标进程的 rank，传入的 tensor 将发送到该进程。默认为 0，即发送到 rank=0 的进程。
+    - **group** (Group，可选) - 执行该操作的进程组实例（通过 ``new_group`` 创建）。默认为 None，即使用全局默认进程组。
+    - **sync_op** (bool，可选) - 该操作是否为同步操作。默认为 True，即同步操作。
 
 返回
 :::::::::
-无
+动态图模式下，若为同步操作，无返回值；若为异步操作，返回 ``Task``。通过 ``Task``，可以查看异步操作的执行状态以及等待异步操作的结果。
+
+静态图模式下，无返回值。
 
 代码示例
 :::::::::

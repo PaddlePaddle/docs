@@ -36,7 +36,7 @@ If you have Docker 19.03 or later, a typical command to launch the container is:
 
     ::
 
-        docker run --gpus all -it --rm nvcr.io/nvidia/paddlepaddle:22.07-py3
+        docker run --gpus all --shm-size=1g --ulimit memlock=-1 -it --rm nvcr.io/nvidia/paddlepaddle:yy.mm-py3
 
 
 If you have Docker 19.02 or earlier, a typical command to launch the container is:
@@ -44,13 +44,13 @@ If you have Docker 19.02 or earlier, a typical command to launch the container i
 
     ::
 
-        nvidia-docker run -it --rm nvcr.io/nvidia/paddlepaddle:22.07-py3
+        nvidia-docker run --shm-size=1g --ulimit memlock=-1 -it --rm nvcr.io/nvidia/paddlepaddle:yy.mm-py3
 
 
 
 Where:
 
-* 22.07 is the container version.
+* yy.mm is the container version, e.g., the version published in Sept 2022 is 22.09.
 
 PaddlePaddle is run by importing it as a Python module:
 

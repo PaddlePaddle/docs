@@ -10,8 +10,8 @@ to_grayscale
 参数
 :::::::::
 
-    - img (PIL.Image|np.array) - 输入图像。
-    - num_output_channels (int，可选) - 输出图像的通道数，默认值为 1，单通道。
+    - **img** (PIL.Image|np.array) - 输入图像。
+    - **num_output_channels** (int，可选) - 输出图像的通道数，默认值为 1，单通道。
 
 返回
 :::::::::

@@ -5,10 +5,6 @@
 
     > 请[安装 nccl2](https://developer.nvidia.com/nccl/nccl-download)
 
-- 报错`Cannot uninstall 'six'.`
-
-    > 此问题可能与系统中已有 Python 有关，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip install paddlepaddle --ignore-installed six`（GPU）解决
-
 - CentOS6 下如何编译 python2.7 为共享库?
 
     > 使用以下指令：

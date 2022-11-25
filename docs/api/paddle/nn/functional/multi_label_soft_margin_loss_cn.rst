@@ -5,13 +5,13 @@ multi_label_soft_margin_loss
 
 .. py:function:: paddle.nn.functional.multi_label_soft_margin_loss(input, label, weight:Optional=None, reduction: str = 'mean', name:str=None)
 
-该 APIs 计算输入 `input` 和 `label` 间的 `margin-based loss` 损失。
+计算输入 `input` 和 `label` 间的 `margin-based loss` 损失。
 
 
 损失函数按照下列公式计算
 
 .. math::
-    \text{loss}(x, y) = \sum_{ij}\frac{\max(0, 1 - (x[y[j]] - x[i]))}{\text{x.size}(0)}
+    \text{loss}(x, y) = \sum_{ij}\frac{\max(0, 1 - (x[y[j]] - x[i]))}{\text{x.shape}(0)}
 
 如果添加权重则再乘以对应的权重值
 
@@ -40,4 +40,4 @@ multi_label_soft_margin_loss
 
 代码示例
 :::::::::
-COPY-FROM: Paddle.nn.functional.multi_label_soft_margin_loss
+COPY-FROM: paddle.nn.functional.multi_label_soft_margin_loss
