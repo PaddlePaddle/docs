@@ -3,7 +3,7 @@
 HueTransform
 -------------------------------
 
-.. py:class:: paddle.vision.transforms.HueTransform(value)
+.. py:class:: paddle.vision.transforms.HueTransform(value, keys=None)
 
 调整图像的色调。
 
