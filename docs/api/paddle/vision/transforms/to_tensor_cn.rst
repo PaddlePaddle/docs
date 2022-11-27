@@ -7,7 +7,7 @@ to_tensor
 
 将 ``PIL.Image`` 或 ``numpy.ndarray`` 转换成 ``paddle.Tensor``。
 
-更多细节请参考 ``ToTensor`` 。
+更多细节请参考 :ref:`cn_api_ToTensor` 。
 
 参数
 :::::::::
