@@ -512,19 +512,19 @@ Tensor stop_gradient: False
 1. 基于 0-n 的下标进行索引，如果下标为负数，则从尾部开始计算。
 2. 通过冒号 ``:`` 分隔切片参数，``start:stop:step`` 来进行切片操作，其中 start、stop、step 均可缺省。
 
-#### （1） 访问 Tensor
+####（1）访问 Tensor
 * 针对一维  Tensor，仅有单个维度上的索引或切片：
 ```python
 ndim_1_Tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
-print("Origin Tensor:", ndim_1_Tensor.numpy()) # 原始 1 维 Tensor
-print("First element:", ndim_1_Tensor[0].numpy()) # 取 Tensor 第一个元素的值
-print("Last element:", ndim_1_Tensor[-1].numpy()) # 取 Tensor 最后一个元素的值
-print("All element:", ndim_1_Tensor[:].numpy()) # 取 Tensor 所有元素的值
-print("Before 3:", ndim_1_Tensor[:3].numpy()) # 取 Tensor 前三个元素的值
-print("From 6 to the end:", ndim_1_Tensor[6:].numpy()) # 取 Tensor 第六个以后的值
-print("From 3 to 6:", ndim_1_Tensor[3:6].numpy()) # 取 Tensor 第三个至第六个之间的值
-print("Interval of 3:", ndim_1_Tensor[::3].numpy()) # 取 Tensor 从第一个开始，间距为3的下标的值
-print("Reverse:", ndim_1_Tensor[::-1].numpy()) # 取 Tensor 翻转后的值
+print("Origin Tensor:", ndim_1_Tensor.numpy())          # 原始 1 维 Tensor
+print("First element:", ndim_1_Tensor[0].numpy())       # 取 Tensor 第一个元素的值
+print("Last element:", ndim_1_Tensor[-1].numpy())       # 取 Tensor 最后一个元素的值
+print("All element:", ndim_1_Tensor[:].numpy())         # 取 Tensor 所有元素的值
+print("Before 3:", ndim_1_Tensor[:3].numpy())           # 取 Tensor 前三个元素的值
+print("From 6 to the end:", ndim_1_Tensor[6:].numpy())  # 取 Tensor 第六个以后的值
+print("From 3 to 6:", ndim_1_Tensor[3:6].numpy())       # 取 Tensor 第三个至第六个之间的值
+print("Interval of 3:", ndim_1_Tensor[::3].numpy())     # 取 Tensor 从第一个开始，间距为3的下标的值
+print("Reverse:", ndim_1_Tensor[::-1].numpy())          # 取 Tensor 翻转后的值
 ```
 ```text
 Origin Tensor: [0 1 2 3 4 5 6 7 8])
@@ -578,7 +578,7 @@ Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
        [4, 5, 6, 7])
 ```
 
-#### （2） 修改 Tensor
+####（2）修改 Tensor
 
 与访问 Tensor 类似，修改 Tensor 可以在单个或多个维度上通过索引或切片操作。同时，支持将多种类型的数据赋值给该 Tensor，当前支持的数据类型有：`int`，`float`，`numpy.ndarray`，`complex`，`Tensor`。
 > **注意：**
