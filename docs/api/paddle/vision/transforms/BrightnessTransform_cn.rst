@@ -3,7 +3,7 @@
 BrightnessTransform
 -------------------------------
 
-.. py:class:: paddle.vision.transforms.BrightnessTransform(value)
+.. py:class:: paddle.vision.transforms.BrightnessTransform(value, keys=None)
 
 调整图像的亮度。
 
