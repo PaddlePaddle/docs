@@ -194,11 +194,11 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
   - 自动触发。
   - 当 PR-CI-Windows-OPENBLAS 任务失败时，会取消当前任务（因 OPENBLAS 失败，当前任务成功也无法进行代码合并，需要先排查 OPENBLAS 失败原因）。
 
-### 昆仑 XPU 测试项
+### 昆仑芯 XPU 测试项
 
 #### PR-CI-Kunlun-R200
 
-- **【条目描述】** 检测 PR 中的修改能否在昆仑 XPU 芯片上编译与单测通过。
+- **【条目描述】** 检测 PR 中的修改能否在昆仑芯 XPU 上编译与单测通过。
 - **【执行脚本】** `paddle/scripts/paddle_build.sh check_xpu_coverage`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
 
