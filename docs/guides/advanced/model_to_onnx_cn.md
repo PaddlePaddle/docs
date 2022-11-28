@@ -85,7 +85,7 @@ paddle2onnx --model_dir mobilenetv3 --model_filename inference.pdmodel --params_
 
 接下来，我们验证一下导出的 ONNX 模型的正确性。
 
-#### 4.3.1 检查 ONNX 模型的有效性
+#### (1) 检查 ONNX 模型的有效性
 
 可以使用如下脚本验证导出的 ONNX 模型是否合理，包括检查模型的版本、图的结构、节点及其输入和输出。如下脚本的输出为 None 则表示模型转换正确。
 
@@ -100,7 +100,7 @@ check = onnx.checker.check_model(onnx_model)
 print('check: ', check)
 ```
 
-#### 4.3.2 验证模型是否匹配
+#### (2) 验证模型是否匹配
 
 接下来我们验证原始的飞桨模型和导出的 ONNX 模型是否有相同的计算结果。
 
