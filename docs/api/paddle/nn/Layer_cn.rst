@@ -384,7 +384,9 @@ set_state_dict(state_dict, use_structured_name=True)
     - **use_structured_name** (bool，可选) - 如果设置为 True，将使用 Layer 的结构性变量名作为 dict 的 key，否则将使用 Parameter 或者 Buffer 的变量名作为 key。默认值：True。
 
 **返回**
-无
+    - **missing_keys** (list) - 没有匹配到的参数名列表
+    - **unexpected_keys** (list) - state_dict 传入的无效的参数名列表
+
 
 **代码示例**
 
