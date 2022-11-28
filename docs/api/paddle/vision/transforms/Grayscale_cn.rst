@@ -17,9 +17,7 @@ Grayscale
 :::::::::
 
     - img (PIL.Image|np.ndarray|Paddle.Tensor) - 输入的图像数据，数据格式为'HWC'。
-    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回输入图像的灰度版本。
-        如果 output_channels == 1，返回一个单通道图像。
-        如果 output_channels == 3，返回一个 3 通道图像，其中 RGB 三个通道值一样。
+    - output (PIL.Image|np.ndarray|Paddle.Tensor) - 返回输入图像的灰度版本。如果 output_channels == 1，返回一个单通道图像。如果 output_channels == 3，返回一个 3 通道图像，其中 RGB 三个通道值一样。
 
 返回
 :::::::::
