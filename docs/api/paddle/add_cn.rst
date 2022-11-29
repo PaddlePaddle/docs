@@ -11,6 +11,7 @@ add
 
 .. note::
 输入 ``x`` 与输入 ``y`` 必须和广播为相同形状，关于广播规则，请参见 `Tensor 介绍`_ .
+
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 等式为：
