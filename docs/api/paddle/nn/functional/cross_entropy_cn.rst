@@ -3,7 +3,7 @@
 cross_entropy
 -------------------------------
 
-.. py:function:: paddle.nn.functional.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_label=False, axis=-1, name=None)
+.. py:class:: paddle.nn.functional.cross_entropy(input, label, weight=None, ignore_index=-100, reduction="mean", soft_label=False, axis=-1, name=None)
 
 实现了 softmax 交叉熵损失函数。该函数会将 softmax 操作、交叉熵损失函数的计算过程进行合并，从而提供了数值上更稳定的计算。
 
@@ -13,7 +13,7 @@ cross_entropy
 
 该 OP 的计算包括以下两个步骤：
 
-- **一。softmax 交叉熵**
+- **一、softmax 交叉熵**
 
 1. 硬标签（每个样本仅可分到一个类别）
 
@@ -27,7 +27,7 @@ cross_entropy
       \\loss_j=-\sum_{i=0}^{C}\text{label}_i\left(\text{logits}_i-\log\left(\sum_{i=0}^{C}\exp(\text{logits}_i)\right)\right)
         , j = 1,...,N, N 为样本数，C 为类别数
 
-- **二。weight 及 reduction 处理**
+- **二、weight 及 reduction 处理**
 
 1. weight 情况
 
