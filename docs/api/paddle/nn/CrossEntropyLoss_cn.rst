@@ -3,7 +3,7 @@
 CrossEntropyLoss
 -------------------------------
 
-.. py:function:: paddle.nn.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean', soft_label=False, axis=-1, name=None)
+.. py:class:: paddle.nn.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean', soft_label=False, axis=-1, name=None)
 
 计算输入 input 和标签 label 间的交叉熵损失，它结合了 `LogSoftmax` 和 `NLLLoss` 的 OP 计算，可用于训练一个 `n` 类分类器。
 
