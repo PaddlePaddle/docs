@@ -13,6 +13,7 @@ lcm
 
     如果 x 和 y 的 shape 不一致，会对两个 shape 进行广播操作，得到一致的 shape（并作为输出结果的 shape），
     请参见 `Tensor 介绍`_ .
+
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 参数

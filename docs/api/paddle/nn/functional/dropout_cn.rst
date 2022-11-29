@@ -109,7 +109,8 @@ axis 参数的默认值为 None。当 ``axis=None`` 时，dropout 的功能为�
 
 .. note::
    关于广播(broadcasting)机制，如您想了解更多，请参见 `Tensor 介绍`_ .
-    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
+
+   .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 代码示例
 :::::::::

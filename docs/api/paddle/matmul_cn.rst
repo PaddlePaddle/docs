@@ -6,7 +6,8 @@ matmul
 .. py:function:: paddle.matmul(x, y, transpose_x=False, transpose_y=False, name=None)
 
 .. note::
-计算两个 Tensor 的乘积，遵循完整的广播规则，关于广播规则，请参见 `Tensor 介绍`_ .
+    计算两个 Tensor 的乘积，遵循完整的广播规则，关于广播规则，请参见 `Tensor 介绍`_ .
+
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 并且其行为与 ``numpy.matmul`` 一致。目前，输入张量的维数可以是任意数量，``matmul``  可以用于

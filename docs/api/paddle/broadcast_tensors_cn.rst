@@ -10,8 +10,9 @@ broadcast_tensors
 
 .. note::
     如想了解更多 Broadcasting 内容，请参见 `Tensor 介绍`_ .
+
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
-    
+
 参数
 :::::::::
     - inputs (list(Tensor)|tuple(Tensor)) - 一组输入 Tensor，数据类型为：bool、float32、float64、int32 或 int64。所有的输入 Tensor 均需要满足 rank <= 5。

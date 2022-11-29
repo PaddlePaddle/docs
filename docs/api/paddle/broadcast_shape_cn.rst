@@ -7,6 +7,7 @@ broadcast_shape
 
 .. note::
     该函数返回对 x_shape 大小的张量和 y_shape 大小的张量做 broadcast 操作后得到的 shape，如您想了解更多，请参见 `Tensor 介绍`_ .
+
     .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 参数
