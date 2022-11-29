@@ -34,8 +34,8 @@
     </tr>
         <tr>
         <td> Python（64 bit） </td>
-        <td> 3.6+.x </td>
-        <td> 依赖 libpython3.6+.so </td>
+        <td> 3.7+.x </td>
+        <td> 依赖 libpython3.7+.so </td>
         <td> 请访问<a href="https://www.python.org">Python 官网</a></td>
     </tr>
     <tr>

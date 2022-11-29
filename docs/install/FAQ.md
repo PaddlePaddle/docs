@@ -87,13 +87,11 @@
 
 - macOS 下安装 PaddlePaddle 后 import paddle.fluid 出现`Fatal Python error: PyThreadState_Get: no current thread running`错误
 
-      - For Python2.7.x （install by brew): 请使用`export LD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7`
-      - For Python2.7.x （install by Python.org): 请使用`export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7`
-      - For Python3.5.x （install by Python.org): 请使用`export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5/ && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5/`
+       > 请检查您的 Python 版本是否小于 3.7 ，如果是，请使用 Python 3.7 或以上版本。
 
 <a name="OPENBLAS"></a>
 
-- MACOS 下使用自定义的 openblas 详见 issue：
+- macOS 下使用自定义的 openblas 详见 issue：
 
       > [ISSUE 13217](https://github.com/PaddlePaddle/Paddle/issues/13721)
 
