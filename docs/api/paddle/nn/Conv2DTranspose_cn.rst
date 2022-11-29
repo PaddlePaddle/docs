@@ -44,7 +44,7 @@ Conv2DTranspose
   - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核的高和宽。如果为单个整数，表示卷积核的高和宽都等于该整数。
   - **stride** (int|tuple，可选) - 步长大小。如果 ``stride`` 为元组或列表，则必须包含两个整型数，分别表示垂直和水平滑动步长。否则，表示垂直和水平滑动步长均为 ``stride``。默认值：1。
   - **padding** (int|tuple，可选) - 填充大小。如果 ``padding`` 为元组或列表，则必须包含两个整型数，分别表示竖直和水平边界填充大小。否则，表示竖直和水平边界填充大小均为 ``padding``。如果它是一个字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下方形状 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。默认值：0。
-  - **output_padding** (int|list|tuple, optional)：输出形状上一侧额外添加的大小。默认值：0。
+  - **output_padding** (int|list|tuple，可选)：输出形状上一侧额外添加的大小。默认值：0。
   - **groups** (int，可选) - 二维卷积层的组数。根据 Alex Krizhevsky 的深度卷积神经网络（CNN）论文中的分组卷积：当 group=2，卷积核的前一半仅和输入特征图的前一半连接。卷积核的后一半仅和输入特征图的后一半连接。默认值：1。
   - **dilation** (int|tuple，可选) - 空洞大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核中的元素沿着高和宽的空洞。如果为单个整数，表示高和宽的空洞都等于该整数。默认值：1。
   - **weight_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
