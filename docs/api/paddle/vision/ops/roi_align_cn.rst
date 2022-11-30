@@ -5,13 +5,12 @@ roi_align
 
 .. py:function:: paddle.vision.ops.roi_align(x, boxes, boxes_num, output_size, spatial_scale=1.0, sampling_ratio=-1, aligned=True, name=None)
 
-RoI Align 是在指定输入的感兴趣区域上执行双线性插值以获得固定大小的特征图（例如 7*7），如 Mask R-CNN 论文中所述。
+实现 roi_align 层，感兴趣区域对齐算子（也称为 RoI 对齐）是对非均匀大小的输入执行双线性插值，以获得固定大小的特征图（例如 7*7），如 `Mask R-CNN <https://arxiv.org/abs/1703.06870>`_ 中所述。将每个区域分成大小相等的部分，其中包含 pooled_width 和 pooled_height。保留原始位置。在每个 ROI 仓中，通过双线性插值直接计算四个规则采样位置的值。输出四个位置的平均值。因此避免了错位问题。
 
-论文参考：`Mask R-CNN <https://arxiv.org/abs/1703.06870>`_ 。
 
 参数
 :::::::::
-    - **x** (Tensor) - 输入的特征图，形状为(N, C, H, W)。数据类型为 float32 或 float64。
+    - **x** (Tensor) - 输入的特征图，形状为(N, C, H, W)。N 是批数据大小，C 是特征图个数，H 是特征图高度，W 是特征图宽度。数据类型为 float32 或 float64。
     - **boxes** (Tensor) - 待执行池化的 RoIs(Regions of Interest)的框坐标。它应当是一个形状为(boxes_num, 4)的 2-D Tensor，以[[x1, y1, x2, y2], ...]的形式给出。其中(x1, y1)是左上角的坐标值，(x2, y2)是右下角的坐标值。
     - **boxes_num** (Tensor) - 该 batch 中每一张图所包含的框数量。数据类型为 int32。
     - **output_size** (int|Tuple(int, int)) - 池化后输出的尺寸(H, W)，数据类型为 int32。如果 output_size 是单个 int 类型整数，则 H 和 W 都与其相等。
