@@ -167,7 +167,7 @@ uname -m
 
 #### 2. 安装 Python 以及 pip：
 
-> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.7.x、python3.8、python3.9), pip 以及其他的依赖，这将会使您高效编译。
+> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.7.x、python3.8、python3.9、python3.10), pip 以及其他的依赖，这将会使您高效编译。
 
 使用 Python 官网安装
 

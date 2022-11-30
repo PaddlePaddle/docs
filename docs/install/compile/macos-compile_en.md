@@ -168,7 +168,7 @@ We used Python3.7 command as an example above, if the version of your Python is 
 
 #### 2. Install python and pip:
 
-> **Please do not use the Python initially given by macOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.7.x, python3.8, python3.9), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
+> **Please do not use the Python initially given by macOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.7.x, python3.8, python3.9, python3.10), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
 
 Install using Python official website
 
