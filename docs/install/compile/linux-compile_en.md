@@ -367,7 +367,7 @@ uname -m && cat /etc/*release
         ```
         find `dirname $(dirname $(which python3))` -name "libpython3.so"
         ```
-        If it is 3.6,3.7,3.8,3.9, change `python3` to `python3.6`,`python3.7`, `python3.8`, `python3.9`, then replace [python-lib-path] in the following steps with the file path found.
+        If it is 3.7,3.8,3.9, change `python3` to `python3.7`, `python3.8`, `python3.9`, then replace [python-lib-path] in the following steps with the file path found.
 
     2. Set PYTHON_LIBRARIES:
         ```
@@ -511,7 +511,7 @@ mkdir build && cd build
         ```
 
 
-Note: For the command involving Python 3, we use Python 3.7 as an example above, if the version of your Python is 3.6/3.8/3.9, please change Python3.7 in the commands to Python3.6/Python3.8/Python3.9
+Note: For the command involving Python 3, we use Python 3.7 as an example above, if the version of your Python is 3.8/3.9, please change Python3.7 in the commands to Python3.8/Python3.9
 
 
 

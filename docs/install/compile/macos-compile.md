@@ -167,7 +167,7 @@ uname -m
 
 #### 2. 安装 Python 以及 pip：
 
-> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.6.x、python3.7.x、python3.8、python3.9), pip 以及其他的依赖，这将会使您高效编译。
+> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.7.x、python3.8、python3.9), pip 以及其他的依赖，这将会使您高效编译。
 
 使用 Python 官网安装
 
@@ -243,7 +243,7 @@ cd Paddle
 git checkout develop
 ```
 
-注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持
+注意：python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持
 
 #### 7. 并且请创建并进入一个叫 build 的目录下：
 

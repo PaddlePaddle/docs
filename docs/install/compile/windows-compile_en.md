@@ -71,7 +71,7 @@ There is one compilation methods in Windows system:
     git checkout develop
     ```
 
-    Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1
+    Note: python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1
 
 4. Create a directory called build and enter it:
 

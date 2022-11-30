@@ -35,7 +35,7 @@
     </tr>
         <tr>
         <td> Python（64 bit） </td>
-        <td> 3.7+.x </td>
+        <td> 3.7+ </td>
         <td> depends on libpython3.7+.so </td>
         <td> please go to <a href="https://www.python.org">Python official website </a></td>
     </tr>
