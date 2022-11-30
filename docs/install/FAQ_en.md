@@ -113,7 +113,7 @@
 
     > Please check whether your Python version lower than 3.7. If so, please upgrade your Python version to 3.7 or higher.
 
-- Use customized openblas under MACOS. See issue for details:
+- Use customized openblas under macOS. See issue for details:
 
     >[ISSUE 13217](https://github.com/PaddlePaddle/Paddle/issues/13721)
 
