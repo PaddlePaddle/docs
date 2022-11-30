@@ -3,16 +3,6 @@
 
 # **FAQ**
 
-- How to compile python2.7 as a shared library under CentOS6?
-
-    > Use the following instructions:
-
-
-
-        ./configure --prefix=/usr/local/python2.7 --enable-shared
-        make && make install
-
-
 - Ubuntu18.04 under libidn11 can not be found?
 
     > Use the following instructions:
@@ -112,8 +102,6 @@
 - `Fatal Python error: PyThreadState_Get: no current thread running` error occurs when importing paddle.fluid after installing PaddlePaddle on macOS.
 
 
-    - For Python2.7.x (install by brew): Please use `export LD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/usr/ Local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7`
-    - For Python2.7.x (install by Python.org): Please use `export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7`
     - For Python3.5.x (install by Python.org): Please use `export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5/ && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5 /`
 
 

@@ -5,13 +5,6 @@
 
     > 请[安装 nccl2](https://developer.nvidia.com/nccl/nccl-download)
 
-- CentOS6 下如何编译 python2.7 为共享库?
-
-    > 使用以下指令：
-
-        ./configure --prefix=/usr/local/python2.7 --enable-shared
-        make && make install
-
 <!--TODO please add more F&Q parts here-->
 
 - Ubuntu18.04 下 libidn11 找不到？
@@ -87,8 +80,6 @@
 
 - macOS 下安装 PaddlePaddle 后 import paddle.fluid 出现`Fatal Python error: PyThreadState_Get: no current thread running`错误
 
-      - For Python2.7.x （install by brew): 请使用`export LD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7`
-      - For Python2.7.x （install by Python.org): 请使用`export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7`
       - For Python3.5.x （install by Python.org): 请使用`export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5/ && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5/`
 
 <a name="OPENBLAS"></a>

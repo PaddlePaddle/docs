@@ -20,7 +20,6 @@ addons:
       - git
       - python
       - python-pip
-      - python2.7-dev
   ssh_known_hosts: 13.229.163.131
 before_install:
   - sudo pip install pylint pytest astroid isort 
