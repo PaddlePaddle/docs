@@ -8,7 +8,7 @@
     * **Ubuntu 14.04 (不推荐，不提供编译出现问题时的官方支持)**
     * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
     * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.0/11.1/11.2)**
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 
 ## 选择 CPU/GPU
 
@@ -135,7 +135,7 @@ cd /paddle
 git checkout develop
 ```
 
-注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持
+注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
 
 #### 7. 创建并进入/paddle/build 路径下：
 
@@ -384,7 +384,7 @@ uname -m && cat /etc/*release
         ```
         find `dirname $(dirname $(which python3))` -name "libpython3.so"
         ```
-        找到 Python lib 的路径，如果是 3.7、3.8、3.9，请将`python3`改成`python3.7`、`python3.8`、`python3.9`，然后将下面[python-lib-path]替换为找到文件路径
+        找到 Python lib 的路径，如果是 3.7、3.8、3.9、3.10，请将`python3`改成`python3.7`、`python3.8`、`python3.9`，`python3.10`，然后将下面[python-lib-path]替换为找到文件路径
 
     2. 设置 PYTHON_LIBRARIES：
         ```

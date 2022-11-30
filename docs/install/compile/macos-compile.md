@@ -3,7 +3,7 @@
 ## 环境准备
 
 * **macOS 版本 10.x/11.x (64 bit) (不支持 GPU 版本)**
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 
 ## 选择 CPU/GPU
 
@@ -90,7 +90,7 @@ cd /paddle
 git checkout develop
 ```
 
-注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持
+注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
 
 #### 8. 创建并进入/paddle/build 路径下：
 
@@ -243,7 +243,7 @@ cd Paddle
 git checkout develop
 ```
 
-注意：python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持
+注意：python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
 
 #### 7. 并且请创建并进入一个叫 build 的目录下：
 

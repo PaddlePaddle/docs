@@ -42,7 +42,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 3. Version requirements of python and pip:
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-* Python requires version 3.6/3.7/3.8/3.9
+* Python requires version 3.7/3.8/3.9/3.10
 * Python needs pip, and pip requires version 20.2.2 or above
 * Python and pip requires 64-bit
 
@@ -133,7 +133,7 @@ This section describes how to use pip to install.
 
 4. Check the version of Python
 
-    Confirm the Python is 3.6/3.7/3.8/3.9 using command
+    Confirm the Python is 3.7/3.8/3.9/3.10 using command
     ::
 
         python --version

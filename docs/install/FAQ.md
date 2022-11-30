@@ -82,13 +82,6 @@
 
        > 出现这个问题原因主要是由于您的显卡驱动低于对应 CUDA 版本的要求，请保证您的显卡驱动支持所使用的 CUDA 版本
 
-
-<a name="MACPRO"></a>
-
-- macOS 下安装 PaddlePaddle 后 import paddle.fluid 出现`Fatal Python error: PyThreadState_Get: no current thread running`错误
-
-       > 请检查您的 Python 版本是否小于 3.7 ，如果是，请使用 Python 3.7 或以上版本。
-
 <a name="OPENBLAS"></a>
 
 - macOS 下使用自定义的 openblas 详见 issue：

@@ -108,11 +108,6 @@
 
     > The main reason for this problem is that your graphics card driver is lower than the corresponding CUDA version. Please ensure that your graphics card driver supports the CUDA version used.
 
-
-- `Fatal Python error: PyThreadState_Get: no current thread running` error occurs when importing paddle.fluid after installing PaddlePaddle on macOS.
-
-    > Please check whether your Python version lower than 3.7. If so, please upgrade your Python version to 3.7 or higher.
-
 - Use customized openblas under macOS. See issue for details:
 
     >[ISSUE 13217](https://github.com/PaddlePaddle/Paddle/issues/13721)

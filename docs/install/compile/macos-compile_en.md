@@ -3,7 +3,7 @@
 ## Environment preparation
 
 * **macOS version 10.x/11.x (64 bit) (not support GPU version)**
-* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python version 3.7/3.8/3.9/3.10 (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -93,7 +93,7 @@ cd /paddle
 git checkout develop
 ```
 
-Note: python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
+Note: python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch
 
 #### 8. Create and enter the /paddle/build path:
 
@@ -243,7 +243,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 6. Switch to develop branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch)
+#### 6. Switch to develop branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch)
 
 ```
 git checkout develop
