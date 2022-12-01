@@ -3,16 +3,6 @@
 
 # **FAQ**
 
-- How to compile python2.7 as a shared library under CentOS6?
-
-    > Use the following instructions:
-
-
-
-        ./configure --prefix=/usr/local/python2.7 --enable-shared
-        make && make install
-
-
 - Ubuntu18.04 under libidn11 can not be found?
 
     > Use the following instructions:

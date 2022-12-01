@@ -66,10 +66,6 @@
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
-    For Python2:
-    ```
-    cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON -DWITH_XBYAK=OFF  -DWITH_SW=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" -DWITH_RCCL=OFF
-    ```
     For Python3:
     ```
     cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON -DWITH_XBYAK=OFF -DWITH_SW=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" -DWITH_RCCL=OFF
@@ -86,7 +82,7 @@
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
     ```
-    python2 -m pip install -U（whl 包的名字）`或`python3 -m pip install -U（whl 包的名字）
+    python3 -m pip install -U（whl 包的名字）
     ```
 
 恭喜，至此您已完成 PaddlePaddle 在 FT 环境下的编译安装。

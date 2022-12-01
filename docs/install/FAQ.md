@@ -5,13 +5,6 @@
 
     > 请[安装 nccl2](https://developer.nvidia.com/nccl/nccl-download)
 
-- CentOS6 下如何编译 python2.7 为共享库?
-
-    > 使用以下指令：
-
-        ./configure --prefix=/usr/local/python2.7 --enable-shared
-        make && make install
-
 <!--TODO please add more F&Q parts here-->
 
 - Ubuntu18.04 下 libidn11 找不到？
