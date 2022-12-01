@@ -6,6 +6,7 @@ paddle
 paddle 目录下包含 tensor、device、framework 相关 API 以及某些高层 API。具体如下：
 
 -  :ref:`tensor 数学操作 <tensor_math>`
+-  :ref:`tensor 数学操作原位（inplace）版本 <tensor_math_inplace>`
 -  :ref:`tensor 逻辑操作 <tensor_logic>`
 -  :ref:`tensor 属性相关 <tensor_attribute>`
 -  :ref:`tensor 创建相关 <tensor_creation>`
@@ -14,6 +15,7 @@ paddle 目录下包含 tensor、device、framework 相关 API 以及某些高层
 -  :ref:`tensor random 相关 <tensor_random>`
 -  :ref:`tensor 线性代数相关 <tensor_linalg>`
 -  :ref:`tensor 元素操作相关（如：转置，reshape 等） <tensor_manipulation>`
+-  :ref:`tensor 元素操作相关原位（inplace）版本 <tensor_manipulation_inplace>`
 -  :ref:`爱因斯坦求和 <einsum>`
 -  :ref:`framework 相关 <about_framework>`
 -  :ref:`device 相关 <about_device>`
@@ -117,11 +119,9 @@ tensor 数学操作
     " :ref:`paddle.std <cn_api_tensor_cn_std>` ", "沿给定的轴 axis 计算 x 中元素的标准差"
     " :ref:`paddle.subtract <cn_api_paddle_tensor_subtract>` ", "逐元素相减算子"
     " :ref:`paddle.remainder <cn_api_tensor_remainder>` ", "逐元素取模算子"
-    " :ref:`paddle.remainder_ <cn_api_tensor_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.sum <cn_api_tensor_sum>` ", "对指定维度上的 Tensor 元素进行求和运算"
     " :ref:`paddle.tan <cn_api_fluid_layers_tan>` ", "三角函数 tangent"
     " :ref:`paddle.tanh <cn_api_tensor_tanh>` ", "tanh 激活函数"
-    " :ref:`paddle.tanh_ <cn_api_tensor_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.trace <cn_api_tensor_trace>` ", "计算输入 Tensor 在指定平面上的对角线元素之和"
     " :ref:`paddle.var <cn_api_tensor_cn_var>` ", "沿给定的轴 axis 计算 x 中元素的方差"
     " :ref:`paddle.diagonal <cn_api_tensor_diagonal>` ", "根据给定的轴 axis 返回输入 Tensor 的局部视图"
@@ -143,6 +143,36 @@ tensor 数学操作
     " :ref:`paddle.take <cn_api_tensor_take>` ", "输出给定索引处的输入元素，结果与 index 的形状相同"
     " :ref:`paddle.frexp <cn_api_paddle_frexp>` ", "用于把一个浮点数分解为尾数和指数的函数"
 
+
+.. _tensor_math_inplace:
+
+tensor 数学操作原位（inplace）版本
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.remainder_ <cn_api_tensor_remainder_>` ", "Inplace 版本的 remainder API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.tanh_ <cn_api_tensor_tanh_>` ", "Inplace 版本的 tanh API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.erfinv_ <cn_api_paddle_tensor_erfinv_>` ", "Inplace 版本的 erfinv API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.add_ <cn_api_tensor_add_>` ", "Inplace 版本的 add API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.put_along_axis_ <cn_api_paddle_tensor_put_along_axis_>` ", "Inplace 版本的 put_along_axis API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.ceil_ <cn_api_fluid_layers_ceil_>` ", "Inplace 版本的 ceil API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.clip_ <cn_api_tensor_clip_>` ", "Inplace 版本的 clip API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.exp_ <cn_api_fluid_layers_exp_>` ", "Inplace 版本的 exp API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.flatten_ <cn_api_paddle_flatten_>` ", "Inplace 版本的 cn_api_paddle_flatten API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.floor_ <cn_api_fluid_layers_floor_>` ", "Inplace 版本的 cn_api_fluid_layers_floor API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.reciprocal_ <cn_api_fluid_layers_reciprocal_>` ", "Inplace 版本的 cn_api_fluid_layers_reciprocal API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.reshape_ <cn_api_fluid_layers_reshape_>` ", "Inplace 版本的 cn_api_fluid_layers_reshape API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.round_ <cn_api_fluid_layers_round_>` ", "Inplace 版本的 cn_api_fluid_layers_round API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.rsqrt_ <cn_api_fluid_layers_rsqrt_>` ", "Inplace 版本的 cn_api_fluid_layers_rsqrt API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.scale_ <cn_api_fluid_layers_scale_>` ", "Inplace 版本的 cn_api_fluid_layers_scale API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.sqrt_ <cn_api_fluid_layers_sqrt_>` ", "Inplace 版本的 cn_api_fluid_layers_sqrt API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.subtract_ <cn_api_paddle_tensor_subtract_>` ", "Inplace 版本的 cn_api_paddle_tensor_subtract API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.tanh_ <cn_api_fluid_layers_tan_>` ", "Inplace 版本的 cn_api_fluid_layers_tan API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.uniform_ <cn_api_tensor_uniform_>` ", "Inplace 版本的 cn_api_tensor_uniform API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.lerp_ <cn_api_paddle_tensor_lerp_>` ", "Inplace 版本的 cn_api_paddle_tensor_lerp API，对输入 x 采用 Inplace 策略"
 
 .. _tensor_logic:
 
@@ -310,10 +340,8 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.gather <cn_api_paddle_tensor_gather>` ", "根据索引 index 获取输入 x 的指定 aixs 维度的条目，并将它们拼接在一起"
     " :ref:`paddle.gather_nd <cn_api_tensor_cn_gather_nd>` ", "paddle.gather 的高维推广"
     " :ref:`paddle.reshape <cn_api_fluid_layers_reshape>` ", "在保持输入 x 数据不变的情况下，改变 x 的形状"
-    " :ref:`paddle.reshape_ <cn_api_paddle_tensor_reshape_>` ", "Inplace 版本的 reshape API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.roll <cn_api_tensor_manipulation_roll>` ", "沿着指定维度 axis 对输入 x 进行循环滚动，当元素移动到最后位置时，会从第一个位置重新插入"
     " :ref:`paddle.scatter <cn_api_distributed_scatter>` ", "通过基于 updates 来更新选定索引 index 上的输入来获得输出"
-    " :ref:`paddle.scatter_ <cn_api_paddle_cn_scatter_>` ", "Inplace 版本的 scatter API，对输入 x 采用 Inplace 策略 "
     " :ref:`paddle.scatter_nd <cn_api_fluid_layers_scatter_nd>` ", "根据 index ，将 updates 添加到一个新的张量中，从而得到输出的 Tensor"
     " :ref:`paddle.scatter_nd_add <cn_api_fluid_layers_scatter_nd_add>` ", "通过对 Tensor 中的单个值或切片应用稀疏加法，从而得到输出的 Tensor"
     " :ref:`paddle.shard_index <cn_api_fluid_layers_shard_index>` ", "根据分片（shard）的偏移量重新计算分片的索引"
@@ -321,7 +349,6 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.split <cn_api_paddle_tensor_split>` ", "将输入 Tensor 分割成多个子 Tensor"
     " :ref:`paddle.vsplit <cn_api_paddle_tensor_vsplit>` ", "将输入 Tensor 沿第一个维度分割成多个子 Tensor"
     " :ref:`paddle.squeeze <cn_api_paddle_tensor_squeeze>` ", "删除输入 Tensor 的 Shape 中尺寸为 1 的维度"
-    " :ref:`paddle.squeeze_ <cn_api_paddle_tensor_squeeze_>` ", "Inplace 版本的 squeeze API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.stack <cn_api_paddle_tensor_stack>` ", "沿 axis 轴对输入 x 进行堆叠操作"
     " :ref:`paddle.strided_slice <cn_api_strided_slice>` ", "沿多个轴生成 x 的切片"
     " :ref:`paddle.tile <cn_api_tensor_tile>` ", "根据参数 repeat_times 对输入 x 的各维度进行复制"
@@ -332,12 +359,25 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.unique <cn_api_tensor_cn_unique>` ", "返回 Tensor 按升序排序后的独有元素"
     " :ref:`paddle.unique_consecutive <cn_api_tensor_cn_unique_consecutive>` ", "返回无连续重复元素的 Tensor"
     " :ref:`paddle.unsqueeze <cn_api_paddle_tensor_unsqueeze>` ", "该 OP 向输入 Tensor 的 Shape 中一个或多个位置（axis）插入尺寸为 1 的维度"
-    " :ref:`paddle.unsqueeze_ <cn_api_paddle_tensor_unsqueeze_>` ", "Inplace 版本的 unsqueeze API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.unstack <cn_api_fluid_layers_unstack>` ", "该 OP 将单个 dim 为 D 的 Tensor 沿 axis 轴 unpack 为 num 个 dim 为 (D-1) 的 Tensor"
     " :ref:`paddle.as_complex <cn_api_paddle_as_complex>` ", "将实数 Tensor 转为复数 Tensor"
     " :ref:`paddle.as_real <cn_api_paddle_as_real>` ", "将复数 Tensor 转为实数 Tensor"
     " :ref:`paddle.repeat_interleave <cn_api_tensor_repeat_interleave>` ", "沿 axis 轴对输入 x 的元素进行复制"
     " :ref:`paddle.index_add <cn_api_tensor_index_add>` ", "沿着指定轴 axis 将 index 中指定位置的 x 与 value 相加，并写入到结果张量中的对应位置"
+
+.. _tensor_manipulation_inplace:
+
+tensor 元素操作相关原位（inplace）版本
+::::::::::::::::::::
+
+.. csv-table::
+    :header: "API 名称", "API 功能"
+    :widths: 10, 30
+
+    " :ref:`paddle.reshape_ <cn_api_paddle_tensor_reshape_>` ", "Inplace 版本的 reshape API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.scatter_ <cn_api_paddle_cn_scatter_>` ", "Inplace 版本的 scatter API，对输入 x 采用 Inplace 策略 "
+    " :ref:`paddle.squeeze_ <cn_api_paddle_tensor_squeeze_>` ", "Inplace 版本的 squeeze API，对输入 x 采用 Inplace 策略"
+    " :ref:`paddle.unsqueeze_ <cn_api_paddle_tensor_unsqueeze_>` ", "Inplace 版本的 unsqueeze API，对输入 x 采用 Inplace 策略"
 
 .. einsum:
 
