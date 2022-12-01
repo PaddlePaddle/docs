@@ -7,11 +7,11 @@ cross_entropy
 
 实现了 softmax 交叉熵损失函数。该函数会将 softmax 操作、交叉熵损失函数的计算过程进行合并，从而提供了数值上更稳定的计算。
 
-该 OP 默认会对结果进行求 mean 计算，您也可以影响该默认行为，具体参考 reduction 参数说明。
+默认会对结果进行求 mean 计算，您也可以影响该默认行为，具体参考 reduction 参数说明。
 
-该 OP 可用于计算硬标签或软标签的交叉熵。其中，硬标签是指实际 label 值，例如：0, 1, 2...，软标签是指实际 label 的概率，例如：0.6, 0,8, 0,2..。
+可用于计算硬标签或软标签的交叉熵。其中，硬标签是指实际 label 值，例如：0, 1, 2...，软标签是指实际 label 的概率，例如：0.6, 0,8, 0,2..。
 
-该 OP 的计算包括以下两个步骤：
+计算包括以下两个步骤：
 
 - **一、softmax 交叉熵**
 
@@ -35,12 +35,12 @@ cross_entropy
 
 如果 ``weight`` 参数不为 ``None``，则对每个样本的交叉熵进行 weight 加权(区分 soft_label = False or True):
 
-1.1。硬标签情况(soft_label = False)
+1.1 硬标签情况(soft_label = False)
 
      .. math::
         \\loss_j=loss_j*weight[label_j]
 
-1.2。软标签情况(soft_label = True)
+1.2 软标签情况(soft_label = True)
 
      .. math::
         \\loss_j=loss_j*\sum_{i}\left(weight[label_i]*logits_i\right)
@@ -60,14 +60,14 @@ cross_entropy
 
 2.3 如果 ``reduction`` 参数为 ``mean``，则根据 ``weight``  参数情况进行处理：
 
-2.3.1。如果 ``weight`` 参数为 ``None``
+2.3.1 如果 ``weight`` 参数为 ``None``
 
      则返回上一步结果的平均值
 
      .. math::
         \\loss=\sum_{j}loss_j/N, N 为样本数
 
-2.3.2。如果 ``weight`` 参数不为 ``None``，则返回上一步结果的加权平均值
+2.3.2 如果 ``weight`` 参数不为 ``None``，则返回上一步结果的加权平均值
 
     (1) 硬标签情况(soft_label = False)
 
