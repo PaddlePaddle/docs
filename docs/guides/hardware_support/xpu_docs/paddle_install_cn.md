@@ -157,24 +157,6 @@ cmake .. -DPY_VERSION=3.6 \
 make -j20
 ```
 
-Python2
-
-```
-cmake .. -DPY_VERSION=2.7 \
-         -DCMAKE_BUILD_TYPE=Release \
-         -DWITH_GPU=OFF \
-         -DWITH_XPU=ON \
-         -DON_INFER=ON \
-         -DWITH_PYTHON=ON \
-         -DWITH_AVX=ON \
-         -DWITH_MKL=ON \
-         -DWITH_MKLDNN=ON \
-         -DWITH_XPU_BKCL=ON \
-         -DWITH_DISTRIBUTE=ON \
-         -DWITH_NCCL=OFF
-
-make -j20
-```
 
 **飞腾 CPU+昆仑 XPU+麒麟 V10 系统**
 

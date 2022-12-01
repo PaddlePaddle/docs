@@ -4,7 +4,7 @@
 
 * **处理器：SW6A**
 * **操作系统：普华, iSoft Linux 5**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 * **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
 申威机器为 SW 架构，目前生态支持的软件比较有限，本文以比较 trick 的方式在申威机器上源码编译 Paddle，未来会随着申威软件的完善不断更新。
@@ -66,10 +66,6 @@
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
-    For Python2:
-    ```
-    cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON -DWITH_XBYAK=OFF  -DWITH_SW=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" -DWITH_RCCL=OFF
-    ```
     For Python3:
     ```
     cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON -DWITH_XBYAK=OFF -DWITH_SW=ON -DCMAKE_CXX_FLAGS="-Wno-error -w" -DWITH_RCCL=OFF
@@ -86,7 +82,7 @@
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
     ```
-    python2 -m pip install -U（whl 包的名字）`或`python3 -m pip install -U（whl 包的名字）
+    python3 -m pip install -U（whl 包的名字）
     ```
 
 恭喜，至此您已完成 PaddlePaddle 在 FT 环境下的编译安装。
