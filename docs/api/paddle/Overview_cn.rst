@@ -66,7 +66,7 @@ tensor 数学操作
     " :ref:`paddle.floor_divide <cn_api_tensor_floor_divide>` ", "逐元素整除算子，输入 x 与输入 y 逐元素整除，并将各个位置的输出元素保存到返回结果中"
     " :ref:`paddle.greater_equal <cn_api_tensor_cn_greater_equal>` ", "逐元素地返回 x>=y 的逻辑值"
     " :ref:`paddle.greater_than <cn_api_tensor_cn_greater_than>` ", "逐元素地返回 x>y 的逻辑值"
-    " :ref:`paddle.heaviside <cn_api_tensor_heaviside>` ", "逐元素地对 x 计算由 y 中的对应元素决定的赫维赛德阶跃函数"
+    " :ref:`paddle.heaviside <cn_api_paddle_tensor_heaviside>` ", "逐元素地对 x 计算由 y 中的对应元素决定的赫维赛德阶跃函数"
     " :ref:`paddle.increment <cn_api_tensor_increment>` ", "在控制流程中用来让 x 的数值增加 value"
     " :ref:`paddle.kron <cn_api_paddle_tensor_kron>` ", "计算两个张量的克罗内克积"
     " :ref:`paddle.less_equal <cn_api_tensor_cn_less_equal>` ", "逐元素地返回 x<=y 的逻辑值"
@@ -140,7 +140,7 @@ tensor 数学操作
     " :ref:`paddle.acosh <cn_api_fluid_layers_acosh>` ", "反双曲余弦函数"
     " :ref:`paddle.asinh <cn_api_fluid_layers_asinh>` ", "反双曲正弦函数"
     " :ref:`paddle.atanh <cn_api_fluid_layers_atanh>` ", "反双曲正切函数"
-    " :ref:`paddle.take <cn_api_tensor_take>` ", "输出给定索引处的输入元素，结果与 index 的形状相同"
+    " :ref:`paddle.take <cn_api_paddle_tensor_take>` ", "输出给定索引处的输入元素，结果与 index 的形状相同"
     " :ref:`paddle.frexp <cn_api_paddle_frexp>` ", "用于把一个浮点数分解为尾数和指数的函数"
 
 
@@ -164,7 +164,6 @@ tensor 数学操作原位（inplace）版本
     " :ref:`paddle.flatten_ <cn_api_paddle_flatten_>` ", "Inplace 版本的 cn_api_paddle_flatten API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.floor_ <cn_api_fluid_layers_floor_>` ", "Inplace 版本的 cn_api_fluid_layers_floor API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.reciprocal_ <cn_api_fluid_layers_reciprocal_>` ", "Inplace 版本的 cn_api_fluid_layers_reciprocal API，对输入 x 采用 Inplace 策略"
-    " :ref:`paddle.reshape_ <cn_api_fluid_layers_reshape_>` ", "Inplace 版本的 cn_api_fluid_layers_reshape API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.round_ <cn_api_fluid_layers_round_>` ", "Inplace 版本的 cn_api_fluid_layers_round API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.rsqrt_ <cn_api_fluid_layers_rsqrt_>` ", "Inplace 版本的 cn_api_fluid_layers_rsqrt API，对输入 x 采用 Inplace 策略"
     " :ref:`paddle.scale_ <cn_api_fluid_layers_scale_>` ", "Inplace 版本的 cn_api_fluid_layers_scale API，对输入 x 采用 Inplace 策略"
@@ -198,7 +197,7 @@ tensor 属性相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`paddle.iinfo <cn_api_paddle_iinfo>` ", "返回一个 iinfo 对象，该对象包含了输入的整数类 paddle.dtype 的各种相关的数值信息"
+    " :ref:`paddle.iinfo <cn_api_iinfo>` ", "返回一个 iinfo 对象，该对象包含了输入的整数类 paddle.dtype 的各种相关的数值信息"
     " :ref:`paddle.imag <cn_api_tensor_imag>` ", "返回一个包含输入复数 Tensor 的虚部数值的新 Tensor"
     " :ref:`paddle.real <cn_api_tensor_real>` ", "返回一个包含输入复数 Tensor 的实部数值的新 Tensor"
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入 Tensor 或 SelectedRows 的 shape"
@@ -235,7 +234,7 @@ tensor 创建相关
     " :ref:`paddle.zeros <cn_api_tensor_zeros>` ", "该 OP 创建形状为 shape 、数据类型为 dtype 且值全为 0 的 Tensor"
     " :ref:`paddle.zeros_like <cn_api_tensor_zeros_like>` ", "该 OP 返回一个和 x 具有相同的形状的全零 Tensor，数据类型为 dtype 或者和 x 相同"
     " :ref:`paddle.complex <cn_api_paddle_complex>` ", "给定实部和虚部，返回一个复数 Tensor"
-    " :ref:`paddle.create_parameter <cn_api_paddle_create_parameter>` ", "该 OP 创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
+    " :ref:`paddle.create_parameter <cn_api_fluid_layers_create_parameter>` ", "该 OP 创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
     " :ref:`paddle.clone <cn_api_tensor_clone>` ", "对输入 Tensor ``x`` 进行拷贝，并返回一个新的 Tensor，并且该操作提供梯度回传"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据(不推荐使用)"
 
@@ -315,7 +314,7 @@ tensor 线性代数相关
     " :ref:`paddle.t <cn_api_paddle_tensor_t>` ", "对小于等于 2 维的 Tensor 进行数据转置"
     " :ref:`paddle.tril <cn_api_tensor_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为 0"
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为 0"
-    " :ref:`paddle.triu_indices <_cn_api_tensor_triu_indices>` ", "返回输入矩阵在给定对角线右上三角部分元素坐标"
+    " :ref:`paddle.triu_indices <cn_api_tensor_triu_indices>` ", "返回输入矩阵在给定对角线右上三角部分元素坐标"
 
 .. _tensor_manipulation:
 
