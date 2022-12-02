@@ -35,39 +35,39 @@ cross_entropy
 
 如果 ``weight`` 参数不为 ``None``，则对每个样本的交叉熵进行 weight 加权(区分 soft_label = False or True):
 
-1.1. 硬标签情况(soft_label = False)
+1.1 硬标签情况(soft_label = False)
 
      .. math::
         \\loss_j=loss_j*weight[label_j]
 
-1.2. 软标签情况(soft_label = True)
+1.2 软标签情况(soft_label = True)
 
      .. math::
         \\loss_j=loss_j*\sum_{i}\left(weight[label_i]*logits_i\right)
 
 2. reduction 情况
 
-2.1. 如果 ``reduction`` 参数为 ``none``
+2.1 如果 ``reduction`` 参数为 ``none``
 
      则直接返回上一步结果
 
-2.2. 如果 ``reduction`` 参数为 ``sum``
+2.2 如果 ``reduction`` 参数为 ``sum``
 
      则返回上一步结果的和
 
      .. math::
         \\loss=\sum_{j}loss_j
 
-2.3. 如果 ``reduction`` 参数为 ``mean``，则根据 ``weight``  参数情况进行处理：
+2.3 如果 ``reduction`` 参数为 ``mean``，则根据 ``weight``  参数情况进行处理：
 
-2.3.1. 如果 ``weight`` 参数为 ``None``
+2.3.1 如果 ``weight`` 参数为 ``None``
 
      则返回上一步结果的平均值
 
      .. math::
         \\loss=\sum_{j}loss_j/N, N 为样本数
 
-2.3.2. 如果 ``weight`` 参数不为 ``None``，则返回上一步结果的加权平均值
+2.3.2 如果 ``weight`` 参数不为 ``None``，则返回上一步结果的加权平均值
 
     (1) 硬标签情况(soft_label = False)
 
