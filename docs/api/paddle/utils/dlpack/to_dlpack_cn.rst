@@ -5,7 +5,7 @@ to_dlpack
 
 .. py:function:: paddle.utils.dlpack.to_dlpack(x)
 
-将 Tensor 对象转化为 DLPack。其中，DLPack 是一种开放的内存张量结构，可用于不同深度学习框架之间的张量共享。
+将 Tensor 对象转化为 DLPack。其中，DLPack 是一种开放的内存Tensor结构，可用于不同深度学习框架之间的Tensor共享。
 
 参数
 :::::::::

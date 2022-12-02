@@ -39,7 +39,7 @@ fused_multi_head_attention 算子目前只支持在 GPU 下运行，其包含的
         out = layer_norm(x + dropout(linear_bias + out))
 
 
-值得注意的是，该 API 中，q, k, v 的 weight 被统一存储在一个权重张量中，形状为 `[3, num_heads, head_dim, embed_dim]` ,
+值得注意的是，该 API 中，q, k, v 的 weight 被统一存储在一个权重Tensor中，形状为 `[3, num_heads, head_dim, embed_dim]` ,
 如果想得到单独的 q, k 或 v 的 weight，可以通过转置和切分得到。
 
 

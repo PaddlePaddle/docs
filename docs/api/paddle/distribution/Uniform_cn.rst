@@ -59,7 +59,7 @@ sample(shape, seed=0)
 
 **返回**
 
-Tensor，预先设计好维度的张量，数据类型为 float32。
+Tensor，预先设计好维度的Tensor，数据类型为 float32。
 
 entropy()
 '''''''''
@@ -82,7 +82,7 @@ log_prob(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
+    - **value** (Tensor) - 输入Tensor。数据类型为 float32 或 float64。
 
 **返回**
 
@@ -96,7 +96,7 @@ probs(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
+    - **value** (Tensor) - 输入Tensor。数据类型为 float32 或 float64。
 
 **返回**
 

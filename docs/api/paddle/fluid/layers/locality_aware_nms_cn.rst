@@ -25,11 +25,11 @@ locality_aware_nms
 
     - **bboxes**  (Variable) – 支持两种类型的边界框（bounding box）:
 
-      1. （Tensor）形为[N，M，4 或 8、16、24、32]的3-D张量，表示将预测M个边界框的预测位置，N是批大小（batch size）。当边界框(bounding box)大小等于4时，每个边界框有四个坐标值，布局为 :math:`[xmin, ymin, xmax, ymax]`。数据类型为float32或float64。
+      1. （Tensor）形为[N，M，4 或 8、16、24、32]的3-DTensor，表示将预测M个边界框的预测位置，N是批大小（batch size）。当边界框(bounding box)大小等于4时，每个边界框有四个坐标值，布局为 :math:`[xmin, ymin, xmax, ymax]`。数据类型为float32或float64。
 
     - **scores**  (Variable) – 支持两种类型的分数：
 
-      1. （Tensor）具有形状 :math:`[N, C, M]` 的3-D张量表示预测的置信度。N是批量大小 batch size，C是种类数目，M是边界框bounding box的数量。目前仅支持单个类别，所以输入维度应为 :math:`[N, 1, M]`。请注意，M等于bboxes的第二维。数据类型为float32或float64。
+      1. （Tensor）具有形状 :math:`[N, C, M]` 的3-DTensor表示预测的置信度。N是批量大小 batch size，C是种类数目，M是边界框bounding box的数量。目前仅支持单个类别，所以输入维度应为 :math:`[N, 1, M]`。请注意，M等于bboxes的第二维。数据类型为float32或float64。
 
     - **background_label**  (int) – 背景标签（类别）的索引，如果设置为 0，则忽略背景标签（类别）。如果设置为 -1，则考虑所有类别。默认值：-1
     - **score_threshold**  (float) – 过滤掉低置信度分数的边界框的阈值。如果没有提供，请考虑所有边界框。

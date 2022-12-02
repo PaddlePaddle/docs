@@ -7,7 +7,7 @@ index_add
 
 
 
-沿着指定轴 ``axis`` 将 ``index`` 中指定位置的 ``x`` 与 ``value`` 相加，并写入到结果张量中的对应位置。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的 Tensor 其余维度大小和输入 ``x`` 相等， ``axis`` 维度的大小等于 ``index`` 的大小。
+沿着指定轴 ``axis`` 将 ``index`` 中指定位置的 ``x`` 与 ``value`` 相加，并写入到结果Tensor中的对应位置。这里 ``index`` 是一个 ``1-D`` Tensor。除 ``axis`` 轴外，返回的 Tensor 其余维度大小和输入 ``x`` 相等， ``axis`` 维度的大小等于 ``index`` 的大小。
 
 参数
 :::::::::

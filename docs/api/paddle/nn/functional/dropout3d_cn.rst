@@ -5,7 +5,7 @@ dropout3d
 
 .. py:function:: paddle.nn.functional.dropout3d(x, p=0.5, training=True, name=None)
 
-根据丢弃概率 `p`，在训练过程中随机将某些通道特征图置 0(对一个形状为 `NCDHW` 的 5 维张量，通道指的是其中的形状为 `DHW` 的 3 维特征图)。
+根据丢弃概率 `p`，在训练过程中随机将某些通道特征图置 0(对一个形状为 `NCDHW` 的 5 维Tensor，通道指的是其中的形状为 `DHW` 的 3 维特征图)。
 
 .. note::
    该 op 基于 ``paddle.nn.functional.dropout`` 实现，如您想了解更多，请参见 :ref:`cn_api_nn_functional_dropout` 。

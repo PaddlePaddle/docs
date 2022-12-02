@@ -32,7 +32,7 @@ fc
 上述等式中：
   - :math:`N`：输入的数目，如果输入是Tensor列表，N等于len(input)
   - :math:`X_i`：第i个输入的Tensor
-  - :math:`W_i`：对应第i个输入张量的第i个权重矩阵
+  - :math:`W_i`：对应第i个输入Tensor的第i个权重矩阵
   - :math:`b`：该层创建的bias参数
   - :math:`Act` ：activation function(激活函数)
   - :math:`Out`：输出Tensor

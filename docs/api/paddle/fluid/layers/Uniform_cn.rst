@@ -46,7 +46,7 @@ COPY-FROM: paddle.fluid.layers.Uniform
     
 返回
 ::::::::::::
-预先设计好维度的张量，数据类型为float32
+预先设计好维度的Tensor，数据类型为float32
 
 返回类型
 ::::::::::::
@@ -71,7 +71,7 @@ Variable
 参数
 ::::::::::::
 
-    - **value** (Variable) - 输入张量。数据类型为float32或float64。
+    - **value** (Variable) - 输入Tensor。数据类型为float32或float64。
     
 返回
 ::::::::::::

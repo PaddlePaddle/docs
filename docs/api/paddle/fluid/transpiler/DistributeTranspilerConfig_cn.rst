@@ -20,7 +20,7 @@ None
 slice_var_up (bool)
 '''''''''
 
-是否为Pserver将张量切片，默认为True, bool类型属性，默认为True。该参数将指定是否将参数/梯度切分后均匀分布于多个PServer上。slice_var_up为True的情况下，会将参数均匀切分后分布于多个PServer端，使每个PServer的负载相对均衡。
+是否为Pserver将Tensor切片，默认为True, bool类型属性，默认为True。该参数将指定是否将参数/梯度切分后均匀分布于多个PServer上。slice_var_up为True的情况下，会将参数均匀切分后分布于多个PServer端，使每个PServer的负载相对均衡。
 
 
 split_method (PSDispatcher)

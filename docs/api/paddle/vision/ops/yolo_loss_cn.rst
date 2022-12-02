@@ -54,7 +54,7 @@ yolov3 loss 前的网络输出形状为[N，C，H，W]，H 和 W 应该相同，
 参数
 ::::::::::::
 
-    - **x**  (Tensor) - YOLOv3 损失运算的输入张量，这是一个形状为[N，C，H，W]的四维 Tensor。H 和 W 应该相同，第二维（C）存储框的位置信息，以及每个 anchor box 的置信度得分和 one-hot 分类。数据类型为 float32 或 float64。
+    - **x**  (Tensor) - YOLOv3 损失运算的输入Tensor，这是一个形状为[N，C，H，W]的四维 Tensor。H 和 W 应该相同，第二维（C）存储框的位置信息，以及每个 anchor box 的置信度得分和 one-hot 分类。数据类型为 float32 或 float64。
     - **gt_box**  (Tensor) - 真实框，应该是[N，B，4]的形状。第三维用来承载 x、y、w、h，其中 x, y 是真实框的中心坐标，w, h 是框的宽度和高度，且 x、y、w、h 将除以输入图片的尺寸，缩放到[0,1]区间内。N 是 batch size，B 是图像中所含有的的最多的 box 数目。数据类型为 float32 或 float64。
     - **gt_label**  (Tensor) - 真实框的类 id，应该形为[N，B]。数据类型为 int32。
     - **anchors**  (list|tuple) - 指定 anchor 框的宽度和高度，它们将逐对进行解析

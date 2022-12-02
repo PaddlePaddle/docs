@@ -13,7 +13,7 @@ case
 ::::::::::::
 
     - **pred_fn_pairs** (list|tuple) - 一个 list 或者 tuple，元素是二元组(pred, fn)。其中 ``pred`` 是形状为[1]的布尔型 Tensor，``fn`` 是一个可调用对象。所有的可调用对象都返回相同结构的 Tensor。
-    - **default** (callable，可选) - 可调用对象，返回一个或多个张量。
+    - **default** (callable，可选) - 可调用对象，返回一个或多个Tensor。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

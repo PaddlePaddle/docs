@@ -36,7 +36,7 @@ adaptive_pool3d
 参数
 ::::::::::::
 
-  - **input** （Variable） - 池化操作的输入张量，维度为 :math:`[N, C, D, H, W]` 的5-D Tensor。输入张量的格式为NCDHW，其中N是batch大小，C是通道数，D为特征的深度，H是特征的高度，W是特征的宽度，数据类型为float32或float64。
+  - **input** （Variable） - 池化操作的输入Tensor，维度为 :math:`[N, C, D, H, W]` 的5-D Tensor。输入Tensor的格式为NCDHW，其中N是batch大小，C是通道数，D为特征的深度，H是特征的高度，W是特征的宽度，数据类型为float32或float64。
   - **pool_size** （int|list|tuple） - 池化核大小。如果池化核大小是元组或列表，则它必须包含三个整数（Depth, Height, Width）。若为一个整数，则表示D, H和W维度上均为该值。
   - **pool_type** （string）- 池化类型，可输入“max”代表max-pooling，或者“avg”代表average-pooling。
   - **require_index** （bool） - 如果为True，则输出中带有最大池化点所在的索引。如果pool_type为avg，该项不可被设置为True，默认False。
@@ -45,7 +45,7 @@ adaptive_pool3d
 
 返回
 ::::::::::::
- Variable(Tensor) 自适应池化结果张量
+ Variable(Tensor) 自适应池化结果Tensor
 
 返回类型
 ::::::::::::

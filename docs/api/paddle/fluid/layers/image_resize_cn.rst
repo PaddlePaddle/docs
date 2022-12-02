@@ -23,7 +23,7 @@ image_resize
     NEAREST：最近邻插值
 
 
-最近邻插值是在输入张量的高度和宽度上进行最近邻插值。
+最近邻插值是在输入Tensor的高度和宽度上进行最近邻插值。
 
 双线性插值是线性插值的扩展，用于在直线2D网格上插值两个变量（例如，该操作中的H方向和W方向）的函数。关键思想是首先在一个方向上执行线性插值，然后在另一个方向上再次执行线性插值。
 
@@ -122,12 +122,12 @@ https://en.wikipedia.org/wiki/Trilinear_interpolation
 ::::::::::::
 
     - **input** (Variable) - 4-D或5-D Tensor，数据类型为float32、float64或uint8，其数据格式由参数 ``data_format`` 指定。
-    - **out_shape** (list|tuple|Variable|None) - 输出Tensor，输入为4D张量时，形状为为(out_h, out_w)的2-D Tensor。输入为5-D Tensor时，形状为(out_d, out_h, out_w)的3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
+    - **out_shape** (list|tuple|Variable|None) - 输出Tensor，输入为4DTensor时，形状为为(out_h, out_w)的2-D Tensor。输入为5-D Tensor时，形状为(out_d, out_h, out_w)的3-D Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为1。默认值为None。
     - **scale** (float|Variable|None)-输入的高度或宽度的乘数因子。out_shape和scale至少要设置一个。out_shape的优先级高于scale。默认值为None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **resample** (str) - 插值方法。支持“双线性”,“三线性”,“临近插值”。默认值为双线性插值。
     - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说，:code:`actual_shape` 具有最高的优先级。如果希望动态指定输出形状，建议使用 :code:`out_shape`，因为 :code:`actual_shape` 未来将被弃用。在使用actual_shape指定输出形状时，还需要设置out_shape和scale之一，否则在图形构建阶段会出现错误。默认值：None
-    - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出张量的4个角落像素的中心对齐，并保留角点像素的值。默认值为True
+    - **align_corners** （bool）- 一个可选的bool型参数，如果为True，则将输入和输出Tensor的4个角落像素的中心对齐，并保留角点像素的值。默认值为True
     - **align_mode** （int）- 双线性插值的可选项。可以是 '0' 代表src_idx = scale *（dst_indx + 0.5）-0.5；如果为'1'，代表src_idx = scale * dst_index。
     - **data_format** （str，可选）- 指定输入的数据格式，输出的数据格式将与输入保持一致。对于4-D Tensor，支持 NCHW(num_batches, channels, height, width) 或者 NHWC(num_batches, height, width, channels)，对于5-D Tensor，支持 NCDHW(num_batches, channels, depth, height, width)或者 NDHWC(num_batches, depth, height, width, channels)，默认值：'NCHW'。
 
@@ -146,8 +146,8 @@ https://en.wikipedia.org/wiki/Trilinear_interpolation
     - :code:`TypeError` - actual_shape应该是变量或None。
     - :code:`ValueError` - image_resize的"resample"只能是"BILINEAR"或"TRILINEAR"或"NEAREST"。
     - :code:`ValueError` - out_shape 和 scale 不可同时为 None。
-    - :code:`ValueError` - out_shape 的长度必须为2如果输入是4D张量。
-    - :code:`ValueError` - out_shape 的长度必须为3如果输入是5D张量。
+    - :code:`ValueError` - out_shape 的长度必须为2如果输入是4DTensor。
+    - :code:`ValueError` - out_shape 的长度必须为3如果输入是5DTensor。
     - :code:`ValueError` - scale应大于0。
     - :code:`TypeError`  - align_corners 应为bool型。
     - :code:`ValueError` - align_mode 只能取 ‘0’ 或 ‘1’。

@@ -24,7 +24,7 @@ deformable_roi_pooling
 参数
 ::::::::::::
 
-    - **input** (Variable) - 可变形感兴趣区域(ROI)池化层的输入，输入为数据类型为float32的Tensor。输入张量的形状为[N，C，H，W]。其中N是批量大小，C是输入通道的数量，H是特征的高度，W是特征的宽度。
+    - **input** (Variable) - 可变形感兴趣区域(ROI)池化层的输入，输入为数据类型为float32的Tensor。输入Tensor的形状为[N，C，H，W]。其中N是批量大小，C是输入通道的数量，H是特征的高度，W是特征的宽度。
     - **rois** （Variable）- 将池化的ROIs（感兴趣区域），应为一个形状为(num_rois，4)的2-D LoDTensor，且lod level为1。其中值为[[x1，y1，x2，y2]，...]，(x1，y1)为左上角坐标，(x2， y2)为右下角坐标。
     - **trans** （Variable）- 池化时ROIs上的特征偏移，输入为数据类型为float32的Tensor。格式为[N，C，H，W]，其中N是ROIs的数量，C是通道的数量，指示x和y方向上的偏移距离，H是池化的高度，W是池化的宽度。
     - **no_trans** （bool）- 确定roi池化阶段是否加入偏移以获取新的输出。其中值为bool变量，取True或False。如果为True，则表示不加入偏移。默认为False。

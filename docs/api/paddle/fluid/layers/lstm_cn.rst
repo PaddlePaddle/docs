@@ -46,10 +46,10 @@ lstm
 参数
 ::::::::::::
 
-  - **input** ( :ref:`api_guide_Variable` ) - LSTM的输入张量，维度为 :math:`[batch\_size, seq\_len, input\_dim]` 的 3-D Tensor，其中 seq_len 为序列的长度，input_dim 为序列词嵌入的维度。数据类型为 float32 或者 float64。
+  - **input** ( :ref:`api_guide_Variable` ) - LSTM的输入Tensor，维度为 :math:`[batch\_size, seq\_len, input\_dim]` 的 3-D Tensor，其中 seq_len 为序列的长度，input_dim 为序列词嵌入的维度。数据类型为 float32 或者 float64。
   - **init_h** ( :ref:`api_guide_Variable` ) – LSTM的初始 hidden 状态，维度为 :math:`[num\_layers, batch\_size, hidden\_size]` 的 3-D Tensor，其中 num_layers 是LSTM的总层数，hidden_size 是隐层维度。如果is_bidirec = True，维度应该为 :math:`[num\_layers*2, batch\_size, hidden\_size]`。数据类型为 float32 或者 float64。
   - **init_c** ( :ref:`api_guide_Variable` ) - LSTM的初始 cell 状态。维度为 :math:`[num\_layers, batch\_size, hidden\_size]` 的 3-D Tensor，其中 num_layers 是LSTM的总层数，hidden_size 是隐层维度。如果is_bidirec = True，维度应该为 :math:`[num\_layers*2, batch\_size, hidden\_size]`。数据类型为 float32 或者 float64。
-  - **max_len** (int) – LSTM的最大长度。输入张量的第一个 input_dim 不能大于 max_len。
+  - **max_len** (int) – LSTM的最大长度。输入Tensor的第一个 input_dim 不能大于 max_len。
   - **hidden_size** (int) - LSTM hidden 状态的维度。
   - **num_layers** (int) –  LSTM的总层数。例如，该参数设置为2，则会堆叠两个LSTM，其第一个LSTM的输出会作为第二个LSTM的输入。
   - **dropout_prob** (float，可选) – dropout比例，dropout 只在 rnn 层之间工作，而不是在时间步骤之间。dropout 不作用于最后的 rnn 层的 rnn 输出中。默认值为 0.0。

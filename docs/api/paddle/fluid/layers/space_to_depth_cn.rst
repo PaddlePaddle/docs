@@ -8,12 +8,12 @@ space_to_depth
 
 
 
-该OP对成块的空间数据进行重组，输出一个输入张量的拷贝，其高度和宽度维度上的值移至通道维度。
+该OP对成块的空间数据进行重组，输出一个输入Tensor的拷贝，其高度和宽度维度上的值移至通道维度。
 
-重组时，依据 ``blocksize`` 指明的数据块大小，对形为 ``[batch, channel, height, width]`` 的输入张量进行space_to_depth（广度至深度）运算，生成形为 ``[batch, channel * blocksize * blocksize, height/blocksize, width/blocksize]``  的输出：
+重组时，依据 ``blocksize`` 指明的数据块大小，对形为 ``[batch, channel, height, width]`` 的输入Tensor进行space_to_depth（广度至深度）运算，生成形为 ``[batch, channel * blocksize * blocksize, height/blocksize, width/blocksize]``  的输出：
 
  - 在各位置上，不重叠的，大小为 ``blocksize * blocksize`` 的块重组入深度depth
- - 输入各个块中的Y, X坐标变为输出张量通道索引的高序部位
+ - 输入各个块中的Y, X坐标变为输出Tensor通道索引的高序部位
  - 输入 ``channel`` 需可以被 ``blocksize`` 的平方整除
  - 输入的高度和宽度需可以被 ``blocksize`` 整除
 

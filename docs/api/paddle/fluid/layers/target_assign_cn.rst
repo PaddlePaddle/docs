@@ -45,7 +45,7 @@ neg_indices中的第i个实例的索引称作neg_indice，则对于第i个实例
 
 返回
 ::::::::::::
-返回一个元组（out,out_weight）。out是三维张量，维度为[N,P,K]，N和P与 ``matched_indices`` 中的N和P一致，K和输入X中的K一致。``out_weight`` 的维度为[N,P,1]。
+返回一个元组（out,out_weight）。out是三维Tensor，维度为[N,P,K]，N和P与 ``matched_indices`` 中的N和P一致，K和输入X中的K一致。``out_weight`` 的维度为[N,P,1]。
 
 返回类型
 ::::::::::::

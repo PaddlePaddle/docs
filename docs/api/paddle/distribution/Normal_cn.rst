@@ -106,7 +106,7 @@ log_prob(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
+    - **value** (Tensor) - 输入Tensor。数据类型为 float32 或 float64。
 
 **返回**
 
@@ -119,7 +119,7 @@ probs(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
+    - **value** (Tensor) - 输入Tensor。数据类型为 float32 或 float64。
 
 **返回**
 

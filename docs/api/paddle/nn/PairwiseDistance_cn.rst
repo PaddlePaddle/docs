@@ -15,7 +15,7 @@ PairwiseDistance
 ::::::::
     - **p** (float，可选) - 指定 p 阶的范数。默认值为 :math:`2.0`。
     - **epsilon** (float，可选) - 添加到分母的一个很小值，避免发生除零错误。默认值为 :math:`1e-6`。
-    - **keepdim** (bool，可选) - 是否保留输出张量减少的维度。输出结果相对于 :math:`|x-y|` 的结果减少一维，除非 :attr:`keepdim` 为 True，默认值为 False。
+    - **keepdim** (bool，可选) - 是否保留输出Tensor减少的维度。输出结果相对于 :math:`|x-y|` 的结果减少一维，除非 :attr:`keepdim` 为 True，默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状

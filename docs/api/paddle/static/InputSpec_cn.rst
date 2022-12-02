@@ -7,7 +7,7 @@ InputSpec
 .. py:class:: paddle.static.InputSpec(shape=None, dtype='float32', name=None)
 用于描述模型输入的签名信息，包括 shape、dtype 和 name。
 
-此接口常用于指定高层 API 中模型的输入张量信息，或动态图转静态图时，指定被 ``paddle.jit.to_static`` 装饰的 forward 函数每个输入参数的张量信息。
+此接口常用于指定高层 API 中模型的输入Tensor信息，或动态图转静态图时，指定被 ``paddle.jit.to_static`` 装饰的 forward 函数每个输入参数的Tensor信息。
 
 参数
 ::::::::::::

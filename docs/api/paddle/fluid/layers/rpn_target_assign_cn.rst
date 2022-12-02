@@ -30,7 +30,7 @@ rpn_target_assign
         - **anchor_var** (Variable) - Shape为 ``[M，4]`` 的2-D Tensor，它拥有anchor的expand方差。数据类型支持float32和float64。
         - **gt_boxes** (Variable) - Shape为 ``[Ng，4]`` 的2-D LoDTensor， ``Ng`` 是一个batch内输入groundtruth boxes的总数。数据类型支持float32和float64。
         - **is_crowd** (Variable) –Shape为 ``[M, 1]`` 的2-D LoDTensor，M为groundtruth boxes的数量。用于标记boxes是否是crowd。数据类型支持int32。
-        - **im_info** (Variable) - Shape为[N，3]的2-D张量，表示原始图像的大小信息。信息包含原始图像宽、高和feature map相对于原始图像缩放的比例。数据类型支持int32。
+        - **im_info** (Variable) - Shape为[N，3]的2-DTensor，表示原始图像的大小信息。信息包含原始图像宽、高和feature map相对于原始图像缩放的比例。数据类型支持int32。
         - **rpn_batch_size_per_im** (int，可选) - 整型数字。每个图像中RPN示例总数。数据类型支持int32。缺省值为256。
         - **rpn_straddle_thresh** (float，可选) - 浮点数字。超出图像外部 ``straddle_thresh`` 个像素的RPN anchors会被删除。数据类型支持float32。缺省值为0.0。
         - **rpn_fg_fraction** (float，可选) - 浮点数字。标记为foreground boxes的数量占batch内总体boxes的比例。数据类型支持float32。缺省值为0.5。

@@ -64,9 +64,9 @@ linear_chain_crf
 
     Emission的指数形式。shape与Emission相同。这是前向计算中的中间计算结果，在反向计算中还会复用。
 
-    Transition的指数形式。shape为[(D+2)*D]的二维张量。这是前向计算中的中间计算结果，在反向计算中还会复用。
+    Transition的指数形式。shape为[(D+2)*D]的二维Tensor。这是前向计算中的中间计算结果，在反向计算中还会复用。
 
-    条件概率的对数形式。每个batch训练样本的条件概率的对数。这是一个shape为[S*1]的二维张量，S是mini-batch的序列数。注：S等于mini-batch的序列数。输出不再是LoDTensor。
+    条件概率的对数形式。每个batch训练样本的条件概率的对数。这是一个shape为[S*1]的二维Tensor，S是mini-batch的序列数。注：S等于mini-batch的序列数。输出不再是LoDTensor。
 
 返回类型
 ::::::::::::

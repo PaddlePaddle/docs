@@ -8,9 +8,9 @@ PixelUnshuffle
 
 .. code-block:: text
 
-    给定一个形为 x.shape = [1, 1, 12, 12] 的 4-D 张量
+    给定一个形为 x.shape = [1, 1, 12, 12] 的 4-D Tensor
     设定 downscale_factor = 3
-    那么输出张量的形为 [1, 9, 4, 4]
+    那么输出Tensor的形为 [1, 9, 4, 4]
 
 参数
 :::::::::

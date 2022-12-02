@@ -30,7 +30,7 @@ dropout op可以从Program中删除，提高执行效率。
 
          - inference: out = input * (1.0 - dropout_prob)
 
-         (mask是一个张量，维度和输入维度相同，值为0或1，值为0的比例即为 ``dropout_prob`` )
+         (mask是一个Tensor，维度和输入维度相同，值为0或1，值为0的比例即为 ``dropout_prob`` )
 
       2. upscale_in_train，增加训练时的结果
 
@@ -38,13 +38,13 @@ dropout op可以从Program中删除，提高执行效率。
 
          - inference: out = input
 
-         (mask是一个张量，维度和输入维度相同，值为0或1，值为0的比例即为 ``dropout_prob`` ）
+         (mask是一个Tensor，维度和输入维度相同，值为0或1，值为0的比例即为 ``dropout_prob`` ）
 
 dropout操作符可以从程序中移除，使程序变得高效。
 
 返回
 ::::::::::::
-Tensor。经过丢弃部分数据之后的结果，与输入X形状相同的张量。
+Tensor。经过丢弃部分数据之后的结果，与输入X形状相同的Tensor。
 
 返回类型
 ::::::::::::

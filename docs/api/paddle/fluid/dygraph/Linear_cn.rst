@@ -18,7 +18,7 @@ Linear
 其中，:math:`X` 为输入的 Tensor， :math:`W` 和 :math:`b` 分别为权重和偏置。
 
 Linear 层只接受一个 Tensor 的输入。
-Linear 层将输入 Tensor 与权重矩阵 :math:`W` 相乘，然后生成形状为 :math:`[N，*，output_dim]` 的输出张量，
+Linear 层将输入 Tensor 与权重矩阵 :math:`W` 相乘，然后生成形状为 :math:`[N，*，output_dim]` 的输出Tensor，
 其中 :math:`N` 是批量大小，:math:`*` 表示任意数量的附加尺寸。
 如果 bias_attr 不是 None，则将创建一个 bias 变量并将其添加到输出中。
 最后，如果激活 act 不是 None，则相应激活函数也将应用于输出上。

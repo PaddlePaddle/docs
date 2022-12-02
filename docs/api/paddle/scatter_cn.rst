@@ -36,7 +36,7 @@ scatter
 
 参数
 :::::::::
-    - **x** (Tensor) - ndim> = 1 的输入 N-D 张量。数据类型可以是 float32，float64。
+    - **x** (Tensor) - ndim> = 1 的输入 N-D Tensor。数据类型可以是 float32，float64。
     - **index** （Tensor）- 一维 Tensor。数据类型可以是 int32，int64。 ``index`` 的长度不能超过 ``updates`` 的长度，并且 ``index`` 中的值不能超过输入的长度。
     - **updates** （Tensor）- 根据 ``index`` 使用 ``update`` 参数更新输入 ``x``。形状应与输入 ``x`` 相同，并且 dim>1 的 dim 值应与输入 ``x`` 相同。
     - **overwrite** （bool，可选）- 指定索引 ``index`` 相同时，更新输出的方式。如果为 True，则使用覆盖模式更新相同索引的输出，如果为 False，则使用累加模式更新相同索引的输出。默认值为 True。
