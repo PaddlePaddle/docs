@@ -1,12 +1,10 @@
-.. _cn_api_fluid_layers_create_parameter:
+.. _cn_api_paddle_create_parameter:
 
 create_parameter
 -------------------------------
 
 
-.. py:function:: paddle.static.create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
-
-
+.. py:function:: paddle.create_parameter(shape,dtype,name=None,attr=None,is_bias=False,default_initializer=None)
 
 
 创建一个参数。该参数是一个可学习的变量，拥有梯度并且可优化。
