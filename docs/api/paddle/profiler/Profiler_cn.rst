@@ -16,7 +16,7 @@ Profiler
     - **record_shapes** (bool，可选) - 如果设置为 True, 则会开启收集框架算子输入张量的 shape，默认为 False。
     - **profile_memory** (bool，可选) - 如果设置为 True, 则会开启收集显存分析的数据，默认为 False。
     - **timer_only** (bool，可选) - 如果设置为 True，将只统计模型的数据读取和每一个迭代所消耗的时间，而不进行性能分析。否则，模型将被计时，同时进行性能分析。默认值：False。
-    - **custom_device_types** (list, 可选) - 如果 targets 包含 profiler.ProfilerTarget.CUSTOM_DEVICE，custom_device_types 选择进行性能分析的设备类型，默认值为空表示所有自定义设备。
+    - **custom_device_types** (list，可选) - 如果 targets 包含 profiler.ProfilerTarget.CUSTOM_DEVICE，custom_device_types 选择进行性能分析的设备类型，默认值为空表示所有自定义设备。
     - **with_flops** (bool，可选) - 如果设置为 True，则会开启收集相关数据计算 FLOPs 指标。默认值：False。
 
 代码示例 1
