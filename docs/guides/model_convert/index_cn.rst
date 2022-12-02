@@ -22,4 +22,4 @@
     paddle_api_mapping_cn.rst
     pytorch_api_mapping_cn.rst
     NLP_fast_explore_cn.md
-    LP_migration_experiences_cn.md
+    NLP_migration_experiences_cn.md
