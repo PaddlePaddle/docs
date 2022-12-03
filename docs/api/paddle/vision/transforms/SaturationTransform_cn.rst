@@ -3,7 +3,7 @@
 SaturationTransform
 -------------------------------
 
-.. py:class:: paddle.vision.transforms.SaturationTransform(value)
+.. py:class:: paddle.vision.transforms.SaturationTransform(value, keys=None)
 
 调整图像的饱和度
 

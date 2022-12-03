@@ -4,7 +4,7 @@
 
 * **处理器：Loongson-3A R4 (Loongson-3A4000)**
 * **操作系统：Loongnix release 1.0**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
 本文以 Loongson-3A4000 为例，介绍 Paddle 在 MIPS 架构下的源码编译。
@@ -100,11 +100,6 @@
 8. 执行 cmake：
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
-
-    For Python2:
-    ```
-    cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MIPS=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_XBYAK=OFF -DWITH_MKL=OFF
-    ```
 
     For Python3:
     ```

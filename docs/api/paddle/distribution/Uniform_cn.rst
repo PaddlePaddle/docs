@@ -26,6 +26,11 @@ Uniform
 
 参数 low 和 high 的维度必须能够支持广播。
 
+.. note::
+    关于广播(broadcasting)机制，如您想了解更多，请参见 `Tensor 介绍`_ .
+
+    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
+
 参数
 :::::::::
 
