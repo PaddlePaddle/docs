@@ -210,7 +210,7 @@ Transformer 相关
     :header: "API 名称", "API 功能"
 
 
-    " :ref:`paddle.nn.Bilinear <cn_api_nn_Bilinear>` ", "对两个输入执行双线性张量积"
+    " :ref:`paddle.nn.Bilinear <cn_api_nn_Bilinear>` ", "对两个输入执行双线性 Tensor 积"
     " :ref:`paddle.nn.Linear <cn_api_paddle_nn_layer_common_Linear>` ", "线性变换层"
 
 .. _dropout_layers:
@@ -311,7 +311,7 @@ Clip 相关
     " :ref:`paddle.nn.PairwiseDistance <cn_api_nn_PairwiseDistance>` ", "计算两组向量两两之间的距离"
     " :ref:`paddle.nn.Identity <cn_api_paddle_nn_layer_common_Identity>` ", "建立等效层，作为输入的 Placeholder"
     " :ref:`paddle.nn.Unfold <cn_api_fluid_layers_unfold>` ", "实现的功能与卷积中用到的 im2col 函数一样，通常也被称作为 im2col 过程"
-    " :ref:`paddle.nn.Fold <cn_api_nn_fold>` ", "该 Op 用于将一个滑动局部块组合成一个大的张量,通常也被称为 col2im 过程"
+    " :ref:`paddle.nn.Fold <cn_api_nn_fold>` ", "该 Op 用于将一个滑动局部块组合成一个大的 Tensor,通常也被称为 col2im 过程"
 
 
 .. _convolution_functional:
@@ -431,7 +431,7 @@ Normalization 方法
     :header: "API 名称", "API 功能"
 
 
-    " :ref:`paddle.nn.functional.bilinear <cn_api_nn_functional_bilinear>` ", "对两个输入执行双线性张量积"
+    " :ref:`paddle.nn.functional.bilinear <cn_api_nn_functional_bilinear>` ", "对两个输入执行双线性 Tensor 积"
     " :ref:`paddle.nn.functional.linear <cn_api_paddle_nn_functional_common_linear>` ", "线性变换"
 
 .. _dropout_functional:
@@ -512,7 +512,7 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.pixel_unshuffle <cn_api_nn_functional_pixel_unshuffle>` ", "将 Tensor 重新排列，是 pixel_shuffle 的逆操作"
     " :ref:`paddle.nn.functional.square_error_cost <cn_api_fluid_layers_square_error_cost>` ", "用于计算预测值和目标值的方差估计"
     " :ref:`paddle.nn.functional.unfold <cn_api_fluid_layers_unfold>` ", "对每一个卷积核覆盖下的区域，将元素重新排成一列"
-    " :ref:`paddle.nn.functional.fold <cn_api_nn_functional_fold>` ", "该 Op 用于将一个滑动局部块组合成一个大的张量,通常也被称为 col2im。"
+    " :ref:`paddle.nn.functional.fold <cn_api_nn_functional_fold>` ", "该 Op 用于将一个滑动局部块组合成一个大的 Tensor,通常也被称为 col2im。"
     " :ref:`paddle.nn.functional.gather_tree <cn_api_fluid_layers_gather_tree>` ", "整个束搜索结束后使用,获得每个时间步选择的的候选词 id 及其对应的在搜索树中的 parent 节点"
     " :ref:`paddle.nn.functional.glu <cn_api_nn_cn_glu>` ", "门控线性单元"
     " :ref:`paddle.nn.functional.pairwise_distance <cn_api_nn_functional_pairwise_distance>` ", "计算两组向量两两之间的距离"

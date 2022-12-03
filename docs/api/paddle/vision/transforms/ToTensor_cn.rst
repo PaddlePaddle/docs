@@ -9,7 +9,7 @@ ToTensor
 
 将形状为 （H x W x C）的输入数据 ``PIL.Image`` 或 ``numpy.ndarray`` 转换为 (C x H x W)。
 
-若输入数据形状为（H x W）， ``ToTensor`` 会将该数据的形状视为（H x W x 1）。并且输出张量的形状是（1 x H x W）。
+若输入数据形状为（H x W）， ``ToTensor`` 会将该数据的形状视为（H x W x 1）。并且输出 Tensor 的形状是（1 x H x W）。
 
 如果想保持形状不变，可以将参数 ``data_format`` 设置为 ``'HWC'``。
 
@@ -22,14 +22,14 @@ ToTensor
 参数
 :::::::::
 
-    - **data_format** (str，可选) - 返回张量的格式，必须为 'HWC' 或 'CHW'。默认值：'CHW'。
+    - **data_format** (str，可选) - 返回 Tensor 的格式，必须为 'HWC' 或 'CHW'。默认值：'CHW'。
     - **keys** (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值：None。
 
 形状
 :::::::::
 
     - img (PIL.Image|numpy.ndarray) - 输入的图像数据，数据格式为'HWC'。
-    - output (np.ndarray) - 返回的张量数据，根据参数 ``data_format``，张量的格式必须为 'HWC' 或 'CHW'。
+    - output (np.ndarray) - 返回的 Tensor 数据，根据参数 ``data_format``，Tensor 的格式必须为 'HWC' 或 'CHW'。
 
 返回
 :::::::::
