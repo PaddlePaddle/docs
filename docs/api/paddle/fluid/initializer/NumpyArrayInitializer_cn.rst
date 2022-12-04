@@ -17,7 +17,7 @@ NumpyArrayInitializer
 
 返回
 ::::::::::::
-Tensor（Tensor）
+Tensor
 
 返回类型
 ::::::::::::

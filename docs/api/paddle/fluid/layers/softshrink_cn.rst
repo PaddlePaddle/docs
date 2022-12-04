@@ -20,7 +20,7 @@ Softshrink 激活函数
 参数
 ::::::::::::
 
-    - **x** (Variable0 - Tensor（Tensor）
+    - **x** (Variable0 - Tensor
     - **alpha** (float) - 上面公式中 alpha 的值
 
 返回
