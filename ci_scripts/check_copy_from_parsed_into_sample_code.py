@@ -21,8 +21,12 @@ def check_copy_from_not_parsed(file):
 
 
 def run(input_files):
+    print('COPY-FROM check files: ', input_files)
     all_error_parsed = []
     files = input_files.split()
+    if not files:
+        print("file list is empty, skip COPY-FROM check")
+        sys.exit(0)
     for file in files:
         error_parsed = check_copy_from_not_parsed("../docs/" + file)
         all_error_parsed.extend(error_parsed)

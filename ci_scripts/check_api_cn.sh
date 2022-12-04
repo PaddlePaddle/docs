@@ -30,19 +30,19 @@ function filter_cn_api_files() {
 
 need_check_cn_doc_files="$1"
 echo $need_check_cn_doc_files
+# Check COPY-FROM is parsed into Sample Code
+echo "Run COPY-FROM parsed into Sample Code Check"
+python check_copy_from_parsed_into_sample_code.py $need_check_files
+if [ $? -ne 0 ];then
+    echo "exists COPY-FROM has not been parsed into sample code, please check COPY-FROM in these files"
+    EXIT_CODE=5
+fi
 need_check_files=$(filter_cn_api_files "${need_check_cn_doc_files}")
 echo "$need_check_files"
 if [ "$need_check_files" = "" ]
 then
     echo "need check files is empty, skip chinese api check"
 else
-    # Check COPY-FROM is parsed into Sample Code
-    echo "run COPY-FROM parsed check"
-    python check_copy_from_parsed_into_sample_code.py $need_check_files
-    if [ $? -ne 0 ];then
-        echo "exists COPY-FROM has not been parsed into sample code, please check COPY-FROM in these files"
-        EXIT_CODE=5
-    fi
     echo "need check files is not empty, begin to install paddle"
     install_paddle
     if [ $? -ne 0 ];then
