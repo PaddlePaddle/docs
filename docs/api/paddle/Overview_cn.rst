@@ -36,7 +36,7 @@ tensor 数学操作
     " :ref:`paddle.angle <cn_api_paddle_angle>` ", "相位角函数"
     " :ref:`paddle.acos <cn_api_fluid_layers_acos>` ", "arccosine 函数"
     " :ref:`paddle.add <cn_api_tensor_add>` ", "Tensor 逐元素相加"
-    " :ref:`paddle.add_n <cn_api_tensor_add_n>` ", "对输入的一至多个 Tensor 或 LoDTensor 求和"
+    " :ref:`paddle.add_n <cn_api_tensor_add_n>` ", "对输入的一至多个 Tensor 求和"
     " :ref:`paddle.addmm <cn_api_tensor_addmm>` ", "计算输入 Tensor x 和 y 的乘积，将结果乘以标量 alpha，再加上 input 与 beta 的乘积，得到输出"
     " :ref:`paddle.all <cn_api_tensor_all>` ", "对指定维度上的 Tensor 元素进行逻辑与运算"
     " :ref:`paddle.allclose <cn_api_tensor_allclose>` ", "逐个检查输入 Tensor x 和 y 的所有元素是否均满足 ∣x−y∣≤atol+rtol×∣y∣"
@@ -361,7 +361,7 @@ framework 相关
 
     " :ref:`paddle.CPUPlace <cn_api_fluid_CPUPlace>` ", "一个设备描述符，指定 CPUPlace 则 Tensor 将被自动分配在该设备上，并且模型将会运行在该设备上"
     " :ref:`paddle.CUDAPinnedPlace <cn_api_fluid_CUDAPinnedPlace>` ", "一个设备描述符，它所指代的页锁定内存由 CUDA 函数 cudaHostAlloc() 在主机内存上分配，主机的操作系统将不会对这块内存进行分页和交换操作，可以通过直接内存访问技术访问，加速主机和 GPU 之间的数据拷贝"
-    " :ref:`paddle.CUDAPlace <cn_api_fluid_CUDAPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 或 LoDTensor 的 GPU 设备"
+    " :ref:`paddle.CUDAPlace <cn_api_fluid_CUDAPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 的 GPU 设备"
     " :ref:`paddle.DataParallel <cn_api_fluid_dygraph_DataParallel>` ", "通过数据并行模式执行动态图模型"
     " :ref:`paddle.NPUPlace <cn_api_fluid_NPUPlace>` ", "一个设备描述符，指 NCPUPlace 则 Tensor 将被自动分配在该设备上，并且模型将会运行在该设备上"
     " :ref:`paddle.disable_signal_handler <cn_api_fluid_disable_signal_handler>` ", "关闭 Paddle 系统信号处理方法"

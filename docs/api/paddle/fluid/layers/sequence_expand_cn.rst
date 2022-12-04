@@ -53,7 +53,7 @@ sequence_expand
 参数
 ::::::::::::
 
-    - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` ，lod level 至多 1 的二维 Tensor 或 LoDTensor。数据类型支持 int32，int64，float32 或 float64。
+    - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` ，lod level 至多 1 的二维 Tensor。数据类型支持 int32，int64，float32 或 float64。
     - **y** (Variable) - 输入变量，lod level 至少为 1 的 LoDTensor。数据类型不限。
     - **ref_level** (int，可选) - 扩展 ``x`` 所依据的 ``y`` 的 lod 层。默认值-1，表示 lod 的最后一层。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
