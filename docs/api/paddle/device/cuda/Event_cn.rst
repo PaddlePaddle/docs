@@ -61,3 +61,18 @@ synchronize()
 **代码示例**
 
 COPY-FROM: paddle.device.cuda.Event.synchronize
+
+
+**代码示例 For Test**
+
+COPY-FROM: paddle.device.cuda.empty_cache
+
+
+**代码示例 For Test**
+
+COPY-FROM: paddle.amp.decorate
+
+
+**代码示例 For Test**
+
+COPY-FROM: paddle.amp.GradScaler.set_decr_ratio

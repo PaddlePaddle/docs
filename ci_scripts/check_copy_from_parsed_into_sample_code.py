@@ -1,5 +1,6 @@
 import sys
 import re
+import os
 
 
 def check_copy_from_not_parsed(file):
@@ -30,5 +31,4 @@ else:
     if not os.path.exists(sys.argv[1]):
         print("File not found")
         sys.exit(1)
-    res = test(sys.argv[1])
-    output.append(res)
+    res = run(sys.argv[1])
