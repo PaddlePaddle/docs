@@ -23,11 +23,10 @@ def check_copy_from_not_parsed(file):
 def run(input_files):
     print('COPY-FROM check files: ', input_files)
     all_error_parsed = []
-    files = input_files.split()
-    if not files:
-        print("file list is empty, skip COPY-FROM check")
+    if not input_files:
+        print("input_files list is empty, skip COPY-FROM check")
         sys.exit(0)
-    for file in files:
+    for file in input_files:
         error_parsed = check_copy_from_not_parsed("../docs/" + file)
         all_error_parsed.extend(error_parsed)
     if all_error_parsed:
@@ -40,4 +39,4 @@ if len(sys.argv) < 2:
     print("Please input one file path")
     sys.exit(1)
 else:
-    res = run(sys.argv[1])
+    res = run(sys.argv[1:])
