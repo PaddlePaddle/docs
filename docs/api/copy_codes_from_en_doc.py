@@ -12,8 +12,6 @@ from gen_doc import extract_code_blocks_from_docstr
 
 api_info_dict = {}
 api_name_2_id_map = {}
-# The API set which can't replace code block by COPY-FROM
-copy_from_warning_api_files = set()
 
 logger = logging.getLogger()
 if logger.handlers:
@@ -91,7 +89,6 @@ def find_codeblock_needed(cf_info):
         if 'docstring' in api_info:
             codeblocks = extract_code_blocks_from_docstr(api_info['docstring'])
             if not codeblocks:
-                copy_from_warning_api_files.add(cf_info['src_api'])
                 logger.warning('found none codeblocks for %s', str(cf_info))
                 logger.warning(
                     'and the docstring is: %s', api_info['docstring']
@@ -104,7 +101,6 @@ def find_codeblock_needed(cf_info):
                 else find_codeblock_needed_by_name(cb_name, codeblocks)
             )
     else:
-        copy_from_warning_api_files.add(cf_info['src_api'])
         logger.warning('%s not in api_name_2_id_map', cf_info['src_api'])
         return None
 
