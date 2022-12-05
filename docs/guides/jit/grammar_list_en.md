@@ -48,9 +48,9 @@ If you encounter problems with @to_static, or want to learn about debugging skil
 
 #### principle :
 
-While In the dynamic diagram, the code is interpreted and executed line by line,  so the value of condition variables used by `if` are determined,  which means that the logic branch of False will not be executed.
+While in the dynamic graph, the code is interpreted and executed line by line,  so the value of condition variables used by `if` are determined,  which means that the logic branch of False will not be executed.
 
-However,  In the static graph, the control flow is realized through the `cond` operators. Each branch is represented by `true_fn` and `false_fn` respectively .  Under this circumstance, the `false_fn` will be executed to build the computation graph.
+However,  in the static graph, the control flow is realized through the `cond` operators. Each branch is represented by `true_fn` and `false_fn` respectively .  Under this circumstance, the `false_fn` will be executed to build the computation graph.
 
 When the condition variables in `If` are `Tensor`,  `if-else` will be transformed to a `cond` operators.
 
@@ -265,7 +265,7 @@ def sort_list(x, y):
 
 - Don't support get shape after a reshape operators. You may get a -1 in shape value.
 
-For example, `x = reshape(x, shape=shape_tensor)` , then use `x.shape[0]` to do other operation. Due to the difference between dygraph and static graph, it is okay in dygraph but it will fail in static graph. The reason is that APIs return computation result in dygraph mode, so x.shape has deterministic value after calling reshape . However, static graph doesn’t have the value shape_tensor during building network, so PaddlePaddle doesn’t know the value of x.shape after calling reshape. PaddlePaddle static graph will set -1 to represent unknown shape value for each dimension of x.shape in this case, not the expected value. Similarily, calling the shape of the output tensor of those APIs which change the shape, such as expend, cannot be converted into static graph properly.
+For example, `x = reshape(x, shape=shape_tensor)` , then use `x.shape[0]` to do other operation. Due to the difference between dynamic and static graph, it is okay in dynamic but it will fail in static graph. The reason is that APIs return computation result in dynamic graph mode, so x.shape has deterministic value after calling reshape . However, static graph doesn’t have the value shape_tensor during building network, so PaddlePaddle doesn’t know the value of x.shape after calling reshape. PaddlePaddle static graph will set -1 to represent unknown shape value for each dimension of x.shape in this case, not the expected value. Similarily, calling the shape of the output tensor of those APIs which change the shape, such as expend, cannot be converted into static graph properly.
 
 #### examples :
 
