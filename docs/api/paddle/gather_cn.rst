@@ -33,7 +33,7 @@ gather
 
 返回
 ::::::::::::
-Tensor，当 index 为一维 tensor 候，返回和输入张量的形状相同的输出张量。当 index 为零维 tensor 时候，返回张量相对于输入张量会降维， axis 指向的维度会被降维。
+Tensor，当 index 为一维 Tensor 时，返回和输入 Tensor 的形状相同的 Tensor。当 index 为零维 Tensor 时，返回 Tensor 相对于输入 Tensor 会降维， axis 指向的维度会被降维。
 
 
 代码示例
