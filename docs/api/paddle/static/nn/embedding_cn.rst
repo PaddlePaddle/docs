@@ -72,7 +72,7 @@ input 中的 id 必须满足 ``0 =< id < size[0]``，否则程序会抛异常退
 
 返回
 ::::::::::::
-Variable，input 映射后得到的 Embedding Tensor 或 LoDTensor，数据类型和 dtype 定义的类型一致。
+Variable，input 映射后得到的 Embedding Tensor，数据类型和 dtype 定义的类型一致。
 
 
 代码示例

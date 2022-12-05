@@ -14,7 +14,7 @@ sigmoid_focal_loss
 
 其中 :math:`\sigma(Logit) = \frac{1}{1 + \exp(-Logit)}`
 
-当 `normalizer` 不为 None 时，该算子会将输出损失 Out 除以张量 `normalizer` ：
+当 `normalizer` 不为 None 时，该算子会将输出损失 Out 除以 Tensor `normalizer` ：
 
 .. math::
            Out = \frac{Out}{normalizer}

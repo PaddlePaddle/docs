@@ -8,7 +8,7 @@ add_n
 
 
 
-对输入的一至多个 Tensor 或 LoDTensor 求和。如果输入的是 LoDTensor，输出仅与第一个输入共享 LoD 信息（序列信息）。
+对输入的一至多个 Tensor 求和。
 
 .. code-block:: text
 
