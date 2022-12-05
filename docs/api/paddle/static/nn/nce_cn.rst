@@ -18,8 +18,8 @@ nce
 参数
 ::::::::::::
 
-    - **input** (Tensor) -  输入张量，2-D 张量，形状为 [batch_size, dim]，数据类型为 float32 或者 float64。
-    - **label** (Tensor) -  标签，2-D 张量，形状为 [batch_size, num_true_class]，数据类型为 int64。
+    - **input** (Tensor) -  输入 Tensor，2-D Tensor，形状为 [batch_size, dim]，数据类型为 float32 或者 float64。
+    - **label** (Tensor) -  标签，2-D Tensor，形状为 [batch_size, num_true_class]，数据类型为 int64。
     - **num_total_classes** (int) - 所有样本中的类别的总数。
     - **sample_weight** (Tensor，可选) - 存储每个样本权重，shape 为 [batch_size, 1] 存储每个样本的权重。每个样本的默认权重为 1.0。
     - **param_attr** (ParamAttr，可选)：指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。

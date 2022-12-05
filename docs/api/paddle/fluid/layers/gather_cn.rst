@@ -37,24 +37,15 @@ gather
 
 返回
 ::::::::::::
-和输入的秩相同的输出张量。
+和输入的秩相同的输出 Tensor。
 
 
 代码示例
 ::::::::::::
 
 ..  code-block:: python
-  
+
   import paddle.fluid as fluid
   x = fluid.layers.data(name='x', shape=[-1, 5], dtype='float32')
   index = fluid.layers.data(name='index', shape=[-1, 1], dtype='int32')
   output = fluid.layers.gather(x, index)
-
-
-
-
-
-
-
-
-

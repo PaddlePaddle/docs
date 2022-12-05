@@ -13,7 +13,7 @@ mean
 参数
 ::::::::::::
 
-        - **x** (Variable) : Tensor 或 LoDTensor。均值运算的输入。
+        - **x** (Variable) : Tensor。均值运算的输入。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

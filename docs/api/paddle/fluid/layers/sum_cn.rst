@@ -8,9 +8,9 @@ sum
 
 
 
-该OP用于对输入的一至多个Tensor或LoDTensor求和。如果输入的是LoDTensor，输出仅与第一个输入共享LoD信息（序列信息）。
+该 OP 用于对输入的一至多个 Tensor 求和。如果输入的是 LoDTensor，输出仅与第一个输入共享 LoD 信息（序列信息）。
 
-例1：
+例 1：
 ::
     输入：
     	input.shape = [2, 3]
@@ -21,15 +21,15 @@ sum
     	output.shape = [2, 3]
     	output = [[1, 2, 3],
 	          [4, 5, 6]]
-	
-例2：
+
+例 2：
 ::
     输入：
 	第一个输入：
     	    input1.shape = [2, 3]
     	    input1 = [[1, 2, 3],
 	      	      [4, 5, 6]]
-	
+
 	第二个输入：
     	    input2.shape = [2, 3]
     	    input2 = [[7, 8, 9],
@@ -43,11 +43,11 @@ sum
 参数
 ::::::::::::
 
-    **x** (Variable|list(Variable)) - 输入的一至多个Variable。如果输入了多个Variable，则不同Variable间的shape和数据类型应保持一致。Variable为多维Tensor或LoDTensor，数据类型支持：float32，float64，int32，int64
+    **x** (Variable|list(Variable)) - 输入的一至多个 Variable。如果输入了多个 Variable，则不同 Variable 间的 shape 和数据类型应保持一致。Variable 为多维 Tensor，数据类型支持：float32，float64，int32，int64
 
 返回
 ::::::::::::
-对输入 ``x`` 中的Variable求和后的结果，shape和数据类型与 ``x`` 一致
+对输入 ``x`` 中的 Variable 求和后的结果，shape 和数据类型与 ``x`` 一致
 
 返回类型
 ::::::::::::
