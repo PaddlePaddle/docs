@@ -8,7 +8,7 @@ softshrink
 
 
 
-Softshrink 激活函数
+Softshrink激活函数
 
 .. math::
     out = \begin{cases}
@@ -20,12 +20,12 @@ Softshrink 激活函数
 参数
 ::::::::::::
 
-    - **x** (Variable0 - Tensor
-    - **alpha** (float) - 上面公式中 alpha 的值
+    - **x** (Variable0 - 张量（Tensor）
+    - **alpha** (float) - 上面公式中alpha的值
 
 返回
 ::::::::::::
- Tensor
+ 张量(Tensor)
 
 返回类型
 ::::::::::::
