@@ -322,6 +322,7 @@ def linkcode_resolve(domain, info):
         return url
     except Exception as e:
         print("conf.py(en) linkcode_resolve error", e)
+        traceback.print_exc()
         return None
 
 
