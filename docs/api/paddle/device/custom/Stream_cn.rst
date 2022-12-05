@@ -1,23 +1,25 @@
-.. _cn_api_device_cuda_Stream:
+.. _cn_api_device_custom_Stream:
 
 Stream
 -------------------------------
 
-.. py:class:: paddle.device.cuda.Stream(device=None, priority=None)
+.. py:class:: paddle.device.custom.Stream(device, device_id=None, priority=None, blocking=False)
 
-CUDA stream 的句柄。
+custom device stream 的句柄。
 
 参数
 ::::::::::::
 
-    - **device** (paddle.CUDAPlace()|int|None，可选) - 希望分配 stream 的设备。如果是 None 或者负数，则设备为当前的设备。如果是正数，则必须小于设备的个数。默认值为 None。
+    - **device** (paddle.CustomPlace()|str) - 希望分配 stream 的设备或设备类型。
+    - **device_id** (int，可选) - 希望分配 stream 的设备 ID。
     - **priority** (int|None，可选) - stream 的优先级。优先级可以为 1（高优先级）或者 2（正常优先级）。如果优先级为 None，优先级为 2（正常优先级）。默认值为 None。
+    - **blocking** (bool|None，可选) - stream 是否同步执行。默认值为 False。
 
 
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.device.cuda.Stream
+COPY-FROM: paddle.device.custom.Stream
 
 
 
@@ -30,11 +32,11 @@ wait_event(event)
 
 **参数**
 
-    - **event** (CUDAEvent) - 要等待的 event。
+    - **event** (CustomDeviceEvent) - 要等待的 event。
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Stream.wait_event
+COPY-FROM: paddle.device.custom.Stream.wait_event
 
 
 wait_stream(stream)
@@ -44,12 +46,12 @@ wait_stream(stream)
 
 **参数**
 
-    - **stream** (CUDAStream) - 要同步的 stream。
+    - **stream** (CustomDeviceStream) - 要同步的 stream。
 
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Stream.wait_stream
+COPY-FROM: paddle.device.custom.Stream.wait_stream
 
 
 query()
@@ -62,7 +64,7 @@ query()
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Stream.query
+COPY-FROM: paddle.device.custom.Stream.query
 
 synchronize()
 '''''''''
@@ -71,20 +73,20 @@ synchronize()
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Stream.synchronize
+COPY-FROM: paddle.device.custom.Stream.synchronize
 
 record_event(event=None)
 '''''''''
 
-标记一个 CUDA event 到当前 stream 中。
+标记一个 custom device event 到当前 stream 中。
 
 **参数**
 
-    - **event** (CUDAEvent，可选) - 要标记的 event。如果 event 为 None，新建一个 event。默认值为 None。
+    - **event** (CustomDeviceEvent) - 要标记的 event。如果 event 为 None，新建一个 event。默认值为 None。
 
 **返回**
  被标记的 event。
 
 **代码示例**
 
-COPY-FROM: paddle.device.cuda.Stream.record_event
+COPY-FROM: paddle.device.custom.Stream.record_event
