@@ -5,7 +5,7 @@ CrossEntropyLoss
 
 .. py:function:: paddle.nn.CrossEntropyLoss(weight=None, ignore_index=-100, reduction='mean', soft_label=False, axis=-1, name=None)
 
-计算输入 input 和标签 label 间的交叉熵损失，它结合了 `LogSoftmax` 和 `NLLLoss` 的 OP 计算，可用于训练一个 `n` 类分类器。
+计算输入 input 和标签 label 间的交叉熵损失，它结合了 `LogSoftmax` 和 `NLLLoss` 的函数计算，可用于训练一个 `n` 类分类器。
 
 如果提供 `weight` 参数的话，它是一个 `1-D` 的 tensor，每个值对应每个类别的权重。
 该损失函数的数学计算公式如下：
@@ -32,9 +32,9 @@ CrossEntropyLoss
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 形状
 :::::::::
-    - **input** (Tensor): - 输入 `Tensor`，数据类型为 float32 或 float64。其形状为 :math:`[N, C]`，其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k, C]` ，k >= 1。
-    - **label** (Tensor): - 当 soft_label=False 时，输入 input 对应的标签值，数据类型为 int64。其形状为 :math:`[N]`，每个元素符合条件：0 <= label[i] <= C-1。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k]` ，k >= 1；当 soft_label=True 时，输入形状应与 input 一致，数据类型为 float32 或 float64 且每个样本的各标签概率和应为 1。
-    - **output** (Tensor): - 计算 `CrossEntropyLoss` 交叉熵后的损失值。
+    - **input** (Tensor): 输入 `Tensor`，数据类型为 float32 或 float64。其形状为 :math:`[N, C]`，其中 `C` 为类别数。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k, C]` ，k >= 1。
+    - **label** (Tensor): 当 soft_label=False 时，输入 input 对应的标签值，数据类型为 int64。其形状为 :math:`[N]`，每个元素符合条件：0 <= label[i] <= C-1。对于多维度的情形下，它的形状为 :math:`[N, d_1, d_2, ..., d_k]` ，k >= 1；当 soft_label=True 时，输入形状应与 input 一致，数据类型为 float32 或 float64 且每个样本的各标签概率和应为 1。
+    - **output** (Tensor): 计算 `CrossEntropyLoss` 交叉熵后的损失值。
 
 
 代码示例
