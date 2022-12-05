@@ -271,7 +271,7 @@ def linkcode_resolve(domain, info):
         if len(class_names) > 1:
         	class_name = info['module']+'.' +''.join(class_names[:-1])
     try:
-        #current_class = sys.modules[class_name]
+        # current_class = sys.modules[class_name]
         current_class = eval(class_name)
         api = getattr(current_class, api_title)
         line_no = None
