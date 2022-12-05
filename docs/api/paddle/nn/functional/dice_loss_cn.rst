@@ -5,9 +5,6 @@ dice_loss
 
 .. py:function:: paddle.nn.functional.dice_loss(input, label, epsilon=1e-05)
 
-
-
-
 比较预测结果跟标签之间的相似度，通常用于二值图像分割，即标签为二值，也可以做多标签的分割。
 
 dice_loss 定义为：
@@ -27,7 +24,7 @@ dice_loss 定义为：
 
 返回
 ::::::::::::
- Tensor，shape 为[batch_size, 1]，数据类型与 ``input`` 相同
+ Tensor，shape 为 [batch_size, 1]，数据类型与 ``input`` 相同
 
 
 代码示例
