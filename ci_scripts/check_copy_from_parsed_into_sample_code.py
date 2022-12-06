@@ -14,7 +14,7 @@ def check_copy_from_not_parsed(file):
                 print(
                     file,
                     "line: ",
-                    line,
+                    line + 1,
                     i,
                     " is not parsed into sample code, \
                     please check the api name after COPY-FROM",

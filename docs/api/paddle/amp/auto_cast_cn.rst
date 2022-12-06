@@ -24,18 +24,3 @@ auto_cast
 代码示例
 :::::::::
 COPY-FROM: paddle.amp.auto_cast
-
-
-代码示例 For Parsed Failed Test
-:::::::::
-COPY-FROM: paddle.amp.test
-
-
-代码示例 For Parsed Success Test
-:::::::::
-COPY-FROM: paddle.device.cuda.empty_cache
-
-
-代码示例 For Parsed Failed Test
-:::::::::
-COPY-FROM: paddle.device.cuda.test
