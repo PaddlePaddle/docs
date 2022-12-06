@@ -44,6 +44,7 @@ BatchNorm2D
     - **weight_attr** (ParamAttr|bool，可选) - 指定权重参数属性的对象。如果为 False，则表示每个通道的伸缩固定为 1，不可改变。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_ParamAttr` 。
     - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。如果为 False，则表示每一个通道的偏移固定为 0，不可改变。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_ParamAttr` 。
     - **data_format** (string，可选) - 指定输入数据格式，数据格式可以为"NCHW"。默认值：“NCHW”。
+    - **use_global_stats** (bool|None，可选) - 是否使用全局平均值和方差。如果设置为 False，则统计小批数据；如果设置为 True，则统计所有数据；如果设置为 None，则在测试阶段统计所有数据，在训练阶段统计小批数据，默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
