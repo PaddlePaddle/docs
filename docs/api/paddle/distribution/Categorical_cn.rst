@@ -83,7 +83,7 @@ sample(shape)
 
 **返回**
 
-预先设计好维度的张量。
+预先设计好维度的 Tensor。
 
 **代码示例**
 
@@ -180,7 +180,7 @@ probs(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量，表示选择的类别下标。数据类型为 int32 或 int64。
+    - **value** (Tensor) - 输入 Tensor，表示选择的类别下标。数据类型为 int32 或 int64。
 
 **返回**
 
@@ -210,7 +210,7 @@ log_prob(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量，表示选择的类别下标。数据类型为 int32 或 int64。
+    - **value** (Tensor) - 输入 Tensor，表示选择的类别下标。数据类型为 int32 或 int64。
 
 **返回**
 
