@@ -35,7 +35,7 @@ echo "Run COPY-FROM parsed into Sample Code Check"
 python check_copy_from_parsed_into_sample_code.py $need_check_cn_doc_files
 if [ $? -ne 0 ];then
     echo "exists COPY-FROM has not been parsed into sample code, please check COPY-FROM in the above files"
-    EXIT_CODE=5
+    exit 1
 fi
 need_check_files=$(filter_cn_api_files "${need_check_cn_doc_files}")
 echo "$need_check_files"
