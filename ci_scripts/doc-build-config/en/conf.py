@@ -269,7 +269,7 @@ def linkcode_resolve(domain, info):
     if info['module']:
         class_name = info['module']
         if len(class_names) > 1:
-        	class_name = info['module']+'.' +''.join(class_names[:-1])
+            class_name = info['module'] + '.' + ''.join(class_names[:-1])
     try:
         # current_class = sys.modules[class_name]
         current_class = eval(class_name)
@@ -290,7 +290,9 @@ def linkcode_resolve(domain, info):
                     'paddle.fluid.layers.layer_function_generator',
                 ]:
                     module = (
-                        os.path.splitext(sys.modules[api.__module__].__file__)[0]
+                        os.path.splitext(sys.modules[api.__module__].__file__)[
+                            0
+                        ]
                         + '.py'
                     )
                     with open(module) as module_file:
@@ -307,7 +309,9 @@ def linkcode_resolve(domain, info):
                         # If we could not find it, we look at assigned objects.
                         if not line_no:
                             for node in module_ast.body:
-                                if isinstance(node, ast.Assign) and api_title in [
+                                if isinstance(
+                                    node, ast.Assign
+                                ) and api_title in [
                                     target.id for target in node.targets
                                 ]:
                                     line_no = node.lineno
@@ -329,7 +333,6 @@ def handle_api_aliases():
     """
     因为api定义和导入的各种关系，导致部分api定义的地方和导出的地方不一致被sphinx认为是alias，如paddle.device.cuda.Event等
     对这部分API做单独的重命名处理，而这部分api的列表，就放在 /FluidDoc/docs/api/api_aliases.ini中吧
-
     see https://console.cloud.baidu-int.com/devops/icafe/issue/DLTP-35024/show?source=drawer-header
     see https://stackoverflow.com/a/58982001/1738613
     """
