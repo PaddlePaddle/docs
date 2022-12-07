@@ -12,7 +12,7 @@ def check_copy_from_not_parsed(file):
             if 'COPY-FROM' in i:
                 error_parsed.append(i)
                 print(
-                    "ERRPR: ",
+                    "ERROR: ",
                     file,
                     "line: ",
                     line + 1,
