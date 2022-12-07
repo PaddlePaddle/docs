@@ -311,46 +311,12 @@ After reshape: [1, 3]
 
 通过几个例子来详细了解：
 
-```python
-ndim_5_Tensor = paddle.ones([3,2,5])
-reshape_5_Tensor = paddle.reshape(ndim_5_Tensor, [3, 10])
-print("After reshape:", reshape_5_Tensor.shape)
-```
 ```text
-After reshape: [3, 10] # 直接指定目标 shape
-```
-
-```python
-reshape_5_Tensor = paddle.reshape(ndim_5_Tensor, [-1])
-print("After reshape:", reshape_5_Tensor.shape)
-```
-```text
-After reshape: [30] # 转换为 1 维，维度根据元素总数推断出来是 3*2*5=30
-```
-
-```python
-reshape_5_Tensor = paddle.reshape(ndim_5_Tensor, [-1,5])
-print("After reshape:", reshape_5_Tensor.shape)
-```
-```text
-After reshape: [6, 5] # 转换为 2 维，固定一个维度 5，另一个维度根据元素总数推断出来是 30÷5=6
-```
-
-```python
-reshape_5_Tensor = paddle.reshape(ndim_5_Tensor, [0,-1])
-print("After reshape:", reshape_5_Tensor.shape)
-```
-```text
-After reshape: [3, 10] # reshape:[0, -1]中 0 的索引值为 0，按照规则，转换后第 0 维的元素数量与原始 Tensor 第 0 维的元素数量相同，为 3；第 1 维的元素数量根据元素总值计算得出为 30÷3=10。
-```
-
-```python
-reshape_5_Tensor = paddle.reshape(ndim_5_Tensor, [3,1,0])
-print("After reshape:", reshape_5_Tensor.shape)
-```
-```text
-ValueError: (InvalidArgument) The 'shape' in ReshapeOp is invalid. The input tensor X'size must be equal to the capacity of 'shape'. But received X's shape = [3, 2, 5], X's size = 30, 'shape' is [3, 1, 0], the capacity of 'shape' is 15.
-# reshape:[3, 1, 0]中 0 的索引值为 2，但原 Tensor 只有 2 维，无法找到与第 3 维对应的元素数量，因此出错。
+origin:[3, 2, 5] reshape:[3, 10]      actual: [3, 10] # 直接指定目标 shape
+origin:[3, 2, 5] reshape:[-1]         actual: [30] # 转换为 1 维，维度根据元素总数推断出来是 3*2*5=30
+origin:[3, 2, 5] reshape:[-1, 5]      actual: [6, 5] # 转换为 2 维，固定一个维度 5，另一个维度根据元素总数推断出来是 30÷5=6
+origin:[3, 2, 5] reshape:[0, -1]      actual: [3, 10] # reshape:[0, -1]中 0 的索引值为 0，按照规则，转换后第 0 维的元素数量与原始 Tensor 第 0 维的元素数量相同，为 3；第 1 维的元素数量根据元素总值计算得出为 30÷3=10。
+origin:[3, 2]    reshape:[3, 1, 0]    error： # reshape:[3, 1, 0]中 0 的索引值为 2，但原 Tensor 只有 2 维，无法找到与第 3 维对应的元素数量，因此出错。
 ```
 
 从上面的例子可以看到，通过 reshape:[-1] ，可以很方便地将 Tensor 按其在计算机上的内存分布展平为一维。
@@ -512,7 +478,7 @@ Tensor stop_gradient: False
 1. 基于 0-n 的下标进行索引，如果下标为负数，则从尾部开始计算。
 2. 通过冒号 ``:`` 分隔切片参数，``start:stop:step`` 来进行切片操作，其中 start、stop、step 均可缺省。
 
-####（1）访问 Tensor
+#### 4.1.1 访问 Tensor
 * 针对一维  Tensor，仅有单个维度上的索引或切片：
 ```python
 ndim_1_Tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
@@ -578,7 +544,7 @@ Tensor(shape=[4], dtype=int64, place=Place(gpu:0), stop_gradient=True,
        [4, 5, 6, 7])
 ```
 
-####（2）修改 Tensor
+#### 4.1.2 修改 Tensor
 
 与访问 Tensor 类似，修改 Tensor 可以在单个或多个维度上通过索引或切片操作。同时，支持将多种类型的数据赋值给该 Tensor，当前支持的数据类型有：`int`，`float`，`numpy.ndarray`，`complex`，`Tensor`。
 > **注意：**
