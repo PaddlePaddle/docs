@@ -27,8 +27,8 @@ Normal
 参数
 ::::::::::::
 
-    - **loc** (float|list|numpy.ndarray|Variable) - 正态分布平均值。数据类型为float32。
-    - **scale** (float|list|numpy.ndarray|Variable) - 正态分布标准差。数据类型为float32。
+    - **loc** (float|list|numpy.ndarray|Variable) - 正态分布平均值。数据类型为 float32。
+    - **scale** (float|list|numpy.ndarray|Variable) - 正态分布标准差。数据类型为 float32。
 
 代码示例
 ::::::::::::
@@ -39,12 +39,12 @@ COPY-FROM: paddle.fluid.layers.Normal
 参数
 ::::::::::::
 
-    - **shape** (list) - 1维列表，指定生成样本的维度。数据类型为int32。
+    - **shape** (list) - 1 维列表，指定生成样本的维度。数据类型为 int32。
     - **seed** (int) - 长整型数。
-    
+
 返回
 ::::::::::::
-预先设计好维度的张量，数据类型为float32
+预先设计好维度的 Tensor，数据类型为 float32
 
 返回类型
 ::::::::::::
@@ -53,10 +53,10 @@ Variable
 .. py:function:: entropy()
 
 信息熵
-    
+
 返回
 ::::::::::::
-正态分布的信息熵，数据类型为float32
+正态分布的信息熵，数据类型为 float32
 
 返回类型
 ::::::::::::
@@ -69,11 +69,11 @@ Variable
 参数
 ::::::::::::
 
-    - **value** (Variable) - 输入张量。数据类型为float32或float64。
-    
+    - **value** (Variable) - 输入 Tensor。数据类型为 float32 或 float64。
+
 返回
 ::::::::::::
-对数概率，数据类型与value相同
+对数概率，数据类型与 value 相同
 
 返回类型
 ::::::::::::
@@ -81,23 +81,17 @@ Variable
 
 .. py:function:: kl_divergence(other)
 
-两个正态分布之间的KL散度。
+两个正态分布之间的 KL 散度。
 
 参数
 ::::::::::::
 
-    - **other** (Normal) - Normal的实例。
-    
+    - **other** (Normal) - Normal 的实例。
+
 返回
 ::::::::::::
-两个正态分布之间的KL散度，数据类型为float32
+两个正态分布之间的 KL 散度，数据类型为 float32
 
 返回类型
 ::::::::::::
 Variable
-
-
-
-
-
-

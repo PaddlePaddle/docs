@@ -112,7 +112,7 @@
 
     class MyNet(paddle.nn.Layer):
         def __init__(self, num_classes=1):
-            super(MyNet, self).__init__()
+            super().__init__()
 
             self.conv1 = paddle.nn.Conv2D(in_channels=3, out_channels=32, kernel_size=(3, 3))
             self.pool1 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)

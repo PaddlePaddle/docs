@@ -87,7 +87,7 @@ DataLoader，迭代 ``dataset`` 数据的迭代器，迭代器返回的数据中
 
     class SimpleNet(nn.Layer):
         def __init__(self):
-            super(SimpleNet, self).__init__()
+            super().__init__()
             self.fc = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
         def forward(self, image, label=None):
@@ -317,7 +317,7 @@ from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=T
 
     class LinearNet(nn.Layer):
         def __init__(self):
-            super(LinearNet, self).__init__()
+            super().__init__()
             self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
         @paddle.jit.to_static

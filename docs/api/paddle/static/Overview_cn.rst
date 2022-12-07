@@ -56,7 +56,7 @@ Executor 相关 API
     :widths: 10, 30
 
     " :ref:`batch_norm <cn_api_fluid_layers_batch_norm>` ", "Batch Normalization 方法"
-    " :ref:`bilinear_tensor_product <cn_api_fluid_layers_bilinear_tensor_product>` ", "对两个输入执行双线性张量积"
+    " :ref:`bilinear_tensor_product <cn_api_fluid_layers_bilinear_tensor_product>` ", "对两个输入执行双线性 Tensor 积"
     " :ref:`case <cn_api_fluid_layers_case>` ", "以 OP 的运行方式类似于 python 的 if-elif-elif-else"
     " :ref:`conv2d <cn_api_fluid_layers_conv2d>` ", "二维卷积层"
     " :ref:`conv2d_transpose <cn_api_fluid_layers_conv2d_transpose>` ", "二维转置卷积层"

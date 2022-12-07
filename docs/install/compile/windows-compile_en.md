@@ -71,7 +71,7 @@ There is one compilation methods in Windows system:
     git checkout develop
     ```
 
-    Note: python3.6、python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1
+    Note: python3.7 version started supporting from release/1.2, python3.8 version started supporting from release/1.8, python3.9 version started supporting from release/2.1, python3.10 version started supporting from release/2.3 branch
 
 4. Create a directory called build and enter it:
 
@@ -95,13 +95,13 @@ There is one compilation methods in Windows system:
 
         Then, search "x64 Native Tools Command Prompt for VS" in Windows search bar, run it as Administrator. Here is the cmake command:
         ```
-        cmake .. -GNinja -DWITH_GPU=OFF
+        cmake .. -GNinja -DWITH_GPU=OFF -DWITH_UNITY_BUILD=ON
         ```
 
     *  2）Compile by `Visual Studio IDE` method:
 
         ```
-        cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=OFF
+        cmake .. -G "Visual Studio 15 2017" -A x64 -T host=x64 -DWITH_GPU=OFF -DWITH_UNITY_BUILD=ON
         ```
 
         In the above command, change to `-DWITH_GPU=ON` to compile the GPU version Paddle.
@@ -110,7 +110,7 @@ There is one compilation methods in Windows system:
         > 1. If more than one CUDA are installed, the latest installed CUDA will be used, and you can't specify CUDA version.
         > 2. If more than one Python are installed, the latest installed Python will be used by default, and you can choose the Python version by `-DPYTHON_EXECUTABLE` . for example:
         ```
-        cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe
+        cmake .. -GNinja -DWITH_GPU=ON -DPYTHON_EXECUTABLE=C:\\Python36\\python.exe  -DWITH_UNITY_BUILD=ON
         ```
 
 6. Execute compile:

@@ -212,7 +212,7 @@
 
     class Net(paddle.nn.Layer):
         def __init__(self, input_size, hidden_size):
-            super(Net, self).__init__()
+            super().__init__()
             self.linear1 = paddle.nn.Linear(input_size, hidden_size, weight_attr=weight_attr_1, bias_attr=bias_attr_1)
             self.linear2 = paddle.nn.Linear(hidden_size, hidden_size, weight_attr=weight_attr_2, bias_attr=bias_attr_2)
             self.linear3 = paddle.nn.Linear(hidden_size, 1, weight_attr=weight_attr_3, bias_attr=bias_attr_3)
@@ -242,7 +242,7 @@
             x = paddle.to_tensor(x_data[idx,:])
             label = paddle.to_tensor(y_data[idx,:])
             pred = model(x)
-            loss = loss_fn(pred, y)
+            loss = loss_fn(pred, label)
             loss.backward()
             print("step: ", t, "    loss: ", loss.numpy())
             print("grad: ", model.linear1.weight.grad)

@@ -141,7 +141,7 @@ paddle.enable_static()
 # 定义 DataSet
 class ImageNetDataset(DatasetFolder):
     def __init__(self, path, image_size=224):
-        super(ImageNetDataset, self).__init__(path)
+        super().__init__(path)
         normalize = transforms.Normalize(
             mean=[123.675, 116.28, 103.53], std=[58.395, 57.120, 57.375])
         self.transform = transforms.Compose([
