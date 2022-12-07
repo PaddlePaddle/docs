@@ -33,7 +33,7 @@ Note: English version API docs are generaly docstrings in [PaddlePaddle/Paddle](
   - step3: preview docs
   The output of docs will be generated in docs/output.
 
-## How to contribute
+## How to contributes
 
 PaddlePaddle welcomes documentation contributions, please see [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
