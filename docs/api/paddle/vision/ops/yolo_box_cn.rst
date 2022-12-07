@@ -30,13 +30,13 @@ yolo_box
 参数
 :::::::::
 
-    - **x** （Tensor）- YoloBox 的输入 Tensor 是一个 4-D Tensor，形状为[N，C，H，W]。第二维（C）存储每个 anchor box 位置坐标，每个 anchor box 的置信度分数和 one hot key。通常，X 应该是 YOLOv3 网络的输出。数据类型为 float32 或 float64。
-    - **img_size** （Tensor）- YoloBox 的图像大小 Tensor，这是一个形状为[N，2]的二维 Tensor。该 Tensor 保持每个输入图像的高度和宽度，用于对输出图像按输入图像比例调整输出框的大小。数据类型为 int32。
-    - **anchors** （list | tuple） - anchor 的宽度和高度，它将逐对解析。
-    - **class_num** （int）- 要预测的类数。
-    - **conf_thresh** （float）- 检测框的置信度得分阈值。置信度得分低于阈值的框应该被忽略。
-    - **downsample_ratio** （int）- 从网络输入到 YoloBox 操作输入的下采样率，因此应依次为第一个，第二个和第三个 YoloBox 运算设置该值为 32,16,8
-    - **clip_bbox** （bool，可选）- 是否将输出的 bbox 裁剪到 :attr:`img_size` 范围内，默认为 True。
+    - **x** (Tensor) - YoloBox 的输入 Tensor 是一个 4-D Tensor，形状为[N，C，H，W]。第二维（C）存储每个 anchor box 位置坐标，每个 anchor box 的置信度分数和 one hot key。通常，X 应该是 YOLOv3 网络的输出。数据类型为 float32 或 float64。
+    - **img_size** (Tensor) - YoloBox 的图像大小 Tensor，这是一个形状为[N，2]的二维 Tensor。该 Tensor 保持每个输入图像的高度和宽度，用于对输出图像按输入图像比例调整输出框的大小。数据类型为 int32。
+    - **anchors** (list | tuple) - anchor 的宽度和高度，它将逐对解析。
+    - **class_num** (int) - 要预测的类数。
+    - **conf_thresh** (float) - 检测框的置信度得分阈值。置信度得分低于阈值的框应该被忽略。
+    - **downsample_ratio** (int) - 从网络输入到 YoloBox 操作输入的下采样率，因此应依次为第一个，第二个和第三个 YoloBox 运算设置该值为 32,16,8
+    - **clip_bbox** (bool，可选) - 是否将输出的 bbox 裁剪到 :attr:`img_size` 范围内，默认为 True。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **scale_x_y** (float，可选) - 放缩解码边界框的中心点，默认值：1.0。
     - **iou_aware** (bool，可选) - 使用 IoU 置信度，默认值：False。
