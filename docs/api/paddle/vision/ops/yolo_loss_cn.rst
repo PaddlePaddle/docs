@@ -55,16 +55,16 @@ YOLOv3 loss 前的网络输出形状为[N，C，H，W]，H 和 W 应该相同，
 ::::::::::::
 
 
-    - **x**  (Tensor) - YOLOv3 损失运算的输入 Tensor，这是一个形状为[N，C，H，W]的四维 Tensor。H 和 W 应该相同，第二维（C）存储框的位置信息，以及每个 anchor box 的置信度得分和 one-hot 分类。数据类型为 float32 或 float64。
-    - **gt_box**  (Tensor) - 真实框，应该是[N，B，4]的形状。第三维用来承载 x、y、w、h，其中 x, y 是真实框的中心坐标，w, h 是框的宽度和高度，且 x、y、w、h 将除以输入图片的尺寸，缩放到[0,1]区间内。N 是 batch size，B 是图像中所含有的的最多的 box 数目。数据类型为 float32 或 float64。
-    - **gt_label**  (Tensor) - 真实框的类 id，应该形为[N，B]。数据类型为 int32。
-    - **anchors**  (list|tuple) - 指定 anchor 框的宽度和高度，它们将逐对进行解析
+    - **x** (Tensor) - YOLOv3 损失运算的输入 Tensor，这是一个形状为[N，C，H，W]的四维 Tensor。H 和 W 应该相同，第二维（C）存储框的位置信息，以及每个 anchor box 的置信度得分和 one-hot 分类。数据类型为 float32 或 float64。
+    - **gt_box** (Tensor) - 真实框，应该是[N，B，4]的形状。第三维用来承载 x、y、w、h，其中 x, y 是真实框的中心坐标，w, h 是框的宽度和高度，且 x、y、w、h 将除以输入图片的尺寸，缩放到[0,1]区间内。N 是 batch size，B 是图像中所含有的的最多的 box 数目。数据类型为 float32 或 float64。
+    - **gt_label** (Tensor) - 真实框的类 id，应该形为[N，B]。数据类型为 int32。
+    - **anchors** (list|tuple) - 指定 anchor 框的宽度和高度，它们将逐对进行解析
     - **anchor_mask**  (list|tuple) - 当前 YOLOv3 损失计算中使用 anchor 的 mask 索引
-    - **class_num**  (int) - 要预测的类别数
-    - **ignore_thresh**  (float) - 一定条件下忽略某框置信度损失的忽略阈值
-    - **downsample_ratio**  (int) - 网络输入到 YOLOv3 loss 输入的下采样率，因此第一，第二和第三个 loss 的下采样率应分别为 32,16,8
-    - **gt_score** （Tensor）- 真实框的混合得分，形为[N，B]。默认 None。数据类型为 float32 或 float64。
-    - **use_label_smooth** (bool）- 是否使用平滑标签。默认为 True
+    - **class_num** (int) - 要预测的类别数
+    - **ignore_thresh** (float) - 一定条件下忽略某框置信度损失的忽略阈值
+    - **downsample_ratio** (int) - 网络输入到 YOLOv3 loss 输入的下采样率，因此第一，第二和第三个 loss 的下采样率应分别为 32、16、8。
+    - **gt_score** (Tensor，可选) - 真实框的混合得分，形为[N，B]。默认 None。数据类型为 float32 或 float64。
+    - **use_label_smooth** (bool，可选) - 是否使用平滑标签。默认为 True
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **scale_x_y** (float，可选) - 缩放解码边界框的中心点。默认值：1.0。
 
