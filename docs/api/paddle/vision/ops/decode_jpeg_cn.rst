@@ -12,7 +12,7 @@ decode_jpeg
 :::::::::
 
     - **x** (Tensor) - 包含 JPEG 图像原始字节的一维 uint8 Tensor。
-    - **mode** (str, 可选) - 转换图像模式选择，默认值为 未更改。
+    - **mode** (str，可选) - 转换图像模式选择，默认值为 'unchanged'。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
