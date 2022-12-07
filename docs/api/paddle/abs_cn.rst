@@ -25,4 +25,5 @@ abs
 代码示例
 :::::::::
 
-COPY-FROM: paddle.abs
+COPY-FROM: paddle.abs_test
+
