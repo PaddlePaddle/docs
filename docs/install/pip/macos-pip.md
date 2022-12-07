@@ -70,7 +70,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==2.4.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python3 -m pip install paddlepaddle==2.4.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
@@ -84,7 +84,7 @@
   首先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
-  python3 -m pip download paddlepaddle==2.4.0 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/avx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle==2.4.1 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/avx/stable.html --no-index --no-deps
   ```
 
   判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`

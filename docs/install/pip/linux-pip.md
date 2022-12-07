@@ -115,7 +115,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==2.4.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python3 -m pip install paddlepaddle==2.4.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
@@ -128,7 +128,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.4.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python3 -m pip install paddlepaddle-gpu==2.4.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
@@ -136,7 +136,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.4.0.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.4.1.post112 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -144,14 +144,14 @@
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.4.0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.4.1.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 2.2.4 CUDA11.7 的 PaddlePaddle
 
 
   ```
-  python3 -m pip install paddlepaddle-gpu==2.4.0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+  python3 -m pip install paddlepaddle-gpu==2.4.1.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
 
@@ -177,20 +177,20 @@
   * cpu、mkl 版本 noavx 机器安装：
 
   ```
-  python3 -m pip download paddlepaddle==2.4.0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle==2.4.1 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   * cpu、openblas 版本 noavx 机器安装：
 
   ```
-  python3 -m pip download paddlepaddle==2.4.0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/noavx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle==2.4.1 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/noavx/stable.html --no-index --no-deps
   ```
 
 
   * gpu 版本 cuda10.2 noavx 机器安装：
 
   ```
-  python3 -m pip download paddlepaddle-gpu==2.4.0 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle-gpu==2.4.1 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/noavx/stable.html --no-index --no-deps
   ```
 
   再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）。
@@ -199,7 +199,7 @@
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 
   ```
-  python3 -m pip download paddlepaddle==2.4.0 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
+  python3 -m pip download paddlepaddle==2.4.1 -f https://www.paddlepaddle.org.cn/whl/linux/openblas/avx/stable.html --no-index --no-deps
   ```
 
 
