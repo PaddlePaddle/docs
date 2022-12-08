@@ -489,7 +489,7 @@ print("All element:", ndim_1_Tensor[:].numpy())         # 取 Tensor 所有元�
 print("Before 3:", ndim_1_Tensor[:3].numpy())           # 取 Tensor 前三个元素的值
 print("From 6 to the end:", ndim_1_Tensor[6:].numpy())  # 取 Tensor 第六个以后的值
 print("From 3 to 6:", ndim_1_Tensor[3:6].numpy())       # 取 Tensor 第三个至第六个之间的值
-print("Interval of 3:", ndim_1_Tensor[::3].numpy())     # 取 Tensor 从第一个开始，间距为3的下标的值
+print("Interval of 3:", ndim_1_Tensor[::3].numpy())     # 取 Tensor 从第一个开始，间距为 3 的下标的值
 print("Reverse:", ndim_1_Tensor[::-1].numpy())          # 取 Tensor 翻转后的值
 ```
 ```text
