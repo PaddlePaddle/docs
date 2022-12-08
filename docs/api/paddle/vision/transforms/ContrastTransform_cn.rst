@@ -3,7 +3,7 @@
 ContrastTransform
 -------------------------------
 
-.. py:class:: paddle.vision.transforms.ContrastTransform(value)
+.. py:class:: paddle.vision.transforms.ContrastTransform(value, keys=None)
 
 调整图像对比度。
 
