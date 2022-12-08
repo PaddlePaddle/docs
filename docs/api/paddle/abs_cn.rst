@@ -26,4 +26,3 @@ abs
 :::::::::
 
 COPY-FROM: paddle.abs
-
