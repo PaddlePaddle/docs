@@ -66,7 +66,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 ```
-python3 -m pip install paddlepaddle==2.4.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+python3 -m pip install paddlepaddle==2.4.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 Note：
@@ -78,7 +78,7 @@ Note：
   First use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
 
    ```
-   python3 -m pip download paddlepaddle==2.4.0 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/avx/stable.html --no-index --no-deps
+   python3 -m pip download paddlepaddle==2.4.1 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/avx/stable.html --no-index --no-deps
    ```
 
    To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
