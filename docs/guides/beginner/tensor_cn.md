@@ -310,12 +310,13 @@ After reshape: [1, 3]
  * `0` 表示该维度的元素数量与原值相同，因此 shape 中 0 的索引值必须小于 Tensor 的维度（索引值从 0 开始计，如第 1 维的索引值是 0，第二维的索引值是 1）。
 
 通过几个例子来详细了解：
+
 ```text
 origin:[3, 2, 5] reshape:[3, 10]      actual: [3, 10] # 直接指定目标 shape
 origin:[3, 2, 5] reshape:[-1]         actual: [30] # 转换为 1 维，维度根据元素总数推断出来是 3*2*5=30
 origin:[3, 2, 5] reshape:[-1, 5]      actual: [6, 5] # 转换为 2 维，固定一个维度 5，另一个维度根据元素总数推断出来是 30÷5=6
-origin:[3, 2, 5] reshape:[0, -1]         actual: [3, 6] # reshape:[0, -1]中 0 的索引值为 0，按照规则，转换后第 0 维的元素数量与原始 Tensor 第 0 维的元素数量相同，为 3；第 1 维的元素数量根据元素总值计算得出为 30÷3=10。
-origin:[3, 2] reshape:[3, 1, 0]          error： # reshape:[3, 1, 0]中 0 的索引值为 2，但原 Tensor 只有 2 维，无法找到与第 3 维对应的元素数量，因此出错。
+origin:[3, 2, 5] reshape:[0, -1]      actual: [3, 10] # reshape:[0, -1]中 0 的索引值为 0，按照规则，转换后第 0 维的元素数量与原始 Tensor 第 0 维的元素数量相同，为 3；第 1 维的元素数量根据元素总值计算得出为 30÷3=10。
+origin:[3, 2]    reshape:[3, 1, 0]    error： # reshape:[3, 1, 0]中 0 的索引值为 2，但原 Tensor 只有 2 维，无法找到与第 3 维对应的元素数量，因此出错。
 ```
 
 从上面的例子可以看到，通过 reshape:[-1] ，可以很方便地将 Tensor 按其在计算机上的内存分布展平为一维。
@@ -481,15 +482,15 @@ Tensor stop_gradient: False
 * 针对一维  Tensor，仅有单个维度上的索引或切片：
 ```python
 ndim_1_Tensor = paddle.to_tensor([0, 1, 2, 3, 4, 5, 6, 7, 8])
-print("Origin Tensor:", ndim_1_Tensor.numpy()) # 原始 1 维 Tensor
-print("First element:", ndim_1_Tensor[0].numpy()) # 取 Tensor 第一个元素的值？
-print("Last element:", ndim_1_Tensor[-1].numpy())
-print("All element:", ndim_1_Tensor[:].numpy())
-print("Before 3:", ndim_1_Tensor[:3].numpy())
-print("From 6 to the end:", ndim_1_Tensor[6:].numpy())
-print("From 3 to 6:", ndim_1_Tensor[3:6].numpy())
-print("Interval of 3:", ndim_1_Tensor[::3].numpy())
-print("Reverse:", ndim_1_Tensor[::-1].numpy())
+print("Origin Tensor:", ndim_1_Tensor.numpy())          # 原始 1 维 Tensor
+print("First element:", ndim_1_Tensor[0].numpy())       # 取 Tensor 第一个元素的值
+print("Last element:", ndim_1_Tensor[-1].numpy())       # 取 Tensor 最后一个元素的值
+print("All element:", ndim_1_Tensor[:].numpy())         # 取 Tensor 所有元素的值
+print("Before 3:", ndim_1_Tensor[:3].numpy())           # 取 Tensor 前三个元素的值
+print("From 6 to the end:", ndim_1_Tensor[6:].numpy())  # 取 Tensor 第六个以后的值
+print("From 3 to 6:", ndim_1_Tensor[3:6].numpy())       # 取 Tensor 第三个至第六个之间的值
+print("Interval of 3:", ndim_1_Tensor[::3].numpy())     # 取 Tensor 从第一个开始，间距为 3 的下标的值
+print("Reverse:", ndim_1_Tensor[::-1].numpy())          # 取 Tensor 翻转后的值
 ```
 ```text
 Origin Tensor: [0 1 2 3 4 5 6 7 8])
@@ -571,8 +572,8 @@ x[1] = paddle.ones([3])       # x : [[1., 2., 3.], [1., 1., 1.]]
 x = paddle.to_tensor([[1.1, 2.2], [3.3, 4.4]], dtype="float64")
 y = paddle.to_tensor([[5.5, 6.6], [7.7, 8.8]], dtype="float64")
 
-print(paddle.add(x, y), "\n") # 方法一
-print(x.add(y), "\n") # 方法二
+print(paddle.add(x, y), "\n") # 方法一：使用 Paddle 的 API
+print(x.add(y), "\n") # 方法二：使用 tensor 类成员函数
 ```
 
 ```text
