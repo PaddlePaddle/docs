@@ -29,13 +29,7 @@
 
 + 操作步骤：
 
-1. Python2 情况下，使用如下命令安装 PaddlePaddle。
-
-   ```bash
-   pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple/
-   ```
-
-2. Python3 情况下，使用如下命令安装 PaddlePaddle。
+1. 使用如下命令安装 PaddlePaddle。
 
    ```bash
    pip3 install paddlepaddle -i https://mirror.baidu.com/pypi/simple/

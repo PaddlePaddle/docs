@@ -20,7 +20,9 @@ complex
 输出 Tensor，数据类型是 complex64 或者 complex128，与 ``real`` 和 ``imag`` 的数值精度一致。
 
 .. note::
-   ``paddle.complex`` 遵守 broadcasting，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+    ``paddle.complex`` 遵守 broadcasting，如您想了解更多，请参见 `Tensor 介绍`_ .
+
+    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 代码示例
 :::::::::

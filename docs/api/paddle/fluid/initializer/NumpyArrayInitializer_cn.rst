@@ -8,12 +8,12 @@ NumpyArrayInitializer
 
 
 
-该OP使用Numpy型数组来初始化参数变量。
+该 OP 使用 Numpy 型数组来初始化参数变量。
 
 参数
 ::::::::::::
 
-        - **value** （numpy） - 用于初始化变量的一个Numpy型数组。
+        - **value** （numpy） - 用于初始化变量的一个 Numpy 型数组。
 
 返回
 ::::::::::::

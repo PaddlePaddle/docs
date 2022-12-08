@@ -7,17 +7,17 @@
 
 没有 ONNX 模型之前，采用各个框架训练的模型只能通过特定的转换工具进行转换。有了 ONNX 协议后，无论使用何种框架训练模型，训练完毕后都可以将模型转换为 ONNX 这种统一的格式进行存储。这就大大方便了算法及模型在不同框架之间的迁移。
 
-目前官方支持加载 ONNX 模型并进行推理的深度学习框架，除飞桨外，还有 PyTorch、MXNet、Caffe2、ML.NET、TensorRT 和 Microsoft CNTK 等主流框架都对 ONNX 有着不同程度的支持；并且 TensorFlow 也非官方的支持 ONNX。除深度学习框架外，大多推理引擎或者国产硬件，比如如 RK、地平线、鲲云等也都支持加载 ONNX 模型进行推理，如果需要在这类硬件上部署，可通过 Paddle2ONNX 将飞桨模型导出成 ONNX 后进行部署。
+目前官方支持加载 ONNX 模型并进行推理的深度学习框架，除飞桨外，还有 PyTorch、MXNet、Caffe2、ML.NET、TensorRT 和 Microsoft CNTK 等主流框架都对 ONNX 有着不同程度的支持；并且 TensorFlow 也非官方的支持 ONNX。除深度学习框架外，大多推理引擎或者国产硬件，比如如 RK、地平线、鲲云等也都支持加载 ONNX 模型进行推理，如果需要在这类硬件上部署，可通过 [Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX) 将飞桨模型导出成 ONNX 后进行部署。
 
 ## 二、Paddle2ONNX 安装
-Paddle2ONNX 作为飞桨提供的模型转换工具，可以将飞桨模型转换为 ONNX 格式，Paddle2ONNX 的安装非常简单，只需要输入以下命令就可以完成 Paddle2ONNX 的安装。
+[Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX) 作为飞桨提供的模型转换工具，可以将飞桨模型转换为 ONNX 格式，[Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX) 的安装非常简单，只需要输入以下命令就可以完成 [Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX) 的安装。
 
 ```
 python -m pip install paddle2onnx
 ```
 
 ## 三、获取 Paddle2ONNX 模型库
-Paddle2ONNX 目前提供了包括图像分类、图像分割、目标检测、文字识别四个类别的模型和部署示例代码，供开发者进行参考使用，可以点击[链接](https://github.com/PaddlePaddle/Paddle2ONNX/tree/develop/model_zoo)获取。其他更多的飞桨官方模型套件的各类常用模型，可以到对应的官方 Repo 下进行下载，然后再进行转换。
+[Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX) 目前提供了包括图像分类、图像分割、目标检测、文字识别四个类别的模型和部署示例代码，供开发者进行参考使用，可以点击[链接](https://github.com/PaddlePaddle/Paddle2ONNX/tree/develop/model_zoo)获取。其他更多的飞桨官方模型套件的各类常用模型，可以到对应的官方 Repo 下进行下载，然后再进行转换。
 
 ## 四、飞桨转 ONNX 教程
 在本教程中，我们将描述如何将飞桨模型转换为 ONNX 格式，然后使用 ONNXRuntime 运行它。具体操作分以下两种场景：
@@ -53,9 +53,9 @@ model.fit(train_dataset, epochs=5, batch_size=64, verbose=1)
 model.evaluate(test_dataset, batch_size=64, verbose=1)
 ```
 完成以上代码，就可以训练这个模型。请注意，此模型未完全训练以获得良好的准确性，此处仅用于演示目的。
-使用飞桨完成模型训练之后，要导出模型，需要调用 paddle.onnx.export 接口，在导出模型时我们需要使用 paddle.static.InputSpec API 指定输入的 shape，如果输入中某一维为动态的，可以将该维指定为 None，在本例中我们设置第一维为动态，表示推理过程中该维可变。
+使用飞桨完成模型训练之后，要导出模型，需要调用 [paddle.onnx.export](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/onnx/export_cn.html) 接口，在导出模型时我们需要使用 [paddle.static.InputSpec](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/InputSpec_cn.html#inputspec) API 指定输入的 shape，如果输入中某一维为动态的，可以将该维指定为 None，在本例中我们设置第一维为动态，表示推理过程中该维可变。
 
-使用飞桨完成模型训练之后，转换成 ONNX 格式只需要调用 paddle.onnx.export 接口，便会在指定的路径下生成 ONNX 模型。关于 paddle.onnx.export 接口更详细的使用方法，请参考 [API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/onnx/export_cn.html) 。
+使用飞桨完成模型训练之后，转换成 ONNX 格式只需要调用 [paddle.onnx.export](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/onnx/export_cn.html) 接口，便会在指定的路径下生成 ONNX 模型。关于 [paddle.onnx.export](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/onnx/export_cn.html) 接口更详细的使用方法，请参考 [API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/onnx/export_cn.html) 。
 添加如下脚本，可以在 onnx.save 下生成 lenet.onnx 模型。
 ```
 # export to ONNX
@@ -85,7 +85,7 @@ paddle2onnx --model_dir mobilenetv3 --model_filename inference.pdmodel --params_
 
 接下来，我们验证一下导出的 ONNX 模型的正确性。
 
-#### 4.3.1 检查 ONNX 模型的有效性
+#### (1) 检查 ONNX 模型的有效性
 
 可以使用如下脚本验证导出的 ONNX 模型是否合理，包括检查模型的版本、图的结构、节点及其输入和输出。如下脚本的输出为 None 则表示模型转换正确。
 
@@ -100,7 +100,7 @@ check = onnx.checker.check_model(onnx_model)
 print('check: ', check)
 ```
 
-#### 4.3.2 验证模型是否匹配
+#### (2) 验证模型是否匹配
 
 接下来我们验证原始的飞桨模型和导出的 ONNX 模型是否有相同的计算结果。
 
@@ -192,7 +192,7 @@ TopK Scores:  [0.4966848  0.25181034 0.15389322 0.01496286 0.01342606]
 
 ## 五、注意事项
 
-1. 目前 Paddle2ONNX 已经支持 170 多个飞桨算子，多数飞桨的模型都可顺利导出为 ONNX 格式，如果在转换中遇到不支持的 OP，请到 Paddle2ONNX Repo 下提 Issue，我们都会尽快支持。
+1. 目前 [Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX) 已经支持 170 多个飞桨算子，多数飞桨的模型都可顺利导出为 ONNX 格式，如果在转换中遇到不支持的 OP，请到 Paddle2ONNX Repo 下提 Issue，我们都会尽快支持。
 
 2. PaddleSlim 量化模型导出 ONNX，参考量化导出说明文档：[量化模型导出说明](https://github.com/PaddlePaddle/Paddle2ONNX/blob/develop/docs/zh/quantize.md)，如在导出 ONNX 过程遇到问题，欢迎通过[Paddle2ONNX](https://github.com/PaddlePaddle/Paddle2ONNX)开源项目 Issue 方式反馈。
 
