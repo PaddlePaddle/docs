@@ -29,7 +29,7 @@ mse_loss
 :::::::::
     - **input** (Tensor) - 预测值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维 Tensor。数据类型为 float32 或 float64。
     - **label** (Tensor) - 目标值，维度为 :math:`[N_1, N_2, ..., N_k]` 的多维 Tensor。数据类型为 float32 或 float64。
-    - **reduction** (string, 可选) - 输出的归约方法可以是'none'、'mean'或'sum'。
+    - **reduction** (str, 可选) - 输出的归约方法可以是'none'、'mean'或'sum'。
 
         - 如果 :attr:`reduction` 是 ``'mean'``，则返回减少的平均损失。
         - 如果 :attr:`reduction` 是 ``'sum'``，则返回减少的总损失。
