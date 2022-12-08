@@ -11,18 +11,18 @@ L1Loss
 
 当 `reduction` 设置为 ``'none'`` 时：
 
-.. math::
+..  math::
     Out = \lvert input - label\rvert
 
 当 `reduction` 设置为 ``'mean'`` 时：
 
-.. math::
+..  math::
     Out = MEAN(\lvert input - label\rvert)
 
 当 `reduction` 设置为 ``'sum'`` 时：
 
-.. math::
-Out = SUM(\lvert input - label\rvert)
+..  math::
+    Out = SUM(\lvert input - label\rvert)
 
 
 参数
