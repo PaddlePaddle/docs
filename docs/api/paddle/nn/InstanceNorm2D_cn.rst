@@ -3,7 +3,7 @@
 InstanceNorm2D
 -------------------------------
 
-.. py:class:: paddle.nn.InstanceNorm2D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=None, bias_attr=None, data_format="NCHW", name=None):
+.. py:class:: paddle.nn.InstanceNorm2D(num_features, epsilon=1e-05, momentum=0.9, weight_attr=None, bias_attr=None, data_format="NCHW", name=None)
 
 
 构建 ``InstanceNorm2D`` 类的一个可调用对象，具体用法参照 ``代码示例``。可以处理 2D 或者 3D 的 Tensor，实现了实例归一化层（Instance Normalization Layer）的功能。更多详情请参考：Instance Normalization: The Missing Ingredient for Fast Stylization 。

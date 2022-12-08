@@ -3,7 +3,7 @@
 layer_norm
 -------------------------------
 
-.. py:class:: paddle.nn.functional.layer_norm(x, normalized_shape, weight=None, bias=None, epsilon=1e-05, name=None):
+.. py:function:: paddle.nn.functional.layer_norm(x, normalized_shape, weight=None, bias=None, epsilon=1e-05, name=None)
 
 推荐使用 nn.LayerNorm。
 

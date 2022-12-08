@@ -9,20 +9,20 @@ L1Loss
 
 该损失函数的数学计算公式如下：
 
-当 `reduction` 设置为 ``'none'`` 时，
+当 `reduction` 设置为 ``'none'`` 时：
 
-    .. math::
-        Out = \lvert input - label\rvert
+.. math::
+    Out = \lvert input - label\rvert
 
-当 `reduction` 设置为 ``'mean'`` 时，
+当 `reduction` 设置为 ``'mean'`` 时：
 
-    .. math::
-       Out = MEAN(\lvert input - label\rvert)
+.. math::
+    Out = MEAN(\lvert input - label\rvert)
 
-当 `reduction` 设置为 ``'sum'`` 时，
+当 `reduction` 设置为 ``'sum'`` 时：
 
-    .. math::
-       Out = SUM(\lvert input - label\rvert)
+.. math::
+Out = SUM(\lvert input - label\rvert)
 
 
 参数
