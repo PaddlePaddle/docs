@@ -36,6 +36,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     py_files = [fn for fn in args.py_files.split(' ') if fn]
     api_info = json.load(open(args.api_info_file))
+    output_path = args.output_path
     build_source_file_to_doc_file_dict(api_info)
     error_files = set()
     for i in py_files:
@@ -44,7 +45,7 @@ if __name__ == '__main__':
             continue
         doc_file = source_to_doc_dict[i]
         # check 'System Message: WARNING/ERROR' in api doc file
-        check = check_system_message_in_doc(doc_file)
+        check = check_system_message_in_doc(output_path + doc_file)
         if not check:
             error_files.add(doc_file)
     if error_files:

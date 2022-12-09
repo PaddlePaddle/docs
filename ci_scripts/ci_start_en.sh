@@ -120,7 +120,7 @@ if [ ! -f $jsonfn ]; then
     exit 1
 fi
 echo 'need check api pyhon file: ', $need_check_api_py_files 
-/bin/bash ${DIR_PATH}/check_api_docs_en.sh "${need_check_api_py_files}" ${jsonfn}
+/bin/bash ${DIR_PATH}/check_api_docs_en.sh "${need_check_api_py_files}" ${jsonfn} ${OUTPUTDIR}/en/${VERSIONSTR}/api/
 if [ $? -ne 0 ]; then
     echo 'Docs Stype Check is failed, please check the style in the above docs'
     exit 1

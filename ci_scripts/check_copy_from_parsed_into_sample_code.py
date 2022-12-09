@@ -43,3 +43,4 @@ if len(sys.argv) < 2:
     sys.exit(1)
 else:
     res = run_copy_from_check(sys.argv[1:])
+
