@@ -353,7 +353,7 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.4.1 </code> will i
         <td> macos-cpu-openblas </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.4.1/macos/macos-cpu-openblas/paddlepaddle-2.4.1-cp36-cp36m-macosx_10_6_intel.whl">
         paddlepaddle-2.4.1-cp36-cp36m-macosx_10_6_intel.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.4.1/macos/macos-cpu-openblas/paddlepaddle-2.4.1-cp37-cp37m-macosx_10_6_intel.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.4.1/macos/macos-cpu-openblas/paddlepaddle-2.4.1-cp37-cp37m-macosx_10_6_x86_64.whl">
         paddlepaddle-2.4.1-cp37-cp37m-macosx_10_6_intel.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.4.1/macos/macos-cpu-openblas/paddlepaddle-2.4.1-cp38-cp38-macosx_10_14_x86_64.whl">
         paddlepaddle-2.4.1-cp38-cp38-macosx_10_14_x86_64.whl</a></td>
@@ -366,7 +366,7 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.4.1 </code> will i
         <td> macos-cpu-openblas-noavx </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.4.1/macos/macos-cpu-openblas-noavx/paddlepaddle-2.4.1-cp36-cp36m-macosx_10_6_intel.whl">
         paddlepaddle-2.4.1-cp36-cp36m-macosx_10_6_intel.whl</a></td>
-        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.4.1/macos/macos-cpu-openblas-noavx/paddlepaddle-2.4.1-cp37-cp37m-macosx_10_6_intel.whl">
+        <td> <a href="https://paddle-wheel.bj.bcebos.com/2.4.1/macos/macos-cpu-openblas-noavx/paddlepaddle-2.4.1-cp37-cp37m-macosx_10_6_x86_64.whl">
         paddlepaddle-2.4.1-cp37-cp37m-macosx_10_6_intel.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.4.1/macos/macos-cpu-openblas-noavx/paddlepaddle-2.4.1-cp38-cp38-macosx_10_14_x86_64.whl">
         paddlepaddle-2.4.1-cp38-cp38-macosx_10_14_x86_64.whl</a></td>
