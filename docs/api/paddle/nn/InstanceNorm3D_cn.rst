@@ -7,6 +7,8 @@ InstanceNorm3D
 
 构建 ``InstanceNorm3D`` 类的一个可调用对象，具体用法参照 ``代码示例``。可以处理 5D 的 Tensor，实现了实例归一化层（Instance Normalization Layer）的功能。更多详情请参考：Instance Normalization: The Missing Ingredient for Fast Stylization 。
 
+数据布局：NCDHW [batch, in_channels, D, in_height, in_width]
+
 ``input`` 是 mini-batch 的输入。
 
 .. math::
