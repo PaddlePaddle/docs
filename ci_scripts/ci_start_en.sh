@@ -113,18 +113,25 @@ if [ $? -ne 0 ];then
 fi
 
 # 4 check docs style/format
+cd ${PADDLE_DIR}
 need_check_api_py_files=$(find_all_api_py_files_modified_by_pr)
+cd -
 jsonfn=${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/api_info_all.json
 if [ ! -f $jsonfn ]; then
     echo "$jsonfn not exists"
     exit 1
 fi
-echo 'need check api pyhon file: ', $need_check_api_py_files 
-/bin/bash ${DIR_PATH}/check_api_docs_en.sh "${need_check_api_py_files}" ${jsonfn} ${OUTPUTDIR}/en/${VERSIONSTR}/api/
-if [ $? -ne 0 ]; then
-    echo 'Docs Stype Check is failed, please check the style in the above docs'
-    exit 1
+if [ "${need_check_api_py_files}" = "" ] ; then
+    echo "api python file list is empty, skip check system message in docs"
+else
+    echo 'need check api pyhon file: ', $need_check_api_py_files 
+    /bin/bash ${DIR_PATH}/check_api_docs_en.sh ${jsonfn} ${OUTPUTDIR}/en/${VERSIONSTR}/api/ "${need_check_api_py_files}"
+    if [ $? -ne 0 ]; then
+        echo 'Docs Stype Check is failed, please check the style in the above docs'
+        exit 1
+    fi
 fi
+
 
 # 5 Approval check
 /bin/bash  ${DIR_PATH}/checkapproval.sh
