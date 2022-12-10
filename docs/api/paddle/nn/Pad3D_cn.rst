@@ -4,7 +4,7 @@ Pad3D
 -------------------------------
 .. py:class:: paddle.nn.Pad3D(padding, mode="constant", value=0.0, data_format="NCDHW", name=None)
 
-此接口用于构造Pad3D类的可调用对象，按照 padding、mode 和 value 属性对输入进行填充。如果模式选择 “反射”， pad[0] 和 pad[1] 不能大于 width-1。 高度标注条件也一样。
+此接口用于构造 Pad3D 类的可调用对象，按照 padding、mode 和 value 属性对输入进行填充。如果模式选择 “反射”， pad[0] 和 pad[1] 不能大于 width-1。 高度标注条件也一样。
 
 参数
 ::::::::::::
