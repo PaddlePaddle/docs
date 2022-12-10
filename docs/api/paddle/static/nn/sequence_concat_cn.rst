@@ -13,7 +13,7 @@ sequence_concat
 
 ::
 
-    input 是由多个 LoDTensor 组成的 list：
+    input 是由多个带有 LoD 信息的 Tensor 组成的 list：
         input = [x1, x2]
     其中：
         x1.lod = [[0, 3, 5]]
@@ -25,7 +25,7 @@ sequence_concat
         x2.shape = [4, 1]
     且必须满足：len(x1.lod[0]) == len(x2.lod[0])
 
-    输出为 LoDTensor：
+    输出为 Tensor：
         out.lod = [[0, 3+2, 5+4]]
         out.data = [[1], [2], [3], [6], [7], [4], [5], [8], [9]]
         out.shape = [9, 1]
@@ -34,12 +34,12 @@ sequence_concat
 参数
 :::::::::
 
-        - **input** (list of Variable) – 多个 LoDTensor 组成的 list，要求每个输入 LoDTensor 的 LoD 长度必须一致。数据类型为 float32、float64 或 int64。
+        - **input** (list of Variable) – 多个带有 LoD 信息的 Tensor 组成的 list，要求每个输入 Tensor 的 LoD 长度必须一致。数据类型为 float32、float64 或 int64。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
-Tensor，输出连接后的 LoDTensor，数据类型和输入一致。
+Tensor，输出连接后的 Tensor，数据类型和输入一致。
 
 代码示例
 :::::::::

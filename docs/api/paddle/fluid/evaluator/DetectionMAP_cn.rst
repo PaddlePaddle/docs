@@ -24,8 +24,8 @@ DetectionMAP
 
     - **input** (Variable) – detection 的输出结果，一个 shape=[M, 6] 的 LoDtensor。布局为[label, confidence, xmin, ymin, xmax, ymax],label 为类别标签，confidence 为置信度，xmin，ymin 为检测框左上点坐标，xmax，ymax 为检测框右下点坐标，数据类型为 float32 或 float64。
     - **gt_label** (Variable) – ground truth label 的索引，它是一个形状为[N, 1]的 LoDtensor，数据类型为 float32 或 float64。
-    - **gt_box** (Variable) – ground truth bounds box (bbox)，是一个具有形状的 LoDTensor[N, 4]。布局是[xmin, ymin, xmax, ymax]，数据类型为 float32 或 float64。
-    - **gt_difficult** (Variable|None，可选) – 指定这个 ground truth 是否是一个 difficult bounding bbox，它可以是一个 shape=[N, 1]的 LoDTensor，也可以不被指定。默认设置为 None，表示所有的 ground truth 标签都不是 difficult bbox，数据类型为 float32 或 float64。
+    - **gt_box** (Variable) – ground truth bounds box (bbox)，是一个具有形状的 Tensor[N, 4]。布局是[xmin, ymin, xmax, ymax]，数据类型为 float32 或 float64。
+    - **gt_difficult** (Variable|None，可选) – 指定这个 ground truth 是否是一个 difficult bounding bbox，它可以是一个 shape=[N, 1]的 Tensor，也可以不被指定。默认设置为 None，表示所有的 ground truth 标签都不是 difficult bbox，数据类型为 float32 或 float64。
     - **class_num** (int) – 检测类别的数目。
     - **background_label** (int) – 背景标签的索引，背景标签将被忽略。如果设置为-1，则所有类别将被考虑，默认为 0。
     - **overlap_threshold** (float) – 判断真假阳性的阈值，默认为 0.5。

@@ -7,20 +7,20 @@ sequence_first_step
 .. py:function:: paddle.static.nn.sequence_first_step(input)
 
 .. note::
-该 API 仅支持 LoDTensor 类型的输入。
+该 API 仅支持带有 LoD 信息的 Tensor 类型的输入。
 
-对输入的 LoDTensor，在最后一层 lod_level 上，选取其每个序列（sequence）的第一个时间步（time_step）的特征向量作为池化后的输出向量。
+对输入的 Tensor，在最后一层 lod_level 上，选取其每个序列（sequence）的第一个时间步（time_step）的特征向量作为池化后的输出向量。
 
 ::
 
     Case 1:
 
-      input 是 1-level LoDTensor:
+      input 是 1-level Tensor:
         input.lod = [[0, 2, 5, 7]]
         input.data = [[1.], [3.], [2.], [4.], [6.], [5.], [1.]]
         input.shape = [7, 1]
 
-      输出为 LoDTensor:
+      输出为 Tensor:
         out.shape = [3, 1]
         且 out.shape[0] == len(x.lod[-1]) == 3
         out.data = [[1.], [2.], [5.]], where 1.=first(1., 3.), 2.=first(2., 4., 6.), 5.=first(5., 1.)
