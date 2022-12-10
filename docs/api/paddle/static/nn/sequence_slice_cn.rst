@@ -13,12 +13,12 @@ sequence_slice
 
 
 .. note::
-该 API 输入只能是 LoDTensor，如果您需要处理的是 Tensor 类型，请使用 :ref:`paddle.slice <cn_api_paddle_slice>` 。
+该 API 输入只能是带有 LoD 信息的 Tensor，如果您需要处理的是 Tensor 类型，请使用 :ref:`paddle.slice <cn_api_paddle_slice>` 。
 
 
 ::
     输入变量：
-        (1) input (LoDTensor):
+        (1) input (Tensor):
                 input.data = [[a1, a2], [b1, b2], [c1, c2], [d1, d2], [e1, e2]],
                 input.lod = [[3, 2]],
                 input.dims = (5, 2),
@@ -29,7 +29,7 @@ sequence_slice
                 length.data = [[2], [1]]
         (4) name (str|None)
 
-    输出变量为 LoDTensor：
+    输出变量为 Tensor：
 
         out.data = [[a1, a2], [b1, b2], [e1, e2]],
         out.lod = [[2, 1]],
@@ -41,7 +41,7 @@ sequence_slice
 
 参数
 :::::::::
-  - **input** (Tensor) – 输入变量，类型为 LoDTensor，承载着完整的序列。数据类型为 float32，float64，int32 或 int64。
+  - **input** (Tensor) – 输入变量，类型为 Tensor，承载着完整的序列。数据类型为 float32，float64，int32 或 int64。
   - **offset** (Tensor) – 指定每个序列切片的起始索引，数据类型为 int32 或 int64。
   - **length** (Tensor) – 指定每个子序列的长度，数据类型为 int32 或 int64。
   - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

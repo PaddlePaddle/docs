@@ -99,7 +99,7 @@ Tensor|tuple(Tensor)|list[Tensor]，前向函数的输出 ``out``
 
 ..  code-block:: python
 
-    # 该示例展示了如何将 LoDTensor 转化为 numpy 数组，并利用 numpy API 来自定义一个 OP
+    # 该示例展示了如何将带有 LoD 信息的 Tensor 转化为 numpy 数组，并利用 numpy API 来自定义一个 OP
     import paddle
     import numpy as np
 
