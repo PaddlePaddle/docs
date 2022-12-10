@@ -122,5 +122,5 @@ function find_all_api_py_files_modified_by_pr() {
     
     local need_check_api_py_files=`git diff --numstat ${remotename}/${BRANCH} | awk '{print $NF}' | grep "python/paddle/.*.py" | sed 's#docs/##g'` 
     cd -
-    echo $need_check_api_py_files
+    echo "$need_check_api_py_files"
 }
