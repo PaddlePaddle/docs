@@ -33,6 +33,7 @@ def check_system_message_in_doc(doc_file):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='system message check parameters')
     args = parser.parse_args()
     py_files = [fn for fn in args.py_files.split(' ') if fn]
     api_info = json.load(open(args.api_info_file))
