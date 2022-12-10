@@ -13,9 +13,9 @@ pixel_shuffle
 
 参数
 :::::::::
-    - **x** (Tensor) - 当前算子的输入，其是一个形状为 `[N, C, H, W]` 的 4-D Tensor。其中 `N` 是 batch size, `C` 是通道数，`H` 是输入特征的高度，`W` 是输入特征的宽度。其数据类型为 float32 或者 float64。
-    - **upscale_factor** （int) - 增大空间分辨率的增大因子
-    - **data_format** (str，可选) - 数据格式，可选："NCHW"或"NHWC"，默认："NCHW"
+    - **x** (Tensor) - 当前算子的输入，是 4-D Tensor。数据类型为 float32 或者 float64。
+    - **upscale_factor** (int) - 增大空间分辨率的增大因子。
+    - **data_format** (str，可选) - 输入和输出的数据格式，可选："NCHW"或"NHWC"，当值为"NCHW"时，数据存储格式为[batch_size, input_channels, input_height, input_width]，默认值为 "NCHW"。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
