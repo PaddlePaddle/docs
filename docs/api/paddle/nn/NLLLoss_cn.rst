@@ -5,7 +5,7 @@ NLLLoss
 
 .. py:class:: paddle.nn.NLLLoss(weight=None, ignore_index=-100, reduction='mean', name=None)
 
-该接口接受输入和目标标签，并返回 'negative log likehood loss'，用C类来训练分类问题很有效。
+该接口接受输入和目标标签，并返回 'negative log likehood loss'，用 C 类来训练分类问题很有效。
 
 预计损失的输入包含每个类别的 'log' 概率，当 K 维情况下，大小必须是 (batch_size, C) 或者 (batch_size, C, d1, d2, …, dK),且 K>=1 ，损失的标签应为 [0，C-1] 范围内的类别索引，其中 C 为类别数。如果指定了 'ignore_index' ，则指定的目标值对输入梯度没有作用。
 
@@ -55,5 +55,5 @@ COPY-FROM: paddle.nn.NLLLoss
 
 参数
 :::::::::
-    - **inputs** (tuple) - 未压缩的tuple参数。
+    - **inputs** (tuple) - 未压缩的 tuple 参数。
     - **kwargs** (dict) - 未压缩的字典参数。
