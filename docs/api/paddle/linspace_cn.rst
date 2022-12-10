@@ -19,7 +19,7 @@ linspace
 
 返回
 ::::::::::::
-表示等间隔划分结果的 1-D Tensor，该 Tensor 的 shape 大小为 :math:`[num]`，在 mum 为 1 的情况下，仅返回包含 start 元素值的 Tensor。
+表示等间隔划分结果的 1-D Tensor，该 Tensor 的 shape 大小为 :math:`[num]`，在 num 为 1 的情况下，仅返回包含 start 元素值的 Tensor。
 
 
 代码示例
