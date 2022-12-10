@@ -4,12 +4,12 @@ Pad2D
 -------------------------------
 .. py:class:: paddle.nn.Pad2D(padding, mode="constant", value=0.0, data_format="NCHW", name=None)
 
-按照 padding、mode 和 value 属性对输入进行填充。
+此接口用于构造Pad2D类的可调用对象，按照 padding、mode 和 value 属性对输入进行填充。如果模式选择 “反射”， pad[0] 和 pad[1] 不能大于 width-1。 高度标注条件也一样。
 
 参数
 ::::::::::::
 
-  - **padding** (Tensor|list[int]|int]) - 填充大小。如果是 int，则在所有待填充边界使用相同的填充，否则填充的格式为[pad_left, pad_right, pad_top, pad_bottom]。
+  - **padding** (Tensor|list[int]|int]) - 填充大小。如果是 int，则在所有待填充边界使用相同的填充，否则将填入 [len(padding)/2]，填充的格式为[pad_left, pad_right, pad_top, pad_bottom]。
   - **mode** (str，可选) - padding 的四种模式，分别为 ``'constant'``、``'reflect'``、``'replicate'`` 和 ``'circular'``，默认值为 ``'constant'``。
 
      - ``'constant'`` 表示填充常数 ``value``；
@@ -29,3 +29,16 @@ Pad2D
 ::::::::::::
 
 COPY-FROM: paddle.nn.Pad2D
+
+输出 (input, label)
+:::::::::
+    定义每次调用时执行的计算。应被所有子类覆盖。
+
+参数
+:::::::::
+    - **inputs** (tuple) - 未压缩的 tuple 参数。
+    - **kwargs** (dict) - 未压缩的字典参数。
+
+extra_repr()
+:::::::::
+    该层为额外层，您可以自定义实现层。

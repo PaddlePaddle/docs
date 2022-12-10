@@ -12,14 +12,14 @@ pad
 参数
 ::::::::::::
 
-  - **x** (Tensor) - Tensor，format 可以为 ``'NCL'``、``'NLC'``、``'NCHW'``、``'NHWC'``、``'NCDHW'`` 或 ``'NDHWC'``，默认值为 ``'NCHW'``，数据类型支持 float16、float32、float64、int32、int64。
+  - **x** (Tensor) - Tensor，数据类型支持 float32、double、int32、int64_t。
   - **pad** (Tensor|list[int]|tuple[int]) - 填充大小。如果 ``mode`` 为 ``'constant'``，并且 ``pad`` 的长度为 ``x`` 维度的 2 倍时，则会根据 ``pad`` 和 ``value`` 对 ``x`` 从前面的维度向后依次补齐；否则：
 
      -  当输入维度为 3 时，pad 的格式为[pad_left, pad_right]；
      -  当输入维度为 4 时，pad 的格式为[pad_left, pad_right, pad_top, pad_bottom]；
      -  当输入维度为 5 时，pad 的格式为[pad_left, pad_right, pad_top, pad_bottom, pad_front, pad_back]。
 
-  - **mode** (str，可选) - padding 的四种模式，分别为 ``'constant'``、``'reflect'``、``'replicate'`` 和 ``'circular'``，
+  - **mode** (str，可选) - padding 的四种模式，分别为 ``'constant'``、``'reflect'``、``'replicate'`` 和 ``'circular'``，默认值为 ``'constant'``。
 
      - ``'constant'`` 表示填充常数 ``value``；
      - ``'reflect'`` 表示填充以 ``x`` 边界值为轴的映射；
