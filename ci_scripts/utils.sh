@@ -113,7 +113,6 @@ function find_all_cn_api_files_modified_by_pr() {
 }
 
 function find_all_api_py_files_modified_by_pr() {
-    local __resultvar=$1
     local remotename=upstream
     cd ${PADDLE_DIR}
     git remote | grep ${remotename} > /dev/null
@@ -123,9 +122,5 @@ function find_all_api_py_files_modified_by_pr() {
     
     local need_check_api_py_files=`git diff --numstat ${remotename}/${BRANCH} | awk '{print $NF}' | grep "python/paddle/.*.py" | sed 's#docs/##g'` 
     cd -
-    if [[ "$__resultvar" ]] ; then
-        eval $__resultvar="$need_check_api_py_files"
-    else
-        echo "$need_check_api_py_files"
-    fi
+    echo $need_check_api_py_files
 }
