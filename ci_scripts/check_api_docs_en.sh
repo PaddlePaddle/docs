@@ -18,4 +18,4 @@ jsonfn=$1
 output_path=$2
 need_check_api_py_files="${3}"
 echo "RUN System Message MARNING/ERROR Check"
-check_system_message $need_check_api_py_files $jsonfn $output_path
+check_system_message $jsonfn $output_path $need_check_api_py_files
