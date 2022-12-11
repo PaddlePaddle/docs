@@ -6,6 +6,29 @@ source_to_doc_dict = {}
 SYSTEM_MESSAGE_WARNING = 'System Message: WARNING'
 SYSTEM_MESSAGE_ERROR = 'System Message: ERROR'
 
+arguments = [
+    # flags, dest, type, default, help
+    ['--py_files', 'py_files', str, None, 'api python files, sperated by space'],
+    ['--api_info_file', 'api_info_file', str, None, 'api_info_all.json filename'],
+    ['--output_path', 'output_path', str, None, 'output_path'],
+]
+
+
+def parse_args():
+    """
+    Parse input arguments
+    """
+    global arguments
+    parser = argparse.ArgumentParser(description='system message check parameters')
+    parser.add_argument('--debug', dest='debug', action="store_true")
+    for item in arguments:
+        parser.add_argument(
+            item[0], dest=item[1], help=item[4], type=item[2], default=item[3]
+        )
+
+    args = parser.parse_args()
+    return args
+
 
 def build_source_file_to_doc_file_dict(api_info):
     
@@ -33,7 +56,7 @@ def check_system_message_in_doc(doc_file):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='system message check parameters')
+    
     args = parser.parse_args()
     py_files = [fn for fn in args.py_files.split(' ') if fn]
     api_info = json.load(open(args.api_info_file))
