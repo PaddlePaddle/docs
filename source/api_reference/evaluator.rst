@@ -1,1 +1,0 @@
-../../paddle/doc/fluid/api/evaluator.rst

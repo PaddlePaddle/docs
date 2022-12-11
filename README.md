@@ -1,57 +1,44 @@
-# Fluid Documentation Skeleton
+# PaddlePaddle docs
 
-## Build
-
-To build documentation, you need have a linux machine and have python2, virtualenv, gmake installed.
-
-### Preparation
-
-You need to create a `virtualenv` instead of polute the global python library path
-
-```bash
-virtualenv .env
-```
-
-You can enter virtualenv by
-
-```bash
-source .env/bin/activate
-```
-
-You can exit virtualenv by
-
-```bash
-deactivate
-```
-
-### Install dependencies
-
-```bash
-# enter virtualenv
-source .env/bin/activate
-# install dependencies
-pip install -r requirements.txt
-```
-
-### Make HTML
-
-```bash
-# make clean  # make clean to regenerate toctree. Just `make html` may have a cache.
-make html
-```
-and the html files will be generated to `build/html`. You can open `build/html/index.html` with your browser to see the documentation.
-
-## Edit
-
-### Edit documentation
-
-It is suggested to use `reStructuredText` because it is the only official markup language supportted by our documentation generating system, sphinx. `markdown` can also be used. However, since the `markdown` has so many dialects, there is no guarantee that the `markdown` source file can be rendered well.
-
-The `reStructuredText` cheatsheet is [here](http://docutils.sourceforge.net/docs/user/rst/quickref.html).
+English | [简体中文](./README_cn.md)
 
 
-### Edit structure
+Source files for contents presented at [PaddlePaddle documentation](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html).
 
-The `sphinx` (our documentation generating system) uses `toctree` to organize documentation. `toctree` means `table of content tree`. 
+Note: English version API docs are generaly docstrings in [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle), documents for [other PaddlePaddle projects](https://www.paddlepaddle.org.cn/overview) are being managed in their respective ways.
 
-Please see the [sphinx documentation](http://www.sphinx-doc.org/en/master/), especially [`toctree` directives](http://www.sphinx-doc.org/en/master/usage/restructuredtext/directives.html)
+## Codebase structure
+
+- [docs](docs): PaddlePaddle 2.0 & above docs source file.
+- [docs/api](docs/api): PaddlePaddle API docs.
+- [docs/guides](docs/guides): PaddlePaddle guides docs.
+- [docs/tutorial](docs/tutorial): PaddlePaddle tutorial docs.
+- [ci_scripts](ci_scripts): docs CI scripts.
+
+## How to build
+
+- pre-requirements
+  - docker
+- Instructions
+  - step1: clone docs
+    ```
+    git clone https://github.com/PaddlePaddle/docs
+    ```
+  - step2: build docs
+    ```
+    cd docs
+    mkdir output
+    bash docs-build.sh -f absolute_path_docs
+    ```
+  - step3: preview docs
+  The output of docs will be generated in docs/output.
+
+## How to contribute
+
+PaddlePaddle welcomes documentation contributions, please see [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
+
+## License
+
+
+
+[Apache License 2.0](LICENSE)
