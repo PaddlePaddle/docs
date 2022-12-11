@@ -15,8 +15,8 @@ PixelShuffle
 
 参数
 :::::::::
-    - **upscale_factor** （int) - 增大空间分辨率的增大因子
-    - **data_format** (str，可选) - 数据格式，可选："NCHW"或"NHWC"，默认："NCHW"
+    - **upscale_factor** （int) - 增大空间分辨率的增大因子。
+    - **data_format** (str，可选) - 数据格式，可选："NCHW"或"NHWC"，默认："NCHW"。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 形状
