@@ -22,7 +22,9 @@ multiply
 
         1. :math:`Y` 的 ``shape`` 与 :math:`X` 相同。
         2. :math:`Y` 的 ``shape`` 是 :math:`X` 的连续子序列。
-        3. 输入 ``x`` 与输入 ``y`` 必须可以广播为相同形状，关于广播规则，请参考 :ref:`cn_user_guide_broadcasting` 。
+        3. 输入 ``x`` 与输入 ``y`` 必须可以广播为相同形状，关于广播规则，请参见 `Tensor 介绍`_ .
+
+        .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 参数
 :::::::::

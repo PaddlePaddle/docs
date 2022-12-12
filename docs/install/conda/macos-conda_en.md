@@ -83,7 +83,7 @@ which python
 
 1.2.2 Check the version of Python
 
-Use the following command to confirm it's version is 3.6/3.7/3.8/3.9
+Use the following command to confirm it's version is 3.7/3.8/3.9/3.10
 
 ```
 python --version

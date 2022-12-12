@@ -242,7 +242,7 @@
             x = paddle.to_tensor(x_data[idx,:])
             label = paddle.to_tensor(y_data[idx,:])
             pred = model(x)
-            loss = loss_fn(pred, y)
+            loss = loss_fn(pred, label)
             loss.backward()
             print("step: ", t, "    loss: ", loss.numpy())
             print("grad: ", model.linear1.weight.grad)

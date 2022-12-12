@@ -12,7 +12,9 @@ remainder
         \\out = x \% y\\
 
 .. note::
-   ``paddle.remainder`` 支持广播，如您想了解更多，请参见 :ref:`cn_user_guide_broadcasting` 。
+    ``paddle.remainder`` 支持广播，如您想了解更多，请参见 `Tensor 介绍`_ .
+
+    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
 参数
 :::::::::
