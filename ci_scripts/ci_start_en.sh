@@ -112,15 +112,11 @@ if [ $? -ne 0 ];then
     EXIT_CODE=1
 fi
 
-ls ${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/
-
-ls ../docs/api
-
 # 4 check docs style/format
 cd ${PADDLE_DIR}
 need_check_api_py_files=$(find_all_api_py_files_modified_by_pr)
 cd -
-jsonfn=../docs/api/api_info_all.json
+jsonfn=${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/api_info_all.json
 if [ ! -f $jsonfn ]; then
     echo "$jsonfn not exists"
     exit 1
