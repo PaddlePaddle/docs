@@ -68,10 +68,13 @@ if __name__ == '__main__':
         if i not in source_to_doc_dict:
             print(i, ' has no doc file')
             continue
-        doc_file = source_to_doc_dict[i]
+        doc_files = source_to_doc_dict[i]
         # check 'System Message: WARNING/ERROR' in api doc file
-        check = check_system_message_in_doc(output_path + doc_file)
-        if not check:
-            error_files.add(doc_file)
+        for doc_file in doc_files:
+            check = check_system_message_in_doc(output_path + doc_file)
+            if not check:
+                error_files.add(doc_file)
+    print('error files: ', error_files)
+    print('ERROR: these docs exsits System Message: WARNING/ERROR, please check and fix them')
     if error_files:
         sys.exit(1)
