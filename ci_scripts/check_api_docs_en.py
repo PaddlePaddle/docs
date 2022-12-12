@@ -7,7 +7,6 @@ SYSTEM_MESSAGE_WARNING = 'System Message: WARNING'
 SYSTEM_MESSAGE_ERROR = 'System Message: ERROR'
 
 arguments = [
-    # flags, dest, type, default, help
     ['--py_files', 'py_files', str, None, 'api python files, sperated by space'],
     ['--api_info_file', 'api_info_file', str, None, 'api_info_all.json filename'],
     ['--output_path', 'output_path', str, None, 'output_path'],
@@ -56,7 +55,7 @@ def check_system_message_in_doc(doc_file):
 
 
 if __name__ == '__main__':
-    
+    args = parse_args()
     py_files = [fn for fn in args.py_files.split(' ') if fn]
     api_info = json.load(open(args.api_info_file))
     output_path = args.output_path
