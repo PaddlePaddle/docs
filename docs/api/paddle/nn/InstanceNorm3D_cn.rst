@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_InstanceNorm3D:
+.. _cn_api_nn_InstanceNorm3D:
 
 InstanceNorm3D
 -------------------------------
