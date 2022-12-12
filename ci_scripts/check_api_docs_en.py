@@ -5,6 +5,7 @@ import sys
 source_to_doc_dict = {}
 SYSTEM_MESSAGE_WARNING = 'System Message: WARNING'
 SYSTEM_MESSAGE_ERROR = 'System Message: ERROR'
+EN_HTML_EXTENSION = '_en.html'
 
 arguments = [
     ['--py_files', 'py_files', str, None, 'api python files, sperated by space'],
@@ -48,8 +49,8 @@ def check_system_message_in_doc(doc_file):
             if SYSTEM_MESSAGE_WARNING in row:
                 print('ERROR: ', doc_file, ' line: ', line, 'has ', SYSTEM_MESSAGE_WARNING)
                 pass_check = False
-            if 'System Message: ERROR' in row:
-                print('ERROR: ', doc_file,  'line: ', line, 'has ', SYSTEM_MESSAGE_WARNING)
+            if SYSTEM_MESSAGE_ERROR in row:
+                print('ERROR: ', doc_file,  'line: ', line, 'has ', SYSTEM_MESSAGE_ERROR)
                 pass_check = False
     return pass_check
 
@@ -71,9 +72,9 @@ if __name__ == '__main__':
         doc_files = source_to_doc_dict[i]
         # check 'System Message: WARNING/ERROR' in api doc file
         for doc_file in doc_files:
-            check = check_system_message_in_doc(output_path + doc_file + '_en.html')
+            check = check_system_message_in_doc(output_path + doc_file + EN_HTML_EXTENSION)
             if not check:
-                error_files.add(i + ' - ' + doc_file)
+                error_files.add(i + ' - ' + doc_file + EN_HTML_EXTENSION)
     print('error files: ', error_files)
     print('ERROR: these docs exsits System Message: WARNING/ERROR, please check and fix them')
     if error_files:
