@@ -44,11 +44,11 @@ def build_source_file_to_doc_file_dict(api_info):
 def check_system_message_in_doc(doc_file):
     pass_check = True
     with open(doc_file, 'r') as f:
-        for line, i in enumerate(f):
-            if SYSTEM_MESSAGE_WARNING in line:
+        for line, row in enumerate(f):
+            if SYSTEM_MESSAGE_WARNING in row:
                 print('ERROR: ', doc_file, ' line: ', line, 'has ', SYSTEM_MESSAGE_WARNING)
                 pass_check = False
-            if 'System Message: ERROR' in line:
+            if 'System Message: ERROR' in row:
                 print('ERROR: ', doc_file,  'line: ', line, 'has ', SYSTEM_MESSAGE_WARNING)
                 pass_check = False
     return pass_check
