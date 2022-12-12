@@ -71,9 +71,9 @@ if __name__ == '__main__':
         doc_files = source_to_doc_dict[i]
         # check 'System Message: WARNING/ERROR' in api doc file
         for doc_file in doc_files:
-            check = check_system_message_in_doc(output_path + doc_file)
+            check = check_system_message_in_doc(output_path + doc_file + '_en.html')
             if not check:
-                error_files.add(doc_file)
+                error_files.add(i + ' - ' + doc_file)
     print('error files: ', error_files)
     print('ERROR: these docs exsits System Message: WARNING/ERROR, please check and fix them')
     if error_files:
