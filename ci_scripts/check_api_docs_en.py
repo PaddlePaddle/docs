@@ -56,7 +56,9 @@ def check_system_message_in_doc(doc_file):
 
 if __name__ == '__main__':
     args = parse_args()
-    py_files = [fn for fn in args.py_files.split('\n') if fn]
+    # 此处获取的全路径是 python/paddle/amp/auto_cast.py，在 api_info_all.json 中的路径是 /paddle/amp/auto_cast.py
+    # 做字符串截取
+    py_files = [fn[6:] for fn in args.py_files.split('\n') if fn]
     print('need check python files: ', py_files)
     api_info = json.load(open(args.api_info_file))
     output_path = args.output_path
