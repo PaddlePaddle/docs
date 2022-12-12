@@ -1,4 +1,4 @@
-.. _cn_api_nn_cn_InstanceNorm2D:
+.. _cn_api_nn_InstanceNorm2D:
 
 InstanceNorm2D
 -------------------------------
