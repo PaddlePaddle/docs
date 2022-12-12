@@ -1,13 +1,8 @@
 .. _cn_api_fluid_layers_data_norm:
-
 data_norm
 -------------------------------
 
-
-.. py:function:: paddle.static.nn.data_norm(input, act=None, epsilon=1e-05, param_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False)
-
-
-
+.. py:function:: paddle.static.nn.data_norm(input, act=None, epsilon=1e-05, param_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, slot_dim=-1, sync_stats=False, summary_decay_rate=0.9999999, enable_scale_and_shift=False)
 
 **数据正则化层**
 
@@ -41,9 +36,9 @@ data_norm
   - **moving_variance_name** （string，可选） - 存储全局 Variance 的 moving_variance 的名称。默认值为 None。
   - **do_model_average_for_mean_and_var** （bool，可选） - 是否为 mean 和 variance 进行模型平均。默认值为 False。
   - **slot_dim** （int，可选） -  一个 slot 的 embedding 维度，slot 用来表征一类特征的集合，在 pslib 模式下，通常我们通过 slot 区分特征 id，并从参数服务器（pslib）中提取它们的 embedding。embedding 的第一维是历史上这个 embedding 展示的次数。如果本 op 的输入是由这样的 embedding 连接而来，那么当这个特征 id 是新的或空的，则正则化结果可能不实际。为了避免这种情况，我们添加了 slot_dim 来定位并判断这一维是否为零。如果是的话，我们选择跳过正则化。默认值为 -1。
+  - **sync_stats** （bool，可选） - 在多 GPU 卡的场景下可以使用，用来同步多卡间的 summary 信息。默认值为 False。
   - **summary_decay_rate** （float，可选） - 更新 summary 信息时的衰减率。默认值为 0.9999999。
-  - **sync_stats** （bool，默认值 False） - 在多 GPU 卡的场景下可以使用，用来同步多卡间的 summary 信息。
-  - **enable_scale_and_shift** (bool，默认值 False) - 在分布式全局正则化后是否做像 batchnorm 一样做 scale&shift 的操作。
+  - **enable_scale_and_shift** （bool，可选） - 在分布式全局正则化后是否做像 batchnorm 一样做 scale&shift 的操作。默认值为 False。
 
 返回
 ::::::::::::

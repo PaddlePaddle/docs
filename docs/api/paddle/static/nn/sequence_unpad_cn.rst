@@ -1,14 +1,8 @@
 .. _cn_api_fluid_layers_sequence_unpad:
-
 sequence_unpad
 -------------------------------
 
-
 .. py:function:: paddle.static.nn.sequence_unpad(x, length, name=None)
-
-:api_attr：声明式编程模式（静态图)
-
-
 
 .. note::
     该 API 的输入为 Tensor，输出为 LoDTensor。用于移除填充元素，与之对应，还存在进行数据填充的 API :ref:`cn_api_fluid_layers_sequence_pad`。
