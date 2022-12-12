@@ -56,7 +56,8 @@ def check_system_message_in_doc(doc_file):
 
 if __name__ == '__main__':
     args = parse_args()
-    py_files = [fn for fn in args.py_files.split(' ') if fn]
+    py_files = [fn for fn in args.py_files.split('\n') if fn]
+    print('need check python files: ', py_files)
     api_info = json.load(open(args.api_info_file))
     output_path = args.output_path
     build_source_file_to_doc_file_dict(api_info)
