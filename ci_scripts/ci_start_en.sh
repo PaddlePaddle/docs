@@ -47,7 +47,7 @@ if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
     apt install -y libpython3.7 
     apt --fix-broken install -y libssl1.0
     /bin/bash -x ${DIR_PATH}/gendoc.sh
-    if [ $? -ne 0 ];then
+    if [ $? -ne 0 ] ; then
         exit 1
     fi
     
@@ -112,11 +112,15 @@ if [ $? -ne 0 ];then
     EXIT_CODE=1
 fi
 
+ls ${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/
+
+ls ../docs/api
+
 # 4 check docs style/format
 cd ${PADDLE_DIR}
 need_check_api_py_files=$(find_all_api_py_files_modified_by_pr)
 cd -
-jsonfn=${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/api_info_all.json
+jsonfn=../docs/api/api_info_all.json
 if [ ! -f $jsonfn ]; then
     echo "$jsonfn not exists"
     exit 1
