@@ -38,7 +38,7 @@ tensor 数学操作
     " :ref:`paddle.angle <cn_api_paddle_angle>` ", "相位角函数"
     " :ref:`paddle.acos <cn_api_fluid_layers_acos>` ", "arccosine 函数"
     " :ref:`paddle.add <cn_api_tensor_add>` ", "Tensor 逐元素相加"
-    " :ref:`paddle.add_n <cn_api_tensor_add_n>` ", "对输入的一至多个 Tensor 或 LoDTensor 求和"
+    " :ref:`paddle.add_n <cn_api_tensor_add_n>` ", "对输入的一至多个 Tensor 求和"
     " :ref:`paddle.addmm <cn_api_tensor_addmm>` ", "计算输入 Tensor x 和 y 的乘积，将结果乘以标量 alpha，再加上 input 与 beta 的乘积，得到输出"
     " :ref:`paddle.all <cn_api_tensor_all>` ", "对指定维度上的 Tensor 元素进行逻辑与运算"
     " :ref:`paddle.allclose <cn_api_tensor_allclose>` ", "逐个检查输入 Tensor x 和 y 的所有元素是否均满足 ∣x−y∣≤atol+rtol×∣y∣"
@@ -53,8 +53,8 @@ tensor 数学操作
     " :ref:`paddle.cos <cn_api_fluid_layers_cos>` ", "余弦函数"
     " :ref:`paddle.cosh <cn_api_fluid_layers_cosh>` ", "双曲余弦函数"
     " :ref:`paddle.count_nonzero <cn_api_tensor_cn_count_nonzero>` ", "沿给定的轴 axis 统计非零元素的数量"
-    " :ref:`paddle.cumsum <cn_api_tensor_cn_cumsum>` ", "沿给定 axis 计算张量 x 的累加和"
-    " :ref:`paddle.cumprod <cn_api_tensor_cn_cumprod>` ", "沿给定 dim 计算张量 x 的累乘"
+    " :ref:`paddle.cumsum <cn_api_tensor_cn_cumsum>` ", "沿给定 axis 计算 Tensor x 的累加和"
+    " :ref:`paddle.cumprod <cn_api_tensor_cn_cumprod>` ", "沿给定 dim 计算 Tensor x 的累乘"
     " :ref:`paddle.digamma <cn_api_paddle_digamma>` ", "逐元素计算输入 x 的 digamma 函数值"
     " :ref:`paddle.divide <cn_api_tensor_divide>` ", "逐元素相除算子"
     " :ref:`paddle.equal <cn_api_tensor_equal>` ", "该 OP 返回 x==y 逐元素比较 x 和 y 是否相等，相同位置的元素相同则返回 True，否则返回 False"
@@ -68,7 +68,7 @@ tensor 数学操作
     " :ref:`paddle.greater_than <cn_api_tensor_cn_greater_than>` ", "逐元素地返回 x>y 的逻辑值"
     " :ref:`paddle.heaviside <cn_api_paddle_tensor_heaviside>` ", "逐元素地对 x 计算由 y 中的对应元素决定的赫维赛德阶跃函数"
     " :ref:`paddle.increment <cn_api_tensor_increment>` ", "在控制流程中用来让 x 的数值增加 value"
-    " :ref:`paddle.kron <cn_api_paddle_tensor_kron>` ", "计算两个张量的克罗内克积"
+    " :ref:`paddle.kron <cn_api_paddle_tensor_kron>` ", "计算两个 Tensor 的克罗内克积"
     " :ref:`paddle.less_equal <cn_api_tensor_cn_less_equal>` ", "逐元素地返回 x<=y 的逻辑值"
     " :ref:`paddle.less_than <cn_api_tensor_cn_less_than>` ", "逐元素地返回 x<y 的逻辑值"
     " :ref:`paddle.lgamma <cn_api_paddle_lgamma>` ", "计算输入 x 的 gamma 函数的自然对数并返回"
@@ -203,7 +203,7 @@ tensor 属性相关
     " :ref:`paddle.shape <cn_api_fluid_layers_shape>` ", "获得输入 Tensor 或 SelectedRows 的 shape"
     " :ref:`paddle.is_complex <cn_api_paddle_is_complex>` ", "判断输入 tensor 的数据类型是否为复数类型"
     " :ref:`paddle.is_integer <cn_api_paddle_is_integer>` ", "判断输入 tensor 的数据类型是否为整数类型"
-    " :ref:`paddle.broadcast_shape <cn_api_tensor_broadcast_shape>` ", "返回对 x_shape 大小的张量和 y_shape 大小的张量做 broadcast 操作后得到的 shape"
+    " :ref:`paddle.broadcast_shape <cn_api_tensor_broadcast_shape>` ", "返回对 x_shape 大小的 Tensor 和 y_shape 大小的 Tensor 做 broadcast 操作后得到的 shape"
     " :ref:`paddle.is_floating_point <cn_api_tensor_is_floating_point>` ", "判断输入 Tensor 的数据类型是否为浮点类型"
 
 .. _tensor_creation:
@@ -216,15 +216,15 @@ tensor 创建相关
     :widths: 10, 30
 
     " :ref:`paddle.arange <cn_api_paddle_tensor_arange>` ", "返回以步长 step 均匀分隔给定数值区间[start, end)的 1-D Tensor，数据类型为 dtype"
-    " :ref:`paddle.diag <cn_api_paddle_cn_diag>` ", "如果 x 是向量（1-D 张量），则返回带有 x 元素作为对角线的 2-D 方阵;如果 x 是矩阵（2-D 张量），则提取 x 的对角线元素，以 1-D 张量返回。"
-    " :ref:`paddle.diagflat <cn_api_paddle_diagflat>` ", "如果 x 是一维张量，则返回带有 x 元素作为对角线的二维方阵;如果 x 是大于等于二维的张量，则返回一个二维张量，其对角线元素为 x 在连续维度展开得到的一维张量的元素。"
+    " :ref:`paddle.diag <cn_api_paddle_cn_diag>` ", "如果 x 是向量（1-D Tensor），则返回带有 x 元素作为对角线的 2-D 方阵;如果 x 是矩阵（2-D Tensor），则提取 x 的对角线元素，以 1-D Tensor 返回。"
+    " :ref:`paddle.diagflat <cn_api_paddle_diagflat>` ", "如果 x 是一维 Tensor，则返回带有 x 元素作为对角线的二维方阵;如果 x 是大于等于二维的 Tensor，则返回一个二维 Tensor，其对角线元素为 x 在连续维度展开得到的一维 Tensor 的元素。"
     " :ref:`paddle.empty <cn_api_tensor_empty>` ", "创建形状大小为 shape 并且数据类型为 dtype 的 Tensor"
     " :ref:`paddle.empty_like <cn_api_tensor_empty_like>` ", "根据 x 的 shape 和数据类型 dtype 创建未初始化的 Tensor"
     " :ref:`paddle.eye <cn_api_paddle_tensor_eye>` ", "构建二维 Tensor(主对角线元素为 1，其他元素为 0)"
     " :ref:`paddle.full <cn_api_tensor_full>` ", "创建形状大小为 shape 并且数据类型为 dtype 的 Tensor"
     " :ref:`paddle.full_like <cn_api_tensor_full_like>` ", "创建一个和 x 具有相同的形状并且数据类型为 dtype 的 Tensor"
     " :ref:`paddle.linspace <cn_api_fluid_layers_linspace>` ", "返回一个 Tensor，Tensor 的值为在区间 start 和 stop 上均匀间隔的 num 个值，输出 Tensor 的长度为 num"
-    " :ref:`paddle.meshgrid <cn_api_paddle_tensor_meshgrid>` ", "对每个张量做扩充操作"
+    " :ref:`paddle.meshgrid <cn_api_paddle_tensor_meshgrid>` ", "对每个 Tensor 做扩充操作"
     " :ref:`paddle.numel <cn_api_tensor_numel>` ", "返回一个长度为 1 并且元素值为输入 x 元素个数的 Tensor"
     " :ref:`paddle.ones <cn_api_tensor_ones>` ", "创建形状为 shape 、数据类型为 dtype 且值全为 1 的 Tensor"
     " :ref:`paddle.ones_like <cn_api_tensor_ones_like>` ", "返回一个和 x 具有相同形状的数值都为 1 的 Tensor"
@@ -302,12 +302,12 @@ tensor 线性代数相关
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`paddle.bincount <cn_api_tensor_bincount>` ", "统计输入张量中元素的出现次数"
+    " :ref:`paddle.bincount <cn_api_tensor_bincount>` ", "统计输入 Tensor 中元素的出现次数"
     " :ref:`paddle.bmm <cn_api_paddle_tensor_bmm>` ", "对输入 x 及输入 y 进行矩阵相乘"
-    " :ref:`paddle.cross <cn_api_tensor_linalg_cross>` ", "计算张量 x 和 y 在 axis 维度上的向量积（叉积）"
+    " :ref:`paddle.cross <cn_api_tensor_linalg_cross>` ", "计算 Tensor x 和 y 在 axis 维度上的向量积（叉积）"
     " :ref:`paddle.dist <cn_api_tensor_linalg_dist>` ", "计算 (x-y) 的 p 范数（p-norm）"
     " :ref:`paddle.dot <cn_api_paddle_tensor_linalg_dot>` ", "计算向量的内积"
-    " :ref:`paddle.histogram <cn_api_tensor_histogram>` ", "计算输入张量的直方图"
+    " :ref:`paddle.histogram <cn_api_tensor_histogram>` ", "计算输入 Tensor 的直方图"
     " :ref:`paddle.matmul <cn_api_tensor_matmul>` ", "计算两个 Tensor 的乘积，遵循完整的广播规则"
     " :ref:`paddle.mv <cn_api_tensor_mv>` ", "计算矩阵 x 和向量 vec 的乘积"
     " :ref:`paddle.rank <cn_api_fluid_layers_rank>` ", "计算输入 Tensor 的维度（秩）"
@@ -353,7 +353,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.tile <cn_api_tensor_tile>` ", "根据参数 repeat_times 对输入 x 的各维度进行复制"
     " :ref:`paddle.transpose <cn_api_fluid_layers_transpose>` ", "根据 perm 对输入的多维 Tensor 进行数据重排"
     " :ref:`paddle.moveaxis <cn_api_tensor_moveaxis>` ", "移动 Tensor 的轴，根据移动之后的轴对输入的多维 Tensor 进行数据重排"
-    " :ref:`paddle.tensordot <cn_api_paddle_tensordot>`  ", "沿多个轴对输入的 x 和 y 进行张量缩并操作"
+    " :ref:`paddle.tensordot <cn_api_paddle_tensordot>`  ", "沿多个轴对输入的 x 和 y 进行 Tensor 缩并操作"
     " :ref:`paddle.unbind <cn_api_paddle_tensor_unbind>` ", "将输入 Tensor 按照指定的维度分割成多个子 Tensor"
     " :ref:`paddle.unique <cn_api_tensor_cn_unique>` ", "返回 Tensor 按升序排序后的独有元素"
     " :ref:`paddle.unique_consecutive <cn_api_tensor_cn_unique_consecutive>` ", "返回无连续重复元素的 Tensor"
@@ -362,7 +362,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.as_complex <cn_api_paddle_as_complex>` ", "将实数 Tensor 转为复数 Tensor"
     " :ref:`paddle.as_real <cn_api_paddle_as_real>` ", "将复数 Tensor 转为实数 Tensor"
     " :ref:`paddle.repeat_interleave <cn_api_tensor_repeat_interleave>` ", "沿 axis 轴对输入 x 的元素进行复制"
-    " :ref:`paddle.index_add <cn_api_tensor_index_add>` ", "沿着指定轴 axis 将 index 中指定位置的 x 与 value 相加，并写入到结果张量中的对应位置"
+    " :ref:`paddle.index_add <cn_api_tensor_index_add>` ", "沿着指定轴 axis 将 index 中指定位置的 x 与 value 相加，并写入到结果 Tensor 中的对应位置"
 
 .. _tensor_manipulation_inplace:
 
@@ -387,7 +387,7 @@ tensor 元素操作相关原位（inplace）版本
     :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`paddle.einsum <cn_api_tensor_einsum>` ", "根据爱因斯坦标记对多个张量进行爱因斯坦求和"
+    " :ref:`paddle.einsum <cn_api_tensor_einsum>` ", "根据爱因斯坦标记对多个 Tensor 进行爱因斯坦求和"
 
 .. _about_framework:
 
@@ -400,7 +400,7 @@ framework 相关
 
     " :ref:`paddle.CPUPlace <cn_api_fluid_CPUPlace>` ", "一个设备描述符，指定 CPUPlace 则 Tensor 将被自动分配在该设备上，并且模型将会运行在该设备上"
     " :ref:`paddle.CUDAPinnedPlace <cn_api_fluid_CUDAPinnedPlace>` ", "一个设备描述符，它所指代的页锁定内存由 CUDA 函数 cudaHostAlloc() 在主机内存上分配，主机的操作系统将不会对这块内存进行分页和交换操作，可以通过直接内存访问技术访问，加速主机和 GPU 之间的数据拷贝"
-    " :ref:`paddle.CUDAPlace <cn_api_fluid_CUDAPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 或 LoDTensor 的 GPU 设备"
+    " :ref:`paddle.CUDAPlace <cn_api_fluid_CUDAPlace>` ", "一个设备描述符，表示一个分配或将要分配 Tensor 的 GPU 设备"
     " :ref:`paddle.DataParallel <cn_api_fluid_dygraph_DataParallel>` ", "通过数据并行模式执行动态图模型"
     " :ref:`paddle.NPUPlace <cn_api_fluid_NPUPlace>` ", "一个设备描述符，指 NCPUPlace 则 Tensor 将被自动分配在该设备上，并且模型将会运行在该设备上"
     " :ref:`paddle.disable_signal_handler <cn_api_fluid_disable_signal_handler>` ", "关闭 Paddle 系统信号处理方法"
