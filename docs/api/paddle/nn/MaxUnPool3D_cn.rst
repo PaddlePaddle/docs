@@ -3,7 +3,7 @@
 MaxUnPool3D
 -------------------------------
 
-.. py:function:: paddle.nn.MaxUnPool3D(kernel_size, stride=None, padding=0, data_format="NCDHW", output_size=None, name=None)
+.. py:class:: paddle.nn.MaxUnPool3D(kernel_size, stride=None, padding=0, data_format="NCDHW", output_size=None, name=None)
 
 构建 `MaxUnPool3D` 类的一个可调用对象，根据输入的 input 和最大值位置计算出池化的逆结果。所有非最大值设置为零。
 
