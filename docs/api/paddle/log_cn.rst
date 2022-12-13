@@ -1,8 +1,12 @@
 .. _cn_api_fluid_layers_log:
+
 log
 -------------------------------
 
 .. py:function:: paddle.log(x, name=None)
+
+
+
 
 Log 激活函数（计算自然对数）
 

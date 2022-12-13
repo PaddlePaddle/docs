@@ -1,8 +1,12 @@
 .. _cn_api_fluid_layers_sequence_slice:
+
 sequence_slice
 -------------------------------
 
 .. py:function:: paddle.static.nn.sequence_slice(input, offset, length, name=None)
+
+
+
 
 实现 Sequence Slice (序列切片) 运算
 

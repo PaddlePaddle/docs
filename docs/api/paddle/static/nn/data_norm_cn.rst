@@ -1,8 +1,12 @@
 .. _cn_api_fluid_layers_data_norm:
+
 data_norm
 -------------------------------
 
 .. py:function:: paddle.static.nn.data_norm(input, act=None, epsilon=1e-05, param_attr=None, data_layout='NCHW', in_place=False, name=None, moving_mean_name=None, moving_variance_name=None, do_model_average_for_mean_and_var=False, slot_dim=-1, sync_stats=False, summary_decay_rate=0.9999999, enable_scale_and_shift=False)
+
+
+
 
 **数据正则化层**
 

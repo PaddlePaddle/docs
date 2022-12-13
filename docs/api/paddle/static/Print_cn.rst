@@ -1,8 +1,12 @@
 .. _cn_api_fluid_layers_Print:
+
 Print
 -------------------------------
 
 .. py:function:: paddle.static.Print(input, first_n=-1, message=None, summarize=20, print_tensor_name=True, print_tensor_type=True, print_tensor_shape=True, print_tensor_lod=True, print_phase='both')
+
+
+
 
 创建一个打印操作，打印正在访问的 Tensor 内容。
 

@@ -1,8 +1,12 @@
 .. _cn_api_fluid_layers_cast:
+
 cast
 -------------------------------
 
 .. py:function:: paddle.cast(x, dtype)
+
+
+
 
 将 ``x`` 的数据类型转换为 ``dtype`` 并输出。支持输出和输入的数据类型相同。
 
