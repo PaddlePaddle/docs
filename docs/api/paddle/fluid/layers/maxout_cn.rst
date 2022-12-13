@@ -21,7 +21,7 @@ maxout
 
 
 请参阅论文：
-  - Maxout Networks:  http://www.jmlr.org/proceedings/papers/v28/goodfellow13.pdf
+  - Maxout Networks: https://proceedings.mlr.press/v28/goodfellow13.pdf 
   - Multi-digit Number Recognition from Street View Imagery using Deep Convolutional Neural Networks: https://arxiv.org/pdf/1312.6082v4.pdf
 
 参数
