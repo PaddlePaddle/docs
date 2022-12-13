@@ -21,7 +21,7 @@ deform_conv2d op 对输入 4-D Tensor 计算 2-D 可变形卷积。给定输入 
 
 其中 :math:`\Delta p_k` 和 :math:`\Delta m_k` 分别为第 k 个位置的可学习偏移和调制标量。在 deform_conv2d_v1 中 :math:`\Delta m_k` 为 1。
 
-具体细节可以参考论文：`<<Deformable ConvNets v2: More Deformable, Better Results>> <https://arxiv.org/abs/1811.11168v2>`_ 和 `<<Deformable Convolutional Networks>> <https://arxiv.org/abs/1703.06211>`_ 。
+具体细节可以参考论文：`Deformable ConvNets v2: More Deformable, Better Results <https://arxiv.org/abs/1811.11168v2>`_ 和 `Deformable Convolutional Networks <https://arxiv.org/abs/1703.06211>`_ 。
 
 **示例**
 
