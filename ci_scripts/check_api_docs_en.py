@@ -63,7 +63,6 @@ if __name__ == '__main__':
     for i in range(len(py_files)):
         if py_files[i].startswith('python/'):
             py_files[i] = py_files[i][6:]
-    print('py_files', py_files)
     api_info = json.load(open(args.api_info_file))
     output_path = args.output_path
     build_source_file_to_doc_file_dict(api_info)
