@@ -4,6 +4,8 @@ export DIR_PATH=${PWD}
 
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
+export OUTPUTDIR=/docs
+export VERSIONSTR=$(echo ${BRANCH} | sed 's@release/@@g')
 
 # 1 decide PADDLE_WHL if not setted.
 if [ -z "${PADDLE_WHL}" ] ; then
@@ -41,8 +43,6 @@ echo "PADDLE_WHL=${PADDLE_WHL}"
 # 2 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
 PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: None"
 if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
-    export OUTPUTDIR=/docs
-    export VERSIONSTR=$(echo ${BRANCH} | sed 's@release/@@g')
     apt update 
     apt install -y libpython3.7 
     apt --fix-broken install -y libssl1.0

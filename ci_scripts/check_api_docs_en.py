@@ -60,25 +60,25 @@ if __name__ == '__main__':
     py_files = [fn for fn in args.py_files.split('\n')]
     # 此处获取的全路径是 python/paddle/amp/auto_cast.py，在 api_info_all.json 中的路径是 /paddle/amp/auto_cast.py
     # 做字符串替换
-    for i in py_files:
-        if i.startswith('python/'):
-            i = i[6:]
-    print('need check python files: ', py_files)
+    for i in range(len(py_files)):
+        if py_files[i].startswith('python/'):
+            py_files[i] = py_files[i][6:]
+    print('py_files', py_files)
     api_info = json.load(open(args.api_info_file))
     output_path = args.output_path
     build_source_file_to_doc_file_dict(api_info)
     error_files = set()
     for i in py_files:
         if i not in source_to_doc_dict:
-            print(i, ' has no doc file')
             continue
         doc_files = source_to_doc_dict[i]
+        print(i, ' has doc file: ', doc_files)
         # check 'System Message: WARNING/ERROR' in api doc file
         for doc_file in doc_files:
             check = check_system_message_in_doc(output_path + doc_file + EN_HTML_EXTENSION)
             if not check:
                 error_files.add(i + ' - ' + doc_file + EN_HTML_EXTENSION)
-    print('error files: ', error_files)
-    print('ERROR: these docs exsits System Message: WARNING/ERROR, please check and fix them')
     if error_files:
+        print('error files: ', error_files)
+        print('ERROR: these docs exsits System Message: WARNING/ERROR, please check and fix them')
         sys.exit(1)
