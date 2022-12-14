@@ -1,6 +1,9 @@
 #!/bin/bash
 set -x
 
+OUTPUTDIR=${OUTPUTDIR:=/docs}
+VERSIONSTR=${VERSIONSTR:=develop}
+
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 
@@ -44,8 +47,7 @@ then
     echo "need check files is empty, skip chinese api check"
 else
     # Check COPY-FROM is parsed into Sample Code
-    echo 'DOCROOT: ', ${DOCROOT}
-    python check_copy_from_parsed_into_sample_code.py '/FluidDoc/docs/' $need_check_files
+    python check_copy_from_parsed_into_sample_code.py OUTPUTDIR + '/zh/' + VERSIONSTR $need_check_files
     if [ $? -ne 0 ];then
         echo "exists COPY-FROM has not been parsed into sample code, please check COPY-FROM in these files"
         EXIT_CODE=5
