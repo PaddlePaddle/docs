@@ -30,6 +30,13 @@ function filter_cn_api_files() {
 
 need_check_cn_doc_files="$1"
 echo $need_check_cn_doc_files
+# Check COPY-FROM is parsed into Sample Code
+echo "Run COPY-FROM parsed into Sample Code Check"
+python check_copy_from_parsed_into_sample_code.py $need_check_cn_doc_files
+if [ $? -ne 0 ];then
+    echo "ERROR: Exist COPY-FROM has not been parsed into sample code, please check COPY-FROM in the above files"
+    exit 1
+fi
 need_check_files=$(filter_cn_api_files "${need_check_cn_doc_files}")
 echo "$need_check_files"
 if [ "$need_check_files" = "" ]
@@ -37,7 +44,7 @@ then
     echo "need check files is empty, skip chinese api check"
 else
     # Check COPY-FROM is parsed into Sample Code
-    python check_copy_from_parsed_into_sample_code.py $need_check_files
+    python check_copy_from_parsed_into_sample_code.py $DOCROOT $need_check_files
     if [ $? -ne 0 ];then
         echo "exists COPY-FROM has not been parsed into sample code, please check COPY-FROM in these files"
         EXIT_CODE=5

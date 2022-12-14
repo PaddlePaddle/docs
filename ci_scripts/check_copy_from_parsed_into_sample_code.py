@@ -1,34 +1,46 @@
 import sys
 import re
+import os
 
 
 def check_copy_from_not_parsed(file):
     error_parsed = []
+    if '_cn.rst' not in file:
+        return error_parsed
     with open(file, 'r') as f:
         for line, i in enumerate(f):
             if 'COPY-FROM' in i:
                 error_parsed.append(i)
-                print(file, 'line: ', line, i, ' is not parsed into sample code, \
-                    please check the api name after COPY-FROM')
+                print(
+                    "ERROR: ",
+                    file,
+                    "line: ",
+                    line + 1,
+                    i,
+                    " is not parsed into sample code, \
+                    please check the api name after COPY-FROM",
+                )
     return error_parsed
 
-def run(input_files):
+
+def run_copy_from_check(output_path, pr_files):
+    print('COPY-FROM check files: ', output_path + pr_files)
     all_error_parsed = []
-    files = input_files.split()
-    for file in files:
-        error_parsed = check_copy_from_not_parsed('../docs/' + file)
+    if not pr_files:
+        print("pr file list is empty, skip COPY-FROM check")
+        sys.exit(0)
+    for file in pr_files:
+        error_parsed = check_copy_from_not_parsed(output_path + file)
         all_error_parsed.extend(error_parsed)
     if all_error_parsed:
         sys.exit(1)
-    print('All COPY-FROM parsed success in PR !')
+    print("All COPY-FROM parsed success in PR !")
 
-if len(sys.argv) < 2:
+
+if len(sys.argv) < 3:
     print("Error: inadequate number of arguments")
     print("Please input one file path")
     sys.exit(1)
 else:
-    if not os.path.exists(sys.argv[1]):
-        print("File not found")
-        sys.exit(1)
-    res = test(sys.argv[1])
-    output.append(res)
+    res = run_copy_from_check(output_path=sys.argv[1], pr_files=sys.argv[2:])
+

@@ -25,3 +25,10 @@ decorate
 代码示例
 :::::::::
 COPY-FROM: paddle.amp.decorate
+
+
+代码示例
+:::::::::
+COPY-FROM: paddle.amp.decorate
+
+Test for Doc-New CI
