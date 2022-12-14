@@ -36,6 +36,10 @@ sequence_slice
     out.dims = [3, 2]
 
 
+.. note::
+``input``、``offset`` 以及 ``length`` 的第一维大小应相同。
+``offset`` 从 0 开始。
+
 参数
 :::::::::
   - **input** (Tensor) – 输入变量，类型为 LoDTensor，承载着完整的序列。数据类型为 float32，float64，int32 或 int64。
