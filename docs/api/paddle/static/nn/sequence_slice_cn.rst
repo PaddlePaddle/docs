@@ -6,18 +6,13 @@ sequence_slice
 .. py:function:: paddle.static.nn.sequence_slice(input, offset, length, name=None)
 
 
-
-
 实现 Sequence Slice (序列切片) 运算
 
 从给定序列中截取子序列。截取依据为按照所给相对开始位置的 ``offset`` （偏移量）和子序列长度 ``length`` 来截取子序列。
 
-
-.. note::
 该 API 输入只能是 LoDTensor，如果您需要处理的是 Tensor 类型，请使用 :ref:`paddle.slice <cn_api_paddle_slice>` 。
 
-
-::
+.. code-block:: text
 
     输入：
 
@@ -37,8 +32,8 @@ sequence_slice
 
 
 .. note::
-``input``、``offset`` 以及 ``length`` 的第一维大小应相同。
-``offset`` 从 0 开始。
+    ``input``、``offset`` 以及 ``length`` 的第一维大小应相同。
+    ``offset`` 从 0 开始。
 
 参数
 :::::::::
