@@ -16,7 +16,6 @@ sequence_slice
 .. note::
 该 API 输入只能是 LoDTensor，如果您需要处理的是 Tensor 类型，请使用 :ref:`paddle.slice <cn_api_paddle_slice>` 。
 
-**样例**:
 
 ::
 
