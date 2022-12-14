@@ -37,7 +37,7 @@ def run_copy_from_check(pr_files):
     print("All COPY-FROM parsed success in PR !")
 
 
-if len(sys.argv) < 2:
+if len(sys.argv) < 2
     print("Error: inadequate number of arguments")
     print("Please input one file path")
     sys.exit(1)
