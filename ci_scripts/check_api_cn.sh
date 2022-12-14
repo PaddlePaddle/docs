@@ -44,7 +44,8 @@ then
     echo "need check files is empty, skip chinese api check"
 else
     # Check COPY-FROM is parsed into Sample Code
-    python check_copy_from_parsed_into_sample_code.py $DOCROOT $need_check_files
+    echo 'DOCROOT: ', ${DOCROOT}
+    python check_copy_from_parsed_into_sample_code.py '/FluidDoc/docs/' $need_check_files
     if [ $? -ne 0 ];then
         echo "exists COPY-FROM has not been parsed into sample code, please check COPY-FROM in these files"
         EXIT_CODE=5
