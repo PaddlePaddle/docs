@@ -8,7 +8,7 @@
     * **Ubuntu 14.04 (not recommended, no official support for compilation problems)**
     * **Ubuntu 16.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
     * **Ubuntu 18.04 (GPU version supports CUDA 10.1/10.2/11.0/11.1/11.2)**
-* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python version 3.7/3.8/3.9/3.10 (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -141,7 +141,7 @@ cd /paddle
 git checkout develop
 ```
 
-Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
+Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch
 
 #### 7. Create and enter the /paddle/build path:
 
@@ -367,7 +367,7 @@ uname -m && cat /etc/*release
         ```
         find `dirname $(dirname $(which python3))` -name "libpython3.so"
         ```
-        If it is 3.6,3.7,3.8,3.9, change `python3` to `python3.6`,`python3.7`, `python3.8`, `python3.9`, then replace [python-lib-path] in the following steps with the file path found.
+        If it is 3.7/3.8/3.9/3.10, change `python3` to `python3.7`, `python3.8`, `python3.9`, `python3.10`, then replace [python-lib-path] in the following steps with the file path found.
 
     2. Set PYTHON_LIBRARIES:
         ```
@@ -511,7 +511,7 @@ mkdir build && cd build
         ```
 
 
-Note: For the command involving Python 3, we use Python 3.7 as an example above, if the version of your Python is 3.6/3.8/3.9, please change Python3.7 in the commands to Python3.6/Python3.8/Python3.9
+Note: For the command involving Python 3, we use Python 3.7 as an example above, if the version of your Python is 3.8/3.9, please change Python3.7 in the commands to Python3.8/Python3.9
 
 
 

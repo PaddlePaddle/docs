@@ -9,7 +9,7 @@ sequence_expand_as
 Sequence Expand As Layer，该 OP 根据输入 ``y`` 的第 0 级 lod 对输入 ``x`` 进行扩展。当前实现要求 ``y`` 的 lod 层数（level）必须为 1，且 ``x`` 的第一维必须和 ``y`` 的第 0 层 lod 大小相同，所以扩展后的 LodTensor 具有和 ``y`` 相同的 lod。扩展结果与输入 ``x`` 的 lod 无关，所以无需考虑 ``x`` 的 lod。
 
 .. note::
-该 API 的输入 ``x`` 可以是 Tensor 或 LoDTensor， ``y`` 只能是 LodTensor。
+该 API 的输入 ``x`` 可以是 Tensor， ``y`` 只能是 LodTensor。
 
 范例解释如下：
 
@@ -51,7 +51,7 @@ Sequence Expand As Layer，该 OP 根据输入 ``y`` 的第 0 级 lod 对输入 
 参数
 :::::::::
 
-    - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` 的二维 Tensor 或 LoDTensor，第一维必须与输入 ``y`` 的第 0 层 lod 大小相同，且仅支持 lod_level 为 1。数据类型支持 int32，int64，float32 或 float64。
+    - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` 的二维 Tensor，第一维必须与输入 ``y`` 的第 0 层 lod 大小相同，且仅支持 lod_level 为 1。数据类型支持 int32，int64，float32 或 float64。
     - **y** (Variable) - 输入变量，LoDTensor，lod level 必须为 1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

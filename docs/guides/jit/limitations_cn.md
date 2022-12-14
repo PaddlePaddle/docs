@@ -522,7 +522,7 @@ from paddle.jit import to_static
 
 class mylayer(paddle.nn.Layer):
     def __init__(self):
-        super(mylayer, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(5, 2)
 
     @to_static
@@ -544,7 +544,7 @@ from paddle.jit import to_static
 
 class mylayer(paddle.nn.Layer):
     def __init__(self):
-        super(mylayer, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(5, 2)
 
         old_dict = self.state_dict()   # <--- 如果代码只需要执行一次，可以放在 __init__ 中

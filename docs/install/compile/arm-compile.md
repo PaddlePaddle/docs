@@ -4,7 +4,7 @@
 
 * **处理器：FT2000+/Kunpeng 920 2426SK**
 * **操作系统：麒麟 v10/UOS**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 * **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
 飞腾 FT2000+和鲲鹏 920 处理器均为 ARMV8 架构，在该架构上编译 Paddle 的方式一致，本文以 FT2000+为例，介绍 Paddle 的源码编译。
@@ -85,11 +85,6 @@
 8. 执行 cmake：
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
-
-    For Python2:
-    ```
-    cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_ARM=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_XBYAK=OFF
-    ```
 
     For Python3:
     ```

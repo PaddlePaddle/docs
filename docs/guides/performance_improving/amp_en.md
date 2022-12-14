@@ -143,7 +143,7 @@ place = paddle.CUDAPlace(0)
 # build a network composed of nine layers of linear
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         # nine layers of linear, each layer is composed of matmul and add operator
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
@@ -362,7 +362,7 @@ if paddle.is_compiled_with_cuda():
 
 The previous article introduced the method of single card (GPU) training in dynamic graph mode, which is similar to it, [distributed training documents](https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/collective_performance/amp.html) and [dynamic graph to static graph](../jit/index_cn.html) can start AMP in the same way. Next, it mainly introduces the methods of starting AMP training in static graph modes and the advanced usage of AMP training, such as gradient accumulation.
 
-### 3.1 Gradient Accumulation in dygraph graph mode
+### 3.1 Gradient Accumulation in dynamic graph mode
 
 Gradient accumulation means running a configured number of steps without updating the model variables. Until certain steps, use the accumulated gradients to update the variables. Limited by the size of the gpu memory, you may not be able to open a larger batch_size, you can increase batch_size by using gradient accumulation.
 
@@ -411,7 +411,7 @@ In the above example, after `accumulate_batchs_num` batch training steps, with o
 
 ### 3.2. AMP in Static Graph
 
-Paddle starts AMP training in Static Graph, the compute logic is similar to the dynamic diagram, except that the called interfaces are different. Paddle Static Graph provides a series of convenient APIs for AMP: ``paddle.static.amp.decorate``, ``paddle.static.amp.fp16_guard``.
+Paddle starts AMP training in Static Graph, the compute logic is similar to the dynamic graph, except that the called interfaces are different. Paddle Static Graph provides a series of convenient APIs for AMP: ``paddle.static.amp.decorate``, ``paddle.static.amp.fp16_guard``.
 
 - ``paddle.static.amp.decorate``: Decorate the optimizer, add amp logic, and set the parameters of grad_scaler through this API.
 - ``paddle.static.amp.fp16_guard``: In AMP_O2 mode, the scope of float16 is controlled only in context manager ``fp16_guard``.
@@ -570,7 +570,7 @@ Add code to model definition `fp16_guard` control part of network execution unde
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
 
