@@ -16,7 +16,7 @@ ChainDataset
 
 返回
 ::::::::::::
-paddle.io.IterableDataset，级联后的流式数据集 Test for COPY-FROM CI.
+paddle.io.IterableDataset，级联后的流式数据集 Test for Docs-New CI
 
 代码示例
 ::::::::::::

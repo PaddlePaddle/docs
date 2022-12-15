@@ -16,7 +16,7 @@ L2Decay 实现 L2 权重衰减正则化，用于模型训练，有助于防止�
 正则化。
 
 具体实现中，L2 权重衰减正则化的损失函数计算如下：
-Test for COPY-FROM CI.
+Test for Docs-New CI
 
 .. math::
             \\loss = 0.5 * coeff * reduce\_sum(square(x))\\

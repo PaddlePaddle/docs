@@ -5,7 +5,7 @@ Transform
 
 .. py:class:: paddle.distribution.Transform()
 
-随机变量变换的基类。Test for COPY-FROM CI.
+随机变量变换的基类。Test for Docs-New CI
 
 ``Transform`` 表示将一个随机变量，经过一个或一些列可微且可逆的映射后，变换为另一个随机变量，
 并提供变换前后相应概率密度计算方法。主要应用于对一个分布

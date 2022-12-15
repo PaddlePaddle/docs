@@ -16,7 +16,7 @@ RandomSampler
 
 返回
 :::::::::
-RandomSampler，返回随机采样下标的采样器 Test for COPY-FROM CI.
+RandomSampler，返回随机采样下标的采样器 Test for Docs-New CI
 
 
 代码示例
