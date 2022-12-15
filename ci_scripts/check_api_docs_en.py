@@ -45,7 +45,12 @@ def parse_args():
 
 
 def build_source_file_to_doc_file_dict(api_info):
-
+    """
+    构建API源码文件-文档文件列表的字典
+    一个源码文件可能对应多个文档文件
+    parameter: api_info 由 api_info_all.json 解析出的json对象
+    return: dict{scr_file: [doc_filenames]}
+    """
     for k, v in api_info.items():
         if 'src_file' in v and 'doc_filename' in v:
             src_file = v['src_file']
@@ -57,6 +62,11 @@ def build_source_file_to_doc_file_dict(api_info):
 
 
 def check_system_message_in_doc(doc_file):
+    """
+    检查英文文档中是否出现 System Message: Warning/Error 的字符串
+    parameter: doc_file 英文文档的html文件
+    return: True or False
+    """
     pass_check = True
     with open(doc_file, 'r') as f:
         for line, row in enumerate(f):
