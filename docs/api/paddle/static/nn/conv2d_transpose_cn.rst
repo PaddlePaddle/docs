@@ -104,6 +104,28 @@ conv2d_transpose
 ::::::::::::
 4-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
+异常
+::::::::::::
+- **ValueError**: 如果 use_cudnn 的类型不是bool。
+
+- **ValueError**: 如果 data_format 不是 "NCHW "或 "NHWC"。
+
+- **ValueError**: 如果 padding 是一个字符串，但不是 "SAME "或 "VALID"。
+
+- **ValueError**: 如果 padding 是一个元组，但是对应于输入的批次大小的元素不是0，或者对应于输入的通道的元素不是0。
+
+- **ValueError**: 如果 output_size 和 filter_size 同时为无。
+
+- **ShapeError**: 如果输入不是4-D Tensor。
+
+- **ShapeError**: 如果输入的维度大小和过滤器的维度大小不相等。
+
+- **ShapeError**: 如果输入的维度大小减去 stride 的大小不是2。
+
+- **ShapeError**: 如果输入的通道数不等于过滤器的通道数。
+
+- **ShapeError**: 如果 output_size 的大小不等于 stride 的大小。
+
 
 代码示例
 ::::::::::::
