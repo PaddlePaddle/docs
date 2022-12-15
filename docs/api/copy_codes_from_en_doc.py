@@ -12,7 +12,7 @@ from gen_doc import extract_code_blocks_from_docstr
 
 api_info_dict = {}
 api_name_2_id_map = {}
-# The API set which can't replace code block by COPY-FROM 
+# The API set which can't replace code block by COPY-FROM
 copy_from_warning_api_files = set()
 
 logger = logging.getLogger()
@@ -186,7 +186,7 @@ def parse_args():
 
     args = parser.parse_args()
     return args
-    
+
 
 if __name__ == "__main__":
     args = parse_args()
