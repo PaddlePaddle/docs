@@ -60,11 +60,11 @@ conv1d_transpose
 
     L'_{out} = (L_{in}-1)*stride + dilation*(L_f-1)+1
 
-注意：
+.. note::
 
-如果 output_size 为 None，则 :math:`L_{out}` = :math:`L^\prime_{out}`；否则，指定的 output_size（输出特征层的长度） :math:`L_{out}` 应当介于 :math:`L^\prime_{out}` 和 :math:`L^\prime_{out} + stride` 之间（不包含 :math:`L^\prime_{out} + stride` ）。
+    如果 output_size 为 None，则 :math:`L_{out}` = :math:`L^\prime_{out}`；否则，指定的 output_size（输出特征层的长度） :math:`L_{out}` 应当介于 :math:`L^\prime_{out}` 和 :math:`L^\prime_{out} + stride` 之间（不包含 :math:`L^\prime_{out} + stride` ）。
 
-由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
+    由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
 参数
 ::::::::::::
