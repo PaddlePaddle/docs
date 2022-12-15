@@ -8,7 +8,41 @@
 
 - 在本地主机上[安装 Docker](https://hub.docker.com/search/?type=edition&offering=community)
 
-- 如需在 Linux 开启 GPU 支持，请[安装 nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+- 如需在 Linux 开启 GPU 支持, 需提前[安装 nvidia-container-toolkit](https://github.com/NVIDIA/nvidia-docker) 和 [GPU 驱动](https://docs.nvidia.com/datacenter/tesla/tesla-installation-notes/index.html)
+  * 请通过 docker -v 检查 Docker 版本。对于 19.03 之前的版本，您需要使用 nvidia-docker 和 nvidia-docker 命令；对于 19.03 及之后的版本，您将需要使用 nvidia-container-toolkit 软件包和 --gpus all 命令。这两个选项都记录在上面链接的网页上。
+
+注 nvidia-container-toolkit 安装方法:
+  * Ubuntu 系统可以参考以下命令
+    * 添加存储库和密钥
+    ```bash
+    distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+    && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
+    && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+    ```
+    * 安装 nvidia-container-toolkit
+    ```bash
+    sudo apt update
+    sudo apt install nvidia-container-toolkit
+    ```
+    * 重启 docker
+    ```bash
+    sudo systemctl restart docker
+    ```
+  * centos 系统可以参考以下命令
+    * 添加存储库和密钥
+    ```bash
+    distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+    curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | sudo tee /etc/yum.repos.d/nvidia-docker.repo
+    ```
+    * 安装 nvidia-container-toolkit
+    ```bash
+    sudo yun update
+    sudo yum install -y nvidia-container-toolkit
+    ```
+    * 重启 docker
+    ```bash
+    sudo systemctl restart docker
+    ```
 
 ## 安装步骤
 
@@ -56,8 +90,6 @@
 
     * 使用 CPU 版本的 PaddlePaddle：
 
-
-
         ```
         docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
         ```
@@ -101,16 +133,15 @@
     * 使用 GPU 版本的 PaddlePaddle：
 
 
+        ```
+        docker run --gpus all --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
+        ```
 
-        ```
-        nvidia-docker run --name [Name of container] -it -v $PWD:/paddle <imagename> /bin/bash
-        ```
+        > --gpus 指定 gpu 设备 ('"device=0,2"':代表使用 0 和 2 号 GPU; all: 代表使用所有 GPU), 可以参考[Docker 官方文档](https://docs.docker.com/engine/reference/commandline/run/#access-an-nvidia-gpu);
 
         > --name [Name of container] 设定 Docker 的名称；
 
-
         > -it 参数说明容器已和本机交互式运行；
-
 
         > -v $PWD:/paddle 指定将当前路径（PWD 变量会展开为当前路径的绝对路径）挂载到容器内部的 /paddle 目录；
 

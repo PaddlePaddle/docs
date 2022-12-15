@@ -6,7 +6,7 @@
 
 - 是否签署 CLA 协议。
 - PR 描述是否符合规范。
-- 是否通过不同平台`（Linux/Mac/Windows/XPU/NPU/DCU 等）`的编译与单测（单元测试）。
+- 是否通过不同平台`（Linux/Mac/Windows/XPU/DCU 等）`的编译与单测（单元测试）。
 - 是否通过静态代码扫描工具的检测。
 
 CI 测试包含的具体测试任务和执行顺序如下图所示：
@@ -196,23 +196,11 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 
 ### 昆仑芯 XPU 测试项
 
-#### PR-CI-Kunlun
+#### PR-CI-Kunlun-R200
 
 - **【条目描述】** 检测 PR 中的修改能否在昆仑芯 XPU 上编译与单测通过。
 - **【执行脚本】** `paddle/scripts/paddle_build.sh check_xpu_coverage`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
-
-### 华为 NPU 测试项
-
-#### PR-CI-NPU
-
-- **【条目描述】** 检测 PR 中的修改能否在华为昇腾 910 NPU 芯片上编译与单测通过。
-- **【执行脚本】**
-  - 编译脚本：`paddle/scripts/paddle_build.sh build_only`
-  - 测试脚本：`paddle/scripts/paddle_build.sh gpu_cicheck_py35`
-- **【触发条件】**
-  - `PR-CI-Clone`通过后自动触发。
-  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
 
 ### 海光 DCU 测试项
 
@@ -221,19 +209,6 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【条目描述】** 检测 PR 中的修改能否在海光 DCU 芯片上编译通过。
 - **【执行脚本】** `paddle/scripts/musl_build/build_paddle.sh build_only`
 - **【触发条件】** `PR-CI-Clone`通过后自动触发。
-
-### 静态代码扫描
-
-#### PR-CI-iScan-C
-
-- **【条目描述】** 检测当前 PR 的 C++ 代码是否通过 [静态代码扫描](https://clang-analyzer.llvm.org/)。
-- **【触发条件】** 自动触发。
-
-
-#### PR-CI-iScan-Python
-
-- **【条目描述】** 检测当前 PR 的 Python 代码是否通过 [静态代码扫描](https://pylint.pycqa.org/)。
-- **【触发条件】** 自动触发。
 
 ## 三、CI 失败如何处理
 

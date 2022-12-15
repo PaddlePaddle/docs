@@ -3,7 +3,7 @@
 load
 -------------------------------
 
-.. py:function:: paddle.utils.cpp_extension.load(name, sources, extra_cxx_cflags=None, extra_cuda_cflags=None, extra_ldflags=None, extra_include_paths=None, build_directory=None, interpreter=None, verbose=False)
+.. py:function:: paddle.utils.cpp_extension.load(name, sources, extra_cxx_cflags=None, extra_cuda_cflags=None, extra_ldflags=None, extra_include_paths=None, build_directory=None, verbose=False)
 
 此接口将即时编译（Just-In-Time）传入的自定义 OP 对应的 cpp 和 cuda 源码文件，返回一个包含自定义算子 API 的 ``Module`` 对象。
 

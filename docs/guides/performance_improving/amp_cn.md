@@ -4,6 +4,53 @@
 
 考虑到一些算子（OP）对数据精度的要求较高（如 softmax、cross_entropy），仍然需要采用 float32 进行计算；还有一些算子（如 conv2d、matmul）对数据精度不敏感，可以采用 float16 / bfloat16 提升计算速度并降低存储空间，飞桨框架提供了**自动混合精度（Automatic Mixed Precision，以下简称为 AMP）训练**的方法，可在模型训练时，自动为算子选择合适的数据计算精度（float32 或 float16 / bfloat16），在保持训练精度（accuracy）不损失的条件下，能够加速训练，可参考 2018 年百度与 NVIDIA 联合发表的论文：[MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf)。本文将介绍如何使用飞桨框架实现自动混合精度训练。
 
+目前，在计算机视觉、自然语言处理等多个领域的任务上，飞桨的自动混合精度训练技术不仅提升了模型的训练性能，并且可以达到精度无损。以下是飞桨部分模型套件中使用 float16 训练的模型，在这些模型上使用几乎纯 float16 训练的 AMP-O2 优化级别，达到了和 float32 相同的训练效果。
+
+
+<table>
+    <tr>
+        <td><b>图像分类</b></td>
+        <td><b>物体分割/检测</b></td>
+        <td><b>文字识别/文档分析</b></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/ResNet">ResNet50</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleSeg/tree/develop/configs/pp_humanseg_lite">PP-HumanSeg-Lite</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleOCR/tree/dygraph/configs/rec/ch_PP-OCRv2">ch_PP-OCRv2_rec</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/MobileNetV3">MobileNetV3</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleSeg/blob/develop/Matting/README_CN.md">PP-Matting</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleOCR/tree/dygraph/configs/kie/layoutlm_series">layoutxlm_ser</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/SwinTransformer">SwinTransformer</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleSeg/tree/develop/configs/ocrnet">OCRNet</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleOCR/tree/dygraph/configs/kie/vi_layoutxlm">vi_layoutxlm_ser</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/PPHGNet">PP-HGNet</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleSeg/tree/develop/configs/pp_liteseg">PP-LiteSeg(STDC-1)</a></td>
+        <td><b>自然语言处理</b></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/PPLCNetV2">PP-LCNetV2</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleDetection/tree/develop/configs/yolov3">YOLOv3</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/text_matching/sentence_transformers">ERNIE-Tiny</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/PPLCNet">PPLCNet</a></td>
+        <td><b>视频分类</b></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleNLP/tree/develop/model_zoo/bert">BERT</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/GeneralRecognition">PP-ShiTu</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleVideo/blob/develop/docs/zh-CN/model_zoo/recognition/pp-tsm.md">PP-TSM</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/machine_translation/transformer">Transformer</a></td>
+    </tr>
+</table>
+
+
 ## 一、概述
 
 ### 1.1 浮点数据类型
@@ -144,7 +191,7 @@ place = paddle.CUDAPlace(0)
 # 定义神经网络 SimpleNet，该网络由九层 Linear 组成
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         # 九层 Linear，每层 Linear 网络由 matmul 算子及 add 算子组成
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
@@ -567,7 +614,7 @@ print("使用 AMP-O2 模式耗时:{:.3f} sec".format(train_time/(epochs*nums_bat
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
 

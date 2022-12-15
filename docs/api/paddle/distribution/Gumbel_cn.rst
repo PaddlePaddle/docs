@@ -131,7 +131,7 @@ cdf(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。
+    - **value** (Tensor) - 输入 Tensor。
 
 数学公式：
 

@@ -1597,6 +1597,17 @@ mv(vec, name=None)
 
 请参考 :ref:`cn_api_tensor_mv`
 
+nan_to_num()
+:::::::::
+
+替换 x 中的 NaN、+inf、-inf 为指定值
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_nan_to_num`
+
 ndimension()
 :::::::::
 
@@ -2466,3 +2477,10 @@ frexp(x)
 返回类型：Tensor, Tensor
 
 请参考 :ref:`_cn_api_paddle_frexp`
+
+data_ptr()
+:::::::::
+仅用于动态图 Tensor。返回 Tensor 的数据的存储地址。比如，如果 Tensor 是 CPU 的，则返回内存地址，如果 Tensor 是 GPU 的，则返回显存地址。
+返回：Tensor 的数据的存储地址
+
+返回类型：int

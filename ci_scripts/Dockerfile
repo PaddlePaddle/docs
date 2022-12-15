@@ -28,7 +28,6 @@ pytest' >requirements && \
 RUN echo 'Pillow\n\
 numpy\n\
 gast==0.3.3\n\
-six\n\
 protobuf\n\
 urllib3\n\
 certifi\n\

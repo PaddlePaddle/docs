@@ -26,6 +26,11 @@ Uniform
 
 参数 low 和 high 的维度必须能够支持广播。
 
+.. note::
+    关于广播(broadcasting)机制，如您想了解更多，请参见 `Tensor 介绍`_ .
+
+    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
+
 参数
 :::::::::
 
@@ -54,7 +59,7 @@ sample(shape, seed=0)
 
 **返回**
 
-Tensor，预先设计好维度的张量，数据类型为 float32。
+Tensor，预先设计好维度的 Tensor，数据类型为 float32。
 
 entropy()
 '''''''''
@@ -77,7 +82,7 @@ log_prob(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
+    - **value** (Tensor) - 输入 Tensor。数据类型为 float32 或 float64。
 
 **返回**
 
@@ -91,7 +96,7 @@ probs(value)
 
 **参数**
 
-    - **value** (Tensor) - 输入张量。数据类型为 float32 或 float64。
+    - **value** (Tensor) - 输入 Tensor。数据类型为 float32 或 float64。
 
 **返回**
 

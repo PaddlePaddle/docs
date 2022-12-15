@@ -3,41 +3,37 @@
 sequence_slice
 -------------------------------
 
-
 .. py:function:: paddle.static.nn.sequence_slice(input, offset, length, name=None)
 
 
-**实现 Sequence Slice(序列切片)运算**
+实现 Sequence Slice (序列切片) 运算
 
-该层从给定序列中截取子序列。截取依据为所给的开始 ``offset`` （偏移量） 和子序列长 ``length`` 。
+从给定序列中截取子序列。截取依据为按照所给相对开始位置的 ``offset`` （偏移量）和子序列长度 ``length`` 来截取子序列。
+
+该 API 输入只能是 LoDTensor，如果您需要处理的是 Tensor 类型，请使用 :ref:`paddle.slice <cn_api_paddle_slice>` 。
+
+.. code-block:: text
+
+    输入：
+
+    input.data = [[a1, a2], [b1, b2], [c1, c2], [d1, d2], [e1, e2]],
+    input.lod  = [[3, 2]],
+    input.dims = [5, 2]
+
+    offset.data = [[0], [1]]
+
+    length.data = [[2], [1]]
+
+    输出：
+
+    out.data = [[a1, a2], [b1, b2], [e1, e2]],
+    out.lod  = [[2, 1]],
+    out.dims = [3, 2]
 
 
 .. note::
-该 API 输入只能是 LoDTensor，如果您需要处理的是 Tensor 类型，请使用 :ref:`paddle.slice <cn_api_paddle_slice>` 。
-
-
-::
-    输入变量：
-        (1) input (LoDTensor):
-                input.data = [[a1, a2], [b1, b2], [c1, c2], [d1, d2], [e1, e2]],
-                input.lod = [[3, 2]],
-                input.dims = (5, 2),
-
-        (2) offset (Variable):
-                offset.data = [[0], [1]]
-        (3) length (Variable):
-                length.data = [[2], [1]]
-        (4) name (str|None)
-
-    输出变量为 LoDTensor：
-
-        out.data = [[a1, a2], [b1, b2], [e1, e2]],
-        out.lod = [[2, 1]],
-        out.dims = (3, 2).
-
-.。注意：:
-   ``input`` ， ``offset`` ， ``length`` 的第一维大小应相同。
-   ``offset`` 从 0 开始。
+    ``input``、``offset`` 以及 ``length`` 的第一维大小应相同。
+    ``offset`` 从 0 开始。
 
 参数
 :::::::::

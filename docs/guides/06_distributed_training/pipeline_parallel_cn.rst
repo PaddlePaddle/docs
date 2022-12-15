@@ -103,7 +103,7 @@
 .. code-block:: python
     class ReshapeHelp(Layer):
         def __init__(self, shape):
-            super(ReshapeHelp, self).__init__()
+            super().__init__()
             self.shape = shape
 
         def forward(self, x):
@@ -139,7 +139,7 @@
                     ReshapeHelp, shape=[-1, 256]),
                 LayerDesc(nn.Linear, 256, self.num_classes),  # classifier
             ]
-            super(AlexNetPipeDesc, self).__init__(
+            super().__init__(
                 layers=decs, loss_fn=nn.CrossEntropyLoss(), **kwargs)
 
 然后初始化分布式环境，这一步主要是构建流水线通信组的拓扑
@@ -193,7 +193,7 @@ fleet.distributed_optimizer(...)：这一步则是为优化器添加分布式属
 
     class ReshapeHelp(Layer):
         def __init__(self, shape):
-            super(ReshapeHelp, self).__init__()
+            super().__init__()
             self.shape = shape
 
         def forward(self, x):
@@ -229,7 +229,7 @@ fleet.distributed_optimizer(...)：这一步则是为优化器添加分布式属
                     ReshapeHelp, shape=[-1, 256]),
                 LayerDesc(nn.Linear, 256, self.num_classes),  # classifier
             ]
-            super(AlexNetPipeDesc, self).__init__(
+            super().__init__(
                 layers=decs, loss_fn=nn.CrossEntropyLoss(), **kwargs)
 
     model = AlexNetPipeDesc(num_stages=pipeline_parallel_size, topology=hcg._topo)
