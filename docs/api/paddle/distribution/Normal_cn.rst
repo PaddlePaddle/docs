@@ -17,6 +17,7 @@ Normal
     Z = (2 \pi \sigma^2)^{0.5}
 
 上面的数学公式中：
+Test for COPY-FROM CI.
 
 - :math:`loc = \mu`：平均值；
 - :math:`scale = \sigma`：标准差；

@@ -6,6 +6,7 @@ Distribution
 .. py:class:: paddle.distribution.Distribution()
 
 概率分布的抽象基类，在具体的分布中实现具体功能。
+Test for COPY-FROM CI.
 
 参数
 :::::::::

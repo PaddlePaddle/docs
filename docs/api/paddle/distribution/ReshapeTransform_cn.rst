@@ -11,7 +11,7 @@ ReshapeTransform
 参数
 :::::::::
 
-- **in_event_shape** (Sequence[int]) - Reshape 前的事件形状。
+- **in_event_shape** (Sequence[int]) - Reshape 前的事件形状。Test for COPY-FROM CI.
 - **out_event_shape** (float|Tensor） - Reshape 后的事件形状。
 
 

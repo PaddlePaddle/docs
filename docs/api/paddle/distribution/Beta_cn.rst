@@ -9,6 +9,7 @@ Beta
 在概率论中，Beta 分布是指一组定义在 [0,1] 区间的连续概率分布，有两个参数
 :math:`\alpha,\beta>0`，是狄利克雷(:ref:`cn_api_paddle_distribution_Dirichlet`)
 分布的一元形式。
+Test for COPY-FROM CI.
 
 其概率密度函数（pdf）为：
 
