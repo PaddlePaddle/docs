@@ -114,7 +114,7 @@ conv2d_transpose
 
 - **ValueError**: 如果 padding 是一个元组，但是对应于输入的批次大小的元素不是0，或者对应于输入的通道的元素不是0。
 
-- **ValueError**: 如果 output_size 和 filter_size 同时为无。
+- **ValueError**: 如果 output_size 和 filter_size 同时为 None。
 
 - **ShapeError**: 如果输入不是4-D Tensor。
 
@@ -125,7 +125,6 @@ conv2d_transpose
 - **ShapeError**: 如果输入的通道数不等于过滤器的通道数。
 
 - **ShapeError**: 如果 output_size 的大小不等于 stride 的大小。
-
 
 代码示例
 ::::::::::::
