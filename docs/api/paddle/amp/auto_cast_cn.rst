@@ -24,5 +24,3 @@ auto_cast
 代码示例
 :::::::::
 COPY-FROM: paddle.amp.auto_cast
-
-COPY-FROM: paddle.amp.auto_cast123
