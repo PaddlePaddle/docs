@@ -111,6 +111,19 @@ conv3d_transpose
 ::::::::::::
 5-D Tensor，数据类型与 ``input`` 一致。如果未指定激活层，则返回转置卷积计算的结果，如果指定激活层，则返回转置卷积和激活计算之后的最终结果。
 
+异常
+::::::::::::
+  - **ValueError** - 如果 use_cudnn 的类型不是 bool。
+  - **ValueError** - 如果 data_format 不是 "NCDHW" 或 "NDHWC"。
+  - **ValueError** - 如果 padding 是一个字符串，但不是 "SAME "或 "VALID"。
+  - **ValueError** - 如果 padding 是一个元组，但是对应于输入的批次大小的元素不是0，或者对应于输入的通道的元素不是0。
+  - **ValueError** - 如果 output_size 和 filter_size 同时为 None。
+  - **ShapeError** - 如果 input 不是5-D Tensor。
+  - **ShapeError** - 如果 input 的维度大小和 filter 的维度大小不相等。
+  - **ShapeError** - 如果 input 的维度大小减去 stride 的维度大小不是2。
+  - **ShapeError** - 如果 input 的通道数不等于 filter 的通道数。
+  - **ShapeError** - 如果 output_size 的大小不等于 stride 的大小。
+
 代码示例
 ::::::::::::
 
