@@ -60,11 +60,11 @@ conv1d_transpose
 
     L'_{out} = (L_{in}-1)*stride + dilation*(L_f-1)+1
 
-注意：
+.. note::
 
-如果 output_size 为 None，则 :math:`L_{out}` = :math:`L^\prime_{out}`；否则，指定的 output_size（输出特征层的长度） :math:`L_{out}` 应当介于 :math:`L^\prime_{out}` 和 :math:`L^\prime_{out} + stride` 之间（不包含 :math:`L^\prime_{out} + stride` ）。
+    如果 output_size 为 None，则 :math:`L_{out}` = :math:`L^\prime_{out}`；否则，指定的 output_size（输出特征层的长度） :math:`L_{out}` 应当介于 :math:`L^\prime_{out}` 和 :math:`L^\prime_{out} + stride` 之间（不包含 :math:`L^\prime_{out} + stride` ）。
 
-由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
+    由于转置卷积可以当成是卷积的反向计算，而根据卷积的输入输出计算公式来说，不同大小的输入特征层可能对应着相同大小的输出特征层，所以对应到转置卷积来说，固定大小的输入特征层对应的输出特征层大小并不唯一。
 
 参数
 ::::::::::::
@@ -74,7 +74,7 @@ conv1d_transpose
   - **bias** (int|list|tuple，可选) - 偏置项，形状为：:math:`[M,]` 。
   - **stride** (int|list|tuple，可选) - 步长大小。整数或包含一个整数的列表或元组。默认值：1。
   - **padding** (int|list|tuple|str，可选) - 填充大小。可以是以下三种格式：（1）字符串，可以是"VALID"或者"SAME"，表示填充算法，计算细节可参考下述 ``padding`` = "SAME"或  ``padding`` = "VALID" 时的计算公式。（2）整数，表示在输入特征两侧各填充 ``padding`` 大小的 0。（3）包含一个整数的列表或元组，表示在输入特征两侧各填充 ``padding[0]`` 大小的 0。默认值：0。
-  - **output_padding** (int|list|tuple, optional)：输出形状上尾部一侧额外添加的大小。默认值：0。
+  - **output_padding** (int|list|tuple，可选) - 输出形状上尾部一侧额外添加的大小。默认值：0。
   - **groups** (int，可选) - 一维卷积层的组数。根据 Alex Krizhevsky 的深度卷积神经网络（CNN）论文中的成组卷积：当 group=n，输入和卷积核分别根据通道数量平均分为 n 组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第 n 组卷积核和第 n 组输入进行卷积计算。默认值：1。
   - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。整数或包含一个整数的列表或元组。默认值：1。
   - **output_size** (int|list|tuple，可选) - 输出尺寸，整数或包含一个整数的列表或元组。如果为 ``None``，则会用 filter_size(``weight``的 shape), ``padding`` 和 ``stride`` 计算出输出特征图的尺寸。默认值：None。
