@@ -120,7 +120,7 @@ _gather(x, indices, batch_size)
 
 **返回**
 
-Tensor，具有与 :code:``x` 相同的形状和数据类型的 Tensor，表示收集后的 Tensor。
+Tensor，具有与 :code:`x` 相同的形状和数据类型的 Tensor，表示收集后的 Tensor。
 
 
 initialize(initial_cell_states)
@@ -130,7 +130,7 @@ initialize(initial_cell_states)
 
 **参数**
 
-  - **initial_cell_states** (Variable) - 单个 Ten'so'r 变量或 Tensor 变量组成的嵌套结构。调用者提供的参数。
+  - **initial_cell_states** (Variable) - 单个 Tensor 变量或 Tensor 变量组成的嵌套结构。调用者提供的参数。
 
 **返回**
 
