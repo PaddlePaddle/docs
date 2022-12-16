@@ -26,7 +26,7 @@ BCEWithLogitsLoss
 .. math::
     Out = \max(Logit, 0) - Logit * Labels + \log(1 + e^{-\|Logit\|})
 
-然后，当 ``weight`` or ``pos_weight`` 不为 None 的时候，将会在输出 Out 上乘以相应的权重。Tensor ``weight`` 给 Batch 中的每一条数据赋予不同权重，Tensor ``pos_weight`` 给每一类的正例添加相应的权重。
+然后，当 ``weight`` 或 ``pos_weight`` 不为 None 的时候，将会在输出 Out 上乘以相应的权重。Tensor ``weight`` 给 Batch 中的每一条数据赋予不同权重，Tensor ``pos_weight`` 给每一类的正例添加相应的权重。
 
 最后，将会添加 `reduce` 操作到前面的输出 Out 上。当 `reduction` 为 `none` 时，直接返回最原始的 `Out` 结果。当 `reduction` 为 `mean` 时，返回输出的均值 :math:`Out = MEAN(Out)`。当 `reduction` 为 `sum` 时，返回输出的求和 :math:`Out = SUM(Out)` 。
 
