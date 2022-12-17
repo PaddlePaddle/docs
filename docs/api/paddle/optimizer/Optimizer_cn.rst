@@ -3,7 +3,7 @@
 Optimizer
 -------------------------------
 
-.. py:class:: paddle.optimizer.Optimizer(learning_rate=0.001, epsilon=1e-08, parameters=None, weight_decay=None, grad_clip=None, name=None)
+.. py:class::class paddle.optimizer.Optimizer(learning_rate, parameters=None, weight_decay=None, grad_clip=None, name=None)
 
 
 
