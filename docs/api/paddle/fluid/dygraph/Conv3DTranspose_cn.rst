@@ -20,10 +20,9 @@ Conv3DTranspose
                         \\Out=\sigma (W*X+b)\\
 
 其中：
-    -  :math:`X`：输入图像，具有 NCDHW 格式的张量（Tensor）
+    -  :math:`X`：输入图像，具有 NCDHW 格式的 Tensor
 
-    -  :math:`W`：滤波器，具有 NCDHW 格式的张量（Tensor）
-
+    -  :math:`W`：滤波器，具有 NCDHW 格式的 Tensor
     -  :math:`*`：卷积操作（注意：转置卷积本质上的计算还是卷积）
 
     -  :math:`b`：偏置(bias)，维度为 :math:`[M,1]` 的 2D Tensor
