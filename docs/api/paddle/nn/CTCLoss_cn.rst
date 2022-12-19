@@ -19,7 +19,7 @@ CTCLoss
     - **labels** (Tensor) - 经过 padding 的标签序列，其 shape 为 [batch_size, max_label_length]，其中 max_label_length 是最长的 label 序列的长度。数据类型支持 int32。
     - **input_lengths** (Tensor) - 表示输入 ``log_probs`` 数据中每个序列的长度，shape 为 [batch_size]。数据类型支持 int64。
     - **label_lengths** (Tensor) - 表示 label 中每个序列的长度，shape 为 [batch_size]。数据类型支持 int64。
-    - **norm_by_times** (bool，可选) - 是否根据序列长度对梯度进行正则化。数据类型支持 bool。缺省值为 False。
+    - **norm_by_times** (bool，可选) - 是否根据序列长度对梯度进行正则化。数据类型支持 bool。默认值为 False。
 
 返回
 :::::::::

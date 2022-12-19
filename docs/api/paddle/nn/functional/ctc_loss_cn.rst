@@ -16,7 +16,7 @@ ctc_loss
     - **label_lengths** (Tensor) - 表示 label 中每个序列的长度，shape 为 [batch_size]。数据类型支持 int64。
     - **blank** (int，可选) - 空格标记的 ID 值，其取值范围为 [0, num_classes + 1)。数据类型支持 int32。默认值为 0。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有：``'none'``, ``'mean'``, ``'sum'``。设置为 ``'mean'`` 时，对 loss 值除以 label_lengths，并返回所得商的均值；设置为 ``'sum'`` 时，返回 loss 值的总和；设置为 ``'none'`` 时，则直接返回输出的 loss 值。默认值为 ``'mean'``。
-    - **norm_by_times** (bool，可选) - 是否根据序列长度对梯度进行正则化。数据类型支持 bool。缺省值为 False。
+    - **norm_by_times** (bool，可选) - 是否根据序列长度对梯度进行正则化。数据类型支持 bool。默认值为 False。
 
 返回
 :::::::::
