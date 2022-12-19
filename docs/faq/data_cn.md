@@ -24,7 +24,7 @@ paddle 中推荐使用 `DataLoader`，这是一种灵活的异步加载方式。
 
 ##### 问题：有拓展 Tensor 维度的 Op 吗？
 
-+ 答复：请参考 API [paddle.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unsqueeze_cn.html#unsqueez)。
++ 答复：请参考 API [paddle.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unsqueeze_cn.html#unsqueeze)。
 
 ----------
 
