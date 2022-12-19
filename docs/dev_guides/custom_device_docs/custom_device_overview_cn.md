@@ -6,7 +6,7 @@
 
 为了实现可解耦插件式硬件接入，飞桨框架抽象出了“硬件接入层”和“虚拟设备层”，并对外提供了标准接口，开发者无需为特定硬件修改飞桨框架代码，只需实现标准接口，并编译成动态链接库，则可作为插件供飞桨框架调用。降低为飞桨框架添加新硬件后端的开发难度。
 
-<center><img src="images/custom_device_overview_01_cn.png" width="900" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/custom_device_docs/images/custom_device_overview_01_cn.png?raw=true" width="900" ></center>
 
 <center>图 1 可解耦插件式接入方案整体设计</center>
 
@@ -25,7 +25,7 @@
 
 > 说明：Plugin 适配方案正在持续扩展功能模块，比如自定义 Graph/Pass，提供图编译执行引擎接口；自定义 Profiler，提供性能采集接口。这些将在后续版本中补充。
 
-<center><img src="images/custom_device_overview_02_cn.png" width="1200" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/custom_device_docs/images/custom_device_overview_02_cn.png?raw=true" width="1200" ></center>
 
 <center>图 2 Built-in 和 Plugin 方案设计框架对比</center>
 
@@ -42,13 +42,13 @@
 
 新硬件与飞桨框架通过 DeviceExt C API 进行耦合，只有 DeviceExt C API 相关代码改动时才需要改动新硬件的代码。
 
-<center><img src="images/custom_device_overview_03_cn.png" width="700" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/custom_device_docs/images/custom_device_overview_03_cn.png?raw=true" width="700" ></center>
 
 <center>图 3 自定义 Runtime 注册模块框图</center>
 
 硬件注册逻辑如下图所示：
 
-<center><img src="images/custom_device_overview_04_cn.png" width="800" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/custom_device_docs/images/custom_device_overview_04_cn.png?raw=true" width="800" ></center>
 
 <center>图 4 增加 Plugin 硬件后的调度逻辑</center>
 
@@ -62,7 +62,7 @@ CustomDevice 的 Runtime 函数接口分为 5 类，设备管理，Stream 管理
 
 内核函数（简称 Kernel）对应算子的具体实现，飞桨框架针对通过自定义 Runtime 机制注册的硬件，提供了配套的自定义 Kernel 机制，以实现独立于框架的 Kernel 编码、注册、编译和自动加载使用。
 
-<center><img src="images/custom_device_overview_05_cn.png" width="600" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/custom_device_docs/images/custom_device_overview_05_cn.png?raw=true" width="600" ></center>
 
 <center>图 5 Custom Kernel 接入 PHI 算子库</center>
 
@@ -82,7 +82,7 @@ Custom Kernel 定义的标准接口，详细请参见 [API 参考文档](./custo
 
 自定义 CCL 注册模块，在飞桨框架现有分布式通信模块基础上，添加右侧浅⻩色的 ProcessGroupCustom 类以支持新硬件，硬件 SDK 只需要通过 CustomCCL API 定义的标准 C/C++接口，实现 ProcessGroupCustom 中的具体功能函数，即可接入飞桨框架的分布式通信功能模块，从而支持飞桨分布式训练功能。该方案目前支持集合通信 Collective 模式，不支持参数服务器 PS 模式。
 
-<center><img src="images/custom_device_overview_06_cn.png" width="900" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/custom_device_docs/images/custom_device_overview_06_cn.png?raw=true" width="900" ></center>
 
 <center>图 6 自定义 CCL 注册模块与飞桨原有分布式通信模块的关联</center>
 
@@ -93,7 +93,7 @@ Custom Kernel 定义的标准接口，详细请参见 [API 参考文档](./custo
 - Collective Ops/Collective Kernels：实现静态图所需的分布式通信库的 OP 和 Kernel。
 - ParallelEnv：Python 端接入新的 CustomCCL 作为 backend 进行调用。
 
-<center><img src="images/custom_device_overview_07_cn.png" width="550" ></center>
+<center><img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/dev_guides/custom_device_docs/images/custom_device_overview_07_cn.png?raw=true" width="550" ></center>
 
 <center>图 7 自定义 CCL 注册模块设计</center>
 

@@ -9,7 +9,7 @@
  - `自定义 Runtime <./custom_runtime_cn.html>`_ : 飞桨框架自定义 Runtime 介绍
  - `自定义 Kernel <./custom_kernel_cn.html>`_ : 飞桨框架自定义 Kernel 介绍
  - `新硬件接入示例 <./custom_device_example_cn.html>`_ : 通过示例介绍自定义新硬件接入飞桨的步骤
-- `推理硬件 NNAdapter 接入方案介绍 <https://www.paddlepaddle.org.cn/lite/v2.11/develop_guides/nnadapter.html>`_ : 训练硬件建议采用可解耦插件式接入方案，本文介绍 Custom Device 整体方案。
+- `推理硬件 NNAdapter 接入方案介绍 <https://www.paddlepaddle.org.cn/lite/v2.11/develop_guides/nnadapter.html>`_ : 推理硬件如果需接入飞桨轻量化推理引擎 Paddle Lite 后端，建议采用图接入方案，本文介绍 NNAdapter 整体方案。
 
 ..  toctree::
     :hidden:
