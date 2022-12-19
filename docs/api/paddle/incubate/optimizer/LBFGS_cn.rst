@@ -3,7 +3,7 @@
 LBFGS
 -------------------------------
 
-.. py:class:: paddle.incubate.optimizer.functional.LBFGS(lr=1.0, max_iter=20, max_eval=None, tolerance_grad=1e-07, tolerance_change=1e-09, history_size=100, line_search_fn=None, parameters=None, weight_decay=None, grad_clip=None, name=None,)
+.. py:class:: paddle.incubate.optimizer.LBFGS(lr=1.0, max_iter=20, max_eval=None, tolerance_grad=1e-07, tolerance_change=1e-09, history_size=100, line_search_fn=None, parameters=None, weight_decay=None, grad_clip=None, name=None,)
 
 ``LBFGS`` 使用 L-BFGS 方法对参数进行优化更新，使得loss值最小。
 
@@ -53,7 +53,7 @@ LBFGS 具体原理参考书籍 Jorge Nocedal, Stephen J. Wright, Numerical Optim
 
     import paddle
     import numpy as np
-    from paddle.incubate.optimizer.functional import LBFGS
+    from paddle.incubate.optimizer import LBFGS
 
     paddle.disable_static()
     np.random.seed(0)
