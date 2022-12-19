@@ -36,7 +36,7 @@ paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的 API
 
     " :ref:`Dataset <cn_api_io_cn_Dataset>` ", "映射式(map-style)数据集基类定义接口"
     " :ref:`IterableDataset <cn_api_io_cn_IterableDataset>` ", "迭代式(iterable-style)数据集基类定义接口"
-    " :ref:`TensorDataset <cn_api_io_cn_TensorDataset>` ", "张量(Tensor)数据集基类定义接口"
+    " :ref:`TensorDataset <cn_api_io_cn_TensorDataset>` ", "Tensor 数据集基类定义接口"
 
 .. _about_dataset_operate:
 
