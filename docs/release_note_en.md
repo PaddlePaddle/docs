@@ -779,7 +779,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 - Add `paddle.incubate.nn.FusedMultiTransformer` and `paddle.incubate.nn.functional.fused_multi_transformer` API, to fuse multiple layers of transformers into a single op to improve model inference performance. It should be noted that only forward is supported.  ([#42311](https://github.com/PaddlePaddle/Paddle/pull/42311))
 
-- Add einsum_v2 operators for consistent interface between impe rative and static graph mode. It is compatible with the `paddle.einsum` implementation at the original python side, while supporting dynamic to static export and more complete Infershape inference. ([#42495](https://github.com/PaddlePaddle/Paddle/pull/42495), [#42327](https://github.com/PaddlePaddle/Paddle/pull/42327), [#42397](https://github.com/PaddlePaddle/Paddle/pull/42397), [#42105](https://github.com/PaddlePaddle/Paddle/pull/42105))
+- Add einsum_v2 operators for consistent interface between dynamic graph mode and static graph mode. It is compatible with the `paddle.einsum` implementation at the original python side, while supporting dynamic to static export and more complete Infershape inference. ([#42495](https://github.com/PaddlePaddle/Paddle/pull/42495), [#42327](https://github.com/PaddlePaddle/Paddle/pull/42327), [#42397](https://github.com/PaddlePaddle/Paddle/pull/42397), [#42105](https://github.com/PaddlePaddle/Paddle/pull/42105))
 
 
 #### IR(Intermediate Representation)
