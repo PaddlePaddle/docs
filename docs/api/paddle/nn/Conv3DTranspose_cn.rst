@@ -38,7 +38,7 @@ Conv3DTranspose
 
   - **in_channels** (int) - 输入图像的通道数。
   - **out_channels** (int) - 卷积核的个数，和输出特征图个数相同。
-  - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核的深度，高和宽。如果为单个整数，表示卷积核的深度，高和宽都等于该整数。
+  - **kernel_size** (int|list|tuple) - 卷积核大小。可以为单个整数或包含三个整数的元组或列表，分别表示卷积核的深度，高和宽。如果为单个整数，表示卷积核的深度，高和宽都等于该整数。output_size 和 kernel_size 不能同时为 None。
   - **stride** (int|tuple，可选) - 步长大小。如果 ``stride`` 为元组或列表，则必须包含三个整型数，分别表示深度，垂直和水平滑动步长。否则，表示深度，垂直和水平滑动步长均为 ``stride``。默认值为 1。
   - **padding** (int|tuple，可选) - 填充大小。如果 ``padding`` 为元组或列表，则必须包含三个整型数，分别表示深度，竖直和水平边界填充大小。否则，表示深度，竖直和水平边界填充大小均为 ``padding``。如果它是一个字符串，可以是 "VALID" 或者 "SAME" ，表示填充算法，计算细节可参考下方形状 ``padding`` = "SAME" 或  ``padding`` = "VALID" 时的计算公式。默认值为 0。
   - **output_padding** (int|list|tuple，可选) - 输出形状上一侧额外添加的大小。默认值为 0。
