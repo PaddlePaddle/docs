@@ -3,12 +3,7 @@
 LBFGS
 -------------------------------
 
-.. py:class:: paddle.incubate.optimizer.functional.LBFGS(
-        lr=1.0, max_iter=20, max_eval=None, tolerance_grad=1e-07, tolerance_change=1e-09, history_size=100, line_search_fn=None,
-        parameters=None,
-        weight_decay=None,
-        grad_clip=None,
-        name=None,)
+.. py:class:: paddle.incubate.optimizer.functional.LBFGS(lr=1.0, max_iter=20, max_eval=None, tolerance_grad=1e-07, tolerance_change=1e-09, history_size=100, line_search_fn=None, parameters=None, weight_decay=None, grad_clip=None, name=None,)
 
 ``LBFGS`` 使用 L-BFGS 方法对参数进行优化更新，使得loss值最小。
 
@@ -20,7 +15,7 @@ LBFGS 具体原理参考书籍 Jorge Nocedal, Stephen J. Wright, Numerical Optim
 使用方法
 :::::::::
 - LBFGS 优化器此实现为类形式，与 Paddle 现有 SGD、Adam 优化器相似。
-  通过调用 backward()计算梯度，并使用 step(closure)更新网络参数。
+  通过调用 backward()计算梯度，并使用 step(closure)更新网络参数，其中closure为需要优化的闭包函数。
 
 
 .. warning::
@@ -42,10 +37,10 @@ LBFGS 具体原理参考书籍 Jorge Nocedal, Stephen J. Wright, Numerical Optim
     - **parameters** (list，可选) - 指定优化器需要优化的参数，在动态图模式下必须提供该参数。默认值：None。
     - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是 float 类型的 L2 正则化系数或者正则化策略：:ref:`cn_api_fluid_regularizer_L1Decay` 、
       :ref:`cn_api_fluid_regularizer_L2Decay`。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
-      如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值： None，表示没有正则化。
+      如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为 None，表示没有正则化。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 。
       默认值：None，此时将不进行梯度裁剪。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值： None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值：None。
 
 返回
 :::::::::
