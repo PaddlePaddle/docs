@@ -17,13 +17,13 @@ Dropout 是一种正则化手段，可根据给定的丢弃概率 `p`，在训�
 
     1. upscale_in_train（默认值），在训练时增大输出结果。
 
-       - 训练时： :math:`out = input * mask / ( 1.0 - p )`
+       - 训练时： :math:`out = input \times \frac{mask}{(1.0 - p)}`
        - 预测时： :math:`out = input`
 
     2. downscale_in_infer，在预测时减小输出结果
 
-       - 训练时： :math:`out = input * mask`
-       - 预测时： :math:`out = input * (1.0 - p)`
+       - 训练时： :math:`out = input \times mask`
+       - 预测时： :math:`out = input \times (1.0 - p)`
 
  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

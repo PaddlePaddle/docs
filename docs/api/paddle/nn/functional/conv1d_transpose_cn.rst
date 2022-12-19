@@ -77,7 +77,7 @@ conv1d_transpose
   - **output_padding** (int|list|tuple，可选) - 输出形状上尾部一侧额外添加的大小。默认值：0。
   - **groups** (int，可选) - 一维卷积层的组数。根据 Alex Krizhevsky 的深度卷积神经网络（CNN）论文中的成组卷积：当 group=n，输入和卷积核分别根据通道数量平均分为 n 组，第一组卷积核和第一组输入进行卷积计算，第二组卷积核和第二组输入进行卷积计算，……，第 n 组卷积核和第 n 组输入进行卷积计算。默认值：1。
   - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。整数或包含一个整数的列表或元组。默认值：1。
-  - **output_size** (int|list|tuple，可选) - 输出尺寸，整数或包含一个整数的列表或元组。如果为 ``None``，则会用 filter_size(``weight``的 shape), ``padding`` 和 ``stride`` 计算出输出特征图的尺寸。默认值：None。
+  - **output_size** (int|list|tuple，可选) - 输出尺寸，整数或包含一个整数的列表或元组。如果为 ``None``，则会用 filter_size( ``weight`` 的 shape), ``padding`` 和 ``stride`` 计算出输出特征图的尺寸。默认值：None。
   - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是"NCL"和"NLC"。N 是批尺寸，C 是通道数，L 是特征长度。默认值："NCL"。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
