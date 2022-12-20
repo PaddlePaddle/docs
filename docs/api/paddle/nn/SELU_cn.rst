@@ -8,13 +8,15 @@ SELU 激活层
 
 .. math::
 
-    SELU(x)= scale *
-             \begin{cases}
-               x, \text{if } x > 0 \\
-               alpha * e^{x} - alpha, \text{if } x <= 0
-             \end{cases}
+ SELU(x)= scale *
+            \left\{
+                \begin{array}{lcl}
+                x& &\text{if } \ x > 0 \\
+                alpha * e^{x} - alpha& &\text{if } \ x <= 0
+                \end{array}
+            \right.
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
