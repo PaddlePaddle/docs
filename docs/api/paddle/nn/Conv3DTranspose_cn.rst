@@ -8,8 +8,9 @@ Conv3DTranspose
 
 三维转置卷积层（Convlution3d transpose layer）
 
-该层根据输入（input）、卷积核（kernel）和卷积核空洞大小（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过 output_size 指定输出特征层大小。输入（Input）和输出（Output）为 NCDHW 或者 NDHWC 格式。其中 N 为批尺寸，C 为通道数（channel），D 为特征深度，H 为特征层高度，W 为特征层宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 `参考文献 Deconvolutional Networks <https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf>`_。如果参数 bias_attr 不为 False，转置卷积计算会添加偏置项。
+该层根据输入（input）、卷积核（kernel）和卷积核空洞大小（dilations）、步长（stride）、填充（padding）来计算输出特征层大小或者通过 output_size 指定输出特征层大小。输入（Input）和输出（Output）为 NCDHW 或者 NDHWC 格式。其中 N 为批尺寸，C 为通道数（channel），D 为特征深度，H 为特征层高度，W 为特征层宽度。转置卷积的计算过程相当于卷积的反向计算。转置卷积又被称为反卷积（但其实并不是真正的反卷积）。欲了解卷积转置层细节，请参考下面的说明和 `参考文献`_ 。如果参数 bias_attr 不为 False，转置卷积计算会添加偏置项。
 
+.. _参考文献: https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf
 
 输入 :math:`X` 和输出 :math:`Out` 函数关系如下：
 
@@ -51,13 +52,13 @@ Conv3DTranspose
 形状
 ::::::::::::
 
-    - 输入：:math:`(N, C_{in},  H_{in}, W_{in})`
+    - 输入：:math:`(N, C_{in}, D_{in}, H_{in}, W_{in})`
 
     - 卷积核：:math:`(C_{in}, C_{out}, K_{d}, K_{h}, K_{w})`
 
     - 偏置：:math:`(C_{out})`
 
-    - 输出：:math:`(N, C_{out}, H_{out}, W_{out})`
+    - 输出：:math:`(N, C_{out}, D_{out}, H_{out}, W_{out})`
 
     其中
 
