@@ -14,5 +14,5 @@
     :titlesonly:
 
     autoencoder.ipynb
-    temp_forecast.ipynb
+    temperature_forecast.ipynb
     stock_forecast.ipynb
