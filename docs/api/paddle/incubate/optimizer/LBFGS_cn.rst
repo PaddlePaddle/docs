@@ -3,7 +3,7 @@
 LBFGS
 -------------------------------
 
-.. py:class:: paddle.incubate.optimizer.LBFGS(lr=1.0, max_iter=20, max_eval=None, tolerance_grad=1e-07, tolerance_change=1e-09, history_size=100, line_search_fn=None, parameters=None, weight_decay=None, grad_clip=None, name=None,)
+.. py:class:: paddle.incubate.optimizer.LBFGS(lr=1.0, max_iter=20, max_eval=None, tolerance_grad=1e-07, tolerance_change=1e-09, history_size=100, line_search_fn=None, parameters=None, weight_decay=None, grad_clip=None, name=None)
 
 ``LBFGS`` 使用 L-BFGS 方法对参数进行优化更新，使得loss值最小。
 
@@ -46,50 +46,8 @@ LBFGS 具体原理参考书籍 Jorge Nocedal, Stephen J. Wright, Numerical Optim
 :::::::::
     - loss (Tensor)：迭代终止位置的损失函数值。
    
-代码示例 ：
+代码示例
 ::::::::::
 
-.. code-block:: python
+COPY-FROM: paddle.incubate.optimizer.LBFGS
 
-    import paddle
-    import numpy as np
-    from paddle.incubate.optimizer import LBFGS
-
-    paddle.disable_static()
-    np.random.seed(0)
-    np_w = np.random.rand(1).astype(np.float32)
-    np_x = np.random.rand(1).astype(np.float32)
-
-    inputs = [np.random.rand(1).astype(np.float32) for i in range(10)]
-    targets = [2 * x for x in inputs]
-
-    #定义训练网络
-    class Net(paddle.nn.Layer):
-        def __init__(self):
-            super(Net, self).__init__()
-            w = paddle.to_tensor(np_w)
-            self.w = paddle.create_parameter(shape=w.shape, dtype=w.dtype, default_initializer=paddle.nn.initializer.Assign(w))
-
-        def forward(self, x):
-            return self.w * x
-    
-    #初始化网络和优化器
-    net = Net()
-    opt = LBFGS(lr=1, max_iter=1, max_eval=None, tolerance_grad=1e-07, tolerance_change=1e-09, history_size=100, line_search_fn='strong_wolfe', parameters=net.parameters())
-    
-    #设置优化器需要优化的函数
-    def train_step(inputs, targets):
-        def closure():
-            outputs = net(inputs)
-            loss = paddle.nn.functional.mse_loss(outputs, targets)
-            print('loss: ', loss.item())
-            opt.clear_grad()
-            loss.backward()
-            return loss
-        opt.step(closure)
-
-    #不同输入数据测试
-    for input, target in zip(inputs, targets):
-        input = paddle.to_tensor(input)
-        target = paddle.to_tensor(target)
-        train_step(input, target)
