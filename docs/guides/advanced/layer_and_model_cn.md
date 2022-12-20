@@ -39,7 +39,7 @@ paddle.nn.Layer 是飞桨定义的一个非常重要的类，是飞桨所有神�
 
 ### 2.1 加载 Mnist 数据集
 
-相信根据前面的内容，你已经知道如何使用 [paddle.Dataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Dataset_cn.html) 和 [paddle.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/DataLoader_cn.html) 处理想要的数据了，如果你还有问题可以参考[数据读取](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/beginner/data_load_cn.html)文档，这里采用前面讲到的方法使用 Mnist 数据集。
+相信根据前面的内容，你已经知道如何使用 [paddle.Dataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/Dataset_cn.html) 和 [paddle.DataLoader](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/DataLoader_cn.html) 处理想要的数据了，如果你还有问题可以参考[数据集定义与加载](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/beginner/data_load_cn.html)文档，这里采用前面讲到的方法使用 Mnist 数据集。
 
 ```python
 import paddle

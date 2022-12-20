@@ -24,7 +24,7 @@ paddle 中推荐使用 `DataLoader`，这是一种灵活的异步加载方式。
 
 ##### 问题：有拓展 Tensor 维度的 Op 吗？
 
-+ 答复：请参考 API [paddle.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/manipulation/unsqueeze_cn.html#unsqueeze)。
++ 答复：请参考 API [paddle.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unsqueeze_cn.html#unsqueeze)。
 
 ----------
 
@@ -33,7 +33,7 @@ paddle 中推荐使用 `DataLoader`，这是一种灵活的异步加载方式。
 
 + 答复：如果是在进入 paddle 计算流程之前，数据仍然是 numpy.array 的形式，使用 numpy 接口`numpy.expand_dims`为图片数据增加维度后，再通过`numpy.reshape`进行操作即可，具体使用方法可查阅 numpy 的官方文档。
 
-如果是希望在模型训练或预测流程中完成通道的操作，可以使用 paddle 对应的 API [paddle.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/manipulation/unsqueeze_cn.html#unsqueeze) 和 [paddle.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/manipulation/reshape_cn.html#reshape)。
+如果是希望在模型训练或预测流程中完成通道的操作，可以使用 paddle 对应的 API [paddle.unsqueeze](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unsqueeze_cn.html#unsqueeze) 和 [paddle.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reshape_cn.html#reshape)。
 
 ----------
 
@@ -58,4 +58,4 @@ z = paddle.ones([2, 2], 'float32')
 ##### 问题：如何初始化一个随机数的 Tensor？
 
 + 答复：使用`paddle.rand` 或 `paddle.randn` 等 API。具体请参考：
-[paddle.rand](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/random/rand_cn.html#rand) 和[paddle.randn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/random/randn_cn.html#randn)
+[paddle.rand](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rand_cn.html#rand) 和[paddle.randn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randn_cn.html#randn)
