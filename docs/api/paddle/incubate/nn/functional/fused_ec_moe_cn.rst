@@ -3,7 +3,7 @@
 fused_ec_moe
 -------------------------------
 
-.. py:function:: paddle.incubate.nn.functional.fused_ec_moe(x, gate, bmm0_weight, bmm0_bias, bmm1_weight, bmm1_bias, act_type):
+.. py:function:: paddle.incubate.nn.functional.fused_ec_moe(x, gate, bmm0_weight, bmm0_bias, bmm1_weight, bmm1_bias, act_type)
 
 该算子实现了EcMoE的融合版本，目前只支持在sm75，sm80，sm86架构下的GPU上使用。
 
