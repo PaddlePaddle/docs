@@ -48,7 +48,7 @@ Fleet 分布式高层 API
     :header: "API 名称", "API 功能"
     :widths: 20, 50
 
-
+    " :ref:`is_available <cn_api_distributed_is_available>` ", "检查分布式环境是否可用"
     " :ref:`init_parallel_env <cn_api_distributed_init_parallel_env>` ", "初始化并行训练环境，支持动态图模式"
     " :ref:`launch <cn_api_distributed_launch>` ", "启动分布式训练进程，支持集合通信及参数服务器架构"
     " :ref:`spawn <cn_api_distributed_spawn>` ", "启动分布式训练进程，仅支持集合通信架构"
@@ -56,6 +56,7 @@ Fleet 分布式高层 API
     " :ref:`get_world_size <cn_api_distributed_get_world_size>` ", "获取当前进程数"
     " :ref:`new_group <cn_api_distributed_new_group>` ", "创建分布式通信组"
     " :ref:`destroy_process_group <cn_api_distributed_destroy_process_group>` ", "销毁分布式通信组"
+    " :ref:`get_backend <cn_api_distributed_get_backend>` ", "获取指定分布式通信组后端的名称"
 
 .. _03:
 
