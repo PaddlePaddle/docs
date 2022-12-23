@@ -40,7 +40,7 @@ Sequence Expand As Layer，该 OP 根据输入 ``y`` 的第 0 级 lod 对输入 
     和输入 y：
         y.lod = [[2, 1, 3]]    #为了便于理解这里用基于长度 lod 表示
 
-    输出为 1 级 Trnsor：
+    输出为 1 级 Tensor：
         out.lod =  [[0,             2,     3,                    6]]    #基于偏移的 lod，等价于基于长度的[[2, 1, 3]]
         out.data = [[a, b], [a, b] [c, d], [e, f], [e, f], [e, f]]
         out.dims = [6, 2]
