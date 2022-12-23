@@ -22,7 +22,7 @@ init(**kwargs)
 
 **注意：**
 
-  **1. 该 API 只在非** `动态图<../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该 API 只在非**动态图**模式下生效**
 
 对 InMemoryDataset 的实例进行配置初始化。
 
@@ -52,7 +52,7 @@ _init_distributed_settings(**kwargs)
 
 **注意：**
 
-  **1. 该 API 只在非** `动态图<../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该 API 只在非**动态图**模式下生效**
   **2. 本 api 需要在机大规模参数服务器训练下生效，敬请期待详细使用文档**
 
 对 InMemoryDataset 的实例进行分布式训练相关配置的初始化。
@@ -81,7 +81,7 @@ update_settings(**kwargs)
 
 **注意：**
 
-  **1. 该 API 只在非** `动态图<../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该 API 只在非**动态图**模式下生效**
 
 对 InMemoryDataset 的实例通过 init 和_init_distributed_settings 初始化的配置进行更新。
 
@@ -117,7 +117,7 @@ load_into_memory()
 
 **注意：**
 
-  **1. 该 API 只在非** `动态图<../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该 API 只在非**动态图**模式下生效**
 
 向内存中加载数据。
 

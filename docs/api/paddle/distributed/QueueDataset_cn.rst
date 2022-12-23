@@ -26,7 +26,7 @@ init(**kwargs)
 
 **注意：**
 
-  **1. 该 API 只在非** `动态图<../../user_guides/howto/dygraph/DyGraph.html>`_ **模式下生效**
+  **1. 该 API 只在非**动态图**模式下生效**
 
 对 QueueDataset 的实例进行配置初始化。
 
