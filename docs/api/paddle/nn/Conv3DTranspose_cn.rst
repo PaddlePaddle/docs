@@ -64,12 +64,12 @@ Conv3DTranspose
 
     .. math::
 
-        & D'_{out}=(D_{in}-1)*strides[0] - pad\_depth\_front - pad\_depth\_back + dilations[0]*(kernel\_size[0]-1)+1\\
-        & H'_{out} = (H_{in}-1)*strides[1] - pad\_height\_top - pad\_height\_bottom + dilations[1]*(kernel\_size[1]-1)+1\\
-        & W'_{out} = (W_{in}-1)*strides[2]- pad\_width\_left - pad\_width\_right + dilations[2]*(kernel\_size[2]-1)+1 \\
-        & D_{out}\in[D'_{out},D'_{out} + strides[0])\\
-        & H_{out}\in[H'_{out},H'_{out} + strides[1])\\
-        & W_{out}\in[W'_{out},W'_{out} + strides[2])\\
+        D^\prime_{out} &= (D_{in} - 1) * strides[0] - 2 * paddings[0] + dilations[0] * (D_f - 1) + 1 \\
+        H^\prime_{out} &= (H_{in} - 1) * strides[1] - 2 * paddings[1] + dilations[1] * (H_f - 1) + 1 \\
+        W^\prime_{out} &= (W_{in} - 1) * strides[2] - 2 * paddings[2] + dilations[2] * (W_f - 1) + 1 \\
+        D_{out} &\in [ D^\prime_{out}, D^\prime_{out} + strides[0] ] \\
+        H_{out} &\in [ H^\prime_{out}, H^\prime_{out} + strides[1] ] \\
+        W_{out} &\in [ W^\prime_{out}, W^\prime_{out} + strides[2] ] \\
 
     如果 ``padding`` = "SAME":
 
