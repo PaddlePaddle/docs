@@ -23,7 +23,7 @@
     IMAGE_SIZE = 784
     CLASS_NUM = 10
 
-    # enable static mode
+    # enable static graph mode
     paddle.enable_static()
 
     # define a random dataset
