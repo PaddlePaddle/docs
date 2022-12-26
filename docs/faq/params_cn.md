@@ -23,7 +23,7 @@
 
 + 答复：
 
-1. 在动态图中，使用`paddle.save` API， 并将最后一层的`layer.state_dict()` 传入至 save 方法的 obj 参数即可， 然后使用`paddle.load` 方法加载对应层的参数值。详细可参考 API 文档[save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/framework/io/save_cn.html#save) 和[load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/framework/io/load_cn.html#load)。
+1. 在动态图中，使用`paddle.save` API， 并将最后一层的`layer.state_dict()` 传入至 save 方法的 obj 参数即可， 然后使用`paddle.load` 方法加载对应层的参数值。详细可参考 API 文档[save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/save_cn.html#save) 和[load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/load_cn.html#load)。
 2. 在静态图中，使用`paddle.static.save_vars`保存指定的 vars，然后使用`paddle.static.load_vars`加载对应层的参数值。具体示例请见 API 文档：[load_vars](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/io/load_vars_cn.html) 和 [save_vars](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/io/save_vars_cn.html) 。
 
 ----------
@@ -32,7 +32,7 @@
 
 + 答复：
 
-1. 对于固定 BN：设置 `use_global_stats=True`，使用已加载的全局均值和方差：`global mean/variance`，具体内容可查看官网 API 文档[batch_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/layers/batch_norm_cn.html#batch-norm)。
+1. 对于固定 BN：设置 `use_global_stats=True`，使用已加载的全局均值和方差：`global mean/variance`，具体内容可查看官网 API 文档[batch_norm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/batch_norm_cn.html#batch-norm)。
 
 2. 对于固定网络层：如： stage1→ stage2 → stage3 ，设置 stage2 的输出，假设为*y*，设置 `y.stop_gradient=True`，那么， stage1→ stage2 整体都固定了，不再更新。
 

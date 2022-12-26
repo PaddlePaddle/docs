@@ -46,7 +46,7 @@ ExecutionStrategy，一个 ExecutionStrategy 的实例。
 num_threads
 '''''''''
 
-int 型成员。该选项表示当前 ``Executor`` 的线程池(thread pool)的大小，此线程池可用来并发执行 program 中的 operator（算子，运算）。如果 :math:`num\_threads=1`，则所有的 operator 将一个接一个地执行，但在不同的 program 重复周期(iterations)中执行顺序可能不同。如果该选项没有被设置，则在 ``Executor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对 GPU，:math:`num\_threads=device\_count∗4`；对 CPU， :math:`num\_threads=CPU\_NUM∗4`。在 ``Executor`` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM`，则设置默认值为 1，并提示用户进行 :math:`CPU\_NUM` 的设置。
+int 型成员。该选项表示当前 ``Executor`` 的线程池(thread pool)的大小，此线程池可用来并发执行 program 中的 operator（算子，运算）。如果 :math:`num\_threads=1`，则所有的 operator 将一个接一个地执行，但在不同的 program 重复周期(iterations)中执行顺序可能不同。如果该选项没有被设置，则在 ``Executor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对 GPU，:math:`num\_threads=device\_count∗4`；对 CPU， :math:`num\_threads=CPU\_NUM∗4`。在 :ref:`cn_api_fluid_executor` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM`，则设置默认值为 1，并提示用户进行 :math:`CPU\_NUM` 的设置。
 
 **代码示例**
 
