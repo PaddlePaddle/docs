@@ -12,7 +12,8 @@ BeamSearchDecoder
 
 带 beam search 解码策略的解码器。该接口包装一个 cell 来计算概率，然后执行一个 beam search 步骤计算得分，并为每个解码步骤选择候选输出。更多详细信息请参阅 `Beam search <https://en.wikipedia.org/wiki/Beam_search>`_
 
-**注意** 在使用 beam search 解码时，cell 的输入和状态将被扩展到 :math:`beam\_size`，得到 :math:`[batch\_size * beam\_size, ...]` 一样的形状，这个操作在 BeamSearchDecoder 中自动完成，因此，其他任何在 :code:`cell.call` 中使用的 Tensor，如果形状为 :math:`[batch\_size, ...]`，都必须先手动使用 :code:`BeamSearchDecoder.tile_beam_merge_with_batch` 接口扩展。最常见的情况是带注意机制的编码器输出。
+.. note::
+    在使用 beam search 解码时，cell 的输入和状态将被扩展到 :math:`beam\_size`，得到 :math:`[batch\_size * beam\_size, ...]` 一样的形状，这个操作在 BeamSearchDecoder 中自动完成，因此，其他任何在 :code:`cell.call` 中使用的 Tensor，如果形状为 :math:`[batch\_size, ...]`，都必须先手动使用 :code:`BeamSearchDecoder.tile_beam_merge_with_batch` 接口扩展。最常见的情况是带注意机制的编码器输出。
 
 参数
 ::::::::::::
@@ -119,7 +120,7 @@ _gather(x, indices, batch_size)
 
 **返回**
 
-Tensor，具有与 :code:``x` 相同的形状和数据类型的 Tensor，表示收集后的 Tensor。
+Tensor，具有与 :code:`x` 相同的形状和数据类型的 Tensor，表示收集后的 Tensor。
 
 
 initialize(initial_cell_states)
@@ -129,7 +130,7 @@ initialize(initial_cell_states)
 
 **参数**
 
-  - **initial_cell_states** (Variable) - 单个 Ten'so'r 变量或 Tensor 变量组成的嵌套结构。调用者提供的参数。
+  - **initial_cell_states** (Variable) - 单个 Tensor 变量或 Tensor 变量组成的嵌套结构。调用者提供的参数。
 
 **返回**
 

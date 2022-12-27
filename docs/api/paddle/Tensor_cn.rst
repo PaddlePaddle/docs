@@ -1926,7 +1926,7 @@ scale(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 scale_(scale=1.0, bias=0.0, bias_after_scale=True, act=None, name=None)
 :::::::::
 
-Inplace 版本的 :ref:`cn_api_paddle_tensor_unsqueeze` API，对输入 `x` 采用 Inplace 策略。
+Inplace 版本的 :ref:`cn_api_fluid_layers_scale` API，对输入 `x` 采用 Inplace 策略。
 
 scatter(index, updates, overwrite=True, name=None)
 :::::::::
@@ -2477,3 +2477,10 @@ frexp(x)
 返回类型：Tensor, Tensor
 
 请参考 :ref:`_cn_api_paddle_frexp`
+
+data_ptr()
+:::::::::
+仅用于动态图 Tensor。返回 Tensor 的数据的存储地址。比如，如果 Tensor 是 CPU 的，则返回内存地址，如果 Tensor 是 GPU 的，则返回显存地址。
+返回：Tensor 的数据的存储地址
+
+返回类型：int

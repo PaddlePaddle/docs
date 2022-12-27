@@ -8,7 +8,7 @@ sequence_expand
 
 
 
-序列扩张层（Sequence Expand Layer)，根据输入 ``y`` 的第 ``ref_level`` 层 lod 对输入 ``x`` 进行扩展。``x`` 的 lod level 最多为 1，若 ``x`` 的 lod level 为 1，则 ``x`` 的 lod 大小必须与 ``y`` 的第 ``ref_level`` 层 lod 大小相等；若 ``x`` 的 lod level 为 0，则 ``x`` 的第一维大小必须与 ``y`` 第 ``ref_level`` 层大小相等。``x`` 的秩最少为 2，当 ``x`` 的秩大于 2 时，将被当作是一个二维张量处理。
+序列扩张层（Sequence Expand Layer)，根据输入 ``y`` 的第 ``ref_level`` 层 lod 对输入 ``x`` 进行扩展。``x`` 的 lod level 最多为 1，若 ``x`` 的 lod level 为 1，则 ``x`` 的 lod 大小必须与 ``y`` 的第 ``ref_level`` 层 lod 大小相等；若 ``x`` 的 lod level 为 0，则 ``x`` 的第一维大小必须与 ``y`` 第 ``ref_level`` 层大小相等。``x`` 的秩最少为 2，当 ``x`` 的秩大于 2 时，将被当作是一个二维 Tensor 处理。
 
 .. note::
 该 API 的输入 ``x`` 可以是 Tensor 或 LodTensor， ``y`` 只能是 LodTensor。
@@ -53,7 +53,7 @@ sequence_expand
 参数
 :::::::::
 
-    - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` ，lod level 至多 1 的二维 Tensor 或 LoDTensor。数据类型支持 int32，int64，float32 或 float64。
+    - **x** (Variable) - 输入变量，维度为 :math:`[M, K]` ，lod level 至多 1 的二维 Tensor。数据类型支持 int32，int64，float32 或 float64。
     - **y** (Variable) - 输入变量，lod level 至少为 1 的 LoDTensor。数据类型不限。
     - **ref_level** (int，可选) - 扩展 ``x`` 所依据的 ``y`` 的 lod 层。默认值-1，表示 lod 的最后一层。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

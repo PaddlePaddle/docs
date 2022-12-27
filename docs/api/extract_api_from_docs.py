@@ -36,7 +36,9 @@ else:
     logger.addHandler(console)
 console.setFormatter(
     logging.Formatter(
-        "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"))
+        "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"
+    )
+)
 
 
 def extract_code_blocks_from_rst(docstr):
@@ -79,12 +81,14 @@ def extract_code_blocks_from_rst(docstr):
                     break
                 if cb_cur_indent < 0:
                     mo = re.search(r"\S", linecont)
-                    if mo is None: continue
+                    if mo is None:
+                        continue
                     cb_cur_indent = mo.start()
                     cb_cur.append(linecont)
                 else:
                     mo = re.search(r"\S", linecont)
-                    if mo is None: continue
+                    if mo is None:
+                        continue
                     if cb_cur_indent <= mo.start():
                         cb_cur.append(linecont)
                     else:
@@ -94,7 +98,8 @@ def extract_code_blocks_from_rst(docstr):
                             # block end
                             if len(cb_cur):
                                 code_blocks.append(
-                                    inspect.cleandoc("\n".join(cb_cur)))
+                                    inspect.cleandoc("\n".join(cb_cur))
+                                )
                             cb_started = False
                             cb_cur_indent = -1
                             cb_cur = []
@@ -160,12 +165,14 @@ def find_all_paddle_api_from_code_block(cbstr):
         line = line.strip()
         for mo in docstr_pat.finditer(line):
             in_docstr = not in_docstr
-        if in_docstr: continue
+        if in_docstr:
+            continue
         sharp_ind = line.find('#')
         mo_i = import_pat.search(line)
         if mo_i:
-            if (sharp_ind < 0 or mo_i.start() < sharp_ind
-                ) and mo_i.group(1).startswith('paddle'):
+            if (sharp_ind < 0 or mo_i.start() < sharp_ind) and mo_i.group(
+                1
+            ).startswith('paddle'):
                 api_set.add('{}.{}'.format(mo_i.group(1), mo_i.group(2)))
         else:
             mo_n = normal_pat.finditer(line)
@@ -217,9 +224,11 @@ def extract_rst_title(filename):
     }
     with open(filename, 'r') as fileobj:
         doctree = docutils.core.publish_doctree(
-            fileobj.read(), settings_overrides=overrides)
+            fileobj.read(), settings_overrides=overrides
+        )
         with find_node_by_class(
-                doctree, docutils.nodes.title, remove=True) as node:
+            doctree, docutils.nodes.title, remove=True
+        ) as node:
             if node is not None:
                 return node.astext()
     return None
@@ -234,11 +243,13 @@ def extract_params_desc_from_rst_file(filename, section_title='参数'):
     }
     with open(filename, 'r') as fileobj:
         doctree = docutils.core.publish_doctree(
-            fileobj.read(), settings_overrides=overrides)
+            fileobj.read(), settings_overrides=overrides
+        )
         found = False
         for child in doctree.children:
             if isinstance(child, docutils.nodes.section) and isinstance(
-                    child.children[0], docutils.nodes.title):
+                child.children[0], docutils.nodes.title
+            ):
                 sectitle = child.children[0].astext()
                 if isinstance(section_title, (list, tuple)):
                     for st in section_title:
@@ -274,7 +285,7 @@ def format_filename(filename):
     pat_str = 'docs/'  # if the structure changed, update this pattern
     ind = rp.rindex(pat_str)
     if ind >= 0:
-        return rp[ind + len(pat_str):]
+        return rp[ind + len(pat_str) :]
     return filename
 
 
@@ -305,9 +316,10 @@ docutils.parsers.rst.roles.register_local_role('ref', ref_role)
 
 class PyFunctionDirective(docutils.parsers.rst.Directive):
     '''dummy py:function directive
-    
+
     see https://docutils-zh-cn.readthedocs.io/zh_CN/latest/howto/rst-roles.html
     '''
+
     required_arguments = 0
     optional_arguments = 0
     final_argument_whitespace = True
@@ -321,15 +333,19 @@ class PyFunctionDirective(docutils.parsers.rst.Directive):
 
 
 docutils.parsers.rst.directives.register_directive(
-    'py:function', PyFunctionDirective)  # as abs_cn.rst
+    'py:function', PyFunctionDirective
+)  # as abs_cn.rst
 docutils.parsers.rst.directives.register_directive(
-    'py:class', PyFunctionDirective)  # as Tensor_cn.rst
+    'py:class', PyFunctionDirective
+)  # as Tensor_cn.rst
 docutils.parsers.rst.directives.register_directive(
-    'py:method', PyFunctionDirective)  # as grad_cn.rst
+    'py:method', PyFunctionDirective
+)  # as grad_cn.rst
 
 
 class ToctreeDirective(docutils.parsers.rst.Directive):
     '''dummy toctree directive'''
+
     required_arguments = 1
     optional_arguments = 5
     has_content = True
@@ -345,8 +361,11 @@ docutils.parsers.rst.directives.register_directive('toctree', ToctreeDirective)
 arguments = [
     # flags, dest, type, default, help
     [
-        '--output', 'output', str, 'called_apis_from_docs.json',
-        'output filename. default: called_apis_from_docs.json'
+        '--output',
+        'output',
+        str,
+        'called_apis_from_docs.json',
+        'output filename. default: called_apis_from_docs.json',
     ],
 ]
 
@@ -357,16 +376,19 @@ def parse_args():
     """
     global arguments
     parser = argparse.ArgumentParser(
-        description='extract all the called apis from md or reST files.')
+        description='extract all the called apis from md or reST files.'
+    )
     parser.add_argument(
         'dir',
         type=str,
         help='travel all the files include this directory',
         default='.',
-        nargs='+')
+        nargs='+',
+    )
     for item in arguments:
         parser.add_argument(
-            item[0], dest=item[1], help=item[4], type=item[2], default=item[3])
+            item[0], dest=item[1], help=item[4], type=item[2], default=item[3]
+        )
 
     args = parser.parse_args()
     return args
@@ -378,6 +400,7 @@ if __name__ == "__main__":
     logger.setLevel(logging.DEBUG)
     apis_dict, file_titles = extract_all_infos(args.dir)
     import json
+
     with open(args.output, 'w') as f:
         json.dump(apis_dict, f, indent=4)
     r = os.path.splitext(args.output)

@@ -390,7 +390,7 @@ dgc_configs
 **rampup_step(int):** 使用稀疏预热的时间步长。默认值为 1。例如：如果稀疏度为[0.75,0.9375,0.984375,0.996,0.999]，\
 并且 rampup_step 为 100，则在 0~19 步时使用 0.75，在 20~39 步时使用 0.9375，依此类推。当到达 sparsity 数组末尾时，此后将会使用 0.999。
 
-**sparsity(list[float]):** 从梯度张量中获取 top 个重要元素，比率为（1-当前稀疏度）。默认值为[0.999]。\
+**sparsity(list[float]):** 从梯度 Tensor 中获取 top 个重要元素，比率为（1-当前稀疏度）。默认值为[0.999]。\
 例如：如果 sparsity 为[0.99, 0.999]，则将传输 top [1%, 0.1%]的重要元素。
 
 **代码示例**
@@ -470,6 +470,6 @@ sharding_configs
       "sharding_segment_strategy": "segment_broadcast_MB",
       "segment_broadcast_MB": 32,
       "sharding_degree": 8,
-      "sharding_degree": 2,
+      "dp_degree": 2,
       "gradient_merge_acc_step": 4,
       }

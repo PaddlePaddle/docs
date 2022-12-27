@@ -5,12 +5,12 @@ gather_nd
 .. py:function:: paddle.gather_nd(x, index, name=None)
 
 
-:code:`gather` 的高维推广，并且支持多轴同时索引。:code:`index` 是一个 K 维度的张量，它可以认为是从 :code:`x` 中取 K-1 维张量，每一个元素是一个切片：
+:code:`gather` 的高维推广，并且支持多轴同时索引。:code:`index` 是一个 K 维度的 Tensor，它可以认为是从 :code:`x` 中取 K-1 维 Tensor，每一个元素是一个切片：
 
 .. math::
     output[(i_0, ..., i_{K-2})] = x[index[(i_0, ..., i_{K-2})]]
 
-显然，:code:`index.shape[-1] <= x.rank` 并且输出张量的维度是 :code:`index.shape[:-1] + x.shape[index.shape[-1]:]` 。
+显然，:code:`index.shape[-1] <= x.rank` 并且输出 Tensor 的维度是 :code:`index.shape[:-1] + x.shape[index.shape[-1]:]` 。
 
 示例：
 

@@ -1,8 +1,8 @@
 repos:
--   repo: https://github.com/pre-commit/mirrors-yapf.git
-    rev: v0.32.0
+-   repo: https://github.com/psf/black.git
+    rev: 22.8.0
     hooks:
-    -   id: yapf
+    -   id: black
         files: \.py$
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.1.0
