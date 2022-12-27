@@ -135,7 +135,7 @@ def trace(x, offset=0, axis1=0, axis2=1, name=None):
   - `trace` 是算子的 Python C 函数名。Python C 函数的命名直接采用算子名。
   - 参数 `( x, offset, axis1, axis2 )`需按照 [YAML 配置文件](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/api/yaml/ops.yaml#L185) 中定义的输入参数顺序传入，C++ 算子的输入、输出和属性等描述是通过 YAML 配置文件定义的，具体可参见 [开发 C++ 算子](new_cpp_op_cn.html) 章节介绍。
 
-> 注意：由于目前飞桨动态图正处在重构升级阶段，所以现有算子的代码会分别有新旧动态图两个代码分支，其中 `in_dygraph_mode()` 表示新动态图分支（默认），`_in_legacy_dygraph()`为旧动态图分支，**在新增算子时无需添加旧动态图分支代码**。
+> 注意：由于目前飞桨动态图仅支持新动态图，通过 `in_dygraph_mode()` 去使用，`_in_legacy_dygraph()`为旧动态图开关已被遗弃，**在新增算子时无需添加旧动态图分支代码**。
 
 **（2）静态图分支**
 
