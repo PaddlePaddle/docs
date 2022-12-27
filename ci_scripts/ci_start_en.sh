@@ -4,6 +4,8 @@ export DIR_PATH=${PWD}
 
 SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
+export OUTPUTDIR=/docs
+export VERSIONSTR=$(echo ${BRANCH} | sed 's@release/@@g')
 
 # 1 decide PADDLE_WHL if not setted.
 if [ -z "${PADDLE_WHL}" ] ; then
@@ -41,13 +43,11 @@ echo "PADDLE_WHL=${PADDLE_WHL}"
 # 2 build all the Chinese and English docs, and upload them. Controlled with Env BUILD_DOC and UPLOAD_DOC
 PREVIEW_URL_PROMPT="ipipe_log_param_preview_url: None"
 if [ "${BUILD_DOC}" = "true" ] &&  [ -x /usr/local/bin/sphinx-build ] ; then
-    export OUTPUTDIR=/docs
-    export VERSIONSTR=$(echo ${BRANCH} | sed 's@release/@@g')
     apt update 
     apt install -y libpython3.7 
     apt --fix-broken install -y libssl1.0
     /bin/bash -x ${DIR_PATH}/gendoc.sh
-    if [ $? -ne 0 ];then
+    if [ $? -ne 0 ] ; then
         exit 1
     fi
     
@@ -112,7 +112,28 @@ if [ $? -ne 0 ];then
     EXIT_CODE=1
 fi
 
-# 4 Approval check
+# 4 check docs style/format
+cd ${PADDLE_DIR}
+need_check_api_py_files=$(find_all_api_py_files_modified_by_pr)
+cd -
+jsonfn=${OUTPUTDIR}/en/${VERSIONSTR}/gen_doc_output/api_info_all.json
+if [ ! -f $jsonfn ]; then
+    echo "$jsonfn not exists"
+    exit 1
+fi
+if [ "${need_check_api_py_files}" = "" ] ; then
+    echo "api python file list is empty, skip check system message in docs"
+else
+    echo 'need check api pyhon file: ', $need_check_api_py_files 
+    /bin/bash ${DIR_PATH}/check_api_docs_en.sh ${jsonfn} ${OUTPUTDIR}/en/${VERSIONSTR}/api/ "${need_check_api_py_files}"
+    if [ $? -ne 0 ]; then
+        echo 'Docs Stype Check is failed, please check the style in the above docs'
+        exit 1
+    fi
+fi
+
+
+# 5 Approval check
 /bin/bash  ${DIR_PATH}/checkapproval.sh
 if [ $? -ne 0 ];then
     exit 1

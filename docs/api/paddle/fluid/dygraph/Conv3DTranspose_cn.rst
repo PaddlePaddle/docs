@@ -20,10 +20,9 @@ Conv3DTranspose
                         \\Out=\sigma (W*X+b)\\
 
 其中：
-    -  :math:`X`：输入图像，具有 NCDHW 格式的张量（Tensor）
+    -  :math:`X`：输入图像，具有 NCDHW 格式的 Tensor
 
-    -  :math:`W`：滤波器，具有 NCDHW 格式的张量（Tensor）
-
+    -  :math:`W`：滤波器，具有 NCDHW 格式的 Tensor
     -  :math:`*`：卷积操作（注意：转置卷积本质上的计算还是卷积）
 
     -  :math:`b`：偏置(bias)，维度为 :math:`[M,1]` 的 2D Tensor
@@ -78,7 +77,7 @@ Conv3DTranspose
       - **padding** (int|tuple，可选) - 填充 padding 大小。padding 参数在输入特征层每边添加 ``dilation * (kernel_size - 1) - padding`` 个 0。如果 padding 是一个元组，它必须包含三个整数(padding_depth，padding_height，padding_width)。否则，padding_depth = padding_height = padding_width = padding。默认值为 0。
       - **stride** (int|tuple，可选) - 步长 stride 大小。滤波器和输入进行卷积计算时滑动的步长。如果 stride 是一个元组，那么元组的形式为(stride_depth，stride_height，stride_width)。否则，stride_depth = stride_height = stride_width = stride。默认值为 1。
       - **dilation** (int|tuple，可选) - 膨胀比例 dilation 大小。空洞卷积时会指该参数，滤波器对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息，根据  `可视化效果图  <https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md>`_ 较好理解。如果膨胀比例 dilation 是一个元组，那么元组的形式为(dilation_depth，dilation_height， dilation_width)。否则，dilation_depth = dilation_height = dilation_width = dilation。默认值为 1。
-      - **groups** (int，可选) - 三维转置卷积层的组数。从 Alex Krizhevsky 的 CNN Deep 论文中的群卷积中受到启发，当 group=2 时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认值为 1。
+      - **groups** (int，可选) - 三维转置卷积层的组数。从 `Alex Krizhevsky 的 Deep CNN 论文 <https://papers.nips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf>`_ 中的群卷积中受到启发，当 group=2 时，输入和滤波器分别根据通道数量平均分为两组，第一组滤波器和第一组输入进行卷积计算，第二组滤波器和第二组输入进行卷积计算。默认值为 1。
       - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
       - **bias_attr** (ParamAttr，可选) - 指定偏置参数属性的对象。默认值为 None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
       - **use_cudnn** (bool，可选) - 是否使用 cudnn 内核，只有安装 Paddle GPU 版时才有效。默认值为 True。
