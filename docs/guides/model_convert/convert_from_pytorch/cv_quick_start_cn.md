@@ -1,4 +1,4 @@
-# 快速上手
+# CV - 快速上手
 
 本文以经典网络 MobileNetV3 为例，结合代码来详细介绍如何从 PyTorch 迁移到飞桨，以便快速掌握迁移的基本思路和解决方法。
 
@@ -273,20 +273,20 @@ models                               # 模型组网相关代码
 
 * [SqueezeExcitation](https://github.com/PaddlePaddle/models/blob/release/2.2/tutorials/mobilenetv3_prod/Step1-5/mobilenetv3_ref/torchvision/models/misc_torch.py#L157)：定义了 SE 模块，由全局平均池化（AdaptiveAvgPool2D）、全连接层（Linear）以及激活函数组成。
 
-![squeeze_excitation](../../images/squeeze_excitation.png)
+![squeeze_excitation](../images/squeeze_excitation.png)
 
 图 Squeeze Excitation 模块
 
 * [ConvNormActivation](https://github.com/PaddlePaddle/models/blob/release/2.2/tutorials/mobilenetv3_prod/Step1-5/mobilenetv3_ref/torchvision/models/misc_torch.py#L99)：继承自 `torch.nn.Sequential`，由 Conv、BatchNorm 和激活函数构成。
 * [InvertedResidual](https://github.com/PaddlePaddle/models/blob/release/2.2/tutorials/mobilenetv3_prod/Step1-5/mobilenetv3_ref/torchvision/models/mobilenet_v3_torch.py#L65)：MobileNetV3 网络中的基本模块，由三个 Conv-BN-Activation 模块组成，分别实现通道扩张、深度可分离卷积和投影。
 
-![inverted_residual](../../images/inverted_residual.png)
+![inverted_residual](../images/inverted_residual.png)
 
 图 Inverted Residual 模块
 
 * MobileNetV3：定义了整体网络架构。封装了多个 `InvertedResidual` 模块以及 `ConvNormActivation` 和 `Linear` 模块，传入不同的参数即可构造不同的 MobileNetV3 系列网络。在该结构中，也使用了一些 PyTorch 自定义的初始化功能。
 
-![mobilenetv3](../../images/mobilenetv3.png)
+![mobilenetv3](../images/mobilenetv3.png)
 
 图 MobileNetV3-Small 网络结构
 
@@ -812,7 +812,7 @@ INFO: diff check passed
 
 流程图如下：
 
-![metric](../../images/metric.png)
+![metric](../images/metric.png)
 
 
 代码实现如下：
@@ -1098,7 +1098,7 @@ INFO: diff check failed
 5. 利用 ReprodDiffHelper 检查两个文件中的数据是否一致。
 验证脚本的执行过程可用以下框图表示：
 
-![backward](../../images/backward.png)
+![backward](../images/backward.png)
 
 验证脚本的代码实现如下：
 

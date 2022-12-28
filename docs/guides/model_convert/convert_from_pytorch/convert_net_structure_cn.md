@@ -257,7 +257,7 @@ PyTorch 中的网络模块继承`torch.nn.Module`，而飞桨的网络模块则�
 
 下表为论文中给出的 MobileNetV3 的整体网络结构，从表中可以清楚地了解到组成网络的各个模块的参数及输出输出维度。
 
-![img](../../images/mobilenetv3.png)
+![img](../images/mobilenetv3.png)
 
 阅读完论文之后，还需要分析参考代码的实现方式。这里选择 [torchvision 官方的 MobileNetV3 实现](https://github.com/pytorch/vision/blob/main/torchvision/models/mobilenetv3.py) 作为参考代码。
 
