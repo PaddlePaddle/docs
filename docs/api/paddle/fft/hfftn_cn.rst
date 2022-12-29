@@ -5,7 +5,11 @@ hfftn
 
 .. py:function:: paddle.fft.hfftn(x, s=None, axes=None, norm="backward", name=None)
 
-通过快速傅里叶变换(FFT)算法计算 N 维厄米特(Hermitian)傅里叶变换。
+通过快速傅里叶变换(FFT)算法计算 N 维厄米特(Hermitian)傅里叶变换，即具有真实频谱的信号。
+
+该函数通过快速傅里叶变换（FFT）计算M-D阵列中任意轴上的厄米特对称复数输入的n-D离散傅里叶变换。
+换句话说，``ihfftn(hfftn(x，s))==x``在数值精度范围内。
+（这里的``s``是``x.shape``和``s[-1]=x.shape[-1]*2-1``。这是必要的，原因与``irfft``需要``x.shape``相同。）
 
 
 参数
