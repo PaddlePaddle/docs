@@ -6,8 +6,6 @@ add_n
 .. py:function:: paddle.add_n(inputs, name=None)
 
 
-
-
 对输入的一至多个 Tensor 求和。
 
 .. code-block:: text
