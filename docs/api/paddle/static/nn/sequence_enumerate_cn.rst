@@ -36,7 +36,7 @@ sequence_enumerate
 
 返回
 :::::::::
-枚举序列，形状为 ``[d_1, win_size]`` ，lod_level 为 1 的 LoDTensor。数据类型与输入 ``input`` 一致。
+枚举序列，形状为 ``[d_1, win_size]`` ，lod_level 为 1 的 Tensor。数据类型与输入 ``input`` 一致。
 
 
 
