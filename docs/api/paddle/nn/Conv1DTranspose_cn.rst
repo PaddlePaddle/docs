@@ -56,8 +56,8 @@ Conv1DTranspose
     其中
 
     .. math::
-        & L'_{out} = (L_{in}-1)*stride - 2*padding + dilation*(kernel\_size-1)+1\\
-        & L_{out}\in[L'_{out},L'_{out} + stride]
+        L^\prime_{out} &= (L_{in} - 1) * stride - 2 * padding + dilation * (L_f - 1) + 1 \\
+        L_{out} &\in [ L^\prime_{out}, L^\prime_{out} + stride ]
 
     如果 ``padding`` = "SAME":
 
@@ -67,7 +67,7 @@ Conv1DTranspose
     如果 ``padding`` = "VALID":
 
     .. math::
-        L'_{out} = (L_{in}-1)*stride + dilation*(kernel\_size-1)+1
+        L'_{out} = (L_{in}-1)*stride + dilation*(L_f-1)+1
 
 .. note::
     conv1d_transpose 可以看作 conv1d 的逆向操作。对于 conv1d ，当 stride > 1 时， conv1d 将多个输入映射到同一个输出。对于 conv1d_transpose ，当 stride > 1 时， conv1d_transpose 将同一个输入映射到多个输出。

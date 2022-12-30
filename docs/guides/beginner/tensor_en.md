@@ -79,7 +79,7 @@ ndim_2_tensor = paddle.to_tensor([[1.0, 2.0],
 An exception will be thrown in this case:
 ```text
 ValueError:
-        Faild to convert input data to a regular ndarray :
+        Failed to convert input data to a regular ndarray :
          - Usually this means the input data contains nested lists with different lengths.
 ```
 
