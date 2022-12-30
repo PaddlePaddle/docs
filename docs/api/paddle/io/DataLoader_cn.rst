@@ -139,9 +139,9 @@ from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=T
     - **capacity** (int) - DataLoader 对象内部维护队列的容量大小。单位是 batch 数量。若 reader 读取速度较快，建议设置较大的 capacity 值。
     - **use_double_buffer** (bool，可选) - 是否使用 ``double_buffer_reader``。若 use_double_buffer=True，DataLoader 会异步地预读取下一个 batch 的数据，可加速数据读取过程，但同时会占用少量的 CPU/GPU 存储，即一个 batch 输入数据的存储空间。
     - **iterable** (bool，可选) - 所创建的 DataLoader 对象是否可迭代。
-    - **return_list** (bool，可选) - 每个设备上的数据是否以 list 形式返回。仅在 iterable = True 模式下有效。若 return_list = False，每个设备上的返回数据均是 str -> LoDTensor 的映射表，其中映射表的 key 是每个输入变量的名称。若 return_list = True，则每个设备上的返回数据均是 list(LoDTensor)。推荐在静态图模式下使用 return_list = False，在动态图模式下使用 return_list = True。
-    - **use_multiprocess** (bool，可选) - 设置是否是用多进程加速动态图的数据载入过程。**注意**：该参数的设置仅在动态图模式下有效，在静态图模式下，该参数设置与否均无任何影响。默认值为 False。
-    - **drop_last** (bool，可选) - 是否丢弃最后的不足 CPU/GPU 设备数的批次。默认值为 True。在网络训练时，用户不能设置 drop_last=False，此时所有 CPU/GPU 设备均应从 DataLoader 中读取到数据。在网络预测时，用户可以设置 drop_last=False，此时最后不足 CPU/GPU 设备数的批次可以进行预测。
+    - **return_list** (bool，可选) - 每个设备上的数据是否以 list 形式返回。仅在 iterable = True 模式下有效。若 return_list = False，每个设备上的返回数据均是 str -> Tensor 的映射表，其中映射表的 key 是每个输入变量的名称。若 return_list = True，则每个设备上的返回数据均是 list(Tensor)。推荐在静态图模式下使用 return_list = False，在动态图模式下使用 return_list = True。
+    - **use_multiprocess** (bool，可选) - 设置是否是用多进程加速动态图的数据载入过程。注意：该参数的设置仅在动态图模式下有效，在静态图模式下，该参数设置与否均无任何影响。默认值为 False。
+    - **drop_last** (bool，可选)：是否丢弃最后的不足 CPU/GPU 设备数的批次。默认值为 True。在网络训练时，用户不能设置 drop_last=False，此时所有 CPU/GPU 设备均应从 DataLoader 中读取到数据。在网络预测时，用户可以设置 drop_last=False，此时最后不足 CPU/GPU 设备数的批次可以进行预测。
 
 **返回**
 
