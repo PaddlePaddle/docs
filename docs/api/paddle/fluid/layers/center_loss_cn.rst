@@ -32,7 +32,7 @@ center_loss
 
 返回
 ::::::::::::
-形状为[N x 1]的 2 维 Tensor|LoDTensor。
+形状为[N x 1]的 2 维 Tensor。
 
 返回类型
 ::::::::::::
