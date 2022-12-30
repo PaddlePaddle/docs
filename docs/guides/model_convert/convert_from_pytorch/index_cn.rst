@@ -18,8 +18,8 @@
 
     cv_quick_start_cn.md
     cv_experience_cn.md
+    nlp_fast_explore_cn.md
+    nlp_migration_experiences_cn.md
     convert_net_structure_cn.md
     convert_bert_weights_cn.md
     pytorch_api_mapping_cn.md
-    nlp_fast_explore_cn.md
-    nlp_migration_experiences_cn.md
