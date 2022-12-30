@@ -172,7 +172,7 @@ rsample(shape)
 kl_divergence(other)
 '''''''''
 
-两个 Laplace 分布之间的 KL 散度。
+两个 MultivariateNormal 分布之间的 KL 散度。
 
 
 **参数**
