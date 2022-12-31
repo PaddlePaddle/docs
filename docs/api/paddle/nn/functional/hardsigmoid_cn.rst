@@ -18,7 +18,7 @@ hardsigmoid 激活层。sigmoid 的分段线性逼近激活函数，速度比 si
         \end{aligned}
         \right.
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::::
