@@ -18,7 +18,7 @@ PRROIPool 运算
 ::::::::::::
 
     - **input** （Variable） - （Tensor），PRROIPoolOp 的输入。输入 Tensor 的格式是 NCHW。其中 N 是批大小 batch_size，C 是输入通道的数量，H 是输入特征图的高度，W 是特征图宽度
-    - **rois** （Variable） - 要进行池化的 RoI（感兴趣区域）。应为一个形状为(num_rois, 4)的二维 LoDTensor，其 lod level 为 1。给出[[x1, y1, x2, y2], ...]，(x1, y1)为左上角坐标，(x2, y2)为右下角坐标。
+    - **rois** （Variable） - 要进行池化的 RoI（感兴趣区域）。应为一个形状为(num_rois, 4)的二维 Tensor，其 lod level 为 1。给出[[x1, y1, x2, y2], ...]，(x1, y1)为左上角坐标，(x2, y2)为右下角坐标。
     - **output_channels** （integer） - （int），输出特征图的通道数。对于共 C 个种类的对象分类任务，output_channels 应该是（C + 1），该情况仅适用于分类任务。
     - **spatial_scale** （float） - （float，default 1.0），乘法空间比例因子，用于将 ROI 坐标从其输入比例转换为池化使用的比例。默认值：1.0
     - **pooled_height** （integer） - （int，默认值 1），池化输出的高度。默认值：1

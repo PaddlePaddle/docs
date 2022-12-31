@@ -6,7 +6,7 @@ The static graph mode of PaddlePaddle takes advantage of flexibility, Pythonic c
 
 Static graph is better at speed and portability. Static graph builds the network structure during compiling time and then does computation. The built network intermediate representation can be executed in C++ and gets rids of Python dependency.
 
-While dynamic graph has usability and debug benefits and static graph yields performance and deployment advantage, we adds functionality to convert dynamic graph to static graph. Users use imperative mode to write dynamic graph code and PaddlePaddle will analyze the Python syntax and turn it into network structure of static graph mode. Our approach retains both the usability of dynamic graph and portability of static graph.
+While dynamic graph has usability and debug benefits and static graph yields performance and deployment advantage, we adds functionality to convert dynamic graph to static graph. Users use dynamic graph mode to write dynamic graph code and PaddlePaddle will analyze the Python syntax and turn it into network structure of static graph mode. Our approach retains both the usability of dynamic graph and portability of static graph.
 
 We introduce the transformation of dynamic graph to static graph in the following links:
 

@@ -19,10 +19,10 @@ Conv3D
     Out = \sigma \left ( W * X + b \right )
 
 其中：
-    - :math:`X`：输入值，NCDHW 格式的张量（Tensor）
-    - :math:`W`：滤波器值，MCDHW 格式的张量（Tensor）
+    - :math:`X`：输入值，NCDHW 格式的 Tensor
+    - :math:`W`：滤波器值，MCDHW 格式的 Tensor
     - :math:`*`：卷积操作
-    - :math:`b` ：Bias 值，二维张量（Tensor），维度为 ``[M,1]``
+    - :math:`b` ：Bias 值，二维 Tensor，维度为 ``[M,1]``
     - :math:`\sigma`：激活函数
     - :math:`Out`：输出值，``Out`` 和 ``X`` 的维度可能不同
 

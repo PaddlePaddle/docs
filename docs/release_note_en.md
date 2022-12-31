@@ -206,10 +206,10 @@
 ### Cambricon
 -  Support the training/inference of Cambricon MLU chip (MLU370 series of boards): The ResNet50, BERT, YoloV3, OCR-DB, Deeplabv3 and many other models are verified. Support the static graph + dynamic graph training. Support mixed precision training. Support the single machine single card and single machine multi-card training.
 ### Graphcore
-- Support the training/inference of Graphcore IPU chip (including IPU Mk2 GC200 and Bow IPU). Support ResNet50, BERT and other models. Support the static graph and dynamic-to-static mode training. Support the single chip, single machine, and multi-machine distributed training.
+- Support the training/inference of Graphcore IPU chip (including IPU Mk2 GC200 and Bow IPU). Support ResNet50, BERT and other models. Support the static graph and dynamic-to-static graph mode training. Support the single chip, single machine, and multi-machine distributed training.
 - Add the support of more operators
 - Upgrade to Poplar SDK v3.0.0  [#46892](https://github.com/PaddlePaddle/Paddle/pull/46892)
-* Support the training models by using the dynamic-to-static mode. Add a new paddle.incubate.identity_loss op to assist with composition [#43770](https://github.com/PaddlePaddle/Paddle/pull/43770)
+* Support the training models by using the dynamic-to-static graph mode. Add a new paddle.incubate.identity_loss op to assist with composition [#43770](https://github.com/PaddlePaddle/Paddle/pull/43770)
 * Support the Paddle native distributed training API: paddle.distributed.launch [#43311](https://github.com/PaddlePaddle/Paddle/pull/43311)
 * Support the training models with the mixed precision [#41733](https://github.com/PaddlePaddle/Paddle/pull/41733)
 * Paddle Inference supports custom operators by using PopART [#45235](https://github.com/PaddlePaddle/Paddle/pull/45235)
@@ -779,7 +779,7 @@ AssertionError: elu_ only support alpha >= 0, please use elu instead.
 
 - Add `paddle.incubate.nn.FusedMultiTransformer` and `paddle.incubate.nn.functional.fused_multi_transformer` API, to fuse multiple layers of transformers into a single op to improve model inference performance. It should be noted that only forward is supported.  ([#42311](https://github.com/PaddlePaddle/Paddle/pull/42311))
 
-- Add einsum_v2 operators for consistent interface between imperative and static mode. It is compatible with the `paddle.einsum` implementation at the original python side, while supporting dynamic to static export and more complete Infershape inference. ([#42495](https://github.com/PaddlePaddle/Paddle/pull/42495), [#42327](https://github.com/PaddlePaddle/Paddle/pull/42327), [#42397](https://github.com/PaddlePaddle/Paddle/pull/42397), [#42105](https://github.com/PaddlePaddle/Paddle/pull/42105))
+- Add einsum_v2 operators for consistent interface between dynamic graph mode and static graph mode. It is compatible with the `paddle.einsum` implementation at the original python side, while supporting dynamic to static export and more complete Infershape inference. ([#42495](https://github.com/PaddlePaddle/Paddle/pull/42495), [#42327](https://github.com/PaddlePaddle/Paddle/pull/42327), [#42397](https://github.com/PaddlePaddle/Paddle/pull/42397), [#42105](https://github.com/PaddlePaddle/Paddle/pull/42105))
 
 
 #### IR(Intermediate Representation)
@@ -2182,7 +2182,7 @@ Add hardware-aware automatic performance tuning for the full training process, w
 
   - Fix the bug when generating a reverse op when the input to conditional_block op contains LoDTensorArray. ([#39585](https://github.com/PaddlePaddle/Paddle/pull/39585))
 
-  - Fix the bug that `padddle.jit.save ` loses the forward_pre_hook and forward_post_hook of the top Layer in case of the export of a dynamic-to-static model. ([#42273](https://github.com/PaddlePaddle/Paddle/pull/42273))
+  - Fix the bug that `padddle.jit.save ` loses the forward_pre_hook and forward_post_hook of the top Layer in case of the export of a dynamic-to-static graph mode. ([#42273](https://github.com/PaddlePaddle/Paddle/pull/42273))
 
   - Fix the dynamic to static conversion error report where the shape parameter in `paddle.expand ` contains a Tensor. ([#41973](https://github.com/PaddlePaddle/Paddle/pull/41973))
 
