@@ -101,7 +101,7 @@ prob(value)
 
 **返回**
 
-    - **Tensor** - value 在多元正态分布下的概率值。
+    - **Tensor** - 在多元正态分布下的概率值。
 
 log_prob(value)
 '''''''''
@@ -126,7 +126,7 @@ log_prob(value)
 
 **返回**
 
-    - **Tensor** - value 在多元正态分布下的概率值。
+    - **Tensor** - 在多元正态分布下的概率值。
 
 entropy(scale)
 '''''''''
