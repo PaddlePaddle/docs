@@ -211,4 +211,3 @@ kl_divergence(other)
 **返回**
 
     - Tensor: 两个多元正态分布之间的 KL 散度。
-    
