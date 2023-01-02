@@ -21,8 +21,6 @@ hardsigmoid 激活层。sigmoid 的分段线性逼近激活函数，速度比 si
 其中，:math:`x` 为输入的 Tensor
 
 参数
-::::::::::::
-
 ::::::::::
     - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
     - **slope** (float，可选) - hardsigmoid 的斜率。默认值为 0.1666667。

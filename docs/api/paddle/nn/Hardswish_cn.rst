@@ -21,7 +21,6 @@ Hardswish 激活函数。创建一个 `Hardswish` 类的可调用对象。在 Mo
 其中，:math:`x` 为输入的 Tensor
 
 参数
-
 ::::::::::
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
