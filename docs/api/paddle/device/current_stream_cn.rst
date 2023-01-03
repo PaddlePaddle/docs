@@ -3,7 +3,7 @@
 current_stream
 -------------------------------
 
-.. py:function:: paddle.device.current_stream(device=None, device_id=None)
+.. py:function:: paddle.device.current_stream(device=None)
 
 通过 device 返回当前的 stream。
 
@@ -12,7 +12,6 @@ current_stream
 ::::::::::::
 
     - **device** (paddle.CUDAPlace|paddle.CustomPlace|str) - 希望获取 stream 的设备或者设备类型。如果为 None，则为当前期望的 place。默认值为 None。
-    - **deviec_id** (int，可选) - 希望获取 stream 的设备 ID。如果为 None，则为当前的设备。默认值为 None。
 
 返回
 ::::::::::::

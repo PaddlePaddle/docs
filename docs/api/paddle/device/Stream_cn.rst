@@ -3,7 +3,7 @@
 Stream
 -------------------------------
 
-.. py:class:: paddle.device.Stream(device=None, device_id=None, priority=None, blocking=False)
+.. py:class:: paddle.device.Stream(device=None, priority=None, blocking=False)
 
 custom device stream 的句柄。
 
@@ -11,7 +11,6 @@ custom device stream 的句柄。
 ::::::::::::
 
     - **device** (paddle.CUDAPlace|paddle.CustomPlace|str) - 希望分配 stream 的设备或设备类型。如果为 None，则为当前期望的 place。默认值为 None。
-    - **device_id** (int，可选) - 希望分配 stream 的设备 ID。如果为 None，则为当前的设备。默认值为 None。
     - **priority** (int|None，可选) - stream 的优先级。优先级可以为 1（高优先级）或者 2（正常优先级）。如果优先级为 None，优先级为 2（正常优先级）。默认值为 None。
     - **blocking** (bool|None，可选) - stream 是否同步执行。默认值为 False。
 
@@ -68,6 +67,19 @@ wait_stream(stream)
 
 COPY-FROM: paddle.device.Stream.wait_stream
 
+record_event(event=None)
+'''''''''
+
+记录给定的 event。
+
+**参数**
+
+    - **event** (paddle.device.Event) - 要记录的 event，如果为 None，则新建一个 event。
+
+
+**代码示例**
+
+COPY-FROM: paddle.device.Stream.record_event
 
 query()
 '''''''''
