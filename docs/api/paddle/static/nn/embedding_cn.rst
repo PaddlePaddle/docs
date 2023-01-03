@@ -41,7 +41,7 @@ input 中的 id 必须满足 ``0 =< id < size[0]``，否则程序会抛异常退
 
     Case 2:
 
-    input 是 lod level 为 1 的 LoDTensor，且 padding_idx = 0
+    input 是 lod level 为 1 的 Tensor，且 padding_idx = 0
         input.lod = [[2, 3]]
         input.data = [[1], [3], [2], [4], [0]]
         input.shape = [5, 1]

@@ -45,10 +45,10 @@ conv2d_transpose
 
 .. math::
 
-        & H'_{out} = (H_{in}-1)*strides[0] - pad\_height\_top - pad\_height\_bottom + dilations[0]*(H_f-1)+1\\
-        & W'_{out} = (W_{in}-1)*strides[1]- pad\_width\_left - pad\_width\_right + dilations[1]*(W_f-1)+1 \\
-        & H_{out}\in[H'_{out},H'_{out} + strides[0])\\
-        & W_{out}\in[W'_{out},W'_{out} + strides[1])\\
+        H^\prime_{out} &= (H_{in} - 1) * strides[0] - 2 * paddings[0] + dilations[0] * (H_f - 1) + 1 \\
+        W^\prime_{out} &= (W_{in} - 1) * strides[1] - 2 * paddings[1] + dilations[1] * (W_f - 1) + 1 \\
+        H_{out} &\in [ H^\prime_{out}, H^\prime_{out} + strides[0] ) \\
+        W_{out} &\in [ W^\prime_{out}, W^\prime_{out} + strides[1] ) \\
 
 如果 ``padding`` = "SAME":
 

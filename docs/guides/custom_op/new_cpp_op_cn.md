@@ -807,6 +807,90 @@ std::vector<paddle::Tensor> relu_cuda_backward(const paddle::Tensor& x,
 }
 ```
 
+#### 对自定义设备的支持
+
+首先请参考 [新硬件接入示例](https://www.paddlepaddle.org.cn/documentation/docs/zh/dev_guides/custom_device_docs/custom_device_example_cn.html) 确保自定义设备已经注册完成。
+
+如果 CPU 实现和 GPU 实现无法满足新硬件的需求，可以通过组合 C++ 运算 API 的方式，实现自定义算子。将前述 `relu_cpu.cc` 中的 CPU 实现改为组合 C++ 运算 API 的示例如下：
+
+```c++
+#include "paddle/extension.h"
+
+#include <vector>
+
+#define CHECK_CUSTOM_INPUT(x) PD_CHECK(x.is_custom_device(), #x " must be a custom Tensor.")
+
+std::vector<paddle::Tensor> relu_custom_forward(const paddle::Tensor& x) {
+  CHECK_CUSTOM_INPUT(x);
+  auto out = paddle::relu(x);
+  return {out};
+}
+
+std::vector<paddle::Tensor> relu_custom_backward(
+    const paddle::Tensor& x,
+    const paddle::Tensor& out,
+    const paddle::Tensor& grad_out) {
+  CHECK_CUSTOM_INPUT(x);
+  CHECK_CUSTOM_INPUT(out);
+  auto grad_x = paddle::empty_like(x, x.dtype(), x.place());
+  auto ones = paddle::experimental::full_like(x, 1.0, x.dtype(), x.place());
+  auto zeros = paddle::experimental::full_like(x, 0.0, x.dtype(), x.place());
+  auto condition = paddle::experimental::greater_than(x, zeros);
+
+  grad_x = paddle::multiply(grad_out, paddle::where(condition, ones, zeros));
+
+  return {grad_x};
+}
+
+std::vector<paddle::Tensor> relu_custom_double_backward(
+    const paddle::Tensor& out, const paddle::Tensor& ddx) {
+  CHECK_CUSTOM_INPUT(out);
+  auto ddout = paddle::empty(out.shape(), out.dtype(), out.place());
+  auto ones = paddle::experimental::full_like(out, 1.0, out.dtype(), out.place());
+  auto zeros = paddle::experimental::full_like(out, 0.0, out.dtype(), out.place());
+  auto condition = paddle::experimental::greater_than(out, zeros);
+
+  ddout = paddle::multiply(ddx, paddle::where(condition, ones, zeros));
+
+  return {ddout};
+}
+
+std::vector<paddle::Tensor> ReluForward(const paddle::Tensor& x) {
+  if (x.is_cpu()) {
+    return relu_cpu_forward(x);
+  } else if (x.is_custom_device()) {
+    return relu_custom_forward(x);
+  } else {
+    PD_THROW("Not implemented.");
+  }
+}
+
+std::vector<paddle::Tensor> ReluBackward(const paddle::Tensor& x,
+                                         const paddle::Tensor& out,
+                                         const paddle::Tensor& grad_out) {
+  if (x.is_cpu()) {
+    return relu_cpu_backward(x, out, grad_out);
+  } else if (x.is_custom_device()) {
+    return relu_custom_backward(x, out, grad_out);
+  } else {
+    PD_THROW("Not implemented.");
+  }
+}
+
+std::vector<paddle::Tensor> ReluDoubleBackward(const paddle::Tensor& out,
+                                               const paddle::Tensor& ddx) {
+  if (out.is_cpu()) {
+    return relu_cpu_double_backward(out, ddx);
+  } else if (out.is_custom_device()) {
+    return relu_custom_double_backward(out, ddx);
+  } else {
+    PD_THROW("Not implemented.");
+  }
+}
+```
+
+支持的 C++ 运算 API 可参考 [类 Python 的 C++运算 API](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/custom_op/new_cpp_op_cn.html#python-c-api)
+
 ### 维度与类型推导函数实现
 
 `PaddlePaddle` 框架同时支持动态图与静态图的执行模式，在静态图模式下，组网阶段需要完成 `Tensor shape` 和 `dtype` 的推导，从而生成正确的模型描述，用于后续 Graph 优化与执行。因此，除了算子的运算函数之外，还需要实现前向运算的维度和类型的推导函数。
