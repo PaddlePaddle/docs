@@ -26,9 +26,10 @@ MultiplicativeDecay
     - **learning_rate** （float） - 初始学习率，数据类型为 Python float。
     - **lr_lambda** （function）- lr_lambda 为一个 lambda 函数，其通过 epoch 计算出一个因子，该因子会乘以当前学习率。
     - **last_epoch** （int，可选）- 上一轮的轮数，重启训练时设置为上一轮的 epoch 数。默认值为 -1，则为初始学习率。
-    - **verbose** （bool，可选）- 如果是 ``True``，则在每一轮更新时在标准输出 `stdout` 输出一条信息。默认值为 ``False`` 。
+    - **verbose** （bool，可选）- 如果是 ``True``，则在每一轮更新时在标准输出 `stdout` 输出一条信息，默认值为 ``False`` 。
 
 返回
+::::::::::::
 ::::::::::::
 用于调整学习率的 ``MultiplicativeDecay`` 实例对象。
 
@@ -48,10 +49,27 @@ step 函数需要在优化器的 `optimizer.step()` 函数之后调用，调用�
 
   - **epoch** （int，可选）- 指定具体的 epoch 数。默认值 None，此时将会从-1 自动累加 ``epoch`` 数。
 
-**返回**
-
-无。
 
 **代码示例**
 
+.. code-block:: python
+            import paddle
+            # train on default dynamic graph mode
+            linear = paddle.nn.Linear(10, 10)
+            scheduler = paddle.optimizer.lr.MultiplicativeDecay(learning_rate=0.5, lr_lambda=lambda x:0.95, verbose=True)
+            sgd = paddle.optimizer.SGD(learning_rate=scheduler, parameters=linear.parameters())
+            for epoch in range(20):
+                for batch_id in range(5):
+                    x = paddle.uniform([10, 10])
+                    out = linear(x)
+                    loss = paddle.mean(out)
+                    loss.backward()
+                    sgd.step()
+                    sgd.clear_gradients()
+                    scheduler.step()    # If you update learning rate each step
+              # scheduler.step()        # If you update learning rate each epoch
 参照上述示例代码。
+
+**返回**
+
+无。
