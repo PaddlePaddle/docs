@@ -3,7 +3,7 @@
 WMT14
 -------------------------------
 
-.. py:class:: paddle.text.datasets.WMT14()
+.. py:class:: paddle.text.datasets.WMT14(data_file=None, mode='train', dict_size=- 1, download=True)
 
 
 该类是对 `WMT14 <http://www.statmt.org/wmt14/>`_ 测试数据集实现。
@@ -13,13 +13,13 @@ http://paddlemodels.bj.bcebos.com/wmt/wmt14.tgz
 
 参数
 :::::::::
-    - **data_file**（str）- 保存数据集压缩文件的路径，如果参数：attr: `download` 设置为 True，可设置为 None。默认为 None。
+    - **data_file** (str，可选) - 保存数据集压缩文件的路径，如果参数 :attr: `download` 设置为 True，可设置为 None。默认为 None。
 
-    - **mode**（str）- 'train'，'test' 或'gen'。默认为'train'。
+    - **mode** (str，可选) - 'train'，'test' 或'gen'。默认为'train'。
 
-    - **dict_size**（int）- 词典大小。默认为-1。
+    - **dict_size** (int，可选) - 词典大小。默认为-1。
 
-    - **download**（bool）- 如果：attr: `data_file` 未设置，是否自动下载数据集。默认为 True。
+    - **download** (bool，可选) - 如果：attr: `data_file` 未设置，是否自动下载数据集。默认为 True。
 
 返回值
 :::::::::
