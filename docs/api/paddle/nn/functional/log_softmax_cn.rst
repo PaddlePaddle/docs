@@ -4,7 +4,7 @@ log_softmax
 -------------------------------
 .. py:function:: paddle.nn.functional.log_softmax(x, axis=-1, dtype=None, name=None)
 
-实现了 log_softmax 层。该OP 的计算公式如下：
+实现了 log_softmax 层。计算公式如下：
 
 .. math::
 
