@@ -16,7 +16,7 @@ make_scheduler
                                 |                        | (if has_repeated < repeat)
                                 - - - - - - - - - - - -
 
-        注：repeat <= 0 意味着该状态转换过程会持续到性能分析器结束。
+        注：has_repeated代表已经重复的次数（周期），当 has_repeated < repeat <= 0 意味着该状态转换过程会持续到性能分析器结束。
 
 参数
 :::::::::

@@ -11,6 +11,6 @@ ProfilerTarget 枚举类用来指定 :ref:`性能分析 <cn_api_profiler_profile
 设备说明
 ::::::::::::
 
-    - **ProfilerTarget.CPU** - 性能分析对象为 CPU 上的活动。
-    - **ProfilerTarget.GPU**  - 性能分析对象为 GPU 上的活动。
-    - **ProfilerTarget.MLU**  - 性能分析对象为 MLU 上的活动。
+    - **ProfilerTarget.CPU** - 性能分析对象的设备为CPU。
+    - **ProfilerTarget.GPU**  - 性能分析对象的设备为GPU。
+    - **ProfilerTarget.MLU**  - 性能分析对象的设备为MLU。
