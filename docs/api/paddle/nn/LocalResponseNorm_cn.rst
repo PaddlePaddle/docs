@@ -21,8 +21,8 @@ LocalResponseNorm
 
 形状
 :::::::::
- - **输入**  ：3-D/4-D/5-D `Tensor` 。
- - **输出**  ：数据类型及维度和输入相同的 `Tensor` 。
+ - **input** ：3-D/4-D/5-D Tensor。
+ - **output** ：数据类型及维度和输入相同的 Tensor。
 
 代码示例
 :::::::::
