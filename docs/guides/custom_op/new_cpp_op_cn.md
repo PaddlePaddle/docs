@@ -909,7 +909,6 @@ void* GetStream(const paddle::Tensor& x) {
   auto custom_ctx = static_cast<const phi::CustomContext*>(dev_ctx);
   void* stream = custom_ctx->stream();
   PD_CHECK(stream != nullptr);
-  custom_ctx->Wait();
 
   return stream;
 }
