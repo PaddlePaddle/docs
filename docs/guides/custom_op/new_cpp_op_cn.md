@@ -893,7 +893,7 @@ std::vector<paddle::Tensor> ReluDoubleBackward(const paddle::Tensor& out,
 
 ##### 获取自定义设备的 stream
 
-用户想要获取设备的 stream 时，可以通过下述方式获取对应 tensor 的 stream（需要添加头文件 `#include "paddle/phi/backends/all_context.h"`）：
+用户想要获取设备的 `stream` 时，可以通过下述方式获取对应 `Tensor` 的 `stream`（需要添加头文件 `#include "paddle/phi/backends/all_context.h"`）：
 
 ```c++
 #include "paddle/extension.h"
