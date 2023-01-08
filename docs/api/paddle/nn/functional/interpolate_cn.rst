@@ -9,7 +9,7 @@ interpolate
 
 调整一个 batch 中图片的大小。
 
-输入为 4-D Tensor 时形状为(num_batches, channels, in_h, in_w)或者(num_batches, in_h, in_w, channels)，输入为 5-D Tensor 时形状为(num_batches, channels, in_d, in_h, in_w)或者(num_batches, in_d, in_h, in_w, channels)，并且调整大小只适用于深度，高度和宽度对应的维度。
+输入为 3-D Tensor 时形状为(num_batches, channels, in_w)，输入为 4-D Tensor 时形状为(num_batches, channels, in_h, in_w)或者(num_batches, in_h, in_w, channels)，输入为 5-D Tensor 时形状为(num_batches, channels, in_d, in_h, in_w)或者(num_batches, in_d, in_h, in_w, channels)，并且调整大小只适用于深度，高度和宽度对应的维度。
 
 支持的插值方法：
 
@@ -26,6 +26,8 @@ interpolate
     AREA：面积插值
 
 
+线性插值是使用连接两个已知量的直线，来确定两个已知量之间的未知量的值的方法。
+
 最近邻插值是在输入 Tensor 的高度和宽度上进行最近邻插值。
 
 双线性插值是线性插值的扩展，用于在直线 2D 网格上插值两个变量（例如，该操作中的 H 方向和 W 方向）的函数。关键思想是首先在一个方向上执行线性插值，然后在另一个方向上再次执行线性插值。
@@ -33,6 +35,8 @@ interpolate
 三线插值是线性插值的一种扩展，是 3 参数的插值方程（比如 op 里的 D,H,W 方向），在三个方向上进行线性插值。
 
 双三次插值是在二维网格上对数据点进行插值的三次插值的扩展，它能创造出比双线性和最近临插值更为光滑的图像边缘。
+
+面积插值是对输入张量进行3维（高度方向）、4维（宽度方向）和5维（深度方向）的面积插值。 设置为area会直接调用 `paddle.nn.functional.adaptive_avg_pool1d` 或 `paddle.nn.functional.adaptive_avg_pool2d` 或 `paddle.nn.functional.adaptive_avg_pool3d` 。
 
 Align_corners 和 align_mode 是可选参数，插值的计算方法可以由它们选择。
 
