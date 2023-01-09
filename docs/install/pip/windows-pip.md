@@ -38,8 +38,8 @@
 
 
 * 默认提供的安装包需要计算机支持 MKL
-* Windows 暂不支持 NCCL，分布式等相关功能
-
+* Windows 原生暂不支持 NCCL，分布式等相关功能
+* 推荐在 WSL2 环境下，根据 Linux 方法安装使用 Paddle
 
 ## 二、开始安装
 

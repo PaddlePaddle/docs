@@ -8,6 +8,8 @@
 
 * Windows 7/8/10 专业版/企业版 (64bit)
 * conda 版本 4.8.3+ (64 bit)
+* Windows 原生暂不支持 NCCL，分布式等相关功能
+* 推荐在 WSL2 环境下，根据 Linux 方法安装使用 Paddle
 
 ### 1.1 创建虚拟环境
 
