@@ -891,6 +891,29 @@ std::vector<paddle::Tensor> ReluDoubleBackward(const paddle::Tensor& out,
 
 支持的 C++ 运算 API 可参考 [类 Python 的 C++运算 API](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/custom_op/new_cpp_op_cn.html#python-c-api)
 
+##### 获取自定义设备的 stream
+
+用户想要获取设备的 `stream` 时，可以通过下述方式获取对应 `Tensor` 的 `stream`（需要添加头文件 `#include "paddle/phi/backends/all_context.h"`）：
+
+```c++
+#include "paddle/extension.h"
+#include "paddle/phi/backends/all_context.h"
+
+#define CHECK_CUSTOM_INPUT(x) \
+  PD_CHECK(x.is_custom_device(), #x " must be a custom Tensor.")
+
+void* GetStream(const paddle::Tensor& x) {
+  CHECK_CUSTOM_INPUT(x);
+
+  auto dev_ctx = paddle::experimental::DeviceContextPool::Instance().Get(x.place());
+  auto custom_ctx = static_cast<const phi::CustomContext*>(dev_ctx);
+  void* stream = custom_ctx->stream();
+  PD_CHECK(stream != nullptr);
+
+  return stream;
+}
+```
+
 ### 维度与类型推导函数实现
 
 `PaddlePaddle` 框架同时支持动态图与静态图的执行模式，在静态图模式下，组网阶段需要完成 `Tensor shape` 和 `dtype` 的推导，从而生成正确的模型描述，用于后续 Graph 优化与执行。因此，除了算子的运算函数之外，还需要实现前向运算的维度和类型的推导函数。
