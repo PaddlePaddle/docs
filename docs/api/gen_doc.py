@@ -599,6 +599,7 @@ def set_referenced_from_attr():
                     rev_apis_refers[api] = [docfn]
         for api in rev_apis_refers:
             try:
+                logger.warning("current api name: %s", api)
                 m = eval(api)
             except AttributeError:
                 logger.warning("AttributeError: %s", api)
