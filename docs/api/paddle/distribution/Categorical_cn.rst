@@ -174,9 +174,9 @@ probs(value)
 '''''''''
 
 所选择类别的概率。
-如果 ``logtis`` 是 2-D 或更高阶的 Tensor，那么其最后一个维度表示不同类别的概率，其它维度被看做不同的概率分布。
+如果 ``logits`` 是 2-D 或更高阶的 Tensor，那么其最后一个维度表示不同类别的概率，其它维度被看做不同的概率分布。
 同时，如果 ``value`` 是 1-D Tensor，那么 ``value`` 会 broadcast 成与 ``logits`` 具有相同的概率分布数量。
-如果 ``value`` 为更高阶 Tensor，那么 ``value`` 应该与 ``logits`` 具有相同的概率分布数量。也就是说，``value[:-1] = logits[:-1]`` 。
+如果 ``value`` 为更高阶 Tensor，那么 ``value`` 应该与 ``logits`` 具有相同的概率分布数量。也就是说，``value.shape[:-1] = logits.shape[:-1]`` 。
 
 **参数**
 
