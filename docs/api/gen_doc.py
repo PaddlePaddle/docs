@@ -602,6 +602,8 @@ def set_referenced_from_attr():
                 m = eval(api)
             except AttributeError:
                 logger.warning("AttributeError: %s", api)
+            except NameError:
+                logger.warning("NameError: %s", api)
             else:
                 api_id = id(m)
                 if api_id in api_info_dict:
