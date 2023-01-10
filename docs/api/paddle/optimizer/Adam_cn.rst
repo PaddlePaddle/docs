@@ -125,7 +125,7 @@ append_regularization_ops(parameters_and_grads, regularization=None)
 
 **参数**
 
-    - **parameters_and_grads **  – 需要被正则化的(parameters, gradients)列表。
+    - **parameters_and_grads**  – 需要被正则化的(parameters, gradients)列表。
     - **regularization** – 全局正则化器，如果该参数未被设置正则化策略，将应用该正则化器。
 
 **返回**
