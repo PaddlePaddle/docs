@@ -237,6 +237,7 @@ PADDLE_API Tensor abs(const Tensor& x);
 PADDLE_API Tensor acos(const Tensor& x);
 PADDLE_API Tensor acosh(const Tensor& x);
 PADDLE_API Tensor add(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor addmm(const Tensor& input, const Tensor& x, const Tensor& y, float beta = 1.0, float alpha = 1.0);
 PADDLE_API Tensor allclose(const Tensor& x, const Tensor& y, const Scalar& rtol, const Scalar& atol, bool equal_nan);
 PADDLE_API std::tuple<Tensor,Tensor> argsort(const Tensor& x, int axis, bool descending);
 PADDLE_API Tensor asin(const Tensor& x);
@@ -264,6 +265,7 @@ PADDLE_API Tensor dot(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor elu(const Tensor& x, float alpha);
 PADDLE_API Tensor empty(const IntArray& shape, DataType dtype=DataType::FLOAT32, const Place& place=CPUPlace());
 PADDLE_API Tensor empty_like(const Tensor& x, DataType dtype=DataType::UNDEFINED, const Place& place={});
+PADDLE_API Tensor equal(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor equal_all(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor erf(const Tensor& x);
 PADDLE_API Tensor erfinv(const Tensor& x);
@@ -274,11 +276,18 @@ PADDLE_API std::tuple<Tensor,Tensor> flatten(const Tensor& x, int start_axis, in
 PADDLE_API Tensor flip(const Tensor& x, const std::vector<int>& axis);
 PADDLE_API Tensor floor(const Tensor& x);
 PADDLE_API Tensor floor_divide(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor fmax(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor fmin(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor frame(const Tensor& x, int frame_length, int hop_length, int axis = -1);
 PADDLE_API Tensor full(const IntArray& shape, const Scalar& value, DataType dtype=DataType::FLOAT32, const Place& place=CPUPlace());
 PADDLE_API Tensor gather(const Tensor& x, const Tensor& index, const Scalar& axis=0);
 PADDLE_API Tensor gather_nd(const Tensor& x, const Tensor& index);
 PADDLE_API Tensor gelu(const Tensor& x, bool approximate);
+PADDLE_API Tensor greater_equal(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor greater_than(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor gumbel_softmax(const Tensor& x, float temperature, bool hard, int axis);
+PADDLE_API Tensor hardswish(const Tensor& x);
+PADDLE_API Tensor hardtanh(const Tensor& x, float t_min, float t_max);
 PADDLE_API Tensor imag(const Tensor& x);
 PADDLE_API Tensor increment(const Tensor& x, float value);
 PADDLE_API Tensor index_sample(const Tensor& x, const Tensor& index);
@@ -291,6 +300,8 @@ PADDLE_API Tensor kron(const Tensor& x, const Tensor& y);
 PADDLE_API std::tuple<Tensor,Tensor> kthvalue(const Tensor& x, int k, int axis, bool keepdim);
 PADDLE_API Tensor label_smooth(const Tensor& label, paddle::optional<const Tensor&> prior_dist, float epsilon);
 PADDLE_API Tensor lerp(const Tensor& x, const Tensor& y, const Tensor& weight);
+PADDLE_API Tensor less_equal(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor less_than(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor lgamma(const Tensor& x);
 PADDLE_API Tensor log(const Tensor& x);
 PADDLE_API Tensor log10(const Tensor& x);
@@ -302,6 +313,7 @@ PADDLE_API Tensor matmul(const Tensor& x, const Tensor& y, bool transpose_x=fals
 PADDLE_API Tensor matrix_power(const Tensor& x, int n);
 PADDLE_API Tensor maximum(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor maxout(const Tensor& x, int groups, int axis);
+PADDLE_API std::vector<Tensor> meshgrid(const std::vector<Tensor>& inputs);
 PADDLE_API Tensor minimum(const Tensor& x, const Tensor& y);
 PADDLE_API std::tuple<Tensor,Tensor> mode(const Tensor& x, int axis, bool keepdim);
 PADDLE_API Tensor multi_dot(const std::vector<Tensor>& x);
@@ -309,13 +321,19 @@ PADDLE_API Tensor multinomial(const Tensor& x, int num_samples, bool replacement
 PADDLE_API Tensor multiply(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor mv(const Tensor& x, const Tensor& vec);
 PADDLE_API std::tuple<Tensor,Tensor> nll_loss(const Tensor& input, const Tensor& label, paddle::optional<const Tensor&> weight, int64_t ignore_index, const std::string& reduction);
+PADDLE_API Tensor not_equal(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor one_hot(const Tensor& x, const Scalar& num_classes);
+PADDLE_API Tensor ones(const IntArray& shape, DataType dtype = DataType::FLOAT32, const Place& place = CPUPlace());
+PADDLE_API Tensor overlap_add(const Tensor& x, int hop_length, int axis = -1);
 PADDLE_API Tensor pixel_shuffle(const Tensor& x, int upscale_factor, const std::string& data_format);
 PADDLE_API Tensor poisson(const Tensor& x);
+PADDLE_API Tensor put_along_axis(const Tensor& arr, const Tensor& indices, const Tensor& values, int axis, const std::string& reduce = "assign");
 PADDLE_API std::tuple<Tensor,Tensor> qr(const Tensor& x, const std::string& mode);
 PADDLE_API Tensor real(const Tensor& x);
 PADDLE_API Tensor reciprocal(const Tensor& x);
 PADDLE_API Tensor relu(const Tensor& x);
+PADDLE_API Tensor relu6(const Tensor& x);
+PADDLE_API Tensor remainder(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor reshape(const Tensor& x, const IntArray& shape);
 PADDLE_API Tensor roll(const Tensor& x, const IntArray& shifts, const std::vector<int64_t>& axis);
 PADDLE_API Tensor round(const Tensor& x);
@@ -323,6 +341,9 @@ PADDLE_API Tensor rsqrt(const Tensor& x);
 PADDLE_API Tensor scatter(const Tensor& x, const Tensor& index, const Tensor& updates, bool overwrite);
 PADDLE_API Tensor scatter_nd_add(const Tensor& x, const Tensor& index, const Tensor& updates);
 PADDLE_API Tensor selu(const Tensor& x, float scale, float alpha);
+PADDLE_API Tensor send_u_recv(const Tensor& x, const Tensor& src_index, const Tensor& dst_index, const std::string& reduce_op = "SUM", const IntArray& out_size = {0});
+PADDLE_API Tensor send_ue_recv(const Tensor& x, const Tensor& y, const Tensor& src_index, const Tensor& dst_index, const std::string& message_op, const std::string& reduce_op, const IntArray& out_size);
+PADDLE_API Tensor send_uv(const Tensor& x, const Tensor& y, const Tensor& src_index, const Tensor& dst_index, const std::string& message_op = "ADD");
 PADDLE_API Tensor sign(const Tensor& x);
 PADDLE_API Tensor silu(const Tensor& x);
 PADDLE_API Tensor sin(const Tensor& x);
@@ -333,20 +354,23 @@ PADDLE_API Tensor square(const Tensor& x);
 PADDLE_API Tensor stack(const std::vector<Tensor>& x, int axis);
 PADDLE_API Tensor strided_slice(const Tensor& x, const std::vector<int>& axes, const IntArray& starts, const IntArray& ends, const IntArray& strides);
 PADDLE_API Tensor subtract(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor swish(const Tensor& x);
 PADDLE_API Tensor tanh(const Tensor& x);
 PADDLE_API Tensor thresholded_relu(const Tensor& x, float threshold);
 PADDLE_API Tensor tile(const Tensor& x, const IntArray& repeat_times);
 PADDLE_API Tensor trace(const Tensor& x, int offset, int axis1, int axis2);
 PADDLE_API Tensor triangular_solve(const Tensor& x, const Tensor& y, bool upper, bool transpose, bool unitriangular);
+PADDLE_API Tensor tril(const Tensor& x, int diagonal);
 PADDLE_API std::vector<Tensor> unbind(const Tensor& input, int axis);
 PADDLE_API std::tuple<Tensor,Tensor,Tensor,Tensor> unique(const Tensor& x, bool return_index, bool return_inverse, bool return_counts, const std::vector<int>& axis, DataType dtype=DataType::INT64);
 PADDLE_API std::tuple<Tensor,Tensor> unsqueeze(const Tensor& x, const IntArray& axis);
 PADDLE_API Tensor where(const Tensor& condition, const Tensor& x, const Tensor& y);
+PADDLE_API Tensor zeros(const IntArray& shape, DataType dtype = DataType::FLOAT32, const Place& place = CPUPlace());
 ```
 
 > 注：后续我们会提供更方便的查阅 C++ API 文档的入口。
 
-在 2.3 版本，我们共支持了大约 250 个类似的 C++ API，能够覆盖大部分的基础运算，但是除前述的 109 个 C++ API 之外，剩余的 C++ API 由于一些历史原因，其参数列表尚未和相应的 Python API 对齐，因此目前剩余这些 API 只能作为 experimental 的 API 使用，需要通过 `paddle::experimental::xxx` 进行调用，且这些 experimental API 在下个版本可能会有不兼容的升级，如果不介意随下一版本升级的话，可以使用，追求稳定的话则不建议使用。
+在 2.3 版本，我们共支持了大约 250 个类似的 C++ API，能够覆盖大部分的基础运算，但是除前述的 133 个 C++ API 之外，剩余的 C++ API 由于一些历史原因，其参数列表尚未和相应的 Python API 对齐，因此目前剩余这些 API 只能作为 experimental 的 API 使用，需要通过 `paddle::experimental::xxx` 进行调用，且这些 experimental API 在下个版本可能会有不兼容的升级，如果不介意随下一版本升级的话，可以使用，追求稳定的话则不建议使用。
 
 如有需要，目前支持的全量 API 列表（包含 experimental API）请参考 paddle 安装路径下的 api.h 头文件，以 Python3.7 为例，其路径是 `python3.7/site-packages/paddle/include/paddle/phi/api/include/api.h`。
 
