@@ -5,7 +5,7 @@ ignore_module
 
 .. py:function:: paddle.jit.ignore_module(modules)
 
-本接口可以自定义增加动转静过程中忽略转写的模块，目前默认忽略转写的模块有 collections, pdb, copy, inspect, re, numpy, logging, six
+本接口可以自定义增加动转静过程中忽略转写的模块，目前默认忽略转写的模块有 collections、 pdb、 copy、 inspect、 re、 numpy、 logging、 six。
 
 参数
 ::::::::::::
