@@ -294,7 +294,6 @@ DEBUG:root:AutoTuning Cost for DataLoader: 3.491981267929077 seconds
 ![OP Kernel 自动选择机制](./images/op_image_1.png)
 
 OP Kernel 自动选择功能在具体是实现分为观察阶段、优化阶段和执行阶段，各阶段的主要功能如下：
-
 1. 观察阶段：全部 OP 走入默认算法，确保开发者开发和调试过程中的体验与通常开发一致；
 
 2. 优化阶段：当训练过程进入优化 step 区间时，自动地从 OP 层和框架层两个方面展开优化：
