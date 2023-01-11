@@ -75,7 +75,56 @@ input 中的 id 必须满足 ``0 =< id < size[0]``，否则程序会抛异常退
 Variable，input 映射后得到的 Embedding Tensor，数据类型和 dtype 定义的类型一致。
 
 
-代码示例
+静态示例
 ::::::::::::
 
 COPY-FROM: paddle.static.nn.embedding
+
+动态示例
+::::::::::::
+
+.. code-block:: python
+
+    import paddle
+    import numpy as np
+
+    x_data = np.arange(3, 6).reshape((3, 1)).astype(np.int64)
+
+    # x is a Tensor.
+    # x.data = [[3], [4], [5]]
+    # x.shape = [3, 1]
+    x = paddle.to_tensor(x_data, stop_gradient=False)
+
+    # embedding weight shape = [10, 3]
+    embedding = paddle.nn.Embedding(10, 3, sparse=True)
+
+    # embedding weight data = [10, 3]
+    w0 = np.full(shape=(10, 3), fill_value=2).astype(np.float32)
+
+    # embedding.weight.shape = [10, 3]
+    # embedding.weight.data =
+    #                        [[2., 2., 2.],
+    #                         [2., 2., 2.],
+    #                         [2., 2., 2.],
+    #                         [2., 2., 2.],
+    #                         [2., 2., 2.],
+    #                         [2., 2., 2.],
+    #                         [2., 2., 2.],
+    #                         [2., 2., 2.],
+    #                         [2., 2., 2.],
+    #                         [2., 2., 2.]]
+    embedding.weight.set_value(w0)
+
+    adam = paddle.optimizer.Adam(
+        parameters=[embedding.weight], learning_rate=0.01)
+    adam.clear_grad()
+
+    # out is Tensor
+    # out.shape: [3, 1, 3]
+    # out.layout: NCHW
+    # out.dtype: float
+    # out.data: [2 2 2 2 2 2 2 2 2]
+    out = embedding(x)
+
+    out.backward()
+    adam.step()
