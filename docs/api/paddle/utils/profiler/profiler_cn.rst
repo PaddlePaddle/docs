@@ -1,9 +1,9 @@
-.. _cn_api_paddle_utils_profiler_profier:
+.. _cn_api_paddle_utils_profiler_profiler:
 
-profier
+profiler
 -------------------------------
 
-.. py:function:: paddle.utils.profier.profier(state, sorted_key=None, profile_path='/tmp/profile', tracer_option='Default')
+.. py:function:: paddle.utils.profiler.profiler(state, sorted_key=None, profile_path='/tmp/profile', tracer_option='Default')
 
 探查器接口。与fluid.profiler.cuda_profiler不同，此分析器可用于分析 CPU 和 GPU 程序。
 
