@@ -291,11 +291,11 @@ DEBUG:root:AutoTuning Cost for DataLoader: 3.491981267929077 seconds
 <figure align="center">
     <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/layout_image_3.png?raw=true" width="600" alt='missing' align="center"/>
 </figure>
-1. 功能与数据布局强相关，性能影响较弱的算子：例如 Flatten，由于计算过程涉及到张量维度配置，其功能会受数据布局的影响。根据输入的数据布局，首先尝试调整 start 和 stop 的 axis 达到等效的结果，当无法通过调整算子参数达到等效时，再将输入转换回原始的数据布局进行计算。
+2. 功能与数据布局强相关，性能影响较弱的算子：例如 Flatten，由于计算过程涉及到张量维度配置，其功能会受数据布局的影响。根据输入的数据布局，首先尝试调整 start 和 stop 的 axis 达到等效的结果，当无法通过调整算子参数达到等效时，再将输入转换回原始的数据布局进行计算。
 <figure align="center">
     <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/layout_image_4.png?raw=true" width="600" alt='missing' align="center"/>
 </figure>
-1. 功能和性能与数据布局无关的算子：例如 Relu，这类算子无需做数据布局的转换，只需将输入的数据布局传递给输出。
+3. 功能和性能与数据布局无关的算子：例如 Relu，这类算子无需做数据布局的转换，只需将输入的数据布局传递给输出。
 <figure align="center">
     <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/layout_image_5.png?raw=true" width="600" alt='missing' align="center"/>
 </figure>
@@ -320,7 +320,7 @@ OP Kernel 自动选择功能在具体是实现分为观察阶段、优化阶段�
 2. 优化阶段：当训练过程进入优化 step 区间时，自动地从 OP 层和框架层两个方面展开优化：
 * OP 层：自动采用穷举计算模式，针对当前 OP 的输入调用全部可用算法并比较各算法的性能，从中选出最高效算法后，利用 Cache 机制将当前计算场景与被选中算法进行绑定，保证当前计算场景在后续复现时，OP 内可以立即查询 Cache 执行最高性能算法。
 * 框架层：飞桨会在优化阶段的每个 step 计算结束后，统计并实时反馈当前 OP 的平均 Cache 命中率，直到达到优化的目标 step 后结束优化过程，进入执行阶段。
-1. 执行阶段：根据 Cache 信息调用最佳算法完成 OP 计算，后续计算中若出现数据变换等情形，则走入默认计算分支，避免庞大的算法选择开销。
+ 执行阶段：根据 Cache 信息调用最佳算法完成 OP 计算，后续计算中若出现数据变换等情形，则走入默认计算分支，避免庞大的算法选择开销。
 整个流程如下图所示，调优区间可以通过 config 中的 tuning_range 设置。对于参数波动较大的模型，增大调优区间的范围可以增大 cache 命中的几率、进而提高模型的性能。
 <figure align="center">
     <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/op_image_2.png?raw=true" width="600" alt='missing' align="center"/>
