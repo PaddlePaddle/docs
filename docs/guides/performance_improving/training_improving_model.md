@@ -14,11 +14,7 @@
 
 3. 多版本 OP Kernel 选择：根据当前模型配置、选择性能最佳的 Kernel。整个训练过程将被分为观察、调优和应用三个阶段。观察阶段，使用默认实现便于调试；调优阶段，使用穷举搜索法选择代价最小的 Kernel 进行缓存；应用阶段，依据算子配置从缓存中获取算法，若未命中则使用默认实现。基于该功能，模型在输入尺寸固定或动态变化的场景下均可通过算法搜索获得性能提升。
 以上调优技术在模型训练中位置如下图所示：
-<figure align="center">
-    <img src="./images/training_image.png?raw=true" width="600" alt='missing' align="center"/>
-    <figcaption><center>调优技术在模型训练中位置示意图</center></figcaption>
-</figure>
-
+![调优技术在模型训练中位置示意图](./images/training_image.png)
 ### 1.1.2 一键开启自动调优
 自动调优的所有功能可通过 paddle.incubate.autotune.set_config() 进行一键开启，也可以根据调试需求通过 enable 参数选择开启特定的调优功能：
 
@@ -56,6 +52,7 @@ paddle.incubate.autotune.set_config(config)
 
 ## 1.3 模型调优效果
 通过实验对比发现，飞桨框架在开启自动调优功能后，模型的训练性能可以持平甚至超越专家级手工配置优化的效果。在多数模型中，相对飞桨或其他框架的默认配置都有大幅度的性能提升。下图展示了一键开启自动调优后不同模型的性能数据。
+
 <figure align="center">
     <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/training_data_image.png?raw=true" width="600" alt='missing' align="center"/>
     <figcaption><center> 一键开启自动调优后模型性能数据图</center></figcaption>
