@@ -15,7 +15,7 @@
 3. 多版本 OP Kernel 选择：根据当前模型配置、选择性能最佳的 Kernel。整个训练过程将被分为观察、调优和应用三个阶段。观察阶段，使用默认实现便于调试；调优阶段，使用穷举搜索法选择代价最小的 Kernel 进行缓存；应用阶段，依据算子配置从缓存中获取算法，若未命中则使用默认实现。基于该功能，模型在输入尺寸固定或动态变化的场景下均可通过算法搜索获得性能提升。
 以上调优技术在模型训练中位置如下图所示：
 <figure align="center">
-    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/training_image.png?raw=true" width="600" alt='missing' align="center"/>
+    <img src="./images/training_image.png?raw=true" width="600" alt='missing' align="center"/>
     <figcaption><center>调优技术在模型训练中位置示意图</center></figcaption>
 </figure>
 
