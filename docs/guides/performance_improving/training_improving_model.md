@@ -286,7 +286,7 @@ DEBUG:root:AutoTuning Cost for DataLoader: 3.491981267929077 seconds
     <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/layout_image_2.png?raw=true" width="600" alt='missing' align="center"/></figure>
 1. 功能和性能与数据布局强相关的算子：例如 Conv，这类算子会在输入不是最佳数据布局时，会将输入转换为最佳数据布局。
 <figure align="center">
-    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/layout_image_3.png.png?raw=true" width="600" alt='missing' align="center"/>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/layout_image_3.png?raw=true" width="600" alt='missing' align="center"/>
 </figure>
 1. 功能与数据布局强相关，性能影响较弱的算子：例如 Flatten，由于计算过程涉及到张量维度配置，其功能会受数据布局的影响。根据输入的数据布局，首先尝试调整 start 和 stop 的 axis 达到等效的结果，当无法通过调整算子参数达到等效时，再将输入转换回原始的数据布局进行计算。
 <figure align="center">
