@@ -56,7 +56,7 @@ paddle.incubate.autotune.set_config(config)
 ## 1.3 模型调优效果
 通过实验对比发现，飞桨框架在开启自动调优功能后，模型的训练性能可以持平甚至超越专家级手工配置优化的效果。在多数模型中，相对飞桨或其他框架的默认配置都有大幅度的性能提升。下图展示了一键开启自动调优后不同模型的性能数据。
 <figure align="center">
-    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/training_data_image.png?raw=true" width="600" alt='missing' align="center"/>
+    <img src="./images/training_data_image.png?raw=true" width="600" alt='missing' align="center"/>
     <figcaption><center> 一键开启自动调优后模型性能数据图</center></figcaption>
 </figure>
 
