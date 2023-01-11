@@ -18,6 +18,10 @@
     <img src="https://github.com/niuliling123/docs/blob/training/docs/guides/performance_improving/images/training_image.png?raw=true" width="600" alt='missing' align="center"/>
     <figcaption><center>调优技术在模型训练中位置示意图</center></figcaption>
 </figure>
+<figure align="center">
+    <img src="https://github.com/niuliling123/docs/blob/training/docs/guides/performance_improving/images/training_image.png?raw=true" width="600" alt='missing' align="center"/>
+    <figcaption><center>图 1. 半精度和单精度数据格式示意图</center></figcaption>
+</figure>
 
 ### 1.1.2 一键开启自动调优
 自动调优的所有功能可通过 paddle.incubate.autotune.set_config() 进行一键开启，也可以根据调试需求通过 enable 参数选择开启特定的调优功能：
