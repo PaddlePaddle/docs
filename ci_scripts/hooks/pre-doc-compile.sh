@@ -10,7 +10,7 @@ FILES_ARRAY=("https://raw.githubusercontent.com/PaddlePaddle/X2Paddle/develop/do
 "https://raw.githubusercontent.com/PaddlePaddle/X2Paddle/develop/docs/pytorch_project_convertor/API_docs/utils/README.md"
 "https://raw.githubusercontent.com/PaddlePaddle/X2Paddle/develop/docs/pytorch_project_convertor/API_docs/vision/README.md"
 )
-TARGET_FILE=${SCRIPT_DIR}/../../docs/guides/08_api_mapping/pytorch_api_mapping_cn.md
+TARGET_FILE=${SCRIPT_DIR}/../../docs/guides/model_convert/convert_from_pytorch/pytorch_api_mapping_cn.md
 TMP_FILE=/tmp/merge_pytorch_to_paddle_maptables.tmp
 
 echo -n > ${TARGET_FILE}
