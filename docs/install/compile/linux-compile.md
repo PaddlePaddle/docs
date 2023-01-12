@@ -137,13 +137,8 @@ git checkout develop
 
 注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
 
-#### 7. 创建并进入/paddle/build 路径下：
 
-```
-mkdir -p /paddle/build && cd /paddle/build
-```
-
-#### 8. 使用以下命令安装相关依赖：
+#### 7. 使用以下命令安装相关依赖：
 
 - 安装 protobuf。
 
@@ -159,8 +154,11 @@ pip3.7 install protobuf
 apt install patchelf
 ```
 
+#### 8. 可使用以下两种方式编译PaddlePaddle：
 
-#### 9. 执行 cmake：
+##### 8.1. 使用cmake，make编译PaddlePaddle：
+
+###### 8.1.1. 执行 cmake：
 
 * 对于需要编译**CPU 版本 PaddlePaddle**的用户：
     ```
@@ -177,7 +175,7 @@ apt install patchelf
 
 - 我们目前不支持 CentOS 6 下使用 Docker 编译 GPU 版本的 PaddlePaddle
 
-#### 10. 执行编译：
+###### 8.1.2. 执行编译：
 
 使用多核编译
 
@@ -188,13 +186,13 @@ make -j$(nproc)
 注意：
 编译过程中需要从 github 上下载依赖，请确保您的编译环境能正常从 github 下载代码。
 
-#### 11. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
+###### 8.1.3. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 
 ```
 cd /paddle/build/python/dist
 ```
 
-#### 12. 在当前机器或目标机器安装编译好的`.whl`包：
+###### 8.1.4. 在当前机器或目标机器安装编译好的`.whl`包：
 
 
 For Python3:
@@ -205,8 +203,52 @@ pip3.7 install -U [whl 包的名字]
 注意：
 以上用 Python3.7 命令来举例，如您的 Python 版本为 3.6/3.8/3.9，请将上述命令中的 pip3.7 改成 pip3.6/pip3.8/pip3.9。
 
-#### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
+###### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 
+##### 8.2. 使用setup.py编译PaddlePaddle：
+
+###### 8.2.1. export环境变量控制编译选项：
+
+* 对于需要编译**CPU 版本 PaddlePaddle**的用户：
+    ```
+    export PY_VERSION=3.7 WITH_GPU=OFF
+    ```
+
+* 对于需要编译**GPU 版本 PaddlePaddle**的用户：
+    ```
+    export PY_VERSION=3.7 WITH_GPU=ON
+    ```
+- 此处export的环境变量即为camke编译选项，具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
+
+- 请注意修改参数`PY_VERSION`为您希望编译使用的 python 版本,  例如`export PY_VERSION=3.7`表示 python 版本为 3.7
+
+- 我们目前不支持 CentOS 6 下使用 Docker 编译 GPU 版本的 PaddlePaddle
+
+###### 8.2.1. 执行setup.py进行编译和打包，以下三种命令均可：
+
+* 将包直接安装到python环境下：
+    ```
+    python3.7 setup.py install
+    ```
+ - `install命令`：将包复制到python3.7/site-packages下。
+注意：
+以上用 Python3.7 命令来举例，如您的 Python 版本为3.8/3.9/3.10等，请将上述命令中的python改成 python3.7/python3.8/python3.9,pip同理.
+
+* ：在python环境中创建一个软链接指向包实际所在目录
+    ```
+    python3.7 setup.py develop
+    ```
+- `develop命令`：不会拷贝包到本地Python环境的”site-packages”目录下，而是在”site-packages”目录里创建一个指向当前项目位置的软链接。这样如果当前位置的源码被改动，就会马上反映到”site-packages”里。该方法不会真正的安装包，而是在系统环境中创建一个软链接指向包实际所在目录，便于调试。
+
+* ：编译得到whl包，通过pip install即可安装到.whl包
+    ```
+    python3.7 setup.py bdist_wheel
+    cd /paddle/dist
+    pip3.7 install -U [whl 包的名字]
+    ```
+- `bdist_wheel命令`：得到.whl包，存在/paddle/dist目录下。
+
+###### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 
 <a name="ct_source"></a>
 ### <span id="compile_from_host">本机编译</span>
