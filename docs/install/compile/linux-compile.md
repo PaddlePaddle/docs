@@ -320,7 +320,6 @@ uname -m && cat /etc/*release
         sudo apt install -y libnccl2=2.7.8-1+cuda10.2 libnccl-dev=2.7.8-1+cuda10.2
         ```
 
-
 #### 4. 安装必要的工具
 
 * CentOS 环境
