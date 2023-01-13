@@ -4,7 +4,7 @@ group_sharded_parallel
 -------------------------------
 
 
-.. py:function:: paddle.distributed.sharding.group_sharded_parallel(model, optimizer, level, scaler=None, group=None, offload=False, sync_buffers=False, buffer_max_size=2**23, segment_size=2**20, sync_comm=False)
+.. py:function:: paddle.distributed.sharding.group_sharded_parallel(model, optimizer, level, scaler=None, group=None, offload=False, sync_buffers=False, buffer_max_size=2**23, segment_size=2**20, sync_comm=False, dp_group=None, exclude_layer=None)
 
 使用 group_sharded_parallel 可以对模型、优化器和 GradScaler 做 group sharded 配置。level 有三个字符串选项，分别是'os','os_g','p_g_os'，分别对应优化器状态切分、优化器状态+梯度切分、参数+梯度+优化器状态切分三种不同的使用场景。
 通常情况下优化器状态+梯度切分实际上是优化器状态切分的一种再优化，所以实现上可以用优化器状态+梯度切分实现优化器状态切分。
