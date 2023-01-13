@@ -1,6 +1,6 @@
 # 使用 X2Paddle 迁移推理模型
 
-飞桨开源了模型转换工具 X2Paddle，可帮助其它深度学习框架用户快速迁移至飞桨框架，本文介绍推理模型的迁移方法，迁移后的推理模型可直接使用飞桨一系列的模型部署工具（如服务器部署 Paddle Inference、移动/IoT 端部署 Paddle Lite 等）完成模型推理部署。
+飞桨开源了模型转换工具 X2Paddle，可帮助其它深度学习框架用户快速迁移至飞桨框架。本文介绍推理模型的迁移方法，迁移后的推理模型可直接使用飞桨一系列的模型部署工具（如服务器部署 Paddle Inference、移动/IoT 端部署 Paddle Lite 等）完成模型推理部署。
 
 > 说明：通常情况下，如果迁移后的模型不需要再训练，仅用于推理部署，可采用本章方法；如果还需要训练，则不能用此方法，需参考迁移训练代码的方法，如 [从 PyTorch 迁移到飞桨](./convert_from_pytorch/index_cn.html) 章节。
 
@@ -25,7 +25,7 @@
 
 #### 1.3.1 飞桨模型转换工具 X2Paddle
 
-X2Paddle 是飞桨官方提供的模型转换工具，简洁易用，通过一条命令行或者一个 API 即可完成模型转换。已在 GitHub 社区开源：https://github.com/PaddlePaddle/X2Paddle。
+X2Paddle 是飞桨官方提供的模型转换工具，简洁易用，通过一条命令行或者一个 API 即可完成模型转换。已在 GitHub 社区开源：[https://github.com/PaddlePaddle/X2Paddle](https://github.com/PaddlePaddle/X2Paddle)
 
 #### 1.3.2 使用 Python API 迁移
 
@@ -108,17 +108,17 @@ x2paddle --framework=caffe --prototxt=deploy.prototxt --weight=deploy.caffemodel
 
 | **参数**             | **说明**                                                     |
 | -------------------- | ------------------------------------------------------------ |
-| --framework          | 源模型类型（tensorflow、caffe、onnx）                        |
-| --model              | 当 framework 为 tensorflow/onnx 时，该参数指定 tensorflow 的 pb 模型文件或 onnx 模型路径 |
-| --prototxt           | 当 framework 为 caffe 时，该参数指定 caffe 模型的 proto 文件路径 |
-| --weight             | 当 framework 为 caffe 时，该参数指定 caffe 模型的参数文件路径 |
-| --save_dir           | 指定转换后的模型保存目录路径                                 |
-| --define_input_shape | **[可选]** For TensorFlow, 当指定该参数时，强制用户输入每个 Placeholder 的 shape，见[文档 Q2](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/FAQ.md) |
-| --caffe_proto        | **[可选]** 由 caffe.proto 编译成 caffe_pb2.py 文件的存放路径，当存在自定义 Layer 时使用，默认为 None |
-| --to_lite            | **[可选]** 是否使用 opt 工具转成 Paddle-Lite 支持格式，默认为 False |
-| --lite_valid_places  | **[可选]** 指定转换类型，可以同时指定多个 backend(以逗号分隔)，opt 将会自动选择最佳方式，默认为 arm |
-| --lite_model_type    | **[可选]** 指定模型转化类型，目前支持两种类型：protobuf 和 naive_buffer，默认为 naive_buffer |
-| --disable_feedback   | **[可选]** 是否关闭 X2Paddle 使用反馈；X2Paddle 默认会统计用户在进行模型转换时的成功率，以及转换框架来源等信息，以便于帮忙 X2Paddle 根据用户需求进行迭代，不会上传用户的模型文件。如若不想参与反馈，可指定此参数为 False 即可 |
+| framework          | 源模型类型（tensorflow、caffe、onnx）                        |
+| model              | 当 framework 为 tensorflow/onnx 时，该参数指定 tensorflow 的 pb 模型文件或 onnx 模型路径 |
+| prototxt           | 当 framework 为 caffe 时，该参数指定 caffe 模型的 proto 文件路径 |
+| weight             | 当 framework 为 caffe 时，该参数指定 caffe 模型的参数文件路径 |
+| save_dir           | 指定转换后的模型保存目录路径                                 |
+| define_input_shape | **[可选]** For TensorFlow, 当指定该参数时，强制用户输入每个 Placeholder 的 shape，见[文档 Q2](https://github.com/PaddlePaddle/X2Paddle/blob/develop/docs/inference_model_convertor/FAQ.md) |
+| caffe_proto        | **[可选]** 由 caffe.proto 编译成 caffe_pb2.py 文件的存放路径，当存在自定义 Layer 时使用，默认为 None |
+| to_lite            | **[可选]** 是否使用 opt 工具转成 Paddle-Lite 支持格式，默认为 False |
+| lite_valid_places  | **[可选]** 指定转换类型，可以同时指定多个 backend(以逗号分隔)，opt 将会自动选择最佳方式，默认为 arm |
+| lite_model_type    | **[可选]** 指定模型转化类型，目前支持两种类型：protobuf 和 naive_buffer，默认为 naive_buffer |
+| disable_feedback   | **[可选]** 是否关闭 X2Paddle 使用反馈；X2Paddle 默认会统计用户在进行模型转换时的成功率，以及转换框架来源等信息，以便于帮忙 X2Paddle 根据用户需求进行迭代，不会上传用户的模型文件。如若不想参与反馈，可指定此参数为 False 即可 |
 
 #### 1.3.4 查看转换结果
 
@@ -195,7 +195,7 @@ pip install paddlelite==2.11
 
 **（1）加载 Pytorch 模型和参数**
 
-> **说明：Pytorch 模型转换需要准备 Module 组网代码和训练好的** `**.pth**` **模型参数文件。**
+> **说明：Pytorch 模型转换需要准备 Module 组网代码和训练好的 `.pth` 模型参数文件。**
 
 ```python
 from torchvision.models import AlexNet
@@ -379,9 +379,9 @@ pd_model
 
 ## 四、迁移常见问题
 
-**Q：**模型转换后提示 OP 不支持怎么处理？
+**Q：模型转换后提示 OP 不支持怎么处理？**
 
-**A：**模型转换后，如果存在不支持的 OP，将提示类似下图信息：
+**A：模型转换后，如果存在不支持的 OP，将提示类似下图信息：**
 
 ![img](./images/x2paddle_op_not_support.png)
 
