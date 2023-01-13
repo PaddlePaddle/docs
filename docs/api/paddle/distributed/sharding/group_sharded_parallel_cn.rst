@@ -22,8 +22,8 @@ group_sharded_parallel
     - **buffer_max_size** (int，可选) - 在'os_g'模式中会对梯度进行聚合，此选项指定聚合 buffer 的大小，指定越大则占用显存也越多，默认为 2**23，表示聚合 buffer 的维度为 2**23。
     - **segment_size** (int，可选) - 在'p_g_os'模式中会对参数进行切分，此选项指定最小切分参数大小，默认为 2**20，表示最小被切分参数的维度为 2**20。
     - **sync_comm** (bool，可选) - 在'p_g_os'模式中是否采用同步通信，默认为 False，表示使用异步通信流。
-    - **dp_group** (Group, 可选) - 数据并行（data parallel）通信组，支持sharding的stage2和stage3和数据并行一起混合使用。
-    - **exclude_layer** (list, 可选) - 在sharding stage3中，可以设置某些layer的参数不切分（通过layer的类型或id控制），例如：exclude_layer=["GroupNorm", id(model.gpt.linear)]。
+    - **dp_group** (Group, 可选) - 数据并行（data parallel）通信组，支持 sharding 的 stage2 和 stage3 和数据并行一起混合使用。
+    - **exclude_layer** (list, 可选) - 在 sharding stage3 中，可以设置某些 layer 的参数不切分（通过 layer 的类型或 id 控制），例如： exclude_layer=["GroupNorm", id(model.gpt.linear)]。
 
 返回
 :::::::::
