@@ -1,3 +1,10 @@
+# 2.4.1 Release Note
+
+
+去除飞桨对python.so的依赖，修复在包括conda在内的特定的环境下，因无法找到python.so而造成运行失败的Bug。
+
+
+
 # 2.4.0 Release Note
 
 ## 1. 重要更新
