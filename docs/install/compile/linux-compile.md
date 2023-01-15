@@ -154,11 +154,11 @@ pip3.7 install protobuf
 apt install patchelf
 ```
 
-#### 8. 可使用以下两种方式编译 PaddlePaddle：
-
+#### 8. 使用以下任意一种方式编译安装 Paddle：
+简介：目前支持两种编译方式（推荐方式二），方式一通过 cmake，make 得到 whl 包，最后需手动 pip install .whl 包到 python 环境下；方式二使用 setup.py，相比于方式一，方式二将编译和打包的过程一体化，并将 paddle 安装到 python 环境下，当改动 python 代码时，编译效率会提升。
 ##### 8.1. 方式一:使用 cmake，make 编译 PaddlePaddle：
 
-###### 8.1.1. 请创建并进入一个叫 build 的目录下：
+###### 8.1.1. 创建并进入/paddle/build 路径下：
     ```
     mkdir build && cd build
     ```
@@ -207,7 +207,6 @@ pip3.7 install -U [whl 包的名字]
 注意：
 以上用 Python3.7 命令来举例，如您的 Python 版本为 3.6/3.8/3.9，请将上述命令中的 pip3.7 改成 pip3.6/pip3.8/pip3.9。
 
-###### 恭喜，至此您用方式一已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 
 ##### 8.2. 使用 setup.py 编译 PaddlePaddle：
 
@@ -228,21 +227,23 @@ pip3.7 install -U [whl 包的名字]
 
 - 我们目前不支持 CentOS 6 下使用 Docker 编译 GPU 版本的 PaddlePaddle
 
-###### 8.2.2. 进入/paddle 目录下执行 setup.py 进行编译和打包，以下三种命令 install，develop，bdist_wheel 均可：
+###### 8.2.2. 进入/paddle 目录下执行 setup.py：
 
-* install 命令将包直接安装到 python 环境下，如在 python3.7 环境下，将.egg 包拷贝到"python3.7/site-packages"下。
+简介：setup.py 目前支持 3 种功能，分别是 install 命令，develop 命令和 bdist_wheel 命令，三种命令都可编译。
+
+* install 命令将包直接安装到 python 环境下，如在 python3.7 环境下，将.egg 包拷贝到"python3.7/site-packages"下。当您的包不需要编辑、修改或调试时，推荐此命令。
     ```
     python3.7 setup.py install
     ```
 
-* develop 命令在 python 环境中创建一个软链接指向包实际所在目录。
+* develop 命令在“python/site-packages”下创建一个软链接指向包实际所在目录，在修改了相关文件之后不用再安装便能生效，便于开发调试，推荐在调试阶段使用此命令。
     ```
     python3.7 setup.py develop
     ```
 
-上例中，`develop 命令`不会拷贝包到本地 Python 环境的`python3.7/site-packages`目录下，而是在 site-packages 目录下创建一个指向当前项目位置（build/python）的软链接。好处在于如果当前位置的源码被改动，再次执行`python3.7 setup.py develop`就会立刻反应到”site-packages”里，便于 debug。
+上例中，`develop 命令`不会拷贝包到本地 Python 环境的`python3.7/site-packages`目录下，而是在 site-packages 目录下创建一个指向当前项目位置（build/python）的软链接（.egg-link）。好处在于如果当前位置的源码被改动，再次执行`python3.7 setup.py develop`就会立刻反应到”site-packages”里，便于 debug。
 
-* bdist_wheel 命令编译得到.whl 包，编译完成后得到的.whl 包保存在/paddle/dist 目录下，需要手动通过 pip install 命令安装.whl 包到 python 环境。
+* bdist_wheel 命令编译得到.whl 包，编译完成后得到的.whl 包保存在/paddle/dist 目录下，需要手动通过 pip install 命令安装.whl 包到 python 环境，与方式-中得到的 whl 包一样。
     ```
     python3.7 setup.py bdist_wheel
 
@@ -530,11 +531,13 @@ cd Paddle
 git checkout develop
 ```
 
-##### 10. 可使用以下两种方式编译 PaddlePaddle：
+##### 10. 使用以下任意一种方式编译安装 Paddle：
+
+简介：目前支持两种编译方式（推荐方式二），方式一通过 cmake，make 得到 whl 包，最后需手动 pip install .whl 包到 python 环境下；方式二使用 setup.py，相比于方式一，方式二将编译和打包的过程一体化，并将 paddle 安装到 python 环境下，并且当改动 python 代码时，编译效率会提升。
 
 ##### 10.1. 方式一:使用 cmake，make 编译 PaddlePaddle：
 
-###### 10.1.1. 请创建并进入一个叫 build 的目录下：
+###### 10.1.1. 创建并进入/paddle/build 路径下：
 
     ```
     mkdir build && cd build
@@ -622,7 +625,7 @@ pip install -U（whl 包的名字）
 pip3 install -U（whl 包的名字）
 ```
 
-###### 恭喜，至此您已使用方式一完成 PaddlePaddle 的编译安装
+
 
 ##### 10.2. 方式二：使用 setup.py 编译 PaddlePaddle：
 
@@ -650,21 +653,23 @@ pip3 install -U（whl 包的名字）
     ```
 注意：以上涉及 Python3 的命令，用 Python3.7 来举例，如您的 Python 版本为 3.8/3.9，请将上述命令中的 Python3.7 改成 Python3.8/Python3.9
 
-###### 10.2.2. 进入/paddle 目录执行 setup.py 进行编译和打包，以下三种命令 install，develop，bdist_wheel 均可：
+###### 10.2.2. 进入/paddle 目录执行 setup.py：
 
-* install 命令将包直接安装到 python 环境下，如在 python3.7 环境下，将.egg 包拷贝到"python3.7/site-packages"下。
+简介：setup.py 目前支持 3 种功能，分别是 install 命令，develop 命令和 bdist_wheel 命令，三种命令都可编译。
+
+* install 命令将包直接安装到 python 环境下，如在 python3.7 环境下，将.egg 包拷贝到"python3.7/site-packages"下。当您的包不需要编辑、修改或调试时，推荐此命令。
     ```
     python3.7 setup.py install
     ```
 
-* develop 命令在 python 环境中创建一个软链接指向包实际所在目录。
+* develop 命令在“python/site-packages”下创建一个软链接指向包实际所在目录，在修改了相关文件之后不用再安装便能生效，便于开发调试，推荐在调试阶段使用此命令。
     ```
     python3.7 setup.py develop
     ```
 
 上例中，`develop 命令`不会拷贝包到本地 Python 环境的`python3.7/site-packages`目录下，而是在 site-packages 目录下创建一个指向当前项目位置（build/python）的软链接。好处在于如果当前位置的源码被改动，再次执行`python3.7 setup.py develop`就会立刻反应到”site-packages”里，便于 debug。
 
-* bdist_wheel 命令编译得到.whl 包，编译完成后得到的.whl 包保存在/paddle/dist 目录下，需要手动通过 pip install 命令安装.whl 包到 python 环境。
+* bdist_wheel 命令编译得到.whl 包，编译完成后得到的.whl 包保存在/paddle/dist 目录下，需要手动通过 pip install 命令安装.whl 包到 python 环境，与方式-中得到的 whl 包一样。。
     ```
     python3.7 setup.py bdist_wheel
 
