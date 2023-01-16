@@ -243,7 +243,7 @@ pip3.7 install -U [whl 包的名字]
 
 上例中，`develop 命令`不会拷贝包到本地 Python 环境的`python3.7/site-packages`目录下，而是在 site-packages 目录下创建一个指向当前项目位置（build/python）的软链接（.egg-link）。好处在于如果当前位置的源码被改动，再次执行`python3.7 setup.py develop`就会立刻反应到”site-packages”里，便于 debug。
 
-* bdist_wheel 命令编译得到.whl 包，编译完成后得到的.whl 包保存在/paddle/dist 目录下，需要手动通过 pip install 命令安装.whl 包到 python 环境，与方式-中得到的 whl 包一样。
+* bdist_wheel 命令编译得到.whl 包，编译完成后得到的.whl 包保存在/paddle/dist 目录下，需要手动通过 pip install 命令安装.whl 包到 python 环境，与方式一中得到的 whl 包一样。
     ```
     python3.7 setup.py bdist_wheel
 
@@ -669,7 +669,7 @@ pip3 install -U（whl 包的名字）
 
 上例中，`develop 命令`不会拷贝包到本地 Python 环境的`python3.7/site-packages`目录下，而是在 site-packages 目录下创建一个指向当前项目位置（build/python）的软链接。好处在于如果当前位置的源码被改动，再次执行`python3.7 setup.py develop`就会立刻反应到”site-packages”里，便于 debug。
 
-* bdist_wheel 命令编译得到.whl 包，编译完成后得到的.whl 包保存在/paddle/dist 目录下，需要手动通过 pip install 命令安装.whl 包到 python 环境，与方式-中得到的 whl 包一样。。
+* bdist_wheel 命令编译得到.whl 包，编译完成后得到的.whl 包保存在/paddle/dist 目录下，需要手动通过 pip install 命令安装.whl 包到 python 环境，与方式一中得到的 whl 包一样。
     ```
     python3.7 setup.py bdist_wheel
 
