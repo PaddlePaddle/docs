@@ -1,8 +1,8 @@
-.. _cn_api_incubate_nn_FusedEcMoE:
+.. _cn_api_incubate_nn_FusedEcMoe:
 
 FusedEcMoE
 -------------------------------
-.. py:class:: paddle.incubate.nn.FusedEcMoE(hidden_size, inter_size, num_experts, act_type, weight_attr=None, bias_attr=None)
+.. py:class:: paddle.incubate.nn.FusedEcMoe(hidden_size, inter_size, num_experts, act_type, weight_attr=None, bias_attr=None)
 
 这是一个调用融合算子 fused_ec_moe（参考 :ref:`cn_api_incubate_nn_functional_fused_ec_moe` ）。
 
@@ -23,4 +23,4 @@ FusedEcMoE
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.incubate.nn.FusedEcMoE
+COPY-FROM: paddle.incubate.nn.FusedEcMoe
