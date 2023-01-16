@@ -254,7 +254,7 @@ pip3.7 install -U [whl 包的名字]
 其它适用小功能：
 1 `export MAX_JOBS=xxx`，xxx 为具体数字可控制使用多核编译，若不指定，默认为$(nproc)；
 2 `export BUILD_DIR=xxx`，xxx 为所指定的存放编译产物的目录，若不指定，默认为 build 目录；
-3 `export CMAKE_GENERATOR=xxx`，xxx 为所指定的 cmake 生成器，如`export CMAKE_GENERATOR=Ninja` 使用 ninja 加速编译，默认为`Unix Makefiles`。
+3 `export GENERATOR=xxx`，xxx 为所指定的 cmake 生成器，如`export GENERATOR=Ninja` 使用 ninja 加速编译，默认为`Unix Makefiles`。
 
 注意：
 以上用 Python3.7 命令来举例，如您的 Python 版本为 3.8/3.9/3.10 等，请将上述命令中的 python 改成 python3.7/python3.8/python3.9，pip 同理.
@@ -680,7 +680,7 @@ pip3 install -U（whl 包的名字）
 其它适用小功能：
 1 `export MAX_JOBS=xxx`，xxx 为具体数字可控制使用多核编译，若不指定，默认为$(nproc)；
 2 `export BUILD_DIR=xxx`，xxx 为所指定的存放编译产物的目录，若不指定，默认为 build 目录；
-3 `export CMAKE_GENERATOR=xxx`，xxx 为所指定的 cmake 生成器，如`export CMAKE_GENERATOR=Ninja` 使用 ninja 加速编译，默认为`Unix Makefiles`。
+3 `export GENERATOR=xxx`，xxx 为所指定的 cmake 生成器，如`export GENERATOR=Ninja` 使用 ninja 加速编译，默认为`Unix Makefiles`。
 
 ###### 恭喜，至此您已使用方式二完成 PaddlePaddle 的编译安装
 ## **验证安装**
