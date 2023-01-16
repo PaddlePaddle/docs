@@ -14,4 +14,4 @@ bool，支持指定 device_type 则为 True，否则为 False。
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.device.is_compiled_with_custom_device("npu")
+COPY-FROM: paddle.device.is_compiled_with_custom_device
