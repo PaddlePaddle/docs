@@ -3,7 +3,7 @@
 Adam
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adam(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=None, grad_clip=None, name=None, lazy_mode=False)
+.. py:class:: paddle.optimizer.Adam(learning_rate=0.001, beta1=0.9, beta2=0.999, epsilon=1e-08, parameters=None, weight_decay=None, grad_clip=None, name=None, lazy_mode=False, multi_precision=False, use_multi_tensor=False, name=None)
 
 
 
@@ -38,8 +38,10 @@ Adam 优化器出自 `Adam 论文 <https://arxiv.org/abs/1412.6980>`_ 的第二�
       如果没有在 :ref:`cn_api_fluid_ParamAttr` 中设置正则化，这里的设置才会生效。默认值为 None，表示没有正则化。
     - **grad_clip** (GradientClipBase，可选) – 梯度裁剪的策略，支持三种裁剪策略：:ref:`paddle.nn.ClipGradByGlobalNorm <cn_api_fluid_clip_ClipGradByGlobalNorm>` 、 :ref:`paddle.nn.ClipGradByNorm <cn_api_fluid_clip_ClipGradByNorm>` 、 :ref:`paddle.nn.ClipGradByValue <cn_api_fluid_clip_ClipGradByValue>` 。
       默认值为 None，此时将不进行梯度裁剪。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **lazy_mode** （bool，可选） - 设为 True 时，仅更新当前具有梯度的元素。官方 Adam 算法有两个移动平均累加器（moving-average accumulators）。累加器在每一步都会更新。在密集模式和稀疏模式下，两条移动平均线的每个元素都会更新。如果参数非常大，那么更新可能很慢。lazy mode 仅更新当前具有梯度的元素，所以它会更快。但是这种模式与原始的算法有不同的描述，可能会导致不同的结果，默认为 False。
+    - **multi_precision** （bool，可选） - 是否在权重更新期间使用 multi-precision，默认为 False。
+    - **use_multi_tensor** （bool，可选） - 是否使用 multi-tensor 策略一次性更新所有参数，默认为 False。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
 代码示例
@@ -116,6 +118,23 @@ step()
     out.backward()
     adam.step()
     adam.clear_grad()
+
+append_regularization_ops(parameters_and_grads, regularization=None)
+'''''''''
+创建并添加反向正则化算子，该操作将正则化函数的梯度添加到参数的梯度中并返回修改后的梯度。
+
+**参数**
+
+    - **parameters_and_grads**  – 需要被正则化的(parameters, gradients)列表。
+    - **regularization** – 全局正则化器，如果该参数未被设置正则化策略，将应用该正则化器。
+
+**返回**
+
+ list(parameters, gradients)
+
+**返回类型**
+
+ list[(Variable, Variable)]
 
 minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
 '''''''''
@@ -271,3 +290,64 @@ float，当前步骤的学习率。
         lr = adam.get_lr()
         scheduler.step()
         np.allclose(lr, ret[i], rtol=1e-06, atol=0.0) # True
+
+set_state_dict(state_dict)
+'''''''''
+
+加载优化器状态词典，对于 Adam 优化器，包含 beta1，beta2，momentum 等。如果使用 LRScheduler，global_step 将会改变。
+
+**参数**
+
+    state_dict (dict) - 包含所有优化器所需的值的词典。
+
+**返回**
+
+无。
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+
+    emb = paddle.nn.Embedding(10, 10)
+
+    layer_state_dict = emb.state_dict()
+    paddle.save(layer_state_dict, "emb.pdparams")
+
+    scheduler = paddle.optimizer.lr.NoamDecay(
+        d_model=0.01, warmup_steps=100, verbose=True)
+    adam = paddle.optimizer.Adam(
+        learning_rate=scheduler,
+        parameters=emb.parameters())
+    opt_state_dict = adam.state_dict()
+    paddle.save(opt_state_dict, "adam.pdopt")
+
+    opti_state_dict = paddle.load("adam.pdopt")
+    adam.set_state_dict(opti_state_dict)
+
+state_dict(state_dict)
+'''''''''
+
+从优化器中获取 state_dict 信息，其中包含所有优化器所需的值，对于 Adam 优化器，包含 beta1，beta2，momentum 等。
+如果使用 LRScheduler，global_step 将被包含在 state_dict 内。如果优化器未被调用 minimize 函数，state_dict 将为空。
+
+
+**返回**
+
+包含所有优化器所需的值的词典。
+
+**返回类型**
+
+state_dict(dict)
+
+
+**代码示例**
+
+.. code-block:: python
+
+    import paddle
+    emb = paddle.nn.Embedding(10, 10)
+
+    adam = paddle.optimizer.Adam(0.001, parameters=emb.parameters())
+    state_dict = adam.state_dict()
