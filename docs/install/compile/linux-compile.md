@@ -137,8 +137,13 @@ git checkout develop
 
 注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
 
+#### 7. 创建并进入/paddle/build 路径下：
 
-#### 7. 使用以下命令安装相关依赖：
+```
+mkdir -p /paddle/build && cd /paddle/build
+```
+
+#### 8. 使用以下命令安装相关依赖：
 
 - 安装 protobuf。
 
@@ -154,15 +159,8 @@ pip3.7 install protobuf
 apt install patchelf
 ```
 
-#### 8. 使用以下任意一种方式编译安装 Paddle：
-简介：目前支持两种编译方式（推荐方式二），方式一通过 cmake，make 得到 whl 包，最后需手动 pip install .whl 包到 python 环境下；方式二使用 setup.py，相比于方式一，方式二将编译和打包的过程一体化，并将 paddle 安装到 python 环境下，当改动 python 代码时，编译效率会提升。
-##### 8.1. 方式一:使用 cmake，make 编译 PaddlePaddle：
 
-###### 8.1.1. 创建并进入/paddle/build 路径下：
-    ```
-    mkdir build && cd build
-    ```
-###### 8.1.2. 执行 cmake：
+#### 9. 执行 cmake：
 
 * 对于需要编译**CPU 版本 PaddlePaddle**的用户：
     ```
@@ -179,7 +177,7 @@ apt install patchelf
 
 - 我们目前不支持 CentOS 6 下使用 Docker 编译 GPU 版本的 PaddlePaddle
 
-###### 8.1.3. 执行编译：
+#### 10. 执行编译：
 
 使用多核编译
 
@@ -190,13 +188,13 @@ make -j$(nproc)
 注意：
 编译过程中需要从 github 上下载依赖，请确保您的编译环境能正常从 github 下载代码。
 
-###### 8.1.4. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
+#### 11. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 
 ```
 cd /paddle/build/python/dist
 ```
 
-###### 8.1.5. 在当前机器或目标机器安装编译好的`.whl`包：
+#### 12. 在当前机器或目标机器安装编译好的`.whl`包：
 
 
 For Python3:
@@ -207,59 +205,8 @@ pip3.7 install -U [whl 包的名字]
 注意：
 以上用 Python3.7 命令来举例，如您的 Python 版本为 3.6/3.8/3.9，请将上述命令中的 pip3.7 改成 pip3.6/pip3.8/pip3.9。
 
+#### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 
-##### 8.2. 使用 setup.py 编译 PaddlePaddle：
-
-###### 8.2.1. export 环境变量控制编译选项：
-
-* 对于需要编译**CPU 版本 PaddlePaddle**的用户：
-    ```
-    export PY_VERSION=3.7 WITH_GPU=OFF
-    ```
-
-* 对于需要编译**GPU 版本 PaddlePaddle**的用户：
-    ```
-    export PY_VERSION=3.7 WITH_GPU=ON
-    ```
-- 此处 export 的环境变量即为 camke 编译选项，具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
-
-- 请注意修改参数`PY_VERSION`为您希望编译使用的 python 版本,  例如`export PY_VERSION=3.7`表示 python 版本为 3.7
-
-- 我们目前不支持 CentOS 6 下使用 Docker 编译 GPU 版本的 PaddlePaddle
-
-###### 8.2.2. 进入/paddle 目录下执行 setup.py：
-
-简介：setup.py 目前支持 3 种功能，分别是 install 命令，develop 命令和 bdist_wheel 命令，三种命令都可编译。
-
-* install 命令将包直接安装到 python 环境下，如在 python3.7 环境下，将.egg 包拷贝到"python3.7/site-packages"下。当您的包不需要编辑、修改或调试时，推荐此命令。
-    ```
-    python3.7 setup.py install
-    ```
-
-* develop 命令在“python/site-packages”下创建一个软链接指向包实际所在目录，在修改了相关文件之后不用再安装便能生效，便于开发调试，推荐在调试阶段使用此命令。
-    ```
-    python3.7 setup.py develop
-    ```
-
-上例中，`develop 命令`不会拷贝包到本地 Python 环境的`python3.7/site-packages`目录下，而是在 site-packages 目录下创建一个指向当前项目位置（build/python）的软链接（.egg-link）。好处在于如果当前位置的源码被改动，再次执行`python3.7 setup.py develop`就会立刻反应到”site-packages”里，便于 debug。
-
-* bdist_wheel 命令编译得到.whl 包，编译完成后得到的.whl 包保存在/paddle/dist 目录下，需要手动通过 pip install 命令安装.whl 包到 python 环境，与方式一中得到的 whl 包一样。
-    ```
-    python3.7 setup.py bdist_wheel
-
-    cd /paddle/dist
-
-    pip3.7 install -U [whl 包的名字]
-    ```
-其它适用小功能：
-1 `export MAX_JOBS=xxx`，xxx 为具体数字可控制使用多核编译，若不指定，默认为$(nproc)；
-2 `export BUILD_DIR=xxx`，xxx 为所指定的存放编译产物的目录，若不指定，默认为 build 目录；
-3 `export GENERATOR=xxx`，xxx 为所指定的 cmake 生成器，如`export GENERATOR=Ninja` 使用 ninja 加速编译，默认为`Unix Makefiles`。
-
-注意：
-以上用 Python3.7 命令来举例，如您的 Python 版本为 3.8/3.9/3.10 等，请将上述命令中的 python 改成 python3.7/python3.8/python3.9，pip 同理.
-
-###### 恭喜，至此您已完成 PaddlePaddle 的编译安装。您只需要进入 Docker 容器后运行 PaddlePaddle，即可开始使用。更多 Docker 使用请参见[Docker 官方文档](https://docs.docker.com)
 
 <a name="ct_source"></a>
 ### <span id="compile_from_host">本机编译</span>
@@ -531,19 +478,13 @@ cd Paddle
 git checkout develop
 ```
 
-##### 10. 使用以下任意一种方式编译安装 Paddle：
+#### 10. 并且请创建并进入一个叫 build 的目录下：
 
-简介：目前支持两种编译方式（推荐方式二），方式一通过 cmake，make 得到 whl 包，最后需手动 pip install .whl 包到 python 环境下；方式二使用 setup.py，相比于方式一，方式二将编译和打包的过程一体化，并将 paddle 安装到 python 环境下，并且当改动 python 代码时，编译效率会提升。
+```
+mkdir build && cd build
+```
 
-##### 10.1. 方式一:使用 cmake，make 编译 PaddlePaddle：
-
-###### 10.1.1. 创建并进入/paddle/build 路径下：
-
-    ```
-    mkdir build && cd build
-    ```
-
-###### 10.1.2. 执行 cmake：
+#### 11. 执行 cmake：
 
 >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
@@ -600,7 +541,9 @@ git checkout develop
 注意：以上涉及 Python3 的命令，用 Python3.7 来举例，如您的 Python 版本为 3.8/3.9，请将上述命令中的 Python3.7 改成 Python3.8/Python3.9
 
 
-###### 10.1.3. 使用以下命令来编译：
+
+
+#### 12. 使用以下命令来编译：
 
 ```
 make -j$(nproc)
@@ -610,12 +553,12 @@ make -j$(nproc)
 
 > 如果编译过程中显示“Too many open files”错误时，请使用指令 ulimit -n 8192 来增大当前进程允许打开的文件数，一般来说 8192 可以保证编译完成。
 
-###### 10.1.4. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
+#### 13. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：
 ```
 cd /paddle/build/python/dist
 ```
 
-###### 10.1.5. 在当前机器或目标机器安装编译好的`.whl`包：
+#### 14. 在当前机器或目标机器安装编译好的`.whl`包：
 
 ```
 pip install -U（whl 包的名字）
@@ -625,64 +568,8 @@ pip install -U（whl 包的名字）
 pip3 install -U（whl 包的名字）
 ```
 
+#### 恭喜，至此您已完成 PaddlePaddle 的编译安装
 
-
-##### 10.2. 方式二：使用 setup.py 编译 PaddlePaddle：
-
-###### 10.2.1. export 环境变量控制编译选项：
-
-* 对于需要编译**CPU 版本 PaddlePaddle**的用户：
-    ```
-    export PY_VERSION=3.7 WITH_GPU=OFF PYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} PYTHON_LIBRARY=${PYTHON_LIBRARY}
-    ```
-    也可不指定`PYTHON_INCLUDE_DIR`和`PYTHON_LIBRARY`，此时 setup.py 会自动匹配这两个编译选项的合适路径，您只需：
-    ```
-    export PY_VERSION=3.7 WITH_GPU=OFF
-    ```
-
-* 对于需要编译**GPU 版本 PaddlePaddle**的用户：(**仅支持 CentOS7（CUDA11.2/CUDA11.0/CUDA10.2/CUDA10.1)**)
-
-    1. 请确保您已经正确安装 nccl2，或者按照方式一中的指令指令安装 nccl2，如果您已经正确安装了 nccl2，可进行下面操作：(For Python3: 请给 PY_VERSION 参数配置正确的 python 版本)
-
-    ```
-    export PYTHON_EXECUTABLE=[您可执行的 Python3 的路径] PYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] WITH_GPU=ON
-    ```
-    当然，也可不指定`PYTHON_EXECUTABLE`，`PYTHON_INCLUDE_DIR`和`PYTHON_LIBRARY`，此时 setup.py 会自动匹配这三个编译选项的合适路径，您只需：
-    ```
-    export WITH_GPU=ON
-    ```
-注意：以上涉及 Python3 的命令，用 Python3.7 来举例，如您的 Python 版本为 3.8/3.9，请将上述命令中的 Python3.7 改成 Python3.8/Python3.9
-
-###### 10.2.2. 进入/paddle 目录执行 setup.py：
-
-简介：setup.py 目前支持 3 种功能，分别是 install 命令，develop 命令和 bdist_wheel 命令，三种命令都可编译。
-
-* install 命令将包直接安装到 python 环境下，如在 python3.7 环境下，将.egg 包拷贝到"python3.7/site-packages"下。当您的包不需要编辑、修改或调试时，推荐此命令。
-    ```
-    python3.7 setup.py install
-    ```
-
-* develop 命令在“python/site-packages”下创建一个软链接指向包实际所在目录，在修改了相关文件之后不用再安装便能生效，便于开发调试，推荐在调试阶段使用此命令。
-    ```
-    python3.7 setup.py develop
-    ```
-
-上例中，`develop 命令`不会拷贝包到本地 Python 环境的`python3.7/site-packages`目录下，而是在 site-packages 目录下创建一个指向当前项目位置（build/python）的软链接。好处在于如果当前位置的源码被改动，再次执行`python3.7 setup.py develop`就会立刻反应到”site-packages”里，便于 debug。
-
-* bdist_wheel 命令编译得到.whl 包，编译完成后得到的.whl 包保存在/paddle/dist 目录下，需要手动通过 pip install 命令安装.whl 包到 python 环境，与方式一中得到的 whl 包一样。
-    ```
-    python3.7 setup.py bdist_wheel
-
-    cd /paddle/dist
-
-    pip3.7 install -U [whl 包的名字]
-    ```
-其它适用小功能：
-1 `export MAX_JOBS=xxx`，xxx 为具体数字可控制使用多核编译，若不指定，默认为$(nproc)；
-2 `export BUILD_DIR=xxx`，xxx 为所指定的存放编译产物的目录，若不指定，默认为 build 目录；
-3 `export GENERATOR=xxx`，xxx 为所指定的 cmake 生成器，如`export GENERATOR=Ninja` 使用 ninja 加速编译，默认为`Unix Makefiles`。
-
-###### 恭喜，至此您已使用方式二完成 PaddlePaddle 的编译安装
 ## **验证安装**
 安装完成后您可以使用 `python` 或 `python3` 进入 python 解释器，输入
 
