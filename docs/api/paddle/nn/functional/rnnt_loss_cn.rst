@@ -10,14 +10,14 @@ rnnt_loss
 
 参数
 :::::::::
-    - **input** (Tensor) - 带填充的logprobs序列，是一个四维张量。张量形状为[B, Tmax, Umax, D]，其中Tmax为输入logit序列的最长长度。数据类型应该是float32或float64。
-    - **label** (Tensor) - 带填充的基本真值序列，它必须是一个二维张量。张量形状为[B, Umax]，其中Umax为标签序列的最长长度。数据类型必须为int32。
-    - **input_lengths** (Tensor) - 每个输入序列的长度，它应该有形状[batch_size]和dtype int64。
-    - **label_lengths** (Tensor) - 每个标签序列的长度，它应该有形状[batch_size]和dtype int64。
-    - **blank** (int，可选) - RNN-T loss的空白标签索引，处于半开放区间[0,B)。数据类型必须为int32。默认值为0。
-    - **fastemit_lambda** (float，默认0.001) - FastEmit的正则化参数(https://arxiv.org/pdf/2010.11148.pdf)
-    - **reduction** (str，可选) - 表示如何平均损失，候选是 ``'none'``|``'mean'``|``'sum'``。如果 ::attr:`reduction`是``'mean'``，输出将是损失的总和并除以batch_size;如果 :attr:`reduction` 是 ``'sum'``，返回损失的总和;如果 :attr:`reduction` 为 ``'none'``，则不应用reduction。默认是``'mean'``。
-    - **name** (str，可选) - 操作名称，默认为None.
+    - **input** (Tensor) - 带填充的 logprobs 序列，是一个四维张量。张量形状为 [B, Tmax, Umax, D]，其中 Tmax 为输入 logit 序列的最长长度。数据类型应该是 float32 或 float64。
+    - **label** (Tensor) - 带填充的基本真值序列，它必须是一个二维张量。张量形状为 [B, Umax]，其中Umax为标签序列的最长长度。数据类型必须为int32。
+    - **input_lengths** (Tensor) - 每个输入序列的长度，它应该有形状 [batch_size] 和 dtype int64。
+    - **label_lengths** (Tensor) - 每个标签序列的长度，它应该有形状 [batch_size] 和 dtype int64。
+    - **blank** (int，可选) - RNN-T loss 的空白标签索引，处于半开放区间 [0,B)。数据类型必须为 int32。默认值为 0。
+    - **fastemit_lambda** (float，默认 0.001) - FastEmit 的正则化参数(https://arxiv.org/pdf/2010.11148.pdf)。
+    - **reduction** (str，可选) - 表示如何平均损失，候选是 ``'none'``|``'mean'``|``'sum'`` 。如果 ::attr:`reduction` 是 ``'mean'``，输出将是损失的总和并除以 batch_size;如果 :attr:`reduction` 是 ``'sum'``，返回损失的总和;如果 :attr:`reduction` 为 ``'none'``，则不应用 reduction。默认是 ``'mean'``。
+    - **name** (str，可选) - 操作名称，默认为 None. 
 
 返回
 :::::::::
