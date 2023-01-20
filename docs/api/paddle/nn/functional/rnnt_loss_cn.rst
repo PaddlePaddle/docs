@@ -11,7 +11,7 @@ rnnt_loss
 参数
 :::::::::
     - **input** (Tensor) - 带填充的 logprobs 序列，是一个四维张量。张量形状为 [B, Tmax, Umax, D]，其中 Tmax 为输入 logit 序列的最长长度。数据类型应该是 float32 或 float64。
-    - **label** (Tensor) - 带填充的基本真值序列，它必须是一个二维张量。张量形状为 [B, Umax]，其中Umax为标签序列的最长长度。数据类型必须为int32。
+    - **label** (Tensor) - 带填充的基本真值序列，它必须是一个二维张量。张量形状为 [B, Umax]，其中 Umax 为标签序列的最长长度。数据类型必须为int32。
     - **input_lengths** (Tensor) - 每个输入序列的长度，它应该有形状 [batch_size] 和 dtype int64。
     - **label_lengths** (Tensor) - 每个标签序列的长度，它应该有形状 [batch_size] 和 dtype int64。
     - **blank** (int，可选) - RNN-T loss 的空白标签索引，处于半开放区间 [0,B)。数据类型必须为 int32。默认值为 0。
