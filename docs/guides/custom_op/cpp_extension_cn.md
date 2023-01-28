@@ -122,6 +122,8 @@ setup(
 
 执行 `python setup_custom_add.py install` 即可一键完成 C++ 扩展的编译和安装。
 
+> 注意：`setup` 参数中 `name` 的值应与 `PYBIND11_MODULE` 宏声明的模块名一致
+
 安装完成后，可以通过 help() 函数来查看相应的函数签名
 
 ```python-repl
@@ -180,6 +182,8 @@ out = cpp_extension.custom_add(x, y)
 ```
 
 `load` 返回一个 `Module` 对象，可以直接使用 C++ 扩展名调用 API。
+
+> 注意：`load` 参数中 `name` 的值应与 `PYBIND11_MODULE` 宏声明的模块名一致
 
 以 Linux 平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，Linux 会默认在 `~/.cache/paddle_extensions` 目录下生成一个 `{name}_setup.py`（Windows 默认目录为 `C:\\Users\\xxx\\.cache\\paddle_extensions` 用户目录），然后通过 subprocess 执行 `python {name}_setup.py build`，然后载入动态库，生成 Python API 之后返回。
 
