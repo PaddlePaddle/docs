@@ -1,4 +1,4 @@
-# C++扩展
+# 自定义 C++ 扩展
 
 ## 概述
 
@@ -91,7 +91,7 @@ PYBIND11_MODULE(custom_cpp_extension, m) {
 主要逻辑包括：
 
 1. 定义 C++ 扩展的实现逻辑，例如本示例中的 `custom_add` 函数
-2. 使用 pybind11 将加法函数绑定至 python 端，使用详情可以参考 [pybind11 文档](https://pybind11.readthedocs.io/en/stable/)
+2. 使用 pybind11 将加法函数绑定至 python 端，pybind11 使用详情可以参考 [pybind11 文档](https://pybind11.readthedocs.io/en/stable/)
 
 ## C++扩展编译与使用
 

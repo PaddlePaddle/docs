@@ -10,7 +10,7 @@
 
 - `自定义 C++算子 <./new_cpp_op_cn.html>`_
 
-- `C++ 扩展 <./cpp_extension_cn.html>`_
+- `自定义 C++ 扩展 <./cpp_extension_cn.html>`_
 
 - `自定义 Python 算子 <./new_python_op_cn.html>`_
 
