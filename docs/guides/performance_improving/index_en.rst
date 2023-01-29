@@ -9,3 +9,4 @@ Performance Improving
     :hidden:
 
     amp_en.md
+    training_improving_model_en.md
