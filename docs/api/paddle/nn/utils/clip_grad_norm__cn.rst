@@ -1,4 +1,4 @@
-.. _cn_api_nn_utils_clip_grad_norm_:
+.. _cn_api_nn_cn_clip_grad_norm_:
 
 clip_grad_norm_
 -------------------------------
@@ -18,7 +18,7 @@ clip_grad_norm_
     - **error_if_nonfinite** (bool) - 如果为 True，且如果来自：attr:`parameters`的梯度的总范数为`nan`、`inf`或`-inf`，则抛出错误。
 
 返回
-:::::::::
+::::::::::::
 参数梯度的总范数（视为一个单独的变量）
 
 代码示例
