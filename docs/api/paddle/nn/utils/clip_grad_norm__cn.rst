@@ -1,6 +1,6 @@
 .. _cn_api_nn_cn_clip_grad_norm_:
 
-clip_grad_norm_
+clip_grad_norm\_
 -------------------------------
 
 .. py:function:: paddle.nn.utils.clip_grad_norm_(parameters, max_norm, norm_type=2.0, error_if_nonfinite=False)
