@@ -13,16 +13,17 @@ to_tensor
 否则会创建一个新的 Tensor，且不保留原来计算图。
 
 .. code-block:: text
-  我们使用如下规则来进行类型转换：
 
-            保持类型
-  np.number ───────► paddle.Tensor
-                      (0D-Tensor)
-                 paddle 默认类型
-  Python Number ───────────────► paddle.Tensor
-                                  (1D-Tensor)
+    我们使用如下规则来进行类型转换：
+
               保持类型
-  np.ndarray ─────────► paddle.Tensor
+    np.number ───────► paddle.Tensor
+                        (0D-Tensor)
+                   paddle 默认类型
+    Python Number ───────────────► paddle.Tensor
+                                    (1D-Tensor)
+                保持类型
+    np.ndarray ─────────► paddle.Tensor
 
 参数
 :::::::::
