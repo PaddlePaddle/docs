@@ -1,4 +1,4 @@
-# Installation on MacOS via Conda
+# Installation on macOS via Conda
 
 [Anaconda](https://www.anaconda.com/)is a free and open source distribution of Python and R for computational science. Anaconda is dedicated to simplifying package management and deployment. Anaconda's packages are managed using the package management system Conda. Conda is an open source package management system and environment management system that runs on Windows, macOS, and Linux.
 
@@ -8,7 +8,7 @@
 
 Before performing PaddlePaddle installation, please make sure that your Anaconda software environment is properly installed. For software download and installation, see Anaconda's official website (https://www.anaconda.com/). If you have installed Anaconda correctly, follow these steps to install PaddlePaddle.
 
-* MacOS version 10.11/10.12/10.13/10.14 (64 bit)(not support GPU version)
+* macOS version 10.11/10.12/10.13/10.14 (64 bit)(not support GPU version)
 * conda version 4.8.3+ (64 bit)
 
 
@@ -54,7 +54,7 @@ for Windows
 activate paddle_env
 ```
 
-for MacOS/Linux
+for macOS/Linux
 
 ```
 conda activate paddle_env
@@ -74,7 +74,7 @@ In a Windows environment, the command to get the Python path is:
 where python
 ```
 
-In a MacOS/Linux environment, the command to get the Python path is:
+In a macOS/Linux environment, the command to get the Python path is:
 
 ```
 which python
@@ -83,7 +83,7 @@ which python
 
 1.2.2 Check the version of Python
 
-Use the following command to confirm it's version is 3.6/3.7/3.8/3.9
+Use the following command to confirm it's version is 3.7/3.8/3.9/3.10
 
 ```
 python --version
@@ -106,7 +106,7 @@ We will introduce conda installation here.
 
 ### Choose CPU/GPU
 
-* Currently, only the CPU version of PaddlePaddle is supported in the MacOS environment
+* Currently, only the CPU version of PaddlePaddle is supported in the macOS environment
 
 ### Installation Step
 

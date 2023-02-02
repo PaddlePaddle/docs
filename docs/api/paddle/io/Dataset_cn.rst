@@ -5,7 +5,7 @@ Dataset
 
 .. py:class:: paddle.io.Dataset
 
-概述Dataset的方法和行为的抽象类。
+概述 Dataset 的方法和行为的抽象类。
 
 映射式(map-style)数据集需要继承这个基类，映射式数据集为可以通过一个键值索引并获取指定样本的数据集，所有映射式数据集须实现以下方法：
 

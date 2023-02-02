@@ -7,7 +7,7 @@ Distributed training with Fleet API
 Since PaddlePaddle `Release
 1.5.1 <https://github.com/PaddlePaddle/Paddle/releases/tag/v1.5.1>`__,
 it is officially recommended to use the Fleet API for distributed
-training. 
+training.
 
 Preparation
 ~~~~~~~~~~~
@@ -25,15 +25,14 @@ Click-through rate prediction
 Here, we will use a simple example, click-through rate prediction task,
 to illustrate how to configure Fleet API for distributed training, and
 gives an example by using a single node environment to simulate the
-distributed environment. 
+distributed environment.
 
 In order to facilitate learning, the example given here is a mixed code
 of single node and multi node. You can start single node or multi node
-tasks through different startup commands. 
+tasks through different startup commands.
 
 .. code-block:: python
 
-    from __future__ import print_function
     from args import parse_args
     import os
     import sys
@@ -129,7 +128,7 @@ tasks through different startup commands.
 -  Note: The IO method used in this example is dataset, please refer to
    `Dataset
    API <https://www.paddlepaddle.org.cn/documentation/docs/en/2.0-rc1/api/paddle/distributed/QueueDataset_en.html>`__
-   for specific documents and usage. 
+   for specific documents and usage.
 
 Start command of single node training
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -151,4 +150,4 @@ tasks.
 
 The task running log can be viewed in the logs directory of the working
 directory. When you can use a single machine to simulate distributed
-training, you can perform true multi node distributed training. 
+training, you can perform true multi node distributed training.

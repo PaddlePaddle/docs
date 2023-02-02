@@ -2,58 +2,105 @@
 
 一般情况下，训练深度学习模型时默认使用的数据类型（dtype）是 float32，每个数据占用 32 位的存储空间。为了节约显存消耗，业界提出了 16 位的数据类型（如 GPU 支持的 float16、bfloat16），每个数据仅需要 16 位的存储空间，比 float32 节省一半的存储空间，并且一些芯片可以在 16 位的数据上获得更快的计算速度，比如按照 NVIDIA 的数据显示，V100 GPU 上 矩阵乘和卷积计算在 float16 的计算速度最大可达 float32 的 8 倍。
 
-考虑到一些算子（OP）对数据精度的要求较高（如 softmax、cross_entropy），仍然需要采用 float32 进行计算；还有一些算子（如conv2d、matmul）对数据精度不敏感，可以采用 float16 / bfloat16 提升计算速度并降低存储空间，飞桨框架提供了**自动混合精度（Automatic Mixed Precision，以下简称为AMP）训练**的方法，可在模型训练时，自动为算子选择合适的数据计算精度（float32 或 float16 / bfloat16），在保持训练精度（accuracy）不损失的条件下，能够加速训练，可参考2018年百度与NVIDIA联合发表的论文：[MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf)。本文将介绍如何使用飞桨框架实现自动混合精度训练。
+考虑到一些算子（OP）对数据精度的要求较高（如 softmax、cross_entropy），仍然需要采用 float32 进行计算；还有一些算子（如 conv2d、matmul）对数据精度不敏感，可以采用 float16 / bfloat16 提升计算速度并降低存储空间，飞桨框架提供了**自动混合精度（Automatic Mixed Precision，以下简称为 AMP）训练**的方法，可在模型训练时，自动为算子选择合适的数据计算精度（float32 或 float16 / bfloat16），在保持训练精度（accuracy）不损失的条件下，能够加速训练，可参考 2018 年百度与 NVIDIA 联合发表的论文：[MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf)。本文将介绍如何使用飞桨框架实现自动混合精度训练。
+
+目前，在计算机视觉、自然语言处理等多个领域的任务上，飞桨的自动混合精度训练技术不仅提升了模型的训练性能，并且可以达到精度无损。以下是飞桨部分模型套件中使用 float16 训练的模型，在这些模型上使用几乎纯 float16 训练的 AMP-O2 优化级别，达到了和 float32 相同的训练效果。
+
+
+<table>
+    <tr>
+        <td><b>图像分类</b></td>
+        <td><b>物体分割/检测</b></td>
+        <td><b>文字识别/文档分析</b></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/ResNet">ResNet50</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleSeg/tree/develop/configs/pp_humanseg_lite">PP-HumanSeg-Lite</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleOCR/tree/dygraph/configs/rec/ch_PP-OCRv2">ch_PP-OCRv2_rec</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/MobileNetV3">MobileNetV3</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleSeg/blob/develop/Matting/README_CN.md">PP-Matting</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleOCR/tree/dygraph/configs/kie/layoutlm_series">layoutxlm_ser</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/SwinTransformer">SwinTransformer</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleSeg/tree/develop/configs/ocrnet">OCRNet</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleOCR/tree/dygraph/configs/kie/vi_layoutxlm">vi_layoutxlm_ser</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/PPHGNet">PP-HGNet</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleSeg/tree/develop/configs/pp_liteseg">PP-LiteSeg(STDC-1)</a></td>
+        <td><b>自然语言处理</b></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/PPLCNetV2">PP-LCNetV2</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleDetection/tree/develop/configs/yolov3">YOLOv3</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/text_matching/sentence_transformers">ERNIE-Tiny</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/ImageNet/PPLCNet">PPLCNet</a></td>
+        <td><b>视频分类</b></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleNLP/tree/develop/model_zoo/bert">BERT</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://github.com/PaddlePaddle/PaddleClas/tree/develop/ppcls/configs/GeneralRecognition">PP-ShiTu</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleVideo/blob/develop/docs/zh-CN/model_zoo/recognition/pp-tsm.md">PP-TSM</a></td>
+        <td><a href="https://github.com/PaddlePaddle/PaddleNLP/tree/develop/examples/machine_translation/transformer">Transformer</a></td>
+    </tr>
+</table>
+
 
 ## 一、概述
 
 ### 1.1 浮点数据类型
 
-[Float16](https://en.wikipedia.org/wiki/Half-precision_floating-point_format) 和 [bfloat16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format)（brain floating point）都是一种半精度浮点数据类型，在计算机中使用 2 字节（16位）存储。与计算中常用的单精度浮点数（float32）和双精度浮点数（float64）类型相比，float16 及 bfloat16 更适于在精度要求不高的场景中使用。
+[Float16](https://en.wikipedia.org/wiki/Half-precision_floating-point_format) 和 [bfloat16](https://en.wikipedia.org/wiki/Bfloat16_floating-point_format)（brain floating point）都是一种半精度浮点数据类型，在计算机中使用 2 字节（16 位）存储。与计算中常用的单精度浮点数（float32）和双精度浮点数（float64）类型相比，float16 及 bfloat16 更适于在精度要求不高的场景中使用。
 
-对比 float32 与 float16 / bfloat16 的浮点格式，如图1所示：
+对比 float32 与 float16 / bfloat16 的浮点格式，如图 1 所示：
 
 <figure align="center">
-    <img src="./images/float.png" width="400" alt='missing'>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/float.png?raw=true" width="600" alt='missing' align="center"/>
     <figcaption><center>图 1. 半精度和单精度数据格式示意图</center></figcaption>
 </figure>
 
 上述数据类型存在如下数值特点：
 
-- float32的指数位占8位，尾数位占23位，可表示的数据动态范围是[2^-126, 2^127]，是深度学习模型时默认使用的数据类型。
-- float16的指数位占5位，尾数位占10位，相比float32，可表示的数据动态范围更低，最小可表示的正数数值为2^-14，最大可表示的数据为65504，容易出现数值上溢出问题。
-- bfloat16的指数位8位，尾数为7位，其特点是牺牲精度从而获取更大的数据范围，可表示的数据范围与float32一致，但是与float16相比bfloat16可表示的数据精度更低，相比float16更易出现数值下溢出的问题。
+- float32 的指数位占 8 位，尾数位占 23 位，可表示的数据动态范围是[2^-126, 2^127]，是深度学习模型时默认使用的数据类型。
+- float16 的指数位占 5 位，尾数位占 10 位，相比 float32，可表示的数据动态范围更低，最小可表示的正数数值为 2^-14，最大可表示的数据为 65504，容易出现数值上溢出问题。
+- bfloat16 的指数位 8 位，尾数为 7 位，其特点是牺牲精度从而获取更大的数据范围，可表示的数据范围与 float32 一致，但是与 float16 相比 bfloat16 可表示的数据精度更低，相比 float16 更易出现数值下溢出的问题。
 
 ### 1.2 AMP 计算过程
 
 #### 1.2.1 auto_cast 策略
 
-飞桨框架采用了 **auto_cast 策略**实现模型训练过程中计算精度的自动转换及使用。通常情况下，模型参数使用单精度浮点格式存储（float32），在训练过程中，将模型参数从单精度浮点数（float32）转换为半精度浮点数（float16 或 bfloat16）参与前向计算，并得到半精度浮点数表示中间状态，然后使用半精度浮点数计算参数梯度，最后将参数梯度转换为单精度浮点数格式后，更新模型参数。计算过程如下图2所示：
+飞桨框架采用了 **auto_cast 策略**实现模型训练过程中计算精度的自动转换及使用。通常情况下，模型参数使用单精度浮点格式存储（float32），在训练过程中，将模型参数从单精度浮点数（float32）转换为半精度浮点数（float16 或 bfloat16）参与前向计算，并得到半精度浮点数表示中间状态，然后使用半精度浮点数计算参数梯度，最后将参数梯度转换为单精度浮点数格式后，更新模型参数。计算过程如下图 2 所示：
 
 <figure align="center">
-    <img src="./images/auto_cast.png" width="400" alt='missing'>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/auto_cast.png?raw=true" width="700" alt='missing' align="center"/>
     <figcaption><center>图 2. 混合精度计算过程示意图</center></figcaption>
 </figure>
 
 上图中蓝色虚线框内的逻辑即是 AMP 策略下参数精度转换（cast）逻辑，通常 cast 操作所带来的开销是有限的，当使用 float16 / bfloat16 在前向计算（forward compute）及反向传播（backward propagation）过程中取得的计算性能收益大于 cast 所带来的开销时，开启 AMP 训练将得到更优的训练性能。
 
-当模型参数在训练前即使用半精度浮点格式存数时（float16 / bfloat16），训练过程中将省去图 2 中的 cast 操作，可进一步提升模型训练性能，但是需要注意模型参数采用低精度数据类型进行存储，可能对模型最终的训练精度带来影响。计算过程如下图3所示：
+当模型参数在训练前即使用半精度浮点格式存数时（float16 / bfloat16），训练过程中将省去图 2 中的 cast 操作，可进一步提升模型训练性能，但是需要注意模型参数采用低精度数据类型进行存储，可能对模型最终的训练精度带来影响。计算过程如下图 3 所示：
 
 <figure align="center">
-    <img src="./images/auto_cast_o2.png" width="400" alt='missing'>
-    <figcaption><center>图 3. float16计算过程示意图</center></figcaption>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/auto_cast_o2.png?raw=true" width="700" alt='missing' align="center"/>
+    <figcaption><center>图 3. float16 计算过程示意图</center></figcaption>
 </figure>
 
 
-#### 1.2.2 grad_scaler策略
+#### 1.2.2 grad_scaler 策略
 
 如 1.1 所述，半精度浮点数的表示范围远小于单精度浮点数的表示范围，在深度学习领域，参数、中间状态和梯度的值通常很小，因此以半精度浮点数参与计算时容易出现数值下溢（underflow）的情况，即接近零的值下溢为零值。为了避免这个问题，飞桨采用 **grad_scaler 策略**。主要内容是：对训练 loss 乘以一个称为 loss_scaling 的缩放值，根据链式法则，在反向传播过程中，参数梯度也等价于相应地乘以了 loss_scaling 的值，在参数更新时再将梯度值相应地除以 loss_scaling 的值。
 
-然而，在模型训练过程中，选择合适的 loss_scaling 值是个较大的挑战，因此，飞桨提供了 **动态loss_scaling** 的机制：
+然而，在模型训练过程中，选择合适的 loss_scaling 值是个较大的挑战，因此，飞桨提供了 **动态 loss_scaling** 的机制：
 
-1. 训练开始前，为loss_scaling设置一个较大的初始值init_loss_scaling，默认为2.^15，并设置4个用于动态调整loss_scaling大小的参数：incr_ratio=2.0、decr_ratio=0.5、incr_every_n_steps=1000、decr_every_n_nan_or_inf=2；
-2. 启动训练后，在每次计算完成梯度后，对所有的梯度之进行检查，判断是否存在nan/inf并记录连续出现nan/inf的次数或连续未出现nan/inf的次数；
-3. 当连续incr_every_n_step次迭代未出现nan/inf时，将loss_scaling乘incr_ratio；
-4. 当连续decr_every_n_nan_or_inf次迭代出现nan/inf时，将loss_scaling乘decr_ratio；
+1. 训练开始前，为 loss_scaling 设置一个较大的初始值 init_loss_scaling，默认为 2.^15，并设置 4 个用于动态调整 loss_scaling 大小的参数：incr_ratio=2.0、decr_ratio=0.5、incr_every_n_steps=1000、decr_every_n_nan_or_inf=2；
+2. 启动训练后，在每次计算完成梯度后，对所有的梯度之进行检查，判断是否存在 nan/inf 并记录连续出现 nan/inf 的次数或连续未出现 nan/inf 的次数；
+3. 当连续 incr_every_n_step 次迭代未出现 nan/inf 时，将 loss_scaling 乘 incr_ratio；
+4. 当连续 decr_every_n_nan_or_inf 次迭代出现 nan/inf 时，将 loss_scaling 乘 decr_ratio；
 
 ### 1.3 支持硬件说明
 
@@ -62,7 +109,7 @@
 <table>
     <tr>
         <td>硬件</td>
-        <td colspan="2">支持的混合精度</td>  
+        <td colspan="2">支持的混合精度</td>
     </tr>
     <tr>
         <td>Nvidia GPU</td>
@@ -75,21 +122,21 @@
     </tr>
     <tr>
         <td>华为 NPU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
     <tr>
         <td>昆仑芯 XPU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
     <tr>
         <td>寒武纪 MLU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
 </table>
 
 以 Nvidia GPU 为例，介绍硬件加速机制：
 
-在使用相同的超参数下，混合精度训练使用半精度浮点（float16 / bfloat16）和单精度（float32）浮点可达到与使用纯单精度（float32）训练相同的准确率，并可加速模型的训练速度，这主要得益于Nvidia 从 Volta 架构开始推出的 Tensor Core 技术。
+在使用相同的超参数下，混合精度训练使用半精度浮点（float16 / bfloat16）和单精度（float32）浮点可达到与使用纯单精度（float32）训练相同的准确率，并可加速模型的训练速度，这主要得益于 Nvidia 从 Volta 架构开始推出的 Tensor Core 技术。
 
 在使用 float16 计算时具有如下特点：
 
@@ -98,7 +145,7 @@
 
 从 NVIDIA Ampere 架构开始，GPU 支持 bfloat16，其计算性能与 float16 持平。
 
-> 说明：通过`nvidia-smi`指令可帮助查看NVIDIA显卡架构信息，混合精度训练适用的 NVIDIA GPU 计算能力至少为 7.0 的版本。此外如果已开启自动混合精度训练，飞桨框架会自动检测硬件环境是否符合要求，如不符合则将提供类似如下的警告信息：`UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.`。
+> 说明：通过`nvidia-smi`指令可帮助查看 NVIDIA 显卡架构信息，混合精度训练适用的 NVIDIA GPU 计算能力至少为 7.0 的版本。此外如果已开启自动混合精度训练，飞桨框架会自动检测硬件环境是否符合要求，如不符合则将提供类似如下的警告信息：`UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.`。
 
 ### 1.4 适用场景说明
 
@@ -110,8 +157,8 @@
 
 依据 float16 数据类型在模型中的使用程度划分，飞桨框架的混合精度策略分为两个等级：
 
-- **Level = ‘O1’**：采用黑白名单策略进行混合精度训练，黑名单中的 OP 将采用 float32 计算，白名单中的 OP 将采用 float16 计算，auto_cast策略会自动将白名单 OP 的输入参数数据类型从 float32 转为 float16。飞桨框架默认设置了 [黑白名单 OP 列表](../../api/paddle/amp/Overview_cn.html)，对于不在黑白名单中的 OP，会依据该 OP 的全部输入数据类型进行推断，当全部输入均为 float16 时，OP 将直接采用 float16 计算，否则采用 float32 计算。计算逻辑可参考图2。
-- **Level = ‘O2’**：采用了比 O1 更为激进的策略，除了框架不支持 float16 计算的 OP 以及 O2 模式下自定义黑名单中的 OP，其他全部采用 float16 计算，此外，飞桨框架提供了将网络参数从 float32 转换为 float16 的接口，相比 O1 将进一步减少 auto_cast 逻辑中的 cast 操作，训练速度会有更明显的提升，但可能影响训练精度。计算逻辑可参考图3。
+- **Level = ‘O1’**：采用黑白名单策略进行混合精度训练，黑名单中的 OP 将采用 float32 计算，白名单中的 OP 将采用 float16 计算，auto_cast 策略会自动将白名单 OP 的输入参数数据类型从 float32 转为 float16。飞桨框架默认设置了 [黑白名单 OP 列表](../../api/paddle/amp/Overview_cn.html)，对于不在黑白名单中的 OP，会依据该 OP 的全部输入数据类型进行推断，当全部输入均为 float16 时，OP 将直接采用 float16 计算，否则采用 float32 计算。计算逻辑可参考图 2。
+- **Level = ‘O2’**：采用了比 O1 更为激进的策略，除了框架不支持 float16 计算的 OP 以及 O2 模式下自定义黑名单中的 OP，其他全部采用 float16 计算，此外，飞桨框架提供了将网络参数从 float32 转换为 float16 的接口，相比 O1 将进一步减少 auto_cast 逻辑中的 cast 操作，训练速度会有更明显的提升，但可能影响训练精度。计算逻辑可参考图 3。
 
 飞桨框架推荐使用动态图模式训练模型，下面以动态图模式下单卡（GPU）训练场景为例，分别介绍使用基础 API 和高层 API 开启 AMP 训练的不同使用方式。
 
@@ -141,11 +188,11 @@ import numpy
 paddle.seed(100)
 numpy.random.seed(100)
 place = paddle.CUDAPlace(0)
-# 定义神经网络SimpleNet，该网络由九层Linear组成
+# 定义神经网络 SimpleNet，该网络由九层 Linear 组成
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
-        # 九层Linear，每层Linear网络由matmul算子及add算子组成
+        super().__init__()
+        # 九层 Linear，每层 Linear 网络由 matmul 算子及 add 算子组成
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
 
@@ -161,12 +208,12 @@ class SimpleNet(paddle.nn.Layer):
 
 ```python
 epochs = 2
-input_size = 8192   # 设为较大的值，可更明显地对比AMP训练加速效果
-output_size = 8192  # 设为较大的值，可更明显地对比AMP训练加速效果
-batch_size = 2048   # batch_size为8的倍数加速效果更优
+input_size = 8192   # 设为较大的值，可更明显地对比 AMP 训练加速效果
+output_size = 8192  # 设为较大的值，可更明显地对比 AMP 训练加速效果
+batch_size = 2048   # batch_size 为 8 的倍数加速效果更优
 nums_batch = 10
 
-# 定义Dataloader
+# 定义 Dataloader
 from paddle.io import Dataset
 class RandomDataset(Dataset):
     def __init__(self, num_samples):
@@ -188,31 +235,31 @@ loader = paddle.io.DataLoader(dataset, batch_size=batch_size, shuffle=False, dro
 
 ```python
 mse = paddle.nn.MSELoss() # 定义损失计算函数
-model = SimpleNet(input_size, output_size)  # 定义SimpleNet模型
-optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义SGD优化器
+model = SimpleNet(input_size, output_size)  # 定义 SimpleNet 模型
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义 SGD 优化器
 
 train_time = 0 # 记录总训练时长
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # 记录开始训练时刻
-        label._to(place) # 将label数据拷贝到gpu
-        # 前向计算（9层Linear网络，每层由matmul、add算子组成）
+        label._to(place) # 将 label 数据拷贝到 gpu
+        # 前向计算（9 层 Linear 网络，每层由 matmul、add 算子组成）
         output = model(data)
-        # loss计算
+        # loss 计算
         loss = mse(output, label)
         # 反向传播
         loss.backward()
         # 更新参数
         optimizer.step()
         optimizer.clear_grad(set_to_zero=False)
-        # 记录训练loss及训练时长
+        # 记录训练 loss 及训练时长
         train_loss = loss.numpy()
         train_time += time.time() - start_time
 
 print("loss:", train_loss)
-print("使用float32模式训练耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
+print("使用 float32 模式训练耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
 # loss: [0.6486028]
-# 使用float32模式训练耗时:0.529 sec
+# 使用 float32 模式训练耗时:0.529 sec
 ```
 
 > 注：如果该示例代码在你的机器上显示显存不足相关的错误，请尝试将`input_size`、`output_size`、`batch_size`调小。
@@ -221,92 +268,92 @@ print("使用float32模式训练耗时:{:.3f} sec".format(train_time/(epochs*num
 
 使用 AMP-O1 训练，需要在 float32 训练代码的基础上添加两处逻辑：
 
-- 逻辑1：使用 `paddle.amp.auto_cast` 创建 AMP 上下文环境，开启自动混合精度策略`Level = ‘O1’`。在该上下文环境影响范围内，框架会根据预设的黑白名单，自动确定每个 OP 的输入数据类型（float32 或 float16 / bfloat16）。也可以在该 API 中添加自定义黑白名单 OP 列表。
-- 逻辑2：使用 `paddle.amp.GradScaler` 控制 loss 缩放比例，规避浮点数下溢问题。在模型训练过程中，框架默认开启**动态 loss scaling 机制**（`use_dynamic_loss_scaling=True`），具体介绍见 [1.2.2 grad_scaler 策略](#gradscaler)。
+- 逻辑 1：使用 `paddle.amp.auto_cast` 创建 AMP 上下文环境，开启自动混合精度策略`Level = ‘O1’`。在该上下文环境影响范围内，框架会根据预设的黑白名单，自动确定每个 OP 的输入数据类型（float32 或 float16 / bfloat16）。也可以在该 API 中添加自定义黑白名单 OP 列表。
+- 逻辑 2：使用 `paddle.amp.GradScaler` 控制 loss 缩放比例，规避浮点数下溢问题。在模型训练过程中，框架默认开启**动态 loss scaling 机制**（`use_dynamic_loss_scaling=True`），具体介绍见 [1.2.2 grad_scaler 策略](#gradscaler)。
 
 ```python
 mse = paddle.nn.MSELoss() # 定义损失计算函数
-model = SimpleNet(input_size, output_size)  # 定义SimpleNet模型
-optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义SGD优化器
+model = SimpleNet(input_size, output_size)  # 定义 SimpleNet 模型
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义 SGD 优化器
 
-# 逻辑2：可选，定义 GradScaler，用于缩放loss比例，避免浮点数溢出，默认开启动态更新loss_scaling机制
+# 逻辑 2：可选，定义 GradScaler，用于缩放 loss 比例，避免浮点数溢出，默认开启动态更新 loss_scaling 机制
 scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 
 train_time = 0 # 记录总训练时长
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # 记录开始训练时刻
-        label._to(place) # 将label数据拷贝到gpu
-        # 逻辑1：创建 AMP-O1 auto_cast 环境，开启自动混合精度训练，将 add 算子添加到自定义白名单中（custom_white_list），
+        label._to(place) # 将 label 数据拷贝到 gpu
+        # 逻辑 1：创建 AMP-O1 auto_cast 环境，开启自动混合精度训练，将 add 算子添加到自定义白名单中（custom_white_list），
         # 因此前向计算过程中该算子将采用 float16 数据类型计算
         with paddle.amp.auto_cast(custom_white_list={'elementwise_add'}, level='O1'):
-            output = model(data) # 前向计算（9层Linear网络，每层由matmul、add算子组成）
-            loss = mse(output, label) # loss计算
-        # 逻辑2：使用 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
-        scaled = scaler.scale(loss) # loss缩放，乘以系数loss_scaling
+            output = model(data) # 前向计算（9 层 Linear 网络，每层由 matmul、add 算子组成）
+            loss = mse(output, label) # loss 计算
+        # 逻辑 2：使用 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
+        scaled = scaler.scale(loss) # loss 缩放，乘以系数 loss_scaling
         scaled.backward()           # 反向传播
-        scaler.step(optimizer)      # 更新参数（参数梯度先除系数loss_scaling再更新参数）
-        scaler.update()             # 基于动态loss_scaling策略更新loss_scaling系数
+        scaler.step(optimizer)      # 更新参数（参数梯度先除系数 loss_scaling 再更新参数）
+        scaler.update()             # 基于动态 loss_scaling 策略更新 loss_scaling 系数
         optimizer.clear_grad(set_to_zero=False)
-        # 记录训练loss及训练时长
+        # 记录训练 loss 及训练时长
         train_loss = loss.numpy()
         train_time += time.time() - start_time
 
 print("loss:", train_loss)
-print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
+print("使用 AMP-O1 模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
 # loss: [0.6486219]
-# 使用AMP-O1模式耗时:0.118 sec
+# 使用 AMP-O1 模式耗时:0.118 sec
 ```
 
 #### 2.1.3 动态图 AMP-O2 训练
 
-使用 AMP-O2训练，需要在 float32 训练代码的基础上添加三处逻辑：
+使用 AMP-O2 训练，需要在 float32 训练代码的基础上添加三处逻辑：
 
-O2模式采用了比O1更为激进的策略，除了框架不支持FP16计算的OP，其他全部采用FP16计算，需要在训练前将网络参数从FP32转为FP16，在FP32代码的基础上添加三处逻辑：
+O2 模式采用了比 O1 更为激进的策略，除了框架不支持 FP16 计算的 OP，其他全部采用 FP16 计算，需要在训练前将网络参数从 FP32 转为 FP16，在 FP32 代码的基础上添加三处逻辑：
 
-- 逻辑1：在训练前使用 `paddle.amp.decorate` 将网络参数从 float32 转换为 float16。
-- 逻辑2：使用 `paddle.amp.auto_cast` 创建 AMP 上下文环境，开启自动混合精度策略`Level = ‘O2’`。在该上下文环境影响范围内，框架会将所有支持 float16 的 OP 均采用 float16 进行计算（自定义的黑名单除外），其他 OP 采用 float32 进行计算。
-- 逻辑3：使用 `paddle.amp.GradScaler` 控制 loss 缩放比例，规避浮点数下溢问题。用法与 AMP-O1 中相同。
+- 逻辑 1：在训练前使用 `paddle.amp.decorate` 将网络参数从 float32 转换为 float16。
+- 逻辑 2：使用 `paddle.amp.auto_cast` 创建 AMP 上下文环境，开启自动混合精度策略`Level = ‘O2’`。在该上下文环境影响范围内，框架会将所有支持 float16 的 OP 均采用 float16 进行计算（自定义的黑名单除外），其他 OP 采用 float32 进行计算。
+- 逻辑 3：使用 `paddle.amp.GradScaler` 控制 loss 缩放比例，规避浮点数下溢问题。用法与 AMP-O1 中相同。
 
 ```python
 mse = paddle.nn.MSELoss() # 定义损失计算函数
-model = SimpleNet(input_size, output_size)  # 定义SimpleNet模型
-optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义SGD优化器
+model = SimpleNet(input_size, output_size)  # 定义 SimpleNet 模型
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())  # 定义 SGD 优化器
 
-# 逻辑1：在level=’O2‘模式下，将网络参数从FP32转换为FP16
+# 逻辑 1：在 level=’O2‘模式下，将网络参数从 FP32 转换为 FP16
 model = paddle.amp.decorate(models=model, level='O2')
 
-# 逻辑3：可选，定义 GradScaler，用于缩放loss比例，避免浮点数溢出，默认开启动态更新loss_scaling机制
+# 逻辑 3：可选，定义 GradScaler，用于缩放 loss 比例，避免浮点数溢出，默认开启动态更新 loss_scaling 机制
 scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 
 train_time = 0 # 记录总训练时长
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # 记录开始训练时刻
-        label._to(place) # 将label数据拷贝到gpu
-        # 逻辑2：创建 AMP-O2 auto_cast 环境，开启自动混合精度训练，前向计算过程中该算子将采用 float16 数据类型计算
+        label._to(place) # 将 label 数据拷贝到 gpu
+        # 逻辑 2：创建 AMP-O2 auto_cast 环境，开启自动混合精度训练，前向计算过程中该算子将采用 float16 数据类型计算
         with paddle.amp.auto_cast(level='O2'):
-            output = model(data) # 前向计算（9层Linear网络，每层由matmul、add算子组成）
-            loss = mse(output, label) # loss计算
-        # 逻辑3：使用 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
-        scaled = scaler.scale(loss) # loss缩放，乘以系数loss_scaling
+            output = model(data) # 前向计算（9 层 Linear 网络，每层由 matmul、add 算子组成）
+            loss = mse(output, label) # loss 计算
+        # 逻辑 3：使用 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
+        scaled = scaler.scale(loss) # loss 缩放，乘以系数 loss_scaling
         scaled.backward()           # 反向传播
-        scaler.step(optimizer)      # 更新参数（参数梯度先除系数loss_scaling再更新参数）
-        scaler.update()             # 基于动态loss_scaling策略更新loss_scaling系数
+        scaler.step(optimizer)      # 更新参数（参数梯度先除系数 loss_scaling 再更新参数）
+        scaler.update()             # 基于动态 loss_scaling 策略更新 loss_scaling 系数
         optimizer.clear_grad(set_to_zero=False)
-        # 记录训练loss及训练时长
+        # 记录训练 loss 及训练时长
         train_loss = loss.numpy()
         train_time += time.time() - start_time
 
 print("loss=", train_loss)
-print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
+print("使用 AMP-O2 模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
 # loss= [0.6743]
-# 使用AMP-O2模式耗时:0.102 sec
+# 使用 AMP-O2 模式耗时:0.102 sec
 ```
 
 #### 2.1.4 对比不同模式下训练速度
 
-动态图FP32及AMP训练的精度速度对比如下表所示：
+动态图 FP32 及 AMP 训练的精度速度对比如下表所示：
 
 | -            | **float32** | **AMP-O1** | **AMP-O2** |
 | ------------ | ----------- | ---------- | ---------- |
@@ -315,7 +362,7 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 
 从上表统计结果可以看出，相比普通的 float32 训练模式， **AMP-O1** 模式训练速度提升约为 **4.5** 倍，**AMP-O2** 模式训练速度提升约为 **5.2** 倍。
 
-> 注：上述实验构建了一个理想化的实验模型，其matmul算子占比较高，所以加速比较明显，实际模型的加速效果与模型特点有关，理论上数值计算如matmul、conv占比较高的模型加速效果更明显。此外，受机器环境影响，上述示例代码的训练耗时统计可能存在差异，该影响主要包括：GPU 利用率、CPU 利用率等，本示例的测试机器配置如下：
+> 注：上述实验构建了一个理想化的实验模型，其 matmul 算子占比较高，所以加速比较明显，实际模型的加速效果与模型特点有关，理论上数值计算如 matmul、conv 占比较高的模型加速效果更明显。此外，受机器环境影响，上述示例代码的训练耗时统计可能存在差异，该影响主要包括：GPU 利用率、CPU 利用率等，本示例的测试机器配置如下：
 
 | **Device**           | **MEM Clocks** | **SM Clocks** | **Running with CPU Clocks** |
 | -------------------- | -------------- | ------------- | --------------------------- |
@@ -332,16 +379,16 @@ import paddle.vision.transforms as T
 
 def run_example_code():
     device = paddle.set_device('gpu')
-    # 利用高层API定义神经网络
+    # 利用高层 API 定义神经网络
     net = nn.Sequential(nn.Flatten(1), nn.Linear(784, 200), nn.Tanh(), nn.Linear(200, 10))
     model = paddle.Model(net)
     # 定义优化器
     optim = paddle.optimizer.SGD(learning_rate=1e-3, parameters=model.parameters())
     # 初始化神经网络
     amp_configs = {
-        "level": "O1",                    # level对应AMP模式：O1、O2
-        "custom_white_list": {'conv2d'},  # 自定义白名单，同时还支持custom_black_list
-        "use_dynamic_loss_scaling": True  # 动态loss_scaling策略
+        "level": "O1",                    # level 对应 AMP 模式：O1、O2
+        "custom_white_list": {'conv2d'},  # 自定义白名单，同时还支持 custom_black_list
+        "use_dynamic_loss_scaling": True  # 动态 loss_scaling 策略
     }
     model.prepare(optim,
         paddle.nn.CrossEntropyLoss(),
@@ -350,7 +397,7 @@ def run_example_code():
     # 数据准备
     transform = T.Compose([T.Transpose(), T.Normalize([127.5], [127.5])])
     data = paddle.vision.datasets.MNIST(mode='train', transform=transform)
-    # 使用amp进行模型训练
+    # 使用 amp 进行模型训练
     model.fit(data, epochs=2, batch_size=32, verbose=1)
 
 if paddle.is_compiled_with_cuda():
@@ -369,42 +416,42 @@ if paddle.is_compiled_with_cuda():
 
 ```python
 mse = paddle.nn.MSELoss() # 定义损失计算函数
-model = SimpleNet(input_size, output_size)  # 定义SimpleNet模型
-optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters()) # 定义SGD优化器
+model = SimpleNet(input_size, output_size)  # 定义 SimpleNet 模型
+optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters()) # 定义 SGD 优化器
 
 accumulate_batchs_num = 10 # 梯度累加中 batch 的数量
 
-# 定义 GradScaler，用于缩放loss比例，避免浮点数溢出，默认开启动态更新loss_scaling机制
+# 定义 GradScaler，用于缩放 loss 比例，避免浮点数溢出，默认开启动态更新 loss_scaling 机制
 scaler = paddle.amp.GradScaler(init_loss_scaling=1024)
 
 train_time = 0 # 记录总训练时长
 for epoch in range(epochs):
     for i, (data, label) in enumerate(loader):
         start_time = time.time() # 记录开始训练时刻
-        label._to(place) # 将label数据拷贝到gpu
+        label._to(place) # 将 label 数据拷贝到 gpu
         # 创建 AMP-O2 auto_cast 环境，开启自动混合精度训练，前向计算过程中该算子将采用 float16 数据类型计算
         with paddle.amp.auto_cast(level='O1'):
             output = model(data)
             loss = mse(output, label)
         # 使用 GradScaler 完成 loss 的缩放，用缩放后的 loss 进行反向传播
-        scaled = scaler.scale(loss)  # loss缩放，乘以系数loss_scaling
+        scaled = scaler.scale(loss)  # loss 缩放，乘以系数 loss_scaling
         scaled.backward()            # 反向传播
         # 当累计的 batch 为 accumulate_batchs_num 时，更新模型参数
         if (i + 1) % accumulate_batchs_num == 0:
-            scaler.step(optimizer)   # 更新参数（参数梯度先除系数loss_scaling再更新参数）
-            scaler.update()          # 基于动态loss_scaling策略更新loss_scaling系数
+            scaler.step(optimizer)   # 更新参数（参数梯度先除系数 loss_scaling 再更新参数）
+            scaler.update()          # 基于动态 loss_scaling 策略更新 loss_scaling 系数
             optimizer.clear_grad(set_to_zero=False)
-        # 记录训练loss及训练时长
+        # 记录训练 loss 及训练时长
         train_loss = loss.numpy()
         train_time += time.time() - start_time
 
 print("loss:", train_loss)
-print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
+print("使用 AMP-O1 模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
 # loss: [0.6602017]
-# 使用AMP-O1模式耗时:0.113 sec
+# 使用 AMP-O1 模式耗时:0.113 sec
 ```
 
-上面的例子中，每经过 `accumulate_batchs_num`个 batch 的训练步骤，进行1次参数更新。
+上面的例子中，每经过 `accumulate_batchs_num`个 batch 的训练步骤，进行 1 次参数更新。
 
 ### 3.2 静态图训练开启 AMP
 
@@ -415,15 +462,15 @@ print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 
 #### 3.2.1 静态图 float32 训练
 
-采用与 2.1.1节 动态图训练相同的网络结构，静态图网络初始化如下：
+采用与 2.1.1 节 动态图训练相同的网络结构，静态图网络初始化如下：
 
 ```python
 paddle.enable_static() # 开启静态图模式
 place = paddle.CUDAPlace(0)
-# 定义静态图的program
+# 定义静态图的 program
 main_program = paddle.static.default_main_program()
 startup_program = paddle.static.default_startup_program()
-# 定义由9层Linear组成的神经网络
+# 定义由 9 层 Linear 组成的神经网络
 model = SimpleNet(input_size, output_size)
 # 定义损失函数
 mse_loss = paddle.nn.MSELoss()
@@ -456,9 +503,9 @@ for epoch in range(epochs):
         train_time += time.time() - start_time
 
 print("loss:", train_loss)
-print("使用FP32模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
+print("使用 FP32 模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
 # loss: [array([0.6486028], dtype=float32)]
-# 使用FP32模式耗时:0.531 sec
+# 使用 FP32 模式耗时:0.531 sec
 ```
 
 #### 3.2.2 静态图 AMP-O1 训练
@@ -502,9 +549,9 @@ for epoch in range(epochs):
         train_time += time.time() - start_time
 
 print("loss:", train_loss)
-print("使用AMP-O1模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
+print("使用 AMP-O1 模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
 # loss: [array([0.6486222], dtype=float32)]
-# 使用AMP-O1模式耗时:0.117 sec
+# 使用 AMP-O1 模式耗时:0.117 sec
 ```
 
 `paddle.static.amp.CustomOpLists`用于自定义黑白名单，将 add 算子加入了白名单中，Linear 网络将全部执行在 float16 下。
@@ -527,7 +574,7 @@ loss = mse_loss(predict, label)
 
 optimizer = paddle.optimizer.SGD(learning_rate=0.0001, parameters=model.parameters())
 
-# 1）通过 `decorate` 对优化器进行封装，use_fp16_guard设置为False，网络的全部op执行FP16计算
+# 1）通过 `decorate` 对优化器进行封装，use_fp16_guard 设置为 False，网络的全部 op 执行 FP16 计算
 optimizer = paddle.static.amp.decorate(
     optimizer=optimizer,
     init_loss_scaling=128.0,
@@ -553,28 +600,28 @@ for epoch in range(epochs):
         train_time += time.time() - start_time
 
 print("loss:", train_loss)
-print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
+print("使用 AMP-O2 模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
 # loss: [array([0.6743], dtype=float16)]
-# 使用AMP-O2模式耗时:0.098 sec
+# 使用 AMP-O2 模式耗时:0.098 sec
 ```
 
 > 注：在 AMP-O2 模式下，网络参数将从 float32 转为 float16，输入数据需要相应输入 float16 类型数据，因此需要将`class RandomDataset`中初始化的数据类型设置为`float16`。
 
-2）设置`paddle.static.amp.decorate`的参数`use_pure_fp16`为 True，同时设置参数`use_fp16_guard`为True，通过`paddle.static.amp.fp16_guard`控制使用 float16 的计算范围。
+2）设置`paddle.static.amp.decorate`的参数`use_pure_fp16`为 True，同时设置参数`use_fp16_guard`为 True，通过`paddle.static.amp.fp16_guard`控制使用 float16 的计算范围。
 
 在模型定义的代码中加入`fp16_guard`控制部分网络执行在 float16 下：
 
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
 
     def forward(self, x):
         for i, l in enumerate(self.linears):
             if i > 0:
-                # 在模型定义中通过fp16_guard控制使用float16的计算范围
+                # 在模型定义中通过 fp16_guard 控制使用 float16 的计算范围
                 with paddle.static.amp.fp16_guard():
                     x = self.linears[i](x)
             else:
@@ -619,14 +666,14 @@ for epoch in range(epochs):
         train_time += time.time() - start_time
 
 print("loss:", train_loss)
-print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
+print("使用 AMP-O2 模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch)))
 # loss: [array([0.6691731], dtype=float32)]
-# 使用AMP-O2模式耗时:0.140 sec
+# 使用 AMP-O2 模式耗时:0.140 sec
 ```
 
 #### 3.2.4 对比不同模式下训练速度
 
-静态图FP32及AMP训练的精度速度对比如下表所示：
+静态图 FP32 及 AMP 训练的精度速度对比如下表所示：
 
 | -        | **FP32**  | **AMP-O1** | **AMP-O2** |
 | -------- | --------- | ---------- | ---------- |
@@ -646,7 +693,7 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
     - B 维度为：K x N
     - C 维度为：M x N
 
-    矩阵乘使用建议如下：根据Tensor Core使用建议，当矩阵维数 M、N、K 是8（A100架构GPU为16）的倍数时（FP16数据下），性能最优。
+    矩阵乘使用建议如下：根据 Tensor Core 使用建议，当矩阵维数 M、N、K 是 8（A100 架构 GPU 为 16）的倍数时（FP16 数据下），性能最优。
 
 2. 卷积计算定义为：`NKPQ = NCHW * KCRS`，其中：
 
@@ -662,31 +709,31 @@ print("使用AMP-O2模式耗时:{:.3f} sec".format(train_time/(epochs*nums_batch
 
     卷积计算使用建议如下：
 
-    - 输入/输出数据的通道数（C/K）可以被8整除（FP16），（cudnn7.6.3及以上的版本，如果不是8的倍数将会被自动填充）
-    - 对于网络第一层，通道数设置为4可以获得最佳的运算性能（NVIDIA为网络的第一层卷积提供了特殊实现，使用4通道性能更优）
-    - 设置内存中的张量布局为NHWC格式（如果输入NCHW格式，Tesor Core会自动转换为NHWC，当输入输出数值较大的时候，这种转置的开销往往更大）
+    - 输入/输出数据的通道数（C/K）可以被 8 整除（FP16），（cudnn7.6.3 及以上的版本，如果不是 8 的倍数将会被自动填充）
+    - 对于网络第一层，通道数设置为 4 可以获得最佳的运算性能（NVIDIA 为网络的第一层卷积提供了特殊实现，使用 4 通道性能更优）
+    - 设置内存中的张量布局为 NHWC 格式（如果输入 NCHW 格式，Tesor Core 会自动转换为 NHWC，当输入输出数值较大的时候，这种转置的开销往往更大）
 
 ## 五、AMP 常见问题及处理方法
 
 飞桨 AMP 常见问题及处理方法如下：
 
-1. 开启AMP训练后无加速效果或速度下降
+1. 开启 AMP 训练后无加速效果或速度下降
 
-    可能原因1：所用显卡并不支持AMP加速，可在训练日志中查看如下warning信息：`UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.`；
+    可能原因 1：所用显卡并不支持 AMP 加速，可在训练日志中查看如下 warning 信息：`UserWarning: AMP only support NVIDIA GPU with Compute Capability 7.0 or higher, current GPU is: Tesla K40m, with Compute Capability: 3.5.`；
 
-    可能原因2：模型是轻计算、重调度的类型，计算负载较大的matmul、conv等操作占比较低，可通过nvidia-smi实时产看显卡显存利用率（Memory Usage 及 GPU_Util 参数）。
+    可能原因 2：模型是轻计算、重调度的类型，计算负载较大的 matmul、conv 等操作占比较低，可通过 nvidia-smi 实时产看显卡显存利用率（Memory Usage 及 GPU_Util 参数）。
 
     针对上述原因，建议关闭混合精度训练。
 
-2. AMP-O2与分布式训练同时使用时抛出RuntimeError: `For distributed AMP training, you should first use paddle.amp.decorate() to decotate origin model, and then call paddle.DataParallel get distributed model.`
+2. AMP-O2 与分布式训练同时使用时抛出 RuntimeError: `For distributed AMP training, you should first use paddle.amp.decorate() to decotate origin model, and then call paddle.DataParallel get distributed model.`
 
-    原因：AMP-O2的分布式训练，要求`paddle.amp.decorate`需要声明在`paddle.DataParallel`初始化分布式训练的网络前。
+    原因：AMP-O2 的分布式训练，要求`paddle.amp.decorate`需要声明在`paddle.DataParallel`初始化分布式训练的网络前。
 
     正确用法如下：
 
 ```
 import paddle
-model = SimpleNet(input_size, output_size)  # 定义SimpleNet模型
-model = paddle.amp.decorate(models=model, level='O2') # paddle.amp.decorate需要声明在paddle.DataParallel前
+model = SimpleNet(input_size, output_size)  # 定义 SimpleNet 模型
+model = paddle.amp.decorate(models=model, level='O2') # paddle.amp.decorate 需要声明在 paddle.DataParallel 前
 dp_model = paddle.DataParallel(model)
 ```

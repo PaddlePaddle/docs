@@ -10,7 +10,7 @@ and the number of outputs increases linearly with
 the increase of the number of model layers,
 which becomes a challenge of the memory size
 for common devices.
- 
+
 
 Theory
 ---------
@@ -19,11 +19,11 @@ As we know, a training process of a deep-learning network contains 3 steps:
 
 - **Forward Propagation**：Running forward operators and generate temporary variables as output
 - **Backward Propagation**：Running backward operators to compute gradients of parameters
-- **Optimization**：Applying optimization algorithm to update parameters 
+- **Optimization**：Applying optimization algorithm to update parameters
 
 When the model becomes deeper, the number of temporary variables
 generated in the forward propagation process can reach tens
-of thousands, occupying a large amount of memory. 
+of thousands, occupying a large amount of memory.
 The `Garbage Collection mechanism <https://paddlepaddle.org.cn/documentation/docs/zh/advanced_usage/best_practice/memory_optimize.html>`_
 in Paddle can delete useless variables for the sake of saving memory.
 However, some variables serve as inputs of backward operators,
@@ -41,17 +41,17 @@ the forward propagation works as follows:
 where :math:`x, y, z` are vectors， :math:`W_1, W_2` are matrix。It is easy to conduct that the gradient of :math:`W_2` is:
 
 .. math::
-    W_{2}^{'} = z^{'} / y 
+    W_{2}^{'} = z^{'} / y
 
-We can see that :math:`y` is used in the backward propagation process, 
+We can see that :math:`y` is used in the backward propagation process,
 thus it must be kept in the memory during the whole forward propagation.
 When network grows deeper, more 'y's need to be stored,
 adding more requirements to the memory.
 
 Forward Recomputation Backpropagation(FRB) splits a deep network to k segments.
-For each segment, in forward propagation, 
-most of the temporary variables are erased in time, 
-except for some special variables (we will talk about that later); 
+For each segment, in forward propagation,
+most of the temporary variables are erased in time,
+except for some special variables (we will talk about that later);
 in backward propagation, the forward operators will be recomputed
 to get these temporary variables before running backward operators.
 In short, FBR runs forward operators twice.
@@ -59,13 +59,13 @@ In short, FBR runs forward operators twice.
 But how to split the network? A deep learning network usually consists
 of connecting modules in series:
 ResNet-50 contains 16 blocks and Bert-Large contains 24 transformers.
-It is a good choice to treat such modules as segments. 
+It is a good choice to treat such modules as segments.
 The variables among segments are
 called as checkpoints.
 
-The following picture is a network with 4 fc layers, 3 relu layers, 
+The following picture is a network with 4 fc layers, 3 relu layers,
 1 sigmoid layer and 1 log-loss layer in series.
-The left column is the forward propagation, 
+The left column is the forward propagation,
 the middle column is the normal backward propagation,
 and the right column is the FRB.
 Rectangular boxes represent the operators, red dots represent
@@ -132,10 +132,10 @@ In principle, recompute is for all kinds of optimizers in Paddle.
 
 **2. Using Recompute in Fleet API**
 
-`Fleet API <https://github.com/PaddlePaddle/Fleet>`_ 
+`Fleet API <https://github.com/PaddlePaddle/PaddleFleetX>`_
 is a high-level API for distributed training in Fluid. Adding
 RecomputeOptimizer to Fluid takes two steps:
- 
+
 - set dist_strategy.forward_recompute to True
 
 - set dist_strategy.recompute_checkpoints
@@ -154,7 +154,7 @@ We also post corresponding training speed,
 test results and memory usages of these examples for reference.
 
 
-- Fine-tuning Bert Large model with recomputing:  `source <https://github.com/PaddlePaddle/Fleet/tree/develop/examples/recompute/bert>`_
+- Fine-tuning Bert Large model with recomputing:  `source <https://github.com/PaddlePaddle/PaddleFleetX/tree/old_develop/deprecated/examples/recompute/bert>`_
 
 - Training object detection models with recomputing：developing.
 
@@ -171,12 +171,12 @@ first-computation and recomputation consistent.
 - **Are there more official examples of Recompute?**
 
   More examples will be updated at `examples <https://github.com/PaddlePaddle/examples/tree/master/community_examples/recompute>`_
-and `Fleet <https://github.com/PaddlePaddle/Fleet>`_ . Feel free to
+and `Fleet <https://github.com/PaddlePaddle/PaddleFleetX>`_ . Feel free to
 raise issues if you get any problem with these examples.
 
 - **How should I set checkpoints?**
 
-The position of checkpoints is important: 
+The position of checkpoints is important:
 we suggest setting the variable between the sub-model as checkpoints,
 that is, set a variable as a checkpoint if it
 can separate the network into two parts without short-cut connections.

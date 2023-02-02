@@ -5,12 +5,12 @@ SoftmaxTransform
 
 .. py:class:: paddle.distribution.SoftmaxTransform
 
-Softmax变换，首先进行 :math:`y = exp(x)` 变换，然后归一化。
+Softmax 变换，首先进行 :math:`y = exp(x)` 变换，然后归一化。
 
-Softmax变换将向量变换为单纯形。
+Softmax 变换将向量变换为单纯形。
 
 .. note::
-Softmax不是双射函数，所以 ``forward_log_det_jacobian`` 、 ``inverse_log_det_jacobian`` 未实现。
+   Softmax 不是双射函数，所以 ``forward_log_det_jacobian``、``inverse_log_det_jacobian`` 未实现。
 
 代码示例
 :::::::::
@@ -27,9 +27,8 @@ forward(x)
 
 **参数**
 
-- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution` 
-  的随机采样结果。
-    
+- **x** (Tensor) - 正变换输入参数，通常为 :ref:`cn_api_distribution_Distribution` 的随机采样结果。
+
 **返回**
 
 - **y** (Tensor) - 正变换的计算结果。
@@ -38,15 +37,15 @@ forward(x)
 inverse(y)
 '''''''''
 
-计算逆变换 :math:`x = f^{-1}(y)`
+计算逆变换 :math:`x = f^{-1}(y)`。
 
 **参数**
 
 - **y** (Tensor) - 逆变换的输入参数。
-    
+
 **返回**
 
-- **x** (Tensor) - 逆变换的计算结果。
+Tensor，逆变换的计算结果。
 
 forward_log_det_jacobian(x)
 '''''''''
@@ -58,10 +57,10 @@ forward_log_det_jacobian(x)
 **参数**
 
 - **x** (Tensor) - 输入参数。
-    
+
 **返回**
 
-- Tensor - 正变换雅可比行列式绝对值的对数。
+Tensor，正变换雅可比行列式绝对值的对数。
 
 
 inverse_log_det_jacobian(y)
@@ -74,10 +73,10 @@ inverse_log_det_jacobian(y)
 **参数**
 
 - **y** (Tensor) - 输入参数。
-    
+
 **返回**
 
-- Tensor - 逆变换雅可比行列式绝对值的对数。
+Tensor，逆变换雅可比行列式绝对值的对数。
 
 
 forward_shape(shape)
@@ -88,10 +87,10 @@ forward_shape(shape)
 **参数**
 
 - **shape** (Sequence[int]) - 正变换输入的形状。
-    
+
 **返回**
 
-- Sequence[int] - 正变换输出的形状。
+Sequence[int]，正变换输出的形状。
 
 
 inverse_shape(shape)
@@ -102,8 +101,7 @@ inverse_shape(shape)
 **参数**
 
 - **shape** (Sequence[int]) - 逆变换输入的形状。
-    
+
 **返回**
 
-- Sequence[int] - 逆变换输出的形状。
-
+Sequence[int]，逆变换输出的形状。

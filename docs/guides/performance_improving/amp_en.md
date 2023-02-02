@@ -2,7 +2,7 @@
 
 In general, the default datatype (dtype) of training deep learning model is float32, and each data occupies 32 bits of storage space. In order to save the consumption of memory, the industry has proposed 16 bit data types (such as float16 and bfloat16 supported by GPU). Each data only needs 16 bits storage space, saving half the storage space compared with float32. Some chips can obtain faster computing speed on 16 bit data. For example, according to the data of NVIDIA, On a V100 GPU, matrix multiply and convolution operations can be speeded up to 8x in float16 over their float32 equivalents.
 
-Considering that some operators (OPS) require high data accuracy (such as softmax and cross_entropy), this kind of operator still needs to be calculated with float32. Some operators (such as conv2d and matmul) are not sensitive to data accuracy, float16 / bfloat16 can be used to improve the calculation speed and reduce the storage space, Paddle provides **Automatic Mixed Precision (AMP)**, during model training, the appropriate data calculation accuracy (float32 or float16 / bfloat16) is automatically selected for the operator, which can accelerate the training without losing the training accuracy. Please refer to the papers jointly released by Baidu and NVIDIA in 2018: [MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf). This tutorial will introduce how to use automatic mixed precision training with PaddlePaddle.  
+Considering that some operators (OPS) require high data accuracy (such as softmax and cross_entropy), this kind of operator still needs to be calculated with float32. Some operators (such as conv2d and matmul) are not sensitive to data accuracy, float16 / bfloat16 can be used to improve the calculation speed and reduce the storage space, Paddle provides **Automatic Mixed Precision (AMP)**, during model training, the appropriate data calculation accuracy (float32 or float16 / bfloat16) is automatically selected for the operator, which can accelerate the training without losing the training accuracy. Please refer to the papers jointly released by Baidu and NVIDIA in 2018: [MIXED PRECISION TRAINING](https://arxiv.org/pdf/1710.03740.pdf). This tutorial will introduce how to use automatic mixed precision training with PaddlePaddle.
 
 ## I. overview
 
@@ -13,7 +13,7 @@ Both [float16](https://en.wikipedia.org/wiki/Half-precision_floating-point_forma
 Compare the floating-point formats of float32 and float16 / bfloat16, as shown in Figure 1:
 
 <figure align="center">
-    <img src="./images/float.png" width="400" alt='missing'>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/float.png?raw=true" width="600" alt='missing' align="center"/>
     <figcaption><center>Figure 1. Floating-point formats of float32 and float16 / bfloat16</center></figcaption>
 </figure>
 
@@ -30,7 +30,7 @@ The above data types have the following numerical characteristics:
 Paddle adopts **auto_cast strategy** realizes the automatic conversion and use of calculation accuracy during model training. Generally, the model parameters are stored in the single precision floating-point format (float32). In the training process, the model parameters are converted from float32 to the half precision floating-point number (float16 or bfloat16) to participate in the forward calculation, and the half precision floating-point number represents the intermediate state. Then the half precision floating-point number is used to calculate the parameter gradient, and finally the parameter gradient is converted to the single precision floating-point number format, Update model parameters. The calculation process is shown in Figure 2 below:
 
 <figure align="center">
-    <img src="./images/auto_cast.png" width="400" alt='missing'>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/auto_cast.png?raw=true" width="700" alt='missing' align="center"/>
     <figcaption><center>Figure 2. auto_cast calculation process</center></figcaption>
 </figure>
 
@@ -39,7 +39,7 @@ The logic in the blue dashed box in the figure2 is the parameter accuracy conver
 When the model parameters are stored in half precision floating-point format (float16 / bfloat16) before training, the cast operation in Figure 2 will be omitted in the training process, which can further improve the model training performance. However, it should be noted that the model parameters are stored in low precision data types, which may affect the final training accuracy of the model. The calculation process is shown in Figure 3 below:
 
 <figure align="center">
-    <img src="./images/auto_cast_o2.png" width="400" alt='missing'>
+    <img src="https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/performance_improving/images/auto_cast_o2.png?raw=true" width="700" alt='missing' align="center"/>
     <figcaption><center>Figure 3. float16 calculation process</center></figcaption>
 </figure>
 
@@ -61,7 +61,7 @@ Paddle AMP supports following hardware, and the data type supported by different
 <table>
     <tr>
         <td>硬件</td>
-        <td colspan="2">支持的混合精度</td>  
+        <td colspan="2">支持的混合精度</td>
     </tr>
     <tr>
         <td>Nvidia GPU</td>
@@ -74,15 +74,15 @@ Paddle AMP supports following hardware, and the data type supported by different
     </tr>
     <tr>
         <td>华为 NPU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
     <tr>
         <td>昆仑芯 XPU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
     <tr>
         <td>寒武纪 MLU</td>
-        <td colspan="2">float16</td>  
+        <td colspan="2">float16</td>
     </tr>
 </table>
 
@@ -143,7 +143,7 @@ place = paddle.CUDAPlace(0)
 # build a network composed of nine layers of linear
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         # nine layers of linear, each layer is composed of matmul and add operator
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
@@ -362,7 +362,7 @@ if paddle.is_compiled_with_cuda():
 
 The previous article introduced the method of single card (GPU) training in dynamic graph mode, which is similar to it, [distributed training documents](https://fleet-x.readthedocs.io/en/latest/paddle_fleet_rst/collective/collective_performance/amp.html) and [dynamic graph to static graph](../jit/index_cn.html) can start AMP in the same way. Next, it mainly introduces the methods of starting AMP training in static graph modes and the advanced usage of AMP training, such as gradient accumulation.
 
-### 3.1 Gradient Accumulation in dygraph graph mode
+### 3.1 Gradient Accumulation in dynamic graph mode
 
 Gradient accumulation means running a configured number of steps without updating the model variables. Until certain steps, use the accumulated gradients to update the variables. Limited by the size of the gpu memory, you may not be able to open a larger batch_size, you can increase batch_size by using gradient accumulation.
 
@@ -411,7 +411,7 @@ In the above example, after `accumulate_batchs_num` batch training steps, with o
 
 ### 3.2. AMP in Static Graph
 
-Paddle starts AMP training in Static Graph, the compute logic is similar to the dynamic diagram, except that the called interfaces are different. Paddle Static Graph provides a series of convenient APIs for AMP: ``paddle.static.amp.decorate``, ``paddle.static.amp.fp16_guard``.
+Paddle starts AMP training in Static Graph, the compute logic is similar to the dynamic graph, except that the called interfaces are different. Paddle Static Graph provides a series of convenient APIs for AMP: ``paddle.static.amp.decorate``, ``paddle.static.amp.fp16_guard``.
 
 - ``paddle.static.amp.decorate``: Decorate the optimizer, add amp logic, and set the parameters of grad_scaler through this API.
 - ``paddle.static.amp.fp16_guard``: In AMP_O2 mode, the scope of float16 is controlled only in context manager ``fp16_guard``.
@@ -570,7 +570,7 @@ Add code to model definition `fp16_guard` control part of network execution unde
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, input_size, output_size):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linears = paddle.nn.LayerList(
             [paddle.nn.Linear(input_size, output_size) for i in range(9)])
 

@@ -5,7 +5,7 @@ hinge_embedding_loss
 
 .. py:class:: paddle.nn.functional.hinge_embedding_loss(input, label, margin=1.0, reduction='mean', name=None)
 
-该接口计算输入 input 和标签 label（包含 1 和 -1） 间的 `hinge embedding loss` 损失。
+计算输入 input 和标签 label（包含 1 和 -1） 间的 `hinge embedding loss` 损失。
 
 该损失通常用于度量输入 input 和标签 label 是否相似或不相似，例如可以使用 L1 成对距离作为输入 input，通常用于学习非线性嵌入或半监督学习。
 

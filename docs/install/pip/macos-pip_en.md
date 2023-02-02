@@ -1,12 +1,12 @@
-# Install on MacOS via PIP
+# Install on macOS via PIP
 
 ## Environmental preparation
 
 ### 1.1 PREQUISITES
 
-* **MacOS version 10.11/10.12/10.13/10.14 (64 bit) (not support GPU version)**
+* **macOS version 10.11/10.12/10.13/10.14 (64 bit) (not support GPU version)**
 
-* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python version 3.7/3.8/3.9/3.10 (64 bit)**
 
 * **pip or pip3 版本 20.2.2 or above (64 bit)**
 
@@ -33,7 +33,7 @@
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9
+  * Use the following command to confirm that it is 3.7/3.8/3.9/3.10
 
         python --version
 
@@ -58,7 +58,7 @@
 
 * The installation package provided by default requires computer support for MKL
 
-* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), for instructions please refer to[here](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
+* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), for instructions please refer to[here](https://github.com/PaddlePaddle/docs/blob/develop/docs/install/install_script.md)。
 
 
 
@@ -68,7 +68,7 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 ### Choose CPU/GPU
 
-* Currently, only the CPU version of PaddlePaddle is supported in the MacOS environment
+* Currently, only the CPU version of PaddlePaddle is supported in the macOS environment
 
 
 ### Installation Step

@@ -9,7 +9,7 @@ get_group
 
 参数
 :::::::::
-    - id (int)：通信组 id。默认值为 0。
+    - **id** (int) - 通信组 id。默认值为 0。
 
 返回
 :::::::::
@@ -18,4 +18,3 @@ Group 通信组实例
 代码示例
 ::::::::::::
 COPY-FROM: paddle.distributed.get_group
-

@@ -79,7 +79,7 @@ ndim_2_tensor = paddle.to_tensor([[1.0, 2.0],
 An exception will be thrown in this case:
 ```text
 ValueError:
-        Faild to convert input data to a regular ndarray :
+        Failed to convert input data to a regular ndarray :
          - Usually this means the input data contains nested lists with different lengths.
 ```
 
@@ -103,7 +103,7 @@ If you want to create a **Tensor** of specific interval, you can use API below:
 
 ```python
 paddle.arange(start, end, step)  # create Tensor within interval [start, end) evenly separated by step
-paddle.linspace(start, end, num) # create Tensor within interval [start, end) evenly separated by elements number
+paddle.linspace(start, stop, num) # create Tensor within interval [start, stop) evenly separated by elements number
 ```
 For example, the output of `paddle.arange(start=1, end=5, step=1)` is：
 ```text
@@ -510,9 +510,9 @@ The created **Tensor** will have the same shape and dtype with the original Nump
 
 PaddlePaddle provides broadcasting semantics in some APIs like other deep learning frameworks, which allows using tensors with different shapes while operating.
 In General, broadcast is the rule how the smaller tensor is “broadcast” across the larger tsnsor so that they have same shapes.
-Note that no copies happened while broadcasting.  
+Note that no copies happened while broadcasting.
 
-In Paddlepaddle, tensors are broadcastable when following rulrs hold(ref [Numpy Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)):
+In PaddlePaddle, tensors are broadcastable when following rulrs hold(ref [Numpy Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html#module-numpy.doc.broadcasting)):
 
 1. there should be at least one dimention in each tensor
 2. when comparing their shapes element-wise from backward to forward, two dimensions are compatible when

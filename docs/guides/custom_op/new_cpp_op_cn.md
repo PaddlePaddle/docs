@@ -1,8 +1,8 @@
-# 自定义C++算子
+# 自定义 C++算子
 
 ## 概述
 
-算子（Operator，简称Op）是构建神经网络的基础组件，飞桨框架提供了丰富的算子库，能够满足绝大多数场景的使用需求。但是出于以下几点原因，您可能希望定制化算子的C++实现，从而满足特定需求：
+算子（Operator，简称 Op）是构建神经网络的基础组件，飞桨框架提供了丰富的算子库，能够满足绝大多数场景的使用需求。但是出于以下几点原因，您可能希望定制化算子的 C++实现，从而满足特定需求：
 
 1. 已有的算子无法组合出您需要的运算逻辑；
 2. 使用已有算子组合得到的运算逻辑无法满足您的性能需求。
@@ -11,7 +11,7 @@
 
 使用自定义算子机制，仅需要以下两个步骤：
 
-1. 实现算子的C++运算逻辑，完成算子构建
+1. 实现算子的 C++运算逻辑，完成算子构建
 2. 调用 `python` 接口完成算子编译与注册
 
 随后即可在模型中使用，下面通过实现一个 `relu` 运算，介绍具体的实现、编译与应用流程。
@@ -19,11 +19,11 @@
 > 注意事项：
 > - 在使用本机制实现自定义算子之前，请确保已经正确安装了 `PaddlePaddle 2.3` 及以上版本
 > - 该机制已支持 `Linux` 、 `Mac`  和 `Windows` 平台。
-> - 本自定义外部算子机制仅保证源码级别的兼容，不保证二进制级别的兼容，例如，基于飞桨2.3版本编写的自定义算子源码实现，在飞桨2.3或者后续版本中编译链接使用没有问题，但基于飞桨2.3之前的版本编译得到的自定义算子动态库文件（*.so, *.dylib, *.dll），在2.3或者后续发布的版本中可能会加载失败。
+> - 本自定义外部算子机制仅保证源码级别的兼容，不保证二进制级别的兼容，例如，基于飞桨 2.3 版本编写的自定义算子源码实现，在飞桨 2.3 或者后续版本中编译链接使用没有问题，但基于飞桨 2.3 之前的版本编译得到的自定义算子动态库文件（*.so, *.dylib, *.dll），在 2.3 或者后续发布的版本中可能会加载失败。
 
-## 自定义算子C++实现
+## 自定义算子 C++实现
 
-使用自定义算子机制，需要编写以下组件的C++实现，包括：
+使用自定义算子机制，需要编写以下组件的 C++实现，包括：
 
 1. **算子的运算函数**：算子核心的计算逻辑实现，主要是对输入 `Tensor` 进行处理，得到输出 `Tensor` 的过程
 2. **算子的维度与类型推导函数**：用于在组网编译和运行时，正确推导出输出 `Tensor` 的 `shape` 和 `data type`
@@ -31,7 +31,7 @@
 
 下面结合示例进行介绍。
 
-### 运算函数与基础API
+### 运算函数与基础 API
 
 #### 基本写法要求
 
@@ -68,7 +68,7 @@ std::vector<paddle::Tensor> OpFucntion(const paddle::Tensor& x, ..., int attr, .
 
 #### 设备类型
 
-设备类型使用 `Place` 表示，`Place` 含有内存类型AllocationType与设备ID信息，是 `Tensor` 的基础描述信息之一。
+设备类型使用 `Place` 表示，`Place` 含有内存类型 AllocationType 与设备 ID 信息，是 `Tensor` 的基础描述信息之一。
 
 其中设备类型是枚举类型：
 
@@ -82,20 +82,20 @@ enum class AllocationType : int8_t {
 };
 ```
 
-设备ID是一个int8_t的数值，用于表示当前使用的设备卡号。
+设备 ID 是一个 int8_t 的数值，用于表示当前使用的设备卡号。
 
-一些Place使用示例如下：
+一些 Place 使用示例如下：
 
 ```c++
 auto cpu_place = paddle::CPUPlace();
-auto gpu_place = paddle::GPUPlace(); // 默认设备ID为0，一般在自定义算子内使用默认的构造方式即可
-auto gpu_place = paddle::GPUPlace(1); // GPU 1号卡
+auto gpu_place = paddle::GPUPlace(); // 默认设备 ID 为 0，一般在自定义算子内使用默认的构造方式即可
+auto gpu_place = paddle::GPUPlace(1); // GPU 1 号卡
 ```
 
-此外，Place还有两个常用的方法：
+此外，Place 还有两个常用的方法：
 
-- GetType()：获取Place的内存类型AllocationType
-- GetDeviceId()：获取Place的设备ID
+- GetType()：获取 Place 的内存类型 AllocationType
+- GetDeviceId()：获取 Place 的设备 ID
 
 使用示例如下：
 
@@ -105,9 +105,9 @@ auto alloc_type = gpu_place.GetType(); // paddle::AllocationType::GPU
 auto dev_id = gpu_place.GetDeviceId(); // 0
 ```
 
-详细的Place定义请参考 [paddle/phi/common/place.h](https://github.com/PaddlePaddle/Paddle/blob/release/2.3/paddle/phi/common/place.h)。
+详细的 Place 定义请参考 [paddle/phi/common/place.h](https://github.com/PaddlePaddle/Paddle/blob/release/2.3/paddle/phi/common/place.h)。
 
-> 注：目前自定义算子仅在CPU与GPU上进行了验证，其他类型会视需求在后续版本支持
+> 注：目前自定义算子仅在 CPU 与 GPU 上进行了验证，其他类型会视需求在后续版本支持
 
 #### 数据类型
 
@@ -135,13 +135,13 @@ enum class DataType {
 }
 ```
 
-详细的DataType定义请参考 [paddle/phi/common/data_type.h](https://github.com/PaddlePaddle/Paddle/blob/release/2.3/paddle/phi/common/data_type.h)。
+详细的 DataType 定义请参考 [paddle/phi/common/data_type.h](https://github.com/PaddlePaddle/Paddle/blob/release/2.3/paddle/phi/common/data_type.h)。
 
 #### Tensor API
 
 （1） `Tensor` 构造
 
-对于 `paddle::Tensor` 的构造，我们推荐使用相应的初始化paddle API，包括：
+对于 `paddle::Tensor` 的构造，我们推荐使用相应的初始化 paddle API，包括：
 
 ```c++
 PADDLE_API Tensor empty(const IntArray& shape, DataType dtype=DataType::FLOAT32, const Place& place=CPUPlace());
@@ -162,23 +162,23 @@ auto gpu_tensor = paddle::full({3, 4}, 1.0, paddle::DataType::FLOAT64, paddle::G
 
 （2） `Tensor` 成员方法
 
-此外 `paddle::Tensor` 自身目前提供了一些基础的功能API，在定义算子最后那个常用的包括：
+此外 `paddle::Tensor` 自身提供了一些基础的功能 API，常用的包括：
 
-- 设备、数据类型获取API：
+- 设备、数据类型获取 API：
     - `const Place& place() const`：获取 `Tensor` 所在的设备
     - `DataType dtype() const`：获取 `Tensor` 的数据类型
-- 长度与维度获取API：
+- 长度与维度获取 API：
     - `int64_t numel() const`：获取 `Tensor` 的数据长度
     - `std::vector<int64_t> shape() const`：获取 `Tensor` 的维度信息
-- 数据访问API：
+- 数据访问 API：
     - `template <typename T> const T* data() const`：模板类方法，获取数据内存的起始地址（只读）
     - `template <typename T> T* data()`：模板类方法，获取数据内存的起始地址（读写）
-- 状态或属性判断API：
+- 状态或属性判断 API：
     - `bool defined() const`: 确认 `Tensor` 是否有效
     - `bool initialized() const`: 确认 `Tensor` 是否已被初始化
-    - `bool is_cpu() const`：确认 `Tensor` 是否在CPU上
-    - `bool is_gpu() const`：确认 `Tensor` 是否在GPU上
-- 工具类API：
+    - `bool is_cpu() const`：确认 `Tensor` 是否在 CPU 上
+    - `bool is_gpu() const`：确认 `Tensor` 是否在 GPU 上
+- 工具类 API：
     - `Tensor copy_to(const Place& place, bool blocking) const`：
         - 模板类方法，输入参数 `place`，将当前 `Tensor` 拷贝到指定设备上并返回
     - `Tensor cast(DataType target_type) const`：
@@ -187,14 +187,14 @@ auto gpu_tensor = paddle::full({3, 4}, 1.0, paddle::DataType::FLOAT64, paddle::G
         - 输入参数起始行 begin_idx 和终止行 end_idx，返回当前 Tensor 从起始行（含）到终止行（不含）的一个视图
         - 目前仅支持对当前 Tensor 的第一个维度（即 axis = 0）进行切分
     - `cudaStream_t stream() const`：
-        - 用于获取当前 `Tensor` 所处的CUDA Stream（仅在GPU编译版本中生效）
-        - 仅能够获取函数输入 `Tensor` 的stream
+        - 用于获取当前 `Tensor` 所处的 CUDA Stream（仅在 GPU 编译版本中生效）
+        - 仅能够获取函数输入 `Tensor` 的 stream
 
-后续我们会继续扩展其他Tensor API，详细的Tensor定义请参考 [paddle/phi/api/include/tensor.h](https://github.com/PaddlePaddle/Paddle/blob/release/2.3/paddle/phi/api/include/tensor.h) 。
+后续我们会继续扩展其他 Tensor API，详细的 Tensor 定义请参考 [paddle/phi/api/include/tensor.h](https://github.com/PaddlePaddle/Paddle/blob/release/2.3/paddle/phi/api/include/tensor.h) 。
 
 #### Exception API
 
-- `PD_CHECK(COND, ...)`：输入bool条件表达式进行检查，如果值为 `false` ，则抛出异常，支持变长参数输入，伪代码示例如下：
+- `PD_CHECK(COND, ...)`：输入 bool 条件表达式进行检查，如果值为 `false` ，则抛出异常，支持变长参数输入，伪代码示例如下：
 
 ```c++
 // case 1: No error message specified
@@ -226,17 +226,18 @@ PD_THROW("PD_THROW returns ", false)
 //   [/User/custom_op/custom_relu_op.cc:82]
 ```
 
-#### 类Python的C++运算API
+#### 类 Python 的 C++运算 API
 
-自paddle 2.3版本开始，我们提供定义与用法与相应Python API类似的C++ API，其API命名、参数顺序及类型均和相应的paddle Python API对齐，可以通过查找相应Python API的官方文档了解其用法，并在自定义算子开发时使用。通过调用这些接口，可以省去封装基础运算的时间，从而提高开发效率。
+自 paddle 2.3 版本开始，我们提供定义与用法与相应 Python API 类似的 C++ API，其 API 命名、参数顺序及类型均和相应的 paddle Python API 对齐，可以通过查找相应 Python API 的官方文档了解其用法，并在自定义算子开发时使用。通过调用这些接口，可以省去封装基础运算的时间，从而提高开发效率。
 
-在2.3版本支持的C++ API列表如下，可以通过 `paddle::xxx` 进行调用：
+在 2.3 版本支持的 C++ API 列表如下，可以通过 `paddle::xxx` 进行调用：
 
 ```c++
 PADDLE_API Tensor abs(const Tensor& x);
 PADDLE_API Tensor acos(const Tensor& x);
 PADDLE_API Tensor acosh(const Tensor& x);
 PADDLE_API Tensor add(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor addmm(const Tensor& input, const Tensor& x, const Tensor& y, float beta = 1.0, float alpha = 1.0);
 PADDLE_API Tensor allclose(const Tensor& x, const Tensor& y, const Scalar& rtol, const Scalar& atol, bool equal_nan);
 PADDLE_API std::tuple<Tensor,Tensor> argsort(const Tensor& x, int axis, bool descending);
 PADDLE_API Tensor asin(const Tensor& x);
@@ -264,6 +265,7 @@ PADDLE_API Tensor dot(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor elu(const Tensor& x, float alpha);
 PADDLE_API Tensor empty(const IntArray& shape, DataType dtype=DataType::FLOAT32, const Place& place=CPUPlace());
 PADDLE_API Tensor empty_like(const Tensor& x, DataType dtype=DataType::UNDEFINED, const Place& place={});
+PADDLE_API Tensor equal(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor equal_all(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor erf(const Tensor& x);
 PADDLE_API Tensor erfinv(const Tensor& x);
@@ -274,11 +276,18 @@ PADDLE_API std::tuple<Tensor,Tensor> flatten(const Tensor& x, int start_axis, in
 PADDLE_API Tensor flip(const Tensor& x, const std::vector<int>& axis);
 PADDLE_API Tensor floor(const Tensor& x);
 PADDLE_API Tensor floor_divide(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor fmax(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor fmin(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor frame(const Tensor& x, int frame_length, int hop_length, int axis = -1);
 PADDLE_API Tensor full(const IntArray& shape, const Scalar& value, DataType dtype=DataType::FLOAT32, const Place& place=CPUPlace());
 PADDLE_API Tensor gather(const Tensor& x, const Tensor& index, const Scalar& axis=0);
 PADDLE_API Tensor gather_nd(const Tensor& x, const Tensor& index);
 PADDLE_API Tensor gelu(const Tensor& x, bool approximate);
+PADDLE_API Tensor greater_equal(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor greater_than(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor gumbel_softmax(const Tensor& x, float temperature, bool hard, int axis);
+PADDLE_API Tensor hardswish(const Tensor& x);
+PADDLE_API Tensor hardtanh(const Tensor& x, float t_min, float t_max);
 PADDLE_API Tensor imag(const Tensor& x);
 PADDLE_API Tensor increment(const Tensor& x, float value);
 PADDLE_API Tensor index_sample(const Tensor& x, const Tensor& index);
@@ -291,6 +300,8 @@ PADDLE_API Tensor kron(const Tensor& x, const Tensor& y);
 PADDLE_API std::tuple<Tensor,Tensor> kthvalue(const Tensor& x, int k, int axis, bool keepdim);
 PADDLE_API Tensor label_smooth(const Tensor& label, paddle::optional<const Tensor&> prior_dist, float epsilon);
 PADDLE_API Tensor lerp(const Tensor& x, const Tensor& y, const Tensor& weight);
+PADDLE_API Tensor less_equal(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor less_than(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor lgamma(const Tensor& x);
 PADDLE_API Tensor log(const Tensor& x);
 PADDLE_API Tensor log10(const Tensor& x);
@@ -302,6 +313,7 @@ PADDLE_API Tensor matmul(const Tensor& x, const Tensor& y, bool transpose_x=fals
 PADDLE_API Tensor matrix_power(const Tensor& x, int n);
 PADDLE_API Tensor maximum(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor maxout(const Tensor& x, int groups, int axis);
+PADDLE_API std::vector<Tensor> meshgrid(const std::vector<Tensor>& inputs);
 PADDLE_API Tensor minimum(const Tensor& x, const Tensor& y);
 PADDLE_API std::tuple<Tensor,Tensor> mode(const Tensor& x, int axis, bool keepdim);
 PADDLE_API Tensor multi_dot(const std::vector<Tensor>& x);
@@ -309,13 +321,19 @@ PADDLE_API Tensor multinomial(const Tensor& x, int num_samples, bool replacement
 PADDLE_API Tensor multiply(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor mv(const Tensor& x, const Tensor& vec);
 PADDLE_API std::tuple<Tensor,Tensor> nll_loss(const Tensor& input, const Tensor& label, paddle::optional<const Tensor&> weight, int64_t ignore_index, const std::string& reduction);
+PADDLE_API Tensor not_equal(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor one_hot(const Tensor& x, const Scalar& num_classes);
+PADDLE_API Tensor ones(const IntArray& shape, DataType dtype = DataType::FLOAT32, const Place& place = CPUPlace());
+PADDLE_API Tensor overlap_add(const Tensor& x, int hop_length, int axis = -1);
 PADDLE_API Tensor pixel_shuffle(const Tensor& x, int upscale_factor, const std::string& data_format);
 PADDLE_API Tensor poisson(const Tensor& x);
+PADDLE_API Tensor put_along_axis(const Tensor& arr, const Tensor& indices, const Tensor& values, int axis, const std::string& reduce = "assign");
 PADDLE_API std::tuple<Tensor,Tensor> qr(const Tensor& x, const std::string& mode);
 PADDLE_API Tensor real(const Tensor& x);
 PADDLE_API Tensor reciprocal(const Tensor& x);
 PADDLE_API Tensor relu(const Tensor& x);
+PADDLE_API Tensor relu6(const Tensor& x);
+PADDLE_API Tensor remainder(const Tensor& x, const Tensor& y);
 PADDLE_API Tensor reshape(const Tensor& x, const IntArray& shape);
 PADDLE_API Tensor roll(const Tensor& x, const IntArray& shifts, const std::vector<int64_t>& axis);
 PADDLE_API Tensor round(const Tensor& x);
@@ -323,6 +341,9 @@ PADDLE_API Tensor rsqrt(const Tensor& x);
 PADDLE_API Tensor scatter(const Tensor& x, const Tensor& index, const Tensor& updates, bool overwrite);
 PADDLE_API Tensor scatter_nd_add(const Tensor& x, const Tensor& index, const Tensor& updates);
 PADDLE_API Tensor selu(const Tensor& x, float scale, float alpha);
+PADDLE_API Tensor send_u_recv(const Tensor& x, const Tensor& src_index, const Tensor& dst_index, const std::string& reduce_op = "SUM", const IntArray& out_size = {0});
+PADDLE_API Tensor send_ue_recv(const Tensor& x, const Tensor& y, const Tensor& src_index, const Tensor& dst_index, const std::string& message_op, const std::string& reduce_op, const IntArray& out_size);
+PADDLE_API Tensor send_uv(const Tensor& x, const Tensor& y, const Tensor& src_index, const Tensor& dst_index, const std::string& message_op = "ADD");
 PADDLE_API Tensor sign(const Tensor& x);
 PADDLE_API Tensor silu(const Tensor& x);
 PADDLE_API Tensor sin(const Tensor& x);
@@ -333,31 +354,34 @@ PADDLE_API Tensor square(const Tensor& x);
 PADDLE_API Tensor stack(const std::vector<Tensor>& x, int axis);
 PADDLE_API Tensor strided_slice(const Tensor& x, const std::vector<int>& axes, const IntArray& starts, const IntArray& ends, const IntArray& strides);
 PADDLE_API Tensor subtract(const Tensor& x, const Tensor& y);
+PADDLE_API Tensor swish(const Tensor& x);
 PADDLE_API Tensor tanh(const Tensor& x);
 PADDLE_API Tensor thresholded_relu(const Tensor& x, float threshold);
 PADDLE_API Tensor tile(const Tensor& x, const IntArray& repeat_times);
 PADDLE_API Tensor trace(const Tensor& x, int offset, int axis1, int axis2);
 PADDLE_API Tensor triangular_solve(const Tensor& x, const Tensor& y, bool upper, bool transpose, bool unitriangular);
+PADDLE_API Tensor tril(const Tensor& x, int diagonal);
 PADDLE_API std::vector<Tensor> unbind(const Tensor& input, int axis);
 PADDLE_API std::tuple<Tensor,Tensor,Tensor,Tensor> unique(const Tensor& x, bool return_index, bool return_inverse, bool return_counts, const std::vector<int>& axis, DataType dtype=DataType::INT64);
 PADDLE_API std::tuple<Tensor,Tensor> unsqueeze(const Tensor& x, const IntArray& axis);
 PADDLE_API Tensor where(const Tensor& condition, const Tensor& x, const Tensor& y);
+PADDLE_API Tensor zeros(const IntArray& shape, DataType dtype = DataType::FLOAT32, const Place& place = CPUPlace());
 ```
 
-> 注：后续我们会提供更方便的查阅C++ API文档的入口。
+> 注：后续我们会提供更方便的查阅 C++ API 文档的入口。
 
-在2.3版本，我们共支持了大约250个类似的C++ API，能够覆盖大部分的基础运算，但是除前述的109个C++ API之外，剩余的C++ API由于一些历史原因，其参数列表尚未和相应的Python API对齐，因此目前剩余这些API只能作为experimental的API使用，需要通过 `paddle::experimental::xxx` 进行调用，且这些experimental API在下个版本可能会有不兼容的升级，如果不介意随下一版本升级的话，可以使用，追求稳定的话则不建议使用。
+在 2.3 版本，我们共支持了大约 250 个类似的 C++ API，能够覆盖大部分的基础运算，但是除前述的 133 个 C++ API 之外，剩余的 C++ API 由于一些历史原因，其参数列表尚未和相应的 Python API 对齐，因此目前剩余这些 API 只能作为 experimental 的 API 使用，需要通过 `paddle::experimental::xxx` 进行调用，且这些 experimental API 在下个版本可能会有不兼容的升级，如果不介意随下一版本升级的话，可以使用，追求稳定的话则不建议使用。
 
-如有需要，目前支持的全量API列表（包含experimental API）请参考paddle安装路径下的api.h头文件，以Python3.7为例，其路径是 `python3.7/site-packages/paddle/include/paddle/phi/api/include/api.h`。
+如有需要，目前支持的全量 API 列表（包含 experimental API）请参考 paddle 安装路径下的 api.h 头文件，以 Python3.7 为例，其路径是 `python3.7/site-packages/paddle/include/paddle/phi/api/include/api.h`。
 
 
 ### 运算函数实现
 
-对函数写法以及基础API的定义有了初步认识后，下面结合具体的示例进行介绍。
+对函数写法以及基础 API 的定义有了初步认识后，下面结合具体的示例进行介绍。
 
-#### CPU实现
+#### CPU 实现
 
-以 `relu` 算子为例，一个支持 `float32` 类型的CPU `relu` 算子运算函数可以实现如下：
+以 `relu` 算子为例，一个支持 `float32` 类型的 CPU `relu` 算子运算函数可以实现如下：
 
 - relu_cpu_fp32.cc
 
@@ -415,7 +439,7 @@ std::vector<paddle::Tensor> ReluCPUBackward(const paddle::Tensor& x,
 
 前述 `relu` 示例实现仅支持 `float32` 类型的计算，如果仅有一种数据类型的支持需求，用以上写法即可。
 
-如果需要同时支持多种数据类型，例如同时支持 `float32` 与 `float64` 的计算，可以使用相应的DIAPATCH宏进行声明，示例如下：
+如果需要同时支持多种数据类型，例如同时支持 `float32` 与 `float64` 的计算，可以使用相应的 DIAPATCH 宏进行声明，示例如下：
 
 - relu_cpu.cc
 
@@ -483,7 +507,7 @@ std::vector<paddle::Tensor> ReluCPUBackward(const paddle::Tensor& x,
 
 > 注：编写模板计算函数时，模板参数名 `data_t` 用于适配不同的数据类型，不可更改为其他命名，否则会编译失败
 
-示例中的 `PD_DISPATCH_FLOATING_TYPES` 会展开得到 `float32` 与 `float64` 的switch-case实现，从而在运行时根据输入的数据类型，选择实际需要执行的分支。
+示例中的 `PD_DISPATCH_FLOATING_TYPES` 会展开得到 `float32` 与 `float64` 的 switch-case 实现，从而在运行时根据输入的数据类型，选择实际需要执行的分支。
 
 例如，`ReluCPUForward` 中的 `PD_DISPATCH_FLOATING_TYPES` 实际代码展开如下：
 
@@ -504,21 +528,21 @@ switch(x.type()) {
 }
 ```
 
-目前定义的dispatch宏包括：
+目前定义的 dispatch 宏包括：
 
 - `PD_DISPATCH_FLOATING_TYPES` ：dispatch 生成 `float` 和 `double` 对应的实现
 - `PD_DISPATCH_FLOATING_AND_HALF_TYPES` ：dispatch 生成 `float` , `double` 和 `paddle::float16` 对应的实现
-- `PD_DISPATCH_INTEGRAL_TYPES` ：dispatch生成 `int8_t`, `uint8_t`, `int16_t`, `int`的`int64_t` 对应的实现
-- `PD_DISPATCH_COMPLEX_TYPES`：dispatch生成 `paddle::complex64` 和 `paddle::complex128` 对应的实现
-- `PD_DISPATCH_FLOATING_AND_INTEGRAL_TYPES` ：dispatch生成前述 `PD_DISPATCH_FLOATING_TYPES` 和 `PD_DISPATCH_INTEGRAL_TYPES` 两个宏全部数据类型对应的实现
-- `PD_DISPATCH_FLOATING_AND_COMPLEX_TYPES`：dispatch生成前述 `PD_DISPATCH_FLOATING_TYPES` 和 `PD_DISPATCH_COMPLEX_TYPES` 两个宏全部数据类型对应的实现
-- `PD_DISPATCH_FLOATING_AND_INTEGRAL_AND_COMPLEX_TYPES`：dispatch生成前述 `PD_DISPATCH_FLOATING_TYPES` , `PD_DISPATCH_INTEGRAL_TYPES` 和 `PD_DISPATCH_COMPLEX_TYPES` 三个宏全部数据类型对应的实现
+- `PD_DISPATCH_INTEGRAL_TYPES` ：dispatch 生成 `int8_t`, `uint8_t`, `int16_t`, `int`的`int64_t` 对应的实现
+- `PD_DISPATCH_COMPLEX_TYPES`：dispatch 生成 `paddle::complex64` 和 `paddle::complex128` 对应的实现
+- `PD_DISPATCH_FLOATING_AND_INTEGRAL_TYPES` ：dispatch 生成前述 `PD_DISPATCH_FLOATING_TYPES` 和 `PD_DISPATCH_INTEGRAL_TYPES` 两个宏全部数据类型对应的实现
+- `PD_DISPATCH_FLOATING_AND_COMPLEX_TYPES`：dispatch 生成前述 `PD_DISPATCH_FLOATING_TYPES` 和 `PD_DISPATCH_COMPLEX_TYPES` 两个宏全部数据类型对应的实现
+- `PD_DISPATCH_FLOATING_AND_INTEGRAL_AND_COMPLEX_TYPES`：dispatch 生成前述 `PD_DISPATCH_FLOATING_TYPES` , `PD_DISPATCH_INTEGRAL_TYPES` 和 `PD_DISPATCH_COMPLEX_TYPES` 三个宏全部数据类型对应的实现
 
 当然，如果这几个宏无法满足您实际使用的需求，您可以直接通过 `switch-case` 语句实现，将来视需求我们也会添加更多的宏。
 
-#### CPU&CUDA混合实现
+#### CPU&CUDA 混合实现
 
-通常只有CPU的算子实现是不够的，实际生产环境中一般需要使用GPU算子。此处将前述 `relu_cpu.cc` 中算子的CPU实现改为GPU示例如下：
+通常只有 CPU 的算子实现是不够的，实际生产环境中一般需要使用 GPU 算子。此处将前述 `relu_cpu.cc` 中算子的 CPU 实现改为 GPU 示例如下：
 
 - relu_cuda.cu
 ```c++
@@ -611,9 +635,9 @@ std::vector<paddle::Tensor> ReluCUDABackward(const paddle::Tensor& x,
 }
 ```
 
-在 `.cu` 文件中实现对应的CUDA kernel和计算函数，在 `.cc` 文件中声明调用即可。
+在 `.cu` 文件中实现对应的 CUDA kernel 和计算函数，在 `.cc` 文件中声明调用即可。
 
-注意这里的 `CHECK_INPUT` 也改为检查输入 `Tensor` 是否在GPU上，如果后续仍然在CPU上执行，将会报错如下，可以看到报错提示与 `CHECK_INPUT` 缩写提示一致。至于错误类型，`PaddlePaddle` 将外部扩展自定义算子视为第三方模块，错误类型统一为 `OSError: (External)` ，与其他第三方库报错类型一致。报错示例如下：
+注意这里的 `CHECK_INPUT` 也改为检查输入 `Tensor` 是否在 GPU 上，如果后续仍然在 CPU 上执行，将会报错如下，可以看到报错提示与 `CHECK_INPUT` 缩写提示一致。至于错误类型，`PaddlePaddle` 将外部扩展自定义算子视为第三方模块，错误类型统一为 `OSError: (External)` ，与其他第三方库报错类型一致。报错示例如下：
 
 ```
 Traceback (most recent call last):
@@ -636,7 +660,7 @@ OSError: (External) x must be a GPU Tensor.
   [operator < custom_relu > error]
 ```
 
-实际使用时，一般您只需要根据您实际使用的设备，编写对应设备的算子实现即可，例如您使用GPU训练，仅需要实现算子的CUDA版本即可使用，如果您需要您的自定义算子同时支持多种设备，例如同时支持CPU与GPU，只需要将CPU和GPU的实现整合到一起，并在前反向函数中实现对应的分支即可，示例如下：
+实际使用时，一般您只需要根据您实际使用的设备，编写对应设备的算子实现即可，例如您使用 GPU 训练，仅需要实现算子的 CUDA 版本即可使用，如果您需要您的自定义算子同时支持多种设备，例如同时支持 CPU 与 GPU，只需要将 CPU 和 GPU 的实现整合到一起，并在前反向函数中实现对应的分支即可，示例如下：
 
 - relu.cc
 ```c++
@@ -807,9 +831,116 @@ std::vector<paddle::Tensor> relu_cuda_backward(const paddle::Tensor& x,
 }
 ```
 
+#### 对自定义设备的支持
+
+首先请参考 [新硬件接入示例](https://www.paddlepaddle.org.cn/documentation/docs/zh/dev_guides/custom_device_docs/custom_device_example_cn.html) 确保自定义设备已经注册完成。
+
+如果 CPU 实现和 GPU 实现无法满足新硬件的需求，可以通过组合 C++ 运算 API 的方式，实现自定义算子。将前述 `relu_cpu.cc` 中的 CPU 实现改为组合 C++ 运算 API 的示例如下：
+
+```c++
+#include "paddle/extension.h"
+
+#include <vector>
+
+#define CHECK_CUSTOM_INPUT(x) PD_CHECK(x.is_custom_device(), #x " must be a custom Tensor.")
+
+std::vector<paddle::Tensor> relu_custom_forward(const paddle::Tensor& x) {
+  CHECK_CUSTOM_INPUT(x);
+  auto out = paddle::relu(x);
+  return {out};
+}
+
+std::vector<paddle::Tensor> relu_custom_backward(
+    const paddle::Tensor& x,
+    const paddle::Tensor& out,
+    const paddle::Tensor& grad_out) {
+  CHECK_CUSTOM_INPUT(x);
+  CHECK_CUSTOM_INPUT(out);
+  auto grad_x = paddle::empty_like(x, x.dtype(), x.place());
+  auto ones = paddle::experimental::full_like(x, 1.0, x.dtype(), x.place());
+  auto zeros = paddle::experimental::full_like(x, 0.0, x.dtype(), x.place());
+  auto condition = paddle::experimental::greater_than(x, zeros);
+
+  grad_x = paddle::multiply(grad_out, paddle::where(condition, ones, zeros));
+
+  return {grad_x};
+}
+
+std::vector<paddle::Tensor> relu_custom_double_backward(
+    const paddle::Tensor& out, const paddle::Tensor& ddx) {
+  CHECK_CUSTOM_INPUT(out);
+  auto ddout = paddle::empty(out.shape(), out.dtype(), out.place());
+  auto ones = paddle::experimental::full_like(out, 1.0, out.dtype(), out.place());
+  auto zeros = paddle::experimental::full_like(out, 0.0, out.dtype(), out.place());
+  auto condition = paddle::experimental::greater_than(out, zeros);
+
+  ddout = paddle::multiply(ddx, paddle::where(condition, ones, zeros));
+
+  return {ddout};
+}
+
+std::vector<paddle::Tensor> ReluForward(const paddle::Tensor& x) {
+  if (x.is_cpu()) {
+    return relu_cpu_forward(x);
+  } else if (x.is_custom_device()) {
+    return relu_custom_forward(x);
+  } else {
+    PD_THROW("Not implemented.");
+  }
+}
+
+std::vector<paddle::Tensor> ReluBackward(const paddle::Tensor& x,
+                                         const paddle::Tensor& out,
+                                         const paddle::Tensor& grad_out) {
+  if (x.is_cpu()) {
+    return relu_cpu_backward(x, out, grad_out);
+  } else if (x.is_custom_device()) {
+    return relu_custom_backward(x, out, grad_out);
+  } else {
+    PD_THROW("Not implemented.");
+  }
+}
+
+std::vector<paddle::Tensor> ReluDoubleBackward(const paddle::Tensor& out,
+                                               const paddle::Tensor& ddx) {
+  if (out.is_cpu()) {
+    return relu_cpu_double_backward(out, ddx);
+  } else if (out.is_custom_device()) {
+    return relu_custom_double_backward(out, ddx);
+  } else {
+    PD_THROW("Not implemented.");
+  }
+}
+```
+
+支持的 C++ 运算 API 可参考 [类 Python 的 C++运算 API](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/custom_op/new_cpp_op_cn.html#python-c-api)
+
+##### 获取自定义设备的 stream
+
+用户想要获取设备的 `stream` 时，可以通过下述方式获取对应 `Tensor` 的 `stream`（需要添加头文件 `#include "paddle/phi/backends/all_context.h"`）：
+
+```c++
+#include "paddle/extension.h"
+#include "paddle/phi/backends/all_context.h"
+
+#define CHECK_CUSTOM_INPUT(x) \
+  PD_CHECK(x.is_custom_device(), #x " must be a custom Tensor.")
+
+void* GetStream(const paddle::Tensor& x) {
+  CHECK_CUSTOM_INPUT(x);
+
+  auto dev_ctx = paddle::experimental::DeviceContextPool::Instance().Get(x.place());
+  auto custom_ctx = static_cast<const phi::CustomContext*>(dev_ctx);
+  void* stream = custom_ctx->stream();
+  PD_CHECK(stream != nullptr);
+
+  return stream;
+}
+```
+
 ### 维度与类型推导函数实现
 
-`PaddlePaddle` 框架同时支持动态图与静态图的执行模式，在静态图模式下，组网阶段需要完成 `Tensor shape` 和 `dtype` 的推导，从而生成正确的模型描述，用于后续Graph优化与执行。因此，除了算子的运算函数之外，还需要实现前向运算的维度和类型的推导函数。
+`PaddlePaddle` 框架同时支持动态图与静态图的执行模式，在静态图模式下，组网阶段需要完成 `Tensor shape` 和 `dtype` 的推导，从而生成正确的模型描述，用于后续 Graph 优化与执行。因此，除了算子的运算函数之外，还需要实现前向运算的维度和类型的推导函数。
 
 维度推导（InferShape）和类型推导（InferDtype）的函数写法也是有要求的，形式如下：
 
@@ -828,8 +959,8 @@ std::vector<paddle::DataType> OpInferDtype(paddle::DataType x_dtype, ...) {
 - 函数输入参数与前述运算函数的输入 `Tensor` 按顺序一一对应，依次为输入参数的 `shape` 和 `dtype`，这里的对应规则为：
     - `paddle::Tensor` -> `std::vector<int64_t>`
     - `std::vector<paddle::Tensor>` -> `std::vector<std::vector<int64_t>>`
-- 函数返回值vector中的 `shape` 或 `dtype` 信息也需要与返回 `Tensor` 按顺序一一对应
-- 维度推导函数支持 `Attribute` 的输入，在实现维度推导函数时，可以不使用 `Attribute` 的输入参数，也可以使用，但如果要使用的话，需要和Forward函数的 `Attribute` 参数保持一致
+- 函数返回值 vector 中的 `shape` 或 `dtype` 信息也需要与返回 `Tensor` 按顺序一一对应
+- 维度推导函数支持 `Attribute` 的输入，在实现维度推导函数时，可以不使用 `Attribute` 的输入参数，也可以使用，但如果要使用的话，需要和 Forward 函数的 `Attribute` 参数保持一致
 - 类型推导函数不支持 `Attribute` 的输入
 
 以 `relu` 为例，其维度与类型推导函数如下：
@@ -848,7 +979,7 @@ std::vector<paddle::DataType> ReluInferDtype(paddle::DataType x_dtype) {
 }
 ```
 
-> 注：如果是CUDA算子，ReluInferShape和ReluInferDtype仅需要在.cc文件中实现，不需要在.cu中重复实现
+> 注：如果是 CUDA 算子，ReluInferShape 和 ReluInferDtype 仅需要在.cc 文件中实现，不需要在.cu 中重复实现
 
 对于仅有一个输入 `Tensor` 和一个输出 `Tensor` 的自定义算子，如果输出 `Tensor` 和输入 `Tensor` 的 `shape` 和 `dtype` 一致，可以省略 `InferShape` 和 `InferDtype` 函数的实现，其他场景下均需要实现这两个函数。因此，对于这里的 `relu` 算子来说，这两个函数可以不写。
 
@@ -873,7 +1004,7 @@ std::vector<paddle::DataType> ConcatInferDtypeStaticAxis(
 
 最后，需要调用 `PD_BUILD_OP` 系列宏，构建算子的描述信息，并关联前述算子运算函数和维度、类型推导函数。
 
-我们提供了3个构建算子的宏：
+我们提供了 3 个构建算子的宏：
 
 - `PD_BUILD_OP` ：用于构建前向算子
 - `PD_BUILD_GRAD_OP` ：用于构建前向算子对应的反向算子
@@ -881,7 +1012,7 @@ std::vector<paddle::DataType> ConcatInferDtypeStaticAxis(
 
 > 注：二阶以上的反向算子构建暂不支持。
 
-对于 `relu` CPU示例来说，构建算子描述如下：
+对于 `relu` CPU 示例来说，构建算子描述如下：
 
 - relu_cpu_fp32.cc / relu_cpu.cc （需将以下代码追加到前述文件中）
 
@@ -900,13 +1031,13 @@ PD_BUILD_GRAD_OP(custom_relu)
 ```
 
 这里写法上需要注意以下几点：
-- `PD_BUILD_OP` 系列宏后面的括号内为算子名，也是后面在python端使用的接口名，注意前后不需要引号，注意该算子名不能与 `PaddlePaddle` 内已有算子名重名，比如 `relu` 为 `PaddlePaddle` 内已有算子，如果直接使用relu作为算子名将无法注册成功，所以此处增加了前缀 `custom_`
+- `PD_BUILD_OP` 系列宏后面的括号内为算子名，也是后面在 python 端使用的接口名，注意前后不需要引号，注意该算子名不能与 `PaddlePaddle` 内已有算子名重名，比如 `relu` 为 `PaddlePaddle` 内已有算子，如果直接使用 relu 作为算子名将无法注册成功，所以此处增加了前缀 `custom_`
 - `PD_BUILD_OP`、 `PD_BUILD_GRAD_OP` 和 `PD_BUILD_DOUBLE_GRAD_OP` 构建同一个算子的前向、反向、二阶反向实现，宏后面使用的算子名需要保持一致，比如该示例中均使用 `custom_relu`
 - `PD_BUILD_OP`、 `PD_BUILD_GRAD_OP` 和 `PD_BUILD_DOUBLE_GRAD_OP` 必须顺次调用，不允许在未调用 `PD_BUILD_OP` 构建前向算子的情况下，直接调用 `PD_BUILD_GRAD_OP` 构建反向算子
-- Inputs与Outputs的输入参数为 `std::vector<std::string>` ，依次是前面算子运算函数的输入输出 `Tensor` 的name，需要按顺序一一对应，此处的name与函数输入参数的变量名没有强关联，比如函数输入参数是 `const paddle::Tensor& x` ，Inputs中的name可以是 `Input, x, X, In` 等等
-- `PD_BUILD_OP` 与 `PD_BUILD_GRAD_OP` 中的Inputs与Outputs的name有强关联，对于前向算子的某个输入，如果反向算子仍然要复用，那么其name一定要保持一致，因为内部执行时，会以name作为key去查找对应的变量，比如这里前向算子的 `X, Out` 与反向算子的 `X, Out` 指代同一个 `Tensor`
-- 在声明反向算子的Inputs与Outputs时，前向 `Tensor` 对应的梯度 `Tensor` 名需要由 `paddle::Grad` 处理前向 `Tensor` 名得到，不能够随意声明，例如这里 `"X"` 对应的梯度 `Tensor` 名为 `paddle::Grad("X")`
-- 如果算子的Inputs与Outputs中包含变长的 `Tensor` 输入和输出，其 `Tensor` 名需要由 `paddle::Vec` 方法处理得到，例如对于前述 `concat` 算子的前向输入 `const std::vector<paddle::Tensor>& inputs` ，其 `Tensor` 名可以为 `paddle::Vec("X")` ，对应的梯度 `Tensor` 名为 `paddle::Grad(paddle::Vec("X"))` ，此处 `paddle::Grad` 需要在 `paddle::Vec` 的外面
+- Inputs 与 Outputs 的输入参数为 `std::vector<std::string>` ，依次是前面算子运算函数的输入输出 `Tensor` 的 name，需要按顺序一一对应，此处的 name 与函数输入参数的变量名没有强关联，比如函数输入参数是 `const paddle::Tensor& x` ，Inputs 中的 name 可以是 `Input, x, X, In` 等等
+- `PD_BUILD_OP` 与 `PD_BUILD_GRAD_OP` 中的 Inputs 与 Outputs 的 name 有强关联，对于前向算子的某个输入，如果反向算子仍然要复用，那么其 name 一定要保持一致，因为内部执行时，会以 name 作为 key 去查找对应的变量，比如这里前向算子的 `X, Out` 与反向算子的 `X, Out` 指代同一个 `Tensor`
+- 在声明反向算子的 Inputs 与 Outputs 时，前向 `Tensor` 对应的梯度 `Tensor` 名需要由 `paddle::Grad` 处理前向 `Tensor` 名得到，不能够随意声明，例如这里 `"X"` 对应的梯度 `Tensor` 名为 `paddle::Grad("X")`
+- 如果算子的 Inputs 与 Outputs 中包含变长的 `Tensor` 输入和输出，其 `Tensor` 名需要由 `paddle::Vec` 方法处理得到，例如对于前述 `concat` 算子的前向输入 `const std::vector<paddle::Tensor>& inputs` ，其 `Tensor` 名可以为 `paddle::Vec("X")` ，对应的梯度 `Tensor` 名为 `paddle::Grad(paddle::Vec("X"))` ，此处 `paddle::Grad` 需要在 `paddle::Vec` 的外面
 - 此处 `SetKernelFn` 、`SetInferShapeFn` 与 `SetInferDtypeFn` 中的 `PD_KERNEL` 、`PD_INFER_SHAPE` 、`PD_INFER_DTYPE` 宏用于自动转换并统一函数的签名，不可以省略
 - 反向算子构建暂时不支持调用 `SetInferShapeFn` 和 `SetInferDtypeFn` 自定义维度与类型推导函数，框架会根据前向 `Tensor` 的 `shape` 和 `dtype` ，设定其对应梯度 `Tensor` 的 `shape` 和 `dtype`
 
@@ -924,7 +1055,7 @@ PD_BUILD_GRAD_OP(custom_relu)
     .SetKernelFn(PD_KERNEL(ReluCPUBackward));
 ```
 
-类似地，GPU示例构建算子描述如下，替换 `KernelFn` 即可：
+类似地，GPU 示例构建算子描述如下，替换 `KernelFn` 即可：
 
 - relu_cuda.cc （需将以下代码追加到前述文件中）
 
@@ -960,11 +1091,11 @@ PD_BUILD_GRAD_OP(custom_concat_with_attr)
 
 #### Attribute 声明
 
-对于 `Attribute` 的声明，和Inputs、Outputs的声明有所不同，需要按照如下格式声明字符串：
+对于 `Attribute` 的声明，和 Inputs、Outputs 的声明有所不同，需要按照如下格式声明字符串：
 
 `<name>: <attr-type-expr>`
 
-其中，`name` 为 `Attribute` 变量的name，`<attr-type-expr>` 为 `Attribute` 变量的类型，类型字符串需要与C++类型严格一致。通过如下示例说明：
+其中，`name` 为 `Attribute` 变量的 name，`<attr-type-expr>` 为 `Attribute` 变量的类型，类型字符串需要与 C++类型严格一致。通过如下示例说明：
 
 假如有前向运算函数形式如下：
 
@@ -1068,7 +1199,7 @@ setup(
 )
 ```
 
-其中 `paddle.utils.cpp_extension.setup` 能够自动搜索和检查本地的 `cc(Linux)` 、 `cl.exe(Windows)` 和 `nvcc` 编译命令和版本环境，根据用户指定的 `Extension` 类型，完成CPU或CPU设备的算子编译安装。
+其中 `paddle.utils.cpp_extension.setup` 能够自动搜索和检查本地的 `cc(Linux)` 、 `cl.exe(Windows)` 和 `nvcc` 编译命令和版本环境，根据用户指定的 `Extension` 类型，完成 CPU 或 GPU 设备的算子编译安装。
 
 执行 `python setup_cpu.py install` 或者 `python setup_cuda.py install` 即可一键完成自定义算子的编译和安装。
 
@@ -1196,9 +1327,9 @@ x = paddle.randn([4, 10], dtype='float32')
 relu_out = custom_relu(x)
 ```
 
-> 注：`setuptools` 的封装是为了简化自定义算子编译和使用流程，即使不依赖于 `setuptools` ，也可以自行编译生成动态库，并封装相应的python API，然后在基于 `PaddlePaddle` 实现的模型中使用
+> 注：`setuptools` 的封装是为了简化自定义算子编译和使用流程，即使不依赖于 `setuptools` ，也可以自行编译生成动态库，并封装相应的 python API，然后在基于 `PaddlePaddle` 实现的模型中使用
 
-如果需要详细了解相关接口，或需要配置其他编译选项，请参考以下API文档：
+如果需要详细了解相关接口，或需要配置其他编译选项，请参考以下 API 文档：
 
 - [paddle.utils.cpp_extension.setup](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/setup_cn.html)
 - [paddle.utils.cpp_extension.setupCppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/CppExtension_cn.html)
@@ -1206,7 +1337,7 @@ relu_out = custom_relu(x)
 
 ### 即时编译（`JIT Compile`）
 
-即时编译将 `setuptools.setup` 编译方式做了进一步的封装，通过将自定义算子对应的 `.cc` 和 `.cu` 文件传入API `paddle.utils.cpp_extension.load`，在后台生成 `setup.py` 文件，并通过子进程的方式，隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境。 Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ，Windows下需安装版本不低于2017的Visual Studio；若编译支持 GPU 设备的算子，则需要提前安装CUDA，其中自带 `nvcc` 编译环境。
+即时编译将 `setuptools.setup` 编译方式做了进一步的封装，通过将自定义算子对应的 `.cc` 和 `.cu` 文件传入 API `paddle.utils.cpp_extension.load`，在后台生成 `setup.py` 文件，并通过子进程的方式，隐式地执行源码文件编译、符号链接、动态库生成、组网 API 接口生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境。 Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ，Windows 下需安装版本不低于 2017 的 Visual Studio；若编译支持 GPU 设备的算子，则需要提前安装 CUDA，其中自带 `nvcc` 编译环境。
 
 对于前述 `relu` 示例，使用方式如下：
 
@@ -1223,9 +1354,9 @@ x = paddle.randn([4, 10], dtype='float32')
 out = custom_ops.custom_relu(x)
 ```
 
-`load` 返回一个包含自定义算子API的 `Module` 对象，可以直接使用自定义算子name调用API。
+`load` 返回一个包含自定义算子 API 的 `Module` 对象，可以直接使用自定义算子 name 调用 API。
 
-以Linux平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，Linux 会默认在 `~/.cache/paddle_extensions` 目录下生成一个 `{name}_setup.py`（Windows 默认目录为 `C:\\Users\\xxx\\.cache\\paddle_extensions` 用户目录），然后通过subprocess执行 `python {name}_setup.py build`，然后载入动态库，生成 Python API 之后返回。
+以 Linux 平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，Linux 会默认在 `~/.cache/paddle_extensions` 目录下生成一个 `{name}_setup.py`（Windows 默认目录为 `C:\\Users\\xxx\\.cache\\paddle_extensions` 用户目录），然后通过 subprocess 执行 `python {name}_setup.py build`，然后载入动态库，生成 Python API 之后返回。
 
 对于本示例，默认生成路径内容如下：
 
@@ -1234,13 +1365,13 @@ out = custom_ops.custom_relu(x)
 custom_jit_ops/  custom_jit_ops_setup.py
 ```
 
-其中，`custom_jit_ops_setup.py` 是生成的setup编译文件，`custom_jit_ops` 目录是编译生成的内容。
+其中，`custom_jit_ops_setup.py` 是生成的 setup 编译文件，`custom_jit_ops` 目录是编译生成的内容。
 
-如果需要详细了解load接口，或需要配置其他编译选项，请参考API文档 [paddle.utils.cpp_extension.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/load_cn.html) 。
+如果需要详细了解 load 接口，或需要配置其他编译选项，请参考 API 文档 [paddle.utils.cpp_extension.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/load_cn.html) 。
 
 ### 同时编译多个算子
 
-以上两种方式均支持同时编译多个自定义算子，只需要将多个算子对应的源文件均传入对应的参数，编译生成的动态库中会包含多个算子的实现，导入 Module 之后，同样以算子名作为API名进行调用，示例如下：
+以上两种方式均支持同时编译多个自定义算子，只需要将多个算子对应的源文件均传入对应的参数，编译生成的动态库中会包含多个算子的实现，导入 Module 之后，同样以算子名作为 API 名进行调用，示例如下：
 
 - setuptools 编译
 ```python
@@ -1282,15 +1413,15 @@ relu_out = custom_ops.custom_relu(x)
 tanh_out = custom_ops.custom_tanh(x)
 ```
 
-### ABI兼容性检查
+### ABI 兼容性检查
 
-以上两种方式，编译前均会执行 ABI 兼容性检查 。对于 Linux，会检查 cc 命令对应的 GCC 版本是否与所安装的 `PaddlePaddle` 的 GCC 版本一致。例如对于 CUDA 10.1 以上的 `PaddlePaddle` 默认使用 GCC 8.2 编译，则本地 cc 对应的编译器版本也需为 8.2。对于 Windows，则会检查本地的 Visual Studio 版本是否与所安装的 `PaddlePaddle` 的 Visual Studio 版本一致（>=2017）。如果上述版本不一致，则会打印出相应 warning，且可能由于引发自定义 OP 编译执行报错。
+以上两种方式，编译前均会执行 ABI 兼容性检查 。对于 Linux，会检查 cc 命令对应的 GCC 版本是否与所安装的 `PaddlePaddle` 的 GCC 版本一致。例如对于 CUDA 10.1 以上的 `PaddlePaddle` 默认使用 GCC 8.2 编译，则本地 cc 对应的编译器版本也需为 8.2。对于 Windows，则会检查本地的 Visual Studio 版本是否与所安装的 `PaddlePaddle` 的 Visual Studio 版本一致（>=2017）。如果上述版本不一致，则会打印出相应 warning，且可能引发自定义 OP 编译执行报错。
 
 ## 在模型中使用自定义算子
 
-经过前述过程，自定义算子的编写、编译安装及API生成均已完成，现在您可以在网络模型中使用您自定义生成的算子了，本方案生成的自定义算子在动态图和静态图模式下均能够使用。
+经过前述过程，自定义算子的编写、编译安装及 API 生成均已完成，现在您可以在网络模型中使用您自定义生成的算子了，本方案生成的自定义算子在动态图和静态图模式下均能够使用。
 
-以下验证用例均基于前述源文件 `relu_cuda.cc` 和 `relu_cuda.cu` 测试 `custom_relu` 在GPU环境中的使用，均采用JIT Compile的方式编译自定义算子。
+以下验证用例均基于前述源文件 `relu_cuda.cc` 和 `relu_cuda.cu` 测试 `custom_relu` 在 GPU 环境中的使用，均采用 JIT Compile 的方式编译自定义算子。
 
 通过定义一个简单的网络模型，完成训练迭代和存储推理模型的基本过程。
 
@@ -1317,7 +1448,7 @@ custom_ops = load(
 
 class LeNet(nn.Layer):
     def __init__(self):
-        super(LeNet, self).__init__()
+        super().__init__()
         self.conv1 = nn.Conv2D(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
         self.max_pool1 = nn.MaxPool2D(kernel_size=2,  stride=2)
         self.conv2 = nn.Conv2D(in_channels=6, out_channels=16, kernel_size=5, stride=1)
@@ -1405,7 +1536,7 @@ custom_ops = load(
 
 class LeNet(nn.Layer):
     def __init__(self):
-        super(LeNet, self).__init__()
+        super().__init__()
         self.conv1 = nn.Conv2D(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
         self.max_pool1 = nn.MaxPool2D(kernel_size=2,  stride=2)
         self.conv2 = nn.Conv2D(in_channels=6, out_channels=16, kernel_size=5, stride=1)
@@ -1500,7 +1631,7 @@ static.save_inference_model(path, [image], [out], exe)
 
 ### 算子与推理库联合编译
 
-编写推理的测试程序，其中需要使用前述验证过程中存储的inference model，目录为 `custom_relu_dynamic/net` 或者 `custom_relu_static/net` ，下面通过示例介绍使用流程，该示例需要准备的文件包括：
+编写推理的测试程序，其中需要使用前述验证过程中存储的 inference model，目录为 `custom_relu_dynamic/net` 或者 `custom_relu_static/net` ，下面通过示例介绍使用流程，该示例需要准备的文件包括：
 
 ```
 - cmake
@@ -1517,7 +1648,7 @@ static.save_inference_model(path, [image], [out], exe)
 
 #### 编写推理程序
 
-下面是一个简单的推理Demo，导入前述 `custom_relu_dynamic/net` 中存储的模型和参数，进行预测：
+下面是一个简单的推理 Demo，导入前述 `custom_relu_dynamic/net` 中存储的模型和参数，进行预测：
 
 ```c++
 #include <numeric>
@@ -1566,7 +1697,7 @@ int main() {
 }
 ```
 
-#### 编写CMake文件
+#### 编写 CMake 文件
 
 编写 `CMakeList` 编译构建文件，示例如下：
 
@@ -1819,7 +1950,7 @@ make -j
 此处要根据实际情况对执行脚本中的几处配置进行调整：
 
 ```sh
-# 根据预编译库中的version.txt信息判断是否将以下三个标记打开
+# 根据预编译库中的 version.txt 信息判断是否将以下三个标记打开
 WITH_MKL=ON
 WITH_GPU=ON
 USE_TENSORRT=OFF
@@ -1827,18 +1958,18 @@ USE_TENSORRT=OFF
 # 配置预测库的根目录
 LIB_DIR=${YOUR_LIB_DIR}/paddle_inference_install_dir
 
-# 如果上述的WITH_GPU 或 USE_TENSORRT设为ON，请设置对应的CUDA， CUDNN， TENSORRT的路径。
+# 如果上述的 WITH_GPU 或 USE_TENSORRT 设为 ON，请设置对应的 CUDA， CUDNN， TENSORRT 的路径。
 CUDNN_LIB=/paddle/nvidia-downloads/cudnn_v7.5_cuda10.1/lib64
 CUDA_LIB=/paddle/nvidia-downloads/cuda-10.1/lib64
 # TENSORRT_ROOT=/paddle/nvidia-downloads/TensorRT-6.0.1.5
 ```
 
-然后，运行 `sh run.sh` ，完成编译，会在目录下产生build目录。
+然后，运行 `sh run.sh` ，完成编译，会在目录下产生 build 目录。
 
 ### 运行推理程序
 
 ```
-# 进入build目录
+# 进入 build 目录
 cd build
 # 运行样例
 ./custom_op_test
@@ -1849,4 +1980,4 @@ cd build
 ### 更多推理使用文档
 
 - [Paddle Inference 快速开始](https://paddleinference.paddlepaddle.org.cn/quick_start/workflow.html)
-- [Paddle Inference API文档](https://paddleinference.paddlepaddle.org.cn/api_reference/cxx_api_index.html)
+- [Paddle Inference API 文档](https://paddleinference.paddlepaddle.org.cn/api_reference/cxx_api_index.html)

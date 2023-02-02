@@ -41,7 +41,7 @@
 
 + 建议模型搭建时，尽量考虑将预测主逻辑放到 ``forward`` 函数中
     + 将训练独有的逻辑放到 子函数 中，通过 ``if self.training`` 来控制
-    + 最大程度抽离 训练和预测 的逻辑为 **公共子函数**
+    + 最大程度抽离 **训练和预测** 的逻辑为 **公共子函数**
 
 
 ## 二、何时指定 InputSpec?
@@ -77,7 +77,7 @@
 
 
 
-> 注：InputSpec 接口的高阶用法，请参看 [【使用InputSpec指定模型输入Tensor信息】](./basic_usage_cn.html#inputspec)
+> 注：InputSpec 接口的高阶用法，请参看 [【使用 InputSpec 指定模型输入 Tensor 信息】](./basic_usage_cn.html#inputspec)
 
 ## 三、内嵌 Numpy 操作？
 
@@ -129,7 +129,7 @@ def forward(self, x):
 
 ## 四、to_tensor() 的使用
 
-``paddle.to_tensor()`` 接口是动态图模型代码中使用比较频繁的一个接口。 ``to_tensor``  功能强大，将可以将一个 ``scalar`` ， ``list`` ，``tuple`` ， ``numpy.ndarray`` 转为 ``paddle.Tensor`` 类型。
+``paddle.to_tensor()`` 接口是动态图模型代码中使用比较频繁的一个接口。 ``to_tensor``  功能强大，可以将一个 ``scalar`` ， ``list`` ，``tuple`` ， ``numpy.ndarray`` 转为 ``paddle.Tensor`` 类型。
 
 此接口是动态图独有的接口，在动转静时，会转换为 ``assign`` 接口：
 
@@ -150,7 +150,7 @@ x = paddle.assign(np.array([2,3,4]))
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.mask = np.array(mask) # 假设为 [0, 1, 1]
 
@@ -159,7 +159,7 @@ class SimpleNet(paddle.nn.Layer):
         out = out + y
 
         mask = paddle.to_tensor(self.mask)  # <---- 每次都会调用 assign_op
-        out = out * mask  
+        out = out * mask
 
         return out
 ```
@@ -169,7 +169,7 @@ class SimpleNet(paddle.nn.Layer):
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.mask = paddle.to_tensor(mask) # <---- 转为 buffers
 
@@ -177,7 +177,7 @@ class SimpleNet(paddle.nn.Layer):
         out = self.linear(x)
         out = out + y
 
-        out = out * self.mask              # <--- 省去重复的assign_op，性能更佳
+        out = out * self.mask              # <--- 省去重复的 assign_op，性能更佳
 
         return out
 ```
@@ -191,7 +191,7 @@ class SimpleNet(paddle.nn.Layer):
 ## 五、 建议都继承 nn.Layer
 
 
-动态图模型常常包含很多嵌套的子网络，建议各个自定义的子网络 ``sublayer`` **无论是否包含了参数，都继承 ``nn.Layer`` .**
+动态图模型常常包含很多嵌套的子网络，建议各个自定义的子网络 ``sublayer`` **无论是否包含了参数，都继承 ``nn.Layer`` **。
 
 从 **Parameters 和 Buffers**  章节可知，有些 ``paddle.to_tensor`` 接口转来的 ``Tensor`` 也可能参与预测逻辑分支的计算，即模型导出时，也需要作为参数序列化保存到 ``.pdiparams`` 文件中。
 
@@ -200,22 +200,22 @@ class SimpleNet(paddle.nn.Layer):
 **举个例子：**
 
 ```python
-class SimpleNet(object):                       # <---- 继承 Object
+class SimpleNet:                               # <---- 默认继承自 object
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)  # <---- Linear 参数永远都不会被更新
         self.mask = paddle.to_tensor(mask)     # <---- mask 可能未保存到 .pdiparams 文件中
 
     def forward(self, x, y):
         out = self.linear(x)
         out = out + y
-        out = out * self.mask  
+        out = out * self.mask
         return out
 ```
 
 同时，所有继承 ``nn.Layer`` 的 ``sublayer`` 都建议：
 
-+ 重写 ``forward`` 函数，尽量避免重写 ``__call__``` 函数
++ 重写 ``forward`` 函数，尽量避免重写 ``__call__`` 函数
 > ``__call__`` 函数通常会包含框架层面的一些通用的处理逻辑，比如 ``pre_hook`` 和 ``post_hook`` 。重写此函数可能会覆盖框架层面的逻辑。
 
 +  尽量将 ``forward`` 函数作为 sublayers 的调用入口
@@ -230,7 +230,7 @@ class SimpleNet(object):                       # <---- 继承 Object
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self, mask):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
         self.mask = paddle.to_tensor(mask)
 
@@ -238,7 +238,7 @@ class SimpleNet(paddle.nn.Layer):
         out = self.linear(x)
         out = out + y
         # .... (略)
-        out = out * self.mask  
+        out = out * self.mask
         return out
 ```
 
@@ -273,14 +273,14 @@ jit.save(mode, model_path)
 
 此 flag 继承自 ``nn.Layer`` ，因此可通过 ``model.train()`` 和 ``model.eval()`` 来全局切换所有 sublayers 的分支状态。
 
-## 七、非forward函数导出
+## 七、非 forward 函数导出
 
-`@to_static` 与 `jit.save` 接口搭配也支持导出非forward 的其他函数，具体使用方式如下：
+`@to_static` 与 `jit.save` 接口搭配也支持导出非 forward 的其他函数，具体使用方式如下：
 
 ```python
 class SimpleNet(paddle.nn.Layer):
     def __init__(self):
-        super(SimpleNet, self).__init__()
+        super().__init__()
         self.linear = paddle.nn.Linear(10, 3)
 
     def forward(self, x, y):
@@ -326,7 +326,7 @@ another_func.pdiparams.info   // 存放额外的其他信息
 
 ## 八、再谈控制流
 
-前面[【控制流转写】(./basic_usage_cn.html#sikongzhiliuzhuanxie)]提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
+前面[【控制流转写】](./principle_cn.html#kongzhiliuzhuanxie)提到，不论控制流 ``if/for/while`` 语句是否需要转为静态图中的 ``cond_op/while_op`` ，都会先进行代码规范化，如 ``IfElse`` 语句会规范为如下范式：
 
 ```python
 def true_fn_0(out):
@@ -340,7 +340,7 @@ def false_fn_0(out):
 out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (out,))
 ^          ^                   ^             ^           ^        ^      ^      ^
 |          |                   |             |           |        |      |      |
-输出   convert_ifelse          判断条件       true分支   false分支  分支输入 分支输入 输出
+输出   convert_ifelse          判断条件       true 分支   false 分支  分支输入 分支输入 输出
 ```
 
 
@@ -348,7 +348,7 @@ out = convert_ifelse(paddle.mean(x) > 5.0, true_fn_0, false_fn_0, (x,), (x,), (o
 
 当控制流中，出现了 ``list.append`` 类似语法时，情况会有一点点特殊。
 
-Paddle 框架中的 ``cond_op`` 和 [``while_loop``](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/layers/while_loop_cn.html#cn-api-fluid-layers-while-loop) 对输入和返回类型有一个要求：
+Paddle 框架中的 ``cond_op`` 和 [``while_loop``](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/nn/while_loop_cn.html#while-loop) 对输入和返回类型有一个要求：
 > 输入或者返回类型必须是：LoDTensor 或者 LoDTensorArray <br><br>
 > 即：不支持其他非 LoDTensor 类型
 
@@ -422,7 +422,7 @@ def forward(x):
 
 ```python
 def forward(self, x)：
-    bs = paddle.shape(x)[0]        # <---- x.shape[0] 表示 batch_size，动态shape
+    bs = paddle.shape(x)[0]        # <---- x.shape[0] 表示 batch_size，动态 shape
     outs = []
     for i in range(bs):
         outs.append(x)
@@ -449,7 +449,7 @@ CLASS_NUM = 10
 
 class LinearNet(nn.Layer):
     def __init__(self):
-        super(LinearNet, self).__init__()
+        super().__init__()
         self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
     def forward(self, x):

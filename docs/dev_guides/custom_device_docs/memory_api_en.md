@@ -120,7 +120,7 @@ ptr - the address of unified memory needed to be deallocated
 
 size - the size of memory needed to be deallocated (in byte)
 
-## memory_copy_h2d 【required】
+## memory_copy_h2d 【optional】
 
 ### Definition
 
@@ -142,7 +142,7 @@ src - the address of the source host memory
 
 size - the size of memory needed to be copied (in byte)
 
-## memory_copy_d2h 【required】
+## memory_copy_d2h 【optional】
 
 ### Definition
 
@@ -164,7 +164,7 @@ src - the address of the source device memory
 
 size - the size of memory needed to be copied (in byte)
 
-## memory_copy_d2d 【required】
+## memory_copy_d2d 【optional】
 
 ### Definition
 
@@ -330,7 +330,7 @@ value - padded value
 
 size - padding size (in byte)
 
-## device_memory_stats 【required】
+## device_memory_stats 【optional】
 
 ### Definition
 
@@ -350,7 +350,7 @@ total_memory - total memory (in byte)
 
 free_memory - free memory (in byte)
 
-## device_min_chunk_size 【required】
+## device_min_chunk_size 【optional】
 
 ### Definition
 

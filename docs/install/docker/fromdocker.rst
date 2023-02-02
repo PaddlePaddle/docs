@@ -1,8 +1,8 @@
 ===========================
-**Docker安装**
+**Docker 安装**
 ===========================
 
-..	toctree::
-	:maxdepth: 1
+..  toctree::
+    :maxdepth: 1
 
-	macos-docker.md
+    macos-docker.md

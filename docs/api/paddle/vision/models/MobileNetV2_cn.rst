@@ -24,4 +24,3 @@ MobileNetV2 模型，来自论文 `"MobileNetV2: Inverted Residuals and Linear B
 :::::::::
 
 COPY-FROM: paddle.vision.models.MobileNetV2
-

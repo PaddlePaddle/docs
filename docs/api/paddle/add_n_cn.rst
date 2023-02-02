@@ -8,7 +8,7 @@ add_n
 
 
 
-对输入的一至多个 Tensor 或 LoDTensor 求和。如果输入的是 LoDTensor，输出仅与第一个输入共享 LoD 信息（序列信息）。
+对输入的一至多个 Tensor 求和。
 
 .. code-block:: text
 
@@ -22,7 +22,7 @@ add_n
             output.shape = [2, 3]
             output = [[1, 2, 3],
                     [4, 5, 6]]
-                    
+
     Case 2:
         输入：
         第一个输入：
@@ -48,9 +48,10 @@ add_n
 
 返回
 ::::::::::::
-Tensor，输入 ``inputs`` 求和后的结果，shape和数据类型与 ``inputs`` 一致。
+Tensor，输入 ``inputs`` 求和后的结果，shape 和数据类型与 ``inputs`` 一致。
 
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.add_n:code-example1
+
+COPY-FROM: paddle.add_n

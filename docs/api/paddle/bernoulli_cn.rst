@@ -27,4 +27,5 @@ bernoulli
 
 代码示例
 ::::::::::::
-COPY-FROM: paddle.bernoulli:bernoulli-example
+
+COPY-FROM: paddle.bernoulli

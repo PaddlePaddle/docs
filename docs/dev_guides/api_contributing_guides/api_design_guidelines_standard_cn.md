@@ -1,88 +1,88 @@
-# 飞桨API的设计和命名规范
+# API 设计和命名规范
 
-## API设计规范
+## API 设计规范
 
 ### 总体原则
 
-1. 单一职责，每个API应只完成单一的任务
+1. 单一职责，每个 API 应只完成单一的任务
 2. 接口设计应考虑通用性，避免只适用于某些单一场景
-3. 符合行业标准，综合参考开源深度学习框架的接口设计，借鉴各框架的优点；除非飞桨API设计有明确优势的情况下可保留自有特色，否则需要符合行业标准
-4. 功能类似的接口，参数名和行为需要保持一致，比如，lstm和gru
+3. 符合行业标准，综合参考开源深度学习框架的接口设计，借鉴各框架的优点；除非飞桨 API 设计有明确优势的情况下可保留自有特色，否则需要符合行业标准
+4. 功能类似的接口，参数名和行为需要保持一致，比如，lstm 和 gru
 5. 优先保证清晰，然后考虑简洁，避免使用不容易理解的缩写
 6. 历史一致，如无必要原因，应避免接口修改
-7. 动静统一，如无特殊原因，动态图和静态图下的API输入、输出要求一致。开发者使用相同的代码，均可以在动态图和静态图模式下执行
+7. 动静统一，如无特殊原因，动态图和静态图下的 API 输入、输出要求一致。开发者使用相同的代码，均可以在动态图和静态图模式下执行
 
 ### 动态图与静态图模式
 
-关于飞桨框架支持的开发模式，为了便于用户理解，代码和API均采用“动态图”和“静态图”的说法；文档优先使用“动态图”和“静态图”的说法，不推荐使用“命令式编程”和“声明式编程”的说法。
+关于飞桨框架支持的开发模式，为了便于用户理解，代码和 API 均采用“动态图”和“静态图”的说法；文档优先使用“动态图”和“静态图”的说法，不推荐使用“命令式编程”和“声明式编程”的说法。
 
-### API目录结构规范
+### API 目录结构规范
 
-- 公开API代码应该放置到以下列出的对应位置目录/文件中，并添加到目录下\_\_init\_\_.py的 all列表中。非公开API不能添加到all列表中
+- 公开 API 代码应该放置到以下列出的对应位置目录/文件中，并添加到目录下\_\_init\_\_.py 的 all 列表中。非公开 API 不能添加到 all 列表中
 
 
-| paddle                         | paddle基础API，Tensor操作相关API                             |
+| paddle                         | paddle 基础 API，Tensor 操作相关 API                             |
 | ------------------------------ | ------------------------------------------------------------ |
-| paddle.tensor                  | 跟tensor操作相关的API，比如：创建zeros, 矩阵运算matmul, 变换concat, 计算add, 查找argmax等 |
-| paddle.nn                      | 跟组网相关的API，比如：Linear, Conv2D，损失函数，卷积，LSTM等，激活函数等 |
-| paddle.nn.functional           | 跟组网相关的函数类API，比如：conv2d、avg_pool2d等            |
-| paddle.nn.initializer          | 网络初始化相关API，比如Normal、Uniform等                     |
-| paddle.nn.utils                | 网络相关工具类API，比如weight_norm、spectral_norm等          |
-| paddle.static.nn               | 静态图下组网专用API，比如：输入占位符data/Input，控制流while_loop/cond |
-| paddle.static                  | 静态图下基础框架相关API，比如：Variable, Program, Executor等 |
-| paddle.optimizer               | 优化算法相关API，比如：SGD、Adagrad、Adam等                  |
-| paddle.optimizer.lr（文件）    | 学习率策略相关API，比如LinearWarmup、LRScheduler等           |
-| paddle.metric                  | 评估指标计算相关的API，比如：accuracy, auc等                 |
-| paddle.io                      | 数据输入输出相关API，比如：save, load, Dataset, DataLoader等 |
-| paddle.device（文件）          | 设备管理相关API，通用类，比如：CPUPlace等                    |
-| paddle.device.cuda             | 设备管理相关API，CUDA相关，比如：CUDAPlace等                 |
-| paddle.distributed             | 分布式相关基础API                                            |
-| paddle.distributed.fleet       | 分布式相关高层API                                            |
-| paddle.distributed.fleet.utils | 分布式高层API文件系统相关API，比如LocalFS等                  |
-| paddle.distributed.utils       | 分布式工具类API，比如get_host_name_ip等                      |
-| paddle.vision                  | 视觉领域API，基础操作且不属于子目录所属大类                  |
-| paddle.vision.datasets         | 视觉领域API，公开数据集相关，比如Cifar10、MNIST等            |
-| paddle.vision.models           | 视觉领域API，模型相关，比如ResNet、LeNet等                   |
-| paddle.vision.transforms       | 视觉领域API，数据预处理相关，比如CenterCrop、hflip等         |
-| paddle.vision.ops              | 视觉领域API，基础op相关，比如DeformConv2D、yolo_box等        |
-| paddle.text                    | NLP领域API, 比如，数据集，数据处理，常用网络结构，比如transformer |
-| paddle.utils                   | paddle.utils 目录下包含飞桨框架工具类的API，且不属于子目录所属大类 |
-| paddle.utils.download          | 工具类自动下载相关API，比如get_weights_path_from_url         |
-| paddle.utils.profiler          | 工具类通用性能分析器相关API，比如profiler等                  |
-| paddle.utils.cpp_extension     | 工具类C++扩展相关的API，比如CppExtension、CUDAExtension等    |
-| paddle.utils.unique_name       | 工具类命名相关API，比如generate、guard等                     |
-| paddle.amp                     | paddle.amp 目录下包含飞桨框架支持的动态图自动混合精度(AMP)相关的API，比如GradScaler等 |
-| paddle.jit                     | paddle.jit 目录下包含飞桨框架支持动态图转静态图相关的API，比如to_static等 |
-| paddle.distribution            | paddle.distribution 目录下包含飞桨框架支持的概率分布相关的API，比如Normal等 |
-| paddle.regularizer             | 正则相关的API，比如L1Decay等                                 |
-| paddle.sysconfig               | Paddle系统路径相关API，比如get_include、get_lib等            |
-| paddle.callbacks               | paddle.callbacks 目录下包含飞桨框架支持的回调函数相关的API，比如Callback等 |
-| paddle.hub                     | paddle.hub 目录下包含飞桨框架模型拓展相关的API以及支持的模型库列表，比如list等 |
-| paddle.autograd                | 自动梯度求导相关，比如grad、backward等                       |
-| paddle.inference               | paddle预测相关，比如Predictor等                              |
-| paddle.onnx                    | onnx导出相关，比如onnx.export                                |
+| paddle.tensor                  | 跟 tensor 操作相关的 API，比如：创建 zeros, 矩阵运算 matmul, 变换 concat, 计算 add, 查找 argmax 等 |
+| paddle.nn                      | 跟组网相关的 API，比如：Linear, Conv2D，损失函数，卷积，LSTM 等，激活函数等 |
+| paddle.nn.functional           | 跟组网相关的函数类 API，比如：conv2d、avg_pool2d 等            |
+| paddle.nn.initializer          | 网络初始化相关 API，比如 Normal、Uniform 等                     |
+| paddle.nn.utils                | 网络相关工具类 API，比如 weight_norm、spectral_norm 等          |
+| paddle.static.nn               | 静态图下组网专用 API，比如：输入占位符 data/Input，控制流 while_loop/cond |
+| paddle.static                  | 静态图下基础框架相关 API，比如：Variable, Program, Executor 等 |
+| paddle.optimizer               | 优化算法相关 API，比如：SGD、Adagrad、Adam 等                  |
+| paddle.optimizer.lr（文件）    | 学习率策略相关 API，比如 LinearWarmup、LRScheduler 等           |
+| paddle.metric                  | 评估指标计算相关的 API，比如：accuracy, auc 等                 |
+| paddle.io                      | 数据输入输出相关 API，比如：save, load, Dataset, DataLoader 等 |
+| paddle.device（文件）          | 设备管理相关 API，通用类，比如：CPUPlace 等                    |
+| paddle.device.cuda             | 设备管理相关 API，CUDA 相关，比如：CUDAPlace 等                 |
+| paddle.distributed             | 分布式相关基础 API                                            |
+| paddle.distributed.fleet       | 分布式相关高层 API                                            |
+| paddle.distributed.fleet.utils | 分布式高层 API 文件系统相关 API，比如 LocalFS 等                  |
+| paddle.distributed.utils       | 分布式工具类 API，比如 get_host_name_ip 等                      |
+| paddle.vision                  | 视觉领域 API，基础操作且不属于子目录所属大类                  |
+| paddle.vision.datasets         | 视觉领域 API，公开数据集相关，比如 Cifar10、MNIST 等            |
+| paddle.vision.models           | 视觉领域 API，模型相关，比如 ResNet、LeNet 等                   |
+| paddle.vision.transforms       | 视觉领域 API，数据预处理相关，比如 CenterCrop、hflip 等         |
+| paddle.vision.ops              | 视觉领域 API，基础 op 相关，比如 DeformConv2D、yolo_box 等        |
+| paddle.text                    | NLP 领域 API, 比如，数据集，数据处理，常用网络结构，比如 transformer |
+| paddle.utils                   | paddle.utils 目录下包含飞桨框架工具类的 API，且不属于子目录所属大类 |
+| paddle.utils.download          | 工具类自动下载相关 API，比如 get_weights_path_from_url         |
+| paddle.utils.profiler          | 工具类通用性能分析器相关 API，比如 profiler 等                  |
+| paddle.utils.cpp_extension     | 工具类 C++扩展相关的 API，比如 CppExtension、CUDAExtension 等    |
+| paddle.utils.unique_name       | 工具类命名相关 API，比如 generate、guard 等                     |
+| paddle.amp                     | paddle.amp 目录下包含飞桨框架支持的动态图自动混合精度(AMP)相关的 API，比如 GradScaler 等 |
+| paddle.jit                     | paddle.jit 目录下包含飞桨框架支持动态图转静态图相关的 API，比如 to_static 等 |
+| paddle.distribution            | paddle.distribution 目录下包含飞桨框架支持的概率分布相关的 API，比如 Normal 等 |
+| paddle.regularizer             | 正则相关的 API，比如 L1Decay 等                                 |
+| paddle.sysconfig               | Paddle 系统路径相关 API，比如 get_include、get_lib 等            |
+| paddle.callbacks               | paddle.callbacks 目录下包含飞桨框架支持的回调函数相关的 API，比如 Callback 等 |
+| paddle.hub                     | paddle.hub 目录下包含飞桨框架模型拓展相关的 API 以及支持的模型库列表，比如 list 等 |
+| paddle.autograd                | 自动梯度求导相关，比如 grad、backward 等                       |
+| paddle.inference               | paddle 预测相关，比如 Predictor 等                              |
+| paddle.onnx                    | onnx 导出相关，比如 onnx.export                                |
 | paddle.incubate                | 新增功能孵化目录                                             |
 
 
 
-- 常用的API可以在更高层级建立别名，当前规则如下：
-   1. paddle.tensor目录下的API，均在paddle根目录建立别名，其他所有API在paddle根目录下均没有别名。
-   2. paddle.nn目录下除了functional目录以外的所有API，在paddle.nn目录下均有别名。
-   
+- 常用的 API 可以在更高层级建立别名，当前规则如下：
+   1. paddle.tensor 目录下的 API，均在 paddle 根目录建立别名，其他所有 API 在 paddle 根目录下均没有别名。
+   2. paddle.nn 目录下除了 functional 目录以外的所有 API，在 paddle.nn 目录下均有别名。
+
         ```python
-        paddle.nn.functional.mse_loss # functional下的函数不建立别名，使用完整名称
-        paddle.nn.Conv2D # 为paddle.nn.layer.conv.Conv2D建立的别名
+        paddle.nn.functional.mse_loss # functional 下的函数不建立别名，使用完整名称
+        paddle.nn.Conv2D # 为 paddle.nn.layer.conv.Conv2D 建立的别名
        ```
-  1. 一些特殊情况比如特别常用的API会直接在paddle下建立别名
+  1. 一些特殊情况比如特别常用的 API 会直接在 paddle 下建立别名
         ```python
-        paddle.tanh # 为常用函数paddle.tensor.math.tanh建立的别名
-        paddle.linspace# 为常用函数paddle.fluid.layers.linspace建立的别名
+        paddle.tanh # 为常用函数 paddle.tensor.math.tanh 建立的别名
+        paddle.linspace# 为常用函数 paddle.fluid.layers.linspace 建立的别名
         ```
 
 
-### API行为定义规范
+### API 行为定义规范
 
-- 动静统一要求。除了paddle.static目录中的API外，其他目录的所有API原则上均需要支持动态图和静态图模式下的执行，且输入、输出要求一致。开发者使用相同的代码，可以在动态图和静态图模式下执行。
+- 动静统一要求。除了 paddle.static 目录中的 API 外，其他目录的所有 API 原则上均需要支持动态图和静态图模式下的执行，且输入、输出要求一致。开发者使用相同的代码，可以在动态图和静态图模式下执行。
 
   ```python
   #静态图专用
@@ -95,14 +95,14 @@
   ```
 
 
-- API不需要用户指定执行硬件，框架可以自动根据当前配置，选择执行的库。
+- API 不需要用户指定执行硬件，框架可以自动根据当前配置，选择执行的库。
 
 - 设置缺省参数类型
-  组网类API去除dtype参数，比如Linear, Conv2d等，通过使用paddle.set_default_dtype和paddle.get_default_dtype设置全局的数据类型。
+  组网类 API 去除 dtype 参数，比如 Linear, Conv2d 等，通过使用 paddle.set_default_dtype 和 paddle.get_default_dtype 设置全局的数据类型。
 
 - 数据类型转换规则
 
-  1. 不支持Tensor和Tensor之间的隐式数据类型转换，隐藏类型转换虽然方便，但风险很高，很容易出现转换错误。如果发现类型不匹配，进行隐式类型转换，一旦转换造成精度损失，会导致模型的精度降低，由于没有任何提示，问题非常难以追查；而如果直接向用户报错或者警告，用户确认后，修改起来会很容易。避免了出错的风险。
+  1. 不支持 Tensor 和 Tensor 之间的隐式数据类型转换，隐藏类型转换虽然方便，但风险很高，很容易出现转换错误。如果发现类型不匹配，进行隐式类型转换，一旦转换造成精度损失，会导致模型的精度降低，由于没有任何提示，问题非常难以追查；而如果直接向用户报错或者警告，用户确认后，修改起来会很容易。避免了出错的风险。
 
      ```python
      import paddle
@@ -113,33 +113,33 @@
      # ......\paddle\fluid\dygraph\math_op_patch.py:239: UserWarning: The dtype of left and right variables are not the same, left dtype is paddle.float32, but right dtype is paddle.int32, the right dtype will convert to paddle.float32 format(lhs_dtype, rhs_dtype, lhs_dtype))
      ```
 
-  2. 支持Tensor和python Scalar之间的隐式类型转换，当 Tensor 的数据类型和 python Scalar
+  2. 支持 Tensor 和 python Scalar 之间的隐式类型转换，当 Tensor 的数据类型和 python Scalar
   是同一类的数据类型时（都是整型，或者都是浮点型），或者 Tensor 是浮点型而 python Scalar 是
   整型的，默认会将 python Scalar 转换成 Tensor 的数据类型。而如果 Tensor 的数据类型是整型而 python Scalar 是浮点型时，计算结果会是 float32 类型的。
      ```python
      import paddle
      a = paddle.to_tensor([1.0], dtype='float32')
-     b = a + 1  # 由于python scalar默认采用int64, 转换后b的类型为'float32'
-     c = a + 1.0  # 虽然 python scalar 是 float64, 但计算结果c的类型为'float32'
+     b = a + 1  # 由于 python scalar 默认采用 int64, 转换后 b 的类型为'float32'
+     c = a + 1.0  # 虽然 python scalar 是 float64, 但计算结果 c 的类型为'float32'
      a = paddle.to_tensor([1], dtype='int32')
-     b = a + 1.0  # 虽然 python scalar 是 float64, 但计算结果b的类型为 'float32
-     c = a + 1  # 虽然 python scalar 是 int64, 但计算结果c的类型为'int32'
+     b = a + 1.0  # 虽然 python scalar 是 float64, 但计算结果 b 的类型为 'float32
+     c = a + 1  # 虽然 python scalar 是 int64, 但计算结果 c 的类型为'int32'
      ```
 
 ### 数据类型规范
 
 - 参数数据类型
 
-  对于loss类API，比如cross_entropy, bce_loss等，输入的label需要支持[int32, int64, float32, float64]数据类型。
+  对于 loss 类 API，比如 cross_entropy, bce_loss 等，输入的 label 需要支持[int32, int64, float32, float64]数据类型。
 
 - 返回值数据类型
 
-  实现需要返回下标indices的API，比如argmax、argmin、argsort、topk、unique等接口时，需要提供dtype参数，用于控制返回值类型是int32或者int64，默认使用dtype=’int64’（与numpy, tf, pytorch保持一致），主要目的是当用户在明确输入数据不超过int32表示范围时，可以手动设置dtype=’int32’来减少显存的占用；对于dtype=’int32’设置，需要对输入数据的下标进行检查，如果超过int32表示范围，通过报错提示用户使用int64数据类型。
+  实现需要返回下标 indices 的 API，比如 argmax、argmin、argsort、topk、unique 等接口时，需要提供 dtype 参数，用于控制返回值类型是 int32 或者 int64，默认使用 dtype=’int64’（与 numpy, tf, pytorch 保持一致），主要目的是当用户在明确输入数据不超过 int32 表示范围时，可以手动设置 dtype=’int32’来减少显存的占用；对于 dtype=’int32’设置，需要对输入数据的下标进行检查，如果超过 int32 表示范围，通过报错提示用户使用 int64 数据类型。
 
 
-## API命名规范
+## API 命名规范
 
-**API的命名应使用准确的深度学习相关英文术语，具体参考附录的中英术语表。**
+**API 的命名应使用准确的深度学习相关英文术语，具体参考附录的中英术语表。**
 
 ### 类名与方法名的规范
 
@@ -156,7 +156,7 @@
   paddle.optimizer.lr.LambdaDecay
   ```
 
-- 由多个单词组成的类名，最后一个单词应表示类型	
+- 由多个单词组成的类名，最后一个单词应表示类型
 
     ```python
     # SimpleRNNCell 继承自 RNNCellBase
@@ -176,7 +176,7 @@
     paddle.nn.functional.batch_norm
     paddle.nn.functional.log_softmax
     ```
-    
+
 - 但一些约定俗成的例子可以保持不加下划线
 
     ```python
@@ -187,26 +187,26 @@
     paddle.cumsum
     ```
 
-- API命名时，缩写的使用不应引起歧义或误解；在容易引起歧义或误解的情况下，需要使用全称，比如
+- API 命名时，缩写的使用不应引起歧义或误解；在容易引起歧义或误解的情况下，需要使用全称，比如
 
     ```python
-    # pytorch使用ge,lt之类的缩写，可读性较差，应保留全称，与numpy和paddle保持一致
+    # pytorch 使用 ge,lt 之类的缩写，可读性较差，应保留全称，与 numpy 和 paddle 保持一致
     paddle.tensor.greater_equal
     paddle.tensor.less_than
     # optimizer 不使用缩写
     paddle.optimizer.SGD
-    # parameter 不使用缩写 
+    # parameter 不使用缩写
     paddle.nn.create_parameter
     ```
-    
-- 在用于API命名时，常见的缩写列表如下：
+
+- 在用于 API 命名时，常见的缩写列表如下：
 
     ```python
     conv、max、min、prod、norm、gru、lstm、add、func、op、num、cond
     ```
 
-- 在用于API命名时，以下建议使用全称，不推荐使用缩写
-    
+- 在用于 API 命名时，以下建议使用全称，不推荐使用缩写
+
     | 不规范命名 |   规范命名    |
     | :-------- | :----------- |
     |    div     |    divide     |
@@ -227,19 +227,19 @@
     |    img     |     image     |
     |    loc     |   location    |
     |    len     |    length     |
-    
-    
-    
-- API命名不应包含版本号
+
+
+
+- API 命名不应包含版本号
 
     ```python
     # 不使用版本号
     paddle.nn.multiclass_nms2
     ```
 
-- 常见的数学计算API中的逐元素操作不需要加上elementwise前缀，按照某一轴操作不需要加上reduce前缀，一些例子如下
-    
-    |  paddle2.0之前  | pytorch |  numpy   | tensorflow  |   paddle2.0之后   |
+- 常见的数学计算 API 中的逐元素操作不需要加上 elementwise 前缀，按照某一轴操作不需要加上 reduce 前缀，一些例子如下
+
+    |  paddle2.0 之前  | pytorch |  numpy   | tensorflow  |   paddle2.0 之后   |
     | :------------- | :----- | :------ | :--------- | :--------------- |
     | elementwise_add |   add   |   add    |     add     |        add        |
     | elementwise_sub |   sub   | subtract |  subtract   |      subract      |
@@ -255,34 +255,34 @@
     |   reduce_any    |   any   |   any    | reduce_any  |        any        |
     |   reduce_mean   |  mean   |   mean   | reduce_mean |       mean        |
 
-    
-    
+
+
 - 整数取模和取余
 
     目前整除和取余取模运算机器运算符重载在不同的语言和库中对应关系比较复杂混乱（取余运算中余数和被除数同号，取模运算中模和除数同号。取余整除是对商向 0 取整，取模整除是对商向负取整）
 
     | 库         | 取余整除                 | 取余                  | 取模整除         | 取模                                |
     | ---------- | :----------------------- | :-------------------- | :--------------- | :---------------------------------- |
-    | tf         | truncatediv              | truncatemod           | //或floordiv     | %或floormod                         |
-    | torch      | //或floor_divide         | fmod                  | 无               | %或remainder                        |
+    | tf         | truncatediv              | truncatemod           | //或 floordiv     | %或 floormod                         |
+    | torch      | //或 floor_divide         | fmod                  | 无               | %或 remainder                        |
     | math       | 无                       | math.fmod             | 无               | math.remainder                      |
     | python     | 无                       | 无                    | //               | %                                   |
-    | numpy      | 无                       | 无                    | //或floor_divide | %或mod remainder                    |
-    | paddle     | //或elementwise_div(int) | %或elemtwise_mod(int) | 无               | %或elemtwise_mod(float)             |
-    | paddle 2.0 | truncate_divide(int)     | %或truncate_mod(int)  | //或floor_divide | %或floor_mod(float)或mod或remainder |
+    | numpy      | 无                       | 无                    | //或 floor_divide | %或 mod remainder                    |
+    | paddle     | //或 elementwise_div(int) | %或 elemtwise_mod(int) | 无               | %或 elemtwise_mod(float)             |
+    | paddle 2.0 | truncate_divide(int)     | %或 truncate_mod(int)  | //或 floor_divide | %或 floor_mod(float)或 mod 或 remainder |
 
-    |          | paddle2.0之前            | torch           | numpy             | tensorflow    | math           | python | paddle2.0之后                       |
+    |          | paddle2.0 之前            | torch           | numpy             | tensorflow    | math           | python | paddle2.0 之后                       |
     | :------: | :----------------------- | :-------------- | :---------------- | :------------ | :------------- | :----- | :---------------------------------- |
-    | 取余整除 | //或elementwise_div(int) | //或floor_divid | 无                | truncatediv   | -              | 无     | truncate_divide(int)                |
-    |   取余   | %或elemtwise_mod(int)    | fmod            | 无                | truncatemod   | math.fmod      | 无     | %或truncate_mod(int)                |
-    | 取模整除 | -                        | -               | floor_divide      | //或floordiv- | -              | //     | //或floor_divide                    |
-    |   取模   | %或elemtwise_mod(float)  | %或remainder    | %或mod或remainder | %或floormod   | math.remainder | %      | %或floor_mod(float)或mod或remainder |
+    | 取余整除 | //或 elementwise_div(int) | //或 floor_divid | 无                | truncatediv   | -              | 无     | truncate_divide(int)                |
+    |   取余   | %或 elemtwise_mod(int)    | fmod            | 无                | truncatemod   | math.fmod      | 无     | %或 truncate_mod(int)                |
+    | 取模整除 | -                        | -               | floor_divide      | //或 floordiv- | -              | //     | //或 floor_divide                    |
+    |   取模   | %或 elemtwise_mod(float)  | %或 remainder    | %或 mod 或 remainder | %或 floormod   | math.remainder | %      | %或 floor_mod(float)或 mod 或 remainder |
 
-- 常用组网API命名规范
+- 常用组网 API 命名规范
 
     ```python
     # 卷积：
-    paddle.nn.Conv2D #采用2D后缀，2D表示维度时通常大写
+    paddle.nn.Conv2D #采用 2D 后缀，2D 表示维度时通常大写
     paddle.nn.Conv2DTranspose
     paddle.nn.functional.conv2d
     paddle.nn.functional.conv2d_transpose
@@ -310,23 +310,23 @@
 - 参数名可以区分单复数形态，单数表示输入参数是一个或多个变量，复数表示输入明确是含有多个变量的列表
 
   ```python
-  paddle.nn.Softmax(axis=-1) # axis明确为一个int数
-  paddle.squeeze(x, axis=None, dtype=None, keepdim=False, name=None): # axis可以为一数也可以为多个
-  paddle.strided_slice(x, axes, starts, ends, strides, name=None) #axis明确是多个数，则参数用复数形式axes
+  paddle.nn.Softmax(axis=-1) # axis 明确为一个 int 数
+  paddle.squeeze(x, axis=None, dtype=None, keepdim=False, name=None): # axis 可以为一数也可以为多个
+  paddle.strided_slice(x, axes, starts, ends, strides, name=None) #axis 明确是多个数，则参数用复数形式 axes
   ```
 
-- 函数操作只有一个待操作的张量参数时，用x命名；如果有2个待操作的张量参数时，且含义明确时，用x, y命名
+- 函数操作只有一个待操作的张量参数时，用 x 命名；如果有 2 个待操作的张量参数时，且含义明确时，用 x, y 命名
 
   ```python
   paddle.sum(x, axis=None, dtype=None, keepdim=False, name=None)
   paddle.divide(x, y, name=None)
   ```
 
-- 原则上所有的输入都用x表示，包括functional下的linear, conv2d, lstm, batch_norm等
+- 原则上所有的输入都用 x 表示，包括 functional 下的 linear, conv2d, lstm, batch_norm 等
 
-- 原则上都要具备name参数，用于标记layer，方便调试和可视化
+- 原则上都要具备 name 参数，用于标记 layer，方便调试和可视化
 
-- loss类的函数，使用`input` 表示输入，使用`label` 表示真实预测值/类别，部分情况下，为了更好的便于用户理解，可以选用其他更恰当的参数名称。如`softmax_with_logits`时，输入参数名可用`logits`
+- loss 类的函数，使用`input` 表示输入，使用`label` 表示真实预测值/类别，部分情况下，为了更好的便于用户理解，可以选用其他更恰当的参数名称。如`softmax_with_logits`时，输入参数名可用`logits`
 
   ```python
   paddle.nn.functional.mse_loss(input, label, reduction='mean', name=None)
@@ -341,17 +341,17 @@
   ```
 
 
-- Tensor名称和操作
+- Tensor 名称和操作
 
    | 中文          | 英文                | 缩写 | 说明                             |
    | ------------- | ------------------- | ---- | -------------------------------- |
    | 张量          | tensor              |      |                                  |
    | 形状          | shape               |      |                                  |
    | 维数（阶）    | rank                |      |                                  |
-   | 第几维(轴)    | axis/axes           |      | 从0开始编号                      |
-   | 0阶张量(标量) | scalar              |      |                                  |
-   | 1阶张量(向量) | vector              |      |                                  |
-   | 2阶张量(矩阵) | matrix/matrice      |      |                                  |
+   | 第几维(轴)    | axis/axes           |      | 从 0 开始编号                      |
+   | 0 阶张量(标量) | scalar              |      |                                  |
+   | 1 阶张量(向量) | vector              |      |                                  |
+   | 2 阶张量(矩阵) | matrix/matrice      |      |                                  |
    | 矩阵转置      | transpose           |      |                                  |
    | 点积          | dot                 |      | 一维向量，内积；二维矩阵，矩阵乘 |
    | 内积          | inner               |      |                                  |
@@ -359,53 +359,53 @@
    | 逐元素乘      | mul/elementwise_mul |      |                                  |
    | 逐元素加      | add/elementwise_add |      |                                  |
    | 按轴求和      | reduce_sum          |      |                                  |
-   
+
 - 常用参数表
 
    | 中文名         | 推荐           | 不推荐写法                            | 示例                                                         | 备注                                                         |
    | ------------ | ------------- | ------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-   | 算子名        | name          | input                                     | relu(x, inplace=False, name=None)                        | 调用api所创建的算子名称                                      |
+   | 算子名        | name          | input                                     | relu(x, inplace=False, name=None)                        | 调用 api 所创建的算子名称                                      |
    | 单个输入张量 | x         | x                                     | relu(x, inplace=False, name=None)                        | 单个待操作的张量                                             |
    | 两个输入张量 | x, y          | input, other/ X, Y                    | elementwise_add(x, y, axis=-1, activation=None, name=None)   | 两个待操作的张量                                             |
    | 数据类型     | dtype         | type, data_type                       | unique(x, dtype='int32')                                 |                                                              |
    | 输出张量     | out           | output                                |                                                              |                                                              |
-   | 轴           | axis/axes     | dim/dims                              | concat(x, axis=0, name=None)                             | 虽然pytorch的dim单词比较简单，但axis跟numpy, tf和paddle历史一致。axis通常从0开始编号，dim一般从1开始编号，比如3维空间的第1维 |
+   | 轴           | axis/axes     | dim/dims                              | concat(x, axis=0, name=None)                             | 虽然 pytorch 的 dim 单词比较简单，但 axis 跟 numpy, tf 和 paddle 历史一致。axis 通常从 0 开始编号，dim 一般从 1 开始编号，比如 3 维空间的第 1 维 |
    | 参数属性     | param_attr    |                                       | fc(param_attr=None, ...)                                     |                                                              |
    | 偏置属性     | bias_attr     |                                       | fc(bias_attr=None, ... )                                     |                                                              |
-   | 激活函数     | activation    | act                                   | batch_norm(input, activation=None, ...)                      | act简称不容易理解，跟pytorch保持一致                         |
-   | 标签         | label         | target                                | def cross_entropy(input, label, soft_label=False, ignore_index=kIgnoreIndex) | label容易理解，跟paddle历史保持一致                          |
+   | 激活函数     | activation    | act                                   | batch_norm(input, activation=None, ...)                      | act 简称不容易理解，跟 pytorch 保持一致                         |
+   | 标签         | label         | target                                | def cross_entropy(input, label, soft_label=False, ignore_index=kIgnoreIndex) | label 容易理解，跟 paddle 历史保持一致                          |
    | 张量形状     | shape         | size                                  |                                                              |                                                              |
    | 程序         | program       | prog                                  |                                                              |                                                              |
-   | 数据格式     | data_format   | data_layout                           | conv2d(x, weight, bias=None, padding=0, stride=1, dilation=1, groups=1,  activation=None, data_format="NCHW", name=None) | 跟paddle历史保持一致                                         |
-   | 文件名       | filename      | file_name                             |                                                              | 跟paddle历史和c语言fopen函数保持一致                         |
+   | 数据格式     | data_format   | data_layout                           | conv2d(x, weight, bias=None, padding=0, stride=1, dilation=1, groups=1,  activation=None, data_format="NCHW", name=None) | 跟 paddle 历史保持一致                                         |
+   | 文件名       | filename      | file_name                             |                                                              | 跟 paddle 历史和 c 语言 fopen 函数保持一致                         |
    | 目录名       | path          | dirname                               |                                                              |                                                              |
-   | 设备         | device        | place/force_cpu                       | ones(shape, dtype=None, out=None, device=None)               | device比place更容易理解；跟pytorch一致                       |
+   | 设备         | device        | place/force_cpu                       | ones(shape, dtype=None, out=None, device=None)               | device 比 place 更容易理解；跟 pytorch 一致                       |
    | 执行器       | executor      | exe                                   |                                                              |                                                              |
    | 下标         | index         | idx                                   |                                                              |                                                              |
-   | 字母epsilon  | epsilon       | eps                                   |                                                              |                                                              |
+   | 字母 epsilon  | epsilon       | eps                                   |                                                              |                                                              |
    | 值           | value         | val/v                                 |                                                              |                                                              |
    | 变量         | variable      | var/v                                 |                                                              |                                                              |
    | 批大小       | batch_size    | batch_num，batch_number               |                                                              |                                                              |
    | 隐层大小     | hidden_size   | hidden, hid_size, hid_dim, hidden_dim |                                                              |                                                              |
    | 卷积核大小   | filter_size   | filter                                |                                                              |                                                              |
-   | 范围         | start, stop   | begin, end                            |                                                              | 跟python的range函数一致，numpy的arange                       |
+   | 范围         | start, stop   | begin, end                            |                                                              | 跟 python 的 range 函数一致，numpy 的 arange                       |
    | 步数         | step          | num, count                            |                                                              |                                                              |
    | 条件         | cond          | condition                             |                                                              |                                                              |
-   | 禁用梯度     | stop_gradient | require_grad                          |                                                              | 跟tf和paddle历史一致                                         |
+   | 禁用梯度     | stop_gradient | require_grad                          |                                                              | 跟 tf 和 paddle 历史一致                                         |
    | 学习率       | learning_rate | lr                                    |                                                              |                                                              |
    | 保持维度     | keep_dim      | keepdim                               |                                                              |                                                              |
-   | 禁用梯度     | no_grad_vars  | no_grad_set                           | gradients ( targets, inputs, target_gradients=None, no_grad_vars=None ) | 跟dygraph.grad保持一致                                       |
-   | dropout比例  | dropout_rate  | dropout_prob, dropout                 |                                                              |                                                              |
+   | 禁用梯度     | no_grad_vars  | no_grad_set                           | gradients ( targets, inputs, target_gradients=None, no_grad_vars=None ) | 跟 dygraph.grad 保持一致                                       |
+   | dropout 比例  | dropout_rate  | dropout_prob, dropout                 |                                                              |                                                              |
    | 传入         | feed          | feed_dict                             |                                                              |                                                              |
    | 取出         | fetch         | fetch_list, fetch_targets             |                                                              |                                                              |
    | 转置         | transpose     | trans, trans_x                        |                                                              |                                                              |
-   | decay步数    | decay_steps   | step_each_epoch                       |                                                              |                                                              |
+   | decay 步数    | decay_steps   | step_each_epoch                       |                                                              |                                                              |
    | 类别数       | num_classes   | class_nums                            |                                                              |                                                              |
    | 通道数       | num_channels  | channels                              |                                                              |                                                              |
    | 卷积核数     | num_filters   | filters                               |                                                              |                                                              |
    | 组数         | num_groups    | groups                                |                                                              |                                                              |
    | 操作输入     | inplace=True  | in_place                              |                                                              |                                                              |
-   | 训练模式     | training=True | is_train, is_test                     |                                                              | 跟pytorch保持一致， tf用trainable                            |
+   | 训练模式     | training=True | is_train, is_test                     |                                                              | 跟 pytorch 保持一致， tf 用 trainable                            |
 
 ## 附-中英术语表
 
@@ -445,7 +445,7 @@
 | 推断 | inference | |
 | 上溢 | overflow | |
 | 下溢 | underflow | |
-| softmax函数 | softmax function | |
+| softmax 函数 | softmax function | |
 | softmax | softmax | |
 | 欠估计 | underestimation | |
 | 过估计 | overestimation | |
@@ -456,8 +456,8 @@
 | 代价函数 | cost function | |
 | 代价 | cost | |
 | 损失函数 | loss function | |
-| PR曲线 | PR curve | |
-| F值 | F-score | |
+| PR 曲线 | PR curve | |
+| F 值 | F-score | |
 | 损失 | loss | |
 | 误差函数 | error function | |
 | 梯度下降 | gradient descent | |
@@ -523,13 +523,13 @@
 | 磨合 | Burning-in | |
 | 混合时间 | Mixing Time | |
 | 混合 | Mixing | |
-| Gibbs采样 | Gibbs Sampling | |
+| Gibbs 采样 | Gibbs Sampling | |
 | 吉布斯步数 | Gibbs steps | |
 | Bagging | bootstrap aggregating | |
 | 掩码 | mask | |
 | 批标准化 | batch normalization | |
 | 参数共享 | parameter sharing | |
-| KL散度 | KL divergence | |
+| KL 散度 | KL divergence | |
 | 温度 | temperature | |
 | 临界温度 | critical temperatures | |
 | 并行回火 | parallel tempering | |
@@ -681,10 +681,10 @@
 | 分解的 | factorized | |
 | 均匀场 | meanfield | |
 | 最大似然估计 | maximum likelihood estimation | |
-| 概率PCA | probabilistic PCA | |
+| 概率 PCA | probabilistic PCA | |
 | 随机梯度上升 | Stochastic Gradient Ascent | |
 | 团 | clique | |
-| Dirac分布 | dirac distribution | |
+| Dirac 分布 | dirac distribution | |
 | 不动点方程 | fixed point equation | |
 | 变分法 | calculus of variations | |
 | 信念网络 | belief network | |
@@ -701,10 +701,10 @@
 | 相关系数 | correlation | |
 | 标准正态分布 | standard normal distribution | |
 | 协方差矩阵 | covariance matrix | |
-| Bernoulli分布 | Bernoulli distribution | |
-| Bernoulli输出分布 | Bernoulli output distribution | |
-| Multinoulli分布 | multinoulli distribution | |
-| Multinoulli输出分布 | multinoulli output distribution | |
+| Bernoulli 分布 | Bernoulli distribution | |
+| Bernoulli 输出分布 | Bernoulli output distribution | |
+| Multinoulli 分布 | multinoulli distribution | |
+| Multinoulli 输出分布 | multinoulli output distribution | |
 | 范畴分布 | categorical distribution | |
 | 多项式分布 | multinomial distribution | |
 | 正态分布 | normal distribution | |
@@ -731,7 +731,7 @@
 | 贝叶斯规则 | Bayes' rule | |
 | 测度论 | measure theory | |
 | 零测度 | measure zero | |
-| Jacobian矩阵 | Jacobian matrix | |
+| Jacobian 矩阵 | Jacobian matrix | |
 | 自信息 | self-information | |
 | 奈特 | nats | |
 | 比特 | bit | |
@@ -739,7 +739,7 @@
 | 香农熵 | Shannon entropy | |
 | 微分熵 | differential entropy | |
 | 微分方程 | differential equation | |
-| KL散度 | Kullback-Leibler (KL) divergence | |
+| KL 散度 | Kullback-Leibler (KL) divergence | |
 | 交叉熵 | cross-entropy | |
 | 熵 | entropy | |
 | 分解 | factorization | |
@@ -763,7 +763,7 @@
 | 矩阵乘积 | matrix product | |
 | AdaGrad | AdaGrad | |
 | 逐元素乘积 | element-wise product | |
-| Hadamard乘积 | Hadamard product | |
+| Hadamard 乘积 | Hadamard product | |
 | 团势能 | clique potential | |
 | 因子 | factor | |
 | 未归一化概率函数 | unnormalized probability function | |
@@ -823,7 +823,7 @@
 | 绝对值整流 | absolute value rectification | |
 | 渗漏整流线性单元 | Leaky ReLU | |
 | 参数化整流线性单元 | parametric ReLU | PReLU |
-| maxout单元 | maxout unit | |
+| maxout 单元 | maxout unit | |
 | 硬双曲正切函数 | hard tanh | |
 | 架构 | architecture | |
 | 操作 | operation | |
@@ -872,7 +872,7 @@
 | 收缩 | contractive | |
 | 长期依赖 | long-term dependency | |
 | 跳跃连接 | skip connection | |
-| 门控RNN | gated RNN | |
+| 门控 RNN | gated RNN | |
 | 门控 | gated | |
 | 卷积 | convolution | |
 | 输入 | input | |
@@ -1041,4 +1041,3 @@
 | 精确推断 | exact inference | |
 | 潜层 | latent layer | |
 | 知识图谱 | knowledge graph | |
-

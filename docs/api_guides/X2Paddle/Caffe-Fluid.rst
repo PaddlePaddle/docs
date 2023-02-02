@@ -1,14 +1,14 @@
 .. _Caffe-Fluid:
 
 ########################
-Caffe-Fluid常用层对应表
+Caffe-Fluid 常用层对应表
 ########################
 
-本文档梳理了Caffe常用Layer与PaddlePaddle API对应关系和差异分析。根据文档对应关系，有Caffe使用经验的用户，可根据对应关系，快速熟悉PaddlePaddle的接口使用。  
+本文档梳理了 Caffe 常用 Layer 与 PaddlePaddle API 对应关系和差异分析。根据文档对应关系，有 Caffe 使用经验的用户，可根据对应关系，快速熟悉 PaddlePaddle 的接口使用。
 
 
-..  csv-table:: 
-    :header: "序号", "Caffe Layer", "Fluid接口", "备注"
+..  csv-table::
+    :header: "序号", "Caffe Layer", "Fluid 接口", "备注"
     :widths: 1, 8, 8, 3
 
     "1",  "`AbsVal <http://caffe.berkeleyvision.org/tutorial/layers/absval.html>`_", ":ref:`cn_api_fluid_layers_abs`",  "功能一致"
@@ -21,7 +21,7 @@ Caffe-Fluid常用层对应表
     "8",  "`Crop <http://caffe.berkeleyvision.org/tutorial/layers/crop.html>`_", ":ref:`cn_api_fluid_layers_crop`",  "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Crop.md>`_"
     "9",  "`Deconvolution <http://caffe.berkeleyvision.org/tutorial/layers/deconvolution.html>`_", ":ref:`cn_api_fluid_layers_conv2d_transpose`",  "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Deconvolution.md>`_"
     "10",  "`Dropout <http://caffe.berkeleyvision.org/tutorial/layers/dropout.html>`_", ":ref:`cn_api_fluid_layers_dropout`",  "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Dropout.md>`_"
-    "11",  "`Eltwise <http://caffe.berkeleyvision.org/tutorial/layers/eltwise.html>`_",  "无相应接口",  "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Eltwise.md>`_"
+    "11",  "`Eltwise <http://caffe.berkeleyvision.org/tutorial/layers/eltwise.html>`_",  "无相应接口",  "`Fluid 实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Eltwise.md>`_"
     "12",  "`ELU <http://caffe.berkeleyvision.org/tutorial/layers/elu.html>`_", ":ref:`cn_api_fluid_layers_elu`",  "功能一致"
     "13",  "`EuclideanLoss <http://caffe.berkeleyvision.org/tutorial/layers/euclideanloss.html>`_", ":ref:`cn_api_fluid_layers_square_error_cost`",  "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/EuclideanLoss.md>`_"
     "14",  "`Exp <http://caffe.berkeleyvision.org/tutorial/layers/exp.html>`_", ":ref:`cn_api_fluid_layers_exp`",  "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Exp.md>`_"
@@ -33,7 +33,7 @@ Caffe-Fluid常用层对应表
     "20",  "`Pooling <http://caffe.berkeleyvision.org/tutorial/layers/pooling.html>`_", ":ref:`cn_api_fluid_layers_pool2d`",  "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Pooling.md>`_"
     "21",  "`Power <http://caffe.berkeleyvision.org/tutorial/layers/power.html>`_", ":ref:`cn_api_fluid_layers_pow`",  "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Power.md>`_"
     "22",  "`PReLU <http://caffe.berkeleyvision.org/tutorial/layers/prelu.html>`_", ":ref:`cn_api_fluid_layers_prelu`",  "功能一致"
-    "23",  "`Reduction <http://caffe.berkeleyvision.org/tutorial/layers/reduction.html>`_",  "无相应接口",  "`Fluid实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Reduction.md>`_"
+    "23",  "`Reduction <http://caffe.berkeleyvision.org/tutorial/layers/reduction.html>`_",  "无相应接口",  "`Fluid 实现 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Reduction.md>`_"
     "24",  "`ReLU <http://caffe.berkeleyvision.org/tutorial/layers/relu.html>`_", ":ref:`cn_api_fluid_layers_leaky_relu`",  "功能一致"
     "25",  "`Reshape <http://caffe.berkeleyvision.org/tutorial/layers/reshape.html>`_", ":ref:`cn_api_fluid_layers_reshape`",  "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/Reshape.md>`_"
     "26",  "`SigmoidCrossEntropyLoss <http://caffe.berkeleyvision.org/tutorial/layers/sigmoidcrossentropyloss.html>`_", ":ref:`cn_api_fluid_layers_sigmoid_cross_entropy_with_logits`",  "`差异对比 <https://github.com/PaddlePaddle/X2Paddle/blob/master/caffe2fluid/doc/SigmoidCrossEntropyLoss.md>`_"

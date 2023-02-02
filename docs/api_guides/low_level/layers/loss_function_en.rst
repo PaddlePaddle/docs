@@ -30,7 +30,7 @@ For API Reference,  please refer to :ref:`api_fluid_layers_sigmoid_cross_entropy
 
 Large-scale classification
 -----------------------------
-For large-scale classification problems, special methods and corresponding loss functions are usually needed to speed up the training. The commonly used methods are 
+For large-scale classification problems, special methods and corresponding loss functions are usually needed to speed up the training. The commonly used methods are
 `Noise contrastive estimation (NCE) <http://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf>`_ and `Hierarchical sigmoid <http://www.iro.umontreal.ca/~lisa/pointeurs/hierarchical-nnlm-aistats05.pdf>`_ .
 
 * NCE solves the binary-classification problem of discriminating the true distribution and the noise distribution by converting the multi-classification problem into a classifier. The maximum likelihood estimation is performed based on the binary-classification to avoid calculating the normalization factor in the full-class space to reduce computational complexity.

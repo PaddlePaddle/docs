@@ -105,7 +105,7 @@ In addition, if there are environmental problems with the pre-built wheel packag
 - **CPU: Phytium,FT-2000+/64**
 - **OS version: Kylin release V10 (SP1)/(Tercel)-aarch64-Build04/20200711**
 - **Python version: 3.6/3.7 (64 bit)**
-- **pip或pip3 version:  9.0.1+ (64 bit)**
+- **pip 或 pip3 version:  9.0.1+ (64 bit)**
 - **cmake version: 3.15+**
 - **gcc/g++ version: 8.2+**
 
@@ -157,40 +157,22 @@ Execute cmake ：
 For Python3
 
 ```
-cmake .. -DPY_VERSION=3.6 \         
-         -DCMAKE_BUILD_TYPE=Release \         
-         -DWITH_GPU=OFF \         
-         -DWITH_XPU=ON \         
-         -DON_INFER=ON \         
-         -DWITH_PYTHON=ON \         
-         -DWITH_AVX=ON \         
-         -DWITH_MKL=ON \         
-         -DWITH_MKLDNN=ON \         
-         -DWITH_XPU_BKCL=ON \         
-         -DWITH_DISTRIBUTE=ON \         
+cmake .. -DPY_VERSION=3.6 \
+         -DCMAKE_BUILD_TYPE=Release \
+         -DWITH_GPU=OFF \
+         -DWITH_XPU=ON \
+         -DON_INFER=ON \
+         -DWITH_PYTHON=ON \
+         -DWITH_AVX=ON \
+         -DWITH_MKL=ON \
+         -DWITH_MKLDNN=ON \
+         -DWITH_XPU_BKCL=ON \
+         -DWITH_DISTRIBUTE=ON \
          -DWITH_NCCL=OFF
-         
+
 make -j20
 ```
 
-For Python2
-
-```
-cmake .. -DPY_VERSION=2.7 \         
-         -DCMAKE_BUILD_TYPE=Release \         
-         -DWITH_GPU=OFF \         
-         -DWITH_XPU=ON \         
-         -DON_INFER=ON \         
-         -DWITH_PYTHON=ON \         
-         -DWITH_AVX=ON \         
-         -DWITH_MKL=ON \         
-         -DWITH_MKLDNN=ON \         
-         -DWITH_XPU_BKCL=ON \         
-         -DWITH_DISTRIBUTE=ON \         
-         -DWITH_NCCL=OFF
-         
-make -j20
-```
 
 **Phytium CPU+Kunlun XPU+Kylin release V10**
 
@@ -207,20 +189,20 @@ ulimit -n 4096
 python_exe="/usr/bin/python3.7"
 export XPU_SDK_ROOT=$PWD/xpu_sdk
 
-cmake .. -DPY_VERSION=3.7 \         
-         -DPYTHON_EXECUTABLE=$python_exe \         
-         -DWITH_ARM=ON \         
-         -DWITH_AARCH64=ON \         
-         -DWITH_TESTING=OFF \         
-         -DCMAKE_BUILD_TYPE=Release \         
-         -DON_INFER=ON \         
-         -DWITH_XBYAK=OFF \         
-         -DWITH_XPU=ON \         
-         -DWITH_GPU=OFF \         
-         -DWITH_LITE=ON \         
-         -DLITE_GIT_TAG=release/v2.9 \         
+cmake .. -DPY_VERSION=3.7 \
+         -DPYTHON_EXECUTABLE=$python_exe \
+         -DWITH_ARM=ON \
+         -DWITH_AARCH64=ON \
+         -DWITH_TESTING=OFF \
+         -DCMAKE_BUILD_TYPE=Release \
+         -DON_INFER=ON \
+         -DWITH_XBYAK=OFF \
+         -DWITH_XPU=ON \
+         -DWITH_GPU=OFF \
+         -DWITH_LITE=ON \
+         -DLITE_GIT_TAG=release/v2.9 \
          -DXPU_SDK_ROOT=${XPU_SDK_ROOT}
-         
+
 make VERBOSE=1 TARGET=ARMV8 -j32
 ```
 

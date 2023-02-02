@@ -1,22 +1,22 @@
 .. _cn_api_incubate_softmax_mask_fuse:
 
-softmax_mask_fuse 
+softmax_mask_fuse
 -------------------------------
 
 .. py:function:: paddle.incubate.softmax_mask_fuse(x, mask, name=None)
 
-该op是对输入 ``x`` 进行被输入 ``mask`` mask后的softmax操作。该op主要针对加速Transformer架构而设计。将 ``tmp = x + mask, rst = softmax(tmp)`` 两个操作合为一个操作。计算公式为：
+对输入 ``x`` 进行使用输入 ``mask`` mask 后的 softmax 操作。
+该 API 主要针对加速 Transformer 架构而设计。将 ``tmp = x + mask, rst = softmax(tmp)`` 两个操作合为一个操作。计算公式为：
 
 .. math::
     out = softmax(x + mask)
 
 .. note::
-    该API只可在GPU上运行
-
+    该 API 只可在 GPU 上运行
 参数
 :::::::::
-    - x (4-D Tensor) - 输入的Tensor，必须为4D的shape，数据类型为：float16、float32。x的第四维必须大于等于32，并且小于8192。
-    - mask (4-D Tensor) - 输入的Tensor，必须为4D的shape，数据类型为：float16、float32。mask的第二维必须为1，其余维度必须与x的对应维度相同。
+    - x (4-D Tensor) - 输入的 Tensor，必须为 4D 的 shape，数据类型为：float16、float32。x 的第四维必须大于等于 32，并且小于 8192。
+    - mask (4-D Tensor) - 输入的 Tensor，必须为 4D 的 shape，数据类型为：float16、float32。mask 的第二维必须为 1，其余维度必须与 x 的对应维度相同。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
