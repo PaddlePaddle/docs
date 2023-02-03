@@ -1,3 +1,9 @@
+# 2.4.1 Release Note
+
+
+Remove the dependence of the Paddle on python.so, and fix the bug that fails to execute due to the inability to find python.so in specific environments, including conda.
+
+
 # 2.4.0 Release Note
 
 ## 1. Important Updates
