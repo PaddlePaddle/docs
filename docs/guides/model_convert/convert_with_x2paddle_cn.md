@@ -27,6 +27,13 @@
 
 X2Paddle 是飞桨官方提供的模型转换工具，简洁易用，通过一条命令行或者一个 API 即可完成模型转换。已在 GitHub 社区开源：[https://github.com/PaddlePaddle/X2Paddle](https://github.com/PaddlePaddle/X2Paddle)
 
+X2Paddle 致力于帮助其它主流深度学习框架开发者快速迁移至飞桨框架，目前提供三大功能
+- 预测模型转换
+  - 支持 Caffe/TensorFlow/ONNX/PyTorch 的模型一键转为飞桨的预测模型，并使用 PaddleInference/PaddleLite 进行 CPU/GPU/Arm 等设备的部署
+- PyTorch 训练项目转换
+  - 支持 PyTorch 项目 Python 代码（包括训练、预测）一键转为基于飞桨框架的项目代码，帮助开发者快速迁移项目，并可享受 AI Studio 平台对于飞桨框架提供的海量免费计算资源
+
+
 #### 1.3.2 使用 Python API 迁移
 
 X2Paddle 提供了一组 Python API，支持不同框架的模型迁移：

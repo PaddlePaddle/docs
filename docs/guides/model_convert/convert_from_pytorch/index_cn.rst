@@ -11,7 +11,7 @@
 - `NLP - 迁移经验总结 <./nlp_migration_experiences_cn.html>`_ : 介绍 NLP 各个方向从 PyTorch 迁移到飞桨的基本流程、常用工具、定位问题的思路及解决方法。
 - `解读网络结构转换 <./convert_net_structure_cn.html>`_ : 介绍网络结构转换的思路和方法。
 - `解读 Bert 模型权重转换 <./convert_bert_weights_cn.html>`_ : 介绍如何进行不同框架下的模型权重转换。
-- `PyTorch API 映射表 <./pytorch_api_mapping_cn.html>`_ : 说明 PyTorch 1.8 版本与 Paddle 2.0 API 对应关系。
+- `PyTorch API 映射表 <./pytorch_api_mapping_cn.html>`_ : 说明 PyTorch 1.13 版本与 Paddle 2.4 API 对应关系。
 
 ..  toctree::
     :hidden:
