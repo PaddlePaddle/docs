@@ -1,11 +1,9 @@
-.. _cn_api_paddle_incubate_sparse_divide:
+.. _cn_api_paddle_sparse_divide:
 
 divide
 -------------------------------
 
-.. py:function:: paddle.incubate.sparse.divide(x, y, name=None)
-
-
+.. py:function:: paddle.sparse.divide(x, y, name=None)
 
 输入 :attr:`x` 与输入 :attr:`y` 逐元素相除，并将各个位置的输出元素保存到返回结果中。
 
@@ -14,10 +12,10 @@ divide
 等式为：
 
 .. math::
-        Out = X / Y
+        out = x / y
 
-- :math:`X`：多维稀疏 Tensor。
-- :math:`Y`：多维稀疏 Tensor。
+- :math:`x`：多维稀疏 Tensor。
+- :math:`y`：多维稀疏 Tensor。
 
 参数
 :::::::::
@@ -33,4 +31,4 @@ divide
 代码示例
 :::::::::
 
-COPY-FROM: paddle.incubate.sparse.divide
+COPY-FROM: paddle.sparse.divide

@@ -1,23 +1,21 @@
-.. _cn_api_paddle_incubate_sparse_subtract:
+.. _cn_api_paddle_sparse_multiply:
 
-subtract
+multiply
 -------------------------------
 
-.. py:function:: paddle.incubate.sparse.subtract(x, y, name=None)
+.. py:function:: paddle.sparse.multiply(x, y, name=None)
 
-
-
-输入 :attr:`x` 与输入 :attr:`y` 逐元素相减，并将各个位置的输出元素保存到返回结果中。
+输入 :attr:`x` 与输入 :attr:`y` 逐元素相乘，并将各个位置的输出元素保存到返回结果中。
 
 输入 :attr:`x` 与输入 :attr:`y` 必须为相同形状且为相同稀疏压缩格式（同为 `SparseCooTensor` 或同为 `SparseCsrTensor`），如果同为 `SparseCooTensor` 则 `sparse_dim` 也需要相同。
 
 等式为：
 
 .. math::
-        Out = X - Y
+        Out = x \odot y
 
-- :math:`X`：多维稀疏 Tensor。
-- :math:`Y`：多维稀疏 Tensor。
+- :math:`x`：多维稀疏 Tensor。
+- :math:`y`：多维稀疏 Tensor。
 
 参数
 :::::::::
@@ -27,10 +25,10 @@ subtract
 
 返回
 :::::::::
-多维稀疏 Tensor, 数据类型和压缩格式与 :attr:`x` 相同 。
+多维稀疏 Tensor, 数据类型和压缩格式与 :attr:`x` 相同。
 
 
 代码示例
 :::::::::
 
-COPY-FROM: paddle.incubate.sparse.subtract
+COPY-FROM: paddle.sparse.multiply
