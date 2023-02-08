@@ -17,7 +17,7 @@ fft_frequencies
 返回
 :::::::::
 
-``paddle.Tensor``，Tensor shape (n_fft//2 + 1,)。
+``paddle.Tensor``，Tensor 形状 (n_fft//2 + 1,)。
 
 代码示例
 :::::::::
