@@ -21,12 +21,12 @@ LogMelSpectrogram
     - **n_mels** (int，可选) - mel bins 的数目。
     - **f_min** (float，可选) - 最小频率(hz)，默认 50.0。
     - **f_max** (float，可选) - 最大频率(hz)，默认为 None。
-    - **htk** (bool，可选) - 在计算 fbank 矩阵时是否用在 HTK 公式缩放.
-    - **norm** (Union[str，float]，可选) - 计算 fbank 矩阵时正则化的种类，默认是'slaney'，你也可以 norm=0.5，使用 p-norm 正则化.
-    - **ref_value** (float，可选) - 参照值,如果小于 1.0，信号的 db 会被提升，相反 db 会下降，默认值为 1.0.
-    - **amin** (float，可选) - 输入的幅值的最小值.
-    - **top_db** (float，可选) - log-mel 谱的最大值(db).
-    - **dtype**  (str，可选) - 输入和窗的数据类型，默认是'float32'.
+    - **htk** (bool，可选) - 在计算 fbank 矩阵时是否用在 HTK 公式缩放。
+    - **norm** (Union[str，float]，可选) - 计算 fbank 矩阵时正则化的种类，默认是'slaney'，你也可以 norm=0.5，使用 p-norm 正则化。
+    - **ref_value** (float，可选) - 参照值，如果小于 1.0，信号的 db 会被提升，相反 db 会下降，默认值为 1.0。
+    - **amin** (float，可选) - 输入的幅值的最小值。
+    - **top_db** (float，可选) - log-mel 谱的最大值(db)。
+    - **dtype**  (str，可选) - 输入和窗的数据类型，默认是'float32'。
 
 
 返回
