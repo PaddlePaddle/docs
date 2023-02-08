@@ -18,7 +18,7 @@ create_dct
 返回
 :::::::::
 
-``paddle.Tensor``，Tensor shape (n_mels， n_mfcc)。
+``paddle.Tensor``，Tensor 形状 (n_mels, n_mfcc)。
 
 代码示例
 :::::::::
