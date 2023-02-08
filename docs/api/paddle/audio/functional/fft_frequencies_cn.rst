@@ -12,7 +12,7 @@ fft_frequencies
 
     - **sr** (int) - 采样率。
     - **n_fft** (int) - fft bins 的数目。
-    - **dtype** (str) - 默认'float32'。
+    - **dtype** (str，可选) - 默认'float32'。
 
 返回
 :::::::::

@@ -11,8 +11,8 @@ power_to_db
 ::::::::::::
 
     - **spect** (Tensor) - stft 能量谱, 输入 tensor。
-    - **ref_value** (float) - 参照值, 振幅相对于 ref 进行缩放, 默认 1.0。
-    - **amin** (float) - 最小阈值, 默认 1e-10。
+    - **ref_value** (float，可选) - 参照值, 振幅相对于 ref 进行缩放, 默认 1.0。
+    - **amin** (float，可选) - 最小阈值, 默认 1e-10。
     - **top_db** (float，可选) - 阈值, 默认 80.0。
 
 返回

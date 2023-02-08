@@ -11,7 +11,7 @@ mel_to_hz
 ::::::::::::
 
     - **mel** (Tensor, float) - 输入 tensor。
-    - **htk** (bool) - 是否使用 htk 缩放, 默认 False。
+    - **htk** (bool，可选) - 是否使用 htk 缩放, 默认 False。
 
 返回
 :::::::::

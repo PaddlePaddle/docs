@@ -10,11 +10,11 @@ mel_frequencies
 参数
 ::::::::::::
 
-    - **n_mels** (int) - 输入 tensor, 默认 64。
-    - **f_min** (float) - 最小频率(hz), 默认 0.0。
-    - **f_max** (float) - 最大频率(hz), 默认 11025.0。
-    - **htk** (bool) - 是否使用 htk 缩放, 默认 False。
-    - **dtype** (str) - 默认'float32'。
+    - **n_mels** (int，可选) - 输入 tensor, 默认 64。
+    - **f_min** (float，可选) - 最小频率(hz), 默认 0.0。
+    - **f_max** (float，可选) - 最大频率(hz), 默认 11025.0。
+    - **htk** (bool，可选) - 是否使用 htk 缩放, 默认 False。
+    - **dtype** (str，可选) - 默认'float32'。
 
 返回
 :::::::::
