@@ -19,7 +19,7 @@ mel_frequencies
 返回
 :::::::::
 
-``paddle.Tensor``，Tensor shape (n_mels，)。
+``paddle.Tensor``，Tensor 形状 (n_mels,)。
 
 代码示例
 :::::::::
