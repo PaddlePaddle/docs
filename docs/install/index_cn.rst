@@ -15,6 +15,7 @@
 * Linux 系统相关的包已被拆分为 avx 和 noavx 两种类型的包（大部分机器都使用 avx 指令集，可使用 `Linux 下的 PIP 安装 <pip/linux-pip.html>`_ 页面中的命令查看您的机器是否支持）
 * 新增预装好 jupyter 的 CPU 镜像，启动镜像后即启动 jupyter 服务
 * 新增支持 Windows Visual Studio 2017 编译，由 VS2015 全面升级至 VS2017
+* 新增 NVIDIA 飞桨容器安装方式
 
 
 -----------
@@ -193,7 +194,12 @@
     `Windows 下的 PIP 安装 <pip/windows-pip.html>`_
 
 
-**第二种安装方式：使用源代码编译安装**
+**第二种安装方式：使用容器安装**
+
+- 推荐使用 `NVIDIA 飞桨容器安装 <https://www.paddlepaddle.org.cn/documentation/docs/zh/install/install_NGC_PaddlePaddle_ch.html>`_
+
+
+**第三种安装方式：使用源代码编译安装**
 
 - 如果您只是使用 PaddlePaddle ，建议使用 **pip** 安装即可。
 - 如果您有开发 PaddlePaddle 的需求，请参考：`从源码编译 <compile/fromsource.html>`_
