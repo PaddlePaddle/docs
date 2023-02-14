@@ -470,6 +470,6 @@ sharding_configs
       "sharding_segment_strategy": "segment_broadcast_MB",
       "segment_broadcast_MB": 32,
       "sharding_degree": 8,
-      "sharding_degree": 2,
+      "dp_degree": 2,
       "gradient_merge_acc_step": 4,
       }

@@ -37,7 +37,7 @@
 
 * The installation package provided by default requires computer support for MKL
 * NCCL, distribution are not supported on windows now
-
+* If you are in a WSL2 environment, it is recommended to install using Paddle according to the Linux method
 
 
 ## INSTALLATION
