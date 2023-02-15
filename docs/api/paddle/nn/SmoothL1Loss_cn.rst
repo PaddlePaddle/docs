@@ -23,7 +23,7 @@ SmoothL1Loss
 ::::::::::
 
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有 ``none``、``mean`` 和 ``sum``。默认为 ``mean``，计算 ``mini-batch`` loss 均值。设置为 `sum` 时，计算 `mini-batch` loss 的总和。设置为 ``none`` 时，则返回 loss Tensor。
-    - **delta** (str，可选) - 指定要使用的超参数 :math:`\delta`，该值确定使用 L1 所需的误差大小, 小于的误差用 L2 最小化。对于负值/零值，忽略参数, 默认值为 :math:`1.0`。
+    - **delta** (str，可选) - SmoothL1Loss 损失的阈值参数 :math:`\delta`，用于控制 Huber 损失对线性误差或平方误差的侧重，小于 :math:`\delta` 的误差用 L2 最小化。对于负值/零值，忽略参数，数据类型为 float32， 默认值为 :math:`1.0`。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 输入
