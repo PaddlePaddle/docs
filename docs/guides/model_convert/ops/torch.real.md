@@ -1,0 +1,16 @@
+## torch.real
+### [torch.real](https://pytorch.org/docs/stable/generated/torch.real.html?highlight=real#torch.real)
+
+```python
+torch.real(input)
+```
+
+### [paddle.real](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/real_cn.html#real)
+
+```python
+paddle.real(x)
+```
+### 参数差异
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| input        | x            | 输入的 Tensorr。                   |
