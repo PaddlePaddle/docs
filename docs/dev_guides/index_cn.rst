@@ -16,6 +16,7 @@
 - `自定义新硬件接入指南 <./custom_device_docs/index_cn.html>`_: 介绍如何通过自定义硬件功能为飞桨接入新硬件后端。
 - `文档贡献指南 <./docs_contributing_guides_cn.html>`_ : 飞桨文档贡献指南。
 - `规范和参考信息 <./style_guide_and_references/index_cn.html>`_ : 飞桨代码开发的相关风格规范和通用参考信息。
+- `低精度算子精度保障 <./amp_precision/index_cn.html>`_ : 飞桨框架中低精度算子实现及其单测开发的规范。
 
 
 ..  toctree::
@@ -30,3 +31,4 @@
     custom_device_docs/index_cn.rst
     docs_contributing_guides_cn.md
     style_guide_and_references/index_cn.rst
+    amp_precision/index_cn.rst
