@@ -156,7 +156,7 @@ vi.matmul。设置阈值1e-3
 在check_output时通过atol参数设置该误差
 
 ```python
-class TestAFP16﻿OP(OpTest)﻿:
+class TestAFP16OP(OpTest):
     #...
     def test_check_output(self):
         if core.is_compiled_with_cuda():
@@ -276,23 +276,23 @@ inputs部分需要传入Uint16格式的数据。可使用**convert_float_to_uint
 outpus部分需要传入Uint16格式的参考结果。可使用**convert_float_to_uint16**完成转换。
 
 ```python
-def TestABF16﻿(OpTest)﻿:
+def TestABF16(OpTest):
     #...
-    def setUp﻿(self)﻿:
+    def setUp(self):
         #self.op_type用来指定当前OP的类型，可参考同单测文件下的op_type
         self.op_type = 'A'
         #dtype需要设置为np.uint16形式
         self.dtype = np.uint16
         #生成初始输入数据x,通常使用numpy.random包
-        x = np.random.rand(﻿2，3，5﻿)﻿.astype(np.float32)
+        x = np.random.rand(2，3，5).astype(np.float32)
         #计算输出数据out
         #复杂的计算可以自己编写函数完成计算
         #简单的计算可以直接在setUp中计算，如加法等
         out = compute_out(x)
         #inputs需要传入uint16类型的数据，使用convert_float_to_uint16来获得
-        self.inputs = {﻿'X'﻿: convert_float_to_uint16(x)}
+        self.inputs = {'X': convert_float_to_uint16(x)}
         #outputs需要传入uint16类型的数据，使用convert_float_to_uint16来获得
-        self.outputs = {﻿'Out'﻿: convert_float_to_uint16(out)}
+        self.outputs = {'Out': convert_float_to_uint16(out)}
 ```
 
 3. 修改test_check_output方法
@@ -362,7 +362,7 @@ test_check_grad中添加对check_grad的调用。
 def TestABF16(OpTest):
     #...
     def test_check_grad(self):
-        self.check_grad([﻿'X'﻿]﻿, 'Out'﻿, max_relative_error=﻿1e-2)
+        self.check_grad(['X'], 'Out', max_relative_error=1e-2)
 ```
 
 # 三、验证单测添加是否正确
@@ -374,7 +374,7 @@ def TestABF16(OpTest):
 1. 编译时，请打开测试选项  **-DWITH_TESTING=ON** ，并使用make -j$(nproc)完成Paddle编译
 
 ```bash
-cmake .. -DWITH_GPU﻿=ON -DWITH_TESTING﻿=ON
+cmake .. -DWITH_GPU=ON -DWITH_TESTING=ON
 make -j $(nproc)
 ```
 
