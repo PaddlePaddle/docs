@@ -9,7 +9,7 @@
 | [torch.nn.XX](#id2) | 主要为`torch.nn.XX`类 API |
 | [torch.nn.functional.XX](#id3) | 主要为`torch.nn.functional.XX`类 API |
 | [torch.nn.init.XX](#id4) | 主要为`torch.nn.init.XX`类 API |
-| [torch.nn.utils.XX](#id5) | 主要为`torch.nn.init.XX`类 API |
+| [torch.nn.utils.XX](#id5) | 主要为`torch.nn.utils.XX`类 API |
 | [torch.Tensor.XX](#id6) | 主要为`torch.Tensor.XX`类 API |
 | [torch.cuda.XX](#id7) | 主要为`torch.cuda.XX`类 API |
 | [torch.distributed.XX](#id8) | 主要为`torch.distributed.XX`类 API |
@@ -85,7 +85,7 @@
 | 60    | [torch.is\_grad\_enabled](https://pytorch.org/docs/stable/generated/torch.is_grad_enabled.html?highlight=is_grad_enabled#torch.is_grad_enabled) | [paddle.is\_grad\_enabled](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/is_grad_enabled_cn.html#is-grad-enabled) | 功能一致，无参数   |
 | 61   | [torch.cov](https://pytorch.org/docs/stable/generated/torch.cov.html?highlight=cov#torch.cov) | [paddle.linalg.cov](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/cov_cn.html#cov) | 功能一致，仅参数命名不一致，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/ops/torch.cov.md)    |
 | 62   | [torch.moveaxis](https://pytorch.org/docs/stable/generated/torch.moveaxis.html?highlight=moveaxis#torch.moveaxis) | [paddle.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/moveaxis_cn.html#moveaxis) |功能一致，仅参数命名不一致，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/ops/torch.moveaxis.md)    |
-| 63   | [torch.sqrt](https://pytorch.org/docs/stable/generated/torch.sqrt.html?highlight=sqrt#torch.sqrt) | [paddle.sqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sqrt_cn.html#sqrt) | 功能一致，torch 参数更多，torch 多 `out` 参数代表输出 |
+| 63   | [torch.sqrt](https://pytorch.org/docs/stable/generated/torch.sqrt.html?highlight=sqrt#torch.sqrt) | [paddle.sqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sqrt_cn.html#sqrt) | 功能一致，torch 参数更多，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/ops/torch.sqrt.md) |
 | 64    | [torch.tensor](https://pytorch.org/docs/stable/generated/torch.tensor.html?highlight=tensor#torch.tensor) | [paddle.to\_tensor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/to_tensor_cn.html#to-tensor) | 功能一致，torch 参数更多，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/ops/torch.tensor.md)                              |
 | 65    | [torch.zeros\_like](https://pytorch.org/docs/stable/generated/torch.zeros_like.html?highlight=zeros_like#torch.zeros_like) | [paddle.zeros\_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/zeros_like_cn.html#zeros-like) | 功能一致，torch 参数更多，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/ops/torch.zeros_like.md)                          |
 | 66    | [torch.ones](https://pytorch.org/docs/stable/generated/torch.ones.html?highlight=ones#torch.ones) | [paddle.ones](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ones_cn.html#ones) | 功能一致，参数不一致，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/ops/torch.ones.md)                                |
