@@ -19,7 +19,7 @@
 
    a. 算子需要完成的任务在 ‘**任务统计**’ 字段中给出，主要分为2个类别：
 
-   1. ‘**增加FP16支持**’字段为‘**是**’。 需要添加FP16算子支持（参考[低精度算子支持开发规范](https://github.com/PaddlePaddle/docs/tree/develop/docs/dev_guides/amp\_precision/amp\_op\_dev\_guide.md)），同时需要添加FP16的单测支持，单测添加过程参考Step2。
+   1. ‘**增加FP16支持**’字段为‘**是**’。 需要添加FP16算子支持（参考[低精度算子支持开发规范](https://github.com/PaddlePaddle/docs/tree/develop/docs/dev_guides/amp\_precision/amp\_op\_dev\_guide\_cn.md)），同时需要添加FP16的单测支持，单测添加过程参考Step2。
    2. ‘**增加FP16支持**’字段为空，‘**完善FP16单测**’字段为‘**是**’  。需要完善FP16单测，单测相应问题在 **‘单测添加所需注意事项或存在问题’** 中给出，主要分为三类
       1. 补充单测。**参考Step2。**
       2. 修改为和FP32对比。参考**Step2 的2、3、4。**
@@ -67,6 +67,8 @@ inputs部分需要传入FP16格式的数据。可使用astype(self.dtype)完成�
 首先需要对输入数据进行计算，对于复杂一些的计算，可能会使得setUp函数过分冗长，可以写成额外的函数， **如代码1-1的第13行** 。
 
 outpus部分需要传入FP32格式的参考结果。
+
+**代码1-1**
 
 ```python
 class TestAFP16OP(OpTest):
@@ -149,11 +151,11 @@ vi.matmul。设置阈值1e-3
 
 我们在代码1-3中以reduce_sum为例。
 
-在setUp中，我们生成了1000大小的累加序列。采用的是[0, 0.1)的均匀分布，数学期望
+在setUp中，我们生成了1000大小的累加序列。采用的是[0, 0.1)的均匀分布，数学期望 $E_{in}=0.05$
 
-对于1000个数的累加结果的数学期望为
+对于1000个数的累加结果的数学期望为 $E_{out}=E_{in}*1000=50$
 
-那我们的估算绝对误差为
+那我们的估算绝对误差为  $E=2^{\lfloor\log_{2}^{E_{out}}\rfloor-10}=0.03125$
 
 在check_output时通过atol参数设置该误差
 
@@ -269,6 +271,8 @@ inputs部分需要传入Uint16格式的数据。可使用**convert_float_to_uint
 3. 设置self.outputs。**如代码2-1的第15行所示。**
 
 outpus部分需要传入Uint16格式的参考结果。可使用**convert_float_to_uint16**完成转换。
+
+**代码2-1**
 
 ```python
 def TestABF16(OpTest):
