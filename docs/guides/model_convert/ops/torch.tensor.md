@@ -20,6 +20,17 @@ paddle.to_tensor(data,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| device        | place            | 表示 Tensor 存放位置。                   |
-| requires_grad | stop_gradient    | PyTorch 表示是否不阻断梯度传导，PaddlePaddle 表示是否阻断梯度传导。 |
+| device        | place        | 表示 Tensor 存放位置。                   |
+| requires_grad | stop_gradient| PyTorch 表示是否不阻断梯度传导，PaddlePaddle 表示是否阻断梯度传导。 |
 | pin_memeory   | -            | 表示是否使用锁页内存，PaddlePaddle 无此参数。           |
+
+
+### 转写示例
+#### pin_memory：是否分配到固定内存上
+```python
+# Pytorch 写法
+x = torch.eye(3, pin_memory=True)
+
+# Paddle 写法
+x = paddle.eye(3).pin_memory()
+```
