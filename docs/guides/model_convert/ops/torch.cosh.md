@@ -14,6 +14,7 @@ paddle.cosh(x,
             name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,23 +22,12 @@ paddle.cosh(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-a = torch.randn(4)
-a
-# 输出
-# tensor([ 0.1632,  1.1835, -0.6979, -0.7325])
-torch.cosh(a)
-# 输出
-# tensor([ 1.0133,  1.7860,  1.2536,  1.2805])
-```
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.cosh([0.1632,  1.1835, -0.6979, -0.7325], out=y)
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-out = paddle.cosh(x)
-print(out)
-# 输出
-# [1.08107237 1.02006676 1.00500417 1.04533851]
+# Paddle 写法
+y = paddle.cosh([0.1632,  1.1835, -0.6979, -0.7325])
 ```

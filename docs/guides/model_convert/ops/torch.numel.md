@@ -5,12 +5,24 @@
 torch.numel(input)
 ```
 
-### [paddle.numel](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/numel_cn.html#numel)
+### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#size)
 
 ```python
-paddle.numel(x)
+paddle.Tensor.size
 ```
+
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input        | x            | 输入的 Tensor。                   |
+| input         | -            | 输入的 Tensor。                   |
+
+
+### 转写示例
+```python
+# Pytorch 写法
+torch.numel(a)
+
+# Paddle 写法
+a.size
+```

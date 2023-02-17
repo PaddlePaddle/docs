@@ -11,9 +11,10 @@ torch.floor(input,
 
 ```python
 paddle.floor(x,
-            name=None)
+             name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,23 +22,12 @@ paddle.floor(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-a = torch.randn(4)
-a
-# 输出
-# tensor([-0.8166,  1.5308, -0.2530, -0.2091])
-torch.floor(a)
-# 输出
-# tensor([-1.,  1., -1., -1.])
-```
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.floor([-0.4, -0.2, 0.1, 0.3], out=y)
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-out = paddle.floor(x)
-print(out)
-# 输出
-# [-1. -1.  0.  0.]
+# Paddle 写法
+y = paddle.floor([-0.4, -0.2, 0.1, 0.3])
 ```

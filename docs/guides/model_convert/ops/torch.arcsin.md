@@ -3,8 +3,8 @@
 
 ```python
 torch.arcsin(input,
-            *,
-            out=None)
+             *,
+             out=None)
 ```
 
 ### [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asin_cn.html#asin)
@@ -14,6 +14,7 @@ paddle.asin(x,
             name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,23 +22,12 @@ paddle.asin(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-a = torch.randn(4)
-a
-# 输出
-# tensor([-0.5962,  1.4985, -0.4396,  1.4525])
-torch.arcsin(a)
-# 输出
-# tensor([-0.6387,     nan, -0.4552,     nan])
-```
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.arcsin([-0.5962,  1.4985, -0.4396,  1.4525], out=y)
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-out = paddle.asin(x)
-print(out)
-# 输出
-# [-0.41151685 -0.20135792  0.10016742  0.30469265]
+# Paddle 写法
+y = paddle.asin([-0.5962,  1.4985, -0.4396,  1.4525])
 ```

@@ -3,27 +3,28 @@
 
 ```python
 torch.scatter(tensor,
-            dim,
-            index,
-            src)
+              dim,
+              index,
+              src)
 ```
 
 ### [paddle.scatter_nd_add](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/scatter_nd_add_cn.html)
 
 ```python
 paddle.scatter_nd_add(x,
-             index,
-             updates,
-             name=None)
+                      index,
+                      updates,
+                      name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| tensor        | x        | 表示输入 Tensor。                                     |
-| dim           | -         | 表示在哪一个维度 scatter,Paddle 无此参数 |
-| index        | index            | 输入的索引张量                   |
-| src        | updates            | 输入的更新张量                   |
+| tensor        | x            | 表示输入 Tensor。                                     |
+| dim           | -            | 表示在哪一个维度 scatter，Paddle 无此参数 |
+| index         | index        | 输入的索引张量                   |
+| src           | updates      | 输入的更新张量                   |
 
 
 

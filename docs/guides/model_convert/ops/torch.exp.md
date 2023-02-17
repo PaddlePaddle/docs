@@ -3,17 +3,18 @@
 
 ```python
 torch.exp(input,
-            *,
-            out=None)
+          *,
+          out=None)
 ```
 
 ### [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/exp_cn.html#exp)
 
 ```python
 paddle.exp(x,
-            name=None)
+           name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,19 +22,12 @@ paddle.exp(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-torch.exp(torch.tensor([0, math.log(2.)]))
-# 输出
-# tensor([ 1.,  2.])
-```
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.exp([-0.4, -0.2, 0.1, 0.3], out=y)
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-out = paddle.exp(x)
-print(out)
-# 输出
-# [0.67032005 0.81873075 1.10517092 1.34985881]
+# Paddle 写法
+y = paddle.exp([-0.4, -0.2, 0.1, 0.3])
 ```

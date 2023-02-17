@@ -2,12 +2,12 @@
 
 ```python
 torch.randn(*size,
-           *,
-           out=None,
-           dtype=None,
-           layout=torch.strided,
-           device=None,
-           requires_grad=False)
+            *,
+            out=None,
+            dtype=None,
+            layout=torch.strided,
+            device=None,
+            requires_grad=False)
 ```
 
 ### [paddle.randn](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/randn_cn.html#randn)
@@ -17,36 +17,44 @@ paddle.randn(shape,
              dtype=None,
              name=None)
 ```
+
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| size          | shape        | 表示输出形状大小。                                     |
+| *size         | shape        | 表示输出形状大小，Pytorch 以可变参数方式传入，Paddle 以 list 或 tuple 的方式传入。                                     |
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
-| layout        | -            | 表示布局方式，PaddlePaddle 无此参数。                   |
-| device        | -            | 表示 Tensor 存放位置，PaddlePaddle 无此参数。                   |
+| layout        | -            | 表示布局方式，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
+| device        | -            | 表示 Tensor 存放位置，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
 | requires_grad | -            | 表示是否不阻断梯度传导，PaddlePaddle 无此参数。 |
 
 
-### 功能差异
+### 转写示例
+#### *size：输出形状大小
+```python
+# Pytorch 写法
+torch.randn(3, 5)
 
-#### 使用方式
-***PyTorch***：生成 Tensor 的形状大小以可变参数的方式传入。
-***PaddlePaddle***：生成 Tensor 的形状大小以 list 或 tuple 的方式传入。
-
-### 代码示例
-``` python
-# PyTorch 示例：
-torch.randn(2, 3)
-# 输出
-# tensor([[ 1.3290,  1.4679, -1.2373],
-#         [-0.2354, -0.9818,  0.0877]])
+# Paddle 写法
+paddle.randn([3, 5])
 ```
 
-``` python
-# PaddlePaddle 示例：
-paddle.randn([2, 3])
-# 输出
-# Tensor(shape=[2, 3], dtype=float32, place=CPUPlace, stop_gradient=True,
-#        [[-1.74181163, -0.50677234, -0.14707172],
-#         [ 1.18375409,  1.52477348, -0.73248941]])
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.randn([3, 5], out=y)
+
+# Paddle 写法
+y = paddle.randn([3, 5])
+```
+
+
+#### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
+```python
+# Pytorch 写法
+x = torch.randn([3, 5], requires_grad=True)
+
+# Paddle 写法
+x = paddle.randn([3, 5])
+x.stop_gradient = False
 ```

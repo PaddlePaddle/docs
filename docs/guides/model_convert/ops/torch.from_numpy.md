@@ -14,16 +14,11 @@ paddle.to_tensor(data,
                  stop_gradient=True)
 ```
 
+其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| ndarray       | data        | 表示需要转换的数据。                                     |
-| -             | dtype       | 表示数据类型，PyTorch 无此参数。               |
-| -        | place         | 表示 Tensor 存放位置，PyTorch 无此参数。                   |
-| -        | stop_gradient            | 表示是否阻断梯度传导，PyTorch 无此参数。                   |
-
-### 功能差异
-
-#### 使用方式
-***PyTorch***：只能传入一个 numpy.ndarray。
-***PaddlePaddle***：可以传入 scalar、list、tuple、numpy.ndarray、paddle.Tensor。
+| ndarray       | data         | 表示需要转换的数据，PyTorch 只能传入 numpy.ndarray，Paddle 可以传入 scalar、list、tuple、numpy.ndarray、paddle.Tensor。 |
+| -             | dtype        | 表示数据类型，PyTorch 无此参数，paddle 保持默认即可。               |
+| -             | place        | 表示 Tensor 存放位置，PyTorch 无此参数，paddle 需设置为 paddle.CPUPlace()。       |
+| -             | stop_gradient| 表示是否阻断梯度传导，PyTorch 无此参数，paddle 保持默认即可。                   |

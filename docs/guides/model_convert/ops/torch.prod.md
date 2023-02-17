@@ -4,11 +4,9 @@
 
 ```python
 torch.prod(input,
-            dtype=None)
-torch.prod(input,
-            dim,
-            keepdim=False,
-            dtype=None)
+           dim=None,
+           keepdim=False,
+           dtype=None)
 ```
 
 ### [paddle.prod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/prod_cn.html#prod)
@@ -20,8 +18,10 @@ paddle.prod(x,
             dtype=None,
             name=None)
 ```
+
+两者功能一致且参数用法一致，仅参数名不同，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input        | x            | 输入的 Tensor。                   |
-| dim          | axis         | 求乘积运算的维度。                 |
+| input         | x            | 输入的 Tensor。                   |
+| dim           | axis         | 求乘积运算的维度。                  |

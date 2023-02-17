@@ -3,8 +3,8 @@
 
 ```python
 torch.moveaxis(input,
-                source,
-                destination)
+               source,
+               destination)
 ```
 
 ### [paddle.moveaxis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/moveaxis_cn.html#moveaxis)
@@ -15,6 +15,8 @@ paddle.moveaxis(x,
                 destination,
                 name=None)
 ```
+
+两者功能一致且参数用法一致，仅参数名不同，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

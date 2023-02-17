@@ -11,14 +11,15 @@ torch.load(f,
 ### [paddle.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/load_cn.html#load)
 
 ```python
-paddle.load(path, **configs)
+paddle.load(path,
+            **configs)
 ```
 
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| pickle_module          | -        | 表示用于 unpickling 元数据和对象的模块，PaddlePaddle 无此参数。                       |
-| map_location        | -            | 表示加载模型的位置，PaddlePaddle 无此参数。                   |
+| pickle_module | -            | 表示用于 unpickling 元数据和对象的模块，PaddlePaddle 无此参数。                       |
+| map_location  | -            | 表示加载模型的位置，PaddlePaddle 无此参数。                   |
 
 
 ### 功能差异

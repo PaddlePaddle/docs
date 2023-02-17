@@ -9,16 +9,23 @@ torch.broadcast_tensors(*tensors)
 
 ```python
 paddle.broadcast_tensors(inputs,
-                        name=None)
+                         name=None)
 ```
+
+两者功能一致但参数类型不一致，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| *tensors      | inputs       | 一组输入 Tensor。                   |
+| *tensors      | inputs       | 一组输入 Tensor，Pytorch 参数 tensors 为可变参数，Paddle 参数 inputs 为 list(Tensor)或 tuple(Tensor)的形式。   |
 
 
-### 功能差异
+### 转写示例
+#### *tensors: 一组输入 Tensor
+```python
+# Pytorch 写法
+torch.broadcast_tensors(x, y)
 
-#### 使用方式
-***PyTorch***：tensors 为可变参数。
-***PaddlePaddle***：inputs 为 list(Tensor)或 tuple(Tensor)的形式。
+# Paddle 写法
+paddle.broadcast_tensors([x, y])
+```
+‘

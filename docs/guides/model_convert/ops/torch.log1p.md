@@ -11,9 +11,10 @@ torch.log1p(input,
 
 ```python
 paddle.log1p(x,
-            name=None)
+             name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,22 +22,12 @@ paddle.log1p(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-a = torch.randn(5)
-a
-# 输出
-# tensor([-1.0090, -0.9923,  1.0249, -0.5372,  0.2492])
-torch.log1p(a)
-# 输出
-# tensor([    nan, -4.8653,  0.7055, -0.7705,  0.2225])
-```
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.log1p([3, 5], out=y)
 
-``` python
-# PaddlePaddle 示例：
-data = paddle.to_tensor([[0], [1]], dtype='float32')
-res = paddle.log1p(data)
-# 输出
-# [[0.], [0.6931472]]
+# Paddle 写法
+y = paddle.log1p([3, 5])
 ```

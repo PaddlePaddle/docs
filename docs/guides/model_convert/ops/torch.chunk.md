@@ -11,12 +11,14 @@ torch.chunk(input,
 
 ```python
 paddle.chunk(x,
-            chunks,
-            axis=0,
-            name=None)
+             chunks,
+             axis=0,
+             name=None)
 ```
+
+两者功能一致且参数用法一致，仅参数名不同，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input        | x            | 输入变量，数据类型为 bool, float16, float32，float64，int32，int64 的多维 Tensor。   |
-| dim          | axis         | 表示需要分割的维度。 |
+| input         | x            | 输入变量，数据类型为 bool, float16, float32，float64，int32，int64 的多维 Tensor。   |
+| dim           | axis         | 表示需要分割的维度。 |

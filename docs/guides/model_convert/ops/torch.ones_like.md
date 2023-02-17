@@ -14,8 +14,12 @@ torch.ones_like(input,
 ### [paddle.ones_like](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/ones_like_cn.html#ones-like)
 
 ```python
-paddle.ones_like(x, dtype=None, name=None)
+paddle.ones_like(x,
+                 dtype=None,
+                 name=None)
 ```
+
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -30,9 +34,9 @@ paddle.ones_like(x, dtype=None, name=None)
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
 ```python
 # Pytorch 写法
-x = torch.full([3, 5], 1., requires_grad=True)
+x = torch.ones_like((3. 5)), requires_grad=True)
 
 # Paddle 写法
-x = paddle.full([3, 5], 1.)
+x = paddle.ones_like([3, 5])
 x.stop_gradient = False
 ```

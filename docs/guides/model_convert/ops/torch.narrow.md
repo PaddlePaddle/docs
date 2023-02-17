@@ -1,38 +1,39 @@
 ## torch.narrow
 ### [torch.narrow](https://pytorch.org/docs/stable/generated/torch.narrow.html?highlight=narrow#torch.narrow)
 ```python
-torch.narrow(input, dim, start, length)
+torch.narrow(input,
+             dim,
+             start,
+             length)
 ```
+
+
 ### [paddle.slice](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/slice_cn.html#slice)
 ```python
-paddle.slice(input, axes, starts, ends)
+paddle.slice(input,
+             axes,
+             starts,
+             ends)
 ```
+
+其中 Pytorch 的 length 与 Paddle 的 ends 用法不一致，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| dim          | axes        | 表示切片的轴。                                     |
-| start        | starts            | 表示起始位置。                   |
-### 功能差异
-#### 使用方式
-***PyTorch***：只能在一个维度上进行切割，`dim`、`start`、`length`传入的值均只能为 int 型；使用该维度输出长度(`length`)来定位结束位置。
-***PaddlePaddle***：可以在多个维度进行切割，`axes`、`starts`、`ends`传入的值为 list/tuple（`starts`、`ends`传入的值可以为 tensor）；直接使用结束位置(`end`)来定位结束位置。
+| dim           | axes         | 表示切片的轴。                                           |
+| start         | starts       | 表示起始位置。                                           |
+| length        | -            | 到结束位置的长度。                                       |
+| -             | ends         | 表示结束位置。                                           |
 
-### 代码示例
+
+### 转写示例
 ``` python
-# PyTorch 示例：
+# PyTorch 写法：
 x = torch.tensor([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-torch.narrow(x, 0, 0, 2)
-# 输出
-# tensor([[ 1,  2,  3],
-#         [ 4,  5,  6]])
-```
+torch.narrow(x, 0, 1, 2)
 
-``` python
-# PaddlePaddle 示例：
+# Paddle 写法：
+# Paddle 可通过设置 ends-starts=length 来实现 Pytorch 的 length 功能
 x = paddle.to_tensor([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-paddle.slice(x, [0], [0], [2])
-# 输出
-# Tensor(shape=[2, 3], dtype=int64, place=CPUPlace, stop_gradient=True,
-#        [[1, 2, 3],
-#         [4, 5, 6]])
+paddle.slice(x, [0], [1], [3])
 ```

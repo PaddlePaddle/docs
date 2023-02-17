@@ -17,6 +17,8 @@ paddle.to_tensor(data,
                  place=None,
                  stop_gradient=True)
 ```
+
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -26,11 +28,20 @@ paddle.to_tensor(data,
 
 
 ### 转写示例
+#### requires_grad：是否不阻断梯度传导
+```python
+# Pytorch 写法
+x = torch.tensor(3, requires_grad=True)
+
+# Paddle 写法
+x = paddle.to_tensor(3, stop_gradient=False)
+```
+
 #### pin_memory：是否分配到固定内存上
 ```python
 # Pytorch 写法
-x = torch.eye(3, pin_memory=True)
+x = torch.tensor(3, pin_memory=True)
 
 # Paddle 写法
-x = paddle.eye(3).pin_memory()
+x = paddle.to_tensor(3).pin_memory()
 ```

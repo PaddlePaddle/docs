@@ -11,9 +11,10 @@ torch.log10(input,
 
 ```python
 paddle.log10(x,
-            name=None)
+             name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,40 +22,12 @@ paddle.log10(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-a = torch.rand(5)
-a
-# 输出
-# tensor([ 0.5224,  0.9354,  0.7257,  0.1301,  0.2251])
-torch.log10(a)
-# 输出
-# tensor([-0.2820, -0.0290, -0.1392, -0.8857, -0.6476])
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.log10([3, 5], out=y)
 
-```
-
-``` python
-# PaddlePaddle 示例：
-# example 1: x is a float
-x_i = paddle.to_tensor([[1.0], [10.0]])
-res = paddle.log10(x_i)
-# 输出
-# [[0.], [1.0]]
-
-# example 2: x is float32
-x_i = paddle.full(shape=[1], fill_value=10, dtype='float32')
-paddle.to_tensor(x_i)
-res = paddle.log10(x_i)
-print(res)
-# 输出
-# [1.0]
-
-# example 3: x is float64
-x_i = paddle.full(shape=[1], fill_value=10, dtype='float64')
-paddle.to_tensor(x_i)
-res = paddle.log10(x_i)
-print(res)
-# 输出
-# [1.0]
+# Paddle 写法
+y = paddle.log10([3, 5])
 ```

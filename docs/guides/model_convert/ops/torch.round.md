@@ -12,9 +12,10 @@ torch.round(input,
 
 ```python
 paddle.round(x,
-            name=None)
+             name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -23,35 +24,23 @@ paddle.round(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-torch.round(torch.tensor((4.7, -2.3, 9.1, -7.7)))
-# 输出
-# tensor([ 5.,  -2.,  9., -8.])
+### 转写示例
+#### decimals：要舍入到的小数位数
+```python
+# Pytorch 写法
+torch.round([3.345, 5.774], decimals=2)
 
-# Values equidistant from two integers are rounded towards the
-#   the nearest even value (zero is treated as even)
-torch.round(torch.tensor([-0.5, 0.5, 1.5, 2.5]))
-# 输出
-# tensor([-0., 0., 2., 2.])
+# Paddle 写法
+paddle.round(1e2 * [3.345, 5.774]) / 1e2
 
-# A positive decimals argument rounds to the to that decimal place
-torch.round(torch.tensor([0.1234567]), decimals=3)
-# 输出
-# tensor([0.1230])
-
-# A negative decimals argument rounds to the left of the decimal
-torch.round(torch.tensor([1200.1234567]), decimals=-3)
-# 输出
-# tensor([1000.])
+# 注：Paddle 可使用 10 的 decimals 次方来实现
 ```
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([-0.5, -0.2, 0.6, 1.5])
-out = paddle.round(x)
-print(out)
-# 输出
-# [-1. -0.  1.  2.]
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.round([3, 5], out=y)
+
+# Paddle 写法
+y = paddle.round([3, 5])
 ```

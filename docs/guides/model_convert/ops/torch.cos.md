@@ -3,17 +3,18 @@
 
 ```python
 torch.cos(input,
-            *,
-            out=None)
+          *,
+          out=None)
 ```
 
 ### [paddle.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cos_cn.html#cos)
 
 ```python
 paddle.cos(x,
-            name=None)
+           name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,23 +22,12 @@ paddle.cos(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-a = torch.randn(4)
-a
-# 输出
-# tensor([ 1.4309,  1.2706, -0.8562,  0.9796])
-torch.cos(a)
-# 输出
-# tensor([ 0.1395,  0.2957,  0.6553,  0.5574])
-```
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.cos([ 1.4309,  1.2706, -0.8562,  0.9796], out=y)
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-out = paddle.cos(x)
-print(out)
-# 输出
-# [0.92106099 0.98006658 0.99500417 0.95533649]
+# Paddle 写法
+y = paddle.cos([ 1.4309,  1.2706, -0.8562,  0.9796])
 ```

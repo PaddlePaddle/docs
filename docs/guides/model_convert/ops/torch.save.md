@@ -11,14 +11,17 @@ torch.save(obj,
 ### [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/save_cn.html#save)
 
 ```python
-paddle.save(obj, path, pickle_protocol=2)
+paddle.save(obj,
+            path,
+            pickle_protocol=2)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| f        | path          | 表示存储的路径。                   |
-| pickle_module          | -        | 表示用于 pickling 元数据和对象的模块，PaddlePaddle 无此参数。                       |
+| f             | path         | 表示存储的路径。                   |
+| pickle_module | -            | 表示用于 pickling 元数据和对象的模块，PaddlePaddle 无此参数。                       |
 
 
 ### 功能差异

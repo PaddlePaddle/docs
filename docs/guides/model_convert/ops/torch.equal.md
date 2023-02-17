@@ -6,46 +6,31 @@ torch.equal(input,
             other)
 ```
 
-### [paddle.equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/equal_cn.html#equal)
+### [paddle.equal_all](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/equal_all_cn.html#equal-all)
 
 ```python
-paddle.equal(x,
-            y,
-            name=None)
+paddle.equal_all(x,
+                 y,
+                 name=None)
 ```
+
+两者功能一致但返回参数类型不同，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input        | x            | 输入的 Tensor。                   |
-| other        | y            | 输入的 Tensor。                   |
+| input         | x            | 输入的 Tensor。                   |
+| other         | y            | 输入的 Tensor。                   |
+
+注：Pytorch 返回 bool 类型，Paddle 返回 0D bool Tensor
 
 
-### 功能差异
-
-#### 使用方式
-***PyTorch***：返回 bool 类型。
-***PaddlePaddle***：返回 0D bool Tensor。
-
-
-### 代码示例
+### 转写示例
+#### 返回值
 ``` python
-# PyTorch 示例：
-torch.equal(torch.tensor([1, 2]), torch.tensor([1, 2]))
-# 输出
-# True
-```
+# Pytorch 写法
+out = torch.equal(x, y)
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([1, 2, 3])
-y = paddle.to_tensor([1, 2, 3])
-z = paddle.to_tensor([1, 4, 3])
-result1 = paddle.equal_all(x, y)
-print(result1)
-# 输出
-# result1 = [True ]
-result2 = paddle.equal_all(x, z)
-print(result2)
-# 输出
-# result2 = [False ]
+# Paddle 写法
+out = paddle.equal_all(x, y)
+out = out.item()
 ```

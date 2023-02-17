@@ -18,6 +18,7 @@ paddle.clip(x,
             name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -25,34 +26,12 @@ paddle.clip(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-a = torch.randn(4)
-a
-# 输出
-# tensor([-1.7120,  0.1734, -0.0478, -0.0922])
-torch.clamp(a, min=-0.5, max=0.5)
-# 输出
-# tensor([-0.5000,  0.1734, -0.0478, -0.0922])
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.clamp([-1.7120,  0.1734, -0.0478, -0.0922], min=-0.5, max=0.5, out=y)
 
-min = torch.linspace(-1, 1, steps=4)
-torch.clamp(a, min=min)
-# 输出
-# tensor([-1.0000,  0.1734,  0.3333,  1.0000])
-```
-
-``` python
-# PaddlePaddle 示例：
-x1 = paddle.to_tensor([[1.2, 3.5], [4.5, 6.4]], 'float32')
-out1 = paddle.clip(x1, min=3.5, max=5.0)
-out2 = paddle.clip(x1, min=2.5)
-print(out1)
-# 输出
-# [[3.5, 3.5]
-# [4.5, 5.0]]
-print(out2)
-# 输出
-# [[2.5, 3.5]
-# [[4.5, 6.4]
+# Paddle 写法
+y = paddle.clip([-1.7120,  0.1734, -0.0478, -0.0922], min=-0.5, max=0.5)
 ```

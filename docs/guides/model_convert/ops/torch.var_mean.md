@@ -3,9 +3,13 @@
 ### [torch.var_mean](https://pytorch.org/docs/stable/generated/torch.var_mean.html?highlight=var_mean#torch.var_mean)
 ```python
 # 用法一：
-torch.var_mean(input, unbiased=True)
+torch.var_mean(input,
+               unbiased=True)
 # 用法二：
-torch.var_mean(input, dim, keepdim=False, unbiased=True)
+torch.var_mean(input,
+               dim,
+               keepdim=False,
+               unbiased=True)
 ```
 
 ### 功能介绍

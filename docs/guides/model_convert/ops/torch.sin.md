@@ -3,17 +3,18 @@
 
 ```python
 torch.sin(input,
-            *,
-            out=None)
+          *,
+          out=None)
 ```
 
 ### [paddle.sin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sin_cn.html#sin)
 
 ```python
 paddle.sin(x,
-            name=None)
+           name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,23 +22,12 @@ paddle.sin(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-a = torch.randn(4)
-a
-# 输出
-# tensor([-0.5461,  0.1347, -2.7266, -0.2746])
-torch.sin(a)
-# 输出
-# tensor([-0.5194,  0.1343, -0.4032, -0.2711])
-```
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.sin([3, 5], out=y)
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-out = paddle.sin(x)
-print(out)
-# 输出
-# [-0.38941834 -0.19866933  0.09983342  0.29552021]
+# Paddle 写法
+y = paddle.sin([3, 5])
 ```

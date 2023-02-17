@@ -9,9 +9,11 @@ torch.isinf(input)
 
 ```python
 paddle.isinf(x,
-            name=None)
+             name=None)
 ```
+
+两者功能一致且参数用法一致，仅参数名不同，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input        | x            | 输入的 Tensor。                   |
+| input         | x            | 输入的 Tensor。                   |

@@ -12,35 +12,25 @@ torch.remainder(input,
 
 ```python
 paddle.remainder(x,
-                y,
-                name=None)
+                 y,
+                 name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 被除数。                                               |
-| other         | y            | 除数。                                                |
+| input         | x            | 被除数，Pytorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor。  |
+| other         | y            | 除数，Pytorch 可为 Tensor or Scalar，Paddle 仅可为 Tensor。   |
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-torch.remainder(torch.tensor([-3., -2, -1, 1, 2, 3]), 2)
-# 输出
-# tensor([ 1.,  0.,  1.,  1.,  0.,  1.])
-torch.remainder(torch.tensor([1, 2, 3, 4, 5]), -1.5)
-# 输出
-# tensor([ -0.5000, -1.0000,  0.0000, -0.5000, -1.0000 ])
-```
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.remainder([3, 5], 2, out=y)
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([2, 3, 8, 7])
-y = paddle.to_tensor([1, 5, 3, 3])
-z = paddle.remainder(x, y)
-print(z)
-# 输出
-# [0, 3, 2, 1]
+# Paddle 写法
+y = paddle.remainder([3, 5], 2)
 ```

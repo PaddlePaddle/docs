@@ -3,9 +3,9 @@
 
 ```python
 torch.floor_divide(input,
-                    other,
-                    *,
-                    out=None)
+                   other,
+                   *,
+                   out=None)
 ```
 
 ### [paddle.floor_divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_divide_cn.html#floor-divide)
@@ -16,6 +16,7 @@ paddle.floor_divide(x,
                     name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -24,25 +25,12 @@ paddle.floor_divide(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-a = torch.tensor([4.0, 3.0])
-b = torch.tensor([2.0, 2.0])
-torch.floor_divide(a, b)
-# 输出
-# tensor([2.0, 1.0])
-torch.floor_divide(a, 1.4)
-# 输出
-# tensor([2.0, 2.0])
-```
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.floor_divide([2, 3, 8, 7], [1, 5, 3, 3], out=y)
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([2, 3, 8, 7])
-y = paddle.to_tensor([1, 5, 3, 3])
-z = paddle.floor_divide(x, y)
-print(z)
-# 输出
-# [2, 0, 2, 2]
+# Paddle 写法
+y = paddle.floor_divide([2, 3, 8, 7], [1, 5, 3, 3])
 ```

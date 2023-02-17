@@ -3,17 +3,18 @@
 
 ```python
 torch.absolute(input,
-                *,
-                out=None)
+               *,
+               out=None)
 ```
 
 ### [paddle.abs](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/abs_cn.html#abs)
 
 ```python
 paddle.abs(x,
-            name=None)
+           name=None)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -21,19 +22,12 @@ paddle.abs(x,
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
 
 
-### 代码示例
-``` python
-# PyTorch 示例：
-torch.absolute(torch.tensor([-1, -2, 3]))
-# 输出
-# tensor([ 1,  2,  3])
-```
+### 转写示例
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.absolute([-3, -5], out=y)
 
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-out = paddle.abs(x)
-print(out)
-# 输出
-# [0.4 0.2 0.1 0.3]
+# Paddle 写法
+y = paddle.abs([-3, -5])
 ```
