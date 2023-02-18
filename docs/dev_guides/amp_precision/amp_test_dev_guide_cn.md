@@ -162,6 +162,8 @@ vi.matmul。设置阈值1e-3
 
 在check_output时通过atol参数设置该误差
 
+**代码1-2**
+
 ```python
 class TestAFP16OP(OpTest):
     #...
@@ -172,6 +174,8 @@ class TestAFP16OP(OpTest):
                 #使用atol指定前向计算的绝对误差阈值
                 self.check_output_with_place(place, atol=1e-3)
 ```
+
+**代码1-3**
 
 ```python
 class TestSumOpFP16(OpTest):
@@ -207,6 +211,8 @@ test_check_grad中添加对check_grad的调用。
    5. cumsum。设置阈值1e-2。
    6. logsum。设置阈值1e-2。
    7. logcumsumexp。设置阈值0.5。
+
+**代码1-4**
 
 ```python
 def TestAFP16OP(OpTest):
@@ -339,6 +345,8 @@ v.norm类。设置阈值1e-2
 
 vi.matmul。设置阈值1e-2
 
+**代码2-2**
+
 ```python
 def TestABF16(OpTest):
     #...
@@ -359,6 +367,8 @@ test_check_grad中添加对check_grad的调用。
 3. 基本数学函数，主要为激活函数。设置阈值1e-2。
 
 4. 累加函数。设置阈值1e-2。
+
+**代码2-3**
 
 ```python
 def TestABF16(OpTest):
