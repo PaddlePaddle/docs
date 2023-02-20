@@ -8,7 +8,7 @@ sequence_scatter
 
 
 .. note::
-    该 OP 的输入 index，updates 必须是 LoDTensor。
+    该 OP 的输入 index，updates 必须是带有 LoD 信息的 Tensor。
 
 根据 index 提供的位置将 updates 中的信息更新到输出中。
 
@@ -46,8 +46,8 @@ output[i][j]的值取决于能否在 index 中第 i+1 个区间中找到对应�
 参数
 :::::::::
       - **input** (Tensor) - 维度为 :math:`[N, k_1 ... k_n]` 的 Tensor，支持的数据类型：float32，float64，int32，int64。
-      - **index** (Tensor) - 包含 index 信息的 LoDTensor，lod level 必须等于 1，支持的数据类型：int32，int64。
-      - **updates** (Tensor) - 包含 updates 信息的 LoDTensor，lod level 和 index 一致，数据类型与 input 的数据类型一致。支持的数据类型：float32，float64，int32，int64。
+      - **index** (Tensor) - 包含 index 信息的 Tensor，lod level 必须等于 1，支持的数据类型：int32，int64。
+      - **updates** (Tensor) - 包含 updates 信息的 Tensor，lod level 和 index 一致，数据类型与 input 的数据类型一致。支持的数据类型：float32，float64，int32，int64。
       - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

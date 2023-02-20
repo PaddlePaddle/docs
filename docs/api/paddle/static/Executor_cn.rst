@@ -59,7 +59,7 @@ run(program=None, feed=None, fetch_list=None, feed_var_name='feed', fetch_var_na
   - **feed_var_name** (str) – 该参数表示数据输入算子(feed operator)的输入变量名称。默认为："feed"。
   - **fetch_var_name** (str) – 该参数表示结果获取算子(fetch operator)的输出变量名称。默认为："fetch"。
   - **scope** (Scope) – 该参数表示执行当前 program 所使用的作用域，用户可以为不同的 program 指定不同的作用域。默认值：paddle.static.global_scope()。
-  - **return_numpy** (bool) – 该参数表示是否将返回的计算结果（fetch list 中指定的变量）转化为 numpy；如果为 False，则每个变量返回的类型为 LoDTensor，否则返回变量的类型为 numpy.ndarray。默认为：True。
+  - **return_numpy** (bool) – 该参数表示是否将返回的计算结果（fetch list 中指定的变量）转化为 numpy；如果为 False，则每个变量返回的类型为 Tensor，否则返回变量的类型为 numpy.ndarray。默认为：True。
   - **use_program_cache** (bool) – 该参数表示是否对输入的 Program 进行缓存。如果该参数为 True，在以下情况时，模型运行速度可能会更快：输入的 program 为 ``paddle.static.Program``，并且模型运行过程中，调用该接口的参数（program、 feed 变量名和 fetch_list 变量）名始终不变。默认为：False。
   - **return_merged** (bool) – 该参数表示是否按照执行设备维度将返回的计算结果（fetch list 中指定的变量）进行合并。如果 ``return_merged`` 设为 False，返回值类型是一个 Tensor 的二维列表（ ``return_numpy`` 设为 Fasle 时）或者一个 numpy.ndarray 的二维列表（ ``return_numpy`` 设为 True 时）。如果 ``return_merged`` 设为 True，返回值类型是一个 Tensor 的一维列表（ ``return_numpy`` 设为 Fasle 时）或者一个 numpy.ndarray 的一维列表（ ``return_numpy`` 设为 True 时）。更多细节请参考示例代码 2。如果返回的计算结果是变长的，请设置 ``return_merged`` 为 False，即不按照执行设备维度合并返回的计算结果。该参数的默认值为 True，但这仅是为了兼容性考虑，在未来的版本中默认值可能会更改为 False。
   - **use_prune** (bool) - 该参数表示输入 Program 是否会被裁剪。如果该参数为 True，会根据 feed 和 fetch_list 裁剪 Program，这意味着对生成 fetch_list 没有必要的算子和变量会被裁剪掉。默认为 False，即算子和变量在运行过程不会被裁剪。注意如果 Optimizer.minimize()返回的 tuple 被作为 fetch_list 参数，那么 use_prune 会被重载为 True 并且 Program 会被裁剪。
