@@ -112,7 +112,7 @@ class TestAFP16OP(OpTest):
 
 #####  2.2 修改test_check_output方法
 
-test_check_output中添加对check_output的调用。
+test_check_output中添加对check_output的调用，如代码1-2所示。
 
 在check_output_with_place调用时，按照各分类传入建议的绝对误差阈值atol。
 
@@ -195,7 +195,7 @@ class TestSumOpFP16(OpTest):
 
 ##### 2.3 修改test_check_grad方法
 
-test_check_grad中添加对check_grad的调用。
+test_check_grad中添加对check_grad的调用，如代码1-4所示。
 
 在check_grad_with_place调用时，按照各分类传入建议的相对误差阈值max_relative_error。
 
@@ -309,7 +309,7 @@ def TestABF16(OpTest):
 
 #### 3. 修改test_check_output方法
 
-test_check_output中添加对check_output的调用。
+test_check_output中添加对check_output的调用，如代码2-2所示。
 
 在check_output_with_place调用时，按照各分类传入建议的绝对误差阈值atol。
 
@@ -360,7 +360,7 @@ def TestABF16(OpTest):
 
 #### 4. 修改test_check_grad方法
 
-test_check_grad中添加对check_grad的调用。
+test_check_grad中添加对check_grad的调用，如代码2-3所示。
 
 各类别处理：
 
