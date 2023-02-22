@@ -6,6 +6,7 @@ SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 source ${SCRIPT_DIR}/utils.sh
 
 # 1 decide PADDLE_WHL if not setted.
+PADDLE_WHL="https://xly-devops.bj.bcebos.com/PR/static-check/50697/36a744f1c834bd71846ed9c186f4b994e2298203/paddlepaddle_gpu-0.0.0-cp37-cp37m-linux_x86_64.whl"
 if [ -z "${PADDLE_WHL}" ] ; then
     docs_pr_info=$(get_repo_pr_info "PaddlePaddle/docs" ${GIT_PR_ID})
     paddle_pr_id=$(get_paddle_pr_num_from_docs_pr_info ${docs_pr_info})
