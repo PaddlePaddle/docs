@@ -13,7 +13,7 @@
 使用 C++ 扩展机制，仅需要以下两个步骤：
 
 1. 实现 C++ 扩展的运算函数，将该函数与 python 端绑定
-2. 调用 `python` 接口完成算子编译与注册
+2. 调用 `python` 接口完成 C++ 扩展的编译与注册
 
 随后即可在模型中使用，下面通过实现一个自定义的加法运算，介绍具体的实现、编译与应用流程。
 
@@ -93,7 +93,7 @@ PYBIND11_MODULE(custom_cpp_extension, m) {
 1. 定义 C++ 扩展的实现逻辑，例如本示例中的 `custom_add` 函数
 2. 使用 pybind11 将加法函数绑定至 python 端，pybind11 使用详情可以参考 [pybind11 文档](https://pybind11.readthedocs.io/en/stable/)
 
-## C++扩展编译与使用
+## C++扩展的编译与使用
 
 本机制提供了两种编译自定义算子的方式，分别为 **使用 `setuptools` 编译** 与 **即时编译** ，下面依次通过示例介绍。
 
@@ -118,7 +118,7 @@ setup(
 )
 ```
 
-其中 `paddle.utils.cpp_extension.setup` 能够自动搜索和检查本地的 `cc(Linux)` 、 `cl.exe(Windows)` 和 `nvcc` 编译命令和版本环境，根据用户指定的 `Extension` 类型，完成 CPU 设备的 C++ 扩展编译安装。
+其中 `paddle.utils.cpp_extension.setup` 能够自动搜索和检查本地的 `cc(Linux)` 编译命令和版本环境，完成 CPU 设备的 C++ 扩展编译安装。
 
 执行 `python setup_custom_add.py install` 即可一键完成 C++ 扩展的编译和安装。
 
@@ -153,7 +153,7 @@ y = paddle.randn([4, 10], dtype='float32')
 out = custom_add(x, y)
 ```
 
-> 注：`setuptools` 的封装是为了简化自定义算子编译和使用流程，即使不依赖于 `setuptools` ，也可以自行编译生成动态库，并封装相应的 python API，然后在基于 `PaddlePaddle` 实现的模型中使用
+> 注：`setuptools` 的封装是为了简化 C++ 扩展的编译和使用流程，即使不依赖于 `setuptools` ，也可以自行编译生成动态库，并封装相应的 python API，然后在基于 `PaddlePaddle` 实现的模型中使用
 
 如果需要详细了解相关接口，或需要配置其他编译选项，请参考以下 API 文档：
 
@@ -162,7 +162,7 @@ out = custom_add(x, y)
 
 ### 即时编译（`JIT Compile`）
 
-即时编译将 `setuptools.setup` 编译方式做了进一步的封装，通过将 C++ 扩展对应的 `.cc` 文件传入 API `paddle.utils.cpp_extension.load`，在后台生成 `setup.py` 文件，并通过子进程的方式，隐式地执行源码文件编译、符号链接、动态库生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境。 Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc` ，Windows 下需安装版本不低于 2017 的 Visual Studio
+即时编译将 `setuptools.setup` 编译方式做了进一步的封装，通过将 C++ 扩展对应的 `.cc` 文件传入 API `paddle.utils.cpp_extension.load`，在后台生成 `setup.py` 文件，并通过子进程的方式，隐式地执行源码文件编译、符号链接、动态库生成等一系列过程。不需要本地预装 CMake 或者 Ninja 等工具命令，仅需必要的编译器命令环境。 Linux 下需安装版本不低于 5.4 的 GCC，并软链到 `/usr/bin/cc`
 
 对于前述 `custom_add.cc` 示例，使用方式如下：
 
@@ -185,7 +185,7 @@ out = cpp_extension.custom_add(x, y)
 
 > 注意：`load` 参数中 `name` 的值应与 `PYBIND11_MODULE` 宏声明的模块名一致
 
-以 Linux 平台为例，`load` 接口调用过程中，如果不指定 `build_directory` 参数，Linux 会默认在 `~/.cache/paddle_extensions` 目录下生成一个 `{name}_setup.py`（Windows 默认目录为 `C:\\Users\\xxx\\.cache\\paddle_extensions` 用户目录），然后通过 subprocess 执行 `python {name}_setup.py build`，然后载入动态库，生成 Python API 之后返回。
+`load` 接口调用过程中，如果不指定 `build_directory` 参数，Linux 会默认在 `~/.cache/paddle_extensions` 目录下生成一个 `{name}_setup.py` 文件，然后通过 subprocess 执行 `python {name}_setup.py build`，然后载入动态库，生成 Python API 之后返回。
 
 对于本示例，默认生成路径内容如下：
 
@@ -200,4 +200,4 @@ custom_jit_ops/  custom_jit_ops_setup.py
 
 ### ABI 兼容性检查
 
-以上两种方式，编译前均会执行 ABI 兼容性检查 。对于 Linux，会检查 cc 命令对应的 GCC 版本是否与所安装的 `PaddlePaddle` 的 GCC 版本一致。例如对于 CUDA 10.1 以上的 `PaddlePaddle` 默认使用 GCC 8.2 编译，则本地 cc 对应的编译器版本也需为 8.2。对于 Windows，则会检查本地的 Visual Studio 版本是否与所安装的 `PaddlePaddle` 的 Visual Studio 版本一致（>=2017）。如果上述版本不一致，则会打印出相应 warning，且可能引发自定义 OP 编译执行报错。
+以上两种方式，编译前均会执行 ABI 兼容性检查 。对于 Linux，会检查 cc 命令对应的 GCC 版本是否与所安装的 `PaddlePaddle` 的 GCC 版本一致。例如对于 CUDA 10.1 以上的 `PaddlePaddle` 默认使用 GCC 8.2 编译，则本地 cc 对应的编译器版本也需为 8.2。如果上述版本不一致，则会打印出相应 warning，且可能引发 C++ 扩展编译执行报错。
