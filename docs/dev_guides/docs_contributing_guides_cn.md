@@ -36,7 +36,18 @@ docs 目前使用 [Git 流分支模型](https://nvie.com/posts/a-successful-git-
 ```
 ➜  git checkout -b my-cool-stuff
 ```
+
 值得注意的是，在 ``checkout`` 之前，需要保持当前分支目录 clean，否则会把 untracked 的文件也带到新分支上，这可以通过 ``git status`` 查看。
+下面的状态是 clean 的
+
+```
+➜  git status
+
+On branch develop
+Your branch is up to date with 'origin/develop'.
+
+nothing to commit, working tree clean
+```
 
 ### 1.4 下载 pre-commit 钩子工具（若有的话，可以跳过此步骤）
 
