@@ -34,4 +34,15 @@ scale
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.scale
+        .. code-block:: python
+
+            # scale as a float32 number
+            import paddle
+            data = paddle.randn(shape=[2,3], dtype='float32')
+            res = paddle.scale(data, scale=2.0, bias=1.0)
+        .. code-block:: python
+            # scale with parameter scale as a Tensor
+            import paddle
+            data = paddle.randn(shape=[2, 3], dtype='float32')
+            factor = paddle.to_tensor([2], dtype='float32')
+            res = paddle.scale(data, scale=factor, bias=1.0)
