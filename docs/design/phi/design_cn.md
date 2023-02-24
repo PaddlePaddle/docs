@@ -1192,7 +1192,7 @@ REGISTER_OPERATOR(sign, ops::SignOp, ops::SignOpMaker<float>,
 > 本节要点：
 > 1. 支持新形式 Kernel 在现有静态图和动态图体系中调用，难点在于解决多参数 Op 到少参数 Kernel 的匹配问题
 
-#### 2.4.1 ArgumentMapping 体系设计
+#### 2.4.2 ArgumentMapping 体系设计
 
 由于新形式 Kernel 参数列表与 Python API 对齐，和原先的 OpMaker 中注册的参数列表存在差异，导致新形式 Kernel 在原先 fluid 体系中调用时会很难匹配。
 

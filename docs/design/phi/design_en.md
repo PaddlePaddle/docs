@@ -1192,7 +1192,7 @@ So far, after the original Op's `InferShape` function has been migrated to PHI `
 > Highlights of this section:
 > 1. Support the new form of Kernel to be called in the existing static graph and dynamic graph architecture, the difficulty lies in solving the matching problem of multi-parameter Op to few-parameter Kernel.
 
-#### 2.4.1 ArgumentMapping Architecture Design
+#### 2.4.2 ArgumentMapping Architecture Design
 
 The parameter list of the new form of Kernel is aligned with the Python API, which is different from the parameter list registered in the original `OpMaker`, this makes it difficult to match when the new form of Kernel is called in the original fluid architecture.
 

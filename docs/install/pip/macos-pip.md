@@ -70,7 +70,7 @@
 
 
   ```
-  python3 -m pip install paddlepaddle==2.4.1 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python3 -m pip install paddlepaddle==2.4.2 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
@@ -79,21 +79,10 @@
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python3 替换为具体的 Python 路径。
 * 默认下载最新稳定版的安装包，如需获取 develop 版本 nightly build 的安装包，请参考[这里](https://www.paddlepaddle.org.cn/install/quick/zh/1.8.5-windows-pip)
 * 使用 MacOS 中自带 Python 可能会导致安装失败。请使用[python 官网](https://www.python.org/downloads/mac-osx/)提供的 python3.6.x、python3.7.x、python3.8.x、python3.9.x、python3.10.x。
-* 上述命令默认安装`noavx`的包。如果你的机器支持`avx`，想要安装`avx`的 Paddle 包，可以通过以下命令安装：
-
-  首先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
+* 上述命令默认安装avx的包，如果想要安装noavx的包，可以使用如下命令：
 
   ```
-  python3 -m pip download paddlepaddle==2.4.1 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/avx/stable.html --no-index --no-deps
-  ```
-
-  判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
-  ```
-  sysctl machdep.cpu.features | grep -i avx
-  ```
-  或
-  ```
-  sysctl machdep.cpu.leaf7_features | grep -i avx
+  python3 -m pip download paddlepaddle==2.4.2 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/noavx/stable.html --no-index --no-deps
   ```
 
 ## **三、验证安装**
