@@ -183,6 +183,12 @@ upstream
 ➜  git pull upstream develop
 ```
 
+当执行 `git fetch upstream` 命令时可能会出现如下报错，这是因为Git SSL验证的缘故，我们可以通过执行禁用命令来解决这个问题 `git config http.sslVerify "false"`
+```
+error: RPC failed; curl 28 OpenSSL SSL_read: Connection was reset, errno 10054
+fatal: expected flush after ref listing
+```
+
 
 ### 3.3 Push 到远程仓库
 
