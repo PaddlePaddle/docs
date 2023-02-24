@@ -8,7 +8,7 @@ log_loss
 
 
 
-**负 log loss 层**
+**负对数损失层**
 
 对输入的预测结果和目标标签进行计算，返回负对数损失值。
 
@@ -20,10 +20,10 @@ log_loss
 参数
 ::::::::::::
 
-  - **input** (Tensor) – 形为 :math:`[N, 1]` 的二维 Tensor，其中 :math:`N` 为 batch 大小。该输入是由前驱算子计算得来的概率，数据类型是 float32。
-  - **label** (Tensor) – 形为 :math:`[N, 1]` 的二维 Tensor，真值标签，其中 :math:`N` 为 batch 大小，数据类型是 float32。
+  - **input** (Tensor|list) – 形为 :math:`[N, 1]` 的二维 Tensor，其中 :math:`N` 为 batch 大小。该输入是由前驱算子计算得来的概率，数据类型是 float32。
+  - **label** (Tensor|list) – 形为 :math:`[N, 1]` 的二维 Tensor，真值标签，其中 :math:`N` 为 batch 大小，数据类型是 float32。
   - **epsilon** (float，可选) – 一个很小的数字，以保证数值的稳定性，默认值为 1e-4。
-  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+  - **name** (str|None) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
