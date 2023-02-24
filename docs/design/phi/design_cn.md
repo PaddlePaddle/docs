@@ -1192,7 +1192,7 @@ REGISTER_OPERATOR(sign, ops::SignOp, ops::SignOpMaker<float>,
 > 本节要点：
 > 1. 支持新形式 Kernel 在现有静态图和动态图体系中调用，难点在于解决多参数 Op 到少参数 Kernel 的匹配问题
 
-#### 2.4.2 ArgumentMapping 体系设计
+#### 2.4.1 ArgumentMapping 体系设计
 
 由于新形式 Kernel 参数列表与 Python API 对齐，和原先的 OpMaker 中注册的参数列表存在差异，导致新形式 Kernel 在原先 fluid 体系中调用时会很难匹配。
 
@@ -1414,7 +1414,7 @@ class ProtoArgumentMappingContext : public phi::ArgumentMappingContext {
 };
 ```
 
-#### 2.4.2 PHI Kernel 兼容调度执行
+#### 2.4.1 PHI Kernel 兼容调度执行
 
 目前 PHI kernel 可以兼容地在老 Executor，ParallelExecutor，动态图的 Tracer，Engine，推理的 Predictor，以及新执行器 InterpreterCore 等在执行体系中被调度执行。
 

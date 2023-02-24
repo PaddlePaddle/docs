@@ -75,8 +75,19 @@ Note：
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace python3 in all command lines in the instructions with specific Python path.
 * The above commands install the `avx` package by default. If you want to install the Paddle package of `noavx`, you can use the following command to install：
 
+  First use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
+
    ```
    python3 -m pip download paddlepaddle==2.4.2 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/noavx/stable.html --no-index --no-deps
+   ```
+
+   To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
+   ```
+   sysctl machdep.cpu.features | grep -i avx
+   ```
+   or
+   ```
+   sysctl machdep.cpu.leaf7_features | grep -i avx
    ```
 
 

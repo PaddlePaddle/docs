@@ -81,8 +81,19 @@
 * 使用 MacOS 中自带 Python 可能会导致安装失败。请使用[python 官网](https://www.python.org/downloads/mac-osx/)提供的 python3.6.x、python3.7.x、python3.8.x、python3.9.x、python3.10.x。
 * 上述命令默认安装`avx`的包，如果想要安装`noavx`的包，可以使用如下命令：
 
+  首先使用如下命令将 wheel 包下载到本地，再使用`python3 -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
+
   ```
   python3 -m pip download paddlepaddle==2.4.2 -f https://www.paddlepaddle.org.cn/whl/mac/openblas/noavx/stable.html --no-index --no-deps
+  ```
+
+  判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
+  ```
+  sysctl machdep.cpu.features | grep -i avx
+  ```
+  或
+  ```
+  sysctl machdep.cpu.leaf7_features | grep -i avx
   ```
 
 ## **三、验证安装**
