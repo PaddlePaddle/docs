@@ -4,7 +4,7 @@ append_backward
 -------------------------------
 
 
-.. py:function:: paddle.static.append_backward(loss, parameter_list=None, no_grad_set=None, callbacks=None)
+.. py:function:: paddle.static.append_backward(loss, parameter_list=None, no_grad_set=None, callbacks=None, checkpoints=None, distop_context=None)
 
 
 
