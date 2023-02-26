@@ -18,13 +18,11 @@ ParallelExecutor
 ::::::::::::
 
     - **use_cuda** (bool) – 该参数表示是否使用 GPU 执行。
-    - **loss_name** （str） - 该参数为模型最后得到的损失变量的名字。**注意：如果是数据并行模型训练，必须设置 loss_name，否则计算结果可能会有问题。** 默认为：None。
+    - **loss_name** (str) – 该参数为模型最后得到的损失变量的名字。**注意：如果是数据并行模型训练，必须设置 loss_name，否则计算结果可能会有问题。** 默认为：None。
     - **main_program** (Program) – 需要被执行的 Program。如果未提供该参数，即该参数为 None，在该接口内，main_program 将被设置为 paddle.static.default_main_program()。默认为：None。
-    - **share_vars_from** (ParallelExecutor) - 如果设置了 share_vars_from，当前的 ParallelExecutor 将与 share_vars_from 指定的 ParallelExecutor 共享参数值。
-    需要设置该参数的情况：模型训练过程中需要进行模型测试，并且训练和测试都是采用数据并行模式，那么测试对应的 ParallelExecutor 在调用 with_data_parallel 时，需要将 share_vars_from 设置为训练所对应的 ParallelExecutor。
-    由于 ParallelExecutor 只有在第一次执行时才会将参数变量分发到其他设备上，因此 share_vars_from 指定的 ParallelExecutor 必须在当前 ParallelExecutor 之前运行。默认为：None。
-    - **exec_strategy** (ExecutionStrategy) -  通过 exec_strategy 指定执行计算图过程可以调整的选项，例如线程池大小等。关于 exec_strategy 更多信息，请参阅 ``paddle.static.ExecutionStrategy``。默认为：None。
-    - **build_strategy** (BuildStrategy)：通过配置 build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于 build_strategy 更多的信息，请参阅  ``paddle.static.BuildStrategy``。默认为：None。
+    - **share_vars_from** (ParallelExecutor) – 如果设置了 share_vars_from，当前的 ParallelExecutor 将与 share_vars_from 指定的 ParallelExecutor 共享参数值。需要设置该参数的情况：模型训练过程中需要进行模型测试，并且训练和测试都是采用数据并行模式，那么测试对应的 ParallelExecutor 在调用 with_data_parallel 时，需要将 share_vars_from 设置为训练所对应的 ParallelExecutor。由于 ParallelExecutor 只有在第一次执行时才会将参数变量分发到其他设备上，因此 share_vars_from 指定的 ParallelExecutor 必须在当前 ParallelExecutor 之前运行。默认为：None。
+    - **exec_strategy** (ExecutionStrategy) – 通过 exec_strategy 指定执行计算图过程可以调整的选项，例如线程池大小等。关于 exec_strategy 更多信息，请参阅 ``paddle.static.ExecutionStrategy``。默认为：None。
+    - **build_strategy** (BuildStrategy) – 通过配置 build_strategy，对计算图进行转换和优化，例如：计算图中算子融合、计算图执行过程中开启内存/显存优化等。关于 build_strategy 更多的信息，请参阅  ``paddle.static.BuildStrategy``。默认为：None。
     - **num_trainers** (int) – 进行 GPU 分布式训练时需要设置该参数。如果该参数值大于 1，NCCL 将会通过多层级节点的方式来初始化。每个节点应有相同的 GPU 数目。默认为：1。
     - **trainer_id** (int) –  进行 GPU 分布式训练时需要设置该参数。该参数必须与 num_trainers 参数同时使用。trainer_id 指明是当前所在节点的 “rank”（层级）。trainer_id 从 0 开始计数。默认为：0。
     - **scope** (Scope) – 指定执行 Program 所在的作用域。默认为：paddle.static.global_scope()。
