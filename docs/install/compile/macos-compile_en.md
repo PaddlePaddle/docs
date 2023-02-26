@@ -271,7 +271,7 @@ mkdir build && cd build
 #### 9. Compile with the following command:
 
 ```
-make -j4
+make -j$(sysctl -n hw.ncpu)
 ```
 
 #### 10. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package:
