@@ -267,7 +267,7 @@ mkdir build && cd build
 #### 9. 使用以下命令来编译：
 
 ```
-make -j4
+make -j$(sysctl -n hw.ncpu)
 ```
 
 #### 10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：

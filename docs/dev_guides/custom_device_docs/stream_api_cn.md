@@ -1,6 +1,6 @@
 # Stream 接口
 
-## create_stream 【required】
+## create_stream 【optional】
 
 ### 接口定义
 
@@ -18,7 +18,7 @@ device - 使用的设备。
 
 stream - 存储创建的 stream 对象。
 
-## destroy_stream 【required】
+## destroy_stream 【optional】
 
 ### 接口定义
 
@@ -54,7 +54,7 @@ device - 使用的设备。
 
 stream - 需要查询的 stream。
 
-## synchronize_stream 【required】
+## synchronize_stream 【optional】
 
 ### 接口定义
 
@@ -94,7 +94,7 @@ callback - 回调函数。
 
 user_data - 回调函数的参数。
 
-## stream_wait_event 【required】
+## stream_wait_event 【optional】
 
 ### 接口定义
 

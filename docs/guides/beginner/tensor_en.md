@@ -79,7 +79,7 @@ ndim_2_tensor = paddle.to_tensor([[1.0, 2.0],
 An exception will be thrown in this case:
 ```text
 ValueError:
-        Faild to convert input data to a regular ndarray :
+        Failed to convert input data to a regular ndarray :
          - Usually this means the input data contains nested lists with different lengths.
 ```
 
@@ -103,7 +103,7 @@ If you want to create a **Tensor** of specific interval, you can use API below:
 
 ```python
 paddle.arange(start, end, step)  # create Tensor within interval [start, end) evenly separated by step
-paddle.linspace(start, end, num) # create Tensor within interval [start, end) evenly separated by elements number
+paddle.linspace(start, stop, num) # create Tensor within interval [start, stop) evenly separated by elements number
 ```
 For example, the output of `paddle.arange(start=1, end=5, step=1)` is：
 ```text

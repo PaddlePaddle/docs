@@ -7,11 +7,11 @@ deform_conv2d
 
 deform_conv2d 对输入 4-D Tensor 计算 2-D 可变形卷积。给定输入 Tensor x，输出 Tensor y，可变形卷积运算如下所示：
 
-可形变卷积 v2(mask != None):
+可形变卷积 v2:
 
   :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k) * \Delta m_k}`
 
-可形变卷积 v1(mask = None):
+可形变卷积 v1:
 
   :math:`y(p) = \sum_{k=1}^{K}{w_k * x(p + p_k + \Delta p_k)}`
 
@@ -49,8 +49,8 @@ deform_conv2d 对输入 4-D Tensor 计算 2-D 可变形卷积。给定输入 Ten
 
     - **x** (Tensor) - 形状为 :math:`[N, C, H, W]` 的输入 Tensor，数据类型为 float32 或 float64。
     - **offset** (Tensor) – 可变形卷积层的输入坐标偏移，数据类型为 float32 或 float64。
-    - **weight** (Tensor) – 卷积核参数，形状为 :math:`[[M, C/g, kH, kW]`，其中 M 是输出通道数，g 是 group 组数，kH 是卷积核高度尺寸，kW 是卷积核宽度尺寸。数据类型为 float32 或 float64。
-    - **bias** (Tensor，选) - 可变形卷积偏置项，形状为 :math:`[M,]` 。
+    - **weight** (Tensor) – 卷积核参数，形状为 :math:`[M, C/g, kH, kW]`，其中 M 是输出通道数，g 是 group 组数，kH 是卷积核高度尺寸，kW 是卷积核宽度尺寸。数据类型为 float32 或 float64。
+    - **bias** (Tensor，可选) - 可变形卷积偏置项，形状为 :math:`[M,]` 。
     - **stride** (int|list|tuple，可选) - 步长大小。卷积核和输入进行卷积计算时滑动的步长。如果它是一个列表或元组，则必须包含两个整型数：（stride_height,stride_width）。若为一个整数，stride_height = stride_width = stride。默认值：1。
     - **padding** (int|list|tuple，可选) - 填充大小。卷积核操作填充大小。如果它是一个列表或元组，则必须包含两个整型数：（padding_height,padding_width）。若为一个整数，padding_height = padding_width = padding。默认值：0。
     - **dilation** (int|list|tuple，可选) - 空洞大小。空洞卷积时会使用该参数，卷积核对输入进行卷积时，感受野里每相邻两个特征点之间的空洞信息。如果空洞大小为列表或元组，则必须包含两个整型数：（dilation_height,dilation_width）。若为一个整数，dilation_height = dilation_width = dilation。默认值：1。

@@ -22,9 +22,11 @@ if [ -z "${PADDLE_WHL}" ] ; then
     fi
     if [ -z "${PADDLE_WHL}" ] ; then
         # as there are two pipelines now, only change the test pipeline's version to py3.7
-        PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/develop/linux/cpu-mkl/paddlepaddle-0.0.0-cp37-cp37m-linux_x86_64.whl
-        if [ ${BRANCH} = 'release/2.3' ] ; then
-            PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/2.3.0/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.0-cp37-cp37m-linux_x86_64.whl
+        PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/develop/linux/linux-cpu-mkl-avx/paddlepaddle-0.0.0-cp37-cp37m-linux_x86_64.whl
+        if [ ${BRANCH} = 'release/2.4' ] ; then
+            PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/2.4.1/linux/linux-cpu-mkl-avx/paddlepaddle-2.4.1-cp37-cp37m-linux_x86_64.whl
+        elif [ ${BRANCH} = 'release/2.3' ] ; then
+            PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/2.3.2/linux/linux-cpu-mkl-avx/paddlepaddle-2.3.2-cp37-cp37m-linux_x86_64.whl
         elif [ ${BRANCH} = 'release/2.2' ] ; then
             PADDLE_WHL=https://paddle-wheel.bj.bcebos.com/2.2.2/linux/linux-cpu-mkl-avx/paddlepaddle-2.2.2-cp37-cp37m-linux_x86_64.whl
         elif [ ${BRANCH} = 'release/2.1' ] ; then

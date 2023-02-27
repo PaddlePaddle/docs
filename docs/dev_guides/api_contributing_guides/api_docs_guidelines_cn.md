@@ -130,7 +130,7 @@ API 的声明部分，要给出 API 的声明信息；
 
 ### API 功能描述
 
-API 功能描述部分只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。如 [paddle.add](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tensor/math/add_cn.html#add)：
+API 功能描述部分只需要尽可能简单的描述出 API 的功能作用即可，要让用户能快速看懂。如 [paddle.add](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/add_cn.html#add)：
 
 可以拆解为 3 个部分，功能作用 + 计算公式 + 注解部分，其中：
 

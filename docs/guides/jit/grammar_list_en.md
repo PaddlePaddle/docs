@@ -183,10 +183,10 @@ Most circumstances of python function call is supported. The function calls will
 Some common functions are illustrated:
 
 - `print (x)`
-If the parameter is Tensor, `print(x)` can print the value of x in dynamic graph mode.While in dynamic-to-static model, It will be converted into a `Print` call. If the parameter is not Tensor, it will be executed according to python's print statement.
+If the parameter is Tensor, `print(x)` can print the value of x in dynamic graph mode.While in dynamic-to-static graph model, It will be converted into a `Print` call. If the parameter is not Tensor, it will be executed according to python's print statement.
 
 - `len (x)`
-If the parameter is Tensor, `len(x)` can get the length of the 0th dimension of tensor x. While in dynamic-to-static model, It will be converted into a `control_flow.array_length` call. If the parameter is not Tensor, it will be executed according to python's print statement.
+If the parameter is Tensor, `len(x)` can get the length of the 0th dimension of tensor x. While in dynamic-to-static graph model, It will be converted into a `control_flow.array_length` call. If the parameter is not Tensor, it will be executed according to python's print statement.
 
 - `lambda`
 The `to_static` function will call `convert_call` to convert lambda function as it's a normal function.
@@ -213,7 +213,7 @@ While converting, converted function can’t get value from static tensor.
 def recur_call(x):
     if x > 10:
         return x
-    return recur_call(x * x) # < ------ If x = Tensor([2.0]) ，in dygraph mode the output is Tensor([16])，while in dygraph-to-static mode call stack overflows
+    return recur_call(x * x) # < ------ If x = Tensor([2.0]) ，in dygraph mode the output is Tensor([16])，while in dygraph-to-static graph mode call stack overflows
 ```
 
 ### list / dict
@@ -278,5 +278,5 @@ def get_shape(x):
 def error_shape(x, y):
     y = y.cast('int32')
     t = x.reshape(y)
-    return t.shape[0] # <------- don't supported ; if x = Tensor([2.0, 1.0])，y = Tensor([2])，in dygraph mode the output is 2，while in dygraph-to-static mode the output is -1.
+    return t.shape[0] # <------- don't supported ; if x = Tensor([2.0, 1.0])，y = Tensor([2])，in dygraph mode the output is 2，while in dygraph-to-static graph mode the output is -1.
 ```
