@@ -1,5 +1,7 @@
 ##  How to reproduce the results using Python approach (Quant2Int8MkldnnPass)
 
+> **_This approach will be deprecated in Paddle new version. [C++ EnableMkldnnInt8](./C%2B%2B.md) option is recommended_**
+
 The steps below show, taking ResNet50 as an example, how to reproduce the above accuracy and performance results for Image Classification models.
 To reproduce NLP models results (Ernie), please follow [How to reproduce Ernie Quant results on MKL-DNN](https://github.com/PaddlePaddle/benchmark/tree/master/Inference/c%2B%2B/ernie/mkldnn/README.md).
 
