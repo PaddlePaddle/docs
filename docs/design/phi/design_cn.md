@@ -1414,7 +1414,7 @@ class ProtoArgumentMappingContext : public phi::ArgumentMappingContext {
 };
 ```
 
-#### 2.4.1 PHI Kernel 兼容调度执行
+#### 2.4.2 PHI Kernel 兼容调度执行
 
 目前 PHI kernel 可以兼容地在老 Executor，ParallelExecutor，动态图的 Tracer，Engine，推理的 Predictor，以及新执行器 InterpreterCore 等在执行体系中被调度执行。
 

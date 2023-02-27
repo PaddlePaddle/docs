@@ -1414,7 +1414,7 @@ class ProtoArgumentMappingContext : public phi::ArgumentMappingContext {
 };
 ```
 
-#### 2.4.1 PHI Kernel Compatible with Scheduled Execution
+#### 2.4.2 PHI Kernel Compatible with Scheduled Execution
 
 At present, the PHI kernel can be compatibly scheduled and executed in the following execution systems: old `Executor`, `ParallelExecutor`, the `Tracer` and the `Engine` of dynamic graph, the `Predictor` of inference, and new executor `InterpreterCore`, etc.
 
