@@ -5,7 +5,8 @@
 torch.save(obj,
            f,
            pickle_module=pickle,
-           pickle_protocol=2)
+           pickle_protocol=DEFAULT_PROTOCOL,
+           _use_new_zipfile_serialization=True)
 ```
 
 ### [paddle.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/save_cn.html#save)
@@ -13,44 +14,19 @@ torch.save(obj,
 ```python
 paddle.save(obj,
             path,
-            pickle_protocol=2)
+            protocol=4)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
+| obj           | obj          | 要保存的对象实例，torch 支持 io.BytesIO、io.StringIO、文件，paddle 只支持文件。|
 | f             | path         | 表示存储的路径。                   |
-| pickle_module | -            | 表示用于 pickling 元数据和对象的模块，PaddlePaddle 无此参数。                       |
+| pickle_module | -            | 表示用于 pickling 元数据和对象的模块，PaddlePaddle 无此参数。 |
+| pickle_protocol| protocol    | pickle 模块的协议版本。                   |
+| _use_new_zipfile_serialization | -            | 是否以旧格式加载文件，PaddlePaddle 无此参数。 |
 
 
-### 功能差异
-
-#### 存储类型
-***PyTorch***：可存储到文件或者内存中的写缓冲区(例如`io.BytesIO`、`io.StringIO`)。
-***PaddlePaddle***：只能存储到文件中。
-
-#### 存储内容
-***PyTorch***：可以存储`torch.Tensor`、`torch.nn.Module`、优化器等多个类型的数据。
-***PaddlePaddle***：只能存储`paddle.nn.Layer`、优化器这两个类型的数据。
-
-
-### 代码示例
-``` python
-# PyTorch 示例：
-x = torch.tensor([0, 1, 2, 3, 4])
-buffer = io.BytesIO()
-torch.save(x, buffer)
-```
-
-``` python
-# PaddlePaddle 示例：
-x = paddle.to_tensor([0, 1, 2, 3, 4])
-padle.save(x, "tensor.pdiparams")
-# 报错：
-# NotImplementedError: Now only supports save state_dict of Layer or Optimizer, expect dict, but received <class 'paddle.VarBase'>.
-emb = paddle.nn.Embedding(10, 10)
-layer_state_dict = emb.state_dict()
-paddle.save(layer_state_dict, "emb.pdparams")
-# 正常保存
-```
+### 转写示例
+四个 torch 多支持的参数（pickle_modeule，obj，f，_use_new_zipfile_serialization），Paddle 无转写方式
