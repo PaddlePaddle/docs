@@ -5,6 +5,8 @@
 torch.load(f,
            map_location=None,
            pickle_module=pickle,
+           *,
+           weights_only=False,
            **pickle_load_args)
 ```
 
@@ -15,31 +17,16 @@ paddle.load(path,
             **configs)
 ```
 
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| pickle_module | -            | 表示用于 unpickling 元数据和对象的模块，PaddlePaddle 无此参数。                       |
+| f             | path         | 载入目标对象实例的路径/内存对象。                   |
 | map_location  | -            | 表示加载模型的位置，PaddlePaddle 无此参数。                   |
+| pickle_module | -            | 表示用于 unpickling 元数据和对象的模块，PaddlePaddle 无此参数。                       |
+| weights_only  | -            | 指示 unpickler 是否应限制为仅加载张量、基元类型和字典，PaddlePaddle 无此参数。                   |
+| pickle_load_args| -          | 传递给 pickle_module.load（）和 pickle_mdule.Unpickler（）的可选关键字参数，PaddlePaddle 无此参数。                   |
 
 
-### 功能差异
-
-#### 加载类型
-***PyTorch***：可从文件或者内存中的读缓冲区(例如`io.BytesIO`、`io.StringIO`)中加载。
-***PaddlePaddle***：只能从文件中加载。
-
-#### 加载内容
-***PyTorch***：可以加载`torch.Tensor`、`torch.nn.Module`、优化器等多个类型的数据。
-***PaddlePaddle***：只能加载`paddle.nn.Layer`、优化器这两个类型的数据。
-
-
-### 代码示例
-``` python
-# PyTorch 示例：
-torch.load('tensors.pt', map_location=torch.device('cpu'))
-```
-
-``` python
-# PaddlePaddle 示例：
-load_layer_state_dict = paddle.load("emb.pdparams")
-```
+### 转写示例
+四个 torch 多支持的参数（map_location，pickle_modeule，weights_only，pickle_load_args），Paddle 无转写方式
