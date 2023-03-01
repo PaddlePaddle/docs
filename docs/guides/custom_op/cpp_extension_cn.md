@@ -20,7 +20,8 @@
 > 注意事项：
 >
 > - 在使用本机制实现 C++ 扩展之前，请确保已经正确安装了 `PaddlePaddle develop` 版本
-> - 该机制仅支持 `Linux` 平台。
+> - 本机制目前仅支持 `Linux` 平台。
+> - 本机制不支持动转静以及推理部署。
 
 ## C++ 扩展实现
 
@@ -55,7 +56,7 @@ struct Power {
     tensor_ = paddle::ones({A, B}, phi::DataType::FLOAT32, phi::CPUPlace());
   }
   explicit Power(paddle::Tensor x) { tensor_ = x; }
-  paddle::Tensor forward() { return paddle::experimental::pow(tensor_, 2); }
+  paddle::Tensor forward() { return tensor_.pow(2); }
   paddle::Tensor get() const { return tensor_; }
 
  private:
@@ -172,13 +173,13 @@ out = custom_add(x, y)
 import paddle
 from paddle.utils.cpp_extension import load
 
-cpp_extension = load(
+custom_cpp_extension = load(
     name="custom_cpp_extension",
     sources=['custom_add.cc'])
 
 x = paddle.randn([4, 10], dtype='float32')
 y = paddle.randn([4, 10], dtype='float32')
-out = cpp_extension.custom_add(x, y)
+out = custom_cpp_extension.custom_add(x, y)
 ```
 
 `load` 返回一个 `Module` 对象，可以直接使用 C++ 扩展名调用 API。
@@ -190,7 +191,7 @@ out = cpp_extension.custom_add(x, y)
 对于本示例，默认生成路径内容如下：
 
 ```
-λ ls ~/.cache/paddle_extensions/
+ls ~/.cache/paddle_extensions/
 custom_jit_ops/  custom_jit_ops_setup.py
 ```
 
