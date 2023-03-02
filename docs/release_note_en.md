@@ -28,9 +28,6 @@ V2.4.2 fixed known bugs, and added a tiny set of features.
 * Fixed the bug of missing information about lod logic after split infermeta's refactoring. [#49745](https://github.com/PaddlePaddle/Paddle/pull/49745) 
 * Fixed the bug of the constant-folding pass, which causes the conv2d weight to be non-persistent after folding and not enter the TensorRT engine. [#50105](https://github.com/PaddlePaddle/Paddle/pull/50105)
 
-
-
-
 # 2.4.1 Release Note
 
 
