@@ -1,3 +1,34 @@
+# 2.4.2 Release Note
+
+版本修复了已知问题，并新增了少量功能。
+
+## 训练框架（含分布式）
+* 修复paddle.utils.dlpack.to_dlpack 在for循环里API多次创建dlpack对象的报错问题，修复引用对象计数错误导致dlpack实际指向内容被析构的问题。(#50138)
+* 修复paddle.multiplex API 在多维Input Tensor场景下访存越界的问题并添加check机制。（#49368）
+* 引入cutlass，实现gemm+gather+scatter的融合；优化sparse conv的训练和推理性能；优化batch_norm在1D输入数据下的推理性能。（#50118）@张开活 
+* 修复因使用constexpr导致gcc54环境下编译失败的问题。（#50421）
+* 将sum op的Kernel迁移到PHI算子库，并且修复infermeta中SelectedRows无法获取正确dim的bug。（#49342）
+* 修复eigen头文件错误引用导致的偶发编译错误。(#48157) 
+* 修复fold算子在大bs输入下访存越界的问题。（#49491）
+* 通过增加类型判别，解决发送张量时，维度不统一，造成流水线并行hang住的问题。（#50337）
+* 修复了自定义算子输出梯度的参数顺序不连续时，反向算子的输出值可能为 None 的 bug（#48656）
+* 修复paddle.queeze_ API在inplace操作时shape重复修改导致结果错误bug (#49903) 
+* 修复动转静模式下无参数Layer无法调用backward的问题（#49812）
+* 修复CUDA11.8在windows的编译问题（#50205） 
+* 修复 FusedDropoutActBiasGrad 在 H100 上不支持的错误 (#47285)  
+* 新增 debug_graphviz_path 选项至 build_strategy (#46531) 
+* 修复未关闭的 popen 物件 (#47053) 
+
+## 部署方向（Paddle Inference）
+* 完善混合精度推理功能，提高混合精度推理稳定性。重构二阶段式convert_to_mixed_precision接口底层实现，enable_use_gpu新增precision参数支持一阶段式。（#49077、#49239、#49477） 
+* 支持jetson ampere架构下编译。（#49364）
+* 修复fc kernel低精度模式下的精度问题。（#49781）
+* 修复CAPI下，trt workspace 参数类型的错误。（#48350）
+* 修复 Paddle 1.x 版本下 arg_max arg_min 没有 flatten dtype 参数，推理时会报错的问题。（#49771） 
+* 修复 split infermeta 重构后关于 lod 逻辑信息缺失问题。#49745 
+* 修复常量折叠 pass 不正确设置，导致 conv2d 权重经折叠后为非 persistable 而没有进入TensorRT engine问题。（#50105）
+
+
 # 2.4.1 Release Note
 
 
