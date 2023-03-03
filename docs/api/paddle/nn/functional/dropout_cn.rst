@@ -9,7 +9,7 @@ Dropout 是一种正则化手段，可根据给定的丢弃概率 `p`，在训�
 
 参数
 :::::::::
- - **x** (Tensor) - 输入的多维 `Tensor`，数据类型为：float32、float64。
+ - **x** (Tensor) - 输入的多维 `Tensor`，数据类型为：float16、float32、float64。
  - **p** (float，可选) - 将输入节点置 0 的概率，即丢弃概率。默认值为 0.5。
  - **axis** (int|list，可选) - 指定对输入 `Tensor` 进行 dropout 操作的轴。默认值为 None。
  - **training** (bool，可选) - 标记是否为训练阶段。默认值为 True。
