@@ -237,6 +237,7 @@ tensor 创建相关
     " :ref:`paddle.create_parameter <cn_api_fluid_layers_create_parameter>` ", "创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
     " :ref:`paddle.clone <cn_api_tensor_clone>` ", "对输入 Tensor ``x`` 进行拷贝，并返回一个新的 Tensor，并且该操作提供梯度回传"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据(不推荐使用)"
+    " :ref:`paddle.vander <cn_api_paddle_vander>` ", "生成范德蒙德矩阵。"
 
 .. _tensor_search:
 
