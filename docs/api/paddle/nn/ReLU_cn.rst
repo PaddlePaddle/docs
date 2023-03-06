@@ -25,3 +25,16 @@ ReLU 激活层（Rectified Linear Unit）。计算公式如下：
 :::::::::
 
 COPY-FROM: paddle.nn.ReLU
+
+输出 (x)
+:::::::::
+    定义每次调用时执行的计算。应被所有子类覆盖。
+
+参数
+:::::::::
+    - **inputs** (tuple) - 未压缩的 tuple 参数。
+    - **kwargs** (dict) - 未压缩的字典参数。
+
+extra_repr()
+:::::::::
+    该层为额外层，您可以自定义实现层。
