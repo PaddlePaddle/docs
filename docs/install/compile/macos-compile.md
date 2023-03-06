@@ -3,7 +3,7 @@
 ## 环境准备
 
 * **macOS 版本 10.x/11.x (64 bit) (不支持 GPU 版本)**
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 
 ## 选择 CPU/GPU
 
@@ -90,7 +90,7 @@ cd /paddle
 git checkout develop
 ```
 
-注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持
+注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
 
 #### 8. 创建并进入/paddle/build 路径下：
 
@@ -167,7 +167,7 @@ uname -m
 
 #### 2. 安装 Python 以及 pip：
 
-> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.6.x、python3.7.x、python3.8、python3.9), pip 以及其他的依赖，这将会使您高效编译。
+> **请不要使用 macOS 中自带 Python**，我们强烈建议您使用[Homebrew](https://brew.sh)安装 python(对于**Python3**请使用 python[官方下载](https://www.python.org/downloads/mac-osx/)python3.7.x、python3.8、python3.9、python3.10), pip 以及其他的依赖，这将会使您高效编译。
 
 使用 Python 官网安装
 
@@ -243,7 +243,7 @@ cd Paddle
 git checkout develop
 ```
 
-注意：python3.6、python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持
+注意：python3.7 版本从 release/1.2 分支开始支持, python3.8 版本从 release/1.8 分支开始支持, python3.9 版本从 release/2.1 分支开始支持, python3.10 版本从 release/2.3 分支开始支持
 
 #### 7. 并且请创建并进入一个叫 build 的目录下：
 
@@ -267,7 +267,7 @@ mkdir build && cd build
 #### 9. 使用以下命令来编译：
 
 ```
-make -j4
+make -j$(sysctl -n hw.ncpu)
 ```
 
 #### 10. 编译成功后进入`/paddle/build/python/dist`目录下找到生成的`.whl`包：

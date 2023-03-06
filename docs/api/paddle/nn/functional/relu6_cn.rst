@@ -11,11 +11,11 @@ relu6 激活层
 
     relu6(x) = min(max(0,x), 6)
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
- - x (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+ - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

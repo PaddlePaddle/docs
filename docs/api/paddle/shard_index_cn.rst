@@ -20,11 +20,11 @@ shard_index
 参数
 ::::::::::::
 
-    - input (Tensor）-  输入 tensor，最后一维的维度值为 1，数据类型为 int64 或 int32。
-    - index_num (int) - 用户设置的大于\ `input`\ 最大值的整型值。
-    - nshards (int) - 分片数量。
-    - shard_id (int) - 当前分片 ID。
-    - ignore_value (int) - 超出分片范围的默认值。
+    - **input** (Tensor) - 输入 tensor，最后一维的维度值为 1，数据类型为 int64 或 int32。
+    - **index_num** (int) - 用户设置的大于 :attr:`input` 最大值的整型值。
+    - **nshards** (int) - 分片数量。
+    - **shard_id** (int) - 当前分片 ID。
+    - **ignore_value** (int，可选) - 超出分片索引范围的整数值。默认值为 -1。
 
 返回
 ::::::::::::

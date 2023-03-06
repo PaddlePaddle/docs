@@ -4,7 +4,7 @@
 
 ##### 问题：怎样了解飞桨分布式 Fleet API 用法?
 
-+ 答复：可查看覆盖高低阶应用的[分布式用户文档](https://github.com/PaddlePaddle/fleetx)和[分布式 API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/Overview_cn.html)
++ 答复：可查看覆盖高低阶应用的[分布式用户文档](https://github.com/PaddlePaddle/PaddleFleetX)和[分布式 API 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/Overview_cn.html)
 
 ----------
 
@@ -72,7 +72,7 @@
 ##### 问题：飞桨 2.0 分布式配置项统一到 DistributedStrategy 后有哪些具体变化？
 
 + 答复：
-2.0 版本之后，建议根据 [DistributedStrategy 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/fleet/DistributedStrategy_cn.html) 和 [BuildStrategy 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/compiler/BuildStrategy_cn.html#buildstrategy) 修改配置选项。
+2.0 版本之后，建议根据 [DistributedStrategy 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/fleet/DistributedStrategy_cn.html) 和 [BuildStrategy 文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/static/BuildStrategy_cn.html#buildstrategy) 修改配置选项。
 
 2.0 版本将 3 个环境变量配置变为`DistributedStrategy`配置项，3 个环境变量将不生效，包括
 

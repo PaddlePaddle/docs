@@ -59,7 +59,7 @@ os.environ["TRANSLATOR_DISABLE_NEW_ERROR"] = '1'
 ## 二、调试方法
 在调试前**请确保转换前的动态图代码能够成功运行**，下面介绍动转静中推荐的几种调试方法。
 ### 2.1 pdb 调试
-pdb 是 Python 中的一个模块，该模块定义了一个交互式 Pyhton 源代码调试器。它支持在源码行间设置断点和单步执行，列出源代码和变量，运行 Python 代码等。
+pdb 是 Python 中的一个模块，该模块定义了一个交互式 Python 源代码调试器。它支持在源码行间设置断点和单步执行，列出源代码和变量，运行 Python 代码等。
 #### 2.1.1 调试步骤
 
 - step1：在想要进行调试的代码前插入`import pdb; pdb.set_trace()`开启 pdb 调试。
@@ -255,13 +255,13 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
     [operator < conv2d > error]
 ```
 此类问题的原因一般是：
-> 执行到报错所在行的 Paddle API 时，某些输入或者 weight 的类型还是动态图的 Tensor，而非静态图的 Variable 或者 Parameter.
+> 执行到报错所在行的 Paddle API 时，某些输入或者 weight 的类型还是动态图的 Tensor，而非静态图的 Variable 或者 Parameter。
 
 **排查建议：**
 
 - 首先确认代码所在的 sublayer 是否继承了 nn.Layer
 - 此行代码所在函数是否绕开了 forward 函数，单独调用的（2.1 版本之前）
-- 如何查看是 Tensor 还是 Variable 类型，可以通过 pdb 交互式调试
+- 查看是 Tensor 还是 Variable 类型，可以通过 pdb 交互式调试
 
 ### 3.2 Expected input_dims[i] == input_dims[0]
 **报错信息大致如下：**
@@ -313,7 +313,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
     ```python
     class MyLayer(paddle.nn.Layer):
         def __init__(self, num_stacked_param):
-            super(MyLayer, self).__init__()
+            super().__init__()
 
             w1 = paddle.create_parameter(shape=[2, 2], dtype='float32')
             w2 = paddle.create_parameter(shape=[2], dtype='float32')
@@ -328,7 +328,7 @@ RuntimeError: (NotFound) Input("Filter") of ConvOp should not be null.
     ```python
     class MyLayer(paddle.nn.Layer):
         def __init__(self):
-            super(MyLayer, self).__init__()
+            super().__init__()
 
             layer1 = paddle.nn.Linear(10, 10)
             layer2 = paddle.nn.Linear(10, 16)

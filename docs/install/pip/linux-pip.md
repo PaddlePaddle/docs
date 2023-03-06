@@ -10,7 +10,7 @@
   * **Ubuntu 16.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2)**
   * **Ubuntu 18.04 (GPU 版本支持 CUDA 10.1/10.2/11.1/11.2)**
 
-* **Python 版本 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 
 * **pip 或 pip3 版本 20.2.2 或更高版本 (64 bit)**
 
@@ -35,7 +35,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.6/3.7/3.8/3.9
+  * 使用以下命令确认是 3.7/3.8/3.9/3.10
 
         python --version
 
@@ -62,7 +62,7 @@
 
 * 默认提供的安装包需要计算机支持 MKL
 
-* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
+* 如果您对机器环境不了解，请下载使用[快速安装脚本](https://fast-install.bj.bcebos.com/fast_install.sh)，配套说明请参考[这里](https://github.com/PaddlePaddle/docs/blob/develop/docs/install/install_script.md)。
 
 
 
@@ -171,7 +171,7 @@
 
 注：
 
-* 如果你使用的是安培架构的 GPU，推荐使用 CUDA11.2。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。
+* 如果你使用的是安培架构的 GPU，推荐使用 CUDA11.2。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。请参考: [GPU 架构对照表](https://www.paddlepaddle.org.cn/documentation/docs/zh/install/Tables.html#nvidia-gpu)
 
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为 python3 或者替换为具体的 Python 路径。
 

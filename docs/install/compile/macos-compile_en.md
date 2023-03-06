@@ -3,7 +3,7 @@
 ## Environment preparation
 
 * **macOS version 10.x/11.x (64 bit) (not support GPU version)**
-* **Python version 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python version 3.7/3.8/3.9/3.10 (64 bit)**
 
 ## Choose CPU/GPU
 
@@ -93,7 +93,7 @@ cd /paddle
 git checkout develop
 ```
 
-Note: python3.6、python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch
+Note: python3.7 version started supporting from release/1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch
 
 #### 8. Create and enter the /paddle/build path:
 
@@ -168,7 +168,7 @@ We used Python3.7 command as an example above, if the version of your Python is 
 
 #### 2. Install python and pip:
 
-> **Please do not use the Python initially given by macOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.6.x, python3.7.x, python3.8, python3.9), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
+> **Please do not use the Python initially given by macOS**, we strongly recommend that you use [Homebrew](https://brew.sh/) to install python (for Python3 please use python [official download](https://www.python.org/downloads/mac-osx/) python3.7.x, python3.8, python3.9, python3.10), pip and other dependencies, This will greatly reduce the difficulty of installing and compiling.
 
 Install using Python official website
 
@@ -243,7 +243,7 @@ git clone https://github.com/PaddlePaddle/Paddle.git
 cd Paddle
 ```
 
-#### 6. Switch to develop branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch)
+#### 6. Switch to develop branch to compile: (Note that python 3.6, python 3.7 version are supported from the 1.2 branch, python3.8 version started supporting from release/1.8 branch, python3.9 version started supporting from release/2.1 branch, python3.10 version started supporting from release/2.3 branch)
 
 ```
 git checkout develop
@@ -271,7 +271,7 @@ mkdir build && cd build
 #### 9. Compile with the following command:
 
 ```
-make -j4
+make -j$(sysctl -n hw.ncpu)
 ```
 
 #### 10. After compiling successfully, go to the `/paddle/build/python/dist `directory and find the generated `.whl` package:

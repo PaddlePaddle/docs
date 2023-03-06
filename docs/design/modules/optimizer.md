@@ -57,7 +57,7 @@ In this design, we propose a high-level API that automatically derives the optim
 ### Optimizer Python interface:
 
 ```python
-class Optimizer(object):
+class Optimizer:
     """Optimizer Base class.
 
     """

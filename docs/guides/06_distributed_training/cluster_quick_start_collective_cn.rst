@@ -7,7 +7,7 @@
 但在每个进程上处理不同的数据。因此，数据并行非常适合单卡已经能够放得下完整的模型和参数，但希望通过并行来增大
 全局数据(global batch)大小来提升训练的吞吐量。
 
-本节将采用自定义卷积网络和 Paddle 内置的 CIFAR-10 数据集来介绍如何使用 `Fleet API <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/Overview_cn.html#fleetapi>`_ (paddle.distributed.fleet) 进行数据并行训练。
+本节将采用自定义卷积网络和 Paddle 内置的 CIFAR-10 数据集来介绍如何使用 :ref:`cn_overview_distributed` (paddle.distributed.fleet) 进行数据并行训练。
 
 1.1 版本要求
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -47,7 +47,7 @@
 分布式初始化需要：
 
     1. 设置 is_collective 为 True，表示分布式训练采用 Collective 模式。
-    2. [可选] 设置分布式策略 `DistributedStrategy <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/fleet/DistributedStrategy_cn.html>`_，跳过将使用缺省配置。
+    2. [可选] 设置分布式策略 :ref:`cn_api_distributed_fleet_DistributedStrategy` ，跳过将使用缺省配置。
 
 .. code-block:: python
 
@@ -79,7 +79,7 @@
 1.2.5 构建分布式训练使用的数据加载器
 """""""""""""""""""""""""""""""""""""""""""""
 
-由于分布式训练过程中每个进程可能读取不同数据，所以需要对数据集进行合理拆分后再进行加载。这里只需要在构建 `DataLoader <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/DataLoader_cn.html#dataloader>`_ 时, 设置分布式数据采样器 `DistributedBatchSampler <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/DistributedBatchSampler_cn.html#distributedbatchsampler>`_ 即可。
+由于分布式训练过程中每个进程可能读取不同数据，所以需要对数据集进行合理拆分后再进行加载。这里只需要在构建 :ref:`cn_api_fluid_io_DataLoader` 时, 设置分布式数据采样器 :ref:`cn_api_io_cn_DistributedBatchSampler` 即可。
 
 .. code-block:: python
 
@@ -112,7 +112,7 @@
 
     class MyNet(paddle.nn.Layer):
         def __init__(self, num_classes=1):
-            super(MyNet, self).__init__()
+            super().__init__()
 
             self.conv1 = paddle.nn.Conv2D(in_channels=3, out_channels=32, kernel_size=(3, 3))
             self.pool1 = paddle.nn.MaxPool2D(kernel_size=2, stride=2)
@@ -249,4 +249,4 @@
             --ips=192.168.1.2,192.168.1.3 \
             train_with_fleet.py
 
-相关启动问题，可参考 `paddle.distributed.launch <https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/launch_cn.html#launch>`_。
+相关启动问题，可参考 :ref:`cn_api_distributed_launch` 。

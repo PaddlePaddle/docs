@@ -1,6 +1,6 @@
 # 代码贡献流程
 
-飞桨深度学习框架的代码贡献在 GitHub 上进行，包括飞桨核心团队和外部贡献者，均采用相同的代码贡献流程。本文介绍向 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 仓库贡献代码的通用流程。
+飞桨深度学习框架的代码贡献在 GitHub 上进行，所有社区开发者均采用相同的代码贡献流程。本文介绍向 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 仓库贡献代码的通用流程。
 
 ## 一、准备工作
 
@@ -12,13 +12,17 @@
 
 请提前阅读贡献流程、代码规范、单元测试规范等信息，以确保您提交的代码符合飞桨的相关准则，尽可能高效地合入代码。
 
-通常你需要提前阅读本章节，以及通用的 [规范和参考信息](style_guide_and_references/index_cn.html)，然后根据贡献内容阅读对应模块的指南，比如需要贡献一个新的 API，则需阅读 [新增 API 贡献指南](api_contributing_guides/api_contributing_guides_cn.html)，后续飞桨也将提供其他的如功能增强、性能优化等相关贡献指南，当然也欢迎开发者贡献这些指南。
+通常你需要提前阅读本章节，以及通用的 [规范和参考信息](style_guide_and_references/index_cn.html)，然后根据贡献内容阅读对应模块的指南，比如需要贡献一个新的 API，则需阅读 [新增 API 开发&提交流程](api_contributing_guides/api_contributing_guides_cn.html)，后续飞桨也将提供其他的如功能增强、性能优化等相关贡献指南，当然也欢迎开发者贡献这些指南。
 
 > 说明：文档的贡献流程与代码有所不同，直接阅读 [文档贡献指南](docs_contributing_guides_cn.html) 即可。
 
 ### 1.3 签署 CLA
 
-首次为 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 仓库贡献时，需要签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)，才可以合入代码。
+首次为 [PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 仓库贡献时，需要签署 [贡献者许可协议（Contributor License Agreement，CLA）](https://cla-assistant.io/PaddlePaddle/Paddle)，才可以合入代码。签署 CLA 即表明同意许可条款，并保留开发者投稿的所有权利、所有权和利益。
+
+### 1.4 开发环境
+为了飞桨开发者更便捷地开发，飞桨在 AI Studio 实训社区中提供了 CPU、GPU 计算资源和线上开发环境，飞桨框架开发者可发邮件申请资源：发邮件到 ext_paddle_oss@baidu.com，并附上 github username，aistudio uid，说明用途。
+申请通过后，在 AI Studio 上创建项目即可选择框架开发环境。
 
 ## 二、贡献流程
 
@@ -71,11 +75,11 @@ Paddle 使用的 pre-commit 是 2.17.0 版本，首先安装并在本地仓库�
 
 针对比较复杂/重要的变更，如新增 API、算子性能优化等，建议你先向 [PaddlePaddle/community](https://github.com/PaddlePaddle/community) 中的 `rfcs`对应的目录，按 [模板](https://github.com/PaddlePaddle/community/blob/master/rfcs/APIs/api_design_template.md) 提交 RFC，待社区讨论通过后，再进行下一步的功能开发。
 
-> 说明：如果仅有设计思路或不确定是否可以贡献，可以先向 Paddle 仓库提 issue，提前和飞桨团队沟通大致内容。[飞桨社区活动总览](https://github.com/PaddlePaddle/Paddle/issues/42410) 以及 [PFCC-Roadmap 总览](https://github.com/PaddlePaddle/Paddle/issues/42571) 中的任务是已经经过确认的，可以直接提交设计文档。
+> 说明：如果仅有设计思路或不确定是否可以贡献，可以先向 Paddle 仓库提 issue，与飞桨开发者讨论。[飞桨社区活动总览](https://github.com/PaddlePaddle/Paddle/issues/42410) 以及 [PFCC-Roadmap 总览](https://github.com/PaddlePaddle/Paddle/issues/42571) 中的任务是已经经过确认的，可以直接提交设计文档。
 
 （2）开发代码
 
-可根据贡献内容，参考对应模块的贡献指南开发代码，如 [新增 API 贡献指南](api_contributing_guides/api_contributing_guides_cn.html)，包括：
+可根据贡献内容，参考对应模块的贡献指南开发代码，如 [新增 API 开发&提交流程](api_contributing_guides/api_contributing_guides_cn.html)，包括：
 
 - 功能实现代码
 - 单元测试代码
@@ -233,12 +237,12 @@ upstream    https://github.com/PaddlePaddle/Paddle.git (push)
 
 <span id="CItest">（6）确保通过 CI 测试</span>
 
-提交 Pull Request 后会触发 CI（Continuous Integration，持续集成）测试，并且之后每提交一次代码合入（`git push`）都会触发一次 CI 测试。CI 测试可尽可能保障代码质量，详细测试内容可参见 [Paddle CI 测试详解](style_guide_and_references/paddle_ci_manual_cn.html)。
+提交 Pull Request 后会触发 CI（Continuous Integration，持续集成）测试，并且之后每提交一次代码合入（`git push`）都会触发一次 CI 测试。CI 测试可尽可能保障代码质量，详细测试内容可参见 [Paddle CI 测试详解](../git_guides/paddle_ci_manual_cn.html)。
 
 提交 Pull Request 后，请关注 CI 测试进程，一般会在几个小时内完成。
 
 - 测试项后出现绿色的对勾，表示本条测试项通过。
-- 测试项后出现红色的叉号，并且后面显示 `Required`，则表示本条测试项不通过（不显示 `Required` 的任务未通过，也不影响代码合入，可不处理）。在这种情况下，请点击 `detail` 查看报错详情，优先自行解决报错问题，无法解决的情况，以评论的方式添加到评论区中，飞桨团队相关人员将和你一起查看。
+- 测试项后出现红色的叉号，并且后面显示 `Required`，则表示本条测试项不通过（不显示 `Required` 的任务未通过，也不影响代码合入，可不处理）。在这种情况下，请点击 `detail` 查看报错详情，优先自行解决报错问题，无法解决的情况，以评论的方式添加到评论区中，飞桨开发者将和你一起查看。
 
 > 注意：`PR-CI-APPROVAL` 和 `PR-CI-Static-Check` 这两个 CI 测试项可能需要飞桨相关开发者 approve 才能通过，除此之外请确保其他每一项都通过，如果没有通过，请通过报错信息自查代码。
 
@@ -251,7 +255,7 @@ CI 测试通过后，接下来请等待 Code Review，一般会在三个工作�
 
 ### 2.6 PR Merge 后本次贡献结束
 
-当提交的 Pull Request（PR）Merge 到 Paddle 仓库后，飞桨团队相关人员会对整个框架功能进行集成测试，集成测试用于模型、API、OP 等的功能和性能测试。
+当提交的 Pull Request（PR）Merge 到 Paddle 仓库后，飞桨开发者会对整个框架功能进行集成测试，集成测试用于模型、API、OP 等的功能和性能测试。
 
 - 如果测试通过，恭喜你贡献流程已经全部完成；
 - 如果测试不通过，我们会在 GitHub 发 Issue 联系你进行代码修复，请及时关注 GitHub 上的最新动态。

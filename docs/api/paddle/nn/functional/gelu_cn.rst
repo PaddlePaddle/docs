@@ -19,14 +19,12 @@ gelu 激活层（GELU Activation Operator）
 .. math::
     gelu(x) = 0.5 * x * (1 + erf(\frac{x}{\sqrt{2}}))
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::::
-
-::::::::::
- - x (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
- - approximate (bool，可选) - 是否使用近似计算，默认值为 False，表示不使用近似计算。
+ - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+ - **approximate** (bool，可选) - 是否使用近似计算，默认值为 False，表示不使用近似计算。
  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

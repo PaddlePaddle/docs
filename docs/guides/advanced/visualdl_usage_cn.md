@@ -50,7 +50,7 @@ test_loader = paddle.io.DataLoader(MNISTDataset(mode='test'),
 # 定义 mnist 数据识别网络模型结构
 class MNIST(paddle.nn.Layer):
      def __init__(self):
-         super(MNIST, self).__init__()
+         super().__init__()
 
          # 定义卷积层，输出特征通道 out_channels 设置为 20，卷积核的大小 kernel_size 为 5，卷积步长 stride=1，padding=2
          self.conv1 = Conv2D(in_channels=1, out_channels=20, kernel_size=5, stride=1, padding=2)

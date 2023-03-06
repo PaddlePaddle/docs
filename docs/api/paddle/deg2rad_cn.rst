@@ -5,7 +5,7 @@ deg2rad
 
 .. py:function:: paddle.deg2rad(x, name=None)
 
-将元素从弧度的角度转换为度
+将元素从度转换为弧度
 
 .. math::
 

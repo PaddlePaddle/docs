@@ -19,14 +19,14 @@ elu 激活层（ELU Activation Operator）
             \end{array}
         \right.
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::::
 
 ::::::::::
- - x (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
- - alpha (float，可选) - elu 的 alpha 值，默认值为 1.0。
+ - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+ - **alpha** (float，可选) - elu 的 alpha 值，默认值为 1.0。
  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

@@ -5,17 +5,6 @@
 
     > 请[安装 nccl2](https://developer.nvidia.com/nccl/nccl-download)
 
-- 报错`Cannot uninstall 'six'.`
-
-    > 此问题可能与系统中已有 Python 有关，请使用`pip install paddlepaddle --ignore-installed six`（CPU）或`pip install paddlepaddle --ignore-installed six`（GPU）解决
-
-- CentOS6 下如何编译 python2.7 为共享库?
-
-    > 使用以下指令：
-
-        ./configure --prefix=/usr/local/python2.7 --enable-shared
-        make && make install
-
 <!--TODO please add more F&Q parts here-->
 
 - Ubuntu18.04 下 libidn11 找不到？
@@ -86,18 +75,9 @@
 
        > 出现这个问题原因主要是由于您的显卡驱动低于对应 CUDA 版本的要求，请保证您的显卡驱动支持所使用的 CUDA 版本
 
-
-<a name="MACPRO"></a>
-
-- macOS 下安装 PaddlePaddle 后 import paddle.fluid 出现`Fatal Python error: PyThreadState_Get: no current thread running`错误
-
-      - For Python2.7.x （install by brew): 请使用`export LD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/usr/local/Cellar/python@2/2.7.15_1/Frameworks/Python.framework/Versions/2.7`
-      - For Python2.7.x （install by Python.org): 请使用`export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7 && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/2.7`
-      - For Python3.5.x （install by Python.org): 请使用`export LD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5/ && export DYLD_LIBRARY_PATH=/Library/Frameworks/Python.framework/Versions/3.5/`
-
 <a name="OPENBLAS"></a>
 
-- MACOS 下使用自定义的 openblas 详见 issue：
+- macOS 下使用自定义的 openblas 详见 issue：
 
       > [ISSUE 13217](https://github.com/PaddlePaddle/Paddle/issues/13721)
 

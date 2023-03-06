@@ -3,17 +3,15 @@
 sequence_unpad
 -------------------------------
 
-
 .. py:function:: paddle.static.nn.sequence_unpad(x, length, name=None)
 
-:api_attr：声明式编程模式（静态图)
 
 
 
 .. note::
-    该 API 的输入为 Tensor，输出为 LoDTensor。用于移除填充元素，与之对应，还存在进行数据填充的 API :ref:`cn_api_fluid_layers_sequence_pad`。
+    该 API 的输入为 Tensor，输出为带有 LoD 信息的 Tensor。用于移除填充元素，与之对应，还存在进行数据填充的 API :ref:`cn_api_fluid_layers_sequence_pad`。
 
-根据 length 的信息，将 input 中 padding（填充）元素移除，并且返回一个 LoDTensor。
+根据 length 的信息，将 input 中 padding（填充）元素移除，并且返回一个带有 LoD 信息的 Tensor。
 
 ::
 
@@ -43,7 +41,7 @@ sequence_unpad
 
 返回
 :::::::::
-将输入的填充元素移除，并返回一个 LoDTensor，其递归序列长度与 length 参数的信息一致，其数据类型和输入一致。
+将输入的填充元素移除，并返回一个带有 LoD 信息的 Tensor，其递归序列长度与 length 参数的信息一致，其数据类型和输入一致。
 
 代码示例
 :::::::::

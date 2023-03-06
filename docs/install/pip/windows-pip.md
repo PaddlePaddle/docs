@@ -13,7 +13,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.6/3.7/3.8/3.9
+  * 使用以下命令确认是 3.7/3.8/3.9/3.10
 
     ```
     python --version
@@ -38,8 +38,8 @@
 
 
 * 默认提供的安装包需要计算机支持 MKL
-* Windows 暂不支持 NCCL，分布式等相关功能
-
+* Windows 原生暂不支持 NCCL，分布式等相关功能
+* 如果在 WSL2 环境下，推荐根据 Linux 方法安装使用 Paddle
 
 ## 二、开始安装
 
@@ -122,7 +122,7 @@
 
 注：
 
-* 如果你使用的是安培架构的 GPU，推荐使用 CUDA11.2。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。
+* 如果你使用的是安培架构的 GPU，推荐使用 CUDA11.2。如果你使用的是非安培架构的 GPU，推荐使用 CUDA10.2，性能更优。请参考: [GPU 架构对照表](https://www.paddlepaddle.org.cn/documentation/docs/zh/install/Tables.html#nvidia-gpu)
 
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境，可能需要将上述命令行中所有 `python` 替换为具体的 `Python 解释器` 路径（例如 C:\Python37\python.exe）。
 

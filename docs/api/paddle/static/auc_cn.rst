@@ -3,7 +3,7 @@
 auc
 -------------------------------
 
-.. py:function:: paddle.static.auc(input, label, curve='ROC', num_thresholds=200, topk=1, slide_steps=1)
+.. py:function:: paddle.static.auc(input, label, curve='ROC', num_thresholds=4095, topk=1, slide_steps=1, ins_tag_weight=None)
 
 
 
@@ -25,16 +25,17 @@ auc
 参数
 ::::::::::::
 
-    - **input** (Tensor|LoDTensor) - 数据类型为 float32、float64。浮点二维变量，值的范围为[0,1]。每一行降序排列。该输入为网络预测值的输入。
-    - **label** (Tensor|LoDTensor) - 数据类型为 int32、int64。二维整型变量，为训练数据的标签。
-    - **curve** (str) - 曲线类型，可以为 ``ROC`` 或 ``PR``，默认 ``ROC``。
-    - **num_thresholds** (int) - 将 roc 曲线离散化时使用的临界值数。默认 200。
-    - **topk** (int) -  取 topk 的输出值用于计算。
-    - **slide_steps** (int) - 当计算 batch auc 时，不仅用当前步也用于先前步。slide_steps=1，表示用当前步；slide_steps = 3 表示用当前步和前两步；slide_steps = 0，则用所有步。
+    - **input** (Tensor) - 数据类型为 float32、float64。浮点二维变量，值的范围为[0,1]。每一行降序排列。该输入为网络预测值，通常代表每个标签的概率。
+    - **label** (Tensor) - 数据类型为 int32、int64。二维整型变量，为训练数据的标签，第一维大小代表 batch size，第二维大小为 1。
+    - **curve** (str，可选) - 曲线类型，可以为 ``ROC`` 或 ``PR``，默认 ``ROC``。
+    - **num_thresholds** (int，可选) - 将 roc 曲线离散化时使用的临界值数。默认 4095。
+    - **topk** (int，可选) -  取 topk 的输出值用于计算。
+    - **slide_steps** (int，可选) - 当计算 batch auc 时，不仅用当前步也用于先前步。slide_steps=1，表示用当前步；slide_steps = 3 表示用当前步和前两步；slide_steps = 0，则用所有步。默认值为 1。
+    - **ins_tag_weight** (Tensor，可选) - 在多 instag 场景下，该数值代表着数据的真伪性，如果为 0，说明数据是被填充的假数据，如果为 1，说明为真数据。默认为 None，此时该数值被赋值为 1。
 
 返回
 ::::::::::::
-tuple，当前计算出的 AUC。数据类型是 tensor，支持 float32 和 float64。
+tuple，当前计算出的 AUC。数据类型是 Tensor，支持 float32 和 float64。
 
 返回的元组为 auc_out, batch_auc_out, [batch_stat_pos, batch_stat_neg, stat_pos, stat_neg]。
 

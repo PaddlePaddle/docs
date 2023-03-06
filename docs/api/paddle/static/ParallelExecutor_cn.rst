@@ -47,7 +47,7 @@ COPY-FROM: paddle.static.ParallelExecutor
 run(fetch_list, feed=None, feed_dict=None, return_numpy=True)
 '''''''''
 
-该接口用于运行当前模型，需要注意的是，执行器会执行 Program 中的所有算子，而不会根据 fetch_list 对 Program 中的算子进行裁剪。
+运行当前模型，需要注意的是，执行器会执行 Program 中的所有算子，而不会根据 fetch_list 对 Program 中的算子进行裁剪。
 
 **参数**
 

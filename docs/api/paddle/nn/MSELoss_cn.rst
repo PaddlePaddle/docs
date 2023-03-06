@@ -5,7 +5,7 @@ MSELoss
 
 .. py:function:: paddle.nn.MSELoss(reduction='mean')
 
-该 OP 用于计算预测值和目标值的均方差误差。
+计算预测值和目标值的均方差误差。
 
 对于预测值 input 和目标值 label：
 
@@ -38,7 +38,7 @@ MSELoss
 
 返回
 ::::::::::::
-变量（Tensor），预测值和目标值的均方差，数值类型与输入相同
+变量（Tensor），预测值和目标值的均方差，数值类型与输入相同。
 
 
 代码示例

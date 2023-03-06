@@ -9,7 +9,7 @@
   * **Ubuntu 16.04 (GPUVersion Supports CUDA 10.1/10.2/11.2)**
   * **Ubuntu 18.04 (GPUVersion Supports CUDA 10.1/10.2/11.2)**
 
-* **Python Version: 3.6/3.7/3.8/3.9 (64 bit)**
+* **Python Version: 3.7/3.8/3.9/3.10 (64 bit)**
 
 * **pip or pip3 Version 20.2.2 or above (64 bit)**
 
@@ -35,7 +35,7 @@
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9
+  * Use the following command to confirm that it is 3.7/3.8/3.9/3.10
 
         python --version
 
@@ -62,7 +62,7 @@
 
 * The installation package provided by default requires computer support for MKL
 
-* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), for instructions please refer to[here](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/install/install_script.md)。
+* If you do not know the machine environment, please download and use[Quick install script](https://fast-install.bj.bcebos.com/fast_install.sh), for instructions please refer to[here](https://github.com/PaddlePaddle/docs/blob/develop/docs/install/install_script.md)。
 
 
 
@@ -182,7 +182,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 Note：
 
-* If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance.
+* If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance. please refer to: [GPU architecture comparison table](https://www.paddlepaddle.org.cn/documentation/docs/en/install/Tables.html#nvidia-gpu)
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
 

@@ -5,7 +5,7 @@ weight_norm
 
 .. py:function:: paddle.nn.utils.weight_norm(layer, name='weight', dim=0)
 
-该接口根据以下公式对传入的 ``layer`` 中的权重参数进行归一化：
+根据以下公式对传入的 ``layer`` 中的权重参数进行归一化：
 
 .. math::
     \mathbf{w} = g \dfrac{v}{\|v\|}

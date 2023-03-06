@@ -10,8 +10,8 @@ RandomHorizontalFlip
 参数
 :::::::::
 
-    - prob (float) - 图片执行水平翻转的概率，取值范围为[0, 1]，默认值为 0.5。
-    - keys (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值：None。
+    - **prob** (float，可选) - 图片执行水平翻转的概率，取值范围为[0, 1]，默认值为 0.5。
+    - **keys** (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值：None。
 
 形状
 :::::::::

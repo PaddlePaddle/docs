@@ -21,7 +21,7 @@ SimpleRNNCell
 
 其中的 `act` 表示激活函数。
 
-详情请参考论文：`Finding Structure in Time <https://crl.ucsd.edu/~elman/Papers/fsit.pdf>`_ 。
+详情请参考论文：`Finding Structure in Time <https://onlinelibrary.wiley.com/doi/pdf/10.1207/s15516709cog1402_1>`_ 。
 
 参数
 ::::::::::::
@@ -55,7 +55,7 @@ SimpleRNNCell
     - **outputs** (Tensor) - 输出。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
     - **new_states** (Tensor) - 新一轮的隐藏状态。形状为[batch_size, hidden_size]，对应公式中的 :math:`h_{t}`。
 
-.. Note::
+.. note::
     所有的变换矩阵的权重和偏置都默认初始化为 Uniform(-std, std)，其中 std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
 
 

@@ -5,10 +5,7 @@ RMSProp
 
 .. py:class:: paddle.optimizer.RMSProp(learning_rate, rho=0.95, epsilon=1e-06, momentum=0.0, centered=False, parameters=None, weight_decay=None, grad_clip=None, name=None)
 
-
-
-
-该接口实现均方根传播（RMSProp）法，是一种未发表的，自适应学习率的方法。原演示幻灯片中的第 29 张提出了 `RMSProp <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_ 。等式如下所示：
+均方根传播（RMSProp）法，是一种未发表的，自适应学习率的方法。原演示幻灯片中的第 29 张提出了 `RMSProp <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_ 。等式如下所示：
 
 .. math::
     r(w, t) & = \rho r(w, t-1) + (1 - \rho)(\nabla Q_{i}(w))^2\\
@@ -34,11 +31,11 @@ RMSProp
 参数
 ::::::::::::
 
-    - **learning_rate** （float） - 全局学习率。
-    - **rho** （float，可选） - rho 是等式中的 :math:`rho`，默认值 0.95。
-    - **epsilon** （float，可选） - 等式中的 epsilon 是平滑项，避免被零除，默认值 1e-6。
-    - **momentum** （float，可选） - 方程中的β是动量项，默认值 0.0。
-    - **centered** （bool，可选） - 如果为 True，则通过梯度的估计方差，对梯度进行归一化；如果 False，则由未 centered 的第二个 moment 归一化。将此设置为 True 有助于模型训练，但会消耗额外计算和内存资源。默认为 False。
+    - **learning_rate** (float) - 全局学习率。
+    - **rho** (float，可选) - rho 是等式中的 :math:`rho`，默认值 0.95。
+    - **epsilon** (float，可选) - 等式中的 epsilon 是平滑项，避免被零除，默认值 1e-6。
+    - **momentum** (float，可选) - 方程中的β是动量项，默认值 0.0。
+    - **centered** (bool，可选) - 如果为 True，则通过梯度的估计方差，对梯度进行归一化；如果 False，则由未 centered 的第二个 moment 归一化。将此设置为 True 有助于模型训练，但会消耗额外计算和内存资源。默认为 False。
     - **parameters** (list，可选) - 指定优化器需要优化的参数。在动态图模式下必须提供该参数；在静态图模式下默认值为 None，这时所有的参数都将被优化。
     - **weight_decay** (float|WeightDecayRegularizer，可选) - 正则化方法。可以是 float 类型的 L2 正则化系数或者正则化策略：:ref:`cn_api_fluid_regularizer_L1Decay` 、
       :ref:`cn_api_fluid_regularizer_L2Decay`。如果一个参数已经在 :ref:`cn_api_fluid_ParamAttr` 中设置了正则化，这里的正则化设置将被忽略；
