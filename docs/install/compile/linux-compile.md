@@ -92,8 +92,14 @@ cd Paddle
 
 * 编译 CPU 版本的 PaddlePaddle：
 
+    linux下运行以下命令
     ```
     docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
+    ```
+
+    windows下运行以下命令
+    ```
+    docker run --name paddle-test -v ${PWD}:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev /bin/bash
     ```
 
     - `--name paddle-test`：为您创建的 Docker 容器命名为 paddle-test;
