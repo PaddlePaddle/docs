@@ -136,9 +136,7 @@ CI 测试包含的具体测试任务和执行顺序如下图所示：
 - **【执行脚本】**
   - 编译脚本：`paddle/scripts/paddle_build.sh build_and_check_cpu`
   - 测试脚本：`paddle/scripts/paddle_build.sh build_and_check_gpu`
-- **【触发条件】**
-  - `PR-CI-Clone`通过后自动触发。
-  - 当 PR-CI-Py3 任务失败时，会取消当前任务（因 PR-CI-Py3 失败，当前任务成功也无法进行代码合并，需要先排查 PR-CI-Py3 失败原因）。
+- **【触发条件】** `PR-CI-Build`通过后自动触发，并且使用`PR-CI-Build`的编译产物，无需单独编译。
 
 #### PR-CI-GpuPS
 
