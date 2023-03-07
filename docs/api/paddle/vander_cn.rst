@@ -1,6 +1,6 @@
-.. cn_api_tensor_vander:
+.. _cn_api_tensor_vander:
 
-paddle.vander
+vander
 -------------------------------
 
 .. py:function:: paddle.vander(x, N=None, increasing=False, name=None)
