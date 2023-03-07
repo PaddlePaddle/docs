@@ -25,7 +25,7 @@ finfo
     - **eps** (double) - 该数据类型所能表示的最小数，使得 1.0 + eps ≠ 1.0 。
     - **resolution** (double) - 这种类型的近似小数分辨率。
     - **smallest_normal** (double) - 这种类型的最小的正 normal 数。
-    - **tiny** (double) - 这种类型的最小的正正数，和 smallest_normal 相同。
+    - **tiny** (double) - 这种类型的最小的正 normal 数，和 smallest_normal 相同。
     - **bits** (int) - 该数据类型所占据的 bit 位数。
     - **dtype** (str) - 该数据类型的字符串名称。
 
