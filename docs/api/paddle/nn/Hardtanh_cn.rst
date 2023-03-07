@@ -17,7 +17,7 @@ Hardtanh 激活层（Hardtanh Activation Operator）。创建一个 `Hardtanh` �
         \end{aligned}
         \right.
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
@@ -25,7 +25,7 @@ Hardtanh 激活层（Hardtanh Activation Operator）。创建一个 `Hardtanh` �
     - **max** (float，可选) - Hardtanh 激活计算公式中的 max 值。默认值为 1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状：
+形状
 ::::::::::
     - input：任意形状的 Tensor。
     - output：和 input 具有相同形状的 Tensor。
