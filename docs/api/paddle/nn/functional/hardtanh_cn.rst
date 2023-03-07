@@ -17,7 +17,7 @@ hardtanh 激活层（Hardtanh Activation Operator）。计算输入 `x` 的 `har
         \end{aligned}
         \right.
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::

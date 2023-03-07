@@ -11,7 +11,7 @@ silu 激活层。计算公式如下：
 
     silu(x) = \frac{x}{1 + \mathrm{e}^{-x}}
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
