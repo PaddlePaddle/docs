@@ -1,4 +1,4 @@
-.. _cn_api_tensor_vander:
+.. cn_api_tensor_vander:
 
 paddle.vander
 -------------------------------
