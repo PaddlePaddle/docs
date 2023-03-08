@@ -1,9 +1,3 @@
-<!--
- * @Author: hjf
- * @Date: 2023-03-07 15:12:43
- * @LastEditTime: 2023-03-07 15:16:28
- * @Description:
--->
 ## torch.nn.functional.prelu
 
 ### [torch.nn.functional.prelu](https://pytorch.org/docs/stable/generated/torch.nn.functional.prelu.html?highlight=prelu#torch.nn.functional.prelu)
@@ -27,5 +21,5 @@ paddle.nn.functional.prelu(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入的 Tensor 。               |
-| weight           | weight           | 表示激活公式中的可训练权重 。               |
-| -           | data_format           | 表示输入 Tensor 的数据格式， PyTorch 无此参数， Paddle 保持默认即可。               |
+| weight           |  weight           | 表示激活公式中的可训练权重 。               |
+| -           |  data_format           | 表示输入 Tensor 的数据格式， PyTorch 无此参数， Paddle 保持默认即可。               |

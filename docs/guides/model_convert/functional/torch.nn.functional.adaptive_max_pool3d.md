@@ -3,7 +3,9 @@
 ### [torch.nn.functional.adaptive_max_pool3d](https://pytorch.org/docs/stable/generated/torch.nn.functional.adaptive_max_pool3d.html?highlight=adaptive_max_pool3d#torch.nn.functional.adaptive_max_pool3d)
 
 ```python
-torch.nn.functional.adaptive_max_pool3d(*args, **kwargs)
+torch.nn.functional.adaptive_max_pool3d(input,
+                                        output_size,
+                                        return_indices=False)
 ```
 
 ### [paddle.nn.functional.adaptive_max_pool3d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/adaptive_max_pool3d_cn.html)
@@ -19,6 +21,6 @@ paddle.nn.functional.adaptive_max_pool3d(x,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input           | x           | 表示输入的 Tensor 。               |
-| output_size           | output_size           | 表示输出 Tensor 的大小。               |
-| return_indices           | return_mask          | 表示是否返回最大值的索引。               |
+| input           | x           |  表示输入的 Tensor 。               |
+| output_size           |  output_size           | 表示输出 Tensor 的大小。               |
+| return_indices           |  return_mask          | 表示是否返回最大值的索引。               |

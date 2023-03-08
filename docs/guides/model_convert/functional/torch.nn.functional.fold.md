@@ -31,5 +31,5 @@ paddle.nn.functional.fold(x,
 | output_size           | output_sizes           | 表示输出 Tensor 的尺寸。               |
 | kernel_size          | kernel_sizes          | 表示卷积核大小。               |
 | dilation           | dilations           | 表示卷积膨胀的大小。               |
-| padding          | paddings          | 表示每个维度的扩展。        |
+| padding          | paddings          | 表示每个维度的填充大小。        |
 | stride           | strides           | 表示卷积核步长。               |

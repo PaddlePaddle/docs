@@ -20,7 +20,7 @@ paddle.nn.functional.normalize(x,
                                name=None)
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
+其中 Pytorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -29,3 +29,13 @@ paddle.nn.functional.normalize(x,
 | dim          | axis         | 表示要进行归一化的轴 。                                     |
 | eps          | epsilon         | 表示添加到分母上的值 。                                     |
 | out           | -            | 表示输出 Tensor 。               |
+
+### 转写示例
+####  out: 指定输出
+```python
+# Pytorch 写法
+torch.nn.functional.normalize(x, out=y)
+
+# Paddle 写法
+y = paddle.nn.functional.normalize(x)
+```

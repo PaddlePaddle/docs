@@ -22,7 +22,7 @@ paddle.nn.functional.conv3d(x,
                             padding=0,
                             dilation=1,
                             groups=1,
-                            data_format='NCL',
+                            data_format='NCDHW',
                             name=None)
 ```
 

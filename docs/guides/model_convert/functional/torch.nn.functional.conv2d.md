@@ -22,7 +22,7 @@ paddle.nn.functional.conv2d(x,
                             padding=0,
                             dilation=1,
                             groups=1,
-                            data_format='NCL',
+                            data_format='NCHW',
                             name=None)
 ```
 
@@ -30,5 +30,5 @@ paddle.nn.functional.conv2d(x,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input           | x           | 表示输入的 Tensor 。               |
-| -           | data_format           | 表示输入 Tensor 的数据格式， PyTorch 无此参数， Paddle 保持默认即可。               |
+| input           |  x           | 表示输入的 Tensor 。               |
+| -           |  data_format           | 表示输入 Tensor 的数据格式， PyTorch 无此参数， Paddle 保持默认即可。               |

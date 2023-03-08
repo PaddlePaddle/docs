@@ -3,7 +3,9 @@
 ### [torch.nn.functional.softplus](https://pytorch.org/docs/stable/generated/torch.nn.functional.softplus.html?highlight=softplus#torch.nn.functional.softplus)
 
 ```python
-torch.nn.functional.softplus(input, beta=1, threshold=20)
+torch.nn.functional.softplus(input,
+                             beta=1,
+                             threshold=20)
 ```
 
 ### [paddle.nn.functional.softplus](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/softplus_cn.html)
