@@ -2485,7 +2485,7 @@ data_ptr()
 
 返回类型：int
 
-trapezoid(y, x=None, dx=None, axis=-1)
+trapezoid(y, x=None, dx=None, axis=-1, name=None)
 :::::::::
 
 在指定维度上对输入实现 trapezoid rule 算法。使用求和函数 sum。
@@ -2496,7 +2496,7 @@ trapezoid(y, x=None, dx=None, axis=-1)
 
 请参考 :ref:`_cn_api_paddle_tensor_trapezoid`
 
-cumulative_trapezoid(y, x=None, dx=None, axis=-1)
+cumulative_trapezoid(y, x=None, dx=None, axis=-1, name=None)
 :::::::::
 
 在指定维度上对输入实现 trapezoid rule 算法。使用求和函数 cumsum。
