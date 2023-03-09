@@ -1,7 +1,7 @@
 ..  _install_NGC_PaddlePaddle_container introduction:
 
 ==============================================
-NGC PaddlePaddle Container Installation Guide
+NVIDIA PaddlePaddle Container Installation Guide
 ==============================================
 
 ----------------------
@@ -13,6 +13,8 @@ The PaddlePaddle NGC Container is optimized for GPU acceleration, and contains a
 ------------------------------------------
   Environmental preparation
 ------------------------------------------
+
+* Need to be run in a Linux OS environment
 
 Using the PaddlePaddle NGC Container requires the host system to have the following installed:
 
