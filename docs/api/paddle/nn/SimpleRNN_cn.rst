@@ -47,6 +47,14 @@ SimpleRNN
     - **outputs** (Tensor) - 输出，由前向和后向 cell 的输出拼接得到。如果 time_major 为 False，则 Tensor 的形状为[batch_size,time_steps,num_directions * hidden_size]，如果 time_major 为 True，则 Tensor 的形状为[time_steps,batch_size,num_directions * hidden_size]，当 direction 设置为 bidirectional 时，num_directions 等于 2，否则等于 1。 `time_steps` 指输出序列的长度。
     - **final_states** (Tensor) - 最终状态。形状为[num_layers * num_directions, batch_size, hidden_size]，当 direction 设置为 bidirectional 时，num_directions 等于 2，返回值的前向和后向的状态的索引是 0，2，4，6..。和 1，3，5，7...，否则等于 1。
 
+变量
+::::::::::::
+
+        - **weight_ih_l[k]**: 第 k 层输入层到隐藏层权重,如果 `k = 0`, 形状为 `[hidden_size, input_size]`. 否则,形状为 `[hidden_size, num_directions * hidden_size]`.
+        - **weight_hh_l[k]**: 第 k 层隐藏层到隐藏层权重,形状为 `[hidden_size, hidden_size]`.
+        - **bias_ih_l[k]**: 第 k 层输入层到隐藏层的偏置, 形状为 `[hidden_size]`.
+        - **bias_hh_l[k]**: 第 k 层隐藏层到隐藏层的偏置, 形状为 `[hidden_size]`.
+
 代码示例
 ::::::::::::
 
