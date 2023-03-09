@@ -11,8 +11,8 @@ trapezoid
 :::::::::
 
     - **y** (Tensor) - 输入：y:[N_1, N_2, ..., N_k, D]多维 Tensor，可选的数据类型为 float32, float64。
-    - **x** (Tensor，可选) - y 中数值对应的浮点数所组成的 Tensor； x 的形状与y的形状相匹配；如果 x 为 None，则假定采样点均匀分布 dx。
-    - **dx** (float，可选) - 相邻采样点之间的常数间隔；当 x 和 dx 均未指定时，dx默认为 1.0。
+    - **x** (Tensor，可选) - y 中数值对应的浮点数所组成的 Tensor； x 的形状与 y 的形状相匹配；如果 x 为 None，则假定采样点均匀分布 dx。
+    - **dx** (float，可选) - 相邻采样点之间的常数间隔；当 x 和 dx 均未指定时，dx 默认为 1.0。
     - **axis** (int，可选) - 计算 trapezoid rule 时 y 的维度。默认值 -1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 返回
