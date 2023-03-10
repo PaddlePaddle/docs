@@ -25,7 +25,7 @@ logcumsumexp
 
 返回
 :::::::::
-    - ``Tensor`` (Tensor)，x 的指数的前缀和的对数。
+    - Tensor (Tensor)，x 的指数的前缀和的对数。
 
 
 代码示例
