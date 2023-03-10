@@ -115,6 +115,9 @@ X2Paddle 致力于帮助其它主流深度学习框架开发者快速迁移至�
 | 86   | [torch.max](https://pytorch.org/docs/stable/generated/torch.max.html?highlight=max#torch.max) | [paddle.max](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/max_cn.html#max) | 功能一致，torch 参数更多，torch 多 `out` 参数代表输出 |
 | 87   | [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html?highlight=min#torch.min) | [paddle.min](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/min_cn.html#min) | 功能一致，torch 参数更多，torch 多 `out` 参数代表输出 |
 
+
+
+
 ***持续更新...***
 
 ## 组网类 API 映射列表
