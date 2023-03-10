@@ -9,7 +9,7 @@ SimpleRNN
 
 **简单循环神经网络**
 
-该 OP 是简单循环神经网络（SimpleRNN），根据输出序列和给定的初始状态计算返回输出序列和最终状态。在该网络中的每一层对应输入的 step，每个 step 根据当前时刻输入 x（t）和上一时刻状态 h（t-1）计算当前时刻输出 y（t）并更新状态 h（t）。
+简单循环神经网络（SimpleRNN），根据输出序列和给定的初始状态计算返回输出序列和最终状态。在该网络中的每一层对应输入的 step，每个 step 根据当前时刻输入 x（t）和上一时刻状态 h（t-1）计算当前时刻输出 y（t）并更新状态 h（t）。
 
 状态更新公式如下：
 
@@ -50,10 +50,10 @@ SimpleRNN
 变量
 ::::::::::::
 
-        - **weight_ih_l[k]**: 第 k 层输入层到隐藏层权重,如果 `k = 0`, 形状为 `[hidden_size, input_size]`. 否则,形状为 `[hidden_size, num_directions * hidden_size]`.
-        - **weight_hh_l[k]**: 第 k 层隐藏层到隐藏层权重,形状为 `[hidden_size, hidden_size]`.
-        - **bias_ih_l[k]**: 第 k 层输入层到隐藏层的偏置, 形状为 `[hidden_size]`.
-        - **bias_hh_l[k]**: 第 k 层隐藏层到隐藏层的偏置, 形状为 `[hidden_size]`.
+        - **weight_ih_l[k]** (Parameter) - 第 k 层输入层到隐藏层变换矩阵的权重，如果 `k = 0`，形状为 `[hidden_size, input_size]`。否则，形状为 `[hidden_size, num_directions * hidden_size]` 。
+        - **weight_hh_l[k]** (Parameter) - 第 k 层隐藏层到隐藏层变换矩阵的权重，形状为 `[hidden_size, hidden_size]` 。
+        - **bias_ih_l[k]** (Parameter) -  第 k 层输入层到隐藏层的变换矩阵的偏置，形状为 `[hidden_size]` 。
+        - **bias_hh_l[k]** (Parameter) - 第 k 层隐藏层到隐藏层的变换矩阵的偏置，形状为 `[hidden_size]` 。
 
 代码示例
 ::::::::::::
