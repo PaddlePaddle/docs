@@ -17,7 +17,7 @@ hardshrink 激活层。计算公式如下：
         \end{aligned}
         \right.
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::

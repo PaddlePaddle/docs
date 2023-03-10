@@ -12,7 +12,7 @@ PReLU 激活层（PReLU Activation Operator）。计算公式如下：
 
     PReLU(x) = max(0, x) + weight * min(0, x)
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
@@ -22,7 +22,7 @@ PReLU 激活层（PReLU Activation Operator）。计算公式如下：
     - **data_format** (str，可选) – 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 "NC", "NCL", "NCHW", "NCDHW", "NLC", "NHWC" 或者 "NDHWC"。默认值："NCHW"。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状：
+形状
 ::::::::::
     - input：任意形状的 Tensor，默认数据类型为 float32。
     - output：和 input 具有相同形状的 Tensor。

@@ -1,3 +1,35 @@
+# 2.4.2 Release Note
+
+ 版本修复了已知问题，并新增了少量功能。
+
+## 训练框架（含分布式）
+
+ * 修复 paddle.utils.dlpack.to_dlpack 在 for 循环里 API 多次创建 dlpack 对象的报错问题，修复引用对象计数错误导致 dlpack 实际指向内容被析构的问题。 [#50138](https://github.com/PaddlePaddle/Paddle/pull/50138)
+ * 修复 paddle.multiplex API 在多维 Input Tensor 场景下访存越界的问题并添加 check 机制。 [#49368](https://github.com/PaddlePaddle/Paddle/pull/49368)
+ * 引入 cutlass，实现 gemm+gather+scatter 的融合；优化 sparse conv 的训练和推理性能；优化 batch_norm 在 1D 输入数据下的推理性能。 [#50118](https://github.com/PaddlePaddle/Paddle/pull/50118)
+ * 修复因使用 constexpr 导致 gcc54 环境下编译失败的问题。 [#50421](https://github.com/PaddlePaddle/Paddle/pull/50421)
+ * 将 sum op 的 Kernel 迁移到 PHI 算子库，并且修复 infermeta 中 SelectedRows 无法获取正确 dim 的 bug。 [#49342](https://github.com/PaddlePaddle/Paddle/pull/49342)
+ * 修复 eigen 头文件错误引用导致的偶发编译错误。 [#48157](https://github.com/PaddlePaddle/Paddle/pull/48157)
+ * 修复 fold 算子在大 bs 输入下访存越界的问题。 [#49491](https://github.com/PaddlePaddle/Paddle/pull/49491)
+ * 通过增加类型判别，解决发送张量时，维度不统一，造成流水线并行 hang 住的问题。 [#50337](https://github.com/PaddlePaddle/Paddle/pull/50337)
+ * 修复了自定义算子输出梯度的参数顺序不连续时，反向算子的输出值可能为 None 的 bug。 [#48656](https://github.com/PaddlePaddle/Paddle/pull/48656)
+ * 修复 paddle.queeze_ API 在 inplace 操作时 shape 重复修改导致结果错误 bug。 [#49903](https://github.com/PaddlePaddle/Paddle/pull/49903)
+ * 修复动转静模式下无参数 Layer 无法调用 backward 的问题。 [#49812](https://github.com/PaddlePaddle/Paddle/pull/49812)
+ * 修复 CUDA11.8 在 windows 的编译问题。 [#50205](https://github.com/PaddlePaddle/Paddle/pull/50205)
+ * 修复 `FusedDropoutActBiasGrad` 在 H100 上不支持的错误。 [#47285](https://github.com/PaddlePaddle/Paddle/pull/47285)
+ * 新增 `debug_graphviz_path` 选项至 `build_strategy`。 [#46531](https://github.com/PaddlePaddle/Paddle/pull/46531)
+ * 修复未关闭的 `popen` 物件。 [#47053](https://github.com/PaddlePaddle/Paddle/pull/47053)
+
+## 部署方向（Paddle Inference）
+
+ * 完善混合精度推理功能，提高混合精度推理稳定性。重构二阶段式 convert_to_mixed_precision 接口底层实现， enable_use_gpu 新增 precision 参数支持一阶段式。 [#49077](https://github.com/PaddlePaddle/Paddle/pull/49077)、[#49239](https://github.com/PaddlePaddle/Paddle/pull/49239)、[#49477](https://github.com/PaddlePaddle/Paddle/pull/49477)
+ * 支持 jetson ampere 架构下编译。 [#49364](https://github.com/PaddlePaddle/Paddle/pull/49364)
+ * 修复 fc kernel 低精度模式下的精度问题。 [#49781](https://github.com/PaddlePaddle/Paddle/pull/49781)
+ * 修复 CAPI 下， trt workspace 参数类型的错误。 [#48350](https://github.com/PaddlePaddle/Paddle/pull/48350)
+ * 修复 Paddle 1.x 版本下 arg_max arg_min 没有 flatten dtype 参数，推理时会报错的问题。 [#49771](https://github.com/PaddlePaddle/Paddle/pull/49771)
+ * 修复 split infermeta 重构后关于 lod 逻辑信息缺失问题。 [#49745](https://github.com/PaddlePaddle/Paddle/pull/49745)
+ * 修复常量折叠 pass 不正确设置，导致 conv2d 权重经折叠后为非 persistable 而没有进入 TensorRT engine 问题。 [#50105](https://github.com/PaddlePaddle/Paddle/pull/50105)
+
 # 2.4.1 Release Note
 
 
