@@ -9,7 +9,7 @@ RNN
 
 **循环神经网络**
 
-该 OP 是循环神经网络（RNN）的封装，将输入的 Cell 封装为一个循环神经网络。它能够重复执行 :code:`cell.forward()` 直到遍历完 input 中的所有 Tensor。
+循环神经网络（RNN）的封装，将输入的 Cell 封装为一个循环神经网络。它能够重复执行 :code:`cell.forward()` 直到遍历完 input 中的所有 Tensor。
 
 参数
 ::::::::::::
