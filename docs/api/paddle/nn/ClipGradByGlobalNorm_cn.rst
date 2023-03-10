@@ -3,7 +3,7 @@
 ClipGradByGlobalNorm
 -------------------------------
 
-.. py:class:: paddle.nn.ClipGradByGlobalNorm(clip_norm, group_name='default_group')
+.. py:class:: paddle.nn.ClipGradByGlobalNorm(clip_norm, group_name='default_group', auto_skip_clip=False)
 
 
 
@@ -34,6 +34,7 @@ ClipGradByGlobalNorm
 
  - **clip_norm** (float) - 所允许的范数最大值
  - **group_name** (str, optional) - 剪切的组名
+ - **auto_skip_clip** (bool, optional): 跳过剪切梯度。默认值为False。
 
 代码示例
 ::::::::::::
