@@ -9,7 +9,7 @@ SimpleRNNCell
 
 **简单循环神经网络单元**
 
-该 OP 是简单循环神经网络单元（SimpleRNNCell），根据当前时刻输入 x（t）和上一时刻状态 h（t-1）计算当前时刻输出 y（t）并更新状态 h（t）。
+简单循环神经网络单元（SimpleRNNCell），根据当前时刻输入 x（t）和上一时刻状态 h（t-1）计算当前时刻输出 y（t）并更新状态 h（t）。
 
 状态更新公式如下：
 
@@ -57,14 +57,6 @@ SimpleRNNCell
 
 .. note::
     所有的变换矩阵的权重和偏置都默认初始化为 Uniform(-std, std)，其中 std = :math:`\frac{1}{\sqrt{hidden\_size}}`。对于参数初始化，详情请参考 :ref:`cn_api_fluid_ParamAttr`。
-
-变量
-::::::::::::
-    Variables:
-        - **weight_ih** (Parameter): 形状为 (hidden_size, input_size), 为输入层到隐藏层的权重, 对应数学公式中的 :math:`W_{ih}` .
-        - **weight_hh** (Parameter): 形状为 (hidden_size, hidden_size), 为隐藏层到隐层层的权重, 对应数学公式中的 :math:`W_{hh}`.
-        - **bias_ih** (Parameter): 形状为 (hidden_size, ), 为输入层到隐藏层的偏置, 对应数学公式中的 :math:`b_{ih}` .
-        - **bias_hh** (Parameter): 形状为 (hidden_size, ), 为隐藏层到隐藏层的偏置,, 对应数学公式中的 :math:`b_{hh}` .
 
 代码示例
 ::::::::::::
