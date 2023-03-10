@@ -34,7 +34,7 @@ ClipGradByGlobalNorm
 
  - **clip_norm** (float) - 所允许的范数最大值
  - **group_name** (str, optional) - 剪切的组名
- - **auto_skip_clip** (bool, optional): 跳过剪切梯度。默认值为False。
+ - **auto_skip_clip** (bool, optional): 跳过剪切梯度。默认值为 False。
 
 代码示例
 ::::::::::::
