@@ -12,7 +12,7 @@ Softplus 激活层
             x,&x>\frac{\varepsilon}{\beta}.
         \end{cases}
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
@@ -21,7 +21,7 @@ Softplus 激活层
     - **threshold** (float，可选) - Softplus 激活计算公式中的 :math:`\varepsilon` 值。默认值为 20。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状：
+形状
 ::::::::::
 
     - input：任意形状的 Tensor。
