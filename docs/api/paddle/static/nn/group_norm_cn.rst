@@ -7,6 +7,7 @@ group_norm
 .. py:function::  paddle.static.nn.group_norm(input, groups, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, data_layout='NCHW', name=None)
 
 论文参考：`Group Normalization <https://arxiv.org/abs/1803.08494>`_
+
 对输入应用组标准化，计算公式为：
 
 .. math::
