@@ -3,23 +3,23 @@
 ### [torch.nn.functional.nll_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.nll_loss.html#torch-nn-functional-nll-loss)
 
 ```python
-torch.nn.functional.nll_loss(input, 
-                    target, 
-                    weight=None, 
-                    size_average=None, 
-                    ignore_index=- 100, 
-                    reduce=None, 
-                    reduction='mean')   
+torch.nn.functional.nll_loss(input,
+                    target,
+                    weight=None,
+                    size_average=None,
+                    ignore_index=- 100,
+                    reduce=None,
+                    reduction='mean')
 ```
 
 ### [paddle.nn.functional.nll_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/nll_loss_cn.html#nll-loss)
 
 ```python
-paddle.nn.functional.nll_loss(input, 
-                    label, 
-                    weight=None, 
-                    ignore_index=-100, 
-                    reduction='mean', 
+paddle.nn.functional.nll_loss(input,
+                    label,
+                    weight=None,
+                    ignore_index=-100,
+                    reduction='mean',
                     name=None)
 ```
 

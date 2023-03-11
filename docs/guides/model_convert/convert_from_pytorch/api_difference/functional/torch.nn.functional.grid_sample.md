@@ -3,21 +3,21 @@
 ### [torch.nn.functional.grid_sample](https://pytorch.org/docs/stable/generated/torch.nn.functional.grid_sample.html?highlight=grid_sample#torch.nn.functional.grid_sample)
 
 ```python
-torch.nn.functional.grid_sample(input, 
-                        grid, 
-                        mode='bilinear', 
-                        padding_mode='zeros', 
+torch.nn.functional.grid_sample(input,
+                        grid,
+                        mode='bilinear',
+                        padding_mode='zeros',
                         align_corners=None)
 ```
 
 ### [paddle.nn.functional.grid_sample](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/grid_sample_cn.html)
 
 ```python
-paddle.nn.functional.grid_sample(x, 
-                        grid, 
-                        mode='bilinear', 
-                        padding_mode='zeros', 
-                        align_corners=True, 
+paddle.nn.functional.grid_sample(x,
+                        grid,
+                        mode='bilinear',
+                        padding_mode='zeros',
+                        align_corners=True,
                         name=None)
 ```
 

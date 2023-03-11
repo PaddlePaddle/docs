@@ -3,25 +3,25 @@
 ### [torch.nn.functional.triplet_margin_with_distance_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.triplet_margin_with_distance_loss.html?highlight=triplet_margin_with_distance_loss#torch.nn.functional.triplet_margin_with_distance_loss)
 
 ```python
-torch.nn.functional.triplet_margin_with_distance_loss(anchor, 
-                            positive, 
-                            negative, *, 
-                            distance_function=None, 
-                            margin=1.0, 
-                            swap=False, 
+torch.nn.functional.triplet_margin_with_distance_loss(anchor,
+                            positive,
+                            negative, *,
+                            distance_function=None,
+                            margin=1.0,
+                            swap=False,
                             reduction='mean')
 ```
 
 ### [paddle.nn.functional.triplet_margin_with_distance_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/triplet_margin_with_distance_loss_cn.html)
 
 ```python
-paddle.nn.functional.triplet_margin_with_distance_loss(input, 
-                            positive, 
-                            negative, 
-                            distance_function=None, 
-                            margin: float = 1.0, 
-                            swap: bool = False, 
-                            reduction: str = 'mean', 
+paddle.nn.functional.triplet_margin_with_distance_loss(input,
+                            positive,
+                            negative,
+                            distance_function=None,
+                            margin: float = 1.0,
+                            swap: bool = False,
+                            reduction: str = 'mean',
                             name: str = None)
 ```
 
@@ -38,4 +38,3 @@ paddle.nn.functional.triplet_margin_with_distance_loss(input,
 | eps          | epsilon         | 防止除数为零的常数                                  |
 | swap          | swap         | 是否进行交换                                  |
 | reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'                         |
-

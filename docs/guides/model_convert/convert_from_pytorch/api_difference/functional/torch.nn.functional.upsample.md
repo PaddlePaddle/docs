@@ -3,23 +3,23 @@
 ### [torch.nn.functional.upsample](https://pytorch.org/docs/stable/generated/torch.nn.functional.upsample.html?highlight=upsample#torch.nn.functional.upsample)
 
 ```python
-torch.nn.functional.upsample(input, 
-                        size=None, 
-                        scale_factor=None, 
-                        mode='nearest', 
+torch.nn.functional.upsample(input,
+                        size=None,
+                        scale_factor=None,
+                        mode='nearest',
                         align_corners=None)
 ```
 
 ### [paddle.nn.functional.upsample](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/upsample_cn.html#upsample)
 
 ```python
-paddle.nn.functional.upsample(x, 
-                        size=None, 
-                        scale_factor=None, 
-                        mode='nearest', 
-                        align_corners=False, 
-                        align_mode=0, 
-                        data_format='NCHW', 
+paddle.nn.functional.upsample(x,
+                        size=None,
+                        scale_factor=None,
+                        mode='nearest',
+                        align_corners=False,
+                        align_mode=0,
+                        data_format='NCHW',
                         name=None)
 ```
 

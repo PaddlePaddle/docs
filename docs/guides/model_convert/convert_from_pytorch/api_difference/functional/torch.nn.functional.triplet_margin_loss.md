@@ -3,29 +3,29 @@
 ### [torch.nn.functional.triplet_margin_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.triplet_margin_loss.html?highlight=triplet_margin_loss#torch.nn.functional.triplet_margin_loss)
 
 ```python
-torch.nn.functional.triplet_margin_loss(anchor, 
-                positive, 
-                negative, 
-                margin=1.0, 
-                p=2, 
-                eps=1e-06, 
-                swap=False, 
-                size_average=None, 
-                reduce=None, 
+torch.nn.functional.triplet_margin_loss(anchor,
+                positive,
+                negative,
+                margin=1.0,
+                p=2,
+                eps=1e-06,
+                swap=False,
+                size_average=None,
+                reduce=None,
                 reduction='mean')
 ```
 
 ### [paddle.nn.functional.triplet_margin_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/triplet_margin_loss_cn.html)
 
 ```python
-paddle.nn.functional.triplet_margin_loss(input, 
-                positive, 
-                negative, 
-                margin: float = 1.0, 
-                p: float = 2.0, 
-                epsilon: float = 1e-6, 
-                swap: bool = False, 
-                reduction: str = 'mean', 
+paddle.nn.functional.triplet_margin_loss(input,
+                positive,
+                negative,
+                margin: float = 1.0,
+                p: float = 2.0,
+                epsilon: float = 1e-6,
+                swap: bool = False,
+                reduction: str = 'mean',
                 name: str = None)
 ```
 

@@ -3,21 +3,21 @@
 ### [torch.nn.functional.smooth_l1_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.smooth_l1_loss.html)
 
 ```python
-torch.nn.functional.smooth_l1_loss(input, 
-                    target, 
-                    size_average=None, 
-                    reduce=None, 
-                    reduction='mean', 
+torch.nn.functional.smooth_l1_loss(input,
+                    target,
+                    size_average=None,
+                    reduce=None,
+                    reduction='mean',
                     beta=1.0)
 ```
 
 ### [paddle.nn.functional.smooth_l1_loss](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/smooth_l1_loss_cn.html#smooth-l1-loss)
 
 ```python
-paddle.nn.functional.smooth_l1_loss(input, 
-                    label, 
-                    reduction='mean', 
-                    delta=1.0, 
+paddle.nn.functional.smooth_l1_loss(input,
+                    label,
+                    reduction='mean',
+                    delta=1.0,
                     name=None)
 ```
 
@@ -33,7 +33,7 @@ paddle.nn.functional.smooth_l1_loss(input,
 | reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'                         |
 | beta          | delta         | SmoothL1Loss 损失的阈值参数                       |
 
-Torch 中 Smooth L1 loss的计算方式:
+Torch 中 Smooth L1 loss 的计算方式:
 $$
 
 \ell(x, y) = \{l_1, ..., l_N\}^T
@@ -46,7 +46,7 @@ l_n = \begin{cases}
 \end{cases}
 $$
 
-而 Paddle中 Smooth L1 loss的计算方式:
+而 Paddle 中 Smooth L1 loss 的计算方式:
 
 $$
         % loss(x,y) = \frac{1}{n}\sum_{i}z_i
@@ -62,4 +62,4 @@ $$
             \end{array} \right.
 $$
 
-所以如果 PyTorch 函数参数$beta$与Paddle中的参数$delta$取值相同，则Paddle的loss要再除以$delta$值才能与 Torch 中的结果对齐。
+所以如果 PyTorch 函数参数$beta$与 Paddle 中的参数$delta$取值相同，则 Paddle 的 loss 要再除以$delta$值才能与 Torch 中的结果对齐。
