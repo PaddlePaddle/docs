@@ -7,6 +7,15 @@ group_norm
 .. py:function::  paddle.static.nn.group_norm(input, groups, epsilon=1e-05, param_attr=None, bias_attr=None, act=None, data_layout='NCHW', name=None)
 
 论文参考：`Group Normalization <https://arxiv.org/abs/1803.08494>`_
+对输入应用组标准化，计算公式为：
+
+.. math::
+
+        \\{y} = \frac{{x - {E}\left[ x \right]}}{{\sqrt {{{Var}}\left[ x \right] + \varepsilon } }} * \gamma  + \beta \\
+- :math:`x`：该层神经元的向量表示；
+- :math:`\epsilon`：添加较小的值到方差中以防止除零；
+- :math:`\gamma`：可训练的比例参数；
+- :math:`\beta`：可训练的偏差参数。
 
 参数
 :::::::::
