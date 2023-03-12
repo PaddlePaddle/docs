@@ -2,7 +2,7 @@
 
 同 torch.gcd
 
-### [torch.Tensor.gcd](https://pytorch.org/docs/stable/generated/torch.gcd.html?highlight=gcd)
+### [torch.Tensor.gcd](https://pytorch.org/docs/1.13/generated/torch.Tensor.gcd.html?highlight=torch+tensor+gcd#torch.Tensor.gcd)
 
 ```python
 torch.gcd(input, other, *, out=None)
