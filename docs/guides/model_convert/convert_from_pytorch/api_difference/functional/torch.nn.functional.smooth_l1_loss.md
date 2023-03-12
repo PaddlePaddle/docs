@@ -36,7 +36,7 @@ paddle.nn.functional.smooth_l1_loss(input,
 Torch 中 Smooth L1 loss 的计算方式:
 
 $$
-\ell(x, y) = \{l_1, ..., l_N\}^T
+\ell(x, y) = \left \{l_1, ..., l_N\ \right \}^T
 $$
 
 其中:
@@ -51,16 +51,16 @@ $$
 而 Paddle 中 Smooth L1 loss 的计算方式:
 
 $$
-        loss(x,y)  = \{z_1, ..., z_N\}^T
+        loss(x,y)  = \left \{ z_1, ..., z_N \right \}^T
 $$
 
 其中：
 
 $$
-z_i = \left\{\begin{array}{rcl}
-        0.5(x_i - y_i)^2 & & {if |x_i - y_i| < delta} \\
-        delta * |x_i - y_i| - 0.5 * delta^2 & & {otherwise}
-        \end{array} \right.
+z_i = \begin{cases}
+        0.5(x_i - y_i)^2 & {if |x_i - y_i| < delta} \\
+        delta * |x_i - y_i| - 0.5 * delta^2 & {otherwise}
+        \end{cases}
 $$
 
 所以如果 PyTorch 函数参数 $beta$ 与 Paddle 中的参数 $delta$ 取值相同，则 Paddle 的 loss 要再除以 $delta$ 值才能与 Torch 中的结果对齐。
