@@ -1,4 +1,4 @@
-## torch.nn.functional.one_hot
+## [ paddle 参数更多 ]torch.nn.functional.one_hot
 
 ### [torch.nn.functional.pad](https://pytorch.org/docs/stable/generated/torch.nn.functional.pad.html)
 
@@ -29,6 +29,6 @@ paddle.nn.functional.pad(x,
 | pad          | pad         | 表示一个 one-hot 向量的长度 。                                     |
 | mode          | mode         | 表示填充的模式。                                     |
 | value          | value         | 表示填充的值，mode 为'constant'时有效                           |
-| -        | data_format |  指定输入的数据格式 |
+| -        | data_format |  指定输入的数据格式, PyTorch 无此参数， Paddle 保持默认即可 |
 
 在实际使用过程中，`data_format` 参数需要根据输入参数进行指定

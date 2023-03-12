@@ -1,4 +1,4 @@
-## torch.nn.functional.upsample
+## [ 仅参数名不一致 ] torch.nn.functional.upsample
 
 ### [torch.nn.functional.upsample](https://pytorch.org/docs/stable/generated/torch.nn.functional.upsample.html?highlight=upsample#torch.nn.functional.upsample)
 
@@ -32,5 +32,5 @@ paddle.nn.functional.upsample(x,
 | scale_factor           | scale_factor           |  指定缩放比例 。              |
 | mode           | mode           | 插值方法。支持"bilinear"或"trilinear"或"nearest"或"bicubic"或"linear"或"area" 。               |
 | align_corners           | align_corners           |  双线性插值的可选项 。               |
-| -           | align_mode           | 表示对输入 Tensor 运算的轴 。               |
-| -          | data_format           | 表示输入的数据格式。               |
+| -           | align_mode           | 表示对输入 Tensor 运算的轴, PyTorch 无此参数， Paddle 保持默认即可               |
+| -          | data_format           | 表示输入的数据格式, PyTorch 无此参数， Paddle 保持默认即可               |

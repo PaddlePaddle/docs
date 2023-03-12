@@ -1,4 +1,4 @@
-## torch.nn.functional.smooth_l1_loss
+##  [ 参数用法不一致 ]torch.nn.functional.smooth_l1_loss
 
 ### [torch.nn.functional.smooth_l1_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.smooth_l1_loss.html)
 
@@ -21,7 +21,7 @@ paddle.nn.functional.smooth_l1_loss(input,
                     name=None)
 ```
 
-两者功能一致，具体如下：
+两者功能一致，但 Paddle 的 delta 和 PyTorch 的 beta 参数在公式中用法不一致，具体如下：
 
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -34,11 +34,13 @@ paddle.nn.functional.smooth_l1_loss(input,
 | beta          | delta         | SmoothL1Loss 损失的阈值参数                       |
 
 Torch 中 Smooth L1 loss 的计算方式:
-$$
 
+$$
 \ell(x, y) = \{l_1, ..., l_N\}^T
 $$
+
 其中:
+
 $$
 l_n = \begin{cases}
 0.5 (x_n - y_n)^2 / beta, & \text{if } |x_n - y_n| < beta \\
@@ -49,17 +51,16 @@ $$
 而 Paddle 中 Smooth L1 loss 的计算方式:
 
 $$
-        % loss(x,y) = \frac{1}{n}\sum_{i}z_i
-         loss(x,y)  = \{z_1, ..., z_N\}^T
+        loss(x,y)  = \{z_1, ..., z_N\}^T
 $$
 
 其中：
 
 $$
-        \mathop{z_i} = \left\{\begin{array}{rcl}
-                0.5(x_i - y_i)^2 & & {if |x_i - y_i| < delta} \\
-                delta * |x_i - y_i| - 0.5 * delta^2 & & {otherwise}
-            \end{array} \right.
+\mathop{z_i} = \left\{\begin{array}{rcl}
+        0.5(x_i - y_i)^2 & & {if |x_i - y_i| < delta} \\
+        delta * |x_i - y_i| - 0.5 * delta^2 & & {otherwise}
+        \end{array} \right.
 $$
 
-所以如果 PyTorch 函数参数$beta$与 Paddle 中的参数$delta$取值相同，则 Paddle 的 loss 要再除以$delta$值才能与 Torch 中的结果对齐。
+所以如果 PyTorch 函数参数 $beta$ 与 Paddle 中的参数 $delta$ 取值相同，则 Paddle 的 loss 要再除以 $delta$ 值才能与 Torch 中的结果对齐。

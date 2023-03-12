@@ -1,4 +1,4 @@
-## torch.nn.functional.pixel_shuffle
+## [ paddle 参数更多 ]torch.nn.functional.pixel_shuffle
 
 ### [torch.nn.functional.pixel_shuffle](https://pytorch.org/docs/stable/generated/torch.nn.functional.pixel_shuffle.html?highlight=pixel_shuffle#torch.nn.functional.pixel_shuffle)
 
@@ -18,4 +18,4 @@ paddle.nn.functional.pixel_shuffle(x, upscale_factor, data_format='NCHW', name=N
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入的 Tensor 。               |
 | downscale_factor           | downscale_factor           |   减小空间分辨率的减小因子。               |
-| -           | data_format           |   指定输入张量格式。               |
+| -           | data_format           |   指定输入张量格式, PyTorch 无此参数， Paddle 保持默认即可               |

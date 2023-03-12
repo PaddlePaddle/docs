@@ -1,4 +1,4 @@
-## torch.nn.functional.grid_sample
+## [ 仅参数名不一致 ] torch.nn.functional.grid_sample
 
 ### [torch.nn.functional.grid_sample](https://pytorch.org/docs/stable/generated/torch.nn.functional.grid_sample.html?highlight=grid_sample#torch.nn.functional.grid_sample)
 
@@ -25,7 +25,7 @@ paddle.nn.functional.grid_sample(x,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input           | x           | 表示输入的 Tensor 。               |
+| input           | x           | 表示输入的 Tensor，仅参数名不一致。               |
 | grid           | grid           |  输入网格数据张量。               |
 | mode           | mode           |   指定插值方式。               |
 | padding_mode           | padding_mode           |   指定超出边界的填充方式。               |

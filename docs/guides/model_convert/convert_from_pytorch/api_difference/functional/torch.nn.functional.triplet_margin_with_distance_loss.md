@@ -1,4 +1,4 @@
-## torch.nn.functional.triplet_margin_with_distance_loss
+## [ 仅参数名不一致 ] torch.nn.functional.triplet_margin_with_distance_loss
 
 ### [torch.nn.functional.triplet_margin_with_distance_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.triplet_margin_with_distance_loss.html?highlight=triplet_margin_with_distance_loss#torch.nn.functional.triplet_margin_with_distance_loss)
 

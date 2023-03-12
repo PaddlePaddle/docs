@@ -1,4 +1,4 @@
-## torch.nn.functional.soft_margin_loss
+## [ torch 参数更多 ]torch.nn.functional.soft_margin_loss
 
 ### [torch.nn.functional.soft_margin_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.soft_margin_loss.html?highlight=soft_margin_loss#torch.nn.functional.soft_margin_loss)
 
