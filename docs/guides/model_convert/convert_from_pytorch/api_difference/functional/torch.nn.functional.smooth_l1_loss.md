@@ -36,7 +36,7 @@ paddle.nn.functional.smooth_l1_loss(input,
 Torch 中 Smooth L1 loss 的计算方式:
 
 $$
-\ell(x, y) = \left \{l_1, ..., l_N\ \right \}^T
+\ell(x, y) = \left [l_1, ..., l_N\ \right ]^T
 $$
 
 其中:
@@ -51,7 +51,7 @@ $$
 而 Paddle 中 Smooth L1 loss 的计算方式:
 
 $$
-        loss(x,y)  = \left \{ z_1, ..., z_N \right \}^T
+loss(x,y)  = \left [ z_1, ..., z_N \right ]^T
 $$
 
 其中：
