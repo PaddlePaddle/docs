@@ -57,7 +57,7 @@ $$
 其中：
 
 $$
-\mathop{z_i} = \left\{\begin{array}{rcl}
+z_i = \left\{\begin{array}{rcl}
         0.5(x_i - y_i)^2 & & {if |x_i - y_i| < delta} \\
         delta * |x_i - y_i| - 0.5 * delta^2 & & {otherwise}
         \end{array} \right.
