@@ -2,7 +2,7 @@
 ### [torch.Tensor.is_contiguous](https://pytorch.org/docs/stable/generated/torch.Tensor.is_contiguous.html?highlight=is_contiguous#torch.Tensor.is_contiguous)
 
 ```python
-Tensor.is_contiguous(memory_format)
+torch.Tensor.is_contiguous(memory_format)
 ```
 
 ### [paddle]
