@@ -252,8 +252,8 @@
 | 76   | [torch.nn.ChannelShuffle](https://pytorch.org/docs/stable/generated/torch.nn.ChannelShuffle.html?highlight=channelshuffle#torch.nn.ChannelShuffle) | [paddle.nn.ChannelShuffle](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/ChannelShuffle_cn.html) | 功能一致，参数一致 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/nn/torch.nn.ChannelShuffle.md)|
 | 77   | [torch.nn.Flatten](https://pytorch.org/docs/stable/generated/torch.nn.Flatten.html?highlight=nn+flatten#torch.nn.Flatten) | [paddle.nn.Flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Flatten_cn.html#flatten) | 功能一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/nn/torch.nn.Flatten.md)|
 _project_convertor/API_docs/loss/torch.nn.SmoothL1Loss.md)。 |
-| 78   | [torch.nn.GroupNorm](https://pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html?highlight=groupnorm#torch.nn.GroupNorm) | [paddle.nn.GroupNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/GroupNorm_cn.html#groupnorm) | 功能一致，torch 参数更多，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/nn/torch.nn.GroupNorm.md)。 |
-| 79   | [torch.nn.LayerNorm](https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html?highlight=layernorm#torch.nn.LayerNorm) | [paddle.nn.LayerNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LayerNorm_cn.html#layernorm) | 功能一致，torch 参数更多，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/nn/torch.nn.LayerNorm.md)。 |
+| 78   | [torch.nn.GroupNorm](https://pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html?highlight=groupnorm#torch.nn.GroupNorm) | [paddle.nn.GroupNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/GroupNorm_cn.html#groupnorm) | 功能一致，torch 参数更多，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.GroupNorm.md)。 |
+| 79   | [torch.nn.LayerNorm](https://pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html?highlight=layernorm#torch.nn.LayerNorm) | [paddle.nn.LayerNorm](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/LayerNorm_cn.html#layernorm) | 功能一致，torch 参数更多，[差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/nn/torch.nn.LayerNorm.md)。 |
 
 ***持续更新...***
 
@@ -299,7 +299,7 @@ _project_convertor/API_docs/loss/torch.nn.SmoothL1Loss.md)。 |
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-
+| 1   | [torch.Tensor.is_contiguous](https://pytorch.org/docs/stable/generated/torch.Tensor.is_contiguous.html?highlight=is_contiguous#torch.Tensor.is_contiguous) | [-] | 功能一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.is_contiguous.md) |
 
 
 ***持续更新...***
