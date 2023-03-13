@@ -1,20 +1,20 @@
-## torch.nn.functional.affine_grid
+## [ 仅参数名不一致 ] torch.nn.functional.affine_grid
 
 ### [torch.nn.functional.affine_grid](https://pytorch.org/docs/stable/generated/torch.nn.functional.affine_grid.html?highlight=affine_grid#torch.nn.functional.affine_grid)
 
 ```python
 torch.nn.functional.affine_grid(theta,
-size,
-align_corners=None)
+            size,
+            align_corners=None)
 ```
 
 ### [paddle.nn.functional.affine_grid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/affine_grid_cn.html)
 
 ```python
 paddle.nn.functional.affine_grid(theta,
-out_shape,
-align_corners=True,
-name=None)
+            out_shape,
+            align_corners=True,
+            name=None)
 ```
 
 两者功能一致，仅参数名不一致，具体如下：

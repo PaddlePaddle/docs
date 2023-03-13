@@ -1,4 +1,4 @@
-## torch.Tensor.T
+## [ 无参数 ] torch.Tensor.T
 
 ### [torch.Tensor.T](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.T)
 
@@ -12,4 +12,4 @@ torch.Tensor.T
 paddle.Tensor.T
 ```
 
-两者功能一致，均无参数
+两者功能一致，均无参数。

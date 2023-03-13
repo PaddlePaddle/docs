@@ -1,4 +1,4 @@
-## torch.Tensor.real
+## [ 无参数 ] torch.Tensor.real
 
 ### [torch.Tensor.real](https://pytorch.org/docs/stable/generated/torch.Tensor.real.html)
 
@@ -12,4 +12,4 @@ torch.Tensor.real
 paddle.Tensor.real
 ```
 
-两者功能一致，均无参数，用于返回 Tensor 的实部数值
+两者功能一致，均无参数，用于返回 Tensor 的实部数值。

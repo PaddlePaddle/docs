@@ -1,4 +1,4 @@
-## torch.Tensor.ndim
+## [ 无参数 ] torch.Tensor.ndim
 
 ### [torch.Tensor.ndim](https://pytorch.org/docs/stable/generated/torch.Tensor.ndim.html)
 
@@ -12,4 +12,4 @@ torch.Tensor.ndim
 paddle.Tensor.ndim
 ```
 
-两者功能一致，均无参数，查看一个 Tensor 的维度
+两者功能一致，均无参数，查看一个 Tensor 的维度。

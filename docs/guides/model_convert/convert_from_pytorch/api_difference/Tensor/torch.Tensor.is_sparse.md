@@ -1,4 +1,4 @@
-## torch.Tensor.is_sparse
+## [ 无参数 ] torch.Tensor.is_sparse
 
 ### [torch.Tensor.is_sparse](https://pytorch.org/docs/stable/generated/torch.Tensor.is_sparse.html)
 
@@ -12,4 +12,4 @@ torch.Tensor.is_sparse
 paddle.Tensor.is_sparse()
 ```
 
-两者功能一致，前者可以直接访问, 后者需要调用
+两者功能一致，前者可以直接访问, 后者需要调用。

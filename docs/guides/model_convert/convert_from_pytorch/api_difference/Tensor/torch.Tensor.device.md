@@ -1,4 +1,4 @@
-## torch.Tensor.device
+## [ 无参数 ] torch.Tensor.device
 
 ### [torch.Tensor.device](https://pytorch.org/docs/stable/generated/torch.Tensor.device.html)
 
@@ -12,4 +12,4 @@ torch.Tensor.device
 paddle.Tensor.place
 ```
 
-两者功能一致，均无参数，都用来查看一个 Tensor 的设备位置
+两者功能一致，均无参数，都用来查看一个 Tensor 的设备位置。

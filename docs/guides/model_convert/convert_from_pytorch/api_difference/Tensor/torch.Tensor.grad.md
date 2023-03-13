@@ -1,4 +1,4 @@
-## torch.Tensor.grad
+## [ 无参数 ] torch.Tensor.grad
 
 ### [torch.Tensor.grad](https://pytorch.org/docs/stable/generated/torch.Tensor.grad.html)
 
@@ -12,4 +12,4 @@ torch.Tensor.grad
 paddle.Tensor.grad
 ```
 
-两者功能一致，均无参数，都用来查看一个 Tensor 的梯度
+两者功能一致，均无参数，都用来查看一个 Tensor 的梯度。

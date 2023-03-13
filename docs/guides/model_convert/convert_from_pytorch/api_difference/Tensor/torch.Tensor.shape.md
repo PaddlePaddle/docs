@@ -1,4 +1,4 @@
-## torch.Tensor.shape
+## [ 无参数 ] torch.Tensor.shape
 
 ### [torch.Tensor.shape](https://pytorch.org/docs/stable/generated/torch.Tensor.shape.html)
 
