@@ -9,9 +9,9 @@ stack
 
 
 
-该OP沿 ``axis`` 轴对输入 ``x`` 进行堆叠操作。
+该 OP 沿 ``axis`` 轴对输入 ``x`` 进行堆叠操作。
 
-- 例1:
+- 例 1:
 
 .. code-block:: text
 
@@ -24,7 +24,7 @@ stack
         x[2].data = [ [5.0 , 6.0 ] ]
 
     参数：
-        axis = 0 #沿着第0维对输入x进行堆叠操作。
+        axis = 0 #沿着第 0 维对输入 x 进行堆叠操作。
 
     输出：
         Out.shape = [3, 1, 2]
@@ -33,7 +33,7 @@ stack
                     [ [5.0, 6.0] ] ]
 
 
-- 例2:
+- 例 2:
 
 .. code-block:: text
 
@@ -46,7 +46,7 @@ stack
         x[2].data = [ [5.0 , 6.0 ] ]
 
     参数：
-        axis = 1 or axis = -2 #沿着第1维对输入进行堆叠操作。
+        axis = 1 or axis = -2 #沿着第 1 维对输入进行堆叠操作。
 
     输出：
         Out.shape = [1, 3, 2]
@@ -57,12 +57,12 @@ stack
 参数
 ::::::::::::
 
-      - **x** (list(Variable)|tuple(Variable)) – 输入 x 可以是单个Tensor，或是多个Tensor组成的列表。如果 x 是一个列表，那么这些Tensor的维度必须相同。假设输入是N维Tensor :math:`[d_0,d_1,...,d_{n−1}]`，则输出变量的维度为N+1维 :math:`[d_0,d_1,...d_{axis-1},len(x),d_{axis}...,d_{n−1}]`。支持的数据类型：float32，float64，int32，int64。
-      - **axis** (int，可选) – 指定对输入Tensor进行堆叠运算的轴，有效 ``axis`` 的范围是：:math:`[-(R+1), R+1)`，R是输入中第一个Tensor的rank。如果 ``axis`` < 0，则 :math:`axis=axis+rank(x[0])+1` 。axis默认值为0。
+      - **x** (list(Variable)|tuple(Variable)) – 输入 x 可以是单个 Tensor，或是多个 Tensor 组成的列表。如果 x 是一个列表，那么这些 Tensor 的维度必须相同。假设输入是 N 维 Tensor :math:`[d_0,d_1,...,d_{n−1}]`，则输出变量的维度为 N+1 维 :math:`[d_0,d_1,...d_{axis-1},len(x),d_{axis}...,d_{n−1}]`。支持的数据类型：float32，float64，int32，int64。
+      - **axis** (int，可选) – 指定对输入 Tensor 进行堆叠运算的轴，有效 ``axis`` 的范围是：:math:`[-(R+1), R+1)`，R 是输入中第一个 Tensor 的 rank。如果 ``axis`` < 0，则 :math:`axis=axis+rank(x[0])+1` 。axis 默认值为 0。
 
 返回
 ::::::::::::
- 堆叠运算后的Tensor，数据类型与输入Tensor相同。输出维度等于 :math:`rank(x[0])+1` 维。
+ 堆叠运算后的 Tensor，数据类型与输入 Tensor 相同。输出维度等于 :math:`rank(x[0])+1` 维。
 
 返回类型
 ::::::::::::

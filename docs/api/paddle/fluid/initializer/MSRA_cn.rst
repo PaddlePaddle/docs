@@ -12,4 +12,3 @@ paddle.fluid.initializer.MSRA
 
 
 ``MSRAInitializer`` 的别名
-

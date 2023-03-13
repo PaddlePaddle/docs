@@ -8,7 +8,7 @@ lod_append
 
 
 
-给 ``x`` 的LoD添加 ``level`` 。
+给 ``x`` 的 LoD 添加 ``level`` 。
 
 简单示例：
 
@@ -29,18 +29,18 @@ lod_append
 参数
 ::::::::::::
 
-    - **x** (Variable)-输入变量，可以是LoDTensor或tensor。
-    - **level** (list|tuple|Variable)-预添加到x的LoD里的LoD level。
+    - **x** (Variable)-输入变量，可以是 LoDTensor 或 tensor。
+    - **level** (list|tuple|Variable)-预添加到 x 的 LoD 里的 LoD level。
 
 返回
 ::::::::::::
-一个有着新的LoD level的输出变量
+一个有着新的 LoD level 的输出变量
 
 返回类型
 ::::::::::::
 Variable
 
-Raise: ``ValueError`` - 如果y为None或者level不可迭代。
+Raise: ``ValueError`` - 如果 y 为 None 或者 level 不可迭代。
 
 代码示例
 ::::::::::::
@@ -50,14 +50,3 @@ Raise: ``ValueError`` - 如果y为None或者level不可迭代。
     import paddle.fluid as fluid
     x = fluid.layers.data(name='x', shape=[6, 10], lod_level=1)
     out = fluid.layers.lod_append(x, [1,1,1,1,1,1])
-
-
-
-
-
-
-
-
-
-
-

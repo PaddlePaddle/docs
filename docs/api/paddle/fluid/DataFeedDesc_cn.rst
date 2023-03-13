@@ -9,11 +9,11 @@ DataFeedDesc
 
 
 
-描述训练数据的格式。输入是一个文件路径名，其内容是protobuf message。
+描述训练数据的格式。输入是一个文件路径名，其内容是 protobuf message。
 
-可以参考 :code:`paddle/fluid/framework/data_feed.proto` 查看我们如何定义message
+可以参考 :code:`paddle/fluid/framework/data_feed.proto` 查看我们如何定义 message
 
-一段典型的message可能是这样的：
+一段典型的 message 可能是这样的：
 
 .. code-block:: python
 
@@ -38,15 +38,15 @@ DataFeedDesc
     f.close()
     data_feed = fluid.DataFeedDesc('data.proto')
 
-用户需要了解DataFeedDesc中每个字段的含义，以便自定义字段的值。例如：
+用户需要了解 DataFeedDesc 中每个字段的含义，以便自定义字段的值。例如：
 
 .. code-block:: python
 
     import paddle.fluid as fluid
     data_feed = fluid.DataFeedDesc('data.proto')
     data_feed.set_batch_size(128)
-    data_feed.set_dense_slots('words')  # 名为'words'的slot将被设置为密集的
-    data_feed.set_use_slots('words')    # 名为'words'的slot将被用于训练
+    data_feed.set_dense_slots('words')  # 名为'words'的 slot 将被设置为密集的
+    data_feed.set_use_slots('words')    # 名为'words'的 slot 将被用于训练
 
     # 最后，可以打印变量详细信息便于排查错误
     print(data_feed.desc())
@@ -55,7 +55,7 @@ DataFeedDesc
 参数
 ::::::::::::
 
-  - **proto_file** (string)：包含数据描述的protobuf message的磁盘文件
+  - **proto_file** (string)：包含数据描述的 protobuf message 的磁盘文件
 
 
 方法
@@ -63,7 +63,7 @@ DataFeedDesc
 set_batch_size(batch_size)
 '''''''''
 
-该接口用于设置DataFeedDesc中的 :code:`batch_size`。可以在训练期间调用修改 :code:`batch_size` 。
+该接口用于设置 DataFeedDesc 中的 :code:`batch_size`。可以在训练期间调用修改 :code:`batch_size` 。
 
 **代码示例**
 
@@ -101,9 +101,9 @@ set_batch_size(batch_size)
 set_dense_slots(dense_slots_name)
 '''''''''
 
-将 :code:`dense_slots_name` 指定的slots设置为密集的slot。**注意：默认情况下，所有slots都是稀疏的。**
+将 :code:`dense_slots_name` 指定的 slots 设置为密集的 slot。**注意：默认情况下，所有 slots 都是稀疏的。**
 
-密集slot的特征将被输入一个Tensor，而稀疏slot的特征将被输入一个LoDTensor。
+密集 slot 的特征将被输入一个 Tensor，而稀疏 slot 的特征将被输入一个 LoDTensor。
 
 **代码示例**
 
@@ -133,7 +133,7 @@ set_dense_slots(dense_slots_name)
 
 **参数**
 
-  - **dense_slots_name** (list(str)) - slot名称的列表，这些slot将被设置为密集的。
+  - **dense_slots_name** (list(str)) - slot 名称的列表，这些 slot 将被设置为密集的。
 
 **返回**
 无
@@ -142,16 +142,16 @@ set_use_slots(use_slots_name)
 '''''''''
 
 
-设置一个特定的slot是否用于训练。一个数据集包含了很多特征，通过这个函数可以选择哪些特征将用于指定的模型。
+设置一个特定的 slot 是否用于训练。一个数据集包含了很多特征，通过这个函数可以选择哪些特征将用于指定的模型。
 
 **参数**
 
-  - **use_slots_name** (list)：将在训练中使用的slot名列表，类型为list，其中每个元素为一个字符串
+  - **use_slots_name** (list)：将在训练中使用的 slot 名列表，类型为 list，其中每个元素为一个字符串
 
 **代码示例**
 
 .. code-block:: python
-    
+
     import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
@@ -176,21 +176,21 @@ set_use_slots(use_slots_name)
 
 .. note::
 
-  默认值是不使用所有slot
+  默认值是不使用所有 slot
 
 
 desc()
 '''''''''
 
-返回此DataFeedDesc的protobuf message
+返回此 DataFeedDesc 的 protobuf message
 
 **返回**
-一个protobuf message字符串
+一个 protobuf message 字符串
 
 **代码示例**
 
 .. code-block:: python
-    
+
     import paddle.fluid as fluid
     f = open("data.proto", "w")
     print >> f, 'name: "MultiSlotDataFeed"'
@@ -212,9 +212,3 @@ desc()
     f.close()
     data_feed = fluid.DataFeedDesc('data.proto')
     print(data_feed.desc())
-
-
-
-
-
-

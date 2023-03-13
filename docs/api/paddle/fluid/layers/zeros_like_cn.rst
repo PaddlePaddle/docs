@@ -9,17 +9,17 @@ zeros_like
 
 
 
-该OP创建一个和x具有相同的形状和数据类型的全零Tensor。
+该 OP 创建一个和 x 具有相同的形状和数据类型的全零 Tensor。
 
 参数
 ::::::::::::
 
-    - **x** (Variable) – 指定输入为一个多维的Tensor，数据类型可以是bool，float32，float64，int32，int64。
-    - **out** (Variable|可选) – 如果为None，则创建一个Variable作为输出，创建后的Variable的数据类型，shape大小和输入变量x一致。如果是输入的一个Tensor，数据类型和数据shape大小需要和输入变量x一致。默认值为None。
-    
+    - **x** (Variable) – 指定输入为一个多维的 Tensor，数据类型可以是 bool，float32，float64，int32，int64。
+    - **out** (Variable|可选) – 如果为 None，则创建一个 Variable 作为输出，创建后的 Variable 的数据类型，shape 大小和输入变量 x 一致。如果是输入的一个 Tensor，数据类型和数据 shape 大小需要和输入变量 x 一致。默认值为 None。
+
 返回
 ::::::::::::
-返回一个多维的Tensor，具体的元素值和输入的数据类型相关，如果是bool类型的，则全False，其它均为0。数据shape大小和输入x一致。
+返回一个多维的 Tensor，具体的元素值和输入的数据类型相关，如果是 bool 类型的，则全 False，其它均为 0。数据 shape 大小和输入 x 一致。
 
 返回类型
 ::::::::::::

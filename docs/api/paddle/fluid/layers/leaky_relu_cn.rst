@@ -8,20 +8,20 @@ leaky_relu
 
 
 
-LeakyRelu激活函数
+LeakyRelu 激活函数
 
 .. math::   out=max(x,α∗x)
 
 参数
 ::::::::::::
 
-    - **x** (Variable) - 输入的多维LoDTensor/Tensor，数据类型为：float32，float64。
-    - **alpha** (float) - 负斜率，缺省值为0.02。
+    - **x** (Variable) - 输入的多维 LoDTensor/Tensor，数据类型为：float32，float64。
+    - **alpha** (float) - 负斜率，缺省值为 0.02。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
- 与 ``x`` 维度相同，数据类型相同的LodTensor/Tensor。
+ 与 ``x`` 维度相同，数据类型相同的 LodTensor/Tensor。
 
 返回类型
 ::::::::::::

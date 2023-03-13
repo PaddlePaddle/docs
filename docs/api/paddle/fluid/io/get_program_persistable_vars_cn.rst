@@ -8,16 +8,16 @@ get_program_persistable_vars
 
 
 
-该接口从Program中获取所有persistable的变量。
+该接口从 Program 中获取所有 persistable 的变量。
 
 参数
 ::::::::::::
 
- - **program**  ( :ref:`cn_api_fluid_Program` ) – 从该Program中获取persistable的变量。
+ - **program**  ( :ref:`cn_api_fluid_Program` ) – 从该 Program 中获取 persistable 的变量。
 
 返回
 ::::::::::::
- 包含此Program中所有persistable的变量
+ 包含此 Program 中所有 persistable 的变量
 
 返回类型
 ::::::::::::

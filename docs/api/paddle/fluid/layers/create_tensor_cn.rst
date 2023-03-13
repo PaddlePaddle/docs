@@ -8,18 +8,18 @@ create_tensor
 
 
 
-创建数据类型为dtype的Tensor。
+创建数据类型为 dtype 的 Tensor。
 
 参数
 ::::::::::::
 
-    - **dtype** (str|numpy.dtype) - 创建的Tensor的数据类型，支持数据类型为bool, float16， float32， float64， int8， int16， int32， int64。
+    - **dtype** (str|numpy.dtype) - 创建的 Tensor 的数据类型，支持数据类型为 bool, float16， float32， float64， int8， int16， int32， int64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **persistable** (bool，可选) - 用于设置创建的Tensor的persistable属性，若不设置则默认设置为False。
+    - **persistable** (bool，可选) - 用于设置创建的 Tensor 的 persistable 属性，若不设置则默认设置为 False。
 
 返回
 ::::::::::::
- 创建的Tensor，数据类型为dtype。
+ 创建的 Tensor，数据类型为 dtype。
 
 返回类型
 ::::::::::::
