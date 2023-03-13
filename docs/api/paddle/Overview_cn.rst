@@ -142,6 +142,7 @@ tensor 数学操作
     " :ref:`paddle.atanh <cn_api_fluid_layers_atanh>` ", "反双曲正切函数"
     " :ref:`paddle.take <cn_api_paddle_tensor_take>` ", "输出给定索引处的输入元素，结果与 index 的形状相同"
     " :ref:`paddle.frexp <cn_api_paddle_frexp>` ", "用于把一个浮点数分解为尾数和指数的函数"
+    " :ref:`paddle.trapz <cn_api_paddle_trapz>` ", "用于计算沿指定轴的梯形积分的函数"
 
 
 .. _tensor_math_inplace:
