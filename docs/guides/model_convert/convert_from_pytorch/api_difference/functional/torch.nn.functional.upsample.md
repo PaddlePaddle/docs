@@ -27,7 +27,7 @@ paddle.nn.functional.upsample(x,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input           | x           | 表示输入 Tensor 。               |
+| input           | x           | 表示输入 Tensor，仅参数名不一致。      |
 | size           | size           | 指定输出 Tensor 的大小 。               |
 | scale_factor           | scale_factor           |  指定缩放比例 。              |
 | mode           | mode           | 插值方法。支持"bilinear"或"trilinear"或"nearest"或"bicubic"或"linear"或"area" 。               |

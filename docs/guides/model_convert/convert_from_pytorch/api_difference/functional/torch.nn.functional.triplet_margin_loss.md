@@ -33,7 +33,7 @@ paddle.nn.functional.triplet_margin_loss(input,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| anchor          | input         | 输入 Tensor                                     |
+| anchor          | input         | 输入 Tensor，仅参数名不一致。                        |
 | positive          | positive         | 输入正样本                                 |
 | negative          | negative         | 输入负样本                                     |
 | margin          | margin         |  手动指定间距                                  |

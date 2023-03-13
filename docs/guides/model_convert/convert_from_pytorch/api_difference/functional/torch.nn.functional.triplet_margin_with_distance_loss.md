@@ -29,7 +29,7 @@ paddle.nn.functional.triplet_margin_with_distance_loss(input,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| anchor          | input         | 输入 Tensor                                     |
+| anchor          | input         | 输入 Tensor，仅参数名不一致。                   |
 | positive          | positive         | 输入正样本                                 |
 | negative          | negative         | 输入负样本                                     |
 | distance_function | distance_function |  指定两个张量距离的函数                                      |

@@ -28,10 +28,10 @@ paddle.nn.functional.nll_loss(input,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | input         | 输入 Tensor                                     |
-| target          | label         | 输入 Tensor 对应的标签值                                  |
+| target          | label         | 输入 Tensor 对应的标签值,仅参数名不一致。            |
 | size_average          | -         | 已弃用                                      |
-| weight          | -         | 手动指定每个类别的权重                          |
-| ignore_index          | -         |  指定一个忽略的标签值，此标签值不参与计算                   |
+| weight          | weight  | 手动指定每个类别的权重                          |
+| ignore_index          | ignore_index  |  指定一个忽略的标签值，此标签值不参与计算                   |
 | reduce          | -         | 已弃用                                     |
 | reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'                         |
 

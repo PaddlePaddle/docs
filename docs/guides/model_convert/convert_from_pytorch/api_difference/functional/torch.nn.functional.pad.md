@@ -25,7 +25,7 @@ paddle.nn.functional.pad(x,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input          | x         | 表示输入的 Tensor 。                                     |
+| input          | x         | 表示输入的 Tensor，仅参数名不一致。                                     |
 | pad          | pad         | 表示一个 one-hot 向量的长度 。                                     |
 | mode          | mode         | 表示填充的模式。                                     |
 | value          | value         | 表示填充的值，mode 为'constant'时有效                           |
