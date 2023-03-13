@@ -23,13 +23,13 @@ PRelu
 
     .. code-block:: text
 
-        all：所有元素使用同一个alpha值
-        channel：在同一个通道中的元素使用同一个alpha值
-        element：每一个元素有一个独立的alpha值
+        all：所有元素使用同一个 alpha 值
+        channel：在同一个通道中的元素使用同一个 alpha 值
+        element：每一个元素有一个独立的 alpha 值
 
-    - **channel** (int，可选) - 通道数。该参数在mode参数为"channel"时是必须的。默认为None。
-    - **input_shape** (int 或 list 或 tuple，可选) - 输入的维度。该参数在mode参数为"element"时是必须的。默认为None。
-    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
+    - **channel** (int，可选) - 通道数。该参数在 mode 参数为"channel"时是必须的。默认为 None。
+    - **input_shape** (int 或 list 或 tuple，可选) - 输入的维度。该参数在 mode 参数为"element"时是必须的。默认为 None。
+    - **param_attr** (ParamAttr，可选) - 指定权重参数属性的对象。默认值为 None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **dtype** (str，可选) - 数据类型，可以为"float32"或"float64"。默认值："float32"。
 
 返回
@@ -71,4 +71,3 @@ weight
 '''''''''
 
 本层的可学习参数，类型为 ``Parameter``
-

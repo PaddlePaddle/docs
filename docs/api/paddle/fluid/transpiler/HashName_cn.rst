@@ -9,16 +9,16 @@ HashName
 
 
 
-该方法使用 python ``Hash()`` 函数将变量散列到多个parameter server节点。
+该方法使用 python ``Hash()`` 函数将变量散列到多个 parameter server 节点。
 
 参数
 ::::::::::::
 
-  - **pserver_endpoints** (list) - endpoint （ip:port）的 list 
+  - **pserver_endpoints** (list) - endpoint （ip:port）的 list
 
 返回
 ::::::::::::
-实例化后的HashName的对象
+实例化后的 HashName 的对象
 
 返回类型
 ::::::::::::
@@ -42,7 +42,7 @@ HashName
 reset()
 '''''''''
 
-该方法将重置HashName内置的计数，计数将重置为0。
+该方法将重置 HashName 内置的计数，计数将重置为 0。
 
 **返回**
 无。
@@ -51,10 +51,9 @@ reset()
 
 .. code-block:: python
 
-          import paddle.fluid.transpiler.HashName as HashName 
+          import paddle.fluid.transpiler.HashName as HashName
 
           pserver_endpoints = [“127.0.0.1:6007”, “127.0.0.1:6008”]
           vars = [“var1”,”var2”,”var3”,”var4”,”var5”]
           rr = HashName(pserver_endpoints)
           rr.reset()
-

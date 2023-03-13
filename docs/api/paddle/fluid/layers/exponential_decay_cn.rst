@@ -24,14 +24,14 @@ exponential_decay
 参数
 ::::::::::::
 
-    - **learning_rate** (Variable|float) - 初始学习率，类型可以为学习率变量(Variable)或float型常量。
+    - **learning_rate** (Variable|float) - 初始学习率，类型可以为学习率变量(Variable)或 float 型常量。
     - **decay_steps** (int) - 学习率衰减步长，见以上衰减运算。
     - **decay_rate** (float) - 学习率衰减率。见以上衰减运算。
-    - **staircase** (bool) - 若为True，按离散区间衰减学习率，即每 ``decay_steps`` 步学习率衰减 ``decay_rate``。若为False，则按以上衰减运算持续衰减。默认False。
+    - **staircase** (bool) - 若为 True，按离散区间衰减学习率，即每 ``decay_steps`` 步学习率衰减 ``decay_rate``。若为 False，则按以上衰减运算持续衰减。默认 False。
 
 返回
 ::::::::::::
-Variable(Tensor) 随step衰减的学习率变量，维度为 :math:`[1]` 的1-D Tensor。
+Variable(Tensor) 随 step 衰减的学习率变量，维度为 :math:`[1]` 的 1-D Tensor。
 
 返回类型
 ::::::::::::
@@ -50,13 +50,3 @@ Variable(Tensor) 随step衰减的学习率变量，维度为 :math:`[1]` 的1-D 
             decay_steps=10000,
             decay_rate=0.5,
             staircase=True))
-
-
-
-
-
-
-
-
-
-

@@ -7,7 +7,7 @@ Accuracy
 
 
 
-该接口用来计算多个mini-batch的平均准确率。Accuracy对象有两个状态value和weight。Accuracy的定义参照 https://en.wikipedia.org/wiki/Accuracy_and_precision 。
+该接口用来计算多个 mini-batch 的平均准确率。Accuracy 对象有两个状态 value 和 weight。Accuracy 的定义参照 https://en.wikipedia.org/wiki/Accuracy_and_precision 。
 
 参数
 ::::::::::::
@@ -33,15 +33,15 @@ COPY-FROM: paddle.fluid.metrics.Accuracy
 update(value, weight)
 '''''''''
 
-该函数使用输入的(value, weight)来累计更新Accuracy对象的对应状态，更新方式如下：
+该函数使用输入的(value, weight)来累计更新 Accuracy 对象的对应状态，更新方式如下：
 
     .. math::
                    \\ \begin{array}{l}{\text { self. value }+=\text { value } * \text { weight }} \\ {\text { self. weight }+=\text { weight }}\end{array} \\
 
 **参数**
-    
-    - **value** (float|numpy.array) – mini-batch的正确率
-    - **weight** (int|float) – mini-batch的大小
+
+    - **value** (float|numpy.array) – mini-batch 的正确率
+    - **weight** (int|float) – mini-batch 的大小
 
 **返回**
 无
@@ -49,11 +49,10 @@ update(value, weight)
 eval()
 '''''''''
 
-该函数计算并返回累计的mini-batches的平均准确率。
+该函数计算并返回累计的 mini-batches 的平均准确率。
 
 **返回**
-累计的mini-batches的平均准确率
+累计的 mini-batches 的平均准确率
 
 **返回类型**
-float或numpy.array
-
+float 或 numpy.array

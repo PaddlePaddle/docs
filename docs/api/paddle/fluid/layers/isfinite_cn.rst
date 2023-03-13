@@ -19,7 +19,7 @@ isfinite
 
 返回
 ::::::::::::
- 
+
   - Variable (Tensor / LoDTensor)，此 Tensor 变量包含一个 bool 型结果。
 
 返回类型

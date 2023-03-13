@@ -16,14 +16,14 @@ BReLU 激活函数
 参数
 ::::::::::::
 
-  - **x** (Variable) - 该OP的输入为多维Tensor。数据类型为float32，float64。
-  - **t_min** (float，可选) - BRelu的最小值，默认值为0.0。
-  - **t_max** (float，可选) - BRelu的最大值，默认值为24.0。
+  - **x** (Variable) - 该 OP 的输入为多维 Tensor。数据类型为 float32，float64。
+  - **t_min** (float，可选) - BRelu 的最小值，默认值为 0.0。
+  - **t_max** (float，可选) - BRelu 的最大值，默认值为 24.0。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::::
- 输出为Tensor，与 ``x`` 维度相同、数据类型相同。
+ 输出为 Tensor，与 ``x`` 维度相同、数据类型相同。
 
 返回类型
 ::::::::::::

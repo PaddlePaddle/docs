@@ -8,21 +8,21 @@ where
 
 
 
-该OP计算输入元素中为True的元素在输入中的坐标（index）。
-        
+该 OP 计算输入元素中为 True 的元素在输入中的坐标（index）。
+
 参数
 ::::::::::::
 
-    - **condition** （Variable）– 输入秩至少为1的多维Tensor，数据类型是bool类型。
+    - **condition** （Variable）– 输入秩至少为 1 的多维 Tensor，数据类型是 bool 类型。
 
 返回
 ::::::::::::
-输出condition元素为True的坐标（index），将所有的坐标（index）组成一个2-D的Tensor。
+输出 condition 元素为 True 的坐标（index），将所有的坐标（index）组成一个 2-D 的 Tensor。
 
 返回类型
 ::::::::::::
-Variable，数据类型是int64。
-     
+Variable，数据类型是 int64。
+
 代码示例
 ::::::::::::
 

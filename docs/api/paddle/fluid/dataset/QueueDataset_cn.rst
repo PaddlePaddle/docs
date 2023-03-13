@@ -25,9 +25,9 @@ QueueDataset
 local_shuffle()
 '''''''''
 
-局域shuffle数据
+局域 shuffle 数据
 
-QueueDataset中不支持局域shuffle，可能抛出NotImplementedError
+QueueDataset 中不支持局域 shuffle，可能抛出 NotImplementedError
 
 **代码示例**
 
@@ -42,9 +42,9 @@ QueueDataset中不支持局域shuffle，可能抛出NotImplementedError
 global_shuffle(fleet=None)
 '''''''''
 
-全局shuffle数据
+全局 shuffle 数据
 
-QueueDataset中不支持全局shuffle，可能抛出NotImplementedError
+QueueDataset 中不支持全局 shuffle，可能抛出 NotImplementedError
 
 **代码示例**
 
@@ -74,7 +74,7 @@ desc()
 set_batch_size(batch_size)
 '''''''''
 
-设置batch size。在训练期间生效。
+设置 batch size。在训练期间生效。
 
 **代码示例**
 
@@ -94,7 +94,7 @@ set_fea_eval(record_candidate_size,fea_eval)
 **参数**
 
     - **record_candidate_size** (int) - 打乱一个特征的候选实例大小
-    - **fea_eval** (bool) - 是否设置特征验证模式来打乱特征，默认为True。
+    - **fea_eval** (bool) - 是否设置特征验证模式来打乱特征，默认为 True。
 
 **代码示例**
 
@@ -107,7 +107,7 @@ set_fea_eval(record_candidate_size,fea_eval)
 set_filelist(filelist)
 '''''''''
 
-在当前的worker中设置文件列表。
+在当前的 worker 中设置文件列表。
 
 **代码示例**
 
@@ -124,7 +124,7 @@ set_filelist(filelist)
 set_hdfs_config(fs_name, fs_ugi)
 '''''''''
 
-设置hdfs配置：fs名称与ugi。
+设置 hdfs 配置：fs 名称与 ugi。
 
 **代码示例**
 
@@ -136,13 +136,13 @@ set_hdfs_config(fs_name, fs_ugi)
 
 **参数**
 
-    - **fs_name** (str) - fs名称
+    - **fs_name** (str) - fs 名称
     - **fs_ugi** (str) - fs ugi
 
 set_pipe_command(pipe_coommand)
 '''''''''
 
-在当前的 ``dataset`` 中设置pipe命令。pipe命令只能使用UNIX的pipe命令
+在当前的 ``dataset`` 中设置 pipe 命令。pipe 命令只能使用 UNIX 的 pipe 命令
 
 **代码示例**
 
@@ -154,12 +154,12 @@ set_pipe_command(pipe_coommand)
 
 **参数**
 
-    - **pipe_command** (str) - pipe命令
+    - **pipe_command** (str) - pipe 命令
 
 set_thread(thread_num)
 '''''''''
 
-设置进程数量，等于readers的数量。
+设置进程数量，等于 readers 的数量。
 
 **代码示例**
 
@@ -193,7 +193,7 @@ set_use_var(var_list)
 slots_shuffle(slots)
 '''''''''
 
-该方法是在特征层次上的一个打乱方法，经常被用在有着较大缩放率实例的稀疏矩阵上，为了比较metric，比如auc，在一个或者多个有着baseline的特征上做特征打乱来验证特征level的重要性。
+该方法是在特征层次上的一个打乱方法，经常被用在有着较大缩放率实例的稀疏矩阵上，为了比较 metric，比如 auc，在一个或者多个有着 baseline 的特征上做特征打乱来验证特征 level 的重要性。
 
 **参数**
 
@@ -206,6 +206,5 @@ slots_shuffle(slots)
     import paddle.fluid as fluid
     dataset = fluid.DatasetFactory().create_dataset(“InMemoryDataset”)
     dataset.set_merge_by_lineid()
-    #支持slot 0
+    #支持 slot 0
     dataset.slots_shuffle([‘0’])
-

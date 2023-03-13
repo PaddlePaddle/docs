@@ -8,7 +8,7 @@ relu6
 
 
 
-relu6激活函数
+relu6 激活函数
 
 .. math:: out=min(max(0, x), threshold)
 
@@ -17,7 +17,7 @@ relu6激活函数
 ::::::::::::
 
     - **x** (Variable) - 输入的多维 ``Tensor``，数据类型为：float32、float64。
-    - **threshold** (float) - relu6的阈值。默认值为6.0
+    - **threshold** (float) - relu6 的阈值。默认值为 6.0
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

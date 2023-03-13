@@ -11,9 +11,9 @@ ErrorClipByValue
 给定一个 Tensor  ``t`` （该 Tensor 传入方式见代码示例），对 Tensor 中的元素超出给定最大 ``max`` 和最小界 ``min`` 内区间范围 [min, max] 的元素，重设为所超出界的界值。
 
 
-- 任何小于min（最小值）的值都被设置为 ``min``
+- 任何小于 min（最小值）的值都被设置为 ``min``
 
-- 任何大于max（最大值）的值都被设置为 ``max``
+- 任何大于 max（最大值）的值都被设置为 ``max``
 
 
 参数
@@ -22,12 +22,12 @@ ErrorClipByValue
  - **max** (foat) - 要修剪的最大值。
  - **min** (float) - 要修剪的最小值。如果用户没有设置，将被框架默认设置为 ``-max`` 。
 
-  
+
 代码示例
 ::::::::::::
- 
+
 .. code-block:: python
-        
+
      import paddle.fluid as fluid
 
      BATCH_SIZE = 128
@@ -46,8 +46,3 @@ ErrorClipByValue
      prog_clip = prog.clone()
      prog_clip.block(0).var(hidden1.name)._set_error_clip(
          fluid.clip.ErrorClipByValue(max=CLIP_MAX, min=CLIP_MIN))
-
-
-
-
-

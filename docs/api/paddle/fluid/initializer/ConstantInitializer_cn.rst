@@ -8,13 +8,13 @@ ConstantInitializer
 
 
 
-该接口为常量初始化函数，用于权重初始化，通过输入的value值初始化输入变量；
+该接口为常量初始化函数，用于权重初始化，通过输入的 value 值初始化输入变量；
 
 参数
 ::::::::::::
 
         - **value** (float16|float32) - 用于初始化输入变量的值；
-        - **force_cpu** (bool) - 用于表示初始化的位置，为True时，会强制在CPU上初始化（即使executor设置的是CUDA）。默认为False。
+        - **force_cpu** (bool) - 用于表示初始化的位置，为 True 时，会强制在 CPU 上初始化（即使 executor 设置的是 CUDA）。默认为 False。
 
 返回
 ::::::::::::

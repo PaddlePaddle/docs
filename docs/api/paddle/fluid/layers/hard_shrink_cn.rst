@@ -8,7 +8,7 @@ hard_shrink
 
 
 
-HardShrink激活函数(HardShrink activation operator)
+HardShrink 激活函数(HardShrink activation operator)
 
 
 .. math::
@@ -22,12 +22,12 @@ HardShrink激活函数(HardShrink activation operator)
 参数
 ::::::::::::
 
-    - **x** - HardShrink激活函数的输入
-    - **threshold** (FLOAT)-HardShrink激活函数的threshold值。[默认：0.5]
+    - **x** - HardShrink 激活函数的输入
+    - **threshold** (FLOAT)-HardShrink 激活函数的 threshold 值。[默认：0.5]
 
 返回
 ::::::::::::
-HardShrink激活函数的输出
+HardShrink 激活函数的输出
 
 代码示例
 ::::::::::::

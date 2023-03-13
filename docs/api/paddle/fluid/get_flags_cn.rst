@@ -4,12 +4,12 @@ get_flags
 -------------------------------
 
 .. py:function:: paddle.fluid.get_flags(flags)
-用于获取Paddle框架中环境变量FLAGS的当前值。
+用于获取 Paddle 框架中环境变量 FLAGS 的当前值。
 
 参数
 ::::::::::::
 
-    - **flags** (list|tuple|str) - 需要获取的环境变量FLAGS的名称。
+    - **flags** (list|tuple|str) - 需要获取的环境变量 FLAGS 的名称。
 
 代码示例
 ::::::::::::

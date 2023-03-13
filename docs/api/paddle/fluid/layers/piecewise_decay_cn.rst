@@ -45,9 +45,3 @@ piecewise_decay
             momentum=0.9,
             learning_rate=fluid.layers.piecewise_decay(boundaries=boundaries, values=values),
             regularization=fluid.regularizer.L2Decay(1e-4))
-
-
-
-
-
-

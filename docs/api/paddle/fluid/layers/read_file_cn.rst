@@ -9,18 +9,18 @@ read_file
 
 
 
-从给定的reader中读取数据
+从给定的 reader 中读取数据
 
-reader是一个Variable，它可以是由函数fluid.layers.py_reader()生成的reader，或者是由函数fluid.layers.double_buffer()生成的装饰Variable。
+reader 是一个 Variable，它可以是由函数 fluid.layers.py_reader()生成的 reader，或者是由函数 fluid.layers.double_buffer()生成的装饰 Variable。
 
 参数
 ::::::::::::
 
-    - **reader** (Variable)-待处理的reader
+    - **reader** (Variable)-待处理的 reader
 
 返回
 ::::::::::::
-从reader中读取的数据元组，元组数据类型为Variable
+从 reader 中读取的数据元组，元组数据类型为 Variable
 
 返回类型
 ::::::::::::

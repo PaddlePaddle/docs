@@ -5,11 +5,11 @@ profiler
 
 .. py:function:: paddle.fluid.profiler.profiler(state, sorted_key=None, profile_path='/tmp/profile', tracer_option='Default')
 
-通用性能分析器。与 :ref:`cn_api_fluid_profiler_cuda_profiler` 不同，此分析器可用于分析CPU和GPU程序。
+通用性能分析器。与 :ref:`cn_api_fluid_profiler_cuda_profiler` 不同，此分析器可用于分析 CPU 和 GPU 程序。
 
 .. warning::
-   该API将在未来废弃，对CPU和GPU的性能分析请参考使用paddle最新的性能分析器 :ref:`Profiler <cn_api_profiler_profiler>` 。
-   如代码示例中对该API的使用用新的Profiler进行替换最简单的用法如下
+   该 API 将在未来废弃，对 CPU 和 GPU 的性能分析请参考使用 paddle 最新的性能分析器 :ref:`Profiler <cn_api_profiler_profiler>` 。
+   如代码示例中对该 API 的使用用新的 Profiler 进行替换最简单的用法如下
 
 .. code-block:: python
 
@@ -38,15 +38,15 @@ profiler
 参数
 ::::::::::::
 
-  - **state** (str) –  性能分析状态，取值为 'CPU' 或 'GPU' 或 'All'。'CPU'表示只分析CPU上的性能；'GPU'表示同时分析CPU和GPU上的性能；'All'表示除了同时分析CPU和GPU上的性能外，还将生成 `性能分析的时间轴信息 <../../advanced_usage/development/profiling/timeline_cn.html>`_ 。
-  - **sorted_key** (str，可选) – 性能分析结果的打印顺序，取值为None、'call'、'total'、'max'、'min'、'ave'之一。默认值为None，表示按照第一次结束时间顺序打印；'call'表示按调用的数量进行排序；'total'表示按总执行时间排序；'max'表示按最大执行时间排序；'min'表示按最小执行时间排序；'ave'表示按平均执行时间排序。
-  - **profile_path** (str，可选) –  如果性能分析状态为'All'，将生成的时间轴信息写入profile_path，默认输出文件为 ``/tmp/profile`` 。
-  - **tracer_option** (str，可选) –   性能分析选项取值为 'Default' 或 'OpDetail' 或 'AllOpDetail'，此选项用于设置性能分析层次并打印不同层次的性能分析结果，`Default` 选项打印不同Op类型的性能分析结果，`OpDetail` 则会打印不同OP类型更详细的性能分析结果，比如compute和data transform。 `AllOpDetail` 和 `OpDetail` 类似，但是打印的是不同Op名字的性能分析结果。
+  - **state** (str) –  性能分析状态，取值为 'CPU' 或 'GPU' 或 'All'。'CPU'表示只分析 CPU 上的性能；'GPU'表示同时分析 CPU 和 GPU 上的性能；'All'表示除了同时分析 CPU 和 GPU 上的性能外，还将生成 `性能分析的时间轴信息 <../../advanced_usage/development/profiling/timeline_cn.html>`_ 。
+  - **sorted_key** (str，可选) – 性能分析结果的打印顺序，取值为 None、'call'、'total'、'max'、'min'、'ave'之一。默认值为 None，表示按照第一次结束时间顺序打印；'call'表示按调用的数量进行排序；'total'表示按总执行时间排序；'max'表示按最大执行时间排序；'min'表示按最小执行时间排序；'ave'表示按平均执行时间排序。
+  - **profile_path** (str，可选) –  如果性能分析状态为'All'，将生成的时间轴信息写入 profile_path，默认输出文件为 ``/tmp/profile`` 。
+  - **tracer_option** (str，可选) –   性能分析选项取值为 'Default' 或 'OpDetail' 或 'AllOpDetail'，此选项用于设置性能分析层次并打印不同层次的性能分析结果，`Default` 选项打印不同 Op 类型的性能分析结果，`OpDetail` 则会打印不同 OP 类型更详细的性能分析结果，比如 compute 和 data transform。 `AllOpDetail` 和 `OpDetail` 类似，但是打印的是不同 Op 名字的性能分析结果。
 
 抛出异常
 ::::::::::::
 
-  - ``ValueError`` – 如果state取值不在 ['CPU', 'GPU', 'All']中，或sorted_key取值不在 [None, 'calls', 'total', 'max', 'min', 'ave']中，则抛出异常。
+  - ``ValueError`` – 如果 state 取值不在 ['CPU', 'GPU', 'All']中，或 sorted_key 取值不在 [None, 'calls', 'total', 'max', 'min', 'ave']中，则抛出异常。
 
 代码示例
 ::::::::::::
@@ -78,8 +78,8 @@ profiler
 .. code-block:: text
 
     #### sorted_key = 'total', 'calls', 'max', 'min', 'ave' 结果 ####
-    # 示例结果中，除了Sorted by number of xxx in descending order in the same thread 这句随着sorted_key变化而不同，其余均相同。
-    # 原因是，示例结果中，上述5列都已经按从大到小排列了。
+    # 示例结果中，除了 Sorted by number of xxx in descending order in the same thread 这句随着 sorted_key 变化而不同，其余均相同。
+    # 原因是，示例结果中，上述 5 列都已经按从大到小排列了。
     ------------------------->     Profiling Report     <-------------------------
 
     Place: CPU
@@ -96,7 +96,7 @@ profiler
     thread0::feed               8           0.076649    0.006834    0.024616    0.00958112  0.000582432
 
     #### sorted_key = None 结果 ####
-    # 示例结果中，是按照Op结束时间顺序打印，因此打印顺序为feed->conv2d->elementwise_add
+    # 示例结果中，是按照 Op 结束时间顺序打印，因此打印顺序为 feed->conv2d->elementwise_add
     ------------------------->     Profiling Report     <-------------------------
 
     Place: CPU

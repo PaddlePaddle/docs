@@ -15,9 +15,9 @@ MultivariateNormalDiag
 .. math::
 
     pdf(x; loc, scale) = \frac{e^{-\frac{||y||^2}{2}}}{Z}
-    
+
     y = inv(scale) @ (x - loc)
-    
+
     Z = (2\pi )^{0.5k} |det(scale)|
 
 上面公式中：
@@ -29,8 +29,8 @@ MultivariateNormalDiag
 参数
 ::::::::::::
 
-    - **loc** (list|numpy.ndarray|Variable) - 形状为 :math:`[k]` 的多元高斯分布的均值列表。数据类型为float32。
-    - **scale** (list|numpy.ndarray|Variable) - 形状为 :math:`[k, k]` 的多元高斯分布的对角协方差矩阵，且除对角元素外，其他元素取值均为0。数据类型为float32。
+    - **loc** (list|numpy.ndarray|Variable) - 形状为 :math:`[k]` 的多元高斯分布的均值列表。数据类型为 float32。
+    - **scale** (list|numpy.ndarray|Variable) - 形状为 :math:`[k, k]` 的多元高斯分布的对角协方差矩阵，且除对角元素外，其他元素取值均为 0。数据类型为 float32。
 
 代码示例
 ::::::::::::
@@ -41,11 +41,11 @@ COPY-FROM: paddle.fluid.layers.MultivariateNormalDiag
 参数
 ::::::::::::
 
-    - **other** (MultivariateNormalDiag) - 输入的另一个多元高斯分布。数据类型为float32。
-    
+    - **other** (MultivariateNormalDiag) - 输入的另一个多元高斯分布。数据类型为 float32。
+
 返回
 ::::::::::::
-相对于另一个多元高斯分布的KL散度，数据类型为float32
+相对于另一个多元高斯分布的 KL 散度，数据类型为 float32
 
 返回类型
 ::::::::::::
@@ -54,18 +54,11 @@ Variable
 .. py:function:: entropy()
 
 信息熵
-    
+
 返回
 ::::::::::::
-多元高斯分布的信息熵，数据类型为float32
+多元高斯分布的信息熵，数据类型为 float32
 
 返回类型
 ::::::::::::
 Variable
-
-
-
-
-
-
-

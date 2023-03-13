@@ -8,9 +8,9 @@ CompositeMetric
 
 
 
-创建一个可以容纳若干个评价指标（如F1, accuracy, recall等）的容器，评价指标添加完成后，通过调用eval()方法可自动计算该容器内的所有评价指标。
+创建一个可以容纳若干个评价指标（如 F1, accuracy, recall 等）的容器，评价指标添加完成后，通过调用 eval()方法可自动计算该容器内的所有评价指标。
 
-**注意，只有输入参数列表完全相同的评价指标才可被加入到同一个CompositeMetric实例内。**
+**注意，只有输入参数列表完全相同的评价指标才可被加入到同一个 CompositeMetric 实例内。**
 
 继承自：MetricBase
 
@@ -29,7 +29,7 @@ add_metric(metric)
 
 **参数**
 
-    - **metric** (MetricBase) – 评价指标对象，一个MetricBase的实例。
+    - **metric** (MetricBase) – 评价指标对象，一个 MetricBase 的实例。
 
 **返回**
 无
@@ -42,8 +42,8 @@ update(preds, labels)
 
 **参数**
 
-    - **preds**  (numpy.array) - 当前mini-batch的预测结果，输入的shape和dtype应与该容器内添加的评价指标的要求保持一致。
-    - **labels**  (numpy.array) - 当前mini-batch的真实标签，输入的shape和dtype应与该容器内添加的评价指标的要求保持一致
+    - **preds**  (numpy.array) - 当前 mini-batch 的预测结果，输入的 shape 和 dtype 应与该容器内添加的评价指标的要求保持一致。
+    - **labels**  (numpy.array) - 当前 mini-batch 的真实标签，输入的 shape 和 dtype 应与该容器内添加的评价指标的要求保持一致
 
 **返回**
 无
@@ -57,16 +57,7 @@ eval()
  无
 
 **返回**
- 列表存储的各个评价指标的计算结果。每个计算结果的数据类型和shape取决于被添加的评价指标的定义
+ 列表存储的各个评价指标的计算结果。每个计算结果的数据类型和 shape 取决于被添加的评价指标的定义
 
 **返回类型**
  list
-
-
-
-
-
-
-
-
-

@@ -37,7 +37,7 @@ update(distances, seq_num)
 
 **参数**
 
-    - **distances** – 一个形状为(batch_size, 1)的numpy.array，每个元素代表两个序列间的距离。
+    - **distances** – 一个形状为(batch_size, 1)的 numpy.array，每个元素代表两个序列间的距离。
     - **seq_num** – 一个整型/浮点型值，代表序列对的数量。
 
 **返回**
@@ -49,8 +49,3 @@ eval()
 返回两个浮点数：
 avg_distance：使用更新函数更新的所有序列对的平均距离。
 avg_instance_error：编辑距离不为零的序列对的比例。
-
-
-
-
-

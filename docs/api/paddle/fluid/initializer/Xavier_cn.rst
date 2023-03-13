@@ -12,9 +12,3 @@ paddle.fluid.initializer.Xavier
 
 
 ``XavierInitializer`` 的别名
-
-
-
-
-
-

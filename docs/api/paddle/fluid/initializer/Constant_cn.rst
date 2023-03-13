@@ -12,5 +12,3 @@ paddle.fluid.initializer.Constant
 
 
 ``ConstantInitializer`` 的别名
-
-

@@ -36,7 +36,7 @@ margin rank loss（间隔排序损失）层。在排序问题中，它可以比�
 抛出异常
 ::::::::::::
 
-  - ``ValueError`` - ``label`` , ``left`` , ``right`` 有一者不为Variable类型时，抛出此异常
+  - ``ValueError`` - ``label`` , ``left`` , ``right`` 有一者不为 Variable 类型时，抛出此异常
 
 代码示例
 ::::::::::::

@@ -2484,3 +2484,12 @@ data_ptr()
 返回：Tensor 的数据的存储地址
 
 返回类型：int
+
+trapezoid(y, x, dx, axis)
+:::::::::
+仅用于动态图 Tensor。计算沿指定轴的梯形积分。如果未指定 x，则假设 dx 为 1.0。
+返回：沿指定轴的梯形积分
+
+返回类型：Tensor
+
+请参考 :ref:`_cn_api_paddle_trapezoid`

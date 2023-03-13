@@ -8,21 +8,21 @@ pad2d
 
 
 
-该OP依照 paddings 和 mode 属性对input进行2维 ``pad`` 。
+该 OP 依照 paddings 和 mode 属性对 input 进行 2 维 ``pad`` 。
 
 参数
 ::::::::::::
 
-  - **input** (Tensor) - 类型为float32的4-D Tensor，格式为 `[N, C, H, W]` 或 `[N, H, W, C]` 。
-  - **paddings** (Tensor | List[int32]) - 填充大小。如果paddings是一个List，它必须包含四个整数 `[padding_top, padding_bottom, padding_left, padding_right]` 。
-    如果paddings是Tensor，则是类型为int32 的1-D Tensor，形状是 `[4]`。默认值为 `[0,0,0,0]` 。
-  - **mode** (str) - padding的三种模式，分别为 `'constant'` (默认)、 `'reflect'` 、 `'edge'` 。 `'constant'` 为填充常数 `pad_value` ， `'reflect'` 为填充以input边界值为轴的映射，`'edge'` 为填充input边界值。具体结果可见以下示例。默认值为 `'constant'` 。
-  - **pad_value** (float32) - 以 `'constant'` 模式填充区域时填充的值。默认值为0.0。
-  - **data_format** (str)  - 指定input的格式，可为 `'NCHW'` 和 `'NHWC'`，默认值为 `'NCHW'` 。
+  - **input** (Tensor) - 类型为 float32 的 4-D Tensor，格式为 `[N, C, H, W]` 或 `[N, H, W, C]` 。
+  - **paddings** (Tensor | List[int32]) - 填充大小。如果 paddings 是一个 List，它必须包含四个整数 `[padding_top, padding_bottom, padding_left, padding_right]` 。
+    如果 paddings 是 Tensor，则是类型为 int32 的 1-D Tensor，形状是 `[4]`。默认值为 `[0,0,0,0]` 。
+  - **mode** (str) - padding 的三种模式，分别为 `'constant'` (默认)、 `'reflect'` 、 `'edge'` 。 `'constant'` 为填充常数 `pad_value` ， `'reflect'` 为填充以 input 边界值为轴的映射，`'edge'` 为填充 input 边界值。具体结果可见以下示例。默认值为 `'constant'` 。
+  - **pad_value** (float32) - 以 `'constant'` 模式填充区域时填充的值。默认值为 0.0。
+  - **data_format** (str)  - 指定 input 的格式，可为 `'NCHW'` 和 `'NHWC'`，默认值为 `'NCHW'` 。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 返回
 ::::::::::::
-Tensor，对input进行2维 pad 的结果，数据类型和input一样的4-D Tensor。
+Tensor，对 input 进行 2 维 pad 的结果，数据类型和 input 一样的 4-D Tensor。
 
 **示例**：
 

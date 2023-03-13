@@ -8,7 +8,7 @@ LambdaDecay
 
 
 
-该API提供 lambda函数 设置学习率的功能。``lr_lambda`` 为一个lambda函数，其通过 ``epoch`` 计算出一个因子，该因子会乘以初始学习率。
+该 API 提供 lambda 函数 设置学习率的功能。``lr_lambda`` 为一个 lambda 函数，其通过 ``epoch`` 计算出一个因子，该因子会乘以初始学习率。
 
 算法可以描述为：
 
@@ -16,7 +16,7 @@ LambdaDecay
 
     learning_rate = 0.5        # init learning_rate
     lr_lambda = lambda epoch: 0.95 ** epoch
-    
+
     learning_rate = 0.5        # epoch 0
     learning_rate = 0.475      # epoch 1
     learning_rate = 0.45125    # epoch 2
@@ -24,8 +24,8 @@ LambdaDecay
 参数
 ::::::::::::
 
-    - **learning_rate** (float|int) - 初始化的学习率。可以是Python的float或int。
-    - **lr_lambda** (function) - ``lr_lambda`` 为一个lambda函数，其通过 ``epoch`` 计算出一个因子，该因子会乘以初始学习率。
+    - **learning_rate** (float|int) - 初始化的学习率。可以是 Python 的 float 或 int。
+    - **lr_lambda** (function) - ``lr_lambda`` 为一个 lambda 函数，其通过 ``epoch`` 计算出一个因子，该因子会乘以初始学习率。
 
 返回
 ::::::::::::
@@ -35,7 +35,7 @@ LambdaDecay
 ::::::::::::
 
     .. code-block:: python
-        
+
         import paddle.fluid as fluid
         import numpy as np
         with fluid.dygraph.guard():
@@ -63,7 +63,7 @@ epoch(epoch=None)
 
 **参数**
 
-  - **epoch** (int|float，可选) - 类型：int或float。指定当前的epoch数。默认：无，此时将会自动累计epoch数。
+  - **epoch** (int|float，可选) - 类型：int 或 float。指定当前的 epoch 数。默认：无，此时将会自动累计 epoch 数。
 
 **返回**
 
