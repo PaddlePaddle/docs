@@ -53,4 +53,10 @@ class LayerNorm(paddle.nn.LayerNorm):
                  weight_attr=weight_attr,
                  bias_attr=weight_attr,
                  name=None)
+
+# 当 PyTorch 的 elementwise_affine 为`True`，torch 写法
+torch.nn.LayerNorm(normalized_shape=(256, 256), eps=1e-05, elementwise_affine=True)
+
+# paddle 写法
+paddle.nn.LayerNorm(normalized_shape=(256, 256), epsilon=1e-05)
 ```
