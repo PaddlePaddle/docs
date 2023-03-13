@@ -1,11 +1,11 @@
-## torch.mv
+## [ 组合替代实现 ]torch.mv
 ### [torch.mv](https://pytorch.org/docs/stable/generated/torch.mv.html?highlight=mv#torch.mv)
 ```python
 torch.mv(input, vec, out=None)
 ```
 
 ###  功能介绍
-用于实现矩阵（`input`，大小为$n × m$）与向量（`vec`, $m$）相乘，PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
+用于实现矩阵（`input`，大小为$n × m$）与向量（`vec`, $m$）相乘，PaddlePaddle 目前暂无对应 API，可使用如下代码组合实现该 API。
 ```python
 import paddle
 

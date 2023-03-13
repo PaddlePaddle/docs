@@ -1,4 +1,4 @@
-# torch.nn.MSELoss
+## [torch 参数更多 ]torch.nn.MSELoss
 ### [torch.nn.MSELoss](https://pytorch.org/docs/1.13/generated/torch.nn.MSELoss.html?highlight=mseloss#torch.nn.MSELoss)
 
 ```python
@@ -14,11 +14,12 @@ paddle.nn.MSELoss(reduction='mean')
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | size_average  | -            | 已弃用。  |
 | reduce        | -            | 已弃用。  |
+| reduction        | reduction            | 表示对输出结果的计算方式。  |
 
 ### 转写示例
 #### size_average

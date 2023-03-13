@@ -1,4 +1,4 @@
-# torch.nn.BCELoss
+# [ torch 参数更多 ]torch.nn.BCELoss
 ### [torch.nn.BCELoss](https://pytorch.org/docs/1.13/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss)
 
 ```python
@@ -17,11 +17,13 @@ paddle.nn.BCELoss(weight=None,
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| size_average  | -            | 已弃用。  |
-| reduce        | -            | 已弃用。  |
+| weight           | weight      | 表示每个 batch 二值交叉熵的权重。                                     |
+| size_average  | -            | PyTorch 已弃用。  |
+| reduce        | -            | PyTorch 已弃用。  |
+| reduction  | reduction            | 表示应用于输出结果的计算方式。  |
 
 ### 转写示例
 #### size_average

@@ -1,4 +1,4 @@
-## torch.real
+## [ 仅参数名不一致 ]torch.real
 ### [torch.real](https://pytorch.org/docs/stable/generated/torch.real.html?highlight=real#torch.real)
 
 ```python
@@ -12,7 +12,7 @@ paddle.real(x)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的 Tensorr。                   |
+| input         | x            | 输入的 Tensor ， 仅参数名不一致。                   |

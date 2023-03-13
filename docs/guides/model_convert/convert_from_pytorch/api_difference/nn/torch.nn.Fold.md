@@ -1,4 +1,4 @@
-## torch.nn.Fold
+## [ 仅参数名不一致 ]torch.nn.Fold
 ### [torch.nn.Fold](https://pytorch.org/docs/stable/generated/torch.nn.Fold.html?highlight=nn+fold#torch.nn.Fold)
 
 ```python
@@ -21,7 +21,7 @@ paddle.nn.Fold(output_sizes,
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | output_size   | output_sizes | 输出尺寸，整数或者整型列表。                   |

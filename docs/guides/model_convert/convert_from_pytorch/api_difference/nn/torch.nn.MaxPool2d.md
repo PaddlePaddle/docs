@@ -1,4 +1,4 @@
-## torch.nn.MaxPool2d
+## [ torch 参数更多 ]torch.nn.MaxPool2d
 ### [torch.nn.MaxPool2d](https://pytorch.org/docs/1.13/generated/torch.nn.MaxPool2d.html?highlight=maxpool2d#torch.nn.MaxPool2d)
 
 ```python
@@ -22,8 +22,12 @@ paddle.nn.MaxPool2D(kernel_size,
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| dilation      | -            | 设置空洞池化的大小，PaddlePaddle 无此参数，无转写方式。               |
-| return_indices| return_mask  | 是否返回最大值的索引。                                  |
+| kernel_size          | kernel_size            | 表示池化核大小。                           |
+| stride          | stride            | 表示池化核步长。                           |
+| padding          | padding            | 表示填充大小。                           |
+| dilation      | -            | 设置空洞池化的大小，PaddlePaddle 无此参数，暂无转写方式。               |
+| return_indices | return_mask  | 是否返回最大值的索引，仅参数名不一致。                                  |
+| ceil_mode | ceil_mode  | 表示是否用 ceil 函数计算输出的 height 和 width 。                                  |

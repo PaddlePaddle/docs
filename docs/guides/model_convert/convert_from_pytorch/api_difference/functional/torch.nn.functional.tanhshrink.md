@@ -1,4 +1,4 @@
-## torch.nn.functional.tanhshrink
+## [ 仅参数名不一致 ]torch.nn.functional.tanhshrink
 
 ### [torch.nn.functional.tanhshrink](https://pytorch.org/docs/stable/generated/torch.nn.functional.tanhshrink.html?highlight=tanhshri#torch.nn.functional.tanhshrink)
 
@@ -14,7 +14,7 @@ paddle.nn.functional.tanhshrink(x,
 ```
 
 两者功能一致，仅参数名不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input           | x           | 表示输入的 Tensor 。               |
+| input           | x           | 表示输入的 Tensor ，仅参数名不一致。               |

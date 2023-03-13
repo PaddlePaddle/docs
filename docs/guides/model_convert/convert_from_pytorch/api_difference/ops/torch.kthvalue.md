@@ -1,4 +1,4 @@
-## torch.kthvalue
+## [ 组合替代实现 ]torch.kthvalue
 
 ### [torch.kthvalue](https://pytorch.org/docs/stable/generated/torch.kthvalue.html?highlight=kthvalue#torch.kthvalue)
 

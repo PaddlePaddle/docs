@@ -1,4 +1,4 @@
-## torch.subtract
+## [torch 参数更多 ]torch.subtract
 ### [torch.subtract](https://pytorch.org/docs/stable/generated/torch.subtract.html?highlight=subtract#torch.subtract)
 
 ```python
