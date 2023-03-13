@@ -64,3 +64,27 @@ z_i = \begin{cases}
 $$
 
 所以如果 PyTorch 函数参数 $beta$ 与 Paddle 中的参数 $delta$ 取值相同，则 Paddle 的 loss 要再除以 $delta$ 值才能与 Torch 中的结果对齐。
+
+
+### 转写示例
+```python
+# Pytorch 的 size_average、 reduce 参数转为 Paddle 的 reduction 参数
+if size_average is None:
+    size_average = True
+if reduce is None:
+    reduce = True
+if size_average and reduce:
+    reduction = 'mean'
+elif reduce:
+    reduction = 'sum'
+else:
+    reduction = 'none'
+
+# PyTorch 的 beta 参数转化为 delta 参数
+delta = beta
+
+input = paddle.rand([3, 3]).astype('float32')
+label = paddle.rand([3, 3]).astype('float32')
+
+output = paddle.nn.functional.smooth_l1_loss(input, label, delta=delta) / delta
+```
