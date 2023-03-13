@@ -21,4 +21,10 @@ Tensor，形状与 y 的形状与用于计算 trapezoidal rule 时维度有关�
 代码示例
 :::::::::
 
-COPY-FROM: paddle.trapezoid
+
+::
+
+    x=paddle.to_tensor([[1, 2, 3], [3, 4, 5]])
+    y=paddle.to_tensor([[2, 4, 8], [3, 5, 9]])
+    paddle.trapezoid(y, x, axis=1)
+    # paddle.to_tensor([9.0, 11.0])
