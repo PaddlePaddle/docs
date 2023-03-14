@@ -1,4 +1,4 @@
-## torch.unsqueeze
+## [ 仅参数名不一致 ]torch.unsqueeze
 ### [torch.unsqueeze](https://pytorch.org/docs/stable/generated/torch.unsqueeze.html?highlight=unsqueeze#torch.unsqueeze)
 
 ```python
@@ -15,8 +15,8 @@ paddle.unsqueeze(x,
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的 Tensor。                   |
-| dim           | axis         | 表示要插入维度的位置导。 |
+| input         | x            | 输入的 Tensor ，仅参数名不一致。                   |
+| dim           | axis         | 表示要插入维度的位置，仅参数名不一致。 |

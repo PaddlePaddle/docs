@@ -1,4 +1,4 @@
-## torch.sub
+## [ torch 参数更多 ]torch.sub
 ### [torch.sub](https://pytorch.org/docs/stable/generated/torch.sub.html?highlight=torch%20sub#torch.sub)
 
 ```python

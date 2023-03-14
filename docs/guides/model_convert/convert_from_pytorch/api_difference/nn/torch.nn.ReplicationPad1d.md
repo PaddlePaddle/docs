@@ -1,4 +1,4 @@
-## torch.nn.ReplicationPad1d
+## [ 参数用法不一致 ]torch.nn.ReplicationPad1d
 ### [torch.nn.ReplicationPad1d](https://pytorch.org/docs/stable/generated/torch.nn.ReplicationPad1d.html?highlight=pad#torch.nn.ReplicationPad1d)
 
 ```python
@@ -15,7 +15,7 @@ paddle.nn.Pad1D(padding,
                 name=None)
 ```
 
-其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
+其中 Paddle 与 Pytorch 的 padding 所支持的参数类型不一致，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

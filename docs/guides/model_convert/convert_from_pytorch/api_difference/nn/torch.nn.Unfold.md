@@ -1,4 +1,4 @@
-## torch.nn.Unfold
+## [ 参数用法不一致 ]torch.nn.Unfold
 ### [torch.nn.Unfold](https://pytorch.org/docs/stable/generated/torch.nn.Unfold.html?highlight=nn+unfold#torch.nn.Unfold)
 
 ```python
@@ -17,12 +17,14 @@ paddle.nn.Unfold(kernel_size=[3, 3],
                     dilation=1,
                     name=None)
 ```
-### 参数差异
+其中 Paddle 与 Pytorch 前四个参数所支持的参数类型不一致，具体如下：
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| padding       | paddings     | 每个维度的扩展，整数或者整型列表。                   |
-| stride        | strides      | 卷积步长，整数或者整型列表。                        |
-
+| kernel_size   | kernel_sizes | 卷积核大小，整数或者整型列表。                  |
+| dilation      | dilations    | 卷积膨胀，整型列表或者整数。                   |
+| padding       | paddings     | 每个维度的扩展，整数或者整型列表。              |
+| stride        | strides      | 步长大小，整数或者整型列表。                   |
 
 ### 功能差异
 

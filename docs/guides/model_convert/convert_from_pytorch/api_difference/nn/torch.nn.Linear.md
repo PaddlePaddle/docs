@@ -1,4 +1,4 @@
-## torch.nn.Linear
+## [ 参数用法不一致 ]torch.nn.Linear
 ### [torch.nn.Linear](https://pytorch.org/docs/1.13/generated/torch.nn.Linear.html?highlight=linear#torch.nn.Linear)
 
 ```python
@@ -18,9 +18,11 @@ torch.nn.Linear(in_features,
 ```
 
 其中 Pytorch 的 bias 与 Paddle 的 bias_attr 用法不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
+| in_features          | in_features            | 表示线性变换层输入单元的数目。                             |
+| out_features          | out_features            | 表示线性变换层输出单元的数目。                             |
 | bias          | -            | 是否在输出中添加可学习的 bias。                             |
 | -             | weight_attr  | Tensor 的所需数据类型，PyTorch 无此参数，Paddle 保持默认即可。 |
 | -             | bias_attr    | Tensor 的所需数据类型，当`bias_attr`设置为 bool 类型与 PyTorch 的作用一致。 |

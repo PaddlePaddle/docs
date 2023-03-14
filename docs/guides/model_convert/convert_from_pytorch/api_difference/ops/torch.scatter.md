@@ -1,4 +1,4 @@
-## torch.scatter
+## [ 组合替代实现 ]torch.scatter
 ### [torch.scatter](https://pytorch.org/docs/stable/generated/torch.scatter.html?highlight=scatter#torch.scatter)
 
 ```python
