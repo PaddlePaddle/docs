@@ -12,9 +12,9 @@ ESC50
 :::::::::
 
   - **mode** (str，可选) - ``'train'`` 或 ``'dev'`` 模式两者之一，默认值为 ``'train'``。
-  - **split** (int) - 默认是 1，指定 dev 的文件夹。
-  - **feat_type** (str) - 默认是 raw，raw 是原始语音，支持 mfcc，spectrogram，melspectrogram，logmelspectrogram。指定从音频提取的语音特征。
-  - **archive** (dict) - 默认是 None，类中已经设置默认 archive，指定数据集的下载链接和 md5 值。
+  - **split** (int，可选) - 默认是 1，指定 dev 的文件夹。
+  - **feat_type** (str，可选) - 默认是 raw，raw 是原始语音，支持 mfcc，spectrogram，melspectrogram，logmelspectrogram。指定从音频提取的语音特征。
+  - **archive** (dict，可选) - 默认是 None，类中已经设置默认 archive，指定数据集的下载链接和 md5 值。
 
 返回
 :::::::::
