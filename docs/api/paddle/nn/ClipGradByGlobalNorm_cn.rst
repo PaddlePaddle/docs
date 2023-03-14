@@ -28,10 +28,8 @@ ClipGradByGlobalNorm
 .. math::
             \\global\_norm=\sqrt{\sum_{i=0}^{n-1}(l2norm(t\_list[i]))^2}\\
 
-注意
-::::::::::::
-
- - ``ClipGradByGlobalNorm`` 的 ``need_clip`` 方法从2.0开始废弃。请在 :ref:`cn_api_fluid_ParamAttr` 中使用 ``need_clip`` 来说明 ``clip`` 范围。
+.. note::
+   ``ClipGradByGlobalNorm`` 的 ``need_clip`` 方法从2.0开始废弃。请在 :ref:`cn_api_fluid_ParamAttr` 中使用 ``need_clip`` 来说明 ``clip`` 范围。
 
 参数
 ::::::::::::
