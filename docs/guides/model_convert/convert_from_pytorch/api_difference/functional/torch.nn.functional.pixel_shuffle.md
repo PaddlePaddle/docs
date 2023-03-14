@@ -13,7 +13,7 @@ paddle.nn.functional.pixel_shuffle(x, upscale_factor, data_format='NCHW', name=N
 ```
 
 两者功能一致，仅参数名不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入的 Tensor，仅参数名不一致。               |

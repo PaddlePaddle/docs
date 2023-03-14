@@ -30,7 +30,7 @@ paddle.nn.functional.triplet_margin_loss(input,
 ```
 
 其中 Pytorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | anchor          | input         | 输入 Tensor，仅参数名不一致。                        |
@@ -42,7 +42,7 @@ paddle.nn.functional.triplet_margin_loss(input,
 | swap          | swap         | 是否进行交换                                  |
 | size_average          | -         | 已弃用                                      |
 | reduce          | -         | 已弃用                                     |
-| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'                         |
+| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'             |
 
 ### 转写示例
 #### size_average

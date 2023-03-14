@@ -23,7 +23,7 @@ paddle.nn.functional.smooth_l1_loss(input,
 
 两者功能一致，但 Paddle 的 delta 和 PyTorch 的 beta 参数在公式中用法不一致，具体如下：
 
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | input         | 输入 Tensor                                     |
@@ -67,6 +67,10 @@ $$
 
 
 ### 转写示例
+
+#### size_average
+
+
 ```python
 # Pytorch 的 size_average、 reduce 参数转为 Paddle 的 reduction 参数
 if size_average is None:
@@ -79,7 +83,10 @@ elif reduce:
     reduction = 'sum'
 else:
     reduction = 'none'
+```
 
+#### beta
+```python
 # PyTorch 的 beta 参数转化为 delta 参数
 delta = beta
 

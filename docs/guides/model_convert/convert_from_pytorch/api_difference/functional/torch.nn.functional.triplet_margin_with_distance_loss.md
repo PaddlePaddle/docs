@@ -25,8 +25,8 @@ paddle.nn.functional.triplet_margin_with_distance_loss(input,
                             name: str = None)
 ```
 
-其中 Pytorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
-### 参数差异
+两者功能一致，仅参数名不一致，具体如下：
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | anchor          | input         | 输入 Tensor，仅参数名不一致。                   |
@@ -34,7 +34,5 @@ paddle.nn.functional.triplet_margin_with_distance_loss(input,
 | negative          | negative         | 输入负样本                                     |
 | distance_function | distance_function |  指定两个张量距离的函数                                      |
 | margin          | margin         |  手动指定间距                                  |
-| p          | p         | 指定范数                                 |
-| eps          | epsilon         | 防止除数为零的常数                                  |
 | swap          | swap         | 是否进行交换                                  |
-| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'                         |
+| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'            |
