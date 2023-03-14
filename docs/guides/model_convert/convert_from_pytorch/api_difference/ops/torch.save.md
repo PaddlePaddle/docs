@@ -1,4 +1,4 @@
-## torch.save
+## [torch 参数更多 ]torch.save
 ### [torch.save](https://pytorch.org/docs/stable/generated/torch.save.html?highlight=save#torch.save)
 
 ```python
@@ -18,7 +18,7 @@ paddle.save(obj,
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | obj           | obj          | 要保存的对象实例，torch 支持 io.BytesIO、io.StringIO、文件，paddle 只支持文件。|
@@ -29,4 +29,4 @@ paddle.save(obj,
 
 
 ### 转写示例
-四个 torch 多支持的参数（pickle_modeule，obj，f，_use_new_zipfile_serialization），Paddle 无转写方式
+四个 torch 多支持的参数（pickle_modeule，obj，f，_use_new_zipfile_serialization），Paddle 暂无转写方式

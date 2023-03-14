@@ -1,4 +1,4 @@
-## torch.nn.Hardshrink
+## [ 仅参数名不一致 ]torch.nn.Hardshrink
 ### [torch.nn.Hardshrink](https://pytorch.org/docs/stable/generated/torch.nn.Hardshrink.html?highlight=hardshrink#torch.nn.Hardshrink)
 
 ```python
@@ -11,7 +11,9 @@ torch.nn.Hardshrink(lambd=0.5)
 paddle.nn.Hardshrink(threshold=0.5,
                         name=None)
 ```
-### 参数差异
+两者功能一致且参数用法一致，仅参数名不同，具体如下：
+
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| lambd         | threshold    | Hardshrink 激活计算公式中的阈值。                         |
+| lambd         | threshold    | Hardshrink 激活计算公式中的阈值，仅参数名不一致。                         |

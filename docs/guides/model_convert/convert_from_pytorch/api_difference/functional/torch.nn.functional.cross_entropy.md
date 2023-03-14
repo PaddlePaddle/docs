@@ -1,4 +1,4 @@
-## torch.nn.functional.cross_entropy
+## [ torch 参数更多 ]torch.nn.functional.cross_entropy
 
 ### [torch.nn.functional.cross_entropy](https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html?highlight=cross_#torch.nn.functional.cross_entropy)
 
@@ -26,12 +26,14 @@ paddle.nn.functional.cross_entropy(input,
                                    name=None)
 ```
 两者功能一致但参数不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | input         | 表示预测的 Tensor 。                                     |
 | target          | label         | 表示真实的 Tensor 。                                     |
+| weight          | weight         | 表示权重。                                     |
 | size_average    | -         | 已弃用 。                                     |
+| ignore_index          | ignore_index         | 表示忽略的标签值 。                                     |
 | reduce          | -         | 已弃用 。                                     |
 | reduction          | reduction         | 表示应用于输出结果的计算方式 。                                     |
 | label_smoothing |    - | 指定计算损失时的平滑量， Paddle 无此功能，暂无转写方式。|
