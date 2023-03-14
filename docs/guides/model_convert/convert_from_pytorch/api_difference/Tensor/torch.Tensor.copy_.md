@@ -16,7 +16,7 @@ paddle.assign(x, output=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | src           | x            | 待复制的 tensor                                          |
-| non_blocking  | -            | 用于控制 cpu 和 gpu 数据的异步复制，没有该功能，无法转写       |
+| non_blocking  | -            | 用于控制 cpu 和 gpu 数据的异步复制，转写无需考虑该参数       |
 
 
 ### 转写示例

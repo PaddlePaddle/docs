@@ -11,14 +11,14 @@ torch.Tensor.masked_fill(mask, value)
 paddle.where(mask, paddle.full(x.shape, value, x.dtype), x)
 ```
 
-paddle 无 masked_fill 函数，需要组合实现。
+torch 是类成员方式，paddle 无 masked_fill 函数，需要组合实现。
 
 ### 转写示例
 
 ```python
 # torch 写法
-torch.Tensor.masked_fill(mask, value)
+x.masked_fill(mask, value)
 
 # paddle 写法
-paddle.where(mask, paddle.full(x.shape, value, x.dtype), x)
+x = paddle.where(mask, paddle.full(x.shape, value, x.dtype), x)
 ```

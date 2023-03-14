@@ -17,11 +17,11 @@ paddle.Tensor.expand(shape, name=None)
 | size          | shape        | 扩张后的维度，size 是可变参数，paddle 是 list/tuple           |
 
 ### 转写示例
-
+#### size: 扩张后的维度
 ```python
 # torch 写法
-torch.Tensor.expand(3, 4)
+x.expand(3, 4)
 
 # paddle 写法
-paddle.Tensor.expand(shape=[3, 4])
+x.expand(shape=[3, 4])
 ```

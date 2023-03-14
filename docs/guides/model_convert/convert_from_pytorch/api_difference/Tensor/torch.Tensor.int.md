@@ -15,15 +15,15 @@ paddle.Tensor.astype(dtype)
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| memory_format | -            | tensor 存储形式                                          |
+| memory_format | -            | tensor 存储形式，转写无需考虑                                |
 |-              | dtype        | 转换后的 tensor 类型                                       |
 
 ### 转写示例
 
 ```python
 # torch 写法
-torch.Tensor.int()
+x.int()
 
 # paddle 写法
-paddle.Tensor.astype('int32')
+x.astype('int32')
 ```
