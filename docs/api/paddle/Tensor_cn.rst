@@ -2476,7 +2476,7 @@ frexp(x)
 
 返回类型：Tensor, Tensor
 
-请参考 :ref:`_cn_api_paddle_frexp`
+请参考 :ref:`cn_api_paddle_frexp`
 
 data_ptr()
 :::::::::
@@ -2492,4 +2492,4 @@ polar(abs, angle)
 
 返回类型：Tensor
 
-请参考 :ref:`_cn_api_paddle_polar`
+请参考 :ref:`cn_api_paddle_polar`
