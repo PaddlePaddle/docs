@@ -22,11 +22,13 @@ paddle.Tensor.unique(return_index=False, return_inverse=False, return_counts=Fal
 | -             | return_index| 是否返回独有元素在输入 Tensor 中的索引|
 
 ### 转写示例
-
+#### sorted：是否对返回值进行排序
 ```python
-# torch 写法
+# 当 sorted 为‘True’时，torch 写法
 torch.Tensor.unique(sorted=True, return_inverse=False, return_counts=False, dim=1)
 
 # paddle 写法
 paddle.Tensor.unique(return_index=False, return_inverse=False, return_counts=False, axis=1)
+
+# 当 sorted 为‘False’时，暂时无法转写
 ```

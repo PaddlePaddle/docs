@@ -23,8 +23,8 @@ paddle.nn.functional.sigmoid(x, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.sigmoid(input)
+torch.sigmoid(input, out=z)
 
 # Paddle 写法
-paddle.nn.functional.sigmoid(x)
+z = paddle.nn.functional.sigmoid(x)
 ```

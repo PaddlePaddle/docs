@@ -17,6 +17,9 @@ paddle.nn.functional.binary_cross_entropy_with_logits(logit, label, weight=None,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | logit        | 表示输入的 Tensor                                       |
+| weight        | weight       | 类别权重                                       |
+| reduction     | reduction    | 输出结果的计算方式                                       |
+| pos_weight    | pos_weight   | 正类的权重                                       |
 | size_average  | -            | 已废弃，和 reduce 组合决定损失计算方式                        |
 | reduce        | -            | 已废弃，和 size_average 组合决定损失计算方式                  |
 

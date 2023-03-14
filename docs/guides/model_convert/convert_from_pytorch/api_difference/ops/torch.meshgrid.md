@@ -20,9 +20,11 @@ paddle.meshgrid(*args, **kargs)
 
 ### 转写示例
 ```python
-# Pytorch 写法
+# 当 indexing 为‘ij’时，torch 写法
 torch.meshgrid(x, y, indexing='ij')
 
 # Paddle 写法
 paddle.meshgrid(x, y)
+
+# 当 indexing 不是‘ij’时，暂时无法转写
 ```

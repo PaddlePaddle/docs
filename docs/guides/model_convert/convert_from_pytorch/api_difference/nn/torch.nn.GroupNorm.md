@@ -37,25 +37,11 @@ paddle.nn.GroupNorm(num_groups,
 ### 转写示例
 #### affine：是否进行反射变换
 ```python
-# 当 PyTorch 的 affine 为`False`，表示 weight 和 bias 不进行更新，Paddle 可用代码组合实现该 API
-class GroupNorm(paddle.nn.GroupNorm):
-    def __init__(self,
-                 num_groups,
-                 num_channels,
-                 eps=1e-05,
-                 affine=True):
-        weight_attr = None
-        bias_attr = None
-        if not affine:
-            weight_attr = paddle.ParamAttr(learning_rate=0.0)
-            bias_attr = paddle.ParamAttr(learning_rate=0.0)
-        super().__init__(
-            num_groups=num_groups,
-            num_channels=num_channels,
-            epsilon=eps,
-            weight_attr=weight_attr,
-            bias_attr=bias_attr,
-            data_format='NCHW')
+# 当 PyTorch 的 affine 为`False`，表示 weight 和 bias 不进行更新，torch 写法
+torch.nn.GroupNorm(num_groups=5, num_channels=50, eps=1e-05, affine=False)
+
+# paddle 写法
+paddle.nn.GroupNorm(num_groups=5, num_channels=50, epsilon=1e-05, weight_attr=paddle.ParamAttr(learning_rate=0.0), bias_attr=paddle.ParamAttr(learning_rate=0.0))
 
 # 当 PyTorch 的 affine 为`True`，torch 写法
 torch.nn.GroupNorm(num_groups=5, num_channels=50, eps=1e-05, affine=True)

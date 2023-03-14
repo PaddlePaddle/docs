@@ -16,15 +16,15 @@ paddle.assign(x, output=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | src           | x            | 待复制的 tensor                                          |
-| non_blocking  | -            | 用于控制 cpu 和 gpu 数据的异步复制                             |
+| non_blocking  | -            | 用于控制 cpu 和 gpu 数据的异步复制，没有该功能，无法转写       |
 
 
 ### 转写示例
 
 ```python
 # torch 写法
-torch.Tensor.copy_(x)
+z.copy_(x)
 
 # paddle 写法
-paddle.assign(x)
+paddle.assign(x, output=z)
 ```

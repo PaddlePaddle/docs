@@ -11,18 +11,14 @@ torch.Tensor.sigmoid()
 paddle.nn.functional.sigmoid(x, name=None)
 ```
 
-两者功能一致，paddle 参数更多，具体如下：
-### 参数差异
-| PyTorch       | PaddlePaddle | 备注                                                   |
-| ------------- | ------------ | ------------------------------------------------------ |
-|-              | name        | op 名字                                                  |
+两者功能一致，参数一致，但 torch 是类成员方式，paddle 是 funtion 调用方式。
 
 ### 转写示例
 
 ```python
 # torch 写法
-torch.Tensor.sigmoid()
+x.sigmoid()
 
 # paddle 写法
-paddle.nn.functional.sigmoid(x)
+x = paddle.nn.functional.sigmoid(x)
 ```
