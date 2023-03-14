@@ -28,11 +28,11 @@ paddle.nn.Pad3D(padding,
 #### padding：填充大小
 ```python
 # Pytorch 写法
-m = nn.ReplicationPad3d((3, 1), 3.5)
+m = nn.ReplicationPad3d((3, 1))
 m(input)
 
 # Paddle 写法
 pad = paddle.to_tensor((3, 1))
-m = nn.Pad3D(pad, mode='replicate', value=3.5)
+m = nn.Pad3D(pad, mode='replicate')
 m(input)
 ```

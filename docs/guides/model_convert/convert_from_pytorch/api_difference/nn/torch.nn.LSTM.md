@@ -42,8 +42,8 @@ paddle.nn.LSTM(input_size,
 | proj_size     | -            | 表示 LSTM 后将映射到对应的大小，PaddlePaddle 无此功能，暂无转写方式。  |
 | -             |weight_ih_attr| weight_ih 的参数，Pytorch 无此参数，Paddle 保持默认即可。  |
 | -             |weight_hh_attr| weight_hh 的参数，Pytorch 无此参数，Paddle 保持默认即可。  |
-| -             | bias_ih_attr | bias_ih 的参数。  |
-| -             | bias_hh_attr | bias_hh 的参数。  |
+| -             | bias_ih_attr | bias_ih 的参数，Pytorch 无此参数，Paddle 保持默认即可。  |
+| -             | bias_hh_attr | bias_hh 的参数，Pytorch 无此参数，Paddle 保持默认即可。  |
 
 ### 转写示例
 #### bias：是否使用偏置

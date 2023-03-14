@@ -38,18 +38,30 @@ paddle.nn.BatchNorm1D(num_features,
 ### 转写示例
 #### affine：是否进行反射变换
 ```python
+affine=False 时，表示不更新：
+
 # PyTorch 写法
 m = torch.nn.BatchNorm1D(24, affine=False)
 
 # Paddle 写法
-m = paddle.nn.BatchNorm1D(24, weight_attr=False, bias_attr=False)
+weight_attr = paddle.ParamAttr(learning_rate=0.0)
+bias_attr = paddle.ParamAttr(learning_rate=0.0)
+m = paddle.nn.BatchNorm1D(24, weight_attr=weight_attr, bias_attr=bias_attr)
+
+affine=True 时，表示更新：
+
+# PyTorch 写法
+m = torch.nn.BatchNorm1D(24)
+
+# Paddle 写法
+m = paddle.nn.BatchNorm1D(24)
 ```
 
 #### momentum：
 ```python
 # PyTorch 写法
-m = torch.nn.BatchNorm2D(24, momentum=0.2)
+m = torch.nn.BatchNorm1D(24, momentum=0.2)
 
 # Paddle 写法
-m = paddle.nn.BatchNorm2D(24, momentum=0.8)
+m = paddle.nn.BatchNorm1D(24, momentum=0.8)
 ```

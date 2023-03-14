@@ -21,6 +21,7 @@ paddle.nn.Pad3D(padding,
 | ------------- | ------------ | ------------------------------------------------------ |
 | padding       | padding      | 填充大小，Pytorch 和 Paddle 的 padding 参数的类型分别为 (int/tuple) 和 (int/Tensor/list)。  |
 | -             | mode         | padding 的四种模式，PyTorch 无此参数，Paddle 需设置为`reflect`。  |
+| -             | value  | 表示填充值，PyTorch 无此参数，Paddle 保持默认即可。  |
 | -             | data_format  | 输入和输出的数据格式，PyTorch 无此参数，Paddle 保持默认即可。  |
 
 
@@ -28,10 +29,10 @@ paddle.nn.Pad3D(padding,
 #### padding：填充大小
 ```python
 # Pytorch 写法
-m = nn.ReflectionPad3d((1, 0, 1, 2, 0, 0), 3.5)
+m = nn.ReflectionPad3d((1, 0, 1, 2, 0, 0))
 m(input)
 
 # Paddle 写法
-m = nn.Pad3D([1, 0, 1, 2, 0, 0], mode='reflect', value=3.5)
+m = nn.Pad3D([1, 0, 1, 2, 0, 0], mode='reflect')
 m(input)
 ```

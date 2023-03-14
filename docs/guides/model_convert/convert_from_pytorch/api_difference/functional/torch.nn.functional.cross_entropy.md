@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.functional.cross_entropy
+## [ torch 参数更多 ]torch.nn.functional.cross_entropy
 
 ### [torch.nn.functional.cross_entropy](https://pytorch.org/docs/stable/generated/torch.nn.functional.cross_entropy.html?highlight=cross_#torch.nn.functional.cross_entropy)
 

@@ -1,4 +1,4 @@
-## [ 参数名不一致 ]torch.nn.utils.spectral_norm
+## [ 仅参数名不一致 ]torch.nn.utils.spectral_norm
 ### [torch.nn.utils.spectral_norm](https://pytorch.org/docs/stable/generated/torch.nn.utils.spectral_norm.html?highlight=nn+utils+spectral_norm#torch.nn.utils.spectral_norm)
 
 ```python
@@ -19,7 +19,7 @@ paddle.nn.utils.spectral_norm(layer,
                                 dim=None)
 ```
 两者功能一致，参数名不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | module        | layer        | 要添加权重谱归一化的层，参数名不一致。                                  |

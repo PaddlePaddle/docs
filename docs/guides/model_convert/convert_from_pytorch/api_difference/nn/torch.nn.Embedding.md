@@ -1,4 +1,4 @@
-## [ 均支持更多参数 ]torch.nn.Embedding
+## [ torch 参数更多 ]torch.nn.Embedding
 ### [torch.nn.Embedding](https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html?highlight=embedding#torch.nn.Embedding)
 
 ```python
@@ -21,7 +21,7 @@ paddle.nn.Embedding(num_embeddings,
                     name=None)
 ```
 
-其中 Pytorch 相比 Paddle 均支持更多其他参数，具体如下：
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

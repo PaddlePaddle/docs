@@ -1,4 +1,4 @@
-## [ 两者均支持更多参数 ]torch.nn.Dropout
+## [ torch 参数更多 ]torch.nn.Dropout
 ### [torch.nn.Dropout](https://pytorch.org/docs/stable/generated/torch.nn.Dropout.html?highlight=dropout#torch.nn.Dropout)
 ```python
 torch.nn.Dropout(p=0.5,
@@ -13,7 +13,7 @@ paddle.nn.Dropout(p=0.5,
                   name=None)
 ```
 
-其中 Pytorch 和 Paddle 均支持了更多的参数，具体如下：
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

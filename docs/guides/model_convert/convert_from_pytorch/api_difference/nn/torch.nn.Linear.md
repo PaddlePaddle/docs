@@ -17,7 +17,7 @@ torch.nn.Linear(in_features,
                   name=None)
 ```
 
-其中 Pytorch 的 bias 与 Paddle 的 bias_attr 用法不一致，具体如下：
+其中 Pytorch 的 `bias` 与 Paddle 的 `bias_attr` 用法不一致， Paddle 的 `bias_attr` 仅支持 `False`，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

@@ -1,4 +1,4 @@
-## [ 两者均支持更多参数 ]torch.nn.Dropout3d
+## [ torch 参数更多 ]torch.nn.Dropout3d
 ### [torch.nn.Dropout3d](https://pytorch.org/docs/stable/generated/torch.nn.Dropout3d.html?highlight=dropout3d#torch.nn.Dropout3d)
 ```python
 torch.nn.Dropout3d(p=0.5,
@@ -10,7 +10,7 @@ paddle.nn.Dropout3D(p=0.5,
                     data_format='NCDHW',
                     name=None)
 ```
-其中 Pytorch 和 Paddle 均支持了更多的参数，具体如下：
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

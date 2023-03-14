@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.GRU
+## [ 参数用法不一致 ]torch.nn.GRU
 ### [torch.nn.GRU](https://pytorch.org/docs/stable/generated/torch.nn.GRU.html?highlight=torch%20nn%20gru#torch.nn.GRU)
 ```python
 torch.nn.GRU(input_size,
@@ -35,10 +35,10 @@ paddle.nn.GRU(input_size,
 | batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一维，它们的意义相反。  |
 | dropout   | dropout   | 表示 dropout 概率。  |
 | bidirectional | direction    | PyTorch 表示是否进行双向 LSTM，PyTorch 使用字符串表示是双向 LSTM（`bidirectional`）还是单向 LSTM（`forward`）。 |
-| -             |weight_ih_attr| weight_ih 的参数。  |
-| -             |weight_hh_attr| weight_hh 的参数。  |
-| -             | bias_ih_attr | bias_ih 的参数。  |
-| -             | bias_hh_attr | bias_hh 的参数。  |
+| -             |weight_ih_attr| weight_ih 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |
+| -             |weight_hh_attr| weight_hh 的参数，  PyTorch 无此参数， Paddle 保持默认即可。  |
+| -             | bias_ih_attr | bias_ih 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |
+| -             | bias_hh_attr | bias_hh 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |
 
 ### 转写示例
 #### bias：是否使用偏置

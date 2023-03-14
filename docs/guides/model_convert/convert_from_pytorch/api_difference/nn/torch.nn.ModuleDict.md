@@ -1,4 +1,4 @@
-## [ 参数名不一致 ]torch.nn.ModuleDict
+## [ 仅参数名不一致 ]torch.nn.ModuleDict
 ### [torch.nn.ModuleDict](https://pytorch.org/docs/stable/generated/torch.nn.ModuleDict.html?highlight=nn+moduledict#torch.nn.ModuleDict)
 
 ```python

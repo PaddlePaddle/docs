@@ -12,13 +12,10 @@ torch.std_mean(input, dim, unbiased=True, keepdim=False)
 用于实现返回 Tensor 的标准差和均值，PaddlePaddle 目前暂无对应 API，可使用如下代码组合实现该 API。
 
 ```python
-import paddle
+# PyTorch 写法
+std, mean = torch.std_mean(x, dim=1)
 
-def std_mean(input, dim=None, unbiased=True, keepdim=False):
-    std = paddle.std(input, axis=dim,
-                     unbiased=unbiased, keepdim=keepdim)
-    mean = paddle.mean(input,
-                       axis=dim,
-                       keepdim=keepdim)
-    return std, mean
+# Paddle 写法
+std = paddle.std(x, axis=1)
+mean = paddle.mean(x, axis=1)
 ```

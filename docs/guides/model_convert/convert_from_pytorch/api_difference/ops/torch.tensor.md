@@ -24,10 +24,9 @@ paddle.to_tensor(data,
 | ------------- | ------------ | ------------------------------------------------------ |
 | data        | data        | 表示输入的数据。                   |
 | dtype        | dtype        | 表示数据的类型。                   |
-| <font color='red'> device </font>     | -       | 表示 Tensor 存放设备位置，Paddle 无此参数，需要进行转写。 |
-| <font color='red'> requires_grad </font> | -       | 表示是否计算梯度， Paddle 无此参数，需要进行转写。 |
+| <font color='red'> device </font>     | <font color='red'> place </font>       | 表示 Tensor 存放设备位置，两者参数类型不相同，需要进行转写。 |
+| <font color='red'> requires_grad </font> | <font color='red'> stop_gradient </font>   | 表示是否计算梯度， 两者参数意义不相同，需要进行转写。 |
 | <font color='red'> pin_memeory </font>   | - | 表示是否使用锁页内存， Paddle 无此参数，需要进行转写。   |
-
 
 ### 转写示例
 
@@ -37,8 +36,7 @@ paddle.to_tensor(data,
 torch.tensor(3, device=torch.device('cpu'))
 
 # Paddle 写法
-y = paddle.to_tensor(3)
-y.cpu()
+y = paddle.to_tensor(3, place=paddle.CPUPlace())
 ```
 
 #### requires_grad：是否不阻断梯度传导

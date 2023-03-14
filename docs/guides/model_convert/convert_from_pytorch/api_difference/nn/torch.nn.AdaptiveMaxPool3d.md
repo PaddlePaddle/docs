@@ -19,4 +19,4 @@ paddle.nn.AdaptiveMaxPool3D(output_size,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | output_size | output_size  | 表示输出 Tensor 的大小。 |
-| return_indices| return_mask  | 如果设置为 True，则会与输出一起返回最大值的索引，默认为 False。 |
+| return_indices| return_mask  | 如果设置为 True，则会与输出一起返回最大值的索引，默认为 False，仅参数名不一致。 |

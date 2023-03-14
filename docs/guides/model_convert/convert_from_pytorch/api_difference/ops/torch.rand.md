@@ -20,7 +20,7 @@ paddle.rand(shape,
             name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 torch 的 `size` 和 paddle 的 `shape` 用法不一致，torch 还支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
