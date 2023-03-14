@@ -13,7 +13,7 @@ softplus 激活层
             x,&x>\frac{\varepsilon}{\beta}.
         \end{cases}
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::::
