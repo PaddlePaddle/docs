@@ -36,6 +36,9 @@ ClipGradByNorm
 .. math::
   \\norm(X) = (\sum_{i=1}^{n}|x_i|^2)^{\frac{1}{2}}\\
 
+.. note::
+   ``ClipGradByNorm`` 的 ``need_clip`` 方法从 2.0 开始废弃。请在 :ref:`paddle.ParamAttr <cn_api_fluid_ParamAttr>` 中使用 ``need_clip`` 来说明 ``clip`` 范围。
+
 参数
 ::::::::::::
 
