@@ -11,7 +11,7 @@ log_sigmoid 激活层。计算公式如下：
 
     log\_sigmoid(x) = \log \frac{1}{1 + e^{-x}}
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::

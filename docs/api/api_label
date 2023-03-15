@@ -342,6 +342,7 @@ paddle.nn.SpectralNorm	.. _api_paddle_nn_SpectralNorm:
 paddle.fluid.dygraph.nn.TreeConv	.. _api_paddle_fluid_dygraph_nn_TreeConv:
 paddle.fluid.dygraph.checkpoint.save_dygraph	.. _api_paddle_fluid_dygraph_checkpoint_save_dygraph:
 paddle.jit.to_static	.. _api_paddle_jit_to_static:
+paddle.jit.ignore_module	.. _api_paddle_jit_ignore_module:
 paddle.fluid.dygraph.nn.Conv2DTranspose	.. _api_paddle_fluid_dygraph_nn_Conv2DTranspose:
 paddle.jit.not_to_static	.. _api_paddle_jit_not_to_static:
 paddle.fluid.dygraph.parallel.prepare_context	.. _api_paddle_fluid_dygraph_parallel_prepare_context:
