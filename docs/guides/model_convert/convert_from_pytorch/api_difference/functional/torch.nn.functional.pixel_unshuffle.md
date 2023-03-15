@@ -1,4 +1,4 @@
-## [ paddle 参数更多 ] torch.nn.functional.pixel_unshuffle
+## [ 仅  paddle 参数更多 ] torch.nn.functional.pixel_unshuffle
 
 ### [torch.nn.functional.pixel_unshuffle](https://pytorch.org/docs/stable/generated/torch.nn.functional.pixel_unshuffle.html?highlight=pixel_unshuffle#torch.nn.functional.pixel_unshuffle)
 
@@ -12,7 +12,7 @@ torch.nn.functional.pixel_unshuffle(input, downscale_factor)
 paddle.nn.functional.pixel_unshuffle(x, downscale_factor, data_format='NCHW', name=None)
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
+两者功能一致，其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |

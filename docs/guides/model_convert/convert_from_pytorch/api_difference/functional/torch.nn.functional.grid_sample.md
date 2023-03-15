@@ -29,4 +29,4 @@ paddle.nn.functional.grid_sample(x,
 | grid           | grid           |  输入网格数据张量。               |
 | mode           | mode           |   指定插值方式。               |
 | padding_mode           | padding_mode           |   指定超出边界的填充方式。               |
-| align_corners           | align_corners           |   是否将角落的点进行中心对齐               |
+| align_corners           | align_corners           |   是否将角落的点进行中心对齐。     |

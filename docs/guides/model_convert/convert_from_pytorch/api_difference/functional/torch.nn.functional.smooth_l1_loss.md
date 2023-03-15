@@ -21,7 +21,7 @@ paddle.nn.functional.smooth_l1_loss(input,
                     name=None)
 ```
 
-两者功能一致，但 Paddle 的 delta 和 PyTorch 的 beta 参数在公式中用法不一致，具体如下：
+两者功能一致，但 Paddle 的 `delta` 和 PyTorch 的 `beta` 参数在公式中用法不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -30,7 +30,7 @@ paddle.nn.functional.smooth_l1_loss(input,
 | target          | label         | 输入 Tensor 对应的标签，仅参数名不一致。                                |
 | size_average          | -         | 已弃用                                      |
 | reduce          | -         | 已弃用                                     |
-| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'                         |
+| reduction          | reduction         | 表示应用于输出结果的规约方式，可选值有：'none', 'mean', 'sum'   |
 | beta          | delta         | SmoothL1Loss 损失的阈值参数                       |
 
 Torch 中 Smooth L1 loss 的计算方式:
@@ -88,10 +88,11 @@ else:
 #### beta
 ```python
 # PyTorch 的 beta 参数转化为 delta 参数
-delta = beta
+a=0.8
 
-input = paddle.rand([3, 3]).astype('float32')
-label = paddle.rand([3, 3]).astype('float32')
+# PyTorch 写法
+output = torch.nn.functional.smooth_l1_loss(input, label, beta=a)
 
-output = paddle.nn.functional.smooth_l1_loss(input, label, delta=delta) / delta
+# Paddle 写法
+output = paddle.nn.functional.smooth_l1_loss(input, label, delta=a) / a
 ```
