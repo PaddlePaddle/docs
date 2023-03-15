@@ -6,7 +6,7 @@
 torch.sinh(input, *, out=None)
 ```
 
-### [paddle.sinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/sinh_cn.html)
+### [paddle.sinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/sinh_cn.html)
 
 ```python
 paddle.sinh(x, name=None)

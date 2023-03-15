@@ -6,10 +6,10 @@
 torch.slogdet(input)
 ```
 
-### [paddle.nn.functional.sigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/sigmoid_cn.html#paddle.nn.functional.sigmoid)
+### [paddle.linalg.slogdet(x)](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/slogdet_cn.html)
 
 ```python
-paddle.nn.functional.sigmoid(x, name=None)
+paddle.linalg.slogdet(x)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

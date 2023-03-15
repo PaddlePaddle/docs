@@ -6,7 +6,7 @@
 torch.select(input, dim, index)
 ```
 
-### [paddle.index_select](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/index_select_cn.html#index-select)
+### [paddle.index_select](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/index_select_cn.html)
 
 ```python
 paddle.index_select(x, index, axis=0, name=None)

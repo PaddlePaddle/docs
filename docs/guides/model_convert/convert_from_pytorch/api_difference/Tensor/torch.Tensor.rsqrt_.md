@@ -6,10 +6,10 @@
 torch.rsqrt_(input, *, out=None)
 ```
 
-### [paddle.rsqrt_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rsqrt_cn.html)
+### [paddle.rsqrt_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rsqrt__cn.html)
 
 ```python
-paddle.rsqrt(x, name=None)
+paddle.rsqrt_(x, name=None)
 ```
 
 其中 Pytorch 相⽐ Paddle ⽀持更多其他参数，具体如下：

@@ -6,7 +6,7 @@
 torch.rsqrt(input, *, out=None)
 ```
 
-### [paddle.rsqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rsqrt_cn.html)
+### [paddle.rsqrt](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/rsqrt_cn.html)
 
 ```python
 paddle.rsqrt(x, name=None)

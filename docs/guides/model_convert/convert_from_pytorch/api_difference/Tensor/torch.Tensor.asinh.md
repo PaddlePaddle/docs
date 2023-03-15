@@ -6,7 +6,7 @@
 torch.asinh(input, *, out=None)
 ```
 
-### [paddle.asinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asinh_cn.html#paddle.asinh)
+### [paddle.asinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/asinh_cn.html)
 
 ```python
 paddle.asinh(x, name=None)
