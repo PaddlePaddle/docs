@@ -197,9 +197,9 @@
 **第二种安装方式：使用容器安装**
 
 - 推荐使用 `NVIDIA 飞桨容器安装 <https://www.paddlepaddle.org.cn/documentation/docs/zh/install/install_NGC_PaddlePaddle_ch.html>`_
-     1. 适配最新版的CUDA
-     2. 适配新版本的Ubuntu OS(18.04)
-     3. NVIDIA对该容器的性能进行了优化及测试
+     1. 适配最新版的 CUDA
+     2. 适配新版本的 Ubuntu OS(18.04)
+     3. NVIDIA 对该容器的性能进行了优化及测试
 
 **第三种安装方式：使用源代码编译安装**
 
