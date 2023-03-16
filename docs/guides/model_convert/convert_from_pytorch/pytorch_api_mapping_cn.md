@@ -313,7 +313,9 @@ _project_convertor/API_docs/loss/torch.nn.SmoothL1Loss.md)。 |
 | 8   | [torch.Tensor.fill_](https://pytorch.org/docs/stable/generated/torch.Tensor.fill_.html?highlight=fill_#torch.Tensor.fill_) | [paddle.Tensor.fill_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#fill-x-value-name-none) | 功能完全一致  |
 | 9   | [torch.Tensor.unique](https://pytorch.org/docs/stable/generated/torch.Tensor.unique.html?highlight=unique#torch.Tensor.unique) | [paddle.Tensor.unique](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#unique-return-index-false-return-inverse-false-return-counts-false-axis-none-dtype-int64-name-none) | 功能一致，torch 参数多 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.unique.md) |
 | 10   | [torch.Tensor.backward](https://pytorch.org/docs/stable/generated/torch.Tensor.backward.html?highlight=backward#torch.Tensor.backward) | [paddle.Tensor.backward](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#backward-grad-tensor-none-retain-graph-false) | 功能一致，torch 参数多 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.backward.md) |
-| 11   | [torch.Tensor.expand](https://pytorch.org/docs/stable/generated/torch.Tensor.expand.html?highlight=expand#torch.Tensor.expand) | [paddle.Tensor.expand](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#expand-shape-name-none) | 功能一致，仅参数名不一致。 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.expand.md) |
+| 11   | [torch.Tensor.expand](https://pytorch.org/docs/stable/generated/torch.Tensor.expand.html?highlight=expand#torch.Tensor.expand) | [paddle.Tensor.expand](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#expand-shape-name-none) | 功能一致，仅参数名不一致 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.expand.md) |
+| 12   | [torch.Tensor.requires_grad_](https://pytorch.org/docs/stable/generated/torch.Tensor.requires_grad_.html?highlight=requires_grad_#torch.Tensor.requires_grad_) | [paddle.Tensor.stop_gradient](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#stop-gradient) | 功能一致，仅使用方式不一致 [差异对比](https://github.com/PaddlePaddle/docs/blob/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/Tensor/torch.Tensor.requires_grad_.md) |
+| 13   | [torch.Tensor.cuda](https://pytorch.org/docs/stable/generated/torch.Tensor.cuda.html?highlight=cuda#torch.Tensor.cuda) | [-] | 无对应 API，可以直接删除，对网络一般无影响 |
 
 
 
@@ -348,7 +350,7 @@ _project_convertor/API_docs/loss/torch.nn.SmoothL1Loss.md)。 |
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-
+| 1    | [torch.cuda.max_memory_allocated](https://pytorch.org/docs/stable/generated/torch.cuda.max_memory_allocated.html?highlight=max_memory_allocated#torch.cuda.max_memory_allocated) | [paddle.device.cuda.max_memory_allocated](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/max_memory_allocated_cn.html) | 功能一致，参数一致         |
 
 ***持续更新...***
 
@@ -357,7 +359,8 @@ _project_convertor/API_docs/loss/torch.nn.SmoothL1Loss.md)。 |
 
 | 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-
+| 1    | [torch.distributed.init_process_group](https://pytorch.org/docs/stable/distributed.html?highlight=init_process#torch.distributed.init_process_group) | [paddle.distributed.init_parallel_env](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/init_parallel_env_cn.html) | 功能一致，torch 参数更多 [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.distributed.init_process_group.md)         |
+| 2    | [torch.distributed.barrier](https://pytorch.org/docs/stable/distributed.html?highlight=barrier#torch.distributed.barrier) | [paddle.distributed.barrier](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/barrier_cn.html) | 功能一致，torch 参数更多 [差异对比](https://github.com/PaddlePaddle/X2Paddle/tree/develop/docs/pytorch_project_convertor/API_docs/utils/torch.distributed.barrier.md)         |
 
 ***持续更新...***
 
