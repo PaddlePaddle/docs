@@ -20,5 +20,5 @@ paddle.nn.functional.sigmoid(x, name=None)
 x.sigmoid()
 
 # paddle 写法
-x = paddle.nn.functional.sigmoid(x)
+paddle.nn.functional.sigmoid(x)
 ```

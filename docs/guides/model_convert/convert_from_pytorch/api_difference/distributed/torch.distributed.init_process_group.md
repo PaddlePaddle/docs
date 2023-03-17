@@ -12,6 +12,7 @@ paddle.distributed.init_parallel_env()
 ```
 
 两者功能一致，torch 参数更多，具体差异如下：
+### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | backend       | -        | backend 配置，paddle 无此参数                                 |

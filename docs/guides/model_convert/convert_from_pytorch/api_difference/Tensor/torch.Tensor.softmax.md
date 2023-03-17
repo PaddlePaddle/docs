@@ -12,6 +12,7 @@ paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None)
 ```
 
 功能一致，torch 是类成员方式，paddle 是 function 调用，具体差异如下：
+### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | dim           | axis         | 计算 softmax 的轴                                         |
@@ -20,8 +21,8 @@ paddle.nn.functional.softmax(x, axis=-1, dtype=None, name=None)
 #### dim: 计算 softmax 的轴
 ```python
 # torch 写法
-z = x.softmax(dim=1)
+x.softmax(dim=1)
 
 # paddle 写法
-z = paddle.nn.functional.softmax(x, axis=1)
+paddle.nn.functional.softmax(x, axis=1)
 ```
