@@ -1,6 +1,6 @@
 .. _cn_api_paddle_tensor_cumulative_trapezoid:
 
-trapezoid
+cumulative_trapezoid
 --------------------------------
 
 .. py:function:: paddle.cumulative_trapezoid(y, x=None, dx=None, axis=-1, name=None)
