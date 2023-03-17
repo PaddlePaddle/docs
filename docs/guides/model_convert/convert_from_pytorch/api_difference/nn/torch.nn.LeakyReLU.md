@@ -1,4 +1,4 @@
-## torch.nn.LeakyReLU
+## [ torch 参数更多 ]torch.nn.LeakyReLU
 ### [torch.nn.LeakyReLU](https://pytorch.org/docs/1.13/generated/torch.nn.LeakyReLU.html?highlight=leakyrelu#torch.nn.LeakyReLU)
 
 ```python
@@ -14,7 +14,8 @@ paddle.nn.LeakyReLU(negative_slope=0.01,
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
+| negative_slope        | negative_slope            | 表示 x<0 时的斜率。  |
 | inplace       | -            | 在不更改变量的内存地址的情况下，直接修改变量的值，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。    |

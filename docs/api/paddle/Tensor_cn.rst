@@ -51,7 +51,7 @@ dtype
 grad
 :::::::::
 
-查看一个 Tensor 的梯度，数据类型为 numpy\.ndarray。
+查看一个 Tensor 的梯度，数据类型为 paddle\.Tensor。
 
 **代码示例**
 

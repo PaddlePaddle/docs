@@ -1,4 +1,4 @@
-## torch.nn.ChannelShuffle
+## [ 仅 paddle 参数更多 ]torch.nn.ChannelShuffle
 
 ### [torch.nn.ChannelShuffle](https://pytorch.org/docs/stable/generated/torch.nn.ChannelShuffle.html?highlight=channelshuffle#torch.nn.ChannelShuffle)
 
@@ -13,7 +13,7 @@ paddle.nn.ChannelShuffle(groups, data_format='NCHW', name=None)
 ```
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | groups          | groups         | 表示要把通道分成的组数 。                                     |
