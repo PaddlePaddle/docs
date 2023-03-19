@@ -273,3 +273,5 @@ Methods
     is_complex
     is_integer
     frexp
+    trapezoid
+    cumulative_trapezoid

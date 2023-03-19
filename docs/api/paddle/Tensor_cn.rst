@@ -2494,7 +2494,7 @@ trapezoid(y, x=None, dx=None, axis=-1, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`_cn_api_paddle_tensor_trapezoid`
+请参考 :ref:`cn_api_paddle_tensor_trapezoid`
 
 cumulative_trapezoid(y, x=None, dx=None, axis=-1, name=None)
 :::::::::
@@ -2505,4 +2505,4 @@ cumulative_trapezoid(y, x=None, dx=None, axis=-1, name=None)
 
 返回类型：Tensor
 
-请参考 :ref:`_cn_api_paddle_tensor_cumulative_trapezoid`
+请参考 :ref:`cn_api_paddle_tensor_cumulative_trapezoid`
