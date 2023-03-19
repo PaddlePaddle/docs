@@ -1,21 +1,15 @@
-## [ 仅参数名不一致 ]torch.Tensor.frac
+## [ 无参数 ]torch.Tensor.frac
 
-### [torch.frac](https://pytorch.org/docs/stable/generated/torch.frac.html?highlight=frac#torch.frac)
-
-```python
-torch.frac(input, *, out=None)
-```
-
-### [paddle.frac](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/frac_cn.html#frac)
+### [torch.Tensor.frac](https://pytorch.org/docs/stable/generated/torch.Tensor.frac.html?highlight=frac#torch.Tensor.frac)
 
 ```python
-paddle.frac(x, name=None)
+Tensor.frac()
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+### [paddle.Tensor.frac](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#frac-name-none)
 
-### 参数映射
+```python
+Tensor.frac(name=None)
+```
 
-| PyTorch                  | PaddlePaddle         | 备注                        |
-| ------------------------ | -------------------- | --------------------------- |
-| <center> input </center> | <center> x </center> | 输入 Tensor，仅参数名不同。 |
+两者功能完全一致，无参数。

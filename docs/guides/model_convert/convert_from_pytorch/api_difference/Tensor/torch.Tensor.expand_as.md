@@ -6,19 +6,16 @@
 Tensor.expand_as(other)
 ```
 
-Note:更多参考 [Tensor.expand(\*sizes)](https://pytorch.org/docs/stable/generated/torch.Tensor.expand.html#torch.Tensor.expand)
-
 ### [paddle.Tensor.expand_as](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#expand-as-y-name-none)
 
 ```python
 Tensor.expand_as(y)
 ```
 
-Note:更多参考 [paddle.expand_as(x, y, name=None)](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/expand_as_cn.html#cn-api-tensor-expand-as)
 两者功能一致且参数用法一致，仅参数名不同，具体如下：
 
 ### 参数映射
 
-| PyTorch                  | PaddlePaddle         | 备注                                 |
-| ------------------------ | -------------------- | ------------------------------------ |
-| <center> other </center> | <center> y </center> | 给定输入扩展后的形状，仅参数名不同。 |
+| PyTorch | PaddlePaddle | 备注                                 |
+| ------- | ------------ | ------------------------------------ |
+| other   | y            | 给定输入扩展后的形状，仅参数名不同。 |

@@ -1,21 +1,15 @@
-## [ 仅参数名不一致 ]torch.Tensor.deg2rad
+## [ 无参数 ]torch.Tensor.deg2rad
 
-### [torch.deg2rad](https://pytorch.org/docs/stable/generated/torch.deg2rad.html?highlight=deg2rad#torch.deg2rad)
-
-```python
-torch.deg2rad(input, *, out=None)
-```
-
-### [paddle.deg2rad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/deg2rad_cn.html#deg2rad)
+### [torch.Tensor.deg2rad](https://pytorch.org/docs/stable/generated/torch.Tensor.deg2rad.html?highlight=deg2rad#torch.Tensor.deg2rad)
 
 ```python
-paddle.deg2rad(x, name=None)
+Tensor.deg2rad()
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+### [paddle.Tensor.deg2rad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#deg2rad-x-name-none)
 
-### 参数映射
+```python
+Tensor.deg2rad(name=None)
+```
 
-| PyTorch                  | PaddlePaddle         | 备注                          |
-| ------------------------ | -------------------- | ----------------------------- |
-| <center> input </center> | <center> x </center> | 输入的 Tensor，仅参数名不同。 |
+两者功能完全一致，无参数。

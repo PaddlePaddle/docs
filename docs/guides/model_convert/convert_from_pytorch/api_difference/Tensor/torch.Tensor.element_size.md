@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tensor.
+## [ 无参数 ]torch.Tensor.element_size
 
 ### [torch.Tensor.element_size](https://pytorch.org/docs/stable/generated/torch.Tensor.element_size.html?highlight=element_size#torch.Tensor.element_size)
 
@@ -12,10 +12,4 @@ Tensor.element_size()
 Tensor.element_size()
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
-
-### 参数映射
-
-| PyTorch              | PaddlePaddle         | 备注                                                |
-| -------------------- | -------------------- | --------------------------------------------------- |
-| <center> - </center> | <center> - </center> | 返回 Tensor 单个元素在计算机中所分配的 bytes 数量。 |
+两者功能完全一致，无参数。

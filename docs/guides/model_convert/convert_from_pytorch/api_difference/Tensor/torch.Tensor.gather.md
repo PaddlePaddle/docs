@@ -1,24 +1,22 @@
-## [ torch 参数更多 ]torch.Tensor.gather
+## [ 仅参数名不一致 ]torch.Tensor.gather
 
-### [torch.gather](https://pytorch.org/docs/stable/generated/torch.gather.html?highlight=gather#torch.gather)
+### [torch.Tensor.gather](https://pytorch.org/docs/stable/generated/torch.Tensor.gather.html?highlight=gather#torch.Tensor.gather)
 
 ```python
-torch.gather(input, dim, index, *, sparse_grad=False, out=None)
+Tensor.gather(dim, index)
 ```
 
-### [paddle.gather](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/gather_cn.html#gather)
+### [paddle.Tensor.take_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#take-along-axis-arr-index-axis)
 
 ```python
-paddle.gather(x, index, axis=None, name=None)
+Tensor.take_along_axis(index, axis)
 ```
 
 两者功能一致且参数用法一致，torch 参数更多，具体如下：
 
 ### 参数映射
 
-| PyTorch                        | PaddlePaddle             | 备注                                              |
-| ------------------------------ | ------------------------ | ------------------------------------------------- |
-| <center> input </center>       | <center> x </center>     | 输入 Tensor，仅参数名不同。                       |
-| <center> dim </center>         | <center> index </center> | 索引 Tensor，仅参数名不同。                       |
-| <center> index </center>       | <center> axis </center>  | 指定 index 获取输入的维度，仅参数名不同。         |
-| <center> sparse_grad </center> | <center> - </center>     | pytorch：如果是 `True`，输入则是一个稀疏 Tensor。 |
+| PyTorch | PaddlePaddle | 备注                                      |
+| ------- | ------------ | ----------------------------------------- |
+| dim     | index        | 索引 Tensor，仅参数名不同。               |
+| index   | axis         | 指定 index 获取输入的维度，仅参数名不同。 |

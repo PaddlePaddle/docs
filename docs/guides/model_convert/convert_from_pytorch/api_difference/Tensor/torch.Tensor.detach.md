@@ -12,4 +12,4 @@ Tensor.detach()
 Tensor.detach()
 ```
 
-两者功能一致且参数用法一致，返回一个新的 Tensor，从当前计算图分离。
+两者功能完全一致，无参数。

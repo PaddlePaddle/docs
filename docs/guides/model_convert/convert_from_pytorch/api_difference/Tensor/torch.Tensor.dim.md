@@ -12,4 +12,4 @@ Tensor.dim()
 Tensor.dim()
 ```
 
-两者功能一致且参数用法一致，查看一个 Tensor 的维度，也称作 rank。
+两者功能完全一致，无参数。

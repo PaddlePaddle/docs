@@ -1,21 +1,15 @@
-## [ 仅函数名不一致 ]torch.Tensor.fix
+## [ 无参数 ]torch.Tensor.fix
 
-### [torch.fix](https://pytorch.org/docs/stable/generated/torch.fix.html?highlight=fix#torch.fix)
-
-```python
-torch.fix(input, *, out=None)
-```
-
-### [paddle.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/trunc_cn.html#trunc)
+### [torch.Tensor.fix](https://pytorch.org/docs/stable/generated/torch.Tensor.fix.html?highlight=fix#torch.Tensor.fix)
 
 ```python
-paddle.trunc(input, name=None)
+Tensor.fix()
 ```
 
-两者功能一致且参数用法一致，仅函数名不同，具体如下：
+### [paddle.Tensor.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#trunc-name-none)
 
-### 参数映射
+```python
+Tensor.trunc(name=None)
+```
 
-| PyTorch                  | PaddlePaddle             | 备注          |
-| ------------------------ | ------------------------ | ------------- |
-| <center> input </center> | <center> input </center> | 输入 Tensor。 |
+两者功能完全一致，无参数。
