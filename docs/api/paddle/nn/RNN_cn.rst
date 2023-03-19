@@ -9,7 +9,7 @@ RNN
 
 **循环神经网络**
 
-该 OP 是循环神经网络（RNN）的封装，将输入的 Cell 封装为一个循环神经网络。它能够重复执行 :code:`cell.forward()` 直到遍历完 input 中的所有 Tensor。
+循环神经网络（RNN）的封装，将输入的 Cell 封装为一个循环神经网络。它能够重复执行 :code:`cell.forward()` 直到遍历完 input 中的所有 Tensor。
 
 参数
 ::::::::::::
@@ -32,7 +32,7 @@ RNN
     - **final_states** (Tensor|list|tuple) - cell 的最终状态，嵌套结构，形状和数据类型都与初始状态相同。
 
 .. note::
-    该类是一个封装 rnn cell 的低级 api，用户在使用 forward 函数时须确保 initial_states 满足 cell 的要求。
+    该类是一个封装 rnn cell 的底层 api，用户在使用 forward 函数时须确保 initial_states 满足 cell 的要求。
 
 
 代码示例
