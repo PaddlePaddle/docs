@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tensor.exp
+## [ 无参数 ]torch.Tensor.exp
 
 ### [torch.Tensor.exp](https://pytorch.org/docs/stable/generated/torch.Tensor.exp.html?highlight=exp#torch.Tensor.exp)
 

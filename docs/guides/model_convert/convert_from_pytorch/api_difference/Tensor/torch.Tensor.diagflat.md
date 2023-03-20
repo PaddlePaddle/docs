@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tensor.diagflat
+## [ 仅 paddle 参数更多 ]torch.Tensor.diagflat
 
 ### [torch.Tensor.diagflat](https://pytorch.org/docs/stable/generated/torch.Tensor.diagflat.html?highlight=diagflat#torch.Tensor.diagflat)
 
@@ -12,7 +12,7 @@ Tensor.diagflat(offset=0)
 paddle.diagflat(x, offset=0, name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致，其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 

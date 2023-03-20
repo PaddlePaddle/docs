@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tensor.erfinv
+## [ 无参数 ]torch.Tensor.erfinv
 
 ### [torch.Tensor.erfinv](https://pytorch.org/docs/stable/generated/torch.Tensor.erfinv.html?highlight=erfinv#torch.Tensor.erfinv)
 

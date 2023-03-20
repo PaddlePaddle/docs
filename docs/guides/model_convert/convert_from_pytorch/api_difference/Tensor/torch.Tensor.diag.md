@@ -1,4 +1,4 @@
-## [ paddle 参数更多 ]torch.Tensor.diag
+## [ 仅 paddle 参数更多 ]torch.Tensor.diag
 
 ### [torch.Tensor.diag](https://pytorch.org/docs/stable/generated/torch.Tensor.diag.html?highlight=diag#torch.Tensor.diag)
 
@@ -12,7 +12,7 @@ Tensor.diag(diagonal=0)
 paddle.diag(x, offset=0, padding_value=0, name=None)
 ```
 
-两者功能一致且参数用法一致，paddle 参数更多，具体如下：
+两者功能一致，其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 

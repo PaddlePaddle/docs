@@ -1,4 +1,4 @@
-## [ 无参数 ]torch.Tensor.
+## [ 无参数 ]torch.Tensor.dim
 
 ### [torch.Tensor.dim](https://pytorch.org/docs/stable/generated/torch.Tensor.dim.html?highlight=dim#torch.Tensor.dim)
 

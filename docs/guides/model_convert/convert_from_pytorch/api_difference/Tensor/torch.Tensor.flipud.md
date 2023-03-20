@@ -1,4 +1,4 @@
-## [ paddle 参数更多 ]torch.Tensor.flipud
+## [ 仅 paddle 参数更多 ]torch.Tensor.flipud
 
 ### [torch.Tensor.flipud](https://pytorch.org/docs/stable/generated/torch.Tensor.flipud.html?highlight=flipud#torch.Tensor.flipud)
 
@@ -12,7 +12,7 @@ Tensor.flipud()
 Tensor.flip(axis, name=None)
 ```
 
-两者功能一致且参数用法一致，paddle 参数更多，具体如下：
+两者功能一致，其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 

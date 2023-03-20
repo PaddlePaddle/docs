@@ -12,7 +12,7 @@ Tensor.gather(dim, index)
 Tensor.take_along_axis(index, axis)
 ```
 
-两者功能一致且参数用法一致，torch 参数更多，具体如下：
+两者功能一致且参数用法一致，仅参数名不同，具体如下：
 
 ### 参数映射
 
