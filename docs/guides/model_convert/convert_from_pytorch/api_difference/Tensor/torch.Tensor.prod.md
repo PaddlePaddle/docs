@@ -3,7 +3,7 @@
 ### [torch.Tensor.prod](https://pytorch.org/docs/stable/generated/torch.prod.html#torch.prod)
 
 ```python
-torch.prod(input, dim, keepdim=False, *, dtype=None)
+torch.Tensor.prod(input, dim, keepdim=False, *, dtype=None)
 ```
 
 ### [paddle.Tensor.prod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/prod_cn.html)
