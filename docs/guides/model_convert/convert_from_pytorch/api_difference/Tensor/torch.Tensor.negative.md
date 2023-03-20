@@ -3,13 +3,13 @@
 ### [torch.Tensor.negative](https://pytorch.org/docs/stable/generated/torch.negative.html#torch.negative)
 
 ```python
-torch.Tensor.negative
+torch.Tensor.negative()
 ```
 
 ### [paddle.Tensor.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/neg_cn.html#cn-api-paddle-neg)
 
 ```python
-paddle.Tensor.neg
+paddle.Tensor.neg()
 ```
 
 
