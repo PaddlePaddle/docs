@@ -3,13 +3,13 @@
 ### [torch.Tensor.numel](https://pytorch.org/docs/stable/generated/torch.numel.html?highlight=numel#torch.numel)
 
 ```python
-torch.Tensor.numel
+torch.Tensor.numel()
 ```
 
 ### [paddle.Tensor.size](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/fluid/layers/size_cn.html#cn-api-fluid-layers-size)
 
 ```python
-paddle.Tensor.size
+paddle.Tensor.size()
 ```
 
 
