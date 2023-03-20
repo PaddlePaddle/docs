@@ -1,0 +1,21 @@
+## [ 仅参数名不一致 ] torch.Tensor.outer
+
+### [torch.Tensor.outer](https://pytorch.org/docs/stable/generated/torch.Tensor.outer.html?highlight=outer#torch.Tensor.outer)
+
+```python
+torch.outer(input, vec2, *, out=None)
+```
+
+### [paddle.Tensor.outer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/outer_cn.html=)
+
+```python
+paddle.outer(x, y, name=None)
+```
+
+两者功能一致，仅参数名不一致，具体如下：
+### 参数映射
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| input      | x         | 一个 多维 `Tensor`，数据类型为 `float16` 、 `float32` 、 `float64` 、 `int32` 或 `int64` ，仅参数名不一致。 |
+| exponent | y         | 如果类型是多维 `Tensor`，其数据类型应该和 `x` 相同，仅参数名不一致。 |
+| out      | name      | 一般无需设置，默认值为 None。 |
