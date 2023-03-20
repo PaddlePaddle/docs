@@ -3,7 +3,7 @@
 ### [torch.Tensor.pow](https://pytorch.org/docs/stable/generated/torch.Tensor.pow.html?highlight=pow#torch.Tensor.pow)
 
 ```python
-torch.pow(input, exponent, *, out=None)
+torch.Tensor.pow(input, exponent, *, out=None)
 ```
 
 ### [paddle.Tensor.pow](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/outer_cn.html=)
