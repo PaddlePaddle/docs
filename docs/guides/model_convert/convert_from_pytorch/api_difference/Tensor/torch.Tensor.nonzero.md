@@ -3,13 +3,13 @@
 ### [torch.Tensor.nonzero](https://pytorch.org/docs/stable/generated/torch.Tensor.nonzero.html?highlight=nonzero#torch.Tensor.nonzero)
 
 ```python
-torch.Tensor.nonzero
+torch.Tensor.nonzero()
 ```
 
 ### [paddle.Tensor.nonzero](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nonzero_cn.html#cn-api-tensor-search-nonzero)
 
 ```python
-paddle.Tensor.nonzero
+paddle.Tensor.nonzero()
 ```
 
 
