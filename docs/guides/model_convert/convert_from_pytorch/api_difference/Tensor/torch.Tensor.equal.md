@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tensor.equal
+## [ 参数用法不一致 ]torch.Tensor.equal
 
 ### [torch.Tensor.equal](https://pytorch.org/docs/stable/generated/torch.Tensor.equal.html?highlight=equal#torch.Tensor.equal)
 
@@ -12,7 +12,7 @@ Tensor.equal(other)
 Tensor.equal_all(y, name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致，但参数用法不一致，其中 torch 返回值是 `bool`，paddle 返回值是数据类型为 `bool` 的 Tensor，具体如下：
 
 ### 参数映射
 
