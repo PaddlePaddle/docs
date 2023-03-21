@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ] torch.Tensor.prod
+## [ 仅 paddle 参数更多 ] torch.Tensor.prod
 
 ### [torch.Tensor.prod](https://pytorch.org/docs/stable/generated/torch.prod.html#torch.prod)
 
@@ -12,7 +12,7 @@ torch.Tensor.prod(dim, keepdim=False, *, dtype=None)
 paddle.prod(x, axis=None, keepdim=False, dtype=None, name=None)
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 
