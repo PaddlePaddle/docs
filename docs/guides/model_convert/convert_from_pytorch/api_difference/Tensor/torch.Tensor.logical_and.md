@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.Tensor.logical_and
 
-同torch.logical_and
+同 torch.logical_and
 
 ### [torch.Tensor.logical_and](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_and.html)
 
@@ -26,5 +26,5 @@ paddle.Tensor.logical_and(x,
 
 | PyTorch | PaddlePaddle | 备注                                          |
 | ------- | ------------ | --------------------------------------------- |
-| input   | x            | 第一个参与逻辑或运算的Tensor ，仅参数名不同。 |
-| other   | y            | 第二个参与逻辑或运算的Tensor ，仅参数名不同。 |
+| input   | x            | 第一个参与逻辑或运算的 Tensor ，仅参数名不同。 |
+| other   | y            | 第二个参与逻辑或运算的 Tensor ，仅参数名不同。 |
