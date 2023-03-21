@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.Tensor.logdet
 
-同torch.logdet
+同 torch.logdet
 
 ### [torch.Tensor.logdet](https://pytorch.org/docs/stable/generated/torch.logdet.html)
 
