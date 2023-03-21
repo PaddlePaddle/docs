@@ -1,6 +1,6 @@
-## [ torch参数更多 ]torch.Tensor.logsumexp
+## [ torch 参数更多 ]torch.Tensor.logsumexp
 
-同torch.Tensor
+同 torch.Tensor
 
 ### [torch.Tensor.logsumexp](https://pytorch.org/docs/stable/generated/torch.logsumexp.html)
 
@@ -34,7 +34,7 @@ paddle.Tensor.logsumexp(x,
 
 ### 转写示例
 
-#### out:指定输出
+#### out: 指定输出
 
 ```python
 # Pytorch 写法
