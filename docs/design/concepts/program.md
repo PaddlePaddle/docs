@@ -4,7 +4,7 @@
 
 A PaddlePaddle program consists of two parts -- the first generates a `ProgramDesc` protobuf message that describes the program, and the second runs this message using a C++ class `Executor`.
 
-A simple example PaddlePaddle program can be found in [graph.md](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/others/graph.md):
+A simple example PaddlePaddle program can be found in [graph.md](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/others/graph.md):
 
 ```python
 x = layer.data("images")
@@ -22,7 +22,7 @@ The first five lines of the following PaddlePaddle program generates, or, compil
 The basic structure of a PaddlePaddle program is some nested blocks, as a C++ or Java program.
 
 - program: some nested blocks
-- [block](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/block.md):
+- [block](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/block.md):
   - some local variable definitions, and
   - a sequence of operators
 

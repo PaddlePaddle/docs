@@ -54,7 +54,7 @@ The user can not directly specify the parameter update rule for the parameter se
 
 This could be fixed by making the parameter server also run an IR, which can be different to the trainer side
 For a detailed explanation, refer to this document -
-[Design Doc: Parameter Server](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/dist_train/parameter_server.md)
+[Design Doc: Parameter Server](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/dist_train/parameter_server.md)
 
 ## Distributed Training Architecture
 
@@ -97,9 +97,9 @@ The code above is a typical local training program, the "Training Program" is bu
 `fluid.layer.fc`. The training is done by calling `Executor.run`
 iteratively.
 
-For more details, the implementation of IR is [Program](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/program.md), and `ProgramDesc` is the protobuf type.
+For more details, the implementation of IR is [Program](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/program.md), and `ProgramDesc` is the protobuf type.
 
-[Executor](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/executor.md) simply runs the `ProgramDesc`. For local training you generally use
+[Executor](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/executor.md) simply runs the `ProgramDesc`. For local training you generally use
 `Executor` to run the program locally. For any kind of distributed training, you can use
 `RemoteExecutor` to specify desired distributed training method with some optional arguments.
 

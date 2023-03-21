@@ -1,6 +1,6 @@
 # PaddlePaddle Fluid: Towards a Compiled Programming Language
 
-As described in [fluid.md](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/motivation/fluid.md), when a Fluid application program
+As described in [fluid.md](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/motivation/fluid.md), when a Fluid application program
 runs, it generates a `ProgramDesc` protobuf message as an intermediate
 representation of itself.  The C++ class `Executor` can run this
 protobuf message as an interpreter.  This article describes the Fluid
@@ -23,7 +23,7 @@ func paddlepaddle() {
 }
 ```
 
-This program consists of a [block](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/block.md) of three operators --
+This program consists of a [block](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/block.md) of three operators --
 `read`, `assign`, and `mult`.  Its `ProgramDesc` message looks like
 the following
 
@@ -107,4 +107,4 @@ where `cuda_context` could be a global variable of type
 ## Multi-Block Code Generation
 
 Most Fluid application programs may have more than one blocks.  To
-execute them, we need to trace [scopes](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/scope.md).
+execute them, we need to trace [scopes](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/scope.md).

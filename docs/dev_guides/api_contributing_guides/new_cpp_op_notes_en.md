@@ -11,7 +11,7 @@ The Fluid framework is designed to run on a variety of devices and third-party l
 Operator inheritance diagram:
 ![op_inheritance_relation_diagram](./op_inheritance_relation_diagram.png)
 
-For further information, please refer to: [multi_devices](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/design/multi_devices) , [scope](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/scope.md) , [Developer's_Guide_to_Paddle_Fluid](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md)
+For further information, please refer to: [multi_devices](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/multi_devices) , [scope](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/scope.md) , [Developer's_Guide_to_Paddle_Fluid](https://github.com/PaddlePaddle/FluidDoc/blob/release/1.2/doc/fluid/getstarted/Developer's_Guide_to_Paddle_Fluid.md)
 
 ### 2.Op's registration logic
 The registration entries for each Operator include:

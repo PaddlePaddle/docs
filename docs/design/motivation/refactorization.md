@@ -11,7 +11,7 @@ The goals of refactoring include:
 
 1. PaddlePaddle represents the computation, training and inference of Deep Learning models, by computation graphs.
 
-  1. Please refer to [computation graphs](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/others/graph.md) for a concrete example.
+  1. Please refer to [computation graphs](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/others/graph.md) for a concrete example.
 
 1. Users write Python programs to describe the graphs and run them (locally or remotely).
 
@@ -230,7 +230,7 @@ REGISTER_OP_WITHOUT_GRADIENT(op_type, op_class, op_maker_class)
 * `Tensor` is an n-dimension array with type.
     * Only dims and data pointers are stored in `Tensor`.
     * All operations on `Tensor` are written in `Operator` or global functions.
-    * Variable length Tensor design [LoDTensor](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/concepts/lod_tensor.md)
+    * Variable length Tensor design [LoDTensor](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/concepts/lod_tensor.md)
 * `Variable` instances are the inputs and the outputs of an operator, not just `Tensor`.
     * `step_scopes` in RNN is a variable and not a tensor.
 * `Scope` is where variables are stored.
