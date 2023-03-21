@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ] torch.Tensor.prod
+## [ 参数用法不一致 ] torch.Tensor.prod
 
 ### [torch.Tensor.prod](https://pytorch.org/docs/stable/generated/torch.prod.html#torch.prod)
 
