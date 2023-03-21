@@ -1,6 +1,6 @@
-## [ torch参数更多 ]torch.Tensor.log
+## [ torch 参数更多 ]torch.Tensor.log
 
-同torch.log
+同 torch.log
 
 ### [torch.Tensor.log](https://pytorch.org/docs/stable/generated/torch.Tensor.log.html)
 
@@ -29,7 +29,7 @@ paddle.Tensor.log(x,
 
 ### 转写示例
 
-#### out:指定输出
+#### out: 指定输出
 
 ```python
 # Pytorch 写法
