@@ -18,7 +18,7 @@ paddle.prod(x, axis=None, keepdim=False, dtype=None, name=None)
 
 | PyTorch | PaddlePaddle | 备注                                                         |
 | ------- | ------------ | ------------------------------------------------------------ |
-| -   | x            | 一个 Tensor，数据类型为：float32、float64、int32、int64。 ，仅参数名不一致。 |
+| -   | x            | 一个 Tensor，数据类型为：float32、float64、int32、int64。  |
 | dim     | axis         | 求乘积运算的维度，仅参数名不一致。                           |
 | keepdim | keepdim      | 是否在输出 Tensor 中保留输入的维度，仅参数名不一致。         |
 | dtype   | dtype        | 输出 Tensor 的数据类型，支持 int32、int64、float32、float64。 |
