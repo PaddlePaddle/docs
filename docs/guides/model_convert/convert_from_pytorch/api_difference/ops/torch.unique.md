@@ -1,4 +1,4 @@
-## torch.unique
+## [torch 参数更多 ]torch.unique
 ### [torch.unique](https://pytorch.org/docs/stable/generated/torch.unique.html?highlight=unique#torch.unique)
 
 ```python

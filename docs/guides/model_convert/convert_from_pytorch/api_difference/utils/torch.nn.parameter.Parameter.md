@@ -1,4 +1,4 @@
-## torch.nn.parameter.Parameter
+## [ 参数用法不一致 ]torch.nn.parameter.Parameter
 ### [torch.nn.parameter.Parameter](https://pytorch.org/docs/stable/generated/torch.nn.parameter.Parameter.html?highlight=torch%20nn%20parameter#torch.nn.parameter.Parameter)
 
 ```python
@@ -6,7 +6,7 @@ torch.nn.parameter.Parameter(data=None,
                              requires_grad=True)
 ```
 
-## [paddle.create_parameter](https://github.com/PaddlePaddle/Paddle/blob/release/2.1/python/paddle/fluid/layers/tensor.py#L77)
+### [paddle.create_parameter](https://github.com/PaddlePaddle/Paddle/blob/release/2.1/python/paddle/fluid/layers/tensor.py#L77)
 
 ```python
 paddle.create_parameter(shape,

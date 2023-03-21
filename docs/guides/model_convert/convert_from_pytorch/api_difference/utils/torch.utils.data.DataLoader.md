@@ -1,4 +1,4 @@
-## torch.utils.data.DataLoader
+## [ 参数用法不一致 ]torch.utils.data.DataLoader
 ### [torch.utils.data.DataLoader](https://pytorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.DataLoader)
 ```python
 torch.utils.data.DataLoader(dataset,

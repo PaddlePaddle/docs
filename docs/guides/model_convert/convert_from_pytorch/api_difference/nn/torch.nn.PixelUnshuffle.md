@@ -1,4 +1,4 @@
-## [paddle 参数更多 ]torch.nn.PixelUnshuffle
+## [ 仅 paddle 参数更多 ]torch.nn.PixelUnshuffle
 ### [torch.nn.PixelUnshuffle](https://pytorch.org/docs/stable/generated/torch.nn.PixelUnshuffle.html?highlight=pixel#torch.nn.PixelUnshuffle)
 
 ```python
