@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ] torch.Tensor.nanquantile
+## [ torch 参数更多 ] torch.Tensor.nanquantile
 
 ### [torch.Tensor.nanquantile](https://pytorch.org/docs/stable/generated/torch.nanquantile.html#torch.nanquantile)
 
