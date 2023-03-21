@@ -1200,8 +1200,8 @@ void ReluCpuInplaceForward(paddle::Tensor& x) {  // NOLINT
 }
 
 void ReluCpuInplaceBackward(const paddle::Tensor& x,
-                         const paddle::Tensor& out,
-                         paddle::Tensor& grad_out) {  // NOLINT
+                            const paddle::Tensor& out,
+                            paddle::Tensor& grad_out) {  // NOLINT
   PD_CHECK(x.place() == paddle::PlaceType::kCPU, "x must be a CPU Tensor.");
 
   PD_DISPATCH_FLOATING_TYPES(
@@ -1230,9 +1230,9 @@ PD_BUILD_GRAD_OP(custom_inplace_relu)
 
 2. 定义算子时，需要使用 `SetInplaceMap` 指明输入和输出间 inplace 的映射关系。`SetInplaceMap` 传入的参数类型为 `std::unordered_map<std::string, std::string>`，支持多组输入和输出之间进行 inplace 映射。例如可以定义： `.SetInplaceMap({{"X", "Out1"}, {"Y", "Out2"}})`；
 
-3. 一方面，做 inplace 映射的输出 Tensor，不再作为函数的返回值，如果此时函数没有需要返回的 Tensor，函数的输出类型应为 `void` ；另一方面，其他没有做 inplace 映射的输出 Tensor，仍需作为返回值显式输出，此时函数的输出类型仍为 std::vector<paddle::Tensor>。例如 `ReluCpuInplaceForward` 函数中不再显式输出 Tensor，因此函数返回类型为 `void`；
+3. 一方面，做 inplace 映射的输出 Tensor，不再作为函数的返回值，如果此时函数没有需要返回的 Tensor，函数的输出类型应为 `void` ；另一方面，其他没有做 inplace 映射的输出 Tensor，仍需作为返回值显式输出，此时函数的输出类型仍为 `std::vector<paddle::Tensor>`。例如 `ReluCpuInplaceForward` 函数中不再显式输出 Tensor，因此函数返回类型为 `void`；
 
-4. 框架会对算子的输入、输出映射做基本的正确性检查（`SetInplaceMap`中指定的输入 Tensor 名与 `Inputs` 中定义的名称一致；输出 Tensor 名与 `Outputs` 中定义的名称一致），因此 `SetInplaceMap` 必须在 `Inputs` 和 `Outputs` 之后指定。
+4. 框架会对算子的输入、输出映射做基本的正确性检查（`SetInplaceMap`中指定的输入 Tensor 命名与 `Inputs` 中定义的名称一致；输出 Tensor 命名与 `Outputs` 中定义的名称一致），因此 `SetInplaceMap` 必须在 `Inputs` 和 `Outputs` 之后指定。
 
 下面以一个自定义的 inplace `custom_add` 加法实现为例，来对上述的注意事项进行介绍：
 
