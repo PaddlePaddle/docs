@@ -1,6 +1,6 @@
 ## [ 仅参数名不一致 ]torch.Tensor.logical_not
 
-同torch.logical_not
+同 torch.logical_not
 
 ### [torch.Tensor.logical_not](https://pytorch.org/docs/stable/generated/torch.logical_not.html)
 
