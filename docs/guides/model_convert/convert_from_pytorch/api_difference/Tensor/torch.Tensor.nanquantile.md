@@ -12,7 +12,7 @@ torch.Tensor.nanquantile(q, dim=None, keepdim=False, *, interpolation='linear', 
 paddle.Tensor.nanquantile(q, axis=None, keepdim=False)
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
