@@ -1617,18 +1617,6 @@ static.save_inference_model(path, [image], [out], exe)
 
 基于本机制编写的自定义算子，也能够在 `PaddlePaddle` 推理场景中使用，仍然基于前述示例介绍使用流程，这里基于 `relu_cuda.cc` 和 `relu_cuda.cu` 介绍。
 
-### 源码改动
-
-由于训练和推理接口管理上存在一些差别，自定义算子 `relu_cuda.cc` 源码中的引入的头文件需要替换一下：
-
-`#include "paddle/extension.h"`
-
-改为
-
-`#include "paddle/include/experimental/ext_all.h"`
-
-其他地方不需要做改动。
-
 ### 算子与推理库联合编译
 
 编写推理的测试程序，其中需要使用前述验证过程中存储的 inference model，目录为 `custom_relu_dynamic/net` 或者 `custom_relu_static/net` ，下面通过示例介绍使用流程，该示例需要准备的文件包括：
