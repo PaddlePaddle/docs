@@ -1,27 +1,22 @@
-## [ 仅参数名不一致 ]torch.Tensor.logical_not
+## [ 仅 paddle 参数更多 ] torch.Tensor.logical_not
 
-同 torch.logical_not
-
-### [torch.Tensor.logical_not](https://pytorch.org/docs/stable/generated/torch.logical_not.html)
+### [torch.Tensor.logical_not](https://pytorch.org/docs/stable/generated/torch.Tensor.logical_not.html)
 
 ```python
-torch.Tensor.logical_not(input, 
-                         *, 
-                         out=None)
+torch.Tensor.logical_not()
 ```
 
-### [paddle.Tensor.logical_not](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logical_not_cn.html#logical-not)
+### [paddle.Tensor.logical_not](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#logical-not-out-none-name-none)
 
 ```python
-paddle.Tensor.logical_not(x, 
-                          out=None, 
+paddle.Tensor.logical_not(out=None, 
                           name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 
 | PyTorch | PaddlePaddle | 备注                               |
 | ------- | ------------ | ---------------------------------- |
-| input   | x            | 输入的多维 Tensor ，仅参数名不同。 |
+| -   | out            | 指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。 |
