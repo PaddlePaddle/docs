@@ -1,45 +1,26 @@
-## [ torch 参数更多 ]torch.Tensor.logsumexp
+## [ 仅参数名不⼀致 ] torch.Tensor.logsumexp
 
-同 torch.Tensor
 
-### [torch.Tensor.logsumexp](https://pytorch.org/docs/stable/generated/torch.logsumexp.html)
+### [torch.Tensor.logsumexp](https://pytorch.org/docs/stable/generated/torch.Tensor.logsumexp.html)
 
 ```python
-torch.Tensor.logsumexp(input, 
-                       dim, 
-                       keepdim=False, 
-                       *, 
-                       out=None)
+torch.Tensor.logsumexp(dim, 
+                       keepdim=False) 
 ```
 
-### [paddle.Tensor.logsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logsumexp_cn.html#logsumexp)
+### [paddle.Tensor.logsumexp](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#logsumexp-axis-none-keepdim-false-name-none)
 
 ```python
-paddle.Tensor.logsumexp(x, 
-                        axis=None, 
+paddle.Tensor.logsumexp(axis=None, 
                         keepdim=False, 
                         name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+两者功能一致且参数用法一致，仅参数名不同，具体如下：
 
 ### 参数映射
 
 | PyTorch | PaddlePaddle | 备注                                                     |
 | ------- | ------------ | -------------------------------------------------------- |
-| input   | x            | 输入的多维 Tensor ，仅参数名不同。                       |
-| dim     | axis         | 指定进行运算的维度，仅参数名不同。                       |
-| keepdim | keepdim      | 是否在输出 Tensor 中保留减小的维度。                     |
-| out     | -            | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。 |
-
-### 转写示例
-
-#### out: 指定输出
-
-```python
-# Pytorch 写法
-torch.logsumexp(torch.randn(3, 3), 1, False, out = x)
-
-# Paddle 写法
-paddle.logsumexp(paddle.randn([3, 3]), 1, False)
-```
+| dim   | axis           | 表示进行运算的轴，仅参数名不一致。                       |
+| keepdim     | keepdim         | 是否在输出 Tensor 中保留减小的维度                       |
