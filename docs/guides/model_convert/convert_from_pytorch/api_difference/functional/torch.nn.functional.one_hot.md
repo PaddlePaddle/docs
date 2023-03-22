@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.functional.one_hot
+## [ 仅参数默认值不一致 ]torch.nn.functional.one_hot
 
 ### [torch.nn.functional.one_hot](https://pytorch.org/docs/stable/generated/torch.nn.functional.one_hot.html?highlight=one_hot#torch.nn.functional.one_hot)
 

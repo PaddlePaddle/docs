@@ -6,7 +6,7 @@
 
 ### [分类名称] api 全称
 
-为了文档整体的一致性，我们统一了分类名称，分类名称需和下面保持一致。共分为四大类：
+为了文档整体的一致性，我们统一了分类名称，分类名称需和下面保持一致。共分为 7 大类：
 
 * 其中第１类又分为五种情况：`无参数`、`参数完全一致`、`仅参数名不一致`、`仅 paddle 参数更多`、`仅参数默认值不一致`。分类优先级依次递增，即如果参数名不一致，且 paddle 参数更多，则分为`仅 paddle 参数更多`。
 
@@ -14,7 +14,13 @@
 
 * 第３类为`参数用法不一致`。比如 所支持的参数类型不一致(是否可以是元组)、参数含义不一致。
 
-* 第４类为`组合替代实现`。
+* 第４类为 `组合替代实现` ，表示该 API 可以通过多个 API 组合实现。
+
+* 第 5 类为 `用法不同：涉及上下文修改` ，表示涉及到上下文分析，需要修改其他位置的代码。
+
+* 第 6 类为 `对应 API 不在主框架` 。例如 `torch.hamming_window` 对应 API 在 `paddlenlp` 中。
+
+* 第 7 类为 `功能缺失` ，表示当前无该功能，则无需写差异分析文档，仅进行标注即可。
 
 ### [pytorch api 全称] (pytorch api 链接)
 
@@ -195,4 +201,36 @@ m = torch.nn.BatchNorm1D(24)
 
 # Paddle 写法
 m = paddle.nn.BatchNorm1D(24)
+```
+
+### 用法不同：涉及上下文修改
+
+其中 Pytorch 与 Paddle 对该 API 的设计思路与⽤法不同，需要分析上下⽂并联动修改：
+
+| PyTorch | PaddlePaddle | 备注 |
+| ------- | ------------ | ---- |
+| parameters |  -  | 表示要操作的 Tensor， Pytorch 属于原位操作， PaddlePaddle ⽆此参数，需要实例化之后在 optimizer 中设置才可以使⽤。需要上下⽂分析与联动修改。|
+| clip_value |  max |  表示裁剪梯度的范围，范围为 [-clip_value, clip_vale] ； PaddlePaddle 的 max 参数可实现该参数功能，直接设置为与 clip_value ⼀致。|
+| - | min | 表示裁剪梯度的最⼩值， PyTorch ⽆此参数， Paddle 保持默认即可。 |
+
+### 转写示例
+
+```python
+# torch ⽤法
+net = Model()
+sgd = torch.optim.SGD(net.parameters(), lr=0.1)
+for i in range(10):
+ loss = net(x)
+ loss.backward()
+ torch.nn.utils.clip_grad_value_(net.parameters(), 1.)
+ sgd.step()
+
+# paddle ⽤法
+net = Model()
+sgd = paddle.optim.SGD(net.parameters(), lr=0.1,
+grad_clip=paddle.nn.ClipGradByValue(), 1.)
+for i in range(10):
+ loss = net(x)
+ loss.backward()
+ sgd.step()
 ```
