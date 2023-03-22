@@ -1,40 +1,17 @@
-## [ torch 参数更多 ]torch.Tensor.log
-
-同 torch.log
+## [ 无参数 ] torch.Tensor.log
 
 ### [torch.Tensor.log](https://pytorch.org/docs/stable/generated/torch.Tensor.log.html)
 
 ```python
-torch.Tensor.log(input, 
-                 *, 
-                 out=None)
+torch.Tensor.log()
 ```
 
-### [paddle.Tensor.log](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log_cn.html#log)
+### [paddle.Tensor.log](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#log-name-none)
 
 ```python
-paddle.Tensor.log(x, 
-                  name=None)
+paddle.Tensor.log()
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注                                                     |
-| ------- | ------------ | -------------------------------------------------------- |
-| input   | x            | 输入的多维 Tensor ，仅参数名不同。                       |
-| out     | -            | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。 |
 
 
-### 转写示例
-
-#### out: 指定输出
-
-```python
-# Pytorch 写法
-torch.log(torch.tensor([4.7767, 4.3234, 1.2156, 0.2411, 4.5739]), out = y)
-
-# Paddle 写法
-paddle.log(paddle.to_tensor([4.7767, 4.3234, 1.2156, 0.2411, 4.5739]))
-```
+两者功能一致，均无参数，用于计算张量中每个元素的自然对数的函数。
