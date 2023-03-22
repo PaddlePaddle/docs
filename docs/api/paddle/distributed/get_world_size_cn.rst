@@ -15,6 +15,10 @@ get_world_size
 :::::::::
 (int) 返回指定通信组中的进程数，如果当前进程不在该通信组中，则返回-1。
 
+.. warning::
+    Argument only supports in dygraph mode.group
+    参数仅在 ``dygraph mode.group`` 模式下支持
+
 代码示例
 :::::::::
 COPY-FROM: paddle.distributed.get_world_size
