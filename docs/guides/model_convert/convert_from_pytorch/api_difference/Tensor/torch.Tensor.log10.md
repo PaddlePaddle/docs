@@ -1,40 +1,11 @@
-## [ torch 参数更多 ]torch.Tensor.log10
+## [ 无参数 ] torch.Tensor.log10
 
-同 torch.log10
-
-### [torch.Tensor.log10](https://pytorch.org/docs/stable/generated/torch.log10.html)
+### [torch.Tensor.log10](https://pytorch.org/docs/stable/generated/torch.Tensor.log10.html#torch.Tensor.log10)
 
 ```python
-torch.Tensor.log10(input, 
-                   *, 
-                   out=None)
+torch.Tensor.log10()
 ```
 
-### [paddle.Tensor.log10](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log10_cn.html#log10)
+### [paddle.Tensor.log10](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#log10-name-none)
 
-```python
-paddle.Tensor.log10(x, 
-                    name=None)
-```
-
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注                                                     |
-| ------- | ------------ | -------------------------------------------------------- |
-| input   | x            | 输入的多维 Tensor ，仅参数名不同。                       |
-| out     | -            | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。 |
-
-
-### 转写示例
-
-#### out: 指定输出
-
-```python
-# Pytorch 写法
-torch.log10(torch.tensor([0.5224, 0.9354, 0.7257, 0.1301, 0.2251]), out = y)
-
-# Paddle 写法
-paddle.log10(paddle.to_tensor([0.5224, 0.9354, 0.7257, 0.1301, 0.2251]))
-```
+两者功能一致，均无参数，用于计算张量中每个元素的以10为底的对数的函数。
