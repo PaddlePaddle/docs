@@ -8,4 +8,8 @@ torch.Tensor.log10()
 
 ### [paddle.Tensor.log10](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#log10-name-none)
 
+```python
+paddle.Tensor.log10()
+```
+
 两者功能一致，均无参数，用于计算张量中每个元素的以10为底的对数的函数。
