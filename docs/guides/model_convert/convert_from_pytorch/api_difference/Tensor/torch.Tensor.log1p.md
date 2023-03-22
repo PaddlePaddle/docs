@@ -1,40 +1,15 @@
-## [ torch 参数更多 ]torch.Tensor.log1p
+## [ 无参数 ] torch.Tensor.log1p
 
-同 torch.log1p
-
-### [torch.Tensor.log1p](https://pytorch.org/docs/stable/generated/torch.log1p.html)
+### [torch.Tensor.log1p](https://pytorch.org/docs/stable/generated/torch.Tensor.log1p.html#torch.Tensor.log1p)
 
 ```python
-torch.Tensor.log1p(input, 
-                   *, 
-                   out=None)
+torch.Tensor.log1p()
 ```
 
-### [paddle.Tensor.log1p](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log1p_cn.html#log1p)
+### [paddle.Tensor.log1p](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#log1p-name-none)
 
 ```python
-paddle.Tensor.log1p(x, 
-                    name=None)
+paddle.Tensor.log1p()
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-
-### 参数映射
-
-| PyTorch | PaddlePaddle | 备注                                                     |
-| ------- | ------------ | -------------------------------------------------------- |
-| input   | x            | 输入的多维 Tensor ，仅参数名不同。                       |
-| out     | -            | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。 |
-
-
-### 转写示例
-
-#### out: 指定输出
-
-```python
-# Pytorch 写法
-torch.log1p(torch.tensor([-1.0090, -0.9923, 1.0249, -0.5372, 0.2492]), out = y)
-
-# Paddle 写法
-paddle.log1p(paddle.to_tensor([-1.0090, -0.9923,  1.0249, -0.5372, 0.2492]))
-```
+两者功能一致，均无参数，用于计算张量中每个元素加1后的自然对数的函数。
