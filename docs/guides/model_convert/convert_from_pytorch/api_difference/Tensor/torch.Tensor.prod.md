@@ -12,7 +12,7 @@ torch.Tensor.prod(dim, keepdim=False, *, dtype=None)
 paddle.prod(axis=None, keepdim=False, dtype=None, name=None)
 ```
 
-其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 
