@@ -19,4 +19,4 @@ paddle.Tensor.logical_not(out=None,
 
 | PyTorch | PaddlePaddle | 备注                               |
 | ------- | ------------ | ---------------------------------- |
-| -   | out            | 指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。 |
+| -   | out            | 指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。Pytorch 无此参数，Paddle 保持默认即可。|
