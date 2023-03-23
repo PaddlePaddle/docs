@@ -9,7 +9,7 @@ Tensor.cross(other, dim=None)
 ### [paddle.Tensor.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cross-y-axis-none-name-none)
 
 ```python
-cross(y, axis=None, name=None)
+Tensor.cross(y, axis=None, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：
