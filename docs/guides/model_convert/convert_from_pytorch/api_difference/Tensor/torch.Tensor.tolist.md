@@ -1,4 +1,4 @@
-## torch.Tensor.tolist
+## 分类名[无参数]torch.Tensor.tolist
 
 ### [torch.Tensor.tolist](https://pytorch.org/docs/1.13/generated/torch.Tensor.tolist.html#torch.Tensor.tolist)
 

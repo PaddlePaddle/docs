@@ -1,4 +1,4 @@
-## torch.Tensor.tile
+## 分类名[仅参数名不一致]torch.Tensor.tile
 
 ### [torch.Tensor.tile](https://pytorch.org/docs/1.13/generated/torch.Tensor.tile.html#torch.Tensor.tile)
 
@@ -16,9 +16,9 @@ paddle.Tensor.tile(repeat_times, name=None)
 
 ### 参数映射
 
-| Pytorch | PaddlePaddle | 备注                              |
-| ------- | ------------ | :-------------------------------- |
-| reps    | repeat_times | 指定输入 tensor每个维度的复制次数 |
+| Pytorch | PaddlePaddle | 备注                                                |
+| ------- | ------------ | :-------------------------------------------------- |
+| reps    | repeat_times | 指定输入 tensor每个维度的复制次数，仅参数名不一致。 |
 
 ### 差异
 

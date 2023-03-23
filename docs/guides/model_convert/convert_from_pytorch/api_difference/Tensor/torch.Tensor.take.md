@@ -1,4 +1,4 @@
-## torch.Tensor.take
+## 分类名[仅paddle参数更多]torch.Tensor.take
 
 ### [torch.Tensor.take](https://pytorch.org/docs/1.13/generated/torch.Tensor.take.html#torch.Tensor.take)
 
@@ -12,14 +12,14 @@ torch.Tensor.take(indices)
 paddle.Tensor.take(index, mode='raise', name=None)
 ```
 
-两者功能一致，仅参数名不一致，paddlepaddle有多余参数mode,具体如下：
+两者功能一致，仅参数名不一致，其中 Paddle 相比 PyTorch 支持更多其他参数,具体如下：
 
 ### 参数映射
 
-| Pytorch | PaddlePaddle | 备注                        |
-| ------- | ------------ | --------------------------- |
-| indices | index        | 输入tensor的索引            |
-|         | mode         | 指定索引越界的 3 种处理方式 |
+| Pytorch | PaddlePaddle | 备注                                                         |
+| ------- | ------------ | ------------------------------------------------------------ |
+| indices | index        | 表示输入tensor的索引，仅参数名不一致。                       |
+| -       | mode         | 指定索引越界的 3 种处理方式，Pytorch 无此参数，Paddle 保持默认即可。 |
 
 注：
 

@@ -1,4 +1,4 @@
-## torch.Tensor.arctanh
+## 分类名[无参数]torch.Tensor.arctanh
 
 ### [torch.Tensor.arctanh](https://pytorch.org/docs/1.13/generated/torch.Tensor.arctanh.html#torch.Tensor.arctanh)
 
