@@ -21,4 +21,4 @@ paddle.Tensor.logical_or(y,
 | PyTorch | PaddlePaddle | 备注                                          |
 | ------- | ------------ | --------------------------------------------- |
 | -   | y            | 输入的 Tensor，支持的数据类型为 bool, int8, int16, in32, in64, float32, float64。 |
-| -   | out            | 指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。 |
+| -   | out            | 指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。Pytorch 无此参数，Paddle 保持默认即可。|
