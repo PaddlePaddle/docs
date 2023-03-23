@@ -406,3 +406,42 @@ to(device=None, dtype=None, blocking=None)
 **代码示例**
 
 COPY-FROM: paddle.nn.Layer.to
+
+float(excluded_layers=None)
+'''''''''
+
+对于所有浮点参数和缓冲区，将其转换为“float”数据类型。
+
+**参数**
+
+    - **excluded_layers** （list|nn.Layer|None，可选） - 有些层需要保持原始数据类型，存储在excluded_layers中。
+
+**代码示例**
+
+COPY-FROM: paddle.nn.Layer.float
+
+half(excluded_layers=None)
+'''''''''
+
+对于所有浮点参数和缓冲区，将其转换为“half”数据类型。
+
+**参数**
+
+    - **excluded_layers** （list|nn.Layer|None，可选） - 有些层需要保持原始数据类型，存储在excluded_layers中。
+
+**代码示例**
+
+COPY-FROM: paddle.nn.Layer.half
+
+bfloat16(excluded_layers=None)
+'''''''''
+
+对于所有浮点参数和缓冲区，将其转换为“bfloat16”数据类型。
+
+**参数**
+
+    - **excluded_layers** （list|nn.Layer|None，可选） - 有些层需要保持原始数据类型，存储在excluded_layers中。
+
+**代码示例**
+
+COPY-FROM: paddle.nn.Layer.bfloat16
