@@ -6,7 +6,7 @@
 torch.Tensor.where(condition, y)
 ```
 
-### [paddle.Tensor.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#var-axis-none-unbiased-true-keepdim-false-name-none)
+### [paddle.Tensor.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#where-y-name-none)
 
 ```python
 paddle.Tensor.where(y, name=None)
