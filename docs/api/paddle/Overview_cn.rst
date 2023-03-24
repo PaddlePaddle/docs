@@ -142,8 +142,8 @@ tensor 数学操作
     " :ref:`paddle.atanh <cn_api_fluid_layers_atanh>` ", "反双曲正切函数"
     " :ref:`paddle.take <cn_api_paddle_tensor_take>` ", "输出给定索引处的输入元素，结果与 index 的形状相同"
     " :ref:`paddle.frexp <cn_api_paddle_frexp>` ", "用于把一个浮点数分解为尾数和指数的函数"
-    " :ref:`paddle.trapezoid <cn_api_paddle_tensor_trapezoid>` ", "在指定维度上对输入实现 trapezoid rule 算法。使用求和函数 sum"
-    " :ref:`paddle.cumulative_trapezoid <cn_api_paddle_tensor_cumulative_trapezoid>` ", "在指定维度上对输入实现 trapezoid rule 算法。使用求和函数 cumsum"
+    " :ref:`paddle.trapezoid <cn_api_paddle_tensor_trapezoid>` ", "在指定维度上对输入实现 trapezoid rule 算法。使用累积求和函数 sum"
+    " :ref:`paddle.cumulative_trapezoid <cn_api_paddle_tensor_cumulative_trapezoid>` ", "在指定维度上对输入实现 trapezoid rule 算法。使用累积求和函数 cumsum"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本

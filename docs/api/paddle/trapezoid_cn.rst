@@ -5,7 +5,8 @@ trapezoid
 
 .. py:function:: paddle.trapezoid(y, x=None, dx=None, axis=-1, name=None)
 
-在指定维度上对输入实现 trapezoid rule 算法。与 paddle.cumulative_trapezoid 的区别是，所用的求和函数为 sum。
+在指定维度上对输入实现 `trapezoid rule <https://en.wikipedia.org/wiki/Trapezoidal_rule>`_  算法。与 :ref:`cn_api_paddle_tensor_cumulative_trapezoid` 的区别是，所用累积求和函数为 sum。
+
 
 参数
 :::::::::
@@ -17,7 +18,7 @@ trapezoid
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 返回
 :::::::::
-Tensor，形状与 ``y`` 的形状与用于计算 trapezoidal rule 时维度有关，类型与 ``y`` 相同。
+Tensor，按 trapezoidal rule 计算出 ``y`` 等于 N 维张量时的定积分，如果 ``y`` 是一维张量，则结果是浮点数。如果 N 大于 1 维，则结果为 N-1 维张量。
 
 
 代码示例
