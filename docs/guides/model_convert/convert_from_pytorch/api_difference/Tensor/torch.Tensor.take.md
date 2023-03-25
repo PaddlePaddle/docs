@@ -1,4 +1,4 @@
-## 分类名[仅paddle参数更多]torch.Tensor.take
+## [仅paddle参数更多]torch.Tensor.take
 
 ### [torch.Tensor.take](https://pytorch.org/docs/1.13/generated/torch.Tensor.take.html#torch.Tensor.take)
 

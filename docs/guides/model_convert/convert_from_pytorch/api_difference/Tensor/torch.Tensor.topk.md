@@ -1,4 +1,4 @@
-## 分类名[仅参数名不一致]torch.Tensor.topk
+## [仅参数名不一致]torch.Tensor.topk
 
 ### [torch.Tensor.topk](https://pytorch.org/docs/1.13/generated/torch.Tensor.topk.html#torch.Tensor.topk)
 
