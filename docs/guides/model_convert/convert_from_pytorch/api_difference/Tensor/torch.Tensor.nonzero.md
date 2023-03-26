@@ -12,6 +12,4 @@ torch.Tensor.nonzero()
 paddle.Tensor.nonzero()
 ```
 
-
-
 两者功能一致，均无参数，用于返回输入 `x` 中非零元素的坐标。

@@ -12,6 +12,4 @@ torch.Tensor.numpy()
 paddle.Tensor.numpy()
 ```
 
-
-
 两者功能一致，均无参数，用于将当前 Tensor 转化为 numpy.ndarray。

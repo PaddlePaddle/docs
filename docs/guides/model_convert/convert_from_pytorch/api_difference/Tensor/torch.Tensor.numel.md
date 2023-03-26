@@ -12,6 +12,4 @@ torch.Tensor.numel()
 paddle.Tensor.size()
 ```
 
-
-
 两者功能一致，均无参数，用于返回张量的单元数量，是一个 shape 为[1]的 int64 的张量。

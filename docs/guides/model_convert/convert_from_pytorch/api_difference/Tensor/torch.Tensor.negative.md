@@ -12,6 +12,4 @@ torch.Tensor.negative()
 paddle.Tensor.neg()
 ```
 
-
-
 两者功能一致，均无参数，用于计算输入 x 的相反数并返回。
