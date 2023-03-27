@@ -6,7 +6,7 @@
 torch.Tensor.pow(exponent)
 ```
 
-### [paddle.Tensor.pow](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/outer_cn.html=)
+### [paddle.pow](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/pow_cn.html#cn-api-paddle-tensor-math-pow)
 
 ```python
 paddle.pow(y)
