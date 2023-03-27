@@ -6,7 +6,7 @@
 torch.Tensor.outer(vec2)
 ```
 
-### [paddle.Tensor.outer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/outer_cn.html=)
+### [paddle.outer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/outer_cn.html=)
 
 ```python
 paddle.outer(y)
