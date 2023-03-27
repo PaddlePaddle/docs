@@ -4,15 +4,15 @@
 ### [torch.Tensor.logsumexp](https://pytorch.org/docs/stable/generated/torch.Tensor.logsumexp.html)
 
 ```python
-torch.Tensor.logsumexp(dim, 
-                       keepdim=False) 
+torch.Tensor.logsumexp(dim,
+                       keepdim=False)
 ```
 
 ### [paddle.Tensor.logsumexp](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#logsumexp-axis-none-keepdim-false-name-none)
 
 ```python
-paddle.Tensor.logsumexp(axis=None, 
-                        keepdim=False, 
+paddle.Tensor.logsumexp(axis=None,
+                        keepdim=False,
                         name=None)
 ```
 

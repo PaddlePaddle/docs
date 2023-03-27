@@ -9,7 +9,7 @@ torch.Tensor.logical_not()
 ### [paddle.Tensor.logical_not](https://www.paddlepaddle.org.cn/documentation/docs/api/paddle/Tensor_cn.html#logical-not-out-none-name-none)
 
 ```python
-paddle.Tensor.logical_not(out=None, 
+paddle.Tensor.logical_not(out=None,
                           name=None)
 ```
 
