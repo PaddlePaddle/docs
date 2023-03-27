@@ -19,3 +19,17 @@ paddle.Tensor.tile(repeat_times, name=None)
 | Pytorch | PaddlePaddle | 备注                                                         |
 | ------- | ------------ | :----------------------------------------------------------- |
 | *reps   | repeat_times | 维度复制次数，Pytorch参数*reps为可变参，Paddle参数repeat_times为list/tuple/tensor的形式。 |
+
+转写示例
+
+#### ***reps:维度复制次数**
+
+```
+# Pytorch 写法
+x = torch.tensor([1, 2, 3])
+x.tile((2,))
+# Paddle 写法
+y= paddle.to_tensor([1, 2, 3], dtype='int32')
+y.tile([2,])
+```
+
