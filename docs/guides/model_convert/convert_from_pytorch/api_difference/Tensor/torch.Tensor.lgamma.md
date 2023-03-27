@@ -12,6 +12,4 @@ torch.Tensor.lgamma()
 paddle.Tensor.lgamma()
 ```
 
-
-
 两者功能一致，均无参数，用于计算张量中每个元素的自然对数伽马函数值的函数。
