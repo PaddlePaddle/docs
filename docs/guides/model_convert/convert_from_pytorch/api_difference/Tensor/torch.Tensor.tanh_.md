@@ -1,4 +1,4 @@
-## [无参数]torch.Tensor.tanh_
+## [ 无参数 ] torch.Tensor.tanh_
 
 ### [torch.Tensor.tanh_](https://pytorch.org/docs/1.13/generated/torch.Tensor.tanh_.html#torch.Tensor.tanh_)
 

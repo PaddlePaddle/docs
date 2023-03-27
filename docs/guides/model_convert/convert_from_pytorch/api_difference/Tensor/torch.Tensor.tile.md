@@ -1,4 +1,4 @@
-## [参数用法不一致]torch.Tensor.tile
+## [ 参数用法不一致 ] torch.Tensor.tile
 
 ### [torch.Tensor.tile](https://pytorch.org/docs/1.13/generated/torch.Tensor.tile.html#torch.Tensor.tile)
 
@@ -18,11 +18,11 @@ paddle.Tensor.tile(repeat_times, name=None)
 
 | Pytorch | PaddlePaddle | 备注                                                         |
 | ------- | ------------ | :----------------------------------------------------------- |
-| *reps   | repeat_times | 维度复制次数，Pytorch参数*reps为可变参，Paddle参数repeat_times为list/tuple/tensor的形式。 |
+| *reps   | repeat_times | 维度复制次数，Pytorch 参数 *reps 为可变参，Paddle 参数 repeat_times 为  list/tuple/tensor 的形式。 |
 
 转写示例
 
-#### ***reps:维度复制次数**
+#### ***reps: 维度复制次数**
 
 ```
 # Pytorch 写法

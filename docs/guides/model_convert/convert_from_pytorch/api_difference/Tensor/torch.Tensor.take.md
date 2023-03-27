@@ -1,4 +1,4 @@
-## [仅paddle参数更多]torch.Tensor.take
+## [ 仅 paddle 参数更多 ] torch.Tensor.take
 
 ### [torch.Tensor.take](https://pytorch.org/docs/1.13/generated/torch.Tensor.take.html#torch.Tensor.take)
 
@@ -18,7 +18,7 @@ paddle.Tensor.take(index, mode='raise', name=None)
 
 | Pytorch | PaddlePaddle | 备注                                                         |
 | ------- | ------------ | ------------------------------------------------------------ |
-| indices | index        | 表示输入tensor的索引，仅参数名不一致。                       |
+| indices | index        | 表示输入 tensor 的索引，仅参数名不一致。                     |
 | -       | mode         | 指定索引越界的 3 种处理方式，Pytorch 无此参数，Paddle 保持默认即可。 |
 
 注：
