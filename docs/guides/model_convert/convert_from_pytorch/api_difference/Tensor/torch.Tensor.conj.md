@@ -6,7 +6,7 @@
 torch.Tensor.conj()
 ```
 
-### [paddle.Tensor.conj](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#grad)
+### [paddle.Tensor.conj](paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#conj-name-none)
 
 ```python
 paddle.Tensor.conj(name=None)

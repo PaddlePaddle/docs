@@ -6,7 +6,7 @@
 torch.Tensor.acosh()
 ```
 
-### [paddle.Tensor.acosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/acosh_cn.html)
+### [paddle.Tensor.acosh]()
 
 ```python
 paddle.Tensor.acosh(name=None)

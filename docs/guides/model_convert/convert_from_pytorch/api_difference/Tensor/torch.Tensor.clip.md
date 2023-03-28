@@ -1,6 +1,6 @@
 ## [ 参数完全一致 ] torch.Tensor.clip
 
-### [torch.Tensor.clamp](https://pytorch.org/docs/stable/generated/torch.Tensor.clip.html?highlight=clip#torch.Tensor.clip)
+### [torch.Tensor.clip](https://pytorch.org/docs/stable/generated/torch.Tensor.clip.html?highlight=clip#torch.Tensor.clip)
 
 ```python
 torch.Tensor.clip(min=None, max=None)

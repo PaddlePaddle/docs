@@ -6,7 +6,7 @@
 torch.Tensor.cos()
 ```
 
-### [paddle.Tensor.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#grad)
+### [paddle.Tensor.cos](paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cos-name-none)
 
 ```python
 paddle.Tensor.cos(name=None)

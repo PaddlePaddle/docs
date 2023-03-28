@@ -6,7 +6,7 @@
 torch.Tensor.chunk(chunks, dim=0)
 ```
 
-### [paddle.Tensor.chunk](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cosh-name-none)
+### [paddle.Tensor.chunk](paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#chunk-chunks-axis-0-name-none)
 
 ```python
 paddle.Tensor.chunk(chunks, axis=0, name=None)
