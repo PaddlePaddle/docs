@@ -13,6 +13,3 @@ paddle.Tensor.atanh()
 ```
 
 两者功能一致,无参数。
-
-
-

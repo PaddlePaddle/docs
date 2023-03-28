@@ -20,6 +20,5 @@ paddle.Tensor.topk(k, axis=None, largest=True, sorted=True, name=None)
 | ------- | ------------ | :------------------------------- |
 | k       | k            | 表示前 k 个最大项。              |
 | dim     | axis         | 表示排序的维度，仅参数名不一致。 |
-| largest | largest      | True: 最大值，False: 最小值。    |
+| largest | largest      | True: 最大值， False: 最小值。   |
 | sorted  | sorted       | 表示是否排序。                   |
-

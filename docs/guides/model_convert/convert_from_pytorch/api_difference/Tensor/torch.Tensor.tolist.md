@@ -18,6 +18,3 @@ paddle.Tensor.tolist()
 | -------------------- | ------------------------- | ---------------------- |
 | torch.Tensor.tolist  | 可以将 tensor 转换成 list | 将 scalar 转换成一个数 |
 | paddle.Tensor.tolist | 可以将 tensor 转换成 list | 将 scalar 转换成 list  |
-
-
-
