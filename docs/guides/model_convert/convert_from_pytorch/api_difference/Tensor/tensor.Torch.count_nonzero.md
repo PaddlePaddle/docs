@@ -18,4 +18,4 @@ paddle.count_nonzero(x, axis=None, keepdim=False, name=None)
 |----------|--------------| ----------------------------------------------------- |
 | input    | x            |  输入的 Tensor，仅参数名不一致。               |
 | dim      | axis         |  指定对 x 进行计算的轴，仅参数名不一致。               |
-|          | keepdim      |  是否在输出 Tensor 中保留减小的维度，仅 paddle 参数更多。               |
+|          | keepdim      |  是否在输出 Tensor 中保留减小的维度，PyTorch 无此参数， Paddle 保持默认即可。               |

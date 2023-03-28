@@ -16,6 +16,6 @@ paddle.clip_(x, min=None, max=None, name=None)
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                        |
 |---------|--------------|---------------------------|
-|         | x            | 输入的 Tensor，Paddle 多此输入。    |
+|         | x            | 输入的 Tensor，PyTorch 无此参数， Paddle 保持默认即可。    |
 | min     | min          | 裁剪的最小值，输入中小于该值的元素将由该元素代替。 |
 | max     | max          | 裁剪的最大值，输入中大于该值的元素将由该元素代替。 |
