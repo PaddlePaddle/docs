@@ -1,19 +1,15 @@
-## [ 仅参数名不一致 ] torch.Tensor.acosh
+## [ 无参数 ] torch.Tensor.acosh
 
-### [torch.acosh](https://pytorch.org/docs/stable/generated/torch.acosh.html?highlight=acosh#torch.acosh)
-
-```python
-torch.acosh(input, *, out=None)
-```
-
-### [paddle.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/acosh_cn.html)
+### [torch.Tensor.acosh](https://pytorch.org/docs/stable/generated/torch.Tensor.acosh.html?highlight=acosh#torch.Tensor.acosh)
 
 ```python
-paddle.acosh(x, name=None)
+torch.Tensor.acosh()
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
-### 参数映射
-| PyTorch    | PaddlePaddle | 备注                                                   |
-|------------| ------------ | ------------------------------------------------------ |
-| input      | x           |  输入的 Tensor，仅参数名不一致。               |
+### [paddle.Tensor.acosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/acosh_cn.html)
+
+```python
+paddle.Tensor.acosh(name=None)
+```
+
+两者功能完全一致，无参数。

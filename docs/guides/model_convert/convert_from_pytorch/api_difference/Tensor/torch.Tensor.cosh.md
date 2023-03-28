@@ -1,19 +1,15 @@
-## [ 仅参数名不一致 ] torch.Tensor.cosh
+## [ 无参数 ] torch.Tensor.cosh
 
-### [torch.cosh](https://pytorch.org/docs/stable/generated/torch.cosh.html?highlight=cosh#torch.cosh)
-
-```python
-torch.cosh(input, *, out=None)
-```
-
-### [paddle.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cosh_cn.html)
+### [torch.Tensor.cosh](https://pytorch.org/docs/stable/generated/torch.Tensor.cosh.html?highlight=cosh#torch.Tensor.cosh)
 
 ```python
-paddle.cosh(x, name=None)
+torch.Tensor.cosh()
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
-### 参数映射
-| PyTorch    | PaddlePaddle | 备注                                                   |
-|------------| ------------ | ------------------------------------------------------ |
-| input      | x           |  输入的 Tensor，仅参数名不一致。               |
+### [paddle.Tensor.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cosh-name-none)
+
+```python
+Tensor.cosh(name=None)
+```
+
+两者功能完全一致，无参数。

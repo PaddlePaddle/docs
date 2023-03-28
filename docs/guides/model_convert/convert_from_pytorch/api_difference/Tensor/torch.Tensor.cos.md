@@ -1,19 +1,15 @@
-## [ 仅参数名不一致 ] torch.Tensor.cos
+## [ 无参数 ] torch.Tensor.cos
 
-### [torch.cos](https://pytorch.org/docs/stable/generated/torch.cos.html?highlight=cos#torch.cos)
-
-```python
-torch.cos(input, *, out=None)
-```
-
-### [paddle.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cos_cn.html)
+### [torch.Tensor.cos](https://pytorch.org/docs/stable/generated/torch.Tensor.cos.html?highlight=cos#torch.Tensor.cos)
 
 ```python
-paddle.cos(x, name=None)
+torch.Tensor.cos()
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
-### 参数映射
-| PyTorch    | PaddlePaddle | 备注                                                   |
-|------------| ------------ | ------------------------------------------------------ |
-| input      | x           |  输入的 Tensor，仅参数名不一致。               |
+### [paddle.Tensor.cos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#grad)
+
+```python
+paddle.Tensor.cos(name=None)
+```
+
+两者功能完全一致，无参数。
