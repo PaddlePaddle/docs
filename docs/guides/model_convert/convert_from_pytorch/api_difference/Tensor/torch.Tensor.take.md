@@ -23,7 +23,7 @@ paddle.Tensor.take(index, mode='raise', name=None)
 
 注：
 
-三种mode
+三种 mode
 
 - `mode='raise'`，若索引越界，通过最后调用的 `paddle.index_select` 抛出错误 （默认）；
 - `mode='wrap'`，通过取余约束越界的 indices；
