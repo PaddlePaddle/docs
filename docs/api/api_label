@@ -249,6 +249,8 @@ paddle.sum	.. _api_paddle_sum:
 paddle.t	.. _api_paddle_t:
 paddle.take	.. _api_paddle_take:
 paddle.frexp	.. _api_paddle_frexp:
+paddle.trapezoid    .. _api_paddle_trapezoid:
+paddle.cumulative_trapezoid    .. _api_paddle_cumulative_trapezoid:
 paddle.tanh	.. _api_paddle_tanh:
 paddle.tanh_	.. _api_paddle_tanh_:
 paddle.tile	.. _api_paddle_tile:
@@ -1212,3 +1214,4 @@ paddle.get_cuda_rng_state	.. _api_paddle_get_cuda_rng_state:
 paddle.flops	.. _api_paddle_flops:
 paddle.load	.. _api_paddle_load:
 paddle.vander	.. _api_paddle_vander:
+

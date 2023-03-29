@@ -1,4 +1,4 @@
-## [ 仅参数不一致 ]torch.tensor
+## [ 仅参数名不一致 ]torch.tensor
 ### [torch.from_numpy](https://pytorch.org/docs/stable/generated/torch.from_numpy.html?highlight=from_numpy#torch.from_numpy)
 
 ```python
