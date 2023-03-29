@@ -2485,6 +2485,28 @@ data_ptr()
 
 返回类型：int
 
+trapezoid(y, x=None, dx=None, axis=-1, name=None)
+:::::::::
+
+在指定维度上对输入实现 trapezoid rule 算法。使用求和函数 sum。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_trapezoid`
+
+cumulative_trapezoid(y, x=None, dx=None, axis=-1, name=None)
+:::::::::
+
+在指定维度上对输入实现 trapezoid rule 算法。使用求和函数 cumsum。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_cumulative_trapezoid`
+
 polar(abs, angle)
 :::::::::
 用于将输入的模和相位角计算得到复平面上的坐标
