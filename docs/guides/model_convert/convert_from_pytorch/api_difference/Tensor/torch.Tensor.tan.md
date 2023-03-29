@@ -12,4 +12,4 @@ torch.Tensor.tan()
 paddle.Tensor.tan()
 ```
 
-两者功能一致,无参数。
+两者功能一致,无参数.
