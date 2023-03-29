@@ -12,4 +12,8 @@ torch.cuda.current_stream(device=None)
 paddle.device.cuda.current_stream(device=None)
 ```
 
-功能一致，参数完全一致。
+功能一致，参数完全一致，具体如下：
+### 参数映射
+| PyTorch       | PaddlePaddle | 备注                                                   |
+| ------------- | ------------ | ------------------------------------------------------ |
+| device        | device            | 表示希望获取 stream 的设备或者设备 ID。如果为 None，则为当前的设备。默认值为 None。                                     |

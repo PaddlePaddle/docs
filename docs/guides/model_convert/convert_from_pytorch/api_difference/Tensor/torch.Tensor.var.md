@@ -17,4 +17,6 @@ paddle.Tensor.var(axis=None, unbiased=True, keepdim=False, name=None)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> dim </font> | <font color='red'> axis </font> | 指定对 Tensor 进行计算的轴 ，仅参数名不一致。   |
+|  dim |  axis  | 指定对 Tensor 进行计算的轴 ，仅参数名不一致。   |
+| unbiased | unbiased | 表示是否使用无偏估计来计算方差。 |
+| keepdim | keepdim | 表示是否保留计算后的维度。 |
