@@ -6,7 +6,7 @@
 torch.Tensor.tan()
 ```
 
-### [paddle.Tensor.tan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/tan_cn.html)
+### [paddle.Tensor.tan]()
 
 ```
 paddle.Tensor.tan()

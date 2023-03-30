@@ -6,7 +6,7 @@
 torch.Tensor.arctanh()
 ```
 
-### [paddle.Tensor.atanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atanh_cn.html)
+### [paddle.Tensor.atanh]()
 
 ```
 paddle.Tensor.atanh()
