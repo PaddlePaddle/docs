@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.Tensor.where
+## [参数用法不⼀致]torch.Tensor.where
 
 ### [torch.Tensor.where](https://pytorch.org/docs/1.13/generated/torch.Tensor.where.html#torch.Tensor.where)
 
@@ -24,17 +24,12 @@ paddle.Tensor.where(y, name=None)
 
 ```python
 # torch 写法
-import torch
-
 a = torch.tensor([0, 1, 2])
 b = torch.tensor([2, 3, 0])
-c = a.where(a>0, b)
-print(c)
+c = a.where(a > 0, b)
 
 # paddle 写法
-import paddle
 a = paddle.to_tensor([0, 1, 2])
 b = paddle.to_tensor([2, 3, 0])
-c = a.where(b)
-print(c)
+c = (a > 0).where(a, b)
 ```
