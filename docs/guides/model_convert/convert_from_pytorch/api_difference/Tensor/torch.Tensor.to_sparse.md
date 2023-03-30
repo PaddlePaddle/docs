@@ -12,7 +12,7 @@ torch.Tensor.to_sparse(sparseDims)
 paddleTensor.to_sparse_coo(sparseDims)
 ```
 
-两者函数名不同，功能一致，参数名一致，具体如下：
+两者功能一致，参数用法一致，具体如下：
 
 ### 参数映射
 
