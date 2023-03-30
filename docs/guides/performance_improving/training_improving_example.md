@@ -10,7 +10,9 @@ AIGC(AI Generated Content)，即基于人工智能技术自动生成内容，包
 ## 二 模型结构
 在对Disco Diffusion训练性能调优之前，本节先简单介绍下这个模型。下图为Disco Diffusion的模型结构示意图。Disco Diffusion模型网络结构主要包括Diffusion Model和CLIP两个部分。简而言之，其中Diffusion Model使用的是U-Net作为扩散模型的主干网络，其作用主要是用于在一个充满噪音的图像上，通过推理出噪音并将其去除出的方式进行作画，而CLIP主要包括CLIP Text Encoder和CLIP Image Encoder两部分，CLIP Text Encoder可以将用户提供的文本编码转换为计算机可以理解的表征形式，而CLIP Image Encoder则对Diffusion Model创作的画作进行编码，通过计算两个编码间的Loss值来指导Disco Diffusion创作出的图像尽可能匹配与文本描述内容。
 
-![图1 Disco Diffusion模型结构示意图](./images/training_improving_example_01.png)
+![图1 Disco Diffusion模型结构示意图](./images/training_improving_example_01.png "图1 Disco Diffusion模型结构示意图")
+
+<center>图1 Disco Diffusion模型结构示意图</center>
 
 ## 三 性能分析
 
@@ -26,20 +28,22 @@ AIGC(AI Generated Content)，即基于人工智能技术自动生成内容，包
 
 ![图2 下载界面](./images/training_improving_example_02.png)
 
+<center>图2 下载界面</center>
+
 #### 服务器安装：
 1. 执行如下命令在Linux系统中安装后缀为.run的安装文件。
 ```
 # 服务器/开发机Nsight-system安装命令
 bash NsightSystems-linux-public-xxx.run(xxx为不同版本号)
 ```
-2. 安装过程中需要手动输入接受用户许可协议。
+2. 安装过程中需要手动输入接受用户许可协议。   
 ![接受](./images/training_improving_example_03.png)
 
 3. 安装路径默认敲击回车即可。
 4. 安装成功后将会出现如下提示信息表示安装完成。
 ```
 # 安装完成提示信息
-To uninstall the Nsight Systems xxx, please delete ﻿"/opt/nvidia/nsight-systems/xxx"
+To uninstall the Nsight Systems xxx, please delete  "/opt/nvidia/nsight-systems/xxx"
 Installation Complete
 ```
 
@@ -104,14 +108,18 @@ for iter, data in enumerate(dataloader):
 ```
 nsys profile --stats true -t cuda,nvtx,osrt,cudnn,cublas --capture-range=cudaProfilerApi python train.py
 ```
-命令参数说明：
+命令参数说明：       
+
 | 缩写 | 全称 | 可选值 | 默认值 | 功能描述 |
 | ------ | ------ |------ | ------ | ------ |
 |       |  --stats | true, false | false | true表示收集性能数据后生成汇总统计信息 |
 |-t | --trace | cublas, cuda,cudnn, nvtx,opengl,openacc,openmp,osrt, mpi,vulkan等等 | cuda, opengl,nvtx, osrt | 选择要trace的API类别，可选择多个API，仅以逗号分隔（无空格） |
 |-c | --capture-range | none, cudaProfilerApi, hotkey, nvtx | none | 当使用该参数时，分析将仅在调用适当的启动 API或热键时开始 |
 
+
+
 选择以上参数的原因：
+
 * --stats设置为true，需要获取性能数据汇总统计信息以进行后续的性能分析。
 * -t 增加了cublas和cudnn，可以在timeline上更方便的显示出cuBLAS和cuDNN相关的API调用情况。
 * -c设置为cudaProfilerApi，仅在core.nvprof_start()后开始记录性能数据，去除模型启动阶段的一些开销，在训练/推理稳定阶段开始收集性能数据，对于后续的性能分析更加准确。
@@ -123,26 +131,35 @@ nsys profile --stats true -t cuda,nvtx,osrt,cudnn,cublas --capture-range=cudaPro
 * 左侧信息栏展示了不同的进程和线程的信息：
 	- CUDA HW展示的是GPU中的Kernel执行信息。
 	- Threads展示了不同线程的执行信息，一般只看第一个python主线程即可。
+	
 * Threads线程中的执行程序分为了不同的类别：
 	- NVTX：用户自定义或框架自身的一些NVTX事件。
 	- CUDA API：CUDA相关的API，如cudaMemcpy、cudaMalloc等。
 	- cuDNN/cuBLAS：英伟达提供的高性能计算库中的API。
+	
 * 右侧的主界面分为两部分：上半部分是GPU执行的Kernel信息，下半部分则是CPU相关的执行信息。
-![图3 Nsight System timeline 信息展示](./images/training_improving_example_04.png)
+  ![图3 Nsight System timeline 信息展示](./images/training_improving_example_04.png)
+
+  <center>图3 Nsight System timeline 信息展示</center>
 
 #### 3.2.4 关键信息
 1. NSYS生成的log信息。如下图所示，主要关注以下几个信息：
 	- 第一列为每个Kernel占总GPU耗时的比例。
+	
 	- 第二、三列为每个Kernel的运行总时间和总次数。
+	
 	- 最后一列为每个真正执行的Kernel名称，即CUDA中__global__修饰的函数。
-	![图4 Nsight System CUDA Kernel 统计表](./images/training_improving_example_05.png)
-
+	  ![图4 Nsight System CUDA Kernel 统计表](./images/training_improving_example_05.png)
+	
+	  <center>图4 Nsight System CUDA Kernel 统计表</center>
+	
 2. NSYS生成的timeline信息。如下图所示，主要关注以下几个信息：
 	- 大片空白。如图-4中红色框标记，一般属于Python端的不合理开销。
 	- GPU较为稀疏的部分。正常情况应该如同绿色框中所示，如果遇到图-4中黄色框中显示的形式，则表明此部分GPU利用率较低，应考虑优化GPU开销。
 	- 同步操作。如图-4中黑色框标记，同步会打断CPU端对算子执行的调度，因此需要从模型和框架层面尽可能避免同步。一般来说同步操作有cudaMemcpy、cudaMalloc、cudaDeviceSynchronize等。
 
 ![图5 Disco Diffusion模型的Timeline](./images/training_improving_example_06.png)
+<center>图5 Disco Diffusion模型的Timeline</center>
 
 下一小节将根据上述关键信息进行优化点分析。
 
@@ -151,10 +168,14 @@ nsys profile --stats true -t cuda,nvtx,osrt,cudnn,cublas --capture-range=cudaPro
 #### 3.3.1 Kernel优化
 首先分析图4 Nsight System CUDA Kernel 统计表，对于GPU耗时占比较高的算子，可以尝试优化。
 1. Conv优化
-由于飞桨中的Conv底层调用的是cuDNN Kernel，所以一般kernel名中带有“xxx_cudnnxxx”或“xxxcudnn_xxx”等关键字的kernel，就是Conv OP中调用的。如图4所示，第1、2、4行都是conv相关的kernel，合计占比高达25.5%，因此后面需要尝试优化Conv。
+  由于飞桨中的Conv底层调用的是cuDNN Kernel，所以一般kernel名中带有“xxx_cudnnxxx”或“xxxcudnn_xxx”等关键字的kernel，就是Conv OP中调用的。如图4所示，第1、2、4行都是conv相关的kernel，合计占比高达25.5%，因此后面需要尝试优化Conv。
+
 2. GroupNorm优化
-如图4所示，第5行是GroupNorm相关的kernel，且由图6所示，GroupNorm由于不支持FP16计算，所以前后都会插入Cast OP，即图4中第6、7行的kernel，三者合计占比高达16.4%，因此也需要尝试优化。
-![图6 U-Net—ResBlock(部分结构)](./images/training_improving_example_07.png)
+  如图4所示，第5行是GroupNorm相关的kernel，且由图6所示，GroupNorm由于不支持FP16计算，所以前后都会插入Cast OP，即图4中第6、7行的kernel，三者合计占比高达16.4%，因此也需要尝试优化。     
+
+  ![图6 U-Net—ResBlock(部分结构)](./images/training_improving_example_07.png)
+
+  <center>图6 U-Net—ResBlock(部分结构)</center>
 
 #### 3.3.2 CPU开销
 1. 分析图-4 Disco Diffusion模型的Timeline，在iter15中有大段空白，约400ms，约占总iter耗时的10%，因此分析模型代码，优化其中不合理的Python开销。
@@ -172,6 +193,8 @@ assert (model_mean.shape == model_log_variance.shape == pred_xstart.shape == x.s
 #### 分析
 飞桨中Conv大部分是调用cuDNN实现，对其优化手段通常考虑优化其内部算法的选择。
 ![图7 Conv算法选择调试信息](./images/training_improving_example_08.png)
+
+<center>图7 Conv算法选择调试信息</center>
 
 从图7 Conv算法选择调试信息上可以看到，飞桨对于Conv的workspace_size默认设置的“workspace limit”为512MB，然而在算法选择的时候，某些算法往往会超过这个限制，因此可能会导致无法选择到性能最好的算法。
 #### 优化方法
@@ -191,7 +214,7 @@ GroupNorm属于是Memory-Bound类算子，即IO是性能瓶颈，若将该算子
 #### 优化方法
 1. 为GroupNorm添加Half数据类型支持，减少其IO量
 ```
-PD_REGISTER_KERNEL﻿(group_norm,
+PD_REGISTER_KERNEL (group_norm,
                    GPU,
                    ALL_LAYOUT,
                    phi::GroupNormKernel,
@@ -254,6 +277,8 @@ if j in args.save_interm_steps or cur_t == -1:
 观察Timeline可知，这段空白之前已经完成了从GPU到CPU的数据拷贝（上面代码段的to_pil_image函数），如下图-7中红色框标记所示，所以这部分属于是纯Python的开销，因此可以考虑使用Python中Multi-Thread的方式，完成这一步的图片保存，从而不影响主线程的程序运行。
 ![图8 中间结果保存阶段详细timeline](./images/training_improving_example_09.png)
 
+<center>图8 中间结果保存阶段详细timeline</center>
+
 ```
 import threading
 
@@ -270,6 +295,8 @@ class MultiThread(threading.Thread):
 经过上述的分析和优化，我们将最终的优化过程及其对应的优化效果汇总到下面的图表中进行展示。
 ![图9 DiscoDiffusion不同优化策略下相比PyTorch的性能加速比（默认分辨率）](./images/training_improving_example_10.png)
 
+<center>图9 DiscoDiffusion不同优化策略下相比PyTorch的性能加速比（默认分辨率）</center>
+
 > 注：
 > 优化一：Conv优化；
 > 优化二：Conv优化+GroupNorm优化
@@ -280,7 +307,7 @@ class MultiThread(threading.Thread):
 ## 六 总结
 本文以Disco Diffusion模型为例，详细阐述了一个模型的性能分析方法和调优过程，下面将总结下在面对一个新的模型时，通常需要从哪些方面分析和针对性优化。
 1. 快速地运行配置调优
-飞桨提供了很多运行时配置，我们在模型调优初期，可以通过尝试这些不同的运行配置，快速地验证其对性能是否有提升效果。比如：
+	飞桨提供了很多运行时配置，我们在模型调优初期，可以通过尝试这些不同的运行配置，快速地验证其对性能是否有提升效果。比如：
 	- 调整dataloader的num_workers大小，对于模型训练来说通常都是可以起到一定的效果。
 	- 设置FLAGS_use_autotune/FLAGS_cudnn_exhaustive_search，或者调整FLAGS_conv_workspace_size_limit，可以帮助框架选择更好的Conv算法，从而提升以Conv性能为瓶颈的模型性能。
 
