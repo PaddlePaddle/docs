@@ -1753,9 +1753,7 @@ exe = static.Executor()
 exe.run(static.default_startup_program())
 
 places = paddle.static.cuda_places()
-compiled_program = static.CompiledProgram(
-    static.default_main_program()).with_data_parallel(
-        loss_name=loss.name, places=places)
+compiled_program = static.CompiledProgram(static.default_main_program())
 
 # train
 for epoch_id in range(EPOCH_NUM):
