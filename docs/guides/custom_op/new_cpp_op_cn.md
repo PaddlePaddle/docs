@@ -1328,8 +1328,8 @@ PD_BUILD_GRAD_OP(custom_add)
 $$
 out =
 \begin{cases}
-x + y &(if\ \ y\ \ is\ \ valid) \\
-x + x &(if\ \ y\ \ is\ \ None) \\
+x + y, & \text{   if  } y \text{  is valid}\\\\
+x + x, & \text{   if  } y \text{  is none}
 \end{cases}
 $$
 
