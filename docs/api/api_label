@@ -1213,3 +1213,5 @@ paddle.uniform	.. _api_paddle_uniform:
 paddle.get_cuda_rng_state	.. _api_paddle_get_cuda_rng_state:
 paddle.flops	.. _api_paddle_flops:
 paddle.load	.. _api_paddle_load:
+paddle.vander	.. _api_paddle_vander:
+
