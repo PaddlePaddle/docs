@@ -3,13 +3,13 @@
 ### [torch.Tensor.fmax](https://pytorch.org/docs/stable/generated/torch.Tensor.fmax.html?highlight=fmax#torch.Tensor.fmax)
 
 ```python
-Tensor.fmax(other)
+torch.Tensor.fmax(other)
 ```
 
 ### [paddle.Tensor.fmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fmax_cn.html#fmax)
 
 ```python
-Tensor.fmax(y, name=None)
+paddle.Tensor.fmax(y, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

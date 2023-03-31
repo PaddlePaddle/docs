@@ -3,13 +3,13 @@
 ### [torch.Tensor.floor_divide](https://pytorch.org/docs/stable/generated/torch.Tensor.floor_divide.html?highlight=floor_divide#torch.Tensor.floor_divide)
 
 ```python
-Tensor.floor_divide(value)
+torch.Tensor.floor_divide(value)
 ```
 
 ### [paddle.Tesnor.floor_divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#floor-divide-y-name-none)
 
 ```python
-Tensor.floor_divide(y, name=None)
+paddle.Tensor.floor_divide(y, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

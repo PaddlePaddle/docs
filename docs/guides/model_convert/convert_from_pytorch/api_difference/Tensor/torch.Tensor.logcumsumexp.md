@@ -3,13 +3,13 @@
 ### [torch.Tensor.logcumsumexp](https://pytorch.org/docs/stable/generated/torch.Tensor.logcumsumexp.html?highlight=logcumsumexp#torch.Tensor.logcumsumexp)
 
 ```python
-Tensor.logcumsumexp(dim)
+torch.Tensor.logcumsumexp(dim)
 ```
 
 ### [paddle.Tensor.logcumsumexp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logcumsumexp_cn.html#logcumsumexp)
 
 ```python
-Tensor.logcumsumexp(axis=None, dtype=None, name=None)
+paddle.Tensor.logcumsumexp(axis=None, dtype=None, name=None)
 ```
 
 两者功能一致，其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：

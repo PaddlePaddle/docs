@@ -3,13 +3,13 @@
 ### [torch.Tensor.flatten](https://pytorch.org/docs/stable/generated/torch.Tensor.flatten.html?highlight=flatten#torch.Tensor.flatten)
 
 ```python
-Tensor.flatten(start_dim=0, end_dim=- 1)
+torch.Tensor.flatten(start_dim=0, end_dim=- 1)
 ```
 
 ### [paddle.Tensor.flatten](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#flatten-start-axis-0-stop-axis-1-name-none)
 
 ```python
-Tensor.flatten(start_axis=0, stop_axis=-1, name=None)
+paddle.Tensor.flatten(start_axis=0, stop_axis=-1, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

@@ -3,13 +3,13 @@
 ### [torch.Tensor.dot](https://pytorch.org/docs/stable/generated/torch.Tensor.dot.html?highlight=dot#torch.Tensor.dot)
 
 ```python
-Tensor.dot(other)
+torch.Tensor.dot(other)
 ```
 
 ### [paddle.Tensor.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dot-y-name-none)
 
 ```python
-Tensor.dot(y, name=None)
+paddle.Tensor.dot(y, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

@@ -3,13 +3,13 @@
 ### [torch.Tensor.flip](https://pytorch.org/docs/stable/generated/torch.Tensor.flip.html?highlight=flip#torch.Tensor.flip)
 
 ```python
-Tensor.flip(dims)
+torch.Tensor.flip(dims)
 ```
 
 ### [paddle.Tensor.flip](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#flip-axis-name-none)
 
 ```python
-Tensor.flip(axis, name=None)
+paddle.Tensor.flip(axis, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

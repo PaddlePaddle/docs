@@ -3,13 +3,13 @@
 ### [torch.Tensor.eq](https://pytorch.org/docs/stable/generated/torch.Tensor.eq.html?highlight=eq#torch.Tensor.eq)
 
 ```python
-Tensor.eq(other)
+torch.Tensor.eq(other)
 ```
 
 ### [paddle.Tensor.equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#equal-y-name-none)
 
 ```python
-Tensor.equal(y, name=None)
+paddle.Tensor.equal(y, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

@@ -3,13 +3,13 @@
 ### [torch.Tensor.diagonal](https://pytorch.org/docs/stable/generated/torch.Tensor.diagonal.html?highlight=diagonal#torch.Tensor.diagonal)
 
 ```python
-Tensor.diagonal(offset=0, dim1=0, dim2=1)
+torch.Tensor.diagonal(offset=0, dim1=0, dim2=1)
 ```
 
 ### [paddle.Tensor.diagonal](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#diagonal-offset-0-axis1-0-axis2-1-name-none)
 
 ```python
-Tensor.diagonal(offset=0, axis1=0, axis2=1, name=None)
+paddle.Tensor.diagonal(offset=0, axis1=0, axis2=1, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

@@ -3,13 +3,13 @@
 ### [torch.Tensor.diff](https://pytorch.org/docs/stable/generated/torch.Tensor.diff.html?highlight=diff#torch.Tensor.diff)
 
 ```python
-Tensor.diff(n=1, dim=- 1, prepend=None, append=None)
+torch.Tensor.diff(n=1, dim=- 1, prepend=None, append=None)
 ```
 
 ### [paddle.Tensor.diff](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/diff_cn.html#diff)
 
 ```python
-Tensor.diff(n=1, axis=-1, prepend=None, append=None, name=None)
+paddle.Tensor.diff(n=1, axis=-1, prepend=None, append=None, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

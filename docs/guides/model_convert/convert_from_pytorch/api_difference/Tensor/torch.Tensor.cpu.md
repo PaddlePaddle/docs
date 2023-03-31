@@ -3,13 +3,13 @@
 ### [torch.Tensor.cpu](https://pytorch.org/docs/stable/generated/torch.Tensor.cpu.html?highlight=torch+tensor+cpu#torch.Tensor.cpu)
 
 ```python
-Tensor.cpu(memory_format=torch.preserve_format)
+torch.Tensor.cpu(memory_format=torch.preserve_format)
 ```
 
 ### [paddle.Tensor.cpu](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#cpu)
 
 ```python
-Tensor.cpu()
+paddle.Tensor.cpu()
 ```
 
 两者功能一致，其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：

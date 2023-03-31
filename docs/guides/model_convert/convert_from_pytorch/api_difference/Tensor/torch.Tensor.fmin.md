@@ -3,13 +3,13 @@
 ### [torch.Tensor.fmin](https://pytorch.org/docs/stable/generated/torch.Tensor.fmin.html?highlight=fmin#torch.Tensor.fmin)
 
 ```python
-Tensor.fmin(other)
+torch.Tensor.fmin(other)
 ```
 
 ### [paddle.Tensor.fmin](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/fmin_cn.html#fmin)
 
 ```python
-Tensor.fmin(y, name=None)
+paddle.Tensor.fmin(y, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

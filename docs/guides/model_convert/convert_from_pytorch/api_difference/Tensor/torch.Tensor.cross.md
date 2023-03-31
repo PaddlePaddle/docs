@@ -3,13 +3,13 @@
 ### [torch.Tensor.cross](https://pytorch.org/docs/stable/generated/torch.Tensor.cross.html?highlight=cross#torch.Tensor.cross)
 
 ```python
-Tensor.cross(other, dim=None)
+torch.Tensor.cross(other, dim=None)
 ```
 
 ### [paddle.Tensor.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cross-y-axis-none-name-none)
 
 ```python
-Tensor.cross(y, axis=None, name=None)
+paddle.Tensor.cross(y, axis=None, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

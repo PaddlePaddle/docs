@@ -3,13 +3,13 @@
 ### [torch.Tensor.cumprod](https://pytorch.org/docs/stable/generated/torch.Tensor.cumprod.html?highlight=cumprod#torch.Tensor.cumprod)
 
 ```python
-Tensor.cumprod(dim, dtype=None)
+torch.Tensor.cumprod(dim, dtype=None)
 ```
 
 ### [paddle.Tensor.cumprod](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cumprod_cn.html#cumprod)
 
 ```python
-Tensor.cumprod(dim=None, dtype=None, name=None)
+paddle.Tensor.cumprod(dim=None, dtype=None, name=None)
 ```
 
 两者功能一致且参数用法一致， 具体如下：

@@ -3,13 +3,13 @@
 ### [torch.Tensor.expand_as](https://pytorch.org/docs/stable/generated/torch.Tensor.expand_as.html?highlight=expand_as)
 
 ```python
-Tensor.expand_as(other)
+torch.Tensor.expand_as(other)
 ```
 
 ### [paddle.Tensor.expand_as](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#expand-as-y-name-none)
 
 ```python
-Tensor.expand_as(y)
+paddle.Tensor.expand_as(y)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

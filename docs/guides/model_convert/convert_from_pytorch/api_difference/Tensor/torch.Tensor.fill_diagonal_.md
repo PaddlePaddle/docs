@@ -3,13 +3,13 @@
 ### [torch.Tensor.fill_diagonal_](https://pytorch.org/docs/stable/generated/torch.Tensor.fill_diagonal_.html?highlight=fill_diagonal_#torch.Tensor.fill_diagonal_)
 
 ```python
-Tensor.fill_diagonal_(fill_value, wrap=False)
+torch.Tensor.fill_diagonal_(fill_value, wrap=False)
 ```
 
 ### [paddle.Tensor.fill_diagonal_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#fill-diagonal-x-value-offset-0-wrap-false-name-none)
 
 ```python
-Tensor.fill_diagonal_(value, offset=0, wrap=False, name=None)
+paddle.Tensor.fill_diagonal_(value, offset=0, wrap=False, name=None)
 ```
 
 两者功能一致且参数用法一致，paddle 参数更多，具体如下：

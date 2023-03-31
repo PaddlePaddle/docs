@@ -3,13 +3,13 @@
 ### [torch.Tensor.dist](https://pytorch.org/docs/stable/generated/torch.Tensor.dist.html?highlight=dist#torch.Tensor.dist)
 
 ```python
-Tensor.dist(other, p=2)
+torch.Tensor.dist(other, p=2)
 ```
 
 ### [paddle.Tensor.dist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#dist-y-p-2)
 
 ```python
-Tensor.dist(y, p=2)
+paddle.Tensor.dist(y, p=2)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

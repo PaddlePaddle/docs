@@ -3,13 +3,13 @@
 ### [torch.Tensor.gather](https://pytorch.org/docs/stable/generated/torch.Tensor.gather.html?highlight=gather#torch.Tensor.gather)
 
 ```python
-Tensor.gather(dim, index)
+torch.Tensor.gather(dim, index)
 ```
 
 ### [paddle.Tensor.take_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#take-along-axis-arr-index-axis)
 
 ```python
-Tensor.take_along_axis(index, axis)
+paddle.Tensor.take_along_axis(index, axis)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

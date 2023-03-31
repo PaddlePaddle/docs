@@ -3,13 +3,13 @@
 ### [torch.Tensor.cumsum](https://pytorch.org/docs/stable/generated/torch.Tensor.cumsum.html?highlight=cumsum#torch.Tensor.cumsum)
 
 ```python
-Tensor.cumsum(dim, dtype=None)
+torch.Tensor.cumsum(dim, dtype=None)
 ```
 
 ### [paddle.Tensor.cumsum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#cumsum-axis-none-dtype-none-name-none)
 
 ```python
-Tensor.cumsum(axis=None, dtype=None, name=None)
+paddle.Tensor.cumsum(axis=None, dtype=None, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

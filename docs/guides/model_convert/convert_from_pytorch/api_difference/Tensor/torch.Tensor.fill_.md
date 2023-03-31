@@ -3,13 +3,13 @@
 ### [torch.Tensor.fill\_](https://pytorch.org/docs/stable/generated/torch.Tensor.fill_.html?highlight=fill_#torch.Tensor.fill_)
 
 ```python
-Tensor.fill_(value)
+torch.Tensor.fill_(value)
 ```
 
 ### [paddle.Tensor.fill\_](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#fill-x-value-name-none)
 
 ```python
-Tensor.fill_(value, name=None)
+paddle.Tensor.fill_(value, name=None)
 ```
 
 两者功能一致且参数用法一致，具体如下：
