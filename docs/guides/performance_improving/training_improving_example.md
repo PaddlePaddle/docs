@@ -10,9 +10,9 @@ AIGC(AI Generated Content)，即基于人工智能技术自动生成内容，包
 ## 二 模型结构
 在对Disco Diffusion训练性能调优之前，本节先简单介绍下这个模型。下图为Disco Diffusion的模型结构示意图。Disco Diffusion模型网络结构主要包括Diffusion Model和CLIP两个部分。简而言之，其中Diffusion Model使用的是U-Net作为扩散模型的主干网络，其作用主要是用于在一个充满噪音的图像上，通过推理出噪音并将其去除出的方式进行作画，而CLIP主要包括CLIP Text Encoder和CLIP Image Encoder两部分，CLIP Text Encoder可以将用户提供的文本编码转换为计算机可以理解的表征形式，而CLIP Image Encoder则对Diffusion Model创作的画作进行编码，通过计算两个编码间的Loss值来指导Disco Diffusion创作出的图像尽可能匹配与文本描述内容。
 
-![图1 Disco Diffusion模型结构示意图](./images/training_improving_example_01.png "图1 Disco Diffusion模型结构示意图")
+![图 1 Disco Diffusion模型结构示意图](./images/training_improving_example_01.png "图1 Disco Diffusion模型结构示意图")
 
-<center>图1 Disco Diffusion模型结构示意图</center>
+<center>图 1 Disco Diffusion模型结构示意图</center>
 
 ## 三 性能分析
 
@@ -28,7 +28,7 @@ AIGC(AI Generated Content)，即基于人工智能技术自动生成内容，包
 
 ![图2 下载界面](./images/training_improving_example_02.png)
 
-<center>图2 下载界面</center>
+<center>图 2 下载界面</center>
 
 #### 服务器安装：
 1. 执行如下命令在Linux系统中安装后缀为.run的安装文件。
@@ -60,22 +60,22 @@ Installation Complete
 * nvprof_nvtx_pop：调用NVTX API，标记某一函数或训练阶段结束运行，类似出栈。具体使用见下方示例代码
 * nvprof_stop：表明NSYS记录性能数据的结束位置
 
-在训练/推理过程中，一般以iter（迭代）为单位进行埋点，同时为保证性能数据稳定，且避免生成的profile文件过大，建议采样epoch中段的10到20个iter。若希望以更细粒度地记录和分析模型性能，可以使用nvprof_nvtx_push/pop在模型中任意阶段进行埋点，参考图-1Disco Diffusion模型结构，可以对U-Net、CLIP模型等阶段都进行埋点，方便后续分析。埋点示例如下所示。
+在训练/推理过程中，一般以iter（迭代）为单位进行埋点，同时为保证性能数据稳定，且避免生成的profile文件过大，建议采样epoch中段的 10 到 20 个iter。若希望以更细粒度地记录和分析模型性能，可以使用nvprof_nvtx_push/pop在模型中任意阶段进行埋点，参考图-1Disco Diffusion模型结构，可以对U-Net、CLIP模型等阶段都进行埋点，方便后续分析。埋点示例如下所示。
 ```
 # 埋点示例伪代码
 from paddle.fluid import core
 
-#1. 以iter为单位进行埋点，记录10个iter的性能数据
+#1. 以iter为单位进行埋点，记录 10 个iter的性能数据
 for iter, data in enumerate(dataloader):
-    # 当iter等于100时，开始记录性能数据，且使用NVTX标记第100个iter的耗时
+    # 当iter等于 100 时，开始记录性能数据，且使用NVTX标记第 100 个iter的耗时
     if iter == 100:
         core.nvprof_start()
         core.nvprof_nvtx_push(str(iter))
-    # 当iter大于100且小于110时，上个iter NVTX标记结束，当前iter NVTX开始标记
+    # 当iter大于 100 且小于 110 时，上个iter NVTX标记结束，当前iter NVTX开始标记
     if iter > 100 and iter < 110:
         core.nvprof_nvtx_pop()
         core.nvprof_nvtx_push(str(iter))
-    # 当iter等于110时，记录结束
+    # 当iter等于 110 时，记录结束
     if iter == 110:
         core.nvprof_nvtx_pop()
         core.nvprof_stop()
@@ -140,7 +140,7 @@ nsys profile --stats true -t cuda,nvtx,osrt,cudnn,cublas --capture-range=cudaPro
 * 右侧的主界面分为两部分：上半部分是GPU执行的Kernel信息，下半部分则是CPU相关的执行信息。
   ![图3 Nsight System timeline 信息展示](./images/training_improving_example_04.png)
 
-  <center>图3 Nsight System timeline 信息展示</center>
+  <center>图 3 Nsight System timeline 信息展示</center>
 
 #### 3.2.4 关键信息
 1. NSYS生成的log信息。如下图所示，主要关注以下几个信息：
@@ -151,35 +151,35 @@ nsys profile --stats true -t cuda,nvtx,osrt,cudnn,cublas --capture-range=cudaPro
 	- 最后一列为每个真正执行的Kernel名称，即CUDA中__global__修饰的函数。
 	  ![图4 Nsight System CUDA Kernel 统计表](./images/training_improving_example_05.png)
 	
-	  <center>图4 Nsight System CUDA Kernel 统计表</center>
+	  <center>图 4 Nsight System CUDA Kernel 统计表</center>
 	
 2. NSYS生成的timeline信息。如下图所示，主要关注以下几个信息：
-	- 大片空白。如图-4中红色框标记，一般属于Python端的不合理开销。
-	- GPU较为稀疏的部分。正常情况应该如同绿色框中所示，如果遇到图-4中黄色框中显示的形式，则表明此部分GPU利用率较低，应考虑优化GPU开销。
-	- 同步操作。如图-4中黑色框标记，同步会打断CPU端对算子执行的调度，因此需要从模型和框架层面尽可能避免同步。一般来说同步操作有cudaMemcpy、cudaMalloc、cudaDeviceSynchronize等。
+	- 大片空白。如图 5 中红色框标记，一般属于Python端的不合理开销。
+	- GPU较为稀疏的部分。正常情况应该如同绿色框中所示，如果遇到图 5 中黄色框中显示的形式，则表明此部分GPU利用率较低，应考虑优化GPU开销。
+	- 同步操作。如图 5 中黑色框标记，同步会打断CPU端对算子执行的调度，因此需要从模型和框架层面尽可能避免同步。一般来说同步操作有cudaMemcpy、cudaMalloc、cudaDeviceSynchronize等。
 
 ![图5 Disco Diffusion模型的Timeline](./images/training_improving_example_06.png)
-<center>图5 Disco Diffusion模型的Timeline</center>
+<center>图 5 Disco Diffusion模型的Timeline</center>
 
 下一小节将根据上述关键信息进行优化点分析。
 
 
 ### 3.3 优化点分析
 #### 3.3.1 Kernel优化
-首先分析图4 Nsight System CUDA Kernel 统计表，对于GPU耗时占比较高的算子，可以尝试优化。
+首先分析图 4 Nsight System CUDA Kernel 统计表，对于GPU耗时占比较高的算子，可以尝试优化。
 1. Conv优化
-  由于飞桨中的Conv底层调用的是cuDNN Kernel，所以一般kernel名中带有“xxx_cudnnxxx”或“xxxcudnn_xxx”等关键字的kernel，就是Conv OP中调用的。如图4所示，第1、2、4行都是conv相关的kernel，合计占比高达25.5%，因此后面需要尝试优化Conv。
+    由于飞桨中的Conv底层调用的是cuDNN Kernel，所以一般kernel名中带有“xxx_cudnnxxx”或“xxxcudnn_xxx”等关键字的kernel，就是Conv OP中调用的。如图 4 所示，第 1、2、4 行都是conv相关的kernel，合计占比高达 25.5%，因此后面需要尝试优化Conv。
 
 2. GroupNorm优化
-  如图4所示，第5行是GroupNorm相关的kernel，且由图6所示，GroupNorm由于不支持FP16计算，所以前后都会插入Cast OP，即图4中第6、7行的kernel，三者合计占比高达16.4%，因此也需要尝试优化。     
+    如图 4 所示，第 5 行是GroupNorm相关的kernel，且由图 6 所示，GroupNorm由于不支持 FP16 计算，所以前后都会插入Cast OP，即图 4 中第 6、7 行的kernel，三者合计占比高达16.4%，因此也需要尝试优化。     
 
   ![图6 U-Net—ResBlock(部分结构)](./images/training_improving_example_07.png)
 
-  <center>图6 U-Net—ResBlock(部分结构)</center>
+  <center>图 6 U-Net—ResBlock(部分结构)</center>
 
 #### 3.3.2 CPU开销
-1. 分析图-4 Disco Diffusion模型的Timeline，在iter15中有大段空白，约400ms，约占总iter耗时的10%，因此分析模型代码，优化其中不合理的Python开销。
-2. 分析图-4 Disco Diffusion模型的Timeline，其中黄色框所标记的GPU利用率较低部分，具体分析原因为其中有同步操作所致，如黑色框所示，通过进一步分析模型代码，发现该同步是由于在Python端进行判断时，所需数据需要从GPU拷贝至CPU所致，无法消除，因此暂不优化。代码如下：
+1. 分析图 5 Disco Diffusion模型的 Timeline，在 iter15 中有大段空白，约 400ms，约占总iter耗时的 10%，因此分析模型代码，优化其中不合理的Python开销。
+2. 分析图 5 Disco Diffusion模型的Timeline，其中黄色框所标记的GPU利用率较低部分，具体分析原因为其中有同步操作所致，如黑色框所示，通过进一步分析模型代码，发现该同步是由于在Python端进行判断时，所需数据需要从GPU拷贝至CPU所致，无法消除，因此暂不优化。代码如下：
 ```
 assert (model_mean.shape == model_log_variance.shape == pred_xstart.shape == x.shape)
 ```
@@ -189,26 +189,26 @@ assert (model_mean.shape == model_log_variance.shape == pred_xstart.shape == x.s
 根据上文分析的优化点，下面将逐一介绍对应的调优方法。
 ### 4.1 Conv优化
 #### 问题
-由图4 Nsight System CUDA Kernel 统计表得，Conv的耗时占比较高，因此可以尝试优化。
+由图 4 Nsight System CUDA Kernel 统计表得，Conv的耗时占比较高，因此可以尝试优化。
 #### 分析
 飞桨中Conv大部分是调用cuDNN实现，对其优化手段通常考虑优化其内部算法的选择。
 ![图7 Conv算法选择调试信息](./images/training_improving_example_08.png)
 
-<center>图7 Conv算法选择调试信息</center>
+<center>图 7 Conv算法选择调试信息</center>
 
-从图7 Conv算法选择调试信息上可以看到，飞桨对于Conv的workspace_size默认设置的“workspace limit”为512MB，然而在算法选择的时候，某些算法往往会超过这个限制，因此可能会导致无法选择到性能最好的算法。
+从图 7 Conv算法选择调试信息上可以看到，飞桨对于Conv的workspace_size默认设置的“workspace limit”为 512MB，然而在算法选择的时候，某些算法往往会超过这个限制，因此可能会导致无法选择到性能最好的算法。
 #### 优化方法
 针对上述问题，优化步骤如下：
 1. 选择引入环境变量FLAGS_conv_workspace_size_limit来调整workspace_size，从而使其能够尽可能地选择出性能更好的算法，如下命令。
 ```
 export FLAGS_conv_workspace_size_limit = 4096
 ```
-2. 若对显存的使用要求没有限制，则首先将FLAGS_conv_workspace_size_limit设置为4096(MB)，一般都可以选到最优的算法。
-3. 若对显存的使用较为敏感，则需要减小workspace_size，一般设置为2的整数次幂，如1024、2048等，或者在某个2的整数次幂附近以256(MB)为步长进行调整，如1280、1536、2048等。
-4. 在本案例中，由于考虑到硬件显存大小限制，为了尽可能减小显存使用，最终将FLAGS_conv_workspace_size_limit设置为2048(MB)。
+2. 若对显存的使用要求没有限制，则首先将FLAGS_conv_workspace_size_limit设置为 4096(MB)，一般都可以选到最优的算法。
+3. 若对显存的使用较为敏感，则需要减小workspace_size，一般设置为2的整数次幂，如 1024、2048 等，或者在某个2的整数次幂附近以256(MB)为步长进行调整，如 1280、1536、2048 等。
+4. 在本案例中，由于考虑到硬件显存大小限制，为了尽可能减小显存使用，最终将FLAGS_conv_workspace_size_limit设置为 2048(MB)。
 ### 4.2 GroupNorm优化
 #### 问题
-由图4 Nsight System CUDA Kernel 统计表得，GroupNormForward的耗时占比较高，约为6%；且GroupNorm使用的数据类型是Float，而该部分模型使用的是混合精度，因此前后会插入Cast算子来完成Float到Half的相互转换，如图-5所示，此结构为U-Net中占比很高的部分，所以Cast的耗时占比也很高，约10%。
+由图 4 Nsight System CUDA Kernel 统计表得，GroupNormForward的耗时占比较高，约为 6%；且GroupNorm使用的数据类型是Float，而该部分模型使用的是混合精度，因此前后会插入Cast算子来完成Float到Half的相互转换，如图 6 所示，此结构为U-Net中占比很高的部分，所以Cast的耗时占比也很高，约 10%。
 #### 分析
 GroupNorm属于是Memory-Bound类算子，即IO是性能瓶颈，若将该算子使用Half计算数据类型，那该算子的输入输出的IO量会直接减半，使Kernel耗时大大减少，同时也会大大减少框架中插入的Cast带来的开销。
 #### 优化方法
@@ -225,27 +225,27 @@ PD_REGISTER_KERNEL (group_norm,
 ```
 2. 为了保证精度要求，除了输入和输出外，其他参数仍保持使用FP32类型，且在计算过程中都使用FP32，最终在输出时cast为FP16，减少由数据类型转换带来的精度影响，保证模型整体精度
 ```
-# T为输入数据类型，此处为float16
-# AccT为计算时的数据类型，此处为float
+# T为输入数据类型，此处为Float16
+# AccT为计算时的数据类型，此处为Float
 template <typename T, typename AccT, int flags>
 __global__ void GroupNormForward(/*参数略*/) {
   AccT x_mean = mean[ng];
   AccT x_var = var[ng];
 
-# 计算过程中保持float计算
+# 计算过程中保持Float计算
   AccT val;
   val = static_cast<AccT> (x[index]);
   val = (val - x_mean) * var_inv;
-# 输出前转为float16
+# 输出前转为Float16
   y[index] = static_cast<T>(val);
 }
 ```
 详细调优代码请参见优化PR：﻿https://github.com/PaddlePaddle/Paddle/pull/48222
 ### 4.3 减少Python端开销
 #### 问题
-由图-4 Timeline存在大段空白可以看到，在iter开始会存在大段空白，严重影响性能，规律是每5个iter出现，平均到每个iter大约有10%的占比。
+由图 5 Timeline存在大段空白可以看到，在iter开始会存在大段空白，严重影响性能，规律是每 5 个iter出现，平均到每个iter大约有 10%的占比。
 #### 分析
-在Timeline中，CPU与GPU都无法捕捉到的行为往往都是Python侧的一些开销所导致。进一步分析代码可知，模型中每隔5个Iter会将中间生成的图片保存下来，因此才会出现这样的现象。对应代码如下：
+在Timeline中，CPU与GPU都无法捕捉到的行为往往都是Python侧的一些开销所导致。进一步分析代码可知，模型中每隔 5 个Iter会将中间生成的图片保存下来，因此才会出现这样的现象。对应代码如下：
 ```
 # 中间结果保存阶段代码
 # 将结果转为图片，从GPU拷贝到CPU
@@ -258,7 +258,7 @@ def to_pil_image(pic):
     pic = np.transpose(pic, (1, 2, 0))
     return Image.fromarray(pic, mode="RGB")
 
-# 每隔5个iter或最后一个iter会保存中间结果图片
+# 每隔 5 个iter或最后一个iter会保存中间结果图片
 if j in args.save_interm_steps or cur_t == -1:
     image = sample['pred_xstart'][0]
     # 调用tensor转图片的函数
@@ -274,10 +274,10 @@ if j in args.save_interm_steps or cur_t == -1:
 ```
 上述代码中image.save是保存图片的操作，即大段空白开销来源。
 #### 优化方法
-观察Timeline可知，这段空白之前已经完成了从GPU到CPU的数据拷贝（上面代码段的to_pil_image函数），如下图-7中红色框标记所示，所以这部分属于是纯Python的开销，因此可以考虑使用Python中Multi-Thread的方式，完成这一步的图片保存，从而不影响主线程的程序运行。
+观察Timeline可知，这段空白之前已经完成了从GPU到CPU的数据拷贝（上面代码段的to_pil_image函数），如下图 8 中红色框标记所示，所以这部分属于是纯Python的开销，因此可以考虑使用Python中Multi-Thread的方式，完成这一步的图片保存，从而不影响主线程的程序运行。
 ![图8 中间结果保存阶段详细timeline](./images/training_improving_example_09.png)
 
-<center>图8 中间结果保存阶段详细timeline</center>
+<center>图 8 中间结果保存阶段详细timeline</center>
 
 ```
 import threading
@@ -295,14 +295,14 @@ class MultiThread(threading.Thread):
 经过上述的分析和优化，我们将最终的优化过程及其对应的优化效果汇总到下面的图表中进行展示。
 ![图9 DiscoDiffusion不同优化策略下相比PyTorch的性能加速比（默认分辨率）](./images/training_improving_example_10.png)
 
-<center>图9 DiscoDiffusion不同优化策略下相比PyTorch的性能加速比（默认分辨率）</center>
+<center>图 9 DiscoDiffusion不同优化策略下相比PyTorch的性能加速比（默认分辨率）</center>
 
 > 注：
 > 优化一：Conv优化；
 > 优化二：Conv优化+GroupNorm优化
 > 优化三：Conv优化+GroupNorm优化+减少Python端开销
 
-最终经过我们的性能调优，Disco Diffusion模型在飞桨上的性能相比PyTorch达到了1.57x的加速比。
+最终经过我们的性能调优，Disco Diffusion模型在飞桨上的性能相比PyTorch达到了 1.57x 的加速比。
 
 ## 六 总结
 本文以Disco Diffusion模型为例，详细阐述了一个模型的性能分析方法和调优过程，下面将总结下在面对一个新的模型时，通常需要从哪些方面分析和针对性优化。
@@ -314,7 +314,7 @@ class MultiThread(threading.Thread):
 更多的运行时配置可以参见﻿https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/phi/core/flags.cc﻿
 
 2. 熟练地使用性能分析工具产出关键数据
-“工欲善其事，必先利其器”。性能优化离不开分析，而分析则离不开分析工具。如3.1中所描述，在模型分析前，我们需要熟练地掌握性能分析工作，并且可以快速地通过工具拿到分析所需要的关键数据，这对后续的分析和优化是必不可少且至关重要的一环。
+“工欲善其事，必先利其器”。性能优化离不开分析，而分析则离不开分析工具。如 3.1 中所描述，在模型分析前，我们需要熟练地掌握性能分析工作，并且可以快速地通过工具拿到分析所需要的关键数据，这对后续的分析和优化是必不可少且至关重要的一环。
 
 3. 准确地判断模型性能缺陷并采取相应的优化方法
 
