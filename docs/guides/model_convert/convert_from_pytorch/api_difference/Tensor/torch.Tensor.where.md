@@ -9,15 +9,15 @@ torch.Tensor.where(condition, y)
 ### [paddle.Tensor.where](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#where-y-name-none)
 
 ```python
-paddle.Tensor.where(y, name=None)
+paddle.Tensor.where(x, y, name=None)
 ```
 
-两者功能一致，torch 参数更多，具体如下：
+两者功能一致，仅参数用法不一致，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| condition        | -            | 当 condition 为 true 时选择 Tensor 中元素，反之选择 y 中元素。                                     |
-| y| y        | 在 pyTorch 中，当 condition 为 false 时，选择 y 中元素。而 paddle 是直接将 Tensor 作为 condition，如果 Tensor 元素小于 0，则选择 y 中的元素。       |
+| condition        | x            | 在 pytorch 中 condition 为判断条件，而在 paddle 中 condition 需要转写， 当 condition 为 true 时，选择 x 中元素。                                     |
+| y| y        | 当 condition 为 false 时，选择 y 中元素，在 paddle 中 condition 需要转写。       |
 
 
 ### 转写示例
