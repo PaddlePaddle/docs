@@ -1309,6 +1309,112 @@ PD_BUILD_GRAD_OP(custom_add)
 ```
 
 
+#### optional 机制
+
+自定义算子的 optional 机制主要用于传入 Tensor 可能为 None 的场景，C++ 算子通过判断输入的 optional Tensor 是否为 None，可以执行不同的操作。
+
+下面结合具体的使用示例进行介绍，自定义一个输入为 `Tensor x` 和 `optional<Tensor> y`，输出为 `Tensor out` 的加法算子：
+
+$$
+out =
+\begin{cases}
+x + y, & \text{   if  } y \text{  is valid}\\\\
+x + x, & \text{   if  } y \text{  is none}
+\end{cases}
+$$
+
+函数实现如下：
+```c++
+#include <vector>
+
+#include "paddle/extension.h"
+
+/*
+if (y) {
+  out = x + y;
+} else {
+  out = x + x;
+}
+*/
+std::vector<paddle::Tensor> AddForward(
+    const paddle::Tensor& x,
+    const paddle::optional<paddle::Tensor>& y) {  // NOLINT
+  PD_CHECK(x.place() == paddle::PlaceType::kCPU, "x must be a CPU Tensor.");
+  paddle::Tensor out = paddle::empty(x.shape(), x.dtype(), x.place());
+
+  if (y) {
+    out = x + y.get();
+  } else {
+    out = x + x;
+  }
+
+  return {out};
+}
+
+std::vector<paddle::DataType> AddInferDtype(
+    const paddle::DataType& x_dtype,
+    const paddle::optional<paddle::DataType>& y_dtype) {
+  if (y_dtype) {
+    return {*y_dtype};
+  }
+  return {x_dtype};
+}
+
+std::vector<std::vector<int64_t>> AddInferShape(
+    const std::vector<int64_t>& x_shape,
+    const paddle::optional<std::vector<int64_t>>& y_shape) {
+  if (y_shape) {
+    return {*y_shape};
+  }
+  return {x_shape};
+}
+
+/*
+if (y) {
+  x_grad = out_grad;
+} else {
+  x_grad = out_grad + out_grad;
+}
+*/
+std::vector<paddle::Tensor> AddBackward(
+    const paddle::Tensor& x,
+    const paddle::optional<paddle::Tensor>& y,
+    const paddle::Tensor& out_grad) {  // NOLINT
+  PD_CHECK(x.place() == paddle::PlaceType::kCPU, "x must be a CPU Tensor.");
+  paddle::Tensor x_grad = paddle::zeros(x.shape(), x.dtype(), x.place());
+
+  if (y) {
+    x_grad = out_grad;
+  } else {
+    x_grad = out_grad + out_grad;
+  }
+
+  return {x_grad};
+}
+
+PD_BUILD_OP(custom_add)
+    .Inputs({"X", paddle::Optional("Y")})
+    .Outputs({"Out"})
+    .SetKernelFn(PD_KERNEL(AddForward))
+    .SetInferShapeFn(PD_INFER_SHAPE(AddInferShape))
+    .SetInferDtypeFn(PD_INFER_DTYPE(AddInferDtype));
+
+PD_BUILD_GRAD_OP(custom_add)
+    .Inputs({"X", paddle::Optional("Y"), paddle::Grad("Out")})
+    .Outputs({paddle::Grad("X")})
+    .SetKernelFn(PD_KERNEL(AddBackward));
+```
+
+相比于算子的常规实现，使用 optional 机制需要注意以下几点：
+
+1. 输入的 optional Tensor 类型，应该修改为 `const paddle::optional<paddle::Tensor>&` 而非 `const paddle::Tensor&`；相应的 `InferShapeFn` 和 `InferDtypeFn` 输入类型分别修改为 `const paddle::optional<std::vector<int64_t>>&` 和 `const paddle::optional<paddle::DataType>&`；
+
+2. 定义算子时，需要使用 `paddle::Optional` 标注 optional 类型的 Tensor；
+
+3. 暂不支持 optional\<Tensor\> 类型的输出，因此反向算子做计算时，无法输出前向算子 optional Tensor 类型输入的梯度。
+
+4. optional 的定义可以参考源码文件 `paddle/utils/optional.h`，用法与 boost optional 基本一致。
+
 ## 自定义算子编译与使用
 
 本机制提供了两种编译自定义算子的方式，分别为 **使用 `setuptools` 编译** 与 **即时编译** ，下面依次通过示例介绍。
