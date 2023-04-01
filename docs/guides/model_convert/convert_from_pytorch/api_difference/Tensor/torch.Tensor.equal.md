@@ -23,12 +23,12 @@ paddle.Tensor.equal_all(y, name=None)
 ## 转写示例
 ```Python
 # torch 中的写法
-x = torch.randn(3, 4)
-y = torch.randn(3, 4)
+x = torch.as_tensor([1, 2, 3, 4])
+y = torch.as_tensor([1, 2, 3, 5])
 x.equal(y)
 
 # paddle 中的写法
-x = paddle.randn([3, 4])
-y = paddle.randn([3, 4])
-x.equal(y).items()
+x = paddle.to_tensor([1, 2, 3, 4])
+y = paddle.to_tensor([1, 2, 3, 5])
+x.equal_all(y).item()
 ```
