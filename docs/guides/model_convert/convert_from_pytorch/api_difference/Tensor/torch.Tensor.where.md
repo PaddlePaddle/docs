@@ -12,12 +12,13 @@ torch.Tensor.where(condition, y)
 paddle.Tensor.where(x, y, name=None)
 ```
 
-两者功能一致，仅参数用法不一致，具体如下：
+两者功能一致，参数名和参数用法不一致，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| condition        | x            | 在 pytorch 中 condition 为判断条件，而在 paddle 中 condition 需要转写， 当 condition 为 true 时，选择 x 中元素。                                     |
-| y| y        | 当 condition 为 false 时，选择 y 中元素，在 paddle 中 condition 需要转写。       |
+| condition     | -            | condition 为判断条件。在 paddle 中 condition 需要转写。|
+| -             | x            | 当 condition 为 true 时，选择 x 中元素。|
+| y             | y            | 当 condition 为 false 时，选择 y 中元素。|
 
 
 ### 转写示例
