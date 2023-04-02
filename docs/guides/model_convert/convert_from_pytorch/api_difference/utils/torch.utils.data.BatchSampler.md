@@ -31,9 +31,11 @@ paddle.io.BatchSampler(dataset=None,
 ```python
 # 若 sampler 为 Iterable 数据类型，则需要按如下方式转写
 # Pytorch 写法
-torch.utils.data.BatchSampler(sampler=[1., 2., 3., 4.], 3, False)
+torch.utils.data.BatchSampler(sampler=[1., 2., 3., 4.], batch_size=3, drop_last = False)
 
 # Paddle 写法
-sampler = paddle.io.Sampler([1., 2., 3., 4.])
-paddle.io.BatchSampler(sampler, 3, False)
+sampler = [1.0, 2.0, 3.0, 4.0]
+sampler = sampler if issubclass(sampler.__class__, paddle.fluid.dataloader.
+    sampler.Sampler().__class__) else paddle.io.Sampler(sampler)
+paddle.io.BatchSampler(sampler=sampler, batch_size=3, drop_last=False)
 ```
