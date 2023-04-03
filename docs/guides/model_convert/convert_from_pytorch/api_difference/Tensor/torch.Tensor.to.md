@@ -8,14 +8,13 @@ torch.Tensor.to(dtype, non_blocking=False, copy=False, memory_format=torch.prese
 ### [paddle.Tensor.cast](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cast_cn.html#cast)
 
 ```python
-paddle.cast(x, dtype)
+paddle.Tensor.cast(dtype)
 ```
 
-两者功能类似，参数不一致，但 torch 是类成员方式，paddle 是 funtion 调用方式，具体如下：
+两者功能类似，参数不一致，具体如下：
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                        |
 |---------|--------------|---------------------------|
-| -     | x            | 表示输入的 Tensor。 |
 | dtype     | dtype            | 输出 Tensor 的数据类型 |
 | non_blocking   | -          | 用于控制 cpu 和 gpu 数据的异步复制，转写无需考虑该参数。 |
 | copy  | -          | 用于创新新的 Tensor 复制，转写无需考虑该参数。 |
