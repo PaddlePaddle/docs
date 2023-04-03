@@ -1,6 +1,6 @@
 ##  [ 无参数 ] torch.Tensor.requires_grad
 
-### [torch.Tensor.requires_grad](https://pytorch.org/docs/stable/generated/torch.Tensor.is_leaf.html)
+### [torch.Tensor.requires_grad](https://pytorch.org/docs/2.0/generated/torch.Tensor.requires_grad.html#torch.Tensor.requires_grad)
 
 ```python
 torch.Tensor.requires_grad

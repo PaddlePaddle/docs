@@ -6,7 +6,7 @@
 torch.Generator(device='cpu')
 ```
 
-PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API转写。
+PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API 转写。
 
 ### 转写示例
 ```python
@@ -17,5 +17,5 @@ g_cuda = torch.Generator(device='cuda')
 # paddle 写法
 g_cpu = paddle.fluid.core.default_cpu_generator()
 device = paddle.device.get_device()
-g_cuda = paddle.fluid.core.default_cuda_generator(device[-1])
+g_cuda = paddle.fluid.core.default_cuda_generator(int(device[-1]))
 ```

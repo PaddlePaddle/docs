@@ -12,19 +12,19 @@ torch.Tensor.index_copy_(dim, index, tensor)
 paddle.scatter_(x, index, updates, overwrite=True, name=None)
 ```
 
-两者功能类似，参数不一致，但 torch 是类成员方式，paddle 是 funtion 调用方式，具体如下： 
+两者功能类似，参数不一致，但 torch 是类成员方式，paddle 是 funtion 调用方式，具体如下：
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                        |
 |---------|--------------|---------------------------|
 | dim     | -            | 索引的维度值。 |
-| -     | x            | 表示输入的Tensor。 |
-| index   | index          | 选择的需要更新的Tensor索引。 |
-| tensor  | updates          | 根据index来更新Tensor。 |
-| -       | overwrite          | 更新输出的方式，True为覆盖模式，False为累加模式。 |
+| -     | x            | 表示输入的 Tensor。 |
+| index   | index          | 选择的需要更新的 Tensor 索引。 |
+| tensor  | updates          | 根据 index 来更新 Tensor。 |
+| -       | overwrite          | 更新输出的方式，True 为覆盖模式，False 为累加模式。 |
 
 
 ### 转写示例
-#### 示例1: 索引为0
+#### 示例 1: 索引的维度为 0
 ```python
 # torch 写法
 x.index_copy_(0, index, t)
@@ -32,7 +32,7 @@ x.index_copy_(0, index, t)
 # paddle 写法
 paddle.scatter_(x, index, t)
 ```
-#### 示例2: 索引不为0
+#### 示例 2: 索引的维度不为 0
 ```python
 # torch 写法
 y = x.index_copy_(2, index, t)
