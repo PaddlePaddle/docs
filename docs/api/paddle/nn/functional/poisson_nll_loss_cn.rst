@@ -1,10 +1,10 @@
-.. _cn_api_nn_functional_poisson_nll_loss:
+.. _cn_api_paddle_nn_functional_poisson_nll_loss:
 
 poisson_nll_los
 -------------------------------
 .. py:function:: paddle.nn.functional.poisson_nll_loss(input, label, log_input=False, full=False, eps=1e-8, reduction='mean', name=None)
 
-返回 `poisson negative log likelihood`。可在 :ref:`cn_api_nn_loss_PoissonNLLLoss` 查看详情。
+返回 `poisson negative log likelihood`。可在 :ref:`cn_api_paddle_nn_PoissonNLLLoss` 查看详情。
 
 参数
 :::::::::
@@ -22,6 +22,7 @@ poisson_nll_los
         \exp(\text{input}) - \text{label} * \text{input}
 
     默认值为 ``True``。
+
     - **full** (bool，可选) - 是否在损失计算中包括Stirling近似项。该近似项的计算公式为
 
     .. math::

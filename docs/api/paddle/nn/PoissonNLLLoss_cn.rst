@@ -1,4 +1,4 @@
-.. _cn_api_nn_loss_PoissonNLLLoss:
+.. _cn_api_paddle_nn_PoissonNLLLoss:
 
 PoissonNLLLoss
 -------------------------------
