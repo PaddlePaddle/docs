@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.utils.data.distributed.DistributedSampler
+## [ 参数不一致 ]torch.utils.data.distributed.DistributedSampler
 ### [torch.utils.data.distributed.DistributedSampler](https://pytorch.org/docs/stable/data.html?highlight=distributedsampler#torch.utils.data.distributed.DistributedSampler)
 
 ```python
