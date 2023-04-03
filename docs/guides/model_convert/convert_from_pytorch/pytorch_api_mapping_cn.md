@@ -390,8 +390,6 @@
 ## torch.nn.utils.XX API 映射列表
 梳理了`torch.nn.utils.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
 
-| 序号 | PyTorch API                                                  | PaddlePaddle API                                             | 备注                                                         |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 序号 | PyTorch API | PaddlePaddle API | 备注 |
  |--- | --- | --- | --- |
 | 1   |  [torch.nn.parameter.Parameter](https://pytorch.org/docs/stable/generated/torch.nn.parameter.Parameter.html?highlight=torch%20nn%20parameter#torch.nn.parameter.Parameter)  |  [paddle.create_parameter](https://github.com/PaddlePaddle/Paddle/blob/release/2.1/python/paddle/fluid/layers/tensor.py#L77)  |    功能一致, 参数不一致 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/utils/torch.nn.parameter.Parameter.md)  |
