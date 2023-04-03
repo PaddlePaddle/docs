@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.LSTM
+## [ 参数不一致 ]torch.nn.LSTM
 ### [torch.nn.LSTM](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html?highlight=lstm#torch.nn.LSTM)
 
 ```python

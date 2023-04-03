@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.PReLU
+## [ 参数不一致 ]torch.nn.PReLU
 ### [torch.nn.PReLU](https://pytorch.org/docs/1.13/generated/torch.nn.PReLU.html?highlight=prelu#torch.nn.PReLU)
 
 ```python
