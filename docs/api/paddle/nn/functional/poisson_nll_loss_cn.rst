@@ -1,6 +1,6 @@
 .. _cn_api_paddle_nn_functional_poisson_nll_loss:
 
-poisson_nll_los
+poisson_nll_loss
 -------------------------------
 .. py:function:: paddle.nn.functional.poisson_nll_loss(input, label, log_input=False, full=False, eps=1e-8, reduction='mean', name=None)
 
@@ -23,7 +23,7 @@ poisson_nll_los
 
     默认值为 ``True``。
 
-    - **full** (bool，可选) - 是否在损失计算中包括Stirling近似项。该近似项的计算公式为
+    - **full** (bool，可选) - 是否在损失计算中包括 Stirling 近似项。该近似项的计算公式为
 
     .. math::
         \text{label} * \log(\text{label}) - \text{label} + 0.5 * \log(2 * \pi * \text{label})
