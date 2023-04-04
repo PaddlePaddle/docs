@@ -270,7 +270,7 @@ from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=T
     exe = static.Executor(places[0])
     exe.run(static.default_startup_program())
 
-    prog = static.CompiledProgram(static.default_main_program()).with_data_parallel(loss_name=loss.name)
+    prog = static.CompiledProgram(static.default_main_program())
 
     if loader.iterable:
         train_iterable(exe, prog, loss, loader)
@@ -382,7 +382,6 @@ from_generator(feed_list=None, capacity=None, use_double_buffer=True, iterable=T
 
         exe = static.Executor(paddle.CPUPlace())
         prog = static.CompiledProgram(static.default_main_program())
-        prog = prog.with_data_parallel()
 
         result = []
         for data in loader():
