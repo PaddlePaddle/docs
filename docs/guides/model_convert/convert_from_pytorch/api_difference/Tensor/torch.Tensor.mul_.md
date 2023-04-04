@@ -22,4 +22,4 @@ paddle.Tensor.scale_(scale=1.0,
 | value          | scale         | 放缩的大小                                     |
 | -          | bias         | 表示放缩后的偏置部分，PyTorch 无此参数， Paddle 设为 0.0 即可                                     |
 | -          | bias_after_scale         | 表示是否在放缩后加偏置部分，PyTorch 无此参数， Paddle 设为 True 即可                                     |
-                                 |
+                                 
