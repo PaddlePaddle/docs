@@ -38,17 +38,19 @@ paddle.nn.InstanceNorm3D(num_features,
 | device | - | Tensor 的设备，一般对网络训练结果影响不大，可直接删除。         |
 | dtype| - | 指定权重参数属性的对象，一般对网络训练结果影响不大，可直接删除。 |
 ### 转写示例
-#### affine：是否进行反射变换
+#### affine：weight 和 bias 不进行更新
 ```python
 # 当 PyTorch 的 affine 为`False`，表示 weight 和 bias 不进行更新，torch 写法
 torch.nn.InstanceNorm3d(num_features, eps=1e-05, momentum=0.1, affine=False)
 
 # paddle 写法
-paddle.nn.InstanceNorm3D(num_features=num_features, momentum=1 - 0.1,
-    epsilon=1e-05, weight_attr=paddle.ParamAttr(learning_rate=0.0),
+paddle.nn.InstanceNorm3D(num_features=num_features, momentum=1 - 0.1, epsilon=1e-05, weight_attr=paddle.ParamAttr(learning_rate=0.0),
     bias_attr=paddle.ParamAttr(learning_rate=0.0))
 
-# 当 PyTorch 的 affine 为`True`，torch 写法
+```
+
+#### affine：weight 和 bias 进行更新
+```python
 torch.nn.InstanceNorm3d(num_features, eps=1e-05, momentum=0.1, affine=True)
 
 # paddle 写法
