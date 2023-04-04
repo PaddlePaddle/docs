@@ -13,3 +13,13 @@ paddle.Tensor.stop_gradient
 ```
 
 两者功能一致，均无参数，表示 Tensor 是否停止计算梯度 。
+
+### 转写示例
+
+```python
+# torch 写法
+x.requires_grad
+
+# paddle 写法
+x.stop_gradient
+```
