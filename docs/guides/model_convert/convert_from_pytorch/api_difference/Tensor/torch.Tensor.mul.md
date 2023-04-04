@@ -20,8 +20,7 @@ paddle.Tensor.multiply(y,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | value          | y         | 相乘的矩阵                                     |
-| -          | axis         | 计算的维度，PyTorch 无此参数， Paddle 设为 -1 即可                                   |
-
+| -          | axis         | 计算的维度，PyTorch 无此参数， Paddle 设为 -1 即可       
 
 
 
