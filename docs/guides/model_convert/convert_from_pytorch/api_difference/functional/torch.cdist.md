@@ -6,7 +6,7 @@
 torch.Tensor.cdist(x1, x2, p=2.0, compute_mode='use_mm_for_euclid_dist_if_necessary')
 ```
 
-Pytorch 中 torch.dist 计算两组行向量集合中每一对之间的 p 范数, PaddlePaddle 目前无对应 API，可通过 paddle.dist 单独计算两个向量 p 范数来实现，可使用如下代码组合实现该 API 转写。
+Pytorch 中 torch.dist 计算两组行向量集合中每一对之间的 p 范数, PaddlePaddle 目前无对应 API，可通过 paddle.dist 单独计算两个向量 p 范数来实现，使用如下代码组合实现该 API 转写。
 
 ### 转写示例
 ```python

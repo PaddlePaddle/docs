@@ -16,14 +16,14 @@ paddle.Tensor.scatter_(index, updates, overwrite=True, name=None)
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                        |
 |---------|--------------|---------------------------|
-| dim     | -            | 索引的维度值。 |
-| index   | index          | 选择的需要更新的 Tensor 索引。 |
-| tensor  | updates          | 根据 index 来更新 Tensor, 仅参数名不同 |
-| -       | overwrite          | 更新输出的方式，True 为覆盖模式，False 为累加模式， 默认即可。 |
+| dim     | -            | 表示需要更新 Tensor 索引的维度值， Paddle 无此参数，需要进行转写。 |
+| index   | index          | 表示需要更新的 Tensor 索引。 |
+| tensor  | updates          | 表示根据 index 用来更新的 Tensor, 仅参数名一致 |
+| -       | overwrite          | 更新输出的方式，True 为覆盖模式，False 为累加模式。Pytorch 无此参数，Paddle 保持默认即可。 |
 
 
 ### 转写示例
-#### 示例 1: 索引的维度为 0
+#### dim: 索引的维度为 0
 ```python
 # torch 写法
 x.index_copy_(0, index, t)
@@ -31,7 +31,7 @@ x.index_copy_(0, index, t)
 # paddle 写法
 x.scatter_(index, t)
 ```
-#### 示例 2: 索引的维度不为 0
+#### dim: 索引的维度不为 0
 ```python
 # torch 写法
 x.index_copy_(2, index, t)

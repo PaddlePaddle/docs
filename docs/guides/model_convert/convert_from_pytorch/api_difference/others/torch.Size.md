@@ -1,18 +1,18 @@
-## [ 仅参数名不一致 ] torch.Size
+## [ 组合替代实现 ] torch.Size
 
 ### [torch.Size]
 
 ```python
-shape = torch.Size((1,2,3,4))
+torch.Size((1,2,3,4))
 ```
 
-两者功能一致，仅参数名不一致，具体如下：
+Pytorch 中 torch.Size 返回 tensor 形状, PaddlePaddle 目前无对应 API，可通过 paddle.Tensor.shape 实现，可使用如下代码组合实现该 API 转写。
 
 ### 转写示例
 ```python
 # torch 写法
-shape = torch.Size((1,2,3,4))
+torch.Size((1,2,3,4))
 
 # paddle 写法
-shape = paddle.empty((1, 2, 3, 4)).shape
+paddle.empty((1, 2, 3, 4)).shape
 ```
