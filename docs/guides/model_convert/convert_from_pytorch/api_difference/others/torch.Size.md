@@ -1,4 +1,4 @@
-## [ 组合替代实现 ] torch.Generator
+## [ 仅参数名不一致 ] torch.Size
 
 ### [torch.Size]
 
@@ -6,7 +6,7 @@
 shape = torch.Size((1,2,3,4))
 ```
 
-PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API 转写。
+两者功能一致，仅参数名不一致，具体如下：
 
 ### 转写示例
 ```python
@@ -14,5 +14,5 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API 转�
 shape = torch.Size((1,2,3,4))
 
 # paddle 写法
-shape = paddle.shape(paddle.empty((1, 2, 3, 4)))
+shape = paddle.empty((1, 2, 3, 4)).shape
 ```

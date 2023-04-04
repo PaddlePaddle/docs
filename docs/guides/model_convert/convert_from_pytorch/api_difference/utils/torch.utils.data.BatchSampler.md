@@ -35,7 +35,7 @@ torch.utils.data.BatchSampler(sampler=[1., 2., 3., 4.], batch_size=3, drop_last 
 
 # Paddle 写法
 sampler = [1.0, 2.0, 3.0, 4.0]
-sampler = sampler if issubclass(sampler.__class__, paddle.fluid.dataloader.
-    sampler.Sampler().__class__) else paddle.io.Sampler(sampler)
+sampler = sampler if isinstance(sampler, paddle.fluid.dataloader.sampler.
+    Sampler) else paddle.io.Sampler(sampler)
 paddle.io.BatchSampler(sampler=sampler, batch_size=3, drop_last=False)
 ```
