@@ -12,9 +12,4 @@ torch.Tensor.tolist()
 paddle.Tensor.tolist()
 ```
 
-### 功能异同
-
-|                      | 相同点                    | 不同点                 |
-| -------------------- | ------------------------- | ---------------------- |
-| torch.Tensor.tolist  | 可以将 tensor 转换成 list | 将 scalar 转换成一个数 |
-| paddle.Tensor.tolist | 可以将 tensor 转换成 list | 将 scalar 转换成 list  |
+两者函数名不同，功能一致，无参数。
