@@ -4,26 +4,12 @@
 
 ```python
 torch.Tensor.neg()
-
-# 示例代码
-import torch
-
-x = torch.Tensor(([2, float('-nan'), 3]))
-x.neg()
-print(x)    # [-2., nan, -3.]
 ```
 
-### [paddle.Tensor.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/neg_cn.html)
+### [paddle.Tensor.neg](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#neg-name-none)
 
 ```python
 paddle.Tensor.neg()
-
-# 示例代码
-import paddle
-
-x = paddle.to_tensor([2, float('-nan'), 3])
-x.neg()
-print(x)    # [-2., nan, -3.]
 ```
 
-两者功能一致，将张量x上的各个值取相反数。
+两者功能一致，均无参数，将 Tensor 上的各个值取相反数。
