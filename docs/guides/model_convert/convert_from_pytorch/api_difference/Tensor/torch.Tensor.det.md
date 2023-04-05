@@ -12,7 +12,7 @@ torch.Tensor.det()
 paddle.linalg.det(x)
 ```
 
-两者功能参数完全一致，其中 `paddle.linalg.det(x)` 是类成员函数转成非类成员函数，因此输入参数 `x` 不进行对比，具体如下：
+两者功能参数完全一致，其中 torch 是类成员函数，而 paddle 是非类成员函数，因此输入参数 `x` 不进行对比，具体如下：
 
 ### 参数映射
 
