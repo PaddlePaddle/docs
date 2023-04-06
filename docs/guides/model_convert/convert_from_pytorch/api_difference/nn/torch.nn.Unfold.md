@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.Unfold
+## [ 参数不一致 ]torch.nn.Unfold
 ### [torch.nn.Unfold](https://pytorch.org/docs/stable/generated/torch.nn.Unfold.html?highlight=nn+unfold#torch.nn.Unfold)
 
 ```python
