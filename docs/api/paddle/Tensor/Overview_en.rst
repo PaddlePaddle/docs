@@ -275,3 +275,4 @@ Methods
     frexp
     trapezoid
     cumulative_trapezoid
+    vander

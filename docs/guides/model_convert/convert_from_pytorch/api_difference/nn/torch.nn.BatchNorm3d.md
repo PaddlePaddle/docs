@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.BatchNorm3d
+## [ 参数不一致 ]torch.nn.BatchNorm3d
 ### [torch.nn.BatchNorm3d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm3d.html?highlight=torch%20nn%20batchnorm3d#torch.nn.BatchNorm3d)
 
 ```python
