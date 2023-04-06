@@ -30,7 +30,7 @@ poisson_nll_loss
 
     默认值为 ``False``。
 
-    - **eps** (float，可选) - 在 :attr:`log_input` 为 ``True`` 时使用的常数小量，使得 loss 计算过程中不会导致对0求对数情况的出现。默认值为1e-8。
+    - **eps** (float，可选) - 在 :attr:`log_input` 为 ``True`` 时使用的常数小量，使得 loss 计算过程中不会导致对 0 求对数情况的出现。默认值为 1e-8。
     - **reduction** (str，可选) - 指定应用于输出结果的计算方式，可选值有 ``none``、``mean`` 和 ``sum``。默认为 ``mean``，计算 ``mini-batch`` loss 均值。设置为 ``sum`` 时，计算 ``mini-batch`` loss 的总和。设置为 ``none`` 时，则返回 loss Tensor。默认值下为 ``mean``。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
