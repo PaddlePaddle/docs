@@ -6,7 +6,7 @@
 torch.Tensor.slogdet()
 ```
 
-### [paddle.Tensor.slogdet](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#slogdet-name-none)
+### [paddle.Tensor.slogdet]()
 
 ```python
 paddle.Tensor.slogdet()

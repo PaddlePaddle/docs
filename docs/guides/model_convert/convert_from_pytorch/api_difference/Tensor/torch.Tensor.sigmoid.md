@@ -6,7 +6,7 @@
 torch.Tensor.sigmoid()
 ```
 
-### [paddle.Tensor.sigmoid](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor/sigmoid_cn.html)
+### [paddle.Tensor.sigmoid]()
 
 ```python
 paddle.Tensor.sigmoid()

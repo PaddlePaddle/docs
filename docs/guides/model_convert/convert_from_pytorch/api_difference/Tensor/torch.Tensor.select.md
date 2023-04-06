@@ -1,4 +1,4 @@
-## [ torch 参数更多 ]torch.Tensor.select
+## [ 仅参数名不一致 ]torch.Tensor.select
 
 ### [torch.Tensor.select](https://pytorch.org/docs/stable/generated/torch.Tensor.select.html?highlight=select#torch.Tensor.select)
 
@@ -12,7 +12,7 @@ torch.Tensor.select(dim, index)
 paddle.Tensor.index_select(index, axis=0, name=None)
 ```
 
-其中 Pytorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 
