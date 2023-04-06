@@ -12,7 +12,7 @@ torch.Tensor.numpy(force=False)
 paddle.Tensor.numpy()
 ```
 
-两者功能一致，均无参数，用于将当前 Tensor 转化为 numpy.ndarray。
+两者功能一致，用于将当前 Tensor 转化为 numpy.ndarray。
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
