@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ] torch.Tensor.pow
+## [ 参数不一致 ] torch.Tensor.pow
 
 ### [torch.Tensor.pow](https://pytorch.org/docs/stable/generated/torch.Tensor.pow.html?highlight=pow#torch.Tensor.pow)
 
