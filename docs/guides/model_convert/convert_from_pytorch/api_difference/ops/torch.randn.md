@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.randn
+## [ 参数不一致 ]torch.randn
 
 ### [torch.randn](https://pytorch.org/docs/stable/generated/torch.randn.html?highlight=randn#torch.randn)
 

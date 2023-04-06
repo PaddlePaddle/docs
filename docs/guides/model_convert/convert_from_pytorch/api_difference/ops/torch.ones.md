@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.ones
+## [ 参数不一致 ]torch.ones
 ### [torch.ones](https://pytorch.org/docs/stable/generated/torch.ones.html?highlight=ones#torch.ones)
 
 ```python

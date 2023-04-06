@@ -2521,3 +2521,14 @@ polar(abs, angle)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_polar`
+
+vander(x, n=None, increasing=False, name=None)
+:::::::::
+
+生成范德蒙德矩阵, 默认生成维度为 (x.shape[0],x.shape[0]) 且降序的范德蒙德矩阵。其中输入 x 必须为 1-D Tensor。输入 n 为矩阵的列数。输入 increasing 决定了矩阵的升降序，默认为降序。
+
+返回：返回一个根据 n 和 increasing 创建的范德蒙德矩阵。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_vander`
