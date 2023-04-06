@@ -12,7 +12,7 @@ pixel_unshuffle
 
 参数
 :::::::::
-    - **x** (Tensor) – 当前算子的输入，其是一个形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的 4-D Tensor。其中 :math:`N` 是批大小，:math:`C` 是通道数，:math:`H` 是输入特征的高度，:math:`W` 是输入特征的宽度。其数据类型为 float32 或 float64。
+    - **x** (Tensor) – 当前算子的输入，其是一个形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的 4-D Tensor。其中 :math:`N` 是批大小，:math:`C` 是通道数，:math:`H` 是输入特征的高度，:math:`W` 是输入特征的宽度。其数据类型为 float16, float32, float64 或 uint16。
     - **downscale_factor** (int) – 减小空间分辨率的减小因子。
     - **data_format** (str，可选) – 数据格式，可选 NCHW 或 NHWC，默认为 NCHW，即（批大小，通道数，高度，宽度）的格式。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
