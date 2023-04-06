@@ -11,7 +11,7 @@ is_float16_supported
 参数
 ::::::::::::
 
-    - **place** (fluid.CPUPlace|fluid.CUDAPlace|None, optional) - 需要查询的设备。默认为 None。
+    - **place** (str, optional) - 指定要查询的设备，它可以是 cpu、 gpu、 xpu、gpu:x、xpu:x。其中，x 是 GPU、 XPU 的编号。默认为 None。
 
 
 代码示例
