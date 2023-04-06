@@ -12,7 +12,9 @@ torch.Tensor.pow(exponent)
 paddle.pow(x, y)
 ```
 
-两者功能一致，其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
+两者功能一致，逐元素计算 x 的 y 次幂。
+
+其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 
