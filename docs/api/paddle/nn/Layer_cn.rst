@@ -425,9 +425,6 @@ float16(excluded_layers=None)
 
 将所有浮点型的参数和通过 ``register_buffers()`` 注册的 Buffer 变量转换为 float16 数据类型。
 
-.. note::
-   nn.BatchNorm 不支持 float16 类型的权重，默认不对其权重进行类型转换。
-
 **参数**
 
     - **excluded_layers** （list|nn.Layer，可选） - 不需要转换数据类型的层。默认值：nn.BatchNorm。
