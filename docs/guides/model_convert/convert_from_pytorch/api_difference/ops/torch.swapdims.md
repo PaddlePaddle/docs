@@ -1,9 +1,9 @@
-## [参数用法不⼀致] torch.transpose
+## [ 参数用法不⼀致 ] torch.swapdims
 
-### [torch.transpose](https://pytorch.org/docs/stable/generated/torch.transpose.html?highlight=transpose#torch.transpose)
+### [torch.swapdims](https://pytorch.org/docs/master/generated/torch.swapdims.html#torch.swapdims)
 
 ```python
-torch.transpose(input,
+torch.swapdims(input,
                 dim0,
                 dim1)
 ```
@@ -32,7 +32,7 @@ paddle.transpose(x,
 #### dim0、dim1 参数： 转置的维度设置
 ``` python
 # PyTorch 写法:
-torch.transpose(x, dim0=0, dim1=1)
+torch.swapdims(x, dim0=0, dim1=1)
 
 # Paddle 写法:
 paddle.transpose(x, perm=[1, 0, 2])
