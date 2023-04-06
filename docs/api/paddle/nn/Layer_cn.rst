@@ -410,24 +410,27 @@ COPY-FROM: paddle.nn.Layer.to
 float(excluded_layers=None)
 '''''''''
 
-对于所有浮点参数和缓冲区，将其转换为“float”数据类型。
+将所有浮点型的参数和通过 ``register_buffers()`` 注册的 Buffer 变量转换为 float 数据类型。
 
 **参数**
 
-    - **excluded_layers** （list|nn.Layer|None，可选） - 有些层需要保持原始数据类型，存储在excluded_layers中。
+    - **excluded_layers** （list|nn.Layer，可选） - 不需要转换数据类型的层。默认值：nn.BatchNorm。
 
 **代码示例**
 
 COPY-FROM: paddle.nn.Layer.float
 
-half(excluded_layers=None)
+float16(excluded_layers=None)
 '''''''''
 
-对于所有浮点参数和缓冲区，将其转换为“half”数据类型。
+将所有浮点型的参数和通过 ``register_buffers()`` 注册的 Buffer 变量转换为 float16 数据类型。
+
+.. note::
+   nn.BatchNorm 不支持 float16 类型的权重，默认不对其权重进行类型转换。
 
 **参数**
 
-    - **excluded_layers** （list|nn.Layer|None，可选） - 有些层需要保持原始数据类型，存储在excluded_layers中。
+    - **excluded_layers** （list|nn.Layer，可选） - 不需要转换数据类型的层。默认值：nn.BatchNorm。
 
 **代码示例**
 
@@ -436,11 +439,14 @@ COPY-FROM: paddle.nn.Layer.half
 bfloat16(excluded_layers=None)
 '''''''''
 
-对于所有浮点参数和缓冲区，将其转换为“bfloat16”数据类型。
+将所有浮点型的参数和通过 ``register_buffers()`` 注册的 Buffer 变量转换为 bfloat16 数据类型。
+
+.. note::
+   nn.BatchNorm 不支持 bfloat16 类型的权重，默认不对其权重进行类型转换。
 
 **参数**
 
-    - **excluded_layers** （list|nn.Layer|None，可选） - 有些层需要保持原始数据类型，存储在excluded_layers中。
+    - **excluded_layers** （list|nn.Layer，可选） - 不需要转换数据类型的层。默认值：nn.BatchNorm。
 
 **代码示例**
 
