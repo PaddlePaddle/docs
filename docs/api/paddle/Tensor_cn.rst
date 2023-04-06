@@ -51,7 +51,7 @@ dtype
 grad
 :::::::::
 
-查看一个 Tensor 的梯度，数据类型为 numpy\.ndarray。
+查看一个 Tensor 的梯度，数据类型为 paddle\.Tensor。
 
 **代码示例**
 
@@ -2476,7 +2476,7 @@ frexp(x)
 
 返回类型：Tensor, Tensor
 
-请参考 :ref:`_cn_api_paddle_frexp`
+请参考 :ref:`cn_api_paddle_frexp`
 
 data_ptr()
 :::::::::
@@ -2484,3 +2484,45 @@ data_ptr()
 返回：Tensor 的数据的存储地址
 
 返回类型：int
+
+trapezoid(y, x=None, dx=None, axis=-1, name=None)
+:::::::::
+
+在指定维度上对输入实现 trapezoid rule 算法。使用求和函数 sum。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_trapezoid`
+
+cumulative_trapezoid(y, x=None, dx=None, axis=-1, name=None)
+:::::::::
+
+在指定维度上对输入实现 trapezoid rule 算法。使用求和函数 cumsum。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_cumulative_trapezoid`
+
+polar(abs, angle)
+:::::::::
+用于将输入的模和相位角计算得到复平面上的坐标
+返回：一个复数 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_polar`
+
+vander(x, n=None, increasing=False, name=None)
+:::::::::
+
+生成范德蒙德矩阵, 默认生成维度为 (x.shape[0],x.shape[0]) 且降序的范德蒙德矩阵。其中输入 x 必须为 1-D Tensor。输入 n 为矩阵的列数。输入 increasing 决定了矩阵的升降序，默认为降序。
+
+返回：返回一个根据 n 和 increasing 创建的范德蒙德矩阵。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_vander`

@@ -25,7 +25,7 @@ label_smooth
 参数
 ::::::::::::
 
-  - **label** （Tensor） - 包含标签数据的输入变量。标签数据应使用 one-hot 表示，是维度为 :math:`[N_1, ..., Depth]` 的多维 Tensor，其中 Depth 为字典大小。
+  - **label** （Tensor） - 包含标签数据的输入变量，数据类型为：float16、float32、float64。标签数据应使用 one-hot 表示，是维度为 :math:`[N_1, ..., Depth]` 的多维 Tensor，其中 Depth 为字典大小。
   - **prior_dist** （Tensor，可选） - 用于平滑标签的先验分布，是维度为 :math:`[1，class\_num]` 的 2D Tensor。如果未设置，则使用均匀分布。默认值为 None。
   - **epsilon** （float，可选） - 用于混合原始真实分布和固定分布的权重。默认值为 0.1。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。

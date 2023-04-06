@@ -1,4 +1,4 @@
-## torch.nn.functional.conv2d
+## [ 仅参数名不一致 ]torch.nn.functional.conv2d
 
 ### [torch.nn.functional.conv2d](https://pytorch.org/docs/stable/generated/torch.nn.functional.conv2d.html?highlight=conv2d#torch.nn.functional.conv2d)
 
@@ -27,8 +27,14 @@ paddle.nn.functional.conv2d(x,
 ```
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           |  x           | 表示输入的 Tensor 。               |
+| weight          | weight         | 表示权重 Tensor 。                                     |
+| bias          | bias         | 表示偏置项 。                                     |
+| stride          | stride         | 表示步长 。                                     |
+| padding          | padding         | 表示填充大小 。                                     |
+| dilation          | dilation         | 表示空洞大小 。                                     |
+| groups          | groups         | 表示分组数 。                                     |
 | -           |  data_format           | 表示输入 Tensor 的数据格式， PyTorch 无此参数， Paddle 保持默认即可。               |

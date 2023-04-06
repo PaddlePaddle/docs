@@ -1,4 +1,4 @@
-## torch.logical_and
+## [ 仅参数名不一致 ]torch.logical_and
 ### [torch.logical_and](https://pytorch.org/docs/1.13/generated/torch.logical_and.html?highlight=logical_and#torch.logical_and)
 
 ```python
@@ -18,8 +18,9 @@ paddle.logical_and(x,
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的 Tensor。                                      |
-| other         | y            | 输入的 Tensor。                                      |
+| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+| <font color='red'> other </font> | <font color='red'> y </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+| out | out | 输出 Tensor。 |

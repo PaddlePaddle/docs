@@ -1,4 +1,4 @@
-## torch.nn.ConstantPad1d
+## [ 参数不一致 ]torch.nn.ConstantPad1d
 ### [torch.nn.ConstantPad1d](https://pytorch.org/docs/1.13/generated/torch.nn.ConstantPad1d.html?highlight=constantpad1d#torch.nn.ConstantPad1d)
 
 ```python
@@ -16,11 +16,12 @@ paddle.nn.Pad1D(padding,
                 name=None)
 ```
 
-其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
-### 参数差异
+其中 Paddle 和 Pytorch 的 padding 参数所支持的类型不一致，具体如下：
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | padding       | padding      | 填充大小，Pytorch 和 Paddle 的 padding 参数的类型分别为 (int/tuple) 和 (int/Tensor/list)。  |
+| value             | value         | 以 'constant' 模式填充区域时填充的值。默认值为 0.0 。  |
 | -             | mode         | padding 的四种模式，PyTorch 无此参数，Paddle 保持默认即可。  |
 | -             | data_format  | 输入和输出的数据格式，PyTorch 无此参数，Paddle 保持默认即可。  |
 
@@ -32,7 +33,6 @@ m = nn.ConstantPad1d((3, 1), 3.5)
 m(input)
 
 # Paddle 写法
-pad = paddle.to_tensor((3, 1))
-m = nn.Pad1D(pad, value=3.5)
+m = nn.Pad1D([3, 1], value=3.5)
 m(input)
 ```

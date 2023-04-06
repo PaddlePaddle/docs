@@ -1,4 +1,4 @@
-## torch.nn.functional.fold
+## [ 仅参数名不一致 ]torch.nn.functional.fold
 
 ### [torch.nn.functional.fold](https://pytorch.org/docs/stable/generated/torch.nn.functional.fold.html?highlight=functional+fold#torch.nn.functional.fold)
 
@@ -24,7 +24,7 @@ paddle.nn.functional.fold(x,
 ```
 
 两者功能一致，仅参数名不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 表示输入的 Tensor 。               |

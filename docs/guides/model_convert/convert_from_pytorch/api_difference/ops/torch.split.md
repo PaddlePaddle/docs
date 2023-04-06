@@ -1,4 +1,4 @@
-## torch.split
+## [ 参数不一致 ]torch.split
 ### [torch.split](https://pytorch.org/docs/stable/generated/torch.split.html?highlight=torch%20split#torch.split)
 
 ```python
@@ -16,13 +16,13 @@ paddle.split(x,
              name=None)
 ```
 
-其中 Pytorch 的 split_size_or_sections 与 Paddle 的 num_or_sections 用法不一致，具体如下：
-### 参数差异
+其中 Pytorch 的 `split_size_or_sections` 与 Paddle 的 `num_or_sections` 用法不一致，具体如下：
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| tensor        | x            | 表示输入 Tensor。                                     |
-| `split_size_or_sections`| num_or_sections| 当类型为 int 时，torch 表示单个块大小，paddle 表示结果有多少个块。 |
-| dim           | axis         | 表示需要分割的维度。                   |
+| tensor        | x            | 表示输入 Tensor ，仅参数名不一致。                                     |
+| `split_size_or_sections`| num_or_sections| 当类型为 int 时，torch 表示单个块大小，paddle 表示结果有多少个块，需要进行转写。 |
+| dim           | axis         | 表示需要分割的维度，仅参数名不一致。                   |
 
 
 ### 转写示例

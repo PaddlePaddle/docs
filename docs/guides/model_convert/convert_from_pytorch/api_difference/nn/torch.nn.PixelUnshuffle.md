@@ -1,4 +1,4 @@
-## torch.nn.PixelUnshuffle
+## [ 仅 paddle 参数更多 ]torch.nn.PixelUnshuffle
 ### [torch.nn.PixelUnshuffle](https://pytorch.org/docs/stable/generated/torch.nn.PixelUnshuffle.html?highlight=pixel#torch.nn.PixelUnshuffle)
 
 ```python
@@ -14,7 +14,7 @@ paddle.nn.PixelUnshuffle(downscale_factor,
 ```
 
 其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | downscale_factor   | downscale_factor | 表示减小空间分辨率的减小因子。                   |

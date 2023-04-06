@@ -1,4 +1,4 @@
-## torch.ones
+## [ 参数不一致 ]torch.ones
 ### [torch.ones](https://pytorch.org/docs/stable/generated/torch.ones.html?highlight=ones#torch.ones)
 
 ```python
@@ -24,10 +24,11 @@ paddle.ones(shape,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | *size         | shape        | 表示输出形状大小，Pytorch 以可变参数方式传入，Paddle 以 list 或 tuple 的方式传入。                                     |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
+| out           | -            | 表示输出的 Tensor， PaddlePaddle 无此参数，需要进行转写。               |
+| dtype         | dtype            | 表示数据类型。                                     |
 | layout        | -            | 表示布局方式，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
-| device        | -            | 表示 Tensor 存放位置，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。                   |
-| requires_grad | -            | 表示是否不阻断梯度传导，PaddlePaddle 无此参数。 |
+| device        | -            | 表示 Tensor 存放设备位置，Paddle 无此参数，需要进行转写。                  |
+| requires_grad | -            | 表示是否不阻断梯度传导，PaddlePaddle 无此参数，需要进行转写。 |
 
 
 ### 转写示例
@@ -53,9 +54,20 @@ y = paddle.ones([3, 2])
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
 ```python
 # Pytorch 写法
-x = torch.ones((3, 2), requires_grad=True)
+x = torch.ones(3, 2, requires_grad=True)
 
 # Paddle 写法
 x = paddle.ones([3, 2])
 x.stop_gradient = False
+```
+
+
+#### device: Tensor 的设备
+```python
+# Pytorch 写法
+torch.ones(3, 2, device=torch.device('cpu'))
+
+# Paddle 写法
+y = paddle.ones([3, 2])
+y.cpu()
 ```

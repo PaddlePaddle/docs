@@ -1,4 +1,4 @@
-## torch.nn.functional.softplus
+## [ 仅参数名不一致 ]torch.nn.functional.softplus
 
 ### [torch.nn.functional.softplus](https://pytorch.org/docs/stable/generated/torch.nn.functional.softplus.html?highlight=softplus#torch.nn.functional.softplus)
 
@@ -18,9 +18,9 @@ paddle.nn.functional.softplus(x,
 ```
 
 两者功能一致，仅参数名不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input           | x           | 表示 Softplus 激活计算公式中的 beta 值 。               |
+| input           | x           | 表示 Softplus 激活计算公式中的 beta 值 ，仅参数名不一致。               |
 | beta           | beta           | 表示 Softplus 激活计算公式中的 threshold 值 。               |
 | threshold           | threshold           | 表示输入的 Tensor 。               |

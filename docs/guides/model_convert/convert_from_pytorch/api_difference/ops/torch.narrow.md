@@ -1,4 +1,4 @@
-## torch.narrow
+## [ 参数不一致 ]torch.narrow
 ### [torch.narrow](https://pytorch.org/docs/stable/generated/torch.narrow.html?highlight=narrow#torch.narrow)
 ```python
 torch.narrow(input,
@@ -17,13 +17,14 @@ paddle.slice(input,
 ```
 
 其中 Pytorch 的 length 与 Paddle 的 ends 用法不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
+| input           | input         | 表示输入的 Tensor 。                                           |
 | dim           | axes         | 表示切片的轴。                                           |
 | start         | starts       | 表示起始位置。                                           |
-| length        | -            | 到结束位置的长度。                                       |
-| -             | ends         | 表示结束位置。                                           |
+| length        | -            | 到结束位置的长度，需要进行转写。                                       |
+| -             | ends         | 表示结束位置，需要进行转写。                                           |
 
 
 ### 转写示例

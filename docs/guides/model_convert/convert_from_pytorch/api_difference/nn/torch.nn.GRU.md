@@ -1,4 +1,4 @@
-## torch.nn.GRU
+## [ 参数不一致 ]torch.nn.GRU
 ### [torch.nn.GRU](https://pytorch.org/docs/stable/generated/torch.nn.GRU.html?highlight=torch%20nn%20gru#torch.nn.GRU)
 ```python
 torch.nn.GRU(input_size,
@@ -25,16 +25,20 @@ paddle.nn.GRU(input_size,
 ```
 
 两者功能一致但参数不一致，部分参数名不同，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| bias          | -            | 表示 LSTM 后将映射到对应的大小，PaddlePaddle 无此功能。  |
-| batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一位，它们的意义相反。  |
+| input_size          | input_size            | 表示输入 x 的大小。  |
+| hidden_size          | hidden_size            | 表示隐藏状态 h 大小。  |
+| num_layers          | num_layers            | 表示循环网络的层数。  |
+| bias          | -            | 表示 LSTM 后将映射到对应的大小，PaddlePaddle 无此功能， 需要进行转写。  |
+| batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一维，它们的意义相反。  |
+| dropout   | dropout   | 表示 dropout 概率。  |
 | bidirectional | direction    | PyTorch 表示是否进行双向 LSTM，PyTorch 使用字符串表示是双向 LSTM（`bidirectional`）还是单向 LSTM（`forward`）。 |
-| -             |weight_ih_attr| weight_ih 的参数。  |
-| -             |weight_hh_attr| weight_hh 的参数。  |
-| -             | bias_ih_attr | bias_ih 的参数。  |
-| -             | bias_hh_attr | bias_hh 的参数。  |
+| -             |weight_ih_attr| weight_ih 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |
+| -             |weight_hh_attr| weight_hh 的参数，  PyTorch 无此参数， Paddle 保持默认即可。  |
+| -             | bias_ih_attr | bias_ih 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |
+| -             | bias_hh_attr | bias_hh 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |
 
 ### 转写示例
 #### bias：是否使用偏置

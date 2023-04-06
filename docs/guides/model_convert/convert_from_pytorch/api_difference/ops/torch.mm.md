@@ -1,4 +1,4 @@
-## torch.mm
+## [torch 参数更多 ]torch.mm
 ### [torch.mm](https://pytorch.org/docs/stable/generated/torch.mm.html?highlight=mm#torch.mm)
 
 ```python
@@ -19,14 +19,14 @@ paddle.matmul(x,
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，Paddle 多余参数保持默认即可，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 表示输入的第一个 Tensor。               |
-| mat2          | y            | 表示输入的第二个 Tensor。             |
+| input         | x            | 表示输入的第一个 Tensor ，仅参数名不一致。               |
+| mat2          | y            | 表示输入的第二个 Tensor ，仅参数名不一致。             |
 | -             | transpose_x  | 表示相乘前是否转置 x，PyTorch 无此参数，Paddle 保持默认即可。               |
 | -             | transpose_y  | 表示相乘前是否转置 y，PyTorch 无此参数，Paddle 保持默认即可。             |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。  |
+| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
 ### 转写示例
