@@ -11,7 +11,6 @@ torch.Tensor.not_equal(other)
 paddle.Tensor.not_equal(y)
 ```
 
-
 两者功能一致，逐元素比较 Tensor 和 y 是否相等，相同位置的元素不相同则返回 True，否则返回 False。
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
