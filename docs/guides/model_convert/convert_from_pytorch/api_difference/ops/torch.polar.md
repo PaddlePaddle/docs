@@ -19,5 +19,5 @@ PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 torch.polar(abs, angle, out=y)
 
 # Paddle 写法
-y = paddle.complex(ans * paddle.cos(angle), ans * paddle.sin(angle))
+y = paddle.complex(abs * paddle.cos(angle), abs * paddle.sin(angle))
 ```

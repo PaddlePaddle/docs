@@ -5,7 +5,6 @@
 torch.rand_like(input, *, dtype=None, layout=None, device=None, requires_grad=False, memory_format=torch.preserve_format)
 ```
 
-###  功能介绍
 返回与输入相同大小的张量，该张量由区间[0,1)上均匀分布的随机数填充。
 
 ### 参数介绍
