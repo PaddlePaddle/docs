@@ -29,5 +29,5 @@ paddle.reciprocal(x,
 torch.reciprocal([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.reciprocal([3, 5])
+paddle.assign(paddle.reciprocal([3, 5]), y)
 ```

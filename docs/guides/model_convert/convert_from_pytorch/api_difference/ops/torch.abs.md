@@ -32,5 +32,5 @@ paddle.abs(x,
 torch.abs([-3, -5], out=y)
 
 # Paddle 写法
-y = paddle.abs([-3, -5])
+paddle.assign(paddle.abs([-3, -5]), y)
 ```

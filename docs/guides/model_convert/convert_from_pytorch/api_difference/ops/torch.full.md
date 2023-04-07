@@ -42,7 +42,7 @@ paddle.full(shape,
 torch.full([3, 5], 1., out=y)
 
 # Paddle 写法
-y = paddle.full([3, 5], 1.)
+paddle.assign(paddle.full([3, 5], 1.), y)
 ```
 #### device: Tensor 的设备
 ```python

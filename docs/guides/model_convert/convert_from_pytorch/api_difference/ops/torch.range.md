@@ -36,14 +36,16 @@ paddle.arange(start=0,
 
 
 ### 转写示例
+
 #### out：指定输出
 ```python
 # Pytorch 写法
 torch.range(5, out=y)
 
 # Paddle 写法
-y = paddle.arange(5)
+paddle.assign(paddle.arange(5), y)
 ```
+
 #### device: Tensor 的设备
 ```python
 # Pytorch 写法

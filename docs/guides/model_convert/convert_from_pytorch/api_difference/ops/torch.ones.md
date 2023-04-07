@@ -47,7 +47,7 @@ paddle.ones([3, 5])
 torch.ones((3, 2), out=y)
 
 # Paddle 写法
-y = paddle.ones([3, 2])
+paddle.assign(paddle.ones([3, 2]), y)
 ```
 
 

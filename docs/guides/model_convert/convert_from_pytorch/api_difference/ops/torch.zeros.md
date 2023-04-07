@@ -47,7 +47,7 @@ paddle.zeros([3, 5])
 torch.zeros([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.zeros([3, 5])
+paddle.assign(paddle.zeros([3, 5]), y)
 ```
 
 #### device: Tensor 的设备
