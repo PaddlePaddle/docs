@@ -34,11 +34,20 @@ x.scatter_(index, t)
 #### dim: 索引的维度不为 0
 ```python
 # torch 写法
+x = torch.zeros(2, 1, 3, 3)
+t = torch.tensor([
+    [[[1, 2, 3], [4, 5, 6], [7, 8, 9]]],
+    [[[1, 2, 3], [4, 5, 6], [7, 8, 9]]]], dtype=torch.float)
+index = torch.tensor([0, 1, 2])
 x.index_copy_(2, index, t)
 
 # paddle 写法
-dim = list(x.shape)
-for i0 in range(dim[0]):
-    for i1 in range(dim[1]):
-        x[i0, i1, :] = x[i0: i1].scatter_(index, t[i0: i1])
+x = paddle.zeros(shape=[2, 1, 3, 3])
+t = paddle.to_tensor(data=[[[[1, 2, 3], [4, 5, 6], [7, 8, 9]]], [[[1, 2, 3],
+    [4, 5, 6], [7, 8, 9]]]], dtype='float32')
+index = paddle.to_tensor(data=[0, 1, 2])
+times, temp_shape, temp_index = paddle.prod(paddle.to_tensor(x.shape[:2])), x.shape, index
+x, new_t = x.reshape([-1] + temp_shape[2 + 1:]), t.reshape([-1] + temp_shape[2 + 1:])
+for i in range(1, times):
+    temp_index = paddle.concat([temp_index, index + len(index) * i])
 ```
