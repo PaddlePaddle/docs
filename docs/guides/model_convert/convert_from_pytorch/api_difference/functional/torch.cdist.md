@@ -13,34 +13,15 @@ Pytorch 中 torch.dist 计算两组行向量集合中每一对之间的 p 范数
 # torch 写法
 a = torch.tensor([[0.9041,  0.0196], [-0.3108, -2.4423], [-0.4821,  1.059]])
 b = torch.tensor([[-2.1763, -0.4713], [-0.6986,  1.3702]])
-torch.cdist(a, b, p=2)
+x = torch.cdist(a, b, p=2)
 
 # paddle 写法
 a = paddle.to_tensor(data=[[0.9041, 0.0196], [-0.3108, -2.4423], [-0.4821,
     1.059]])
 b = paddle.to_tensor(data=[[-2.1763, -0.4713], [-0.6986, 1.3702]])
-sa, sb = a.shape, b.shape
-if len(sa) == 2 and len(sb) == 2:
-    x = paddle.empty(shape=(sa[0], sa[1]), dtype='float32')
-    for i in range(sa[0]):
-        for j in range(sb[0]):
-            x[i, j] = paddle.dist(a[i], b[j], p=2)
-elif len(sa) == 2 and len(sb) == 3:
-    x = paddle.empty(shape=(sb[0], sa[0], sb[1]), dtype='float32')
-    for i in range(sb[0]):
-        for j in range(sa[0]):
-            for k in range(sb[1]):
-                x[i, j, k] = paddle.dist(a[j], b[i, k], p=2)
-elif len(sa) == 3 and len(sb) == 2:
-    x = paddle.empty(shape=(sa[0], sa[1], sb[0]), dtype='float32')
-    for i in range(sa[0]):
-        for j in range(sa[1]):
-            for k in range(sb[0]):
-                x[i, j, k] = paddle.dist(a[i: j], b[k], p=2)
-else:
-    x = paddle.empty(shape=(sa[0], sa[1], sb[1]), dtype='float32')
-    for i in range(sa[0]):
-        for j in range(sa[1]):
-            for k in range(sb[1]):
-                x[i, j, k] = paddle.dist(a[i, j], a[i, k], p=2)
+x = paddle.empty(shape=(sa[0], sa[1], sb[0]), dtype='float32')
+for i in range(sa[0]):
+    for j in range(sa[1]):
+        for k in range(sb[0]):
+            x[i, j, k] = paddle.dist(a[i: j], b[k], p=2)
 ```
