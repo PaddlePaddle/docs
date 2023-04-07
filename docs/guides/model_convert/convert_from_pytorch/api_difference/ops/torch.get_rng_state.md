@@ -22,7 +22,7 @@ paddle.get_cuda_rng_state()
 
 
 ### 转写示例
-
+#### 返回参数类型不同
 ```python
 # Pytorch 写法
 x = torch.get_rng_state()

@@ -1,6 +1,6 @@
 ## [ 组合替代实现 ]torch.vstack
 
-### [torch.row_stack](https://pytorch.org/docs/master/generated/torch.vstack.html#torch.vstack)
+### [torch.vstack](https://pytorch.org/docs/master/generated/torch.vstack.html#torch.vstack)
 
 ```python
 torch.vstack(tensors, *, out=None)
@@ -8,13 +8,15 @@ torch.vstack(tensors, *, out=None)
 
 按垂直方向拼接张量; Paddle 无此 API，需要组合实现。
 
+### 转写示例
+#### out：指定输出
 ```python
-import paddle
+# Pytorch 写法
+torch.vstack((a, b), out=y)
 
-def vstack(tensors, out=None):
-    if a.ndim == 1:
-        out = paddle.stack((a,b))
-    else:
-        out = paddle.concat((a,b))
-    return out
+# Paddle 写法
+if a.ndim == 1:
+    y = paddle.stack((a, b))
+else:
+    y = paddle.concat((a, b))
 ```

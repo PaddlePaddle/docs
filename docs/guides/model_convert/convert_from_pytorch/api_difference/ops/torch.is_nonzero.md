@@ -12,11 +12,8 @@ torch.is_nonzero(input)
 
 ```python
 # Pytorch 写法
-y = torch.is_nonzero(x)
+torch.is_nonzero(x)
 
 # Paddle 写法
-if paddle.numel(x) != 1:
-    raise RuntimeError('number of tensor elements must equal to 1!')
-else:
-    y = paddle.to_tensor(x, dtype='bool').item()
+x.astype('bool').item()
 ```

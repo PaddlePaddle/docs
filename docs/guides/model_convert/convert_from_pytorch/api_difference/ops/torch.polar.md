@@ -5,17 +5,19 @@
 torch.polar(abs, angle, *, out=None)
 ```
 
-###  功能介绍
+
 构造一个复数张量，其元素为与绝对值 abs 和角 angle 对应的极坐标所对应的笛卡尔坐标，公式为：
 
 $ out= abs ⋅ cos(angle) + abs ⋅ sin(angle) ⋅ j $
 
 PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 
+###  转写示例
+#### out：指定输出
 ```python
-import paddle
+# Pytorch 写法
+torch.polar(abs, angle, out=y)
 
-def polar(abs, angle, out=None):
-    out = paddle.complex(abs * paddle.cos(angle), abs * paddle.sin(angle))
-    return out
+# Paddle 写法
+y = paddle.complex(ans * paddle.cos(angle), ans * paddle.sin(angle))
 ```

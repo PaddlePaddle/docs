@@ -20,14 +20,21 @@ torch.rand_like(input, *, dtype=None, layout=None, device=None, requires_grad=Fa
 
 PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 
+### 转写示例
+#### input：表示输入的 Tensor
 ```python
-import paddle
+# Pytorch 写法
+torch.rand_like(x)
 
-def rand_like(input, dtype=None, requires_grad=False):
-    if dtype is not None:
-        out = paddle.rand(shape=input.shape, dtype=dtype)
-    else:
-        out = paddle.rand(shape=input.shape, dtype=input.dtype)
-    out.stop_gradient = not requires_grad
-    return out
+# Paddle 写法
+paddle.rand(shape=x.shape, dtype=x.dtype)
+```
+
+#### dtype：表示数据类型
+```python
+# Pytorch 写法
+torch.rand_like(x，dtype=torch.float64)
+
+# Paddle 写法
+paddle.rand(shape=x.shape, dtype=paddle.float64)
 ```

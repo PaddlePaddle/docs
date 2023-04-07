@@ -5,7 +5,7 @@
 torch.heaviside(input, values, *, out=None)
 ```
 
-### [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/heaviside_cn.html#heaviside)
+### [paddle.heaviside](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/heaviside_cn.html#heaviside)
 
 ```python
 paddle.heaviside(x, y, name=None)

@@ -24,11 +24,11 @@ paddle.set_printoptions(precision=None, threshold=None, edgeitems=None, sci_mode
 
 
 ### 转写示例
-
+#### profile:预设风格，支持 `default`, `short`, `full`。
 ```python
 # Pytorch 写法
-torch.set_printoptions(precision=8, threshold=2000, edgeitems=4, linewidth=100)
+torch.set_printoptions(profile='default')
 
 # Paddle 写法
-paddle.set_printoptions(precision=8, threshold=2000, edgeitems=4, linewidth=100)
+paddle.set_printoptions(precision=4, threshold=1000, edgeitems=3, linewidth=80)
 ```
