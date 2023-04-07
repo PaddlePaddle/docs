@@ -29,5 +29,5 @@ paddle.log2(x,
 torch.log2([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.log2([3, 5])
+paddle.assign(paddle.log2([3, 5]), y)
 ```

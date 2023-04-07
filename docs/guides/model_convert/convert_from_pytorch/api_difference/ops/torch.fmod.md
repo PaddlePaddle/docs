@@ -32,5 +32,5 @@ paddle.mod(x,
 torch.fmod([3, 5], [1, 2], out=y)
 
 # Paddle 写法
-y = paddle.mod([3, 5], [1, 2])
+paddle.assign(paddle.mod([3, 5], [1, 2]), y)
 ```

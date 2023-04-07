@@ -36,11 +36,11 @@ paddle.min(x,
 # 对指定维度上的 Tensor 元素求最大值运算
 
 # Pytorch 写法
-torch.min(a, 1, out=y)
-# 在输入 dim 时，返回 (values, indices)
+torch.min(a, out=y)
+# torch 在输入 dim 时，返回 (values, indices)，返回参数类型不一致
 
 # Paddle 写法
-y = paddle.min(a, 1)
+paddle.assign(paddle.min(a), y)
 ```
 
 --------------------------------------------------------------------------------------------------
@@ -81,5 +81,5 @@ torch.min(a, b, out=y)
 # 在输入 other 时，比较 input 和 other 返回较大值
 
 # Paddle 写法
-y = paddle.minimum(a, b)
+paddle.assign(paddle.minimum(a, b), y)
 ```

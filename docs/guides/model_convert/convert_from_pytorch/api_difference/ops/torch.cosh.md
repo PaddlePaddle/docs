@@ -26,8 +26,8 @@ paddle.cosh(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.cosh([0.1632,  1.1835, -0.6979, -0.7325], out=y)
+torch.cosh([0.1632, 1.1835], out=y)
 
 # Paddle 写法
-y = paddle.cosh([0.1632,  1.1835, -0.6979, -0.7325])
+paddle.assign(paddle.cosh([0.1632, 1.1835]), y)
 ```

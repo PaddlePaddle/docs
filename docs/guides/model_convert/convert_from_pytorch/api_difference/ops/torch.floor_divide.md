@@ -32,5 +32,5 @@ paddle.floor_divide(x,
 torch.floor_divide([2, 3, 8, 7], [1, 5, 3, 3], out=y)
 
 # Paddle 写法
-y = paddle.floor_divide([2, 3, 8, 7], [1, 5, 3, 3])
+paddle.assign(paddle.floor_divide([2, 3, 8, 7], [1, 5, 3, 3]), y)
 ```

@@ -29,5 +29,5 @@ paddle.log1p(x,
 torch.log1p([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.log1p([3, 5])
+paddle.assign(paddle.log1p([3, 5]), y)
 ```

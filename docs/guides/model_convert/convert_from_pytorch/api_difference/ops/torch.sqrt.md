@@ -26,8 +26,8 @@ paddle.sqrt(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.sqrt([0.1, 0.2, 0.3, 0.4], out=y)
+torch.sqrt([0.1, 0.2], out=y)
 
 # Paddle 写法
-y = paddle.sqrt([0.1, 0.2, 0.3, 0.4])
+paddle.assign(paddle.sqrt([0.1, 0.2]), y)
 ```

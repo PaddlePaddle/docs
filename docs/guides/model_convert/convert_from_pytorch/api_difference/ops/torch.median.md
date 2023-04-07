@@ -35,5 +35,5 @@ paddle.median(x,
 torch.median([3, 5], dim=0, out=y)
 
 # Paddle 写法
-y = paddle.median([3, 5], axis=0)
+paddle.assign(paddle.median([3, 5], axis=0), y)
 ```

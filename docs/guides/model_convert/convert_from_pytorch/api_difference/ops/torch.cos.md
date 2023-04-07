@@ -26,8 +26,8 @@ paddle.cos(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.cos([ 1.4309,  1.2706, -0.8562,  0.9796], out=y)
+torch.cos([1.4309, 1.2706], out=y)
 
 # Paddle 写法
-y = paddle.cos([ 1.4309,  1.2706, -0.8562,  0.9796])
+paddle.assign(paddle.cos([1.4309, 1.2706]), y)
 ```
