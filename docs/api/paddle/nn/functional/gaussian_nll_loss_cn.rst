@@ -1,11 +1,11 @@
-.. _cn_api_nn_functional_gaussian_nll_loss:
+.. _cn_api_paddle_nn_functional_gaussian_nll_loss:
 
 gaussian_nll_loss
 -------------------------------
 .. py:function:: paddle.nn.functional.gaussian_nll_loss(input, label, variance, full=False, epsilon=1e-6, reduction='mean', name=None)
 
 计算输入 :attr:`input` 、:attr:`variance` 和标签 :attr:`label` 间的 GaussianNLL 损失，
-:attr:`label` 被视为高斯分布的样本，其期望:attr:`input`和方差:attr:`variance`由神经网络预测给出。
+:attr:`label` 被视为高斯分布的样本，其期望 :attr:`input` 和方差 :attr:`variance` 由神经网络预测给出。
 对于一个具有高斯分布的 Tensor :attr:`label`，期望 :attr:`input` 和正方差 :attr:`var` 与其损失的数学计算公式如下：
 
 .. math::

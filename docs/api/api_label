@@ -987,7 +987,7 @@ paddle.nn.functional.pad	.. _api_paddle_nn_functional_pad:
 paddle.nn.functional.sigmoid_focal_loss	.. _api_paddle_nn_functional_sigmoid_focal_loss:
 paddle.nn.functional.hardsigmoid	.. _api_paddle_nn_functional_hardsigmoid:
 paddle.nn.functional.max_pool3d	.. _api_paddle_nn_functional_max_pool3d:
-paddle.nn.functional.gaussian_nll_loss .. _api_nn_functional_gaussian_nll_loss:
+paddle.nn.functional.gaussian_nll_loss .. _api_nn_paddle_functional_gaussian_nll_loss:
 paddle.nn.initializer.KaimingUniform	.. _api_paddle_nn_initializer_KaimingUniform:
 paddle.nn.initializer.KaimingNormal	.. _api_paddle_nn_initializer_KaimingNormal:
 paddle.nn.initializer.Assign	.. _api_paddle_nn_initializer_Assign:
