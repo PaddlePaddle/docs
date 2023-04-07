@@ -21,7 +21,7 @@ hardtanh 激活层（Hardtanh Activation Operator）。计算输入 `x` 的 `har
 
 参数
 ::::::::::
-    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float16、float32、float64、uint16。
     - **min** (float，可选) - hardtanh 激活计算公式中的 min 值。默认值为-1。
     - **max** (float，可选) - hardtanh 激活计算公式中的 max 值。默认值为 1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
