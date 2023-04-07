@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ] torch.Tensor.tile
+## [ 参数不一致 ] torch.Tensor.tile
 
 ### [torch.Tensor.tile](https://pytorch.org/docs/1.13/generated/torch.Tensor.tile.html#torch.Tensor.tile)
 
