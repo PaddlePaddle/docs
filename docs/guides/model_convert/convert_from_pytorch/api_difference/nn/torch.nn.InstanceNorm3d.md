@@ -28,7 +28,7 @@ paddle.nn.InstanceNorm3D(num_features,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | num_features           | num_features      | 表示输入 Tensor 通道数。                                     |
-| eps           | epsilon      | 为了数值稳定加在分母上的值，仅参数名不同 。                                     |
+| eps           | epsilon      | 为了数值稳定加在分母上的值，仅参数名不同。                                     |
 | momentum           | momentum      | 表示归一化函数中的超参数， PyTorch 和 Paddle 公式实现细节不一致，两者正好是相反的，需要进行转写, Paddle 中 momentum 参数改写为 `1 - momentum`(Pytorch 中的参数)。                                     |
 | -             | weight_attr  | 指定权重参数属性的对象。如果为 False, 则表示每个通道的伸缩固定为 1，不可改变。默认值为 None，表示使用默认的权重参数属性。转写时需注意当 PyTorch 的 affine 为`False`，表示 weight 不进行更新，paddle 对应参数设置为 paddle.ParamAttr(learning_rate=0.0) |
 | -             | bias_attr    | 指定偏置参数属性的对象。如果为 False, 则表示每一个通道的偏移固定为 0，不可改变。默认值为 None，表示使用默认的偏置参数属性。转写时需注意当 PyTorch 的 affine 为`False`，表示 bias 不进行更新，Paddle 对应参数设置为 paddle.ParamAttr(learning_rate=0.0) |
