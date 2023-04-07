@@ -14,5 +14,5 @@ Pytorch 中 torch.Size 返回 tensor 形状, PaddlePaddle 目前无对应 API，
 torch.Size((1,2,3,4))
 
 # paddle 写法
-paddle.empty((1, 2, 3, 4)).shape
+list((1, 2, 3, 4).shape if isinstance((1, 2, 3, 4), paddle.Tensor) else (1, 2, 3, 4))
 ```
