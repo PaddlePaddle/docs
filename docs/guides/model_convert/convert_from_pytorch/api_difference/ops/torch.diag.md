@@ -34,5 +34,5 @@ paddle.diag(x,
 torch.diag(x, out=y)
 
 # Paddle 写法
-y = paddle.diag(x)
+paddle.assign(paddle.diag(x), y)
 ```

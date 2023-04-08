@@ -34,5 +34,5 @@ paddle.bernoulli(x,
 torch.bernoulli([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.bernoulli([3, 5])
+paddle.assign(paddle.bernoulli([3, 5]), y)
 ```

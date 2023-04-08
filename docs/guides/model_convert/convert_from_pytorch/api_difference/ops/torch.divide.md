@@ -49,5 +49,5 @@ x = paddle.floor(x)
 torch.divide([2, 3, 4], [1, 5, 2], out=y)
 
 # Paddle 写法
-y = paddle.divide([2, 3, 4], [1, 5, 2])
+paddle.assign(paddle.divide([2, 3, 4], [1, 5, 2]), y)
 ```
