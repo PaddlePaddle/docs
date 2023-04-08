@@ -14,11 +14,11 @@ paddle.Tensor.scale_(scale=1.0,
                 act=None,
                 name=None)
 ```
-两者功能一致，输入一个常数 value(scale)，将矩阵 x 放大 value(scale)倍，需要将 bias 设置为 0.0。其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+两者功能一致，输入一个常数 value，将 Tensor 放大 value 倍，需要将 bias 设置为 0.0 。其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle     | 备注                                                                      |
 | ------------- | ---------------- | --------------------------------------------------------------------------|
 | value         | scale            | 放缩的大小                                                                |
-| -             | bias             | 表示放缩后的偏置部分，PyTorch 无此参数， Paddle 设为 0.0 即可                |
-| -             | bias_after_scale | 表示是否在放缩后加偏置部分，PyTorch 无此参数， Paddle 设为 True 即可          |
+| -             | bias             | 表示放缩后的偏置部分， PyTorch 无此参数， Paddle 设为 0.0 即可               |
+| -             | bias_after_scale | 表示是否在放缩后加偏置部分， PyTorch 无此参数， Paddle 设为 True 即可         |
