@@ -7,7 +7,7 @@ multi_dot
 
 Multi_dot 是一个计算多个矩阵乘法的算子。
 
-算子支持 float16(仅限 GPU)、float32 和 float64 三种类型。该算子不支持批量输入。
+算子支持 float16(仅限 GPU)、float32 和 float64、uint16(仅限 GPU) 类型。该算子不支持批量输入。
 
 输入[x]的每个 tensor 的 shape 必须是二维的，除了第一个和最后一个 tensor 可以是一维的。如果第一个 tensor 是 shape 为(n, )的一维向量，该 tensor 将被当作是 shape 为(1, n)的行向量处理，同样的，如果最后一个 tensor 的 shape 是(n, )，将被当作是 shape 为(n, 1)的列向量处理。
 
