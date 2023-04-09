@@ -34,7 +34,7 @@ paddle.io.BatchSampler(dataset=None,
 torch.utils.data.BatchSampler(sampler=[1., 2., 3., 4.], batch_size=3, drop_last = False)
 
 # Paddle 写法
-o = list(paddle.io.BatchSampler(sampler=[1., 2., 3., 4.] if isinstance([1., 2., 3., 4.],
+paddle.io.BatchSampler(sampler=[1., 2., 3., 4.] if isinstance([1., 2., 3., 4.],
     paddle.io.Sampler) else paddle.io.SequenceSampler([1., 2., 3., 4.]),
-    batch_size=3, drop_last=True))
+    batch_size=3, drop_last=True)
 ```
