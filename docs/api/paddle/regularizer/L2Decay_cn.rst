@@ -12,7 +12,7 @@ L2Decay 实现 L2 权重衰减正则化，用于模型训练，有助于防止�
 (例如 :ref:`cn_api_paddle_optimizer_Momentum` )中，在 ``ParamAttr`` 中设置时，
 只对该网络层中的参数生效；在 ``optimizer`` 中设置时，会对所有的参数生效；如果同时设置，
 在 ``ParamAttr`` 中设置的优先级会高于在 ``optimizer`` 中设置，即，对于一个可训练的参数，如果在
-``ParamAttr`` 中定义了正则化，那么会忽略 ``optimizer`` 中的正则化；否则会使用 ``optimizer``中的
+``ParamAttr`` 中定义了正则化，那么会忽略 ``optimizer`` 中的正则化；否则会使用 ``optimizer`` 中的
 正则化。
 
 具体实现中，L2 权重衰减正则化的损失函数计算如下：

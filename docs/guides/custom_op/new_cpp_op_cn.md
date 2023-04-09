@@ -1232,7 +1232,9 @@ PD_BUILD_GRAD_OP(custom_inplace_relu)
 
 3. 一方面，做 inplace 映射的输出 Tensor，不再作为函数的返回值，如果此时函数没有需要返回的 Tensor，函数的输出类型应为 `void` ；另一方面，其他没有做 inplace 映射的输出 Tensor，仍需作为返回值显式输出，此时函数的输出类型仍为 `std::vector<paddle::Tensor>`。例如 `ReluCpuInplaceForward` 函数中不再显式输出 Tensor，因此函数返回类型为 `void`；
 
-4. 框架会对算子的输入、输出映射做基本的正确性检查（`SetInplaceMap`中指定的输入 Tensor 命名与 `Inputs` 中定义的名称一致；输出 Tensor 命名与 `Outputs` 中定义的名称一致），因此 `SetInplaceMap` 必须在 `Inputs` 和 `Outputs` 之后指定。
+4. 框架会自动为 inplace 的输入输出做 Shape 和 Dtype 映射。因此 `InferShape` 和 `InferDtype` 函数只需要返回未被 inplace 映射的输出类型。如果没有需要返回的值，可以不设置这两个函数。
+
+5. 框架会对算子的输入、输出映射做基本的正确性检查（`SetInplaceMap`中指定的输入 Tensor 命名与 `Inputs` 中定义的名称一致；输出 Tensor 命名与 `Outputs` 中定义的名称一致），因此 `SetInplaceMap` 必须在 `Inputs` 和 `Outputs` 之后指定。
 
 下面以一个自定义的 inplace `custom_add` 加法实现为例，来对上述的注意事项进行介绍：
 
@@ -1271,17 +1273,7 @@ void AddForward(paddle::Tensor& x,          // 输入的 inplace Tensor 类型�
   // 输出 Tensor out 指定了 inplace 映射，因此不需要显式的返回
 }
 
-// InferDtype 函数的输入类型不需要做特别修改
-std::vector<paddle::DataType> AddInferDtype(const paddle::DataType& x_dtype,
-                                            const paddle::DataType& y_dtype) {
-  return {x_dtype};
-}
-
-// InferShape 函数的输入类型不需要做特别修改
-std::vector<std::vector<int64_t>> AddInferShape(
-    const std::vector<int64_t>& x_shape, const std::vector<int64_t>& y_shape) {
-  return {x_shape};
-}
+// 输入的 Tensor 已通过 inplace 指定，不需要设置 InferShapeFn 和 InferDtypeFn
 
 // 没有做 inplace 映射的输出 Tensor，仍需作为返回值显式输出，此时函数的输出类型仍为 std::vector<paddle::Tensor>
 std::vector<paddle::Tensor> AddBackward(const paddle::Tensor& x,
@@ -1306,9 +1298,7 @@ PD_BUILD_OP(custom_add)
     .Inputs({"X", "Y"})
     .Outputs({"Out"})
     .SetInplaceMap({{"X", "Out"}})                  // 使用 `SetInplaceMap` 指明输入和输出间 inplace 的映射关系
-    .SetKernelFn(PD_KERNEL(AddForward))
-    .SetInferShapeFn(PD_INFER_SHAPE(AddInferShape))
-    .SetInferDtypeFn(PD_INFER_DTYPE(AddInferDtype));
+    .SetKernelFn(PD_KERNEL(AddForward));
 
 PD_BUILD_GRAD_OP(custom_add)
     .Inputs({"X", "Y", paddle::Grad("Out")})
@@ -1318,6 +1308,112 @@ PD_BUILD_GRAD_OP(custom_add)
 
 ```
 
+
+#### optional 机制
+
+自定义算子的 optional 机制主要用于传入 Tensor 可能为 None 的场景，C++ 算子通过判断输入的 optional Tensor 是否为 None，可以执行不同的操作。
+
+下面结合具体的使用示例进行介绍，自定义一个输入为 `Tensor x` 和 `optional<Tensor> y`，输出为 `Tensor out` 的加法算子：
+
+$$
+out =
+\begin{cases}
+x + y, & \text{   if  } y \text{  is valid}\\\\
+x + x, & \text{   if  } y \text{  is none}
+\end{cases}
+$$
+
+函数实现如下：
+```c++
+#include <vector>
+
+#include "paddle/extension.h"
+
+/*
+if (y) {
+  out = x + y;
+} else {
+  out = x + x;
+}
+*/
+std::vector<paddle::Tensor> AddForward(
+    const paddle::Tensor& x,
+    const paddle::optional<paddle::Tensor>& y) {  // NOLINT
+  PD_CHECK(x.place() == paddle::PlaceType::kCPU, "x must be a CPU Tensor.");
+  paddle::Tensor out = paddle::empty(x.shape(), x.dtype(), x.place());
+
+  if (y) {
+    out = x + y.get();
+  } else {
+    out = x + x;
+  }
+
+  return {out};
+}
+
+std::vector<paddle::DataType> AddInferDtype(
+    const paddle::DataType& x_dtype,
+    const paddle::optional<paddle::DataType>& y_dtype) {
+  if (y_dtype) {
+    return {*y_dtype};
+  }
+  return {x_dtype};
+}
+
+std::vector<std::vector<int64_t>> AddInferShape(
+    const std::vector<int64_t>& x_shape,
+    const paddle::optional<std::vector<int64_t>>& y_shape) {
+  if (y_shape) {
+    return {*y_shape};
+  }
+  return {x_shape};
+}
+
+/*
+if (y) {
+  x_grad = out_grad;
+} else {
+  x_grad = out_grad + out_grad;
+}
+*/
+std::vector<paddle::Tensor> AddBackward(
+    const paddle::Tensor& x,
+    const paddle::optional<paddle::Tensor>& y,
+    const paddle::Tensor& out_grad) {  // NOLINT
+  PD_CHECK(x.place() == paddle::PlaceType::kCPU, "x must be a CPU Tensor.");
+  paddle::Tensor x_grad = paddle::zeros(x.shape(), x.dtype(), x.place());
+
+  if (y) {
+    x_grad = out_grad;
+  } else {
+    x_grad = out_grad + out_grad;
+  }
+
+  return {x_grad};
+}
+
+PD_BUILD_OP(custom_add)
+    .Inputs({"X", paddle::Optional("Y")})
+    .Outputs({"Out"})
+    .SetKernelFn(PD_KERNEL(AddForward))
+    .SetInferShapeFn(PD_INFER_SHAPE(AddInferShape))
+    .SetInferDtypeFn(PD_INFER_DTYPE(AddInferDtype));
+
+PD_BUILD_GRAD_OP(custom_add)
+    .Inputs({"X", paddle::Optional("Y"), paddle::Grad("Out")})
+    .Outputs({paddle::Grad("X")})
+    .SetKernelFn(PD_KERNEL(AddBackward));
+```
+
+相比于算子的常规实现，使用 optional 机制需要注意以下几点：
+
+1. 输入的 optional Tensor 类型，应该修改为 `const paddle::optional<paddle::Tensor>&` 而非 `const paddle::Tensor&`；相应的 `InferShapeFn` 和 `InferDtypeFn` 输入类型分别修改为 `const paddle::optional<std::vector<int64_t>>&` 和 `const paddle::optional<paddle::DataType>&`；
+
+2. 定义算子时，需要使用 `paddle::Optional` 标注 optional 类型的 Tensor；
+
+3. 暂不支持 optional\<Tensor\> 类型的输出，因此反向算子做计算时，无法输出前向算子 optional Tensor 类型输入的梯度。
+
+4. optional 的定义可以参考源码文件 `paddle/utils/optional.h`，用法与 boost optional 基本一致。
 
 ## 自定义算子编译与使用
 
@@ -1680,28 +1776,32 @@ paddle.jit.save(net, path,
 import numpy as np
 
 import paddle
-import paddle.nn as nn
-import paddle.static as static
-from paddle.vision.transforms import Compose, Normalize
+from paddle import nn
+from paddle import static
 from paddle.utils.cpp_extension import load
+from paddle.vision.transforms import Compose, Normalize
 
 EPOCH_NUM = 4
 BATCH_SIZE = 64
 
 # jit compile custom op
 custom_ops = load(
-    name="custom_jit_ops",
-    sources=["relu_cuda.cc", "relu_cuda.cu"])
+    name="custom_jit_ops", sources=["relu_cuda.cc", "relu_cuda.cu"]
+)
 
 
 class LeNet(nn.Layer):
     def __init__(self):
         super().__init__()
-        self.conv1 = nn.Conv2D(in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2)
-        self.max_pool1 = nn.MaxPool2D(kernel_size=2,  stride=2)
-        self.conv2 = nn.Conv2D(in_channels=6, out_channels=16, kernel_size=5, stride=1)
+        self.conv1 = nn.Conv2D(
+            in_channels=1, out_channels=6, kernel_size=5, stride=1, padding=2
+        )
+        self.max_pool1 = nn.MaxPool2D(kernel_size=2, stride=2)
+        self.conv2 = nn.Conv2D(
+            in_channels=6, out_channels=16, kernel_size=5, stride=1
+        )
         self.max_pool2 = nn.MaxPool2D(kernel_size=2, stride=2)
-        self.linear1 = nn.Linear(in_features=16*5*5, out_features=120)
+        self.linear1 = nn.Linear(in_features=16 * 5 * 5, out_features=120)
         self.linear2 = nn.Linear(in_features=120, out_features=84)
         self.linear3 = nn.Linear(in_features=84, out_features=10)
 
@@ -1726,7 +1826,7 @@ paddle.enable_static()
 paddle.set_device("gpu")
 
 # model
-image  = static.data(shape=[None, 1, 28, 28], name='image', dtype='float32')
+image = static.data(shape=[None, 1, 28, 28], name='image', dtype='float32')
 label = static.data(shape=[None, 1], name='label', dtype='int64')
 
 net = LeNet()
@@ -1737,36 +1837,37 @@ opt = paddle.optimizer.Adam(learning_rate=0.001)
 opt.minimize(loss)
 
 # data loader
-transform = Compose([Normalize(mean=[127.5],
-                               std=[127.5],
-                               data_format='CHW')])
+transform = Compose([Normalize(mean=[127.5], std=[127.5], data_format='CHW')])
 train_dataset = paddle.vision.datasets.MNIST(mode='train', transform=transform)
-train_loader = paddle.io.DataLoader(train_dataset,
+train_loader = paddle.io.DataLoader(
+    train_dataset,
     feed_list=[image, label],
     batch_size=BATCH_SIZE,
     shuffle=True,
     drop_last=True,
-    num_workers=2)
+    num_workers=2,
+)
 
 # prepare
 exe = static.Executor()
 exe.run(static.default_startup_program())
 
-places = paddle.static.cuda_places()
-compiled_program = static.CompiledProgram(
-    static.default_main_program()).with_data_parallel(
-        loss_name=loss.name, places=places)
+compiled_program = static.CompiledProgram(static.default_main_program())
 
 # train
 for epoch_id in range(EPOCH_NUM):
     for batch_id, (image_data, label_data) in enumerate(train_loader()):
-        loss_data = exe.run(compiled_program,
-            feed={'image': image_data,
-                  'label': label_data},
-            fetch_list=[loss])
+        loss_data = exe.run(
+            compiled_program,
+            feed={'image': image_data, 'label': label_data},
+            fetch_list=[loss],
+        )
         if batch_id % 300 == 0:
-            print("Epoch {} batch {}: loss = {}".format(
-                    epoch_id, batch_id, np.mean(loss_data)))
+            print(
+                "Epoch {} batch {}: loss = {}".format(
+                    epoch_id, batch_id, np.mean(loss_data)
+                )
+            )
 
 # save inference model
 path = "custom_relu_test_static/net"

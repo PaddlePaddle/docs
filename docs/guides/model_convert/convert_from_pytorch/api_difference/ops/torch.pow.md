@@ -32,5 +32,5 @@ paddle.pow(x,
 torch.pow([3, 5], 2, out=y)
 
 # Paddle 写法
-y = paddle.pow([3, 5], 2)
+paddle.assign(paddle.pow([3, 5], 2), y)
 ```

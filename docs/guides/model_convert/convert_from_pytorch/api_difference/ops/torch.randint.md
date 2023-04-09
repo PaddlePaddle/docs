@@ -44,7 +44,7 @@ paddle.randint(low=0,
 torch.randint(10, (2, 2), out=y)
 
 # Paddle 写法
-y = paddle.randint(10, [2, 2])
+paddle.assign(paddle.randint(10, [2, 2]), y)
 ```
 
 

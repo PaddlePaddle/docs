@@ -1,4 +1,4 @@
-# [ 参数用法不一致 ]torch.nn.AvgPool1d
+# [ 参数不一致 ]torch.nn.AvgPool1d
 ### [torch.nn.AvgPool1d](https://pytorch.org/docs/1.13/generated/torch.nn.AvgPool1d.html?highlight=avgpool1d#torch.nn.AvgPool1d)
 
 ```python

@@ -1,4 +1,4 @@
-## [参数不⼀致] torch.transpose
+## [ 参数不⼀致 ] torch.transpose
 
 ### [torch.transpose](https://pytorch.org/docs/stable/generated/torch.transpose.html?highlight=transpose#torch.transpose)
 

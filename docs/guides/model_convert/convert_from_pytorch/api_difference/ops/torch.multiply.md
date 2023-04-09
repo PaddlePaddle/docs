@@ -29,8 +29,8 @@ paddle.multiply(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.multiply([[3, 5]], [[1], [2]], out=y)
+torch.multiply([3, 5], [1, 2], out=y)
 
 # Paddle 写法
-y = paddle.multiply([[3, 5]], [[1], [2]])
+paddle.assign(paddle.multiply([3, 5], [1, 2]), y)
 ```

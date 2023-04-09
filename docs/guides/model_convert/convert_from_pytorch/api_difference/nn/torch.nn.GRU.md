@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.GRU
+## [ 参数不一致 ]torch.nn.GRU
 ### [torch.nn.GRU](https://pytorch.org/docs/stable/generated/torch.nn.GRU.html?highlight=torch%20nn%20gru#torch.nn.GRU)
 ```python
 torch.nn.GRU(input_size,

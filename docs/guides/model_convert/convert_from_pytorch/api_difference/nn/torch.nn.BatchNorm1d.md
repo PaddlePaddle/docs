@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.BatchNorm1d
+## [ 参数不一致 ]torch.nn.BatchNorm1d
 ### [torch.nn.BatchNorm1d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm1d.html?highlight=torch%20nn%20batchnorm1d#torch.nn.BatchNorm1d)
 
 ```python

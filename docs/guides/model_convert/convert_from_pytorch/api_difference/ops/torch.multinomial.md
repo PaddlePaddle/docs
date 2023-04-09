@@ -34,5 +34,5 @@ paddle.multinomial(x,
 torch.multinomial([0.3, 0.5, 0.2], out=y)
 
 # Paddle 写法
-y = paddle.multinomial([0.3, 0.5, 0.2])
+paddle.assign(paddle.multinomial([0.3, 0.5, 0.2]), y)
 ```
