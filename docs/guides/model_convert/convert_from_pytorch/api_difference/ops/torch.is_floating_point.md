@@ -1,4 +1,5 @@
 ## [ 仅参数名不一致 ]torch.is_floating_point
+
 ### [torch.is_floating_point](https://pytorch.org/docs/stable/generated/torch.is_floating_point.html?highlight=is_floating_point#torch.is_floating_point)
 
 ```python

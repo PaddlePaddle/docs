@@ -48,7 +48,7 @@ paddle.empty([3, 5])
 torch.empty((2,3), out=y)
 
 # Paddle 写法
-y = paddle.empty([2, 3])
+paddle.assign(paddle.empty([2, 3]), y)
 ```
 
 #### device: Tensor 的设备

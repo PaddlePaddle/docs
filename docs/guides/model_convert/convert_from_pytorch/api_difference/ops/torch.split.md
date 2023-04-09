@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.split
+## [ 参数不一致 ]torch.split
 ### [torch.split](https://pytorch.org/docs/stable/generated/torch.split.html?highlight=torch%20split#torch.split)
 
 ```python

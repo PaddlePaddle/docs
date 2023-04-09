@@ -39,7 +39,7 @@ paddle.eye(num_rows,
 torch.eye(3, out=y)
 
 # Paddle 写法
-y = paddle.eye(3)
+paddle.assign(paddle.eye(3), y)
 ```
 #### device: Tensor 的设备
 ```python

@@ -31,5 +31,5 @@ paddle.nonzero(x,
 torch.nonzero(x, out=y)
 
 # Paddle 写法
-y = paddle.nonzero(x)
+paddle.assign(paddle.nonzero(x), y)
 ```

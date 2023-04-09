@@ -45,5 +45,5 @@ paddle.add([3, 5], 2 * [2, 3])
 torch.add([3, 5], [2, 3], out=y)
 
 # Paddle 写法
-y = paddle.add([3, 5], [2, 3])
+paddle.assign(paddle.add([3, 5], [2, 3]), y)
 ```

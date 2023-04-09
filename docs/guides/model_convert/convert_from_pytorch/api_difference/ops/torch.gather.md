@@ -38,5 +38,5 @@ torch.gather(t, dim = 1, index = torch.tensor([[0, 0], [1, 0]]), out = y)
 
 # Paddle 写法：
 t = paddle.to_tensor([[1, 2], [3, 4]])
-y = paddle.gather(t, indices = [[0, 0], [1, 0]], axis = 1)
+paddle.assign(paddle.gather(t, axis = 1, indices = [[0, 0], [1, 0]]), y)
 ```
