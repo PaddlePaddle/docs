@@ -50,4 +50,5 @@ times, temp_shape, temp_index = paddle.prod(paddle.to_tensor(x.shape[:2])), x.sh
 x, new_t = x.reshape([-1] + temp_shape[2 + 1:]), t.reshape([-1] + temp_shape[2 + 1:])
 for i in range(1, times):
     temp_index = paddle.concat([temp_index, index + len(index) * i])
+x.scatter_(temp_index, new_t).reshape(temp_shape)
 ```
