@@ -62,11 +62,10 @@ paddle.Tensor.cast(dtype)
 
 ```python
 # torch 写法
-cuda0 = torch.device('cuda:0')
-torch.Tensor.to(device=cuda0, dtype=torch.float64)
+x.to(device=torch.device('cuda:0'), dtype=torch.float64)
 
 # paddle 写法
-paddle.Tensor.cast(dtype='float64')
+x.cast(dtype='float64')
 ```
 
 ----------------
@@ -97,8 +96,10 @@ paddle.Tensor.cast(dtype)
 
 ```python
 # torch 写法
-torch.Tensor.to(other)
+x = torch.tensor([1,2,3], dtype="int32")
+y.to(other=x)
 
 # paddle 写法
-paddle.Tensor.cast(dtype=other.dtype)
+x = paddle.to_tensor(data=[1, 2, 3], dtype='int32')
+y.cast(x.dtype)
 ```
