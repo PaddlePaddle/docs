@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.Tensor.outer
+## [ 仅参数名不一致 ] torch.Tensor.outer
 
 ### [torch.Tensor.outer](https://pytorch.org/docs/stable/generated/torch.Tensor.outer.html?highlight=outer#torch.Tensor.outer)
 
