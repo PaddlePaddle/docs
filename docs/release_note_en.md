@@ -1,3 +1,33 @@
+# 2.4.2 Release Note
+
+ V2.4.2 fixed known bugs, and added a tiny set of features.
+
+## Training Framework (distributed included)
+
+ - Fix the problem while using paddle.utils.dlpack.to_dlpack API to create dlpack objects multiple times in the for loop, and fix the bug that the reference counting error causes the memory actually pointed by dlpack to be destructed unexpectedly. [#50138](https://github.com/PaddlePaddle/Paddle/pull/50138)
+ - Fixed the issue of out-of-bounds memory access when the input tensor is multi-dimensional in paddle.multiplex API. [#49368](https://github.com/PaddlePaddle/Paddle/pull/49368)
+ - Fix the occasional compilation error caused by incorrect referencing of the Eigen header file. [#48157](https://github.com/PaddlePaddle/Paddle/pull/48157)
+ - Fixed the bug that the output value of the backward operator may be None when the output gradient parameter order of the custom operator is not continuous.[#48656](https://github.com/PaddlePaddle/Paddle/pull/48656)
+ - Add cutlass and implement the fusion kernel of gather+gemm+scatter; Optimize training and inference performance of sparse convolution; Optimize inference performance of batch_norm under 1D input data.[#50118](https://github.com/PaddlePaddle/Paddle/pull/50118)
+ - Fix compilation failure in gcc54 environment caused by using constexpr. [#50421](https://github.com/PaddlePaddle/Paddle/pull/50421)
+ - Move sum op kernel to PHI and fix bug that can't get correct SelectedRows' dims when run infermeta.[#49342](https://github.com/PaddlePaddle/Paddle/pull/49342)
+ - Fixed the issue that the fold operator accesses memory out of bounds under large bs input.[#49491](https://github.com/PaddlePaddle/Paddle/pull/49491)
+ - Fix the problem that no parameter Layer cannot call backward under dynamic to static mode.[#49812](https://github.com/PaddlePaddle/Paddle/pull/49812)
+ - Fix the compile problem of CUDA11.8 on windows platform.[#50205](https://github.com/PaddlePaddle/Paddle/pull/50205)
+ - Fix the unsupported error for `FusedDropoutActBiasGrad` on H100.[#47285](https://github.com/PaddlePaddle/Paddle/pull/47285)
+ - Add `debug_graphviz_path` option into `build_strategy`.[#46531](https://github.com/PaddlePaddle/Paddle/pull/46531)
+ - Fix the not closed `popen` object.[#47053](https://github.com/PaddlePaddle/Paddle/pull/47053)
+
+##  Deployment Direction (Paddle Inference)
+
+ - Improve the functionality and stability of mixed-precision inference. Reconstruct the implementation of interface convert_to_mixed_precision and add parameter precision to interface enable_use_gpu.[#49077](https://github.com/PaddlePaddle/Paddle/pull/49077)、[#49239](https://github.com/PaddlePaddle/Paddle/pull/49239)、[#49477](https://github.com/PaddlePaddle/Paddle/pull/49477)
+ - Support compilation under jetson ampere architecture.[#49364](https://github.com/PaddlePaddle/Paddle/pull/49364)
+ - Fixed fc kernel diff.[#49781](https://github.com/PaddlePaddle/Paddle/pull/49781)
+ - Fixed the error of trt workspace parameter type under CAPI. [#48350](https://github.com/PaddlePaddle/Paddle/pull/48350)
+ - Fixed the error caused by arg_max/arg_min without flatten dtype parameter in Paddle 1.x version. [#49771](https://github.com/PaddlePaddle/Paddle/pull/49771)
+ - Fixed the bug of missing information about lod logic after split infermeta's refactoring. [#49745](https://github.com/PaddlePaddle/Paddle/pull/49745)
+ - Fixed the bug of the constant-folding pass, which causes the conv2d weight to be non-persistent after folding and not enter the TensorRT engine. [#50105](https://github.com/PaddlePaddle/Paddle/pull/50105)
+
 # 2.4.1 Release Note
 
 

@@ -20,7 +20,7 @@ PairwiseDistance
 
 形状
 ::::::::
-    - **x** (Tensor) - :math:`[N, D]` 或 :math:`[D]`，其中 :math:`N` 是批大小，:math:`D` 是向量的维度，数据类型为 float32 或 float64。
+    - **x** (Tensor) - :math:`[N, D]` 或 :math:`[D]`，其中 :math:`N` 是批大小，:math:`D` 是向量的维度，数据类型为 float16，float32，float64。
     - **y** (Tensor) - :math:`[N, D]` 或 :math:`[D]`，与 :attr:`x` 的数据类型相同。
     - **output** (Tensor) - 数据类型与 :attr:`x`、 :attr:`y` 相同。
         - 如果 :attr:`keepdim` 为 True，则形状为 :math:`[N, 1]` 或 :math:`[1]`，依据输入中是否有数据形状为 :math:`[N, D]`。

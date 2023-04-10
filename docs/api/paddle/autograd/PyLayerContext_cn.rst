@@ -34,7 +34,7 @@ PyLayerContext
 
 方法
 ::::::::::::
-save_for_backward(self, *tensors)
+save_for_backward(*tensors)
 '''''''''
 
 用于暂存 ``backward`` 需要的  ``Tensor``，在 ``backward`` 中调用 ``saved_tensor`` 获取这些 ``Tensor`` 。
@@ -75,7 +75,7 @@ None
             return grad
 
 
-saved_tensor(self, *tensors)
+saved_tensor()
 '''''''''
 
 获取被 ``save_for_backward`` 暂存的 ``Tensor`` 。

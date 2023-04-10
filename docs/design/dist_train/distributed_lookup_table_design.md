@@ -55,7 +55,7 @@ operator: ![lookup table training](./src/lookup_table_training.png)
 
 ### Solution: Distributed storage
 
-1. Paddle use [SelectedRows](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/selected_rows.md) as the storage format for the lookup table, the lookup table parameter will be split to multi-machine according to the hash of the feature ID, and data will also be split and send to the same machine to prefetch the parameter.
+1. Paddle use [SelectedRows](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/selected_rows.md) as the storage format for the lookup table, the lookup table parameter will be split to multi-machine according to the hash of the feature ID, and data will also be split and send to the same machine to prefetch the parameter.
 
 1. For common parameters, the trainer will get the whole parameter for training, but for the big lookup table, the trainer can not store the whole parameter. Because the input data feature is very sparse, every time we only need a few parameters for training, so we use `prefetch_op` to only prefetch the parameter needed to trainer.
 
