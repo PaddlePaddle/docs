@@ -39,7 +39,7 @@ PoissonNLLLoss
 
 形状
 :::::::::
-    - **input** (Tensor) - 输入 `Tensor`，其形状为 :math:`[N, *]` ，其中 :math:`*` 表示任何数量的额外维度。数据类型为 float32 或 float64。
+    - **input** (Tensor) - 输入 `Tensor`，其形状为 :math:`[N, *]` ，其中 :math:`*` 表示任何数量的额外维度。数据类型为 float16， bfloat16， float32 或 float64。
     - **label** (Tensor) - 标签 :attr:`Tensor`， 形状、数据类型和 :attr:`input` 相同。
 
 返回

@@ -8,7 +8,7 @@ poisson_nll_loss
 
 参数
 :::::::::
-    - **input** (Tensor) - 输入 :attr:`Tensor`，对应泊松分布的期望，其形状为 :math:`[N, *]`，其中 :math:`*` 表示任何数量的额外维度。数据类型为 float32 或 float64。
+    - **input** (Tensor) - 输入 :attr:`Tensor`，对应泊松分布的期望，其形状为 :math:`[N, *]`，其中 :math:`*` 表示任何数量的额外维度。数据类型为 float16，bfloat16，float32 或 float64。
     - **label** (Tensor) - 标签 :attr:`Tensor`， 形状、数据类型和 :attr:`input` 相同。
     - **log_input** (bool，可选) - 输入是否为对数函数映射后结果，如果为 ``True``，则 loss 当中第一项的计算公式为
 
