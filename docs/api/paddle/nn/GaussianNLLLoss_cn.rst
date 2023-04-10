@@ -6,7 +6,7 @@ GaussianNLLLoss
 .. py:class:: paddle.nn.GaussianNLLLoss(full=False, epsilon=1e-6, reduction='mean', name=None)
 
 该接口创建一个 GaussianNLLLoss 实例，计算输入 :attr:`input` 和标签 :attr:`label`、 :attr:`variance` 间的 GaussianNLL 损失，
-:attr:`label` 被视为服从高斯分布的样本，期望 :attr:`input` 和 方差:attr:`variance` 由神经网络预测给出。
+:attr:`label` 被视为服从高斯分布的样本，期望 :attr:`input` 和方差 :attr:`variance` 由神经网络预测给出。
 对于一个具有高斯分布的 Tensor :attr:`label`，期望 :attr:`input` 和正方差 :attr:`var` 与其损失的数学计算公式如下：
 
 .. math::
@@ -14,7 +14,7 @@ GaussianNLLLoss
         \ \text{epsilon}\right)\right) + \frac{\left(\text{input} - \text{label}\right)^2}
         {\text{max}\left(\text{var}, \ \text{epsilon}\right)}\right) + \text{const.}
 
-其中，:attr:`epsilon` 是一个很小的数字，用于保证数值的稳定性。默认情况下，常数项将会被忽略，除非 :attr:`epsilon` 为 True。
+其中， :attr:`epsilon` 是一个很小的数字，用于保证数值的稳定性。默认情况下，常数项将会被忽略，除非 :attr:`epsilon` 为 True。
 若 :attr:`variance` 与 :attr:`input` 的形状不一致，则必须要服从广播机制。
 
 参数
@@ -35,7 +35,7 @@ GaussianNLLLoss
 返回
 :::::::::
 
-    - **output** (Tensor) - 输入 :attr:`input`、:attr:`variance` 和 :attr:`label` 间的 `GaussianNLLLoss` 损失。如果 `reduction` 为 `'none'`，则输出 Loss 形状与输入相同为 `(N, *)`。如果 `reduction` 为 `'sum'` 或者 `'mean'`，则输出 Loss 形状为 `'(1)'` 。
+    - **output** (Tensor) - 输入 :attr:`input`、 :attr:`variance` 和 :attr:`label` 间的 `GaussianNLLLoss` 损失。如果 `reduction` 为 `'none'`，则输出 Loss 形状与输入相同为 `(N, *)`。如果 `reduction` 为 `'sum'` 或者 `'mean'`，则输出 Loss 形状为 `'(1)'` 。
 
 
 代码示例
