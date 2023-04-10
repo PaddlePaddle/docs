@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.Tensor.pow
+## [ 仅参数名不一致 ] torch.Tensor.pow
 
 ### [torch.Tensor.pow](https://pytorch.org/docs/stable/generated/torch.Tensor.pow.html?highlight=pow#torch.Tensor.pow)
 
