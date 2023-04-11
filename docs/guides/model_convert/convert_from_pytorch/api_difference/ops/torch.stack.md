@@ -32,5 +32,5 @@ paddle.stack(x,
 torch.stack([x1, x2, x3], out=y)
 
 # Paddle 写法
-y = paddle.stack([x1, x2, x3])
+paddle.assign(paddle.stack([x1, x2, x3]), y)
 ```

@@ -38,7 +38,7 @@ paddle.randperm(n,
 torch.randperm(10, (2, 2), out=y)
 
 # Paddle 写法
-y = paddle.randperm(10, [2, 2], 1.)
+paddle.assign(paddle.randperm(10, [2, 2], 1.), y)
 ```
 
 

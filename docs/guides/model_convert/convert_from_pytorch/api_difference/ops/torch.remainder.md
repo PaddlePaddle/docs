@@ -32,5 +32,5 @@ paddle.remainder(x,
 torch.remainder([3, 5], 2, out=y)
 
 # Paddle 写法
-y = paddle.remainder([3, 5], 2)
+paddle.assign(paddle.remainder([3, 5], 2), y)
 ```

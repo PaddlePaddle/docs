@@ -24,8 +24,8 @@ paddle.mv(x, vec, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.mv(x, v, out=y)
+torch.mv(x, vec, out=y)
 
 # Paddle 写法
-y = paddle.mv(x, v)
+paddle.assign(paddle.mv(x, vec), y)
 ```

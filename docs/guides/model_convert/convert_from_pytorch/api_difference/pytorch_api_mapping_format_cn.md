@@ -55,13 +55,13 @@ Paddle API 签名
 
 * 如果 `仅参数默认值不一致`，需要在备注栏里加一句 `与 Pytorch 默认值不同` + `Paddle 应如何设置此参数` 。
 
-* 对于其他类别，均需要写**转写示例**，如确实无法支持，需要在备注里加一句 `Paddle 暂无转写方式`。
+* 对于其他类别 API，均需要写**转写示例**，并且要在备注栏里加一句 `需要进行转写`；如确实无法转写，需要在备注里加一句 `Paddle 暂无转写方式`。
 
 * 每个备注都需要`以句号结尾`。
 
 ### 转写示例
 
-**除第 1 类 API 对应关系较为简单，无需写转写示例，其他类 API 都需要写转写示例，否则需注明：Paddle 暂无转写方式。**
+**除第 1 类 API 映射关系较为简单，无需写转写示例，其他类 API 都需要写转写示例，否则需注明：Paddle 暂无转写方式。**
 
 转写示例需要写得精简和一目了然。一般情形下只需写两行代码，无需打印各种结果，并且要保证转写前后的输出结果是一致的。另外需要先描述下待写的是该 torch api 的哪个参数及其功能。
 
@@ -207,7 +207,7 @@ paddle.empty([3, 5])
 torch.abs([-3, -5], out=y)
 
 # Paddle 写法
-y = paddle.abs([-3, -5])
+paddle.assign(paddle.abs([-3, -5]), y)
 ```
 
 #### device: Tensor 的设备
@@ -317,125 +317,29 @@ m = paddle.nn.BatchNorm1D(24)
 
 ## 模板 5
 
-### [ 组合替代实现 ] torchvision.transforms.ToPILImage
+### [ 组合替代实现 ] torch.addcmul
 
-### [torchvision.transforms.ToPILImage](https://pytorch.org/vision/stable/transforms.html?highlight=topilimage#torchvision.transforms.ToPILImage)(仅作为示例)
+### [torch.addcmul](https://pytorch.org/docs/master/generated/torch.addcmul.html#torch.addcmul)
 
 ```python
-torchvision.transforms.ToPILImage(mode=None)
+torch.addcmul(input, tensor1, tensor2, *, value=1, out=None)
 ```
 
-用于根据 mode 返回 PIL 类型的图像，目前 Paddle 无对应 API，可以通过如下代码来组合替代实现：
+用于实现矩阵 `tensor1` 与矩阵 `tensor2` 相乘，再加上输入 `input` ，公式为：
+
+$ out =  input + value *  tensor1 * tensor2 $
+
+PaddlePaddle 目前无对应 API，可使用如下代码组合替代实现:
 
 ### 转写示例
 
 ```python
-import paddle
-import PIL
-import numbers
-import numpy as np
-from PIL import Image
-from paddle.vision.transforms import BaseTransform
-from paddle.vision.transforms import functional as F
+# Pytorch 写法
+torch.addcmul(input, tensor1, tensor2, value=value)
 
-
-class ToPILImage(BaseTransform):
-    def __init__(self, mode=None, keys=None):
-        super(ToPILImage, self).__init__(keys)
-        self.mode = mode
-
-    def _apply_image(self, pic):
-        """
-        Args:
-            pic (Tensor|np.ndarray): Image to be converted to PIL Image.
-        Returns:
-            PIL: Converted image.
-        """
-        if not (isinstance(pic, paddle.Tensor) or isinstance(pic, np.ndarray)):
-            raise TypeError('pic should be Tensor or ndarray. Got {}.'.format(
-                type(pic)))
-
-        elif isinstance(pic, paddle.Tensor):
-            if pic.ndimension() not in {2, 3}:
-                raise ValueError(
-                    'pic should be 2/3 dimensional. Got {} dimensions.'.format(
-                        pic.ndimension()))
-
-            elif pic.ndimension() == 2:
-                # if 2D image, add channel dimension (CHW)
-                pic = pic.unsqueeze(0)
-
-        elif isinstance(pic, np.ndarray):
-            if pic.ndim not in {2, 3}:
-                raise ValueError(
-                    'pic should be 2/3 dimensional. Got {} dimensions.'.format(
-                        pic.ndim))
-
-            elif pic.ndim == 2:
-                # if 2D image, add channel dimension (HWC)
-                pic = np.expand_dims(pic, 2)
-
-        npimg = pic
-        if isinstance(pic, paddle.Tensor) and "float" in str(pic.numpy(
-        ).dtype) and self.mode != 'F':
-            pic = pic.mul(255).byte()
-        if isinstance(pic, paddle.Tensor):
-            npimg = np.transpose(pic.numpy(), (1, 2, 0))
-
-        if not isinstance(npimg, np.ndarray):
-            raise TypeError(
-                'Input pic must be a paddle.Tensor or NumPy ndarray, ' +
-                'not {}'.format(type(npimg)))
-
-        if npimg.shape[2] == 1:
-            expected_mode = None
-            npimg = npimg[:, :, 0]
-            if npimg.dtype == np.uint8:
-                expected_mode = 'L'
-            elif npimg.dtype == np.int16:
-                expected_mode = 'I;16'
-            elif npimg.dtype == np.int32:
-                expected_mode = 'I'
-            elif npimg.dtype == np.float32:
-                expected_mode = 'F'
-            if self.mode is not None and self.mode != expected_mode:
-                raise ValueError(
-                    "Incorrect mode ({}) supplied for input type {}. Should be {}"
-                    .format(self.mode, np.dtype, expected_mode))
-            self.mode = expected_mode
-
-        elif npimg.shape[2] == 2:
-            permitted_2_channel_modes = ['LA']
-            if self.mode is not None and self.mode not in permitted_2_channel_modes:
-                raise ValueError("Only modes {} are supported for 2D inputs".
-                                 format(permitted_2_channel_modes))
-
-            if self.mode is None and npimg.dtype == np.uint8:
-                self.mode = 'LA'
-
-        elif npimg.shape[2] == 4:
-            permitted_4_channel_modes = ['RGBA', 'CMYK', 'RGBX']
-            if self.mode is not None and self.mode not in permitted_4_channel_modes:
-                raise ValueError("Only modes {} are supported for 4D inputs".
-                                 format(permitted_4_channel_modes))
-
-            if self.mode is None and npimg.dtype == np.uint8:
-                self.mode = 'RGBA'
-        else:
-            permitted_3_channel_modes = ['RGB', 'YCbCr', 'HSV']
-            if self.mode is not None and self.mode not in permitted_3_channel_modes:
-                raise ValueError("Only modes {} are supported for 3D inputs".
-                                 format(permitted_3_channel_modes))
-            if self.mode is None and npimg.dtype == np.uint8:
-                self.mode = 'RGB'
-
-        if self.mode is None:
-            raise TypeError('Input type {} is not supported'.format(
-                npimg.dtype))
-
-        return Image.fromarray(npimg, mode=self.mode)
+# Paddle 写法
+paddle.add(input, value * tensor1 * tensor2)
 ```
-
 
 ## 模板 6
 

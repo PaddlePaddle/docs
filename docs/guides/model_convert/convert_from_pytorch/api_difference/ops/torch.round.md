@@ -42,5 +42,5 @@ paddle.round(1e2 * [3.345, 5.774]) / 1e2
 torch.round([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.round([3, 5])
+paddle.assign(paddle.round([3, 5]), y)
 ```

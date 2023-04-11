@@ -27,8 +27,8 @@ paddle.atan(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.atan([ 0.2341,  0.2539, -0.6256, -0.6448], out=y)
+torch.atan([ 0.2341,  0.2539], out=y)
 
 # Paddle 写法
-y = paddle.atan([ 0.2341,  0.2539, -0.6256, -0.6448])
+paddle.assign(paddle.atan([ 0.2341,  0.2539]), y)
 ```

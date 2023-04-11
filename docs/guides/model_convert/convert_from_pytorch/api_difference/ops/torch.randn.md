@@ -49,7 +49,7 @@ paddle.randn([3, 5])
 torch.randn([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.randn([3, 5])
+paddle.assign(paddle.randn([3, 5]), y)
 ```
 
 #### device: Tensor 的设备
