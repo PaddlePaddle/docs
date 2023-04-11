@@ -1,4 +1,4 @@
-## torch.nn.functional.hardshrink
+## [ 仅参数名不一致 ]torch.nn.functional.hardshrink
 
 ### [torch.nn.functional.hardshrink](https://pytorch.org/docs/stable/generated/torch.nn.functional.hardshrink.html?highlight=hardshrink#torch.nn.functional.hardshrink)
 
@@ -16,8 +16,8 @@ paddle.nn.functional.hardshrink(x,
 ```
 
 两者功能一致，仅参数名不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input           | x           | 表示输入的 Tensor 。               |
-| lambd           | threshold           | 表示 hard_shrink 激活计算公式中的 threshold 值 。               |
+| input           | x           | 表示输入的 Tensor ，仅参数名不一致。               |
+| lambd           | threshold           | 表示 hard_shrink 激活计算公式中的 threshold 值 ，仅参数名不一致。               |

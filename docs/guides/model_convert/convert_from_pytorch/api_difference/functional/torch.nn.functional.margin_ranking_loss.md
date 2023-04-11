@@ -1,4 +1,4 @@
-## torch.nn.functional.margin_ranking_loss
+## [torch 参数更多 ]torch.nn.functional.margin_ranking_loss
 
 ### [torch.nn.functional.margin_ranking_loss](https://pytorch.org/docs/stable/generated/torch.nn.functional.margin_ranking_loss.html?highlight=margin_ranking_loss#torch.nn.functional.margin_ranking_loss)
 
@@ -24,12 +24,12 @@ paddle.nn.functional.margin_ranking_loss(input,
 ```
 
 其中 Pytorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input1          | input         | 表示第一个输入的 Tensor 。                                     |
-| input2          | other         | 表示第二个输入的 Tensor 。                                     |
-| target          | label         | 表示训练数据的标签 Tensor 。                                     |
+| input1          | input         | 表示第一个输入的 Tensor ，仅参数名不一致。                                     |
+| input2          | other         | 表示第二个输入的 Tensor ，仅参数名不一致。                                     |
+| target          | label         | 表示训练数据的标签 Tensor ，仅参数名不一致。                                     |
 | margin          | margin         | 表示用于加和的 margin 值 。                                     |
 | size_average          | -         | 已弃用 。                                     |
 | reduce          | -         | 已弃用 。                                     |

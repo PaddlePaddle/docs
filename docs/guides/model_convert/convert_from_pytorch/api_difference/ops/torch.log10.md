@@ -1,4 +1,4 @@
-## torch.log10
+## [torch 参数更多 ]torch.log10
 ### [torch.log10](https://pytorch.org/docs/stable/generated/torch.log10.html?highlight=log10#torch.log10)
 
 ```python
@@ -18,8 +18,8 @@ paddle.log10(x,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的 Tensor。                                      |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
+| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
 ### 转写示例
@@ -29,5 +29,5 @@ paddle.log10(x,
 torch.log10([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.log10([3, 5])
+paddle.assign(paddle.log10([3, 5]), y)
 ```

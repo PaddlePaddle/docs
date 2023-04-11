@@ -1,4 +1,4 @@
-## torch.max
+## [torch 参数更多 ]torch.max
 输入一个 Tensor 对应 paddle.max，输入两个 Tensor 对应 paddle.maximum，因此有两组差异分析，分别如下：
 
 --------------------------------------------------------------------------------------------------
@@ -22,12 +22,13 @@ paddle.max(x,
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的 Tensor。                                      |
-| dim           | axis         | 求最小值运算的维度。                                      |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
+| input         | x            | 输入的 Tensor ，仅参数名不一致。                                      |
+| dim           | axis         | 求最大值运算的维度， 仅参数名不一致。                                      |
+| keepdim       | keepdim      | 是否在输出 Tensor 中保留减小的维度。  |
+| out           | -            | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。               |
 
 
 ### 转写示例
@@ -36,11 +37,11 @@ paddle.max(x,
 # 对指定维度上的 Tensor 元素求最大值运算
 
 # Pytorch 写法
-torch.max(a, 1, out=y)
-# 在输入 dim 时，返回 (values, indices)
+torch.max(a, out=y)
+# torch 在输入 dim 时，返回 (values, indices)，返回参数类型不一致
 
 # Paddle 写法
-y = paddle.max(a, 1)
+paddle.assign(paddle.max(a), y)
 ```
 
 --------------------------------------------------------------------------------------------------
@@ -63,12 +64,12 @@ paddle.maximum(x,
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的 Tensor。                                      |
-| other         | y            | 输入的 Tensor。                                      |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
+| input         | x            | 输入的 Tensor ，仅参数名不一致。                                      |
+| other         | y            | 输入的 Tensor ， 仅参数名不一致。                                      |
+| out           | -            | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。               |
 
 
 ### 转写示例
@@ -81,5 +82,5 @@ torch.max(a, b, out=y)
 # 在输入 other 时，比较 input 和 other 返回较大值
 
 # Paddle 写法
-y = paddle.maximum(a, b)
+paddle.assign(paddle.maximum(a, b), y)
 ```

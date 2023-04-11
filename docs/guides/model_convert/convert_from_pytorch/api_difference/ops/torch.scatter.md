@@ -1,76 +1,31 @@
-## torch.scatter
+## [ 仅 paddle 参数更多 ]torch.scatter
+
 ### [torch.scatter](https://pytorch.org/docs/stable/generated/torch.scatter.html?highlight=scatter#torch.scatter)
 
 ```python
-torch.scatter(tensor,
+torch.scatter(input,
               dim,
               index,
               src)
 ```
 
-### [paddle.scatter_nd_add](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/scatter_nd_add_cn.html)
+### [paddle.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/put_along_axis_cn.html)
 
 ```python
-paddle.scatter_nd_add(x,
-                      index,
-                      updates,
-                      name=None)
+paddle.put_along_axis(arr,
+                      indices,
+                      values,
+                      axis,
+                      reduce='assign')
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+两者功能一致且参数用法一致，仅参数名不同，同时 Paddle 支持更多其他参数，具体如下：
+
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| tensor        | x            | 表示输入 Tensor。                                     |
-| dim           | -            | 表示在哪一个维度 scatter，Paddle 无此参数 |
-| index         | index        | 输入的索引张量                   |
-| src           | updates      | 输入的更新张量                   |
-
-
-
-### 功能差异
-
-#### 使用方式
-因 torch.scatter 与 paddle.scatter_nd_add 差异较大，必须使用 paddle.flatten + paddle.meshgrid + paddle.scatter_nd_add 组合实现，看如下例子
-
-
-### 代码示例
-``` python
-# PyTorch 示例：
-src = torch.arange(1, 11).reshape((2, 5))
-# 输出
-# tensor([[ 1,  2,  3,  4,  5],
-#         [ 6,  7,  8,  9, 10]])
-index = torch.tensor([[0, 1, 2], [0, 1, 4]])
-torch.zeros(3, 5, dtype=src.dtype).scatter_(1, index, src)
-# 输出
-# tensor([[1, 2, 3, 0, 0],
-#         [6, 7, 0, 0, 8],
-#         [0, 0, 0, 0, 0]])
-```
-
-``` python
-# PaddlePaddle 组合实现：
-x = paddle.zeros([3, 5], dtype="int64")
-updates = paddle.arange(1, 11).reshape([2,5])
-# 输出
-# Tensor(shape=[2, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-#        [[1 , 2 , 3 , 4 , 5 ],
-#         [6 , 7 , 8 , 9 , 10]])
-index = paddle.to_tensor([[0, 1, 2], [0, 1, 4]])
-i, j = index.shape
-grid_x , grid_y = paddle.meshgrid(paddle.arange(i), paddle.arange(j))
-# 若 PyTorch 的 dim 取 0
-# index = paddle.stack([index.flatten(), grid_y.flatten()], axis=1)
-# 若 PyTorch 的 dim 取 1
-index = paddle.stack([grid_x.flatten(), index.flatten()], axis=1)
-# PaddlePaddle updates 的 shape 大小必须与 index 对应
-updates_index = paddle.stack([grid_x.flatten(), grid_y.flatten()], axis=1)
-updates = paddle.gather_nd(updates, index=updates_index)
-paddle.scatter_nd_add(x, index, updates)
-# 输出
-# Tensor(shape=[3, 5], dtype=int64, place=CUDAPlace(0), stop_gradient=True,
-#        [[1, 2, 3, 0, 0],
-#         [6, 7, 0, 0, 8],
-#         [0, 0, 0, 0, 0]])
-```
+| input        | arr            | 表示输入 Tensor ，仅参数名不一致。                                     |
+| dim           | axis            | 表示在哪一个维度 scatter ，仅参数名不一致。 |
+| index         | indices        | 表示输入的索引张量，仅参数名不一致。                   |
+| src           | values      | 表示需要插入的值，仅参数名不一致。                   |
+| -           | reduce      | 表示对输出 Tensor 的计算方式， PyTorch 无此参数， Paddle 保持默认即可。  |

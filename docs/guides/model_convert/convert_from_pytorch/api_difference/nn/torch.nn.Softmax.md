@@ -1,4 +1,4 @@
-## torch.nn.Softmax
+## [ 仅参数名不一致 ]torch.nn.Softmax
 ### [torch.nn.Softmax](https://pytorch.org/docs/stable/generated/torch.nn.Softmax.html?highlight=nn+softmax#torch.nn.Softmax)
 
 ```python
@@ -13,7 +13,7 @@ paddle.nn.Softmax(axis=- 1,
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| dim           | axis         | 指定对输入 Tensor 进行运算的轴。                          |
+| dim           | axis         | 指定对输入 Tensor 进行运算的轴，仅参数名不一致。                          |

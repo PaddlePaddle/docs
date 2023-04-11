@@ -32,8 +32,8 @@ paddle.clip(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.clamp([-1.7120,  0.1734, -0.0478, -0.0922], min=-0.5, max=0.5, out=y)
+torch.clamp([-1.7120,  0.1734], min=-0.5, max=0.5, out=y)
 
 # Paddle 写法
-y = paddle.clip([-1.7120,  0.1734, -0.0478, -0.0922], min=-0.5, max=0.5)
+paddle.assign(paddle.clip([-1.7120,  0.1734], min=-0.5, max=0.5), y)
 ```

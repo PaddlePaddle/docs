@@ -1,4 +1,4 @@
-## torch.pow
+## [torch 参数更多 ]torch.pow
 ### [torch.pow](https://pytorch.org/docs/stable/generated/torch.pow.html?highlight=pow#torch.pow)
 
 ```python
@@ -17,12 +17,12 @@ paddle.pow(x,
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的 Tensor。                                      |
-| exponent      | y            | 指数值。                                             |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
+| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+| <font color='red'> exponent </font> | <font color='red'> y </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
 ### 转写示例
@@ -32,5 +32,5 @@ paddle.pow(x,
 torch.pow([3, 5], 2, out=y)
 
 # Paddle 写法
-y = paddle.pow([3, 5], 2)
+paddle.assign(paddle.pow([3, 5], 2), y)
 ```

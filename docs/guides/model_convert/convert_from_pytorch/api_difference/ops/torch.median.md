@@ -1,4 +1,4 @@
-## torch.median
+## [torch 参数更多]torch.median
 ### [torch.median](https://pytorch.org/docs/stable/generated/torch.median.html?highlight=median#torch.median)
 
 ```python
@@ -22,9 +22,10 @@ paddle.median(x,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的 Tensor。                   |
-| dim           | axis         | 指定对 x 进行计算的轴。                   |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
+| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+| <font color='red'> dim </font> | <font color='red'> axis </font> | 表示进行运算的轴，仅参数名不一致。  |
+| keepdim       | keepdim      | 是否在输出 Tensor 中保留减小的维度。  |
+| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
 ### 转写示例
@@ -34,5 +35,5 @@ paddle.median(x,
 torch.median([3, 5], dim=0, out=y)
 
 # Paddle 写法
-y = paddle.median([3, 5], axis=0)
+paddle.assign(paddle.median([3, 5], axis=0), y)
 ```

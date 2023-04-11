@@ -142,8 +142,8 @@ tensor 数学操作
     " :ref:`paddle.atanh <cn_api_fluid_layers_atanh>` ", "反双曲正切函数"
     " :ref:`paddle.take <cn_api_paddle_tensor_take>` ", "输出给定索引处的输入元素，结果与 index 的形状相同"
     " :ref:`paddle.frexp <cn_api_paddle_frexp>` ", "用于把一个浮点数分解为尾数和指数的函数"
-
-
+    " :ref:`paddle.trapezoid <cn_api_paddle_tensor_trapezoid>` ", "在指定维度上对输入实现 trapezoid rule 算法。使用累积求和函数 sum"
+    " :ref:`paddle.cumulative_trapezoid <cn_api_paddle_tensor_cumulative_trapezoid>` ", "在指定维度上对输入实现 trapezoid rule 算法。使用累积求和函数 cumsum"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
@@ -238,6 +238,8 @@ tensor 创建相关
     " :ref:`paddle.create_parameter <cn_api_fluid_layers_create_parameter>` ", "创建一个参数,该参数是一个可学习的变量, 拥有梯度并且可优化"
     " :ref:`paddle.clone <cn_api_tensor_clone>` ", "对输入 Tensor ``x`` 进行拷贝，并返回一个新的 Tensor，并且该操作提供梯度回传"
     " :ref:`paddle.batch <cn_api_paddle_batch>` ", "一个 reader 的装饰器。返回的 reader 将输入 reader 的数据打包成指定的 batch_size 大小的批处理数据(不推荐使用)"
+    " :ref:`paddle.polar <cn_api_paddle_polar>`", "对于给定的模 ``abs`` 和相位角 ``angle``，返回一个对应复平面上的坐标复数 Tensor"
+    " :ref:`paddle.vander <cn_api_paddle_vander>` ", "生成范德蒙德矩阵。"
 
 .. _tensor_search:
 

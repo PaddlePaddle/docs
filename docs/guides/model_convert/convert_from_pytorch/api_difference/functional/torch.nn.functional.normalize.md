@@ -1,4 +1,4 @@
-## torch.nn.functional.normalize
+## [torch 参数更多 ]torch.nn.functional.normalize
 
 ### [torch.nn.functional.normalize](https://pytorch.org/docs/stable/generated/torch.nn.functional.normalize.html?highlight=normalize#torch.nn.functional.normalize)
 
@@ -21,7 +21,7 @@ paddle.nn.functional.normalize(x,
 ```
 
 其中 Pytorch 相⽐ Paddle ⽀持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input          | x         | 表示输出 Tensor 的 size 。                                     |

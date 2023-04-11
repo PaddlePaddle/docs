@@ -21,7 +21,7 @@ paddle.nn.CrossEntropyLoss(weight=None,
                            name=None)
 ```
 
-两者功能一致但参数不一致，具体如下：
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

@@ -1,4 +1,4 @@
-## torch.nn.PairwiseDistance
+## [ 仅参数名不一致 ]torch.nn.PairwiseDistance
 ### [torch.nn.PairwiseDistance](https://pytorch.org/docs/stable/generated/torch.nn.PairwiseDistance.html?highlight=nn+pairwisedistance#torch.nn.PairwiseDistance)
 
 ```python
@@ -15,7 +15,12 @@ paddle.nn.PairwiseDistance(p=2.,
                             keepdim=False,
                             name=None)
 ```
-### 参数差异
+
+两者功能一致且参数用法一致，仅参数名不同，具体如下：
+
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| eps           | epsilon      | 添加到分母的一个很小值，避免发生除零错误。                   |
+| p           | p      | 指定 p 阶的范数。                   |
+| eps           | epsilon      | 添加到分母的一个很小值，避免发生除零错误，仅参数名不一致。                   |
+| keepdim           | keepdim      | 表示是否在输出 Tensor 中保留减小的维度。                   |

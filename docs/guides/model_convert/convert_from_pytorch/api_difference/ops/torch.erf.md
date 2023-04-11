@@ -28,5 +28,5 @@ paddle.erf(x,
 torch.erf([0, -1., 10.], out=y)
 
 # Paddle 写法
-y = paddle.erf([0, -1., 10.])
+paddle.assign(paddle.erf([0, -1., 10.]), y)
 ```

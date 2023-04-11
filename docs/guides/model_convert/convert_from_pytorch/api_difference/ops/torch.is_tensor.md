@@ -1,4 +1,4 @@
-## [仅参数名不⼀致]torch.tensor
+## [ 仅参数名不⼀致 ]torch.tensor
 
 ### [torch.is_tensor](https://pytorch.org/docs/stable/generated/torch.is_tensor.html?highlight=is_tensor#torch.is_tensor)
 
@@ -18,4 +18,4 @@ paddle.is_tensor(x)
 
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> obj </font> | <font color='red'> x </font> | 输⼊ Tensor ，被判断的 Tensor ，仅名称不同。   |
+| <font color='red'> obj </font> | <font color='red'> x </font> | 输⼊ Tensor ，被判断的 Tensor ，仅参数名不一致。   |

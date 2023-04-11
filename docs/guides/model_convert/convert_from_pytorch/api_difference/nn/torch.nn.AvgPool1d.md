@@ -1,4 +1,4 @@
-# torch.nn.AvgPool1d
+# [ 参数不一致 ]torch.nn.AvgPool1d
 ### [torch.nn.AvgPool1d](https://pytorch.org/docs/1.13/generated/torch.nn.AvgPool1d.html?highlight=avgpool1d#torch.nn.AvgPool1d)
 
 ```python
@@ -21,11 +21,15 @@ paddle.nn.AvgPool1D(kernel_size,
 ```
 
 其中 Pytorch 的 count_include_pad 与 Paddle 的 exclusive 用法不一致，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| count_include_pad| -         | 是否使用额外 padding 的值计算平均池化结果，默认为 True。  |
-| -             | exclusive    | 是否不使用额外 padding 的值计算平均池化结果，默认为 True。        |
+| kernel_size          | kernel_size         | 表示池化核的尺寸大小 。                                     |
+| stride          | stride         | 表示步长 。                                     |
+| padding          | padding         | 表示填充大小 。                                     |
+| ceil_mode          | ceil_mode         | 表示是否用 ceil 函数计算输出的 height 和 width 。                                     |
+| count_include_pad | -         | 是否使用额外 padding 的值计算平均池化结果，默认为 True 。  |
+| -             | exclusive    | 是否不使用额外 padding 的值计算平均池化结果，默认为 True 。        |
 
 ### 转写示例
 #### count_include_pad：是否使用额外 padding 的值计算平均池化结果

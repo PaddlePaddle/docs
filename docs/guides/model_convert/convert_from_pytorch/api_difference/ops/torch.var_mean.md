@@ -1,4 +1,4 @@
-## torch.var_mean
+## [ 组合替代实现 ]torch.var_mean
 
 ### [torch.var_mean](https://pytorch.org/docs/stable/generated/torch.var_mean.html?highlight=var_mean#torch.var_mean)
 ```python
@@ -13,16 +13,13 @@ torch.var_mean(input,
 ```
 
 ### 功能介绍
-用于实现返回 Tensor 的方差和均值，PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
+用于实现返回 Tensor 的方差和均值，PaddlePaddle 目前暂无对应 API，可使用如下代码组合实现该 API。
 
 ```python
-import paddle
+# PyTorch 写法
+var, mean = torch.var_mean(x, dim=1)
 
-def var_mean(input, dim=None, unbiased=True, keepdim=False):
-    var = paddle.var(input, axis=dim,
-                     unbiased=unbiased, keepdim=keepdim)
-    mean = paddle.mean(input,
-                       axis=dim,
-                       keepdim=keepdim)
-    return var, mean
+# Paddle 写法
+var = paddle.var(x, axis=1)
+mean = paddle.mean(x, axis=1)
 ```

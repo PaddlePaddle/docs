@@ -26,7 +26,7 @@ paddle.full(shape,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> size </font>  | <font color='red'> shape </font>       | 表示输出形状大小。 |
+| <font color='red'> size </font>  | <font color='red'> shape </font>       | 表示输出形状大小，仅参数名不一致。 |
 | fill_value  |  fill_value  |  表示填充值。  |
 | <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 | dtype | dtype  | 表示数据类型。|
@@ -42,7 +42,7 @@ paddle.full(shape,
 torch.full([3, 5], 1., out=y)
 
 # Paddle 写法
-y = paddle.full([3, 5], 1.)
+paddle.assign(paddle.full([3, 5], 1.), y)
 ```
 #### device: Tensor 的设备
 ```python

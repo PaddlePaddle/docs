@@ -1,4 +1,4 @@
-## torch.rsqrt
+## [torch 参数更多 ]torch.rsqrt
 ### [torch.rsqrt](https://pytorch.org/docs/stable/generated/torch.rsqrt.html?highlight=rsqrt#torch.rsqrt)
 
 ```python
@@ -15,11 +15,11 @@ paddle.rsqrt(x,
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入的 Tensor。                                      |
-| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。               |
+| input         | x            | 输入的 Tensor ，仅参数名不一致。                                      |
+| out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。               |
 
 
 ### 转写示例
@@ -29,5 +29,5 @@ paddle.rsqrt(x,
 torch.rsqrt([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.rsqrt([3, 5])
+paddle.assign(paddle.rsqrt([3, 5]), y)
 ```

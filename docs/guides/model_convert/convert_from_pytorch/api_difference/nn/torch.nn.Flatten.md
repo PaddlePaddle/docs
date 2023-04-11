@@ -1,4 +1,4 @@
-## torch.nn.Flatten
+## [ 仅参数名不一致 ]torch.nn.Flatten
 ### [torch.nn.Flatten](https://pytorch.org/docs/stable/generated/torch.nn.Flatten.html?highlight=nn+flatten#torch.nn.Flatten)
 
 ```python
@@ -14,7 +14,7 @@ paddle.nn.Flatten(start_axis=1,
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | start_dim     | start_axis   | 展开的起始维度，默认值为 1。                               |
