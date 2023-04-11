@@ -29,5 +29,5 @@ paddle.concat(x,
 torch.cat([x, y], out=y)
 
 # Paddle 写法
-y = paddle.concat([x, y])
+paddle.assign(paddle.concat([x, y]), y)
 ```

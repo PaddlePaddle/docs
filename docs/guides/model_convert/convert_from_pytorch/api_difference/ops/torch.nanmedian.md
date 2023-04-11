@@ -35,5 +35,5 @@ paddle.nanmedian(x,
 torch.nanmedian(a, -1, out=y)
 
 # Paddle 写法
-y = paddle.nanmedian(a, -1)
+paddle.assign(paddle.nanmedian(a, -1), y)
 ```

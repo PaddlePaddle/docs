@@ -28,5 +28,5 @@ paddle.floor(x,
 torch.floor([-0.4, -0.2, 0.1, 0.3], out=y)
 
 # Paddle 写法
-y = paddle.floor([-0.4, -0.2, 0.1, 0.3])
+paddle.assign(paddle.floor([-0.4, -0.2, 0.1, 0.3]), y)
 ```
