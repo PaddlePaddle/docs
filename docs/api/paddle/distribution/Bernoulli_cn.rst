@@ -82,7 +82,7 @@ sample(shape)
 
 **返回**
 
-Tensor，样本，其维度为 :math:`sample_shape + batch_shape + event_shape`。
+Tensor，样本，其维度为 :math:`sample shape + batch shape + event shape`。
 
 **代码示例**
 
@@ -129,7 +129,7 @@ rsample(shape, temperature=1.0)
 
 **返回**
 
-Tensor，样本，其维度为 :math:`sample_shape + batch_shape + event_shape`。
+Tensor，样本，其维度为 :math:`sample shape + batch shape + event shape`。
 
 **代码示例**
 
