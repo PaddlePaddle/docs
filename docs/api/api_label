@@ -249,6 +249,8 @@ paddle.sum	.. _api_paddle_sum:
 paddle.t	.. _api_paddle_t:
 paddle.take	.. _api_paddle_take:
 paddle.frexp	.. _api_paddle_frexp:
+paddle.trapezoid    .. _api_paddle_trapezoid:
+paddle.cumulative_trapezoid    .. _api_paddle_cumulative_trapezoid:
 paddle.tanh	.. _api_paddle_tanh:
 paddle.tanh_	.. _api_paddle_tanh_:
 paddle.tile	.. _api_paddle_tile:
@@ -817,6 +819,7 @@ paddle.nn.LSTM	.. _api_paddle_nn_LSTM:
 paddle.nn.Pad1D	.. _api_paddle_nn_Pad1D:
 paddle.nn.Hardswish	.. _api_paddle_nn_Hardswish:
 paddle.nn.NLLLoss	.. _api_paddle_nn_NLLLoss:
+paddle.nn.PoissonNLLLoss	.. _api_paddle_nn_PoissonNLLLoss:
 paddle.nn.AlphaDropout	.. _api_paddle_nn_AlphaDropout:
 paddle.nn.LSTMCell	.. _api_paddle_nn_LSTMCell:
 paddle.nn.Pad3D	.. _api_paddle_nn_Pad3D:
@@ -975,6 +978,7 @@ paddle.nn.functional.relu6	.. _api_paddle_nn_functional_relu6:
 paddle.nn.functional.adaptive_avg_pool1d	.. _api_paddle_nn_functional_adaptive_avg_pool1d:
 paddle.nn.functional.prelu	.. _api_paddle_nn_functional_prelu:
 paddle.nn.functional.hardshrink	.. _api_paddle_nn_functional_hardshrink:
+paddle.nn.functional.poisson_nll_loss	.. _api_paddle_nn_functional_poisson_nll_loss:
 paddle.nn.functional.kl_div	.. _api_paddle_nn_functional_kl_div:
 paddle.nn.functional.relu_	.. _api_paddle_nn_functional_relu_:
 paddle.nn.functional.label_smooth	.. _api_paddle_nn_functional_label_smooth:
@@ -1211,3 +1215,5 @@ paddle.uniform	.. _api_paddle_uniform:
 paddle.get_cuda_rng_state	.. _api_paddle_get_cuda_rng_state:
 paddle.flops	.. _api_paddle_flops:
 paddle.load	.. _api_paddle_load:
+paddle.vander	.. _api_paddle_vander:
+

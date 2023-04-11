@@ -29,5 +29,5 @@ paddle.rsqrt(x,
 torch.rsqrt([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.rsqrt([3, 5])
+paddle.assign(paddle.rsqrt([3, 5]), y)
 ```

@@ -36,5 +36,5 @@ paddle.matmul(x,
 torch.mm(a, b, out=y)
 
 # Paddle 写法
-y = paddle.matmul(a, b)
+paddle.assign(paddle.matmul(a, b), y)
 ```

@@ -29,5 +29,5 @@ paddle.sinh(x,
 torch.sinh([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.sinh([3, 5])
+paddle.assign(paddle.sinh([3, 5]), y)
 ```

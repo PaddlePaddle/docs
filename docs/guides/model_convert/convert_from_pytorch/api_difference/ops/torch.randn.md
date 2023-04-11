@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.randn
+## [ 参数不一致 ]torch.randn
 
 ### [torch.randn](https://pytorch.org/docs/stable/generated/torch.randn.html?highlight=randn#torch.randn)
 
@@ -49,7 +49,7 @@ paddle.randn([3, 5])
 torch.randn([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.randn([3, 5])
+paddle.assign(paddle.randn([3, 5]), y)
 ```
 
 #### device: Tensor 的设备

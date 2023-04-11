@@ -1,4 +1,4 @@
-## [ 两者均支持更多参数 ]torch.nn.MaxPool3d
+## [ torch 参数更多 ]torch.nn.MaxPool3d
 ### [torch.nn.MaxPool3d](https://pytorch.org/docs/1.13/generated/torch.nn.MaxPool3d.html?highlight=maxpool3d#torch.nn.MaxPool3d)
 
 ```python
@@ -22,7 +22,7 @@ paddle.nn.MaxPool3D(kernel_size,
                     name=None)
 ```
 
-其中 Pytorch 和 Paddle 均支持更多其他参数，具体如下：
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
