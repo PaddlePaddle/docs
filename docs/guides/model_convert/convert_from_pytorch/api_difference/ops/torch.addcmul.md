@@ -12,10 +12,10 @@ $ out =  input + value *  tensor1 * tensor2 $
 PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
 
 ###  转写示例
-#### out：指定输出
+
 ```python
 # Pytorch 写法
-torch.addcmul(input, tensor1, tensor2, value=value, out=y)
+y = torch.addcmul(input, tensor1, tensor2, value=value)
 
 # Paddle 写法
 y = input + value * tensor1 * tensor2
