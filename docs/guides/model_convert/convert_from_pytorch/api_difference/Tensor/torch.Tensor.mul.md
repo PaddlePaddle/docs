@@ -14,10 +14,10 @@ paddle.Tensor.multiply(y,
                 name=None)
 ```
 
-两者功能一致，输入一个 y ,将 Tensor 与 y 的对应元素相乘。其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                    |
 | ------------- | ------------ | ------------------------------------------------------- |
-| value         | y            | 相乘的矩阵                                               |
-| -             | axis         | 计算的维度， PyTorch 无此参数， Paddle 设为 -1 即可        |
+| value         | y            | 相乘的矩阵，仅参数名不一致。                               |
+| -             | axis         | 计算的维度， PyTorch 无此参数， Paddle 保持默认即可。       |

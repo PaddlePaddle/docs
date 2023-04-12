@@ -1,19 +1,19 @@
-## [ 一致的参数 ] torch.Tensor.mv
+## [ 参数完全一致 ] torch.Tensor.mv
 ### [torch.Tensor.mv](https://pytorch.org/docs/1.13/generated/torch.Tensor.mv.html)
 
 ```python
 torch.Tensor.mv(vec)
 ```
 
-### [paddle.Tensor.mv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/mv_cn.html)
+### [paddle.Tensor.mv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#mv-vec-name-none)
 
 ```python
 paddle.Tensor.mv(vec)
 ```
 
-两者功能一致，计算 Tensor 和向量 vec 的乘积。
+两者功能一致，且参数一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| vec          | vec         | 相乘的向量                                     |
+| vec           | vec          | 相乘的向量。                                            |

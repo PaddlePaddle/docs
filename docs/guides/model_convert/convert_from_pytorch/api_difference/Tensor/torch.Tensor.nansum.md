@@ -1,4 +1,4 @@
-## [ 一致的参数 ] torch.Tensor.nansum
+## [ 仅参数名不一致 ] torch.Tensor.nansum
 ### [torch.Tensor.nansum](https://pytorch.org/docs/1.13/generated/torch.Tensor.nansum.html?highlight=nansum#torch.Tensor.nansum)
 
 ```python
@@ -7,7 +7,7 @@ Tensor.nansum(dim=None,
             dtype=None)
 ```
 
-### [paddle.Tensor.nansum](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/index_cn.html)未找到文档
+### [paddle.Tensor.nansum]()
 
 ```python
 paddle.Tensor.nansum(axis=None,
@@ -15,11 +15,11 @@ paddle.Tensor.nansum(axis=None,
             dtype=None)
 ```
 
-两者功能一致，返回 Tensor 中元素的和，其中 nan 值记为 0
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| dim          | axis         | 需要求和的维度                                     |
-| keepdim          | keepdim         | 结果是否需要保持维度不变                                     |
-| dtype          | dtype         | 返回的 Tensor 的类型                                     |
+| dim           | axis         | 需要求和的维度，仅参数名不一致。                          |
+| keepdim       | keepdim      | 结果是否需要保持维度不变，仅参数名不一致。                 |
+| dtype         | dtype        | 返回的 Tensor 的类型，仅参数名不一致。                    |
