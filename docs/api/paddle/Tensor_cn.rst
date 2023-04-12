@@ -2368,7 +2368,8 @@ where(x, y, name=None)
 
 返回类型：Tensor
 
-注：只有 `bool` 类型的 `Tensor` 才能调用该方法。
+.. note::
+只有 `bool` 类型的 `Tensor` 才能调用该方法。
 
 示例：`(x>0).where(x, y)`， 其中 x， y 都是数值 `Tensor`。
 
