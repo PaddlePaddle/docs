@@ -82,7 +82,7 @@ sample(shape)
 
 **返回**
 
-Tensor，样本，其维度为 :math:`sample shape + batch shape + event shape`。
+Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}`。
 
 **代码示例**
 
@@ -119,8 +119,7 @@ rsample(shape, temperature=1.0)
 [2] Eric Jang, Shixiang Gu, and Ben Poole. Categorical Reparameterization with Gumbel-Softmax. 2016.
 
 .. note::
-
-``rsample`` 后面需要跟一个 ``sigmoid``，从而将样本的值转换为单位间隔 :math:`(0, 1)`。
+   ``rsample`` 后面需要跟一个 ``sigmoid``，从而将样本的值转换为单位间隔 :math:`(0, 1)`。
 
 **参数**
 
@@ -129,7 +128,7 @@ rsample(shape, temperature=1.0)
 
 **返回**
 
-Tensor，样本，其维度为 :math:`sample shape + batch shape + event shape`。
+Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} + \text{event shape}`。
 
 **代码示例**
 
