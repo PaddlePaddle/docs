@@ -1,4 +1,4 @@
-## [仅参数名不同]torch.chunk
+## [ 仅参数名不同 ]torch.chunk
 ### [torch.chunk](https://pytorch.org/docs/stable/generated/torch.chunk.html?highlight=chunk#torch.chunk)
 
 ```python

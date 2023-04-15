@@ -819,6 +819,7 @@ paddle.nn.LSTM	.. _api_paddle_nn_LSTM:
 paddle.nn.Pad1D	.. _api_paddle_nn_Pad1D:
 paddle.nn.Hardswish	.. _api_paddle_nn_Hardswish:
 paddle.nn.NLLLoss	.. _api_paddle_nn_NLLLoss:
+paddle.nn.PoissonNLLLoss	.. _api_paddle_nn_PoissonNLLLoss:
 paddle.nn.AlphaDropout	.. _api_paddle_nn_AlphaDropout:
 paddle.nn.LSTMCell	.. _api_paddle_nn_LSTMCell:
 paddle.nn.Pad3D	.. _api_paddle_nn_Pad3D:
@@ -910,6 +911,7 @@ paddle.nn.Unfold	.. _api_paddle_nn_Unfold:
 paddle.nn.LogSoftmax	.. _api_paddle_nn_LogSoftmax:
 paddle.nn.Maxout	.. _api_paddle_nn_Maxout:
 paddle.nn.BatchNorm3D	.. _api_paddle_nn_BatchNorm3D:
+paddle.nn.GaussianNLLLoss .. _api_paddle_nn_GaussianNLLLoss
 paddle.nn.functional.adaptive_max_pool3d	.. _api_paddle_nn_functional_adaptive_max_pool3d:
 paddle.nn.functional.glu	.. _api_paddle_nn_functional_glu:
 paddle.nn.functional.silu	.. _api_paddle_nn_functional_silu:
@@ -977,6 +979,7 @@ paddle.nn.functional.relu6	.. _api_paddle_nn_functional_relu6:
 paddle.nn.functional.adaptive_avg_pool1d	.. _api_paddle_nn_functional_adaptive_avg_pool1d:
 paddle.nn.functional.prelu	.. _api_paddle_nn_functional_prelu:
 paddle.nn.functional.hardshrink	.. _api_paddle_nn_functional_hardshrink:
+paddle.nn.functional.poisson_nll_loss	.. _api_paddle_nn_functional_poisson_nll_loss:
 paddle.nn.functional.kl_div	.. _api_paddle_nn_functional_kl_div:
 paddle.nn.functional.relu_	.. _api_paddle_nn_functional_relu_:
 paddle.nn.functional.label_smooth	.. _api_paddle_nn_functional_label_smooth:
@@ -988,6 +991,7 @@ paddle.nn.functional.pad	.. _api_paddle_nn_functional_pad:
 paddle.nn.functional.sigmoid_focal_loss	.. _api_paddle_nn_functional_sigmoid_focal_loss:
 paddle.nn.functional.hardsigmoid	.. _api_paddle_nn_functional_hardsigmoid:
 paddle.nn.functional.max_pool3d	.. _api_paddle_nn_functional_max_pool3d:
+paddle.nn.functional.gaussian_nll_loss .. _api_nn_paddle_functional_gaussian_nll_loss:
 paddle.nn.initializer.KaimingUniform	.. _api_paddle_nn_initializer_KaimingUniform:
 paddle.nn.initializer.KaimingNormal	.. _api_paddle_nn_initializer_KaimingNormal:
 paddle.nn.initializer.Assign	.. _api_paddle_nn_initializer_Assign:

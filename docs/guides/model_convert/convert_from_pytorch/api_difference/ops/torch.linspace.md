@@ -42,7 +42,7 @@ paddle.linspace(start,
 torch.linspace(0, 10, 5, out=y)
 
 # Paddle 写法
-y = paddle.linspace(0, 10, 5)
+paddle.assign(paddle.linspace(0, 10, 5), y)
 ```
 
 #### device: Tensor 的设备
