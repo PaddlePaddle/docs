@@ -1,9 +1,9 @@
-## [ 仅参数名不一致 ]torch.greater_equal
+## [ torch 参数更多 ]torch.Tensor.greater_equal
 
-### [torch.ge](https://pytorch.org/docs/1.13/generated/torch.greater_equal.html#torch.greater_equal)
+### [torch.Tensor.greater_equal](https://pytorch.org/docs/1.13/generated/torch.Tensor.greater_equal.html?highlight=torch+tensor+greater_equal#torch.Tensor.greater_equal)
 
 ```python
-torch.greater_equal(input, other, *, out=None)
+torch.Tensor.greater_equal(input, other, *, out=None)
 ```
 
 ### [paddle.greater_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/greater_equal_cn.html#greater-equal)
@@ -26,7 +26,7 @@ paddle.greater_equal(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.greater_equal(torch.tensor([[1, 2], [3, 4]]), torch.tensor([[1, 1], [4, 4]]), out = y) # 同 y = torch.greater_equal(torch.tensor([[1, 2], [3, 4]]), torch.tensor([[1, 1], [4, 4]]))
+torch.Tensor.greater_equal(torch.tensor([[1, 2], [3, 4]]), torch.tensor([[1, 1], [4, 4]]), out = y) # 同 y = torch.Tensor.greater_equal(torch.tensor([[1, 2], [3, 4]]), torch.tensor([[1, 1], [4, 4]]))
 
 # Paddle 写法
 y = paddle.greater_equal(paddle.to_tensor([[1, 2], [3, 4]]), paddle.to_tensor([[1, 1], [4, 4]]))
