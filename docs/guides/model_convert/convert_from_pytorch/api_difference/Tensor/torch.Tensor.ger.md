@@ -1,9 +1,9 @@
-## [ 仅参数名不一致 ]torch.outer
+## [ torch 参数更多 ]torch.Tensor.ger
 
-### [torch.outer](https://pytorch.org/docs/1.13/generated/torch.outer.html#torch.outer)
+### [torch.Tensor.ger](https://pytorch.org/docs/1.13/generated/torch.Tensor.ger.html?highlight=torch+tensor+ger#torch.Tensor.ger)
 
 ```python
-torch.outer(input, vec2, *, out=None)
+torch.Tensor.ger(input, vec2, *, out=None)
 ```
 
 ### [paddle.outer](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/outer_cn.html)
@@ -28,7 +28,7 @@ paddle.outer(x, y, name=None)
 # Pytorch 写法
 v1 = torch.arange(1., 5.)
 v2 = torch.arange(1., 4.)
-torch.outer(v1, v2, out = out) # 同 out = torch.outer(v1, v2)
+torch.Tensor.ger(v1, v2, out = out) # 同 out = torch.Tensor.ger(v1, v2)
 
 # Paddle 写法
 v1 = paddle.arange(1, 5).astype('float32')

@@ -5,7 +5,7 @@
 ### [torch.Tensor.gcd](https://pytorch.org/docs/1.13/generated/torch.Tensor.gcd.html?highlight=torch+tensor+gcd#torch.Tensor.gcd)
 
 ```python
-torch.gcd(input, other, *, out=None)
+torch.Tensor.gcd(input, other, *, out=None)
 ```
 
 ### [paddle.gcd(x, y, name=None)](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/gcd_cn.html)
@@ -28,7 +28,7 @@ paddle.gcd(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.gcd([-3, -5], out=y) # 同 y = torch.gcd([-3, -5])
+torch.Tensor.gcd([-3, -5], out=y) # 同 y = torch.Tensor.gcd([-3, -5])
 
 # Paddle 写法
 y = paddle.gcd([-3, -5])
