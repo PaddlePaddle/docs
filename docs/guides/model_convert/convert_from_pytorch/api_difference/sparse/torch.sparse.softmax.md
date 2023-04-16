@@ -26,6 +26,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ```Python
 # torch
 torch.sparse.softmax(x,-1,dtype=torch.float32)
+
 # paddle 转化 values 的 dtype 到 float32 数据类型
 x = paddle.sparse.cast(x, index_dtype=None, value_dtype='float32')
 paddle.sparse.nn.functional.softmax(x,-1)
