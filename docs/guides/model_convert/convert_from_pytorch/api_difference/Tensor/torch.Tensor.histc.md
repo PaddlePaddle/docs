@@ -1,9 +1,9 @@
-## [ 仅参数名不一致 ]torch.histc
+## [ torch 参数更多 ]torch.Tensor.histc
 
-### [torch.histc](https://pytorch.org/docs/1.13/generated/torch.histc.html#torch.histc)
+### [torch.Tensor.histc](https://pytorch.org/docs/1.13/generated/torch.Tensor.histc.html?highlight=torch+tensor+histc#torch.Tensor.histc)
 
 ```python
-torch.histc(input, bins=100, min=0, max=0, *, out=None)
+torch.Tensor.histc(input, bins=100, min=0, max=0, *, out=None)
 ```
 
 ### [paddle.histogram](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/histogram_cn.html#histogram)
@@ -24,7 +24,7 @@ paddle.histogram(input, bins=100, min=0, max=0, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.histc(torch.tensor([1., 2, 1]), bins=4, min=0, max=3, out = y)
+torch.Tensor.histc(torch.tensor([1., 2, 1]), bins=4, min=0, max=3, out = y)
 
 # Paddle 写法
 y = paddle.histogram(paddle.to_tensor([1, 2, 1]), bins=4, min=0, max=3)

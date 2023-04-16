@@ -1,9 +1,9 @@
-## [ 仅参数名不一致 ]torch.heaviside
+## [ torch 参数更多 ]torch.Tensor.heaviside
 
-### [torch.heaviside](https://pytorch.org/docs/1.13/generated/torch.heaviside.html#torch.heaviside)
+### [torch.Tensor.heaviside](https://pytorch.org/docs/1.13/generated/torch.Tensor.heaviside.html?highlight=torch+tensor+heaviside#torch.Tensor.heaviside)
 
 ```python
-torch.heaviside(input, values, *, out=None)
+torch.Tensor.heaviside(input, values, *, out=None)
 ```
 
 ### [paddle.heaviside](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/heaviside_cn.html#heaviside)
@@ -28,7 +28,7 @@ paddle.heaviside(x, y, name=None)
 # Pytorch 写法
 input = torch.tensor([-1.5, 0, 2.0])
 values = torch.tensor([0.5])
-torch.heaviside(input, values, out = out)
+torch.Tensor.heaviside(input, values, out = out)
 
 # Paddle 写法
 input = paddle.to_tensor([-1.5, 0, 2.0])
