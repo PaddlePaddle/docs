@@ -16,7 +16,7 @@ paddle.sparse.matmul(x, y, name=None)
 
 ### 参数映射
 
- PyTorch |  PaddlePaddle |  备注
- --------|  ------------- | --------------------------------------------------------------------------------------
- input | x|         输入的 Tensor，仅参数名不一致。
- mat2   |      y   |输入的第二个 Tensor，仅参数名不一致。
+ |PyTorch |  PaddlePaddle |  备注|
+ |--------|  ------------- | ------|
+ |input | x|         输入的 Tensor，仅参数名不一致。|
+ |mat2   |      y   |输入的第二个 Tensor，仅参数名不一致。|
