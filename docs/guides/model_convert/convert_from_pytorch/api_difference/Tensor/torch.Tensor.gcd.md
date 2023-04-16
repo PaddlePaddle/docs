@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tensor.gcd.md
+## [ torch 参数更多 ]torch.Tensor.gcd.md
 
 同 torch.gcd
 
