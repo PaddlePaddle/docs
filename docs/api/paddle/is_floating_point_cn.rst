@@ -14,7 +14,7 @@ is_floating_point
 返回
 :::::::::
 
-输入 Tensor 是否为浮点类型。
+bool，输入 tensor 的数据类型为浮点数类型则为 True，反之为 False.
 
 代码示例
 :::::::::
