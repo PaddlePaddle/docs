@@ -5,17 +5,14 @@
 torch.addmv(input, mat, vec, beta=1, alpha=1, out=None)
 ```
 
-###  功能介绍
-用于实现矩阵（`mat`）与向量（`vec`）相乘，再加上输入（`input`），公式为：
-$ out = β *  input + α *  (mat @ vec) $
-PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
+Paddle 无此 API，需要组合实现。
+
+### 转写示例
 
 ```python
-import paddle
+# Pytorch 写法
+y = torch.addr(input, mat, vec, beta=beta, alpha=alpha)
 
-def addmv(input, mat, vec, beta=1, alpha=1, out=None):
-    mv = alpha * paddle.matmul(mat, vec)
-    input = beta * input
-    out = mv + input
-    return out
+# Paddle 写法
+y = beta * input + alpha * paddle.mm(mat, vec)
 ```
