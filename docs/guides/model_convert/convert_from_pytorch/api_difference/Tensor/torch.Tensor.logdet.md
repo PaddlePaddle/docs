@@ -9,7 +9,7 @@ torch.Tensor.logdet()
 ### [paddle.linalg.slogdet](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/slogdet_cn.html)
 
 ```python
-paddle.linalg.slogdet()
+paddle.linalg.slogdet(x)
 ```
 
-两者功能一致，均无参数，用于计算矩阵的对数行列式。
+两者功能一致，用于计算矩阵的对数行列式。
