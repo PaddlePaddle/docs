@@ -6,10 +6,10 @@
 Tensor.uniform_(from=0, to=1)
 ```
 
-[paddle.Tensor.uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/uniform_cn.html#uniform)
+[paddle.Tensor.uniform](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#uniform-min-1-0-max-1-0-seed-0-name-none)
 
 ```python
-paddle.uniform(shape, dtype=None, min=- 1.0, max=1.0, seed=0, name=None)
+paddle.uniform(min=- 1.0, max=1.0, seed=0, name=None)
 ```
 
 | PyTorch | PaddlePaddle |                 备注                 |

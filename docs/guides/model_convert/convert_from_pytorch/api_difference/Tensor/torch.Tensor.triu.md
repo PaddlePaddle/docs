@@ -1,15 +1,15 @@
 # [一致的参数]torch.Tensor.triu
 
-[torch.Tensor.triu](https://pytorch.org/docs/stable/generated/torch.triu.html#torch-triu)
+[torch.Tensor.triu](https://pytorch.org/docs/1.13/generated/torch.Tensor.triu.html#torch.Tensor.triu)
 
 ```python
-torch.triu(input, diagonal=0, *, out=None)
+torch.triu(diagonal=0)
 ```
 
-[paddle.Tensor.triu](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/triu_cn.html#triu)
+[paddle.Tensor.triu]()
 
 ```python
-paddle.triu(input, diagonal=0, name=None)
+paddle.triu()
 ```
 
 两者功能一致且参数用法一致。

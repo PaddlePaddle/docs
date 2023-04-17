@@ -1,15 +1,15 @@
 # [仅参数名不一致]torch.Tensor.unbind
 
-[torch.Tensor.unbind](https://pytorch.org/docs/stable/generated/torch.unbind.html#torch-unbind)
+[torch.Tensor.unbind](https://pytorch.org/docs/1.13/generated/torch.Tensor.unbind.html#torch.Tensor.unbind)
 
 ```python
-torch.unbind(input, dim=0)
+torch.unbind(dim=0)
 ```
 
-[paddle.Tensor.unbind](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/unbind_cn.html#unbind)
+[paddle.Tensor.unbind](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#unbind-axis-0)
 
 ```python
-paddle.unbind(input, axis=0)
+paddle.unbind(axis=0)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：
