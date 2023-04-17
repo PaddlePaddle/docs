@@ -3,13 +3,13 @@
 [torch.Tensor.unique_consecutive](https://pytorch.org/docs/1.13/generated/torch.Tensor.unique_consecutive.html#torch.Tensor.unique_consecutive)
 
 ```python
-torch.unique_consecutive(return_inverse=False, return_counts=False, dim=None)
+torch.Tensor.unique_consecutive(return_inverse=False, return_counts=False, dim=None)
 ```
 
 [paddle.Tensor.unique_consecutive]()
 
 ```python
-paddle.unique_consecutive(return_inverse=False, return_counts=False, axis=None, name=None)
+paddle.Tensor.unique_consecutive(return_inverse=False, return_counts=False, axis=None, name=None)
 ```
 
 | PyTorch | PaddlePaddle |              备注              |

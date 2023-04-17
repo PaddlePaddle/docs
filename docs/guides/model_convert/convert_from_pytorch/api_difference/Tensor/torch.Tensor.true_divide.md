@@ -3,13 +3,13 @@
 [torch.Tensor.true_divide](https://pytorch.org/docs/1.13/generated/torch.Tensor.true_divide.html#torch.Tensor.true_divide)
 
 ```python
-torch.true_divide(value)
+torch.Tensor.true_divide(value)
 ```
 
 [paddle.Tensor.divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#divide-y-name-none)
 
 ```python
-paddle.divide(y, name=None)
+paddle.Tensor.divide(y, name=None)
 ```
 
 两者功能一致且参数用法一致，仅参数名不同，具体如下：

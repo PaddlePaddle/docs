@@ -9,7 +9,7 @@ torch.Tensor.unsqueeze_(dim)
 [paddle.Tensor.unsqueeze_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#id22)
 
 ```python
-paddle.unsqueeze_(axis, name=None)
+paddle.Tensor.unsqueeze_(axis, name=None)
 ```
 
 | PyTorch | PaddlePaddle |              备注              |
