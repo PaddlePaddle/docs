@@ -25,9 +25,9 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 #### dytpe：指定数据类型
 ```Python
 # Pytorch 写法
-torch.sparse.softmax(x, dim=-1, dtype=torch.float32)
+y = torch.sparse.softmax(x, dim=-1, dtype=torch.float32)
 
 # Paddle 写法
-x = paddle.sparse.cast(x, value_dtype='float32')
-paddle.sparse.nn.functional.softmax(x)
+y = paddle.sparse.cast(x, value_dtype='float32')
+y = paddle.sparse.nn.functional.softmax(y)
 ```
