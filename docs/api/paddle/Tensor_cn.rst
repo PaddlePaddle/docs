@@ -2359,12 +2359,19 @@ var(axis=None, unbiased=True, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_var`
 
-where(y, name=None)
+where(x, y, name=None)
 :::::::::
+
+调用该 `where` 方法的 `Tensor` 作为 `condition` 来选择 `x` 或 `y` 中的对应元素组成新的 `Tensor` 并返回。
 
 返回：计算后的 Tensor
 
 返回类型：Tensor
+
+.. note::
+   只有 `bool` 类型的 `Tensor` 才能调用该方法。
+
+示例：`(x>0).where(x, y)`， 其中 x， y 都是数值 `Tensor`。
 
 请参考 :ref:`cn_api_tensor_where`
 
