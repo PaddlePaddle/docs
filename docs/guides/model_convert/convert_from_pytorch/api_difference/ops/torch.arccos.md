@@ -31,5 +31,5 @@ paddle.acos(x,
 torch.arccos([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.acos([3, 5])
+paddle.assign(paddle.acos([3, 5]), y)
 ```

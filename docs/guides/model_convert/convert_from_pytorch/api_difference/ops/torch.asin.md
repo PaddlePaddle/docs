@@ -26,8 +26,8 @@ paddle.asin(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.asin([-0.5962,  1.4985, -0.4396,  1.4525], out=y)
+torch.asin([-0.5962,  1.4985], out=y)
 
 # Paddle 写法
-y = paddle.asin([-0.5962,  1.4985, -0.4396,  1.4525])
+paddle.assign(paddle.asin([-0.5962,  1.4985]), y)
 ```

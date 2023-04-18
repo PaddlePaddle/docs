@@ -46,7 +46,7 @@ paddle.arange(start=0,
 torch.arange(5, out=y)
 
 # Paddle 写法
-y = paddle.arange(5)
+paddle.assign(paddle.arange(5), y)
 ```
 
 #### device: Tensor 的设备

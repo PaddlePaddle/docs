@@ -1,4 +1,4 @@
-## [ 仅 paddle 参数更多 ]torch.nn.functional.one_hot
+## [ 仅 paddle 参数更多 ]torch.nn.functional.pad
 
 ### [torch.nn.functional.pad](https://pytorch.org/docs/stable/generated/torch.nn.functional.pad.html)
 

@@ -22,6 +22,7 @@ paddle.distribution 目录下包含飞桨框架支持的随机变量的概率分
 
     " :ref:`Distribution <cn_api_distribution_Distribution>` ", "Distribution 概率分布抽象基类"
     " :ref:`ExponentialFamily <cn_api_distribution_ExponentialFamily>` ", "ExponentialFamily 指数型分布族基类"
+    " :ref:`Bernoulli <cn_api_distribution_Bernoulli>` ", "Bernoulli 概率分布类"
     " :ref:`Categorical <cn_api_distribution_Categorical>` ", "Categorical 概率分布类"
     " :ref:`Cauchy <cn_api_distribution_Cauchy>` ", "Cauchy 概率分布类"
     " :ref:`Normal <cn_api_distribution_Normal>` ", "Normal 概率分布类"

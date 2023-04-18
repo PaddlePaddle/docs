@@ -29,5 +29,5 @@ paddle.ceil(x,
 torch.ceil([-0.4, -0.2, 0.1, 0.3], out=y)
 
 # Paddle 写法
-y = paddle.ceil([-0.4, -0.2, 0.1, 0.3])
+paddle.assign(paddle.ceil([-0.4, -0.2, 0.1, 0.3]), y)
 ```

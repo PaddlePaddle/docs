@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.rand
+## [ 参数不一致 ]torch.rand
 
 ### [torch.rand](https://pytorch.org/docs/stable/generated/torch.rand.html?highlight=rand#torch.rand)
 
@@ -48,7 +48,7 @@ paddle.rand([3, 5])
 torch.rand([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.rand([3, 5])
+paddle.assign(paddle.rand([3, 5]), y)
 ```
 
 #### device: Tensor 的设备

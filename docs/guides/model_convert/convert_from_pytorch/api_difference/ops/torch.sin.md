@@ -29,5 +29,5 @@ paddle.sin(x,
 torch.sin([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.sin([3, 5])
+paddle.assign(paddle.sin([3, 5]), y)
 ```
