@@ -84,9 +84,9 @@ softmax
 参数
 ::::::::::
 
-    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为 float32 或 float64。
+    - **x** (Tensor) - 输入的 ``Tensor``，数据类型为bfloat16、 float16、 float32 或 float64。
     - **axis** (int，可选) - 指定对输入 :attr:`x` 进行运算的轴。:attr:`axis` 的有效范围是 :math:`[-D, D)`，:math:`D` 是输入 :attr:`x` 的维度，:attr:`axis` 为负值时与 :math:`axis + D` 等价。默认值为 -1。
-    - **dtype** (str，可选) - 输出 `Tensor` 的数据类型，支持 float32、float64。
+    - **dtype** (str，可选) - 输出 `Tensor` 的数据类型，支持 bfloat16、 float16、 float32、float64。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
