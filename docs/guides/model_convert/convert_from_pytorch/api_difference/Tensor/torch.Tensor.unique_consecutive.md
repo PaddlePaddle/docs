@@ -14,6 +14,8 @@ paddle.Tensor.unique_consecutive(x, return_inverse=False, return_counts=False, a
 
 两者功能一致，仅 paddle 参数更多，具体如下：
 
+参数映射
+
 |    PyTorch     |  PaddlePaddle  |                             备注                             |
 | :------------: | :------------: | :----------------------------------------------------------: |
 |       -        |       x        |   表示输入的 Tensor,PyTorch 无此参数，Paddle 保持默认即可。   |

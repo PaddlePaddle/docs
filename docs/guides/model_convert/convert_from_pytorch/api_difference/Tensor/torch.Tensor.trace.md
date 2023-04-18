@@ -14,6 +14,8 @@ paddle.Tensor.trace(offset=0, axis1=0, axis2=1, name=None)
 
 两者功能一致，仅 paddle 参数更多，具体如下：
 
+参数映射
+
 | PyTorch | PaddlePaddle |                             备注                             |
 | :-----: | :----------: | :----------------------------------------------------------: |
 |    -    |    offset    | 表示指定的二维平面中获取对角线的位置，PyTorch 无此参数，Paddle 保持默认即可。 |
