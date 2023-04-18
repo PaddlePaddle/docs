@@ -12,8 +12,8 @@ torch.Tensor.true_divide(value)
 paddle.Tensor.divide(y, name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
 
 | PyTorch  | PaddlePaddle |               备注               |
 | :------: | :----------: | :------------------------------: |
-| value |      y       | 输入的 Tensor，仅参数名不同 |
+| value |      y       | 输入的 Tensor，仅参数名一致。 |

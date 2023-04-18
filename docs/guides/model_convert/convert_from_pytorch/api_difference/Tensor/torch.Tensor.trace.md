@@ -1,4 +1,4 @@
-# [无参数]troch.Tensor.trace
+# [仅 paddle 参数更多]troch.Tensor.trace
 
 [torch.Tensor.trace](https://pytorch.org/docs/1.13/generated/torch.Tensor.trace.html#torch-tensor-trace)
 
@@ -12,4 +12,10 @@ torch.Tensor.trace()
 paddle.Tensor.trace(offset=0, axis1=0, axis2=1, name=None)
 ```
 
-两者功能一致，均无参数。
+两者功能一致，仅 paddle 参数更多，具体如下：
+
+| PyTorch | PaddlePaddle |                             备注                             |
+| :-----: | :----------: | :----------------------------------------------------------: |
+|    -    |    offset    | 表示指定的二维平面中获取对角线的位置，PyTorch 无此参数，Paddle 保持默认即可。 |
+|    -    |    axis1     | 表示获取对角线的二维平面的第一维，PyTorch 无此参数，Paddle 保持默认即可。 |
+|    -    |    axis2     | 表示获取对角线的二维平面的第二维，PyTorch 无此参数，Paddle 保持默认即可。 |

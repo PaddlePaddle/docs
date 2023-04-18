@@ -12,6 +12,8 @@ torch.Tensor.unsqueeze_(dim)
 paddle.Tensor.unsqueeze_(axis, name=None)
 ```
 
-| PyTorch | PaddlePaddle |              备注              |
-| :-----: | :----------: | :----------------------------: |
-|   dim   |     axis     | 表示进行运算的轴，仅参数名不同 |
+两者功能一致且参数用法一致，仅参数名不一致，具体如下：
+
+| PyTorch | PaddlePaddle |                备注                |
+| :-----: | :----------: | :--------------------------------: |
+|   dim   |     axis     | 表示进行运算的轴，仅参数名不一致。 |
