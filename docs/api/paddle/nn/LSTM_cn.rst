@@ -3,7 +3,7 @@
 LSTM
 -------------------------------
 
-.. py:class:: paddle.nn.LSTM(input_size, hidden_size, num_layers=1, direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None)
+.. py:class:: paddle.nn.LSTM(input_size, hidden_size, num_layers=1, direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 
 
 
