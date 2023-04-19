@@ -12,4 +12,4 @@ torch.cuda.empty_cache()
 paddle.device.cuda.empty_cache()
 ```
 
-两者功能一致。
+两者功能一致，均无参数。
