@@ -3,7 +3,7 @@
 logit
 -------------------------------
 
-.. py: function: paddle.logit(x, eps=None, name=None)
+.. py:function:: paddle.logit(x, eps=None, name=None)
 
 实现了 logit 层。若 eps 为默认值 None，并且 ``x`` < 0 或者 ``x`` > 1，该函数将返回 NaN，计算公式如下：
 
