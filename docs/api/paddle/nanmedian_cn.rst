@@ -3,7 +3,7 @@
 nanmedian
 -------------------------------
 
-.. py:function:: paddle.nanmedian(x, axis=None, keepdim=True, name=None)
+.. py:function: paddle.nanmedian(x, axis=None, keepdim=True, name=None)
 
 沿给定的轴 ``axis`` 计算中位数，同时忽略 NAN 元素。
 如果元素的有效计数为偶数，则计算并返回中间两数的平均数。
