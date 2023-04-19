@@ -21,4 +21,4 @@ Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 | return_inverse | return_inverse | 表示输入 Tensor 的元素对应在连续不重复元素中的索引。参数完全一致。 |
 | return_counts  | return_counts  | 表示每个连续不重复元素在输入 Tensor 中的个数。参数完全一致。 |
 |      dim       |      axis      |              表示进行运算的轴，仅参数名不一致。              |
-|       -        |     dtype      |    表示设置 inverse 或 counts 的类型。PyTorch 无此参数。     |
+|       -        |     dtype      | 表示设置 inverse 或 counts 的类型。PyTorch 无此参数，Paddle 保持默认即可。 |
