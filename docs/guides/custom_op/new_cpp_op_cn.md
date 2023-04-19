@@ -1525,8 +1525,8 @@ def custom_relu(x):
     # The output variable's dtype use default value 'float32',
     # and the actual dtype of output variable will be inferred in runtime.
     if in_dygraph_mode():
-        outs = core.eager._run_custom_op("custom_relu", x)
-        return outs
+        res = core.eager._run_custom_op("custom_relu", x)
+        return res[0] if len(res)==1 else res
     else:
         ins = {'X' : x}
         outs = {}
