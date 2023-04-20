@@ -5,8 +5,7 @@ broadcast_tensors
 
 .. py:function:: paddle.broadcast_tensors(inputs, name=None)
 
-根据 Broadcast 规范对一组输入 ``inputs`` 进行 Broadcast 操作
-输入应符合 Broadcast 规范
+根据 Broadcast 规范对一组输入 ``inputs`` 进行 Broadcast 操作，输入应符合 Broadcast 规范
 
 .. note::
     如想了解更多 Broadcasting 内容，请参见 `Tensor 介绍`_ .

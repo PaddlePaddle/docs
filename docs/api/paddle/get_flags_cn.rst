@@ -12,7 +12,7 @@ get_flags
 ::::::::::::
 
 
-     - **flags** (list of FLAGS [*]) - 想要获取的 FLAGS 标志列表。
+     - **flags** (list of FLAGS [*]) - 想要获取的 FLAGS 标志列表或者 FLAGS 字符串。
 
 返回
 ::::::::::::
