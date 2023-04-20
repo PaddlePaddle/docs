@@ -8,7 +8,7 @@ tolist
 将 paddle Tensor 转化为 python list。
 
 .. note::
-        此API仅在Dygraph模式下可用。
+        此 API 仅在 Dygraph 模式下可用。
 
 参数
 :::::::::
