@@ -32,11 +32,10 @@ class Model(nn.Module):
     def __init__(self):
         super().__init__()
         self.conv1 = nn.Conv2d(1, 20, 5)
-        self.conv2 = nn.Conv2d(20, 20, 5)
 
     def forward(self, x):
         x = F.relu(self.conv1(x))
-        return F.relu(self.conv2(x))
+        return x
 
 
 # Paddle 写法
@@ -45,16 +44,8 @@ class MyLayer(paddle.nn.Layer):
     def __init__(self):
         super(MyLayer, self).__init__()
         self._linear = paddle.nn.Linear(1, 1)
-        self._dropout = paddle.nn.Dropout(p=0.5)
+
     def forward(self, input):
         temp = self._linear(input)
-        temp = self._dropout(temp)
         return temp
-x = paddle.randn([10, 1], 'float32')
-mylayer = MyLayer()
-mylayer.eval()  # set mylayer._dropout to eval mode
-out = mylayer(x)
-mylayer.train()  # set mylayer._dropout to train mode
-out = mylayer(x)
 ```
-

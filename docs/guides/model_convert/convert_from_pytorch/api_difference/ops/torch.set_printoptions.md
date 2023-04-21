@@ -22,5 +22,5 @@ paddle.set_printoptions(precision=None, threshold=None, edgeitems=None, sci_mode
 | threshold |  threshold   |                   表示打印的元素个数上限。                   |
 | edgeitem  |   edgeitem   |           表示以缩略形式打印时左右两边的元素个数。           |
 | linewidth |  linewidth   |              仅参数名不一致，表示每行的字符数。              |
-|  profile  |      -       | Paddle 无此参数，需要转写，表示启用(True)或禁用(False)科学计数法。 |
+|  profile  |      -       | 表示启用(True)或禁用(False)科学计数法，Paddle 无此参数，对训练无影响，直接删除即可。 |
 | sci_mode  |   sci_mode   |                  表示是否以科学计数法打印。                  |

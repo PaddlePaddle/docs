@@ -3,7 +3,7 @@
 ### [torch.nn.functional.softmax](https://pytorch.org/docs/stable/generated/torch.nn.functional.softmax.html#torch.nn.functional.softmax)
 
 ```python
-torch.nn.functional.softmax
+torch.nn.functional.softmax(input, dim=None, _stacklevel=3, dtype=None)
 ```
 
 ### [paddle.nn.Softmax](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Softmax_cn.html)
@@ -17,9 +17,12 @@ paddle.nn.Softmax(axis=-1,name=None)
 ### 参数映射
 | PyTorch | PaddlePaddle | 备注                                                  |
 |:-------:|:------------:| :---------------------------------------------------: |
-| input   |   -           |  Paddle 无此参数，需要转写。                                  |
-| dim     | axis         |  指定对输入 Tensor 进行运算的轴，仅参数名不一致。              |
-| dtype   |   -           |  Paddle 无此参数。    |
+| input   |   -           |  表示输入张量，Paddle 无此参数，需要转写。                   |
+| dim     | axis         |  表示对输入 Tensor 进行运算的轴，仅参数名不一致。            |
+| dtype   |   -           |  表示返回张量所需的数据类型，Paddle 无此参数。  |
+| - | name | 一般无需设置，默认值为 None， PyTorch 无此参数。 |
+
+
 
 
 ### 转写示例
@@ -49,4 +52,3 @@ x = paddle.to_tensor([[[2.0, 3.0, 4.0, 5.0],
 m = paddle.nn.Softmax()
 out = m(x)
 ```
-
