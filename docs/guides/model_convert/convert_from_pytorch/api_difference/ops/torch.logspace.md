@@ -1,11 +1,12 @@
-## [torch 参数更多]torch.linspace
+## [torch 参数更多]torch.logspace
 
-###  [torch.linspace](https://pytorch.org/docs/1.13/generated/torch.linspace.html?highlight=linspace#torch.linspace)
+###  [torch.logspace](https://pytorch.org/docs/1.13/generated/torch.logspace.html?highlight=logspace#torch.logspace)
 
 ```python
-torch.linspace(start,
+torch.logspace(start,
                end,
                steps,
+               base=10.0,
                *,
                out=None,
                dtype=None,
@@ -14,12 +15,13 @@ torch.linspace(start,
                requires_grad=False)
 ```
 
-###  [paddle.linspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linspace_cn.html)
+###  [paddle.logspace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/logspace_cn.html)
 
 ```python
-paddle.linspace(start,
+paddle.logspace(start,
                 stop,
                 num,
+                base=10.0,
                 dtype=None,
                 name=None)
 ```
@@ -30,9 +32,10 @@ paddle.linspace(start,
 
 | PyTorch       | PaddlePaddle | 备注                                                         |
 | :------------ | :----------- | :----------------------------------------------------------- |
-| start         | start        | 表示区间开始的变量。                                         |
-| end           | stop         | 表示区间结束的变量，仅参数名不一致。                         |
+| start         | start        | 表示区间开始值以 base为底的指数。                            |
+| end           | stop         | 表示区间结束值以 base为底的指数，仅参数名不一致。            |
 | steps         | num          | 表示给定区间内需要划分的区间数，仅参数名不一致。             |
+| base          | base         | 表示对数函数的底数。                                         |
 | out           | -            | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。           |
 | dtype         | dtype        | 表示输出 Tensor 类型。                                       |
 | layout        | -            | 表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
@@ -45,20 +48,20 @@ paddle.linspace(start,
 
 ```python
 # Pytorch 写法
-torch.linspace(0, 10, 5, out=y)
+torch.logspace(0, 10, 5, 2, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.linspace(0, 10, 5), y)
+paddle.assign(paddle.logspace(0, 10, 5, 2), y)
 ```
 
 #### device: Tensor 的设备
 
 ```python
 # Pytorch 写法
-y = torch.linspace(0, 10, 5, device=torch.device('cpu'))
+y = torch.logspace(0, 10, 5, 2, device=torch.device('cpu'))
 
 # Paddle 写法
-y = paddle.linspace(0, 10, 5)
+y = paddle.logspace(0, 10, 5, 2)
 y.cpu()
 ```
 
@@ -66,10 +69,10 @@ y.cpu()
 
 ```python
 # Pytorch 写法
-y = torch.linspace(0, 10, 5, requires_grad=True)
+y = torch.logspace(0, 10, 5, 2, requires_grad=True)
 
 # Paddle 写法
-y = paddle.linspace(0, 10, 5)
+y = paddle.logspace(0, 10, 5, 2)
 y.stop_gradient = False
 ```
 
