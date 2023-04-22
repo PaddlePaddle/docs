@@ -13,3 +13,7 @@ paddle.Tensor.hardshrink(threshold=0.5, name=None)
 ```
 
 两者功能一致且参数用法一致。
+
+| PyTorch                           | PaddlePaddle                 | 备注                                                   |
+|-----------------------------------|------------------------------| ------------------------------------------------------ |
+| <font color='red'> lambd </font> | <font color='red'> threshold </font> | Hardshrink 阈值，仅参数名不同。                                     |
