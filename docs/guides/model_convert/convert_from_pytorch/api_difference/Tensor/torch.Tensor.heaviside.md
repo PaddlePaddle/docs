@@ -6,7 +6,7 @@
 torch.Tensor.heaviside(values)
 ```
 
-### [paddle.heaviside](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#heaviside-y-name-none)
+### [paddle.Tensor.heaviside](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#heaviside-y-name-none)
 
 ```python
 paddle.Tensor.heaviside(y, name=None)
