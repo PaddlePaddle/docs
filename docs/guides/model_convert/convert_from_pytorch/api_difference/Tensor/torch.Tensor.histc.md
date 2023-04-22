@@ -12,4 +12,4 @@ torch.Tensor.histc(bins=100, min=0, max=0)
 paddle.Tensor.histogram(bins=100, min=0, max=0, name=None)
 ```
 
-两者功能一致且用法一致。
+两者功能一致且参数完全一致。
