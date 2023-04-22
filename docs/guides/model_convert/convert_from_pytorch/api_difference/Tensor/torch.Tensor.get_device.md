@@ -12,4 +12,4 @@ torch.Tensor.get_device()
 paddle.device.get_device()
 ```
 
-两者功能一致且用法一致。
+两者功能一致且无参数。
