@@ -1,4 +1,4 @@
-## torch.Tensor.get_device
+## [ 无参数 ]torch.Tensor.get_device
 
 ### [torch.Tensor.get_device](https://pytorch.org/docs/1.13/generated/torch.Tensor.get_device.html?highlight=torch+tensor+get_device#torch.Tensor.get_device)
 
