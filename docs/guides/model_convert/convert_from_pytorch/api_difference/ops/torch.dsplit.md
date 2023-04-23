@@ -22,4 +22,3 @@ Paddle 相比 PyTorch 支持更多其他参数，具体如下：
 | input          |  x           | 输入多维 Tensor ，仅参数名不一致。  |
 | indices_or_sections         | num_or_sections         | int 或者仅含有 int 的 list 或者 tuple ，用于分割的参数，仅参数名不一致。 |
 | -         | axis         |     可选，默认为 0 ，表示需要分割的维度，PyTorch 无此参数，Paddle 保持默认即可。 |
-| -   |   name  |        可选，一般无需设置，默认值为 None。                                |

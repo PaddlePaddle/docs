@@ -19,6 +19,6 @@ paddle.io.random_split(dataset,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| dataset          | dataset            | 此参数必须是 paddle.io.Dataset 或 paddle.io.IterableDataset 的一个子类实例或实现了 __len__ 的 Python 对象，用于生成样本下标。默认值为 None。  |
+| dataset          | dataset            |  表示可迭代数据集。  |
 | lengths         | lengths         | 总和为原数组长度的，子集合长度数组。 |
 | generator         | generator         |   指定采样 data_source 的采样器。默认值为 None。 |

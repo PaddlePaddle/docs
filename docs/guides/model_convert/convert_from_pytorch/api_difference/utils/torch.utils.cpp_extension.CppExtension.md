@@ -20,7 +20,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| name          | -            | 参数 name，PaddlePaddle 无此参数。  |
-| sources         | sources         | 用于指定自定义 OP 对应的源码文件   |
+| name          | -            | 参数 name，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
+| sources         | sources         | 用于指定自定义 OP 对应的源码文件。   |
 |*args         | *args          |   用于指定 Extension 的其他参数，支持的参数与 setuptools.Extension 一致。 |
 | **kwargs      | **kwargs        |   用于指定 Extension 的其他参数，支持的参数与 setuptools.Extension 一致。 |
