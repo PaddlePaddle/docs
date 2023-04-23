@@ -1,16 +1,16 @@
-## [torch 参数更多 ]torch.asin
-### [torch.asin](https://pytorch.org/docs/1.13/generated/torch.asin.html#torch.asin)
+## [torch 参数更多 ]torch.asinh
+### [torch.asinh](https://pytorch.org/docs/1.13/generated/torch.asinh.html#torch.asinh)
 
 ```python
-torch.asin(input,
+torch.asinh(input,
            *,
            out=None)
 ```
 
-### [paddle.asin](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asin_cn.html#asin)
+### [paddle.asinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asinh_cn.html)
 
 ```python
-paddle.asin(x,
+paddle.asinh(x,
             name=None)
 ```
 
@@ -26,8 +26,8 @@ paddle.asin(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.asin(torch.tensor([-0.5962,  0.4985]), out=y)
+torch.asinh(torch.tensor([-0.5962,  0.4985]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.asin(paddle.to_tensor([-0.5962,  0.4985])), y)
+paddle.assign(paddle.asinh(paddle.to_tensor([-0.5962,  0.4985])), y)
 ```

@@ -1,17 +1,19 @@
-## [torch 参数更多 ]torch.atan
-### [torch.atan](https://pytorch.org/docs/1.13/generated/torch.atan.html#torch.atan)
+## [torch 参数更多 ]torch.atan2
+### [torch.atan2](https://pytorch.org/docs/1.13/generated/torch.atan2.html#torch.atan2)
 
 ```python
-torch.atan(input,
-           *,
-           out=None)
+torch.atan2(input,
+            other,
+            *,
+            out=None)
 ```
 
-### [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan)
+### [paddle.atan2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan2_cn.html)
 
 ```python
-paddle.atan(x,
-            name=None)
+paddle.atan2(x,
+             y,
+             name=None)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -20,6 +22,7 @@ paddle.atan(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'>input</font>| <font color='red'>x</font> | 表示输入的 Tensor ，仅参数名不一致。  |
+| <font color='red'>other</font>| <font color='red'>y</font> | 表示输入的 Tensor ，仅参数名不一致。  |
 | <font color='red'>out</font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
@@ -27,8 +30,8 @@ paddle.atan(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.atan(torch.tensor([ 0.2341,  0.2539]), out=y)
+torch.atan2(torch.tensor([0.2,0.3]),torch.tensor([0.4,0.5]),out=y)
 
 # Paddle 写法
-paddle.assign(paddle.atan(paddle.to_tensor([ 0.2341,  0.2539])), y)
+paddle.assign(paddle.atan2(paddle.to_tensor([0.2,0.3]),paddle.to_tensor([0.4,0.5])),y)
 ```

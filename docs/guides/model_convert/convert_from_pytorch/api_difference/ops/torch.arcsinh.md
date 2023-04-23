@@ -1,17 +1,17 @@
-## [torch 参数更多 ]torch.arctan
+## [torch 参数更多 ]torch.arcsin
 
-### [torch.arctan](https://pytorch.org/docs/1.13/generated/torch.arctan.html#torch.arctan)
+### [torch.arcsinh](https://pytorch.org/docs/1.13/generated/torch.arcsinh.html#torch.arcsinh)
 
 ```python
-torch.arctan(input,
+torch.arcsinh(input,
              *,
              out=None)
 ```
 
-### [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan)
+### [paddle.asinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asinh_cn.html)
 
 ```python
-paddle.atan(x,
+paddle.asinh(x,
             name=None)
 ```
 
@@ -21,15 +21,15 @@ paddle.atan(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'>input</font>         | <font color='red'>x</font>            | 输入的 Tensor ，仅参数名不一致。                                      |
-| <font color='red'>out</font>           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数，需要转写。               |
+| <font color='red'>out</font>           | -            | 表示输出的 Tensor ，PaddlePaddle 无此参数，需要转写。               |
 
 
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.arctan(torch.tensor([0.2341, 0.2539]), out=y)
+torch.arcsinh(torch.tensor([-0.5962,  0.4985]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.atan(paddle.to_tensor([0.2341, 0.2539])), y)
+paddle.assign(paddle.asinh(paddle.to_tensor([-0.5962,  0.4985])), y)
 ```
