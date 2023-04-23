@@ -18,5 +18,5 @@ paddle.nn.Layer.add_sublayer(name, sublayer)
 
 | PyTorch | PaddlePaddle |                     备注                     |
 | :-----: | :----------: | :------------------------------------------: |
-|  name   |     name     |         表示子层名，仅参数名不一致。         |
+|  name   |     name     |                 表示子层名。                 |
 | module  |   sublayer   | 表示要添加到模块中的子模块，仅参数名不一致。 |

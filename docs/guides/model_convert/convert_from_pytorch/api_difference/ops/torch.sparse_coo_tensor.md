@@ -22,6 +22,6 @@ paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=N
 |    values     |    values     |                  表示初始化 tensor 的数据。                  |
 |     dtype     |     dtype     |                 表示创建 tensor 的数据类型。                 |
 |     size      |     shape     |               表示张量的大小，仅参数名不一致。               |
-|    device     |     place     |          表示创建 tensor 的设备位置，仅参数名不一致。          |
-| requires_grad |       -       |    autograd 是否在返回的张量上记录操作，Paddle 无此参数。     |
+|    device     |     place     |         表示创建 tensor 的设备位置，仅参数名不一致。          |
+| requires_grad |       -       |    autograd 是否在返回的张量上记录操作，Paddle 无此参数。    |
 |       -       | stop_gradient | 表示是否阻断 Autograd 的梯度传导，Pytorch 无此参数，Paddle 保持默认即可。 |
