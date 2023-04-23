@@ -10,6 +10,4 @@ torch.Tensor.histc(bins=100, min=0, max=0)
 
 ```python
 paddle.Tensor.histogram(bins=100, min=0, max=0, name=None)
-```
-### 参数映射
 两者功能一致且参数完全一致。
