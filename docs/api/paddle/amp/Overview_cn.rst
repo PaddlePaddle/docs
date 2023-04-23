@@ -72,8 +72,8 @@ Debug相关辅助类
     :header: "类名称", "辅助类功能"
     :widths: 10, 30
 
-    " :ref:`DebugMode <cn_api_amp_debugging_debug_mode>` ", "精度调试模式"
-    " :ref:`TensorCheckerConfig <cn_api_amp_debugging_tensor_check_config>` ", "精度调试配置类"
+    " :ref:`DebugMode <cn_api_amp_debugging_debugmode>` ", "精度调试模式"
+    " :ref:`TensorCheckerConfig <cn_api_debugging_tensor_checker_config>` ", "精度调试配置类"
 
 .. _about_amp_debugging_op_list:
 
