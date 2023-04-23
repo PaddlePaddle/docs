@@ -22,7 +22,6 @@ LayerDict 用于保存子层到有序字典中，它包含的子层将被正确�
 .. code-block:: python
 
     import paddle
-    import numpy as np
     from collections import OrderedDict
 
     sublayers = OrderedDict([
