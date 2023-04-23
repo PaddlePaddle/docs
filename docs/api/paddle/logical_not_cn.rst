@@ -8,26 +8,24 @@ logical_not
 
 
 
-该OP逐元素的对 ``X``  Tensor进行逻辑非运算
+逐元素的对 ``X``  Tensor 进行逻辑非运算
 
 .. math::
         Out = !X
 
-参数：
-        - **x** （Tensor）- 逻辑非运算的输入，是一个 Tensor，支持的数据类型为bool, int8, int16, in32, in64, float32, float64。
-        - **out** （Tensor，可选）- 指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为None，此时将创建新的Tensor来保存输出结果。
-        - **name** （str，可选）- 该参数供开发人员打印调试信息时使用，具体用法参见 :ref:`api_guide_Name` ，默认值为None。
+参数
+::::::::::::
 
-返回：与 ``x`` 维度相同，数据类型相同的 Tensor。
+        - **x** （Tensor）- 逻辑非运算的输入，是一个 Tensor，支持的数据类型为 bool, int8, int16, in32, in64, float16, float32, float64。
+        - **out** （Tensor，可选）- 指定算子输出结果的 Tensor，可以是程序中已经创建的任何 Tensor。默认值为 None，此时将创建新的 Tensor 来保存输出结果。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回类型：Tensor
+返回
+::::::::::::
+Tensor，与 ``x`` 维度相同，数据类型相同。
 
-**代码示例：**
 
-.. code-block:: python
+代码示例
+::::::::::::
 
-    import paddle
-
-    x = paddle.to_tensor([True, False, True, False])
-    result = paddle.logical_not(x)
-    print(result) # [False, True, False, True]
+COPY-FROM: paddle.logical_not

@@ -82,7 +82,7 @@ Though it can't be built over `recurrent_op` or `dynamic_recurrent_op` directly,
 the logic behind splitting a tensor or a LoD tensor into `input_segments` remains the same.
 
 ## Why `TensorArray`
-The logic behind splitting the inputs to segments, states and outputs is similar and can be shared in a seperate module.
+The logic behind splitting the inputs to segments, states and outputs is similar and can be shared in a separate module.
 
 The array of `states`, `input_segments` and `output_segments` would be exposed to users when writing a dynamic RNN model similar to the above pseudo codes.
 

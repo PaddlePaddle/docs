@@ -26,7 +26,7 @@ PaddlePaddle's API documentation contains an introduction to the API. We welcome
 
 ### Guides
 
-This part of the content is stored in the [docs/docs/guides](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides) directory, you can make your changes by submitting a PR. For more information, please refer to: [Document Contribution Guide](https://github.com/PaddlePaddle/docs/wiki/%E6%96%87%E6%A1%A3%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97) .
+This part of the content is stored in the [docs/docs/guides](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides) directory, you can make your changes by submitting a PR. For more information, please refer to: [Document Contribution Guide](https://github.com/PaddlePaddle/docs/wiki/%E6%96%87%E6%A1%A3%E8%B4%A1%E7%8C%AE%E6%8C%87%E5%8D%97).
 
 ### Practice
 
@@ -38,4 +38,4 @@ PaddlePaddle provides API documentation in both Chinese and English. The English
 
 ## Submit PR
 
-Any modification of PaddlePaddle documentation should be completed by submitting a PR. For more information, please refer to [Submit PR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/08_contribution/local_dev_guide.html)
+Any modification of PaddlePaddle documentation should be completed by submitting a PR. For more information, please refer to [Submit PR](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/08_contribution/local_dev_guide.html).

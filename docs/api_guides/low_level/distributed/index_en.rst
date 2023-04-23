@@ -9,5 +9,3 @@ Distributed Training
     async_training_en.rst
     large_scale_sparse_feature_training_en.rst
     cluster_train_data_en.rst
-
-

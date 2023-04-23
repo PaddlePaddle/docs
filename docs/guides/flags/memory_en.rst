@@ -50,7 +50,7 @@ Example
 -------
 FLAGS_eager_delete_tensor_gb=0.0 would make memory garbage release till the memory size of garbages reaches 0.0GB, i.e., release immediately once there is any garbage.
 
-FLAGS_eager_delete_tensor_gb=1.0 would make memory garbage release till the memory size of garbages reaches 1.0GB. 
+FLAGS_eager_delete_tensor_gb=1.0 would make memory garbage release till the memory size of garbages reaches 1.0GB.
 
 FLAGS_eager_delete_tensor_gb=-1.0 would disable garbage collection strategy.
 
@@ -71,7 +71,7 @@ Bool. The default value is True.
 
 Example
 -------
-FLAGS_fast_eager_deletion_mode=True would turn on fast garbage collection strategy. 
+FLAGS_fast_eager_deletion_mode=True would turn on fast garbage collection strategy.
 
 FLAGS_fast_eager_deletion_mode=False would turn off fast garbage collection strategy.
 
@@ -168,7 +168,7 @@ Bool. The default value is False.
 
 Example
 -------
-FLAGS_init_allocated_mem=True will make the allocated memory initialize as a non-zero value. 
+FLAGS_init_allocated_mem=True will make the allocated memory initialize as a non-zero value.
 
 FLAGS_init_allocated_mem=False will not initialize the allocated memory.
 
@@ -196,7 +196,7 @@ Allocate a chunk of GPU memory whose byte size is specified by the flag. Future 
 
 Values accepted
 ---------------
-Uint64 value greater than 0 which is the initial GPU memory size in MB. 
+Uint64 value greater than 0 which is the initial GPU memory size in MB.
 
 Example
 -------
@@ -213,7 +213,7 @@ FLAGS_memory_fraction_of_eager_deletion
 *******************************************
 (since 1.4)
 
-A memory size percentage when garbage collection strategy decides which variables should be released. If FLAGS_memory_fraction_of_eager_deletion=1.0, all temporary variables in the network would be released. If FLAGS_memory_fraction_of_eager_deletion=0.0, all temporary variables in the network would not be released. If 0.0<FLAGS_memory_fraction_of_eager_deletion<1.0, all temporary variables would be sorted descendingly according to their memory size, and only 
+A memory size percentage when garbage collection strategy decides which variables should be released. If FLAGS_memory_fraction_of_eager_deletion=1.0, all temporary variables in the network would be released. If FLAGS_memory_fraction_of_eager_deletion=0.0, all temporary variables in the network would not be released. If 0.0<FLAGS_memory_fraction_of_eager_deletion<1.0, all temporary variables would be sorted descendingly according to their memory size, and only
 FLAGS_memory_fraction_of_eager_deletion of variables with largest memory size would be released. This flag is only valid when running compiled program with data parallel.
 
 Values accepted
@@ -224,8 +224,8 @@ Example
 -------
 FLAGS_memory_fraction_of_eager_deletion=0 would keep all temporary variables, that is to say, disabling garbage collection strategy.
 
-FLAGS_memory_fraction_of_eager_deletion=1 would release all temporary variables.  
-  
+FLAGS_memory_fraction_of_eager_deletion=1 would release all temporary variables.
+
 FLAGS_memory_fraction_of_eager_deletion=0.5 would only release 50% of variables with largest memory size.
 
 

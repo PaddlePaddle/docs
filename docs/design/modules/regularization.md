@@ -45,10 +45,10 @@ Below is an example of a really simple feed forward neural network.
 The Python API will modify this computation graph to add regularization operators. The modified computation graph will look as follows:
 
 <img src="https://raw.githubusercontent.com/PaddlePaddle/FluidDoc/develop/doc/fluid/images/feed_forward_regularized.png" align="center"/><br/>
-   
+
 ### Python API implementation for Regularization
 
-Using the low level ops, `L2_regularization_op` and `L1_regularization_op`, any user can add regularization to their computation graphs. However, this will require a lot of lines of code and we should design Python APIs that support regularization. An example of such an API can be seen in [Keras](https://keras.io/regularizers/). As per the PaddlePaddle [Python API design](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md), the layer functions are responsible for creating operators, operator parameters and variables. Since regularization is a property of parameters, it makes sense to create these in the layer functions.
+Using the low level ops, `L2_regularization_op` and `L1_regularization_op`, any user can add regularization to their computation graphs. However, this will require a lot of lines of code and we should design Python APIs that support regularization. An example of such an API can be seen in [Keras](https://keras.io/regularizers/). As per the PaddlePaddle [Python API design](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md), the layer functions are responsible for creating operators, operator parameters and variables. Since regularization is a property of parameters, it makes sense to create these in the layer functions.
 
 #### Creation of Regularization ops
 There are two possibilities for creating the regularization ops:
@@ -63,4 +63,4 @@ Since we want to create the regularization ops in a lazy manner, the regularizat
 
 #### High-level API
 
-In PaddlePaddle Python API, users will primarily rely on [layer functions](https://github.com/PaddlePaddle/FluidDoc/blob/develop/doc/fluid/design/modules/python_api.md#layer-function) to create neural network layers. Hence, we also need to provide regularization functionality in layer functions. The design of these APIs can be postponed for later right now. A good reference for these APIs can be found in [Keras](https://keras.io/regularizers/) and also by looking at Tensorflow in [`tf.contrib.layers`](https://www.tensorflow.org/api_guides/python/contrib.layers).
+In PaddlePaddle Python API, users will primarily rely on [layer functions](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/modules/python_api.md#layer-function) to create neural network layers. Hence, we also need to provide regularization functionality in layer functions. The design of these APIs can be postponed for later right now. A good reference for these APIs can be found in [Keras](https://keras.io/regularizers/) and also by looking at TensorFlow in [`tf.contrib.layers`](https://www.tensorflow.org/api_guides/python/contrib.layers).

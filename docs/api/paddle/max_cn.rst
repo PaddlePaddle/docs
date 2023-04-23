@@ -6,50 +6,24 @@ max
 .. py:function:: paddle.max(x, axis=None, keepdim=False, name=None)
 
 
-该OP是对指定维度上的Tensor元素求最大值运算，并输出相应的计算结果。
+对指定维度上的 Tensor 元素求最大值运算，并输出相应的计算结果。
+
+.. note::
+
+    对输入有多个最大值的情况下，max 将梯度完整传回到最大值对应的位置，amax 会将梯度平均传回到最大值对应的位置
 
 参数
 :::::::::
-   - **x** （Tensor）- Tensor，支持数据类型为float32，float64，int32，int64。
-   - **axis** （list | int ，可选）- 求最大值运算的维度。如果为None，则计算所有元素的最大值并返回包含单个元素的Tensor变量，否则必须在  :math:`[-x.ndim, x.ndim]` 范围内。如果 :math:`axis[i] <0` ，则维度将变为 :math:`x.ndim+axis[i]` ，默认值为None。
-   - **keepdim** （bool）- 是否在输出Tensor中保留减小的维度。如果keepdim 为 False，结果张量的维度将比输入张量的小，默认值为False。
-   - **name** （str， 可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+   - **x** (Tensor) - Tensor，支持数据类型为 float32，float64，int32，int64。
+   - **axis** (list|int|tuple，可选) - 求最大值运算的维度。如果为 None，则计算所有元素的最大值并返回包含单个元素的 Tensor 变量，否则必须在 :math:`[-x.ndim, x.ndim]` 范围内。如果 :math:`axis[i] <0`，则维度将变为 :math:`x.ndim+axis[i]`，默认值为 None。
+   - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留输入的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
+   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 :::::::::
-   Tensor, 在指定axis上进行求最大值运算的Tensor，数据类型和输入数据类型一致。
+   Tensor，在指定 axis 上进行求最大值运算的 Tensor，数据类型和输入数据类型一致。
 
 
 代码示例
 ::::::::::
-
-..  code-block:: python
-
-    import paddle
-
-    # the axis is a int element
-    x = paddle.to_tensor([[0.2, 0.3, 0.5, 0.9],
-                          [0.1, 0.2, 0.6, 0.7]])
-    result1 = paddle.max(x)
-    print(result1)
-    #[0.9]
-    result2 = paddle.max(x, axis=0)
-    print(result2) 
-    #[0.2 0.3 0.6 0.9]
-    result3 = paddle.max(x, axis=-1)
-    print(result3)
-    #[0.9 0.7]
-    result4 = paddle.max(x, axis=1, keepdim=True)
-    print(result4)
-    #[[0.9]
-    # [0.7]]
-
-    # the axis is list 
-    y = paddle.to_tensor([[[1.0, 2.0], [3.0, 4.0]],
-                           [[5.0, 6.0], [7.0, 8.0]]])
-    result5 = paddle.max(y, axis=[1, 2])
-    print(result5)
-    #[4. 8.]
-    result6 = paddle.max(y, axis=[0, 1])
-    print(result6)
-    #[7. 8.]
+COPY-FROM: paddle.max

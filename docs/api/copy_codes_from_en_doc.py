@@ -22,7 +22,9 @@ else:
     logger.addHandler(console)
 console.setFormatter(
     logging.Formatter(
-        "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"))
+        "%(asctime)s - %(funcName)s:%(lineno)d - %(levelname)s - %(message)s"
+    )
+)
 logger.setLevel(logging.INFO)
 
 
@@ -33,8 +35,9 @@ def load_api_info(api_info_json_filename):
     for k, api_info in api_info_dict.items():
         for n in api_info.get('all_names', []):
             api_name_2_id_map[n] = k
-    logger.info('load %d api_infos from %s',
-                len(api_info_dict), api_info_json_filename)
+    logger.info(
+        'load %d api_infos from %s', len(api_info_dict), api_info_json_filename
+    )
     logger.info('api_name_2_id_map has %d items', len(api_name_2_id_map))
 
 
@@ -54,16 +57,16 @@ def read_rst_lines_and_copy_info(cnrstfilename):
                 else:
                     src_api = src
                     cb_name = None
-                copy_from_info.append({
-                    'lineno':
-                    lineno,
-                    'indent':
-                    indent,
-                    'src_api':
-                    src_api.strip(),
-                    'cb_name':
-                    cb_name.strip() if cb_name is not None else None,
-                })
+                copy_from_info.append(
+                    {
+                        'lineno': lineno,
+                        'indent': indent,
+                        'src_api': src_api.strip(),
+                        'cb_name': cb_name.strip()
+                        if cb_name is not None
+                        else None,
+                    }
+                )
     return rst_lines, copy_from_info
 
 
@@ -87,13 +90,16 @@ def find_codeblock_needed(cf_info):
             codeblocks = extract_code_blocks_from_docstr(api_info['docstring'])
             if not codeblocks:
                 logger.warning('found none codeblocks for %s', str(cf_info))
-                logger.warning('and the docstring is: %s',
-                               api_info['docstring'])
+                logger.warning(
+                    'and the docstring is: %s', api_info['docstring']
+                )
                 return None
             cb_name = cf_info['cb_name']
-            return codeblocks[
-                0] if cb_name is None else find_codeblock_needed_by_name(
-                    cb_name, codeblocks)
+            return (
+                codeblocks[0]
+                if cb_name is None
+                else find_codeblock_needed_by_name(cb_name, codeblocks)
+            )
     else:
         logger.warning('%s not in api_name_2_id_map', cf_info['src_api'])
         return None
@@ -106,14 +112,16 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
     rst_lines, copy_from_info = read_rst_lines_and_copy_info(cnrstfilename)
     update_needed = False
     if copy_from_info:
-        logger.info("found copy-from for %s: %s", cnrstfilename,
-                    str(copy_from_info))
+        logger.info(
+            "found copy-from for %s: %s", cnrstfilename, str(copy_from_info)
+        )
     for cf_info in copy_from_info:
         logger.debug('processing %s', str(cf_info))
         cb_need = find_codeblock_needed(cf_info)
         if not cb_need:
-            logger.warning('not found code-block for %s: %s', cnrstfilename,
-                           str(cf_info))
+            logger.warning(
+                'not found code-block for %s: %s', cnrstfilename, str(cf_info)
+            )
             continue
         cb_new = []
         indent = cf_info['indent']
@@ -132,13 +140,16 @@ def instert_codes_into_cn_rst_if_need(cnrstfilename):
         with open(cnrstfilename, 'w') as f:
             f.writelines(rst_lines)
     elif copy_from_info:
-        logger.warning('not found any code-blocks for %s: %s', cnrstfilename,
-                       str(copy_from_info))
+        logger.warning(
+            'not found any code-blocks for %s: %s',
+            cnrstfilename,
+            str(copy_from_info),
+        )
 
 
-def filter_all_files(rootdir,
-                     ext='_cn.rst',
-                     action=instert_codes_into_cn_rst_if_need):
+def filter_all_files(
+    rootdir, ext='_cn.rst', action=instert_codes_into_cn_rst_if_need
+):
     """
     find all the _en.html file, and do the action.
     """
@@ -153,16 +164,17 @@ def parse_args():
     Parse input arguments
     """
     parser = argparse.ArgumentParser(
-        description='copy code-blocks from en api doc-strings.')
+        description='copy code-blocks from en api doc-strings.'
+    )
     parser.add_argument('--debug', dest='debug', action="store_true")
     parser.add_argument(
         '--api-info',
         dest='api_info',
         help='the api info json file.',
         type=str,
-        default='api_info_all.json')
-    parser.add_argument(
-        'dir', type=str, help='the file directory', default='.')
+        default='api_info_all.json',
+    )
+    parser.add_argument('dir', type=str, help='the file directory', default='.')
 
     if len(sys.argv) == 1:
         parser.print_help()

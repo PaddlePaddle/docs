@@ -13,7 +13,7 @@ CUDAExtension
 
 .. code-block:: text
 
-    # setup.py 
+    # setup.py
 
     # 编译支持 CPU/GPU 的算子
     from paddle.utils.cpp_extension import CUDAExtension, setup
@@ -33,8 +33,12 @@ CUDAExtension
 
 
 
-参数：
-  - **sources** (list[str]): 用于指定自定义 OP 对应的源码文件。cpp 源文件支持 .cc、.cpp等后缀；cuda 源文件以 .cu 为后缀。
-  - **\*args, \*\*kwargs** (可选): 用于指定 Extension 的其他参数，支持的参数与 ``setuptools.Extension`` 一致。
+参数
+::::::::::::
 
-返回： ``setuptools.Extension`` 对象
+  - **sources** (list[str]) - 用于指定自定义 OP 对应的源码文件。cpp 源文件支持。cc、.cpp 等后缀；cuda 源文件以。cu 为后缀。
+  - **\*args, \*\*kwargs** (可选) - 用于指定 Extension 的其他参数，支持的参数与 ``setuptools.Extension`` 一致。
+
+返回
+::::::::::::
+ ``setuptools.Extension`` 对象。

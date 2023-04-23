@@ -3,7 +3,10 @@
 Xavier
 -------------------------------
 
-.. py:attribute:: paddle.fluid.initializer.Xavier
+属性
+::::::::::::
+paddle.fluid.initializer.Xavier
+'''''''''
 
 
 

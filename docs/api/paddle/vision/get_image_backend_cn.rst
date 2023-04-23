@@ -11,15 +11,9 @@ get_image_backend
 返回
 :::::::::
 
-    ``str``，加载图像的模块名称， ``pil`` 或 ``cv2``。
+    ``str``，加载图像的模块名称，``pil`` 或 ``cv2``。
 
 代码示例
 :::::::::
 
-.. code-block:: python
-
-    from paddle.vision import get_image_backend
-
-    backend = get_image_backend()
-    print(backend)
-        
+COPY-FROM: paddle.vision.image.get_image_backend

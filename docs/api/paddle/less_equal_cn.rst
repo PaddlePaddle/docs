@@ -5,28 +5,24 @@ less_equal
 .. py:function:: paddle.less_equal(x, y, name=None)
 
 
-该OP逐元素地返回 :math:`x <= y` 的逻辑值，相同位置前者输入小于等于后者输入则返回True，否则返回False。使用重载算子 `<=` 可以有相同的计算函数效果。
+逐元素地返回 :math:`x <= y` 的逻辑值，相同位置前者输入小于等于后者输入则返回 True，否则返回 False。使用重载算子 `<=` 可以有相同的计算函数效果。
 
-**注：该OP输出的结果不返回梯度。**
+.. note::
+    输出的结果不返回梯度。
 
-参数：
-    - **x** (Tensor) - 输入Tensor，支持的数据类型包括 bool，float32， float64，int32， int64。
-    - **y** (Tensor) - 输入Tensor，支持的数据类型包括 bool，float32， float64， int32， int64。
-    - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
-    
+参数
+::::::::::::
 
-返回：输出结果的Tensor，输出Tensor的shape和输入一致，Tensor数据类型为bool。
+    - **x** (Tensor) - 输入 Tensor，支持的数据类型包括 bool、float16、float32、float64、int32、int64。
+    - **y** (Tensor) - 输入 Tensor，支持的数据类型包括 bool、float16、float32、float64、int32、int64。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回类型：变量（Tensor）
 
-**代码示例**:
+返回
+::::::::::::
+输出结果的 Tensor，输出 Tensor 的 shape 和输入一致，Tensor 数据类型为 bool。
 
-.. code-block:: python
+代码示例
+::::::::::::
 
-    import paddle
-
-    x = paddle.to_tensor([1, 2, 3])
-    y = paddle.to_tensor([1, 3, 2])
-    result = paddle.less_equal(x, y)
-    print(result) # result = [True, True, False]
-
+COPY-FROM: paddle.less_equal

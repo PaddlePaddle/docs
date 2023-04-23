@@ -43,7 +43,7 @@ API Reference 请参考 :ref:`cn_api_fluid_nets_sequence_conv_pool`
 4.glu
 -----
 :code:`glu` 全称 Gated Linear Units， 来源于论文 `Language Modeling with Gated Convolutional Networks <https://arxiv.org/pdf/1612.08083.pdf>`_ ，由 :ref:`cn_api_fluid_layers_split` ， :ref:`cn_api_fluid_layers_sigmoid` 和 :ref:`cn_api_fluid_layers_elementwise_mul` 组成。
-它会把输入数据均分为2等份，并对第二部分求 `Sigmoid <https://en.wikipedia.org/wiki/Sigmoid_function>`_ , 然后再与第一部分数据求点乘得到输出。
+它会把输入数据均分为 2 等份，并对第二部分求 `Sigmoid <https://en.wikipedia.org/wiki/Sigmoid_function>`_ , 然后再与第一部分数据求点乘得到输出。
 
 API Reference 请参考 :ref:`cn_api_fluid_nets_glu`
 
@@ -59,4 +59,3 @@ API Reference 请参考 :ref:`cn_api_fluid_nets_glu`
 该模块广泛使用在 `机器翻译 <https://zh.wikipedia.org/zh/机器翻译>`_ 的模型中，比如 `Transformer <https://github.com/PaddlePaddle/models/tree/develop/PaddleNLP/neural_machine_translation/transformer>`_ 。
 
 API Reference 请参考 :ref:`cn_api_fluid_nets_scaled_dot_product_attention`
-

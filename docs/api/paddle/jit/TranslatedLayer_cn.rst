@@ -6,12 +6,13 @@ TranslatedLayer
 .. py:class:: paddle.jit.TranslatedLayer(programs, persistable_vars)
 
 ``TranslatedLayer`` 是一个命令式编程模式 :ref:`cn_api_fluid_dygraph_Layer` 的继承类，
-通过 :ref:`cn_api_paddle_jit_load` 载入构建。能够像一般 ``Layer`` 一样在train或者eval模式下使用。
+通过 :ref:`cn_api_paddle_jit_load` 载入构建。能够像一般 ``Layer`` 一样在 train 或者 eval 模式下使用。
 
 .. note::
   ``TranslatedLayer`` 对象不能够通过构造函数创建，仅能够通过 :ref:`cn_api_paddle_jit_load` 接口载入构建。
 
-**示例代码：**
+代码示例
+::::::::::::
     .. code-block:: python
 
         import numpy as np
@@ -41,7 +42,7 @@ TranslatedLayer
 
         class LinearNet(nn.Layer):
             def __init__(self):
-                super(LinearNet, self).__init__()
+                super().__init__()
                 self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
             @paddle.jit.to_static
@@ -97,18 +98,21 @@ TranslatedLayer
         train(translated_layer, loader, loss_fn, adam)
 
 
-.. py:method:: program(method_name='forward'):
+方法
+::::::::::::
+program(method_name='forward'):
+'''''''''
 
-获取TranslatedLayer中指定方法对应的Program。
+获取 TranslatedLayer 中指定方法对应的 Program。
 
-参数：
-    - **method_name** (string) - 要获取的Porgram对应的方法名。默认值为"forward"。
+**参数**
 
-返回：Program
+    - **method_name** (string) - 要获取的 Porgram 对应的方法名。默认值为"forward"。
 
-返回类型：Program
+**返回**
+Program
 
-**示例代码：**
+**代码示例**
     .. code-block:: python
 
         import numpy as np
@@ -138,7 +142,7 @@ TranslatedLayer
 
         class LinearNet(nn.Layer):
             def __init__(self):
-                super(LinearNet, self).__init__()
+                super().__init__()
                 self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
             @paddle.jit.to_static

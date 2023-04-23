@@ -16,52 +16,69 @@ MetricBase
 
 MetricBase是所有paddle.fluid.metrics下定义的所有python类的基类，它定义了一组接口，并需要所有继承他的类实现具体的计算逻辑，包括：
 
-1. update(preds, labels)：给定当前计算当前batch的预测结果（preds）和标签（labels），计算这个batch的评估结果。 
+1. update(preds, labels)：给定当前计算当前batch的预测结果（preds）和标签（labels），计算这个batch的评估结果。
 
 2. eval()：合并当前累积的每个batch的评估结果，并返回整体评估结果。
 
 3. reset()：清空累积的每个batch的评估结果。
 
-.. py:method:: __init__(name)
+方法
+::::::::::::
+__init__(name)
+'''''''''
 
 构造函数，参数name表示当前创建的评估器的名字。
 
-参数：
-    - **name** (str) - 当前创建的评估器的名字，用于区分不同的评估器，例如准确率（accuracy）或者其他自定义名字（如，my_evaluator）。
+**参数**
 
-返回：一个python对象，表示一个具体的评估器。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回类型：python对象
+**返回**
+一个python对象，表示一个具体的评估器。
 
-.. py:method:: reset()
+**返回类型**
+python对象
+
+reset()
+'''''''''
 
 空累积的每个batch的评估结果。
 
-返回：无
+**返回**
+无
 
-.. py:method:: update(preds,labels)
+update(preds,labels)
+'''''''''
 
 给定当前计算当前batch的预测结果（preds）和标签（labels），计算这个batch的评估结果，并将这个评估结果在评估器内部记录下来，注意update函数并不会返回评估结果。
 
-参数：
+**参数**
+
      - **preds** (numpy.array) - 当前minibatch的预测结果。
      - **labels** (numpy.array) - 当前minibatch的标签。
 
-返回：无
+**返回**
+无
 
-.. py:method:: eval()
+eval()
+'''''''''
 
 合并当前累积的每个batch的评估结果，并返回整体评估结果。
 
-返回：当前累积batch的整体评估结果。
+**返回**
+当前累积batch的整体评估结果。
 
-返回类型：float|list(float)|numpy.array
+**返回类型**
+float|list(float)|numpy.array
 
-.. py:method:: get_config()
+get_config()
+'''''''''
 
 获取当前评估器的状态，特指评估器内部没有 ``_`` 前缀的所有成员变量。
 
-返回：一个python字典，包含了当前评估器内部的状态。
+**返回**
+一个python字典，包含了当前评估器内部的状态。
 
-返回类型：python字典（dict）
+**返回类型**
+python字典（dict）
 

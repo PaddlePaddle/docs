@@ -3,11 +3,11 @@
 paddle.amp
 ---------------------
 
-paddle.amp 目录下包含飞桨框架支持的动态图自动混合精度(AMP)相关的API。具体如下：
+paddle.amp 目录下包含飞桨框架支持的动态图自动混合精度(AMP)相关的 API。具体如下：
 
--  :ref:`AMP相关API <about_amp>`
--  :ref:`开启AMP后默认转化为float16计算的相关OP <about_amp_white_list_ops>`
--  :ref:`开启AMP后默认使用float32计算的相关OP <about_amp_black_list_ops>`
+-  :ref:`AMP 相关 API <about_amp>`
+-  :ref:`开启 AMP 后默认转化为 float16 计算的相关 OP <about_amp_white_list_ops>`
+-  :ref:`开启 AMP 后默认使用 float32 计算的相关 OP <about_amp_black_list_ops>`
 
 paddle.amp 目录下包含debugging目录， debugging目录中存放用于算子模型精度问题定位的api。具体如下：
 
@@ -17,23 +17,24 @@ paddle.amp 目录下包含debugging目录， debugging目录中存放用于算�
 
 .. _about_amp:
 
-AMP相关API
+AMP 相关 API
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
     :widths: 10, 30
 
-    " :ref:`auto_cast <cn_api_amp_auto_cast>` ", "创建AMP上下文环境"
-    " :ref:`GradScaler <cn_api_amp_GradScaler>` ", "控制loss的缩放比例"
-    
+    " :ref:`auto_cast <cn_api_amp_auto_cast>` ", "创建 AMP 上下文环境"
+    " :ref:`decorate <cn_api_amp_decorate>` ", "根据选定混合精度训练模式，改写神经网络参数数据类型"
+    " :ref:`GradScaler <cn_api_amp_GradScaler>` ", "控制 loss 的缩放比例"
+
 .. _about_amp_white_list_ops:
 
-开启AMP后默认转化为float16计算的相关OP
+开启 AMP 后默认转化为 float16 计算的相关 OP
 :::::::::::::::::::::::
 
 .. csv-table::
-    :header: "OP名称", "OP功能"
+    :header: "OP 名称", "OP 功能"
     :widths: 10, 30
 
     "conv2d", "卷积计算"
@@ -43,11 +44,11 @@ AMP相关API
 
 .. _about_amp_black_list_ops:
 
-开启AMP后默认使用float32计算的相关OP
+开启 AMP 后默认使用 float32 计算的相关 OP
 :::::::::::::::::::::::
 
 .. csv-table::
-    :header: "OP名称", "OP功能"
+    :header: "OP 名称", "OP 功能"
     :widths: 10, 30
 
     "exp", "指数运算"
@@ -56,8 +57,8 @@ AMP相关API
     "mean", "取平均值"
     "sum", "求和运算"
     "cos_sim", "余弦相似度"
-    "softmax", "softmax操作"
-    "softmax_with_cross_entropy", "softmax交叉熵损失函数"
+    "softmax", "softmax 操作"
+    "softmax_with_cross_entropy", "softmax 交叉熵损失函数"
     "sigmoid_cross_entropy_with_logits", "按元素的概率误差"
     "cross_entropy", "交叉熵"
     "cross_entropy2", "交叉熵"

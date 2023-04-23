@@ -4,19 +4,19 @@
 
 * **处理器：ZHAOXIN KaiSheng KH-37800D**
 * **操作系统：centos7**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 * **pip 或 pip3 版本 9.0.1+ (64 bit)**
 
-兆芯为x86架构，编译方法与[Linux下从源码编译cpu版](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/compile_Linux.html)一致。
+兆芯为 x86 架构，编译方法与[Linux 下从源码编译 cpu 版](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/compile/compile_Linux.html)一致。
 
 ## 安装步骤
 
-本文在ZHAOXIN处理器下安装Paddle，接下来详细介绍各个步骤。
+本文在 ZHAOXIN 处理器下安装 Paddle，接下来详细介绍各个步骤。
 
 <a name="zhaoxin_source"></a>
 ### **源码编译**
 
-1. Paddle依赖cmake进行编译构建，需要cmake版本>=3.15，如果操作系统提供的源包括了合适版本的cmake，直接安装即可，否则需要[源码安装](https://github.com/Kitware/CMake)
+1. Paddle 依赖 cmake 进行编译构建，需要 cmake 版本>=3.15，如果操作系统提供的源包括了合适版本的 cmake，直接安装即可，否则需要[源码安装](https://github.com/Kitware/CMake)
 
     ```
     wget https://github.com/Kitware/CMake/releases/download/v3.16.8/cmake-3.16.8.tar.gz
@@ -30,7 +30,7 @@
     ./bootstrap && make && sudo make install
     ```
 
-2. Paddle内部使用patchelf来修改动态库的rpath，如果操作系统提供的源包括了patchelf，直接安装即可，否则需要源码安装，请参考[patchelf官方文档](https://github.com/NixOS/patchelf)。
+2. Paddle 内部使用 patchelf 来修改动态库的 rpath，如果操作系统提供的源包括了 patchelf，直接安装即可，否则需要源码安装，请参考[patchelf 官方文档](https://github.com/NixOS/patchelf)。
 
     ```
     ./bootstrap.sh
@@ -52,7 +52,7 @@
     sudo make install
     ```
 
-3. 将Paddle的源代码克隆到当下目录下的Paddle文件夹中，并进入Paddle目录
+3. 将 Paddle 的源代码克隆到当下目录下的 Paddle 文件夹中，并进入 Paddle 目录
 
     ```
     git clone https://github.com/PaddlePaddle/Paddle.git
@@ -68,13 +68,13 @@
     git checkout develop
     ```
 
-5. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库。
+5. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装 Python 依赖库。
 
     ```
     pip install -r python/requirments.txt
     ```
 
-6. 请创建并进入一个叫build的目录下：
+6. 请创建并进入一个叫 build 的目录下：
 
     ```
     mkdir build && cd build
@@ -86,14 +86,10 @@
     ulimit -n 4096
     ```
 
-8. 执行cmake：
+8. 执行 cmake：
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
-    For Python2:
-    ```
-    cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
-    ```
     For Python3:
     ```
     cmake .. -DPY_VERSION=3 -DPYTHON_EXECUTABLE=`which python3` -DWITH_MKL=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_PYTHON=ON
@@ -110,14 +106,14 @@
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
     ```
-    python2 -m pip install -U（whl包的名字）`或`python3 -m pip install -U（whl包的名字）
+    python3 -m pip install -U（whl 包的名字）
     ```
 
-恭喜，至此您已完成PaddlePaddle在FT环境下的编译安装。
+恭喜，至此您已完成 PaddlePaddle 在 FT 环境下的编译安装。
 
 
 ## **验证安装**
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入
+安装完成后您可以使用 `python` 或 `python3` 进入 python 解释器，输入
 ```
 import paddle
 ```
@@ -128,7 +124,7 @@ paddle.utils.run_check()
 
 如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
 
-在mobilenetv1和resnet50模型上测试
+在 mobilenetv1 和 resnet50 模型上测试
 
 ```
 wget -O profile.tar https://paddle-cetc15.bj.bcebos.com/profile.tar?authorization=bce-auth-v1/4409a3f3dd76482ab77af112631f01e4/2020-10-09T10:11:53Z/-1/host/786789f3445f498c6a1fd4d9cd3897ac7233700df0c6ae2fd78079eba89bf3fb
@@ -152,7 +148,7 @@ python ernie.py --model_dir ernieL3H128_model/
 ```
 
 ## **如何卸载**
-请使用以下命令卸载PaddlePaddle：
+请使用以下命令卸载 PaddlePaddle：
 
 ```
 python3 -m pip uninstall paddlepaddle
@@ -164,6 +160,6 @@ python3 -m pip uninstall paddlepaddle
 
 ## **备注**
 
-已在ZHAOXIN下测试过resnet50, mobilenetv1, ernie， ELMo等模型，基本保证了预测使用算子的正确性，如果您在使用过程中遇到计算结果错误，编译失败等问题，请到[issue](https://github.com/PaddlePaddle/Paddle/issues)中留言，我们会及时解决。
+已在 ZHAOXIN 下测试过 resnet50, mobilenetv1, ernie， ELMo 等模型，基本保证了预测使用算子的正确性，如果您在使用过程中遇到计算结果错误，编译失败等问题，请到[issue](https://github.com/PaddlePaddle/Paddle/issues)中留言，我们会及时解决。
 
 预测文档见[doc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/05_inference_deployment/inference/native_infer.html)，使用示例见[Paddle-Inference-Demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo)

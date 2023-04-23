@@ -1,6 +1,4 @@
-paddle.incubate
 paddle.hapi.progressbar.ProgressBar
-paddle.fluid.contrib
 paddle.reader
 paddle.dataset
 paddle.utils.op_version.OpLastCheckpointChecker

@@ -1,8 +1,8 @@
 # Design Doc: Concurrent Programming with Fluid
 
-With PaddlePaddle Fluid, users describe a program other than a model.  The program is a [`ProgramDesc`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto) protobuf message. TensorFlow/MxNet/Caffe2 applications generate protobuf messages too, but their protobuf messages represent the model, a graph of operators, but not the program that trains/uses the model.  
+With PaddlePaddle Fluid, users describe a program other than a model.  The program is a [`ProgramDesc`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto) protobuf message. TensorFlow/MxNet/Caffe2 applications generate protobuf messages too, but their protobuf messages represent the model, a graph of operators, but not the program that trains/uses the model.
 
-Many know that when we program TensorFlow, we can specify the device on which each operator runs.  This allows us to create a concurrent/parallel AI application.   An interesting questions is **how does a `ProgramDesc` represents a concurrent program?**  
+Many know that when we program TensorFlow, we can specify the device on which each operator runs.  This allows us to create a concurrent/parallel AI application.   An interesting questions is **how does a `ProgramDesc` represents a concurrent program?**
 
 The answer relies on the fact that a `ProgramDesc` is similar to an abstract syntax tree (AST) that describes a program.  So users just program a concurrent program that they do with any concurrent programming language, e.g., [Go](https://golang.org).
 
@@ -144,12 +144,12 @@ func main() {  //// block 0
 
 An explanation of the above program:
 
-- `fluid.k8s` is a package that provides access to Kubernetes API.  
-- `fluid.k8s.get_worker_addrs` returns the list of IP and ports of all pods of the current job except for the current one (the master pod).  
+- `fluid.k8s` is a package that provides access to Kubernetes API.
+- `fluid.k8s.get_worker_addrs` returns the list of IP and ports of all pods of the current job except for the current one (the master pod).
 - `fluid.tensor_array` creates a [tensor array](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/lod_tensor_array.h).  `fluid.parallel_for` creates a `ParallelFor` intrinsic, which, when executed,
 
   1. creates `len(L)` scopes, each for the concurrent running of the sub-block (block 1 in this case), and initializes a variable named "index" in the scope to an integer value in the range `[0, len(L)-1]`, and
-  2. creates `len(L)` threads by calling into the `ThreadPool` singleton, each thread  
+  2. creates `len(L)` threads by calling into the `ThreadPool` singleton, each thread
      1. creates an Executor instance, and
      2. calls `Executor.Run(block)`, where `block` is block 1 as explained above.
 1. Please be aware that block 1 is a sub-block of block 0, so ops in block 1 could refer to variables defined in block 0.

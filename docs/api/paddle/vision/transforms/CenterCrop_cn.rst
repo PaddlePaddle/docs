@@ -10,8 +10,8 @@ CenterCrop
 参数
 :::::::::
 
-    - size (int|tuple) - 输出图像的形状大小。
-    - keys (list[str]|tuple[str], optional) - 与 ``BaseTransform`` 定义一致。默认值: None。
+    - **size** (int|list|tuple) - 输出图像的形状大小。
+    - **keys** (list[str]|tuple[str]，可选) - 与 ``BaseTransform`` 定义一致。默认值：None。
 
 形状
 :::::::::
@@ -22,21 +22,9 @@ CenterCrop
 返回
 :::::::::
 
-    计算 ``CenterCrop`` 的可调用对象。    
+    计算 ``CenterCrop`` 的可调用对象。
 
 代码示例
 :::::::::
-    
-.. code-block:: python
-    
-    import numpy as np
-    from PIL import Image
-    from paddle.vision.transforms import CenterCrop
 
-    transform = CenterCrop(224)
-
-    fake_img = Image.fromarray((np.random.rand(300, 320, 3) * 255.).astype(np.uint8))
-
-    fake_img = transform(fake_img)
-    print(fake_img.size)
-    # out: (224, 224) width,height
+COPY-FROM: paddle.vision.transforms.CenterCrop

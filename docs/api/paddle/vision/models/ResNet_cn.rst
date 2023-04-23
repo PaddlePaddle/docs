@@ -3,34 +3,27 @@
 ResNet
 -------------------------------
 
-.. py:class:: paddle.vision.models.ResNet(Block, depth=50, num_classes=1000, with_pool=True)
+.. py:class:: paddle.vision.models.ResNet(Block, depth=50, width=64, num_classes=1000, with_pool=True, groups=1)
 
- ResNet模型，来自论文 `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_ 。
+
+ResNet 模型，来自论文 `"Deep Residual Learning for Image Recognition" <https://arxiv.org/pdf/1512.03385.pdf>`_ 。
 
 参数
 :::::::::
+
   - **Block** (BasicBlock|BottleneckBlock) - 模型的残差模块。
-  - **depth** (int，可选) - resnet模型的深度。默认值：50
-  - **num_classes** (int, 可选) - 最后一个全连接层输出的维度。如果该值小于0，则不定义最后一个全连接层。默认值：1000。
-  - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值：True。
+  - **depth** (int，可选) - ResNet 模型的深度。默认值为 50。
+  - **width** (int，可选) - 各个卷积块的每个卷积组基础宽度。默认值为 64。
+  - **num_classes** (int，可选) - 最后一个全连接层输出的维度。如果该值小于等于 0，则不定义最后一个全连接层。默认值为 1000。
+  - **with_pool** (bool，可选) - 是否定义最后一个全连接层之前的池化层。默认值为 True。
+  - **groups** (int，可选) - 各个卷积块的分组数。默认值为 1。
 
 返回
 :::::::::
-ResNet模型，Layer的实例。
+
+:ref:`cn_api_fluid_dygraph_Layer`，ResNet 模型实例。
 
 代码示例
 :::::::::
-.. code-block:: python
 
-    import paddle
-    from paddle.vision.models import ResNet
-    from paddle.vision.models.resnet import BottleneckBlock, BasicBlock
-
-    resnet50 = ResNet(BottleneckBlock, 50)
-
-    resnet18 = ResNet(BasicBlock, 18)
-
-    x = paddle.rand([1, 3, 224, 224])
-    out = resnet18(x)
-
-    print(out.shape)
+COPY-FROM: paddle.vision.models.ResNet

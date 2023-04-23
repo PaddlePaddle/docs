@@ -5,31 +5,23 @@ unique
 
 .. py:function:: paddle.fluid.layers.unique(x, dtype='int32')
 
-unique为 ``x`` 返回一个unique张量和一个指向该unique张量的索引。
+unique 为 ``x`` 返回一个 uniqueTensor 和一个指向该 uniqueTensor 的索引。
 
-参数：
-    - **x** (Tensor) - 一个1维输入张量
-    - **dtype** (np.dtype|str, 可选) – 索引张量的类型，应该为int32或者int64。默认：int32.
+参数
+::::::::::::
 
-返回：元组(out, index)。 ``out`` 为 ``x`` 的指定dtype的unique张量, ``index`` 是一个指向 ``out`` 的索引张量, 用户可以通过该函数来转换原始的 ``x`` 张量的索引。
+    - **x** (Tensor) - 一个 1 维输入 Tensor
+    - **dtype** (np.dtype|str，可选) – 索引 Tensor 的类型，应该为 int32 或者 int64。默认：int32。
 
-返回类型：元组(tuple)
+返回
+::::::::::::
+元组(out, index)。 ``out`` 为 ``x`` 的指定 dtype 的 uniqueTensor，``index`` 是一个指向 ``out`` 的索引 Tensor，用户可以通过该函数来转换原始的 ``x`` Tensor 的索引。
 
-**代码示例**：
+返回类型
+::::::::::::
+元组(tuple)
 
-.. code-block:: python
+代码示例
+::::::::::::
 
-    import numpy as np
-    import paddle.fluid as fluid
-    x = fluid.layers.assign(np.array([2, 3, 3, 1, 5, 3], dtype='int32'))
-    out, index = fluid.layers.unique(x) # out is [2, 3, 1, 5]; index is [0, 1, 1, 2, 3, 1]
-
-
-
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.unique

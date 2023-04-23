@@ -8,27 +8,18 @@ guard
 
 
 
-该接口用于更改命名空间，与with语句一起使用。使用后，在with语句的上下文中使用新的命名空间，调用generate接口时相同前缀的名称将从0开始重新编号。
+更改命名空间，与 with 语句一起使用。使用后，在 with 语句的上下文中使用新的命名空间，调用 generate 接口时相同前缀的名称将从 0 开始重新编号。
 
-参数:
-  - **new_generator** (str|bytes, 可选) - 新命名空间的名称。请注意，Python2中的str在Python3中被区分为str和bytes两种，因此这里有两种类型。 缺省值为None，若不为None，new_generator将作为前缀添加到generate接口产生的唯一名称中。
+参数
+::::::::::::
 
-返回: 无。
+  - **new_generator** (str|bytes，可选) - 新命名空间的名称。请注意，Python2 中的 str 在 Python3 中被区分为 str 和 bytes 两种，因此这里有两种类型。缺省值为 None，若不为 None，new_generator 将作为前缀添加到 generate 接口产生的唯一名称中。
 
-**代码示例**
+返回
+::::::::::::
+ 无。
 
-.. code-block:: python
+代码示例
+::::::::::::
 
-        import paddle
-        with paddle.utils.unique_name.guard():
-            name_1 = paddle.utils.unique_name.generate('fc')
-        with paddle.utils.unique_name.guard():
-            name_2 = paddle.utils.unique_name.generate('fc')
-        print(name_1, name_2) # fc_0, fc_0
-
-        with paddle.utils.unique_name.guard('A'):
-            name_1 = paddle.utils.unique_name.generate('fc')
-        with paddle.utils.unique_name.guard('B'):
-            name_2 = paddle.utils.unique_name.generate('fc')
-        print(name_1, name_2) # Afc_0, Bfc_0
-
+COPY-FROM: paddle.utils.unique_name.guard

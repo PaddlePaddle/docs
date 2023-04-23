@@ -19,8 +19,8 @@ with fluid.Go():
     fluid.channel_send(channel, tensor)
 
 # Receive sent tensor from "channel" on the main thread
-result = fill_constant(shape=[1], dtype='int', value=-1)  
-fluid.channel_recv(ch, result)  
+result = fill_constant(shape=[1], dtype='int', value=-1)
+fluid.channel_recv(ch, result)
 ```
 
 The go operator can be accessed by using the fluid.Go() control flow.  This

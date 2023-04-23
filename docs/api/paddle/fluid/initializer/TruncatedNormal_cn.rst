@@ -3,7 +3,10 @@
 TruncatedNormal
 -------------------------------
 
-.. py:attribute:: paddle.fluid.initializer.TruncatedNormal
+属性
+::::::::::::
+paddle.fluid.initializer.TruncatedNormal
+'''''''''
 
 
 

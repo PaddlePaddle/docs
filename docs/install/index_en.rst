@@ -14,7 +14,8 @@
 * Add support for ROCm platform (2.1 Paddle's support for ROCm platform is experimental)
 * Linux system-related packages have been split into two types of packages, avx and noavx (Most machines use the avx instruction set. You can check whether your machine supports it through commands on the `PIP installation under Linux <pip/linux-pip.html>`_ page )
 * Add a CPU image with jupyter pre-installed. Jupyter service will be started after starting the image
-* Added support for Windows Visual Studio 2017 compilation, fully upgraded from VS2015 to VS2017 
+* Added support for Windows Visual Studio 2017 compilation, fully upgraded from VS2015 to VS2017
+* Add support for NVIDIA NGC PaddlePaddle Container
 
 
 ------------------------
@@ -42,7 +43,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 3. Version requirements of python and pip:
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-* Python requires version 3.6/3.7/3.8/3.9
+* Python requires version 3.7/3.8/3.9/3.10
 * Python needs pip, and pip requires version 20.2.2 or above
 * Python and pip requires 64-bit
 
@@ -50,7 +51,7 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 * Currently, **PaddlePaddle** supports **CUDA** driver of **NVIDIA** graphics card and **ROCm** driver of **AMD** card.
-* You need to install `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ , and version 7.6+ is required(For CUDA10.1/10.2) 
+* You need to install `cuDNN <https://docs.nvidia.com/deeplearning/sdk/cudnn-install/>`_ , and version 7.6+ is required(For CUDA10.1/10.2)
 * If you need GPU multi-card mode, you need to install `NCCL 2 <https://developer.nvidia.com/nccl/>`_
 
     * Only Ubuntu/CentOS support NCCL 2
@@ -58,8 +59,8 @@ The manuals will guide you to build and install PaddlePaddle on your 64-bit desk
 
     * Windows install GPU version
 
-        * Windows 7 / 8 / 10 support CUDA 10.1/10.2/11.2 single-card mode, but don't support CUDA 9.1/9.2/10.1		
-        * don't support install using **nvidia-docker** 
+        * Windows 7 / 8 / 10 support CUDA 10.1/10.2/11.2 single-card mode, but don't support CUDA 9.1/9.2/10.1
+        * don't support install using **nvidia-docker**
     * Ubuntu install GPU version
 
         * Ubuntu 16.04 supports CUDA 10.1/10.2/11.2
@@ -91,13 +92,13 @@ Please make sure your environment meets the above conditions. If you have other 
         * support NCCL v2.4.2-v2.4.8 under CUDA10.1
     * Ubuntu 18.04:
 
-        * support v2.4.2-v2.4.8 under CUDA10.1 
+        * support v2.4.2-v2.4.8 under CUDA10.1
 * Support for CentOS
 
     * CentOS 6: not support NCCL
     * CentOS 7:
 
-        * support NCCL v2.4.2-v2.4.8 under CUDA10.1 
+        * support NCCL v2.4.2-v2.4.8 under CUDA10.1
 * Support for MacOS
 
     * not support NCCL
@@ -117,9 +118,9 @@ This section describes how to use pip to install.
 3. Confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python
 
     Use the following command to output Python path. Depending on your environment, you may need to replace Python in all command lines in the description with specific Python path
-    
+
         In the Windows environment, the command to output Python path is:
-        
+
         ::
 
             where python
@@ -133,16 +134,16 @@ This section describes how to use pip to install.
 
 4. Check the version of Python
 
-    Confirm the Python is 3.6/3.7/3.8/3.9 using command
+    Confirm the Python is 3.7/3.8/3.9/3.10 using command
     ::
-    
+
         python --version
-    
-5. Check the version of pip and confirm it is 20.2.2 or above  
+
+5. Check the version of pip and confirm it is 20.2.2 or above
 
     ::
-    
-        python -m ensurepip 
+
+        python -m ensurepip
         python -m pip --version
 
 
@@ -159,13 +160,13 @@ This section describes how to use pip to install.
 
         Command to install CPU version is:
         ::
-    
+
             python -m pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
 
             or
 
             python -m pip install paddlepaddle -i https://pypi.tuna.tsinghua.edu.cn/simple
-        
+
 
     (2). **GPU version** : If you only want to install GPU version, please refer to command below
 
@@ -183,7 +184,7 @@ This section describes how to use pip to install.
 
             python -m pip install paddlepaddle-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-        
+
     Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with Python 3 or specific Python path.
 
 8. Verify installation
@@ -202,16 +203,28 @@ This section describes how to use pip to install.
     `install under Windows <pip/windows-pip_en.html>`_
 
 
-The second way to install: compile and install with source code
+
+The second way to install: compile and install with container
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+- We recommend that you use `NVIDIA PaddlePaddle Container <https://www.paddlepaddle.org.cn/documentation/docs/zh/install/install_NGC_PaddlePaddle_ch.html>`_ for your development environment installation.
+- Pros
+    1. Lastest version of CUDA
+    2. Newer verison of Ubuntu OS(18.04)
+    3. Performance and development efficiency have been optimized by NVIDIA
+
+
+The third way to install: compile and install with source code
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 - If you use PaddlePaddle only, we suggest you installation methods **pip** to install.
 - If you need to develop PaddlePaddle, please refer to `compile from source code <compile/fromsource_en.html>`_
 
-..	toctree::
-	:hidden:
+..  toctree::
+    :hidden:
 
-	pip/frompip_en.rst
-	compile/fromsource_en.rst
-	install_Kunlun_en.md
-	Tables_en.md
+    pip/frompip_en.rst
+    compile/fromsource_en.rst
+    install_Kunlun_en.md
+    install_NGC_PaddlePaddle_en.rst
+    Tables_en.md

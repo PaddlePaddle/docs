@@ -9,25 +9,23 @@ Please refer to  `PaddlePaddle Github <https://github.com/PaddlePaddle/Paddle>`_
 
 Let's start with studying basic concept of PaddlePaddle:
 
-- `PaddlePaddle Introduction <./01_paddle2.0_introduction/index_en.html>`_ : Introduction of the new features of PaddlePaddle 2.0 and description of the PaddlePaddle 2.0 upgrade guide.
-- `Model Visualization <./03_VisualDL/index_en.html>`_ : Introduce VisualDL, a visual tool of PaddlePaddle.
-- `Dygraph to Static Graph <./04_dygraph_to_static/index_en.html>`_ : Introduce the transformation of dygraph to static graph.
-- `Inference and Deployment <./05_inference_deployment/index_en.html>`_ : Introduce the method of using the trained model to inference.
+- `Model Development <./beginner/index_en.html>`_
+- `More Uses for Model Development <./advanced/index_en.html>`_
+- `Dygraph to Static Graph <./jit/index_en.html>`_ : Introduce the transformation of dygraph to static graph.
+- `Inference and Deployment <./infer/index_en.html>`_ : Introduce the method of using the trained model to inference.
 - `Distributed Training <./06_distributed_training/index_en.html>`_ : Introduce how the PaddlePaddle uses distributed training
-- `Customize OP <./07_new_op/index_en.html>`_ :  Introduce how to customize OP for PaddlePaddle.
 - `Performance Improving <./performance_improving/index_en.html>`_ : Introduce how to improve performance of PaddlePaddle.
-- `Contribution <./10_contribution/index_en.html>`_: Introduce how to contribute for PaddlePaddle.
+- `Model Convert <./model_convert/index_en.html>`_ : Introduce how to convert your model to PaddlePaddle.
 - `FLAGS <./flags/flags_en.html>`_ : Introduce the envirenment flags in paddle.
 
 ..  toctree::
     :hidden:
-    
-    01_paddle2.0_introduction/index_en.rst
-    03_VisualDL/index_en.rst
-    04_dygraph_to_static/index_en.rst
-    05_inference_deployment/index_en.rst
+
+    beginner/index_en.rst
+    advanced/index_en.rst
+    jit/index_en.rst
+    infer/index_en.rst
     06_distributed_training/index_en.rst
-    07_new_op/index_en.rst
     performance_improving/index_en.rst
-    10_contribution/index_en.rst
+    model_convert/index_en.rst
     flags/flags_en.rst

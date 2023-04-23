@@ -199,7 +199,7 @@ In Go, the `select` statement lets a goroutine wait on multiple communication op
 
 ```go
 
-ch1  := make(chan int)  
+ch1  := make(chan int)
 ch2  := make(chan int, 100)
 
 x := 0

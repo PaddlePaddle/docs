@@ -6,7 +6,7 @@ FLAGS_enable_cublas_tensor_op_math
 *******************************************
 (since 1.2.0)
 
-This Flag indicates whether to use Tensor Core, but it may lose some precision. 
+This Flag indicates whether to use Tensor Core, but it may lose some precision.
 
 Values accepted
 ---------------

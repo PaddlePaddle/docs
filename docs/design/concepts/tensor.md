@@ -53,7 +53,7 @@ In Majel, `DDimVar` is derived from `Dim`, `DArrayVar` is from `Array`.
 ```c++
 template<int i>
 struct Dim {
-...  
+...
 int head;
 Dim<i-1> tail;
 }

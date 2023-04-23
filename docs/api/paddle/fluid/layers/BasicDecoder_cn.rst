@@ -14,52 +14,42 @@ BasicDecoder是 :ref:`cn_api_fluid_layers_Decoder` 的子类，它组装了 :ref
 
 3. 执行 :code:`finished, next_inputs, next_states = helper.next_inputs(time, cell_outputs, cell_states, sample_ids)` 以产生下一解码步的结束标识、输入和状态。
 
-参数：
+参数
+::::::::::::
+
   - **cell** (RNNCell) - RNNCell的实例或者具有相同接口定义的对象。
   - **helper** (DecodeHelper) - DecodeHelper的实例。
   - **output_fn** (可选) - 处理cell输出的接口，在采样之前使用。默认值None。
 
-**示例代码**
+代码示例
+::::::::::::
 
-.. code-block:: python
-        
-            import paddle.fluid as fluid
-            import paddle.fluid.layers as layers
 
-            start_tokens = fluid.data(name="start_tokens",
-                                 shape=[None],
-                                 dtype="int64")
-            
-            trg_embeder = lambda x: fluid.embedding(
-                x, size=[10000, 128], param_attr=fluid.ParamAttr(name="trg_embedding"))
-            output_layer = lambda x: layers.fc(x,
-                                            size=10000,
-                                            num_flatten_dims=len(x.shape) - 1,
-                                            param_attr=fluid.ParamAttr(name=
-                                                                    "output_w"),
-                                            bias_attr=False)
-            helper = layers.SampleEmbeddingHelper(trg_embeder, start_tokens=start_tokens, end_token=1)
-            decoder_cell = layers.GRUCell(hidden_size=128)
-            decoder = layers.BasicDecoder(decoder_cell, helper, output_fn=output_layer)
-            outputs = layers.dynamic_decode(
-                decoder=decoder, inits=decoder_cell.get_initial_states(start_tokens))
+COPY-FROM: paddle.fluid.layers.BasicDecoder
 
-.. py:method:: initialize(initial_cell_states)
+方法
+::::::::::::
+initialize(initial_cell_states)
+'''''''''
 
 初始化，包括helper的初始化和cell的初始化，cell初始化直接使用 :code:`initial_cell_states` 作为结果。
 
-参数：
+**参数**
+
   - **initial_cell_states** (Variable) - 单个tensor变量或tensor变量组成的嵌套结构。这是由调用者 :ref:`cn_api_fluid_layers_dynamic_decode` 提供的参数。
 
-返回：:code:`(initial_inputs, initial_states, finished)` 的三元组。 :code:`initial_inputs, initial_states` 均是单个tensor变量或tensor变量组成的嵌套结构， :code:`finished` 是bool类型的tensor。 :code:`initial_inputs, finished` 与 :code:`helper.initialize()` 返回的内容相同； :code:`initial_states` 与输入参数中的 :code:`initial_cell_states` 的相同。
+**返回**
+:code:`(initial_inputs, initial_states, finished)` 的三元组。:code:`initial_inputs, initial_states` 均是单个tensor变量或tensor变量组成的嵌套结构，:code:`finished` 是bool类型的tensor。 :code:`initial_inputs, finished` 与 :code:`helper.initialize()` 返回的内容相同；:code:`initial_states` 与输入参数中的 :code:`initial_cell_states` 的相同。
 
-返回类型：tuple
+**返回类型**
+tuple
     
 .. py:class:: OutputWrapper(cell_outputs, sample_ids)
 
  :code:`step()` 的返回值中 :code:`outputs` 使用的数据结构，是一个由 :code:`cell_outputs` 和 :code:`sample_ids` 这两个字段构成的命名元组。
 
-.. py:method:: step(time, inputs, states, **kwargs)
+step(time, inputs, states, **kwargs)
+'''''''''
 
 按照以下步骤执行单步解码：
 
@@ -69,12 +59,15 @@ BasicDecoder是 :ref:`cn_api_fluid_layers_Decoder` 的子类，它组装了 :ref
 
 3. 执行 :code:`finished, next_inputs, next_states = helper.next_inputs(time, cell_outputs, cell_states, sample_ids)` 以产生下一解码步的结束标识、输入和状态。
 
-参数：
+**参数**
+
   - **time** (Variable) - 调用者提供的形状为[1]的tensor，表示当前解码的时间步长。其数据类型为int64。
   - **inputs** (Variable) - tensor变量。在第一个解码时间步时与由 :code:`initialize()` 返回的 :code:`initial_inputs` 相同，其他时间步与由 :code:`step()` 返回的 :code:`next_inputs` 相同。
   - **states** (Variable) - tensor变量的结构。在第一个解码时间步时与 :code:`initialize()` 返回的 :code:`initial_states` 相同，其他时间步与由 :code:`step()` 返回的 :code:`next_states` 相同。
   - **kwargs** - 附加的关键字参数，由调用者 :ref:`cn_api_fluid_layers_dynamic_decode` 提供。
 
-返回： :code:`(outputs, next_states, next_inputs, finished)` 的四元组。 :code:`outputs` 是包含 :code:`cell_outputs` 和 :code:`sample_ids` 两个字段的命名元组，其中 :code:`cell_outputs` 是 :code:`cell.call()` 的结果， :code:`sample_ids` 是 :code:`helper.sample()` 的结果； :code:`next_states, next_inputs` 分别和输入参数中的 :code:`states, inputs` 有相同的的结构、形状和数据类型； :code:`finished` 是一个bool类型的tensor，形状是 :math:`[batch\_size]` 。
+**返回**
+ :code:`(outputs, next_states, next_inputs, finished)` 的四元组。:code:`outputs` 是包含 :code:`cell_outputs` 和 :code:`sample_ids` 两个字段的命名元组，其中 :code:`cell_outputs` 是 :code:`cell.call()` 的结果，:code:`sample_ids` 是 :code:`helper.sample()` 的结果；:code:`next_states, next_inputs` 分别和输入参数中的 :code:`states, inputs` 有相同的的结构、形状和数据类型；:code:`finished` 是一个bool类型的tensor，形状是 :math:`[batch\_size]` 。
 
-返回类型：tuple
+**返回类型**
+tuple

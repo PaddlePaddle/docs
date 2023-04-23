@@ -22,61 +22,47 @@ Uniform
 
 :math:`low = a` 。
 :math:`high = b` 。
-:math:`Z`: 正态分布常量。
+:math:`Z`：正态分布常量。
 
-参数low和high的维度必须能够支持广播。
+参数 low 和 high 的维度必须能够支持广播。
 
-参数：
-    - **low** (int|float|list|numpy.ndarray|Tensor) - 均匀分布的下边界。数据类型为int、float、list、numpy.ndarray或Tensor。
-    - **high** (int|float|list|numpy.ndarray|Tensor) - 均匀分布的上边界。数据类型为int、float、list、numpy.ndarray或Tensor。
-    - **name** (str，可选） - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+.. note::
+    关于广播(broadcasting)机制，如您想了解更多，请参见 `Tensor 介绍`_ .
 
-**代码示例**：
+    .. _Tensor 介绍: ../../guides/beginner/tensor_cn.html#id7
 
-.. code-block:: python
+参数
+:::::::::
 
-    import paddle
-    from paddle.distribution import Uniform
+    - **low** (int|float|list|numpy.ndarray|Tensor) - 均匀分布的下边界。数据类型为 int、float、list、numpy.ndarray 或 Tensor。
+    - **high** (int|float|list|numpy.ndarray|Tensor) - 均匀分布的上边界。数据类型为 int、float、list、numpy.ndarray 或 Tensor。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-    # Without broadcasting, a single uniform distribution [3, 4]:
-    u1 = Uniform(low=3.0, high=4.0)
-    # 2 distributions [1, 3], [2, 4]
-    u2 = Uniform(low=[1.0, 2.0], high=[3.0, 4.0])
-    # 4 distributions
-    u3 = Uniform(low=[[1.0, 2.0], [3.0, 4.0]],
-            high=[[1.5, 2.5], [3.5, 4.5]])
-
-    # With broadcasting:
-    u4 = Uniform(low=3.0, high=[5.0, 6.0, 7.0])
-
-    # Complete example
-    value_tensor = paddle.to_tensor([0.8], dtype="float32")
-
-    uniform = Uniform([0.], [2.])
-
-    sample = uniform.sample([2])
-    # a random tensor created by uniform distribution with shape: [2, 1]
-    entropy = uniform.entropy()
-    # [0.6931472] with shape: [1]
-    lp = uniform.log_prob(value_tensor)
-    # [-0.6931472] with shape: [1]
-    p = uniform.probs(value_tensor)
-    # [0.5] with shape: [1]
+代码示例
+:::::::::
 
 
-.. py:function:: sample(shape, seed=0)
+COPY-FROM: paddle.distribution.Uniform
 
-生成指定维度的样本
+方法
+:::::::::
 
-参数：
-    - **shape** (list) - 1维列表，指定生成样本的维度。数据类型为int32。
+sample(shape, seed=0)
+'''''''''
+
+生成指定维度的样本。
+
+**参数**
+
+    - **shape** (list) - 1 维列表，指定生成样本的维度。数据类型为 int32。
     - **seed** (int) - 长整型数。
-    
-返回：预先设计好维度的张量, 数据类型为float32
 
-返回类型：Tensor
+**返回**
 
-.. py:function:: entropy()
+Tensor，预先设计好维度的 Tensor，数据类型为 float32。
+
+entropy()
+'''''''''
 
 信息熵
 
@@ -84,33 +70,34 @@ Uniform
 
     entropy(low, high) = \log (high - low)
 
-返回：均匀分布的信息熵, 数据类型为float32
+**返回**
 
-返回类型：Tensor
+Tensor，均匀分布的信息熵，数据类型为 float32。
 
-.. py:function:: log_prob(value)
+
+log_prob(value)
+'''''''''
 
 对数概率密度函数
 
-参数：
-    - **value** (Tensor) - 输入张量。数据类型为float32或float64。
-    
-返回：对数概率, 数据类型与value相同
+**参数**
 
-返回类型：Tensor
+    - **value** (Tensor) - 输入 Tensor。数据类型为 float32 或 float64。
 
-.. py:function:: probs(value)
+**返回**
+
+Tensor，对数概率，数据类型与 value 相同。
+
+
+probs(value)
+'''''''''
 
 概率密度函数
 
-参数：
-    - **value** (Tensor) - 输入张量。数据类型为float32或float64。
-    
-返回：概率, 数据类型与value相同
+**参数**
 
-返回类型：Tensor
+    - **value** (Tensor) - 输入 Tensor。数据类型为 float32 或 float64。
 
+**返回**
 
-
-
-
+Tensor，概率，数据类型与 value 相同。

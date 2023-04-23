@@ -8,19 +8,20 @@ LayerDict
 
 
 
-LayerDict用于保存子层到有序字典中，它包含的子层将被正确地注册和添加。列表中的子层可以像常规python 有序字典一样被访问。
+LayerDict 用于保存子层到有序字典中，它包含的子层将被正确地注册和添加。列表中的子层可以像常规 python 有序字典一样被访问。
 
-参数：
+参数
+::::::::::::
+
     - **sublayers** (LayerDict|OrderedDict|list[(key, Layer)]，可选) - 键值对的可迭代对象，值的类型为 `paddle.nn.Layer` 。
 
-返回：无
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
     import paddle
-    import numpy as np
     from collections import OrderedDict
 
     sublayers = OrderedDict([
@@ -51,11 +52,15 @@ LayerDict用于保存子层到有序字典中，它包含的子层将被正确�
     len(layers_dict)
     #0
 
-.. py:method:: clear()
+方法
+::::::::::::
+clear()
+'''''''''
 
-清除LayerDict 中所有的子层。
+清除 LayerDict 中所有的子层。
 
-参数：
+**参数**
+
     无。
 
 **代码示例**
@@ -79,12 +84,14 @@ LayerDict用于保存子层到有序字典中，它包含的子层将被正确�
     len(layer_dict)
     #0
 
-.. py:method:: pop()
+pop()
+'''''''''
 
-移除LayerDict 中的键 并且返回该键对应的子层。
+移除 LayerDict 中的键 并且返回该键对应的子层。
 
-参数：
-    - **key** (str) - 要移除的key。
+**参数**
+
+    - **key** (str) - 要移除的 key。
 
 **代码示例**
 
@@ -107,11 +114,13 @@ LayerDict用于保存子层到有序字典中，它包含的子层将被正确�
     len(layer_dict)
     #2
 
-.. py:method:: keys()
+keys()
+'''''''''
 
-返回LayerDict 中键的可迭代对象。
+返回 LayerDict 中键的可迭代对象。
 
-参数：
+**参数**
+
     无。
 
 **代码示例**
@@ -136,11 +145,13 @@ LayerDict用于保存子层到有序字典中，它包含的子层将被正确�
     #conv3d
 
 
-.. py:method:: items()
+items()
+'''''''''
 
-返回LayerDict 中键/值对的可迭代对象。
+返回 LayerDict 中键/值对的可迭代对象。
 
-参数：
+**参数**
+
     无。
 
 **代码示例**
@@ -165,11 +176,13 @@ LayerDict用于保存子层到有序字典中，它包含的子层将被正确�
     #conv3d : Conv3D(4, 6, kernel_size=[3, 3, 3], data_format=NCDHW)
 
 
-.. py:method:: values()
+values()
+'''''''''
 
-返回LayerDict 中值的可迭代对象。
+返回 LayerDict 中值的可迭代对象。
 
-参数：
+**参数**
+
     无。
 
 **代码示例**
@@ -194,11 +207,13 @@ LayerDict用于保存子层到有序字典中，它包含的子层将被正确�
     #Conv3D(4, 6, kernel_size=[3, 3, 3], data_format=NCDHW)
 
 
-.. py:method:: update()
+update()
+'''''''''
 
-更新子层中的键/值对到LayerDict中，会覆盖已经存在的键。
+更新子层中的键/值对到 LayerDict 中，会覆盖已经存在的键。
 
-参数：
+**参数**
+
     - **sublayers** (LayerDict|OrderedDict|list[(key, Layer)]) - 键值对的可迭代对象，值的类型为 `paddle.nn.Layer` 。
 
 **代码示例**
@@ -228,4 +243,3 @@ LayerDict用于保存子层到有序字典中，它包含的子层将被正确�
     #conv2d : Conv2D(4, 2, kernel_size=[4, 4], data_format=NCHW)
     #conv3d : Conv3D(4, 6, kernel_size=[3, 3, 3], data_format=NCDHW)
     #relu : ReLU()
-    

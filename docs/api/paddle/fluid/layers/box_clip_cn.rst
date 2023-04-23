@@ -17,7 +17,7 @@ box_clip
     xmax = max(min(xmax, im_w - 1), 0)
     ymax = max(min(ymax, im_h - 1), 0)
 
-其中im_w和im_h是通过im_info计算的：
+其中 im_w 和 im_h 是通过 im_info 计算的：
 
 ::
 
@@ -25,23 +25,23 @@ box_clip
     im_w = round(weight / scale)
 
 
-参数：
-    - **input** (Variable)  – 维度为[N_1, N_2, ..., N_k, 4]的多维Tensor，其中最后一维为box坐标维度。数据类型为float32或float64。
-    - **im_info** (Variable)  – 维度为[N, 3]的2-D Tensor，N为输入图片个数。具有（高度height，宽度width，比例scale）图像的信息，其中高度和宽度是输入大小，比例是输入大小和原始大小的比率。数据类型为float32或float64。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+参数
+::::::::::::
 
-返回： 表示剪切后的检测框的Tensor或LoDTensor，数据类型为float32或float64，形状与输入检测框相同
+    - **input** (Variable)  – 维度为[N_1, N_2, ..., N_k, 4]的多维 Tensor，其中最后一维为 box 坐标维度。数据类型为 float32 或 float64。
+    - **im_info** (Variable)  – 维度为[N, 3]的 2-D Tensor，N 为输入图片个数。具有（高度 height，宽度 width，比例 scale）图像的信息，其中高度和宽度是输入大小，比例是输入大小和原始大小的比率。数据类型为 float32 或 float64。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回类型：Variable
+返回
+::::::::::::
+ 表示剪切后的检测框的 Tensor，数据类型为 float32 或 float64，形状与输入检测框相同
+
+返回类型
+::::::::::::
+Variable
 
 
-**代码示例**
+代码示例
+::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    boxes = fluid.data(
-        name='boxes', shape=[None, 8, 4], dtype='float32', lod_level=1)
-    im_info = fluid.data(name='im_info', shape=[None, 3])
-    out = fluid.layers.box_clip(
-        input=boxes, im_info=im_info)
+COPY-FROM: paddle.fluid.layers.box_clip

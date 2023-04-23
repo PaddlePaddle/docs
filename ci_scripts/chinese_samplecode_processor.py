@@ -89,7 +89,8 @@ def extract_sample_code(srcfile, status_all):
     srcfile.seek(0, 0)
     srcls = srcfile.readlines()
     srcls = remove_desc_code(
-        srcls, filename)  # remove description info for samplecode
+        srcls, filename
+    )  # remove description info for samplecode
     status = []
     sample_code_begins = find_all(srcc, " code-block:: python")
     if len(sample_code_begins) == 0:
@@ -108,18 +109,22 @@ def extract_sample_code(srcfile, status_all):
                 startindent = ""
                 # remove indent error
                 if srcls[start + blank_line].find("from") != -1:
-                    startindent += srcls[start + blank_line][:srcls[
-                        start + blank_line].find("from")]
+                    startindent += srcls[start + blank_line][
+                        : srcls[start + blank_line].find("from")
+                    ]
                 elif srcls[start + blank_line].find("import") != -1:
-                    startindent += srcls[start + blank_line][:srcls[
-                        start + blank_line].find("import")]
+                    startindent += srcls[start + blank_line][
+                        : srcls[start + blank_line].find("import")
+                    ]
                 else:
                     startindent += check_indent(srcls[start + blank_line])
-                content += srcls[start + blank_line][len(startindent):]
+                content += srcls[start + blank_line][len(startindent) :]
                 for j in range(start + blank_line + 1, len(srcls)):
                     # planish a blank line
-                    if not srcls[j].startswith(startindent) and srcls[
-                            j] != '\n':
+                    if (
+                        not srcls[j].startswith(startindent)
+                        and srcls[j] != '\n'
+                    ):
                         break
                     if srcls[j].find(" code-block:: python") != -1:
                         break
@@ -132,8 +137,9 @@ def extract_sample_code(srcfile, status_all):
 
 def run_sample_code(content, filename):
     # three status ,-1:no sample code; 1: running error; 0:normal
-    fname = filename.split("/")[-1].replace("_cn", "").replace(".rst",
-                                                               "") + ".py"
+    fname = (
+        filename.split("/")[-1].replace("_cn", "").replace(".rst", "") + ".py"
+    )
     tempf = open("temp/" + fname, 'w')
     content = "# -*- coding: utf-8 -*-\n" + content
     tempf.write(content)
@@ -141,7 +147,8 @@ def run_sample_code(content, filename):
     cmd = ["python", "temp/" + fname]
 
     subprc = subprocess.Popen(
-        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
     _, error = subprc.communicate()
     err = "".join(error.decode(encoding='utf-8'))
 
@@ -221,12 +228,15 @@ if total_error_number > 0:
     type_two_number = len(status_groups[1])
     if type_two_number > 0:
         print("Error type two sample number is:{}".format(type_two_number))
-        print("Error raised from type two:running error sample code.",
-              str(status_groups[1]))
+        print(
+            "Error raised from type two:running error sample code.",
+            str(status_groups[1]),
+        )
     if type_one_number > 0:
         print("Error type one sample number is:{}".format(type_one_number))
-        print("Error raised from type one:no sample code.",
-              str(status_groups[-1]))
+        print(
+            "Error raised from type one:no sample code.", str(status_groups[-1])
+        )
         # no sample code not considered as error now.
         if type_two_number == 0:
             ci_pass = True

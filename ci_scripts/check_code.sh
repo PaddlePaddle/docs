@@ -24,37 +24,39 @@ if [ -z ${BRANCH} ]; then
     BRANCH="develop"
 fi
 
-BENCHMARK_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}")/.." && pwd )"
-echo ${BENCHMARK_ROOT}
+REPO_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}")/.." && pwd )"
+echo ${REPO_ROOT}
 
 function prepare_env(){
-    # Install tensorflow and other packages
-    pip install pre-commit pylint pytest
+    pip install pre-commit pylint  # pytest
 }
 
 function abort(){
-    echo "Your change doesn't follow benchmark's code style." 1>&2
+    echo "Your change doesn't follow PaddlePaddle's code style." 1>&2
     echo "Please use pre-commit to check what is wrong." 1>&2
     exit 1
 }
 
 
 function check_style(){
-	trap 'abort' 0
-	pre-commit install
-	commit_files=on
-    	for file_name in `git diff --numstat upstream/$BRANCH| awk '{print $NF}'`;do
-		if  ! pre-commit run --files ../$file_name ; then
-            		git diff
-            		commit_files=off
-        	fi
-    	done
-    	if [ $commit_files == 'off' ];then
-        	echo "code format error"
-        	exit 1
-    	fi
-    	trap 0
+    trap 'abort' 0
+    pre-commit install
+    commit_files=on
+    for file_name in `git diff --numstat upstream/$BRANCH| awk '{print $NF}'`;do
+        if  ! pre-commit run --files ../$file_name ; then
+            git diff
+            commit_files=off
+            echo "Please check the code style of ${file_name}"
+        fi
+    done
+    if [ $commit_files == 'off' ];then
+        echo "======================================================================="
+        echo "Code style check failed! Please check the error info above carefully."
+        echo "======================================================================="
+        exit 1
+    fi
+    trap 0
 }
 
-prepare_env
+# prepare_env
 check_style

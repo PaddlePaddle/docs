@@ -32,13 +32,13 @@ We will introduce the obtaining, usage and theory of Paddle-TensorRT library in 
 When using AnalysisPredictor, we enable Paddle-TRT by setting
 
 ``` c++
-config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,  
-                        batch_size        /* max_batch_size*/,  
+config->EnableTensorRtEngine(1 << 20      /* workspace_size*/,
+                        batch_size        /* max_batch_size*/,
                         3                 /* min_subgraph_size*/,
                         AnalysisConfig::Precision::kFloat32 /* precision*/,
                         false             /* use_static*/,
                         false             /* use_calib_mode*/);
-```  
+```
 The details of this interface is as following:
 
 - **`workspace_size`**: type:int, default is 1 << 20. Sets the max workspace size of TRT. TensorRT will choose kernels under this constraint.
@@ -95,7 +95,7 @@ The details of this interface is as following:
 
     Please configure `run.sh` depending on your environment.
 
-4. Build and run the sample.  
+4. Build and run the sample.
 
     ``` shell
     sh run.sh
@@ -103,7 +103,7 @@ The details of this interface is as following:
 
 ## <a name="Paddle-TRT INT8 usage">Paddle-TRT INT8 usage</a>
 
-1. Paddle-TRT INT8 introduction  
+1. Paddle-TRT INT8 introduction
     The parameters of the neural network are redundant to some extent. In many tasks, we can turn the Float32 model into Int8 model on the premise of precision. At present, Paddle-TRT supports to turn the trained Float32 model into Int8 model off line. The specific processes are as follows:
 
     1）**Create the calibration table**. We prepare about 500 real input data, and input the data to the model. Paddle-TRT will count the range information of each op input and output value in the model, and record in the calibration table. The information can reduce the information loss during model transformation.
@@ -114,22 +114,22 @@ The details of this interface is as following:
 
     change the `mobilenet_test` in `run.sh` to `fluid_generate_calib_test` and run
 
-    ``` shell  
-    sh run.sh  
+    ``` shell
+    sh run.sh
     ```
 
     We generate 500 input data to simulate the process, and it's suggested that you use real example for experiment. After the running period, there will be a new file named trt_calib_* under the `SAMPLE_BASE_DIR/sample/paddle-TRT/build/mobilenetv1/_opt_cache` model directory, which is the calibration table.
 
     Then copy the model dir with calibration infomation to path
 
-    ``` shell  
-    cp -rf SAMPLE_BASE_DIR/sample/paddle-TRT/build/mobilenetv1/ SAMPLE_BASE_DIR/sample/paddle-TRT/mobilenetv1_calib  
+    ``` shell
+    cp -rf SAMPLE_BASE_DIR/sample/paddle-TRT/build/mobilenetv1/ SAMPLE_BASE_DIR/sample/paddle-TRT/mobilenetv1_calib
     ```
 
     change `fluid_generate_calib_test` in `run.sh` to `fluid_int8_test`, and change model dir path to `SAMPLE_BASE_DIR/sample/paddle-TRT/mobilenetv1_calib` and run
 
-    ``` shell  
-    sh run.sh  
+    ``` shell
+    sh run.sh
     ```
 
 ## <a name="Paddle-TRT subgraph operation principle">Paddle-TRT subgraph operation principle</a>
@@ -159,16 +159,16 @@ A simple model expresses the process :
 - models: ResNet50，MobileNet，ResNet101, Inception V3.
 
 ### Test set
-**PaddlePaddle, Pytorch, Tensorflow**
+**PaddlePaddle, PyTorch, TensorFlow**
 
 - PaddlePaddle integrates TensorRT with subgraph, model[link](https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/image_classification/models)。
-- Pytorch uses original kernels, model[link1](https://github.com/pytorch/vision/tree/master/torchvision/models), [link2](https://github.com/marvis/pytorch-mobilenet)。
-- We tested TF original and TF-TRT**对TF—TRT的测试并没有达到预期的效果，后期会对其进行补充**, model[link](https://github.com/tensorflow/models)。
+- PyTorch uses original kernels, model[link1](https://github.com/pytorch/vision/tree/master/torchvision/models), [link2](https://github.com/marvis/pytorch-mobilenet)。
+- We tested TF original and TF-TRT**对 TF—TRT 的测试并没有达到预期的效果，后期会对其进行补充**, model[link](https://github.com/tensorflow/models)。
 
 
 #### ResNet50
 
-|batch_size|PaddlePaddle(ms)|Pytorch(ms)|TensorFlow(ms)|
+|batch_size|PaddlePaddle(ms)|PyTorch(ms)|TensorFlow(ms)|
 |---|---|---|---|
 |1|4.64117 |16.3|10.878|
 |5|6.90622| 22.9 |20.62|
@@ -176,7 +176,7 @@ A simple model expresses the process :
 
 #### MobileNet
 
-|batch_size|PaddlePaddle(ms)|Pytorch(ms)|TensorFlow(ms)|
+|batch_size|PaddlePaddle(ms)|PyTorch(ms)|TensorFlow(ms)|
 |---|---|---|---|
 |1| 1.7541 | 7.8 |2.72|
 |5| 3.04666 | 7.8 |3.19|
@@ -184,7 +184,7 @@ A simple model expresses the process :
 
 #### ResNet101
 
-|batch_size|PaddlePaddle(ms)|Pytorch(ms)|TensorFlow(ms)|
+|batch_size|PaddlePaddle(ms)|PyTorch(ms)|TensorFlow(ms)|
 |---|---|---|---|
 |1|8.95767| 22.48 |18.78|
 |5|12.9811 | 33.88 |34.84|
@@ -193,7 +193,7 @@ A simple model expresses the process :
 
 #### Inception v3
 
-|batch_size|PaddlePaddle(ms)|Pytorch(ms)|TensorFlow(ms)|
+|batch_size|PaddlePaddle(ms)|PyTorch(ms)|TensorFlow(ms)|
 |---|---|---|---|
 |1|15.1613 | 24.2 |19.1|
 |5|18.5373 | 34.8 |27.2|

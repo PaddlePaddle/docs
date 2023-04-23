@@ -6,19 +6,21 @@ load
 .. py:function:: paddle.jit.load(path, **configs)
 
 
-将接口 ``paddle.jit.save`` 或者 ``paddle.static.save_inference_model`` 存储的模型载入为 ``paddle.jit.TranslatedLayer`` ，用于预测推理或者fine-tune训练。
+将接口 ``paddle.jit.save`` 或者 ``paddle.static.save_inference_model`` 存储的模型载入为 ``paddle.jit.TranslatedLayer``，用于预测推理或者 fine-tune 训练。
 
 .. note::
-    如果载入的模型是通过 ``paddle.static.save_inference_model`` 存储的，在使用它进行fine-tune训练时会存在一些局限：
-    1. 命令式编程模式不支持 ``LoDTensor`` ，所有原先输入变量或者参数依赖于LoD信息的模型暂时无法使用；
-    2. 所有存储模型的feed变量都需要被传入 ``Translatedlayer`` 的forward方法；
+    如果载入的模型是通过 ``paddle.static.save_inference_model`` 存储的，在使用它进行 fine-tune 训练时会存在一些局限：
+    1. 命令式编程模式不支持 ``LoDTensor``，所有原先输入变量或者参数依赖于 LoD 信息的模型暂时无法使用；
+    2. 所有存储模型的 feed 变量都需要被传入 ``Translatedlayer`` 的 forward 方法；
     3. 原模型变量的 ``stop_gradient`` 信息已丢失且无法准确恢复；
     4. 原模型参数的 ``trainable`` 信息已丢失且无法准确恢复。
 
 参数
 :::::::::
-    - path (str) - 载入模型的路径前缀。格式为 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
-    - **config (dict, 可选) - 其他用于兼容的载入配置选项。这些选项将来可能被移除，如果不是必须使用，不推荐使用这些配置选项。默认为 ``None``。目前支持以下配置选项：(1) model_filename (str) - paddle 1.x版本 ``save_inference_model`` 接口存储格式的预测模型文件名，原默认文件名为 ``__model__`` ； (2) params_filename (str) - paddle 1.x版本 ``save_inference_model`` 接口存储格式的参数文件名，没有默认文件名，默认将各个参数分散存储为单独的文件。
+    - **path** (str) - 载入模型的路径前缀。格式为 ``dirname/file_prefix`` 或者 ``file_prefix`` 。
+    - **config** (dict，可选) - 其他用于兼容的载入配置选项。这些选项将来可能被移除，如果不是必须使用，不推荐使用这些配置选项。默认为 ``None``。目前支持以下配置选项：
+        (1) model_filename (str) - paddle 1.x 版本 ``save_inference_model`` 接口存储格式的预测模型文件名，原默认文件名为 ``__model__`` ；
+        (2) params_filename (str) - paddle 1.x 版本 ``save_inference_model`` 接口存储格式的参数文件名，没有默认文件名，默认将各个参数分散存储为单独的文件。
 
 返回
 :::::::::
@@ -27,7 +29,7 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
 代码示例
 :::::::::
 
-1. 载入由接口 ``paddle.jit.save`` 存储的模型进行预测推理及fine-tune训练。
+1. 载入由接口 ``paddle.jit.save`` 存储的模型进行预测推理及 fine-tune 训练。
 
     .. code-block:: python
 
@@ -58,7 +60,7 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
 
         class LinearNet(nn.Layer):
             def __init__(self):
-                super(LinearNet, self).__init__()
+                super().__init__()
                 self._linear = nn.Linear(IMAGE_SIZE, CLASS_NUM)
 
             @paddle.jit.to_static
@@ -115,7 +117,7 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
 
 
 
-2. 兼容载入由接口 ``paddle.fluid.io.save_inference_model`` 存储的模型进行预测推理及fine-tune训练。
+2. 兼容载入由接口 ``paddle.fluid.io.save_inference_model`` 存储的模型进行预测推理及 fine-tune 训练。
 
     .. code-block:: python
 
@@ -145,7 +147,7 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
 
             def __len__(self):
                 return self.num_samples
-                
+
         paddle.enable_static()
 
         image = static.data(name='image', shape=[None, 784], dtype='float32')
@@ -166,16 +168,17 @@ TranslatedLayer，一个能够执行存储模型的 ``Layer`` 对象。
         loader = paddle.io.DataLoader(dataset,
             feed_list=[image, label],
             places=place,
-            batch_size=BATCH_SIZE, 
+            batch_size=BATCH_SIZE,
             shuffle=True,
             drop_last=True,
+            return_list=False,
             num_workers=2)
 
         # 1. train and save inference model
         for data in loader():
             exe.run(
                 static.default_main_program(),
-                feed=data, 
+                feed=data,
                 fetch_list=[avg_loss])
 
         model_path = "fc.example.model"

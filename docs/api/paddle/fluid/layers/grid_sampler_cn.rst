@@ -8,8 +8,10 @@ grid_sampler
 
 
 
-该OP基于flow field网格的对输入X进行双线性插值采样。网格通常由affine_grid生成, shape为[N, H, W, 2]，是shape为[N, H, W]的采样点张量的(x, y)坐标。
-其中，x坐标是对输入数据X的第四个维度(宽度维度)的索引，y坐标是第三维度(高维度)的索引，最终输出采样值为采样点的4个最接近的角点的双线性插值结果，输出张量的shape为[N, C, H, W]。
+基于 flow field 网格的对输入 X 进行双线性插值采样。网格通常由 affine_grid 生成，当输入 X 为 4 维时，网格 shape 为[N, H, W, 2]，是 shape 为[N, H, W]的采样点 Tensor 的(x, y)坐标。
+其中，x 坐标是对输入数据 X 的第四个维度(宽度维度)的索引，y 坐标是第三维度(高维度)的索引，最终输出采样值为采样点的 4 个最接近的角点的双线性插值结果，输出 Tensor 的 shape 为[N, C, H, W]。
+当输入 X 为 5 维时，网格 shape 为[N, D, H, W, 3]，是 shape 为[N, D, H, W]的采样点 Tensor 的(x, y, z)坐标。其中，x 坐标是对输入数据 X 的第五个维度(宽度维度)的索引，y 坐标是第四维度
+(高度维度)的索引，z 坐标是第三个维度(深度维度)的索引，最终输出采样值为采样点的 8 个最接近的角点的双线性插值结果，输出 Tensor 的 shape 为[N, C, D, H, W]。
 
 step 1：
 
@@ -21,7 +23,7 @@ step 1：
 
 step 2：
 
-  在每个[H, W]区域用网格(X, y)作为输入数据X的索引，并将双线性插值点值由4个最近的点表示。
+  在每个[H, W]区域用网格(X, y)作为输入数据 X 的索引，并将双线性插值点值由 4 个最近的点表示。
 
 .. code-block:: text
 
@@ -52,33 +54,33 @@ step 2：
     output = wn * d_e * d_s + en * d_w * d_s
            + ws * d_e * d_n + es * d_w * d_n
 
-参数：
-  - **x** (Variable): 输入张量，维度为 :math:`[N, C, H, W]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
-  - **grid** (Variable): 输入网格数据张量，维度为 :math:`[N, H, W, 2]` 的4-D Tensor，N为批尺寸，C是通道数，H是特征高度，W是特征宽度, 数据类型为float32或float64。
-  - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置。默认值：None。
+参数
+::::::::::::
 
-返回： Variable(Tensor): 输入X基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的4-D Tensor
+  - **x** (Variable)：输入 Tensor，维度为 :math:`[N, C, H, W]` 的 4-D Tensor 或维度为 :math:`[N, C, D, H, W]` 的 5-D Tensor，N 为批尺寸，C 是通道数，D 是特征深度，H 是特征高度，W 是特征宽度，数据类型为 float32 或 float64。
+  - **grid** (Variable)：输入网格数据 Tensor，维度为 :math:`[N, H, W, 2]` 的 4-D Tensor 或维度为 :math:`[N, D, H, W, 3]` 的 5-D Tensor，N 为批尺寸，C 是通道数，D 是特征深度， H 是特征高度，W 是特征宽度，数据类型为 float32 或 float64。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-返回类型：变量(Variable)，数据类型与 ``x`` 一致
+返回
+::::::::::::
+ Variable(Tensor)：输入 X 基于输入网格的双线性插值计算结果，维度为 :math:`[N, C, H, W]` 的 4-D Tensor 或维度为 :math:`[N, C, D, H, W]` 的 5-D Tensor
 
-**代码示例：**
+返回类型
+::::::::::::
+变量(Variable)，数据类型与 ``x`` 一致
+
+代码示例
+::::::::::::
 
 .. code-block:: python
 
+    import paddle
     import paddle.fluid as fluid
 
+    paddle.enable_static()
+
     # 一般与 affine_grid 组合使用
-    x = fluid.data(name='x', shape=[None, 10, 32, 32], dtype='float32')
-    theta = fluid.layers.data(name='theta', shape=[2, 3], dtype='float32')
-    grid = fluid.layers.affine_grid(theta=theta, out_shape=[3, 10, 32, 32])
-    out = fluid.layers.grid_sampler(x=x, grid=grid)
-
-
-
-
-
-
-
-
-
-
+    x = paddle.static.data(name='x', shape=[3, 10, 32, 32], dtype='float32')
+    theta = paddle.static.data(name='theta', shape=[2, 2, 3], dtype='float32')
+    grid = paddle.nn.functional.affine_grid(theta=theta, out_shape=[3, 10, 32, 32])
+    out = paddle.nn.functional.grid_sample(x=x, grid=grid)

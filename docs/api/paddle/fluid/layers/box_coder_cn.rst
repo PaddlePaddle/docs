@@ -36,58 +36,39 @@ Bounding Box Coder
 
     oh &= exp(phv * th ) * ph + th/2
 
-其中tx，ty，tw，th分别表示目标框的中心坐标、宽度和高度。同样地，px，py，pw，ph表示先验框地中心坐标、宽度和高度。pxv，pyv，pwv，phv表示先验框变量，ox，oy，ow，oh表示编码/解码坐标、宽度和高度。
+其中 tx，ty，tw，th 分别表示目标框的中心坐标、宽度和高度。同样地，px，py，pw，ph 表示先验框地中心坐标、宽度和高度。pxv，pyv，pwv，phv 表示先验框变量，ox，oy，ow，oh 表示编码/解码坐标、宽度和高度。
 
 
-在Box Decoding期间，支持两种broadcast模式。 假设目标框具有形状[N，M，4]，并且prior框的形状可以是[N，4]或[M，4]。 然后，prior框将沿指定的轴broadcast到目标框。
+在 Box Decoding 期间，支持两种 broadcast 模式。假设目标框具有形状[N，M，4]，并且 prior 框的形状可以是[N，4]或[M，4]。然后，prior 框将沿指定的轴 broadcast 到目标框。
 
 
-参数：
-    - **prior_box** (Variable) - 维度为[M,4]的2-D Tensor，M表示存储M个框，数据类型为float32或float64。先验框，每个框代表[xmin，ymin，xmax，ymax]，[xmin，ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐
+参数
+::::::::::::
+
+    - **prior_box** (Variable) - 维度为[M,4]的 2-D Tensor，M 表示存储 M 个框，数据类型为 float32 或 float64。先验框，每个框代表[xmin，ymin，xmax，ymax]，[xmin，ymin]是先验框的左顶点坐标，如果输入数图像特征图，则接近坐标原点。[xmax,ymax]是先验框的右底点坐
 标
-    - **prior_box_var** (list|Variable|None) - 支持三种输入类型，一是维度为：math:`[M,4]`的2-D Tensor，存储M个先验框的variance，数据类型为float32或float64。另外是一个长度为4的列表，所有先验框共用这个列表中的variance，数据类型为float32或float64。为None时不参与计算。
-    - **target_box** (Variable) - 数据类型为float，double的Tensor或者LoDTensor，当code_type为‘encode_center_size’，输入是二维LoDTensor，维度为[N,4]，N为目标框的个数，目标框的格式与先验框相同。当code_type为‘decode_center_size’，输>入为3-D Tensor，维度为[N,M,4]。通常N表示产生检测框的个数，M表示类别数。此时目标框为偏移量。
-    - **code_type** (str) - 编码类型用目标框，可以是encode_center_size或decode_center_size，默认值为`encode_center_size`
-    - **box_normalized** (bool) - 先验框坐标是否正则化，即是否在[0, 1]区间内。默认值为true
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
-    - **axis**  (int32) – 在PriorBox中为axis指定的轴broadcast以进行框解码，例如，如果axis为0，TargetBox具有形状[N，M，4]且PriorBox具有形状[M，4]，则PriorBox将broadcast到[N，M，4]用于解码。仅在code_type为decode_center_size时有效。默认值为0
+    - **prior_box_var** (list|Variable|None) - 支持三种输入类型，一是维度为 :math:`[M,4]`的 2-D Tensor，存储 M 个先验框的 variance，数据类型为 float32 或 float64。另外是一个长度为 4 的列表，所有先验框共用这个列表中的 variance，数据类型为 float32 或 float64。为 None 时不参与计算。
+    - **target_box** (Variable) - 数据类型为 float，double 的 Tensor 或者 LoDTensor，当 code_type 为‘encode_center_size’，输入是二维 LoDTensor，维度为[N,4]，N 为目标框的个数，目标框的格式与先验框相同。当 code_type 为‘decode_center_size’，输>入为 3-D Tensor，维度为[N,M,4]。通常 N 表示产生检测框的个数，M 表示类别数。此时目标框为偏移量。
+    - **code_type** (str) - 编码类型用目标框，可以是 encode_center_size 或 decode_center_size，默认值为`encode_center_size`
+    - **box_normalized** (bool) - 先验框坐标是否正则化，即是否在[0, 1]区间内。默认值为 true
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+    - **axis**  (int32) – 在 PriorBox 中为 axis 指定的轴 broadcast 以进行框解码，例如，如果 axis 为 0，TargetBox 具有形状[N，M，4]且 PriorBox 具有形状[M，4]，则 PriorBox 将 broadcast 到[N，M，4]用于解码。仅在 code_type 为 decode_center_size 时有效。默认值为 0
 
 
-返回：
-       - 表示解码或编码结果的Tensor或LoDTensor。数据类型为float32或float64。
-       - ``code_type`` 为 ``‘encode_center_size’`` 时，形状为[N,M,4]的编码结果，N为目标框的个数，M为先验框的个数。
+返回
+::::::::::::
+
+       - 表示解码或编码结果的 Tensor。数据类型为 float32 或 float64。
+       - ``code_type`` 为 ``‘encode_center_size’`` 时，形状为[N,M,4]的编码结果，N 为目标框的个数，M 为先验框的个数。
        - ``code_type`` 为 ``‘decode_center_size’`` 时，形状为[N,M,4]的解码结果，形状与输入目标框相同。
 
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
 
-**代码示例**
+代码示例
+::::::::::::
 
-.. code-block:: python
-
-    import paddle.fluid as fluid
-    # For encode
-    prior_box_encode = fluid.data(name='prior_box_encode',
-                                  shape=[512, 4],
-                                  dtype='float32')
-    target_box_encode = fluid.data(name='target_box_encode',
-                                   shape=[81,4],
-                                   dtype='float32')
-    output_encode = fluid.layers.box_coder(prior_box=prior_box_encode,
-                                    prior_box_var=[0.1,0.1,0.2,0.2],
-                                    target_box=target_box_encode,
-                                    code_type="encode_center_size")
-    # For decode
-    prior_box_decode = fluid.data(name='prior_box_decode',
-                                  shape=[512, 4],
-                                  dtype='float32')
-    target_box_decode = fluid.data(name='target_box_decode',
-                                   shape=[512,81,4],
-                                   dtype='float32')
-    output_decode = fluid.layers.box_coder(prior_box=prior_box_decode,
-                                    prior_box_var=[0.1,0.1,0.2,0.2],
-                                    target_box=target_box_decode,
-                                    code_type="decode_center_size",
-                                    box_normalized=False,
-                                    axis=1)
+COPY-FROM: paddle.fluid.layers.box_coder

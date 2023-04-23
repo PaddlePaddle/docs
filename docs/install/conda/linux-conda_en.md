@@ -48,7 +48,7 @@ for Windows
 activate paddle_env
 ```
 
-for MacOS/Linux
+for macOS/Linux
 
 ```
 conda activate paddle_env
@@ -68,7 +68,7 @@ In a Windows environment, the command to get the Python path is:
 where python
 ```
 
-In a MacOS/Linux environment, the command to get the Python path is:
+In a macOS/Linux environment, the command to get the Python path is:
 
 ```
 which python
@@ -79,7 +79,7 @@ which python
 1.2.2 Check the version of Python
 
 
-Use the following command to confirm it's version is 3.6/3.7/3.8/3.9
+Use the following command to confirm it's version is 3.7/3.8/3.9/3.10
 
 ```
 python --version
@@ -116,7 +116,7 @@ python -c "import platform;print(platform.architecture()[0]);print(platform.mach
 
 * If you need to use a multi-card environment, please make sure that you have installed nccl2 correctly, or install nccl2 according to the following instructions (here are the installation instructions of nccl2 under CUDA9 and cuDNN7. For more version installation information, please refer to NVIDIA [Official Website](https://developer.nvidia.com/nccl)):
 
-  * **Centos system can refer to the following commands**
+  * **CentOS system can refer to the following commands**
 
         wget http://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
 

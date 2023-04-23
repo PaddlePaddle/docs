@@ -6,29 +6,19 @@ CosineSimilarity
 
 **CosineSimilarity**
 
-计算x1与x2沿axis维度的余弦相似度。
+计算 x1 与 x2 沿 axis 维度的余弦相似度。
 
-参数：
-  - **axis** (int) - 指定计算的维度，会在该维度上计算余弦相似度，默认值为1。
-  - **eps** (float) - 很小的值，防止计算时分母为0，默认值为1e-8。
+参数
+::::::::::::
 
-返回：无
+  - **axis** (int) - 指定计算的维度，会在该维度上计算余弦相似度，默认值为 1。
+  - **eps** (float) - 很小的值，防止计算时分母为 0，默认值为 1e-8。
 
-**代码示例**
+返回
+::::::::::::
+无
 
-..  code-block:: python
+代码示例
+::::::::::::
 
-    import paddle
-    import paddle.nn as nn
-    import numpy as np
-
-    np.random.seed(0)
-    x1 = np.random.rand(2,3)
-    x2 = np.random.rand(2,3)
-    x1 = paddle.to_tensor(x1)
-    x2 = paddle.to_tensor(x2)
-
-    cos_sim_func = nn.CosineSimilarity(axis=0)
-    result = cos_sim_func(x1, x2)
-    print(result)
-    # [0.99806249 0.9817672  0.94987036]
+COPY-FROM: paddle.nn.CosineSimilarity

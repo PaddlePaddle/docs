@@ -16,7 +16,7 @@ To create a :code:`DataFeeder` object:
     place = fluid.CUDAPlace(0) if fluid.core.is_compiled_with_cuda() else fluid.CPUPlace()
     feeder = fluid.DataFeeder(feed_list=[image, label], place=place)
 
-The :code:`feed_list` parameter is a list of variables created by :code:`fluid.layers.data()` . 
+The :code:`feed_list` parameter is a list of variables created by :code:`fluid.layers.data()` .
 The :code:`place` parameter indicates that data such as numpy array passed in from the Python side should be converted to GPU or CPU :code:`LoDTensor`.
 After creating the :code:`DataFeeder` object, the user can call the :code:`feed(iterable)` method to convert :code:`iterable` data given by user into :code:`LoDTensor` .
 

@@ -33,15 +33,15 @@ Introduction to APIs for saving a model
 
   For API Reference, please refer to :ref:`api_fluid_io_save_persistables`.
 
-- :code:`fluid.io.save_inference_model`: please refer to  :ref:`api_guide_inference_en`.  
+- :code:`fluid.io.save_inference_model`: please refer to  :ref:`api_guide_inference_en`.
 
 Introduction to APIs for loading a model
 ========================================
 
 - :code:`fluid.io.load_vars`: Executor( :code:`Executor` ) loads variables into the target directory. There are two ways to load variables:
-  
+
   1）:code:`vars` in the API assigns variable list to be loaded.
-  
+
   2）Assign an existed program( :code:`Program` ) to the :code:`main_program` field in the API, and then all variables in the program will be loaded.
 
   The first loading method has higher priority than the second one.

@@ -51,34 +51,30 @@ sequence_conv
 
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (Variable) - 维度为 :math:`（M, K)` 的二维LoDTensor，仅支持lod_level为1。其中M是mini-batch的总时间步数，K是输入的 ``hidden_size`` 特征维度。数据类型为float32或float64。
     - **num_filters** (int) - 滤波器的数量。
-    - **filter_size** (int) - 滤波器的高度（H）；不支持指定滤波器宽度（W），宽度固定取值为输入的 ``hidden_size`` 。默认值为3。
+    - **filter_size** (int) - 滤波器的高度（H）；不支持指定滤波器宽度（W），宽度固定取值为输入的 ``hidden_size``。默认值为3。
     - **filter_stride** (int) - 滤波器每次移动的步长。目前只支持取值为1，默认为1。
     - **padding** (bool) - **此参数不起任何作用，将在未来的版本中被移除。** 无论 ``padding`` 取值为False或者True，默认地，该函数会自适应地在每个输入序列的两端等长地填充全0数据，以确保卷积后的输出序列长度和输入长度一致。默认填充是考虑到输入的序列长度可能会小于卷积核大小，这会导致无正确计算卷积输出。填充为0的数据在训练过程中不会被更新。默认为True。
     - **padding_start** (int) - 表示对输入序列填充时的起始位置，可以为负值。负值表示在每个序列的首端填充 ``|padding_start|`` 个时间步（time_step）的全0数据；正值表示对每个序列跳过前 ``padding_start`` 个时间步的数据。同时在末端填充 :math:`filter\_size + padding\_start - 1` 个时间步的全0数据，以保证卷积输出序列长度和输入长度一致。如果 ``padding_start`` 为None，则在每个序列的两端填充 :math:`\frac{filter\_size}{2}` 个时间步的全0数据；如果 ``padding_start`` 设置为0，则只在序列的末端填充 :math:`filter\_size - 1` 个时间步的全0数据。默认为None。
     - **bias_attr** (ParamAttr) - 指定偏置参数属性的对象。默认值为None，表示使用默认的偏置参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
     - **param_attr** (ParamAttr) - 指定权重参数属性的对象。默认值为None，表示使用默认的权重参数属性。具体用法请参见 :ref:`cn_api_fluid_ParamAttr` 。
-    - **act** (str) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations` ，默认值为None。
-    - **name** (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+    - **act** (str) – 应用于输出上的激活函数，如tanh、softmax、sigmoid，relu等，支持列表请参考 :ref:`api_guide_activations`，默认值为None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 
-返回：和输入序列等长的LoDTensor，数据类型和输入一致，为float32或float64。
+返回
+::::::::::::
+和输入序列等长的LoDTensor，数据类型和输入一致，为float32或float64。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**
+代码示例
+::::::::::::
 
-..  code-block:: python
-
-    import paddle.fluid as fluid
-    x = fluid.layers.data(name='x', shape=[10,10], append_batch_size=False, dtype='float32')
-    x_conved = fluid.layers.sequence_conv(x,2)
-
-
-
-
-
-
-
+COPY-FROM: paddle.fluid.layers.sequence_conv

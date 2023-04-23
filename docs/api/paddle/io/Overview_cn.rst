@@ -3,78 +3,77 @@
 paddle.io
 ---------------------
 
-paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的API。具体如下：
+paddle.io 目录下包含飞桨框架数据集定义、数据读取相关的 API。具体如下：
 
--  :ref:`多进程数据读取器相关API <about_dataloader>`
--  :ref:`数据集定义相关API <about_dataset_define>`
--  :ref:`数据集操作相关API <about_dataset_operate>`
--  :ref:`采样器相关API <about_sampler>`
--  :ref:`批采样器相关API <about_batch_sampler>`
+-  :ref:`多进程数据读取器相关 API <about_dataloader>`
+-  :ref:`数据集定义相关 API <about_dataset_define>`
+-  :ref:`数据集操作相关 API <about_dataset_operate>`
+-  :ref:`采样器相关 API <about_sampler>`
+-  :ref:`批采样器相关 API <about_batch_sampler>`
 
 
 
 .. _about_dataloader:
 
-多进程数据读取器相关API
+多进程数据读取器相关 API
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
     :widths: 10, 30
 
     " :ref:`DataLoader <cn_api_fluid_io_DataLoader>` ", "多进程数据读取器"
     " :ref:`get_worker_info <cn_api_io_cn_get_worker_info>` ", "获取当前子进程相关信息"
-    
+
 .. _about_dataset_define:
 
-数据集定义相关API
+数据集定义相关 API
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
     :widths: 10, 30
 
     " :ref:`Dataset <cn_api_io_cn_Dataset>` ", "映射式(map-style)数据集基类定义接口"
     " :ref:`IterableDataset <cn_api_io_cn_IterableDataset>` ", "迭代式(iterable-style)数据集基类定义接口"
-    " :ref:`TensorDataset <cn_api_io_cn_TensorDataset>` ", "张量(Tensor)数据集基类定义接口"
-    
+    " :ref:`TensorDataset <cn_api_io_cn_TensorDataset>` ", "Tensor 数据集基类定义接口"
+
 .. _about_dataset_operate:
 
-数据集操作相关API
+数据集操作相关 API
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
     :widths: 10, 30
 
     " :ref:`ChainDataset <cn_api_io_ChainDataset>` ", "数据集样本级联接口"
     " :ref:`ComposeDataset <cn_api_io_ComposeDataset>` ", "数据集字段组合接口"
     " :ref:`Subset <cn_api_io_Subset>` ", "数据集取子集接口"
-    " :ref:`random_split <cn_api_io_cn_random_split>` ", "给定子集合dataset的长度数组，随机切分出原数据集合的非重复子集合"
+    " :ref:`random_split <cn_api_io_cn_random_split>` ", "给定子集合 dataset 的长度数组，随机切分出原数据集合的非重复子集合"
 
 .. _about_sampler:
 
-采样器相关API
+采样器相关 API
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
     :widths: 10, 30
 
     " :ref:`Sampler <cn_api_io_cn_Sampler>` ", "采样器基类定义接口"
     " :ref:`SequenceSampler <cn_api_io_cn_SequenceSampler>` ", "顺序采样器接口"
     " :ref:`RandomSampler <cn_api_io_cn_RandomSampler>` ", "随机采样器接口"
     " :ref:`WeightedRandomSampler <cn_api_io_cn_WeightedRandomSampler>` ", "带权重随机采样器接口"
-    
+
 .. _about_batch_sampler:
 
-批采样器相关API
+批采样器相关 API
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
     :widths: 10, 30
 
     " :ref:`BatchSampler <cn_api_io_cn_BatchSampler>` ", "批采样器接口"
     " :ref:`DistributedBatchSampler <cn_api_io_cn_DistributedBatchSampler>` ", "分布式批采样器接口, 用于分布式多卡场景"
-    

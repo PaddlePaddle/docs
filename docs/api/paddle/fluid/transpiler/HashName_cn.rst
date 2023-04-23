@@ -11,14 +11,21 @@ HashName
 
 该方法使用 python ``Hash()`` 函数将变量散列到多个parameter server节点。
 
-参数:
+参数
+::::::::::::
+
   - **pserver_endpoints** (list) - endpoint （ip:port）的 list 
 
-返回：实例化后的HashName的对象
+返回
+::::::::::::
+实例化后的HashName的对象
 
-返回类型：HashName
+返回类型
+::::::::::::
+HashName
 
-**代码示例**
+代码示例
+::::::::::::
 
 .. code-block:: python
 
@@ -30,11 +37,15 @@ HashName
           rr.dispatch(vars)
 
 
-.. py:method:: reset()
+方法
+::::::::::::
+reset()
+'''''''''
 
-该方法将重置HashName内置的计数， 计数将重置为0。
+该方法将重置HashName内置的计数，计数将重置为0。
 
-返回：无。
+**返回**
+无。
 
 **代码示例**
 

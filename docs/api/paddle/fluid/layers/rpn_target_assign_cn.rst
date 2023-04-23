@@ -8,68 +8,51 @@ rpn_target_assign
 
 
 
-该OP用于为anchors分配分类标签和回归标签，以便用这些标签对RPN进行训练。
+该 OP 用于为 anchors 分配分类标签和回归标签，以便用这些标签对 RPN 进行训练。
 
-该OP将anchors分为两种类别，正和负。根据Faster-RCNN的paper，正类别anchor包括以下两种anchor:
+该 OP 将 anchors 分为两种类别，正和负。根据 Faster-RCNN 的 paper，正类别 anchor 包括以下两种 anchor:
 
-- 在与一个ground-truth boxes相交的所有anchor中，IoU最高的anchor
-- 和任意一个ground-truth box的IoU超出了阈值 ``rpn_positive_overlap``
+- 在与一个 ground-truth boxes 相交的所有 anchor 中，IoU 最高的 anchor
+- 和任意一个 ground-truth box 的 IoU 超出了阈值 ``rpn_positive_overlap``
 
-负类别anchor是和任何ground-truth boxes的IoU都低于阈值 ``rpn_negative_overlap`` 的anchor.
+负类别 anchor 是和任何 ground-truth boxes 的 IoU 都低于阈值 ``rpn_negative_overlap`` 的 anchor。
 
-正负anchors之外的anchors不会被选出来参与训练。
+正负 anchors 之外的 anchors 不会被选出来参与训练。
 
-回归标签是ground-truth boxes和正类别anchor的偏移值。
+回归标签是 ground-truth boxes 和正类别 anchor 的偏移值。
 
-参数：
-        - **bbox_pred** (Variable) - Shape为 ``[batch_size，M，4]`` 的3-D Tensor，表示M个边界框的预测位置。每个边界框有四个坐标值，即 ``[xmin，ymin，xmax，ymax]`` 。数据类型支持float32和float64。
-        - **cls_logits** (Variable)- Shape为 ``[batch_size，M，1]`` 的3-D Tensor，表示预测的置信度。1是frontground和background的sigmoid，M是边界框的数量。数据类型支持float32和float64。
-        - **anchor_box** (Variable) - Shape为 ``[M，4]`` 的2-D Tensor，它拥有M个框，每个框可表示为 ``[xmin，ymin，xmax，ymax]`` ， ``[xmin，ymin]`` 是anchor框的左上部坐标，如果输入是图像特征图，则它们接近坐标系的原点。 ``[xmax，ymax]`` 是anchor框的右下部坐标。数据类型支持float32和float64。
-        - **anchor_var** (Variable) - Shape为 ``[M，4]`` 的2-D Tensor，它拥有anchor的expand方差。数据类型支持float32和float64。
-        - **gt_boxes** (Variable) - Shape为 ``[Ng，4]`` 的2-D LoDTensor， ``Ng`` 是一个batch内输入groundtruth boxes的总数。数据类型支持float32和float64。
-        - **is_crowd** (Variable) –Shape为 ``[M, 1]`` 的2-D LoDTensor，M为groundtruth boxes的数量。用于标记boxes是否是crowd。数据类型支持int32。
-        - **im_info** (Variable) - Shape为[N，3]的2-D张量，表示原始图像的大小信息。信息包含原始图像宽、高和feature map相对于原始图像缩放的比例。数据类型支持int32。
-        - **rpn_batch_size_per_im** (int，可选) - 整型数字。每个图像中RPN示例总数。数据类型支持int32。缺省值为256。
-        - **rpn_straddle_thresh** (float，可选) - 浮点数字。超出图像外部 ``straddle_thresh`` 个像素的RPN anchors会被删除。数据类型支持float32。缺省值为0.0。
-        - **rpn_fg_fraction** (float，可选) - 浮点数字。标记为foreground boxes的数量占batch内总体boxes的比例。 数据类型支持float32。缺省值为0.5。
-        - **rpn_positive_overlap** (float，可选) - 浮点数字。和任意一个groundtruth box的 ``IoU`` 超出了阈值 ``rpn_positive_overlap`` 的box被判定为正类别。 数据类型支持float32。缺省值为0.7。
-        - **rpn_negative_overlap** (float，可选) - 浮点数字。负类别anchor是和任何ground-truth boxes的IoU都低于阈值 ``rpn_negative_overlap`` 的anchor。 数据类型支持float32。缺省值为0.3。
-        - **use_random** (bool，可选) – 布尔类型。是否使用随机采样来选择foreground boxes和background boxes。缺省值为True。
+参数
+::::::::::::
 
-返回: 元组。格式为 ``(predicted_scores, predicted_location, target_label, target_bbox, bbox_inside_weight)``
-   - **predicted_scores** (Varible) - RPN预测的类别结果。Shape为 ``[F + B，1]`` 的2D Tensor。 ``F`` 为foreground anchor的数量，B为background anchor的数量。数据类型与 ``bbox_pred`` 一致。
-   - **predicted_location** (Variable) - RPN预测的位置结果。Shape为 ``[F, 4]`` 的2D Tensor。数据类型与 ``bbox_pred`` 一致。
-   - **target_label** (Variable) - Shape为 ``[F + B，1]`` 的2D Tensor。数据类型为int32。
-   - **target_bbox** (Variable) - Shape为 ``[F, 4]`` 的2D Tensor。数据类型与 ``bbox_pred`` 一致。
-   - **Bbox_inside_weight** (Variable) - Shape为 ``[F, 4]`` 的2D Tensor。数据类型与 ``bbox_pred`` 一致。
+        - **bbox_pred** (Variable) - Shape 为 ``[batch_size，M，4]`` 的 3-D Tensor，表示 M 个边界框的预测位置。每个边界框有四个坐标值，即 ``[xmin，ymin，xmax，ymax]``。数据类型支持 float32 和 float64。
+        - **cls_logits** (Variable)- Shape 为 ``[batch_size，M，1]`` 的 3-D Tensor，表示预测的置信度。1 是 frontground 和 background 的 sigmoid，M 是边界框的数量。数据类型支持 float32 和 float64。
+        - **anchor_box** (Variable) - Shape 为 ``[M，4]`` 的 2-D Tensor，它拥有 M 个框，每个框可表示为 ``[xmin，ymin，xmax，ymax]`` ， ``[xmin，ymin]`` 是 anchor 框的左上部坐标，如果输入是图像特征图，则它们接近坐标系的原点。``[xmax，ymax]`` 是 anchor 框的右下部坐标。数据类型支持 float32 和 float64。
+        - **anchor_var** (Variable) - Shape 为 ``[M，4]`` 的 2-D Tensor，它拥有 anchor 的 expand 方差。数据类型支持 float32 和 float64。
+        - **gt_boxes** (Variable) - Shape 为 ``[Ng，4]`` 的 2-D LoDTensor， ``Ng`` 是一个 batch 内输入 groundtruth boxes 的总数。数据类型支持 float32 和 float64。
+        - **is_crowd** (Variable) –Shape 为 ``[M, 1]`` 的 2-D LoDTensor，M 为 groundtruth boxes 的数量。用于标记 boxes 是否是 crowd。数据类型支持 int32。
+        - **im_info** (Variable) - Shape 为[N，3]的 2-DTensor，表示原始图像的大小信息。信息包含原始图像宽、高和 feature map 相对于原始图像缩放的比例。数据类型支持 int32。
+        - **rpn_batch_size_per_im** (int，可选) - 整型数字。每个图像中 RPN 示例总数。数据类型支持 int32。缺省值为 256。
+        - **rpn_straddle_thresh** (float，可选) - 浮点数字。超出图像外部 ``straddle_thresh`` 个像素的 RPN anchors 会被删除。数据类型支持 float32。缺省值为 0.0。
+        - **rpn_fg_fraction** (float，可选) - 浮点数字。标记为 foreground boxes 的数量占 batch 内总体 boxes 的比例。数据类型支持 float32。缺省值为 0.5。
+        - **rpn_positive_overlap** (float，可选) - 浮点数字。和任意一个 groundtruth box 的 ``IoU`` 超出了阈值 ``rpn_positive_overlap`` 的 box 被判定为正类别。数据类型支持 float32。缺省值为 0.7。
+        - **rpn_negative_overlap** (float，可选) - 浮点数字。负类别 anchor 是和任何 ground-truth boxes 的 IoU 都低于阈值 ``rpn_negative_overlap`` 的 anchor。数据类型支持 float32。缺省值为 0.3。
+        - **use_random** (bool，可选) – 布尔类型。是否使用随机采样来选择 foreground boxes 和 background boxes。缺省值为 True。
 
-返回类型：元组
+返回
+::::::::::::
+ 元组。格式为 ``(predicted_scores, predicted_location, target_label, target_bbox, bbox_inside_weight)``
+   - **predicted_scores** (Varible) - RPN 预测的类别结果。Shape 为 ``[F + B，1]`` 的 2D Tensor。 ``F`` 为 foreground anchor 的数量，B 为 background anchor 的数量。数据类型与 ``bbox_pred`` 一致。
+   - **predicted_location** (Variable) - RPN 预测的位置结果。Shape 为 ``[F, 4]`` 的 2D Tensor。数据类型与 ``bbox_pred`` 一致。
+   - **target_label** (Variable) - Shape 为 ``[F + B，1]`` 的 2D Tensor。数据类型为 int32。
+   - **target_bbox** (Variable) - Shape 为 ``[F, 4]`` 的 2D Tensor。数据类型与 ``bbox_pred`` 一致。
+   - **Bbox_inside_weight** (Variable) - Shape 为 ``[F, 4]`` 的 2D Tensor。数据类型与 ``bbox_pred`` 一致。
 
-
-**代码示例**
-
-..  code-block:: python
-
-        import paddle.fluid as fluid
-        bbox_pred = fluid.layers.data(name='bbox_pred', shape=[100, 4],
-                append_batch_size=False, dtype='float32')
-        cls_logits = fluid.layers.data(name='cls_logits', shape=[100, 1],
-                append_batch_size=False, dtype='float32')
-        anchor_box = fluid.layers.data(name='anchor_box', shape=[20, 4],
-                append_batch_size=False, dtype='float32')
-        anchor_var = fluid.layers.data(name='anchor_var', shape=[20, 4],	 	 
-                append_batch_size=False, dtype='float32')
-        gt_boxes = fluid.layers.data(name='gt_boxes', shape=[10, 4],
-                append_batch_size=False, dtype='float32')
-        is_crowd = fluid.layers.data(name='is_crowd', shape=[1],
-                    append_batch_size=False, dtype='float32')
-        im_info = fluid.layers.data(name='im_infoss', shape=[1, 3],
-                    append_batch_size=False, dtype='float32')
-        loc_pred, score_pred, loc_target, score_target, bbox_inside_weight=
-                fluid.layers.rpn_target_assign(bbox_pred, cls_logits,
-                        anchor_box, anchor_var, gt_boxes, is_crowd, im_info)
+返回类型
+::::::::::::
+元组
 
 
+代码示例
+::::::::::::
 
-
-
+COPY-FROM: paddle.fluid.layers.rpn_target_assign

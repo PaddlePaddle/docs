@@ -3,11 +3,11 @@
 Maxout
 -------------------------------
 
-.. py:function:: paddle.nn.Maxout(groups, axis=1, name=None)
+.. py:class:: paddle.nn.Maxout(groups, axis=1, name=None)
 
-Maxout激活层.
+Maxout 激活层，创建一个可调用对象计算。
 
-假设输入形状为(N, Ci, H, W)，输出形状为(N, Co, H, W)，则 :math:`Co=Ci/groups` 运算公式如下:
+假设输入形状为(N, Ci, H, W)，输出形状为(N, Co, H, W)，则 :math:`Co=Ci/groups` 运算公式如下：
 
 .. math::
 
@@ -18,33 +18,18 @@ Maxout激活层.
     &0 \le j < s \\
     &0 \le k < groups
 
-参数:
-::::::::::
-    - groups (int) - 指定将输入张量的channel通道维度进行分组的数目。输出的通道数量为通道数除以组数。
-    - axis (int, 可选) - 指定通道所在维度的索引。当数据格式为NCHW时，axis应该被设置为1，当数据格式为NHWC时，axis应该被设置为-1或者3。默认值为1。
-    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+参数
+::::::::::::
+    - **groups** (int) - 指定将输入 Tensor 的 channel 通道维度进行分组的数目。输出的通道数量为通道数除以组数。
+    - **axis** (int，可选) - 指定通道所在维度的索引。当数据格式为 NCHW 时，axis 应该被设置为 1，当数据格式为 NHWC 时，axis 应该被设置为-1 或者 3。默认值为 1。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状:
+形状
 ::::::::::
-    - input: 形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的4-D Tensor，N是批尺寸，C是通道数，H是特征高度，W是特征宽度。
-    - output: 输出形状为 :math:`[N, Co, H, W]` 或 :math:`[N, H, W, Co]` 的4-D Tensor，其中 :math:`Co=C/groups`
+    - input：形状为 :math:`[N, C, H, W]` 或 :math:`[N, H, W, C]` 的 4-D Tensor，N 是批尺寸，C 是通道数，H 是特征高度，W 是特征宽度。
+    - output：输出形状为 :math:`[N, Co, H, W]` 或 :math:`[N, H, W, Co]` 的 4-D Tensor，其中 :math:`Co=C/groups`
 
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.rand([1, 2, 3, 4])
-    # [[[[0.5002636  0.22272532 0.17402348 0.2874594 ]
-    #    [0.95313174 0.6228939  0.7129065  0.7087491 ]
-    #    [0.02879342 0.88725346 0.61093384 0.38833922]]
-    #   [[0.5231306  0.03807496 0.91661984 0.15602879]
-    #    [0.666127   0.616567   0.30741522 0.24044901]
-    #    [0.7142536  0.7351477  0.31588817 0.23782359]]]]
-    m = paddle.nn.Maxout(groups=2)
-    out = m(x)
-    # [[[[0.5231306  0.22272532 0.91661984 0.2874594 ]
-    #    [0.95313174 0.6228939  0.7129065  0.7087491 ]
-    #    [0.7142536  0.88725346 0.61093384 0.38833922]]]]
+COPY-FROM: paddle.nn.Maxout

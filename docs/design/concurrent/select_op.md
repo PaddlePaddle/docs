@@ -42,7 +42,7 @@ x = fill_constant(shape=[1], dtype=core.VarDesc.VarType.INT32, value=0)
 y = fill_constant(shape=[1], dtype=core.VarDesc.VarType.INT32, value=1)
 
 while_cond = fill_constant(shape=[1], dtype=core.VarDesc.VarType.BOOL, value=True)
-while_op = While(cond=while_cond)  
+while_op = While(cond=while_cond)
 
 with while_op.block():
     with fluid.Select() as select:
@@ -103,7 +103,7 @@ blocks {
   //   X: All input variables used by operators within the select block
   //   case_to_execute: Variable filled in by select_op when it determines
   //     which case to execute.
-  //  
+  //
   // outputs:
   //   Out: All output variables referenced by operators within select block.
   //
@@ -126,7 +126,7 @@ blocks {
     outputs {
       parameter: "Out"
       arguments: "fill_constant_110.tmp_0"
-    }  
+    }
     type: "select"
     attrs {
       name: "sub_block"

@@ -9,6 +9,8 @@ gather
 
 .. code-block:: text
 
+        Given:
+
         X = [[1, 2],
              [3, 4],
              [5, 6]]
@@ -22,26 +24,19 @@ gather
         Out = [[3, 4],
                [5, 6]]
 
-**参数**:
-        - **x** (Tensor) - 输入 Tensor, 秩 ``rank >= 1`` , 支持的数据类型包括 int32、int64、float32、float64 和 uint8 (CPU)、float16（GPU） 。
-        - **index** (Tensor) - 索引 Tensor，秩 ``rank = 1``, 数据类型为 int32 或 int64。
-        - **axis** (Tensor) - 指定index 获取输入的维度， ``axis`` 的类型可以是int或者Tensor，当 ``axis`` 为Tensor的时候其数据类型为int32 或者int64。
-        - **name** （str，可选）- 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+参数
+::::::::::::
+        - **x** (Tensor) - 输入 Tensor，秩 ``rank >= 1``，支持的数据类型包括 int32、int64、float32、float64 和 uint8 (CPU)、float16（GPU） 。
+        - **index** (Tensor) - 索引 Tensor，秩 ``rank = 0 `` 或者 ``rank = 1``，数据类型为 int32 或 int64。
+        - **axis** (Tensor) - 指定 index 获取输入的维度，``axis`` 的类型可以是 int 或者 Tensor，当 ``axis`` 为 Tensor 的时候其数据类型为 int32 或者 int64。
+        - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-**返回**：和输入的秩相同的输出Tensor。
+返回
+::::::::::::
+Tensor，当 index 为一维 Tensor 时，返回和输入 Tensor 的形状相同的 Tensor。当 index 为零维 Tensor 时，返回 Tensor 相对于输入 Tensor 会降维， axis 指向的维度会被降维。
 
 
-**代码示例**：
+代码示例
+::::::::::::
 
-..  code-block:: python
-            
-    import numpy as np
-    import paddle
-
-    input_1 = np.array([[1,2],[3,4],[5,6]])
-    index_1 = np.array([0,1])
-    input = paddle.to_tensor(input_1)
-    index = paddle.to_tensor(index_1)
-    output = paddle.gather(input, index, axis=0)
-    # expected output: [[1,2],[3,4]]
-
+COPY-FROM: paddle.gather

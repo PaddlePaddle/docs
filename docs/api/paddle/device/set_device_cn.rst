@@ -6,21 +6,18 @@ set_device
 .. py:function:: paddle.device.set_device(device)
 
 
-Paddle支持包括CPU和GPU在内的多种设备运行，设备可以通过字符串标识符表示，此功能可以指定OP运行的全局设备。
+Paddle 支持包括 CPU 和 GPU 在内的多种设备运行，设备可以通过字符串标识符表示，此功能可以指定 OP 运行的全局设备。
 
-参数：
-    - **device** (str)- 此参数确定特定的运行设备，它可以是 ``cpu``、 ``gpu``、 ``xpu``、 ``npu``、 ``gpu:x``、 ``xpu:x`` 或者是 ``npu:x`` 。其中， ``x`` 是GPU、 XPU 或者是 NPU 的编号。当 ``device`` 是 ``cpu`` 的时候， 程序在CPU上运行， 当device是 ``gpu:x`` 的时候，程序在GPU上运行， 当device是 ``npu:x`` 的时候，程序在NPU上运行。
+参数
+::::::::::::
 
-返回：Place, 设置的Place。
+    - **device** (str)- 此参数确定特定的运行设备，它可以是 ``cpu``、 ``gpu``、 ``xpu``、 ``mlu``、 ``npu``、 ``gpu:x``、 ``xpu:x``、 ``mlu:x`` 或者是 ``npu:x``。其中，``x`` 是 GPU、 XPU、 MLU 或者是 NPU 的编号。当 ``device`` 是 ``cpu`` 的时候，程序在 CPU 上运行，当 device 是 ``gpu:x`` 的时候，程序在 GPU 上运行，当 device 是 ``mlu:x`` 的时候，程序在 MLU 上运行，当 device 是 ``npu:x`` 的时候，程序在 NPU 上运行。
 
-**代码示例**
+返回
+::::::::::::
+Place，设置的 Place。
 
-.. code-block:: python
-    
-    import paddle
-    
-    paddle.device.set_device("cpu")
-    x1 = paddle.ones(name='x1', shape=[1, 2], dtype='int32')
-    x2 = paddle.zeros(name='x2', shape=[1, 2], dtype='int32')
-    data = paddle.stack([x1,x2], axis=1)
-    
+代码示例
+::::::::::::
+
+COPY-FROM: paddle.device.set_device

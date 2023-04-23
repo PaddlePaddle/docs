@@ -3,7 +3,10 @@
 Constant
 -------------------------------
 
-.. py:attribute:: paddle.fluid.initializer.Constant
+属性
+::::::::::::
+paddle.fluid.initializer.Constant
+'''''''''
 
 
 

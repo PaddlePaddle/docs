@@ -11,18 +11,18 @@ Read datasets in distributed training by defining a cluster_reader
 
 Generally, you can implement a cluster_reader, regarding the number of training processes and the process serial number(i.e. trainer_id) to decide which data to read:
 
-	.. code-block:: python
-		
-		def cluster_reader(reader, trainers, trainer_id):
-			def reader_creator():
-				for idx, data in enumerate(reader()):
-					if idx % trainers == trainer_id:
-						yield data
-			return reader
+    .. code-block:: python
 
-		trainers = int(os.getenv("PADDLE_TRAINERS", "1"))
-		trainer_id = int(os.getenv("PADDLE_TRAINER_ID", "0"))
-		train_reader = cluster_reader(paddle.dataset.mnist.train(), trainers, trainer_id)
+        def cluster_reader(reader, trainers, trainer_id):
+            def reader_creator():
+                for idx, data in enumerate(reader()):
+                    if idx % trainers == trainer_id:
+                        yield data
+            return reader
+
+        trainers = int(os.getenv("PADDLE_TRAINERS", "1"))
+        trainer_id = int(os.getenv("PADDLE_TRAINER_ID", "0"))
+        train_reader = cluster_reader(paddle.dataset.mnist.train(), trainers, trainer_id)
 
 In the code above, `trainers` and `trainer_id` are respectively the total number of training processes and the serial number of the current training process, which can be passed to the Python program through environment variables or parameters.
 
@@ -33,32 +33,32 @@ Since `cluster_reader` is still used to read the full set of data, for tasks wit
 For example, in a Linux system, the training data can be split into multiple small files using the `split <http://man7.org/linux/man-pages/man1/split.1.html>`_ command:
 
   .. code-block:: bash
-	$ split -d -a 4 -d -l 100 housing.data cluster/housing.data.
-	$ find ./cluster
-	cluster/
-	cluster/housing.data.0002
-	cluster/housing.data.0003
-	cluster/housing.data.0004
-	cluster/housing.data.0000
-	cluster/housing.data.0001
-	cluster/housing.data.0005
+    $ split -d -a 4 -d -l 100 housing.data cluster/housing.data.
+    $ find ./cluster
+    cluster/
+    cluster/housing.data.0002
+    cluster/housing.data.0003
+    cluster/housing.data.0004
+    cluster/housing.data.0000
+    cluster/housing.data.0001
+    cluster/housing.data.0005
 
 After the data is split, you can define a file_dispatcher function that determines which files need to be read based on the number of training processes and the serial number:
 
-	.. code-block:: python
+    .. code-block:: python
 
-		def file_dispatcher(files_pattern, trainers, trainer_id):
-			file_list = glob.glob(files_pattern)
-			ret_list = []
-			for idx, f in enumerate(file_list):
-				if (idx + trainers) % trainers == trainer_id:
-					ret_list.append(f)
-			return ret_list
-		
-		trainers = int(os.getenv("PADDLE_TRAINERS", "1"))
-		trainer_id = int(os.getenv("PADDLE_TRAINER_ID", "0"))
-		files_pattern = "cluster/housing.data.*"
+        def file_dispatcher(files_pattern, trainers, trainer_id):
+            file_list = glob.glob(files_pattern)
+            ret_list = []
+            for idx, f in enumerate(file_list):
+                if (idx + trainers) % trainers == trainer_id:
+                    ret_list.append(f)
+            return ret_list
 
-		my_files = file_dispatcher(files_pattern, triners, trainer_id)
+        trainers = int(os.getenv("PADDLE_TRAINERS", "1"))
+        trainer_id = int(os.getenv("PADDLE_TRAINER_ID", "0"))
+        files_pattern = "cluster/housing.data.*"
+
+        my_files = file_dispatcher(files_pattern, triners, trainer_id)
 
 In the example above, `files_pattern` is a `glob expression <https://docs.python.org/2.7/library/glob.html>`_ of the training file and can generally be represented by a wildcard.

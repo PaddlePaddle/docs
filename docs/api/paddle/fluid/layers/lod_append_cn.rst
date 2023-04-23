@@ -26,17 +26,24 @@ lod_append
         x.data = [[1.0], [2.0], [3.0], [4.0], [5.0], [6.0]]
         x.dims = [6, 1]
 
-参数：
+参数
+::::::::::::
+
     - **x** (Variable)-输入变量，可以是LoDTensor或tensor。
     - **level** (list|tuple|Variable)-预添加到x的LoD里的LoD level。
 
-返回：一个有着新的LoD level的输出变量
+返回
+::::::::::::
+一个有着新的LoD level的输出变量
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
 Raise: ``ValueError`` - 如果y为None或者level不可迭代。
 
-**代码示例：**
+代码示例
+::::::::::::
 
 .. code-block:: python
 

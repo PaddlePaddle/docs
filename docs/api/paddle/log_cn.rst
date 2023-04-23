@@ -8,28 +8,23 @@ log
 
 
 
-
-Log激活函数（计算自然对数）
+Log 激活函数（计算自然对数）
 
 .. math::
                   \\Out=ln(x)\\
 
 
-参数:
-  - **x** (Tensor) – 该OP的输入为Tensor。数据类型为float32，float64。 
-  - **name** (str，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None。
+参数
+::::::::::::
 
-返回：Tensor, Log算子自然对数输出，数据类型与输入一致。
+  - **x** (Tensor) – 输入为 Tensor。数据类型只能为 float16，float32 或 float64。
+  - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-**代码示例**
+返回
+::::::::::::
+Tensor, Log 算子自然对数输出，数据类型与输入一致。
 
-.. code-block:: python
+代码示例
+::::::::::::
 
-    import paddle
-
-    x = [[2,3,4], [7,8,9]]
-    x = paddle.to_tensor(x, dtype='float32')
-    res = paddle.log(x)
-    # [[0.693147, 1.09861, 1.38629], [1.94591, 2.07944, 2.19722]]
-
-
+COPY-FROM: paddle.log

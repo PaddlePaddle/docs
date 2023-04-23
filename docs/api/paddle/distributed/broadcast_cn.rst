@@ -4,35 +4,31 @@ broadcast
 -------------------------------
 
 
-.. py:function:: paddle.distributed.broadcast(tensor, src, group=0)
+.. py:function:: paddle.distributed.broadcast(tensor, src, group=None, sync_op=True)
 
-广播一个Tensor给其他所有进程
+将一个 tensor 发送到每个进程。
+
+如下图所示，4 个 GPU 分别开启 1 个进程，rank=0 的进程拥有数据 0。
+广播操作后，数据 0 会被发送到所有进程上。
+
+.. image:: ./img/broadcast.png
+  :width: 800
+  :alt: broadcast
+  :align: center
 
 参数
 :::::::::
-    - tensor (Tensor) - 如果当前进程编号是源，那么这个Tensor变量将被发送给其他进程，否则这个Tensor将接收源发送过来的数据。Tensor的数据类型为：float16、float32、float64、int32、int64。
-    - src (int) - 发送源的进程编号。
-    - group (int，可选) - 工作的进程组编号，默认为0。
+    - **tensor** (Tensor) - 在目标进程上为待广播的 tensor，在其他进程上为用于接收广播结果的 tensor。支持的数据类型包括：float16、float32、float64、int32、int64、int8、uint8、bool、bfloat16。
+    - **src** (int) - 目标进程的 rank，该进程传入的 tensor 将被发送到其他进程上。
+    - **group** (Group，可选) - 执行该操作的进程组实例（通过 ``new_group`` 创建）。默认为 None，即使用全局默认进程组。
+    - **sync_op** (bool，可选) - 该操作是否为同步操作。默认为 True，即同步操作。
 
 返回
 :::::::::
-无
+动态图模式下，若为同步操作，无返回值；若为异步操作，返回 ``Task``。通过 ``Task``，可以查看异步操作的执行状态以及等待异步操作的结果。
+
+静态图模式下，无返回值。
 
 代码示例
 :::::::::
-.. code-block:: python
-
-        import numpy as np
-        import paddle
-        from paddle.distributed import init_parallel_env
-
-        paddle.set_device('gpu:%d'%paddle.distributed.ParallelEnv().dev_id)
-        init_parallel_env()
-        if paddle.distributed.ParallelEnv().local_rank == 0:
-            np_data = np.array([[4, 5, 6], [4, 5, 6]])
-        else:
-            np_data = np.array([[1, 2, 3], [1, 2, 3]])
-        data = paddle.to_tensor(np_data)
-        paddle.distributed.broadcast(data, 1)
-        out = data.numpy()
-        # [[1, 2, 3], [1, 2, 3]]
+COPY-FROM: paddle.distributed.broadcast

@@ -31,15 +31,22 @@ sums
                   [444., 555., 666.]]
 
 
-参数：
+参数
+::::::::::::
+
     - **input** (list) - 多个维度相同的Tensor组成的元组。支持的数据类型：float32，float64，int32，int64。
     - **out** (Variable，可选) - 指定求和的结果Tensor，可以是程序中已经创建的任何Variable。默认值为None，此时将创建新的Variable来保存输出结果。
 
-返回：输入的和，数据类型和维度与输入Tensor相同。若 ``out`` 为 ``None`` ，返回值是一个新的Variable；否则，返回值就是 ``out`` 。
+返回
+::::::::::::
+输入的和，数据类型和维度与输入Tensor相同。若 ``out`` 为 ``None``，返回值是一个新的Variable；否则，返回值就是 ``out`` 。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
-**代码示例**：
+代码示例
+::::::::::::
 
 .. code-block:: python
 

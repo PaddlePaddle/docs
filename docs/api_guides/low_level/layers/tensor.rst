@@ -13,14 +13,14 @@ Tensor
 
 1. create_tensor
 ---------------------
-Tensor用于在框架中承载数据，使用 :code:`create_tensor` 可以创建一个指定数据类型的Lod-Tensor变量，
+Tensor 用于在框架中承载数据，使用 :code:`create_tensor` 可以创建一个指定数据类型的 Lod-Tensor 变量，
 
 API reference 请参考： :ref:`cn_api_fluid_layers_create_tensor`
 
 
 2. create_parameter
 ---------------------
-神经网络的训练过程是一个对参数的学习过程，Fluid 使用 :code:`create_parameter` 创建一个可学习的参数。该参数的值可以被operator改变。
+神经网络的训练过程是一个对参数的学习过程，Fluid 使用 :code:`create_parameter` 创建一个可学习的参数。该参数的值可以被 operator 改变。
 
 API reference 请参考：:ref:`cn_api_fluid_layers_create_parameter`
 
@@ -28,7 +28,7 @@ API reference 请参考：:ref:`cn_api_fluid_layers_create_parameter`
 
 3. create_global_var
 ---------------------
-Fluid 使用 :code:`create_global_var` 创建一个全局tensor，通过此 API 可以指定被创建 Tensor 变量的数据类型、形状和值。
+Fluid 使用 :code:`create_global_var` 创建一个全局 tensor，通过此 API 可以指定被创建 Tensor 变量的数据类型、形状和值。
 
 API reference 请参考：:ref:`cn_api_fluid_layers_create_global_var`
 
@@ -94,14 +94,14 @@ API reference 请参考： :ref:`cn_api_fluid_layers_argsort`
 12. ones
 -------------
 
-Fluid 使用 :code:`ones` 创建一个指定大小和数据类型的Tensor，且初始值为1。
+Fluid 使用 :code:`ones` 创建一个指定大小和数据类型的 Tensor，且初始值为 1。
 
 API reference 请参考： :ref:`cn_api_fluid_layers_ones`
 
 13. zeros
 ---------------
 
-Fluid 使用 :code:`zeros` 创建一个指定大小和数据类型的Tensor，且初始值为0。
+Fluid 使用 :code:`zeros` 创建一个指定大小和数据类型的 Tensor，且初始值为 0。
 
 API reference 请参考： :ref:`cn_api_fluid_layers_zeros`
 
@@ -117,12 +117,12 @@ API reference 请参考： :ref:`cn_api_fluid_layers_reverse`
 LoD-Tensor
 ============
 
-LoD-Tensor非常适用于序列数据，相关知识可以参考阅读 `LoD_Tensor <../../../user_guides/howto/basic_concept/lod_tensor.html>`_ 。
+LoD-Tensor 非常适用于序列数据，相关知识可以参考阅读 `LoD_Tensor <../../../user_guides/howto/basic_concept/lod_tensor.html>`_ 。
 
 1. create_lod_tensor
 -----------------------
 
-Fluid 使用 :code:`create_lod_tensor` 基于numpy数组、列表或现有 LoD_Tensor 创建拥有新的层级信息的 LoD_Tensor。
+Fluid 使用 :code:`create_lod_tensor` 基于 numpy 数组、列表或现有 LoD_Tensor 创建拥有新的层级信息的 LoD_Tensor。
 
 API reference 请参考： :ref:`cn_api_fluid_create_lod_tensor`
 

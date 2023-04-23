@@ -4,13 +4,12 @@
 
 docs 是 [PaddlePaddle 官网文档](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/index_cn.html) 的源文件。
 
-注意：英文版API文档直接从[PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 的 docstring 中生成，[飞桨其他项目](https://www.paddlepaddle.org.cn/overview)的文档分别在其对应的位置中管理。
+注意：英文版 API 文档直接从[PaddlePaddle/Paddle](https://github.com/PaddlePaddle/Paddle) 的 docstring 中生成，[飞桨其他项目](https://www.paddlepaddle.org.cn/overview)的文档分别在其对应的位置中管理。
 
 ## 仓库结构
 
-- [doc](doc): 飞桨框架 1.8 以及更老版本文档的源文件，会在未来删除。
 - [docs](docs): 飞桨框架 2.0 以及之后版本文档的源文件。
-- [docs/api](docs/api): 飞桨中文 API文档的源文件。
+- [docs/api](docs/api): 飞桨中文 API 文档的源文件。
 - [docs/guides](docs/guides): 飞桨官方教程的源文件。
 - [docs/tutorial](docs/tutorial): 飞桨相关案例的源文件。
 - [ci_scripts](ci_scripts): docs CI 相关的文件。
@@ -31,7 +30,7 @@ docs 是 [PaddlePaddle 官网文档](https://www.paddlepaddle.org.cn/documentati
     bash docs-build.sh -f absolute_path_docs
     ```
   - step3: preview docs
-  输出的文件会保存在 docs/output 路径下.
+  输出的文件会保存在 docs/output 路径下。
 
 ## 贡献
 

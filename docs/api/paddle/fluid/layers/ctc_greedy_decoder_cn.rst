@@ -9,17 +9,17 @@ ctc_greedy_decoder
 
 
 
-该OP用于贪婪策略解码序列，步骤如下:
-    1. 获取输入中的每一行的最大值索引，也就是numpy.argmax(input, axis=0)。
-    2. 对于step1结果中的每个序列，合并两个空格之间的重复部分并删除所有空格。
+该 OP 用于贪婪策略解码序列，步骤如下：
+    1. 获取输入中的每一行的最大值索引，也就是 numpy.argmax(input, axis=0)。
+    2. 对于 step1 结果中的每个序列，合并两个空格之间的重复部分并删除所有空格。
 
-该API支持两种输入，LoDTensor和Tensor输入，不同输入的代码样例如下：
+该 API 支持两种输入，LoDTensor 和 Tensor 输入，不同输入的代码样例如下：
 
 **样例**：
 
 ::
 
-        # for lod tensor input 
+        # for lod tensor input
         已知：
 
         input.data = [[0.6, 0.1, 0.3, 0.1],
@@ -36,9 +36,9 @@ ctc_greedy_decoder
 
         计算过程：
 
-        1. 将argmax的运算结果应用于输入的第一个序列，即 input.data[0:4] 。
+        1. 将 argmax 的运算结果应用于输入的第一个序列，即 input.data[0:4] 。
            则得出的结果为[[0], [2], [1], [0]]
-        2. 合并重复的索引值部分，删除空格，即为0的值。
+        2. 合并重复的索引值部分，删除空格，即为 0 的值。
            则第一个输入序列对应的输出为：[[2], [1]]
 
         最后
@@ -75,31 +75,25 @@ ctc_greedy_decoder
         output_length.data = [[2], [1]]
 
 
-参数:
-        - **input** (Variable) — 变长序列的概率， 在输入为LoDTensor情况下，它是具有LoD信息的二维LoDTensor。 形状为[Lp，num_classes +1]，其中Lp是所有输入序列的长度之和，num_classes是真实的类数。 在输入为Tensor情况下，它是带有填充的3-D张量，其形状为[batch_size，N，num_classes +1]。 （不包括空白标签）。 数据类型可以是float32或float64。
-        - **blank** (int) — Connectionist Temporal Classification (CTC) loss空白标签索引,  其数值属于半开区间[0,num_classes + 1）
-        - **name** (str) — (str|None，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name` ，默认值为None
+参数
+::::::::::::
 
-返回：对于输入为LoDTensor的情况，返回CTC贪婪解码器的结果，即2-D LoDTensor，形状为[Lp，1]，数据类型为int64。 “ Lp”是所有输出序列长度的总和。 如果结果中的所有序列均为空，则结果LoDTensor将为[-1]，其中LoD为[[]]。对于输入为Tensor的情况，返回一个元组，(output, output_length), 其中，output是一个形状为 [batch_size, N]，类型为int64的Tensor。output_length是一个形状为[batch_size, 1]，类型为int64的Tensor，表示Tensor输入下，每个输出序列的长度。
+        - **input** (Variable) — 变长序列的概率，在输入为 LoDTensor 情况下，它是具有 LoD 信息的二维 LoDTensor。形状为[Lp，num_classes +1]，其中 Lp 是所有输入序列的长度之和，num_classes 是真实的类数。在输入为 Tensor 情况下，它是带有填充的 3-DTensor，其形状为[batch_size，N，num_classes +1]。 （不包括空白标签）。数据类型可以是 float32 或 float64。
+        - **blank** (int) — Connectionist Temporal Classification (CTC) loss 空白标签索引，其数值属于半开区间[0,num_classes + 1）
+        - **name** (str) — (str|None，可选) – 该参数供开发人员打印调试信息时使用，具体用法请参见 :ref:`api_guide_Name`，默认值为 None
 
-返回类型： Variable
+返回
+::::::::::::
+对于输入为 LoDTensor 的情况，返回 CTC 贪婪解码器的结果，即 2-D LoDTensor，形状为[Lp，1]，数据类型为 int64。“Lp”是所有输出序列长度的总和。如果结果中的所有序列均为空，则结果 LoDTensor 将为[-1]，其中 LoD 为[[]]。
 
+对于输入为 Tensor 的情况，返回一个元组，(output, output_length)，其中，output 是一个形状为 [batch_size, N]，类型为 int64 的 Tensor。output_length 是一个形状为[batch_size, 1]，类型为 int64 的 Tensor，表示 Tensor 输入下，每个输出序列的长度。
 
-**代码示例**
-
-..  code-block:: python
-
-    # for lod mode
-    import paddle.fluid as fluid
-    x = fluid.data(name='x', shape=[None, 8], dtype='float32', lod_level=1)
-    cost = fluid.layers.ctc_greedy_decoder(input=x, blank=0)
-    # for padding mode
-    x_pad = fluid.data(name='x_pad', shape=[10, 4, 8], dtype='float32')
-    x_pad_len = fluid.data(name='x_pad_len', shape=[10, 1], dtype='int64')
-    out, out_len = fluid.layers.ctc_greedy_decoder(input=x_pad, blank=0,
-                input_length=x_pad_len)
+返回类型
+::::::::::::
+ Variable
 
 
+代码示例
+::::::::::::
 
-
-
+COPY-FROM: paddle.fluid.layers.ctc_greedy_decoder

@@ -15,15 +15,15 @@ For detailed API, please refer to :ref:`api_fluid_transpiler_DistributeTranspile
 
 .. code-block:: python
 
-	config = fluid.DistributeTranspilerConfig()
-	#Configuring config policy
-	config.slice_var_up = False
-	t = fluid.DistributeTranspiler(config=config)
-	t.transpile(trainer_id,
-				program=main_program,
-				pservers="192.168.0.1:6174,192.168.0.2:6174",
-				trainers=1,
-				sync_mode=False)
+    config = fluid.DistributeTranspilerConfig()
+    #Configuring config policy
+    config.slice_var_up = False
+    t = fluid.DistributeTranspiler(config=config)
+    t.transpile(trainer_id,
+                program=main_program,
+                pservers="192.168.0.1:6174,192.168.0.2:6174",
+                trainers=1,
+                sync_mode=False)
 
 For the description of parameters above, please refer to `Sync Training <../distributed/sync_training_en.html>`_ .
 

@@ -2,9 +2,9 @@
 **Install via pip**
 ==============================
 
-..	toctree::
-	
+..  toctree::
 
-	linux-pip_en.md
-	macos-pip_en.md
-	windows-pip_en.md
+
+    linux-pip_en.md
+    macos-pip_en.md
+    windows-pip_en.md

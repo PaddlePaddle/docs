@@ -8,7 +8,7 @@ LambdaDecay
 
 
 
-该API提供 lambda函数 设置学习率的功能。 ``lr_lambda`` 为一个lambda函数，其通过 ``epoch`` 计算出一个因子，该因子会乘以初始学习率。
+该API提供 lambda函数 设置学习率的功能。``lr_lambda`` 为一个lambda函数，其通过 ``epoch`` 计算出一个因子，该因子会乘以初始学习率。
 
 算法可以描述为：
 
@@ -21,13 +21,18 @@ LambdaDecay
     learning_rate = 0.475      # epoch 1
     learning_rate = 0.45125    # epoch 2
 
-参数：
+参数
+::::::::::::
+
     - **learning_rate** (float|int) - 初始化的学习率。可以是Python的float或int。
     - **lr_lambda** (function) - ``lr_lambda`` 为一个lambda函数，其通过 ``epoch`` 计算出一个因子，该因子会乘以初始学习率。
 
-返回： 无
+返回
+::::::::::::
+ 无
 
-**代码示例**：
+代码示例
+::::::::::::
 
     .. code-block:: python
         
@@ -50,15 +55,20 @@ LambdaDecay
                 # epoch:1, current lr is 0.475
                 # epoch:2, current lr is 0.45125
 
-.. py:method:: epoch(epoch=None)
+方法
+::::::::::::
+epoch(epoch=None)
+'''''''''
 通过当前的 epoch 调整学习率，调整后的学习率将会在下一次调用 ``optimizer.minimize`` 时生效。
 
-参数：
+**参数**
+
   - **epoch** (int|float，可选) - 类型：int或float。指定当前的epoch数。默认：无，此时将会自动累计epoch数。
 
-返回：
+**返回**
+
     无
 
-**代码示例**:
+**代码示例**
 
     参照上述示例代码。

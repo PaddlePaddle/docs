@@ -5,35 +5,32 @@ shard_index
 
 .. py:function:: paddle.shard_index(input, index_num, nshards, shard_id, ignore_value=-1)
 
-
-该函数根据分片（shard）的偏移量重新计算分片的索引。索引长度被均分为N个分片，如果输入索引所在的分片跟分片ID对应，则该索引以分片的偏移量为界重新计算，否则更新为默认值（ignore_value）。具体计算为：
+根据当前 shard 重新设置输入参数\ `input`\ 的值。输入\ `input`\ 中的值需要为非负整型；参数\ `index_num`\ 为用户设置的大于\ `input`\ 最大值的整型值。因此，\ `input`\ 中的值属于区间[0, index_num)，且每个值可以被看作到区间起始的偏移量。区间可以被进一步划分为多个切片。具体地讲，我们首先根据下面的公式计算每个切片的大小：\ `shard_size`\，表示每个切片可以表示的整数的数量。因此，对于第\ `i`\ 个切片，其表示的区间为[i*shard_size, (i+1)*shard_size)。
 
 ::
 
     shard_size = (index_num + nshards - 1) // nshards
-    如果 shard_id == input // shard_size 则 output = input % shard_size  
-    否则 output = ignore_value
-	
-注意：若索引长度不能被分片数整除，则最后一个分片长度不足shard_size。
 
-参数：
-    - input (Tensor）-  输入的索引，最后一维的维度值为1，数据类型为int64。
-    - index_num (int) - 定义索引长度的整型值。
-    - nshards (int) - 分片数量。
-    - shard_id (int) - 当前分片ID。
-    - ignore_value (int) - 超出分片索引范围的默认值。
+对于输入\ `input`\ 中的每个值\ `v`\，我们根据下面的公式设置它新的值：
 
-返回：更新后的索引值Tensor
+::
 
-**代码示例：**
+    v = v - shard_id * shard_size if shard_id * shard_size <= v < (shard_id+1) * shard_size else ignore_value
 
-.. code-block:: python
+参数
+::::::::::::
 
-    import paddle
-    label = paddle.to_tensor([[16], [1]], dtype="int64")
-    shard_label = paddle.shard_index(input=label,
-                                     index_num=20,
-                                     nshards=2,
-                                     shard_id=0)
-    print(shard_label)
-    # [[-1], [1]]
+    - **input** (Tensor) - 输入 tensor，最后一维的维度值为 1，数据类型为 int64 或 int32。
+    - **index_num** (int) - 用户设置的大于 :attr:`input` 最大值的整型值。
+    - **nshards** (int) - 分片数量。
+    - **shard_id** (int) - 当前分片 ID。
+    - **ignore_value** (int，可选) - 超出分片索引范围的整数值。默认值为 -1。
+
+返回
+::::::::::::
+Tensor
+
+代码示例
+::::::::::::
+
+COPY-FROM: paddle.shard_index

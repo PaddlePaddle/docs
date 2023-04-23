@@ -5,9 +5,9 @@ gelu
 
 .. py:function:: paddle.nn.functional.gelu(x, approximate=False, name=None)
 
-gelu激活层（GELU Activation Operator）
+gelu 激活层（GELU Activation Operator）
 
-逐元素计算 gelu激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv.org/abs/1606.08415>`_ 。
+逐元素计算 gelu 激活函数。更多细节请参考 `Gaussian Error Linear Units <https://arxiv.org/abs/1606.08415>`_ 。
 
 如果使用近似计算：
 
@@ -19,31 +19,19 @@ gelu激活层（GELU Activation Operator）
 .. math::
     gelu(x) = 0.5 * x * (1 + erf(\frac{x}{\sqrt{2}}))
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
-参数:
-::::::::::
- - x (Tensor) - 输入的 ``Tensor`` ，数据类型为：float32、float64。
- - approximate (bool, 可选) - 是否使用近似计算，默认值为 False，表示不使用近似计算。
- - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+参数
+::::::::::::
+ - **x** (Tensor) - 输入的 ``Tensor``，数据类型为：float32、float64。
+ - **approximate** (bool，可选) - 是否使用近似计算，默认值为 False，表示不使用近似计算。
+ - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
 ::::::::::
-    ``Tensor`` ，数据类型和形状同 ``x`` 一致。
+    ``Tensor``，数据类型和形状同 ``x`` 一致。
 
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.nn.functional as F
-
-    x = paddle.to_tensor([[-1, 0.5], [1, 1.5]])
-    out1 = F.gelu(x)
-    # [[-0.15865529,  0.34573123],
-    #  [ 0.84134471,  1.39978933]]
-    out2 = F.gelu(x, True)
-    # [[-0.15880799,  0.34571400],
-    #  [ 0.84119201,  1.39957154]]
-
+COPY-FROM: paddle.nn.functional.gelu

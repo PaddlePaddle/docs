@@ -10,7 +10,7 @@ ExecutionStrategy
 
 返回
 :::::::::
-ExecutionStrategy，一个ExecutionStrategy的实例
+ExecutionStrategy，一个 ExecutionStrategy 的实例。
 
 代码示例
 :::::::::
@@ -41,15 +41,17 @@ ExecutionStrategy，一个ExecutionStrategy的实例
                                         exec_strategy=exec_strategy)
 
 
-.. py:attribute:: num_threads
+属性
+::::::::::::
+num_threads
+'''''''''
 
-int型成员。该选项表示当前 ``Executor`` 的线程池(thread pool)的大小, 此线程池可用来并发执行program中的operator（算子，运算）。如果 :math:`num\_threads=1` ，则所有的operator将一个接一个地执行，但在不同的program重复周期(iterations)中执行顺序可能不同。如果该选项没有被设置，则在 ``Executor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对GPU，:math:`num\_threads=device\_count∗4` ；对CPU， :math:`num\_threads=CPU\_NUM∗4` 。在 ``Executor`` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM` ，则设置默认值为1， 并提示用户进行 :math:`CPU\_NUM` 的设置。
+int 型成员。该选项表示当前 ``Executor`` 的线程池(thread pool)的大小，此线程池可用来并发执行 program 中的 operator（算子，运算）。如果 :math:`num\_threads=1`，则所有的 operator 将一个接一个地执行，但在不同的 program 重复周期(iterations)中执行顺序可能不同。如果该选项没有被设置，则在 ``Executor`` 中，它会依据设备类型(device type)、设备数目(device count)而设置为相应值。对 GPU，:math:`num\_threads=device\_count∗4`；对 CPU， :math:`num\_threads=CPU\_NUM∗4`。在 :ref:`cn_api_fluid_executor` 中有关于 :math:`CPU\_NUM` 的详细解释。如果没有设置 :math:`CPU\_NUM`，则设置默认值为 1，并提示用户进行 :math:`CPU\_NUM` 的设置。
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
-                
+
     import paddle
     import paddle.static as static
 
@@ -58,16 +60,16 @@ int型成员。该选项表示当前 ``Executor`` 的线程池(thread pool)的�
     exec_strategy = static.ExecutionStrategy()
     exec_strategy.num_threads = 4
 
-.. py:attribute:: num_iteration_per_drop_scope
+num_iteration_per_drop_scope
+'''''''''
 
-int型成员。该选项表示间隔多少次迭代之后清理一次临时变量。模型运行过程中，生成的中间临时变量将被放到local execution scope中，为了避免对临时变量频繁的申请与释放，通常将其设为较大的值（比如10或者100）。默认值为100。
+int 型成员。该选项表示间隔多少次迭代之后清理一次临时变量。模型运行过程中，生成的中间临时变量将被放到 local execution scope 中，为了避免对临时变量频繁的申请与释放，通常将其设为较大的值（比如 10 或者 100）。默认值为 100。
 
 .. note::
-    1. 如果你调用run的时候fetch了数据，ParallelExecutor将会在本轮迭代结束时清理临时变量。
-    2. 在一些NLP模型中，这个策略可能会造成的GPU显存不足，此时需要减少num_iteration_per_drop_scope的值。
+    1. 如果你调用 run 的时候 fetch 了数据，ParallelExecutor 将会在本轮迭代结束时清理临时变量。
+    2. 在一些 NLP 模型中，这个策略可能会造成的 GPU 显存不足，此时需要减少 num_iteration_per_drop_scope 的值。
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 
@@ -80,12 +82,12 @@ int型成员。该选项表示间隔多少次迭代之后清理一次临时变�
     exec_strategy.num_iteration_per_drop_scope = 10
 
 
-.. py:attribute:: num_iteration_per_run
+num_iteration_per_run
+'''''''''
 
-int型成员。它配置了当用户在python脚本中调用pe.run()时执行器会执行的迭代次数。Executor每次调用，会进行num_iteration_per_run次训练，它会使整体执行过程更快。默认值为1。
+int 型成员。它配置了当用户在 python 脚本中调用 pe.run()时执行器会执行的迭代次数。Executor 每次调用，会进行 num_iteration_per_run 次训练，它会使整体执行过程更快。默认值为 1。
 
-代码示例
-:::::::::
+**代码示例**
 
 .. code-block:: python
 

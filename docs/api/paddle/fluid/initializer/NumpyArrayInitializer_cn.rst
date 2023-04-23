@@ -8,23 +8,22 @@ NumpyArrayInitializer
 
 
 
-该OP使用Numpy型数组来初始化参数变量。
+该 OP 使用 Numpy 型数组来初始化参数变量。
 
-参数：
-        - **value** （numpy） - 用于初始化变量的一个Numpy型数组。
+参数
+::::::::::::
 
-返回：张量（Tensor）
+        - **value** （numpy） - 用于初始化变量的一个 Numpy 型数组。
 
-返回类型：变量（Variable）
+返回
+::::::::::::
+张量（Tensor）
 
-**代码示例**
+返回类型
+::::::::::::
+变量（Variable）
 
-.. code-block:: python
+代码示例
+::::::::::::
 
-    import paddle.fluid as fluid
-    import numpy
-    x1 = fluid.data(name="x1", shape=[2, 1], dtype='float32')
-    fc = fluid.layers.fc(input=x1, size=10,
-        param_attr=fluid.initializer.NumpyArrayInitializer(numpy.array([1,2])))
-
-
+COPY-FROM: paddle.fluid.initializer.NumpyArrayInitializer

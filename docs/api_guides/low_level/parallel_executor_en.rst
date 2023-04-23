@@ -34,10 +34,10 @@ Since the execution speed of the model is related to the model structure and the
 .. code-block:: python
 
     # Note:
-    #   - If you want to specify the GPU cards which are used to run 
-    #     in ParallelExecutor, you should define the CUDA_VISIBLE_DEVICES 
+    #   - If you want to specify the GPU cards which are used to run
+    #     in ParallelExecutor, you should define the CUDA_VISIBLE_DEVICES
     #     in environment.
-    #   - If you want to use multi CPU to run the program in ParallelExecutor, 
+    #   - If you want to use multi CPU to run the program in ParallelExecutor,
     #     you should define the CPU_NUM in the environment.
 
     # First create the Executor.
@@ -53,8 +53,8 @@ Since the execution speed of the model is related to the model structure and the
     build_strategy = fluid.BuildStrategy()
     build_strategy.memory_optimize = True if memory_opt else False
 
-    train_exe = fluid.ParallelExecutor(use_cuda=use_cuda, 
-                                       main_program=train_program, 
+    train_exe = fluid.ParallelExecutor(use_cuda=use_cuda,
+                                       main_program=train_program,
                                        build_strategy=build_strategy,
                                        exec_strategy=exec_strategy,
                                        loss_name=loss.name)

@@ -12,7 +12,7 @@
 ------------------
 
 :code:`SGD` 是实现 `随机梯度下降 <https://arxiv.org/pdf/1609.04747.pdf>`_ 的一个 :code:`Optimizer` 子类，是 `梯度下降 <https://zh.wikipedia.org/zh-hans/梯度下降法>`_ 大类中的一种方法。
-当需要训练大量样本的时候，往往选择 :code:`SGD` 来使损失函数更快的收敛。  
+当需要训练大量样本的时候，往往选择 :code:`SGD` 来使损失函数更快的收敛。
 
 API Reference 请参考 :ref:`cn_api_fluid_optimizer_SGDOptimizer`
 
@@ -21,8 +21,8 @@ API Reference 请参考 :ref:`cn_api_fluid_optimizer_SGDOptimizer`
 ----------------------------
 
 :code:`Momentum` 优化器在 :code:`SGD` 基础上引入动量，减少了随机梯度下降过程中存在的噪声问题。
-用户在使用时可以将 :code:`ues_nesterov` 参数设置为False或True，分别对应传统 `Momentum(论文4.1节)
-<https://arxiv.org/pdf/1609.04747.pdf>`_  算法和 `Nesterov accelerated gradient(论文4.2节)
+用户在使用时可以将 :code:`ues_nesterov` 参数设置为 False 或 True，分别对应传统 `Momentum(论文 4.1 节)
+<https://arxiv.org/pdf/1609.04747.pdf>`_  算法和 `Nesterov accelerated gradient(论文 4.2 节)
 <https://arxiv.org/pdf/1609.04747.pdf>`_ 算法。
 
 API Reference 请参考 :ref:`cn_api_fluid_optimizer_MomentumOptimizer`
@@ -37,8 +37,8 @@ API Reference 请参考 :ref:`cn_api_fluid_optimizer_AdagradOptimizer`
 
 4.RMSPropOptimizer
 ------------------
-`RMSProp优化器 <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_ ，是一种自适应调整学习率的方法，
-主要解决使用Adagrad后，模型训练中后期学习率急剧下降的问题。
+`RMSProp 优化器 <http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf>`_ ，是一种自适应调整学习率的方法，
+主要解决使用 Adagrad 后，模型训练中后期学习率急剧下降的问题。
 
 API Reference 请参考 :ref:`cn_api_fluid_optimizer_RMSPropOptimizer`
 
@@ -65,7 +65,7 @@ API Reference 请参考 :ref:`cn_api_fluid_optimizer_AdamaxOptimizer`
 7.DecayedAdagrad/ DecayedAdagradOptimizer
 -------------------------------------------
 
-`DecayedAdagrad <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_ 优化器，可以看做是引入了衰减速率的 :code:`Adagrad` 算法，解决使用Adagrad后，模型训练中后期学习率急剧下降的问题。
+`DecayedAdagrad <http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf>`_ 优化器，可以看做是引入了衰减速率的 :code:`Adagrad` 算法，解决使用 Adagrad 后，模型训练中后期学习率急剧下降的问题。
 
 API Reference 请参考 :ref:`cn_api_fluid_optimizer_DecayedAdagrad`
 
@@ -75,7 +75,7 @@ API Reference 请参考 :ref:`cn_api_fluid_optimizer_DecayedAdagrad`
 8. Ftrl/FtrlOptimizer
 ----------------------
 
-`FtrlOptimizer <https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_ 优化器结合了 `FOBOS算法 <https://stanford.edu/~jduchi/projects/DuchiSi09b.pdf>`_ 的高精度与 `RDA算法
+`FtrlOptimizer <https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf>`_ 优化器结合了 `FOBOS 算法 <https://stanford.edu/~jduchi/projects/DuchiSi09b.pdf>`_ 的高精度与 `RDA 算法
 <http://xueshu.baidu.com/usercenter/paper/show?paperid=101df241a792fe23d79f4ed84a820495>`_ 的稀疏性，是目前效果非常好的一种 `Online Learning <https://en.wikipedia.org/wiki/Online_machine_learning>`_ 算法。
 
 API Reference 请参考 :ref:`cn_api_fluid_optimizer_FtrlOptimizer`
@@ -85,8 +85,6 @@ API Reference 请参考 :ref:`cn_api_fluid_optimizer_FtrlOptimizer`
 9.ModelAverage
 -----------------
 
-:code:`ModelAverage` 优化器，在训练中通过窗口来累计历史 parameter，在预测时使用取平均值后的paramet，整体提高预测的精度。
+:code:`ModelAverage` 优化器，在训练中通过窗口来累计历史 parameter，在预测时使用取平均值后的 paramet，整体提高预测的精度。
 
 API Reference 请参考 :ref:`cn_api_fluid_optimizer_ModelAverage`
-
-

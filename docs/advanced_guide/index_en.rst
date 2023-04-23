@@ -17,4 +17,3 @@ So far you have already been familiar with PaddlePaddle. And the next expectatio
 
     inference_deployment/index_en.rst
     flags/flags_en.rst
-

@@ -101,7 +101,7 @@ for i in xrange(1000):
     x = m["sentence"]
     for t in xrange x.len():
         h[t] = the_step(x[t])
-```  
+```
 
 With Fluid, the training loop and the RNN in the above program are not really Python loops, but just a "loop structure" provided by Fluid and implemented in C++ as the following:
 
@@ -113,13 +113,13 @@ with train_loop.block():
   rnn = layers.While(...)
   with rnn.block():
     h[t] = the_step(input[t])
-```  
+```
 
 An actual Fluid example is described  [here](https://github.com/PaddlePaddle/Paddle/blob/bde090a97564b9c61a6aaa38b72ccc4889d102d9/python/paddle/fluid/tests/unittests/test_while_op.py#L50-L58).
 
 From the example, the Fluid programs look very similar to their PyTorch equivalent programs, except that Fluid's loop structure, wrapped with Python's `with` statement, could run much faster than just a Python loop.
 
-We have more examples of the [`if-then-else`](https://github.com/PaddlePaddle/FluidDoc/tree/develop/doc/fluid/design/execution/if_else_op.md) structure of Fluid.
+We have more examples of the [`if-then-else`](https://github.com/PaddlePaddle/docs/blob/develop/docs/design/execution/if_else_op.md) structure of Fluid.
 
 ## Turing Completeness
 
@@ -131,7 +131,7 @@ There are two ways to execute a Fluid program.  When a program is executed, it c
 
 There is a C++ class [`Executor`](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/executor.h), which runs a `ProgramDesc`, similar to how an interpreter runs a Python program.
 
-Fluid is moving towards the direction of a compiler, which is explain in [fluid_compiler.md](../fluid_compiler.html).
+Fluid is moving towards the direction of a compiler, which is explain in [fluid_compiler.md](./fluid_compiler.md).
 
 ## Backward Compatibility of Fluid
 

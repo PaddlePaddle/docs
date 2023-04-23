@@ -1,0 +1,32 @@
+.. _cn_api_paddle_incubate_autograd_vjp:
+
+vjp
+-------------------------------
+
+.. py:function:: paddle.incubate.autograd.vjp(func, xs, v=None)
+
+计算向量 ``v`` 与函数 ``func`` 在 ``xs`` 处的雅可比矩阵乘积。
+
+.. warning::
+  该 API 目前为 Beta 版本，函数签名在未来版本可能发生变化。
+
+参数
+:::::::::
+
+- **func** (Callable) - Python 函数，输入参数为 ``xs``，输出为 Tensor 或 Tensor 序列。
+- **xs** (Tensor|Sequence[Tensor]） - 函数 ``func`` 的输入参数，数据类型为 Tensor 或
+  Tensor 序列。
+- **v** (Tensor|Sequence[Tensor]|None，可选) - 用于计算 ``vjp`` 输入向量，形状要求与
+  函数 ``func`` 的输出一致。默认值为 ``None``，此时相当于形状与 ``func`` 输出一致，值全为
+  1 的 Tensor 或 Tensor 序列。
+
+返回
+:::::::::
+
+- **func_out** (Tensor|tuple[Tensor]) - 函数 ``func(xs)`` 的输出。
+- **vjp** (Tensor|tuple[Tensor]) - ``vjp`` 计算结果。
+
+代码示例
+:::::::::
+
+COPY-FROM: paddle.incubate.autograd.vjp

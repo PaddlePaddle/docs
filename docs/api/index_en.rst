@@ -26,7 +26,12 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 | paddle.device                 | Device management related APIs, such as set_device,   |
 |                               | get_device, etc.                                      |
 +-------------------------------+-------------------------------------------------------+
-| paddle.amp                    | Paddle automatic mixed precision strategy, including  | 
+| paddle.linalg                 | Linear algebra related APIs, such as det, svd, etc.   |
++-------------------------------+-------------------------------------------------------+
+| paddle.fft                    | Fast Fourier Transform related APIs, such as          |
+|                               | fft, fft2, etc.                                       |
++-------------------------------+-------------------------------------------------------+
+| paddle.amp                    | Paddle automatic mixed precision strategy, including  |
 |                               | auto_cast, GradScaler, etc.                           |
 +-------------------------------+-------------------------------------------------------+
 | paddle.autograd               | Auto grad API, including backward, PyLayer, etc.      |
@@ -58,12 +63,12 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 | paddld.optimizer              | APIs related to optimization algorithms such as SGD,  |
 |                               | Adagrad, and Adam                                     |
 +-------------------------------+-------------------------------------------------------+
-| paddle.optimizer.lr           | APIs related to learning rate decay, such as          | 
+| paddle.optimizer.lr           | APIs related to learning rate decay, such as          |
 |                               | NoamDecay, StepDecay, PiecewiseDecay, etc.            |
 +-------------------------------+-------------------------------------------------------+
 | paddle.regularizer            | Regularization APIs, including L1Decay, L2Decay, etc. |
 +-------------------------------+-------------------------------------------------------+
-| paddle.static                 | Basic framework related APIs under static graph,      | 
+| paddle.static                 | Basic framework related APIs under static graph,      |
 |                               | such as Variable, Program, Executor, etc.             |
 +-------------------------------+-------------------------------------------------------+
 | paddle.static.nn              | Special APIs for networking under static graph such   |
@@ -79,4 +84,5 @@ In this version, PaddlePaddle has made many optimizations to the APIs. You can r
 |                               | data processing ColorJitter, and commonly used models |
 |                               | like resnet                                           |
 +-------------------------------+-------------------------------------------------------+
-
+| paddle.sparse                 | The Sparse domain API.                                |
++-------------------------------+-------------------------------------------------------+

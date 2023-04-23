@@ -12,25 +12,32 @@ py_reader
 
 创建一个在Python端提供数据的reader
 
-该OP返回一个Reader Variable。该Reader提供了 ``decorate_paddle_reader()`` 和 ``decorate_tensor_provider()`` 来设置Python generator作为数据源，将数据源中的数据feed到Reader Variable。在c++端调用 ``Executor::Run()`` 时，来自generator的数据将被自动读取。与 ``DataFeeder.feed()`` 不同，数据读取进程和  ``Executor::Run()`` 进程可以使用 ``py_reader`` 并行运行。在每次数据传递开始时调用reader的 ``start()`` ，在传递结束和抛出  ``fluid.core.EOFException`` 异常后执行 ``reset()`` 。
+该OP返回一个Reader Variable。该Reader提供了 ``decorate_paddle_reader()`` 和 ``decorate_tensor_provider()`` 来设置Python generator作为数据源，将数据源中的数据feed到Reader Variable。在c++端调用 ``Executor::Run()`` 时，来自generator的数据将被自动读取。与 ``DataFeeder.feed()`` 不同，数据读取进程和  ``Executor::Run()`` 进程可以使用 ``py_reader`` 并行运行。在每次数据传递开始时调用reader的 ``start()``，在传递结束和抛出  ``fluid.core.EOFException`` 异常后执行 ``reset()`` 。
 
-注意： ``Program.clone()`` （含义详见 :ref:`cn_api_fluid_Program` ）不能克隆 ``py_reader`` ，且 ``read_file`` （ ``read_file`` 含义详见 :ref:`cn_api_fluid_layers_read_file` ）调用需在声明 ``py_reader`` 的program block内。
+注意：``Program.clone()`` （含义详见 :ref:`cn_api_fluid_Program` ）不能克隆 ``py_reader``，且 ``read_file`` （ ``read_file`` 含义详见 :ref:`cn_api_fluid_layers_read_file` ）调用需在声明 ``py_reader`` 的program block内。
 
-参数:
+参数
+::::::::::::
+
   - **capacity** (int) –  ``py_reader`` 维护的缓冲区的容量数据个数。
   - **shapes** (list|tuple) – 一个列表或元组，shapes[i]是代表第i个数据shape，因此shape[i]也是元组或列表。
   - **dtypes** (list|tuple) – 一个string的列表或元组。为 ``shapes`` 对应元素的数据类型，支持bool，float16，float32，float64，int8，int16，int32，int64，uint8。
   - **lod_levels** (list|tuple) – lod_level的整型列表或元组
-  - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name` ，一般无需设置，默认值为None。
+  - **name**  (str，可选) – 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为None。
   - **use_double_buffer** (bool) – 是否使用双缓冲区，双缓冲区是为了预读下一个batch的数据、异步CPU -> GPU拷贝。默认值为True。
 
-返回：reader，从reader中可以获取feed的数据，其dtype和feed的数据dtype相同。
+返回
+::::::::::::
+reader，从reader中可以获取feed的数据，其dtype和feed的数据dtype相同。
 
-返回类型：Variable
+返回类型
+::::::::::::
+Variable
 
 
 
-**代码示例**
+代码示例
+::::::::::::
 
 1.py_reader 基本用法如下
 
@@ -71,7 +78,7 @@ py_reader
                                 executor=fluid.Executor(fluid.CUDAPlace(0)))
 
 
-2.训练和测试应使用不同的名称创建两个不同的py_reader，例如：
+2. 训练和测试应使用不同的名称创建两个不同的py_reader，例如：
 
 ..  code-block:: python
 

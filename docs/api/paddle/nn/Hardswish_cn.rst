@@ -5,7 +5,7 @@ Hardswish
 
 .. py:function:: paddle.nn.Hardswish(name=None)
 
-Hardswish激活函数。在MobileNetV3架构中被提出，相较于swish函数，具有数值稳定性好，计算速度快等优点，具体原理请参考: https://arxiv.org/pdf/1905.02244.pdf
+Hardswish 激活函数。创建一个 `Hardswish` 类的可调用对象。在 MobileNetV3 架构中被提出，相较于 :ref:`cn_api_nn_swish` 函数，具有数值稳定性好，计算速度快等优点，具体原理请参考：`Searching for MobileNetV3 <https://arxiv.org/pdf/1905.02244.pdf>`_ 。
 
 .. math::
 
@@ -18,24 +18,19 @@ Hardswish激活函数。在MobileNetV3架构中被提出，相较于swish函数�
         \end{aligned}
         \right.
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
-参数:
-::::::::::
-    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+参数
 
-形状:
 ::::::::::
-    - input: 任意形状的Tensor。
-    - output: 和input具有相同形状的Tensor。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
+
+形状
+::::::::::
+    - input：任意形状的 Tensor。
+    - output：和 input 具有相同形状的 Tensor。
 
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([-4., 5., 1.])
-    m = paddle.nn.Hardswish()
-    out = m(x) # [0., 5., 0.666667]
+COPY-FROM: paddle.nn.Hardswish

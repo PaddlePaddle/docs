@@ -38,7 +38,7 @@ DataFeedDesc
     f.close()
     data_feed = fluid.DataFeedDesc('data.proto')
 
-用户需要了解DataFeedDesc中每个字段的含义，以便自定义字段的值。例如:
+用户需要了解DataFeedDesc中每个字段的含义，以便自定义字段的值。例如：
 
 .. code-block:: python
 
@@ -52,13 +52,18 @@ DataFeedDesc
     print(data_feed.desc())
 
 
-参数：
-  - **proto_file** (string) : 包含数据描述的protobuf message的磁盘文件
+参数
+::::::::::::
+
+  - **proto_file** (string)：包含数据描述的protobuf message的磁盘文件
 
 
-.. py:method:: set_batch_size(batch_size)
+方法
+::::::::::::
+set_batch_size(batch_size)
+'''''''''
 
-该接口用于设置DataFeedDesc中的 :code:`batch_size` 。可以在训练期间调用修改 :code:`batch_size` 。
+该接口用于设置DataFeedDesc中的 :code:`batch_size`。可以在训练期间调用修改 :code:`batch_size` 。
 
 **代码示例**
 
@@ -86,12 +91,15 @@ DataFeedDesc
     data_feed = fluid.DataFeedDesc('data.proto')
     data_feed.set_batch_size(128)
 
-参数：
+**参数**
+
   - **batch_size** (int) - 新的批尺寸。
 
-返回：无
+**返回**
+无
 
-.. py:method:: set_dense_slots(dense_slots_name)
+set_dense_slots(dense_slots_name)
+'''''''''
 
 将 :code:`dense_slots_name` 指定的slots设置为密集的slot。**注意：默认情况下，所有slots都是稀疏的。**
 
@@ -123,20 +131,24 @@ DataFeedDesc
     data_feed = fluid.DataFeedDesc('data.proto')
     data_feed.set_dense_slots(['words'])
 
-参数：
+**参数**
+
   - **dense_slots_name** (list(str)) - slot名称的列表，这些slot将被设置为密集的。
 
-返回：无
+**返回**
+无
 
-.. py:method:: set_use_slots(use_slots_name)
+set_use_slots(use_slots_name)
+'''''''''
 
 
 设置一个特定的slot是否用于训练。一个数据集包含了很多特征，通过这个函数可以选择哪些特征将用于指定的模型。
 
-参数：
-  - **use_slots_name** (list) : 将在训练中使用的slot名列表，类型为list，其中每个元素为一个字符串
+**参数**
 
-**代码示例：**
+  - **use_slots_name** (list)：将在训练中使用的slot名列表，类型为list，其中每个元素为一个字符串
+
+**代码示例**
 
 .. code-block:: python
     
@@ -167,13 +179,15 @@ DataFeedDesc
   默认值是不使用所有slot
 
 
-.. py:method:: desc()
+desc()
+'''''''''
 
 返回此DataFeedDesc的protobuf message
 
-返回：一个protobuf message字符串
+**返回**
+一个protobuf message字符串
 
-**代码示例：**
+**代码示例**
 
 .. code-block:: python
     

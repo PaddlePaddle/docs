@@ -172,4 +172,4 @@ In the miniBatch training process, parameters will be updated once after each ba
 
 The averaged parameters are only used for testing and prediction, and they do not get involved in the actual training process.
 
-API reference  :ref:`api_fluid_optimizer_ModelAverage` 
+API reference  :ref:`api_fluid_optimizer_ModelAverage`

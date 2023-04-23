@@ -66,7 +66,7 @@ Hence when enabling any operator to have ``NHWC`` data arrangement supported we 
 
 #### *InferShape()* modifications
 This modification is related to fact that MKL-DNN kernel does operate on data with shape described in ``NCHW``
-order, hence We need to make sure that even if ``data_format`` is having value ``NHWC`` still ``Infershape`` will work on ``NCHW`` order.  
+order, hence We need to make sure that even if ``data_format`` is having value ``NHWC`` still ``Infershape`` will work on ``NCHW`` order.
 
 Snippet from *PoolOp::InferShape()* that illustrated the idea of modifications to *InferShape*:
 

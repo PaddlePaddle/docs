@@ -5,7 +5,7 @@
 反向传播
 ########
 
-神经网络对模型的表达能力依赖于优化算法，优化是一个不断计算梯度并调整可学习参数的过程，Fluid中的优化算法可参考 :ref:`api_guide_optimizer` 。
+神经网络对模型的表达能力依赖于优化算法，优化是一个不断计算梯度并调整可学习参数的过程，Fluid 中的优化算法可参考 :ref:`api_guide_optimizer` 。
 
 在网络的训练过程中，梯度计算分为两个步骤：前向计算与 `反向传播 <https://en.wikipedia.org/wiki/Backpropagation>`_ 。
 
@@ -15,9 +15,9 @@
 
 详细实现过程可以参考阅读 `反向传导算法 <http://deeplearning.stanford.edu/wiki/index.php/%E5%8F%8D%E5%90%91%E4%BC%A0%E5%AF%BC%E7%AE%97%E6%B3%95>`_ 。
 
-在Fluid中，我们并不推荐直接调用 :code:`fluid` 中反向传播相关API，因为这是一个极底层的API，请考虑使用 :ref:`api_guide_optimizer` 中的相关API替代。当您使用优化相关API时，Fluid会自动为您计算复杂的反向传播过程。
+在 Fluid 中，我们并不推荐直接调用 :code:`fluid` 中反向传播相关 API，因为这是一个极底层的 API，请考虑使用 :ref:`api_guide_optimizer` 中的相关 API 替代。当您使用优化相关 API 时，Fluid 会自动为您计算复杂的反向传播过程。
 
 如想自己实现，您也可以使用 :ref:`cn_api_fluid_backward_append_backward` 中的 :code:`callback` 自
-定义Operator的梯度计算形式。更多用法，请参考：
+定义 Operator 的梯度计算形式。更多用法，请参考：
 
 * :ref:`cn_api_fluid_backward_append_backward`

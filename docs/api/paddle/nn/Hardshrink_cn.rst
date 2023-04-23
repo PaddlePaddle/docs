@@ -4,7 +4,7 @@ Hardshrink
 -------------------------------
 .. py:class:: paddle.nn.Hardshrink(threshold=0.5, name=None)
 
-Hardshrink激活层
+Hardshrink 激活层
 
 .. math::
 
@@ -17,24 +17,19 @@ Hardshrink激活层
         \end{aligned}
         \right.
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::
-    - threshold (float, 可选) - Hardshrink激活计算公式中的threshold值。默认值为0.5。
-    - name (str, 可选) - 操作的名称(可选，默认值为None）。更多信息请参见 :ref:`api_guide_Name`。
+    - **threshold** (float，可选) - Hardshrink 激活计算公式中的 threshold 值。默认值为 0.5。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
-形状:
-    - input: 任意形状的Tensor。
-    - output: 和input具有相同形状的Tensor。
+形状
+::::::::::
+    - input：任意形状的 Tensor。
+    - output：和 input 具有相同形状的 Tensor。
 
 代码示例
-:::::::::
+::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    x = paddle.to_tensor([-1, 0.3, 2.5])
-    m = paddle.nn.Hardshrink()
-    out = m(x) # [-1., 0., 2.5]
+COPY-FROM: paddle.nn.Hardshrink

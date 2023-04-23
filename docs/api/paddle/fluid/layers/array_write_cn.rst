@@ -8,28 +8,35 @@ array_write
 
 
 
-该OP将输入的变量 ``x`` 写入到数组 :ref:`cn_api_fluid_LoDTensorArray` ``array`` 的第i个位置，并返回修改后的LoDTensorArray，如果 ``array`` 为None，则创建一个新的LoDTensorArray。常与 :ref:`cn_api_fluid_layers_array_read` OP联合使用对LoDTensorArray进行读写。
+该 OP 将输入的变量 ``x`` 写入到数组 :ref:`cn_api_fluid_LoDTensorArray` ``array`` 的第 i 个位置，并返回修改后的 LoDTensorArray，如果 ``array`` 为 None，则创建一个新的 LoDTensorArray。常与 :ref:`cn_api_fluid_layers_array_read` OP 联合使用对 LoDTensorArray 进行读写。
 
-参数:
-    - **x** (Variable) – 待写入的数据，多维Tensor或LoDTensor，数据类型支持float32，float64，int32，int64
-    - **i** (Variable) – shape为[1]的1-D Tensor，表示写入到输出数组LoDTensorArray的位置，数据类型为int64
-    - **array** (Variable，可选) – 指定写入 ``x`` 的数组LoDTensorArray。默认值为None, 此时将创建新的LoDTensorArray并作为结果返回
+参数
+::::::::::::
 
-返回: 写入输入 ``x`` 之后的LoDTensorArray
+    - **x** (Variable) – 待写入的数据，多维 Tensor，数据类型支持 float32，float64，int32，int64
+    - **i** (Variable) – shape 为[1]的 1-D Tensor，表示写入到输出数组 LoDTensorArray 的位置，数据类型为 int64
+    - **array** (Variable，可选) – 指定写入 ``x`` 的数组 LoDTensorArray。默认值为 None，此时将创建新的 LoDTensorArray 并作为结果返回
 
-返回类型: Variable
+返回
+::::::::::::
+ 写入输入 ``x`` 之后的 LoDTensorArray
 
-**代码示例**
+返回类型
+::::::::::::
+ Variable
+
+代码示例
+::::::::::::
 
 .. code-block:: python
 
   import paddle.fluid as fluid
   tmp = fluid.layers.fill_constant(shape=[3, 2], dtype='int64', value=5)
   i = fluid.layers.fill_constant(shape=[1], dtype='int64', value=10)
-  #将tmp写入数组arr下标为10的位置，并返回arr
+  #将 tmp 写入数组 arr 下标为 10 的位置，并返回 arr
   arr = fluid.layers.array_write(tmp, i=i)
 
-  #此时arr是长度为11的LoDTensorArray，可以通过array_read来查看下标为10的LoDTensor，并将之打印出来
+  #此时 arr 是长度为 11 的 LoDTensorArray，可以通过 array_read 来查看下标为 10 的 LoDTensor，并将之打印出来
   item = fluid.layers.array_read(arr, i=i)
   input = fluid.layers.Print(item, message="The content of i-th LoDTensor:")
   main_program = fluid.default_main_program()
@@ -38,14 +45,4 @@ array_write
 
 **输出结果**
 
-.. code-block:: python
-  
-  1570533133	The content of i-th LoDTensor:	The place is:CPUPlace
-  Tensor[array_read_0.tmp_0]
-	  shape: [3,2,]
-	  dtype: l
-	  data: 5,5,5,5,5,5,
-  #返回了shape为[3,2]的Tensor，即为上面写入的tmp
-  #dtype为对应C++数据类型，在不同环境下可能显示值不同，但本质一致
-  #例如：如果Tensor中数据类型是int64，则对应的C++数据类型为int64_t，所以dtype值为typeid(int64_t).name()，
-  #          其在MacOS下为'x'，linux下为'l'，Windows下为'__int64'，都表示64位整型变量
+COPY-FROM: paddle.fluid.layers.array_write

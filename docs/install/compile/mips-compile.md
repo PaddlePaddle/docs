@@ -4,31 +4,31 @@
 
 * **处理器：Loongson-3A R4 (Loongson-3A4000)**
 * **操作系统：Loongnix release 1.0**
-* **Python 版本 2.7.15+/3.5.1+/3.6/3.7/3.8 (64 bit)**
+* **Python 版本 3.7/3.8/3.9/3.10 (64 bit)**
 * **pip 或 pip3 版本 20.2.2+ (64 bit)**
 
-本文以Loongson-3A4000为例，介绍Paddle在MIPS架构下的源码编译。
+本文以 Loongson-3A4000 为例，介绍 Paddle 在 MIPS 架构下的源码编译。
 
 ## 安装步骤
 
-目前在MIPS龙芯处理器加龙芯国产化操作系统上安装Paddle，只支持源码编译的方式，接下来详细介绍各个步骤。
+目前在 MIPS 龙芯处理器加龙芯国产化操作系统上安装 Paddle，只支持源码编译的方式，接下来详细介绍各个步骤。
 
 <a name="mips_source"></a>
 ### **源码编译**
 
-1. 龙芯操作系统`Loongnix release 1.0`默认安装的gcc版本是4.9，但yum源提供了gcc-7的工具链，在此处安装gcc-7。可以参考龙芯龙芯开源社区[文章](http://www.loongnix.org/index.php/Gcc7.3.0)
+1. 龙芯操作系统`Loongnix release 1.0`默认安装的 gcc 版本是 4.9，但 yum 源提供了 gcc-7 的工具链，在此处安装 gcc-7。可以参考龙芯龙芯开源社区[文章](http://www.loongnix.org/index.php/Gcc7.3.0)
 
     ```
     sudo yum install devtoolset-7-gcc.mips64el devtoolset-7-gcc-c++.mips64el devtoolset-7.mips64el
     ```
 
-    设置环境变量使得gcc-7生效
+    设置环境变量使得 gcc-7 生效
 
     ```
     source /opt/rh/devtoolset-7/enable
     ```
 
-2. 龙芯系统自带的python都是基于gcc4.9，在第1步时选择使用了gcc-7.3，此处需要源码安装Python，此处以Python3.7为例。
+2. 龙芯系统自带的 python 都是基于 gcc4.9，在第 1 步时选择使用了 gcc-7.3，此处需要源码安装 Python，此处以 Python3.7 为例。
 
     ```
     sudo yum install libffi-devel.mips64el openssl-devel.mips64el libsqlite3x-devel.mips64el sqlite-devel.mips64el lbzip2-utils.mips64el lzma.mips64el tk.mips64el uuid.mips64el gdbm-devel.mips64el gdbm.mips64el openjpeg-devel.mips64el zlib-devel.mips64el libjpeg-turbo-devel.mips64el openjpeg-devel.mips64el
@@ -50,23 +50,23 @@
     make install
     ```
 
-    设置环境变量，使得python37生效
+    设置环境变量，使得 python37 生效
 
     ```
     export PATH=$HOME/python37/bin:$PATH
     export LD_LIBRARY_PATH=$HOME/python37/lib:$LD_LIBRARY_PATH
     ```
 
-3. Paddle依赖cmake进行编译构建，需要cmake版本>=3.15，龙芯操作系统源提供cmake的版本是3.9，且尝试源码编译cmake失败，此处临时的处理方式是修改Paddle主目录的`CMakeLists.txt`, `cmake_minimum_required(VERSION 3.15)` 修改为 `cmake_minimum_required(VERSION 3.9)`。等到龙芯系统支持cmake >= 3.15后则不需要其它操作。
+3. Paddle 依赖 cmake 进行编译构建，需要 cmake 版本>=3.15，龙芯操作系统源提供 cmake 的版本是 3.9，且尝试源码编译 cmake 失败，此处临时的处理方式是修改 Paddle 主目录的`CMakeLists.txt`, `cmake_minimum_required(VERSION 3.15)` 修改为 `cmake_minimum_required(VERSION 3.9)`。等到龙芯系统支持 cmake >= 3.15 后则不需要其它操作。
 
 
-4. Paddle内部使用patchelf来修改动态库的rpath，操作系统提供的源包括了patchelf，直接安装即可，后续会考虑在MIPS上移出该依赖。
+4. Paddle 内部使用 patchelf 来修改动态库的 rpath，操作系统提供的源包括了 patchelf，直接安装即可，后续会考虑在 MIPS 上移出该依赖。
 
     ```
     sudo yum install patchelf.mips64el
     ```
 
-5. 将Paddle的源代码克隆到当下目录下的Paddle文件夹中，并进入Paddle目录
+5. 将 Paddle 的源代码克隆到当下目录下的 Paddle 文件夹中，并进入 Paddle 目录
 
     ```
     git clone https://github.com/PaddlePaddle/Paddle.git
@@ -76,7 +76,7 @@
     cd Paddle
     ```
 
-6. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装Python依赖库。
+6. 根据[requirments.txt](https://github.com/PaddlePaddle/Paddle/blob/develop/python/requirements.txt)安装 Python 依赖库。
 
 
 7. 切换到`develop`分支下进行编译：
@@ -85,7 +85,7 @@
     git checkout develop
     ```
 
-6. 并且请创建并进入一个叫build的目录下：
+6. 并且请创建并进入一个叫 build 的目录下：
 
     ```
     mkdir build && cd build
@@ -97,14 +97,9 @@
     ulimit -n 4096
     ```
 
-8. 执行cmake：
+8. 执行 cmake：
 
     >具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
-
-    For Python2:
-    ```
-    cmake .. -DPY_VERSION=2 -DPYTHON_EXECUTABLE=`which python2` -DWITH_MIPS=ON -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release -DON_INFER=ON -DWITH_XBYAK=OFF -DWITH_MKL=OFF
-    ```
 
     For Python3:
     ```
@@ -122,19 +117,19 @@
 11. 在当前机器或目标机器安装编译好的`.whl`包：
 
     ```
-    python -m pip install -U（whl包的名字）`或`python3 -m pip install -U（whl包的名字）
+    python -m pip install -U（whl 包的名字）`或`python3 -m pip install -U（whl 包的名字）
     ```
 
-恭喜，至此您已完成PaddlePaddle在龙芯环境下的编译安装。
+恭喜，至此您已完成 PaddlePaddle 在龙芯环境下的编译安装。
 
 
 ## **验证安装**
-安装完成后您可以使用 `python` 或 `python3` 进入python解释器，输入`import paddle` ，再输入
+安装完成后您可以使用 `python` 或 `python3` 进入 python 解释器，输入`import paddle` ，再输入
  `paddle.utils.run_check()`
 
 如果出现`PaddlePaddle is installed successfully!`，说明您已成功安装。
 
-在mobilenetv1和resnet50模型上测试
+在 mobilenetv1 和 resnet50 模型上测试
 
 ```
 wget -O profile.tar https://paddle-cetc15.bj.bcebos.com/profile.tar?authorization=bce-auth-v1/4409a3f3dd76482ab77af112631f01e4/2020-10-09T10:11:53Z/-1/host/786789f3445f498c6a1fd4d9cd3897ac7233700df0c6ae2fd78079eba89bf3fb
@@ -158,7 +153,7 @@ python ernie.py --model_dir ernieL3H128_model/
 ```
 
 ## **如何卸载**
-请使用以下命令卸载PaddlePaddle：
+请使用以下命令卸载 PaddlePaddle：
 
 ```
 python -m pip uninstall paddlepaddle
@@ -171,6 +166,6 @@ python3 -m pip uninstall paddlepaddle
 
 ## **备注**
 
-已在MIPS架构下测试过resnet50, mobilenetv1, ernie， ELMo等模型，基本保证了预测使用算子的正确性，如果您在使用过程中遇到计算结果错误，编译失败等问题，请到[issue](https://github.com/PaddlePaddle/Paddle/issues)中留言，我们会及时解决。
+已在 MIPS 架构下测试过 resnet50, mobilenetv1, ernie， ELMo 等模型，基本保证了预测使用算子的正确性，如果您在使用过程中遇到计算结果错误，编译失败等问题，请到[issue](https://github.com/PaddlePaddle/Paddle/issues)中留言，我们会及时解决。
 
 预测文档见[doc](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/05_inference_deployment/inference/native_infer.html)，使用示例见[Paddle-Inference-Demo](https://github.com/PaddlePaddle/Paddle-Inference-Demo)
