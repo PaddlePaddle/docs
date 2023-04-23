@@ -11,7 +11,7 @@ Paddle 无此 API，需要组合实现。
 
 ```python
 # Pytorch 写法
-y = torch.addr(input, mat, vec, beta=beta, alpha=alpha)
+y = torch.addmv(input, mat, vec, beta=beta, alpha=alpha)
 
 # Paddle 写法
 y = beta * input + alpha * paddle.mm(mat, vec)
