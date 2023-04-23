@@ -1,36 +1,27 @@
-.. _cn_api_debugging_debugmode:
+.. _cn_api_debugging_tensor_checker_config:
 
-debugmode
+TensorCheckerConfig
 -------------------------------
 
-.. py:function:: paddle.amp.debugging.DebugMode
-用于设置检查模块或运算张量中的 nan 和 inf 的配置。
-    参数：
-    - enable：是否开启精度检查功能。默认值为 False，表示永远不会使用这些工具。
-    - debug_mode：调试模式，有6种调试模式。
-        CHECK_NAN_INF_AND_ABORT(default)：用NaN/Inf打印或保存Tensor key信息，中断程序
-        CHECK_NAN_INF：用NaN/Inf打印或保存Tensor关键信息，但继续运行
-        CHECK_ALL_FOR_OVERFLOW：检查FP32算子的输出，打印或保存超出FP16表示范围的关键Tensor信息（上溢、下溢）
-        CHECK_ALL：打印或保存所有算子的输出Tensor关键信息
-    - output_dir：精度检查日志存放路径。如果为None，则直接打印到终端
-    - checked_op_list：要检查的算子列表
-    - skipped_op_list: 跳过检查的算子列表
-    - debug_step: 调试的迭代范围, 用于控制模型迭代
-    - stack_height_limit: 调用栈的最大深度，支持打印错误位置的调用栈。
-    - enable_traceback_filtering：是否过滤traceback。主要目的是过滤掉框架内部代码调用栈，只显示用户代码调用栈
+.. py:class:: paddle.amp.debugging.TensorCheckerConfig(enable, debug_mode=DebugMode.CHECK_NAN_INF_AND_ABORT, output_dir=None, checked_op_list=None, skipped_op_list=None, debug_step=None, stack_height_limit=3)
 
-**代码示例**：
-.. code-block:: python
+该函数的目的是收集用于检查模块或运算符张量中 NaN 和 Inf 值的配置。
 
-    import paddle
+参数
+:::::::::
+    - **enable** : 布尔值，指示是否启用检测张量中的 NaN 和 Inf 值。默认值为 False，这意味着不使用这些工具。
+    - **debug_mode** : 确定要使用的调试类型的参数。有 4 种可用模式：
+        - **CHECK_NAN_INF_AND_ABORT** (默认）: 此模式打印或保存包含 NaN/Inf 的张量的关键信息，并中断程序。
+        - **CHECK_NAN_INF** : 此模式打印或保存包含 NaN/Inf 的张量的关键信息，但允许程序继续运行。
+        - **CHECK_ALL_FOR_OVERFLOW** : 此模式检查 FP32 运算符的输出，并打印或保存超出 FP16 表示范围的关键张量的信息，例如溢出或下溢。
+        - **CHECK_ALL** : 此模式打印或保存所有运算符的输出张量关键信息。
+    - **output_dir** : 存储收集数据的路径。如果将此参数设置为None，则数据将打印到终端。
+    - **checked_op_list** : 指定程序运行过程中需要检查的算子列表，例如checked_op_list=['elementwise_add‘，’conv2d']，表示程序运行过程中对elementwise_add和conv2d的输出结果进行nan/inf检查。
+    - **skipped_op_list** : 指定程序运行过程中不需要检查的算子列表，例如skipped_op_list=['elementwise_add‘，’conv2d']，表示程序运行过程中不对elementwise_add和conv2d的输出结果进行nan/inf检查。
+    - **debug_step** : 列表或元组，主要用于模型训练过程中的nan/inf检查。例如：debug_step=[1,5]表示只对模型训练迭代1~5之间进行nan/inf检查。
+    - **stack_height_limit** : 整数值，指定调用栈的最大深度。该功能支持在错误位置打印调用栈。目前仅支持开启或关闭调用栈打印。如果您想在GPU Kernel检测到NaN时打印相应的C++调用栈，可以将stack_height_limit设置为1，否则设置为0。
 
-    checker_config = paddle.amp.debugging.TensorCheckerConfig(enable=True, debug_mode=paddle.amp.debugging.DebugMode.CHECK_NAN_INF)
-    paddle.amp.debugging.enable_tensor_checker(checker_config)
-    x = paddle.to_tensor([1, 0, 3], place=paddle.CPUPlace(), dtype='float32', stop_gradient=False)
-    y = paddle.to_tensor([0.2, 0, 0.5], place=paddle.CPUPlace(), dtype='float32')
-    res = paddle.pow(x, y)
-    paddle.autograd.backward(res, retain_graph=True)
-    paddle.amp.debugging.disable_tensor_checker()
+代码示例
+:::::::::
 
-    #[PRECISION] [ERROR] in [device=cpu, op=elementwise_pow_grad, tensor=, dtype=fp32], numel=3, num_nan=1, num_inf=0, num_zero=0, max=2.886751e-01, min=2.000000e-01, mean=-nan
-
+COPY-FROM: paddle.amp.debugging.TensorCheckerConfig
