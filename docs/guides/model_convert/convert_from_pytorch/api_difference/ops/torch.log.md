@@ -21,6 +21,8 @@ paddle.log(x,
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
 | <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
+
+
 ### 转写示例
 #### out：指定输出
 ```python

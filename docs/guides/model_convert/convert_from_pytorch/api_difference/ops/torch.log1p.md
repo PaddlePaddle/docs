@@ -22,6 +22,7 @@ paddle.log1p(x,
 | <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
+
 ### 转写示例
 #### out：指定输出
 ```python

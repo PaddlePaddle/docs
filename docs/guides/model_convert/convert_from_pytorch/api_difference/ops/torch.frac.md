@@ -1,21 +1,21 @@
-## [torch 参数更多 ]torch.log2
-### [torch.log2](https://pytorch.org/docs/stable/generated/torch.log2.html?highlight=log2#torch.log2)
+## [torch 参数更多 ]torch.frac
+### [torch.frac](https://pytorch.org/docs/stable/generated/torch.frac.html)
 
 ```python
-torch.log2(input,
-           *,
-           out=None)
+torch.frac(input,
+            *,
+            out=None)
 ```
 
-### [paddle.log2](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log2_cn.html#log2)
+### [paddle.frac](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/frac_cn.html#frac)
 
 ```python
-paddle.log2(x,
+paddle.frac(x,
             name=None)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数映射
+### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
@@ -27,8 +27,8 @@ paddle.log2(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.log2([3, 5], out=y)
+torch.frac([1, 2.5, -3.2], out=y)
 
 # Paddle 写法
-paddle.assign(paddle.log2([3, 5]), y)
+paddle.assign(paddle.frac([1, 2.5, -3.2]), y)
 ```
