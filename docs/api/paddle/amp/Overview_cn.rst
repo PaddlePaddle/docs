@@ -95,7 +95,6 @@ Debug 相关辅助类
 .. csv-table::
     :header: "API 名称", "API 功能"
     :widths: 10, 30
-
+    
     " :ref:`enable_tensor_checker <cn_api_amp_debugging_enable_tensor_checker>` ", "开启模块级别的精度检查"
-    " :ref:`disable_tensor_checker <cn_api_amp_debugging_disable_tensor_checker>` ", "开启模块级别的精度检查"
-
+    " :ref:`disable_tensor_checker <cn_api_amp_debugging_disable_tensor_checker>` ", "关闭模块级别的精度检查"
