@@ -73,7 +73,7 @@ Debug相关辅助类
     :widths: 10, 30
 
     " :ref:`DebugMode <cn_api_amp_debugging_debugmode>` ", "精度调试模式"
-    " :ref:`TensorCheckerConfig <cn_api_debugging_tensor_checker_config>` ", "精度调试配置类"
+    " :ref:`TensorCheckerConfig <cn_api_amp_debugging_tensor_checker_config>` ", "精度调试配置类"
 
 .. _about_amp_debugging_op_list:
 
@@ -84,7 +84,7 @@ Debug相关辅助类
     :header: "API名称", "API功能"
     :widths: 10, 30
 
-    " :ref:`enable_operator_stats_collection <cn_api_enable_operator_stats_collection>` ", "启用以收集不同数据类型的算子调用次数"
+    " :ref:`enable_operator_stats_collection <cn_api_amp_debugging_enable_operator_stats_collection>` ", "启用以收集不同数据类型的算子调用次数"
     " :ref:`disable_operator_stats_collection <cn_api_amp_debugging_disable_operator_stats_collection>` ", "禁用收集不同数据类型的算子调用次数"
 
 .. _about_amp_debugging_check_api:
