@@ -1,9 +1,9 @@
-z## [torch 参数更多 ]torch.ne
+z## [torch 参数更多 ]torch.not_equal
 
-### [torch.ne](https://pytorch.org/docs/stable/generated/torch.ne.html?highlight=torch.ne#torch.ne)
+### [torch.not_equal](https://pytorch.org/docs/stable/generated/torch.not_equal.html?highlight=torch.not_equal#torch.not_equal)
 
 ```python
-torch.ne(input,
+torch.not_equal(input,
          other,
          *,
          out=None)
@@ -31,7 +31,7 @@ paddle.not_equal(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.ne([1, 2], [1, 1], out=y)
+torch.not_equal([1, 2], [1, 1], out=y)
 
 # Paddle 写法
 paddle.assign(paddle.not_equal([1, 2], [1, 1]), y)
