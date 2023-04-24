@@ -1,4 +1,4 @@
-.. _cn_api_amp_debugging_enable_tensor_checker
+.. _cn_api_amp_debugging_enable_tensor_checker:
 
 enable_tensor_checker
 -------------------------------
