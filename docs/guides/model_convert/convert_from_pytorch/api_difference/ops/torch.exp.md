@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.exp
+## [torch 参数更多]torch.exp
 ### [torch.exp](https://pytorch.org/docs/stable/generated/torch.exp.html?highlight=exp#torch.exp)
 
 ```python
@@ -18,8 +18,8 @@ paddle.exp(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
+|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|  out  | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
 ### 转写示例

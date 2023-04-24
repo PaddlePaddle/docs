@@ -1,17 +1,17 @@
-## [torch 参数更多 ]torch.erf
-### [torch.erf](https://pytorch.org/docs/stable/generated/torch.erf.html?highlight=erf#torch.erf)
+## [torch 参数更多 ]torch.erfinv
+### [torch.erfinv](https://pytorch.org/docs/1.13/generated/torch.erfinv.html?highlight=torch+erfinv#torch.erfinv)
 
 ```python
-torch.erf(input,
-          *,
-          out=None)
+torch.erfinv(input,
+             *,
+             out=None)
 ```
 
-### [paddle.erf](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/erf_cn.html#erf)
+### [paddle.erfinv](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/erfinv_cn.html)
 
 ```python
-paddle.erf(x,
-           name=None)
+paddle.erfinv(x,
+              name=None)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -25,8 +25,8 @@ paddle.erf(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.erf([0, -1., 10.], out=y)
+torch.erfinv([0, -1., 10.], out=y)
 
 # Paddle 写法
-paddle.assign(paddle.erf([0, -1., 10.]), y)
+paddle.assign(paddle.erfinv([0, -1., 10.]), y)
 ```

@@ -1,16 +1,16 @@
-## [torch 参数更多]torch.floor
-### [torch.floor](https://pytorch.org/docs/stable/generated/torch.floor.html?highlight=floor#torch.floor)
+## [torch 参数更多]torch.fix
+### [torch.fix](https://pytorch.org/docs/1.13/generated/torch.fix.html?highlight=torch+fix#torch.fix)
 
 ```python
-torch.floor(input,
-            *,
-            out=None)
+torch.fix(input,
+          *,
+          out=None)
 ```
 
-### [paddle.floor](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/floor_cn.html#floor)
+### [paddle.trunc](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/trunc_cn.html)
 
 ```python
-paddle.floor(x,
+paddle.trunc(input,
              name=None)
 ```
 
@@ -18,15 +18,15 @@ paddle.floor(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|   input       |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
 |  out  | - |  表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.floor([-0.4, -0.2, 0.1, 0.3], out=y)
+torch.fix([-0.4, -0.2, 0.1, 0.3], out=y)
 
 # Paddle 写法
-paddle.assign(paddle.floor([-0.4, -0.2, 0.1, 0.3]), y)
+paddle.assign(paddle.trunc([-0.4, -0.2, 0.1, 0.3]), y)
 ```
