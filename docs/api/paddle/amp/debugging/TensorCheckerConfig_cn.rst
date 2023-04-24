@@ -1,4 +1,4 @@
-.. _cn_api_debugging_tensor_checker_config:
+.. _cn_api_amp_debugging_tensor_checker_config:
 
 TensorCheckerConfig
 -------------------------------
