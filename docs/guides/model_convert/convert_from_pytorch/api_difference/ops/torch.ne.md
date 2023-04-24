@@ -1,4 +1,4 @@
-z## [torch 参数更多 ]torch.ne
+## [torch 参数更多 ]torch.ne
 
 ### [torch.ne](https://pytorch.org/docs/stable/generated/torch.ne.html?highlight=torch.ne#torch.ne)
 
@@ -24,7 +24,7 @@ paddle.not_equal(x,
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不同。                          |
 | other         | y            | 输入的 Tensor ，仅参数名不同。                          |
-| out           | -            | 表示输出的 Tensor ，需要进行转写                        |
+| out           | -            | 表示输出的 Tensor ，需要进行转写。                      |
 
 
 ### 转写示例

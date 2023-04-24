@@ -1,20 +1,22 @@
-## [torch 参数更多 ]torch.not_equal
+## [torch 参数更多 ]torch.cross
 
-### [torch.not_equal](https://pytorch.org/docs/stable/generated/torch.not_equal.html?highlight=torch.not_equal#torch.not_equal)
+### [torch.cross](https://pytorch.org/docs/stable/generated/torch.cross.html?highlight=cross#torch.cross)
 
 ```python
-torch.not_equal(input,
-         other,
-         *,
-         out=None)
+torch.cross(input,
+            other,
+            dim=None,
+            *,
+            out=None)
 ```
 
-### [paddle.not_equal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/not_equal_cn.html#not_equal)
+### [paddle.cross](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/cross_cn.html#cross)
 
 ```python
-paddle.not_equal(x,
-                 y,
-                 name=None)
+paddle.cross(x,
+             y,
+             axis=None,
+             name=None)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -24,6 +26,7 @@ paddle.not_equal(x,
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不同。                          |
 | other         | y            | 输入的 Tensor ，仅参数名不同。                          |
+| dim           | axis         | 沿着此维进行向量积操作，仅参数名不同。                   |
 | out           | -            | 表示输出的 Tensor ，需要进行转写。                      |
 
 
@@ -31,8 +34,8 @@ paddle.not_equal(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.not_equal([1, 2], [1, 1], out=y)
+torch.cross([[1., 2.], [3., 4.]], [[1., 1.], [1., 1.]], dim=1, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.not_equal([1, 2], [1, 1]), y)
+paddle.assign(paddle.cross([[1., 2.], [3., 4.]], [[1., 1.], [1., 1.]], axis=1), y)
 ```
