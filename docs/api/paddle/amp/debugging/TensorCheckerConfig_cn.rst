@@ -3,7 +3,7 @@
 TensorCheckerConfig
 -------------------------------
 
-.. py:class:: paddle.amp.debugging.TensorCheckerConfig(enable, debug_mode=DebugMode.CHECK_NAN_INF_AND_ABORT, output_dir=None, checked_op_list=None, skipped_op_list=None, debug_step=None, stack_height_limit=3)
+.. py:class:: paddle.amp.debugging.TensorCheckerConfig(enable, debug_mode=DebugMode.CHECK_NAN_INF_AND_ABORT, output_dir=None, checked_op_list=None, skipped_op_list=None, debug_step=None, stack_height_limit=1)
 
 该函数的目的是收集用于检查模块或运算符张量中 NaN 和 Inf 值的配置。
 
