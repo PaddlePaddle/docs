@@ -31,5 +31,5 @@ paddle.linalg.matrix_power(x,
 torch.linalg.matrix_power(x, 3， out = y)
 
 # Paddle 写法
-y = paddle.linalg.matrix_power(x, 3)
+paddle.assign(paddle.linalg.matrix_power(x, 3), y)
 ```
