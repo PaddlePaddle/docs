@@ -20,7 +20,7 @@ paddle.nn.functional.softmax(x, axis=- 1, dtype=None, name=None)
 | input   |   x           |  表示输入张量，仅参数名不一致。           |
 | dim     | axis         |  表示对输入 Tensor 进行运算的轴，仅参数名不一致。            |
 | dtype   |   dtype      |  表示返回张量所需的数据类型。  |
-| - | name | 一般无需设置，默认值为 None， PyTorch 无此参数。 |
+| _stacklevel | - | Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 
 
 

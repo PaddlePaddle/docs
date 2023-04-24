@@ -12,7 +12,7 @@ torch.nn.Module.apply(fn)
 paddle.nn.Layer.apply(fn)
 ```
 
-二者参数完全一致
+两者功能一致，参数完全一致。
 
 ### 参数映射
 

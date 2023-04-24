@@ -1,4 +1,4 @@
-## [仅参数名不一致]torch.nn.ModuleList
+## [ 仅参数名不一致 ]torch.nn.ModuleList
 
 ### [torch.nn.ModuleList](https://pytorch.org/docs/stable/generated/torch.nn.ModuleList.html?highlight=torch+nn+modulelist#torch.nn.ModuleList)
 

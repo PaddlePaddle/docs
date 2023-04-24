@@ -12,4 +12,4 @@ torch.optim.Optimizer.state_dict()
 paddle.optimizer.Optimizer.state_dict()
 ```
 
-无参数
+两者功能一致，均无参数。

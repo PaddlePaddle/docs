@@ -16,12 +16,31 @@ paddle.sparse.sparse_coo_tensor(indices, values, shape=None, dtype=None, place=N
 
 ### 参数映射
 
-|    PyTorch    | PaddlePaddle  |                             备注                             |
-| :-----------: | :-----------: | :----------------------------------------------------------: |
-|    indices    |    indices    |                  表示初始化 tensor 的数据。                  |
-|    values     |    values     |                  表示初始化 tensor 的数据。                  |
-|     dtype     |     dtype     |                 表示创建 tensor 的数据类型。                 |
-|     size      |     shape     |               表示张量的大小，仅参数名不一致。               |
-|    device     |     place     |         表示创建 tensor 的设备位置，仅参数名不一致。          |
-| requires_grad |       -       |    autograd 是否在返回的张量上记录操作，Paddle 无此参数。    |
-|       -       | stop_gradient | 表示是否阻断 Autograd 的梯度传导，Pytorch 无此参数，Paddle 保持默认即可。 |
+|    PyTorch    | PaddlePaddle  |                    备注                     |
+| :-----------: | :-----------: | :-----------------------------------------: |
+|    indices    |    indices    |         表示初始化 tensor 的数据。          |
+|    values     |    values     |         表示初始化 tensor 的数据。          |
+|     dtype     |     dtype     |        表示创建 tensor 的数据类型。         |
+|     size      |     shape     |      表示张量的大小，仅参数名不一致。       |
+|    device     |     place     | 表示创建 tensor 的设备位置，仅参数名不一致。 |
+| requires_grad | stop_gradient |     参数代表含义不相同，需要进行转写。      |
+
+### 转写示例
+
+```python
+# PyTorch 写法
+import torch
+
+indices = [[0, 1, 2], [1, 2, 0]]
+values = [1.0, 2.0, 3.0]
+dense_shape = [3, 3]
+coo = torch.sparse_coo_tensor(indices, values, dense_shape，requires_grad=False)
+
+# Paddle 写法
+import paddle
+
+indices = [[0, 1, 2], [1, 2, 0]]
+values = [1.0, 2.0, 3.0]
+dense_shape = [3, 3]
+coo = paddle.sparse.sparse_coo_tensor(indices, values, dense_shape，stop_gradient= True)
+```
