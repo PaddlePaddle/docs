@@ -1,4 +1,4 @@
-## [torch 参数更多 ]torch.arcsin
+## [torch 参数更多 ]torch.arcsinh
 
 ### [torch.arcsinh](https://pytorch.org/docs/1.13/generated/torch.arcsinh.html#torch.arcsinh)
 
