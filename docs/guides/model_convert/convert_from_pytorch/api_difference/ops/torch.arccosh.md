@@ -1,6 +1,6 @@
-## [torch 参数更多 ]torch.arccos
+## [torch 参数更多 ]torch.arccosh
 
-### [torch.arccos](https://pytorch.org/docs/1.13/generated/torch.arccos.html?highlight=arccos#torch.arccos)
+### [torch.arccosh](https://pytorch.org/docs/1.13/generated/torch.arccosh.html?highlight=arccosh#torch.arccosh)
 
 ```python
 torch.arccos(input,
@@ -8,7 +8,7 @@ torch.arccos(input,
              out=None)
 ```
 
-### [paddle.acos](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acos_cn.html#acos)
+### [paddle.acosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acosh_cn.html#acos)
 
 ```python
 paddle.acos(x,
@@ -31,8 +31,12 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ```python
 # Pytorch 写法
-torch.arccos(torch.tensor([0.3348, -0.5889]), out=y)
+torch.arccosh(torch.tensor([1.3192, 1.9915]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.acos(paddle.to_tensor([0.3348, -0.5889])), y)
+paddle.assign(paddle.acosh(paddle.to_tensor([1.3192, 1.9915])), y)
 ```
+
+----
+
+##
