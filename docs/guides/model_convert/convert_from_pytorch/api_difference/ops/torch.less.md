@@ -16,8 +16,8 @@ paddle.less_than(x, y, name=None)
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input         | x            | 输入 Tensor，支持的数据类型包括 bool、float32、float64、int32、int64。 |
-| other         | y            | 输入 Tensor，支持的数据类型包括 bool、float32、float64、int32、int64。  |
+| input         | x            | 输入 Tensor，支持的数据类型包括 bool、float32、float64、int32、int64，仅参数名不一致。 |
+| other         | y            | 输入 Tensor，支持的数据类型包括 bool、float32、float64、int32、int64，仅参数名不一致。  |
 | out           | -            | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
@@ -28,5 +28,5 @@ paddle.less_than(x, y, name=None)
 torch.less([3, 5], 1., out=y)
 
 # Paddle 写法
-y = paddle.less_than([3, 5], 1.)
+paddle.assign(paddle.less_than([3, 5], 1.), y)
 ```
