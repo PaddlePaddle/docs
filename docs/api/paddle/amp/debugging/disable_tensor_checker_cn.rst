@@ -1,4 +1,4 @@
-.. _cn_api_amp_debugging_disable_tensor_checker
+.. _cn_api_amp_debugging_disable_tensor_checker:
 
 disable_tensor_checker
 -------------------------------
