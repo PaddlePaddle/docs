@@ -9,11 +9,11 @@ paddle.amp 目录下包含飞桨框架支持的动态图自动混合精度(AMP)�
 -  :ref:`开启 AMP 后默认转化为 float16 计算的相关 OP <about_amp_white_list_ops>`
 -  :ref:`开启 AMP 后默认使用 float32 计算的相关 OP <about_amp_black_list_ops>`
 
-paddle.amp 目录下包含debugging目录， debugging目录中存放用于算子模型精度问题定位的api。具体如下：
+paddle.amp 目录下包含debugging目录， debugging目录中存放用于算子模型精度问题定位的 API。具体如下：
 
--  :ref:`Debug相关辅助类 <about_debugging>`
--  :ref:`算子调用统计相关的API <about_amp_debugging_op_list>`
--  :ref:`模块级别精度问题定位的API <about_amp_debugging_check_api>`
+-  :ref:`Debug 相关辅助类 <about_debugging>`
+-  :ref:`算子调用统计相关的 API <about_amp_debugging_op_list>`
+-  :ref:`模块级别精度问题定位的 API <about_amp_debugging_check_api>`
 
 .. _about_amp:
 
@@ -65,7 +65,7 @@ AMP 相关 API
 
 .. _about_debugging:
 
-Debug相关辅助类
+Debug 相关辅助类
 ::::::::::::::::::::
 
 .. csv-table::
@@ -81,7 +81,7 @@ Debug相关辅助类
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
     :widths: 10, 30
 
     " :ref:`enable_operator_stats_collection <cn_api_amp_debugging_enable_operator_stats_collection>` ", "启用以收集不同数据类型的算子调用次数"
@@ -93,7 +93,7 @@ Debug相关辅助类
 ::::::::::::::::::::
 
 .. csv-table::
-    :header: "API名称", "API功能"
+    :header: "API 名称", "API 功能"
     :widths: 10, 30
 
     " :ref:`enable_tensor_checker <cn_api_amp_debugging_enable_tensor_checker>` ", "开启模块级别的精度检查"
