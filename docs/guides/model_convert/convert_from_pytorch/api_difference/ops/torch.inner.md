@@ -1,15 +1,15 @@
-## [torch 参数更多 ]torch.dot
+## [torch 参数更多 ]torch.inner
 
-### [torch.dot](https://pytorch.org/docs/stable/generated/torch.dot.html?highlight=dot#torch.dot)
+### [torch.inner](https://pytorch.org/docs/stable/generated/torch.inner.html?highlight=inner#torch.inner)
 
 ```python
-torch.dot(input, other, *, out=None)
+torch.inner(input, other, *, out=None)
 ```
 
-### [paddle.dot](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/dot_cn.html#dot)
+### [paddle.inner](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/inner_cn.html)
 
 ```python
-paddle.dot(x, y, name=None)
+paddle.inner(x, y, name=None)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -27,8 +27,8 @@ paddle.dot(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.dot(torch.tensor([2, 3]), torch.tensor([2, 1]), out=y)
+torch.inner(torch.arange(1., 7.).reshape((2, 3)), torch.arange(1., 10.).reshape((3, 3)), out=y)
 
 # Paddle 写法
-y = paddle.dot(paddle.to_tensor([2, 3]), paddle.to_tensor([2, 1]))
+paddle.assign(paddle.inner(paddle.arange(1, 7).reshape((2, 3)).astype('float32'), paddle.arange(1, 10).reshape((3, 3)).astype('float32')), y)
 ```
