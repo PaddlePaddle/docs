@@ -77,7 +77,7 @@ Debug 相关辅助类
 
 .. _about_amp_debugging_op_list:
 
-算子调用统计相关API
+算子调用统计相关 API
 ::::::::::::::::::::
 
 .. csv-table::
@@ -89,7 +89,7 @@ Debug 相关辅助类
 
 .. _about_amp_debugging_check_api:
 
-模块级别精度问题定位的
+模块级别精度定位 API
 ::::::::::::::::::::
 
 .. csv-table::
