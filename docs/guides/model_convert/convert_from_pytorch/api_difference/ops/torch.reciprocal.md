@@ -1,4 +1,5 @@
 ## [torch 参数更多]torch.reciprocal
+
 ### [torch.reciprocal](https://pytorch.org/docs/1.13/generated/torch.reciprocal.html?highlight=torch+reciprocal#torch.reciprocal)
 
 ```python

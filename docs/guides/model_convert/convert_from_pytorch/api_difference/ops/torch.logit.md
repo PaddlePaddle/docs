@@ -22,6 +22,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | eps     | eps           | 将输入向量的范围控制在 [eps,1−eps]                        |
 | out           | -      | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。         |
 
+### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法

@@ -1,4 +1,5 @@
 ## [torch 参数更多 ]torch.pow
+
 ### [torch.pow](https://pytorch.org/docs/1.13/generated/torch.pow.html?highlight=pow#torch.pow)
 
 ```python
