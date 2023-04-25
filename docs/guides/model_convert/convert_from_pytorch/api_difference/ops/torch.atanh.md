@@ -1,16 +1,16 @@
-## [torch 参数更多 ]torch.atan
-### [torch.atan](https://pytorch.org/docs/1.13/generated/torch.atan.html#torch.atan)
+## [torch 参数更多 ]torch.atanh
+### [torch.atanh](https://pytorch.org/docs/1.13/generated/torch.atanh.html#torch.atanh)
 
 ```python
-torch.atan(input,
+torch.atanh(input,
            *,
            out=None)
 ```
 
-### [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan)
+### [paddle.atanh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atanh_cn.html)
 
 ```python
-paddle.atan(x,
+paddle.atanh(x,
             name=None)
 ```
 
@@ -27,8 +27,8 @@ paddle.atan(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.atan(torch.tensor([ 0.2341,  0.2539]), out=y)
+torch.atanh(torch.tensor([ 0.2341,  0.2539]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.atan(paddle.to_tensor([ 0.2341,  0.2539])), y)
+paddle.assign(paddle.atanh(paddle.to_tensor([ 0.2341,  0.2539])), y)
 ```

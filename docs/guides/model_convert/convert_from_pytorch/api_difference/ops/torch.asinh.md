@@ -1,21 +1,20 @@
-## [torch 参数更多 ]torch.atan
-### [torch.atan](https://pytorch.org/docs/1.13/generated/torch.atan.html#torch.atan)
+## [torch 参数更多 ]torch.asinh
+### [torch.asinh](https://pytorch.org/docs/1.13/generated/torch.asinh.html#torch.asinh)
 
 ```python
-torch.atan(input,
+torch.asinh(input,
            *,
            out=None)
 ```
 
-### [paddle.atan](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/atan_cn.html#atan)
+### [paddle.asinh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/asinh_cn.html)
 
 ```python
-paddle.atan(x,
+paddle.asinh(x,
             name=None)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -27,8 +26,8 @@ paddle.atan(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.atan(torch.tensor([ 0.2341,  0.2539]), out=y)
+torch.asinh(torch.tensor([-0.5962,  0.4985]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.atan(paddle.to_tensor([ 0.2341,  0.2539])), y)
+paddle.assign(paddle.asinh(paddle.to_tensor([-0.5962,  0.4985])), y)
 ```
