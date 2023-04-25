@@ -1,19 +1,14 @@
-## [torch 参数更多 ]torch.pow
-### [torch.pow](https://pytorch.org/docs/1.13/generated/torch.pow.html?highlight=pow#torch.pow)
+## [torch 参数更多 ]torch.rad2deg
+### [torch.rad2deg](https://pytorch.org/docs/1.13/generated/torch.rad2deg.html?highlight=torch+rad2deg#torch.rad2deg)
 
 ```python
-torch.pow(input,
-          exponent,
-          *,
-          out=None)
+torch.rad2deg(input, *, out=None)
 ```
 
-### [paddle.pow](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/pow_cn.html)
+### [paddle.rad2deg](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/rad2deg_cn.html)
 
 ```python
-paddle.pow(x,
-           y,
-           name=None)
+paddle.rad2deg(x, name=None)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -21,7 +16,6 @@ paddle.pow(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input  | x  | 表示输入的 Tensor ，仅参数名不一致。  |
-| exponent  |  y  | 表示输入的 Tensor ，仅参数名不一致。  |
 | out  | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
@@ -29,8 +23,8 @@ paddle.pow(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.pow([3, 5], 2, out=y)
+torch.rad2deg(x, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.pow([3, 5], 2), y)
+paddle.assign(paddle.rad2deg(x), y)
 ```
