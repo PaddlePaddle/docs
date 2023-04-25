@@ -19,4 +19,3 @@ disable_tensor_checker() 用于禁用精度检查，通常与 enable_tensor_chec
 :::::::::
 
 COPY-FROM: paddle.amp.debugging.disable_tensor_checker
-
