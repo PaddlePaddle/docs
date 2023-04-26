@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 y = torch.logaddexp2(a, b)
 
 # Paddle 写法
-y = paddle.log2(paddle.pow(paddle.to_tensor([2], dtype=a.dtype), a) + paddle.pow(paddle.to_tensor([2], dtype=b.dtype), b))
+y = paddle.log2(2 ** a + 2 ** b)
 ```

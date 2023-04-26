@@ -1,17 +1,11 @@
-## [ 组合替代实现 ]torch.Tensor.expm1
+## [ 无参数 ]torch.Tensor.expm1
 
 ### [torch.Tensor.expm1](https://pytorch.org/docs/stable/generated/torch.Tensor.expm1.html#torch.Tensor.expm1)
 ```python
 torch.Tensor.expm1()
 ```
 
-PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
-
-### 转写示例
+### [paddle.expm1](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/expm1_cn.html#expm1)
 ```python
-# Pytorch 写法
-y = input.expm1()
-
-# Python 写法
-y = paddle.expm1(input)
+paddle.expm1(x, name=None)
 ```

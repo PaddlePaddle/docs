@@ -44,6 +44,6 @@ paddle.randn(shape=x.shape, dtype=paddle.float64)
 y = torch.randn_like(x，requires_grad=True)
 
 # Paddle 写法
-y = paddle.randn(shape=x.shape, dtype=paddle.float64)
+y = paddle.randn(shape=x.shape, dtype=x.dtype)
 y.stop_gradient = False
 ```

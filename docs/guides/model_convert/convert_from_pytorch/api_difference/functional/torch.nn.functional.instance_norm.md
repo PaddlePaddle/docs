@@ -11,7 +11,7 @@ torch.nn.functional.instance_norm(input, running_mean=None, running_var=None, we
 paddle.nn.functional.instance_norm(x, running_mean=None, running_var=None, weight=None, bias=None, training=False, eps=1e-05, momentum=0.9, use_input_stats=True, data_format='NCHW', name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 Pytorch 与 Paddle 参数不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

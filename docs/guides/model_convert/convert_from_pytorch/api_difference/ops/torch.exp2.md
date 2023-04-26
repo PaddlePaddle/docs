@@ -15,5 +15,5 @@ Paddle 无此 API，需要组合实现。
 y = torch.exp2(a)
 
 # Paddle 写法
-y = paddle.pow(paddle.to_tensor([2], dtype=a.dtype), a)
+y = 2 ** a
 ```

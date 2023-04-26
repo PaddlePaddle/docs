@@ -11,7 +11,7 @@ torch.nn.functional.batch_norm(input, running_mean, running_var, weight=None, bi
 paddle.nn.functional.batch_norm(x, running_mean, running_var, weight, bias, training=False, momentum=0.9, epsilon=1e-05, data_format='NCHW', name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 Pytorch 与 Paddle 参数不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

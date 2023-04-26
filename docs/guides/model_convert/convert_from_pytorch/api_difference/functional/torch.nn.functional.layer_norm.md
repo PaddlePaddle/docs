@@ -11,7 +11,7 @@ torch.nn.functional.layer_norm(input, normalized_shape, weight=None, bias=None, 
 paddle.nn.functional.layer_norm(x, normalized_shape, weight=None, bias=None, epsilon=1e-05, name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+两者功能相同，仅参数名不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
