@@ -56,7 +56,7 @@ paddle.assign(paddle.randperm(10), y)
 # Pytorch 写法
 x = torch.randperm(10, dtype=torch.float64,requires_grad=True)
 
-# Paddle  写法
+# Paddle 写法
 x = paddle.randperm(10)
 x.stop_gradient = False
 ```
@@ -77,7 +77,7 @@ x = paddle.randperm(10).pin_memory()
 # Pytorch 写法
 torch.randperm(10, device=torch.device('cpu'))
 
-# Paddle  写法
+# Paddle 写法
 y = paddle.randperm(10)
 y.cpu()
 ```
