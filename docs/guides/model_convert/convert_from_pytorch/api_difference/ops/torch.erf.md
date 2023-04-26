@@ -25,8 +25,8 @@ paddle.erf(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.erf(x, out=y)
+torch.erf(torch.tensor([-0.4, -0.2, 0.1, 0.3]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.erf(x), y)
+paddle.assign(paddle.erf(paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])), y)
 ```

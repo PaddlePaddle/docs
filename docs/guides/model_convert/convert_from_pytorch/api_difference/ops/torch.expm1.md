@@ -26,8 +26,8 @@ paddle.expm1(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.expm1(x, out=y)
+torch.expm1(torch.tensor([-0.4, -0.2, 0.1, 0.3]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.expm1(x), y)
+paddle.assign(paddle.expm1(paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])), y)
 ```

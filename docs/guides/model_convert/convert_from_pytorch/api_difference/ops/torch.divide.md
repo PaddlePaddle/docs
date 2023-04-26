@@ -29,25 +29,25 @@ paddle.divide(x,
 #### rounding_mode: 舍入模式
 ```python
 # Pytorch 写法 (rounding_mode 参数设置为"trunc")
-x = torch.divide(input, other, rounding_mode='trunc')
+x = torch.divide(torch.tensor([2, 3, 4]), torch.tensor([1, 5, 2]), rounding_mode='trunc')
 
 # Paddle 写法
-x = paddle.divide(input, other)
+x = paddle.divide(paddle.to_tensor([2, 3, 4]), paddle.to_tensor([1, 5, 2]))
 x = paddle.trunc(x)
 
 # Pytorch 写法 (rounding_mode 参数设置为"floor")
-x = torch.divide(input, other, rounding_mode='floor')
+x = torch.divide(torch.tensor([2, 3, 4]), torch.tensor([1, 5, 2]), rounding_mode='floor')
 
 # Paddle 写法
-x = paddle.divide(input, other)
+x = paddle.divide(paddle.to_tensor([2, 3, 4]), paddle.to_tensor([1, 5, 2]))
 x = paddle.floor(x)
 ```
 
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.divide(input, other, out=y)
+torch.divide(torch.tensor([2, 3, 4]), torch.tensor([1, 5, 2]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.divide(input, other), y)
+paddle.assign(paddle.divide(paddle.to_tensor([2, 3, 4]), paddle.to_tensor([1, 5, 2])), y)
 ```

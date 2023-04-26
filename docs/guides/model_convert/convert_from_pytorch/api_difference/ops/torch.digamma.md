@@ -23,8 +23,8 @@ paddle.digamma(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.digamma(x, out=y)
+torch.digamma(torch.tensor([[1, 1.5], [0, -2.2]]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.digamma(x), y)
+paddle.assign(paddle.digamma(paddle.to_tensor([[1, 1.5], [0, -2.2]], dtype='float32')), y)
 ```

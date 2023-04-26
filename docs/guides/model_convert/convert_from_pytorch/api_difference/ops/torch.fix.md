@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.fix
+## [ torch 参数更多 ]torch.fix
 ### [torch.fix](https://pytorch.org/docs/1.13/generated/torch.fix.html?highlight=torch+fix#torch.fix)
 
 ```python

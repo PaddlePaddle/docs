@@ -29,8 +29,8 @@ paddle.floor_divide(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.floor_divide(input, other, out=y)
+torch.floor_divide(torch.tensor([2, 3, 8, 7]), torch.tensor([1, 5, 3, 3]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.floor_divide(input, other), y)
+paddle.assign(paddle.floor_divide(paddle.to_tensor([2, 3, 8, 7]), paddle.to_tensor([1, 5, 3, 3])), y)
 ```

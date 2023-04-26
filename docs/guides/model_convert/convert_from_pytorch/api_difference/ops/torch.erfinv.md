@@ -25,8 +25,8 @@ paddle.erfinv(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.erfinv(x, out=y)
+torch.erfinv(torch.tensor([0, 0.5, -1.]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.erfinv(x), y)
+paddle.assign(paddle.erfinv(paddle.to_tensor([0, 0.5, -1.], dtype="float32")), y)
 ```
