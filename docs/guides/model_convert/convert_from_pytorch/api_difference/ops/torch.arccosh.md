@@ -3,16 +3,16 @@
 ### [torch.arccosh](https://pytorch.org/docs/1.13/generated/torch.arccosh.html?highlight=arccosh#torch.arccosh)
 
 ```python
-torch.arccos(input,
-             *,
-             out=None)
+torch.arccosh(input,
+              *,
+              out=None)
 ```
 
 ### [paddle.acosh](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/acosh_cn.html#acos)
 
 ```python
-paddle.acos(x,
-            name=None)
+paddle.acosh(x,
+             name=None)
 ```
 
 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -22,7 +22,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | PyTorch | PaddlePaddle | 备注                                                  |
 | ------- | ------------ | ----------------------------------------------------- |
 | input   | x            | 表示输入的 Tensor ，仅参数名不一致。                  |
-| out     | -            | 表示输出的 Tensor ，PaddlePaddle 无此参数，需要转写。 |
+| out     | -            | 表示输出的 Tensor ，PaddlePaddle 无此参数，需要进行转写。 |
 
 
 ### 转写示例
@@ -37,6 +37,5 @@ torch.arccosh(torch.tensor([1.3192, 1.9915]), out=y)
 paddle.assign(paddle.acosh(paddle.to_tensor([1.3192, 1.9915])), y)
 ```
 
-----
 
-##
+
