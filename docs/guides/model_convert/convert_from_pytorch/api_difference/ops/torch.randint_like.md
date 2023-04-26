@@ -59,9 +59,7 @@ y.cpu()
 # Pytorch 写法
 x = torch.randint_like(x, 10, requires_grad=True)
 
-# Paddle
+# Paddle 写法
 x = paddle.randint_like(x, 10)
 x.stop_gradient = False
 ```
-
-####
