@@ -21,4 +21,4 @@ paddle.clone(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不同。                          |
-| memory_format | -            | 返回张量的所需内存格式。默认为 torch.preserve_format 。  |
+| memory_format | -            | 返回张量的所需内存格式，默认为 torch.preserve_format 。Paddle 无此参数，一般对训练结果影响不大，直接删除即可。            |
