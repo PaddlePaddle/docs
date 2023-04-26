@@ -18,8 +18,8 @@ paddle.linalg.lu(x, pivot=True, get_infos=False, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> A </font>         | <font color='red'> x </font>            | 输入的 Tensor ，仅参数名不同。                                     |
-| <font color='red'> pivots </font>    | <font color='red'> pivot </font>        | 输入的 bool ，仅参数名不同。                                     |
-| <font color='red'> get_infos </font> | <font color='red'> get_infos </font>    | 输入的 bool ，仅参数名不同。                                     |
+| <font color='red'> pivots </font>    | <font color='red'> pivot </font>        | 输入的 bool ，参数完全一致。                                     |
+| <font color='red'> get_infos </font> | <font color='red'> get_infos </font>    | 输入的 bool ，参数完全一致。                                     |
 | <font color='red'> out </font>       | -                                       | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。             |
 
 ### 转写示例
@@ -30,5 +30,5 @@ paddle.linalg.lu(x, pivot=True, get_infos=False, name=None)
 torch.lu(torch.tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]]), get_infos=True, out=(A_LU, pivots, info))
 
 # Paddle 写法
-lu, p, info = paddle.linalg.lu(paddle.to_tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]]).astype('float64'), get_infos=True)
+lu, p, info = paddle.assign(paddle.linalg.lu(paddle.to_tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]]), get_infos=True))
 ```

@@ -30,5 +30,5 @@ paddle.dot(x, y, name=None)
 torch.dot(torch.tensor([2, 3]), torch.tensor([2, 1]), out=y)
 
 # Paddle 写法
-y = paddle.dot(paddle.to_tensor([2, 3]), paddle.to_tensor([2, 1]))
+paddle.assign(paddle.dot(paddle.to_tensor([2, 3]), paddle.to_tensor([2, 1])), y)
 ```

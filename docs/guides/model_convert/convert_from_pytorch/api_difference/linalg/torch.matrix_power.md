@@ -25,5 +25,5 @@ paddle.linalg.matrix_power(x, n, name=None)
 torch.matrix_power(torch.tensor([[1., 2., 3.],[1., 4., 9.],[1., 8., 27.]]), 2, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.linalg.matrix_power(paddle.to_tensor([[1, 2, 3],[1, 4, 9],[1, 8, 27]], dtype='float64'), 2), y)
+paddle.assign(paddle.linalg.matrix_power(paddle.to_tensor([[1., 2., 3.],[1., 4., 9.],[1., 8., 27.]]), 2), y)
 ```
