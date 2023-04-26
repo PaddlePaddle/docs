@@ -30,5 +30,5 @@ paddle.linalg.lu_unpack(x, y, unpack_ludata=True, unpack_pivots=True, name=None)
 torch.lu_unpack(*torch.lu(torch.tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])), out=(P, L, U))
 
 # Paddle 写法
-P,L,U = paddle.assign(paddle.linalg.lu_unpack(*paddle.linalg.lu(paddle.to_tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]]))))
+P,L,U = paddle.linalg.lu_unpack(*paddle.linalg.lu(paddle.to_tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]])))
 ```

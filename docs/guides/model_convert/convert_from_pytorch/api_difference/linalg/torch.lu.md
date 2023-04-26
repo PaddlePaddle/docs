@@ -30,5 +30,5 @@ paddle.linalg.lu(x, pivot=True, get_infos=False, name=None)
 torch.lu(torch.tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]]), get_infos=True, out=(A_LU, pivots, info))
 
 # Paddle 写法
-lu, p, info = paddle.assign(paddle.linalg.lu(paddle.to_tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]]), get_infos=True))
+lu, p, info = paddle.linalg.lu(paddle.to_tensor([[1.0, 2.0], [3.0, 4.0], [5.0, 6.0]]), get_infos=True)
 ```
