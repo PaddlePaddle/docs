@@ -77,7 +77,7 @@ x = paddle.randperm(10).pin_memory()
 # Pytorch 写法
 torch.randperm(10, device=torch.device('cpu'))
 
-# Paddle  写法
+# Paddle 写法
 y = paddle.randperm(10)
 y.cpu()
 ```

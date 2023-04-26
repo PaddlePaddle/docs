@@ -53,7 +53,7 @@ paddle.assign(paddle.randint(10, shape=[2, 2]), y)
 # Pytorch 写法
 x = torch.randint(10, (2, 2), requires_grad=True)
 
-# Paddle
+# Paddle 写法
 x = paddle.randint(10, shape=[2, 2])
 x.stop_gradient = False
 ```
