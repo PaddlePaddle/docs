@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.expm1
+## [ torch 参数更多 ]torch.expm1
 ### [torch.expm1](https://pytorch.org/docs/1.13/generated/torch.expm1.html?highlight=torch+expm1#torch.expm1)
 
 ```python
@@ -26,8 +26,8 @@ paddle.expm1(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.expm1([-0.4, -0.2, 0.1, 0.3], out=y)
+torch.expm1(x, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.expm1([-0.4, -0.2, 0.1, 0.3]), y)
+paddle.assign(paddle.expm1(x), y)
 ```

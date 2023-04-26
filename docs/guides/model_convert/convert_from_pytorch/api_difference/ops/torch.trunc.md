@@ -18,15 +18,15 @@ paddle.trunc(input,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-|   input       |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|   input       |  input  | 表示输入的 Tensor。  |
 |  out  | - |  表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.trunc([-0.4, -0.2, 0.1, 0.3], out=y)
+torch.trunc(input, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.trunc([-0.4, -0.2, 0.1, 0.3]), y)
+paddle.assign(paddle.trunc(input), y)
 ```

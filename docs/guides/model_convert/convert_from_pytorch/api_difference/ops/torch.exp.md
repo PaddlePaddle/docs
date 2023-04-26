@@ -1,5 +1,5 @@
-## [torch 参数更多]torch.exp
-### [torch.exp](https://pytorch.org/docs/stable/generated/torch.exp.html?highlight=exp#torch.exp)
+## [ torch 参数更多 ]torch.exp
+### [torch.exp](https://pytorch.org/docs/1.13/generated/torch.exp.html?highlight=torch+exp#torch.exp)
 
 ```python
 torch.exp(input,
@@ -26,8 +26,8 @@ paddle.exp(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.exp([-0.4, -0.2, 0.1, 0.3], out=y)
+torch.exp(x, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.exp([-0.4, -0.2, 0.1, 0.3]), y)
+paddle.assign(paddle.exp(x), y)
 ```

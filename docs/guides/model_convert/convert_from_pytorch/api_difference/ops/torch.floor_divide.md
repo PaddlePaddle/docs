@@ -1,5 +1,5 @@
 ## [torch 参数更多]torch.floor_divide
-### [torch.floor_divide](https://pytorch.org/docs/stable/generated/torch.floor_divide.html?highlight=floor_divide#torch.floor_divide)
+### [torch.floor_divide](https://pytorch.org/docs/1.13/generated/torch.floor_divide.html?highlight=torch+floor_divide#torch.floor_divide)
 
 ```python
 torch.floor_divide(input,
@@ -29,8 +29,8 @@ paddle.floor_divide(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.floor_divide([2, 3, 8, 7], [1, 5, 3, 3], out=y)
+torch.floor_divide(input, other, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.floor_divide([2, 3, 8, 7], [1, 5, 3, 3]), y)
+paddle.assign(paddle.floor_divide(input, other), y)
 ```

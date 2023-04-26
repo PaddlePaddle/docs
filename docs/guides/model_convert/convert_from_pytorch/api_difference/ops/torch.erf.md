@@ -1,5 +1,5 @@
-## [torch 参数更多 ]torch.erf
-### [torch.erf](https://pytorch.org/docs/stable/generated/torch.erf.html?highlight=erf#torch.erf)
+## [ torch 参数更多 ]torch.erf
+### [torch.erf](https://pytorch.org/docs/1.13/generated/torch.erf.html?highlight=torch+erf#torch.erf)
 
 ```python
 torch.erf(input,
@@ -25,8 +25,8 @@ paddle.erf(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.erf([0, -1., 10.], out=y)
+torch.erf(x, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.erf([0, -1., 10.]), y)
+paddle.assign(paddle.erf(x), y)
 ```

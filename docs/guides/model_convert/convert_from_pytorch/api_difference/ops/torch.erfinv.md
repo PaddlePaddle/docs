@@ -1,4 +1,4 @@
-## [torch 参数更多 ]torch.erfinv
+## [ torch 参数更多 ]torch.erfinv
 ### [torch.erfinv](https://pytorch.org/docs/1.13/generated/torch.erfinv.html?highlight=torch+erfinv#torch.erfinv)
 
 ```python
@@ -25,8 +25,8 @@ paddle.erfinv(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.erfinv([0, -1., 10.], out=y)
+torch.erfinv(x, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.erfinv([0, -1., 10.]), y)
+paddle.assign(paddle.erfinv(x), y)
 ```

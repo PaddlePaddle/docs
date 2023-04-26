@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.digamma
+## [ torch 参数更多 ]torch.digamma
 ### [torch.digamma](https://pytorch.org/docs/1.13/generated/torch.digamma.html?highlight=torch+digamma#torch.digamma)
 ```python
 torch.digamma(input,
@@ -23,8 +23,8 @@ paddle.digamma(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.digamma([[1, 1.5], [0, -2.2]], out=y)
+torch.digamma(x, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.digamma([[1, 1.5], [0, -2.2]]), y)
+paddle.assign(paddle.digamma(x), y)
 ```
