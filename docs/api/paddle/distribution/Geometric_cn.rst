@@ -4,20 +4,21 @@ Geometric
 -------------------------------
 
 .. py:class:: paddle.distribution.Geometric(probs)
-几何分布
 
-数学公式：
+在概率论和统计学中，几何分布是一种离散概率分布，由一个正形状参数参数化，用 probs 表示。在n次伯努利试验中，需要k次试验才能得到第一次成功的概率。
+
+详细来说就是：前k-1次失败，第k次成功的概率，概率密度函数如下：
 
 .. math::
-    $P(X=k) = (1-p)^{k-1}p$
+    P(X=k) = (1-p)^{k-1}p
 
 上面数学公式中：
 
-:math:`p`：表示成功的概率。
+    :math:`p`：表示成功的概率。
 
-:math:`X`：表示进行了多少次试验才获得第一次成功。
+    :math:`X`：表示进行了多少次试验才获得第一次成功。
 
-:math:`k`：表示实验次数，是一个正整数
+    :math:`k`：表示实验次数，是一个正整数
 
 
 参数
@@ -35,46 +36,42 @@ COPY-FROM: paddle.distribution.Geometric
 
 mean
 '''''''''
-
-均值
+几何分布的均值。
 
 数学公式：
 
 .. math::
-    mean = \frac{1}{p}$
+    mean = \frac{1}{p}
 
 上面数学公式中：
 
-:math:`p`：试验成功的概率。
+    :math:`p`：试验成功的概率。
 
 variance
 '''''''''
-
-方差
+几何分布的方差。
 
 数学公式：
 
 .. math::
-    variance = \frac{1-p}{p^2}$
+    variance = \frac{1-p}{p^2}
 
 上面数学公式中：
 
-:math:`p`：试验成功的概率。
+    :math:`p`：试验成功的概率。
 
 stddev
 '''''''''
-
-标准差
+几何分布的标准差。
 
 数学公式：
 
 .. math::
-    stddev = $\sqrt{variance} = \sqrt{\frac{1-p}{p^2}} = \frac{\sqrt{1-p}}{p}$
+    stddev = \sqrt{variance} = \sqrt{\frac{1-p}{p^2}} = \frac{\sqrt{1-p}}{p}
 
 上面数学公式中：
 
-:math:`p`：试验成功的概率。
-
+    :math:`p`：试验成功的概率。
 
 方法
 :::::::::
@@ -94,13 +91,17 @@ pmf(k)
 
 上面数学公式中：
 
-:math:`p`：试验成功的概率。
+    :math:`p`：试验成功的概率。
 
-:math:`k`：几何分布的随机变量。
+    :math:`k`：几何分布的随机变量。
 
 **返回**
 
     - **Tensor** - value 第一次成功所需的试验次数k的概率。
+
+**代码示例**
+
+COPY-FROM: paddle.distribution.Geometric
 
 log_pmf(k)
 '''''''''
@@ -118,17 +119,21 @@ log_pmf(k)
 
 上面数学公式中：
 
-:math:`p`：试验成功的概率。
+    :math:`p`：试验成功的概率。
 
-:math:`k`：几何分布的实验次数。
+    :math:`k`：几何分布的实验次数。
 
 **返回**
 
     - **Tensor** - value 第一次成功所需的试验次数k的概率的对数。
 
+**代码示例**
+
+COPY-FROM: paddle.distribution.Geometric
+
 cdf(k)
 '''''''''
-几何分布的累积分布函数
+几何分布的累积分布函数。
 
 **参数**
 
@@ -142,13 +147,17 @@ cdf(k)
 
 上面的数学公式中：
 
-:math:`p`：试验成功的概率。
+    :math:`p`：试验成功的概率。
 
-:math:`k`：几何分布的随机变量。
+    :math:`k`：几何分布的随机变量。
 
 **返回**
 
     - Tensor: value 随机变量X小于或等于某个值x的概率。
+
+**代码示例**
+
+COPY-FROM: paddle.distribution.Geometric
 
 entropy()
 '''''''''
@@ -162,7 +171,11 @@ entropy()
 
 上面数学公式中：
 
-:math:`p`：试验成功的概率。
+    :math:`p`：试验成功的概率。
+
+**代码示例**
+
+COPY-FROM: paddle.distribution.Geometric
 
 kl_divergence(other)
 '''''''''
@@ -179,17 +192,21 @@ kl_divergence(other)
 
 上面的数学公式中：
 
-:math:`P`：Geometric 几何分布实例。
+    :math:`P`：Geometric 几何分布实例。
 
-:math:`Q`：Geometric 几何分布实例。
+    :math:`Q`：Geometric 几何分布实例。
 
-:math:`p`：Geometric_p 分布试验成功的概率。
+    :math:`p`：Geometric_p 分布试验成功的概率。
 
-:math:`q`：Geometric_q 分布试验成功的概率。
+    :math:`q`：Geometric_q 分布试验成功的概率。
 
 **返回**
 
     - Tensor: 两个几何分布之间的 KL 散度。
+
+**代码示例**
+
+COPY-FROM: paddle.distribution.Geometric
 
 sample(shape)
 '''''''''
@@ -203,10 +220,13 @@ sample(shape)
 
     - **Tensor** - 预先设计好维度的样本数据。
 
+**代码示例**
+
+COPY-FROM: paddle.distribution.Geometric
 
 rsample(shape)
 '''''''''
-重参数化采样。
+重参数化采样，生成指定维度的样本。
 
 **参数**
 
@@ -215,3 +235,7 @@ rsample(shape)
 **返回**
 
     - **Tensor** - 预先设计好维度的样本数据。
+
+**代码示例**
+
+COPY-FROM: paddle.distribution.Geometric
