@@ -34,8 +34,8 @@ paddle.cumsum(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.cumsum([[1., 2., 3.], [4., 5., 6.], [7., 8., 9.]], dim=-1, dtype='float64', out=y)
+torch.cumsum(input, dim=-1, dtype='float64', out=y)
 
 # Paddle 写法
-paddle.assign(paddle.cumsum([[1., 2., 3.], [4., 5., 6.], [7., 8., 9.]], dim=-1, dtype='float64'), y)
+paddle.assign(paddle.cumsum(x, dim=-1, dtype='float64'), y)
 ```

@@ -31,8 +31,8 @@ paddle.not_equal(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.not_equal([1, 2], [1, 1], out=y)
+torch.not_equal(input, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.not_equal([1, 2], [1, 1]), y)
+paddle.assign(paddle.not_equal(x, y))
 ```

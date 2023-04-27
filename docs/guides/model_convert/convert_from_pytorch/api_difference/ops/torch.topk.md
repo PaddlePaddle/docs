@@ -1,4 +1,4 @@
-## [torch 参数不一致 ]torch.topk
+## [ 参数不一致 ]torch.topk
 
 ### [torch.topk](https://pytorch.org/docs/stable/generated/torch.topk.html?highlight=topk#torch.topk)
 
@@ -40,8 +40,8 @@ paddle.topk(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.topk([1., 4., 5., 7.], k=1, dim=-1, out = (y, l_y))
+torch.topk(input, k=1, dim=-1, out = (y, l_y))
 
 # Paddle 写法
-paddle.assign(paddle.topk([1., 4., 5., 7.], k=1, axis=-1), y)
+paddle.assign(paddle.topk(x, k=1, axis=-1), y)
 ```

@@ -1,10 +1,10 @@
-## [torch 参数不一致 ]torch.sort
+## [ 参数不一致 ]torch.sort
 
 ### [torch.sort](https://pytorch.org/docs/stable/generated/torch.sort.html?highlight=sort#torch.sort)
 
 ```python
 torch.sort(input,
-           dim=- 1,
+           dim=-1,
            descending=False,
            stable=False,
            *,
@@ -15,7 +15,7 @@ torch.sort(input,
 
 ```python
 paddle.sort(x,
-            axis=- 1,
+            axis=-1,
             descending=False,
             name=None)
 ```
@@ -36,8 +36,8 @@ paddle.sort(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.sort([[4, 1, 7], [1, 6, 3], [9, 4, 11]], 0, True, (y, l_y))
+torch.sort(input, -1, True, (y, l_y))
 
 # Paddle 写法
-paddle.assign(paddle.sort([[4, 1, 7], [1, 6, 3], [9, 4, 11]], 0, True), y)
+paddle.assign(paddle.sort(x, -1, True), y)
 ```

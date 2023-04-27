@@ -34,8 +34,8 @@ paddle.cross(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.cross([[1., 2.], [3., 4.]], [[1., 1.], [1., 1.]], dim=1, out=y)
+torch.cross(torch.tensor([[1., 2.], [3., 4.]]), torch.tensor([[1., 1.], [1., 1.]]), dim=1, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.cross([[1., 2.], [3., 4.]], [[1., 1.], [1., 1.]], axis=1), y)
+paddle.assign(paddle.cross(paddle.to_tensor([[1., 2.], [3., 4.]]), paddle.to_tensor([[1., 1.], [1., 1.]]), axis=1), y)
 ```

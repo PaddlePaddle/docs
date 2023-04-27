@@ -28,7 +28,7 @@ paddle.bucketize(x,
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 N 维 Tensor ，仅参数名不同。                       |
 | boundaries    | sorted_sequence   | 输入的一维 Tensor，该 Tensor 的值在其最后一个维度递增，仅参数名不同。   |
-| out_int32     | out_int32    | 输出的数据类型支持 int32、int64。默认值为 False，表示默认的输出数据类型为 int64，参数名相同 |
+| out_int32     | out_int32    | 输出的数据类型支持 int32、int64。默认值为 False，表示默认的输出数据类型为 int64，参数名相同。 |
 | right         |right         | 根据给定 x 在 sorted_sequence 查找对应的上边界或下边界。如果 sorted_sequence 的值为 nan 或 inf，则返回最内层维度的大小。默认值为 False，参数名相同。   |
 | out           | -            | 表示输出的 Tensor，必须和输入 input 的 size 相同。Paddle 无此参数，需要进行转写。      |
 
@@ -37,8 +37,8 @@ paddle.bucketize(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.bucketize([1, 3, 5, 7, 9], [[3, 6, 9], [3, 6, 9]], right=True, out=y)
+torch.bucketize(torch.tensor([1, 3, 5, 7, 9]), torch.tensor([[3, 6, 9], [3, 6, 9]]), right=True, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.bucketize([1, 3, 5, 7, 9], [[3, 6, 9], [3, 6, 9]], right=True), y)
+paddle.assign(paddle.bucketize(paddle.to_tensor([1, 3, 5, 7, 9]), paddle.to_tensor([[3, 6, 9], [3, 6, 9]]), right=True), y)
 ```
