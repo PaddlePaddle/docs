@@ -29,8 +29,8 @@ paddle.stack(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.stack([x1, x2, x3], out=y)
+torch.stack(torch.tensor([3, 5]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.stack([x1, x2, x3]), y)
+paddle.assign(paddle.stack(paddle.to_tensor([3, 5])), y)
 ```

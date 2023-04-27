@@ -26,4 +26,4 @@ paddle.Tensor.put_along_axis_(indices,
 | dim           | axis        | 表示在哪一个维度 scatter ，仅参数名不一致。 |
 | index         | indices     | 表示输入的索引张量，仅参数名不一致。                   |
 | src           | values      | 表示需要插入的值，仅参数名不一致。                   |
-| reduce        | reduce      | 表示对输出 Tensor 的计算方式，与 PyTorch 默认值不同+ Paddle 保持默认即可。  |
+| reduce        | reduce      | 表示对输出 Tensor 的计算方式。  |

@@ -31,8 +31,8 @@ paddle.bernoulli(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.bernoulli([3, 5], out=y)
+torch.bernoulli(torch.tensor([3, 5]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.bernoulli([3, 5]), y)
+paddle.assign(paddle.bernoulli(paddle.to_tensor([3, 5])), y)
 ```

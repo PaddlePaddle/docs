@@ -30,8 +30,8 @@ paddle.normal(mean=0.0,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.normal(mean=[0., 0., 0.], std=[1., 2., 3.], out=y)
+torch.normal(torch.tensor([0, 0, 0]), torch.tensor([1.0, 2.0, 3.0]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.normal(mean=[0., 0., 0.], std=[1., 2., 3.]), y)
+paddle.assign(paddle.normal(paddle.to_tensor([0, 0, 0]), paddle.to_tensor([1.0, 2.0, 3.0])), y)
 ```

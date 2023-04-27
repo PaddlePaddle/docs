@@ -28,8 +28,8 @@ paddle.nonzero(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.nonzero(x, out=y)
+torch.nonzero(torch.tensor([3, 5]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.nonzero(x), y)
+paddle.assign(paddle.nonzero(paddle.to_tensor([3, 5])), y)
 ```

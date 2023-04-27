@@ -31,8 +31,9 @@ paddle.multinomial(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.multinomial([0.3, 0.5, 0.2], out=y)
+torch.multinomial(torch.tensor([0.3, 0.5, 0.2]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.multinomial([0.3, 0.5, 0.2]), y)
+paddle.assign(paddle.multinomial(paddle.to_tensor([0.3, 0.5, 0.2])), y)
+```
 ```
