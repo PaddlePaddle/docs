@@ -14,7 +14,7 @@ paddle.linalg.matrix_power(x, n, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | x            | 输入的 Tensor ，仅参数名不同。                             |
-| n             | n            | 输入的 int ，仅参数名不同。                             |
+| n             | n            | 输入的 int ，参数完全一致。                             |
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。  |
 
 

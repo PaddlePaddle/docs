@@ -14,7 +14,7 @@ paddle.linalg.matrix_rank(x, tol=None, hermitian=False, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | A             | x            | 输入的 Tensor ，仅参数名不同。                         |
-| tol           | tol          | 输入的 Tensor 或者 float，仅参数名不同。                         |
+| tol           | tol          | 输入的 Tensor 或者 float，参数完全一致。                         |
 | hermitian     | hermitian    | 输入的 bool ，参数完全一致。                            |
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数，需要进行转写。  |
 

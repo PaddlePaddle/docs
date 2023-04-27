@@ -29,5 +29,5 @@ paddle.linalg.inv(x, name=None)
 torch.inverse(torch.tensor([[2., 0.], [0., 2.]]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.inverse(paddle.to_tensor([[2, 0], [0, 2]], dtype='float32')), y)
+paddle.assign(paddle.inverse(paddle.to_tensor([[2., 0], [0, 2.]])), y)
 ```
