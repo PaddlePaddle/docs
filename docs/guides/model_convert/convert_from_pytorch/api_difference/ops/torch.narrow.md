@@ -30,11 +30,9 @@ paddle.slice(input,
 ### 转写示例
 ``` python
 # PyTorch 写法：
-x = torch.tensor([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 torch.narrow(x, 0, 1, 2)
 
 # Paddle 写法：
 # Paddle 可通过设置 ends-starts=length 来实现 Pytorch 的 length 功能
-x = paddle.to_tensor([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 paddle.slice(x, [0], [1], [3])
 ```

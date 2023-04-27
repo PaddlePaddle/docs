@@ -11,7 +11,7 @@ torch.nn.functional.avg_pool2d(input, kernel_size, stride=None, padding=0, ceil_
 paddle.nn.functional.avg_pool2d(x, kernel_size, stride=None, padding=0, ceil_mode=False, exclusive=True, divisor_override=None, data_format='NCHW', name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 Pytorch 与 Paddle 参数不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
