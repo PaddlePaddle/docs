@@ -102,6 +102,7 @@ tensor 数学操作
     " :ref:`paddle.multiply <cn_api_fluid_layers_multiply>` ", "逐元素相乘算子"
     " :ref:`paddle.nan_to_num <cn_api_tensor_nan_to_num>` ", "替换 x 中的 NaN、+inf、-inf 为指定值"
     " :ref:`paddle.neg <cn_api_paddle_neg>` ", "计算输入 x 的相反数并返回"
+    " :ref:`paddle.nextafter <cn_api_paddle_nextafter>` ", "逐元素将 x 之后的下一个浮点值返回"
     " :ref:`paddle.not_equal <cn_api_tensor_not_equal>` ", "逐元素地返回 x!=y 的逻辑值"
     " :ref:`paddle.pow <cn_api_paddle_tensor_math_pow>` ", "指数算子，逐元素计算 x 的 y 次幂"
     " :ref:`paddle.prod <cn_api_tensor_cn_prod>` ", "对指定维度上的 Tensor 元素进行求乘积运算"
