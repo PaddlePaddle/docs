@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.inner
 
-### [torch.inner](https://pytorch.org/docs/stable/generated/torch.inner.html?highlight=inner#torch.inner)
+### [torch.inner](https://pytorch.org/docs/1.13/generated/torch.inner.html?highlight=inner#torch.inner)
 
 ```python
 torch.inner(input, other, *, out=None)

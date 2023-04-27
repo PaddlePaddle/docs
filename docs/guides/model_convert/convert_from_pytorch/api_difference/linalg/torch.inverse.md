@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.inverse
 
-### [torch.inverse](https://pytorch.org/docs/stable/generated/torch.inverse.html?highlight=inverse#torch.inverse)
+### [torch.inverse](https://pytorch.org/docs/1.13/generated/torch.inverse.html?highlight=inverse#torch.inverse)
 
 ```python
 torch.inverse(input, *, out=None)

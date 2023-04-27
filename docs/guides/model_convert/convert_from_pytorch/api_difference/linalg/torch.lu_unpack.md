@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.lu_unpack
-### [torch.lu_unpack](https://pytorch.org/docs/stable/generated/torch.lu_unpack.html?highlight=lu_unpack#torch.lu_unpack)
+### [torch.lu_unpack](https://pytorch.org/docs/1.13/generated/torch.lu_unpack.html?highlight=lu_unpack#torch.lu_unpack)
 
 ```python
 torch.lu_unpack(LU_data, LU_pivots, unpack_data=True, unpack_pivots=True, *, out=None)
