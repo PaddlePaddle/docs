@@ -1,6 +1,6 @@
-.. _cn_api_paddle_sparse_add:
+.. _cn_api_paddle_sparse_sum:
 
-add
+sum
 -------------------------------
 
 .. py:function:: paddle.sparse.sum(x, axis=None, dtype=None, keepdim=False, name=None):
@@ -20,7 +20,7 @@ add
     - **dtype** (str，可选) - 输出 Tensor 的数据类型。默认值为 None，表示与输入 Tensor `x` 数据类型一致。
     - **keepdim** (bool，可选) - 是否在输出 Tensor 中保留减少的维度。如果为 True，则结果 Tensor 的维数比 :attr:`x` 少一维，否则与 :attr:`x` 维数一致。默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    
+
 返回
 ::::::::::::
 
@@ -30,4 +30,4 @@ add
 代码示例
 :::::::::
 
-COPY-FROM: paddle.sparse.add
+COPY-FROM: paddle.sparse.sum
