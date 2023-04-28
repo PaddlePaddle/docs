@@ -21,7 +21,8 @@
 | [torch.distributions.XX](#id9)    | 主要为`torch.distributions.XX`类 API |
 | [torch.fft.XX](#id10)    | 主要为`torch.fft.XX`类 API |
 | [torch.linalg.XX](#id11)    | 主要为`torch.linalg.XX`类 API |
-| [其他](#id12)    | 其他 API |
+| [torch.sparse.XX](#id12)    | 主要为`torch.sparse.XX`类 API |
+| [其他](#id13)    | 其他 API |
 
 ## torch.XX API 映射列表
 梳理了`torch.XX`类 API 的 PyTorch-PaddlePaddle API 映射列表。
