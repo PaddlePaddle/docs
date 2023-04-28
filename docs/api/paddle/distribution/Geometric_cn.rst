@@ -101,7 +101,7 @@ pmf(k)
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Geometric
+COPY-FROM: paddle.distribution.Geometric.pmf
 
 log_pmf(k)
 '''''''''
@@ -129,7 +129,7 @@ log_pmf(k)
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Geometric
+COPY-FROM: paddle.distribution.Geometric.log_pmf
 
 cdf(k)
 '''''''''
@@ -157,7 +157,7 @@ cdf(k)
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Geometric
+COPY-FROM: paddle.distribution.Geometric.cdf
 
 entropy()
 '''''''''
@@ -175,7 +175,7 @@ entropy()
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Geometric
+COPY-FROM: paddle.distribution.Geometric.entropy
 
 kl_divergence(other)
 '''''''''
@@ -206,7 +206,7 @@ kl_divergence(other)
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Geometric
+COPY-FROM: paddle.distribution.Geometric.kl_divergence
 
 sample(shape)
 '''''''''
@@ -222,7 +222,7 @@ sample(shape)
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Geometric
+COPY-FROM: paddle.distribution.Geometric.sample
 
 rsample(shape)
 '''''''''
@@ -238,4 +238,4 @@ rsample(shape)
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Geometric
+COPY-FROM: paddle.distribution.Geometric.rsample
