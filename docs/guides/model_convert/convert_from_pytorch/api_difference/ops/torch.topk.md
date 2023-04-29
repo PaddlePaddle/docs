@@ -43,5 +43,5 @@ paddle.topk(x,
 torch.topk(input, k=1, dim=-1, out = (y, l_y))
 
 # Paddle 写法
-paddle.assign(paddle.topk(x, k=1, axis=-1), y)
+paddle.assign(paddle.topk(input, k=1, axis=-1), y)
 ```

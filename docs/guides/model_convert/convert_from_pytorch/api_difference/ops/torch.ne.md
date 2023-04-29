@@ -34,5 +34,5 @@ paddle.not_equal(x,
 torch.ne(input, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.not_equal(x, y))
+paddle.assign(paddle.not_equal(input, y))
 ```

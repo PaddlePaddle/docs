@@ -37,5 +37,5 @@ paddle.cumsum(x,
 torch.cumsum(input, dim=-1, dtype='float64', out=y)
 
 # Paddle 写法
-paddle.assign(paddle.cumsum(x, dim=-1, dtype='float64'), y)
+paddle.assign(paddle.cumsum(input, dim=-1, dtype='float64'), y)
 ```

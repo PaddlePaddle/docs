@@ -39,5 +39,5 @@ paddle.sort(x,
 torch.sort(input, -1, True, (y, l_y))
 
 # Paddle 写法
-paddle.assign(paddle.sort(x, -1, True), y)
+paddle.assign(paddle.sort(input, -1, True), y)
 ```

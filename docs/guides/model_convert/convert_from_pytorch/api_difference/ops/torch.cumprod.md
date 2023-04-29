@@ -37,5 +37,5 @@ paddle.cumprod(x,
 torch.cumprod(input, dim=1, dtype='float64', out=y)
 
 # Paddle 写法
-paddle.assign(paddle.cumprod(x, dim=1, dtype='float64'), y)
+paddle.assign(paddle.cumprod(input, dim=1, dtype='float64'), y)
 ```
