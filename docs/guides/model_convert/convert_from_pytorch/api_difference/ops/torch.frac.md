@@ -1,33 +1,35 @@
-## [torch 参数更多 ]torch.log
-### [torch.log](https://pytorch.org/docs/stable/generated/torch.log.html?highlight=log#torch.log)
+## [torch 参数更多 ]torch.frac
+### [torch.frac](https://pytorch.org/docs/stable/generated/torch.frac.html)
 
 ```python
-torch.log(input,
-          *,
-          out=None)
+torch.frac(input,
+            *,
+            out=None)
 ```
 
-### [paddle.log](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/log_cn.html#log)
+### [paddle.frac](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/frac_cn.html#frac)
 
 ```python
-paddle.log(x,
-           name=None)
+paddle.frac(x,
+            name=None)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数映射
+### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
 | <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
+
+
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.log(tensor([4.7767, 4.3234, 1.2156, 0.2411, 4.5739]), out=y)
+torch.frac(tensor([1, 2.5, -3.2]), out=y)
 
 # Paddle 写法
-a=paddle.to_tensor([4.7767, 4.3234, 1.2156, 0.2411, 4.5739])
-paddle.assign(paddle.log(a), y)
+input = paddle.to_tensor([1, 2.5, -3.2])
+paddle.assign(paddle.frac(input), y)
 ```

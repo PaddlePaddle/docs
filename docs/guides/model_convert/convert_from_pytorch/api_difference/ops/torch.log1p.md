@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.log1p
-### [torch.log1p](https://pytorch.org/docs/stable/generated/torch.log1p.html?highlight=log1p#torch.log1p)
+### [torch.log1p](  )
 
 ```python
 torch.log1p(input,
@@ -26,8 +26,9 @@ paddle.log1p(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.log1p([3, 5], out=y)
+torch.log1p(tensor([-1.0090, -0.9923,  1.0249, -0.5372,  0.2492]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.log1p([3, 5]), y)
+a=paddle.to_tensor([-1.0090, -0.9923,  1.0249, -0.5372,  0.2492])
+paddle.assign(paddle.log1p(a), y)
 ```
