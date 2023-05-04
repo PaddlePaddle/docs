@@ -1,5 +1,5 @@
 # [ torch 参数更多 ]torch.nn.BCEWithLogitsLoss
-### [torch.nn.BCEWithLogitsLoss](https)
+### [torch.nn.BCEWithLogitsLoss](https://pytorch.org/docs/1.13/generated/torch.nn.BCEWithLogitsLoss.html#bcewithlogitsloss)
 
 ```python
 torch.nn.BCEWithLogitsLoss(weight=None,
@@ -23,8 +23,8 @@ paddle.nn.BCEWithLogitsLoss(weight=None,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | weight           | weight      | 表示每个 batch 二值交叉熵的权重。                                     |
-| size_average  | -            | PyTorch 已弃用。  |
-| reduce        | -            | PyTorch 已弃用。  |
+| size_average  | -            | PyTorch 已弃用，paddle 需要转写。 |
+| reduce        | -            | PyTorch 已弃用，paddle 需要转写。 |
 | reduction  | reduction            | 表示应用于输出结果的计算方式。  |
 | pos_weight  | pos_weight            | 表示正类的权重。  |
 
