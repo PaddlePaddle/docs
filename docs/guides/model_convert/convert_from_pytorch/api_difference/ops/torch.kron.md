@@ -18,5 +18,5 @@ paddle.kron(x, y, out=None, name=None)
 |PyTorch|PaddlePaddle|备注|
 | ------- | ------- | ------- |
 |input|x|表示 Kron OP 输入的第一个 Tensor ，仅参数名不一致。|
-|other|y|表示 Kron OP 输入的第二个 Tensor，仅参数名不一致。|
-|out|out|表示输出的 Tensor|
+|other|y|表示 Kron OP 输入的第二个 Tensor ，仅参数名不一致。|
+|out|out|表示输出的 Tensor。|

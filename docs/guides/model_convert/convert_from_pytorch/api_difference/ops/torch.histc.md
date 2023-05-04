@@ -18,7 +18,7 @@ paddle.histogram(input, bins=100, min=0, max=0, name=None)
 
 | PyTorch | PaddlePaddle | 备注                                                |
 | ------- | ------------ | --------------------------------------------------- |
-| input   | input        | 表示输入的 Tensor                                   |
+| input   | input        | 表示输入的 Tensor。                                  |
 | bins    | bins         | 表示直方图直条的个数。                              |
 | min     | min          | 表示范围的下边界。                                  |
 | max     | max          | 表示范围的上边界。                                  |

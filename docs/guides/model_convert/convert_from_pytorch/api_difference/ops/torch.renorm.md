@@ -29,8 +29,8 @@ paddle.renorm(input, p, axis, max_norm)
 
 ```python
 # Pytorch 写法
-torch.renorm(x,1, 0, 5, out=output)
+torch.renorm(x, 1, 0, 5, out=output)
 
 # Paddle 写法
-paddle.assign(paddle.renorm(x,1, 0, 5), output)
+paddle.assign(paddle.renorm(x, 1, 0, 5), output)
 ```
