@@ -38,5 +38,5 @@ e, v = paddle.linalg.eigh(x, UPLO = 'L')
 torch.symeig(x, out=(e, v) )
 
 # Paddle 写法
-paddle.assign(paddle.linalg.eigh(x), (e, v) )
+e, v = paddle.linalg.eigh(x)
 ```

@@ -34,8 +34,8 @@ q, r = paddle.linalg.qr(x, mode='complete')
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.qr(x, out = (q,r) )
+torch.qr(x, out = (q, r) )
 
 # Paddle 写法
-paddle.assign(paddle.linalg.qr(x), (q,r) )
+q, r = paddle.linalg.qr(x)
 ```
