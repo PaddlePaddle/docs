@@ -18,7 +18,7 @@ paddle.tril(input,diagonal=0,name=None)
 |PyTorch|PaddlePaddle|备注|
 | ------- | ------- | ------- |
 |input|input|表示输入的 Tensor 。|
-|diagonal|diagonal|表示指定的对角线，默认值是0，表示主对角线。如果 diagonal > 0，表示主对角线之上的对角线；如果 diagonal < 0，表示主对角线之下的对角线。|
+|diagonal|diagonal|表示指定的对角线，默认值是 0 ，表示主对角线。如果 diagonal > 0 ，表示主对角线之上的对角线；如果 diagonal < 0 ，表示主对角线之下的对角线。|
 |out||表示输出的 Tensor ，Paddle 无此参数，需要进行转写。|
 
 ### 转写示例

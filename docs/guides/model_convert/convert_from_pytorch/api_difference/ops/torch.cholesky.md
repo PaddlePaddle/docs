@@ -19,7 +19,7 @@ paddle.linalg.cholesky(x,upper=False,name=None)
 | ------- | ------- | ------- |
 |input|x|表示输入变量为多维 Tensor ，它的维度应该为 [*, M, N]，其中*为零或更大的批次尺寸，并且最里面的两个维度上的矩阵都应为对称的正定矩阵，仅参数名不一致。|
 |upper|upper|表示是否返回上三角矩阵或下三角矩阵。|
-|out||表示输出的 Tensor，Paddle 无此变量，需要进行转写。|
+|out||表示输出的 Tensor， Paddle 无此变量，需要进行转写。|
 
 ### 转写示例
 
