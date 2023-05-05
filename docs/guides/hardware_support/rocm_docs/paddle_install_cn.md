@@ -1,6 +1,6 @@
 # 飞桨框架 ROCm 版安装说明
 
-飞桨框架 ROCm 版支持基于海光 CPU 和海光 DCU 的训练和预测，不仅支持 AMD ROCm，同样支持海光 DCUToolkit（DTK），当前支持的 ROCm 版本为 4.0.1, 支持的 DTK 有多个版本。提供两种安装方式：
+飞桨框架 ROCm 版支持基于海光 CPU 和海光 DCU 的训练和预测，不仅支持 AMD ROCm，同样支持海光 DCUToolkit（DTK），当前支持的 ROCm 版本为 4.0.1，支持的 DTK 有多个版本。提供两种安装方式：
 
 - 通过预编译的 wheel 包安装
 - 通过源代码编译安装
