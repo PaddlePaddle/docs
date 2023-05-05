@@ -3,7 +3,7 @@
 ### [torch.Tensor.transpose](https://pytorch.org/docs/1.13/generated/torch.Tensor.swapdims.html)
 
 ```python
-    torch.Tensor.transpose(dim0, dim1) 
+    torch.Tensor.transpose(dim0, dim1)
 ```
 
 ### [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#transpose-perm-name-none)
@@ -16,7 +16,7 @@
 两者部分参数用法不同，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| dim0, dim1 | perm | torch的参数为dim0, dim1, 为整数。paddle的perm为list/tuple |
+| dim0, dim1 | perm | torch 的参数为 dim0 , dim1 , 为整数。 paddle 的 perm 为 list/tuple |
 
 ### 代码转写
 

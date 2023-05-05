@@ -16,7 +16,7 @@
 两者部分参数用法不同，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| device | id | torch的device参数类型为torch.device 或 int。paddle的id为int。 |
+| device | id | torch 的 device 参数类型为 torch.device 或 int 。paddle 的 id 为 int。 |
 
 # 代码转写
 

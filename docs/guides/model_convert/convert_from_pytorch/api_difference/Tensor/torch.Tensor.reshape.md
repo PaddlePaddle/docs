@@ -3,7 +3,7 @@
 ### [torch.Tensor.reshape](https://pytorch.org/docs/1.13/generated/torch.Tensor.reshape.html)
 
 ```python
-    torch.Tensor.reshape(*shape) 
+    torch.Tensor.reshape(*shape)
 ```
 
 ### [paddle.Tensor.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#reshape-shape-name-none)
@@ -16,7 +16,7 @@
 两者部分参数用法不同，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| *shape | shape | torch的 *shape 既可以接收list也可接收可变参数。|
+| *shape | shape | torch 的 *shape 既可以接收 list 也可接收可变参数。|
 
 # 代码转写
 

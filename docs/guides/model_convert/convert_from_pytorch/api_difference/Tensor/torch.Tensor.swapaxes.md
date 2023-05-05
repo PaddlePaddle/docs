@@ -3,7 +3,7 @@
 ### [torch.Tensor.swapaxes](https://pytorch.org/docs/1.13/generated/torch.Tensor.swapaxes.html)
 
 ```python
-    torch.Tensor.swapaxes(axis0, axis1) 
+    torch.Tensor.swapaxes(axis0, axis1)
 ```
 
 ### [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#transpose-perm-name-none)
@@ -16,7 +16,7 @@
 两者部分参数用法不同，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| axis0, axis1 | perm | torch的参数为axis0, axis1, 为整数。paddle的perm为list/tuple |
+| axis0, axis1 | perm | torch 的参数为 axis0 , axis1 , 为整数。 paddle 的 perm 为 list/tuple |
 
 ### 代码转写
 

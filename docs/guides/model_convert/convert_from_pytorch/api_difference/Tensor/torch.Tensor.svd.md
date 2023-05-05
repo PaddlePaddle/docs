@@ -11,11 +11,6 @@
 ```python
     paddle.linalg.svd(x, full_matrics=False, name=None)
 ```
-【不一致的参数】
-some=full_matrices，默认参数，默认一致
-
-【torch多的参数】
-compute_uv，默认参数，默认一致
 
 ### 不一致的参数
 两者部分参数用法不同，具体如下：
@@ -23,10 +18,10 @@ compute_uv，默认参数，默认一致
 | ------------- | ------------ | ------------------------------------------------------ |
 | some | full_matrices | 默认参数，默认一致|
 
-### torch多的参数
+### torch 多的参数
 | 参数名        | 备注                                                                  |
 | ------------- | -------------------------------------------------------------------- |
-| compute_uv | 默认参数，默认一致。如果compute_uv为False，则返回的U和V将分别为形状为(m, m)和(n, n)的零填充矩阵，并且与输入设备相同。当compute_uv为False时，参数some不起作用。 |
+| compute_uv | 默认参数，默认一致。如果 compute_uv 为 False ，则返回的 U 和 V 将分别为形状为 (m, m) 和 (n ,n) 的零填充矩阵，并且与输入设备相同。当 compute_uv 为 False 时，参数 some 不起作用。 |
 
 # 代码转写
 ```python

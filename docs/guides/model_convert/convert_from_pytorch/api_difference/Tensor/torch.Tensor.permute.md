@@ -16,7 +16,7 @@
 两者部分参数用法不同，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| *dims | perm | dim：torch可以为 *dim和list/tuple的用法; perm：paddle仅为list/tuple的用法 |
+| *dims | perm | dim ：torch 可以为 *dim 和 list/tuple 的用法; perm ：paddle 仅为 list/tuple 的用法 |
 
 ### 代码转写
 

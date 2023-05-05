@@ -21,7 +21,7 @@
 两者部分参数用法不同，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| split_size_or_sections | num_or_sections | torch的split_size_or_sections：int时表示块的大小，list时表示块的大小 paddle的num_or_sections：int时表示块的个数，list时表示块的大小。两者list时相同，但int时不同|
+| split_size_or_sections | num_or_sections | torch 的 split_size_or_sections ：int 时表示块的大小， list 时表示块的大小; paddle 的 num_or_sections ： int 时表示块的个数， list 时表示块的大小。两者 list 时相同，但 int 时不同。|
 
 # 代码转写
 ```python

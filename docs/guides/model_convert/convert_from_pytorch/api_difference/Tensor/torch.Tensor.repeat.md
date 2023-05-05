@@ -3,7 +3,7 @@
 ### [torch.Tensor.repeat](https://pytorch.org/docs/1.13/generated/torch.Tensor.repeat.html)
 
 ```python
-    torch.Tensor.repeat(*sizes) 
+    torch.Tensor.repeat(*sizes)
 ```
 
 ### [paddle.Tensor.tile](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#tile-repeat-times-name-none)
@@ -16,7 +16,7 @@
 两者部分参数用法不同，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| *sizes | repeat_times | *sizes：参数类型为torch.Size 或 int...; repeat_times：参数类型为list、tuple或Tensor。|
+| *sizes | repeat_times | *sizes ：参数类型为 torch.Size 或 int... ; repeat_times ：参数类型为 list 、 tuple 或 Tensor。|
 
 ### 代码转写
 
