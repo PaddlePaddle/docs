@@ -17,16 +17,18 @@ paddle.tril(input,diagonal=0,name=None)
 ### 参数映射
 |PyTorch|PaddlePaddle|备注|
 | ------- | ------- | ------- |
-|input|input|input tensor即输入的矩阵|
-|diagonal|diagonal|指定的对角线，默认值是0，表示主对角线。如果diagonal>0，表示主对角线之上的对角线；如果diagonal<0，表示主对角线之下的对角线。|
-|out||output tensor即输出的矩阵，Paddle无此参数，需要进行转写|
+|input|input|表示输入的 Tensor 。|
+|diagonal|diagonal|表示指定的对角线，默认值是0，表示主对角线。如果 diagonal > 0，表示主对角线之上的对角线；如果 diagonal < 0，表示主对角线之下的对角线。|
+|out||表示输出的 Tensor ，Paddle 无此参数，需要进行转写。|
 
 ### 转写示例
 
+#### out: 输出的 Tensor
+
 ```python
 # Pytorch 写法
-torch.tril(torch.tensor([[-1.08,-0.86],[1.5,1.4]]), out=y)
+torch.tril(input,diagonal,out=output)
 
 # Paddle 写法
-paddle.assign(paddle.tril(paddle.to_tensor([[-1.08,-0.86],[1.5,1.4]])), y)
+paddle.assign(paddle.tril(input,diagonal),output)
 ```

@@ -17,29 +17,19 @@ paddle.linalg.cholesky(x,upper=False,name=None)
 ### 参数映射
 |PyTorch|PaddlePaddle|备注|
 | ------- | ------- | ------- |
-|A|x|输入的多维矩阵，它的维度应该为 [*, M, N]，其中*为零或更大的批次尺寸，并且最里面的两个维度上的矩阵都应为对称的正定矩阵|
-|upper|upper|指示是否返回上三角矩阵或下三角矩阵|
-|out||输出矩阵|
+|A|x|表示输入变量为多维 Tensor，它的维度应该为 [*, M, N]，其中*为零或更大的批次尺寸，并且最里面的两个维度上的矩阵都应为对称的正定矩阵，仅参数名不一致。|
+|upper|upper|表示是否返回上三角矩阵或下三角矩阵。|
+|out||表示输出的 Tensor ，Paddle 无此变量，需要进行转写。|
 
 ### 转写示例
 
+#### out: 输出的 Tensor
+
 ```python
 # Pytorch 写法
->>> A = torch.randn(2, 2, dtype=torch.complex128)
->>> A_t = torch.transpose(A,1,0)
->>> x = torch.matmul(A,A_t) + 1e-03
->>> torch.linalg.cholesky(x, upper=False, out=y)
+torch.linalg.cholesky(x, upper=False, out=output)
 
 
 # Paddle 写法
- 
-import paddle
-
-a = paddle.rand([3, 3], dtype=<span class="s2">"float32")
-a_t = paddle.transpose(a, [1, 0])
-x = paddle.matmul(a, a_t) + 1e-03
-
-out = paddle.linalg.cholesky(x, upper=False)
-print(out)
-
+paddle.assign(paddle.linalg.cholesky(x, upper=False),output)
 ```

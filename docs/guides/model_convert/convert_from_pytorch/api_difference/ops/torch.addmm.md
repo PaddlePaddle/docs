@@ -17,36 +17,21 @@ paddle.addmm(input,x,y,alpha=1.0,beta=1.0,name=None)
 ### 参数映射
 |PyTorch|PaddlePaddle|备注|
 | ------- | ------- | ------- |
-|input|input|输入矩阵|
-|mat1|x|矩阵x|
-|mat2|y|矩阵y|
-|beta|beta|乘以input的标量|
-|alpha|alpha|乘以x*y的标量|
-|out||输出矩阵，Paddle没有此字段，需要进行转写|
+|input|input|表示输入的 Tensor 。|
+|mat1|x|表示输入的第一个 Tensor ，仅参数名不一致。|
+|mat2|y|表示输入的第二个 Tensor ，仅参数名不一致。|
+|beta|beta|表示乘以 input 的标量。|
+|alpha|alpha|表示乘以 mat1 * mat2 的标量。|
+|out||表示输出的 Tensor ，Paddle 无此参数，需要进行转写。|
 
 ### 转写示例
 
+#### out: 输出的 Tensor
+
 ```python
 # Pytorch 写法
->>> mat1 = torch.ones(2, 2)
->>> mat2 = torch.ones(2, 2)
->>> input = torch.ones(2,2)
->>> torch.addmm(input, mat1, mat2, beta=0.5, alpha=5.0, out=y)
-# [[10.5 10.5]
-# [10.5 10.5]]
+torch.addmm(input,x,y,beta,alpha,out=output)
 
 # Paddle 写法
- 
-import paddle
-
-x = paddle.ones([2,2])
-y = paddle.ones([2,2])
-input = paddle.ones([2,2])
-
-out = paddle.addmm( input=input, x=x, y=y, beta=0.5, alpha=5.0 )
-
-print(out)
-# [[10.5 10.5]
-# [10.5 10.5]]
-
+paddle.assign(paddle.addmm(input,x,y,beta,alpha),output)
 ```

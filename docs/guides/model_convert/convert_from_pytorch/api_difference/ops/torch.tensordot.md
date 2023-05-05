@@ -17,21 +17,19 @@ paddle.tensordot(x,y,axes=2,name=None)
 ### 参数映射
 |PyTorch|PaddlePaddle|备注|
 | ------- | ------- | ------- |
-|a|x|缩并运算的左张量|
-|b|y|缩并运算的右张量|
-|dims|axes|缩并运算的维度（轴），默认值为2|
-|out||缩并运算的结果，Paddle无此参数，需要进行转写|
+|a|x|表示缩并运算的左张量,仅参数名不一致。|
+|b|y|表示缩并运算的右张量，仅参数名不一致。|
+|dims|axes|表示缩并运算的维度（轴），默认值为2，仅参数名不一致。|
+|out||表示缩并运算的结果，Paddle 无此参数，需要进行转写。|
 
 ### 转写示例
 
+#### out: 缩并运算的结果
+
 ```python
 # Pytorch 写法
->>> a = torch.tensor([[-1.08,-0.86],[1.5,1.4]])
->>> b = torch.tensor([[-3,-4],[5,4]])
->>> torch.tensordot(a, b, dims=([1,0],[0,1]), out=z)
+torch.tensordot(x,y,axes,out=output)
 
 # Paddle 写法
-x = paddle.to_tensor([[-1.08,-0.86],[1.5,1.4]])
-y = paddle.to_tensor([[-3,-4],[5,4]])
-paddle.assign(paddle.tensordot(x, y, axes=([1,0],[0,1])),z)
+paddle.assign(paddle.tensordot(x,y,axes),output)
 ```

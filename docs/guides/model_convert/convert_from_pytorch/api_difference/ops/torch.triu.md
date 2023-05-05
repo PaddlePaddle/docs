@@ -17,19 +17,19 @@ paddle.triu(input,diagonal=0,name=None)
 ### 参数映射
 |PyTorch|PaddlePaddle|备注|
 | ------- | ------- | ------- |
-|input|input|输入矩阵|
-|diagonal|diagonal|指定的对角线，默认值为0，表示主对角线。如果diagonal>0，表示主对角线之上的对角线；如果diagonal<0，表示主对角线之下的对角线|
-|out||输出矩阵，Paddle没有此字段，需要进行转写|
+|input|input|表示输入的 Tensor 。|
+|diagonal|diagonal|指定的对角线，默认值为0，表示主对角线。如果 diagonal > 0，表示主对角线之上的对角线；如果 diagonal < 0，表示主对角线之下的对角线。|
+|out||表示输出的 Tensor ，Paddle 没有此字段，需要进行转写。|
 
 ### 转写示例
 
+#### out: 输出的 Tensor
+
 ```python
 # Pytorch 写法
-torch.triu(torch.tensor([[-1.08,-0.86],[1.5,1.4]]),diagonal=1,out=y)
+torch.triu(input,diagonal,out=output)
 
 
 # Paddle 写法
-x = paddle.to_tensor([[-1.08,-0.86],[1.5,1.4]])
-out = paddle.triu(x,diagonal=1)
-print(out)
+paddle.assign(paddle.triu(input,diagonal),output)
 ```

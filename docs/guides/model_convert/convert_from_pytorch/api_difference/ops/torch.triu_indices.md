@@ -17,29 +17,22 @@ paddle.triu_indices(row,col=None,offset=0,dtype='int64')
 ### 参数映射
 |PyTorch|PaddlePaddle|备注|
 | ------- | ------- | ------- |
-|row|row|输入矩阵行数|
-|col|col|输入矩阵列数|
-|offset|offset|确定从指定二维平面中获取对角线的位置。如果offset=0，取主对角线；如果offset>0，取主对角线右上的对角线；如果offset<0，取主对角线左下的对角线|
-|dtype|dtype|输出张量的数据类型|
-|device||输出张量的设备，默认使用当前设备|
-|layout||输出张量的layout，只支持torch.strided|
+|row|row|表示输入 Tensor 的行数。|
+|col|col|表示输入 Tensor 的列数。|
+|offset|offset|表示从指定二维平面中获取对角线的位置。如果 offset = 0，取主对角线；如果 offset > 0，取主对角线右上的对角线；如果 offset < 0，取主对角线左下的对角线。|
+|dtype|dtype|表示数据类型。|
+|device||表示 Tensor 存放设备位置，Paddle 无此参数，需要进行转写。|
+|layout||表示布局方式， Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
 
 ### 转写示例
 
+#### device: Tensor 的设备
+
 ```python
 # Pytorch 写法
->>> a = torch.triu_indices(4, 3, -1)
->>> a
-tensor([[0, 0, 0, 1, 1, 1, 2, 2, 3],
-        [0, 1, 2, 0, 1, 2, 1, 2, 2]])
+>>> a = torch.triu_indices(row,col,offset,dtype,device=torch.device('cpu'))
 
 # Paddle 写法
- 
-import paddle
-# example 1, default offset value
-data1 = paddle.triu_indices(4,4,0)
-print(data1)
-# [[0, 0, 0, 0, 1, 1, 1, 2, 2, 3],
-#  [0, 1, 2, 3, 1, 2, 3, 2, 3, 3]]
-
+y = paddle.triu_indices(row,col,offset,dtype)
+y.cpu()
 ```
