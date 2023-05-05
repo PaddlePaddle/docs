@@ -2,15 +2,15 @@
 
 ### [torch.Tensor.svd](https://pytorch.org/docs/1.13/generated/torch.Tensor.svd.html)
 
-'''python
+```python
     torch.Tensor.svd(some=True, compute_uv=True)
-'''
+```
 
 ### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/svd_cn.html#svd)
 
-'''python
+```python
     paddle.linalg.svd(x, full_matrics=False, name=None)
-'''
+```
 【不一致的参数】
 some=full_matrices，默认参数，默认一致
 

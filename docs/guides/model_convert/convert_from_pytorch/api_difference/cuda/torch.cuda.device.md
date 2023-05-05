@@ -2,15 +2,15 @@
 
 ### [torch.cuda.device](https://pytorch.org/docs/1.13/generated/torch.cuda.device.html)
 
-'''python
+```python
     torch.cuda.device(device)
-'''
+```
 
 ### [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/CUDAPlace_cn.html#cudaplace)
 
-'''python
+```python
     paddle.CUDAPlace(id)
-'''
+```
 
 ### 不一致的参数
 两者部分参数用法不同，具体如下：

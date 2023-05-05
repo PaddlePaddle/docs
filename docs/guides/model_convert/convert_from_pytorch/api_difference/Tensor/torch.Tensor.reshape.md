@@ -2,15 +2,15 @@
 
 ### [torch.Tensor.reshape](https://pytorch.org/docs/1.13/generated/torch.Tensor.reshape.html)
 
-'''python
+```python
     torch.Tensor.reshape(*shape) 
-'''
+```
 
 ### [paddle.Tensor.reshape](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#reshape-shape-name-none)
 
-'''python
+```python
     paddle.Tensor.reshape(shape, name=None)
-'''
+```
 
 ### 不一致的参数
 两者部分参数用法不同，具体如下：

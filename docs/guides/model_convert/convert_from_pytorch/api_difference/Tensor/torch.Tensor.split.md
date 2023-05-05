@@ -2,15 +2,15 @@
 
 ### [torch.Tensor.split](https://pytorch.org/docs/1.13/generated/torch.Tensor.split.html)
 
-'''python
+```python
     torch.Tensor.split(split_size_or_sections, dim=0)
-'''
+```
 
 ### [paddle.Tensor.split](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#split-num-or-sections-axis-0-name-none)
 
-'''python
+```python
     paddle.Tensor.split(num_or_sections, axis=0, name=None)
-'''
+```
 
 ### 一致的参数
 | PyTorch       | PaddlePaddle | 备注                                                   |

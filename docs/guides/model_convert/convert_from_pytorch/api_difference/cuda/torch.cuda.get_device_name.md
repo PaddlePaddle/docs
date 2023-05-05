@@ -2,15 +2,15 @@
 
 ### [torch.cuda.get_device_name](https://pytorch.org/docs/1.13/generated/torch.cuda.get_device_name.html)
 
-'''python
+```python
     torch.cuda.get_device_name(device=None)
-'''
+```
 
 ### [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/get_device_properties_cn.html#get-device-properties)
 
-'''python
+```python
     paddle.device.cuda.get_device_properties(device)
-'''
+```
 
 ### 一致的参数
 | PyTorch       | PaddlePaddle | 备注                                                   |
