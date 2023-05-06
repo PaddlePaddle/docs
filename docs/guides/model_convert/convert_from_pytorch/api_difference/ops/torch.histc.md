@@ -1,4 +1,4 @@
-## [仅 torch 参数更多]torch.histc
+## [ torch 参数更多]torch.histc
 
 ### [torch.histc](https://pytorch.org/docs/1.13/generated/torch.histc.html#torch-histc)
 
@@ -12,7 +12,7 @@ torch.histc(input, bins=100, min=0, max=0, *, out=None)
 paddle.histogram(input, bins=100, min=0, max=0, name=None)
 ```
 
-其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
@@ -22,7 +22,7 @@ paddle.histogram(input, bins=100, min=0, max=0, name=None)
 | bins    | bins         | 表示直方图直条的个数。                              |
 | min     | min          | 表示范围的下边界。                                  |
 | max     | max          | 表示范围的上边界。                                  |
-| out     |              | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
+| out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
 
 ### 转写示例
 

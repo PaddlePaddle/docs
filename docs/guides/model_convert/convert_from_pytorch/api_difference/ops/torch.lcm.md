@@ -1,4 +1,4 @@
-## [仅 torch 参数更多]torch.lcm
+## [ torch 参数更多]torch.lcm
 
 ### [torch.lcm](https://pytorch.org/docs/1.13/generated/torch.lcm.html#torch-lcm)
 
@@ -20,7 +20,7 @@ paddle.lcm(x, y, name=None)
 | ------- | ------------ | --------------------------------------------------- |
 | input   | x            | 表示输入的第一个 Tensor ，仅参数名不一致。          |
 | other   | y            | 表示输入的第二个 Tensor ，仅参数名不一致。           |
-| out     |              | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
+| out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
 
 ### 转写示例
 
