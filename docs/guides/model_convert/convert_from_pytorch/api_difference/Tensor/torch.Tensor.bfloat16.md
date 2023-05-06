@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.bfloat16
 
-### [torch.Tensor.bfloat16](https://pytorch.org/docs/stable/generated/torch.Tensor.bfloat16.html#torch-tensor-bfloat16)
+### [torch.Tensor.bfloat16](https://pytorch.org/docs/1.13/generated/torch.Tensor.bfloat16.html#torch.Tensor.bfloat16)
 
 ```python
 torch.Tensor.bfloat16(memory_format=torch.preserve_format)

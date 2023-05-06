@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.byte
 
-### [torch.Tensor.byte](https://pytorch.org/docs/stable/generated/torch.Tensor.byte.html#torch.Tensor.byte)
+### [torch.Tensor.byte](https://pytorch.org/docs/1.13/generated/torch.Tensor.byte.html#torch.Tensor.byte)
 
 ```python
 torch.Tensor.byte(memory_format=torch.preserve_format)

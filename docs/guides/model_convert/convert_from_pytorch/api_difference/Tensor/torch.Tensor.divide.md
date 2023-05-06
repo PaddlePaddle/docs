@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.divide
 
-### [torch.Tensor.divide](https://pytorch.org/docs/stable/generated/torch.Tensor.divide.html#torch-tensor-divide)
+### [torch.Tensor.divide](https://pytorch.org/docs/1.13/generated/torch.Tensor.divide.html#torch.Tensor.divide)
 
 ```python
 torch.Tensor.divide(other, *, rounding_mode=None)
@@ -19,4 +19,20 @@ paddle.Tensor.divide(y, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                                                |
 | ------------- | ------------ | ----------------------------------------------------------------------------------- |
 | other         | y            | 表示输入的 Tensor ，仅参数名不一致。                                                   |
-| rounding_mode | -            | 用于指定在执行截断除法时的舍入模式。可选值为 'floor'(向下取整) 或 'trunc'(截断)。Paddle 无此功能，暂无转写方式。|
+| rounding_mode | -            | 用于指定在执行截断除法时的舍入模式。可选值为 'floor'(向下取整) 或 'trunc'(向零取整)。 Paddle 无此参数，需要进行转写。 |
+
+### 转写示例
+
+```python
+# torch 写法
+x = torch.tensor([4, 8, 12], dtype=torch.float32)
+y = torch.tensor([3, 4, 5], dtype=torch.float32)
+z1 = x.divide(y, rounding_mode='floor') # 向下取整
+z2 = x.divide(y, rounding_mode='trunc') # 向零取整
+
+# paddle 写法
+x = paddle.to_tensor([4, 8, 12], dtype='float32')
+y = paddle.to_tensor([3, 4, 5], dtype='float32')
+z1 = x.divide(y).floor()  # 向下取整
+z2 = x.divide(y).trunc()  # 向零取整
+```

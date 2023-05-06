@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.bernoulli
 
-### [torch.Tensor.bernoulli](https://pytorch.org/docs/stable/generated/torch.Tensor.bernoulli.html#torch-tensor-bernoulli)
+### [torch.Tensor.bernoulli](https://pytorch.org/docs/1.13/generated/torch.Tensor.bernoulli.html#torch.Tensor.bernoulli)
 
 ```python
 torch.Tensor.bernoulli(*, generator=None)
@@ -12,7 +12,7 @@ torch.Tensor.bernoulli(*, generator=None)
 paddle.bernoulli(x, name=None)
 ```
 
-其中 torch 是类成员函数，而 paddle 是非类成员函数，因此第一个参数 `x` 不进行对比，Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 

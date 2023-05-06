@@ -1,6 +1,6 @@
 ## [ torch 参数更多 ] torch.Tensor.bool
 
-### [torch.Tensor.bool](https://pytorch.org/docs/stable/generated/torch.Tensor.bool.html#torch.Tensor.bool)
+### [torch.Tensor.bool](https://pytorch.org/docs/1.13/generated/torch.Tensor.bool.html#torch.Tensor.bool)
 
 ```python
 torch.Tensor.bool(memory_format=torch.preserve_format)
