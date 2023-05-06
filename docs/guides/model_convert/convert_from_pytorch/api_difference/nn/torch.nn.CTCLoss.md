@@ -15,7 +15,7 @@ paddle.nn.CTCLoss(blank=0,
                   reduction='mean')
 ```
 
-Pytorch 相比 Paddle 支持在损失函数值为无穷大时将损失值及其梯度置为 0，paddle 暂无此功能，具体如下：
+其中，Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
 
