@@ -21,14 +21,11 @@ CompiledProgram
                     fetch_list=[loss.name])
 
     # 或者编译程序后用优化过的Program运行模型。
-    exec_strategy = fluid.ExecutionStrategy()
-    exec_strategy.num_threads = dev_count * 4 # the size of thread pool.
     build_strategy = fluid.BuildStrategy()
     build_strategy.memory_optimize = True if memory_opt else False
     compiled_prog = compiler.CompiledProgram(
         fluid.default_main_program(),
-        build_strategy=build_strategy,
-        exec_strategy=exec_strategy)
+        build_strategy=build_strategy)
     loss, = exe.run(compiled_prog,
                     feed=feed_dict,
                     fetch_list=[loss.name])
