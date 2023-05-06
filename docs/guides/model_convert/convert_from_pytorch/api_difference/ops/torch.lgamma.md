@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.lgamma
-### [torch.lgamma](https://pytorch.org/docs/stable/generated/torch.lgamma.html)
+### [torch.lgamma](https://pytorch.org/docs/1.13/generated/torch.lgamma.html?highlight=lgamma#torch.lgamma)
 
 ```python
 torch.lgamma(input,

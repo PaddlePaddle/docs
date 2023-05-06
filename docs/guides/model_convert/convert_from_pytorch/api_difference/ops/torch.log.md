@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.log
-### [torch.log](https://pytorch.org/docs/stable/generated/torch.log.html?highlight=log#torch.log)
+### [torch.log](https://pytorch.org/docs/1.13/generated/torch.log.html?highlight=log#torch.log)
 
 ```python
 torch.log(input,

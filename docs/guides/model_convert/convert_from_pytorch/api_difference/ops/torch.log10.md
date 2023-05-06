@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.log10
-### [torch.log10](https://pytorch.org/docs/stable/generated/torch.log10.html?highlight=log10#torch.log10)
+### [torch.log10](https://pytorch.org/docs/1.13/generated/torch.log10.html?highlight=log10#torch.log10)
 
 ```python
 torch.log10(input,

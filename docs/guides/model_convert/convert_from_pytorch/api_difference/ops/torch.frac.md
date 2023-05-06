@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.frac
-### [torch.frac](https://pytorch.org/docs/stable/generated/torch.frac.html)
+### [torch.frac](https://pytorch.org/docs/1.13/generated/torch.frac.html?highlight=frac#torch.frac)
 
 ```python
 torch.frac(input,
