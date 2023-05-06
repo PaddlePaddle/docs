@@ -1,4 +1,4 @@
-## [部分参数不一致]torch.Tensor.swapaxes
+## [参数不一致]torch.Tensor.swapaxes
 
 ### [torch.Tensor.swapaxes](https://pytorch.org/docs/1.13/generated/torch.Tensor.swapaxes.html)
 
@@ -12,14 +12,14 @@
     paddle.Tensor.transpose(perm, name=None)
 ```
 
-### 不一致的参数
+### 参数映射
 两者部分参数用法不同，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| axis0, axis1 | perm | torch 的参数为 axis0 , axis1 , 为整数。 paddle 的 perm 为 list/tuple |
+| axis0, axis1 | perm | torch 的 axis0 与 axis1 表示要交换的两个轴，为整数。 paddle 的 perm 表示重排的维度序列，为 list/tuple 。需要转写。|
 
-### 代码转写
-
+### 转写示例
+#### axis0, axis1: 表示要交换的两个轴
 ```python
     # pytorch
     x = torch.randn(2, 3, 5)

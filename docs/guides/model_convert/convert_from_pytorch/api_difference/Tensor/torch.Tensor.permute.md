@@ -1,4 +1,4 @@
-## [部分参数不一致]torch.Tensor.permute
+## [参数不一致]torch.Tensor.permute
 
 ### [torch.Tensor.permute](https://pytorch.org/docs/1.13/generated/torch.Tensor.permute.html)
 
@@ -12,23 +12,20 @@
     paddle.Tensor.transpose(perm, name=None)
 ```
 
-### 不一致的参数
+### 参数映射
 两者部分参数用法不同，具体如下：
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| *dims | perm | dim ：torch 可以为 *dim 和 list/tuple 的用法; perm ：paddle 仅为 list/tuple 的用法 |
+| *dims | perm | dim ：torch 可以为 *dim 和 list/tuple 的用法; perm ：paddle 仅为 list/tuple 的用法。 torch 的参数为 *dim 时需要转写 |
 
-### 代码转写
-
+### 转写示例
+#### *dim: Tensor 的维度序列，可变参数用法
 ```python
     # pytorch
     x = torch.randn(2, 3, 5)
     x_permuted_dim = x.permute(2,0,1)
-    x_permuted_list = x.permute([2,0,1])
-    x_permuted_tuple = x.permute((2,0,1))
 
     # paddle
     x = paddle.randn([2, 3, 5])
-    x_transposed_list = x.transpose(perm=[2, 0, 1])
-    x_transposed_tuple = x.transpose(perm=(2, 0, 1))
+    x_transposed_list = x.transpose([2, 0, 1])
 ```
