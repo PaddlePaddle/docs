@@ -132,7 +132,12 @@
         <td>寒武纪 MLU</td>
         <td colspan="2">float16</td>
     </tr>
+    <tr>
+        <td>海光 DCU</td>
+        <td colspan="2">float16</td>
+    </tr>
 </table>
+
 
 以 Nvidia GPU 为例，介绍硬件加速机制：
 
