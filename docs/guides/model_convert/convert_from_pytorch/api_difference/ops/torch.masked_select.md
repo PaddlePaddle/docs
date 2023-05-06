@@ -32,5 +32,5 @@ paddle.masked_select(x,
 torch.masked_select(x, mask, out=y)
 
 # Paddle 写法
-y = paddle.masked_select(x, mask)
+paddle.assign(paddle.masked_select(x, mask), y)
 ```

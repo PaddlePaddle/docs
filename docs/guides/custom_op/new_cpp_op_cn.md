@@ -1141,7 +1141,7 @@ std::vector<paddle::Tensor> ReluDoubleBackward(const paddle::Tensor& out,
 
 ##### 获取自定义设备的 stream
 
-用户想要获取设备的 `stream` 时，可以通过下述方式获取对应 `Tensor` 的 `stream`（需要添加头文件 `#include "paddle/phi/backends/all_context.h"`）：
+用户想要获取设备的 `stream` 时，可以通过下述方式获取对应 `Tensor` 的 `stream`（需要添加头文件 `#include "paddle/phi/backends/all_context.h"`，当前方法尚不稳定，在下个版本有不兼容升级的可能，如果不介意随下一版本升级的话，可以使用，追求稳定的话则不建议使用）：
 
 ```c++
 #include "paddle/extension.h"
@@ -1514,63 +1514,62 @@ custom_setup_ops_pd_.so  EGG-INFO/     relu_cpu.o      relu_cuda.o
 custom_setup_ops.py      __pycache__/  relu_cuda.cu.o  version.txt
 ```
 
-其中 `custom_setup_ops_pd_.so` 为自定义算子编译生成的动态库， `custom_setup_ops.py` 为根据 `PaddlePaddle` 接口的定义规则，自动生成的自定义算子 python 模块源码，其示例内容为（自动生成的代码后续可能会更新）：
+其中 `custom_setup_ops_pd_.so` 为自定义算子编译生成的动态库， `custom_setup_ops.py` 为根据 `PaddlePaddle` 接口的定义规则，自动生成的自定义算子 python 模块源码，其示例内容为（自动生成的代码后续可能会更新，生成结果可能与示例代码不一致）：
 
 ```python
+import paddle.fluid.core as core
+from paddle.fluid.framework import in_dygraph_mode
+from paddle.fluid.layer_helper import LayerHelper
+
+def custom_relu(x):
+    # The output variable's dtype use default value 'float32',
+    # and the actual dtype of output variable will be inferred in runtime.
+    if in_dygraph_mode():
+        res = core.eager._run_custom_op("custom_relu", x)
+        return res[0] if len(res)==1 else res
+    else:
+        ins = {'X' : x}
+        outs = {}
+        outs_list = ['Out']
+        helper = LayerHelper("custom_relu", **locals())
+
+        outs['Out'] = helper.create_variable(dtype='float32')
+        helper.append_op(type="custom_relu", inputs=ins, outputs=outs, attrs={})
+        res = [outs[out_name] if out_name in outs.keys() else None for out_name in outs_list]
+        return res[0] if len(res)==1 else res
+
+
 import os
 import sys
 import types
 import paddle
+import importlib.util
 
-def inject_ext_module(module_name, api_names):
-    if module_name in sys.modules:
-        return sys.modules[module_name]
-
-    new_module = types.ModuleType(module_name)
-    for api_name in api_names:
-        setattr(new_module, api_name, eval(api_name))
-
-    return new_module
+cur_dir = os.path.dirname(os.path.abspath(__file__))
+so_path = os.path.join(cur_dir, "custom_relu_module_setup_pd_.so")
 
 def __bootstrap__():
-    cur_dir = os.path.dirname(os.path.abspath(__file__))
-    so_path = os.path.join(cur_dir, "custom_relu_module_setup_pd_.so")
-
     assert os.path.exists(so_path)
+    if os.name == 'nt' or sys.platform.startswith('darwin'):
+        # Cpp Extension only support Linux now
+        mod = types.ModuleType(__name__)
+    else:
+        try:
+            spec = importlib.util.spec_from_file_location(__name__, so_path)
+            assert spec is not None
+            mod = importlib.util.module_from_spec(spec)
+            assert isinstance(spec.loader, importlib.abc.Loader)
+            spec.loader.exec_module(mod)
+        except ImportError:
+            mod = types.ModuleType(__name__)
 
     # load custom op shared library with abs path
-    new_custom_ops = paddle.utils.cpp_extension.load_op_meta_info_and_register_op(so_path)
-    m = inject_ext_module(__name__, new_custom_ops)
+    custom_ops = paddle.utils.cpp_extension.load_op_meta_info_and_register_op(so_path)
+    for custom_ops in custom_ops:
+        setattr(mod, custom_ops, eval(custom_ops))
 
 __bootstrap__()
 
-from paddle.fluid.core import VarBase
-from paddle.fluid.framework import in_dygraph_mode, _dygraph_tracer
-from paddle.fluid.layer_helper import LayerHelper
-
-def custom_relu(x):
-    # prepare inputs and outputs
-    ins = {'X' : x}
-    attrs = {}
-    outs = {}
-    out_names = ['Out']
-
-    # The output variable's dtype use default value 'float32',
-    # and the actual dtype of output variable will be inferred in runtime.
-    if in_dygraph_mode():
-        for out_name in out_names:
-            outs[out_name] = VarBase()
-        _dygraph_tracer().trace_op(type="custom_relu", inputs=ins, outputs=outs, attrs=attrs)
-    else:
-        helper = LayerHelper("custom_relu", **locals())
-        for out_name in out_names:
-            outs[out_name] = helper.create_variable(dtype='float32')
-
-        helper.append_op(type="custom_relu", inputs=ins, outputs=outs, attrs=attrs)
-
-    res = [outs[out_name] for out_name in out_names]
-
-    return res[0] if len(res)==1 else res
 ```
 
 随后，可以直接在构建模型过程中导入使用，简单示例如下：
@@ -1588,7 +1587,7 @@ relu_out = custom_relu(x)
 如果需要详细了解相关接口，或需要配置其他编译选项，请参考以下 API 文档：
 
 - [paddle.utils.cpp_extension.setup](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/setup_cn.html)
-- [paddle.utils.cpp_extension.setupCppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/CppExtension_cn.html)
+- [paddle.utils.cpp_extension.CppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/CppExtension_cn.html)
 - [paddle.utils.cpp_extension.CUDAExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/CUDAExtension_cn.html)
 
 ### 即时编译（`JIT Compile`）
@@ -2226,7 +2225,14 @@ cd build
 
 运行结束后，程序会将模型结果打印到屏幕，说明运行成功。
 
-### 更多推理使用文档
+### 参考链接汇总
 
 - [Paddle Inference 快速开始](https://paddleinference.paddlepaddle.org.cn/quick_start/workflow.html)
 - [Paddle Inference API 文档](https://paddleinference.paddlepaddle.org.cn/api_reference/cxx_api_index.html)
+- [更多示例代码-自定义算子单元测试](https://github.com/PaddlePaddle/Paddle/tree/develop/test/custom_op)
+
+API 文档：
+- [paddle.utils.cpp_extension.setup](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/setup_cn.html)
+- [paddle.utils.cpp_extension.CppExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/CppExtension_cn.html)
+- [paddle.utils.cpp_extension.CUDAExtension](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/CUDAExtension_cn.html)
+- [paddle.utils.cpp_extension.load](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/utils/cpp_extension/load_cn.html)
