@@ -1,6 +1,6 @@
-## [仅 torch 参数更多]torch.triu
+## [ torch 参数更多]torch.triu
 
-### [torch.triu](https://pytorch.org/docs/stable/generated/torch.triu.html?highlight=triu#torch.triu)
+### [torch.triu](https://pytorch.org/docs/1.13/generated/torch.triu.html?highlight=triu#torch.triu)
 
 ```python
 torch.triu(input,diagonal=0,*,out=None)
@@ -12,14 +12,14 @@ torch.triu(input,diagonal=0,*,out=None)
 paddle.triu(input,diagonal=0,name=None)
 ```
 
-其中 Paddle 相比 PyTorch 支持更多其他参数，具体如下：
+其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ### 参数映射
-|PyTorch|PaddlePaddle|备注|
+| PyTorch | PaddlePaddle | 备注 |
 | ------- | ------- | ------- |
-|input|input|表示输入的 Tensor 。|
-|diagonal|diagonal|指定的对角线，默认值为 0 ，表示主对角线。如果 diagonal > 0 ，表示主对角线之上的对角线；如果 diagonal < 0 ，表示主对角线之下的对角线。|
-|out||表示输出的 Tensor ， Paddle 没有此字段，需要进行转写。|
+| input | input | 表示输入的 Tensor 。 |
+| diagonal | diagonal | 指定的对角线，默认值为 0 ，表示主对角线。如果 diagonal > 0 ，表示主对角线之上的对角线；如果 diagonal < 0 ，表示主对角线之下的对角线。 |
+| out | - | 表示输出的 Tensor ， Paddle 没有此字段，需要进行转写。 |
 
 ### 转写示例
 
