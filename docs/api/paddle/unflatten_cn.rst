@@ -5,7 +5,7 @@ unflatten
 
 .. py:function:: paddle.unflatten(x, shape, axis, name=None)
 
-"将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状"。与 :ref:`cn_api_paddle_tensor_flatten` 是反函数。
+将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状。与 :ref:`cn_api_paddle_flatten` 是反函数。
 
 
 参数

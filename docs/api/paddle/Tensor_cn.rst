@@ -2534,13 +2534,13 @@ vander(x, n=None, increasing=False, name=None)
 
 请参考 :ref:`cn_api_paddle_vander`
 
-unflatten(x, shape, axis, name=None)
+unflatten(shape, axis, name=None)
 :::::::::
 
 将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状。
 
-返回：沿指定轴将维度展开的后的 x。
+返回：沿指定轴将维度展开的后的 Tensor。
 
 返回类型：Tensor
 
-请参考 :ref:`cn_api_paddle_tensor_unflatten
+请参考 :ref:`cn_api_paddle_tensor_unflatten`
