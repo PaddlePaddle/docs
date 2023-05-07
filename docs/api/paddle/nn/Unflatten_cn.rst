@@ -14,7 +14,7 @@ Unflatten
 ::::::::::::
 
     - **shape** (list|tuple|Tensor) - 在指定轴上将该维度展成 ``shape``， 其中 ``shape`` 最多包含一个 -1，如果输入 ``shape`` 不包含 -1 ，则乘积应该等于 ``x.shape[axis]`` 大小。 数据类型为 ``int``。如果 ``shape`` 的类型是 ``list`` 或 ``tuple``，它的元素可以是整数或者形状为[]的 ``Tensor``。如果 ``shape`` 的类型是 ``Tensor``，则是 1-D 的 ``Tensor``。
-    - **axis** (int) - 要展开的轴，作为 ``x.shape`` 的索引。
+    - **axis** (int) - 要展开维度的轴，作为 ``x.shape`` 的索引。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 返回
 ::::::::::::
