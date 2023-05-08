@@ -20,7 +20,7 @@ CompiledProgram
                     feed=feed_dict,
                     fetch_list=[loss.name])
 
-    # 或者编译程序后用优化过的Program运行模型。
+    # 或者编译程序后用优化过的 Program 运行模型。
     build_strategy = fluid.BuildStrategy()
     build_strategy.memory_optimize = True if memory_opt else False
     compiled_prog = compiler.CompiledProgram(
