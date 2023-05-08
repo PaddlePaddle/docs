@@ -30,6 +30,5 @@ paddle.frac(x,
 torch.frac(input, out=y)
 
 # Paddle 写法
-input1 = paddle.to_tensor(input)
-paddle.assign(paddle.frac(input1), y)
+paddle.assign(paddle.frac(input), y)
 ```
