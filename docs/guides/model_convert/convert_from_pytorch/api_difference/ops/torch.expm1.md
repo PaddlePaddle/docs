@@ -1,17 +1,17 @@
-## [ torch 参数更多 ]torch.exp
-### [torch.exp](https://pytorch.org/docs/1.13/generated/torch.exp.html?highlight=torch+exp#torch.exp)
+## [ torch 参数更多 ]torch.expm1
+### [torch.expm1](https://pytorch.org/docs/1.13/generated/torch.expm1.html?highlight=torch+expm1#torch.expm1)
 
 ```python
-torch.exp(input,
-          *,
-          out=None)
+torch.expm1(input,
+            *,
+            out=None)
 ```
 
-### [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/exp_cn.html#exp)
+### [paddle.expm1](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/expm1_cn.html)
 
 ```python
-paddle.exp(x,
-           name=None)
+paddle.expm1(x,
+             name=None)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -26,8 +26,8 @@ paddle.exp(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.exp(torch.tensor([-0.4, -0.2, 0.1, 0.3]), out=y)
+torch.expm1(torch.tensor([-0.4, -0.2, 0.1, 0.3]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.exp(paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])), y)
+paddle.assign(paddle.expm1(paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])), y)
 ```

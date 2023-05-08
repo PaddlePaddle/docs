@@ -1,5 +1,5 @@
-## [torch 参数更多 ]torch.erf
-### [torch.erf](https://pytorch.org/docs/stable/generated/torch.erf.html?highlight=erf#torch.erf)
+## [ torch 参数更多 ]torch.erf
+### [torch.erf](https://pytorch.org/docs/1.13/generated/torch.erf.html?highlight=torch+erf#torch.erf)
 
 ```python
 torch.erf(input,
@@ -18,15 +18,15 @@ paddle.erf(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
+|  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
+|  out  | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.erf([0, -1., 10.], out=y)
+torch.erf(torch.tensor([-0.4, -0.2, 0.1, 0.3]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.erf([0, -1., 10.]), y)
+paddle.assign(paddle.erf(paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])), y)
 ```
