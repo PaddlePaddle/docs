@@ -33,11 +33,8 @@ paddle.lerp(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.lerp(tensor([ 1.,  2.,  3.,  4.]),
-          tensor([ 10.,  10.,  10.,  10.]),
-          0.5, out=y)
+torch.lerp(input1,input2,0.5, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.lerp(tensor([ 1.,  2.,  3.,  4.]),
-          tensor([ 10.,  10.,  10.,  10.]), 0.5), y)
+paddle.assign(paddle.lerp(input1,input2, 0.5), y)
 ```

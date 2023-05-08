@@ -27,10 +27,8 @@ paddle.lgamma(x
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.lgamma(tensor([-0.4, -0.2, 0.1, 0.3]),
-           out=y)
+torch.lgamma(input,out=y)
 
 # Paddle 写法
-x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
-paddle.assign(paddle.lgamma(x), y)
+paddle.assign(paddle.lgamma(input), y)
 ```

@@ -26,9 +26,8 @@ paddle.log1p(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.log1p(tensor([-1.0090, -0.9923,  1.0249, -0.5372,  0.2492]), out=y)
+torch.log1p(input, out=y)
 
 # Paddle 写法
-a=paddle.to_tensor([-1.0090, -0.9923,  1.0249, -0.5372,  0.2492])
-paddle.assign(paddle.log1p(a), y)
+paddle.assign(paddle.log1p(input), y)
 ```

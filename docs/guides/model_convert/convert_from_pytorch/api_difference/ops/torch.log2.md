@@ -26,9 +26,8 @@ paddle.log2(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.log2(tensor([ 0.8419,  0.8003,  0.9971,  0.5287,  0.0490]), out=y)
+torch.log2(input, out=y)
 
 # Paddle 写法
-a=paddle.to_tensor([ 0.8419,  0.8003,  0.9971,  0.5287,  0.0490])
-paddle.assign(paddle.log2(a), y)
+paddle.assign(paddle.log2(input), y)
 ```

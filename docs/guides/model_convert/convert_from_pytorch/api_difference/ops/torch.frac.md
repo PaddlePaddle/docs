@@ -27,9 +27,9 @@ paddle.frac(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.frac(tensor([1, 2.5, -3.2]), out=y)
+torch.frac(input, out=y)
 
 # Paddle 写法
-input = paddle.to_tensor([1, 2.5, -3.2])
-paddle.assign(paddle.frac(input), y)
+input1 = paddle.to_tensor(input)
+paddle.assign(paddle.frac(input1), y)
 ```
