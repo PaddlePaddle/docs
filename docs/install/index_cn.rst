@@ -12,7 +12,7 @@
 * 新增对 python3.9 的支持，并不再支持 python2.7 和 python3.5
 * 新增对 CUDA 11.2 的支持，并不再支持 CUDA 9.0、CUDA 10.0 和 CUDA 11.0
 * 新增对 ROCm 平台的支持（2.1 中飞桨对 ROCm 平台的支持是 experimental 的）
-* Linux 系统相关的包已被拆分为 avx 和 noavx 两种类型的包（大部分机器都使用 avx 指令集，可使用 `Linux 下的 PIP 安装 <pip/linux-pip.html>`_ 页面中的命令查看您的机器是否支持）
+* Linux 系统相关的包为 avx 的包（大部分机器都使用 avx 指令集，可使用 `Linux 下的 PIP 安装 <pip/linux-pip.html>`_ 页面中的命令查看您的机器是否支持）
 * 新增预装好 jupyter 的 CPU 镜像，启动镜像后即启动 jupyter 服务
 * 新增支持 Windows Visual Studio 2017 编译，由 VS2015 全面升级至 VS2017
 
