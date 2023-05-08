@@ -19,7 +19,7 @@ paddle.triu(input,diagonal=0,name=None)
 | ------- | ------- | ------- |
 | input | input | 表示输入的 Tensor 。 |
 | diagonal | diagonal | 指定的对角线，默认值为 0 ，表示主对角线。如果 diagonal > 0 ，表示主对角线之上的对角线；如果 diagonal < 0 ，表示主对角线之下的对角线。 |
-| out | - | 表示输出的 Tensor ， Paddle 没有此字段，需要进行转写。 |
+| out | - | 表示输出的 Tensor ， Paddle 没有此参数，需要进行转写。 |
 
 ### 转写示例
 

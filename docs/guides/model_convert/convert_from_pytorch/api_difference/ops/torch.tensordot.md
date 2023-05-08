@@ -20,11 +20,11 @@ paddle.tensordot(x,y,axes=2,name=None)
 | a | x | 表示缩并运算的左张量,仅参数名不一致。 |
 | b | y | 表示缩并运算的右张量，仅参数名不一致。 |
 | dims | axes | 表示对张量做缩并运算的轴，默认值为 2 ，仅参数名不一致。 |
-| out | - | 表示缩并运算的结果， Paddle 无此参数，需要进行转写。 |
+| out | - | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。 |
 
 ### 转写示例
 
-#### out: 缩并运算的结果
+#### out: 输出的Tensor
 
 ```python
 # Pytorch 写法

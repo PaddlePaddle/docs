@@ -30,7 +30,7 @@ paddle.triu_indices(row,col=None,offset=0,dtype='int64')
 
 ```python
 # Pytorch 写法
->>> a = torch.triu_indices(row,col,offset,dtype,device=torch.device('cpu'))
+y = torch.triu_indices(row,col,offset,dtype,device=torch.device('cpu'))
 
 # Paddle 写法
 y = paddle.triu_indices(row,col,offset,dtype)
