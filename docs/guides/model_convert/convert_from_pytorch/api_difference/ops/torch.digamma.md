@@ -1,17 +1,15 @@
-## [ torch 参数更多 ]torch.exp
-### [torch.exp](https://pytorch.org/docs/1.13/generated/torch.exp.html?highlight=torch+exp#torch.exp)
-
+## [ torch 参数更多 ]torch.digamma
+### [torch.digamma](https://pytorch.org/docs/1.13/generated/torch.digamma.html?highlight=torch+digamma#torch.digamma)
 ```python
-torch.exp(input,
-          *,
-          out=None)
+torch.digamma(input,
+              *,
+              out=None)
 ```
 
-### [paddle.exp](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/exp_cn.html#exp)
-
+### [paddle.digamma](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/digamma_cn.html)
 ```python
-paddle.exp(x,
-           name=None)
+paddle.digamma(x,
+               name=None)
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -21,13 +19,12 @@ paddle.exp(x,
 |  input  |  x  | 表示输入的 Tensor ，仅参数名不一致。  |
 |  out  | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
-
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.exp(torch.tensor([-0.4, -0.2, 0.1, 0.3]), out=y)
+torch.digamma(torch.tensor([[1, 1.5], [0, -2.2]]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.exp(paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])), y)
+paddle.assign(paddle.digamma(paddle.to_tensor([[1, 1.5], [0, -2.2]], dtype='float32')), y)
 ```
