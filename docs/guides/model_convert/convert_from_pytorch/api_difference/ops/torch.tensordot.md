@@ -24,7 +24,7 @@ paddle.tensordot(x,y,axes=2,name=None)
 
 ### 转写示例
 
-#### out: 输出的 Tensor 
+#### out: 输出的 Tensor
 
 ```python
 # Pytorch 写法
