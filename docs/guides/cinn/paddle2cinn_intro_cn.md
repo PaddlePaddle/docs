@@ -11,6 +11,6 @@
   - 子图计算: 这部分的工作是运行编译得到的可执行对象, 完成子图的计算过程, 它先后经历准备输入数据、运行计算 kernel、同步输出数据三个步骤。
     (1) 数据同步：子图的输入、输出数据来源于 Paddle 侧的变量, 而计算 kernel 则是由 CINN 生成，因此涉及到了 CINN 与 Paddle 两套体系的数据交互。为了避免不必要的数据拷贝开销, 我们建立了 Paddle 变量 <--> CINN 内存 buffer 之间的数据映射, 将 Paddle 变量内存指针包裹成 CINN cinn_buffer_t 结构体, 作为参数供生成 kernel 在执行时直接进行 Paddle 侧变量的读取/写入内存操作。
     (2) 运行计算 kernel：目前支持 CINN runtime 调度以及 Paddle 执行器调度(PE 或新执行器)两种方式，可以根据开关 FLAGS_enable_interpretercore_launch_cinn 或 FLAGS_enable_pe_launch_cinn 进行切换，其中 CINN runtime 可以看作是以子图的拓扑序依次执行，Paddle 执行器的方式则是通过`编译生成的指令序列` --> `ProgramDesc` --> `Graph`的转换过程，将可执行对象转换为 Paddle 计算图，再复用执行器调度执行。
-    上述数据映射，计算图转换等编译结果上下文的逻辑主要实现在[cinn_launch_context](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/cinn/cinn_launch_context.h)类中，它由 CinnCompiler 产出编译结果时进行构造，并作为子图计算时的辅助结构体进行使用。
+上述数据映射，计算图转换等编译结果上下文的逻辑主要实现在[cinn_launch_context](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/operators/cinn/cinn_launch_context.h)类中，它由 CinnCompiler 产出编译结果时进行构造，并作为子图计算时的辅助结构体进行使用。
 
 ## 显存管理
