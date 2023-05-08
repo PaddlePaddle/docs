@@ -53,7 +53,7 @@ import paddle
 | paddle.distributed.fleet | 分布式相关高层 API。                                          |
 | paddle.hub               | 模型拓展相关的 API，包括 list、load、help 等。                |
 | paddle.io                | 数据输入输出相关 API，包括 Dataset, DataLoader 等。           |
-| paddle.jit               | 动态图转静态图相关 API，包括 to_static、 ProgramTranslator、TracedLayer 等。 |
+| paddle.jit               | 动态图转静态图相关 API，包括 to_static、 save、load 等。 |
 | paddle.metric            | 评估指标计算相关的 API，包括 Accuracy, Auc 等。                |
 | paddle.nn                | 组网相关的 API，包括 Linear 、卷积 Conv2D 、 循环神经网络 RNN 、损失函数 CrossEntropyLoss 、 激活函数 ReLU 等。 |
 | paddle.onnx              | paddle 转换为 onnx 协议相关 API，包括 export 等。                |

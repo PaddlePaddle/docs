@@ -358,7 +358,6 @@ paddle.fluid.dygraph.base.enabled	.. _api_paddle_fluid_dygraph_base_enabled:
 paddle.fluid.dygraph.nn.Conv2D	.. _api_paddle_fluid_dygraph_nn_Conv2D:
 paddle.fluid.dygraph.nn.Conv3DTranspose	.. _api_paddle_fluid_dygraph_nn_Conv3DTranspose:
 paddle.fluid.dygraph.learning_rate_scheduler.LambdaDecay	.. _api_paddle_fluid_dygraph_learning_rate_scheduler_LambdaDecay:
-paddle.jit.ProgramTranslator	.. _api_paddle_jit_ProgramTranslator:
 paddle.fluid.dygraph.nn.Conv3D	.. _api_paddle_fluid_dygraph_nn_Conv3D:
 paddle.fluid.dygraph.nn.Embedding	.. _api_paddle_fluid_dygraph_nn_Embedding:
 paddle.jit.TranslatedLayer	.. _api_paddle_jit_TranslatedLayer:
