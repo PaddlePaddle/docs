@@ -314,7 +314,7 @@ Clip 相关
     " :ref:`paddle.nn.Identity <cn_api_paddle_nn_layer_common_Identity>` ", "建立等效层，作为输入的 Placeholder"
     " :ref:`paddle.nn.Unfold <cn_api_fluid_layers_unfold>` ", "实现的功能与卷积中用到的 im2col 函数一样，通常也被称作为 im2col 过程"
     " :ref:`paddle.nn.Fold <cn_api_nn_fold>` ", "该 Op 用于将一个滑动局部块组合成一个大的 Tensor,通常也被称为 col2im 过程"
-    " :ref:`paddle.nn.Unlatten <cn_api_nn_Unflatten>` ", "将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状"
+    " :ref:`paddle.nn.Unflatten <cn_api_nn_Unflatten>` ", "将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状"
 
 
 .. _convolution_functional:
