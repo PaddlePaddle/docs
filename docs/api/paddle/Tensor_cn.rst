@@ -2534,7 +2534,7 @@ vander(x, n=None, increasing=False, name=None)
 
 请参考 :ref:`cn_api_paddle_vander`
 
-unflatten(shape, axis, name=None)
+unflatten(axis, shape, name=None)
 :::::::::
 
 将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状。
