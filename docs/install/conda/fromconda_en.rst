@@ -2,7 +2,7 @@
 **Install via conda**
 ==============================
 
-..  toctree::
+..    toctree::
 
 
     linux-conda_en.md
