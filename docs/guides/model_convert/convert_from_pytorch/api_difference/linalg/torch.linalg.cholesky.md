@@ -23,7 +23,7 @@ paddle.linalg.cholesky(x,upper=False,name=None)
 
 ### 转写示例
 
-#### out: 输出的 Tensor 
+#### out: 输出的 Tensor
 
 ```python
 # Pytorch 写法
