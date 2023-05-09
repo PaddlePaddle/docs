@@ -1,13 +1,15 @@
 # 飞桨框架 ROCm 版安装说明
 
-飞桨框架 ROCm 版支持基于海光 CPU 和 DCU 的 Python 的训练和原生预测，当前支持的 ROCm 版本为 4.0.1, 提供两种安装方式：
+飞桨框架 ROCm 版支持基于海光 CPU 和海光 DCU 的训练和预测，不仅支持 AMD ROCm，同样支持海光 DCUToolkit（DTK），当前支持的 ROCm 版本为 4.0.1，支持的 DTK 有多个版本。提供两种安装方式：
 
 - 通过预编译的 wheel 包安装
 - 通过源代码编译安装
 
+**说明**：基于对应 DTK 版本的飞桨 wheel 包可在[光合开发者社区 ](https://developer.hpccube.com/tool/#sdk) AI 生态包中进行下载。
+
 ## 安装方式一：通过 wheel 包安装
 
-**注意**：当前仅提供基于 CentOS 7.8 & ROCm 4.0.1 的 docker 镜像，与 Python 3.7 的 wheel 安装包。
+**注意**：当前提供基于 CentOS 7.8 & ROCm 4.0.1 的 docker 镜像，与 Python 3.7 的 wheel 安装包。同时提供基于 CentOS 7.6 & DTK 22.10.1 的 docker 镜像，镜像中包含 Python 3.7 的飞浆 2.3.2 wheel 安装包（ image.sourcefind.cn:5000/dcu/admin/base/paddlepaddle:2.3.2-centos7.6-dtk-22.10.1-py37-latest ）
 
 **第一步**：准备 ROCm 4.0.1 运行环境 (推荐使用 Paddle 镜像)
 

@@ -1,5 +1,5 @@
-## [torch 参数更多]torch.cos
-### [torch.cos](https://pytorch.org/docs/stable/generated/torch.cos.html?highlight=cos#torch.cos)
+## [ torch 参数更多 ]torch.cos
+### [torch.cos](https://pytorch.org/docs/1.13/generated/torch.cos.html#torch-cos)
 
 ```python
 torch.cos(input,
@@ -18,16 +18,16 @@ paddle.cos(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
+| input |  x  | 表示输入的 Tensor，仅参数名不一致。  |
+|  out  |  -  | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。    |
 
 
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.cos([1.4309, 1.2706], out=y)
+torch.cos(torch.tensor([1.4309, 1.2706]), out=y)
 
 # Paddle 写法
-paddle.assign(paddle.cos([1.4309, 1.2706]), y)
+paddle.assign(paddle.cos(paddle.to_tensor([1.4309, 1.2706])), y)
 ```
