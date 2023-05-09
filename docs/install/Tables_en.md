@@ -35,8 +35,8 @@
     </tr>
         <tr>
         <td> Python（64 bit） </td>
-        <td> 3.6+.x </td>
-        <td> depends on libpython3.6+.so </td>
+        <td> 3.7+.x </td>
+        <td> depends on libpython3.7+.so </td>
         <td> please go to <a href="https://www.python.org">Python official website </a></td>
     </tr>
     <tr>
@@ -265,7 +265,6 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.4.2 </code> will i
     <tr>
         <td> cpu-openblas-avx </td>
         <td> - </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0-rc0/linux/linux-cpu-openblas-avx/paddlepaddle-2.5.0rc0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.5.0rc0-cp38-cp38-linux_x86_64.whl</a></td>
         <td> - </td>
         <td> - </td>
@@ -339,7 +338,6 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.4.2 </code> will i
     <tr>
         <td> macos-cpu-openblas-m1 </td>
         <td> - </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0-rc0/macos/macos-cpu-openblas-m1/paddlepaddle-2.5.0rc0-cp38-cp38-macosx_11_0_arm64.whl">
         paddlepaddle-2.5.0rc0-cp38-cp38-macosx_11_0_arm64.whl</a></td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0-rc0/macos/macos-cpu-openblas-m1/paddlepaddle-2.5.0rc0-cp39-cp39-macosx_11_0_arm64.whl">
@@ -356,7 +354,6 @@ Please note that: in the commands, <code> paddlepaddle-gpu==2.4.2 </code> will i
     </tr>
     <tr>
         <td> win-cpu-openblas-avx </td>
-        <td> - </td>
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0-rc0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-2.5.0rc0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.5.0rc0-cp38-cp38-win_amd64.whl</a></td>
         <td> - </td>
@@ -506,8 +503,8 @@ platform tag: similar to 'linux_x86_64', 'any'
     <tr>
         <td> win-cpu-openblas-avx </td>
         <td> - </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/cpu-openblas-avx/paddlepaddle-0.0.0-cp38-cp38-win_amd64.whl"> paddlepaddle-latest-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>

@@ -8,7 +8,7 @@
 
 * 需要确认 python 的版本是否满足要求
 
-  * 使用以下命令确认是 3.6/3.7/3.8/3.9/3.10
+  * 使用以下命令确认是 3.7/3.8/3.9/3.10
 
     ```
     python --version
@@ -117,7 +117,7 @@
 
 * 请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
 
-* 上述命令默认安装`avx`的包。判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。
+* 上述命令默认安装`avx`、`mkl`的包。判断你的机器是否支持`avx`，可以安装[CPU-Z](https://www.cpuid.com/softwares/cpu-z.html)工具查看“处理器-指令集”。飞桨不再支持`noavx`指令集的安装包。
 
 * 如果你想安装`avx`、`openblas`的 Paddle 包，可以通过以下命令将 wheel 包下载到本地，再使用`python -m pip install [name].whl`本地安装（[name]为 wheel 包名称）：
 

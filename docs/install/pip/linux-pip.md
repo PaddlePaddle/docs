@@ -176,7 +176,7 @@
    python3 -m pip install paddlepaddle-gpu==[版本号] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
-* 上述命令默认安装`avx`的包。判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`
+* 上述命令默认安装`avx`、`mkl`的包。判断你的机器是否支持`avx`，可以输入以下命令，如果输出中包含`avx`，则表示机器支持`avx`。飞桨不再支持`noavx`指令集的安装包。
   ```
   cat /proc/cpuinfo | grep -i avx
   ```

@@ -363,7 +363,6 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
     <tr>
         <td> cpu-openblas-avx </td>
         <td> - </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0-rc0/linux/linux-cpu-openblas-avx/paddlepaddle-2.5.0rc0-cp38-cp38-linux_x86_64.whl"> paddlepaddle-2.5.0rc0-cp38-cp38-linux_x86_64.whl</a></td>
         <td> - </td>
         <td> - </td>
@@ -453,7 +452,6 @@ PaddePaddle 通过编译时指定路径来实现引用各种 BLAS/CUDA/cuDNN 库
     </tr>
     <tr>
         <td> win-cpu-openblas-avx </td>
-        <td> - </td>
         <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/2.5.0-rc0/windows/windows-cpu-avx-openblas-vs2017/paddlepaddle-2.5.0rc0-cp38-cp38-win_amd64.whl"> paddlepaddle-2.5.0rc0-cp38-cp38-win_amd64.whl</a></td>
         <td> - </td>
@@ -619,8 +617,8 @@ platform tag: 类似 'linux_x86_64', 'any'
     <tr>
         <td> win-cpu-openblas-avx </td>
         <td> - </td>
-        <td> - </td>
         <td> <a href="https://paddle-wheel.bj.bcebos.com/develop/windows/cpu-openblas-avx/paddlepaddle-0.0.0-cp38-cp38-win_amd64.whl"> paddlepaddle-latest-cp38-cp38-win_amd64.whl</a></td>
+        <td> - </td>
         <td> - </td>
     </tr>
     <tr>

@@ -24,7 +24,7 @@
 
 * You need to confirm whether the version of Python meets the requirements
 
-  * Use the following command to confirm that it is 3.6/3.7/3.8/3.9/3.10
+  * Use the following command to confirm that it is 3.7/3.8/3.9/3.10
 
         python3 --version
 
@@ -179,7 +179,7 @@ Note：
    python3 -m pip install paddlepaddle-gpu==[Version] -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
-* The above commands install the `avx` package by default. To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
+* The above commands install the `avx` and `mkl` package by default. Paddle no longer supports `noavx` package. To determine whether your machine supports `avx`, you can use the following command. If the output contains `avx`, it means that the machine supports `avx`:
    ```
    cat /proc/cpuinfo | grep -i avx
    ```
