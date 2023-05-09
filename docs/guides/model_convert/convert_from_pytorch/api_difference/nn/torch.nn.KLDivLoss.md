@@ -18,8 +18,8 @@ paddle.nn.KLDivLoss(reduction='mean')
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| size_average  | -            | 已弃用。 |
-| reduce        | -            | 已弃用。  |
+| size_average  | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。            |
+| reduce        | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
 | reduction        | reduction            | 表示对输出结果的计算方式。  |
 | log_target    | -            | 指定目标是否为日志空间，Paddle 无此功能，暂无转写方式。  |
 

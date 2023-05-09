@@ -21,8 +21,8 @@ paddle.nn.BCELoss(weight=None,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | weight           | weight      | 表示每个 batch 二值交叉熵的权重。                                     |
-| size_average  | -            | PyTorch 已弃用。  |
-| reduce        | -            | PyTorch 已弃用。  |
+| size_average  | -            | PyTorch 已弃用，paddle 需要转写。 |
+| reduce        | -            | PyTorch 已弃用，paddle 需要转写。 |
 | reduction  | reduction            | 表示应用于输出结果的计算方式。  |
 
 ### 转写示例
