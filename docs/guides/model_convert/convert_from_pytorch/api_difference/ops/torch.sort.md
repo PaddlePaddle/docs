@@ -29,14 +29,14 @@ paddle.sort(x,
 | dim           | axis         | 指定对输入 Tensor 进行运算的轴。默认值为-1, 仅参数名不同。|
 | descending    |descending    | 指定算法排序的方向。如果设置为 True，算法按照降序排序。如果设置为 False 或者不设置，按照升序排序。默认值为 False，参数名相同。     |
 | stable        | -            | 使排序程序更稳定，保证等价元素的顺序得以保留。Paddle 无此参数，对于排序算法的稳定性来说不是很重要，直接删除即可。            |
-| out           | -            | 表示以(Tensor, LongTensor)输出的元组。Paddle 无此参数，若使用排序后的 tensor，需要进行转写；若需要使用元素索引，Paddle 暂不支持转写。      |
+| out           | -            | 表示以(Tensor, LongTensor)输出的元组，含义是排序后的返回值和对应元素索引。Paddle 无此参数，若使用排序后的 tensor，需要进行转写；若需要使用元素索引，Paddle 暂不支持转写。      |
 
 
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.sort(input, -1, True, (y, l_y))
+torch.sort(input, -1, True, (y, indices))
 
 # Paddle 写法
 paddle.assign(paddle.sort(input, -1, True), y)

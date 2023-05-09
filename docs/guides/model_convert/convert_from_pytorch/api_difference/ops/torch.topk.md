@@ -33,15 +33,15 @@ paddle.topk(x,
 | dim           | axis         | 指定对输入 Tensor 进行运算的轴。默认值为-1, 仅参数名不同。|
 | largest       | largest      | 指定算法排序的方向。如果设置为 True，算法按照降序排序，否则按照升序排序。默认值为 True，参数名相同。     |
 | sorted        | sorted       | 控制返回的结果是否按照有序返回，默认为 True。在 GPU 上总是返回有序的结果。参数名相同。 |
-| out           | -            | 表示以(Tensor, LongTensor)输出的元组 。Paddle 无此参数，若使用查找 topk 后的 tensor，需要进行转写；若需要使用元素索引，Paddle 暂不支持转写。  |
+| out           | -            | 表示以(Tensor, LongTensor)输出的元组，含义是查找topk后的返回值和对应元素索引。Paddle 无此参数，需要进行转写。  |
 
 
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.topk(input, k=1, dim=-1, out = (y, l_y))
+torch.topk(input, k=1, dim=-1, out = (y, indices))
 
 # Paddle 写法
-paddle.assign(paddle.topk(input, k=1, axis=-1), y)
+paddle.assign(paddle.topk(input, k=1, axis=-1), (y, indices))
 ```
