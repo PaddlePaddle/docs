@@ -3,10 +3,10 @@
 ### [torch.Tensor.cdouble](https://pytorch.org/docs/1.13/generated/torch.Tensor.cdouble.html?highlight=torch+tensor+cdouble#torch.Tensor.cdouble)
 
 ```python
-Tensor.cdouble(memory_format=torch.preserve_format)
+torch.Tensor.cdouble(memory_format=torch.preserve_format)
 ```
 
-### [paddle.Tensor.astype('complex128')](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#astype-dtype)
+### [paddle.Tensor.astype](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#astype-dtype)
 
 ```python
 paddle.Tensor.astype('complex128')
