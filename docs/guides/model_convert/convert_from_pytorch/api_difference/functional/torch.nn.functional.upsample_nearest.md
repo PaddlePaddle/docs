@@ -21,5 +21,5 @@ paddle.nn.functional.upsample(x, size=None, scale_factor=None, mode='nearest', a
 | <font color='red'> scale_factor </font>   | <font color='red'> scale_factor </font>   | 输入的高度或宽度的乘数因子。              |
 | -  | <font color='red'> mode </font>   | 插值方法。 Pytorch 无此参数，Paddle 默认为 `’nearest‘`。             |
 | -  |    <font color='red'> align_corners  </font>         | 是否将输入和输出张量的 4 个角落像素的中心对齐，并保留角点像素的值。Pytorch 无此参数。            |
-| -  |    <font color='red'> align_mode  </font>         | 双线性插值的可选项。Pytorch 无此参数。            |
-| -  |    <font color='red'> data_format  </font>         | 指定输入的数据格式。Pytorch 无此参数。            |
+| -  |    <font color='red'> align_mode  </font>         | 双线性插值的可选项。Pytorch 无此参数。Paddle 保持默认即可。            |
+| -  |    <font color='red'> data_format  </font>         | 指定输入的数据格式。Pytorch 无此参数。Paddle 保持默认即可。            |
