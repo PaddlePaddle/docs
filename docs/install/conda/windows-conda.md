@@ -9,7 +9,7 @@
 
 #### 1.1.1 安装环境
 
-首先根据具体的 Python 版本创建 Anaconda 虚拟环境，PaddlePaddle 的 Anaconda 安装支持 3.6 - 3.10 版本的 Python 安装环境。
+首先根据具体的 Python 版本创建 Anaconda 虚拟环境，PaddlePaddle 的 Anaconda 安装支持 3.7 - 3.10 版本的 Python 安装环境。
 
 ```
 conda create -n paddle_env python=YOUR_PY_VER

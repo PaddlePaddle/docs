@@ -26,7 +26,7 @@
 
 **3. Python 和 pip 版本要求：**
 
-* Python 的版本要求 3.6/3.7/3.8/3.9/3.10
+* Python 的版本要求 3.7/3.8/3.9/3.10
 * Python 具有 pip, 且 pip 的版本要求 20.2.2+
 * Python 和 pip 要求是 64 位版本
 
@@ -110,7 +110,7 @@
 
 4. 检查 Python 的版本
 
-    使用以下命令确认是 3.6/3.7/3.8/3.9/3.10
+    使用以下命令确认是 3.7/3.8/3.9/3.10
     ::
 
         python --version
@@ -150,7 +150,7 @@
 
             * 需要您确认您的 GPU 满足上方列出的要求
 
-        请注意用以下指令安装的 PaddlePaddle 在 Windows、Ubuntu、CentOS 下只支持 CUDA10.2：
+        请注意用以下指令安装的 PaddlePaddle 在 Windows、Ubuntu、CentOS 下只支持 CUDA11.2：
         ::
 
             python -m pip install paddlepaddle-gpu==2.5.0rc0 -i https://mirror.baidu.com/pypi/simple
