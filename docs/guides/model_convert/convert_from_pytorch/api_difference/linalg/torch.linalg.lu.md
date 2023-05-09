@@ -28,6 +28,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ```python
 # Pytorch 写法
 torch.linalg.solve_triangular(A, out=(P, L, U))
+
 # Paddle 写法
 P, L, U = paddle.linalg.triangular_solve(A)
 ```
