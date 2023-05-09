@@ -36,7 +36,7 @@ paddle.sort(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.sort(input, -1, True, (y, indices))
+torch.sort(input, -1, True, out = (y, indices))
 
 # Paddle 写法
 paddle.assign(paddle.sort(input, -1, True), y)
