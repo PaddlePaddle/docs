@@ -25,8 +25,8 @@ paddle.less_than(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.less([3, 5], 1., out=y)
+torch.less(x, y, out=output)
 
 # Paddle 写法
-paddle.assign(paddle.less_than([3, 5], 1.), y)
+paddle.assign(paddle.less_than(x,y), output)
 ```

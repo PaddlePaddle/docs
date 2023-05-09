@@ -25,8 +25,8 @@ paddle.greater_than(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.greater([3, 5], 1., out=y)
+torch.greater(x, y, out=output)
 
 # Paddle 写法
-paddle.assign(paddle.greater_than([3, 5], 1.), y)
+paddle.assign(paddle.greater_than(x,y), output)
 ```

@@ -25,8 +25,8 @@ paddle.minimum(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.minimum([3, 5], 1., out=y)
+torch.minimum(x, y, out=output)
 
 # Paddle 写法
-paddle.assign(paddle.minimum([3, 5], 1.), y)
+paddle.assign(paddle.minimum(x,y), output)
 ```

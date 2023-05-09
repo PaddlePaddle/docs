@@ -25,8 +25,8 @@ paddle.fmin(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.fmin([3, 5], 1., out=y)
+torch.fmin(x, y, out=output)
 
 # Paddle 写法
-paddle.assign(paddle.fmin([3, 5], 1.), y)
+paddle.assign(paddle.fmin(x,y), output)
 ```

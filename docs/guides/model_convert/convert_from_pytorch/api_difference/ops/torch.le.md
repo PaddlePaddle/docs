@@ -25,8 +25,8 @@ paddle.less_equal(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.le([3, 5], 1., out=y)
+torch.le(x, y, out=output)
 
 # Paddle 写法
-paddle.assign(paddle.less_equal([3, 5], 1.), y)
+paddle.assign(paddle.less_equal(x,y), output)
 ```

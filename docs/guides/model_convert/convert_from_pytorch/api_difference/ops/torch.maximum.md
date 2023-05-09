@@ -25,8 +25,8 @@ paddle.maximum(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.maximum([3, 5], 1., out=y)
+torch.maximum(x, y, out=output)
 
 # Paddle 写法
-paddle.assign(paddle.maximum([3, 5], 1.), y)
+paddle.assign(paddle.maximum(x,y), output)
 ```
