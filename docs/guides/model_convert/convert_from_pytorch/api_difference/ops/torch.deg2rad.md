@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.deg2rad
-###[torch.deg2rad](https://pytorch.org/docs/1.13/generated/torch.deg2rad.html#torch-deg2rad)
+### [torch.deg2rad](https://pytorch.org/docs/1.13/generated/torch.deg2rad.html#torch-deg2rad)
 
 ```python
 torch.deg2rad(input,
@@ -7,7 +7,7 @@ torch.deg2rad(input,
               out=None)
 ```
 
-###[paddle.deg2rad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/deg2rad_cn.html#paddle.deg2rad)
+### [paddle.deg2rad](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/deg2rad_cn.html#paddle.deg2rad)
 
 ```python
 paddle.deg2rad(x,
