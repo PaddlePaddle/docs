@@ -27,8 +27,8 @@ paddle.inner(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.inner(torch.arange(1., 7.).reshape((2, 3)), torch.arange(1., 10.).reshape((3, 3)), out=y)
+torch.inner([[1., 2. , 3.], [4. ,5. ,6.]], [[1., 2. , 3.], [4. ,5. ,6.], [7., 8., 9.]], out=y)
 
 # Paddle 写法
-paddle.assign(paddle.inner(paddle.arange(1, 7).reshape((2, 3)).astype('float32'), paddle.arange(1, 10).reshape((3, 3)).astype('float32')), y)
+paddle.assign(paddle.inner([[1., 2. , 3.], [4. ,5. ,6.]], [[1., 2. , 3.], [4. ,5. ,6.], [7., 8., 9.]]), y)
 ```
