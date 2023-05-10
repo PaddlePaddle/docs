@@ -12,7 +12,7 @@ torch.Tensor.swapdims(dim0, dim1)
 paddle.Tensor.transpose(perm, name=None)
 ```
 
-Pytorch 的 ``dim0, dim1`` 与 Paddle 的 ``perm`` 用法不同，具体如下：
+Pytorch 的 `dim0, dim1` 与 Paddle 的 `perm` 用法不同，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

@@ -12,7 +12,7 @@ torch.Tensor.reshape(*shape)
 paddle.Tensor.reshape(shape, name=None)
 ```
 
-Pytorch 的 ``*shape`` 参数与 Paddle 的 ``shape`` 参数用法不同，具体如下：
+Pytorch 的 `*shape` 参数与 Paddle 的 `shape` 参数用法不同，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

@@ -6,7 +6,7 @@
 torch.cuda.get_device_name(device=None)
 ```
 
-### [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/get_device_properties_cn.html#get-device-properties)
+### [paddle.device.cuda.get_device_properties](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/device/cuda/get_device_properties_cn.html#get-device-properties)
 
 ```python
 paddle.device.cuda.get_device_properties(device)
@@ -16,7 +16,7 @@ paddle.device.cuda.get_device_properties(device)
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| device | device | torch 的 device 参数类型为 torch.device 或 int 或 str。paddle 的 id 为 paddle.CUDAPlace 或 int 或 str。 |
+| device | device | torch 的 device 参数类型为 torch.device 或 int 或 str。paddle 的 device 为 paddle.CUDAPlace 或 int 或 str。 |
 | Returns | Returns | 两者返回类型不一致。 paddle 的返回数据中 name 属性内容与 torch 的返回内容一致。需要转写。|
 
 ### 转写示例

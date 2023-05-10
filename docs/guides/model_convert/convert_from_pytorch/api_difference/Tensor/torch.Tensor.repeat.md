@@ -12,7 +12,7 @@ torch.Tensor.repeat(*sizes)
 paddle.Tensor.tile(repeat_times, name=None)
 ```
 
-Pytorch 的 sizes 参数与 Paddle 的 repeat_times 参数用法不同，具体如下：
+Pytorch 的 `sizes` 参数与 Paddle 的 `repeat_times` 参数用法不同，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

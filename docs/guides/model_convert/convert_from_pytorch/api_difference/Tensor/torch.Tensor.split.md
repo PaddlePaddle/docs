@@ -12,7 +12,7 @@ torch.Tensor.split(split_size_or_sections, dim=0)
 paddle.Tensor.split(num_or_sections, axis=0, name=None)
 ```
 
-Pytorch 的 ``split_size_or_sections`` 与 Paddle 的 ``num_or_sections`` 用法不同，具体如下：
+Pytorch 的 `split_size_or_sections` 与 Paddle 的 `num_or_sections` 用法不同，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

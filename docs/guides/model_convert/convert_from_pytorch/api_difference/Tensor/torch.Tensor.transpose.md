@@ -1,6 +1,6 @@
 ## [参数不一致]torch.Tensor.transpose
 
-### [torch.Tensor.transpose](https://pytorch.org/docs/1.13/generated/torch.Tensor.swapdims.html)
+### [torch.Tensor.transpose](https://pytorch.org/docs/1.13/generated/torch.Tensor.transpose.html)
 
 ```python
 torch.Tensor.transpose(dim0, dim1)
@@ -12,7 +12,7 @@ torch.Tensor.transpose(dim0, dim1)
 paddle.Tensor.transpose(perm, name=None)
 ```
 
-Pytorch 的 ``dim0, dim1`` 与 Paddle 的 ``perm`` 用法不同，具体如下：
+Pytorch 的 `dim0, dim1` 与 Paddle 的 `perm` 用法不同，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |

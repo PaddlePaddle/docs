@@ -6,13 +6,13 @@
 torch.cuda.device(device)
 ```
 
-### [paddle.Tensor.transpose](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/CUDAPlace_cn.html#cudaplace)
+### [paddle.CUDAPlace](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/CUDAPlace_cn.html#cudaplace)
 
 ```python
 paddle.CUDAPlace(id)
 ```
 
-Pytorch 的 ``device`` 与 Paddle 的 ``id`` 用法不同，具体如下：
+Pytorch 的 `device` 与 Paddle 的 `id` 用法不同，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
