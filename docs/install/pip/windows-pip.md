@@ -80,15 +80,8 @@
 
 2.2.1 CUDA10.2 的 PaddlePaddle
 
-
   ```
   python -m pip install paddlepaddle-gpu==2.5.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
-  ```
-
-      CUDA10.2 包含 cuDNN 动态链接库的 PaddlePaddle
-
-  ```
-  python3 -m pip install paddlepaddle-gpu==2.5.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
   ```
 
 2.2.2 CUDA11.2 的 PaddlePaddle
