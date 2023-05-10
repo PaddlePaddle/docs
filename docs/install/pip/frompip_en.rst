@@ -2,7 +2,7 @@
 **Install via pip**
 ==============================
 
-..  toctree::
+..    toctree::
 
 
     linux-pip_en.md

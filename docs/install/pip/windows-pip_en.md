@@ -2,18 +2,11 @@
 
 ## Environmental preparation
 
-### 1.1 PREQUISITES
-
-* **Windows 7/8/10 Pro/Enterprise (64bit)**
-* **GPU Version support CUDA 10.1/10.2/11.0/11.1/11.2, and only support single GPU**
-* **Python version 3.6+/3.7+/3.8+/3.9+(64bit)**
-* **pip version 20.2.2 or above (64bit)**
-
-### 1.2 How to check your environment
+### 1.1 How to check your environment
 
 * Confirm whether the Python version meets the requirements
 
-  * Use the following command to confirm that it is 3.6+/3.7+/3.8+/3.9+
+  * Use the following command to confirm that it is 3.7+/3.8+/3.9+/3.10+
 
         python --version
 
@@ -28,7 +21,7 @@
     python -m pip --version
     ```
 
-* You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). Currently, paddlepaddle does not support arm64 architecture. The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
+* You need to confirm that Python and pip are 64bit, and the processor architecture is x86_64(or called x64、Intel 64、AMD64). The first line below outputs "64bit", and the second line outputs "x86_64", "x64" or "AMD64"
 
     ```
     python -c "import platform;print(platform.architecture()[0]);print(platform.machine())"
@@ -37,7 +30,7 @@
 
 * The installation package provided by default requires computer support for MKL
 * NCCL, distribution are not supported on windows now
-* If you are in a WSL2 environment, it is recommended to install using Paddle according to the Linux method
+
 
 
 ## INSTALLATION
@@ -50,17 +43,19 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 
 * If your computer has NVIDIA® GPU, please make sure that the following conditions are met and install [the GPU Version of PaddlePaddle](#gpu)
 
-  * **CUDA toolkit 10.1/10.2 with cuDNN v7.6.5+**
+  * **CUDA toolkit 10.2 with cuDNN v7.6.5(for PaddleTensorRT deployment, TensorRT7.0.0.11)**
 
-  * **CUDA toolkit 11.0 with cuDNN v8.0.2**
+  * **CUDA toolkit 11.2 with cuDNN v8.2.1(for PaddleTensorRT deployment, TensorRT8.2.4.2)**
 
-  * **CUDA toolkit 11.1 with cuDNN v8.1.1**
+  * **CUDA toolkit 11.6 with cuDNN v8.4.0(for PaddleTensorRT deployment, TensorRT8.4.0.6)**
 
-  * **CUDA toolkit 11.2 with cuDNN v8.2.1**
+  * **CUDA toolkit 11.7 with cuDNN v8.4.1(for PaddleTensorRT deployment, TensorRT8.4.2.4)**
+
+  * **CUDA toolkit 11.8 with cuDNN v8.6.0(for PaddleTensorRT deployment, TensorRT8.5.1.7)**
 
   * **GPU CUDA capability over 3.5**
 
-    You can refer to NVIDIA official documents for installation process and configuration method of CUDA and cudnn. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)
+    You can refer to NVIDIA official documents for installation process and configuration method of CUDA, cuDNN and TensorRT. Please refer to [CUDA](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/)，[cuDNN](https://docs.nvidia.com/deeplearning/sdk/cudnn-install/)，[TensorRT](https://developer.nvidia.com/tensorrt)
 
 
 ## Installation Step
@@ -68,60 +63,64 @@ If you installed Python via Homebrew or the Python website, `pip` was installed 
 You can choose the following version of PaddlePaddle to start installation:
 
 
-#### 2.1 CPU Versoion of PaddlePaddle
+
+#### 2.1 <span id="cpu">CPU Version of PaddlePaddle</span>
 
 
   ```
-  python -m pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/windows/cpu-mkl-avx/develop.html
+  python -m pip install paddlepaddle==2.5.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
   ```
 
 
 
-#### 2.2 GPU Version of PaddlePaddle
+#### 2.2 <span id="gpu">GPU Version of PaddlePaddle</span>
 
 
-2.2.1 If you are using CUDA 10.1
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post101 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
-  ```
-
-
-2.2.2 If you are using CUDA 10.2
+2.2.1 If you are using CUDA 10.2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post102 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
-  ```
-
-2.2.3 If you are using CUDA 11.0
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post110 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  python -m pip install paddlepaddle-gpu==2.5.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 
-2.2.4 If you are using CUDA 11.1
-
-
-  ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post111 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
-  ```
-
-
-2.2.5 If you are using CUDA 11.2
+2.2.2 If you are using CUDA 11.2
 
   ```
-  python -m pip install paddlepaddle-gpu==0.0.0.post112 -f https://www.paddlepaddle.org.cn/whl/windows/gpu/develop.html
+  python -m pip install paddlepaddle-gpu==2.5.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  ```
+
+2.2.3 If you are using CUDA 11.6
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.5.0rc0.post116 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  ```
+
+2.2.4 If you are using CUDA 11.7
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.5.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
+  ```
+
+2.2.5 If you are using CUDA 11.8
+
+  ```
+  python -m pip install paddlepaddle-gpu==2.5.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/windows/mkl/avx/stable.html
   ```
 
 Note：
 
-* If you are using ampere-based GPU, CUDA 11.2 is recommended; otherwise CUDA 10.2 is recommended for better performance. please refer to: [GPU architecture comparison table](https://www.paddlepaddle.org.cn/documentation/docs/en/install/Tables.html#nvidia-gpu)
+* If you are using ampere-based GPU, CUDA 11 above version is recommended; otherwise CUDA 10.2 is recommended for better performance.
 
 * Please confirm that the Python where you need to install PaddlePaddle is your expected location, because your computer may have multiple Python. Depending on the environment, you may need to replace Python in all command lines in the instructions with specific Python path.
 
+* The above commands install the `avx` and `mkl` package by default. Paddle no longer supports `noavx` package. To determine whether your machine supports `avx`, you can install the [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) tool to view the "processor-instruction set".
+
+
+* If you want to install the Paddle package with `avx` and `openblas`, you can use the following command to download the wheel package to the local, and then use `python -m pip install [name].whl` to install locally ([name] is the name of the wheel package):
+
+  ```
+  python -m pip download paddlepaddle==2.5.0rc0 -f https://www.paddlepaddle.org.cn/whl/windows/openblas/avx/stable.html --no-index --no-deps
+  ```
 
 ## Verify installation
 

@@ -2,7 +2,7 @@
 **Conda 安装**
 ===========================
 
-..  toctree::
+..    toctree::
     :maxdepth: 1
 
     linux-conda.md
