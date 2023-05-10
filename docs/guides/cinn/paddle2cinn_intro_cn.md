@@ -62,7 +62,9 @@ Pass 运行结束后计算图形态表现为 cinn_launch_op 之间通过其它�
   对应于上述两种不同的执行调度方式，我们也分别实现了不同的策略来进行显存管理。
 
   **Paddle 执行器调度的显存管理策略**: 此种执行方式下首先将可执行序列回转成了 Paddle Graph，为此可以直接应用框架侧已有的显存回收与复用策略，但是需要额外处理的问题是：每个子图包裹在一个 cinn_launch 算子中，算子外还有一个主图，计算图呈现嵌套结构，子图的输入/输出变量可能会被主图中其它算子使用，因此需要将子图外部变量(输入/输出)的使用信息透传至子图内，以避免外部变量在子图计算时被提前释放。
+
   对于这个问题，在使用 PE 调度方式时我们新增了一个[share_varinfo_into_cinn_pass](https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/ir/memory_optimize_pass/share_varinfo_into_cinn_pass.cc)来实现将外部变量的`MemOptVarInfo`信息同步到子图内中，而新执行器调度方式下则是通过设置`ExecutionConfig::skip_gc_vars`来将子图外部变量的回收延迟至主图计算调度时进行。
 
   **CINN runtime 调度的显存管理策略**: 它是依次串行调度可执行序列(CINN instruction)，instruction 计算时要求输入/输出数据的内存空间均已分配完成，最粗暴的方式是整个子图计算前将所有数据集中分配，计算完成后再集中释放临时中间数据, 但是这种方式显然会导致显存使用量急剧攀升。为此，我们参考了 Paddle 框架显存回收的思想，通过分析变量的使用关系，在 CINN 生成的子图可执行序列中插入一类特殊的 BufferMalloc/BufferFree 指令来完成即时分配/释放显存的工作。
+
   具体地，在每个 instruction 计算前若有数据尚未分配则被插入一个 BufferMalloc 进行即时申请，在每个 instruction 计算后若有临时数据不再使用则插入一个 BufferFree 进行即时回收。另外，前面提到通过 Paddle 与 CINN 变量之间的映射机制来避免数据同步开销，因此实际显存申请/释放是由 Paddle 侧的内存管理器执行的，我们在建立数据映射时为每个变量构造一个 external_malloc/external_free 的 Callback，供 CINN BufferMalloc/BufferFree 指令调用，从而实现在 CINN runtime 调用 Paddle 进行显存管理。具体逻辑可见`CinnLaunchContext::AssignExternalVariable`与`CinnLaunchContext::AssignInternalVariable`的定义和调用。
