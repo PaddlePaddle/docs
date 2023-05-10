@@ -1,12 +1,9 @@
-## [ 参数不一致 ]torch.narrow
-### [torch.narrow](https://pytorch.org/docs/stable/generated/torch.narrow.html?highlight=narrow#torch.narrow)
-```python
-torch.narrow(input,
-             dim,
-             start,
-             length)
-```
+## [ 参数不一致 ]torch.Tensor.narrow
+### [torch.Tensor.narrow](https://pytorch.org/docs/stable/generated/torch.Tensor.narrow.html#torch.Tensor.narrow)
 
+```python
+torch.Tensor.narrow(dim, start, length)
+```
 
 ### [paddle.slice](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/slice_cn.html#slice)
 ```python
@@ -20,19 +17,19 @@ paddle.slice(input,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| input           | input         | 表示输入的 Tensor 。                                           |
+| -           | input         | 表示输入的 Tensor 。                                           |
 | dim           | axes         | 表示切片的轴。                                           |
 | start         | starts       | 表示起始位置。                                           |
-| length        | -            | 到结束位置的长度，Paddle 无此参数。应修改 ends 实现。                                       |
-| -             | ends         | 表示结束位置，Pytorch 无此参数。 Paddle 应设为 start + length。                                           |
-
+| length        | -            | 到结束位置的长度，Paddle 无此参数，需要进行转写。Paddle 应改写 ends。                                       |
+| -             | ends         | 表示结束位置，Pytorch 无此参数，应设为 start + length 。                                         |
 
 ### 转写示例
-``` python
-# PyTorch 写法：
-torch.narrow(x, 0, 1, 2)
 
-# Paddle 写法：
+```python
+# Pytorch 写法
+y = a.narrow(1, 1, 4)
+
+# Paddle 写法
 # Paddle 可通过设置 ends-starts=length 来实现 Pytorch 的 length 功能
-paddle.slice(x, [0], [1], [3])
+y = paddle.slice(a, [1], [1], [5])
 ```
