@@ -11,7 +11,7 @@ dropout2d
 
 参数
 :::::::::
- - **x** (Tensor) - 形状为 [N, C, H, W] 或 [N, H, W, C] 的 4D `Tensor`。数据类型为 float32 或 float64。
+ - **x** (Tensor) - 形状为 [N, C, H, W] 或 [N, H, W, C] 的 4D `Tensor`。数据类型为 float16、float32 或 float64。
  - **p** (float，可选) - 将输入通道置 0 的概率，即丢弃概率。默认值为 0.5。
  - **training** (bool，可选) - 标记是否为训练阶段。默认值为 True。
  - **data_format** (str，可选) - 指定输入的数据格式，输出的数据格式将与输入保持一致，可以是 `NCHW` 和 `NHWC`。其中 `N` 是批尺寸，`C` 是通道数，`H` 是特征高度，`W` 是特征宽度。默认值为 `NCHW` 。

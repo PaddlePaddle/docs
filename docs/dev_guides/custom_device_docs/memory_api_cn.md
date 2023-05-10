@@ -120,7 +120,7 @@ ptr - 需要释放的统一地址空间内存地址。
 
 size - 需要释放的内存大小（字节形式）。
 
-## memory_copy_h2d 【required】
+## memory_copy_h2d 【optional】
 
 ### 接口定义
 
@@ -142,7 +142,7 @@ src - 源主机内存地址。
 
 size - 需要拷贝的内存大小（字节形式）。
 
-## memory_copy_d2h 【required】
+## memory_copy_d2h 【optional】
 
 ### 接口定义
 
@@ -164,7 +164,7 @@ src - 源设备内存地址。
 
 size - 需要拷贝的内存大小（字节形式）。
 
-## memory_copy_d2d 【required】
+## memory_copy_d2d 【optional】
 
 ### 接口定义
 
@@ -330,7 +330,7 @@ value - 填充值。
 
 size - 填充大小（字节形式）。
 
-## device_memory_stats 【required】
+## device_memory_stats 【optional】
 
 ### 接口定义
 
@@ -350,7 +350,7 @@ total_memory - 总内存（字节形式）。
 
 free_memory - 剩余可用内存（字节形式）。
 
-## device_min_chunk_size 【required】
+## device_min_chunk_size 【optional】
 
 ### 接口定义
 

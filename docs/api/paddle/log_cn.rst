@@ -17,7 +17,7 @@ Log 激活函数（计算自然对数）
 参数
 ::::::::::::
 
-  - **x** (Tensor) – 输入为 Tensor。数据类型只能为 float32 或 float64。
+  - **x** (Tensor) – 输入为 Tensor。数据类型只能为 float16，float32 或 float64。
   - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

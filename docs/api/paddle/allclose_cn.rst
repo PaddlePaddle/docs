@@ -15,8 +15,8 @@ allclose
 参数
 ::::::::::::
 
-    - **x** (Tensor) - 输入的 `Tensor`，数据类型为：float32、float64。
-    - **y** (Tensor) - 输入的 `Tensor`，数据类型为：float32、float64。
+    - **x** (Tensor) - 输入的 `Tensor`，数据类型为：float16、float32、float64。
+    - **y** (Tensor) - 输入的 `Tensor`，数据类型为：float16、float32、float64。
     - **rtol** (float，可选) - 相对容忍误差，默认值为 1e-5。
     - **atol** (float，可选) - 绝对容忍误差，默认值为 1e-8。
     - **equal_nan** (bool，可选) - 如果设置为 True，则两个 NaN 数值将被视为相等，默认值为 False。

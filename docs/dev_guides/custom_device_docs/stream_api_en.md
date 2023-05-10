@@ -1,6 +1,6 @@
 # Stream APIs
 
-## create_stream 【required】
+## create_stream 【optional】
 
 ### Definition
 
@@ -18,7 +18,7 @@ device - the device to be used
 
 stream - the created stream
 
-## destroy_stream 【required】
+## destroy_stream 【optional】
 
 ### Definition
 
@@ -54,7 +54,7 @@ device - the device to be used
 
 stream - the stream required to be queried.
 
-## synchronize_stream 【required】
+## synchronize_stream 【optional】
 
 ### Definition
 
@@ -94,7 +94,7 @@ callback - the callback function
 
 user_data - parameters of the function
 
-## stream_wait_event 【required】
+## stream_wait_event 【optional】
 
 ### Definition
 

@@ -13,7 +13,7 @@ list_available_backends
 返回
 :::::::::
 
-``List[str]``, 可用的音频 I/O 后端集合。
+``List[str]``，可用的音频 I/O 后端集合。
 
 代码示例
 :::::::::

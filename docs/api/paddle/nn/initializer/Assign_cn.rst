@@ -6,7 +6,7 @@ Assign
 .. py:class:: paddle.nn.initializer.Assign(value, name=None)
 
 
-该 OP 使用 Numpy 数组、Python 列表、Tensor 来初始化参数。
+该接口为参数初始化函数，使用 Numpy 数组、Python 列表、Tensor 来初始化参数。
 
 参数
 ::::::::::::
