@@ -23,8 +23,8 @@ paddle.slice(input,
 | input           | input         | 表示输入的 Tensor 。                                           |
 | dim           | axes         | 表示切片的轴。                                           |
 | start         | starts       | 表示起始位置。                                           |
-| length        | -            | 到结束位置的长度，需要进行转写。                                       |
-| -             | ends         | 表示结束位置，需要进行转写。                                           |
+| length        | -            | 到结束位置的长度，Paddle 无此参数。应修改 ends 实现。                                       |
+| -             | ends         | 表示结束位置，Pytorch 无此参数。 Paddle 应设为 start + length。                                           |
 
 
 ### 转写示例

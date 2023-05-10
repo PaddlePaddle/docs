@@ -18,9 +18,9 @@ paddle.reshape(x, shape, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | -         | <font color='red'>x</font>            | 输入 Tensor。                                       |
-| <font color='red'>dim</font>          | -            | Pytorch 需要变换的维度，Paddle 无此参数，需要进行转写。                    |
-| <font color='red'>sizes</font>          | -            | Pytorch 维度变换的新形状，Paddle 无此参数，需要进行转写。                    |
-| -             | <font color='red'>shape</font>         | Paddle 可通过 shape 参数，等价的实现 torch 的 dim、sizes 的功能。|
+| <font color='red'>dim</font>          | -            | Pytorch 需要变换的维度，Paddle 无此参数，需要进行转写。通过修改 shape 实现。                    |
+| <font color='red'>sizes</font>          | -            | Pytorch 维度变换的新形状，Paddle 无此参数，需要进行转写。通过修改 shape 实现。                    |
+| -             | <font color='red'>shape</font>         | Pytorch 无此参数。 Paddle 可通过 shape 参数，等价的实现 torch 的 dim、sizes 的功能。|
 
 
 ### 转写示例

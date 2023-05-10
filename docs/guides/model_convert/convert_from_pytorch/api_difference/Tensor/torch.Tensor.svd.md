@@ -16,8 +16,8 @@ paddle.linalg.svd(x, full_matrics=False, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | -           | x         | 表示输入的 Tensor 。                                           |
-| some           | -         | 是否计算完整的 U 和 V 矩阵， 默认为 `True`， Paddle 无此参数。                                          |
-| compute_uv         | -       | 是否返回零填充的 U 和 V 矩阵， 默认为 `True`， Paddle 无此参数。                                    |
+| some           | -         | 是否计算完整的 U 和 V 矩阵， 默认为 `True`， Paddle 无此参数。修改 full_matrics 实现。                                          |
+| compute_uv         | -       | 是否返回零填充的 U 和 V 矩阵， 默认为 `True`， Paddle 无此参数。暂无转写方式。                                    |
 | -             | full_matrics         | 是否计算完整的 U 和 V 矩阵，默认为 `False`， Pytorch 无此参数，Paddle 应设为 not some。  |
 
 

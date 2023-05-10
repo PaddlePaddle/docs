@@ -20,9 +20,9 @@ paddle.transpose(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | _         | <font color='red'>x</font>            | 输入 Tensor。                                       |
-| <font color='red'>axis0</font>          | -            | Pytorch 转置的第一个维度，Paddle 无此参数，需要进行转写。                    |
-| <font color='red'>axis1</font>          | -            | Pytorch 转置的第二个维度，Paddle 无此参数，需要进行转写。                    |
-| -             | <font color='red'>perm</font>         | Paddle 可通过 perm 参数，等价的实现 torch 的 axis0、axis1 的功能。|
+| <font color='red'>axis0</font>          | -            | Pytorch 转置的第一个维度，Paddle 无此参数，需要进行转写。通过修改 perm 实现。                   |
+| <font color='red'>axis1</font>          | -            | Pytorch 转置的第二个维度，Paddle 无此参数，需要进行转写。通过修改 perm 实现。                    |
+| -             | <font color='red'>perm</font>         | Pytorch 无此参数。 Paddle 可通过 perm 参数，等价的实现 torch 的 axis0、axis1 的功能。|
 
 
 ### 转写示例
