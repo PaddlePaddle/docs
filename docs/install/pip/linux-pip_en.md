@@ -138,11 +138,27 @@ You can choose the following version of PaddlePaddle to start installation:
   ```
 
 
+  CUDA10.2 with cuDNN dynamic library PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0rc0.post102 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  ```
+
+
 2.2.2 If you are using CUDA 11.2
 
 
   ```
   python3 -m pip install paddlepaddle-gpu==2.5.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  ```
+
+
+  CUDA11.2 with cuDNN dynamic library PaddlePaddle, you can use the following command to download the wheel package to the local, and then use `python3 -m pip install [name].whl` to install locally ([name] is the name of the wheel package)
+
+
+  ```
+  python3 -m pip download paddlepaddle-gpu==2.5.0rc0 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html  --no-index --no-deps
   ```
 
 
@@ -153,6 +169,15 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle-gpu==2.5.0rc0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
+
+  CUDA11.6 with cuDNN dynamic library PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0rc0.post116 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  ```
+
+
 2.2.4 If you are using CUDA 11.7
 
 
@@ -160,12 +185,30 @@ You can choose the following version of PaddlePaddle to start installation:
   python3 -m pip install paddlepaddle-gpu==2.5.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
 
+
+  CUDA11.7 with cuDNN dynamic library PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0rc0.post117 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  ```
+
+
 2.2.5 If you are using CUDA 11.8
 
 
   ```
   python3 -m pip install paddlepaddle-gpu==2.5.0rc0.post118 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
   ```
+
+
+  CUDA11.8 with cuDNN dynamic library PaddlePaddle
+
+
+  ```
+  python3 -m pip install paddlepaddle-gpu==2.5.0rc0.post118 -f https://www.paddlepaddle.org.cn/whl/linux/cudnnin/stable.html
+  ```
+
 
 Note：
 
