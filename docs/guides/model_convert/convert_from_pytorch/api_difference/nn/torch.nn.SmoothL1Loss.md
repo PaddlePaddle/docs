@@ -20,9 +20,9 @@ paddle.nn.SmoothL1Loss(reduction='mean',
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| size_average  | -            | 已弃用。  |
-| reduce        | -            | 已弃用。  |
-| reduction        | reduction            | 表示对输出 Tensor 的计算方式。  |
+| size_average  | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
+| reduce        | -            | PyTorch 已弃用， Paddle 无此参数，需要转写。 |
+| reduction        | reduction            | 表示应用于输出结果的计算方式。 |
 | beta          | delta        | SmoothL1Loss 损失的阈值参数。  |
 
 ### 转写示例
