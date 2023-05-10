@@ -27,8 +27,8 @@ paddle.outer(x, y, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.ger(torch.arange(1., 5.), torch.arange(1., 4.), out=y)
+torch.ger([1., 2., 3., 4.], [1., 2., 3.], out=y)
 
 # Paddle 写法
-paddle.assign(paddle.outer(paddle.arange(1, 5).astype('float32'), paddle.arange(1, 4).astype('float32')), y)
+paddle.assign(paddle.outer([1., 2., 3., 4.], [1., 2., 3.]), y)
 ```
