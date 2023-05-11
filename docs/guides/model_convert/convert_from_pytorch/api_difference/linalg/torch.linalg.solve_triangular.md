@@ -21,7 +21,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 | A     | x           | 表示线性方程组左边的系数 Tensor ，仅参数名不一致。                         |
 | B     | y           | 表示线性方程组右边的 Tensor ，仅参数名不一致。                         |
 | upper       | upper        | 表示对系数 Tensor 取上三角还是下三角。                           |
-| left     | transpose           | 表示是否对系数 Tensor 进行转置。                         |
+| left     | transpose           | 表示是否对系数 Tensor 进行转置 ，仅参数名不一致。                         |
 | unitriangular     | unitriangular           | 表示是否将系数 Tensor 对角线元素假设为 1 来求解方程。                         |
 | out           | -      | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。         |
 
