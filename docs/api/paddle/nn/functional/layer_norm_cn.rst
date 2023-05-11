@@ -12,7 +12,7 @@ layer_norm
 参数
 ::::::::::::
 
-    - **x** (int) - 输入，数据类型为 float32, float64。
+    - **x** (int) - 输入，数据类型为 bfloat16 、 float16 、 float32 或 float64。
     - **normalized_shape** (int|list|tuple) - 期望的输入是 :math:`[*, normalized_shape[0], normalized_shape[1], ..., normalized_shape[-1]]`，如果是一个整数，会作用在最后一个维度。
     - **weight** (Tensor，可选) - 权重的 Tensor，默认为 None。
     - **bias** (Tensor，可选) - 偏置的 Tensor，默认为 None。
