@@ -12,7 +12,7 @@ compare_accuracy
     - **another_dump_path** (str): 另一份运行日志的路径，比如数据类型是 float16 的训练日志。
     - **output_filename** (str): 输出 excel 的文件名，用于保存两份日志的比对结果。
     - **loss_scale** (float, 可选): 训练阶段的 loss_scale，默认是 1。
-    - **dump_all_tensors** (bool, 可选): dump 所有的 tensor 数据，当前还不支持这个参数，默认是 False。
+    - **dump_all_tensors** (bool, 可选): True 表示 dump 所有的 tensor 数据，False 表示不做处理，当前还不支持这个参数，默认是 False。
 
 
 返回值
@@ -23,4 +23,3 @@ compare_accuracy
 :::::::::
 
 COPY-FROM: paddle.amp.debugging.compare_accuracy
-~
