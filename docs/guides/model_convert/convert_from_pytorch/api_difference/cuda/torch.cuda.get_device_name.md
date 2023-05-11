@@ -22,8 +22,8 @@ paddle.device.cuda.get_device_properties(device)
 ### 转写示例
 ```python
 # pytorch
-torch.cuda.get_device_name()
+y = torch.cuda.get_device_name()
 
 # paddle
-paddle.device.cuda.get_device_properties().name
+y = paddle.device.cuda.get_device_properties().name
 ```

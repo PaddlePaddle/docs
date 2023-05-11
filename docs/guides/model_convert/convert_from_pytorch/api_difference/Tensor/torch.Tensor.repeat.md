@@ -23,9 +23,9 @@ Pytorch 的 `sizes` 参数与 Paddle 的 `repeat_times` 参数用法不同，具
 ```python
 # pytorch
 x = torch.randn(2, 3, 5)
-x_repeat = x.repeat(4,2,1)
+y = x.repeat(4,2,1)
 
 # paddle
 x = paddle.randn([2, 3, 5])
-x_tile_tuple = x.tile((4,2,1))
+y = x.tile((4,2,1))
 ```

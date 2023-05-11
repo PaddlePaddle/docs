@@ -23,9 +23,9 @@ Pytorch 的 `*shape` 参数与 Paddle 的 `shape` 参数用法不同，具体如
 ```python
 # pytorch
 x = torch.randn(2, 3, 5)
-x_reshape = x.reshape(6,5)
+y = x.reshape(6,5)
 
 # paddle
 x = paddle.randn([2, 3, 5])
-x_tile_tuple = x.tile((6,5))
+y = x.tile((6,5))
 ```

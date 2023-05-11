@@ -23,9 +23,9 @@ Pytorch 的 `dim0, dim1` 与 Paddle 的 `perm` 用法不同，具体如下：
 ```python
 # pytorch
 x = torch.randn(2, 3, 5)
-x_transpose = x.transpose(0,1)
+y = x.transpose(0,1)
 
 # paddle
 x = paddle.randn([2, 3, 5])
-x_transposed = x.transpose(perm=[1, 0, 2])
+y = x.transpose(perm=[1, 0, 2])
 ```

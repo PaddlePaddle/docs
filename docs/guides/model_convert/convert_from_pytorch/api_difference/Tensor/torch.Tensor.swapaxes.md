@@ -23,9 +23,9 @@ Pytorch 的 `axis0, axis1` 与 Paddle 的 `perm` 用法不同，具体如下：
 ```python
 # pytorch
 x = torch.randn(2, 3, 5)
-x_swapaxes = x.swapaxes(0,1)
+y = x.swapaxes(0,1)
 
 # paddle
 x = paddle.randn([2, 3, 5])
-x_transposed = x.transpose(perm=[1, 0, 2])
+y = x.transpose(perm=[1, 0, 2])
 ```

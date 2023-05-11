@@ -24,9 +24,9 @@ Pytorch 的 `split_size_or_sections` 与 Paddle 的 `num_or_sections` 用法不�
 ```python
 # pytorch
 x = torch.randn(8, 2)
-x_split_int = x.split(4)
+y = x.split(4)
 
 # paddle
 x = paddle.randn([8, 2])
-x_split_int = x.split(2)
+y = x.split(2)
 ```

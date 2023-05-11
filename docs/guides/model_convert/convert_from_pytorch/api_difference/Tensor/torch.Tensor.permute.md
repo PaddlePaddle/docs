@@ -12,7 +12,7 @@ torch.Tensor.permute(*dims)
 paddle.Tensor.transpose(perm, name=None)
 ```
 
-torch 的 `*dims` 与 paddle 的 `perm` 两者部分参数用法不同，具体如下：
+Pytorch 的 `dims` 与 paddle 的 `perm` 两者部分参数用法不同，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -23,9 +23,9 @@ torch 的 `*dims` 与 paddle 的 `perm` 两者部分参数用法不同，具体�
 ```python
 # pytorch
 x = torch.randn(2, 3, 5)
-x_permuted_dim = x.permute(2,0,1)
+y = x.permute(2,0,1)
 
 # paddle
 x = paddle.randn([2, 3, 5])
-x_transposed_list = x.transpose([2, 0, 1])
+y = x.transpose([2, 0, 1])
 ```
