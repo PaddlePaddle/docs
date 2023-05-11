@@ -5,12 +5,12 @@ logit
 
 .. py:function:: paddle.logit(x, eps=None, name=None)
 
-实现了 logit 层。若 eps 为默认值 None，并且 ``x`` < 0 或者 ``x`` > 1，该函数将返回 NaN，OP 的计算公式如下：
+实现了 logit 层。若 eps 为默认值 None，并且 ``x`` < 0 或者 ``x`` > 1，该函数将返回 NaN，计算公式如下：
 
 .. math::
     logit(x) = ln(\frac{x}{1-x})
 
-其中，:math:`x`` 为输入的 Tensor，且和 eps 有着如下关系：
+其中， ``x`` 为输入的 Tensor，且和 eps 有着如下关系：
 
 .. math::
     x_i=\left\{

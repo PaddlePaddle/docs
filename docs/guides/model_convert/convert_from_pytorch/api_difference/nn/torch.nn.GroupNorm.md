@@ -41,7 +41,7 @@ paddle.nn.GroupNorm(num_groups,
 torch.nn.GroupNorm(num_groups=5, num_channels=50, eps=1e-05, affine=False)
 
 # paddle 写法
-paddle.nn.GroupNorm(num_groups=5, num_channels=50, epsilon=1e-05, weight_attr=paddle.ParamAttr(learning_rate=0.0), bias_attr=paddle.ParamAttr(learning_rate=0.0))
+paddle.nn.GroupNorm(num_groups=5, num_channels=50, epsilon=1e-05, weight_attr=False, bias_attr=False)
 
 # 当 PyTorch 的 affine 为`True`，torch 写法
 torch.nn.GroupNorm(num_groups=5, num_channels=50, eps=1e-05, affine=True)

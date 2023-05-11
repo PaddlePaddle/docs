@@ -5,9 +5,9 @@ HSigmoidLoss
 
 .. py:class:: paddle.nn.HSigmoidLoss(feature_size, num_classes, weight_attr=None, bias_attr=None, is_custom=False, is_sparse=False, name=None)
 
-层次 sigmoid（hierarchical sigmoid），该 OP 通过构建一个分类二叉树来降低计算复杂度，主要用于加速语言模型的训练过程。
+层次 sigmoid（hierarchical sigmoid）通过构建一个分类二叉树来降低计算复杂度，主要用于加速语言模型的训练过程。
 
-该 OP 建立的二叉树中每个叶节点表示一个类别(单词)，每个非叶子节点代表一个二类别分类器（sigmoid）。对于每个类别（单词），都有一个从根节点到它的唯一路径，hsigmoid 累加这条路径上每个非叶子节点的损失得到总损失。
+分类二叉树中每个叶节点表示一个类别(单词)，每个非叶子节点代表一个二类别分类器（sigmoid）。对于每个类别（单词），都有一个从根节点到它的唯一路径，hsigmoid 累加这条路径上每个非叶子节点的损失得到总损失。
 
 相较于传统 softmax 的计算复杂度 :math:`O(N)` ，hsigmoid 可以将计算复杂度降至 :math:`O(logN)`，其中 :math:`N` 表示类别总数（字典大小）。
 

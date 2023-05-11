@@ -5,7 +5,8 @@ nanmedian
 
 .. py:function:: paddle.nanmedian(x, axis=None, keepdim=True, name=None)
 
-沿给定的轴 ``axis`` 忽略 NAN 元素计算 ``x`` 中元素的中位数。
+沿给定的轴 ``axis`` 计算中位数，同时忽略 NAN 元素。
+如果元素的有效计数为偶数，则计算并返回中间两数的平均数。
 
 参数
 ::::::::::
@@ -16,7 +17,7 @@ nanmedian
 
 返回
 ::::::::::
-    ``Tensor``，沿着 ``axis`` 忽略 NAN 元素进行中位数计算的结果。
+    ``Tensor`` ，沿着 ``axis`` 进行中位数计算的结果，同时忽略 NAN 元素。输出的 dtype 与 ``x`` 相同。
 
 代码示例
 ::::::::::

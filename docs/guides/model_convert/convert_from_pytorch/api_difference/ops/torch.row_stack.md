@@ -9,10 +9,10 @@ torch.row_stack(tensors, *, out=None)
 按垂直方向拼接张量; Paddle 无此 API，需要组合实现。
 
 ### 转写示例
-#### out：指定输出
+
 ```python
 # Pytorch 写法
-torch.row_stack((a, b), out=y)
+y = torch.row_stack((a, b))
 
 # Paddle 写法
 if a.ndim == 1:

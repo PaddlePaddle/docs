@@ -4,7 +4,7 @@
 海光 DCU 芯片运行飞桨
 ####################
 
-DCU（Deep Computing Unit 深度计算器）是 海光（HYGON）推出的一款专门用于 AI 人工智能和深度学习的加速卡。Paddle ROCm 版当前可以支持在海光 CPU 与 DCU 上进行模型训练与预测。
+DCU 是 海光（HYGON）推出的一款面向各种应用场景的通用 GPU。Paddle ROCm 版当前可以支持在海光 CPU 与海光 DCU 上进行模型训练与预测。当前 Paddle ROCm 版同样支持海光 DCUToolKit 工具包（DTK）。
 
 参考以下内容可快速了解和体验在海光芯片上运行飞桨：
 
