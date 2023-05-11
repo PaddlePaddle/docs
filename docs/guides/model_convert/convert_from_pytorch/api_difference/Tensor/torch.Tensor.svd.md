@@ -1,31 +1,32 @@
-## [参数不一致]torch.Tensor.svd
+## [ 参数不一致 ]torch.Tensor.svd
 
-### [torch.Tensor.svd](https://pytorch.org/docs/1.13/generated/torch.Tensor.svd.html)
+### [torch.Tensor.svd](https://pytorch.org/docs/stable/generated/torch.Tensor.svd.html#torch.Tensor.svd)
 
 ```python
 torch.Tensor.svd(some=True, compute_uv=True)
 ```
-### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/svd_cn.html#svd)
 
+### [paddle.linalg.svd](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/svd_cn.html#svd)
 ```python
 paddle.linalg.svd(x, full_matrics=False, name=None)
 ```
 
-Pytorch 的 `some` 参数与 Paddle 的 `full_matrices` 参数用法不同，且 Pytorch 有额外参数 `compute_uv`，具体如下：
+输入参数不一致，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| some | full_matrices | 表示是否计算完整的 U 和 V 矩阵。默认时效果一致。 some 为 True 时， full_matrices 需设置为 False ，反之同理。 |
-| compute_uv | - | 默认时效果一致。一般直接删除即可，无需转写。 compute_uv 为 False 时， paddle 暂无转写方式。|
+| -           | x         | 表示输入的 Tensor 。                                           |
+| some           | -         | 是否计算完整的 U 和 V 矩阵， 默认为 `True`， Paddle 无此参数。修改 full_matrics 实现。                                          |
+| compute_uv         | -       | 是否返回零填充的 U 和 V 矩阵， 默认为 `True`， Paddle 无此参数。暂无转写方式。                                    |
+| -             | full_matrics         | 是否计算完整的 U 和 V 矩阵，默认为 `False`， Pytorch 无此参数，Paddle 应设为 not some。  |
+
 
 ### 转写示例
-#### some ：表示是否计算完整的 U 和 V 矩阵。
+#### some 是否计算完整的 U 和 V 矩阵
 ```python
-# pytorch
-x = torch.randn(8, 2)
-U, S, V = x.svd(some=True)
+# Pytorch 写法
+y = a.svd(some=False)
 
-# paddle
-x = paddle.randn([8, 2])
-U, S, V = paddle.linalg.svd(x, full_matrices = False)
+# Paddle 写法
+y = paddle.linalg.svd(a, full_matrices=True)
 ```
