@@ -4,7 +4,7 @@
 
 ```python
 torch.nn.functional.mish(input,
-                         inplace=None)
+                         inplace=False)
 ```
 
 ### [paddle.nn.functional.mish](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/functional/mish_cn.html)

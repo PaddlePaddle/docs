@@ -38,8 +38,7 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 torch.nanmean(x, dim=-1, dtype=torch.float32)
 
 # Paddle 写法
-y = paddle.sparse.cast(x, value_dtype='float32')
-paddle.nanmean(y,dim=-1)
+paddle.nanmean(x.astype('float32'),dim=-1)
 ```
 
 #### out：指定输出

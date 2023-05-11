@@ -27,8 +27,8 @@ Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 
 ```python
 # Pytorch 写法
-torch.linalg.multi_dot([[2,7], [1, 3]], out=y)
+torch.linalg.multi_dot(x, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.linalg.multi_dot([[2, 7], [1, 3]]), y)
+paddle.assign(paddle.linalg.multi_dot(x), y)
 ```
