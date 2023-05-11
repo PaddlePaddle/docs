@@ -16,4 +16,13 @@ Pytorch 的 `device` 与 Paddle 的 `id` 用法不同，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| device | id | torch 的 device 参数类型为 torch.device 或 int 。paddle 的 id 为 int。 torch 参数为 int 时无需转写， 参数为 torch.device 时， paddle 暂无转写方式。|
+| device | id | torch 的 device 参数类型为 torch.device 或 int 。paddle 的 id 为 int。 torch 参数为 int 时无需转写， 参数为 torch.device 时，需要转写。|
+
+### 转写示例
+```python
+# PyTorch 写法
+torch.cuda.device(torch.device('cuda:0'))
+
+# Paddle 写法
+paddle.CUDAPlace(0)
+```
