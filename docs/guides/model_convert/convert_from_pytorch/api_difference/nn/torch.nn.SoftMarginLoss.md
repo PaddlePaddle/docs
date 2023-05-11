@@ -1,6 +1,6 @@
-# [torch 参数更多]torch.nn.SoftMarginLoss
+## [torch 参数更多]torch.nn.SoftMarginLoss
 
-### [torch.nn.SoftMarginLosss](https://pytorch.org/docs/1.13/generated/torch.nn.SoftMarginLoss.html#torch.nn.SoftMarginLoss)
+### [torch.nn.SoftMarginLoss](https://pytorch.org/docs/1.13/generated/torch.nn.SoftMarginLoss.html#torch.nn.SoftMarginLoss)
 
 ```python
 torch.nn.SoftMarginLoss(size_average=None,
