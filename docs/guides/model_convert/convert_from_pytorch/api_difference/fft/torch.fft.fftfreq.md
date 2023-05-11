@@ -22,41 +22,41 @@ paddle.fft.fftfreq(n,
                     name=None)
 ```
 
-两者功能一致但参数不一致，部分参数名不同，具体如下：
+其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| n             | n                | 窗长度（傅里叶变换点数），参数名相同。                        |
-| d             | d            | 采样间隔，采样率的倒数，默认值为 1。 参数名相同。         |
-| out            | -            |输出的 Tensor,Paddle 无此参数，需要进行转写。              |
-| dtype          | dtype      | 返回 Tensor 的数据类型。参数名相同。|
-|layout         |-            |表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
-|device         |-              | 表示 Tensor 存放设备位置，Paddle 无此参数，需要进行转写。         |
-|requires_grad  |-             |  表示是否不阻断梯度传导，Paddle 无此参数，需要进行转写。    |
+| n             | n            | 窗长度（傅里叶变换点数）。                        |
+| d             | d            | 采样间隔，采样率的倒数，默认值为 1。                |
+| out           | -            |输出的 Tensor,Paddle 无此参数，需要进行转写。              |
+| dtype         | dtype        |返回 Tensor 的数据类型。                              |
+|layout         |-             |表示布局方式，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。|
+|device         |-             |表示 Tensor 存放设备位置，Paddle 无此参数，需要进行转写。 |
+|requires_grad  |-             |表示是否不阻断梯度传导，Paddle 无此参数，需要进行转写。   |
 
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.fft.fftfreq(5, out=y)
+torch.fft.fftfreq(x, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.fft.fftfreq(np.array([3, 1, 2, 2, 3], dtype=float).size, d=0.5),y)
+paddle.assign(paddle.fft.fftfreq(x),y)
 ```
 
 #### requires_grad：是否需要求反向梯度，需要修改该 Tensor 的 stop_gradient 属性
 ```python
 # Pytorch 写法
-x = torch.fft.fftfreq(5, requires_grad=True)
+x = torch.fft.fftfreq(x, requires_grad=True)
 # Paddle 写法
-x = paddle.fft.fftfreq(np.array([3, 1, 2, 2, 3], dtype=float).size, d=0.5)
+x = paddle.fft.fftfreq(x)
 x.stop_gradient = False
 ```
 
 #### device: Tensor 的设备
 ```python
 # Pytorch 写法
-torch.fft.fftfreq(5, device=torch.device('cpu'))
+torch.fft.fftfreq(x, device=torch.device('cpu'))
 # Paddle 写法
-y = paddle.fft.fftfreq(np.array([3, 1, 2, 2, 3], dtype=float).size, d=0.5)
+y = paddle.fft.fftfreq(x)
 y.cpu()

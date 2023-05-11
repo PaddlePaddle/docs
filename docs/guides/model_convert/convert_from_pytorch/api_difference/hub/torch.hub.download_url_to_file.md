@@ -20,8 +20,8 @@ paddle.utils.download.get_weights_path_from_url(url,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-|url            |url           |下载的链接。参数名相同。|
-|dst            |-             | 对象将被保存的完整路径，例如：/tmp/temporary_file。Paddle 无此参数|
-|hash_prefix    |-           | 如果不为 None，则下载的 SHA256 文件应以 hash_prefix 开头。默认为 None。Paddle 无此参数|
-|progress       |-             |是否显示进度条。默认值为 True。Paddle 无此参数，可直接删除|
-|-              |md5sum        | 下载文件的 md5 值。默认值：None。|
+|url            |url           |下载的链接。|
+|dst            |-             |对象将被保存的完整路径，例如：/tmp/temporary_file，Paddle 无此参数。|
+|hash_prefix    |-             |如果不为 None，则下载的 SHA256 文件应以 hash_prefix 开头，默认为 None，Paddle 无此参数。|
+|progress       |-             |是否显示进度条。默认值为 True，Paddle 无此参数，可直接删除。|
+|-              |md5sum        | 下载文件的 md5 值，默认值：None。|
