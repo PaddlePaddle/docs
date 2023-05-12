@@ -1,6 +1,6 @@
 .. _cn_api_paddle_autograd_jacobian:
 
-Jacobian
+jacobian
 -------------------------------
 
 .. py:class:: paddle.autograd.jacobian(ys, xs, batch_axis=None)

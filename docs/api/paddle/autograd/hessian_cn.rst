@@ -1,11 +1,11 @@
 .. _cn_api_paddle_autograd_hessian:
 
-Hessian
+hessian
 -------------------------------
 
 .. py:class:: paddle.autograd.hessian(ys, xs, batch_axis=None)
 
-计算因变量 ``ys`` 对 自变量 ``xs`` 的雅可比矩阵。
+计算因变量 ``ys`` 对 自变量 ``xs`` 的海森矩阵。
 
 其中 ``ys`` 表示 ``xs`` 经过某种运算得到的输出， ``ys`` 只能是单个 Tensor， ``xs`` 可以是 Tensor 或 Tensor 元组，``batch_axis`` 表示参数数据的 batch 维度的位置。
 
