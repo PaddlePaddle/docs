@@ -2534,6 +2534,17 @@ vander(x, n=None, increasing=False, name=None)
 
 请参考 :ref:`cn_api_paddle_vander`
 
+unflatten(axis, shape, name=None)
+:::::::::
+
+将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状。
+
+返回：沿指定轴将维度展开的后的 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_unflatten`
+
 i0(x, name=None)
 :::::::::
 用于将输入的 Tensor 计算第一类零阶修正贝塞尔函数。

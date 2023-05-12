@@ -1,5 +1,5 @@
-## [torch 参数更多]torch.clamp
-### [torch.clamp](https://pytorch.org/docs/stable/generated/torch.clamp.html?highlight=clamp#torch.clamp)
+## [ torch 参数更多 ]torch.clamp
+### [torch.clamp](https://pytorch.org/docs/1.13/generated/torch.clamp.html#torch-clamp)
 
 ```python
 torch.clamp(input,
@@ -22,18 +22,18 @@ paddle.clip(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+| input       |  x             | 表示输入的 Tensor ，仅参数名不一致。  |
 | min         | min            | 表示裁剪的最小值。                                      |
 | max         | max            | 表示裁剪的最大值。                                      |
-| <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
+|  out        | -              | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.clamp([-1.7120,  0.1734], min=-0.5, max=0.5, out=y)
+torch.clamp(torch.tensor([-1.7120,  0.1734]), min=-0.5, max=0.5, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.clip([-1.7120,  0.1734], min=-0.5, max=0.5), y)
+paddle.assign(paddle.clip(paddle.to_tensor([-1.7120,  0.1734]), min=-0.5, max=0.5), y)
 ```
