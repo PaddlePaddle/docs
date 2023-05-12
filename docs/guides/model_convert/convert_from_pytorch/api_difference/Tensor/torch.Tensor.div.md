@@ -19,7 +19,7 @@ paddle.Tensor.divide(y, name=None)
 | PyTorch       | PaddlePaddle | 备注                                                                                |
 | ------------- | ------------ | ----------------------------------------------------------------------------------- |
 | other         | y            | 表示输入的 Tensor ，仅参数名不一致。                                                 |
-| rounding_mode | -            | 用于指定在执行截断除法时的舍入模式，可选值为 'floor'(向下取整) 或 'trunc'(向零取整)。 Paddle 无此参数，需要进行转写。 |
+| rounding_mode | -            | 用于指定在执行截断除法时的舍入模式，可选值为 'floor'(向下取整) 或 'trunc'(向零取整)。 Paddle 无此参数，需要进行转写。Paddle 可通过组合 paddle.trunc 或 paddle.floor 实现。 |
 
 ### 转写示例
 
