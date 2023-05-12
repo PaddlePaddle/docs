@@ -1,4 +1,4 @@
-# [torch 参数更多]torch.nn.HingeEmbeddingLoss
+## [torch 参数更多]torch.nn.HingeEmbeddingLoss
 
 ### [torch.nn.HingeEmbeddingLoss](https://pytorch.org/docs/1.13/generated/torch.nn.HingeEmbeddingLoss.html#hingeembeddingloss)
 
