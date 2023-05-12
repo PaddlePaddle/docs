@@ -2537,6 +2537,7 @@ vander(x, n=None, increasing=False, name=None)
 i0(x, name=None)
 :::::::::
 用于将输入的 Tensor 计算第一类零阶修正贝塞尔函数。
+
 返回：一个第一类零阶修正贝塞尔函数上的 Tensor。
 
 返回类型：Tensor
@@ -2546,6 +2547,7 @@ i0(x, name=None)
 i0e(x, name=None)
 :::::::::
 用于将输入的 Tensor 计算第一类指数缩放的零阶修正贝塞尔函数。
+
 返回：一个第一类指数缩放的零阶修正贝塞尔函数上的 Tensor。
 
 返回类型：Tensor
