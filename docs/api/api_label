@@ -1218,5 +1218,5 @@ paddle.get_cuda_rng_state	.. _api_paddle_get_cuda_rng_state:
 paddle.flops	.. _api_paddle_flops:
 paddle.load	.. _api_paddle_load:
 paddle.vander	.. _api_paddle_vander:
-paddle.i1	.. _api_paddle_i1:
-paddle.i1e	.. _api_paddle_i1e:
+paddle.i1	.. _api_paddle_tensor_i1:
+paddle.i1e	.. _api_paddle_tensor_i1e:

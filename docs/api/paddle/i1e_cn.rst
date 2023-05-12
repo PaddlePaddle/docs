@@ -8,11 +8,12 @@ i1
 
 .. math::
     I_1e(x)=\exp (-|x|) * i 1(x)=\exp (-|x|) * \frac{\left(\text { input }_{i}\right)}{2} * \sum_{k=0}^{\infty} \frac{\left(\text { input }_{i}^{2} / 4\right)^{k}}{(k !) *(k+1) !}
+
 参数
 ::::::::::
     - **x** (Tensor) – 输入是一个多维的 Tensor，它的数据类型可以是 float32，float64。
-    输入 `Tensor`，其形状为任意维度的 Tensor。数据类型为 float32 或 float64。
     - **name** (str，可选) - 具体用法请参见  :ref:`api_guide_Name` ，一般无需设置，默认值为 None。
+
 返回
 ::::::::::
     - ``Tensor`` (Tensor)：在 x 处的第一类指数缩放的一阶修正贝塞尔曲线函数的值。
