@@ -326,7 +326,6 @@ paddle.fluid.dygraph.amp.loss_scaler.AmpScaler	.. _api_paddle_fluid_dygraph_amp_
 paddle.fluid.dygraph.nn.PRelu	.. _api_paddle_fluid_dygraph_nn_PRelu:
 paddle.nn.Flatten	.. _api_paddle_nn_Flatten:
 paddle.fluid.dygraph.nn.InstanceNorm	.. _api_paddle_fluid_dygraph_nn_InstanceNorm:
-paddle.jit.TracedLayer	.. _api_paddle_jit_TracedLayer:
 paddle.fluid.dygraph.nn.Pool2D	.. _api_paddle_fluid_dygraph_nn_Pool2D:
 paddle.fluid.dygraph.nn.Dropout	.. _api_paddle_fluid_dygraph_nn_Dropout:
 paddle.fluid.dygraph.learning_rate_scheduler.PolynomialDecay	.. _api_paddle_fluid_dygraph_learning_rate_scheduler_PolynomialDecay:
