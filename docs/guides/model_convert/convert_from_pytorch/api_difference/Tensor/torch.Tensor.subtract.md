@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.Tensor.subtract
-### [torch.Tensor.subtract]https://pytorch.org/docs/stable/generated/torch.Tensor.subtract.html#torch.Tensor.subtract)
+### [torch.Tensor.subtract](https://pytorch.org/docs/stable/generated/torch.Tensor.subtract.html#torch.Tensor.subtract)
 
 ```python
 torch.Tensor.subtract(other, *, alpha=1)
