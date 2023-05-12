@@ -5,11 +5,10 @@
 torch.Tensor.sub(other, *, alpha=1)
 ```
 
-### [paddle.subtract](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/subtract_cn.html#subtract)
+### [paddle.Tensor.subtract](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/subtract_cn.html#subtract)
 
 ```python
-paddle.subtract(x,
-                y,
+paddle.Tensor.subtract(y,
                 name=None)
 ```
 
@@ -17,7 +16,6 @@ paddle.subtract(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| -         | x            | 表示被减数的 Tensor，Pytorch 无此参数。  |
 | other         | y            | 表示减数的 Tensor，仅参数名不一致。  |
 | alpha         | -            | 表示`other`的乘数，PaddlePaddle 无此参数，需要进行转写。Paddle 应设置 y = alpha * other。  |
 
@@ -29,7 +27,7 @@ paddle.subtract(x,
 x.sub(y, alpha=2)
 
 # Paddle 写法
-x - 2 * y
+x.subtract(2 * y)
 
 # 注：Paddle 直接将 alpha 与 y 相乘实现
 ```
