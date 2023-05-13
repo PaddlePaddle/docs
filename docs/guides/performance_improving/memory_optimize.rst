@@ -99,7 +99,7 @@ GC 策略的使能开关，double 类型，在<1.6 的版本中默认值为-1，
 
 - :code:`FLAGS_memory_fraction_of_eager_deletion`
 
-GC 策略的调节 flag，double 类型，默认值为 1，范围为[0,1]，仅适用于使用 ParallelExecutor 或 CompiledProgram+with_data_parallel 的场合。
+GC 策略的调节 flag，double 类型，默认值为 1，范围为[0,1]，仅适用于使用 ParallelExecutor 的场合。
 GC 内部会根据变量占用的存储空间大小，对变量进行降序排列，且仅回收前 :code:`FLAGS_memory_fraction_of_eager_deletion` 大的变量的存储空间。**建议用户维持默认值**，即 :code:`FLAGS_memory_fraction_of_eager_deletion=1` 。
 
 若 :code:`FLAGS_memory_fraction_of_eager_deletion=0.6` ，则表示仅回收存储占用 60%大的变量的存储空间。
@@ -119,7 +119,7 @@ GC 内部会根据变量占用的存储空间大小，对变量进行降序排�
 
 Inplace 策略的原理是 Op 的输出复用 Op 输入的存储空间。例如，reshape 操作的输出和输入可复用同一片存储空间。
 
-Inplace 策略适用于使用 ParallelExecutor 或 CompiledProgram+with_data_parallel 的场合，通过 :code:`BuildStrategy` 设置。此策略不支持使用 Executor+Program 做单卡训练、使用 C++预测库接口等场合。
+Inplace 策略适用于使用 ParallelExecutor 的场合，通过 :code:`BuildStrategy` 设置。此策略不支持使用 Executor+Program 做单卡训练、使用 C++预测库接口等场合。
 
 **Inplace 策略已于 1.6+版本中默认开启。**
 
@@ -130,8 +130,7 @@ Inplace 策略适用于使用 ParallelExecutor 或 CompiledProgram+with_data_par
     build_strategy = fluid.BuildStrategy()
     build_strategy.enable_inplace = True # 开启 Inplace 策略
 
-    compiled_program = fluid.CompiledProgram(train_program)
-                              .with_data_parallel(loss_name=loss.name, build_strategy=build_strategy)
+    compiled_program = fluid.CompiledProgram(train_program, build_strategy=build_strategy)
 
 
 在<1.6 的版本中，由于设计上的一些问题，在开启 Inplace 策略后，必须保证后续 exe.run 中 fetch_list 的变量是 persistable 的，即假如你后续需要 fetch 的变量为 loss 和 acc，则必须设置：
