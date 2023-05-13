@@ -34,17 +34,16 @@ paddle.sort(x,
 注：Pytorch 返回 (Tensor, LongTensor)，Paddle 返回 Tensor 。
 
 ### 转写示例
-#### out：指定输出，sort 只返回排序后的元素
+#### out：指定输出
 ```python
+# 若只返回排序后的元素，按如下方式进行转写
 # Pytorch 写法
 torch.sort(input, -1, True, out = (y, indices))
 
 # Paddle 写法
 paddle.assign(paddle.sort(input, -1, True), y)
-```
 
-#### out：指定输出，若要返回排序后的元素和元素索引，需要结合 argsort 进行转写
-```python
+# 若要返回排序后的元素和元素索引，需要结合 argsort 进行转写
 # Pytorch 写法
 torch.sort(input, -1, True, out = (y, indices))
 
