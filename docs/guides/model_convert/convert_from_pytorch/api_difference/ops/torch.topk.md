@@ -23,7 +23,7 @@ paddle.topk(x,
             name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，同时两个 api 的返回值不同，具体如下：
+其中 Pytorch 相比 Paddle 支持更多其他参数，同时两个 api 的返回参数类型不同，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
@@ -35,6 +35,7 @@ paddle.topk(x,
 | sorted        | sorted       | 控制返回的结果是否按照有序返回，默认为 True。在 GPU 上总是返回有序的结果。参数名相同。 |
 | out           | -            | 表示以(Tensor, LongTensor)输出的元组，含义是查找 topk 后的返回值和对应元素的索引。Paddle 无此参数，需要进行转写。  |
 
+注：Pytorch 返回 (Tensor, LongTensor)，Paddle 返回 (Tensor, int64)。
 
 ### 转写示例
 #### out：指定输出
@@ -43,5 +44,5 @@ paddle.topk(x,
 torch.topk(input, k=1, dim=-1, out = (y, indices))
 
 # Paddle 写法
-paddle.assign(paddle.topk(input, k=1, axis=-1), (y, indices))
+y, indices = paddle.topk(input, k=1, axis=-1)
 ```

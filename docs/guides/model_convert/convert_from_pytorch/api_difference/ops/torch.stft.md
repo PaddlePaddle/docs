@@ -44,4 +44,15 @@ paddle.signal.stft(x,
 | pad_mode      | pad_mode     | 当 center 为 True 时，确定 padding 的模式 ，参数名相同。                              |
 | normalized    | normalized   | 是否将傅里叶变换的结果乘以值为 1/sqrt(n) 的缩放系数，参数名相同。                       |
 | onesided      | onesided     | 当输入为实信号时，选择是否只返回傅里叶变换结果的一半的频点值，如果输入的信号或者窗函数的 数据类型是复数，则此时不能设置为 True。默认为 True，参数名相同。      |
-| return_complex| -            | 表示当输入为复数时，是否以复数形式返回，还是将实部与虚部分开以实数形式返回。Paddle 目前只支持返回复数，分开返回实部与虚部的情况，暂不支持转写。                |
+| return_complex| -            | 表示当输入为复数时，是否以复数形式返回，还是将实部与虚部分开以实数形式返回。Paddle 目前只支持返回复数，分开返回实部与虚部的情况，需要使用 as_real 进行转写。                |
+
+
+### 转写示例
+#### return_complex：是否返回复数
+```python
+# Pytorch 写法
+y = torch.stft(input, n_fft=512, return_complex=False)
+
+# Paddle 写法
+y = paddle.as_real(paddle.stft(input, n_fft=512))
+```
