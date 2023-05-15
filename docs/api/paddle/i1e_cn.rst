@@ -1,9 +1,9 @@
 .. _cn_api_paddle_tensor_i1e:
 
-i1
+i1e
 -------------------------------
 
-.. py:function:: paddle.i1(x, name=None)
+.. py:function:: paddle.i1e(x, name=None)
 对于给定 ``x`` 计算其每个元素的第一类指数缩放的一阶修正贝塞尔曲线函数，其中输入 ``x`` 大小无特殊限制。返回第一类指数缩放的一阶修正贝塞尔函数对应输出 Tensor。
 
 .. math::
