@@ -1,4 +1,4 @@
-# [torch 参数更多]torch.nn.CrossEntropyLoss
+## [torch 参数更多]torch.nn.CrossEntropyLoss
 ### [torch.nn.CrossEntropyLoss](https://pytorch.org/docs/1.13/generated/torch.nn.CrossEntropyLoss.html#torch.nn.CrossEntropyLoss)
 
 ```python

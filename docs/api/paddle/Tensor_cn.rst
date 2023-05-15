@@ -2544,3 +2544,23 @@ unflatten(axis, shape, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_unflatten`
+
+i0(x, name=None)
+:::::::::
+用于将输入的 Tensor 计算第一类零阶修正贝塞尔函数。
+
+返回：一个第一类零阶修正贝塞尔函数上的 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_i0`
+
+i0e(x, name=None)
+:::::::::
+用于将输入的 Tensor 计算第一类指数缩放的零阶修正贝塞尔函数。
+
+返回：一个第一类指数缩放的零阶修正贝塞尔函数上的 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_i0e`
