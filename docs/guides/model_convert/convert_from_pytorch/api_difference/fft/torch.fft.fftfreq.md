@@ -57,6 +57,7 @@ x.stop_gradient = False
 ```python
 # Pytorch 写法
 torch.fft.fftfreq(x, device=torch.device('cpu'))
+
 # Paddle 写法
 y = paddle.fft.fftfreq(x)
 y.cpu()

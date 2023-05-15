@@ -22,7 +22,7 @@ paddle.fft.rfftfreq(n,
                     name=None)
 ```
 
-两者功能一致但参数不一致，部分参数名不同，具体如下：
+其中，PyTorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -48,6 +48,7 @@ paddle.assign(paddle.fft.rfftfreq(x),y)
 ```python
 # Pytorch 写法
 x = torch.fft.rfftfreq(x, requires_grad=True)
+
 # Paddle 写法
 x = paddle.fft.rfftfreq(x)
 x.stop_gradient = False
@@ -57,6 +58,8 @@ x.stop_gradient = False
 ```python
 # Pytorch 写法
 torch.fft.rfftfreq(x, device=torch.device('cpu'))
+
 # Paddle 写法
 y = paddle.fft.rfftfreq(x)
 y.cpu()
+```

@@ -24,7 +24,7 @@ paddle.hub.load(repo_dir,
                 **kwargs)
 ```
 
-两者功能一致但参数不一致，部分参数名不同，具体如下：
+其中，Pytorch 相比 Paddle 支持更多其他参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
@@ -33,6 +33,6 @@ paddle.hub.load(repo_dir,
 |source          |source        |指定 repo 托管的位置，支持 github、gitee 和 local，默认值：github。|
 | trust_repo    | -            |在 v1.14 中被移除。Paddle 无此参数，可直接删除。|
 | force_reload   | force_reload |指定是否强制拉取，默认值: False。参数名相同。         |
-|verbose         | -          |如果设置为 False，将不会显示关于命中本地缓存的消息，默认为 True，Paddle 无此参数，无需转写。|
-| skip_validation| -       |检查由 github 参数指定的分支或提交是否属于存储库所有者,默认为 False，Paddle 无此参数，无需转写。|
+|verbose         | -          |如果设置为 False，将不会显示关于命中本地缓存的消息，默认为 True，Paddle 无此参数，直接删除即可。|
+| skip_validation| -       |检查由 github 参数指定的分支或提交是否属于存储库所有者,默认为 False，Paddle 无此参数，直接删除即可。|
 |-              |source        |指定 repo 托管的位置，支持 github、gitee 和 local，默认值：github。|
