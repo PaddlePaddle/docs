@@ -48,6 +48,7 @@ paddle.assign(paddle.fft.fftfreq(x),y)
 ```python
 # Pytorch 写法
 x = torch.fft.fftfreq(x, requires_grad=True)
+
 # Paddle 写法
 x = paddle.fft.fftfreq(x)
 x.stop_gradient = False

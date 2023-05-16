@@ -35,4 +35,4 @@ paddle.hub.load(repo_dir,
 | force_reload   | force_reload |指定是否强制拉取，默认值: False。参数名相同。         |
 |verbose         | -          |如果设置为 False，将不会显示关于命中本地缓存的消息，默认为 True，Paddle 无此参数，直接删除即可。|
 | skip_validation| -       |检查由 github 参数指定的分支或提交是否属于存储库所有者,默认为 False，Paddle 无此参数，直接删除即可。|
-|-              |source        |指定 repo 托管的位置，支持 github、gitee 和 local，默认值：github。|
+|-              |source        |指定 repo 托管的位置，支持 github、gitee 和 local，默认值：github。Pytorch 无此参数， Paddle 保持默认即可。|
