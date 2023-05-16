@@ -45,7 +45,7 @@ PoissonNLLLoss
 返回
 :::::::::
 
-    - **output** (Tensor) - 输入 `input` 和 `label` 间的 `Poisson negative log likelihood loss` 损失。如果 `reduction` 为 `'none'`，则输出 Loss 形状为 `[N, *]`。如果 `reduction` 为 `'sum'` 或者 `'mean'`，则输出 Loss 形状为 `'[1]'` 。
+    - **output** (Tensor) - 输入 `input` 和 `label` 间的 `Poisson negative log likelihood loss` 损失。如果 `reduction` 为 `'none'`，则输出 Loss 形状为 `[N, *]`。如果 `reduction` 为 `'sum'` 或者 `'mean'`，则输出 Loss 形状为 `'[]'` 。
 
 代码示例
 :::::::::
