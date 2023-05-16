@@ -36,16 +36,16 @@ Bernoulli
     rv = Bernoulli(probs=0.3)
 
     print(rv.mean)
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.30000001])
+    # Tensor(shape=[], dtype=float32, place=Place(cpu), stop_gradient=True,
+    #        0.30000001)
 
     print(rv.variance)
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.21000001])
+    # Tensor(shape=[], dtype=float32, place=Place(cpu), stop_gradient=True,
+    #        0.21000001)
 
     print(rv.entropy())
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.61086434])
+    # Tensor(shape=[], dtype=float32, place=Place(cpu), stop_gradient=True,
+    #        0.61086434)
 
 属性
 :::::::::
@@ -97,7 +97,7 @@ Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} +
 
     rv = Bernoulli(paddle.to_tensor(0.3))
     print(rv.sample([100]).shape)
-    # [100, 1]
+    # [100]
 
     rv = Bernoulli(paddle.to_tensor([0.3, 0.5]))
     print(rv.sample([100]).shape)
@@ -145,7 +145,7 @@ Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} +
 
     rv = Bernoulli(0.3)
     print(rv.rsample([100]).shape)
-    # [100, 1]
+    # [100]
 
     rv = Bernoulli(paddle.to_tensor([0.3, 0.5]))
     print(rv.rsample([100]).shape)
@@ -157,25 +157,21 @@ Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} +
 
     # `rsample` has to be followed by a `sigmoid`
     rv = Bernoulli(0.3)
-    rsample = rv.rsample([3, ])
+    rsample = rv.rsample([3])
     rsample_sigmoid = paddle.nn.functional.sigmoid(rsample)
     print(rsample, rsample_sigmoid)
-    # Tensor(shape=[3, 1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [[-0.88315082],
-    #         [-0.62347704],
-    #         [-0.31513220]]) Tensor(shape=[3, 1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [[0.29252526],
-    #         [0.34899110],
-    #         [0.42186251]])
+    # Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
+    #       [-2.37732768, -0.61203325, -3.18344760]) Tensor(shape=[3], dtype=float32, place=Place(gpu:0), stop_gradient=True,
+    #       [0.08491799, 0.35159552, 0.03979339])
 
     # The smaller the `temperature`, the distribution of `rsample` closer to `sample`, with `probs` of 0.3.
     print(paddle.nn.functional.sigmoid(rv.rsample([1000, ], temperature=1.0)).sum())
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [361.06829834])
+    # Tensor(shape=[], dtype=float32, place=Place(cpu), stop_gradient=True,
+    #        361.06829834)
 
     print(paddle.nn.functional.sigmoid(rv.rsample([1000, ], temperature=0.1)).sum())
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [288.66418457])
+    # Tensor(shape=[], dtype=float32, place=Place(cpu), stop_gradient=True,
+    #        288.66418457)
 
 cdf(value)
 '''''''''
@@ -293,8 +289,8 @@ Tensor，伯努利分布的信息熵。
 
     rv = Bernoulli(0.3)
     print(rv.entropy())
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.61086434])
+    # Tensor(shape=[], dtype=float32, place=Place(cpu), stop_gradient=True,
+    #        0.61086434)
 
 kl_divergence(other)
 '''''''''
@@ -326,5 +322,5 @@ Tensor，两个伯努利分布之间的 KL 散度。
     rv_other = Bernoulli(0.7)
 
     print(rv.kl_divergence(rv_other))
-    # Tensor(shape=[1], dtype=float32, place=Place(cpu), stop_gradient=True,
-    #        [0.33891910])
+    # Tensor(shape=[], dtype=float32, place=Place(cpu), stop_gradient=True,
+    #        0.33891910)
