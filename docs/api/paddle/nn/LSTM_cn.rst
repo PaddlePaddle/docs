@@ -3,13 +3,13 @@
 LSTM
 -------------------------------
 
-.. py:class:: paddle.nn.LSTM(input_size, hidden_size, num_layers=1, direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None)
+.. py:class:: paddle.nn.LSTM(input_size, hidden_size, num_layers=1, direction="forward", dropout=0., time_major=False, weight_ih_attr=None, weight_hh_attr=None, bias_ih_attr=None, bias_hh_attr=None, name=None)
 
 
 
 **长短期记忆网络**
 
-该 OP 是长短期记忆网络（LSTM），根据输出序列和给定的初始状态计算返回输出序列和最终状态。在该网络中的每一层对应输入的 step，每个 step 根据当前时刻输入 :math:`x_{t}` 和上一时刻状态 :math:`h_{t-1}, c_{t-1}` 计算当前时刻输出 :math:`y_{t}` 并更新状态 :math:`h_{t}, c_{t}` 。
+长短期记忆网络（LSTM），根据输出序列和给定的初始状态计算返回输出序列和最终状态。在该网络中的每一层对应输入的 step，每个 step 根据当前时刻输入 :math:`x_{t}` 和上一时刻状态 :math:`h_{t-1}, c_{t-1}` 计算当前时刻输出 :math:`y_{t}` 并更新状态 :math:`h_{t}, c_{t}` 。
 
 状态更新公式如下：
 
@@ -46,6 +46,7 @@ LSTM
     - **weight_hh_attr** (ParamAttr，可选) - weight_hh 的参数。默认为 None。
     - **bias_ih_attr** (ParamAttr，可选) - bias_ih 的参数。默认为 None。
     - **bias_hh_attr** (ParamAttr，可选) - bias_hh 的参数。默认为 None。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 输入
 ::::::::::::

@@ -51,7 +51,7 @@ dtype
 grad
 :::::::::
 
-查看一个 Tensor 的梯度，数据类型为 numpy\.ndarray。
+查看一个 Tensor 的梯度，数据类型为 paddle\.Tensor。
 
 **代码示例**
 
@@ -2359,12 +2359,19 @@ var(axis=None, unbiased=True, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_var`
 
-where(y, name=None)
+where(x, y, name=None)
 :::::::::
+
+调用该 `where` 方法的 `Tensor` 作为 `condition` 来选择 `x` 或 `y` 中的对应元素组成新的 `Tensor` 并返回。
 
 返回：计算后的 Tensor
 
 返回类型：Tensor
+
+.. note::
+   只有 `bool` 类型的 `Tensor` 才能调用该方法。
+
+示例：`(x>0).where(x, y)`， 其中 x， y 都是数值 `Tensor`。
 
 请参考 :ref:`cn_api_tensor_where`
 
@@ -2476,7 +2483,7 @@ frexp(x)
 
 返回类型：Tensor, Tensor
 
-请参考 :ref:`_cn_api_paddle_frexp`
+请参考 :ref:`cn_api_paddle_frexp`
 
 data_ptr()
 :::::::::
@@ -2484,3 +2491,76 @@ data_ptr()
 返回：Tensor 的数据的存储地址
 
 返回类型：int
+
+trapezoid(y, x=None, dx=None, axis=-1, name=None)
+:::::::::
+
+在指定维度上对输入实现 trapezoid rule 算法。使用求和函数 sum。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_trapezoid`
+
+cumulative_trapezoid(y, x=None, dx=None, axis=-1, name=None)
+:::::::::
+
+在指定维度上对输入实现 trapezoid rule 算法。使用求和函数 cumsum。
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_cumulative_trapezoid`
+
+polar(abs, angle)
+:::::::::
+用于将输入的模和相位角计算得到复平面上的坐标
+返回：一个复数 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_polar`
+
+vander(x, n=None, increasing=False, name=None)
+:::::::::
+
+生成范德蒙德矩阵, 默认生成维度为 (x.shape[0],x.shape[0]) 且降序的范德蒙德矩阵。其中输入 x 必须为 1-D Tensor。输入 n 为矩阵的列数。输入 increasing 决定了矩阵的升降序，默认为降序。
+
+返回：返回一个根据 n 和 increasing 创建的范德蒙德矩阵。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_vander`
+
+unflatten(axis, shape, name=None)
+:::::::::
+
+将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状。
+
+返回：沿指定轴将维度展开的后的 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_unflatten`
+
+i0(x, name=None)
+:::::::::
+用于将输入的 Tensor 计算第一类零阶修正贝塞尔函数。
+
+返回：一个第一类零阶修正贝塞尔函数上的 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_i0`
+
+i0e(x, name=None)
+:::::::::
+用于将输入的 Tensor 计算第一类指数缩放的零阶修正贝塞尔函数。
+
+返回：一个第一类指数缩放的零阶修正贝塞尔函数上的 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_i0e`

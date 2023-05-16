@@ -258,6 +258,8 @@ Loss 层
     " :ref:`paddle.nn.MarginRankingLoss <cn_api_nn_loss_MarginRankingLoss>` ", "MarginRankingLoss 层"
     " :ref:`paddle.nn.MSELoss <cn_api_paddle_nn_MSELoss>` ", "均方差误差损失层"
     " :ref:`paddle.nn.NLLLoss <cn_api_nn_loss_NLLLoss>` ", "NLLLoss 层"
+    " :ref:`paddle.nn.GaussianNLLLoss <cn_api_paddle_nn_GaussianNLLLoss>` ", "GaussianNLLLoss 层"
+    " :ref:`paddle.nn.PoissonNLLLoss <cn_api_paddle_nn_PoissonNLLLoss>`", "PoissonNLLLoss 层"
     " :ref:`paddle.nn.SmoothL1Loss <cn_api_paddle_nn_SmoothL1Loss>` ", "平滑 L1 损失层"
     " :ref:`paddle.nn.SoftMarginLoss <cn_api_paddle_nn_SoftMarginLoss>` ", "SoftMarginLoss 层"
     " :ref:`paddle.nn.TripletMarginLoss <cn_api_paddle_nn_TripletMarginLoss>` ", "TripletMarginLoss 层"
@@ -312,6 +314,7 @@ Clip 相关
     " :ref:`paddle.nn.Identity <cn_api_paddle_nn_layer_common_Identity>` ", "建立等效层，作为输入的 Placeholder"
     " :ref:`paddle.nn.Unfold <cn_api_fluid_layers_unfold>` ", "实现的功能与卷积中用到的 im2col 函数一样，通常也被称作为 im2col 过程"
     " :ref:`paddle.nn.Fold <cn_api_nn_fold>` ", "该 Op 用于将一个滑动局部块组合成一个大的 Tensor,通常也被称为 col2im 过程"
+    " :ref:`paddle.nn.Unflatten <cn_api_nn_Unflatten>` ", "将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状"
 
 
 .. _convolution_functional:
@@ -476,11 +479,13 @@ Embedding 相关函数
     " :ref:`paddle.nn.functional.dice_loss <cn_api_fluid_layers_dice_loss>` ", "用于比较预测结果跟标签之间的相似度"
     " :ref:`paddle.nn.functional.hsigmoid_loss <cn_api_nn_functional_hsigmoid_loss>` ", "层次 sigmoid 损失函数"
     " :ref:`paddle.nn.functional.l1_loss <cn_paddle_nn_functional_loss_l1>` ", "用于计算 L1 损失"
+    " :ref:`paddle.nn.functional.poisson_nll_loss <cn_api_paddle_nn_functional_poisson_nll_loss>` ", "用于计算泊松分布的负对数似然损失"
     " :ref:`paddle.nn.functional.kl_div <cn_paddle_nn_functional_loss_kl_div>` ", "用于计算 KL 散度损失"
     " :ref:`paddle.nn.functional.log_loss <cn_api_fluid_layers_log_loss>` ", "用于计算负对数损失"
     " :ref:`paddle.nn.functional.margin_ranking_loss <cn_api_nn_cn_margin_ranking_loss>` ", "用于计算 margin rank loss 损失"
     " :ref:`paddle.nn.functional.mse_loss <cn_paddle_nn_functional_mse_loss>` ", "用于计算均方差误差"
     " :ref:`paddle.nn.functional.nll_loss <cn_api_nn_functional_nll_loss>` ", "用于计算 nll 损失"
+    " :ref:`paddle.nn.functional.gaussian_nll_loss <cn_api_paddle_nn_functional_gaussian_nll_loss>` ", "用于计算 gaussiannll 损失"
     " :ref:`paddle.nn.functional.npair_loss <cn_api_fluid_layers_npair_loss>` ", "成对数据损失计算"
     " :ref:`paddle.nn.functional.sigmoid_focal_loss <cn_api_nn_functional_sigmoid_focal_loss>` ", "用于计算分类任务中前景类-背景类数量不均衡问题的损失"
     " :ref:`paddle.nn.functional.smooth_l1_loss <cn_paddle_nn_functional_loss_smooth_l1>` ", "用于计算平滑 L1 损失"

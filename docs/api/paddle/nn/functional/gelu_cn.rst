@@ -19,7 +19,7 @@ gelu 激活层（GELU Activation Operator）
 .. math::
     gelu(x) = 0.5 * x * (1 + erf(\frac{x}{\sqrt{2}}))
 
-其中，:math:`x` 为输入的 Tensor
+其中，:math:`x` 为输入的 Tensor。
 
 参数
 ::::::::::::
