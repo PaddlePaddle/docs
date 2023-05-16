@@ -150,7 +150,7 @@ https://en.wikipedia.org/wiki/Bicubic_interpolation
 参数
 :::::::::
 
-    - **size** (list|tuple|Tensor|None) - 输出 Tensor 的形状，输入为 3D Tensor 时，形状为为(out_w)的 1-D Tensor。输入为 4D Tensor 时，形状为为(out_h, out_w)的 2-D Tensor。输入为 5-D Tensor 时，形状为(out_d, out_h, out_w)的 3-D Tensor。如果 :code:`size` 是列表，每一个元素可以是整数或者形状为[1]的变量。如果 :code:`size` 是变量，则其维度大小为 1。默认值为 None。
+    - **size** (list|tuple|Tensor|None) - 输出 Tensor 的形状，输入为 3D Tensor 时，形状为为(out_w)的 1-D Tensor。输入为 4D Tensor 时，形状为为(out_h, out_w)的 2-D Tensor。输入为 5-D Tensor 时，形状为(out_d, out_h, out_w)的 3-D Tensor。如果 :code:`size` 是列表，每一个元素可以是整数或者形状为[]的 0-D Tensor。如果 :code:`size` 是 Tensor，则其为 1D Tensor。默认值为 None。
     - **scale_factor** (float|Tensor|list|tuple|None，可选)-输入的深度、高度或宽度的缩放因子。:code:`size` 和 :code:`scale_factor` 至少要设置一个。:code:`size` 的优先级高于 :code:`scale_factor`。默认值为 None。如果 scale_factor 是一个 list 或 tuple，它必须与输入的 shape 匹配。
     - **mode** (str，可选) - 插值方法。支持"bilinear"或"trilinear"或"nearest"或"bicubic"或"linear"或"area"。默认值为"nearest"。
     - **align_corners** (bool，可选) - 一个可选的 bool 型参数，如果为 True，则将输入和输出 Tensor 的 4 个角落像素的中心对齐，并保留角点像素的值。默认值为 False。

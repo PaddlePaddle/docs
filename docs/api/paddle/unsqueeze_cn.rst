@@ -13,7 +13,7 @@ unsqueeze
 参数
 :::::::::
         - **x** (Tensor)- 输入的 `Tensor`，数据类型为：float32、float64、bool、int8、int32、int64。
-        - **axis** (int|list|tuple|Tensor) - 表示要插入维度的位置。数据类型是 int32。如果 axis 的类型是 list 或 tuple，它的元素可以是整数或者形状为[1]的 Tensor。如果 axes 的类型是 Tensor，则是 1-D Tensor。如果 axis 是负数，则 axis=axis+ndim(x)+1 。
+        - **axis** (int|list|tuple|Tensor) - 表示要插入维度的位置。数据类型是 int32。如果 axis 的类型是 list 或 tuple，它的元素可以是整数或者形状为[]的 0-D Tensor。如果 axes 的类型是 Tensor，则是 1-D Tensor。如果 axis 是负数，则 axis=axis+ndim(x)+1 。
         - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回

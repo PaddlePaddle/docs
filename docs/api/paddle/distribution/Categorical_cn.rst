@@ -56,7 +56,7 @@ Categorical
     #  [3, 4, 5]]
 
     cat.entropy()
-    # [1.77528]
+    # 1.77528
 
     cat.kl_divergence(cat2)
     # [0.071952]
@@ -168,7 +168,7 @@ entropy()
     cat = Categorical(x)
 
     cat.entropy()
-    # [1.77528]
+    # 1.77528
 
 probs(value)
 '''''''''
