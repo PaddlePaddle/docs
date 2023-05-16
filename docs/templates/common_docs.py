@@ -48,7 +48,7 @@ common_args_cn = """
     axis (int，可选) - 指定对输入 Tensor 进行运算的轴。默认值为0。
     epsilon (float，可选) - 添加到分母上的值以防止分母除0。默认值为1e-05。
     is_test (bool，可选) - 用于表明是否在测试阶段执行。默认值为 False，表示非测试阶段。
-    shape (Tensor|tuple|list) - Tensor 的形状。如果 shape 是一个列表或元组，则其元素应该是形状为[1]的整数或 Tensor 。 如果 shape 是 Tensor ，则它应该是1-D Tensor。
+    shape (Tensor|tuple|list) - Tensor 的形状。如果 shape 是一个列表或元组，则其元素应该是整数或形状为[]的 0-D Tensor 。 如果 shape 是 Tensor ，则它应该是1-D Tensor。
     keep_dim (bool，可选) - 是否在输出 Tensor 中保留输入的维度。除非 keepdim 为 True，否则输出 Tensor 的维度将比输入 Tensor 小一维，默认值为 False。
     filter_size (tuple|list|int) - 卷积核大小。可以为单个整数或包含两个整数的元组或列表，分别表示卷积核的高和宽。如果为单个整数，表示卷积核的高和宽都等于该整数。
     padding (tuple|int) – 填充大小。可以为单个整数或包含两个整数的元组，分别表示对输入高和宽两侧填充的大小。如果为单个整数，表示高和宽的填充都等于该整数。默认值为0。

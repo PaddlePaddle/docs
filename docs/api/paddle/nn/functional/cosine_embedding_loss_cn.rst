@@ -33,7 +33,7 @@ cosine_embedding_loss
 
 返回
 :::::::::
-``Tensor``，输入 ``input1`` 、 ``input2`` 和标签 ``label`` 间的 `CosineEmbeddingLoss` 损失。如果 `reduction` 是 ``'none'``，则输出 Loss 的维度为 [N]，与输入 ``input1`` 和 ``input2`` 相同。如果 `reduction` 是 ``'mean'`` 或 ``'sum'``，则输出 Loss 的维度为 [1]。
+``Tensor``，输入 ``input1`` 、 ``input2`` 和标签 ``label`` 间的 `CosineEmbeddingLoss` 损失。如果 `reduction` 是 ``'none'``，则输出 Loss 的维度为 [N]，与输入 ``input1`` 和 ``input2`` 相同。如果 `reduction` 是 ``'mean'`` 或 ``'sum'``，则输出 Loss 的维度为 []。
 
 
 代码示例
