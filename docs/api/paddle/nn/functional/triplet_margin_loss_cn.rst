@@ -39,7 +39,7 @@ triplet_margin_loss
     - **input** (Tensor) - :math:`[N, * ]`，其中 N 是 batch_size， `*` 是任意其他维度。数据类型是 float32、float64。
     - **positive** (Tensor) - :math:`[N, *]`，标签 ``positive`` 的维度、数据类型与输入 ``input`` 相同。
     - **negative** (Tensor) - :math:`[N, *]`，标签 ``negative`` 的维度、数据类型与输入 ``input`` 相同。
-    - **output** (Tensor) - 输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[1]` 。
+    - **output** (Tensor) - 输出的 Tensor。如果 :attr:`reduction` 是 ``'none'``，则输出的维度为 :math:`[N, *]`，与输入 ``input`` 的形状相同。如果 :attr:`reduction` 是 ``'mean'`` 或 ``'sum'``，则输出的维度为 :math:`[]` 。
 
 返回
 :::::::::

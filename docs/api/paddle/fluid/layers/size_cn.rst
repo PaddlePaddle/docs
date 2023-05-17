@@ -8,7 +8,7 @@ size
 
 
 
-返回 Tensor 的单元数量，是一个 shape 为[1]的 int64 的 Tensor。
+返回 Tensor 的单元数量，是一个 shape 为[]的 0-D int64 的 Tensor。
 
 参数
 ::::::::::::
