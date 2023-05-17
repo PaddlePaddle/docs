@@ -37,8 +37,8 @@ paddle.bucketize(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.bucketize(torch.tensor([1, 3, 5, 7, 9]), torch.tensor([[3, 6, 9], [3, 6, 9]]), right=True, out=y)
+torch.bucketize(input, other, right=True, out=y)
 
 # Paddle 写法
-paddle.assign(paddle.bucketize(paddle.to_tensor([1, 3, 5, 7, 9]), paddle.to_tensor([[3, 6, 9], [3, 6, 9]]), right=True), y)
+paddle.assign(paddle.bucketize(input, other, right=True), y)
 ```

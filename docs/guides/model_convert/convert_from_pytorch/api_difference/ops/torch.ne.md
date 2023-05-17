@@ -31,8 +31,8 @@ paddle.not_equal(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.ne(torch.tensor([1, 2], [3, 4]), torch.tensor([1, 3], [2, 4])，out=y)
+torch.ne(input, other，out=y)
 
 # Paddle 写法
-paddle.assign(paddle.ne(paddle.to_tensor([1, 2], [3, 4]), paddle.to_tensor([1, 3], [2, 4]), y))
+paddle.assign(paddle.ne(input, other, y))
 ```

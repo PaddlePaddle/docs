@@ -45,4 +45,5 @@ torch.topk(input, k=1, dim=-1, out = (y, indices))
 
 # Paddle 写法
 y, indices = paddle.topk(input, k=1, axis=-1)
+indices = paddle.to_tensor(indices)
 ```
