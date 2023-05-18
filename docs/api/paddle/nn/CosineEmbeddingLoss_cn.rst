@@ -10,17 +10,17 @@ CosineEmbeddingLoss
 如果 label=1，则该损失函数的数学计算公式如下：
 
     .. math::
-        Out = 1 - cos(input1, input2)
+        Out = 1 - \cos(input1, input2)
 
 如果 label=-1，则该损失函数的数学计算公式如下：
 
     .. math::
-        Out = max(0, cos(input1, input2)) - margin
+        Out = \max(0, \cos(input1, input2)) - margin
 
 其中 cos 计算公式如下：
 
     .. math::
-        cos(x1, x2) = \frac{x1 \cdot{} x2}{\Vert x1 \Vert_2 * \Vert x2 \Vert_2}
+        \cos(x1, x2) = \frac{x1 \cdot{} x2}{\Vert x1 \Vert_2 * \Vert x2 \Vert_2}
 
 参数
 :::::::::

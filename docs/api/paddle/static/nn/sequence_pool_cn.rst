@@ -18,7 +18,7 @@ sequence_pool
 - **average**: :math:`Out[i] = \frac{\sum_{i}X_{i}}{N}`
 - **sum**: :math:`Out[i] = \sum _{j}X_{ij}`
 - **sqrt**: :math:`Out[i] = \frac{ \sum _{j}X_{ij}}{\sqrt{len(\sqrt{X_{i}})}}`
-- **max**: :math:`Out[i] = max(X_{i})`
+- **max**: :math:`Out[i] = \max(X_{i})`
 - **last**: :math:`Out[i] = X_{N\_i}`
 - **first**: :math:`Out[i] = X_{0}`
 

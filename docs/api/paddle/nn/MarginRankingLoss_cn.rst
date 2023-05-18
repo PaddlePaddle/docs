@@ -10,7 +10,7 @@ MarginRankingLoss
 该损失函数的数学计算公式如下：
 
  .. math::
-     margin\_rank\_loss = max(0, -label * (input - other) + margin)
+     margin\_rank\_loss = \max(0, -label * (input - other) + margin)
 
 当 `reduction` 设置为 ``'mean'`` 时，
 

@@ -12,7 +12,7 @@ clip
 
 .. math::
 
-        Out = MIN(MAX(x, min), max)
+        Out = \min(\max(x, min), max)
 
 参数
 ::::::::::::

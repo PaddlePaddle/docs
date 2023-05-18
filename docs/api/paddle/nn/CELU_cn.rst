@@ -10,7 +10,7 @@ CELU 激活层（CELU Activation Operator）
 
 .. math::
 
-    CELU(x) = max(0, x) + min(0, \alpha * (e^{x/\alpha} − 1))
+    CELU(x) = \max(0, x) + \min(0, \alpha * (e^{x/\alpha} − 1)) -
 
 其中，:math:`x` 为输入的 Tensor。
 

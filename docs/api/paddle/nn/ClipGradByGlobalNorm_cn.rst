@@ -21,7 +21,7 @@ ClipGradByGlobalNorm
 裁剪公式如下：
 
 .. math::
-            \\t\_list[i]=t\_list[i]∗\frac{clip\_norm}{max(global\_norm,clip\_norm)}\\
+            \\t\_list[i]=t\_list[i]∗\frac{clip\_norm}{\max(global\_norm,clip\_norm)}\\
 
 其中：
 

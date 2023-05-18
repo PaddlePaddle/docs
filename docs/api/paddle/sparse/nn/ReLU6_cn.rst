@@ -7,7 +7,7 @@ ReLU6
 稀疏 ReLU6 激活层，创建一个可调用对象以计算输入 `x` 的 `ReLU6` 。
 
 .. math::
-    ReLU6(x) = min(max(0,x), 6)
+    ReLU6(x) = \min(\max(0,x), 6)
 
 其中，:math:`x` 为输入的 Tensor。
 

@@ -7,7 +7,7 @@ relu
 稀疏 relu 激活函数，要求 输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` 。
 
 .. math::
-    relu(x) = max(x, 0)
+    relu(x) = \max(x, 0)
 
 其中，:math:`x` 为输入的 Tensor。
 

@@ -11,7 +11,7 @@ local_response_norm
 
 .. math::
 
-    Output(i,x,y) = Input(i,x,y)/\left ( k+\alpha \sum_{j=max(0,i-size/2)}^{min(C-1,i+size/2)}(Input(j,x,y))^2 \right )^\beta
+    Output(i,x,y) = Input(i,x,y)/\left ( k+\alpha \sum_{j=\max(0,i-size/2)}^{\min(C-1,i+size/2)}(Input(j,x,y))^2 \right )^\beta
 
 在以上公式中：
 
