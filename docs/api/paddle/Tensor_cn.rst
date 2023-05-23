@@ -2564,3 +2564,23 @@ i0e(x, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_i0e`
+
+i1(x, name=None)
+:::::::::
+用于将输入的 Tensor 计算第一类一阶修正贝塞尔函数。
+
+返回：返回第一类一阶修正贝塞尔函数对应输出 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_i1`
+
+i1e(x, name=None)
+:::::::::
+用于将输入的 Tensor 计算第一类指数缩放的一阶修正贝塞尔函数。
+
+返回：返回第一类指数缩放的一阶修正贝塞尔函数对应输出 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_i1e`

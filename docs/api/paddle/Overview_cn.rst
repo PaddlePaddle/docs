@@ -147,6 +147,8 @@ tensor 数学操作
     " :ref:`paddle.cumulative_trapezoid <cn_api_paddle_tensor_cumulative_trapezoid>` ", "在指定维度上对输入实现 trapezoid rule 算法。使用累积求和函数 cumsum"
     " :ref:`paddle.i0 <cn_api_paddle_tensor_i0>` ", "对输入 Tensor 每个元素计算第一类零阶修正贝塞尔函数"
     " :ref:`paddle.i0e <cn_api_paddle_tensor_i0e>` ", "对输入 Tensor 每个元素计算第一类指数缩放的零阶修正贝塞尔函数"
+    " :ref:`paddle.i1 <cn_api_paddle_tensor_i1>` ", "对输入 Tensor 每个元素计算第一类一阶修正贝塞尔函数"
+    " :ref:`paddle.i1e <cn_api_paddle_tensor_i1e>` ", "对输入 Tensor 每个元素计算第一类指数缩放的一阶修正贝塞尔函数"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
