@@ -371,6 +371,7 @@ tensor 元素操作相关（如：转置，reshape 等）
     " :ref:`paddle.as_real <cn_api_paddle_as_real>` ", "将复数 Tensor 转为实数 Tensor"
     " :ref:`paddle.repeat_interleave <cn_api_tensor_repeat_interleave>` ", "沿 axis 轴对输入 x 的元素进行复制"
     " :ref:`paddle.index_add <cn_api_tensor_index_add>` ", "沿着指定轴 axis 将 index 中指定位置的 x 与 value 相加，并写入到结果 Tensor 中的对应位置"
+    " :ref:`paddle.index_put <cn_api_tensor_index_put>` ", "构造一个与 x 完全相同的 Tensor, 并依据 indices 中指定的索引将 value 的值对应的放置其中, 随后输出"
     " :ref:`paddle.unflatten <cn_api_paddle_tensor_unflatten>` ", "将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状"
 
 .. _tensor_manipulation_inplace:
