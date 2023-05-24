@@ -8,7 +8,7 @@ torch.jit.save(m,
                 _extra_files=None)
 ```
 
-### [paddle.jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/hub/load_cn.html)
+### [paddle.jit.save](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/jit/save_cn.html)
 
 ```python
 paddle.jit.save(layer,
@@ -31,7 +31,7 @@ paddle.jit.save(layer,
 #### f：一个文件名
 ```python
 # Pytorch 写法
-torch.jit.save(m, filePath)
+torch.jit.save(m, f=filePath)
 
 # Paddle 写法
-paddle.jit.save(fun, filePath)
+paddle.jit.save(fun, path=filePath)
