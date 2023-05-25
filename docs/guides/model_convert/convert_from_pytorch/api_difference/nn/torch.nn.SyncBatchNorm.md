@@ -56,7 +56,7 @@ m = torch.nn.SyncBatchNorm(24, momentum=0.2)
 m = paddle.nn.SyncBatchNorm(24, momentum=0.8)
 ```
 
-#### momentum：
+#### dtype：
 ```python
 # PyTorch 写法
 m = torch.nn.SyncBatchNorm(24, momentum=0.2， dtype=torch.float32)

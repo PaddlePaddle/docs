@@ -12,7 +12,7 @@ torch.Tensor.histc(bins=100, min=0, max=0)
 paddle.Tensor.histogram(bins=100, min=0, max=0, name=None)
 ```
 
-两者功能一致，但返回参数类型不一致，Pytorch 返回数据类型与 Tensor 一致， Paddle 默认返回 int64 类型。
+返回 Tensor 的数据类型不一致，Pytorch 返回数据类型与输入 Tensor 一致， Paddle 默认返回 int64 类型。
 
 ### 参数映射
 
