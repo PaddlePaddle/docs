@@ -15,7 +15,7 @@ index_put\_
     - **x** （Tensor）– 输入 Tensor。 ``x`` 的数据类型可以是 float16, float32，float64，int32，int64，bool。
     - **indices** （Tuple of Tensor）– 包含用来索引的 tensors 的元组。数据类型为 int32，int64，bool。
     - **value**    (Tensor) – 用来给 ``x`` 赋值的 Tensor。
-    - **accumulate** （Tensor）– 指定是否将 ``value`` 加到 ``x`` 的参数。 默认值为 False。
+    - **accumulate** （Tensor，可选）– 指定是否将 ``value`` 加到 ``x`` 的参数。 默认值为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回
