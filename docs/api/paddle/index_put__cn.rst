@@ -7,7 +7,7 @@ index_put\_
 
 
 
-依据索引 ``indices`` , 将指定位置的 ``x`` 重新赋值为 ``value`` 。这里 ``indices`` 是一个 ``tuple of tensor`` 。
+依据索引 ``indices`` ，将指定位置的 ``x`` 重新赋值为 ``value`` 。这里 ``indices`` 是一个 ``tuple of tensor`` 。
 
 参数
 :::::::::
