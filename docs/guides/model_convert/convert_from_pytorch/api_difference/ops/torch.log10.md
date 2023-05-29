@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.log10
-### [torch.log10](https://pytorch.org/docs/stable/generated/torch.log10.html?highlight=log10#torch.log10)
+### [torch.log10](https://pytorch.org/docs/1.13/generated/torch.log10.html?highlight=log10#torch.log10)
 
 ```python
 torch.log10(input,
@@ -26,8 +26,8 @@ paddle.log10(x,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.log10([3, 5], out=y)
+torch.log10(input, out=y)
 
 # Paddle 写法
-y = paddle.log10([3, 5])
+paddle.assign(paddle.log10(input), y)
 ```

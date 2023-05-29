@@ -1,6 +1,6 @@
 ## [torch 参数更多 ]torch.arcsin
 
-### [torch.arcsin](https://pytorch.org/docs/stable/generated/torch.arcsin.html?highlight=arcsin#torch.arcsin)
+### [torch.arcsin](https://pytorch.org/docs/1.13/generated/torch.arcsin.html#torch.arcsin)
 
 ```python
 torch.arcsin(input,
@@ -20,16 +20,16 @@ paddle.asin(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'>input</font>         | <font color='red'>x</font>            | 输入的 Tensor ，仅参数名不同。                                      |
-| <font color='red'>out</font>           | -            | 表示输出的 Tensor ，PaddlePaddle 无此参数，需要转写 。               |
+| input         | x            | 输入的 Tensor ，仅参数名不一致。                                      |
+| out           | -            | 表示输出的 Tensor ，PaddlePaddle 无此参数，需要转写。               |
 
 
 ### 转写示例
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.arcsin([-0.5962,  1.4985, -0.4396,  1.4525], out=y)
+torch.arcsin(torch.tensor([-0.5962,  0.4985]), out=y)
 
 # Paddle 写法
-y = paddle.asin([-0.5962,  1.4985, -0.4396,  1.4525])
+paddle.assign(paddle.asin(paddle.to_tensor([-0.5962,  0.4985])), y)
 ```

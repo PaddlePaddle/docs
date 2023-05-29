@@ -31,8 +31,8 @@ paddle.normal(mean=0.0,
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.normal(mean=torch.arange(1., 11.), std=torch.arange(1, 0, -0.1), out=y)
+torch.normal(mean=[0., 0., 0.], std=[1., 2., 3.], out=y)
 
 # Paddle 写法
-y = paddle.normal(mean=paddle.arange(1., 11.), std=paddle.arange(1, 0, -0.1))
+paddle.assign(paddle.normal(mean=[0., 0., 0.], std=[1., 2., 3.]), y)
 ```

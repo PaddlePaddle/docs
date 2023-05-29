@@ -1,4 +1,4 @@
-## torch.sigmoid
+## [torch 参数更多 ]torch.sigmoid
 ### [torch.sigmoid](https://pytorch.org/docs/stable/generated/torch.sigmoid.html?highlight=sigmoid#torch.sigmoid)
 
 ```python
@@ -26,5 +26,5 @@ paddle.nn.functional.sigmoid(x, name=None)
 torch.sigmoid(input, out=z)
 
 # Paddle 写法
-z = paddle.nn.functional.sigmoid(x)
+paddle.assign(paddle.nn.functional.sigmoid(x), y)
 ```

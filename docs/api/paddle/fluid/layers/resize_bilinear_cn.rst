@@ -58,7 +58,7 @@ align_corners 和 align_mode 是可选参数，插值的计算方法可以由它
 ::::::::::::
 
     - **input** (Variable) - 4-D Tensor，数据类型为 float32、float64 或 uint8，其数据格式由参数 ``data_format`` 指定。
-    - **out_shape** (list|tuple|Variable|None) - 双线性层的输出形状，维度为[out_h, out_w]的二维 Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者维度为[1]的变量。如果 :code:`out_shape` 是变量，则其维度大小为 1。默认值为 None。
+    - **out_shape** (list|tuple|Variable|None) - 双线性层的输出形状，维度为[out_h, out_w]的二维 Tensor。如果 :code:`out_shape` 是列表，每一个元素可以是整数或者维度为[]的 Tensor。如果 :code:`out_shape` 是 Tensor，则其维度大小为 1。默认值为 None。
     - **scale** (float|Variable|None) - 用于输入高度或宽度的乘数因子。out_shape 和 scale 至少要设置一个。out_shape 的优先级高于 scale。默认值为 None。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
     - **actual_shape** (Variable) - 可选输入，用于动态指定输出形状。如果指定 actual_shape，图像将根据给定的形状调整大小，而不是根据指定形状的 :code:`out_shape` 和 :code:`scale` 进行调整。也就是说，:code:`actual_shape` 具有最高的优先级。注意：如果希望动态指定输出形状，建议使用 :code:`out_shape`，因为 :code:`actual_shape` 未来将被弃用。在使用 actual_shape 指定输出形状时，仍然需要设置 out_shape 和 scale 之一，否则在图形构建阶段会出现错误。默认值为 None。

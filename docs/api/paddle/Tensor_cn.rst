@@ -1237,6 +1237,15 @@ index_add(index, axis, value, name=None)
 
 请参考 :ref:`cn_api_tensor_index_add`
 
+index_put(indices, value, accumulate=False, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_index_put`
+
 repeat_interleave(repeats, axis=None, name=None)
 :::::::::
 
@@ -2359,12 +2368,19 @@ var(axis=None, unbiased=True, keepdim=False, name=None)
 
 请参考 :ref:`cn_api_tensor_cn_var`
 
-where(y, name=None)
+where(x, y, name=None)
 :::::::::
+
+调用该 `where` 方法的 `Tensor` 作为 `condition` 来选择 `x` 或 `y` 中的对应元素组成新的 `Tensor` 并返回。
 
 返回：计算后的 Tensor
 
 返回类型：Tensor
+
+.. note::
+   只有 `bool` 类型的 `Tensor` 才能调用该方法。
+
+示例：`(x>0).where(x, y)`， 其中 x， y 都是数值 `Tensor`。
 
 请参考 :ref:`cn_api_tensor_where`
 
@@ -2526,3 +2542,54 @@ vander(x, n=None, increasing=False, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_vander`
+
+unflatten(axis, shape, name=None)
+:::::::::
+
+将输入 Tensor 沿指定轴 axis 上的维度展成 shape 形状。
+
+返回：沿指定轴将维度展开的后的 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_unflatten`
+
+i0(x, name=None)
+:::::::::
+用于将输入的 Tensor 计算第一类零阶修正贝塞尔函数。
+
+返回：一个第一类零阶修正贝塞尔函数上的 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_i0`
+
+i0e(x, name=None)
+:::::::::
+用于将输入的 Tensor 计算第一类指数缩放的零阶修正贝塞尔函数。
+
+返回：一个第一类指数缩放的零阶修正贝塞尔函数上的 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_i0e`
+
+i1(x, name=None)
+:::::::::
+用于将输入的 Tensor 计算第一类一阶修正贝塞尔函数。
+
+返回：返回第一类一阶修正贝塞尔函数对应输出 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_i1`
+
+i1e(x, name=None)
+:::::::::
+用于将输入的 Tensor 计算第一类指数缩放的一阶修正贝塞尔函数。
+
+返回：返回第一类指数缩放的一阶修正贝塞尔函数对应输出 Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_i1e`

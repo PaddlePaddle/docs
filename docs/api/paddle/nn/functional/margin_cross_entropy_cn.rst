@@ -30,7 +30,7 @@ margin_cross_entropy
 返回
 ::::::::::::
 
-    - ``Tensor`` (``loss``) 或者 ``Tensor`` 二元组 (``loss``, ``softmax``) - 如果 ``return_softmax=False`` 返回 ``loss``，否则返回 (``loss``, ``softmax``)。当使用模型并行时 ``softmax == shard_softmax``，否则 ``softmax`` 的维度与 ``logits`` 相同。如果 ``reduction == None``，``loss`` 的维度为 ``[N, 1]``，否则为 ``[1]``。
+    - ``Tensor`` (``loss``) 或者 ``Tensor`` 二元组 (``loss``, ``softmax``) - 如果 ``return_softmax=False`` 返回 ``loss``，否则返回 (``loss``, ``softmax``)。当使用模型并行时 ``softmax == shard_softmax``，否则 ``softmax`` 的维度与 ``logits`` 相同。如果 ``reduction == None``，``loss`` 的维度为 ``[N, 1]``，否则为 ``[]``。
 
 代码示例
 ::::::::::::

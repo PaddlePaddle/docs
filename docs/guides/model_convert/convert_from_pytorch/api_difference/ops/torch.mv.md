@@ -1,5 +1,5 @@
 ## [ torch 参数更多 ]torch.mv
-### [torch.mv](https://pytorch.org/docs/stable/generated/torch.mv.html?highlight=mv#torch.mv)
+### [torch.mv](https://pytorch.org/docs/1.13/generated/torch.mv.html?highlight=torch+mv#torch.mv)
 ```python
 torch.mv(input, vec, out=None)
 ```
@@ -24,8 +24,8 @@ paddle.mv(x, vec, name=None)
 #### out：指定输出
 ```python
 # Pytorch 写法
-torch.mv(x, v, out=y)
+torch.mv(x, vec, out=y)
 
 # Paddle 写法
-y = paddle.mv(x, v)
+paddle.assign(paddle.mv(x, vec), y)
 ```

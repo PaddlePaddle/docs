@@ -29,5 +29,5 @@ paddle.sign(x,
 torch.sign([3, 5], out=y)
 
 # Paddle 写法
-y = paddle.sign([3, 5])
+paddle.assign(paddle.sign([3, 5]), y)
 ```
