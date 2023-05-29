@@ -1237,6 +1237,15 @@ index_add(index, axis, value, name=None)
 
 请参考 :ref:`cn_api_tensor_index_add`
 
+index_put(indices, value, accumulate=False, name=None)
+:::::::::
+
+返回：计算后的 Tensor
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_tensor_index_put`
+
 repeat_interleave(repeats, axis=None, name=None)
 :::::::::
 
