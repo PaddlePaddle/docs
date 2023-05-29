@@ -18,6 +18,5 @@ paddle.linalg.pinv(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| -        | x            | 输入的 Tensor，Pytorch 无此参数。                   |
 | -         | rcond        | 奇异值（特征值）被截断的阈值，Pytorch 无此参数，Paddle 保持默认即可。        |
 | -             | hermitian    | 是否为 hermitian 矩阵或者实对称矩阵，Pytorch 无此参数，Paddle 保持默认即可。|
