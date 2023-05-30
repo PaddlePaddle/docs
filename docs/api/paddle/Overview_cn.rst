@@ -54,6 +54,8 @@ tensor 数学操作
     " :ref:`paddle.cosh <cn_api_fluid_layers_cosh>` ", "双曲余弦函数"
     " :ref:`paddle.count_nonzero <cn_api_tensor_cn_count_nonzero>` ", "沿给定的轴 axis 统计非零元素的数量"
     " :ref:`paddle.cumsum <cn_api_tensor_cn_cumsum>` ", "沿给定 axis 计算 Tensor x 的累加和"
+    " :ref:`paddle.cummax <cn_api_tensor_cn_cummax>` ", "沿给定 axis 计算 Tensor x 的累计最大值"
+    " :ref:`paddle.cummin <cn_api_tensor_cn_cummin>` ", "沿给定 axis 计算 Tensor x 的累计最小值"
     " :ref:`paddle.cumprod <cn_api_tensor_cn_cumprod>` ", "沿给定 dim 计算 Tensor x 的累乘"
     " :ref:`paddle.digamma <cn_api_paddle_digamma>` ", "逐元素计算输入 x 的 digamma 函数值"
     " :ref:`paddle.divide <cn_api_tensor_divide>` ", "逐元素相除算子"
