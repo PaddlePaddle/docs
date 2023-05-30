@@ -26,7 +26,7 @@ pca_lowrank
 ::::::::::::
 
     - Tensor U，形状为 N x q 的矩阵。
-    - Tensor S，长度为q的向量。
+    - Tensor S，长度为 q 的向量。
     - Tensor V，形状为 M x q 的矩阵。
 
     tuple (U, S, V): 对输入 :math:`X` 的奇异值分解的近似最优解。
