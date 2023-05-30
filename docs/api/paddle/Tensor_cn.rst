@@ -2593,3 +2593,13 @@ i1e(x, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_i1e`
+
+pca_lowrank(x, q=None, center=True, niter=2, name=None)
+:::::::::
+计算在低秩矩阵，批次的矩阵，或稀疏矩阵上的线性主成分分析(PCA)。
+
+返回：对输入矩阵的主成分分析结果。
+
+返回类型：tuple，包含结果（U，S，V）。
+
+请参考 :ref:`cn_api_linalg_pca_lowrank`
