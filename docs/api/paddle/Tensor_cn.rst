@@ -2458,10 +2458,10 @@ take_along_axis(arr, index, axis)
 
 请参考 :ref:`cn_api_paddle_tensor_take_along_axis`
 
-put_along_axis(arr, index, value, axis, reduce="assign")
+put_along_axis(index, value, axis, reduce="assign")
 :::::::::
 
-基于输入 index 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 arr 矩阵有相同的维度，需要能够 broadcast 与 arr 矩阵对齐。
+基于输入 index 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 Tensor 矩阵有相同的维度，需要能够 broadcast 与 Tensor 矩阵对齐。
 
 返回：计算后的 Tensor
 
