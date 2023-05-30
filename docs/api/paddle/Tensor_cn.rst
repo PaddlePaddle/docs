@@ -2461,7 +2461,7 @@ take_along_axis(arr, index, axis)
 put_along_axis(index, value, axis, reduce="assign")
 :::::::::
 
-基于输入 index 矩阵，将输入 value 沿着指定 axis 放置入 arr 矩阵。索引矩阵和 value 必须和 Tensor 矩阵有相同的维度，需要能够 broadcast 与 Tensor 矩阵对齐。
+基于输入 index 矩阵，将输入 value 沿着指定 axis 放置入调用 Tensor 矩阵。索引矩阵和 value 必须和调用 Tensor 矩阵有相同的维度，需要能够 broadcast 与调用 Tensor 矩阵对齐。
 
 返回：计算后的 Tensor
 
