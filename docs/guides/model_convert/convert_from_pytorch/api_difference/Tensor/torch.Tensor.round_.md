@@ -17,7 +17,7 @@ paddle.Tensor.round_(name=None)
 ### 参数映射
 | PyTorch  | PaddlePaddle | 备注 |
 | -------- | ------- | ------- |
-| decimals | -       | 保留小数位数 |
+| decimals | -       | 舍入小数位数 |
 
 ### 转写示例
 #### decimals：要舍入到的小数位数
