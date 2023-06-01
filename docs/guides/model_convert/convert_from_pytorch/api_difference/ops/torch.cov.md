@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.cov
+## [ 仅 paddle 参数更多 ]torch.cov
 ### [torch.cov](https://pytorch.org/docs/stable/generated/torch.cov.html?highlight=cov#torch.cov)
 
 ```python
@@ -19,8 +19,8 @@ paddle.linalg.cov(x,
                   name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
-### 参数差异
+仅 paddle 参数更多，具体如下：
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的 Tensor 。                   |

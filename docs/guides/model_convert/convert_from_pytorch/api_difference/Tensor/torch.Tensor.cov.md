@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.Tenor.cov
+## [ 仅 paddle 参数更多 ]torch.Tenor.cov
 ### [torch.Tenor.cov](https://pytorch.org/docs/stable/generated/torch.Tensor.cov.html#torch.Tensor.cov)
 
 ```python
@@ -16,8 +16,8 @@ paddle.linalg.cov(x,
                   name=None)
 ```
 
-两者功能一致且参数用法一致，仅参数名不同，具体如下：
-### 参数差异
+仅 paddle 参数更多，具体如下：
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> correction </font>    | <font color='red'> ddof </font>          | 若为 True ，返回无偏估计结果；若为 False ，返回普通平均值计算结果。 Paddle 暂不支持 correction 不为`0`或`1`的情况。|
