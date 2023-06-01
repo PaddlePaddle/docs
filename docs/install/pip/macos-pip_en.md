@@ -66,7 +66,7 @@ You can choose the following version of PaddlePaddle to start installation:
 
 
 ```
-python3 -m pip install paddlepaddle==2.5.0rc0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+python3 -m pip install paddlepaddle==2.5.0rc1 -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 Note：
