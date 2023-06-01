@@ -1,11 +1,8 @@
-## [ 仅参数名不一致 ]torch.cov
-### [torch.cov](https://pytorch.org/docs/stable/generated/torch.cov.html?highlight=cov#torch.cov)
+## [ 仅参数名不一致 ]torch.Tenor.cov
+### [torch.Tenor.cov](https://pytorch.org/docs/stable/generated/torch.Tensor.cov.html#torch.Tensor.cov)
 
 ```python
-torch.cov(input,
-          correction=1,
-          fweights=None,
-          aweights=None)
+torch.Tensor.cov(*, correction=1, fweights=None, aweights=None)
 ```
 
 ### [paddle.linalg.cov](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/linalg/cov_cn.html#cov)
@@ -23,7 +20,6 @@ paddle.linalg.cov(x,
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的 Tensor 。                   |
 | <font color='red'> correction </font>    | <font color='red'> ddof </font>          | 若为 True ，返回无偏估计结果；若为 False ，返回普通平均值计算结果。 Paddle 暂不支持 correction 不为`0`或`1`的情况。|
 | fweights         | fweights  | 表示每一个观测向量的重复次数。 |
 | aweights         | aweights  | 表示每一个观测向量的重要性。 |
