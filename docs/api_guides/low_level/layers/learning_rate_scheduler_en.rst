@@ -39,8 +39,8 @@ The following content describes the APIs related to the learning rate scheduler:
 
 * :code:`LambdaDecay`: Decay the learning rate by lambda function. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_LambdaDecay`
 
-* :code:`ReduceOnPlateau`: Adjuge the learning rate according to monitoring index(In general, it's loss), and decay the learning rate when monitoring index becomes stable. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_ReduceOnPlateau`
+* :code:`ReduceOnPlateau`: Adjust the learning rate according to monitoring index(In general, it's loss), and decay the learning rate when monitoring index becomes stable. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_ReduceOnPlateau`
 
 * :code:`OneCycleLR`: One cycle decay. That is, the initial learning rate first increases to maximum learning rate, and then it decreases to minimum learning rate which is much less than initial learning rate. For related API Reference please refer to :ref:`cn_api_paddle_optimizer_lr_OneCycleLR`
 
-* :code:`CyclicLR`: Cyclic decay. That is, the learning rate cycles between minimum and maximum learning rate with a constant frequency in specified a sacle method. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_CyclicLR`
+* :code:`CyclicLR`: Cyclic decay. That is, the learning rate cycles between minimum and maximum learning rate with a constant frequency in specified a scale method. For related API Reference please refer to :ref:`api_paddle_optimizer_lr_CyclicLR`
