@@ -9,7 +9,7 @@ polygamma
 对于给定的 ``x`` 逐元素计算每个元素的多伽马函数值，其中 ``x`` 的大小无特殊限制。返回一个多伽马函数上的 Tensor。
 
 .. math::
-    \Phi^n(x) = (-1)^{n+1}n!\zeta(n + 1, x) = (-1)^{n+1}\Gamma(n + 1)\zeta(n + 1, x)
+    \Phi^n(x) = \frac{d^n}{dx^n} [\ln(\Gamma(x))]
 
 参数
 ::::::::::
