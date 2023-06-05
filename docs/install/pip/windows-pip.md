@@ -71,7 +71,7 @@
 
 
   ```
-  python -m pip install paddlepaddle==2.5.0rc1 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python -m pip install paddlepaddle==2.5.0rc1 -i https://mirror.baidu.com/pypi/simple
   ```
 
 #### 2.2 <span id="gpu">GPU 版的 PaddlePaddle</span>
@@ -87,7 +87,7 @@
 2.2.2 CUDA11.2 的 PaddlePaddle
 
   ```
-  python -m pip install paddlepaddle-gpu==2.5.0rc1 -i https://pypi.tuna.tsinghua.edu.cn/simple
+  python -m pip install paddlepaddle-gpu==2.5.0rc1 -i https://mirror.baidu.com/pypi/simple
   ```
 
 2.2.3 CUDA11.6 的 PaddlePaddle

@@ -147,10 +147,6 @@ This section describes how to use pip to install.
 
             python -m pip install paddlepaddle==2.5.0rc1 -i https://mirror.baidu.com/pypi/simple
 
-            or
-
-            python -m pip install paddlepaddle==2.5.0rc1 -i https://pypi.tuna.tsinghua.edu.cn/simple
-
 
     (2). **GPU version** : If you only want to install GPU version, please refer to command below
 
