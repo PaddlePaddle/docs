@@ -20,4 +20,4 @@ paddle.Tensor.quantile(q, axis=None, keepdim=False, name=None)
 | q       | q            |待计算的分位数。          |
 | dim     | axis         |指定对 x 进行计算的轴，仅参数名不一致。|
 | keepdim | keepdim      |是否在输出 Tensor 中保留减小的维度。|
-| interpolation | -      |两个数据点的插补取值方法，Paddle 无此功能，暂无转写方式。|
+| interpolation | -      |两个数据点的插补取值方法，Paddle 无此参数，暂无转写方式。|
