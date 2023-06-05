@@ -14,7 +14,7 @@ Paddle 无此 API，需要组合实现。
 y = torch.adjoint(input)
 
 # Paddle 写法
-perm = list(range(input.ndim))
-perm[-1], perm[-2] = perm[-2], perm[-1]
-y = paddle.conj(paddle.transpose(input, perm=perm))
+y = paddle.conj(paddle.transpose(input, perm=[0, 2, 1]))
+
+# 注：假设 input 为 3D Tensor， paddle 需要对 input 的后两维转置。
 ```

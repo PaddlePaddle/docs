@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.linalg.norm
+## [ torch 参数更多 ]torch.linalg.norm
 
 ### [torch.linalg.norm](https://pytorch.org/docs/stable/generated/torch.linalg.norm.html#torch.linalg.norm)
 
@@ -12,7 +12,7 @@ torch.linalg.norm(input, ord=None, dim=None, keepdim=False, *, out=None, dtype=N
 paddle.linalg.norm(x, p='fro', axis=None, keepdim=False, name=None)
 ```
 
-Pytorch 与 Paddle 参数不一致，具体如下：
+Pytorch 支持更多的参数，具体如下：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
