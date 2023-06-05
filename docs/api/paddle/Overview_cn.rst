@@ -323,6 +323,7 @@ tensor 线性代数相关
     " :ref:`paddle.tril <cn_api_tensor_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为 0"
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为 0"
     " :ref:`paddle.triu_indices <cn_api_tensor_triu_indices>` ", "返回输入矩阵在给定对角线右上三角部分元素坐标"
+    " :ref:`paddle.cdist <cn_api_tensor_linalg_cdist>` ", "计算两组输入集合 x, y 中每对之间的 p 范数"
 
 .. _tensor_manipulation:
 

@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.Tensor.equal
+## [ 仅参数名不一致 ]torch.Tensor.equal
 
 ### [torch.Tensor.equal](https://pytorch.org/docs/stable/generated/torch.Tensor.equal.html?highlight=equal#torch.Tensor.equal)
 
