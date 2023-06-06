@@ -23,9 +23,9 @@ paddle.save(obj,
 | ------------- | ------------ | ------------------------------------------------------ |
 | obj           | obj          | 要保存的对象实例，torch 支持 io.BytesIO、io.StringIO、文件，paddle 只支持文件。|
 | f             | path         | 表示存储的路径。                   |
-| pickle_module | -            | 表示用于 pickling 元数据和对象的模块，PaddlePaddle 无此参数。 |
+| pickle_module | -            | 表示用于 pickling 元数据和对象的模块，PaddlePaddle 无此参数, 可直接删除。。 |
 | pickle_protocol| protocol    | pickle 模块的协议版本。                   |
-| _use_new_zipfile_serialization | -            | 是否以旧格式加载文件，PaddlePaddle 无此参数。 |
+| _use_new_zipfile_serialization | -            | 是否以旧格式加载文件，PaddlePaddle 无此参数, 可直接删除。。 |
 
 
 ### 转写示例
