@@ -2,20 +2,20 @@
 ### [torch.nn.Sequential](https://pytorch.org/docs/stable/generated/torch.nn.Sequential.html#sequential)
 
 ```python
-torch.nn.Sequential(torch.nn.Relu()))
+torch.nn.Sequential(args)
 ```
 
 ### [paddle.nn.Sequential](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Sequential_cn.html#sequential)
 
 ```python
-paddle.nn.Sequential(paddle.nn.Relu())
+paddle.nn.Sequential(layers)
 ```
 
 其中 Paddle 与 Pytorch 的 输入所支持的参数类型不一致，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| *arg: Module/arg: OrderedDict[str, Module]       | *layers     |  Layers 或可迭代的 name Layer 对，torch 支持 OrderedDict 类型，需要进行转写。  |
+| args       | layers     |  序列化容器传入参数，paddle 传入 Layers 或可迭代的 name Layer 对，torch 支持 Module 类型和 OrderedDict 类型，类型不一致，需要进行转写。  |
 
 ### 转写示例
 #### *arg
