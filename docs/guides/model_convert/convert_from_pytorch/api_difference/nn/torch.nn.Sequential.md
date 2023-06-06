@@ -2,13 +2,13 @@
 ### [torch.nn.Sequential](https://pytorch.org/docs/stable/generated/torch.nn.Sequential.html#sequential)
 
 ```python
-torch.nn.Sequential()
+torch.nn.Sequential(torch.nn.Relu()))
 ```
 
 ### [paddle.nn.Sequential](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/Sequential_cn.html#sequential)
 
 ```python
-paddle.nn.Sequential()
+paddle.nn.Sequential(paddle.nn.Relu())
 ```
 
 其中 Paddle 与 Pytorch 的 输入所支持的参数类型不一致，具体如下：
@@ -21,7 +21,7 @@ paddle.nn.Sequential()
 #### *arg
 ```python
 # Pytorch 写法
-torch.nn.Sequential(paddle.nn.Relu())
+torch.nn.Sequential(torch.nn.Relu())
 
 # Paddle 写法
 paddle.nn.Sequential(paddle.nn.Relu())
