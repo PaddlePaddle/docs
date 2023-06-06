@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.linalg.norm
+## [ torch 参数更多 ]torch.linalg.norm
 ### [torch.linalg.norm](https://pytorch.org/docs/stable/generated/torch.linalg.norm.html#torch-linalg-norm)
 
 ```python
