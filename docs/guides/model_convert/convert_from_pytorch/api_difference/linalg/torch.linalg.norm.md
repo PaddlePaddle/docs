@@ -42,5 +42,5 @@ paddle.assign(paddle.linalg.norm(x), y)
 torch.linalg.norm(x, dtype=torch.float64)
 
 # Paddle 写法
-paddle.linalg.norm(x).astype(paddle.float64)
+paddle.linalg.norm(x.astype(paddle.float64))
 ```
