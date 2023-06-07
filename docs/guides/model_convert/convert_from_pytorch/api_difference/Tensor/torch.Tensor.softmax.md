@@ -1,4 +1,4 @@
-## torch.Tensor.softmax
+## [ 仅 paddle 参数更多 ]torch.Tensor.softmax
 ### [torch.Tensor.softmax](https://pytorch.org/docs/stable/generated/torch.Tensor.softmax.html?highlight=softmax#torch.Tensor.softmax)
 
 ```python
