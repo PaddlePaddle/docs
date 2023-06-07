@@ -19,7 +19,7 @@ paddle.linalg.norm(x, p='fro', axis=None, keepdim=False, name=None)
 | ord | p | 表示范数(ord)的种类 ，仅参数名不一致。  |
 | dim | axis | 表示使用范数计算的轴 ，仅参数名不一致。  |
 | keepdim | keepdim | 表示是否在输出的 Tensor 中保留和输入一样的维度。  |
-| out | - | 表示范数(ord)的种类 ，仅参数名不一致。  |
+| out | - | out: 输出张量（默认参数，默认一致）。  |
 | dtype | - | 表示输入 Tensor 转化的类型 ，paddle 无此参数，需要进行转写。  |
 
 
