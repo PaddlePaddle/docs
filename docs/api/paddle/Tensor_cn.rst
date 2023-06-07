@@ -2594,6 +2594,16 @@ i1e(x, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_i1e`
 
+polygamma
+:::::::::
+用于计算输入的 Tensor 的多伽马函数。
+
+返回：返回多伽马函数对应输出 tensor
+
+返回类型：tensor
+
+请参考 :ref:`cn_api_paddle_tensor_polygamma`
+
 pca_lowrank(x, q=None, center=True, niter=2, name=None)
 :::::::::
 计算在低秩矩阵，批次的矩阵，或稀疏矩阵上的线性主成分分析(PCA)。

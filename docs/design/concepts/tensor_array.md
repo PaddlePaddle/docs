@@ -75,7 +75,7 @@ Segmenting the `LoDTensor` is much more complicated than splitting a tensor, tha
 As the next step in RNN support, `dynamic_recurrent_op` should be introduced to handle inputs with variable-length sequences.
 
 The implementation is similar to `recurrent_op`.
-The key difference is the way **the original input `LoDTensors` and outupts are split to get the `input_segments` and the `output_segments`.**
+The key difference is the way **the original input `LoDTensors` and outputs are split to get the `input_segments` and the `output_segments`.**
 
 
 Though it can't be built over `recurrent_op` or `dynamic_recurrent_op` directly,

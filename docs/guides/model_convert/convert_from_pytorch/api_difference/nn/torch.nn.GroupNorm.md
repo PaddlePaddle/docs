@@ -1,4 +1,4 @@
-## torch.nn.GroupNorm
+# [ 参数不一致 ]torch.nn.GroupNorm
 ### [torch.nn.GroupNorm](https://pytorch.org/docs/stable/generated/torch.nn.GroupNorm.html?highlight=groupnorm#torch.nn.GroupNorm)
 
 ```python
@@ -27,7 +27,7 @@ paddle.nn.GroupNorm(num_groups,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | eps           | epsilon      | 为了数值稳定加在分母上的值。                                     |
-| affine        | -            | 是否进行反射变换，PaddlePaddle 无此参数。         |
+| affine        | -            | 是否进行仿射变换，PaddlePaddle 无此参数。         |
 | device        | -            | 设备类型，PaddlePaddle 无此参数。         |
 | dtype         | -            | 参数类型，PaddlePaddle 无此参数。         |
 | -             | weight_attr  | 指定权重参数属性的对象。如果为 False, 则表示每个通道的伸缩固定为 1，不可改变。默认值为 None，表示使用默认的权重参数属性。 |
@@ -35,7 +35,7 @@ paddle.nn.GroupNorm(num_groups,
 | -             | data_format  | 指定输入数据格式，Pytorch 无此参数，Paddle 保持默认即可。 |
 
 ### 转写示例
-#### affine：是否进行反射变换
+#### affine：是否进行仿射变换
 ```python
 # 当 PyTorch 的 affine 为`False`，表示 weight 和 bias 不进行更新，torch 写法
 torch.nn.GroupNorm(num_groups=5, num_channels=50, eps=1e-05, affine=False)

@@ -149,6 +149,7 @@ tensor 数学操作
     " :ref:`paddle.i0e <cn_api_paddle_tensor_i0e>` ", "对输入 Tensor 每个元素计算第一类指数缩放的零阶修正贝塞尔函数"
     " :ref:`paddle.i1 <cn_api_paddle_tensor_i1>` ", "对输入 Tensor 每个元素计算第一类一阶修正贝塞尔函数"
     " :ref:`paddle.i1e <cn_api_paddle_tensor_i1e>` ", "对输入 Tensor 每个元素计算第一类指数缩放的一阶修正贝塞尔函数"
+    " :ref:`paddle.polygamma <cn_api_paddle_tensor_polygamma>` ", "对输入 Tensor 每个元素计算多伽马函数"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
@@ -323,6 +324,7 @@ tensor 线性代数相关
     " :ref:`paddle.tril <cn_api_tensor_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为 0"
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为 0"
     " :ref:`paddle.triu_indices <cn_api_tensor_triu_indices>` ", "返回输入矩阵在给定对角线右上三角部分元素坐标"
+    " :ref:`paddle.cdist <cn_api_tensor_linalg_cdist>` ", "计算两组输入集合 x, y 中每对之间的 p 范数"
 
 .. _tensor_manipulation:
 

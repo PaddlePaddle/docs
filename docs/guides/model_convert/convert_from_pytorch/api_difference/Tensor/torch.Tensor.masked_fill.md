@@ -1,14 +1,8 @@
-## torch.Tensor.masked_fill
+## [ 组合替代实现 ]torch.Tensor.masked_fill
 ### [torch.Tensor.masked_fill](https://pytorch.org/docs/stable/generated/torch.Tensor.masked_fill.html?highlight=masked_fill#torch.Tensor.masked_fill)
 
 ```python
 torch.Tensor.masked_fill(mask, value)
-```
-
-### [paddle]
-
-```python
--
 ```
 
 torch 是类成员方式，paddle 无 masked_fill 函数，需要组合实现。
