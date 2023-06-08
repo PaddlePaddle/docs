@@ -1,4 +1,4 @@
-## [torch 参数更多]torch.median
+## [参数不一致]torch.median
 ### [torch.median](https://pytorch.org/docs/stable/generated/torch.median.html?highlight=median#torch.median)
 
 ```python
@@ -18,12 +18,12 @@ paddle.median(x,
               name=None)
 ```
 
-其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
+其中 Pytorch 和 Paddle 在指定 `dim` 后返回值不一致，具体如下：
 ### 参数差异
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
-| <font color='red'> dim </font> | <font color='red'> axis </font> | 表示进行运算的轴，仅参数名不一致。  |
+| <font color='red'> dim </font> | <font color='red'> axis </font> | 表示进行运算的轴，当指定 dim 后，Pytorch 会返回元素索引，Paddle 不会返回，暂无转写方式。  |
 | keepdim       | keepdim      | 是否在输出 Tensor 中保留减小的维度。  |
 | <font color='red'> out </font> | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
