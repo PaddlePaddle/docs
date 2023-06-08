@@ -21,7 +21,7 @@ paddle.floor_divide(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 |  input  |  x  | 表示输入的被除数 Tensor ，仅参数名不一致。  |
-|  other  |  y  | 表示输入的除数 Tensor ，torch 支持 Tensor 和 Number，paddle 仅支持 Number。当输入为 Number 时，需要进行转写。  |
+|  other  |  y  | 表示输入的除数 Tensor ，torch 支持 Tensor 和 Number，paddle 仅支持 Tensor。当输入为 Number 时，需要进行转写。  |
 |  out  | -  | 表示输出的 Tensor ， Paddle 无此参数，需要进行转写。    |
 
 
