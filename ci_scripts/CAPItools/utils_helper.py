@@ -2,7 +2,10 @@ import os
 
 from utils import get_parameters, parse_doxygen
 
-
+# 用于生成API文档的辅助类
+# __init__ 初始化函数，调用decode
+# decode 用于解析CppHeaderParser的解析信息
+# create_and_write_file 根据指定的语言类型，在指定目录生成对应的文档
 class func_helper(object):
     def __init__(self, function_dict, cpp2py_api_list):
         super(func_helper, self).__init__()
@@ -11,9 +14,8 @@ class func_helper(object):
         self.decode()
 
     def decode(self):
-        # TODO 这里要看一下 operator== 这种情况能不能正常解析
+        # 解析 api 信息
         self.func_name = self.function_dict["name"]
-        # 解析api
         self.api = self.function_dict["debug"].replace("PADDLE_API ", "")
         self.namespace = self.function_dict["namespace"].replace("::", "_")
         doxygen = (
@@ -27,7 +29,6 @@ class func_helper(object):
 
         self.note = ""
 
-        # TODO 如果使用已安装的 paddle 包需要调整
         self.file_path = self.function_dict["filename"].replace("../", "")
 
         if len(self.function_dict["parameters"]) != 0:
@@ -53,15 +54,15 @@ class func_helper(object):
                     'param_intro'
                 ][param_name]
 
-    def create_file(self, save_dir, language):
+    def create_and_write_file(self, save_dir, language):
         if language == 'cn':
-            self.create_file_cn(save_dir, language)
+            self.create_and_write_file_cn(save_dir, language)
         elif language == 'en':
-            self.create_file_en(save_dir, language)
+            self.create_and_write_file_en(save_dir, language)
         else:
             print('Error language! ')
 
-    def create_file_cn(self, save_dir, language):
+    def create_and_write_file_cn(self, save_dir, language):
         with open(save_dir, 'w', encoding='utf8') as f:
             head_text = (
                 f'.. _{language}_api_{self.namespace}{self.func_name}:\n' f'\n'
@@ -117,7 +118,7 @@ class func_helper(object):
             if 'void' not in self.returns:
                 f.write(return_text)
 
-    def create_file_en(self, save_dir, language):
+    def create_and_write_file_en(self, save_dir, language):
         with open(save_dir, 'w', encoding='utf8') as f:
             head_text = (
                 f'.. _{language}_api_{self.namespace}{self.func_name}:\n' f'\n'
@@ -174,6 +175,10 @@ class func_helper(object):
                 f.write(return_text)
 
 
+# 用于生成Class文档的辅助类
+# __init__ 初始化函数，调用decode
+# decode 用于解析CppHeaderParser的解析信息
+# create_and_write_file 根据指定的语言类型，在指定目录生成对应的文档
 class class_helper(object):
     def __init__(self, class_dict):
         super(class_helper, self).__init__()
@@ -181,9 +186,8 @@ class class_helper(object):
         self.decode()
 
     def decode(self):
-        self.branch = "develop"  # TODO 这里可以看看从包里面获取
+        self.branch = "develop"  # Note 这里可以看看从包里面获取
         self.class_name = self.class_dict["name"].replace("PADDLE_API", "")
-        # TODO 如果使用已安装的 paddle 包需要调整
         self.file_path = self.class_dict["filename"].replace("../", "")
         doxygen = (
             self.class_dict.get("doxygen", "")
@@ -206,14 +210,11 @@ class class_helper(object):
         self.init_func = self.class_name
 
         self.functions_infor = []
-        # TODO: 未来可能在private也有函数
+        # Note: 未来可能在private也有函数
+        # Note: 函数内构造函数可能解析有问题，需要后期查验
         self.class_function_number = len(self.class_dict["methods"]["public"])
         for i in range(self.class_function_number):
             ith_function = self.class_dict["methods"]["public"][i]
-            if self.class_name in ith_function["name"] and len(
-                ith_function["debug"]
-            ) > len(self.init_func):
-                self.init_func = ith_function["debug"]
 
             function_name = ith_function['debug']
             # 获取描述
@@ -235,7 +236,7 @@ class class_helper(object):
             # 获取返回值
             # returns = ith_function["returns"].replace("PADDLE_API ", "")
             returns = ith_function["rtnType"]
-            # TODO Template 没有仅对class起作用，可能需要同步添加到API中
+            # Note Template 没有仅对class起作用，可能需要同步添加到API中
             template = ""
             if ith_function['template'] != False:
                 template = ith_function['template']
@@ -250,7 +251,7 @@ class class_helper(object):
                 returns = doxygen_dict['returns']
             if doxygen_dict['param_intro'] != {}:
                 for param_name in doxygen_dict['param_intro'].keys():
-                    # TODO: 可能param_name 不同步，需要注意
+                    # Note: 可能param_name 不同步，需要注意
                     if param_name in parameter_dict.keys():
                         parameter_dict[param_name]['intro'] = doxygen_dict[
                             'param_intro'
@@ -270,15 +271,15 @@ class class_helper(object):
         # if '@' in self.doxygen:
         #     print('CLASS: ' + self.file_path + ' - ' + self.class_name)
 
-    def create_file(self, save_dir, language):
+    def create_and_write_file(self, save_dir, language):
         if language == 'cn':
-            self.create_file_cn(save_dir, language)
+            self.create_and_write_file_cn(save_dir, language)
         elif language == 'en':
-            self.create_file_en(save_dir, language)
+            self.create_and_write_file_en(save_dir, language)
         else:
             print('Error language! ')
 
-    def create_file_cn(self, save_dir, language):
+    def create_and_write_file_cn(self, save_dir, language):
         with open(save_dir, 'w', encoding='utf8') as f:
             head_text = f'.. _{language}_api_{self.class_name}:\n' f'\n'
             f.write(head_text)
@@ -354,7 +355,7 @@ class class_helper(object):
                         )
                         f.write(fun_return_text)
 
-    def create_file_en(self, save_dir, language):
+    def create_and_write_file_en(self, save_dir, language):
         with open(save_dir, 'w', encoding='utf8') as f:
             head_text = f'.. _{language}_api_{self.class_name}:\n' f'\n'
             f.write(head_text)
@@ -431,6 +432,8 @@ class class_helper(object):
                         f.write(fun_return_text)
 
 
+# 用于生成Overview页面
+# 根据指定的语言类型，在指定目录生成总览文档
 def generate_overview(overview_list, save_dir, language):
     if language == 'cn':
         generate_overview_cn(overview_list, save_dir, language)
@@ -456,7 +459,7 @@ def generate_overview_cn(overview_list, root_dir, LANGUAGE):
         )
         f.write(head_text)
 
-        f.write('## 头文件\n')
+        f.write('## 头文件索引\n')
         namespace_dict = {}  # 用于对齐namespace
 
         for h_dict in overview_list:
@@ -464,7 +467,7 @@ def generate_overview_cn(overview_list, root_dir, LANGUAGE):
             h_head_text = f'### [{basename}]({h_dict["h_file"]})\n'
             f.write(h_head_text)
 
-            # TODO: add url link
+            # Note: add url link
             if len(h_dict["class"]) > 0:
                 # write class
                 h_class_text = f'#### classes\n'
@@ -497,7 +500,8 @@ def generate_overview_cn(overview_list, root_dir, LANGUAGE):
 
             f.write('\n')
 
-        namespace_text = '## 命名空间\n'
+        # 根据 namespace 进行分级写入
+        namespace_text = '## 命名空间索引\n'
         for namespace in namespace_dict.keys():
             namespace_text += f'### {namespace}\n'
             for name in namespace_dict[namespace]:
@@ -506,6 +510,7 @@ def generate_overview_cn(overview_list, root_dir, LANGUAGE):
         f.write(namespace_text)
 
 
+# 与 generate_overview_cn 实现原理一致
 def generate_overview_en(overview_list, root_dir, LANGUAGE):
     dir_path = os.path.join(root_dir, LANGUAGE)
     if not os.path.exists(dir_path):
@@ -522,7 +527,7 @@ def generate_overview_en(overview_list, root_dir, LANGUAGE):
         )
         f.write(head_text)
 
-        f.write('## include\n')
+        f.write('## Index by header file\n')
         namespace_dict = {}
 
         for h_dict in overview_list:
@@ -530,7 +535,7 @@ def generate_overview_en(overview_list, root_dir, LANGUAGE):
             h_head_text = f'### [{basename}]({h_dict["h_file"]})\n'
             f.write(h_head_text)
 
-            # TODO: add url link
+            # Note: add url link
             if len(h_dict["class"]) > 0:
                 # write class
                 h_class_text = f'#### classes\n'
@@ -562,10 +567,10 @@ def generate_overview_en(overview_list, root_dir, LANGUAGE):
 
             f.write('\n')
 
-            namespace_text = '## namespace\n'
-            for namespace in namespace_dict.keys():
-                namespace_text += f'### {namespace}\n'
-                for name in namespace_dict[namespace]:
-                    namespace_text += f'- {name}\n'
-                namespace_text += '\n'
-            f.write(namespace_text)
+        namespace_text = '## Index by namespace\n'
+        for namespace in namespace_dict.keys():
+            namespace_text += f'### {namespace}\n'
+            for name in namespace_dict[namespace]:
+                namespace_text += f'- {name}\n'
+            namespace_text += '\n'
+        f.write(namespace_text)

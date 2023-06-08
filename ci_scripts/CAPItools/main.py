@@ -7,30 +7,13 @@ import json
 import os
 import traceback
 import sys
+import re
 
 from utils_helper import func_helper, class_helper, generate_overview
 from utils import get_PADDLE_API_class, get_PADDLE_API_func
 
-# TODO 通过已安装的 paddle 来查找 include
-# import paddle
-# import inspect
-#
-# # 获取已安装paddle的路径
-# print(os.path.dirname(inspect.getsourcefile(paddle)))
 
-
-# TODO 需要单独处理一下这种
-"""
-#if defined(PADDLE_WITH_CUDA) || defined(PADDLE_WITH_HIP)
-/**
- * Get the current CUDA stream for the passed CUDA device.
- */
-PADDLE_API phi::CUDAStream* GetCurrentCUDAStream(const phi::Place& place);
-#endif
-"""
-
-
-# 获取namespace
+# 解析所有的函数, 类, 枚举, 返回一个字典
 # 多线程使用并不安全, 请不要使用多线程
 def analysis_file(path):
     header = CppHeaderParser.CppHeader(path, encoding='utf8')
@@ -39,6 +22,7 @@ def analysis_file(path):
 
 
 # 生成文件
+# 根据给定的list内容，生成对应的文档信息
 def generate_docs(
     all_funcs, all_class, cpp2py_api_list, save_dir, LANGUAGE="cn"
 ):
@@ -50,11 +34,17 @@ def generate_docs(
 
         # 这个反斜杠需要单独处理, 在 linux 下
         func_name = item["name"].replace("/", "")
+
+        # Note: 操作符仅不生成rst，实际上在Overview列表依然会呈现以提示存在此操作符
+        if func_name.startswith('operator'):
+            checkwords = func_name.replace('operator', '', 1)
+            if re.search(r"\w", checkwords) == None:
+                continue  # 跳过操作符声明
         rst_dir = os.path.join(save_dir, LANGUAGE, path, func_name + ".rst")
         # avoid a filename such as operate*.rst, only windows
         try:
             helper = func_helper(item, cpp2py_api_list)
-            helper.create_file(rst_dir, LANGUAGE)
+            helper.create_and_write_file(rst_dir, LANGUAGE)
         except:
             print(traceback.format_exc())
             print('FAULT GENERATE:' + rst_dir)
@@ -69,13 +59,14 @@ def generate_docs(
         rst_dir = os.path.join(save_dir, LANGUAGE, path, func_name + ".rst")
         try:
             helper = class_helper(item)
-            helper.create_file(rst_dir, LANGUAGE)
+            helper.create_and_write_file(rst_dir, LANGUAGE)
         except:
             print(traceback.format_exc())
             print('FAULT GENERATE:' + rst_dir)
 
 
 # cpp 对应 python api
+# 用于存储 api 的名称, 用于后续生成对应python api文档链接
 def cpp2py(data: dict):
     cpp2py_api_list = []
     for i in data["using"]:
@@ -84,11 +75,27 @@ def cpp2py(data: dict):
     return cpp2py_api_list
 
 
+# 运行主函数，主要流程如下
+# 1. 确定生成的目录
+# 2. 提取待生成文档的PADDLE_API list
+# 3. 生成文档
 if __name__ == "__main__":
-    assert len(sys.argv) == 3
+    root_dir = ''
+    save_dir = '.'  # 默认保存在当前目录
+    if len(sys.argv) == 3:
+        root_dir = sys.argv[1]
+        save_dir = sys.argv[2]
 
-    root_dir = sys.argv[1]
-    save_dir = sys.argv[2]
+    if root_dir == '':
+        try:
+            import paddle
+            import inspect
+
+            root_dir = os.path.dirname(inspect.getsourcefile(paddle))
+        except:
+            # for simple run
+            root_dir = '../paddle'
+            save_dir = '.'  # 默认保存在当前目录
 
     all_funcs = []
     all_class = []
@@ -96,14 +103,18 @@ if __name__ == "__main__":
     overview_list = []
     for home, dirs, files in os.walk(root_dir):
         for file_name in files:
+            # 跳过不需要处理的文件
+            if file_name.split(".")[-1] not in ["cc", "cu", "h"]:
+                continue
+
             file_path = os.path.join(home, file_name)
-            # 处理 cpp 和 py api对应的文件
+            # 处理 cpp 和 py api对应的文件, 目前只有这个文件内的 cpp api和 python api是对应的
             if file_name == "tensor_compat.h":
                 cpp2py_data = analysis_file(file_path)
                 cpp2py_api_list = cpp2py(cpp2py_data).copy()
 
             # 跳过文件中未包含PADDLE_API
-            with open(file_path, encoding='utf8') as f:
+            with open(file_path, encoding='utf-8') as f:
                 if 'PADDLE_API ' not in f.read():
                     continue
 
@@ -125,16 +136,15 @@ if __name__ == "__main__":
                 }
             )
 
+    # 生成文档
     generate_docs(all_funcs, all_class, cpp2py_api_list, save_dir, "cn")
     generate_docs(all_funcs, all_class, cpp2py_api_list, save_dir, "en")
 
-    # TODO: delete the try-except after every thing is prepare
-    try:
-        generate_overview(overview_list, save_dir, "cn")
-        generate_overview(overview_list, save_dir, "en")
-    except:
-        print('index error')
+    # 生成 overview
+    generate_overview(overview_list, save_dir, "cn")
+    generate_overview(overview_list, save_dir, "en")
 
+    # 统计信息
     print("PADDLE_API func count: ", len(all_funcs))
     print("PADDLE_API class count: ", len(all_class))
     print("cpp2py api count: ", len(cpp2py_api_list))
