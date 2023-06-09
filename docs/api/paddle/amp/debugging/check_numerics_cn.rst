@@ -19,7 +19,7 @@ check_numerics
 返回
 :::::::::
 
-- stats(Tensor)，保存目标 Tensor 统计信息的 Tensor ，形状为 [3]，依次存放目标 Tensor 中 NaN、Inf和零元素的数量。数据类型为 int64。
+- stats(Tensor)，保存目标 Tensor 统计信息的 Tensor ，形状为 [3]，依次存放目标 Tensor 中 NaN、Inf 和零元素的数量。数据类型为 int64。
 - values(Tensor)，保存目标 Tensor 的最大值、最小值和所有元素的均值，形状为 [3]，数据类型为 float 。
 
 代码示例
