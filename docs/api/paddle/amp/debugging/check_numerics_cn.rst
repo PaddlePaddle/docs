@@ -14,7 +14,7 @@ check_numerics
 - **tensor** （Tensor）– 需要检查的目标 Tensor 。
 - **op_type** （str）– 产生目标 Tensor 的 OP 或 API 。
 - **var_name** (str) – 目标 Tensor 的名字。
-- **debug_mode** (paddle.amp.debugging.DebugMode, 可选)** : 要使用的调试类型。默认值为 ``paddle.amp.debugging.DebugMode.CHECK_NAN_INF_AND_ABORT``。
+- **debug_mode** (paddle.amp.debugging.DebugMode, 可选) : 要使用的调试类型。默认值为 ``paddle.amp.debugging.DebugMode.CHECK_NAN_INF_AND_ABORT``。
 
 返回
 :::::::::
