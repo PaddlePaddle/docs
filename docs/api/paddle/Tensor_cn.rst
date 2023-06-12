@@ -2596,7 +2596,6 @@ i1e(x, name=None)
 
 cummax(x, axis=None, dtype='int64', name=None)
 :::::::::
-
 沿给定 axis 计算 Tensor x 的累计最大值。
 
 返回：计算后的 Tensor 和对应索引 Indices。
@@ -2607,7 +2606,6 @@ cummax(x, axis=None, dtype='int64', name=None)
 
 cummin(x, axis=None, dtype='int64', name=None)
 :::::::::
-
 沿给定 axis 计算 Tensor x 的累计最小值。
 
 返回：计算后的 Tensor 和对应索引 Indices。
