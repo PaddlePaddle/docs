@@ -100,6 +100,7 @@ tensor 数学操作
     " :ref:`paddle.outer <cn_api_tensor_outer>` ", "计算两个输入矩阵的外积"
     " :ref:`paddle.multiplex <cn_api_fluid_layers_multiplex>` ", "从每个输入 Tensor 中选择特定行构造输出 Tensor"
     " :ref:`paddle.multiply <cn_api_fluid_layers_multiply>` ", "逐元素相乘算子"
+    " :ref:`paddle.ldexp <cn_api_layers_ldexp>` ", "计算 x 乘以 2 的 y 次幂"
     " :ref:`paddle.nan_to_num <cn_api_tensor_nan_to_num>` ", "替换 x 中的 NaN、+inf、-inf 为指定值"
     " :ref:`paddle.neg <cn_api_paddle_neg>` ", "计算输入 x 的相反数并返回"
     " :ref:`paddle.nextafter <cn_api_paddle_nextafter>` ", "逐元素将 x 之后的下一个浮点值返回"
