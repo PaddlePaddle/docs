@@ -22,7 +22,7 @@ paddle.broadcast_shape(x_shape, y_shape)
 
 ### 转写示例
 
-#### approximate 参数：是否使用近似计算
+#### shapes 参数：输入 Tensor 的 shape
 
 ```python
 # PyTorch 写法:
