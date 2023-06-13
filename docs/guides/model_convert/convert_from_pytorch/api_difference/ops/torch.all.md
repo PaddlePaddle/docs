@@ -20,7 +20,7 @@ paddle.all(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的多维 Tensor ，PyTorch 支持 Number 和 bool 类型， Paddle 仅支持 bool 类型，需要进行转写。           |
+| <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的多维 Tensor ，PyTorch 支持其他类型的 Tensor ， Paddle 仅支持 bool 类型的 Tensor ，需要进行转写。           |
 | -             | <font color='red'> axis </font>         | 计算逻辑与运算的维度，Pytorch 无，保持默认即可。               |
 | -             | <font color='red'> keepdim </font>      | 是否在输出 Tensor 中保留减小的维度，Pytorch 无，保持默认即可。  |
 

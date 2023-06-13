@@ -25,7 +25,7 @@ paddle.nn.functional.adaptive_max_pool1d(x,
 | input           | x           | 表示输入的 Tensor ，仅参数名不一致。               |
 | output_size           | output_size           | 表示输出 Tensor 的大小，仅参数名不一致。               |
 | return_indices           |  return_mask          | 表示是否返回最大值的索引，仅参数名不一致。               |
-| return           |  return          | 表示返回值，当返回索引时，PyTorch 返回值类型为 int64，Paddle 返回值类型为 int32，需要进行转写。             |
+| 返回值           |  返回值          | 表示返回值，当返回索引时，PyTorch 返回值类型为 int64，Paddle 返回值类型为 int32，需要进行转写。             |
 
 ### 转写示例
 #### return：返回索引

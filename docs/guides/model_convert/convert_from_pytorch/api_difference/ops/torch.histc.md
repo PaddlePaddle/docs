@@ -23,7 +23,7 @@ paddle.histogram(input, bins=100, min=0, max=0, name=None)
 | min     | min          | 表示范围的下边界。                                  |
 | max     | max          | 表示范围的上边界。                                  |
 | out     | -            | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
-| return     | return            | 表示返回值，PyTorch 的返回值类型为 float32，Paddle 的返回值类型为 int64 ， 需要进行转写。 |
+| 返回值     | 返回值           | 表示返回值，PyTorch 的返回值类型为 float32，Paddle 的返回值类型为 int64 ， 需要进行转写。 |
 
 ### 转写示例
 

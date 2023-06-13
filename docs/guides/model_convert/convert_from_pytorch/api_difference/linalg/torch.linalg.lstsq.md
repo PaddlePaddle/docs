@@ -19,7 +19,7 @@ paddle.linalg.lstsq(x, y, rcond=None, driver=None, name=None)
 | B           | y           | 表示输入的 Tensor 。     |
 | rcond           | rcond           | 用来决定 x 有效秩的 float 型浮点数。               |
 | driver           | driver           | 用来指定计算使用的 LAPACK 库方法。               |
-| return     | return            | 表示返回值，PyTorch 第三个返回值的类型为 int64，Paddle 第三个返回值的类型为 int32 ， 需要进行转写。 |
+| 返回值     | 返回值            | 表示返回值，PyTorch 第三个返回值的类型为 int64，Paddle 第三个返回值的类型为 int32 ， 需要进行转写。 |
 
 ### 转写示例
 
