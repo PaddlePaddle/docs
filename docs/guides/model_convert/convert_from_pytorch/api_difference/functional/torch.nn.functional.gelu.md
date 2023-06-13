@@ -27,8 +27,10 @@ paddle.nn.functional.gelu(x, approximate=False, name=None)
 
 ```python
 # PyTorch 写法:
-y = torch.nn.functional.gelu(x, approximate='tanh')
+y1 = torch.nn.functional.gelu(x, approximate='tanh')
+y2 = torch.nn.functional.gelu(x, approximate='none')
 
 # Paddle 写法:
-y = paddle.nn.functional.gelu(x, approximate=True)
+y1 = paddle.nn.functional.gelu(x, approximate=True)
+y2 = paddle.nn.functional.gelu(x, approximate=False)
 ```
