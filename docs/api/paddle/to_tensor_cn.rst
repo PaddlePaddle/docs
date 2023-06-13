@@ -18,10 +18,10 @@ to_tensor
 
               保持类型
     np.number ───────► paddle.Tensor
-                        (0D-Tensor)
+                        (0-D Tensor)
                    paddle 默认类型
     Python Number ───────────────► paddle.Tensor
-                                    (1D-Tensor)
+                                    (0-D Tensor)
                 保持类型
     np.ndarray ─────────► paddle.Tensor
 

@@ -1,4 +1,4 @@
-## torch.Tensor.expand
+## [ 仅参数名不一致 ]torch.Tensor.expand
 ### [torch.Tensor.expand](https://pytorch.org/docs/stable/generated/torch.Tensor.expand.html?highlight=expand#torch.Tensor.expand)
 
 ```python

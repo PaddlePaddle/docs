@@ -18,17 +18,32 @@ paddle.subtract(x,
 ```
 
 其中 Pytorch 相比 Paddle 支持更多其他参数，具体如下：
-### 参数差异
+### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| alpha         | -            | 表示`other`的乘数，PaddlePaddle 无此参数。  |
+| input         | x            | 表示被减数的 Tensor，仅参数名不一致。  |
+| other         | y            | 表示减数的 Tensor，仅参数名不一致。  |
+| alpha         | -            | 表示`other`的乘数，PaddlePaddle 无此参数。Paddle 应设置 y = alpha * other。  |
 | out           | -            | 表示输出的 Tensor，PaddlePaddle 无此参数。  |
 
 ### 功能差异
 
-#### 计算差异
-***PyTorch***：
-$ out = input - alpha * other $
+### 转写示例
+#### alpha：表示`other`的乘数
+```python
+# Pytorch 写法
+torch.subtract(x, y, alpha=2)
 
-***PaddlePaddle***：
-$ out = x - y $
+# Paddle 写法
+paddle.subtract(x, 2*y)
+
+# 注：Paddle 直接将 alpha 与 y 相乘实现
+```
+#### out：指定输出
+```python
+# Pytorch 写法
+torch.subtract(x, y, out=z)
+
+# Paddle 写法
+paddle.assign(paddle.subtract(x, y), z)
+```

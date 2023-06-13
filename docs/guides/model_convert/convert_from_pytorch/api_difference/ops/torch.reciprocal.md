@@ -1,5 +1,6 @@
 ## [torch 参数更多]torch.reciprocal
-### [torch.reciprocal](https://pytorch.org/docs/stable/generated/torch.reciprocal.html?highlight=reciprocal#torch.reciprocal)
+
+### [torch.reciprocal](https://pytorch.org/docs/1.13/generated/torch.reciprocal.html?highlight=torch+reciprocal#torch.reciprocal)
 
 ```python
 torch.reciprocal(input,
@@ -7,7 +8,7 @@ torch.reciprocal(input,
                  out=None)
 ```
 
-### [paddle.reciprocal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reciprocal_cn.html#reciprocal)
+### [paddle.reciprocal](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/reciprocal_cn.html)
 
 ```python
 paddle.reciprocal(x,

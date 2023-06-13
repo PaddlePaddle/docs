@@ -20,5 +20,6 @@ paddle.chunk(x,
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'>input</font>         | <font color='red'>x</font>            | 输入变量，数据类型为 bool, float16, float32，float64，int32，int64 的多维 Tensor。   |
 | <font color='red'> input </font> | <font color='red'> x </font> | 表示输入的 Tensor ，仅参数名不一致。  |
+| <font color='red'> chunks </font> | <font color='red'> chunks </font> | 表示将输入 Tensor 划分成多少个相同大小的子 Tensor。  |
+| <font color='red'> dim </font> | <font color='red'> axis </font> |表示需要分割的维度 ，仅参数名不一致。  |
