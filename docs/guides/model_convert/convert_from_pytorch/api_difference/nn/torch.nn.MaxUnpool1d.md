@@ -7,10 +7,10 @@ torch.nn.MaxUnpool1d(kernel_size,
                      padding=0)
 ```
 
-### [paddle.nn.MaxUnpool1d](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MaxUnPool1D_cn.html#maxunpool1d)
+### [paddle.nn.MaxUnPool1D](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nn/MaxUnPool1D_cn.html)
 
 ```python
-paddle.nn.MaxUnpool1d(kernel_size,
+paddle.nn.MaxUnPool1D(kernel_size,
                       stride=None,
                       padding=0,
                       data_format='NCL',

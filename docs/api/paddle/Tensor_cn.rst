@@ -2594,6 +2594,16 @@ i1e(x, name=None)
 
 请参考 :ref:`cn_api_paddle_tensor_i1e`
 
+polygamma
+:::::::::
+用于计算输入的 Tensor 的多伽马函数。
+
+返回：返回多伽马函数对应输出 tensor
+
+返回类型：tensor
+
+请参考 :ref:`cn_api_paddle_tensor_polygamma`
+
 cummax(x, axis=None, dtype='int64', name=None)
 :::::::::
 沿给定 axis 计算 Tensor x 的累计最大值。

@@ -28,16 +28,76 @@ paddle.nn.SmoothL1Loss(reduction='mean',
 ### 转写示例
 #### size_average
 ```python
-# Pytorch 的 size_average、reduce 参数转为 Paddle 的 reduction 参数
-if size_average is None:
-    size_average = True
-if reduce is None:
-    reduce = True
+# Paddle 写法
+torch.nn.SmoothL1Loss(size_average=True)
 
-if size_average and reduce:
-    reduction = 'mean'
-elif reduce:
-    reduction = 'sum'
-else:
-    reduction = 'none'
+# Paddle 写法
+paddle.nn.SmoothL1Loss(reduction='mean')
+```
+
+#### size_average
+size_average 为 True
+```python
+# Pytorch 写法
+torch.nn.SmoothL1Loss(size_average=True)
+
+# Paddle 写法
+paddle.nn.SmoothL1Loss(reduction='mean')
+
+```
+
+size_average 为 False
+```python
+# Pytorch 写法
+torch.nn.SmoothL1Loss(size_average=False)
+
+# Paddle 写法
+paddle.nn.SmoothL1Loss(reduction='sum')
+```
+
+#### reduce
+reduce 为 True
+```python
+# Pytorch 写法
+torch.nn.SmoothL1Loss(reduce=True)
+
+# Paddle 写法
+paddle.nn.SmoothL1Loss(reduction='mean')
+```
+
+reduce 为 False
+```python
+# Pytorch 写法
+torch.nn.SmoothL1Loss(reduce=False)
+
+# Paddle 写法
+paddle.nn.SmoothL1Loss(reduction='none')
+```
+
+#### reduction
+reduction 为'none'
+```python
+# Pytorch 写法
+torch.nn.SmoothL1Loss(reduction='none')
+
+# Paddle 写法
+paddle.nn.SmoothL1Loss(reduction='none')
+```
+
+reduction 为'mean'
+```python
+# Pytorch 写法
+torch.nn.SmoothL1Loss(reduction='mean')
+
+# Paddle 写法
+paddle.nn.SmoothL1Loss(reduction='mean')
+```
+
+reduction 为'sum'
+```python
+# Pytorch 写法
+torch.nn.SmoothL1Loss(reduction='sum')
+
+# Paddle 写法
+paddle.nn.SmoothL1Loss(reduction='sum')
 ```

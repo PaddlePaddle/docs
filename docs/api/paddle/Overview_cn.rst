@@ -102,6 +102,7 @@ tensor 数学操作
     " :ref:`paddle.outer <cn_api_tensor_outer>` ", "计算两个输入矩阵的外积"
     " :ref:`paddle.multiplex <cn_api_fluid_layers_multiplex>` ", "从每个输入 Tensor 中选择特定行构造输出 Tensor"
     " :ref:`paddle.multiply <cn_api_fluid_layers_multiply>` ", "逐元素相乘算子"
+    " :ref:`paddle.ldexp <cn_api_layers_ldexp>` ", "计算 x 乘以 2 的 y 次幂"
     " :ref:`paddle.nan_to_num <cn_api_tensor_nan_to_num>` ", "替换 x 中的 NaN、+inf、-inf 为指定值"
     " :ref:`paddle.neg <cn_api_paddle_neg>` ", "计算输入 x 的相反数并返回"
     " :ref:`paddle.nextafter <cn_api_paddle_nextafter>` ", "逐元素将 x 之后的下一个浮点值返回"
@@ -151,6 +152,7 @@ tensor 数学操作
     " :ref:`paddle.i0e <cn_api_paddle_tensor_i0e>` ", "对输入 Tensor 每个元素计算第一类指数缩放的零阶修正贝塞尔函数"
     " :ref:`paddle.i1 <cn_api_paddle_tensor_i1>` ", "对输入 Tensor 每个元素计算第一类一阶修正贝塞尔函数"
     " :ref:`paddle.i1e <cn_api_paddle_tensor_i1e>` ", "对输入 Tensor 每个元素计算第一类指数缩放的一阶修正贝塞尔函数"
+    " :ref:`paddle.polygamma <cn_api_paddle_tensor_polygamma>` ", "对输入 Tensor 每个元素计算多伽马函数"
 .. _tensor_math_inplace:
 
 tensor 数学操作原位（inplace）版本
@@ -325,6 +327,7 @@ tensor 线性代数相关
     " :ref:`paddle.tril <cn_api_tensor_tril>` ", "返回输入矩阵 input 的下三角部分，其余部分被设为 0"
     " :ref:`paddle.triu <cn_api_tensor_triu>` ", "返回输入矩阵 input 的上三角部分，其余部分被设为 0"
     " :ref:`paddle.triu_indices <cn_api_tensor_triu_indices>` ", "返回输入矩阵在给定对角线右上三角部分元素坐标"
+    " :ref:`paddle.cdist <cn_api_tensor_linalg_cdist>` ", "计算两组输入集合 x, y 中每对之间的 p 范数"
 
 .. _tensor_manipulation:
 
