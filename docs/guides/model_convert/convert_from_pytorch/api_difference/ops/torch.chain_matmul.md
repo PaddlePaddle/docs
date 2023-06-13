@@ -4,17 +4,14 @@
 ```python
 torch.chain_matmul(*matrices, out=None)
 ```
-###  功能介绍
-用于实现多个矩阵相乘，PaddlePaddle 目前无对应 API，可使用如下代码组合实现该 API。
-```python
-import paddle
+Paddle 无此 API，需要组合实现。
 
-def chain_matmul(*matrices, out=None):
-    assert len(matrices) >= 1, "Expected one or more matrices."
-    if len(matrices) == 1:
-        return matrices[0]
-    out = paddle.matmul(matrices[0], matrices[1])
-    for i in range(2, len(matrices)):
-        out = paddle.matmul(out, matrices[i])
-    return out
+### 转写示例
+
+```python
+# Pytorch 写法
+y = torch.chain_matmul(a, b, c)
+
+# Paddle 写法
+y = a @ b @ c
 ```

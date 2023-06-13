@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.LSTM
+## [ 参数不一致 ]torch.nn.LSTM
 ### [torch.nn.LSTM](https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html?highlight=lstm#torch.nn.LSTM)
 
 ```python
@@ -37,7 +37,6 @@ paddle.nn.LSTM(input_size,
 | bias          | -            | 是否使用偏置，Paddle bias_ih_attr 和 bias_hh_attr 可实现相应功能。  |
 | batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一维，它们的意义相反。  |
 | dropout   | dropout   | 表示 dropout 概率。  |
-| batch_first   | time_major   | PyTorch 表示 batch size 是否为第一维，PaddlePaddle 表示 time steps 是否为第一位，它们的意义相反。  |
 | bidirectional | direction    | PyTorch 表示是否进行双向，Paddle 使用字符串表示是双向 LSTM（`bidirectional`）还是单向 LSTM（`forward`）|
 | proj_size     | -            | 表示 LSTM 后将映射到对应的大小，PaddlePaddle 无此功能，暂无转写方式。  |
 | -             |weight_ih_attr| weight_ih 的参数，Pytorch 无此参数，Paddle 保持默认即可。  |

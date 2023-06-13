@@ -1,5 +1,5 @@
 ## [torch 参数更多 ]torch.mm
-### [torch.mm](https://pytorch.org/docs/stable/generated/torch.mm.html?highlight=mm#torch.mm)
+### [torch.mm](https://pytorch.org/docs/1.13/generated/torch.mm.html?highlight=torch+mm#torch.mm)
 
 ```python
 torch.mm(input,
@@ -36,5 +36,5 @@ paddle.matmul(x,
 torch.mm(a, b, out=y)
 
 # Paddle 写法
-y = paddle.matmul(a, b)
+paddle.assign(paddle.matmul(a, b), y)
 ```

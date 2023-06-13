@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.DataParallel
+## [ 参数不一致 ]torch.nn.DataParallel
 ### [torch.nn.DataParallel](https://pytorch.org/docs/stable/generated/torch.nn.DataParallel.html?highlight=dataparallel#torch.nn.DataParallel)
 
 ```python

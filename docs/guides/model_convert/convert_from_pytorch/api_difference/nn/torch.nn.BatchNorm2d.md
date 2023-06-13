@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.BatchNorm2d
+## [ 参数不一致 ]torch.nn.BatchNorm2d
 ### [torch.nn.BatchNorm2d](https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html?highlight=batchnorm2d#torch.nn.BatchNorm2d)
 
 ```python
@@ -44,9 +44,7 @@ affine=False 时，表示不更新：
 m = torch.nn.BatchNorm2D(24, affine=False)
 
 # Paddle 写法
-weight_attr = paddle.ParamAttr(learning_rate=0.0)
-bias_attr = paddle.ParamAttr(learning_rate=0.0)
-m = paddle.nn.BatchNorm2D(24, weight_attr=weight_attr, bias_attr=bias_attr)
+m = paddle.nn.BatchNorm2D(24, weight_attr=False, bias_attr=False)
 
 affine=True 时，表示更新：
 

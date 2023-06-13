@@ -34,5 +34,5 @@ paddle.index_select(x,
 torch.index_select(x, dim=1, index=index, out=y)
 
 # Paddle 写法
-y = paddle.index_select(x, index=index, axis=1)
+paddle.assign(paddle.index_select(x, axis=1, index=index), y)
 ```

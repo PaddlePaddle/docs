@@ -1,4 +1,4 @@
-## [ 参数用法不一致 ]torch.nn.ConstantPad1d
+## [ 仅 paddle 参数更多 ]torch.nn.ConstantPad1d
 ### [torch.nn.ConstantPad1d](https://pytorch.org/docs/1.13/generated/torch.nn.ConstantPad1d.html?highlight=constantpad1d#torch.nn.ConstantPad1d)
 
 ```python

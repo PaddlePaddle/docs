@@ -34,7 +34,7 @@ l1_loss
 
 返回
 :::::::::
-``Tensor``，输入 ``input`` 和标签 ``label`` 间的 `L1 loss` 损失。如果 `reduction` 是 ``'none'``，则输出 Loss 的维度为 [N, *]，与输入 ``input`` 相同。如果 `reduction` 是 ``'mean'`` 或 ``'sum'``，则输出 Loss 的维度为 [1]。
+``Tensor``，输入 ``input`` 和标签 ``label`` 间的 `L1 loss` 损失。如果 `reduction` 是 ``'none'``，则输出 Loss 的形状为 [N, *]，与输入 ``input`` 相同。如果 `reduction` 是 ``'mean'`` 或 ``'sum'``，则输出 Loss 的形状为 []。
 
 
 代码示例
