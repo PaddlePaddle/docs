@@ -25,11 +25,19 @@ paddle.nn.GELU(approximate=False, name=None)
 #### approximate 参数：是否使用近似计算
 
 ```python
-# PyTorch 写法:
+# 取值为 tanh，PyTorch 写法:
 m = torch.nn.GELU(approximate='tanh')
 y = m(x)
 
 # Paddle 写法:
 m = paddle.nn.GELU(approximate=True)
+y = m(x)
+
+# 取值为 none，PyTorch 写法:
+m = torch.nn.GELU(approximate='none')
+y = m(x)
+
+# Paddle 写法:
+m = paddle.nn.GELU(approximate=False)
 y = m(x)
 ```
