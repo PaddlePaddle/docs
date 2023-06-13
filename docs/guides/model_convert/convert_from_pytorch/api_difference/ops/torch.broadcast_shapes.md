@@ -1,4 +1,4 @@
-## [参数名不一致]torch.broadcast_shapes
+## [参数不一致]torch.broadcast_shapes
 
 ### [torch.broadcast_shapes](https://pytorch.org/docs/1.13/generated/torch.broadcast_shapes.html#torch.broadcast_shapes)
 
@@ -12,7 +12,7 @@ torch.broadcast_shapes(*shapes)
 paddle.broadcast_shape(x_shape, y_shape)
 ```
 
-其中功能一致, 仅参数名不一致，具体如下：
+其中功能一致, 参数用法不一致，具体如下：
 
 ### 参数映射
 

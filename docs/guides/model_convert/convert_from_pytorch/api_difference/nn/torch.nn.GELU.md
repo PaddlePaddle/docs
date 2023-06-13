@@ -27,11 +27,9 @@ paddle.nn.GELU(approximate=False, name=None)
 ```python
 # PyTorch 写法:
 m = torch.nn.GELU(approximate='tanh')
-x = torch.tensor([[-1, 0.5],[1, 1.5]])
 y = m(x)
 
 # Paddle 写法:
 m = paddle.nn.GELU(approximate=True)
-x = paddle.to_tensor([[-1, 0.5],[1, 1.5]])
 y = m(x)
 ```
