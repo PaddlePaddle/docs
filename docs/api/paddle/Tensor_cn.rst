@@ -2613,3 +2613,23 @@ pca_lowrank(x, q=None, center=True, niter=2, name=None)
 返回类型：tuple，包含结果（U，S，V）。
 
 请参考 :ref:`cn_api_linalg_pca_lowrank`
+
+cummax(x, axis=None, dtype='int64', name=None)
+:::::::::
+沿给定 axis 计算 Tensor x 的累计最大值。
+
+返回：计算后的 Tensor 和对应索引 Indices。
+
+返回类型：Tensor，包含计算结果和索引。
+
+请参考 :ref:`cn_api_tensor_cn_cummax`
+
+cummin(x, axis=None, dtype='int64', name=None)
+:::::::::
+沿给定 axis 计算 Tensor x 的累计最小值。
+
+返回：计算后的 Tensor 和对应索引 Indices。
+
+返回类型：Tensor，包含计算结果和索引。
+
+请参考 :ref:`cn_api_tensor_cn_cummin`
