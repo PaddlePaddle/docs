@@ -4,7 +4,7 @@ Softmax
 -------------------------------
 .. py:class:: paddle.sparse.nn.Softmax(axis=-1, name=None)
 
-稀疏 Softmax 激活层，创建一个可调用对象以计算输入 `x` 的 `Softmax` 。
+稀疏 Softmax 激活层，输入 :attr:`x` 为 `SparseCooTensor` 或 `SparseCsrTensor` ，创建一个可调用对象以计算输入 `x` 的 `Softmax` 。
 
 当输入 `x` 为 `SparseCsrTensor` 时，仅支持 axis=-1，是由于 Csr 稀疏存储格式，更适合按行读取数据。
 
@@ -20,7 +20,7 @@ Softmax
 
 形状
 :::::::::
-    - input：任意形状的 SparseTensor。
+    - input：任意形状的 SparseCooTensor 或 SparseCsrTensor，数据类型为 float32、float64。
     - output：和 input 具有相同形状和数据类型的 SparseTensor。
 
 代码示例
