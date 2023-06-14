@@ -15,12 +15,10 @@ paddle.nn.SimpleRNNCell(input_size, hidden_size, activation='tanh', weight_ih_at
 | ------------- | ------------ | ------------------------------------------------------ |
 | input_size          | input_size            | 表示输入 x 的大小。  |
 | hidden_size          | hidden_size            | 表示隐藏状态 h 大小。  |
-| bias          | -            | 表示 RNN 后将映射到对应的大小，PaddlePaddle 无此功能， 需要进行转写。  |
+| bias          | bias_ih_attr, bias_hh_attr  | bias 的参数， 参数不一致， 需要转写。当 Pytorch 的 bias 为 `Fasle` 时， 设置为 `False`, 否则保持默认即可。  |
 | nonlinearity          | activation            | 表示激活函数类型，仅参数名不同。  |
 | -             |weight_ih_attr| weight_ih 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |
 | -             |weight_hh_attr| weight_hh 的参数，  PyTorch 无此参数， Paddle 保持默认即可。  |
-| -             | bias_ih_attr | bias_ih 的参数， PyTorch 无此参数， 当 Pytorch 的 bias 为 `Fasle` 时， 设置为 `False`, 否则保持默认即可。  |
-| -             | bias_hh_attr | bias_hh 的参数， PyTorch 无此参数， 当 Pytorch 的 bias 为 `Fasle` 时， 设置为 `False`, 否则保持默认即可。  |
 
 ### 转写示例
 #### bias：是否使用偏置

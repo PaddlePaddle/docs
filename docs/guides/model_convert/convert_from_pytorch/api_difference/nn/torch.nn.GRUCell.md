@@ -15,13 +15,12 @@ paddle.nn.GRUCell(input_size, hidden_size, weight_ih_attr=None, weight_hh_attr=N
 | ------------- | ------------ | ------------------------------------------------------ |
 | input_size          | input_size            | 表示输入 x 的大小。  |
 | hidden_size          | hidden_size            | 表示隐藏状态 h 大小。  |
-| bias          | -            | 是否使用偏置，PaddlePaddle 无此功能， 需要进行转写。  |
+| bias          | bias_ih_attr, bias_hh_attr  | bias 的参数， 参数不一致， 需要转写。当 Pytorch 的 bias 为 `Fasle` 时， 设置为 `False`, 否则保持默认即可。  |
 | device   | -   | 指定 Tensor 的设备，PaddlePaddle 无此参数，一般对网络训练结果影响不大，可直接删除。  |
 | dtype   | -   | Tensor 的所需数据类型，PaddlePaddle 无此参数，暂无转写方式。  |
 | -             |weight_ih_attr| weight_ih 的参数， PyTorch 无此参数， Paddle 保持默认即可。  |
 | -             |weight_hh_attr| weight_hh 的参数，  PyTorch 无此参数， Paddle 保持默认即可。  |
-| -             | bias_ih_attr | bias_ih 的参数， PyTorch 无此参数， 当 Pytorch 的 bias 为 `Fasle` 时， 设置为 `False`, 否则保持默认即可。  |
-| -             | bias_hh_attr | bias_hh 的参数， PyTorch 无此参数， 当 Pytorch 的 bias 为 `Fasle` 时， 设置为 `False`, 否则保持默认即可。  |
+
 
 ### 转写示例
 #### bias：是否使用偏置
