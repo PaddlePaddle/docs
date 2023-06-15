@@ -1,5 +1,6 @@
 ## [torch 参数更多 ]torch.min
 输入一个 Tensor 对应 paddle.min，输入两个 Tensor 对应 paddle.minimum，因此有两组差异分析，分别如下：
+> 注：当只输入两个 Tensor 时请使用关键字参数表示第二个输入 Tensor ，这样不会使 Paddle 误判，例如 `torch.min(a, other=b)`
 
 --------------------------------------------------------------------------------------------------
 ### [torch.min](https://pytorch.org/docs/stable/generated/torch.min.html?highlight=min#torch.min)

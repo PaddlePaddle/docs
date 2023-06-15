@@ -31,7 +31,7 @@ paddle.nn.functional.adaptive_max_pool1d(x,
 #### return：返回索引
 ```python
 # Pytorch 写法
-result, indices = nn.functional.adaptive_max_pool1d(x, 1, True)
+result, indices = nn.functional.adaptive_max_pool1d(x, 1, return_indices=True)
 
 # Paddle 写法
 result, indices = paddle.nn.functional.adaptive_max_pool1d(x, 1, return_mask=True)

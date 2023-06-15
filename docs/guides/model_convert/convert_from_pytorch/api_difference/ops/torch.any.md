@@ -31,5 +31,5 @@ paddle.any(x,
 result = torch.any(x)
 
 # Paddle 写法
-result = paddle.any(x.bool())
+result = paddle.any(x.astype(dtype='bool'))
 ```
