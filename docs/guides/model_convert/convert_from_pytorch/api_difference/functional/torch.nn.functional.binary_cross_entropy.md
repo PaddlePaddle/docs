@@ -1,4 +1,4 @@
-## torch.nn.functional.binary_cross_entropy
+## [ 参数不一致 ] torch.nn.functional.binary_cross_entropy
 
 ### [torch.nn.functional.binary_cross_entropy](https://pytorch.org/docs/2.0/generated/torch.nn.functional.binary_cross_entropy.html?highlight=binary_cross_entropy#torch.nn.functional.binary_cross_entropy)
 
@@ -18,7 +18,7 @@ paddle.nn.functional.binary_cross_entropy(input, label, weight=None, reduction='
 | ------------- | ------------ | ------------------------------------------------------ |
 | input         | input        | 表示输入的 Tensor                                       |
 | target        | label        | 标签                                                   |
-| weight        | weight       | 指定每个batch的权重                                      |
+| weight        | weight       | 指定每个 batch 的权重                                      |
 | size_average  | -            | 已废弃，和 reduce 组合决定损失计算方式                      |
 | reduce        | -            | 已废弃，和 size_average 组合决定损失计算方式                |
 | reduction     | reduction    | 输出结果的计算方式                                       |
