@@ -87,7 +87,9 @@ def find_codeblock_needed(cf_info):
     if cf_info['src_api'] in api_name_2_id_map:
         api_info = api_info_dict[api_name_2_id_map[cf_info['src_api']]]
         if 'docstring' in api_info:
-            codeblocks = extract_code_blocks_from_docstr(api_info['docstring'])
+            codeblocks = extract_code_blocks_from_docstr(
+                api_info['docstring'], google_style=False
+            )
             if not codeblocks:
                 logger.warning('found none codeblocks for %s', str(cf_info))
                 logger.warning(
@@ -95,11 +97,18 @@ def find_codeblock_needed(cf_info):
                 )
                 return None
             cb_name = cf_info['cb_name']
-            return (
-                codeblocks[0]
-                if cb_name is None
-                else find_codeblock_needed_by_name(cb_name, codeblocks)
-            )
+
+            # we use `cb_name` first, if not exist, then use the first codeblock without name, or codeblocks[0].
+            cb = None
+            if cb_name is not None:
+                cb = find_codeblock_needed_by_name(cb_name, codeblocks)
+            else:
+                for _cb in codeblocks:
+                    if _cb.get('name', None) is None:
+                        cb = _cb
+                        break
+
+            return cb if cb is not None else codeblocks[0]
     else:
         logger.warning('%s not in api_name_2_id_map', cf_info['src_api'])
         return None

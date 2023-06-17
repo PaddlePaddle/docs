@@ -1025,13 +1025,14 @@ def filter_out_object_of_api_info_dict():
             del api_info_dict[id_api]['object']
 
 
-def extract_code_blocks_from_docstr(docstr):
+def extract_code_blocks_from_docstr(docstr, google_style=True):
     """
     extract code-blocks from the given docstring.
     DON'T include the multiline-string definition in code-blocks.
     The *Examples* section must be the last.
     Args:
         docstr(str): docstring
+        google_style(bool): if not use google_style, the code blocks will be extracted from all the parts of docstring.
     Return:
         code_blocks: A list of code-blocks, indent removed.
                      element {'name': the code-block's name, 'id': sequence id.
@@ -1040,9 +1041,32 @@ def extract_code_blocks_from_docstr(docstr):
     code_blocks = []
 
     mo = re.search(r"Examples?:", docstr)
-    if mo is None:
-        return code_blocks
-    ds_list = docstr[mo.start() :].replace("\t", '    ').split("\n")
+    if google_style:
+        if mo is None:
+            return code_blocks
+
+        ds_list = docstr[mo.start() :].replace("\t", '    ').split("\n")
+
+    else:
+        if mo is None:
+            ds_list = docstr.replace("\t", '    ').split("\n")
+
+        else:
+            # because we use codeblock[0] as default (when we can NOT convert `COPY-FROM`` in other parts of docstring),
+            # so, we make `Examples` part before other parts, where extract codeblocks first.
+            _ds_exmaple_part = docstr[mo.start() :]
+            _ds_other_part = docstr[: mo.start()]
+
+            ds_list = (
+                (
+                    _ds_exmaple_part
+                    + ("\n" if not _ds_exmaple_part.endswith("\n") else "")
+                    + _ds_other_part
+                )
+                .replace("\t", '    ')
+                .split("\n")
+            )
+
     lastlineindex = len(ds_list) - 1
 
     cb_start_pat = re.compile(r"code-block::\s*python")
