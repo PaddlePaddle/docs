@@ -9,7 +9,7 @@ torch.distributed.new_group(ranks=None, timeout=datetime.timedelta(seconds=1800)
 ### [paddle.distributed.new_group](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/distributed/new_group_cn.html)
 
 ```python
-paddle.distributed.(ranks=None, backend=None)
+paddle.distributed.new_group(ranks=None, backend=None)
 ```
 
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
