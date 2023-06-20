@@ -1041,31 +1041,27 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
     code_blocks = []
 
     mo = re.search(r"Examples?:", docstr)
+
+    # if lineno > lineno_examples, then mark this codeblock `in_examples`
+    lineno_examples = None
+
     if google_style:
         if mo is None:
             return code_blocks
 
         ds_list = docstr[mo.start() :].replace("\t", '    ').split("\n")
+        lineno_examples = 0
 
     else:
         if mo is None:
             ds_list = docstr.replace("\t", '    ').split("\n")
+            lineno_examples = len(ds_list)
 
         else:
-            # because we use codeblock[0] as default (when we can NOT convert `COPY-FROM`` in other parts of docstring),
-            # so, we make `Examples` part before other parts, where extract codeblocks first.
-            _ds_exmaple_part = docstr[mo.start() :]
-            _ds_other_part = docstr[: mo.start()]
+            ds_list = docstr[: mo.start()].replace("\t", '    ').split("\n")
 
-            ds_list = (
-                (
-                    _ds_exmaple_part
-                    + ("\n" if not _ds_exmaple_part.endswith("\n") else "")
-                    + _ds_other_part
-                )
-                .replace("\t", '    ')
-                .split("\n")
-            )
+            lineno_examples = len(ds_list)
+            ds_list += docstr[mo.start() :].replace("\t", '    ').split("\n")
 
     lastlineindex = len(ds_list) - 1
 
@@ -1088,7 +1084,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
         cb_info['cb_cur_name'] = None
         cb_info['cb_required'] = None
 
-    def _append_code_block():
+    def _append_code_block(in_examples):
         # nonlocal code_blocks, cb_cur, cb_cur_name, cb_cur_seq_id, cb_required
         code_blocks.append(
             {
@@ -1096,6 +1092,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
                 'name': cb_info['cb_cur_name'],
                 'id': cb_info['cb_cur_seq_id'],
                 'required': cb_info['cb_required'],
+                'in_examples': in_examples,
             }
         )
 
@@ -1107,7 +1104,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
             else:
                 # cur block end
                 if len(cb_info['cb_cur']):
-                    _append_code_block()
+                    _append_code_block(lineno > lineno_examples)
                 _cb_started()  # another block started
                 cb_info['cb_cur_indent'] = -1
                 cb_info['cb_cur'] = []
@@ -1132,7 +1129,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
                     ):
                         cb_info['cb_cur'].append(linecont)
                     if len(cb_info['cb_cur']):
-                        _append_code_block()
+                        _append_code_block(lineno > lineno_examples)
                     break
                 # check indent for cur block start and end.
                 if cb_info['cb_cur_indent'] < 0:
@@ -1155,7 +1152,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
                         else:
                             # block end
                             if len(cb_info['cb_cur']):
-                                _append_code_block()
+                                _append_code_block(lineno > lineno_examples)
                             cb_info['cb_started'] = False
                             cb_info['cb_cur_indent'] = -1
                             cb_info['cb_cur'] = []

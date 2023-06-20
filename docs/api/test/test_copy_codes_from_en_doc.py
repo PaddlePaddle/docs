@@ -91,6 +91,11 @@ class CopyCodesTest(unittest.TestCase):
                 './test/case_1_gather_cn.rst.target',
             ),
             (
+                './test/case_1_clip_gather_cn_api_info_all.json',
+                './test/case_1_clip_gather_cn.rst.source',
+                './test/case_1_clip_gather_cn.rst.target',
+            ),
+            (
                 './test/case_1_scatter_cn_api_info_all.json',
                 './test/case_1_scatter_cn.rst.source',
                 './test/case_1_scatter_cn.rst.target',

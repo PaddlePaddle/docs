@@ -98,13 +98,14 @@ def find_codeblock_needed(cf_info):
                 return None
             cb_name = cf_info['cb_name']
 
-            # we use `cb_name` first, if not exist, then use the first codeblock without name, or codeblocks[0].
+            # we use `cb_name` first, if not exist, then use the first codeblock `in_examples`, or codeblocks[0].
             cb = None
             if cb_name is not None:
                 cb = find_codeblock_needed_by_name(cb_name, codeblocks)
+
             else:
                 for _cb in codeblocks:
-                    if _cb.get('name', None) is None:
+                    if _cb.get('in_examples'):
                         cb = _cb
                         break
 
