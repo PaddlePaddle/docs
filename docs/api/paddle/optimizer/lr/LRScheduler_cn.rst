@@ -39,7 +39,7 @@ LRScheduler
 
 * :code:`CyclicLR`: Cyclic 学习率衰减，其将学习率变化的过程视为一个又一个循环，学习率根据固定的频率在最小和最大学习率之间不停变化。请参考 :ref:`cn_api_paddle_optimizer_lr_CyclicLR`。
 
-你可以继承该基类实现任意的学习率策略，导出基类的方法为 ``form paddle.optimizer.lr import LRScheduler`` ，
+你可以继承该基类实现任意的学习率策略，导出基类的方法为 ``from paddle.optimizer.lr import LRScheduler`` ，
 必须要重写该基类的 ``get_lr()`` 函数，否则会抛出 ``NotImplementedError`` 异常。
 
 参数
