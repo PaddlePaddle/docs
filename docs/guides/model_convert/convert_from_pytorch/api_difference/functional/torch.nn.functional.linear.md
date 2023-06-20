@@ -32,5 +32,5 @@ paddle.nn.functional.linear(x,
 result = F.linear(x, weight=weight)
 
 # Paddle 写法
-result = F.linear(x, weight=weight.transpose([1, 0]))
+result = F.linear(x, weight=weight.T)
 ```
