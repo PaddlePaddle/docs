@@ -24,10 +24,10 @@ paddle.nn.functional.unfold(x,
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | input     | x            | 输入 Tensor  |
-| kernel_size   | kernel_sizes | 卷积核大小， PyTorch 参数类型为 int、tuple(int) 或者 list(int)， Paddle 参数类型为 int 或者 list(int)。   |
-| dilation      | dilations    | 卷积膨胀，PyTorch 参数类型为 int、tuple(int) 或者 list(int)， Paddle 参数类型为 int 或者 list(int)。 |
-| padding       | paddings     | 每个维度的扩展，PyTorch 参数类型为 int、tuple(int) 或者 list(int)， Paddle 参数类型为 int 或者 list(int)。 |
-| stride        | strides      | 步长大小，PyTorch 参数类型为 int、tuple(int) 或者 list(int)， Paddle 参数类型为 int 或者 list(int)。|
+| kernel_size   | kernel_sizes | 卷积核大小， PyTorch 支持 int、tuple(int)或者 list(int)，Paddle 仅支持 int 或者 list(int)   |
+| dilation      | dilations    | 卷积膨胀，PyTorch 支持 int、tuple(int)或者 list(int)，Paddle 仅支持 int 或者 list(int) |
+| padding       | paddings     | 每个维度的扩展，PyTorch 支持 int、tuple(int)或者 list(int)，Paddle 仅支持 int 或者 list(int) |
+| stride        | strides      | 步长大小，PyTorch 支持 int、tuple(int)或者 list(int)，Paddle 仅支持 int 或者 list(int)|
 
 ### 转写示例
 ``` python

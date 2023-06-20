@@ -1,4 +1,4 @@
-## [ 参数不一致 ] torch.nn.functional.binary_cross_entropy
+## [ torch 参数更多 ] torch.nn.functional.binary_cross_entropy
 
 ### [torch.nn.functional.binary_cross_entropy](https://pytorch.org/docs/2.0/generated/torch.nn.functional.binary_cross_entropy.html?highlight=binary_cross_entropy#torch.nn.functional.binary_cross_entropy)
 
