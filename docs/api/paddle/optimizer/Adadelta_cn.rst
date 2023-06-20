@@ -3,7 +3,7 @@
 Adadelta
 -------------------------------
 
-.. py:class:: paddle.optimizer.Adadelta(learning_rate=0.001, epsilon=1.0e-6, rho=0.95, parameters=None, weight_decay=0.01, grad_clip=None, name=None)
+.. py:class:: paddle.optimizer.Adadelta(learning_rate=0.001, epsilon=1e-06, rho=0.95, parameters=None, weight_decay=0.01, grad_clip=None, name=None)
 
 
 .. note::
@@ -49,7 +49,7 @@ Adadelta 优化器出自 `DECOUPLED WEIGHT DECAY REGULARIZATION 论文 <https://
     linear = paddle.nn.Linear(10, 10)
     out = linear(inp)
     loss = paddle.mean(out)
-    adadelta = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1.0e-6, rho=0.95,
+    adadelta = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1e-06, rho=0.95,
             parameters=linear.parameters())
     out.backward()
     adadelta.step()
@@ -81,7 +81,7 @@ step()
     value = paddle.arange(26, dtype='float32')
     a = paddle.reshape(value, [2, 13])
     linear = paddle.nn.Linear(13, 5)
-    adadelta = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1.0e-6, rho=0.95,
+    adadelta = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1e-06, rho=0.95,
                                 parameters = linear.parameters())
     out = linear(a)
     out.backward()
@@ -119,7 +119,7 @@ minimize(loss, startup_program=None, parameters=None, no_grad_set=None)
     beta1 = paddle.to_tensor([0.9], dtype="float32")
     beta2 = paddle.to_tensor([0.99], dtype="float32")
 
-    adadelta = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1.0e-6, rho=0.95,
+    adadelta = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1e-06, rho=0.95,
             parameters=linear.parameters())
     out.backward()
     adadelta.minimize(loss)
@@ -144,7 +144,7 @@ clear_grad()
     value = paddle.arange(26, dtype='float32')
     a = paddle.reshape(value, [2, 13])
     linear = paddle.nn.Linear(13, 5)
-    optimizer = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1.0e-6, rho=0.95,
+    optimizer = paddle.optimizer.Adadelta(learning_rate=0.0003, epsilon=1e-06, rho=0.95,
                                      parameters=linear.parameters())
     out = linear(a)
     out.backward()
