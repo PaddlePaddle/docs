@@ -31,9 +31,9 @@ paddle.nn.functional.unfold(x,
 
 ### 转写示例
 ``` python
-# PyTorch 写法：
+# PyTorch 写法
 unfold = nn.functional.unfold(input,kernel_size=(2, 3))
 
 # Paddle 写法
-unfold = nn.functional.unfold(x,kernel_size=[2, 3])
+unfold = nn.functional.unfold(input,kernel_size=[2, 3])
 ```
