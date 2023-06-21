@@ -25,7 +25,7 @@ git clone https://github.com/PaddlePaddle/PaddleClas.git
 export MLU_VISIBLE_DEVICES=0,1,2,3
 
 cd PaddleClas/
-python3.7 -m paddle.distributed.launch --mlus="0,1,2,3" tools/train.py \
+python3.7 -m paddle.distributed.launch --devices="0,1,2,3" tools/train.py \
           -c ./ppcls/configs/ImageNet/ResNet/ResNet50.yaml \
           -o Global.device=mlu
 ```
