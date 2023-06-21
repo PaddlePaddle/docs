@@ -1036,34 +1036,28 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
     Return:
         code_blocks: A list of code-blocks, indent removed.
                      element {'name': the code-block's name, 'id': sequence id.
-                              'codes': codes, 'required': 'gpu'}
+                              'codes': codes, 'required': 'gpu', 'in_examples': bool, code block in `Examples` or not,}
     """
     code_blocks = []
 
     mo = re.search(r"Examples?:", docstr)
 
-    # if lineno > lineno_examples, then mark this codeblock `in_examples`
-    lineno_examples = None
+    if google_style and mo is None:
+        return code_blocks
 
+    example_start = len(docstr) if mo is None else mo.start()
+    docstr_describe = docstr[:example_start].splitlines()
+    docstr_examples = docstr[example_start:].splitlines()
+
+    docstr_list = []
     if google_style:
-        if mo is None:
-            return code_blocks
-
-        ds_list = docstr[mo.start() :].replace("\t", '    ').split("\n")
-        lineno_examples = 0
-
+        example_lineno = 0
+        docstr_list = docstr_examples
     else:
-        if mo is None:
-            ds_list = docstr.replace("\t", '    ').split("\n")
-            lineno_examples = len(ds_list)
+        example_lineno = len(docstr_describe)
+        docstr_list = docstr_describe + docstr_examples
 
-        else:
-            ds_list = docstr[: mo.start()].replace("\t", '    ').split("\n")
-
-            lineno_examples = len(ds_list)
-            ds_list += docstr[mo.start() :].replace("\t", '    ').split("\n")
-
-    lastlineindex = len(ds_list) - 1
+    lastlineindex = len(docstr_list) - 1
 
     cb_start_pat = re.compile(r"code-block::\s*python")
     cb_param_pat = re.compile(r"^\s*:(\w+):\s*(\S*)\s*$")
@@ -1096,7 +1090,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
             }
         )
 
-    for lineno, linecont in enumerate(ds_list):
+    for lineno, linecont in enumerate(docstr_list):
         if re.search(cb_start_pat, linecont):
             if not cb_info['cb_started']:
                 _cb_started()
@@ -1104,7 +1098,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
             else:
                 # cur block end
                 if len(cb_info['cb_cur']):
-                    _append_code_block(lineno > lineno_examples)
+                    _append_code_block(lineno > example_lineno)
                 _cb_started()  # another block started
                 cb_info['cb_cur_indent'] = -1
                 cb_info['cb_cur'] = []
@@ -1129,7 +1123,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
                     ):
                         cb_info['cb_cur'].append(linecont)
                     if len(cb_info['cb_cur']):
-                        _append_code_block(lineno > lineno_examples)
+                        _append_code_block(lineno > example_lineno)
                     break
                 # check indent for cur block start and end.
                 if cb_info['cb_cur_indent'] < 0:
@@ -1152,7 +1146,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
                         else:
                             # block end
                             if len(cb_info['cb_cur']):
-                                _append_code_block(lineno > lineno_examples)
+                                _append_code_block(lineno > example_lineno)
                             cb_info['cb_started'] = False
                             cb_info['cb_cur_indent'] = -1
                             cb_info['cb_cur'] = []

@@ -21,9 +21,6 @@ from copy_codes_from_en_doc import (
     instert_codes_into_cn_rst_if_need,
 )
 
-api_info_dict = {}
-api_name_2_id_map = {}
-
 
 class CopyCodesTest(unittest.TestCase):
     def recovery_rst(self, cnrstfilename, rst_lines):
@@ -59,6 +56,11 @@ class CopyCodesTest(unittest.TestCase):
                 './test/case_0_RecordEvent_cn_api_info_all.json',
                 './test/case_0_RecordEvent_cn.rst.source',
                 './test/case_0_RecordEvent_cn.rst.target',
+            ),
+            (
+                './test/case_0_clip_RecordEvent_cn_api_info_all.json',
+                './test/case_0_clip_RecordEvent_cn.rst.source',
+                './test/case_0_clip_RecordEvent_cn.rst.target',
             ),
             (
                 './test/case_0_scatter_cn_api_info_all.json',
