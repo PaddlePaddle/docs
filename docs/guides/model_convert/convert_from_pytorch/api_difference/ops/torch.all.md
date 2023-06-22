@@ -1,4 +1,4 @@
-## [ 仅参数名不一致 ]torch.all
+## [ 参数不一致 ]torch.all
 
 ### [torch.all](https://pytorch.org/docs/stable/generated/torch.all.html?highlight=all#torch.all)
 
@@ -15,11 +15,20 @@ paddle.all(x,
            name=None)
 ```
 
-其中 Paddle 相比 Pytorch 支持更多其他参数，具体如下：
+其中 Paddle 与 Pytorch 的 `input` 参数所支持的类型不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
-| <font color='red'> input </font>         | <font color='red'> x </font>            | 输入的多维 Tensor ，仅参数名不同。                   |
+| input        | x           | 输入的多维 Tensor ，PyTorch 支持布尔和数值类型的输入，Paddle 仅支持布尔类型，需要进行转写。                   |
 | -             | <font color='red'> axis </font>         | 计算逻辑与运算的维度，Pytorch 无，保持默认即可。               |
 | -             | <font color='red'> keepdim </font>      | 是否在输出 Tensor 中保留减小的维度，Pytorch 无，保持默认即可。  |
+
+### 转写示例
+```python
+# PyTorch 写法
+y = torch.all(x)
+
+# Paddle 写法
+y = paddle.all(x.astype('bool'))
+```
