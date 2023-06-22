@@ -283,6 +283,7 @@
 | 252   |  [torch.frexp](https://pytorch.org/docs/1.13/generated/torch.frexp.html?highlight=frexp#torch.frexp)  |  [paddle.frexp](暂无对应文档)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.frexp.md)  |
 | 253   |  [torch.nanmean](https://pytorch.org/docs/1.13/generated/torch.nanmean.html?highlight=nanmean#torch.nanmean)  |  [paddle.nanmean](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/nanmean_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.nanmean.md)  |
 | 254   |  [torch.take_along_dim](https://pytorch.org/docs/1.13/generated/torch.take_along_dim.html?highlight=torch+take_along_dim#torch.take_along_dim)  |  [paddle.take_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/take_along_axis_cn.html)  |    功能一致, torch 参数更多 , [差异对比](https://github.com/PaddlePaddle/docs/tree/develop/docs/guides/model_convert/convert_from_pytorch/api_difference/ops/torch.take_along_dim.md)  |
+| 254   |  [torch.geqrf](https://pytorch.org/docs/stable/generated/torch.geqrf.html?highlight=geqrf#torch.geqrf)  |   |    功能缺失  |
 
 ***持续更新...***
 

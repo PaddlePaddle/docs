@@ -3,13 +3,24 @@
 ### [torch.searchsorted](https://pytorch.org/docs/1.13/generated/torch.searchsorted.html#torch-searchsorted)
 
 ```python
-torch.searchsorted(sorted_sequence, values, *, out_int32=False, right=False, side='left', out=None, sorter=None)
+torch.searchsorted(sorted_sequence,
+                   values,
+                   *,
+                   out_int32=False,
+                   right=False,
+                   side='left',
+                   out=None,
+                   sorter=None)
 ```
 
 ### [paddle.searchsorted](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/searchsorted_cn.html#searchsorted)
 
 ```python
-paddle.searchsorted(sorted_sequence, values, out_int32=False, right=False, name=None)
+paddle.searchsorted(sorted_sequence,
+                    values,
+                    out_int32=False,
+                    right=False,
+                    name=None)
 ```
 
 其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
@@ -25,6 +36,7 @@ paddle.searchsorted(sorted_sequence, values, out_int32=False, right=False, name=
 | out     | -       | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
 | sorter     | -       | 表示 sorted_sequence 元素无序时对应的升序索引，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
 
+### 转写示例
 #### side：指定查找对应的上边界或下边界
 
 ```python
