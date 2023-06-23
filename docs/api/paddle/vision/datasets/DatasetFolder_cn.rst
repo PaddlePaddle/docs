@@ -8,16 +8,7 @@ DatasetFolder
 
 一种通用的数据加载方式，数据需要以如下的格式存放：
 
-.. code-block:: text
-
-    root/class_a/1.ext
-    root/class_a/2.ext
-    root/class_a/3.ext
-
-    root/class_b/123.ext
-    root/class_b/456.ext
-    root/class_b/789.ext
-
+COPY-FROM: paddle.vision.datasets.DatasetFolder:example1
 
 参数
 ::::::::::::
@@ -44,4 +35,4 @@ DatasetFolder
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.vision.datasets.DatasetFolder
+COPY-FROM: paddle.vision.datasets.DatasetFolder:example2
