@@ -2593,3 +2593,43 @@ i1e(x, name=None)
 返回类型：Tensor
 
 请参考 :ref:`cn_api_paddle_tensor_i1e`
+
+polygamma
+:::::::::
+用于计算输入的 Tensor 的多伽马函数。
+
+返回：返回多伽马函数对应输出 tensor
+
+返回类型：tensor
+
+请参考 :ref:`cn_api_paddle_tensor_polygamma`
+
+pca_lowrank(x, q=None, center=True, niter=2, name=None)
+:::::::::
+计算在低秩矩阵，批次的矩阵，或稀疏矩阵上的线性主成分分析(PCA)。
+
+返回：对输入矩阵的主成分分析结果。
+
+返回类型：tuple，包含结果（U，S，V）。
+
+请参考 :ref:`cn_api_linalg_pca_lowrank`
+
+cummax(x, axis=None, dtype='int64', name=None)
+:::::::::
+沿给定 axis 计算 Tensor x 的累计最大值。
+
+返回：计算后的 Tensor 和对应索引 Indices。
+
+返回类型：Tensor，包含计算结果和索引。
+
+请参考 :ref:`cn_api_tensor_cn_cummax`
+
+cummin(x, axis=None, dtype='int64', name=None)
+:::::::::
+沿给定 axis 计算 Tensor x 的累计最小值。
+
+返回：计算后的 Tensor 和对应索引 Indices。
+
+返回类型：Tensor，包含计算结果和索引。
+
+请参考 :ref:`cn_api_tensor_cn_cummin`
