@@ -7,25 +7,7 @@ send_u_recv
 
 主要应用于图学习领域，目的是为了减少在消息传递过程中带来的中间变量显存或内存的损耗。其中，``x`` 作为输入的节点特征 Tensor，首先利用 ``src_index`` 作为索引来 gather 出在 ``x`` 中相应位置的数据，随后再将 gather 出的结果利用 ``dst_index`` 来更新到对应的输出结果中，其中 ``reduce_op`` 表示不同的更新方式，包括 sum、mean、max、min 共计 4 种处理模式。另外，提供了 ``out_size`` 参数，用于设置实际输出的形状，有利于减少实际显存占用。
 
-.. code-block:: text
-
-        X = [[0, 2, 3],
-             [1, 4, 5],
-             [2, 6, 7]]
-
-        src_index = [0, 1, 2, 0]
-
-        dst_index = [1, 2, 1, 0]
-
-        reduce_op = "sum"
-
-        out_size = None
-
-        Then:
-
-        Out = [[0, 2, 3],
-               [2, 8, 10],
-               [1, 4, 5]]
+COPY-FROM: paddle.geometric.send_u_recv:example1
 
 参数
 :::::::::
@@ -44,4 +26,4 @@ send_u_recv
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.geometric.send_u_recv
+COPY-FROM: paddle.geometric.send_u_recv:example2

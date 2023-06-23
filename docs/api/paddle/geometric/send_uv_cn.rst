@@ -7,23 +7,7 @@ send_uv
 
 主要应用于图学习领域，目的是为了减少在消息传递过程中带来的中间变量显存或内存的损耗。其中，``x`` 作为输入的节点特征 Tensor，首先利用 ``src_index`` 作为索引来 gather 出在 ``x`` 中相应位置的数据，接着利用 ``dst_index`` gather 出 ``y`` 中相应位置的数据，再通过 ``message_op`` 确认计算方式，最终返回。其中，``message_op`` 包括另外 add、sub、mul、div 共计四种计算方式。
 
-.. code-block:: text
-
-        x = [[0, 2, 3],
-             [1, 4, 5],
-             [2, 6, 7]]
-
-        src_index = [0, 1, 2, 0]
-
-        dst_index = [1, 2, 1, 0]
-
-        message_op = "add"
-
-        Then:
-
-        Out = [[0, 2, 3],
-               [2, 8, 10],
-               [1, 4, 5]]
+COPY-FROM: paddle.geometric.send_uv:example1
 
 参数
 :::::::::
@@ -41,4 +25,4 @@ send_uv
 代码示例
 ::::::::::
 
-COPY-FROM: paddle.geometric.send_uv
+COPY-FROM: paddle.geometric.send_uv:example2
