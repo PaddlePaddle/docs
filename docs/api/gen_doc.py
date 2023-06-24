@@ -1025,6 +1025,23 @@ def filter_out_object_of_api_info_dict():
             del api_info_dict[id_api]['object']
 
 
+def strip_ps1_from_codeblock(codeblock):
+    """strip PS1(>>> ) from codeblock"""
+    mo = re.search(r"\n>>>\s?", "\n" + codeblock)
+    if mo is None:
+        return codeblock
+
+    codeblock_clean = []
+    for line in codeblock.splitlines():
+        mo = re.match(r"^>>>\s?", line.lstrip())
+        if mo is None:
+            codeblock_clean.append("# {}".format(line))
+        else:
+            codeblock_clean.append(line[mo.end() :])
+
+    return "\n".join(codeblock_clean)
+
+
 def extract_code_blocks_from_docstr(docstr, google_style=True):
     """
     extract code-blocks from the given docstring.
@@ -1082,7 +1099,9 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
         # nonlocal code_blocks, cb_cur, cb_cur_name, cb_cur_seq_id, cb_required
         code_blocks.append(
             {
-                'codes': inspect.cleandoc("\n".join(cb_info['cb_cur'])),
+                'codes': strip_ps1_from_codeblock(
+                    inspect.cleandoc("\n".join(cb_info['cb_cur']))
+                ),
                 'name': cb_info['cb_cur_name'],
                 'id': cb_info['cb_cur_seq_id'],
                 'required': cb_info['cb_required'],

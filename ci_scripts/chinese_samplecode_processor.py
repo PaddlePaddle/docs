@@ -1,3 +1,4 @@
+import re
 import math
 import os
 import pickle
@@ -83,6 +84,23 @@ def find_all(src_str, substr):
     return indices
 
 
+def strip_ps1_from_codeblock(codeblock):
+    """strip PS1(>>> ) from codeblock"""
+    mo = re.search(r"\n>>>\s?", "\n" + codeblock)
+    if mo is None:
+        return codeblock
+
+    codeblock_clean = []
+    for line in codeblock.splitlines():
+        mo = re.match(r"^>>>\s?", line.lstrip())
+        if mo is None:
+            codeblock_clean.append("# {}".format(line))
+        else:
+            codeblock_clean.append(line[mo.end() :])
+
+    return "\n".join(codeblock_clean)
+
+
 def extract_sample_code(srcfile, status_all):
     filename = srcfile.name
     srcc = srcfile.read()
@@ -129,7 +147,9 @@ def extract_sample_code(srcfile, status_all):
                     if srcls[j].find(" code-block:: python") != -1:
                         break
                     content += srcls[j].replace(startindent, "", 1)
-                status.append(run_sample_code(content, filename))
+                status.append(
+                    run_sample_code(strip_ps1_from_codeblock(content), filename)
+                )
 
     status_all[filename] = status
     return status_all
