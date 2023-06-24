@@ -2,7 +2,7 @@
 
 poisson_nll_loss
 -------------------------------
-.. py:function:: paddle.nn.functional.poisson_nll_loss(input, label, log_input=False, full=False, eps=1e-8, reduction='mean', name=None)
+.. py:function:: paddle.nn.functional.poisson_nll_loss(input, label, log_input=True, full=False, eps=1e-8, reduction='mean', name=None)
 
 返回 `poisson negative log likelihood`。可在 :ref:`cn_api_paddle_nn_PoissonNLLLoss` 查看详情。
 
