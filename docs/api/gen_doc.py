@@ -1027,17 +1027,17 @@ def filter_out_object_of_api_info_dict():
 
 def strip_ps1_from_codeblock(codeblock):
     """strip PS1(>>> ) from codeblock"""
-    mo = re.search(r"\n>>>\s?", "\n" + codeblock)
-    if mo is None:
+    match_obj = re.search(r"\n>>>\s?", "\n" + codeblock)
+    if match_obj is None:
         return codeblock
 
     codeblock_clean = []
     for line in codeblock.splitlines():
-        mo = re.match(r"^>>>\s?", line.lstrip())
-        if mo is None:
+        match_obj = re.match(r"^>>>\s?", line.lstrip())
+        if match_obj is None:
             codeblock_clean.append("# {}".format(line))
         else:
-            codeblock_clean.append(line[mo.end() :])
+            codeblock_clean.append(line[match_obj.end() :])
 
     return "\n".join(codeblock_clean)
 
