@@ -24,15 +24,7 @@ InputSpec
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    from paddle.static import InputSpec
-
-    input = InputSpec([None, 784], 'float32', 'x')
-    label = InputSpec([None, 1], 'int64', 'label')
-    print(input)  # InputSpec(shape=(-1, 784), dtype=paddle.float32, name=x)
-    print(label)  # InputSpec(shape=(-1, 1), dtype=paddle.int64, name=label)
-
+COPY-FROM: paddle.static.InputSpec:code-example1
 
 方法
 ::::::::::::
@@ -53,15 +45,7 @@ from_tensor(tensor, name=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import numpy as np
-    import paddle
-    from paddle.static import InputSpec
-
-    x = paddle.to_tensor(np.ones([2, 2], np.float32))
-    x_spec = InputSpec.from_tensor(x, name='x')
-    print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x)
+COPY-FROM: paddle.static.InputSpec:code-example2
 
 
 from_numpy(ndarray, name=None)
@@ -81,14 +65,7 @@ from_numpy(ndarray, name=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import numpy as np
-    from paddle.static import InputSpec
-
-    x = np.ones([2, 2], np.float32)
-    x_spec = InputSpec.from_numpy(x, name='x')
-    print(x_spec)  # InputSpec(shape=(2, 2), dtype=paddle.float32, name=x)
+COPY-FROM: paddle.static.InputSpec:code-example3
 
 
 batch(batch_size)
@@ -106,13 +83,7 @@ batch(batch_size)
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.static import InputSpec
-
-    x_spec = InputSpec(shape=[64], dtype='float32', name='x')
-    x_spec.batch(4)
-    print(x_spec)  # InputSpec(shape=(4, 64), dtype=paddle.float32, name=x)
+COPY-FROM: paddle.static.InputSpec:code-example4
 
 
 unbatch()
@@ -127,10 +98,4 @@ unbatch()
 
 **代码示例**
 
-.. code-block:: python
-
-    from paddle.static import InputSpec
-
-    x_spec = InputSpec(shape=[4, 64], dtype='float32', name='x')
-    x_spec.unbatch()
-    print(x_spec)  # InputSpec(shape=(64,), dtype=paddle.float32, name=x)
+COPY-FROM: paddle.static.InputSpec:code-example5

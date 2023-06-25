@@ -22,22 +22,7 @@ Program，创建的空的 Program。
 代码示例
 ::::::::::
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    main_program = static.Program()
-    startup_program = static.Program()
-    with static.program_guard(main_program=main_program, startup_program=startup_program):
-        x = static.data(name="x", shape=[-1, 784], dtype='float32')
-        y = static.data(name="y", shape=[-1, 1], dtype='int32')
-        z = static.nn.fc(name="fc", x=x, size=10, activation="relu")
-
-    print("main program is: {}".format(main_program))
-    print("start up program is: {}".format(startup_program))
+COPY-FROM: paddle.static.Program:code-example1
 
 
 方法
@@ -59,20 +44,7 @@ str，由 Program 转换得到的字符串。
 
 **代码示例**
 
-.. code-block:: python
-
-        import paddle
-        import paddle.static as static
-
-        paddle.enable_static()
-
-        prog = static.default_main_program()
-        x = static.data(name="X", shape=[2,3], dtype="float32")
-        pred = static.nn.fc(x, size=3)
-        prog_string = prog.to_string(throw_on_error=True, with_details=False)
-        prog_string_with_details = prog.to_string(throw_on_error=False, with_details=True)
-        print("program string without detail: {}".format(prog_string))
-        print("program string with detail: {}".format(prog_string_with_details))
+COPY-FROM: paddle.static.Program:code-example2
 
 clone(for_test=False)
 '''''''''
@@ -91,20 +63,7 @@ clone(for_test=False)
 
 **代码示例**
 
-.. code-block:: python
-
-        import paddle
-        import paddle.static as static
-
-        paddle.enable_static()
-
-        img = static.data(name='image', shape=[None, 784])
-        pred = static.nn.fc(x=img, size=10, activation='relu')
-        loss = paddle.mean(pred)
-        # Here we use clone before Momentum
-        test_program = static.default_main_program().clone(for_test=True)
-        optimizer = paddle.optimizer.Momentum(learning_rate=0.01, momentum=0.9)
-        optimizer.minimize(loss)
+COPY-FROM: paddle.static.Program:code-example3
 
 **参数**
 
@@ -120,116 +79,15 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
 .. note::
     Program 在 clone 后的顺序可能不同，这不会影响的训练或测试进程。在下面的示例中，我们提供了一个简单的方法 print_prog（Program）来打印程序描述，以确保 clone 后仍能得到同样的打印结果：
 
-.. code-block:: python
-
-    def print_prog(prog):
-        for name, value in sorted(prog.block(0).vars.items()):
-            print(value)
-        for op in prog.block(0).ops:
-            print("op type is {}".format(op.type))
-            print("op inputs are {}".format(op.input_arg_names))
-            print("op outputs are {}".format(op.output_arg_names))
-            for key, value in sorted(op.all_attrs().items()):
-                if key not in ['op_callstack', 'op_role_var']:
-                    print(" [ attrs: {}:   {} ]".format(key, value))
+COPY-FROM: paddle.static.Program:code-example4
 
 1. 克隆一个 Program，示例代码如下。
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-    import paddle.utils as utils
-    import paddle.nn.functional as F
-
-    paddle.enable_static()
-
-    def print_prog(prog):
-        for name, value in sorted(prog.block(0).vars.items()):
-            print(value)
-        for op in prog.block(0).ops:
-            print("op type is {}".format(op.type))
-            print("op inputs are {}".format(op.input_arg_names))
-            print("op outputs are {}".format(op.output_arg_names))
-            for key, value in sorted(op.all_attrs().items()):
-                if key not in ['op_callstack', 'op_role_var']:
-                    print(" [ attrs: {}:   {} ]".format(key, value))
-
-    train_program = static.Program()
-    startup_program = static.Program()
-
-    # startup_program is used to do some parameter init work,
-    # and main program is used to hold the network
-    with static.program_guard(train_program, startup_program):
-        with utils.unique_name.guard():
-            img = static.data(name='image', shape=[None, 784])
-            hidden = static.nn.fc(x=img, size=200, activation='relu')
-            hidden = F.dropout(hidden, p=0.5)
-            loss = F.cross_entropy(
-                input=static.nn.fc(x=hidden, size=10, activation='softmax'),
-                label=static.data(name='label', shape=[1], dtype='int64'))
-            avg_loss = paddle.mean(loss)
-            test_program = train_program.clone(for_test=True)
-    print_prog(test_program)
-
-    # Due to parameter sharing usage for train and test, so we need to use startup program of train
-    # instead of using test startup program, while nothing is in test's startup program
-
-    # In Paddle we will share weights by using the same Tensor name. In train and test program
-    # all parameters will have the same name and this can make train and test program sharing parameters,
-    # that's why we need to use startup program of train. And for startup program of test, it has nothing,
-    # since it is a new program.
-
-    with static.program_guard(train_program, startup_program):
-        with utils.unique_name.guard():
-            sgd = paddle.optimizer.SGD(learning_rate=1e-3)
-            sgd.minimize(avg_loss)
+COPY-FROM: paddle.static.Program:code-example5
 
 2. 如果分别运行 train Program 和 test Program，则可以不使用 clone。
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-    import paddle.utils as utils
-    import paddle.nn.functional as F
-
-    paddle.enable_static()
-
-    def print_prog(prog):
-        for name, value in sorted(prog.block(0).vars.items()):
-            print(value)
-        for op in prog.block(0).ops:
-            print("op type is {}".format(op.type))
-            print("op inputs are {}".format(op.input_arg_names))
-            print("op outputs are {}".format(op.output_arg_names))
-            for key, value in sorted(op.all_attrs().items()):
-                if key not in ['op_callstack', 'op_role_var']:
-                    print(" [ attrs: {}:   {} ]".format(key, value))
-
-    def network():
-        img = static.data(name='image', shape=[None, 784])
-        hidden = static.nn.fc(x=img, size=200, activation='relu')
-        hidden = F.dropout(hidden, p=0.5)
-        loss = F.cross_entropy(
-            input=static.nn.fc(x=hidden, size=10, activation='softmax'),
-            label=static.data(name='label', shape=[1], dtype='int64'))
-        avg_loss = paddle.mean(loss)
-        return avg_loss
-
-    train_program_2 = static.Program()
-    startup_program_2 = static.Program()
-    test_program_2 = static.Program()
-    with static.program_guard(train_program_2, startup_program_2):
-        with utils.unique_name.guard():
-            avg_loss = network()
-            sgd = paddle.optimizer.SGD(learning_rate=1e-3)
-            sgd.minimize(avg_loss)
-    # the test startup program is not used.
-    with static.program_guard(test_program_2, startup_program_2):
-        with utils.unique_name.guard():
-            avg_loss = network()
-    print_prog(test_program_2)
+COPY-FROM: paddle.static.Program:code-example6
 
 上边两个代码片段生成和打印的 Program 是一样的。
 
@@ -249,27 +107,7 @@ Program，反序列化后的 Program。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    startup_prog = static.Program()
-    main_prog = static.Program()
-    with static.program_guard(startup_prog, main_prog):
-        x = static.data(name='X', shape=[1000, 784], dtype='float32')
-
-        y = static.data(name='Y', shape=[784, 100], dtype='float32')
-
-        z = paddle.matmul(x=x, y=y)
-
-        binary_str = static.default_main_program().desc.serialize_to_string()
-        prog_restored = static.default_main_program().parse_from_string(binary_str)
-
-        print(static.default_main_program())
-        print(prog_restored)
+COPY-FROM: paddle.static.Program:code-example7
 
 属性
 ::::::::::::
@@ -284,19 +122,7 @@ int，该 Program 中的 :ref:`api_guide_Block` 的个数。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    prog = static.default_main_program()
-    num_blocks = prog.num_blocks
-    print(num_blocks)
-
-    # print result:
-    # 1
+COPY-FROM: paddle.static.Program:code-example8
 
 random_seed
 '''''''''
@@ -312,28 +138,7 @@ int64，该 Program 中当前正在使用的 random seed。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-    import paddle.nn.functional as F
-
-    paddle.enable_static()
-
-    prog = static.default_main_program()
-    random_seed = prog.random_seed
-    x_var = static.data(name="X", shape=[3,3], dtype="float32")
-    print(random_seed)
-    ## 0
-    ## the default random seed is 0
-
-    # Here we need to set random seed before we use paddle.nn.functional.dropout
-    prog.random_seed = 1
-    z_var = F.dropout(x_var, 0.7)
-
-    print(prog.random_seed)
-    ## 1
-    ## the random seed is change to 1
+COPY-FROM: paddle.static.Program:code-example9
 
 global_block()
 '''''''''
@@ -346,16 +151,7 @@ global_block()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    prog = static.default_main_program()
-    gb_block = prog.global_block()
-    print(gb_block)
+COPY-FROM: paddle.static.Program:code-example10
 
 
 block(index)
@@ -373,16 +169,7 @@ block(index)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    prog = static.default_main_program()
-    block_0 = prog.block(0)
-    print(block_0)
+COPY-FROM: paddle.static.Program:code-example11
 
 current_block()
 '''''''''
@@ -395,16 +182,7 @@ current_block()
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    prog = static.default_main_program()
-    current_blk = prog.current_block()
-    print(current_blk)
+COPY-FROM: paddle.static.Program:code-example12
 
 list_vars()
 '''''''''
@@ -417,21 +195,7 @@ Generator，会 yield 每个 Program 中的变量。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    prog = static.default_main_program()
-    img = static.data(name='img', shape=[None, 1,28,28], dtype='float32')
-    label = static.data(name='label', shape=[None,1], dtype='int64')
-    for var in prog.list_vars():
-        print(var)
-
-    # var img : LOD_TENSOR.shape(-1, 1, 28, 28).dtype(float32).stop_gradient(True)
-    # var label : LOD_TENSOR.shape(-1, 1).dtype(int64).stop_gradient(True)
+COPY-FROM: paddle.static.Program:code-example13
 
 all_parameters()
 '''''''''
@@ -444,31 +208,7 @@ list[ :ref:`api_guide_parameter` ]，一个包含当前 Program 中所有参数�
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    program = static.default_main_program()
-    data = static.data(name='x', shape=[None, 13], dtype='float32')
-    hidden = static.nn.fc(x=data, size=10)
-    loss = paddle.mean(hidden)
-    paddle.optimizer.SGD(learning_rate=0.01).minimize(loss)
-
-    for param in program.all_parameters():
-        print(param)
-
-    # Here will print all parameters in current program, in this example,
-    # the result is like:
-    #
-    # persist trainable param fc_0.w_0 : LOD_TENSOR.shape(13, 10).dtype(float32).stop_gradient(False)
-    # persist trainable param fc_0.b_0 : LOD_TENSOR.shape(10,).dtype(float32).stop_gradient(False)
-    #
-    # Here print(param) will print out all the properties of a parameter,
-    # including name, type and persistable, you can access to specific
-    # property of a parameter, such as param.name, param.type
+COPY-FROM: paddle.static.Program:code-example14
 
 state_dict(mode='all', scope=None)
 '''''''''
@@ -486,24 +226,7 @@ dict，包含持久性变量的 dict，键值是持久性变量的名字，值�
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    x = static.data(name="x", shape=[10, 10], dtype='float32')
-    y = static.nn.fc(x, 10)
-    z = static.nn.fc(y, 10)
-
-    place = paddle.CPUPlace()
-    exe = static.Executor(place)
-    exe.run(static.default_startup_program())
-    prog = static.default_main_program()
-
-    path = "./temp/model.pdparams"
-    paddle.save(prog.state_dict(), path)
+COPY-FROM: paddle.static.Program:code-example15
 
 set_state_dict(state_dict, scope=None)
 '''''''''
@@ -521,23 +244,4 @@ set_state_dict(state_dict, scope=None)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    import paddle.static as static
-
-    paddle.enable_static()
-
-    x = static.data(name="x", shape=[10, 10], dtype='float32')
-    y = static.nn.fc(x, 10)
-    z = static.nn.fc(y, 10)
-
-    place = paddle.CPUPlace()
-    exe = static.Executor(place)
-    exe.run(static.default_startup_program())
-    prog = static.default_main_program()
-
-    path = "./temp/model.pdparams"
-    paddle.save(prog.state_dict(), path)
-    state_dict_load = paddle.load(path)
-    prog.set_state_dict(state_dict_load)
+COPY-FROM: paddle.static.Program:code-example16
