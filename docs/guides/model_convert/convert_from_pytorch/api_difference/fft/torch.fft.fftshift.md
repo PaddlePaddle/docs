@@ -18,3 +18,13 @@ paddle.fft.fftshift(x, axes=None, name=None)
 | ------------- | ------------ | ------------------------------------------------------ |
 | input           | x           | 输入 Tensor，仅参数名不一致。               |
 | dim           | axes           | 进行移动的轴，仅参数名不一致。               |
+
+### 转写示例
+#### other
+```python
+# PyTorch 写法
+torch.fft.fftshift(f)
+
+# Paddle 写法
+paddle.fft.fftshift(f)
+```
