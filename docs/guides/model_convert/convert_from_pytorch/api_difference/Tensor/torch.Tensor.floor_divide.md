@@ -3,7 +3,7 @@
 ### [torch.Tensor.floor_divide](https://pytorch.org/docs/stable/generated/torch.Tensor.floor_divide.html?highlight=floor_divide#torch.Tensor.floor_divide)
 
 ```python
-torch.Tensor.floor_divide(value)
+torch.Tensor.floor_divide(other)
 ```
 
 ### [paddle.Tesnor.floor_divide](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/Tensor_cn.html#floor-divide-y-name-none)
