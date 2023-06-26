@@ -27,7 +27,7 @@ Bernoulli
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.distribution.Bernoulli:code-example1
+COPY-FROM: paddle.distribution.Bernoulli
 
 属性
 :::::::::
@@ -68,7 +68,7 @@ Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} +
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Bernoulli:code-example2
+COPY-FROM: paddle.distribution.Bernoulli.sample
 
 rsample(shape, temperature=1.0)
 '''''''''
@@ -95,7 +95,7 @@ Tensor，样本，其维度为 :math:`\text{sample shape} + \text{batch shape} +
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Bernoulli:code-example3
+COPY-FROM: paddle.distribution.Bernoulli.rsample
 
 cdf(value)
 '''''''''
@@ -121,7 +121,7 @@ Tensor， ``value`` 的累积分布函数。
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Bernoulli:code-example4
+COPY-FROM: paddle.distribution.Bernoulli.cdf
 
 log_prob(value)
 '''''''''
@@ -138,7 +138,7 @@ Tensor， ``value`` 的对数概率密度函数。
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Bernoulli:code-example5
+COPY-FROM: paddle.distribution.Bernoulli.log_prob
 
 prob(value)
 '''''''''
@@ -163,7 +163,7 @@ Tensor， ``value`` 的概率密度函数。
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Bernoulli:code-example6
+COPY-FROM: paddle.distribution.Bernoulli.prob
 
 entropy()
 '''''''''
@@ -182,7 +182,7 @@ Tensor，伯努利分布的信息熵。
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Bernoulli:code-example7
+COPY-FROM: paddle.distribution.Bernoulli.entropy
 
 kl_divergence(other)
 '''''''''
@@ -205,4 +205,4 @@ Tensor，两个伯努利分布之间的 KL 散度。
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Bernoulli:code-example8
+COPY-FROM: paddle.distribution.Bernoulli.kl_divergence
