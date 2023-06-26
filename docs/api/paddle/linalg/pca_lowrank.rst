@@ -6,7 +6,7 @@ pca_lowrank
 .. py:function:: paddle.linalg.pca_lowrank(x, q=None, center=True, niter=2, name=None)
 
 
-计算在低秩矩阵或者批次的矩阵上的线性主成分分析(PCA)。
+计算在低秩矩阵或者批次的矩阵上的线性主成分分析（PCA）。
 
 记 :math:`X` 为一个矩阵或者批次矩阵，输出结果满足：
 

@@ -370,9 +370,9 @@ backward(grad_tensor=None, retain_graph=False)
 从当前 Tensor 开始计算反向的神经网络，传导并计算计算图中 Tensor 的梯度。
 
 参数：
-    - **grad_tensor** (Tensor, optional) - 当前 Tensor 的初始梯度值。如果 ``grad_tensor`` 是 None，当前 Tensor 的初始梯度值将会是值全为 1.0 的 Tensor；如果 ``grad_tensor`` 不是 None，必须和当前 Tensor 有相同的长度。默认值：None。
+    - **grad_tensor** (Tensor, 可选) - 当前 Tensor 的初始梯度值。如果 ``grad_tensor`` 是 None，当前 Tensor 的初始梯度值将会是值全为 1.0 的 Tensor；如果 ``grad_tensor`` 不是 None，必须和当前 Tensor 有相同的长度。默认值：None。
 
-    - **retain_graph** (bool, optional) - 如果为 False，反向计算图将被释放。如果在 backward()之后继续添加 OP，
+    - **retain_graph** (bool, 可选) - 如果为 False，反向计算图将被释放。如果在 backward()之后继续添加 OP，
       需要设置为 True，此时之前的反向计算图会保留。将其设置为 False 会更加节省内存。默认值：False。
 
 返回：无
@@ -682,8 +682,8 @@ cuda(device_id=None, blocking=False)
 如果当前 Tensor 已经在 GPU 上，且 device_id 为 None，则不会发生任何拷贝。
 
 参数：
-    - **device_id** (int, optional) - 目标 GPU 的设备 Id，默认为 None，此时为当前 Tensor 的设备 Id，如果当前 Tensor 不在 GPU 上，则为 0。
-    - **blocking** (bool, optional) - 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为 False。
+    - **device_id** (int, 可选) - 目标 GPU 的设备 Id，默认为 None，此时为当前 Tensor 的设备 Id，如果当前 Tensor 不在 GPU 上，则为 0。
+    - **blocking** (bool, 可选) - 如果为 False 并且当前 Tensor 处于固定内存上，将会发生主机到设备端的异步拷贝。否则，会发生同步拷贝。默认为 False。
 
 返回：拷贝到 GPU 上的 Tensor
 
@@ -981,8 +981,8 @@ fill_diagonal_(x, value, offset=0, wrap=False, name=None)
 参数：
     - **x** (Tensor) - 需要修改对角线元素值的原始 Tensor。
     - **value** (float) - 以输入 value 值修改原始 Tensor 对角线元素。
-    - **offset** (int, optional) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
-    - **wrap** (bool, optional) - 对于 2 维 Tensor，height>width 时是否循环填充，默认为 False。
+    - **offset** (int，可选) - 所选取对角线相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
+    - **wrap** (bool，可选) - 对于 2 维 Tensor，height>width 时是否循环填充，默认为 False。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回：修改原始 Tensor x 的对角线元素为 value 以后的新的 Tensor。
@@ -1008,9 +1008,9 @@ fill_diagonal_tensor(x, y, offset=0, dim1=0, dim2=1, name=None)
 参数：
     - **x** (Tensor) - 需要填充局部对角线区域的原始 Tensor。
     - **y** (Tensor) - 需要被填充到原始 Tensor x 对角线区域的输入 Tensor。
-    - **offset** (int, optional) - 选取局部区域对角线位置相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
-    - **dim1** (int, optional) - 指定对角线所参考第一个维度，默认为 0。
-    - **dim2** (int, optional) - 指定对角线所参考第二个维度，默认为 1。
+    - **offset** (int，可选) - 选取局部区域对角线位置相对原始主对角线位置的偏移量，正向右上方偏移，负向左下方偏移，默认为 0。
+    - **dim1** (int，可选) - 指定对角线所参考第一个维度，默认为 0。
+    - **dim2** (int，可选) - 指定对角线所参考第二个维度，默认为 1。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 
 返回：将 y 的值填充到输入 Tensor x 对角线区域以后所组合成的新 Tensor。
@@ -2304,9 +2304,9 @@ Inplace 版本的 :ref:`cn_api_tensor_uniform`，返回一个从均匀分布采�
 
 参数：
     - **x** (Tensor) - 待被随机数填充的输入 Tensor。
-    - **min** (float|int, optional) - 生成随机数的下界，min 包含在该范围内。默认为-1.0。
-    - **max** (float|int, optional) - 生成随机数的上界，max 不包含在该范围内。默认为 1.0。
-    - **seed** (int, optional) - 用于生成随机数的随机种子。如果 seed 为 0，将使用全局默认生成器的种子（可通过 paddle.seed 设置）。
+    - **min** (float|int，可选) - 生成随机数的下界，min 包含在该范围内。默认为-1.0。
+    - **max** (float|int，可选) - 生成随机数的上界，max 不包含在该范围内。默认为 1.0。
+    - **seed** (int，可选) - 用于生成随机数的随机种子。如果 seed 为 0，将使用全局默认生成器的种子（可通过 paddle.seed 设置）。
                                  注意如果 seed 不为 0，该操作每次将生成同一个随机值。默认为 0。
     - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
 

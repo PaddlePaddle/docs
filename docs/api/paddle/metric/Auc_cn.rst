@@ -19,7 +19,7 @@ Auc
 
     - **curve** (str) - 将要计算的曲线名的模式，包括'ROC'（默认）或者'PR'（Precision-Recall-curve）。
     - **num_thresholds** (int) - 离散化 AUC 曲线的整数阈值数，默认是 4095。
-    - **name** (str，可选) – metric 实例的名字，默认是'auc'。
+    - **name** (str，可选) - metric 实例的名字，默认是'auc'。
 
 代码示例 1
 ::::::::::::
