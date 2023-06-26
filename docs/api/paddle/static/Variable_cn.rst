@@ -41,7 +41,7 @@ to_string(throw_on_error, with_details=True)
 
 
 **代码示例**
-COPY-FROM: paddle.static.Variable:code-example2
+COPY-FROM: paddle.static.Variable.to_string
 
 
 clone(self)
@@ -54,7 +54,7 @@ clone(self)
 复制的新 ``Variable``。
 
 **代码示例**
-COPY-FROM: paddle.static.Variable:code-example3
+COPY-FROM: paddle.static.Variable.clone
 
 
 detach(self)
@@ -67,7 +67,7 @@ detach(self)
 与当前计算图分离的 ``Variable``。
 
 **代码示例**
-COPY-FROM: paddle.static.Variable:code-example4
+COPY-FROM: paddle.static.Variable.detach
 
 
 astype(self, dtype)
@@ -87,7 +87,7 @@ astype(self, dtype)
 
 
 **代码示例**
-COPY-FROM: paddle.static.Variable:code-example5
+COPY-FROM: paddle.static.Variable.astype
 
 
 get_value(scope=None)
@@ -106,7 +106,7 @@ Tensor， :ref:`api_guide_Variable` 的值。
 **代码示例**
 
 **代码示例**
-COPY-FROM: paddle.static.Variable:code-example6
+COPY-FROM: paddle.static.Variable.get_value
 
 
 set_value(value, scope=None)
@@ -125,7 +125,7 @@ set_value(value, scope=None)
 
 **代码示例**
 
-COPY-FROM: paddle.static.Variable:code-example7
+COPY-FROM: paddle.static.Variable.set_value
 
 
 size(self)
@@ -139,7 +139,7 @@ size(self)
 
 
 **代码示例**
-COPY-FROM: paddle.static.Variable:code-example8
+COPY-FROM: paddle.static.Variable.size
 
 
 ndimension(self)

@@ -24,7 +24,7 @@ InputSpec
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.static.InputSpec:code-example1
+COPY-FROM: paddle.static.InputSpec
 
 方法
 ::::::::::::
@@ -45,7 +45,7 @@ from_tensor(tensor, name=None)
 
 **代码示例**
 
-COPY-FROM: paddle.static.InputSpec:code-example2
+COPY-FROM: paddle.static.InputSpec.from_tensor
 
 
 from_numpy(ndarray, name=None)
@@ -65,7 +65,7 @@ from_numpy(ndarray, name=None)
 
 **代码示例**
 
-COPY-FROM: paddle.static.InputSpec:code-example3
+COPY-FROM: paddle.static.InputSpec.from_numpy
 
 
 batch(batch_size)
@@ -83,7 +83,7 @@ batch(batch_size)
 
 **代码示例**
 
-COPY-FROM: paddle.static.InputSpec:code-example4
+COPY-FROM: paddle.static.InputSpec.batch
 
 
 unbatch()
@@ -98,4 +98,4 @@ unbatch()
 
 **代码示例**
 
-COPY-FROM: paddle.static.InputSpec:code-example5
+COPY-FROM: paddle.static.InputSpec.unbatch
