@@ -12,7 +12,7 @@ Program
 Program 是 Paddle 对于计算图的一种静态描述，使用 Program 的构造函数可以创建一个 Program。Program 中包括至少一个 :ref:`api_guide_Block`，当 :ref:`api_guide_Block` 中存在条件选择的控制流 OP（例如 :ref:`cn_api_fluid_layers_While` 等）时，该 Program 将会含有嵌套着的 :ref:`api_guide_Block` 即控制流外部的 :ref:`api_guide_Block` 将包含着控制流内部的 :ref:`api_guide_Block`，而嵌套的 :ref:`api_guide_Block` 的元素访问控制将由具体的控制流 OP 来决定。关于 Program 具体的结构和包含的类型请参阅 `framework.proto <https://github.com/PaddlePaddle/Paddle/blob/develop/paddle/fluid/framework/framework.proto>`_
 。
 
-一个 Program 的集合通常包含初始化程序(startup_program)与主程序(main_program)，初始化程序是一个包含一些初始化工作的 Program，主程序将会包含用来训练的网络结构和变量，在使用同一个 :ref:`api_guide_executor` 执行时他们会共享初始化工作的结果，例如初始化的参数。一个 Program 的集合可以被用来测试或者训练，被用来训练时，``Paddle`` 将会使用所有用户的 OP 和变量来搭建一个训练网络，被用来测试时，可以通过调用 Program 相关的接口例如：``clone` 剪去一些与测试无关的 OP 和变量，比如反向传播的 OP 和变量。
+一个 Program 的集合通常包含初始化程序（startup_program）与主程序（main_program），初始化程序是一个包含一些初始化工作的 Program，主程序将会包含用来训练的网络结构和变量，在使用同一个 :ref:`api_guide_executor` 执行时他们会共享初始化工作的结果，例如初始化的参数。一个 Program 的集合可以被用来测试或者训练，被用来训练时，``Paddle`` 将会利用所有用户使用的 OP 和变量来搭建一个训练网络，被用来测试时，可以通过调用 Program 相关的接口例如：``clone`` 剪去一些与测试无关的 OP 和变量，比如反向传播的 OP 和变量。
 
 
 返回
@@ -54,7 +54,7 @@ clone(for_test=False)
     2. 此 API 当 ``for_test=True`` 时将会裁剪部分 OP 和变量。为防止错误的裁剪，推荐在 :ref:`cn_api_fluid_backward_append_backward` 和执行优化器之前使用；``clone(for_test=True)`` 。
 
 
-当 ``for_test=True`` 时创建一个新的、仅包含当前 Program 前向内容的 Program。否则创建一个新的和当前 Program 完全相同的 Program 。
+当 ``for_test=True`` 时创建一个新的、仅包含当前 Program 前向内容的 Program。否则创建一个新的和当前 Program 完全相同的 Program。
 
 有些 OP，在训练和测试之间的行为是不同的，比如 :ref:`cn_api_fluid_layers_batch_norm`。它们有一个属性 ``is_test`` 来控制行为。当 ``for_test=True`` 时，此方法将把它们的 ``is_test`` 属性更改为 True。
 
@@ -217,7 +217,7 @@ state_dict(mode='all', scope=None)
 
 **参数**
 
-    - **mode** (str，可选) - 获取何种持久性变量。目前支持以下选项：(1) ``opt`` ：获得优化器的持久性变量放在 ``dict`` 结构中；(2) ``param``：获得组网中的持久性变量放在 ``dict`` 结构中，不包含优化器中的持久性变量；(3) ``all`` ：获得组网和优化器中的持久性变量放在 dict 结构中；默认值为 ``all`` 。
+    - **mode** (str，可选) - 获取何种持久性变量。目前支持以下选项：(1) ``opt``：获得优化器的持久性变量放在 ``dict`` 结构中；(2) ``param``：获得组网中的持久性变量放在 ``dict`` 结构中，不包含优化器中的持久性变量；(3) ``all``：获得组网和优化器中的持久性变量放在 dict 结构中；默认值为 ``all``。
     - **scope** (Scope，可选) - 如果 scope 为 ``None``，通过 `paddle.static.global_scope()` 获取全局/默认作用域实例，并从中获取 ``state_dict``；否则从指定的 ``scope`` 获取 ``state_dict``。默认值为 ``None`` 。
 
 **返回**

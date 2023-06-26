@@ -7,10 +7,10 @@ cond
 .. py:function:: paddle.static.nn.cond(pred, true_fn=None, false_fn=None, name=None, return_names=None)
 
 
-如果 ``pred`` 是 ``True``，该 API 返回 ``true_fn()``，否则返回 ``false_fn()`` 。
-用户如果不想在 ``callable`` 中做任何事，可以把 ``true_fn`` 或 ``false_fn`` 设为 ``None``，此时本 API 会把该 ``callable`` 视为简单返回 ``None`` 。
+如果 ``pred`` 是 ``True``，该 API 返回 ``true_fn()``，否则返回 ``false_fn()``。
+用户如果不想在 ``callable`` 中做任何事，可以把 ``true_fn`` 或 ``false_fn`` 设为 ``None``，此时本 API 会把该 ``callable`` 视为简单返回 ``None``。
 
-``true_fn`` 和 ``false_fn`` 需要返回同样嵌套结构（nest structure）的 Tensor，如果不想返回任何值也可都返回 ``None`` 。
+``true_fn`` 和 ``false_fn`` 需要返回同样嵌套结构（nest structure）的 Tensor，如果不想返回任何值也可都返回 ``None``。
 PaddlePaddle 里 Tensor 的嵌套结构是指一个 Tensor，或者 Tensor 的元组（tuple），或者 Tensor 的列表（list）。
 
 .. note::
@@ -25,14 +25,14 @@ PaddlePaddle 里 Tensor 的嵌套结构是指一个 Tensor，或者 Tensor 的�
 参数
 :::::::::
     - **pred** (Tensor) - 一个元素个数为 1 的布尔型（boolean）的 Tensor （ 0-D Tensor 或者形状为 [1] ），该布尔值决定要返回 ``true_fn`` 还是 ``false_fn`` 的运行结果。
-    - **true_fn** (callable) - 一个当 ``pred`` 是 ``True`` 时被调用的 callable，默认值： ``None`` 。
-    - **false_fn** (callable) - 一个当 ``pred`` 是 ``False`` 时被调用的 callable，默认值： ``None`` 。
-    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值为 None。
-    - **return_names** (sequence of string，可选) - 通常情况下，用户不必设置此参数。字符串表示返回的变量的名称。序列的结构必须与 ``true_fn`` 和 ``false_fn`` 的返回值相同，默认值： ``None`` 。
+    - **true_fn** (callable) - 一个当 ``pred`` 是 ``True`` 时被调用的 callable，默认值：``None``。
+    - **false_fn** (callable) - 一个当 ``pred`` 是 ``False`` 时被调用的 callable，默认值：``None``。
+    - **name** (str，可选) - 具体用法请参见 :ref:`api_guide_Name`，一般无需设置，默认值：``None``。
+    - **return_names** (sequence of string，可选) - 通常情况下，用户不必设置此参数。字符串表示返回的变量的名称。序列的结构必须与 ``true_fn`` 和 ``false_fn`` 的返回值相同，默认值：``None``。
 
 返回
 :::::::::
-Tensor|list(Tensor)|tuple(Tensor)，如果 ``pred`` 是 ``True``，该 API 返回 ``true_fn()``，否则返回 ``false_fn()`` 。
+Tensor|list(Tensor)|tuple(Tensor)，如果 ``pred`` 是 ``True``，该 API 返回 ``true_fn()``，否则返回 ``false_fn()``。
 
 代码示例
 :::::::::
