@@ -1025,19 +1025,78 @@ def filter_out_object_of_api_info_dict():
             del api_info_dict[id_api]['object']
 
 
-def strip_ps1_from_codeblock(codeblock):
-    """strip PS1(>>> ) from codeblock"""
+def _hasprefix(line, prefixes):
+    """helper prefix test"""
+    return any(line == p or line.startswith(p + ' ') for p in prefixes)
+
+
+def strip_ps_from_codeblock(codeblock):
+    """strip PS1(>>> ) and PS2(... ) from codeblock
+
+    Note:
+        These two functions should be updated simultaneously:
+        `docs/docs/api/gen_doc.py :: strip_ps_from_codeblock`
+        `docs/ci_scripts/chinese_samplecode_processor.py :: strip_ps_from_codeblock`
+    """
     match_obj = re.search(r"\n>>>\s?", "\n" + codeblock)
     if match_obj is None:
         return codeblock
 
+    TEXT = 'text'  # text of codeblock
+    CODE_PS1 = 'code_ps1'  # PS1(>>> ) of codeblock
+    CODE_PS2 = 'code_ps2'  # PS2(... ) of codeblock
+
+    previous_state = TEXT
+    current_state = None
+
     codeblock_clean = []
     for line in codeblock.splitlines():
-        match_obj = re.match(r"^>>>\s?", line.lstrip())
-        if match_obj is None:
-            codeblock_clean.append("# {}".format(line))
+        strip_line = line.strip()
+
+        if previous_state == TEXT:
+            # text transitions to source whenever a PS1 line is encountered
+            if _hasprefix(strip_line, ('>>>',)):
+                current_state = CODE_PS1
+            else:
+                current_state = TEXT
+
+        elif previous_state in {CODE_PS1, CODE_PS2}:
+            if len(strip_line) == 0:
+                current_state = TEXT
+
+            # allow source to continue with either PS1 or PS2
+            elif _hasprefix(strip_line, ('>>>', '...')):
+                if strip_line == '...':
+                    if previous_state == CODE_PS2:
+                        current_state = CODE_PS2
+                    else:
+                        current_state = TEXT
+                else:
+                    if _hasprefix(strip_line, ('...',)):
+                        current_state = CODE_PS2
+                    else:
+                        current_state = CODE_PS1
+            else:
+                current_state = TEXT
         else:
-            codeblock_clean.append(line[match_obj.end() :])
+            raise AssertionError(
+                'Unknown state previous_state={}'.format(previous_state)
+            )
+
+        lstrip_line = line.lstrip()
+        if current_state in {CODE_PS1, CODE_PS2}:
+            match_obj = re.match(r"^\.\.\.\s?|^>>>\s?", lstrip_line)
+            codeblock_clean.append(lstrip_line[match_obj.end() :])
+
+        elif current_state == TEXT:
+            codeblock_clean.append("# {}".format(line))
+
+        else:
+            raise AssertionError(
+                'Unknown state current_state={}'.format(current_state)
+            )
+
+        previous_state = current_state
 
     return "\n".join(codeblock_clean)
 
@@ -1099,7 +1158,7 @@ def extract_code_blocks_from_docstr(docstr, google_style=True):
         # nonlocal code_blocks, cb_cur, cb_cur_name, cb_cur_seq_id, cb_required
         code_blocks.append(
             {
-                'codes': strip_ps1_from_codeblock(
+                'codes': strip_ps_from_codeblock(
                     inspect.cleandoc("\n".join(cb_info['cb_cur']))
                 ),
                 'name': cb_info['cb_cur_name'],

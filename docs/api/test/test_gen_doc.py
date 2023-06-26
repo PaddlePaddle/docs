@@ -58,6 +58,35 @@ out = paddle.abs(x)
 print(out)
 # Tensor(shape=[4], dtype=float32, place=Place(gpu:0), stop_gradient=True, [0.40000001, 0.20000000, 0.10000000, 0.30000001])""",
     ),
+    (
+        "\nExamples:\n    .. code-block:: python\n\n        >>> import paddle\n        ... x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])\n        ... out = paddle.abs(x)\n        ... print(out)\n        Tensor(shape=[4], dtype=float32, place=Place(gpu:0), stop_gradient=True, [0.40000001, 0.20000000, 0.10000000, 0.30000001])\n\n",
+        """import paddle
+x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+out = paddle.abs(x)
+print(out)
+# Tensor(shape=[4], dtype=float32, place=Place(gpu:0), stop_gradient=True, [0.40000001, 0.20000000, 0.10000000, 0.30000001])""",
+    ),
+    (
+        "\nExamples:\n    .. code-block:: python\n\n        >>> import paddle\n        ... x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])\n        >>> out = paddle.abs(x)\n        ... print(out)\n        Tensor(shape=[4], dtype=float32, place=Place(gpu:0), stop_gradient=True, [0.40000001, 0.20000000, 0.10000000, 0.30000001])\n\n",
+        """import paddle
+x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+out = paddle.abs(x)
+print(out)
+# Tensor(shape=[4], dtype=float32, place=Place(gpu:0), stop_gradient=True, [0.40000001, 0.20000000, 0.10000000, 0.30000001])""",
+    ),
+    (
+        "\nExamples:\n    .. code-block:: python\n\n        >>> import paddle\n        ... x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])\n        >>> out = paddle.abs(x)\n        ... print(out)\n        Tensor(shape=[4], dtype=float32, place=Place(gpu:0), stop_gradient=True, [0.40000001, 0.20000000, 0.10000000, 0.30000001])\n\n        >>> for i in range(2):\n        ...     print(i)\n        0\n        1\n\n",
+        """import paddle
+x = paddle.to_tensor([-0.4, -0.2, 0.1, 0.3])
+out = paddle.abs(x)
+print(out)
+# Tensor(shape=[4], dtype=float32, place=Place(gpu:0), stop_gradient=True, [0.40000001, 0.20000000, 0.10000000, 0.30000001])
+# 
+for i in range(2):
+    print(i)
+# 0
+# 1""",
+    ),
 ]
 
 
