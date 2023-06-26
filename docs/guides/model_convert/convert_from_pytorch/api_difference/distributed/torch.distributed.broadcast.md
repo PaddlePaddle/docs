@@ -22,3 +22,13 @@ paddle.distributed.broadcast(tensor, src, group=0)
 | src      | src          | 发送源的进程编号。                                                                                     |
 | group    | group        | 工作的进程组编号。                                                                                     |
 | async_op | -            | 是否异步操作，Paddle 无此参数，暂无转写方式。                                                          |
+
+### 转写示例
+#### async_op 不指定(默认 False)
+```python
+# Pytorch 写法
+torch.distributed.broadcast(tensor=data, src=1)
+
+# Paddle 写法
+paddle.distributed.broadcast(tensor=data, src=1)
+```
