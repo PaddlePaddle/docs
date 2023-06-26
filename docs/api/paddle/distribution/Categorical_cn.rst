@@ -30,7 +30,7 @@ Categorical
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.distribution.Categorical:code-example1
+COPY-FROM: paddle.distribution.Categorical
 
 
 方法
@@ -51,7 +51,7 @@ sample(shape)
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Categorical:code-example2
+COPY-FROM: paddle.distribution.Categorical.sample
 
 kl_divergence(other)
 '''''''''
@@ -68,7 +68,7 @@ kl_divergence(other)
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Categorical:code-example3
+COPY-FROM: paddle.distribution.Categorical.kl_divergence
 
 entropy()
 '''''''''
@@ -81,7 +81,7 @@ entropy()
 
 **代码示例**
 
-COPY-FROM: paddle.distribution.Categorical:code-example4
+COPY-FROM: paddle.distribution.Categorical.entropy
 
 probs(value)
 '''''''''
@@ -99,7 +99,7 @@ probs(value)
 
 给定类别下标的概率。
 
-COPY-FROM: paddle.distribution.Categorical:code-example5
+COPY-FROM: paddle.distribution.Categorical.probs
 
 log_prob(value)
 '''''''''
@@ -114,4 +114,4 @@ log_prob(value)
 
 对数概率。
 
-COPY-FROM: paddle.distribution.Categorical:code-example6
+COPY-FROM: paddle.distribution.Categorical.log_prob
