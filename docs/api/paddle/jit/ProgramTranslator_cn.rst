@@ -19,13 +19,7 @@ ProgramTranslator 单例对象。
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-
-    # 以下两种调用方法得到同一个对象，因为 ProgramTranslator 是个单例
-    paddle.jit.ProgramTranslator()
-    paddle.jit.ProgramTranslator.get_instance()
+COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator
 
 方法
 ::::::::::::
@@ -44,26 +38,7 @@ None。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-
-    @paddle.jit.to_static
-    def func(x):
-        if paddle.mean(x) > 0:
-            x_v = x - 1
-        else:
-            x_v = x + 1
-        return x_v
-
-
-    prog_trans = paddle.jit.ProgramTranslator()
-    prog_trans.enable(False)
-
-    x = paddle.ones([1, 2])
-    # ProgramTranslator 被关闭所以 func 会以动态图模式运行
-    print(func(x))  # [[0. 0.]]
+COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.enable
 
 get_output(dygraph_func, *args, **kwargs)
 '''''''''
@@ -81,24 +56,7 @@ get_output(dygraph_func, *args, **kwargs)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-
-    def func(x):
-        if paddle.mean(x) > 0:
-            x_v = x - 1
-        else:
-            x_v = x + 1
-        return x_v
-
-
-    prog_trans = paddle.jit.ProgramTranslator()
-
-    x = paddle.ones([1, 2])
-    x_v = prog_trans.get_output(func, x)
-    print(x_v)  # [[0. 0.]]
+COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.get_output
 
 get_func(dygraph_func)
 '''''''''
@@ -115,22 +73,7 @@ get_func(dygraph_func)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-
-    def func(x):
-        if paddle.mean(x) > 0:
-            x_v = x - 1
-        else:
-            x_v = x + 1
-        return x_v
-
-
-    prog_trans = paddle.jit.ProgramTranslator()
-    static_func = prog_trans.get_func(func)
-    print(callable(static_func)) # True
+COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.get_func
 
 get_program(dygraph_func, *args, **kwargs)
 '''''''''
@@ -153,27 +96,7 @@ get_program(dygraph_func, *args, **kwargs)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-
-    def func(x):
-        if paddle.mean(x) > 0:
-            x_v = x - 1
-        else:
-            x_v = x + 1
-        return x_v
-
-
-    prog_trans = paddle.jit.ProgramTranslator()
-
-    x = paddle.ones([1, 2])
-    main_prog, start_prog, inputs, outputs = prog_trans.get_program(func, x)
-    print([i.name for i in inputs])
-    # [u'generated_tensor_0'] 需要被 feed 的输入 Tensor 名字，对应 x
-    print([o.name for o in outputs])
-    # [u'_generated_var_4'] 需要被 fetch 的输出 Tensor 名字，对应 x_v
+COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.get_program
 
 get_code(dygraph_func)
 '''''''''
@@ -190,23 +113,7 @@ get_code(dygraph_func)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-
-    def func(x):
-        if paddle.mean(x) > 0:
-            x_v = x - 1
-        else:
-            x_v = x + 1
-        return x_v
-
-
-    prog_trans = paddle.jit.ProgramTranslator()
-
-    code = prog_trans.get_code(func)
-    print(type(code)) # <class 'str'>
+COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.get_code
 
 
 get_program_cache()
@@ -220,9 +127,4 @@ ProgramTranslator 中的 ProgramCache。
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-
-    prog_trans = paddle.jit.ProgramTranslator()
-    prog_cache = prog_trans.get_program_cache()
+COPY-FROM: paddle.jit.dy2static.program_translator.ProgramTranslator.get_program_cache
