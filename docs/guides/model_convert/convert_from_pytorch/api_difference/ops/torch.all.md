@@ -3,7 +3,7 @@
 ### [torch.all](https://pytorch.org/docs/stable/generated/torch.all.html?highlight=all#torch.all)
 
 ```python
-torch.all(input, dim, keepdim=False, *, out=None)
+torch.all(input, dim=None, keepdim=False, *, out=None)
 ```
 
 ### [paddle.all](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/all_cn.html#all)

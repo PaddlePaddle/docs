@@ -3,7 +3,7 @@
 ### [torch.any](https://pytorch.org/docs/stable/generated/torch.any.html?highlight=any#torch.any)
 
 ```python
-torch.any(input, dim, keepdim=False, *, out=None)
+torch.any(input, dim=None, keepdim=False, *, out=None)
 ```
 
 ### [paddle.any](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/any_cn.html#any)
