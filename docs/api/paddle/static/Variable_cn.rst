@@ -19,9 +19,17 @@ Variable
 
 如果您希望创建一个 :ref:`api_guide_Variable` 那么可以参考如下示例：
 
+在静态图模型中：
+
 代码示例
 ::::::::::::
-COPY-FROM: paddle.static.Variable:code-example1
+COPY-FROM: paddle.static.VariableMetaClass.Variable:code-example1
+
+在动态图模型中：
+
+代码示例
+::::::::::::
+COPY-FROM: paddle.static.VariableMetaClass.Variable:code-example2
 
 方法
 ::::::::::::
@@ -84,8 +92,6 @@ astype(self, dtype)
 **返回**
 一个全新的转换了 ``Dtype`` 的 :ref:`api_guide_Variable`。
 
-
-
 **代码示例**
 COPY-FROM: paddle.static.Variable.astype
 
@@ -102,8 +108,6 @@ get_value(scope=None)
 **返回**
 
 Tensor， :ref:`api_guide_Variable` 的值。
-
-**代码示例**
 
 **代码示例**
 COPY-FROM: paddle.static.Variable.get_value
@@ -137,7 +141,6 @@ size(self)
 
 ``Variable``：单元元素数量。
 
-
 **代码示例**
 COPY-FROM: paddle.static.Variable.size
 
@@ -152,15 +155,7 @@ ndimension(self)
 ``Variable`` 的维度。
 
 **代码示例**
-  .. code-block:: python
-
-      import paddle
-
-      paddle.enable_static()
-
-      x = paddle.static.data(name="x", shape=[10, 10], dtype='float32')
-      print("Variable's number of dimension: ", x.ndimension())
-      # Variable's number of dimension: 2
+COPY-FROM: paddle.static.Variable.ndimension
 
 
 dim(self)
@@ -172,15 +167,7 @@ dim(self)
 ``Variable`` 的维度。
 
 **代码示例**
-  .. code-block:: python
-
-      import paddle
-
-      paddle.enable_static()
-
-      x = paddle.static.data(name="x", shape=[10, 10], dtype='float32')
-      print("Variable's number of dim: ", x.dim())
-      # Variable's number of dim: 2
+COPY-FROM: paddle.static.Variable.dim
 
 
 属性

@@ -35,7 +35,7 @@ to_string(throw_on_error, with_details=False)
 **参数**
 
  - **throw_on_error** (bool) - 是否在没有设置必需字段时抛出异常。
- - **with_details** (bool) - 值为 true 时，打印更多关于变量和参数的信息，如 ``trainable``, ``optimize_attr``等。
+ - **with_details** (bool) - 值为 true 时，打印更多关于变量和参数的信息，如 ``trainable``, ``optimize_attr`` 等。
 
 **返回**
 
@@ -63,7 +63,7 @@ clone(for_test=False)
 
 **代码示例**
 
-COPY-FROM: paddle.static.Program:code-example1
+COPY-FROM: paddle.static.Program.clone:code-example1
 
 **参数**
 
@@ -79,15 +79,15 @@ Program，当 ``for_test=True`` 时返回一个新的、仅包含当前 Program 
 .. note::
     Program 在 clone 后的顺序可能不同，这不会影响的训练或测试进程。在下面的示例中，我们提供了一个简单的方法 print_prog（Program）来打印程序描述，以确保 clone 后仍能得到同样的打印结果：
 
-COPY-FROM: paddle.static.Program:code-example2
+COPY-FROM: paddle.static.Program.clone:code-example2
 
 1. 克隆一个 Program，示例代码如下。
 
-COPY-FROM: paddle.static.Program:code-example3
+COPY-FROM: paddle.static.Program.clone:code-example3
 
 2. 如果分别运行 train Program 和 test Program，则可以不使用 clone。
 
-COPY-FROM: paddle.static.Program:code-example4
+COPY-FROM: paddle.static.Program.clone:code-example4
 
 上边两个代码片段生成和打印的 Program 是一样的。
 
@@ -171,6 +171,7 @@ block(index)
 
 COPY-FROM: paddle.static.Program.block
 
+
 current_block()
 '''''''''
 
@@ -183,6 +184,7 @@ current_block()
 **代码示例**
 
 COPY-FROM: paddle.static.Program.current_block
+
 
 list_vars()
 '''''''''
@@ -197,6 +199,7 @@ Generator，会 yield 每个 Program 中的变量。
 
 COPY-FROM: paddle.static.Program.list_vars
 
+
 all_parameters()
 '''''''''
 
@@ -209,6 +212,7 @@ list[ :ref:`api_guide_parameter` ]，一个包含当前 Program 中所有参数�
 **代码示例**
 
 COPY-FROM: paddle.static.Program.all_parameters
+
 
 state_dict(mode='all', scope=None)
 '''''''''
@@ -227,6 +231,7 @@ dict，包含持久性变量的 dict，键值是持久性变量的名字，值�
 **代码示例**
 
 COPY-FROM: paddle.static.Program.state_dict
+
 
 set_state_dict(state_dict, scope=None)
 '''''''''
