@@ -137,7 +137,7 @@
         安装 CPU 版本的命令为：
         ::
 
-            python -m pip install paddlepaddle==2.5.0rc1 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle==2.5.0 -i https://mirror.baidu.com/pypi/simple
 
 
     (2). **GPU 版本** ：如果您想使用 GPU 版本请参考如下命令安装
@@ -149,7 +149,7 @@
         请注意用以下指令安装的 PaddlePaddle 在 Windows、Ubuntu、CentOS 下只支持 CUDA11.2：
         ::
 
-            python -m pip install paddlepaddle-gpu==2.5.0rc1 -i https://mirror.baidu.com/pypi/simple
+            python -m pip install paddlepaddle-gpu==2.5.0 -i https://mirror.baidu.com/pypi/simple
 
 
     请确认需要安装 PaddlePaddle 的 Python 是您预期的位置，因为您计算机可能有多个 Python。根据您的环境您可能需要将说明中所有命令行中的 python 替换为具体的 Python 路径。
