@@ -19,38 +19,7 @@ Paddle 通过创建 ``PyLayer`` 子类的方式实现 Python 端自定义算子�
 代码示例
 ::::::::::::
 
-.. code-block:: python
-
-    import paddle
-    from paddle.autograd import PyLayer
-
-    # Inherit from PyLayer
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x, func1, func2=paddle.square):
-            # ctx is a context object that store some objects for backward.
-            ctx.func = func2
-            y = func1(x)
-            # Pass tensors to backward.
-            ctx.save_for_backward(y)
-            return y
-
-        @staticmethod
-        # forward has only one output, so there is only one gradient in the input of backward.
-        def backward(ctx, dy):
-            # Get the tensors passed by forward.
-            y, = ctx.saved_tensor()
-            grad = dy * (1 - ctx.func(y))
-            # forward has only one input, so only one gradient tensor is returned.
-            return grad
-
-
-    data = paddle.randn([2, 3], dtype="float64")
-    data.stop_gradient = False
-    z = cus_tanh.apply(data, func1=paddle.tanh)
-    z.mean().backward()
-
-    print(data.grad)
+COPY-FROM: paddle.autograd.py_layer.PyLayer
 
 
 方法
@@ -71,25 +40,7 @@ Tensor 或至少包含一个 Tensor 的 list/tuple
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.autograd import PyLayer
-
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x):
-            y = paddle.tanh(x)
-            # Pass tensors to backward.
-            ctx.save_for_backward(y)
-            return y
-
-        @staticmethod
-        def backward(ctx, dy):
-            # Get the tensors passed by forward.
-            y, = ctx.saved_tensor()
-            grad = dy * (1 - paddle.square(y))
-            return grad
+COPY-FROM: paddle.autograd.py_layer.PyLayer.forward
 
 
 backward(ctx, *args, **kwargs)
@@ -108,25 +59,7 @@ backward(ctx, *args, **kwargs)
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.autograd import PyLayer
-
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x):
-            y = paddle.tanh(x)
-            # Pass tensors to backward.
-            ctx.save_for_backward(y)
-            return y
-
-        @staticmethod
-        def backward(ctx, dy):
-            # Get the tensors passed by forward.
-            y, = ctx.saved_tensor()
-            grad = dy * (1 - paddle.square(y))
-            return grad
+COPY-FROM: paddle.autograd.py_layer.PyLayer.backward
 
 
 apply(cls, *args, **kwargs)
@@ -145,29 +78,4 @@ Tensor 或至少包含一个 Tensor 的 list/tuple
 
 **代码示例**
 
-.. code-block:: python
-
-    import paddle
-    from paddle.autograd import PyLayer
-
-    class cus_tanh(PyLayer):
-        @staticmethod
-        def forward(ctx, x, func1, func2=paddle.square):
-            ctx.func = func2
-            y = func1(x)
-            # Pass tensors to backward.
-            ctx.save_for_backward(y)
-            return y
-
-        @staticmethod
-        def backward(ctx, dy):
-            # Get the tensors passed by forward.
-            y, = ctx.saved_tensor()
-            grad = dy * (1 - ctx.func(y))
-            return grad
-
-
-    data = paddle.randn([2, 3], dtype="float64")
-    data.stop_gradient = False
-    # run custom Layer.
-    z = cus_tanh.apply(data, func1=paddle.tanh)
+COPY-FROM: paddle.autograd.py_layer.PyLayer
