@@ -1025,25 +1025,39 @@ def filter_out_object_of_api_info_dict():
             del api_info_dict[id_api]['object']
 
 
-def extract_code_blocks_from_docstr(docstr):
+def extract_code_blocks_from_docstr(docstr, google_style=True):
     """
     extract code-blocks from the given docstring.
     DON'T include the multiline-string definition in code-blocks.
     The *Examples* section must be the last.
     Args:
         docstr(str): docstring
+        google_style(bool): if not use google_style, the code blocks will be extracted from all the parts of docstring.
     Return:
         code_blocks: A list of code-blocks, indent removed.
                      element {'name': the code-block's name, 'id': sequence id.
-                              'codes': codes, 'required': 'gpu'}
+                              'codes': codes, 'required': 'gpu', 'in_examples': bool, code block in `Examples` or not,}
     """
     code_blocks = []
 
     mo = re.search(r"Examples?:", docstr)
-    if mo is None:
+
+    if google_style and mo is None:
         return code_blocks
-    ds_list = docstr[mo.start() :].replace("\t", '    ').split("\n")
-    lastlineindex = len(ds_list) - 1
+
+    example_start = len(docstr) if mo is None else mo.start()
+    docstr_describe = docstr[:example_start].splitlines()
+    docstr_examples = docstr[example_start:].splitlines()
+
+    docstr_list = []
+    if google_style:
+        example_lineno = 0
+        docstr_list = docstr_examples
+    else:
+        example_lineno = len(docstr_describe)
+        docstr_list = docstr_describe + docstr_examples
+
+    lastlineindex = len(docstr_list) - 1
 
     cb_start_pat = re.compile(r"code-block::\s*python")
     cb_param_pat = re.compile(r"^\s*:(\w+):\s*(\S*)\s*$")
@@ -1064,7 +1078,7 @@ def extract_code_blocks_from_docstr(docstr):
         cb_info['cb_cur_name'] = None
         cb_info['cb_required'] = None
 
-    def _append_code_block():
+    def _append_code_block(in_examples):
         # nonlocal code_blocks, cb_cur, cb_cur_name, cb_cur_seq_id, cb_required
         code_blocks.append(
             {
@@ -1072,10 +1086,11 @@ def extract_code_blocks_from_docstr(docstr):
                 'name': cb_info['cb_cur_name'],
                 'id': cb_info['cb_cur_seq_id'],
                 'required': cb_info['cb_required'],
+                'in_examples': in_examples,
             }
         )
 
-    for lineno, linecont in enumerate(ds_list):
+    for lineno, linecont in enumerate(docstr_list):
         if re.search(cb_start_pat, linecont):
             if not cb_info['cb_started']:
                 _cb_started()
@@ -1083,7 +1098,7 @@ def extract_code_blocks_from_docstr(docstr):
             else:
                 # cur block end
                 if len(cb_info['cb_cur']):
-                    _append_code_block()
+                    _append_code_block(lineno > example_lineno)
                 _cb_started()  # another block started
                 cb_info['cb_cur_indent'] = -1
                 cb_info['cb_cur'] = []
@@ -1108,7 +1123,7 @@ def extract_code_blocks_from_docstr(docstr):
                     ):
                         cb_info['cb_cur'].append(linecont)
                     if len(cb_info['cb_cur']):
-                        _append_code_block()
+                        _append_code_block(lineno > example_lineno)
                     break
                 # check indent for cur block start and end.
                 if cb_info['cb_cur_indent'] < 0:
@@ -1131,7 +1146,7 @@ def extract_code_blocks_from_docstr(docstr):
                         else:
                             # block end
                             if len(cb_info['cb_cur']):
-                                _append_code_block()
+                                _append_code_block(lineno > example_lineno)
                             cb_info['cb_started'] = False
                             cb_info['cb_cur_indent'] = -1
                             cb_info['cb_cur'] = []
