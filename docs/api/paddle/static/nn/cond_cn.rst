@@ -36,4 +36,4 @@ Tensor|list(Tensor)|tuple(Tensor)，如果 ``pred`` 是 ``True``，该 API 返�
 
 代码示例
 :::::::::
-COPY-FROM: paddle.static.nn.cond
+COPY-FROM: paddle.static.nn.cond:code-example2
