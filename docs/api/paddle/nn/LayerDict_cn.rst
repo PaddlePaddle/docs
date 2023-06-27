@@ -19,7 +19,7 @@ LayerDict 用于保存子层到有序字典中，它包含的子层将被正确�
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.nn.LayerDict:code-example1
+COPY-FROM: paddle.nn.LayerDict
 
 方法
 ::::::::::::
@@ -34,7 +34,7 @@ clear()
 
 **代码示例**
 
-COPY-FROM: paddle.nn.LayerDict:clear
+COPY-FROM: paddle.nn.LayerDict.clear
 
 pop()
 '''''''''
@@ -47,7 +47,7 @@ pop()
 
 **代码示例**
 
-COPY-FROM: paddle.nn.LayerDict:pop
+COPY-FROM: paddle.nn.LayerDict.pop
 
 keys()
 '''''''''
@@ -60,7 +60,7 @@ keys()
 
 **代码示例**
 
-COPY-FROM: paddle.nn.LayerDict:keys
+COPY-FROM: paddle.nn.LayerDict.keys
 
 
 items()
@@ -74,7 +74,7 @@ items()
 
 **代码示例**
 
-COPY-FROM: paddle.nn.LayerDict:items
+COPY-FROM: paddle.nn.LayerDict.items
 
 
 values()
@@ -88,7 +88,7 @@ values()
 
 **代码示例**
 
-COPY-FROM: paddle.nn.LayerDict:values
+COPY-FROM: paddle.nn.LayerDict.values
 
 
 update()
@@ -102,4 +102,4 @@ update()
 
 **代码示例**
 
-COPY-FROM: paddle.nn.LayerDict:update
+COPY-FROM: paddle.nn.LayerDict.update

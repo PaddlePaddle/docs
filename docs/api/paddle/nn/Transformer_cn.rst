@@ -38,7 +38,7 @@ Transformer 模型由一个 ``TransformerEncoder`` 实例和一个 ``Transformer
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.nn.Transformer:code-example1
+COPY-FROM: paddle.nn.Transformer
 
 方法
 ::::::::::::
@@ -79,4 +79,4 @@ Tensor，根据输入的 ``length`` 具体的大小生成的形状为 ``[length,
 
 **代码示例**
 
-COPY-FROM: paddle.nn.Transformer:code-example2
+COPY-FROM: paddle.nn.Transformer.generate_square_subsequent_mask
