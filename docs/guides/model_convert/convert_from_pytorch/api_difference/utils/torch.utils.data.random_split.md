@@ -34,7 +34,7 @@ datasets = torch.utils.data.random_split(dataset,
 
 # Paddle 写法
 lengths = [0.3, 0.3, 0.4]
-lengths = [length * datasets.__len__() for length in lengths]
+lengths = [length * dataset.__len__() for length in lengths]
 datasets = paddle.io.random_split(dataset,
                                   lengths,
                                   generator=paddle.fluid.core.default_cpu_generator().manual_seed(0))
