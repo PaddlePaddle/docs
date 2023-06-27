@@ -28,14 +28,14 @@ paddle.io.random_split(dataset,
 ```python
 # Pytorch 写法
 lengths = [0.3, 0.3, 0.4]
-datasets = torch.utils.data.random_split(range(30),
+datasets = torch.utils.data.random_split(dataset,
                                         lengths,
-                                        generator=<torch._C.Generator object>)
+                                        generator=torch.Generator().manual_seed(0))
 
 # Paddle 写法
 lengths = [0.3, 0.3, 0.4]
 lengths = [length * datasets.__len__() for length in lengths]
 datasets = paddle.io.random_split(dataset,
                                   lengths,
-                                  generator=None)
+                                  generator=paddle.fluid.core.default_cpu_generator().manual_seed(0))
 ```
