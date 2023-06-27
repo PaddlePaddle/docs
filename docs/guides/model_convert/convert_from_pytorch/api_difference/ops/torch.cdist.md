@@ -5,6 +5,7 @@
 ```python
 torch.cdist(x1, x2, p=2.0, compute_mode='use_mm_for_euclid_dist_if_necessary')
 ```
+
 ### [paddle.cdist](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/cdist_cn.html#cdist)
 
 ```python
