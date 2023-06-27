@@ -22,4 +22,4 @@ clip_grad_value\_
 代码示例
 ::::::::::::
 
-COPY-FROM: paddle.nn.utils.clip_grad_norm_
+COPY-FROM: paddle.nn.utils.clip_grad_value_
