@@ -23,8 +23,8 @@ paddle.fft.fftshift(x, axes=None, name=None)
 #### other
 ```python
 # PyTorch 写法
-torch.fft.fftshift(f)
+torch.fft.fftshift(torch.tensor([ 0, 1]), dim=0)
 
 # Paddle 写法
-paddle.fft.fftshift(f)
+paddle.fft.fftshift(paddle.to_tensor([0, 1])，axes=0)
 ```
