@@ -74,6 +74,8 @@
 
   * **CUDA 工具包 11.8 配合 cuDNN v8.6.0, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.5.1.7**
 
+  * **CUDA 工具包 12.0 配合 cuDNN v8.9.1, 如需使用 PaddleTensorRT 推理，需配合 TensorRT8.6.1.6**
+
   * **如需使用分布式多卡环境，需配合 NCCL>=2.7**
 
   * **GPU 运算能力超过 3.5 的硬件设备**
