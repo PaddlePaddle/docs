@@ -39,6 +39,9 @@
     ```
     nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.5.0-gpu-cuda11.7-cudnn8.4-trt8.4
     ```
+    ```
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.5.0-gpu-cuda12.0-cudnn8.9-trt8.6
+    ```
 
 如果您的机器不在中国大陆地区，可以直接从 DockerHub 拉取镜像：
 
@@ -61,6 +64,9 @@
     ```
     ```
     nvidia-docker pull paddlepaddle/paddle:2.5.0-gpu-cuda11.7-cudnn8.4-trt8.4
+    ```
+    ```
+    nvidia-docker pull paddlepaddle/paddle:2.5.0-gpu-cuda12.0-cudnn8.9-trt8.6
     ```
 
 您还可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取更多镜像。
@@ -151,6 +157,10 @@
     <tr>
         <td> registry.baidubce.com/paddlepaddle/paddle:2.5.0-jupyter </td>
         <td> 安装了 2.5.0 版本 paddle 的 CPU 镜像，且镜像中预装好了 jupyter，启动 docker 即运行 jupyter 服务 </td>
+    </tr>
+    <tr>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.5.0-gpu-cuda12.0-cudnn8.9-trt8.6 </td>
+        <td> 安装了 2.5.0 版本 paddle 的 GPU 镜像，cuda 版本为 12.0，cudnn 版本为 8.9，trt 版本为 8.6 </td>
     </tr>
     <tr>
         <td> registry.baidubce.com/paddlepaddle/paddle:2.5.0-gpu-cuda11.7-cudnn8.4-trt8.4 </td>

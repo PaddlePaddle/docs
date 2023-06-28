@@ -39,6 +39,9 @@ For domestic users, when downloading docker is slow due to network problems, you
     ```
     nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.5.0-gpu-cuda11.7-cudnn8.4-trt8.4
     ```
+    ```
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:2.5.0-gpu-cuda12.0-cudnn8.9-trt8.6
+    ```
 
 If your machine is not in mainland China, you can pull the image directly from DockerHub:
 
@@ -61,6 +64,9 @@ If your machine is not in mainland China, you can pull the image directly from D
     ```
     ```
     nvidia-docker pull paddlepaddle/paddle:2.5.0-gpu-cuda11.7-cudnn8.4-trt8.4
+    ```
+    ```
+    nvidia-docker pull paddlepaddle/paddle:2.5.0-gpu-cuda12.0-cudnn8.9-trt8.6
     ```
 
 You can see [DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/) to get more images.
@@ -153,6 +159,10 @@ Now you have successfully used Docker to install PaddlePaddle. For more informat
     <tr>
         <td> registry.baidubce.com/paddlepaddle/paddle:2.5.0-jupyter </td>
         <td> CPU image of paddle version 2.5.0 is installed, and jupyter is pre-installed in the image. Start the docker to run the jupyter service </td>
+    </tr>
+    <tr>
+        <td> registry.baidubce.com/paddlepaddle/paddle:2.5.0-gpu-cuda12.0-cudnn8.9-trt8.6 </td>
+        <td> GPU image of paddle version 2.5.0 is installed, cuda version is 12.0, cudnn version is 8.9, trt version is 8.6 </td>
     </tr>
     <tr>
         <td> registry.baidubce.com/paddlepaddle/paddle:2.5.0-gpu-cuda11.7-cudnn8.4-trt8.4 </td>
