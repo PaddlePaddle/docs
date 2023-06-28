@@ -81,10 +81,10 @@ cd Paddle
 
 * GPU 版的 PaddlePaddle：
     ```
-    nvidia-docker pull paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2
     ```
 
-上例中，`latest-gpu-cuda10.2-cudnn7-dev` 仅作示意用，表示安装 GPU 版的镜像。如果您还想安装其他 cuda/cudnn 版本的镜像，可以将其替换成`latest-dev-cuda11.2-cudnn8-gcc82`、`latest-gpu-cuda10.1-cudnn7-gcc82-dev`、`latest-gpu-cuda10.1-cudnn7-gcc54-dev`等。
+上例中，`latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2` 仅作示意用，表示安装 GPU 版的镜像。如果您还想安装其他 cuda/cudnn 版本的镜像，可以将其替换成`latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82`等。
 您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
 
@@ -108,7 +108,7 @@ cd Paddle
 * 编译 GPU 版本的 PaddlePaddle：
 
     ```
-    nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev /bin/bash
+    nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2 /bin/bash
     ```
 
     - `--name paddle-test`：为您创建的 Docker 容器命名为 paddle-test;
@@ -117,7 +117,7 @@ cd Paddle
 
     - `-it`： 与宿主机保持交互状态;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
+    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
 
 
 注意：
