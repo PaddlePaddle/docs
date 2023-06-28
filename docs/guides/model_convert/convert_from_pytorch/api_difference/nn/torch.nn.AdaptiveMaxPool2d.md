@@ -1,4 +1,4 @@
-## [ 参数不一致 ]torch.nn.AdaptiveMaxPool2d
+## [ 仅参数名不一致 ]torch.nn.AdaptiveMaxPool2d
 ### [torch.nn.AdaptiveMaxPool2d](https://pytorch.org/docs/1.13/generated/torch.nn.AdaptiveMaxPool2d.html?highlight=adaptivemaxpool2d#torch.nn.AdaptiveMaxPool2d)
 
 ```python
@@ -14,25 +14,9 @@ class torch.nn.AdaptiveMaxPool2d(output_size,
                                   name=None)
 ```
 
-其中 PyTorch 与 Paddle 的索引返回值类型不一致，具体如下：
+两者功能一致且参数用法一致，仅参数名不同，具体如下：：
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | output_size | output_size  | 表示输出 Tensor 的大小。 |
 | return_indices | return_mask  | 如果设置为 True，则会与输出一起返回最大值的索引，默认为 False，仅参数名不一致。 |
-| return     | return            | 表示返回值，当返回索引时，PyTorch 索引返回值的类型为 int64，Paddle 索引返回值的类型为 int32 ， 需要进行转写。 |
-
-### 转写示例
-
-#### return：返回值类型
-
-```python
-# Pytorch 写法
-model = nn.AdaptiveMaxPool2d(output_size=5, return_indices=True)
-result, indices = model(x)
-
-# Paddle 写法
-model = nn.AdaptiveMaxPool2D(output_size=5, return_indices=True)
-result, indices = model(x)
-indices = indices.astype('int64')
-```
