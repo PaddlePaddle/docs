@@ -1,0 +1,23 @@
+## [仅 Paddle 参数更多]torch.cholesky_solve
+
+### [torch.cholesky_solve](https://pytorch.org/docs/2.0/generated/torch.cholesky_solve.html?highlight=cholesky#torch.cholesky_solve)
+
+```python
+torch.cholesky_solve(input,input2,upper=False,*,out=None)
+```
+
+### [paddle.linalg.cholesky_solve](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/api/paddle/linalg/cholesky_solve_cn.html#cholesky-solve)
+
+```python
+paddle.linalg.cholesky_solve(x,y,upper=False,name=None)
+```
+
+其中 PyTorch 相比 Paddle 支持更多其他参数，具体如下：
+
+### 参数映射
+|PyTorch|PaddlePaddle|备注|
+| ------- | ------- | ------- |
+|input|x|线性方程中的 B 矩阵|
+|input2|y|线性方程中 A 矩阵的 Cholesky 分解矩阵 u，上三角或者下三角矩阵|
+|upper|upper|输入 x 是否是上三角矩阵，True 为上三角矩阵，False 为下三角矩阵。默认值 False|
+|-|name|一般无需设置，默认值为 None。|
