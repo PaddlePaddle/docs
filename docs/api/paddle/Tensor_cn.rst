@@ -2633,3 +2633,55 @@ cummin(x, axis=None, dtype='int64', name=None)
 返回类型：Tensor，包含计算结果和索引。
 
 请参考 :ref:`cn_api_tensor_cn_cummin`
+
+as_strided(x, shape, stride, offset=0, name=None)
+:::::::::
+
+使用特定的 shape、stride、offset，返回 x 的一个 view Tensor。
+
+仅在动态图下可用，返回的 Tensor 和 x 共享内存。
+
+返回：x 的一个 view Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_as_strided`
+
+view(x, shape_or_dtype, name=None)
+:::::::::
+
+使用特定的 shape 或者 dtype，返回 x 的一个 view Tensor。
+
+仅在动态图下可用，返回的 Tensor 和 x 共享内存。
+
+返回：x 的一个 view Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_view`
+
+view_as(x, other, name=None)
+:::::::::
+
+使用 other 的 shape，返回 x 的一个 view Tensor。
+
+仅在动态图下可用，返回的 Tensor 和 x 共享内存。
+
+返回：x 的一个 view Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_view_as`
+
+unfold(x, axis, size, step, name=None)
+:::::::::
+
+返回 x 的一个 view Tensor。以滑动窗口式提取 x 的值。
+
+仅在动态图下可用，返回的 Tensor 和 x 共享内存。
+
+返回：x 的一个 view Tensor。
+
+返回类型：Tensor
+
+请参考 :ref:`cn_api_paddle_tensor_unfold`
