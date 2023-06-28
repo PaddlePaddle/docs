@@ -69,7 +69,7 @@ cd Paddle
 
 * GPU 版的 PaddlePaddle：
     ```
-    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2
     ```
 
 如果您的机器不在中国大陆地区，可以直接从 DockerHub 拉取镜像：
