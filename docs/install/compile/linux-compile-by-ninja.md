@@ -1,4 +1,4 @@
-# **Linux 下从源码编译**
+# **Linux 下使用ninja从源码编译**
 
 ## 环境准备
 
@@ -69,7 +69,7 @@ cd Paddle
 
 * GPU 版的 PaddlePaddle：
     ```
-    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2
     ```
 
 如果您的机器不在中国大陆地区，可以直接从 DockerHub 拉取镜像：
@@ -81,10 +81,10 @@ cd Paddle
 
 * GPU 版的 PaddlePaddle：
     ```
-    nvidia-docker pull paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev
+    nvidia-docker pull registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2
     ```
 
-上例中，`latest-gpu-cuda10.2-cudnn7-dev` 仅作示意用，表示安装 GPU 版的镜像。如果您还想安装其他 cuda/cudnn 版本的镜像，可以将其替换成`latest-dev-cuda11.2-cudnn8-gcc82`、`latest-gpu-cuda10.1-cudnn7-gcc82-dev`、`latest-gpu-cuda10.1-cudnn7-gcc54-dev`等。
+上例中，`latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2` 仅作示意用，表示安装 GPU 版的镜像。如果您还想安装其他 cuda/cudnn 版本的镜像，可以将其替换成`latest-dev-cuda11.2-cudnn8.2-trt8.0-gcc82`等。
 您可以访问[DockerHub](https://hub.docker.com/r/paddlepaddle/paddle/tags/)获取与您机器适配的镜像。
 
 
@@ -108,7 +108,7 @@ cd Paddle
 * 编译 GPU 版本的 PaddlePaddle：
 
     ```
-    nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev /bin/bash
+    nvidia-docker run --name paddle-test -v $PWD:/paddle --network=host -it registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2 /bin/bash
     ```
 
     - `--name paddle-test`：为您创建的 Docker 容器命名为 paddle-test;
@@ -117,7 +117,7 @@ cd Paddle
 
     - `-it`： 与宿主机保持交互状态;
 
-    - `registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-gpu-cuda10.2-cudnn7-dev`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
+    - `registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2`：使用名为`registry.baidubce.com/paddlepaddle/paddle:latest-dev-cuda10.2-cudnn7.6-trt7.0-gcc8.2`的镜像创建 Docker 容器，/bin/bash 进入容器后启动/bin/bash 命令。
 
 
 注意：
@@ -145,10 +145,10 @@ mkdir -p /paddle/build && cd /paddle/build
 
 #### 8. 使用以下命令安装相关依赖：
 
-- 安装 protobuf。
+- 安装 protobuf和ninja。
 
 ```
-pip3.7 install protobuf
+pip3.7 install protobuf ninja
 ```
 
 注意：以上用 Python3.7 命令来举例，如您的 Python 版本为 3.6/3.8/3.9，请将上述命令中的 pip3.7 改成 pip3.6/pip3.8/pip3.9
@@ -164,12 +164,12 @@ apt install patchelf
 
 * 对于需要编译**CPU 版本 PaddlePaddle**的用户：
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF
+    cmake .. -GNinja -DPY_VERSION=3.7 -DWITH_GPU=OFF
     ```
 
 * 对于需要编译**GPU 版本 PaddlePaddle**的用户：
     ```
-    cmake .. -DPY_VERSION=3.7 -DWITH_GPU=ON
+    cmake .. -GNinja -DPY_VERSION=3.7 -DWITH_GPU=ON
     ```
 - 具体编译选项含义请参见[编译选项表](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/install/Tables.html#Compile)
 
@@ -182,7 +182,7 @@ apt install patchelf
 使用多核编译
 
 ```
-make -j$(nproc)
+ninja -j$(nproc)
 ```
 
 注意：
@@ -447,12 +447,15 @@ uname -m && cat /etc/*release
         mkvirtualenv paddle-venv
         ```
 
-#### 6. 进入虚环境：
+#### 6. 进入虚环境并安装ninja：
 
 ```
 workon paddle-venv
 ```
 
+```
+pip install ninja
+```
 #### 7. **执行编译前**请您确认在虚环境中安装有[编译依赖表](/documentation/docs/zh/install/Tables.html#third_party)中提到的相关依赖：
 
 * 这里特别提供`patchELF`的安装方法，其他的依赖可以使用`yum install`或者`pip install`/`pip3 install` 后跟依赖名称和版本安装:
@@ -492,7 +495,7 @@ mkdir build && cd build
 
 
     ```
-    cmake .. -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
+    cmake .. -GNinja -DPY_VERSION=3.7 -DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDE_DIRS} \
     -DPYTHON_LIBRARY=${PYTHON_LIBRARY} -DWITH_GPU=OFF
     ```
 
@@ -535,7 +538,7 @@ mkdir build && cd build
     2. 如果您已经正确安装了`nccl2`，就可以开始 cmake 了：(*For Python3: 请给 PY_VERSION 参数配置正确的 python 版本*)
 
         ```
-        cmake .. -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON
+        cmake .. -GNinja -DPYTHON_EXECUTABLE:FILEPATH=[您可执行的 Python3 的路径] -DPYTHON_INCLUDE_DIR:PATH=[之前的 PYTHON_INCLUDE_DIRS] -DPYTHON_LIBRARY:FILEPATH=[之前的 PYTHON_LIBRARY] -DWITH_GPU=ON
         ```
 
 注意：以上涉及 Python3 的命令，用 Python3.7 来举例，如您的 Python 版本为 3.8/3.9，请将上述命令中的 Python3.7 改成 Python3.8/Python3.9
@@ -546,7 +549,7 @@ mkdir build && cd build
 #### 12. 使用以下命令来编译：
 
 ```
-make -j$(nproc)
+ninja -j$(nproc)
 ```
 
 > 使用多核编译
