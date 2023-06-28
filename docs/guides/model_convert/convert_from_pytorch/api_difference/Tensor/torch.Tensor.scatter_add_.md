@@ -1,15 +1,17 @@
-## [ 仅 paddle 参数更多 ]torch.Tensor.scatter_add
+## [ 仅 paddle 参数更多 ]torch.Tensor.scatter_add_
 
-### [torch.Tensor.scatter_add](https://pytorch.org/docs/1.13/generated/torch.Tensor.scatter_add.html#torch.Tensor.scatter_add)
+### [torch.Tensor.scatter_add_](https://pytorch.org/docs/1.13/generated/torch.Tensor.scatter_add_.html#torch.Tensor.scatter_add_)
 
 ```python
-torch.Tensor.scatter_add(dim, index, src)
+torch.Tensor.scatter_add_(dim,
+                         index,
+                         src)
 ```
 
-### [paddle.Tensor.put_along_axis](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/put_along_axis_cn.html)
+### [paddle.Tensor.put_along_axis_](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/put_along_axis__cn.html)
 
 ```python
-paddle.Tensor.put_along_axis(indices,
+paddle.Tensor.put_along_axis_(indices,
                               values,
                               axis,
                               reduce='assign')
