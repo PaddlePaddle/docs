@@ -61,9 +61,8 @@ paddle.assign(paddle.searchsorted(x,y), output)
 
 ```python
 # Pytorch 写法
-x_sort = torch.argsort(x)
-torch.searchsorted(x,y, sorter =x_sort)
+torch.searchsorted(x,y, sorter=sorter)
 
 # Paddle 写法
-paddle.searchsorted(x.sort(), y)
+paddle.searchsorted(x.take_along_axis(axis = -1, indices = sorter), y)
 ```
