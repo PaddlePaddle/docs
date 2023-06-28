@@ -56,3 +56,14 @@ torch.searchsorted(x,y, out=output)
 # Paddle 写法
 paddle.assign(paddle.searchsorted(x,y), output)
 ```
+
+#### sorter: 提供 sorted_sequence 为无序 Tensor 时，相对应的升序索引
+
+```python
+# Pytorch 写法
+x_sort = torch.argsort(x)
+torch.searchsorted(x,y, sorter =x_sort)
+
+# Paddle 写法
+paddle.searchsorted(x.sort(), y)
+```
