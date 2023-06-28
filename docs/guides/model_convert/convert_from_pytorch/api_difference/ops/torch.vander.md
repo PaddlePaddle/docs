@@ -1,4 +1,4 @@
-## [ 参数完全一致 ]torch.vander
+## [ 仅参数名不一致 ]torch.vander
 
 ### [torch.vander](https://pytorch.org/docs/stable/generated/torch.vander.html?highlight=vander#torch.vander)
 
@@ -12,15 +12,15 @@ torch.vander(x,
 
 ```python
 paddle.vander(x,
-          N,
+          n,
           increasing)
 ```
 
-两者功能一致，参数完全一致，具体如下：
+两者功能一致，仅参数名不一致，具体如下：
 
 ### 参数映射
 | PyTorch       | PaddlePaddle | 备注                                                   |
 | ------------- | ------------ | ------------------------------------------------------ |
 | x          | x          | 表示输入的 Tensor。                      |
-| N          | N         | 用于指定输出的列数。             |
+| N          | n        | 用于指定输出的列数, 仅参数名大小写的区别。             |
 | increasing        | increasing |  指定输出列的幂次顺序。如果为 True，则幂次从左到右增加。 |
