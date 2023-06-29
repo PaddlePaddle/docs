@@ -3,13 +3,13 @@
 ### [torch.utils.data.TensorDataset](https://pytorch.org/docs/stable/data.html#torch.utils.data.TensorDataset)
 
 ```python
-torch.utils.data.TensorDataset(tensor1, tensor2, tensor3)
+torch.utils.data.TensorDataset(*tensors)
 ```
 
 ### [paddle.io.TensorDataset](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/io/TensorDataset_cn.html)
 
 ```python
-paddle.io.TensorDataset([tensor1, tensor2, tensor3])
+paddle.io.TensorDataset(tensors)
 ```
 
 paddle 参数和 torch 参数用法不一致，具体如下：
