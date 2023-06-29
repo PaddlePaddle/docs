@@ -6,7 +6,7 @@
 torch.Tensor.all(dim=None, keepdim=False)
 ```
 
-### [paddle.all](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#all-axis-none-keepdim-false-name-none)
+### [paddle.Tensor.all](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#all-axis-none-keepdim-false-name-none)
 
 ```python
 paddle.Tensor.all(axis=None,
@@ -24,6 +24,7 @@ paddle.Tensor.all(axis=None,
 | keepdim    |  keepdim  | 是否在输出 Tensor 中保留减小的维度，参数完全一致。  |
 
 ### 转写示例
+#### 运算 Tensor：调用类方法的 Tensor
 ```python
 # PyTorch 写法
 y = x.all()
