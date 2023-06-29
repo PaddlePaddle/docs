@@ -34,7 +34,7 @@ paddle.searchsorted(sorted_sequence,
 | right     |    right     | 表示查找对应的上边界或下边界。 |
 | side     | -       | 表示查找对应的上边界或下边界，Paddle 无此参数，需要进行转写。 |
 | out     | -       | 表示输出的 Tensor，Paddle 无此参数，需要进行转写。 |
-| sorter     | -       | 表示 sorted_sequence 元素无序时对应的升序索引，Paddle 无此参数，一般对网络训练结果影响不大，可直接删除。 |
+| sorter     | -       | 表示 sorted_sequence 元素无序时对应的升序索引，Paddle 无此参数，一般对网络训练结果影响不大。 |
 
 ### 转写示例
 #### side：指定查找对应的上边界或下边界
