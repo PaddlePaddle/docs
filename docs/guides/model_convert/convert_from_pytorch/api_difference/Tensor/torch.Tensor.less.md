@@ -1,15 +1,15 @@
-## [ 参数不一致 ]torch.Tensor.gt
+## [ 参数不一致 ]torch.Tensor.less
 
-### [torch.Tensor.gt](https://pytorch.org/docs/1.13/generated/torch.Tensor.gt.html?highlight=torch+tensor+gt#torch.Tensor.gt)
+### [torch.Tensor.less](https://pytorch.org/docs/1.13/generated/torch.Tensor.less.html)
 
 ```python
-torch.Tensor.gt(other)
+torch.Tensor.less(other)
 ```
 
-### [paddle.Tensor.greater_than](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#greater-than-y-name-none)
+### [paddle.Tensor.less_than](https://www.paddlepaddle.org.cn/documentation/docs/zh/api/paddle/Tensor_cn.html#less-than-y-name-none)
 
 ```python
-paddle.Tensor.greater_than(y, name=None)
+paddle.Tensor.less_than(y, name=None)
 ```
 
 其中 Paddle 和 PyTorch 的 `other` 参数所支持的数据类型不一致，具体如下：
@@ -22,8 +22,8 @@ paddle.Tensor.greater_than(y, name=None)
 #### other：输入为 Number
 ```python
 # Pytorch 写法
-result = x.gt(2)
+result = x.less(2)
 
 # Paddle 写法
-result = x.greater_than(paddle.to_tensor(2))
+result = x.less_than(paddle.to_tensor(2))
 ```
